@@ -1,0 +1,43 @@
+##################################################
+## Machines
+
+genetics.machine.machine.isolator=Isolator
+genetics.machine.machine.isolator.info=The Isolator takes a random allele from a bee, tree or other individual and copies it into an empty sequence vial. This requires the use of ethanol as a solvent and an enzyme to cut up the DNA. The unsequenced serums can then be amplified in a Polymeriser and sequenced in a Sequencer.
+
+genetics.machine.machine.sequencer=Sequencer
+genetics.machine.machine.sequencer.info=The Sequencer takes unsequenced serums and determines which allele is present in them. This requires the use of fluorescent dye and has a long computational time.
+
+genetics.machine.machine.polymeriser=Polymeriser
+genetics.machine.machine.polymeriser.info=The Polymeriser takes serums and refills them using Raw DNA and replicating bacteria. This can be accelerated using gold nuggets. 
+
+genetics.machine.machine.inoculator=Inoculator
+genetics.machine.machine.inoculator.info=The Inoculator uses serums to add genes to breedable individuals. This process takes a very long time and requires a Bacteria Vector, but is 100% successful. 
+
+genetics.machine.labMachine.genepool=Genepool
+genetics.machine.labMachine.genepool.info=The Genepool uses enzymes and ethanol to break down living things into DNA. All genetic information is lost and the source of the DNA is destroyed.
+
+
+genetics.machine.labMachine.labMachine=Lab Stand
+
+genetics.machine.labMachine.analyser=Analyser
+genetics.machine.labMachine.analyser.info=The Analyser takes breedable individuals and DNA sequencers and analyses them to determine the genes present. This requires DNA Dye, created from purple dye and glowstone
+
+genetics.machine.labMachine.incubator=Incubator
+genetics.machine.labMachine.incubator.info=The Incubator combines liquids and items and allows them to sit at an ideal temperature to encourage bacterial growth. 
+
+genetics.machine.labMachine.acclimatiser=Acclimatiser
+
+genetics.machine.advMachine.splicer=Splicer
+genetics.machine.advMachine.splicer.info=The Splicer is an incredibly powerful machine to insert genes into individuals. It is fast, but needs insane amounts of power.
+
+
+
+
+genetics.item.sequence=DNA Sequence
+
+genetics.item.sequence.0=Very Faint
+genetics.item.sequence.1=Faint
+genetics.item.sequence.2=Weak
+genetics.item.sequence.3=Average
+genetics.item.sequence.4=Strong
+genetics.item.sequence.5=Very Strong

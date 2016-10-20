@@ -1,0 +1,274 @@
+{
+    "name": "default",
+    "author": "Binnie",
+    
+    "texture-sheets": [
+        {
+            "name": "controls",
+            "modid": "binniecore",
+            "path": "craftgui-controls.png"
+        },
+        {
+            "name": "panels",
+            "modid": "binniecore",
+            "path": "craftgui-panels.png"
+        },
+        {
+            "name": "slots",
+            "modid": "binniecore",
+            "path": "craftgui-slots.png"
+        }
+    ],
+    
+    "textures": [
+        {
+            "name": "window",
+            "sheet": "panels",
+            "uv": "6 6 64 64",
+            "padding": "8"
+        },
+        {
+            "name": "panel.gray",
+            "sheet": "panels",
+            "uv": "78 4 32 32",
+            "padding": "2"
+        },
+        {
+            "name": "panel.black",
+            "sheet": "panels",
+            "uv": "116 4 32 32",
+            "padding": "2"
+        },
+        {
+            "name": "panel.tinted",
+            "sheet": "panels",
+            "uv": "154 4 32 32",
+            "padding": "2"
+        },
+        {
+            "name": "button",
+            "sheet": "controls",
+            "uv": "30 4 20 20",
+            "padding": "4"
+        },
+        {
+            "name": "button.highlighted",
+            "sheet": "controls",
+            "uv": "56 4 20 20",
+            "padding": "4"
+        },
+        {
+            "name": "button.disabled",
+            "sheet": "controls",
+            "uv": "4 4 20 20",
+            "padding": "4"
+        },
+        {
+            "name": "slot",
+            "sheet": "slots",
+            "uv": "4 4 18 18",
+            "padding": "2"
+        },
+        {
+            "name": "slot.border",
+            "sheet": "slots",
+            "uv": "28 4 18 18",
+            "padding": "2"
+        },
+        {
+            "name": "slot.overlay",
+            "sheet": "slots",
+            "uv": "52 4 18 18",
+            "padding": "2"
+        },
+        {
+            "name": "slot.charge",
+            "sheet": "slots",
+            "uv": "2 26 2 16",
+            "padding": "0"
+        },
+        {
+            "name": "liquidtank",
+            "sheet": "slots",
+            "uv": "8 28 18 60",
+            "padding": "1"
+        },
+        {
+            "name": "liquidtank.overlay",
+            "sheet": "slots",
+            "uv": "32 28 18 60",
+            "padding": "1"
+        },
+        
+        {
+            "name": "errorstate.none",
+            "sheet": "controls",
+            "uv": "44 30 14 14"
+        },
+        {
+            "name": "errorstate.warning",
+            "sheet": "controls",
+            "uv": "24 30 14 14"
+        },
+        {
+            "name": "errorstate.error",
+            "sheet": "controls",
+            "uv": "4 30 14 14"
+        },
+        
+        {
+            "name": "errorstate.error",
+            "sheet": "controls",
+            "uv": "4 30 14 14"
+        },
+        {
+            "name": "energybar.back",
+            "sheet": "controls",
+            "uv": "40 50 12 14",
+            "padding": "1"
+        },
+        {
+            "name": "energybar.glow",
+            "sheet": "controls",
+            "uv": "4 50 12 14",
+            "padding": "1"
+        },
+        {
+            "name": "energybar.glass",
+            "sheet": "controls",
+            "uv": "22 50 12 14",
+            "padding": "1"
+        },
+        
+        {
+            "name": "tab",
+            "sheet": "controls",
+            "uv": "30 70 20 20",
+            "padding": "6"
+        },
+        {
+            "name": "tab.highlighted",
+            "sheet": "controls",
+            "uv": "56 70 20 20",
+            "padding": "6"
+        },
+        {
+            "name": "tab.disabled",
+            "sheet": "controls",
+            "uv": "4 70 20 20",
+            "padding": "6"
+        },
+        {
+            "name": "tab.outline",
+            "sheet": "controls",
+            "uv": "56 96 20 20",
+            "padding": "6"
+        },
+        {
+            "name": "tab.solid",
+            "sheet": "controls",
+            "uv": "82 96 20 20",
+            "padding": "6"
+        },
+        {
+            "name": "scroll",
+            "sheet": "controls",
+            "uv": "64 30 11 14",
+            "padding": "2"
+        },
+         {
+            "name": "scroll.highlighted",
+            "sheet": "controls",
+            "uv": "82 30 11 14",
+            "padding": "2"
+        },
+        {
+            "name": "scroll.disabled",
+            "sheet": "controls",
+            "uv": "100 30 11 14",
+            "padding": "2"
+        },
+        
+        {
+            "name": "outline",
+            "sheet": "panels",
+            "uv": "76 40 16 16",
+            "padding": "2"
+        },
+        {
+            "name": "button.help",
+            "sheet": "controls",
+            "uv": "88 4 16 16",
+            "padding": "2"
+        },
+        {
+            "name": "button.info",
+            "sheet": "controls",
+            "uv": "110 4 16 16",
+            "padding": "2"
+        },
+        {
+            "name": "button.user",
+            "sheet": "controls",
+            "uv": "132 4 16 16",
+            "padding": "2"
+        },
+        {
+            "name": "button.power",
+            "sheet": "controls",
+            "uv": "154 4 16 16",
+            "padding": "2"
+        },
+        {
+            "name": "horizontalliquidtank",
+            "sheet": "slots",
+            "uv": "56 28 60 18"
+        },
+        {
+            "name": "horizontalliquidtank.overlay",
+            "sheet": "slots",
+            "uv": "56 52 60 18"
+        },
+        {
+            "name": "slide.up",
+            "sheet": "panels",
+            "uv": "0 76 16 16"
+        },
+        {
+            "name": "slide.down",
+            "sheet": "panels",
+            "uv": "16 76 16 16"
+        },
+        {
+            "name": "slide.left",
+            "sheet": "panels",
+            "uv": "0 92 16 16"
+        },
+        {
+            "name": "slide.right",
+            "sheet": "panels",
+            "uv": "16 92 16 16"
+        },
+        {
+            "name": "checkbox",
+            "sheet": "controls",
+            "uv": "0 112 16 16"
+        },
+        {
+            "name": "checkbox.checked",
+            "sheet": "controls",
+            "uv": "16 112 16 16"
+        },
+        {
+            "name": "checkbox.highlighted",
+            "sheet": "controls",
+            "uv": "0 128 16 16"
+        },
+        {
+            "name": "checkbox.checked.highlighted",
+            "sheet": "controls",
+            "uv": "16 128 16 16"
+        }  
+    ]
+    
+}
