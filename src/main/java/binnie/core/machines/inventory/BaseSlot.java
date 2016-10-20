@@ -1,128 +1,125 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.inventory;
 
-import java.util.Collection;
-import net.minecraftforge.common.util.ForgeDirection;
-import java.util.EnumSet;
 import binnie.core.util.IValidator;
-import forestry.api.core.INBTTagable;
+import forestry.api.core.INbtReadable;
+import forestry.api.core.INbtWritable;
+import net.minecraft.util.EnumFacing;
 
-public abstract class BaseSlot<T> implements INBTTagable, IValidator<T>
-{
-	private SidedAccess access;
-	Validator<T> validator;
-	private boolean readOnly;
-	private int index;
-	protected String unlocName;
+import java.util.Collection;
+import java.util.EnumSet;
 
-	public BaseSlot(final int index, final String unlocName) {
-		this.access = new SidedAccess();
-		this.validator = null;
-		this.readOnly = false;
-		this.unlocName = "";
-		this.setIndex(index);
-		this.setUnlocalisedName(unlocName);
-	}
+public abstract class BaseSlot<T> implements INbtWritable, INbtReadable, IValidator<T> {
+    private SidedAccess access;
+    Validator<T> validator;
+    private boolean readOnly;
+    private int index;
+    protected String unlocName;
 
-	public void setReadOnly() {
-		this.readOnly = true;
-		this.forbidInsertion();
-	}
+    public BaseSlot(final int index, final String unlocName) {
+        this.access = new SidedAccess();
+        this.validator = null;
+        this.readOnly = false;
+        this.unlocName = "";
+        this.setIndex(index);
+        this.setUnlocalisedName(unlocName);
+    }
 
-	@Override
-	public boolean isValid(final T item) {
-		return item == null || this.validator == null || this.validator.isValid(item);
-	}
+    public void setReadOnly() {
+        this.readOnly = true;
+        this.forbidInsertion();
+    }
 
-	public abstract T getContent();
+    @Override
+    public boolean isValid(final T item) {
+        return item == null || this.validator == null || this.validator.isValid(item);
+    }
 
-	public abstract void setContent(final T p0);
+    public abstract T getContent();
 
-	public void setValidator(final Validator<T> val) {
-		this.validator = val;
-	}
+    public abstract void setContent(final T p0);
 
-	public boolean isEmpty() {
-		return this.getContent() == null;
-	}
+    public void setValidator(final Validator<T> val) {
+        this.validator = val;
+    }
 
-	public boolean isReadOnly() {
-		return this.readOnly;
-	}
+    public boolean isEmpty() {
+        return this.getContent() == null;
+    }
 
-	public int getIndex() {
-		return this.index;
-	}
+    public boolean isReadOnly() {
+        return this.readOnly;
+    }
 
-	private void setIndex(final int index) {
-		this.index = index;
-	}
+    public int getIndex() {
+        return this.index;
+    }
 
-	public boolean canInsert() {
-		return !this.access.getInsertionSides().isEmpty();
-	}
+    private void setIndex(final int index) {
+        this.index = index;
+    }
 
-	public boolean canExtract() {
-		return !this.access.getExtractionSides().isEmpty();
-	}
+    public boolean canInsert() {
+        return !this.access.getInsertionSides().isEmpty();
+    }
 
-	public void forbidInteraction() {
-		this.forbidInsertion();
-		this.forbidExtraction();
-	}
+    public boolean canExtract() {
+        return !this.access.getExtractionSides().isEmpty();
+    }
 
-	public void setInputSides(final EnumSet<ForgeDirection> sides) {
-		for (final ForgeDirection side : EnumSet.complementOf(sides)) {
-			if (side != ForgeDirection.UNKNOWN) {
-				this.access.setInsert(side, false);
-			}
-		}
-	}
+    public void forbidInteraction() {
+        this.forbidInsertion();
+        this.forbidExtraction();
+    }
 
-	public void setOutputSides(final EnumSet<ForgeDirection> sides) {
-		for (final ForgeDirection side : EnumSet.complementOf(sides)) {
-			if (side != ForgeDirection.UNKNOWN) {
-				this.access.setExtract(side, false);
-			}
-		}
-	}
+    public void setInputSides(final EnumSet<EnumFacing> sides) {
+        for (final EnumFacing side : EnumSet.complementOf(sides)) {
+            //if (side != ForgeDirection.UNKNOWN) {
+            this.access.setInsert(side, false);
+            //}
+        }
+    }
 
-	public void forbidExtraction() {
-		this.access.setExtract(false);
-		this.access.forbidExtractChange();
-	}
+    public void setOutputSides(final EnumSet<EnumFacing> sides) {
+        for (final EnumFacing side : EnumSet.complementOf(sides)) {
+            //if (side != ForgeDirection.UNKNOWN) {
+            this.access.setExtract(side, false);
+            //}
+        }
+    }
 
-	public void forbidInsertion() {
-		this.access.setInsert(false);
-		this.access.forbidInsertChange();
-	}
+    public void forbidExtraction() {
+        this.access.setExtract(false);
+        this.access.forbidExtractChange();
+    }
 
-	public boolean canInsert(final ForgeDirection dir) {
-		return this.access.canInsert(dir);
-	}
+    public void forbidInsertion() {
+        this.access.setInsert(false);
+        this.access.forbidInsertChange();
+    }
 
-	public boolean canExtract(final ForgeDirection dir) {
-		return this.access.canExtract(dir);
-	}
+    public boolean canInsert(final EnumFacing dir) {
+        return this.access.canInsert(dir);
+    }
 
-	public Collection<ForgeDirection> getInputSides() {
-		return this.access.getInsertionSides();
-	}
+    public boolean canExtract(final EnumFacing dir) {
+        return this.access.canExtract(dir);
+    }
 
-	public Collection<ForgeDirection> getOutputSides() {
-		return this.access.getExtractionSides();
-	}
+    public Collection<EnumFacing> getInputSides() {
+        return this.access.getInsertionSides();
+    }
 
-	public void setUnlocalisedName(final String name) {
-		this.unlocName = name;
-	}
+    public Collection<EnumFacing> getOutputSides() {
+        return this.access.getExtractionSides();
+    }
 
-	public abstract String getName();
+    public void setUnlocalisedName(final String name) {
+        this.unlocName = name;
+    }
 
-	public Validator<T> getValidator() {
-		return this.validator;
-	}
+    public abstract String getName();
+
+    public Validator<T> getValidator() {
+        return this.validator;
+    }
 }

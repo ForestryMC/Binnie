@@ -11,8 +11,8 @@
     "credits": "Thanks to Sengir, MysteriousAges, Xizzzy and many others",
     "logoFile": "/assets/binniecore/logo.png",
     "parent": "",
-    "requiredMods": [ "Forestry" ],
-    "dependencies": [ "Forestry" ],
+    "requiredMods": [ "forestry" ],
+    "dependencies": [ "forestry" ],
     "dependants" : [ ],
     "useDependencyInformation" : true
   },

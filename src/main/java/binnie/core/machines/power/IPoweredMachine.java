@@ -1,17 +1,12 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.power;
 
-import cpw.mods.fml.common.Optional;
-import cofh.api.energy.IEnergyHandler;
-import ic2.api.energy.tile.IEnergySink;
+import net.minecraftforge.fml.common.Optional;
 
 @Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = "IC2")
-public interface IPoweredMachine extends IEnergySink, IEnergyHandler
+//TODO ic2 and RF energy
+public interface IPoweredMachine //extends /*IEnergySink, IEnergyHandler, IEnergyReceiver, IEnergyProvider*/
 {
-	PowerInfo getPowerInfo();
+    PowerInfo getPowerInfo();
 
-	PowerInterface getInterface();
+    PowerInterface getInterface();
 }

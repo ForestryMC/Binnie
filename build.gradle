@@ -11,39 +11,34 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
     }
 }
 
-apply plugin: 'forge'
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'idea'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
-version = "1.0"
+version = "2.0"
 group= "binnie" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "binnie"
 
 minecraft {
-    version = "1.7.10-10.13.4.1558-1.7.10"
-	if (file('../run').exists()){
-		assetDir = "../run/assets"
-	}else{
-		assetDir = "assets"
-	}
+    version = "1.10.2-12.18.2.2107"
+	mappings = "snapshot_20161019"
+	runDir = "run"
+}
+
+repositories {
+    maven {
+        name = "ic2, forestry"
+        url = "http://maven.ic2.player.to/"
+    }
 }
 
 dependencies {
-    // you may put jars on which you depend on in ./libs
-    // or you may define them like so..
-    //compile "some.group:artifact:version:classifier"
-    //compile "some.group:artifact:version"
-      
-    // real examples
-    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
-    //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
-
-    // for more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
-
+	compile "net.sengir.forestry:forestry_1.10.2:5.2.15.290"
 }
 
 processResources

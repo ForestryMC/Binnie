@@ -1,209 +1,184 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.block;
 
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraftforge.common.util.ForgeDirection;
-import binnie.extratrees.ExtraTrees;
-import binnie.Binnie;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.entity.player.EntityPlayer;
-import binnie.core.block.BlockMetadata;
-import java.util.ArrayList;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.block.Block;
-import binnie.core.block.TileEntityMetadata;
-import java.util.List;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import forestry.api.core.Tabs;
-import binnie.core.block.IBlockMetadata;
 import net.minecraft.block.BlockLog;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 
-public class BlockETLog extends BlockLog implements IBlockMetadata
-{
-	public BlockETLog() {
-		this.setCreativeTab(Tabs.tabArboriculture);
-		this.setBlockName("log");
-		this.setResistance(5.0f);
-		this.setHardness(2.0f);
-		this.setStepSound(Block.soundTypeWood);
-	}
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
-	@Override
-	public void getSubBlocks(final Item par1, final CreativeTabs par2CreativeTabs, final List itemList) {
-		for (int i = 0; i < ILogType.ExtraTreeLog.values().length; ++i) {
-			itemList.add(TileEntityMetadata.getItemStack(this, i));
-		}
-	}
+public abstract class BlockETLog extends BlockLog {
+    protected static final int VARIANTS_PER_BLOCK = 4;
+    protected static final int VARIANTS_META_MASK = VARIANTS_PER_BLOCK - 1;
+    public static final int GROUP_COUNT = (int) Math.ceil(EnumExtraTreeLog.values().length / (float) VARIANTS_PER_BLOCK);
+    protected int offset = -1;
+    protected boolean fireproof;
+    protected static PropertyEnum<EnumExtraTreeLog>[] woodTypes;
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(final IBlockAccess world, final int x, final int y, final int z, final int side) {
-		final TileEntityMetadata tile = TileEntityMetadata.getTile(world, x, y, z);
-		if (tile != null) {
-			return this.getIcon(side, tile.getTileMetadata(), world.getBlockMetadata(x, y, z));
-		}
-		return super.getIcon(world, x, y, z, side);
-	}
+    static {
 
-	public IIcon getIcon(final int side, final int tileMeta, final int blockMeta) {
-		final int oriented = blockMeta & 0xC;
-		final ILogType.ExtraTreeLog log = ILogType.ExtraTreeLog.values()[tileMeta];
-		switch (oriented) {
-		case 4: {
-			if (side > 3) {
-				return log.getTrunk();
-			}
-			return log.getBark();
-		}
-		case 8: {
-			if (side == 2 || side == 3) {
-				return log.getTrunk();
-			}
-			return log.getBark();
-		}
-		default: {
-			if (side < 2) {
-				return log.getTrunk();
-			}
-			return log.getBark();
-		}
-		}
-	}
+        woodTypes = new PropertyEnum[GROUP_COUNT];
+        for (int i = 0; i < GROUP_COUNT; i++) {
+            int finalI = i;
+            List allowed = Arrays.stream(EnumExtraTreeLog.values()).filter(l -> l.getMetadata() >= finalI * VARIANTS_PER_BLOCK && l.getMetadata() < finalI * VARIANTS_PER_BLOCK + VARIANTS_PER_BLOCK).collect(Collectors.toList());
+            woodTypes[i] = PropertyEnum.create("wood_type", EnumExtraTreeLog.class, allowed);
+        }
+    }
 
-	@Override
-	public IIcon getIcon(final int side, final int tileMeta) {
-		return this.getIcon(side, tileMeta, 0);
-	}
+    public static class LogItemBlock<V extends BlockETLog> extends ItemBlock {
+        EnumExtraTreeLog[] values;
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(final IIconRegister register) {
-		ILogType.ExtraTreeLog.registerIcons(register);
-	}
+        public LogItemBlock(V block) {
+            super(block);
+            setHasSubtypes(true);
+            setMaxDamage(0);
+            setRegistryName(block.getRegistryName());
+            values = block.getVariant().getAllowedValues().toArray(new EnumExtraTreeLog[]{});
+        }
 
-	@Override
-	public int getRenderType() {
-		return 31;
-	}
+        @Override
+        public int getMetadata(int damage) {
+            return damage;
+        }
 
-	@Override
-	public void dropAsStack(final World world, final int x, final int y, final int z, final ItemStack drop) {
-		this.dropBlockAsItem(world, x, y, z, drop);
-	}
+        @Override
+        public String getUnlocalizedName(ItemStack stack) {
+            return "tile.log." + values[stack.getMetadata()].getName();
+        }
+    }
 
-	@Override
-	public ArrayList<ItemStack> getDrops(final World world, final int x, final int y, final int z, final int blockMeta, final int fortune) {
-		return BlockMetadata.getBlockDropped(this, world, x, y, z, blockMeta);
-	}
+    public BlockETLog(int offset, boolean fireproof) {
+        this.setCreativeTab(Tabs.tabArboriculture);
+        this.setRegistryName("log." + (fireproof ? "fireproof." : "") + offset);
+        this.setResistance(5.0f);
+        this.setHardness(2.0f);
+        this.setSoundType(SoundType.WOOD);
+        this.setUnlocalizedName("log." + (fireproof ? "fireproof." : "") + offset);
+        this.offset = offset;
+        this.fireproof = fireproof;
+        setDefaultState(this.blockState.getBaseState().withProperty(woodTypes[offset], EnumExtraTreeLog.values()[offset * VARIANTS_PER_BLOCK]).withProperty(LOG_AXIS, EnumAxis.Y));
+    }
 
-	@Override
-	public boolean removedByPlayer(final World world, final EntityPlayer player, final int x, final int y, final int z) {
-		return BlockMetadata.breakBlock(this, player, world, x, y, z);
-	}
 
-	@Override
-	public TileEntity createNewTileEntity(final World var1, final int i) {
-		return new TileEntityMetadata();
-	}
+    public abstract PropertyEnum<EnumExtraTreeLog> getVariant();
 
-	@Override
-	public boolean hasTileEntity(final int meta) {
-		return true;
-	}
+    public EnumExtraTreeLog getWoodType(int meta) {
+        return EnumExtraTreeLog.values()[offset * VARIANTS_PER_BLOCK + (meta & VARIANTS_META_MASK)];
+    }
 
-	@Override
-	public boolean onBlockEventReceived(final World par1World, final int par2, final int par3, final int par4, final int par5, final int par6) {
-		super.onBlockEventReceived(par1World, par2, par3, par4, par5, par6);
-		final TileEntity tileentity = par1World.getTileEntity(par2, par3, par4);
-		return tileentity != null && tileentity.receiveClientEvent(par5, par6);
-	}
+    private static EnumAxis getAxis(int meta) {
+        switch (meta & 12) {
+            case 0:
+                return EnumAxis.Y;
+            case 4:
+                return EnumAxis.X;
+            case 8:
+                return EnumAxis.Z;
+            default:
+                return EnumAxis.NONE;
+        }
+    }
 
-	@Override
-	public int getDroppedMeta(final int blockMeta, final int tileMeta) {
-		return tileMeta;
-	}
 
-	@Override
-	public String getBlockName(final ItemStack par1ItemStack) {
-		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
-		return Binnie.Language.localise(ExtraTrees.instance, "block.log.name", ILogType.ExtraTreeLog.values()[meta].getName());
-	}
+    @Override
+    public final IBlockState getStateFromMeta(int meta) {
+        EnumExtraTreeLog woodType = getWoodType(meta);
+        EnumAxis axis = getAxis(meta);
+        return getDefaultState().withProperty(getVariant(), woodType).withProperty(LOG_AXIS, axis);
+    }
 
-	@Override
-	public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
-	}
+    @SuppressWarnings("incomplete-switch")
+    @Override
+    public final int getMetaFromState(IBlockState state) {
+        int i = 0;
+        try {
+            i = damageDropped(state);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+        switch (state.getValue(LOG_AXIS)) {
+            case X:
+                i |= 4;
+                break;
+            case Z:
+                i |= 8;
+                break;
+            case NONE:
+                i |= 12;
+        }
 
-	@Override
-	public boolean canSustainLeaves(final IBlockAccess world, final int x, final int y, final int z) {
-		return true;
-	}
+        return i;
+    }
 
-	@Override
-	public int getPlacedMeta(final ItemStack stack, final World world, final int x, final int y, final int z, final ForgeDirection clickedBlock) {
-		return TileEntityMetadata.getItemDamage(stack);
-	}
+    @Override
+    protected final BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, getVariant(), LOG_AXIS);
+    }
 
-	@Override
-	public int onBlockPlaced(final World world, final int x, final int y, final int z, final int side, final float par6, final float par7, final float par8, final int meta) {
-		byte b0 = 0;
-		switch (side) {
-		case 0:
-		case 1: {
-			b0 = 0;
-			break;
-		}
-		case 2:
-		case 3: {
-			b0 = 8;
-			break;
-		}
-		case 4:
-		case 5: {
-			b0 = 4;
-			break;
-		}
-		}
-		return b0;
-	}
 
-	@Override
-	public void breakBlock(final World par1World, final int par2, final int par3, final int par4, final Block par5, final int par6) {
-		super.breakBlock(par1World, par2, par3, par4, par5, par6);
-		par1World.removeTileEntity(par2, par3, par4);
-	}
+    @Override
+    public final int damageDropped(IBlockState state) {
+        return state.getValue(getVariant()).getMetadata() % 4;
+    }
 
-	@Override
-	public boolean isWood(final IBlockAccess world, final int x, final int y, final int z) {
-		return true;
-	}
+    @Override
+    protected final ItemStack createStackedBlock(IBlockState state) {
+        int meta = damageDropped(state);
+        Item item = Item.getItemFromBlock(this);
+        return new ItemStack(item, 1, meta);
+    }
 
-	@Override
-	public int getFlammability(final IBlockAccess world, final int x, final int y, final int z, final ForgeDirection face) {
-		return 20;
-	}
+    @Override
+    public final IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+        EnumAxis axis = EnumAxis.fromFacingAxis(facing.getAxis());
+        EnumExtraTreeLog woodType = getWoodType(meta);
+        return getDefaultState().withProperty(getVariant(), woodType).withProperty(LOG_AXIS, axis);
+    }
 
-	@Override
-	public boolean isFlammable(final IBlockAccess world, final int x, final int y, final int z, final ForgeDirection face) {
-		return true;
-	}
+    @Override
+    public final void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
+        list.addAll(getVariant().getAllowedValues().stream().map(woodType -> new ItemStack(this, 1, woodType.getMetadata() % 4)).collect(Collectors.toList()));
+    }
 
-	@Override
-	public int getFireSpreadSpeed(final IBlockAccess world, final int x, final int y, final int z, final ForgeDirection face) {
-		return 5;
-	}
+    @Override
+    public final float getBlockHardness(IBlockState blockState, World worldIn, BlockPos pos) {
+        int meta = getMetaFromState(blockState);
+        EnumExtraTreeLog woodType = getWoodType(meta);
+        return woodType.getHardness();
+    }
 
-	@Override
-	public ItemStack getPickBlock(final MovingObjectPosition target, final World world, final int x, final int y, final int z) {
-		return BlockMetadata.getPickBlock(world, x, y, z);
-	}
+    @Override
+    public final int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
+        if (fireproof) {
+            return 0;
+        } else if (face == EnumFacing.DOWN) {
+            return 20;
+        } else if (face != EnumFacing.UP) {
+            return 10;
+        } else {
+            return 5;
+        }
+    }
+
+    @Override
+    public final int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
+        if (fireproof) {
+            return 0;
+        }
+        return 5;
+    }
+
 }

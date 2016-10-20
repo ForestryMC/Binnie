@@ -1,0 +1,273 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_column"
+  },
+
+
+
+
+  "variants": {
+    "normal":[{}],
+    "inventory":[{}],
+     "axis":{
+        "x":{
+          "x":90,
+          "y":90
+        },
+        "y":{},
+        "z":{
+          "x":90
+        },
+       "none":{}
+      },
+    "wood_type":{
+      "apple":{
+        "textures": {
+          "end": "extratrees:blocks/logs/appleTrunk",
+          "side": "extratrees:blocks/logs/appleBark"
+        }
+      },
+      "fig": {
+        "textures": {
+          "end": "extratrees:blocks/logs/figTrunk",
+          "side": "extratrees:blocks/logs/figBark"
+        }
+      },
+      "butternut":{
+        "textures": {
+          "end": "extratrees:blocks/logs/butternutTrunk",
+          "side": "extratrees:blocks/logs/butternutBark"
+        }
+      },
+      "cherry":{
+        "textures": {
+          "end": "extratrees:blocks/logs/cherryTrunk",
+          "side": "extratrees:blocks/logs/cherryBark"
+        }
+      },
+      "whitebeam":{
+        "textures": {
+          "end": "extratrees:blocks/logs/whitebeamTrunk",
+          "side": "extratrees:blocks/logs/whitebeamBark"
+        }
+      },
+      "rowan":{
+        "textures": {
+          "end": "extratrees:blocks/logs/rowanTrunk",
+          "side": "extratrees:blocks/logs/rowanBark"
+        }
+      },
+      "hemlock":{
+        "textures": {
+          "end": "extratrees:blocks/logs/hemlockTrunk",
+          "side": "extratrees:blocks/logs/hemlockBark"
+        }
+      },
+      "ash":{
+        "textures": {
+          "end": "extratrees:blocks/logs/ashTrunk",
+          "side": "extratrees:blocks/logs/ashBark"
+        }
+      },
+      "alder":{
+        "textures": {
+          "end": "extratrees:blocks/logs/alderTrunk",
+          "side": "extratrees:blocks/logs/alderBark"
+        }
+      },
+      "beech":{
+        "textures": {
+          "end": "extratrees:blocks/logs/beechTrunk",
+          "side": "extratrees:blocks/logs/beechBark"
+        }
+      },
+      "hawthorn":{
+        "textures": {
+          "end": "extratrees:blocks/logs/hawthornTrunk",
+          "side": "extratrees:blocks/logs/hawthornBark"
+        }
+      },
+      "banana":{
+        "textures": {
+          "end": "extratrees:blocks/logs/bananaTrunk",
+          "side": "extratrees:blocks/logs/bananaBark"
+        }
+      },
+      "yew":{
+        "textures": {
+          "end": "extratrees:blocks/logs/yewTrunk",
+          "side": "extratrees:blocks/logs/yewBark"
+        }
+      },
+      "cypress":{
+        "textures": {
+          "end": "extratrees:blocks/logs/cypressTrunk",
+          "side": "extratrees:blocks/logs/cypressBark"
+        }
+      },
+      "fir":{
+        "textures": {
+          "end": "extratrees:blocks/logs/firTrunk",
+          "side": "extratrees:blocks/logs/firBark"
+        }
+      },
+      "hazel":{
+        "textures": {
+          "end": "extratrees:blocks/logs/hazelTrunk",
+          "side": "extratrees:blocks/logs/hazelBark"
+        }
+      },
+      "hickory":{
+        "textures": {
+          "end": "extratrees:blocks/logs/hickoryTrunk",
+          "side": "extratrees:blocks/logs/hickoryBark"
+        }
+      },
+      "elm":{
+        "textures": {
+          "end": "extratrees:blocks/logs/elmTrunk",
+          "side": "extratrees:blocks/logs/elmBark"
+        }
+      },
+      "elder":{
+        "textures": {
+          "end": "extratrees:blocks/logs/elderTrunk",
+          "side": "extratrees:blocks/logs/elderBark"
+        }
+      },
+      "holly":{
+        "textures": {
+          "end": "extratrees:blocks/logs/hollyTrunk",
+          "side": "extratrees:blocks/logs/hollyBark"
+        }
+      },
+      "hornbeam":{
+        "textures": {
+          "end": "extratrees:blocks/logs/hornbeamTrunk",
+          "side": "extratrees:blocks/logs/hornbeamBark"
+        }
+      },
+      "cedar":{
+        "textures": {
+          "end": "extratrees:blocks/logs/cedarTrunk",
+          "side": "extratrees:blocks/logs/cedarBark"
+        }
+      },
+      "olive":{
+        "textures": {
+          "end": "extratrees:blocks/logs/oliveTrunk",
+          "side": "extratrees:blocks/logs/oliveBark"
+        }
+      },
+      "sweetgum":{
+        "textures": {
+          "end": "extratrees:blocks/logs/sweetgumTrunk",
+          "side": "extratrees:blocks/logs/sweetgumBark"
+        }
+      },
+      "locust":{
+        "textures": {
+          "end": "extratrees:blocks/logs/locustTrunk",
+          "side": "extratrees:blocks/logs/locustBark"
+        }
+      },
+      "pear":{
+        "textures": {
+          "end": "extratrees:blocks/logs/pearTrunk",
+          "side": "extratrees:blocks/logs/pearBark"
+        }
+      },
+      "maclura":{
+        "textures": {
+          "end": "extratrees:blocks/logs/macluraTrunk",
+          "side": "extratrees:blocks/logs/macluraBark"
+        }
+      },
+      "brazilwood":{
+        "textures": {
+          "end": "extratrees:blocks/logs/brazilwoodTrunk",
+          "side": "extratrees:blocks/logs/brazilwoodBark"
+        }
+      },
+      "logwood":{
+        "textures": {
+          "end": "extratrees:blocks/logs/logwoodTrunk",
+          "side": "extratrees:blocks/logs/logwoodBark"
+        }
+      },
+      "rosewood":{
+        "textures": {
+          "end": "extratrees:blocks/logs/rosewoodTrunk",
+          "side": "extratrees:blocks/logs/rosewoodBark"
+        }
+      },
+      "purpleheart":{
+        "textures": {
+          "end": "extratrees:blocks/logs/purpleheartTrunk",
+          "side": "extratrees:blocks/logs/purpleheartBark"
+        }
+      },
+      "iroko":{
+        "textures": {
+          "end": "extratrees:blocks/logs/irokoTrunk",
+          "side": "extratrees:blocks/logs/irokoBark"
+        }
+      },
+      "gingko":{
+        "textures": {
+          "end": "extratrees:blocks/logs/gingkoTrunk",
+          "side": "extratrees:blocks/logs/gingkoBark"
+        }
+      },
+      "eucalyptus":{
+        "textures": {
+          "end": "extratrees:blocks/logs/eucalyptusTrunk",
+          "side": "extratrees:blocks/logs/eucalyptusBark"
+        }
+      },
+      "eucalyptus2":{
+        "textures": {
+          "end": "extratrees:blocks/logs/eucalyptus2Trunk",
+          "side": "extratrees:blocks/logs/eucalyptus2Bark"
+        }
+      },
+      "box":{
+        "textures": {
+          "end": "extratrees:blocks/logs/boxTrunk",
+          "side": "extratrees:blocks/logs/boxBark"
+        }
+      },
+      "syzgium":{
+        "textures": {
+          "end": "extratrees:blocks/logs/syzgiumTrunk",
+          "side": "extratrees:blocks/logs/syzgiumBark"
+        }
+      },
+      "eucalyptus3":{
+        "textures": {
+          "end": "extratrees:blocks/logs/eucalyptus3Trunk",
+          "side": "extratrees:blocks/logs/eucalyptus3Bark"
+        }
+      },
+      "cinnamon": {
+        "textures": {
+          "end": "extratrees:blocks/logs/cinnamonTrunk",
+          "side": "extratrees:blocks/logs/cinnamonBark"
+        }
+      },
+      "pinkivory":{
+        "textures": {
+          "end": "extratrees:blocks/logs/pinkivoryTrunk",
+          "side": "extratrees:blocks/logs/pinkivoryBark"
+        }
+      },
+      "empty":{
+        "textures": {
+          "end": "extratrees:blocks/logs/emptyTrunk",
+          "side": "extratrees:blocks/logs/emptyBark"
+        }
+      }
+    }
+  }
+}

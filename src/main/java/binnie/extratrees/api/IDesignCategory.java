@@ -1,18 +1,13 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.api;
 
 import java.util.List;
 
-public interface IDesignCategory
-{
-	String getName();
+public interface IDesignCategory {
+    String getName();
 
-	List<IDesign> getDesigns();
+    List<IDesign> getDesigns();
 
-	void addDesign(final IDesign p0);
+    void addDesign(final IDesign p0);
 
-	String getId();
+    String getId();
 }

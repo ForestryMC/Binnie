@@ -1,22 +1,17 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.api;
 
-public interface IDesign
-{
-	String getName();
+public interface IDesign {
+    String getName();
 
-	ILayout getTopPattern();
+    ILayout getTopPattern();
 
-	ILayout getBottomPattern();
+    ILayout getBottomPattern();
 
-	ILayout getNorthPattern();
+    ILayout getNorthPattern();
 
-	ILayout getEastPattern();
+    ILayout getEastPattern();
 
-	ILayout getSouthPattern();
+    ILayout getSouthPattern();
 
-	ILayout getWestPattern();
+    ILayout getWestPattern();
 }

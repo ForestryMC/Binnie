@@ -1,75 +1,73 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extrabees.genetics.items;
 
+import binnie.extrabees.ExtraBees;
 import binnie.extrabees.core.ExtraBeeGUID;
-import net.minecraft.world.World;
 import forestry.api.core.Tabs;
 import net.minecraft.creativetab.CreativeTabs;
-import java.util.List;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import binnie.extrabees.ExtraBees;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.util.IIcon;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemDictionary extends Item
-{
-	IIcon iconMaster;
+import java.util.List;
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(final IIconRegister register) {
-		this.itemIcon = ExtraBees.proxy.getIcon(register, "apiaristDatabase");
-		this.iconMaster = ExtraBees.proxy.getIcon(register, "masterApiaristDatabase");
-	}
+public class ItemDictionary extends Item {
+    public ItemDictionary() {
+        this.setCreativeTab(Tabs.tabApiculture);
+        this.setUnlocalizedName("dictionary");
+        this.setMaxStackSize(1);
+        setRegistryName("dictionary");
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIconFromDamage(final int par1) {
-		return (par1 == 0) ? this.itemIcon : this.iconMaster;
-	}
+//	IIcon iconMaster;
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final List par3List, final boolean par4) {
-		super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
-		if (par1ItemStack.getItemDamage() > 0) {
-			par3List.add("Flora-in-a-box");
-		}
-	}
+//	@Override
+//	@SideOnly(Side.CLIENT)
+//	public void registerIcons(final IIconRegister register) {
+//		this.itemIcon = ExtraBees.proxy.getIcon(register, "apiaristDatabase");
+//		this.iconMaster = ExtraBees.proxy.getIcon(register, "masterApiaristDatabase");
+//	}
+//
+//	@Override
+//	@SideOnly(Side.CLIENT)
+//	public IIcon getIconFromDamage(final int par1) {
+//		return (par1 == 0) ? this.itemIcon : this.iconMaster;
+//	}
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List par3List) {
-		super.getSubItems(par1, par2CreativeTabs, par3List);
-		par3List.add(new ItemStack(par1, 1, 1));
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final List par3List, final boolean par4) {
+        super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
+        if (par1ItemStack.getItemDamage() > 0) {
+            par3List.add("Flora-in-a-box");
+        }
+    }
 
-	public ItemDictionary() {
-		this.setCreativeTab(Tabs.tabApiculture);
-		this.setUnlocalizedName("dictionary");
-		this.setMaxStackSize(1);
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List par3List) {
+        super.getSubItems(par1, par2CreativeTabs, par3List);
+        par3List.add(new ItemStack(par1, 1, 1));
+    }
 
-	@Override
-	public ItemStack onItemRightClick(final ItemStack itemstack, final World world, final EntityPlayer player) {
-		if (itemstack.getItemDamage() == 0) {
-			ExtraBees.proxy.openGui(ExtraBeeGUID.Database, player, (int) player.posX, (int) player.posY, (int) player.posZ);
-		}
-		else {
-			ExtraBees.proxy.openGui(ExtraBeeGUID.DatabaseNEI, player, (int) player.posX, (int) player.posY, (int) player.posZ);
-		}
-		return itemstack;
-	}
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand) {
+        if (itemStack.getItemDamage() == 0) {
+            ExtraBees.proxy.openGui(ExtraBeeGUID.Database, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
+        } else {
+            ExtraBees.proxy.openGui(ExtraBeeGUID.DatabaseNEI, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
+        }
 
-	@Override
-	public String getItemStackDisplayName(final ItemStack i) {
-		return (i.getItemDamage() == 0) ? "Apiarist Database" : "Master Apiarist Database";
-	}
+        return super.onItemRightClick(itemStack, world, player, hand);
+    }
+
+    @Override
+    public String getItemStackDisplayName(final ItemStack i) {
+        return (i.getItemDamage() == 0) ? "Apiarist Database" : "Master Apiarist Database";
+    }
 }

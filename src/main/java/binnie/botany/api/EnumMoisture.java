@@ -1,16 +1,18 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.api;
 
-public enum EnumMoisture
-{
-	Dry,
-	Normal,
-	Damp;
+import net.minecraft.util.IStringSerializable;
 
-	public String getID() {
-		return this.name().toLowerCase();
-	}
+public enum EnumMoisture implements IStringSerializable {
+    Dry,
+    Normal,
+    Damp;
+
+    public String getID() {
+        return this.name().toLowerCase();
+    }
+
+    @Override
+    public String getName() {
+        return name().toLowerCase();
+    }
 }

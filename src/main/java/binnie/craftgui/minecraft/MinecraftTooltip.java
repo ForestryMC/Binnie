@@ -1,62 +1,55 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.craftgui.minecraft;
 
-import net.minecraft.util.EnumChatFormatting;
 import binnie.craftgui.core.Tooltip;
+import net.minecraft.util.text.TextFormatting;
 
-public class MinecraftTooltip extends Tooltip
-{
-	public static int getOutline(final ITooltipType type) {
-		return TypeColour.valueOf(type.toString()).getOutline();
-	}
+public class MinecraftTooltip extends Tooltip {
+    public static int getOutline(final ITooltipType type) {
+        return TypeColour.valueOf(type.toString()).getOutline();
+    }
 
-	public static String getTitle(final ITooltipType type) {
-		return TypeColour.valueOf(type.toString()).getTitle();
-	}
+    public static String getTitle(final ITooltipType type) {
+        return TypeColour.valueOf(type.toString()).getTitle();
+    }
 
-	public static String getBody(final ITooltipType type) {
-		return TypeColour.valueOf(type.toString()).getBody();
-	}
+    public static String getBody(final ITooltipType type) {
+        return TypeColour.valueOf(type.toString()).getBody();
+    }
 
-	public enum Type implements ITooltipType
-	{
-		Error,
-		Warning;
-	}
+    public enum Type implements ITooltipType {
+        Error,
+        Warning;
+    }
 
-	private enum TypeColour
-	{
-		Standard(5243135, EnumChatFormatting.WHITE, EnumChatFormatting.GRAY),
-		Help(5046016, EnumChatFormatting.GREEN, EnumChatFormatting.DARK_GREEN),
-		Information(49151, EnumChatFormatting.AQUA, EnumChatFormatting.DARK_AQUA),
-		Error(16724224, EnumChatFormatting.RED, EnumChatFormatting.DARK_RED),
-		Warning(16752384, EnumChatFormatting.YELLOW, EnumChatFormatting.GOLD),
-		User(9839667, EnumChatFormatting.RED, EnumChatFormatting.DARK_RED),
-		Power(9006592, EnumChatFormatting.YELLOW, EnumChatFormatting.GOLD);
+    private enum TypeColour {
+        Standard(5243135, TextFormatting.WHITE, TextFormatting.GRAY),
+        Help(5046016, TextFormatting.GREEN, TextFormatting.DARK_GREEN),
+        Information(49151, TextFormatting.AQUA, TextFormatting.DARK_AQUA),
+        Error(16724224, TextFormatting.RED, TextFormatting.DARK_RED),
+        Warning(16752384, TextFormatting.YELLOW, TextFormatting.GOLD),
+        User(9839667, TextFormatting.RED, TextFormatting.DARK_RED),
+        Power(9006592, TextFormatting.YELLOW, TextFormatting.GOLD);
 
-		int outline;
-		String mainText;
-		String bodyText;
+        int outline;
+        String mainText;
+        String bodyText;
 
-		private TypeColour(final int outline, final EnumChatFormatting mainText, final EnumChatFormatting bodyText) {
-			this.outline = outline;
-			this.mainText = mainText.toString();
-			this.bodyText = bodyText.toString();
-		}
+        private TypeColour(final int outline, final TextFormatting mainText, final TextFormatting bodyText) {
+            this.outline = outline;
+            this.mainText = mainText.toString();
+            this.bodyText = bodyText.toString();
+        }
 
-		public int getOutline() {
-			return this.outline;
-		}
+        public int getOutline() {
+            return this.outline;
+        }
 
-		public String getTitle() {
-			return this.mainText;
-		}
+        public String getTitle() {
+            return this.mainText;
+        }
 
-		public String getBody() {
-			return this.bodyText;
-		}
-	}
+        public String getBody() {
+            return this.bodyText;
+        }
+    }
 }

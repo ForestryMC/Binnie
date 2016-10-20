@@ -1,28 +1,24 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines;
 
-import java.util.Collection;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public interface IMachine extends IOwnable
-{
-	void addComponent(final MachineComponent p0);
+import java.util.Collection;
 
-	MachineUtil getMachineUtil();
+public interface IMachine extends IOwnable {
+    void addComponent(final MachineComponent p0);
 
-	<T> T getInterface(final Class<T> p0);
+    MachineUtil getMachineUtil();
 
-	void markDirty();
+    <T> T getInterface(final Class<T> p0);
 
-	World getWorld();
+    void markDirty();
 
-	TileEntity getTileEntity();
+    World getWorld();
 
-	<T> Collection<T> getInterfaces(final Class<T> p0);
+    TileEntity getTileEntity();
 
-	MachinePackage getPackage();
+    <T> Collection<T> getInterfaces(final Class<T> p0);
+
+    MachinePackage getPackage();
 }

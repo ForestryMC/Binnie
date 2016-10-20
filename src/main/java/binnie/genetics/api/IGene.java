@@ -1,24 +1,20 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.api;
 
-import net.minecraft.nbt.NBTTagCompound;
+import forestry.api.core.INbtReadable;
+import forestry.api.core.INbtWritable;
 import forestry.api.genetics.IAllele;
-import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.genetics.IChromosomeType;
-import forestry.api.core.INBTTagable;
+import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.nbt.NBTTagCompound;
 
-public interface IGene extends INBTTagable
-{
-	IChromosomeType getChromosome();
+public interface IGene extends INbtReadable, INbtWritable {
+    IChromosomeType getChromosome();
 
-	String getName();
+    String getName();
 
-	ISpeciesRoot getSpeciesRoot();
+    ISpeciesRoot getSpeciesRoot();
 
-	IAllele getAllele();
+    IAllele getAllele();
 
-	NBTTagCompound getNBTTagCompound();
+    NBTTagCompound getNBTTagCompound();
 }

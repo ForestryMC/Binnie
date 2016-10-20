@@ -1,16 +1,18 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.api;
 
-public enum EnumAcidity
-{
-	Acid,
-	Neutral,
-	Alkaline;
+import net.minecraft.util.IStringSerializable;
 
-	public String getID() {
-		return this.name().toLowerCase();
-	}
+public enum EnumAcidity implements IStringSerializable {
+    Acid,
+    Neutral,
+    Alkaline;
+
+    public String getID() {
+        return this.name().toLowerCase();
+    }
+
+    @Override
+    public String getName() {
+        return this.name().toLowerCase();
+    }
 }

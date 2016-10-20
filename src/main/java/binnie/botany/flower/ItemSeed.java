@@ -1,24 +1,19 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.flower;
 
 import binnie.botany.api.EnumFlowerStage;
 
-public class ItemSeed extends ItemBotany
-{
-	public ItemSeed() {
-		super("seed");
-	}
+public class ItemSeed extends ItemBotany {
+    public ItemSeed() {
+        super("seed");
+    }
 
-	@Override
-	public EnumFlowerStage getStage() {
-		return EnumFlowerStage.SEED;
-	}
+    @Override
+    public EnumFlowerStage getStage() {
+        return EnumFlowerStage.SEED;
+    }
 
-	@Override
-	public String getTag() {
-		return " Germling";
-	}
+    @Override
+    public String getTag() {
+        return " Germling";
+    }
 }

@@ -1,14 +1,9 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.network;
 
 import binnie.core.network.packet.PacketPayload;
 
-public interface INetworkedEntity
-{
-	void writeToPacket(final PacketPayload p0);
+public interface INetworkedEntity {
+    void writeToPacket(final PacketPayload p0);
 
-	void readFromPacket(final PacketPayload p0);
+    void readFromPacket(final PacketPayload p0);
 }

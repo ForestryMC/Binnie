@@ -1,16 +1,11 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.power;
 
-public interface IProcess extends IErrorStateSource
-{
-	float getEnergyPerTick();
+public interface IProcess extends IErrorStateSource {
+    float getEnergyPerTick();
 
-	String getTooltip();
+    String getTooltip();
 
-	boolean isInProgress();
+    boolean isInProgress();
 
-	ProcessInfo getInfo();
+    ProcessInfo getInfo();
 }

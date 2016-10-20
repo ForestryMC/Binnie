@@ -1,181 +1,172 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.genetics;
 
-import java.util.ArrayList;
-
 import com.mojang.authlib.GameProfile;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Vec3;
-import net.minecraft.world.biome.BiomeGenBase;
-
-import forestry.api.apiculture.IBee;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeHousing;
-import forestry.api.apiculture.IBeeHousingInventory;
-import forestry.api.apiculture.IBeeListener;
-import forestry.api.apiculture.IBeeModifier;
-import forestry.api.apiculture.IBeekeepingLogic;
+import forestry.api.apiculture.*;
 import forestry.api.core.IErrorLogic;
 import forestry.api.genetics.IIndividual;
 import forestry.apiculture.InventoryBeeHousing;
-import forestry.core.access.FakeAccessHandler;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Biomes;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.World;
 
-public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IBeeModifier
-{
-	ArrayList<IBeeModifier> beeModifier = new ArrayList<IBeeModifier>();
-	private InventoryBeeHousing beeInventory;
+import java.util.ArrayList;
 
-	public VirtualBeeHousing(final EntityPlayer player) {
-		super(player);
-		beeModifier.add(this);
-		beeInventory = new InventoryBeeHousing(12, FakeAccessHandler.getInstance());
+public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IBeeModifier {
+    ArrayList<IBeeModifier> beeModifier = new ArrayList<IBeeModifier>();
+    private InventoryBeeHousing beeInventory;
 
-	}
+    public VirtualBeeHousing(final EntityPlayer player) {
+        super(player);
+        beeModifier.add(this);
+        beeInventory = new InventoryBeeHousing(12);
 
-	@Override
-	public float getTerritoryModifier(final IBeeGenome genome, final float currentModifier) {
-		return 1.0f;
-	}
+    }
 
-	@Override
-	public float getMutationModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
-		return 1.0f;
-	}
+    @Override
+    public float getTerritoryModifier(final IBeeGenome genome, final float currentModifier) {
+        return 1.0f;
+    }
 
-	@Override
-	public float getLifespanModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
-		return 1.0f;
-	}
+    @Override
+    public float getMutationModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
+        return 1.0f;
+    }
 
-	@Override
-	public float getProductionModifier(final IBeeGenome genome, final float currentModifier) {
-		return 1.0f;
-	}
+    @Override
+    public float getLifespanModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
+        return 1.0f;
+    }
 
-	public ItemStack getQueen() {
-		return null;
-	}
+    @Override
+    public float getProductionModifier(final IBeeGenome genome, final float currentModifier) {
+        return 1.0f;
+    }
 
-	public ItemStack getDrone() {
-		return null;
-	}
+    public ItemStack getQueen() {
+        return null;
+    }
 
-	public void setQueen(final ItemStack itemstack) {
-	}
+    public ItemStack getDrone() {
+        return null;
+    }
 
-	public void setDrone(final ItemStack itemstack) {
-	}
+    public void setQueen(final ItemStack itemstack) {
+    }
 
-	public boolean canBreed() {
-		return true;
-	}
+    public void setDrone(final ItemStack itemstack) {
+    }
 
-	@Override
-	public boolean addProduct(final ItemStack product, final boolean all) {
-		return false;
-	}
+    public boolean canBreed() {
+        return true;
+    }
 
-	public void wearOutEquipment(final int amount) {
-	}
+    @Override
+    public boolean addProduct(final ItemStack product, final boolean all) {
+        return false;
+    }
 
-	public void onQueenChange(final ItemStack queen) {
-	}
+    public void wearOutEquipment(final int amount) {
+    }
 
-	@Override
-	public boolean isSealed() {
-		return false;
-	}
+    public void onQueenChange(final ItemStack queen) {
+    }
 
-	@Override
-	public boolean isSelfLighted() {
-		return false;
-	}
+    @Override
+    public boolean isSealed() {
+        return false;
+    }
 
-	@Override
-	public boolean isSunlightSimulated() {
-		return false;
-	}
+    @Override
+    public boolean isSelfLighted() {
+        return false;
+    }
 
-	@Override
-	public boolean isHellish() {
-		return this.getBiomeId() == BiomeGenBase.hell.biomeID;
-	}
+    @Override
+    public boolean isSunlightSimulated() {
+        return false;
+    }
 
-	@Override
-	public float getFloweringModifier(final IBeeGenome genome, final float currentModifier) {
-		return 1.0f;
-	}
+    @Override
+    public boolean isHellish() {
+        return this.getBiome() == Biomes.HELL;
+    }
 
-	public void onQueenDeath(final IBee queen) {
-	}
+    @Override
+    public float getFloweringModifier(final IBeeGenome genome, final float currentModifier) {
+        return 1.0f;
+    }
 
-	public void onPostQueenDeath(final IBee queen) {
-	}
+    public void onQueenDeath(final IBee queen) {
+    }
 
-	public boolean onPollenRetrieved(final IBee queen, final IIndividual pollen, final boolean isHandled) {
-		return false;
-	}
+    public void onPostQueenDeath(final IBee queen) {
+    }
 
-	public boolean onEggLaid(final IBee queen) {
-		return false;
-	}
+    public boolean onPollenRetrieved(final IBee queen, final IIndividual pollen, final boolean isHandled) {
+        return false;
+    }
 
-	@Override
-	public float getGeneticDecay(final IBeeGenome genome, final float currentModifier) {
-		return 1.0f;
-	}
+    public boolean onEggLaid(final IBee queen) {
+        return false;
+    }
 
-	@Override
-	public IErrorLogic getErrorLogic() {
-		return null;
-	}
+    @Override
+    public float getGeneticDecay(final IBeeGenome genome, final float currentModifier) {
+        return 1.0f;
+    }
 
-	// TODO ??
-	@Override
-	public boolean canBlockSeeTheSky() {
-		return true;
-	}
+    @Override
+    public IErrorLogic getErrorLogic() {
+        return null;
+    }
 
-	// TODO ??
-	@Override
-	public Vec3 getBeeFXCoordinates() {
-		return Vec3.createVectorHelper(0, -100000, 0);
-	}
+    // TODO ??
+    @Override
+    public boolean canBlockSeeTheSky() {
+        return true;
+    }
 
-	@Override
-	public IBeeHousingInventory getBeeInventory() {
-		return beeInventory;
-	}
+    @Override
+    public World getWorldObj() {
+        return getWorld();
+    }
 
-	// TODO ??
-	@Override
-	public Iterable<IBeeListener> getBeeListeners() {
-		return null;
-	}
+    @Override
+    public Vec3d getBeeFXCoordinates() {
+        return new Vec3d(0, -100000, 0);
+    }
 
-	@Override
-	public Iterable<IBeeModifier> getBeeModifiers() {
-		return beeModifier;
-	}
+    @Override
+    public IBeeHousingInventory getBeeInventory() {
+        return beeInventory;
+    }
 
-	@Override
-	public IBeekeepingLogic getBeekeepingLogic() {
-		return null;
-	}
+    // TODO ??
+    @Override
+    public Iterable<IBeeListener> getBeeListeners() {
+        return null;
+    }
 
-	@Override
-	public int getBlockLightValue() {
-		return 0;
-	}
+    @Override
+    public Iterable<IBeeModifier> getBeeModifiers() {
+        return beeModifier;
+    }
 
-	@Override
-	public GameProfile getOwner() {
-		return getOwnerName();
-	}
+    @Override
+    public IBeekeepingLogic getBeekeepingLogic() {
+        return null;
+    }
+
+    @Override
+    public int getBlockLightValue() {
+        return 0;
+    }
+
+    @Override
+    public GameProfile getOwner() {
+        return getOwnerName();
+    }
 
 }

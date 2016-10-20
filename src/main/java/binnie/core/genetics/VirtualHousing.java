@@ -1,100 +1,85 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.genetics;
+
+import com.mojang.authlib.GameProfile;
+import forestry.api.core.EnumHumidity;
+import forestry.api.core.EnumTemperature;
+import forestry.api.core.IErrorState;
+import forestry.api.genetics.IHousing;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 
 import java.util.Set;
 
-import forestry.api.core.IErrorState;
+class VirtualHousing implements IHousing {
+    private EntityPlayer player;
 
-import net.minecraft.util.ChunkCoordinates;
-import net.minecraft.world.biome.BiomeGenBase;
+    public VirtualHousing(final EntityPlayer player) {
+        this.player = player;
+    }
 
-import com.mojang.authlib.GameProfile;
+    public int getXCoord() {
+        return (int) this.player.posX;
+    }
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+    public int getYCoord() {
+        return (int) this.player.posY;
+    }
 
-import forestry.api.core.EnumHumidity;
-import forestry.api.core.EnumTemperature;
+    public int getZCoord() {
+        return (int) this.player.posZ;
+    }
 
-import net.minecraft.entity.player.EntityPlayer;
+    public EnumTemperature getTemperature() {
+        return EnumTemperature.getFromValue(this.getBiome().getTemperature());
+    }
 
-import forestry.api.genetics.IHousing;
+    public EnumHumidity getHumidity() {
+        return EnumHumidity.getFromValue(this.getBiome().getRainfall());
+    }
 
-class VirtualHousing implements IHousing
-{
-	private EntityPlayer player;
+    public World getWorld() {
+        return this.player.worldObj;
+    }
 
-	public VirtualHousing(final EntityPlayer player) {
-		this.player = player;
-	}
+    public void setErrorState(final int state) {
+    }
 
-	public int getXCoord() {
-		return (int) this.player.posX;
-	}
+    public int getErrorOrdinal() {
+        return 0;
+    }
 
-	public int getYCoord() {
-		return (int) this.player.posY;
-	}
+    public boolean addProduct(final ItemStack product, final boolean all) {
+        return false;
+    }
 
-	public int getZCoord() {
-		return (int) this.player.posZ;
-	}
+    public GameProfile getOwnerName() {
+        return this.player.getGameProfile();
+    }
 
-	public int getBiomeId() {
-		return this.player.worldObj.getBiomeGenForCoords(this.getXCoord(), this.getYCoord()).biomeID;
-	}
+    public Biome getBiome() {
+        return this.player.worldObj.getBiome(getCoordinates());
+    }
 
-	public EnumTemperature getTemperature() {
-		return EnumTemperature.getFromValue(this.getBiome().temperature);
-	}
+    // public EnumErrorCode getErrorState() {
+    // return null;
+    // }
 
-	public EnumHumidity getHumidity() {
-		return EnumHumidity.getFromValue(this.getBiome().rainfall);
-	}
+    public void setErrorState(final IErrorState state) {
+    }
 
-	public World getWorld() {
-		return this.player.worldObj;
-	}
+    public boolean setErrorCondition(final boolean condition, final IErrorState errorState) {
+        return false;
+    }
 
-	public void setErrorState(final int state) {
-	}
+    public Set<IErrorState> getErrorStates() {
+        return null;
+    }
 
-	public int getErrorOrdinal() {
-		return 0;
-	}
-
-	public boolean addProduct(final ItemStack product, final boolean all) {
-		return false;
-	}
-
-	public GameProfile getOwnerName() {
-		return this.player.getGameProfile();
-	}
-
-	public BiomeGenBase getBiome() {
-		return this.player.worldObj.getBiomeGenForCoords(this.getXCoord(), this.getZCoord());
-	}
-
-	// public EnumErrorCode getErrorState() {
-	// return null;
-	// }
-
-	public void setErrorState(final IErrorState state) {
-	}
-
-	public boolean setErrorCondition(final boolean condition, final IErrorState errorState) {
-		return false;
-	}
-
-	public Set<IErrorState> getErrorStates() {
-		return null;
-	}
-
-	@Override
-	public ChunkCoordinates getCoordinates() {
-		return new ChunkCoordinates(getXCoord(), getYCoord(), getZCoord());
-	}
+    @Override
+    public BlockPos getCoordinates() {
+        return new BlockPos(getXCoord(), getYCoord(), getZCoord());
+    }
 }

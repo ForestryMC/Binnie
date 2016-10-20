@@ -1,27 +1,23 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.craftgui.minecraft.control;
 
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.core.BinnieCore;
+import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
-import net.minecraft.util.IIcon;
-import binnie.craftgui.controls.core.Control;
+import binnie.craftgui.core.geometry.IPoint;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.util.ResourceLocation;
 
-public class ControlIconDisplay extends Control
-{
-	private IIcon icon;
+public class ControlIconDisplay extends Control {
+    private TextureAtlasSprite icon;
 
-	public ControlIconDisplay(final IWidget parent, final float x, final float y, final IIcon icon) {
-		super(parent, x, y, 16.0f, 16.0f);
-		this.icon = null;
-		this.icon = icon;
-	}
+    public ControlIconDisplay(final IWidget parent, final float x, final float y, final ResourceLocation icon) {
+        super(parent, x, y, 16.0f, 16.0f);
+        this.icon = BinnieCore.proxy.getTextureAtlasSprite(icon);
+    }
 
-	@Override
-	public void onRenderForeground() {
-		CraftGUI.Render.iconItem(IPoint.ZERO, this.icon);
-	}
+    @Override
+    public void onRenderForeground() {
+        CraftGUI.Render.iconItem(IPoint.ZERO, this.icon);
+    }
 }

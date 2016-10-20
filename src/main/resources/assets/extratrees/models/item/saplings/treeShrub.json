@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "extratrees:blocks/saplings/shrub.trunk",
+    "layer1": "extratrees:blocks/saplings/shrub.leaves"
+  }
+}

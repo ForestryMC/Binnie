@@ -1,14 +1,9 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core;
 
-public interface IInitializable
-{
-	void preInit();
+public interface IInitializable {
+    void preInit();
 
-	void init();
+    void init();
 
-	void postInit();
+    void postInit();
 }

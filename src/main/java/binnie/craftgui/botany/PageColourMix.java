@@ -1,39 +1,35 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.craftgui.botany;
 
-import java.util.List;
-import binnie.botany.core.BotanyCore;
 import binnie.botany.api.IColourMix;
-import java.util.ArrayList;
-import binnie.craftgui.controls.ControlTextCentered;
-import binnie.craftgui.mod.database.DatabaseTab;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.controls.ControlText;
 import binnie.botany.api.IFlowerColour;
+import binnie.botany.core.BotanyCore;
+import binnie.craftgui.controls.ControlText;
+import binnie.craftgui.controls.ControlTextCentered;
+import binnie.craftgui.core.IWidget;
+import binnie.craftgui.mod.database.DatabaseTab;
 import binnie.craftgui.mod.database.PageAbstract;
 
-public class PageColourMix extends PageAbstract<IFlowerColour>
-{
-	ControlText pageSpeciesFurther_Title;
-	ControlColourMixBox pageSpeciesFurther_List;
+import java.util.ArrayList;
+import java.util.List;
 
-	public PageColourMix(final IWidget parent, final DatabaseTab tab) {
-		super(parent, tab);
-		this.pageSpeciesFurther_Title = new ControlTextCentered(this, 8.0f, "Further Mixes");
-		this.pageSpeciesFurther_List = new ControlColourMixBox(this, 4, 20, 136, 152, ControlColourMixBox.Type.Further);
-	}
+public class PageColourMix extends PageAbstract<IFlowerColour> {
+    ControlText pageSpeciesFurther_Title;
+    ControlColourMixBox pageSpeciesFurther_List;
 
-	@Override
-	public void onValueChanged(final IFlowerColour colour) {
-		final List<IColourMix> mixes = new ArrayList<IColourMix>();
-		for (final IColourMix mix : BotanyCore.getFlowerRoot().getColourMixes(false)) {
-			if (mix.getColour1() == colour || mix.getColour2() == colour) {
-				mixes.add(mix);
-			}
-		}
-		this.pageSpeciesFurther_List.setOptions(mixes);
-	}
+    public PageColourMix(final IWidget parent, final DatabaseTab tab) {
+        super(parent, tab);
+        this.pageSpeciesFurther_Title = new ControlTextCentered(this, 8.0f, "Further Mixes");
+        this.pageSpeciesFurther_List = new ControlColourMixBox(this, 4, 20, 136, 152, ControlColourMixBox.Type.Further);
+    }
+
+    @Override
+    public void onValueChanged(final IFlowerColour colour) {
+        final List<IColourMix> mixes = new ArrayList<IColourMix>();
+        for (final IColourMix mix : BotanyCore.getFlowerRoot().getColourMixes(false)) {
+            if (mix.getColour1() == colour || mix.getColour2() == colour) {
+                mixes.add(mix);
+            }
+        }
+        this.pageSpeciesFurther_List.setOptions(mixes);
+    }
 }

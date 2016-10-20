@@ -1,42 +1,39 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.item;
 
-import binnie.core.gui.BinnieCoreGUI;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
-import net.minecraft.item.ItemStack;
-import forestry.api.core.Tabs;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import binnie.core.BinnieCore;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import binnie.core.gui.BinnieCoreGUI;
+import forestry.api.core.Tabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
-public class ItemGenesis extends Item
-{
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(final IIconRegister register) {
-		this.itemIcon = BinnieCore.proxy.getIcon(register, "genesis");
-	}
+public class ItemGenesis extends Item {
+//	@Override
+//	@SideOnly(Side.CLIENT)
+//	public void registerIcons(final IIconRegister register) {
+//		this.itemIcon = BinnieCore.proxy.getIcon(register, "genesis");
+//	}
 
-	public ItemGenesis() {
-		this.setCreativeTab(Tabs.tabApiculture);
-		this.setUnlocalizedName("genesis");
-		this.setMaxStackSize(1);
-	}
+    public ItemGenesis() {
+        this.setCreativeTab(Tabs.tabApiculture);
+        this.setUnlocalizedName("genesis");
+        setRegistryName("genesis");
+        this.setMaxStackSize(1);
+    }
 
-	@Override
-	public ItemStack onItemRightClick(final ItemStack itemstack, final World world, final EntityPlayer player) {
-		BinnieCore.proxy.openGui(BinnieCoreGUI.Genesis, player, (int) player.posX, (int) player.posY, (int) player.posZ);
-		return itemstack;
-	}
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand) {
+        BinnieCore.proxy.openGui(BinnieCoreGUI.Genesis, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
+        return super.onItemRightClick(itemStack, world, player, hand);
+    }
 
-	@Override
-	public String getItemStackDisplayName(final ItemStack i) {
-		return "Genesis";
-	}
+
+    @Override
+    public String getItemStackDisplayName(final ItemStack i) {
+        return "Genesis";
+    }
 }

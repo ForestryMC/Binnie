@@ -1,142 +1,138 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.craftgui.core;
 
-import binnie.craftgui.events.EventHandler;
-import binnie.craftgui.events.Event;
-import java.util.List;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.events.Event;
+import binnie.craftgui.events.EventHandler;
 
-public interface IWidget
-{
-	IWidget getParent();
+import java.util.List;
 
-	void deleteChild(final IWidget p0);
+public interface IWidget {
+    IWidget getParent();
 
-	void deleteAllChildren();
+    void deleteChild(final IWidget p0);
 
-	ITopLevelWidget getSuperParent();
+    void deleteAllChildren();
 
-	boolean isTopLevel();
+    ITopLevelWidget getSuperParent();
 
-	IPoint getPosition();
+    boolean isTopLevel();
 
-	IPoint pos();
+    IPoint getPosition();
 
-	void setPosition(final IPoint p0);
+    IPoint pos();
 
-	IPoint getSize();
+    void setPosition(final IPoint p0);
 
-	IPoint size();
+    IPoint getSize();
 
-	void setSize(final IPoint p0);
+    IPoint size();
 
-	IPoint getOriginalPosition();
+    void setSize(final IPoint p0);
 
-	IPoint getAbsolutePosition();
+    IPoint getOriginalPosition();
 
-	IPoint getOriginalAbsolutePosition();
+    IPoint getAbsolutePosition();
 
-	IPoint getOffset();
+    IPoint getOriginalAbsolutePosition();
 
-	IArea getArea();
+    IPoint getOffset();
 
-	IArea area();
+    IArea getArea();
 
-	void setOffset(final IPoint p0);
+    IArea area();
 
-	IPoint getMousePosition();
+    void setOffset(final IPoint p0);
 
-	IPoint getRelativeMousePosition();
+    IPoint getMousePosition();
 
-	void setColour(final int p0);
+    IPoint getRelativeMousePosition();
 
-	int getColour();
+    void setColour(final int p0);
 
-	void render();
+    int getColour();
 
-	void updateClient();
+    void render();
 
-	void enable();
+    void updateClient();
 
-	void disable();
+    void enable();
 
-	void show();
+    void disable();
 
-	void hide();
+    void show();
 
-	boolean calculateIsMouseOver();
+    void hide();
 
-	boolean isEnabled();
+    boolean calculateIsMouseOver();
 
-	boolean isVisible();
+    boolean isEnabled();
 
-	boolean isFocused();
+    boolean isVisible();
 
-	boolean isMouseOver();
+    boolean isFocused();
 
-	boolean isDragged();
+    boolean isMouseOver();
 
-	boolean isChildVisible(final IWidget p0);
+    boolean isDragged();
 
-	boolean isChildEnabled(final IWidget p0);
+    boolean isChildVisible(final IWidget p0);
 
-	boolean canMouseOver();
+    boolean isChildEnabled(final IWidget p0);
 
-	boolean canFocus();
+    boolean canMouseOver();
 
-	IWidget addWidget(final IWidget p0);
+    boolean canFocus();
 
-	List<IWidget> getWidgets();
+    IWidget addWidget(final IWidget p0);
 
-	void callEvent(final Event p0);
+    List<IWidget> getWidgets();
 
-	void recieveEvent(final Event p0);
+    void callEvent(final Event p0);
 
-	void onUpdateClient();
+    void recieveEvent(final Event p0);
 
-	void delete();
+    void onUpdateClient();
 
-	void onDelete();
+    void delete();
 
-	<T> T getWidget(final Class<T> p0);
+    void onDelete();
 
-	IArea getCroppedZone();
+    <T> T getWidget(final Class<T> p0);
 
-	void setCroppedZone(final IWidget p0, final IArea p1);
+    IArea getCroppedZone();
 
-	boolean isCroppedWidet();
+    void setCroppedZone(final IWidget p0, final IArea p1);
 
-	IWidget getCropWidget();
+    boolean isCroppedWidet();
 
-	boolean isMouseOverWidget(final IPoint p0);
+    IWidget getCropWidget();
 
-	int getLevel();
+    boolean isMouseOverWidget(final IPoint p0);
 
-	boolean isDescendant(final IWidget p0);
+    int getLevel();
 
-	List<IWidgetAttribute> getAttributes();
+    boolean isDescendant(final IWidget p0);
 
-	boolean hasAttribute(final IWidgetAttribute p0);
+    List<IWidgetAttribute> getAttributes();
 
-	boolean addAttribute(final IWidgetAttribute p0);
+    boolean hasAttribute(final IWidgetAttribute p0);
 
-	<E extends Event> void addEventHandler(final EventHandler<E> p0);
+    boolean addAttribute(final IWidgetAttribute p0);
 
-	<E extends Event> void addSelfEventHandler(final EventHandler<E> p0);
+    <E extends Event> void addEventHandler(final EventHandler<E> p0);
 
-	boolean contains(final IPoint p0);
+    <E extends Event> void addSelfEventHandler(final EventHandler<E> p0);
 
-	float x();
+    boolean contains(final IPoint p0);
 
-	float y();
+    float x();
 
-	float w();
+    float y();
 
-	float h();
+    float w();
 
-	void onRender(final RenderStage p0);
+    float h();
+
+    void onRender(final RenderStage p0);
 }

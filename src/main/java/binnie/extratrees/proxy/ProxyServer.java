@@ -1,9 +1,10 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.proxy;
 
-public class ProxyServer extends Proxy implements IExtraTreeProxy
-{
+import net.minecraft.block.Block;
+
+public class ProxyServer extends Proxy implements IExtraTreeProxy {
+    @Override
+    public void setCustomStateMapper(String name, Block block) {
+
+    }
 }

@@ -1,28 +1,25 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.api;
 
-public enum EnumFlowerStage
-{
-	FLOWER("Flower"),
-	SEED("Seed"),
-	POLLEN("Pollen"),
-	NONE("NONE");
+import forestry.api.genetics.ISpeciesType;
 
-	public static final EnumFlowerStage[] VALUES;
-	String name;
+public enum EnumFlowerStage implements ISpeciesType {
+    FLOWER("Flower"),
+    SEED("Seed"),
+    POLLEN("Pollen"),
+    NONE("NONE");
 
-	private EnumFlowerStage(final String name) {
-		this.name = name;
-	}
+    public static final EnumFlowerStage[] VALUES;
+    String name;
 
-	public String getName() {
-		return this.name;
-	}
+    private EnumFlowerStage(final String name) {
+        this.name = name;
+    }
 
-	static {
-		VALUES = values();
-	}
+    public String getName() {
+        return this.name;
+    }
+
+    static {
+        VALUES = values();
+    }
 }

@@ -1,140 +1,173 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees;
 
-import binnie.extrabees.ExtraBees;
+import binnie.Binnie;
+import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
+import binnie.core.gui.IBinnieGUID;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
-import binnie.extratrees.config.ConfigurationMain;
-import binnie.extratrees.core.ExtraTreesGUID;
-import binnie.core.gui.IBinnieGUID;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import binnie.extratrees.core.ModuleCore;
-import binnie.extratrees.machines.ModuleMachine;
-import binnie.extratrees.carpentry.ModuleCarpentry;
-import binnie.extratrees.genetics.ModuleGenetics;
+import binnie.extrabees.ExtraBees;
 import binnie.extratrees.alcohol.ModuleAlcohol;
-import binnie.extratrees.item.ModuleItems;
+import binnie.extratrees.alcohol.drink.ItemDrink;
 import binnie.extratrees.block.ModuleBlocks;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import binnie.extratrees.carpentry.BlockStainedDesign;
 import binnie.extratrees.block.decor.BlockHedge;
 import binnie.extratrees.block.decor.BlockMultiFence;
-import binnie.extratrees.alcohol.drink.ItemDrink;
 import binnie.extratrees.carpentry.BlockCarpentry;
+import binnie.extratrees.carpentry.BlockStainedDesign;
+import binnie.extratrees.carpentry.ModuleCarpentry;
+import binnie.extratrees.config.ConfigurationMain;
+import binnie.extratrees.core.ExtraTreesGUID;
+import binnie.extratrees.core.ModuleCore;
+import binnie.extratrees.genetics.ButterflySpecies;
+import binnie.extratrees.genetics.ExtraTreeFruitGene;
+import binnie.extratrees.genetics.ExtraTreeSpecies;
+import binnie.extratrees.genetics.ModuleGenetics;
+import binnie.extratrees.item.ModuleItems;
+import binnie.extratrees.machines.ModuleMachine;
+import binnie.extratrees.proxy.Proxy;
+import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.arboriculture.ITreeRoot;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.AlleleSpeciesRegisterEvent;
+import forestry.api.genetics.IClassification;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import cpw.mods.fml.common.SidedProxy;
-import binnie.extratrees.proxy.Proxy;
-import cpw.mods.fml.common.Mod;
-import binnie.core.AbstractMod;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLConstructionEvent;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod(modid = "ExtraTrees", name = "Extra Trees", useMetadata = true, dependencies = "after:BinnieCore")
-public class ExtraTrees extends AbstractMod
-{
-	@Mod.Instance("ExtraTrees")
-	public static ExtraTrees instance;
-	@SidedProxy(clientSide = "binnie.extratrees.proxy.ProxyClient", serverSide = "binnie.extratrees.proxy.ProxyServer")
-	public static Proxy proxy;
-	public static Item itemDictionary;
-	public static Item itemDictionaryLepi;
-	public static Item itemMisc;
-	public static Item itemFood;
-	public static Block blockStairs;
-	public static Block blockLog;
-	public static BlockCarpentry blockCarpentry;
-	public static Block blockPlanks;
-	public static Block blockMachine;
-	public static Block blockFence;
-	public static BlockCarpentry blockPanel;
-	public static Block blockKitchen;
-	public static Block blockSlab;
-	public static Block blockDoubleSlab;
-	public static Item itemHammer;
-	public static Item itemDurableHammer;
-	public static Block blockGate;
-	public static Block blockDoor;
-	public static Block blockBranch;
-	public static ItemDrink drink;
-	public static BlockMultiFence blockMultiFence;
-	public static Block blockDrink;
-	public static BlockHedge blockHedge;
-	public static BlockStainedDesign blockStained;
-	public static int fruitPodRenderId;
-	public static int doorRenderId;
-	public static int branchRenderId;
-	public static int fenceID;
-	public static int stairsID;
+@Mod(modid = "extratrees", name = "Extra Trees", useMetadata = true, dependencies = "after:BinnieCore;required-after:forestry")
+public class ExtraTrees extends AbstractMod {
+    @Mod.Instance("extratrees")
+    public static ExtraTrees instance;
+    public static final String MOD_ID = "extratrees";
 
-	@Mod.EventHandler
-	public void preInit(final FMLPreInitializationEvent evt) {
-		this.addModule(new ModuleBlocks());
-		this.addModule(new ModuleItems());
-		this.addModule(new ModuleAlcohol());
-		this.addModule(new ModuleGenetics());
-		this.addModule(new ModuleCarpentry());
-		this.addModule(new ModuleMachine());
-		this.addModule(new ModuleCore());
-		this.preInit();
-	}
 
-	@Mod.EventHandler
-	public void init(final FMLInitializationEvent evt) {
-		this.init();
-	}
+    @SidedProxy(clientSide = "binnie.extratrees.proxy.ProxyClient", serverSide = "binnie.extratrees.proxy.ProxyServer")
+    public static Proxy proxy;
+    public static Item itemDictionary;
+    public static Item itemDictionaryLepi;
+    public static Item itemMisc;
+    public static Item itemFood;
+    public static Block blockStairs;
+    //public static Block blockLog;
+    public static BlockCarpentry blockCarpentry;
+    public static Block blockPlanks;
+    public static Block blockMachine;
+    public static Block blockFence;
+    public static BlockCarpentry blockPanel;
+    public static Block blockKitchen;
+    public static Block blockSlab;
+    public static Block blockDoubleSlab;
+    public static Item itemHammer;
+    public static Item itemDurableHammer;
+    public static Block blockGate;
+    public static Block blockDoor;
+    public static Block blockBranch;
+    public static ItemDrink drink;
+    public static BlockMultiFence blockMultiFence;
+    public static Block blockDrink;
+    public static BlockHedge blockHedge;
+    public static BlockStainedDesign blockStained;
+    public static int fruitPodRenderId;
+    public static int doorRenderId;
+    public static int branchRenderId;
+    public static int fenceID;
+    public static int stairsID;
 
-	@Mod.EventHandler
-	public void postInit(final FMLPostInitializationEvent evt) {
-		this.postInit();
-	}
+    @Mod.EventHandler
+    public void preInit(final FMLPreInitializationEvent evt) {
+        this.addModule(new ModuleBlocks());
+        this.addModule(new ModuleItems());
+        this.addModule(new ModuleAlcohol());
+        this.addModule(new ModuleGenetics());
+        this.addModule(new ModuleCarpentry());
+        this.addModule(new ModuleMachine());
+        this.addModule(new ModuleCore());
+        this.preInit();
+    }
 
-	public ExtraTrees() {
-		ExtraTrees.instance = this;
-	}
+    @Mod.EventHandler
+    public void pre(FMLConstructionEvent e) {
+        MinecraftForge.EVENT_BUS.register(this);
+    }
 
-	@Override
-	public IBinnieGUID[] getGUIDs() {
-		return ExtraTreesGUID.values();
-	}
+    @SubscribeEvent
+    public void speciesRegister(AlleleSpeciesRegisterEvent event) {
+        if (event.getRoot() instanceof ITreeRoot) {
+            for (final ExtraTreeFruitGene fruit : ExtraTreeFruitGene.values()) {
+                AlleleManager.alleleRegistry.registerAllele(fruit);
+            }
+            for (final ExtraTreeSpecies species : ExtraTreeSpecies.values()) {
+                AlleleManager.alleleRegistry.registerAllele(species, EnumTreeChromosome.SPECIES);
+            }
+        }
 
-	@Override
-	public Class[] getConfigs() {
-		return new Class[] { ConfigurationMain.class };
-	}
+        if (BinnieCore.isLepidopteryActive()) {
+            for (final ButterflySpecies species2 : ButterflySpecies.values()) {
+                AlleleManager.alleleRegistry.registerAllele(species2);
+            }
+        }
+    }
 
-	@Override
-	public String getChannel() {
-		return "ET";
-	}
 
-	@Override
-	public IProxyCore getProxy() {
-		return ExtraTrees.proxy;
-	}
+    @Mod.EventHandler
+    public void init(final FMLInitializationEvent evt) {
+        this.init();
+    }
 
-	@Override
-	public String getModID() {
-		return "extratrees";
-	}
+    @Mod.EventHandler
+    public void postInit(final FMLPostInitializationEvent evt) {
+        this.postInit();
+    }
 
-	@Override
-	protected Class<? extends BinniePacketHandler> getPacketHandler() {
-		return PacketHandler.class;
-	}
+    public ExtraTrees() {
+        ExtraTrees.instance = this;
+    }
 
-	@Override
-	public boolean isActive() {
-		return BinnieCore.isExtraTreesActive();
-	}
+    @Override
+    public IBinnieGUID[] getGUIDs() {
+        return ExtraTreesGUID.values();
+    }
 
-	public static class PacketHandler extends BinniePacketHandler
-	{
-		public PacketHandler() {
-			super(ExtraBees.instance);
-		}
-	}
+    @Override
+    public Class[] getConfigs() {
+        return new Class[]{ConfigurationMain.class};
+    }
+
+    @Override
+    public String getChannel() {
+        return "ET";
+    }
+
+    @Override
+    public IProxyCore getProxy() {
+        return ExtraTrees.proxy;
+    }
+
+    @Override
+    public String getModID() {
+        return "extratrees";
+    }
+
+    @Override
+    protected Class<? extends BinniePacketHandler> getPacketHandler() {
+        return PacketHandler.class;
+    }
+
+    @Override
+    public boolean isActive() {
+        return BinnieCore.isExtraTreesActive();
+    }
+
+    public static class PacketHandler extends BinniePacketHandler {
+        public PacketHandler() {
+            super(ExtraBees.instance);
+        }
+    }
 }

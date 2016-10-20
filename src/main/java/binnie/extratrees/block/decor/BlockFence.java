@@ -1,189 +1,180 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.block.decor;
 
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.init.Blocks;
-import binnie.core.Mods;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.block.Block;
 import binnie.Binnie;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.entity.player.EntityPlayer;
-import binnie.core.block.BlockMetadata;
-import java.util.ArrayList;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.block.WoodManager;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import binnie.core.block.IBlockMetadata;
 import binnie.core.block.TileEntityMetadata;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.IBlockAccess;
+import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.IFenceProvider;
 import binnie.extratrees.block.PlankType;
-import java.util.List;
+import binnie.extratrees.block.WoodManager;
+import forestry.api.core.Tabs;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import forestry.api.core.Tabs;
-import net.minecraft.block.material.Material;
-import binnie.core.block.IBlockMetadata;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 
-public class BlockFence extends net.minecraft.block.BlockFence implements IBlockMetadata, IBlockFence
-{
-	public BlockFence() {
-		super("", Material.wood);
-		this.setCreativeTab(Tabs.tabArboriculture);
-		this.setBlockName("fence");
-		this.setResistance(5.0f);
-		this.setHardness(2.0f);
-		this.setStepSound(Block.soundTypeWood);
-	}
+import java.util.List;
 
-	@Override
-	public void getSubBlocks(final Item par1, final CreativeTabs par2CreativeTabs, final List itemList) {
-		for (final IFenceProvider type : PlankType.ExtraTreePlanks.values()) {
-			itemList.add(type.getFence());
-		}
-	}
+public class BlockFence extends net.minecraft.block.BlockFence implements IBlockMetadata, IBlockFence {
+    public BlockFence(String name) {
+        super(Material.WOOD, MapColor.WOOD);
+        this.setCreativeTab(Tabs.tabArboriculture);
+        this.setRegistryName(name);
+        this.setResistance(5.0f);
+        this.setHardness(2.0f);
+        this.setSoundType(SoundType.WOOD);
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(final IBlockAccess world, final int x, final int y, final int z, final int side) {
-		final TileEntityMetadata tile = TileEntityMetadata.getTile(world, x, y, z);
-		if (tile != null) {
-			return this.getIcon(side, tile.getTileMetadata());
-		}
-		return super.getIcon(world, x, y, z, side);
-	}
+    @Override
+    public void getSubBlocks(final Item par1, final CreativeTabs par2CreativeTabs, final List itemList) {
+        for (final IFenceProvider type : PlankType.ExtraTreePlanks.values()) {
+            itemList.add(type.getFence());
+        }
+    }
 
-	public FenceDescription getDescription(final int meta) {
-		return WoodManager.getFenceDescription(meta);
-	}
+//	@Override
+//	@SideOnly(Side.CLIENT)
+//	public IIcon getIcon(final IBlockAccess world, final int x, final int y, final int z, final int side) {
+//		final TileEntityMetadata tile = TileEntityMetadata.getTile(world, x, y, z);
+//		if (tile != null) {
+//			return this.getIcon(side, tile.getTileMetadata());
+//		}
+//		return super.getIcon(world, x, y, z, side);
+//	}
 
-	@Override
-	public IIcon getIcon(final int side, final int meta) {
-		return this.getDescription(meta).getPlankType().getIcon();
-	}
+    public FenceDescription getDescription(final int meta) {
+        return WoodManager.getFenceDescription(meta);
+    }
 
-	@Override
-	public int getRenderType() {
-		return ExtraTrees.fenceID;
-	}
+//	@Override
+//	public IIcon getIcon(final int side, final int meta) {
+//		return this.getDescription(meta).getPlankType().getIcon();
+//	}
+//
+//	@Override
+//	public int getRenderType() {
+//		return ExtraTrees.fenceID;
+//	}
 
-	@Override
-	public void dropAsStack(final World world, final int x, final int y, final int z, final ItemStack drop) {
-		this.dropBlockAsItem(world, x, y, z, drop);
-	}
+    @Override
+    public void dropAsStack(final World world, final BlockPos pos, final ItemStack drop) {
+        //this.dropBlockAsItem(world, x, y, z, drop);
+    }
+//
+//	@Override
+//	public ArrayList<ItemStack> getDrops(final World world, final int x, final int y, final int z, final int blockMeta, final int fortune) {
+//		return BlockMetadata.getBlockDropped(this, world, x, y, z, blockMeta);
+//	}
+//
+//	@Override
+//	public boolean removedByPlayer(final World world, final EntityPlayer player, final int x, final int y, final int z) {
+//		return BlockMetadata.breakBlock(this, player, world, x, y, z);
+//	}
 
-	@Override
-	public ArrayList<ItemStack> getDrops(final World world, final int x, final int y, final int z, final int blockMeta, final int fortune) {
-		return BlockMetadata.getBlockDropped(this, world, x, y, z, blockMeta);
-	}
+    @Override
+    public TileEntity createNewTileEntity(final World var1, final int i) {
+        return new TileEntityMetadata();
+    }
 
-	@Override
-	public boolean removedByPlayer(final World world, final EntityPlayer player, final int x, final int y, final int z) {
-		return BlockMetadata.breakBlock(this, player, world, x, y, z);
-	}
+//	@Override
+//	public boolean hasTileEntity(final int meta) {
+//		return true;
+//	}
+//
+//	@Override
+//	public boolean onBlockEventReceived(final World par1World, final int par2, final int par3, final int par4, final int par5, final int par6) {
+//		super.onBlockEventReceived(par1World, par2, par3, par4, par5, par6);
+//		final TileEntity tileentity = par1World.getTileEntity(par2, par3, par4);
+//		return tileentity != null && tileentity.receiveClientEvent(par5, par6);
+//	}
 
-	@Override
-	public TileEntity createNewTileEntity(final World var1, final int i) {
-		return new TileEntityMetadata();
-	}
+    @Override
+    public int getPlacedMeta(final ItemStack stack, final World world, final BlockPos pos, final EnumFacing clickedBlock) {
+        return TileEntityMetadata.getItemDamage(stack);
+    }
 
-	@Override
-	public boolean hasTileEntity(final int meta) {
-		return true;
-	}
+    @Override
+    public int getDroppedMeta(final int blockMeta, final int tileMeta) {
+        return tileMeta;
+    }
 
-	@Override
-	public boolean onBlockEventReceived(final World par1World, final int par2, final int par3, final int par4, final int par5, final int par6) {
-		super.onBlockEventReceived(par1World, par2, par3, par4, par5, par6);
-		final TileEntity tileentity = par1World.getTileEntity(par2, par3, par4);
-		return tileentity != null && tileentity.receiveClientEvent(par5, par6);
-	}
+    @Override
+    public String getBlockName(final ItemStack par1ItemStack) {
+        final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
+        return Binnie.Language.localise(ExtraTrees.instance, "block.woodfence.name", this.getDescription(meta).getPlankType().getName());
+    }
 
-	@Override
-	public int getPlacedMeta(final ItemStack stack, final World world, final int x, final int y, final int z, final ForgeDirection clickedBlock) {
-		return TileEntityMetadata.getItemDamage(stack);
-	}
+    @Override
+    public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
+    }
 
-	@Override
-	public int getDroppedMeta(final int blockMeta, final int tileMeta) {
-		return tileMeta;
-	}
 
-	@Override
-	public String getBlockName(final ItemStack par1ItemStack) {
-		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
-		return Binnie.Language.localise(ExtraTrees.instance, "block.woodfence.name", this.getDescription(meta).getPlankType().getName());
-	}
+    @Override
+    public boolean canPlaceTorchOnTop(IBlockState state, IBlockAccess world, BlockPos pos) {
+        return true;
+    }
 
-	@Override
-	public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
-	}
+//	@Override
+//	public boolean canConnectTo(IBlockAccess worldIn, BlockPos pos) {
+//		if (!this.isFence(world, x, y, z)) {
+//			final Block block = world.getBlock(x, y, z);
+//			return block != null && block.getMaterial().isOpaque() && block.renderAsNormalBlock();
+//		}
+//		return true;
+//	}
 
-	@Override
-	public boolean canPlaceTorchOnTop(final World world, final int x, final int y, final int z) {
-		return true;
-	}
+//	public boolean isFence(final IBlockAccess world, final int x, final int y, final int z) {
+//		final Block block = world.getBlock(x, y, z);
+//		return canConnect(block);
+//	}
 
-	@Override
-	public boolean canConnectFenceTo(final IBlockAccess world, final int x, final int y, final int z) {
-		if (!this.isFence(world, x, y, z)) {
-			final Block block = world.getBlock(x, y, z);
-			return block != null && block.getMaterial().isOpaque() && block.renderAsNormalBlock();
-		}
-		return true;
-	}
+//	public static boolean canConnect(final Block block) {
+//		return block == ((ItemBlock) Mods.Forestry.item("fences")).field_150939_a || block == Blocks.fence || block == Blocks.fence_gate || block == Blocks.nether_brick_fence || block instanceof IBlockFence || block == ExtraTrees.blockGate;
+//	}
+//
+//	@Override
+//	public void breakBlock(final World par1World, final int par2, final int par3, final int par4, final Block par5, final int par6) {
+//		super.breakBlock(par1World, par2, par3, par4, par5, par6);
+//		par1World.removeTileEntity(par2, par3, par4);
+//	}
 
-	public boolean isFence(final IBlockAccess world, final int x, final int y, final int z) {
-		final Block block = world.getBlock(x, y, z);
-		return canConnect(block);
-	}
+    @Override
+    public boolean isWood(final IBlockAccess world, final BlockPos pos) {
+        return true;
+    }
 
-	public static boolean canConnect(final Block block) {
-		return block == ((ItemBlock) Mods.Forestry.item("fences")).field_150939_a || block == Blocks.fence || block == Blocks.fence_gate || block == Blocks.nether_brick_fence || block instanceof IBlockFence || block == ExtraTrees.blockGate;
-	}
+    @Override
+    public int getFlammability(final IBlockAccess world, final BlockPos pos, final EnumFacing face) {
+        return 20;
+    }
 
-	@Override
-	public void breakBlock(final World par1World, final int par2, final int par3, final int par4, final Block par5, final int par6) {
-		super.breakBlock(par1World, par2, par3, par4, par5, par6);
-		par1World.removeTileEntity(par2, par3, par4);
-	}
+    @Override
+    public boolean isFlammable(final IBlockAccess world, final BlockPos pos, final EnumFacing face) {
+        return true;
+    }
 
-	@Override
-	public boolean isWood(final IBlockAccess world, final int x, final int y, final int z) {
-		return true;
-	}
+    @Override
+    public int getFireSpreadSpeed(final IBlockAccess world, final BlockPos pos, final EnumFacing face) {
+        return 5;
+    }
 
-	@Override
-	public int getFlammability(final IBlockAccess world, final int x, final int y, final int z, final ForgeDirection face) {
-		return 20;
-	}
+//	@Override
+//	@SideOnly(Side.CLIENT)
+//	public void registerBlockIcons(final IIconRegister p_149651_1_) {
+//	}
 
-	@Override
-	public boolean isFlammable(final IBlockAccess world, final int x, final int y, final int z, final ForgeDirection face) {
-		return true;
-	}
+//
+//	@Override
+//	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+//		return BlockMetadata.getPickBlock(state, target, world, pos, player);
+//	}
 
-	@Override
-	public int getFireSpreadSpeed(final IBlockAccess world, final int x, final int y, final int z, final ForgeDirection face) {
-		return 5;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(final IIconRegister p_149651_1_) {
-	}
-
-	@Override
-	public ItemStack getPickBlock(final MovingObjectPosition target, final World world, final int x, final int y, final int z) {
-		return BlockMetadata.getPickBlock(world, x, y, z);
-	}
 }

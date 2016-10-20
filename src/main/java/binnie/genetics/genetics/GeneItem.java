@@ -1,97 +1,94 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.genetics;
 
-import forestry.api.genetics.ISpeciesRoot;
-import net.minecraft.nbt.NBTBase;
-import binnie.core.genetics.Gene;
 import binnie.Binnie;
 import binnie.core.genetics.BreedingSystem;
-import java.util.List;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.item.ItemStack;
+import binnie.core.genetics.Gene;
 import binnie.genetics.api.IGene;
-import forestry.api.core.INBTTagable;
+import forestry.api.core.INbtReadable;
+import forestry.api.core.INbtWritable;
+import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
-public class GeneItem implements INBTTagable, IGeneItem
-{
-	IGene gene;
+import java.util.List;
 
-	public GeneItem(final ItemStack stack) {
-		if (stack == null) {
-			return;
-		}
-		this.readFromNBT(stack.getTagCompound());
-	}
+public class GeneItem implements INbtReadable, INbtWritable, IGeneItem {
+    IGene gene;
 
-	public GeneItem(final IGene gene) {
-		this.gene = gene;
-	}
+    public GeneItem(final ItemStack stack) {
+        if (stack == null) {
+            return;
+        }
+        this.readFromNBT(stack.getTagCompound());
+    }
 
-	public boolean isCorrupted() {
-		return this.gene == null;
-	}
+    public GeneItem(final IGene gene) {
+        this.gene = gene;
+    }
 
-	@Override
-	public void writeToItem(final ItemStack stack) {
-		if (this.gene == null || stack == null) {
-			return;
-		}
-		final NBTTagCompound nbt = stack.hasTagCompound() ? stack.getTagCompound() : new NBTTagCompound();
-		this.writeToNBT(nbt);
-		stack.setTagCompound(nbt);
-	}
+    public boolean isCorrupted() {
+        return this.gene == null;
+    }
 
-	@Override
-	public int getColour(final int renderPass) {
-		if (renderPass == 2 && this.getBreedingSystem() != null) {
-			return this.getBreedingSystem().getColour();
-		}
-		return 16777215;
-	}
+    @Override
+    public void writeToItem(final ItemStack stack) {
+        if (this.gene == null || stack == null) {
+            return;
+        }
+        final NBTTagCompound nbt = stack.hasTagCompound() ? stack.getTagCompound() : new NBTTagCompound();
+        this.writeToNBT(nbt);
+        stack.setTagCompound(nbt);
+    }
 
-	@Override
-	public void getInfo(final List list) {
-		final String chromosomeName = this.getBreedingSystem().getChromosomeName(this.gene.getChromosome());
-		list.add("§6" + chromosomeName + "§7: " + this.gene.getName());
-	}
+    @Override
+    public int getColour(final int renderPass) {
+        if (renderPass == 2 && this.getBreedingSystem() != null) {
+            return this.getBreedingSystem().getColour();
+        }
+        return 16777215;
+    }
 
-	public BreedingSystem getBreedingSystem() {
-		if (this.gene == null) {
-			return null;
-		}
-		return Binnie.Genetics.getSystem(this.gene.getSpeciesRoot().getUID());
-	}
+    @Override
+    public void getInfo(final List list) {
+        final String chromosomeName = this.getBreedingSystem().getChromosomeName(this.gene.getChromosome());
+        list.add("§6" + chromosomeName + "§7: " + this.gene.getName());
+    }
 
-	public IGene getGene() {
-		return this.gene;
-	}
+    public BreedingSystem getBreedingSystem() {
+        if (this.gene == null) {
+            return null;
+        }
+        return Binnie.Genetics.getSystem(this.gene.getSpeciesRoot().getUID());
+    }
 
-	@Override
-	public void readFromNBT(final NBTTagCompound nbt) {
-		if (nbt != null) {
-			this.gene = Gene.create(nbt.getCompoundTag("gene"));
-		}
-	}
+    public IGene getGene() {
+        return this.gene;
+    }
 
-	@Override
-	public void writeToNBT(final NBTTagCompound nbt) {
-		if (this.gene == null) {
-			return;
-		}
-		final NBTTagCompound geneNBT = this.gene.getNBTTagCompound();
-		nbt.setTag("gene", geneNBT);
-	}
+    @Override
+    public void readFromNBT(final NBTTagCompound nbt) {
+        if (nbt != null) {
+            this.gene = Gene.create(nbt.getCompoundTag("gene"));
+        }
+    }
 
-	@Override
-	public ISpeciesRoot getSpeciesRoot() {
-		return this.gene.getSpeciesRoot();
-	}
+    @Override
+    public NBTTagCompound writeToNBT(final NBTTagCompound nbt) {
+        if (this.gene == null) {
+            return nbt;
+        }
+        final NBTTagCompound geneNBT = this.gene.getNBTTagCompound();
+        nbt.setTag("gene", geneNBT);
+        return nbt;
+    }
 
-	@Override
-	public void addGene(final IGene gene) {
-		this.gene = gene;
-	}
+    @Override
+    public ISpeciesRoot getSpeciesRoot() {
+        return this.gene.getSpeciesRoot();
+    }
+
+    @Override
+    public void addGene(final IGene gene) {
+        this.gene = gene;
+    }
 }

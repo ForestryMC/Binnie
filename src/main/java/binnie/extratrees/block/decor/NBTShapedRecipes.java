@@ -1,55 +1,57 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.block.decor;
 
-import java.util.ArrayList;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import net.minecraft.inventory.InventoryCrafting;
-import java.util.List;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.world.World;
 
-public class NBTShapedRecipes implements IRecipe
-{
-	static List<NBTShapedRecipe> recipes;
+import java.util.ArrayList;
+import java.util.List;
 
-	@Override
-	public boolean matches(final InventoryCrafting inventory, final World world) {
-		for (final NBTShapedRecipe recipe : NBTShapedRecipes.recipes) {
-			if (recipe.matches(inventory, world)) {
-				return true;
-			}
-		}
-		return false;
-	}
+public class NBTShapedRecipes implements IRecipe {
+    static List<NBTShapedRecipe> recipes;
 
-	@Override
-	public ItemStack getCraftingResult(final InventoryCrafting inventory) {
-		for (final NBTShapedRecipe recipe : NBTShapedRecipes.recipes) {
-			if (recipe.matches(inventory, null)) {
-				return recipe.getCraftingResult(inventory);
-			}
-		}
-		return null;
-	}
+    @Override
+    public boolean matches(final InventoryCrafting inventory, final World world) {
+        for (final NBTShapedRecipe recipe : NBTShapedRecipes.recipes) {
+            if (recipe.matches(inventory, world)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	@Override
-	public int getRecipeSize() {
-		return 9;
-	}
+    @Override
+    public ItemStack getCraftingResult(final InventoryCrafting inventory) {
+        for (final NBTShapedRecipe recipe : NBTShapedRecipes.recipes) {
+            if (recipe.matches(inventory, null)) {
+                return recipe.getCraftingResult(inventory);
+            }
+        }
+        return null;
+    }
 
-	@Override
-	public ItemStack getRecipeOutput() {
-		return null;
-	}
+    @Override
+    public int getRecipeSize() {
+        return 9;
+    }
 
-	public static void addRecipe(final NBTShapedRecipe nbtShapedRecipe) {
-		NBTShapedRecipes.recipes.add(nbtShapedRecipe);
-	}
+    @Override
+    public ItemStack getRecipeOutput() {
+        return null;
+    }
 
-	static {
-		NBTShapedRecipes.recipes = new ArrayList<NBTShapedRecipe>();
-	}
+    //TODO INV
+    @Override
+    public ItemStack[] getRemainingItems(InventoryCrafting inv) {
+        return new ItemStack[0];
+    }
+
+    public static void addRecipe(final NBTShapedRecipe nbtShapedRecipe) {
+        NBTShapedRecipes.recipes.add(nbtShapedRecipe);
+    }
+
+    static {
+        NBTShapedRecipes.recipes = new ArrayList<NBTShapedRecipe>();
+    }
 }

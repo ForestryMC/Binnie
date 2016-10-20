@@ -1,26 +1,21 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.alcohol.drink;
 
 import net.minecraftforge.fluids.FluidStack;
 
-public interface IDrinkLiquid
-{
-	boolean isConsumable();
+public interface IDrinkLiquid {
+    boolean isConsumable();
 
-	int getColour();
+    int getColour();
 
-	String getName();
+    String getName();
 
-	float getTransparency();
+    float getTransparency();
 
-	String getIdentifier();
+    String getIdentifier();
 
-	void setIdent(final String p0);
+    void setIdent(final String p0);
 
-	float getABV();
+    float getABV();
 
-	FluidStack get(final int p0);
+    FluidStack get(final int p0);
 }

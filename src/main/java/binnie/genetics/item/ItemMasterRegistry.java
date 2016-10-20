@@ -1,42 +1,38 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.item;
 
+import binnie.genetics.CreativeTabGenetics;
+import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsGUI;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
-import net.minecraft.item.ItemStack;
-import binnie.genetics.CreativeTabGenetics;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import binnie.genetics.Genetics;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
-public class ItemMasterRegistry extends Item
-{
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(final IIconRegister register) {
-		this.itemIcon = Genetics.proxy.getIcon(register, "masterRegistry");
-	}
+public class ItemMasterRegistry extends Item {
+//	@Override
+//	@SideOnly(Side.CLIENT)
+//	public void registerIcons(final IIconRegister register) {
+//		this.itemIcon = Genetics.proxy.getIcon(register, "masterRegistry");
+//	}
 
-	public ItemMasterRegistry() {
-		this.setCreativeTab(CreativeTabGenetics.instance);
-		this.setUnlocalizedName("masterRegistry");
-		this.setMaxStackSize(1);
-	}
+    public ItemMasterRegistry() {
+        this.setCreativeTab(CreativeTabGenetics.instance);
+        this.setUnlocalizedName("masterRegistry");
+        this.setMaxStackSize(1);
+        setRegistryName("masterRegistry");
+    }
 
-	@Override
-	public ItemStack onItemRightClick(final ItemStack itemstack, final World world, final EntityPlayer player) {
-		Genetics.proxy.openGui(GeneticsGUI.MasterRegistry, player, (int) player.posX, (int) player.posY, (int) player.posZ);
-		return itemstack;
-	}
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand) {
+        Genetics.proxy.openGui(GeneticsGUI.MasterRegistry, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
+        return super.onItemRightClick(itemStack, world, player, hand);
+    }
 
-	@Override
-	public String getItemStackDisplayName(final ItemStack i) {
-		return "Master Registry";
-	}
+    @Override
+    public String getItemStackDisplayName(final ItemStack i) {
+        return "Master Registry";
+    }
 }

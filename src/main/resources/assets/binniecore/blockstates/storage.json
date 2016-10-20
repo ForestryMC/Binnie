@@ -1,0 +1,53 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "binniecore:storage"
+  },
+
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}],
+    "machine_type":{
+      "0": {
+        "textures":{
+          "all": "binniecore:tile/Compartment"
+        }
+      },
+      "1": {
+        "textures":{
+          "all": "binniecore:tile/CompartmentCopper"
+        }
+      },
+      "2": {
+        "textures":{
+          "all": "binniecore:tile/CompartmentBronze"
+        }
+      },
+      "3": {
+        "textures":{
+          "all": "binniecore:tile/CompartmentIron"
+        }
+      },
+      "4": {
+        "textures":{
+          "all": "binniecore:tile/CompartmentGold"
+        }
+      },
+      "5": {
+        "textures":{
+          "all": "binniecore:tile/CompartmentDiamond"
+        }
+      },
+      "6": {},
+      "7": {},
+      "8": {},
+      "9": {},
+      "10": {},
+      "11": {},
+      "12": {},
+      "13": {},
+      "14": {},
+      "15": {}
+    }
+  }
+}

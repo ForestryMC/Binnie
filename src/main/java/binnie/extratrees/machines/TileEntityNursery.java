@@ -1,126 +1,104 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.machines;
+
+import binnie.core.machines.TileEntityMachine;
+import forestry.api.core.EnumHumidity;
+import forestry.api.core.EnumTemperature;
+import forestry.api.core.IErrorState;
+import forestry.api.genetics.IIndividual;
+import forestry.api.lepidopterology.IButterfly;
+import forestry.api.lepidopterology.IButterflyNursery;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import forestry.api.core.IErrorState;
+public class TileEntityNursery extends TileEntityMachine implements IButterflyNursery {
+    public TileEntityNursery(final Nursery.PackageNursery pack) {
+        super(pack);
+    }
 
-import net.minecraft.util.ChunkCoordinates;
-import net.minecraft.world.biome.BiomeGenBase;
+    IButterflyNursery getNursery() {
+        return this.getMachine().getInterface(IButterflyNursery.class);
+    }
 
-import forestry.api.genetics.IIndividual;
-import forestry.api.lepidopterology.IButterfly;
+    boolean hasNursery() {
+        return this.getNursery() != null;
+    }
 
-import net.minecraft.item.ItemStack;
+    public World getWorld() {
+        return this.worldObj;
+    }
 
-import forestry.api.core.EnumHumidity;
-import forestry.api.core.EnumTemperature;
 
-import net.minecraft.world.World;
+    public EnumTemperature getTemperature() {
+        return null;
+    }
 
-import forestry.api.lepidopterology.IButterflyNursery;
-import binnie.core.machines.TileEntityMachine;
+    public EnumHumidity getHumidity() {
+        return null;
+    }
 
-public class TileEntityNursery extends TileEntityMachine implements IButterflyNursery
-{
-	public TileEntityNursery(final Nursery.PackageNursery pack) {
-		super(pack);
-	}
+    public boolean addProduct(final ItemStack product, final boolean all) {
+        return false;
+    }
 
-	IButterflyNursery getNursery() {
-		return this.getMachine().getInterface(IButterflyNursery.class);
-	}
+    @Override
+    public IButterfly getCaterpillar() {
+        return this.hasNursery() ? this.getNursery().getCaterpillar() : null;
+    }
 
-	boolean hasNursery() {
-		return this.getNursery() != null;
-	}
+    @Override
+    public IIndividual getNanny() {
+        return null;
+    }
 
-	public World getWorld() {
-		return this.worldObj;
-	}
+    @Override
+    public void setCaterpillar(final IButterfly butterfly) {
+        if (this.hasNursery()) {
+            this.getNursery().setCaterpillar(butterfly);
+        }
+    }
 
-	public int getXCoord() {
-		return this.xCoord;
-	}
+    @Override
+    public boolean canNurse(final IButterfly butterfly) {
+        return this.getCaterpillar() == null;
+    }
 
-	public int getYCoord() {
-		return this.yCoord;
-	}
+    public Biome getBiome() {
+        return this.getWorld().getBiome(getPos());
+    }
 
-	public int getZCoord() {
-		return this.zCoord;
-	}
+    public void setErrorState(final IErrorState state) {
+    }
 
-	public EnumTemperature getTemperature() {
-		return null;
-	}
+    public IErrorState getErrorState() {
+        return null;
+    }
 
-	public EnumHumidity getHumidity() {
-		return null;
-	}
+    public boolean setErrorCondition(final boolean condition, final IErrorState errorState) {
+        return false;
+    }
 
-	public boolean addProduct(final ItemStack product, final boolean all) {
-		return false;
-	}
+    public Set<IErrorState> getErrorStates() {
+        return new HashSet<IErrorState>();
+    }
 
-	@Override
-	public IButterfly getCaterpillar() {
-		return this.hasNursery() ? this.getNursery().getCaterpillar() : null;
-	}
+    public int getBiomeId() {
+        return 0;
+    }
 
-	@Override
-	public IIndividual getNanny() {
-		return null;
-	}
+    public void setErrorState(final int state) {
+    }
 
-	@Override
-	public void setCaterpillar(final IButterfly butterfly) {
-		if (this.hasNursery()) {
-			this.getNursery().setCaterpillar(butterfly);
-		}
-	}
+    public int getErrorOrdinal() {
+        return 0;
+    }
 
-	@Override
-	public boolean canNurse(final IButterfly butterfly) {
-		return this.getCaterpillar() == null;
-	}
-
-	public BiomeGenBase getBiome() {
-		return this.getWorld().getBiomeGenForCoords(this.xCoord, this.zCoord);
-	}
-
-	public void setErrorState(final IErrorState state) {
-	}
-
-	public IErrorState getErrorState() {
-		return null;
-	}
-
-	public boolean setErrorCondition(final boolean condition, final IErrorState errorState) {
-		return false;
-	}
-
-	public Set<IErrorState> getErrorStates() {
-		return new HashSet<IErrorState>();
-	}
-
-	public int getBiomeId() {
-		return 0;
-	}
-
-	public void setErrorState(final int state) {
-	}
-
-	public int getErrorOrdinal() {
-		return 0;
-	}
-
-	@Override
-	public ChunkCoordinates getCoordinates() {
-		return new ChunkCoordinates(xCoord, yCoord, zCoord);
-	}
+    @Override
+    public BlockPos getCoordinates() {
+        return getPos();
+    }
 }

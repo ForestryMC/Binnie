@@ -1,0 +1,21 @@
+{
+  "forge_marker": 1,
+  "defaults":{
+    "model": "forge:item-layer",
+    "transform": "forge:default-item"
+  },
+  "variants": {
+    "type": {
+      "database": {
+        "textures": {
+          "layer0": "genetics:items/geneDatabase"
+        }
+      },
+      "master_database": {
+        "textures": {
+          "layer0": "genetics:items/masterGeneDatabase"
+        }
+      }
+    }
+  }
+}

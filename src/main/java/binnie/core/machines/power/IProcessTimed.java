@@ -1,16 +1,11 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.power;
 
-interface IProcessTimed extends IProcess, IErrorStateSource
-{
-	int getProcessLength();
+interface IProcessTimed extends IProcess, IErrorStateSource {
+    int getProcessLength();
 
-	int getProcessEnergy();
+    int getProcessEnergy();
 
-	float getProgress();
+    float getProgress();
 
-	float getProgressPerTick();
+    float getProgressPerTick();
 }
