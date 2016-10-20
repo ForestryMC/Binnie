@@ -1,0 +1,8 @@
+# IntelliJ
+/build
+/run
+/out
+.idea
+*.iml
+*.ipr
+*.iws
