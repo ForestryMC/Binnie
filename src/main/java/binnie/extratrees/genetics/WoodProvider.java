@@ -1,7 +1,6 @@
 package binnie.extratrees.genetics;
 
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.block.BlockETLog;
 import binnie.extratrees.block.EnumExtraTreeLog;
 import forestry.api.arboriculture.*;
 import forestry.api.core.ITextureManager;

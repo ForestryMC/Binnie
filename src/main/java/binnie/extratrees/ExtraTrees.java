@@ -1,6 +1,5 @@
 package binnie.extratrees;
 
-import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.gui.IBinnieGUID;
@@ -29,7 +28,6 @@ import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.AlleleSpeciesRegisterEvent;
-import forestry.api.genetics.IClassification;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;

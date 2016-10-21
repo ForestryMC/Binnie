@@ -1,6 +1,5 @@
 package binnie.extratrees.block;
 
-import binnie.core.Mods;
 import binnie.core.block.TileEntityMetadata;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
@@ -11,7 +10,6 @@ import forestry.api.arboriculture.TreeManager;
 import forestry.api.arboriculture.WoodBlockKind;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class PlankType {

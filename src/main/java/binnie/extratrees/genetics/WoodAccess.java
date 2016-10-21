@@ -3,14 +3,12 @@ package binnie.extratrees.genetics;
 import forestry.api.arboriculture.IWoodAccess;
 import forestry.api.arboriculture.IWoodType;
 import forestry.api.arboriculture.WoodBlockKind;
-import forestry.arboriculture.IWoodTyped;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import org.apache.commons.lang3.NotImplementedException;
 
-import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 
