@@ -67,7 +67,7 @@ public class IBorder {
     }
 
     public boolean isNonZero() {
-        return this.t != 0.0f || this.r != 0.0f || this.l != 0.0f || this.r != 0.0f;
+        return this.t != 0.0f || this.b != 0.0f || this.l != 0.0f || this.r != 0.0f;
     }
 
     @Deprecated
