@@ -94,31 +94,35 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 //		return this.acceptsPowerSystem(PowerSystem.EU);
 //	}
 
-//	@Override
-//	public int receiveEnergy(final EnumFacing from, final int maxReceive, final boolean simulate) {
-//		return (int) this.container.addEnergy(PowerSystem.RF, maxReceive, !simulate);
-//	}
-//
-//	@Override
-//	public int extractEnergy(final EnumFacing from, final int maxExtract, final boolean simulate) {
-//		return this.container.useEnergy(maxExtract, simulate);
-//	}
-//
-//	@Override
-//	public int getEnergyStored(final EnumFacing from) {
-//		return (int) this.container.getEnergy(PowerSystem.RF);
-//	}
-//
-//	@Override
-//	public int getMaxEnergyStored(final EnumFacing from) {
-//		return (int) this.container.getCapacity(PowerSystem.RF);
-//	}
-//
-//	@Override
-//	public boolean canConnectEnergy(final EnumFacing from) {
-//		final boolean can = this.acceptsPowerSystem(PowerSystem.RF);
-//		return can;
-//	}
+	@Override
+	public int receiveEnergy(final int maxReceive, final boolean simulate) {
+		return (int) this.container.addEnergy(PowerSystem.RF, maxReceive, !simulate);
+	}
+
+	@Override
+	public int extractEnergy(final int maxExtract, final boolean simulate) {
+		return this.container.useEnergy(maxExtract, simulate);
+	}
+
+	@Override
+	public int getEnergyStored() {
+		return (int) this.container.getEnergy(PowerSystem.RF);
+	}
+
+	@Override
+	public int getMaxEnergyStored() {
+		return (int) this.container.getCapacity(PowerSystem.RF);
+	}
+
+    @Override
+    public boolean canReceive() {
+        return this.acceptsPowerSystem(PowerSystem.RF);
+    }
+
+    @Override
+    public boolean canExtract() {
+        return false;
+    }
 
     @Override
     public PowerInterface getInterface() {

@@ -5,6 +5,8 @@ import binnie.core.machines.power.PowerInfo;
 import binnie.core.machines.power.PowerInterface;
 
 class DefaultPower implements IPoweredMachine {
+    public static final DefaultPower INSTANCE = new DefaultPower();
+
     @Override
     public PowerInfo getPowerInfo() {
         return new PowerInfo(this, 0.0f);
@@ -34,33 +36,39 @@ class DefaultPower implements IPoweredMachine {
 //		return false;
 //	}
 
-//	@Override
-//	public int getEnergyStored(final EnumFacing from) {
-//		return 0;
-//	}
-//
-//	@Override
-//	public int getMaxEnergyStored(final EnumFacing from) {
-//		return 0;
-//	}
-//
-//	@Override
-//	public boolean canConnectEnergy(final EnumFacing from) {
-//		return false;
-//	}
-
     @Override
     public PowerInterface getInterface() {
         return null;
     }
 
-//	@Override
-//	public int receiveEnergy(EnumFacing enumFacing, int i, boolean b) {
-//		return 0;
-//	}
-//
-//	@Override
-//	public int extractEnergy(EnumFacing enumFacing, int i, boolean b) {
-//		return 0;
-//	}
+    @Override
+    public int receiveEnergy(int maxReceive, boolean simulate) {
+        return 0;
+    }
+
+    @Override
+    public int extractEnergy(int maxExtract, boolean simulate) {
+        return 0;
+    }
+
+    @Override
+    public int getEnergyStored() {
+        return 0;
+    }
+
+    @Override
+    public int getMaxEnergyStored() {
+        return 0;
+    }
+
+    @Override
+    public boolean canExtract() {
+        return false;
+    }
+
+    @Override
+    public boolean canReceive() {
+        return false;
+    }
+
 }

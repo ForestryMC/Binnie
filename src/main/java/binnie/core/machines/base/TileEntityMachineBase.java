@@ -9,6 +9,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
@@ -30,7 +32,7 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 
     public IPoweredMachine getPower() {
         final IPoweredMachine inv = Machine.getInterface(IPoweredMachine.class, this);
-        return (inv == null || inv == this) ? new DefaultPower() : inv;
+        return (inv == null || inv == this) ? DefaultPower.INSTANCE : inv;
     }
 
     @Override
@@ -241,30 +243,48 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 //		return this.getPower().acceptsEnergyFrom(emitter, direction);
 //	}
 
-//	@Override
-//	public int receiveEnergy(final EnumFacing from, final int maxReceive, final boolean simulate) {
-//		return this.getPower().receiveEnergy(from, maxReceive, simulate);
-//	}
-//
-//	@Override
-//	public int extractEnergy(final EnumFacing from, final int maxExtract, final boolean simulate) {
-//		return this.getPower().extractEnergy(from, maxExtract, simulate);
-//	}
-//
-//	@Override
-//	public int getEnergyStored(final EnumFacing from) {
-//		return this.getPower().getEnergyStored(from);
-//	}
-//
-//	@Override
-//	public int getMaxEnergyStored(final EnumFacing from) {
-//		return this.getPower().getMaxEnergyStored(from);
-//	}
-//
-//	@Override
-//	public boolean canConnectEnergy(final EnumFacing from) {
-//		return this.getPower().canConnectEnergy(from);
-//	}
+    @Override
+    public int receiveEnergy(int maxReceive, boolean simulate) {
+        return this.getPower().receiveEnergy(maxReceive, simulate);
+    }
+
+    @Override
+    public int extractEnergy(int maxExtract, boolean simulate) {
+        return this.getPower().extractEnergy(maxExtract, simulate);
+    }
+
+    @Override
+    public int getEnergyStored() {
+        return this.getPower().getEnergyStored();
+    }
+
+    @Override
+    public int getMaxEnergyStored() {
+        return this.getPower().getMaxEnergyStored();
+    }
+
+    @Override
+    public boolean canExtract() {
+        return this.getPower().canExtract();
+    }
+
+    @Override
+    public boolean canReceive() {
+        return this.getPower().canReceive();
+    }
+
+    @Override
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+        return (capability == CapabilityEnergy.ENERGY && (canExtract() || canReceive())) || super.hasCapability(capability, facing);
+    }
+
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+        if (capability == CapabilityEnergy.ENERGY) {
+            return (T) this;
+        }
+        return super.getCapability(capability, facing);
+    }
 
     @Override
     public PowerInterface getInterface() {
