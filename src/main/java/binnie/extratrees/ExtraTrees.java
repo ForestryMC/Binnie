@@ -40,9 +40,9 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod(modid = "extratrees", name = "Binnie's Extra Trees", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
+@Mod(modid = Constants.EXTRA_TREES_MOD_ID, name = "Binnie's Extra Trees", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class ExtraTrees extends AbstractMod {
-    @Mod.Instance("extratrees")
+    @Mod.Instance(Constants.EXTRA_TREES_MOD_ID)
     public static ExtraTrees instance;
     public static final String MOD_ID = "extratrees";
 

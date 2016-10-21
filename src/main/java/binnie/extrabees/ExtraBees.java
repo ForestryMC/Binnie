@@ -23,9 +23,9 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = "ExtraBees", name = "Binnie's Extra Bees", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
+@Mod(modid = Constants.EXTRA_BEES_MOD_ID, name = "Binnie's Extra Bees", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class ExtraBees extends AbstractMod {
-    @Mod.Instance("ExtraBees")
+    @Mod.Instance(Constants.EXTRA_BEES_MOD_ID)
     public static ExtraBees instance;
     @SidedProxy(clientSide = "binnie.extrabees.proxy.ExtraBeesProxyClient", serverSide = "binnie.extrabees.proxy.ExtraBeesProxyServer")
     public static ExtraBeesProxy proxy;

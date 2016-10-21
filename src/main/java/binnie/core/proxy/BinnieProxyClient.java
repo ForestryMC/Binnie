@@ -1,5 +1,6 @@
 package binnie.core.proxy;
 
+import binnie.Constants;
 import binnie.core.machines.RendererMachine;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.models.ModelManager;
@@ -29,7 +30,7 @@ import java.io.File;
 import java.io.IOException;
 
 public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy {	
-	public static ModelManager modelManager = new ModelManager();
+	public static ModelManager modelManager = new ModelManager(Constants.CORE_MOD_ID);
     
     public static ModelManager getModelManager() {
 		return modelManager;

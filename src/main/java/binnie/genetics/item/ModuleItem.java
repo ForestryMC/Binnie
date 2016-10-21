@@ -12,7 +12,6 @@ import binnie.extratrees.ExtraTrees;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
 import forestry.api.recipes.RecipeManagers;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;

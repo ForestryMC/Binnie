@@ -1,5 +1,6 @@
 package binnie.extratrees.proxy;
 
+import binnie.Constants;
 import binnie.core.models.ModelManager;
 import binnie.extratrees.ExtraTrees;
 import net.minecraft.block.Block;
@@ -11,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 
 public class ProxyClient extends Proxy implements IExtraTreeProxy {
-	public static ModelManager modelManager = new ModelManager();
+	public static ModelManager modelManager = new ModelManager(Constants.EXTRA_TREES_MOD_ID);
 	
     @Override
     public void init() {

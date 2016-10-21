@@ -1,6 +1,5 @@
 package binnie.extrabees.products;
 
-import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.extrabees.ExtraBees;

@@ -2,8 +2,6 @@ package binnie.core.models;
 
 import com.google.common.collect.ImmutableMap;
 
-import binnie.Constants;
-
 import javax.annotation.Nonnull;
 import javax.vecmath.Vector3f;
 import java.util.ArrayList;
@@ -34,7 +32,6 @@ import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.ForestryAPI;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.IStateMapperRegister;
@@ -42,10 +39,11 @@ import forestry.core.blocks.IColoredBlock;
 import forestry.core.items.IColoredItem;
 import forestry.core.models.BlockModelEntry;
 import forestry.core.models.ModelEntry;
-import forestry.core.utils.ItemStackUtil;
 
 @SideOnly(Side.CLIENT)
 public class ModelManager implements IModelManager {
+	
+	private final String modID;
 	
 	private final List<BlockModelEntry> customBlockModels = new ArrayList<>();
 	private final List<ModelEntry> customModels = new ArrayList<>();
@@ -60,7 +58,9 @@ public class ModelManager implements IModelManager {
 	public final IModelState DEFAULT_ITEM;
 	public final IModelState DEFAULT_TOOL;
     
-	public ModelManager() {
+	public ModelManager(String modID) {
+		this.modID = modID;
+		
 	    TRSRTransformation blockThirdperson = get(0, 2.5f, 0, 75, 45, 0, 0.375f);
 	    ImmutableMap.Builder<TransformType, TRSRTransformation> blockBuilder = ImmutableMap.builder();
 	    blockBuilder.put(TransformType.GUI,                     get(0, 0, 0, 30, 225, 0, 0.625f));
@@ -133,7 +133,7 @@ public class ModelManager implements IModelManager {
 
 	@Override
 	public ModelResourceLocation getModelLocation(String identifier) {
-		return getModelLocation(Constants.CORE_MOD_ID, identifier);
+		return getModelLocation(modID, identifier);
 	}
 
 	@Override

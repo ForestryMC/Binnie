@@ -13,7 +13,6 @@ import binnie.botany.genetics.EnumFlowerColor;
 import binnie.botany.items.BotanyItems;
 import binnie.botany.items.ItemClay;
 import binnie.botany.items.ItemPigment;
-import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.block.ItemMetadata;
