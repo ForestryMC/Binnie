@@ -10,4 +10,6 @@ public interface IItemEnum {
     int ordinal();
 
     ItemStack get(final int p0);
+    
+    String name();
 }

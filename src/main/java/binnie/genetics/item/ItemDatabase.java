@@ -1,5 +1,6 @@
 package binnie.genetics.item;
 
+import binnie.core.item.ItemCore;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsGUI;
@@ -18,7 +19,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class ItemDatabase extends Item implements IItemModelRegister{
+public class ItemDatabase extends ItemCore{
 //	IIcon iconMaster;
 //
 //	@Override
@@ -42,10 +43,10 @@ public class ItemDatabase extends Item implements IItemModelRegister{
     }
 
     public ItemDatabase() {
+    	super("geneticdatabase");
         this.setCreativeTab(CreativeTabGenetics.instance);
         this.setUnlocalizedName("database");
         this.setMaxStackSize(1);
-        setRegistryName("geneticdatabase");
     }
     
     @Override

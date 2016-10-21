@@ -1,5 +1,6 @@
 package binnie.core.item;
 
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -8,19 +9,25 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+import java.util.Locale;
 
-public class ItemMisc extends Item {
+import binnie.core.BinnieCore;
+import binnie.genetics.Genetics;
+import binnie.genetics.item.GeneticsItems;
+import forestry.api.core.IModelManager;
+
+public class ItemMisc extends ItemCore {
     private IItemMisc[] items;
 
     public ItemMisc() {
-        setRegistryName("misc");
+    	super("misc");
     }
 
     protected ItemMisc(final CreativeTabs tab, final IItemMisc[] items2) {
+    	super("misc");
         this.setCreativeTab(tab);
         this.setHasSubtypes(true);
         this.setUnlocalizedName("misc");
-        setRegistryName("misc");
         this.items = items2;
     }
 
@@ -50,6 +57,15 @@ public class ItemMisc extends Item {
         if (item != null) {
             item.addInformation(tooltip);
         }
+    }
+    
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerModel(Item item, IModelManager manager) {
+        for (IItemMisc type : items) {
+            manager.registerItemModel(item, type.ordinal(), type.name().toLowerCase(Locale.ENGLISH));;
+        }
+
     }
 
     @Override

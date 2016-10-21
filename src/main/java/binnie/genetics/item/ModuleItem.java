@@ -44,13 +44,10 @@ public class ModuleItem implements IInitializable {
         Genetics.itemSerumArray = new ItemSerumArray();
         Genetics.itemSequencer = new ItemSequence();
         Genetics.itemGenetics = Binnie.Item.registerMiscItems(GeneticsItems.values(), CreativeTabGenetics.instance);
-        BinnieCore.proxy.registermodel(BinnieCore.proxy.registerItem(Genetics.itemSerum), 0);
-        BinnieCore.proxy.registermodel(BinnieCore.proxy.registerItem(Genetics.itemSerumArray), 0);
-        BinnieCore.proxy.registermodel(BinnieCore.proxy.registerItem(Genetics.itemSequencer), 0);
+        BinnieCore.proxy.registerItem(Genetics.itemSerum);
+        BinnieCore.proxy.registerItem(Genetics.itemSerumArray);
+        BinnieCore.proxy.registerItem(Genetics.itemSequencer);
         BinnieCore.proxy.registerItem(Genetics.itemGenetics);
-        for (GeneticsItems type : GeneticsItems.values()) {
-            BinnieCore.proxy.registermodel(Genetics.itemGenetics, type.ordinal(), new ModelResourceLocation(Genetics.itemGenetics.getRegistryName(), "type=" + type.name().toLowerCase()));
-        }
 
         Genetics.database = new ItemDatabase();
         Genetics.analyst = new ItemAnalyst();
@@ -60,11 +57,6 @@ public class ModuleItem implements IInitializable {
         BinnieCore.proxy.registerItem(Genetics.analyst);
         BinnieCore.proxy.registerItem(Genetics.registry);
         BinnieCore.proxy.registerItem(Genetics.masterRegistry);
-        BinnieCore.proxy.registermodel(GameRegistry.register(Genetics.database), 0, new ModelResourceLocation(Genetics.database.getRegistryName(), "type=database"));
-        BinnieCore.proxy.registermodel(GameRegistry.register(Genetics.database), 1, new ModelResourceLocation(Genetics.database.getRegistryName(), "type=master_database"));
-        BinnieCore.proxy.registermodel(GameRegistry.register(Genetics.analyst), 0);
-        BinnieCore.proxy.registermodel(GameRegistry.register(Genetics.registry), 0);
-        BinnieCore.proxy.registermodel(GameRegistry.register(Genetics.masterRegistry), 0);
 
         Binnie.Liquid.createLiquids(GeneticLiquid.values(), ItemFluidContainer.LiquidGenetics);
     }

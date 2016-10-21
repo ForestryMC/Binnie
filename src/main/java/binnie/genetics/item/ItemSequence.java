@@ -2,6 +2,7 @@ package binnie.genetics.item;
 
 import binnie.Binnie;
 import binnie.core.genetics.Gene;
+import binnie.core.item.ItemCore;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
@@ -21,13 +22,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class ItemSequence extends Item implements IItemAnalysable, IItemChargable {
+public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChargable {
     public ItemSequence() {
+    	super("sequence");
         this.setMaxStackSize(1);
         this.setMaxDamage(5);
         this.setUnlocalizedName("sequence");
         this.setCreativeTab(CreativeTabGenetics.instance);
-        setRegistryName("sequence");
     }
 
     @Override

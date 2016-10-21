@@ -1,5 +1,6 @@
 package binnie.genetics.item;
 
+import binnie.core.item.ItemCore;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.genetics.IGeneItem;
 import net.minecraft.creativetab.CreativeTabs;
@@ -11,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public abstract class ItemGene extends Item {
+public abstract class ItemGene extends ItemCore {
 
 //	IIcon[] icons;
 //
@@ -47,11 +48,11 @@ public abstract class ItemGene extends Item {
 //	}
 
     public ItemGene(final String unlocName) {
+    	super(unlocName);
 //		this.icons = new IIcon[4];
         this.setMaxStackSize(1);
         this.setMaxDamage(16);
         this.setUnlocalizedName(unlocName);
-        setRegistryName(unlocName);
         this.setCreativeTab(CreativeTabGenetics.instance);
     }
 //
