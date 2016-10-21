@@ -2,7 +2,6 @@ package binnie.core.proxy;
 
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
-import binnie.core.item.IColoredItem;
 import binnie.core.network.BinnieCorePacketID;
 import binnie.core.network.INetworkedEntity;
 import binnie.core.network.packet.MessageUpdate;
@@ -29,10 +28,16 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
         super(BinnieCore.instance);
         this.uniqueTextureUID = 1200;
     }
-
-    public void registerItemColors(IColoredItem itemColor) {
-
+    
+    public Item registerItem(Item item){
+    	return GameRegistry.register(item);
     }
+    
+	public void registerModels() {
+	}
+	
+	public void registerItemAndBlockColors() {
+	}
 
     @Override
     public void preInit() {

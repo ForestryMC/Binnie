@@ -1,10 +1,10 @@
 package binnie.extrabees.products;
 
 import binnie.core.Mods;
-import binnie.core.item.IColoredItem;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.core.ExtraBeeItems;
 import forestry.api.core.Tabs;
+import forestry.core.items.IColoredItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

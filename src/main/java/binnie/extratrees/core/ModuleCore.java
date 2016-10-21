@@ -7,7 +7,6 @@ import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.block.EnumExtraTreeLog;
 import binnie.extratrees.block.PlankType;
-import binnie.extratrees.carpentry.EnumPattern;
 import binnie.extratrees.genetics.ExtraTreeFruitGene;
 import binnie.extratrees.genetics.ExtraTreeSpecies;
 import forestry.api.arboriculture.IAlleleTreeSpecies;

@@ -1,6 +1,8 @@
 package binnie;
 
 public final class Constants {
+	public static final String CORE_MOD_ID = "binniecore";
+	
     public static final String LiquidJuice = "juice";
     public static final String LiquidWater = "water";
     public static final String LiquidSeedOil = "seedoil";

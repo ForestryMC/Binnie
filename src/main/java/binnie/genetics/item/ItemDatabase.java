@@ -3,6 +3,8 @@ package binnie.genetics.item;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsGUI;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -16,7 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class ItemDatabase extends Item {
+public class ItemDatabase extends Item implements IItemModelRegister{
 //	IIcon iconMaster;
 //
 //	@Override
@@ -44,6 +46,12 @@ public class ItemDatabase extends Item {
         this.setUnlocalizedName("database");
         this.setMaxStackSize(1);
         setRegistryName("geneticdatabase");
+    }
+    
+    @Override
+    public void registerModel(Item item, IModelManager manager) {
+    	manager.registerItemModel(item, 0);
+    	manager.registerItemModel(item, 1, "master");
     }
 
     @Override

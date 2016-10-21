@@ -8,7 +8,8 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 
 public class ExtraBeesProxyClient extends ExtraBeesProxy {
-    public void registerBeeModel(ExtraBeesSpecies type) {
+    @Override
+	public void registerBeeModel(ExtraBeesSpecies type) {
         for (EnumBeeType t : EnumBeeType.VALUES)
             type.registerModels(BeeManager.beeRoot.getMemberStack(BeeManager.beeRoot.templateAsIndividual(type.getTemplate()), t).getItem(), null);
     }

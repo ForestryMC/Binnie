@@ -11,7 +11,6 @@ import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.machines.Press;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 

@@ -28,16 +28,19 @@ public class TileEntityNursery extends TileEntityMachine implements IButterflyNu
         return this.getNursery() != null;
     }
 
-    public World getWorld() {
+    @Override
+	public World getWorld() {
         return this.worldObj;
     }
 
 
-    public EnumTemperature getTemperature() {
+    @Override
+	public EnumTemperature getTemperature() {
         return null;
     }
 
-    public EnumHumidity getHumidity() {
+    @Override
+	public EnumHumidity getHumidity() {
         return null;
     }
 
@@ -67,7 +70,8 @@ public class TileEntityNursery extends TileEntityMachine implements IButterflyNu
         return this.getCaterpillar() == null;
     }
 
-    public Biome getBiome() {
+    @Override
+	public Biome getBiome() {
         return this.getWorld().getBiome(getPos());
     }
 

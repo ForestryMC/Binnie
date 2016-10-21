@@ -283,7 +283,8 @@ public class ContainerCraftGUI extends Container {
     /**
      * sets whether the player can craft in this inventory or not
      */
-    public void setCanCraft(EntityPlayer player, boolean canCraft) {
+    @Override
+	public void setCanCraft(EntityPlayer player, boolean canCraft) {
         super.setCanCraft(player, canCraft);
     }
 //end

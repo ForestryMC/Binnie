@@ -1,9 +1,7 @@
 package binnie.craftgui.mod.database;
 
 import binnie.core.genetics.BreedingSystem;
-import binnie.craftgui.controls.listbox.ControlList;
 import binnie.craftgui.controls.listbox.ControlListBox;
-import binnie.craftgui.controls.scroll.ControlScrollableContent;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.minecraft.Window;
 import forestry.api.genetics.IAlleleSpecies;

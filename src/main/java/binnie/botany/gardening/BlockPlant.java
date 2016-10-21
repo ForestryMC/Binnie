@@ -140,7 +140,8 @@ public class BlockPlant extends BlockBush {
             return values()[id % values().length];
         }
 
-        public String getName() {
+        @Override
+		public String getName() {
             return this.name;
         }
     }

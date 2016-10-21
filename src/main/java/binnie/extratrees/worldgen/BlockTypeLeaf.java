@@ -1,7 +1,6 @@
 package binnie.extratrees.worldgen;
 
 import binnie.core.Mods;
-import com.mojang.authlib.GameProfile;
 import forestry.api.world.ITreeGenData;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

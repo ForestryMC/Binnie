@@ -2,7 +2,6 @@ package binnie.botany.genetics;
 
 import binnie.botany.CreativeTabBotany;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;

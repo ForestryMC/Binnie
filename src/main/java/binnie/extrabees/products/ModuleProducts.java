@@ -3,7 +3,6 @@ package binnie.extrabees.products;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
-import binnie.core.item.IColoredItem;
 import binnie.extrabees.ExtraBees;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -19,9 +18,9 @@ public class ModuleProducts implements IInitializable {
         ExtraBees.comb = new ItemHoneyComb();
         ExtraBees.propolis = new ItemPropolis();
 
-        GameRegistry.register(ExtraBees.honeyCrystal);
-        GameRegistry.register(ExtraBees.honeyCrystalEmpty);
-        GameRegistry.register(ExtraBees.comb);
+        BinnieCore.proxy.registerItem(ExtraBees.honeyCrystal);
+        BinnieCore.proxy.registerItem(ExtraBees.honeyCrystalEmpty);
+        BinnieCore.proxy.registerItem(ExtraBees.comb);
 
 
         ExtraBees.proxy.registermodel(ExtraBees.honeyCrystal, 0);
@@ -40,7 +39,6 @@ public class ModuleProducts implements IInitializable {
     @Override
     public void init() {
         ItemHoneyComb.addSubtypes();
-        BinnieCore.proxy.registerItemColors((IColoredItem) ExtraBees.comb);
     }
 
     @Override

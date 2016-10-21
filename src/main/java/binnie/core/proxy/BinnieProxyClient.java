@@ -1,15 +1,12 @@
 package binnie.core.proxy;
 
-import binnie.core.item.IColoredItem;
 import binnie.core.machines.RendererMachine;
 import binnie.core.machines.TileEntityMachine;
+import binnie.core.models.ModelManager;
 import binnie.core.resource.BinnieResource;
 import binnie.craftgui.resource.minecraft.CraftGUIResourceManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.color.IItemColor;
-import net.minecraft.client.renderer.color.ItemColors;
-import net.minecraft.client.renderer.texture.ITextureObject;
 import net.minecraft.client.renderer.texture.SimpleTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -17,7 +14,6 @@ import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -25,8 +21,6 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
@@ -34,36 +28,27 @@ import java.io.File;
 import java.io.IOException;
 
 public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy {
-    public void registerItemColors(IColoredItem itemColor) {
-        ItemColors itemColors = Minecraft.getMinecraft().getItemColors();
-        if (itemColor instanceof Item) {
-            itemColors.registerItemColorHandler(ColoredItemItemColor.INSTANCE, (Item) itemColor);
-        }
-    }
+	
+	@Override
+	public Item registerItem(Item item) {
+		ModelManager.getInstance().registerItemClient(item);
+		return super.registerItem(item);
+	}
+	
+	@Override
+	public void registerModels() {
+		ModelManager.getInstance().registerModels();
+	}
+	
+	@Override
+	public void registerItemAndBlockColors() {
+		ModelManager.getInstance().registerItemAndBlockColors();
+	}
 
     @Override
     public void registerIcon(ResourceLocation location) {
         Minecraft.getMinecraft().getTextureMapBlocks().registerSprite(location);
     }
-
-    @SideOnly(Side.CLIENT)
-    private static class ColoredItemItemColor implements IItemColor {
-        public static final ColoredItemItemColor INSTANCE = new ColoredItemItemColor();
-
-        private ColoredItemItemColor() {
-
-        }
-
-        @Override
-        public int getColorFromItemstack(ItemStack stack, int tintIndex) {
-            Item item = stack.getItem();
-            if (item instanceof IColoredItem) {
-                return ((IColoredItem) item).getColorFromItemstack(stack, tintIndex);
-            }
-            return 0xffffff;
-        }
-    }
-
 
     @Override
     public void registermodel(Item item, int meta) {

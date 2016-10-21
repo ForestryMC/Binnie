@@ -60,7 +60,8 @@ public enum EnumExtraTreeLog implements IWoodType {
         this.plank = plank;
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return name().toLowerCase();
     }
 

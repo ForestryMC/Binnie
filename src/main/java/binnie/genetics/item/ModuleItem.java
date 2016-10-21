@@ -44,10 +44,10 @@ public class ModuleItem implements IInitializable {
         Genetics.itemSerumArray = new ItemSerumArray();
         Genetics.itemSequencer = new ItemSequence();
         Genetics.itemGenetics = Binnie.Item.registerMiscItems(GeneticsItems.values(), CreativeTabGenetics.instance);
-        BinnieCore.proxy.registermodel(GameRegistry.register(Genetics.itemSerum), 0);
-        BinnieCore.proxy.registermodel(GameRegistry.register(Genetics.itemSerumArray), 0);
-        BinnieCore.proxy.registermodel(GameRegistry.register(Genetics.itemSequencer), 0);
-        GameRegistry.register(Genetics.itemGenetics);
+        BinnieCore.proxy.registermodel(BinnieCore.proxy.registerItem(Genetics.itemSerum), 0);
+        BinnieCore.proxy.registermodel(BinnieCore.proxy.registerItem(Genetics.itemSerumArray), 0);
+        BinnieCore.proxy.registermodel(BinnieCore.proxy.registerItem(Genetics.itemSequencer), 0);
+        BinnieCore.proxy.registerItem(Genetics.itemGenetics);
         for (GeneticsItems type : GeneticsItems.values()) {
             BinnieCore.proxy.registermodel(Genetics.itemGenetics, type.ordinal(), new ModelResourceLocation(Genetics.itemGenetics.getRegistryName(), "type=" + type.name().toLowerCase()));
         }
@@ -56,10 +56,10 @@ public class ModuleItem implements IInitializable {
         Genetics.analyst = new ItemAnalyst();
         Genetics.registry = new ItemRegistry();
         Genetics.masterRegistry = new ItemMasterRegistry();
-        GameRegistry.register(Genetics.database);
-        GameRegistry.register(Genetics.analyst);
-        GameRegistry.register(Genetics.registry);
-        GameRegistry.register(Genetics.masterRegistry);
+        BinnieCore.proxy.registerItem(Genetics.database);
+        BinnieCore.proxy.registerItem(Genetics.analyst);
+        BinnieCore.proxy.registerItem(Genetics.registry);
+        BinnieCore.proxy.registerItem(Genetics.masterRegistry);
         BinnieCore.proxy.registermodel(GameRegistry.register(Genetics.database), 0, new ModelResourceLocation(Genetics.database.getRegistryName(), "type=database"));
         BinnieCore.proxy.registermodel(GameRegistry.register(Genetics.database), 1, new ModelResourceLocation(Genetics.database.getRegistryName(), "type=master_database"));
         BinnieCore.proxy.registermodel(GameRegistry.register(Genetics.analyst), 0);

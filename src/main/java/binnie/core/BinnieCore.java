@@ -1,6 +1,7 @@
 package binnie.core;
 
 import binnie.Binnie;
+import binnie.Constants;
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.gui.BinnieCoreGUI;
 import binnie.core.gui.BinnieGUIHandler;
@@ -45,7 +46,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mod(modid = "BinnieCore", name = "Binnie Core", useMetadata = true, dependencies = "required-after:forestry")
+@Mod(modid = Constants.CORE_MOD_ID, name = "Binnie Core", useMetadata = true, dependencies = "required-after:forestry")
 public final class BinnieCore extends AbstractMod {
     @Mod.Instance("BinnieCore")
     public static BinnieCore instance;
@@ -70,11 +71,13 @@ public final class BinnieCore extends AbstractMod {
             this.addModule(new ModuleTrigger());
         }
         this.preInit();
+        proxy.registerModels();
     }
 
     @Mod.EventHandler
     public void init(final FMLInitializationEvent evt) {
         this.init();
+        proxy.registerItemAndBlockColors();
     }
 
     @Mod.EventHandler
