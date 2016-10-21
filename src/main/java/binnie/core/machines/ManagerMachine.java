@@ -7,6 +7,7 @@ import binnie.core.machines.inventory.ValidatorIcon;
 import forestry.api.core.INbtReadable;
 import forestry.api.core.INbtWritable;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
