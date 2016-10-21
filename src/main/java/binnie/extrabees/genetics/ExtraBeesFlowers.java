@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromosomeType {
@@ -59,8 +60,8 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
     public void register() {
         //AlleleManager.alleleRegistry.registerAllele(this);
 
-        for (ItemStack stack : getItemStacks()) {
-            FlowerManager.flowerRegistry.registerAcceptableFlower(Block.getBlockFromItem(stack.getItem()), getUID());
+        for (Block block : getAcceptableBlocks()) {
+            FlowerManager.flowerRegistry.registerAcceptableFlower(block, getUID());
         }
 
         AlleleManager.alleleRegistry.registerAllele(this, this);
@@ -72,40 +73,40 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
         }
     }
 
-    public ItemStack[] getItemStacks() {
+    public List<Block> getAcceptableBlocks() {
         switch (this) {
             case WATER: {
-                return new ItemStack[]{new ItemStack(Blocks.WATERLILY)};
+                return Collections.singletonList(Blocks.WATERLILY);
             }
             case SUGAR: {
-                return new ItemStack[]{new ItemStack(Blocks.REEDS)};
+                return Collections.singletonList(Blocks.REEDS);
             }
             case ROCK: {
-                return new ItemStack[]{new ItemStack(Blocks.COBBLESTONE)};
+                return Collections.singletonList(Blocks.COBBLESTONE);
             }
             case BOOK: {
-                return new ItemStack[]{new ItemStack(Blocks.BOOKSHELF)};
+                return Collections.singletonList(Blocks.BOOKSHELF);
             }
             case REDSTONE: {
-                return new ItemStack[]{new ItemStack(Blocks.REDSTONE_TORCH)};
+                return Collections.singletonList(Blocks.REDSTONE_TORCH);
             }
             case DEAD: {
-                return new ItemStack[]{new ItemStack(Blocks.DEADBUSH)};
+                return Collections.singletonList(Blocks.DEADBUSH);
             }
             case Fruit: {
-                return new ItemStack[]{new ItemStack(Items.APPLE)};
+                return Collections.emptyList(); // TODO: what is this supposed to be? It was Items.APPLE before.
             }
             case LEAVES: {
-                return new ItemStack[]{new ItemStack(Blocks.LEAVES)};
+                return Collections.singletonList(Blocks.LEAVES);
             }
             case Sapling: {
-                return new ItemStack[]{new ItemStack(Blocks.SAPLING)};
+                return Collections.singletonList(Blocks.SAPLING);
             }
             case WOOD: {
-                return new ItemStack[]{new ItemStack(Blocks.LOG)};
+                return Collections.singletonList(Blocks.LOG);
             }
             default: {
-                return new ItemStack[0];
+                return Collections.emptyList();
             }
         }
     }
