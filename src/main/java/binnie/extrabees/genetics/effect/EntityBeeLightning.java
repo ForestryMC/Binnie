@@ -47,9 +47,8 @@ public class EntityBeeLightning extends EntityLightningBolt {
                 this.worldObj.setLastLightningBolt(2);
             } else {
                 final double d0 = 3.0;
-                final List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, new AxisAlignedBB(this.posX - d0, this.posY - d0, this.posZ - d0, this.posX + d0, this.posY + 6.0 + d0, this.posZ + d0));
-                for (int l = 0; l < list.size(); ++l) {
-                    final Entity entity = (Entity) list.get(l);
+                final List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, new AxisAlignedBB(this.posX - d0, this.posY - d0, this.posZ - d0, this.posX + d0, this.posY + 6.0 + d0, this.posZ + d0));
+                for (Entity entity : list) {
                     entity.onStruckByLightning(this);
                 }
             }

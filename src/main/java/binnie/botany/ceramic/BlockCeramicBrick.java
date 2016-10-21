@@ -296,8 +296,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
                         return null;
                     }
                     final int[] colors = {-1, -1};
-                    for (int index = 0; index < stacks.size(); ++index) {
-                        final ItemStack stack2 = stacks.get(index);
+                    for (final ItemStack stack2 : stacks) {
                         if (stack2.getItem() != Item.getItemFromBlock(Botany.ceramicBrick)) {
                             return null;
                         }
@@ -344,8 +343,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
                         final int[] colors = {-1, -1};
                         int a = 0;
                         int b = 0;
-                        for (int index2 = 0; index2 < stacks.size(); ++index2) {
-                            final ItemStack stack4 = stacks.get(index2);
+                        for (final ItemStack stack4 : stacks) {
                             if (stack4.getItem() != Item.getItemFromBlock(Botany.ceramicBrick)) {
                                 return null;
                             }

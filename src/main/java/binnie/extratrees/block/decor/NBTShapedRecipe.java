@@ -103,8 +103,7 @@ public class NBTShapedRecipe implements IRecipe {
         int k = 0;
         if (p_92103_2_[i] instanceof String[]) {
             final String[] astring = (String[]) p_92103_2_[i++];
-            for (int l = 0; l < astring.length; ++l) {
-                final String s2 = astring[l];
+            for (final String s2 : astring) {
                 ++k;
                 j = s2.length();
                 s += s2;
