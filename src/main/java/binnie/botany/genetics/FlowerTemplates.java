@@ -11,7 +11,7 @@ public class FlowerTemplates {
         alleles[EnumFlowerChromosome.PRIMARY.ordinal()] = EnumFlowerColor.Red.getAllele();
         alleles[EnumFlowerChromosome.SECONDARY.ordinal()] = EnumFlowerColor.Red.getAllele();
         alleles[EnumFlowerChromosome.FERTILITY.ordinal()] = AlleleManager.alleleRegistry.getAllele("forestry.fertilityNormal");
-        alleles[EnumFlowerChromosome.TERRITORY.ordinal()] = AlleleManager.alleleRegistry.getAllele("forestry.territoryDefault");
+        alleles[EnumFlowerChromosome.TERRITORY.ordinal()] = AlleleManager.alleleRegistry.getAllele("forestry.territoryAverage");
         alleles[EnumFlowerChromosome.EFFECT.ordinal()] = ModuleGenetics.alleleEffectNone;
         alleles[EnumFlowerChromosome.LIFESPAN.ordinal()] = AlleleManager.alleleRegistry.getAllele("forestry.lifespanNormal");
         alleles[EnumFlowerChromosome.TEMPERATURE_TOLERANCE.ordinal()] = AlleleManager.alleleRegistry.getAllele("forestry.toleranceNone");

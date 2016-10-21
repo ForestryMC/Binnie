@@ -17,6 +17,7 @@ import binnie.botany.flower.TileEntityFlower;
 import binnie.botany.gardening.*;
 import binnie.botany.genetics.ItemDictionary;
 import binnie.botany.genetics.ItemEncyclopedia;
+import binnie.botany.genetics.ModuleGenetics;
 import binnie.botany.items.ItemClay;
 import binnie.botany.items.ItemPigment;
 import binnie.botany.network.PacketID;
@@ -86,7 +87,7 @@ public class Botany extends AbstractMod {
     @Mod.EventHandler
     public void preInit(final FMLPreInitializationEvent evt) {
         this.addModule(new ModuleCore());
-        //this.addModule(new ModuleGenetics());
+        this.addModule(new ModuleGenetics());
         this.addModule(new ModuleGardening());
         this.preInit();
         proxy.registerModels();
