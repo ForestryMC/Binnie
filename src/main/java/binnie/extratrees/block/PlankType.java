@@ -5,6 +5,10 @@ import binnie.core.block.TileEntityMetadata;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
 import com.google.common.base.Optional;
+import forestry.api.arboriculture.EnumForestryWoodType;
+import forestry.api.arboriculture.IWoodType;
+import forestry.api.arboriculture.TreeManager;
+import forestry.api.arboriculture.WoodBlockKind;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -153,40 +157,42 @@ public class PlankType {
     }
 
     public enum ForestryPlanks implements IPlankType, IFenceProvider {
-        LARCH(14131085),
-        TEAK(8223075),
-        ACACIA(9745287),
-        LIME(13544048),
-        CHESTNUT(12298845),
-        WENGE(6182474),
-        BAOBAB(9608290),
-        SEQUOIA(10050135),
-        KAPOK(8156212),
-        EBONY(3946288),
-        MAHOGANY(7749432),
-        BALSA(11117209),
-        WILLOW(11710818),
-        WALNUT(6836802),
-        GREENHEART(5144156),
-        CHERRY(11895348),
-        MAHOE(8362154),
-        POPLAR(13619074),
-        PALM(13271115),
-        PAPAYA(14470005),
-        PINE(12885585),
-        PLUM(11364479),
-        MAPLE(11431211),
-        CITRUS(10266653),
-        GIGANTEUM(5186590),
-        IPE(5057822),
-        PADAUK(11756341),
-        COCOBOLO(7541506),
-        ZEBRAWOOD(10912334);
+        LARCH(14131085, EnumForestryWoodType.LARCH),
+        TEAK(8223075, EnumForestryWoodType.TEAK),
+        ACACIA(9745287, EnumForestryWoodType.ACACIA),
+        LIME(13544048, EnumForestryWoodType.LIME),
+        CHESTNUT(12298845, EnumForestryWoodType.CHESTNUT),
+        WENGE(6182474, EnumForestryWoodType.WENGE),
+        BAOBAB(9608290, EnumForestryWoodType.BAOBAB),
+        SEQUOIA(10050135, EnumForestryWoodType.SEQUOIA),
+        KAPOK(8156212, EnumForestryWoodType.KAPOK),
+        EBONY(3946288, EnumForestryWoodType.EBONY),
+        MAHOGANY(7749432, EnumForestryWoodType.MAHOGANY),
+        BALSA(11117209, EnumForestryWoodType.BALSA),
+        WILLOW(11710818, EnumForestryWoodType.WILLOW),
+        WALNUT(6836802, EnumForestryWoodType.WALNUT),
+        GREENHEART(5144156, EnumForestryWoodType.GREENHEART),
+        CHERRY(11895348, EnumForestryWoodType.CHERRY),
+        MAHOE(8362154, EnumForestryWoodType.MAHOE),
+        POPLAR(13619074, EnumForestryWoodType.POPLAR),
+        PALM(13271115, EnumForestryWoodType.PALM),
+        PAPAYA(14470005, EnumForestryWoodType.PAPAYA),
+        PINE(12885585, EnumForestryWoodType.PINE),
+        PLUM(11364479, EnumForestryWoodType.PLUM),
+        MAPLE(11431211, EnumForestryWoodType.MAPLE),
+        CITRUS(10266653, EnumForestryWoodType.CITRUS),
+        GIGANTEUM(5186590, EnumForestryWoodType.GIGANTEUM),
+        IPE(5057822, EnumForestryWoodType.IPE),
+        PADAUK(11756341, EnumForestryWoodType.PADAUK),
+        COCOBOLO(7541506, EnumForestryWoodType.COCOBOLO),
+        ZEBRAWOOD(10912334, EnumForestryWoodType.ZEBRAWOOD);
 
-        int color;
+        private final IWoodType woodType;
+        private final int color;
 
-        private ForestryPlanks(final int color) {
+        ForestryPlanks(final int color, IWoodType woodType) {
             this.color = color;
+            this.woodType = woodType;
         }
 
         @Override
@@ -206,8 +212,7 @@ public class PlankType {
 
         @Override
         public ItemStack getStack() {
-            final Item stack = Mods.Forestry.item("planks");
-            return new ItemStack(stack, 1, this.ordinal());
+            return TreeManager.woodAccess.getStack(woodType, WoodBlockKind.PLANKS, false);
         }
 
 //		@Override
@@ -222,10 +227,7 @@ public class PlankType {
 
         @Override
         public ItemStack getFence() {
-            final ItemStack fence = Mods.Forestry.stack("fences");
-            //TODO
-            //fence.setItemDamage(this.ordinal());
-            return fence;
+            return TreeManager.woodAccess.getStack(woodType, WoodBlockKind.FENCE, false);
         }
     }
 
