@@ -136,7 +136,7 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
     @Override
     public void registerTileEntity(final Class<? extends TileEntity> tile, final String id, final Object renderer) {
         if (renderer != null && renderer instanceof TileEntitySpecialRenderer) {
-            ClientRegistry.registerTileEntity((Class) tile, id, (TileEntitySpecialRenderer) renderer);
+            ClientRegistry.registerTileEntity(tile, id, (TileEntitySpecialRenderer) renderer);
         } else {
             GameRegistry.registerTileEntity(tile, id);
         }

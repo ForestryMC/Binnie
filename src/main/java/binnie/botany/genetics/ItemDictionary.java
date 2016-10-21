@@ -28,12 +28,6 @@ public class ItemDictionary extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final List par3List, final boolean par4) {
-        super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
     public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List par3List) {
         super.getSubItems(par1, par2CreativeTabs, par3List);
         par3List.add(new ItemStack(par1, 1, 1));

@@ -103,7 +103,7 @@ public enum IndustrialFrame implements IBeeModifier {
         return false;
     }
 
-    public Object getName() {
+    public String getName() {
         return this.name;
     }
 

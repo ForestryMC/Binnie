@@ -31,13 +31,13 @@ public class ItemIndustrialFrame extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final List par3List, final boolean par4) {
-        super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
-        final IndustrialFrame frame = getFrame(par1ItemStack);
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+        super.addInformation(stack, playerIn, tooltip, advanced);
+        final IndustrialFrame frame = getFrame(stack);
         if (frame == null) {
-            par3List.add("Invalid Contents");
+            tooltip.add("Invalid Contents");
         } else {
-            par3List.add(frame.getName());
+            tooltip.add(frame.getName());
         }
     }
 

@@ -35,7 +35,7 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
     }
 
     @Override
-    public void getSubBlocks(final Item par1, final CreativeTabs par2CreativeTabs, final List itemList) {
+    public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
         for (final MachinePackage pack : this.group.getPackages()) {
             if (pack.isActive()) {
                 itemList.add(new ItemStack(this, 1, pack.getMetadata()));

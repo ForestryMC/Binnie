@@ -33,7 +33,7 @@ public class ItemPigment extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(final Item p_150895_1_, final CreativeTabs p_150895_2_, final List list) {
+    public void getSubItems(final Item itemIn, final CreativeTabs tab, final List<ItemStack> list) {
         for (final EnumFlowerColor c : EnumFlowerColor.values()) {
             list.add(new ItemStack(this, 1, c.ordinal()));
         }

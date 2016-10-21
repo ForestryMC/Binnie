@@ -34,10 +34,10 @@ public class ItemMothDatabase extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final List par3List, final boolean par4) {
-        super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
-        if (par1ItemStack.getItemDamage() > 0) {
-            par3List.add("Binnie's Emporium of Lepidopterans");
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+        super.addInformation(stack, playerIn, tooltip, advanced);
+        if (stack.getItemDamage() > 0) {
+            tooltip.add("Binnie's Emporium of Lepidopterans");
         }
     }
 

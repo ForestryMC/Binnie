@@ -100,8 +100,8 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
             return;
         }
         this.getProxy().init();
-        (this.wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(this.getChannel())).registerMessage((Class) this.getPacketHandler(), (Class) MessageBinnie.class, 1, Side.CLIENT);
-        this.wrapper.registerMessage((Class) this.getPacketHandler(), (Class) MessageBinnie.class, 1, Side.SERVER);
+        (this.wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(this.getChannel())).registerMessage(this.getPacketHandler(), MessageBinnie.class, 1, Side.CLIENT);
+        this.wrapper.registerMessage(this.getPacketHandler(), MessageBinnie.class, 1, Side.SERVER);
         for (final IInitializable module : this.modules) {
             module.init();
         }

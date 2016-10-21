@@ -59,7 +59,7 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
     public abstract ItemStack getCreativeStack(final IDesign p0);
 
     @Override
-    public void getSubBlocks(final Item par1, final CreativeTabs par2CreativeTabs, final List itemList) {
+    public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
         for (final IDesign design : CarpentryManager.carpentryInterface.getSortedDesigns()) {
             itemList.add(this.getCreativeStack(design));
         }
