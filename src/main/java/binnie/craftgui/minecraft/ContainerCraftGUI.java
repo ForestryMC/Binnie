@@ -269,7 +269,6 @@ public class ContainerCraftGUI extends Container {
             if (shouldSend) {
                 //TODO INVENTORY
                 this.crafters.stream().filter(Objects::nonNull).forEach(entityPlayer -> {
-                    System.out.println("send to:" + entityPlayer.getDisplayName().getUnformattedText());
                     BinnieCore.proxy.sendToPlayer(new MessageContainerUpdate(nbt.getValue()), entityPlayer);
                 });
                 sentThisTime.put(nbt.getKey(), nbt.getValue());

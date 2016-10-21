@@ -82,7 +82,6 @@ public class ModuleGenetics implements IInitializable {
                         }
                         final IClassification parent = this.getOrCreateClassification(IClassification.EnumClassLevel.values()[currentLevel], nextLevel);
                         parent.addMemberGroup(clss);
-                        System.out.println("Went from " + clss.getScientific() + " to " + parent.getScientific());
                         clss = parent;
                         break;
                     }
