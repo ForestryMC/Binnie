@@ -1,5 +1,6 @@
 package binnie.genetics.item;
 
+import binnie.Binnie;
 import binnie.core.genetics.Gene;
 import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
@@ -13,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
@@ -88,10 +90,10 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 
     @Override
     public String getItemStackDisplayName(final ItemStack itemstack) {
-        //TODO
-        //final IGeneItem gene = this.getGeneItem(itemstack);
-        //return Binnie.Genetics.getSystem(gene.getSpeciesRoot()).getDescriptor() + " Serum Array";
-        return "";
+        ISpeciesRoot speciesRoot = getGeneItem(itemstack).getSpeciesRoot();
+        if(speciesRoot != null)
+            return Binnie.Genetics.getSystem(getGeneItem(itemstack).getSpeciesRoot()).getDescriptor() + " Serum Array";
+        return "Corrupted Serum Array";
     }
 
     @Override

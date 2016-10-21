@@ -18,8 +18,8 @@ public class ItemSoil extends ItemBlock {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(final ItemStack stack, final EntityPlayer p_77624_2_, final List p_77624_3_, final boolean p_77624_4_) {
-        super.addInformation(stack, p_77624_2_, p_77624_3_, p_77624_4_);
+    public void addInformation(final ItemStack stack, final EntityPlayer playerIn, final List tooltip, final boolean advanced) {
+        super.addInformation(stack, playerIn, tooltip, advanced);
         final EnumMoisture moisture = EnumMoisture.values()[stack.getItemDamage() % 3];
         final EnumAcidity acidity = EnumAcidity.values()[stack.getItemDamage() / 3];
         String info = "";
@@ -42,28 +42,27 @@ public class ItemSoil extends ItemBlock {
             info += "§bAlkaline§f";
         }
         if (info.length() > 0) {
-            p_77624_3_.add(info);
+            tooltip.add(info);
         }
         if (this.noWeed) {
-            p_77624_3_.add("Weedkiller");
+            tooltip.add("Weedkiller");
         }
     }
 
-    public ItemSoil(final Block p_i45328_1_) {
-        super(p_i45328_1_);
-//		this.type = ((BlockSoil) this.field_150939_a).getType();
-//		this.noWeed = ((BlockSoil) this.field_150939_a).weedKilled;
+    public ItemSoil(final Block block) {
+        super(block);
+		this.type = ((BlockSoil) this.block).getType();
+		this.noWeed = ((BlockSoil) this.block).weedKilled;
         this.hasSubtypes = true;
     }
 
     @Override
     public String getItemStackDisplayName(final ItemStack stack) {
-        return "";
-        //TODO this.type.name().substring(0, 1) + this.type.name().toLowerCase().substring(1);
+        return this.type.name().substring(0, 1) + this.type.name().toLowerCase().substring(1);
     }
 
     @Override
-    public int getMetadata(final int p_77647_1_) {
-        return p_77647_1_;
+    public int getMetadata(final int damage) {
+        return damage;
     }
 }

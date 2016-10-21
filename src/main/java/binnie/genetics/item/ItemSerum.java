@@ -80,10 +80,10 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 
     @Override
     public String getItemStackDisplayName(final ItemStack itemstack) {
-        //TODO
-        //final IGeneItem gene = this.getGeneItem(itemstack);
-        //return Binnie.Genetics.getSystem(gene.getSpeciesRoot()).getDescriptor() + " Serum";
-        return "";
+        final GeneItem gene = this.getGeneItem(itemstack);
+        if(!gene.isCorrupted())
+            return Binnie.Genetics.getSystem(gene.getSpeciesRoot()).getDescriptor() + " Serum";
+        return "Corrupted Serum";
     }
 
     @Override

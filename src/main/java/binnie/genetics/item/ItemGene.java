@@ -67,8 +67,8 @@ public abstract class ItemGene extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(final ItemStack itemstack, final EntityPlayer entityPlayer, final List list, final boolean par4) {
-        super.addInformation(itemstack, entityPlayer, list, par4);
+    public void addInformation(final ItemStack itemstack, final EntityPlayer entityPlayer, final List list, final boolean advanced) {
+        super.addInformation(itemstack, entityPlayer, list, advanced);
         final int damage = this.getMaxDamage() - itemstack.getItemDamage();
         if (damage == 0) {
             list.add("Empty");
