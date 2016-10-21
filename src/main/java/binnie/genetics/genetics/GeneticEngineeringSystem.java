@@ -53,10 +53,10 @@ public class GeneticEngineeringSystem {
         @Override
         public int compare(final IAllele o1, final IAllele o2) {
             if (o1 instanceof IAlleleFloat && o2 instanceof IAlleleFloat) {
-                return Float.valueOf(((IAlleleFloat) o1).getValue()).compareTo(Float.valueOf(((IAlleleFloat) o2).getValue()));
+                return Float.valueOf(((IAlleleFloat) o1).getValue()).compareTo(((IAlleleFloat) o2).getValue());
             }
             if (o1 instanceof IAlleleInteger && o2 instanceof IAlleleInteger) {
-                return Integer.valueOf(((IAlleleInteger) o1).getValue()).compareTo(Integer.valueOf(((IAlleleInteger) o2).getValue()));
+                return Integer.valueOf(((IAlleleInteger) o1).getValue()).compareTo(((IAlleleInteger) o2).getValue());
             }
             return o1.getUID().compareTo(o2.getUID());
         }

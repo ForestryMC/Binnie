@@ -121,7 +121,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
             @Override
             public void onEvent(final EventValueChanged event) {
                 final NBTTagCompound nbt = new NBTTagCompound();
-                final int i = ((Integer) event.getValue()).intValue();
+                final int i = (Integer) event.getValue();
                 nbt.setByte("i", (byte) i);
                 Window.get(tab).sendClientAction("tab-change", nbt);
                 WindowCompartment.this.currentTab = i;
@@ -131,7 +131,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
         final ControlPages<Integer> compartmentPages = new ControlPages<>(controlCompartment, 24.0f, 0.0f, compartmentPageWidth, compartmentPageHeight);
         final ControlPage[] page = new ControlPage[inv.getTabNumber()];
         for (int p = 0; p < inv.getTabNumber(); ++p) {
-            page[p] = new ControlPage(compartmentPages, Integer.valueOf(p));
+            page[p] = new ControlPage(compartmentPages, p);
         }
         CraftGUIUtil.linkWidgets(tab, compartmentPages);
         int i = 0;

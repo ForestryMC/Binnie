@@ -53,7 +53,7 @@ public class ControlCheckbox extends Control implements IControlValue<Boolean> {
     }
 
     public void toggleValue() {
-        this.setValue(Boolean.valueOf(!this.getValue()));
+        this.setValue(!this.getValue());
     }
 
     @Override
