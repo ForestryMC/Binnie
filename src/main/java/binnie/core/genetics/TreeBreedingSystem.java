@@ -4,14 +4,12 @@ import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.util.UniqueItemStackSet;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.FakeWorld;
 import binnie.extratrees.machines.Lumbermill;
 import com.mojang.authlib.GameProfile;
 import forestry.api.arboriculture.*;
 import forestry.api.genetics.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
@@ -89,9 +87,8 @@ public class TreeBreedingSystem extends BreedingSystem {
             final IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
             final ITreeGenome genome = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(tSpecies.getUID()));
 
-            FakeWorld world = FakeWorld.instance;
-            genome.getPrimary().getGenerator().setLogBlock(genome, world, new BlockPos(0, 0, 0), EnumFacing.UP);
-            final ItemStack wood = world.getWooLog();
+            IAlleleTreeSpecies treeSpecies = genome.getPrimary();
+            final ItemStack wood = treeSpecies.getWoodProvider().getWoodStack();
             if (wood != null) {
                 this.discoveredWoods.add(wood);
             }
@@ -116,9 +113,8 @@ public class TreeBreedingSystem extends BreedingSystem {
             final IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
             final ITreeGenome genome = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(tSpecies.getUID()));
 
-            FakeWorld world = FakeWorld.instance;
-            //genome.getPrimary().getGenerator().setLogBlock(genome, world, new BlockPos(0, 0, 0), EnumFacing.UP);
-            final ItemStack wood = world.getWooLog();
+            IAlleleTreeSpecies treeSpecies = genome.getPrimary();
+            final ItemStack wood = treeSpecies.getWoodProvider().getWoodStack();
             if (wood != null) {
                 this.allWoods.add(wood);
             }
@@ -174,19 +170,17 @@ public class TreeBreedingSystem extends BreedingSystem {
         return found;
     }
 
-    public Collection<IAlleleSpecies> getTreesThatHaveWood(final ItemStack fruit, final boolean nei, final World world, final GameProfile player) {
+    public Collection<IAlleleSpecies> getTreesThatHaveWood(final ItemStack wood, final boolean nei, final World world, final GameProfile player) {
         final Collection<IAlleleSpecies> set = nei ? this.getAllSpecies() : this.getDiscoveredSpecies(world, player);
         final List<IAlleleSpecies> found = new ArrayList<>();
         for (final IAlleleSpecies species : set) {
             IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
             ITreeGenome genome = TreeManager.treeRoot.templateAsGenome(TreeManager.treeRoot.getTemplate(tSpecies.getUID()));
-            // for (final ItemStack fruit2 :
-            // tSpecies.getRoot().getMember(fruit).getProduceList()){
-            tSpecies.getGenerator().setLogBlock(genome, FakeWorld.instance, new BlockPos(0, 0, 0), EnumFacing.UP);
-            ItemStack fruit2 = FakeWorld.instance.getWooLog();
-            if (fruit2.isItemEqual(fruit)) {
+            IAlleleTreeSpecies treeSpecies = genome.getPrimary();
+            final ItemStack woodStack = treeSpecies.getWoodProvider().getWoodStack();
+
+            if (woodStack.isItemEqual(wood)) {
                 found.add(species);
-                // }
             }
         }
         return found;
@@ -201,14 +195,11 @@ public class TreeBreedingSystem extends BreedingSystem {
         for (final IAlleleSpecies species : set) {
             final IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
             ITreeGenome genome = TreeManager.treeRoot.templateAsGenome(TreeManager.treeRoot.getTemplate(tSpecies.getUID()));
-            tSpecies.getGenerator().setLogBlock(genome, FakeWorld.instance, new BlockPos(0, 0, 0), EnumFacing.UP);
-            ItemStack fruit2 = FakeWorld.instance.getWooLog();
-            // for (final ItemStack fruit2 :
-            // tSpecies.getRoot().getMember(fruit).getProduceList()) {
-            if (Lumbermill.getPlankProduct(fruit2) != null && fruit.isItemEqual(Lumbermill.getPlankProduct(fruit2))) {
+            IAlleleTreeSpecies treeSpecies = genome.getPrimary();
+            final ItemStack woodStack = treeSpecies.getWoodProvider().getWoodStack();
+            if (Lumbermill.getPlankProduct(woodStack) != null && fruit.isItemEqual(Lumbermill.getPlankProduct(woodStack))) {
                 found.add(species);
             }
-            // }
         }
         return found;
     }

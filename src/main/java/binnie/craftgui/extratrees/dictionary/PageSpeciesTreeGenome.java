@@ -14,7 +14,6 @@ import binnie.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.craftgui.mod.database.DatabaseTab;
 import binnie.craftgui.mod.database.PageSpecies;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.FakeWorld;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.IAlleleTreeSpecies;
 import forestry.api.arboriculture.ITree;
@@ -22,7 +21,6 @@ import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleSpecies;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
@@ -46,18 +44,9 @@ public class PageSpeciesTreeGenome extends PageSpecies {
             return;
         }
 
-        ItemStack log = null;
-        try {
-            FakeWorld world = FakeWorld.instance;
-            tree.getGenome().getPrimary().getGenerator().setLogBlock(tree.getGenome(), world, new BlockPos(0, 0, 0), EnumFacing.UP);// getGenome().getPrimary().getGenerator().getWorldGenerator(tree);
-            log = world.getWooLog();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         final ITreeGenome genome = tree.getGenome();
         final IAlleleTreeSpecies treeSpecies = genome.getPrimary();
+        final ItemStack log = treeSpecies.getWoodProvider().getWoodStack();
         final int w = 144;
         final int h = 176;
         new ControlText(this, new IArea(0.0f, 4.0f, w, 16.0f), this.getValue().toString(), TextJustification.MiddleCenter);

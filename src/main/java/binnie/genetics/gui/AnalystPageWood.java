@@ -6,14 +6,12 @@ import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.minecraft.control.ControlItemDisplay;
-import binnie.extratrees.FakeWorld;
 import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.arboriculture.IAlleleTreeSpecies;
 import forestry.api.arboriculture.ITree;
 import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.genetics.IAlleleBoolean;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.BlockPos;
 
 import java.util.Collection;
 
@@ -33,8 +31,8 @@ public class AnalystPageWood extends AnalystPageProduce {
         y += 30;
         final Collection<ItemStack> products = new UniqueItemStackSet();
 
-        genome.getPrimary().getGenerator().setLogBlock(genome, FakeWorld.instance, new BlockPos(0, 0, 0), EnumFacing.UP);
-        ItemStack stackWood = FakeWorld.instance.getWooLog();
+        final IAlleleTreeSpecies treeSpecies = genome.getPrimary();
+        final ItemStack stackWood = treeSpecies.getWoodProvider().getWoodStack();
         if (stackWood != null) {
             products.add(stackWood);
         }
