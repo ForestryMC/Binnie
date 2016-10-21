@@ -19,27 +19,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public class ItemDatabase extends ItemCore{
-//	IIcon iconMaster;
-//
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerIcons(final IIconRegister register) {
-//		this.itemIcon = Genetics.proxy.getIcon(register, "geneDatabase");
-//		this.iconMaster = Genetics.proxy.getIcon(register, "masterGeneDatabase");
-//	}
-//
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public IIcon getIconFromDamage(final int par1) {
-//		return (par1 == 0) ? this.itemIcon : this.iconMaster;
-//	}
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> subItems) {
-        super.getSubItems(itemIn, tab, subItems);
-        subItems.add(new ItemStack(itemIn, 1, 1));
-    }
 
     public ItemDatabase() {
     	super("geneticdatabase");
@@ -48,10 +27,18 @@ public class ItemDatabase extends ItemCore{
         this.setMaxStackSize(1);
     }
     
+    @SideOnly(Side.CLIENT)
     @Override
     public void registerModel(Item item, IModelManager manager) {
     	manager.registerItemModel(item, 0);
-    	manager.registerItemModel(item, 1, "master");
+    	manager.registerItemModel(item, 1, "geneticdatabase_master");
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> subItems) {
+        super.getSubItems(itemIn, tab, subItems);
+        subItems.add(new ItemStack(itemIn, 1, 1));
     }
 
     @Override

@@ -13,6 +13,8 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.Nonnull;
+
 public class Flower extends Individual implements IFlower {
     public IFlowerGenome genome;
     public IFlowerGenome mate;
@@ -20,10 +22,37 @@ public class Flower extends Individual implements IFlower {
     boolean wilting;
     boolean flowered;
 
-    public Flower(final NBTTagCompound nbttagcompound) {
-        this.age = 0;
-        this.wilting = false;
-        this.readFromNBT(nbttagcompound);
+    public Flower(@Nonnull final NBTTagCompound nbt) {
+    	super(nbt);
+        if (nbt == null) {
+            this.genome = BotanyCore.getFlowerRoot().templateAsGenome(BotanyCore.getFlowerRoot().getDefaultTemplate());
+            return;
+        }
+        if(nbt.hasKey("Age")){
+        	this.age = nbt.getInteger("Age");
+        }else{
+        	 this.age = 0;
+        }
+        if(nbt.hasKey("Wilt")){
+        	this.wilting = nbt.getBoolean("Wilt");
+        }else{
+        	this.wilting = false;
+        }
+        if(nbt.hasKey("Flowered")){
+        	this.flowered = nbt.getBoolean("Flowered");
+        }else{
+            if (age > 0) {
+                this.flowered = true;
+            } else {
+                this.flowered = false;
+            }
+        }
+        if (nbt.hasKey("Genome")) {
+            this.genome = new FlowerGenome(nbt.getCompoundTag("Genome"));
+        }
+        if (nbt.hasKey("Mate")) {
+            this.mate = new FlowerGenome(nbt.getCompoundTag("Mate"));
+        }
     }
 
     public Flower(final IFlowerGenome genome, final int age) {
@@ -68,25 +97,6 @@ public class Flower extends Individual implements IFlower {
     @Override
     public String getIdent() {
         return this.getGenome().getPrimary().getUID();
-    }
-
-    //TODO TEST
-    //@Override
-    public void readFromNBT(final NBTTagCompound nbttagcompound) {
-        //super.readFromNBT(nbttagcompound);
-        if (nbttagcompound == null) {
-            this.genome = BotanyCore.getFlowerRoot().templateAsGenome(BotanyCore.getFlowerRoot().getDefaultTemplate());
-            return;
-        }
-        this.age = nbttagcompound.getInteger("Age");
-        this.wilting = nbttagcompound.getBoolean("Wilt");
-        this.flowered = nbttagcompound.getBoolean("Flowered");
-        if (nbttagcompound.hasKey("Genome")) {
-            this.genome = new FlowerGenome(nbttagcompound.getCompoundTag("Genome"));
-        }
-        if (nbttagcompound.hasKey("Mate")) {
-            this.mate = new FlowerGenome(nbttagcompound.getCompoundTag("Mate"));
-        }
     }
 
     @Override

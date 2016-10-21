@@ -3,7 +3,11 @@ package binnie.botany.genetics;
 import binnie.botany.Botany;
 import binnie.botany.api.*;
 import com.mojang.authlib.GameProfile;
+
+import forestry.api.arboriculture.EnumGermlingType;
 import forestry.api.genetics.*;
+import forestry.arboriculture.PluginArboriculture;
+import forestry.arboriculture.genetics.TreeRoot;
 import forestry.core.genetics.SpeciesRoot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -12,7 +16,7 @@ import net.minecraft.world.World;
 
 import java.util.*;
 
-public class FlowerHelper extends SpeciesRoot implements IFlowerRoot {
+public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
     public static int flowerSpeciesCount;
     static final String UID = "rootFlowers";
     public static ArrayList<IFlower> flowerTemplates;
@@ -20,7 +24,7 @@ public class FlowerHelper extends SpeciesRoot implements IFlowerRoot {
     Map<ItemStack, IFlower> conversions;
     private static ArrayList<IColourMix> colourMixes;
 
-    public FlowerHelper() {
+    public FlowerRoot() {
         this.conversions = new HashMap<>();
     }
 
@@ -31,25 +35,25 @@ public class FlowerHelper extends SpeciesRoot implements IFlowerRoot {
 
     @Override
     public int getSpeciesCount() {
-        if (FlowerHelper.flowerSpeciesCount < 0) {
-            FlowerHelper.flowerSpeciesCount = 0;
+        if (FlowerRoot.flowerSpeciesCount < 0) {
+            FlowerRoot.flowerSpeciesCount = 0;
             for (final Map.Entry<String, IAllele> entry : AlleleManager.alleleRegistry.getRegisteredAlleles().entrySet()) {
                 if (entry.getValue() instanceof IAlleleFlowerSpecies && ((IAlleleFlowerSpecies) entry.getValue()).isCounted()) {
-                    ++FlowerHelper.flowerSpeciesCount;
+                    ++FlowerRoot.flowerSpeciesCount;
                 }
             }
         }
-        return FlowerHelper.flowerSpeciesCount;
+        return FlowerRoot.flowerSpeciesCount;
     }
 
     @Override
     public boolean isMember(final ItemStack stack) {
-        return stack != null && this.getStageType(stack) != EnumFlowerStage.NONE;
+        return stack != null && this.getType(stack) != null;
     }
 
     @Override
     public boolean isMember(ItemStack stack, ISpeciesType type) {
-        return this.getStageType(stack) == type;
+        return this.getType(stack) == type;
     }
 
     @Override
@@ -65,6 +69,25 @@ public class FlowerHelper extends SpeciesRoot implements IFlowerRoot {
     @Override
     public ISpeciesType getIconType() {
         return null;
+    }
+    
+    @Override
+    public EnumFlowerStage getType(ItemStack stack) {
+		if (stack == null) {
+			return null;
+		}
+
+		Item item = stack.getItem();
+
+		if (Botany.flowerItem == item) {
+			return EnumFlowerStage.SEED;
+		} else if (Botany.pollen == item) {
+			return EnumFlowerStage.POLLEN;
+		} else if (Botany.seed == item) {
+			return EnumFlowerStage.SEED;
+		}
+
+		return null;
     }
 
     @Override
@@ -87,11 +110,6 @@ public class FlowerHelper extends SpeciesRoot implements IFlowerRoot {
         final ItemStack flowerStack = new ItemStack(flowerItem);
         flowerStack.setTagCompound(nbttagcompound);
         return flowerStack;
-    }
-
-    @Override
-    public EnumFlowerStage getStageType(final ItemStack stack) {
-        return (stack == null) ? EnumFlowerStage.NONE : ((stack.getItem() == Botany.flowerItem) ? EnumFlowerStage.FLOWER : ((stack.getItem() == Botany.pollen) ? EnumFlowerStage.POLLEN : ((stack.getItem() == Botany.seed) ? EnumFlowerStage.SEED : EnumFlowerStage.NONE)));
     }
 
     @Override
@@ -129,7 +147,7 @@ public class FlowerHelper extends SpeciesRoot implements IFlowerRoot {
 
     @Override
     public ArrayList<IFlower> getIndividualTemplates() {
-        return FlowerHelper.flowerTemplates;
+        return FlowerRoot.flowerTemplates;
     }
 
     @Override
@@ -139,7 +157,7 @@ public class FlowerHelper extends SpeciesRoot implements IFlowerRoot {
 
     @Override
     public void registerTemplate(final String identifier, final IAllele[] template) {
-        FlowerHelper.flowerTemplates.add(new Flower(this.templateAsGenome(template), 2));
+        FlowerRoot.flowerTemplates.add(new Flower(this.templateAsGenome(template), 2));
         if (!this.speciesTemplates.containsKey(identifier)) {
             this.speciesTemplates.put(identifier, template);
         }
@@ -163,9 +181,9 @@ public class FlowerHelper extends SpeciesRoot implements IFlowerRoot {
     @Override
     public ArrayList<IFlowerMutation> getMutations(final boolean shuffle) {
         if (shuffle) {
-            Collections.shuffle(FlowerHelper.flowerMutations);
+            Collections.shuffle(FlowerRoot.flowerMutations);
         }
-        return FlowerHelper.flowerMutations;
+        return FlowerRoot.flowerMutations;
     }
 
     @Override
@@ -179,7 +197,7 @@ public class FlowerHelper extends SpeciesRoot implements IFlowerRoot {
         if (AlleleManager.alleleRegistry.isBlacklisted(mutation.getAllele1().getUID())) {
             return;
         }
-        FlowerHelper.flowerMutations.add((IFlowerMutation) mutation);
+        FlowerRoot.flowerMutations.add((IFlowerMutation) mutation);
     }
 
     @Override
@@ -232,29 +250,22 @@ public class FlowerHelper extends SpeciesRoot implements IFlowerRoot {
 
     @Override
     public void registerColourMix(final IColourMix colourMix) {
-        FlowerHelper.colourMixes.add(colourMix);
+        FlowerRoot.colourMixes.add(colourMix);
     }
 
     @Override
     public Collection<IColourMix> getColourMixes(final boolean shuffle) {
         if (shuffle) {
-            Collections.shuffle(FlowerHelper.colourMixes);
+            Collections.shuffle(FlowerRoot.colourMixes);
         }
-        return FlowerHelper.colourMixes;
+        return FlowerRoot.colourMixes;
     }
 
     static {
-        FlowerHelper.flowerSpeciesCount = -1;
-        FlowerHelper.flowerTemplates = new ArrayList<>();
-        FlowerHelper.flowerMutations = new ArrayList<>();
-        FlowerHelper.colourMixes = new ArrayList<>();
-    }
-
-
-    //TODO ??
-    @Override
-    public ISpeciesType getType(ItemStack itemstack) {
-        return null;
+        FlowerRoot.flowerSpeciesCount = -1;
+        FlowerRoot.flowerTemplates = new ArrayList<>();
+        FlowerRoot.flowerMutations = new ArrayList<>();
+        FlowerRoot.colourMixes = new ArrayList<>();
     }
 
 

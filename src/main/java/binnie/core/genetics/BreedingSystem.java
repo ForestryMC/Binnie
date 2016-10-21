@@ -327,6 +327,9 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
     }
 
     public final void syncTracker(final IBreedingTracker tracker) {
+    	if(allActiveSpecies.isEmpty()){
+    		calculateArrays();
+    	}
         this.discoveredSpeciesPercentage = 0.0f;
         this.totalSpeciesCount = 0;
         this.discoveredSpeciesCount = 0;

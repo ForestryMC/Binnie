@@ -32,6 +32,7 @@ import forestry.api.arboriculture.ITree;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.lepidopterology.IButterfly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -98,9 +99,12 @@ public class WindowAnalyst extends Window {
     @Override
     public void initialiseServer() {
         for (final BreedingSystem system : Binnie.Genetics.getActiveSystems()) {
-            final IBreedingTracker tracker = system.getSpeciesRoot().getBreedingTracker(this.getWorld(), this.getUsername());
-            if (tracker != null) {
-                tracker.synchToPlayer(this.getPlayer());
+        	ISpeciesRoot root = system.getSpeciesRoot();
+            if(root != null){
+	            final IBreedingTracker tracker = root.getBreedingTracker(this.getWorld(), this.getUsername());
+	            if (tracker != null) {
+	                tracker.synchToPlayer(this.getPlayer());
+	            }
             }
         }
         this.setupValidators();

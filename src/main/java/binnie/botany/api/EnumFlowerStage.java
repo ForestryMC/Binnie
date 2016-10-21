@@ -1,12 +1,12 @@
 package binnie.botany.api;
 
 import forestry.api.genetics.ISpeciesType;
+import forestry.arboriculture.genetics.TreeRoot;
 
 public enum EnumFlowerStage implements ISpeciesType {
     FLOWER("Flower"),
     SEED("Seed"),
-    POLLEN("Pollen"),
-    NONE("NONE");
+    POLLEN("Pollen");
 
     public static final EnumFlowerStage[] VALUES;
     String name;

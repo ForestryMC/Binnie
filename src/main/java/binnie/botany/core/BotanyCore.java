@@ -1,7 +1,7 @@
 package binnie.botany.core;
 
 import binnie.botany.api.IFlowerRoot;
-import binnie.botany.genetics.FlowerHelper;
+import binnie.botany.genetics.FlowerRoot;
 
 public class BotanyCore {
     public static final int CHANCE_INTERPOLLINATION = 20;
@@ -12,6 +12,6 @@ public class BotanyCore {
     }
 
     static {
-        BotanyCore.speciesRoot = new FlowerHelper();
+        BotanyCore.speciesRoot = new FlowerRoot();
     }
 }
