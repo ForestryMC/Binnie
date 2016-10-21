@@ -22,7 +22,7 @@ public enum ExtraTreeTexture implements IBinnieTexture {
     public static String breweryTexture;
     public static String infuserTexture;
 
-    private ExtraTreeTexture(final ResourceType base, final String texture) {
+    ExtraTreeTexture(final ResourceType base, final String texture) {
         this.texture = texture;
         this.type = base;
     }

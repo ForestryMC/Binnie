@@ -20,7 +20,7 @@ enum Compartment implements IMachineType {
 
     Class<? extends MachinePackage> clss;
 
-    private Compartment(final Class<? extends MachinePackage> clss) {
+    Compartment(final Class<? extends MachinePackage> clss) {
         this.clss = clss;
     }
 

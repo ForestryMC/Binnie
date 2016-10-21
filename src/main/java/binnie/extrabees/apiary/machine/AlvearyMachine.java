@@ -21,7 +21,7 @@ public enum AlvearyMachine implements IMachineType {
 
     Class<? extends MachinePackage> clss;
 
-    private AlvearyMachine(final Class<? extends MachinePackage> clss) {
+    AlvearyMachine(final Class<? extends MachinePackage> clss) {
         this.clss = clss;
     }
 

@@ -102,13 +102,13 @@ public enum EnumHoneyComb implements IItemEnum {
     boolean active;
     public boolean deprecated;
 
-    private EnumHoneyComb() {
+    EnumHoneyComb() {
         this(16777215, 16777215);
         this.active = false;
         this.deprecated = true;
     }
 
-    private EnumHoneyComb(final int colour, final int colour2) {
+    EnumHoneyComb(final int colour, final int colour2) {
         this.colour = new int[0];
         this.products = new LinkedHashMap<>();
         this.active = true;

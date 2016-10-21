@@ -18,7 +18,7 @@ public enum KitchenMachine implements IMachineType {
 
     Class<? extends MachinePackage> clss;
 
-    private KitchenMachine(final Class<? extends MachinePackage> clss) {
+    KitchenMachine(final Class<? extends MachinePackage> clss) {
         this.clss = clss;
     }
 

@@ -10,7 +10,7 @@ public enum PowerSystem {
 
     double conversion;
 
-    private PowerSystem(final double conversion) {
+    PowerSystem(final double conversion) {
         this.conversion = conversion;
     }
 

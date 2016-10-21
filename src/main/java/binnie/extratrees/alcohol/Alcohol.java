@@ -57,7 +57,7 @@ public enum Alcohol implements IFluidType, ICocktailLiquid {
         this.fermentationSolid = oreDict;
     }
 
-    private Alcohol(final String ident, final int colour, final double transparency, final double abv) {
+    Alcohol(final String ident, final int colour, final double transparency, final double abv) {
         this.fermentationLiquid = new ArrayList<>();
         this.fermentationSolid = "";
         this.ident = ident;

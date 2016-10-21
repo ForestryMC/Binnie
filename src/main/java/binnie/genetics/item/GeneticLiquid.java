@@ -20,7 +20,7 @@ public enum GeneticLiquid implements IFluidType {
     int colour;
     float transparency;
 
-    private GeneticLiquid(final String name, final String ident, final int colour) {
+    GeneticLiquid(final String name, final String ident, final int colour) {
         this.name = name;
         this.ident = ident;
         this.colour = colour;

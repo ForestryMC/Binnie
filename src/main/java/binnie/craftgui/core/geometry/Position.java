@@ -9,7 +9,7 @@ public enum Position {
     int x;
     int y;
 
-    private Position(final int x, final int y) {
+    Position(final int x, final int y) {
         this.x = x;
         this.y = y;
     }

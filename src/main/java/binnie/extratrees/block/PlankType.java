@@ -72,7 +72,7 @@ public class PlankType {
         int color;
         //IIcon icon;
 
-        private ExtraTreePlanks(final int color) {
+        ExtraTreePlanks(final int color) {
             this.color = color;
         }
 
@@ -121,7 +121,7 @@ public class PlankType {
 
         int color;
 
-        private VanillaPlanks(final int color) {
+        VanillaPlanks(final int color) {
             this.color = color;
         }
 
@@ -238,7 +238,7 @@ public class PlankType {
 
         int color;
 
-        private ExtraBiomesPlank(final int color) {
+        ExtraBiomesPlank(final int color) {
             this.color = color;
         }
 

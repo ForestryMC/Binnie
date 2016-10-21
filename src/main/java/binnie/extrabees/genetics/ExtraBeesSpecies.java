@@ -175,7 +175,7 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
     public State state;
     boolean nocturnal;
 
-    private ExtraBeesSpecies(final String binomial, final int colour) {
+    ExtraBeesSpecies(final String binomial, final int colour) {
         this.primaryColor = 16777215;
         this.secondaryColor = 16768022;
         this.temperature = EnumTemperature.NORMAL;
@@ -199,7 +199,7 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
         this.primaryColor = colour;
     }
 
-    private ExtraBeesSpecies() {
+    ExtraBeesSpecies() {
         this.primaryColor = 16777215;
         this.secondaryColor = 16768022;
         this.temperature = EnumTemperature.NORMAL;

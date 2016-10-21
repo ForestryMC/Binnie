@@ -10,7 +10,7 @@ public enum ExtraTreeFruitFamily implements IFruitFamily {
     String uid;
     String scientific;
 
-    private ExtraTreeFruitFamily(final String name, final String uid, final String scientific) {
+    ExtraTreeFruitFamily(final String name, final String uid, final String scientific) {
         this.name = name;
         this.uid = uid;
         this.scientific = scientific;

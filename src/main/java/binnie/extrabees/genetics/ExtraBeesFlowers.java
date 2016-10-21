@@ -33,7 +33,7 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 
     boolean dominant;
 
-    private ExtraBeesFlowers() {
+    ExtraBeesFlowers() {
         this.dominant = true;
     }
 

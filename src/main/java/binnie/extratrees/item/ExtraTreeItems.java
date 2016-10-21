@@ -26,7 +26,7 @@ public enum ExtraTreeItems implements IItemMisc {
     String iconPath;
 //	IIcon icon;
 
-    private ExtraTreeItems(final String name, final String iconPath) {
+    ExtraTreeItems(final String name, final String iconPath) {
         this.name = name;
         this.iconPath = iconPath;
     }

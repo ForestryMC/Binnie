@@ -11,7 +11,7 @@ public enum AdvGeneticMachine implements IMachineType {
 
     Class<? extends MachinePackage> clss;
 
-    private AdvGeneticMachine(final Class<? extends MachinePackage> clss) {
+    AdvGeneticMachine(final Class<? extends MachinePackage> clss) {
         this.clss = clss;
     }
 

@@ -302,7 +302,7 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
             return 0;
         }
 
-        public static enum Mode {
+        public enum Mode {
             None,
             Species,
             Type;

@@ -11,7 +11,7 @@ public enum EnumFlowerStage implements ISpeciesType {
     public static final EnumFlowerStage[] VALUES;
     String name;
 
-    private EnumFlowerStage(final String name) {
+    EnumFlowerStage(final String name) {
         this.name = name;
     }
 

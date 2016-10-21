@@ -96,7 +96,7 @@ public class GlassType implements IDesignMaterial {
         String name;
         int colour;
 
-        private StandardColor(final String name, final int colour) {
+        StandardColor(final String name, final int colour) {
             this.name = name;
             this.colour = colour;
         }

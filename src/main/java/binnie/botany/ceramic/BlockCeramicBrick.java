@@ -191,7 +191,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
         String name;
         //IIcon[] icons;
 
-        private TileType(final String id, final String name) {
+        TileType(final String id, final String name) {
             //this.icons = new IIcon[3];
             this.id = id;
             this.name = name;

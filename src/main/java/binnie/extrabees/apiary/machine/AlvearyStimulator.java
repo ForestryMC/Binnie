@@ -318,7 +318,7 @@ public class AlvearyStimulator {
         public int power;
         BeeModifierLogic logic;
 
-        private CircuitType(final int recipe, final int power) {
+        CircuitType(final int recipe, final int power) {
             this.logic = new BeeModifierLogic();
             this.recipe = recipe;
             this.power = power;

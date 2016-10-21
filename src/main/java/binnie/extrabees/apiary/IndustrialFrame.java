@@ -36,7 +36,7 @@ public enum IndustrialFrame implements IBeeModifier {
     int wearMod;
     int power;
 
-    private IndustrialFrame(final String name, final int wear, final int power) {
+    IndustrialFrame(final String name, final int wear, final int power) {
         this.territoryMod = 1.0f;
         this.mutationMod = 1.0f;
         this.lifespanMod = 1.0f;

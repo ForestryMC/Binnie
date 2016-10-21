@@ -51,7 +51,7 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
         this.maxDamage = damage;
     }
 
-    private EnumHiveFrame() {
+    EnumHiveFrame() {
         this.maxDamage = 240;
         this.logic = new BeeModifierLogic();
     }

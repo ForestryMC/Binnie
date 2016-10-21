@@ -35,11 +35,11 @@ public enum Liqueur implements IFluidType, ICocktailLiquid {
     private void addFlavour(final String oreDict) {
     }
 
-    private Liqueur(final String name, final int colour, final double transparency, final double abv) {
+    Liqueur(final String name, final int colour, final double transparency, final double abv) {
         this(name + " Liqueur", "liqueur" + name, colour, transparency, abv);
     }
 
-    private Liqueur(final String name, final String ident, final int colour, final double transparency, final double abv) {
+    Liqueur(final String name, final String ident, final int colour, final double transparency, final double abv) {
         this.name = name;
         this.ident = ident;
         this.colour = colour;

@@ -99,7 +99,7 @@ public class ItemInsulatedTube extends Item {
             return this.name;
         }
 
-        private Material(final int color, final String name) {
+        Material(final int color, final String name) {
             this.color = color;
             this.name = name;
         }
@@ -128,7 +128,7 @@ public class ItemInsulatedTube extends Item {
             return this.name;
         }
 
-        private Insulate(final int color, final String name) {
+        Insulate(final int color, final String name) {
             this.color = color;
             this.name = name;
         }

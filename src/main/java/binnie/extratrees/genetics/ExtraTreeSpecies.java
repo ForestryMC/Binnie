@@ -1046,7 +1046,7 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
         public final short changedUID;
         public final String descript;
 
-        private LeafType(final short fancyUID, final short plainUID, final short changedUID, final String descript) {
+        LeafType(final short fancyUID, final short plainUID, final short changedUID, final String descript) {
             this.fancyUID = fancyUID;
             this.plainUID = plainUID;
             this.changedUID = changedUID;

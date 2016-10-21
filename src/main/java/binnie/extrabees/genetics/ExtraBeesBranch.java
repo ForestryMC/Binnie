@@ -65,7 +65,7 @@ public enum ExtraBeesBranch implements IClassification {
         return ExtraBees.proxy.localiseOrBlank("branch." + this.toString().toLowerCase() + ".desc");
     }
 
-    private ExtraBeesBranch(final String scientific) {
+    ExtraBeesBranch(final String scientific) {
         this.uid = "";
         this.scientific = "";
         this.speciesSet = new LinkedHashSet<>();

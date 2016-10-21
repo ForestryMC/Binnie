@@ -39,7 +39,7 @@ public enum Glassware {
         return this.capacity;
     }
 
-    private Glassware(final int capacity, final int contentBottom, final int contentHeight) {
+    Glassware(final int capacity, final int contentBottom, final int contentHeight) {
         this.capacity = 30 * capacity;
         this.contentBottom = contentBottom / 32.0f;
         this.contentHeight = contentHeight / 32.0f;

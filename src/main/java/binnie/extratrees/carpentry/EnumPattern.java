@@ -221,7 +221,7 @@ public enum EnumPattern implements IPattern {
     ILayout leftRotation;
     ILayout horizontalFlip;
 
-    private EnumPattern() {
+    EnumPattern() {
         this.leftRotation = Layout.get(this, false);
         this.horizontalFlip = Layout.get(this, false);
     }

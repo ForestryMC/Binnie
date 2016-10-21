@@ -17,7 +17,7 @@ public enum ExtraTreeLiquid implements ILiquidType {
     //	IIcon icon;
     int colour;
 
-    private ExtraTreeLiquid(final String name, final String ident, final int colour) {
+    ExtraTreeLiquid(final String name, final String ident, final int colour) {
         this.name = "";
         this.name = name;
         this.ident = ident;

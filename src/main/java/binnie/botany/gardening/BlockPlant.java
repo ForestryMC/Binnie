@@ -128,7 +128,7 @@ public class BlockPlant extends BlockBush {
         //		public IIcon icon;
         String name;
 
-        private Type(final String name) {
+        Type(final String name) {
             this.name = name;
         }
 

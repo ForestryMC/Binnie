@@ -23,7 +23,7 @@ public enum ExtraBeeTexture implements IBinnieTexture {
     String texture;
     ResourceType type;
 
-    private ExtraBeeTexture(final ResourceType base, final String texture) {
+    ExtraBeeTexture(final ResourceType base, final String texture) {
         this.texture = texture;
         this.type = base;
     }

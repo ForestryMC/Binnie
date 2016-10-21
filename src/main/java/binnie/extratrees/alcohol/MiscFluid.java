@@ -22,7 +22,7 @@ public enum MiscFluid implements IFluidType, ICocktailLiquid {
     int colour;
     float transparency;
 
-    private MiscFluid(final String name, final String ident, final int colour, final double transparency) {
+    MiscFluid(final String name, final String ident, final int colour, final double transparency) {
         this.name = name;
         this.ident = ident;
         this.colour = colour;

@@ -27,7 +27,7 @@ public enum ExtraTreeMachine implements IMachineType {
 
     Class<? extends MachinePackage> clss;
 
-    private ExtraTreeMachine(final Class<? extends MachinePackage> clss) {
+    ExtraTreeMachine(final Class<? extends MachinePackage> clss) {
         this.clss = clss;
     }
 

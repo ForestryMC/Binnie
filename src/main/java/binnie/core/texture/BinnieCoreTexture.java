@@ -19,7 +19,7 @@ public enum BinnieCoreTexture implements IBinnieTexture {
     String texture;
     ResourceType type;
 
-    private BinnieCoreTexture(final ResourceType base, final String texture) {
+    BinnieCoreTexture(final ResourceType base, final String texture) {
         this.texture = texture;
         this.type = base;
     }

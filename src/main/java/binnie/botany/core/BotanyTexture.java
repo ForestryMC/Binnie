@@ -11,7 +11,7 @@ public enum BotanyTexture implements IBinnieTexture {
     String texture;
     ResourceType type;
 
-    private BotanyTexture(final ResourceType base, final String texture) {
+    BotanyTexture(final ResourceType base, final String texture) {
         this.texture = texture;
         this.type = base;
     }

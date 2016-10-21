@@ -18,7 +18,7 @@ public enum GeneticMachine implements IMachineType {
 
     Class<? extends MachinePackage> clss;
 
-    private GeneticMachine(final Class<? extends MachinePackage> clss) {
+    GeneticMachine(final Class<? extends MachinePackage> clss) {
         this.clss = clss;
     }
 

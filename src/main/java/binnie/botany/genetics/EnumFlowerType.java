@@ -64,11 +64,11 @@ public enum EnumFlowerType implements IFlowerType {
 //	IIcon pollenVariant;
 //	IIcon blank;
 
-    private EnumFlowerType() {
+    EnumFlowerType() {
         this(1);
     }
 
-    private EnumFlowerType(final int sections) {
+    EnumFlowerType(final int sections) {
         this.sections = 1;
         this.sections = sections;
 //		this.stem = new IIcon[sections];

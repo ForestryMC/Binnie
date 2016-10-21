@@ -12,7 +12,7 @@ public enum CraftGUITextureSheet implements IBinnieTexture {
 
     String name;
 
-    private CraftGUITextureSheet(final String name) {
+    CraftGUITextureSheet(final String name) {
         this.name = name;
     }
 

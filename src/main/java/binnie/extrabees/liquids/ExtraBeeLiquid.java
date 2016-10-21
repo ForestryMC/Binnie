@@ -16,7 +16,7 @@ public enum ExtraBeeLiquid implements ILiquidType {
     //	IIcon icon;
     int colour;
 
-    private ExtraBeeLiquid(final String ident, final int colour) {
+    ExtraBeeLiquid(final String ident, final int colour) {
         this.ident = ident;
         this.colour = colour;
     }

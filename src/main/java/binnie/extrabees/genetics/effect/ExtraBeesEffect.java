@@ -77,7 +77,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
     private String uid;
     static List<Birthday> birthdays;
 
-    private ExtraBeesEffect() {
+    ExtraBeesEffect() {
         this.fx = "";
         this.uid = this.toString().toLowerCase();
         this.combinable = false;

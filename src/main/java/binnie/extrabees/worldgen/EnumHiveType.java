@@ -14,7 +14,7 @@ public enum EnumHiveType implements IStringSerializable {
 
     public List<IHiveDrop> drops;
 
-    private EnumHiveType() {
+    EnumHiveType() {
         this.drops = new ArrayList<>();
     }
 

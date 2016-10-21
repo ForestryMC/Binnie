@@ -20,7 +20,7 @@ public enum BotanyItems implements IItemMisc {
     String name;
     String iconPath;
 
-    private BotanyItems(final String name, final String iconPath) {
+    BotanyItems(final String name, final String iconPath) {
         this.name = name;
         this.iconPath = iconPath;
     }

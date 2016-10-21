@@ -22,7 +22,7 @@ public enum DesignerType {
     public String name;
     public String texture;
 
-    private DesignerType(final String name, final String texture) {
+    DesignerType(final String name, final String texture) {
         this.name = name;
         this.texture = texture;
     }

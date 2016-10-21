@@ -232,7 +232,7 @@ public enum EnumDesign implements IDesign {
         this.setSouthPattern(edged);
     }
 
-    private EnumDesign(final String name) {
+    EnumDesign(final String name) {
         this.topPattern = Layout.get(EnumPattern.Blank, false);
         this.bottomPattern = Layout.get(EnumPattern.Blank, false);
         this.northPattern = Layout.get(EnumPattern.Blank, false);
@@ -487,7 +487,7 @@ public enum EnumDesign implements IDesign {
         String name;
         List<IDesign> designs;
 
-        private Category(final String name) {
+        Category(final String name) {
             this.designs = new ArrayList<>();
             this.name = name;
             CarpentryManager.carpentryInterface.registerDesignCategory(this);

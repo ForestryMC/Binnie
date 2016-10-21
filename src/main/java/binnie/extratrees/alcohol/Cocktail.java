@@ -43,7 +43,7 @@ public enum Cocktail {
     public int colour;
     public Map<ICocktailIngredient, Integer> ingredients;
 
-    private Cocktail(final String name, final Glassware glassware, final int colour) {
+    Cocktail(final String name, final Glassware glassware, final int colour) {
         this.ingredients = new HashMap<>();
         this.name = name;
         this.glassware = glassware;

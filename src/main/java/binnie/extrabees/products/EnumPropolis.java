@@ -23,12 +23,12 @@ public enum EnumPropolis implements IItemEnum {
     String liquidName;
     boolean active;
 
-    private EnumPropolis() {
+    EnumPropolis() {
         this(16777215, 16777215, "");
         this.active = false;
     }
 
-    private EnumPropolis(final int colour, final int colour2, final String liquid) {
+    EnumPropolis(final int colour, final int colour2, final String liquid) {
         this.colour = new int[0];
         this.active = true;
         this.colour = new int[]{colour, colour2};

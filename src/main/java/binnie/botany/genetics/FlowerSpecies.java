@@ -349,11 +349,11 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies {
         BotanyCore.getFlowerRoot().registerMutation(new FlowerMutation(dandelion2, tulip2, this.getTemplate(), i));
     }
 
-    private FlowerSpecies(final String name, final String branch, final String binomial, final IFlowerType type, final EnumFlowerColor colour) {
+    FlowerSpecies(final String name, final String branch, final String binomial, final IFlowerType type, final EnumFlowerColor colour) {
         this(name, branch, binomial, type, colour, colour);
     }
 
-    private FlowerSpecies(final String name, final String branch, final String binomial, final IFlowerType type, final EnumFlowerColor primaryColor, final EnumFlowerColor secondaryColor) {
+    FlowerSpecies(final String name, final String branch, final String binomial, final IFlowerType type, final EnumFlowerColor primaryColor, final EnumFlowerColor secondaryColor) {
         this.stemColor = EnumFlowerColor.Green;
         this.temperature = EnumTemperature.NORMAL;
         this.pH = EnumAcidity.Neutral;

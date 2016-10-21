@@ -13,7 +13,7 @@ public @interface PropPercentage {
 
     int lower() default 0;
 
-    public static class PropertyPercentage extends PropertyBase<Integer, PropPercentage> {
+    class PropertyPercentage extends PropertyBase<Integer, PropPercentage> {
         public PropertyPercentage(final Field field, final BinnieConfiguration file, final ConfigProperty configProperty, final PropPercentage annotedProperty) throws IllegalArgumentException, IllegalAccessException {
             super(field, file, configProperty, annotedProperty);
         }

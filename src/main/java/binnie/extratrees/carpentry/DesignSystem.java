@@ -16,7 +16,7 @@ public enum DesignSystem implements IDesignSystem {
 //	Map<Integer, IIcon> primary;
 //	Map<Integer, IIcon> secondary;
 
-    private DesignSystem() {
+    DesignSystem() {
 //		this.primary = new HashMap<Integer, IIcon>();
 //		this.secondary = new HashMap<Integer, IIcon>();
         DesignerManager.instance.registerDesignSystem(this);

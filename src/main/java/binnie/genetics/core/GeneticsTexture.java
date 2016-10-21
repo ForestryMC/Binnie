@@ -28,7 +28,7 @@ public enum GeneticsTexture implements IBinnieTexture {
     ResourceType type;
     public static BinnieIcon dnaIcon;
 
-    private GeneticsTexture(final ResourceType base, final String texture) {
+    GeneticsTexture(final ResourceType base, final String texture) {
         this.texture = texture;
         this.type = base;
     }

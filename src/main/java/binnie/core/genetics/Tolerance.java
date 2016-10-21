@@ -24,7 +24,7 @@ public enum Tolerance {
 
     private int[] bounds;
 
-    private Tolerance(final int a, final int b) {
+    Tolerance(final int a, final int b) {
         this.bounds = new int[]{a, b};
     }
 

@@ -21,7 +21,7 @@ public enum LaboratoryMachine implements IMachineType {
 
     Class<? extends MachinePackage> clss;
 
-    private LaboratoryMachine(final Class<? extends MachinePackage> clss) {
+    LaboratoryMachine(final Class<? extends MachinePackage> clss) {
         this.clss = clss;
     }
 

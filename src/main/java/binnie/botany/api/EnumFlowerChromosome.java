@@ -18,7 +18,7 @@ public enum EnumFlowerChromosome implements IChromosomeType {
 
     private Class<? extends IAllele> cls;
 
-    private EnumFlowerChromosome(final Class<? extends IAllele> cls) {
+    EnumFlowerChromosome(final Class<? extends IAllele> cls) {
         this.cls = cls;
     }
 

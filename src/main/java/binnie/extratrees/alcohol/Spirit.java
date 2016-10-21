@@ -42,7 +42,7 @@ public enum Spirit implements IFluidType, ICocktailLiquid {
     float transparency;
     float abv;
 
-    private Spirit(final String name, final String ident, final int colour, final double transparency, final double abv) {
+    Spirit(final String name, final String ident, final int colour, final double transparency, final double abv) {
         this.name = name;
         this.ident = ident;
         this.colour = colour;

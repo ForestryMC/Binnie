@@ -9,7 +9,7 @@ import java.lang.reflect.Field;
 @Retention(RetentionPolicy.RUNTIME)
 @ConfigProperty.Type(propertyClass = PropDouble.PropertyDouble.class)
 public @interface PropDouble {
-    public static class PropertyDouble extends PropertyBase<Double, PropDouble> {
+    class PropertyDouble extends PropertyBase<Double, PropDouble> {
         public PropertyDouble(final Field field, final BinnieConfiguration file, final ConfigProperty configProperty, final PropDouble annotedProperty) throws IllegalArgumentException, IllegalAccessException {
             super(field, file, configProperty, annotedProperty);
         }

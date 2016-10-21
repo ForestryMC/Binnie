@@ -16,7 +16,7 @@ interface IBreedingMessage {
 
     ItemStack getIcon();
 
-    public static class MessageSpeciesDiscovered implements IBreedingMessage {
+    class MessageSpeciesDiscovered implements IBreedingMessage {
         IAlleleSpecies species;
         ItemStack stack;
 
@@ -49,7 +49,7 @@ interface IBreedingMessage {
         }
     }
 
-    public static class BranchDiscovered implements IBreedingMessage {
+    class BranchDiscovered implements IBreedingMessage {
         IAlleleSpecies species;
         IClassification classification;
         ItemStack stack;
@@ -84,7 +84,7 @@ interface IBreedingMessage {
         }
     }
 
-    public static class EpithetGained implements IBreedingMessage {
+    class EpithetGained implements IBreedingMessage {
         String epithet;
         ItemStack stack;
 

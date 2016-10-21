@@ -50,12 +50,12 @@ public enum EnumExtraTreeLog implements IWoodType {
     IDesignMaterial plank;
 
 
-    private EnumExtraTreeLog(final String name) {
+    EnumExtraTreeLog(final String name) {
         this.plank = null;
         this.name = name;
     }
 
-    private EnumExtraTreeLog(final String name, final IDesignMaterial plank) {
+    EnumExtraTreeLog(final String name, final IDesignMaterial plank) {
         this.name = name;
         this.plank = plank;
     }

@@ -57,7 +57,7 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
     private Map<ItemStack, Float> butterflyLoot;
     private Map<ItemStack, Float> caterpillarLoot;
 
-    private ButterflySpecies(final String name, final String scientific, final int colour) {
+    ButterflySpecies(final String name, final String scientific, final int colour) {
         this.butterflyLoot = new HashMap<>();
         this.caterpillarLoot = new HashMap<>();
         this.name = name;
