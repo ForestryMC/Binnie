@@ -18,7 +18,7 @@ abstract class PropertyBase<ValueType, AnnotationType extends Annotation> {
     private Field field;
 
     protected PropertyBase(final Field field, final BinnieConfiguration file, final ConfigProperty configProperty, final AnnotationType annotedProperty) throws IllegalArgumentException, IllegalAccessException {
-        this.comments = new ArrayList<String>();
+        this.comments = new ArrayList<>();
         this.field = field;
         this.file = file;
         this.configProperty = configProperty;

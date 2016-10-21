@@ -22,8 +22,8 @@ public class ControlList<T> extends Control implements IControlValue<T> {
     protected ControlList(final ControlListBox<T> parent, final float x, final float y, final float w, final float h) {
         super(parent, x, y, w, h);
         this.value = null;
-        this.allOptions = new LinkedHashMap<T, IWidget>();
-        this.optionWidgets = new LinkedHashMap<T, IWidget>();
+        this.allOptions = new LinkedHashMap<>();
+        this.optionWidgets = new LinkedHashMap<>();
         this.creating = false;
         this.parent = parent;
     }

@@ -49,7 +49,7 @@ public class ControlTabBar<T> extends Control implements IControlValue<T> {
     }
 
     public ControlTab<T> createTab(final float x, final float y, final float w, final float h, final T value) {
-        return new ControlTab<T>(this, x, y, w, h, value);
+        return new ControlTab<>(this, x, y, w, h, value);
     }
 
     @Override

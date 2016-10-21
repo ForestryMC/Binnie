@@ -188,10 +188,10 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
         this.uid = "";
         this.achievement = null;
         this.dominant = true;
-        this.products = new LinkedHashMap<ItemStack, Float>();
-        this.specialties = new LinkedHashMap<ItemStack, Float>();
-        this.allProducts = new LinkedHashMap<ItemStack, Float>();
-        this.allSpecialties = new LinkedHashMap<ItemStack, Float>();
+        this.products = new LinkedHashMap<>();
+        this.specialties = new LinkedHashMap<>();
+        this.allProducts = new LinkedHashMap<>();
+        this.allSpecialties = new LinkedHashMap<>();
         this.state = State.Active;
         this.nocturnal = false;
         this.uid = this.toString().toLowerCase();
@@ -212,10 +212,10 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
         this.uid = "";
         this.achievement = null;
         this.dominant = true;
-        this.products = new LinkedHashMap<ItemStack, Float>();
-        this.specialties = new LinkedHashMap<ItemStack, Float>();
-        this.allProducts = new LinkedHashMap<ItemStack, Float>();
-        this.allSpecialties = new LinkedHashMap<ItemStack, Float>();
+        this.products = new LinkedHashMap<>();
+        this.specialties = new LinkedHashMap<>();
+        this.allProducts = new LinkedHashMap<>();
+        this.allSpecialties = new LinkedHashMap<>();
         this.state = State.Active;
         this.nocturnal = false;
         this.state = State.Deprecated;
@@ -1006,7 +1006,7 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 
     @Override
     public ItemStack[] getResearchBounty(final World world, final GameProfile researcher, final IIndividual individual, final int bountyLevel) {
-        final ArrayList<ItemStack> bounty = new ArrayList<ItemStack>();
+        final ArrayList<ItemStack> bounty = new ArrayList<>();
         ItemStack research = null;
         if (world.rand.nextFloat() < 10.0f / bountyLevel) {
             final Collection<? extends IMutation> combinations = this.getRoot().getCombinations(this);
@@ -1040,7 +1040,7 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 
     @Override
     public int getComplexity() {
-        return 1 + this.getGeneticAdvancement(this, new ArrayList<IAllele>());
+        return 1 + this.getGeneticAdvancement(this, new ArrayList<>());
     }
 
     private int getGeneticAdvancement(final IAllele species, final ArrayList<IAllele> exclude) {

@@ -35,8 +35,8 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
     private GameProfile owner;
 
     public Machine(final MachinePackage pack, final TileEntity tile) {
-        this.componentInterfaceMap = new LinkedHashMap<Class, List<MachineComponent>>();
-        this.componentMap = new LinkedHashMap<Class<? extends MachineComponent>, MachineComponent>();
+        this.componentInterfaceMap = new LinkedHashMap<>();
+        this.componentMap = new LinkedHashMap<>();
         this.queuedInventoryUpdate = false;
         this.nextProgressBarID = 0;
         this.owner = null;
@@ -54,7 +54,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
         this.componentMap.put(component.getClass(), component);
         for (final Class inter : component.getComponentInterfaces()) {
             if (!this.componentInterfaceMap.containsKey(inter)) {
-                this.componentInterfaceMap.put(inter, new ArrayList<MachineComponent>());
+                this.componentInterfaceMap.put(inter, new ArrayList<>());
             }
             this.componentInterfaceMap.get(inter).add(component);
         }
@@ -86,7 +86,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 
     @Override
     public <T> List<T> getInterfaces(final Class<T> interfaceClass) {
-        final ArrayList<T> interfaces = new ArrayList<T>();
+        final ArrayList<T> interfaces = new ArrayList<>();
         if (!this.hasInterface(interfaceClass)) {
             return interfaces;
         }

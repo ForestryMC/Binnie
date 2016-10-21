@@ -41,7 +41,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
     }
 
     public Collection<ItemStack> getCentrifuge(final ItemStack stack) {
-        final List<ItemStack> products = new ArrayList<ItemStack>();
+        final List<ItemStack> products = new ArrayList<>();
         for (final ICentrifugeRecipe recipe : RecipeManagers.centrifugeManager.recipes()) {
             boolean isRecipe = false;
             if (recipe.getInput() instanceof ItemStack && stack.isItemEqual((ItemStack) recipe.getInput())) {
@@ -59,7 +59,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
     }
 
     public Collection<ItemStack> getSqueezer(final ItemStack stack) {
-        final List<ItemStack> products = new ArrayList<ItemStack>();
+        final List<ItemStack> products = new ArrayList<>();
         for (ISqueezerRecipe recipe : RecipeManagers.squeezerManager.recipes()) {
             boolean isRecipe = false;
             for (final Object obj : recipe.getResources()) {
@@ -77,7 +77,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
     }
 
     public Collection<ItemStack> getCrafting(final ItemStack stack) {
-        final List<ItemStack> products = new ArrayList<ItemStack>();
+        final List<ItemStack> products = new ArrayList<>();
         for (final Object recipeO : CraftingManager.getInstance().getRecipeList()) {
             if (recipeO instanceof ShapelessRecipes) {
                 final ShapelessRecipes recipe = (ShapelessRecipes) recipeO;
@@ -121,7 +121,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
     }
 
     public Collection<FluidStack> getAllFluids(final ItemStack stack) {
-        final List<FluidStack> products = new ArrayList<FluidStack>();
+        final List<FluidStack> products = new ArrayList<>();
         products.addAll(this.getSqueezerFluid(stack));
         if (Press.getOutput(stack) != null) {
             products.add(Press.getOutput(stack));
@@ -130,7 +130,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
     }
 
     public Collection<FluidStack> getSqueezerFluid(final ItemStack stack) {
-        final List<FluidStack> products = new ArrayList<FluidStack>();
+        final List<FluidStack> products = new ArrayList<>();
         for (final ISqueezerRecipe recipe : RecipeManagers.squeezerManager.recipes()) {
             boolean isRecipe = false;
             for (final Object obj : recipe.getResources()) {

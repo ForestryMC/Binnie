@@ -83,7 +83,7 @@ public class TileEntityNursery extends TileEntityMachine implements IButterflyNu
     }
 
     public Set<IErrorState> getErrorStates() {
-        return new HashSet<IErrorState>();
+        return new HashSet<>();
     }
 
     public int getBiomeId() {

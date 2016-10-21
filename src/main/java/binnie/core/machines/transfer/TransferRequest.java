@@ -33,8 +33,8 @@ public class TransferRequest {
         this.targetTanks = new int[0];
         this.transferLiquids = true;
         this.ignoreReadOnly = false;
-        this.insertedSlots = new ArrayList<TransferSlot>();
-        this.insertedTanks = new ArrayList<Integer>();
+        this.insertedSlots = new ArrayList<>();
+        this.insertedTanks = new ArrayList<>();
         final int[] target = new int[destination.getSizeInventory()];
         for (int i = 0; i < target.length; ++i) {
             target[i] = i;

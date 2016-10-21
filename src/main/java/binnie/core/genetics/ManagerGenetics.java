@@ -28,9 +28,9 @@ public class ManagerGenetics extends ManagerBase {
     private Map<ISpeciesRoot, Map<IChromosomeType, List<IAllele>>> chromosomeArray;
 
     public ManagerGenetics() {
-        this.BREEDING_SYSTEMS = new LinkedHashMap<ISpeciesRoot, BreedingSystem>();
-        this.invalidChromosomeTypes = new ArrayList<IChromosomeType>();
-        this.chromosomeArray = new LinkedHashMap<ISpeciesRoot, Map<IChromosomeType, List<IAllele>>>();
+        this.BREEDING_SYSTEMS = new LinkedHashMap<>();
+        this.invalidChromosomeTypes = new ArrayList<>();
+        this.chromosomeArray = new LinkedHashMap<>();
     }
 
     @Override
@@ -147,9 +147,9 @@ public class ManagerGenetics extends ManagerBase {
         this.invalidChromosomeTypes.clear();
         for (final ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
             final BreedingSystem system = this.getSystem(root);
-            final Map<IChromosomeType, List<IAllele>> chromosomeMap = new LinkedHashMap<IChromosomeType, List<IAllele>>();
+            final Map<IChromosomeType, List<IAllele>> chromosomeMap = new LinkedHashMap<>();
             for (final IChromosomeType chromosome : root.getKaryotype()) {
-                final TreeSet<IAllele> alleles = new TreeSet<IAllele>(new ComparatorAllele());
+                final TreeSet<IAllele> alleles = new TreeSet<>(new ComparatorAllele());
                 for (final IIndividual individual : root.getIndividualTemplates()) {
                     final IGenome genome = individual.getGenome();
                     try {
@@ -169,7 +169,7 @@ public class ManagerGenetics extends ManagerBase {
                 if (alleles.size() == 0) {
                     this.invalidChromosomeTypes.add(chromosome);
                 } else {
-                    final List<IAllele> alleleList = new ArrayList<IAllele>();
+                    final List<IAllele> alleleList = new ArrayList<>();
                     alleleList.addAll(alleles);
                     chromosomeMap.put(chromosome, alleleList);
                 }

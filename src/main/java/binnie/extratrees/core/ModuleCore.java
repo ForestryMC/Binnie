@@ -37,23 +37,23 @@ public class ModuleCore implements IInitializable {
                 final PrintWriter outputPlanks = new PrintWriter(new FileWriter("data/planks.html"));
                 final PrintWriter outputFruit = new PrintWriter(new FileWriter("data/fruit.html"));
                 final PrintWriter outputDesigns = new PrintWriter(new FileWriter("data/designs.html"));
-                final Queue<IAlleleTreeSpecies> speciesQueue = new LinkedList<IAlleleTreeSpecies>();
+                final Queue<IAlleleTreeSpecies> speciesQueue = new LinkedList<>();
                 for (final IAlleleTreeSpecies s : ExtraTreeSpecies.values()) {
                     speciesQueue.add(s);
                 }
-                final Queue<IWoodType> logQueue = new LinkedList<IWoodType>();
+                final Queue<IWoodType> logQueue = new LinkedList<>();
                 for (final IWoodType wood : EnumExtraTreeLog.values()) {
                     logQueue.add(wood);
                 }
-                final Queue<IDesignMaterial> plankQueue = new LinkedList<IDesignMaterial>();
+                final Queue<IDesignMaterial> plankQueue = new LinkedList<>();
                 for (final IDesignMaterial wood2 : PlankType.ExtraTreePlanks.values()) {
                     plankQueue.add(wood2);
                 }
-                final Queue<ExtraTreeFruitGene> fruitQueue = new LinkedList<ExtraTreeFruitGene>();
+                final Queue<ExtraTreeFruitGene> fruitQueue = new LinkedList<>();
                 for (final ExtraTreeFruitGene wood3 : ExtraTreeFruitGene.values()) {
                     fruitQueue.add(wood3);
                 }
-                final Queue<IDesign> designQueue = new LinkedList<IDesign>();
+                final Queue<IDesign> designQueue = new LinkedList<>();
                 for (final IDesign wood4 : CarpentryManager.carpentryInterface.getSortedDesigns()) {
                     designQueue.add(wood4);
                 }

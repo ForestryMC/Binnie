@@ -48,7 +48,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
         new ControlTextEdit(this, 20.0f, y, this.w() - 40.0f, 16.0f) {
             @Override
             public void onTextEdit(final String value) {
-                final Collection<IAlleleSpecies> options = new ArrayList<IAlleleSpecies>();
+                final Collection<IAlleleSpecies> options = new ArrayList<>();
                 AnalystPageDatabase.this.getSpecies(system);
                 for (final IAlleleSpecies species : AnalystPageDatabase.this.getSpecies(system)) {
                     if (value != null) {
@@ -173,7 +173,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
     }
 
     private Collection<IAlleleSpecies> getSpecies(final BreedingSystem system) {
-        final Collection<IAlleleSpecies> species = new ArrayList<IAlleleSpecies>();
+        final Collection<IAlleleSpecies> species = new ArrayList<>();
         species.addAll(this.isMaster ? system.getAllSpecies() : system.getDiscoveredSpecies(this.getWindow().getWorld(), this.getWindow().getPlayer().getGameProfile()));
         return species;
     }

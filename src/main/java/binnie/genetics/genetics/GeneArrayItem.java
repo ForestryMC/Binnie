@@ -19,7 +19,7 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
     List<IGene> genes;
 
     public GeneArrayItem(final ItemStack stack) {
-        this.genes = new ArrayList<IGene>();
+        this.genes = new ArrayList<>();
         if (stack == null) {
             return;
         }
@@ -27,12 +27,12 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
     }
 
     public GeneArrayItem(final IGene gene) {
-        this.genes = new ArrayList<IGene>();
+        this.genes = new ArrayList<>();
         this.addGene(gene);
     }
 
     public GeneArrayItem() {
-        this.genes = new ArrayList<IGene>();
+        this.genes = new ArrayList<>();
     }
 
     @Override
@@ -45,7 +45,7 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 
     @Override
     public void getInfo(final List list) {
-        final List<Object> totalList = new ArrayList<Object>();
+        final List<Object> totalList = new ArrayList<>();
         for (final IGene gene : this.genes) {
             final String chromosomeName = this.getBreedingSystem().getChromosomeName(gene.getChromosome());
             totalList.add("§6" + chromosomeName + "§7: " + gene.getName());

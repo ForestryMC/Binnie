@@ -39,14 +39,14 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
     String currentEpithet;
 
     public BreedingSystem() {
-        this.allBranches = new ArrayList<IClassification>();
-        this.allActiveSpecies = new ArrayList<IAlleleSpecies>();
-        this.allSpecies = new ArrayList<IAlleleSpecies>();
-        this.allMutations = new ArrayList<IMutation>();
-        this.resultantMutations = new HashMap<IAlleleSpecies, List<IMutation>>();
-        this.furtherMutations = new HashMap<IAlleleSpecies, List<IMutation>>();
-        this.allResultantMutations = new HashMap<IAlleleSpecies, List<IMutation>>();
-        this.allFurtherMutations = new HashMap<IAlleleSpecies, List<IMutation>>();
+        this.allBranches = new ArrayList<>();
+        this.allActiveSpecies = new ArrayList<>();
+        this.allSpecies = new ArrayList<>();
+        this.allMutations = new ArrayList<>();
+        this.resultantMutations = new HashMap<>();
+        this.furtherMutations = new HashMap<>();
+        this.allResultantMutations = new HashMap<>();
+        this.allFurtherMutations = new HashMap<>();
         Binnie.Genetics.registerBreedingSystem(this);
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -95,18 +95,18 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 
     public void calculateArrays() {
         final Collection<IAllele> allAlleles = AlleleManager.alleleRegistry.getRegisteredAlleles().values();
-        this.resultantMutations = new HashMap<IAlleleSpecies, List<IMutation>>();
-        this.furtherMutations = new HashMap<IAlleleSpecies, List<IMutation>>();
-        this.allResultantMutations = new HashMap<IAlleleSpecies, List<IMutation>>();
-        this.allFurtherMutations = new HashMap<IAlleleSpecies, List<IMutation>>();
-        this.allActiveSpecies = new ArrayList<IAlleleSpecies>();
-        this.allSpecies = new ArrayList<IAlleleSpecies>();
+        this.resultantMutations = new HashMap<>();
+        this.furtherMutations = new HashMap<>();
+        this.allResultantMutations = new HashMap<>();
+        this.allFurtherMutations = new HashMap<>();
+        this.allActiveSpecies = new ArrayList<>();
+        this.allSpecies = new ArrayList<>();
         for (final IAllele species : allAlleles) {
             if (this.getSpeciesRoot().getTemplate(species.getUID()) != null) {
-                this.resultantMutations.put((IAlleleSpecies) species, new ArrayList<IMutation>());
-                this.furtherMutations.put((IAlleleSpecies) species, new ArrayList<IMutation>());
-                this.allResultantMutations.put((IAlleleSpecies) species, new ArrayList<IMutation>());
-                this.allFurtherMutations.put((IAlleleSpecies) species, new ArrayList<IMutation>());
+                this.resultantMutations.put((IAlleleSpecies) species, new ArrayList<>());
+                this.furtherMutations.put((IAlleleSpecies) species, new ArrayList<>());
+                this.allResultantMutations.put((IAlleleSpecies) species, new ArrayList<>());
+                this.allFurtherMutations.put((IAlleleSpecies) species, new ArrayList<>());
                 this.allSpecies.add((IAlleleSpecies) species);
                 if (this.isBlacklisted(species) || species.getUID().contains("speciesBotAlfheim")) {
                     continue;
@@ -114,9 +114,9 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
                 this.allActiveSpecies.add((IAlleleSpecies) species);
             }
         }
-        this.allMutations = new ArrayList<IMutation>();
+        this.allMutations = new ArrayList<>();
         final Collection<IClassification> allRegBranches = AlleleManager.alleleRegistry.getRegisteredClassifications().values();
-        this.allBranches = new ArrayList<IClassification>();
+        this.allBranches = new ArrayList<>();
         for (final IClassification branch : allRegBranches) {
             if (branch.getMemberSpecies().length > 0 && this.getSpeciesRoot().getTemplate(branch.getMemberSpecies()[0].getUID()) != null) {
                 boolean possible = false;
@@ -132,14 +132,14 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
             }
         }
         if (this.getSpeciesRoot().getMutations(false) != null) {
-            final Set<IMutation> mutations = new LinkedHashSet<IMutation>();
+            final Set<IMutation> mutations = new LinkedHashSet<>();
             mutations.addAll(this.getSpeciesRoot().getMutations(false));
             if (this == Binnie.Genetics.beeBreedingSystem) {
                 mutations.addAll(ExtraBeeMutation.mutations);
             }
             for (final IMutation mutation : mutations) {
                 this.allMutations.add(mutation);
-                final Set<IAlleleSpecies> participatingSpecies = new LinkedHashSet<IAlleleSpecies>();
+                final Set<IAlleleSpecies> participatingSpecies = new LinkedHashSet<>();
                 if (mutation.getAllele0() instanceof IAlleleSpecies) {
                     participatingSpecies.add(mutation.getAllele0());
                 }
@@ -222,7 +222,7 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
     }
 
     public final Collection<IClassification> getDiscoveredBranches(final World world, final GameProfile player) {
-        final List<IClassification> branches = new ArrayList<IClassification>();
+        final List<IClassification> branches = new ArrayList<>();
         for (final IClassification branch : this.getAllBranches()) {
             boolean discovered = false;
             for (final IAlleleSpecies species : branch.getMemberSpecies()) {
@@ -238,7 +238,7 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
     }
 
     public final Collection<IClassification> getDiscoveredBranches(final IBreedingTracker tracker) {
-        final List<IClassification> branches = new ArrayList<IClassification>();
+        final List<IClassification> branches = new ArrayList<>();
         for (final IClassification branch : this.getAllBranches()) {
             boolean discovered = false;
             for (final IAlleleSpecies species : branch.getMemberSpecies()) {
@@ -254,7 +254,7 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
     }
 
     public final Collection<IAlleleSpecies> getDiscoveredSpecies(final World world, final GameProfile player) {
-        final List<IAlleleSpecies> speciesList = new ArrayList<IAlleleSpecies>();
+        final List<IAlleleSpecies> speciesList = new ArrayList<>();
         for (final IAlleleSpecies species : this.getAllSpecies()) {
             if (this.isSpeciesDiscovered(species, world, player)) {
                 speciesList.add(species);
@@ -264,7 +264,7 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
     }
 
     public final Collection<IAlleleSpecies> getDiscoveredSpecies(final IBreedingTracker tracker) {
-        final List<IAlleleSpecies> speciesList = new ArrayList<IAlleleSpecies>();
+        final List<IAlleleSpecies> speciesList = new ArrayList<>();
         for (final IAlleleSpecies species : this.getAllSpecies()) {
             if (this.isSpeciesDiscovered(species, tracker)) {
                 speciesList.add(species);
@@ -274,7 +274,7 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
     }
 
     public final List<IMutation> getDiscoveredMutations(final World world, final GameProfile player) {
-        final List<IMutation> speciesList = new ArrayList<IMutation>();
+        final List<IMutation> speciesList = new ArrayList<>();
         for (final IMutation species : this.getAllMutations()) {
             if (this.isMutationDiscovered(species, world, player)) {
                 speciesList.add(species);
@@ -284,7 +284,7 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
     }
 
     public final List<IMutation> getDiscoveredMutations(final IBreedingTracker tracker) {
-        final List<IMutation> speciesList = new ArrayList<IMutation>();
+        final List<IMutation> speciesList = new ArrayList<>();
         for (final IMutation species : this.getAllMutations()) {
             if (this.isMutationDiscovered(species, tracker)) {
                 speciesList.add(species);

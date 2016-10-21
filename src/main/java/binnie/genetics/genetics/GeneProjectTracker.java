@@ -16,8 +16,8 @@ public class GeneProjectTracker extends WorldSavedData {
 
     public GeneProjectTracker(final String s) {
         super(s);
-        this.projects = new HashMap<Integer, GeneProject>();
-        this.TeamInvites = new HashMap<GameProfile, Set<Integer>>();
+        this.projects = new HashMap<>();
+        this.TeamInvites = new HashMap<>();
     }
 
     public static GeneProjectTracker getTracker(final World world) {
@@ -101,7 +101,7 @@ public class GeneProjectTracker extends WorldSavedData {
 
     public void invitePlayer(final int id, final GameProfile player) {
         if (!this.TeamInvites.containsKey(player)) {
-            this.TeamInvites.put(player, new LinkedHashSet<Integer>());
+            this.TeamInvites.put(player, new LinkedHashSet<>());
         }
         this.TeamInvites.get(player).add(id);
         this.markDirty();
@@ -109,7 +109,7 @@ public class GeneProjectTracker extends WorldSavedData {
 
     public void revokeInvite(final int id, final GameProfile player) {
         if (!this.TeamInvites.containsKey(player)) {
-            this.TeamInvites.put(player, new LinkedHashSet<Integer>());
+            this.TeamInvites.put(player, new LinkedHashSet<>());
         }
         this.TeamInvites.get(player).add(id);
         this.markDirty();

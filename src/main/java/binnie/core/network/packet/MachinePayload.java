@@ -10,9 +10,9 @@ public class MachinePayload {
     private int id;
 
     public MachinePayload(final int id) {
-        this.intPayload = new ArrayList<Integer>();
-        this.floatPayload = new ArrayList<Float>();
-        this.stringPayload = new ArrayList<String>();
+        this.intPayload = new ArrayList<>();
+        this.floatPayload = new ArrayList<>();
+        this.stringPayload = new ArrayList<>();
         this.id = 0;
         this.id = id;
         this.intPayload.clear();
@@ -21,9 +21,9 @@ public class MachinePayload {
     }
 
     public MachinePayload() {
-        this.intPayload = new ArrayList<Integer>();
-        this.floatPayload = new ArrayList<Float>();
-        this.stringPayload = new ArrayList<String>();
+        this.intPayload = new ArrayList<>();
+        this.floatPayload = new ArrayList<>();
+        this.stringPayload = new ArrayList<>();
         this.id = 0;
     }
 

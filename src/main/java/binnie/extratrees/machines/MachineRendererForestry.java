@@ -35,6 +35,6 @@ public class MachineRendererForestry {
     }
 
     static {
-        MachineRendererForestry.instances = new HashMap<String, Object>();
+        MachineRendererForestry.instances = new HashMap<>();
     }
 }

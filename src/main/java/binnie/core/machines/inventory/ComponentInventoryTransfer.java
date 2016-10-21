@@ -14,7 +14,7 @@ public class ComponentInventoryTransfer extends MachineComponent {
 
     public ComponentInventoryTransfer(final IMachine machine) {
         super(machine);
-        this.transfers = new ArrayList<Transfer>();
+        this.transfers = new ArrayList<>();
     }
 
     public void addRestock(final int[] buffer, final int destination, final int limit) {

@@ -251,8 +251,8 @@ public class Gardening {
 //	}
 
     static {
-        Gardening.fertiliserAcid = new LinkedHashMap<ItemStack, Integer>();
-        Gardening.fertiliserAlkaline = new LinkedHashMap<ItemStack, Integer>();
-        Gardening.fertiliserNutrient = new LinkedHashMap<ItemStack, Integer>();
+        Gardening.fertiliserAcid = new LinkedHashMap<>();
+        Gardening.fertiliserAlkaline = new LinkedHashMap<>();
+        Gardening.fertiliserNutrient = new LinkedHashMap<>();
     }
 }

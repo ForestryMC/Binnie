@@ -361,7 +361,7 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies {
         this.tempTolerance = EnumTolerance.BOTH_1;
         this.pHTolerance = EnumTolerance.NONE;
         this.moistureTolerance = EnumTolerance.NONE;
-        this.variantTemplates = new ArrayList<IAllele[]>();
+        this.variantTemplates = new ArrayList<>();
         this.name = name;
         this.binomial = binomial;
         this.branchName = branch;

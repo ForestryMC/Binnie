@@ -12,7 +12,7 @@ public class ManagerLiquid extends ManagerBase {
     Map<String, IFluidType> fluids;
 
     public ManagerLiquid() {
-        this.fluids = new LinkedHashMap<String, IFluidType>();
+        this.fluids = new LinkedHashMap<>();
     }
 
     public Collection<IFluidType> getFluidTypes() {

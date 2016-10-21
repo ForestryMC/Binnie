@@ -11,7 +11,7 @@ class SidedAccess {
     private boolean extractLocked;
 
     public SidedAccess() {
-        this.accesses = new HashMap<EnumFacing, AccessDirection>();
+        this.accesses = new HashMap<>();
         this.base = AccessDirection.Both;
         this.insertLocked = false;
         this.extractLocked = false;
@@ -50,7 +50,7 @@ class SidedAccess {
     }
 
     public Collection<EnumFacing> getInsertionSides() {
-        final List<EnumFacing> dirs = new ArrayList<EnumFacing>();
+        final List<EnumFacing> dirs = new ArrayList<>();
         for (final EnumFacing dir : EnumFacing.VALUES) {
             if (this.getAccess(dir).canInsert()) {
                 dirs.add(dir);
@@ -60,7 +60,7 @@ class SidedAccess {
     }
 
     public Collection<EnumFacing> getExtractionSides() {
-        final List<EnumFacing> dirs = new ArrayList<EnumFacing>();
+        final List<EnumFacing> dirs = new ArrayList<>();
         for (final EnumFacing dir : EnumFacing.VALUES) {
             if (this.getAccess(dir).canExtract()) {
                 dirs.add(dir);

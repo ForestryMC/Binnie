@@ -44,7 +44,7 @@ public class ControlPunnett extends Control {
         for (final IAllele allele1 : new IAllele[]{primary1, secondary1}) {
             y = 1;
             for (final IAllele allele2 : new IAllele[]{primary2, secondary2}) {
-                final List<IAllele> alleles = new LinkedList<IAllele>();
+                final List<IAllele> alleles = new LinkedList<>();
                 if (allele1.isDominant() && !allele2.isDominant()) {
                     alleles.add(allele1);
                 } else if (allele2.isDominant() && !allele1.isDominant()) {

@@ -264,8 +264,8 @@ public class ModuleGardening implements IInitializable {
     }
 
     static {
-        ModuleGardening.queuedAcidFertilisers = new HashMap<ItemStack, Integer>();
-        ModuleGardening.queuedAlkalineFertilisers = new HashMap<ItemStack, Integer>();
-        ModuleGardening.queuedNutrientFertilisers = new HashMap<ItemStack, Integer>();
+        ModuleGardening.queuedAcidFertilisers = new HashMap<>();
+        ModuleGardening.queuedAlkalineFertilisers = new HashMap<>();
+        ModuleGardening.queuedNutrientFertilisers = new HashMap<>();
     }
 }

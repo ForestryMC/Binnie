@@ -15,7 +15,7 @@ public class ControlListBox<T> extends ControlScrollableContent<ControlList<T>> 
 
     @Override
     public void initialise() {
-        this.setScrollableContent(new ControlList<T>(this, 1.0f, 1.0f, this.w() - 2.0f - this.scrollBarSize, this.h() - 2.0f));
+        this.setScrollableContent(new ControlList<>(this, 1.0f, 1.0f, this.w() - 2.0f - this.scrollBarSize, this.h() - 2.0f));
         this.addEventHandler(new EventKey.Down.Handler() {
             @Override
             public void onEvent(final EventKey.Down event) {
@@ -49,7 +49,7 @@ public class ControlListBox<T> extends ControlScrollableContent<ControlList<T>> 
     }
 
     public IWidget createOption(final T value, final int y) {
-        return new ControlOption<T>(this.getContent(), value, y);
+        return new ControlOption<>(this.getContent(), value, y);
     }
 
     public void setValidator(final IValidator<IWidget> validator) {

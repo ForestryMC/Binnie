@@ -13,7 +13,7 @@ public class Tooltip {
     public int maxWidth;
 
     public Tooltip() {
-        this.tooltip = new ArrayList<String>();
+        this.tooltip = new ArrayList<>();
         this.type = Type.Standard;
         this.maxWidth = 256;
     }

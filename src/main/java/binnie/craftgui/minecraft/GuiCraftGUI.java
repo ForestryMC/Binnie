@@ -129,7 +129,7 @@ public class GuiCraftGUI extends GuiContainer {
         GL11.glDisable(2896);
         GL11.glDisable(2929);
         int k = 0;
-        final List<String> strings = new ArrayList<String>();
+        final List<String> strings = new ArrayList<>();
         for (final String string : tooltip.getList()) {
             if (string != null) {
                 if (!string.contains("~~~")) {

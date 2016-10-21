@@ -47,7 +47,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
                         return new ControlColourOption(((ControlScrollableContent<ControlList<IFlowerColour>>) this).getContent(), value, y);
                     }
                 };
-                final List<IFlowerColour> colors = new ArrayList<IFlowerColour>();
+                final List<IFlowerColour> colors = new ArrayList<>();
                 for (final IFlowerColour c : EnumFlowerColor.values()) {
                     colors.add(c);
                 }

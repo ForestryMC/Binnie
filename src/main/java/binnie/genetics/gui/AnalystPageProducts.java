@@ -42,7 +42,7 @@ public class AnalystPageProducts extends AnalystPageProduce {
         final Collection<ItemStack> refinedProducts = new UniqueItemStackSet();
         final Collection<ItemStack> productList = new UniqueItemStackSet();
         final Collection<ItemStack> specialtyList = new UniqueItemStackSet();
-        Map<ItemStack, Float> products = new HashMap<ItemStack, Float>();
+        Map<ItemStack, Float> products = new HashMap<>();
         products.putAll(genome.getPrimary().getProductChances());
         products.putAll(genome.getSecondary().getProductChances());
         if (!products.isEmpty()) {
@@ -81,7 +81,7 @@ public class AnalystPageProducts extends AnalystPageProduce {
             level2Products.addAll(this.getAllProducts(stack));
         }
         refinedProducts.addAll(level2Products);
-        final Collection<FluidStack> allFluids = new ArrayList<FluidStack>();
+        final Collection<FluidStack> allFluids = new ArrayList<>();
         for (final ItemStack stack2 : refinedProducts) {
             for (final FluidStack addition : this.getAllFluids(stack2)) {
                 boolean alreadyIn = false;

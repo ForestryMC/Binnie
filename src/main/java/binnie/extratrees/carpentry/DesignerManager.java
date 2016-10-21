@@ -11,7 +11,7 @@ public class DesignerManager {
     List<IDesignSystem> systems;
 
     public DesignerManager() {
-        this.systems = new ArrayList<IDesignSystem>();
+        this.systems = new ArrayList<>();
     }
 
     public void registerDesignSystem(final IDesignSystem system) {

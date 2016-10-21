@@ -53,7 +53,7 @@ public class Press {
         Press.slotFruit = 0;
         Press.slotCurrent = 1;
         Press.tankWater = 0;
-        Press.pressRecipes = new HashMap<ItemStack, FluidStack>();
+        Press.pressRecipes = new HashMap<>();
     }
 
     public static class PackagePress extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {

@@ -79,6 +79,6 @@ public class FlowerMutation implements IFlowerMutation {
 
     @Override
     public Collection<String> getSpecialConditions() {
-        return new ArrayList<String>();
+        return new ArrayList<>();
     }
 }

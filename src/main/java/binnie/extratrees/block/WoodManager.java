@@ -91,7 +91,7 @@ public class WoodManager {
     }
 
     public static List<IPlankType> getAllPlankTypes() {
-        final List<IPlankType> list = new ArrayList<IPlankType>();
+        final List<IPlankType> list = new ArrayList<>();
         for (final IPlankType type : PlankType.ExtraTreePlanks.values()) {
             list.add(type);
         }

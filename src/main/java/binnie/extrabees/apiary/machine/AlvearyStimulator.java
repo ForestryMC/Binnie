@@ -101,7 +101,7 @@ public class AlvearyStimulator {
                 return new StimulatorCircuit[0];
             }
             final ICircuit[] circuits = board.getCircuits();
-            final List<IBeeModifier> mod = new ArrayList<IBeeModifier>();
+            final List<IBeeModifier> mod = new ArrayList<>();
             for (final ICircuit circuit : circuits) {
                 if (circuit instanceof StimulatorCircuit) {
                     mod.add((IBeeModifier) circuit);

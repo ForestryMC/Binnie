@@ -66,7 +66,7 @@ public class GlassType implements IDesignMaterial {
     }
 
     static {
-        GlassType.types = new LinkedHashMap<Integer, GlassType>();
+        GlassType.types = new LinkedHashMap<>();
         for (final StandardColor c : StandardColor.values()) {
             GlassType.types.put(c.ordinal(), new GlassType(c.ordinal(), c.name, c.colour));
         }

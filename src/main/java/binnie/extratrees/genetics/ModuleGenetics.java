@@ -16,7 +16,7 @@ public class ModuleGenetics implements IInitializable {
 
     public ModuleGenetics() {
         this.branches = new String[]{"Malus Maleae Amygdaloideae Rosaceae", "Musa   Musaceae Zingiberales Commelinids Angiosperms", "Sorbus Maleae", "Tsuga   Pinaceae", "Fraxinus Oleeae  Oleaceae Lamiales Asterids Angiospems"};
-        this.classifications = new ArrayList<List<String>>();
+        this.classifications = new ArrayList<>();
     }
 
     @Override
@@ -55,7 +55,7 @@ public class ModuleGenetics implements IInitializable {
 
     private void generateBranches() {
         for (final String hierarchy : this.branches) {
-            final List<String> set = new ArrayList<String>();
+            final List<String> set = new ArrayList<>();
             for (final String string : hierarchy.split(" ", 0)) {
                 set.add(string.toLowerCase());
             }

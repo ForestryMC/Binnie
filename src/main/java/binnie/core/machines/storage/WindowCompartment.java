@@ -57,7 +57,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 
     public WindowCompartment(final EntityPlayer player, final IInventory inventory, final Side side) {
         super(320, 226, player, inventory, side);
-        this.panels = new HashMap<Panel, Integer>();
+        this.panels = new HashMap<>();
         this.currentTab = 0;
     }
 
@@ -128,7 +128,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
             }
         }.setOrigin(EventHandler.Origin.DirectChild, tab));
         x += 24;
-        final ControlPages<Integer> compartmentPages = new ControlPages<Integer>(controlCompartment, 24.0f, 0.0f, compartmentPageWidth, compartmentPageHeight);
+        final ControlPages<Integer> compartmentPages = new ControlPages<>(controlCompartment, 24.0f, 0.0f, compartmentPageWidth, compartmentPageHeight);
         final ControlPage[] page = new ControlPage[inv.getTabNumber()];
         for (int p = 0; p < inv.getTabNumber(); ++p) {
             page[p] = new ControlPage(compartmentPages, Integer.valueOf(p));
@@ -336,7 +336,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
             }
 
             private void updateSearch() {
-                Map<Integer, String> slotIds = new HashMap<Integer, String>();
+                Map<Integer, String> slotIds = new HashMap<>();
                 final IInventory inv = WindowCompartment.this.getInventory();
                 for (int i = 0; i < inv.getSizeInventory(); ++i) {
                     final ItemStack stack = inv.getStackInSlot(i);

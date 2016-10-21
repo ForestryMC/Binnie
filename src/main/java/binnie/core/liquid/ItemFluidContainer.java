@@ -174,7 +174,7 @@ public class ItemFluidContainer extends ItemFood {
         ItemFluidContainer.LiquidSpirit = 512;
         ItemFluidContainer.LiquidLiqueuer = 640;
         ItemFluidContainer.LiquidGenetics = 768;
-        ItemFluidContainer.idToFluid = new HashMap<Integer, String>();
-        ItemFluidContainer.fluidToID = new HashMap<String, Integer>();
+        ItemFluidContainer.idToFluid = new HashMap<>();
+        ItemFluidContainer.fluidToID = new HashMap<>();
     }
 }

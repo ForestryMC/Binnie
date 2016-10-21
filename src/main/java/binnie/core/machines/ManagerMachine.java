@@ -21,10 +21,10 @@ public class ManagerMachine extends ManagerBase {
     private int machineRenderID;
 
     public ManagerMachine() {
-        this.componentInterfaceMap = new HashMap<Class<?>, Class<?>[]>();
-        this.machineGroups = new HashMap<String, MachineGroup>();
-        this.networkIDToComponent = new HashMap<Integer, Class<?>>();
-        this.componentToNetworkID = new HashMap<Class<?>, Integer>();
+        this.componentInterfaceMap = new HashMap<>();
+        this.machineGroups = new HashMap<>();
+        this.networkIDToComponent = new HashMap<>();
+        this.componentToNetworkID = new HashMap<>();
         this.nextNetworkID = 0;
     }
 
@@ -45,7 +45,7 @@ public class ManagerMachine extends ManagerBase {
         if (this.componentInterfaceMap.containsKey(component)) {
             return;
         }
-        final Set<Class<?>> interfaces = new HashSet<Class<?>>();
+        final Set<Class<?>> interfaces = new HashSet<>();
         for (Class<?> currentClass = component; currentClass != null; currentClass = null) {
             for (final Class<?> clss : currentClass.getInterfaces()) {
                 interfaces.add(clss);

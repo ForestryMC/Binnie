@@ -59,7 +59,7 @@ public class ModuleAlcohol implements IInitializable {
     public void postInit() {
         for (final Juice juice : Juice.values()) {
             final String oreDict = juice.squeezing;
-            final List<ItemStack> ores = new ArrayList<ItemStack>();
+            final List<ItemStack> ores = new ArrayList<>();
             ores.addAll(OreDictionary.getOres(oreDict));
             for (final Food food : Food.values()) {
                 if (food.getOres().contains(oreDict)) {

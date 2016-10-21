@@ -59,7 +59,7 @@ public class WindowFieldKit extends Window {
         this.glassRand = new Random();
         this.analyseProgress = 1.0f;
         this.isAnalysing = false;
-        this.info = new HashMap<IChromosomeType, String>();
+        this.info = new HashMap<>();
         this.prev = null;
     }
 
@@ -178,7 +178,7 @@ public class WindowFieldKit extends Window {
         for (final IChromosomeType type : root.getKaryotype()) {
             if (!Binnie.Genetics.isInvalidChromosome(type)) {
                 final IAllele allele = ind.getGenome().getActiveAllele(type);
-                final List<String> infos = new ArrayList<String>();
+                final List<String> infos = new ArrayList<>();
                 int i = 0;
                 for (String pref = root.getUID() + ".fieldkit." + type.getName().toLowerCase() + "."; Binnie.Language.canLocalise(pref + i); ++i) {
                     infos.add(Binnie.Language.localise(pref + i));

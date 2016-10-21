@@ -169,9 +169,9 @@ public class Acclimatiser {
         slotReserve = new int[]{0, 1, 2, 3};
         slotAcclimatiser = new int[]{5, 6, 7};
         slotDone = new int[]{8, 9, 10, 11};
-        Acclimatiser.toleranceSystems = new ArrayList<ToleranceSystem>();
-        Acclimatiser.temperatureItems = new HashMap<ItemStack, Float>();
-        Acclimatiser.humidityItems = new HashMap<ItemStack, Float>();
+        Acclimatiser.toleranceSystems = new ArrayList<>();
+        Acclimatiser.temperatureItems = new HashMap<>();
+        Acclimatiser.humidityItems = new HashMap<>();
     }
 
     public static class PackageAcclimatiser extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
@@ -258,7 +258,7 @@ public class Acclimatiser {
         }
 
         protected void attemptAcclimatisation() {
-            final List<ItemStack> acclms = new ArrayList<ItemStack>();
+            final List<ItemStack> acclms = new ArrayList<>();
             for (final ItemStack s : this.getUtil().getNonNullStacks(Acclimatiser.slotAcclimatiser)) {
                 if (Acclimatiser.canAcclimatise(this.getUtil().getStack(4), s)) {
                     acclms.add(s);

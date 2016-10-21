@@ -53,7 +53,7 @@ public class Infuser {
     static {
         Infuser.tankInput = 0;
         Infuser.tankOutput = 1;
-        Infuser.recipes = new HashMap<Fluid, FluidStack>();
+        Infuser.recipes = new HashMap<>();
     }
 
     public static class PackageInfuser extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {

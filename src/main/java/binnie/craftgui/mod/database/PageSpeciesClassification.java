@@ -15,7 +15,7 @@ public class PageSpeciesClassification extends PageSpecies {
 
     public PageSpeciesClassification(final IWidget parent, final DatabaseTab tab) {
         super(parent, tab);
-        this.levels = new LinkedHashMap<IClassification.EnumClassLevel, ControlText>();
+        this.levels = new LinkedHashMap<>();
         int y = 16;
         for (final IClassification.EnumClassLevel level : IClassification.EnumClassLevel.values()) {
             final ControlText text = new ControlTextCentered(this, y, "");

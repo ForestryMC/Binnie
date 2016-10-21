@@ -36,7 +36,7 @@ public class ControlChromoPicker extends Control implements ITooltip {
         this.addSelfEventHandler(new EventWidget.EndMouseOver.Handler() {
             @Override
             public void onEvent(final EventWidget.EndMouseOver event) {
-                ControlChromoPicker.this.callEvent(new EventValueChanged<Object>(ControlChromoPicker.this.getWidget(), null));
+                ControlChromoPicker.this.callEvent(new EventValueChanged<>(ControlChromoPicker.this.getWidget(), null));
             }
         });
     }

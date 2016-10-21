@@ -61,7 +61,7 @@ public class WindowAnalyst extends Window {
         super(312.0f, 230.0f, player, inventory, side);
         this.baseWidget = null;
         this.tabBar = null;
-        this.analystPages = new ArrayList<ControlAnalystPage>();
+        this.analystPages = new ArrayList<>();
         this.analystPageSize = null;
         this.isDatabase = false;
         this.isMaster = false;

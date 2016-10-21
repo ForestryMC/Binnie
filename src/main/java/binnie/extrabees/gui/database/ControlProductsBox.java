@@ -38,7 +38,7 @@ public class ControlProductsBox extends ControlListBox<ControlProductsBox.Produc
             final IBeeGenome genome = Binnie.Genetics.getBeeRoot().templateAsGenome(template);
             final float speed = genome.getSpeed();
             final float modeSpeed = Binnie.Genetics.getBeeRoot().getBeekeepingMode(BinnieCore.proxy.getWorld()).getBeeModifier().getProductionModifier(genome, 1.0f);
-            final List<Product> strings = new ArrayList<Product>();
+            final List<Product> strings = new ArrayList<>();
             if (this.type == Type.Products) {
                 for (final Map.Entry<ItemStack, Float> entry : species.getProductChances().entrySet()) {
                     strings.add(new Product(entry.getKey(), speed * modeSpeed * entry.getValue()));

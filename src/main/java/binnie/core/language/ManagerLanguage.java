@@ -11,7 +11,7 @@ public class ManagerLanguage extends ManagerBase {
     private Map<Object, String> objNames;
 
     public ManagerLanguage() {
-        this.objNames = new HashMap<Object, String>();
+        this.objNames = new HashMap<>();
     }
 
     public void addObjectName(final Object obj, final String name) {

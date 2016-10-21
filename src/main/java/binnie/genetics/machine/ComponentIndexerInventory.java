@@ -30,8 +30,8 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
         super(machine);
         this.indexerSize = -1;
         this.guiRefreshCounter = 0;
-        this.indexerInventory = new SetList<ItemStack>();
-        this.sortedInventory = new SetList<Integer>();
+        this.indexerInventory = new SetList<>();
+        this.sortedInventory = new SetList<>();
         this.needsSorting = true;
     }
 
@@ -173,17 +173,17 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
                         public List<ItemStack> bees;
 
                         SpeciesList() {
-                            this.drones = new ArrayList<Integer>();
-                            this.queens = new ArrayList<Integer>();
-                            this.princesses = new ArrayList<Integer>();
-                            this.bees = new ArrayList<ItemStack>();
+                            this.drones = new ArrayList<>();
+                            this.queens = new ArrayList<>();
+                            this.princesses = new ArrayList<>();
+                            this.bees = new ArrayList<>();
                         }
 
                         public void add(final ItemStack stack) {
                             this.bees.add(stack);
                         }
                     }
-                    final Map<Integer, SpeciesList> speciesList = new HashMap<Integer, SpeciesList>();
+                    final Map<Integer, SpeciesList> speciesList = new HashMap<>();
                     for (final ItemStack itemStack : this.indexerInventory) {
                         final int species = itemStack.getItemDamage();
                         if (!speciesList.containsKey(species)) {
@@ -202,7 +202,7 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
                             }
                         }
                     }
-                    this.sortedInventory = new SetList<Integer>();
+                    this.sortedInventory = new SetList<>();
                     switch (this.sortingMode) {
                         case Species: {
                             for (int j = 0; j < 1024; ++j) {

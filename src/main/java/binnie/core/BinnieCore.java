@@ -148,7 +148,7 @@ public final class BinnieCore extends AbstractMod {
     }
 
     private static List<AbstractMod> getActiveMods() {
-        final List<AbstractMod> list = new ArrayList<AbstractMod>();
+        final List<AbstractMod> list = new ArrayList<>();
         for (final AbstractMod mod : BinnieCore.modList) {
             if (mod.isActive()) {
                 list.add(mod);
@@ -218,7 +218,7 @@ public final class BinnieCore extends AbstractMod {
     }
 
     static {
-        BinnieCore.modList = new ArrayList<AbstractMod>();
+        BinnieCore.modList = new ArrayList<>();
     }
 
     public static class PacketHandler extends BinniePacketHandler {

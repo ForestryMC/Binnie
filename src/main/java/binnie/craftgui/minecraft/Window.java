@@ -127,7 +127,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
         this.setSize(new IPoint(width, height));
         this.gui = new GuiCraftGUI(this);
         for (final EnumHighlighting h : EnumHighlighting.values()) {
-            ControlSlot.highlighting.put(h, new ArrayList<Integer>());
+            ControlSlot.highlighting.put(h, new ArrayList<>());
         }
         (CraftGUI.Render = new Renderer(this.gui)).stylesheet(StyleSheetManager.getDefault());
         this.titleButtonLeft = -14.0f;

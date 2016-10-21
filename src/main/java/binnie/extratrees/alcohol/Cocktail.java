@@ -44,7 +44,7 @@ public enum Cocktail {
     public Map<ICocktailIngredient, Integer> ingredients;
 
     private Cocktail(final String name, final Glassware glassware, final int colour) {
-        this.ingredients = new HashMap<ICocktailIngredient, Integer>();
+        this.ingredients = new HashMap<>();
         this.name = name;
         this.glassware = glassware;
         this.colour = colour;
@@ -83,7 +83,7 @@ public enum Cocktail {
     }
 
     static {
-        cocktailIngredients = new HashMap<String, ICocktailIngredient>();
+        cocktailIngredients = new HashMap<>();
         Cocktail.Bellini.add(Alcohol.SparklingWine, 2);
         Cocktail.Bellini.add(Juice.Peach, 1);
         Cocktail.BlackRussian.add(Spirit.Vodka, 5);

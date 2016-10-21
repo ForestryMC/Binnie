@@ -22,7 +22,7 @@ public class HiveDrop implements IHiveDrop {
     }
 
     public HiveDrop(IAllele[] template, final ItemStack[] bonus, final int chance) {
-        this.additional = new ArrayList<ItemStack>();
+        this.additional = new ArrayList<>();
         if (template == null) {
             template = Binnie.Genetics.getBeeRoot().getDefaultTemplate();
         }
@@ -35,7 +35,7 @@ public class HiveDrop implements IHiveDrop {
 
     @Override
     public Collection<ItemStack> getExtraItems(IBlockAccess world, BlockPos pos, int fortune) {
-        final ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+        final ArrayList<ItemStack> ret = new ArrayList<>();
         for (final ItemStack stack : this.additional) {
             ret.add(stack.copy());
         }

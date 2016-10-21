@@ -55,7 +55,7 @@ public abstract class WindowAbstractDatabase extends Window {
     public WindowAbstractDatabase(final EntityPlayer player, final Side side, final boolean nei, final BreedingSystem system, final float wid) {
         super(100.0f, 192.0f, player, null, side);
         this.selectionBoxWidth = 95.0f;
-        this.modes = new HashMap<IDatabaseMode, ModeWidgets>();
+        this.modes = new HashMap<>();
         this.panelInformation = null;
         this.panelSearch = null;
         this.modePages = null;
@@ -129,7 +129,7 @@ public abstract class WindowAbstractDatabase extends Window {
         new ControlHelp(this, 4.0f, 4.0f);
         (this.panelInformation = new Panel(this, 24.0f, 24.0f, 144.0f, 176.0f, MinecraftGUI.PanelType.Black)).setColour(860416);
         (this.panelSearch = new Panel(this, 176.0f, 24.0f, this.selectionBoxWidth, 160.0f, MinecraftGUI.PanelType.Black)).setColour(860416);
-        this.modePages = new ControlPages<IDatabaseMode>(this, 0.0f, 0.0f, this.getSize().x(), this.getSize().y());
+        this.modePages = new ControlPages<>(this, 0.0f, 0.0f, this.getSize().x(), this.getSize().y());
         new ControlTextEdit(this, 176.0f, 184.0f, this.selectionBoxWidth, 16.0f);
         this.createMode(Mode.Species, new ModeWidgets(Mode.Species, this) {
             @Override
@@ -228,12 +228,12 @@ public abstract class WindowAbstractDatabase extends Window {
 
         public ModeWidgets(final IDatabaseMode mode, final WindowAbstractDatabase database) {
             this.database = database;
-            this.modePage = new ControlPage<IDatabaseMode>(database.modePages, 0.0f, 0.0f, database.getSize().x(), database.getSize().y(), mode);
+            this.modePage = new ControlPage<>(database.modePages, 0.0f, 0.0f, database.getSize().x(), database.getSize().y(), mode);
             final IArea listBoxArea = database.panelSearch.area().inset(2);
             this.createListBox(listBoxArea);
             CraftGUIUtil.alignToWidget(this.listBox, database.panelSearch);
             CraftGUIUtil.moveWidget(this.listBox, new IPoint(2.0f, 2.0f));
-            CraftGUIUtil.alignToWidget(this.infoPages = new ControlPages<DatabaseTab>(this.modePage, 0.0f, 0.0f, 144.0f, 176.0f), database.panelInformation);
+            CraftGUIUtil.alignToWidget(this.infoPages = new ControlPages<>(this.modePage, 0.0f, 0.0f, 144.0f, 176.0f), database.panelInformation);
         }
 
         public abstract void createListBox(final IArea p0);

@@ -552,7 +552,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
     }
 
     static {
-        (ExtraBeesEffect.birthdays = new ArrayList<Birthday>()).add(new Birthday(3, 10, "Binnie"));
+        (ExtraBeesEffect.birthdays = new ArrayList<>()).add(new Birthday(3, 10, "Binnie"));
     }
 
     public static class Birthday {

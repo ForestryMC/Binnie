@@ -8,7 +8,7 @@ class FluidStackSet implements Set<FluidStack> {
     List<FluidStack> itemStacks;
 
     FluidStackSet() {
-        this.itemStacks = new ArrayList<FluidStack>();
+        this.itemStacks = new ArrayList<>();
     }
 
     @Override

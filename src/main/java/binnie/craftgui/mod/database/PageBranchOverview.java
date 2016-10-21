@@ -17,7 +17,7 @@ public class PageBranchOverview extends PageBranch {
 
     public PageBranchOverview(final IWidget parent, final DatabaseTab tab) {
         super(parent, tab);
-        this.pageBranchOverview_branchDescription = new ArrayList<ControlText>();
+        this.pageBranchOverview_branchDescription = new ArrayList<>();
         this.pageBranchOverview_branchName = new ControlTextCentered(this, 8.0f, "");
         this.pageBranchOverview_branchScientific = new ControlTextCentered(this, 32.0f, "");
         this.pageBranchOverview_branchAuthority = new ControlTextCentered(this, 44.0f, "");
@@ -37,7 +37,7 @@ public class PageBranchOverview extends PageBranch {
             desc = "No Description Provided.";
         }
         String line = "";
-        final List<String> descLines = new ArrayList<String>();
+        final List<String> descLines = new ArrayList<>();
         for (final String str : desc.split(" ")) {
             if (CraftGUI.Render.textWidth(line + " " + str) > 134) {
                 descLines.add("§o" + line + "§r");

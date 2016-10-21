@@ -24,7 +24,7 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
         super(machine);
         this.registeredToIC2EnergyNet = false;
         this.previousPower = 0.0f;
-        this.inputs = new LinkedList<Float>();
+        this.inputs = new LinkedList<>();
         this.container = new PowerInterface(storage);
 //		if (!this.registeredToIC2EnergyNet) {
 //			this.addToEnergyNet();

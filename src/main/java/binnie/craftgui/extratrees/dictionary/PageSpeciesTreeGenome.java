@@ -115,7 +115,7 @@ public class PageSpeciesTreeGenome extends PageSpecies {
         new ControlText(contents, new IArea(0.0f, y, w2, th), syst.getChromosomeShortName(EnumTreeChromosome.FERTILITY) + " : ", TextJustification.MiddleRight);
         new ControlText(contents, new IArea(w2, y, w3, th), genome.getFertility() + "x", TextJustification.MiddleLeft);
         y += th;
-        final List<ItemStack> fruits = new ArrayList<ItemStack>();
+        final List<ItemStack> fruits = new ArrayList<>();
         for (final ItemStack stack : genome.getFruitProvider().getProducts().keySet()) {
             fruits.add(stack);
         }

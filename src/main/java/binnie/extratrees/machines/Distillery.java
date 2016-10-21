@@ -65,9 +65,9 @@ public class Distillery {
     static {
         Distillery.tankInput = 0;
         Distillery.tankOutput = 1;
-        (Distillery.recipes = new ArrayList<Map<Fluid, FluidStack>>()).add(new HashMap<Fluid, FluidStack>());
-        Distillery.recipes.add(new HashMap<Fluid, FluidStack>());
-        Distillery.recipes.add(new HashMap<Fluid, FluidStack>());
+        (Distillery.recipes = new ArrayList<>()).add(new HashMap<>());
+        Distillery.recipes.add(new HashMap<>());
+        Distillery.recipes.add(new HashMap<>());
     }
 
     public static class PackageDistillery extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {

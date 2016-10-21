@@ -27,6 +27,6 @@ public class DrinkManager {
     }
 
     static {
-        DrinkManager.drinkLiquids = new HashMap<String, IDrinkLiquid>();
+        DrinkManager.drinkLiquids = new HashMap<>();
     }
 }

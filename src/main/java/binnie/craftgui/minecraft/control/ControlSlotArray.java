@@ -16,7 +16,7 @@ public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
 
     public ControlSlotArray(final IWidget parent, final int x, final int y, final int columns, final int rows) {
         super(parent, x, y, columns * 18, rows * 18);
-        this.slots = new ArrayList<ControlSlot>();
+        this.slots = new ArrayList<>();
         this.rows = rows;
         this.columns = columns;
         for (int row = 0; row < rows; ++row) {

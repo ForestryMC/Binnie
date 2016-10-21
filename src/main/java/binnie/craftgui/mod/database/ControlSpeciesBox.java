@@ -30,7 +30,7 @@ public class ControlSpeciesBox extends ControlListBox<IAlleleSpecies> {
     public void setBranch(final IClassification branch) {
         if (branch != this.branch) {
             this.branch = branch;
-            final List<IAlleleSpecies> speciesList2 = new ArrayList<IAlleleSpecies>();
+            final List<IAlleleSpecies> speciesList2 = new ArrayList<>();
             this.movePercentage(-100.0f);
             this.setOptions(speciesList2);
             final EntityPlayer player = Window.get(this).getPlayer();

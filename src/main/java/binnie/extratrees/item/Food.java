@@ -84,7 +84,7 @@ public enum Food implements IItemMisc {
     }
 
     private Food(final int hunger) {
-        this.ores = new ArrayList<String>();
+        this.ores = new ArrayList<>();
         this.hunger = hunger;
     }
 

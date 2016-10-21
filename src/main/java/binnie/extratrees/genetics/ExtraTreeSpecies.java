@@ -584,7 +584,7 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
     private ExtraTreeSpecies(final String branch, final String binomial, final int color, final int polColor, final int woodColor, final IWoodType wood, final IAlleleFruit fruit, SaplingType saplingType, final Class<? extends WorldGenerator> gen) {
         this.leafType = LeafType.Normal;
         this.saplingType = saplingType;
-        this.families = new ArrayList<IFruitFamily>();
+        this.families = new ArrayList<>();
         this.girth = 1;
         this.fruit = null;
         this.color = color;
@@ -962,7 +962,7 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
 
     @Override
     public ItemStack[] getResearchBounty(final World world, final GameProfile researcher, final IIndividual individual, final int bountyLevel) {
-        final ArrayList<ItemStack> bounty = new ArrayList<ItemStack>();
+        final ArrayList<ItemStack> bounty = new ArrayList<>();
         ItemStack research = null;
         if (world.rand.nextFloat() < 10.0f / bountyLevel) {
             final Collection<? extends IMutation> combinations = this.getRoot().getCombinations(this);
@@ -996,7 +996,7 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
 
     @Override
     public int getComplexity() {
-        return 1 + this.getGeneticAdvancement(this, new ArrayList<IAllele>());
+        return 1 + this.getGeneticAdvancement(this, new ArrayList<>());
     }
 
     private int getGeneticAdvancement(final IAllele species, final ArrayList<IAllele> exclude) {

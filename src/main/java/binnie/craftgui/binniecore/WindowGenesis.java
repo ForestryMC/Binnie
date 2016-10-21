@@ -104,7 +104,7 @@ public class WindowGenesis extends Window {
         this.geneOptions = new ControlListBox<Gene>(this, two.x(), two.y(), two.w(), two.h(), 10.0f) {
             @Override
             public IWidget createOption(final Gene value, final int y) {
-                return new ControlTextOption<Gene>(this.getContent(), value, y);
+                return new ControlTextOption<>(this.getContent(), value, y);
             }
         };
         tabSystems.addEventHandler(new EventValueChanged.Handler() {
@@ -119,7 +119,7 @@ public class WindowGenesis extends Window {
             @Override
             public void onEvent(final EventValueChanged event) {
                 final Map<IChromosomeType, List<IAllele>> map = Binnie.Genetics.getChromosomeMap(WindowGenesis.this.root);
-                final List<Gene> opts = new ArrayList<Gene>();
+                final List<Gene> opts = new ArrayList<>();
                 final IChromosomeType chromo = ((Gene) event.value) != null ? ((Gene) event.value).getChromosome() : null;
                 if (chromo != null)// fix NPE
                     for (final IAllele allele : map.get(chromo)) {
@@ -147,7 +147,7 @@ public class WindowGenesis extends Window {
     }
 
     private void refreshTemplate(final IChromosomeType selection) {
-        final List<Gene> genes = new ArrayList<Gene>();
+        final List<Gene> genes = new ArrayList<>();
         final IChromosomeType[] arr$;
         final IChromosomeType[] chromos = arr$ = Binnie.Genetics.getChromosomeMap(this.root).keySet().toArray(new IChromosomeType[0]);
         for (final IChromosomeType type : arr$) {
@@ -162,7 +162,7 @@ public class WindowGenesis extends Window {
         if (selection != null) {
             this.geneList.setValue(new Gene(this.template[selection.ordinal()], selection, this.root));
         } else {
-            this.geneOptions.setOptions(new ArrayList<Gene>());
+            this.geneOptions.setOptions(new ArrayList<>());
         }
         this.refreshPickup();
     }

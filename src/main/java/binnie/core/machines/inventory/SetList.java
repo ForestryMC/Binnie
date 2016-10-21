@@ -26,7 +26,7 @@ public class SetList<E> extends ArrayList<E> implements Set<E> {
 
     @Override
     public boolean addAll(final int index, final Collection<? extends E> c) {
-        final Collection<E> copy = new ArrayList<E>(c);
+        final Collection<E> copy = new ArrayList<>(c);
         copy.removeAll(this);
         return super.addAll(index, copy);
     }

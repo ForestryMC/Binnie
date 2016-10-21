@@ -280,7 +280,7 @@ public class ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
         this.diffB = 0;
         this.pod = null;
         this.ripeningPeriod = 0;
-        this.products = new HashMap<ItemStack, Float>();
+        this.products = new HashMap<>();
         this.colour = colour;
         this.index = index;
         this.setRipening(time, unripe);
@@ -292,7 +292,7 @@ public class ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
         this.diffB = 0;
         this.pod = null;
         this.ripeningPeriod = 0;
-        this.products = new HashMap<ItemStack, Float>();
+        this.products = new HashMap<>();
         this.pod = pod;
         this.ripeningPeriod = 2;
         this.uuid = uuid;

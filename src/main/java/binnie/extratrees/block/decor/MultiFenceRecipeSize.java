@@ -17,7 +17,7 @@ public class MultiFenceRecipeSize implements IRecipe {
     @Override
     public boolean matches(final InventoryCrafting inv, final World world) {
         String pattern = "";
-        final List<IPlankType> types = new ArrayList<IPlankType>();
+        final List<IPlankType> types = new ArrayList<>();
         for (int i = 0; i < inv.getSizeInventory(); ++i) {
             final ItemStack stack = inv.getStackInSlot(i);
             final IPlankType type = (stack == null) ? null : WoodManager.get(stack);

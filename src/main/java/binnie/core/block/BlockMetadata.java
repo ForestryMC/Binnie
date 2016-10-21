@@ -77,7 +77,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
     }
 
     public static ArrayList<ItemStack> getBlockDropped(final IBlockMetadata block, final IBlockAccess world, final BlockPos pos, final int blockMeta) {
-        final ArrayList<ItemStack> array = new ArrayList<ItemStack>();
+        final ArrayList<ItemStack> array = new ArrayList<>();
         final TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
         if (tile != null && !tile.hasDroppedBlock()) {
             //final int meta = block.getDroppedMeta(world.getBlockMetadata(x, y, z), tile.getTileMetadata());
@@ -87,7 +87,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
     }
 
     public static boolean breakBlock(final IBlockMetadata block, final EntityPlayer player, final World world, final BlockPos pos) {
-        List<ItemStack> drops = new ArrayList<ItemStack>();
+        List<ItemStack> drops = new ArrayList<>();
         final Block block2 = (Block) block;
         final TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
         if (tile != null && !tile.hasDroppedBlock()) {

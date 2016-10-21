@@ -10,8 +10,8 @@ public class BeeModifierLogic {
     private List<EnumBeeBooleanModifier> booleanModifiers;
 
     public BeeModifierLogic() {
-        this.modifiers = new HashMap<EnumBeeModifier, Float[]>();
-        this.booleanModifiers = new ArrayList<EnumBeeBooleanModifier>();
+        this.modifiers = new HashMap<>();
+        this.booleanModifiers = new ArrayList<>();
     }
 
     public float getModifier(final EnumBeeModifier modifier, final float currentModifier) {

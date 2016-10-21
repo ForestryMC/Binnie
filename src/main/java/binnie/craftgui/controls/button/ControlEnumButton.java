@@ -40,7 +40,7 @@ public class ControlEnumButton<T> extends ControlButton implements IControlValue
 
     public ControlEnumButton(final IWidget parent, final float x, final float y, final float width, final float height, final T[] values) {
         super(parent, x, y, width, height, "");
-        this.enumConstants = new ArrayList<T>();
+        this.enumConstants = new ArrayList<>();
         for (final T value : values) {
             this.enumConstants.add(value);
         }

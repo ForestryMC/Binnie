@@ -6,7 +6,7 @@ class ListMap<T> implements List<T> {
     private LinkedHashMap<Integer, T> map;
 
     ListMap() {
-        this.map = new LinkedHashMap<Integer, T>();
+        this.map = new LinkedHashMap<>();
     }
 
     @Override

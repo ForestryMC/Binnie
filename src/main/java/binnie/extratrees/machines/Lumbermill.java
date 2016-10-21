@@ -60,7 +60,7 @@ public class Lumbermill {
     }
 
     private static Collection<ItemStack> getRecipeResult(final ItemStack output) {
-        final List<ItemStack> list = new ArrayList<ItemStack>();
+        final List<ItemStack> list = new ArrayList<>();
         for (final Object recipeO : CraftingManager.getInstance().getRecipeList()) {
             if (recipeO instanceof ShapelessRecipes) {
                 final ShapelessRecipes recipe = (ShapelessRecipes) recipeO;
@@ -109,7 +109,7 @@ public class Lumbermill {
         Lumbermill.slotBark = 2;
         Lumbermill.slotSawdust = 3;
         Lumbermill.tankWater = 0;
-        Lumbermill.recipes = new HashMap<ItemStack, ItemStack>();
+        Lumbermill.recipes = new HashMap<>();
     }
 
     public static class PackageLumbermill extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {

@@ -11,9 +11,9 @@ public class PacketPayload {
     public List<String> stringPayload;
 
     public PacketPayload() {
-        this.intPayload = new ArrayList<Integer>();
-        this.floatPayload = new ArrayList<Float>();
-        this.stringPayload = new ArrayList<String>();
+        this.intPayload = new ArrayList<>();
+        this.floatPayload = new ArrayList<>();
+        this.stringPayload = new ArrayList<>();
         this.intPayload.clear();
         this.floatPayload.clear();
         this.stringPayload.clear();

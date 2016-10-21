@@ -60,7 +60,7 @@ public class AnalystPageClimate extends ControlAnalystPage {
         }
         new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), "Biomes", TextJustification.MiddleCenter).setColour(this.getColour());
         y += 12;
-        final List<Biome> biomes = new ArrayList<Biome>();
+        final List<Biome> biomes = new ArrayList<>();
         for (final Biome biome : Biome.EXPLORATION_BIOMES_LIST) { //TODO check
             if (biome != null) {
                 if (BiomeDictionary.isBiomeRegistered(biome)) {

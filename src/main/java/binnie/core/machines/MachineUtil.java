@@ -164,7 +164,7 @@ public class MachineUtil {
     }
 
     public List<ItemStack> getNonNullStacks(final int[] slotacclimatiser) {
-        final List<ItemStack> stacks = new ArrayList<ItemStack>();
+        final List<ItemStack> stacks = new ArrayList<>();
         for (final ItemStack stack : this.getStacks(slotacclimatiser)) {
             if (stack != null) {
                 stacks.add(stack);

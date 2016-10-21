@@ -70,9 +70,9 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
         this.deleteAllChildren();
         int cx = 2;
         int cy = 2;
-        final Map<IDesignCategory, List<IDesign>> designs = new HashMap<IDesignCategory, List<IDesign>>();
+        final Map<IDesignCategory, List<IDesign>> designs = new HashMap<>();
         for (final IDesignCategory category : CarpentryManager.carpentryInterface.getAllDesignCategories()) {
-            designs.put(category, new ArrayList<IDesign>());
+            designs.put(category, new ArrayList<>());
             for (final IDesign tile : category.getDesigns()) {
                 if (filterText == "" || tile.getName().toLowerCase().contains(filterText)) {
                     designs.get(category).add(tile);

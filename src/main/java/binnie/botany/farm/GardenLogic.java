@@ -33,8 +33,8 @@ public class GardenLogic extends FarmLogic {
 
     public GardenLogic(final IFarmHousing housing) {
         super(housing);
-        this.produce = new ArrayList<ItemStack>();
-        (this.farmables = new ArrayList<IFarmable>()).add(new FarmableFlower());
+        this.produce = new ArrayList<>();
+        (this.farmables = new ArrayList<>()).add(new FarmableFlower());
         this.farmables.add(new FarmableVanillaFlower());
     }
 

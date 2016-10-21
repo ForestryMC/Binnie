@@ -32,8 +32,8 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener {
     private Map<String, Texture> textures;
 
     public CraftGUIResourceManager() {
-        this.textureSheets = new HashMap<String, ParsedTextureSheet>();
-        this.textures = new HashMap<String, Texture>();
+        this.textureSheets = new HashMap<>();
+        this.textures = new HashMap<>();
         CraftGUI.ResourceManager = this;
     }
 
@@ -88,7 +88,7 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener {
         if (split.length < 1 || split.length > 4) {
             throw new RuntimeException("Parameter must have between one and four numbers");
         }
-        final List<Float> f = new ArrayList<Float>();
+        final List<Float> f = new ArrayList<>();
         for (final String string : split) {
             f.add(Float.parseFloat(string));
         }
@@ -109,7 +109,7 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener {
         if (split.length < 1 || split.length > 4) {
             throw new RuntimeException("Parameter must have between one and four numbers");
         }
-        final List<Float> f = new ArrayList<Float>();
+        final List<Float> f = new ArrayList<>();
         for (final String string : split) {
             f.add(Float.parseFloat(string));
         }

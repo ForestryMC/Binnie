@@ -58,8 +58,8 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
     private Map<ItemStack, Float> caterpillarLoot;
 
     private ButterflySpecies(final String name, final String scientific, final int colour) {
-        this.butterflyLoot = new HashMap<ItemStack, Float>();
-        this.caterpillarLoot = new HashMap<ItemStack, Float>();
+        this.butterflyLoot = new HashMap<>();
+        this.caterpillarLoot = new HashMap<>();
         this.name = name;
         this.branchName = scientific.split(" ")[0].toLowerCase();
         this.scientific = scientific.split(" ")[1];
@@ -185,12 +185,12 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
 
     @Override
     public Map<ItemStack, Float> getButterflyLoot() {
-        return new HashMap<ItemStack, Float>();
+        return new HashMap<>();
     }
 
     @Override
     public Map<ItemStack, Float> getCaterpillarLoot() {
-        return new HashMap<ItemStack, Float>();
+        return new HashMap<>();
     }
 
     @Override

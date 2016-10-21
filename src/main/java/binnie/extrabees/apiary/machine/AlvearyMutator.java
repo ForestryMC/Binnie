@@ -53,7 +53,7 @@ public class AlvearyMutator {
 
     static {
         AlvearyMutator.slotMutator = 0;
-        AlvearyMutator.mutations = new HashMap<ItemStack, Float>();
+        AlvearyMutator.mutations = new HashMap<>();
     }
 
     public static class PackageAlvearyMutator extends AlvearyMachine.AlvearyPackage implements IMachineInformation {

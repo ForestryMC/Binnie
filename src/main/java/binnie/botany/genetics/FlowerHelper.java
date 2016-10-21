@@ -21,7 +21,7 @@ public class FlowerHelper extends SpeciesRoot implements IFlowerRoot {
     private static ArrayList<IColourMix> colourMixes;
 
     public FlowerHelper() {
-        this.conversions = new HashMap<ItemStack, IFlower>();
+        this.conversions = new HashMap<>();
     }
 
     @Override
@@ -245,9 +245,9 @@ public class FlowerHelper extends SpeciesRoot implements IFlowerRoot {
 
     static {
         FlowerHelper.flowerSpeciesCount = -1;
-        FlowerHelper.flowerTemplates = new ArrayList<IFlower>();
-        FlowerHelper.flowerMutations = new ArrayList<IFlowerMutation>();
-        FlowerHelper.colourMixes = new ArrayList<IColourMix>();
+        FlowerHelper.flowerTemplates = new ArrayList<>();
+        FlowerHelper.flowerMutations = new ArrayList<>();
+        FlowerHelper.colourMixes = new ArrayList<>();
     }
 
 

@@ -10,7 +10,7 @@ public class ManagerResource {
     private List<BinnieIcon> icons;
 
     public ManagerResource() {
-        this.icons = new ArrayList<BinnieIcon>();
+        this.icons = new ArrayList<>();
     }
 
     public BinnieResource getPNG(final AbstractMod mod, final ResourceType type, final String path) {

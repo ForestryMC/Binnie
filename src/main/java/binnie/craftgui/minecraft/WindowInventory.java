@@ -20,9 +20,9 @@ public class WindowInventory implements IInventory {
     private List<Integer> disabledAutoDispenses;
 
     public WindowInventory(final Window window) {
-        this.inventory = new HashMap<Integer, ItemStack>();
-        this.validators = new HashMap<Integer, SlotValidator>();
-        this.disabledAutoDispenses = new ArrayList<Integer>();
+        this.inventory = new HashMap<>();
+        this.validators = new HashMap<>();
+        this.disabledAutoDispenses = new ArrayList<>();
         this.window = window;
     }
 

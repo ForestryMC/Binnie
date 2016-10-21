@@ -150,7 +150,7 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
     }
 
     public Deque<IWidget> calculateMousedOverWidgets() {
-        final Deque<IWidget> list = new ArrayDeque<IWidget>();
+        final Deque<IWidget> list = new ArrayDeque<>();
         for (final IWidget widget : this.getQueuedWidgets(this)) {
             if (widget.calculateIsMouseOver()) {
                 list.addLast(widget);
@@ -160,7 +160,7 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
     }
 
     private Collection<IWidget> getQueuedWidgets(final IWidget widget) {
-        final List<IWidget> widgets = new ArrayList<IWidget>();
+        final List<IWidget> widgets = new ArrayList<>();
         boolean addChildren = true;
         if (widget.isCroppedWidet()) {
             addChildren = widget.getCroppedZone().contains(widget.getCropWidget().getRelativeMousePosition());

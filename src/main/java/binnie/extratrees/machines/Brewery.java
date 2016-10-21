@@ -134,7 +134,7 @@ public class Brewery {
         Brewery.slotInventory = new int[]{5, 6, 7, 8, 9, 10, 11, 12, 13};
         Brewery.tankInput = 0;
         Brewery.tankOutput = 1;
-        Brewery.recipes = new ArrayList<IBreweryRecipe>();
+        Brewery.recipes = new ArrayList<>();
     }
 
     public static class PackageBrewery extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
@@ -458,8 +458,8 @@ public class Brewery {
         ItemStack hops;
 
         public BeerRecipe() {
-            this.grainCrops = new HashMap<ItemStack, String>();
-            this.outputs = new ArrayList<FluidStack>();
+            this.grainCrops = new HashMap<>();
+            this.outputs = new ArrayList<>();
             this.grains = new String[]{BeerRecipe.barley, BeerRecipe.wheat, BeerRecipe.rye, BeerRecipe.corn, BeerRecipe.roasted};
             for (final String grainType : this.grains) {
                 for (final ItemStack stack : OreDictionary.getOres(grainType)) {

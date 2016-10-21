@@ -25,7 +25,7 @@ public class CeramicTileRecipe implements IRecipe {
         final Item ceramicTile = Item.getItemFromBlock(Botany.ceramicTile);
         final Item ceramicBrick = Item.getItemFromBlock(Botany.ceramicBrick);
         final Item mortar = Botany.misc;
-        final List<ItemStack> stacks = new ArrayList<ItemStack>();
+        final List<ItemStack> stacks = new ArrayList<>();
         int ix = -1;
         int iy = -1;
         for (int i = 0; i < inv.getSizeInventory(); ++i) {

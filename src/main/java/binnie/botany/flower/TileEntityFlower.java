@@ -561,7 +561,7 @@ public class TileEntityFlower extends TileEntity //implements IPollinatable, IBu
     }
 
     public Set<IErrorState> getErrorStates() {
-        return new HashSet<IErrorState>();
+        return new HashSet<>();
     }
 
     public static class RenderInfo {

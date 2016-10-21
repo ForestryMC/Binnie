@@ -13,8 +13,8 @@ public class ManagerConfig extends ManagerBase {
     private Map<AbstractMod, List<BinnieItemData>> itemIDs;
 
     public ManagerConfig() {
-        this.configurations = new LinkedHashMap<Class<?>, Configuration>();
-        this.itemIDs = new HashMap<AbstractMod, List<BinnieItemData>>();
+        this.configurations = new LinkedHashMap<>();
+        this.itemIDs = new HashMap<>();
     }
 
     public void registerConfiguration(final Class<?> cls, final AbstractMod mod) {
@@ -48,7 +48,7 @@ public class ManagerConfig extends ManagerBase {
 
     public void addItemID(final Integer configValue, final String configKey, final BinnieConfiguration configFile) {
         if (!this.itemIDs.containsKey(configFile.mod)) {
-            this.itemIDs.put(configFile.mod, new ArrayList<BinnieItemData>());
+            this.itemIDs.put(configFile.mod, new ArrayList<>());
         }
         this.itemIDs.get(configFile.mod).add(new BinnieItemData(configValue + 256, configFile, configKey));
     }

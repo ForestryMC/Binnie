@@ -25,7 +25,7 @@ public class BlockPlant extends BlockBush {
 
     @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-        return new ArrayList<ItemStack>();
+        return new ArrayList<>();
     }
 
 //	@Override

@@ -23,7 +23,7 @@ public final class Binnie {
     public static final ManagerResource Resource;
 
     static {
-        Managers = new ArrayList<ManagerBase>();
+        Managers = new ArrayList<>();
         Language = new ManagerLanguage();
         Genetics = new ManagerGenetics();
         Configuration = new ManagerConfig();

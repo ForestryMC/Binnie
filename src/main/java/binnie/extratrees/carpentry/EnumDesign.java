@@ -488,7 +488,7 @@ public enum EnumDesign implements IDesign {
         List<IDesign> designs;
 
         private Category(final String name) {
-            this.designs = new ArrayList<IDesign>();
+            this.designs = new ArrayList<>();
             this.name = name;
             CarpentryManager.carpentryInterface.registerDesignCategory(this);
         }

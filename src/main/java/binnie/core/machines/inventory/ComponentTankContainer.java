@@ -22,7 +22,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 
     public ComponentTankContainer(final IMachine machine) {
         super(machine);
-        this.tanks = new LinkedHashMap<Integer, TankSlot>();
+        this.tanks = new LinkedHashMap<>();
     }
 
     @Override
@@ -147,7 +147,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 
     @Override
     public IFluidTank[] getTanks() {
-        final List<IFluidTank> ltanks = new ArrayList<IFluidTank>();
+        final List<IFluidTank> ltanks = new ArrayList<>();
         for (final TankSlot tank : this.tanks.values()) {
             ltanks.add(tank.getTank());
         }

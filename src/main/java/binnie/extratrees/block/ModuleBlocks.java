@@ -71,7 +71,7 @@ public class ModuleBlocks implements IInitializable {
                 }
             };
             GameRegistry.register(block);
-            Item wood = GameRegistry.register(new BlockETLog.LogItemBlock<BlockETLog>(block));
+            Item wood = GameRegistry.register(new BlockETLog.LogItemBlock<>(block));
 
             WoodAccess.registerWithVariants(block,WoodBlockKind.LOG, woodTypes[finalI]);
             ExtraTrees.proxy.setCustomStateMapper("log", block);
@@ -85,7 +85,7 @@ public class ModuleBlocks implements IInitializable {
             };
             GameRegistry.register(block2);
             ExtraTrees.proxy.setCustomStateMapper("log", block2);
-            Item woodFireproof = GameRegistry.register(new BlockETLog.LogItemBlock<BlockETLog>(block2));
+            Item woodFireproof = GameRegistry.register(new BlockETLog.LogItemBlock<>(block2));
             for(EnumExtraTreeLog l : woodTypes[finalI].getAllowedValues()) {
                 BinnieCore.proxy.registermodel(wood, l.getMetadata() % BlockETLog.VARIANTS_PER_BLOCK, new ModelResourceLocation("extratrees:log","axis=y,wood_type="+l.getName()));
                 BinnieCore.proxy.registermodel(woodFireproof, l.getMetadata() % BlockETLog.VARIANTS_PER_BLOCK, new ModelResourceLocation("extratrees:log","axis=y,wood_type="+l.getName()));

@@ -67,7 +67,7 @@ public class CarpentryInterface implements ICarpentryInterface {
 
     @Override
     public Collection<IDesignCategory> getAllDesignCategories() {
-        final List<IDesignCategory> categories = new ArrayList<IDesignCategory>();
+        final List<IDesignCategory> categories = new ArrayList<>();
         for (final IDesignCategory category : CarpentryInterface.designCategories.values()) {
             if (category.getDesigns().size() > 0) {
                 categories.add(category);
@@ -78,7 +78,7 @@ public class CarpentryInterface implements ICarpentryInterface {
 
     @Override
     public List<IDesign> getSortedDesigns() {
-        final List<IDesign> designs = new ArrayList<IDesign>();
+        final List<IDesign> designs = new ArrayList<>();
         for (final IDesignCategory category : this.getAllDesignCategories()) {
             designs.addAll(category.getDesigns());
         }
@@ -103,8 +103,8 @@ public class CarpentryInterface implements ICarpentryInterface {
     }
 
     static {
-        CarpentryInterface.woodMap = new LinkedHashMap<Integer, IDesignMaterial>();
-        CarpentryInterface.designMap = new LinkedHashMap<Integer, IDesign>();
-        CarpentryInterface.designCategories = new HashMap<String, IDesignCategory>();
+        CarpentryInterface.woodMap = new LinkedHashMap<>();
+        CarpentryInterface.designMap = new LinkedHashMap<>();
+        CarpentryInterface.designCategories = new HashMap<>();
     }
 }

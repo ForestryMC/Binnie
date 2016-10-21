@@ -23,8 +23,8 @@ public class MachineGroup {
     private boolean renderedTileEntity;
 
     public MachineGroup(final AbstractMod mod, final String uid, final String blockName, final IMachineType[] types) {
-        this.packages = new LinkedHashMap<String, MachinePackage>();
-        this.packagesID = new LinkedHashMap<Integer, MachinePackage>();
+        this.packages = new LinkedHashMap<>();
+        this.packagesID = new LinkedHashMap<>();
         this.customRenderer = true;
         this.renderedTileEntity = true;
         this.mod = mod;

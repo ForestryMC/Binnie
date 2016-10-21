@@ -133,7 +133,7 @@ public class WindowGeneBank extends WindowMachine {
         tabBar.setValues(Binnie.Genetics.getActiveSystems());
         tabBar.setValue(Binnie.Genetics.beeBreedingSystem);
         boxX -= 8;
-        final ControlTabBar<String> infoTabs = new ControlTabBar<String>(this, boxX + 8, 160.0f, 16.0f, 50.0f, Position.Left);
+        final ControlTabBar<String> infoTabs = new ControlTabBar<>(this, boxX + 8, 160.0f, 16.0f, 50.0f, Position.Left);
         infoTabs.setValues(Arrays.asList("Stats", "Ranking"));
         infoTabs.setValue("Info");
         final Panel panelProject = new Panel(this, boxX + 24, 160.0f, geneBoxWidth + 20, 50.0f, MinecraftGUI.PanelType.Black);

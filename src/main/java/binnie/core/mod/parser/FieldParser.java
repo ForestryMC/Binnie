@@ -45,6 +45,6 @@ public abstract class FieldParser {
     }
 
     static {
-        FieldParser.parsers = new ArrayList<FieldParser>();
+        FieldParser.parsers = new ArrayList<>();
     }
 }

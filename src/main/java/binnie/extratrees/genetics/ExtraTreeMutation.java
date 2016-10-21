@@ -224,7 +224,7 @@ public class ExtraTreeMutation implements ITreeMutation {
 
     @Override
     public Collection<String> getSpecialConditions() {
-        final List<String> conditions = new ArrayList<String>();
+        final List<String> conditions = new ArrayList<>();
         if (this.height > 0.0f) {
             conditions.add("Minimum height from bedrock of " + this.height);
         }

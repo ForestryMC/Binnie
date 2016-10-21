@@ -40,7 +40,7 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
     }
 
     public List<TileEntity> getAlvearyBlocks() {
-        LinkedList<TileEntity> tiles = new LinkedList<TileEntity>();
+        LinkedList<TileEntity> tiles = new LinkedList<>();
         if (min != null && max != null) {
             for (int x = min.getX(); x <= max.getX(); ++x) {
                 for (int z = min.getZ(); z <= max.getZ(); ++z) {

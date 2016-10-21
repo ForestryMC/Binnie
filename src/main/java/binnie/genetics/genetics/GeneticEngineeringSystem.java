@@ -11,12 +11,12 @@ public class GeneticEngineeringSystem {
     static List<IAllele> speciesList;
 
     public GeneticEngineeringSystem(final BreedingSystem system) {
-        this.chromosomeMap = new HashMap<IChromosomeType, List<IAllele>>();
+        this.chromosomeMap = new HashMap<>();
         this.breedingSystem = system;
         for (final IIndividual indiv : this.breedingSystem.getSpeciesRoot().getIndividualTemplates()) {
             for (final IChromosomeType chromosome : this.breedingSystem.getSpeciesRoot().getKaryotype()) {
                 if (!this.chromosomeMap.containsKey(chromosome)) {
-                    this.chromosomeMap.put(chromosome, new ArrayList<IAllele>());
+                    this.chromosomeMap.put(chromosome, new ArrayList<>());
                 }
                 try {
                     final IAllele a1 = indiv.getGenome().getActiveAllele(chromosome);
@@ -33,9 +33,9 @@ public class GeneticEngineeringSystem {
         }
         for (final IChromosomeType chromosome2 : this.breedingSystem.getSpeciesRoot().getKaryotype()) {
             final List<IAllele> alleles = this.getAlleles(chromosome2);
-            final TreeSet<IAllele> set = new TreeSet<IAllele>(new ComparatorAllele());
+            final TreeSet<IAllele> set = new TreeSet<>(new ComparatorAllele());
             set.addAll(alleles);
-            final List<IAllele> list = new ArrayList<IAllele>();
+            final List<IAllele> list = new ArrayList<>();
             list.addAll(set);
             this.chromosomeMap.put(chromosome2, list);
         }

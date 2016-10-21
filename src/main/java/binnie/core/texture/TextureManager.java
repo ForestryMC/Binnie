@@ -15,6 +15,6 @@ public class TextureManager {
     }
 
     static {
-        TextureManager.textures = new ArrayList<Icon>();
+        TextureManager.textures = new ArrayList<>();
     }
 }

@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 
 public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IBeeModifier {
-    ArrayList<IBeeModifier> beeModifier = new ArrayList<IBeeModifier>();
+    ArrayList<IBeeModifier> beeModifier = new ArrayList<>();
     private InventoryBeeHousing beeInventory;
 
     public VirtualBeeHousing(final EntityPlayer player) {

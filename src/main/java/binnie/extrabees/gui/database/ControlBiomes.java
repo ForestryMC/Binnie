@@ -18,7 +18,7 @@ public class ControlBiomes extends Control implements ITooltip {
 
     public ControlBiomes(final IWidget parent, final int x, final int y, final int width, final int height) {
         super(parent, x, y, width * 16, height * 16);
-        this.tolerated = new ArrayList<Integer>();
+        this.tolerated = new ArrayList<>();
         this.addAttribute(Attribute.MouseOver);
     }
 

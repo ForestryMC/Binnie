@@ -37,9 +37,9 @@ public class ContainerCraftGUI extends Container {
     private final Set<EntityPlayerMP> crafters = Sets.newConcurrentHashSet();
 
     public ContainerCraftGUI(final Window window) {
-        this.syncedNBT = new HashMap<String, NBTTagCompound>();
-        this.sentNBT = new HashMap<String, NBTTagCompound>();
-        this.syncedTanks = new HashMap<Integer, TankInfo>();
+        this.syncedNBT = new HashMap<>();
+        this.sentNBT = new HashMap<>();
+        this.syncedTanks = new HashMap<>();
         this.syncedPower = new PowerInfo();
         this.syncedProcess = new ProcessInfo();
         this.errorType = 0;
@@ -255,7 +255,7 @@ public class ContainerCraftGUI extends Container {
         if (machineSync != null) {
             machineSync.sendGuiNBT(this.syncedNBT);
         }
-        final Map<String, NBTTagCompound> sentThisTime = new HashMap<String, NBTTagCompound>();
+        final Map<String, NBTTagCompound> sentThisTime = new HashMap<>();
         for (final Map.Entry<String, NBTTagCompound> nbt : this.syncedNBT.entrySet()) {
             nbt.getValue().setString("type", nbt.getKey());
             boolean shouldSend = true;
@@ -367,7 +367,7 @@ public class ContainerCraftGUI extends Container {
     }
 
     public CustomSlot[] getCustomSlots() {
-        final List<CustomSlot> slots = new ArrayList<CustomSlot>();
+        final List<CustomSlot> slots = new ArrayList<>();
         for (final Object object : this.inventorySlots) {
             if (object instanceof CustomSlot) {
                 slots.add((CustomSlot) object);
@@ -394,7 +394,7 @@ public class ContainerCraftGUI extends Container {
         }
         request.transfer(false);
         final NBTTagCompound nbt = new NBTTagCompound();
-        final List<Integer> slots = new ArrayList<Integer>();
+        final List<Integer> slots = new ArrayList<>();
         for (final TransferRequest.TransferSlot tslot : request.getInsertedSlots()) {
             final Slot slot = this.getSlot(tslot.inventory, tslot.id);
             if (slot != null) {

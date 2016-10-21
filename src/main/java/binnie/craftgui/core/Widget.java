@@ -28,14 +28,14 @@ public class Widget implements IWidget {
 
     public Widget(final IWidget parent) {
         this.parent = null;
-        this.subWidgets = new ArrayList<IWidget>();
-        this.attributes = new ArrayList<IWidgetAttribute>();
+        this.subWidgets = new ArrayList<>();
+        this.attributes = new ArrayList<>();
         this.position = new IPoint(0.0f, 0.0f);
         this.size = new IPoint(0.0f, 0.0f);
         this.offset = new IPoint(0.0f, 0.0f);
         this.cropped = false;
         this.colour = 16777215;
-        this.globalEventHandlers = new ArrayList<EventHandler>();
+        this.globalEventHandlers = new ArrayList<>();
         this.enabled = true;
         this.visible = true;
         this.parent = parent;
@@ -295,7 +295,7 @@ public class Widget implements IWidget {
             ((ITopLevelWidget) this).updateTopLevel();
         }
         this.onUpdateClient();
-        final List<IWidget> deletedWidgets = new ArrayList<IWidget>();
+        final List<IWidget> deletedWidgets = new ArrayList<>();
         for (final IWidget widget : this.getWidgets()) {
             if (widget.hasAttribute(Attribute.NeedsDeletion)) {
                 deletedWidgets.add(widget);

@@ -110,7 +110,7 @@ public enum EnumHoneyComb implements IItemEnum {
 
     private EnumHoneyComb(final int colour, final int colour2) {
         this.colour = new int[0];
-        this.products = new LinkedHashMap<ItemStack, Float>();
+        this.products = new LinkedHashMap<>();
         this.active = true;
         this.deprecated = false;
         this.colour = new int[]{colour, colour2};

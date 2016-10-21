@@ -14,7 +14,7 @@ public class GeneProject {
     public GeneProject(final int id, final String name, final GameProfile leader) {
         this.id = 0;
         this.leader = null;
-        this.members = new ArrayList<GameProfile>();
+        this.members = new ArrayList<>();
         this.setID(id);
         this.setName(name);
         this.setLeader(leader);

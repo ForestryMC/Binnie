@@ -25,7 +25,7 @@ public class FireworkCreator {
         public Firework() {
             this.flicker = false;
             this.trail = false;
-            this.colors = new ArrayList<Integer>();
+            this.colors = new ArrayList<>();
             this.shape = 0;
         }
 

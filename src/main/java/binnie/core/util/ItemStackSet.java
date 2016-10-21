@@ -8,7 +8,7 @@ public class ItemStackSet implements Set<ItemStack> {
     List<ItemStack> itemStacks;
 
     public ItemStackSet() {
-        this.itemStacks = new ArrayList<ItemStack>();
+        this.itemStacks = new ArrayList<>();
     }
 
     @Override

@@ -16,7 +16,7 @@ public class ComponentChargedSlots extends MachineComponent implements INetwork.
 
     public ComponentChargedSlots(final Machine machine) {
         super(machine);
-        this.charges = new HashMap<Integer, Float>();
+        this.charges = new HashMap<>();
     }
 
     @Override

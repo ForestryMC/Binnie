@@ -165,6 +165,6 @@ public class ControlLiquidTank extends Control implements ITooltip {
     }
 
     static {
-        ControlLiquidTank.tankError = new ArrayList<Integer>();
+        ControlLiquidTank.tankError = new ArrayList<>();
     }
 }

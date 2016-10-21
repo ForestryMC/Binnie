@@ -136,7 +136,7 @@ public class TreeBreedingSystem extends BreedingSystem {
 
     public Collection<IAlleleSpecies> getTreesThatBearFruit(final ItemStack fruit, final boolean nei, final World world, final GameProfile player) {
         final Collection<IAlleleSpecies> set = nei ? this.getAllSpecies() : this.getDiscoveredSpecies(world, player);
-        final List<IAlleleSpecies> found = new ArrayList<IAlleleSpecies>();
+        final List<IAlleleSpecies> found = new ArrayList<>();
         for (final IAlleleSpecies species : set) {
             final IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
             final ITreeGenome genome = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(tSpecies.getUID()));
@@ -151,8 +151,8 @@ public class TreeBreedingSystem extends BreedingSystem {
 
     public Collection<IAlleleSpecies> getTreesThatCanBearFruit(final ItemStack fruit, final boolean nei, final World world, final GameProfile player) {
         final Collection<IAlleleSpecies> set = nei ? this.getAllSpecies() : this.getDiscoveredSpecies(world, player);
-        final List<IAlleleSpecies> found = new ArrayList<IAlleleSpecies>();
-        final Set<IFruitFamily> providers = new HashSet<IFruitFamily>();
+        final List<IAlleleSpecies> found = new ArrayList<>();
+        final Set<IFruitFamily> providers = new HashSet<>();
         for (final IAlleleSpecies species : set) {
             final IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
             final ITreeGenome genome = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(tSpecies.getUID()));
@@ -176,7 +176,7 @@ public class TreeBreedingSystem extends BreedingSystem {
 
     public Collection<IAlleleSpecies> getTreesThatHaveWood(final ItemStack fruit, final boolean nei, final World world, final GameProfile player) {
         final Collection<IAlleleSpecies> set = nei ? this.getAllSpecies() : this.getDiscoveredSpecies(world, player);
-        final List<IAlleleSpecies> found = new ArrayList<IAlleleSpecies>();
+        final List<IAlleleSpecies> found = new ArrayList<>();
         for (final IAlleleSpecies species : set) {
             IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
             ITreeGenome genome = TreeManager.treeRoot.templateAsGenome(TreeManager.treeRoot.getTemplate(tSpecies.getUID()));
@@ -194,10 +194,10 @@ public class TreeBreedingSystem extends BreedingSystem {
 
     public Collection<IAlleleSpecies> getTreesThatMakePlanks(final ItemStack fruit, final boolean nei, final World world, final GameProfile player) {
         if (fruit == null) {
-            return new ArrayList<IAlleleSpecies>();
+            return new ArrayList<>();
         }
         final Collection<IAlleleSpecies> set = nei ? this.getAllSpecies() : this.getDiscoveredSpecies(world, player);
-        final List<IAlleleSpecies> found = new ArrayList<IAlleleSpecies>();
+        final List<IAlleleSpecies> found = new ArrayList<>();
         for (final IAlleleSpecies species : set) {
             final IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
             ITreeGenome genome = TreeManager.treeRoot.templateAsGenome(TreeManager.treeRoot.getTemplate(tSpecies.getUID()));

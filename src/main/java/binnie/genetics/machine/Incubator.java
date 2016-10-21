@@ -107,7 +107,7 @@ public class Incubator {
     static {
         slotQueue = new int[]{0, 1, 2};
         slotOutput = new int[]{4, 5, 6};
-        Incubator.RECIPES = new ArrayList<IIncubatorRecipe>();
+        Incubator.RECIPES = new ArrayList<>();
     }
 
     public static class PackageIncubator extends GeneticMachine.PackageGeneticBase implements IMachineInformation {

@@ -84,7 +84,7 @@ public class AnalystPageSoil extends ControlAnalystPage {
         y += 32;
         new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), "Other Soils", TextJustification.MiddleCenter).setColour(this.getColour());
         y += 12;
-        final List<ItemStack> stacks = new ArrayList<ItemStack>();
+        final List<ItemStack> stacks = new ArrayList<>();
         for (final EnumAcidity a : EnumSet.range(EnumAcidity.Acid, EnumAcidity.Alkaline)) {
             for (final EnumMoisture b : EnumSet.range(EnumMoisture.Dry, EnumMoisture.Damp)) {
                 if (Tolerance.canTolerate(pH, a, pHTol) && Tolerance.canTolerate(moisture, b, moistureTol) && (a != recomPH || b != recomMoisture)) {

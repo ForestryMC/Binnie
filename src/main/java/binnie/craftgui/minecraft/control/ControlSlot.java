@@ -136,7 +136,7 @@ public class ControlSlot extends ControlSlotBase {
     }
 
     private List<ControlSlot> getControlSlots() {
-        final List<ControlSlot> slots = new ArrayList<ControlSlot>();
+        final List<ControlSlot> slots = new ArrayList<>();
         if (this.getParent() instanceof ControlSlotArray || this.getParent() instanceof ControlPlayerInventory) {
             for (final IWidget child : this.getParent().getWidgets()) {
                 slots.add((ControlSlot) child);
@@ -194,10 +194,10 @@ public class ControlSlot extends ControlSlotBase {
     }
 
     static {
-        ControlSlot.highlighting = new HashMap<EnumHighlighting, List<Integer>>();
+        ControlSlot.highlighting = new HashMap<>();
         ControlSlot.shiftClickActive = false;
         for (final EnumHighlighting h : EnumHighlighting.values()) {
-            ControlSlot.highlighting.put(h, new ArrayList<Integer>());
+            ControlSlot.highlighting.put(h, new ArrayList<>());
         }
     }
 }

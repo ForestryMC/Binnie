@@ -52,6 +52,6 @@ public class NBTShapedRecipes implements IRecipe {
     }
 
     static {
-        NBTShapedRecipes.recipes = new ArrayList<NBTShapedRecipe>();
+        NBTShapedRecipes.recipes = new ArrayList<>();
     }
 }

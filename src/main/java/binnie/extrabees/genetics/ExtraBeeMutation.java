@@ -268,7 +268,7 @@ public class ExtraBeeMutation implements IBeeMutation {
 
     @Override
     public Collection<String> getSpecialConditions() {
-        final List<String> conditions = new ArrayList<String>();
+        final List<String> conditions = new ArrayList<>();
         if (this.req != null) {
             for (final String s : this.req.tooltip()) {
                 conditions.add(s);
@@ -283,7 +283,7 @@ public class ExtraBeeMutation implements IBeeMutation {
     }
 
     static {
-        ExtraBeeMutation.mutations = new ArrayList<IBeeMutation>();
+        ExtraBeeMutation.mutations = new ArrayList<>();
     }
 
     abstract static class MutationRequirement {

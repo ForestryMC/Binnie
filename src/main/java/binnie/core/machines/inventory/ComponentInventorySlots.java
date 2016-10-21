@@ -21,7 +21,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
     public ComponentInventorySlots(final IMachine machine) {
         super(machine);
-        this.inventory = new LinkedHashMap<Integer, InventorySlot>();
+        this.inventory = new LinkedHashMap<>();
     }
 
     //TODO Implement
@@ -188,7 +188,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
     @Override
     public InventorySlot[] getSlots(final int[] indexes) {
-        final List<InventorySlot> list = new ArrayList<InventorySlot>();
+        final List<InventorySlot> list = new ArrayList<>();
         for (final int i : indexes) {
             if (this.getSlot(i) != null) {
                 list.add(this.getSlot(i));
@@ -237,7 +237,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
     @Override
     public int[] getSlotsForFace(final EnumFacing var1) {
-        final List<Integer> slots = new ArrayList<Integer>();
+        final List<Integer> slots = new ArrayList<>();
         for (final InventorySlot slot : this.inventory.values()) {
             if (slot.canInsert() || slot.canExtract()) {
                 slots.add(slot.getIndex());

@@ -23,7 +23,7 @@ public class ControlClimateBar extends Control implements ITooltip {
     public ControlClimateBar(final IWidget parent, final int x, final int y, final int width, final int height) {
         super(parent, x, y, width, height);
         this.isHumidity = false;
-        this.tolerated = new ArrayList<Integer>();
+        this.tolerated = new ArrayList<>();
         this.tempColours = new int[]{65531, 7912447, 5242672, 16776960, 16753152, 16711680};
         this.humidColours = new int[]{16770979, 1769216, 3177727};
         this.addAttribute(Attribute.MouseOver);
@@ -32,7 +32,7 @@ public class ControlClimateBar extends Control implements ITooltip {
     public ControlClimateBar(final IWidget parent, final int x, final int y, final int width, final int height, final boolean humidity) {
         super(parent, x, y, width, height);
         this.isHumidity = false;
-        this.tolerated = new ArrayList<Integer>();
+        this.tolerated = new ArrayList<>();
         this.tempColours = new int[]{65531, 7912447, 5242672, 16776960, 16753152, 16711680};
         this.humidColours = new int[]{16770979, 1769216, 3177727};
         this.addAttribute(Attribute.MouseOver);
