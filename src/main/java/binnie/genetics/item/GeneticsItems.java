@@ -2,8 +2,10 @@ package binnie.genetics.item;
 
 import binnie.core.item.IItemMisc;
 import binnie.genetics.Genetics;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public enum GeneticsItems implements IItemMisc {
@@ -51,6 +53,10 @@ public enum GeneticsItems implements IItemMisc {
     @Override
     public ItemStack get(final int size) {
         return (Genetics.itemGenetics == null) ? null : new ItemStack(Genetics.itemGenetics, size, this.ordinal());
+    }
+
+    public ItemStack get(@Nonnull Item itemGenetics, final int size) {
+        return new ItemStack(itemGenetics, size, this.ordinal());
     }
 
     @Override
