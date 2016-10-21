@@ -9,7 +9,7 @@ import forestry.api.genetics.IClassification;
 class ControlBranchBox extends ControlListBox<IClassification> {
     @Override
     public IWidget createOption(final IClassification value, final int y) {
-        return new ControlBranchBoxOption(((ControlScrollableContent<ControlList<IClassification>>) this).getContent(), value, y);
+        return new ControlBranchBoxOption(this.getContent(), value, y);
     }
 
     public ControlBranchBox(final IWidget parent, final float x, final float y, final float width, final float height) {

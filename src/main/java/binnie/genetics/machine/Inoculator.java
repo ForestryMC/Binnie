@@ -282,7 +282,7 @@ public class Inoculator {
 
         public ComponentInoculatorFX(final IMachine machine) {
             super(machine);
-            this.dummyEntityItem = new EntityItem((World) null);
+            this.dummyEntityItem = new EntityItem(null);
         }
 
         @SideOnly(Side.CLIENT)

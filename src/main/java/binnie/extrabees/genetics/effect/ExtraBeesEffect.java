@@ -226,14 +226,14 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
             }
             case LIGHTNING: {
                 if (world.rand.nextInt(100) < 1 && world.canBlockSeeSky(pos) && world instanceof WorldServer) {
-                    ((WorldServer) world).addWeatherEffect(new EntityBeeLightning(world, x1, y1, z1));
+                    world.addWeatherEffect(new EntityBeeLightning(world, x1, y1, z1));
                     break;
                 }
                 break;
             }
             case METEOR: {
                 if (world.rand.nextInt(100) < 1 && world.canBlockSeeSky(pos)) {
-                    ((WorldServer) world).spawnEntityInWorld(new EntitySmallFireball(world, x1, y1 + 64, z1, 0.0, -0.6, 0.0));
+                    world.spawnEntityInWorld(new EntitySmallFireball(world, x1, y1 + 64, z1, 0.0, -0.6, 0.0));
                     break;
                 }
                 break;
@@ -349,7 +349,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
                     }
                     final EntityFireworkRocket var11 = new EntityFireworkRocket(world, x1, y1, z1, firework.getFirework());
                     if (world.canBlockSeeSky(pos)) {
-                        ((WorldServer) world).spawnEntityInWorld(var11);
+                        world.spawnEntityInWorld(var11);
                     }
                     break;
                 }
@@ -406,7 +406,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
                 if (!world.isAirBlock(pos) || !world.isAirBlock(pos.up())) {
                     return null;
                 }
-                ((EntityLiving) entity4).setPositionAndUpdate(x1, y1, z1);
+                entity4.setPositionAndUpdate(x1, y1, z1);
                 ((EntityLiving) entity4).addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 160, 10));
                 break;
             }

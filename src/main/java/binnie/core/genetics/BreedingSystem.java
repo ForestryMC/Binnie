@@ -405,7 +405,7 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
         if (allele instanceof IAlleleBoolean) {
             return ((IAlleleBoolean) allele).getValue() ? Binnie.Language.localise(BinnieCore.instance, "allele.true") : Binnie.Language.localise(BinnieCore.instance, "allele.false");
         }
-        if (allele.getName() == "for.gui.maximum") {
+        if (Objects.equals(allele.getName(), "for.gui.maximum")) {
             return Binnie.Language.localise(BinnieCore.instance, "allele.fertility.maximum");
         }
         return allele.getName();

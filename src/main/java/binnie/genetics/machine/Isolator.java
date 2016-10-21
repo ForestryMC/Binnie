@@ -24,6 +24,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class Isolator {
@@ -82,7 +83,7 @@ public class Isolator {
 
                 @Override
                 public boolean isValid(final FluidStack stack) {
-                    return stack.getFluid().getName() == "bioethanol";
+                    return Objects.equals(stack.getFluid().getName(), "bioethanol");
                 }
             });
             final ComponentChargedSlots chargedSlots = new ComponentChargedSlots(machine);

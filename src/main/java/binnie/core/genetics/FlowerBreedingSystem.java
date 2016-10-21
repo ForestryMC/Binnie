@@ -20,7 +20,7 @@ class FlowerBreedingSystem extends BreedingSystem {
 
     @Override
     public float getChance(final IMutation mutation, final EntityPlayer player, final IAllele species1, final IAllele species2) {
-        return ((IFlowerMutation) mutation).getBaseChance();
+        return mutation.getBaseChance();
     }
 
     @Override

@@ -4,6 +4,8 @@ import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.core.*;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 
+import java.util.Objects;
+
 public class ControlUser extends Control implements ITooltip {
     private String username;
     String team;
@@ -25,7 +27,7 @@ public class ControlUser extends Control implements ITooltip {
     public void getTooltip(final Tooltip tooltip) {
         tooltip.setType(Tooltip.Type.User);
         tooltip.add("Owner");
-        if (this.username != "") {
+        if (!Objects.equals(this.username, "")) {
             tooltip.add(this.username);
         }
         tooltip.setMaxWidth(200);

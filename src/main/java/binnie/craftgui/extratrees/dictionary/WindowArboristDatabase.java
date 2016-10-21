@@ -44,7 +44,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
                 (this.listBox = new ControlListBox<ItemStack>(this.modePage, area.x(), area.y(), area.w(), area.h(), 12.0f) {
                     @Override
                     public IWidget createOption(final ItemStack value, final int y) {
-                        return new ControlItemStackOption(((ControlScrollableContent<ControlList<ItemStack>>) this).getContent(), value, y);
+                        return new ControlItemStackOption(this.getContent(), value, y);
                     }
                 }).setOptions(((TreeBreedingSystem) WindowArboristDatabase.this.getBreedingSystem()).allFruits);
             }
@@ -55,7 +55,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
                 (this.listBox = new ControlListBox<ItemStack>(this.modePage, area.x(), area.y(), area.w(), area.h(), 12.0f) {
                     @Override
                     public IWidget createOption(final ItemStack value, final int y) {
-                        return new ControlItemStackOption(((ControlScrollableContent<ControlList<ItemStack>>) this).getContent(), value, y);
+                        return new ControlItemStackOption(this.getContent(), value, y);
                     }
                 }).setOptions(((TreeBreedingSystem) WindowArboristDatabase.this.getBreedingSystem()).allWoods);
             }
@@ -66,7 +66,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
                 this.listBox = new ControlListBox<ItemStack>(this.modePage, area.x(), area.y(), area.w(), area.h(), 12.0f) {
                     @Override
                     public IWidget createOption(final ItemStack value, final int y) {
-                        return new ControlItemStackOption(((ControlScrollableContent<ControlList<ItemStack>>) this).getContent(), value, y);
+                        return new ControlItemStackOption(this.getContent(), value, y);
                     }
                 };
             }

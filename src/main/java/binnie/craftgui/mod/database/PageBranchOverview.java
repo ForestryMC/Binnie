@@ -8,6 +8,7 @@ import forestry.api.genetics.IClassification;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class PageBranchOverview extends PageBranch {
     private ControlText pageBranchOverview_branchName;
@@ -33,7 +34,7 @@ public class PageBranchOverview extends PageBranch {
         }
         this.pageBranchOverview_branchDescription.clear();
         String desc = branch.getDescription();
-        if (desc == null || desc == "") {
+        if (desc == null || Objects.equals(desc, "")) {
             desc = "No Description Provided.";
         }
         String line = "";

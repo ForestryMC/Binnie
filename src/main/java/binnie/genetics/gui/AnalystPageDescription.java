@@ -10,6 +10,8 @@ import binnie.craftgui.core.geometry.TextJustification;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
 
+import java.util.Objects;
+
 public class AnalystPageDescription extends ControlAnalystPage {
     public AnalystPageDescription(final IWidget parent, final IArea area, final IIndividual ind) {
         super(parent, area);
@@ -21,7 +23,7 @@ public class AnalystPageDescription extends ControlAnalystPage {
         final String desc = species.getDescription();
         String descBody = "§o";
         String descSig = "";
-        if (desc == null || desc == "" || desc.contains("for.description")) {
+        if (desc == null || Objects.equals(desc, "") || desc.contains("for.description")) {
             descBody += "";
         } else {
             final String[] descStrings = desc.split("\\|");

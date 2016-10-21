@@ -38,7 +38,7 @@ public enum EnumPropolis implements IItemEnum {
     public void addRecipe() {
         final FluidStack liquid = Binnie.Liquid.getLiquidStack(this.liquidName, 500);
         if (liquid != null) {
-            RecipeManagers.squeezerManager.addRecipe(20, new ItemStack[]{this.get(1)}, liquid, (ItemStack) null, 0);
+            RecipeManagers.squeezerManager.addRecipe(20, new ItemStack[]{this.get(1)}, liquid, null, 0);
         }
     }
 

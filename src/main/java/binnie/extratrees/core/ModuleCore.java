@@ -119,7 +119,7 @@ public class ModuleCore implements IInitializable {
                         if (wood4 == null) {
                             outputDesigns.println("<td></td>");
                         } else {
-                            final String texture = ((EnumPattern) wood4.getTopPattern().getPattern()).toString().toLowerCase();
+                            final String texture = wood4.getTopPattern().getPattern().toString().toLowerCase();
                             final String img2 = "<img alt=\"" + texture + "\" src=\"images/pattern/" + texture + ".png\">";
                             outputDesigns.println("<td>" + img2 + " " + wood4.getName() + "</td>");
                         }

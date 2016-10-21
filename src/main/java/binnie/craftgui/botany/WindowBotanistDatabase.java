@@ -45,7 +45,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
                 this.listBox = new ControlListBox<IFlowerColour>(this.modePage, area.x(), area.y(), area.w(), area.h(), 12.0f) {
                     @Override
                     public IWidget createOption(final IFlowerColour value, final int y) {
-                        return new ControlColourOption(((ControlScrollableContent<ControlList<IFlowerColour>>) this).getContent(), value, y);
+                        return new ControlColourOption(this.getContent(), value, y);
                     }
                 };
                 final List<IFlowerColour> colors = new ArrayList<>();

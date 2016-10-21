@@ -18,7 +18,7 @@ class ModelBlock extends ModelBase {
     }
 
     public void render(final float f, final float f1, final float f2, final float f3, final float f4, final float f5) {
-        super.render((Entity) null, f, f1, f2, f3, f4, f5);
+        super.render(null, f, f1, f2, f3, f4, f5);
         this.setRotationAngles(f, f1, f2, f3, f4, f5);
         this.Block.render(f5);
     }
@@ -30,6 +30,6 @@ class ModelBlock extends ModelBase {
     }
 
     public void setRotationAngles(final float f, final float f1, final float f2, final float f3, final float f4, final float f5) {
-        super.setRotationAngles(f, f1, f2, f3, f4, f5, (Entity) null);
+        super.setRotationAngles(f, f1, f2, f3, f4, f5, null);
     }
 }

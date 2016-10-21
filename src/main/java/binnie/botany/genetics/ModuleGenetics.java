@@ -58,12 +58,12 @@ public class ModuleGenetics implements IInitializable {
 
     @Override
     public void postInit() {
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Botany.encyclopedia), new Object[]{"fff", "fbf", "fff", 'f', new ItemStack(Blocks.RED_FLOWER, 1, 32767), 'b', Items.BOOK}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Botany.encyclopedia), new Object[]{"fff", "fbf", "fff", 'f', new ItemStack(Blocks.YELLOW_FLOWER, 1, 32767), 'b', Items.BOOK}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Botany.encyclopedia), new Object[]{"fff", "fbf", "fff", 'f', new ItemStack(Botany.flower, 1, 32767), 'b', Items.BOOK}));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Botany.encyclopediaIron), new Object[]{new ItemStack(Botany.encyclopedia), "ingotIron"}));
-        FlowerManager.flowerRegistry.registerAcceptableFlower(Botany.flower, new String[]{"flowersVanilla"});
-        RecipeManagers.carpenterManager.addRecipe(100, Binnie.Liquid.getLiquidStack("water", 2000), (ItemStack) null, new ItemStack(Botany.database), new Object[]{"X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', Items.GOLD_NUGGET, 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD});
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Botany.encyclopedia), "fff", "fbf", "fff", 'f', new ItemStack(Blocks.RED_FLOWER, 1, 32767), 'b', Items.BOOK));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Botany.encyclopedia), "fff", "fbf", "fff", 'f', new ItemStack(Blocks.YELLOW_FLOWER, 1, 32767), 'b', Items.BOOK));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Botany.encyclopedia), "fff", "fbf", "fff", 'f', new ItemStack(Botany.flower, 1, 32767), 'b', Items.BOOK));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Botany.encyclopediaIron), new ItemStack(Botany.encyclopedia), "ingotIron"));
+        FlowerManager.flowerRegistry.registerAcceptableFlower(Botany.flower, "flowersVanilla");
+        RecipeManagers.carpenterManager.addRecipe(100, Binnie.Liquid.getLiquidStack("water", 2000), null, new ItemStack(Botany.database), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', Items.GOLD_NUGGET, 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
     }
 
     static {

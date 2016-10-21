@@ -104,8 +104,9 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
     }
 
     public String showInfoButton() {
-        if (Machine.getInterface(IMachineInformation.class, this.getInventory()) != null) {
-            return Machine.getInterface(IMachineInformation.class, this.getInventory()).getInformation();
+        IMachineInformation machineInformation = Machine.getInterface(IMachineInformation.class, this.getInventory());
+        if (machineInformation != null) {
+            return machineInformation.getInformation();
         }
         return null;
     }

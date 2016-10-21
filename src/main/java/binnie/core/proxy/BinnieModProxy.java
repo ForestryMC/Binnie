@@ -32,7 +32,7 @@ public class BinnieModProxy implements IBinnieModProxy {
     @Override
     public void sendToPlayer(final MessageBase packet, final EntityPlayer entityplayer) {
         if (entityplayer instanceof EntityPlayerMP) {
-            this.mod.getNetworkWrapper().sendTo((IMessage) packet.GetMessage(), (EntityPlayerMP) entityplayer);
+            this.mod.getNetworkWrapper().sendTo(packet.GetMessage(), (EntityPlayerMP) entityplayer);
         }
     }
 

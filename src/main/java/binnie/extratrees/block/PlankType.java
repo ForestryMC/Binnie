@@ -259,8 +259,13 @@ public class PlankType {
         public ItemStack getStack() {
             try {
                 final Class clss = Class.forName("extrabiomes.api.Stuff");
-                final Block block = (Block) ((Optional) clss.getField("planks").get(null)).get();
-                return new ItemStack(block, 1, this.ordinal());
+                Optional planks = (Optional) clss.getField("planks").get(null);
+                if (planks.isPresent()) {
+                    final Block block = (Block) planks.get();
+                    return new ItemStack(block, 1, this.ordinal());
+                } else {
+                    return null;
+                }
             } catch (Exception e) {
                 return null;
             }

@@ -19,7 +19,7 @@ public class ControlSpeciesBox extends ControlListBox<IAlleleSpecies> {
 
     @Override
     public IWidget createOption(final IAlleleSpecies value, final int y) {
-        return new ControlSpeciexBoxOption(((ControlScrollableContent<ControlList<IAlleleSpecies>>) this).getContent(), value, y);
+        return new ControlSpeciexBoxOption(this.getContent(), value, y);
     }
 
     public ControlSpeciesBox(final IWidget parent, final float x, final float y, final float width, final float height) {

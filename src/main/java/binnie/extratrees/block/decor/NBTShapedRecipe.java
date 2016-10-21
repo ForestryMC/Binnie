@@ -8,16 +8,19 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import java.util.HashMap;
 
 public class NBTShapedRecipe implements IRecipe {
     public final int recipeWidth;
     public final int recipeHeight;
     public final ItemStack[] recipeItems;
+    @Nonnull
     private ItemStack recipeOutput;
     private boolean field_92101_f;
     private static final String __OBFID = "CL_00000093";
 
+    @Nonnull
     @Override
     public ItemStack getRecipeOutput() {
         return this.recipeOutput;
@@ -84,7 +87,7 @@ public class NBTShapedRecipe implements IRecipe {
             for (int i = 0; i < p_77572_1_.getSizeInventory(); ++i) {
                 final ItemStack itemstack2 = p_77572_1_.getStackInSlot(i);
                 if (itemstack2 != null && itemstack2.hasTagCompound()) {
-                    itemstack.setTagCompound((NBTTagCompound) itemstack2.getTagCompound().copy());
+                    itemstack.setTagCompound(itemstack2.getTagCompound().copy());
                 }
             }
         }
@@ -96,7 +99,7 @@ public class NBTShapedRecipe implements IRecipe {
         return this.recipeWidth * this.recipeHeight;
     }
 
-    public NBTShapedRecipe(final ItemStack p_92103_1_, final Object... p_92103_2_) {
+    public NBTShapedRecipe(@Nonnull final ItemStack recipeOutput, final Object... p_92103_2_) {
         String s = "";
         int i = 0;
         int j = 0;
@@ -142,7 +145,7 @@ public class NBTShapedRecipe implements IRecipe {
         this.recipeWidth = j;
         this.recipeHeight = k;
         this.recipeItems = aitemstack;
-        this.recipeOutput = p_92103_1_;
+        this.recipeOutput = recipeOutput;
         NBTShapedRecipes.addRecipe(this);
     }
 }

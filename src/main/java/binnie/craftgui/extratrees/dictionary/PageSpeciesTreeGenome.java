@@ -72,7 +72,7 @@ public class PageSpeciesTreeGenome extends PageSpecies {
         try {
             //TODO RENDERING
             //fruit = ForestryAPI.textureManager.getIcon(genome.getFruitProvider().getIconIndex(genome, (IBlockAccess) null, 0, 0, 0, 100, false));
-            fruitColour = genome.getFruitProvider().getColour(genome, (IBlockAccess) null, new BlockPos(0, 0, 0), 100);
+            fruitColour = genome.getFruitProvider().getColour(genome, null, new BlockPos(0, 0, 0), 100);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

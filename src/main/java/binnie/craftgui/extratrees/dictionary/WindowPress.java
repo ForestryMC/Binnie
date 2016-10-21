@@ -55,7 +55,7 @@ public class WindowPress extends Window {
                 logic.alterProgress(2.0f);
             } else if (side == Side.SERVER && name.equals("clear-fruit")) {
                 logic.setProgress(0.0f);
-                this.getInventory().setInventorySlotContents(Press.slotCurrent, (ItemStack) null);
+                this.getInventory().setInventorySlotContents(Press.slotCurrent, null);
             }
         }
     }

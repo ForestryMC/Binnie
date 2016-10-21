@@ -545,9 +545,9 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
         try {
             final Class elements = Class.forName("extrabiomes.lib.Element");
             final Method getElementMethod = elements.getMethod("valueOf", String.class);
-            final Method getItemStack = elements.getMethod("get", new Class[0]);
+            final Method getItemStack = elements.getMethod("get");
             final Object element = getElementMethod.invoke(null, "SAPLING_AUTUMN_YELLOW");
-            return (ItemStack) getItemStack.invoke(element, new Object[0]);
+            return (ItemStack) getItemStack.invoke(element);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

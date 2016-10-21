@@ -404,7 +404,7 @@ public class GuiCraftGUI extends GuiContainer {
             }
             Minecraft.getMinecraft().getRenderItem().renderItemAndEffectIntoGUI(item, (int) pos.x(), (int) pos.y());
             GL11.glPopMatrix();
-            Minecraft.getMinecraft().getRenderItem().renderItemOverlayIntoGUI(font, item, (int) pos.x(), (int) pos.y(), (String) null);
+            Minecraft.getMinecraft().getRenderItem().renderItemOverlayIntoGUI(font, item, (int) pos.x(), (int) pos.y(), null);
         }
         GL11.glClear(256);
         GL11.glEnable(3042);

@@ -22,6 +22,7 @@ import forestry.api.genetics.IIndividual;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
 
 public class AnalystPageDatabase extends ControlAnalystPage {
     ControlScrollableContent scroll;
@@ -52,7 +53,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
                 AnalystPageDatabase.this.getSpecies(system);
                 for (final IAlleleSpecies species : AnalystPageDatabase.this.getSpecies(system)) {
                     if (value != null) {
-                        if (value != "") {
+                        if (!Objects.equals(value, "")) {
                             if (!species.getName().toLowerCase().contains(value.toLowerCase())) {
                                 continue;
                             }

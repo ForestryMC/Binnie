@@ -10,6 +10,8 @@ import net.minecraftforge.fml.common.versioning.ArtifactVersion;
 import net.minecraftforge.fml.common.versioning.DefaultArtifactVersion;
 import net.minecraftforge.fml.common.versioning.Restriction;
 
+import java.util.Objects;
+
 public class Mods {
     public static Mod Forestry;
     public static Mod IC2;
@@ -18,7 +20,7 @@ public class Mods {
 
     private static Item findItem(final String modId, final String name) {
         final Item stack = Item.REGISTRY.getObject(new ResourceLocation(modId, name));
-        if (stack == null && Mods.WARN && modId == "forestry") {
+        if (stack == null && Mods.WARN && Objects.equals(modId, "forestry")) {
             //throw new RuntimeException("Item not found: " + modId + ":" + name);
         }
 
@@ -27,7 +29,7 @@ public class Mods {
 
     private static ItemStack findItemStack(final String modId, final String name, final int stackSize) {
         final ItemStack stack = GameRegistry.makeItemStack(modId + ":" + name, 0, stackSize, null);
-        if (stack == null && Mods.WARN && modId == "forestry") {
+        if (stack == null && Mods.WARN && Objects.equals(modId, "forestry")) {
             //throw new RuntimeException("Stack not found: " + modId + ":" + name);
         }
         return stack;
@@ -35,7 +37,7 @@ public class Mods {
 
     private static Block findBlock(final String modId, final String name) {
         final Block stack = Block.REGISTRY.getObject(new ResourceLocation(modId + ":" + name));
-        if (stack == null && Mods.WARN && modId == "forestry") {
+        if (stack == null && Mods.WARN && Objects.equals(modId, "forestry")) {
             //throw new RuntimeException("Block not found: " + modId + ":" + name);
         }
         return stack;
@@ -46,7 +48,7 @@ public class Mods {
             @Override
             public boolean dev() {
                 final String forVersion = Loader.instance().getIndexedModList().get("forestry").getVersion();
-                final Restriction rest = new Restriction(new DefaultArtifactVersion("3.6"), true, (ArtifactVersion) null, false);
+                final Restriction rest = new Restriction(new DefaultArtifactVersion("3.6"), true, null, false);
                 return rest.containsVersion(new DefaultArtifactVersion(forVersion));
             }
         };

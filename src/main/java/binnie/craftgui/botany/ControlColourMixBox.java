@@ -12,7 +12,7 @@ public class ControlColourMixBox extends ControlListBox<IColourMix> {
 
     @Override
     public IWidget createOption(final IColourMix value, final int y) {
-        return new ControlColourMixItem(((ControlScrollableContent<ControlList<IColourMix>>) this).getContent(), value, y);
+        return new ControlColourMixItem(this.getContent(), value, y);
     }
 
     public ControlColourMixBox(final IWidget parent, final int x, final int y, final int width, final int height, final Type type) {

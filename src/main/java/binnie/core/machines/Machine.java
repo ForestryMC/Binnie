@@ -66,7 +66,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
     }
 
     public <T extends MachineComponent> T getComponent(final Class<T> componentClass) {
-        return this.hasComponent(componentClass) ? ((T) componentClass.cast(this.componentMap.get(componentClass))) : null;
+        return this.hasComponent(componentClass) ? componentClass.cast(this.componentMap.get(componentClass)) : null;
     }
 
     @Override

@@ -75,7 +75,7 @@ public class ContainerCraftGUI extends Container {
         if (par1 < 0 || par1 >= this.inventorySlots.size()) {
             return null;
         }
-        return (Slot) this.inventorySlots.get(par1);
+        return this.inventorySlots.get(par1);
     }
 
     @Override
@@ -150,7 +150,7 @@ public class ContainerCraftGUI extends Container {
             return null;
         }
         final ItemStack itemstack = request.transfer(true);
-        final Slot shiftClickedSlot = (Slot) this.inventorySlots.get(slotnumber);
+        final Slot shiftClickedSlot = this.inventorySlots.get(slotnumber);
         shiftClickedSlot.putStack(itemstack);
         shiftClickedSlot.onSlotChanged();
         return null;
@@ -270,7 +270,7 @@ public class ContainerCraftGUI extends Container {
                 //TODO INVENTORY
                 this.crafters.stream().filter(Objects::nonNull).forEach(entityPlayer -> {
                     System.out.println("send to:" + entityPlayer.getDisplayName().getUnformattedText());
-                    BinnieCore.proxy.sendToPlayer(new MessageContainerUpdate(nbt.getValue()), (EntityPlayerMP) entityPlayer);
+                    BinnieCore.proxy.sendToPlayer(new MessageContainerUpdate(nbt.getValue()), entityPlayer);
                 });
                 sentThisTime.put(nbt.getKey(), nbt.getValue());
             }

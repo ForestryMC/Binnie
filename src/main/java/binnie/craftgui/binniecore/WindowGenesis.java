@@ -120,7 +120,7 @@ public class WindowGenesis extends Window {
             public void onEvent(final EventValueChanged event) {
                 final Map<IChromosomeType, List<IAllele>> map = Binnie.Genetics.getChromosomeMap(WindowGenesis.this.root);
                 final List<Gene> opts = new ArrayList<>();
-                final IChromosomeType chromo = ((Gene) event.value) != null ? ((Gene) event.value).getChromosome() : null;
+                final IChromosomeType chromo = event.value != null ? ((Gene) event.value).getChromosome() : null;
                 if (chromo != null)// fix NPE
                     for (final IAllele allele : map.get(chromo)) {
                         opts.add(new Gene(allele, chromo, WindowGenesis.this.root));

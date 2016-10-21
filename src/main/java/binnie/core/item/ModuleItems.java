@@ -29,7 +29,7 @@ public class ModuleItems implements IInitializable {
 
     @Override
     public void postInit() {
-        GameRegistry.addRecipe(new ItemStack(BinnieCore.fieldKit, 1, 63), new Object[]{"g  ", " is", " pi", 'g', Blocks.GLASS_PANE, 'i', Items.IRON_INGOT, 'p', Items.PAPER, 's', new ItemStack(Items.DYE, 1)});
+        GameRegistry.addRecipe(new ItemStack(BinnieCore.fieldKit, 1, 63), "g  ", " is", " pi", 'g', Blocks.GLASS_PANE, 'i', Items.IRON_INGOT, 'p', Items.PAPER, 's', new ItemStack(Items.DYE, 1));
     }
 
     @SubscribeEvent

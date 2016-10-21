@@ -12,8 +12,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
 public enum KitchenMachine implements IMachineType {
-    Worktop((Class<? extends MachinePackage>) null),
-    Cupboard((Class<? extends MachinePackage>) null),
+    Worktop(null),
+    Cupboard(null),
     BottleRack(BottleRack.PackageBottleRack.class);
 
     Class<? extends MachinePackage> clss;

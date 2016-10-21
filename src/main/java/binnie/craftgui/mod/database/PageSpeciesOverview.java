@@ -9,6 +9,8 @@ import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.core.geometry.TextJustification;
 import forestry.api.genetics.IAlleleSpecies;
 
+import java.util.Objects;
+
 public class PageSpeciesOverview extends PageSpecies {
     private ControlText controlName;
     private ControlText controlScientific;
@@ -44,7 +46,7 @@ public class PageSpeciesOverview extends PageSpecies {
         final String desc = species.getDescription();
         String descBody = "§o";
         String descSig = "";
-        if (desc == null || desc == "") {
+        if (desc == null || Objects.equals(desc, "")) {
             descBody += "No Description Provided.";
         } else {
             final String[] descStrings = desc.split("\\|");

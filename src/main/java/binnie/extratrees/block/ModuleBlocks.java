@@ -132,9 +132,9 @@ public class ModuleBlocks implements IInitializable {
             final ItemStack slabs = TileEntityMetadata.getItemStack(ExtraTrees.blockSlab, plank.ordinal());
             final ItemStack stairs = TileEntityMetadata.getItemStack(ExtraTrees.blockStairs, plank.ordinal());
             stairs.stackSize = 4;
-            GameRegistry.addRecipe(stairs.copy(), new Object[]{"#  ", "## ", "###", '#', planks.copy()});
+            GameRegistry.addRecipe(stairs.copy(), "#  ", "## ", "###", '#', planks.copy());
             slabs.stackSize = 6;
-            CraftingManager.getInstance().getRecipeList().add(0, new ShapedOreRecipe(slabs.copy(), new Object[]{"###", '#', planks.copy()}));
+            CraftingManager.getInstance().getRecipeList().add(0, new ShapedOreRecipe(slabs.copy(), "###", '#', planks.copy()));
         }
         GameRegistry.addRecipe(new MultiFenceRecipeSize());
         GameRegistry.addRecipe(new MultiFenceRecipeEmbedded());
@@ -152,13 +152,13 @@ public class ModuleBlocks implements IInitializable {
                     continue;
                 }
                 gate.stackSize = 1;
-                GameRegistry.addRecipe(gate.copy(), new Object[]{"fpf", 'f', fenceNormal.copy(), 'p', planks2.copy()});
+                GameRegistry.addRecipe(gate.copy(), "fpf", 'f', fenceNormal.copy(), 'p', planks2.copy());
                 fenceNormal.stackSize = 4;
-                GameRegistry.addRecipe(fenceNormal.copy(), new Object[]{"###", "# #", '#', planks2.copy()});
-                GameRegistry.addRecipe(doorSolid.copy(), new Object[]{"###", "###", "###", '#', planks2.copy()});
-                GameRegistry.addRecipe(doorStandard.copy(), new Object[]{"# #", "###", "###", '#', planks2.copy()});
-                GameRegistry.addRecipe(doorSplit.copy(), new Object[]{"# #", "###", "# #", '#', planks2.copy()});
-                GameRegistry.addRecipe(doorFull.copy(), new Object[]{"# #", "# #", "# #", '#', planks2.copy()});
+                GameRegistry.addRecipe(fenceNormal.copy(), "###", "# #", '#', planks2.copy());
+                GameRegistry.addRecipe(doorSolid.copy(), "###", "###", "###", '#', planks2.copy());
+                GameRegistry.addRecipe(doorStandard.copy(), "# #", "###", "###", '#', planks2.copy());
+                GameRegistry.addRecipe(doorSplit.copy(), "# #", "###", "# #", '#', planks2.copy());
+                GameRegistry.addRecipe(doorFull.copy(), "# #", "# #", "# #", '#', planks2.copy());
             }
         }
         this.addSqueezer(EnumVanillaWoodType.SPRUCE, ExtraTreeLiquid.Resin, 50);

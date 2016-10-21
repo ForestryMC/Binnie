@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class ControlTileSelect extends Control implements IControlValue<IDesign>, IControlScrollable {
     IDesign value;
@@ -74,7 +75,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
         for (final IDesignCategory category : CarpentryManager.carpentryInterface.getAllDesignCategories()) {
             designs.put(category, new ArrayList<>());
             for (final IDesign tile : category.getDesigns()) {
-                if (filterText == "" || tile.getName().toLowerCase().contains(filterText)) {
+                if (Objects.equals(filterText, "") || tile.getName().toLowerCase().contains(filterText)) {
                     designs.get(category).add(tile);
                 }
             }

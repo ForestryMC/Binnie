@@ -5,6 +5,7 @@ import binnie.extratrees.alcohol.drink.DrinkManager;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public enum Cocktail {
     Bellini("Bellini", Glassware.Flute, 15974764),
@@ -58,7 +59,7 @@ public enum Cocktail {
         for (final Cocktail cocktail : values()) {
             boolean is = true;
             for (final Map.Entry<ICocktailIngredient, Integer> entry : ingredients.entrySet()) {
-                if (cocktail.ingredients.get(entry.getKey()) != entry.getValue()) {
+                if (!Objects.equals(cocktail.ingredients.get(entry.getKey()), entry.getValue())) {
                     is = false;
                 }
             }

@@ -21,6 +21,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ModuleAlcohol implements IInitializable {
     public static int drinkRendererID;
@@ -69,13 +70,13 @@ public class ModuleAlcohol implements IInitializable {
             for (final ItemStack stack : ores) {
                 for (final ISqueezerRecipe entry : RecipeManagers.squeezerManager.recipes()) {
                     try {
-                        final ItemStack input = (ItemStack) entry.getResources()[0];
+                        final ItemStack input = entry.getResources()[0];
                         final FluidStack output = entry.getFluidOutput();
                         if (!ItemStack.areItemStacksEqual(stack, input) && !OreDictionary.itemMatches(input, stack, true)) {
                             continue;
                         }
                         int amount = output.amount;
-                        if (output.getFluid().getName() == "seedoil") {
+                        if (Objects.equals(output.getFluid().getName(), "seedoil")) {
                             amount *= 2;
                         }
                         Press.addRecipe(stack, juice.get(amount));

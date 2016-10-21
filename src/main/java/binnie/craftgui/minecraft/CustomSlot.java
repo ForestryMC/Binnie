@@ -36,7 +36,7 @@ public class CustomSlot extends Slot {
         ItemStack stack = player.inventory.getItemStack();
         //TODO modifier==mouseButton2?
         if (stack == null || modifier == ClickType.PICKUP_ALL) {
-            this.putStack((ItemStack) null);
+            this.putStack(null);
         } else {
             stack = stack.copy();
             stack.stackSize = 1;

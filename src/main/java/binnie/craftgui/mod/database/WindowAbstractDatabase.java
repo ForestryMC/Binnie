@@ -32,6 +32,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public abstract class WindowAbstractDatabase extends Window {
     private float selectionBoxWidth;
@@ -120,7 +121,7 @@ public abstract class WindowAbstractDatabase extends Window {
                     widgets.listBox.setValidator(new IValidator<IWidget>() {
                         @Override
                         public boolean isValid(final IWidget object) {
-                            return event.getValue() == "" || ((ControlTextOption) object).getText().toLowerCase().contains(event.getValue().toLowerCase());
+                            return Objects.equals(event.getValue(), "") || ((ControlTextOption) object).getText().toLowerCase().contains(event.getValue().toLowerCase());
                         }
                     });
                 }
