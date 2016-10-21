@@ -15,6 +15,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 
@@ -72,18 +73,12 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
         for (final IInitializable module : this.modules) {
             module.preInit();
         }
-        for (final Field field : this.getClass().getFields()) {
-            this.fields.add(field);
-        }
+        Collections.addAll(this.fields, this.getClass().getFields());
         for (final Class cls : this.getClass().getClasses()) {
-            for (final Field field2 : this.getClass().getFields()) {
-                this.fields.add(field2);
-            }
+            Collections.addAll(this.fields, this.getClass().getFields());
         }
         for (final IInitializable module : this.modules) {
-            for (final Field field3 : module.getClass().getFields()) {
-                this.fields.add(field3);
-            }
+            Collections.addAll(this.fields, module.getClass().getFields());
         }
         for (final Field field4 : this.fields) {
             try {

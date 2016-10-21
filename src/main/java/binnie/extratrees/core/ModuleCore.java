@@ -16,6 +16,7 @@ import forestry.api.arboriculture.IWoodType;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -42,13 +43,9 @@ public class ModuleCore implements IInitializable {
                     speciesQueue.add(s);
                 }
                 final Queue<IWoodType> logQueue = new LinkedList<>();
-                for (final IWoodType wood : EnumExtraTreeLog.values()) {
-                    logQueue.add(wood);
-                }
+                Collections.addAll(logQueue, EnumExtraTreeLog.values());
                 final Queue<IDesignMaterial> plankQueue = new LinkedList<>();
-                for (final IDesignMaterial wood2 : PlankType.ExtraTreePlanks.values()) {
-                    plankQueue.add(wood2);
-                }
+                Collections.addAll(plankQueue, PlankType.ExtraTreePlanks.values());
                 final Queue<ExtraTreeFruitGene> fruitQueue = new LinkedList<>();
                 for (final ExtraTreeFruitGene wood3 : ExtraTreeFruitGene.values()) {
                     fruitQueue.add(wood3);

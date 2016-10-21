@@ -6,6 +6,7 @@ import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.events.EventValueChanged;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ControlEnumButton<T> extends ControlButton implements IControlValue<T> {
@@ -41,9 +42,7 @@ public class ControlEnumButton<T> extends ControlButton implements IControlValue
     public ControlEnumButton(final IWidget parent, final float x, final float y, final float width, final float height, final T[] values) {
         super(parent, x, y, width, height, "");
         this.enumConstants = new ArrayList<>();
-        for (final T value : values) {
-            this.enumConstants.add(value);
-        }
+        Collections.addAll(this.enumConstants, values);
         if (values.length > 0) {
             this.currentSelection = values[0];
         }

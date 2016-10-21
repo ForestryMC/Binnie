@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class WoodManager {
@@ -92,20 +93,14 @@ public class WoodManager {
 
     public static List<IPlankType> getAllPlankTypes() {
         final List<IPlankType> list = new ArrayList<>();
-        for (final IPlankType type : PlankType.ExtraTreePlanks.values()) {
-            list.add(type);
-        }
-        for (final IPlankType type : PlankType.ForestryPlanks.values()) {
-            list.add(type);
-        }
+        Collections.addAll(list, PlankType.ExtraTreePlanks.values());
+        Collections.addAll(list, PlankType.ForestryPlanks.values());
         for (final IPlankType type : PlankType.ExtraBiomesPlank.values()) {
             if (type.getStack() != null) {
                 list.add(type);
             }
         }
-        for (final IPlankType type : PlankType.VanillaPlanks.values()) {
-            list.add(type);
-        }
+        Collections.addAll(list, PlankType.VanillaPlanks.values());
         return list;
     }
 

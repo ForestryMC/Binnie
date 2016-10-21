@@ -13,6 +13,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -123,13 +124,9 @@ public class MachineUtil {
 
     public boolean hasIngredients(final int[] recipe, final int[] inventory) {
         final ItemStackSet requiredStacks = new ItemStackSet();
-        for (final ItemStack stack : this.getStacks(recipe)) {
-            requiredStacks.add(stack);
-        }
+        Collections.addAll(requiredStacks, this.getStacks(recipe));
         final ItemStackSet inventoryStacks = new ItemStackSet();
-        for (final ItemStack stack2 : this.getStacks(inventory)) {
-            inventoryStacks.add(stack2);
-        }
+        Collections.addAll(inventoryStacks, this.getStacks(inventory));
         requiredStacks.removeAll(inventoryStacks);
         return requiredStacks.isEmpty();
     }

@@ -16,6 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class WindowBotanistDatabase extends WindowAbstractDatabase {
@@ -48,9 +49,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
                     }
                 };
                 final List<IFlowerColour> colors = new ArrayList<>();
-                for (final IFlowerColour c : EnumFlowerColor.values()) {
-                    colors.add(c);
-                }
+                Collections.addAll(colors, EnumFlowerColor.values());
                 this.listBox.setOptions(colors);
             }
         });

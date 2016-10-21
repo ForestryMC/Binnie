@@ -17,6 +17,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import org.lwjgl.opengl.GL11;
 
+import java.util.Collections;
+
 public class ControlBreweryProgress extends ControlProgressBase {
     static Texture Brewery;
     static Texture BreweryOverlay;
@@ -47,9 +49,7 @@ public class ControlBreweryProgress extends ControlProgressBase {
         this.renderFluid(binnie.extratrees.machines.Brewery.getOutput(logic.currentCrafting), new IPoint(17.0f, 22.0f));
         GL11.glDisable(3089);
         final ItemStackSet stacks = new ItemStackSet();
-        for (final ItemStack stack : logic.currentCrafting.inputs) {
-            stacks.add(stack);
-        }
+        Collections.addAll(stacks, logic.currentCrafting.inputs);
         stacks.add(logic.currentCrafting.ingr);
         int x = 1;
         int y = 6;

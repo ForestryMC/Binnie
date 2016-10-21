@@ -19,6 +19,7 @@ import net.minecraft.item.ItemStack;
 
 import java.lang.reflect.Field;
 import java.util.Collection;
+import java.util.Collections;
 
 public class AnalystPageFruit extends AnalystPageProduce {
     public AnalystPageFruit(final IWidget parent, final IArea area, final ITree ind) {
@@ -44,9 +45,7 @@ public class AnalystPageFruit extends AnalystPageProduce {
                 final FruitProviderPod pod = (FruitProviderPod) ind.getGenome().getFruitProvider();
                 final Field f = FruitProviderPod.class.getDeclaredField("drop");
                 f.setAccessible(true);
-                for (final ItemStack stack2 : (ItemStack[]) f.get(pod)) {
-                    products.add(stack2);
-                }
+                Collections.addAll(products, (ItemStack[]) f.get(pod));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -115,9 +114,7 @@ public class AnalystPageFruit extends AnalystPageProduce {
                             final FruitProviderPod pod2 = (FruitProviderPod) ((IAlleleFruit) a).getProvider();
                             final Field field = FruitProviderPod.class.getDeclaredField("drop");
                             field.setAccessible(true);
-                            for (final ItemStack stack4 : (ItemStack[]) field.get(pod2)) {
-                                stacks.add(stack4);
-                            }
+                            Collections.addAll(stacks, (ItemStack[]) field.get(pod2));
                         }
                     } catch (Exception ex) {
                     }

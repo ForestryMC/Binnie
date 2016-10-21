@@ -11,6 +11,7 @@ import net.minecraft.world.IBlockAccess;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 public class HiveDrop implements IHiveDrop {
     private IAllele[] template;
@@ -28,9 +29,7 @@ public class HiveDrop implements IHiveDrop {
         }
         this.template = template;
         this.chance = chance;
-        for (final ItemStack stack : bonus) {
-            this.additional.add(stack);
-        }
+        Collections.addAll(this.additional, bonus);
     }
 
     @Override

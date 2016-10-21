@@ -210,9 +210,7 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
     public ItemStack[] affectProducts(World world, IIndividual individual, BlockPos pos, ItemStack[] products) {
         if (this == ExtraBeesFlowers.Mystical) {
             final List<ItemStack> prods = new ArrayList<>();
-            for (final ItemStack stack : products) {
-                prods.add(stack);
-            }
+            Collections.addAll(prods, products);
             for (int k = 0; k < 50; ++k) {
                 final int tX = 7;
                 final int tY = 7;
