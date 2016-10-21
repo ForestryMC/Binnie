@@ -26,11 +26,12 @@ public class BeeModelProvider implements IBeeModelProvider {
     public void registerModels(Item item, IModelManager manager) {
         String beeIconDir = "bees/default/";
         EnumBeeType beeType = BeeManager.beeRoot.getType(new ItemStack(item));
-        String beeTypeNameBase = beeIconDir + beeType.toString().toLowerCase(Locale.ENGLISH);
+        if (beeType != null) {
+            String beeTypeNameBase = beeIconDir + beeType.toString().toLowerCase(Locale.ENGLISH);
 
-
-        models[beeType.ordinal()] = getModelLocation("forestry", beeTypeNameBase);
-        ModelBakery.registerItemVariants(item, new ResourceLocation("forestry:" + beeTypeNameBase));
+            models[beeType.ordinal()] = getModelLocation("forestry", beeTypeNameBase);
+            ModelBakery.registerItemVariants(item, new ResourceLocation("forestry:" + beeTypeNameBase));
+        }
     }
 
     @Override

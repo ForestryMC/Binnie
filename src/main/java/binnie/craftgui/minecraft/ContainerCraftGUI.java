@@ -160,10 +160,13 @@ public class ContainerCraftGUI extends Container {
         if (slotnumber < 0) {
             return null;
         }
-        final Slot shiftClickedSlot = (Slot) this.inventorySlots.get(slotnumber);
+        final Slot shiftClickedSlot = this.inventorySlots.get(slotnumber);
         ItemStack itemstack = null;
         if (shiftClickedSlot.getHasStack()) {
-            itemstack = shiftClickedSlot.getStack().copy();
+            ItemStack shiftClickedStack = shiftClickedSlot.getStack();
+            if (shiftClickedStack != null) {
+                itemstack = shiftClickedStack.copy();
+            }
         }
         final IInventory playerInventory = player.inventory;
         final IInventory containerInventory = this.window.getInventory();
@@ -265,7 +268,7 @@ public class ContainerCraftGUI extends Container {
             }
             if (shouldSend) {
                 //TODO INVENTORY
-                this.crafters.stream().filter(entityPlayer -> entityPlayer instanceof EntityPlayerMP).forEach(entityPlayer -> {
+                this.crafters.stream().filter(Objects::nonNull).forEach(entityPlayer -> {
                     System.out.println("send to:" + entityPlayer.getDisplayName().getUnformattedText());
                     BinnieCore.proxy.sendToPlayer(new MessageContainerUpdate(nbt.getValue()), (EntityPlayerMP) entityPlayer);
                 });

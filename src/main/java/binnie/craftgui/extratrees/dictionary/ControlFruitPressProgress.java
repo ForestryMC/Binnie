@@ -11,6 +11,7 @@ import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.StandardTexture;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.machines.Press;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.Fluid;
@@ -23,7 +24,11 @@ public class ControlFruitPressProgress extends ControlProgressBase {
     @Override
     public void onRenderBackground() {
         CraftGUI.Render.texture(ControlFruitPressProgress.PressSlot, new IPoint(3.0f, 52.0f));
-        final ItemStack input = Window.get(this).getContainer().getSlotFromInventory(Window.get(this).getInventory(), Press.slotCurrent).getStack();
+        Slot slotFromInventory = Window.get(this).getContainer().getSlotFromInventory(Window.get(this).getInventory(), Press.slotCurrent);
+        if (slotFromInventory == null) {
+            return;
+        }
+        final ItemStack input = slotFromInventory.getStack();
         if (input == null || Press.getOutput(input) == null) {
             return;
         }

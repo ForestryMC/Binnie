@@ -27,10 +27,7 @@ public class ControlBreweryProgress extends ControlProgressBase {
     public void onRenderBackground() {
         CraftGUI.Render.texture(ControlBreweryProgress.Brewery, new IPoint(0.0f, 0.0f));
         final Brewery.ComponentBreweryLogic logic = Machine.getInterface(Brewery.ComponentBreweryLogic.class, Window.get(this).getInventory());
-        if (logic.currentCrafting == null) {
-            return;
-        }
-        if (logic.currentCrafting.currentInput == null) {
+        if (logic == null || logic.currentCrafting == null || logic.currentCrafting.currentInput == null) {
             return;
         }
         final int fermentedHeight = (int) (32.0f * logic.getProgress() / 100.0f);

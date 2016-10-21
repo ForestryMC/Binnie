@@ -174,12 +174,9 @@ public class Botany extends AbstractMod {
         if (event.getEntityPlayer() != null && event.getEntityPlayer().getHeldItemMainhand() != null) {
             BlockPos down = event.getPos();
             Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
-            if (block == null || !Gardening.isSoil(block)) {
+            if (!Gardening.isSoil(block)) {
                 down = down.down();
                 block = event.getWorld().getBlockState(down).getBlock();
-            }
-            if (block == null) {
-                return;
             }
             if (Gardening.isSoil(block)) {
                 final IBlockSoil soil = (IBlockSoil) block;

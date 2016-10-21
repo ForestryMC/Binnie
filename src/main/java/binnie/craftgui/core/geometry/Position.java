@@ -37,7 +37,7 @@ public enum Position {
                 return Position.Bottom;
             }
             default: {
-                return null;
+                throw new IllegalStateException();
             }
         }
     }

@@ -201,7 +201,7 @@ public class Analyser {
 
         public ComponentAnalyserFX(final IMachine machine) {
             super(machine);
-            this.dummyEntityItem = new EntityItem((World) null);
+            this.dummyEntityItem = new EntityItem(machine.getWorld());
         }
 
         @SideOnly(Side.CLIENT)

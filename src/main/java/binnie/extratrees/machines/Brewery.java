@@ -25,6 +25,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.oredict.OreDictionary;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -71,16 +72,13 @@ public class Brewery {
         return null;
     }
 
+    @Nullable
     public static FluidStack getOutput(final BreweryCrafting crafting) {
-        if (crafting.currentInput == null) {
-            return null;
-        }
-        if (crafting.yeast == null) {
-            return null;
-        }
-        for (final IBreweryRecipe recipe : Brewery.recipes) {
-            if (recipe.getOutput(crafting) != null) {
-                return recipe.getOutput(crafting);
+        if (crafting.currentInput != null && crafting.yeast != null) {
+            for (final IBreweryRecipe recipe : Brewery.recipes) {
+                if (recipe.getOutput(crafting) != null) {
+                    return recipe.getOutput(crafting);
+                }
             }
         }
         return null;
@@ -275,9 +273,12 @@ public class Brewery {
 
         @Override
         protected void onFinishTask() {
-            final FluidStack output = Brewery.getOutput(this.currentCrafting).copy();
-            output.amount = 1000;
-            this.getUtil().fillTank(Brewery.tankOutput, output);
+            FluidStack output = Brewery.getOutput(this.currentCrafting);
+            if (output != null) {
+                output = output.copy();
+                output.amount = 1000;
+                this.getUtil().fillTank(Brewery.tankOutput, output);
+            }
         }
 
         @Override
@@ -317,7 +318,11 @@ public class Brewery {
             if (this.currentCrafting == null) {
                 return "Empty";
             }
-            return "Creating " + Brewery.getOutput(this.currentCrafting).getFluid().getLocalizedName(Brewery.getOutput(this.currentCrafting));
+            FluidStack output = Brewery.getOutput(this.currentCrafting);
+            if (output == null) {
+                return "Empty";
+            }
+            return "Creating " + output.getFluid().getLocalizedName(output);
         }
     }
 

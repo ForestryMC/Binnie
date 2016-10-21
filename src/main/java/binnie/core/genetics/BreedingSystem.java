@@ -140,10 +140,10 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
             for (final IMutation mutation : mutations) {
                 this.allMutations.add(mutation);
                 final Set<IAlleleSpecies> participatingSpecies = new LinkedHashSet<>();
-                if (mutation.getAllele0() instanceof IAlleleSpecies) {
+                if (mutation.getAllele0() != null) {
                     participatingSpecies.add(mutation.getAllele0());
                 }
-                if (mutation.getAllele1() instanceof IAlleleSpecies) {
+                if (mutation.getAllele1() != null) {
                     participatingSpecies.add(mutation.getAllele1());
                 }
                 for (final IAlleleSpecies species3 : participatingSpecies) {
@@ -152,9 +152,11 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
                         this.furtherMutations.get(species3).add(mutation);
                     }
                 }
-                if (this.resultantMutations.containsKey(mutation.getTemplate()[0])) {
-                    this.allResultantMutations.get(mutation.getTemplate()[0]).add(mutation);
-                    this.resultantMutations.get(mutation.getTemplate()[0]).add(mutation);
+                IAllele[] template = mutation.getTemplate();
+                IAlleleSpecies speciesAllele = (IAlleleSpecies) template[0];
+                if (this.resultantMutations.containsKey(speciesAllele)) {
+                    this.allResultantMutations.get(speciesAllele).add(mutation);
+                    this.resultantMutations.get(speciesAllele).add(mutation);
                 }
             }
         }

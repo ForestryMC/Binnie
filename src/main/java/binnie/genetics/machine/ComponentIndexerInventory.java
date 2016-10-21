@@ -53,8 +53,9 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 
     @Override
     public ItemStack decrStackSize(final int index, final int amount) {
-        if (index >= 0) {
-            final ItemStack returnStack = this.getStackInSlot(index).copy();
+        ItemStack stackInSlot = this.getStackInSlot(index);
+        if (stackInSlot != null) {
+            final ItemStack returnStack = stackInSlot.copy();
             this.setInventorySlotContents(index, null);
             return returnStack;
         }

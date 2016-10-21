@@ -27,6 +27,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
 public class Acclimatiser {
@@ -35,17 +36,17 @@ public class Acclimatiser {
     public static final int[] slotAcclimatiser;
     public static final int[] slotDone;
     private static List<ToleranceSystem> toleranceSystems;
-    static Map<ItemStack, Float> temperatureItems;
-    static Map<ItemStack, Float> humidityItems;
+    private static Map<ItemStack, Float> temperatureItems;
+    private static Map<ItemStack, Float> humidityItems;
 
+    @Nullable
     private static ToleranceSystem getToleranceSystem(final ItemStack stack, final ItemStack acclim) {
         final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
-        if (root == null) {
-            return null;
-        }
-        for (final ToleranceSystem system : Acclimatiser.toleranceSystems) {
-            if (root.getUID() == system.uid && system.type.hasEffect(acclim)) {
-                return system;
+        if (root != null) {
+            for (final ToleranceSystem system : Acclimatiser.toleranceSystems) {
+                if (Objects.equals(root.getUID(), system.uid) && system.type.hasEffect(acclim)) {
+                    return system;
+                }
             }
         }
         return null;
@@ -135,6 +136,9 @@ public class Acclimatiser {
 
     public static ItemStack acclimatise(final ItemStack stack, final ItemStack acc) {
         final ToleranceSystem system = getToleranceSystem(stack, acc);
+        if (system == null) {
+            return stack;
+        }
         return system.alter(stack, acc);
     }
 

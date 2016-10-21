@@ -41,9 +41,12 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 
     @Override
     public void onRenderForeground() {
-        final int level = Machine.getInterface(Distillery.ComponentDistilleryLogic.class, Window.get(this).getInventory()).level;
-        CraftGUI.Render.texture(ControlDistilleryProgress.Output, new IPoint(47.0f, 14 + level * 15));
-        CraftGUI.Render.texture(ControlDistilleryProgress.DistilleryOverlay, new IPoint(0.0f, 0.0f));
+        Distillery.ComponentDistilleryLogic distilleryLogic = Machine.getInterface(Distillery.ComponentDistilleryLogic.class, Window.get(this).getInventory());
+        if (distilleryLogic != null) {
+            final int level = distilleryLogic.level;
+            CraftGUI.Render.texture(ControlDistilleryProgress.Output, new IPoint(47.0f, 14 + level * 15));
+            CraftGUI.Render.texture(ControlDistilleryProgress.DistilleryOverlay, new IPoint(0.0f, 0.0f));
+        }
     }
 
     protected ControlDistilleryProgress(final IWidget parent, final float x, final float y) {

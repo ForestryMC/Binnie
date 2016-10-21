@@ -23,6 +23,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
 public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, INetwork.TilePacketSync, IMachine, INetwork.GuiNBT {
@@ -215,6 +216,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
         return null;
     }
 
+    @Nullable
     public static <T> T getInterface(final Class<T> interfac, final Object inventory) {
         final IMachine machine = getMachine(inventory);
         if (machine != null) {

@@ -135,23 +135,19 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
             final double var3 = pos.getZ() + world.rand.nextFloat();
             world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, var1, var2, var3, 0.0, 0.0, 0.0);
             world.spawnParticle(EnumParticleTypes.FLAME, var1, var2, var3, 0.0, 0.0, 0.0);
-            final EntityLiving var4 = (EntityLiving) EntityList.createEntityByName(name, world);
-            if (var4 == null) {
-                return;
-            }
-            final int var5 = world.getEntitiesWithinAABB(var4.getClass(), new AxisAlignedBB(pos, pos.add(1, 1, 1)).expand(8.0, 4.0, 8.0)).size();
-            if (var5 >= 6) {
-                return;
-            }
-            if (var4 != null) {
-                final double var6 = pos.getX() + (world.rand.nextDouble() - world.rand.nextDouble()) * 4.0;
-                final double var7 = pos.getY() + world.rand.nextInt(3) - 1;
-                final double var8 = pos.getZ() + (world.rand.nextDouble() - world.rand.nextDouble()) * 4.0;
-                var4.setLocationAndAngles(var6, var7, var8, world.rand.nextFloat() * 360.0f, 0.0f);
-                if (var4.getCanSpawnHere()) {
-                    world.spawnEntityInWorld(var4);
-                    world.playEvent(2004, pos, 0);//playSFX
-                    var4.spawnExplosionParticle();
+            final EntityLiving entity = (EntityLiving) EntityList.createEntityByName(name, world);
+            if (entity != null) {
+                final int nearbyEntityCount = world.getEntitiesWithinAABB(entity.getClass(), new AxisAlignedBB(pos, pos.add(1, 1, 1)).expand(8.0, 4.0, 8.0)).size();
+                if (nearbyEntityCount < 6) {
+                    final double var6 = pos.getX() + (world.rand.nextDouble() - world.rand.nextDouble()) * 4.0;
+                    final double var7 = pos.getY() + world.rand.nextInt(3) - 1;
+                    final double var8 = pos.getZ() + (world.rand.nextDouble() - world.rand.nextDouble()) * 4.0;
+                    entity.setLocationAndAngles(var6, var7, var8, world.rand.nextFloat() * 360.0f, 0.0f);
+                    if (entity.getCanSpawnHere()) {
+                        world.spawnEntityInWorld(entity);
+                        world.playEvent(2004, pos, 0);//playSFX
+                        entity.spawnExplosionParticle();
+                    }
                 }
             }
         }

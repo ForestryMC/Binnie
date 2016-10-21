@@ -68,8 +68,9 @@ public class AlvearyFrame {
         }
 
         public IHiveFrame getHiveFrame() {
-            if (this.getInventory().getStackInSlot(AlvearyFrame.slotFrame) != null) {
-                return (IHiveFrame) this.getInventory().getStackInSlot(AlvearyFrame.slotFrame).getItem();
+            ItemStack stackInSlot = this.getInventory().getStackInSlot(AlvearyFrame.slotFrame);
+            if (stackInSlot != null) {
+                return (IHiveFrame) stackInSlot.getItem();
             }
             return null;
         }

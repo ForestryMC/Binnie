@@ -44,7 +44,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
         final List<ItemStack> products = new ArrayList<>();
         for (final ICentrifugeRecipe recipe : RecipeManagers.centrifugeManager.recipes()) {
             boolean isRecipe = false;
-            if (recipe.getInput() instanceof ItemStack && stack.isItemEqual((ItemStack) recipe.getInput())) {
+            if (recipe.getInput() != null && stack.isItemEqual(recipe.getInput())) {
                 isRecipe = true;
             }
             if (isRecipe) {
@@ -68,8 +68,8 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
                 }
             }
             if (isRecipe) {
-                if (recipe.getRemnants() instanceof ItemStack) {
-                    products.add((ItemStack) recipe.getRemnants());
+                if (recipe.getRemnants() != null) {
+                    products.add(recipe.getRemnants());
                 }
             }
         }
@@ -139,7 +139,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
                 }
             }
             if (isRecipe) {
-                if (recipe.getFluidOutput() instanceof FluidStack) {
+                if (recipe.getFluidOutput() != null) {
                     products.add(recipe.getFluidOutput());
                 }
             }

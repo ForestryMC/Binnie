@@ -1,6 +1,7 @@
 package binnie.core.machines;
 
 import binnie.core.BinnieCore;
+import binnie.core.util.TileUtil;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
@@ -153,11 +154,7 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state) {
-        final TileEntity tileentity = world.getTileEntity(pos);
-        if (!(tileentity instanceof TileEntityMachine)) {
-            return;
-        }
-        final TileEntityMachine entity = (TileEntityMachine) tileentity;
+        final TileEntityMachine entity = TileUtil.getTile(world, pos, TileEntityMachine.class);
         if (entity != null) {
             entity.onBlockDestroy();
         }

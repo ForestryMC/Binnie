@@ -31,6 +31,9 @@ public class ControlRecipeSlot extends ControlSlotBase {
     @Override
     public ItemStack getItemStack() {
         final IComponentRecipe recipe = Machine.getInterface(IComponentRecipe.class, Window.get(this).getInventory());
-        return recipe.isRecipe() ? recipe.getProduct() : null;
+        if (recipe != null && recipe.isRecipe()) {
+            return recipe.getProduct();
+        }
+        return null;
     }
 }

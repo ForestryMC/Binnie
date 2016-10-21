@@ -112,9 +112,6 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 
     public boolean isAcceptedFlower(final World world, final IIndividual individual, final BlockPos pos) {
         final Block block = world.getBlockState(pos).getBlock();
-        if (block == null) {
-            return false;
-        }
         switch (this) {
             case WATER: {
                 return block == Blocks.WATERLILY;
@@ -220,13 +217,11 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
                 final int z2 = pos.getZ() - tZ + world.rand.nextInt(1 + 2 * tZ);
                 final BlockPos pos2 = new BlockPos(x2, y2, z2);
                 final Block block = world.getBlockState(pos2).getBlock();
-                if (block != null) {
-                    if (block == Mods.Botania.block("flower")) {
-                        final int meta = world.getBlockState(pos2).getBlock().getMetaFromState(world.getBlockState(pos2));
-                        final Item item = Mods.Botania.item("petal");
-                        if (item != null) {
-                            prods.add(new ItemStack(item, 1, meta));
-                        }
+                if (block == Mods.Botania.block("flower")) {
+                    final int meta = world.getBlockState(pos2).getBlock().getMetaFromState(world.getBlockState(pos2));
+                    final Item item = Mods.Botania.item("petal");
+                    if (item != null) {
+                        prods.add(new ItemStack(item, 1, meta));
                     }
                 }
             }

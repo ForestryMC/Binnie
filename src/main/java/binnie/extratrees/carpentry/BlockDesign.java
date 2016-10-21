@@ -3,6 +3,7 @@ package binnie.extratrees.carpentry;
 import binnie.core.block.BlockMetadata;
 import binnie.core.block.IMultipassBlock;
 import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.TileUtil;
 import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignSystem;
@@ -45,10 +46,12 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
             return;
         }
         final DesignBlock block = blockC.getCarpentryBlock(world, pos);
-        final TileEntityMetadata tile = (TileEntityMetadata) world.getTileEntity(pos);
-        //block.rotate(event.getFace(), item, player, world, pos);
-        final int meta = block.getBlockMetadata(blockC.getDesignSystem());
-        tile.setTileMetadata(meta, true);
+        final TileEntityMetadata tile = TileUtil.getTile(world, pos, TileEntityMetadata.class);
+        if (tile != null) {
+            //block.rotate(event.getFace(), item, player, world, pos);
+            final int meta = block.getBlockMetadata(blockC.getDesignSystem());
+            tile.setTileMetadata(meta, true);
+        }
     }
 
     public BlockDesign(final IDesignSystem system, final Material material) {
