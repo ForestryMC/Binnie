@@ -14,9 +14,6 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * Created by Marcin on 18.10.2016.
- */
 public class WoodAccess implements IWoodAccess{
     static HashMap<IWoodType, IBlockState> woodMap = new HashMap<>();
 

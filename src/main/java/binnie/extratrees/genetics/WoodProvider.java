@@ -15,9 +15,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import javax.annotation.Nonnull;
 
-/**
- * Created by Marcin on 07.10.2016.
- */
 public class WoodProvider implements IWoodProvider {
     private IWoodType type;
     private TextureAtlasSprite trunk;

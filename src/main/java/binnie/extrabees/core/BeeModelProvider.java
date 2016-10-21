@@ -14,9 +14,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Locale;
 
-/**
- * Created by Marcin on 16.08.2016.
- */
 public class BeeModelProvider implements IBeeModelProvider {
     public static final BeeModelProvider instance = new BeeModelProvider();
 
