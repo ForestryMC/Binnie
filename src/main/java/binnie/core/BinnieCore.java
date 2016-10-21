@@ -45,7 +45,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mod(modid = "BinnieCore", name = "Binnie Core", useMetadata = true)
+@Mod(modid = "BinnieCore", name = "Binnie Core", useMetadata = true, dependencies = "required-after:forestry")
 public final class BinnieCore extends AbstractMod {
     @Mod.Instance("BinnieCore")
     public static BinnieCore instance;

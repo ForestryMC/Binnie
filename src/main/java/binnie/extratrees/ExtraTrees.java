@@ -41,7 +41,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod(modid = "extratrees", name = "Extra Trees", useMetadata = true, dependencies = "after:BinnieCore;required-after:forestry")
+@Mod(modid = "extratrees", name = "Binnie's Extra Trees", useMetadata = true, dependencies = "required-after:BinnieCore")
 public class ExtraTrees extends AbstractMod {
     @Mod.Instance("extratrees")
     public static ExtraTrees instance;

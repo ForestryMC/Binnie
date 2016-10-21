@@ -22,7 +22,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = "ExtraBees", name = "Extra Bees", useMetadata = true, dependencies = "after:BinnieCore")
+@Mod(modid = "ExtraBees", name = "Binnie's Extra Bees", useMetadata = true, dependencies = "required-after:BinnieCore")
 public class ExtraBees extends AbstractMod {
     @Mod.Instance("ExtraBees")
     public static ExtraBees instance;

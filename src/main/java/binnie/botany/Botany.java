@@ -46,7 +46,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod(modid = "Botany", name = "Botany", useMetadata = true, dependencies = "after:BinnieCore")
+@Mod(modid = "Botany", name = "Binnie's Botany", useMetadata = true, dependencies = "required-after:BinnieCore")
 public class Botany extends AbstractMod {
     public static final float AGE_CHANCE = 0.2f;
     @Mod.Instance("Botany")

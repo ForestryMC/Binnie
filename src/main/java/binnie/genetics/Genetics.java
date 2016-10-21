@@ -22,7 +22,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = "Genetics", name = "Genetics", useMetadata = true, dependencies = "after:BinnieCore")
+@Mod(modid = "Genetics", name = "Binnie's Genetics", useMetadata = true, dependencies = "required-after:BinnieCore")
 public class Genetics extends AbstractMod {
     public static ItemSerumArray itemSerumArray;
     @Mod.Instance("Genetics")
