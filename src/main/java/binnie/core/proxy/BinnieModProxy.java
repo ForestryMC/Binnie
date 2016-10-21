@@ -5,11 +5,13 @@ import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.network.packet.MessageBase;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class BinnieModProxy implements IBinnieModProxy {
     private AbstractMod mod;
@@ -17,6 +19,20 @@ public class BinnieModProxy implements IBinnieModProxy {
     public BinnieModProxy(final AbstractMod mod) {
         this.mod = mod;
     }
+    
+    public Item registerItem(Item item){
+    	return GameRegistry.register(item);
+    }
+    
+    public Block registerBlock(Block block){
+    	return GameRegistry.register(block);
+    }
+    
+	public void registerModels() {
+	}
+	
+	public void registerItemAndBlockColors() {
+	}
 
     @Override
     public void openGui(final IBinnieGUID ID, final EntityPlayer player, final BlockPos pos) {

@@ -6,6 +6,7 @@ import binnie.core.network.BinnieCorePacketID;
 import binnie.core.network.INetworkedEntity;
 import binnie.core.network.packet.MessageUpdate;
 import binnie.core.resource.BinnieResource;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,16 +29,6 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
         super(BinnieCore.instance);
         this.uniqueTextureUID = 1200;
     }
-    
-    public Item registerItem(Item item){
-    	return GameRegistry.register(item);
-    }
-    
-	public void registerModels() {
-	}
-	
-	public void registerItemAndBlockColors() {
-	}
 
     @Override
     public void preInit() {

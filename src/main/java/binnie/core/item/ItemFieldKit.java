@@ -15,15 +15,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class ItemFieldKit extends Item {
+public class ItemFieldKit extends ItemCore {
 //	private IIcon fieldKit0;
 //	private IIcon fieldKit1;
 //	private IIcon fieldKit2;
 //	private IIcon fieldKit3;
 
     public ItemFieldKit() {
+    	super("fieldKit");
         this.setUnlocalizedName("fieldKit");
-        setRegistryName("fieldKit");
         this.setCreativeTab(CreativeTabs.TOOLS);
         this.setMaxStackSize(1);
         this.setMaxDamage(64);

@@ -44,19 +44,19 @@ public class ModuleItem implements IInitializable {
         Genetics.itemSerumArray = new ItemSerumArray();
         Genetics.itemSequencer = new ItemSequence();
         Genetics.itemGenetics = Binnie.Item.registerMiscItems(GeneticsItems.values(), CreativeTabGenetics.instance);
-        BinnieCore.proxy.registerItem(Genetics.itemSerum);
-        BinnieCore.proxy.registerItem(Genetics.itemSerumArray);
-        BinnieCore.proxy.registerItem(Genetics.itemSequencer);
-        BinnieCore.proxy.registerItem(Genetics.itemGenetics);
+        Genetics.proxy.registerItem(Genetics.itemSerum);
+        Genetics.proxy.registerItem(Genetics.itemSerumArray);
+        Genetics.proxy.registerItem(Genetics.itemSequencer);
+        Genetics.proxy.registerItem(Genetics.itemGenetics);
 
         Genetics.database = new ItemDatabase();
         Genetics.analyst = new ItemAnalyst();
         Genetics.registry = new ItemRegistry();
         Genetics.masterRegistry = new ItemMasterRegistry();
-        BinnieCore.proxy.registerItem(Genetics.database);
-        BinnieCore.proxy.registerItem(Genetics.analyst);
-        BinnieCore.proxy.registerItem(Genetics.registry);
-        BinnieCore.proxy.registerItem(Genetics.masterRegistry);
+        Genetics.proxy.registerItem(Genetics.database);
+        Genetics.proxy.registerItem(Genetics.analyst);
+        Genetics.proxy.registerItem(Genetics.registry);
+        Genetics.proxy.registerItem(Genetics.masterRegistry);
 
         Binnie.Liquid.createLiquids(GeneticLiquid.values(), ItemFluidContainer.LiquidGenetics);
     }

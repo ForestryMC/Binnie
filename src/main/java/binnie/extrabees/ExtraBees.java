@@ -1,5 +1,6 @@
 package binnie.extrabees;
 
+import binnie.Constants;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.gui.IBinnieGUID;
@@ -22,7 +23,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = "ExtraBees", name = "Binnie's Extra Bees", useMetadata = true, dependencies = "required-after:BinnieCore")
+@Mod(modid = "ExtraBees", name = "Binnie's Extra Bees", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class ExtraBees extends AbstractMod {
     @Mod.Instance("ExtraBees")
     public static ExtraBees instance;
@@ -51,11 +52,13 @@ public class ExtraBees extends AbstractMod {
         this.addModule(new ModuleLiquids());
         //this.addModule(new ModuleApiary());
         this.preInit();
+        proxy.registerModels();
     }
 
     @Mod.EventHandler
     public void init(final FMLInitializationEvent evt) {
         this.init();
+        proxy.registerItemAndBlockColors();
     }
 
     @Mod.EventHandler

@@ -47,8 +47,6 @@ import forestry.core.utils.ItemStackUtil;
 @SideOnly(Side.CLIENT)
 public class ModelManager implements IModelManager {
 	
-	private static final ModelManager instance = new ModelManager();
-	
 	private final List<BlockModelEntry> customBlockModels = new ArrayList<>();
 	private final List<ModelEntry> customModels = new ArrayList<>();
 
@@ -90,14 +88,6 @@ public class ModelManager implements IModelManager {
 	        TransformType.THIRD_PERSON_LEFT_HAND,  get(0, 4, 0.5f,         0, 90, -55, 0.85f),
 	        TransformType.FIRST_PERSON_RIGHT_HAND, get(1.13f, 3.2f, 1.13f, 0, -90, 25, 0.68f),
 	        TransformType.FIRST_PERSON_LEFT_HAND,  get(1.13f, 3.2f, 1.13f, 0, 90, -25, 0.68f))); 
-	}
-	
-	static {
-		ForestryAPI.modelManager = instance;
-	}
-
-	public static ModelManager getInstance() {
-		return instance;
 	}
 	
     private TRSRTransformation get(float tx, float ty, float tz, float ax, float ay, float az, float s){

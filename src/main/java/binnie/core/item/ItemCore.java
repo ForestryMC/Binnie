@@ -7,7 +7,7 @@ import net.minecraft.item.Item;
 public class ItemCore extends Item implements IItemModelRegister{
 	
 	public ItemCore(String registryName) {
-		setRegistryName(getRegistryName());
+		setRegistryName(registryName);
 	}
 	
 	@Override

@@ -1,15 +1,18 @@
 package binnie.extratrees.proxy;
 
+import binnie.core.models.ModelManager;
 import binnie.extratrees.ExtraTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
+import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 
 public class ProxyClient extends Proxy implements IExtraTreeProxy {
-
+	public static ModelManager modelManager = new ModelManager();
+	
     @Override
     public void init() {
         //ForestryAPI.textureManager.registerIconProvider(FruitSprite.Average);
@@ -33,5 +36,31 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
             return new ModelResourceLocation(rl, this.getPropertyString(state.getProperties()));
         }
     }
+    
+    public static ModelManager getModelManager() {
+		return modelManager;
+	}
+    
+	@Override
+	public Item registerItem(Item item) {
+		getModelManager().registerItemClient(item);
+		return super.registerItem(item);
+	}
+	
+	@Override
+	public Block registerBlock(Block block) {
+		getModelManager().registerBlockClient(block);
+		return super.registerBlock(block);
+	}
+	
+	@Override
+	public void registerModels() {
+		getModelManager().registerModels();
+	}
+	
+	@Override
+	public void registerItemAndBlockColors() {
+		getModelManager().registerItemAndBlockColors();
+	}
 
 }

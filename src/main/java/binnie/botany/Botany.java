@@ -1,5 +1,6 @@
 package binnie.botany;
 
+import binnie.Constants;
 import binnie.botany.api.IFlower;
 import binnie.botany.api.gardening.IBlockSoil;
 import binnie.botany.ceramic.BlockCeramic;
@@ -46,10 +47,10 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod(modid = "Botany", name = "Binnie's Botany", useMetadata = true, dependencies = "required-after:BinnieCore")
+@Mod(modid = Constants.BOTANY_MOD_ID, name = "Binnie's Botany", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class Botany extends AbstractMod {
     public static final float AGE_CHANCE = 0.2f;
-    @Mod.Instance("Botany")
+    @Mod.Instance(Constants.BOTANY_MOD_ID)
     public static Botany instance;
     @SidedProxy(clientSide = "binnie.botany.proxy.ProxyClient", serverSide = "binnie.botany.proxy.ProxyServer")
     public static Proxy proxy;
@@ -88,11 +89,13 @@ public class Botany extends AbstractMod {
         //this.addModule(new ModuleGenetics());
         this.addModule(new ModuleGardening());
         this.preInit();
+        proxy.registerModels();
     }
 
     @Mod.EventHandler
     public void init(final FMLInitializationEvent evt) {
         this.init();
+        proxy.registerItemAndBlockColors();
     }
 
     @Mod.EventHandler

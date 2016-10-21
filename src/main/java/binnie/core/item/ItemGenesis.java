@@ -11,7 +11,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ItemGenesis extends Item {
+public class ItemGenesis extends ItemCore {
 //	@Override
 //	@SideOnly(Side.CLIENT)
 //	public void registerIcons(final IIconRegister register) {
@@ -19,9 +19,9 @@ public class ItemGenesis extends Item {
 //	}
 
     public ItemGenesis() {
+    	super("genesis");
         this.setCreativeTab(Tabs.tabApiculture);
         this.setUnlocalizedName("genesis");
-        setRegistryName("genesis");
         this.setMaxStackSize(1);
     }
 

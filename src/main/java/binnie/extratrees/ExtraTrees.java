@@ -1,5 +1,6 @@
 package binnie.extratrees;
 
+import binnie.Constants;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.gui.IBinnieGUID;
@@ -39,7 +40,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod(modid = "extratrees", name = "Binnie's Extra Trees", useMetadata = true, dependencies = "required-after:BinnieCore")
+@Mod(modid = "extratrees", name = "Binnie's Extra Trees", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class ExtraTrees extends AbstractMod {
     @Mod.Instance("extratrees")
     public static ExtraTrees instance;
@@ -88,6 +89,7 @@ public class ExtraTrees extends AbstractMod {
         this.addModule(new ModuleMachine());
         this.addModule(new ModuleCore());
         this.preInit();
+        proxy.registerModels();
     }
 
     @Mod.EventHandler
@@ -117,6 +119,7 @@ public class ExtraTrees extends AbstractMod {
     @Mod.EventHandler
     public void init(final FMLInitializationEvent evt) {
         this.init();
+        proxy.registerItemAndBlockColors();
     }
 
     @Mod.EventHandler

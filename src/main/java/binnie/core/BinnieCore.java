@@ -48,7 +48,7 @@ import java.util.List;
 
 @Mod(modid = Constants.CORE_MOD_ID, name = "Binnie Core", useMetadata = true, dependencies = "required-after:forestry")
 public final class BinnieCore extends AbstractMod {
-    @Mod.Instance("BinnieCore")
+    @Mod.Instance(Constants.CORE_MOD_ID)
     public static BinnieCore instance;
     @SidedProxy(clientSide = "binnie.core.proxy.BinnieProxyClient", serverSide = "binnie.core.proxy.BinnieProxyServer")
     public static BinnieProxy proxy;
@@ -95,8 +95,9 @@ public final class BinnieCore extends AbstractMod {
         BinnieCore.instance = this;
         for (final FluidContainer container : FluidContainer.values()) {
             final Item item = new ItemFluidContainer(container);
-            GameRegistry.register(item);
+            BinnieCore.proxy.registerItem(item);
         }
+        //TODO REMMOVE ITEMPARSER
         FieldParser.parsers.add(new ItemParser());
         super.preInit();
     }

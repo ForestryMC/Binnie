@@ -1,5 +1,6 @@
 package binnie.genetics;
 
+import binnie.Constants;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.gui.IBinnieGUID;
@@ -22,7 +23,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = "Genetics", name = "Binnie's Genetics", useMetadata = true, dependencies = "required-after:BinnieCore")
+@Mod(modid = "Genetics", name = "Binnie's Genetics", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class Genetics extends AbstractMod {
     public static ItemSerumArray itemSerumArray;
     @Mod.Instance("Genetics")
@@ -46,11 +47,13 @@ public class Genetics extends AbstractMod {
         this.addModule(new ModuleItem());
         this.addModule(new ModuleMachine());
         this.preInit();
+        proxy.registerModels();
     }
 
     @Mod.EventHandler
     public void init(final FMLInitializationEvent evt) {
         this.init();
+        proxy.registerItemAndBlockColors();
     }
 
     @Mod.EventHandler

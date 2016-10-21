@@ -18,9 +18,9 @@ public class ModuleProducts implements IInitializable {
         ExtraBees.comb = new ItemHoneyComb();
         ExtraBees.propolis = new ItemPropolis();
 
-        BinnieCore.proxy.registerItem(ExtraBees.honeyCrystal);
-        BinnieCore.proxy.registerItem(ExtraBees.honeyCrystalEmpty);
-        BinnieCore.proxy.registerItem(ExtraBees.comb);
+        ExtraBees.proxy.registerItem(ExtraBees.honeyCrystal);
+        ExtraBees.proxy.registerItem(ExtraBees.honeyCrystalEmpty);
+        ExtraBees.proxy.registerItem(ExtraBees.comb);
 
 
         ExtraBees.proxy.registermodel(ExtraBees.honeyCrystal, 0);

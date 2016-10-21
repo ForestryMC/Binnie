@@ -5,6 +5,7 @@ import binnie.core.machines.TileEntityMachine;
 import binnie.core.models.ModelManager;
 import binnie.core.resource.BinnieResource;
 import binnie.craftgui.resource.minecraft.CraftGUIResourceManager;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.texture.SimpleTexture;
@@ -27,22 +28,33 @@ import org.lwjgl.opengl.GL11;
 import java.io.File;
 import java.io.IOException;
 
-public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy {
-	
+public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy {	
+	public static ModelManager modelManager = new ModelManager();
+    
+    public static ModelManager getModelManager() {
+		return modelManager;
+	}
+    
 	@Override
 	public Item registerItem(Item item) {
-		ModelManager.getInstance().registerItemClient(item);
+		getModelManager().registerItemClient(item);
 		return super.registerItem(item);
 	}
 	
 	@Override
+	public Block registerBlock(Block block) {
+		getModelManager().registerBlockClient(block);
+		return super.registerBlock(block);
+	}
+	
+	@Override
 	public void registerModels() {
-		ModelManager.getInstance().registerModels();
+		getModelManager().registerModels();
 	}
 	
 	@Override
 	public void registerItemAndBlockColors() {
-		ModelManager.getInstance().registerItemAndBlockColors();
+		getModelManager().registerItemAndBlockColors();
 	}
 
     @Override

@@ -1,13 +1,18 @@
 package binnie.extrabees.proxy;
 
+import binnie.core.models.ModelManager;
 import binnie.extrabees.genetics.ExtraBeesSpecies;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeType;
+import forestry.api.core.IModelManager;
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 
 public class ExtraBeesProxyClient extends ExtraBeesProxy {
+	public static ModelManager modelManager = new ModelManager();
+	
     @Override
 	public void registerBeeModel(ExtraBeesSpecies type) {
         for (EnumBeeType t : EnumBeeType.VALUES)
@@ -23,4 +28,30 @@ public class ExtraBeesProxyClient extends ExtraBeesProxy {
     public void registermodel(Item item, int meta, ModelResourceLocation modelResourceLocation) {
         ModelLoader.setCustomModelResourceLocation(item, meta, modelResourceLocation);
     }
+    
+    public static ModelManager getModelManager() {
+		return modelManager;
+	}
+    
+	@Override
+	public Item registerItem(Item item) {
+		getModelManager().registerItemClient(item);
+		return super.registerItem(item);
+	}
+	
+	@Override
+	public Block registerBlock(Block block) {
+		getModelManager().registerBlockClient(block);
+		return super.registerBlock(block);
+	}
+	
+	@Override
+	public void registerModels() {
+		getModelManager().registerModels();
+	}
+	
+	@Override
+	public void registerItemAndBlockColors() {
+		getModelManager().registerItemAndBlockColors();
+	}
 }

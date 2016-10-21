@@ -1,5 +1,6 @@
 package binnie.genetics.item;
 
+import binnie.core.item.ItemCore;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsGUI;
@@ -11,7 +12,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ItemMasterRegistry extends Item {
+public class ItemMasterRegistry extends ItemCore {
 //	@Override
 //	@SideOnly(Side.CLIENT)
 //	public void registerIcons(final IIconRegister register) {
@@ -19,10 +20,10 @@ public class ItemMasterRegistry extends Item {
 //	}
 
     public ItemMasterRegistry() {
+    	super("masterRegistry");
         this.setCreativeTab(CreativeTabGenetics.instance);
         this.setUnlocalizedName("masterRegistry");
         this.setMaxStackSize(1);
-        setRegistryName("masterRegistry");
     }
 
     @Override

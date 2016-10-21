@@ -1,16 +1,12 @@
 {
-  "forge_marker": 1,
-  "variants": {
-    "inventory": {
-      "model": "forge:item-layer",
-      "transform": "forge:default-item",
-      "textures": {
+    "parent": "item/generated",
+	"textures": {
         "layer0":"genetics:items/machines/serum.glass",
         "layer1":"genetics:items/machines/serum.cap",
         "layer2":"genetics:items/machines/serum.edges",
         "layer3":"genetics:items/machines/serum.dna"
       },
-      "display": {
+    "display": {
         "thirdperson": {
           "rotation": [ 0, 90, -35 ],
           "translation": [ 0, 1.25, -3.5 ],
@@ -21,7 +17,5 @@
           "translation": [ 0, 4, 2 ],
           "scale": [ 1.7, 1.7, 1.7 ]
         }
-      }
     }
-  }
 }
