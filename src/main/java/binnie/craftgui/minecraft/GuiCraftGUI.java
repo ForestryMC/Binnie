@@ -11,6 +11,7 @@ import binnie.craftgui.events.EventKey;
 import binnie.craftgui.events.EventMouse;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
@@ -80,17 +81,15 @@ public class GuiCraftGUI extends GuiContainer {
     public void drawScreen(final int mouseX, final int mouseY, final float par3) {
         this.window.setMousePosition(mouseX - (int) this.window.getPosition().x(), mouseY - (int) this.window.getPosition().y());
         this.drawDefaultBackground();
-
         GL11.glDisable(32826);
         RenderHelper.disableStandardItemLighting();
         GL11.glDisable(2896);
         GL11.glDisable(2929);
         this.zLevel = 10.0f;
         //GuiScreen.itemRender.zLevel = this.zLevel;
-
         this.window.render();
 
-        RenderHelper.enableGUIStandardItemLighting();
+
         GL11.glPushMatrix();
         GL11.glEnable(32826);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0f, 240.0f);
@@ -98,8 +97,8 @@ public class GuiCraftGUI extends GuiContainer {
         this.draggedItem = playerInventory.getItemStack();
         if (this.draggedItem != null) {
             this.renderItem(new IPoint(mouseX - 8, mouseY - 8), this.draggedItem, 200, false);
-            this.renderItem(new IPoint(mouseX - 8, mouseY - 8), this.draggedItem, 200, false);
         }
+        RenderHelper.enableGUIStandardItemLighting();
         GL11.glDisable(32826);
         GL11.glPopMatrix();
         GL11.glDisable(2896);
@@ -364,15 +363,14 @@ public class GuiCraftGUI extends GuiContainer {
         GL11.glDisable(3008);
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
         GL11.glShadeModel(7425);
-//		final Tessellator tessellator = Tessellator.instance;
-//		tessellator.startDrawingQuads();
-//		tessellator.setColorRGBA_F(f2, f3, f4, f);
-//		tessellator.addVertex(p_73733_3_, p_73733_2_, this.zLevel);
-//		tessellator.addVertex(p_73733_1_, p_73733_2_, this.zLevel);
-//		tessellator.setColorRGBA_F(f6, f7, f8, f5);
-//		tessellator.addVertex(p_73733_1_, p_73733_4_, this.zLevel);
-//		tessellator.addVertex(p_73733_3_, p_73733_4_, this.zLevel);
-//		tessellator.draw();
+		final Tessellator tessellator = Tessellator.getInstance();
+        VertexBuffer vb = tessellator.getBuffer();
+        vb.begin(7, DefaultVertexFormats.POSITION_COLOR);
+        vb.pos(p_73733_3_, p_73733_2_, this.zLevel).color(f2, f3, f4, f).endVertex();
+        vb.pos(p_73733_1_, p_73733_2_, this.zLevel).color(f2, f3, f4, f).endVertex();
+        vb.pos(p_73733_1_, p_73733_4_, this.zLevel).color(f6, f7, f8, f5).endVertex();
+        vb.pos(p_73733_3_, p_73733_4_, this.zLevel).color(f6, f7, f8, f5).endVertex();
+		tessellator.draw();
         GL11.glShadeModel(7424);
         GL11.glDisable(3042);
         GL11.glEnable(3008);
@@ -501,13 +499,15 @@ public class GuiCraftGUI extends GuiContainer {
         GL11.glDisable(3553);
         OpenGlHelper.glBlendFunc(770, 771, 1, 0);
         GL11.glColor4f(f4, f5, f6, f3);
-        tessellator.getBuffer().begin(GL11.GL_QUADS, new VertexFormat());
-        tessellator.getBuffer().
-                pos(p_73734_0_, p_73734_3_, 0.0)
-                .pos(p_73734_2_, p_73734_3_, 0.0)
-                .pos(p_73734_2_, p_73734_1_, 0.0)
-                .pos(p_73734_0_, p_73734_1_, 0.0).endVertex();
+
+        VertexBuffer vertexBuffer = tessellator.getBuffer();
+        vertexBuffer.begin(7, DefaultVertexFormats.POSITION);
+        vertexBuffer.pos(p_73734_0_, p_73734_3_, 0.0).endVertex();
+        vertexBuffer.pos(p_73734_2_, p_73734_3_, 0.0).endVertex();
+        vertexBuffer.pos(p_73734_2_, p_73734_1_, 0.0).endVertex();
+        vertexBuffer.pos(p_73734_0_, p_73734_1_, 0.0).endVertex();
         tessellator.draw();
+
         GL11.glEnable(3553);
         GL11.glDisable(3042);
     }
