@@ -42,7 +42,7 @@ public class Incubator {
         Incubator.RECIPES.add(new IncubatorRecipe(Binnie.Liquid.getLiquidStack("water", 25), GeneticLiquid.GrowthMedium.get(25), 0.2f) {
             @Override
             public boolean isItemStack(final ItemStack stack) {
-                return GeneticsItems.GrowthMedium.get(1).isItemEqual(stack);
+                return ItemStack.areItemsEqual(GeneticsItems.GrowthMedium.get(1), stack);
             }
         });
         Incubator.RECIPES.add(new IncubatorRecipe(GeneticLiquid.GrowthMedium.get(25), GeneticLiquid.Bacteria.get(5), 0.2f) {
@@ -54,7 +54,7 @@ public class Incubator {
         Incubator.RECIPES.add(new IncubatorRecipe(GeneticLiquid.Bacteria.get(0), GeneticLiquid.Bacteria.get(5), 0.05f) {
             @Override
             public boolean isItemStack(final ItemStack stack) {
-                return GeneticsItems.GrowthMedium.get(1).isItemEqual(stack);
+                return ItemStack.areItemsEqual(GeneticsItems.GrowthMedium.get(1), stack);
             }
         });
         Incubator.RECIPES.add(new IncubatorRecipe(GeneticLiquid.Bacteria.get(2), null, 0.5f, 0.2f) {
@@ -66,13 +66,13 @@ public class Incubator {
         Incubator.RECIPES.add(new IncubatorRecipe(GeneticLiquid.BacteriaPoly.get(0), GeneticLiquid.BacteriaPoly.get(5), 0.05f) {
             @Override
             public boolean isItemStack(final ItemStack stack) {
-                return GeneticsItems.GrowthMedium.get(1).isItemEqual(stack);
+                return ItemStack.areItemsEqual(GeneticsItems.GrowthMedium.get(1), stack);
             }
         });
         Incubator.RECIPES.add(new IncubatorRecipe(GeneticLiquid.BacteriaVector.get(0), GeneticLiquid.BacteriaVector.get(5), 0.05f) {
             @Override
             public boolean isItemStack(final ItemStack stack) {
-                return GeneticsItems.GrowthMedium.get(1).isItemEqual(stack);
+                return ItemStack.areItemsEqual(GeneticsItems.GrowthMedium.get(1), stack);
             }
         });
         Incubator.RECIPES.add(new IncubatorRecipe(GeneticLiquid.Bacteria.get(10), GeneticLiquid.BacteriaPoly.get(10), 0.1f) {

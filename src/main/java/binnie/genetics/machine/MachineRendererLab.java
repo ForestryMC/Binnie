@@ -2,6 +2,7 @@ package binnie.genetics.machine;
 
 import binnie.core.machines.Machine;
 import binnie.core.resource.BinnieResource;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -17,8 +18,9 @@ public class MachineRendererLab {
     private ModelMachine model;
 
     public MachineRendererLab() {
-        this.dummyEntityItem = new EntityItem((World) null);
-        this.itemSides = new EntityItem[]{new EntityItem((World) null), new EntityItem((World) null), new EntityItem((World) null), new EntityItem((World) null)};
+        World world = Minecraft.getMinecraft().theWorld;
+        this.dummyEntityItem = new EntityItem(world);
+        this.itemSides = new EntityItem[]{new EntityItem(world), new EntityItem(world), new EntityItem(world), new EntityItem(world)};
         this.model = new ModelMachine();
 //		(this.customRenderItem = new RenderItem() {
 //			@Override

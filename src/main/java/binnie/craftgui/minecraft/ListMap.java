@@ -2,6 +2,7 @@ package binnie.craftgui.minecraft;
 
 import java.util.*;
 
+// TODO: remove this, it's very questionable
 class ListMap<T> implements List<T> {
     private LinkedHashMap<Integer, T> map;
 

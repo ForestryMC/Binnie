@@ -67,10 +67,10 @@ public class Lumbermill {
                 if (recipe.recipeItems.size() != 1) {
                     continue;
                 }
-                if (!(recipe.recipeItems.get(0) instanceof ItemStack)) {
+                if (!(recipe.recipeItems.get(0) != null)) {
                     continue;
                 }
-                final ItemStack input = (ItemStack) recipe.recipeItems.get(0);
+                final ItemStack input = recipe.recipeItems.get(0);
                 if (recipe.getRecipeOutput() != null && recipe.getRecipeOutput().isItemEqual(output)) {
                     list.add(input);
                 }

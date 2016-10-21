@@ -88,8 +88,10 @@ public class MachineUtil {
         return this.getTank(tank).drain(amount, true);
     }
 
-    public boolean liquidInTank(final int tank, final int amount) {
-        return this.getTank(tank).drain(amount, false) != null && this.getTank(tank).drain(amount, false).amount == amount;
+    public boolean liquidInTank(final int tankIndex, final int amount) {
+        IFluidTank tank = this.getTank(tankIndex);
+        FluidStack drain = tank.drain(amount, false);
+        return drain != null && drain.amount == amount;
     }
 
     public void damageItem(final int slot, final int damage) {
