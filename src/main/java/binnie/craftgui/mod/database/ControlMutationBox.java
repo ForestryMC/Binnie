@@ -42,7 +42,7 @@ class ControlMutationBox extends ControlListBox<IMutation> {
                     int i = 0;
                     while (i < mutations.size()) {
                         final IMutation mutation = mutations.get(i);
-                        if (!discovered.contains(mutations) && !((IAlleleSpecies) mutation.getTemplate()[0]).isCounted()) {
+                        if (!discovered.contains(mutation) && !((IAlleleSpecies) mutation.getTemplate()[0]).isCounted()) {
                             mutations.remove(i);
                         } else {
                             ++i;
