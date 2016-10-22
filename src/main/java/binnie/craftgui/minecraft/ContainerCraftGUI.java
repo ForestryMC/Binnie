@@ -61,11 +61,6 @@ public class ContainerCraftGUI extends Container {
         }
     }
 
-    @Override
-    protected Slot addSlotToContainer(final Slot slot) {
-        return super.addSlotToContainer(slot);
-    }
-
     private Side getSide() {
         return this.window.isServer() ? Side.SERVER : Side.CLIENT;
     }
@@ -231,6 +226,12 @@ public class ContainerCraftGUI extends Container {
 
     @Override
     public void detectAndSendChanges() {
+        for (int i = 0; i < this.inventorySlots.size(); ++i){
+        	Object o = this.inventorySlots.get(i);
+            if(o == null){
+            	getClass();
+            }
+        }
         super.detectAndSendChanges();
         final ITankMachine tanks = Machine.getInterface(ITankMachine.class, this.window.getInventory());
         final IPoweredMachine powered = Machine.getInterface(IPoweredMachine.class, this.window.getInventory());

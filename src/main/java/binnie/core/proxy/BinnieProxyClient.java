@@ -171,6 +171,9 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 
     @Override
     public TextureAtlasSprite getTextureAtlasSprite(ResourceLocation location) {
+    	if(location == null){
+    		return null;
+    	}
         return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
     }
 

@@ -1,6 +1,7 @@
 package binnie.botany.flower;
 
 import binnie.Binnie;
+import binnie.botany.api.EnumFlowerStage;
 import binnie.botany.api.IFlower;
 import binnie.botany.api.IFlowerColour;
 import binnie.botany.api.IFlowerType;
@@ -123,10 +124,10 @@ public class TileEntityFlower extends TileEntity //implements IPollinatable, IBu
         if (this.getSection() <= 0) {
             return this.flower;
         }
-//		final TileEntity tile = this.worldObj.getTileEntity(this.xCoord, this.yCoord - this.getSection(), this.zCoord);
-//		if (tile instanceof TileEntityFlower) {
-//			return ((TileEntityFlower) tile).getFlower();
-//		}
+		TileEntity tile = this.worldObj.getTileEntity(pos.down(getSection()));
+		if (tile instanceof TileEntityFlower) {
+			return ((TileEntityFlower) tile).getFlower();
+		}
         return null;
     }
 
@@ -282,12 +283,12 @@ public class TileEntityFlower extends TileEntity //implements IPollinatable, IBu
         }
     }
 
-//	public ItemStack getItemStack() {
-//		if (this.flower == null) {
-//			return null;
-//		}
-//		return Binnie.Genetics.getFlowerRoot().getMemberStack(this.getFlower(), (this.flower.getAge() == 0) ? EnumFlowerStage.SEED.ordinal() : EnumFlowerStage.FLOWER.ordinal());
-//	}
+	public ItemStack getItemStack() {
+		if (this.flower == null) {
+			return null;
+		}
+		return Binnie.Genetics.getFlowerRoot().getMemberStack(this.getFlower(), EnumFlowerStage.getStage(getFlower()));
+	}
 
 //	private TileEntityFlower getRoot() {
 //		if (this.getSection() == 0) {

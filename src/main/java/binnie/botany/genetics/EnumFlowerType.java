@@ -1,6 +1,10 @@
 package binnie.botany.genetics;
 
+import binnie.botany.api.EnumFlowerStage;
 import binnie.botany.api.IFlowerType;
+import forestry.api.core.IModelManager;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
 
 public enum EnumFlowerType implements IFlowerType {
     Dandelion,
@@ -108,6 +112,25 @@ public enum EnumFlowerType implements IFlowerType {
 //		this.pollenPetal = Botany.proxy.getIcon(register, "flowers/pollen.1");
 //		this.pollenVariant = Botany.proxy.getIcon(register, "flowers/pollen.2");
 //	}
+    
+   /* @SideOnly(Side.CLIENT)
+    public void registerModel(Item item, IModelManager manager){
+    	for (int i = 0; i < this.sections; ++i) {
+			final String suf = (i == 0) ? "" : ("" + (i + 1));
+			final String pre = (this.sections == 1) ? "" : "double/";
+			this.stem[i] = Botany.proxy.getIcon(register, "flowers/" + pre + this.toString().toLowerCase() + suf + ".0");
+			this.petal[i] = Botany.proxy.getIcon(register, "flowers/" + pre + this.toString().toLowerCase() + suf + ".1");
+			this.variant[i] = Botany.proxy.getIcon(register, "flowers/" + pre + this.toString().toLowerCase() + suf + ".2");
+			this.unflowered[i] = Botany.proxy.getIcon(register, "flowers/" + pre + this.toString().toLowerCase() + suf + ".3");
+		}
+		this.blank = Botany.proxy.getIcon(register, "flowers/blank");
+		this.seedStem = Botany.proxy.getIcon(register, "flowers/seed.0");
+		this.seedPetal = Botany.proxy.getIcon(register, "flowers/seed.1");
+		this.seedVariant = Botany.proxy.getIcon(register, "flowers/seed.2");
+		this.pollenStem = Botany.proxy.getIcon(register, "flowers/pollen.0");
+		this.pollenPetal = Botany.proxy.getIcon(register, "flowers/pollen.1");
+		this.pollenVariant = Botany.proxy.getIcon(register, "flowers/pollen.2");
+    }*/
 
     @Override
     public int getID() {
@@ -118,6 +141,15 @@ public enum EnumFlowerType implements IFlowerType {
     public int getSections() {
         return this.sections;
     }
+
+	@Override
+	public void registerModels(Item item, IModelManager manager, EnumFlowerStage type) {
+	}
+
+	@Override
+	public ModelResourceLocation getModel(EnumFlowerStage type) {
+		return null;
+	}
 
 //	public IIcon getBlank() {
 //		return this.blank;

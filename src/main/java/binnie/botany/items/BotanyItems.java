@@ -25,16 +25,6 @@ public enum BotanyItems implements IItemMisc {
         this.iconPath = iconPath;
     }
 
-//	@Override
-//	public IIcon getIcon(final ItemStack stack) {
-//		return this.icon;
-//	}
-//
-//	@Override
-//	public void registerIcons(final IIconRegister register) {
-//		this.icon = Botany.proxy.getIcon(register, this.iconPath);
-//	}
-
     @Override
     public void addInformation(final List par3List) {
     }
