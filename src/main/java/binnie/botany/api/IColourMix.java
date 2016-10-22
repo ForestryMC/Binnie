@@ -1,11 +1,11 @@
 package binnie.botany.api;
 
 public interface IColourMix {
-    IFlowerColour getColour1();
+    IFlowerColour getColourFirst();
 
-    IFlowerColour getColour2();
+    IFlowerColour getColourSecond();
 
-    boolean isMutation(final IFlowerColour p0, final IFlowerColour p1);
+    boolean isMutation(IFlowerColour colourFirst, IFlowerColour colourSecond);
 
     int getChance();
 

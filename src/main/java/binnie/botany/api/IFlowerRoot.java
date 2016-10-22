@@ -11,36 +11,36 @@ import java.util.List;
 
 public interface IFlowerRoot extends ISpeciesRoot {
     @Override
-    IFlower getMember(final ItemStack p0);
+    IFlower getMember(ItemStack memberStack);
 
     @Override
-    IFlower templateAsIndividual(final IAllele[] p0);
+    IFlower templateAsIndividual(IAllele[] template);
 
     @Override
-    IFlower templateAsIndividual(final IAllele[] p0, final IAllele[] p1);
+    IFlower templateAsIndividual(IAllele[] templateFirst, IAllele[] templateSecond);
 
     @Override
-    IFlowerGenome templateAsGenome(final IAllele[] p0);
+    IFlowerGenome templateAsGenome(IAllele[] template);
 
     @Override
-    IFlowerGenome templateAsGenome(final IAllele[] p0, final IAllele[] p1);
+    IFlowerGenome templateAsGenome(IAllele[] templateFrist, IAllele[] templateSecond);
 
     @Override
-    IBotanistTracker getBreedingTracker(final World p0, final GameProfile p1);
+    IBotanistTracker getBreedingTracker(World world, GameProfile profile);
 
     @Override
     List<? extends IFlowerMutation> getMutations(boolean shuffle);
     
     @Override
     EnumFlowerStage getType(ItemStack itemStack);
+    
+    IFlower getFlower(World world, IFlowerGenome genome);
 
-    IFlower getFlower(final World p0, final IFlowerGenome genome);
+    void addConversion(ItemStack memberStack, IAllele[] template);
 
-    void addConversion(final ItemStack p0, final IAllele[] p1);
+    IFlower getConversion(ItemStack memberStack);
 
-    IFlower getConversion(final ItemStack p0);
+    Collection<IColourMix> getColourMixes(boolean p0);
 
-    Collection<IColourMix> getColourMixes(final boolean p0);
-
-    void registerColourMix(final IColourMix p0);
+    void registerColourMix(IColourMix colourMix);
 }

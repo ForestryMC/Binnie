@@ -22,8 +22,8 @@ public class ControlColourMixItem extends ControlOption<IColourMix> {
         this.arrowSymbol = new ControlColourMixSymbol(this, 64, 4, 1);
         final BreedingSystem system = ((WindowAbstractDatabase) this.getSuperParent()).getBreedingSystem();
         if (this.getValue() != null) {
-            this.itemWidget1.setValue(this.getValue().getColour1());
-            this.itemWidget2.setValue(this.getValue().getColour2());
+            this.itemWidget1.setValue(this.getValue().getColourFirst());
+            this.itemWidget2.setValue(this.getValue().getColourSecond());
             this.itemWidget3.setValue(this.getValue().getResult());
             this.addSymbol.setValue(this.getValue());
             this.arrowSymbol.setValue(this.getValue());

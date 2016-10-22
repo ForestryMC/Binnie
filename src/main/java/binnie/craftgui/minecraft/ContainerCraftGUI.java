@@ -224,14 +224,9 @@ public class ContainerCraftGUI extends Container {
         return false;
     }
 
+    //TODO: Fix random NullPointerException
     @Override
     public void detectAndSendChanges() {
-        for (int i = 0; i < this.inventorySlots.size(); ++i){
-        	Object o = this.inventorySlots.get(i);
-            if(o == null){
-            	getClass();
-            }
-        }
         super.detectAndSendChanges();
         final ITankMachine tanks = Machine.getInterface(ITankMachine.class, this.window.getInventory());
         final IPoweredMachine powered = Machine.getInterface(IPoweredMachine.class, this.window.getInventory());

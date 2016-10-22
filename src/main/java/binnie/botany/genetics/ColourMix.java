@@ -10,12 +10,12 @@ public class ColourMix implements IColourMix {
     int chance;
 
     @Override
-    public IFlowerColour getColour1() {
+    public IFlowerColour getColourFirst() {
         return this.colour1;
     }
 
     @Override
-    public IFlowerColour getColour2() {
+    public IFlowerColour getColourSecond() {
         return this.colour2;
     }
 

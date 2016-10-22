@@ -7,19 +7,19 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public interface IBlockSoil {
-    EnumAcidity getPH(final World p0, final BlockPos pos);
+    EnumAcidity getPH(World world, BlockPos pos);
 
-    EnumMoisture getMoisture(final World p0, final BlockPos pos);
+    EnumMoisture getMoisture(World world, BlockPos pos);
 
-    EnumSoilType getType(final World p0, final BlockPos pos);
+    EnumSoilType getType(World world, BlockPos pos);
 
-    boolean fertilise(final World p0, final BlockPos pos, final EnumSoilType p4);
+    boolean fertilise(World world, BlockPos pos, EnumSoilType soilType);
 
-    boolean degrade(final World p0, final BlockPos pos, final EnumSoilType p4);
+    boolean degrade(World world, BlockPos pos, EnumSoilType soilType);
 
-    boolean setPH(final World p0, final BlockPos pos, final EnumAcidity p4);
+    boolean setPH(World world, BlockPos pos, EnumAcidity acidity);
 
-    boolean setMoisture(final World p0, final BlockPos pos, final EnumMoisture p4);
+    boolean setMoisture(World world, BlockPos pos, EnumMoisture moisture);
 
-    boolean resistsWeeds(final World p0, final BlockPos pos);
+    boolean resistsWeeds(World world, BlockPos pos);
 }
