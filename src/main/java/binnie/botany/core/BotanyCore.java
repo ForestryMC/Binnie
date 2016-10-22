@@ -1,5 +1,6 @@
 package binnie.botany.core;
 
+import binnie.botany.api.FlowerManager;
 import binnie.botany.api.IFlowerRoot;
 import binnie.botany.genetics.FlowerRoot;
 
@@ -8,10 +9,9 @@ public class BotanyCore {
     public static IFlowerRoot speciesRoot;
 
     public static IFlowerRoot getFlowerRoot() {
-        return BotanyCore.speciesRoot;
-    }
-
-    static {
-        BotanyCore.speciesRoot = new FlowerRoot();
+    	if(FlowerManager.flowerRoot == null){
+    		FlowerManager.flowerRoot = new FlowerRoot();
+    	}
+        return FlowerManager.flowerRoot;
     }
 }

@@ -69,7 +69,6 @@ public enum EnumFlowerType implements IFlowerType {
     }
 
     EnumFlowerType(final int sections) {
-        this.sections = 1;
         this.sections = sections;
 //		this.stem = new IIcon[sections];
 //		this.petal = new IIcon[sections];

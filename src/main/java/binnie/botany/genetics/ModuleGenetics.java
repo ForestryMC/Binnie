@@ -8,7 +8,6 @@ import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import forestry.api.apiculture.FlowerManager;
 import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
 import forestry.api.recipes.RecipeManagers;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -23,12 +22,13 @@ public class ModuleGenetics implements IInitializable {
 
     @Override
     public void preInit() {
+    	binnie.botany.api.FlowerManager.flowerFactory = new FlowerFactory();
         EnumFlowerColor.setupMutations();
         Botany.flower = new BlockFlower();
         Botany.flowerItem = new ItemFlower();
         Botany.pollen = new ItemPollen();
         Botany.seed = new ItemSeed();
-        AlleleManager.alleleRegistry.registerSpeciesRoot(BotanyCore.speciesRoot);
+        AlleleManager.alleleRegistry.registerSpeciesRoot(BotanyCore.getFlowerRoot());
         AlleleManager.alleleRegistry.registerAllele(ModuleGenetics.alleleEffectNone);
         GameRegistry.register(Botany.flower);
         GameRegistry.register(new ItemBlock(Botany.flower).setRegistryName(Botany.flower.getRegistryName()));
@@ -43,14 +43,7 @@ public class ModuleGenetics implements IInitializable {
         for (final EnumFlowerColor color : EnumFlowerColor.values()) {
             AlleleManager.alleleRegistry.registerAllele(color.getAllele());
         }
-        FlowerSpecies.setupVariants();
-        for (final FlowerSpecies species : FlowerSpecies.values()) {
-            AlleleManager.alleleRegistry.registerAllele(species);
-            BotanyCore.getFlowerRoot().registerTemplate(species.getUID(), species.getTemplate());
-            for (final IAllele[] variant : species.getVariants()) {
-                BotanyCore.getFlowerRoot().registerTemplate(variant);
-            }
-        }
+        FlowerDefinition.initFlowers();
         //TODO RENDERING
 //		RendererBotany.renderID = RenderingRegistry.getNextAvailableRenderId();
         BinnieCore.proxy.registerBlockRenderer(new RendererBotany());

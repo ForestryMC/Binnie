@@ -1,6 +1,7 @@
 package binnie.botany.api;
 
 import forestry.api.genetics.IIndividual;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public interface IFlower extends IIndividual {
@@ -9,15 +10,15 @@ public interface IFlower extends IIndividual {
 
     IFlowerGenome getMate();
 
-    void mate(final IFlower p0);
+    void mate(final IFlower flower);
 
     int getAge();
 
     void age();
 
-    void setAge(final int p0);
+    void setAge(final int age);
 
-    IFlower getOffspring(final World p0);
+    IFlower getOffspring(final World world, final BlockPos pos);
 
     int getMaxAge();
 

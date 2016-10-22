@@ -4,10 +4,7 @@ import binnie.botany.Botany;
 import binnie.botany.api.*;
 import com.mojang.authlib.GameProfile;
 
-import forestry.api.arboriculture.EnumGermlingType;
 import forestry.api.genetics.*;
-import forestry.arboriculture.PluginArboriculture;
-import forestry.arboriculture.genetics.TreeRoot;
 import forestry.core.genetics.SpeciesRoot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

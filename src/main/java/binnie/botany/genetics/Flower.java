@@ -8,6 +8,7 @@ import forestry.api.genetics.IChromosome;
 import forestry.core.genetics.Chromosome;
 import forestry.core.genetics.Individual;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -211,12 +212,12 @@ public class Flower extends Individual implements IFlower {
     }
 
     @Override
-    public IFlower getOffspring(final World world) {
+    public IFlower getOffspring(final World world, final BlockPos pos) {
         final IChromosome[] chromosomes = new IChromosome[this.genome.getChromosomes().length];
         IChromosome[] parent1 = this.genome.getChromosomes();
         IChromosome[] parent2 = this.mate.getChromosomes();
-        parent1 = this.mutateSpecies(world, this.genome, this.mate);
-        parent2 = this.mutateSpecies(world, this.mate, this.genome);
+        parent1 = this.mutateSpecies(world, pos, this.genome, this.mate);
+        parent2 = this.mutateSpecies(world, pos, this.mate, this.genome);
         for (int i = 0; i < parent1.length; ++i) {
             if (parent1[i] != null && parent2[i] != null) {
                 chromosomes[i] = Chromosome.inheritChromosome(world.rand, parent1[i], parent2[i]);
@@ -225,21 +226,21 @@ public class Flower extends Individual implements IFlower {
         return new Flower(new FlowerGenome(chromosomes), 0);
     }
 
-    private IChromosome[] mutateSpecies(final World world, final IFlowerGenome genomeOne, final IFlowerGenome genomeTwo) {
+    private IChromosome[] mutateSpecies(final World world, final BlockPos pos, final IFlowerGenome genomeOne, final IFlowerGenome genomeTwo) {
         IChromosome[] parent1 = genomeOne.getChromosomes();
         final IChromosome[] parent2 = genomeTwo.getChromosomes();
-        IAllele allele0;
-        IAllele allele2;
+        IAlleleFlowerSpecies allele0;
+        IAlleleFlowerSpecies allele2;
         IFlowerGenome genome0;
         IFlowerGenome genome2;
         if (world.rand.nextBoolean()) {
-            allele0 = parent1[EnumTreeChromosome.SPECIES.ordinal()].getPrimaryAllele();
-            allele2 = parent2[EnumTreeChromosome.SPECIES.ordinal()].getSecondaryAllele();
+            allele0 = (IAlleleFlowerSpecies) parent1[EnumTreeChromosome.SPECIES.ordinal()].getPrimaryAllele();
+            allele2 = (IAlleleFlowerSpecies) parent2[EnumTreeChromosome.SPECIES.ordinal()].getSecondaryAllele();
             genome0 = genomeOne;
             genome2 = genomeTwo;
         } else {
-            allele0 = parent2[EnumTreeChromosome.SPECIES.ordinal()].getPrimaryAllele();
-            allele2 = parent1[EnumTreeChromosome.SPECIES.ordinal()].getSecondaryAllele();
+            allele0 = (IAlleleFlowerSpecies) parent2[EnumTreeChromosome.SPECIES.ordinal()].getPrimaryAllele();
+            allele2 = (IAlleleFlowerSpecies) parent1[EnumTreeChromosome.SPECIES.ordinal()].getSecondaryAllele();
             genome0 = genomeTwo;
             genome2 = genomeOne;
         }
@@ -272,7 +273,7 @@ public class Flower extends Individual implements IFlower {
         }
         IChromosome[] template = null;
         for (final IFlowerMutation mutation2 : BotanyCore.getFlowerRoot().getMutations(true)) {
-            final float chance = mutation2.getChance(allele0, allele2, genome0, genome2);
+            final float chance = mutation2.getChance(world, pos, allele0, allele2, genome0, genome2);
             if (chance > 0.0f && world.rand.nextFloat() * 100.0f < chance && template == null) {
                 template = BotanyCore.getFlowerRoot().templateAsChromosomes(mutation2.getTemplate());
             }

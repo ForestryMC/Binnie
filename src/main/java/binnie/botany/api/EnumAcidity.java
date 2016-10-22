@@ -7,10 +7,6 @@ public enum EnumAcidity implements IStringSerializable {
     Neutral,
     Alkaline;
 
-    public String getID() {
-        return this.name().toLowerCase();
-    }
-
     @Override
     public String getName() {
         return this.name().toLowerCase();

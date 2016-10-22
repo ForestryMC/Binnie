@@ -7,10 +7,6 @@ public enum EnumMoisture implements IStringSerializable {
     Normal,
     Damp;
 
-    public String getID() {
-        return this.name().toLowerCase();
-    }
-
     @Override
     public String getName() {
         return name().toLowerCase();

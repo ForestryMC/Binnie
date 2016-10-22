@@ -87,9 +87,9 @@ public abstract class ItemBotany extends Item {
     }
 
     private IAlleleFlowerSpecies getPrimarySpecies(final ItemStack itemstack) {
-        final IFlower tree = BotanyCore.speciesRoot.getMember(itemstack);
+        final IFlower tree = BotanyCore.getFlowerRoot().getMember(itemstack);
         if (tree == null) {
-            return (IAlleleFlowerSpecies) BotanyCore.speciesRoot.getDefaultTemplate()[EnumFlowerChromosome.SPECIES.ordinal()];
+            return (IAlleleFlowerSpecies) BotanyCore.getFlowerRoot().getDefaultTemplate()[EnumFlowerChromosome.SPECIES.ordinal()];
         }
         return tree.getGenome().getPrimary();
     }
@@ -109,11 +109,11 @@ public abstract class ItemBotany extends Item {
     }
 
     public void addCreativeItems(final List itemList, final boolean hideSecrets) {
-        for (final IIndividual individual : BotanyCore.speciesRoot.getIndividualTemplates()) {
+        for (final IIndividual individual : BotanyCore.getFlowerRoot().getIndividualTemplates()) {
             if (hideSecrets && individual.isSecret() && !Config.isDebug) {
                 continue;
             }
-            itemList.add(BotanyCore.speciesRoot.getMemberStack(individual.copy(), this.getStage()));
+            itemList.add(BotanyCore.getFlowerRoot().getMemberStack(individual.copy(), this.getStage()));
         }
     }
 

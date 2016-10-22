@@ -1,9 +1,12 @@
 package binnie.botany.api;
 
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IMutation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public interface IFlowerMutation extends IMutation {
-    float getChance(final IAllele p0, final IAllele p1, final IGenome p2, final IGenome p3);
+	@Override
+	IFlowerRoot getRoot();
+	
+    float getChance(final World world, final BlockPos pos, final IAlleleFlowerSpecies p0, final IAlleleFlowerSpecies p1, final IFlowerGenome p2, final IFlowerGenome p3);
 }

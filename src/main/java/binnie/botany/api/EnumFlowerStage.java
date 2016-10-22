@@ -1,7 +1,6 @@
 package binnie.botany.api;
 
 import forestry.api.genetics.ISpeciesType;
-import forestry.arboriculture.genetics.TreeRoot;
 
 public enum EnumFlowerStage implements ISpeciesType {
     FLOWER("Flower"),

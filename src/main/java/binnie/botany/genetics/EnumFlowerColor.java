@@ -5,7 +5,7 @@ import binnie.botany.api.IFlowerColour;
 import binnie.botany.core.BotanyCore;
 import forestry.api.genetics.IAlleleInteger;
 
-public enum EnumFlowerColor implements IFlowerColour {
+public enum EnumFlowerColor implements IFlowerColour, IAlleleInteger {
     Aquamarine("aquamarine", 8388564),
     Black("black", 2631720),
     Blue("blue", 255),
@@ -89,16 +89,15 @@ public enum EnumFlowerColor implements IFlowerColour {
 
     int color;
     int colorDis;
-    AlleleColor allele;
-    String ident;
+    String uid;
 
     EnumFlowerColor(final String ident, final int c) {
         this(c);
     }
 
     EnumFlowerColor(final int c) {
+    	this.uid = "botany.color" + this.name();
         this.color = c;
-        this.allele = new AlleleColor(this, "botany.color" + this.name(), this.toString(), this.color);
         int r = this.color >> 16 & 0xFF;
         int g = this.color >> 8 & 0xFF;
         int b = this.color & 0xFF;
@@ -115,7 +114,7 @@ public enum EnumFlowerColor implements IFlowerColour {
 
     @Override
     public IAlleleInteger getAllele() {
-        return this.allele;
+        return this;
     }
 
     @Override
@@ -2957,4 +2956,24 @@ public enum EnumFlowerColor implements IFlowerColour {
     public String getHTMLName() {
         return this.name();
     }
+
+    @Override
+    public String getUID() {
+        return this.uid;
+    }
+
+    @Override
+    public boolean isDominant() {
+        return true;
+    }
+
+    @Override
+    public String getUnlocalizedName() {
+        return this.getUID();
+    }
+
+	@Override
+	public int getValue() {
+		return color;
+	}
 }
