@@ -35,7 +35,6 @@ public class WindowGenepool extends WindowMachine {
         x += 26;
         new ControlSlotArray(this, x, y + 3, 2, 3).create(Genepool.slotReserve);
         x += 38;
-        //TODO RENDERING
         new ControlIconDisplay(this, x, y + 3 + 18 + 1, GUIIcon.ArrowRight.getIcon().getResourceLocation());
         x += 18;
         new ControlSlot(this, x, y + 3 + 18).assign(0);

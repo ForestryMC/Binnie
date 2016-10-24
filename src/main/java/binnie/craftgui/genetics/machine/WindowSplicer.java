@@ -34,15 +34,12 @@ public class WindowSplicer extends WindowMachine {
         this.setTitle("Splicer");
         int x = 16;
         new ControlSplicerProgress(this, 84.0f, 32.0f, this.w() - 172.0f, 102.0f);
-        //TODO RENDERING
         CraftGUIUtil.horizontalGrid(x, 62.0f, new ControlSlotArray(this, 0, 0, 2, 1).create(Splicer.slotSerumReserve), new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowRight.getIcon().getResourceLocation()), new ControlSlot(this, 0.0f, 0.0f).assign(0));
         new ControlSlotArray(this, x + 12, 84, 2, 1).create(Splicer.slotSerumExpended);
-        //TODO RENDERING
         new ControlIconDisplay(this, x + 12 + 36 + 4, 86.0f, GUIIcon.ArrowUpLeft.getIcon().getResourceLocation());
         new ControlEnergyBar(this, 196, 64, 60, 16, Position.Left);
         new ControlErrorState(this, 218.0f, 86.0f);
         x += 142;
-        //TODO RENDERING
         CraftGUIUtil.verticalGrid((this.w() - 72.0f) / 2.0f, 32.0f, TextJustification.MiddleCenter, 4.0f, new ControlSlotArray(this, 0, 0, 4, 1).create(Inoculator.slotReserve), new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowDown.getIcon().getResourceLocation()), new ControlSlot(this, 0.0f, 0.0f).assign(9), new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowDown.getIcon().getResourceLocation()), new ControlSlotArray(this, 0, 0, 4, 1).create(Inoculator.slotFinished));
         new ControlPlayerInventory(this);
     }

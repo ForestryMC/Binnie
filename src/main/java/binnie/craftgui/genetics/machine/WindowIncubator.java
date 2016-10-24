@@ -35,13 +35,11 @@ public class WindowIncubator extends WindowMachine {
         x += 26;
         new ControlSlotArray(this, x, y + 3, 1, 3).create(Incubator.slotQueue);
         x += 20;
-        //TODO RENDERING
         new ControlIconDisplay(this, x, y + 3 + 10, GUIIcon.ArrowRight.getIcon().getResourceLocation());
         x += 18;
         new ControlMachineProgress(this, x, y + 6, WindowIncubator.ProgressBase, WindowIncubator.Progress, Position.Left);
         new ControlSlot(this, x + 11, y + 3 + 10).assign(3);
         x += 40;
-        //TODO RENDERING
         new ControlIconDisplay(this, x, y + 3 + 10, GUIIcon.ArrowRight.getIcon().getResourceLocation());
         x += 18;
         new ControlSlotArray(this, x, y + 3, 1, 3).create(Incubator.slotOutput);

@@ -1,5 +1,6 @@
 package binnie.extrabees.apiary;
 
+import binnie.Constants;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
@@ -11,15 +12,32 @@ import binnie.extrabees.apiary.machine.AlvearyMutator;
 import binnie.extrabees.apiary.machine.AlvearyStimulator;
 import forestry.api.core.Tabs;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ModuleApiary implements IInitializable {
     public static Block blockComponent;
     BinnieCircuitLayout stimulatorLayout;
+
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    @Mod.EventHandler
+    public void texture(TextureStitchEvent e){
+        Minecraft.getMinecraft().getTextureMapBlocks().registerSprite(new ResourceLocation(Constants.EXTRA_BEES_MOD_ID, "items/validator/mutator.0"));
+        Minecraft.getMinecraft().getTextureMapBlocks().registerSprite(new ResourceLocation(Constants.EXTRA_BEES_MOD_ID, "items/validator/mutator.1"));
+    }
 
     @Override
     public void preInit() {
@@ -47,7 +65,7 @@ public class ModuleApiary implements IInitializable {
     public void postInit() {
         EnumHiveFrame.init();
         GameRegistry.addRecipe(AlvearyMachine.Mutator.get(1), "g g", " a ", "t t", 'g', Items.GOLD_INGOT, 'a', Mods.Forestry.block("alveary"), 't', new ItemStack(Mods.Forestry.item("thermionicTubes"), 1, 5));
-        GameRegistry.addRecipe(AlvearyMachine.Frame.get(1), "iii", "tat", " t ", 'i', Items.IRON_INGOT, 'a', Mods.Forestry.block("alveary"), 't', new ItemStack(Mods.Forestry.item("thermionicTubes"), 1, 4));
+        GameRegistry.addRecipe(AlvearyMachine.Frame.    get(1), "iii", "tat", " t ", 'i', Items.IRON_INGOT, 'a', Mods.Forestry.block("alveary"), 't', new ItemStack(Mods.Forestry.item("thermionicTubes"), 1, 4));
         GameRegistry.addRecipe(AlvearyMachine.RainShield.get(1), " b ", "bab", "t t", 'b', Items.BRICK, 'a', Mods.Forestry.block("alveary"), 't', new ItemStack(Mods.Forestry.item("thermionicTubes"), 1, 4));
         GameRegistry.addRecipe(AlvearyMachine.Lighting.get(1), "iii", "iai", " t ", 'i', Items.GLOWSTONE_DUST, 'a', Mods.Forestry.block("alveary"), 't', new ItemStack(Mods.Forestry.item("thermionicTubes"), 1, 4));
         GameRegistry.addRecipe(AlvearyMachine.Stimulator.get(1), "kik", "iai", " t ", 'i', Items.GOLD_NUGGET, 'a', Mods.Forestry.block("alveary"), 't', new ItemStack(Mods.Forestry.item("thermionicTubes"), 1, 4), 'k', new ItemStack(Mods.Forestry.item("chipsets"), 1, 2));

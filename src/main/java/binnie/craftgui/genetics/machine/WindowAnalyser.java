@@ -42,13 +42,11 @@ public class WindowAnalyser extends WindowMachine {
         new ControlEnergyBar(this, x + 24 + 16, y + 54 + 8 + 1, 60, 16, Position.Left);
         new ControlErrorState(this, x + 24 + 16 + 60 + 16, y + 54 + 8 + 1);
         x -= 28;
-        //TODO RENDERING
-        //new ControlIconDisplay(this, x + 36 + 2, y + 18, GUIIcon.ArrowRight.getIcon());
+        new ControlIconDisplay(this, x + 36 + 2, y + 18, GUIIcon.ArrowRight.getIcon().getResourceLocation());
         x += 56;
         new Panel(this, x, y, 76.0f, 50.0f, MinecraftGUI.PanelType.Tinted);
         new ControlProgress(this, x + 5, y + 5, WindowAnalyser.ProgressBase, WindowAnalyser.Progress, Position.Left);
         new ControlSlot(this, x + 38 - 9, y + 25 - 9).assign(6);
-        //TODO RENDERING
         new ControlIconDisplay(this, x + 76 + 2, y + 18, GUIIcon.ArrowRight.getIcon().getResourceLocation());
         x += 96;
         new ControlSlotArray(this, x, y, 2, 3).create(Analyser.slotFinished);

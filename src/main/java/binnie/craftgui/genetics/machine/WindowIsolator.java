@@ -35,7 +35,6 @@ public class WindowIsolator extends WindowMachine {
         x += 26;
         new ControlSlotArray(this, x, y + 3, 1, 3).create(Isolator.slotReserve);
         x += 20;
-        //TODO RENDERING
         new ControlIconDisplay(this, x, y + 3 + 1, GUIIcon.ArrowRight.getIcon().getResourceLocation());
         x += 18;
         new ControlSlot(this, x, y + 3).assign(5);
@@ -46,10 +45,8 @@ public class WindowIsolator extends WindowMachine {
         x += 142;
         new ControlSlot(this, x, y + 3).assign(6);
         new ControlSlot(this, x, y + 3 + 36).assign(1);
-        //TODO RENDERING
         new ControlIconDisplay(this, x + 1, y + 3 + 19, GUIIcon.ArrowUp.getIcon().getResourceLocation());
         x += 20;
-        //TODO RENDERING
         new ControlIconDisplay(this, x, y + 3 + 1, GUIIcon.ArrowRight.getIcon().getResourceLocation());
         x += 18;
         new ControlSlotArray(this, x, y + 3, 2, 3).create(Isolator.slotFinished);

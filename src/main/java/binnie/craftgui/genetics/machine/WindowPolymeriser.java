@@ -32,7 +32,6 @@ public class WindowPolymeriser extends WindowMachine {
         int x = 16;
         final int y = 38;
         new ControlSlotArray(this, x, y, 1, 4).create(Polymeriser.slotSerumReserve);
-        //TODO RENDERING
         new ControlIconDisplay(this, x + 18, y + 1, GUIIcon.ArrowRight.getIcon().getResourceLocation());
         x += 34;
         new ControlMachineProgress(this, x + 18, y - 6, WindowPolymeriser.ProgressBase, WindowPolymeriser.Progress, Position.Left);
