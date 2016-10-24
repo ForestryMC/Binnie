@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BlockMetadata extends BlockContainer implements IBlockMetadata {
-    static int temporyMeta;
+    static int temporyMeta = -1;
 
     public BlockMetadata(final Material material) {
         super(material);
@@ -127,7 +127,4 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 //		return getPickBlock(world, x, y, z);
 //	}
 
-    static {
-        BlockMetadata.temporyMeta = -1;
-    }
 }

@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MachineRendererForestry {
-    static Map<String, Object> instances;
+    static Map<String, Object> instances = new HashMap<>();
     static Method renderMethod;
 
     private static void loadMethod(final String file, final boolean waterTank, final boolean productTank) {
@@ -34,7 +34,4 @@ public class MachineRendererForestry {
         }
     }
 
-    static {
-        MachineRendererForestry.instances = new HashMap<>();
-    }
 }

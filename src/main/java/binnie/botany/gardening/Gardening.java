@@ -27,10 +27,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Gardening {
-	 public static final Map<ItemStack, Integer> fertiliserAcid = new LinkedHashMap<>();
-	 public static final Map<ItemStack, Integer> fertiliserAlkaline = new LinkedHashMap<>();
-	 public static final Map<ItemStack, Integer> fertiliserNutrient = new LinkedHashMap<>();
-
+	public static final Map<ItemStack, Integer> fertiliserAcid = new LinkedHashMap<>();
+	public static final Map<ItemStack, Integer> fertiliserAlkaline = new LinkedHashMap<>();
+	public static final Map<ItemStack, Integer> fertiliserNutrient = new LinkedHashMap<>();
+	 
     public static boolean isSoil(final Block block) {
         return block instanceof IBlockSoil;
     }

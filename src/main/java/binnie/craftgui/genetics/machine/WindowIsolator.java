@@ -15,8 +15,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class WindowIsolator extends WindowMachine {
-    static Texture ProgressBase;
-    static Texture Progress;
+    static Texture ProgressBase = new StandardTexture(0, 218, 142, 17, ExtraBeeTexture.GUIProgress.getTexture());
+    static Texture Progress = new StandardTexture(0, 201, 142, 17, ExtraBeeTexture.GUIProgress.getTexture());
 
     public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
         return new WindowIsolator(player, inventory, side);
@@ -73,8 +73,4 @@ public class WindowIsolator extends WindowMachine {
         return "Isolator";
     }
 
-    static {
-        WindowIsolator.ProgressBase = new StandardTexture(0, 218, 142, 17, ExtraBeeTexture.GUIProgress.getTexture());
-        WindowIsolator.Progress = new StandardTexture(0, 201, 142, 17, ExtraBeeTexture.GUIProgress.getTexture());
-    }
 }

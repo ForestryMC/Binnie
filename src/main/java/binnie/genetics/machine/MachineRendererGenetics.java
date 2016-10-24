@@ -12,7 +12,7 @@ import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class MachineRendererGenetics {
-    public static MachineRendererGenetics instance;
+    public static MachineRendererGenetics instance = new MachineRendererGenetics();
     public final RenderItem customRenderItem;
     private ModelMachine model;
 
@@ -62,7 +62,4 @@ public class MachineRendererGenetics {
         GL11.glPopMatrix();
     }
 
-    static {
-        MachineRendererGenetics.instance = new MachineRendererGenetics();
-    }
 }

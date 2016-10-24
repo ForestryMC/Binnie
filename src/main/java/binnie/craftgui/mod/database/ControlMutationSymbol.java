@@ -12,8 +12,8 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IMutation;
 
 class ControlMutationSymbol extends Control implements ITooltip {
-    private static Texture MutationPlus;
-    private static Texture MutationArrow;
+    private static Texture MutationPlus = new StandardTexture(2, 94, 16, 16, CraftGUITextureSheet.Controls2);
+    private static Texture MutationArrow = new StandardTexture(20, 94, 32, 16, CraftGUITextureSheet.Controls2);
     private IMutation value;
     private boolean discovered;
     private int type;
@@ -61,10 +61,5 @@ class ControlMutationSymbol extends Control implements ITooltip {
                 }
             }
         }
-    }
-
-    static {
-        ControlMutationSymbol.MutationPlus = new StandardTexture(2, 94, 16, 16, CraftGUITextureSheet.Controls2);
-        ControlMutationSymbol.MutationArrow = new StandardTexture(20, 94, 32, 16, CraftGUITextureSheet.Controls2);
     }
 }

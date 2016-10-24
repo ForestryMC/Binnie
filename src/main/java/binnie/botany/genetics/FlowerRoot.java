@@ -14,12 +14,12 @@ import net.minecraft.world.World;
 import java.util.*;
 
 public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
-    public static int flowerSpeciesCount;
+    public static int flowerSpeciesCount = -1;
     static final String UID = "rootFlowers";
-    public static ArrayList<IFlower> flowerTemplates;
-    private static ArrayList<IFlowerMutation> flowerMutations;
+    public static ArrayList<IFlower> flowerTemplates = new ArrayList<>();
+    private static ArrayList<IFlowerMutation> flowerMutations = new ArrayList<>();
     Map<ItemStack, IFlower> conversions;
-    private static ArrayList<IColourMix> colourMixes;
+    private static ArrayList<IColourMix> colourMixes = new ArrayList<>();
 
     public FlowerRoot() {
         this.conversions = new HashMap<>();
@@ -257,13 +257,5 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
         }
         return FlowerRoot.colourMixes;
     }
-
-    static {
-        FlowerRoot.flowerSpeciesCount = -1;
-        FlowerRoot.flowerTemplates = new ArrayList<>();
-        FlowerRoot.flowerMutations = new ArrayList<>();
-        FlowerRoot.colourMixes = new ArrayList<>();
-    }
-
 
 }

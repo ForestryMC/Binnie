@@ -30,16 +30,11 @@ import java.util.Random;
 public class Isolator {
     public static final int slotEnzyme = 0;
     public static final int slotSequencerVial = 1;
-    public static final int[] slotReserve;
+    public static final int[] slotReserve = new int[]{2, 3, 4};
     public static final int slotTarget = 5;
     public static final int slotResult = 6;
-    public static final int[] slotFinished;
+    public static final int[] slotFinished = new int[]{7, 8, 9, 10, 11, 12};
     public static final int tankEthanol = 0;
-
-    static {
-        slotReserve = new int[]{2, 3, 4};
-        slotFinished = new int[]{7, 8, 9, 10, 11, 12};
-    }
 
     public static class PackageIsolator extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
         public PackageIsolator() {

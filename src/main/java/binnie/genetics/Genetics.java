@@ -25,12 +25,12 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = Constants.GENETICS_MOD_ID, name = "Binnie's Genetics", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class Genetics extends AbstractMod {
-    public static ItemSerumArray itemSerumArray;
+    public static ItemSerumArray itemSerumArray = null;
     @Mod.Instance(Constants.GENETICS_MOD_ID)
     public static Genetics instance;
     @SidedProxy(clientSide = "binnie.genetics.proxy.ProxyClient", serverSide = "binnie.genetics.proxy.ProxyServer")
     public static Proxy proxy;
-    public static String channel;
+    public static String channel = "GEN";
     public static Item itemGenetics;
     public static Item itemSerum;
     public static Item itemSequencer;
@@ -98,11 +98,6 @@ public class Genetics extends AbstractMod {
     @Override
     public boolean isActive() {
         return BinnieCore.isGeneticsActive();
-    }
-
-    static {
-        Genetics.itemSerumArray = null;
-        Genetics.channel = "GEN";
     }
 
     public static class PacketHandler extends BinniePacketHandler {

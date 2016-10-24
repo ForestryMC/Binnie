@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public abstract class FieldParser {
-    public static Collection<FieldParser> parsers;
+    public static Collection<FieldParser> parsers = new ArrayList<>();;
 
     public abstract boolean isHandled(final Field p0, final AbstractMod p1);
 
@@ -42,9 +42,5 @@ public abstract class FieldParser {
                 parser.postInit(field, mod);
             }
         }
-    }
-
-    static {
-        FieldParser.parsers = new ArrayList<>();
     }
 }

@@ -15,8 +15,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class WindowGenepool extends WindowMachine {
-    static Texture ProgressBase;
-    static Texture Progress;
+    static Texture ProgressBase = new StandardTexture(64, 0, 130, 21, ExtraBeeTexture.GUIProgress.getTexture());;
+    static Texture Progress = new StandardTexture(64, 21, 130, 21, ExtraBeeTexture.GUIProgress.getTexture());;
 
     public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
         return new WindowGenepool(player, inventory, side);
@@ -65,8 +65,4 @@ public class WindowGenepool extends WindowMachine {
         return "Genepool";
     }
 
-    static {
-        WindowGenepool.ProgressBase = new StandardTexture(64, 0, 130, 21, ExtraBeeTexture.GUIProgress.getTexture());
-        WindowGenepool.Progress = new StandardTexture(64, 21, 130, 21, ExtraBeeTexture.GUIProgress.getTexture());
-    }
 }

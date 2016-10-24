@@ -8,7 +8,7 @@ import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class MachineRendererBlock {
-    public static MachineRendererBlock instance;
+    public static MachineRendererBlock instance = new MachineRendererBlock();
     private BinnieResource texture;
     private ModelBlock model;
 
@@ -28,7 +28,4 @@ public class MachineRendererBlock {
         GL11.glPopMatrix();
     }
 
-    static {
-        MachineRendererBlock.instance = new MachineRendererBlock();
-    }
 }

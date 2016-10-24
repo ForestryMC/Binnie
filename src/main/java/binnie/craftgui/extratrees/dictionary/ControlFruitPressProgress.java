@@ -18,8 +18,8 @@ import net.minecraftforge.fluids.Fluid;
 import org.lwjgl.opengl.GL11;
 
 public class ControlFruitPressProgress extends ControlProgressBase {
-    static Texture PressTexture;
-    static Texture PressSlot;
+    static Texture PressTexture = new StandardTexture(6, 0, 24, 52, ExtraTreeTexture.Gui);
+    static Texture PressSlot = new StandardTexture(9, 52, 34, 17, ExtraTreeTexture.Gui);
 
     @Override
     public void onRenderBackground() {
@@ -70,8 +70,4 @@ public class ControlFruitPressProgress extends ControlProgressBase {
         });
     }
 
-    static {
-        ControlFruitPressProgress.PressTexture = new StandardTexture(6, 0, 24, 52, ExtraTreeTexture.Gui);
-        ControlFruitPressProgress.PressSlot = new StandardTexture(9, 52, 34, 17, ExtraTreeTexture.Gui);
-    }
 }

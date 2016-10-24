@@ -27,8 +27,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Distillery {
-    public static int tankInput;
-    public static int tankOutput;
+    public static int tankInput = 0;
+    public static int tankOutput = 1;
     static List<Map<Fluid, FluidStack>> recipes;
 
     public static FluidStack getOutput(final FluidStack fluid, final int level) {
@@ -63,8 +63,6 @@ public class Distillery {
     }
 
     static {
-        Distillery.tankInput = 0;
-        Distillery.tankOutput = 1;
         (Distillery.recipes = new ArrayList<>()).add(new HashMap<>());
         Distillery.recipes.add(new HashMap<>());
         Distillery.recipes.add(new HashMap<>());

@@ -6,7 +6,7 @@ import binnie.craftgui.core.geometry.IBorder;
 import binnie.craftgui.core.geometry.Position;
 
 public class Texture {
-    public static final Texture NULL;
+    public static final Texture NULL = null;
     IArea area;
     IBorder padding;
     IBorder border;
@@ -107,9 +107,5 @@ public class Texture {
             out = out + " border:" + this.border.toString();
         }
         return out + "]";
-    }
-
-    static {
-        NULL = null;
     }
 }

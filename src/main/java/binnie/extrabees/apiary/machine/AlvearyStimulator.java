@@ -27,11 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AlvearyStimulator {
-    public static int slotCircuit;
-
-    static {
-        AlvearyStimulator.slotCircuit = 0;
-    }
+    public static int slotCircuit = 0;
 
     public static class PackageAlvearyStimulator extends AlvearyMachine.AlvearyPackage implements IMachineInformation {
         public PackageAlvearyStimulator() {

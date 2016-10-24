@@ -12,7 +12,7 @@ import binnie.craftgui.resource.minecraft.CraftGUITextureSheet;
 import binnie.craftgui.resource.minecraft.StandardTexture;
 
 class ControlBreedingProgress extends Control {
-    private static Texture Progress;
+    private static Texture Progress = new StandardTexture(80, 22, 4, 4, CraftGUITextureSheet.Controls2);
     private float percentage;
     private int colour;
 
@@ -29,9 +29,5 @@ class ControlBreedingProgress extends Control {
         area.setSize(new IPoint(area.size().x() * this.percentage, area.size().y()));
         CraftGUI.Render.colour(this.colour);
         CraftGUI.Render.texture(ControlBreedingProgress.Progress, area);
-    }
-
-    static {
-        ControlBreedingProgress.Progress = new StandardTexture(80, 22, 4, 4, CraftGUITextureSheet.Controls2);
     }
 }

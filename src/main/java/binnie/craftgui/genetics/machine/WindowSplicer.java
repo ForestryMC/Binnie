@@ -18,8 +18,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class WindowSplicer extends WindowMachine {
-    static Texture ProgressBase;
-    static Texture Progress;
+    static Texture ProgressBase = new StandardTexture(0, 72, 142, 72, GeneticsTexture.GUIProcess2.getTexture());
+    static Texture Progress = new StandardTexture(0, 0, 142, 72, GeneticsTexture.GUIProcess2.getTexture());
 
     public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
         return new WindowSplicer(player, inventory, side);
@@ -62,8 +62,4 @@ public class WindowSplicer extends WindowMachine {
         return "Inoculator";
     }
 
-    static {
-        WindowSplicer.ProgressBase = new StandardTexture(0, 72, 142, 72, GeneticsTexture.GUIProcess2.getTexture());
-        WindowSplicer.Progress = new StandardTexture(0, 0, 142, 72, GeneticsTexture.GUIProcess2.getTexture());
-    }
 }

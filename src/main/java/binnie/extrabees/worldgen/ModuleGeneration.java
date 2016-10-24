@@ -15,10 +15,10 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import java.util.Random;
 
 public class ModuleGeneration implements IWorldGenerator, IInitializable {
-    static int waterRate;
-    static int rockRate;
-    static int netherRate;
-    static int marbleRate;
+    static int waterRate = 2;
+    static int rockRate = 2;
+    static int netherRate = 2;
+    static int marbleRate = 2;
 
     @Override
     public void preInit() {
@@ -74,13 +74,6 @@ public class ModuleGeneration implements IWorldGenerator, IInitializable {
             final int randPosZ = chunkZ + rand.nextInt(16);
             new WorldGenHiveNether().generate(world, rand, new BlockPos(randPosX, randPosY, randPosZ));
         }
-    }
-
-    static {
-        ModuleGeneration.waterRate = 2;
-        ModuleGeneration.rockRate = 2;
-        ModuleGeneration.netherRate = 2;
-        ModuleGeneration.marbleRate = 2;
     }
 
 }

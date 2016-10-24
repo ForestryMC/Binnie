@@ -18,10 +18,10 @@ import net.minecraftforge.fluids.FluidStack;
 import org.lwjgl.opengl.GL11;
 
 public class ControlDistilleryProgress extends ControlProgressBase {
-    static Texture DistilleryBase;
-    static Texture DistilleryOverlay;
-    static Texture LiquidFlow;
-    static Texture Output;
+    static Texture DistilleryBase = new StandardTexture(43, 0, 58, 66, ExtraTreeTexture.Gui);
+    static Texture DistilleryOverlay = new StandardTexture(139, 0, 18, 66, ExtraTreeTexture.Gui);
+    static Texture LiquidFlow = new StandardTexture(101, 0, 38, 66, ExtraTreeTexture.Gui);
+    static Texture Output = new StandardTexture(68, 66, 17, 7, ExtraTreeTexture.Gui);
 
     @Override
     public void onRenderBackground() {
@@ -85,10 +85,4 @@ public class ControlDistilleryProgress extends ControlProgressBase {
         GL11.glDisable(3042);
     }
 
-    static {
-        ControlDistilleryProgress.DistilleryBase = new StandardTexture(43, 0, 58, 66, ExtraTreeTexture.Gui);
-        ControlDistilleryProgress.DistilleryOverlay = new StandardTexture(139, 0, 18, 66, ExtraTreeTexture.Gui);
-        ControlDistilleryProgress.LiquidFlow = new StandardTexture(101, 0, 38, 66, ExtraTreeTexture.Gui);
-        ControlDistilleryProgress.Output = new StandardTexture(68, 66, 17, 7, ExtraTreeTexture.Gui);
-    }
 }

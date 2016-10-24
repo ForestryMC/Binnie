@@ -19,11 +19,7 @@ import net.minecraft.tileentity.TileEntity;
 import java.util.Random;
 
 public class AlvearyHatchery {
-    public static int[] slotLarvae;
-
-    static {
-        AlvearyHatchery.slotLarvae = new int[]{0, 1, 2, 3, 4};
-    }
+    public static int[] slotLarvae = new int[]{0, 1, 2, 3, 4};
 
     public static class PackageAlvearyHatchery extends AlvearyMachine.AlvearyPackage implements IMachineInformation {
         public PackageAlvearyHatchery() {

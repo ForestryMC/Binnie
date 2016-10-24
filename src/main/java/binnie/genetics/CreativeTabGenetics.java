@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class CreativeTabGenetics extends CreativeTabs {
-    public static CreativeTabs instance;
+    public static CreativeTabs instance = new CreativeTabGenetics();
 
     @Override
     public ItemStack getIconItemStack() {
@@ -37,7 +37,4 @@ public class CreativeTabGenetics extends CreativeTabs {
         return null;
     }
 
-    static {
-        CreativeTabGenetics.instance = new CreativeTabGenetics();
-    }
 }

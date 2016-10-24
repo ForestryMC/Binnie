@@ -36,9 +36,9 @@ import org.lwjgl.opengl.GL11;
 import java.util.Random;
 
 public class Analyser {
-    public static final int[] slotReserve;
+    public static final int[] slotReserve = new int[]{0, 1, 2, 3, 4, 5};
     public static final int slotTarget = 6;
-    public static final int[] slotFinished;
+    public static final int[] slotFinished = new int[]{7, 8, 9, 10, 11, 12};
     public static final int slotDye = 13;
 
     public static boolean isAnalysable(final ItemStack stack) {
@@ -72,11 +72,6 @@ public class Analyser {
             return ((IItemAnalysable) stack.getItem()).analyse(stack);
         }
         return stack;
-    }
-
-    static {
-        slotReserve = new int[]{0, 1, 2, 3, 4, 5};
-        slotFinished = new int[]{7, 8, 9, 10, 11, 12};
     }
 
     public static class PackageAnalyser extends GeneticMachine.PackageGeneticBase implements IMachineInformation {

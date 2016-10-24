@@ -15,8 +15,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ControlPunnett extends Control {
-    static int boxWidth;
-    static int boxHeight;
+    static int boxWidth = 80;
+    static int boxHeight = 28;
 
     protected ControlPunnett(final IWidget parent, final float x, final float y) {
         super(parent, x, y, ControlPunnett.boxWidth * 3, ControlPunnett.boxWidth * 3);
@@ -70,8 +70,4 @@ public class ControlPunnett extends Control {
         new ControlText(this, new IArea(0.0f, ControlPunnett.boxHeight * 2, ControlPunnett.boxWidth, ControlPunnett.boxHeight), primary2.getName(), TextJustification.TopCenter).setColour(11184810);
     }
 
-    static {
-        ControlPunnett.boxWidth = 80;
-        ControlPunnett.boxHeight = 28;
-    }
 }

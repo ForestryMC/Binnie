@@ -15,11 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class AlvearyFrame {
-    public static int slotFrame;
-
-    static {
-        AlvearyFrame.slotFrame = 0;
-    }
+    public static int slotFrame = 0;
 
     public static class PackageAlvearyFrame extends AlvearyMachine.AlvearyPackage implements IMachineInformation {
         public PackageAlvearyFrame() {

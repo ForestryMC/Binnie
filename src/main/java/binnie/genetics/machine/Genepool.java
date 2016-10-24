@@ -29,14 +29,10 @@ import java.util.Random;
 
 public class Genepool {
     public static final int slotBee = 0;
-    public static final int[] slotReserve;
+    public static final int[] slotReserve = new int[]{1, 2, 3, 4, 5, 6};
     public static final int tankDNA = 0;
     public static final int tankEthanol = 1;
     public static final int slotEnzyme = 7;
-
-    static {
-        slotReserve = new int[]{1, 2, 3, 4, 5, 6};
-    }
 
     public static class PackageGenepool extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
         public PackageGenepool() {

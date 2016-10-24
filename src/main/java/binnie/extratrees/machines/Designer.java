@@ -23,15 +23,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import java.util.Map;
 
 public abstract class Designer {
-    public static int beeswaxSlot;
-    public static int design1Slot;
-    public static int design2Slot;
-
-    static {
-        Designer.beeswaxSlot = 0;
-        Designer.design1Slot = 1;
-        Designer.design2Slot = 2;
-    }
+    public static int beeswaxSlot = 0;
+    public static int design1Slot = 1;
+    public static int design2Slot = 2;
 
     public static class PackageWoodworker extends PackageCarpenter {
         public PackageWoodworker() {

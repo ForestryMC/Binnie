@@ -12,15 +12,15 @@ public enum ExtraTreeTexture implements IBinnieTexture {
 
     String texture;
     ResourceType type;
-    public static String carpenterTexture;
-    public static String panelerTexture;
-    public static String tileworkerTexture;
-    public static String incubatorTexture;
-    public static String lumbermillTexture;
-    public static String pressTexture;
-    public static String distilleryTexture;
-    public static String breweryTexture;
-    public static String infuserTexture;
+    public static String carpenterTexture = "extratrees/carpenter_";
+    public static String panelerTexture = "extratrees/paneler_";
+    public static String tileworkerTexture = "extratrees/tileworker_";
+    public static String incubatorTexture = "extratrees/incubator_";
+    public static String lumbermillTexture = "extratrees/sawmill_";
+    public static String pressTexture = "extratrees/press_";
+    public static String distilleryTexture = "extratrees/distillery_";
+    public static String breweryTexture = "extratrees/brewery_";
+    public static String infuserTexture = "extratrees/infuser_";
 
     ExtraTreeTexture(final ResourceType base, final String texture) {
         this.texture = texture;
@@ -32,15 +32,4 @@ public enum ExtraTreeTexture implements IBinnieTexture {
         return Binnie.Resource.getPNG(ExtraTrees.instance, this.type, this.texture);
     }
 
-    static {
-        ExtraTreeTexture.carpenterTexture = "extratrees/carpenter_";
-        ExtraTreeTexture.panelerTexture = "extratrees/paneler_";
-        ExtraTreeTexture.tileworkerTexture = "extratrees/tileworker_";
-        ExtraTreeTexture.incubatorTexture = "extratrees/incubator_";
-        ExtraTreeTexture.lumbermillTexture = "extratrees/sawmill_";
-        ExtraTreeTexture.pressTexture = "extratrees/press_";
-        ExtraTreeTexture.distilleryTexture = "extratrees/distillery_";
-        ExtraTreeTexture.breweryTexture = "extratrees/brewery_";
-        ExtraTreeTexture.infuserTexture = "extratrees/infuser_";
-    }
 }

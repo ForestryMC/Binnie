@@ -20,8 +20,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class WindowSequencer extends WindowMachine {
-    static Texture ProgressBase;
-    static Texture Progress;
+    static Texture ProgressBase = new StandardTexture(64, 114, 98, 9, ExtraBeeTexture.GUIProgress.getTexture());
+    static Texture Progress = new StandardTexture(64, 123, 98, 9, ExtraBeeTexture.GUIProgress.getTexture());
     ControlText slotText;
 
     public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
@@ -79,8 +79,4 @@ public class WindowSequencer extends WindowMachine {
         return "Sequencer";
     }
 
-    static {
-        WindowSequencer.ProgressBase = new StandardTexture(64, 114, 98, 9, ExtraBeeTexture.GUIProgress.getTexture());
-        WindowSequencer.Progress = new StandardTexture(64, 123, 98, 9, ExtraBeeTexture.GUIProgress.getTexture());
-    }
 }

@@ -18,7 +18,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class ModuleGenetics implements IInitializable {
-    static AlleleEffectNone alleleEffectNone;
+    static AlleleEffectNone alleleEffectNone = new AlleleEffectNone();
 
     @Override
     public void preInit() {
@@ -59,7 +59,4 @@ public class ModuleGenetics implements IInitializable {
         RecipeManagers.carpenterManager.addRecipe(100, Binnie.Liquid.getLiquidStack("water", 2000), null, new ItemStack(Botany.database), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', Items.GOLD_NUGGET, 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
     }
 
-    static {
-        ModuleGenetics.alleleEffectNone = new AlleleEffectNone();
-    }
 }

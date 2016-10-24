@@ -22,9 +22,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Infuser {
-    public static int tankInput;
-    public static int tankOutput;
-    static Map<Fluid, FluidStack> recipes;
+    public static int tankInput = 0;
+    public static int tankOutput = 1;
+    static Map<Fluid, FluidStack> recipes = new HashMap<>();
 
     public static FluidStack getOutput(final FluidStack fluid, final ItemStack stack) {
         if (fluid == null) {
@@ -48,12 +48,6 @@ public class Infuser {
 
     public static void addRecipe(final FluidStack input, final FluidStack output) {
         Infuser.recipes.put(input.getFluid(), output);
-    }
-
-    static {
-        Infuser.tankInput = 0;
-        Infuser.tankOutput = 1;
-        Infuser.recipes = new HashMap<>();
     }
 
     public static class PackageInfuser extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {

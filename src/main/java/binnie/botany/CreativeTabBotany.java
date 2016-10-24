@@ -8,7 +8,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class CreativeTabBotany extends CreativeTabs {
-    public static CreativeTabs instance;
+    public static CreativeTabs instance = new CreativeTabBotany();
 
     @Override
     public ItemStack getIconItemStack() {
@@ -36,7 +36,4 @@ public class CreativeTabBotany extends CreativeTabs {
         return Item.getItemFromBlock(Blocks.YELLOW_FLOWER);
     }
 
-    static {
-        CreativeTabBotany.instance = new CreativeTabBotany();
-    }
 }

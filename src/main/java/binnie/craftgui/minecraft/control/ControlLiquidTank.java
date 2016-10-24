@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ControlLiquidTank extends Control implements ITooltip {
-    public static List<Integer> tankError;
+    public static List<Integer> tankError = new ArrayList<>();
     private int tankID;
     private boolean horizontal;
 
@@ -164,7 +164,4 @@ public class ControlLiquidTank extends Control implements ITooltip {
         return (tank != null) ? tank.getTankSlot(this.tankID) : null;
     }
 
-    static {
-        ControlLiquidTank.tankError = new ArrayList<>();
-    }
 }

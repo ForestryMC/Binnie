@@ -21,10 +21,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Press {
-    public static int slotFruit;
-    public static int slotCurrent;
-    public static int tankWater;
-    private static Map<ItemStack, FluidStack> pressRecipes;
+    public static int slotFruit = 0;
+    public static int slotCurrent = 1;
+    public static int tankWater = 0;
+    private static Map<ItemStack, FluidStack> pressRecipes = new HashMap<>();
 
     public static boolean isInput(final ItemStack itemstack) {
         return getOutput(itemstack) != null;
@@ -47,13 +47,6 @@ public class Press {
             return;
         }
         Press.pressRecipes.put(stack, fluid);
-    }
-
-    static {
-        Press.slotFruit = 0;
-        Press.slotCurrent = 1;
-        Press.tankWater = 0;
-        Press.pressRecipes = new HashMap<>();
     }
 
     public static class PackagePress extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
