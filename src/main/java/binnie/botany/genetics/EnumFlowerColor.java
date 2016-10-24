@@ -4,8 +4,9 @@ import binnie.botany.Botany;
 import binnie.botany.api.IFlowerColour;
 import binnie.botany.core.BotanyCore;
 import forestry.api.genetics.IAlleleInteger;
+import net.minecraft.util.IStringSerializable;
 
-public enum EnumFlowerColor implements IFlowerColour, IAlleleInteger {
+public enum EnumFlowerColor implements IFlowerColour, IAlleleInteger, IStringSerializable {
     Aquamarine("aquamarine", 8388564),
     Black("black", 2631720),
     Blue("blue", 255),
@@ -2945,8 +2946,13 @@ public enum EnumFlowerColor implements IFlowerColour, IAlleleInteger {
     }
 
     @Override
+    public String getColourName() {
+        return Botany.proxy.localise("colour." + getName());
+    }
+    
+    @Override
     public String getName() {
-        return Botany.proxy.localise("colour." + this.name().toLowerCase());
+    	return name().toLowerCase();
     }
 
     public static EnumFlowerColor get(final int i) {

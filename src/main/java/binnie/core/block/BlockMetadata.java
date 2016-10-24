@@ -24,7 +24,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 
     @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-        return getBlockDropped(this, world, pos, state.getBlock().getMetaFromState(state));
+        return getBlockDropped(this, world, pos);
     }
 
     @Override
@@ -76,7 +76,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
         return tileMeta;
     }
 
-    public static ArrayList<ItemStack> getBlockDropped(final IBlockMetadata block, final IBlockAccess world, final BlockPos pos, final int blockMeta) {
+    public static ArrayList<ItemStack> getBlockDropped(final IBlockMetadata block, final IBlockAccess world, final BlockPos pos) {
         final ArrayList<ItemStack> array = new ArrayList<>();
         final TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
         if (tile != null && !tile.hasDroppedBlock()) {

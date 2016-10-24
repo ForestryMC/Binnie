@@ -31,9 +31,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ModuleGardening implements IInitializable {
-    public static HashMap<ItemStack, Integer> queuedAcidFertilisers  = new HashMap<>();
-    public static HashMap<ItemStack, Integer> queuedAlkalineFertilisers  = new HashMap<>();
-    public static HashMap<ItemStack, Integer> queuedNutrientFertilisers = new HashMap<>();
+    public static final HashMap<ItemStack, Integer> queuedAcidFertilisers = new HashMap<>();
+    public static final HashMap<ItemStack, Integer> queuedAlkalineFertilisers = new HashMap<>();
+    public static final HashMap<ItemStack, Integer> queuedNutrientFertilisers = new HashMap<>();
 
     @Override
     public void preInit() {
@@ -262,5 +262,4 @@ public class ModuleGardening implements IInitializable {
             }
         }
     }
-
 }

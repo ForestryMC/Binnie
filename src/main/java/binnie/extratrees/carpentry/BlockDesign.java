@@ -9,6 +9,8 @@ import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.IToolHammer;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -89,12 +91,12 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
         return ModuleCarpentry.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getTileMetadata(world, pos));
     }
 
-    @Override
-    public int colorMultiplier(int p0) {
+   //@Override
+    //public int colorMultiplier(int p0) {
 //		final DesignBlock block = this.getCarpentryBlock(world, pos);
 //		return (MultipassBlockRenderer.getLayer() > 0) ? block.getSecondaryColour() : block.getPrimaryColour();
-        return 0;
-    }
+       // return 0;
+    //}
 
 
 //	@Override
@@ -153,8 +155,27 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
     }
 
     @Override
-    public int getNumberOfPasses() {
+    public int getRenderPasses() {
         return 2;
     }
+    
+	@Override
+	public Object getInventoryKey(ItemStack stack) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object getWorldKey(IBlockState state) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TextureAtlasSprite getSprite(Object key, int pass) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

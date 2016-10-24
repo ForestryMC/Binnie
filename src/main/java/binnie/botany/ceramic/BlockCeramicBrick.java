@@ -1,25 +1,40 @@
 package binnie.botany.ceramic;
 
+import binnie.Constants;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.botany.items.BotanyItems;
+import binnie.botany.ceramic.BlockCeramicBrick.BlockType;
+import binnie.core.block.BlockMetadata;
 import binnie.core.block.IBlockMetadata;
 import binnie.core.block.IMultipassBlock;
 import binnie.core.block.TileEntityMetadata;
+import forestry.api.core.ISpriteRegister;
+import forestry.api.core.ITextureManager;
+import forestry.core.blocks.IColoredBlock;
+import forestry.core.render.TextureManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipassBlock {
+public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipassBlock<BlockType>, IColoredBlock, ISpriteRegister {
     public BlockCeramicBrick() {
         super(Material.ROCK);
         this.setHardness(1.0f);
@@ -31,34 +46,34 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
     private static BlockType getType(final int meta) {
         return new BlockType(meta);
     }
-
-//	@Override
-//	public ArrayList<ItemStack> getDrops(final World world, final int x, final int y, final int z, final int blockMeta, final int fortune) {
-//		return BlockMetadata.getBlockDropped(this, world, x, y, z, blockMeta);
-//	}
-//
-//	@Override
-//	public boolean removedByPlayer(final World world, final EntityPlayer player, final int x, final int y, final int z) {
-//		return BlockMetadata.breakBlock(this, player, world, x, y, z);
-//	}
+    
+    @Override
+    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+    	return BlockMetadata.getBlockDropped(this, world, pos);
+    }
+    
+    @Override
+    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
+    	return BlockMetadata.breakBlock(this, player, world, pos);
+    }
 
     @Override
     public TileEntity createNewTileEntity(final World var1, final int i) {
         return new TileEntityMetadata();
     }
 
-    //	@Override
-//	public boolean hasTileEntity(final int meta) {
-//		return true;
-//	}
-//
-//	@Override
-//	public boolean onBlockEventReceived(final World par1World, final int par2, final int par3, final int par4, final int par5, final int par6) {
-//		super.onBlockEventReceived(par1World, par2, par3, par4, par5, par6);
-//		final TileEntity tileentity = par1World.getTileEntity(par2, par3, par4);
-//		return tileentity != null && tileentity.receiveClientEvent(par5, par6);
-//	}
-//
+    @Override
+    public boolean hasTileEntity(IBlockState state) {
+    	return true;
+    }
+    
+   @Override
+   public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param) {
+       super.eventReceived(state, worldIn, pos, id, param);
+       TileEntity tileentity = worldIn.getTileEntity(pos);
+       return tileentity == null ? false : tileentity.receiveClientEvent(id, param);
+   }
+   
     @Override
     public int getPlacedMeta(final ItemStack stack, final World world, final BlockPos pos, final EnumFacing clickedBlock) {
         return TileEntityMetadata.getItemDamage(stack);
@@ -80,9 +95,8 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
     }
 
     @Override
-    public void dropAsStack(final World world, final BlockPos pos, final ItemStack drop) {
-        //TODO IMPLEMENT
-        //this.dropBlockAsItem(world, pos, drop);
+    public void dropAsStack(World world, BlockPos pos, ItemStack itemStack) {
+    	spawnAsEntity(world, pos, itemStack);
     }
 
     @Override
@@ -125,55 +139,23 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
 //			}
 //		}
 //	}
-
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public int colorMultiplier(final IBlockAccess world, final int x, final int y, final int z) {
-//		final TileEntityMetadata tile = TileEntityMetadata.getTile(world, x, y, z);
-//		if (tile != null) {
-//			return this.getRenderColor(tile.getTileMetadata());
-//		}
-//		return 16777215;
-//	}
-//
-//	@Override
-//	public void breakBlock(final World par1World, final int par2, final int par3, final int par4, final Block par5, final int par6) {
-//		super.breakBlock(par1World, par2, par3, par4, par5, par6);
-//		par1World.removeTileEntity(par2, par3, par4);
-//	}
-//
-//	@Override
-//	public ItemStack getPickBlock(final MovingObjectPosition target, final World world, final int x, final int y, final int z) {
-//		return BlockMetadata.getPickBlock(world, x, y, z);
-//	}
-//
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public int getRenderColor(final int meta) {
-//		return this.colorMultiplier(meta);
-//	}
-
+    
     @Override
-    public int getNumberOfPasses() {
-        return 3;
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+    	return BlockMetadata.getPickBlock(world, pos);
     }
-
+    
+    @SideOnly(Side.CLIENT)
     @Override
-    public int colorMultiplier(final int meta) {
-        final BlockType type = getType(meta);
-//		if (MultipassBlockRenderer.getLayer() == 0) {
-//			return 16777215;
-//		}
-//		if (MultipassBlockRenderer.getLayer() == 1) {
-//			return type.color1.getColor(false);
-//		}
-        return type.color2.getColor(false);
+    public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex) {
+    	BlockType type = getType(getMetaFromState(state));
+    	if(tintIndex == 0){
+    		return 16777215;
+    	}if(tintIndex == 1){
+    		return type.color1.getColor(false);
+    	}
+    	return type.color2.getColor(false);
     }
-
-//	@Override
-//	public int getRenderType() {
-//		return BinnieCore.multipassRenderID;
-//	}
 
     public enum TileType {
         Tile("tile", "Ceramic Tile"),
@@ -189,10 +171,10 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
 
         String id;
         String name;
-        //IIcon[] icons;
+        TextureAtlasSprite[] sprites;
 
         TileType(final String id, final String name) {
-            //this.icons = new IIcon[3];
+            this.sprites = new TextureAtlasSprite[3];
             this.id = id;
             this.name = name;
         }
@@ -205,7 +187,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
             return this != TileType.Tile;
         }
 
-        public ItemStack getRecipe(final List<ItemStack> stacks) {
+        public ItemStack getRecipe(List<ItemStack> stacks) {
             switch (this) {
                 case Tile: {
                     if (stacks.size() != 4) {
@@ -493,8 +475,42 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
             return this.color1.ordinal() + this.color2.ordinal() * 256 + this.type.ordinal() * 256 * 256;
         }
 
-//		public IIcon getIcon(final int layer) {
-//			return this.type.icons[layer];
-//		}
+		public TextureAtlasSprite getSprite(int pass) {
+			return this.type.sprites[pass];
+		}
     }
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getRenderPasses() {
+		return 3;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public BlockType getInventoryKey(ItemStack stack) {
+		return getType(stack.getItemDamage());
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public BlockType getWorldKey(IBlockState state) {
+		return getType(getMetaFromState(state));
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public TextureAtlasSprite getSprite(BlockType type, int pass) {
+		return type.getSprite(pass);
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerSprites(ITextureManager manager) {
+		for (final TileType type : TileType.values()) {
+			for (int i = 0; i < 3; ++i) {
+				type.sprites[i] = TextureManager.registerSprite(new ResourceLocation(Constants.BOTANY_MOD_ID + ":blocks/ceramic." + type.id + "." + i));
+			}
+		}
+	}
 }
