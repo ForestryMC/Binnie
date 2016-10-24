@@ -1,13 +1,17 @@
 package binnie.extrabees.products;
 
 import binnie.core.item.IItemEnum;
+import binnie.core.item.IItemMisc;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;
+import java.util.Locale;
 
-public class ItemProduct extends Item {
+public class ItemProduct extends Item implements IItemModelRegister {
     IItemEnum[] types;
 
     public ItemProduct(final IItemEnum[] types) {
@@ -36,6 +40,13 @@ public class ItemProduct extends Item {
             if (type.isActive()) {
                 itemList.add(new ItemStack(this, 1, type.ordinal()));
             }
+        }
+    }
+
+    @Override
+    public void registerModel(Item item, IModelManager manager) {
+        for (IItemEnum type : types) {
+            manager.registerItemModel(item, type.ordinal(), getRegistryName().getResourcePath());
         }
     }
 }

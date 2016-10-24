@@ -20,8 +20,8 @@ public class ModuleProducts implements IInitializable {
         ExtraBees.proxy.registerItem(ExtraBees.honeyCrystal);
         ExtraBees.proxy.registerItem(ExtraBees.honeyCrystalEmpty);
         ExtraBees.proxy.registerItem(ExtraBees.comb);
-
-
+        ExtraBees.proxy.registerItem(ExtraBees.honeyDrop);
+        ExtraBees.proxy.registerItem(ExtraBees.propolis);
         ExtraBees.proxy.registermodel(ExtraBees.honeyCrystal, 0);
         ExtraBees.proxy.registermodel(ExtraBees.honeyCrystalEmpty, 0);
         for (EnumHoneyComb c : EnumHoneyComb.values()) {
