@@ -17,7 +17,7 @@ public class ModuleCore implements IInitializable {
             Binnie.Language.addObjectName(pH2, Binnie.Language.unlocalised(Botany.instance, "moisture." + pH2.getName()));
         }
         for (final EnumSoilType pH3 : EnumSoilType.values()) {
-            Binnie.Language.addObjectName(pH3, Binnie.Language.unlocalised(Botany.instance, "soil." + pH3.getID()));
+            Binnie.Language.addObjectName(pH3, Binnie.Language.unlocalised(Botany.instance, "soil." + pH3.getName()));
         }
     }
 

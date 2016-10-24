@@ -12,6 +12,8 @@ import binnie.core.BinnieCore;
 import com.mojang.authlib.GameProfile;
 import forestry.api.core.EnumTemperature;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -41,34 +43,34 @@ public class Gardening {
         return isSoil(item.getItem());
     }
 
-//	public static EnumMoisture getNaturalMoisture(final World world, final BlockPos pos) {
-//		float bias = getBiomeMoisture(world.getBiome(pos), pos.getY());
-//		for (int dx = -1; dx < 2; ++dx) {
-//			for (int dz = -1; dz < 2; ++dz) {
-//				if (dx != 0 || dz != 0) {
-//					if (world.getBlock(x + dx, y, z + dz) == Blocks.sand) {
-//						bias -= 1.5;
-//					}
-//					else if (world.getBlock(x + dx, y, z + dz) == Blocks.water) {
-//						bias += 1.5;
-//					}
-//				}
-//			}
-//		}
-//		if (world.isRaining() && world.canBlockSeeTheSky(x, y + 1, z) && world.getPrecipitationHeight(x, z) <= y + 1) {
-//			bias += 1.5;
-//		}
-//		for (int dx = -1; dx < 2; ++dx) {
-//			for (int dz = -1; dz < 2; ++dz) {
-//				if (dx != 0 || dz != 0) {
-//					if (world.getBlock(x + dx, y, z + dz) == Blocks.gravel && bias > 0.0f) {
-//						bias *= 0.4f;
-//					}
-//				}
-//			}
-//		}
-//		return (bias <= -1.0f) ? EnumMoisture.Dry : ((bias >= 1.0f) ? EnumMoisture.Damp : EnumMoisture.Normal);
-//	}
+	public static EnumMoisture getNaturalMoisture(final World world, final BlockPos pos) {
+		float bias = getBiomeMoisture(world.getBiome(pos), pos.getY());
+		for (int dx = -1; dx < 2; ++dx) {
+			for (int dz = -1; dz < 2; ++dz) {
+				if (dx != 0 || dz != 0) {
+					if (world.getBlockState(pos.add(dx, 0, dz)) == Blocks.SAND) {
+						bias -= 1.5;
+					}
+					else if (world.getBlockState(pos.add(dx, 0, dz)) == Blocks.WATER) {
+						bias += 1.5;
+					}
+				}
+			}
+		}
+		if (world.isRaining() && world.canBlockSeeSky(pos.up()) && world.getPrecipitationHeight(pos).getY() <= pos.getY() + 1) {
+			bias += 1.5;
+		}
+		for (int dx = -1; dx < 2; ++dx) {
+			for (int dz = -1; dz < 2; ++dz) {
+				if (dx != 0 || dz != 0) {
+					if (world.getBlockState(pos.add(dx, 0, dz)).getBlock() == Blocks.GRAVEL && bias > 0.0f) {
+						bias *= 0.4f;
+					}
+				}
+			}
+		}
+		return (bias <= -1.0f) ? EnumMoisture.Dry : ((bias >= 1.0f) ? EnumMoisture.Damp : EnumMoisture.Normal);
+	}
 
     public static EnumAcidity getNaturalPH(final World world, final BlockPos pos) {
         final float bias = getBiomePH(world.getBiome(pos), pos.getY());
@@ -88,10 +90,10 @@ public class Gardening {
         return (float) (-3.0 * (R - 0.5) + 0.5 * (T - 0.699999988079071) * (T - 0.699999988079071) + 0.02f * (H - 64) - 0.15000000596046448);
     }
 
-//	public static void createSoil(final World world, final BlockPos pos, final EnumSoilType soil, final EnumMoisture moisture, final EnumAcidity acidity) {
-//		final int meta = moisture.ordinal() + acidity.ordinal() * 3;
-//		world.setBlockState(x, y, z, getSoilBlock(soil), meta, 2);
-//	}
+	public static void createSoil(final World world, final BlockPos pos, final EnumSoilType soil, final EnumMoisture moisture, final EnumAcidity acidity) {
+		final int meta = moisture.ordinal() + acidity.ordinal() * 3;
+		world.setBlockState(pos, getSoilBlock(soil).getStateFromMeta(meta), 2);
+	}
 
     public static boolean plant(final World world, final BlockPos pos, final IFlower flower, final GameProfile owner) {
         final boolean set = world.setBlockState(pos, Botany.flower.getDefaultState());
@@ -194,22 +196,23 @@ public class Gardening {
         return 1;
     }
 
-//	public static boolean canTolerate(final IFlower flower, final World world, final BlockPos pos) {
-//		if (flower == null || flower.getGenome() == null) {
-//			return false;
-//		}
-//		final Block soil = world.getBlock(x, y - 1, z);
-//		final int soilMeta = world.getBlockMetadata(x, y - 1, z);
-//		final BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
-//		return canTolerate(flower, EnumAcidity.values()[soilMeta / 3 % 3], EnumMoisture.values()[soilMeta % 3], EnumTemperature.getFromValue(biome.temperature));
-//	}
-//
-//	public static EnumSoilType getSoilType(final World world, final BlockPos pos) {
-//		if (world.getBlock(x, y, z) instanceof IBlockSoil) {
-//			return ((IBlockSoil) world.getBlock(x, y, z)).getType(world, x, y, z);
-//		}
-//		return EnumSoilType.SOIL;
-//	}
+	public static boolean canTolerate(final IFlower flower, final World world, final BlockPos pos) {
+		if (flower == null || flower.getGenome() == null) {
+			return false;
+		}
+		IBlockState soil = world.getBlockState(pos.down());
+		final Block soilBlock = soil.getBlock();
+		final int soilMeta = soilBlock.getMetaFromState(soil);
+		final Biome biome = world.getBiome(pos);
+		return canTolerate(flower, EnumAcidity.values()[soilMeta / 3 % 3], EnumMoisture.values()[soilMeta % 3], EnumTemperature.getFromValue(biome.getTemperature()));
+	}
+
+	public static EnumSoilType getSoilType(final World world, final BlockPos pos) {
+		if (world.getBlockState(pos).getBlock() instanceof IBlockSoil) {
+			return ((IBlockSoil) world.getBlockState(pos).getBlock()).getType(world, pos);
+		}
+		return EnumSoilType.SOIL;
+	}
 
     public static Block getSoilBlock(final EnumSoilType type) {
         return getSoilBlock(type, false);
@@ -229,26 +232,28 @@ public class Gardening {
         }
     }
 
-    public static boolean canTolerate(final IFlower flower, final EnumAcidity ePH, final EnumMoisture eMoisture, final EnumTemperature eTemp) {
+    public static boolean canTolerate(IFlower flower, EnumAcidity ePH, EnumMoisture eMoisture, EnumTemperature eTemp) {
         return flower.getGenome().canTolerate(ePH) && flower.getGenome().canTolerate(eMoisture) && flower.getGenome().canTolerate(eTemp);
     }
 
-    public static boolean isWeedkiller(final ItemStack heldItem) {
+    public static boolean isWeedkiller(ItemStack heldItem) {
         return heldItem != null && heldItem.isItemEqual(BotanyItems.Weedkiller.get(1));
     }
 
-//	public static boolean addWeedKiller(final World world, final BlockPos pos) {
-//		if (!(world.getBlockState(pos).getBlock() instanceof IBlockSoil)) {
-//			return false;
-//		}
-//		final EnumSoilType type = getSoilType(world, pos);
-//		final Block block = getSoilBlock(type, true);
-//		final boolean done = world.setBlock(x, y, z, block, world.getBlockMetadata(x, y, z), 2);
-//		if (done && BlockPlant.isWeed(world, pos.up())) {
-//			world.setBlockToAir(pos.up());
-//		}
-//		return done;
-//	}
+	public static boolean addWeedKiller(World world, BlockPos pos) {
+		if (!(world.getBlockState(pos).getBlock() instanceof IBlockSoil)) {
+			return false;
+		}
+		EnumSoilType type = getSoilType(world, pos);
+		Block block = getSoilBlock(type, true);
+		IBlockState oldState = world.getBlockState(pos);
+		IBlockState newState = block.getStateFromMeta(oldState.getBlock().getMetaFromState(oldState));
+		boolean done = world.setBlockState(pos, newState, 2);
+		if (done && BlockPlant.isWeed(world, pos.up())) {
+			world.setBlockToAir(pos.up());
+		}
+		return done;
+	}
 
     static {
         Gardening.fertiliserAcid = new LinkedHashMap<>();

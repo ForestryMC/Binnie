@@ -30,7 +30,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockFlower extends BlockContainer implements /*IItemModelRegister, */IColoredBlock {
 	
-	public static final AxisAlignedBB FLOWER_BLOCK_AABB = new AxisAlignedBB(0.3F, 0.0F, 0.3, 0.7F, 0.6F, 0.7F);
+	public static final AxisAlignedBB FLOWER_BLOCK_AABB = new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 0.6D, 0.7D);
 
     public BlockFlower() {
         super(Material.PLANTS);

@@ -1,11 +1,16 @@
 package binnie.botany.api;
 
-public enum EnumSoilType {
+import java.util.Locale;
+
+import net.minecraft.util.IStringSerializable;
+
+public enum EnumSoilType implements IStringSerializable {
     SOIL,
     LOAM,
     FLOWERBED;
 
-    public String getID() {
-        return this.name().toLowerCase();
-    }
+	@Override
+	public String getName() {
+		return this.name().toLowerCase(Locale.ENGLISH);
+	}
 }

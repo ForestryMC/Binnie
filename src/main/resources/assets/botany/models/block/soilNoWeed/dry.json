@@ -1,0 +1,7 @@
+{
+    "parent": "botany:block/soil",
+    "textures": {
+        "top": "botany:blocks/soil/soil.neutral.dry.2",
+        "side": "botany:blocks/soil/soil.neutral.dry.1"
+    }
+}

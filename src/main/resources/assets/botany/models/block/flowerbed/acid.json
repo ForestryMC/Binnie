@@ -1,0 +1,7 @@
+{
+    "parent": "botany:block/soil",
+    "textures": {
+        "top": "botany:blocks/soil/flowerbed.acid.normal.0",
+        "side": "botany:blocks/soil/flowerbed.acid.normal.1"
+    }
+}

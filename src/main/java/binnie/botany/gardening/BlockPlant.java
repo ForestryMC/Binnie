@@ -23,11 +23,6 @@ import java.util.Random;
 public class BlockPlant extends BlockBush {
     public static final PropertyEnum<Type> PLANT_TYPE = PropertyEnum.create("plant_type", Type.class);
 
-    @Override
-    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-        return new ArrayList<>();
-    }
-
 //	@Override
 //	@SideOnly(Side.CLIENT)
 //	public void registerBlockIcons(final IIconRegister p_149651_1_) {
@@ -40,6 +35,11 @@ public class BlockPlant extends BlockBush {
         this.setRegistryName("plant");
         this.setCreativeTab(CreativeTabBotany.instance);
         this.setTickRandomly(true);
+    }
+    
+    @Override
+    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+        return new ArrayList<>();
     }
 
     @Override

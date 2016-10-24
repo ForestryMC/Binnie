@@ -5,7 +5,6 @@ import javax.annotation.Nonnull;
 import binnie.genetics.integration.jei.GeneticsJeiPlugin;
 import binnie.genetics.integration.jei.RecipeUids;
 import binnie.genetics.machine.Incubator;
-import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -20,14 +19,14 @@ import net.minecraft.util.ResourceLocation;
 public class IncubatorRecipeCategory extends BlankRecipeCategory {
     
 	@Nonnull
-	private final IDrawable tank;
-	@Nonnull
-	private final IDrawable tankOverlay;
-	@Nonnull
 	private final ResourceLocation guiTank = new ResourceLocation("binniecore:textures/gui/craftgui-slots.png");
 	@Nonnull
 	private final ResourceLocation guiArrow = new ResourceLocation("binniecore:textures/gui/craftgui-panels.png");
 	
+	@Nonnull
+	private final IDrawable tank;
+	@Nonnull
+	private final IDrawable tankOverlay;
 	@Nonnull
 	private final IDrawable arrow;
 	@Nonnull
