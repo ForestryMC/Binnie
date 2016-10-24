@@ -59,7 +59,7 @@ public class ItemMisc extends ItemCore {
     @Override
     public void registerModel(Item item, IModelManager manager) {
         for (IItemMisc type : items) {
-            manager.registerItemModel(item, type.ordinal(), type.name().toLowerCase(Locale.ENGLISH));
+            manager.registerItemModel(item, type.ordinal(), "misc/" + type.name().toLowerCase(Locale.ENGLISH));
         }
 
     }
