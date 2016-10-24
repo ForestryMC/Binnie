@@ -1,7 +1,6 @@
 package binnie.core.mod.parser;
 
 import binnie.core.AbstractMod;
-import binnie.core.BinnieCore;
 import net.minecraft.item.Item;
 import java.lang.reflect.Field;
 
@@ -15,7 +14,7 @@ public class ItemParser extends FieldParser {
     public void preInit(final Field field, final AbstractMod mod) throws IllegalArgumentException, IllegalAccessException {
         final Item item = (Item) field.get(null);
         if (item != null) {
-            BinnieCore.proxy.registerItem(item);
+            mod.getProxy().registerItem(item);
         }
     }
 }

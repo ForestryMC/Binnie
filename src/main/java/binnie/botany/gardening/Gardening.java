@@ -27,9 +27,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Gardening {
-    public static Map<ItemStack, Integer> fertiliserAcid;
-    public static Map<ItemStack, Integer> fertiliserAlkaline;
-    public static Map<ItemStack, Integer> fertiliserNutrient;
+	 public static final Map<ItemStack, Integer> fertiliserAcid = new LinkedHashMap<>();
+	 public static final Map<ItemStack, Integer> fertiliserAlkaline = new LinkedHashMap<>();
+	 public static final Map<ItemStack, Integer> fertiliserNutrient = new LinkedHashMap<>();
 
     public static boolean isSoil(final Block block) {
         return block instanceof IBlockSoil;
@@ -90,7 +90,7 @@ public class Gardening {
         return (float) (-3.0 * (R - 0.5) + 0.5 * (T - 0.699999988079071) * (T - 0.699999988079071) + 0.02f * (H - 64) - 0.15000000596046448);
     }
 
-	public static void createSoil(final World world, final BlockPos pos, final EnumSoilType soil, final EnumMoisture moisture, final EnumAcidity acidity) {
+	public static void plantSoil(final World world, final BlockPos pos, final EnumSoilType soil, final EnumMoisture moisture, final EnumAcidity acidity) {
 		final int meta = moisture.ordinal() + acidity.ordinal() * 3;
 		world.setBlockState(pos, getSoilBlock(soil).getStateFromMeta(meta), 2);
 	}
@@ -254,10 +254,4 @@ public class Gardening {
 		}
 		return done;
 	}
-
-    static {
-        Gardening.fertiliserAcid = new LinkedHashMap<>();
-        Gardening.fertiliserAlkaline = new LinkedHashMap<>();
-        Gardening.fertiliserNutrient = new LinkedHashMap<>();
-    }
 }

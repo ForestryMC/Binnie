@@ -2,9 +2,14 @@ package binnie.botany.gardening;
 
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
+import binnie.botany.api.EnumSoilType;
+import binnie.botany.api.gardening.IBlockSoil;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -20,21 +25,37 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class BlockPlant extends BlockBush {
+public class BlockPlant extends BlockBush implements IItemModelRegister {
     public static final PropertyEnum<Type> PLANT_TYPE = PropertyEnum.create("plant_type", Type.class);
-
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerBlockIcons(final IIconRegister p_149651_1_) {
-//		for (final Type t : Type.values()) {
-//			t.icon = Botany.proxy.getIcon(p_149651_1_, t.name().toLowerCase());
-//		}
-//	}
 
     public BlockPlant() {
         this.setRegistryName("plant");
         this.setCreativeTab(CreativeTabBotany.instance);
         this.setTickRandomly(true);
+    }
+    
+    @Override
+    public void registerModel(Item item, IModelManager manager) {
+    	int index = 0;
+		for (Type type : Type.values()) {
+			manager.registerItemModel(item, index, type.getName());
+			index++;
+		}
+    }
+    
+    @Override
+    protected BlockStateContainer createBlockState() {
+    	return new BlockStateContainer(this, PLANT_TYPE);
+    }
+    
+    @Override
+    public int getMetaFromState(IBlockState state) {
+    	return state.getValue(PLANT_TYPE).ordinal();
+    }
+    
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
+    	return getDefaultState().withProperty(PLANT_TYPE, Type.values()[meta]);
     }
     
     @Override
@@ -46,23 +67,17 @@ public class BlockPlant extends BlockBush {
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
         return super.canPlaceBlockAt(worldIn, pos) || Gardening.isSoil(worldIn.getBlockState(pos).getBlock());
     }
-
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public IIcon getIcon(final int side, final int meta) {
-//		return Type.values()[meta % Type.values().length].icon;
-//	}
-
-//	@Override
-//	public int damageDropped(final int p_149692_1_) {
-//		return p_149692_1_;
-//	}
+    
+    @Override
+    public int damageDropped(IBlockState state) {
+    	return getMetaFromState(state);
+    }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(final Item p_149666_1_, final CreativeTabs p_149666_2_, final List p_149666_3_) {
+    public void getSubBlocks(final Item p_149666_1_, final CreativeTabs p_149666_2_, final List subBlocks) {
         for (final Type type : Type.values()) {
-            p_149666_3_.add(type.get());
+            subBlocks.add(type.get());
         }
     }
 
@@ -92,16 +107,16 @@ public class BlockPlant extends BlockBush {
         }
         final Block below = world.getBlockState(pos.down()).getBlock();
         if (Gardening.isSoil(below)) {
-//			final IBlockSoil soil = (IBlockSoil) below;
-//			if (world.rand.nextInt(3) == 0) {
-//				if (type == Type.Weeds || type == Type.WeedsLong || type == Type.WeedsVeryLong) {
-//					if (!soil.degrade(world, pos.down(), EnumSoilType.LOAM)) {
-//						soil.degrade(world, pos.down(), EnumSoilType.SOIL);
-//					}
-//				} else if (type == Type.DecayingFlower && !soil.fertilise(world, pos.down(), EnumSoilType.LOAM)) {
-//					soil.fertilise(world, pos.down(), EnumSoilType.FLOWERBED);
-//				}
-//			}
+			final IBlockSoil soil = (IBlockSoil) below;
+			if (world.rand.nextInt(3) == 0) {
+				if (type == Type.Weeds || type == Type.WeedsLong || type == Type.WeedsVeryLong) {
+					if (!soil.degrade(world, pos.down(), EnumSoilType.LOAM)) {
+						soil.degrade(world, pos.down(), EnumSoilType.SOIL);
+					}
+				} else if (type == Type.DecayingFlower && !soil.fertilise(world, pos.down(), EnumSoilType.LOAM)) {
+					soil.fertilise(world, pos.down(), EnumSoilType.FLOWERBED);
+				}
+			}
         }
     }
 
@@ -117,15 +132,19 @@ public class BlockPlant extends BlockBush {
         final Type type = world.getBlockState(pos).getValue(PLANT_TYPE);
         return type == Type.Weeds || type == Type.WeedsLong || type == Type.WeedsVeryLong;
     }
+    
+    @Override
+    public EnumOffsetType getOffsetType() {
+    	return EnumOffsetType.XZ;
+    }
 
     public enum Type implements IStringSerializable {
-        Weeds("Weeds"),
-        WeedsLong("Long Weeds"),
-        WeedsVeryLong("Very Long Weeds"),
-        DeadFlower("Dead Flower"),
-        DecayingFlower("Decaying Flower");
+        Weeds("weeds"),
+        WeedsLong("weeds_long"),
+        WeedsVeryLong("weeds_very_long"),
+        DeadFlower("dead_flower"),
+        DecayingFlower("decaying_flower");
 
-        //		public IIcon icon;
         String name;
 
         Type(final String name) {
@@ -142,7 +161,7 @@ public class BlockPlant extends BlockBush {
 
         @Override
 		public String getName() {
-            return this.name;
+            return name;
         }
     }
 }

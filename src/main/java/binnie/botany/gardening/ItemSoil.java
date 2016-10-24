@@ -1,11 +1,7 @@
 package binnie.botany.gardening;
 
 import binnie.Binnie;
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumMoisture;
 import binnie.botany.api.EnumSoilType;
-import forestry.core.utils.Translator;
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -30,11 +26,11 @@ public class ItemSoil extends ItemBlock {
     @SideOnly(Side.CLIENT)
     public void addInformation(final ItemStack stack, final EntityPlayer playerIn, final List tooltip, final boolean advanced) {
         String info = "";
-        info+=BlockSoil.getMoisture(stack, true);
+        info+=BlockSoil.getMoisture(stack, true, true);
         if (info.length() > 0) {
             info += ", ";
         }
-        info+=BlockSoil.getPH(stack, true);
+        info+=BlockSoil.getPH(stack, true, true);
         if (info.length() > 0) {
             tooltip.add(info);
         }

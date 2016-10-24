@@ -1,7 +1,7 @@
 {   "parent": "block/block",
 	"textures":{
 		"particle": "blocks/dirt",
-		"down": "blocks/dirt"
+		"bottom": "blocks/dirt"
 	},
     "elements": [
         {   "from": [ 0, 0, 0 ],
