@@ -15,8 +15,12 @@ import com.mojang.authlib.GameProfile;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.core.IErrorState;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IPollinatable;
 import forestry.api.lepidopterology.IButterfly;
+import forestry.api.lepidopterology.IButterflyNursery;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDoublePlant.EnumPlantType;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
@@ -24,12 +28,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
+import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-public class TileEntityFlower extends TileEntity //implements IPollinatable, IButterflyNursery
-{
+public class TileEntityFlower extends TileEntity /*implements IPollinatable, IButterflyNursery*/{
     IFlower flower;
     GameProfile owner;
     int section;
@@ -92,33 +96,33 @@ public class TileEntityFlower extends TileEntity //implements IPollinatable, IBu
         this.owner = owner;
     }
 
-//	@Override
-//	public EnumSet<EnumPlantType> getPlantType() {
-//		return EnumSet.of(EnumPlantType.Plains);
-//	}
-//
-//	@Override
-//	public IIndividual getPollen() {
-//		return this.getFlower();
-//	}
-//
-//	@Override
-//	public boolean canMateWith(final IIndividual individual) {
-//		return this.isBreeding() && individual instanceof IFlower && this.getFlower() != null && this.getFlower().getMate() == null && this.getFlower().hasFlowered() && !this.getFlower().isGeneticEqual(individual);
-//	}
-//
-//	@Override
-//	public void mateWith(final IIndividual individual) {
-//		if (this.getFlower() == null || !(individual instanceof IFlower)) {
-//			return;
-//		}
-//		final IAlleleFlowerSpecies primary = (IAlleleFlowerSpecies) individual.getGenome().getPrimary();
-//		final IAlleleFlowerSpecies primary2 = this.getFlower().getGenome().getPrimary();
-//		if (primary == primary2 || this.worldObj.rand.nextInt(4) == 0) {
-//			this.getFlower().mate((IFlower) individual);
-//			//this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
-//		}
-//	}
+	/*@Override
+	public EnumSet<EnumPlantType> getPlantType() {
+		return EnumSet.of(EnumPlantType.Plains);
+	}
+
+	@Override
+	public IIndividual getPollen() {
+		return this.getFlower();
+	}
+
+	@Override
+	public boolean canMateWith(final IIndividual individual) {
+		return this.isBreeding() && individual instanceof IFlower && this.getFlower() != null && this.getFlower().getMate() == null && this.getFlower().hasFlowered() && !this.getFlower().isGeneticEqual(individual);
+	}
+
+	@Override
+	public void mateWith(final IIndividual individual) {
+		if (this.getFlower() == null || !(individual instanceof IFlower)) {
+			return;
+		}
+		final IAlleleFlowerSpecies primary = (IAlleleFlowerSpecies) individual.getGenome().getPrimary();
+		final IAlleleFlowerSpecies primary2 = this.getFlower().getGenome().getPrimary();
+		if (primary == primary2 || this.worldObj.rand.nextInt(4) == 0) {
+			this.getFlower().mate((IFlower) individual);
+			this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+		}
+	}*/
 
     public IFlower getFlower() {
         if (this.getSection() <= 0) {

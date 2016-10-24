@@ -14,6 +14,7 @@ import binnie.core.BinnieCore;
 import forestry.core.blocks.IColoredBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -37,6 +38,7 @@ public class BlockFlower extends BlockContainer implements /*IItemModelRegister,
         final float f = 0.2f;
         this.setTickRandomly(true);
         this.setRegistryName("flower");
+        this.setSoundType(SoundType.PLANT);
     }
 
     @Override

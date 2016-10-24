@@ -1,23 +1,32 @@
 package binnie.botany.ceramic;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import binnie.botany.Botany;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.botany.items.BotanyItems;
 import binnie.core.AbstractMod;
+import binnie.core.BinnieCore;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.api.IDesignSystem;
+import binnie.extratrees.api.IPattern;
 import binnie.extratrees.carpentry.DesignerManager;
+import binnie.extratrees.carpentry.EnumPattern;
+import forestry.core.render.TextureManager;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 public class CeramicDesignSystem implements IDesignSystem {
     public static CeramicDesignSystem instance = new CeramicDesignSystem();
-//	Map<Integer, IIcon> primary;
-//	Map<Integer, IIcon> secondary;
+	Map<Integer, TextureAtlasSprite> primary;
+	Map<Integer, TextureAtlasSprite> secondary;
 
     CeramicDesignSystem() {
-//		this.primary = new HashMap<Integer, IIcon>();
-//		this.secondary = new HashMap<Integer, IIcon>();
+		this.primary = new HashMap<Integer, TextureAtlasSprite>();
+		this.secondary = new HashMap<Integer, TextureAtlasSprite>();
         DesignerManager.instance.registerDesignSystem(this);
     }
 
@@ -42,32 +51,32 @@ public class CeramicDesignSystem implements IDesignSystem {
     }
 
     public String getTexturePath() {
-        return "ceramic";
+        return "blocks/ceramic";
     }
-
-//	@Override
-//	public IIcon getPrimaryIcon(final IPattern pattern) {
-//		if (pattern instanceof EnumPattern) {
-//			return this.primary.get(((EnumPattern) pattern).ordinal());
-//		}
-//		return null;
-//	}
-//
-//	@Override
-//	public IIcon getSecondaryIcon(final IPattern pattern) {
-//		if (pattern instanceof EnumPattern) {
-//			return this.secondary.get(((EnumPattern) pattern).ordinal());
-//		}
-//		return null;
-//	}
-//
-//	@Override
-//	public void registerIcons(final IIconRegister register) {
-//		for (final EnumPattern pattern : EnumPattern.values()) {
-//			this.primary.put(pattern.ordinal(), BinnieCore.proxy.getIcon(register, this.getMod().getModID(), this.getTexturePath() + "/" + pattern.toString().toLowerCase() + ".0"));
-//			this.secondary.put(pattern.ordinal(), BinnieCore.proxy.getIcon(register, this.getMod().getModID(), this.getTexturePath() + "/" + pattern.toString().toLowerCase() + ".1"));
-//		}
-//	}
+    
+    @Override
+    public TextureAtlasSprite getPrimarySprite(IPattern pattern) {
+		if (pattern instanceof EnumPattern) {
+			return this.primary.get(((EnumPattern) pattern).ordinal());
+		}
+		return null;
+    }
+    
+    @Override
+    public TextureAtlasSprite getSecondarySprite(IPattern pattern) {
+		if (pattern instanceof EnumPattern) {
+			return this.secondary.get(((EnumPattern) pattern).ordinal());
+		}
+		return null;
+    }
+    
+    @Override
+    public void registerSprites() {
+		for (EnumPattern pattern : EnumPattern.values()) {
+			this.primary.put(pattern.ordinal(), TextureManager.registerSprite(new ResourceLocation(getMod().getModID(), getTexturePath() + "/" + pattern.toString().toLowerCase() + ".0")));
+			this.secondary.put(pattern.ordinal(), TextureManager.registerSprite(new ResourceLocation(getMod().getModID(), getTexturePath() + "/" + pattern.toString().toLowerCase() + ".1")));
+		}
+    }
 
     public AbstractMod getMod() {
         return Botany.instance;

@@ -1,13 +1,14 @@
 package binnie.extratrees.api;
 
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
 
 public interface IDesignSystem {
-//	IIcon getPrimaryIcon(final IPattern p0);
-//
-//	IIcon getSecondaryIcon(final IPattern p0);
-//
-//	void registerIcons(final IIconRegister p0);
+	TextureAtlasSprite getPrimarySprite(final IPattern pattern);
+
+	TextureAtlasSprite getSecondarySprite(final IPattern pattern);
+
+	void registerSprites();
 
     IDesignMaterial getDefaultMaterial();
 

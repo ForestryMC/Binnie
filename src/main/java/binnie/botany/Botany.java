@@ -1,6 +1,8 @@
 package binnie.botany;
 
 import binnie.Constants;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumSoilType;
 import binnie.botany.api.IFlower;
 import binnie.botany.api.gardening.IBlockSoil;
 import binnie.botany.ceramic.BlockCeramic;
@@ -145,7 +147,6 @@ public class Botany extends AbstractMod {
 
     @SubscribeEvent
     public void onShearFlower(final PlayerInteractEvent.RightClickBlock event) {
-
         if (event.getEntityPlayer() != null && event.getEntityPlayer().getHeldItemMainhand() != null && event.getEntityPlayer().getHeldItemMainhand().getItem() == Items.SHEARS) {
             final TileEntity tile = event.getWorld().getTileEntity(event.getPos());
             if (tile instanceof TileEntityFlower) {
@@ -184,37 +185,37 @@ public class Botany extends AbstractMod {
             }
             if (Gardening.isSoil(block)) {
                 final IBlockSoil soil = (IBlockSoil) block;
-//				if (Gardening.isNutrientFertiliser(event.getEntityPlayer().getHeldItemMainhand()) && soil.getType(event.getWorld(), down) != EnumSoilType.FLOWERBED) {
-//					final EnumSoilType type = soil.getType(event.getWorld(), down);
-//					final int next = Math.min(type.ordinal() + Gardening.getFertiliserStrength(event.getEntityPlayer().getHeldItemMainhand()), 2);
-//					if (soil.fertilise(event.getWorld(), down, EnumSoilType.values()[next]) && !event.getEntityPlayer().capabilities.isCreativeMode) {
-//						final ItemStack heldItem = event.getEntityPlayer().getHeldItemMainhand();
-//						--heldItem.stackSize;
-//						return;
-//					}
-//				}
-//				if (Gardening.isAcidFertiliser(event.getEntityPlayer().getHeldItemMainhand()) && soil.getPH(event.getWorld(), down) != EnumAcidity.Acid) {
-//					final EnumAcidity pH = soil.getPH(event.getWorld(), down);
-//					final int next = Math.max(pH.ordinal() - Gardening.getFertiliserStrength(event.getEntityPlayer().getHeldItemMainhand()), 0);
-//					if (soil.setPH(event.getWorld(), down, EnumAcidity.values()[next]) && !event.getEntityPlayer().capabilities.isCreativeMode) {
-//						final ItemStack heldItem2 = event.getEntityPlayer().getHeldItemMainhand();
-//						--heldItem2.stackSize;
-//						return;
-//					}
-//				}
-//				if (Gardening.isAlkalineFertiliser(event.getEntityPlayer().getHeldItemMainhand()) && soil.getPH(event.getWorld(), down) != EnumAcidity.Alkaline) {
-//					final EnumAcidity pH = soil.getPH(event.getWorld(), down);
-//					final int next = Math.min(pH.ordinal() + Gardening.getFertiliserStrength(event.getEntityPlayer().getHeldItemMainhand()), 2);
-//					if (soil.setPH(event.getWorld(), down, EnumAcidity.values()[next]) && !event.getEntityPlayer().capabilities.isCreativeMode) {
-//						final ItemStack heldItem3 = event.getEntityPlayer().getHeldItemMainhand();
-//						--heldItem3.stackSize;
-//						return;
-//					}
-//				}
-//				if (Gardening.isWeedkiller(event.getEntityPlayer().getHeldItemMainhand()) && Gardening.addWeedKiller(event.getWorld(), down) && !event.getEntityPlayer().capabilities.isCreativeMode) {
-//					final ItemStack heldItem4 = event.getEntityPlayer().getHeldItemMainhand();
-//					--heldItem4.stackSize;
-//				}
+				if (Gardening.isNutrientFertiliser(event.getEntityPlayer().getHeldItemMainhand()) && soil.getType(event.getWorld(), down) != EnumSoilType.FLOWERBED) {
+					final EnumSoilType type = soil.getType(event.getWorld(), down);
+					final int next = Math.min(type.ordinal() + Gardening.getFertiliserStrength(event.getEntityPlayer().getHeldItemMainhand()), 2);
+					if (soil.fertilise(event.getWorld(), down, EnumSoilType.values()[next]) && !event.getEntityPlayer().capabilities.isCreativeMode) {
+						final ItemStack heldItem = event.getEntityPlayer().getHeldItemMainhand();
+						--heldItem.stackSize;
+						return;
+					}
+				}
+				if (Gardening.isAcidFertiliser(event.getEntityPlayer().getHeldItemMainhand()) && soil.getPH(event.getWorld(), down) != EnumAcidity.Acid) {
+					final EnumAcidity pH = soil.getPH(event.getWorld(), down);
+					final int next = Math.max(pH.ordinal() - Gardening.getFertiliserStrength(event.getEntityPlayer().getHeldItemMainhand()), 0);
+					if (soil.setPH(event.getWorld(), down, EnumAcidity.values()[next]) && !event.getEntityPlayer().capabilities.isCreativeMode) {
+						final ItemStack heldItem2 = event.getEntityPlayer().getHeldItemMainhand();
+						--heldItem2.stackSize;
+						return;
+					}
+				}
+				if (Gardening.isAlkalineFertiliser(event.getEntityPlayer().getHeldItemMainhand()) && soil.getPH(event.getWorld(), down) != EnumAcidity.Alkaline) {
+					final EnumAcidity pH = soil.getPH(event.getWorld(), down);
+					final int next = Math.min(pH.ordinal() + Gardening.getFertiliserStrength(event.getEntityPlayer().getHeldItemMainhand()), 2);
+					if (soil.setPH(event.getWorld(), down, EnumAcidity.values()[next]) && !event.getEntityPlayer().capabilities.isCreativeMode) {
+						final ItemStack heldItem3 = event.getEntityPlayer().getHeldItemMainhand();
+						--heldItem3.stackSize;
+						return;
+					}
+				}
+				if (Gardening.isWeedkiller(event.getEntityPlayer().getHeldItemMainhand()) && Gardening.addWeedKiller(event.getWorld(), down) && !event.getEntityPlayer().capabilities.isCreativeMode) {
+					final ItemStack heldItem4 = event.getEntityPlayer().getHeldItemMainhand();
+					--heldItem4.stackSize;
+				}
             }
         }
     }
@@ -260,9 +261,9 @@ public class Botany extends AbstractMod {
         final Block block = event.getBlock().getBlock();
         if (Gardening.isSoil(block)) {
             final IBlockSoil soil = (IBlockSoil) block;
-//			if (soil.fertilise(event.getWorld(), event.getPos(), EnumSoilType.LOAM)) {
-//				event.setResult(Event.Result.ALLOW);
-//			}
+			if (soil.fertilise(event.getWorld(), event.getPos(), EnumSoilType.LOAM)) {
+				event.setResult(Event.Result.ALLOW);
+			}
         }
         final TileEntity tile = event.getWorld().getTileEntity(event.getPos());
         if (tile instanceof TileEntityFlower && ((TileEntityFlower) tile).onBonemeal()) {

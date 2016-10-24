@@ -1,24 +1,31 @@
 package binnie.extratrees.carpentry;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import binnie.core.AbstractMod;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.api.IDesignSystem;
+import binnie.extratrees.api.IPattern;
 import binnie.extratrees.block.PlankType;
 import binnie.extratrees.item.ExtraTreeItems;
+import forestry.core.render.TextureManager;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 public enum DesignSystem implements IDesignSystem {
     Wood,
     Glass;
 
-//	Map<Integer, IIcon> primary;
-//	Map<Integer, IIcon> secondary;
+	Map<Integer, TextureAtlasSprite> primary;
+	Map<Integer, TextureAtlasSprite> secondary;
 
     DesignSystem() {
-//		this.primary = new HashMap<Integer, IIcon>();
-//		this.secondary = new HashMap<Integer, IIcon>();
+		this.primary = new HashMap<Integer, TextureAtlasSprite>();
+		this.secondary = new HashMap<Integer, TextureAtlasSprite>();
         DesignerManager.instance.registerDesignSystem(this);
     }
 
@@ -126,29 +133,29 @@ public enum DesignSystem implements IDesignSystem {
         }
     }
 
-//	@Override
-//	public IIcon getPrimaryIcon(final IPattern pattern) {
-//		if (pattern instanceof EnumPattern) {
-//			return this.primary.get(((EnumPattern) pattern).ordinal());
-//		}
-//		return null;
-//	}
-//
-//	@Override
-//	public IIcon getSecondaryIcon(final IPattern pattern) {
-//		if (pattern instanceof EnumPattern) {
-//			return this.secondary.get(((EnumPattern) pattern).ordinal());
-//		}
-//		return null;
-//	}
-//
-//	@Override
-//	public void registerIcons(final IIconRegister register) {
-//		for (final EnumPattern pattern : EnumPattern.values()) {
-//			this.primary.put(pattern.ordinal(), BinnieCore.proxy.getIcon(register, this.getMod().getModID(), this.getTexturePath() + "/" + pattern.toString().toLowerCase() + ".0"));
-//			this.secondary.put(pattern.ordinal(), BinnieCore.proxy.getIcon(register, this.getMod().getModID(), this.getTexturePath() + "/" + pattern.toString().toLowerCase() + ".1"));
-//		}
-//	}
+	@Override
+	public TextureAtlasSprite getPrimarySprite(final IPattern pattern) {
+		if (pattern instanceof EnumPattern) {
+			return this.primary.get(((EnumPattern) pattern).ordinal());
+		}
+		return null;
+	}
+
+	@Override
+	public TextureAtlasSprite getSecondarySprite(final IPattern pattern) {
+		if (pattern instanceof EnumPattern) {
+			return this.secondary.get(((EnumPattern) pattern).ordinal());
+		}
+		return null;
+	}
+
+	@Override
+	public void registerSprites() {
+		for (final EnumPattern pattern : EnumPattern.values()) {
+			this.primary.put(pattern.ordinal(), TextureManager.registerSprite(new ResourceLocation(getMod().getModID(), getTexturePath() + "/" + pattern.toString().toLowerCase() + ".0")));
+			this.secondary.put(pattern.ordinal(), TextureManager.registerSprite(new ResourceLocation(getMod().getModID(), getTexturePath() + "/" + pattern.toString().toLowerCase() + ".1")));
+		}
+	}
 
     public AbstractMod getMod() {
         return ExtraTrees.instance;

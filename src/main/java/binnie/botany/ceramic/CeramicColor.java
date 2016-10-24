@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class CeramicColor implements IDesignMaterial {
     EnumFlowerColor color;
-    static Map<EnumFlowerColor, CeramicColor> map;
+    private final static Map<EnumFlowerColor, CeramicColor> map = new LinkedHashMap<>();
 
     CeramicColor(final EnumFlowerColor color) {
         this.color = color;
@@ -37,7 +37,6 @@ public class CeramicColor implements IDesignMaterial {
     }
 
     static {
-        CeramicColor.map = new LinkedHashMap<>();
         for (final EnumFlowerColor c : EnumFlowerColor.values()) {
             CeramicColor.map.put(c, new CeramicColor(c));
         }

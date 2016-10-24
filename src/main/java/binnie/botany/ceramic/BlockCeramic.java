@@ -103,7 +103,7 @@ public class BlockCeramic extends Block implements IBlockMetadata, IColoredBlock
     @Override
     public String getBlockName(final ItemStack par1ItemStack) {
         final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
-        return EnumFlowerColor.get(meta).getName() + " Ceramic Block";
+        return EnumFlowerColor.get(meta).getColourName() + " Ceramic Block";
     }
 
     @Override
