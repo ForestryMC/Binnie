@@ -1,11 +1,13 @@
 package binnie.extrabees.apiary;
 
 import forestry.api.apiculture.*;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier {
+public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IItemModelRegister {
     EnumHiveFrame frame;
 
     @Override
@@ -19,6 +21,11 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier {
         this.setCreativeTab(Tabs.tabApiculture);
         this.setMaxStackSize(1);
         this.setUnlocalizedName("hiveFrame");
+    }
+
+    @Override
+    public void registerModel(Item item, IModelManager manager) {
+        manager.registerItemModel(item, 0, "frames/" + getRegistryName().getResourcePath());
     }
 
     @Override

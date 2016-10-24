@@ -16,7 +16,7 @@ public class RendererMachine extends TileEntitySpecialRenderer<TileEntityMachine
     public void renderTileEntityAt(TileEntityMachine te, double x, double y, double z, float partialTicks, int destroyStage) {
         if (te != null && te.getMachine() != null) {
             final MachinePackage machinePackage = te.getMachine().getPackage();
-            machinePackage.renderMachine(te.getMachine(), x, y, z, partialTicks);
+            //machinePackage.renderMachine(te.getMachine(), x, y, z, partialTicks);
         }
     }
 

@@ -10,7 +10,6 @@ import net.minecraft.nbt.NBTTagCompound;
 public class TileEntityMachine extends TileEntityMachineBase implements INetworkedEntity {
     private Machine machine;
 
-
     @Override
     public void update() {
         super.update();
@@ -18,14 +17,6 @@ public class TileEntityMachine extends TileEntityMachineBase implements INetwork
             this.machine.onUpdate();
         }
     }
-
-
-//TODO MACHINE UPDATE
-//
-//	@Override
-//	public boolean canUpdate() {
-//		return super.canUpdate();
-//	}
 
     public TileEntityMachine(final MachinePackage pack) {
         this.setMachine(pack);

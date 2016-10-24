@@ -5,9 +5,17 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.craftgui.minecraft.IMachineInformation;
 import binnie.extrabees.apiary.ComponentBeeModifier;
+import binnie.extrabees.apiary.TileExtraBeeAlveary;
 import binnie.extrabees.core.ExtraBeeTexture;
 import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class AlvearyTransmission {
     public static class PackageAlvearyTransmission extends AlvearyMachine.AlvearyPackage implements IMachineInformation {
@@ -30,37 +38,37 @@ public class AlvearyTransmission {
         @Override
         public void onUpdate() {
             super.onUpdate();
-            //TODO Energy
-//			int energy = this.getUtil().getPoweredMachine().getEnergyStored(EnumFacing.NORTH);
-//			if (energy == 0) {
-//				return;
-//			}
-//			final TileExtraBeeAlveary tile = (TileExtraBeeAlveary) this.getMachine().getTileEntity();
-//			final List<IEnergyHandler> handlers = new ArrayList<IEnergyHandler>();
-//			for (final TileEntity alvearyTile : tile.getAlvearyBlocks()) {
-//				if (alvearyTile instanceof IEnergyHandler && alvearyTile != tile) {
-//					handlers.add((IEnergyHandler) alvearyTile);
-//				}
-//			}
-//			if (handlers.isEmpty()) {
-//				return;
-//			}
-//			final int maxOutput = 500;
-//			int output = energy / handlers.size();
-//			if (output > maxOutput) {
-//				output = maxOutput;
-//			}
-//			if (output < 1) {
-//				output = 1;
-//			}
-//			for (final IEnergyHandler handler : handlers) {
-////				final int recieved = handler.receiveEnergy(ForgeDirection.NORTH, output, false);
-////				this.getUtil().getPoweredMachine().receiveEnergy(ForgeDirection.NORTH, -recieved, false);
-////				energy = this.getUtil().getPoweredMachine().getEnergyStored(ForgeDirection.NORTH);
-//				if (energy <= 0) {
-//					return;
-//				}
-//			}
+
+			int energy = this.getUtil().getPoweredMachine().getEnergyStored();
+			if (energy == 0) {
+				return;
+			}
+			final TileExtraBeeAlveary tile = (TileExtraBeeAlveary) this.getMachine().getTileEntity();
+			final List<IEnergyStorage> handlers = new LinkedList<>();
+			for (final TileEntity alvearyTile : tile.getAlvearyBlocks()) {
+				if (alvearyTile != tile && alvearyTile.hasCapability(CapabilityEnergy.ENERGY, EnumFacing.NORTH)) {
+					handlers.add(alvearyTile.getCapability(CapabilityEnergy.ENERGY, EnumFacing.NORTH));
+				}
+			}
+			if (handlers.isEmpty()) {
+				return;
+			}
+			final int maxOutput = 500;
+			int output = energy / handlers.size();
+			if (output > maxOutput) {
+				output = maxOutput;
+			}
+			if (output < 1) {
+				output = 1;
+			}
+			for (final IEnergyStorage handler : handlers) {
+				final int recieved = handler.receiveEnergy(output, false);
+				this.getUtil().getPoweredMachine().receiveEnergy(-recieved, false);
+				energy = this.getUtil().getPoweredMachine().getEnergyStored();
+				if (energy <= 0) {
+					return;
+				}
+			}
         }
     }
 }
