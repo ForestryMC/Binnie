@@ -1,15 +1,36 @@
 package binnie.botany.gardening;
 
+import binnie.Constants;
+import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumMoisture;
+import binnie.botany.api.EnumSoilType;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.model.ModelBakery;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemTrowel extends Item {
-    protected Item.ToolMaterial theToolMaterial;
-    String locName;
+public class ItemTrowel extends Item implements IItemModelRegister {
+    protected final ToolMaterial theToolMaterial;
+    protected final String locName;
 
-    public ItemTrowel(final Item.ToolMaterial p_i45343_1_, final String material) {
+    public ItemTrowel(ToolMaterial p_i45343_1_, final String material) {
         this.theToolMaterial = p_i45343_1_;
         this.maxStackSize = 1;
         this.setMaxDamage(p_i45343_1_.getMaxUses());
@@ -18,34 +39,35 @@ public class ItemTrowel extends Item {
         this.locName = "trowel" + material;
         setRegistryName("trowel" + material);
     }
-
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerIcons(final IIconRegister p_94581_1_) {
-//		this.itemIcon = Botany.proxy.getIcon(p_94581_1_, "tools/" + this.locName);
-//	}
-//
-//	@Override
-//	public boolean onItemUse(final ItemStack stack, final EntityPlayer player, final World world, final int x, final int y, final int z, final int p_77648_7_, final float p_77648_8_, final float p_77648_9_, final float p_77648_10_) {
-//		if (!player.canPlayerEdit(x, y, z, p_77648_7_, stack)) {
-//			return false;
-//		}
-//		final Block block = world.getBlock(x, y, z);
-//		if (p_77648_7_ == 0 || (!world.getBlock(x, y + 1, z).isAir(world, x, y + 1, z) && world.getBlock(x, y + 1, z) != Botany.flower) || (block != Blocks.grass && block != Blocks.dirt)) {
-//			return false;
-//		}
-//		final Block block2 = Botany.soil;
-//		world.playSoundEffect(x + 0.5f, y + 0.5f, z + 0.5f, block2.stepSound.getStepResourcePath(), (block2.stepSound.getVolume() + 1.0f) / 2.0f, block2.stepSound.getPitch() * 0.8f);
-//		if (world.isRemote) {
-//			return true;
-//		}
-//		final EnumMoisture moisture = Gardening.getNaturalMoisture(world, x, y, z);
-//		final EnumAcidity acidity = Gardening.getNaturalPH(world, x, y, z);
-//		Gardening.createSoil(world, x, y, z, EnumSoilType.SOIL, moisture, acidity);
-//		stack.damageItem(1, player);
-//		return true;
-//	}
-
+    
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerModel(Item item, IModelManager manager) {
+    	manager.registerItemModel(item, new ItemTrowelMeshDefinition());
+    	ModelBakery.registerItemVariants(item, new ResourceLocation(Constants.BOTANY_MOD_ID + ":tools/"+ locName));
+    }
+    
+    @Override
+    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (!player.canPlayerEdit(pos, facing, stack)) {
+			return EnumActionResult.FAIL;
+		}
+		Block block = world.getBlockState(pos).getBlock();
+		if (facing == EnumFacing.DOWN || (!world.isAirBlock(pos.up()) && world.getBlockState(pos.up()).getBlock() != Botany.flower) || (block != Blocks.GRASS && block != Blocks.DIRT)) {
+			return EnumActionResult.PASS;
+		}
+		Block block2 = Botany.soil;
+		world.playSound(player, hitX + 0.5f, hitY + 0.5f, hitZ + 0.5f, block2.getSoundType().getStepSound(), SoundCategory.NEUTRAL, (block2.getSoundType().getVolume() + 1.0f) / 2.0f, block2.getSoundType().getPitch() * 0.8f);
+		if (world.isRemote) {
+			return EnumActionResult.SUCCESS;
+		}
+		EnumMoisture moisture = Gardening.getNaturalMoisture(world, pos);
+		EnumAcidity acidity = Gardening.getNaturalPH(world, pos);
+		Gardening.plantSoil(world, pos, EnumSoilType.SOIL, moisture, acidity);
+		stack.damageItem(1, player);
+		return EnumActionResult.SUCCESS;
+    }
+    
     @Override
     @SideOnly(Side.CLIENT)
     public boolean isFull3D() {
@@ -54,5 +76,13 @@ public class ItemTrowel extends Item {
 
     public String getToolMaterialName() {
         return this.theToolMaterial.toString();
+    }
+    
+    @SideOnly(Side.CLIENT)
+    private class ItemTrowelMeshDefinition implements ItemMeshDefinition{
+		@Override
+		public ModelResourceLocation getModelLocation(ItemStack stack) {
+			return new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":tools/"+ locName, "inventory");
+		}
     }
 }

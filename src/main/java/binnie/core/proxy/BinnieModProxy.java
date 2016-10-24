@@ -20,11 +20,13 @@ public class BinnieModProxy implements IBinnieModProxy {
         this.mod = mod;
     }
     
-    public Item registerItem(Item item){
+    @Override
+	public Item registerItem(Item item){
     	return GameRegistry.register(item);
     }
     
-    public Block registerBlock(Block block){
+    @Override
+	public Block registerBlock(Block block){
     	return GameRegistry.register(block);
     }
     

@@ -1,9 +1,11 @@
 botany.tab.botany=Botany
 
+botany.ph=PH
 botany.ph.acid=Acidic
 botany.ph.neutral=Neutral
 botany.ph.alkaline=Alkaline
 
+botany.moisture=M
 botany.moisture.dry=Dry
 botany.moisture.normal=Normal
 botany.moisture.damp=Damp
@@ -13,6 +15,12 @@ botany.soil.weedkiller=Weedkiller
 botany.soil.soil=Soil
 botany.soil.loam=Loam
 botany.soil.flowerbed=Flowerbed
+
+botany.plant.weeds=Weed
+botany.plant.weeds_long=Weed Long
+botany.plant.weeds_very_long=Weed Very Long
+botany.plant.dead_flower=Dead Flower
+botany.plant.decaying_flower=Decaying Flower
 
 item.trowelWood.name=Wooden Trowel
 item.trowelStone.name=Stone Trowel

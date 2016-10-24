@@ -22,6 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
@@ -212,12 +213,24 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
         }
     }
 
-    public static String getPH(ItemStack stack, boolean withColor) {
-        return EnumAcidity.values()[stack.getItemDamage() / 3].getTranslated(withColor);
+    public static String getPH(ItemStack stack, boolean withColor, boolean byNeutralNone) {
+    	EnumAcidity ph = EnumAcidity.values()[stack.getItemDamage() / 3];
+    	if(byNeutralNone){
+    		if(ph == EnumAcidity.Neutral){
+    			return "";
+    		}
+    	}
+        return TextFormatting.GRAY + Binnie.Language.localise("botany.ph") + ": " + ph.getTranslated(withColor);
     }
 
-    public static String getMoisture(ItemStack stack, boolean withColor) {
-        return EnumMoisture.values()[stack.getItemDamage() % 3].getTranslated(withColor);
+    public static String getMoisture(ItemStack stack, boolean withColor, boolean byNormalNone) {
+    	EnumMoisture moisure = EnumMoisture.values()[stack.getItemDamage() % 3];
+    	if(byNormalNone){
+	    	if(moisure == EnumMoisture.Normal){
+	    		return "";
+	    	}
+    	}
+        return TextFormatting.GRAY + Binnie.Language.localise("botany.moisture") + ": " + moisure.getTranslated(withColor);
     }
     
     @Override
