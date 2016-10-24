@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class ExtraBeeMutation implements IBeeMutation {
-    public static List<IBeeMutation> mutations;
+    public static List<IBeeMutation> mutations = new ArrayList<>();
     MutationRequirement req;
     IAlleleBeeSpecies species0;
     IAlleleBeeSpecies species1;
@@ -279,10 +279,6 @@ public class ExtraBeeMutation implements IBeeMutation {
     @Override
     public IBeeRoot getRoot() {
         return Binnie.Genetics.getBeeRoot();
-    }
-
-    static {
-        ExtraBeeMutation.mutations = new ArrayList<>();
     }
 
     abstract static class MutationRequirement {

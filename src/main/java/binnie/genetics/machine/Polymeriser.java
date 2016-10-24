@@ -31,13 +31,8 @@ public class Polymeriser {
     public static final int tankDNA = 1;
     public static final int slotSerum = 0;
     public static final int slotGold = 1;
-    public static final int[] slotSerumReserve;
-    public static final int[] slotSerumFinished;
-
-    static {
-        slotSerumReserve = new int[]{2, 3, 4, 5};
-        slotSerumFinished = new int[]{6, 7, 8, 9};
-    }
+    public static final int[] slotSerumReserve = new int[]{2, 3, 4, 5};
+    public static final int[] slotSerumFinished = new int[]{6, 7, 8, 9};
 
     public static class PackagePolymeriser extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
         public PackagePolymeriser() {
@@ -112,7 +107,7 @@ public class Polymeriser {
     }
 
     public static class ComponentPolymeriserLogic extends ComponentProcessSetCost implements IProcess {
-        private static float chargePerProcess;
+        private static float chargePerProcess = 0.4f;
         private float dnaDrain;
         private float bacteriaDrain;
 
@@ -196,10 +191,6 @@ public class Polymeriser {
         protected void onFinishTask() {
             super.onFinishTask();
             this.getUtil().damageItem(0, -1);
-        }
-
-        static {
-            ComponentPolymeriserLogic.chargePerProcess = 0.4f;
         }
     }
 

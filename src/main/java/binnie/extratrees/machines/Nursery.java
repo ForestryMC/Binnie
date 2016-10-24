@@ -6,11 +6,7 @@ import binnie.extratrees.core.ExtraTreeTexture;
 import net.minecraft.tileentity.TileEntity;
 
 public class Nursery {
-    public static int slotCaterpillar;
-
-    static {
-        Nursery.slotCaterpillar = 0;
-    }
+    public static int slotCaterpillar = 0;
 
     public static class PackageNursery extends ExtraTreeMachine.PackageExtraTreeMachine {
         public PackageNursery() {

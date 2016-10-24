@@ -20,8 +20,8 @@ import org.lwjgl.opengl.GL11;
 import java.util.Collections;
 
 public class ControlBreweryProgress extends ControlProgressBase {
-    static Texture Brewery;
-    static Texture BreweryOverlay;
+    static Texture Brewery = new StandardTexture(0, 69, 34, 39, ExtraTreeTexture.Gui);
+    static Texture BreweryOverlay = new StandardTexture(34, 69, 34, 39, ExtraTreeTexture.Gui);
 
     @Override
     public void onRenderBackground() {
@@ -82,8 +82,4 @@ public class ControlBreweryProgress extends ControlProgressBase {
 //		GL11.glDisable(3042);
     }
 
-    static {
-        ControlBreweryProgress.Brewery = new StandardTexture(0, 69, 34, 39, ExtraTreeTexture.Gui);
-        ControlBreweryProgress.BreweryOverlay = new StandardTexture(34, 69, 34, 39, ExtraTreeTexture.Gui);
-    }
 }

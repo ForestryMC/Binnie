@@ -38,7 +38,7 @@ public enum Cocktail {
     Vesper("Vesper", Glassware.Cocktail, 15658732),
     SexOnTheBeach("Sex on the Beach", Glassware.Highball, 16677426);
 
-    static final Map<String, ICocktailIngredient> cocktailIngredients;
+    static final Map<String, ICocktailIngredient> cocktailIngredients = new HashMap<>();
     public String name;
     public Glassware glassware;
     public int colour;
@@ -84,7 +84,6 @@ public enum Cocktail {
     }
 
     static {
-        cocktailIngredients = new HashMap<>();
         Cocktail.Bellini.add(Alcohol.SparklingWine, 2);
         Cocktail.Bellini.add(Juice.Peach, 1);
         Cocktail.BlackRussian.add(Spirit.Vodka, 5);

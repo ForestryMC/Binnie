@@ -12,10 +12,17 @@ import net.minecraftforge.fml.common.versioning.Restriction;
 import java.util.Objects;
 
 public class Mods {
-    public static Mod Forestry;
-    public static Mod IC2;
-    public static Mod Botania;
-    private static boolean WARN;
+    public static Mod Forestry = new Mod("forestry") {
+        @Override
+        public boolean dev() {
+            final String forVersion = Loader.instance().getIndexedModList().get("forestry").getVersion();
+            final Restriction rest = new Restriction(new DefaultArtifactVersion("3.6"), true, null, false);
+            return rest.containsVersion(new DefaultArtifactVersion(forVersion));
+        }
+    };
+    public static Mod IC2 = new Mod("IC2");
+    public static Mod Botania = new Mod("Botania");
+    private static boolean WARN = true;
 
     private static Item findItem(final String modId, final String name) {
         final Item stack = Item.REGISTRY.getObject(new ResourceLocation(modId, name));
@@ -40,20 +47,6 @@ public class Mods {
             //throw new RuntimeException("Block not found: " + modId + ":" + name);
         }
         return stack;
-    }
-
-    static {
-        Mods.Forestry = new Mod("forestry") {
-            @Override
-            public boolean dev() {
-                final String forVersion = Loader.instance().getIndexedModList().get("forestry").getVersion();
-                final Restriction rest = new Restriction(new DefaultArtifactVersion("3.6"), true, null, false);
-                return rest.containsVersion(new DefaultArtifactVersion(forVersion));
-            }
-        };
-        Mods.IC2 = new Mod("IC2");
-        Mods.Botania = new Mod("Botania");
-        Mods.WARN = true;
     }
 
     public static class Mod {

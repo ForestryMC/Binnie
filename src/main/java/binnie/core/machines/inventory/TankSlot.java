@@ -10,7 +10,7 @@ import net.minecraftforge.fluids.IFluidTank;
 public class TankSlot extends BaseSlot<FluidStack> {
     public static final String NameJuice = "Juice Tank";
     public static final String NameWater = "Water Tank";
-    public static String NameCupboard;
+    public static String NameCupboard = "Cupboard Slot";
     private FluidTank tank;
 
     public TankSlot(final int index, final String name, final int capacity) {
@@ -51,7 +51,4 @@ public class TankSlot extends BaseSlot<FluidStack> {
         return Binnie.Language.localise(BinnieCore.instance, "gui.slot." + this.unlocName);
     }
 
-    static {
-        TankSlot.NameCupboard = "Cupboard Slot";
-    }
 }

@@ -19,15 +19,15 @@ import java.util.Map;
 
 public class ItemFluidContainer extends ItemFood {
     private FluidContainer container;
-    public static int LiquidExtraBee;
-    public static int LiquidExtraTree;
-    public static int LiquidJuice;
-    public static int LiquidAlcohol;
-    public static int LiquidSpirit;
-    public static int LiquidLiqueuer;
-    public static int LiquidGenetics;
-    private static Map<Integer, String> idToFluid;
-    private static Map<String, Integer> fluidToID;
+    public static int LiquidExtraBee = 64;
+    public static int LiquidExtraTree = 128;
+    public static int LiquidJuice = 256;
+    public static int LiquidAlcohol = 384;
+    public static int LiquidSpirit = 512;
+    public static int LiquidLiqueuer = 640;
+    public static int LiquidGenetics = 768;
+    private static Map<Integer, String> idToFluid = new HashMap<>();
+    private static Map<String, Integer> fluidToID = new HashMap<>();
 
     public static void registerFluid(final IFluidType fluid, final int id) {
         ItemFluidContainer.idToFluid.put(id, fluid.getIdentifier().toLowerCase());
@@ -166,15 +166,4 @@ public class ItemFluidContainer extends ItemFood {
         return liquid != null && liquid.isConsumable();
     }
 
-    static {
-        ItemFluidContainer.LiquidExtraBee = 64;
-        ItemFluidContainer.LiquidExtraTree = 128;
-        ItemFluidContainer.LiquidJuice = 256;
-        ItemFluidContainer.LiquidAlcohol = 384;
-        ItemFluidContainer.LiquidSpirit = 512;
-        ItemFluidContainer.LiquidLiqueuer = 640;
-        ItemFluidContainer.LiquidGenetics = 768;
-        ItemFluidContainer.idToFluid = new HashMap<>();
-        ItemFluidContainer.fluidToID = new HashMap<>();
-    }
 }

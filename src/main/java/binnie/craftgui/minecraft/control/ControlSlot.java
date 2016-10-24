@@ -28,8 +28,8 @@ import java.util.List;
 import java.util.Map;
 
 public class ControlSlot extends ControlSlotBase {
-    public static Map<EnumHighlighting, List<Integer>> highlighting;
-    public static boolean shiftClickActive;
+    public static Map<EnumHighlighting, List<Integer>> highlighting = new HashMap<>();
+    public static boolean shiftClickActive = false;
     public Slot slot;
 
     public ControlSlot(final IWidget parent, final float x, final float y) {
@@ -194,8 +194,6 @@ public class ControlSlot extends ControlSlotBase {
     }
 
     static {
-        ControlSlot.highlighting = new HashMap<>();
-        ControlSlot.shiftClickActive = false;
         for (final EnumHighlighting h : EnumHighlighting.values()) {
             ControlSlot.highlighting.put(h, new ArrayList<>());
         }

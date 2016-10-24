@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DrinkManager {
-    static Map<String, IDrinkLiquid> drinkLiquids;
+    static Map<String, IDrinkLiquid> drinkLiquids = new HashMap<>();
 
     public static IDrinkLiquid getLiquid(final String id) {
         return DrinkManager.drinkLiquids.get(id.toLowerCase());
@@ -26,7 +26,4 @@ public class DrinkManager {
         return (fluid != null) ? getLiquid(fluid.getFluid()) : null;
     }
 
-    static {
-        DrinkManager.drinkLiquids = new HashMap<>();
-    }
 }

@@ -31,13 +31,13 @@ import javax.annotation.Nullable;
 import java.util.*;
 
 public class Acclimatiser {
-    public static final int[] slotReserve;
+    public static final int[] slotReserve = new int[]{0, 1, 2, 3};
     public static final int slotTarget = 4;
-    public static final int[] slotAcclimatiser;
-    public static final int[] slotDone;
-    private static List<ToleranceSystem> toleranceSystems;
-    private static Map<ItemStack, Float> temperatureItems;
-    private static Map<ItemStack, Float> humidityItems;
+    public static final int[] slotAcclimatiser = new int[]{5, 6, 7};
+    public static final int[] slotDone = new int[]{8, 9, 10, 11};
+    private static List<ToleranceSystem> toleranceSystems = new ArrayList<>();
+    private static Map<ItemStack, Float> temperatureItems = new HashMap<>();
+    private static Map<ItemStack, Float> humidityItems = new HashMap<>();
 
     @Nullable
     private static ToleranceSystem getToleranceSystem(final ItemStack stack, final ItemStack acclim) {
@@ -167,15 +167,6 @@ public class Acclimatiser {
         }
         final int avg = (int) ((-range[0] + range[1]) / 2.0f + 0.6f);
         return Tolerance.get(both[avg]);
-    }
-
-    static {
-        slotReserve = new int[]{0, 1, 2, 3};
-        slotAcclimatiser = new int[]{5, 6, 7};
-        slotDone = new int[]{8, 9, 10, 11};
-        Acclimatiser.toleranceSystems = new ArrayList<>();
-        Acclimatiser.temperatureItems = new HashMap<>();
-        Acclimatiser.humidityItems = new HashMap<>();
     }
 
     public static class PackageAcclimatiser extends GeneticMachine.PackageGeneticBase implements IMachineInformation {

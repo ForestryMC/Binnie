@@ -9,8 +9,8 @@ import binnie.craftgui.resource.minecraft.CraftGUITextureSheet;
 import binnie.craftgui.resource.minecraft.StandardTexture;
 
 public class ControlColourMixSymbol extends Control implements ITooltip {
-    static Texture MutationPlus;
-    static Texture MutationArrow;
+    static Texture MutationPlus = new StandardTexture(2, 94, 16, 16, CraftGUITextureSheet.Controls2);
+    static Texture MutationArrow = new StandardTexture(20, 94, 32, 16, CraftGUITextureSheet.Controls2);
     IColourMix value;
     int type;
 
@@ -44,8 +44,4 @@ public class ControlColourMixSymbol extends Control implements ITooltip {
         }
     }
 
-    static {
-        ControlColourMixSymbol.MutationPlus = new StandardTexture(2, 94, 16, 16, CraftGUITextureSheet.Controls2);
-        ControlColourMixSymbol.MutationArrow = new StandardTexture(20, 94, 32, 16, CraftGUITextureSheet.Controls2);
-    }
 }

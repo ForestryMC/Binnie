@@ -7,7 +7,7 @@ public enum EnumFlowerStage implements ISpeciesType {
     SEED("Seed"),
     POLLEN("Pollen");
 
-    public static final EnumFlowerStage[] VALUES;
+    public static final EnumFlowerStage[] VALUES = values();
     String name;
 
     EnumFlowerStage(final String name) {
@@ -26,7 +26,4 @@ public enum EnumFlowerStage implements ISpeciesType {
         return this.name;
     }
 
-    static {
-        VALUES = values();
-    }
 }

@@ -29,12 +29,12 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import java.util.*;
 
 public class Lumbermill {
-    public static int slotWood;
-    public static int slotPlanks;
-    public static int slotBark;
-    public static int slotSawdust;
-    public static int tankWater;
-    static Map<ItemStack, ItemStack> recipes;
+    public static int slotWood = 0;
+    public static int slotPlanks = 1;
+    public static int slotBark = 2;
+    public static int slotSawdust = 3;
+    public static int tankWater = 0;
+    static Map<ItemStack, ItemStack> recipes = new HashMap<>();
 
     public static ItemStack getPlankProduct(final ItemStack item) {
         ItemStack stack = null;
@@ -101,15 +101,6 @@ public class Lumbermill {
             }
         }
         return list;
-    }
-
-    static {
-        Lumbermill.slotWood = 0;
-        Lumbermill.slotPlanks = 1;
-        Lumbermill.slotBark = 2;
-        Lumbermill.slotSawdust = 3;
-        Lumbermill.tankWater = 0;
-        Lumbermill.recipes = new HashMap<>();
     }
 
     public static class PackageLumbermill extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {

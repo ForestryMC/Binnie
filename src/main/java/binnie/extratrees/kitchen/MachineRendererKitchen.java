@@ -7,8 +7,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class MachineRendererKitchen {
-    static int level;
-    public static MachineRendererKitchen instance;
+    static int level = 0;
+    public static MachineRendererKitchen instance = new MachineRendererKitchen();;
     BinnieResource texture;
 
     public void renderMachine(final Machine machine, final BinnieResource texture, final double x, final double y, final double z, final float var8) {
@@ -85,8 +85,4 @@ public class MachineRendererKitchen {
 //		}
     }
 
-    static {
-        MachineRendererKitchen.level = 0;
-        MachineRendererKitchen.instance = new MachineRendererKitchen();
-    }
 }

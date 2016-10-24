@@ -11,7 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class CeramicDesignSystem implements IDesignSystem {
-    public static CeramicDesignSystem instance;
+    public static CeramicDesignSystem instance = new CeramicDesignSystem();
 //	Map<Integer, IIcon> primary;
 //	Map<Integer, IIcon> secondary;
 
@@ -83,7 +83,4 @@ public class CeramicDesignSystem implements IDesignSystem {
         return (itemStack.getItem() == Item.getItemFromBlock(Botany.ceramic)) ? this.getMaterial(itemStack.getItemDamage()) : null;
     }
 
-    static {
-        CeramicDesignSystem.instance = new CeramicDesignSystem();
-    }
 }

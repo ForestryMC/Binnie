@@ -24,7 +24,7 @@ import java.util.List;
 
 public abstract class BlockDesign extends BlockMetadata implements IMultipassBlock {
     IDesignSystem designSystem;
-    public static final EnumFacing[] RENDER_DIRECTIONS;
+    public static final EnumFacing[] RENDER_DIRECTIONS = new EnumFacing[]{EnumFacing.DOWN, EnumFacing.UP, EnumFacing.EAST, EnumFacing.WEST, EnumFacing.NORTH, EnumFacing.SOUTH};
 
     @SubscribeEvent
     public void onClick(final PlayerInteractEvent.RightClickBlock event) {
@@ -157,7 +157,4 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
         return 2;
     }
 
-    static {
-        RENDER_DIRECTIONS = new EnumFacing[]{EnumFacing.DOWN, EnumFacing.UP, EnumFacing.EAST, EnumFacing.WEST, EnumFacing.NORTH, EnumFacing.SOUTH};
-    }
 }

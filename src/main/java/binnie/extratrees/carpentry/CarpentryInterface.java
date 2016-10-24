@@ -6,9 +6,9 @@ import net.minecraft.item.ItemStack;
 import java.util.*;
 
 public class CarpentryInterface implements ICarpentryInterface {
-    static Map<Integer, IDesignMaterial> woodMap;
-    static Map<Integer, IDesign> designMap;
-    static Map<String, IDesignCategory> designCategories;
+    static Map<Integer, IDesignMaterial> woodMap = new LinkedHashMap<>();
+    static Map<Integer, IDesign> designMap = new LinkedHashMap<>();
+    static Map<String, IDesignCategory> designCategories = new HashMap<>();
 
     @Override
     public boolean registerCarpentryWood(final int index, final IDesignMaterial wood) {
@@ -102,9 +102,4 @@ public class CarpentryInterface implements ICarpentryInterface {
         return null;
     }
 
-    static {
-        CarpentryInterface.woodMap = new LinkedHashMap<>();
-        CarpentryInterface.designMap = new LinkedHashMap<>();
-        CarpentryInterface.designCategories = new HashMap<>();
-    }
 }

@@ -27,9 +27,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Gardening {
-    public static Map<ItemStack, Integer> fertiliserAcid;
-    public static Map<ItemStack, Integer> fertiliserAlkaline;
-    public static Map<ItemStack, Integer> fertiliserNutrient;
+    public static Map<ItemStack, Integer> fertiliserAcid = new LinkedHashMap<>();
+    public static Map<ItemStack, Integer> fertiliserAlkaline = new LinkedHashMap<>();
+    public static Map<ItemStack, Integer> fertiliserNutrient = new LinkedHashMap<>();
 
     public static boolean isSoil(final Block block) {
         return block instanceof IBlockSoil;
@@ -255,9 +255,4 @@ public class Gardening {
 		return done;
 	}
 
-    static {
-        Gardening.fertiliserAcid = new LinkedHashMap<>();
-        Gardening.fertiliserAlkaline = new LinkedHashMap<>();
-        Gardening.fertiliserNutrient = new LinkedHashMap<>();
-    }
 }

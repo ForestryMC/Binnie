@@ -33,12 +33,12 @@ import java.util.List;
 import java.util.Random;
 
 public class Incubator {
-    public static final int[] slotQueue;
+    public static final int[] slotQueue = new int[]{0, 1, 2};
     public static final int slotIncubator = 3;
-    public static final int[] slotOutput;
+    public static final int[] slotOutput = new int[]{4, 5, 6};
     public static final int tankInput = 0;
     public static final int tankOutput = 1;
-    private static List<IIncubatorRecipe> RECIPES;
+    private static List<IIncubatorRecipe> RECIPES = new ArrayList<>();
 
     public static void addRecipes() {
         Incubator.RECIPES.add(new IncubatorRecipe(GeneticsItems.GrowthMedium.get(1), Binnie.Liquid.getLiquidStack("water", 25), GeneticLiquid.GrowthMedium.get(25), 0.2f));
@@ -64,12 +64,6 @@ public class Incubator {
 
     public static List<IIncubatorRecipe> getRecipes() {
         return Collections.unmodifiableList(RECIPES);
-    }
-
-    static {
-        slotQueue = new int[]{0, 1, 2};
-        slotOutput = new int[]{4, 5, 6};
-        Incubator.RECIPES = new ArrayList<>();
     }
 
     public static class PackageIncubator extends GeneticMachine.PackageGeneticBase implements IMachineInformation {

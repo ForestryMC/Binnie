@@ -14,12 +14,12 @@ import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class WindowAcclimatiser extends WindowMachine {
-    static Texture ProgressBase;
-    static Texture Progress;
-    public static final int[] slotReserve;
+    static Texture ProgressBase = new StandardTexture(64, 0, 130, 21, ExtraBeeTexture.GUIProgress.getTexture());
+    static Texture Progress = new StandardTexture(64, 21, 130, 21, ExtraBeeTexture.GUIProgress.getTexture());
+    public static final int[] slotReserve = new int[]{0, 1, 2, 3};
     public static final int slotTarget = 4;
-    public static final int[] slotAcclimatiser;
-    public static final int[] slotDone;
+    public static final int[] slotAcclimatiser = new int[]{5, 6, 7};
+    public static final int[] slotDone = new int[]{8, 9, 10, 11};
 
     public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
         return new WindowAcclimatiser(player, inventory, side);
@@ -60,11 +60,4 @@ public class WindowAcclimatiser extends WindowMachine {
         return "Acclimatiser";
     }
 
-    static {
-        WindowAcclimatiser.ProgressBase = new StandardTexture(64, 0, 130, 21, ExtraBeeTexture.GUIProgress.getTexture());
-        WindowAcclimatiser.Progress = new StandardTexture(64, 21, 130, 21, ExtraBeeTexture.GUIProgress.getTexture());
-        slotReserve = new int[]{0, 1, 2, 3};
-        slotAcclimatiser = new int[]{5, 6, 7};
-        slotDone = new int[]{8, 9, 10, 11};
-    }
 }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NBTShapedRecipes implements IRecipe {
-    static List<NBTShapedRecipe> recipes;
+    static List<NBTShapedRecipe> recipes = new ArrayList<>();
 
     @Override
     public boolean matches(final InventoryCrafting inventory, final World world) {
@@ -51,7 +51,4 @@ public class NBTShapedRecipes implements IRecipe {
         NBTShapedRecipes.recipes.add(nbtShapedRecipe);
     }
 
-    static {
-        NBTShapedRecipes.recipes = new ArrayList<>();
-    }
 }

@@ -9,25 +9,18 @@ import binnie.core.mod.config.PropInteger;
 public class ConfigurationMain {
     @ConfigProperty(key = "canQuarryMineHives")
     @PropBoolean
-    public static boolean canQuarryMineHives;
+    public static boolean canQuarryMineHives = true;
     @ConfigProperty(key = "waterHiveRate")
     @PropInteger
-    public static int waterHiveRate;
+    public static int waterHiveRate = 1;
     @ConfigProperty(key = "rockHiveRate")
     @PropInteger
-    public static int rockHiveRate;
+    public static int rockHiveRate = 2;
     @ConfigProperty(key = "netherHiveRate")
     @PropInteger
-    public static int netherHiveRate;
+    public static int netherHiveRate = 2;
     @ConfigProperty(key = "marbleHiveRate")
     @PropInteger
-    public static int marbleHiveRate;
+    public static int marbleHiveRate = 2;
 
-    static {
-        ConfigurationMain.canQuarryMineHives = true;
-        ConfigurationMain.waterHiveRate = 1;
-        ConfigurationMain.rockHiveRate = 2;
-        ConfigurationMain.netherHiveRate = 2;
-        ConfigurationMain.marbleHiveRate = 2;
-    }
 }

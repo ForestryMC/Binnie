@@ -15,8 +15,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class WindowIncubator extends WindowMachine {
-    static Texture ProgressBase;
-    static Texture Progress;
+    static Texture ProgressBase = new StandardTexture(0, 91, 38, 32, GeneticsTexture.GUIProcess);
+    static Texture Progress = new StandardTexture(38, 91, 38, 32, GeneticsTexture.GUIProcess);
 
     public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
         return new WindowIncubator(player, inventory, side);
@@ -68,8 +68,4 @@ public class WindowIncubator extends WindowMachine {
         return "Incubator";
     }
 
-    static {
-        WindowIncubator.ProgressBase = new StandardTexture(0, 91, 38, 32, GeneticsTexture.GUIProcess);
-        WindowIncubator.Progress = new StandardTexture(38, 91, 38, 32, GeneticsTexture.GUIProcess);
-    }
 }

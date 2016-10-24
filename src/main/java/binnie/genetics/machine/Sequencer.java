@@ -29,17 +29,13 @@ import java.util.Random;
 
 public class Sequencer {
     public static final int slotDye = 0;
-    public static final int[] slotReserve;
+    public static final int[] slotReserve = new int[]{1, 2, 3, 4};
     public static final int slotTarget = 5;
     public static final int slotDone = 6;
     public static BinnieIcon fxSeqA;
     public static BinnieIcon fxSeqG;
     public static BinnieIcon fxSeqT;
     public static BinnieIcon fxSeqC;
-
-    static {
-        slotReserve = new int[]{1, 2, 3, 4};
-    }
 
     public static class PackageSequencer extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
         public PackageSequencer() {

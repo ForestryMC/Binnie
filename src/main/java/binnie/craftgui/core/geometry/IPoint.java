@@ -1,7 +1,7 @@
 package binnie.craftgui.core.geometry;
 
 public class IPoint {
-    public static final IPoint ZERO;
+    public static final IPoint ZERO = new IPoint(0.0f, 0.0f);
     float x;
     float y;
 
@@ -68,7 +68,4 @@ public class IPoint {
         return this.x() == other.x() && this.y() == other.y();
     }
 
-    static {
-        ZERO = new IPoint(0.0f, 0.0f);
-    }
 }

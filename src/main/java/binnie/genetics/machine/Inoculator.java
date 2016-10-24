@@ -44,11 +44,11 @@ import java.util.Random;
 
 public class Inoculator {
     public static final int slotSerumVial = 0;
-    public static final int[] slotSerumReserve;
-    public static final int[] slotSerumExpended;
-    public static final int[] slotReserve;
+    public static final int[] slotSerumReserve = new int[]{1, 2};
+    public static final int[] slotSerumExpended = new int[]{3, 4};
+    public static final int[] slotReserve = new int[]{5, 6, 7, 8};
     public static final int slotTarget = 9;
-    public static final int[] slotFinished;
+    public static final int[] slotFinished = new int[]{10, 11, 12, 13};
     public static final int tankVector = 0;
 
     public static void setGene(final IGene gene, final ItemStack target, final int chromoN) {
@@ -67,13 +67,6 @@ public class Inoculator {
         final NBTTagCompound chromosomeNBT = chromosomes.getCompoundTagAt(chromosomeID);
         chromosomeNBT.setString("UID" + chromoN, gene.getAllele().getUID());
         target.setTagCompound(beeNBT);
-    }
-
-    static {
-        slotSerumReserve = new int[]{1, 2};
-        slotSerumExpended = new int[]{3, 4};
-        slotReserve = new int[]{5, 6, 7, 8};
-        slotFinished = new int[]{10, 11, 12, 13};
     }
 
     public static class PackageInoculator extends GeneticMachine.PackageGeneticBase implements IMachineInformation {

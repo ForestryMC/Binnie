@@ -15,8 +15,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class WindowPolymeriser extends WindowMachine {
-    static Texture ProgressBase;
-    static Texture Progress;
+    static Texture ProgressBase = new StandardTexture(76, 170, 160, 79, GeneticsTexture.GUIProcess.getTexture());
+    static Texture Progress = new StandardTexture(76, 91, 160, 79, GeneticsTexture.GUIProcess.getTexture());
 
     public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
         return new WindowPolymeriser(player, inventory, side);
@@ -64,8 +64,4 @@ public class WindowPolymeriser extends WindowMachine {
         return "Polymeriser";
     }
 
-    static {
-        WindowPolymeriser.ProgressBase = new StandardTexture(76, 170, 160, 79, GeneticsTexture.GUIProcess.getTexture());
-        WindowPolymeriser.Progress = new StandardTexture(76, 91, 160, 79, GeneticsTexture.GUIProcess.getTexture());
-    }
 }
