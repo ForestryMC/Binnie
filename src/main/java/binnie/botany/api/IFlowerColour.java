@@ -9,5 +9,5 @@ public interface IFlowerColour {
 
     int getID();
 
-    String getName();
+    String getColourName();
 }

@@ -5,9 +5,15 @@ import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.block.BlockMetadata;
 import binnie.core.block.IBlockMetadata;
 import binnie.core.block.TileEntityMetadata;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
 import forestry.core.blocks.IColoredBlock;
+import forestry.core.items.IColoredItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,10 +25,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class BlockCeramic extends Block implements IBlockMetadata, IColoredBlock {
+public class BlockCeramic extends Block implements IBlockMetadata, IColoredBlock, IColoredItem, IItemModelRegister {
+	public static final PropertyEnum<EnumFlowerColor> COLOUR = PropertyEnum.create("color", EnumFlowerColor.class);
     public BlockCeramic() {
         super(Material.ROCK);
         this.setHardness(1.0f);
@@ -30,6 +39,29 @@ public class BlockCeramic extends Block implements IBlockMetadata, IColoredBlock
         this.setRegistryName("ceramic");
         this.setCreativeTab(CreativeTabBotany.instance);
     }
+    
+    @SideOnly(Side.CLIENT)
+    public void registerModel(Item item, IModelManager manager) {
+        for (final EnumFlowerColor c : EnumFlowerColor.values()) {
+            manager.registerItemModel(item, c.ordinal());
+        }
+    }
+    
+    //TODO: Adding Meta
+    /*@Override
+    protected BlockStateContainer createBlockState() {
+    	return new BlockStateContainer(this, COLOUR);
+    }
+    
+    @Override
+    public int getMetaFromState(IBlockState state) {
+    	return state.getValue(COLOUR).ordinal();
+    }
+    
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
+    	return getDefaultState().withProperty(COLOUR, EnumFlowerColor.values()[meta]);
+    }*/
 
     @Override
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
@@ -84,38 +116,25 @@ public class BlockCeramic extends Block implements IBlockMetadata, IColoredBlock
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
         for (final EnumFlowerColor c : EnumFlowerColor.values()) {
             itemList.add(TileEntityMetadata.getItemStack(this, c.ordinal()));
         }
     }
-
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public IIcon getIcon(final IBlockAccess world, final int x, final int y, final int z, final int side) {
-//		final TileEntityMetadata tile = TileEntityMetadata.getTile(world, x, y, z);
-//		if (tile != null) {
-//			return this.getIcon(side, tile.getTileMetadata());
-//		}
-//		return super.getIcon(world, x, y, z, side);
-//	}
-//
-//	@Override
-//	public IIcon getIcon(final int side, final int meta) {
-//		return this.blockIcon;
-//	}
-//
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerBlockIcons(final IIconRegister register) {
-//		this.blockIcon = Botany.proxy.getIcon(register, "ceramic");
-//	}
     
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
     	return BlockMetadata.getPickBlock(world, pos);
     }
+  
+    @SideOnly(Side.CLIENT)
+    @Override
+    public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+    	return EnumFlowerColor.get(stack.getMetadata()).getColor(false);
+    }
     
+    @SideOnly(Side.CLIENT)
     @Override
     public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
     	return EnumFlowerColor.get(getMetaFromState(state)).getColor(false);

@@ -1,23 +1,30 @@
 package binnie.botany.ceramic;
 
+import binnie.Constants;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.botany.items.BotanyItems;
+import binnie.botany.ceramic.BlockCeramicBrick.BlockType;
 import binnie.core.block.BlockMetadata;
 import binnie.core.block.IBlockMetadata;
 import binnie.core.block.IMultipassBlock;
 import binnie.core.block.TileEntityMetadata;
+import forestry.api.core.ISpriteRegister;
+import forestry.api.core.ITextureManager;
 import forestry.core.blocks.IColoredBlock;
+import forestry.core.render.TextureManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
@@ -27,7 +34,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class BlockCeramicBrick extends Block implements IBlockMetadata, IColoredBlock {
+public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipassBlock<BlockType>, IColoredBlock, ISpriteRegister {
     public BlockCeramicBrick() {
         super(Material.ROCK);
         this.setHardness(1.0f);
@@ -164,10 +171,10 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IColored
 
         String id;
         String name;
-        //IIcon[] icons;
+        TextureAtlasSprite[] sprites;
 
         TileType(final String id, final String name) {
-            //this.icons = new IIcon[3];
+            this.sprites = new TextureAtlasSprite[3];
             this.id = id;
             this.name = name;
         }
@@ -180,7 +187,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IColored
             return this != TileType.Tile;
         }
 
-        public ItemStack getRecipe(final List<ItemStack> stacks) {
+        public ItemStack getRecipe(List<ItemStack> stacks) {
             switch (this) {
                 case Tile: {
                     if (stacks.size() != 4) {
@@ -468,8 +475,42 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IColored
             return this.color1.ordinal() + this.color2.ordinal() * 256 + this.type.ordinal() * 256 * 256;
         }
 
-//		public IIcon getIcon(final int layer) {
-//			return this.type.icons[layer];
-//		}
+		public TextureAtlasSprite getSprite(int pass) {
+			return this.type.sprites[pass];
+		}
     }
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getRenderPasses() {
+		return 3;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public BlockType getInventoryKey(ItemStack stack) {
+		return getType(stack.getItemDamage());
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public BlockType getWorldKey(IBlockState state) {
+		return getType(getMetaFromState(state));
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public TextureAtlasSprite getSprite(BlockType type, int pass) {
+		return type.getSprite(pass);
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerSprites(ITextureManager manager) {
+		for (final TileType type : TileType.values()) {
+			for (int i = 0; i < 3; ++i) {
+				type.sprites[i] = TextureManager.registerSprite(new ResourceLocation(Constants.BOTANY_MOD_ID + ":blocks/ceramic." + type.id + "." + i));
+			}
+		}
+	}
 }

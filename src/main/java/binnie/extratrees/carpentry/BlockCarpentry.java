@@ -7,6 +7,8 @@ import binnie.extratrees.block.PlankType;
 import forestry.api.core.Tabs;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
 
 public class BlockCarpentry extends BlockDesign {
@@ -28,5 +30,4 @@ public class BlockCarpentry extends BlockDesign {
     public String getBlockName(final DesignBlock design) {
         return Binnie.Language.localise(ExtraTrees.instance, "block.woodentile.name", design.getDesign().getName());
     }
-
 }
