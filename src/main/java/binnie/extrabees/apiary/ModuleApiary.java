@@ -25,7 +25,7 @@ public class ModuleApiary implements IInitializable {
     public void preInit() {
         final MachineGroup machineGroup = new MachineGroup(ExtraBees.instance, "alveay", "alveary", AlvearyMachine.values());
         machineGroup.setCreativeTab(Tabs.tabApiculture);
-        BinnieCore.proxy.registerTileEntity(TileExtraBeeAlveary.class, "extrabees.tile.alveary", BinnieCore.proxy.createObject("binnie.core.machines.RendererMachine"));
+        BinnieCore.proxy.registerTileEntity(TileExtraBeeAlveary.class, "extrabees.tile.alveary", null);
         ModuleApiary.blockComponent = machineGroup.getBlock();
         AlvearyMutator.addMutationItem(new ItemStack(Blocks.SOUL_SAND), 1.5f);
         AlvearyMutator.addMutationItem(Mods.IC2.stack("UranFuel"), 4.0f);
@@ -38,7 +38,8 @@ public class ModuleApiary implements IInitializable {
         AlvearyMutator.addMutationItem(new ItemStack(Items.ENDER_PEARL), 2.0f);
         AlvearyMutator.addMutationItem(new ItemStack(Items.ENDER_EYE), 4.0f);
         for (final EnumHiveFrame frame : EnumHiveFrame.values()) {
-            GameRegistry.registerItem(frame.item = new ItemHiveFrame(frame), "hiveFrame." + frame.name().toLowerCase());
+            frame.item = new ItemHiveFrame(frame).setRegistryName("hiveFrame." + frame.name().toLowerCase());
+            ExtraBees.proxy.registerItem(frame.item);
         }
     }
 

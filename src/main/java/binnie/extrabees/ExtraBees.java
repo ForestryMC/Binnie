@@ -6,6 +6,7 @@ import binnie.core.BinnieCore;
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
+import binnie.extrabees.apiary.ModuleApiary;
 import binnie.extrabees.config.ConfigurationMachines;
 import binnie.extrabees.config.ConfigurationMain;
 import binnie.extrabees.core.ExtraBeeGUID;
@@ -50,7 +51,7 @@ public class ExtraBees extends AbstractMod {
         this.addModule(new ModuleGenetics());
         //this.addModule(new ModuleGeneration());
         this.addModule(new ModuleLiquids());
-        //this.addModule(new ModuleApiary());
+        this.addModule(new ModuleApiary());
         this.preInit();
         proxy.registerModels();
     }

@@ -295,4 +295,5 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
     public void update() {
 
     }
+
 }

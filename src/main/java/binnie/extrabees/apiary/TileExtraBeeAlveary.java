@@ -1,5 +1,6 @@
 package binnie.extrabees.apiary;
 
+import binnie.core.BinnieCore;
 import binnie.core.machines.TileEntityMachine;
 import binnie.extrabees.apiary.machine.AlvearyMachine;
 import com.mojang.authlib.GameProfile;
@@ -74,23 +75,14 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
         return structureLogic;
     }
 
-
-    //TODO UPDATE ENTITY
-//	@Override
-//	public boolean canUpdate() {
-//		return false;
-//	}
-
     @Override
     public void updateClient(int arg0) {
-//		super.updateEntity();
-
+		super.update();
     }
 
     @Override
     public void updateServer(int arg0) {
-//		super.updateEntity();
-
+		super.update();
     }
 
     @Override
@@ -207,39 +199,7 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
         }
     }
 
-    // boolean init;
-    // //IStructureLogic structureLogic;
-    // private boolean isMaster;
-    // protected int masterX;
-    // protected int masterZ;
-    // protected int masterY;
-    // List<TileEntity> tiles;
-    //
-    // @Override
-    // public void updateEntity() {
-    // super.updateEntity();
-    // if (!BinnieCore.proxy.isSimulating(this.worldObj)) {
-    // return;
-    // }
-    // if (this.worldObj.getWorldTime() % 200L == 0L) {
-    // if (!this.isIntegratedIntoStructure() || this.isMaster()) {
-    // // this.validateStructure();
-    // }
-    // // final IMultiblockComponent master = this.getCentralTE();
-    // // if (master == null) {
-    // // return;
-    // // }
-    // // if (this.getBeeListener() != null) {
-    // //
-    // ((IAlvearyComponent)master).registerBeeListener(this.getBeeListener());
-    // // }
-    // if (this.getBeeModifier() != null) {
-    // //
-    // ((IAlvearyComponent)master).registerBeeModifier(this.getBeeModifier());
-    // }
-    // this.init = true;
-    // }
-    // }
+
     //
     // @Override
     // public void readFromNBT(final NBTTagCompound nbttagcompound) {

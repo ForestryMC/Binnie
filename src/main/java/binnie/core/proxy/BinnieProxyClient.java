@@ -143,7 +143,7 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
     @Override
     public void registerBlockRenderer(final Object renderer) {
         //if (renderer != null && renderer instanceof FastTESR) {
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMachine.class, new RendererMachine());//.registerBlockHandler((ISimpleBlockRenderingHandler) renderer);
+        //ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMachine.class, new RendererMachine());//.registerBlockHandler((ISimpleBlockRenderingHandler) renderer);
         //}
     }
 
