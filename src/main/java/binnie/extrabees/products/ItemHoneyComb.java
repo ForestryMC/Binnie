@@ -3,14 +3,18 @@ package binnie.extrabees.products;
 import binnie.core.Mods;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.core.ExtraBeeItems;
+import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
 import forestry.core.items.IColoredItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.Locale;
 
 public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 

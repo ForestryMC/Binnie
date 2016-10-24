@@ -11,11 +11,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class ItemGenesis extends ItemCore {
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerIcons(final IIconRegister register) {
-//		this.itemIcon = BinnieCore.proxy.getIcon(register, "genesis");
-//	}
 
     public ItemGenesis() {
     	super("genesis");

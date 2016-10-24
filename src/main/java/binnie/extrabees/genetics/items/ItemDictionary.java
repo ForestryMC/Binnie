@@ -2,6 +2,8 @@ package binnie.extrabees.genetics.items;
 
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.core.ExtraBeeGUID;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,28 +18,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class ItemDictionary extends Item {
+public class ItemDictionary extends Item implements IItemModelRegister {
     public ItemDictionary() {
         this.setCreativeTab(Tabs.tabApiculture);
         this.setUnlocalizedName("dictionary");
         this.setMaxStackSize(1);
         setRegistryName("dictionary");
+        setHasSubtypes(true);
     }
-
-//	IIcon iconMaster;
-
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerIcons(final IIconRegister register) {
-//		this.itemIcon = ExtraBees.proxy.getIcon(register, "apiaristDatabase");
-//		this.iconMaster = ExtraBees.proxy.getIcon(register, "masterApiaristDatabase");
-//	}
-//
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public IIcon getIconFromDamage(final int par1) {
-//		return (par1 == 0) ? this.itemIcon : this.iconMaster;
-//	}
 
     @Override
     @SideOnly(Side.CLIENT)
@@ -69,5 +57,11 @@ public class ItemDictionary extends Item {
     @Override
     public String getItemStackDisplayName(final ItemStack i) {
         return (i.getItemDamage() == 0) ? "Apiarist Database" : "Master Apiarist Database";
+    }
+
+    @Override
+    public void registerModel(Item item, IModelManager manager) {
+        manager.registerItemModel(item, 0, getRegistryName().getResourcePath());
+        manager.registerItemModel(item, 1, getRegistryName().getResourcePath() + "Master");
     }
 }

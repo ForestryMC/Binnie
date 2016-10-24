@@ -23,6 +23,7 @@ public class ModuleGenetics implements IInitializable {
             AlleleManager.alleleRegistry.registerAllele(species);
         }
         ExtraBees.dictionary = new ItemDictionary();
+        ExtraBees.proxy.registerItem(ExtraBees.dictionary);
         GameRegistry.register(ExtraBees.ectoplasm = new BlockEctoplasm());
         GameRegistry.register(new ItemBlock(ExtraBees.ectoplasm).setRegistryName(ExtraBees.ectoplasm.getRegistryName()));
     }
