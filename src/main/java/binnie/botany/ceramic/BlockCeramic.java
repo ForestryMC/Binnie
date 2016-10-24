@@ -2,21 +2,27 @@ package binnie.botany.ceramic;
 
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.genetics.EnumFlowerColor;
+import binnie.core.block.BlockMetadata;
 import binnie.core.block.IBlockMetadata;
 import binnie.core.block.TileEntityMetadata;
+import forestry.core.blocks.IColoredBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BlockCeramic extends Block implements IBlockMetadata {
+public class BlockCeramic extends Block implements IBlockMetadata, IColoredBlock {
     public BlockCeramic() {
         super(Material.ROCK);
         this.setHardness(1.0f);
@@ -25,32 +31,32 @@ public class BlockCeramic extends Block implements IBlockMetadata {
         this.setCreativeTab(CreativeTabBotany.instance);
     }
 
-//	@Override
-//	public ArrayList<ItemStack> getDrops(final World world, final BlockPos pos, final int blockMeta, final int fortune) {
-//		return BlockMetadata.getBlockDropped(this, world, pos, blockMeta);
-//	}
-//
-//	@Override
-//	public boolean removedByPlayer(final World world, final EntityPlayer player, final int x, final int y, final int z) {
-//		return BlockMetadata.breakBlock(this, player, world, x, y, z);
-//	}
+    @Override
+    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+    	return BlockMetadata.getBlockDropped(this, world, pos);
+    }
+    
+    @Override
+    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
+    	return BlockMetadata.breakBlock(this, player, world, pos);
+    }
 
     @Override
     public TileEntity createNewTileEntity(final World var1, final int i) {
         return new TileEntityMetadata();
     }
 
-//	@Override
-//	public boolean hasTileEntity(final int meta) {
-//		return true;
-//	}
-//
-//	@Override
-//	public boolean onBlockEventReceived(final World par1World, final int par2, final int par3, final int par4, final int par5, final int par6) {
-//		super.onBlockEventReceived(par1World, par2, par3, par4, par5, par6);
-//		final TileEntity tileentity = par1World.getTileEntity(par2, par3, par4);
-//		return tileentity != null && tileentity.receiveClientEvent(par5, par6);
-//	}
+    @Override
+    public boolean hasTileEntity(IBlockState state) {
+    	return true;
+    }
+    
+   @Override
+   public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param) {
+       super.eventReceived(state, worldIn, pos, id, param);
+       TileEntity tileentity = worldIn.getTileEntity(pos);
+       return tileentity == null ? false : tileentity.receiveClientEvent(id, param);
+   }
 
     @Override
     public int getPlacedMeta(final ItemStack stack, final World world, BlockPos pos, final EnumFacing clickedBlock) {
@@ -73,9 +79,8 @@ public class BlockCeramic extends Block implements IBlockMetadata {
     }
 
     @Override
-    public void dropAsStack(final World world, final BlockPos pos, final ItemStack drop) {
-        //TODO IMPLEMENT
-        // this.dropBlockAsItem(world, pos, drop);
+    public void dropAsStack(final World world, final BlockPos pos, final ItemStack itemStack) {
+    	spawnAsEntity(world, pos, itemStack);
     }
 
     @Override
@@ -105,31 +110,14 @@ public class BlockCeramic extends Block implements IBlockMetadata {
 //	public void registerBlockIcons(final IIconRegister register) {
 //		this.blockIcon = Botany.proxy.getIcon(register, "ceramic");
 //	}
-//
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public int colorMultiplier(final IBlockAccess world, final int x, final int y, final int z) {
-//		final TileEntityMetadata tile = TileEntityMetadata.getTile(world, x, y, z);
-//		if (tile != null) {
-//			return this.getRenderColor(tile.getTileMetadata());
-//		}
-//		return 16777215;
-//	}
-//
-//	@Override
-//	public void breakBlock(final World par1World, final int par2, final int par3, final int par4, final Block par5, final int par6) {
-//		super.breakBlock(par1World, par2, par3, par4, par5, par6);
-//		par1World.removeTileEntity(par2, par3, par4);
-//	}
-//
-//	@Override
-//	public ItemStack getPickBlock(final MovingObjectPosition target, final World world, final int x, final int y, final int z) {
-//		return BlockMetadata.getPickBlock(world, x, y, z);
-//	}
-//
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public int getRenderColor(final int meta) {
-//		return EnumFlowerColor.get(meta).getColor(false);
-//	}
+    
+    @Override
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+    	return BlockMetadata.getPickBlock(world, pos);
+    }
+    
+    @Override
+    public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
+    	return EnumFlowerColor.get(getMetaFromState(state)).getColor(false);
+    }
 }

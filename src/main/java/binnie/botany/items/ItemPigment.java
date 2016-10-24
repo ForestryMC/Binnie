@@ -2,6 +2,9 @@ package binnie.botany.items;
 
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.genetics.EnumFlowerColor;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import forestry.core.items.IColoredItem;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -10,21 +13,27 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class ItemPigment extends Item {
+public class ItemPigment extends Item implements IItemModelRegister, IColoredItem{
     public ItemPigment() {
         this.setUnlocalizedName("pigment");
         this.setHasSubtypes(true);
         this.setCreativeTab(CreativeTabBotany.instance);
         setRegistryName("pigment");
     }
-
-
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public int getColorFromItemStack(final ItemStack stack, final int p_82790_2_) {
-//		final int damage = stack.getItemDamage();
-//		return EnumFlowerColor.get(damage).getColor(false);
-//	}
+    
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerModel(Item item, IModelManager manager) {
+    	for (final EnumFlowerColor c : EnumFlowerColor.values()) {
+    		manager.registerItemModel(item, c.ordinal());
+    	}
+    }
+    
+    @SideOnly(Side.CLIENT)
+    @Override
+    public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+    	return EnumFlowerColor.get(stack.getItemDamage()).getColor(false);
+    }
 
     @Override
     public String getItemStackDisplayName(final ItemStack stack) {
@@ -38,10 +47,4 @@ public class ItemPigment extends Item {
             list.add(new ItemStack(this, 1, c.ordinal()));
         }
     }
-
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerIcons(final IIconRegister register) {
-//		this.itemIcon = Botany.proxy.getIcon(register, "pigment");
-//	}
 }

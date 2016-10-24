@@ -2,7 +2,7 @@ package binnie.core.genetics;
 
 import binnie.Binnie;
 import binnie.botany.api.IFlowerRoot;
-import binnie.botany.genetics.AlleleColor;
+import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.BinnieCore;
 import binnie.core.ManagerBase;
 import forestry.api.apiculture.BeeManager;
@@ -199,7 +199,7 @@ public class ManagerGenetics extends ManagerBase {
             if (o1 instanceof IAlleleFloat && o2 instanceof IAlleleFloat) {
                 return Float.valueOf(((IAlleleFloat) o1).getValue()).compareTo(((IAlleleFloat) o2).getValue());
             }
-            if (o1 instanceof IAlleleInteger && o2 instanceof IAlleleInteger && !(o1 instanceof AlleleColor)) {
+            if (o1 instanceof IAlleleInteger && o2 instanceof IAlleleInteger && !(o1 instanceof EnumFlowerColor)) {
                 return Integer.valueOf(((IAlleleInteger) o1).getValue()).compareTo(((IAlleleInteger) o2).getValue());
             }
             if (o1.getName() != null && o2.getName() != null) {
