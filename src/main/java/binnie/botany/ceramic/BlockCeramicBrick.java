@@ -464,9 +464,9 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
         }
 
         public String getName() {
-            String name = this.color1.getName();
+            String name = this.color1.getColourName();
             if (this.type.canDouble() && this.color2 != this.color1) {
-                name = name + " & " + this.color2.getName();
+                name = name + " & " + this.color2.getColourName();
             }
             return name + " " + this.type.name;
         }

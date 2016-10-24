@@ -8,6 +8,7 @@ import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -32,6 +33,7 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
         this.setRegistryName("plant");
         this.setCreativeTab(CreativeTabBotany.instance);
         this.setTickRandomly(true);
+        this.setSoundType(SoundType.PLANT);
     }
     
     @Override

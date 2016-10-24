@@ -37,7 +37,7 @@ public class ItemPigment extends Item implements IItemModelRegister, IColoredIte
 
     @Override
     public String getItemStackDisplayName(final ItemStack stack) {
-        return EnumFlowerColor.get(stack.getItemDamage()).getName() + " Pigment";
+        return EnumFlowerColor.get(stack.getItemDamage()).getColourName() + " " + super.getItemStackDisplayName(stack);
     }
 
     @Override

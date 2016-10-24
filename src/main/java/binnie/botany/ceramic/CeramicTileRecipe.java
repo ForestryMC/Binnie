@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeHooks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,9 +66,8 @@ public class CeramicTileRecipe implements IRecipe {
         return this.cached;
     }
 
-    //TODO IMPLEMENT
     @Override
     public ItemStack[] getRemainingItems(InventoryCrafting inv) {
-        return new ItemStack[0];
+        return ForgeHooks.defaultRecipeGetRemainingItems(inv);
     }
 }

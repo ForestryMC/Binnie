@@ -1,7 +1,17 @@
 package binnie.core.block;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemMetadata extends ItemBlock {
     public ItemMetadata(final Block block) {
@@ -12,45 +22,39 @@ public class ItemMetadata extends ItemBlock {
     public int getMetadata(final int par1) {
         return 0;
     }
+    
+    @Override
+    public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, IBlockState newState) {
+		if (!(block instanceof IBlockMetadata)) {
+			return false;
+		}
+		int placedMeta = ((IBlockMetadata) block).getPlacedMeta(stack, world, pos, side);
+		if (placedMeta < 0) {
+			return false;
+		}
+		if (!world.setBlockState(pos, newState, 3)) {
+			return false;
+		}
+		if (world.getBlockState(pos).getBlock() == block) {
+			TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
+			if (tile != null) {
+				tile.setTileMetadata(placedMeta, false);
+			}
+			setTileEntityNBT(world, player, pos, stack);
+			block.onBlockPlacedBy(world, pos, newState, player, stack);
+		}
+		return true;
+    }
 
-//	@Override
-//	public boolean placeBlockAt(final ItemStack stack, final EntityPlayer player, final World world, final int x, final int y, final int z, final int side, final float hitX, final float hitY, final float hitZ, final int metadata) {
-//		final Block block = this.field_150939_a;
-//		if (!(block instanceof IBlockMetadata)) {
-//			return false;
-//		}
-//		final int placedMeta = ((IBlockMetadata) block).getPlacedMeta(stack, world, x, y, z, ForgeDirection.values()[side]);
-//		if (placedMeta < 0) {
-//			return false;
-//		}
-//		if (!world.setBlock(x, y, z, block, metadata, 3)) {
-//			return false;
-//		}
-//		if (world.getBlock(x, y, z) == block) {
-//			final TileEntityMetadata tile = TileEntityMetadata.getTile(world, x, y, z);
-//			if (tile != null) {
-//				tile.setTileMetadata(placedMeta, false);
-//			}
-//			block.onBlockPlacedBy(world, x, y, z, player, stack);
-//			block.onPostBlockPlaced(world, x, y, z, metadata);
-//		}
-//		return true;
-//	}
-//
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public String getItemStackDisplayName(final ItemStack par1ItemStack) {
-//		return ((IBlockMetadata) this.field_150939_a).getBlockName(par1ItemStack);
-//	}
-//
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-//		((IBlockMetadata) this.field_150939_a).getBlockTooltip(par1ItemStack, par3List);
-//	}
-//
-//	@Override
-//	public IIcon getIconFromDamage(final int par1) {
-//		return this.field_150939_a.getIcon(1, par1);
-//	}
+	@Override
+	@SideOnly(Side.CLIENT)
+	public String getItemStackDisplayName(final ItemStack par1ItemStack) {
+		return ((IBlockMetadata) block).getBlockName(par1ItemStack);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+		((IBlockMetadata) block).getBlockTooltip(stack, tooltip);
+	}
 }
