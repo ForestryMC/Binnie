@@ -2,7 +2,7 @@ package binnie.extrabees.core;
 
 import binnie.Binnie;
 import binnie.core.Mods;
-import binnie.core.item.IItemMisc;
+import binnie.core.item.IItemMiscProvider;
 import binnie.extrabees.ExtraBees;
 import forestry.api.recipes.RecipeManagers;
 import net.minecraft.init.Blocks;
@@ -14,7 +14,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.List;
 
-public enum ExtraBeeItems implements IItemMisc {
+public enum ExtraBeeItems implements IItemMiscProvider {
     ScentedGear("Scented Gear", "scentedGear"),
     DiamondShard("Diamond Fragment", "diamondShard"),
     EmeraldShard("Emerald Fragment", "emeraldShard"),
@@ -47,8 +47,7 @@ public enum ExtraBeeItems implements IItemMisc {
     CyaniteDust("Cyanite Grains", "cyaniteDust");
 
     String name;
-    String iconPath;
-    //	IIcon icon;
+    String modelPath;
     String metalString;
     String gemString;
 
@@ -106,11 +105,11 @@ public enum ExtraBeeItems implements IItemMisc {
         RecipeManagers.carpenterManager.addRecipe(100, Binnie.Liquid.getFluidStack("for.honey", 500), null, ExtraBeeItems.ScentedGear.get(1), " j ", "bgb", " p ", 'j', Mods.Forestry.item("royalJelly"), 'b', Mods.Forestry.item("beeswax"), 'p', Mods.Forestry.item("pollen"), 'g', gear);
     }
 
-    ExtraBeeItems(final String name, final String iconPath) {
+    ExtraBeeItems(String name, String modelPath) {
         this.metalString = null;
         this.gemString = null;
         this.name = name;
-        this.iconPath = iconPath;
+        this.modelPath = modelPath;
     }
 
     private void setGem(final String string) {
@@ -152,6 +151,11 @@ public enum ExtraBeeItems implements IItemMisc {
     @Override
     public ItemStack get(final int i) {
         return new ItemStack(ExtraBees.itemMisc, i, this.ordinal());
+    }
+    
+    @Override
+    public String getModelPath() {
+    	return modelPath;
     }
 
     static {

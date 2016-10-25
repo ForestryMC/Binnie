@@ -1,7 +1,6 @@
 package binnie.core.proxy;
 
 import binnie.core.AbstractMod;
-import binnie.core.BinnieCore;
 import binnie.core.network.BinnieCorePacketID;
 import binnie.core.network.INetworkedEntity;
 import binnie.core.network.packet.MessageUpdate;
@@ -23,9 +22,7 @@ import java.io.File;
 public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
     private short uniqueTextureUID;
 
-
     public BinnieProxy() {
-        super(BinnieCore.instance);
         this.uniqueTextureUID = 1200;
     }
 

@@ -14,7 +14,6 @@ import binnie.botany.genetics.Flower;
 import binnie.core.BinnieCore;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
-import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IPollinatable;
 import forestry.core.config.Config;
@@ -96,13 +95,13 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 		String primaryColor = genome.getPrimaryColor().getColourName();
 		String secondaryColor = genome.getSecondaryColor().getColourName();
 		String stemColor = genome.getStemColor().getColourName();
-		String colourInfo;
+		String colorInfo;
 		if(!primaryColor.equals(secondaryColor)){
-			colourInfo = Binnie.Language.localise("botany.grammar.flower.secondary");
+			colorInfo = Binnie.Language.localise("botany.grammar.flower.secondary");
 		}else{
-			colourInfo = Binnie.Language.localise("botany.grammar.flower");
+			colorInfo = Binnie.Language.localise("botany.grammar.flower");
 		}
-		list.add(TextFormatting.YELLOW + colourInfo.replaceAll("%PRIMARY", primaryColor).replaceAll("%SECONDARY", secondaryColor).replaceAll("%STEM", stemColor));
+		list.add(TextFormatting.YELLOW + colorInfo.replaceAll("%PRIMARY", primaryColor).replaceAll("%SECONDARY", secondaryColor).replaceAll("%STEM", stemColor));
 		
 		if (individual.isAnalyzed()) {
 			if (BinnieCore.proxy.isShiftDown()) {

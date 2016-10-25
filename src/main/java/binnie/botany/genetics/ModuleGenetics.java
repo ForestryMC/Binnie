@@ -32,10 +32,10 @@ public class ModuleGenetics implements IInitializable {
         FlowerDefinition.preInitFlowers();
         
         Botany.flower = new BlockFlower();
-        GameRegistry.register(Botany.flower);
+        Botany.proxy.registerBlock(Botany.flower);
         BinnieCore.proxy.registerTileEntity(TileEntityFlower.class, "botany.tile.flower", null);
         //Need we this ?
-        GameRegistry.register(new ItemBlock(Botany.flower).setRegistryName(Botany.flower.getRegistryName()));
+        Botany.proxy.registerItem(new ItemBlock(Botany.flower).setRegistryName(Botany.flower.getRegistryName()));
         
         Botany.flowerItem = new ItemBotany("itemFlower", EnumFlowerStage.FLOWER, "");
         Botany.pollen = new ItemBotany("pollen", EnumFlowerStage.POLLEN, "Pollen");

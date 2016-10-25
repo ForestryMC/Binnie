@@ -63,6 +63,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 
     @Override
     public void preInit() {
+    	getProxy().setMod(this);
         if (!this.isActive()) {
             return;
         }

@@ -89,13 +89,13 @@ public class Flower extends Individual implements IFlower {
         final IAlleleFlowerSpecies primary = this.genome.getPrimary();
         final IAlleleFlowerSpecies secondary = this.genome.getSecondary();
         if (!this.isPureBred(EnumFlowerChromosome.SPECIES)) {
-            list.add("ยง9" + primary.getName() + "-" + secondary.getName() + " Hybrid");
+            list.add("ง9" + primary.getName() + "-" + secondary.getName() + " Hybrid");
         }
-        list.add("ยง6Age: " + this.getAge());
-        list.add("ยง6T: " + this.getGenome().getPrimary().getTemperature() + " / " + this.getGenome().getToleranceTemperature());
-        list.add("ยง6M: " + this.getGenome().getPrimary().getMoisture() + " / " + this.getGenome().getToleranceMoisture());
-        list.add("ยง6pH: " + this.getGenome().getPrimary().getHumidity() + " / " + this.getGenome().getTolerancePH());
-        list.add("ยง6Fert: " + this.getGenome().getFertility() + "x");
+        list.add("ง6Age: " + this.getAge());
+        list.add("ง6T: " + this.getGenome().getPrimary().getTemperature() + " / " + this.getGenome().getToleranceTemperature());
+        list.add("ง6M: " + this.getGenome().getPrimary().getMoisture() + " / " + this.getGenome().getToleranceMoisture());
+        list.add("ง6pH: " + this.getGenome().getPrimary().getHumidity() + " / " + this.getGenome().getTolerancePH());
+        list.add("ง6Fert: " + this.getGenome().getFertility() + "x");
     }
 
     @Override

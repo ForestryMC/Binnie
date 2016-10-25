@@ -1,12 +1,12 @@
 package binnie.extratrees.item;
 
-import binnie.core.item.IItemMisc;
+import binnie.core.item.IItemMiscProvider;
 import binnie.extratrees.ExtraTrees;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-public enum ExtraTreeItems implements IItemMisc {
+public enum ExtraTreeItems implements IItemMiscProvider {
     CarpentryHammer("Fake Hammer", "carpentryHammer"),
     Sawdust("Sawdust", "sawdust"),
     Bark("Bark", "bark"),
@@ -23,23 +23,17 @@ public enum ExtraTreeItems implements IItemMisc {
     GlassFitting("Glass Fittings", "glassFitting");
 
     String name;
-    String iconPath;
-//	IIcon icon;
+    String modelPath;
 
-    ExtraTreeItems(final String name, final String iconPath) {
+    ExtraTreeItems(final String name, final String modelPath) {
         this.name = name;
-        this.iconPath = iconPath;
+        this.modelPath = modelPath;
     }
-
-//	@Override
-//	public IIcon getIcon(final ItemStack stack) {
-//		return this.icon;
-//	}
-//
-//	@Override
-//	public void registerIcons(final IIconRegister register) {
-//		this.icon = ExtraTrees.proxy.getIcon(register, this.iconPath);
-//	}
+    
+    @Override
+    public String getModelPath() {
+    	return modelPath;
+    }
 
     @Override
     public void addInformation(final List par3List) {

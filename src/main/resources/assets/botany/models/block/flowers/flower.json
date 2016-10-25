@@ -1,10 +1,10 @@
 {
+	"parent": "block/block",
     "ambientocclusion": false,
     "textures": {
         "particle": "#stem"
     },
     "elements": [
-		//Stem
         {   "from": [ 0.8, 0, 8 ],
             "to": [ 15.2, 16, 8 ],
             "rotation": { "origin": [ 8, 8, 8 ], "axis": "y", "angle": 45, "rescale": true },
@@ -23,7 +23,6 @@
                 "east": { "uv": [ 16, 0, 0, 16 ], "texture": "#stem", "tintindex": 0 }
             }
         },
-		//Petal
 		 {   "from": [ 0.8, 0, 8 ],
             "to": [ 15.2, 16, 8 ],
             "rotation": { "origin": [ 8, 8, 8 ], "axis": "y", "angle": 45, "rescale": true },
@@ -42,7 +41,6 @@
                 "east": { "uv": [ 16, 0, 0, 16 ], "texture": "#petal", "tintindex": 1 }
             }
         },
-		//Variant
 		 {   "from": [ 0.8, 0, 8 ],
             "to": [ 15.2, 16, 8 ],
             "rotation": { "origin": [ 8, 8, 8 ], "axis": "y", "angle": 45, "rescale": true },

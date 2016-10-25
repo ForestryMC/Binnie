@@ -8,7 +8,7 @@ import forestry.core.genetics.alleles.EnumAllele;
 public class FlowerTemplates {
     public static IAllele[] getDefaultTemplate() {
         final IAllele[] alleles = new IAllele[EnumFlowerChromosome.values().length];
-        AlleleHelper.instance.set(alleles, EnumFlowerChromosome.SPECIES, FlowerDefinition.Poppy.getSpecies());
+        AlleleHelper.instance.set(alleles, EnumFlowerChromosome.SPECIES, FlowerDefinition.Dandelion.getSpecies());
         AlleleHelper.instance.set(alleles, EnumFlowerChromosome.PRIMARY, EnumFlowerColor.Red);
         AlleleHelper.instance.set(alleles, EnumFlowerChromosome.SECONDARY, EnumFlowerColor.Red);
         AlleleHelper.instance.set(alleles, EnumFlowerChromosome.FERTILITY, EnumAllele.Fertility.NORMAL);

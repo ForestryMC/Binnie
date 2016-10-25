@@ -9,6 +9,7 @@ import io.netty.buffer.ByteBuf;
 
 import java.io.IOException;
 
+//TODO Remove this after test the PacketFlowerUpdate
 public class MessageFlowerUpdate extends MessageCoordinates {
     public TileEntityFlower.RenderInfo render;
 

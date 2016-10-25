@@ -16,9 +16,13 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class BinnieModProxy implements IBinnieModProxy {
     private AbstractMod mod;
 
-    public BinnieModProxy(final AbstractMod mod) {
-        this.mod = mod;
+    public BinnieModProxy() {
     }
+    
+    @Override
+	public void setMod(final AbstractMod mod) {
+		this.mod = mod;
+	}
     
     @Override
 	public Item registerItem(Item item){

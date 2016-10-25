@@ -118,7 +118,7 @@ public final class BinnieCore extends AbstractMod {
 
     @Override
     public String getModID() {
-        return "binniecore";
+        return Constants.CORE_MOD_ID;
     }
 
     @Override

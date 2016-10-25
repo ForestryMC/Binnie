@@ -60,6 +60,8 @@ public enum EnumFlowerType implements IFlowerType<EnumFlowerType> {
     Delphinium(2),
     Hollyhock(2);
 
+    public static int highestSection = 2;
+	
     int sections;
     ModelResourceLocation[] flowered;
     ModelResourceLocation[] unflowered;
@@ -119,8 +121,4 @@ public enum EnumFlowerType implements IFlowerType<EnumFlowerType> {
 	public String getName() {
 		return name().toLowerCase(Locale.ENGLISH);
 	}
-
-//	public IIcon getBlank() {
-//		return this.blank;
-//	}
 }

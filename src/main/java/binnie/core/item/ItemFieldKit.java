@@ -1,9 +1,15 @@
 package binnie.core.item;
 
+import binnie.Constants;
 import binnie.core.BinnieCore;
 import binnie.core.gui.BinnieCoreGUI;
+import forestry.api.core.IModelManager;
+import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.model.ModelBakery;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
@@ -15,10 +21,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public class ItemFieldKit extends ItemCore {
-//	private IIcon fieldKit0;
-//	private IIcon fieldKit1;
-//	private IIcon fieldKit2;
-//	private IIcon fieldKit3;
+	private ModelResourceLocation fieldKit;
+	private ModelResourceLocation fieldKit1;
+	private ModelResourceLocation fieldKit2;
+	private ModelResourceLocation fieldKit3;
 
     public ItemFieldKit() {
     	super("fieldKit");
@@ -27,32 +33,35 @@ public class ItemFieldKit extends ItemCore {
         this.setMaxStackSize(1);
         this.setMaxDamage(64);
     }
+    
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerModel(Item item, IModelManager manager) {
+    	manager.registerItemModel(item, new FieldKitMeshDefinition());
+		fieldKit = new ModelResourceLocation(Constants.CORE_MOD_ID + ":fieldKit", "inventory");
+		fieldKit1 = new ModelResourceLocation(Constants.CORE_MOD_ID + ":fieldKit1", "inventory");
+		fieldKit2 = new ModelResourceLocation(Constants.CORE_MOD_ID + ":fieldKit2", "inventory");
+		fieldKit3 = new ModelResourceLocation(Constants.CORE_MOD_ID + ":fieldKit3", "inventory");
+		ModelBakery.registerItemVariants(item, fieldKit, fieldKit1, fieldKit2, fieldKit3);
+    }
 
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerIcons(final IIconRegister register) {
-//		this.fieldKit0 = BinnieCore.proxy.getIcon(register, "fieldKit");
-//		this.fieldKit1 = BinnieCore.proxy.getIcon(register, "fieldKit1");
-//		this.fieldKit2 = BinnieCore.proxy.getIcon(register, "fieldKit2");
-//		this.fieldKit3 = BinnieCore.proxy.getIcon(register, "fieldKit3");
-//		this.itemIcon = this.fieldKit0;
-//	}
-//
-//	@Override
-//	public IIcon getIcon(final ItemStack stack, final int pass) {
-//		final int damage = stack.getItemDamage();
-//		if (damage < 24) {
-//			return this.fieldKit3;
-//		}
-//		if (damage < 48) {
-//			return this.fieldKit2;
-//		}
-//		if (damage < 64) {
-//			return this.fieldKit1;
-//		}
-//		return this.fieldKit0;
-//	}
-
+    @SideOnly(Side.CLIENT)
+    private class FieldKitMeshDefinition implements ItemMeshDefinition{
+		@Override
+		public ModelResourceLocation getModelLocation(ItemStack stack) {
+			final int damage = stack.getItemDamage();
+			if (damage < 24) {
+				return fieldKit3;
+			}
+			if (damage < 48) {
+				return fieldKit2;
+			}
+			if (damage < 64) {
+				return fieldKit1;
+			}
+			return fieldKit;
+		}
+    }
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand) {

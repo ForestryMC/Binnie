@@ -1,12 +1,12 @@
 package binnie.botany.items;
 
 import binnie.botany.Botany;
-import binnie.core.item.IItemMisc;
+import binnie.core.item.IItemMiscProvider;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-public enum BotanyItems implements IItemMisc {
+public enum BotanyItems implements IItemMiscProvider {
     AshPowder("Ash Powder", "powderAsh"),
     PulpPowder("Wood Pulp Powder", "powderPulp"),
     MulchPowder("Mulch Powder", "powderMulch"),
@@ -16,26 +16,30 @@ public enum BotanyItems implements IItemMisc {
     Mortar("Mortar", "mortar"),
     Weedkiller("Weedkiller", "weedkiller");
 
-    //	IIcon icon;
     String name;
-    String iconPath;
+    String modelPath;
 
-    BotanyItems(final String name, final String iconPath) {
+    BotanyItems(String name, String modelPath) {
         this.name = name;
-        this.iconPath = iconPath;
+        this.modelPath = modelPath;
     }
 
     @Override
-    public void addInformation(final List par3List) {
+    public void addInformation(List tooltip) {
     }
 
     @Override
-    public String getName(final ItemStack stack) {
+    public String getName(ItemStack stack) {
         return this.name;
     }
+    
+    @Override
+    public String getModelPath() {
+		return modelPath;
+	}
 
     @Override
-    public ItemStack get(final int size) {
+    public ItemStack get(int size) {
         return new ItemStack(Botany.misc, size, this.ordinal());
     }
 

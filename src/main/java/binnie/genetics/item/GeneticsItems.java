@@ -1,6 +1,6 @@
 package binnie.genetics.item;
 
-import binnie.core.item.IItemMisc;
+import binnie.core.item.IItemMiscProvider;
 import binnie.genetics.Genetics;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import javax.annotation.Nonnull;
 import java.util.List;
 
-public enum GeneticsItems implements IItemMisc {
+public enum GeneticsItems implements IItemMiscProvider {
     LaboratoryCasing("Reinforced Casing", "casingIron"),
     DNADye("DNA Dye", "dnaDye"),
     FluorescentDye("Fluorescent Dye", "dyeFluor"),
@@ -22,24 +22,18 @@ public enum GeneticsItems implements IItemMisc {
     IntegratedCPU("Integrated CPU", "integratedCPU"),
     IntegratedCasing("Integrated Casing", "casingCircuit");
 
-    //	IIcon icon;
     String name;
-    String iconPath;
+    String modelPath;
 
-    GeneticsItems(final String name, final String iconPath) {
+    GeneticsItems(final String name, final String modelPath) {
         this.name = name;
-        this.iconPath = iconPath;
+        this.modelPath = modelPath;
     }
-
-//	@Override
-//	public IIcon getIcon(final ItemStack stack) {
-//		return this.icon;
-//	}
-//
-//	@Override
-//	public void registerIcons(final IIconRegister register) {
-//		this.icon = Genetics.proxy.getIcon(register, this.iconPath);
-//	}
+    
+    @Override
+    public String getModelPath() {
+    	return modelPath;
+    }
 
     @Override
     public void addInformation(final List par3List) {

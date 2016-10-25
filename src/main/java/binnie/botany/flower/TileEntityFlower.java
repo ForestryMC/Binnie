@@ -537,6 +537,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
         this.renderInfo = render;
         this.section = this.renderInfo.section;
         worldObj.markBlockRangeForRenderUpdate(pos, pos);
+        worldObj.markChunkDirty(pos, this);
     }
 
     public int getAge() {

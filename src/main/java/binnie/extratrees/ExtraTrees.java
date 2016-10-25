@@ -130,7 +130,7 @@ public class ExtraTrees extends AbstractMod {
 
     @Override
     public String getModID() {
-        return "extratrees";
+        return Constants.EXTRA_TREES_MOD_ID;
     }
 
     @Override

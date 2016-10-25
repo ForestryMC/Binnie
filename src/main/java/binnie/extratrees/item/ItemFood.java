@@ -1,6 +1,6 @@
 package binnie.extratrees.item;
 
-import binnie.core.item.IItemMisc;
+import binnie.core.item.IItemMiscProvider;
 import forestry.api.core.Tabs;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public class ItemFood extends net.minecraft.item.ItemFood {
-    IItemMisc[] items;
+    IItemMiscProvider[] items;
 
     public ItemFood() {
         super(0, 0.0f, false);
@@ -26,18 +26,18 @@ public class ItemFood extends net.minecraft.item.ItemFood {
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List par3List) {
-        for (final IItemMisc item : this.items) {
+        for (final IItemMiscProvider item : this.items) {
             if (item.isActive()) {
                 par3List.add(this.getStack(item, 1));
             }
         }
     }
 
-    private IItemMisc getItem(final int damage) {
+    private IItemMiscProvider getItem(final int damage) {
         return (damage >= this.items.length) ? this.items[0] : this.items[damage];
     }
 
-    public ItemStack getStack(final IItemMisc type, final int size) {
+    public ItemStack getStack(final IItemMiscProvider type, final int size) {
         return new ItemStack(this, size, type.ordinal());
     }
 
@@ -45,7 +45,7 @@ public class ItemFood extends net.minecraft.item.ItemFood {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, playerIn, tooltip, advanced);
-        final IItemMisc item = this.getItem(stack.getItemDamage());
+        final IItemMiscProvider item = this.getItem(stack.getItemDamage());
         if (item != null) {
             item.addInformation(tooltip);
         }
@@ -53,7 +53,7 @@ public class ItemFood extends net.minecraft.item.ItemFood {
 
     @Override
     public String getItemStackDisplayName(final ItemStack stack) {
-        final IItemMisc item = this.getItem(stack.getItemDamage());
+        final IItemMiscProvider item = this.getItem(stack.getItemDamage());
         return (item != null) ? item.getName(stack) : "null";
     }
 

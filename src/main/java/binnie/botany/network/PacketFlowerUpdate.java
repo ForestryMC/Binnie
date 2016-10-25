@@ -11,8 +11,6 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.math.BlockPos;
 
 public class PacketFlowerUpdate extends SPacketUpdateTileEntity {
-
-	
     public TileEntityFlower.RenderInfo render;
 	
 	public PacketFlowerUpdate(BlockPos blockPos, int metadata, NBTTagCompound compound, final TileEntityFlower.RenderInfo render) {

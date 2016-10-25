@@ -944,7 +944,6 @@ public enum FlowerDefinition implements IFlowerDefinition {
         flowerRood.addConversion(new ItemStack(Blocks.RED_FLOWER, 1, 4), Tulip.addVariant(EnumFlowerColor.Crimson));
         flowerRood.addConversion(new ItemStack(Blocks.RED_FLOWER, 1, 5), Tulip.addVariant(EnumFlowerColor.DarkOrange));
     }
-    
     public static FlowerDefinition[] VALUES = values();
     
     private final IAlleleFlowerSpecies species;
@@ -1049,6 +1048,12 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	
 	public static void preInitFlowers(){
 		MinecraftForge.EVENT_BUS.post(new AlleleSpeciesRegisterEvent(FlowerManager.flowerRoot));
+		for(FlowerDefinition def : values()){
+			IFlowerType type = def.species.getType();
+			if(EnumFlowerType.highestSection < type.getSections()){
+				EnumFlowerType.highestSection = type.getSections();
+			}
+		}
 	}
     
 	public static void initFlowers() {

@@ -12,16 +12,20 @@ import binnie.botany.api.IFlower;
 import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.gardening.Gardening;
+import binnie.botany.genetics.EnumFlowerType;
 import binnie.botany.genetics.FlowerDefinition;
 import binnie.core.BinnieCore;
 import binnie.core.util.TileUtil;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
+import forestry.api.core.IStateMapperRegister;
 import forestry.core.blocks.IColoredBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -36,14 +40,17 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockFlower extends BlockContainer implements IColoredBlock, IItemModelRegister {
+public class BlockFlower extends BlockContainer implements IColoredBlock, IItemModelRegister, IStateMapperRegister {
 	
 	public static final AxisAlignedBB FLOWER_BLOCK_AABB = new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 0.6D, 0.7D);
 	/* PROPERTYS */
 	public static final PropertyFlower FLOWER = new PropertyFlower("flower", IFlowerType.class);
+	public static final PropertyInteger SECTION = PropertyInteger.create("section", 0, EnumFlowerType.highestSection - 1);
+	public static final PropertyBool FLOWERED = PropertyBool.create("flowered");
 	
     public BlockFlower() {
         super(Material.PLANTS);
@@ -66,6 +73,12 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IItemM
 				flowerType.registerModels(item, manager, type);
 			}
     	}
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerStateMapper() {
+    	ModelLoader.setCustomStateMapper(this, new StateMapperFlower());
     }
 	
 	@Override
@@ -116,13 +129,13 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IItemM
 	public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex) {
 		final TileEntity tile = world.getTileEntity(pos);
 		if (tile instanceof TileEntityFlower) {
-			final TileEntityFlower f = (TileEntityFlower) tile;
+			TileEntityFlower flower = (TileEntityFlower) tile;
 			if(tintIndex == 0){
-				return f.getStemColour();
+				return flower.getStemColour();
 			}else if(tintIndex == 1){
-				return f.getPrimaryColour();
+				return flower.getPrimaryColour();
 			}else{
-				return f.getSecondaryColour();
+				return flower.getSecondaryColour();
 			}
 		}
 		return 16777215;
@@ -152,26 +165,30 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IItemM
         return EnumBlockRenderType.MODEL;
     }
 	
-	@SideOnly(Side.CLIENT)
 	@Override
+	@SideOnly(Side.CLIENT)
 	public EnumOffsetType getOffsetType() {
 		return EnumOffsetType.XZ;
 	}
 	
 	@Override
+	@SideOnly(Side.CLIENT)
 	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
 		TileEntityFlower flower = TileUtil.getTile(world, pos, TileEntityFlower.class);
-		if(flower != null && flower.getFlower() != null){
-			state = state.withProperty(FLOWER, flower.getFlower().getGenome().getPrimary().getType());
+		if(flower != null && flower.getType() != null){
+			state = state.withProperty(FLOWER, flower.getType());
+			state = state.withProperty(FLOWERED, flower.isFlowered());
+			state = state.withProperty(SECTION, flower.getRenderSection());
 		}else{
 			state = state.withProperty(FLOWER, FlowerDefinition.Dandelion.getSpecies().getType());
+			state = state.withProperty(FLOWERED, false);
 		}
 		return state;
 	}
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, FLOWER);
+		return new BlockStateContainer(this, FLOWER, FLOWERED, SECTION);
 	}
 	
 	@Override

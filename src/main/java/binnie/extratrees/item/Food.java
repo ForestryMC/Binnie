@@ -2,7 +2,7 @@ package binnie.extratrees.item;
 
 import binnie.Binnie;
 import binnie.core.Mods;
-import binnie.core.item.IItemMisc;
+import binnie.core.item.IItemMiscProvider;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.alcohol.Juice;
 import forestry.api.recipes.RecipeManagers;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public enum Food implements IItemMisc {
+public enum Food implements IItemMiscProvider {
     Crabapple(2),
     Orange(4),
     Kumquat(2),
@@ -110,16 +110,11 @@ public enum Food implements IItemMisc {
     public ItemStack get(final int i) {
         return new ItemStack(ExtraTrees.itemFood, i, this.ordinal());
     }
-
-//	@Override
-//	public IIcon getIcon(final ItemStack stack) {
-//		return this.icon;
-//	}
-//
-//	@Override
-//	public void registerIcons(final IIconRegister register) {
-//		this.icon = ExtraTrees.proxy.getIcon(register, "food/" + this.toString());
-//	}
+    
+    @Override
+    public String getModelPath() {
+    	return toString();
+    }
 
     @Override
     public void addInformation(final List par3List) {
