@@ -35,10 +35,15 @@ repositories {
         name = "ic2, forestry"
         url = "http://maven.ic2.player.to/"
     }
+    ivy {
+        name 'JEI Bees'
+        artifactPattern "http://addons-origin.cursecdn.com/files/${jeibees_cf}/[module]-[revision]-[classifier].[ext]"
+    }
 }
 
 dependencies {
     deobfCompile "net.sengir.forestry:forestry_${mcversion}:${forestry_version}"
+    deobfCompile name: 'jeibees', version: jeibees_version, ext: 'jar', classifier: "dev"
 }
 
 processResources
