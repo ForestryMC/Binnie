@@ -7,12 +7,14 @@ import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.EnumFlowerStage;
 import binnie.botany.api.IAlleleFlowerSpecies;
 import binnie.botany.api.IFlower;
+import binnie.botany.api.IFlowerGenome;
 import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.genetics.Flower;
 import binnie.core.BinnieCore;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
+import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IPollinatable;
 import forestry.core.config.Config;
@@ -34,6 +36,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -79,26 +82,36 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
     }
 
 	@Override
-	public void addInformation(final ItemStack itemstack, final EntityPlayer player, final List list, final boolean flag) {
-		if (!itemstack.hasTagCompound()) {
+	public void addInformation(final ItemStack itemStack, final EntityPlayer player, final List list, final boolean flag) {
+		if (!itemStack.hasTagCompound()) {
 			return;
 		}
-		final IFlower individual = (IFlower) this.getIndividual(itemstack);
-		if (individual == null) {
-			list.add("This item is bugged. Destroy it!");
+		IFlower individual = (IFlower) this.getIndividual(itemStack);
+		if (individual == null || individual.getGenome() == null) {
+			list.add(TextFormatting.DARK_RED + Binnie.Language.localise("botany.flower.destroy"));
 			return;
 		}
-		list.add("§e" + individual.getGenome().getPrimaryColor().getColourName() + ((individual.getGenome().getPrimaryColor() == individual.getGenome().getSecondaryColor()) ? "" : (" and " + individual.getGenome().getSecondaryColor().getColourName())) + ", " + individual.getGenome().getStemColor().getColourName() + " Stem");
+		IFlowerGenome genome = individual.getGenome();
+		//Colors
+		String primaryColor = genome.getPrimaryColor().getColourName();
+		String secondaryColor = genome.getSecondaryColor().getColourName();
+		String stemColor = genome.getStemColor().getColourName();
+		String colourInfo;
+		if(!primaryColor.equals(secondaryColor)){
+			colourInfo = Binnie.Language.localise("botany.grammar.flower.secondary");
+		}else{
+			colourInfo = Binnie.Language.localise("botany.grammar.flower");
+		}
+		list.add(TextFormatting.YELLOW + colourInfo.replaceAll("%PRIMARY", primaryColor).replaceAll("%SECONDARY", secondaryColor).replaceAll("%STEM", stemColor));
+		
 		if (individual.isAnalyzed()) {
 			if (BinnieCore.proxy.isShiftDown()) {
 				individual.addTooltip(list);
+			} else {
+				list.add(TextFormatting.ITALIC + "<" + Binnie.Language.localise("for.gui.tooltip.tmi") + ">");
 			}
-			else {
-				list.add("§o<Hold shift for details>");
-			}
-		}
-		else {
-			list.add("<Unknown>");
+		} else {
+			list.add("<" + Binnie.Language.localise("for.gui.unknown") + ">");
 		}
 	}
 

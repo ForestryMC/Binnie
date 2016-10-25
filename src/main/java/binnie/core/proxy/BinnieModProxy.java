@@ -30,9 +30,11 @@ public class BinnieModProxy implements IBinnieModProxy {
     	return GameRegistry.register(block);
     }
     
+	@Override
 	public void registerModels() {
 	}
 	
+	@Override
 	public void registerItemAndBlockColors() {
 	}
 

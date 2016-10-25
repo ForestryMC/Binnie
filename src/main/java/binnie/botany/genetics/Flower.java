@@ -12,15 +12,19 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import java.util.List;
 import java.util.Random;
 
 public class Flower extends Individual implements IFlower {
+	@Nonnull
     public IFlowerGenome genome;
+	@Nullable
     public IFlowerGenome mate;
-    int age;
-    boolean wilting;
-    boolean flowered;
+    private int age;
+    private boolean wilting;
+    private  boolean flowered;
 
     public Flower(@Nonnull final NBTTagCompound nbt) {
     	super(nbt);
@@ -118,36 +122,32 @@ public class Flower extends Individual implements IFlower {
         return nbttagcompound;
     }
 
-    public int getMetadata() {
-        return 0;
-    }
-
     @Override
     public IFlowerGenome getGenome() {
         return this.genome;
     }
 
-    private IChromosome inheritChromosome(final Random rand, final IChromosome parent1, final IChromosome parent2) {
-        IAllele choice1;
+    private IChromosome inheritChromosome(Random rand, IChromosome parentFirst, IChromosome parentSecond) {
+        IAllele choiceFirst;
         if (rand.nextBoolean()) {
-            choice1 = parent1.getPrimaryAllele();
+            choiceFirst = parentFirst.getPrimaryAllele();
         } else {
-            choice1 = parent1.getSecondaryAllele();
+            choiceFirst = parentFirst.getSecondaryAllele();
         }
-        IAllele choice2;
+        IAllele choiceSecond;
         if (rand.nextBoolean()) {
-            choice2 = parent2.getPrimaryAllele();
+            choiceSecond = parentSecond.getPrimaryAllele();
         } else {
-            choice2 = parent2.getSecondaryAllele();
+            choiceSecond = parentSecond.getSecondaryAllele();
         }
         if (rand.nextBoolean()) {
-            return new Chromosome(choice1, choice2);
+            return new Chromosome(choiceFirst, choiceSecond);
         }
-        return new Chromosome(choice2, choice1);
+        return new Chromosome(choiceSecond, choiceFirst);
     }
 
     @Override
-    public void mate(final IFlower other) {
+    public void mate(IFlower other) {
         this.mate = new FlowerGenome(other.getGenome().getChromosomes());
     }
 
@@ -213,73 +213,73 @@ public class Flower extends Individual implements IFlower {
     @Override
     public IFlower getOffspring(final World world, final BlockPos pos) {
         final IChromosome[] chromosomes = new IChromosome[this.genome.getChromosomes().length];
-        IChromosome[] parent1 = this.genome.getChromosomes();
-        IChromosome[] parent2 = this.mate.getChromosomes();
-        parent1 = this.mutateSpecies(world, pos, this.genome, this.mate);
-        parent2 = this.mutateSpecies(world, pos, this.mate, this.genome);
-        for (int i = 0; i < parent1.length; ++i) {
-            if (parent1[i] != null && parent2[i] != null) {
-                chromosomes[i] = Chromosome.inheritChromosome(world.rand, parent1[i], parent2[i]);
+        IChromosome[] parentFirst = this.genome.getChromosomes();
+        IChromosome[] parentSecond = this.mate.getChromosomes();
+        parentFirst = this.mutateSpecies(world, pos, this.genome, this.mate);
+        parentSecond = this.mutateSpecies(world, pos, this.mate, this.genome);
+        for (int i = 0; i < parentFirst.length; ++i) {
+            if (parentFirst[i] != null && parentSecond[i] != null) {
+                chromosomes[i] = Chromosome.inheritChromosome(world.rand, parentFirst[i], parentSecond[i]);
             }
         }
         return new Flower(new FlowerGenome(chromosomes), 0);
     }
 
-    private IChromosome[] mutateSpecies(final World world, final BlockPos pos, final IFlowerGenome genomeOne, final IFlowerGenome genomeTwo) {
-        IChromosome[] parent1 = genomeOne.getChromosomes();
-        final IChromosome[] parent2 = genomeTwo.getChromosomes();
-        IAlleleFlowerSpecies allele0;
-        IAlleleFlowerSpecies allele2;
+    private IChromosome[] mutateSpecies(World world, BlockPos pos, IFlowerGenome genomeFirst, IFlowerGenome genomeSecond) {
+        IChromosome[] parentFirst = genomeFirst.getChromosomes();
+        final IChromosome[] parentSecond = genomeSecond.getChromosomes();
+        IAlleleFlowerSpecies alleleFrist;
+        IAlleleFlowerSpecies alleleSecond;
         IFlowerGenome genome0;
         IFlowerGenome genome2;
         if (world.rand.nextBoolean()) {
-            allele0 = (IAlleleFlowerSpecies) parent1[EnumTreeChromosome.SPECIES.ordinal()].getPrimaryAllele();
-            allele2 = (IAlleleFlowerSpecies) parent2[EnumTreeChromosome.SPECIES.ordinal()].getSecondaryAllele();
-            genome0 = genomeOne;
-            genome2 = genomeTwo;
+            alleleFrist = (IAlleleFlowerSpecies) parentFirst[EnumTreeChromosome.SPECIES.ordinal()].getPrimaryAllele();
+            alleleSecond = (IAlleleFlowerSpecies) parentSecond[EnumTreeChromosome.SPECIES.ordinal()].getSecondaryAllele();
+            genome0 = genomeFirst;
+            genome2 = genomeSecond;
         } else {
-            allele0 = (IAlleleFlowerSpecies) parent2[EnumTreeChromosome.SPECIES.ordinal()].getPrimaryAllele();
-            allele2 = (IAlleleFlowerSpecies) parent1[EnumTreeChromosome.SPECIES.ordinal()].getSecondaryAllele();
-            genome0 = genomeTwo;
-            genome2 = genomeOne;
+            alleleFrist = (IAlleleFlowerSpecies) parentSecond[EnumTreeChromosome.SPECIES.ordinal()].getPrimaryAllele();
+            alleleSecond = (IAlleleFlowerSpecies) parentFirst[EnumTreeChromosome.SPECIES.ordinal()].getSecondaryAllele();
+            genome0 = genomeSecond;
+            genome2 = genomeFirst;
         }
-        IFlowerColour colour1 = genome0.getPrimaryColor();
-        IFlowerColour colour2 = genome2.getPrimaryColor();
-        if (colour1 != colour2) {
+        IFlowerColour colourFirst = genome0.getPrimaryColor();
+        IFlowerColour colourSecond = genome2.getPrimaryColor();
+        if (colourFirst != colourSecond) {
             for (final IColourMix mutation : BotanyCore.getFlowerRoot().getColourMixes(true)) {
-                if (mutation.isMutation(colour1, colour2) && world.rand.nextFloat() * 100.0f < mutation.getChance()) {
-                    parent1[EnumFlowerChromosome.PRIMARY.ordinal()] = new Chromosome(mutation.getResult().getAllele());
+                if (mutation.isMutation(colourFirst, colourSecond) && world.rand.nextFloat() * 100.0f < mutation.getChance()) {
+                    parentFirst[EnumFlowerChromosome.PRIMARY.ordinal()] = new Chromosome(mutation.getResult().getAllele());
                 }
             }
         }
-        colour1 = genome0.getSecondaryColor();
-        colour2 = genome2.getSecondaryColor();
-        if (colour1 != colour2) {
+        colourFirst = genome0.getSecondaryColor();
+        colourSecond = genome2.getSecondaryColor();
+        if (colourFirst != colourSecond) {
             for (final IColourMix mutation : BotanyCore.getFlowerRoot().getColourMixes(true)) {
-                if (mutation.isMutation(colour1, colour2) && world.rand.nextFloat() * 100.0f < mutation.getChance()) {
-                    parent1[EnumFlowerChromosome.SECONDARY.ordinal()] = new Chromosome(mutation.getResult().getAllele());
+                if (mutation.isMutation(colourFirst, colourSecond) && world.rand.nextFloat() * 100.0f < mutation.getChance()) {
+                    parentFirst[EnumFlowerChromosome.SECONDARY.ordinal()] = new Chromosome(mutation.getResult().getAllele());
                 }
             }
         }
-        colour1 = genome0.getStemColor();
-        colour2 = genome2.getStemColor();
-        if (colour1 != colour2) {
+        colourFirst = genome0.getStemColor();
+        colourSecond = genome2.getStemColor();
+        if (colourFirst != colourSecond) {
             for (final IColourMix mutation : BotanyCore.getFlowerRoot().getColourMixes(true)) {
-                if (mutation.isMutation(colour1, colour2) && world.rand.nextFloat() * 100.0f < mutation.getChance()) {
-                    parent1[EnumFlowerChromosome.STEM.ordinal()] = new Chromosome(mutation.getResult().getAllele());
+                if (mutation.isMutation(colourFirst, colourSecond) && world.rand.nextFloat() * 100.0f < mutation.getChance()) {
+                    parentFirst[EnumFlowerChromosome.STEM.ordinal()] = new Chromosome(mutation.getResult().getAllele());
                 }
             }
         }
         IChromosome[] template = null;
         for (final IFlowerMutation mutation2 : BotanyCore.getFlowerRoot().getMutations(true)) {
-            final float chance = mutation2.getChance(world, pos, allele0, allele2, genome0, genome2);
+            final float chance = mutation2.getChance(world, pos, alleleFrist, alleleSecond, genome0, genome2);
             if (chance > 0.0f && world.rand.nextFloat() * 100.0f < chance && template == null) {
                 template = BotanyCore.getFlowerRoot().templateAsChromosomes(mutation2.getTemplate());
             }
         }
         if (template != null) {
-            parent1 = template;
+            parentFirst = template;
         }
-        return parent1;
+        return parentFirst;
     }
 }
