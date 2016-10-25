@@ -9,6 +9,8 @@ import forestry.core.genetics.alleles.AlleleHelper;
 import forestry.core.genetics.alleles.EnumAllele;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -963,7 +965,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
     }
 
     FlowerDefinition(final String name, final String branch, final String binomial, final IFlowerType flowerType, final boolean isDominant, final EnumFlowerColor primaryColor, final EnumFlowerColor secondaryColor) {
-    	String uid = Constants.CORE_MOD_ID + ".flower" + this;
+    	String uid = Constants.BOTANY_MOD_ID + ".flower" + this;
 		String unlocalizedDescription = "botany.description.flower" + this;
 		String unlocalizedName = "botany.flowers.species." + name;
 		
@@ -1044,6 +1046,11 @@ public enum FlowerDefinition implements IFlowerDefinition {
     	IFlower flower = getIndividual();
     	return BotanyCore.getFlowerRoot().getMemberStack(flower, flowerStage);
     }
+    
+	
+	public static void preInitFlowers(){
+		MinecraftForge.EVENT_BUS.post(new AlleleSpeciesRegisterEvent(FlowerManager.flowerRoot));
+	}
     
 	public static void initFlowers() {
 		for (FlowerDefinition flower : values()) {

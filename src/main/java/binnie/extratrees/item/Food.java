@@ -126,15 +126,15 @@ public enum Food implements IItemMisc {
     }
 
     public void addJuice(final Juice juice, final int time, final int amount, final int mulch) {
-        RecipeManagers.squeezerManager.addRecipe(time, new ItemStack[]{this.get(1)}, Binnie.Liquid.getLiquidStack("juice", amount), Mods.Forestry.stack("mulch"), mulch);
+        RecipeManagers.squeezerManager.addRecipe(time, new ItemStack[]{this.get(1)}, Binnie.Liquid.getFluidStack("juice", amount), Mods.Forestry.stack("mulch"), mulch);
     }
 
     public void addJuice(final int time, final int amount, final int mulch) {
-        RecipeManagers.squeezerManager.addRecipe(time, new ItemStack[]{this.get(1)}, Binnie.Liquid.getLiquidStack("juice", amount), Mods.Forestry.stack("mulch"), mulch);
+        RecipeManagers.squeezerManager.addRecipe(time, new ItemStack[]{this.get(1)}, Binnie.Liquid.getFluidStack("juice", amount), Mods.Forestry.stack("mulch"), mulch);
     }
 
     public void addOil(final int time, final int amount, final int mulch) {
-        RecipeManagers.squeezerManager.addRecipe(time, new ItemStack[]{this.get(1)}, Binnie.Liquid.getLiquidStack("seedoil", amount), Mods.Forestry.stack("mulch"), mulch);
+        RecipeManagers.squeezerManager.addRecipe(time, new ItemStack[]{this.get(1)}, Binnie.Liquid.getFluidStack("seedoil", amount), Mods.Forestry.stack("mulch"), mulch);
     }
 
     public static void registerOreDictionary() {

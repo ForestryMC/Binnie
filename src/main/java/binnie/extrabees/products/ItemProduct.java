@@ -1,7 +1,6 @@
 package binnie.extrabees.products;
 
 import binnie.core.item.IItemEnum;
-import binnie.core.item.IItemMisc;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import net.minecraft.creativetab.CreativeTabs;
@@ -9,7 +8,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;
-import java.util.Locale;
 
 public class ItemProduct extends Item implements IItemModelRegister {
     IItemEnum[] types;

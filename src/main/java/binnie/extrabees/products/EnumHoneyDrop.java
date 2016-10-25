@@ -62,7 +62,7 @@ public enum EnumHoneyDrop implements IItemEnum {
     }
 
     public void addRecipe() {
-        final FluidStack liquid = Binnie.Liquid.getLiquidStack(this.liquidName, 200);
+        final FluidStack liquid = Binnie.Liquid.getFluidStack(this.liquidName, 200);
         if (liquid != null) {
             RecipeManagers.squeezerManager.addRecipe(10, new ItemStack[]{this.get(1)}, liquid, this.remenant, 100);
         }

@@ -11,9 +11,7 @@ import forestry.core.blocks.IColoredBlock;
 import forestry.core.items.IColoredItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -40,7 +38,8 @@ public class BlockCeramic extends Block implements IBlockMetadata, IColoredBlock
         this.setCreativeTab(CreativeTabBotany.instance);
     }
     
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public void registerModel(Item item, IModelManager manager) {
         for (final EnumFlowerColor c : EnumFlowerColor.values()) {
             manager.registerItemModel(item, c.ordinal());

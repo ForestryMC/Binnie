@@ -1,8 +1,6 @@
 package binnie.core.proxy;
 
 import binnie.Constants;
-import binnie.core.machines.RendererMachine;
-import binnie.core.machines.TileEntityMachine;
 import binnie.core.models.ModelManager;
 import binnie.core.resource.BinnieResource;
 import binnie.craftgui.resource.minecraft.CraftGUIResourceManager;

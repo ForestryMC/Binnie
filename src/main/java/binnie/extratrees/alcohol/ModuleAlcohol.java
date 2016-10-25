@@ -87,7 +87,7 @@ public class ModuleAlcohol implements IInitializable {
         }
         for (final Alcohol alcohol : Alcohol.values()) {
             for (final String fermentLiquid : alcohol.fermentationLiquid) {
-                final FluidStack fluid = Binnie.Liquid.getLiquidStack(fermentLiquid, 5);
+                final FluidStack fluid = Binnie.Liquid.getFluidStack(fermentLiquid, 5);
                 if (fluid != null) {
                     Brewery.addRecipe(fluid, alcohol.get(5));
                 }

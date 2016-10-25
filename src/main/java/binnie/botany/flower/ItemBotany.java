@@ -1,32 +1,59 @@
 package binnie.botany.flower;
 
+import binnie.Binnie;
+import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.EnumFlowerStage;
 import binnie.botany.api.IAlleleFlowerSpecies;
 import binnie.botany.api.IFlower;
+import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.genetics.Flower;
+import binnie.botany.genetics.FlowerDefinition;
+import binnie.botany.genetics.FlowerGenome;
+import binnie.core.BinnieCore;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
 import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IPollinatable;
 import forestry.core.config.Config;
+import forestry.core.items.IColoredItem;
+import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public abstract class ItemBotany extends Item {
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public int getSpriteNumber() {
-//		return 0;
-//	}
+public class ItemBotany extends Item implements IColoredItem, IItemModelRegister {
 
-    public ItemBotany(final String name) {
+	private EnumFlowerStage type;
+	private String tag;
+	
+    public ItemBotany(final String name, EnumFlowerStage type, String tag) {
         this.setCreativeTab(CreativeTabBotany.instance);
         this.setUnlocalizedName(name);
         setRegistryName(name);
         this.hasSubtypes = true;
+        this.type = type;
+        this.tag = tag;
     }
 
     @Override
@@ -52,35 +79,30 @@ public abstract class ItemBotany extends Item {
         final IIndividual individual = this.getIndividual(itemstack);
         return individual != null && individual.getGenome() != null && individual.hasEffect();
     }
-//
-//	@Override
-//	public void addInformation(final ItemStack itemstack, final EntityPlayer player, final List list, final boolean flag) {
-//		if (!itemstack.hasTagCompound()) {
-//			return;
-//		}
-//		final IFlower individual = (IFlower) this.getIndividual(itemstack);
-//		if (individual == null) {
-//			list.add("This item is bugged. Destroy it!");
-//			return;
-//		}
-//		list.add("§e" + individual.getGenome().getPrimaryColor().getName() + ((individual.getGenome().getPrimaryColor() == individual.getGenome().getSecondaryColor()) ? "" : (" and " + individual.getGenome().getSecondaryColor().getName())) + ", " + individual.getGenome().getStemColor().getName() + " Stem");
-//		if (individual.isAnalyzed()) {
-//			if (BinnieCore.proxy.isShiftDown()) {
-//				individual.addTooltip(list);
-//			}
-//			else {
-//				list.add("§o<Hold shift for details>");
-//			}
-//		}
-//		else {
-//			list.add("<Unknown>");
-//		}
-//	}
 
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerIcons(final IIconRegister par1IconRegister) {
-//	}
+	@Override
+	public void addInformation(final ItemStack itemstack, final EntityPlayer player, final List list, final boolean flag) {
+		if (!itemstack.hasTagCompound()) {
+			return;
+		}
+		final IFlower individual = (IFlower) this.getIndividual(itemstack);
+		if (individual == null) {
+			list.add("This item is bugged. Destroy it!");
+			return;
+		}
+		list.add("§e" + individual.getGenome().getPrimaryColor().getColourName() + ((individual.getGenome().getPrimaryColor() == individual.getGenome().getSecondaryColor()) ? "" : (" and " + individual.getGenome().getSecondaryColor().getColourName())) + ", " + individual.getGenome().getStemColor().getColourName() + " Stem");
+		if (individual.isAnalyzed()) {
+			if (BinnieCore.proxy.isShiftDown()) {
+				individual.addTooltip(list);
+			}
+			else {
+				list.add("§o<Hold shift for details>");
+			}
+		}
+		else {
+			list.add("<Unknown>");
+		}
+	}
 
     protected IIndividual getIndividual(final ItemStack itemstack) {
         return new Flower(itemstack.getTagCompound());
@@ -100,7 +122,7 @@ public abstract class ItemBotany extends Item {
             return "Unknown";
         }
         final IIndividual individual = this.getIndividual(itemstack);
-        return (individual != null && individual.getGenome() != null) ? (individual.getDisplayName() + this.getTag()) : "Corrupted Flower";
+        return (individual != null && individual.getGenome() != null) ? (individual.getDisplayName() + tag) : "Corrupted Flower";
     }
 
     @Override
@@ -113,155 +135,102 @@ public abstract class ItemBotany extends Item {
             if (hideSecrets && individual.isSecret() && !Config.isDebug) {
                 continue;
             }
-            itemList.add(BotanyCore.getFlowerRoot().getMemberStack(individual.copy(), this.getStage()));
+            itemList.add(BotanyCore.getFlowerRoot().getMemberStack(individual.copy(), type));
         }
     }
+    
+    @Override
+    public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+    	final IFlower flower = BotanyCore.speciesRoot.getMember(stack);
+		if (flower == null || flower.getGenome() == null) {
+			return 16777215;
+		}
+		return (tintIndex == 0) ? flower.getGenome().getStemColor().getColor(flower.isWilted()) : ((tintIndex == 1) ? flower.getGenome().getPrimaryColor().getColor(flower.isWilted()) : flower.getGenome().getSecondaryColor().getColor(flower.isWilted()));
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerModel(Item item, IModelManager manager) {
+    	manager.registerItemModel(item, new BotanyMeshDefinition());
+    }
+    
+	@SideOnly(Side.CLIENT)
+	private class BotanyMeshDefinition implements ItemMeshDefinition {
+		@Override
+		public ModelResourceLocation getModelLocation(ItemStack stack) {
+			IFlower flower = BotanyCore.getFlowerRoot().getMember(stack);
+			if (flower == null || flower.getGenome() == null || flower.getGenome().getPrimary() == null) {
+				return null;
+			}
+			IAlleleFlowerSpecies flowerSpecies = flower.getGenome().getPrimary();
+			if (flowerSpecies == null) {
+				flowerSpecies = FlowerDefinition.Dandelion.getSpecies();
+			}
+			IFlowerType flowerType = flowerSpecies.getType();
+			return flowerSpecies.getFlowerModel(type, flower.hasFlowered(), flowerType.getSections() - 1);
+		}
 
-//	@Override
-//	public int getColorFromItemStack(final ItemStack itemstack, final int renderPass) {
-//		final IFlower flower = BotanyCore.speciesRoot.getMember(itemstack);
-//		if (flower == null || flower.getGenome() == null) {
-//			return 16777215;
-//		}
-//		return (renderPass == 0) ? flower.getGenome().getStemColor().getColor(flower.isWilted()) : ((renderPass == 1) ? flower.getGenome().getPrimaryColor().getColor(flower.isWilted()) : flower.getGenome().getSecondaryColor().getColor(flower.isWilted()));
-//	}
+	}
+	
+	@Override
+	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (type == EnumFlowerStage.POLLEN) {
+			final IFlower flower = Binnie.Genetics.getFlowerRoot().getMember(stack);
+			final TileEntity target = world.getTileEntity(pos);
+			if (!(target instanceof IPollinatable)) {
+				return EnumActionResult.PASS;
+			}
+			final IPollinatable pollinatable = (IPollinatable) target;
+			if (!pollinatable.canMateWith(flower)) {
+				return EnumActionResult.FAIL;
+			}
+			pollinatable.mateWith(flower);
+			if (!player.capabilities.isCreativeMode) {
+				--stack.stackSize;
+			}
+			return EnumActionResult.SUCCESS;
+		}
+		else {
+	        IBlockState iblockstate = world.getBlockState(pos);
+	        Block block = iblockstate.getBlock();
 
-//	@Override
-//	public boolean requiresMultipleRenderPasses() {
-//		return true;
-//	}
-//
-//	@Override
-//	public int getRenderPasses(final int metadata) {
-//		return 3;
-//	}
-//
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public IIcon getIcon(final ItemStack itemstack, final int renderPass) {
-//		final IFlower flower = BotanyCore.speciesRoot.getMember(itemstack);
-//		if (flower == null || flower.getGenome() == null || flower.getGenome().getPrimary() == null) {
-//			return EnumFlowerType.Allium.getBlank();
-//		}
-//		final IFlowerType type = flower.getGenome().getPrimary().getType();
-//		if (renderPass == 0) {
-//			return type.getStem(this.getStage(), flower.hasFlowered(), type.getSections() - 1);
-//		}
-//		if (renderPass == 1) {
-//			return type.getPetalIcon(this.getStage(), flower.hasFlowered(), type.getSections() - 1);
-//		}
-//		return type.getVariantIcon(this.getStage(), flower.hasFlowered(), type.getSections() - 1);
-//	}
+	        if (!block.isReplaceable(world, pos))
+	        {
+	            pos = pos.offset(facing);
+	        }
 
-//	@Override
-//	public boolean onItemUse(final ItemStack itemstack, final EntityPlayer player, final World world, int x, int y, int z, int side, final float px, final float py, final float pz) {
-//		if (this.getStage() == EnumFlowerStage.POLLEN) {
-//			final IFlower flower = Binnie.Genetics.getFlowerRoot().getMember(itemstack);
-//			final TileEntity target = world.getTileEntity(x, y, z);
-//			if (!(target instanceof IPollinatable)) {
-//				return false;
-//			}
-//			final IPollinatable pollinatable = (IPollinatable) target;
-//			if (!pollinatable.canMateWith(flower)) {
-//				return false;
-//			}
-//			pollinatable.mateWith(flower);
-//			if (!player.capabilities.isCreativeMode) {
-//				--itemstack.stackSize;
-//			}
-//			return true;
-//		}
-//		else {
-//			final Block blockFlower = Botany.flower;
-//			final Block blockAlreadyThere = world.getBlock(x, y, z);
-//			if (blockAlreadyThere == Blocks.snow_layer && (world.getBlockMetadata(x, y, z) & 0x7) < 1) {
-//				side = 1;
-//			}
-//			else if (blockAlreadyThere != Blocks.vine && blockAlreadyThere != Blocks.tallgrass && blockAlreadyThere != Blocks.deadbush && !blockAlreadyThere.isReplaceable(world, x, y, z)) {
-//				if (side == 0) {
-//					--y;
-//				}
-//				if (side == 1) {
-//					++y;
-//				}
-//				if (side == 2) {
-//					--z;
-//				}
-//				if (side == 3) {
-//					++z;
-//				}
-//				if (side == 4) {
-//					--x;
-//				}
-//				if (side == 5) {
-//					++x;
-//				}
-//			}
-//			if (itemstack.stackSize == 0) {
-//				return false;
-//			}
-//			if (!player.canPlayerEdit(x, y, z, side, itemstack)) {
-//				return false;
-//			}
-//			if (y == 255 && blockFlower.getMaterial().isSolid()) {
-//				return false;
-//			}
-//			if (world.canPlaceEntityOnSide(blockFlower, x, y, z, false, side, player, itemstack)) {
-//				final int i1 = this.getMetadata(itemstack.getItemDamage());
-//				final int j1 = blockFlower.onBlockPlaced(world, x, y, z, side, px, py, pz, i1);
-//				if (this.placeBlockAt(itemstack, player, world, x, y, z, side, px, py, pz, j1)) {
-//					world.playSoundEffect(x + 0.5f, y + 0.5f, z + 0.5f, blockFlower.stepSound.func_150496_b(), (blockFlower.stepSound.getVolume() + 1.0f) / 2.0f, blockFlower.stepSound.getPitch() * 0.8f);
-//					--itemstack.stackSize;
-//				}
-//				return true;
-//			}
-//			return false;
-//		}
-//	}
+	        if (stack.stackSize != 0 && player.canPlayerEdit(pos, facing, stack) && world.canBlockBePlaced(Botany.flower, pos, false, facing, (Entity)null, stack))
+	        {
+	            int i = this.getMetadata(stack.getMetadata());
+	            IBlockState iblockstate1 = Botany.flower.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, i, player, stack);
 
-//	@SideOnly(Side.CLIENT)
-//	public boolean func_150936_a(final World p_150936_1_, int p_150936_2_, int p_150936_3_, int p_150936_4_, int p_150936_5_, final EntityPlayer p_150936_6_, final ItemStack p_150936_7_) {
-//		final Block field_150939_a = Botany.flower;
-//		final Block block = p_150936_1_.getBlock(p_150936_2_, p_150936_3_, p_150936_4_);
-//		if (block == Blocks.snow_layer) {
-//			p_150936_5_ = 1;
-//		}
-//		else if (block != Blocks.vine && block != Blocks.tallgrass && block != Blocks.deadbush && !block.isReplaceable(p_150936_1_, p_150936_2_, p_150936_3_, p_150936_4_)) {
-//			if (p_150936_5_ == 0) {
-//				--p_150936_3_;
-//			}
-//			if (p_150936_5_ == 1) {
-//				++p_150936_3_;
-//			}
-//			if (p_150936_5_ == 2) {
-//				--p_150936_4_;
-//			}
-//			if (p_150936_5_ == 3) {
-//				++p_150936_4_;
-//			}
-//			if (p_150936_5_ == 4) {
-//				--p_150936_2_;
-//			}
-//			if (p_150936_5_ == 5) {
-//				++p_150936_2_;
-//			}
-//		}
-//		return p_150936_1_.canPlaceEntityOnSide(field_150939_a, p_150936_2_, p_150936_3_, p_150936_4_, false, p_150936_5_, (Entity) null, p_150936_7_);
-//	}
-//
-//	public boolean placeBlockAt(final ItemStack stack, final EntityPlayer player, final World world, final int x, final int y, final int z, final int side, final float hitX, final float hitY, final float hitZ, final int metadata) {
-//		final Block field_150939_a = Botany.flower;
-//		if (!world.setBlock(x, y, z, field_150939_a, metadata, 3)) {
-//			return false;
-//		}
-//		if (world.getBlock(x, y, z) == field_150939_a) {
-//			field_150939_a.onBlockPlacedBy(world, x, y, z, player, stack);
-//			field_150939_a.onPostBlockPlaced(world, x, y, z, metadata);
-//		}
-//		return true;
-//	}
+	            if (placeBlockAt(stack, player, world, pos, facing, hitX, hitY, hitZ, iblockstate1))
+	            {
+	                SoundType soundtype = world.getBlockState(pos).getBlock().getSoundType(world.getBlockState(pos), world, pos, player);
+	                world.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+	                --stack.stackSize;
+	            }
 
-    public abstract EnumFlowerStage getStage();
+	            return EnumActionResult.SUCCESS;
+	        }
+	        else
+	        {
+	            return EnumActionResult.FAIL;
+	        }
+		}
+	}
+	
+    public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, IBlockState newState){
+        if (!world.setBlockState(pos, newState, 3)){
+        	return false;
+        }
 
-    public abstract String getTag();
+        IBlockState state = world.getBlockState(pos);
+        if (state.getBlock() == Botany.flower) {
+            ItemBlock.setTileEntityNBT(world, player, pos, stack);
+            Botany.flower.onBlockPlacedBy(world, pos, state, player, stack);
+        }
+
+        return true;
+    }
 }

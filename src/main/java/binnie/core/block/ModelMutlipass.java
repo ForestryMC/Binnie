@@ -1,8 +1,6 @@
 package binnie.core.block;
 
 import forestry.api.core.IModelBaker;
-import forestry.arboriculture.blocks.BlockForestryLeaves;
-import forestry.arboriculture.models.ModelLeaves;
 import forestry.core.models.ModelBlockCached;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

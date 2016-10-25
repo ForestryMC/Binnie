@@ -47,7 +47,7 @@ public class ItemFluidContainer extends ItemFood {
 
     private FluidStack getLiquid(final ItemStack stack) {
         final String liquid = ItemFluidContainer.idToFluid.get(stack.getItemDamage());
-        return (liquid == null) ? null : Binnie.Liquid.getLiquidStack(liquid, 1000);
+        return (liquid == null) ? null : Binnie.Liquid.getFluidStack(liquid, 1000);
     }
 
 //	@Override

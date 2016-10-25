@@ -2,6 +2,7 @@ package binnie.botany.genetics;
 
 import binnie.Binnie;
 import binnie.botany.Botany;
+import binnie.botany.api.EnumFlowerStage;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.flower.*;
 import binnie.core.BinnieCore;
@@ -14,6 +15,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
@@ -22,17 +24,22 @@ public class ModuleGenetics implements IInitializable {
 
     @Override
     public void preInit() {
+    	/* INIT API*/
     	binnie.botany.api.FlowerManager.flowerFactory = new FlowerFactory();
-        EnumFlowerColor.setupMutations();
-        Botany.flower = new BlockFlower();
-        Botany.flowerItem = new ItemFlower();
-        Botany.pollen = new ItemPollen();
-        Botany.seed = new ItemSeed();
         AlleleManager.alleleRegistry.registerSpeciesRoot(BotanyCore.getFlowerRoot());
         AlleleManager.alleleRegistry.registerAllele(ModuleGenetics.alleleEffectNone);
+        EnumFlowerColor.setupMutations();
+        FlowerDefinition.preInitFlowers();
+        
+        Botany.flower = new BlockFlower();
         GameRegistry.register(Botany.flower);
-        GameRegistry.register(new ItemBlock(Botany.flower).setRegistryName(Botany.flower.getRegistryName()));
         BinnieCore.proxy.registerTileEntity(TileEntityFlower.class, "botany.tile.flower", null);
+        //Need we this ?
+        GameRegistry.register(new ItemBlock(Botany.flower).setRegistryName(Botany.flower.getRegistryName()));
+        
+        Botany.flowerItem = new ItemBotany("itemFlower", EnumFlowerStage.FLOWER, "");
+        Botany.pollen = new ItemBotany("pollen", EnumFlowerStage.POLLEN, "Pollen");
+        Botany.seed = new ItemBotany("seed", EnumFlowerStage.SEED, " Germling");
         Botany.database = new ItemDictionary();
         Botany.encyclopedia = new ItemEncyclopedia(false);
         Botany.encyclopediaIron = new ItemEncyclopedia(true);
@@ -40,23 +47,37 @@ public class ModuleGenetics implements IInitializable {
 
     @Override
     public void init() {
-        for (final EnumFlowerColor color : EnumFlowerColor.values()) {
-            AlleleManager.alleleRegistry.registerAllele(color.getAllele());
-        }
+    	EnumFlowerColor.initColours();
         FlowerDefinition.initFlowers();
-        //TODO RENDERING
-//		RendererBotany.renderID = RenderingRegistry.getNextAvailableRenderId();
-        BinnieCore.proxy.registerBlockRenderer(new RendererBotany());
     }
 
     @Override
     public void postInit() {
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Botany.encyclopedia), "fff", "fbf", "fff", 'f', new ItemStack(Blocks.RED_FLOWER, 1, 32767), 'b', Items.BOOK));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Botany.encyclopedia), "fff", "fbf", "fff", 'f', new ItemStack(Blocks.YELLOW_FLOWER, 1, 32767), 'b', Items.BOOK));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Botany.encyclopedia), "fff", "fbf", "fff", 'f', new ItemStack(Botany.flower, 1, 32767), 'b', Items.BOOK));
+    	OreDictionary.registerOre("flower", new ItemStack(Blocks.RED_FLOWER, 1, OreDictionary.WILDCARD_VALUE));
+    	OreDictionary.registerOre("flower", new ItemStack(Blocks.YELLOW_FLOWER, 1, OreDictionary.WILDCARD_VALUE));
+    	OreDictionary.registerOre("flower", new ItemStack(Blocks.DOUBLE_PLANT, 1, 0));
+    	OreDictionary.registerOre("flower", new ItemStack(Blocks.DOUBLE_PLANT, 1, 1));
+    	OreDictionary.registerOre("flower", new ItemStack(Blocks.DOUBLE_PLANT, 1, 4));
+    	OreDictionary.registerOre("flower", new ItemStack(Blocks.DOUBLE_PLANT, 1, 5));
+    	OreDictionary.registerOre("flower", new ItemStack(Botany.flower, 1, OreDictionary.WILDCARD_VALUE));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Botany.encyclopedia), 
+        		"fff", 
+        		"fbf", 
+        		"fff", 
+        		'f', "flower", 
+        		'b', Items.BOOK));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Botany.encyclopediaIron), new ItemStack(Botany.encyclopedia), "ingotIron"));
         FlowerManager.flowerRegistry.registerAcceptableFlower(Botany.flower, "flowersVanilla");
-        RecipeManagers.carpenterManager.addRecipe(100, Binnie.Liquid.getLiquidStack("water", 2000), null, new ItemStack(Botany.database), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', Items.GOLD_NUGGET, 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
+        RecipeManagers.carpenterManager.addRecipe(100, Binnie.Liquid.getFluidStack("water", 2000), null, new ItemStack(Botany.database), 
+        		"X#X", 
+        		"YEY", 
+        		"RDR", 
+        		'#', Blocks.GLASS_PANE, 
+        		'X', Items.GOLD_INGOT, 
+        		'Y', Items.GOLD_NUGGET, 
+        		'R', Items.REDSTONE, 
+        		'D', Items.DIAMOND, 
+        		'E', Items.EMERALD);
     }
 
 }

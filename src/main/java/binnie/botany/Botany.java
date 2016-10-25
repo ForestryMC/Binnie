@@ -13,7 +13,7 @@ import binnie.botany.core.BotanyCore;
 import binnie.botany.core.BotanyGUI;
 import binnie.botany.core.ModuleCore;
 import binnie.botany.flower.BlockFlower;
-import binnie.botany.flower.ItemFlower;
+import binnie.botany.flower.ItemBotany;
 import binnie.botany.flower.ItemInsulatedTube;
 import binnie.botany.flower.TileEntityFlower;
 import binnie.botany.gardening.*;
@@ -78,7 +78,7 @@ public class Botany extends AbstractMod {
     public static ItemMisc misc;
     public static ItemEncyclopedia encyclopedia;
     public static ItemEncyclopedia encyclopediaIron;
-    public static ItemFlower flowerItem;
+    public static ItemBotany flowerItem;
     public static ItemPigment pigment;
     public static ItemClay clay;
     public static BlockCeramic ceramic;

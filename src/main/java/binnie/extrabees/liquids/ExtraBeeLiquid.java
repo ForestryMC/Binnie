@@ -58,7 +58,7 @@ public enum ExtraBeeLiquid implements ILiquidType {
 
     @Override
     public FluidStack get(final int amount) {
-        return Binnie.Liquid.getLiquidStack(this.ident, amount);
+        return Binnie.Liquid.getFluidStack(this.ident, amount);
     }
 
     @Override

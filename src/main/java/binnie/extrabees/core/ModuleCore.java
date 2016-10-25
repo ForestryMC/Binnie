@@ -3,7 +3,6 @@ package binnie.extrabees.core;
 import binnie.Binnie;
 import binnie.core.IInitializable;
 import binnie.extrabees.ExtraBees;
-import binnie.genetics.Genetics;
 import forestry.api.core.Tabs;
 
 public class ModuleCore implements IInitializable {

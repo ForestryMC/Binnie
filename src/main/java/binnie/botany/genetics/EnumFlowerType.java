@@ -1,12 +1,17 @@
 package binnie.botany.genetics;
 
+import java.util.Locale;
+
+import binnie.Constants;
 import binnie.botany.api.EnumFlowerStage;
 import binnie.botany.api.IFlowerType;
 import forestry.api.core.IModelManager;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public enum EnumFlowerType implements IFlowerType {
+public enum EnumFlowerType implements IFlowerType<EnumFlowerType> {
     Dandelion,
     Poppy,
     Orchid,
@@ -56,17 +61,10 @@ public enum EnumFlowerType implements IFlowerType {
     Hollyhock(2);
 
     int sections;
-//	IIcon[] stem;
-//	IIcon[] petal;
-//	IIcon[] variant;
-//	IIcon[] unflowered;
-//	IIcon seedStem;
-//	IIcon seedPetal;
-//	IIcon seedVariant;
-//	IIcon pollenStem;
-//	IIcon pollenPetal;
-//	IIcon pollenVariant;
-//	IIcon blank;
+    ModelResourceLocation[] flowered;
+    ModelResourceLocation[] unflowered;
+	ModelResourceLocation seed;
+	ModelResourceLocation pollen;
 
     EnumFlowerType() {
         this(1);
@@ -74,63 +72,38 @@ public enum EnumFlowerType implements IFlowerType {
 
     EnumFlowerType(final int sections) {
         this.sections = sections;
-//		this.stem = new IIcon[sections];
-//		this.petal = new IIcon[sections];
-//		this.variant = new IIcon[sections];
-//		this.unflowered = new IIcon[sections];
+		this.flowered = new ModelResourceLocation[sections];
+		this.unflowered = new ModelResourceLocation[sections];
     }
-
-//	@Override
-//	public IIcon getStem(final EnumFlowerStage stage, final boolean flowered, final int section) {
-//		return (stage == EnumFlowerStage.SEED) ? this.seedStem : ((stage == EnumFlowerStage.POLLEN) ? this.pollenStem : this.stem[section % this.sections]);
-//	}
-//
-//	@Override
-//	public IIcon getPetalIcon(final EnumFlowerStage stage, final boolean flowered, final int section) {
-//		return (stage == EnumFlowerStage.SEED) ? this.seedPetal : ((stage == EnumFlowerStage.POLLEN) ? this.pollenPetal : (flowered ? this.petal[section % this.sections] : this.unflowered[section % this.sections]));
-//	}
-//
-//	@Override
-//	public IIcon getVariantIcon(final EnumFlowerStage stage, final boolean flowered, final int section) {
-//		return (stage == EnumFlowerStage.SEED) ? this.seedVariant : ((stage == EnumFlowerStage.POLLEN) ? this.pollenVariant : (flowered ? this.variant[section % this.sections] : this.blank));
-//	}
-//
-//	public void registerIcons(final IIconRegister register) {
-//		for (int i = 0; i < this.sections; ++i) {
-//			final String suf = (i == 0) ? "" : ("" + (i + 1));
-//			final String pre = (this.sections == 1) ? "" : "double/";
-//			this.stem[i] = Botany.proxy.getIcon(register, "flowers/" + pre + this.toString().toLowerCase() + suf + ".0");
-//			this.petal[i] = Botany.proxy.getIcon(register, "flowers/" + pre + this.toString().toLowerCase() + suf + ".1");
-//			this.variant[i] = Botany.proxy.getIcon(register, "flowers/" + pre + this.toString().toLowerCase() + suf + ".2");
-//			this.unflowered[i] = Botany.proxy.getIcon(register, "flowers/" + pre + this.toString().toLowerCase() + suf + ".3");
-//		}
-//		this.blank = Botany.proxy.getIcon(register, "flowers/blank");
-//		this.seedStem = Botany.proxy.getIcon(register, "flowers/seed.0");
-//		this.seedPetal = Botany.proxy.getIcon(register, "flowers/seed.1");
-//		this.seedVariant = Botany.proxy.getIcon(register, "flowers/seed.2");
-//		this.pollenStem = Botany.proxy.getIcon(register, "flowers/pollen.0");
-//		this.pollenPetal = Botany.proxy.getIcon(register, "flowers/pollen.1");
-//		this.pollenVariant = Botany.proxy.getIcon(register, "flowers/pollen.2");
-//	}
     
-   /* @SideOnly(Side.CLIENT)
-    public void registerModel(Item item, IModelManager manager){
+    @Override
+	@SideOnly(Side.CLIENT)
+    public void registerModels(Item item, IModelManager manager, EnumFlowerStage type){
     	for (int i = 0; i < this.sections; ++i) {
 			final String suf = (i == 0) ? "" : ("" + (i + 1));
 			final String pre = (this.sections == 1) ? "" : "double/";
-			this.stem[i] = Botany.proxy.getIcon(register, "flowers/" + pre + this.toString().toLowerCase() + suf + ".0");
-			this.petal[i] = Botany.proxy.getIcon(register, "flowers/" + pre + this.toString().toLowerCase() + suf + ".1");
-			this.variant[i] = Botany.proxy.getIcon(register, "flowers/" + pre + this.toString().toLowerCase() + suf + ".2");
-			this.unflowered[i] = Botany.proxy.getIcon(register, "flowers/" + pre + this.toString().toLowerCase() + suf + ".3");
+			this.flowered[i] = new ModelResourceLocation(Constants.BOTANY_MOD_ID, "flowers/" + pre + this.toString().toLowerCase() + suf + "_flowered");
+			this.unflowered[i] = new ModelResourceLocation(Constants.BOTANY_MOD_ID, "flowers/" + pre + this.toString().toLowerCase() + suf + "_unflowered");
 		}
-		this.blank = Botany.proxy.getIcon(register, "flowers/blank");
-		this.seedStem = Botany.proxy.getIcon(register, "flowers/seed.0");
-		this.seedPetal = Botany.proxy.getIcon(register, "flowers/seed.1");
-		this.seedVariant = Botany.proxy.getIcon(register, "flowers/seed.2");
-		this.pollenStem = Botany.proxy.getIcon(register, "flowers/pollen.0");
-		this.pollenPetal = Botany.proxy.getIcon(register, "flowers/pollen.1");
-		this.pollenVariant = Botany.proxy.getIcon(register, "flowers/pollen.2");
-    }*/
+		this.seed = new ModelResourceLocation(Constants.BOTANY_MOD_ID, "flowers/seed");
+		this.pollen = new ModelResourceLocation(Constants.BOTANY_MOD_ID, "flowers/pollen");
+    }
+    
+    @SideOnly(Side.CLIENT)
+	@Override
+	public ModelResourceLocation getModel(EnumFlowerStage type, boolean flowered, int section) {
+    	if(type == EnumFlowerStage.SEED){
+    		return seed;
+    	}else if(type == EnumFlowerStage.POLLEN){
+    		return pollen;
+    	}else{
+    		if(flowered){
+    			return this.flowered[section % this.sections];
+    		}else{
+    			return unflowered[section % this.sections];
+    		}
+    	}
+	}
 
     @Override
     public int getID() {
@@ -141,14 +114,10 @@ public enum EnumFlowerType implements IFlowerType {
     public int getSections() {
         return this.sections;
     }
-
+	
 	@Override
-	public void registerModels(Item item, IModelManager manager, EnumFlowerStage type) {
-	}
-
-	@Override
-	public ModelResourceLocation getModel(EnumFlowerStage type) {
-		return null;
+	public String getName() {
+		return name().toLowerCase(Locale.ENGLISH);
 	}
 
 //	public IIcon getBlank() {

@@ -210,7 +210,7 @@ public class GardenLogic extends FarmLogic {
     }
 
     private boolean trySetWater(final Vect position) {
-        final FluidStack water = Binnie.Liquid.getLiquidStack("water", 1000);
+        final FluidStack water = Binnie.Liquid.getFluidStack("water", 1000);
         if (this.moisture == EnumMoisture.Damp) {
             if (!this.housing.hasLiquid(water)) {
                 return false;

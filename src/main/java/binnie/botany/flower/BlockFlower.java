@@ -7,21 +7,31 @@ import java.util.Random;
 import com.mojang.authlib.GameProfile;
 
 import binnie.botany.Botany;
+import binnie.botany.api.EnumFlowerStage;
 import binnie.botany.api.IFlower;
+import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.gardening.Gardening;
+import binnie.botany.genetics.FlowerDefinition;
 import binnie.core.BinnieCore;
+import binnie.core.util.TileUtil;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
 import forestry.core.blocks.IColoredBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -29,10 +39,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockFlower extends BlockContainer implements /*IItemModelRegister, */IColoredBlock {
+public class BlockFlower extends BlockContainer implements IColoredBlock, IItemModelRegister {
 	
 	public static final AxisAlignedBB FLOWER_BLOCK_AABB = new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 0.6D, 0.7D);
-
+	/* PROPERTYS */
+	public static final PropertyFlower FLOWER = new PropertyFlower("flower", IFlowerType.class);
+	
     public BlockFlower() {
         super(Material.PLANTS);
         final float f = 0.2f;
@@ -46,18 +58,18 @@ public class BlockFlower extends BlockContainer implements /*IItemModelRegister,
         return new TileEntityFlower();
     }
     
-    
-    /*@Override
+    @Override
     @SideOnly(Side.CLIENT)
     public void registerModel(Item item, IModelManager manager) {
-		for (final EnumFlowerType type : EnumFlowerType.values()) {
-			type.registerIcons(par1IconRegister);
-		}
-    }*/
+    	for(EnumFlowerStage type : EnumFlowerStage.VALUES){
+			for (IFlowerType flowerType : (List<IFlowerType>)FLOWER.getAllowedValues()) {
+				flowerType.registerModels(item, manager, type);
+			}
+    	}
+    }
 	
 	@Override
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
-		//flowers have no collision
 		return null;
 	}
 	
@@ -98,21 +110,7 @@ public class BlockFlower extends BlockContainer implements /*IItemModelRegister,
 		}
 		Gardening.tryGrowSection(world, pos);
 	}
-
-	/*@Override
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(final IBlockAccess world, final int x, final int y, final int z, final int side) {
-		final TileEntity tile = world.getTileEntity(x, y, z);
-		if (tile instanceof TileEntityFlower) {
-			final TileEntityFlower f = (TileEntityFlower) tile;
-			final EnumFlowerStage stage = (f.getAge() == 0) ? EnumFlowerStage.SEED : EnumFlowerStage.FLOWER;
-			final IFlowerType flower = f.getType();
-			final int section = f.getRenderSection();
-			final boolean flowered = f.isFlowered();
-			return (RendererBotany.pass == 0) ? flower.getStem(stage, flowered, section) : ((RendererBotany.pass == 1) ? flower.getPetalIcon(stage, flowered, section) : flower.getVariantIcon(stage, flowered, section));
-		}
-		return super.getIcon(world, x, y, z, side);
-	}*/
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex) {
@@ -141,11 +139,49 @@ public class BlockFlower extends BlockContainer implements /*IItemModelRegister,
 		if (tile instanceof TileEntityFlower && ((TileEntityFlower) tile).getSection() > 0) {
 			return downState.getBlock() == Botany.flower;
 		}
-		return this.canPlaceBlockOn(blockState.getBlock());
+		return this.canPlaceBlockOn(downState.getBlock());
 	}
 	
 	protected boolean canPlaceBlockOn(final Block block) {
 		return block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.FARMLAND || Gardening.isSoil(block);
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        return EnumBlockRenderType.MODEL;
+    }
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public EnumOffsetType getOffsetType() {
+		return EnumOffsetType.XZ;
+	}
+	
+	@Override
+	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
+		TileEntityFlower flower = TileUtil.getTile(world, pos, TileEntityFlower.class);
+		if(flower != null && flower.getFlower() != null){
+			state = state.withProperty(FLOWER, flower.getFlower().getGenome().getPrimary().getType());
+		}else{
+			state = state.withProperty(FLOWER, FlowerDefinition.Dandelion.getSpecies().getType());
+		}
+		return state;
+	}
+	
+	@Override
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, FLOWER);
+	}
+	
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return 0;
+	}
+	
+	@Override
+	public BlockRenderLayer getBlockLayer() {
+		return BlockRenderLayer.CUTOUT;
 	}
 	
 	@Override
@@ -203,4 +239,5 @@ public class BlockFlower extends BlockContainer implements /*IItemModelRegister,
 		}
 		return hasBeenBroken;
 	}
+	
 }

@@ -16,6 +16,11 @@ public class MessageFlowerUpdate extends MessageCoordinates {
         super(PacketID.FlowerUpdate.ordinal(), posX, posY, posZ);
         this.render = render;
     }
+    
+    @Override
+    public MessageBinnie GetMessage() {
+    	return super.GetMessage();
+    }
 
     public MessageFlowerUpdate(final MessageBinnie message) {
         super(message);

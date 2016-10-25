@@ -6,6 +6,7 @@ import binnie.botany.core.BotanyCore;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.*;
 import forestry.core.genetics.Genome;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class FlowerGenome extends Genome implements IFlowerGenome {
@@ -16,6 +17,19 @@ public class FlowerGenome extends Genome implements IFlowerGenome {
     public FlowerGenome(final IChromosome[] chromosomes) {
         super(chromosomes);
     }
+    
+	public static IAlleleFlowerSpecies getSpecies(ItemStack itemStack) {
+		if (!FlowerManager.flowerRoot.isMember(itemStack)) {
+			return null;
+		}
+
+		IAlleleSpecies species = getSpeciesDirectly(FlowerManager.flowerRoot, itemStack);
+		if (species instanceof IAlleleFlowerSpecies) {
+			return (IAlleleFlowerSpecies) species;
+		}
+
+		return (IAlleleFlowerSpecies) getActiveAllele(itemStack, EnumFlowerChromosome.SPECIES, FlowerManager.flowerRoot);
+	}
 
     @Override
     public IAlleleFlowerSpecies getPrimary() {

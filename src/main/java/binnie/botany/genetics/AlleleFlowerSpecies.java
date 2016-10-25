@@ -90,13 +90,18 @@ public class AlleleFlowerSpecies extends AlleleSpecies implements IAlleleFlowerS
 	}
 
 	@Override
-	public ModelResourceLocation getFlowerModel(EnumFlowerStage type) {
-		return flowerType.getModel(type);
+	public ModelResourceLocation getFlowerModel(EnumFlowerStage type, boolean flowered, int section) {
+		return flowerType.getModel(type, flowered, section);
 	}
 
 	@Override
 	public void registerModels(Item item, IModelManager manager, EnumFlowerStage type) {
 		flowerType.registerModels(item, manager, type);
+	}
+
+	@Override
+	public int compareTo(IAlleleFlowerSpecies o) {
+		return 0;
 	}
 
 }

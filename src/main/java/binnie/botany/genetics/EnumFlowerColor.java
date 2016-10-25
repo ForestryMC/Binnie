@@ -3,6 +3,7 @@ package binnie.botany.genetics;
 import binnie.botany.Botany;
 import binnie.botany.api.IFlowerColour;
 import binnie.botany.core.BotanyCore;
+import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAlleleInteger;
 import net.minecraft.util.IStringSerializable;
 
@@ -2943,6 +2944,12 @@ public enum EnumFlowerColor implements IFlowerColour, IAlleleInteger, IStringSer
         addMix(EnumFlowerColor.YellowGreen, EnumFlowerColor.Wheat, EnumFlowerColor.Khaki, 100);
         addMix(EnumFlowerColor.YellowGreen, EnumFlowerColor.White, EnumFlowerColor.Khaki, 95);
         addMix(EnumFlowerColor.YellowGreen, EnumFlowerColor.Yellow, EnumFlowerColor.Khaki, 110);
+    }
+    
+    public static void initColours(){
+        for (EnumFlowerColor color : EnumFlowerColor.values()) {
+            AlleleManager.alleleRegistry.registerAllele(color);
+        }
     }
 
     @Override

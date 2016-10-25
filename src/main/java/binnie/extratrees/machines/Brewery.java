@@ -461,7 +461,7 @@ public class Brewery {
                     this.grainCrops.put(stack, grainType);
                 }
             }
-            this.water = Binnie.Liquid.getLiquidStack("water", 5);
+            this.water = Binnie.Liquid.getFluidStack("water", 5);
             this.hops = OreDictionary.getOres("cropHops").get(0);
             this.add(Alcohol.Ale);
             this.add(Alcohol.Lager);

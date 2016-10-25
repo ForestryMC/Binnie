@@ -36,7 +36,7 @@ public class ManagerLiquid extends ManagerBase {
         return bFluid;
     }
 
-    public FluidStack getLiquidStack(final String name, final int amount) {
+    public FluidStack getFluidStack(final String name, final int amount) {
         return FluidRegistry.getFluidStack(name.toLowerCase(), amount);
     }
 
