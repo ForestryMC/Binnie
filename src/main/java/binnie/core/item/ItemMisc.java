@@ -1,5 +1,6 @@
 package binnie.core.item;
 
+import forestry.api.core.IModelManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -9,8 +10,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 import java.util.Locale;
-
-import forestry.api.core.IModelManager;
 
 public class ItemMisc extends ItemCore {
     private IItemMisc[] items;

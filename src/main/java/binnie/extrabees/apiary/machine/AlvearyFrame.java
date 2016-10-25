@@ -10,7 +10,10 @@ import binnie.extrabees.apiary.ComponentExtraBeeGUI;
 import binnie.extrabees.apiary.TileExtraBeeAlveary;
 import binnie.extrabees.core.ExtraBeeGUID;
 import binnie.extrabees.core.ExtraBeeTexture;
-import forestry.api.apiculture.*;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.IBeeListener;
+import forestry.api.apiculture.IBeeModifier;
+import forestry.api.apiculture.IHiveFrame;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 

@@ -20,11 +20,7 @@ import binnie.extratrees.machines.Designer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class ControlTileSelect extends Control implements IControlValue<IDesign>, IControlScrollable {
     IDesign value;

@@ -31,6 +31,8 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
+    protected abstract void registerModules();
+
     public abstract boolean isActive();
 
     @Override
@@ -64,6 +66,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
         if (!this.isActive()) {
             return;
         }
+        registerModules();
         if (this.getConfigs() != null) {
             for (final Class cls : this.getConfigs()) {
                 Binnie.Configuration.registerConfiguration(cls, this);
@@ -87,6 +90,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
                 throw new RuntimeException(e);
             }
         }
+        getProxy().registerModels();
     }
 
     @Override
@@ -107,6 +111,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
                 throw new RuntimeException(e);
             }
         }
+        getProxy().registerItemAndBlockColors();
     }
 
     @Override

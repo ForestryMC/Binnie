@@ -1,6 +1,5 @@
 package binnie.extrabees.apiary;
 
-import binnie.core.BinnieCore;
 import binnie.core.machines.TileEntityMachine;
 import binnie.extrabees.apiary.machine.AlvearyMachine;
 import com.mojang.authlib.GameProfile;

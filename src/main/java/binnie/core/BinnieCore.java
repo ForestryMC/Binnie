@@ -48,6 +48,7 @@ import java.util.List;
 
 @Mod(modid = Constants.CORE_MOD_ID, name = "Binnie Core", useMetadata = true, dependencies = "required-after:forestry")
 public final class BinnieCore extends AbstractMod {
+
     @Mod.Instance(Constants.CORE_MOD_ID)
     public static BinnieCore instance;
     @SidedProxy(clientSide = "binnie.core.proxy.BinnieProxyClient", serverSide = "binnie.core.proxy.BinnieProxyServer")
@@ -61,6 +62,34 @@ public final class BinnieCore extends AbstractMod {
     @Mod.EventHandler
     public void preInit(final FMLPreInitializationEvent evt) {
         Binnie.Configuration.registerConfiguration(ConfigurationMods.class, this);
+        for (final FluidContainer container : FluidContainer.values()) {
+            final Item item = new ItemFluidContainer(container);
+            BinnieCore.proxy.registerItem(item);
+        }
+        //TODO REMOVE ITEMPARSER
+        FieldParser.parsers.add(new ItemParser());
+        this.preInit();
+    }
+
+    @Mod.EventHandler
+    public void init(final FMLInitializationEvent evt) {
+        this.init();
+        for (final AbstractMod mod : getActiveMods()) {
+            NetworkRegistry.INSTANCE.registerGuiHandler(mod, new BinnieGUIHandler(mod));
+        }
+        //TODO RENDERING
+//		BinnieCore.multipassRenderID = RenderingRegistry.getNextAvailableRenderId();
+//		RenderingRegistry.registerBlockHandler(new MultipassBlockRenderer());
+        GameRegistry.registerTileEntity(TileEntityMetadata.class, "binnie.tile.metadata");
+    }
+
+    @Mod.EventHandler
+    public void postInit(final FMLPostInitializationEvent evt) {
+        this.postInit();
+    }
+
+    @Override
+    protected void registerModules() {
         for (final ManagerBase baseManager : Binnie.Managers) {
             this.addModule(baseManager);
         }
@@ -70,19 +99,6 @@ public final class BinnieCore extends AbstractMod {
         if (Loader.isModLoaded("BuildCraft|Silicon")) {
             this.addModule(new ModuleTrigger());
         }
-        this.preInit();
-        proxy.registerModels();
-    }
-
-    @Mod.EventHandler
-    public void init(final FMLInitializationEvent evt) {
-        this.init();
-        proxy.registerItemAndBlockColors();
-    }
-
-    @Mod.EventHandler
-    public void postInit(final FMLPostInitializationEvent evt) {
-        this.postInit();
     }
 
     @Override
@@ -91,28 +107,72 @@ public final class BinnieCore extends AbstractMod {
     }
 
     @Override
-    public void preInit() {
-        BinnieCore.instance = this;
-        for (final FluidContainer container : FluidContainer.values()) {
-            final Item item = new ItemFluidContainer(container);
-            BinnieCore.proxy.registerItem(item);
-        }
-        //TODO REMMOVE ITEMPARSER
-        FieldParser.parsers.add(new ItemParser());
-        super.preInit();
+    public String getChannel() {
+        return "BIN";
     }
 
     @Override
-    public void init() {
-        super.init();
-        for (final AbstractMod mod : getActiveMods()) {
-            NetworkRegistry.INSTANCE.registerGuiHandler(mod, new BinnieGUIHandler(mod));
-        }
-        //TODO RENDERING
-//		BinnieCore.multipassRenderID = RenderingRegistry.getNextAvailableRenderId();
-//		RenderingRegistry.registerBlockHandler(new MultipassBlockRenderer());
-        GameRegistry.registerTileEntity(TileEntityMetadata.class, "binnie.tile.metadata");
+    public IBinnieProxy getProxy() {
+        return BinnieCore.proxy;
     }
+
+    @Override
+    public String getModID() {
+        return "binniecore";
+    }
+
+    @Override
+    public IPacketID[] getPacketIDs() {
+        return BinnieCorePacketID.values();
+    }
+
+    @Override
+    public Class<?>[] getConfigs() {
+        return new Class[]{ConfigurationMain.class};
+    }
+
+    @Override
+    protected Class<? extends BinniePacketHandler> getPacketHandler() {
+        return PacketHandler.class;
+    }
+
+    @Override
+    public boolean isActive() {
+        return true;
+    }
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public void handleSpeciesDiscovered(final ForestryEvent.SpeciesDiscovered event) {
+        try {
+            final EntityPlayerMP player = FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUUID(event.username.getId());
+            if (player == null) {
+                return;
+            }
+            event.tracker.synchToPlayer(player);
+            final NBTTagCompound nbt = new NBTTagCompound();
+            nbt.setString("species", event.species.getUID());
+        } catch (Exception ex) {
+        }
+    }
+
+    //TODO RENDERING
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public void handleTextureRemap(final TextureStitchEvent.Pre event) {
+//		if (event.map.getTextureType() == 0) {
+//			Binnie.Liquid.reloadIcons(event.map);
+//		}
+        Binnie.Resource.registerIcons();
+    }
+
+    public static class PacketHandler extends BinniePacketHandler {
+        public PacketHandler() {
+            super(BinnieCore.instance);
+        }
+    }
+
+    //Module handling
 
     public static boolean isLepidopteryActive() {
         return PluginManager.configDisabledPlugins.stream().noneMatch(e -> e instanceof forestry.lepidopterology.PluginLepidopterology);
@@ -142,11 +202,6 @@ public final class BinnieCore extends AbstractMod {
         return ConfigurationMods.extraTrees && isArboricultureActive();
     }
 
-    @Override
-    public void postInit() {
-        super.postInit();
-    }
-
     static void registerMod(final AbstractMod mod) {
         BinnieCore.modList.add(mod);
     }
@@ -161,69 +216,4 @@ public final class BinnieCore extends AbstractMod {
         return list;
     }
 
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
-    public void handleSpeciesDiscovered(final ForestryEvent.SpeciesDiscovered event) {
-        try {
-            final EntityPlayerMP player = FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUUID(event.username.getId());
-            if (player == null) {
-                return;
-            }
-            event.tracker.synchToPlayer(player);
-            final NBTTagCompound nbt = new NBTTagCompound();
-            nbt.setString("species", event.species.getUID());
-        } catch (Exception ex) {
-        }
-    }
-
-    @Override
-    public String getChannel() {
-        return "BIN";
-    }
-
-    @Override
-    public IBinnieProxy getProxy() {
-        return BinnieCore.proxy;
-    }
-
-    @Override
-    public String getModID() {
-        return "binniecore";
-    }
-
-    @Override
-    public IPacketID[] getPacketIDs() {
-        return BinnieCorePacketID.values();
-    }
-
-    //TODO RENDERING
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
-    public void handleTextureRemap(final TextureStitchEvent.Pre event) {
-//		if (event.map.getTextureType() == 0) {
-//			Binnie.Liquid.reloadIcons(event.map);
-//		}
-        Binnie.Resource.registerIcons();
-    }
-
-    @Override
-    public Class<?>[] getConfigs() {
-        return new Class[]{ConfigurationMain.class};
-    }
-
-    @Override
-    protected Class<? extends BinniePacketHandler> getPacketHandler() {
-        return PacketHandler.class;
-    }
-
-    @Override
-    public boolean isActive() {
-        return true;
-    }
-
-    public static class PacketHandler extends BinniePacketHandler {
-        public PacketHandler() {
-            super(BinnieCore.instance);
-        }
-    }
 }

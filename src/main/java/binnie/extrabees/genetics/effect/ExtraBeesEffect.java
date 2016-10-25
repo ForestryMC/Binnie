@@ -1,19 +1,10 @@
 package binnie.extrabees.genetics.effect;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.List;
-
 import binnie.Binnie;
 import binnie.core.util.TileUtil;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.genetics.ExtraBeesFlowers;
-import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.IAlleleBeeEffect;
-import forestry.api.apiculture.IArmorApiarist;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeHousing;
+import forestry.api.apiculture.*;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IEffectData;
 import forestry.core.proxy.Proxies;
@@ -42,6 +33,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.List;
 
 public enum ExtraBeesEffect implements IAlleleBeeEffect {
     ECTOPLASM,

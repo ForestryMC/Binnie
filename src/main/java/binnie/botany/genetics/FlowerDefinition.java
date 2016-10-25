@@ -4,11 +4,14 @@ import binnie.Constants;
 import binnie.botany.api.*;
 import binnie.botany.core.BotanyCore;
 import forestry.api.core.EnumTemperature;
-import forestry.api.genetics.*;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IClassification;
 import forestry.core.genetics.alleles.AlleleHelper;
 import forestry.core.genetics.alleles.EnumAllele;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

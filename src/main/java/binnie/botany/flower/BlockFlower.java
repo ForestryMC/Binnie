@@ -1,16 +1,11 @@
 package binnie.botany.flower;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-import com.mojang.authlib.GameProfile;
-
 import binnie.botany.Botany;
 import binnie.botany.api.IFlower;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.gardening.Gardening;
 import binnie.core.BinnieCore;
+import com.mojang.authlib.GameProfile;
 import forestry.core.blocks.IColoredBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -28,6 +23,10 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class BlockFlower extends BlockContainer implements /*IItemModelRegister, */IColoredBlock {
 	
@@ -112,7 +111,8 @@ public class BlockFlower extends BlockContainer implements /*IItemModelRegister,
 			return (RendererBotany.pass == 0) ? flower.getStem(stage, flowered, section) : ((RendererBotany.pass == 1) ? flower.getPetalIcon(stage, flowered, section) : flower.getVariantIcon(stage, flowered, section));
 		}
 		return super.getIcon(world, x, y, z, side);
-	}*/
+	}*/
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex) {
