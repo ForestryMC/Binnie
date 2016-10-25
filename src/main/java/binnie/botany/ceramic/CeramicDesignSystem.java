@@ -1,8 +1,5 @@
 package binnie.botany.ceramic;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import binnie.botany.Botany;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.botany.items.BotanyItems;
@@ -17,6 +14,9 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class CeramicDesignSystem implements IDesignSystem {
     public static CeramicDesignSystem instance = new CeramicDesignSystem();

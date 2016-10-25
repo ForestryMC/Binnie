@@ -126,7 +126,7 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
 
     @Override
     public int getSpriteColour(int renderPass) {
-        return (renderPass > 0) ? 16777215 : this.colour;
+        return (renderPass == 0) ? 0xFFFFFF : this.colour;
     }
 
     @Override

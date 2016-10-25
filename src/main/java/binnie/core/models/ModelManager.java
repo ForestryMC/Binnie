@@ -1,12 +1,13 @@
 package binnie.core.models;
 
 import com.google.common.collect.ImmutableMap;
-
-import javax.annotation.Nonnull;
-import javax.vecmath.Vector3f;
-import java.util.ArrayList;
-import java.util.List;
-
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import forestry.api.core.IStateMapperRegister;
+import forestry.core.blocks.IColoredBlock;
+import forestry.core.items.IColoredItem;
+import forestry.core.models.BlockModelEntry;
+import forestry.core.models.ModelEntry;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -23,7 +24,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.IRegistry;
 import net.minecraft.world.IBlockAccess;
-
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.SimpleModelState;
@@ -32,13 +32,10 @@ import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
-import forestry.api.core.IStateMapperRegister;
-import forestry.core.blocks.IColoredBlock;
-import forestry.core.items.IColoredItem;
-import forestry.core.models.BlockModelEntry;
-import forestry.core.models.ModelEntry;
+import javax.annotation.Nonnull;
+import javax.vecmath.Vector3f;
+import java.util.ArrayList;
+import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class ModelManager implements IModelManager {

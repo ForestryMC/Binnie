@@ -3,11 +3,7 @@ package binnie.genetics.integration.jei;
 import binnie.genetics.integration.jei.incubator.IncubatorRecipeCategory;
 import binnie.genetics.integration.jei.incubator.IncubatorRecipeHandler;
 import binnie.genetics.machine.Incubator;
-import mezz.jei.api.BlankModPlugin;
-import mezz.jei.api.IGuiHelper;
-import mezz.jei.api.IJeiHelpers;
-import mezz.jei.api.IModRegistry;
-import mezz.jei.api.JEIPlugin;
+import mezz.jei.api.*;
 
 @JEIPlugin
 public class GeneticsJeiPlugin extends BlankModPlugin {

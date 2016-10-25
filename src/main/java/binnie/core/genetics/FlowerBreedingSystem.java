@@ -1,7 +1,10 @@
 package binnie.core.genetics;
 
 import binnie.Binnie;
-import binnie.botany.api.*;
+import binnie.botany.api.EnumFlowerChromosome;
+import binnie.botany.api.EnumFlowerStage;
+import binnie.botany.api.IBotanistTracker;
+import binnie.botany.api.IFlowerRoot;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.BinnieCore;

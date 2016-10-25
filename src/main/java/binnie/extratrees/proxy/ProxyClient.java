@@ -2,7 +2,6 @@ package binnie.extratrees.proxy;
 
 import binnie.Constants;
 import binnie.core.models.ModelManager;
-import binnie.extratrees.ExtraTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -29,7 +28,7 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
         ResourceLocation rl;
 
         public CustomMapper(String name) {
-            rl = new ResourceLocation(ExtraTrees.MOD_ID, name);
+            rl = new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name);
         }
 
         @Override

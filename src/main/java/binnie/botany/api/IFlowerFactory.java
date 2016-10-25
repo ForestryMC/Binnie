@@ -1,9 +1,9 @@
 package binnie.botany.api;
 
-import javax.annotation.Nonnull;
-
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IClassification;
+
+import javax.annotation.Nonnull;
 
 public interface IFlowerFactory {
 

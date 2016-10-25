@@ -1046,7 +1046,6 @@ public enum FlowerDefinition implements IFlowerDefinition {
     	IFlower flower = getIndividual();
     	return BotanyCore.getFlowerRoot().getMemberStack(flower, flowerStage);
     }
-    
 	
 	public static void preInitFlowers(){
 		MinecraftForge.EVENT_BUS.post(new AlleleSpeciesRegisterEvent(FlowerManager.flowerRoot));

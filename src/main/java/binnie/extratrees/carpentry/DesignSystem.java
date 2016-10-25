@@ -1,8 +1,5 @@
 package binnie.extratrees.carpentry;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import binnie.core.AbstractMod;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
@@ -15,6 +12,9 @@ import forestry.core.render.TextureManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public enum DesignSystem implements IDesignSystem {
     Wood,

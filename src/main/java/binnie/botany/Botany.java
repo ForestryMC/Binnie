@@ -52,7 +52,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod(modid = Constants.BOTANY_MOD_ID, name = "Binnie's Botany", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class Botany extends AbstractMod {
-    public static final float AGE_CHANCE = 0.2f;
+
     @Mod.Instance(Constants.BOTANY_MOD_ID)
     public static Botany instance;
     @SidedProxy(clientSide = "binnie.botany.proxy.ProxyClient", serverSide = "binnie.botany.proxy.ProxyServer")
@@ -86,19 +86,16 @@ public class Botany extends AbstractMod {
     public static BlockStained stained;
     public static BlockCeramicBrick ceramicBrick;
 
+    public static final float AGE_CHANCE = 0.2f;
+
     @Mod.EventHandler
     public void preInit(final FMLPreInitializationEvent evt) {
-        this.addModule(new ModuleCore());
-        this.addModule(new ModuleGenetics());
-        this.addModule(new ModuleGardening());
         this.preInit();
-        proxy.registerModels();
     }
 
     @Mod.EventHandler
     public void init(final FMLInitializationEvent evt) {
         this.init();
-        proxy.registerItemAndBlockColors();
     }
 
     @Mod.EventHandler
@@ -106,8 +103,11 @@ public class Botany extends AbstractMod {
         this.postInit();
     }
 
-    public Botany() {
-        Botany.instance = this;
+    @Override
+    protected void registerModules() {
+        this.addModule(new ModuleCore());
+        this.addModule(new ModuleGenetics());
+        this.addModule(new ModuleGardening());
     }
 
     @Override
@@ -143,6 +143,11 @@ public class Botany extends AbstractMod {
     @Override
     protected Class<? extends BinniePacketHandler> getPacketHandler() {
         return PacketHandler.class;
+    }
+
+    @Override
+    public boolean isActive() {
+        return BinnieCore.isBotanyActive();
     }
 
     @SubscribeEvent
@@ -271,11 +276,6 @@ public class Botany extends AbstractMod {
         }
     }
 
-    @Override
-    public boolean isActive() {
-        return BinnieCore.isBotanyActive();
-    }
-
     @Mod.EventHandler
     public void onIMC(final FMLInterModComms.IMCEvent event) {
         for (final FMLInterModComms.IMCMessage message : event.getMessages()) {
@@ -305,4 +305,5 @@ public class Botany extends AbstractMod {
             super(Botany.instance);
         }
     }
+
 }

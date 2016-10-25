@@ -3,7 +3,6 @@ package binnie.botany.genetics;
 import binnie.botany.Botany;
 import binnie.botany.api.*;
 import com.mojang.authlib.GameProfile;
-
 import forestry.api.genetics.*;
 import forestry.core.genetics.SpeciesRoot;
 import net.minecraft.item.Item;

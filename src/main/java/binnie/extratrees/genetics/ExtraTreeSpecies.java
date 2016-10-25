@@ -1,6 +1,7 @@
 package binnie.extratrees.genetics;
 
 import binnie.Binnie;
+import binnie.Constants;
 import binnie.core.Mods;
 import binnie.core.genetics.ForestryAllele;
 import binnie.extratrees.ExtraTrees;
@@ -1063,11 +1064,11 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
         Shrub;
 
         public ModelResourceLocation getModelLocation(ExtraTreeSpecies species) {
-            return new ModelResourceLocation(ExtraTrees.MOD_ID + ":saplings/tree" + name());
+            return new ModelResourceLocation(Constants.EXTRA_TREES_MOD_ID + ":saplings/tree" + name());
         }
 
         public ResourceLocation getResourceLocation(ExtraTreeSpecies species) {
-            return new ResourceLocation(ExtraTrees.MOD_ID + ":saplings/tree" + name());
+            return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID + ":saplings/tree" + name());
         }
         //IIcon[] icon;
     }

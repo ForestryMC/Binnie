@@ -10,8 +10,6 @@ import binnie.botany.api.IFlower;
 import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.genetics.Flower;
-import binnie.botany.genetics.FlowerDefinition;
-import binnie.botany.genetics.FlowerGenome;
 import binnie.core.BinnieCore;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
@@ -163,9 +161,6 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 				return null;
 			}
 			IAlleleFlowerSpecies flowerSpecies = flower.getGenome().getPrimary();
-			if (flowerSpecies == null) {
-				flowerSpecies = FlowerDefinition.Dandelion.getSpecies();
-			}
 			IFlowerType flowerType = flowerSpecies.getType();
 			return flowerSpecies.getFlowerModel(type, flower.hasFlowered(), flowerType.getSections() - 1);
 		}

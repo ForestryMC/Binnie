@@ -25,7 +25,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = Constants.GENETICS_MOD_ID, name = "Binnie's Genetics", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class Genetics extends AbstractMod {
-    public static ItemSerumArray itemSerumArray = null;
+
     @Mod.Instance(Constants.GENETICS_MOD_ID)
     public static Genetics instance;
     @SidedProxy(clientSide = "binnie.genetics.proxy.ProxyClient", serverSide = "binnie.genetics.proxy.ProxyServer")
@@ -41,19 +41,16 @@ public class Genetics extends AbstractMod {
     public static ItemAnalyst analyst;
     public static Item registry;
     public static Item masterRegistry;
+    public static ItemSerumArray itemSerumArray = null;
 
     @Mod.EventHandler
     public void preInit(final FMLPreInitializationEvent evt) {
-        this.addModule(new ModuleItem());
-        this.addModule(new ModuleMachine());
         this.preInit();
-        proxy.registerModels();
     }
 
     @Mod.EventHandler
     public void init(final FMLInitializationEvent evt) {
         this.init();
-        proxy.registerItemAndBlockColors();
     }
 
     @Mod.EventHandler
@@ -61,8 +58,10 @@ public class Genetics extends AbstractMod {
         this.postInit();
     }
 
-    public Genetics() {
-        Genetics.instance = this;
+    @Override
+    protected void registerModules() {
+        this.addModule(new ModuleItem());
+        this.addModule(new ModuleMachine());
     }
 
     @Override
@@ -105,4 +104,5 @@ public class Genetics extends AbstractMod {
             super(Genetics.instance);
         }
     }
+
 }

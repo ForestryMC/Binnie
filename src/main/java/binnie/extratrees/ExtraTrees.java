@@ -42,11 +42,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod(modid = Constants.EXTRA_TREES_MOD_ID, name = "Binnie's Extra Trees", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class ExtraTrees extends AbstractMod {
+
     @Mod.Instance(Constants.EXTRA_TREES_MOD_ID)
     public static ExtraTrees instance;
-    public static final String MOD_ID = "extratrees";
-
-
     @SidedProxy(clientSide = "binnie.extratrees.proxy.ProxyClient", serverSide = "binnie.extratrees.proxy.ProxyServer")
     public static Proxy proxy;
     public static Item itemDictionary;
@@ -80,46 +78,18 @@ public class ExtraTrees extends AbstractMod {
     public static int stairsID;
 
     @Mod.EventHandler
-    public void preInit(final FMLPreInitializationEvent evt) {
-        this.addModule(new ModuleBlocks());
-        this.addModule(new ModuleItems());
-        this.addModule(new ModuleAlcohol());
-        this.addModule(new ModuleGenetics());
-        this.addModule(new ModuleCarpentry());
-        this.addModule(new ModuleMachine());
-        this.addModule(new ModuleCore());
-        this.preInit();
-        proxy.registerModels();
-    }
-
-    @Mod.EventHandler
-    public void pre(FMLConstructionEvent e) {
+    public void onConstruction(FMLConstructionEvent e) {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    @SubscribeEvent
-    public void speciesRegister(AlleleSpeciesRegisterEvent event) {
-        if (event.getRoot() instanceof ITreeRoot) {
-            for (final ExtraTreeFruitGene fruit : ExtraTreeFruitGene.values()) {
-                AlleleManager.alleleRegistry.registerAllele(fruit);
-            }
-            for (final ExtraTreeSpecies species : ExtraTreeSpecies.values()) {
-                AlleleManager.alleleRegistry.registerAllele(species, EnumTreeChromosome.SPECIES);
-            }
-        }
-
-        if (BinnieCore.isLepidopteryActive()) {
-            for (final ButterflySpecies species2 : ButterflySpecies.values()) {
-                AlleleManager.alleleRegistry.registerAllele(species2);
-            }
-        }
+    @Mod.EventHandler
+    public void preInit(final FMLPreInitializationEvent evt) {
+        this.preInit();
     }
-
 
     @Mod.EventHandler
     public void init(final FMLInitializationEvent evt) {
         this.init();
-        proxy.registerItemAndBlockColors();
     }
 
     @Mod.EventHandler
@@ -127,8 +97,15 @@ public class ExtraTrees extends AbstractMod {
         this.postInit();
     }
 
-    public ExtraTrees() {
-        ExtraTrees.instance = this;
+    @Override
+    protected void registerModules() {
+        this.addModule(new ModuleBlocks());
+        this.addModule(new ModuleItems());
+        this.addModule(new ModuleAlcohol());
+        this.addModule(new ModuleGenetics());
+        this.addModule(new ModuleCarpentry());
+        this.addModule(new ModuleMachine());
+        this.addModule(new ModuleCore());
     }
 
     @Override
@@ -166,9 +143,28 @@ public class ExtraTrees extends AbstractMod {
         return BinnieCore.isExtraTreesActive();
     }
 
+    @SubscribeEvent
+    public void speciesRegister(AlleleSpeciesRegisterEvent event) {
+        if (event.getRoot() instanceof ITreeRoot) {
+            for (final ExtraTreeFruitGene fruit : ExtraTreeFruitGene.values()) {
+                AlleleManager.alleleRegistry.registerAllele(fruit);
+            }
+            for (final ExtraTreeSpecies species : ExtraTreeSpecies.values()) {
+                AlleleManager.alleleRegistry.registerAllele(species, EnumTreeChromosome.SPECIES);
+            }
+        }
+
+        if (BinnieCore.isLepidopteryActive()) {
+            for (final ButterflySpecies species2 : ButterflySpecies.values()) {
+                AlleleManager.alleleRegistry.registerAllele(species2);
+            }
+        }
+    }
+
     public static class PacketHandler extends BinniePacketHandler {
         public PacketHandler() {
             super(ExtraBees.instance);
         }
     }
+
 }

@@ -26,6 +26,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = Constants.EXTRA_BEES_MOD_ID, name = "Binnie's Extra Bees", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class ExtraBees extends AbstractMod {
+
     @Mod.Instance(Constants.EXTRA_BEES_MOD_ID)
     public static ExtraBees instance;
     @SidedProxy(clientSide = "binnie.extrabees.proxy.ExtraBeesProxyClient", serverSide = "binnie.extrabees.proxy.ExtraBeesProxyServer")
@@ -46,20 +47,12 @@ public class ExtraBees extends AbstractMod {
 
     @Mod.EventHandler
     public void preInit(final FMLPreInitializationEvent evt) {
-        this.addModule(new ModuleCore());
-        this.addModule(new ModuleProducts());
-        this.addModule(new ModuleGenetics());
-        //this.addModule(new ModuleGeneration());
-        this.addModule(new ModuleLiquids());
-        this.addModule(new ModuleApiary());
         this.preInit();
-        proxy.registerModels();
     }
 
     @Mod.EventHandler
     public void init(final FMLInitializationEvent evt) {
         this.init();
-        proxy.registerItemAndBlockColors();
     }
 
     @Mod.EventHandler
@@ -67,8 +60,14 @@ public class ExtraBees extends AbstractMod {
         this.postInit();
     }
 
-    public ExtraBees() {
-        ExtraBees.instance = this;
+    @Override
+    protected void registerModules() {
+        this.addModule(new ModuleCore());
+        this.addModule(new ModuleProducts());
+        this.addModule(new ModuleGenetics());
+        //this.addModule(new ModuleGeneration());
+        this.addModule(new ModuleLiquids());
+        this.addModule(new ModuleApiary());
     }
 
     @Override
@@ -111,4 +110,5 @@ public class ExtraBees extends AbstractMod {
             super(ExtraBees.instance);
         }
     }
+
 }
