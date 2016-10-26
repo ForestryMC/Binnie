@@ -48,13 +48,6 @@ public class ModuleGenetics implements IInitializable {
 
     @Override
     public void postInit() {
-    	OreDictionary.registerOre("flower", new ItemStack(Blocks.RED_FLOWER, 1, OreDictionary.WILDCARD_VALUE));
-    	OreDictionary.registerOre("flower", new ItemStack(Blocks.YELLOW_FLOWER, 1, OreDictionary.WILDCARD_VALUE));
-    	OreDictionary.registerOre("flower", new ItemStack(Blocks.DOUBLE_PLANT, 1, 0));
-    	OreDictionary.registerOre("flower", new ItemStack(Blocks.DOUBLE_PLANT, 1, 1));
-    	OreDictionary.registerOre("flower", new ItemStack(Blocks.DOUBLE_PLANT, 1, 4));
-    	OreDictionary.registerOre("flower", new ItemStack(Blocks.DOUBLE_PLANT, 1, 5));
-    	OreDictionary.registerOre("flower", new ItemStack(Botany.flower, 1, OreDictionary.WILDCARD_VALUE));
         FlowerManager.flowerRegistry.registerAcceptableFlower(Botany.flower, "flowersVanilla");
         RecipeManagers.carpenterManager.addRecipe(100, Binnie.Liquid.getFluidStack("water", 2000), null, new ItemStack(Botany.database), 
         		"X#X", 
