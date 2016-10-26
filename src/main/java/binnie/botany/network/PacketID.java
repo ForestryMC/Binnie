@@ -2,7 +2,6 @@ package binnie.botany.network;
 
 import binnie.Binnie;
 import binnie.botany.api.IAlleleFlowerSpecies;
-import binnie.botany.flower.TileEntityFlower;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.BinnieCore;
 import binnie.core.network.IPacketID;
@@ -11,7 +10,6 @@ import binnie.core.network.packet.MessageNBT;
 import forestry.api.genetics.AlleleManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;

@@ -4,8 +4,6 @@ import binnie.Binnie;
 import binnie.Constants;
 import binnie.core.liquid.FluidContainer;
 import binnie.core.liquid.IFluidType;
-import forestry.api.core.ITextureManager;
-import forestry.core.render.TextureManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 

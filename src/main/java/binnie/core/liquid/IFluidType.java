@@ -1,6 +1,5 @@
 package binnie.core.liquid;
 
-import forestry.api.core.ISpriteRegister;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 

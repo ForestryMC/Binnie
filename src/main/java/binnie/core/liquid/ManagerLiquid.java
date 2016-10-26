@@ -1,6 +1,5 @@
 package binnie.core.liquid;
 
-import binnie.core.BinnieCore;
 import binnie.core.ManagerBase;
 import forestry.core.render.TextureManager;
 import net.minecraftforge.client.event.TextureStitchEvent;
