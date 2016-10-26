@@ -984,7 +984,6 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		if(branch != null){
 	        this.branch.addMemberSpecies(species);
 		}
-        Log.error(unlocalizedName + "=" + name());
     }
     
 	protected abstract void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies);
