@@ -6,7 +6,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -40,7 +39,8 @@ public class ItemSoil extends ItemBlock {
         }
     }
     
-    public String getItemStackDisplayName(ItemStack stack){
+    @Override
+	public String getItemStackDisplayName(ItemStack stack){
         return this.getUnlocalizedNameInefficiently(stack).trim();
     }
 

@@ -18,7 +18,6 @@ import binnie.botany.flower.ItemInsulatedTube;
 import binnie.botany.flower.TileEntityFlower;
 import binnie.botany.gardening.*;
 import binnie.botany.genetics.ItemDictionary;
-import binnie.botany.genetics.ItemEncyclopedia;
 import binnie.botany.genetics.ModuleGenetics;
 import binnie.botany.items.ItemClay;
 import binnie.botany.items.ItemPigment;

@@ -7,7 +7,6 @@ import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.*;
 import forestry.core.genetics.alleles.AlleleHelper;
 import forestry.core.genetics.alleles.EnumAllele;
-import jline.internal.Log;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
