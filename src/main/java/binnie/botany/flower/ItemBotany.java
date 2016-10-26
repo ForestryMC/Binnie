@@ -129,10 +129,13 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
     @Override
     public String getItemStackDisplayName(final ItemStack itemstack) {
         if (!itemstack.hasTagCompound()) {
-            return "Unknown";
+            return Binnie.Language.localise("item.botany.flower.corrupted.name");
         }
-        final IIndividual individual = this.getIndividual(itemstack);
-        return (individual != null && individual.getGenome() != null) ? (individual.getDisplayName() + tag) : "Corrupted Flower";
+        IIndividual individual = this.getIndividual(itemstack);
+        if (individual != null && individual.getGenome() != null) {
+        	return individual.getDisplayName() + (!tag.isEmpty() ? " " + Binnie.Language.localise("item.botany." + tag + ".name") : "");
+        }
+        return Binnie.Language.localise("item.botany.flower.corrupted.name");
     }
 
     @Override

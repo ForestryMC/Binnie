@@ -1,5 +1,6 @@
 package binnie.craftgui.mod.database;
 
+import binnie.Binnie;
 import binnie.craftgui.controls.ControlText;
 import binnie.craftgui.controls.ControlTextCentered;
 import binnie.craftgui.core.IWidget;
@@ -11,7 +12,7 @@ public class PageSpeciesMutations extends PageSpecies {
 
     public PageSpeciesMutations(final IWidget parent, final DatabaseTab tab) {
         super(parent, tab);
-        this.pageSpeciesFurther_Title = new ControlTextCentered(this, 8.0f, "Further Mutations");
+        this.pageSpeciesFurther_Title = new ControlTextCentered(this, 8.0f, Binnie.Language.localise("binniecore.gui.database.mutations.further"));
         this.pageSpeciesFurther_List = new ControlMutationBox(this, 4, 20, 136, 152, ControlMutationBox.Type.Further);
     }
 

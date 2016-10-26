@@ -1,10 +1,12 @@
 package binnie.craftgui.mod.database;
 
+import binnie.Binnie;
 import binnie.craftgui.controls.ControlText;
 import binnie.craftgui.controls.ControlTextCentered;
 import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
 import forestry.api.genetics.IClassification;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,22 +28,22 @@ public class PageBranchOverview extends PageBranch {
 
     @Override
     public void onValueChanged(final IClassification branch) {
-        this.pageBranchOverview_branchName.setValue("§n" + branch.getName() + " Branch§r");
-        this.pageBranchOverview_branchScientific.setValue("§oApidae " + branch.getScientific() + "§r");
-        this.pageBranchOverview_branchAuthority.setValue("Discovered by §l" + branch.getMemberSpecies()[0].getAuthority() + "§r");
+        this.pageBranchOverview_branchName.setValue(TextFormatting.UNDERLINE + branch.getName() + Binnie.Language.localise("binniecore.gui.database.branch.branch"));
+        this.pageBranchOverview_branchScientific.setValue(TextFormatting.ITALIC + Binnie.Language.localise("binniecore.gui.database.branch.apidae") + " " + branch.getScientific());
+        this.pageBranchOverview_branchAuthority.setValue(Binnie.Language.localise("binniecore.gui.database.discovered") + " " + TextFormatting.BOLD + branch.getMemberSpecies()[0].getAuthority());
         for (final IWidget widget : this.pageBranchOverview_branchDescription) {
             this.deleteChild(widget);
         }
         this.pageBranchOverview_branchDescription.clear();
         String desc = branch.getDescription();
         if (desc == null || Objects.equals(desc, "")) {
-            desc = "No Description Provided.";
+            desc = Binnie.Language.localise("binniecore.gui.database.no.description");
         }
         String line = "";
         final List<String> descLines = new ArrayList<>();
         for (final String str : desc.split(" ")) {
             if (CraftGUI.Render.textWidth(line + " " + str) > 134) {
-                descLines.add("§o" + line + "§r");
+                descLines.add(TextFormatting.ITALIC + line + TextFormatting.RESET);
                 line = "";
             }
             line = line + " " + str;

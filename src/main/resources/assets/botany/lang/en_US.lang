@@ -22,6 +22,10 @@ botany.plant.weeds_very_long=Weed Very Long
 botany.plant.dead_flower=Dead Flower
 botany.plant.decaying_flower=Decaying Flower
 
+item.botany.germling.name=Germling
+item.botany.pollen.name=Pollen
+item.botany.flower.corrupted.name=Corrupted Flower
+
 item.trowelWood.name=Wooden Trowel
 item.trowelStone.name=Stone Trowel
 item.trowelIron.name=Iron Trowel

@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -38,10 +39,9 @@ public class ItemSoil extends ItemBlock {
             tooltip.add(TextFormatting.GREEN + Binnie.Language.localise("botany.soil.weedkiller"));
         }
     }
-
-    @Override
-    public String getItemStackDisplayName(final ItemStack stack) {
-        return this.type.name().substring(0, 1) + this.type.name().toLowerCase().substring(1);
+    
+    public String getItemStackDisplayName(ItemStack stack){
+        return this.getUnlocalizedNameInefficiently(stack).trim();
     }
 
     @Override

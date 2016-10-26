@@ -1,5 +1,6 @@
 package binnie.craftgui.mod.database;
 
+import binnie.Binnie;
 import binnie.craftgui.controls.ControlText;
 import binnie.craftgui.controls.ControlTextCentered;
 import binnie.craftgui.core.CraftGUI;
@@ -8,6 +9,7 @@ import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.core.geometry.TextJustification;
 import forestry.api.genetics.IAlleleSpecies;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Objects;
 
@@ -28,7 +30,7 @@ public class PageSpeciesOverview extends PageSpecies {
         this.controlName = new ControlTextCentered(this, 8.0f, "");
         this.controlScientific = new ControlTextCentered(this, 32.0f, "");
         this.controlAuthority = new ControlTextCentered(this, 44.0f, "");
-        this.controlComplexity = new ControlTextCentered(this, 56.0f, "");
+        this.controlComplexity = new ControlTextCentered(this, 68.0f, "");
         this.controlDescription = new ControlText(this, new IArea(8.0f, 84.0f, this.getSize().x() - 16.0f, 0.0f), "", TextJustification.MiddleCenter);
         this.controlSignature = new ControlText(this, new IArea(8.0f, 84.0f, this.getSize().x() - 16.0f, 0.0f), "", TextJustification.BottomRight);
     }
@@ -39,15 +41,15 @@ public class PageSpeciesOverview extends PageSpecies {
         this.controlInd2.setSpecies(species, EnumDiscoveryState.Show);
         final String branchBinomial = (species.getBranch() != null) ? species.getBranch().getScientific() : "<Unknown>";
         final String branchName = (species.getBranch() != null) ? species.getBranch().getName() : "Unknown";
-        this.controlName.setValue("§n" + species.getName() + "§r");
-        this.controlScientific.setValue("§o" + branchBinomial + " " + species.getBinomial() + "§r");
-        this.controlAuthority.setValue("Discovered by §l" + species.getAuthority() + "§r");
-        this.controlComplexity.setValue("Complexity: " + species.getComplexity());
+        this.controlName.setValue(TextFormatting.UNDERLINE + species.getName());
+        this.controlScientific.setValue(TextFormatting.ITALIC + branchBinomial + " " + species.getBinomial());
+        this.controlAuthority.setValue(Binnie.Language.localise("binniecore.gui.database.discovered") + ": " + TextFormatting.BOLD + species.getAuthority());
+        this.controlComplexity.setValue(Binnie.Language.localise("binniecore.gui.database.overview.complexity") + ": " + species.getComplexity());
         final String desc = species.getDescription();
-        String descBody = "§o";
+        String descBody = TextFormatting.ITALIC.toString();
         String descSig = "";
         if (desc == null || Objects.equals(desc, "")) {
-            descBody += "No Description Provided.";
+            descBody += Binnie.Language.localise("binniecore.gui.database.no.description");
         } else {
             final String[] descStrings = desc.split("\\|");
             descBody += descStrings[0];
@@ -58,8 +60,8 @@ public class PageSpeciesOverview extends PageSpecies {
                 descSig += descStrings[descStrings.length - 1];
             }
         }
-        this.controlDescription.setValue(descBody + "§r");
-        this.controlSignature.setValue(descSig + "§r");
+        this.controlDescription.setValue(descBody + TextFormatting.RESET);
+        this.controlSignature.setValue(descSig);
         final float descHeight = CraftGUI.Render.textHeight(this.controlDescription.getValue(), this.controlDescription.getSize().x());
         this.controlSignature.setPosition(new IPoint(this.controlSignature.pos().x(), this.controlDescription.getPosition().y() + descHeight + 10.0f));
     }

@@ -1,5 +1,6 @@
 package binnie.craftgui.mod.database;
 
+import binnie.Binnie;
 import binnie.craftgui.controls.ControlText;
 import binnie.craftgui.controls.ControlTextCentered;
 import binnie.craftgui.core.IWidget;
@@ -18,7 +19,7 @@ public class PageBranchSpecies extends PageBranch {
 
     public PageBranchSpecies(final IWidget parent, final DatabaseTab tab) {
         super(parent, tab);
-        this.pageBranchSpecies_title = new ControlTextCentered(this, 8.0f, "Species");
+        this.pageBranchSpecies_title = new ControlTextCentered(this, 8.0f, Binnie.Language.localise("binniecore.gui.database.species"));
         this.addEventHandler(new EventValueChanged.Handler() {
             @Override
             public void onEvent(final EventValueChanged event) {
