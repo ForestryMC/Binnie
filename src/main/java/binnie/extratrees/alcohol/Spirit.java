@@ -1,8 +1,11 @@
 package binnie.extratrees.alcohol;
 
 import binnie.Binnie;
+import binnie.Constants;
 import binnie.core.liquid.FluidContainer;
 import binnie.core.liquid.IFluidType;
+import forestry.api.core.ITextureManager;
+import forestry.core.render.TextureManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -65,24 +68,14 @@ public enum Spirit implements IFluidType, ICocktailLiquid {
         return container == FluidContainer.Glass;
     }
 
-//	@Override
-//	public IIcon getIcon() {
-//		return this.icon;
-//	}
-//
-//	@Override
-//	public void registerIcon(final IIconRegister register) {
-//		this.icon = ExtraTrees.proxy.getIcon(register, "liquids/liquid");
-//	}
-
     @Override
     public ResourceLocation getFlowing() {
-        return new ResourceLocation("liquids/liquid");
+        return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "liquids/liquid");
     }
 
     @Override
     public ResourceLocation getStill() {
-        return new ResourceLocation("liquids/liquid");
+        return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "liquids/liquid");
     }
 
     @Override

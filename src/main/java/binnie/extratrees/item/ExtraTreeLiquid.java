@@ -1,6 +1,7 @@
 package binnie.extratrees.item;
 
 import binnie.Binnie;
+import binnie.Constants;
 import binnie.core.liquid.FluidContainer;
 import binnie.core.liquid.ILiquidType;
 import net.minecraft.util.ResourceLocation;
@@ -36,12 +37,12 @@ public enum ExtraTreeLiquid implements ILiquidType {
 
     @Override
     public ResourceLocation getStill() {
-        return new ResourceLocation("liquids/" + this.getIdentifier());
+        return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "liquids/" + this.getIdentifier());
     }
 
     @Override
     public ResourceLocation getFlowing() {
-        return new ResourceLocation("liquids/" + this.getIdentifier());
+        return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "liquids/" + this.getIdentifier());
     }
 
     @Override

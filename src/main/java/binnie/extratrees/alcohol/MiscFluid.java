@@ -44,16 +44,6 @@ public enum MiscFluid implements IFluidType, ICocktailLiquid {
         return container == FluidContainer.Glass;
     }
 
-//	@Override
-//	public IIcon getIcon() {
-//		return this.icon;
-//	}
-//
-//	@Override
-//	public void registerIcon(final IIconRegister register) {
-//		this.icon = ExtraTrees.proxy.getIcon(register, "liquids/liquid");
-//	}
-
     @Override
     public ResourceLocation getFlowing() {
         return new ResourceLocation("liquids/liquid");

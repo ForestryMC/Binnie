@@ -1,6 +1,7 @@
 package binnie.extrabees.liquids;
 
 import binnie.Binnie;
+import binnie.Constants;
 import binnie.core.liquid.FluidContainer;
 import binnie.core.liquid.ILiquidType;
 import binnie.extrabees.ExtraBees;
@@ -23,12 +24,12 @@ public enum ExtraBeeLiquid implements ILiquidType {
 
     @Override
     public ResourceLocation getFlowing() {
-        return new ResourceLocation("liquids/" + this.getIdentifier());
+        return new ResourceLocation(Constants.EXTRA_BEES_MOD_ID, "liquids/" + this.getIdentifier());
     }
 
     @Override
     public ResourceLocation getStill() {
-        return new ResourceLocation("liquids/" + this.getIdentifier());
+        return new ResourceLocation(Constants.EXTRA_BEES_MOD_ID, "liquids/" + this.getIdentifier());
     }
 //	@Override
 //	public IIcon getIcon() {

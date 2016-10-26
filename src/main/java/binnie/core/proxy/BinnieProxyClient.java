@@ -1,12 +1,19 @@
 package binnie.core.proxy;
 
 import binnie.Constants;
+import binnie.core.liquid.IFluidType;
 import binnie.core.models.ModelManager;
 import binnie.core.resource.BinnieResource;
 import binnie.craftgui.resource.minecraft.CraftGUIResourceManager;
+import forestry.core.fluids.Fluids;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.BlockStateMapper;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.client.renderer.texture.SimpleTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -14,10 +21,12 @@ import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -70,7 +79,6 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
     public void registermodel(Item item, int meta, ModelResourceLocation modelResourceLocation) {
         ModelLoader.setCustomModelResourceLocation(item, meta, modelResourceLocation);
     }
-
 
     @Override
     public void bindTexture(final BinnieResource texture) {
@@ -198,4 +206,30 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
             ((IReloadableResourceManager) manager).registerReloadListener(new CraftGUIResourceManager());
         }
     }
+    
+	private static class FluidStateMapper extends StateMapperBase {
+		private final ModelResourceLocation fluidLocation;
+
+		public FluidStateMapper(ModelResourceLocation fluidLocation) {
+			this.fluidLocation = fluidLocation;
+		}
+
+		@Override
+		protected ModelResourceLocation getModelResourceLocation(IBlockState iBlockState) {
+			return fluidLocation;
+		}
+	}
+	
+	private static class FluidItemMeshDefinition implements ItemMeshDefinition {
+		private final ModelResourceLocation fluidLocation;
+
+		public FluidItemMeshDefinition(ModelResourceLocation fluidLocation) {
+			this.fluidLocation = fluidLocation;
+		}
+
+		@Override
+		public ModelResourceLocation getModelLocation(ItemStack stack) {
+			return fluidLocation;
+		}
+	}
 }

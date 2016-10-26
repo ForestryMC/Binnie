@@ -1,6 +1,7 @@
 package binnie.extratrees.alcohol;
 
 import binnie.Binnie;
+import binnie.Constants;
 import binnie.core.liquid.FluidContainer;
 import binnie.core.liquid.IFluidType;
 import binnie.extratrees.ExtraTrees;
@@ -84,12 +85,12 @@ public enum Alcohol implements IFluidType, ICocktailLiquid {
     //TODO TEXTURE
     @Override
     public ResourceLocation getFlowing() {
-        return new ResourceLocation("liquids/liquid");
+        return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "liquids/liquid");
     }
 
     @Override
     public ResourceLocation getStill() {
-        return new ResourceLocation("liquids/liquid");
+        return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "liquids/liquid");
     }
 
 
