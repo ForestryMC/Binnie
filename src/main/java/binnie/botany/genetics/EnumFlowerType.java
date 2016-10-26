@@ -80,7 +80,7 @@ public enum EnumFlowerType implements IFlowerType<EnumFlowerType> {
 	@SideOnly(Side.CLIENT)
     public void registerModels(Item item, IModelManager manager, EnumFlowerStage type){
 		String pre = (this.sections == 1) ? "" : "double/";
-		flower = new ModelResourceLocation(Constants.BOTANY_MOD_ID + "flowers/" + pre + this.toString().toLowerCase(), "inventory");
+		flower = new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":flowers/" + pre + getName(), "inventory");
 		seed = new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":flowers/seed", "inventory");
 		pollen = new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":flowers/pollen", "inventory");
 		ModelBakery.registerItemVariants(item, pollen, seed, flower);

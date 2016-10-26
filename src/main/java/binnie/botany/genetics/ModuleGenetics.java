@@ -34,8 +34,6 @@ public class ModuleGenetics implements IInitializable {
         Botany.flower = new BlockFlower();
         Botany.proxy.registerBlock(Botany.flower);
         BinnieCore.proxy.registerTileEntity(TileEntityFlower.class, "botany.tile.flower", null);
-        //Need we this ?
-        Botany.proxy.registerItem(new ItemBlock(Botany.flower).setRegistryName(Botany.flower.getRegistryName()));
         
         Botany.flowerItem = new ItemBotany("itemFlower", EnumFlowerStage.FLOWER, "");
         Botany.pollen = new ItemBotany("pollen", EnumFlowerStage.POLLEN, "Pollen");

@@ -161,6 +161,9 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
     @Override
     @SideOnly(Side.CLIENT)
     public void registerModel(Item item, IModelManager manager) {
+		for (IFlowerType flowerType : (List<IFlowerType>)BlockFlower.FLOWER.getAllowedValues()) {
+			flowerType.registerModels(item, manager, type);
+		}
     	manager.registerItemModel(item, new BotanyMeshDefinition());
     }
     

@@ -1,4 +1,4 @@
-package binnie.core.genetics;
+package binnie.botany.genetics;
 
 import binnie.Binnie;
 import binnie.botany.api.EnumFlowerChromosome;
@@ -6,8 +6,14 @@ import binnie.botany.api.EnumFlowerStage;
 import binnie.botany.api.IBotanistTracker;
 import binnie.botany.api.IFlowerRoot;
 import binnie.botany.core.BotanyCore;
-import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.BinnieCore;
+import binnie.core.genetics.BreedingSystem;
+import binnie.core.genetics.ForestryAllele;
+import binnie.core.genetics.Tolerance;
+import binnie.core.genetics.ForestryAllele.Fertility;
+import binnie.core.genetics.ForestryAllele.Lifespan;
+import binnie.core.genetics.ForestryAllele.Sappiness;
+import binnie.core.genetics.ForestryAllele.Territory;
 import binnie.extrabees.ExtraBees;
 import forestry.api.genetics.*;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,7 +21,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.TreeSet;
 
-class FlowerBreedingSystem extends BreedingSystem {
+public class FlowerBreedingSystem extends BreedingSystem {
     public FlowerBreedingSystem() {
         this.iconUndiscovered = Binnie.Resource.getItemIcon(ExtraBees.instance, "icon/undiscoveredBee");
         this.iconDiscovered = Binnie.Resource.getItemIcon(ExtraBees.instance, "icon/discoveredBee");

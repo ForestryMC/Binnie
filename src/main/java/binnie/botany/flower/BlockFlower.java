@@ -22,6 +22,7 @@ import forestry.api.core.IStateMapperRegister;
 import forestry.core.blocks.IColoredBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -44,7 +45,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockFlower extends BlockContainer implements IColoredBlock, IItemModelRegister, IStateMapperRegister {
+public class BlockFlower extends BlockContainer implements IColoredBlock, IStateMapperRegister {
 	
 	public static final AxisAlignedBB FLOWER_BLOCK_AABB = new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 0.6D, 0.7D);
 	/* PROPERTYS */
@@ -68,16 +69,6 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IItemM
     
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerModel(Item item, IModelManager manager) {
-    	for(EnumFlowerStage type : EnumFlowerStage.VALUES){
-			for (IFlowerType flowerType : (List<IFlowerType>)FLOWER.getAllowedValues()) {
-				flowerType.registerModels(item, manager, type);
-			}
-    	}
-    }
-    
-    @Override
-    @SideOnly(Side.CLIENT)
     public void registerStateMapper() {
     	ModelLoader.setCustomStateMapper(this, new StateMapperFlower());
     }
@@ -89,12 +80,26 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IItemM
 	
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+		TileEntity tile = source.getTileEntity(pos);
+		if (tile instanceof TileEntityFlower) {
+			TileEntityFlower flower = (TileEntityFlower) tile;
+			if(flower.getType().getSections() > 1){
+				return FULL_BLOCK_AABB;
+			}
+		}
 		return FLOWER_BLOCK_AABB;
 	}
 	
 	@Override
-	public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos) {
-		return FLOWER_BLOCK_AABB;
+	public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World world, BlockPos pos) {
+		TileEntity tile = world.getTileEntity(pos);
+		if (tile instanceof TileEntityFlower) {
+			TileEntityFlower flower = (TileEntityFlower) tile;
+			if(flower.getType().getSections() > 1){
+				return FULL_BLOCK_AABB.offset(pos);
+			}
+		}
+		return FLOWER_BLOCK_AABB.offset(pos);
 	}
 	
     @Override

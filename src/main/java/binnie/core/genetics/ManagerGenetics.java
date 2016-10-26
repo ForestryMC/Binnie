@@ -3,6 +3,7 @@ package binnie.core.genetics;
 import binnie.Binnie;
 import binnie.botany.api.IFlowerRoot;
 import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.genetics.FlowerBreedingSystem;
 import binnie.core.BinnieCore;
 import binnie.core.ManagerBase;
 import forestry.api.apiculture.BeeManager;
