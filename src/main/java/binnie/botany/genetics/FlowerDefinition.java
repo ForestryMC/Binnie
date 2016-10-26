@@ -7,6 +7,7 @@ import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.*;
 import forestry.core.genetics.alleles.AlleleHelper;
 import forestry.core.genetics.alleles.EnumAllele;
+import jline.internal.Log;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -983,6 +984,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		if(branch != null){
 	        this.branch.addMemberSpecies(species);
 		}
+        Log.error(unlocalizedName + "=" + name());
     }
     
 	protected abstract void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies);

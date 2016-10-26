@@ -12,7 +12,6 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.recipes.RecipeManagers;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
