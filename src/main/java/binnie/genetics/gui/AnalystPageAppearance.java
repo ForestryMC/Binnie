@@ -3,6 +3,7 @@ package binnie.genetics.gui;
 import binnie.botany.api.IFlower;
 import binnie.craftgui.botany.ControlColourDisplay;
 import binnie.craftgui.controls.ControlTextCentered;
+import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.minecraft.control.ControlIconDisplay;

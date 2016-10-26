@@ -2,16 +2,20 @@ package binnie.core.item;
 
 import binnie.botany.Botany;
 import binnie.botany.api.IFlower;
+import binnie.botany.api.IFlowerGenome;
 import binnie.botany.flower.TileEntityFlower;
 import binnie.botany.network.PacketID;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.network.packet.MessageNBT;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -37,24 +41,31 @@ public class ModuleItems implements IInitializable {
         if (!BinnieCore.isBotanyActive()) {
             return;
         }
+    	BlockPos pos = event.getPos();
+        World world = event.getWorld();
+    	EntityPlayer player = event.getEntityPlayer();
 
-        if (event.getEntityPlayer() != null && event.getEntityPlayer().getHeldItemMainhand() != null && event.getEntityPlayer().getHeldItemMainhand().getItem() == BinnieCore.fieldKit && event.getEntityPlayer().isSneaking()) {
-            final TileEntity tile = event.getWorld().getTileEntity(event.getPos());
-            if (tile instanceof TileEntityFlower) {
-                final TileEntityFlower tileFlower = (TileEntityFlower) tile;
-                final IFlower flower = tileFlower.getFlower();
-                if (flower != null) {
-                    final NBTTagCompound info = new NBTTagCompound();
-                    info.setString("Species", flower.getGenome().getPrimary().getUID());
-                    info.setString("Species2", flower.getGenome().getSecondary().getUID());
-                    info.setFloat("Age", flower.getAge() / flower.getGenome().getLifespan());
-                    info.setShort("Colour", (short) flower.getGenome().getPrimaryColor().getID());
-                    info.setShort("Colour2", (short) flower.getGenome().getSecondaryColor().getID());
-                    info.setBoolean("Wilting", flower.isWilted());
-                    info.setBoolean("Flowered", flower.hasFlowered());
-                    Botany.proxy.sendToPlayer(new MessageNBT(PacketID.Encylopedia.ordinal(), info), event.getEntityPlayer());
-                    event.getEntityPlayer().getHeldItemMainhand().damageItem(1, event.getEntityPlayer());
-                }
+        if (player != null) {
+            ItemStack heldItem = player.getHeldItemMainhand();
+            if(heldItem != null && heldItem.getItem() == BinnieCore.fieldKit && player.isSneaking()){
+	        	TileEntity tile = world.getTileEntity(pos);
+	            if (tile instanceof TileEntityFlower) {
+	                TileEntityFlower tileFlower = (TileEntityFlower) tile;
+	                IFlower flower = tileFlower.getFlower();
+	                if (flower != null && flower.getGenome() != null) {
+	                	IFlowerGenome flowerGenome = flower.getGenome();
+	                    NBTTagCompound info = new NBTTagCompound();
+	                    info.setString("Species", flowerGenome.getPrimary().getUID());
+	                    info.setString("Species2", flowerGenome.getSecondary().getUID());
+	                    info.setFloat("Age", flower.getAge() / flowerGenome.getLifespan());
+	                    info.setShort("Colour", (short) flowerGenome.getPrimaryColor().getID());
+	                    info.setShort("Colour2", (short) flowerGenome.getSecondaryColor().getID());
+	                    info.setBoolean("Wilting", flower.isWilted());
+	                    info.setBoolean("Flowered", flower.hasFlowered());
+	                    Botany.proxy.sendToPlayer(new MessageNBT(PacketID.Encylopedia.ordinal(), info), player);
+	                    heldItem.damageItem(1, event.getEntityPlayer());
+	                }
+	            }
             }
         }
     }

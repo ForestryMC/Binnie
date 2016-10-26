@@ -38,8 +38,6 @@ public class ModuleGenetics implements IInitializable {
         Botany.pollen = new ItemBotany("pollen", EnumFlowerStage.POLLEN, "pollen");
         Botany.seed = new ItemBotany("seed", EnumFlowerStage.SEED, "germling");
         Botany.database = new ItemDictionary();
-        Botany.encyclopedia = new ItemEncyclopedia(false);
-        Botany.encyclopediaIron = new ItemEncyclopedia(true);
     }
 
     @Override
@@ -57,13 +55,6 @@ public class ModuleGenetics implements IInitializable {
     	OreDictionary.registerOre("flower", new ItemStack(Blocks.DOUBLE_PLANT, 1, 4));
     	OreDictionary.registerOre("flower", new ItemStack(Blocks.DOUBLE_PLANT, 1, 5));
     	OreDictionary.registerOre("flower", new ItemStack(Botany.flower, 1, OreDictionary.WILDCARD_VALUE));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Botany.encyclopedia), 
-        		"fff", 
-        		"fbf", 
-        		"fff", 
-        		'f', "flower", 
-        		'b', Items.BOOK));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Botany.encyclopediaIron), new ItemStack(Botany.encyclopedia), "ingotIron"));
         FlowerManager.flowerRegistry.registerAcceptableFlower(Botany.flower, "flowersVanilla");
         RecipeManagers.carpenterManager.addRecipe(100, Binnie.Liquid.getFluidStack("water", 2000), null, new ItemStack(Botany.database), 
         		"X#X", 

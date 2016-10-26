@@ -65,8 +65,6 @@ public class Botany extends AbstractMod {
     public static ItemBotany seed;
     public static ItemBotany pollen;
     public static ItemDictionary database;
-    public static ItemEncyclopedia encyclopedia;
-    public static ItemEncyclopedia encyclopediaIron;
     
     /* MODULE GARDENING */
     public static BlockPlant plant;
