@@ -48,6 +48,9 @@ public class Panel extends Control {
                     CraftGUI.Render.texture(CraftGUITexture.TabOutline, this.getArea());
                     break;
                 }
+                default: {
+                	break;
+                }
             }
         }
     }

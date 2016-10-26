@@ -11,6 +11,7 @@ import binnie.botany.items.BotanyItems;
 import binnie.core.BinnieCore;
 import com.mojang.authlib.GameProfile;
 import forestry.api.core.EnumTemperature;
+import forestry.api.core.ForestryAPI;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -43,8 +44,8 @@ public class Gardening {
         return isSoil(item.getItem());
     }
 
-	public static EnumMoisture getNaturalMoisture(final World world, final BlockPos pos) {
-		float bias = getBiomeMoisture(world.getBiome(pos), pos.getY());
+	public static EnumMoisture getNaturalMoisture(World world, BlockPos pos) {
+		float bias = getBiomeMoisture(world, pos);
 		for (int dx = -1; dx < 2; ++dx) {
 			for (int dz = -1; dz < 2; ++dz) {
 				if (dx != 0 || dz != 0) {
@@ -72,22 +73,22 @@ public class Gardening {
 		return (bias <= -1.0f) ? EnumMoisture.Dry : ((bias >= 1.0f) ? EnumMoisture.Damp : EnumMoisture.Normal);
 	}
 
-    public static EnumAcidity getNaturalPH(final World world, final BlockPos pos) {
-        final float bias = getBiomePH(world.getBiome(pos), pos.getY());
+    public static EnumAcidity getNaturalPH(World world, BlockPos pos) {
+        final float bias = getBiomePH(world, pos);
         return (bias <= -1.0f) ? EnumAcidity.Acid : ((bias >= 1.0f) ? EnumAcidity.Alkaline : EnumAcidity.Neutral);
     }
 
-    public static float getBiomeMoisture(final Biome biome, final int H) {
-        final double R = biome.getRainfall();
-        final double T = biome.getTemperature();
-        final double m = 3.2 * (R - 0.5) - 0.4 * (1.0 + T + 0.5 * T * T) + 1.1 - 1.6 * (T - 0.9) * (T - 0.9) - 0.002 * (H - 64);
+    public static float getBiomeMoisture(World world, BlockPos pos) {
+        double humidity = ForestryAPI.climateManager.getHumidity(world, pos);
+        double temperature =  ForestryAPI.climateManager.getTemperature(world, pos);
+        double m = 3.2 * (humidity - 0.5) - 0.4 * (1.0 + temperature + 0.5 * temperature * temperature) + 1.1 - 1.6 * (temperature - 0.9) * (temperature - 0.9) - 0.002 * (pos.getY() - 64);
         return (float) ((m == 0.0) ? m : ((m < 0.0) ? (-Math.sqrt(m * m)) : Math.sqrt(m * m)));
     }
 
-    public static float getBiomePH(final Biome biome, final int H) {
-        final double R = biome.getRainfall();
-        final double T = biome.getTemperature();
-        return (float) (-3.0 * (R - 0.5) + 0.5 * (T - 0.699999988079071) * (T - 0.699999988079071) + 0.02f * (H - 64) - 0.15000000596046448);
+    public static float getBiomePH(World world, BlockPos pos) {
+        double humidity = ForestryAPI.climateManager.getHumidity(world, pos);
+        double temperature =  ForestryAPI.climateManager.getTemperature(world, pos);
+        return (float) (-3.0 * (humidity - 0.5) + 0.5 * (temperature - 0.699999988079071) * (temperature - 0.699999988079071) + 0.02f * (pos.getY() - 64) - 0.15000000596046448);
     }
 
 	public static void plantSoil(final World world, final BlockPos pos, final EnumSoilType soil, final EnumMoisture moisture, final EnumAcidity acidity) {

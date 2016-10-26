@@ -53,6 +53,9 @@ public enum ExtraBeeGUID implements IBinnieGUID {
                 window = WindowAlvearyHatchery.create(player, object, side);
                 break;
             }
+            default: {
+            	break;
+			}
         }
         return window;
     }

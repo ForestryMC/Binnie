@@ -73,6 +73,9 @@ public enum ExtraTreesGUID implements IBinnieGUID {
                 window = WindowSetSquare.create(player, world, x, y, z, side);
                 break;
             }
+            default : {
+            	break;
+            }
         }
         return window;
     }

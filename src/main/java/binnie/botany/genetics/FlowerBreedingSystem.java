@@ -120,6 +120,9 @@ public class FlowerBreedingSystem extends BreedingSystem {
                 }
                 break;
             }
+            default: {
+            	break;
+			}
         }
     }
 }
