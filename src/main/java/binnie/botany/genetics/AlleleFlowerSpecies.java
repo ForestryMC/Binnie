@@ -84,8 +84,8 @@ public class AlleleFlowerSpecies extends AlleleSpecies implements IAlleleFlowerS
 	}
 
 	@Override
-	public ModelResourceLocation getFlowerModel(EnumFlowerStage type, boolean flowered, int section) {
-		return flowerType.getModel(type, flowered, section);
+	public ModelResourceLocation getFlowerModel(EnumFlowerStage type, boolean flowered) {
+		return flowerType.getModel(type, flowered);
 	}
 
 	@Override

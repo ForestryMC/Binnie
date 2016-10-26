@@ -927,6 +927,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
     String branchName;
     List<IAllele[]> variantTemplates;
     IClassification branch;
+    EnumFlowerColor primaryColor, secondaryColor;
 
     private static void setupVariants() {
     	IFlowerRoot flowerRood = BotanyCore.getFlowerRoot();
@@ -973,6 +974,8 @@ public enum FlowerDefinition implements IFlowerDefinition {
         this.binomial = binomial;
         this.branchName = branch;
         this.type = flowerType;
+        this.primaryColor = primaryColor;
+        this.secondaryColor = secondaryColor;
         
 		IAlleleFlowerSpeciesBuilder speciesBuilder = FlowerManager.flowerFactory.createSpecies(uid, unlocalizedName, "Binnie's Mod Team", unlocalizedDescription, isDominant, getBranch(), binomial, flowerType);
 		setSpeciesProperties(speciesBuilder);
@@ -1070,6 +1073,8 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		template = Arrays.copyOf(FlowerTemplates.getDefaultTemplate(), EnumFlowerChromosome.values().length);
 		AlleleHelper.instance.set(template, EnumFlowerChromosome.SPECIES, species);
 		AlleleHelper.instance.set(template, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.BOTH_1);
+		AlleleHelper.instance.set(template, EnumFlowerChromosome.PRIMARY, primaryColor);
+		AlleleHelper.instance.set(template, EnumFlowerChromosome.SECONDARY, secondaryColor);
 		setAlleles(template);
 
 		genome = BotanyCore.getFlowerRoot().templateAsGenome(template);

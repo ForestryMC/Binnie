@@ -151,7 +151,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
     
     @Override
     public int getColorFromItemstack(ItemStack stack, int tintIndex) {
-    	final IFlower flower = BotanyCore.speciesRoot.getMember(stack);
+    	IFlower flower = BotanyCore.getFlowerRoot().getMember(stack);
 		if (flower == null || flower.getGenome() == null) {
 			return 16777215;
 		}
@@ -174,7 +174,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 			}
 			IAlleleFlowerSpecies flowerSpecies = flower.getGenome().getPrimary();
 			IFlowerType flowerType = flowerSpecies.getType();
-			return flowerSpecies.getFlowerModel(type, flower.hasFlowered(), flowerType.getSections() - 1);
+			return flowerSpecies.getFlowerModel(type, flower.hasFlowered());
 		}
 
 	}

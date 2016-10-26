@@ -10,75 +10,65 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class ItemInsulatedTube extends Item {
-//	IIcon[] icons;
+import binnie.botany.CreativeTabBotany;
+import binnie.core.item.ItemCore;
+import forestry.api.core.IModelManager;
+import forestry.core.items.IColoredItem;
+
+public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 
     public ItemInsulatedTube() {
-        setRegistryName("insulatedTube");
+    	super("insulatedTube");
+        setUnlocalizedName("insulatedTube");
+        setCreativeTab(CreativeTabBotany.instance);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(final Item p_150895_1_, final CreativeTabs p_150895_2_, final List p_150895_3_) {
-        for (final Material mat : Material.values()) {
-            for (final Insulate ins : Insulate.values()) {
-                p_150895_3_.add(new ItemStack(this, 1, mat.ordinal() + ins.ordinal() * 128));
+    public void getSubItems(Item item, CreativeTabs tab, List subItems) {
+        for (Material mat : Material.values()) {
+            for (Insulate ins : Insulate.values()) {
+                subItems.add(new ItemStack(this, 1, mat.ordinal() + ins.ordinal() * 128));
             }
         }
     }
-
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerIcons(final IIconRegister p_94581_1_) {
-//		for (int i = 0; i < 3; ++i) {
-//			this.icons[i] = Botany.proxy.getIcon(p_94581_1_, "insulatedTube." + i);
-//		}
-//	}
-//
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public int getColorFromItemStack(final ItemStack stack, final int pass) {
-//		return (pass == 0) ? 16777215 : ((pass == 1) ? Material.get(stack.getItemDamage()).getColor() : Insulate.get(stack.getItemDamage()).getColor());
-//	}
+    
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerModel(Item item, IModelManager manager) {
+        for (Material mat : Material.values()) {
+            for (Insulate ins : Insulate.values()) {
+            	manager.registerItemModel(item, mat.ordinal() + ins.ordinal() * 128);
+            }
+        }
+    }
+    
+    @Override
+    public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+    	if(tintIndex == 0){
+    		return 16777215;
+    	}else if(tintIndex == 1){
+    		Material.get(stack.getItemDamage()).getColor();
+    	}
+    	return Insulate.get(stack.getItemDamage()).getColor();
+    }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(final ItemStack p_77624_1_, final EntityPlayer p_77624_2_, final List p_77624_3_, final boolean p_77624_4_) {
-        super.addInformation(p_77624_1_, p_77624_2_, p_77624_3_, p_77624_4_);
-        p_77624_3_.add(Insulate.get(p_77624_1_.getItemDamage()).getName());
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List tooltip, boolean advanced) {
+        tooltip.add(Insulate.get(itemStack.getItemDamage()).getName());
     }
 
     @Override
-    public String getItemStackDisplayName(final ItemStack p_77653_1_) {
+    public String getItemStackDisplayName(ItemStack p_77653_1_) {
         return Material.get(p_77653_1_.getItemDamage()).getName() + " Insulated Tube";
     }
 
-//	@Override
-//	public int getRenderPasses(final int metadata) {
-//		return 3;
-//	}
-//
-//	@Override
-//	public IIcon getIcon(final ItemStack stack, final int pass) {
-//		return this.icons[pass % 3];
-//	}
-//
-//	@Override
-//	public boolean requiresMultipleRenderPasses() {
-//		return true;
-//	}
-//
-//	public ItemInsulatedTube() {
-//		this.icons = new IIcon[3];
-//		this.setUnlocalizedName("insulatedTube");
-//		this.setCreativeTab(CreativeTabBotany.instance);
-//	}
-
-    public static String getInsulate(final ItemStack stack) {
+    public static String getInsulate(ItemStack stack) {
         return Insulate.get(stack.getItemDamage()).getName();
     }
 
-    public static ItemStack getInsulateStack(final ItemStack stack) {
+    public static ItemStack getInsulateStack(ItemStack stack) {
         return Insulate.get(stack.getItemDamage()).getStack();
     }
 

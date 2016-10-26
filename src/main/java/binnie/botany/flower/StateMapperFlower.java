@@ -24,6 +24,13 @@ public class StateMapperFlower extends StateMapperBase {
 		}else if(flowerType.getSections() <= state.getValue(BlockFlower.SECTION)){
 			properties.put(BlockFlower.SECTION, flowerType.getSections()-1);
 		}
+		if(state.getValue(BlockFlower.SEED)){
+			properties.remove(BlockFlower.SECTION);
+			properties.remove(BlockFlower.FLOWER);
+			properties.remove(BlockFlower.FLOWERED);
+		}else{
+			properties.remove(BlockFlower.SEED);
+		}
 
 		return new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":flower", getPropertyString(properties));
 	}

@@ -26,6 +26,7 @@ import forestry.api.genetics.IPollinatable;
 import forestry.api.lepidopterology.IButterfly;
 import forestry.api.lepidopterology.IButterflyNursery;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -56,48 +57,62 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
         this.renderInfo = null;
         this.matureTime = 0;
     }
-
+    
+    
+    
     @Override
-    public void readFromNBT(final NBTTagCompound nbttagcompound) {
-        this.flower = new Flower(nbttagcompound);
-        this.section = nbttagcompound.getByte("section");
-        if (this.flower.getAge() == 0) {
-            this.flower.setFlowered(false);
-        }
-        this.owner = NBTUtil.readGameProfileFromNBT(nbttagcompound.getCompoundTag("owner"));
-        if (nbttagcompound.hasKey("CATER") && BinnieCore.isLepidopteryActive()) {
-            this.matureTime = nbttagcompound.getInteger("caterTime");
-            this.caterpillar = Binnie.Genetics.getButterflyRoot().getMember(nbttagcompound.getCompoundTag("cater"));
-        }
-        super.readFromNBT(nbttagcompound);
+    public NBTTagCompound getUpdateTag() {
+    	updateRender(true);
+    	return super.getUpdateTag();
     }
 
     @Override
-    public NBTTagCompound writeToNBT(final NBTTagCompound nbttagcompound) {
+    public void readFromNBT(final NBTTagCompound nbtCompound) {
+    	if(nbtCompound.hasKey("Flower")){
+    		this.flower = new Flower(nbtCompound.getCompoundTag("Flower"));
+            if (flower.getAge() == 0) {
+                flower.setFlowered(false);
+            }
+    	}
+    	if(nbtCompound.hasKey("section")){
+    		this.section = nbtCompound.getByte("section");
+    	}
+    	if(nbtCompound.hasKey("owner")){
+    		this.owner = NBTUtil.readGameProfileFromNBT(nbtCompound.getCompoundTag("owner"));
+    	}
+        if (nbtCompound.hasKey("CATER") && BinnieCore.isLepidopteryActive()) {
+            this.matureTime = nbtCompound.getInteger("caterTime");
+            this.caterpillar = Binnie.Genetics.getButterflyRoot().getMember(nbtCompound.getCompoundTag("cater"));
+        }
+        super.readFromNBT(nbtCompound);
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(final NBTTagCompound nbtCompound) {
         if (this.flower != null) {
-            this.flower.writeToNBT(nbttagcompound);
+            nbtCompound.setTag("Flower", flower.writeToNBT(new NBTTagCompound()));
         }
         if (this.owner != null) {
             final NBTTagCompound nbt = new NBTTagCompound();
             NBTUtil.writeGameProfile(nbt, this.owner);
-            nbttagcompound.setTag("owner", nbt);
+            nbtCompound.setTag("owner", nbt);
         }
         if (this.caterpillar != null) {
-            nbttagcompound.setInteger("caterTime", this.matureTime);
+            nbtCompound.setInteger("caterTime", this.matureTime);
             final NBTTagCompound subcompound = new NBTTagCompound();
             this.caterpillar.writeToNBT(subcompound);
-            nbttagcompound.setTag("cater", subcompound);
+            nbtCompound.setTag("cater", subcompound);
         }
-        nbttagcompound.setByte("section", (byte) this.getSection());
-        return super.writeToNBT(nbttagcompound);
+        nbtCompound.setByte("section", (byte) getSection());
+        return super.writeToNBT(nbtCompound);
     }
 
     public void create(final ItemStack stack, final GameProfile owner) {
         this.create(BotanyCore.getFlowerRoot().getMember(stack), owner);
     }
 
-    public void create(final IFlower stack, final GameProfile owner) {
-        this.flower = stack;
+    public void create(final IFlower flower, final GameProfile owner) {
+        this.flower = flower;
         if (this.flower.getAge() == 0) {
             this.flower.setFlowered(false);
         }
@@ -536,8 +551,12 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
     public void setRender(final RenderInfo render) {
         this.renderInfo = render;
         this.section = this.renderInfo.section;
-        worldObj.markBlockRangeForRenderUpdate(pos, pos);
-        worldObj.markChunkDirty(pos, this);
+        if(!worldObj.isRemote){
+        	IBlockState blockState = worldObj.getBlockState(pos);
+            worldObj.notifyBlockUpdate(pos, blockState, blockState, 0);
+        }else{
+        	worldObj.markBlockRangeForRenderUpdate(pos, pos);
+        }
     }
 
     public int getAge() {

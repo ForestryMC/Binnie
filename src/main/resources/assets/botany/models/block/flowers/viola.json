@@ -1,0 +1,7 @@
+{   "parent": "botany:block/flowers/flower",
+    "textures": {
+        "stem": "botany:blocks/flowers/viola.0",
+		"petal": "botany:blocks/flowers/viola.1",
+		"variant": "botany:blocks/flowers/viola.3"
+    }
+}

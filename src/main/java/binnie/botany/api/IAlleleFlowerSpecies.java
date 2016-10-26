@@ -23,7 +23,7 @@ public interface IAlleleFlowerSpecies extends IAlleleSpecies, IAlleleProperty<IA
 
 	@Nonnull
 	@SideOnly(Side.CLIENT)
-	ModelResourceLocation getFlowerModel(EnumFlowerStage type, boolean flowered, int section);
+	ModelResourceLocation getFlowerModel(EnumFlowerStage type, boolean flowered);
 	
 	@SideOnly(Side.CLIENT)
 	void registerModels(Item item, IModelManager manager, EnumFlowerStage type);

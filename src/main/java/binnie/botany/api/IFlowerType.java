@@ -15,7 +15,7 @@ public interface IFlowerType<I extends IFlowerType> extends Comparable<I> {
 
 	@Nonnull
 	@SideOnly(Side.CLIENT)
-	ModelResourceLocation getModel(EnumFlowerStage type, boolean flowered, int section);
+	ModelResourceLocation getModel(EnumFlowerStage type, boolean flowered);
 
 	String getName();
 	

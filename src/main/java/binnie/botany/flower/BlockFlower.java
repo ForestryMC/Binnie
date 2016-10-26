@@ -51,6 +51,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IItemM
 	public static final PropertyFlower FLOWER = new PropertyFlower("flower", IFlowerType.class);
 	public static final PropertyInteger SECTION = PropertyInteger.create("section", 0, EnumFlowerType.highestSection - 1);
 	public static final PropertyBool FLOWERED = PropertyBool.create("flowered");
+	public static final PropertyBool SEED = PropertyBool.create("seed");
 	
     public BlockFlower() {
         super(Material.PLANTS);
@@ -96,10 +97,15 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IItemM
 		return FLOWER_BLOCK_AABB;
 	}
 	
-	@Override
-	public boolean isOpaqueCube(IBlockState state) {
-		return false;
-	}
+    @Override
+	public boolean isOpaqueCube(IBlockState state){
+        return false;
+    }
+
+    @Override
+	public boolean isFullCube(IBlockState state){
+        return false;
+    }
 	
 	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
@@ -127,15 +133,17 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IItemM
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex) {
-		final TileEntity tile = world.getTileEntity(pos);
-		if (tile instanceof TileEntityFlower) {
-			TileEntityFlower flower = (TileEntityFlower) tile;
-			if(tintIndex == 0){
-				return flower.getStemColour();
-			}else if(tintIndex == 1){
-				return flower.getPrimaryColour();
-			}else{
-				return flower.getSecondaryColour();
+		if(pos != null){
+			TileEntity tile = world.getTileEntity(pos);
+			if (tile instanceof TileEntityFlower) {
+				TileEntityFlower flower = (TileEntityFlower) tile;
+				if(tintIndex == 0){
+					return flower.getStemColour();
+				}else if(tintIndex == 1){
+					return flower.getPrimaryColour();
+				}else{
+					return flower.getSecondaryColour();
+				}
 			}
 		}
 		return 16777215;
@@ -179,16 +187,18 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IItemM
 			state = state.withProperty(FLOWER, flower.getType());
 			state = state.withProperty(FLOWERED, flower.isFlowered());
 			state = state.withProperty(SECTION, flower.getRenderSection());
+			state = state.withProperty(SEED, flower.getAge() == 0);
 		}else{
 			state = state.withProperty(FLOWER, FlowerDefinition.Dandelion.getSpecies().getType());
 			state = state.withProperty(FLOWERED, false);
+			state = state.withProperty(SEED, false);
 		}
 		return state;
 	}
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, FLOWER, FLOWERED, SECTION);
+		return new BlockStateContainer(this, FLOWER, FLOWERED, SECTION, SEED);
 	}
 	
 	@Override

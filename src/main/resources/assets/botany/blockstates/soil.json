@@ -1,13 +1,13 @@
 {
   "variants": {
-    "acidity=neutral,moisture=normal": { "model": "botany:soil/normal" },
-	"acidity=neutral,moisture=dry": { "model": "botany:soil/dry" },
-	"acidity=neutral,moisture=damp": { "model": "botany:soil/damp" },
-	"acidity=acid,moisture=normal": { "model": "botany:soil/acid" },
-	"acidity=acid,moisture=dry": { "model": "botany:soil/acid_dry" },
-	"acidity=acid,moisture=damp": { "model": "botany:soil/acid_damp" },
-	"acidity=alkaline,moisture=normal": { "model": "botany:soil/alkaline" },
-	"acidity=alkaline,moisture=dry": { "model": "botany:soil/alkaline_dry" },
-	"acidity=alkaline,moisture=damp": { "model": "botany:soil/alkaline_damp" }
+    "acidity=acid,moisture=damp": { "model": "botany:soil/acid_damp" },
+    "acidity=acid,moisture=dry": { "model": "botany:soil/acid_dry" },
+    "acidity=acid,moisture=normal": { "model": "botany:soil/acid" },
+    "acidity=alkaline,moisture=damp": { "model": "botany:soil/alkaline_damp" },
+    "acidity=alkaline,moisture=dry": { "model": "botany:soil/alkaline_dry" },
+    "acidity=alkaline,moisture=normal": { "model": "botany:soil/alkaline" },
+    "acidity=neutral,moisture=damp": { "model": "botany:soil/damp" },
+    "acidity=neutral,moisture=dry": { "model": "botany:soil/dry" },
+    "acidity=neutral,moisture=normal": { "model": "botany:soil/normal" }
   }
 }
