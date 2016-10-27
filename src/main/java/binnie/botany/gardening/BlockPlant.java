@@ -27,88 +27,88 @@ import java.util.List;
 import java.util.Random;
 
 public class BlockPlant extends BlockBush implements IItemModelRegister {
-    public static final PropertyEnum<Type> PLANT_TYPE = PropertyEnum.create("plant_type", Type.class);
+	public static final PropertyEnum<Type> PLANT_TYPE = PropertyEnum.create("plant_type", Type.class);
 
-    public BlockPlant() {
-        this.setRegistryName("plant");
-        this.setCreativeTab(CreativeTabBotany.instance);
-        this.setTickRandomly(true);
-        this.setSoundType(SoundType.PLANT);
-    }
-    
-    @Override
-    public void registerModel(Item item, IModelManager manager) {
-    	int index = 0;
+	public BlockPlant() {
+		this.setRegistryName("plant");
+		this.setCreativeTab(CreativeTabBotany.instance);
+		this.setTickRandomly(true);
+		this.setSoundType(SoundType.PLANT);
+	}
+
+	@Override
+	public void registerModel(Item item, IModelManager manager) {
+		int index = 0;
 		for (Type type : Type.values()) {
 			manager.registerItemModel(item, index, type.getName());
 			index++;
 		}
-    }
-    
-    @Override
-    protected BlockStateContainer createBlockState() {
-    	return new BlockStateContainer(this, PLANT_TYPE);
-    }
-    
-    @Override
-    public int getMetaFromState(IBlockState state) {
-    	return state.getValue(PLANT_TYPE).ordinal();
-    }
-    
-    @Override
-    public IBlockState getStateFromMeta(int meta) {
-    	return getDefaultState().withProperty(PLANT_TYPE, Type.values()[meta]);
-    }
-    
-    @Override
-    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-        return new ArrayList<>();
-    }
+	}
 
-    @Override
-    public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
-        return super.canPlaceBlockAt(worldIn, pos) || Gardening.isSoil(worldIn.getBlockState(pos).getBlock());
-    }
-    
-    @Override
-    public int damageDropped(IBlockState state) {
-    	return getMetaFromState(state);
-    }
+	@Override
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, PLANT_TYPE);
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubBlocks(final Item p_149666_1_, final CreativeTabs p_149666_2_, final List subBlocks) {
-        for (final Type type : Type.values()) {
-            subBlocks.add(type.get());
-        }
-    }
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(PLANT_TYPE).ordinal();
+	}
 
-    @Override
-    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
-        final Type type = state.getValue(PLANT_TYPE);
-        if (world.rand.nextInt(4) == 0) {
-            if (type == Type.Weeds) {
-                world.setBlockState(pos, state.withProperty(PLANT_TYPE, Type.WeedsLong), 2);
-            } else if (type == Type.WeedsLong) {
-                world.setBlockState(pos, state.withProperty(PLANT_TYPE, Type.WeedsVeryLong), 2);
-            } else if (type == Type.DeadFlower) {
-                world.setBlockState(pos, state.withProperty(PLANT_TYPE, Type.DecayingFlower), 2);
-            } else if (type == Type.DecayingFlower) {
-                world.setBlockToAir(pos);
-                return;
-            }
-        }
-        if (world.rand.nextInt(6) == 0) {
-            if (type == Type.Weeds) {
-                world.setBlockToAir(pos);
-            } else if (type == Type.WeedsLong) {
-                world.setBlockState(pos, state.withProperty(PLANT_TYPE, Type.Weeds), 2);
-            } else if (type == Type.WeedsVeryLong) {
-                world.setBlockState(pos, state.withProperty(PLANT_TYPE, Type.WeedsLong), 2);
-            }
-        }
-        final Block below = world.getBlockState(pos.down()).getBlock();
-        if (Gardening.isSoil(below)) {
+	@Override
+	public IBlockState getStateFromMeta(int meta) {
+		return getDefaultState().withProperty(PLANT_TYPE, Type.values()[meta]);
+	}
+
+	@Override
+	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+		return new ArrayList<>();
+	}
+
+	@Override
+	public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
+		return super.canPlaceBlockAt(worldIn, pos) || Gardening.isSoil(worldIn.getBlockState(pos).getBlock());
+	}
+
+	@Override
+	public int damageDropped(IBlockState state) {
+		return getMetaFromState(state);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(final Item p_149666_1_, final CreativeTabs p_149666_2_, final List subBlocks) {
+		for (final Type type : Type.values()) {
+			subBlocks.add(type.get());
+		}
+	}
+
+	@Override
+	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
+		final Type type = state.getValue(PLANT_TYPE);
+		if (world.rand.nextInt(4) == 0) {
+			if (type == Type.Weeds) {
+				world.setBlockState(pos, state.withProperty(PLANT_TYPE, Type.WeedsLong), 2);
+			} else if (type == Type.WeedsLong) {
+				world.setBlockState(pos, state.withProperty(PLANT_TYPE, Type.WeedsVeryLong), 2);
+			} else if (type == Type.DeadFlower) {
+				world.setBlockState(pos, state.withProperty(PLANT_TYPE, Type.DecayingFlower), 2);
+			} else if (type == Type.DecayingFlower) {
+				world.setBlockToAir(pos);
+				return;
+			}
+		}
+		if (world.rand.nextInt(6) == 0) {
+			if (type == Type.Weeds) {
+				world.setBlockToAir(pos);
+			} else if (type == Type.WeedsLong) {
+				world.setBlockState(pos, state.withProperty(PLANT_TYPE, Type.Weeds), 2);
+			} else if (type == Type.WeedsVeryLong) {
+				world.setBlockState(pos, state.withProperty(PLANT_TYPE, Type.WeedsLong), 2);
+			}
+		}
+		final Block below = world.getBlockState(pos.down()).getBlock();
+		if (Gardening.isSoil(below)) {
 			final IBlockSoil soil = (IBlockSoil) below;
 			if (world.rand.nextInt(3) == 0) {
 				if (type == Type.Weeds || type == Type.WeedsLong || type == Type.WeedsVeryLong) {
@@ -119,51 +119,51 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 					soil.fertilise(world, pos.down(), EnumSoilType.FLOWERBED);
 				}
 			}
-        }
-    }
+		}
+	}
 
-    @Override
-    public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos) {
-        return true;
-    }
+	@Override
+	public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos) {
+		return true;
+	}
 
-    public static boolean isWeed(final IBlockAccess world, final BlockPos pos) {
-        if (!(world.getBlockState(pos).getBlock() instanceof BlockPlant)) {
-            return false;
-        }
-        final Type type = world.getBlockState(pos).getValue(PLANT_TYPE);
-        return type == Type.Weeds || type == Type.WeedsLong || type == Type.WeedsVeryLong;
-    }
-    
-    @Override
-    public EnumOffsetType getOffsetType() {
-    	return EnumOffsetType.XZ;
-    }
+	public static boolean isWeed(final IBlockAccess world, final BlockPos pos) {
+		if (!(world.getBlockState(pos).getBlock() instanceof BlockPlant)) {
+			return false;
+		}
+		final Type type = world.getBlockState(pos).getValue(PLANT_TYPE);
+		return type == Type.Weeds || type == Type.WeedsLong || type == Type.WeedsVeryLong;
+	}
 
-    public enum Type implements IStringSerializable {
-        Weeds("weeds"),
-        WeedsLong("weeds_long"),
-        WeedsVeryLong("weeds_very_long"),
-        DeadFlower("dead_flower"),
-        DecayingFlower("decaying_flower");
+	@Override
+	public EnumOffsetType getOffsetType() {
+		return EnumOffsetType.XZ;
+	}
 
-        String name;
+	public enum Type implements IStringSerializable {
+		Weeds("weeds"),
+		WeedsLong("weeds_long"),
+		WeedsVeryLong("weeds_very_long"),
+		DeadFlower("dead_flower"),
+		DecayingFlower("decaying_flower");
 
-        Type(final String name) {
-            this.name = name;
-        }
+		String name;
 
-        public ItemStack get() {
-            return new ItemStack(Botany.plant, 1, this.ordinal());
-        }
+		Type(final String name) {
+			this.name = name;
+		}
 
-        public static Type get(final int id) {
-            return values()[id % values().length];
-        }
+		public ItemStack get() {
+			return new ItemStack(Botany.plant, 1, this.ordinal());
+		}
 
-        @Override
+		public static Type get(final int id) {
+			return values()[id % values().length];
+		}
+
+		@Override
 		public String getName() {
-            return name;
-        }
-    }
+			return name;
+		}
+	}
 }

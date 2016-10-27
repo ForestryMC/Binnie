@@ -7,17 +7,17 @@ import binnie.core.resource.ResourceType;
 import binnie.extrabees.ExtraBees;
 
 public enum BotanyTexture implements IBinnieTexture {
-    ;
-    String texture;
-    ResourceType type;
+	;
+	String texture;
+	ResourceType type;
 
-    BotanyTexture(final ResourceType base, final String texture) {
-        this.texture = texture;
-        this.type = base;
-    }
+	BotanyTexture(final ResourceType base, final String texture) {
+		this.texture = texture;
+		this.type = base;
+	}
 
-    @Override
-    public BinnieResource getTexture() {
-        return Binnie.Resource.getPNG(ExtraBees.instance, this.type, this.texture);
-    }
+	@Override
+	public BinnieResource getTexture() {
+		return Binnie.Resource.getPNG(ExtraBees.instance, this.type, this.texture);
+	}
 }

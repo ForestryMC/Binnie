@@ -13,23 +13,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PageColourMixResultant extends PageAbstract<IFlowerColour> {
-    ControlText pageSpeciesFurther_Title;
-    ControlColourMixBox pageSpeciesFurther_List;
+	ControlText pageSpeciesFurther_Title;
+	ControlColourMixBox pageSpeciesFurther_List;
 
-    public PageColourMixResultant(final IWidget parent, final DatabaseTab tab) {
-        super(parent, tab);
-        this.pageSpeciesFurther_Title = new ControlTextCentered(this, 8.0f, "Resultant Mixes");
-        this.pageSpeciesFurther_List = new ControlColourMixBox(this, 4, 20, 136, 152, ControlColourMixBox.Type.Resultant);
-    }
+	public PageColourMixResultant(final IWidget parent, final DatabaseTab tab) {
+		super(parent, tab);
+		this.pageSpeciesFurther_Title = new ControlTextCentered(this, 8.0f, "Resultant Mixes");
+		this.pageSpeciesFurther_List = new ControlColourMixBox(this, 4, 20, 136, 152, ControlColourMixBox.Type.Resultant);
+	}
 
-    @Override
-    public void onValueChanged(final IFlowerColour colour) {
-        final List<IColourMix> mixes = new ArrayList<>();
-        for (final IColourMix mix : BotanyCore.getFlowerRoot().getColourMixes(false)) {
-            if (mix.getResult() == colour) {
-                mixes.add(mix);
-            }
-        }
-        this.pageSpeciesFurther_List.setOptions(mixes);
-    }
+	@Override
+	public void onValueChanged(final IFlowerColour colour) {
+		final List<IColourMix> mixes = new ArrayList<>();
+		for (final IColourMix mix : BotanyCore.getFlowerRoot().getColourMixes(false)) {
+			if (mix.getResult() == colour) {
+				mixes.add(mix);
+			}
+		}
+		this.pageSpeciesFurther_List.setOptions(mixes);
+	}
 }

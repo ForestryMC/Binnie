@@ -10,18 +10,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class MachineRendererLab {
-    public static MachineRendererLab instance = new MachineRendererLab();
-    private final EntityItem dummyEntityItem;
-    private final EntityItem[] itemSides;
-    //	private final RenderItem customRenderItem;
-    private long lastTick;
-    private ModelMachine model;
+	public static MachineRendererLab instance = new MachineRendererLab();
+	private final EntityItem dummyEntityItem;
+	private final EntityItem[] itemSides;
+	//	private final RenderItem customRenderItem;
+	private long lastTick;
+	private ModelMachine model;
 
-    public MachineRendererLab() {
-        World world = Minecraft.getMinecraft().theWorld;
-        this.dummyEntityItem = new EntityItem(world);
-        this.itemSides = new EntityItem[]{new EntityItem(world), new EntityItem(world), new EntityItem(world), new EntityItem(world)};
-        this.model = new ModelMachine();
+	public MachineRendererLab() {
+		World world = Minecraft.getMinecraft().theWorld;
+		this.dummyEntityItem = new EntityItem(world);
+		this.itemSides = new EntityItem[]{new EntityItem(world), new EntityItem(world), new EntityItem(world), new EntityItem(world)};
+		this.model = new ModelMachine();
 //		(this.customRenderItem = new RenderItem() {
 //			@Override
 //			public boolean shouldBob() {
@@ -33,9 +33,9 @@ public class MachineRendererLab {
 //				return false;
 //			}
 //		}).setRenderManager(RenderManager.instance);
-    }
+	}
 
-    public void renderMachine(final Machine machine, final int colour, final BinnieResource texture, final double x, final double y, final double z, final float var8) {
+	public void renderMachine(final Machine machine, final int colour, final BinnieResource texture, final double x, final double y, final double z, final float var8) {
 //		GL11.glPushMatrix();
 //		int i1 = 0;
 //		final int ix = machine.getTileEntity().xCoord;
@@ -104,6 +104,6 @@ public class MachineRendererLab {
 //			}
 //		}
 //		GL11.glPopMatrix();
-    }
+	}
 
 }

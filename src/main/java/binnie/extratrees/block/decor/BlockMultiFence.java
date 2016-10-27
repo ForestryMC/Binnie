@@ -14,16 +14,16 @@ import net.minecraft.item.ItemStack;
 import java.util.List;
 
 public class BlockMultiFence extends BlockFence implements IBlockMetadata {
-    public BlockMultiFence() {
-        super("multifence");
-    }
+	public BlockMultiFence() {
+		super("multifence");
+	}
 
-    @Override
-    public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
-        for (final FenceType type : FenceType.values()) {
-            itemList.add(WoodManager.getFence(PlankType.VanillaPlanks.SPRUCE, PlankType.VanillaPlanks.BIRCH, type, 1));
-        }
-    }
+	@Override
+	public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
+		for (final FenceType type : FenceType.values()) {
+			itemList.add(WoodManager.getFence(PlankType.VanillaPlanks.SPRUCE, PlankType.VanillaPlanks.BIRCH, type, 1));
+		}
+	}
 
 //	@Override
 //	public IIcon getIcon(final int side, final int meta) {
@@ -31,13 +31,13 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata {
 //	}
 
 
-    @Override
-    public String getBlockName(final ItemStack par1ItemStack) {
-        final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
-        final IPlankType type1 = this.getDescription(meta).getPlankType();
-        final IPlankType type2 = this.getDescription(meta).getSecondaryPlankType();
-        final boolean twoTypes = type1 != type2;
-        final FenceType type3 = this.getDescription(meta).getFenceType();
-        return Binnie.Language.localise(ExtraTrees.instance, "block.woodslab.name" + (twoTypes ? "2" : ""), type3.getPrefix(), type1.getName(), type2.getName());
-    }
+	@Override
+	public String getBlockName(final ItemStack par1ItemStack) {
+		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
+		final IPlankType type1 = this.getDescription(meta).getPlankType();
+		final IPlankType type2 = this.getDescription(meta).getSecondaryPlankType();
+		final boolean twoTypes = type1 != type2;
+		final FenceType type3 = this.getDescription(meta).getFenceType();
+		return Binnie.Language.localise(ExtraTrees.instance, "block.woodslab.name" + (twoTypes ? "2" : ""), type3.getPrefix(), type1.getName(), type2.getName());
+	}
 }

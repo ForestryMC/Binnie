@@ -10,16 +10,16 @@ import net.minecraft.item.ItemStack;
 import java.util.List;
 
 public class BlockCarpentryPanel extends BlockCarpentry {
-    public BlockCarpentryPanel() {
-        super("carpentryPanel");
-        this.useNeighborBrightness = true;
-        //this.setBlockBounds(0.0f, 0.0f, 0.0f, 1.0f, 0.0625f, 1.0f);
-        this.setLightOpacity(0);
-    }
+	public BlockCarpentryPanel() {
+		super("carpentryPanel");
+		this.useNeighborBrightness = true;
+		//this.setBlockBounds(0.0f, 0.0f, 0.0f, 1.0f, 0.0625f, 1.0f);
+		this.setLightOpacity(0);
+	}
 
-    @Override
-    public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
-    }
+	@Override
+	public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
+	}
 
 //	@Override
 //	public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int x, int y, int z)
@@ -64,11 +64,11 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 //		this.setBlockBounds(0.0f, 0.0f, 0.0f, 1.0f, 0.0625f, 1.0f);
 //	}
 
-    @Override
-    public String getBlockName(final ItemStack stack) {
-        final DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
-        return Binnie.Language.localise(ExtraTrees.instance, "block.woodenpanel.name", block.getDesign().getName());
-    }
+	@Override
+	public String getBlockName(final ItemStack stack) {
+		final DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
+		return Binnie.Language.localise(ExtraTrees.instance, "block.woodenpanel.name", block.getDesign().getName());
+	}
 
 //	@Override
 //	public AxisAlignedBB getCollisionBoundingBoxFromPool(final World par1World, final int par2, final int par3, final int par4) {

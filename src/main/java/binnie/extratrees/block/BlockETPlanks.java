@@ -16,18 +16,18 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class BlockETPlanks extends BlockPlanks implements IBlockMetadata {
-    public BlockETPlanks() {
-        this.setRegistryName("planks");
-        this.setCreativeTab(Tabs.tabArboriculture);
-        this.setResistance(5.0f);
-        this.setHardness(2.0f);
-        this.setSoundType(SoundType.WOOD);
-    }
+	public BlockETPlanks() {
+		this.setRegistryName("planks");
+		this.setCreativeTab(Tabs.tabArboriculture);
+		this.setResistance(5.0f);
+		this.setHardness(2.0f);
+		this.setSoundType(SoundType.WOOD);
+	}
 
-    @Override
-    public int getPlacedMeta(ItemStack p0, World p1, BlockPos pos, EnumFacing p5) {
-        return 0;
-    }
+	@Override
+	public int getPlacedMeta(ItemStack p0, World p1, BlockPos pos, EnumFacing p5) {
+		return 0;
+	}
 
 //	@Override
 //	public ArrayList<ItemStack> getDrops(final World world, final int x, final int y, final int z, final int blockMeta, final int fortune) {
@@ -39,10 +39,10 @@ public class BlockETPlanks extends BlockPlanks implements IBlockMetadata {
 //		return BlockMetadata.breakBlock(this, player, world, x, y, z);
 //	}
 
-    @Override
-    public TileEntity createNewTileEntity(final World var1, final int i) {
-        return new TileEntityMetadata();
-    }
+	@Override
+	public TileEntity createNewTileEntity(final World var1, final int i) {
+		return new TileEntityMetadata();
+	}
 
 //	@Override
 //	public boolean hasTileEntity(final int meta) {
@@ -61,25 +61,25 @@ public class BlockETPlanks extends BlockPlanks implements IBlockMetadata {
 //		return TileEntityMetadata.getItemDamage(stack);
 //	}
 
-    @Override
-    public int getDroppedMeta(final int blockMeta, final int tileMeta) {
-        return tileMeta;
-    }
+	@Override
+	public int getDroppedMeta(final int blockMeta, final int tileMeta) {
+		return tileMeta;
+	}
 
-    @Override
-    public String getBlockName(final ItemStack par1ItemStack) {
-        final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
-        return Binnie.Language.localise(ExtraTrees.instance, "block.plank.name", PlankType.ExtraTreePlanks.values()[meta].getName());
-    }
+	@Override
+	public String getBlockName(final ItemStack par1ItemStack) {
+		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
+		return Binnie.Language.localise(ExtraTrees.instance, "block.plank.name", PlankType.ExtraTreePlanks.values()[meta].getName());
+	}
 
-    @Override
-    public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
-    }
+	@Override
+	public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
+	}
 
-    @Override
-    public void dropAsStack(World world, BlockPos pos, ItemStack p4) {
-        //this.dropBlockAsItem(world, pos, drop);
-    }
+	@Override
+	public void dropAsStack(World world, BlockPos pos, ItemStack p4) {
+		//this.dropBlockAsItem(world, pos, drop);
+	}
 
 //	@Override
 //	public void dropAsStack(final World world, final int x, final int y, final int z, final ItemStack drop) {

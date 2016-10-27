@@ -5,24 +5,26 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
 public interface IIncubatorRecipe {
-    boolean isInputLiquid(final FluidStack p0);
+	boolean isInputLiquid(final FluidStack p0);
 
-    boolean isInputLiquidSufficient(final FluidStack p0);
+	boolean isInputLiquidSufficient(final FluidStack p0);
 
-    void doTask(final MachineUtil p0);
+	void doTask(final MachineUtil p0);
 
-    float getChance();
-    float getLossChance();
+	float getChance();
 
-    boolean roomForOutput(final MachineUtil p0);
+	float getLossChance();
 
-    FluidStack getInput();
-    FluidStack getOutput();
+	boolean roomForOutput(final MachineUtil p0);
 
-    ItemStack getInputStack();
-    @Nullable
-    ItemStack getExpectedOutput();
+	FluidStack getInput();
+
+	FluidStack getOutput();
+
+	ItemStack getInputStack();
+
+	@Nullable
+	ItemStack getExpectedOutput();
 }

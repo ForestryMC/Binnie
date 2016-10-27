@@ -17,20 +17,20 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class BlockBranch extends BlockLog implements IBlockMetadata {
-    public BlockBranch() {
-        this.setCreativeTab(Tabs.tabArboriculture);
-        this.setRegistryName("branch");
-        this.setResistance(5.0f);
-        this.setHardness(2.0f);
-        this.setSoundType(SoundType.WOOD);
-    }
+	public BlockBranch() {
+		this.setCreativeTab(Tabs.tabArboriculture);
+		this.setRegistryName("branch");
+		this.setResistance(5.0f);
+		this.setHardness(2.0f);
+		this.setSoundType(SoundType.WOOD);
+	}
 
-    @Override
-    public void getSubBlocks(final Item par1, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
-        for (int i = 0; i < EnumExtraTreeLog.values().length; ++i) {
-            itemList.add(TileEntityMetadata.getItemStack(this, i));
-        }
-    }
+	@Override
+	public void getSubBlocks(final Item par1, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
+		for (int i = 0; i < EnumExtraTreeLog.values().length; ++i) {
+			itemList.add(TileEntityMetadata.getItemStack(this, i));
+		}
+	}
 
 //	@Override
 //	@SideOnly(Side.CLIENT)
@@ -77,15 +77,15 @@ public class BlockBranch extends BlockLog implements IBlockMetadata {
 //		return BlockMetadata.breakBlock(this, player, world, x, y, z);
 //	}
 
-    @Override
-    public TileEntity createNewTileEntity(final World var1, final int i) {
-        return new TileEntityMetadata();
-    }
+	@Override
+	public TileEntity createNewTileEntity(final World var1, final int i) {
+		return new TileEntityMetadata();
+	}
 
-    @Override
-    public boolean hasTileEntity(IBlockState state) {
-        return true;
-    }
+	@Override
+	public boolean hasTileEntity(IBlockState state) {
+		return true;
+	}
 
 //	@Override
 //	public boolean onBlockEventReceived(final World par1World, final int par2, final int par3, final int par4, final int par5, final int par6) {
@@ -94,30 +94,30 @@ public class BlockBranch extends BlockLog implements IBlockMetadata {
 //		return tileentity != null && tileentity.receiveClientEvent(par5, par6);
 //	}
 
-    @Override
-    public int getPlacedMeta(ItemStack p0, World p1, BlockPos pos, EnumFacing p5) {
-        return TileEntityMetadata.getItemDamage(p0);
-    }
+	@Override
+	public int getPlacedMeta(ItemStack p0, World p1, BlockPos pos, EnumFacing p5) {
+		return TileEntityMetadata.getItemDamage(p0);
+	}
 
-    @Override
-    public int getDroppedMeta(final int blockMeta, final int tileMeta) {
-        return tileMeta;
-    }
+	@Override
+	public int getDroppedMeta(final int blockMeta, final int tileMeta) {
+		return tileMeta;
+	}
 
-    @Override
-    public String getBlockName(final ItemStack par1ItemStack) {
-        final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
-        return EnumExtraTreeLog.values()[meta].getName() + " Branch";
-    }
+	@Override
+	public String getBlockName(final ItemStack par1ItemStack) {
+		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
+		return EnumExtraTreeLog.values()[meta].getName() + " Branch";
+	}
 
-    @Override
-    public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
-    }
+	@Override
+	public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
+	}
 
-    @Override
-    public void dropAsStack(World world, BlockPos pos, ItemStack p4) {
+	@Override
+	public void dropAsStack(World world, BlockPos pos, ItemStack p4) {
 
-    }
+	}
 
 //
 //	@Override

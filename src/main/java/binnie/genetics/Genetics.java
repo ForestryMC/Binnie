@@ -25,86 +25,86 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = Constants.GENETICS_MOD_ID, name = "Binnie's Genetics", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class Genetics extends AbstractMod {
-	
-    @Mod.Instance(Constants.GENETICS_MOD_ID)
-    public static Genetics instance;
-    
-    @SidedProxy(clientSide = "binnie.genetics.proxy.ProxyClient", serverSide = "binnie.genetics.proxy.ProxyServer")
-    public static Proxy proxy;
-    
-    public static String channel = "GEN";
-    public static Item itemGenetics;
-    public static Item itemSerum;
-    public static Item itemSequencer;
-    public static MachineGroup packageGenetic;
-    public static MachineGroup packageAdvGenetic;
-    public static MachineGroup packageLabMachine;
-    public static ItemDatabase database;
-    public static ItemAnalyst analyst;
-    public static Item registry;
-    public static Item masterRegistry;
-    public static ItemSerumArray itemSerumArray = null;
 
-    @Mod.EventHandler
-    public void preInit(final FMLPreInitializationEvent evt) {
-        this.preInit();
-    }
+	@Mod.Instance(Constants.GENETICS_MOD_ID)
+	public static Genetics instance;
 
-    @Mod.EventHandler
-    public void init(final FMLInitializationEvent evt) {
-        this.init();
-    }
+	@SidedProxy(clientSide = "binnie.genetics.proxy.ProxyClient", serverSide = "binnie.genetics.proxy.ProxyServer")
+	public static Proxy proxy;
 
-    @Mod.EventHandler
-    public void postInit(final FMLPostInitializationEvent evt) {
-        this.postInit();
-    }
+	public static String channel = "GEN";
+	public static Item itemGenetics;
+	public static Item itemSerum;
+	public static Item itemSequencer;
+	public static MachineGroup packageGenetic;
+	public static MachineGroup packageAdvGenetic;
+	public static MachineGroup packageLabMachine;
+	public static ItemDatabase database;
+	public static ItemAnalyst analyst;
+	public static Item registry;
+	public static Item masterRegistry;
+	public static ItemSerumArray itemSerumArray = null;
 
-    @Override
-    protected void registerModules() {
-        this.addModule(new ModuleItem());
-        this.addModule(new ModuleMachine());
-    }
+	@Mod.EventHandler
+	public void preInit(final FMLPreInitializationEvent evt) {
+		this.preInit();
+	}
 
-    @Override
-    public IBinnieGUID[] getGUIDs() {
-        return GeneticsGUI.values();
-    }
+	@Mod.EventHandler
+	public void init(final FMLInitializationEvent evt) {
+		this.init();
+	}
 
-    @Override
-    public IPacketID[] getPacketIDs() {
-        return GeneticsPacket.values();
-    }
+	@Mod.EventHandler
+	public void postInit(final FMLPostInitializationEvent evt) {
+		this.postInit();
+	}
 
-    @Override
-    public String getChannel() {
-        return "GEN";
-    }
+	@Override
+	protected void registerModules() {
+		this.addModule(new ModuleItem());
+		this.addModule(new ModuleMachine());
+	}
 
-    @Override
-    public IProxyCore getProxy() {
-        return Genetics.proxy;
-    }
+	@Override
+	public IBinnieGUID[] getGUIDs() {
+		return GeneticsGUI.values();
+	}
 
-    @Override
-    public String getModID() {
-        return Constants.GENETICS_MOD_ID;
-    }
+	@Override
+	public IPacketID[] getPacketIDs() {
+		return GeneticsPacket.values();
+	}
 
-    @Override
-    protected Class<? extends BinniePacketHandler> getPacketHandler() {
-        return PacketHandler.class;
-    }
+	@Override
+	public String getChannel() {
+		return "GEN";
+	}
 
-    @Override
-    public boolean isActive() {
-        return BinnieCore.isGeneticsActive();
-    }
+	@Override
+	public IProxyCore getProxy() {
+		return Genetics.proxy;
+	}
 
-    public static class PacketHandler extends BinniePacketHandler {
-        public PacketHandler() {
-            super(Genetics.instance);
-        }
-    }
+	@Override
+	public String getModID() {
+		return Constants.GENETICS_MOD_ID;
+	}
+
+	@Override
+	protected Class<? extends BinniePacketHandler> getPacketHandler() {
+		return PacketHandler.class;
+	}
+
+	@Override
+	public boolean isActive() {
+		return BinnieCore.isGeneticsActive();
+	}
+
+	public static class PacketHandler extends BinniePacketHandler {
+		public PacketHandler() {
+			super(Genetics.instance);
+		}
+	}
 
 }

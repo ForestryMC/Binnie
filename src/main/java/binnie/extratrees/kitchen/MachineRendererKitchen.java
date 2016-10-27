@@ -7,11 +7,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class MachineRendererKitchen {
-    static int level = 0;
-    public static MachineRendererKitchen instance = new MachineRendererKitchen();;
-    BinnieResource texture;
+	static int level = 0;
+	public static MachineRendererKitchen instance = new MachineRendererKitchen();
+	;
+	BinnieResource texture;
 
-    public void renderMachine(final Machine machine, final BinnieResource texture, final double x, final double y, final double z, final float var8) {
+	public void renderMachine(final Machine machine, final BinnieResource texture, final double x, final double y, final double z, final float var8) {
 //		if (renderer != null && renderer.blockAccess != null) {
 //			final Block block = machine.getPackage().getGroup().getBlock();
 //			final float i = 0.0625f;
@@ -83,6 +84,6 @@ public class MachineRendererKitchen {
 //				tess.startDrawingQuads();
 //			}
 //		}
-    }
+	}
 
 }

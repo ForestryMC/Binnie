@@ -10,42 +10,42 @@ import java.util.LinkedList;
 
 @Optional.Interface(iface = "binnie.core.machines.component.IBuildcraft.TriggerProvider", modid = "BuildCraft|Silicon")
 public class ComponentPowerReceptor extends MachineComponent implements IPoweredMachine/*, IBuildcraft.TriggerProvider*/, IInteraction.ChunkUnload, IInteraction.Invalidation {
-    private boolean registeredToIC2EnergyNet;
-    float previousPower;
-    LinkedList<Float> inputs;
-    static final int inputAverageTicks = 20;
-    private PowerInterface container;
+	private boolean registeredToIC2EnergyNet;
+	float previousPower;
+	LinkedList<Float> inputs;
+	static final int inputAverageTicks = 20;
+	private PowerInterface container;
 
-    public ComponentPowerReceptor(final IMachine machine) {
-        this(machine, 1000);
-    }
+	public ComponentPowerReceptor(final IMachine machine) {
+		this(machine, 1000);
+	}
 
-    public ComponentPowerReceptor(final IMachine machine, final int storage) {
-        super(machine);
-        this.registeredToIC2EnergyNet = false;
-        this.previousPower = 0.0f;
-        this.inputs = new LinkedList<>();
-        this.container = new PowerInterface(storage);
+	public ComponentPowerReceptor(final IMachine machine, final int storage) {
+		super(machine);
+		this.registeredToIC2EnergyNet = false;
+		this.previousPower = 0.0f;
+		this.inputs = new LinkedList<>();
+		this.container = new PowerInterface(storage);
 //		if (!this.registeredToIC2EnergyNet) {
 //			this.addToEnergyNet();
 //		}
-    }
+	}
 
-    @Override
-    public void readFromNBT(final NBTTagCompound nbttagcompound) {
-        super.readFromNBT(nbttagcompound);
-        this.container.readFromNBT(nbttagcompound);
+	@Override
+	public void readFromNBT(final NBTTagCompound nbttagcompound) {
+		super.readFromNBT(nbttagcompound);
+		this.container.readFromNBT(nbttagcompound);
 //		if (!this.registeredToIC2EnergyNet) {
 //			this.addToEnergyNet();
 //		}
-    }
+	}
 
-    @Override
-    public NBTTagCompound writeToNBT(final NBTTagCompound nbttagcompound2) {
-        NBTTagCompound nbttagcompound = super.writeToNBT(nbttagcompound2);
-        this.container.writeToNBT(nbttagcompound);
-        return nbttagcompound;
-    }
+	@Override
+	public NBTTagCompound writeToNBT(final NBTTagCompound nbttagcompound2) {
+		NBTTagCompound nbttagcompound = super.writeToNBT(nbttagcompound2);
+		this.container.writeToNBT(nbttagcompound);
+		return nbttagcompound;
+	}
 
 //	@Override
 //	public void onUpdate() {
@@ -54,10 +54,10 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 //		}
 //	}
 
-    @Override
-    public PowerInfo getPowerInfo() {
-        return new PowerInfo(this, 0.0f);
-    }
+	@Override
+	public PowerInfo getPowerInfo() {
+		return new PowerInfo(this, 0.0f);
+	}
 
 //	@Optional.Method(modid = "BuildCraft|Silicon")
 //	@Override
@@ -114,34 +114,34 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 		return (int) this.container.getCapacity(PowerSystem.RF);
 	}
 
-    @Override
-    public boolean canReceive() {
-        return this.acceptsPowerSystem(PowerSystem.RF);
-    }
+	@Override
+	public boolean canReceive() {
+		return this.acceptsPowerSystem(PowerSystem.RF);
+	}
 
-    @Override
-    public boolean canExtract() {
-        return false;
-    }
+	@Override
+	public boolean canExtract() {
+		return false;
+	}
 
-    @Override
-    public PowerInterface getInterface() {
-        return this.container;
-    }
+	@Override
+	public PowerInterface getInterface() {
+		return this.container;
+	}
 
-    private boolean acceptsPowerSystem(final PowerSystem system) {
-        return true;
-    }
+	private boolean acceptsPowerSystem(final PowerSystem system) {
+		return true;
+	}
 
-    @Override
-    public void onInvalidation() {
-        //this.removeFromEnergyNet();
-    }
+	@Override
+	public void onInvalidation() {
+		//this.removeFromEnergyNet();
+	}
 
-    @Override
-    public void onChunkUnload() {
-        //this.removeFromEnergyNet();
-    }
+	@Override
+	public void onChunkUnload() {
+		//this.removeFromEnergyNet();
+	}
 
 //	private void addToEnergyNet() {
 //		if (this.getMachine().getWorld() == null) {

@@ -1,7 +1,7 @@
 package binnie.craftgui.controls.core;
 
 public interface IControlIndexed {
-    int getIndex();
+	int getIndex();
 
-    void setIndex(final int p0);
+	void setIndex(final int p0);
 }

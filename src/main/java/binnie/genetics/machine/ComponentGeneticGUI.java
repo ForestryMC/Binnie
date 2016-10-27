@@ -10,16 +10,16 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class ComponentGeneticGUI extends MachineComponent implements IInteraction.RightClick {
-    GeneticsGUI id;
+	GeneticsGUI id;
 
-    public ComponentGeneticGUI(final Machine machine, final GeneticsGUI id) {
-        super(machine);
-        this.id = id;
-    }
+	public ComponentGeneticGUI(final Machine machine, final GeneticsGUI id) {
+		super(machine);
+		this.id = id;
+	}
 
-    @Override
-    public void onRightClick(World p0, EntityPlayer player, BlockPos pos) {
-        Genetics.proxy.openGui(this.id, player, pos);
-    }
+	@Override
+	public void onRightClick(World p0, EntityPlayer player, BlockPos pos) {
+		Genetics.proxy.openGui(this.id, player, pos);
+	}
 
 }

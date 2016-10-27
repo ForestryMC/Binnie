@@ -17,28 +17,28 @@ import java.util.Collections;
 import java.util.List;
 
 public class BlockExtraBeeHive extends Block {
-    //	IIcon[][] icons;
-    public static final PropertyEnum<EnumHiveType> hiveType = PropertyEnum.create("hive_type", EnumHiveType.class);
+	//	IIcon[][] icons;
+	public static final PropertyEnum<EnumHiveType> hiveType = PropertyEnum.create("hive_type", EnumHiveType.class);
 
-    public BlockExtraBeeHive() {
-        super(ExtraBees.materialBeehive);
-        this.setLightLevel(0.2f);
-        this.setHardness(1.0f);
-        this.setTickRandomly(true);
-        this.setRegistryName("hive");
-        this.setCreativeTab(Tabs.tabApiculture);
-    }
+	public BlockExtraBeeHive() {
+		super(ExtraBees.materialBeehive);
+		this.setLightLevel(0.2f);
+		this.setHardness(1.0f);
+		this.setTickRandomly(true);
+		this.setRegistryName("hive");
+		this.setCreativeTab(Tabs.tabApiculture);
+	}
 
-    public String getUnlocalizedName(final ItemStack par1ItemStack) {
-        return "extrabees.block.hive." + par1ItemStack.getItemDamage();
-    }
+	public String getUnlocalizedName(final ItemStack par1ItemStack) {
+		return "extrabees.block.hive." + par1ItemStack.getItemDamage();
+	}
 
-    @Override
-    public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
-        for (int i = 0; i < EnumHiveType.values().length; ++i) {
-            itemList.add(new ItemStack(this, 1, i));
-        }
-    }
+	@Override
+	public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
+		for (int i = 0; i < EnumHiveType.values().length; ++i) {
+			itemList.add(new ItemStack(this, 1, i));
+		}
+	}
 
 //	@Override
 //	public IIcon getIcon(final int side, final int metadata) {
@@ -62,13 +62,13 @@ public class BlockExtraBeeHive extends Block {
 //	}
 
 
-    @Override
-    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-        final ArrayList<ItemStack> ret = new ArrayList<>();
-        final List<IHiveDrop> dropList = state.getValue(hiveType).drops;
-        Collections.shuffle(dropList);
-        int tries = 0;
-        //TODO HIVE DROP
+	@Override
+	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+		final ArrayList<ItemStack> ret = new ArrayList<>();
+		final List<IHiveDrop> dropList = state.getValue(hiveType).drops;
+		Collections.shuffle(dropList);
+		int tries = 0;
+		//TODO HIVE DROP
 //		for (boolean hasPrincess = false; tries <= 10 && !hasPrincess; hasPrincess = true) {
 //			++tries;
 //			for (final IHiveDrop drop : dropList) {
@@ -90,7 +90,7 @@ public class BlockExtraBeeHive extends Block {
 //				break;
 //			}
 //		}
-        return ret;
-    }
+		return ret;
+	}
 
 }

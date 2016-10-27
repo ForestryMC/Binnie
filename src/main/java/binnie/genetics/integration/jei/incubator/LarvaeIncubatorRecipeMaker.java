@@ -14,24 +14,24 @@ import java.util.Collections;
 import java.util.List;
 
 public class LarvaeIncubatorRecipeMaker {
-    public static List<LarvaeIncubatorRecipeWrapper> create(@Nullable IncubatorRecipeLarvae recipeLarvae) {
-        if (recipeLarvae == null) {
-            return Collections.emptyList();
-        }
+	public static List<LarvaeIncubatorRecipeWrapper> create(@Nullable IncubatorRecipeLarvae recipeLarvae) {
+		if (recipeLarvae == null) {
+			return Collections.emptyList();
+		}
 
-        List<LarvaeIncubatorRecipeWrapper> recipes = new ArrayList<>();
+		List<LarvaeIncubatorRecipeWrapper> recipes = new ArrayList<>();
 
-        ItemStack inputStack = recipeLarvae.getInputStack();
-        List<ItemStack> subtypes = GeneticsJeiPlugin.jeiHelpers.getStackHelper().getSubtypes(inputStack);
-        for (ItemStack larvae : subtypes) {
-            IncubatorRecipe recipe = new IncubatorRecipe(larvae, recipeLarvae.getInput(), recipeLarvae.getOutput(), recipeLarvae.getLossChance(), recipeLarvae.getChance());
-            final IBee bee = Binnie.Genetics.getBeeRoot().getMember(larvae);
-            ItemStack drone = Binnie.Genetics.getBeeRoot().getMemberStack(bee, EnumBeeType.DRONE);
-            recipe.setOutputStack(drone);
-            recipes.add(new LarvaeIncubatorRecipeWrapper(recipe));
-        }
+		ItemStack inputStack = recipeLarvae.getInputStack();
+		List<ItemStack> subtypes = GeneticsJeiPlugin.jeiHelpers.getStackHelper().getSubtypes(inputStack);
+		for (ItemStack larvae : subtypes) {
+			IncubatorRecipe recipe = new IncubatorRecipe(larvae, recipeLarvae.getInput(), recipeLarvae.getOutput(), recipeLarvae.getLossChance(), recipeLarvae.getChance());
+			final IBee bee = Binnie.Genetics.getBeeRoot().getMember(larvae);
+			ItemStack drone = Binnie.Genetics.getBeeRoot().getMemberStack(bee, EnumBeeType.DRONE);
+			recipe.setOutputStack(drone);
+			recipes.add(new LarvaeIncubatorRecipeWrapper(recipe));
+		}
 
-        return recipes;
-    }
+		return recipes;
+	}
 
 }

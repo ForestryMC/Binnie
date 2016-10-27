@@ -11,60 +11,60 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public class ItemMisc extends ItemCore {
-    private IItemMiscProvider[] items;
+	private IItemMiscProvider[] items;
 
-    public ItemMisc() {
-    	super("misc");
-    }
+	public ItemMisc() {
+		super("misc");
+	}
 
-    protected ItemMisc(final CreativeTabs tab, final IItemMiscProvider[] items) {
-    	super("misc");
-        this.setCreativeTab(tab);
-        this.setHasSubtypes(true);
-        this.setUnlocalizedName("misc");
-        this.items = items;
-    }
+	protected ItemMisc(final CreativeTabs tab, final IItemMiscProvider[] items) {
+		super("misc");
+		this.setCreativeTab(tab);
+		this.setHasSubtypes(true);
+		this.setUnlocalizedName("misc");
+		this.items = items;
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, List par3List) {
-        for (IItemMiscProvider item : this.items) {
-            if (item.isActive()) {
-                par3List.add(this.getStack(item, 1));
-            }
-        }
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, List par3List) {
+		for (IItemMiscProvider item : this.items) {
+			if (item.isActive()) {
+				par3List.add(this.getStack(item, 1));
+			}
+		}
+	}
 
-    private IItemMiscProvider getItem(int damage) {
-        return (damage >= this.items.length) ? this.items[0] : this.items[damage];
-    }
+	private IItemMiscProvider getItem(int damage) {
+		return (damage >= this.items.length) ? this.items[0] : this.items[damage];
+	}
 
-    public ItemStack getStack(IItemMiscProvider type, int size) {
-        return new ItemStack(this, size, type.ordinal());
-    }
+	public ItemStack getStack(IItemMiscProvider type, int size) {
+		return new ItemStack(this, size, type.ordinal());
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-        super.addInformation(stack, playerIn, tooltip, advanced);
-        IItemMiscProvider item = this.getItem(stack.getItemDamage());
-        if (item != null) {
-            item.addInformation(tooltip);
-        }
-    }
-    
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerModel(Item item, IModelManager manager) {
-        for (IItemMiscProvider type : items) {
-            manager.registerItemModel(item, type.ordinal(), "misc/" + type.getModelPath());
-        }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+		super.addInformation(stack, playerIn, tooltip, advanced);
+		IItemMiscProvider item = this.getItem(stack.getItemDamage());
+		if (item != null) {
+			item.addInformation(tooltip);
+		}
+	}
 
-    }
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void registerModel(Item item, IModelManager manager) {
+		for (IItemMiscProvider type : items) {
+			manager.registerItemModel(item, type.ordinal(), "misc/" + type.getModelPath());
+		}
 
-    @Override
-    public String getItemStackDisplayName(final ItemStack stack) {
-        IItemMiscProvider item = this.getItem(stack.getItemDamage());
-        return (item != null) ? item.getName(stack) : "null";
-    }
+	}
+
+	@Override
+	public String getItemStackDisplayName(final ItemStack stack) {
+		IItemMiscProvider item = this.getItem(stack.getItemDamage());
+		return (item != null) ? item.getName(stack) : "null";
+	}
 }

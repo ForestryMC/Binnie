@@ -31,18 +31,18 @@ public class Gardening {
 	public static final Map<ItemStack, Integer> fertiliserAcid = new LinkedHashMap<>();
 	public static final Map<ItemStack, Integer> fertiliserAlkaline = new LinkedHashMap<>();
 	public static final Map<ItemStack, Integer> fertiliserNutrient = new LinkedHashMap<>();
-	 
-    public static boolean isSoil(final Block block) {
-        return block instanceof IBlockSoil;
-    }
 
-    public static boolean isSoil(final Item item) {
-        return item instanceof ItemBlock && isSoil(((ItemBlock) item).getBlock());
-    }
+	public static boolean isSoil(final Block block) {
+		return block instanceof IBlockSoil;
+	}
 
-    public static boolean isSoil(final ItemStack item) {
-        return isSoil(item.getItem());
-    }
+	public static boolean isSoil(final Item item) {
+		return item instanceof ItemBlock && isSoil(((ItemBlock) item).getBlock());
+	}
+
+	public static boolean isSoil(final ItemStack item) {
+		return isSoil(item.getItem());
+	}
 
 	public static EnumMoisture getNaturalMoisture(World world, BlockPos pos) {
 		float bias = getBiomeMoisture(world, pos);
@@ -51,8 +51,7 @@ public class Gardening {
 				if (dx != 0 || dz != 0) {
 					if (world.getBlockState(pos.add(dx, 0, dz)) == Blocks.SAND) {
 						bias -= 1.5;
-					}
-					else if (world.getBlockState(pos.add(dx, 0, dz)) == Blocks.WATER) {
+					} else if (world.getBlockState(pos.add(dx, 0, dz)) == Blocks.WATER) {
 						bias += 1.5;
 					}
 				}
@@ -73,129 +72,129 @@ public class Gardening {
 		return (bias <= -1.0f) ? EnumMoisture.Dry : ((bias >= 1.0f) ? EnumMoisture.Damp : EnumMoisture.Normal);
 	}
 
-    public static EnumAcidity getNaturalPH(World world, BlockPos pos) {
-        final float bias = getBiomePH(world, pos);
-        return (bias <= -1.0f) ? EnumAcidity.Acid : ((bias >= 1.0f) ? EnumAcidity.Alkaline : EnumAcidity.Neutral);
-    }
+	public static EnumAcidity getNaturalPH(World world, BlockPos pos) {
+		final float bias = getBiomePH(world, pos);
+		return (bias <= -1.0f) ? EnumAcidity.Acid : ((bias >= 1.0f) ? EnumAcidity.Alkaline : EnumAcidity.Neutral);
+	}
 
-    public static float getBiomeMoisture(World world, BlockPos pos) {
-        double humidity = ForestryAPI.climateManager.getHumidity(world, pos);
-        double temperature =  ForestryAPI.climateManager.getTemperature(world, pos);
-        double m = 3.2 * (humidity - 0.5) - 0.4 * (1.0 + temperature + 0.5 * temperature * temperature) + 1.1 - 1.6 * (temperature - 0.9) * (temperature - 0.9) - 0.002 * (pos.getY() - 64);
-        return (float) ((m == 0.0) ? m : ((m < 0.0) ? (-Math.sqrt(m * m)) : Math.sqrt(m * m)));
-    }
+	public static float getBiomeMoisture(World world, BlockPos pos) {
+		double humidity = ForestryAPI.climateManager.getHumidity(world, pos);
+		double temperature = ForestryAPI.climateManager.getTemperature(world, pos);
+		double m = 3.2 * (humidity - 0.5) - 0.4 * (1.0 + temperature + 0.5 * temperature * temperature) + 1.1 - 1.6 * (temperature - 0.9) * (temperature - 0.9) - 0.002 * (pos.getY() - 64);
+		return (float) ((m == 0.0) ? m : ((m < 0.0) ? (-Math.sqrt(m * m)) : Math.sqrt(m * m)));
+	}
 
-    public static float getBiomePH(World world, BlockPos pos) {
-        double humidity = ForestryAPI.climateManager.getHumidity(world, pos);
-        double temperature =  ForestryAPI.climateManager.getTemperature(world, pos);
-        return (float) (-3.0 * (humidity - 0.5) + 0.5 * (temperature - 0.699999988079071) * (temperature - 0.699999988079071) + 0.02f * (pos.getY() - 64) - 0.15000000596046448);
-    }
+	public static float getBiomePH(World world, BlockPos pos) {
+		double humidity = ForestryAPI.climateManager.getHumidity(world, pos);
+		double temperature = ForestryAPI.climateManager.getTemperature(world, pos);
+		return (float) (-3.0 * (humidity - 0.5) + 0.5 * (temperature - 0.699999988079071) * (temperature - 0.699999988079071) + 0.02f * (pos.getY() - 64) - 0.15000000596046448);
+	}
 
 	public static void plantSoil(final World world, final BlockPos pos, final EnumSoilType soil, final EnumMoisture moisture, final EnumAcidity acidity) {
 		final int meta = moisture.ordinal() + acidity.ordinal() * 3;
 		world.setBlockState(pos, getSoilBlock(soil).getStateFromMeta(meta), 2);
 	}
 
-    public static boolean plant(final World world, final BlockPos pos, final IFlower flower, final GameProfile owner) {
-        final boolean set = world.setBlockState(pos, Botany.flower.getDefaultState());
-        if (!set) {
-            return false;
-        }
-        final TileEntity tileFlower = world.getTileEntity(pos);
-        final TileEntity below = world.getTileEntity(pos.down());
-        if (tileFlower != null && tileFlower instanceof TileEntityFlower) {
-            if (below instanceof TileEntityFlower) {
-                ((TileEntityFlower) tileFlower).setSection(((TileEntityFlower) below).getSection());
-            } else {
-                ((TileEntityFlower) tileFlower).create(flower, owner);
-            }
-        }
-        tryGrowSection(world, pos);
-        return true;
-    }
+	public static boolean plant(final World world, final BlockPos pos, final IFlower flower, final GameProfile owner) {
+		final boolean set = world.setBlockState(pos, Botany.flower.getDefaultState());
+		if (!set) {
+			return false;
+		}
+		final TileEntity tileFlower = world.getTileEntity(pos);
+		final TileEntity below = world.getTileEntity(pos.down());
+		if (tileFlower != null && tileFlower instanceof TileEntityFlower) {
+			if (below instanceof TileEntityFlower) {
+				((TileEntityFlower) tileFlower).setSection(((TileEntityFlower) below).getSection());
+			} else {
+				((TileEntityFlower) tileFlower).create(flower, owner);
+			}
+		}
+		tryGrowSection(world, pos);
+		return true;
+	}
 
-    public static void tryGrowSection(final World world, final BlockPos pos) {
-        if (!BinnieCore.proxy.isSimulating(world)) {
-            return;
-        }
-        final TileEntity flower = world.getTileEntity(pos);
-        if (flower != null && flower instanceof TileEntityFlower) {
-            final IFlower iflower = ((TileEntityFlower) flower).getFlower();
-            final int section = ((TileEntityFlower) flower).getSection();
-            if (iflower != null && section < iflower.getGenome().getPrimary().getType().getSections() - 1 && iflower.getAge() > 0) {
-                world.setBlockState(pos.up(), Botany.flower.getDefaultState());
-                final TileEntity tileFlower = world.getTileEntity(pos.up());
-                if (tileFlower != null && tileFlower instanceof TileEntityFlower) {
-                    ((TileEntityFlower) tileFlower).setSection(section + 1);
-                }
-            }
-        }
-    }
+	public static void tryGrowSection(final World world, final BlockPos pos) {
+		if (!BinnieCore.proxy.isSimulating(world)) {
+			return;
+		}
+		final TileEntity flower = world.getTileEntity(pos);
+		if (flower != null && flower instanceof TileEntityFlower) {
+			final IFlower iflower = ((TileEntityFlower) flower).getFlower();
+			final int section = ((TileEntityFlower) flower).getSection();
+			if (iflower != null && section < iflower.getGenome().getPrimary().getType().getSections() - 1 && iflower.getAge() > 0) {
+				world.setBlockState(pos.up(), Botany.flower.getDefaultState());
+				final TileEntity tileFlower = world.getTileEntity(pos.up());
+				if (tileFlower != null && tileFlower instanceof TileEntityFlower) {
+					((TileEntityFlower) tileFlower).setSection(section + 1);
+				}
+			}
+		}
+	}
 
-    public static void onGrowFromSeed(final World world, final BlockPos pos) {
-        tryGrowSection(world, pos);
-    }
+	public static void onGrowFromSeed(final World world, final BlockPos pos) {
+		tryGrowSection(world, pos);
+	}
 
-    public static Collection<ItemStack> getAcidFertilisers() {
-        return Gardening.fertiliserAcid.keySet();
-    }
+	public static Collection<ItemStack> getAcidFertilisers() {
+		return Gardening.fertiliserAcid.keySet();
+	}
 
-    public static Collection<ItemStack> getAlkalineFertilisers() {
-        return Gardening.fertiliserAlkaline.keySet();
-    }
+	public static Collection<ItemStack> getAlkalineFertilisers() {
+		return Gardening.fertiliserAlkaline.keySet();
+	}
 
-    public static Collection<ItemStack> getNutrientFertilisers() {
-        return Gardening.fertiliserNutrient.keySet();
-    }
+	public static Collection<ItemStack> getNutrientFertilisers() {
+		return Gardening.fertiliserNutrient.keySet();
+	}
 
-    public static boolean isAcidFertiliser(final ItemStack itemstack) {
-        for (final ItemStack stack : getAcidFertilisers()) {
-            if (stack != null && stack.isItemEqual(itemstack)) {
-                return true;
-            }
-        }
-        return false;
-    }
+	public static boolean isAcidFertiliser(final ItemStack itemstack) {
+		for (final ItemStack stack : getAcidFertilisers()) {
+			if (stack != null && stack.isItemEqual(itemstack)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-    public static boolean isAlkalineFertiliser(final ItemStack itemstack) {
-        for (final ItemStack stack : getAlkalineFertilisers()) {
-            if (stack != null && stack.isItemEqual(itemstack)) {
-                return true;
-            }
-        }
-        return false;
-    }
+	public static boolean isAlkalineFertiliser(final ItemStack itemstack) {
+		for (final ItemStack stack : getAlkalineFertilisers()) {
+			if (stack != null && stack.isItemEqual(itemstack)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-    public static boolean isNutrientFertiliser(final ItemStack itemstack) {
-        for (final ItemStack stack : getNutrientFertilisers()) {
-            if (stack != null && stack.isItemEqual(itemstack)) {
-                return true;
-            }
-        }
-        return false;
-    }
+	public static boolean isNutrientFertiliser(final ItemStack itemstack) {
+		for (final ItemStack stack : getNutrientFertilisers()) {
+			if (stack != null && stack.isItemEqual(itemstack)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
-    public static int getFertiliserStrength(final ItemStack stack) {
-        if (stack == null) {
-            return 1;
-        }
-        for (final Map.Entry<ItemStack, Integer> entry : Gardening.fertiliserAcid.entrySet()) {
-            if (entry.getKey().isItemEqual(stack)) {
-                return entry.getValue();
-            }
-        }
-        for (final Map.Entry<ItemStack, Integer> entry : Gardening.fertiliserAlkaline.entrySet()) {
-            if (entry.getKey().isItemEqual(stack)) {
-                return entry.getValue();
-            }
-        }
-        for (final Map.Entry<ItemStack, Integer> entry : Gardening.fertiliserNutrient.entrySet()) {
-            if (entry.getKey().isItemEqual(stack)) {
-                return entry.getValue();
-            }
-        }
-        return 1;
-    }
+	public static int getFertiliserStrength(final ItemStack stack) {
+		if (stack == null) {
+			return 1;
+		}
+		for (final Map.Entry<ItemStack, Integer> entry : Gardening.fertiliserAcid.entrySet()) {
+			if (entry.getKey().isItemEqual(stack)) {
+				return entry.getValue();
+			}
+		}
+		for (final Map.Entry<ItemStack, Integer> entry : Gardening.fertiliserAlkaline.entrySet()) {
+			if (entry.getKey().isItemEqual(stack)) {
+				return entry.getValue();
+			}
+		}
+		for (final Map.Entry<ItemStack, Integer> entry : Gardening.fertiliserNutrient.entrySet()) {
+			if (entry.getKey().isItemEqual(stack)) {
+				return entry.getValue();
+			}
+		}
+		return 1;
+	}
 
 	public static boolean canTolerate(final IFlower flower, final World world, final BlockPos pos) {
 		if (flower == null || flower.getGenome() == null) {
@@ -215,31 +214,31 @@ public class Gardening {
 		return EnumSoilType.SOIL;
 	}
 
-    public static Block getSoilBlock(final EnumSoilType type) {
-        return getSoilBlock(type, false);
-    }
+	public static Block getSoilBlock(final EnumSoilType type) {
+		return getSoilBlock(type, false);
+	}
 
-    public static Block getSoilBlock(final EnumSoilType type, final boolean weedkill) {
-        switch (type) {
-            case FLOWERBED: {
-                return weedkill ? Botany.flowerbedNoWeed : Botany.flowerbed;
-            }
-            case LOAM: {
-                return weedkill ? Botany.loamNoWeed : Botany.loam;
-            }
-            default: {
-                return weedkill ? Botany.soilNoWeed : Botany.soil;
-            }
-        }
-    }
+	public static Block getSoilBlock(final EnumSoilType type, final boolean weedkill) {
+		switch (type) {
+			case FLOWERBED: {
+				return weedkill ? Botany.flowerbedNoWeed : Botany.flowerbed;
+			}
+			case LOAM: {
+				return weedkill ? Botany.loamNoWeed : Botany.loam;
+			}
+			default: {
+				return weedkill ? Botany.soilNoWeed : Botany.soil;
+			}
+		}
+	}
 
-    public static boolean canTolerate(IFlower flower, EnumAcidity ePH, EnumMoisture eMoisture, EnumTemperature eTemp) {
-        return flower.getGenome().canTolerate(ePH) && flower.getGenome().canTolerate(eMoisture) && flower.getGenome().canTolerate(eTemp);
-    }
+	public static boolean canTolerate(IFlower flower, EnumAcidity ePH, EnumMoisture eMoisture, EnumTemperature eTemp) {
+		return flower.getGenome().canTolerate(ePH) && flower.getGenome().canTolerate(eMoisture) && flower.getGenome().canTolerate(eTemp);
+	}
 
-    public static boolean isWeedkiller(ItemStack heldItem) {
-        return heldItem != null && heldItem.isItemEqual(BotanyItems.Weedkiller.get(1));
-    }
+	public static boolean isWeedkiller(ItemStack heldItem) {
+		return heldItem != null && heldItem.isItemEqual(BotanyItems.Weedkiller.get(1));
+	}
 
 	public static boolean addWeedKiller(World world, BlockPos pos) {
 		if (!(world.getBlockState(pos).getBlock() instanceof IBlockSoil)) {

@@ -16,31 +16,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BlockMetadata extends BlockContainer implements IBlockMetadata {
-    static int temporyMeta = -1;
+	static int temporyMeta = -1;
 
-    public BlockMetadata(final Material material) {
-        super(material);
-    }
+	public BlockMetadata(final Material material) {
+		super(material);
+	}
 
-    @Override
-    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-        return getBlockDropped(this, world, pos);
-    }
+	@Override
+	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+		return getBlockDropped(this, world, pos);
+	}
 
-    @Override
-    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
-        return breakBlock(this, player, world, pos);
-    }
+	@Override
+	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
+		return breakBlock(this, player, world, pos);
+	}
 
-    @Override
-    public TileEntity createNewTileEntity(final World var1, final int i) {
-        return new TileEntityMetadata();
-    }
+	@Override
+	public TileEntity createNewTileEntity(final World var1, final int i) {
+		return new TileEntityMetadata();
+	}
 
-    @Override
-    public boolean hasTileEntity(IBlockState state) {
-        return true;
-    }
+	@Override
+	public boolean hasTileEntity(IBlockState state) {
+		return true;
+	}
 
 
 //	@Override
@@ -56,58 +56,58 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 //		return this.getIcon(par5, metadata);
 //	}
 
-    @Override
-    public String getBlockName(final ItemStack par1ItemStack) {
-        return this.getLocalizedName();
-    }
+	@Override
+	public String getBlockName(final ItemStack par1ItemStack) {
+		return this.getLocalizedName();
+	}
 
-    @Override
-    public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
-    }
+	@Override
+	public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
+	}
 
-    @Override
-    public int getPlacedMeta(final ItemStack item, final World world, final BlockPos pos, final EnumFacing clickedBlock) {
-        final int damage = TileEntityMetadata.getItemDamage(item);
-        return damage;
-    }
+	@Override
+	public int getPlacedMeta(final ItemStack item, final World world, final BlockPos pos, final EnumFacing clickedBlock) {
+		final int damage = TileEntityMetadata.getItemDamage(item);
+		return damage;
+	}
 
-    @Override
-    public int getDroppedMeta(final int tileMeta, final int blockMeta) {
-        return tileMeta;
-    }
+	@Override
+	public int getDroppedMeta(final int tileMeta, final int blockMeta) {
+		return tileMeta;
+	}
 
-    public static ArrayList<ItemStack> getBlockDropped(final IBlockMetadata block, final IBlockAccess world, final BlockPos pos) {
-        final ArrayList<ItemStack> array = new ArrayList<>();
-        final TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
-        if (tile != null && !tile.hasDroppedBlock()) {
-            //final int meta = block.getDroppedMeta(world.getBlockMetadata(x, y, z), tile.getTileMetadata());
-            //array.add(TileEntityMetadata.getItemStack((Block) block, meta));
-        }
-        return array;
-    }
+	public static ArrayList<ItemStack> getBlockDropped(final IBlockMetadata block, final IBlockAccess world, final BlockPos pos) {
+		final ArrayList<ItemStack> array = new ArrayList<>();
+		final TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
+		if (tile != null && !tile.hasDroppedBlock()) {
+			//final int meta = block.getDroppedMeta(world.getBlockMetadata(x, y, z), tile.getTileMetadata());
+			//array.add(TileEntityMetadata.getItemStack((Block) block, meta));
+		}
+		return array;
+	}
 
-    public static boolean breakBlock(final IBlockMetadata block, final EntityPlayer player, final World world, final BlockPos pos) {
-        List<ItemStack> drops = new ArrayList<>();
-        final Block block2 = (Block) block;
-        final TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
-        if (tile != null && !tile.hasDroppedBlock()) {
-            final int tileMeta = TileEntityMetadata.getTileMetadata(world, pos);
-            //drops = block2.getDrops(world, i, j, k, world.getBlockMetadata(i, j, k), 0);
-        }
-        //final boolean hasBeenBroken = world.setBlockToAir(i, j, k);
+	public static boolean breakBlock(final IBlockMetadata block, final EntityPlayer player, final World world, final BlockPos pos) {
+		List<ItemStack> drops = new ArrayList<>();
+		final Block block2 = (Block) block;
+		final TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
+		if (tile != null && !tile.hasDroppedBlock()) {
+			final int tileMeta = TileEntityMetadata.getTileMetadata(world, pos);
+			//drops = block2.getDrops(world, i, j, k, world.getBlockMetadata(i, j, k), 0);
+		}
+		//final boolean hasBeenBroken = world.setBlockToAir(i, j, k);
 //		if (hasBeenBroken && BinnieCore.proxy.isSimulating(world) && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
 //			for (final ItemStack drop : drops) {
 //				//block.dropAsStack(world, i, j, k, drop);
 //			}
 //			tile.dropBlock();
 //		}
-        return false; //hasBeenBroken;
-    }
+		return false; //hasBeenBroken;
+	}
 
-    @Override
-    public void dropAsStack(final World world, BlockPos pos, final ItemStack drop) {
-        //this.dropBlockAsItem(world, pos, drop);
-    }
+	@Override
+	public void dropAsStack(final World world, BlockPos pos, final ItemStack drop) {
+		//this.dropBlockAsItem(world, pos, drop);
+	}
 
 //	@Override
 //	public void breakBlock(final World par1World, final BlockPos pos, final Block par5, final int par6) {
@@ -115,13 +115,13 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 ////		par1World.removeTileEntity(par2, par3, par4);
 //	}
 
-    //
-    //TODO DROP
-    public static ItemStack getPickBlock(final World world, final BlockPos pos) {
-        //final List<ItemStack> list = getBlockDropped((IBlockMetadata) world.getBlockState(pos).getBlock(), world, pos, world.getBlockMetadata(x, y, z));
-        //return list.isEmpty() ? null : list.get(0);
-        return null;
-    }
+	//
+	//TODO DROP
+	public static ItemStack getPickBlock(final World world, final BlockPos pos) {
+		//final List<ItemStack> list = getBlockDropped((IBlockMetadata) world.getBlockState(pos).getBlock(), world, pos, world.getBlockMetadata(x, y, z));
+		//return list.isEmpty() ? null : list.get(0);
+		return null;
+	}
 //	@Override
 //	public ItemStack getPickBlock(final MovingObjectPosition target, final World world, final int x, final int y, final int z) {
 //		return getPickBlock(world, x, y, z);

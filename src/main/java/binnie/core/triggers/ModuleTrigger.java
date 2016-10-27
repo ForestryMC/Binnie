@@ -3,12 +3,12 @@ package binnie.core.triggers;
 import binnie.core.IInitializable;
 
 public class ModuleTrigger implements IInitializable {
-    @Override
-    public void preInit() {
-    }
+	@Override
+	public void preInit() {
+	}
 
-    @Override
-    public void init() {
+	@Override
+	public void init() {
 //		BinnieAction.actionPauseProcess = new BinnieAction("Pause Process", "binnie.action.pauseProcess", "actions/PauseProcess");
 //		BinnieAction.actionCancelTask = new BinnieAction("Cancel Task", "binnie.action.cancelTask", "actions/CancelTask");
 //		StatementManager.registerActionProvider(new ActionProvider());
@@ -27,9 +27,9 @@ public class ModuleTrigger implements IInitializable {
 //		BinnieTrigger.triggerSerumPure = new BinnieTrigger("Serum Pure", "binnie.trigger.serumPure", ExtraBees.instance, "triggers/SerumPure");
 //		BinnieTrigger.triggerSerumEmpty = new BinnieTrigger("Serum Pure", "binnie.trigger.serumEmpty", ExtraBees.instance, "triggers/SerumEmpty");
 //		StatementManager.registerTriggerProvider(new TriggerProvider());
-    }
+	}
 
-    @Override
-    public void postInit() {
-    }
+	@Override
+	public void postInit() {
+	}
 }

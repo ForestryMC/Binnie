@@ -25,21 +25,21 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemSoilMeter extends Item implements IItemModelRegister {
 
-    public ItemSoilMeter() {
-        this.setCreativeTab(CreativeTabBotany.instance);
-        this.setUnlocalizedName("soilMeter");
-        this.setMaxStackSize(1);
-        setRegistryName("soilMeter");
-    }
-    
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerModel(Item item, IModelManager manager) {
-    	manager.registerItemModel(item, 0);
-    }
-    
-    @Override
-    public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+	public ItemSoilMeter() {
+		this.setCreativeTab(CreativeTabBotany.instance);
+		this.setUnlocalizedName("soilMeter");
+		this.setMaxStackSize(1);
+		setRegistryName("soilMeter");
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void registerModel(Item item, IModelManager manager) {
+		manager.registerItemModel(item, 0);
+	}
+
+	@Override
+	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		Block block = world.getBlockState(pos).getBlock();
 		if (!Gardening.isSoil(block)) {
 			pos = pos.down();
@@ -56,31 +56,31 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 			ITextComponent chat = new TextComponentString(info);
 			player.addChatMessage(chat);
 		}
-    	return super.onItemUse(stack, player, world, pos, hand, facing, hitX, hitY, hitZ);
-    }
-    
-    public static String getPH(ItemStack stack, boolean withColor, boolean byNeutralNone) {
-    	EnumAcidity ph = EnumAcidity.values()[stack.getItemDamage() / 3];
-    	if(byNeutralNone){
-    		if(ph == EnumAcidity.Neutral){
-    			return "";
-    		}
-    	}
-        return TextFormatting.GRAY + Binnie.Language.localise("botany.ph") + ": " + ph.getTranslated(withColor);
-    }
+		return super.onItemUse(stack, player, world, pos, hand, facing, hitX, hitY, hitZ);
+	}
 
-    public static String getMoisture(ItemStack stack, boolean withColor, boolean byNormalNone) {
-    	EnumMoisture moisure = EnumMoisture.values()[stack.getItemDamage() % 3];
-    	if(byNormalNone){
-	    	if(moisure == EnumMoisture.Normal){
-	    		return "";
-	    	}
-    	}
-        return TextFormatting.GRAY + Binnie.Language.localise("botany.moisture") + ": " + moisure.getTranslated(withColor);
-    }
+	public static String getPH(ItemStack stack, boolean withColor, boolean byNeutralNone) {
+		EnumAcidity ph = EnumAcidity.values()[stack.getItemDamage() / 3];
+		if (byNeutralNone) {
+			if (ph == EnumAcidity.Neutral) {
+				return "";
+			}
+		}
+		return TextFormatting.GRAY + Binnie.Language.localise("botany.ph") + ": " + ph.getTranslated(withColor);
+	}
 
-    @Override
-    public String getItemStackDisplayName(final ItemStack i) {
-        return "Soil Meter";
-    }
+	public static String getMoisture(ItemStack stack, boolean withColor, boolean byNormalNone) {
+		EnumMoisture moisure = EnumMoisture.values()[stack.getItemDamage() % 3];
+		if (byNormalNone) {
+			if (moisure == EnumMoisture.Normal) {
+				return "";
+			}
+		}
+		return TextFormatting.GRAY + Binnie.Language.localise("botany.moisture") + ": " + moisure.getTranslated(withColor);
+	}
+
+	@Override
+	public String getItemStackDisplayName(final ItemStack i) {
+		return "Soil Meter";
+	}
 }

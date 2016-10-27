@@ -25,22 +25,22 @@ public class BlockETStairs extends BlockStairs implements IBlockMetadata {
 //		return ExtraTrees.stairsID;
 //	}
 
-    public BlockETStairs(final Block par2Block) {
-        super(Blocks.OAK_STAIRS.getDefaultState());
-        this.setCreativeTab(Tabs.tabArboriculture);
-        this.setRegistryName("stairs");
-        this.setResistance(5.0f);
-        this.setHardness(2.0f);
-        this.setSoundType(SoundType.WOOD);
-        this.useNeighborBrightness = true;
-    }
+	public BlockETStairs(final Block par2Block) {
+		super(Blocks.OAK_STAIRS.getDefaultState());
+		this.setCreativeTab(Tabs.tabArboriculture);
+		this.setRegistryName("stairs");
+		this.setResistance(5.0f);
+		this.setHardness(2.0f);
+		this.setSoundType(SoundType.WOOD);
+		this.useNeighborBrightness = true;
+	}
 
-    @Override
-    public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
-        for (int i = 0; i < PlankType.ExtraTreePlanks.values().length; ++i) {
-            itemList.add(new ItemStack(this, 1, i));
-        }
-    }
+	@Override
+	public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
+		for (int i = 0; i < PlankType.ExtraTreePlanks.values().length; ++i) {
+			itemList.add(new ItemStack(this, 1, i));
+		}
+	}
 
 //	@Override
 //	@SideOnly(Side.CLIENT)
@@ -72,10 +72,10 @@ public class BlockETStairs extends BlockStairs implements IBlockMetadata {
 //		return BlockMetadata.breakBlock(this, player, world, x, y, z);
 //	}
 
-    @Override
-    public TileEntity createNewTileEntity(final World var1, final int i) {
-        return new TileEntityMetadata();
-    }
+	@Override
+	public TileEntity createNewTileEntity(final World var1, final int i) {
+		return new TileEntityMetadata();
+	}
 
 //	@Override
 //	public boolean hasTileEntity(final int meta) {
@@ -95,32 +95,32 @@ public class BlockETStairs extends BlockStairs implements IBlockMetadata {
 //	}
 
 
-    @Override
-    public int getPlacedMeta(ItemStack p0, World p1, BlockPos pos, EnumFacing p5) {
-        return TileEntityMetadata.getItemDamage(p0);
-    }
+	@Override
+	public int getPlacedMeta(ItemStack p0, World p1, BlockPos pos, EnumFacing p5) {
+		return TileEntityMetadata.getItemDamage(p0);
+	}
 
-    @Override
-    public int getDroppedMeta(final int blockMeta, final int tileMeta) {
-        return tileMeta;
-    }
+	@Override
+	public int getDroppedMeta(final int blockMeta, final int tileMeta) {
+		return tileMeta;
+	}
 
-    @Override
-    public String getBlockName(final ItemStack par1ItemStack) {
-        final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
-        return Binnie.Language.localise(ExtraTrees.instance, "block.woodstairs.name", WoodManager.getPlankType(meta + 32).getName());
-    }
+	@Override
+	public String getBlockName(final ItemStack par1ItemStack) {
+		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
+		return Binnie.Language.localise(ExtraTrees.instance, "block.woodstairs.name", WoodManager.getPlankType(meta + 32).getName());
+	}
 
-    @Override
-    public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
-    }
+	@Override
+	public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
+	}
 
-    @Override
-    public void dropAsStack(World p0, BlockPos pos, ItemStack p4) {
-        //this.dropBlockAsItem(world, x, y, z, drop);
-    }
+	@Override
+	public void dropAsStack(World p0, BlockPos pos, ItemStack p4) {
+		//this.dropBlockAsItem(world, x, y, z, drop);
+	}
 
-    //	@Override
+	//	@Override
 //	public void breakBlock(final World par1World, final int par2, final int par3, final int par4, final Block par5, final int par6) {
 //		super.breakBlock(par1World, par2, par3, par4, par5, par6);
 //		par1World.removeTileEntity(par2, par3, par4);

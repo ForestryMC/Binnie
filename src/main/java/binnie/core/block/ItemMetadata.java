@@ -14,17 +14,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public class ItemMetadata extends ItemBlock {
-    public ItemMetadata(final Block block) {
-        super(block);
-    }
+	public ItemMetadata(final Block block) {
+		super(block);
+	}
 
-    @Override
-    public int getMetadata(final int par1) {
-        return 0;
-    }
-    
-    @Override
-    public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, IBlockState newState) {
+	@Override
+	public int getMetadata(final int par1) {
+		return 0;
+	}
+
+	@Override
+	public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, IBlockState newState) {
 		if (!(block instanceof IBlockMetadata)) {
 			return false;
 		}
@@ -44,7 +44,7 @@ public class ItemMetadata extends ItemBlock {
 			block.onBlockPlacedBy(world, pos, newState, player, stack);
 		}
 		return true;
-    }
+	}
 
 	@Override
 	@SideOnly(Side.CLIENT)

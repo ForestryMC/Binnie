@@ -5,15 +5,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public interface IInteraction {
-    interface ChunkUnload {
-        void onChunkUnload();
-    }
+	interface ChunkUnload {
+		void onChunkUnload();
+	}
 
-    interface Invalidation {
-        void onInvalidation();
-    }
+	interface Invalidation {
+		void onInvalidation();
+	}
 
-    interface RightClick {
-        void onRightClick(final World p0, final EntityPlayer p1, final BlockPos pos);
-    }
+	interface RightClick {
+		void onRightClick(final World p0, final EntityPlayer p1, final BlockPos pos);
+	}
 }

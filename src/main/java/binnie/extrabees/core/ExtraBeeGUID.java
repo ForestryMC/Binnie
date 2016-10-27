@@ -15,48 +15,48 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 
 public enum ExtraBeeGUID implements IBinnieGUID {
-    Database,
-    DatabaseNEI,
-    AlvearyMutator,
-    AlvearyFrame,
-    AlvearyStimulator,
-    PunnettSquare,
-    AlvearyHatchery;
+	Database,
+	DatabaseNEI,
+	AlvearyMutator,
+	AlvearyFrame,
+	AlvearyStimulator,
+	PunnettSquare,
+	AlvearyHatchery;
 
-    @Override
-    public Window getWindow(final EntityPlayer player, final World world, final int x, final int y, final int z, final Side side) {
-        Window window = null;
-        final TileEntity tileEntity = world.getTileEntity(new BlockPos(x, y, z));
-        IInventory object = null;
-        if (tileEntity instanceof IInventory) {
-            object = (IInventory) tileEntity;
-        }
-        switch (this) {
-            case Database:
-            case DatabaseNEI: {
-                window = WindowApiaristDatabase.create(player, side, this != ExtraBeeGUID.Database);
-                break;
-            }
-            case AlvearyMutator: {
-                window = WindowAlvearyMutator.create(player, object, side);
-                break;
-            }
-            case AlvearyFrame: {
-                window = WindowAlvearyFrame.create(player, object, side);
-                break;
-            }
-            case AlvearyStimulator: {
-                window = WindowAlvearyStimulator.create(player, object, side);
-                break;
-            }
-            case AlvearyHatchery: {
-                window = WindowAlvearyHatchery.create(player, object, side);
-                break;
-            }
-            default: {
-            	break;
+	@Override
+	public Window getWindow(final EntityPlayer player, final World world, final int x, final int y, final int z, final Side side) {
+		Window window = null;
+		final TileEntity tileEntity = world.getTileEntity(new BlockPos(x, y, z));
+		IInventory object = null;
+		if (tileEntity instanceof IInventory) {
+			object = (IInventory) tileEntity;
+		}
+		switch (this) {
+			case Database:
+			case DatabaseNEI: {
+				window = WindowApiaristDatabase.create(player, side, this != ExtraBeeGUID.Database);
+				break;
 			}
-        }
-        return window;
-    }
+			case AlvearyMutator: {
+				window = WindowAlvearyMutator.create(player, object, side);
+				break;
+			}
+			case AlvearyFrame: {
+				window = WindowAlvearyFrame.create(player, object, side);
+				break;
+			}
+			case AlvearyStimulator: {
+				window = WindowAlvearyStimulator.create(player, object, side);
+				break;
+			}
+			case AlvearyHatchery: {
+				window = WindowAlvearyHatchery.create(player, object, side);
+				break;
+			}
+			default: {
+				break;
+			}
+		}
+		return window;
+	}
 }

@@ -9,121 +9,121 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
 public class DesignBlock {
-    IDesign design;
-    IDesignMaterial primaryMaterial;
-    IDesignMaterial secondaryMaterial;
-    int rotation;
-    EnumFacing facing;
-    boolean panel;
+	IDesign design;
+	IDesignMaterial primaryMaterial;
+	IDesignMaterial secondaryMaterial;
+	int rotation;
+	EnumFacing facing;
+	boolean panel;
 
-    @Override
-    public String toString() {
-        return super.toString() + " { design:" + this.design + " }, { primary:" + this.primaryMaterial + " }, { secondary:" + this.secondaryMaterial + " }, { rotation:" + this.rotation + " }, { facing:" + this.facing + " }";
-    }
+	@Override
+	public String toString() {
+		return super.toString() + " { design:" + this.design + " }, { primary:" + this.primaryMaterial + " }, { secondary:" + this.secondaryMaterial + " }, { rotation:" + this.rotation + " }, { facing:" + this.facing + " }";
+	}
 
-    public IDesign getDesign() {
-        return this.design;
-    }
+	public IDesign getDesign() {
+		return this.design;
+	}
 
-    public IDesignMaterial getPrimaryMaterial() {
-        return this.primaryMaterial;
-    }
+	public IDesignMaterial getPrimaryMaterial() {
+		return this.primaryMaterial;
+	}
 
-    public IDesignMaterial getSecondaryMaterial() {
-        return this.secondaryMaterial;
-    }
+	public IDesignMaterial getSecondaryMaterial() {
+		return this.secondaryMaterial;
+	}
 
-    DesignBlock(final IDesignSystem system, final IDesignMaterial primaryWood, final IDesignMaterial secondaryWood, final IDesign design, final int rotation, final EnumFacing dir) {
-        this.rotation = 0;
-        this.facing = EnumFacing.UP;
-        this.panel = false;
-        this.design = design;
-        this.primaryMaterial = primaryWood;
-        this.secondaryMaterial = secondaryWood;
-        this.rotation = rotation;
-        this.facing = dir;
-        if (design == null) {
-            this.design = EnumDesign.Blank;
-        }
-        if (primaryWood == null) {
-            this.primaryMaterial = system.getDefaultMaterial();
-        }
-        if (secondaryWood == null) {
-            this.secondaryMaterial = system.getDefaultMaterial();
-        }
-        if (this.rotation > 3 || this.rotation < 0) {
-            this.rotation = 0;
-        }
-        if (this.facing == null) {
-            this.facing = EnumFacing.UP;
-        }
-    }
+	DesignBlock(final IDesignSystem system, final IDesignMaterial primaryWood, final IDesignMaterial secondaryWood, final IDesign design, final int rotation, final EnumFacing dir) {
+		this.rotation = 0;
+		this.facing = EnumFacing.UP;
+		this.panel = false;
+		this.design = design;
+		this.primaryMaterial = primaryWood;
+		this.secondaryMaterial = secondaryWood;
+		this.rotation = rotation;
+		this.facing = dir;
+		if (design == null) {
+			this.design = EnumDesign.Blank;
+		}
+		if (primaryWood == null) {
+			this.primaryMaterial = system.getDefaultMaterial();
+		}
+		if (secondaryWood == null) {
+			this.secondaryMaterial = system.getDefaultMaterial();
+		}
+		if (this.rotation > 3 || this.rotation < 0) {
+			this.rotation = 0;
+		}
+		if (this.facing == null) {
+			this.facing = EnumFacing.UP;
+		}
+	}
 
-    public int getPrimaryColour() {
-        return this.getPrimaryMaterial().getColour();
-    }
+	public int getPrimaryColour() {
+		return this.getPrimaryMaterial().getColour();
+	}
 
-    public int getSecondaryColour() {
-        return this.getSecondaryMaterial().getColour();
-    }
+	public int getSecondaryColour() {
+		return this.getSecondaryMaterial().getColour();
+	}
 
-    EnumFacing getRotation(final EnumFacing dir, final ModuleCarpentry.Axis axis) {
-        if (axis == ModuleCarpentry.Axis.Y) {
-            switch (dir) {
-                case EAST: {
-                    return EnumFacing.NORTH;
-                }
-                case NORTH: {
-                    return EnumFacing.WEST;
-                }
-                case SOUTH: {
-                    return EnumFacing.EAST;
-                }
-                case WEST: {
-                    return EnumFacing.SOUTH;
-                }
-                default: {
-                    return dir;
-                }
-            }
-        } else if (axis == ModuleCarpentry.Axis.X) {
-            switch (dir) {
-                case EAST: {
-                    return EnumFacing.UP;
-                }
-                case UP: {
-                    return EnumFacing.WEST;
-                }
-                case WEST: {
-                    return EnumFacing.DOWN;
-                }
-                case DOWN: {
-                    return EnumFacing.EAST;
-                }
-                default: {
-                    return dir;
-                }
-            }
-        } else {
-            switch (dir) {
-                case SOUTH: {
-                    return EnumFacing.UP;
-                }
-                case UP: {
-                    return EnumFacing.NORTH;
-                }
-                case NORTH: {
-                    return EnumFacing.DOWN;
-                }
-                case DOWN: {
-                    return EnumFacing.SOUTH;
-                }
-                default: {
-                    return dir;
-                }
-            }
-        }
-    }
+	EnumFacing getRotation(final EnumFacing dir, final ModuleCarpentry.Axis axis) {
+		if (axis == ModuleCarpentry.Axis.Y) {
+			switch (dir) {
+				case EAST: {
+					return EnumFacing.NORTH;
+				}
+				case NORTH: {
+					return EnumFacing.WEST;
+				}
+				case SOUTH: {
+					return EnumFacing.EAST;
+				}
+				case WEST: {
+					return EnumFacing.SOUTH;
+				}
+				default: {
+					return dir;
+				}
+			}
+		} else if (axis == ModuleCarpentry.Axis.X) {
+			switch (dir) {
+				case EAST: {
+					return EnumFacing.UP;
+				}
+				case UP: {
+					return EnumFacing.WEST;
+				}
+				case WEST: {
+					return EnumFacing.DOWN;
+				}
+				case DOWN: {
+					return EnumFacing.EAST;
+				}
+				default: {
+					return dir;
+				}
+			}
+		} else {
+			switch (dir) {
+				case SOUTH: {
+					return EnumFacing.UP;
+				}
+				case UP: {
+					return EnumFacing.NORTH;
+				}
+				case NORTH: {
+					return EnumFacing.DOWN;
+				}
+				case DOWN: {
+					return EnumFacing.SOUTH;
+				}
+				default: {
+					return dir;
+				}
+			}
+		}
+	}
 
 //	public ILayout getLayout(EnumFacing dir) {
 //		EnumFacing adjustedDir;
@@ -372,15 +372,15 @@ public class DesignBlock {
 //		return secondary ? this.getSecondaryIcon(system, dir) : this.getPrimaryIcon(system, dir);
 //	}
 
-    public EnumFacing getFacing() {
-        return this.facing;
-    }
+	public EnumFacing getFacing() {
+		return this.facing;
+	}
 
-    public int getRotation() {
-        return this.rotation;
-    }
+	public int getRotation() {
+		return this.rotation;
+	}
 
-    public void rotate(final int face, final ItemStack hammer, final EntityPlayer player, final World world, final int x, final int y, final int z) {
+	public void rotate(final int face, final ItemStack hammer, final EntityPlayer player, final World world, final int x, final int y, final int z) {
 //		final EnumFacing dir = EnumFacing.getOrientation(face);
 //		final IToolHammer hammerI = (IToolHammer) hammer.getItem();
 //		if (player.isSneaking()) {
@@ -414,31 +414,31 @@ public class DesignBlock {
 //		if (this.rotation < 0) {
 //			this.rotation = 3;
 //		}
-    }
+	}
 
-    public void setFacing(final EnumFacing facing) {
-        this.facing = facing;
-    }
+	public void setFacing(final EnumFacing facing) {
+		this.facing = facing;
+	}
 
-    public int getBlockMetadata(final IDesignSystem system) {
-        return ModuleCarpentry.getBlockMetadata(system, this);
-    }
+	public int getBlockMetadata(final IDesignSystem system) {
+		return ModuleCarpentry.getBlockMetadata(system, this);
+	}
 
-    public int getItemMetadata(final IDesignSystem system) {
-        return ModuleCarpentry.getItemMetadata(system, this);
-    }
+	public int getItemMetadata(final IDesignSystem system) {
+		return ModuleCarpentry.getItemMetadata(system, this);
+	}
 
-    public void setPanel() {
-        this.panel = true;
-    }
+	public void setPanel() {
+		this.panel = true;
+	}
 
-    public String getString() {
-        String type = "";
-        if (this.getPrimaryMaterial() != this.getSecondaryMaterial()) {
-            type = this.getPrimaryMaterial().getName() + " and " + this.getSecondaryMaterial().getName();
-        } else {
-            type = this.getPrimaryMaterial().getName();
-        }
-        return super.toString() + " " + "{" + type + " " + this.getDesign().getName() + " " + (this.panel ? "Panel" : "Tile") + ", Facing:" + this.getFacing() + ", Rotation:" + this.getRotation() + "}";
-    }
+	public String getString() {
+		String type = "";
+		if (this.getPrimaryMaterial() != this.getSecondaryMaterial()) {
+			type = this.getPrimaryMaterial().getName() + " and " + this.getSecondaryMaterial().getName();
+		} else {
+			type = this.getPrimaryMaterial().getName();
+		}
+		return super.toString() + " " + "{" + type + " " + this.getDesign().getName() + " " + (this.panel ? "Panel" : "Tile") + ", Facing:" + this.getFacing() + ", Rotation:" + this.getRotation() + "}";
+	}
 }

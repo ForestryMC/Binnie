@@ -12,28 +12,28 @@ import org.apache.commons.lang3.NotImplementedException;
 import java.util.HashMap;
 import java.util.List;
 
-public class WoodAccess implements IWoodAccess{
-    static HashMap<IWoodType, IBlockState> woodMap = new HashMap<>();
+public class WoodAccess implements IWoodAccess {
+	static HashMap<IWoodType, IBlockState> woodMap = new HashMap<>();
 
-    public static <T extends Block, V extends Enum<V> & IWoodType> void registerWithVariants(T woodTyped, WoodBlockKind woodBlockKind, PropertyEnum<V> property) {
-        for (V value : property.getAllowedValues()) {
-            IBlockState blockState = woodTyped.getDefaultState().withProperty(property, value);
-            woodMap.put(value, blockState);
-        }
-    }
+	public static <T extends Block, V extends Enum<V> & IWoodType> void registerWithVariants(T woodTyped, WoodBlockKind woodBlockKind, PropertyEnum<V> property) {
+		for (V value : property.getAllowedValues()) {
+			IBlockState blockState = woodTyped.getDefaultState().withProperty(property, value);
+			woodMap.put(value, blockState);
+		}
+	}
 
-    @Override
-    public ItemStack getStack(IWoodType woodType, WoodBlockKind kind, boolean fireproof) {
-        throw new NotImplementedException("");
-    }
+	@Override
+	public ItemStack getStack(IWoodType woodType, WoodBlockKind kind, boolean fireproof) {
+		throw new NotImplementedException("");
+	}
 
-    @Override
-    public IBlockState getBlock(IWoodType woodType, WoodBlockKind kind, boolean fireproof) {
-        return woodMap.get(woodType);
-    }
+	@Override
+	public IBlockState getBlock(IWoodType woodType, WoodBlockKind kind, boolean fireproof) {
+		return woodMap.get(woodType);
+	}
 
-    @Override
-    public List<IWoodType> getRegisteredWoodTypes() {
-        throw new NotImplementedException("");
-    }
+	@Override
+	public List<IWoodType> getRegisteredWoodTypes() {
+		throw new NotImplementedException("");
+	}
 }

@@ -5,30 +5,30 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public interface IFlower extends IIndividual {
-    @Override
-    IFlowerGenome getGenome();
+	@Override
+	IFlowerGenome getGenome();
 
-    IFlowerGenome getMate();
+	IFlowerGenome getMate();
 
-    void mate(final IFlower flower);
+	void mate(final IFlower flower);
 
-    int getAge();
+	int getAge();
 
-    void age();
+	void age();
 
-    void setAge(final int age);
+	void setAge(final int age);
 
-    IFlower getOffspring(final World world, final BlockPos pos);
+	IFlower getOffspring(final World world, final BlockPos pos);
 
-    int getMaxAge();
+	int getMaxAge();
 
-    boolean isWilted();
+	boolean isWilted();
 
-    void setWilted(final boolean p0);
+	void setWilted(final boolean p0);
 
-    boolean hasFlowered();
+	boolean hasFlowered();
 
-    void setFlowered(final boolean p0);
+	void setFlowered(final boolean p0);
 
-    void removeMate();
+	void removeMate();
 }

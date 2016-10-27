@@ -5,7 +5,7 @@ import binnie.extrabees.genetics.ExtraBeesSpecies;
 
 public class ExtraBeesProxy extends BinnieModProxy {
 
-    public void registerBeeModel(ExtraBeesSpecies type) {
+	public void registerBeeModel(ExtraBeesSpecies type) {
 
-    }
+	}
 }

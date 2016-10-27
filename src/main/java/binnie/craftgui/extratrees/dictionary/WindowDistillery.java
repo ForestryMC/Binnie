@@ -15,36 +15,36 @@ import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class WindowDistillery extends Window {
-    public WindowDistillery(final EntityPlayer player, final IInventory inventory, final Side side) {
-        super(224.0f, 192.0f, player, inventory, side);
-    }
+	public WindowDistillery(final EntityPlayer player, final IInventory inventory, final Side side) {
+		super(224.0f, 192.0f, player, inventory, side);
+	}
 
-    @Override
-    protected AbstractMod getMod() {
-        return ExtraTrees.instance;
-    }
+	@Override
+	protected AbstractMod getMod() {
+		return ExtraTrees.instance;
+	}
 
-    @Override
-    protected String getName() {
-        return "Distillery";
-    }
+	@Override
+	protected String getName() {
+		return "Distillery";
+	}
 
-    @Override
-    public void initialiseClient() {
-        this.setTitle(Machine.getMachine(this.getInventory()).getPackage().getDisplayName());
-        int x = 16;
-        new ControlLiquidTank(this, x, 35).setTankID(Distillery.tankInput);
-        x += 34;
-        new ControlDistilleryProgress(this, x, 32.0f);
-        x += 64;
-        new ControlLiquidTank(this, x, 35).setTankID(Distillery.tankOutput);
-        x += 34;
-        new ControlEnergyBar(this, x, 36, 60, 16, Position.Left);
-        new ControlPlayerInventory(this);
-        new ControlErrorState(this, x + 21, 62.0f);
-    }
+	@Override
+	public void initialiseClient() {
+		this.setTitle(Machine.getMachine(this.getInventory()).getPackage().getDisplayName());
+		int x = 16;
+		new ControlLiquidTank(this, x, 35).setTankID(Distillery.tankInput);
+		x += 34;
+		new ControlDistilleryProgress(this, x, 32.0f);
+		x += 64;
+		new ControlLiquidTank(this, x, 35).setTankID(Distillery.tankOutput);
+		x += 34;
+		new ControlEnergyBar(this, x, 36, 60, 16, Position.Left);
+		new ControlPlayerInventory(this);
+		new ControlErrorState(this, x + 21, 62.0f);
+	}
 
-    public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
-        return new WindowDistillery(player, inventory, side);
-    }
+	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
+		return new WindowDistillery(player, inventory, side);
+	}
 }

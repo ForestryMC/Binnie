@@ -9,15 +9,15 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;
 
 public class ControlIconDisplay extends Control {
-    private TextureAtlasSprite icon;
+	private TextureAtlasSprite icon;
 
-    public ControlIconDisplay(final IWidget parent, final float x, final float y, final ResourceLocation icon) {
-        super(parent, x, y, 16.0f, 16.0f);
-        this.icon = BinnieCore.proxy.getTextureAtlasSprite(icon);
-    }
+	public ControlIconDisplay(final IWidget parent, final float x, final float y, final ResourceLocation icon) {
+		super(parent, x, y, 16.0f, 16.0f);
+		this.icon = BinnieCore.proxy.getTextureAtlasSprite(icon);
+	}
 
-    @Override
-    public void onRenderForeground() {
-        CraftGUI.Render.iconItem(IPoint.ZERO, this.icon);
-    }
+	@Override
+	public void onRenderForeground() {
+		CraftGUI.Render.iconItem(IPoint.ZERO, this.icon);
+	}
 }

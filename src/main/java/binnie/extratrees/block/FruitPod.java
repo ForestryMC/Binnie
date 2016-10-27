@@ -3,24 +3,24 @@ package binnie.extratrees.block;
 import binnie.core.BinnieCore;
 
 public enum FruitPod {
-    Cocoa,
-    Banana,
-    Coconut,
-    Plantain,
-    RedBanana,
-    Papayimar;
+	Cocoa,
+	Banana,
+	Coconut,
+	Plantain,
+	RedBanana,
+	Papayimar;
 
-    short[] textures;
+	short[] textures;
 //	IIcon[] icons;
 
-    FruitPod() {
-        this.textures = new short[]{BinnieCore.proxy.getUniqueTextureUID(), BinnieCore.proxy.getUniqueTextureUID(), BinnieCore.proxy.getUniqueTextureUID()};
+	FruitPod() {
+		this.textures = new short[]{BinnieCore.proxy.getUniqueTextureUID(), BinnieCore.proxy.getUniqueTextureUID(), BinnieCore.proxy.getUniqueTextureUID()};
 //		this.icons = new IIcon[3];
-    }
+	}
 
-    public short[] getTextures() {
-        return this.textures;
-    }
+	public short[] getTextures() {
+		return this.textures;
+	}
 
 //	@Override
 //	@SideOnly(Side.CLIENT)

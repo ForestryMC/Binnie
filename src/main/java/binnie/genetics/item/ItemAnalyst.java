@@ -18,21 +18,21 @@ public class ItemAnalyst extends ItemCore {
 //		this.itemIcon = Genetics.proxy.getIcon(register, "analyst");
 //	}
 
-    public ItemAnalyst() {
-    	super("analyst");
-        this.setCreativeTab(CreativeTabGenetics.instance);
-        this.setUnlocalizedName("analyst");
-        this.setMaxStackSize(1);
-    }
+	public ItemAnalyst() {
+		super("analyst");
+		this.setCreativeTab(CreativeTabGenetics.instance);
+		this.setUnlocalizedName("analyst");
+		this.setMaxStackSize(1);
+	}
 
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World world, EntityPlayer player, EnumHand hand) {
-        Genetics.proxy.openGui(GeneticsGUI.Analyst, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
-        return super.onItemRightClick(itemStackIn, world, player, hand);
-    }
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World world, EntityPlayer player, EnumHand hand) {
+		Genetics.proxy.openGui(GeneticsGUI.Analyst, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
+		return super.onItemRightClick(itemStackIn, world, player, hand);
+	}
 
-    @Override
-    public String getItemStackDisplayName(final ItemStack i) {
-        return "Analyst";
-    }
+	@Override
+	public String getItemStackDisplayName(final ItemStack i) {
+		return "Analyst";
+	}
 }

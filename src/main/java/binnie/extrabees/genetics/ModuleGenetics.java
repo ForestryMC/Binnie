@@ -17,42 +17,42 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModuleGenetics implements IInitializable {
-    @Override
-    public void preInit() {
-        for (final ExtraBeesSpecies species : ExtraBeesSpecies.values()) {
-            AlleleManager.alleleRegistry.registerAllele(species);
-        }
-        ExtraBees.dictionary = new ItemDictionary();
-        ExtraBees.proxy.registerItem(ExtraBees.dictionary);
-        GameRegistry.register(ExtraBees.ectoplasm = new BlockEctoplasm());
-        GameRegistry.register(new ItemBlock(ExtraBees.ectoplasm).setRegistryName(ExtraBees.ectoplasm.getRegistryName()));
-    }
+	@Override
+	public void preInit() {
+		for (final ExtraBeesSpecies species : ExtraBeesSpecies.values()) {
+			AlleleManager.alleleRegistry.registerAllele(species);
+		}
+		ExtraBees.dictionary = new ItemDictionary();
+		ExtraBees.proxy.registerItem(ExtraBees.dictionary);
+		GameRegistry.register(ExtraBees.ectoplasm = new BlockEctoplasm());
+		GameRegistry.register(new ItemBlock(ExtraBees.ectoplasm).setRegistryName(ExtraBees.ectoplasm.getRegistryName()));
+	}
 
-    @Override
-    public void init() {
-        ExtraBeesEffect.doInit();
-        ExtraBeesFlowers.doInit();
-        ExtraBeesSpecies.doInit();
-        ExtraBeeMutation.doInit();
-        ExtraBeesBranch.doInit();
-    }
+	@Override
+	public void init() {
+		ExtraBeesEffect.doInit();
+		ExtraBeesFlowers.doInit();
+		ExtraBeesSpecies.doInit();
+		ExtraBeeMutation.doInit();
+		ExtraBeesBranch.doInit();
+	}
 
-    @Override
-    public void postInit() {
-        int ebSpeciesCount = 0;
-        int ebTotalSpeciesCount = 0;
-        for (final ExtraBeesSpecies species : ExtraBeesSpecies.values()) {
-            ++ebTotalSpeciesCount;
-            if (!AlleleManager.alleleRegistry.isBlacklisted(species.getUID())) {
-                ++ebSpeciesCount;
-            }
-        }
-        RecipeManagers.carpenterManager.addRecipe(100, Binnie.Liquid.getFluidStack("water", 2000), null, new ItemStack(ExtraBees.dictionary), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotTin", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
-    }
+	@Override
+	public void postInit() {
+		int ebSpeciesCount = 0;
+		int ebTotalSpeciesCount = 0;
+		for (final ExtraBeesSpecies species : ExtraBeesSpecies.values()) {
+			++ebTotalSpeciesCount;
+			if (!AlleleManager.alleleRegistry.isBlacklisted(species.getUID())) {
+				++ebSpeciesCount;
+			}
+		}
+		RecipeManagers.carpenterManager.addRecipe(100, Binnie.Liquid.getFluidStack("water", 2000), null, new ItemStack(ExtraBees.dictionary), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotTin", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
+	}
 
-    public static IGenome getGenome(final IAlleleBeeSpecies allele0) {
-        return Binnie.Genetics.getBeeRoot().templateAsGenome(Binnie.Genetics.getBeeRoot().getTemplate(allele0.getUID()));
-    }
+	public static IGenome getGenome(final IAlleleBeeSpecies allele0) {
+		return Binnie.Genetics.getBeeRoot().templateAsGenome(Binnie.Genetics.getBeeRoot().getTemplate(allele0.getUID()));
+	}
 
 //	public static ItemStack getBeeIcon(final IAlleleBeeSpecies species) {
 //		if (species == null) {

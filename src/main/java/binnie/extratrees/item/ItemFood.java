@@ -12,50 +12,50 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public class ItemFood extends net.minecraft.item.ItemFood {
-    IItemMiscProvider[] items;
+	IItemMiscProvider[] items;
 
-    public ItemFood() {
-        super(0, 0.0f, false);
-        this.setUnlocalizedName("food");
-        this.setCreativeTab(Tabs.tabArboriculture);
-        this.setHasSubtypes(true);
-        this.items = Food.values();
-        setRegistryName("food");
-    }
+	public ItemFood() {
+		super(0, 0.0f, false);
+		this.setUnlocalizedName("food");
+		this.setCreativeTab(Tabs.tabArboriculture);
+		this.setHasSubtypes(true);
+		this.items = Food.values();
+		setRegistryName("food");
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List par3List) {
-        for (final IItemMiscProvider item : this.items) {
-            if (item.isActive()) {
-                par3List.add(this.getStack(item, 1));
-            }
-        }
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List par3List) {
+		for (final IItemMiscProvider item : this.items) {
+			if (item.isActive()) {
+				par3List.add(this.getStack(item, 1));
+			}
+		}
+	}
 
-    private IItemMiscProvider getItem(final int damage) {
-        return (damage >= this.items.length) ? this.items[0] : this.items[damage];
-    }
+	private IItemMiscProvider getItem(final int damage) {
+		return (damage >= this.items.length) ? this.items[0] : this.items[damage];
+	}
 
-    public ItemStack getStack(final IItemMiscProvider type, final int size) {
-        return new ItemStack(this, size, type.ordinal());
-    }
+	public ItemStack getStack(final IItemMiscProvider type, final int size) {
+		return new ItemStack(this, size, type.ordinal());
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-        super.addInformation(stack, playerIn, tooltip, advanced);
-        final IItemMiscProvider item = this.getItem(stack.getItemDamage());
-        if (item != null) {
-            item.addInformation(tooltip);
-        }
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+		super.addInformation(stack, playerIn, tooltip, advanced);
+		final IItemMiscProvider item = this.getItem(stack.getItemDamage());
+		if (item != null) {
+			item.addInformation(tooltip);
+		}
+	}
 
-    @Override
-    public String getItemStackDisplayName(final ItemStack stack) {
-        final IItemMiscProvider item = this.getItem(stack.getItemDamage());
-        return (item != null) ? item.getName(stack) : "null";
-    }
+	@Override
+	public String getItemStackDisplayName(final ItemStack stack) {
+		final IItemMiscProvider item = this.getItem(stack.getItemDamage());
+		return (item != null) ? item.getName(stack) : "null";
+	}
 
 //	@Override
 //	public IIcon getIcon(final ItemStack stack, final int pass) {
@@ -79,9 +79,9 @@ public class ItemFood extends net.minecraft.item.ItemFood {
 //		}
 //	}
 
-    private Food getFood(final ItemStack par1ItemStack) {
-        return Food.values()[par1ItemStack.getItemDamage()];
-    }
+	private Food getFood(final ItemStack par1ItemStack) {
+		return Food.values()[par1ItemStack.getItemDamage()];
+	}
 
 //	@Override
 //	public int func_150905_g(final ItemStack p_150905_1_) {

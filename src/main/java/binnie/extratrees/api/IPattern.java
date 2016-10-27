@@ -5,9 +5,9 @@ public interface IPattern {
 //
 //	IIcon getSecondaryIcon(final IDesignSystem p0);
 
-    ILayout getRotation();
+	ILayout getRotation();
 
-    ILayout getHorizontalFlip();
+	ILayout getHorizontalFlip();
 
 //	void registerIcons(final IIconRegister p0);
 }

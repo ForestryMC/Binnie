@@ -8,13 +8,13 @@ public class BinnieIcon extends BinnieResource {
 //	private int textureSheet;
 //	private IIcon icon;
 
-    public BinnieIcon(final AbstractMod mod, final ResourceType type, final String path) {
-        super(mod, type, path);
+	public BinnieIcon(final AbstractMod mod, final ResourceType type, final String path) {
+		super(mod, type, path);
 //		this.textureSheet = 0;
 //		this.icon = null;
-        //this.textureSheet = ((type != ResourceType.Block) ? 1 : 0);
-        Binnie.Resource.registerIcon(this);
-    }
+		//this.textureSheet = ((type != ResourceType.Block) ? 1 : 0);
+		Binnie.Resource.registerIcon(this);
+	}
 
 //	public IIcon getIcon() {
 //		return this.icon;

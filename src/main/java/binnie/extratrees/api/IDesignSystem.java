@@ -10,15 +10,15 @@ public interface IDesignSystem {
 
 	void registerSprites();
 
-    IDesignMaterial getDefaultMaterial();
+	IDesignMaterial getDefaultMaterial();
 
-    IDesignMaterial getMaterial(final int p0);
+	IDesignMaterial getMaterial(final int p0);
 
-    int getMaterialIndex(final IDesignMaterial p0);
+	int getMaterialIndex(final IDesignMaterial p0);
 
-    IDesignMaterial getDefaultMaterial2();
+	IDesignMaterial getDefaultMaterial2();
 
-    ItemStack getAdhesive();
+	ItemStack getAdhesive();
 
-    IDesignMaterial getMaterial(final ItemStack p0);
+	IDesignMaterial getMaterial(final ItemStack p0);
 }

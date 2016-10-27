@@ -4,18 +4,18 @@ import binnie.core.resource.BinnieIcon;
 
 public enum FruitSprite //implements IIconProvider
 {
-    Tiny,
-    Small,
-    Average,
-    Large,
-    Larger,
-    Pear;
+	Tiny,
+	Small,
+	Average,
+	Large,
+	Larger,
+	Pear;
 
-    BinnieIcon icon;
+	BinnieIcon icon;
 
-    public short getIndex() {
-        return (short) (this.ordinal() + 4200);
-    }
+	public short getIndex() {
+		return (short) (this.ordinal() + 4200);
+	}
 
 //	@Override
 //	@SideOnly(Side.CLIENT)

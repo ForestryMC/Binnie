@@ -29,21 +29,21 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 //		return upper ? (flip ? type.iconDoorUpperFlip : type.iconDoorUpper) : (flip ? type.iconDoorLowerFlip : type.iconDoorLower);
 //	}
 
-    public static DoorType getDoorType(final int tileMeta) {
-        final int type = (tileMeta & 0xF00) >> 8;
-        if (type >= 0 && type < DoorType.values().length) {
-            return DoorType.values()[type];
-        }
-        return DoorType.Standard;
-    }
+	public static DoorType getDoorType(final int tileMeta) {
+		final int type = (tileMeta & 0xF00) >> 8;
+		if (type >= 0 && type < DoorType.values().length) {
+			return DoorType.values()[type];
+		}
+		return DoorType.Standard;
+	}
 
-    protected BlockETDoor() {
-        super(Material.WOOD);
-        this.setHardness(3.0f);
-        setSoundType(SoundType.WOOD);
-        this.setCreativeTab(Tabs.tabArboriculture);
-        this.setRegistryName("door");
-    }
+	protected BlockETDoor() {
+		super(Material.WOOD);
+		this.setHardness(3.0f);
+		setSoundType(SoundType.WOOD);
+		this.setCreativeTab(Tabs.tabArboriculture);
+		this.setRegistryName("door");
+	}
 
 //	@Override
 //	public IIcon getIcon(final int side, final int meta) {
@@ -201,10 +201,10 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 //		return BlockMetadata.breakBlock(this, player, world, x, y, z);
 //	}
 
-    @Override
-    public TileEntity createNewTileEntity(final World var1, final int k) {
-        return new TileEntityMetadata();
-    }
+	@Override
+	public TileEntity createNewTileEntity(final World var1, final int k) {
+		return new TileEntityMetadata();
+	}
 
 //	@Override
 //	public boolean hasTileEntity(final int meta) {
@@ -218,74 +218,74 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 //		return tileentity != null && tileentity.receiveClientEvent(par5, par6);
 //	}
 
-    @Override
-    public int getPlacedMeta(final ItemStack stack, final World world, final BlockPos pos, final EnumFacing clickedBlock) {
-        return TileEntityMetadata.getItemDamage(stack);
-    }
+	@Override
+	public int getPlacedMeta(final ItemStack stack, final World world, final BlockPos pos, final EnumFacing clickedBlock) {
+		return TileEntityMetadata.getItemDamage(stack);
+	}
 
-    @Override
-    public int getDroppedMeta(final int blockMeta, final int tileMeta) {
-        return tileMeta;
-    }
+	@Override
+	public int getDroppedMeta(final int blockMeta, final int tileMeta) {
+		return tileMeta;
+	}
 
-    @Override
-    public String getBlockName(final ItemStack par1ItemStack) {
-        final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
-        final String typeName = getDoorType(meta).getName();
-        final String woodName = WoodManager.getPlankType(meta & 0xFF).getName();
-        if (typeName.equals("")) {
-            return Binnie.Language.localise(ExtraTrees.instance, "block.door.name", woodName);
-        }
-        return Binnie.Language.localise(ExtraTrees.instance, "block.door.name.adv", woodName, typeName);
-    }
+	@Override
+	public String getBlockName(final ItemStack par1ItemStack) {
+		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
+		final String typeName = getDoorType(meta).getName();
+		final String woodName = WoodManager.getPlankType(meta & 0xFF).getName();
+		if (typeName.equals("")) {
+			return Binnie.Language.localise(ExtraTrees.instance, "block.door.name", woodName);
+		}
+		return Binnie.Language.localise(ExtraTrees.instance, "block.door.name.adv", woodName, typeName);
+	}
 
-    @Override
-    public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
-    }
+	@Override
+	public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
+	}
 
-    @Override
-    public void dropAsStack(final World world, final BlockPos pos, final ItemStack drop) {
-        //this.dropBlockAsItem(world, x, y, z, drop);
-    }
+	@Override
+	public void dropAsStack(final World world, final BlockPos pos, final ItemStack drop) {
+		//this.dropBlockAsItem(world, x, y, z, drop);
+	}
 
-    @Override
-    public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
-        for (final IPlankType type : PlankType.ExtraTreePlanks.values()) {
-            itemList.add(WoodManager.getDoor(type, DoorType.Standard));
-        }
-        for (final IPlankType type : PlankType.ForestryPlanks.values()) {
-            itemList.add(WoodManager.getDoor(type, DoorType.Standard));
-        }
-        for (final IPlankType type : PlankType.ExtraBiomesPlank.values()) {
-            if (type.getStack() != null) {
-                itemList.add(WoodManager.getDoor(type, DoorType.Standard));
-            }
-        }
-        for (final IPlankType type : PlankType.VanillaPlanks.values()) {
-            itemList.add(WoodManager.getDoor(type, DoorType.Standard));
-        }
-    }
+	@Override
+	public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
+		for (final IPlankType type : PlankType.ExtraTreePlanks.values()) {
+			itemList.add(WoodManager.getDoor(type, DoorType.Standard));
+		}
+		for (final IPlankType type : PlankType.ForestryPlanks.values()) {
+			itemList.add(WoodManager.getDoor(type, DoorType.Standard));
+		}
+		for (final IPlankType type : PlankType.ExtraBiomesPlank.values()) {
+			if (type.getStack() != null) {
+				itemList.add(WoodManager.getDoor(type, DoorType.Standard));
+			}
+		}
+		for (final IPlankType type : PlankType.VanillaPlanks.values()) {
+			itemList.add(WoodManager.getDoor(type, DoorType.Standard));
+		}
+	}
 
 
-    @Override
-    public boolean isWood(IBlockAccess world, BlockPos pos) {
-        return true;
-    }
+	@Override
+	public boolean isWood(IBlockAccess world, BlockPos pos) {
+		return true;
+	}
 
-    @Override
-    public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
-        return 20;
-    }
+	@Override
+	public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
+		return 20;
+	}
 
-    @Override
-    public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
-        return true;
-    }
+	@Override
+	public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
+		return true;
+	}
 
-    @Override
-    public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
-        return 5;
-    }
+	@Override
+	public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
+		return 5;
+	}
 
 //	@Override
 //	public void breakBlock(final World par1World, final int par2, final int par3, final int par4, final Block par5, final int par6) {
@@ -293,9 +293,9 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 //		par1World.removeTileEntity(par2, par3, par4);
 //	}
 
-    @Override
-    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-        return BlockMetadata.getPickBlock(world, pos);
-    }
+	@Override
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+		return BlockMetadata.getPickBlock(world, pos);
+	}
 
 }

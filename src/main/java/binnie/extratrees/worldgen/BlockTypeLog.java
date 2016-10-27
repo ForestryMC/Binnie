@@ -10,20 +10,20 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class BlockTypeLog extends BlockType {
-    IWoodType log;
+	IWoodType log;
 
-    public BlockTypeLog(final IWoodType log) {
-        super(null, 0);
-        this.log = log;
-    }
+	public BlockTypeLog(final IWoodType log) {
+		super(null, 0);
+		this.log = log;
+	}
 
-    @Override
-    public void setBlock(final World world, final ITreeGenData tree, final BlockPos pos) {
+	@Override
+	public void setBlock(final World world, final ITreeGenData tree, final BlockPos pos) {
 
-        IBlockState blockState = new WoodAccess().getBlock(log,WoodBlockKind.LOG,false);
-        if(blockState == null)
-             blockState = TreeManager.woodAccess.getBlock(log, WoodBlockKind.LOG, false);
-        world.setBlockState(pos, blockState, 2);
-        //this.log.placeBlock(world, new BlockPos(x, y, z));
-    }
+		IBlockState blockState = new WoodAccess().getBlock(log, WoodBlockKind.LOG, false);
+		if (blockState == null)
+			blockState = TreeManager.woodAccess.getBlock(log, WoodBlockKind.LOG, false);
+		world.setBlockState(pos, blockState, 2);
+		//this.log.placeBlock(world, new BlockPos(x, y, z));
+	}
 }

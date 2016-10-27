@@ -18,41 +18,41 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class ItemDatabase extends ItemCore{
+public class ItemDatabase extends ItemCore {
 
-    public ItemDatabase() {
-    	super("geneticdatabase");
-        this.setCreativeTab(CreativeTabGenetics.instance);
-        this.setUnlocalizedName("database");
-        this.setMaxStackSize(1);
-    }
-    
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerModel(Item item, IModelManager manager) {
-    	manager.registerItemModel(item, 0);
-    	manager.registerItemModel(item, 1, "geneticdatabase_master");
-    }
-    
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> subItems) {
-        super.getSubItems(itemIn, tab, subItems);
-        subItems.add(new ItemStack(itemIn, 1, 1));
-    }
+	public ItemDatabase() {
+		super("geneticdatabase");
+		this.setCreativeTab(CreativeTabGenetics.instance);
+		this.setUnlocalizedName("database");
+		this.setMaxStackSize(1);
+	}
 
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World worldIn, EntityPlayer player, EnumHand hand) {
-        if (itemStack.getItemDamage() == 0) {
-            Genetics.proxy.openGui(GeneticsGUI.Database, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
-        } else {
-            Genetics.proxy.openGui(GeneticsGUI.DatabaseNEI, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
-        }
-        return super.onItemRightClick(itemStack, worldIn, player, hand);
-    }
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void registerModel(Item item, IModelManager manager) {
+		manager.registerItemModel(item, 0);
+		manager.registerItemModel(item, 1, "geneticdatabase_master");
+	}
 
-    @Override
-    public String getItemStackDisplayName(final ItemStack i) {
-        return (i.getItemDamage() == 0) ? "Gene Database" : "Master Gene Database";
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> subItems) {
+		super.getSubItems(itemIn, tab, subItems);
+		subItems.add(new ItemStack(itemIn, 1, 1));
+	}
+
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World worldIn, EntityPlayer player, EnumHand hand) {
+		if (itemStack.getItemDamage() == 0) {
+			Genetics.proxy.openGui(GeneticsGUI.Database, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
+		} else {
+			Genetics.proxy.openGui(GeneticsGUI.DatabaseNEI, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
+		}
+		return super.onItemRightClick(itemStack, worldIn, player, hand);
+	}
+
+	@Override
+	public String getItemStackDisplayName(final ItemStack i) {
+		return (i.getItemDamage() == 0) ? "Gene Database" : "Master Gene Database";
+	}
 }

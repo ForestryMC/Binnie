@@ -4,11 +4,11 @@ import binnie.craftgui.core.IWidget;
 import binnie.craftgui.minecraft.GuiCraftGUI;
 
 public abstract class RenderCommand {
-    IWidget widget;
+	IWidget widget;
 
-    public RenderCommand(final IWidget widget) {
-        this.widget = widget;
-    }
+	public RenderCommand(final IWidget widget) {
+		this.widget = widget;
+	}
 
-    public abstract void render(final GuiCraftGUI p0);
+	public abstract void render(final GuiCraftGUI p0);
 }

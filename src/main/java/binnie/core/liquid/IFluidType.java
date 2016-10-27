@@ -3,25 +3,25 @@ package binnie.core.liquid;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
-public interface IFluidType{
+public interface IFluidType {
 
-    ResourceLocation getFlowing();
+	ResourceLocation getFlowing();
 
-    ResourceLocation getStill();
+	ResourceLocation getStill();
 
-    String getName();
+	String getName();
 
-    String getIdentifier();
+	String getIdentifier();
 
-    FluidStack get(final int p0);
+	FluidStack get(final int p0);
 
-    int getColour();
+	int getColour();
 
-    int getContainerColour();
+	int getContainerColour();
 
-    int getTransparency();
+	int getTransparency();
 
-    boolean canPlaceIn(final FluidContainer p0);
+	boolean canPlaceIn(final FluidContainer p0);
 
-    boolean showInCreative(final FluidContainer p0);
+	boolean showInCreative(final FluidContainer p0);
 }

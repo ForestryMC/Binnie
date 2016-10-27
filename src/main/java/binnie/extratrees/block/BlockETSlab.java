@@ -18,16 +18,16 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class BlockETSlab extends BlockWoodSlab implements IBlockMetadata {
-    public BlockETSlab(final boolean par2) {
-        this.setCreativeTab(Tabs.tabArboriculture);
-        this.setHardness(2.0f).setResistance(5.0f);
-        setSoundType(SoundType.WOOD);
+	public BlockETSlab(final boolean par2) {
+		this.setCreativeTab(Tabs.tabArboriculture);
+		this.setHardness(2.0f).setResistance(5.0f);
+		setSoundType(SoundType.WOOD);
 //		if (!this.field_150004_a) {
 //			this.useNeighborBrightness = true;
 //		}
-        this.setLightOpacity(0);
-        this.setRegistryName("slabs" + (par2 ? "Double" : "Single"));
-    }
+		this.setLightOpacity(0);
+		this.setRegistryName("slabs" + (par2 ? "Double" : "Single"));
+	}
 
 //	@Override
 //	public ArrayList<ItemStack> getDrops(final World world, final int x, final int y, final int z, final int blockMeta, final int fortune) {
@@ -44,10 +44,10 @@ public class BlockETSlab extends BlockWoodSlab implements IBlockMetadata {
 //		return BlockMetadata.breakBlock(this, player, world, x, y, z);
 //	}
 
-    @Override
-    public TileEntity createNewTileEntity(final World var1, final int i) {
-        return new TileEntityMetadata();
-    }
+	@Override
+	public TileEntity createNewTileEntity(final World var1, final int i) {
+		return new TileEntityMetadata();
+	}
 
 //	@Override
 //	public boolean hasTileEntity(final int meta) {
@@ -66,46 +66,46 @@ public class BlockETSlab extends BlockWoodSlab implements IBlockMetadata {
 //		return TileEntityMetadata.getItemDamage(stack);
 //	}
 
-    //TODO
-    @Override
-    public boolean isDouble() {
-        return false;
-    }
+	//TODO
+	@Override
+	public boolean isDouble() {
+		return false;
+	}
 
-    @Override
-    public int getPlacedMeta(ItemStack p0, World p1, BlockPos pos, EnumFacing p5) {
-        return TileEntityMetadata.getItemDamage(p0);
-    }
+	@Override
+	public int getPlacedMeta(ItemStack p0, World p1, BlockPos pos, EnumFacing p5) {
+		return TileEntityMetadata.getItemDamage(p0);
+	}
 
-    @Override
-    public int getDroppedMeta(final int blockMeta, final int tileMeta) {
-        return tileMeta;
-    }
+	@Override
+	public int getDroppedMeta(final int blockMeta, final int tileMeta) {
+		return tileMeta;
+	}
 
-    @Override
-    public String getBlockName(final ItemStack par1ItemStack) {
-        final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
-        return Binnie.Language.localise(ExtraTrees.instance, "block.woodslab.name", PlankType.ExtraTreePlanks.values()[meta].getName());
-    }
+	@Override
+	public String getBlockName(final ItemStack par1ItemStack) {
+		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
+		return Binnie.Language.localise(ExtraTrees.instance, "block.woodslab.name", PlankType.ExtraTreePlanks.values()[meta].getName());
+	}
 
-    @Override
-    public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
-    }
+	@Override
+	public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
+	}
 
-    @Override
-    public void dropAsStack(World p0, BlockPos pos, ItemStack p4) {
-        //		this.dropBlockAsItem(world, x, y, z, drop);
-    }
+	@Override
+	public void dropAsStack(World p0, BlockPos pos, ItemStack p4) {
+		//		this.dropBlockAsItem(world, x, y, z, drop);
+	}
 
-    @Override
-    public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
+	@Override
+	public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
 //		if (this.field_150004_a) {
 //			return;
 //		}
 //		for (int i = 0; i < PlankType.ExtraTreePlanks.values().length; ++i) {
 //			itemList.add(TileEntityMetadata.getItemStack(this, i));
 //		}
-    }
+	}
 
 //	@Override
 //	@SideOnly(Side.CLIENT)

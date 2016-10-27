@@ -6,20 +6,20 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
 public class ItemWeed extends ItemBlock {
-    public ItemWeed(Block block) {
-        super(block);
-        this.setHasSubtypes(true);
-        this.hasSubtypes = true;
-    }
+	public ItemWeed(Block block) {
+		super(block);
+		this.setHasSubtypes(true);
+		this.hasSubtypes = true;
+	}
 
-    @Override
-    public String getItemStackDisplayName(final ItemStack stack) {
-        return Binnie.Language.localise("botany.plant." + BlockPlant.Type.values()[stack.getItemDamage()].getName());
-    }
+	@Override
+	public String getItemStackDisplayName(final ItemStack stack) {
+		return Binnie.Language.localise("botany.plant." + BlockPlant.Type.values()[stack.getItemDamage()].getName());
+	}
 
-    @Override
-    public int getMetadata(int damage) {
-        return damage;
-    }
+	@Override
+	public int getMetadata(int damage) {
+		return damage;
+	}
 
 }

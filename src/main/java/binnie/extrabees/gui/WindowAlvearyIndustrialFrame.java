@@ -12,36 +12,36 @@ import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class WindowAlvearyIndustrialFrame extends Window {
-    Machine machine;
-    ControlPlayerInventory playerInventory;
+	Machine machine;
+	ControlPlayerInventory playerInventory;
 
-    public WindowAlvearyIndustrialFrame(final EntityPlayer player, final IInventory inventory, final Side side) {
-        super(176.0f, 144.0f, player, inventory, side);
-        this.machine = ((TileEntityMachine) inventory).getMachine();
-    }
+	public WindowAlvearyIndustrialFrame(final EntityPlayer player, final IInventory inventory, final Side side) {
+		super(176.0f, 144.0f, player, inventory, side);
+		this.machine = ((TileEntityMachine) inventory).getMachine();
+	}
 
-    public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
-        if (player == null || inventory == null) {
-            return null;
-        }
-        return new WindowAlvearyIndustrialFrame(player, inventory, side);
-    }
+	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
+		if (player == null || inventory == null) {
+			return null;
+		}
+		return new WindowAlvearyIndustrialFrame(player, inventory, side);
+	}
 
-    @Override
-    public void initialiseClient() {
-        this.setTitle("Industrial Frame Housing");
-        this.playerInventory = new ControlPlayerInventory(this);
-        final ControlSlot slot = new ControlSlot(this, 79.0f, 30.0f);
-        slot.assign(0);
-    }
+	@Override
+	public void initialiseClient() {
+		this.setTitle("Industrial Frame Housing");
+		this.playerInventory = new ControlPlayerInventory(this);
+		final ControlSlot slot = new ControlSlot(this, 79.0f, 30.0f);
+		slot.assign(0);
+	}
 
-    @Override
-    public AbstractMod getMod() {
-        return ExtraBees.instance;
-    }
+	@Override
+	public AbstractMod getMod() {
+		return ExtraBees.instance;
+	}
 
-    @Override
-    public String getName() {
-        return "AlvearyIndustrialFrame";
-    }
+	@Override
+	public String getName() {
+		return "AlvearyIndustrialFrame";
+	}
 }

@@ -14,46 +14,46 @@ import java.util.Collection;
 import java.util.Collections;
 
 public class HiveDrop implements IHiveDrop {
-    private IAllele[] template;
-    private ArrayList<ItemStack> additional;
-    private int chance;
+	private IAllele[] template;
+	private ArrayList<ItemStack> additional;
+	private int chance;
 
-    public HiveDrop(final IAlleleBeeSpecies species, final int chance) {
-        this(Binnie.Genetics.getBeeRoot().getTemplate(species.getUID()), new ItemStack[0], chance);
-    }
+	public HiveDrop(final IAlleleBeeSpecies species, final int chance) {
+		this(Binnie.Genetics.getBeeRoot().getTemplate(species.getUID()), new ItemStack[0], chance);
+	}
 
-    public HiveDrop(IAllele[] template, final ItemStack[] bonus, final int chance) {
-        this.additional = new ArrayList<>();
-        if (template == null) {
-            template = Binnie.Genetics.getBeeRoot().getDefaultTemplate();
-        }
-        this.template = template;
-        this.chance = chance;
-        Collections.addAll(this.additional, bonus);
-    }
+	public HiveDrop(IAllele[] template, final ItemStack[] bonus, final int chance) {
+		this.additional = new ArrayList<>();
+		if (template == null) {
+			template = Binnie.Genetics.getBeeRoot().getDefaultTemplate();
+		}
+		this.template = template;
+		this.chance = chance;
+		Collections.addAll(this.additional, bonus);
+	}
 
-    @Override
-    public Collection<ItemStack> getExtraItems(IBlockAccess world, BlockPos pos, int fortune) {
-        final ArrayList<ItemStack> ret = new ArrayList<>();
-        for (final ItemStack stack : this.additional) {
-            ret.add(stack.copy());
-        }
-        return ret;
-    }
+	@Override
+	public Collection<ItemStack> getExtraItems(IBlockAccess world, BlockPos pos, int fortune) {
+		final ArrayList<ItemStack> ret = new ArrayList<>();
+		for (final ItemStack stack : this.additional) {
+			ret.add(stack.copy());
+		}
+		return ret;
+	}
 
-    @Override
-    public double getChance(IBlockAccess world, BlockPos pos, int fortune) {
-        return chance;
-    }
+	@Override
+	public double getChance(IBlockAccess world, BlockPos pos, int fortune) {
+		return chance;
+	}
 
-    @Override
-    public double getIgnobleChance(IBlockAccess world, BlockPos pos, int fortune) {
-        return 0; //TODO implement
-    }
+	@Override
+	public double getIgnobleChance(IBlockAccess world, BlockPos pos, int fortune) {
+		return 0; //TODO implement
+	}
 
-    @Override
-    public IBee getBeeType(IBlockAccess world, BlockPos pos) {
-        return Binnie.Genetics.getBeeRoot().getBee(Binnie.Genetics.getBeeRoot().templateAsGenome(this.template));
-    }
+	@Override
+	public IBee getBeeType(IBlockAccess world, BlockPos pos) {
+		return Binnie.Genetics.getBeeRoot().getBee(Binnie.Genetics.getBeeRoot().templateAsGenome(this.template));
+	}
 
 }

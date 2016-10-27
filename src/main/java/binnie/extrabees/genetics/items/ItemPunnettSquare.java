@@ -19,21 +19,21 @@ public class ItemPunnettSquare extends Item {
 //		this.itemIcon = ExtraBees.proxy.getIcon(register, "");
 //	}
 
-    public ItemPunnettSquare() {
-        this.setCreativeTab(CreativeTabs.TOOLS);
-        this.setMaxStackSize(1);
-    }
+	public ItemPunnettSquare() {
+		this.setCreativeTab(CreativeTabs.TOOLS);
+		this.setMaxStackSize(1);
+	}
 
-    @Override
-    public String getItemStackDisplayName(final ItemStack itemstack) {
-        return "Punnett Square";
-    }
+	@Override
+	public String getItemStackDisplayName(final ItemStack itemstack) {
+		return "Punnett Square";
+	}
 
 
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World world, EntityPlayer player, EnumHand hand) {
-        if (hand == EnumHand.MAIN_HAND)
-            ExtraBees.proxy.openGui(ExtraBeeGUID.PunnettSquare, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
-        return new ActionResult(EnumActionResult.PASS, itemStackIn);
-    }
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World world, EntityPlayer player, EnumHand hand) {
+		if (hand == EnumHand.MAIN_HAND)
+			ExtraBees.proxy.openGui(ExtraBeeGUID.PunnettSquare, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
+		return new ActionResult(EnumActionResult.PASS, itemStackIn);
+	}
 }

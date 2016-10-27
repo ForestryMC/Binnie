@@ -9,9 +9,9 @@ import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class TextureManager {
-    static List<Icon> textures = new ArrayList<>();
+	static List<Icon> textures = new ArrayList<>();
 
-    public static void init() {
-    }
+	public static void init() {
+	}
 
 }

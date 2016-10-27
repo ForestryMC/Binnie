@@ -13,36 +13,36 @@ import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class WindowAlvearyHatchery extends Window {
-    Machine machine;
-    ControlPlayerInventory playerInventory;
+	Machine machine;
+	ControlPlayerInventory playerInventory;
 
-    public WindowAlvearyHatchery(final EntityPlayer player, final IInventory inventory, final Side side) {
-        super(176.0f, 144.0f, player, inventory, side);
-        this.machine = ((TileEntityMachine) inventory).getMachine();
-    }
+	public WindowAlvearyHatchery(final EntityPlayer player, final IInventory inventory, final Side side) {
+		super(176.0f, 144.0f, player, inventory, side);
+		this.machine = ((TileEntityMachine) inventory).getMachine();
+	}
 
-    public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
-        if (player == null || inventory == null) {
-            return null;
-        }
-        return new WindowAlvearyHatchery(player, inventory, side);
-    }
+	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
+		if (player == null || inventory == null) {
+			return null;
+		}
+		return new WindowAlvearyHatchery(player, inventory, side);
+	}
 
-    @Override
-    public void initialiseClient() {
-        this.setTitle("Hatchery");
-        this.playerInventory = new ControlPlayerInventory(this);
-        final ControlSlotArray slot = new ControlSlotArray(this, 43, 30, 5, 1);
-        slot.create(AlvearyHatchery.slotLarvae);
-    }
+	@Override
+	public void initialiseClient() {
+		this.setTitle("Hatchery");
+		this.playerInventory = new ControlPlayerInventory(this);
+		final ControlSlotArray slot = new ControlSlotArray(this, 43, 30, 5, 1);
+		slot.create(AlvearyHatchery.slotLarvae);
+	}
 
-    @Override
-    public AbstractMod getMod() {
-        return ExtraBees.instance;
-    }
+	@Override
+	public AbstractMod getMod() {
+		return ExtraBees.instance;
+	}
 
-    @Override
-    public String getName() {
-        return "AlvearyHatchery";
-    }
+	@Override
+	public String getName() {
+		return "AlvearyHatchery";
+	}
 }

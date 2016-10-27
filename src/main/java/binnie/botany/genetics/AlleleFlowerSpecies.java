@@ -1,6 +1,12 @@
 package binnie.botany.genetics;
 
-import binnie.botany.api.*;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumFlowerChromosome;
+import binnie.botany.api.EnumFlowerStage;
+import binnie.botany.api.EnumMoisture;
+import binnie.botany.api.IAlleleFlowerSpecies;
+import binnie.botany.api.IAlleleFlowerSpeciesBuilder;
+import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
 import forestry.api.core.IModelManager;
 import forestry.api.genetics.AlleleManager;
@@ -20,8 +26,8 @@ public class AlleleFlowerSpecies extends AlleleSpecies implements IAlleleFlowerS
 	private EnumAcidity acidity = EnumAcidity.Neutral;
 	@Nonnull
 	private EnumMoisture moisture = EnumMoisture.Normal;
-	
-	public AlleleFlowerSpecies(			
+
+	public AlleleFlowerSpecies(
 			@Nonnull String uid,
 			@Nonnull String unlocalizedName,
 			@Nonnull String authority,
@@ -33,7 +39,7 @@ public class AlleleFlowerSpecies extends AlleleSpecies implements IAlleleFlowerS
 		super(uid, unlocalizedName, authority, unlocalizedDescription, isDominant, branch, binomial);
 		this.flowerType = flowerType;
 	}
-	
+
 	@Override
 	public IAlleleFlowerSpeciesBuilder setPH(EnumAcidity acidity) {
 		this.acidity = acidity;
@@ -45,7 +51,7 @@ public class AlleleFlowerSpecies extends AlleleSpecies implements IAlleleFlowerS
 		this.moisture = moisture;
 		return this;
 	}
-	
+
 	@Override
 	public IAlleleFlowerSpecies build() {
 		AlleleManager.alleleRegistry.registerAllele(this, EnumFlowerChromosome.SPECIES);
@@ -72,7 +78,7 @@ public class AlleleFlowerSpecies extends AlleleSpecies implements IAlleleFlowerS
 	public EnumMoisture getMoisture() {
 		return moisture;
 	}
-	
+
 	@Override
 	public int getSpriteColour(int renderPass) {
 		return 0;

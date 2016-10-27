@@ -39,9 +39,9 @@ import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class ModelManager implements IModelManager {
-	
+
 	private final String modID;
-	
+
 	private final List<BlockModelEntry> customBlockModels = new ArrayList<>();
 	private final List<ModelEntry> customModels = new ArrayList<>();
 
@@ -54,53 +54,53 @@ public class ModelManager implements IModelManager {
 	public final IModelState DEFAULT_BLOCK;
 	public final IModelState DEFAULT_ITEM;
 	public final IModelState DEFAULT_TOOL;
-    
+
 	public ModelManager(String modID) {
 		this.modID = modID;
-		
-	    TRSRTransformation blockThirdperson = get(0, 2.5f, 0, 75, 45, 0, 0.375f);
-	    ImmutableMap.Builder<TransformType, TRSRTransformation> blockBuilder = ImmutableMap.builder();
-	    blockBuilder.put(TransformType.GUI,                     get(0, 0, 0, 30, 225, 0, 0.625f));
-	    blockBuilder.put(TransformType.GROUND,                  get(0, 3, 0, 0, 0, 0, 0.25f));
-	    blockBuilder.put(TransformType.FIXED,                   get(0, 0, 0, 0, 0, 0, 0.5f));
-	    blockBuilder.put(TransformType.THIRD_PERSON_RIGHT_HAND, blockThirdperson);
-	    blockBuilder.put(TransformType.THIRD_PERSON_LEFT_HAND,  leftify(blockThirdperson));
-	    blockBuilder.put(TransformType.FIRST_PERSON_RIGHT_HAND, get(0, 0, 0, 0, 45, 0, 0.4f));
-	    blockBuilder.put(TransformType.FIRST_PERSON_LEFT_HAND,  get(0, 0, 0, 0, 225, 0, 0.4f));
-	    DEFAULT_BLOCK = new SimpleModelState(blockBuilder.build());
-	    
-	    TRSRTransformation itemThirdperson = get(0, 3, 1, 0, 0, 0, 0.55f);
-	    TRSRTransformation firstperson = get(1.13f, 3.2f, 1.13f, 0, -90, 25, 0.68f);
-	    ImmutableMap.Builder<TransformType, TRSRTransformation> itemBuilder = ImmutableMap.builder();
-	    itemBuilder.put(TransformType.GROUND,                  get(0, 2, 0, 0, 0, 0, 0.5f));
-	    itemBuilder.put(TransformType.HEAD,                    get(0, 13, 7, 0, 180, 0, 1));
-	    itemBuilder.put(TransformType.THIRD_PERSON_RIGHT_HAND, itemThirdperson);
-	    itemBuilder.put(TransformType.THIRD_PERSON_LEFT_HAND, leftify(itemThirdperson));
-	    itemBuilder.put(TransformType.FIRST_PERSON_RIGHT_HAND, firstperson);
-	    itemBuilder.put(TransformType.FIRST_PERSON_LEFT_HAND, leftify(firstperson));
-	    DEFAULT_ITEM = new SimpleModelState(itemBuilder.build());
-	    
-	    DEFAULT_TOOL = new SimpleModelState(ImmutableMap.of(
-	        TransformType.THIRD_PERSON_RIGHT_HAND, get(0, 4, 0.5f,         0, -90, 55, 0.85f),
-	        TransformType.THIRD_PERSON_LEFT_HAND,  get(0, 4, 0.5f,         0, 90, -55, 0.85f),
-	        TransformType.FIRST_PERSON_RIGHT_HAND, get(1.13f, 3.2f, 1.13f, 0, -90, 25, 0.68f),
-	        TransformType.FIRST_PERSON_LEFT_HAND,  get(1.13f, 3.2f, 1.13f, 0, 90, -25, 0.68f))); 
-	}
-	
-    private TRSRTransformation get(float tx, float ty, float tz, float ax, float ay, float az, float s){
-        return TRSRTransformation.blockCenterToCorner(new TRSRTransformation(
-            new Vector3f(tx / 16, ty / 16, tz / 16),
-            TRSRTransformation.quatFromXYZDegrees(new Vector3f(ax, ay, az)),
-            new Vector3f(s, s, s),
-            null));
-    }
 
-    private TRSRTransformation leftify(TRSRTransformation transform){
-    	if(flipX == null){
-    		flipX = new TRSRTransformation(null, null, new Vector3f(-1, 1, 1), null);
-    	}
-        return TRSRTransformation.blockCenterToCorner(flipX.compose(TRSRTransformation.blockCornerToCenter(transform)).compose(flipX));
-    }
+		TRSRTransformation blockThirdperson = get(0, 2.5f, 0, 75, 45, 0, 0.375f);
+		ImmutableMap.Builder<TransformType, TRSRTransformation> blockBuilder = ImmutableMap.builder();
+		blockBuilder.put(TransformType.GUI, get(0, 0, 0, 30, 225, 0, 0.625f));
+		blockBuilder.put(TransformType.GROUND, get(0, 3, 0, 0, 0, 0, 0.25f));
+		blockBuilder.put(TransformType.FIXED, get(0, 0, 0, 0, 0, 0, 0.5f));
+		blockBuilder.put(TransformType.THIRD_PERSON_RIGHT_HAND, blockThirdperson);
+		blockBuilder.put(TransformType.THIRD_PERSON_LEFT_HAND, leftify(blockThirdperson));
+		blockBuilder.put(TransformType.FIRST_PERSON_RIGHT_HAND, get(0, 0, 0, 0, 45, 0, 0.4f));
+		blockBuilder.put(TransformType.FIRST_PERSON_LEFT_HAND, get(0, 0, 0, 0, 225, 0, 0.4f));
+		DEFAULT_BLOCK = new SimpleModelState(blockBuilder.build());
+
+		TRSRTransformation itemThirdperson = get(0, 3, 1, 0, 0, 0, 0.55f);
+		TRSRTransformation firstperson = get(1.13f, 3.2f, 1.13f, 0, -90, 25, 0.68f);
+		ImmutableMap.Builder<TransformType, TRSRTransformation> itemBuilder = ImmutableMap.builder();
+		itemBuilder.put(TransformType.GROUND, get(0, 2, 0, 0, 0, 0, 0.5f));
+		itemBuilder.put(TransformType.HEAD, get(0, 13, 7, 0, 180, 0, 1));
+		itemBuilder.put(TransformType.THIRD_PERSON_RIGHT_HAND, itemThirdperson);
+		itemBuilder.put(TransformType.THIRD_PERSON_LEFT_HAND, leftify(itemThirdperson));
+		itemBuilder.put(TransformType.FIRST_PERSON_RIGHT_HAND, firstperson);
+		itemBuilder.put(TransformType.FIRST_PERSON_LEFT_HAND, leftify(firstperson));
+		DEFAULT_ITEM = new SimpleModelState(itemBuilder.build());
+
+		DEFAULT_TOOL = new SimpleModelState(ImmutableMap.of(
+				TransformType.THIRD_PERSON_RIGHT_HAND, get(0, 4, 0.5f, 0, -90, 55, 0.85f),
+				TransformType.THIRD_PERSON_LEFT_HAND, get(0, 4, 0.5f, 0, 90, -55, 0.85f),
+				TransformType.FIRST_PERSON_RIGHT_HAND, get(1.13f, 3.2f, 1.13f, 0, -90, 25, 0.68f),
+				TransformType.FIRST_PERSON_LEFT_HAND, get(1.13f, 3.2f, 1.13f, 0, 90, -25, 0.68f)));
+	}
+
+	private TRSRTransformation get(float tx, float ty, float tz, float ax, float ay, float az, float s) {
+		return TRSRTransformation.blockCenterToCorner(new TRSRTransformation(
+				new Vector3f(tx / 16, ty / 16, tz / 16),
+				TRSRTransformation.quatFromXYZDegrees(new Vector3f(ax, ay, az)),
+				new Vector3f(s, s, s),
+				null));
+	}
+
+	private TRSRTransformation leftify(TRSRTransformation transform) {
+		if (flipX == null) {
+			flipX = new TRSRTransformation(null, null, new Vector3f(-1, 1, 1), null);
+		}
+		return TRSRTransformation.blockCenterToCorner(flipX.compose(TRSRTransformation.blockCornerToCenter(transform)).compose(flipX));
+	}
 
 	@Override
 	public void registerItemModel(Item item, int meta, String identifier) {
@@ -121,7 +121,7 @@ public class ModelManager implements IModelManager {
 	public void registerItemModel(Item item, ItemMeshDefinition definition) {
 		ModelLoader.setCustomMeshDefinition(item, definition);
 	}
-	
+
 	@Override
 	public ModelResourceLocation getModelLocation(Item item) {
 		String itemName = item.getRegistryName().getResourcePath();
@@ -184,7 +184,7 @@ public class ModelManager implements IModelManager {
 	@SideOnly(Side.CLIENT)
 	public void registerItemAndBlockColors() {
 		Minecraft minecraft = Minecraft.getMinecraft();
-		
+
 		BlockColors blockColors = minecraft.getBlockColors();
 		for (IColoredBlock blockColor : blockColorList) {
 			if (blockColor instanceof Block) {
@@ -244,16 +244,16 @@ public class ModelManager implements IModelManager {
 				registry.putObject(entry.itemModelLocation, entry.model);
 			}
 		}
-		
+
 		for (final ModelEntry entry : customModels) {
 			registry.putObject(entry.modelLocation, entry.model);
 		}
 	}
-	
+
 	public void registerCustomBlockModel(@Nonnull BlockModelEntry index) {
 		customBlockModels.add(index);
 	}
-	
+
 	public void registerCustomModel(@Nonnull ModelEntry index) {
 		customModels.add(index);
 	}

@@ -11,26 +11,26 @@ import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 
 public class ControlSlotCharge extends Control {
-    private int slot;
+	private int slot;
 
-    float getCharge() {
-        final IChargedSlots slots = Machine.getInterface(IChargedSlots.class, Window.get(this).getInventory());
-        return (slots == null) ? 0.0f : slots.getCharge(this.slot);
-    }
+	float getCharge() {
+		final IChargedSlots slots = Machine.getInterface(IChargedSlots.class, Window.get(this).getInventory());
+		return (slots == null) ? 0.0f : slots.getCharge(this.slot);
+	}
 
-    @Override
-    public void onRenderBackground() {
-        CraftGUI.Render.texture(CraftGUITexture.PanelBlack, this.getArea());
-        CraftGUI.Render.texturePercentage(CraftGUI.Render.getTexture(CraftGUITexture.SlotCharge), this.getArea().inset(1), Position.Bottom, this.getCharge());
-    }
+	@Override
+	public void onRenderBackground() {
+		CraftGUI.Render.texture(CraftGUITexture.PanelBlack, this.getArea());
+		CraftGUI.Render.texturePercentage(CraftGUI.Render.getTexture(CraftGUITexture.SlotCharge), this.getArea().inset(1), Position.Bottom, this.getCharge());
+	}
 
-    public ControlSlotCharge(final IWidget parent, final int x, final int y, final int slot) {
-        super(parent, x, y, 4.0f, 18.0f);
-        this.slot = slot;
-    }
+	public ControlSlotCharge(final IWidget parent, final int x, final int y, final int slot) {
+		super(parent, x, y, 4.0f, 18.0f);
+		this.slot = slot;
+	}
 
-    @Override
-    public void getHelpTooltip(final Tooltip tooltip) {
-        tooltip.add("Charge Remaining: " + (int) (this.getCharge() * 100.0f) + "%");
-    }
+	@Override
+	public void getHelpTooltip(final Tooltip tooltip) {
+		tooltip.add("Charge Remaining: " + (int) (this.getCharge() * 100.0f) + "%");
+	}
 }

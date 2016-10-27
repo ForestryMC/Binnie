@@ -13,22 +13,22 @@ import net.minecraft.world.World;
 
 public class ItemGenesis extends ItemCore {
 
-    public ItemGenesis() {
-    	super("genesis");
-        this.setCreativeTab(Tabs.tabApiculture);
-        this.setUnlocalizedName("genesis");
-        this.setMaxStackSize(1);
-    }
+	public ItemGenesis() {
+		super("genesis");
+		this.setCreativeTab(Tabs.tabApiculture);
+		this.setUnlocalizedName("genesis");
+		this.setMaxStackSize(1);
+	}
 
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand) {
-        BinnieCore.proxy.openGui(BinnieCoreGUI.Genesis, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
-        return new ActionResult(EnumActionResult.SUCCESS, itemStack);
-    }
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand) {
+		BinnieCore.proxy.openGui(BinnieCoreGUI.Genesis, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
+		return new ActionResult(EnumActionResult.SUCCESS, itemStack);
+	}
 
 
-    @Override
-    public String getItemStackDisplayName(final ItemStack i) {
-        return "Genesis";
-    }
+	@Override
+	public String getItemStackDisplayName(final ItemStack i) {
+		return "Genesis";
+	}
 }

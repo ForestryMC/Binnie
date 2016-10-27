@@ -8,32 +8,32 @@ import forestry.api.circuits.ICircuitLayout;
 import forestry.api.circuits.ICircuitSocketType;
 
 public class BinnieCircuitLayout implements ICircuitLayout {
-    private String uid;
-    private AbstractMod mod;
+	private String uid;
+	private AbstractMod mod;
 
-    public BinnieCircuitLayout(final AbstractMod mod, final String uid) {
-        this.uid = uid;
-        this.mod = mod;
-        ChipsetManager.circuitRegistry.registerLayout(this);
-    }
+	public BinnieCircuitLayout(final AbstractMod mod, final String uid) {
+		this.uid = uid;
+		this.mod = mod;
+		ChipsetManager.circuitRegistry.registerLayout(this);
+	}
 
-    @Override
-    public String getUID() {
-        return "binnie.circuitLayout" + this.uid;
-    }
+	@Override
+	public String getUID() {
+		return "binnie.circuitLayout" + this.uid;
+	}
 
-    @Override
-    public String getName() {
-        return Binnie.Language.localise(this.mod, "circuit.layout." + this.uid.toLowerCase());
-    }
+	@Override
+	public String getName() {
+		return Binnie.Language.localise(this.mod, "circuit.layout." + this.uid.toLowerCase());
+	}
 
-    @Override
-    public String getUsage() {
-        return Binnie.Language.localise(this.mod, "circuit.layout." + this.uid.toLowerCase() + ".usage");
-    }
+	@Override
+	public String getUsage() {
+		return Binnie.Language.localise(this.mod, "circuit.layout." + this.uid.toLowerCase() + ".usage");
+	}
 
-    @Override
-    public ICircuitSocketType getSocketType() {
-        return CircuitSocketType.NONE;// TODO hmm? CircuitSocketType
-    }
+	@Override
+	public ICircuitSocketType getSocketType() {
+		return CircuitSocketType.NONE;// TODO hmm? CircuitSocketType
+	}
 }

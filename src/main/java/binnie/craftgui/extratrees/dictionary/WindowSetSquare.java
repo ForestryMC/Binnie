@@ -9,25 +9,25 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class WindowSetSquare extends Window {
-    public WindowSetSquare(final EntityPlayer player, final IInventory inventory, final Side side) {
-        super(150.0f, 150.0f, player, inventory, side);
-    }
+	public WindowSetSquare(final EntityPlayer player, final IInventory inventory, final Side side) {
+		super(150.0f, 150.0f, player, inventory, side);
+	}
 
-    @Override
-    protected AbstractMod getMod() {
-        return ExtraTrees.instance;
-    }
+	@Override
+	protected AbstractMod getMod() {
+		return ExtraTrees.instance;
+	}
 
-    @Override
-    protected String getName() {
-        return null;
-    }
+	@Override
+	protected String getName() {
+		return null;
+	}
 
-    @Override
-    public void initialiseClient() {
-    }
+	@Override
+	public void initialiseClient() {
+	}
 
-    public static Window create(final EntityPlayer player, final World world, final int x, final int y, final int z, final Side side) {
-        return new WindowSetSquare(player, null, side);
-    }
+	public static Window create(final EntityPlayer player, final World world, final int x, final int y, final int z, final Side side) {
+		return new WindowSetSquare(player, null, side);
+	}
 }

@@ -16,93 +16,93 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class TileEntityNursery extends TileEntityMachine implements IButterflyNursery {
-    public TileEntityNursery(final Nursery.PackageNursery pack) {
-        super(pack);
-    }
+	public TileEntityNursery(final Nursery.PackageNursery pack) {
+		super(pack);
+	}
 
-    IButterflyNursery getNursery() {
-        return this.getMachine().getInterface(IButterflyNursery.class);
-    }
+	IButterflyNursery getNursery() {
+		return this.getMachine().getInterface(IButterflyNursery.class);
+	}
 
-    boolean hasNursery() {
-        return this.getNursery() != null;
-    }
+	boolean hasNursery() {
+		return this.getNursery() != null;
+	}
 
-    @Override
+	@Override
 	public World getWorld() {
-        return this.worldObj;
-    }
+		return this.worldObj;
+	}
 
 
-    @Override
+	@Override
 	public EnumTemperature getTemperature() {
-        return null;
-    }
+		return null;
+	}
 
-    @Override
+	@Override
 	public EnumHumidity getHumidity() {
-        return null;
-    }
+		return null;
+	}
 
-    public boolean addProduct(final ItemStack product, final boolean all) {
-        return false;
-    }
+	public boolean addProduct(final ItemStack product, final boolean all) {
+		return false;
+	}
 
-    @Override
-    public IButterfly getCaterpillar() {
-        return this.hasNursery() ? this.getNursery().getCaterpillar() : null;
-    }
+	@Override
+	public IButterfly getCaterpillar() {
+		return this.hasNursery() ? this.getNursery().getCaterpillar() : null;
+	}
 
-    @Override
-    public IIndividual getNanny() {
-        return null;
-    }
+	@Override
+	public IIndividual getNanny() {
+		return null;
+	}
 
-    @Override
-    public void setCaterpillar(final IButterfly butterfly) {
-        if (this.hasNursery()) {
-            this.getNursery().setCaterpillar(butterfly);
-        }
-    }
+	@Override
+	public void setCaterpillar(final IButterfly butterfly) {
+		if (this.hasNursery()) {
+			this.getNursery().setCaterpillar(butterfly);
+		}
+	}
 
-    @Override
-    public boolean canNurse(final IButterfly butterfly) {
-        return this.getCaterpillar() == null;
-    }
+	@Override
+	public boolean canNurse(final IButterfly butterfly) {
+		return this.getCaterpillar() == null;
+	}
 
-    @Override
+	@Override
 	public Biome getBiome() {
-        return this.getWorld().getBiome(getPos());
-    }
+		return this.getWorld().getBiome(getPos());
+	}
 
-    public void setErrorState(final IErrorState state) {
-    }
+	public void setErrorState(final IErrorState state) {
+	}
 
-    public IErrorState getErrorState() {
-        return null;
-    }
+	public IErrorState getErrorState() {
+		return null;
+	}
 
-    public boolean setErrorCondition(final boolean condition, final IErrorState errorState) {
-        return false;
-    }
+	public boolean setErrorCondition(final boolean condition, final IErrorState errorState) {
+		return false;
+	}
 
-    public Set<IErrorState> getErrorStates() {
-        return new HashSet<>();
-    }
+	public Set<IErrorState> getErrorStates() {
+		return new HashSet<>();
+	}
 
-    public int getBiomeId() {
-        return 0;
-    }
+	public int getBiomeId() {
+		return 0;
+	}
 
-    public void setErrorState(final int state) {
-    }
+	public void setErrorState(final int state) {
+	}
 
-    public int getErrorOrdinal() {
-        return 0;
-    }
+	public int getErrorOrdinal() {
+		return 0;
+	}
 
-    @Override
-    public BlockPos getCoordinates() {
-        return getPos();
-    }
+	@Override
+	public BlockPos getCoordinates() {
+		return getPos();
+	}
 }

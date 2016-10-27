@@ -10,37 +10,37 @@ import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 
 public abstract class Dialog extends Control {
-    public Dialog(final IWidget parent, final float w, final float h) {
-        super(parent, (parent.w() - w) / 2.0f, (parent.h() - h) / 2.0f, w, h);
-        this.addAttribute(Attribute.MouseOver);
-        this.addAttribute(Attribute.AlwaysOnTop);
-        this.addAttribute(Attribute.BlockTooltip);
-        this.initialise();
-        this.addEventHandler(new EventMouse.Down.Handler() {
-            @Override
-            public void onEvent(final EventMouse.Down event) {
-                if (!Dialog.this.getArea().contains(Dialog.this.getRelativeMousePosition())) {
-                    Dialog.this.onClose();
-                    Dialog.this.getParent().deleteChild(Dialog.this);
-                }
-            }
-        }.setOrigin(EventHandler.Origin.Any, this));
-    }
+	public Dialog(final IWidget parent, final float w, final float h) {
+		super(parent, (parent.w() - w) / 2.0f, (parent.h() - h) / 2.0f, w, h);
+		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(Attribute.AlwaysOnTop);
+		this.addAttribute(Attribute.BlockTooltip);
+		this.initialise();
+		this.addEventHandler(new EventMouse.Down.Handler() {
+			@Override
+			public void onEvent(final EventMouse.Down event) {
+				if (!Dialog.this.getArea().contains(Dialog.this.getRelativeMousePosition())) {
+					Dialog.this.onClose();
+					Dialog.this.getParent().deleteChild(Dialog.this);
+				}
+			}
+		}.setOrigin(EventHandler.Origin.Any, this));
+	}
 
-    @Override
-    public abstract void initialise();
+	@Override
+	public abstract void initialise();
 
-    public abstract void onClose();
+	public abstract void onClose();
 
-    @Override
-    public void onRenderBackground() {
-        CraftGUI.Render.gradientRect(this.getArea().outset(400), -1442840576, -1442840576);
-        CraftGUI.Render.texture(CraftGUITexture.Window, this.getArea());
-        CraftGUI.Render.texture(CraftGUITexture.TabOutline, this.getArea().inset(4));
-    }
+	@Override
+	public void onRenderBackground() {
+		CraftGUI.Render.gradientRect(this.getArea().outset(400), -1442840576, -1442840576);
+		CraftGUI.Render.texture(CraftGUITexture.Window, this.getArea());
+		CraftGUI.Render.texture(CraftGUITexture.TabOutline, this.getArea().inset(4));
+	}
 
-    @Override
-    public boolean isMouseOverWidget(final IPoint relativeMouse) {
-        return true;
-    }
+	@Override
+	public boolean isMouseOverWidget(final IPoint relativeMouse) {
+		return true;
+	}
 }

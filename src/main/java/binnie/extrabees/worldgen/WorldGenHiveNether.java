@@ -12,19 +12,19 @@ import net.minecraftforge.common.BiomeDictionary;
 import java.util.Random;
 
 public class WorldGenHiveNether extends WorldGenerator {
-    @Override
-    public boolean generate(final World world, final Random random, final BlockPos pos) {
-        final Biome biome = world.getBiome(pos);
-        if (!BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.NETHER)) {
-            return true;
-        }
-        if (this.embedInWall(world, Blocks.NETHERRACK, pos)) {
-            world.setBlockState(pos, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHive.hiveType, EnumHiveType.Nether));
-        }
-        return true;
-    }
+	@Override
+	public boolean generate(final World world, final Random random, final BlockPos pos) {
+		final Biome biome = world.getBiome(pos);
+		if (!BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.NETHER)) {
+			return true;
+		}
+		if (this.embedInWall(world, Blocks.NETHERRACK, pos)) {
+			world.setBlockState(pos, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHive.hiveType, EnumHiveType.Nether));
+		}
+		return true;
+	}
 
-    public boolean embedInWall(final World world, final Block blockID, final BlockPos pos) {
-        return world.getBlockState(pos).getBlock() == blockID && world.getBlockState(pos.up()).getBlock() == blockID && world.getBlockState(pos.down()).getBlock() == blockID && (world.isAirBlock(pos.add(1, 0, 0)) || world.isAirBlock(pos.add(-1, 0, 0)) || world.isAirBlock(pos.add(0, 0, 1)) || world.isAirBlock(pos.add(0, 0, -1)));
-    }
+	public boolean embedInWall(final World world, final Block blockID, final BlockPos pos) {
+		return world.getBlockState(pos).getBlock() == blockID && world.getBlockState(pos.up()).getBlock() == blockID && world.getBlockState(pos.down()).getBlock() == blockID && (world.isAirBlock(pos.add(1, 0, 0)) || world.isAirBlock(pos.add(-1, 0, 0)) || world.isAirBlock(pos.add(0, 0, 1)) || world.isAirBlock(pos.add(0, 0, -1)));
+	}
 }

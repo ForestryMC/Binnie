@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 public class TileUtil {
 	@Nullable
 	public static <T extends TileEntity> T getTile(@Nonnull IBlockAccess world, @Nonnull BlockPos pos, @Nonnull Class<T> tileClass) {
-		if(pos == null){
+		if (pos == null) {
 			return null;
 		}
 		TileEntity tileEntity = world.getTileEntity(pos);

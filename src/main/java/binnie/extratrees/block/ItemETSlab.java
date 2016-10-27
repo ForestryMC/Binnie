@@ -8,18 +8,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemETSlab extends ItemMetadata {
-    private final boolean isFullBlock;
-    private final BlockETSlab theHalfSlab;
-    private final BlockETSlab doubleSlab;
+	private final boolean isFullBlock;
+	private final BlockETSlab theHalfSlab;
+	private final BlockETSlab doubleSlab;
 
-    public ItemETSlab(final Block block) {
-        super(block);
-        this.theHalfSlab = (BlockETSlab) ExtraTrees.blockSlab;
-        this.doubleSlab = (BlockETSlab) ExtraTrees.blockDoubleSlab;
-        this.isFullBlock = (block != this.theHalfSlab);
-        this.setMaxDamage(0);
-        this.setHasSubtypes(true);
-    }
+	public ItemETSlab(final Block block) {
+		super(block);
+		this.theHalfSlab = (BlockETSlab) ExtraTrees.blockSlab;
+		this.doubleSlab = (BlockETSlab) ExtraTrees.blockDoubleSlab;
+		this.isFullBlock = (block != this.theHalfSlab);
+		this.setMaxDamage(0);
+		this.setHasSubtypes(true);
+	}
 
 //	@Override
 //	@SideOnly(Side.CLIENT)
@@ -51,25 +51,25 @@ public class ItemETSlab extends ItemMetadata {
 //		return this.func_77888_a(par1ItemStack, par2EntityPlayer, par3World, par4, par5, par6, par7) || super.onItemUse(par1ItemStack, par2EntityPlayer, par3World, par4, par5, par6, par7, par8, par9, par10);
 //	}
 
-    private boolean func_77888_a(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final World par3World, int par4, int par5, int par6, final int par7) {
-        if (par7 == 0) {
-            --par5;
-        }
-        if (par7 == 1) {
-            ++par5;
-        }
-        if (par7 == 2) {
-            --par6;
-        }
-        if (par7 == 3) {
-            ++par6;
-        }
-        if (par7 == 4) {
-            --par4;
-        }
-        if (par7 == 5) {
-            ++par4;
-        }
+	private boolean func_77888_a(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final World par3World, int par4, int par5, int par6, final int par7) {
+		if (par7 == 0) {
+			--par5;
+		}
+		if (par7 == 1) {
+			++par5;
+		}
+		if (par7 == 2) {
+			--par6;
+		}
+		if (par7 == 3) {
+			++par6;
+		}
+		if (par7 == 4) {
+			--par4;
+		}
+		if (par7 == 5) {
+			++par4;
+		}
 //		final Block i1 = par3World.getBlock(par4, par5, par6);
 //		final int j1 = par3World.getBlockMetadata(par4, par5, par6);
 //		final int k1 = j1 & 0x7;
@@ -85,6 +85,6 @@ public class ItemETSlab extends ItemMetadata {
 //			}
 //			return true;
 //		}
-        return false;
-    }
+		return false;
+	}
 }

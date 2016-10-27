@@ -7,20 +7,20 @@ public class RendererMachine extends TileEntitySpecialRenderer<TileEntityMachine
 {
 
 
-    @Override
-    public void renderTileEntityFast(TileEntityMachine te, double x, double y, double z, float partialTicks, int destroyStage, VertexBuffer VertexBuffer) {
+	@Override
+	public void renderTileEntityFast(TileEntityMachine te, double x, double y, double z, float partialTicks, int destroyStage, VertexBuffer VertexBuffer) {
 
-    }
+	}
 
-    @Override
-    public void renderTileEntityAt(TileEntityMachine te, double x, double y, double z, float partialTicks, int destroyStage) {
-        if (te != null && te.getMachine() != null) {
-            final MachinePackage machinePackage = te.getMachine().getPackage();
-            //machinePackage.renderMachine(te.getMachine(), x, y, z, partialTicks);
-        }
-    }
+	@Override
+	public void renderTileEntityAt(TileEntityMachine te, double x, double y, double z, float partialTicks, int destroyStage) {
+		if (te != null && te.getMachine() != null) {
+			final MachinePackage machinePackage = te.getMachine().getPackage();
+			//machinePackage.renderMachine(te.getMachine(), x, y, z, partialTicks);
+		}
+	}
 
-    //	RenderBlocks blockRenderer;
+	//	RenderBlocks blockRenderer;
 //
 //	@Override
 //	public void renderTileEntityAt(final TileEntity entity, final double x, final double y, final double z, final float var8) {

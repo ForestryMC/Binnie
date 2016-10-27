@@ -6,19 +6,19 @@ import net.minecraft.world.World;
 import java.util.Collection;
 
 public interface IMachine extends IOwnable {
-    void addComponent(final MachineComponent p0);
+	void addComponent(final MachineComponent p0);
 
-    MachineUtil getMachineUtil();
+	MachineUtil getMachineUtil();
 
-    <T> T getInterface(final Class<T> p0);
+	<T> T getInterface(final Class<T> p0);
 
-    void markDirty();
+	void markDirty();
 
-    World getWorld();
+	World getWorld();
 
-    TileEntity getTileEntity();
+	TileEntity getTileEntity();
 
-    <T> Collection<T> getInterfaces(final Class<T> p0);
+	<T> Collection<T> getInterfaces(final Class<T> p0);
 
-    MachinePackage getPackage();
+	MachinePackage getPackage();
 }

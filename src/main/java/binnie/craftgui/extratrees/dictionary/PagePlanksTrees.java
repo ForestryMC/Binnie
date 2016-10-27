@@ -16,16 +16,16 @@ import net.minecraft.item.ItemStack;
 import java.util.Collection;
 
 public class PagePlanksTrees extends PageAbstract<ItemStack> {
-    public PagePlanksTrees(final IWidget parent, final DatabaseTab tab) {
-        super(parent, tab);
-    }
+	public PagePlanksTrees(final IWidget parent, final DatabaseTab tab) {
+		super(parent, tab);
+	}
 
-    @Override
-    public void onValueChanged(final ItemStack species) {
-        this.deleteAllChildren();
-        final WindowAbstractDatabase database = Window.get(this);
-        new ControlText(this, new IArea(0.0f, 0.0f, this.size().x(), 24.0f), species.getDisplayName(), TextJustification.MiddleCenter);
-        final Collection<IAlleleSpecies> trees = ((TreeBreedingSystem) database.getBreedingSystem()).getTreesThatMakePlanks(species, database.isNEI(), database.getWorld(), database.getUsername());
-        new ControlSpeciesBox(this, 4.0f, 24.0f, this.size().x() - 8.0f, this.size().y() - 4.0f - 24.0f).setOptions(trees);
-    }
+	@Override
+	public void onValueChanged(final ItemStack species) {
+		this.deleteAllChildren();
+		final WindowAbstractDatabase database = Window.get(this);
+		new ControlText(this, new IArea(0.0f, 0.0f, this.size().x(), 24.0f), species.getDisplayName(), TextJustification.MiddleCenter);
+		final Collection<IAlleleSpecies> trees = ((TreeBreedingSystem) database.getBreedingSystem()).getTreesThatMakePlanks(species, database.isNEI(), database.getWorld(), database.getUsername());
+		new ControlSpeciesBox(this, 4.0f, 24.0f, this.size().x() - 8.0f, this.size().y() - 4.0f - 24.0f).setOptions(trees);
+	}
 }

@@ -18,21 +18,21 @@ public class ItemMasterRegistry extends ItemCore {
 //		this.itemIcon = Genetics.proxy.getIcon(register, "masterRegistry");
 //	}
 
-    public ItemMasterRegistry() {
-    	super("masterRegistry");
-        this.setCreativeTab(CreativeTabGenetics.instance);
-        this.setUnlocalizedName("masterRegistry");
-        this.setMaxStackSize(1);
-    }
+	public ItemMasterRegistry() {
+		super("masterRegistry");
+		this.setCreativeTab(CreativeTabGenetics.instance);
+		this.setUnlocalizedName("masterRegistry");
+		this.setMaxStackSize(1);
+	}
 
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand) {
-        Genetics.proxy.openGui(GeneticsGUI.MasterRegistry, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
-        return super.onItemRightClick(itemStack, world, player, hand);
-    }
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand) {
+		Genetics.proxy.openGui(GeneticsGUI.MasterRegistry, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
+		return super.onItemRightClick(itemStack, world, player, hand);
+	}
 
-    @Override
-    public String getItemStackDisplayName(final ItemStack i) {
-        return "Master Registry";
-    }
+	@Override
+	public String getItemStackDisplayName(final ItemStack i) {
+		return "Master Registry";
+	}
 }

@@ -18,26 +18,26 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class AlvearyTransmission {
-    public static class PackageAlvearyTransmission extends AlvearyMachine.AlvearyPackage implements IMachineInformation {
-        public PackageAlvearyTransmission() {
-            super("transmission", ExtraBeeTexture.AlvearyTransmission.getTexture(), false);
-        }
+	public static class PackageAlvearyTransmission extends AlvearyMachine.AlvearyPackage implements IMachineInformation {
+		public PackageAlvearyTransmission() {
+			super("transmission", ExtraBeeTexture.AlvearyTransmission.getTexture(), false);
+		}
 
-        @Override
-        public void createMachine(final Machine machine) {
-            new ComponentPowerReceptor(machine, 1000);
-            new ComponentTransmission(machine);
-        }
-    }
+		@Override
+		public void createMachine(final Machine machine) {
+			new ComponentPowerReceptor(machine, 1000);
+			new ComponentTransmission(machine);
+		}
+	}
 
-    public static class ComponentTransmission extends ComponentBeeModifier implements IBeeModifier, IBeeListener {
-        public ComponentTransmission(final Machine machine) {
-            super(machine);
-        }
+	public static class ComponentTransmission extends ComponentBeeModifier implements IBeeModifier, IBeeListener {
+		public ComponentTransmission(final Machine machine) {
+			super(machine);
+		}
 
-        @Override
-        public void onUpdate() {
-            super.onUpdate();
+		@Override
+		public void onUpdate() {
+			super.onUpdate();
 
 			int energy = this.getUtil().getPoweredMachine().getEnergyStored();
 			if (energy == 0) {
@@ -69,6 +69,6 @@ public class AlvearyTransmission {
 					return;
 				}
 			}
-        }
-    }
+		}
+	}
 }

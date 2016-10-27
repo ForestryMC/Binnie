@@ -3,19 +3,19 @@ package binnie.extratrees.alcohol.drink;
 import net.minecraftforge.fluids.FluidStack;
 
 public interface IDrinkLiquid {
-    boolean isConsumable();
+	boolean isConsumable();
 
-    int getColour();
+	int getColour();
 
-    String getName();
+	String getName();
 
-    float getTransparency();
+	float getTransparency();
 
-    String getIdentifier();
+	String getIdentifier();
 
-    void setIdent(final String p0);
+	void setIdent(final String p0);
 
-    float getABV();
+	float getABV();
 
-    FluidStack get(final int p0);
+	FluidStack get(final int p0);
 }

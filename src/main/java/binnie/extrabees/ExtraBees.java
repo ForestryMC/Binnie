@@ -30,89 +30,89 @@ public class ExtraBees extends AbstractMod {
 	public ExtraBees() {
 		getClass();
 	}
-	
-    @Mod.Instance(Constants.EXTRA_BEES_MOD_ID)
-    public static ExtraBees instance;
-    @SidedProxy(clientSide = "binnie.extrabees.proxy.ExtraBeesProxyClient", serverSide = "binnie.extrabees.proxy.ExtraBeesProxyServer")
-    public static ExtraBeesProxy proxy;
-    public static Block hive;
-    public static Material materialBeehive;
-    public static Block ectoplasm;
-    public static Block apiaristMachine;
-    public static Block geneticMachine;
-    public static Block advGeneticMachine;
-    public static Item comb;
-    public static Item propolis;
-    public static Item honeyDrop;
-    public static Item honeyCrystal;
-    public static Item honeyCrystalEmpty;
-    public static Item dictionary;
-    public static Item itemMisc;
 
-    @Mod.EventHandler
-    public void preInit(final FMLPreInitializationEvent evt) {
-        this.preInit();
-    }
+	@Mod.Instance(Constants.EXTRA_BEES_MOD_ID)
+	public static ExtraBees instance;
+	@SidedProxy(clientSide = "binnie.extrabees.proxy.ExtraBeesProxyClient", serverSide = "binnie.extrabees.proxy.ExtraBeesProxyServer")
+	public static ExtraBeesProxy proxy;
+	public static Block hive;
+	public static Material materialBeehive;
+	public static Block ectoplasm;
+	public static Block apiaristMachine;
+	public static Block geneticMachine;
+	public static Block advGeneticMachine;
+	public static Item comb;
+	public static Item propolis;
+	public static Item honeyDrop;
+	public static Item honeyCrystal;
+	public static Item honeyCrystalEmpty;
+	public static Item dictionary;
+	public static Item itemMisc;
 
-    @Mod.EventHandler
-    public void init(final FMLInitializationEvent evt) {
-        this.init();
-    }
+	@Mod.EventHandler
+	public void preInit(final FMLPreInitializationEvent evt) {
+		this.preInit();
+	}
 
-    @Mod.EventHandler
-    public void postInit(final FMLPostInitializationEvent evt) {
-        this.postInit();
-    }
+	@Mod.EventHandler
+	public void init(final FMLInitializationEvent evt) {
+		this.init();
+	}
 
-    @Override
-    protected void registerModules() {
-        this.addModule(new ModuleCore());
-        this.addModule(new ModuleProducts());
-        this.addModule(new ModuleGenetics());
-        //this.addModule(new ModuleGeneration());
-        this.addModule(new ModuleLiquids());
-        this.addModule(new ModuleApiary());
-    }
+	@Mod.EventHandler
+	public void postInit(final FMLPostInitializationEvent evt) {
+		this.postInit();
+	}
 
-    @Override
-    public IBinnieGUID[] getGUIDs() {
-        return ExtraBeeGUID.values();
-    }
+	@Override
+	protected void registerModules() {
+		this.addModule(new ModuleCore());
+		this.addModule(new ModuleProducts());
+		this.addModule(new ModuleGenetics());
+		//this.addModule(new ModuleGeneration());
+		this.addModule(new ModuleLiquids());
+		this.addModule(new ModuleApiary());
+	}
 
-    @Override
-    public Class<?>[] getConfigs() {
-        return new Class[]{ConfigurationMain.class, ConfigurationMachines.class};
-    }
+	@Override
+	public IBinnieGUID[] getGUIDs() {
+		return ExtraBeeGUID.values();
+	}
 
-    @Override
-    public IProxyCore getProxy() {
-        return ExtraBees.proxy;
-    }
+	@Override
+	public Class<?>[] getConfigs() {
+		return new Class[]{ConfigurationMain.class, ConfigurationMachines.class};
+	}
 
-    @Override
-    public String getChannel() {
-        return "EB";
-    }
+	@Override
+	public IProxyCore getProxy() {
+		return ExtraBees.proxy;
+	}
 
-    @Override
-    public String getModID() {
-        return Constants.EXTRA_BEES_MOD_ID;
-    }
+	@Override
+	public String getChannel() {
+		return "EB";
+	}
 
-    @Override
-    protected Class<? extends BinniePacketHandler> getPacketHandler() {
-        return PacketHandler.class;
-    }
+	@Override
+	public String getModID() {
+		return Constants.EXTRA_BEES_MOD_ID;
+	}
 
-    @Override
-    public boolean isActive() {
-        return BinnieCore.isExtraBeesActive();
-    }
+	@Override
+	protected Class<? extends BinniePacketHandler> getPacketHandler() {
+		return PacketHandler.class;
+	}
 
-    public static class PacketHandler extends BinniePacketHandler {
-        public PacketHandler() {
-            super(ExtraBees.instance);
-        }
-    }
+	@Override
+	public boolean isActive() {
+		return BinnieCore.isExtraBeesActive();
+	}
+
+	public static class PacketHandler extends BinniePacketHandler {
+		public PacketHandler() {
+			super(ExtraBees.instance);
+		}
+	}
 
 }

@@ -28,95 +28,95 @@ import java.util.List;
 import java.util.Random;
 
 public class BlockStained extends Block implements IBlockMetadata, IColoredBlock {
-    public BlockStained() {
-        super(Material.GLASS);
-        this.setCreativeTab(CreativeTabBotany.instance);
-        this.setRegistryName("stained");
-    }
+	public BlockStained() {
+		super(Material.GLASS);
+		this.setCreativeTab(CreativeTabBotany.instance);
+		this.setRegistryName("stained");
+	}
 
-    @Override
-    public int quantityDropped(final Random p_149745_1_) {
-        return 0;
-    }
-    
-    @Override
-    public boolean isOpaqueCube(IBlockState state) {
-    	return false;
-    }
-    
-    @SideOnly(Side.CLIENT)
-    @Override
-    public BlockRenderLayer getBlockLayer() {
-    	return BlockRenderLayer.CUTOUT_MIPPED;
-    }
-    
-    @SideOnly(Side.CLIENT)
-    @Override
-    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+	@Override
+	public int quantityDropped(final Random p_149745_1_) {
+		return 0;
+	}
+
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public BlockRenderLayer getBlockLayer() {
+		return BlockRenderLayer.CUTOUT_MIPPED;
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
 		Block block2 = blockAccess.getBlockState(pos.offset(side)).getBlock();
 		Block block3 = blockAccess.getBlockState(pos).getBlock();
 		return block3 != this && block3 != ExtraTrees.blockStained && super.shouldSideBeRendered(blockState, blockAccess, pos, side);
-    }
-    
-    @Override
-    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-    	return BlockMetadata.getBlockDropped(this, world, pos);
-    }
-    
-    @Override
-    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
-    	return BlockMetadata.breakBlock(this, player, world, pos);
-    }
+	}
 
-    @Override
-    public TileEntity createNewTileEntity(final World var1, final int i) {
-        return new TileEntityMetadata();
-    }
-    
-    @Override
-    public boolean hasTileEntity(IBlockState state) {
-    	return true;
-    }
-    
-   @Override
-   public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param) {
-       super.eventReceived(state, worldIn, pos, id, param);
-       TileEntity tileentity = worldIn.getTileEntity(pos);
-       return tileentity == null ? false : tileentity.receiveClientEvent(id, param);
-   }
-   
-    @Override
-    public int getPlacedMeta(final ItemStack stack, final World world, final BlockPos pos, final EnumFacing clickedBlock) {
-        return TileEntityMetadata.getItemDamage(stack);
-    }
+	@Override
+	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+		return BlockMetadata.getBlockDropped(this, world, pos);
+	}
 
-    @Override
-    public int getDroppedMeta(final int blockMeta, final int tileMeta) {
-        return tileMeta;
-    }
+	@Override
+	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
+		return BlockMetadata.breakBlock(this, player, world, pos);
+	}
 
-    @Override
-    public String getBlockName(final ItemStack par1ItemStack) {
-        final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
-        return EnumFlowerColor.get(meta).getColourName() + " Pigmented Glass";
-    }
+	@Override
+	public TileEntity createNewTileEntity(final World var1, final int i) {
+		return new TileEntityMetadata();
+	}
 
-    @Override
-    public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
-    }
+	@Override
+	public boolean hasTileEntity(IBlockState state) {
+		return true;
+	}
 
-    @Override
-    public void dropAsStack(World world, BlockPos pos, ItemStack itemStack) {
-    	 spawnAsEntity(world, pos, itemStack);
+	@Override
+	public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param) {
+		super.eventReceived(state, worldIn, pos, id, param);
+		TileEntity tileentity = worldIn.getTileEntity(pos);
+		return tileentity == null ? false : tileentity.receiveClientEvent(id, param);
+	}
 
-    }
+	@Override
+	public int getPlacedMeta(final ItemStack stack, final World world, final BlockPos pos, final EnumFacing clickedBlock) {
+		return TileEntityMetadata.getItemDamage(stack);
+	}
 
-    @Override
-    public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
-        for (final EnumFlowerColor c : EnumFlowerColor.values()) {
-            itemList.add(TileEntityMetadata.getItemStack(this, c.ordinal()));
-        }
-    }
+	@Override
+	public int getDroppedMeta(final int blockMeta, final int tileMeta) {
+		return tileMeta;
+	}
+
+	@Override
+	public String getBlockName(final ItemStack par1ItemStack) {
+		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
+		return EnumFlowerColor.get(meta).getColourName() + " Pigmented Glass";
+	}
+
+	@Override
+	public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
+	}
+
+	@Override
+	public void dropAsStack(World world, BlockPos pos, ItemStack itemStack) {
+		spawnAsEntity(world, pos, itemStack);
+
+	}
+
+	@Override
+	public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
+		for (final EnumFlowerColor c : EnumFlowerColor.values()) {
+			itemList.add(TileEntityMetadata.getItemStack(this, c.ordinal()));
+		}
+	}
 
 //	@Override
 //	@SideOnly(Side.CLIENT)
@@ -138,34 +138,34 @@ public class BlockStained extends Block implements IBlockMetadata, IColoredBlock
 //	public void registerBlockIcons(final IIconRegister register) {
 //		this.blockIcon = Botany.proxy.getIcon(register, "stained");
 //	}
-    
-    @Override
-    public boolean isWood(IBlockAccess world, BlockPos pos) {
-    	return true;
-    }
-    
-    @Override
-    public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
-    	return 20;
-    }
-    
-    @Override
-    public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
-    	return true;
-    }
-    
-    @Override
-    public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
-    	return 5;
-    }
-    
-    @Override
-    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-    	return BlockMetadata.getPickBlock(world, pos);
-    }
-    
-    @Override
-    public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
-    	return EnumFlowerColor.get(getMetaFromState(state)).getColor(false);
-    }
+
+	@Override
+	public boolean isWood(IBlockAccess world, BlockPos pos) {
+		return true;
+	}
+
+	@Override
+	public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
+		return 20;
+	}
+
+	@Override
+	public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
+		return true;
+	}
+
+	@Override
+	public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
+		return 5;
+	}
+
+	@Override
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+		return BlockMetadata.getPickBlock(world, pos);
+	}
+
+	@Override
+	public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
+		return EnumFlowerColor.get(getMetaFromState(state)).getColor(false);
+	}
 }

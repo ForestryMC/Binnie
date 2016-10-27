@@ -8,17 +8,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public interface IMultipassBlock<K> {
 	@SideOnly(Side.CLIENT)
-    int getRenderPasses();
-    
-    @SideOnly(Side.CLIENT)
+	int getRenderPasses();
+
+	@SideOnly(Side.CLIENT)
 	K getInventoryKey(ItemStack stack);
 
-    @SideOnly(Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	K getWorldKey(IBlockState state);
-    
-    /**
-     * pass -1 = particle Sprite
-     */
-    @SideOnly(Side.CLIENT)
-    TextureAtlasSprite getSprite(K key, int pass);
+
+	/**
+	 * pass -1 = particle Sprite
+	 */
+	@SideOnly(Side.CLIENT)
+	TextureAtlasSprite getSprite(K key, int pass);
 }

@@ -22,24 +22,24 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class BlockGate extends BlockFenceGate implements IBlockMetadata {
-    public BlockGate() {
-        super(BlockPlanks.EnumType.OAK);
-        this.setCreativeTab(Tabs.tabArboriculture);
-        this.setResistance(5.0f);
-        this.setHardness(2.0f);
-        this.setSoundType(SoundType.WOOD);
-        setRegistryName("blockGate");
-    }
+	public BlockGate() {
+		super(BlockPlanks.EnumType.OAK);
+		this.setCreativeTab(Tabs.tabArboriculture);
+		this.setResistance(5.0f);
+		this.setHardness(2.0f);
+		this.setSoundType(SoundType.WOOD);
+		setRegistryName("blockGate");
+	}
 
-    @Override
-    public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
-        for (final IPlankType type : WoodManager.getAllPlankTypes()) {
-            final ItemStack gate = WoodManager.getGate(type);
-            if (gate != null) {
-                itemList.add(gate);
-            }
-        }
-    }
+	@Override
+	public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
+		for (final IPlankType type : WoodManager.getAllPlankTypes()) {
+			final ItemStack gate = WoodManager.getGate(type);
+			if (gate != null) {
+				itemList.add(gate);
+			}
+		}
+	}
 
 //	@Override
 //	@SideOnly(Side.CLIENT)
@@ -56,10 +56,10 @@ public class BlockGate extends BlockFenceGate implements IBlockMetadata {
 //		return WoodManager.getPlankType(meta).getIcon();
 //	}
 
-    @Override
-    public void dropAsStack(final World world, final BlockPos pos, final ItemStack drop) {
-        //this.dropBlockAsItem(world, x, y, z, drop);
-    }
+	@Override
+	public void dropAsStack(final World world, final BlockPos pos, final ItemStack drop) {
+		//this.dropBlockAsItem(world, x, y, z, drop);
+	}
 
 //	@Override
 //	public ArrayList<ItemStack> getDrops(final World world, final int x, final int y, final int z, final int blockMeta, final int fortune) {
@@ -71,10 +71,10 @@ public class BlockGate extends BlockFenceGate implements IBlockMetadata {
 //		return BlockMetadata.breakBlock(this, player, world, x, y, z);
 //	}
 
-    @Override
-    public TileEntity createNewTileEntity(final World var1, final int i) {
-        return new TileEntityMetadata();
-    }
+	@Override
+	public TileEntity createNewTileEntity(final World var1, final int i) {
+		return new TileEntityMetadata();
+	}
 
 //	@Override
 //	public boolean hasTileEntity(final int meta) {
@@ -88,25 +88,25 @@ public class BlockGate extends BlockFenceGate implements IBlockMetadata {
 //		return tileentity != null && tileentity.receiveClientEvent(par5, par6);
 //	}
 
-    @Override
-    public int getPlacedMeta(final ItemStack stack, final World world, final BlockPos pos, final EnumFacing clickedBlock) {
-        return TileEntityMetadata.getItemDamage(stack);
-    }
+	@Override
+	public int getPlacedMeta(final ItemStack stack, final World world, final BlockPos pos, final EnumFacing clickedBlock) {
+		return TileEntityMetadata.getItemDamage(stack);
+	}
 
-    @Override
-    public int getDroppedMeta(final int blockMeta, final int tileMeta) {
-        return tileMeta;
-    }
+	@Override
+	public int getDroppedMeta(final int blockMeta, final int tileMeta) {
+		return tileMeta;
+	}
 
-    @Override
-    public String getBlockName(final ItemStack par1ItemStack) {
-        final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
-        return Binnie.Language.localise(ExtraTrees.instance, "block.woodgate.name", WoodManager.getPlankType(meta).getName());
-    }
+	@Override
+	public String getBlockName(final ItemStack par1ItemStack) {
+		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
+		return Binnie.Language.localise(ExtraTrees.instance, "block.woodgate.name", WoodManager.getPlankType(meta).getName());
+	}
 
-    @Override
-    public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
-    }
+	@Override
+	public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
+	}
 
 //	@Override
 //	public void breakBlock(final World par1World, final int par2, final int par3, final int par4, final Block par5, final int par6) {
@@ -114,25 +114,25 @@ public class BlockGate extends BlockFenceGate implements IBlockMetadata {
 //		par1World.removeTileEntity(par2, par3, par4);
 //	}
 
-    @Override
-    public boolean isWood(IBlockAccess world, BlockPos pos) {
-        return true;
-    }
+	@Override
+	public boolean isWood(IBlockAccess world, BlockPos pos) {
+		return true;
+	}
 
-    @Override
-    public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
-        return 20;
-    }
+	@Override
+	public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
+		return 20;
+	}
 
-    @Override
-    public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
-        return true;
-    }
+	@Override
+	public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
+		return true;
+	}
 
-    @Override
-    public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
-        return 5;
-    }
+	@Override
+	public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
+		return 5;
+	}
 
 //	@Override
 //	public ItemStack getPickBlock(final MovingObjectPosition target, final World world, final int x, final int y, final int z) {

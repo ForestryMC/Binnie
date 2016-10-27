@@ -50,172 +50,172 @@ import java.util.List;
 @Mod(modid = Constants.CORE_MOD_ID, name = "Binnie Core", useMetadata = true, dependencies = "required-after:forestry")
 public final class BinnieCore extends AbstractMod {
 
-    @Mod.Instance(Constants.CORE_MOD_ID)
-    public static BinnieCore instance;
-    @SidedProxy(clientSide = "binnie.core.proxy.BinnieProxyClient", serverSide = "binnie.core.proxy.BinnieProxyServer")
-    public static BinnieProxy proxy;
-    public static int multipassRenderID;
-    private static List<AbstractMod> modList = new ArrayList<>();
-    public static MachineGroup packageCompartment;
-    public static ItemGenesis genesis;
-    public static ItemFieldKit fieldKit;
+	@Mod.Instance(Constants.CORE_MOD_ID)
+	public static BinnieCore instance;
+	@SidedProxy(clientSide = "binnie.core.proxy.BinnieProxyClient", serverSide = "binnie.core.proxy.BinnieProxyServer")
+	public static BinnieProxy proxy;
+	public static int multipassRenderID;
+	private static List<AbstractMod> modList = new ArrayList<>();
+	public static MachineGroup packageCompartment;
+	public static ItemGenesis genesis;
+	public static ItemFieldKit fieldKit;
 
-    @Mod.EventHandler
-    public void preInit(final FMLPreInitializationEvent evt) {
-    	MinecraftForge.EVENT_BUS.register(Binnie.Liquid);
-        Binnie.Configuration.registerConfiguration(ConfigurationMods.class, this);
-        for (final FluidContainer container : FluidContainer.values()) {
-            final Item item = new ItemFluidContainer(container);
-            BinnieCore.proxy.registerItem(item);
-        }
-        //TODO REMOVE ITEMPARSER
-        FieldParser.parsers.add(new ItemParser());
-        this.preInit();
-    }
+	@Mod.EventHandler
+	public void preInit(final FMLPreInitializationEvent evt) {
+		MinecraftForge.EVENT_BUS.register(Binnie.Liquid);
+		Binnie.Configuration.registerConfiguration(ConfigurationMods.class, this);
+		for (final FluidContainer container : FluidContainer.values()) {
+			final Item item = new ItemFluidContainer(container);
+			BinnieCore.proxy.registerItem(item);
+		}
+		//TODO REMOVE ITEMPARSER
+		FieldParser.parsers.add(new ItemParser());
+		this.preInit();
+	}
 
-    @Mod.EventHandler
-    public void init(final FMLInitializationEvent evt) {
-        this.init();
-        for (final AbstractMod mod : getActiveMods()) {
-            NetworkRegistry.INSTANCE.registerGuiHandler(mod, new BinnieGUIHandler(mod));
-        }
-        //TODO RENDERING
+	@Mod.EventHandler
+	public void init(final FMLInitializationEvent evt) {
+		this.init();
+		for (final AbstractMod mod : getActiveMods()) {
+			NetworkRegistry.INSTANCE.registerGuiHandler(mod, new BinnieGUIHandler(mod));
+		}
+		//TODO RENDERING
 //		BinnieCore.multipassRenderID = RenderingRegistry.getNextAvailableRenderId();
 //		RenderingRegistry.registerBlockHandler(new MultipassBlockRenderer());
-        GameRegistry.registerTileEntity(TileEntityMetadata.class, "binnie.tile.metadata");
-    }
+		GameRegistry.registerTileEntity(TileEntityMetadata.class, "binnie.tile.metadata");
+	}
 
-    @Mod.EventHandler
-    public void postInit(final FMLPostInitializationEvent evt) {
-        this.postInit();
-    }
+	@Mod.EventHandler
+	public void postInit(final FMLPostInitializationEvent evt) {
+		this.postInit();
+	}
 
-    @Override
-    protected void registerModules() {
-        for (final ManagerBase baseManager : Binnie.Managers) {
-            this.addModule(baseManager);
-        }
-        this.addModule(new ModuleCraftGUI());
-        this.addModule(new ModuleStorage());
-        this.addModule(new ModuleItems());
-        if (Loader.isModLoaded("BuildCraft|Silicon")) {
-            this.addModule(new ModuleTrigger());
-        }
-    }
+	@Override
+	protected void registerModules() {
+		for (final ManagerBase baseManager : Binnie.Managers) {
+			this.addModule(baseManager);
+		}
+		this.addModule(new ModuleCraftGUI());
+		this.addModule(new ModuleStorage());
+		this.addModule(new ModuleItems());
+		if (Loader.isModLoaded("BuildCraft|Silicon")) {
+			this.addModule(new ModuleTrigger());
+		}
+	}
 
-    @Override
-    public IBinnieGUID[] getGUIDs() {
-        return BinnieCoreGUI.values();
-    }
+	@Override
+	public IBinnieGUID[] getGUIDs() {
+		return BinnieCoreGUI.values();
+	}
 
-    @Override
-    public String getChannel() {
-        return "BIN";
-    }
+	@Override
+	public String getChannel() {
+		return "BIN";
+	}
 
-    @Override
-    public IBinnieProxy getProxy() {
-        return BinnieCore.proxy;
-    }
+	@Override
+	public IBinnieProxy getProxy() {
+		return BinnieCore.proxy;
+	}
 
-    @Override
-    public String getModID() {
-        return Constants.CORE_MOD_ID;
-    }
+	@Override
+	public String getModID() {
+		return Constants.CORE_MOD_ID;
+	}
 
-    @Override
-    public IPacketID[] getPacketIDs() {
-        return BinnieCorePacketID.values();
-    }
+	@Override
+	public IPacketID[] getPacketIDs() {
+		return BinnieCorePacketID.values();
+	}
 
-    @Override
-    public Class<?>[] getConfigs() {
-        return new Class[]{ConfigurationMain.class};
-    }
+	@Override
+	public Class<?>[] getConfigs() {
+		return new Class[]{ConfigurationMain.class};
+	}
 
-    @Override
-    protected Class<? extends BinniePacketHandler> getPacketHandler() {
-        return PacketHandler.class;
-    }
+	@Override
+	protected Class<? extends BinniePacketHandler> getPacketHandler() {
+		return PacketHandler.class;
+	}
 
-    @Override
-    public boolean isActive() {
-        return true;
-    }
+	@Override
+	public boolean isActive() {
+		return true;
+	}
 
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
-    public void handleSpeciesDiscovered(final ForestryEvent.SpeciesDiscovered event) {
-        try {
-            final EntityPlayerMP player = FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUUID(event.username.getId());
-            if (player == null) {
-                return;
-            }
-            event.tracker.synchToPlayer(player);
-            final NBTTagCompound nbt = new NBTTagCompound();
-            nbt.setString("species", event.species.getUID());
-        } catch (Exception ex) {
-        }
-    }
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void handleSpeciesDiscovered(final ForestryEvent.SpeciesDiscovered event) {
+		try {
+			final EntityPlayerMP player = FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUUID(event.username.getId());
+			if (player == null) {
+				return;
+			}
+			event.tracker.synchToPlayer(player);
+			final NBTTagCompound nbt = new NBTTagCompound();
+			nbt.setString("species", event.species.getUID());
+		} catch (Exception ex) {
+		}
+	}
 
-    //TODO RENDERING
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
-    public void handleTextureRemap(final TextureStitchEvent.Pre event) {
+	//TODO RENDERING
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void handleTextureRemap(final TextureStitchEvent.Pre event) {
 //		if (event.map.getTextureType() == 0) {
 //			Binnie.Liquid.reloadIcons(event.map);
 //		}
-        Binnie.Resource.registerIcons();
-    }
+		Binnie.Resource.registerIcons();
+	}
 
-    public static class PacketHandler extends BinniePacketHandler {
-        public PacketHandler() {
-            super(BinnieCore.instance);
-        }
-    }
+	public static class PacketHandler extends BinniePacketHandler {
+		public PacketHandler() {
+			super(BinnieCore.instance);
+		}
+	}
 
-    //Module handling
+	//Module handling
 
-    public static boolean isLepidopteryActive() {
-        return PluginManager.configDisabledPlugins.stream().noneMatch(e -> e instanceof forestry.lepidopterology.PluginLepidopterology);
-    }
+	public static boolean isLepidopteryActive() {
+		return PluginManager.configDisabledPlugins.stream().noneMatch(e -> e instanceof forestry.lepidopterology.PluginLepidopterology);
+	}
 
-    public static boolean isApicultureActive() {
-        return PluginManager.configDisabledPlugins.stream().noneMatch(e -> e instanceof forestry.arboriculture.PluginArboriculture);
-    }
+	public static boolean isApicultureActive() {
+		return PluginManager.configDisabledPlugins.stream().noneMatch(e -> e instanceof forestry.arboriculture.PluginArboriculture);
+	}
 
-    public static boolean isArboricultureActive() {
-        return PluginManager.configDisabledPlugins.stream().noneMatch(e -> e instanceof forestry.arboriculture.PluginArboriculture);
-    }
+	public static boolean isArboricultureActive() {
+		return PluginManager.configDisabledPlugins.stream().noneMatch(e -> e instanceof forestry.arboriculture.PluginArboriculture);
+	}
 
-    public static boolean isBotanyActive() {
-        return ConfigurationMods.botany;
-    }
+	public static boolean isBotanyActive() {
+		return ConfigurationMods.botany;
+	}
 
-    public static boolean isGeneticsActive() {
-        return ConfigurationMods.genetics;
-    }
+	public static boolean isGeneticsActive() {
+		return ConfigurationMods.genetics;
+	}
 
-    public static boolean isExtraBeesActive() {
-        return ConfigurationMods.extraBees && isApicultureActive();
-    }
+	public static boolean isExtraBeesActive() {
+		return ConfigurationMods.extraBees && isApicultureActive();
+	}
 
-    public static boolean isExtraTreesActive() {
-        return ConfigurationMods.extraTrees && isArboricultureActive();
-    }
+	public static boolean isExtraTreesActive() {
+		return ConfigurationMods.extraTrees && isArboricultureActive();
+	}
 
-    static void registerMod(final AbstractMod mod) {
-        BinnieCore.modList.add(mod);
-    }
+	static void registerMod(final AbstractMod mod) {
+		BinnieCore.modList.add(mod);
+	}
 
-    private static List<AbstractMod> getActiveMods() {
-        final List<AbstractMod> list = new ArrayList<>();
-        for (final AbstractMod mod : BinnieCore.modList) {
-            if (mod.isActive()) {
-                list.add(mod);
-            }
-        }
-        return list;
-    }
+	private static List<AbstractMod> getActiveMods() {
+		final List<AbstractMod> list = new ArrayList<>();
+		for (final AbstractMod mod : BinnieCore.modList) {
+			if (mod.isActive()) {
+				list.add(mod);
+			}
+		}
+		return list;
+	}
 
 }

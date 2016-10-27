@@ -9,32 +9,32 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class CreativeTabGenetics extends CreativeTabs {
-    public static CreativeTabs instance = new CreativeTabGenetics();
+	public static CreativeTabs instance = new CreativeTabGenetics();
 
-    @Override
-    public ItemStack getIconItemStack() {
-        return GeneticsItems.EmptySerum.get(1);
-    }
+	@Override
+	public ItemStack getIconItemStack() {
+		return GeneticsItems.EmptySerum.get(1);
+	}
 
-    public CreativeTabGenetics() {
-        super("Genetics");
-    }
+	public CreativeTabGenetics() {
+		super("Genetics");
+	}
 
-    @Override
-    public String getTranslatedTabLabel() {
-        return this.getTabLabel();
-    }
+	@Override
+	public String getTranslatedTabLabel() {
+		return this.getTabLabel();
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public String getTabLabel() {
-        return ExtraBees.proxy.localise("tab.genetics");
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public String getTabLabel() {
+		return ExtraBees.proxy.localise("tab.genetics");
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public Item getTabIconItem() {
-        return null;
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public Item getTabIconItem() {
+		return null;
+	}
 
 }

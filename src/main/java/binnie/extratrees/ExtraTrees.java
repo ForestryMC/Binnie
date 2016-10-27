@@ -49,145 +49,145 @@ import java.util.stream.Collectors;
 @Mod(modid = Constants.EXTRA_TREES_MOD_ID, name = "Binnie's Extra Trees", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class ExtraTrees extends AbstractMod {
 
-    @Mod.Instance(Constants.EXTRA_TREES_MOD_ID)
-    public static ExtraTrees instance;
-    @SidedProxy(clientSide = "binnie.extratrees.proxy.ProxyClient", serverSide = "binnie.extratrees.proxy.ProxyServer")
-    public static Proxy proxy;
-    public static Item itemDictionary;
-    public static Item itemDictionaryLepi;
-    public static Item itemMisc;
-    public static Item itemFood;
-    public static Block blockStairs;
-    //public static Block blockLog;
-    public static BlockCarpentry blockCarpentry;
-    public static Block blockPlanks;
-    public static Block blockMachine;
-    public static Block blockFence;
-    public static BlockCarpentry blockPanel;
-    public static Block blockKitchen;
-    public static Block blockSlab;
-    public static Block blockDoubleSlab;
-    public static Item itemHammer;
-    public static Item itemDurableHammer;
-    public static Block blockGate;
-    public static Block blockDoor;
-    public static Block blockBranch;
-    public static ItemDrink drink;
-    public static BlockMultiFence blockMultiFence;
-    public static Block blockDrink;
-    public static BlockHedge blockHedge;
-    public static BlockStainedDesign blockStained;
-    public static int fruitPodRenderId;
-    public static int doorRenderId;
-    public static int branchRenderId;
-    public static int fenceID;
-    public static int stairsID;
+	@Mod.Instance(Constants.EXTRA_TREES_MOD_ID)
+	public static ExtraTrees instance;
+	@SidedProxy(clientSide = "binnie.extratrees.proxy.ProxyClient", serverSide = "binnie.extratrees.proxy.ProxyServer")
+	public static Proxy proxy;
+	public static Item itemDictionary;
+	public static Item itemDictionaryLepi;
+	public static Item itemMisc;
+	public static Item itemFood;
+	public static Block blockStairs;
+	//public static Block blockLog;
+	public static BlockCarpentry blockCarpentry;
+	public static Block blockPlanks;
+	public static Block blockMachine;
+	public static Block blockFence;
+	public static BlockCarpentry blockPanel;
+	public static Block blockKitchen;
+	public static Block blockSlab;
+	public static Block blockDoubleSlab;
+	public static Item itemHammer;
+	public static Item itemDurableHammer;
+	public static Block blockGate;
+	public static Block blockDoor;
+	public static Block blockBranch;
+	public static ItemDrink drink;
+	public static BlockMultiFence blockMultiFence;
+	public static Block blockDrink;
+	public static BlockHedge blockHedge;
+	public static BlockStainedDesign blockStained;
+	public static int fruitPodRenderId;
+	public static int doorRenderId;
+	public static int branchRenderId;
+	public static int fenceID;
+	public static int stairsID;
 
-    @Mod.EventHandler
-    public void onConstruction(FMLConstructionEvent e) {
-        MinecraftForge.EVENT_BUS.register(this);
-    }
+	@Mod.EventHandler
+	public void onConstruction(FMLConstructionEvent e) {
+		MinecraftForge.EVENT_BUS.register(this);
+	}
 
-    @Mod.EventHandler
-    public void preInit(final FMLPreInitializationEvent evt) {
-        this.preInit();
-    }
+	@Mod.EventHandler
+	public void preInit(final FMLPreInitializationEvent evt) {
+		this.preInit();
+	}
 
-    @Mod.EventHandler
-    public void init(final FMLInitializationEvent evt) {
-        this.init();
-    }
+	@Mod.EventHandler
+	public void init(final FMLInitializationEvent evt) {
+		this.init();
+	}
 
-    @Mod.EventHandler
-    public void postInit(final FMLPostInitializationEvent evt) {
-        this.postInit();
-    }
+	@Mod.EventHandler
+	public void postInit(final FMLPostInitializationEvent evt) {
+		this.postInit();
+	}
 
-    @Override
-    protected void registerModules() {
-        this.addModule(new ModuleBlocks());
-        this.addModule(new ModuleItems());
-        this.addModule(new ModuleAlcohol());
-        this.addModule(new ModuleGenetics());
-        this.addModule(new ModuleCarpentry());
-        this.addModule(new ModuleMachine());
-        this.addModule(new ModuleCore());
-    }
+	@Override
+	protected void registerModules() {
+		this.addModule(new ModuleBlocks());
+		this.addModule(new ModuleItems());
+		this.addModule(new ModuleAlcohol());
+		this.addModule(new ModuleGenetics());
+		this.addModule(new ModuleCarpentry());
+		this.addModule(new ModuleMachine());
+		this.addModule(new ModuleCore());
+	}
 
-    @Override
-    public IBinnieGUID[] getGUIDs() {
-        return ExtraTreesGUID.values();
-    }
+	@Override
+	public IBinnieGUID[] getGUIDs() {
+		return ExtraTreesGUID.values();
+	}
 
-    @Override
-    public Class[] getConfigs() {
-        return new Class[]{ConfigurationMain.class};
-    }
+	@Override
+	public Class[] getConfigs() {
+		return new Class[]{ConfigurationMain.class};
+	}
 
-    @Override
-    public String getChannel() {
-        return "ET";
-    }
+	@Override
+	public String getChannel() {
+		return "ET";
+	}
 
-    @Override
-    public IProxyCore getProxy() {
-        return ExtraTrees.proxy;
-    }
+	@Override
+	public IProxyCore getProxy() {
+		return ExtraTrees.proxy;
+	}
 
-    @Override
-    public String getModID() {
-        return Constants.EXTRA_TREES_MOD_ID;
-    }
+	@Override
+	public String getModID() {
+		return Constants.EXTRA_TREES_MOD_ID;
+	}
 
-    @Override
-    protected Class<? extends BinniePacketHandler> getPacketHandler() {
-        return PacketHandler.class;
-    }
+	@Override
+	protected Class<? extends BinniePacketHandler> getPacketHandler() {
+		return PacketHandler.class;
+	}
 
-    @Override
-    public boolean isActive() {
-        return BinnieCore.isExtraTreesActive();
-    }
+	@Override
+	public boolean isActive() {
+		return BinnieCore.isExtraTreesActive();
+	}
 
-    @SubscribeEvent
-    public void speciesRegister(AlleleSpeciesRegisterEvent event) {
-        if (event.getRoot() instanceof ITreeRoot) {
-            for (final ExtraTreeFruitGene fruit : ExtraTreeFruitGene.values()) {
-                AlleleManager.alleleRegistry.registerAllele(fruit);
-            }
-            for (final ExtraTreeSpecies species : ExtraTreeSpecies.values()) {
-                AlleleManager.alleleRegistry.registerAllele(species, EnumTreeChromosome.SPECIES);
-            }
-        }
+	@SubscribeEvent
+	public void speciesRegister(AlleleSpeciesRegisterEvent event) {
+		if (event.getRoot() instanceof ITreeRoot) {
+			for (final ExtraTreeFruitGene fruit : ExtraTreeFruitGene.values()) {
+				AlleleManager.alleleRegistry.registerAllele(fruit);
+			}
+			for (final ExtraTreeSpecies species : ExtraTreeSpecies.values()) {
+				AlleleManager.alleleRegistry.registerAllele(species, EnumTreeChromosome.SPECIES);
+			}
+		}
 
-        if (BinnieCore.isLepidopteryActive()) {
-            for (final ButterflySpecies species2 : ButterflySpecies.values()) {
-                AlleleManager.alleleRegistry.registerAllele(species2);
-            }
-        }
-    }
+		if (BinnieCore.isLepidopteryActive()) {
+			for (final ButterflySpecies species2 : ButterflySpecies.values()) {
+				AlleleManager.alleleRegistry.registerAllele(species2);
+			}
+		}
+	}
 
-    public static class PacketHandler extends BinniePacketHandler {
-        public PacketHandler() {
-            super(ExtraBees.instance);
-        }
-    }
+	public static class PacketHandler extends BinniePacketHandler {
+		public PacketHandler() {
+			super(ExtraBees.instance);
+		}
+	}
 
-    @SubscribeEvent
-    public void onBakedEvent(ModelBakeEvent e) {
-        //Find all ExtraTrees saplings
-        List<ModelResourceLocation> models = e.getModelRegistry().getKeys().stream()
-                .filter(mrl -> mrl.getResourceDomain().startsWith(Constants.EXTRA_TREES_MOD_ID))
-                .filter(mrl -> mrl.getResourcePath().startsWith("germlings")).collect(Collectors.toList());
-        //Replace model
-        models.forEach(model -> {
-            String species = model.getVariant().split("=")[1];
-            ExtraTreeSpecies treeSpecies = ExtraTreeSpecies.names().get(species);
-            int primaryColor = treeSpecies.getSpriteColour(1);
-            int secondaryColor = treeSpecies.getSpriteColour(0);
-            e.getModelRegistry().putObject(model, new DoublePassBakedModel(e.getModelRegistry().getObject(model), primaryColor, secondaryColor));
-        });
+	@SubscribeEvent
+	public void onBakedEvent(ModelBakeEvent e) {
+		//Find all ExtraTrees saplings
+		List<ModelResourceLocation> models = e.getModelRegistry().getKeys().stream()
+				.filter(mrl -> mrl.getResourceDomain().startsWith(Constants.EXTRA_TREES_MOD_ID))
+				.filter(mrl -> mrl.getResourcePath().startsWith("germlings")).collect(Collectors.toList());
+		//Replace model
+		models.forEach(model -> {
+			String species = model.getVariant().split("=")[1];
+			ExtraTreeSpecies treeSpecies = ExtraTreeSpecies.names().get(species);
+			int primaryColor = treeSpecies.getSpriteColour(1);
+			int secondaryColor = treeSpecies.getSpriteColour(0);
+			e.getModelRegistry().putObject(model, new DoublePassBakedModel(e.getModelRegistry().getObject(model), primaryColor, secondaryColor));
+		});
 
-    }
+	}
 
 }

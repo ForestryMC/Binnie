@@ -7,13 +7,13 @@ import net.minecraft.item.ItemStack;
 import java.util.List;
 
 public interface IGeneItem {
-    ISpeciesRoot getSpeciesRoot();
+	ISpeciesRoot getSpeciesRoot();
 
-    void getInfo(final List p0);
+	void getInfo(final List p0);
 
-    int getColour(final int p0);
+	int getColour(final int p0);
 
-    void writeToItem(final ItemStack p0);
+	void writeToItem(final ItemStack p0);
 
-    void addGene(final IGene p0);
+	void addGene(final IGene p0);
 }

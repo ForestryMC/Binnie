@@ -1,6 +1,5 @@
 package binnie.extratrees.block.decor;
 
-import binnie.extratrees.genetics.ExtraTreeSpecies;
 import forestry.api.core.Tabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -14,11 +13,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public class BlockHedge extends Block implements IBlockFence {
-    public BlockHedge() {
-        super(Material.LEAVES);
-        this.setCreativeTab(Tabs.tabArboriculture);
-        this.setRegistryName("hedge");
-    }
+	public BlockHedge() {
+		super(Material.LEAVES);
+		this.setCreativeTab(Tabs.tabArboriculture);
+		this.setRegistryName("hedge");
+	}
 
 //	@Override
 //	public void addCollisionBoxesToList(final World world, final int x, final int y, final int z, final AxisAlignedBB aabb, final List list, final Entity p_149743_7_) {
@@ -130,9 +129,9 @@ public class BlockHedge extends Block implements IBlockFence {
 //        return ExtraTreeSpecies.LeafType.values()[meta % 8];
 //    }
 
-    private boolean isFull(final int meta) {
-        return meta / 8 > 0;
-    }
+	private boolean isFull(final int meta) {
+		return meta / 8 > 0;
+	}
 
 //	@Override
 //	@SideOnly(Side.CLIENT)
@@ -141,15 +140,15 @@ public class BlockHedge extends Block implements IBlockFence {
 //		return ForestryAPI.textureManager.getIcon(this.isFull(meta) ? type.plainUID : type.fancyUID);
 //	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void getSubBlocks(final Item item, final CreativeTabs tab, final List list) {
-        for (int i = 0; i < 6; ++i) {
-            for (int f = 0; f < 2; ++f) {
-                list.add(new ItemStack(item, 1, i + f * 8));
-            }
-        }
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(final Item item, final CreativeTabs tab, final List list) {
+		for (int i = 0; i < 6; ++i) {
+			for (int f = 0; f < 2; ++f) {
+				list.add(new ItemStack(item, 1, i + f * 8));
+			}
+		}
+	}
 
 //	@Override
 //	@SideOnly(Side.CLIENT)
@@ -157,14 +156,14 @@ public class BlockHedge extends Block implements IBlockFence {
 //		return getColor(world.getBlockMetadata(x, y, z));
 //	}
 
-    public static int getColor(final int meta) {
-        //TODO fix color
+	public static int getColor(final int meta) {
+		//TODO fix color
 //        final ExtraTreeSpecies.LeafType type = ExtraTreeSpecies.LeafType.values()[meta % 6];
 //        if (type == ExtraTreeSpecies.LeafType.Conifer) {
 //            return ColorizerFoliage.getFoliageColorPine();
 //        }
-        final double d0 = 0.5;
-        final double d2 = 1.0;
-        return ColorizerFoliage.getFoliageColor(d0, d2);
-    }
+		final double d0 = 0.5;
+		final double d2 = 1.0;
+		return ColorizerFoliage.getFoliageColor(d0, d2);
+	}
 }

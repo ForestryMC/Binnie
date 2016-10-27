@@ -1,17 +1,15 @@
 package binnie.botany.flower;
 
-import com.google.common.base.Optional;
-
 import binnie.botany.api.IAlleleFlowerSpecies;
 import binnie.botany.api.IFlowerType;
+import com.google.common.base.Optional;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
+import net.minecraft.block.properties.PropertyHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import net.minecraft.block.properties.PropertyHelper;
 
 public class PropertyFlower<I extends IFlowerType<I>> extends PropertyHelper<I> {
 
@@ -25,7 +23,7 @@ public class PropertyFlower<I extends IFlowerType<I>> extends PropertyHelper<I> 
 		for (IAllele allele : AlleleManager.alleleRegistry.getRegisteredAlleles().values()) {
 			if (allele instanceof IAlleleFlowerSpecies) {
 				IFlowerType flowerType = ((IAlleleFlowerSpecies) allele).getType();
-				if(!flowerTypes.contains(flowerType)){
+				if (!flowerTypes.contains(flowerType)) {
 					flowerTypes.add((I) flowerType);
 				}
 			}
@@ -50,5 +48,5 @@ public class PropertyFlower<I extends IFlowerType<I>> extends PropertyHelper<I> 
 		}
 		return Optional.absent();
 	}
-	
+
 }

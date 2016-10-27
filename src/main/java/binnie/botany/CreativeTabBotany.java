@@ -8,32 +8,32 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class CreativeTabBotany extends CreativeTabs {
-    public static CreativeTabs instance = new CreativeTabBotany();
+	public static CreativeTabs instance = new CreativeTabBotany();
 
-    @Override
-    public ItemStack getIconItemStack() {
-        return new ItemStack(Blocks.RED_FLOWER, 1, 5);
-    }
+	@Override
+	public ItemStack getIconItemStack() {
+		return new ItemStack(Blocks.RED_FLOWER, 1, 5);
+	}
 
-    public CreativeTabBotany() {
-        super("Botany");
-    }
+	public CreativeTabBotany() {
+		super("Botany");
+	}
 
-    @Override
-    public String getTranslatedTabLabel() {
-        return this.getTabLabel();
-    }
+	@Override
+	public String getTranslatedTabLabel() {
+		return this.getTabLabel();
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public String getTabLabel() {
-        return Botany.proxy.localise("tab.botany");
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public String getTabLabel() {
+		return Botany.proxy.localise("tab.botany");
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public Item getTabIconItem() {
-        return Item.getItemFromBlock(Blocks.YELLOW_FLOWER);
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public Item getTabIconItem() {
+		return Item.getItemFromBlock(Blocks.YELLOW_FLOWER);
+	}
 
 }

@@ -10,16 +10,16 @@ import net.minecraft.item.ItemStack;
 import java.util.Random;
 
 public class BlockStainedDesign extends BlockDesign {
-    public BlockStainedDesign() {
-        super(DesignSystem.Glass, Material.GLASS);
-        this.setCreativeTab(Tabs.tabArboriculture);
-        this.setRegistryName("stainedGlass");
-    }
+	public BlockStainedDesign() {
+		super(DesignSystem.Glass, Material.GLASS);
+		this.setCreativeTab(Tabs.tabArboriculture);
+		this.setRegistryName("stainedGlass");
+	}
 
-    @Override
-    public int quantityDropped(final Random p_149745_1_) {
-        return 0;
-    }
+	@Override
+	public int quantityDropped(final Random p_149745_1_) {
+		return 0;
+	}
 
 //	@Override
 //	public boolean isOpaqueCube() {
@@ -45,13 +45,13 @@ public class BlockStainedDesign extends BlockDesign {
 //		return block3 != this && block3 != Botany.stained && super.shouldSideBeRendered(p_149646_1_, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
 //	}
 
-    @Override
-    public ItemStack getCreativeStack(final IDesign design) {
-        return ModuleCarpentry.getItemStack(this, GlassType.get(0), GlassType.get(1), design);
-    }
+	@Override
+	public ItemStack getCreativeStack(final IDesign design) {
+		return ModuleCarpentry.getItemStack(this, GlassType.get(0), GlassType.get(1), design);
+	}
 
-    @Override
-    public String getBlockName(final DesignBlock design) {
-        return Binnie.Language.localise(ExtraTrees.instance, "block.stainedglass.name", design.getDesign().getName());
-    }
+	@Override
+	public String getBlockName(final DesignBlock design) {
+		return Binnie.Language.localise(ExtraTrees.instance, "block.stainedglass.name", design.getDesign().getName());
+	}
 }

@@ -8,20 +8,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 
 public enum FluidContainer {
-    Bucket,
-    Capsule,
-    Refractory,
-    Can,
-    Glass,
-    Cylinder;
+	Bucket,
+	Capsule,
+	Refractory,
+	Can,
+	Glass,
+	Cylinder;
 
-    //	IIcon bottle;
+	//	IIcon bottle;
 //	IIcon contents;
-    ItemFluidContainer item;
+	ItemFluidContainer item;
 
-    public int getMaxStackSize() {
-        return (this == FluidContainer.Bucket) ? 1 : 16;
-    }
+	public int getMaxStackSize() {
+		return (this == FluidContainer.Bucket) ? 1 : 16;
+	}
 
 //	@SideOnly(Side.CLIENT)
 //	public void updateIcons(final IIconRegister register) {
@@ -37,50 +37,50 @@ public enum FluidContainer {
 //		return this.contents;
 //	}
 
-    public String getName() {
-        return BinnieCore.proxy.localise("item.container." + this.name().toLowerCase());
-    }
+	public String getName() {
+		return BinnieCore.proxy.localise("item.container." + this.name().toLowerCase());
+	}
 
-    public boolean isActive() {
-        return this.getEmpty() != null;
-    }
+	public boolean isActive() {
+		return this.getEmpty() != null;
+	}
 
-    public ItemStack getEmpty() {
-        switch (this) {
-            case Bucket: {
-                return new ItemStack(Items.BUCKET, 1, 0);
-            }
-            case Can: {
-                return Mods.Forestry.stack("canEmpty");
-            }
-            case Capsule: {
-                return Mods.Forestry.stack("waxCapsule");
-            }
-            case Glass: {
-                return new ItemStack(Items.GLASS_BOTTLE, 1, 0);
-            }
-            case Refractory: {
-                return Mods.Forestry.stack("refractoryEmpty");
-            }
-            case Cylinder: {
-                return GeneticsItems.Cylinder.get(1);
-            }
-            default: {
-                return null;
-            }
-        }
-    }
+	public ItemStack getEmpty() {
+		switch (this) {
+			case Bucket: {
+				return new ItemStack(Items.BUCKET, 1, 0);
+			}
+			case Can: {
+				return Mods.Forestry.stack("canEmpty");
+			}
+			case Capsule: {
+				return Mods.Forestry.stack("waxCapsule");
+			}
+			case Glass: {
+				return new ItemStack(Items.GLASS_BOTTLE, 1, 0);
+			}
+			case Refractory: {
+				return Mods.Forestry.stack("refractoryEmpty");
+			}
+			case Cylinder: {
+				return GeneticsItems.Cylinder.get(1);
+			}
+			default: {
+				return null;
+			}
+		}
+	}
 
-    public void registerContainerData(final IFluidType fluid) {
-        if (!this.isActive()) {
-            return;
-        }
-        final ItemStack filled = this.item.getContainer(fluid);
-        final ItemStack empty = this.getEmpty();
-        if (filled == null || empty == null || fluid.get(1000) == null) {
-            return;
-        }
-        final FluidContainerRegistry.FluidContainerData data = new FluidContainerRegistry.FluidContainerData(fluid.get(1000), filled, empty);
-        FluidContainerRegistry.registerFluidContainer(data);
-    }
+	public void registerContainerData(final IFluidType fluid) {
+		if (!this.isActive()) {
+			return;
+		}
+		final ItemStack filled = this.item.getContainer(fluid);
+		final ItemStack empty = this.getEmpty();
+		if (filled == null || empty == null || fluid.get(1000) == null) {
+			return;
+		}
+		final FluidContainerRegistry.FluidContainerData data = new FluidContainerRegistry.FluidContainerData(fluid.get(1000), filled, empty);
+		FluidContainerRegistry.registerFluidContainer(data);
+	}
 }

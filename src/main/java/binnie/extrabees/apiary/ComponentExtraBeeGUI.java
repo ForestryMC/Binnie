@@ -10,15 +10,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class ComponentExtraBeeGUI extends MachineComponent implements IInteraction.RightClick {
-    ExtraBeeGUID id;
+	ExtraBeeGUID id;
 
-    public ComponentExtraBeeGUI(final Machine machine, final ExtraBeeGUID id) {
-        super(machine);
-        this.id = id;
-    }
+	public ComponentExtraBeeGUI(final Machine machine, final ExtraBeeGUID id) {
+		super(machine);
+		this.id = id;
+	}
 
-    @Override
-    public void onRightClick(final World world, final EntityPlayer player, final BlockPos pos) {
-        ExtraBees.proxy.openGui(this.id, player, pos);
-    }
+	@Override
+	public void onRightClick(final World world, final EntityPlayer player, final BlockPos pos) {
+		ExtraBees.proxy.openGui(this.id, player, pos);
+	}
 }

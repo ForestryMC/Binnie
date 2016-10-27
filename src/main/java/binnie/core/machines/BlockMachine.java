@@ -25,26 +25,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 class BlockMachine extends BlockContainer implements IBlockMachine {
-    private MachineGroup group;
-    public static final PropertyInteger MACHINE_TYPE = PropertyInteger.create("machine_type", 0, 15);
+	private MachineGroup group;
+	public static final PropertyInteger MACHINE_TYPE = PropertyInteger.create("machine_type", 0, 15);
 
-    public BlockMachine(final MachineGroup group, final String blockName) {
-        super(Material.IRON);
-        this.group = group;
-        this.setHardness(1.5f);
-        this.setRegistryName(blockName);
-    }
+	public BlockMachine(final MachineGroup group, final String blockName) {
+		super(Material.IRON);
+		this.group = group;
+		this.setHardness(1.5f);
+		this.setRegistryName(blockName);
+	}
 
-    @Override
-    public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
-        for (final MachinePackage pack : this.group.getPackages()) {
-            if (pack.isActive()) {
-                itemList.add(new ItemStack(this, 1, pack.getMetadata()));
-            }
-        }
-    }
+	@Override
+	public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
+		for (final MachinePackage pack : this.group.getPackages()) {
+			if (pack.isActive()) {
+				itemList.add(new ItemStack(this, 1, pack.getMetadata()));
+			}
+		}
+	}
 
-    //	@Override
+	//	@Override
 //	public boolean isOpaqueCube() {
 //		return false;
 //	}
@@ -59,89 +59,89 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 //		return Binnie.Machine.getMachineRenderID();
 //	}
 //
-    @Override
-    public boolean isOpaqueCube(IBlockState state) {
-        return false;
-    }
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
+	}
 
-    @Override
-    public boolean isFullCube(IBlockState state) {
-        return false;
-    }
+	@Override
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	}
 
-    @Override
-    public EnumBlockRenderType getRenderType(IBlockState state) {
-        return EnumBlockRenderType.MODEL;
-    }
+	@Override
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		return EnumBlockRenderType.MODEL;
+	}
 
-    @Override
-    public int getMetaFromState(IBlockState state) {
-        return state.getValue(MACHINE_TYPE);
-    }
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(MACHINE_TYPE);
+	}
 
-    @Override
-    public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState().withProperty(MACHINE_TYPE, meta);
-    }
+	@Override
+	public IBlockState getStateFromMeta(int meta) {
+		return getDefaultState().withProperty(MACHINE_TYPE, meta);
+	}
 
-    @Override
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, MACHINE_TYPE);
-    }
+	@Override
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, MACHINE_TYPE);
+	}
 
-    @Override
-    public MachinePackage getPackage(final int meta) {
-        return this.group.getPackage(meta);
-    }
+	@Override
+	public MachinePackage getPackage(final int meta) {
+		return this.group.getPackage(meta);
+	}
 
-    @Override
-    public String getMachineName(final int meta) {
-        return (this.getPackage(meta) == null) ? "Unnamed Machine" : this.getPackage(meta).getDisplayName();
-    }
+	@Override
+	public String getMachineName(final int meta) {
+		return (this.getPackage(meta) == null) ? "Unnamed Machine" : this.getPackage(meta).getDisplayName();
+	}
 
-    @Override
-    public int damageDropped(IBlockState state) {
-        return state.getValue(MACHINE_TYPE);
-    }
+	@Override
+	public int damageDropped(IBlockState state) {
+		return state.getValue(MACHINE_TYPE);
+	}
 
-    @Override
-    public TileEntity createNewTileEntity(final World var1, final int meta) {
-        if (this.group.getPackage(meta) == null) {
-            return null;
-        }
-        return this.group.getPackage(meta).createTileEntity();
-    }
+	@Override
+	public TileEntity createNewTileEntity(final World var1, final int meta) {
+		if (this.group.getPackage(meta) == null) {
+			return null;
+		}
+		return this.group.getPackage(meta).createTileEntity();
+	}
 
 
-    @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-        if (!BinnieCore.proxy.isSimulating(world)) {
-            return true;
-        }
-        if (player.isSneaking()) {
-            return true;
-        }
-        final TileEntity entity = world.getTileEntity(pos);
-        if (entity instanceof TileEntityMachine) {
-            ((TileEntityMachine) entity).getMachine().onRightClick(world, player, pos);
-        }
-        return true;
-    }
+	@Override
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+		if (!BinnieCore.proxy.isSimulating(world)) {
+			return true;
+		}
+		if (player.isSneaking()) {
+			return true;
+		}
+		final TileEntity entity = world.getTileEntity(pos);
+		if (entity instanceof TileEntityMachine) {
+			((TileEntityMachine) entity).getMachine().onRightClick(world, player, pos);
+		}
+		return true;
+	}
 
-    @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entityliving, ItemStack stack) {
-        super.onBlockPlacedBy(world, pos, state, entityliving, stack);
-        if (!BinnieCore.proxy.isSimulating(world)) {
-            return;
-        }
-        final IMachine machine = Machine.getMachine(world.getTileEntity(pos));
-        if (machine == null) {
-            return;
-        }
-        if (entityliving instanceof EntityPlayer) {
-            machine.setOwner(((EntityPlayer) entityliving).getGameProfile());
-        }
-    }
+	@Override
+	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entityliving, ItemStack stack) {
+		super.onBlockPlacedBy(world, pos, state, entityliving, stack);
+		if (!BinnieCore.proxy.isSimulating(world)) {
+			return;
+		}
+		final IMachine machine = Machine.getMachine(world.getTileEntity(pos));
+		if (machine == null) {
+			return;
+		}
+		if (entityliving instanceof EntityPlayer) {
+			machine.setOwner(((EntityPlayer) entityliving).getGameProfile());
+		}
+	}
 
 //	@Override
 //	public IIcon getIcon(final IBlockAccess world, final int x, final int y, final int z, final int side) {
@@ -152,16 +152,16 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 //		return Blocks.dirt.getIcon(0, 0);
 //	}
 
-    @Override
-    public void breakBlock(World world, BlockPos pos, IBlockState state) {
-        final TileEntityMachine entity = TileUtil.getTile(world, pos, TileEntityMachine.class);
-        if (entity != null) {
-            entity.onBlockDestroy();
-        }
-        super.breakBlock(world, pos, state);
-    }
+	@Override
+	public void breakBlock(World world, BlockPos pos, IBlockState state) {
+		final TileEntityMachine entity = TileUtil.getTile(world, pos, TileEntityMachine.class);
+		if (entity != null) {
+			entity.onBlockDestroy();
+		}
+		super.breakBlock(world, pos, state);
+	}
 
-    //	@Override
+	//	@Override
 //	@SideOnly(Side.CLIENT)
 //	public void registerBlockIcons(final IIconRegister register) {
 //	}
@@ -178,23 +178,23 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 //	}
 
 
-    @Override
-    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-        return new ArrayList<>();
-    }
+	@Override
+	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+		return new ArrayList<>();
+	}
 
-    @Override
-    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
-        if (BinnieCore.proxy.isSimulating(world) && this.canHarvestBlock(world, pos, player) && !player.capabilities.isCreativeMode) {
-            //final int metadata = this.getMetaFromState(state);
-            //final ItemStack stack = new ItemStack(Item.getItemFromBlock(this), 1, this.damageDropped(state));
-            this.dropBlockAsItem(world, pos, state, 0);
-        }
-        return world.setBlockToAir(pos);
-    }
+	@Override
+	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
+		if (BinnieCore.proxy.isSimulating(world) && this.canHarvestBlock(world, pos, player) && !player.capabilities.isCreativeMode) {
+			//final int metadata = this.getMetaFromState(state);
+			//final ItemStack stack = new ItemStack(Item.getItemFromBlock(this), 1, this.damageDropped(state));
+			this.dropBlockAsItem(world, pos, state, 0);
+		}
+		return world.setBlockToAir(pos);
+	}
 
 
-    public interface IMachineTexturedFaces {
-        //IIcon getIcon(final int p0);
-    }
+	public interface IMachineTexturedFaces {
+		//IIcon getIcon(final int p0);
+	}
 }

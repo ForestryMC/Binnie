@@ -20,14 +20,14 @@ public class ItemETDoor extends ItemMetadata {
 //		}
 //	}
 
-    public ItemETDoor(final Block block) {
-        super(block);
-        this.maxStackSize = 1;
-        this.setCreativeTab(CreativeTabs.REDSTONE);
-    }
+	public ItemETDoor(final Block block) {
+		super(block);
+		this.maxStackSize = 1;
+		this.setCreativeTab(CreativeTabs.REDSTONE);
+	}
 
-    @Override
-    public EnumActionResult onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, BlockPos pos, EnumHand hand, EnumFacing facing, float par8, float par9, float par10) {
+	@Override
+	public EnumActionResult onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, BlockPos pos, EnumHand hand, EnumFacing facing, float par8, float par9, float par10) {
 //		if (par7 != 1) {
 //			return false;
 //		}
@@ -42,10 +42,10 @@ public class ItemETDoor extends ItemMetadata {
 //		final int i1 = MathHelper.floor_double((par2EntityPlayer.rotationYaw + 180.0f) * 4.0f / 360.0f - 0.5) & 0x3;
 //		placeDoorBlock(par3World, par4, par5, par6, i1, block, par1ItemStack, par2EntityPlayer);
 //		--par1ItemStack.stackSize;
-        return super.onItemUse(par1ItemStack, par2EntityPlayer, par3World, pos, hand, facing, par8, par9, par10);
-    }
+		return super.onItemUse(par1ItemStack, par2EntityPlayer, par3World, pos, hand, facing, par8, par9, par10);
+	}
 
-    public static void placeDoorBlock(final World par0World, final int par1, final int par2, final int par3, final int par4, final Block par5Block, final ItemStack item, final EntityPlayer player) {
+	public static void placeDoorBlock(final World par0World, final int par1, final int par2, final int par3, final int par4, final Block par5Block, final ItemStack item, final EntityPlayer player) {
 //		byte b0 = 0;
 //		byte b2 = 0;
 //		if (par4 == 0) {
@@ -84,7 +84,7 @@ public class ItemETDoor extends ItemMetadata {
 //		}
 //		par0World.notifyBlocksOfNeighborChange(par1, par2, par3, par5Block);
 //		par0World.notifyBlocksOfNeighborChange(par1, par2 + 1, par3, par5Block);
-    }
+	}
 
 //	@Override
 //	@SideOnly(Side.CLIENT)

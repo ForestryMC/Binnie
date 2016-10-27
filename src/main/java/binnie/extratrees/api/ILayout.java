@@ -1,19 +1,19 @@
 package binnie.extratrees.api;
 
 public interface ILayout {
-    IPattern getPattern();
+	IPattern getPattern();
 
-    boolean isInverted();
+	boolean isInverted();
 
-    ILayout rotateRight();
+	ILayout rotateRight();
 
-    ILayout rotateLeft();
+	ILayout rotateLeft();
 
-    ILayout flipHorizontal();
+	ILayout flipHorizontal();
 
-    ILayout flipVertical();
+	ILayout flipVertical();
 
-    ILayout invert();
+	ILayout invert();
 
 //	IIcon getPrimaryIcon(final IDesignSystem p0);
 //

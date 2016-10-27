@@ -23,15 +23,15 @@ public abstract class ItemGene extends ItemCore {
 //	}
 
 
-    @Override
-    public boolean getShareTag() {
-        return true;
-    }
+	@Override
+	public boolean getShareTag() {
+		return true;
+	}
 
-    @Override
-    public boolean isRepairable() {
-        return false;
-    }
+	@Override
+	public boolean isRepairable() {
+		return false;
+	}
 
 //	@Override
 //	@SideOnly(Side.CLIENT)
@@ -47,14 +47,14 @@ public abstract class ItemGene extends ItemCore {
 //		return 4;
 //	}
 
-    public ItemGene(final String unlocName) {
-    	super(unlocName);
+	public ItemGene(final String unlocName) {
+		super(unlocName);
 //		this.icons = new IIcon[4];
-        this.setMaxStackSize(1);
-        this.setMaxDamage(16);
-        this.setUnlocalizedName(unlocName);
-        this.setCreativeTab(CreativeTabGenetics.instance);
-    }
+		this.setMaxStackSize(1);
+		this.setMaxDamage(16);
+		this.setUnlocalizedName(unlocName);
+		this.setCreativeTab(CreativeTabGenetics.instance);
+	}
 //
 //	@Override
 //	public int getColorFromItemStack(final ItemStack itemstack, final int j) {
@@ -62,37 +62,37 @@ public abstract class ItemGene extends ItemCore {
 //		return gene.getColour(j);
 //	}
 
-    public int getCharges(final ItemStack stack) {
-        return (stack == null) ? 0 : (stack.getItem().getMaxDamage() - stack.getItemDamage());
-    }
+	public int getCharges(final ItemStack stack) {
+		return (stack == null) ? 0 : (stack.getItem().getMaxDamage() - stack.getItemDamage());
+	}
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation(final ItemStack itemstack, final EntityPlayer entityPlayer, final List list, final boolean advanced) {
-        super.addInformation(itemstack, entityPlayer, list, advanced);
-        final int damage = this.getMaxDamage() - itemstack.getItemDamage();
-        if (damage == 0) {
-            list.add("Empty");
-        } else if (damage == 1) {
-            list.add("1 Charge");
-        } else {
-            list.add(damage + " Charges");
-        }
-        final IGeneItem gene = this.getGeneItem(itemstack);
-        gene.getInfo(list);
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(final ItemStack itemstack, final EntityPlayer entityPlayer, final List list, final boolean advanced) {
+		super.addInformation(itemstack, entityPlayer, list, advanced);
+		final int damage = this.getMaxDamage() - itemstack.getItemDamage();
+		if (damage == 0) {
+			list.add("Empty");
+		} else if (damage == 1) {
+			list.add("1 Charge");
+		} else {
+			list.add(damage + " Charges");
+		}
+		final IGeneItem gene = this.getGeneItem(itemstack);
+		gene.getInfo(list);
+	}
 
-    @Override
-    public abstract String getItemStackDisplayName(final ItemStack p0);
+	@Override
+	public abstract String getItemStackDisplayName(final ItemStack p0);
 
-    @Override
-    public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List itemList) {
-    }
+	@Override
+	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List itemList) {
+	}
 
 //	@Override
 //	public boolean requiresMultipleRenderPasses() {
 //		return true;
 //	}
 
-    public abstract IGeneItem getGeneItem(final ItemStack p0);
+	public abstract IGeneItem getGeneItem(final ItemStack p0);
 }

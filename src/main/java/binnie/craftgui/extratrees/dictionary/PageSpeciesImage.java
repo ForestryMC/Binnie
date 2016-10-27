@@ -11,18 +11,18 @@ import binnie.craftgui.window.Panel;
 import forestry.api.genetics.IAlleleSpecies;
 
 public class PageSpeciesImage extends PageSpecies {
-    ControlDatabaseIndividualDisplay display;
+	ControlDatabaseIndividualDisplay display;
 
-    public PageSpeciesImage(final IWidget parent, final DatabaseTab tab) {
-        super(parent, tab);
-        new Panel(this, 7.0f, 25.0f, 130.0f, 120.0f, MinecraftGUI.PanelType.Gray);
-        this.display = new ControlDatabaseIndividualDisplay(this, 12.0f, 25.0f, 120.0f);
-        this.display.hastooltip = false;
-        new ControlTextCentered(this, 8.0f, this.getValue().toString());
-    }
+	public PageSpeciesImage(final IWidget parent, final DatabaseTab tab) {
+		super(parent, tab);
+		new Panel(this, 7.0f, 25.0f, 130.0f, 120.0f, MinecraftGUI.PanelType.Gray);
+		this.display = new ControlDatabaseIndividualDisplay(this, 12.0f, 25.0f, 120.0f);
+		this.display.hastooltip = false;
+		new ControlTextCentered(this, 8.0f, this.getValue().toString());
+	}
 
-    @Override
-    public void onValueChanged(final IAlleleSpecies species) {
-        this.display.setSpecies(species, EnumDiscoveryState.Show);
-    }
+	@Override
+	public void onValueChanged(final IAlleleSpecies species) {
+		this.display.setSpecies(species, EnumDiscoveryState.Show);
+	}
 }

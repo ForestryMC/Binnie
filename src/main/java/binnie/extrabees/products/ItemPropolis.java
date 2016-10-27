@@ -4,13 +4,13 @@ import forestry.api.core.Tabs;
 import forestry.core.items.IColoredItem;
 import net.minecraft.item.ItemStack;
 
-public class ItemPropolis extends ItemProduct implements IColoredItem{
-    public ItemPropolis() {
-        super(EnumPropolis.values());
-        this.setCreativeTab(Tabs.tabApiculture);
-        this.setUnlocalizedName("propolis");
-        setRegistryName("propolis");
-    }
+public class ItemPropolis extends ItemProduct implements IColoredItem {
+	public ItemPropolis() {
+		super(EnumPropolis.values());
+		this.setCreativeTab(Tabs.tabApiculture);
+		this.setUnlocalizedName("propolis");
+		setRegistryName("propolis");
+	}
 
 	@Override
 	public int getColorFromItemstack(final ItemStack itemStack, final int tintIndex) {
