@@ -1,6 +1,7 @@
 {
-  "parent": "block/cross",
+  "parent": "extratrees:block/saplings/baseSapling",
   "textures": {
-    "cross": "extratrees:blocks/saplings/conifer"
+    "leaves": "extratrees:blocks/saplings/conifer.leaves",
+    "trunk": "extratrees:blocks/saplings/conifer.trunk"
   }
 }

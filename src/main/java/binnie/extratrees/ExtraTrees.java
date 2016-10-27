@@ -4,6 +4,7 @@ import binnie.Constants;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.gui.IBinnieGUID;
+import binnie.core.models.DoublePassBakedModel;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
 import binnie.extrabees.ExtraBees;
@@ -30,7 +31,9 @@ import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.AlleleSpeciesRegisterEvent;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -39,6 +42,9 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Mod(modid = Constants.EXTRA_TREES_MOD_ID, name = "Binnie's Extra Trees", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class ExtraTrees extends AbstractMod {
@@ -165,6 +171,23 @@ public class ExtraTrees extends AbstractMod {
         public PacketHandler() {
             super(ExtraBees.instance);
         }
+    }
+
+    @SubscribeEvent
+    public void onBakedEvent(ModelBakeEvent e) {
+        //Find all ExtraTrees saplings
+        List<ModelResourceLocation> models = e.getModelRegistry().getKeys().stream()
+                .filter(mrl -> mrl.getResourceDomain().startsWith(Constants.EXTRA_TREES_MOD_ID))
+                .filter(mrl -> mrl.getResourcePath().startsWith("germlings")).collect(Collectors.toList());
+        //Replace model
+        models.forEach(model -> {
+            String species = model.getVariant().split("=")[1];
+            ExtraTreeSpecies treeSpecies = ExtraTreeSpecies.names().get(species);
+            int primaryColor = treeSpecies.getSpriteColour(1);
+            int secondaryColor = treeSpecies.getSpriteColour(0);
+            e.getModelRegistry().putObject(model, new DoublePassBakedModel(e.getModelRegistry().getObject(model), primaryColor, secondaryColor));
+        });
+
     }
 
 }
