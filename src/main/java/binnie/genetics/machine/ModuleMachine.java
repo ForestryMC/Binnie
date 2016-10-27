@@ -8,6 +8,7 @@ import binnie.core.machines.inventory.ValidatorIcon;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
 import binnie.genetics.item.GeneticsItems;
+import binnie.genetics.machine.incubator.Incubator;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -17,11 +18,11 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ModuleMachine implements IInitializable {
 	static ValidatorIcon IconSequencer;
-	static ValidatorIcon IconSerum;
+	public static ValidatorIcon iconSerum;
 	static ValidatorIcon IconEnzyme;
 	public static ValidatorIcon IconDye;
 	static ValidatorIcon IconBacteria;
-	static ValidatorIcon IconNugget;
+	public static ValidatorIcon IconNugget;
 
 	@Override
 	public void preInit() {
@@ -33,7 +34,7 @@ public class ModuleMachine implements IInitializable {
 	@Override
 	public void init() {
 		ModuleMachine.IconSequencer = new ValidatorIcon(Genetics.instance, "validator/sequencer.0", "validator/sequencer.1");
-		ModuleMachine.IconSerum = new ValidatorIcon(Genetics.instance, "validator/serum.0", "validator/serum.1");
+		ModuleMachine.iconSerum = new ValidatorIcon(Genetics.instance, "validator/serum.0", "validator/serum.1");
 		ModuleMachine.IconEnzyme = new ValidatorIcon(Genetics.instance, "validator/enzyme.0", "validator/enzyme.1");
 		ModuleMachine.IconDye = new ValidatorIcon(Genetics.instance, "validator/dye.0", "validator/dye.1");
 		ModuleMachine.IconNugget = new ValidatorIcon(Genetics.instance, "validator/nugget.0", "validator/nugget.1");

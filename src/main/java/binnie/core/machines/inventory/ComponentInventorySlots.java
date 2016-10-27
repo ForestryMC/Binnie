@@ -165,8 +165,9 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
 	@Override
 	public final InventorySlot addSlot(final int index, final String unlocName) {
-		this.inventory.put(index, new InventorySlot(index, unlocName));
-		return this.getSlot(index);
+		InventorySlot slot = new InventorySlot(index, unlocName);
+		this.inventory.put(index, slot);
+		return slot;
 	}
 
 	@Override

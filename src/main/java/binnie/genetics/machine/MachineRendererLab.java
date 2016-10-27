@@ -2,11 +2,8 @@ package binnie.genetics.machine;
 
 import org.lwjgl.opengl.GL11;
 
-import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.machines.Machine;
-import binnie.core.resource.BinnieResource;
-import binnie.genetics.Genetics;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.item.EntityItem;

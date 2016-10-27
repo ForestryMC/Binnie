@@ -6,7 +6,6 @@ import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IIndividual;
 import forestry.core.genetics.BreedingTracker;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
 
 public class BotanistTracker extends BreedingTracker implements IBotanistTracker {
 	public BotanistTracker(final String s) {

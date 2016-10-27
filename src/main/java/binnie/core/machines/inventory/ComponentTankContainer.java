@@ -27,7 +27,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 
 	@Override
 	public final TankSlot addTank(final int index, final String name, final int capacity) {
-		final TankSlot tank = new TankSlot(index, name, capacity);
+		TankSlot tank = new TankSlot(index, name, capacity);
 		this.tanks.put(index, tank);
 		return tank;
 	}

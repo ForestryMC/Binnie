@@ -9,6 +9,16 @@ genetics.machine.machine.sequencer.info=The Sequencer takes unsequenced serums a
 
 genetics.machine.machine.polymeriser=Polymeriser
 genetics.machine.machine.polymeriser.info=The Polymeriser fills empty serums with Raw DNA and replicating bacteria. This process can be accelerated using gold nuggets. 
+genetics.machine.machine.polymeriser.tile=Polymeriser
+genetics.machine.machine.polymeriser.logic.gene=Replicating 1 genes
+genetics.machine.machine.polymeriser.logic.genes=Replicating %GENES geness
+genetics.machine.machine.polymeriser.logic.item.no=No item to replicate
+genetics.machine.machine.polymeriser.logic.item.filled=Item filled
+genetics.machine.machine.polymeriser.logic.insufficient.bacteria=Insufficient Bacteria
+genetics.machine.machine.polymeriser.logic.insufficient.dna=Insufficient DNA
+genetics.machine.machine.polymeriser.slot.unfilled=Unfilled Serum
+genetics.machine.machine.polymeriser.tank.bacteria.info=Polymerising Bacteria
+genetics.machine.machine.polymeriser.tank.dna.info=Raw DNA
 
 genetics.machine.machine.inoculator=Inoculator
 genetics.machine.machine.inoculator.info=The Inoculator uses serums to add genes to breedable individuals. This process is very slow and requires a Bacteria Vector, but is always successful.  

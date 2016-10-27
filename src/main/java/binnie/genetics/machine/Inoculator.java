@@ -32,7 +32,6 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.client.particle.Particle;
-import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -88,7 +87,7 @@ public class Inoculator {
 			inventory.addSlot(0, "serum.active");
 			inventory.getSlot(0).forbidInteraction();
 			inventory.getSlot(0).setReadOnly();
-			final SlotValidator serumValid = new SlotValidator(ModuleMachine.IconSerum) {
+			final SlotValidator serumValid = new SlotValidator(ModuleMachine.iconSerum) {
 				@Override
 				public boolean isValid(final ItemStack itemStack) {
 					return itemStack.getItem() instanceof IItemSerum;

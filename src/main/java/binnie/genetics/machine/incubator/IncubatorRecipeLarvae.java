@@ -1,4 +1,4 @@
-package binnie.genetics.machine;
+package binnie.genetics.machine.incubator;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;

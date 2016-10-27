@@ -2,7 +2,7 @@ package binnie.genetics.integration.jei.incubator;
 
 import binnie.genetics.integration.jei.GeneticsJeiPlugin;
 import binnie.genetics.integration.jei.RecipeUids;
-import binnie.genetics.machine.Incubator;
+import binnie.genetics.machine.incubator.Incubator;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
@@ -63,8 +63,8 @@ public class IncubatorRecipeCategory extends BlankRecipeCategory {
 	public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients) {
 		IDrawable tankOverlay = GeneticsJeiPlugin.drawables.getTankOverlay();
 		IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
-		fluidStacks.init(Incubator.tankInput, true, 1, 1, 16, 58, 50, false, tankOverlay);
-		fluidStacks.init(Incubator.tankOutput, false, 95, 1, 16, 58, 50, false, tankOverlay);
+		fluidStacks.init(Incubator.TANK_INPUT, true, 1, 1, 16, 58, 50, false, tankOverlay);
+		fluidStacks.init(Incubator.TANK_OUTPUT, false, 95, 1, 16, 58, 50, false, tankOverlay);
 		fluidStacks.set(ingredients);
 
 		IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();

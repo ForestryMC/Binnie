@@ -1,6 +1,5 @@
 package binnie.core.machines.component;
 
-import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;

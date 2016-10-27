@@ -1,4 +1,4 @@
-package binnie.genetics.machine;
+package binnie.genetics.machine.incubator;
 
 import binnie.core.machines.MachineUtil;
 import binnie.core.machines.transfer.TransferRequest;
@@ -70,19 +70,19 @@ public class IncubatorRecipe implements IIncubatorRecipe {
 
 	@Override
 	public void doTask(final MachineUtil machine) {
-		machine.drainTank(0, this.input.amount);
+		machine.drainTank(Incubator.TANK_INPUT, this.input.amount);
 		if (this.output != null) {
-			machine.fillTank(1, this.output);
+			machine.fillTank(Incubator.TANK_OUTPUT, this.output);
 		}
 		this.outputStack = this.getOutputStack(machine);
 		if (this.outputStack != null) {
 			final ItemStack output = this.outputStack.copy();
-			final TransferRequest product = new TransferRequest(output, machine.getInventory()).setTargetSlots(Incubator.slotOutput).ignoreValidation();
+			final TransferRequest product = new TransferRequest(output, machine.getInventory()).setTargetSlots(Incubator.SLOT_OUTPUT).ignoreValidation();
 			product.transfer(true);
 		}
 		final Random rand = machine.getRandom();
 		if (rand.nextFloat() < this.lossChance) {
-			machine.decreaseStack(3, 1);
+			machine.decreaseStack(Incubator.SLOT_INCUBATOR, 1);
 		}
 	}
 
@@ -98,17 +98,17 @@ public class IncubatorRecipe implements IIncubatorRecipe {
 	@Override
 	public boolean roomForOutput(final MachineUtil machine) {
 		if (this.output != null && !machine.isTankEmpty(1)) {
-			if (!machine.getFluid(1).isFluidEqual(this.output)) {
+			if (!machine.getFluid(Incubator.TANK_OUTPUT).isFluidEqual(this.output)) {
 				return false;
 			}
-			if (!machine.spaceInTank(1, this.output.amount)) {
+			if (!machine.spaceInTank(Incubator.TANK_OUTPUT, this.output.amount)) {
 				return false;
 			}
 		}
 		final ItemStack outputStack = this.getOutputStack(machine);
 		if (outputStack != null) {
 			final ItemStack output = outputStack.copy();
-			final TransferRequest product = new TransferRequest(output, machine.getInventory()).setTargetSlots(Incubator.slotOutput).ignoreValidation();
+			final TransferRequest product = new TransferRequest(output, machine.getInventory()).setTargetSlots(Incubator.SLOT_OUTPUT).ignoreValidation();
 			final ItemStack leftover = product.transfer(false);
 			return leftover == null;
 		}

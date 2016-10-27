@@ -1,7 +1,6 @@
 package binnie.genetics.item;
 
 import binnie.Binnie;
-import binnie.core.BinnieCore;
 import binnie.core.item.ItemCore;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.genetics.IGeneItem;

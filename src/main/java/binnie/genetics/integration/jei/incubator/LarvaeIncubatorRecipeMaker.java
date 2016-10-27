@@ -2,8 +2,8 @@ package binnie.genetics.integration.jei.incubator;
 
 import binnie.Binnie;
 import binnie.genetics.integration.jei.GeneticsJeiPlugin;
-import binnie.genetics.machine.IncubatorRecipe;
-import binnie.genetics.machine.IncubatorRecipeLarvae;
+import binnie.genetics.machine.incubator.IncubatorRecipe;
+import binnie.genetics.machine.incubator.IncubatorRecipeLarvae;
 import forestry.api.apiculture.EnumBeeType;
 import forestry.api.apiculture.IBee;
 import net.minecraft.item.ItemStack;

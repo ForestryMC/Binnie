@@ -1,6 +1,5 @@
 package binnie.core.machines;
 
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 
 public class TileEntityMachineRenderer extends TileEntitySpecialRenderer<TileEntityMachine> {

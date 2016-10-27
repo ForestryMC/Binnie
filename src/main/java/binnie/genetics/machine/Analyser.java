@@ -26,7 +26,6 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.client.particle.Particle;
-import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;

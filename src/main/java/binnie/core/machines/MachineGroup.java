@@ -6,8 +6,6 @@ import binnie.core.BinnieCore;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;

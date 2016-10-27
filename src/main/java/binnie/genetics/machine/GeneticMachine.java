@@ -7,13 +7,14 @@ import binnie.core.machines.TileEntityMachine;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 import binnie.genetics.Genetics;
+import binnie.genetics.machine.polymeriser.PackagePolymeriser;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
 public enum GeneticMachine implements IMachineType {
 	Isolator(Isolator.PackageIsolator.class),
 	Sequencer(Sequencer.PackageSequencer.class),
-	Polymeriser(Polymeriser.PackagePolymeriser.class),
+	Polymeriser(PackagePolymeriser.class),
 	Inoculator(Inoculator.PackageInoculator.class);
 
 	Class<? extends MachinePackage> clss;

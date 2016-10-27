@@ -9,6 +9,7 @@ import binnie.core.machines.component.IInteraction;
 import binnie.core.machines.network.INetwork;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
+import binnie.genetics.machine.incubator.Incubator;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

@@ -5,7 +5,6 @@ import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
 import binnie.botany.api.gardening.IBlockSoil;
-import binnie.botany.genetics.EnumFlowerType;
 import binnie.core.BinnieCore;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
