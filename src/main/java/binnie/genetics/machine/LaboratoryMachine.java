@@ -35,8 +35,8 @@ public enum LaboratoryMachine implements IMachineType {
         return true;
     }
 
-    public ItemStack get(final int i) {
-        return new ItemStack(Genetics.packageLabMachine.getBlock(), i, this.ordinal());
+    public ItemStack get(final int amount) {
+        return new ItemStack(Genetics.packageLabMachine.getBlock(), amount, this.ordinal());
     }
 
     public static class PackageLabMachine extends GeneticMachine.PackageGeneticBase {

@@ -72,8 +72,8 @@ public class Mods {
             return this.stack(name, 1);
         }
 
-        public ItemStack stack(final String string, final int i, final int j) {
-            return new ItemStack(this.item(string), i, j);
+        public ItemStack stack(final String string, final int amount, final int meta) {
+            return new ItemStack(this.item(string), amount, meta);
         }
 
         public boolean active() {

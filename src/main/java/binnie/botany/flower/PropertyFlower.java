@@ -46,7 +46,7 @@ public class PropertyFlower<I extends IFlowerType<I>> extends PropertyHelper<I> 
 		IAllele allele = AlleleManager.alleleRegistry.getAllele(value);
 		if (IAlleleFlowerSpecies.class.isInstance(allele)) {
 			IAlleleFlowerSpecies alleleValue = IAlleleFlowerSpecies.class.cast(allele);
-			return (Optional<I>) Optional.of(alleleValue.getType());
+			return Optional.of((I) alleleValue.getType());
 		}
 		return Optional.absent();
 	}
