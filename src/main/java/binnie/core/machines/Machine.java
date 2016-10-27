@@ -160,8 +160,8 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 				component.onUpdate();
 			}
 		} else {
-			for (final IRender.DisplayTick renders : this.getInterfaces(IRender.DisplayTick.class)) {
-				renders.onDisplayTick(this.getWorld(), this.getTileEntity().getPos().getX(), this.getTileEntity().getPos().getY(), this.getTileEntity().getPos().getZ(), this.getWorld().rand);
+			for (IRender.DisplayTick renders : this.getInterfaces(IRender.DisplayTick.class)) {
+				renders.onDisplayTick(this.getWorld(), this.getTileEntity().getPos(), this.getWorld().rand);
 			}
 		}
 		if (this.queuedInventoryUpdate) {

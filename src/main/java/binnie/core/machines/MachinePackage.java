@@ -27,6 +27,8 @@ public abstract class MachinePackage {
 	public abstract TileEntity createTileEntity();
 
 	public abstract void register();
+	
+	public abstract void renderMachine(Machine machine, double x, double y, double z, float partialTicks, int destroyStage);//, final RenderBlocks p5);
 
 	public final String getDisplayName() {
 		return Binnie.Language.localise(this.group.getMod(), "machine." + this.group.getShortUID() + "." + this.getUID());
@@ -47,8 +49,6 @@ public abstract class MachinePackage {
 	public void setGroup(final MachineGroup group) {
 		this.group = group;
 	}
-
-	public abstract void renderMachine(final Machine p0, final double p1, final double p2, final double p3, final float p4);//, final RenderBlocks p5);
 
 	public boolean isActive() {
 		return this.active;

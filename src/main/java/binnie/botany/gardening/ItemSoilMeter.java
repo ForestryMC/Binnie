@@ -5,6 +5,7 @@ import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
 import binnie.botany.api.gardening.IBlockSoil;
+import binnie.botany.genetics.EnumFlowerType;
 import binnie.core.BinnieCore;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
@@ -45,6 +46,10 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 			pos = pos.down();
 			block = world.getBlockState(pos).getBlock();
 		}
+		if (!Gardening.isSoil(block)) {
+			pos = pos.down();
+			block = world.getBlockState(pos).getBlock();
+		}
 		if (Gardening.isSoil(block) && !BinnieCore.proxy.isSimulating(world)) {
 			IBlockSoil soil = (IBlockSoil) block;
 			String info = Binnie.Language.localise("botany.soil.type") + ": ";
@@ -56,7 +61,7 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 			ITextComponent chat = new TextComponentString(info);
 			player.addChatMessage(chat);
 		}
-		return super.onItemUse(stack, player, world, pos, hand, facing, hitX, hitY, hitZ);
+		return EnumActionResult.SUCCESS;
 	}
 
 	public static String getPH(ItemStack stack, boolean withColor, boolean byNeutralNone) {

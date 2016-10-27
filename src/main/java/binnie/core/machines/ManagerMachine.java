@@ -19,7 +19,6 @@ public class ManagerMachine extends ManagerBase {
 	private Map<Integer, Class<?>> networkIDToComponent;
 	private Map<Class<?>, Integer> componentToNetworkID;
 	private int nextNetworkID;
-	private int machineRenderID;
 
 	public ManagerMachine() {
 		this.componentInterfaceMap = new HashMap<>();
@@ -69,14 +68,9 @@ public class ManagerMachine extends ManagerBase {
 		return this.networkIDToComponent.get(networkID);
 	}
 
-	public int getMachineRenderID() {
-		return this.machineRenderID;
-	}
-
 	@Override
 	public void init() {
 		//TODO renderupdate
-		//this.machineRenderID = BinnieCore.proxy.getUniqueRenderID();
 		SlotValidator.IconBee = new ValidatorIcon(BinnieCore.instance, "validator/bee.0", "validator/bee.1");
 		SlotValidator.IconFrame = new ValidatorIcon(BinnieCore.instance, "validator/frame.0", "validator/frame.1");
 		SlotValidator.IconCircuit = new ValidatorIcon(BinnieCore.instance, "validator/circuit.0", "validator/circuit.1");
@@ -85,8 +79,7 @@ public class ManagerMachine extends ManagerBase {
 
 	@Override
 	public void postInit() {
-		//BinnieCore.proxy.registerBlockRenderer(BinnieCore.proxy.createObject("binnie.core.machines.RendererMachine"));
-		//BinnieCore.proxy.registerTileEntity(TileEntityMachine.class, "binnie.tile.machine", BinnieCore.proxy.createObject("binnie.core.machines.RendererMachine"));
+		BinnieCore.proxy.registerTileEntity(TileEntityMachine.class, "binnie.tile.machine", BinnieCore.proxy.createObject("binnie.core.machines.RendererMachine"));
 	}
 
 	public Class<?>[] getComponentInterfaces(final Class<? extends MachineComponent> clss) {

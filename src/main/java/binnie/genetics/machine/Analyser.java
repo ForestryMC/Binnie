@@ -25,6 +25,7 @@ import binnie.genetics.item.GeneticsItems;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.entity.item.EntityItem;
@@ -32,6 +33,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -195,7 +197,7 @@ public class Analyser {
 		}
 	}
 
-	public static class ComponentAnalyserFX extends MachineComponent implements IRender.RandomDisplayTick, IRender.DisplayTick, IRender.Render, INetwork.TilePacketSync {
+	public static class ComponentAnalyserFX extends MachineComponent implements IRender.DisplayTick, IRender.Render, INetwork.TilePacketSync {
 		private final EntityItem dummyEntityItem;
 
 		public ComponentAnalyserFX(final IMachine machine) {
@@ -205,48 +207,43 @@ public class Analyser {
 
 		@SideOnly(Side.CLIENT)
 		@Override
-		public void onRandomDisplayTick(final World world, final int x, final int y, final int z, final Random rand) {
+		public void onDisplayTick(World world, BlockPos pos, Random rand) {
+			if (rand.nextFloat() < 1.0f && this.getUtil().getProcess().isInProgress()) {
+				BinnieCore.proxy.getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.5, pos.getY() + 1.3 + rand.nextDouble() * 0.2, pos.getZ() + 0.5, 0.0, 0.0, 0.0) {
+					double axisX = this.posX;
+					double axisZ = this.posZ;
+					double angle = this.rand.nextDouble() * 2.0 * 3.1415;
+
+					{
+						this.axisX = 0.0;
+						this.axisZ = 0.0;
+						this.angle = 0.0;
+						this.motionX = 0.05 * (this.rand.nextDouble() - 0.5);
+						this.motionZ = 0.05 * (this.rand.nextDouble() - 0.5);
+						this.motionY = 0.0;
+						this.particleMaxAge = 25;
+						this.particleGravity = 0.05f;
+						this.field_190017_n = true;
+						this.setRBGColorF(0.6f, 0.0f, 1.0f);
+					}
+
+					@Override
+					public void onUpdate() {
+						super.onUpdate();
+						this.setAlphaF((float) Math.cos(1.57 * this.particleAge / this.particleMaxAge));
+					}
+
+					@Override
+					public int getFXLayer() {
+						return 0;
+					}
+				});
+			}
 		}
 
 		@SideOnly(Side.CLIENT)
 		@Override
-		public void onDisplayTick(final World world, final int x, final int y, final int z, final Random rand) {
-//			if (rand.nextFloat() < 1.0f && this.getUtil().getProcess().isInProgress()) {
-//				BinnieCore.proxy.getMinecraftInstance().effectRenderer.addEffect(new EntityFX(world, x + 0.5, y + 1.3 + rand.nextDouble() * 0.2, z + 0.5, 0.0, 0.0, 0.0) {
-//					double axisX = this.posX;
-//					double axisZ = this.posZ;
-//					double angle = this.rand.nextDouble() * 2.0 * 3.1415;
-//
-//					{
-//						this.axisX = 0.0;
-//						this.axisZ = 0.0;
-//						this.angle = 0.0;
-//						this.motionX = 0.05 * (this.rand.nextDouble() - 0.5);
-//						this.motionZ = 0.05 * (this.rand.nextDouble() - 0.5);
-//						this.motionY = 0.0;
-//						this.particleMaxAge = 25;
-//						this.particleGravity = 0.05f;
-//						this.noClip = true;
-//						this.setRBGColorF(0.6f, 0.0f, 1.0f);
-//					}
-//
-//					@Override
-//					public void onUpdate() {
-//						super.onUpdate();
-//						this.setAlphaF((float) Math.cos(1.57 * this.particleAge / this.particleMaxAge));
-//					}
-//
-//					@Override
-//					public int getFXLayer() {
-//						return 0;
-//					}
-//				});
-//			}
-		}
-
-		@SideOnly(Side.CLIENT)
-		@Override
-		public void renderInWorld(final RenderItem customRenderItem, final double x, final double y, final double z) {
+		public void renderInWorld(final double x, final double y, final double z) {
 			if (!this.getUtil().getProcess().isInProgress()) {
 				return;
 			}
@@ -266,7 +263,7 @@ public class Analyser {
 			GL11.glPushMatrix();
 			GL11.glRotatef(180.0f, 0.0f, 0.0f, 1.0f);
 			GL11.glTranslatef(0.0f, -0.2f, 0.0f);
-			customRenderItem.renderItem(dummyEntityItem.getEntityItem(), ItemCameraTransforms.TransformType.FIXED);//doRender(this.dummyEntityItem.getEntityItem(), 0.0, 0.0, 0.0, 0.0f, 0.0f);
+			BinnieCore.proxy.getMinecraftInstance().getRenderItem().renderItem(dummyEntityItem.getEntityItem(), ItemCameraTransforms.TransformType.FIXED);//doRender(this.dummyEntityItem.getEntityItem(), 0.0, 0.0, 0.0, 0.0f, 0.0f);
 			GL11.glPopMatrix();
 		}
 

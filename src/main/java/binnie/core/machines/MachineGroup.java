@@ -46,8 +46,8 @@ public class MachineGroup {
 		}
 		Binnie.Machine.registerMachineGroup(this);
 		this.block = new BlockMachine(this, blockName);
-		GameRegistry.register(this.block);
-		Item i = GameRegistry.register(new ItemMachine(this.block));
+		mod.getProxy().registerBlock(this.block);
+		Item i = mod.getProxy().registerItem(new ItemMachine(this.block));
 		for (int j = 0; j < types.length; j++) {
 			BinnieCore.proxy.registermodel(i, j, new ModelResourceLocation(i.getRegistryName(), "machine_type=" + j));
 		}

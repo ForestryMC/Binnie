@@ -82,8 +82,8 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 	public String getItemStackDisplayName(final ItemStack itemstack) {
 		final GeneItem gene = this.getGeneItem(itemstack);
 		if (!gene.isCorrupted())
-			return Binnie.Genetics.getSystem(gene.getSpeciesRoot()).getDescriptor() + " Serum";
-		return "Corrupted Serum";
+			return Binnie.Genetics.getSystem(gene.getSpeciesRoot()).getDescriptor() + " " + Binnie.Language.localise("genetic.item.gene.serum");
+		return Binnie.Language.localise("genetic.item.gene.corrupted.serum");
 	}
 
 	@Override

@@ -11,6 +11,7 @@ import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,16 +47,16 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 	@Override
 	public void getInfo(final List list) {
 		final List<Object> totalList = new ArrayList<>();
-		for (final IGene gene : this.genes) {
+		for (IGene gene : this.genes) {
 			final String chromosomeName = this.getBreedingSystem().getChromosomeName(gene.getChromosome());
-			totalList.add("§6" + chromosomeName + "§7: " + gene.getName());
+			totalList.add(TextFormatting.GOLD + chromosomeName + TextFormatting.GRAY + ": " + gene.getName());
 		}
 		if (totalList.size() < 4 || BinnieCore.proxy.isShiftDown()) {
 			list.addAll(totalList);
 		} else {
 			list.add(totalList.get(0));
 			list.add(totalList.get(1));
-			list.add(totalList.size() - 2 + " more genes. Hold shift to display.");
+			list.add(totalList.size() - 2 + " " + Binnie.Language.localise("genetic.item.gene.more.genes"));
 		}
 	}
 

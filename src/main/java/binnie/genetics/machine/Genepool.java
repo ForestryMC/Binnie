@@ -1,6 +1,7 @@
 package binnie.genetics.machine;
 
 import binnie.Binnie;
+import binnie.core.BinnieCore;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachineComponent;
@@ -25,8 +26,10 @@ import binnie.genetics.item.GeneticLiquid;
 import binnie.genetics.item.GeneticsItems;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -167,50 +170,45 @@ public class Genepool {
 		}
 	}
 
-	public static class ComponentGenepoolFX extends MachineComponent implements IRender.RandomDisplayTick, IRender.DisplayTick {
+	public static class ComponentGenepoolFX extends MachineComponent implements IRender.DisplayTick {
 		public ComponentGenepoolFX(final IMachine machine) {
 			super(machine);
 		}
 
 		@SideOnly(Side.CLIENT)
 		@Override
-		public void onRandomDisplayTick(final World world, final int x, final int y, final int z, final Random rand) {
-		}
+		public void onDisplayTick(World world, BlockPos pos, Random rand) {
+			if (rand.nextFloat() < 1.0f && this.getUtil().getProcess().isInProgress()) {
+				BinnieCore.proxy.getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.3 + rand.nextDouble() * 0.4, pos.getY() + 1, pos.getZ() + 0.3 + rand.nextDouble() * 0.4, 0.0, 0.0, 0.0) {
+					double axisX = this.posX;
+					double axisZ = this.posZ;
+					double angle = this.rand.nextDouble() * 2.0 * 3.1415;
 
-		@SideOnly(Side.CLIENT)
-		@Override
-		public void onDisplayTick(final World world, final int x, final int y, final int z, final Random rand) {
-//			if (rand.nextFloat() < 1.0f && this.getUtil().getProcess().isInProgress()) {
-//				BinnieCore.proxy.getMinecraftInstance().effectRenderer.addEffect(new EntityFX(world, x + 0.3 + rand.nextDouble() * 0.4, y + 1, z + 0.3 + rand.nextDouble() * 0.4, 0.0, 0.0, 0.0) {
-//					double axisX = this.posX;
-//					double axisZ = this.posZ;
-//					double angle = this.rand.nextDouble() * 2.0 * 3.1415;
-//
-//					{
-//						this.axisX = 0.0;
-//						this.axisZ = 0.0;
-//						this.angle = 0.0;
-//						this.motionX = 0.0;
-//						this.motionZ = 0.0;
-//						this.motionY = this.rand.nextFloat() * 0.01;
-//						this.particleMaxAge = 25;
-//						this.particleGravity = 0.0f;
-//						this.noClip = true;
-//						this.setRBGColorF(0.4f + 0.6f * this.rand.nextFloat(), 0.6f * this.rand.nextFloat(), 0.6f + 0.4f * this.rand.nextFloat());
-//					}
-//
-//					@Override
-//					public void onUpdate() {
-//						super.onUpdate();
-//						this.setAlphaF((float) Math.cos(1.57 * this.particleAge / this.particleMaxAge));
-//					}
-//
-//					@Override
-//					public int getFXLayer() {
-//						return 0;
-//					}
-//				});
-//			}
+					{
+						this.axisX = 0.0;
+						this.axisZ = 0.0;
+						this.angle = 0.0;
+						this.motionX = 0.0;
+						this.motionZ = 0.0;
+						this.motionY = this.rand.nextFloat() * 0.01;
+						this.particleMaxAge = 25;
+						this.particleGravity = 0.0f;
+						this.field_190017_n = true;
+						this.setRBGColorF(0.4f + 0.6f * this.rand.nextFloat(), 0.6f * this.rand.nextFloat(), 0.6f + 0.4f * this.rand.nextFloat());
+					}
+
+					@Override
+					public void onUpdate() {
+						super.onUpdate();
+						this.setAlphaF((float) Math.cos(1.57 * this.particleAge / this.particleMaxAge));
+					}
+
+					@Override
+					public int getFXLayer() {
+						return 0;
+					}
+				});
+			}
 		}
 	}
 }

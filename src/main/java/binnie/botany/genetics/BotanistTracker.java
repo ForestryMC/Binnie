@@ -14,16 +14,6 @@ public class BotanistTracker extends BreedingTracker implements IBotanistTracker
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound nbt) {
-
-	}
-
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		return compound;
-	}
-
-	@Override
 	public void registerPickup(final IIndividual individual) {
 	}
 

@@ -1,6 +1,7 @@
 package binnie.core.machines;
 
 import binnie.core.BinnieCore;
+import binnie.core.machines.component.IRender;
 import binnie.core.util.TileUtil;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -19,16 +20,19 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 class BlockMachine extends BlockContainer implements IBlockMachine {
 	private MachineGroup group;
 	public static final PropertyInteger MACHINE_TYPE = PropertyInteger.create("machine_type", 0, 15);
 
-	public BlockMachine(final MachineGroup group, final String blockName) {
+	public BlockMachine(MachineGroup group, String blockName) {
 		super(Material.IRON);
 		this.group = group;
 		this.setHardness(1.5f);
@@ -43,22 +47,7 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 			}
 		}
 	}
-
-	//	@Override
-//	public boolean isOpaqueCube() {
-//		return false;
-//	}
-//
-//	@Override
-//	public boolean renderAsNormalBlock() {
-//		return !this.group.customRenderer;
-//	}
-//
-//	@Override
-//	public int getRenderType() {
-//		return Binnie.Machine.getMachineRenderID();
-//	}
-//
+	
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
@@ -112,7 +101,6 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 		return this.group.getPackage(meta).createTileEntity();
 	}
 
-
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
 		if (!BinnieCore.proxy.isSimulating(world)) {
@@ -143,15 +131,6 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 		}
 	}
 
-//	@Override
-//	public IIcon getIcon(final IBlockAccess world, final int x, final int y, final int z, final int side) {
-//		final TileEntity entity = world.getTileEntity(x, y, z);
-//		if (entity instanceof TileEntityMachine && ((TileEntityMachine) entity).getMachine().hasInterface(IMachineTexturedFaces.class)) {
-//			return ((TileEntityMachine) entity).getMachine().getInterface(IMachineTexturedFaces.class).getIcon(side);
-//		}
-//		return Blocks.dirt.getIcon(0, 0);
-//	}
-
 	@Override
 	public void breakBlock(World world, BlockPos pos, IBlockState state) {
 		final TileEntityMachine entity = TileUtil.getTile(world, pos, TileEntityMachine.class);
@@ -161,22 +140,16 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 		super.breakBlock(world, pos, state);
 	}
 
-	//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerBlockIcons(final IIconRegister register) {
-//	}
-//
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void randomDisplayTick(final World world, final int x, final int y, final int z, final Random rand) {
-//		final IMachine machine = Machine.getMachine(world.getTileEntity(x, y, z));
-//		if (machine != null) {
-//			for (final IRender.RandomDisplayTick renders : machine.getInterfaces(IRender.RandomDisplayTick.class)) {
-//				renders.onRandomDisplayTick(world, x, y, z, rand);
-//			}
-//		}
-//	}
-
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
+		IMachine machine = Machine.getMachine(world.getTileEntity(pos));
+		if (machine != null) {
+			for (IRender.RandomDisplayTick renders : machine.getInterfaces(IRender.RandomDisplayTick.class)) {
+				renders.onRandomDisplayTick(world, pos, rand);
+			}
+		}
+	}
 
 	@Override
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
@@ -191,10 +164,5 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 			this.dropBlockAsItem(world, pos, state, 0);
 		}
 		return world.setBlockToAir(pos);
-	}
-
-
-	public interface IMachineTexturedFaces {
-		//IIcon getIcon(final int p0);
 	}
 }

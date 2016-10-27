@@ -1,5 +1,6 @@
 package binnie.genetics.machine;
 
+import binnie.core.BinnieCore;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachineComponent;
@@ -22,9 +23,11 @@ import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.genetics.Engineering;
 import binnie.genetics.item.GeneticLiquid;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -216,68 +219,63 @@ public class Polymeriser {
 		}
 	}
 
-	public static class ComponentPolymeriserFX extends MachineComponent implements IRender.RandomDisplayTick, IRender.DisplayTick {
+	public static class ComponentPolymeriserFX extends MachineComponent implements IRender.DisplayTick {
 		public ComponentPolymeriserFX(final IMachine machine) {
 			super(machine);
 		}
 
 		@SideOnly(Side.CLIENT)
 		@Override
-		public void onRandomDisplayTick(final World world, final int x, final int y, final int z, final Random rand) {
-		}
+		public void onDisplayTick(World world, BlockPos pos, Random rand) {
+			final int tick = (int) (world.getTotalWorldTime() % 8L);
+			if ((tick == 0 || tick == 3) && this.getUtil().getProcess().isInProgress()) {
+				BinnieCore.proxy.getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.5, pos.getY() + 1.8, pos.getZ() + 0.5, 0.0, 0.0, 0.0) {
+					double axisX = this.posX;
+					double axisZ = this.posZ;
+					double angle = 0.7 + (int) (this.worldObj.getTotalWorldTime() % 2L) * 3.1415;
 
-		@SideOnly(Side.CLIENT)
-		@Override
-		public void onDisplayTick(final World world, final int x, final int y, final int z, final Random rand) {
-//			final int tick = (int) (world.getTotalWorldTime() % 8L);
-//			if ((tick == 0 || tick == 3) && this.getUtil().getProcess().isInProgress()) {
-//				BinnieCore.proxy.getMinecraftInstance().effectRenderer.addEffect(new EntityFX(world, x + 0.5, y + 1.8, z + 0.5, 0.0, 0.0, 0.0) {
-//					double axisX = this.posX;
-//					double axisZ = this.posZ;
-//					double angle = 0.7 + (int) (this.worldObj.getTotalWorldTime() % 2L) * 3.1415;
-//
-//					{
-//						this.axisX = 0.0;
-//						this.axisZ = 0.0;
-//						this.angle = 0.0;
-//						this.motionX = 0.0;
-//						this.motionZ = 0.0;
-//						this.motionY = -0.006;
-//						this.particleMaxAge = 140;
-//						this.particleGravity = 0.0f;
-//						this.noClip = true;
-//						this.setRBGColorF(0.8f, 0.0f, 1.0f);
-//					}
-//
-//					@Override
-//					public void onUpdate() {
-//						super.onUpdate();
-//						this.angle += 0.1;
-//						this.motionY = -0.006;
-//						double dist = 0.2;
-//						if (this.particleAge > 60) {
-//							if (this.particleAge > 120) {
-//								dist = 0.1;
-//							}
-//							else {
-//								dist = 0.2 - 0.1 * ((this.particleAge - 60.0f) / 60.0f);
-//							}
-//						}
-//						this.setPosition(this.axisX + dist * Math.sin(this.angle), this.posY, this.axisZ + dist * Math.cos(this.angle));
-//						if (this.particleAge <= 40) {
-//							this.setAlphaF(this.particleAge / 40.0f);
-//						}
-//						if (this.particleAge > 80) {
-//							this.setRBGColorF(this.particleRed + (0.0f - this.particleRed) / 10.0f, this.particleGreen + (1.0f - this.particleGreen) / 10.0f, this.particleBlue + (1.0f - this.particleBlue) / 10.0f);
-//						}
-//					}
-//
-//					@Override
-//					public int getFXLayer() {
-//						return 0;
-//					}
-//				});
-//			}
+					{
+						this.axisX = 0.0;
+						this.axisZ = 0.0;
+						this.angle = 0.0;
+						this.motionX = 0.0;
+						this.motionZ = 0.0;
+						this.motionY = -0.006;
+						this.particleMaxAge = 140;
+						this.particleGravity = 0.0f;
+						this.field_190017_n = true;
+						this.setRBGColorF(0.8f, 0.0f, 1.0f);
+					}
+
+					@Override
+					public void onUpdate() {
+						super.onUpdate();
+						this.angle += 0.1;
+						this.motionY = -0.006;
+						double dist = 0.2;
+						if (this.particleAge > 60) {
+							if (this.particleAge > 120) {
+								dist = 0.1;
+							}
+							else {
+								dist = 0.2 - 0.1 * ((this.particleAge - 60.0f) / 60.0f);
+							}
+						}
+						this.setPosition(this.axisX + dist * Math.sin(this.angle), this.posY, this.axisZ + dist * Math.cos(this.angle));
+						if (this.particleAge <= 40) {
+							this.setAlphaF(this.particleAge / 40.0f);
+						}
+						if (this.particleAge > 80) {
+							this.setRBGColorF(this.particleRed + (0.0f - this.particleRed) / 10.0f, this.particleGreen + (1.0f - this.particleGreen) / 10.0f, this.particleBlue + (1.0f - this.particleBlue) / 10.0f);
+						}
+					}
+
+					@Override
+					public int getFXLayer() {
+						return 0;
+					}
+				});
+			}
 		}
 	}
 }

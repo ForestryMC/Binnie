@@ -9,6 +9,7 @@ import forestry.api.core.INbtWritable;
 import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.List;
 
@@ -51,7 +52,7 @@ public class GeneItem implements INbtReadable, INbtWritable, IGeneItem {
 	@Override
 	public void getInfo(final List list) {
 		final String chromosomeName = this.getBreedingSystem().getChromosomeName(this.gene.getChromosome());
-		list.add("§6" + chromosomeName + "§7: " + this.gene.getName());
+		list.add(TextFormatting.GOLD +chromosomeName + TextFormatting.GRAY + ": " + this.gene.getName());
 	}
 
 	public BreedingSystem getBreedingSystem() {

@@ -56,8 +56,8 @@ public enum GeneticMachine implements IMachineType {
 		}
 
 		@Override
-		public void renderMachine(final Machine machine, final double x, final double y, final double z, final float var8) {
-			MachineRendererGenetics.instance.renderMachine(machine, this.colour, this.renderTexture, x, y, z, var8);
+		public void renderMachine(Machine machine, double x, double y, double z, float partialTicks, int destroyStage) {
+			MachineRendererGenetics.instance.renderMachine(machine, x, y, z, partialTicks, destroyStage);
 		}
 	}
 }

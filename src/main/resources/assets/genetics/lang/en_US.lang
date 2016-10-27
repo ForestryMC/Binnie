@@ -30,7 +30,12 @@ genetics.machine.labMachine.acclimatiser=Acclimatiser
 genetics.machine.advMachine.splicer=Splicer
 genetics.machine.advMachine.splicer.info=The Splicer is an incredibly powerful machine that is used to insert genes into individuals. This process is fast, but requires monumental amounts of power.
 
-
+genetic.item.gene.empty=Empty
+genetic.item.gene.charge=Charge
+genetic.item.gene.charges=Charges
+genetic.item.gene.serum=Serum
+genetic.item.gene.serum.corrupted=Corrupted Serum
+genetic.item.gene.more.genes=more genes. Hold shift to display.
 
 
 genetics.item.sequence=DNA Sequence

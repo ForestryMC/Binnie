@@ -61,8 +61,8 @@ public enum AlvearyMachine implements IMachineType {
 		}
 
 		@Override
-		public void renderMachine(final Machine machine, final double x, final double y, final double z, final float var8) {
-			MachineRendererBlock.instance.renderMachine(this.machineTexture, x, y, z, var8);
+		public void renderMachine(Machine machine, double x, double y, double z, float partialTicks, int destroyStage) {
+			MachineRendererBlock.instance.renderMachine(this.machineTexture, x, y, z, partialTicks);
 		}
 	}
 }

@@ -31,6 +31,7 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.entity.item.EntityItem;
@@ -39,6 +40,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -275,7 +277,7 @@ public class Inoculator {
 		}
 	}
 
-	public static class ComponentInoculatorFX extends MachineComponent implements IRender.RandomDisplayTick, IRender.DisplayTick, IRender.Render, INetwork.TilePacketSync {
+	public static class ComponentInoculatorFX extends MachineComponent implements IRender.DisplayTick, IRender.Render, INetwork.TilePacketSync {
 		private final EntityItem dummyEntityItem;
 
 		public ComponentInoculatorFX(final IMachine machine) {
@@ -285,59 +287,54 @@ public class Inoculator {
 
 		@SideOnly(Side.CLIENT)
 		@Override
-		public void onRandomDisplayTick(final World world, final int x, final int y, final int z, final Random rand) {
+		public void onDisplayTick(World world, BlockPos pos, Random rand) {
+			final int tick = (int) (world.getTotalWorldTime() % 3L);
+			if (tick == 0 && this.getUtil().getProcess().isInProgress()) {
+				BinnieCore.proxy.getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.5, pos.getY() + 0.92, pos.getZ() + 0.5, 0.0, 0.0, 0.0) {
+					double axisX = this.posX;
+					double axisZ = this.posZ;
+					double angle = (int) (this.worldObj.getTotalWorldTime() % 4L) * 0.5 * 3.1415;
+
+					{
+						this.axisX = 0.0;
+						this.axisZ = 0.0;
+						this.angle = 0.0;
+						this.motionX = 0.0;
+						this.motionZ = 0.0;
+						this.motionY = 0.007 + this.rand.nextDouble() * 0.002;
+						this.particleMaxAge = 240;
+						this.particleGravity = 0.0f;
+						this.field_190017_n = true;
+						this.setRBGColorF(0.8f, 0.0f, 1.0f);
+					}
+
+					@Override
+					public void onUpdate() {
+						super.onUpdate();
+						double speed = 5.0E-4;
+						if (this.particleAge > 60) {
+							speed += (this.particleAge - 60) / 4000.0f;
+						}
+						this.angle += speed;
+						final double dist = 0.27;
+						this.setPosition(this.axisX + dist * Math.sin(this.angle), this.posY, this.axisZ + dist * Math.cos(this.angle));
+						this.setAlphaF((float) Math.cos(1.57 * this.particleAge / this.particleMaxAge));
+						if (this.particleAge > 40) {
+							this.setRBGColorF(this.particleRed + (1.0f - this.particleRed) / 10.0f, this.particleGreen + (0.0f - this.particleGreen) / 10.0f, this.particleBlue + (0.0f - this.particleBlue) / 10.0f);
+						}
+					}
+
+					@Override
+					public int getFXLayer() {
+						return 0;
+					}
+				});
+			}
 		}
 
 		@SideOnly(Side.CLIENT)
 		@Override
-		public void onDisplayTick(final World world, final int x, final int y, final int z, final Random rand) {
-//			final int tick = (int) (world.getTotalWorldTime() % 3L);
-//			if (tick == 0 && this.getUtil().getProcess().isInProgress()) {
-//				BinnieCore.proxy.getMinecraftInstance().effectRenderer.addEffect(new EntityFX(world, x + 0.5, y + 0.92, z + 0.5, 0.0, 0.0, 0.0) {
-//					double axisX = this.posX;
-//					double axisZ = this.posZ;
-//					double angle = (int) (this.worldObj.getTotalWorldTime() % 4L) * 0.5 * 3.1415;
-//
-//					{
-//						this.axisX = 0.0;
-//						this.axisZ = 0.0;
-//						this.angle = 0.0;
-//						this.motionX = 0.0;
-//						this.motionZ = 0.0;
-//						this.motionY = 0.007 + this.rand.nextDouble() * 0.002;
-//						this.particleMaxAge = 240;
-//						this.particleGravity = 0.0f;
-//						this.noClip = true;
-//						this.setRBGColorF(0.8f, 0.0f, 1.0f);
-//					}
-//
-//					@Override
-//					public void onUpdate() {
-//						super.onUpdate();
-//						double speed = 5.0E-4;
-//						if (this.particleAge > 60) {
-//							speed += (this.particleAge - 60) / 4000.0f;
-//						}
-//						this.angle += speed;
-//						final double dist = 0.27;
-//						this.setPosition(this.axisX + dist * Math.sin(this.angle), this.posY, this.axisZ + dist * Math.cos(this.angle));
-//						this.setAlphaF((float) Math.cos(1.57 * this.particleAge / this.particleMaxAge));
-//						if (this.particleAge > 40) {
-//							this.setRBGColorF(this.particleRed + (1.0f - this.particleRed) / 10.0f, this.particleGreen + (0.0f - this.particleGreen) / 10.0f, this.particleBlue + (0.0f - this.particleBlue) / 10.0f);
-//						}
-//					}
-//
-//					@Override
-//					public int getFXLayer() {
-//						return 0;
-//					}
-//				});
-//			}
-		}
-
-		@SideOnly(Side.CLIENT)
-		@Override
-		public void renderInWorld(final RenderItem customRenderItem, final double x, final double y, final double z) {
+		public void renderInWorld(final double x, final double y, final double z) {
 			if (!this.getUtil().getProcess().isInProgress()) {
 				return;
 			}
@@ -357,7 +354,7 @@ public class Inoculator {
 			GL11.glPushMatrix();
 			GL11.glRotatef(180.0f, 0.0f, 0.0f, 1.0f);
 			GL11.glTranslatef(0.0f, -0.25f, 0.0f);
-			customRenderItem.renderItem(this.dummyEntityItem.getEntityItem(), ItemCameraTransforms.TransformType.FIXED); //, 0.0, 0.0, 0.0, 0.0f, 0.0f);
+			BinnieCore.proxy.getMinecraftInstance().getRenderItem().renderItem(this.dummyEntityItem.getEntityItem(), ItemCameraTransforms.TransformType.FIXED); //, 0.0, 0.0, 0.0, 0.0f, 0.0f);
 			GL11.glPopMatrix();
 		}
 
