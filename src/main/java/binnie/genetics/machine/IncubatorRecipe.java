@@ -13,7 +13,7 @@ import java.util.Random;
 public class IncubatorRecipe implements IIncubatorRecipe {
     private final FluidStack input;
     private final FluidStack output;
-    private final List<ItemStack> itemStacks;
+    private final ItemStack itemStack;
     private final float lossChance;
     private final float tickChance;
     private ItemStack outputStack;
@@ -23,7 +23,7 @@ public class IncubatorRecipe implements IIncubatorRecipe {
     }
 
     public IncubatorRecipe(ItemStack itemStack, final FluidStack input, final FluidStack output, final float lossChance, final float chance) {
-        this.itemStacks = Collections.singletonList(itemStack);
+        this.itemStack = itemStack;
         this.input = input;
         this.output = output;
         this.lossChance = lossChance;
@@ -33,6 +33,11 @@ public class IncubatorRecipe implements IIncubatorRecipe {
     @Override
     public float getChance() {
         return this.tickChance;
+    }
+
+    @Override
+    public float getLossChance() {
+        return lossChance;
     }
 
     @Override
@@ -56,8 +61,13 @@ public class IncubatorRecipe implements IIncubatorRecipe {
     }
 
     @Override
-    public List<ItemStack> getValidItemStacks() {
-        return Collections.unmodifiableList(itemStacks);
+    public ItemStack getInputStack() {
+        return itemStack;
+    }
+
+    @Override
+    public ItemStack getExpectedOutput() {
+        return outputStack;
     }
 
     @Override
@@ -84,7 +94,7 @@ public class IncubatorRecipe implements IIncubatorRecipe {
     }
 
     protected ItemStack getOutputStack(final MachineUtil util) {
-        return this.outputStack;
+        return getExpectedOutput();
     }
 
     @Override

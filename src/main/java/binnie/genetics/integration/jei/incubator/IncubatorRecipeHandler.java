@@ -2,6 +2,7 @@ package binnie.genetics.integration.jei.incubator;
 
 import binnie.genetics.api.IIncubatorRecipe;
 import binnie.genetics.integration.jei.RecipeUids;
+import binnie.genetics.machine.IncubatorRecipeLarvae;
 import mezz.jei.api.recipe.IRecipeHandler;
 import mezz.jei.api.recipe.IRecipeWrapper;
 
@@ -28,6 +29,6 @@ public class IncubatorRecipeHandler implements IRecipeHandler<IIncubatorRecipe> 
 
     @Override
     public boolean isRecipeValid(IIncubatorRecipe recipe) {
-        return true;
+        return !(recipe instanceof IncubatorRecipeLarvae);
     }
 }

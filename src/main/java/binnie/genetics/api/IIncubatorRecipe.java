@@ -4,6 +4,7 @@ import binnie.core.machines.MachineUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public interface IIncubatorRecipe {
@@ -14,11 +15,14 @@ public interface IIncubatorRecipe {
     void doTask(final MachineUtil p0);
 
     float getChance();
+    float getLossChance();
 
     boolean roomForOutput(final MachineUtil p0);
 
     FluidStack getInput();
     FluidStack getOutput();
 
-    List<ItemStack> getValidItemStacks();
+    ItemStack getInputStack();
+    @Nullable
+    ItemStack getExpectedOutput();
 }

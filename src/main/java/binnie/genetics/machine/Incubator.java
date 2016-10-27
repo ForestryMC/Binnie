@@ -26,7 +26,9 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -39,6 +41,7 @@ public class Incubator {
     public static final int tankInput = 0;
     public static final int tankOutput = 1;
     private static List<IIncubatorRecipe> RECIPES = new ArrayList<>();
+    private static IncubatorRecipeLarvae LARVAE_RECIPE;
 
     public static void addRecipes() {
         Incubator.RECIPES.add(new IncubatorRecipe(GeneticsItems.GrowthMedium.get(1), Binnie.Liquid.getFluidStack("water", 25), GeneticLiquid.GrowthMedium.get(25), 0.2f));
@@ -51,12 +54,17 @@ public class Incubator {
         Incubator.RECIPES.add(new IncubatorRecipe(new ItemStack(Items.DYE, 1, 15), GeneticLiquid.Bacteria.get(10), GeneticLiquid.BacteriaPoly.get(10), 0.1f));
         Incubator.RECIPES.add( new IncubatorRecipe(new ItemStack(Items.BLAZE_POWDER), GeneticLiquid.Bacteria.get(10), GeneticLiquid.BacteriaVector.get(10), 0.05f));
         if (BinnieCore.isApicultureActive()) {
-            Incubator.RECIPES.add(new IncubatorRecipe(Mods.Forestry.stack("beeLarvaeGE"), GeneticLiquid.GrowthMedium.get(50), null, 1.0f, 0.05f) {
+            Incubator.RECIPES.add(LARVAE_RECIPE = new IncubatorRecipeLarvae(Mods.Forestry.stack("beeLarvaeGE", 1, OreDictionary.WILDCARD_VALUE), GeneticLiquid.GrowthMedium.get(50), null, 1.0f, 0.05f) {
                 @Override
                 public ItemStack getOutputStack(final MachineUtil machine) {
                     final ItemStack larvae = machine.getStack(3);
                     final IBee bee = Binnie.Genetics.getBeeRoot().getMember(larvae);
                     return Binnie.Genetics.getBeeRoot().getMemberStack(bee, EnumBeeType.DRONE);
+                }
+
+                @Override
+                public ItemStack getExpectedOutput() {
+                    return Mods.Forestry.stack("beeDroneGE", 1, OreDictionary.WILDCARD_VALUE);
                 }
             });
         }
@@ -64,6 +72,11 @@ public class Incubator {
 
     public static List<IIncubatorRecipe> getRecipes() {
         return Collections.unmodifiableList(RECIPES);
+    }
+
+    @Nullable
+    public static IncubatorRecipeLarvae getLarvaeRecipe() {
+        return LARVAE_RECIPE;
     }
 
     public static class PackageIncubator extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
@@ -161,12 +174,7 @@ public class Incubator {
         }
 
         private static boolean isStackValid(ItemStack stack, IIncubatorRecipe recipe) {
-            for (ItemStack validItemStack : recipe.getValidItemStacks()) {
-                if (ItemStack.areItemsEqual(validItemStack, stack)) {
-                    return true;
-                }
-            }
-            return false;
+            return ItemStack.areItemsEqual(recipe.getInputStack(), stack);
         }
 
         @Override
