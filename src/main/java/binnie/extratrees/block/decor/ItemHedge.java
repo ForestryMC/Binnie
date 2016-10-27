@@ -13,6 +13,7 @@ public class ItemHedge extends ItemBlock {
     @Override
     public String getItemStackDisplayName(final ItemStack item) {
         final int meta = item.getItemDamage();
-        return ExtraTreeSpecies.LeafType.values()[meta % 6].descript + ((meta >= 8) ? " Full" : "") + " Hedge";
+        //TODO Fix to proper name
+        return "" ;//ExtraTreeSpecies.LeafType.values()[meta % 6].descript + ((meta >= 8) ? " Full" : "") + " Hedge";
     }
 }

@@ -126,9 +126,9 @@ public class BlockHedge extends Block implements IBlockFence {
 //	public void registerBlockIcons(final IIconRegister p_149651_1_) {
 //	}
 
-    private ExtraTreeSpecies.LeafType getType(final int meta) {
-        return ExtraTreeSpecies.LeafType.values()[meta % 8];
-    }
+//    private ExtraTreeSpecies.LeafType getType(final int meta) {
+//        return ExtraTreeSpecies.LeafType.values()[meta % 8];
+//    }
 
     private boolean isFull(final int meta) {
         return meta / 8 > 0;
@@ -158,10 +158,11 @@ public class BlockHedge extends Block implements IBlockFence {
 //	}
 
     public static int getColor(final int meta) {
-        final ExtraTreeSpecies.LeafType type = ExtraTreeSpecies.LeafType.values()[meta % 6];
-        if (type == ExtraTreeSpecies.LeafType.Conifer) {
-            return ColorizerFoliage.getFoliageColorPine();
-        }
+        //TODO fix color
+//        final ExtraTreeSpecies.LeafType type = ExtraTreeSpecies.LeafType.values()[meta % 6];
+//        if (type == ExtraTreeSpecies.LeafType.Conifer) {
+//            return ColorizerFoliage.getFoliageColorPine();
+//        }
         final double d0 = 0.5;
         final double d2 = 1.0;
         return ColorizerFoliage.getFoliageColor(d0, d2);

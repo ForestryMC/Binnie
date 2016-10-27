@@ -7,6 +7,8 @@ import binnie.core.genetics.ForestryAllele;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.EnumExtraTreeLog;
 import binnie.extratrees.gen.*;
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
 import com.mojang.authlib.GameProfile;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.arboriculture.*;
@@ -39,6 +41,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
 import java.util.List;
+import java.util.function.BiFunction;
+import java.util.stream.Collectors;
 
 public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IGermlingIconProvider
 {
@@ -140,7 +144,7 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
     public static final ExtraTreeSpecies Candlenut = new ExtraTreeSpecies("aleurites", "moluccana", 9085804, 9085804, 5456154, EnumVanillaWoodType.JUNGLE, ExtraTreeFruitGene.Candlenut, SaplingType.Default, WorldGenLazy.Tree.class);
     public static final ExtraTreeSpecies DwarfHazel = new ExtraTreeSpecies("Corylus", "americana", 10204498, 10215762, 11180143, EnumExtraTreeLog.Hazel, ExtraTreeFruitGene.Hazelnut, SaplingType.Shrub, WorldGenShrub.Shrub.class);
 
-    private LeafType leafType;
+    private EnumLeafType leafType;
     private SaplingType saplingType;
     ArrayList<IFruitFamily> families;
     int girth;
@@ -156,7 +160,8 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
     IClassification branch;
 
     private static LinkedList<ExtraTreeSpecies> list;
-    private static HashMap<ExtraTreeSpecies, String> namesMap;
+    private static BiMap<ExtraTreeSpecies, String> namesMap;
+    private static Map<String, ExtraTreeSpecies> revNamesMap;
 
     public static List<ExtraTreeSpecies> values() {
         if (list == null) {
@@ -175,9 +180,18 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
         return list;
     }
 
+    public static Map<String, ExtraTreeSpecies> names(){
+        if(revNamesMap == null){
+            TreeMap m = new TreeMap<String, ExtraTreeSpecies>(String.CASE_INSENSITIVE_ORDER);
+            m.putAll(namesMap.inverse());
+            revNamesMap = m;
+        }
+        return revNamesMap;
+    }
+
     public String getSpeciesName() {
         if (namesMap == null) {
-            namesMap = new HashMap<>();
+            namesMap = HashBiMap.create();
             for (Field f : ExtraTreeSpecies.class.getFields()) {
                 if (f.getType() == ExtraTreeSpecies.class) {
                     try {
@@ -187,6 +201,7 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
                     }
                 }
             }
+
         }
         String value = namesMap.get(this);
         if (value == null || value.isEmpty()) {
@@ -221,19 +236,19 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
                 ExtraTreeSpecies.Lime, ExtraTreeSpecies.KeyLime, ExtraTreeSpecies.FingerLime, ExtraTreeSpecies.Pomelo,
                 ExtraTreeSpecies.Grapefruit, ExtraTreeSpecies.Kumquat, ExtraTreeSpecies.Citron, ExtraTreeSpecies.BuddhaHand};
         for (final ExtraTreeSpecies species3 : arr$3) {
-            species3.setLeafType(LeafType.Jungle);
+            species3.setLeafType(EnumLeafType.JUNGLE);
             species3.saplingType = SaplingType.Fruit;
             final IAlleleTreeSpecies citrus2 = (IAlleleTreeSpecies) AlleleManager.alleleRegistry.getAllele("forestry.treeLemon");
             species3.setWorldGen(citrus2.getGenerator().getWorldGenerator(TreeManager.treeRoot.templateAsIndividual(citrus2.getRoot().getDefaultTemplate())).getClass());
             species3.finished();
         }
-        ExtraTreeSpecies.Banana.setLeafType(LeafType.Palm);
-        ExtraTreeSpecies.RedBanana.setLeafType(LeafType.Palm);
-        ExtraTreeSpecies.Plantain.setLeafType(LeafType.Palm);
+        ExtraTreeSpecies.Banana.setLeafType(EnumLeafType.PALM);
+        ExtraTreeSpecies.RedBanana.setLeafType(EnumLeafType.PALM);
+        ExtraTreeSpecies.Plantain.setLeafType(EnumLeafType.PALM);
         ExtraTreeSpecies.Banana.finished();
         ExtraTreeSpecies.RedBanana.finished();
         ExtraTreeSpecies.Plantain.finished();
-        ExtraTreeSpecies.Hemlock.setLeafType(LeafType.Conifer);
+        ExtraTreeSpecies.Hemlock.setLeafType(EnumLeafType.CONIFERS);
         ExtraTreeSpecies.Butternut.finished();
         ExtraTreeSpecies.Butternut.setGirth(2);
         ExtraTreeSpecies.Rowan.finished();
@@ -244,9 +259,9 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
         ExtraTreeSpecies.Beech.finished();
         ExtraTreeSpecies.CopperBeech.finished();
         ExtraTreeSpecies.Aspen.finished();
-        ExtraTreeSpecies.Yew.setLeafType(LeafType.Conifer);
-        ExtraTreeSpecies.Cypress.setLeafType(LeafType.Conifer);
-        ExtraTreeSpecies.DouglasFir.setLeafType(LeafType.Conifer);
+        ExtraTreeSpecies.Yew.setLeafType(EnumLeafType.CONIFERS);
+        ExtraTreeSpecies.Cypress.setLeafType(EnumLeafType.CONIFERS);
+        ExtraTreeSpecies.DouglasFir.setLeafType(EnumLeafType.CONIFERS);
         ExtraTreeSpecies.Yew.finished();
         ExtraTreeSpecies.Cypress.finished();
         ExtraTreeSpecies.Cypress.saplingType = SaplingType.Poplar;
@@ -259,9 +274,9 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
         ExtraTreeSpecies.Whitebeam.finished();
         ExtraTreeSpecies.Hawthorn.finished();
         ExtraTreeSpecies.Pecan.finished();
-        ExtraTreeSpecies.Fir.setLeafType(LeafType.Conifer);
-        ExtraTreeSpecies.Cedar.setLeafType(LeafType.Conifer);
-        ExtraTreeSpecies.Sallow.setLeafType(LeafType.Willow);
+        ExtraTreeSpecies.Fir.setLeafType(EnumLeafType.CONIFERS);
+        ExtraTreeSpecies.Cedar.setLeafType(EnumLeafType.CONIFERS);
+        ExtraTreeSpecies.Sallow.setLeafType(EnumLeafType.WILLOW);
         ExtraTreeSpecies.Elm.finished();
         ExtraTreeSpecies.Elder.finished();
         ExtraTreeSpecies.Holly.finished();
@@ -272,9 +287,9 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
         ExtraTreeSpecies.Fir.finished();
         ExtraTreeSpecies.Cedar.finished();
         ExtraTreeSpecies.Cedar.setGirth(2);
-        ExtraTreeSpecies.RedMaple.setLeafType(LeafType.Maple);
-        ExtraTreeSpecies.BalsamFir.setLeafType(LeafType.Conifer);
-        ExtraTreeSpecies.LoblollyPine.setLeafType(LeafType.Conifer);
+        ExtraTreeSpecies.RedMaple.setLeafType(EnumLeafType.MAPLE);
+        ExtraTreeSpecies.BalsamFir.setLeafType(EnumLeafType.CONIFERS);
+        ExtraTreeSpecies.LoblollyPine.setLeafType(EnumLeafType.CONIFERS);
         ExtraTreeSpecies.Olive.finished();
         ExtraTreeSpecies.RedMaple.finished();
         ExtraTreeSpecies.BalsamFir.finished();
@@ -282,25 +297,25 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
         ExtraTreeSpecies.Sweetgum.finished();
         ExtraTreeSpecies.Locust.finished();
         ExtraTreeSpecies.Pear.finished();
-        ExtraTreeSpecies.OsangeOsange.setLeafType(LeafType.Jungle);
-        ExtraTreeSpecies.OldFustic.setLeafType(LeafType.Jungle);
-        ExtraTreeSpecies.Brazilwood.setLeafType(LeafType.Jungle);
-        ExtraTreeSpecies.Logwood.setLeafType(LeafType.Jungle);
-        ExtraTreeSpecies.Rosewood.setLeafType(LeafType.Jungle);
-        ExtraTreeSpecies.Purpleheart.setLeafType(LeafType.Jungle);
+        ExtraTreeSpecies.OsangeOsange.setLeafType(EnumLeafType.JUNGLE);
+        ExtraTreeSpecies.OldFustic.setLeafType(EnumLeafType.JUNGLE);
+        ExtraTreeSpecies.Brazilwood.setLeafType(EnumLeafType.JUNGLE);
+        ExtraTreeSpecies.Logwood.setLeafType(EnumLeafType.JUNGLE);
+        ExtraTreeSpecies.Rosewood.setLeafType(EnumLeafType.JUNGLE);
+        ExtraTreeSpecies.Purpleheart.setLeafType(EnumLeafType.JUNGLE);
         ExtraTreeSpecies.OsangeOsange.finished();
         ExtraTreeSpecies.OldFustic.finished();
         ExtraTreeSpecies.Brazilwood.finished();
         ExtraTreeSpecies.Logwood.finished();
         ExtraTreeSpecies.Rosewood.finished();
         ExtraTreeSpecies.Purpleheart.finished();
-        ExtraTreeSpecies.Gingko.setLeafType(LeafType.Jungle);
-        ExtraTreeSpecies.Brazilnut.setLeafType(LeafType.Jungle);
-        ExtraTreeSpecies.RoseGum.setLeafType(LeafType.Jungle);
-        ExtraTreeSpecies.SwampGum.setLeafType(LeafType.Jungle);
-        ExtraTreeSpecies.Coffee.setLeafType(LeafType.Jungle);
-        ExtraTreeSpecies.MonkeyPuzzle.setLeafType(LeafType.Conifer);
-        ExtraTreeSpecies.RainbowGum.setLeafType(LeafType.Jungle);
+        ExtraTreeSpecies.Gingko.setLeafType(EnumLeafType.JUNGLE);
+        ExtraTreeSpecies.Brazilnut.setLeafType(EnumLeafType.JUNGLE);
+        ExtraTreeSpecies.RoseGum.setLeafType(EnumLeafType.JUNGLE);
+        ExtraTreeSpecies.SwampGum.setLeafType(EnumLeafType.JUNGLE);
+        ExtraTreeSpecies.Coffee.setLeafType(EnumLeafType.JUNGLE);
+        ExtraTreeSpecies.MonkeyPuzzle.setLeafType(EnumLeafType.CONIFERS);
+        ExtraTreeSpecies.RainbowGum.setLeafType(EnumLeafType.JUNGLE);
         ExtraTreeSpecies.Iroko.finished();
         ExtraTreeSpecies.Gingko.finished();
         ExtraTreeSpecies.Brazilnut.finished();
@@ -314,7 +329,7 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
         ExtraTreeSpecies.MonkeyPuzzle.setGirth(2);
         ExtraTreeSpecies.RainbowGum.finished();
         ExtraTreeSpecies.PinkIvory.finished();
-        ExtraTreeSpecies.Juniper.setLeafType(LeafType.Conifer);
+        ExtraTreeSpecies.Juniper.setLeafType(EnumLeafType.CONIFERS);
         ExtraTreeSpecies.Blackcurrant.saplingType = SaplingType.Shrub;
         ExtraTreeSpecies.Redcurrant.saplingType = SaplingType.Shrub;
         ExtraTreeSpecies.Blackberry.saplingType = SaplingType.Shrub;
@@ -333,16 +348,16 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
             }
             (species3.branch = branch).addMemberSpecies(species3);
         }
-        ExtraTreeSpecies.Cinnamon.setLeafType(LeafType.Jungle);
-        ExtraTreeSpecies.Coconut.setLeafType(LeafType.Palm);
-        ExtraTreeSpecies.Cashew.setLeafType(LeafType.Jungle);
-        ExtraTreeSpecies.Avacado.setLeafType(LeafType.Jungle);
-        ExtraTreeSpecies.Nutmeg.setLeafType(LeafType.Jungle);
-        ExtraTreeSpecies.Allspice.setLeafType(LeafType.Jungle);
-        ExtraTreeSpecies.Chilli.setLeafType(LeafType.Jungle);
-        ExtraTreeSpecies.StarAnise.setLeafType(LeafType.Jungle);
-        ExtraTreeSpecies.Mango.setLeafType(LeafType.Jungle);
-        ExtraTreeSpecies.Starfruit.setLeafType(LeafType.Jungle);
+        ExtraTreeSpecies.Cinnamon.setLeafType(EnumLeafType.JUNGLE);
+        ExtraTreeSpecies.Coconut.setLeafType(EnumLeafType.PALM);
+        ExtraTreeSpecies.Cashew.setLeafType(EnumLeafType.JUNGLE);
+        ExtraTreeSpecies.Avacado.setLeafType(EnumLeafType.JUNGLE);
+        ExtraTreeSpecies.Nutmeg.setLeafType(EnumLeafType.JUNGLE);
+        ExtraTreeSpecies.Allspice.setLeafType(EnumLeafType.JUNGLE);
+        ExtraTreeSpecies.Chilli.setLeafType(EnumLeafType.JUNGLE);
+        ExtraTreeSpecies.StarAnise.setLeafType(EnumLeafType.JUNGLE);
+        ExtraTreeSpecies.Mango.setLeafType(EnumLeafType.JUNGLE);
+        ExtraTreeSpecies.Starfruit.setLeafType(EnumLeafType.JUNGLE);
         final IFruitFamily familyPrune = AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes");
         final IFruitFamily familyPome = AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes");
         final IFruitFamily familyJungle = AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle");
@@ -582,7 +597,7 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
     int woodColor;
 
     private ExtraTreeSpecies(final String branch, final String binomial, final int color, final int polColor, final int woodColor, final IWoodType wood, final IAlleleFruit fruit, SaplingType saplingType, final Class<? extends WorldGenerator> gen) {
-        this.leafType = LeafType.Normal;
+        this.leafType = EnumLeafType.DECIDUOUS;
         this.saplingType = saplingType;
         this.families = new ArrayList<>();
         this.girth = 1;
@@ -608,7 +623,7 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
 
     @Override
     public int getSpriteColour(int renderPass) {
-        return color;
+        return getGermlingColour(EnumGermlingType.SAPLING, renderPass);
     }
 
     @Override
@@ -630,18 +645,7 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
     @Nonnull
     @Override
     public ILeafSpriteProvider getLeafSpriteProvider() {
-        return new ILeafSpriteProvider() {
-            @Nonnull
-            @Override
-            public ResourceLocation getSprite(boolean pollinated, boolean fancy) {
-                return new ResourceLocation("asd");
-            }
-
-            @Override
-            public int getColor(boolean pollinated) {
-                return colorPollineted;
-            }
-        };
+        return TreeManager.treeFactory.getLeafIconProvider(leafType,new Color(color), new Color(colorPollineted));
     }
 
     @Nonnull
@@ -797,15 +801,15 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
         return new WorldGenDefault(tree);
     }
 
-    void setLeafType(final LeafType type) {
+    void setLeafType(final EnumLeafType type) {
         this.leafType = type;
-        if (this.leafType == LeafType.Conifer) {
+        if (this.leafType == EnumLeafType.CONIFERS) {
             this.saplingType = SaplingType.Conifer;
         }
-        if (this.leafType == LeafType.Jungle) {
+        if (this.leafType == EnumLeafType.JUNGLE) {
             this.saplingType = SaplingType.Jungle;
         }
-        if (this.leafType == LeafType.Palm) {
+        if (this.leafType == EnumLeafType.PALM) {
             this.saplingType = SaplingType.Palm;
         }
     }
@@ -879,15 +883,15 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
         return this.color;
     }
 
-    public short getLeafIconIndex(final ITree tree, final boolean fancy) {
-        if (!fancy) {
-            return this.leafType.plainUID;
-        }
-        if (tree.getMate() != null) {
-            return this.leafType.changedUID;
-        }
-        return this.leafType.fancyUID;
-    }
+//    public short getLeafIconIndex(final ITree tree, final boolean fancy) {
+//        if (!fancy) {
+//            return this.leafType.plainUID;
+//        }
+//        if (tree.getMate() != null) {
+//            return this.leafType.changedUID;
+//        }
+//        return this.leafType.fancyUID;
+//    }
 
 //	@Override
 //	public int getIconColour(final int renderPass) {
@@ -1031,27 +1035,6 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
     @Override
     public String getUnlocalizedName() {
         return "extratrees.species." + this.getUID() + ".name";
-    }
-
-    public enum LeafType {
-        Normal((short) 10, (short) 11, (short) 12, "Deciduous"),
-        Conifer((short) 15, (short) 16, (short) 17, "Conifers"),
-        Jungle((short) 20, (short) 21, (short) 22, "Jungle"),
-        Willow((short) 25, (short) 26, (short) 27, "Willow"),
-        Maple((short) 30, (short) 31, (short) 32, "Maple"),
-        Palm((short) 35, (short) 36, (short) 37, "Palm");
-
-        public final short fancyUID;
-        public final short plainUID;
-        public final short changedUID;
-        public final String descript;
-
-        LeafType(final short fancyUID, final short plainUID, final short changedUID, final String descript) {
-            this.fancyUID = fancyUID;
-            this.plainUID = plainUID;
-            this.changedUID = changedUID;
-            this.descript = descript;
-        }
     }
 
     public enum SaplingType {
