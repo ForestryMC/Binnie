@@ -3,10 +3,7 @@ package binnie.core.liquid;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
-public interface IFluidType {
-//	IIcon getIcon();
-//
-//	void registerIcon(final IIconRegister p0);
+public interface IFluidType{
 
     ResourceLocation getFlowing();
 

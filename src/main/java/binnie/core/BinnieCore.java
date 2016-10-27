@@ -30,6 +30,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -61,6 +62,7 @@ public final class BinnieCore extends AbstractMod {
 
     @Mod.EventHandler
     public void preInit(final FMLPreInitializationEvent evt) {
+    	MinecraftForge.EVENT_BUS.register(Binnie.Liquid);
         Binnie.Configuration.registerConfiguration(ConfigurationMods.class, this);
         for (final FluidContainer container : FluidContainer.values()) {
             final Item item = new ItemFluidContainer(container);

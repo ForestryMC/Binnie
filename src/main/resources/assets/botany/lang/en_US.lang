@@ -183,6 +183,10 @@ botany.gui.database.tab.breeder=Breeder
 botany.gui.database.tab.colour.resultant=Resultant Mixes
 botany.gui.database.tab.colour.further=Further Mixes
 
+botany.flowers.species.not.discover=Flower has not been discovered by you. Breed this flower yourself to discover.
+botany.flowers.species.hybrid=Hybrid
+botany.flowers.species.germling=Germling
+botany.flowers.species.wilting=Shame it is Wilting!
 botany.flowers.species.Dandelion=Dandelion
 botany.flowers.species.Poppy=Poppy
 botany.flowers.species.Orchid=Orchid

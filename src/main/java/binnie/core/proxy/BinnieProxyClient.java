@@ -71,7 +71,6 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
         ModelLoader.setCustomModelResourceLocation(item, meta, modelResourceLocation);
     }
 
-
     @Override
     public void bindTexture(final BinnieResource texture) {
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);

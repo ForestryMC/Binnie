@@ -1,8 +1,13 @@
 package binnie.core.liquid;
 
 import binnie.core.ManagerBase;
+import forestry.core.render.TextureManager;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -40,18 +45,6 @@ public class ManagerLiquid extends ManagerBase {
         return FluidRegistry.getFluidStack(name.toLowerCase(), amount);
     }
 
-//	@SideOnly(Side.CLIENT)
-//	public void reloadIcons(final IIconRegister register) {
-//		for (final IFluidType type : this.fluids.values()) {
-//			final Fluid fluid = this.getLiquidStack(type.getIdentifier(), 1).getFluid();
-//			type.registerIcon(register);
-//			if (fluid == null) {
-//				throw new RuntimeException("[Binnie] Liquid not registered properly - " + type.getIdentifier());
-//			}
-//			fluid.setIcons(type.getIcon());
-//		}
-//	}
-
     @Override
     public void init() {
     }
@@ -69,5 +62,14 @@ public class ManagerLiquid extends ManagerBase {
 
     public IFluidType getFluidType(final String liquid) {
         return this.fluids.get(liquid.toLowerCase());
+    }
+    
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public void registerSprites(TextureStitchEvent event){
+    	 for (IFluidType fluid : this.fluids.values()) {
+    		 TextureManager.registerSprite(fluid.getFlowing());
+    		 TextureManager.registerSprite(fluid.getStill());
+    	 }
     }
 }
