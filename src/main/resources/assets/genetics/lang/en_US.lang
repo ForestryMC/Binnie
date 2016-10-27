@@ -33,9 +33,16 @@ genetics.machine.labMachine.analyser=Analyser
 genetics.machine.labMachine.analyser.info=The Analyser takes breedable individuals and DNA sequencers and analyses them to determine the genes present. This requires DNA Dye, created from purple dye and glowstone
 
 genetics.machine.labMachine.incubator=Incubator
-genetics.machine.labMachine.incubator.info=The Incubator combines liquids and items and allows them to sit at an ideal temperature to encourage bacterial growth. 
+genetics.machine.labMachine.incubator.info=The Incubator combines liquids and items and allows them to sit at an ideal temperature to encourage bacterial growth.
+genetics.machine.labMachine.incubator.no.recipe=No Recipe
+genetics.machine.labMachine.incubator.no.recipe.info=There is no valid recipe
+genetics.machine.labMachine.incubator.no.liquid=Not enough incubation liquid
+genetics.machine.labMachine.incubator.no.room=No room for output
 
 genetics.machine.labMachine.acclimatiser=Acclimatiser
+genetics.machine.labMachine.acclimatiser.no.individual=No Individual to Acclimatise
+genetics.machine.labMachine.acclimatiser.no.item=No Acclimatising Items
+genetics.machine.labMachine.acclimatiser.can.not.acclimatise=Cannot Acclimatise this individual with these items
 
 genetics.machine.advMachine.splicer=Splicer
 genetics.machine.advMachine.splicer.info=The Splicer is an incredibly powerful machine that is used to insert genes into individuals. This process is fast, but requires monumental amounts of power.

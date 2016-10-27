@@ -11,7 +11,6 @@ import forestry.api.apiculture.EnumBeeType;
 import forestry.api.apiculture.IBee;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nullable;
@@ -62,11 +61,6 @@ public class Incubator {
 	@Nullable
 	public static IncubatorRecipeLarvae getLarvaeRecipe() {
 		return LARVAE_RECIPE;
-	}
-
-	private class IncubatorCrafting {
-		ItemStack input;
-		FluidStack fluid;
 	}
 
 }

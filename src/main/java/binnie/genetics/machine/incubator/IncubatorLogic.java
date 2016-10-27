@@ -7,6 +7,7 @@ import binnie.core.machines.power.ComponentProcessIndefinate;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import binnie.core.machines.transfer.TransferRequest;
+import binnie.genetics.Genetics;
 import binnie.genetics.api.IIncubatorRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
@@ -26,7 +27,7 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 	@Override
 	public ErrorState canWork() {
 		if (this.recipe == null) {
-			return new ErrorState("No Recipe", "There is no valid recipe");
+			return new ErrorState(Genetics.proxy.localise("machine.labMachine.incubator.no.recipe"), Genetics.proxy.localise("machine.labMachine.incubator.no.recipe.info"));
 		}
 		return super.canWork();
 	}

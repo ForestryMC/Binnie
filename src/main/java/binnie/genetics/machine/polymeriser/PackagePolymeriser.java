@@ -50,8 +50,8 @@ public class PackagePolymeriser extends GeneticMachine.PackageGeneticBase implem
 			slot.setReadOnly();
 		}
 		ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
-		transfer.addRestock(Polymeriser.SLOT_SERUM_RESERVE, 0, 1);
-		transfer.addStorage(0, Polymeriser.SLOT_SERUM_FINISHED, new ComponentInventoryTransfer.Condition() {
+		transfer.addRestock(Polymeriser.SLOT_SERUM_RESERVE, Polymeriser.SLOT_SERUM, 1);
+		transfer.addStorage(Polymeriser.SLOT_SERUM, Polymeriser.SLOT_SERUM_FINISHED, new ComponentInventoryTransfer.Condition() {
 			@Override
 			public boolean fufilled(final ItemStack stack) {
 				return !stack.isItemDamaged();
