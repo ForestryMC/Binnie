@@ -15,10 +15,12 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.wrapper.InvWrapper;
 
 import javax.annotation.Nullable;
 
@@ -192,36 +194,6 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 	}
 
 	@Override
-	public int fill(final EnumFacing from, final FluidStack resource, final boolean doFill) {
-		return this.getTankContainer().fill(from, resource, doFill);
-	}
-
-	@Override
-	public FluidStack drain(final EnumFacing from, final FluidStack resource, final boolean doDrain) {
-		return this.getTankContainer().drain(from, resource, doDrain);
-	}
-
-	@Override
-	public FluidStack drain(final EnumFacing from, final int maxDrain, final boolean doDrain) {
-		return this.getTankContainer().drain(from, maxDrain, doDrain);
-	}
-
-	@Override
-	public boolean canFill(final EnumFacing from, final Fluid fluid) {
-		return this.getTankContainer().canFill(from, fluid);
-	}
-
-	@Override
-	public boolean canDrain(final EnumFacing from, final Fluid fluid) {
-		return this.getTankContainer().canDrain(from, fluid);
-	}
-
-	@Override
-	public FluidTankInfo[] getTankInfo(final EnumFacing from) {
-		return this.getTankContainer().getTankInfo(from);
-	}
-
-	@Override
 	public IFluidTank[] getTanks() {
 		return this.getTankContainer().getTanks();
 	}
@@ -282,13 +254,17 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		return (capability == CapabilityEnergy.ENERGY && (canExtract() || canReceive())) || super.hasCapability(capability, facing);
+		return (capability == CapabilityEnergy.ENERGY && (canExtract() || canReceive())) || capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
 	}
 
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
 		if (capability == CapabilityEnergy.ENERGY) {
-			return (T) this;
+			return CapabilityEnergy.ENERGY.cast(this);
+		}else  if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
+			return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(new InvWrapper(getInventory()));
+		}else if(capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
+			return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(getHandler(facing));
 		}
 		return super.getCapability(capability, facing);
 	}
@@ -301,6 +277,11 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 	@Override
 	public void update() {
 
+	}
+
+	@Override
+	public IFluidHandler getHandler(EnumFacing from) {
+		return getTankContainer().getHandler(from);
 	}
 
 }

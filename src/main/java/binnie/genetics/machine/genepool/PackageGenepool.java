@@ -18,6 +18,7 @@ import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.GeneticMachine;
 import binnie.genetics.machine.ModuleMachine;
+import forestry.core.fluids.Fluids;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -50,12 +51,12 @@ public class PackageGenepool extends GeneticMachine.PackageGeneticBase implement
 		tankEthanol.setValidator(new TankValidator() {
 			@Override
 			public String getTooltip() {
-				return FluidRegistry.getFluidStack("bio.ethanol", 1).getLocalizedName();
+				return FluidRegistry.getFluidStack(Fluids.BIO_ETHANOL.getTag(), 1).getLocalizedName();
 			}
 
 			@Override
 			public boolean isValid(final FluidStack stack) {
-				return "bio.ethanol".equals(stack.getFluid().getName());
+				return Fluids.BIO_ETHANOL.getTag().equals(stack.getFluid().getName());
 			}
 		});
 		ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);

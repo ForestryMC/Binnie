@@ -11,18 +11,28 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.capability.FluidTankProperties;
+import net.minecraftforge.fluids.capability.FluidTankPropertiesWrapper;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ComponentTankContainer extends MachineComponent implements ITankMachine {
 	private Map<Integer, TankSlot> tanks;
+	private EnumMap<EnumFacing, IFluidHandler> handlers;
 
 	public ComponentTankContainer(final IMachine machine) {
 		super(machine);
 		this.tanks = new LinkedHashMap<>();
+		this.handlers = new EnumMap<>(EnumFacing.class);
+		for(EnumFacing facing : EnumFacing.VALUES){
+			handlers.put(facing, new TankContainer(facing));
+		}
 	}
 
 	@Override
@@ -30,24 +40,6 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 		TankSlot tank = new TankSlot(index, name, capacity);
 		this.tanks.put(index, tank);
 		return tank;
-	}
-
-	@Override
-	public final int fill(final EnumFacing from, final FluidStack resource, final boolean doFill) {
-		final int index = this.getTankIndexToFill(from, resource);
-		if (this.tanks.containsKey(index)) {
-			return this.fill(index, resource, doFill);
-		}
-		return 0;
-	}
-
-	@Override
-	public final FluidStack drain(final EnumFacing from, final int maxDrain, final boolean doDrain) {
-		final int index = this.getTankIndexToDrain(from, null);
-		if (this.tanks.containsKey(index)) {
-			return this.drain(index, maxDrain, doDrain);
-		}
-		return null;
 	}
 
 	private final int fill(final int tankIndex, final FluidStack resource, final boolean doFill) {
@@ -159,37 +151,59 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 		return this.tanks.get(index);
 	}
 
-	@Override
-	public FluidStack drain(final EnumFacing from, final FluidStack resource, final boolean doDrain) {
-		final int index = this.getTankIndexToDrain(from, null);
-		if (this.tanks.containsKey(index)) {
-			return this.drain(index, resource.amount, doDrain);
-		}
-		return null;
-	}
-
-	@Override
-	public boolean canFill(final EnumFacing from, final Fluid fluid) {
-		return this.fill(from, new FluidStack(fluid, 1), false) > 0;
-	}
-
-	@Override
-	public boolean canDrain(final EnumFacing from, final Fluid fluid) {
-		return this.drain(from, new FluidStack(fluid, 1), false) != null;
-	}
-
-	@Override
-	public FluidTankInfo[] getTankInfo(final EnumFacing from) {
-		final FluidTankInfo[] info = new FluidTankInfo[this.getTanks().length];
-		for (int i = 0; i < info.length; ++i) {
-			info[i] = new FluidTankInfo(this.getTanks()[i]);
-		}
-		return info;
-	}
-
 	public void markDirty() {
 		if (this.getMachine() != null) {
 			this.getMachine().markDirty();
+		}
+	}
+	
+	@Override
+	public IFluidHandler getHandler(EnumFacing from) {
+		return handlers.get(from);
+	}
+	
+	private class TankContainer implements IFluidHandler{
+		EnumFacing from;
+		
+		public TankContainer(EnumFacing from) {
+			this.from = from;
+		}
+		
+		@Override
+		public final int fill(final FluidStack resource, final boolean doFill) {
+			final int index = getTankIndexToFill(from, resource);
+			if (tanks.containsKey(index)) {
+				return ComponentTankContainer.this.fill(index, resource, doFill);
+			}
+			return 0;
+		}
+		
+		@Override
+		public FluidStack drain(final FluidStack resource, final boolean doDrain) {
+			final int index = getTankIndexToDrain(from, null);
+			if (tanks.containsKey(index)) {
+				return ComponentTankContainer.this.drain(index, resource.amount, doDrain);
+			}
+			return null;
+		}
+
+		@Override
+		public final FluidStack drain(final int maxDrain, final boolean doDrain) {
+			final int index = getTankIndexToDrain(from, null);
+			if (tanks.containsKey(index)) {
+				return ComponentTankContainer.this.drain(index, maxDrain, doDrain);
+			}
+			return null;
+		}
+		
+		@Override
+		public IFluidTankProperties[] getTankProperties() {
+			final IFluidTankProperties[] properties = new IFluidTankProperties[getTanks().length];
+			for (int i = 0; i < properties.length; ++i) {
+				IFluidTank tank = getTanks()[i];
+				properties[i] = new FluidTankProperties(tank.getFluid(), tank.getCapacity());
+			}
+			return properties;
 		}
 	}
 }
