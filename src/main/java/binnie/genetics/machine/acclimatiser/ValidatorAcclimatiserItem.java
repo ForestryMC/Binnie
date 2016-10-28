@@ -1,6 +1,7 @@
 package binnie.genetics.machine.acclimatiser;
 
 import binnie.core.machines.inventory.SlotValidator;
+import binnie.genetics.Genetics;
 import net.minecraft.item.ItemStack;
 
 public class ValidatorAcclimatiserItem extends SlotValidator {
@@ -20,6 +21,6 @@ public class ValidatorAcclimatiserItem extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return "Acclimatising Items";
+		return Genetics.proxy.localise("machine.labMachine.acclimatiser.tooltips.slots.acclimatising");
 	}
 }

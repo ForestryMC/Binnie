@@ -37,8 +37,12 @@ public class InoculatorLogic extends ComponentProcessSetCost implements IProcess
 
 	@Override
 	public String getTooltip() {
-		final int n = this.getNumberOfGenes();
-		return "Inoculating with " + n + " gene" + ((n > 1) ? "s" : "");
+		int n = this.getNumberOfGenes();
+		if(n > 1){
+			return String.format(Genetics.proxy.localise("genetics.machine.machine.inoculator.tooltips.logic.genes"), Integer.valueOf(n).toString());
+		}else{
+			return Genetics.proxy.localise("genetics.machine.machine.inoculator.tooltips.logic.gene");
+		}
 	}
 
 	public InoculatorLogic(final Machine machine) {
@@ -49,17 +53,17 @@ public class InoculatorLogic extends ComponentProcessSetCost implements IProcess
 	@Override
 	public ErrorState canWork() {
 		if (this.getUtil().isSlotEmpty(Inoculator.SLOT_TARGET)) {
-			return new ErrorState.NoItem(Genetics.proxy.localise("machine.machine.inoculator.no.individual"), Inoculator.SLOT_TARGET);
+			return new ErrorState.NoItem(Genetics.proxy.localise("machine.machine.inoculator.errors.no.individual.desc"), Inoculator.SLOT_TARGET);
 		}
 		if (this.getUtil().isSlotEmpty(Inoculator.SLOT_SERUM_VIAL)) {
-			return new ErrorState.NoItem(Genetics.proxy.localise("machine.machine.inoculator.no.serum"), Inoculator.SLOT_SERUM_VIAL);
+			return new ErrorState.NoItem(Genetics.proxy.localise("machine.errors.no.serum.desc"), Inoculator.SLOT_SERUM_VIAL);
 		}
 		final ErrorState state = this.isValidSerum();
 		if (state != null) {
 			return state;
 		}
-		if (this.getUtil().getStack(0) != null && Engineering.getCharges(this.getUtil().getStack(Inoculator.SLOT_SERUM_VIAL)) == 0) {
-			return new ErrorState(Genetics.proxy.localise("machine.machine.inoculator.empty.serum"), Genetics.proxy.localise("machine.machine.inoculator.empty.serum.info"));
+		if (this.getUtil().getStack(Inoculator.SLOT_SERUM_VIAL) != null && Engineering.getCharges(this.getUtil().getStack(Inoculator.SLOT_SERUM_VIAL)) == 0) {
+			return new ErrorState(Genetics.proxy.localise("machine.errors.empty.serum.desc"), Genetics.proxy.localise("machine.errors.empty.serum.info"));
 		}
 		return super.canWork();
 	}
@@ -69,10 +73,10 @@ public class InoculatorLogic extends ComponentProcessSetCost implements IProcess
 		final ItemStack target = this.getUtil().getStack(Inoculator.SLOT_TARGET);
 		final IGene[] genes = Engineering.getGenes(serum);
 		if (genes.length == 0) {
-			return new ErrorState(Genetics.proxy.localise("machine.machine.inoculator.invalid.serum"), Genetics.proxy.localise("machine.machine.inoculator.invalid.serum.no.genes"));
+			return new ErrorState(Genetics.proxy.localise("machine.errors.invalid.serum.desc"), Genetics.proxy.localise("machine.errors.invalid.serum.no.genes.info"));
 		}
 		if (!genes[0].getSpeciesRoot().isMember(target)) {
-			return new ErrorState(Genetics.proxy.localise("machine.machine.inoculator.invalid.serum"), Genetics.proxy.localise("machine.machine.inoculator.invalid.serum.mismatch"));
+			return new ErrorState(Genetics.proxy.localise("machine.errors.invalid.serum.desc"), Genetics.proxy.localise("machine.errors.invalid.serum.mismatch.info"));
 		}
 		final IIndividual individual = genes[0].getSpeciesRoot().getMember(target);
 		boolean hasAll = true;
@@ -84,7 +88,7 @@ public class InoculatorLogic extends ComponentProcessSetCost implements IProcess
 			}
 		}
 		if (hasAll) {
-			return new ErrorState("Defunct Serum", "Individual already possesses this allele");
+			return new ErrorState(Genetics.proxy.localise("genetics.machine.errors.defunct.serum.desc"), Genetics.proxy.localise("genetics.machine.errors.defunct.serum.info"));
 		}
 		return null;
 	}

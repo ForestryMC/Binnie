@@ -17,11 +17,11 @@ public class AnalyserLogic extends ComponentProcessSetCost implements IProcess {
 	@Override
 	public ErrorState canWork() {
 		if (this.getUtil().isSlotEmpty(Analyser.SLOT_TARGET)) {
-			return new ErrorState.NoItem("No item to analyse", Analyser.SLOT_TARGET);
+			return new ErrorState.NoItem(Genetics.proxy.localise("machine.labMachine.analyser.errors.no.item.desc"), Analyser.SLOT_TARGET);
 		}
 		final boolean analysed = Analyser.isAnalysed(this.getUtil().getStack(Analyser.SLOT_TARGET));
 		if (analysed) {
-			return new ErrorState.InvalidItem(Genetics.proxy.localise("machine.labMachine.analyser.already.analysed"), Genetics.proxy.localise("machine.labMachine.analyser.already.analysed.info"), Analyser.SLOT_TARGET);
+			return new ErrorState.InvalidItem(Genetics.proxy.localise("machine.labMachine.analyser.errors.already.analysed.desc"), Genetics.proxy.localise("machine.labMachine.analyser.errors.already.analysed.info"), Analyser.SLOT_TARGET);
 		}
 		return super.canWork();
 	}
@@ -29,7 +29,7 @@ public class AnalyserLogic extends ComponentProcessSetCost implements IProcess {
 	@Override
 	public ErrorState canProgress() {
 		if (this.getUtil().getSlotCharge(Analyser.SLOT_DYE) == 0.0f) {
-			return new ErrorState.Item(Genetics.proxy.localise("machine.labMachine.analyser.insufficient.dye"), Genetics.proxy.localise("machine.labMachine.analyser.insufficient.dye.info"), new int[]{13});
+			return new ErrorState.Item(Genetics.proxy.localise("machine.labMachine.analyser.errors.insufficient.dye.desc"), Genetics.proxy.localise("machine.labMachine.analyser.errors.insufficient.dye.info"), new int[]{13});
 		}
 		return super.canProgress();
 	}

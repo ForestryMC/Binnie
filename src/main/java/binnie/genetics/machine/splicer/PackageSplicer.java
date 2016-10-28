@@ -8,6 +8,7 @@ import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.craftgui.minecraft.IMachineInformation;
+import binnie.genetics.Genetics;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsTexture;
@@ -38,7 +39,7 @@ public class PackageSplicer extends AdvGeneticMachine.PackageAdvGeneticBase impl
 
 			@Override
 			public String getTooltip() {
-				return "Serum Vials & Arrays";
+				return Genetics.proxy.localise("genetics.machine.advMachine.splicer.tooltips.slots.serum");
 			}
 		};
 		slotSerumVial.setValidator(serumValid);
@@ -64,8 +65,8 @@ public class PackageSplicer extends AdvGeneticMachine.PackageAdvGeneticBase impl
 			slot.setValidator(new ValidatorIndividualInoculate());
 		}
 		final ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
-		transfer.addRestock(Splicer.SLOT_RESERVE, 9, 1);
-		transfer.addRestock(Splicer.SLOT_SERUM_RESERVE, 0);
+		transfer.addRestock(Splicer.SLOT_RESERVE, Splicer.SLOT_TARGET, 1);
+		transfer.addRestock(Splicer.SLOT_SERUM_RESERVE, Splicer.SLOT_SERUM_VIAL);
 		transfer.addStorage(Splicer.SLOT_SERUM_VIAL, Splicer.SLOT_SERUM_EXPENDED, new ComponentInventoryTransfer.Condition() {
 			@Override
 			public boolean fufilled(final ItemStack stack) {
@@ -75,7 +76,7 @@ public class PackageSplicer extends AdvGeneticMachine.PackageAdvGeneticBase impl
 		transfer.addStorage(Splicer.SLOT_TARGET, Splicer.SLOT_FINISHED, new ComponentInventoryTransfer.Condition() {
 			@Override
 			public boolean fufilled(final ItemStack stack) {
-				return stack != null && this.transfer.getMachine().getMachineUtil().getStack(0) != null && this.transfer.getMachine().getInterface(SplicerLogic.class).isValidSerum() != null;
+				return stack != null && this.transfer.getMachine().getMachineUtil().getStack(Splicer.SLOT_SERUM_VIAL) != null && this.transfer.getMachine().getInterface(SplicerLogic.class).isValidSerum() != null;
 			}
 		});
 		new ComponentPowerReceptor(machine, 20000);

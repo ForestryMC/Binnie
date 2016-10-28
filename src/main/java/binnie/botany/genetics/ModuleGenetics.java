@@ -36,6 +36,10 @@ public class ModuleGenetics implements IInitializable {
 		Botany.pollen = new ItemBotany("pollen", EnumFlowerStage.POLLEN, "pollen");
 		Botany.seed = new ItemBotany("seed", EnumFlowerStage.SEED, "germling");
 		Botany.database = new ItemDictionary();
+		Botany.proxy.registerItem(Botany.flowerItem);
+		Botany.proxy.registerItem(Botany.pollen);
+		Botany.proxy.registerItem(Botany.seed);
+		Botany.proxy.registerItem(Botany.database);
 	}
 
 	@Override

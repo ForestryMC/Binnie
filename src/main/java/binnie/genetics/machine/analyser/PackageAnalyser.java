@@ -45,7 +45,7 @@ public class PackageAnalyser extends GeneticMachine.PackageGeneticBase implement
 
 			@Override
 			public String getTooltip() {
-				return "DNA Dye";
+				return GeneticsItems.DNADye.get(1).getDisplayName();
 			}
 		});
 		for (InventorySlot slot : inventory.addSlotArray(Analyser.SLOT_FINISHED, "output")) {

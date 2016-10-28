@@ -65,19 +65,19 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 	public String getTooltip() {
 		int n = this.getNumberOfGenes();
 		if(n > 1){
-			return Genetics.proxy.localise("machine.machine.polymeriser.logic.genes").replaceAll("%GENES", Integer.valueOf(n).toString());
+			return String.format(Genetics.proxy.localise("genetics.machine.machine.polymeriser.tooltips.logic.genes"), Integer.valueOf(n).toString());
 		}else{
-			return Genetics.proxy.localise("machine.machine.polymeriser.logic.gene");
+			return Genetics.proxy.localise("genetics.machine.machine.polymeriser.tooltips.logic.gene");
 		}
 	}
 
 	@Override
 	public ErrorState canWork() {
 		if (this.getUtil().isSlotEmpty(Polymeriser.SLOT_SERUM)) {
-			return new ErrorState.NoItem(Genetics.proxy.localise("machine.machine.polymeriser.logic.item.no"), Polymeriser.SLOT_SERUM);
+			return new ErrorState.NoItem(Genetics.proxy.localise("machine.machine.polymeriser.errors.item.no"), Polymeriser.SLOT_SERUM);
 		}
 		if (!this.getUtil().getStack(Polymeriser.SLOT_SERUM).isItemDamaged()) {
-			return new ErrorState.InvalidItem(Genetics.proxy.localise("machine.machine.polymeriser.logic.item.filled"), Polymeriser.SLOT_SERUM);
+			return new ErrorState.InvalidItem(Genetics.proxy.localise("machine.machine.polymeriser.errors.item.filled"), Polymeriser.SLOT_SERUM);
 		}
 		return super.canWork();
 	}
@@ -85,10 +85,10 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 	@Override
 	public ErrorState canProgress() {
 		if (this.getUtil().getFluid(Polymeriser.TANK_BACTERIA) == null) {
-			return new ErrorState.InsufficientLiquid(Genetics.proxy.localise("machine.machine.polymeriser.logic.insufficient.bacteria"), Polymeriser.TANK_BACTERIA);
+			return new ErrorState.InsufficientLiquid(Genetics.proxy.localise("machine.machine.polymeriser.errors.insufficient.bacteria"), Polymeriser.TANK_BACTERIA);
 		}
 		if (this.getUtil().getFluid(Polymeriser.TANK_DNA) == null) {
-			return new ErrorState.InsufficientLiquid(Genetics.proxy.localise("machine.machine.polymeriser.logic.insufficient.dna"), Polymeriser.TANK_DNA);
+			return new ErrorState.InsufficientLiquid(Genetics.proxy.localise("machine.machine.polymeriser.errors.insufficient.dna"), Polymeriser.TANK_DNA);
 		}
 		return super.canProgress();
 	}

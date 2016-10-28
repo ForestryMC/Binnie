@@ -11,7 +11,6 @@ import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.machines.inventory.Validator;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.craftgui.minecraft.IMachineInformation;
-import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.item.GeneticLiquid;
@@ -66,7 +65,7 @@ public class PackagePolymeriser extends GeneticMachine.PackageGeneticBase implem
 
 			@Override
 			public String getTooltip() {
-				return Genetics.proxy.localise("machine.machine.polymeriser.tank.bacteria.info");
+				return GeneticLiquid.BacteriaPoly.get(1).getLocalizedName();
 			}
 		});
 		tank.addTank(Polymeriser.TANK_DNA, "input", 1000).setValidator(new Validator<FluidStack>() {
@@ -77,7 +76,7 @@ public class PackagePolymeriser extends GeneticMachine.PackageGeneticBase implem
 
 			@Override
 			public String getTooltip() {
-				return Genetics.proxy.localise("machine.machine.polymeriser.tank.dna.info");
+				return GeneticLiquid.RawDNA.get(1).getLocalizedName();
 			}
 		});
 		new ComponentChargedSlots(machine).addCharge(1);

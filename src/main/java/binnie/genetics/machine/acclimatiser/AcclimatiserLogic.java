@@ -17,10 +17,10 @@ public class AcclimatiserLogic extends ComponentProcessIndefinate {
 	@Override
 	public ErrorState canWork() {
 		if (this.getUtil().getStack(Acclimatiser.SLOT_TARGET) == null) {
-			return new ErrorState.NoItem(Genetics.proxy.localise("machine.labMachine.acclimatiser.no.individual"), Acclimatiser.SLOT_TARGET);
+			return new ErrorState.NoItem(Genetics.proxy.localise("machine.labMachine.acclimatiser.errors.no.individual.desc"), Acclimatiser.SLOT_TARGET);
 		}
 		if (this.getUtil().getNonNullStacks(Acclimatiser.SLOT_ACCLIMATISER).isEmpty()) {
-			return new ErrorState.NoItem(Genetics.proxy.localise("machine.labMachine.acclimatiser.no.item"), Acclimatiser.SLOT_ACCLIMATISER);
+			return new ErrorState.NoItem(Genetics.proxy.localise("machine.labMachine.acclimatiser.errors.no.item.desc"), Acclimatiser.SLOT_ACCLIMATISER);
 		}
 		return super.canWork();
 	}
@@ -28,7 +28,7 @@ public class AcclimatiserLogic extends ComponentProcessIndefinate {
 	@Override
 	public ErrorState canProgress() {
 		if (!Acclimatiser.canAcclimatise(this.getUtil().getStack(Acclimatiser.SLOT_TARGET), this.getUtil().getNonNullStacks(Acclimatiser.SLOT_ACCLIMATISER))) {
-			return new ErrorState.InvalidItem(Genetics.proxy.localise("machine.labMachine.acclimatiser.can.not.acclimatise"), Acclimatiser.SLOT_TARGET);
+			return new ErrorState.InvalidItem(Genetics.proxy.localise("machine.labMachine.acclimatiser.errors.can.not.acclimatise.desc"), Acclimatiser.SLOT_TARGET);
 		}
 		return super.canProgress();
 	}

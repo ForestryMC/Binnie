@@ -204,6 +204,13 @@ binniecore.machine.storage.compartmentCopper=Copper Compartment
 binniecore.machine.storage.compartmentBronze=Bronze Compartment
 binniecore.machine.storage.compartmentGold=Gold Compartment
 
+binniecore.machine.tooltips.processing=Processing
+
+binniecore.machine.errors.task.cancelled.desc=Task Cancelled
+binniecore.machine.errors.task.cancelled.info=Cancelled by Buildcraft Gate
+binniecore.machine.errors.task.process.paused.desc=Process Paused
+binniecore.machine.errors.task.process.paused.info=Paused by Buildcraft Gate
+
 < %1$s is the name of the pattern >
 binniecore.gui.designer.pattern=%1$s Pattern
 

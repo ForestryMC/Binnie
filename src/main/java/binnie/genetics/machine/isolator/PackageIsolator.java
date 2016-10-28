@@ -12,6 +12,7 @@ import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.machines.inventory.TankValidator;
 import binnie.core.machines.power.ComponentPowerReceptor;
+import binnie.core.util.Fluids;
 import binnie.craftgui.minecraft.IMachineInformation;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsTexture;
@@ -20,6 +21,7 @@ import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.GeneticMachine;
 import binnie.genetics.machine.ModuleMachine;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 public class PackageIsolator extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
@@ -56,12 +58,12 @@ public class PackageIsolator extends GeneticMachine.PackageGeneticBase implement
 		tanks.addTank(Isolator.TANK_ETHANOL, "input", 1000).setValidator(new TankValidator() {
 			@Override
 			public String getTooltip() {
-				return "Ethanol";
+				return FluidRegistry.getFluidStack(Fluids.BIO_ETHANOL, 1).getLocalizedName();
 			}
 
 			@Override
 			public boolean isValid(final FluidStack stack) {
-				return Objects.equals(stack.getFluid().getName(), "bioethanol");
+				return Objects.equals(stack.getFluid().getName(), Fluids.BIO_ETHANOL);
 			}
 		});
 		final ComponentChargedSlots chargedSlots = new ComponentChargedSlots(machine);

@@ -37,7 +37,7 @@ public class SequencerLogic extends ComponentProcess implements IProcess {
 	@Override
 	public ErrorState canWork() {
 		if (this.getUtil().isSlotEmpty(Sequencer.SLOT_TARGET)) {
-			return new ErrorState.NoItem(Genetics.proxy.localise("machine.machine.sequencer.no.dna"), 5);
+			return new ErrorState.NoItem(Genetics.proxy.localise("machine.machine.sequencer.errors.no.dna"), 5);
 		}
 		return super.canWork();
 	}
@@ -45,13 +45,13 @@ public class SequencerLogic extends ComponentProcess implements IProcess {
 	@Override
 	public ErrorState canProgress() {
 		if (this.getMachine().getOwner() == null) {
-			return new ErrorState(Genetics.proxy.localise("machine.machine.sequencer.no.owner"), Genetics.proxy.localise("machine.machine.sequencer.no.owner.info"));
+			return new ErrorState(Genetics.proxy.localise("machine.errors.no.owner.desc"), Genetics.proxy.localise("machine.errors.no.owner.info"));
 		}
 		if (this.getUtil().getSlotCharge(Sequencer.SLOT_DYE) == 0.0f) {
-			return new ErrorState.NoItem(Genetics.proxy.localise("machine.machine.sequencer.insufficient.dye"), Sequencer.SLOT_DYE);
+			return new ErrorState.NoItem(Genetics.proxy.localise("machine.machine.sequencer.errors.insufficient.dye"), Sequencer.SLOT_DYE);
 		}
 		if (this.getUtil().getStack(Sequencer.SLOT_DRONE) != null && this.getUtil().getStack(Sequencer.SLOT_DRONE).stackSize >= 64) {
-			return new ErrorState.NoSpace(Genetics.proxy.localise("machine.machine.sequencer.no.space"), new int[]{Sequencer.SLOT_DRONE});
+			return new ErrorState.NoSpace(Genetics.proxy.localise("machine.machine.sequencer.errors.no.space"), new int[]{Sequencer.SLOT_DRONE});
 		}
 		return super.canProgress();
 	}

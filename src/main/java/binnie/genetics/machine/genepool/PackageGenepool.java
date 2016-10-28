@@ -19,6 +19,7 @@ import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.GeneticMachine;
 import binnie.genetics.machine.ModuleMachine;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 public class PackageGenepool extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
@@ -49,7 +50,7 @@ public class PackageGenepool extends GeneticMachine.PackageGeneticBase implement
 		tankEthanol.setValidator(new TankValidator() {
 			@Override
 			public String getTooltip() {
-				return "Ethanol";
+				return FluidRegistry.getFluidStack("bio.ethanol", 1).getLocalizedName();
 			}
 
 			@Override

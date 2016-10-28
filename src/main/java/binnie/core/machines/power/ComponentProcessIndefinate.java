@@ -1,5 +1,6 @@
 package binnie.core.machines.power;
 
+import binnie.core.BinnieCore;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
 import binnie.core.machines.network.INetwork;
@@ -73,13 +74,13 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 
 	@Override
 	public ErrorState canWork() {
-		return (this.actionCancelTask == 0.0f) ? null : new ErrorState("Task Cancelled", "Cancelled by Buildcraft Gate");
+		return (this.actionCancelTask == 0.0f) ? null : new ErrorState(BinnieCore.proxy.localise("machine.errors.task.cancelled.desc"), BinnieCore.proxy.localise("machine.errors.task.cancelled.info"));
 	}
 
 	@Override
 	public ErrorState canProgress() {
 		if (this.actionPauseProcess != 0.0f) {
-			return new ErrorState("Process Paused", "Paused by Buildcraft Gate");
+			return new ErrorState(BinnieCore.proxy.localise("machine.errors.task.process.paused.desc"), BinnieCore.proxy.localise("machine.errors.task.process.paused.info"));
 		}
 		return (this.getPower().getInterface().getEnergy(PowerSystem.RF) < this.getEnergyPerTick()) ? new ErrorState.InsufficientPower() : null;
 	}
@@ -102,7 +103,7 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 
 	@Override
 	public String getTooltip() {
-		return "Processing";
+		return BinnieCore.proxy.localise("machine.tooltips.processing");
 	}
 
 	@Override

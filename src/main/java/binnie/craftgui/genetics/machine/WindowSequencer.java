@@ -42,7 +42,7 @@ public class WindowSequencer extends WindowMachine {
 	@Override
 	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound action) {
 		if (side == Side.CLIENT && name.equals("username")) {
-			this.slotText.setValue("§8Genes will be sequenced by " + action.getString("username"));
+			this.slotText.setValue(TextFormatting.DARK_GRAY + String.format(Genetics.proxy.localise("machine.machine.sequencer.texts.sequenced.by"), action.getString("username")));
 		}
 		super.recieveGuiNBT(side, player, name, action);
 	}
@@ -57,7 +57,7 @@ public class WindowSequencer extends WindowMachine {
 		slotTarget.assign(5);
 		x = 34;
 		y = 92;
-		this.slotText = new ControlText(this, new IArea(0.0f, y, this.w(), 12.0f), TextFormatting.DARK_GRAY + Genetics.proxy.localise("machine.machine.sequencer.userless"), TextJustification.MiddleCenter);
+		this.slotText = new ControlText(this, new IArea(0.0f, y, this.w(), 12.0f), TextFormatting.DARK_GRAY + Genetics.proxy.localise("machine.machine.sequencer.texts.userless"), TextJustification.MiddleCenter);
 		y += 20;
 		final ControlSlot slotDye = new ControlSlot(this, x, y);
 		slotDye.assign(0);

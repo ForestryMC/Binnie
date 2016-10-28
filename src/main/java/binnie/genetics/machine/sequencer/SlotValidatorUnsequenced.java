@@ -22,6 +22,6 @@ public class SlotValidatorUnsequenced extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return "Unsequenced DNA";
+		return Genetics.proxy.localise("machine.machine.sequencer.tooltips.slots.unsequenced.dna");
 	}
 }

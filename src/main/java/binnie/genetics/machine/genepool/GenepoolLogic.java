@@ -27,7 +27,7 @@ public class GenepoolLogic extends ComponentProcessSetCost implements IProcess {
 	@Override
 	public ErrorState canWork() {
 		if (this.getUtil().isSlotEmpty(Genepool.SLOT_BEE)) {
-			return new ErrorState.NoItem(Genetics.proxy.localise("machine.labMachine.genepool.no.individual"), Genepool.SLOT_BEE);
+			return new ErrorState.NoItem(Genetics.proxy.localise("machine.errors.no.individual.desc"), Genepool.SLOT_BEE);
 		}
 		return super.canWork();
 	}
@@ -35,13 +35,13 @@ public class GenepoolLogic extends ComponentProcessSetCost implements IProcess {
 	@Override
 	public ErrorState canProgress() {
 		if (!this.getUtil().spaceInTank(Genepool.TANK_DNA, this.getDNAAmount(this.getUtil().getStack(0)))) {
-			return new ErrorState.NoSpace(Genetics.proxy.localise("machine.labMachine.genepool.no.room"), new int[]{0});
+			return new ErrorState.NoSpace(Genetics.proxy.localise("machine.errors.tanks.no.room.desc"), new int[]{0});
 		}
 		if (!this.getUtil().liquidInTank(Genepool.TANK_ETHANOL, 1)) {
-			return new ErrorState.InsufficientLiquid(Genetics.proxy.localise("machine.labMachine.genepool.not.enough.ethanol"), Genepool.TANK_ETHANOL);
+			return new ErrorState.InsufficientLiquid(Genetics.proxy.localise("machine.labMachine.genepool.errors.not.enough.ethanol.desc"), Genepool.TANK_ETHANOL);
 		}
 		if (this.getUtil().getSlotCharge(Genepool.SLOT_ENZYME) == 0.0f) {
-			return new ErrorState.NoItem(Genetics.proxy.localise("machine.labMachine.genepool.insufficient.enzyme"), Genepool.SLOT_ENZYME);
+			return new ErrorState.NoItem(Genetics.proxy.localise("machine.labMachine.genepool.errors.insufficient.enzyme.desc"), Genepool.SLOT_ENZYME);
 		}
 		return super.canProgress();
 	}
@@ -75,7 +75,7 @@ public class GenepoolLogic extends ComponentProcessSetCost implements IProcess {
 	protected void onTickTask() {
 		this.ethanolDrain += this.getDNAAmount(this.getUtil().getStack(Genepool.SLOT_BEE)) * 1.2f * this.getProgressPerTick() / 100.0f;
 		if (this.ethanolDrain >= 1.0f) {
-			this.getUtil().drainTank(1, 1);
+			this.getUtil().drainTank(Genepool.TANK_ETHANOL, 1);
 			--this.ethanolDrain;
 		}
 		this.getMachine().getInterface(IChargedSlots.class).alterCharge(Genepool.SLOT_ENZYME, -this.enzymePerProcess * this.getProgressPerTick() / 100.0f);

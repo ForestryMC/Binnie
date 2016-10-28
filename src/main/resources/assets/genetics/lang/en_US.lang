@@ -1,74 +1,86 @@
 ##################################################
 ## Machines
 
+genetics.machine.errors.no.owner.desc=No Owner
+genetics.machine.errors.no.owner.info=Replace this block to claim this machine
+genetics.machine.errors.no.serum.desc=No Serum
+genetics.machine.errors.no.enzyme.desc=No enzyme
+genetics.machine.errors.no.recipe.desc=No Recipe
+genetics.machine.errors.no.recipe.info=There is no valid recipe
+genetics.machine.errors.no.individual.desc=No Individual
+genetics.machine.errors.empty.serum.desc=Empty Serum
+genetics.machine.errors.empty.serum.info=Serum is empty
+genetics.machine.errors.invalid.serum.desc=Invalid Serum
+genetics.machine.errors.invalid.serum.mismatch.info=Mismatch of Serum Type and Target
+genetics.machine.errors.invalid.serum.no.genes.info=Serum does not hold any genes
+genetics.machine.errors.defunct.serum.desc=Defunct Serum
+genetics.machine.errors.defunct.serum.info=Individual already possesses this allele
+genetics.machine.errors.tanks.no.room.desc=Not enough room in Tank
+
 genetics.machine.machine.isolator=Isolator
 genetics.machine.machine.isolator.info=The Isolator takes a random allele from a bee, tree or other individual and copies it into an empty sequence vial. This requires the use of ethanol as a solvent and an enzyme to cut up the DNA. The unsequenced serums can then be amplified in a Polymeriser and sequenced in a Sequencer.
-genetics.machine.machine.isolator.no.individual=No individual to isolate
-genetics.machine.machine.isolator.no.room=No room for DNA sequences
-genetics.machine.machine.isolator.no.empty.sequencer=No empty sequencer vials
-genetics.machine.machine.isolator.insufficient.ethanol=Insufficient ethanol
-genetics.machine.machine.isolator.no.enzyme=No enzyme
+genetics.machine.machine.isolator.errors.no.individual.desc=No individual to isolate
+genetics.machine.machine.isolator.errors.no.room.desc=No room for DNA sequences
+genetics.machine.machine.isolator.errors.no.empty.sequencer.desc=No empty sequencer vials
+genetics.machine.machine.isolator.errors.insufficient.ethanol.desc=Insufficient ethanol
 
 genetics.machine.machine.sequencer=Sequencer
 genetics.machine.machine.sequencer.info=The Sequencer takes unsequenced serums and determines which allele is present in them. This process is slow and requires the use of fluorescent dye.
-genetics.machine.machine.sequencer.no.owner=No Owner
-genetics.machine.machine.sequencer.no.owner.info=Replace this block to claim this machine
-genetics.machine.machine.sequencer.insufficient.dye=Insufficient Dye
-genetics.machine.machine.sequencer.no.space=No space for empty sequences
-genetics.machine.machine.sequencer.no.dna=No DNA sequence
-genetics.machine.machine.sequencer.userless=Userless. Will not save sequences
+genetics.machine.machine.sequencer.errors.insufficient.dye=Insufficient Dye
+genetics.machine.machine.sequencer.errors.no.space=No space for empty sequences
+genetics.machine.machine.sequencer.errors.no.dna=No DNA sequence
+genetics.machine.machine.sequencer.texts.userless=Userless. Will not save sequences
+genetics.machine.machine.sequencer.texts.sequenced.by=Genes will be sequenced by %s
+genetics.machine.machine.sequencer.tooltips.slots.unsequenced.dna=Unsequenced DNA
 
 genetics.machine.machine.polymeriser=Polymeriser
 genetics.machine.machine.polymeriser.info=The Polymeriser fills empty serums with Raw DNA and replicating bacteria. This process can be accelerated using gold nuggets. 
-genetics.machine.machine.polymeriser.logic.gene=Replicating 1 genes
-genetics.machine.machine.polymeriser.logic.genes=Replicating %GENES geness
-genetics.machine.machine.polymeriser.logic.item.no=No item to replicate
-genetics.machine.machine.polymeriser.logic.item.filled=Item filled
-genetics.machine.machine.polymeriser.logic.insufficient.bacteria=Insufficient Bacteria
-genetics.machine.machine.polymeriser.logic.insufficient.dna=Insufficient DNA
-genetics.machine.machine.polymeriser.slot.unfilled=Unfilled Serum
-genetics.machine.machine.polymeriser.tank.bacteria.info=Polymerising Bacteria
-genetics.machine.machine.polymeriser.tank.dna.info=Raw DNA
+genetics.machine.machine.polymeriser.errors.item.no=No item to replicate
+genetics.machine.machine.polymeriser.errors.item.filled=Item filled
+genetics.machine.machine.polymeriser.errors.insufficient.bacteria=Insufficient Bacteria
+genetics.machine.machine.polymeriser.errors.insufficient.dna=Insufficient DNA
+genetics.machine.machine.polymeriser.tooltips.logic.gene=Replicating 1 genes
+genetics.machine.machine.polymeriser.tooltips.logic.genes=Replicating %s geness
+genetics.machine.machine.polymeriser.tooltips.slots.unfilled=Unfilled Serum
 
 genetics.machine.machine.inoculator=Inoculator
 genetics.machine.machine.inoculator.info=The Inoculator uses serums to add genes to breedable individuals. This process is very slow and requires a Bacteria Vector, but is always successful.  
-genetics.machine.machine.inoculator.no.individual=No Individual to Inoculate
-genetics.machine.machine.inoculator.no.serum=No Serum
-genetics.machine.machine.inoculator.empty.serum.info=Serum is empty
-genetics.machine.machine.inoculator.invalid.serum=Invalid Serum
-genetics.machine.machine.inoculator.invalid.serum.no.genes=Serum does not hold any genes
-genetics.machine.machine.inoculator.invalid.serum.mismatch=Mismatch of Serum Type and Target
+genetics.machine.machine.inoculator.errors.no.individual.desc=No Individual to Inoculate
+genetics.machine.machine.inoculator.tooltips.logic.gene=Inoculating with 1 gene
+genetics.machine.machine.inoculator.tooltips.logic.genes=Inoculating with %s genes
 
 genetics.machine.labMachine.genepool=Genepool
 genetics.machine.labMachine.genepool.info=The Genepool uses enzymes and ethanol to break down living things into DNA. During this process, all genetic information is lost and the source of the DNA is destroyed.
-genetics.machine.labMachine.genepool.no.individual=No Individual
-genetics.machine.labMachine.genepool.no.room=Not enough room in Tank
-genetics.machine.labMachine.genepool.not.enough.ethanol=Not enough Ethanol
-genetics.machine.labMachine.genepool.insufficient.enzyme=Insufficient Enzyme
+genetics.machine.labMachine.genepool.errors.not.enough.ethanol.desc=Not enough Ethanol
+genetics.machine.labMachine.genepool.errors.insufficient.enzyme.desc=Insufficient Enzyme
 
 genetics.machine.labMachine.labMachine=Lab Stand
 
 genetics.machine.labMachine.analyser=Analyser
 genetics.machine.labMachine.analyser.info=The Analyser takes breedable individuals and DNA sequencers and analyses them to determine the genes present. This requires DNA Dye, created from purple dye and glowstone
-genetics.machine.labMachine.analyser.insufficient.dye=Insufficient Dye
-genetics.machine.labMachine.analyser.insufficient.dye.info=Not enough DNA dye to analyse
-genetics.machine.labMachine.analyser.already.analysed=Already Analysed
-genetics.machine.labMachine.analyser.already.analysed.info=Item has already been analysed
+genetics.machine.labMachine.analyser.errors.insufficient.dye.desc=Insufficient Dye
+genetics.machine.labMachine.analyser.errors.insufficient.dye.info=Not enough DNA dye to analyse
+genetics.machine.labMachine.analyser.errors.already.analysed.desc=Already Analysed
+genetics.machine.labMachine.analyser.errors.already.analysed.info=Item has already been analysed
+genetics.machine.labMachine.analyser.errors.no.item.desc=No item to analyse
+genetics.machine.labMachine.analyser.tooltips.slots.unanalysed=Unanalysed Item
 
 genetics.machine.labMachine.incubator=Incubator
 genetics.machine.labMachine.incubator.info=The Incubator combines liquids and items and allows them to sit at an ideal temperature to encourage bacterial growth.
-genetics.machine.labMachine.incubator.no.recipe=No Recipe
-genetics.machine.labMachine.incubator.no.recipe.info=There is no valid recipe
-genetics.machine.labMachine.incubator.no.liquid=Not enough incubation liquid
-genetics.machine.labMachine.incubator.no.room=No room for output
+genetics.machine.labMachine.incubator.errors.no.liquid.desc=Not enough incubation liquid
+genetics.machine.labMachine.incubator.errors.no.room.desc=No room for output
 
 genetics.machine.labMachine.acclimatiser=Acclimatiser
-genetics.machine.labMachine.acclimatiser.no.individual=No Individual to Acclimatise
-genetics.machine.labMachine.acclimatiser.no.item=No Acclimatising Items
-genetics.machine.labMachine.acclimatiser.can.not.acclimatise=Cannot Acclimatise this individual with these items
+genetics.machine.labMachine.acclimatiser.errors.no.individual.desc=No Individual to Acclimatise
+genetics.machine.labMachine.acclimatiser.errors.no.item.desc=No Acclimatising Items
+genetics.machine.labMachine.acclimatiser.errors.can.not.acclimatise.desc=Cannot Acclimatise this individual with these items
+genetics.machine.labMachine.acclimatiser.tooltips.slots.acclimatising=Acclimatising Items
 
 genetics.machine.advMachine.splicer=Splicer
 genetics.machine.advMachine.splicer.info=The Splicer is an incredibly powerful machine that is used to insert genes into individuals. This process is fast, but requires monumental amounts of power.
+genetics.machine.advMachine.splicer.tooltips.slots.serum=Serum Vials & Arrays
+genetics.machine.advMachine.splicer.tooltips.slots.individual=Splicable Individual
+genetics.machine.advMachine.splicer.errors.no.individual.desc=No Individual to Splice
 
 genetic.item.gene.empty=Empty
 genetic.item.gene.charge=Charge

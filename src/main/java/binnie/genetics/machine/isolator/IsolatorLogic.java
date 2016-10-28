@@ -30,13 +30,13 @@ public class IsolatorLogic extends ComponentProcessSetCost implements IProcess {
 	@Override
 	public ErrorState canWork() {
 		if (this.getUtil().isSlotEmpty(Isolator.SLOT_TARGET)) {
-			return new ErrorState.NoItem(Genetics.proxy.localise("machine.machine.isolator.no.individual"), Isolator.SLOT_TARGET);
+			return new ErrorState.NoItem(Genetics.proxy.localise("machine.machine.isolator.errors.no.individual.desc"), Isolator.SLOT_TARGET);
 		}
 		if (!this.getUtil().isSlotEmpty(Isolator.SLOT_RESULUT)) {
-			return new ErrorState.NoSpace(Genetics.proxy.localise("machine.machine.isolator.no.room"), Isolator.SLOT_FINISHED);
+			return new ErrorState.NoSpace(Genetics.proxy.localise("machine.machine.isolator.errors.no.room.desc"), Isolator.SLOT_FINISHED);
 		}
 		if (this.getUtil().isSlotEmpty(Isolator.SLOT_SEQUENCER_VIAL)) {
-			return new ErrorState.NoItem(Genetics.proxy.localise("machine.machine.isolator.no.empty.sequencer"), Isolator.SLOT_SEQUENCER_VIAL);
+			return new ErrorState.NoItem(Genetics.proxy.localise("machine.machine.isolator.errors.no.empty.sequencer.desc"), Isolator.SLOT_SEQUENCER_VIAL);
 		}
 		return super.canWork();
 	}
@@ -44,10 +44,10 @@ public class IsolatorLogic extends ComponentProcessSetCost implements IProcess {
 	@Override
 	public ErrorState canProgress() {
 		if (!this.getUtil().liquidInTank(Isolator.TANK_ETHANOL, (int) this.ethanolPerProcess)) {
-			return new ErrorState.InsufficientLiquid(Genetics.proxy.localise("machine.machine.isolator.insufficient.ethanol"), Isolator.TANK_ETHANOL);
+			return new ErrorState.InsufficientLiquid(Genetics.proxy.localise("machine.machine.isolator.errors.insufficient.ethanol.desc"), Isolator.TANK_ETHANOL);
 		}
 		if (this.getUtil().getSlotCharge(Isolator.SLOT_ENZYME) == 0.0f) {
-			return new ErrorState.NoItem(Genetics.proxy.localise("machine.machine.isolator.no.enzyme"), Isolator.SLOT_ENZYME);
+			return new ErrorState.NoItem(Genetics.proxy.localise("machine.errors.no.enzyme.desc"), Isolator.SLOT_ENZYME);
 		}
 		return super.canProgress();
 	}
@@ -56,11 +56,11 @@ public class IsolatorLogic extends ComponentProcessSetCost implements IProcess {
 	protected void onFinishTask() {
 		super.onFinishTask();
 		final Random rand = this.getMachine().getWorld().rand;
-		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(this.getUtil().getStack(5));
+		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(this.getUtil().getStack(Isolator.SLOT_TARGET));
 		if (root == null) {
 			return;
 		}
-		final IIndividual individual = root.getMember(this.getUtil().getStack(5));
+		final IIndividual individual = root.getMember(this.getUtil().getStack(Isolator.SLOT_TARGET));
 		if (individual == null) {
 			return;
 		}

@@ -8,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 
 public enum FluidContainer {
-	Bucket,
 	Capsule,
 	Refractory,
 	Can,
@@ -20,7 +19,7 @@ public enum FluidContainer {
 	ItemFluidContainer item;
 
 	public int getMaxStackSize() {
-		return (this == FluidContainer.Bucket) ? 1 : 16;
+		return 16;
 	}
 
 //	@SideOnly(Side.CLIENT)
@@ -47,9 +46,6 @@ public enum FluidContainer {
 
 	public ItemStack getEmpty() {
 		switch (this) {
-			case Bucket: {
-				return new ItemStack(Items.BUCKET, 1, 0);
-			}
 			case Can: {
 				return Mods.Forestry.stack("canEmpty");
 			}

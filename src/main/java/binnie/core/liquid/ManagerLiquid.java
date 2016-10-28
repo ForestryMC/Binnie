@@ -38,6 +38,7 @@ public class ManagerLiquid extends ManagerBase {
 		final BinnieFluid bFluid = new BinnieFluid(fluid);
 		FluidRegistry.registerFluid(bFluid);
 		ItemFluidContainer.registerFluid(fluid, id);
+		FluidRegistry.addBucketForFluid(bFluid);
 		return bFluid;
 	}
 

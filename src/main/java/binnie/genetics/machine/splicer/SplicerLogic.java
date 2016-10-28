@@ -4,6 +4,7 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
+import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.genetics.Engineering;
@@ -88,31 +89,31 @@ public class SplicerLogic extends ComponentProcessSetCost implements IProcess {
 
 	@Override
 	public ErrorState canWork() {
-		if (this.getUtil().isSlotEmpty(9)) {
-			return new ErrorState.NoItem("No Individual to Splice", 9);
+		if (this.getUtil().isSlotEmpty(Splicer.SLOT_TARGET)) {
+			return new ErrorState.NoItem(Genetics.proxy.localise("machine.advMachine.splicer.errors.no.individual.desc"), Splicer.SLOT_TARGET);
 		}
-		if (this.getUtil().isSlotEmpty(0)) {
-			return new ErrorState.NoItem("No Serum", 0);
+		if (this.getUtil().isSlotEmpty(Splicer.SLOT_SERUM_VIAL)) {
+			return new ErrorState.NoItem(Genetics.proxy.localise("machine.errors.no.serum.desc"), Splicer.SLOT_SERUM_VIAL);
 		}
 		final ErrorState state = this.isValidSerum();
 		if (state != null) {
 			return state;
 		}
-		if (this.getUtil().getStack(0) != null && Engineering.getCharges(this.getUtil().getStack(0)) == 0) {
-			return new ErrorState("Empty Serum", "Serum is empty");
+		if (this.getUtil().getStack(Splicer.SLOT_SERUM_VIAL) != null && Engineering.getCharges(this.getUtil().getStack(Splicer.SLOT_SERUM_VIAL)) == 0) {
+			return new ErrorState(Genetics.proxy.localise("machine.errors.empty.serum.desc"), Genetics.proxy.localise("machine.errors.empty.serum.info"));
 		}
 		return super.canWork();
 	}
 
 	public ErrorState isValidSerum() {
-		final ItemStack serum = this.getUtil().getStack(0);
-		final ItemStack target = this.getUtil().getStack(9);
+		final ItemStack serum = this.getUtil().getStack(Splicer.SLOT_SERUM_VIAL);
+		final ItemStack target = this.getUtil().getStack(Splicer.SLOT_TARGET);
 		final IGene[] genes = Engineering.getGenes(serum);
 		if (genes.length == 0) {
-			return new ErrorState("Invalid Serum", "Serum does not hold any genes");
+			return new ErrorState(Genetics.proxy.localise("machine.errors.invalid.serum.desc"), Genetics.proxy.localise("machine.errors.invalid.serum.no.genes.info"));
 		}
 		if (!genes[0].getSpeciesRoot().isMember(target)) {
-			return new ErrorState("Invalid Serum", "Mismatch of Serum Type and Target");
+			return new ErrorState(Genetics.proxy.localise("machine.errors.invalid.serum.desc"), Genetics.proxy.localise("machine.errors.invalid.serum.mismatch.info"));
 		}
 		final IIndividual individual = genes[0].getSpeciesRoot().getMember(target);
 		boolean hasAll = true;
@@ -124,7 +125,7 @@ public class SplicerLogic extends ComponentProcessSetCost implements IProcess {
 			}
 		}
 		if (hasAll) {
-			return new ErrorState("Defunct Serum", "Individual already possesses this allele");
+			return new ErrorState(Genetics.proxy.localise("genetics.machine.errors.defunct.serum.desc"), Genetics.proxy.localise("machine.errors.defunct.serum.info"));
 		}
 		return null;
 	}
@@ -137,8 +138,8 @@ public class SplicerLogic extends ComponentProcessSetCost implements IProcess {
 	@Override
 	protected void onFinishTask() {
 		super.onFinishTask();
-		final ItemStack serum = this.getUtil().getStack(0);
-		final ItemStack target = this.getUtil().getStack(9);
+		final ItemStack serum = this.getUtil().getStack(Splicer.SLOT_SERUM_VIAL);
+		final ItemStack target = this.getUtil().getStack(Splicer.SLOT_TARGET);
 		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(target);
 		if (!ind.isAnalyzed()) {
 			ind.analyze();
@@ -152,7 +153,7 @@ public class SplicerLogic extends ComponentProcessSetCost implements IProcess {
 			Splicer.setGene(gene, target, 0);
 			Splicer.setGene(gene, target, 1);
 		}
-		this.getUtil().damageItem(0, 1);
+		this.getUtil().damageItem(Splicer.SLOT_SERUM_VIAL, 1);
 	}
 
 	@Override
