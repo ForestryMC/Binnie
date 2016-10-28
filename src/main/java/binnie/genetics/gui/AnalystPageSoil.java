@@ -1,6 +1,5 @@
 package binnie.genetics.gui;
 
-import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
@@ -13,8 +12,10 @@ import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.TextJustification;
 import binnie.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.genetics.Genetics;
 import forestry.api.genetics.EnumTolerance;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -29,17 +30,17 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		final EnumAcidity pH = flower.getGenome().getPrimary().getPH();
 		final EnumTolerance pHTol = flower.getGenome().getTolerancePH();
 		int y = 4;
-		new ControlTextCentered(this, y, "§nSoil").setColour(this.getColour());
+		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColour(this.getColour());
 		y += 16;
-		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), "Moisture Tolerance", TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), Genetics.proxy.localise("gui.analyst.soil.tolerance.moisture"), TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
 		this.createMoisture(this, (this.w() - 100.0f) / 2.0f, y, 100.0f, 10.0f, moisture, moistureTol);
 		y += 16;
-		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), "pH Tolerance", TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), Genetics.proxy.localise("gui.analyst.soil.tolerance.ph"), TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
 		this.createAcidity(this, (this.w() - 100.0f) / 2.0f, y, 100.0f, 10.0f, pH, pHTol);
 		y += 16;
-		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), "Recommended Soil", TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), Genetics.proxy.localise("gui.analyst.soil.recommended"), TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
 		EnumMoisture recomMoisture = EnumMoisture.Normal;
 		final boolean canTolNormal = Tolerance.canTolerate(moisture, EnumMoisture.Normal, moistureTol);
@@ -82,7 +83,7 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		recomSoil.setItemStack(stack);
 		recomSoil.setTooltip();
 		y += 32;
-		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), "Other Soils", TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), Genetics.proxy.localise("gui.analyst.soil.other"), TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
 		final List<ItemStack> stacks = new ArrayList<>();
 		for (final EnumAcidity a : EnumSet.range(EnumAcidity.Acid, EnumAcidity.Alkaline)) {
@@ -106,7 +107,7 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		new ControlToleranceBar<EnumMoisture>(parent, x, y, w, h, EnumMoisture.class) {
 			@Override
 			protected String getName(final EnumMoisture value) {
-				return Binnie.Language.localise(value);
+				return value.getTranslated(false);
 			}
 
 			@Override
@@ -120,7 +121,7 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		new ControlToleranceBar<EnumAcidity>(parent, x, y, w, h, EnumAcidity.class) {
 			@Override
 			protected String getName(final EnumAcidity value) {
-				return Binnie.Language.localise(value);
+				return value.getTranslated(false);
 			}
 
 			@Override
@@ -132,6 +133,6 @@ public class AnalystPageSoil extends ControlAnalystPage {
 
 	@Override
 	public String getTitle() {
-		return "Soil";
+		return Genetics.proxy.localise("gui.analyst.soil.title");
 	}
 }

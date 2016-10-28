@@ -32,7 +32,6 @@ public class PackageAnalyser extends GeneticMachine.PackageGeneticBase implement
 			slot.forbidExtraction();
 		}
 		InventorySlot slotTarget = inventory.addSlot(Analyser.SLOT_TARGET, "analyse");
-		slotTarget.setValidator(new SlotValidatorUnanalysed());
 		slotTarget.setReadOnly();
 		slotTarget.forbidInteraction();
 		InventorySlot slotDye = inventory.addSlot(Analyser.SLOT_DYE, "dye");

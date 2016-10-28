@@ -133,7 +133,7 @@ public class ModuleItem implements IInitializable {
 					'c', GeneticsItems.IntegratedCircuit.get(itemGenetics, 1),
 					'a', Mods.Forestry.item("portableAlyzer"),
 					'd', new ItemStack(Items.DIAMOND));
-
+			
 			final Item[] dbs = {ExtraBees.dictionary, ExtraTrees.itemDictionary, ExtraTrees.itemDictionaryLepi, Botany.database};
 			if (BinnieCore.isBotanyActive() && BinnieCore.isExtraBeesActive() && BinnieCore.isExtraTreesActive()) {
 				for (final Item a2 : dbs) {

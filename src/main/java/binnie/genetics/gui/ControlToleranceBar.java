@@ -11,6 +11,7 @@ import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IBorder;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.EnumTolerance;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.EnumSet;
 
@@ -36,7 +37,7 @@ public abstract class ControlToleranceBar<T extends Enum<T>> extends Control imp
 		final int type = (int) ((int) this.getRelativeMousePosition().x() / (this.getSize().x() / types));
 		for (final T tol : this.fullSet) {
 			if (tol.ordinal() - ((this.enumClass == EnumTemperature.class) ? 1 : 0) == type) {
-				list.add((this.tolerated.contains(tol) ? "" : "§8") + this.getName(tol));
+				list.add((this.tolerated.contains(tol) ? "" : TextFormatting.DARK_GRAY ) + this.getName(tol));
 			}
 		}
 	}

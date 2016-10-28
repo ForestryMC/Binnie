@@ -82,6 +82,23 @@ genetics.machine.advMachine.splicer.tooltips.slots.serum=Serum Vials & Arrays
 genetics.machine.advMachine.splicer.tooltips.slots.individual=Splicable Individual
 genetics.machine.advMachine.splicer.errors.no.individual.desc=No Individual to Splice
 
+genetics.gui.analyst.soil.title=Soil
+genetics.gui.analyst.soil.tolerance.moisture=Moisture Tolerance
+genetics.gui.analyst.soil.tolerance.ph=pH Tolerance
+genetics.gui.analyst.soil.recommended=Recommended Soil
+genetics.gui.analyst.soil.other=Other Soils
+
+genetics.gui.analyst.specimen.title=Specimen
+
+genetics.gui.analyst.produces.tile=Produce
+genetics.gui.analyst.produces.rate=Rate
+genetics.gui.analyst.products.natural=Natural Products
+genetics.gui.analyst.products.specialty=Specialty Products
+genetics.gui.analyst.products.refined=Refined Products
+genetics.gui.analyst.products.centrifuges=Centrifuges to give
+genetics.gui.analyst.products.squeezes=Squeezes to give
+genetics.gui.analyst.products.every=Every
+
 genetic.item.gene.empty=Empty
 genetic.item.gene.charge=Charge
 genetic.item.gene.charges=Charges

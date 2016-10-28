@@ -12,6 +12,7 @@ import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.extratrees.kitchen.ControlFluidDisplay;
 import binnie.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.genetics.Genetics;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
@@ -19,6 +20,7 @@ import forestry.apiculture.PluginApiculture;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -35,9 +37,9 @@ public class AnalystPageProducts extends AnalystPageProduce {
 		final float speed = genome.getSpeed();
 		final float modeSpeed = Binnie.Genetics.getBeeRoot().getBeekeepingMode(BinnieCore.proxy.getWorld()).getBeeModifier().getProductionModifier(genome, 1.0f);
 		int y = 4;
-		new ControlTextCentered(this, y, "§nProduce").setColour(this.getColour());
+		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColour(this.getColour());
 		y += 12;
-		new ControlTextCentered(this, y, "§oRate: " + Binnie.Genetics.beeBreedingSystem.getAlleleName(EnumBeeChromosome.SPEED, ind.getGenome().getActiveAllele(EnumBeeChromosome.SPEED))).setColour(this.getColour());
+		new ControlTextCentered(this, y, TextFormatting.ITALIC + Genetics.proxy.localise("gui.analyst.produces.rate") + ": " + Binnie.Genetics.beeBreedingSystem.getAlleleName(EnumBeeChromosome.SPEED, ind.getGenome().getActiveAllele(EnumBeeChromosome.SPEED))).setColour(this.getColour());
 		y += 20;
 		final Collection<ItemStack> refinedProducts = new UniqueItemStackSet();
 		final Collection<ItemStack> productList = new UniqueItemStackSet();
@@ -46,7 +48,7 @@ public class AnalystPageProducts extends AnalystPageProduce {
 		products.putAll(genome.getPrimary().getProductChances());
 		products.putAll(genome.getSecondary().getProductChances());
 		if (!products.isEmpty()) {
-			new ControlTextCentered(this, y, "Natural Products").setColour(this.getColour());
+			new ControlTextCentered(this, y, Genetics.proxy.localise("gui.analyst.products.natural")).setColour(this.getColour());
 			y += 12;
 			for (final Map.Entry<ItemStack, Float> entry : products.entrySet()) {
 				if (!productList.add(entry.getKey())) {
@@ -60,7 +62,7 @@ public class AnalystPageProducts extends AnalystPageProduce {
 		}
 		products = genome.getPrimary().getSpecialtyChances();
 		if (!products.isEmpty()) {
-			new ControlTextCentered(this, y, "Specialty Products").setColour(this.getColour());
+			new ControlTextCentered(this, y, Genetics.proxy.localise("gui.analyst.products.specialty")).setColour(this.getColour());
 			y += 12;
 			for (final Map.Entry<ItemStack, Float> entry : products.entrySet()) {
 				refinedProducts.addAll(this.getAllProducts(entry.getKey()));
@@ -69,7 +71,7 @@ public class AnalystPageProducts extends AnalystPageProduce {
 			}
 			y += 12;
 		}
-		new ControlTextCentered(this, y, "Refined Products").setColour(this.getColour());
+		new ControlTextCentered(this, y, Genetics.proxy.localise("gui.analyst.products.refined")).setColour(this.getColour());
 		y += 12;
 		Collection<ItemStack> level2Products = new UniqueItemStackSet();
 		for (final ItemStack stack : refinedProducts) {
@@ -151,7 +153,7 @@ public class AnalystPageProducts extends AnalystPageProduce {
 				super.getTooltip(tooltip);
 				final Collection<ItemStack> products = AnalystPageProducts.this.getCentrifuge(key);
 				if (!products.isEmpty()) {
-					tooltip.add("Centrifuges to give: ");
+					tooltip.add(Genetics.proxy.localise("gui.analyst.products.centrifuges") + ": ");
 					for (final ItemStack prod : products) {
 						final NBTTagCompound nbt = new NBTTagCompound();
 						prod.writeToNBT(nbt);
@@ -160,7 +162,7 @@ public class AnalystPageProducts extends AnalystPageProduce {
 				}
 				final Collection<ItemStack> liquids = AnalystPageProducts.this.getSqueezer(key);
 				if (!liquids.isEmpty()) {
-					tooltip.add("Squeezes to give: ");
+					tooltip.add(Genetics.proxy.localise("gui.analyst.products.squeezes") + ": ");
 					for (final ItemStack prod2 : liquids) {
 						final NBTTagCompound nbt2 = new NBTTagCompound();
 						prod2.writeToNBT(nbt2);
@@ -175,11 +177,11 @@ public class AnalystPageProducts extends AnalystPageProduce {
 		CraftGUIUtil.moveWidget(textWidget, new IPoint(12.0f, 0.0f));
 		item.setItemStack(key);
 		final float time = (int) (PluginApiculture.ticksPerBeeWorkCycle * 100.0 / (speed * value));
-		textWidget.setValue("Every " + this.getTimeString(time));
+		textWidget.setValue(Genetics.proxy.localise("gui.analyst.products.every") + " " + this.getTimeString(time));
 	}
 
 	@Override
 	public String getTitle() {
-		return "Produce";
+		return Genetics.proxy.localise("gui.analyst.produces.tile");
 	}
 }
