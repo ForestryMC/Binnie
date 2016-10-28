@@ -24,10 +24,10 @@ public class PackageAcclimatiser extends GeneticMachine.PackageGeneticBase imple
 	public void createMachine(final Machine machine) {
 		new ComponentGeneticGUI(machine, GeneticsGUI.Acclimatiser);
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-		inventory.addSlot(4, "process");
-		inventory.getSlot(4).setValidator(new SlotValidator.Individual());
-		inventory.getSlot(4).setReadOnly();
-		inventory.getSlot(4).forbidExtraction();
+		InventorySlot slotTarget = inventory.addSlot(Acclimatiser.SLOT_TARGET, "process");
+		slotTarget.setValidator(new SlotValidator.Individual());
+		slotTarget.setReadOnly();
+		slotTarget.forbidExtraction();
 		for (final InventorySlot slot : inventory.addSlotArray(Acclimatiser.SLOT_RESERVE, "input")) {
 			slot.forbidExtraction();
 			slot.setValidator(new SlotValidator.Individual());
@@ -40,8 +40,8 @@ public class PackageAcclimatiser extends GeneticMachine.PackageGeneticBase imple
 			slot.setValidator(new ValidatorAcclimatiserItem());
 		}
 		final ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
-		transfer.addRestock(Acclimatiser.SLOT_RESERVE, 4, 1);
-		transfer.addStorage(4, Acclimatiser.SLOT_DRONE, new ComponentInventoryTransfer.Condition() {
+		transfer.addRestock(Acclimatiser.SLOT_RESERVE, Acclimatiser.SLOT_TARGET, 1);
+		transfer.addStorage(Acclimatiser.SLOT_TARGET, Acclimatiser.SLOT_DRONE, new ComponentInventoryTransfer.Condition() {
 			@Override
 			public boolean fufilled(final ItemStack stack) {
 				return !Acclimatiser.canAcclimatise(stack, machine.getMachineUtil().getNonNullStacks(Acclimatiser.SLOT_ACCLIMATISER));

@@ -4,10 +4,11 @@ import binnie.core.machines.IMachineType;
 import binnie.core.machines.MachinePackage;
 import binnie.core.resource.IBinnieTexture;
 import binnie.genetics.Genetics;
+import binnie.genetics.machine.splicer.PackageSplicer;
 import net.minecraft.item.ItemStack;
 
 public enum AdvGeneticMachine implements IMachineType {
-	Splicer(Splicer.PackageSplicer.class);
+	Splicer(PackageSplicer.class);
 
 	Class<? extends MachinePackage> clss;
 

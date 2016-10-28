@@ -4,7 +4,7 @@ import java.util.Random;
 
 import binnie.core.genetics.Gene;
 import binnie.core.genetics.Tolerance;
-import binnie.genetics.machine.Inoculator;
+import binnie.genetics.machine.inoculator.Inoculator;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAlleleTolerance;
 import forestry.api.genetics.IChromosomeType;

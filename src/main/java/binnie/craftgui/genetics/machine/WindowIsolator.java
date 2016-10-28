@@ -17,7 +17,7 @@ import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.StandardTexture;
 import binnie.extrabees.core.ExtraBeeTexture;
 import binnie.genetics.Genetics;
-import binnie.genetics.machine.Isolator;
+import binnie.genetics.machine.isolator.Isolator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
@@ -36,12 +36,12 @@ public class WindowIsolator extends WindowMachine {
 
 	@Override
 	public void initialiseClient() {
-		this.setTitle("Isolator");
+		super.initialiseClient();
 		int x = 16;
 		final int y = 32;
 		new ControlLiquidTank(this, x, y).setTankID(0);
 		x += 26;
-		new ControlSlotArray(this, x, y + 3, 1, 3).create(Isolator.slotReserve);
+		new ControlSlotArray(this, x, y + 3, 1, 3).create(Isolator.SLOT_RESERVE);
 		x += 20;
 		new ControlIconDisplay(this, x, y + 3 + 1, GUIIcon.ArrowRight.getIcon().getResourceLocation());
 		x += 18;
@@ -57,7 +57,7 @@ public class WindowIsolator extends WindowMachine {
 		x += 20;
 		new ControlIconDisplay(this, x, y + 3 + 1, GUIIcon.ArrowRight.getIcon().getResourceLocation());
 		x += 18;
-		new ControlSlotArray(this, x, y + 3, 2, 3).create(Isolator.slotFinished);
+		new ControlSlotArray(this, x, y + 3, 2, 3).create(Isolator.SLOT_FINISHED);
 		new ControlEnergyBar(this, 260, 130, 16, 60, Position.Bottom);
 		new ControlErrorState(this, 153.0f, 81.0f);
 		new ControlPlayerInventory(this);
@@ -65,7 +65,7 @@ public class WindowIsolator extends WindowMachine {
 
 	@Override
 	public String getTitle() {
-		return "Incubator";
+		return Genetics.proxy.localise("machine.machine.isolator");
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class WindowIsolator extends WindowMachine {
 	}
 
 	@Override
-	protected String getName() {
+	protected String getBackgroundTextureName() {
 		return "Isolator";
 	}
 

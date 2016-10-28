@@ -43,7 +43,7 @@ public class WindowLepidopteristDatabase extends WindowAbstractDatabase {
 	}
 
 	@Override
-	protected String getName() {
+	protected String getBackgroundTextureName() {
 		return "MothDatabase";
 	}
 }

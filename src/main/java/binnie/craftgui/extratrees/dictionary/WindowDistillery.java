@@ -25,7 +25,7 @@ public class WindowDistillery extends Window {
 	}
 
 	@Override
-	protected String getName() {
+	protected String getBackgroundTextureName() {
 		return "Distillery";
 	}
 

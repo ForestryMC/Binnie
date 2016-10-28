@@ -41,7 +41,7 @@ public class WindowAlvearyFrame extends Window {
 	}
 
 	@Override
-	public String getName() {
+	public String getBackgroundTextureName() {
 		return "AlvearyFrame";
 	}
 }

@@ -32,7 +32,7 @@ public class WindowTest extends WindowMachine {
 	}
 
 	@Override
-	protected String getName() {
+	protected String getBackgroundTextureName() {
 		return "Test";
 	}
 }

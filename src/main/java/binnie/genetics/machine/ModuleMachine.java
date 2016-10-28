@@ -18,11 +18,11 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ModuleMachine implements IInitializable {
-	static ValidatorIcon IconSequencer;
+	public static ValidatorIcon IconSequencer;
 	public static ValidatorIcon iconSerum;
-	static ValidatorIcon IconEnzyme;
+	public static ValidatorIcon IconEnzyme;
 	public static ValidatorIcon IconDye;
-	static ValidatorIcon IconBacteria;
+	public static ValidatorIcon IconBacteria;
 	public static ValidatorIcon IconNugget;
 
 	@Override

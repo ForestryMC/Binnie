@@ -56,7 +56,7 @@ public class WindowGenesis extends Window {
 	}
 
 	@Override
-	protected String getName() {
+	protected String getBackgroundTextureName() {
 		return "Genesis";
 	}
 

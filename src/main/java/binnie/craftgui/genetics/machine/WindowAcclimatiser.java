@@ -35,7 +35,7 @@ public class WindowAcclimatiser extends WindowMachine {
 
 	@Override
 	public void initialiseClient() {
-		this.setTitle("Acclimatiser");
+		super.initialiseClient();
 		int x = 16;
 		final int y = 32;
 		new ControlSlotArray(this, x, y, 2, 2).create(Acclimatiser.SLOT_RESERVE);
@@ -51,7 +51,7 @@ public class WindowAcclimatiser extends WindowMachine {
 
 	@Override
 	public String getTitle() {
-		return "Acclimatiser";
+		return Genetics.proxy.localise("machine.labMachine.acclimatiser");
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class WindowAcclimatiser extends WindowMachine {
 	}
 
 	@Override
-	protected String getName() {
+	protected String getBackgroundTextureName() {
 		return "Acclimatiser";
 	}
 

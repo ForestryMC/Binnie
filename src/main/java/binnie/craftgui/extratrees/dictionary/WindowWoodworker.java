@@ -69,7 +69,7 @@ public class WindowWoodworker extends Window {
 	}
 
 	@Override
-	protected String getName() {
+	protected String getBackgroundTextureName() {
 		return "Woodworker";
 	}
 

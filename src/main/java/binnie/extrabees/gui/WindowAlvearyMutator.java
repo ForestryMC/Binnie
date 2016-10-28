@@ -59,7 +59,7 @@ public class WindowAlvearyMutator extends Window {
 	}
 
 	@Override
-	public String getName() {
+	public String getBackgroundTextureName() {
 		return "AlvearyMutator";
 	}
 }

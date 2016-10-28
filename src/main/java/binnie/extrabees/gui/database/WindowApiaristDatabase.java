@@ -45,7 +45,7 @@ public class WindowApiaristDatabase extends WindowAbstractDatabase {
 	}
 
 	@Override
-	public String getName() {
+	public String getBackgroundTextureName() {
 		return "Database";
 	}
 

@@ -19,7 +19,7 @@ public class WindowSetSquare extends Window {
 	}
 
 	@Override
-	protected String getName() {
+	protected String getBackgroundTextureName() {
 		return null;
 	}
 

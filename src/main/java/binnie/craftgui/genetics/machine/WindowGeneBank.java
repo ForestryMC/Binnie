@@ -167,7 +167,7 @@ public class WindowGeneBank extends WindowMachine {
 	}
 
 	@Override
-	protected String getName() {
+	protected String getBackgroundTextureName() {
 		return "GeneBank";
 	}
 

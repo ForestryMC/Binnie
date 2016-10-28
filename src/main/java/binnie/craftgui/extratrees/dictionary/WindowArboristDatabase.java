@@ -92,7 +92,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 	}
 
 	@Override
-	protected String getName() {
+	protected String getBackgroundTextureName() {
 		return "TreeDatabase";
 	}
 

@@ -29,7 +29,7 @@ public class WindowPress extends Window {
 	}
 
 	@Override
-	protected String getName() {
+	protected String getBackgroundTextureName() {
 		return "Press";
 	}
 

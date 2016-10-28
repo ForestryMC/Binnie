@@ -24,7 +24,7 @@ public class WindowBottleRack extends Window {
 	}
 
 	@Override
-	protected String getName() {
+	protected String getBackgroundTextureName() {
 		return "BottleBank";
 	}
 

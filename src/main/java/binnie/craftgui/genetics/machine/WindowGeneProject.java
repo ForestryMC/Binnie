@@ -18,7 +18,7 @@ public class WindowGeneProject extends Window {
 	}
 
 	@Override
-	protected String getName() {
+	protected String getBackgroundTextureName() {
 		return "GeneProjects";
 	}
 

@@ -1,0 +1,49 @@
+package binnie.genetics.machine.analyser;
+
+import binnie.core.machines.Machine;
+import binnie.core.machines.power.ComponentProcessSetCost;
+import binnie.core.machines.power.ErrorState;
+import binnie.core.machines.power.IProcess;
+import binnie.genetics.Genetics;
+import net.minecraft.item.ItemStack;
+
+public class AnalyserLogic extends ComponentProcessSetCost implements IProcess {
+	private static final float DYE_PER_TICK = 0.002f;
+
+	public AnalyserLogic(final Machine machine) {
+		super(machine, 9000, 300);
+	}
+
+	@Override
+	public ErrorState canWork() {
+		if (this.getUtil().isSlotEmpty(Analyser.SLOT_TARGET)) {
+			return new ErrorState.NoItem("No item to analyse", Analyser.SLOT_TARGET);
+		}
+		final boolean analysed = Analyser.isAnalysed(this.getUtil().getStack(Analyser.SLOT_TARGET));
+		if (analysed) {
+			return new ErrorState.InvalidItem(Genetics.proxy.localise("machine.labMachine.analyser.already.analysed"), Genetics.proxy.localise("machine.labMachine.analyser.already.analysed.info"), Analyser.SLOT_TARGET);
+		}
+		return super.canWork();
+	}
+
+	@Override
+	public ErrorState canProgress() {
+		if (this.getUtil().getSlotCharge(Analyser.SLOT_DYE) == 0.0f) {
+			return new ErrorState.Item(Genetics.proxy.localise("machine.labMachine.analyser.insufficient.dye"), Genetics.proxy.localise("machine.labMachine.analyser.insufficient.dye.info"), new int[]{13});
+		}
+		return super.canProgress();
+	}
+
+	@Override
+	protected void onFinishTask() {
+		super.onFinishTask();
+		ItemStack itemStack = this.getUtil().getStack(Analyser.SLOT_TARGET);
+		itemStack = Analyser.analyse(itemStack);
+		this.getInventory().setInventorySlotContents(Analyser.SLOT_TARGET, itemStack);
+	}
+
+	@Override
+	protected void onTickTask() {
+		this.getUtil().useCharge(Analyser.SLOT_DYE, 0.002f);
+	}
+}

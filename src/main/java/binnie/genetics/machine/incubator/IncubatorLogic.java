@@ -35,11 +35,11 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 	@Override
 	public ErrorState canProgress() {
 		if (this.recipe != null) {
-			if (!this.recipe.isInputLiquidSufficient(this.getUtil().getFluid(0))) {
-				return new ErrorState.InsufficientLiquid("Not enough incubation liquid", 0);
+			if (!this.recipe.isInputLiquidSufficient(this.getUtil().getFluid(Incubator.TANK_INPUT))) {
+				return new ErrorState.InsufficientLiquid(Genetics.proxy.localise("machine.labMachine.incubator.no.liquid"), Incubator.TANK_INPUT);
 			}
 			if (!this.roomForOutput) {
-				return new ErrorState.TankSpace("No room for output", 1);
+				return new ErrorState.TankSpace(Genetics.proxy.localise("machine.labMachine.incubator.no.room"), Incubator.TANK_OUTPUT);
 			}
 		}
 		return super.canProgress();

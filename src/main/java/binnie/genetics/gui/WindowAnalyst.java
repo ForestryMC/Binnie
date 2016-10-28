@@ -29,8 +29,8 @@ import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.craftgui.window.Panel;
 import binnie.genetics.Genetics;
 import binnie.genetics.item.GeneticsItems;
-import binnie.genetics.machine.Analyser;
 import binnie.genetics.machine.ModuleMachine;
+import binnie.genetics.machine.analyser.Analyser;
 import forestry.api.apiculture.IBee;
 import forestry.api.arboriculture.ITree;
 import forestry.api.genetics.AlleleManager;
@@ -84,7 +84,7 @@ public class WindowAnalyst extends Window {
 	}
 
 	@Override
-	protected String getName() {
+	protected String getBackgroundTextureName() {
 		return "Analyst";
 	}
 

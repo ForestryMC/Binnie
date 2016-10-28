@@ -26,7 +26,7 @@ public class WindowLumbermill extends Window {
 	}
 
 	@Override
-	protected String getName() {
+	protected String getBackgroundTextureName() {
 		return "Lumbermill";
 	}
 

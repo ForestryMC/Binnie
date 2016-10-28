@@ -24,7 +24,7 @@ import binnie.craftgui.resource.minecraft.StandardTexture;
 import binnie.extrabees.core.ExtraBeeTexture;
 import binnie.extrabees.gui.punnett.ExtraBeeGUITexture;
 import binnie.genetics.gui.ControlChromosome;
-import binnie.genetics.machine.Analyser;
+import binnie.genetics.machine.analyser.Analyser;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
@@ -77,7 +77,7 @@ public class WindowFieldKit extends Window {
 	}
 
 	@Override
-	protected String getName() {
+	protected String getBackgroundTextureName() {
 		return "Field Kit";
 	}
 

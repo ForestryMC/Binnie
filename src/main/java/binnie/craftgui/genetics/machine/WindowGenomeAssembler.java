@@ -27,7 +27,7 @@ public class WindowGenomeAssembler extends WindowMachine {
 	}
 
 	@Override
-	protected String getName() {
+	protected String getBackgroundTextureName() {
 		return "GenomeAssembler";
 	}
 }

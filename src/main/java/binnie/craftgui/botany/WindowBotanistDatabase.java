@@ -71,7 +71,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 	}
 
 	@Override
-	protected String getName() {
+	protected String getBackgroundTextureName() {
 		return "FlowerDatabase";
 	}
 

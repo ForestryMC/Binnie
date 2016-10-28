@@ -42,7 +42,7 @@ public class WindowAlvearyHatchery extends Window {
 	}
 
 	@Override
-	public String getName() {
+	public String getBackgroundTextureName() {
 		return "AlvearyHatchery";
 	}
 }

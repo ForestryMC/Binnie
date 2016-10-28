@@ -35,7 +35,7 @@ public class WindowIncubator extends WindowMachine {
 
 	@Override
 	public void initialiseClient() {
-		this.setTitle("Incubator");
+		super.initialiseClient();
 		int x = 16;
 		final int y = 32;
 		new ControlLiquidTank(this, x, y).setTankID(0);
@@ -60,7 +60,7 @@ public class WindowIncubator extends WindowMachine {
 
 	@Override
 	public String getTitle() {
-		return "Incubator";
+		return Genetics.proxy.localise("machine.labMachine.incubator");
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class WindowIncubator extends WindowMachine {
 	}
 
 	@Override
-	protected String getName() {
+	protected String getBackgroundTextureName() {
 		return "Incubator";
 	}
 

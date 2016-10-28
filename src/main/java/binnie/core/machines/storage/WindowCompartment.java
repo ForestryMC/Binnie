@@ -438,7 +438,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 	}
 
 	@Override
-	protected String getName() {
+	protected String getBackgroundTextureName() {
 		return "compartment";
 	}
 
