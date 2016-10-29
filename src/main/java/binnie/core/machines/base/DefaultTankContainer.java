@@ -4,22 +4,11 @@ import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.power.ITankMachine;
 import binnie.core.machines.power.TankInfo;
 import net.minecraft.util.EnumFacing;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 
 class DefaultTankContainer implements ITankMachine {
-	@Override
-	public int fill(final EnumFacing from, final FluidStack resource, final boolean doFill) {
-		return 0;
-	}
-
-	@Override
-	public FluidStack drain(final EnumFacing from, final int maxDrain, final boolean doDrain) {
-		return null;
-	}
-
 	@Override
 	public TankInfo[] getTankInfos() {
 		return new TankInfo[0];
@@ -51,23 +40,8 @@ class DefaultTankContainer implements ITankMachine {
 	}
 
 	@Override
-	public FluidStack drain(final EnumFacing from, final FluidStack resource, final boolean doDrain) {
+	public IFluidHandler getHandler(EnumFacing from) {
 		return null;
-	}
-
-	@Override
-	public boolean canFill(final EnumFacing from, final Fluid fluid) {
-		return false;
-	}
-
-	@Override
-	public boolean canDrain(final EnumFacing from, final Fluid fluid) {
-		return false;
-	}
-
-	@Override
-	public FluidTankInfo[] getTankInfo(final EnumFacing from) {
-		return new FluidTankInfo[0];
 	}
 
 	@Override
