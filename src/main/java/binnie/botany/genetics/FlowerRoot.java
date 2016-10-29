@@ -83,7 +83,7 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 
 	@Override
 	public ISpeciesType getIconType() {
-		return null;
+		return EnumFlowerStage.FLOWER;
 	}
 
 	@Override

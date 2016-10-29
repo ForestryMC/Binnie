@@ -109,6 +109,6 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 
 	@Override
 	public int getCharges(final ItemStack stack) {
-		return stack.getItem().getMaxDamage() - stack.getItemDamage();
+		return stack.getItem().getMaxDamage(stack) - stack.getItemDamage();
 	}
 }

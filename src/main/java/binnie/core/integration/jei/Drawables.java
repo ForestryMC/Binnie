@@ -2,6 +2,7 @@ package binnie.core.integration.jei;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
+import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.gui.IDrawableStatic;
 import net.minecraft.util.ResourceLocation;
 
@@ -17,21 +18,17 @@ public class Drawables {
 		return INSTANCE;
 	}
 
-	@Nonnull
 	public static final ResourceLocation guiTank = new ResourceLocation("binniecore:textures/gui/craftgui-slots.png");
-	@Nonnull
 	public static final ResourceLocation guiArrow = new ResourceLocation("binniecore:textures/gui/craftgui-panels.png");
 
-	@Nonnull
+	private final IGuiHelper guiHelper;
 	private final IDrawable tank;
-	@Nonnull
 	private final IDrawable tankOverlay;
-	@Nonnull
 	private final IDrawable arrow;
-	@Nonnull
 	private final IDrawableStatic arrowWhite;
 
 	private Drawables(IGuiHelper guiHelper) {
+		this.guiHelper = guiHelper;
 		this.tank = guiHelper.createDrawable(guiTank, 8, 28, 18, 60);
 		this.tankOverlay = guiHelper.createDrawable(guiTank, 33, 29, 16, 58);
 		this.arrow = guiHelper.createDrawable(guiArrow, 191, 79, 14, 10);
@@ -56,5 +53,9 @@ public class Drawables {
 	@Nonnull
 	public IDrawableStatic getArrowWhite() {
 		return arrowWhite;
+	}
+
+	public IDrawableAnimated createArrowAnimated(int ticksPerCycle) {
+		return guiHelper.createAnimatedDrawable(arrowWhite, ticksPerCycle, IDrawableAnimated.StartDirection.LEFT, false);
 	}
 }

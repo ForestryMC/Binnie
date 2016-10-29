@@ -6,6 +6,10 @@ import binnie.genetics.integration.jei.incubator.IncubatorRecipeHandler;
 import binnie.genetics.integration.jei.incubator.LarvaeIncubatorRecipeCategory;
 import binnie.genetics.integration.jei.incubator.LarvaeIncubatorRecipeHandler;
 import binnie.genetics.integration.jei.incubator.LarvaeIncubatorRecipeMaker;
+import binnie.genetics.integration.jei.isolator.IsolatorRecipeCategory;
+import binnie.genetics.integration.jei.isolator.IsolatorRecipeHandler;
+import binnie.genetics.integration.jei.isolator.IsolatorRecipeMaker;
+import binnie.genetics.machine.GeneticMachine;
 import binnie.genetics.machine.LaboratoryMachine;
 import binnie.genetics.machine.incubator.Incubator;
 import mezz.jei.api.BlankModPlugin;
@@ -28,17 +32,21 @@ public class GeneticsJeiPlugin extends BlankModPlugin {
 
 		registry.addRecipeCategories(
 				new IncubatorRecipeCategory(),
-				new LarvaeIncubatorRecipeCategory()
+				new LarvaeIncubatorRecipeCategory(),
+				new IsolatorRecipeCategory()
 		);
 
 		registry.addRecipeHandlers(
 				new IncubatorRecipeHandler(),
-				new LarvaeIncubatorRecipeHandler()
+				new LarvaeIncubatorRecipeHandler(),
+				new IsolatorRecipeHandler()
 		);
 
 		registry.addRecipeCategoryCraftingItem(LaboratoryMachine.Incubator.get(1), RecipeUids.INCUBATOR, RecipeUids.INCUBATOR_LARVAE);
+		registry.addRecipeCategoryCraftingItem(GeneticMachine.Isolator.get(1), RecipeUids.ISOLATOR);
 
 		registry.addRecipes(Incubator.getRecipes());
 		registry.addRecipes(LarvaeIncubatorRecipeMaker.create(Incubator.getLarvaeRecipe()));
+		registry.addRecipes(IsolatorRecipeMaker.create());
 	}
 }
