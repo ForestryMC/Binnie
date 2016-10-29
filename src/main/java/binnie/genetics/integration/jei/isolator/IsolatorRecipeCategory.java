@@ -2,7 +2,7 @@ package binnie.genetics.integration.jei.isolator;
 
 import binnie.genetics.integration.jei.GeneticsJeiPlugin;
 import binnie.genetics.integration.jei.RecipeUids;
-import binnie.genetics.machine.incubator.Incubator;
+import binnie.genetics.machine.isolator.Isolator;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.gui.IGuiFluidStackGroup;
@@ -61,7 +61,7 @@ public class IsolatorRecipeCategory extends BlankRecipeCategory<IsolatorRecipeWr
 	public void setRecipe(IRecipeLayout recipeLayout, IsolatorRecipeWrapper recipeWrapper, IIngredients ingredients) {
 		IDrawable tankOverlay = GeneticsJeiPlugin.drawables.getTankOverlay();
 		IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
-		fluidStacks.init(Incubator.TANK_INPUT, true, 1, 1, 16, 58, 100, false, tankOverlay);
+		fluidStacks.init(Isolator.TANK_ETHANOL, true, 1, 1, 16, 58, 100, false, tankOverlay);
 		fluidStacks.set(ingredients);
 
 		IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();

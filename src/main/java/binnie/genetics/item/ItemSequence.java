@@ -13,6 +13,7 @@ import binnie.genetics.genetics.SequencerItem;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -108,7 +109,18 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 	}
 
 	@Override
-	public int getCharges(final ItemStack stack) {
-		return stack.getItem().getMaxDamage(stack) - stack.getItemDamage();
+	public int getCharges(final ItemStack itemStack) {
+		return itemStack.getMaxDamage() - itemStack.getItemDamage();
+	}
+
+	@Override
+	public int getMaxCharges(ItemStack itemStack) {
+		return itemStack.getMaxDamage();
+	}
+
+	@Override
+	public ISpeciesRoot getSpeciesRoot(ItemStack itemStack) {
+		final SequencerItem seq = new SequencerItem(itemStack);
+		return seq.getSpeciesRoot();
 	}
 }

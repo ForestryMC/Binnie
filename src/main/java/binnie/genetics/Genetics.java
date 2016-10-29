@@ -13,6 +13,7 @@ import binnie.genetics.core.GeneticsPacket;
 import binnie.genetics.item.ItemAnalyst;
 import binnie.genetics.item.ItemDatabase;
 import binnie.genetics.item.ItemSequence;
+import binnie.genetics.item.ItemSerum;
 import binnie.genetics.item.ItemSerumArray;
 import binnie.genetics.item.ModuleItem;
 import binnie.genetics.machine.ModuleMachine;
@@ -35,7 +36,7 @@ public class Genetics extends AbstractMod {
 
 	public static String channel = "GEN";
 	public static Item itemGenetics;
-	public static Item itemSerum;
+	public static ItemSerum itemSerum;
 	public static ItemSequence itemSequencer;
 	public static MachineGroup packageGenetic;
 	public static MachineGroup packageAdvGenetic;

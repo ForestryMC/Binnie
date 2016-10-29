@@ -6,8 +6,6 @@ import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.gui.IDrawableStatic;
 import net.minecraft.util.ResourceLocation;
 
-import javax.annotation.Nonnull;
-
 public class Drawables {
 	private static Drawables INSTANCE;
 
@@ -26,6 +24,7 @@ public class Drawables {
 	private final IDrawable tankOverlay;
 	private final IDrawable arrow;
 	private final IDrawableStatic arrowWhite;
+	private final IDrawableAnimated arrowAnimated;
 
 	private Drawables(IGuiHelper guiHelper) {
 		this.guiHelper = guiHelper;
@@ -33,29 +32,30 @@ public class Drawables {
 		this.tankOverlay = guiHelper.createDrawable(guiTank, 33, 29, 16, 58);
 		this.arrow = guiHelper.createDrawable(guiArrow, 191, 79, 14, 10);
 		this.arrowWhite = guiHelper.createDrawable(guiArrow, 207, 79, 14, 10);
+		this.arrowAnimated = createArrowAnimated(60);
 	}
 
-	@Nonnull
 	public IDrawable getTank() {
 		return tank;
 	}
 
-	@Nonnull
 	public IDrawable getTankOverlay() {
 		return tankOverlay;
 	}
 
-	@Nonnull
 	public IDrawable getArrow() {
 		return arrow;
 	}
 
-	@Nonnull
 	public IDrawableStatic getArrowWhite() {
 		return arrowWhite;
 	}
 
 	public IDrawableAnimated createArrowAnimated(int ticksPerCycle) {
 		return guiHelper.createAnimatedDrawable(arrowWhite, ticksPerCycle, IDrawableAnimated.StartDirection.LEFT, false);
+	}
+
+	public IDrawableAnimated getArrowAnimated() {
+		return arrowAnimated;
 	}
 }

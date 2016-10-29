@@ -25,24 +25,32 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 
 	@Override
 	public int getProcessLength() {
-		return (int) (super.getProcessLength() * this.getNumberOfGenes() * this.getCatalyst());
+		final ItemStack serum = this.getUtil().getStack(Polymeriser.SLOT_SERUM);
+		return (int) (super.getProcessLength() * getNumberOfGenes(serum) * this.getCatalyst());
 	}
 
 	@Override
 	public int getProcessEnergy() {
-		return (int) (super.getProcessEnergy() * this.getNumberOfGenes() * this.getCatalyst());
+		final ItemStack serum = this.getUtil().getStack(Polymeriser.SLOT_SERUM);
+		return (int) (super.getProcessEnergy() * getNumberOfGenes(serum) * this.getCatalyst());
 	}
 
-	private float getDNAPerProcess() {
-		return this.getNumberOfGenes() * 50;
+	public static float getDNAPerProcess(ItemStack serum) {
+		return getNumberOfGenes(serum) * 50;
+	}
+
+	public static float getBacteriaPerProcess(ItemStack serum) {
+		return 0.2f * getDNAPerProcess(serum);
 	}
 
 	@Override
 	public void onTickTask() {
 		super.onTickTask();
+		final ItemStack serum = this.getUtil().getStack(Polymeriser.SLOT_SERUM);
+
 		this.getUtil().useCharge(Polymeriser.SLOT_GOLD, PolymeriserLogic.chargePerProcess * this.getProgressPerTick() / 100.0f);
-		this.dnaDrain += this.getDNAPerProcess() * this.getProgressPerTick() / 100.0f;
-		this.bacteriaDrain += 0.2f * this.getDNAPerProcess() * this.getProgressPerTick() / 100.0f;
+		this.dnaDrain += getDNAPerProcess(serum) * this.getProgressPerTick() / 100.0f;
+		this.bacteriaDrain += getBacteriaPerProcess(serum) * this.getProgressPerTick() / 100.0f;
 		if (this.dnaDrain >= 1.0f) {
 			this.getUtil().drainTank(Polymeriser.TANK_DNA, 1);
 			--this.dnaDrain;
@@ -53,8 +61,7 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 		}
 	}
 
-	private int getNumberOfGenes() {
-		final ItemStack serum = this.getUtil().getStack(Polymeriser.SLOT_SERUM);
+	private static int getNumberOfGenes(ItemStack serum) {
 		if (serum == null) {
 			return 1;
 		}
@@ -63,7 +70,8 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 
 	@Override
 	public String getTooltip() {
-		int n = this.getNumberOfGenes();
+		final ItemStack serum = this.getUtil().getStack(Polymeriser.SLOT_SERUM);
+		int n = getNumberOfGenes(serum);
 		if(n > 1){
 			return String.format(Genetics.proxy.localise("genetics.machine.machine.polymeriser.tooltips.logic.genes"), Integer.valueOf(n).toString());
 		}else{
