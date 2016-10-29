@@ -2,7 +2,7 @@ package binnie.genetics.genetics;
 
 import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
-import binnie.genetics.api.IItemChargable;
+import binnie.genetics.api.IItemChargeable;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.item.ItemSerum;
@@ -61,6 +61,6 @@ public class Engineering {
 	}
 
 	public static int getCharges(final ItemStack serum) {
-		return ((IItemChargable) serum.getItem()).getCharges(serum);
+		return ((IItemChargeable) serum.getItem()).getCharges(serum);
 	}
 }

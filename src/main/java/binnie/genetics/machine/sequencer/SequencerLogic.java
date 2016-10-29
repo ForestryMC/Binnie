@@ -15,8 +15,7 @@ public class SequencerLogic extends ComponentProcess implements IProcess {
 		super(machine);
 	}
 
-	public float getSequenceStrength() {
-		final ItemStack stack = this.getUtil().getStack(Sequencer.SLOT_TARGET);
+	public static float getSequenceStrength(ItemStack stack) {
 		if (stack == null) {
 			return 1.0f;
 		}
@@ -26,7 +25,8 @@ public class SequencerLogic extends ComponentProcess implements IProcess {
 
 	@Override
 	public int getProcessLength() {
-		return (int) (19200.0f * this.getSequenceStrength());
+		final ItemStack stack = this.getUtil().getStack(Sequencer.SLOT_TARGET);
+		return (int) (19200.0f * getSequenceStrength(stack));
 	}
 
 	@Override
@@ -50,8 +50,9 @@ public class SequencerLogic extends ComponentProcess implements IProcess {
 		if (this.getUtil().getSlotCharge(Sequencer.SLOT_DYE) == 0.0f) {
 			return new ErrorState.NoItem(Genetics.proxy.localise("machine.machine.sequencer.errors.insufficient.dye"), Sequencer.SLOT_DYE);
 		}
-		if (this.getUtil().getStack(Sequencer.SLOT_DRONE) != null && this.getUtil().getStack(Sequencer.SLOT_DRONE).stackSize >= 64) {
-			return new ErrorState.NoSpace(Genetics.proxy.localise("machine.machine.sequencer.errors.no.space"), new int[]{Sequencer.SLOT_DRONE});
+		ItemStack stackDone = this.getUtil().getStack(Sequencer.SLOT_DONE);
+		if (stackDone != null && stackDone.stackSize >= 64) {
+			return new ErrorState.NoSpace(Genetics.proxy.localise("machine.machine.sequencer.errors.no.space"), new int[]{Sequencer.SLOT_DONE});
 		}
 		return super.canProgress();
 	}
@@ -74,10 +75,10 @@ public class SequencerLogic extends ComponentProcess implements IProcess {
 		final SequencerItem seqItem = new SequencerItem(this.getUtil().getStack(Sequencer.SLOT_TARGET));
 		GeneTracker.getTracker(this.getMachine().getWorld(), this.getMachine().getOwner()).registerGene(seqItem.getGene());
 		this.getUtil().decreaseStack(Sequencer.SLOT_TARGET, 1);
-		if (this.getUtil().getStack(Sequencer.SLOT_DRONE) == null) {
-			this.getUtil().setStack(Sequencer.SLOT_DRONE, GeneticsItems.EmptySequencer.get(1));
+		if (this.getUtil().getStack(Sequencer.SLOT_DONE) == null) {
+			this.getUtil().setStack(Sequencer.SLOT_DONE, GeneticsItems.EmptySequencer.get(1));
 		} else {
-			this.getUtil().decreaseStack(Sequencer.SLOT_DRONE, -1);
+			this.getUtil().decreaseStack(Sequencer.SLOT_DONE, -1);
 		}
 	}
 

@@ -9,13 +9,9 @@ import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.gui.IGuiFluidStackGroup;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
-import mezz.jei.api.gui.ITooltipCallback;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemStack;
-
-import java.util.List;
 
 public class PolymeriserRecipeCategory extends BlankRecipeCategory<PolymeriserRecipeWrapper> {
 	@Override
@@ -60,12 +56,9 @@ public class PolymeriserRecipeCategory extends BlankRecipeCategory<PolymeriserRe
 		itemStacks.init(2, false, 92, 21);
 		itemStacks.set(ingredients);
 
-		itemStacks.addTooltipCallback(new ITooltipCallback<ItemStack>() {
-			@Override
-			public void onTooltip(int slotIndex, boolean input, ItemStack ingredient, List<String> tooltip) {
-				if (slotIndex == 1) {
-					tooltip.add("5x Processing Speed");
-				}
+		itemStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
+			if (slotIndex == 1) {
+				tooltip.add("5x Processing Speed");
 			}
 		});
 

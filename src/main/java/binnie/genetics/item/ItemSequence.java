@@ -7,7 +7,7 @@ import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemAnalysable;
-import binnie.genetics.api.IItemChargable;
+import binnie.genetics.api.IItemChargeable;
 import binnie.genetics.genetics.GeneItem;
 import binnie.genetics.genetics.SequencerItem;
 import forestry.api.apiculture.EnumBeeChromosome;
@@ -23,7 +23,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChargable {
+public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChargeable {
 	public ItemSequence() {
 		super("sequence");
 		this.setMaxStackSize(1);

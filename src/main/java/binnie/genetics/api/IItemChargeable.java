@@ -3,7 +3,7 @@ package binnie.genetics.api;
 import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.item.ItemStack;
 
-public interface IItemChargable {
+public interface IItemChargeable {
 	int getCharges(ItemStack itemStack);
 
 	int getMaxCharges(ItemStack itemStack);

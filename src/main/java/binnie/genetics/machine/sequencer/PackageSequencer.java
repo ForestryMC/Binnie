@@ -43,8 +43,8 @@ public class PackageSequencer extends GeneticMachine.PackageGeneticBase implemen
 		slotTarget.setValidator(new SlotValidatorUnsequenced());
 		slotTarget.setReadOnly();
 		slotTarget.forbidInteraction();
-		InventorySlot slotDrone = inventory.addSlot(Sequencer.SLOT_DRONE, "output");
-		slotDrone.setReadOnly();
+		InventorySlot slotDone = inventory.addSlot(Sequencer.SLOT_DONE, "output");
+		slotDone.setReadOnly();
 		ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
 		transfer.addRestock(Sequencer.SLOT_RESERVE, Sequencer.SLOT_TARGET, 1);
 		new ComponentChargedSlots(machine).addCharge(0);

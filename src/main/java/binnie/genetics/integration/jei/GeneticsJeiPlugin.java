@@ -1,19 +1,23 @@
 package binnie.genetics.integration.jei;
 
 import binnie.core.integration.jei.Drawables;
+import binnie.core.integration.jei.SimpleRecipeHandler;
 import binnie.genetics.Genetics;
-import binnie.genetics.api.IItemChargable;
+import binnie.genetics.api.IItemChargeable;
 import binnie.genetics.integration.jei.incubator.IncubatorRecipeCategory;
 import binnie.genetics.integration.jei.incubator.IncubatorRecipeHandler;
 import binnie.genetics.integration.jei.incubator.LarvaeIncubatorRecipeCategory;
-import binnie.genetics.integration.jei.incubator.LarvaeIncubatorRecipeHandler;
 import binnie.genetics.integration.jei.incubator.LarvaeIncubatorRecipeMaker;
+import binnie.genetics.integration.jei.incubator.LarvaeIncubatorRecipeWrapper;
 import binnie.genetics.integration.jei.isolator.IsolatorRecipeCategory;
-import binnie.genetics.integration.jei.isolator.IsolatorRecipeHandler;
 import binnie.genetics.integration.jei.isolator.IsolatorRecipeMaker;
+import binnie.genetics.integration.jei.isolator.IsolatorRecipeWrapper;
 import binnie.genetics.integration.jei.polymeriser.PolymeriserRecipeCategory;
-import binnie.genetics.integration.jei.polymeriser.PolymeriserRecipeHandler;
 import binnie.genetics.integration.jei.polymeriser.PolymeriserRecipeMaker;
+import binnie.genetics.integration.jei.polymeriser.PolymeriserRecipeWrapper;
+import binnie.genetics.integration.jei.sequencer.SequencerRecipeCategory;
+import binnie.genetics.integration.jei.sequencer.SequencerRecipeMaker;
+import binnie.genetics.integration.jei.sequencer.SequencerRecipeWrapper;
 import binnie.genetics.machine.GeneticMachine;
 import binnie.genetics.machine.LaboratoryMachine;
 import binnie.genetics.machine.incubator.Incubator;
@@ -56,24 +60,28 @@ public class GeneticsJeiPlugin extends BlankModPlugin {
 				new IncubatorRecipeCategory(),
 				new LarvaeIncubatorRecipeCategory(),
 				new IsolatorRecipeCategory(),
-				new PolymeriserRecipeCategory()
+				new PolymeriserRecipeCategory(),
+				new SequencerRecipeCategory()
 		);
 
 		registry.addRecipeHandlers(
 				new IncubatorRecipeHandler(),
-				new LarvaeIncubatorRecipeHandler(),
-				new IsolatorRecipeHandler(),
-				new PolymeriserRecipeHandler()
+				new SimpleRecipeHandler<>(LarvaeIncubatorRecipeWrapper.class, RecipeUids.INCUBATOR_LARVAE),
+				new SimpleRecipeHandler<>(IsolatorRecipeWrapper.class, RecipeUids.ISOLATOR),
+				new SimpleRecipeHandler<>(PolymeriserRecipeWrapper.class, RecipeUids.POLYMERISER),
+				new SimpleRecipeHandler<>(SequencerRecipeWrapper.class, RecipeUids.SEQUENCER)
 		);
 
 		registry.addRecipeCategoryCraftingItem(LaboratoryMachine.Incubator.get(1), RecipeUids.INCUBATOR, RecipeUids.INCUBATOR_LARVAE);
 		registry.addRecipeCategoryCraftingItem(GeneticMachine.Isolator.get(1), RecipeUids.ISOLATOR);
 		registry.addRecipeCategoryCraftingItem(GeneticMachine.Polymeriser.get(1), RecipeUids.POLYMERISER);
+		registry.addRecipeCategoryCraftingItem(GeneticMachine.Sequencer.get(1), RecipeUids.SEQUENCER);
 
 		registry.addRecipes(Incubator.getRecipes());
 		registry.addRecipes(LarvaeIncubatorRecipeMaker.create(Incubator.getLarvaeRecipe()));
 		registry.addRecipes(IsolatorRecipeMaker.create());
 		registry.addRecipes(PolymeriserRecipeMaker.create());
+		registry.addRecipes(SequencerRecipeMaker.create());
 	}
 
 	private static class ChargeableSubtypeInterpreter implements ISubtypeRegistry.ISubtypeInterpreter {
@@ -81,11 +89,11 @@ public class GeneticsJeiPlugin extends BlankModPlugin {
 		@Override
 		public String getSubtypeInfo(ItemStack itemStack) {
 			Item item = itemStack.getItem();
-			if (item instanceof IItemChargable) {
-				IItemChargable itemChargable = (IItemChargable) item;
-				boolean fullyCharged = (itemChargable.getCharges(itemStack) == itemChargable.getMaxCharges(itemStack));
+			if (item instanceof IItemChargeable) {
+				IItemChargeable itemChargeable = (IItemChargeable) item;
+				boolean fullyCharged = (itemChargeable.getCharges(itemStack) == itemChargeable.getMaxCharges(itemStack));
 				String info = fullyCharged ? "charged" : "uncharged";
-				ISpeciesRoot root = itemChargable.getSpeciesRoot(itemStack);
+				ISpeciesRoot root = itemChargeable.getSpeciesRoot(itemStack);
 				return info + ":" + root.getUID();
 			}
 
