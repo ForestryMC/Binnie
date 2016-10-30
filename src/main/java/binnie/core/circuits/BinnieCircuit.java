@@ -42,21 +42,6 @@ public class BinnieCircuit implements ICircuit {
 		return this.uid;
 	}
 
-//	@Override
-//	public boolean requiresDiscovery() {
-//		return false;
-//	}
-//
-//	@Override
-//	public int getLimit() {
-//		return this.limit;
-//	}
-//
-//	@Override
-//	public String getName() {
-//		return this.uid;
-//	}
-
 	@Override
 	public void addTooltip(final List<String> list) {
 		for (final String string : this.tooltips) {

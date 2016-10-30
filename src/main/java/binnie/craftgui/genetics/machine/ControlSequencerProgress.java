@@ -37,10 +37,10 @@ public class ControlSequencerProgress extends ControlProgressBase {
 				final int k = rand.nextInt(4);
 				final String code = codes[k];
 				if (rand.nextFloat() < this.progress) {
-					final String col = "ยง" + colors[k];
-					text = text + "ยงr" + col + "ยงl" + code;
+					final String col = "ง" + colors[k];
+					text = text + "งr" + col + "งl" + code;
 				} else {
-					text = text + "ยงrยง7ยงkยงl" + code;
+					text = text + "งrง7งkงl" + code;
 				}
 			}
 			this.textControl.setValue(text);

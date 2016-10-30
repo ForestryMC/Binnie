@@ -16,6 +16,7 @@ import forestry.core.blocks.IColoredBlock;
 import forestry.core.render.TextureManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.creativetab.CreativeTabs;
@@ -24,6 +25,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -33,8 +35,12 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+import java.util.Locale;
 
 public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipassBlock<BlockType>, IColoredBlock, ISpriteRegister {
+	
+	public static final PropertyEnum<TileType> TYPE = PropertyEnum.create("type", TileType.class);
+	
 	public BlockCeramicBrick() {
 		super(Material.ROCK);
 		this.setHardness(1.0f);
@@ -158,7 +164,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
 		return type.color2.getColor(false);
 	}
 
-	public enum TileType {
+	public enum TileType implements IStringSerializable {
 		Tile("tile", "Ceramic Tile"),
 		Brick("brick", "Ceramic Bricks"),
 		StripeBrick("brickstripe", "Striped Ceramic Bricks"),
@@ -430,6 +436,11 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
 
 		private boolean isMortar(final ItemStack stack) {
 			return stack.getItem() == Botany.misc && stack.getItemDamage() == BotanyItems.Mortar.ordinal();
+		}
+		
+		@Override
+		public String getName() {
+			return name().toLowerCase(Locale.ENGLISH);
 		}
 	}
 

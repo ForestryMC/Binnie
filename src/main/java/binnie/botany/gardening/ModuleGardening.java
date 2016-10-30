@@ -108,10 +108,17 @@ public class ModuleGardening implements IInitializable {
 		final ItemStack yellow = new ItemStack(Blocks.YELLOW_FLOWER, 1);
 		final ItemStack red = new ItemStack(Blocks.RED_FLOWER, 1);
 		final ItemStack blue = new ItemStack(Blocks.RED_FLOWER, 1, 7);
-		for (final boolean manual : new boolean[]{true, false}) {
-			for (final boolean fertilised : new boolean[]{true, false}) {
-				for (final EnumMoisture moist : EnumMoisture.values()) {
-					final ItemStack icon = (moist == EnumMoisture.Dry) ? yellow : ((moist == EnumMoisture.Normal) ? red : blue);
+		for (boolean manual : new boolean[]{true, false}) {
+			for (boolean fertilised : new boolean[]{true, false}) {
+				for (EnumMoisture moist : EnumMoisture.values()) {
+					ItemStack icon;
+					if(moist == EnumMoisture.Dry){
+						icon = yellow;
+					}else if(moist == EnumMoisture.Normal){
+						icon = red;
+					}else{
+						icon = blue;
+					}
 					int insulate = 2 - moist.ordinal();
 					if (fertilised) {
 						insulate += 3;

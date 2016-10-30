@@ -155,6 +155,15 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 			world.setBlockState(pos.up(), Botany.plant.getStateFromMeta(BlockPlant.Type.Weeds.ordinal()), 2);
 		}
 	}
+	
+	@Override
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn){
+        super.neighborChanged(state, worldIn, pos, blockIn);
+
+        if (worldIn.getBlockState(pos.up()).getMaterial().isSolid()){
+            worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());
+        }
+    }
 
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {

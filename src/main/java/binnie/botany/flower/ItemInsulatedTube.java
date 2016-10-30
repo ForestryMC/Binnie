@@ -1,5 +1,6 @@
 package binnie.botany.flower;
 
+import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.core.item.ItemCore;
 import forestry.api.core.IModelManager;
@@ -47,7 +48,7 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 		if (tintIndex == 0) {
 			return 16777215;
 		} else if (tintIndex == 1) {
-			Material.get(stack.getItemDamage()).getColor();
+			return Material.get(stack.getItemDamage()).getColor();
 		}
 		return Insulate.get(stack.getItemDamage()).getColor();
 	}
@@ -60,7 +61,7 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack p_77653_1_) {
-		return Material.get(p_77653_1_.getItemDamage()).getName() + " Insulated Tube";
+		return Material.get(p_77653_1_.getItemDamage()).getName() + " " + super.getItemStackDisplayName(p_77653_1_);
 	}
 
 	public static String getInsulate(ItemStack stack) {

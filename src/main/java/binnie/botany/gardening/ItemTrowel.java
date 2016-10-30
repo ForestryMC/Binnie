@@ -1,5 +1,7 @@
 package binnie.botany.gardening;
 
+import com.google.common.collect.Multimap;
+
 import binnie.Constants;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
@@ -12,8 +14,12 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -53,11 +59,10 @@ public class ItemTrowel extends Item implements IItemModelRegister {
 			return EnumActionResult.FAIL;
 		}
 		Block block = world.getBlockState(pos).getBlock();
-		if (facing == EnumFacing.DOWN || (!world.isAirBlock(pos.up()) && world.getBlockState(pos.up()).getBlock() != Botany.flower) || (block != Blocks.GRASS && block != Blocks.DIRT)) {
+		if (facing == EnumFacing.DOWN || (!world.isAirBlock(pos.up()) && world.getBlockState(pos.up()).getBlock() != Botany.flower) || (block != Blocks.GRASS && block != Blocks.DIRT && block != Blocks.GRASS_PATH)) {
 			return EnumActionResult.PASS;
 		}
-		Block block2 = Botany.soil;
-		world.playSound(player, hitX + 0.5f, hitY + 0.5f, hitZ + 0.5f, block2.getSoundType().getStepSound(), SoundCategory.NEUTRAL, (block2.getSoundType().getVolume() + 1.0f) / 2.0f, block2.getSoundType().getPitch() * 0.8f);
+		world.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		if (world.isRemote) {
 			return EnumActionResult.SUCCESS;
 		}
@@ -67,6 +72,18 @@ public class ItemTrowel extends Item implements IItemModelRegister {
 		stack.damageItem(1, player);
 		return EnumActionResult.SUCCESS;
 	}
+	
+    @Override
+	public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot){
+        Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
+
+        if (equipmentSlot == EntityEquipmentSlot.MAINHAND){
+            multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", theToolMaterial.getDamageVsEntity() + 0.5, 0));
+            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", -1.5, 0));
+        }
+
+        return multimap;
+    }
 
 	@Override
 	@SideOnly(Side.CLIENT)
