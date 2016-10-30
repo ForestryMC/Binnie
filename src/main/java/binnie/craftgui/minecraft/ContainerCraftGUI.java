@@ -22,6 +22,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.ClickType;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -217,7 +218,10 @@ public class ContainerCraftGUI extends Container {
 				final int type = action.getByte("t");
 				final int index = action.getShort("i");
 				final int slotNumber = action.getShort("n");
-				this.getOrCreateSlot(InventoryType.values()[type % 4], index, slotNumber);
+				this.createServerSlot(InventoryType.values()[type % 4], index, slotNumber);
+				for(IContainerListener listener : listeners){
+					listener.updateCraftingInventory(this, this.getInventory());
+				}
 			}
 		}
 		if (name.contains("tank-update")) {
@@ -478,7 +482,7 @@ public class ContainerCraftGUI extends Container {
 		return null;
 	}
 
-	private Slot getOrCreateSlot(final InventoryType type, final int index, final int slotNumber) {
+	private Slot createServerSlot(final InventoryType type, final int index, final int slotNumber) {
 		final IInventory inventory = this.getInventory(type);
 		if (this.inventorySlots.get(slotNumber) != null) {
 			return null;
