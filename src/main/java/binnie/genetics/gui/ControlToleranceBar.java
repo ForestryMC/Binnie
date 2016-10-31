@@ -27,7 +27,7 @@ public abstract class ControlToleranceBar<T extends Enum<T>> extends Control imp
 		this.tolerated = EnumSet.noneOf(this.enumClass);
 		this.fullSet = EnumSet.allOf(this.enumClass);
 		if (this.enumClass == EnumTemperature.class) {
-			this.fullSet.remove(EnumTemperature.NONE);
+			this.fullSet.remove(this.enumClass.cast(EnumTemperature.NONE));
 		}
 	}
 
