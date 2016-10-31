@@ -27,7 +27,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 		super(machine);
 		this.tanks = new LinkedHashMap<>();
 		this.handlers = new EnumMap<>(EnumFacing.class);
-		for(EnumFacing facing : EnumFacing.VALUES){
+		for (EnumFacing facing : EnumFacing.VALUES) {
 			handlers.put(facing, new TankContainer(facing));
 		}
 	}
@@ -153,19 +153,19 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 			this.getMachine().markDirty();
 		}
 	}
-	
+
 	@Override
 	public IFluidHandler getHandler(EnumFacing from) {
 		return handlers.get(from);
 	}
-	
-	private class TankContainer implements IFluidHandler{
+
+	private class TankContainer implements IFluidHandler {
 		EnumFacing from;
-		
+
 		public TankContainer(EnumFacing from) {
 			this.from = from;
 		}
-		
+
 		@Override
 		public final int fill(final FluidStack resource, final boolean doFill) {
 			final int index = getTankIndexToFill(from, resource);
@@ -174,7 +174,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 			}
 			return 0;
 		}
-		
+
 		@Override
 		public FluidStack drain(final FluidStack resource, final boolean doDrain) {
 			final int index = getTankIndexToDrain(from, null);
@@ -192,7 +192,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 			}
 			return null;
 		}
-		
+
 		@Override
 		public IFluidTankProperties[] getTankProperties() {
 			final IFluidTankProperties[] properties = new IFluidTankProperties[getTanks().length];

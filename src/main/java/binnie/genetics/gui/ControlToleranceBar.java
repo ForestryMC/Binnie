@@ -27,7 +27,7 @@ public abstract class ControlToleranceBar<T extends Enum<T>> extends Control imp
 		this.tolerated = EnumSet.noneOf(this.enumClass);
 		this.fullSet = EnumSet.allOf(this.enumClass);
 		if (this.enumClass == EnumTemperature.class) {
-			this.fullSet.remove(EnumTemperature.NONE);
+			this.fullSet.remove(this.enumClass.cast(EnumTemperature.NONE));
 		}
 	}
 
@@ -37,7 +37,7 @@ public abstract class ControlToleranceBar<T extends Enum<T>> extends Control imp
 		final int type = (int) ((int) this.getRelativeMousePosition().x() / (this.getSize().x() / types));
 		for (final T tol : this.fullSet) {
 			if (tol.ordinal() - ((this.enumClass == EnumTemperature.class) ? 1 : 0) == type) {
-				list.add((this.tolerated.contains(tol) ? "" : TextFormatting.DARK_GRAY ) + this.getName(tol));
+				list.add((this.tolerated.contains(tol) ? "" : TextFormatting.DARK_GRAY) + this.getName(tol));
 			}
 		}
 	}

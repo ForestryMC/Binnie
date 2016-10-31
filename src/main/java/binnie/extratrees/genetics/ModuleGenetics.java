@@ -48,5 +48,4 @@ public class ModuleGenetics implements IInitializable {
 			}
 		}
 	}
-
 }

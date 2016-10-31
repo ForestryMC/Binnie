@@ -243,7 +243,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 
 	@Override
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		ArrayList<ItemStack> drops = new ArrayList<>();
 		TileEntity tile = world.getTileEntity(pos);
 		if (tile instanceof TileEntityFlower && ((TileEntityFlower) tile).getSection() == 0) {
 			ItemStack flower = ((TileEntityFlower) tile).getItemStack();

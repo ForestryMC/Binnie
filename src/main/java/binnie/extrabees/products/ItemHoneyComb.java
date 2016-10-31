@@ -257,7 +257,7 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 		QUARTZ;
 
 		public ItemStack get() {
-			return new ItemStack(Mods.Forestry.item("beeCombs"), 1, this.ordinal());
+			return Mods.Forestry.stack("beeCombs", 1, this.ordinal());
 		}
 	}
 }

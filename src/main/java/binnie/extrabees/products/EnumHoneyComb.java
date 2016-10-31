@@ -6,6 +6,7 @@ import forestry.api.recipes.RecipeManagers;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
+import javax.annotation.Nullable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -143,7 +144,7 @@ public enum EnumHoneyComb implements IItemEnum {
 		return ExtraBees.proxy.localise("item.comb." + this.name().toLowerCase());
 	}
 
-	public boolean addProduct(final ItemStack item, final Float chance) {
+	public boolean addProduct(@Nullable final ItemStack item, final Float chance) {
 		if (item == null) {
 			return false;
 		}
@@ -151,7 +152,7 @@ public enum EnumHoneyComb implements IItemEnum {
 		return true;
 	}
 
-	public void tryAddProduct(final ItemStack item, final Float chance) {
+	public void tryAddProduct(@Nullable final ItemStack item, final Float chance) {
 		this.active = this.addProduct(item, chance);
 	}
 

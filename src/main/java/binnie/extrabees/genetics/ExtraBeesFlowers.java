@@ -61,7 +61,7 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 
 	@Override
 	public String getDescription() {
-		return ExtraBees.proxy.localise("flowers." + this.name().toString().toLowerCase() + ".name");
+		return ExtraBees.proxy.localise("flowers." + this.name().toLowerCase() + ".name");
 	}
 
 	public void register() {

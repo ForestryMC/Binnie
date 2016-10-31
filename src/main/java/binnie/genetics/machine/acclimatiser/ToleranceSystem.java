@@ -1,7 +1,5 @@
 package binnie.genetics.machine.acclimatiser;
 
-import java.util.Random;
-
 import binnie.core.genetics.Gene;
 import binnie.core.genetics.Tolerance;
 import binnie.genetics.machine.inoculator.Inoculator;
@@ -12,6 +10,8 @@ import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.item.ItemStack;
+
+import java.util.Random;
 
 class ToleranceSystem {
 	String uid;

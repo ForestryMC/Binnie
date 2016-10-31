@@ -38,9 +38,9 @@ public class InoculatorLogic extends ComponentProcessSetCost implements IProcess
 	@Override
 	public String getTooltip() {
 		int n = this.getNumberOfGenes();
-		if(n > 1){
+		if (n > 1) {
 			return String.format(Genetics.proxy.localise("genetics.machine.machine.inoculator.tooltips.logic.genes"), Integer.valueOf(n).toString());
-		}else{
+		} else {
 			return Genetics.proxy.localise("genetics.machine.machine.inoculator.tooltips.logic.gene");
 		}
 	}

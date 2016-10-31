@@ -16,6 +16,7 @@ import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,7 +41,7 @@ public class AlvearyMutator {
 		return 1.0f;
 	}
 
-	public static void addMutationItem(final ItemStack item, final float chance) {
+	public static void addMutationItem(@Nullable final ItemStack item, final float chance) {
 		if (item == null) {
 			return;
 		}

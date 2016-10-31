@@ -18,7 +18,7 @@ public class CircuitGarden extends BinnieCircuit {
 	private EnumMoisture moisture;
 	private EnumAcidity acidity;
 	private GardenLogic logic;
-    
+
 	public CircuitGarden(EnumMoisture moisture, EnumAcidity ph, boolean manual, boolean fertilised, ItemStack recipe, ItemStack icon) {
 		super(getName(moisture, ph, manual, fertilised), 4, manual ? ChipsetManager.circuitRegistry.getLayout("forestry.farms.manual") : ChipsetManager.circuitRegistry.getLayout("forestry.farms.managed"), recipe);
 		this.isFertilised = false;
@@ -30,34 +30,34 @@ public class CircuitGarden extends BinnieCircuit {
 		this.logic = new GardenLogic(this.moisture, this.acidity, this.isManual, this.isFertilised, this.icon, Binnie.Language.localise(this.getUnlocalizedName()));
 		String info = "";
 		if (moisture != EnumMoisture.Normal) {
-			info+=TextFormatting.GRAY + Binnie.Language.localise("botany.moisture") + ": " + moisture.getTranslated(true);
+			info += TextFormatting.GRAY + Binnie.Language.localise("botany.moisture") + ": " + moisture.getTranslated(true);
 		}
 		if (info.length() > 0) {
 			info += ", ";
 		}
 		if (ph != null) {
-			info+=TextFormatting.GRAY + Binnie.Language.localise("botany.ph") + ": " + ph.getTranslated(true);
+			info += TextFormatting.GRAY + Binnie.Language.localise("botany.ph") + ": " + ph.getTranslated(true);
 		}
 		if (info.length() > 0) {
 			info = " (" + info + TextFormatting.RESET + ")";
 		}
 		this.addTooltipString("Flowers" + info);
 	}
-	
-	private static String getName(EnumMoisture moisture, EnumAcidity ph, boolean manual, boolean fertilised){
+
+	private static String getName(EnumMoisture moisture, EnumAcidity ph, boolean manual, boolean fertilised) {
 		String name = "garden." + moisture.getName();
-		if(ph != null){
+		if (ph != null) {
 			name += "." + ph.getName();
 		}
-		if(manual){
+		if (manual) {
 			name += ".manual";
 		}
-		if(fertilised){
+		if (fertilised) {
 			name += ".fert";
 		}
 		return name;
 	}
-	
+
 	public CircuitGarden setManual() {
 		isManual = true;
 		return this;

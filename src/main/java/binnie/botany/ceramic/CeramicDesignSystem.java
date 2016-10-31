@@ -24,8 +24,8 @@ public class CeramicDesignSystem implements IDesignSystem {
 	Map<Integer, TextureAtlasSprite> secondary;
 
 	CeramicDesignSystem() {
-		this.primary = new HashMap<Integer, TextureAtlasSprite>();
-		this.secondary = new HashMap<Integer, TextureAtlasSprite>();
+		this.primary = new HashMap<>();
+		this.secondary = new HashMap<>();
 		DesignerManager.instance.registerDesignSystem(this);
 	}
 

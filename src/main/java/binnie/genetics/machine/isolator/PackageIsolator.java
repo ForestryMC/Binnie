@@ -1,7 +1,5 @@
 package binnie.genetics.machine.isolator;
 
-import java.util.Objects;
-
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentChargedSlots;
@@ -24,6 +22,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
+import java.util.Objects;
+
 public class PackageIsolator extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageIsolator() {
 		super("isolator", GeneticsTexture.Isolator, 16740111, true);
@@ -36,7 +36,7 @@ public class PackageIsolator extends GeneticMachine.PackageGeneticBase implement
 		InventorySlot slotEnzyme = inventory.addSlot(Isolator.SLOT_ENZYME, "enzyme");
 		slotEnzyme.setValidator(new SlotValidator.Item(GeneticsItems.Enzyme.get(1), ModuleMachine.IconEnzyme));
 		slotEnzyme.forbidExtraction();
-		InventorySlot slotSequencer= inventory.addSlot(Isolator.SLOT_SEQUENCER_VIAL, "sequencervial");
+		InventorySlot slotSequencer = inventory.addSlot(Isolator.SLOT_SEQUENCER_VIAL, "sequencervial");
 		slotSequencer.setValidator(new SlotValidator.Item(GeneticsItems.EmptySequencer.get(1), ModuleMachine.IconSequencer));
 		slotSequencer.forbidExtraction();
 		for (InventorySlot slot : inventory.addSlotArray(Isolator.SLOT_RESERVE, "input")) {

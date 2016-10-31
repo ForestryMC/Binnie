@@ -261,9 +261,9 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
 		if (capability == CapabilityEnergy.ENERGY) {
 			return CapabilityEnergy.ENERGY.cast(this);
-		}else  if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY){
+		} else if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
 			return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(new InvWrapper(getInventory()));
-		}else if(capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY){
+		} else if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
 			return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(getHandler(facing));
 		}
 		return super.getCapability(capability, facing);

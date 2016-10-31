@@ -47,7 +47,7 @@ public class ContainerCraftGUI extends Container {
 	private int errorType;
 	private ErrorState error;
 	private int mousedOverSlotNumber;
-	private final Set<EntityPlayerMP> crafters = Sets.newConcurrentHashSet();
+	private final Set<EntityPlayer> crafters = Sets.newConcurrentHashSet();
 
 	public ContainerCraftGUI(final Window window) {
 		this.syncedNBT = new HashMap<>();
@@ -219,7 +219,7 @@ public class ContainerCraftGUI extends Container {
 				final int index = action.getShort("i");
 				final int slotNumber = action.getShort("n");
 				this.createServerSlot(InventoryType.values()[type % 4], index, slotNumber);
-				for(IContainerListener listener : listeners){
+				for (IContainerListener listener : listeners) {
 					listener.updateCraftingInventory(this, this.getInventory());
 				}
 			}
