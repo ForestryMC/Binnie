@@ -1,7 +1,5 @@
 package binnie.genetics.machine.incubator;
 
-import java.util.Random;
-
 import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentProcessIndefinate;
 import binnie.core.machines.power.ErrorState;
@@ -11,6 +9,8 @@ import binnie.genetics.Genetics;
 import binnie.genetics.api.IIncubatorRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
+
+import java.util.Random;
 
 public class IncubatorLogic extends ComponentProcessIndefinate implements IProcess {
 	IIncubatorRecipe recipe;

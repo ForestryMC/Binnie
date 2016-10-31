@@ -1,7 +1,5 @@
 package binnie.genetics.machine.polymeriser;
 
-import java.util.Random;
-
 import binnie.core.BinnieCore;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
@@ -11,6 +9,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Random;
 
 public class PolymeriserFX extends MachineComponent implements IRender.DisplayTick {
 	public PolymeriserFX(final IMachine machine) {
@@ -49,8 +49,7 @@ public class PolymeriserFX extends MachineComponent implements IRender.DisplayTi
 					if (this.particleAge > 60) {
 						if (this.particleAge > 120) {
 							dist = 0.1;
-						}
-						else {
+						} else {
 							dist = 0.2 - 0.1 * ((this.particleAge - 60.0f) / 60.0f);
 						}
 					}

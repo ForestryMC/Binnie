@@ -3,7 +3,6 @@ package binnie.genetics.machine.acclimatiser;
 import binnie.Binnie;
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.core.BinnieCore;
-import binnie.core.Mods;
 import binnie.core.genetics.Tolerance;
 import binnie.core.liquid.FluidContainer;
 import forestry.api.apiculture.EnumBeeChromosome;
@@ -16,7 +15,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidUtil;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;

@@ -65,14 +65,14 @@ public class GardenLogic extends FarmLogic {
 	public boolean isAcceptedResource(final ItemStack itemstack) {
 		return Gardening.isSoil(itemstack.getItem()) || itemstack.getItem() == Item.getItemFromBlock(Blocks.SAND) || itemstack.getItem() == Item.getItemFromBlock(Blocks.DIRT) || Gardening.isAcidFertiliser(itemstack) || Gardening.isAlkalineFertiliser(itemstack);
 	}
-	
+
 	@Override
 	public Collection<ItemStack> collect(World world, IFarmHousing farmHousing) {
 		final Collection<ItemStack> products = this.produce;
 		this.produce = new ArrayList<ItemStack>();
 		return products;
 	}
-	
+
 	@Override
 	public boolean cultivate(World world, IFarmHousing farmHousing, BlockPos pos, FarmDirection direction, int extent) {
 		return this.maintainSoil(world, pos, direction, extent, farmHousing) || (!this.isManual && this.maintainWater(world, pos, direction, extent, farmHousing)) || this.maintainCrops(world, pos.up(), direction, extent, farmHousing);
@@ -93,22 +93,21 @@ public class GardenLogic extends FarmLogic {
 			}
 			if (getBlock(world, position.up()) == Botany.plant) {
 				world.setBlockToAir(position.up());
-			}
-			else {
+			} else {
 				if (this.acidity != null && Gardening.isSoil(getBlock(world, position))) {
 					IBlockSoil soil = (IBlockSoil) getBlock(world, position);
 					EnumAcidity pH = soil.getPH(world, position);
 					if (pH.ordinal() < this.acidity.ordinal()) {
 						ItemStack stack = this.getAvailableAlkaline(housing);
 						if (stack != null && soil.setPH(world, position, EnumAcidity.values()[pH.ordinal() + 1])) {
-							housing.getFarmInventory().removeResources(new ItemStack[] { stack });
+							housing.getFarmInventory().removeResources(new ItemStack[]{stack});
 							continue;
 						}
 					}
 					if (pH.ordinal() > this.acidity.ordinal()) {
 						final ItemStack stack = this.getAvailableAcid(housing);
 						if (stack != null && soil.setPH(world, position, EnumAcidity.values()[pH.ordinal() - 1])) {
-							housing.getFarmInventory().removeResources(new ItemStack[] { stack });
+							housing.getFarmInventory().removeResources(new ItemStack[]{stack});
 							continue;
 						}
 					}
@@ -121,8 +120,7 @@ public class GardenLogic extends FarmLogic {
 						this.setBlock(world, position, Blocks.AIR, 0);
 						return trySetSoil(world, position, loam, housing);
 					}
-				}
-				else if (!this.isManual) {
+				} else if (!this.isManual) {
 					if (!this.isWaterBlock(world, position)) {
 						if (i % 2 == 0) {
 							return trySetSoil(world, position, housing);
@@ -130,11 +128,9 @@ public class GardenLogic extends FarmLogic {
 						FarmDirection cclock = FarmDirection.EAST;
 						if (direction == FarmDirection.EAST) {
 							cclock = FarmDirection.SOUTH;
-						}
-						else if (direction == FarmDirection.SOUTH) {
+						} else if (direction == FarmDirection.SOUTH) {
 							cclock = FarmDirection.EAST;
-						}
-						else if (direction == FarmDirection.WEST) {
+						} else if (direction == FarmDirection.WEST) {
 							cclock = FarmDirection.SOUTH;
 						}
 						BlockPos previous = position.offset(cclock.getFacing());
@@ -157,14 +153,11 @@ public class GardenLogic extends FarmLogic {
 					boolean isEnclosed = true;
 					if (world.isAirBlock(position.east())) {
 						isEnclosed = false;
-					}
-					else if (world.isAirBlock(position.west())) {
+					} else if (world.isAirBlock(position.west())) {
 						isEnclosed = false;
-					}
-					else if (world.isAirBlock(position.south())) {
+					} else if (world.isAirBlock(position.south())) {
 						isEnclosed = false;
-					}
-					else if (world.isAirBlock(position.north())) {
+					} else if (world.isAirBlock(position.north())) {
 						isEnclosed = false;
 					}
 					isEnclosed = (isEnclosed || this.moisture != EnumMoisture.Damp);
@@ -257,12 +250,12 @@ public class GardenLogic extends FarmLogic {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public Collection<ICrop> harvest(World world, BlockPos pos, FarmDirection direction, int extent) {
 		return null;
 	}
-	
+
 	@Override
 	public ResourceLocation getTextureMap() {
 		return TextureMap.LOCATION_BLOCKS_TEXTURE;
@@ -293,17 +286,17 @@ public class GardenLogic extends FarmLogic {
 
 	private boolean trySetCrop(World world, BlockPos position, IFarmHousing housing) {
 		for (IFarmable farmable : this.farmables) {
-			if(housing.plantGermling(farmable, world, position)){
+			if (housing.plantGermling(farmable, world, position)) {
 				if (housing instanceof IOwnedTile) {
 					TileEntity tile = world.getTileEntity(position);
 					if (tile instanceof TileEntityFlower) {
 						TileEntityFlower flower = (TileEntityFlower) tile;
 						IOwnedTile owned = (IOwnedTile) housing;
-						
+
 						flower.setOwner(owned.getOwnerHandler().getOwner());
 					}
 				}
-			return true;
+				return true;
 			}
 		}
 		return false;

@@ -133,7 +133,7 @@ public class ModuleItem implements IInitializable {
 					'c', GeneticsItems.IntegratedCircuit.get(itemGenetics, 1),
 					'a', Mods.Forestry.item("portableAlyzer"),
 					'd', new ItemStack(Items.DIAMOND));
-			
+
 			final Item[] dbs = {ExtraBees.dictionary, ExtraTrees.itemDictionary, ExtraTrees.itemDictionaryLepi, Botany.database};
 			if (BinnieCore.isBotanyActive() && BinnieCore.isExtraBeesActive() && BinnieCore.isExtraTreesActive()) {
 				for (final Item a2 : dbs) {
@@ -141,7 +141,7 @@ public class ModuleItem implements IInitializable {
 						for (final Item c2 : dbs) {
 							for (final Item d : dbs) {
 								if (a2 != b2 && a2 != c2 && a2 != d && b2 != c2 && b2 != d && c2 != d) {
-										GameRegistry.addShapedRecipe(new ItemStack(Genetics.registry), new Object[] { " b ", "fct", " l ", 'c', GeneticsItems.IntegratedCircuit.get(itemGenetics, 1), 'b', a2, 't', b2, 'f', c2, 'l', d });
+									GameRegistry.addShapedRecipe(new ItemStack(Genetics.registry), new Object[]{" b ", "fct", " l ", 'c', GeneticsItems.IntegratedCircuit.get(itemGenetics, 1), 'b', a2, 't', b2, 'f', c2, 'l', d});
 								}
 							}
 						}

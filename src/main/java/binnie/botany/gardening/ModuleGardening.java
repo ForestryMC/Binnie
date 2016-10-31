@@ -112,11 +112,11 @@ public class ModuleGardening implements IInitializable {
 			for (boolean fertilised : new boolean[]{true, false}) {
 				for (EnumMoisture moist : EnumMoisture.values()) {
 					ItemStack icon;
-					if(moist == EnumMoisture.Dry){
+					if (moist == EnumMoisture.Dry) {
 						icon = yellow;
-					}else if(moist == EnumMoisture.Normal){
+					} else if (moist == EnumMoisture.Normal) {
 						icon = red;
-					}else{
+					} else {
 						icon = blue;
 					}
 					int insulate = 2 - moist.ordinal();

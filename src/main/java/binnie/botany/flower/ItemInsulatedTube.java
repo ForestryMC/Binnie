@@ -1,6 +1,5 @@
 package binnie.botany.flower;
 
-import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.core.item.ItemCore;
 import forestry.api.core.IModelManager;

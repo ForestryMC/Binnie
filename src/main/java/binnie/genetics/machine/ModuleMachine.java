@@ -1,6 +1,5 @@
 package binnie.genetics.machine;
 
-import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.machines.MachineGroup;
