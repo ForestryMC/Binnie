@@ -1,6 +1,7 @@
 package binnie.core;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -27,7 +28,7 @@ public class Mods {
 	private static Item findItem(final String modId, final String name) {
 		final Item stack = Item.REGISTRY.getObject(new ResourceLocation(modId, name));
 		if (stack == null && Mods.WARN && Objects.equals(modId, "forestry")) {
-			//throw new RuntimeException("Item not found: " + modId + ":" + name);
+			throw new RuntimeException("Item not found: " + modId + ":" + name);
 		}
 
 		return stack;
@@ -35,18 +36,18 @@ public class Mods {
 
 	private static ItemStack findItemStack(final String modId, final String name, final int stackSize) {
 		final ItemStack stack = GameRegistry.makeItemStack(modId + ":" + name, 0, stackSize, null);
-		if (stack == null && Mods.WARN && Objects.equals(modId, "forestry")) {
-			//throw new RuntimeException("Stack not found: " + modId + ":" + name);
+		if ((stack == null || stack.getItem() == null) && Mods.WARN && Objects.equals(modId, "forestry")) {
+			throw new RuntimeException("Stack not found: " + modId + ":" + name);
 		}
 		return stack;
 	}
 
 	private static Block findBlock(final String modId, final String name) {
-		final Block stack = Block.REGISTRY.getObject(new ResourceLocation(modId + ":" + name));
-		if (stack == null && Mods.WARN && Objects.equals(modId, "forestry")) {
-			//throw new RuntimeException("Block not found: " + modId + ":" + name);
+		final Block block = Block.REGISTRY.getObject(new ResourceLocation(modId + ":" + name));
+		if (block == Blocks.AIR && Mods.WARN && Objects.equals(modId, "forestry")) {
+			throw new RuntimeException("Block not found: " + modId + ":" + name);
 		}
-		return stack;
+		return block;
 	}
 
 	public static class Mod {

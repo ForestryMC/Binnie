@@ -5,6 +5,7 @@ import binnie.botany.api.EnumFlowerChromosome;
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
 import binnie.core.genetics.Tolerance;
+import binnie.core.liquid.FluidContainer;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.EnumTolerance;
@@ -14,6 +15,9 @@ import forestry.api.lepidopterology.EnumButterflyChromosome;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidUtil;
+
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -100,11 +104,11 @@ public class Acclimatiser {
 		addTemperatureItem(new ItemStack(Blocks.ICE), -0.75f);
 		addHumidityItem(new ItemStack(Items.WATER_BUCKET), 0.75f);
 		addHumidityItem(new ItemStack(Blocks.SAND), -0.15f);
-		addTemperatureItem(Mods.Forestry.stack("canLava"), 0.75f);
-		addTemperatureItem(Mods.Forestry.stack("refractoryLava"), 0.75f);
-		addHumidityItem(Mods.Forestry.stack("canWater"), 0.75f);
-		addHumidityItem(Mods.Forestry.stack("refractoryWater"), 0.75f);
-		addHumidityItem(Mods.Forestry.stack("waxCapsuleWater"), 0.75f);
+		addTemperatureItem(FluidContainer.Can.getFilled(FluidRegistry.LAVA), 0.75f);
+		addTemperatureItem(FluidContainer.Refractory.getFilled(FluidRegistry.LAVA), 0.75f);
+		addHumidityItem(FluidContainer.Can.getFilled(FluidRegistry.WATER), 0.75f);
+		addHumidityItem(FluidContainer.Refractory.getFilled(FluidRegistry.WATER), 0.75f);
+		addHumidityItem(FluidContainer.Capsule.getFilled(FluidRegistry.WATER), 0.75f);
 	}
 
 	public static boolean canAcclimatise(final ItemStack stack, final List<ItemStack> acclimatisers) {

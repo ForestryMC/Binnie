@@ -15,6 +15,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -63,13 +64,17 @@ public class ModuleApiary implements IInitializable {
 	@Override
 	public void postInit() {
 		EnumHiveFrame.init();
-		GameRegistry.addRecipe(AlvearyMachine.Mutator.get(1), "g g", " a ", "t t", 'g', Items.GOLD_INGOT, 'a', Mods.Forestry.block("alveary"), 't', new ItemStack(Mods.Forestry.item("thermionicTubes"), 1, 5));
-		GameRegistry.addRecipe(AlvearyMachine.Frame.get(1), "iii", "tat", " t ", 'i', Items.IRON_INGOT, 'a', Mods.Forestry.block("alveary"), 't', new ItemStack(Mods.Forestry.item("thermionicTubes"), 1, 4));
-		GameRegistry.addRecipe(AlvearyMachine.RainShield.get(1), " b ", "bab", "t t", 'b', Items.BRICK, 'a', Mods.Forestry.block("alveary"), 't', new ItemStack(Mods.Forestry.item("thermionicTubes"), 1, 4));
-		GameRegistry.addRecipe(AlvearyMachine.Lighting.get(1), "iii", "iai", " t ", 'i', Items.GLOWSTONE_DUST, 'a', Mods.Forestry.block("alveary"), 't', new ItemStack(Mods.Forestry.item("thermionicTubes"), 1, 4));
-		GameRegistry.addRecipe(AlvearyMachine.Stimulator.get(1), "kik", "iai", " t ", 'i', Items.GOLD_NUGGET, 'a', Mods.Forestry.block("alveary"), 't', new ItemStack(Mods.Forestry.item("thermionicTubes"), 1, 4), 'k', new ItemStack(Mods.Forestry.item("chipsets"), 1, 2));
-		GameRegistry.addRecipe(AlvearyMachine.Hatchery.get(1), "i i", " a ", "iti", 'i', Blocks.GLASS_PANE, 'a', Mods.Forestry.block("alveary"), 't', new ItemStack(Mods.Forestry.item("thermionicTubes"), 1, 5));
-		GameRegistry.addRecipe(new ShapedOreRecipe(AlvearyMachine.Transmission.get(1), " t ", "tat", " t ", 'a', Mods.Forestry.block("alveary"), 't', "gearTin"));
+		Block alveary = Mods.Forestry.block("alveary.plain");
+		Item thermionicTubes = Mods.Forestry.item("thermionicTubes");
+		Item chipsets = Mods.Forestry.item("chipsets");
+
+		GameRegistry.addRecipe(AlvearyMachine.Mutator.get(1), "g g", " a ", "t t", 'g', Items.GOLD_INGOT, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 5));
+		GameRegistry.addRecipe(AlvearyMachine.Frame.get(1), "iii", "tat", " t ", 'i', Items.IRON_INGOT, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 4));
+		GameRegistry.addRecipe(AlvearyMachine.RainShield.get(1), " b ", "bab", "t t", 'b', Items.BRICK, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 4));
+		GameRegistry.addRecipe(AlvearyMachine.Lighting.get(1), "iii", "iai", " t ", 'i', Items.GLOWSTONE_DUST, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 4));
+		GameRegistry.addRecipe(AlvearyMachine.Stimulator.get(1), "kik", "iai", " t ", 'i', Items.GOLD_NUGGET, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 4), 'k', new ItemStack(chipsets, 1, 2));
+		GameRegistry.addRecipe(AlvearyMachine.Hatchery.get(1), "i i", " a ", "iti", 'i', Blocks.GLASS_PANE, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 5));
+		GameRegistry.addRecipe(new ShapedOreRecipe(AlvearyMachine.Transmission.get(1), " t ", "tat", " t ", 'a', alveary, 't', "gearTin"));
 		for (final AlvearyStimulator.CircuitType type : AlvearyStimulator.CircuitType.values()) {
 			type.createCircuit(this.stimulatorLayout);
 		}

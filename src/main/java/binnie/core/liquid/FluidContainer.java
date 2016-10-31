@@ -5,7 +5,13 @@ import binnie.core.Mods;
 import binnie.genetics.item.GeneticsItems;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+
+import javax.annotation.Nullable;
 
 public enum FluidContainer {
 	Capsule,
@@ -47,24 +53,40 @@ public enum FluidContainer {
 	public ItemStack getEmpty() {
 		switch (this) {
 			case Can: {
-				return Mods.Forestry.stack("canEmpty");
+				return Mods.Forestry.stack("can");
 			}
 			case Capsule: {
-				return Mods.Forestry.stack("waxCapsule");
+				return Mods.Forestry.stack("capsule");
 			}
 			case Glass: {
 				return new ItemStack(Items.GLASS_BOTTLE, 1, 0);
 			}
 			case Refractory: {
-				return Mods.Forestry.stack("refractoryEmpty");
+				return Mods.Forestry.stack("refractory");
 			}
 			case Cylinder: {
 				return GeneticsItems.Cylinder.get(1);
 			}
 			default: {
-				return null;
+				throw new IllegalArgumentException("Unknown container: " + this);
 			}
 		}
+	}
+
+	@Nullable
+	public ItemStack getFilled(Fluid fluid) {
+		ItemStack stack = getEmpty();
+		if (stack != null) {
+			stack = stack.copy();
+			IFluidHandler fluidHandler = FluidUtil.getFluidHandler(stack);
+			if (fluidHandler != null) {
+				int fill = fluidHandler.fill(new FluidStack(fluid, Integer.MAX_VALUE), true);
+				if (fill > 0) {
+					return stack;
+				}
+			}
+		}
+		return null;
 	}
 
 	public void registerContainerData(final IFluidType fluid) {
