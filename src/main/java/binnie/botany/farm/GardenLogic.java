@@ -69,7 +69,7 @@ public class GardenLogic extends FarmLogic {
 	@Override
 	public Collection<ItemStack> collect(World world, IFarmHousing farmHousing) {
 		final Collection<ItemStack> products = this.produce;
-		this.produce = new ArrayList<ItemStack>();
+		this.produce = new ArrayList<>();
 		return products;
 	}
 

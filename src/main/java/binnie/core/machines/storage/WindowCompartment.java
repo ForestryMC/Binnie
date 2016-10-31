@@ -203,7 +203,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				@Override
 				public void onEvent(final EventValueChanged event) {
 					final NBTTagCompound nbt = new NBTTagCompound();
-					final int i = ((Integer) event.getValue()).intValue();
+					final int i = (Integer) event.getValue();
 					nbt.setByte("i", (byte) i);
 					Window.get(tab).sendClientAction("tab-change", nbt);
 					WindowCompartment.this.currentTab = i;
@@ -368,15 +368,10 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 					}
 				}
 				if (this.sortByName) {
-					final List<Entry<Integer, String>> list = new LinkedList(slotIds.entrySet());
-					Collections.sort(list, new Comparator<Entry<Integer, String>>() {
-						@Override
-						public int compare(Entry<Integer, String> o1, Entry<Integer, String> o2) {
-							return -o2.getValue().compareTo(o1.getValue());
-						}
-					});
-					final Map result = new LinkedHashMap();
-					for (final Map.Entry entry : list) {
+					final List<Entry<Integer, String>> list = new LinkedList<>(slotIds.entrySet());
+					list.sort((o1, o2) -> -o2.getValue().compareTo(o1.getValue()));
+					final Map<Integer, String> result = new LinkedHashMap<>();
+					for (final Map.Entry<Integer, String> entry : list) {
 						result.put(entry.getKey(), entry.getValue());
 					}
 					slotIds = result;

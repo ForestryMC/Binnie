@@ -189,18 +189,22 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
 
 	private EnumLeafType leafType;
 	private SaplingType saplingType;
-	ArrayList<IFruitFamily> families;
-	int girth;
-	Class<? extends WorldGenerator> gen;
-	IAlleleFruit fruit;
-	IAllele[] template;
-	int color;
-	String binomial;
+	@Nonnull
+	private List<IFruitFamily> families;
+	private int girth;
+	private Class<? extends WorldGenerator> gen;
+	private IAlleleFruit fruit;
+	private IAllele[] template;
+	private int color;
+	private String binomial;
 	//String uid;
-	IWoodType wood;
-	IWoodProvider woodProvider;
-	String branchName;
-	IClassification branch;
+	private IWoodType wood;
+	private IWoodProvider woodProvider;
+	private String branchName;
+	private IClassification branch;
+	private ExtraTreeGenerator generator;
+	private int colorPollineted;
+	private int woodColor;
 
 	private static LinkedList<ExtraTreeSpecies> list;
 	private static BiMap<ExtraTreeSpecies, String> namesMap;
@@ -225,7 +229,7 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
 
 	public static Map<String, ExtraTreeSpecies> names() {
 		if (revNamesMap == null) {
-			TreeMap m = new TreeMap<String, ExtraTreeSpecies>(String.CASE_INSENSITIVE_ORDER);
+			Map<String, ExtraTreeSpecies> m = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
 			m.putAll(namesMap.inverse());
 			revNamesMap = m;
 		}
@@ -602,7 +606,7 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
 
 	static final ItemStack getEBXLStack(final String name) {
 		try {
-			final Class elements = Class.forName("extrabiomes.lib.Element");
+			final Class<?> elements = Class.forName("extrabiomes.lib.Element");
 			final Method getElementMethod = elements.getMethod("valueOf", String.class);
 			final Method getItemStack = elements.getMethod("get");
 			final Object element = getElementMethod.invoke(null, "SAPLING_AUTUMN_YELLOW");
@@ -636,9 +640,6 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
 
 	}
 
-	int colorPollineted;
-	int woodColor;
-
 	private ExtraTreeSpecies(final String branch, final String binomial, final int color, final int polColor, final int woodColor, final IWoodType wood, final IAlleleFruit fruit, SaplingType saplingType, final Class<? extends WorldGenerator> gen) {
 		this.leafType = EnumLeafType.DECIDUOUS;
 		this.saplingType = saplingType;
@@ -655,6 +656,7 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
 		this.woodProvider = new WoodProvider(this.wood);
 		this.woodColor = woodColor;
 		this.colorPollineted = polColor;
+		this.generator = new ExtraTreeGenerator(this);
 		//this.uid = getSpeciesName().toLowerCase().trim();
 	}
 ///TODO
@@ -781,6 +783,7 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
 		return true;
 	}
 
+	@Nonnull
 	@Override
 	public EnumPlantType getPlantType() {
 		return EnumPlantType.Plains;
@@ -789,60 +792,10 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
 
 	WoodAccess woodAccess = new WoodAccess();
 
+	@Nonnull
 	@Override
 	public ITreeGenerator getGenerator() {
-		return new ITreeGenerator() {
-			@Override
-			public WorldGenerator getWorldGenerator(ITreeGenData tree) {
-				return ExtraTreeSpecies.this.getGenerator(tree);
-			}
-
-			@Override
-			public boolean setLogBlock(ITreeGenome genome, World world, BlockPos pos, EnumFacing facing) {
-				if (ExtraTreeSpecies.this.wood != null) {
-					//ItemStack block = woodProvider.getWoodStack(); //TreeManager.woodAccess.getBlock(wood, WoodBlockKind.LOG, false);
-					return world.setBlockState(pos, woodAccess.getBlock(wood, WoodBlockKind.LOG, false), 2);
-				}
-				return false;
-			}
-
-			@Override
-			public boolean setLeaves(ITreeGenome genome, World world, GameProfile owner, BlockPos pos) {
-				boolean placed = world.setBlockState(pos, PluginArboriculture.blocks.leaves.getDefaultState());
-				if (!placed) {
-					return false;
-				}
-
-				Block block = world.getBlockState(pos).getBlock();
-				if (PluginArboriculture.blocks.leaves != block) {
-					world.setBlockToAir(pos);
-					return false;
-				}
-
-				TileLeaves tileLeaves = TileUtil.getTile(world, pos, TileLeaves.class);
-				if (tileLeaves == null) {
-					world.setBlockToAir(pos);
-					return false;
-				}
-
-				tileLeaves.getOwnerHandler().setOwner(owner);
-				tileLeaves.setTree(new Tree(genome));
-
-				world.markBlockRangeForRenderUpdate(pos, pos);
-				return true;
-			}
-
-		};
-	}
-
-	public WorldGenerator getGenerator(final ITreeGenData tree) {
-		if (this.gen != null) {
-			try {
-				return this.gen.getConstructor(ITree.class).newInstance(tree);
-			} catch (Exception ex) {
-			}
-		}
-		return new WorldGenDefault(tree);
+		return generator;
 	}
 
 	void setLeafType(final EnumLeafType type) {
@@ -862,8 +815,9 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
 		return this.template;
 	}
 
+	@Nonnull
 	@Override
-	public ArrayList<IFruitFamily> getSuitableFruit() {
+	public List<IFruitFamily> getSuitableFruit() {
 		return this.families;
 	}
 
@@ -920,11 +874,6 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
 
 	public void finished() {
 
-	}
-
-
-	public int getLeafColour(final ITree tree) {
-		return this.color;
 	}
 
 //    public short getLeafIconIndex(final ITree tree, final boolean fancy) {
@@ -1037,9 +986,9 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
 	@SideOnly(Side.CLIENT)
 	public int getGermlingColour(final EnumGermlingType type, int renderPass) {
 		if (type == EnumGermlingType.SAPLING) {
-			return (renderPass != 0) ? this.getLeafColour(null) : ((this.getLog() == null) ? 16777215 : woodColor);
+			return (renderPass != 0) ? this.color : ((this.getLog() == null) ? 16777215 : woodColor);
 		}
-		return this.getLeafColour(null);
+		return this.color;
 	}
 
 	@Override
@@ -1068,17 +1017,18 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
 		}
 		return own + ((highest < 0) ? 0 : highest);
 	}
-//never used
-//	public ItemStack[] getLogStacks() {
-//		if (this.wood == null) {
-//			return new ItemStack[0];
-//		}
-//		return new ItemStack[] { this.wood.getItemStack() };
-//	}
 
 	@Override
 	public String getUnlocalizedName() {
 		return "extratrees.species." + this.getUID() + ".name";
+	}
+
+	public String getBranchName() {
+		return branchName;
+	}
+
+	public void setBranch(IClassification branch) {
+		this.branch = branch;
 	}
 
 	public enum SaplingType {
@@ -1098,6 +1048,61 @@ public class ExtraTreeSpecies implements IAlleleTreeSpecies//, IIconProvider, IG
 			return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID + ":saplings/tree" + name());
 		}
 		//IIcon[] icon;
+	}
+
+	private static class ExtraTreeGenerator implements ITreeGenerator {
+		private ExtraTreeSpecies extraTreeSpecies;
+
+		public ExtraTreeGenerator(ExtraTreeSpecies extraTreeSpecies) {
+			this.extraTreeSpecies = extraTreeSpecies;
+		}
+
+		@Override
+		public WorldGenerator getWorldGenerator(ITreeGenData tree) {
+			if (extraTreeSpecies.gen != null) {
+				try {
+					return extraTreeSpecies.gen.getConstructor(ITree.class).newInstance(tree);
+				} catch (Exception ex) {
+				}
+			}
+			return new WorldGenDefault(tree);
+		}
+
+		@Override
+		public boolean setLogBlock(ITreeGenome genome, World world, BlockPos pos, EnumFacing facing) {
+			if (extraTreeSpecies.wood != null) {
+				//ItemStack block = woodProvider.getWoodStack(); //TreeManager.woodAccess.getBlock(wood, WoodBlockKind.LOG, false);
+				return world.setBlockState(pos, extraTreeSpecies.woodAccess.getBlock(extraTreeSpecies.wood, WoodBlockKind.LOG, false), 2);
+			}
+			return false;
+		}
+
+		@Override
+		public boolean setLeaves(ITreeGenome genome, World world, GameProfile owner, BlockPos pos) {
+			boolean placed = world.setBlockState(pos, PluginArboriculture.blocks.leaves.getDefaultState());
+			if (!placed) {
+				return false;
+			}
+
+			Block block = world.getBlockState(pos).getBlock();
+			if (PluginArboriculture.blocks.leaves != block) {
+				world.setBlockToAir(pos);
+				return false;
+			}
+
+			TileLeaves tileLeaves = TileUtil.getTile(world, pos, TileLeaves.class);
+			if (tileLeaves == null) {
+				world.setBlockToAir(pos);
+				return false;
+			}
+
+			tileLeaves.getOwnerHandler().setOwner(owner);
+			tileLeaves.setTree(new Tree(genome));
+
+			world.markBlockRangeForRenderUpdate(pos, pos);
+			return true;
+		}
+
 	}
 
 //	@Override

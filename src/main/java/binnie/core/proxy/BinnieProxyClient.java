@@ -24,6 +24,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
+import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
 
@@ -129,7 +130,7 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	}
 
 	@Override
-	public void registerTileEntity(final Class<? extends TileEntity> tile, final String id, final Object renderer) {
+	public void registerTileEntity(final Class<? extends TileEntity> tile, final String id, @Nullable final Object renderer) {
 		if (renderer != null && renderer instanceof TileEntitySpecialRenderer) {
 			ClientRegistry.registerTileEntity(tile, id, (TileEntitySpecialRenderer) renderer);
 		} else {

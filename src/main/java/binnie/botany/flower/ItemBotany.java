@@ -210,7 +210,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 				pos = pos.offset(facing);
 			}
 
-			if (stack.stackSize != 0 && player.canPlayerEdit(pos, facing, stack) && world.canBlockBePlaced(Botany.flower, pos, false, facing, (Entity) null, stack)) {
+			if (stack.stackSize != 0 && player.canPlayerEdit(pos, facing, stack) && world.canBlockBePlaced(Botany.flower, pos, false, facing, null, stack)) {
 				int i = this.getMetadata(stack.getMetadata());
 				IBlockState iblockstate1 = Botany.flower.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, i, player, stack);
 

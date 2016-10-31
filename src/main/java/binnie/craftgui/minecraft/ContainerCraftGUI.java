@@ -47,7 +47,7 @@ public class ContainerCraftGUI extends Container {
 	private int errorType;
 	private ErrorState error;
 	private int mousedOverSlotNumber;
-	private final Set<EntityPlayerMP> crafters = Sets.newConcurrentHashSet();
+	private final Set<EntityPlayer> crafters = Sets.newConcurrentHashSet();
 
 	public ContainerCraftGUI(final Window window) {
 		this.syncedNBT = new HashMap<>();

@@ -17,6 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
+import javax.annotation.Nullable;
 import java.io.File;
 
 public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
@@ -104,7 +105,7 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 	}
 
 	@Override
-	public void registerTileEntity(final Class<? extends TileEntity> tile, final String id, final Object renderer) {
+	public void registerTileEntity(final Class<? extends TileEntity> tile, final String id, @Nullable final Object renderer) {
 		GameRegistry.registerTileEntity(tile, id);
 	}
 

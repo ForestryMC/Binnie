@@ -11,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.io.File;
 
 public interface IBinnieProxy extends IProxyCore {
@@ -40,7 +41,7 @@ public interface IBinnieProxy extends IProxyCore {
 
 	Object createObject(final String p0);
 
-	void registerTileEntity(final Class<? extends TileEntity> p0, final String p1, final Object p2);
+	void registerTileEntity(final Class<? extends TileEntity> tile, final String id, @Nullable final Object renderer);
 
 	void createPipe(final Item p0);
 

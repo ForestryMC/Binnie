@@ -2,6 +2,7 @@ package binnie.core.util;
 
 import net.minecraftforge.fluids.FluidStack;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -74,6 +75,7 @@ class FluidStackSet implements Set<FluidStack> {
 		return this.itemStacks.isEmpty();
 	}
 
+	@Nonnull
 	@Override
 	public Iterator<FluidStack> iterator() {
 		return this.itemStacks.iterator();
@@ -85,8 +87,7 @@ class FluidStackSet implements Set<FluidStack> {
 			final FluidStack r = (FluidStack) o;
 			final FluidStack existing = this.getExisting(r);
 			if (existing.amount > r.amount) {
-				final FluidStack fluidStack = existing;
-				fluidStack.amount -= r.amount;
+				existing.amount -= r.amount;
 			} else {
 				this.itemStacks.remove(existing);
 			}
@@ -95,7 +96,7 @@ class FluidStackSet implements Set<FluidStack> {
 	}
 
 	@Override
-	public boolean removeAll(final Collection<?> c) {
+	public boolean removeAll(@Nonnull final Collection<?> c) {
 		boolean addedAll = true;
 		for (final Object o : c) {
 			final boolean removed = this.remove(o);
@@ -105,7 +106,7 @@ class FluidStackSet implements Set<FluidStack> {
 	}
 
 	@Override
-	public boolean retainAll(final Collection<?> c) {
+	public boolean retainAll(@Nonnull final Collection<?> c) {
 		return this.itemStacks.retainAll(c);
 	}
 
@@ -114,13 +115,15 @@ class FluidStackSet implements Set<FluidStack> {
 		return this.itemStacks.size();
 	}
 
+	@Nonnull
 	@Override
 	public Object[] toArray() {
 		return this.itemStacks.toArray();
 	}
 
+	@Nonnull
 	@Override
-	public <T> T[] toArray(final T[] a) {
+	public <T> T[] toArray(@Nonnull final T[] a) {
 		return this.itemStacks.toArray(a);
 	}
 }

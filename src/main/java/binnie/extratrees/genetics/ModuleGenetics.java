@@ -62,9 +62,9 @@ public class ModuleGenetics implements IInitializable {
 			this.classifications.add(set);
 		}
 		for (final ExtraTreeSpecies species : ExtraTreeSpecies.values()) {
-			final IClassification branch = this.getOrCreateClassification(IClassification.EnumClassLevel.GENUS, species.branchName);
+			final IClassification branch = this.getOrCreateClassification(IClassification.EnumClassLevel.GENUS, species.getBranchName());
 			branch.addMemberSpecies(species);
-			species.branch = branch;
+			species.setBranch(branch);
 			IClassification clss = branch;
 			int currentLevel = IClassification.EnumClassLevel.GENUS.ordinal();
 			while (clss.getParent() == null) {
