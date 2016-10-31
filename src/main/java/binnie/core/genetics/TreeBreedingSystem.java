@@ -257,8 +257,7 @@ public class TreeBreedingSystem extends BreedingSystem {
 		switch ((EnumTreeChromosome) chromosome) {
 			case FERTILITY: {
 				for (final ForestryAllele.Saplings a : ForestryAllele.Saplings.values()) {
-					//TODO
-					//alleles.add(a.getAllele());
+					alleles.add(a.getAllele());
 				}
 				break;
 			}

@@ -38,8 +38,8 @@ public class ModuleCore implements IInitializable {
 				final PrintWriter outputFruit = new PrintWriter(new FileWriter("data/fruit.html"));
 				final PrintWriter outputDesigns = new PrintWriter(new FileWriter("data/designs.html"));
 				final Queue<IAlleleTreeSpecies> speciesQueue = new LinkedList<>();
-				for (final IAlleleTreeSpecies s : ExtraTreeSpecies.values()) {
-					speciesQueue.add(s);
+				for (final ExtraTreeSpecies s : ExtraTreeSpecies.values()) {
+					speciesQueue.add(s.getSpecies());
 				}
 				final Queue<IWoodType> logQueue = new LinkedList<>();
 				Collections.addAll(logQueue, EnumExtraTreeLog.values());

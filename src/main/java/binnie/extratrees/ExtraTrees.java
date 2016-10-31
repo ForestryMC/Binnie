@@ -19,14 +19,10 @@ import binnie.extratrees.carpentry.ModuleCarpentry;
 import binnie.extratrees.config.ConfigurationMain;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.core.ModuleCore;
-import binnie.extratrees.genetics.ButterflySpecies;
-import binnie.extratrees.genetics.ExtraTreeFruitGene;
-import binnie.extratrees.genetics.ExtraTreeSpecies;
-import binnie.extratrees.genetics.ModuleGenetics;
+import binnie.extratrees.genetics.*;
 import binnie.extratrees.item.ModuleItems;
 import binnie.extratrees.machines.ModuleMachine;
 import binnie.extratrees.proxy.Proxy;
-import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.AlleleSpeciesRegisterEvent;
@@ -43,7 +39,9 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Mod(modid = Constants.EXTRA_TREES_MOD_ID, name = "Binnie's Extra Trees", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
@@ -155,14 +153,12 @@ public class ExtraTrees extends AbstractMod {
 			for (final ExtraTreeFruitGene fruit : ExtraTreeFruitGene.values()) {
 				AlleleManager.alleleRegistry.registerAllele(fruit);
 			}
-			for (final ExtraTreeSpecies species : ExtraTreeSpecies.values()) {
-				AlleleManager.alleleRegistry.registerAllele(species, EnumTreeChromosome.SPECIES);
-			}
-		}
+			ExtraTreeSpecies.preInitTrees();
 
-		if (BinnieCore.isLepidopteryActive()) {
-			for (final ButterflySpecies species2 : ButterflySpecies.values()) {
-				AlleleManager.alleleRegistry.registerAllele(species2);
+			if (BinnieCore.isLepidopteryActive()) {
+				for (final ButterflySpecies species2 : ButterflySpecies.values()) {
+					AlleleManager.alleleRegistry.registerAllele(species2);
+				}
 			}
 		}
 	}
@@ -180,12 +176,13 @@ public class ExtraTrees extends AbstractMod {
 				.filter(mrl -> mrl.getResourceDomain().startsWith(Constants.EXTRA_TREES_MOD_ID))
 				.filter(mrl -> mrl.getResourcePath().startsWith("germlings")).collect(Collectors.toList());
 		//Replace model
+		Map<String, ExtraTreeSpecies> map = Arrays.stream(ExtraTreeSpecies.values()).collect(Collectors.toMap(o -> o.name().toLowerCase(), o -> o));
 		models.forEach(model -> {
 			String species = model.getVariant().split("=")[1];
-			ExtraTreeSpecies treeSpecies = ExtraTreeSpecies.names().get(species);
-			int primaryColor = treeSpecies.getSpriteColour(1);
-			int secondaryColor = treeSpecies.getSpriteColour(0);
-			e.getModelRegistry().putObject(model, new DoublePassBakedModel(e.getModelRegistry().getObject(model), primaryColor, secondaryColor));
+				ExtraTreeSpecies treeSpecies = map.get(species);
+				int primaryColor = treeSpecies.getLeafColor().getRGB();
+				int secondaryColor = treeSpecies.getWoodColor().getRGB();
+				e.getModelRegistry().putObject(model, new DoublePassBakedModel(e.getModelRegistry().getObject(model), primaryColor, secondaryColor));
 		});
 
 	}

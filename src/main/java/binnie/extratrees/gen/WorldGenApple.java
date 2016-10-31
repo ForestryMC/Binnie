@@ -1,11 +1,10 @@
 package binnie.extratrees.gen;
 
 import forestry.api.arboriculture.ITree;
-import forestry.api.world.ITreeGenData;
 
 public class WorldGenApple {
 	public static class OrchardApple extends WorldGenTree {
-		public OrchardApple(final ITreeGenData tree) {
+		public OrchardApple(final ITree tree) {
 			super(tree);
 		}
 

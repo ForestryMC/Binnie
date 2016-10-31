@@ -2,6 +2,7 @@ package binnie.extratrees.genetics;
 
 import forestry.api.arboriculture.IWoodAccess;
 import forestry.api.arboriculture.IWoodType;
+import forestry.api.arboriculture.TreeManager;
 import forestry.api.arboriculture.WoodBlockKind;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyEnum;
@@ -13,7 +14,12 @@ import java.util.HashMap;
 import java.util.List;
 
 public class WoodAccess implements IWoodAccess {
-	static HashMap<IWoodType, IBlockState> woodMap = new HashMap<>();
+	private static HashMap<IWoodType, IBlockState> woodMap = new HashMap<>();
+	private static final WoodAccess instance = new WoodAccess();
+
+	public static WoodAccess getInstance() {
+		return instance;
+	}
 
 	public static <T extends Block, V extends Enum<V> & IWoodType> void registerWithVariants(T woodTyped, WoodBlockKind woodBlockKind, PropertyEnum<V> property) {
 		for (V value : property.getAllowedValues()) {
@@ -29,7 +35,8 @@ public class WoodAccess implements IWoodAccess {
 
 	@Override
 	public IBlockState getBlock(IWoodType woodType, WoodBlockKind kind, boolean fireproof) {
-		return woodMap.get(woodType);
+		IBlockState state = woodMap.get(woodType);
+		return state==null? TreeManager.woodAccess.getBlock(woodType, kind, fireproof) : state;
 	}
 
 	@Override

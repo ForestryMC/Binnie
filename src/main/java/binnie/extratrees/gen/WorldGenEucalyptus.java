@@ -1,13 +1,10 @@
 package binnie.extratrees.gen;
 
-import binnie.extratrees.block.EnumExtraTreeLog;
-import binnie.extratrees.worldgen.BlockTypeLog;
 import forestry.api.arboriculture.ITree;
-import forestry.api.world.ITreeGenData;
 
 public class WorldGenEucalyptus {
 	public static class SwampGum extends WorldGenTree {
-		public SwampGum(final ITreeGenData tree) {
+		public SwampGum(final ITree tree) {
 			super(tree);
 		}
 
@@ -75,7 +72,8 @@ public class WorldGenEucalyptus {
 			for (int x = 0; x < this.girth; ++x) {
 				for (int y = 0; y < this.girth; ++y) {
 					for (int i = 0; i < 2; ++i) {
-						this.addBlock(x - offset, i, y - offset, new BlockTypeLog(EnumExtraTreeLog.Eucalyptus2), true);
+						//TODO Eucalyptus2 log
+						//this.addBlock(x - offset, i, y - offset, new BlockTypeLog(EnumExtraTreeLog.Eucalyptus2), true);
 					}
 				}
 			}

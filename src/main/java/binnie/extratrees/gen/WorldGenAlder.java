@@ -1,10 +1,10 @@
 package binnie.extratrees.gen;
 
-import forestry.api.world.ITreeGenData;
+import forestry.api.arboriculture.ITree;
 
 public class WorldGenAlder {
 	public static class CommonAlder extends WorldGenTree {
-		public CommonAlder(final ITreeGenData tree) {
+		public CommonAlder(final ITree tree) {
 			super(tree);
 		}
 

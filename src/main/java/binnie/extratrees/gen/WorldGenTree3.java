@@ -1,11 +1,10 @@
 package binnie.extratrees.gen;
 
 import forestry.api.arboriculture.ITree;
-import forestry.api.world.ITreeGenData;
 
 public class WorldGenTree3 {
 	public static class Hazel extends WorldGenTree {
-		public Hazel(final ITreeGenData tree) {
+		public Hazel(final ITree tree) {
 			super(tree);
 		}
 

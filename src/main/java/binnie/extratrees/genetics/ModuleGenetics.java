@@ -8,7 +8,6 @@ import forestry.api.genetics.IClassification;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class ModuleGenetics implements IInitializable {
 	String[] branches;
@@ -27,12 +26,9 @@ public class ModuleGenetics implements IInitializable {
 
 	@Override
 	public void init() {
-		ExtraTreeSpecies.init();
 		ExtraTreeFruitGene.init();
-		for (final ExtraTreeSpecies species : ExtraTreeSpecies.values()) {
-			Binnie.Genetics.getTreeRoot().registerTemplate(species.getTemplate());
-		}
-		ExtraTreeMutation.init();
+		ExtraTreeSpecies.initTrees();
+ 		ExtraTreeMutation.init();
 	}
 
 	@Override
@@ -53,51 +49,4 @@ public class ModuleGenetics implements IInitializable {
 		}
 	}
 
-	private void generateBranches() {
-		for (final String hierarchy : this.branches) {
-			final List<String> set = new ArrayList<>();
-			for (final String string : hierarchy.split(" ", 0)) {
-				set.add(string.toLowerCase());
-			}
-			this.classifications.add(set);
-		}
-		for (final ExtraTreeSpecies species : ExtraTreeSpecies.values()) {
-			final IClassification branch = this.getOrCreateClassification(IClassification.EnumClassLevel.GENUS, species.branchName);
-			branch.addMemberSpecies(species);
-			species.branch = branch;
-			IClassification clss = branch;
-			int currentLevel = IClassification.EnumClassLevel.GENUS.ordinal();
-			while (clss.getParent() == null) {
-				for (final List<String> set2 : this.classifications) {
-					if (set2.contains(clss.getScientific().toLowerCase())) {
-						String nextLevel = "";
-						int index = set2.indexOf(clss.getScientific().toLowerCase()) + 1;
-						while (nextLevel.length() == 0) {
-							try {
-								nextLevel = set2.get(index++);
-							} catch (IndexOutOfBoundsException ex) {
-								throw new RuntimeException("Reached end point at " + set2.get(index - 2));
-							}
-							--currentLevel;
-						}
-						final IClassification parent = this.getOrCreateClassification(IClassification.EnumClassLevel.values()[currentLevel], nextLevel);
-						parent.addMemberGroup(clss);
-						clss = parent;
-						break;
-					}
-				}
-			}
-		}
-	}
-
-	private IClassification getOrCreateClassification(final IClassification.EnumClassLevel level, String name) {
-		if (level == IClassification.EnumClassLevel.GENUS) {
-			name = "trees." + name;
-		}
-		final String uid = level.name().toLowerCase(Locale.ENGLISH) + "." + name.toLowerCase();
-		if (AlleleManager.alleleRegistry.getClassification(uid) != null) {
-			return AlleleManager.alleleRegistry.getClassification(uid);
-		}
-		return AlleleManager.alleleRegistry.createAndRegisterClassification(level, name.toLowerCase(), name);
-	}
 }

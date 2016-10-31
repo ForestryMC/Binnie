@@ -1,10 +1,10 @@
 package binnie.extratrees.gen;
 
-import forestry.api.world.ITreeGenData;
+import forestry.api.arboriculture.ITree;
 
 public class WorldGenTropical {
 	public static class Mango extends WorldGenTree {
-		public Mango(final ITreeGenData tree) {
+		public Mango(final ITree tree) {
 			super(tree);
 		}
 

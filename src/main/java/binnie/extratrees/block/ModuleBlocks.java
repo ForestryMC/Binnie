@@ -123,8 +123,6 @@ public class ModuleBlocks implements IInitializable {
 //		RenderingRegistry.registerBlockHandler(new StairsRenderer());
 //		ExtraTrees.doorRenderId = RenderingRegistry.getNextAvailableRenderId();
 //		RenderingRegistry.registerBlockHandler(new DoorBlockRenderer());
-//		ExtraTrees.branchRenderId = RenderingRegistry.getNextAvailableRenderId();
-//		RenderingRegistry.registerBlockHandler(new BranchBlockRenderer());
 //		RenderingRegistry.registerBlockHandler(new HedgeRenderer());
 		RecipeSorter.register("extratrees:multifence", MultiFenceRecipeSize.class, RecipeSorter.Category.SHAPED, "");
 		RecipeSorter.register("extratrees:multifence2", MultiFenceRecipeEmbedded.class, RecipeSorter.Category.SHAPED, "");
