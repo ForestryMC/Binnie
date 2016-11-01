@@ -32,7 +32,10 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
+import javax.annotation.Nonnull;
+
 import static binnie.extratrees.block.BlockETLog.woodTypes;
+import static binnie.extratrees.block.BlockETPlanks.plankTypes;
 
 public class ModuleBlocks implements IInitializable {
 	// public static int hedgeRenderID;
@@ -40,37 +43,71 @@ public class ModuleBlocks implements IInitializable {
 	@Override
 	public void preInit() {
 		PlankType.setup();
-		ExtraTrees.blockPlanks = new BlockETPlanks();
+		//ExtraTrees.blockPlanks = new BlockETPlanks();
 		ExtraTrees.blockFence = new BlockFence("fence");
+
+		for (int i = 0; i < BlockETPlanks.GROUP_COUNT ; i++) {
+			int finalI = i;
+			BlockETPlanks blockETPlank = new BlockETPlanks(finalI, false) {
+				@Override
+				public PropertyEnum<EnumExtraTreeLog> getVariant() {return plankTypes[finalI];}
+			};
+
+			GameRegistry.register(blockETPlank);
+			Item plank = GameRegistry.register(new BlockETPlanks.PlankItemBlock<>(blockETPlank));
+			WoodAccess.getInstance().registerWithVariants(blockETPlank, WoodBlockKind.PLANKS, plankTypes[finalI], false);
+			ExtraTrees.proxy.setCustomStateMapper("plank", blockETPlank);
+
+
+			//fireproof
+			BlockETPlanks blockETPlankFireproof = new BlockETPlanks(finalI, true) {
+				@Override
+				public PropertyEnum<EnumExtraTreeLog> getVariant() {
+					return plankTypes[finalI];
+				}
+			};
+			GameRegistry.register(blockETPlankFireproof);
+			ExtraTrees.proxy.setCustomStateMapper("plank", blockETPlankFireproof);
+			Item plankFireproof = GameRegistry.register(new BlockETPlanks.PlankItemBlock<>(blockETPlankFireproof));
+			WoodAccess.getInstance().registerWithVariants(blockETPlankFireproof, WoodBlockKind.PLANKS, plankTypes[finalI], true);
+
+			for (EnumExtraTreeLog l : plankTypes[finalI].getAllowedValues()) {
+				BinnieCore.proxy.registermodel(plank, l.getMetadata() % BlockETPlanks.VARIANTS_PER_BLOCK, new ModelResourceLocation("extratrees:plank", "wood_type=" + l.getName()));
+				BinnieCore.proxy.registermodel(plankFireproof, l.getMetadata() % BlockETPlanks.VARIANTS_PER_BLOCK, new ModelResourceLocation("extratrees:plank", "wood_type=" + l.getName()));
+
+			}
+		}
 
 		for (int i = 0; i < BlockETLog.GROUP_COUNT; i++) {
 			int finalI = i;
-			BlockETLog block = new BlockETLog(finalI, false) {
+			BlockETLog blockETLog = new BlockETLog(finalI, false) {
 				@Override
 				public PropertyEnum<EnumExtraTreeLog> getVariant() {
 					return woodTypes[finalI];
 				}
 			};
-			GameRegistry.register(block);
-			Item wood = GameRegistry.register(new BlockETLog.LogItemBlock<>(block));
 
-			WoodAccess.registerWithVariants(block, WoodBlockKind.LOG, woodTypes[finalI]);
-			ExtraTrees.proxy.setCustomStateMapper("log", block);
+			GameRegistry.register(blockETLog);
+			Item wood = GameRegistry.register(new BlockETLog.LogItemBlock<>(blockETLog));
+
+			WoodAccess.getInstance().registerWithVariants(blockETLog, WoodBlockKind.LOG, woodTypes[finalI], false);
+			ExtraTrees.proxy.setCustomStateMapper("log", blockETLog);
 
 			//fireproof
-			BlockETLog block2 = new BlockETLog(i, true) {
+			BlockETLog blockETLogFireproof = new BlockETLog(i, true) {
 				@Override
 				public PropertyEnum<EnumExtraTreeLog> getVariant() {
 					return woodTypes[finalI];
 				}
 			};
-			GameRegistry.register(block2);
-			ExtraTrees.proxy.setCustomStateMapper("log", block2);
-			Item woodFireproof = GameRegistry.register(new BlockETLog.LogItemBlock<>(block2));
+			GameRegistry.register(blockETLogFireproof);
+			ExtraTrees.proxy.setCustomStateMapper("log", blockETLogFireproof);
+			Item woodFireproof = GameRegistry.register(new BlockETLog.LogItemBlock<>(blockETLogFireproof));
 			for (EnumExtraTreeLog l : woodTypes[finalI].getAllowedValues()) {
 				BinnieCore.proxy.registermodel(wood, l.getMetadata() % BlockETLog.VARIANTS_PER_BLOCK, new ModelResourceLocation("extratrees:log", "axis=y,wood_type=" + l.getName()));
 				BinnieCore.proxy.registermodel(woodFireproof, l.getMetadata() % BlockETLog.VARIANTS_PER_BLOCK, new ModelResourceLocation("extratrees:log", "axis=y,wood_type=" + l.getName()));
 			}
+			WoodAccess.getInstance().registerWithVariants(blockETLogFireproof, WoodBlockKind.LOG, woodTypes[finalI], true);
 		}
 
 
@@ -79,9 +116,9 @@ public class ModuleBlocks implements IInitializable {
 		ExtraTrees.blockMultiFence = new BlockMultiFence();
 		ExtraTrees.blockSlab = new BlockETSlab(false);
 		ExtraTrees.blockDoubleSlab = new BlockETSlab(true);
-		ExtraTrees.blockStairs = new BlockETStairs(ExtraTrees.blockPlanks);
-		GameRegistry.register(ExtraTrees.blockPlanks);
-		GameRegistry.register(new ItemMetadata(ExtraTrees.blockPlanks).setRegistryName(ExtraTrees.blockPlanks.getRegistryName()));
+//		ExtraTrees.blockStairs = new BlockETStairs(ExtraTrees.blockPlanks);
+//		GameRegistry.register(ExtraTrees.blockPlanks);
+//		GameRegistry.register(new ItemMetadata(ExtraTrees.blockPlanks).setRegistryName(ExtraTrees.blockPlanks.getRegistryName()));
 		GameRegistry.register(ExtraTrees.blockFence);
 		GameRegistry.register(new ItemMetadata(ExtraTrees.blockFence).setRegistryName(ExtraTrees.blockFence.getRegistryName()));
 		GameRegistry.register(ExtraTrees.blockMultiFence);
@@ -96,8 +133,8 @@ public class ModuleBlocks implements IInitializable {
 		GameRegistry.register(new ItemETSlab(ExtraTrees.blockDoubleSlab).setRegistryName(ExtraTrees.blockDoubleSlab.getRegistryName()));
 		GameRegistry.register(ExtraTrees.blockDoor);
 		GameRegistry.register(new ItemETDoor(ExtraTrees.blockDoor).setRegistryName(ExtraTrees.blockDoor.getRegistryName()));
-		GameRegistry.register(ExtraTrees.blockStairs);
-		GameRegistry.register(new ItemETStairs(ExtraTrees.blockStairs).setRegistryName(ExtraTrees.blockStairs.getRegistryName()));
+//		GameRegistry.register(ExtraTrees.blockStairs);
+	//	GameRegistry.register(new ItemETStairs(ExtraTrees.blockStairs).setRegistryName(ExtraTrees.blockStairs.getRegistryName()));
 		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockStairs), new StairItemRenderer());
 		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockGate), new GateItemRenderer());
 		for (final EnumExtraTreeLog plank : EnumExtraTreeLog.values()) {
@@ -134,11 +171,11 @@ public class ModuleBlocks implements IInitializable {
 		for (final PlankType.ExtraTreePlanks plank : PlankType.ExtraTreePlanks.values()) {
 			final ItemStack planks = plank.getStack();
 			final ItemStack slabs = TileEntityMetadata.getItemStack(ExtraTrees.blockSlab, plank.ordinal());
-			final ItemStack stairs = TileEntityMetadata.getItemStack(ExtraTrees.blockStairs, plank.ordinal());
-			stairs.stackSize = 4;
-			GameRegistry.addRecipe(stairs.copy(), "#  ", "## ", "###", '#', planks.copy());
-			slabs.stackSize = 6;
-			CraftingManager.getInstance().getRecipeList().add(0, new ShapedOreRecipe(slabs.copy(), "###", '#', planks.copy()));
+			//final ItemStack stairs = TileEntityMetadata.getItemStack(ExtraTrees.blockStairs, plank.ordinal());
+			//stairs.stackSize = 4;
+			//GameRegistry.addRecipe(stairs.copy(), "#  ", "## ", "###", '#', planks.copy());
+			//slabs.stackSize = 6;
+			//CraftingManager.getInstance().getRecipeList().add(0, new ShapedOreRecipe(slabs.copy(), "###", '#', planks.copy()));
 		}
 		GameRegistry.addRecipe(new MultiFenceRecipeSize());
 		GameRegistry.addRecipe(new MultiFenceRecipeEmbedded());

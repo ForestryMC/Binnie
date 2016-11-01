@@ -11,6 +11,7 @@ import forestry.api.arboriculture.WoodBlockKind;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IStringSerializable;
 
 public class PlankType {
 	public static final int MAX_PLANKS = 256;
@@ -30,7 +31,7 @@ public class PlankType {
 		}
 	}
 
-	public enum ExtraTreePlanks implements IPlankType, IFenceProvider {
+	public enum ExtraTreePlanks implements IPlankType, IFenceProvider, IStringSerializable {
 		Fir(12815444),
 		Cedar(14181940),
 		Hemlock(13088108),
@@ -91,7 +92,7 @@ public class PlankType {
 
 		@Override
 		public ItemStack getStack() {
-			return TileEntityMetadata.getItemStack(ExtraTrees.blockPlanks, this.ordinal());
+			return null; //TileEntityMetadata.getItemStack(ExtraTrees.blockPlanks, this.ordinal());
 		}
 
 //		public IIcon loadIcon(final IIconRegister register) {

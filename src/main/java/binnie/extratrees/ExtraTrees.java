@@ -58,7 +58,7 @@ public class ExtraTrees extends AbstractMod {
 	public static Block blockStairs;
 	//public static Block blockLog;
 	public static BlockCarpentry blockCarpentry;
-	public static Block blockPlanks;
+	//public static Block blockPlanks;
 	public static Block blockMachine;
 	public static Block blockFence;
 	public static BlockCarpentry blockPanel;
