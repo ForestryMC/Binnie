@@ -1,11 +1,10 @@
 package binnie.extratrees.gen;
 
 import forestry.api.arboriculture.ITree;
-import forestry.api.world.ITreeGenData;
 
 public class WorldGenSorbus {
 	public static class Whitebeam extends WorldGenTree {
-		public Whitebeam(final ITreeGenData tree) {
+		public Whitebeam(final ITree tree) {
 			super(tree);
 		}
 

@@ -1,10 +1,10 @@
 package binnie.extratrees.gen;
 
-import forestry.api.world.ITreeGenData;
+import forestry.api.arboriculture.ITree;
 
 public class WorldGenPalm {
 	public static class Coconut extends WorldGenTree {
-		public Coconut(final ITreeGenData tree) {
+		public Coconut(final ITree tree) {
 			super(tree);
 		}
 

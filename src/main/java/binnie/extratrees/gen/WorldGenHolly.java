@@ -1,10 +1,10 @@
 package binnie.extratrees.gen;
 
-import forestry.api.world.ITreeGenData;
+import forestry.api.arboriculture.ITree;
 
 public class WorldGenHolly {
 	public static class Holly extends WorldGenTree {
-		public Holly(final ITreeGenData tree) {
+		public Holly(final ITree tree) {
 			super(tree);
 		}
 

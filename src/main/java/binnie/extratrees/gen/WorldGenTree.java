@@ -1,6 +1,5 @@
 package binnie.extratrees.gen;
 
-import binnie.extratrees.genetics.ExtraTreeSpecies;
 import binnie.extratrees.worldgen.BlockType;
 import binnie.extratrees.worldgen.BlockTypeLeaf;
 import binnie.extratrees.worldgen.BlockTypeLog;
@@ -77,7 +76,7 @@ public abstract class WorldGenTree extends WorldGenerator {
 	}
 
 	public BlockType getWood() {
-		return new BlockTypeLog(((ExtraTreeSpecies) this.treeGen.getGenome().getPrimary()).getLog());
+		return new BlockTypeLog(treeGen);
 	}
 
 	public WorldGenTree(final ITreeGenData tree) {

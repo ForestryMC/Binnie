@@ -1,10 +1,10 @@
 package binnie.extratrees.gen;
 
-import forestry.api.world.ITreeGenData;
+import forestry.api.arboriculture.ITree;
 
 public class WorldGenPoplar {
 	public static class Aspen extends WorldGenTree {
-		public Aspen(final ITreeGenData tree) {
+		public Aspen(final ITree tree) {
 			super(tree);
 		}
 

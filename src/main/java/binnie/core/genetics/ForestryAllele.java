@@ -126,17 +126,7 @@ public class ForestryAllele {
 		Highest;
 
 		public IAllele getAllele() {
-			String s = this.toString();
-			if (this == Saplings.Average) {
-				s = "Default";
-			}
-			if (this == Saplings.High) {
-				s = "Double";
-			}
-			if (this == Saplings.Higher) {
-				s = "Triple";
-			}
-			return AlleleManager.alleleRegistry.getAllele("forestry.saplings" + s);
+			return AlleleManager.alleleRegistry.getAllele("forestry.saplings" + name());
 		}
 	}
 

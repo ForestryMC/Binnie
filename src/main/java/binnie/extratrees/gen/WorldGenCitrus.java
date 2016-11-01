@@ -1,9 +1,9 @@
 package binnie.extratrees.gen;
 
-import forestry.api.world.ITreeGenData;
+import forestry.api.arboriculture.ITree;
 
 public class WorldGenCitrus extends WorldGenTree {
-	public WorldGenCitrus(final ITreeGenData tree) {
+	public WorldGenCitrus(final ITree tree) {
 		super(tree);
 	}
 

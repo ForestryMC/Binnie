@@ -1,11 +1,10 @@
 package binnie.extratrees.gen;
 
 import forestry.api.arboriculture.ITree;
-import forestry.api.world.ITreeGenData;
 
 public class WorldGenConifer {
 	public static class WesternHemlock extends WorldGenTree {
-		public WesternHemlock(final ITreeGenData tree) {
+		public WesternHemlock(final ITree tree) {
 			super(tree);
 		}
 
