@@ -106,6 +106,11 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 
 	@Override
 	public void registerTileEntity(final Class<? extends TileEntity> tile, final String id, @Nullable final Object renderer) {
+		registerTileEntity(tile, id);
+	}
+	
+	@Override
+	public void registerTileEntity(final Class<? extends TileEntity> tile, final String id) {
 		GameRegistry.registerTileEntity(tile, id);
 	}
 
@@ -155,6 +160,9 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 
 	@Override
 	public void bindTexture(final ResourceLocation location) {
+	}
+	
+	public void reloadSprites(){
 	}
 
 	public boolean isShiftDown() {

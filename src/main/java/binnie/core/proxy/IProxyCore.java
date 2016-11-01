@@ -17,4 +17,5 @@ public interface IProxyCore extends IInitializable {
 
 	public void registerItemAndBlockColors();
 
+
 }

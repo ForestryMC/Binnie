@@ -17,6 +17,7 @@ import binnie.core.mod.config.ConfigurationMain;
 import binnie.core.mod.config.ConfigurationMods;
 import binnie.core.mod.parser.FieldParser;
 import binnie.core.mod.parser.ItemParser;
+import binnie.core.models.ModelManager;
 import binnie.core.network.BinnieCorePacketID;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
@@ -29,6 +30,7 @@ import forestry.plugins.PluginManager;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -171,6 +173,12 @@ public final class BinnieCore extends AbstractMod {
 //			Binnie.Liquid.reloadIcons(event.map);
 //		}
 		Binnie.Resource.registerIcons();
+	}
+	
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void handleModelBake(ModelBakeEvent event) {
+		ModelManager.registerCustomModels(event);
 	}
 
 	public static class PacketHandler extends BinniePacketHandler {

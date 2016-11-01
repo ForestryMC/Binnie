@@ -141,7 +141,7 @@ public class ContainerCraftGUI extends Container {
 	@Override
 	public boolean canInteractWith(final EntityPlayer var1) {
 		if (var1 instanceof EntityPlayerMP) {
-			crafters.add((EntityPlayerMP) var1);
+			crafters.add(var1);
 			this.sentNBT.clear();
 		}
 		return true;

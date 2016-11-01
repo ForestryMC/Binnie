@@ -43,6 +43,8 @@ botany.flower.destroy=This item is bugged. Destroy it!
 botany.grammar.flower=%PRIMARY, %STEM Stem
 botany.grammar.flower.secondary=%PRIMARY and %SECONDARY, %STEM Stem
 
+tile.botany.ceramic.name=Ceramic Block
+
 botany.colour.aquamarine=Aquamarine
 botany.colour.black=Black
 botany.colour.blue=Deep Blue

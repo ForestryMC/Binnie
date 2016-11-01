@@ -89,6 +89,8 @@ public enum EnumFlowerColor implements IFlowerColour, IAlleleInteger, IStringSer
 	Yellow("yellow", 16776960),
 	YellowGreen("yellowGreen", 10145074);
 
+	public static final EnumFlowerColor[] VALUES = values();
+	
 	int color;
 	int colorDis;
 	String uid;

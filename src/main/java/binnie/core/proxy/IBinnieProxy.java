@@ -42,6 +42,8 @@ public interface IBinnieProxy extends IProxyCore {
 	Object createObject(final String p0);
 
 	void registerTileEntity(final Class<? extends TileEntity> tile, final String id, @Nullable final Object renderer);
+	
+	void registerTileEntity(final Class<? extends TileEntity> tile, final String id);
 
 	void createPipe(final Item p0);
 

@@ -1,15 +1,13 @@
-package binnie.botany.ceramic;
+package binnie.botany.ceramic.brick;
 
-import binnie.botany.genetics.EnumFlowerColor;
 import forestry.core.items.IColoredItem;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemCeramic extends ItemBlock implements IColoredItem {
-	public ItemCeramic(BlockCeramic block) {
+public class ItemCeramicBrick extends ItemBlock implements IColoredItem {
+	public ItemCeramicBrick(BlockCeramicBrick block) {
 		super(block);
 	}
 	
@@ -21,12 +19,20 @@ public class ItemCeramic extends ItemBlock implements IColoredItem {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
-		return EnumFlowerColor.get(stack.getMetadata()).getColor(false);
+		CeramicBrickPair ceramic = new CeramicBrickPair(stack.getItemDamage());
+		if(ceramic != null){
+			if (tintIndex == 1) {
+				return ceramic.colorFirst.getColor(false);
+			}else if (tintIndex == 2) {
+				return ceramic.colorSecond.getColor(false);
+			}
+		}
+		return 16777215;
 	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getItemStackDisplayName(ItemStack itemStack) {
-		return EnumFlowerColor.get(itemStack.getItemDamage()).getColourName() + " " + I18n.translateToLocal("tile.botany.ceramic.name").trim();
+		return new CeramicBrickPair(itemStack.getItemDamage()).getName();
 	}
 }

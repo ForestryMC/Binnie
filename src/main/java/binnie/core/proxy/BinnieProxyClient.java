@@ -51,6 +51,11 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	public void registerModels() {
 		getModelManager().registerModels();
 	}
+	
+	@Override
+	public void reloadSprites() {
+		ModelManager.reloadSprites();
+	}
 
 	@Override
 	public void registerItemAndBlockColors() {

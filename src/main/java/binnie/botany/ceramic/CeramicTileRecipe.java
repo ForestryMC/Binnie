@@ -1,6 +1,7 @@
 package binnie.botany.ceramic;
 
 import binnie.botany.Botany;
+import binnie.botany.ceramic.brick.CeramicBrickType;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -47,10 +48,10 @@ public class CeramicTileRecipe implements IRecipe {
 				stacks.add(stack);
 			}
 		}
-		for (final BlockCeramicBrick.TileType type : BlockCeramicBrick.TileType.values()) {
-			final ItemStack stack2 = type.getRecipe(stacks);
-			if (stack2 != null) {
-				return stack2;
+		for (CeramicBrickType type : CeramicBrickType.VALUES) {
+			ItemStack result = type.getRecipe(stacks);
+			if (result != null) {
+				return result;
 			}
 		}
 		return null;

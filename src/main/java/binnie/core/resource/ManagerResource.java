@@ -37,6 +37,7 @@ public class ManagerResource {
 		for (final BinnieIcon icon : this.icons) {
 			BinnieCore.proxy.registerIcon(icon.getResourceLocation());
 		}
+		BinnieCore.proxy.reloadSprites();
 	}
 
 

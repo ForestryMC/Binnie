@@ -1,8 +1,11 @@
 package binnie.core.models;
 
 import com.google.common.collect.ImmutableMap;
+
+import forestry.api.core.ForestryAPI;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
+import forestry.api.core.ISpriteRegister;
 import forestry.api.core.IStateMapperRegister;
 import forestry.core.blocks.IColoredBlock;
 import forestry.core.items.IColoredItem;
@@ -42,13 +45,14 @@ public class ModelManager implements IModelManager {
 
 	private final String modID;
 
-	private final List<BlockModelEntry> customBlockModels = new ArrayList<>();
-	private final List<ModelEntry> customModels = new ArrayList<>();
+	private final static List<BlockModelEntry> customBlockModels = new ArrayList<>();
+	private final static List<ModelEntry> customModels = new ArrayList<>();
 
 	private final List<IItemModelRegister> itemModelRegisters = new ArrayList<>();
 	private final List<IStateMapperRegister> stateMapperRegisters = new ArrayList<>();
 	private final List<IColoredBlock> blockColorList = new ArrayList<>();
 	private final List<IColoredItem> itemColorList = new ArrayList<>();
+	private final static List<ISpriteRegister> spriteRegister = new ArrayList<>();
 
 	private TRSRTransformation flipX = new TRSRTransformation(null, null, new Vector3f(-1, 1, 1), null);
 	public final IModelState DEFAULT_BLOCK;
@@ -149,6 +153,9 @@ public class ModelManager implements IModelManager {
 		if (block instanceof IColoredBlock) {
 			blockColorList.add((IColoredBlock) block);
 		}
+		if (block instanceof ISpriteRegister) {
+			spriteRegister.add((ISpriteRegister) block);
+		}
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -158,6 +165,9 @@ public class ModelManager implements IModelManager {
 		}
 		if (item instanceof IColoredItem) {
 			itemColorList.add((IColoredItem) item);
+		}
+		if (item instanceof ISpriteRegister) {
+			spriteRegister.add((ISpriteRegister) item);
 		}
 	}
 
@@ -178,6 +188,15 @@ public class ModelManager implements IModelManager {
 
 		for (IStateMapperRegister stateMapperRegister : stateMapperRegisters) {
 			stateMapperRegister.registerStateMapper();
+		}
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public static void reloadSprites() {
+		for (ISpriteRegister spriteRegister : spriteRegister) {
+			if(spriteRegister != null){
+				spriteRegister.registerSprites(ForestryAPI.textureManager);
+			}
 		}
 	}
 
@@ -236,7 +255,7 @@ public class ModelManager implements IModelManager {
 		}
 	}
 
-	public void registerCustomModels(ModelBakeEvent event) {
+	public static void registerCustomModels(ModelBakeEvent event) {
 		IRegistry<ModelResourceLocation, IBakedModel> registry = event.getModelRegistry();
 		for (final BlockModelEntry entry : customBlockModels) {
 			registry.putObject(entry.blockModelLocation, entry.model);
@@ -250,11 +269,11 @@ public class ModelManager implements IModelManager {
 		}
 	}
 
-	public void registerCustomBlockModel(@Nonnull BlockModelEntry index) {
+	public static void registerCustomBlockModel(@Nonnull BlockModelEntry index) {
 		customBlockModels.add(index);
 	}
 
-	public void registerCustomModel(@Nonnull ModelEntry index) {
+	public static void registerCustomModel(@Nonnull ModelEntry index) {
 		customModels.add(index);
 	}
 
