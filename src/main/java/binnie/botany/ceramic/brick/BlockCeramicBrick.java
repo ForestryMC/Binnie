@@ -6,6 +6,7 @@ import binnie.botany.ceramic.TileCeramic;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.BinnieCore;
 import binnie.core.block.IMultipassBlock;
+import binnie.core.models.DefaultStateMapper;
 import binnie.core.models.ModelManager;
 import binnie.core.models.ModelMutlipass;
 import binnie.core.util.TileUtil;
@@ -114,7 +115,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerStateMapper() {
-		ModelLoader.setCustomStateMapper(this, new binnie.core.models.DefaultStateMapper());
+		ModelLoader.setCustomStateMapper(this, new DefaultStateMapper("ceramicBrick"));
 		ModelManager.registerCustomBlockModel(new BlockModelEntry(
 				new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":ceramicBrick", "normal"),
 				new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":ceramicBrick", "inventory"),

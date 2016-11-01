@@ -7,9 +7,15 @@ import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 
 public class DefaultStateMapper extends StateMapperBase {
 
+	private String modelName;
+	
+	public DefaultStateMapper(String modelName) {
+		this.modelName = modelName;
+	}
+	
 	@Override
 	protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-		return new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":ceramicBrick", "normal");
+		return new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":" + modelName, "normal");
 	}
 
 }
