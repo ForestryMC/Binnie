@@ -23,7 +23,7 @@
       },
       "cherry":{
         "textures": {
-          "all": "extratrees:blocks/planks/Cherry"
+          "all": "forestry:blocks/wood/planks.cherry"
         }
       },
       "whitebeam":{
@@ -43,7 +43,7 @@
       },
       "ash":{
         "textures": {
-          "all": "extratrees:blocks/planks/Ssh"
+          "all": "extratrees:blocks/planks/Ash"
         }
       },
       "alder":{
@@ -198,7 +198,7 @@
       },
       "cinnamon": {
         "textures": {
-          "all": "extratrees:blocks/planks/Cinnamon"
+          "all": "minecraft:blocks/planks_jungle"
         }
       },
       "pinkivory":{
