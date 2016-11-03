@@ -1,0 +1,223 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "extratrees:half_slab"
+  },
+  "variants": {
+    "half": {
+      "bottom": {
+        "model": "extratrees:half_slab"
+      },
+      "top": {
+        "model": "extratrees:upper_slab"
+      }
+    },
+    "wood_type":{
+      "apple":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Apple"
+        }
+      },
+      "fig": {
+        "textures": {
+          "all": "extratrees:blocks/planks/Fig"
+        }
+      },
+      "butternut":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Butternut"
+        }
+      },
+      "cherry":{
+        "textures": {
+          "all": "forestry:blocks/wood/planks.cherry"
+        }
+      },
+      "whitebeam":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Whitebeam"
+        }
+      },
+      "rowan":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Rowan"
+        }
+      },
+      "hemlock":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Hemlock"
+        }
+      },
+      "ash":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Ash"
+        }
+      },
+      "alder":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Alder"
+        }
+      },
+      "beech":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Beech"
+        }
+      },
+      "hawthorn":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Hawthorn"
+        }
+      },
+      "banana":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Banana"
+        }
+      },
+      "yew":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Yew"
+        }
+      },
+      "cypress":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Cypress"
+        }
+      },
+      "fir":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Fir"
+        }
+      },
+      "hazel":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Hazel"
+        }
+      },
+      "hickory":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Hickory"
+        }
+      },
+      "elm":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Elm"
+        }
+      },
+      "elder":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Elder"
+        }
+      },
+      "holly":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Holly"
+        }
+      },
+      "hornbeam":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Hornbeam"
+        }
+      },
+      "cedar":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Cedar"
+        }
+      },
+      "olive":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Olive"
+        }
+      },
+      "sweetgum":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Sweetgum"
+        }
+      },
+      "locust":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Locust"
+        }
+      },
+      "pear":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Pear"
+        }
+      },
+      "maclura":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Maclura"
+        }
+      },
+      "brazilwood":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Brazilwood"
+        }
+      },
+      "logwood":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Logwood"
+        }
+      },
+      "rosewood":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Rosewood"
+        }
+      },
+      "purpleheart":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Purpleheart"
+        }
+      },
+      "iroko":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Iroko"
+        }
+      },
+      "gingko":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Gingko"
+        }
+      },
+      "eucalyptus":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Eucalyptus"
+        }
+      },
+      "eucalyptus2":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Eucalyptus"
+        }
+      },
+      "box":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Box"
+        }
+      },
+      "syzgium":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Syzgium"
+        }
+      },
+      "eucalyptus3":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Eucalyptus"
+        }
+      },
+      "cinnamon": {
+        "textures": {
+          "all": "minecraft:blocks/planks_jungle"
+        }
+      },
+      "pinkivory":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Pinkivory"
+        }
+      },
+      "empty":{
+        "textures": {
+          "all": "extratrees:blocks/planks/Empty"
+        }
+      }
+    }
+  }
+}

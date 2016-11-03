@@ -39,8 +39,8 @@ public class WoodProvider implements IWoodProvider {
 	@Override
 	public void registerSprites(Item item, ITextureManager manager) {
 		TextureMap textureMap = FMLClientHandler.instance().getClient().getTextureMapBlocks();
-		trunk = textureMap.registerSprite(new ResourceLocation(modID, type.getHeartTexture()));
-		bark = textureMap.registerSprite(new ResourceLocation(modID, type.getBarkTexture()));
+		trunk = textureMap.registerSprite(new ResourceLocation(type.getHeartTexture()));
+		bark = textureMap.registerSprite(new ResourceLocation(type.getBarkTexture()));
 
 	}
 
@@ -57,8 +57,7 @@ public class WoodProvider implements IWoodProvider {
 	@Override
 	public ItemStack getWoodStack() {
 		if (type instanceof EnumExtraTreeLog) {
-			int group = type.getMetadata() / EnumExtraTreeLog.values().length;
-			return GameRegistry.makeItemStack(modID + ":log." + group, type.getMetadata() % 4, 1, null);
+			return WoodAccess.getInstance().getStack(type, WoodBlockKind.LOG, false);
 		} else {
 			return TreeManager.woodAccess.getStack(type, WoodBlockKind.LOG, false);
 		}

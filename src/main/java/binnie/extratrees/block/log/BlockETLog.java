@@ -1,15 +1,26 @@
-package binnie.extratrees.block;
+package binnie.extratrees.block.log;
 
+import binnie.Constants;
+import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.block.EnumExtraTreeLog;
+import binnie.extratrees.block.IWoodKind;
+import binnie.extratrees.block.PropertyEnumWoodType;
+import binnie.extratrees.genetics.WoodAccess;
+import forestry.api.arboriculture.WoodBlockKind;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import forestry.api.core.IStateMapperRegister;
 import forestry.api.core.Tabs;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -20,56 +31,24 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class BlockETLog extends BlockLog {
+public abstract class BlockETLog extends BlockLog implements IWoodKind, IStateMapperRegister, IItemModelRegister {
 	protected static final int VARIANTS_PER_BLOCK = 4;
 	protected static final int VARIANTS_META_MASK = VARIANTS_PER_BLOCK - 1;
-	public static final int GROUP_COUNT = (int) Math.ceil(EnumExtraTreeLog.values().length / (float) VARIANTS_PER_BLOCK);
+	public static final String BLOCK_NAME = "log";
 	protected int offset = -1;
 	protected boolean fireproof;
-	protected static PropertyEnum<EnumExtraTreeLog>[] woodTypes;
-
-	static {
-
-		woodTypes = new PropertyEnum[GROUP_COUNT];
-		for (int i = 0; i < GROUP_COUNT; i++) {
-			int finalI = i;
-			List allowed = Arrays.stream(EnumExtraTreeLog.values()).filter(l -> l.getMetadata() >= finalI * VARIANTS_PER_BLOCK && l.getMetadata() < finalI * VARIANTS_PER_BLOCK + VARIANTS_PER_BLOCK).collect(Collectors.toList());
-			woodTypes[i] = PropertyEnum.create("wood_type", EnumExtraTreeLog.class, allowed);
-		}
-	}
-
-	public static class LogItemBlock<V extends BlockETLog> extends ItemBlock {
-		EnumExtraTreeLog[] values;
-
-		public LogItemBlock(V block) {
-			super(block);
-			setHasSubtypes(true);
-			setMaxDamage(0);
-			setRegistryName(block.getRegistryName());
-			values = block.getVariant().getAllowedValues().toArray(new EnumExtraTreeLog[]{});
-		}
-
-		@Override
-		public int getMetadata(int damage) {
-			return damage;
-		}
-
-		@Override
-		public String getUnlocalizedName(ItemStack stack) {
-			return "tile.log." + values[stack.getMetadata()].getName();
-		}
-	}
+	protected static PropertyEnumWoodType[] types = PropertyEnumWoodType.create(VARIANTS_PER_BLOCK);
 
 	public BlockETLog(int offset, boolean fireproof) {
 		this.setCreativeTab(Tabs.tabArboriculture);
-		this.setRegistryName("log." + (fireproof ? "fireproof." : "") + offset);
+		this.setRegistryName(BLOCK_NAME + "." + (fireproof ? "fireproof." : "") + offset);
 		this.setResistance(5.0f);
 		this.setHardness(2.0f);
 		this.setSoundType(SoundType.WOOD);
-		this.setUnlocalizedName("log." + (fireproof ? "fireproof." : "") + offset);
+		this.setUnlocalizedName(BLOCK_NAME + "." + (fireproof ? "fireproof." : "") + offset);
 		this.offset = offset;
 		this.fireproof = fireproof;
-		setDefaultState(this.blockState.getBaseState().withProperty(woodTypes[offset], EnumExtraTreeLog.values()[offset * VARIANTS_PER_BLOCK]).withProperty(LOG_AXIS, EnumAxis.Y));
+		setDefaultState(this.blockState.getBaseState().withProperty(types[offset], types[offset].getFirstValue()).withProperty(LOG_AXIS, EnumAxis.Y));
 	}
 
 
@@ -131,7 +110,7 @@ public abstract class BlockETLog extends BlockLog {
 
 	@Override
 	public final int damageDropped(IBlockState state) {
-		return state.getValue(getVariant()).getMetadata() % 4;
+		return state.getValue(getVariant()).getMetadata() % VARIANTS_PER_BLOCK;
 	}
 
 	@Override
@@ -150,7 +129,7 @@ public abstract class BlockETLog extends BlockLog {
 
 	@Override
 	public final void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
-		list.addAll(getVariant().getAllowedValues().stream().map(woodType -> new ItemStack(this, 1, woodType.getMetadata() % 4)).collect(Collectors.toList()));
+		list.addAll(getVariant().getAllowedValues().stream().map(woodType -> new ItemStack(this, 1, woodType.getMetadata() % VARIANTS_PER_BLOCK)).collect(Collectors.toList()));
 	}
 
 	@Override
@@ -181,4 +160,45 @@ public abstract class BlockETLog extends BlockLog {
 		return 5;
 	}
 
+	@Override
+	public WoodBlockKind getWoodKind() {
+		return WoodBlockKind.LOG;
+	}
+
+	@Override
+	public void registerModel(Item item, IModelManager manager) {
+		manager.registerItemModel(item, stack -> new ModelResourceLocation(Constants.EXTRA_TREES_MOD_ID + ":" + BLOCK_NAME, "axis=y,wood_type=" + getWoodType(stack.getMetadata()).getName()));
+	}
+
+	@Override
+	public void registerStateMapper() {
+		ExtraTrees.proxy.setCustomStateMapper(BLOCK_NAME, this);
+	}
+
+	public static void init() {
+		Arrays.stream(types).forEach(type -> {
+			BlockETLog log = new BlockETLog(type.getGroup(), false) {
+				@Override
+				public PropertyEnum<EnumExtraTreeLog> getVariant() {
+					return type;
+				}
+			};
+
+			BlockETLog log_fireproof = new BlockETLog(type.getGroup(), true) {
+				@Override
+				public PropertyEnum<EnumExtraTreeLog> getVariant() {
+					return type;
+				}
+			};
+
+			ExtraTrees.proxy.registerItem(new ItemETLog<>(log));
+			ExtraTrees.proxy.registerItem(new ItemETLog<>(log_fireproof));
+			ExtraTrees.proxy.registerBlock(log);
+			ExtraTrees.proxy.registerBlock(log_fireproof);
+
+			WoodAccess.getInstance().registerWithVariants(log, log.getWoodKind(), type, true);
+			WoodAccess.getInstance().registerWithVariants(log_fireproof, log.getWoodKind(), type, false);
+		});
+
+	}
 }

@@ -1,5 +1,6 @@
 package binnie.extratrees.block;
 
+import binnie.Constants;
 import binnie.extratrees.api.IDesignMaterial;
 import forestry.api.arboriculture.IWoodType;
 
@@ -15,7 +16,7 @@ public enum EnumExtraTreeLog implements IWoodType {
 	Alder("Alder", PlankType.ExtraTreePlanks.Alder),
 	Beech("Beech", PlankType.ExtraTreePlanks.Beech),
 	Hawthorn("Hawthorn", PlankType.ExtraTreePlanks.Hawthorn),
-	Banana("Banana"),
+	Banana("Banana", PlankType.ExtraTreePlanks.Banana),
 	Yew("Yew", PlankType.ExtraTreePlanks.Yew),
 	Cypress("Cypress", PlankType.ExtraTreePlanks.Cypress),
 	Fir("Fir", PlankType.ExtraTreePlanks.Fir),
@@ -44,18 +45,12 @@ public enum EnumExtraTreeLog implements IWoodType {
 	Eucalyptus3("Eucalyptus", PlankType.ExtraTreePlanks.Eucalyptus),
 	Cinnamon("Cinnamon", PlankType.VanillaPlanks.JUNGLE),
 	PinkIvory("Pink Ivory", PlankType.ExtraTreePlanks.PinkIvory),
-	EMPTY("EMPTY");//TODO change name/create wood for SHRUBS
+	EMPTY("EMPTY", PlankType.VanillaPlanks.OAK);//TODO change name/create wood for SHRUBS
 
 	String name;
-	IDesignMaterial plank;
+	IPlankType plank;
 
-
-	EnumExtraTreeLog(final String name) {
-		this.plank = null;
-		this.name = name;
-	}
-
-	EnumExtraTreeLog(final String name, final IDesignMaterial plank) {
+	EnumExtraTreeLog(final String name, final IPlankType plank) {
 		this.name = name;
 		this.plank = plank;
 	}
@@ -97,27 +92,27 @@ public enum EnumExtraTreeLog implements IWoodType {
 
 	@Override
 	public String getHeartTexture() {
-		return "blocks/logs/" + name().toLowerCase() + "Trunk";
+		return Constants.EXTRA_TREES_MOD_ID + ":blocks/logs/" + name().toLowerCase() + "Trunk";
 	}
 
 	@Override
 	public String getDoorLowerTexture() {
-		return "blocks/door.standard.lower";
+		return Constants.EXTRA_TREES_MOD_ID + ":blocks/door.standard.lower";
 	}
 
 	@Override
 	public String getDoorUpperTexture() {
-		return "blocks/door.standard.upper";
+		return Constants.EXTRA_TREES_MOD_ID + ":blocks/door.standard.upper";
 	}
 
 	@Override
 	public String getBarkTexture() {
-		return "blocks/logs/" + name().toLowerCase() + "Bark";
+		return Constants.EXTRA_TREES_MOD_ID + ":blocks/logs/" + name().toLowerCase() + "Bark";
 	}
 
 	@Override
 	public String getPlankTexture() {
-		return "blocks/planks/" + name();
+		return plank.getPlankTextureName();
 	}
 
 	@Override

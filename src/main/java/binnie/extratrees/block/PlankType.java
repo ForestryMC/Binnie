@@ -1,5 +1,6 @@
 package binnie.extratrees.block;
 
+import binnie.Constants;
 import binnie.core.block.TileEntityMetadata;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
@@ -66,7 +67,8 @@ public class PlankType {
 		Sweetgum(13997656),
 		Rosewood(7738624),
 		Gingko(16050106),
-		PinkIvory(15502496);
+		PinkIvory(15502496),
+		Banana(0);
 
 		int color;
 		//IIcon icon;
@@ -78,6 +80,11 @@ public class PlankType {
 		@Override
 		public String getName() {
 			return ExtraTrees.proxy.localise("block.planks." + this.toString().toLowerCase());
+		}
+
+		@Override
+		public String getPlankTextureName(){
+			return Constants.EXTRA_TREES_MOD_ID + ":blocks/planks/" + name();
 		}
 
 		@Override
@@ -116,7 +123,7 @@ public class PlankType {
 		BIRCH(14139781),
 		JUNGLE(11632732),
 		ACACIA(12215095),
-		DARKOAK(4599061);
+		BIG_OAK(4599061);
 
 		int color;
 
@@ -132,6 +139,11 @@ public class PlankType {
 		@Override
 		public String getDescription() {
 			return ExtraTrees.proxy.localise("block.planks.vanilla." + this.toString().toLowerCase() + ".desc");
+		}
+
+		@Override
+		public String getPlankTextureName(){
+			return "minecraft:blocks/planks_" + name().toLowerCase();
 		}
 
 		@Override
@@ -195,6 +207,11 @@ public class PlankType {
 		}
 
 		@Override
+		public String getPlankTextureName(){
+			return "forestry:blocks/wood/planks." + name().toLowerCase();
+		}
+
+		@Override
 		public String getName() {
 			return ExtraTrees.proxy.localise("block.planks.forestry." + this.toString().toLowerCase());
 		}
@@ -244,6 +261,13 @@ public class PlankType {
 		@Override
 		public String getName() {
 			return ExtraTrees.proxy.localise("block.planks.ebxl." + this.toString().toLowerCase());
+		}
+
+
+		@Override
+		public String getPlankTextureName() {
+			//TODO implement
+			return "";
 		}
 
 		@Override

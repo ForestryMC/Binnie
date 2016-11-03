@@ -1,0 +1,9 @@
+{
+  "parent": "block/inner_stairs",
+  "textures": {
+    "particle": "extratrees:blocks/planks/Apple",
+    "side": "extratrees:blocks/planks/Apple",
+    "top": "extratrees:blocks/planks/Apple",
+    "bottom": "extratrees:blocks/planks/Apple"
+  }
+}

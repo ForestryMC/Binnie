@@ -1,15 +1,25 @@
-package binnie.extratrees.block;
+package binnie.extratrees.block.plank;
 
+import binnie.Constants;
+import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.block.EnumExtraTreeLog;
+import binnie.extratrees.block.IWoodKind;
+import binnie.extratrees.block.PropertyEnumWoodType;
+import binnie.extratrees.block.log.BlockETLog;
+import binnie.extratrees.block.log.ItemETLog;
+import binnie.extratrees.genetics.WoodAccess;
+import forestry.api.arboriculture.WoodBlockKind;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
+import forestry.api.core.IStateMapperRegister;
 import forestry.api.core.Tabs;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
@@ -26,59 +36,25 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static net.minecraft.block.BlockFence.*;
-
-public class BlockETPlanks extends Block implements IItemModelRegister {
+public abstract class BlockETPlank extends Block implements IWoodKind, IItemModelRegister, IStateMapperRegister {
 	protected static final int VARIANTS_PER_BLOCK = 16;
 	protected static final int VARIANTS_META_MASK = VARIANTS_PER_BLOCK - 1;
+	public static final String BLOCK_NAME = "plank";
 	private final boolean fireproof;
-	public static final int GROUP_COUNT = (int) Math.ceil(EnumExtraTreeLog.values().length / (float) VARIANTS_PER_BLOCK);
 	protected int offset = -1;
-	protected static PropertyEnum<EnumExtraTreeLog>[] plankTypes;
+	protected static PropertyEnumWoodType[] types = PropertyEnumWoodType.create(VARIANTS_PER_BLOCK);
 
-	static {
-		plankTypes = new PropertyEnum[GROUP_COUNT];
-		for (int i = 0; i < GROUP_COUNT; i++) {
-			int finalI = i;
-			List allowed = Arrays.stream(EnumExtraTreeLog.values()).filter(l -> l.getMetadata() >= finalI * VARIANTS_PER_BLOCK && l.getMetadata() < finalI * VARIANTS_PER_BLOCK + VARIANTS_PER_BLOCK).collect(Collectors.toList());
-			plankTypes[i] = PropertyEnum.create("wood_type", EnumExtraTreeLog.class, allowed);
-		}
-	}
-
-	public BlockETPlanks(int offset, boolean fireproof) {
+	public BlockETPlank(int offset, boolean fireproof) {
 		super(Material.WOOD);
 		this.fireproof = fireproof;
 		this.offset = offset;
-		this.setRegistryName("plank." + (fireproof ? "fireproof." : "") + offset);
+		this.setRegistryName(BLOCK_NAME + "." + (fireproof ? "fireproof." : "") + offset);
 		this.setCreativeTab(Tabs.tabArboriculture);
 		this.setResistance(5.0f);
 		this.setHardness(2.0f);
 		this.setHarvestLevel("axe", 0);
 		this.setSoundType(SoundType.WOOD);
 	}
-
-	public static class PlankItemBlock<V extends BlockETPlanks> extends ItemBlock {
-		EnumExtraTreeLog[] values;
-
-		public PlankItemBlock(V block) {
-			super(block);
-			setHasSubtypes(true);
-			setMaxDamage(0);
-			setRegistryName(block.getRegistryName());
-			values = block.getVariant().getAllowedValues().toArray(new EnumExtraTreeLog[]{});
-		}
-
-		@Override
-		public int getMetadata(int damage) {
-			return damage;
-		}
-
-		@Override
-		public String getUnlocalizedName(ItemStack stack) {
-			return "tile.plank." + values[stack.getMetadata()].getName();
-		}
-	}
-
 
 	@Override
 	public float getBlockHardness(IBlockState blockState, World worldIn, BlockPos pos) {
@@ -114,7 +90,6 @@ public class BlockETPlanks extends Block implements IItemModelRegister {
 		return getDefaultState().withProperty(getVariant(), woodType);
 	}
 
-
 	@Override
 	protected BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, getVariant());
@@ -123,12 +98,6 @@ public class BlockETPlanks extends Block implements IItemModelRegister {
 	@Override
 	public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
 		list.addAll(getVariant().getAllowedValues().stream().map(woodType -> new ItemStack(this, 1, woodType.getMetadata() % VARIANTS_PER_BLOCK)).collect(Collectors.toList()));
-	}
-
-
-	@Nonnull
-	public PropertyEnum<EnumExtraTreeLog> getVariant(){
-		return plankTypes[offset];
 	}
 
 	@Override
@@ -147,36 +116,45 @@ public class BlockETPlanks extends Block implements IItemModelRegister {
 	}
 
 	@Override
-	public void registerModel(Item item, IModelManager manager) {
-
+	public WoodBlockKind getWoodKind() {
+		return WoodBlockKind.PLANKS;
 	}
 
-//	public String getBlockName(final ItemStack par1ItemStack) {
-//		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
-//		return Binnie.Language.localise(ExtraTrees.instance, "block.plank.name", PlankType.ExtraTreePlanks.values()[meta].getName());
-//	}
+	@Override
+	public void registerStateMapper() {
+		ExtraTrees.proxy.setCustomStateMapper(BLOCK_NAME, this);
+	}
 
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public IIcon getIcon(final IBlockAccess world, final int x, final int y, final int z, final int side) {
-//		final TileEntityMetadata tile = TileEntityMetadata.getTile(world, x, y, z);
-//		if (tile != null) {
-//			return this.getIcon(side, tile.getTileMetadata());
-//		}
-//		return super.getIcon(world, x, y, z, side);
-//	}
-//
-//	@Override
-//	public IIcon getIcon(final int side, final int meta) {
-//		return PlankType.ExtraTreePlanks.values()[meta].getIcon();
-//	}
+	@Override
+	public void registerModel(Item item, IModelManager manager) {
+		manager.registerItemModel(item, stack -> new ModelResourceLocation(Constants.EXTRA_TREES_MOD_ID + ":" + BLOCK_NAME, "wood_type=" + getWoodType(stack.getMetadata()).getName()));
+	}
 
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerBlockIcons(final IIconRegister register) {
-//		for (final PlankType.ExtraTreePlanks plank : PlankType.ExtraTreePlanks.values()) {
-//			plank.loadIcon(register);
-//		}
-//	}
+	public static void init() {
+		Arrays.stream(types).forEach(type -> {
+			BlockETPlank plank = new BlockETPlank(type.getGroup(), false) {
+				@Override
+				public PropertyEnum<EnumExtraTreeLog> getVariant() {
+					return type;
+				}
+			};
+
+			BlockETPlank plank_fireproof = new BlockETPlank(type.getGroup(), true) {
+				@Override
+				public PropertyEnum<EnumExtraTreeLog> getVariant() {
+					return type;
+				}
+			};
+
+			ExtraTrees.proxy.registerItem(new ItemETPlank<>(plank));
+			ExtraTrees.proxy.registerItem(new ItemETPlank<>(plank_fireproof));
+			ExtraTrees.proxy.registerBlock(plank);
+			ExtraTrees.proxy.registerBlock(plank_fireproof);
+
+			WoodAccess.getInstance().registerWithVariants(plank, plank.getWoodKind(), type, true);
+			WoodAccess.getInstance().registerWithVariants(plank_fireproof, plank.getWoodKind(), type, false);
+		});
+
+	}
 
 }

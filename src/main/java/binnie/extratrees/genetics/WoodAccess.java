@@ -1,5 +1,6 @@
 package binnie.extratrees.genetics;
 
+import binnie.extratrees.block.EnumExtraTreeLog;
 import forestry.api.arboriculture.IWoodAccess;
 import forestry.api.arboriculture.IWoodType;
 import forestry.api.arboriculture.TreeManager;
@@ -28,16 +29,30 @@ public class WoodAccess implements IWoodAccess {
 		for (V value : property.getAllowedValues()) {
 			IBlockState blockState = woodTyped.getDefaultState().withProperty(property, value);
 			if(fireproof) {
-				wood.addWood(value, woodBlockKind, blockState);
-			}else {
 				woodFireproof.addWood(value, woodBlockKind, blockState);
+			}else {
+				wood.addWood(value, woodBlockKind, blockState);
 			}
+		}
+	}
+
+	public void registerWithBlockState(IBlockState blockState, WoodBlockKind woodBlockKind, EnumExtraTreeLog log, boolean fireproof) {
+		if(fireproof) {
+			woodFireproof.addWood(log, woodBlockKind, blockState);
+		}else {
+			wood.addWood(log, woodBlockKind, blockState);
 		}
 	}
 
 	@Override
 	public ItemStack getStack(IWoodType woodType, WoodBlockKind kind, boolean fireproof) {
-		throw new NotImplementedException("");
+		IBlockState state = fireproof?woodFireproof.getWood(woodType, kind) : wood.getWood(woodType, kind);
+		if(state != null) {
+			int metadata = state.getBlock().getMetaFromState(state);
+			return new ItemStack(state.getBlock(), 1, metadata);
+		} else {
+			return TreeManager.woodAccess.getStack(woodType, kind, fireproof);
+		}
 	}
 
 	@Override
