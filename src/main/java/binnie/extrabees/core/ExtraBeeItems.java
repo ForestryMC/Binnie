@@ -59,6 +59,8 @@ public enum ExtraBeeItems implements IItemMiscProvider {
 		OreDictionary.registerOre("dyeBlack", ExtraBeeItems.BlackDye.get(1));
 		OreDictionary.registerOre("dyeWhite", ExtraBeeItems.WhiteDye.get(1));
 		OreDictionary.registerOre("dyeBrown", ExtraBeeItems.BrownDye.get(1));
+		
+		OreDictionary.registerOre("gearWood", ExtraBeeItems.ScentedGear.get(1));
 	}
 
 	public static void postInit() {
