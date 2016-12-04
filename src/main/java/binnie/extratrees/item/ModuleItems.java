@@ -52,6 +52,8 @@ public class ModuleItems implements IInitializable {
 		OreDictionary.registerOre("seedCorn", ExtraTreeItems.GrainCorn.get(1));
 		OreDictionary.registerOre("seedRye", ExtraTreeItems.GrainRye.get(1));
 		OreDictionary.registerOre("seedRoasted", ExtraTreeItems.GrainRoasted.get(1));
+		
+		OreDictionary.registerOre("gearWood", ExtraTreeItems.ProvenGear.get(1));
 
 		Food.Crabapple.addJuice(10, 150, 10);
 		Food.Orange.addJuice(10, 400, 15);
