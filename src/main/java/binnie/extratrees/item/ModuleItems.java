@@ -6,7 +6,6 @@ import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.item.ItemMisc;
 import binnie.core.liquid.ItemFluidContainer;
-import binnie.extrabees.core.ExtraBeeItems;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.EnumExtraTreeLog;
 import forestry.api.core.Tabs;
