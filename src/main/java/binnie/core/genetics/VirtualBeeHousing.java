@@ -135,6 +135,11 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 	}
 
 	@Override
+	public boolean isRaining() {
+		return false;
+	}
+
+	@Override
 	public World getWorldObj() {
 		return getWorld();
 	}
