@@ -42,11 +42,11 @@ public class ModuleItem implements IInitializable {
 		Genetics.itemSerum = new ItemSerum();
 		Genetics.itemSerumArray = new ItemSerumArray();
 		Genetics.itemSequencer = new ItemSequence();
-		Genetics.itemGenetics = Binnie.Item.registerMiscItems(GeneticsItems.values(), CreativeTabGenetics.instance);
+		Genetics.setItemGenetics(Binnie.Item.registerMiscItems(GeneticsItems.values(), CreativeTabGenetics.instance));
 		Genetics.proxy.registerItem(Genetics.itemSerum);
 		Genetics.proxy.registerItem(Genetics.itemSerumArray);
 		Genetics.proxy.registerItem(Genetics.itemSequencer);
-		Genetics.proxy.registerItem(Genetics.itemGenetics);
+		Genetics.proxy.registerItem(Genetics.getItemGenetics());
 
 		Genetics.database = new ItemDatabase();
 		Genetics.analyst = new ItemAnalyst();
@@ -81,7 +81,7 @@ public class ModuleItem implements IInitializable {
 
 	@Override
 	public void postInit() {
-		Item itemGenetics = Genetics.itemGenetics;
+		Item itemGenetics = Genetics.getItemGenetics();
 		if (itemGenetics != null) {
 			GameRegistry.addShapelessRecipe(GeneticsItems.DNADye.get(8),
 					Items.GLOWSTONE_DUST, new ItemStack(Items.DYE, 1, 5));

@@ -46,7 +46,7 @@ public enum GeneticsItems implements IItemMiscProvider {
 
 	@Override
 	public ItemStack get(final int size) {
-		return (Genetics.itemGenetics == null) ? null : new ItemStack(Genetics.itemGenetics, size, this.ordinal());
+		return new ItemStack(Genetics.getItemGenetics(), size, this.ordinal());
 	}
 
 	public ItemStack get(@Nonnull Item itemGenetics, final int size) {

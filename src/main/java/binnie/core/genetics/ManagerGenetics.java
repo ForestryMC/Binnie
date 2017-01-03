@@ -26,6 +26,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
@@ -90,6 +91,7 @@ public class ManagerGenetics extends ManagerBase {
 		return (IFlowerRoot) AlleleManager.alleleRegistry.getSpeciesRoot("rootFlowers");
 	}
 
+	@Nullable
 	public BreedingSystem getSystem(final String string) {
 		for (final BreedingSystem system : this.BREEDING_SYSTEMS.values()) {
 			if (system.getIdent().equals(string)) {
@@ -99,6 +101,7 @@ public class ManagerGenetics extends ManagerBase {
 		return null;
 	}
 
+	@Nullable
 	public BreedingSystem getSystem(final ISpeciesRoot root) {
 		return this.getSystem(root.getUID());
 	}

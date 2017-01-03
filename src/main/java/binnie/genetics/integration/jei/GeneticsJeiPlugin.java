@@ -9,6 +9,9 @@ import binnie.genetics.integration.jei.incubator.IncubatorRecipeHandler;
 import binnie.genetics.integration.jei.incubator.LarvaeIncubatorRecipeCategory;
 import binnie.genetics.integration.jei.incubator.LarvaeIncubatorRecipeMaker;
 import binnie.genetics.integration.jei.incubator.LarvaeIncubatorRecipeWrapper;
+import binnie.genetics.integration.jei.inoculator.InoculatorRecipeCategory;
+import binnie.genetics.integration.jei.inoculator.InoculatorRecipeMaker;
+import binnie.genetics.integration.jei.inoculator.InoculatorRecipeWrapper;
 import binnie.genetics.integration.jei.isolator.IsolatorRecipeCategory;
 import binnie.genetics.integration.jei.isolator.IsolatorRecipeMaker;
 import binnie.genetics.integration.jei.isolator.IsolatorRecipeWrapper;
@@ -61,7 +64,8 @@ public class GeneticsJeiPlugin extends BlankModPlugin {
 				new LarvaeIncubatorRecipeCategory(),
 				new IsolatorRecipeCategory(),
 				new PolymeriserRecipeCategory(),
-				new SequencerRecipeCategory()
+				new SequencerRecipeCategory(),
+				new InoculatorRecipeCategory()
 		);
 
 		registry.addRecipeHandlers(
@@ -69,19 +73,22 @@ public class GeneticsJeiPlugin extends BlankModPlugin {
 				new SimpleRecipeHandler<>(LarvaeIncubatorRecipeWrapper.class, RecipeUids.INCUBATOR_LARVAE),
 				new SimpleRecipeHandler<>(IsolatorRecipeWrapper.class, RecipeUids.ISOLATOR),
 				new SimpleRecipeHandler<>(PolymeriserRecipeWrapper.class, RecipeUids.POLYMERISER),
-				new SimpleRecipeHandler<>(SequencerRecipeWrapper.class, RecipeUids.SEQUENCER)
+				new SimpleRecipeHandler<>(SequencerRecipeWrapper.class, RecipeUids.SEQUENCER),
+				new SimpleRecipeHandler<>(InoculatorRecipeWrapper.class, RecipeUids.INOCULATOR)
 		);
 
 		registry.addRecipeCategoryCraftingItem(LaboratoryMachine.Incubator.get(1), RecipeUids.INCUBATOR, RecipeUids.INCUBATOR_LARVAE);
 		registry.addRecipeCategoryCraftingItem(GeneticMachine.Isolator.get(1), RecipeUids.ISOLATOR);
 		registry.addRecipeCategoryCraftingItem(GeneticMachine.Polymeriser.get(1), RecipeUids.POLYMERISER);
 		registry.addRecipeCategoryCraftingItem(GeneticMachine.Sequencer.get(1), RecipeUids.SEQUENCER);
+		registry.addRecipeCategoryCraftingItem(GeneticMachine.Inoculator.get(1), RecipeUids.INOCULATOR);
 
 		registry.addRecipes(Incubator.getRecipes());
 		registry.addRecipes(LarvaeIncubatorRecipeMaker.create(Incubator.getLarvaeRecipe()));
 		registry.addRecipes(IsolatorRecipeMaker.create());
 		registry.addRecipes(PolymeriserRecipeMaker.create());
 		registry.addRecipes(SequencerRecipeMaker.create());
+		registry.addRecipes(InoculatorRecipeMaker.create());
 	}
 
 	private static class ChargeableSubtypeInterpreter implements ISubtypeRegistry.ISubtypeInterpreter {

@@ -18,12 +18,15 @@ import binnie.genetics.item.ItemSerumArray;
 import binnie.genetics.item.ModuleItem;
 import binnie.genetics.machine.ModuleMachine;
 import binnie.genetics.proxy.Proxy;
+import com.google.common.base.Preconditions;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+
+import javax.annotation.Nonnull;
 
 @Mod(modid = Constants.GENETICS_MOD_ID, name = "Binnie's Genetics", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class Genetics extends AbstractMod {
@@ -35,7 +38,7 @@ public class Genetics extends AbstractMod {
 	public static Proxy proxy;
 
 	public static String channel = "GEN";
-	public static Item itemGenetics;
+	private static Item itemGenetics;
 	public static ItemSerum itemSerum;
 	public static ItemSequence itemSequencer;
 	public static MachineGroup packageGenetic;
@@ -46,6 +49,16 @@ public class Genetics extends AbstractMod {
 	public static Item registry;
 	public static Item masterRegistry;
 	public static ItemSerumArray itemSerumArray = null;
+
+	@Nonnull
+	public static Item getItemGenetics() {
+		Preconditions.checkState(itemGenetics != null);
+		return itemGenetics;
+	}
+
+	public static void setItemGenetics(Item itemGenetics) {
+		Genetics.itemGenetics = itemGenetics;
+	}
 
 	@Mod.EventHandler
 	public void preInit(final FMLPreInitializationEvent evt) {

@@ -231,7 +231,13 @@ public class TreeBreedingSystem extends BreedingSystem {
 
 	@Override
 	public boolean isDNAManipulable(final ItemStack member) {
-		return ((ITreeRoot) this.getSpeciesRoot()).getType(member) == EnumGermlingType.POLLEN;
+		ISpeciesType type = this.getSpeciesRoot().getType(member);
+		return isDNAManipulable(type);
+	}
+
+	@Override
+	public boolean isDNAManipulable(ISpeciesType type) {
+		return type == EnumGermlingType.POLLEN;
 	}
 
 	@Override

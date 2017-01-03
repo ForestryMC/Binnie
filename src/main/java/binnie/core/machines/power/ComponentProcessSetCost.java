@@ -6,10 +6,10 @@ public class ComponentProcessSetCost extends ComponentProcess {
 	private int processLength;
 	private int processEnergy;
 
-	public ComponentProcessSetCost(final IMachine machine, final int rfCost, final int timePeriod) {
+	public ComponentProcessSetCost(final IMachine machine, final int processEnergy, final int processLength) {
 		super(machine);
-		this.processLength = timePeriod;
-		this.processEnergy = rfCost;
+		this.processLength = processLength;
+		this.processEnergy = processEnergy;
 	}
 
 	@Override

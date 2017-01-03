@@ -18,8 +18,7 @@ public class Inoculator {
 	public static final int TANK_VEKTOR = 0;
 
 	public static void setGene(final IGene gene, final ItemStack target, final int chromoN) {
-		int chromosomeID;
-		final int chromosome = chromosomeID = gene.getChromosome().ordinal();
+		int chromosomeID = gene.getChromosome().ordinal();
 		if (chromosomeID >= EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal() && gene.getSpeciesRoot() instanceof IBeeRoot) {
 			--chromosomeID;
 		}

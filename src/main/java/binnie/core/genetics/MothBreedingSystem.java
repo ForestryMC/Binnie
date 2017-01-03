@@ -79,7 +79,13 @@ class MothBreedingSystem extends BreedingSystem {
 
 	@Override
 	public boolean isDNAManipulable(final ItemStack member) {
-		return ((IButterflyRoot) this.getSpeciesRoot()).getType(member) == EnumFlutterType.SERUM;
+		ISpeciesType type = this.getSpeciesRoot().getType(member);
+		return isDNAManipulable(type);
+	}
+
+	@Override
+	public boolean isDNAManipulable(ISpeciesType type) {
+		return type == EnumFlutterType.SERUM;
 	}
 
 	@Override

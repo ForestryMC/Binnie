@@ -74,7 +74,13 @@ class BeeBreedingSystem extends BreedingSystem {
 
 	@Override
 	public boolean isDNAManipulable(final ItemStack member) {
-		return ((IBeeRoot) this.getSpeciesRoot()).getType(member) == EnumBeeType.LARVAE;
+		ISpeciesType type = this.getSpeciesRoot().getType(member);
+		return isDNAManipulable(type);
+	}
+
+	@Override
+	public boolean isDNAManipulable(ISpeciesType type) {
+		return type == EnumBeeType.LARVAE;
 	}
 
 	@Override
