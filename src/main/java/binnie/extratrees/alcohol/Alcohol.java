@@ -45,7 +45,6 @@ public enum Alcohol implements IFluidType, ICocktailLiquid {
 	List<String> fermentationLiquid;
 	String fermentationSolid;
 	String ident;
-	//	IIcon icon;
 	int colour;
 	float transparency;
 	float abv;
@@ -72,27 +71,15 @@ public enum Alcohol implements IFluidType, ICocktailLiquid {
 		return this.getName();
 	}
 
-//	@Override
-//	public IIcon getIcon() {
-//		return this.icon;
-//	}
-//
-//	@Override
-//	public void registerIcon(final IIconRegister register) {
-//		this.icon = ExtraTrees.proxy.getIcon(register, "liquids/liquid");
-//	}
-
-	//TODO TEXTURE
 	@Override
 	public ResourceLocation getFlowing() {
-		return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "liquids/liquid");
+		return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid");
 	}
 
 	@Override
 	public ResourceLocation getStill() {
-		return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "liquids/liquid");
+		return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid");
 	}
-
 
 	@Override
 	public String getName() {

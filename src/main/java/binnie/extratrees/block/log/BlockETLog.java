@@ -16,7 +16,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -52,8 +51,10 @@ public abstract class BlockETLog extends BlockLog implements IWoodKind, IStateMa
 	}
 
 
+	@Override
 	public abstract PropertyEnum<EnumExtraTreeLog> getVariant();
 
+	@Override
 	public EnumExtraTreeLog getWoodType(int meta) {
 		return EnumExtraTreeLog.values()[offset * VARIANTS_PER_BLOCK + (meta & VARIANTS_META_MASK)];
 	}

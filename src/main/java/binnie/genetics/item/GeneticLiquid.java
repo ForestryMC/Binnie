@@ -32,16 +32,6 @@ public enum GeneticLiquid implements IFluidType {
 		return this.name;
 	}
 
-//	@Override
-//	public IIcon getIcon() {
-//		return this.icon;
-//	}
-//
-//	@Override
-//	public void registerIcon(final IIconRegister register) {
-//		this.icon = Genetics.proxy.getIcon(register, "liquids/" + this.ident);
-//	}
-
 	@Override
 	public ResourceLocation getFlowing() {
 		return new ResourceLocation(Genetics.instance.getModID(), "blocks/liquids/" + this.ident);

@@ -1,7 +1,6 @@
 package binnie.extratrees.block;
 
 import binnie.Constants;
-import binnie.extratrees.api.IDesignMaterial;
 import forestry.api.arboriculture.IWoodType;
 
 public enum EnumExtraTreeLog implements IWoodType {

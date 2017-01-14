@@ -9,7 +9,6 @@ import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IApiaristTracker;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeMutation;
-import forestry.api.apiculture.IBeeRoot;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IChromosomeType;

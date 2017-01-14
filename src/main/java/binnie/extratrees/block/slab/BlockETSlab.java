@@ -5,8 +5,6 @@ import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.EnumExtraTreeLog;
 import binnie.extratrees.block.IWoodKind;
 import binnie.extratrees.block.PropertyEnumWoodType;
-import binnie.extratrees.block.log.BlockETLog;
-import binnie.extratrees.block.log.ItemETLog;
 import binnie.extratrees.block.plank.BlockETPlank;
 import binnie.extratrees.genetics.WoodAccess;
 import forestry.api.arboriculture.WoodBlockKind;
@@ -56,6 +54,7 @@ public abstract class BlockETSlab extends BlockSlab implements IWoodKind, IItemM
 		setRegistryName(BLOCK_NAME + "." + (fireproof ? "fireproof." : "") + (isDouble()?"double.":"") + offset);
 	}
 
+	@Override
 	public EnumExtraTreeLog getWoodType(int meta) {
 		return EnumExtraTreeLog.values()[offset * VARIANTS_PER_BLOCK + (meta & VARIANTS_META_MASK)];
 	}

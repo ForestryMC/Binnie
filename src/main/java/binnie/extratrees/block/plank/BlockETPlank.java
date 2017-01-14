@@ -5,8 +5,6 @@ import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.EnumExtraTreeLog;
 import binnie.extratrees.block.IWoodKind;
 import binnie.extratrees.block.PropertyEnumWoodType;
-import binnie.extratrees.block.log.BlockETLog;
-import binnie.extratrees.block.log.ItemETLog;
 import binnie.extratrees.genetics.WoodAccess;
 import forestry.api.arboriculture.WoodBlockKind;
 import forestry.api.core.IItemModelRegister;
@@ -23,7 +21,6 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
 import net.minecraft.util.EnumFacing;
@@ -31,7 +28,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -111,6 +107,7 @@ public abstract class BlockETPlank extends Block implements IWoodKind, IItemMode
 		return getDefaultState().withProperty(getVariant(), woodType);
 	}
 
+	@Override
 	public EnumExtraTreeLog getWoodType(int meta) {
 		return EnumExtraTreeLog.values()[offset * VARIANTS_PER_BLOCK + (meta & VARIANTS_META_MASK)];
 	}

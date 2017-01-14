@@ -15,8 +15,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.FMLClientHandler;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-
 import javax.annotation.Nonnull;
 
 public class WoodProvider implements IWoodProvider {

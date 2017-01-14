@@ -15,7 +15,6 @@ public enum ExtraTreeLiquid implements ILiquidType {
 
 	public String name;
 	String ident;
-	//	IIcon icon;
 	int colour;
 
 	ExtraTreeLiquid(final String name, final String ident, final int colour) {
@@ -25,24 +24,14 @@ public enum ExtraTreeLiquid implements ILiquidType {
 		this.colour = colour;
 	}
 
-//	@Override
-//	public IIcon getIcon() {
-//		return this.icon;
-//	}
-//
-//	@Override
-//	public void registerIcon(final IIconRegister register) {
-//		this.icon = ExtraTrees.proxy.getIcon(register, "liquids/" + this.getIdentifier());
-//	}
-
 	@Override
 	public ResourceLocation getStill() {
-		return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "liquids/" + this.getIdentifier());
+		return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/" + this.getIdentifier());
 	}
 
 	@Override
 	public ResourceLocation getFlowing() {
-		return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "liquids/" + this.getIdentifier());
+		return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/" + this.getIdentifier());
 	}
 
 	@Override

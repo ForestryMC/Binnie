@@ -38,7 +38,6 @@ public enum Spirit implements IFluidType, ICocktailLiquid {
 
 	String name;
 	String ident;
-	//	IIcon icon;
 	int colour;
 	float transparency;
 	float abv;
@@ -68,12 +67,12 @@ public enum Spirit implements IFluidType, ICocktailLiquid {
 
 	@Override
 	public ResourceLocation getFlowing() {
-		return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "liquids/liquid");
+		return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid");
 	}
 
 	@Override
 	public ResourceLocation getStill() {
-		return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "liquids/liquid");
+		return new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/liquids/liquid");
 	}
 
 	@Override

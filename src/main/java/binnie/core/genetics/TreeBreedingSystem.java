@@ -14,7 +14,6 @@ import forestry.api.arboriculture.IArboristTracker;
 import forestry.api.arboriculture.IFruitProvider;
 import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.arboriculture.ITreeMutation;
-import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleInteger;

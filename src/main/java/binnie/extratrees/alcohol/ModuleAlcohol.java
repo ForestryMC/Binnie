@@ -18,7 +18,6 @@ import forestry.api.recipes.RecipeManagers;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

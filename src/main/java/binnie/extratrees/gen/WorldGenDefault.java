@@ -3,7 +3,6 @@ package binnie.extratrees.gen;
 import binnie.extratrees.worldgen.BlockType;
 import binnie.extratrees.worldgen.BlockTypeLeaf;
 import binnie.extratrees.worldgen.BlockTypeLog;
-import forestry.api.arboriculture.ITree;
 import forestry.api.world.ITreeGenData;
 
 public class WorldGenDefault extends WorldGenTree {

@@ -14,7 +14,6 @@ public enum ExtraBeeLiquid implements ILiquidType {
 	GLACIAL("liquidnitrogen", 9881800);
 
 	String ident;
-	//	IIcon icon;
 	int colour;
 
 	ExtraBeeLiquid(final String ident, final int colour) {
@@ -24,23 +23,13 @@ public enum ExtraBeeLiquid implements ILiquidType {
 
 	@Override
 	public ResourceLocation getFlowing() {
-		return new ResourceLocation(Constants.EXTRA_BEES_MOD_ID, "liquids/" + this.getIdentifier());
+		return new ResourceLocation(Constants.EXTRA_BEES_MOD_ID, "blocks/liquids/" + this.getIdentifier());
 	}
 
 	@Override
 	public ResourceLocation getStill() {
-		return new ResourceLocation(Constants.EXTRA_BEES_MOD_ID, "liquids/" + this.getIdentifier());
+		return new ResourceLocation(Constants.EXTRA_BEES_MOD_ID, "blocks/liquids/" + this.getIdentifier());
 	}
-//	@Override
-//	public IIcon getIcon() {
-//		return this.icon;
-//	}
-//
-//	@SideOnly(Side.CLIENT)
-//	@Override
-//	public void registerIcon(final IIconRegister register) {
-//		this.icon = ExtraBees.proxy.getIcon(register, "liquids/" + this.getIdentifier());
-//	}
 
 	@Override
 	public String getName() {
