@@ -1,5 +1,7 @@
 package binnie.core.liquid;
 
+import java.awt.Color;
+
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -20,7 +22,8 @@ class BinnieFluid extends Fluid {
 
 	@Override
 	public int getColor() {
-		return this.fluidType.getColour();
+		//use color to set the alpha to 1.0F
+		return new Color(this.fluidType.getColour()).getRGB();
 	}
 
 	public IFluidType getType() {
