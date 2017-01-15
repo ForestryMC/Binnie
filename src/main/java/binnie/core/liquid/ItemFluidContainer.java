@@ -4,20 +4,29 @@ import binnie.Binnie;
 import binnie.extratrees.alcohol.AlcoholEffect;
 import binnie.extratrees.alcohol.drink.DrinkManager;
 import binnie.extratrees.alcohol.drink.IDrinkLiquid;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import forestry.core.items.IColoredItem;
+import forestry.core.items.ItemFluidContainerForestry;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
+import scala.collection.parallel.BucketCombiner;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ItemFluidContainer extends ItemFood {
+public class ItemFluidContainer extends ItemFood implements IItemModelRegister, IColoredItem {
 	private FluidContainer container;
 	public static int LiquidExtraBee = 64;
 	public static int LiquidExtraTree = 128;
@@ -94,32 +103,30 @@ public class ItemFluidContainer extends ItemFood {
 //		}
 //		return this.container.getContentsIcon();
 //	}
-//
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public int getColorFromItemStack(final ItemStack item, final int pass) {
-//		final FluidStack fluid = this.getLiquid(item);
-//		if (fluid == null) {
-//			return 16777215;
-//		}
-//		if (pass == 0 && fluid.getFluid() instanceof BinnieFluid) {
-//			return ((BinnieFluid) fluid.getFluid()).fluidType.getContainerColour();
-//		}
-//		return super.getColorFromItemStack(item, pass);
-//	}
-//
-//	@Override
-//	public boolean requiresMultipleRenderPasses() {
-//		return true;
-//	}
-//
-//	@Override
-//	public ItemStack onEaten(final ItemStack stack, final World world, final EntityPlayer player) {
-//		player.getFoodStats().func_151686_a(this, stack);
-//		world.playSoundAtEntity(player, "random.burp", 0.5f, world.rand.nextFloat() * 0.1f + 0.9f);
-//		this.onFoodEaten(stack, world, player);
-//		return this.container.getEmpty();
-//	}
+	
+	@Override
+	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+		final FluidStack fluid = this.getLiquid(stack);
+		if (fluid == null) {
+			return 16777215;
+		}
+		if (tintIndex == 0 && fluid.getFluid() instanceof BinnieFluid) {
+			return ((BinnieFluid) fluid.getFluid()).fluidType.getContainerColour();
+		}
+		return -1;
+	}
+	
+	@Override
+	public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving) {
+		if(entityLiving instanceof EntityPlayer){
+			EntityPlayer player = (EntityPlayer) entityLiving;
+			player.getFoodStats().addStats(this, stack);
+            world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+			onFoodEaten(stack, world, player);
+			return this.container.getEmpty();
+		}
+		return stack;
+	}
 
 	@Override
 	protected void onFoodEaten(final ItemStack stack, final World world, final EntityPlayer player) {
@@ -140,6 +147,11 @@ public class ItemFluidContainer extends ItemFood {
 	@Override
 	public EnumAction getItemUseAction(final ItemStack stack) {
 		return this.isDrinkable(stack) ? EnumAction.DRINK : EnumAction.NONE;
+	}
+	
+	@Override
+	public void registerModel(Item item, IModelManager manager) {
+		manager.registerItemModel(item, 0);
 	}
 
 //	@Override

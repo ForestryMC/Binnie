@@ -1,6 +1,7 @@
 package binnie.core.liquid;
 
 import binnie.core.ManagerBase;
+import forestry.api.core.EnumContainerType;
 import forestry.core.render.TextureManager;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -18,6 +19,10 @@ public class ManagerLiquid extends ManagerBase {
 
 	public ManagerLiquid() {
 		this.fluids = new LinkedHashMap<>();
+		EnumContainerType.CAN.add(new BinnieContainerPermission(FluidContainer.Can));
+		EnumContainerType.CAPSULE.add(new BinnieContainerPermission(FluidContainer.Capsule));
+		EnumContainerType.REFRACTORY.add(new BinnieContainerPermission(FluidContainer.Refractory));
+		EnumContainerType.GLASS.add(new BinnieContainerPermission(FluidContainer.Glass));
 	}
 
 	public Collection<IFluidType> getFluidTypes() {

@@ -10,6 +10,9 @@ import binnie.botany.api.gardening.IBlockSoil;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDirt;
+import net.minecraft.block.BlockGrass;
+import net.minecraft.block.BlockGrassPath;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -52,8 +55,35 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 		this.setHardness(0.5f);
 		this.setSoundType(SoundType.GROUND);
 		this.type = type;
-	}
+    }
 
+    @SideOnly(Side.CLIENT)
+    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+        switch (side){
+            case UP:
+                return true;
+            case NORTH:
+            case SOUTH:
+            case WEST:
+            case EAST:
+                IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
+                Block block = iblockstate.getBlock();
+                return !iblockstate.isOpaqueCube() && block != Blocks.FARMLAND && block != Blocks.GRASS_PATH && block != this;
+            default:
+                return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+        }
+    }
+
+    /**
+     * Used to determine ambient occlusion and culling when rebuilding chunks for render
+     */
+    public boolean isOpaqueCube(IBlockState state){
+        return false;
+    }
+
+    public boolean isFullCube(IBlockState state){
+        return false;
+    }
 
 	@Override
 	public String getUnlocalizedName() {
@@ -164,12 +194,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 			worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());
 		}
 	}
-
-	@Override
-	public boolean isOpaqueCube(IBlockState state) {
-		return false;
-	}
-
+	
 	@Override
 	public EnumAcidity getPH(final World world, final BlockPos pos) {
 		return world.getBlockState(pos).getValue(ACIDITY);
