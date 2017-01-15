@@ -1,4 +1,4 @@
-package binnie.craftgui.botany;
+package binnie.botany.craftgui;
 
 import binnie.botany.api.IColourMix;
 import binnie.craftgui.controls.listbox.ControlListBox;

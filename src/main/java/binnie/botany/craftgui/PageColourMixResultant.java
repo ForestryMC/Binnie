@@ -1,4 +1,4 @@
-package binnie.craftgui.botany;
+package binnie.botany.craftgui;
 
 import binnie.botany.api.IColourMix;
 import binnie.botany.api.IFlowerColour;
@@ -12,21 +12,21 @@ import binnie.craftgui.mod.database.PageAbstract;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PageColourMix extends PageAbstract<IFlowerColour> {
+public class PageColourMixResultant extends PageAbstract<IFlowerColour> {
 	ControlText pageSpeciesFurther_Title;
 	ControlColourMixBox pageSpeciesFurther_List;
 
-	public PageColourMix(final IWidget parent, final DatabaseTab tab) {
+	public PageColourMixResultant(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);
-		this.pageSpeciesFurther_Title = new ControlTextCentered(this, 8.0f, "Further Mixes");
-		this.pageSpeciesFurther_List = new ControlColourMixBox(this, 4, 20, 136, 152, ControlColourMixBox.Type.Further);
+		this.pageSpeciesFurther_Title = new ControlTextCentered(this, 8.0f, "Resultant Mixes");
+		this.pageSpeciesFurther_List = new ControlColourMixBox(this, 4, 20, 136, 152, ControlColourMixBox.Type.Resultant);
 	}
 
 	@Override
 	public void onValueChanged(final IFlowerColour colour) {
 		final List<IColourMix> mixes = new ArrayList<>();
 		for (final IColourMix mix : BotanyCore.getFlowerRoot().getColourMixes(false)) {
-			if (mix.getColourFirst() == colour || mix.getColourSecond() == colour) {
+			if (mix.getResult() == colour) {
 				mixes.add(mix);
 			}
 		}

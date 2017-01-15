@@ -1,4 +1,4 @@
-package binnie.craftgui.botany;
+package binnie.botany.craftgui;
 
 import binnie.botany.api.IFlowerColour;
 import binnie.craftgui.controls.listbox.ControlList;

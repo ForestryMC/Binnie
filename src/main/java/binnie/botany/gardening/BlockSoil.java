@@ -116,9 +116,8 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
-		int index = 0;
-		for (EnumMoisture moisture : EnumMoisture.values()) {
-			for (EnumAcidity acidity : EnumAcidity.values()) {
+		for (EnumAcidity acidity : EnumAcidity.values()) {
+			for (EnumMoisture moisture : EnumMoisture.values()) {
 				String modelName = "";
 				if (acidity != EnumAcidity.Neutral) {
 					modelName += acidity.getName();
@@ -132,8 +131,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 				if (modelName.isEmpty()) {
 					modelName = "normal";
 				}
-				manager.registerItemModel(item, index, type.getName() + (weedKilled ? "NoWeed" : "") + "/" + modelName);
-				index++;
+				manager.registerItemModel(item, moisture.ordinal() + acidity.ordinal() * 3, type.getName() + (weedKilled ? "NoWeed" : "") + "/" + modelName);
 			}
 		}
 

@@ -1,4 +1,4 @@
-package binnie.craftgui.botany;
+package binnie.botany.craftgui;
 
 import binnie.Binnie;
 import binnie.botany.api.EnumFlowerChromosome;
