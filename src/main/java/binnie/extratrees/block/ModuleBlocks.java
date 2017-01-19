@@ -1,5 +1,8 @@
 package binnie.extratrees.block;
 
+import java.util.ArrayList;
+
+import binnie.Constants;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.block.ItemMetadata;
@@ -7,18 +10,32 @@ import binnie.core.liquid.ILiquidType;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.decor.*;
 import binnie.extratrees.block.log.BlockETLog;
+import binnie.extratrees.block.log.ItemETLog;
 import binnie.extratrees.block.plank.BlockETPlank;
+import binnie.extratrees.block.plank.ItemETPlank;
 import binnie.extratrees.block.slab.BlockETSlab;
-import binnie.extratrees.block.stairs.BlockETStairs;
-import binnie.extratrees.genetics.WoodAccess;
+import binnie.extratrees.block.slab.ItemETSlab;
+import binnie.extratrees.block.stairs.ItemETStairs;
 import binnie.extratrees.item.ExtraTreeLiquid;
 import forestry.api.arboriculture.EnumVanillaWoodType;
+import forestry.api.arboriculture.IWoodAccess;
 import forestry.api.arboriculture.IWoodType;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.arboriculture.WoodBlockKind;
 import forestry.api.recipes.RecipeManagers;
+import forestry.arboriculture.WoodAccess;
+import forestry.arboriculture.blocks.BlockForestryStairs;
+import forestry.core.recipes.RecipeUtil;
+import forestry.core.utils.OreDictUtil;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.RecipeSorter;
@@ -31,10 +48,93 @@ public class ModuleBlocks implements IInitializable {
 	public void preInit() {
 		PlankType.setup();
 
-		BlockETLog.init();
-		BlockETPlank.init();
-		BlockETSlab.init();
-		BlockETStairs.init();
+		//TODO: clean up
+		ExtraTrees.logs = BlockETLog.create(false);
+		for (BlockETLog block : ExtraTrees.logs) {
+			ExtraTrees.proxy.registerBlock(block, new ItemETLog(block));
+			registerOreDictWildcard(OreDictUtil.LOG_WOOD, block);
+		}
+
+		ExtraTrees.logsFireproof = BlockETLog.create(true);
+		for (BlockETLog block : ExtraTrees.logsFireproof) {
+			ExtraTrees.proxy.registerBlock(block, new ItemETLog(block));
+			registerOreDictWildcard(OreDictUtil.LOG_WOOD, block);
+		}
+		
+		WoodAccess.registerLogs(ExtraTrees.logs);
+		WoodAccess.registerLogs(ExtraTrees.logsFireproof);
+		
+		ExtraTrees.planks = BlockETPlank.create(false);
+		for (BlockETPlank block : ExtraTrees.planks) {
+			ExtraTrees.proxy.registerBlock(block, new ItemETPlank(block));
+			registerOreDictWildcard(OreDictUtil.PLANK_WOOD, block);
+		}
+
+		ExtraTrees.planksFireproof = BlockETPlank.create(true);
+		for (BlockETPlank block : ExtraTrees.planksFireproof) {
+			ExtraTrees.proxy.registerBlock(block, new ItemETPlank(block));
+			registerOreDictWildcard(OreDictUtil.PLANK_WOOD, block);
+		}
+		
+		WoodAccess.registerPlanks(ExtraTrees.planks);
+		WoodAccess.registerPlanks(ExtraTrees.planksFireproof);
+		
+		ExtraTrees.slabs = BlockETSlab.create(false, false);
+		ExtraTrees.slabsDouble = BlockETSlab.create(false, true);
+		for (int i = 0; i < ExtraTrees.slabs.size(); i++) {
+			BlockETSlab slab = ExtraTrees.slabs.get(i);
+			BlockETSlab slabDouble = ExtraTrees.slabsDouble.get(i);
+			ExtraTrees.proxy.registerBlock(slab, new ItemETSlab(slab, slab, slabDouble));
+			ExtraTrees.proxy.registerBlock(slabDouble, new ItemETSlab(slabDouble, slab, slabDouble));
+			registerOreDictWildcard(OreDictUtil.SLAB_WOOD, slab);
+		}
+
+		ExtraTrees.slabsFireproof = BlockETSlab.create(true, false);
+		ExtraTrees.slabsDoubleFireproof = BlockETSlab.create(true, true);
+		for (int i = 0; i < ExtraTrees.slabsFireproof.size(); i++) {
+			BlockETSlab slab = ExtraTrees.slabsFireproof.get(i);
+			BlockETSlab slabDouble = ExtraTrees.slabsDoubleFireproof.get(i);
+			ExtraTrees.proxy.registerBlock(slab, new ItemETSlab(slab, slab, slabDouble));
+			ExtraTrees.proxy.registerBlock(slabDouble, new ItemETSlab(slabDouble, slab, slabDouble));
+			registerOreDictWildcard(OreDictUtil.SLAB_WOOD, slab);
+		}
+		WoodAccess.registerSlabs(ExtraTrees.slabs);
+		WoodAccess.registerSlabs(ExtraTrees.slabsFireproof);
+		
+		ExtraTrees.stairs = new ArrayList<>();
+		for (BlockETPlank plank : ExtraTrees.planks) {
+			for (IBlockState blockState : plank.getBlockState().getValidStates()) {
+				int meta = plank.getMetaFromState(blockState);
+				EnumExtraTreeLog woodType = plank.getWoodType(meta);
+
+				BlockForestryStairs stair = new BlockForestryStairs(false, blockState, woodType);
+				String name = "stairs." + woodType;
+				stair.setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
+				stair.setUnlocalizedName(name);
+				ExtraTrees.proxy.registerBlock(stair, new ItemETStairs(stair));
+				ExtraTrees.stairs.add(stair);
+				registerOreDictWildcard(OreDictUtil.STAIR_WOOD, stair);
+			}
+		}
+
+		ExtraTrees.stairsFireproof = new ArrayList<>();
+		for (BlockETPlank plank : ExtraTrees.planksFireproof) {
+			for (IBlockState blockState : plank.getBlockState().getValidStates()) {
+				int meta = plank.getMetaFromState(blockState);
+				EnumExtraTreeLog woodType = plank.getWoodType(meta);
+
+				BlockForestryStairs stair = new BlockForestryStairs(true, blockState, woodType);
+				String name = "stairs.fireproof." + woodType;
+				stair.setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "stairs.fireproof." + woodType));
+				stair.setUnlocalizedName(name);
+				ExtraTrees.proxy.registerBlock(stair, new ItemETStairs(stair));
+				ExtraTrees.stairsFireproof.add(stair);
+				registerOreDictWildcard(OreDictUtil.STAIR_WOOD, stair);
+			}
+		}
+		
+		WoodAccess.registerStairs(ExtraTrees.stairs);
+		WoodAccess.registerStairs(ExtraTrees.stairsFireproof);
 
 		ExtraTrees.blockFence = new BlockFence("fence");
 		ExtraTrees.blockGate = new BlockGate();
@@ -54,16 +154,14 @@ public class ModuleBlocks implements IInitializable {
 		//	GameRegistry.register(new ItemETStairs(ExtraTrees.blockStairs).setRegistryName(ExtraTrees.blockStairs.getRegistryName()));
 		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockStairs), new StairItemRenderer());
 		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockGate), new GateItemRenderer());
-		for (final EnumExtraTreeLog plank : EnumExtraTreeLog.values()) {
-			OreDictionary.registerOre("logWood", WoodAccess.getInstance().getStack(plank, WoodBlockKind.LOG, false));
-			OreDictionary.registerOre("plankWood", WoodAccess.getInstance().getStack(plank, WoodBlockKind.PLANKS, false));
+		for (BlockETLog log : ExtraTrees.logs) {
+			ItemStack logInput = new ItemStack(log, 1, OreDictionary.WILDCARD_VALUE);
+			ItemStack coalOutput = new ItemStack(Items.COAL, 1, 1);
+			RecipeUtil.addSmelting(logInput, coalOutput, 0.15F);
 		}
-//		GameRegistry.addSmelting(ExtraTrees.blockLog, new ItemStack(Items.COAL, 1, 1), 0.15f);
-		//	FMLInterModComms.sendMessage("forestry", "add-fence-block", "ExtraTrees:fence");
-		//	FMLInterModComms.sendMessage("forestry", "add-fence-block", "ExtraTrees:gate");
-		// FMLInterModComms.sendMessage("Forestry", "add-alveary-slab",
-		// "ExtraTrees:slab");
-		//	FMLInterModComms.sendMessage("forestry", "add-fence-block", "ExtraTrees:multifence");
+		FMLInterModComms.sendMessage("forestry", "add-fence-block", "ExtraTrees:fence");
+		FMLInterModComms.sendMessage("forestry", "add-fence-block", "ExtraTrees:gate");
+		FMLInterModComms.sendMessage("forestry", "add-fence-block", "ExtraTrees:multifence");
 		//ModuleBlocks.hedgeRenderID = BinnieCore.proxy.getUniqueRenderID();
 	}
 
@@ -83,14 +181,21 @@ public class ModuleBlocks implements IInitializable {
 
 	@Override
 	public void postInit() {
-		for (final PlankType.ExtraTreePlanks plank : PlankType.ExtraTreePlanks.values()) {
-			final ItemStack planks = plank.getStack();
-			//final ItemStack slabs = TileEntityMetadata.getItemStack(ExtraTrees.blockSlab, plank.ordinal());
-			//final ItemStack stairs = TileEntityMetadata.getItemStack(ExtraTrees.blockStairs, plank.ordinal());
-			//stairs.stackSize = 4;
-			//GameRegistry.addRecipe(stairs.copy(), "#  ", "## ", "###", '#', planks.copy());
-			//slabs.stackSize = 6;
-			//CraftingManager.getInstance().getRecipeList().add(0, new ShapedOreRecipe(slabs.copy(), "###", '#', planks.copy()));
+		IWoodAccess woodAccess = TreeManager.woodAccess;
+		for(EnumExtraTreeLog woodType : EnumExtraTreeLog.VALUES){
+			for(boolean fireproof : new boolean[]{false, true}){
+				ItemStack planks = woodAccess.getStack(woodType, WoodBlockKind.PLANKS, fireproof);
+				ItemStack slabs = woodAccess.getStack(woodType, WoodBlockKind.SLAB, fireproof);
+				ItemStack stairs = woodAccess.getStack(woodType, WoodBlockKind.STAIRS, fireproof);
+				stairs.stackSize = 4;
+				RecipeUtil.addPriorityRecipe(stairs.copy(),
+						"#  ",
+						"## ",
+						"###",
+						'#', planks.copy());
+				slabs.stackSize = 6;
+				RecipeUtil.addPriorityRecipe(slabs.copy(), "###", '#', planks.copy());
+			}
 		}
 		GameRegistry.addRecipe(new MultiFenceRecipeSize());
 		GameRegistry.addRecipe(new MultiFenceRecipeEmbedded());
@@ -127,5 +232,14 @@ public class ModuleBlocks implements IInitializable {
 
 	public void addSqueezer(final IWoodType log, final ILiquidType liquid, final int amount) {
 		this.addSqueezer(log, liquid, amount, 0.5f);
+	}
+	
+	private static void addRecipeAtPosition(int position, IRecipe recipe){
+		CraftingManager manager = CraftingManager.getInstance();
+		manager.getRecipeList().add(position, recipe);
+	}
+	
+	private static void registerOreDictWildcard(String oreDictName, Block block) {
+		OreDictionary.registerOre(oreDictName, new ItemStack(block, 1, OreDictionary.WILDCARD_VALUE));
 	}
 }

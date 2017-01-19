@@ -54,11 +54,7 @@ public class WoodProvider implements IWoodProvider {
 
 	@Override
 	public ItemStack getWoodStack() {
-		if (type instanceof EnumExtraTreeLog) {
-			return WoodAccess.getInstance().getStack(type, WoodBlockKind.LOG, false);
-		} else {
-			return TreeManager.woodAccess.getStack(type, WoodBlockKind.LOG, false);
-		}
+		return TreeManager.woodAccess.getStack(type, WoodBlockKind.LOG, false);
 	}
 
 	@Override

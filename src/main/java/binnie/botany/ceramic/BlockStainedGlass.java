@@ -2,10 +2,11 @@ package binnie.botany.ceramic;
 
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.genetics.EnumFlowerColor;
+import binnie.core.BinnieCore;
 import binnie.core.block.BlockMetadata;
 import binnie.core.block.IBlockMetadata;
 import binnie.core.block.TileEntityMetadata;
-import binnie.extratrees.ExtraTrees;
+import binnie.core.util.TileUtil;
 import forestry.core.blocks.IColoredBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -24,11 +25,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class BlockStained extends Block implements IBlockMetadata, IColoredBlock {
-	public BlockStained() {
+public class BlockStainedGlass extends Block implements IBlockMetadata, IColoredBlock {
+	public BlockStainedGlass() {
 		super(Material.GLASS);
 		this.setCreativeTab(CreativeTabBotany.instance);
 		this.setRegistryName("stained");
@@ -55,17 +58,34 @@ public class BlockStained extends Block implements IBlockMetadata, IColoredBlock
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
 		Block block2 = blockAccess.getBlockState(pos.offset(side)).getBlock();
 		Block block3 = blockAccess.getBlockState(pos).getBlock();
-		return block3 != this && block3 != ExtraTrees.blockStained && super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+		return true/*block3 != this && block3 != ExtraTrees.blockStained && super.shouldSideBeRendered(blockState, blockAccess, pos, side)*/;
 	}
 
 	@Override
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-		return BlockMetadata.getBlockDropped(this, world, pos);
+		List<ItemStack> list = new ArrayList<>();
+		TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
+		if (tile != null && !tile.hasDroppedBlock()) {
+			int meta = getDroppedMeta(getMetaFromState(state), tile.getTileMetadata());
+			list.add(TileEntityMetadata.getItemStack(this, meta));
+		}
+		return list;
 	}
 
 	@Override
 	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
-		return BlockMetadata.breakBlock(this, player, world, pos);
+		List<ItemStack> drops = new ArrayList<>();
+		TileCeramic ceramic = TileUtil.getTile(world, pos, TileCeramic.class);
+		if (ceramic != null) {
+			drops = Collections.singletonList(ceramic.getStack());
+		}
+		boolean hasBeenBroken = world.setBlockToAir(pos);
+		if (hasBeenBroken && BinnieCore.proxy.isSimulating(world) && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
+			for (ItemStack drop : drops) {
+				spawnAsEntity(world, pos, drop);
+			}
+		}
+		return hasBeenBroken;
 	}
 
 	@Override

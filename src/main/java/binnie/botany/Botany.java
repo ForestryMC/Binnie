@@ -7,7 +7,7 @@ import binnie.botany.api.IFlower;
 import binnie.botany.api.gardening.IBlockSoil;
 import binnie.botany.ceramic.BlockCeramic;
 import binnie.botany.ceramic.BlockCeramicPatterned;
-import binnie.botany.ceramic.BlockStained;
+import binnie.botany.ceramic.BlockStainedGlass;
 import binnie.botany.ceramic.brick.BlockCeramicBrick;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.core.BotanyGUI;
@@ -90,7 +90,7 @@ public class Botany extends AbstractMod {
 	public static ItemClay clay;
 	public static BlockCeramic ceramic;
 	public static BlockCeramicPatterned ceramicTile;
-	public static BlockStained stained;
+	public static BlockStainedGlass stained;
 	public static BlockCeramicBrick ceramicBrick;
 
 	public static final float AGE_CHANCE = 0.2f;

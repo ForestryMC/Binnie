@@ -6,6 +6,10 @@ import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.block.decor.FenceDescription;
 import binnie.extratrees.block.decor.FenceType;
+import forestry.api.arboriculture.IWoodType;
+import forestry.api.arboriculture.WoodBlockKind;
+import forestry.arboriculture.IWoodTyped;
+import forestry.core.utils.Translator;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,7 +18,36 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 public class WoodManager {
+	@Nonnull
+	public static String getDisplayName(IWoodTyped wood, IWoodType woodType) {
+		WoodBlockKind blockKind = wood.getBlockKind();
+
+		String displayName;
+
+		if (woodType instanceof EnumExtraTreeLog) {
+			String customUnlocalizedName = "tile.et." + blockKind + "." + woodType + ".name";
+			if (Translator.canTranslateToLocal(customUnlocalizedName)) {
+				displayName = Translator.translateToLocal(customUnlocalizedName);
+			} else {
+				String woodGrammar = Translator.translateToLocal("for." + blockKind + ".grammar");
+				String woodTypeName = Translator.translateToLocal("et.trees.woodType." + woodType);
+
+				displayName = woodGrammar.replaceAll("%TYPE", woodTypeName);
+			}
+		} else {
+			throw new IllegalArgumentException("Unknown wood type: " + woodType);
+		}
+
+		if (wood.isFireproof()) {
+			displayName = Translator.translateToLocalFormatted("tile.for.fireproof", displayName);
+		}
+
+		return displayName;
+	}
+	
 	public static IPlankType getPlankType(final int index) {
 		final IDesignMaterial wood = CarpentryManager.carpentryInterface.getWoodMaterial(index);
 		if (wood instanceof IPlankType) {

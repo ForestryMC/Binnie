@@ -1,5 +1,7 @@
 package binnie.extratrees.block;
 
+import javax.annotation.Nonnull;
+
 import binnie.Constants;
 import forestry.api.arboriculture.IWoodType;
 
@@ -46,6 +48,8 @@ public enum EnumExtraTreeLog implements IWoodType {
 	PinkIvory("Pink Ivory", PlankType.ExtraTreePlanks.PinkIvory),
 	EMPTY("EMPTY", PlankType.VanillaPlanks.OAK);//TODO change name/create wood for SHRUBS
 
+	public static final EnumExtraTreeLog[] VALUES = values();
+	
 	String name;
 	IPlankType plank;
 
@@ -117,6 +121,14 @@ public enum EnumExtraTreeLog implements IWoodType {
 	@Override
 	public int getMetadata() {
 		return ordinal();
+	}
+
+	@Nonnull
+	public static EnumExtraTreeLog byMetadata(int meta) {
+		if (meta < 0 || meta >= VALUES.length) {
+			meta = 0;
+		}
+		return VALUES[meta];
 	}
 }
 

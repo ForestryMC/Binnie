@@ -15,6 +15,8 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
+import binnie.core.BinnieCore;
+
 public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	static int temporyMeta = -1;
 
@@ -91,17 +93,16 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 		final Block block2 = (Block) block;
 		final TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
 		if (tile != null && !tile.hasDroppedBlock()) {
-			final int tileMeta = TileEntityMetadata.getTileMetadata(world, pos);
-			//drops = block2.getDrops(world, i, j, k, world.getBlockMetadata(i, j, k), 0);
+			drops = block2.getDrops(world, pos, world.getBlockState(pos), 0);
 		}
-		//final boolean hasBeenBroken = world.setBlockToAir(i, j, k);
-//		if (hasBeenBroken && BinnieCore.proxy.isSimulating(world) && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
-//			for (final ItemStack drop : drops) {
-//				//block.dropAsStack(world, i, j, k, drop);
-//			}
-//			tile.dropBlock();
-//		}
-		return false; //hasBeenBroken;
+		final boolean hasBeenBroken = world.setBlockToAir(pos);
+		if (hasBeenBroken && BinnieCore.proxy.isSimulating(world) && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
+			for (final ItemStack drop : drops) {
+				block.dropAsStack(world, pos, drop);
+			}
+			tile.dropBlock();
+		}
+		return hasBeenBroken;
 	}
 
 	@Override

@@ -1,11 +1,11 @@
 package binnie.extratrees.item;
 
-import binnie.Binnie;
 import binnie.core.Mods;
 import binnie.core.item.IItemMiscProvider;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.alcohol.Juice;
 import forestry.api.recipes.RecipeManagers;
+import forestry.core.fluids.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -121,15 +121,15 @@ public enum Food implements IItemMiscProvider {
 	}
 
 	public void addJuice(final Juice juice, final int time, final int amount, final int mulch) {
-		RecipeManagers.squeezerManager.addRecipe(time, new ItemStack[]{this.get(1)}, Binnie.Liquid.getFluidStack("juice", amount), Mods.Forestry.stack("mulch"), mulch);
+		RecipeManagers.squeezerManager.addRecipe(time, new ItemStack[]{this.get(1)}, Fluids.JUICE.getFluid(amount), Mods.Forestry.stack("mulch"), mulch);
 	}
 
 	public void addJuice(final int time, final int amount, final int mulch) {
-		RecipeManagers.squeezerManager.addRecipe(time, new ItemStack[]{this.get(1)}, Binnie.Liquid.getFluidStack("juice", amount), Mods.Forestry.stack("mulch"), mulch);
+		RecipeManagers.squeezerManager.addRecipe(time, new ItemStack[]{this.get(1)}, Fluids.JUICE.getFluid(amount), Mods.Forestry.stack("mulch"), mulch);
 	}
 
 	public void addOil(final int time, final int amount, final int mulch) {
-		RecipeManagers.squeezerManager.addRecipe(time, new ItemStack[]{this.get(1)}, Binnie.Liquid.getFluidStack("seedoil", amount), Mods.Forestry.stack("mulch"), mulch);
+		RecipeManagers.squeezerManager.addRecipe(time, new ItemStack[]{this.get(1)}, Fluids.SEED_OIL.getFluid(amount), Mods.Forestry.stack("mulch"), mulch);
 	}
 
 	public static void registerOreDictionary() {
