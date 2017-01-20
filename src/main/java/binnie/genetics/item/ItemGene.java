@@ -57,7 +57,7 @@ public abstract class ItemGene extends ItemCore {
 	public abstract String getItemStackDisplayName(final ItemStack p0);
 
 	@Override
-	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List itemList) {
+	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
 	}
 
 	public abstract IGeneItem getGeneItem(final ItemStack p0);

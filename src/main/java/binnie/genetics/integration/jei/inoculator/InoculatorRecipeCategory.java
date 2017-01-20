@@ -23,9 +23,15 @@ import net.minecraft.item.ItemStack;
 
 public class InoculatorRecipeCategory extends BlankRecipeCategory<InoculatorRecipeWrapper> {
 	private final IDrawableAnimated arrowAnimated;
+	private final boolean splicer;
 
 	public InoculatorRecipeCategory() {
+		this(false);
+	}
+
+	protected InoculatorRecipeCategory(boolean splicer) {
 		this.arrowAnimated = GeneticsJeiPlugin.drawables.createArrowAnimated(56);
+		this.splicer = splicer;
 	}
 
 	@Override
@@ -45,8 +51,10 @@ public class InoculatorRecipeCategory extends BlankRecipeCategory<InoculatorReci
 
 	@Override
 	public void drawExtras(Minecraft minecraft) {
-		IDrawable tank = GeneticsJeiPlugin.drawables.getTank();
-		tank.draw(minecraft, 0, 0);
+		if (!splicer) {
+			IDrawable tank = GeneticsJeiPlugin.drawables.getTank();
+			tank.draw(minecraft, 0, 0);
+		}
 
 		IDrawable arrow = GeneticsJeiPlugin.drawables.getArrow();
 		arrow.draw(minecraft, 69, 25);
@@ -61,15 +69,19 @@ public class InoculatorRecipeCategory extends BlankRecipeCategory<InoculatorReci
 
 	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, InoculatorRecipeWrapper recipeWrapper, IIngredients ingredients) {
-		IDrawable tankOverlay = GeneticsJeiPlugin.drawables.getTankOverlay();
-		IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
-		fluidStacks.init(Inoculator.TANK_VEKTOR, true, 1, 1, 16, 58, 100, false, tankOverlay);
-		fluidStacks.set(ingredients);
+		if (!splicer) {
+			IDrawable tankOverlay = GeneticsJeiPlugin.drawables.getTankOverlay();
+			IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
+			fluidStacks.init(Inoculator.TANK_VEKTOR, true, 1, 1, 16, 58, 100, false, tankOverlay);
+			fluidStacks.set(ingredients);
+		}
 
 		IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
 		itemStacks.init(0, true, 22, 0);
 		itemStacks.init(1, true, 42, 21);
 		itemStacks.init(2, false, 92, 21);
+
+		recipeWrapper.setCurrentIngredients(itemStacks.getGuiIngredients());
 
 		IFocus<?> focus = recipeLayout.getFocus();
 		Object focusValue = focus.getValue();

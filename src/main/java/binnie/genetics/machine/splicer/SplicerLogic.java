@@ -1,7 +1,7 @@
 package binnie.genetics.machine.splicer;
 
 import binnie.core.machines.Machine;
-import binnie.core.machines.power.ComponentProcessSetCost;
+import binnie.core.machines.power.ComponentProcess;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import binnie.genetics.Genetics;
@@ -14,38 +14,58 @@ import forestry.api.genetics.IIndividual;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class SplicerLogic extends ComponentProcessSetCost implements IProcess {
-	int nOfGenes;
+import javax.annotation.Nullable;
 
-	@Override
-	public int getProcessLength() {
-		float n = this.getNumberOfGenes();
+public class SplicerLogic extends ComponentProcess implements IProcess {
+	public static int PROCESS_ENERGY = 12000000;
+	public static int PROCESS_LENGTH = 1200;
+
+	public static int getProcessLength(int numberOfGenes) {
+		float n = numberOfGenes;
 		if (n > 1.0f) {
 			n = 1.0f + (n - 1.0f) * 0.5f;
 		}
 		// Fix for / by 0
-		int temp = (int) (super.getProcessLength() * n);
+		int temp = (int) (PROCESS_LENGTH * n);
 		return temp != 0 ? temp : 1;
+	}
+
+	public static int getProcessEnergy(int numberOfGenes) {
+		float n = numberOfGenes;
+		if (n > 1.0f) {
+			n = 1.0f + (n - 1.0f) * 0.5f;
+		}
+		return (int) (PROCESS_ENERGY * n);
+	}
+
+	private int nOfGenes;
+
+	public SplicerLogic(final Machine machine) {
+		super(machine);
+		this.nOfGenes = 0;
+	}
+
+	@Override
+	public int getProcessLength() {
+		int n = this.getNumberOfGenes();
+		return getProcessLength(n);
 	}
 
 	@Override
 	public int getProcessEnergy() {
-		float n = this.getNumberOfGenes();
-		if (n > 1.0f) {
-			n = 1.0f + (n - 1.0f) * 0.5f;
-		}
-		return (int) (super.getProcessEnergy() * n);
+		int n = this.getNumberOfGenes();
+		return getProcessEnergy(n);
 	}
 
 	@Override
 	public void onInventoryUpdate() {
 		super.onInventoryUpdate();
-		this.nOfGenes = this.getGenesToUse();
-	}
-
-	protected int getGenesToUse() {
 		final ItemStack serum = this.getUtil().getStack(0);
 		final ItemStack target = this.getUtil().getStack(9);
+		this.nOfGenes = getGenesToUse(serum, target);
+	}
+
+	public static int getGenesToUse(@Nullable ItemStack serum, @Nullable ItemStack target) {
 		if (serum == null || target == null) {
 			return 1;
 		}
@@ -80,11 +100,6 @@ public class SplicerLogic extends ComponentProcessSetCost implements IProcess {
 		final int n = this.getNumberOfGenes();
 		final int f = this.getFullNumberOfGenes();
 		return "Splicing in " + n + ((f > 1) ? ("/" + f) : "") + " gene" + ((n > 1) ? "s" : "");
-	}
-
-	public SplicerLogic(final Machine machine) {
-		super(machine, 12000000, 1200);
-		this.nOfGenes = 0;
 	}
 
 	@Override
@@ -147,9 +162,8 @@ public class SplicerLogic extends ComponentProcessSetCost implements IProcess {
 			ind.writeToNBT(nbttagcompound);
 			target.setTagCompound(nbttagcompound);
 		}
-		final IGene[] arr$;
-		final IGene[] genes = arr$ = ((IItemSerum) serum.getItem()).getGenes(serum);
-		for (final IGene gene : arr$) {
+		final IGene[] genes = ((IItemSerum) serum.getItem()).getGenes(serum);
+		for (final IGene gene : genes) {
 			Splicer.setGene(gene, target, 0);
 			Splicer.setGene(gene, target, 1);
 		}

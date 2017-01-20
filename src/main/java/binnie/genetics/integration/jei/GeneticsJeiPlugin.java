@@ -12,6 +12,8 @@ import binnie.genetics.integration.jei.incubator.LarvaeIncubatorRecipeWrapper;
 import binnie.genetics.integration.jei.inoculator.InoculatorRecipeCategory;
 import binnie.genetics.integration.jei.inoculator.InoculatorRecipeMaker;
 import binnie.genetics.integration.jei.inoculator.InoculatorRecipeWrapper;
+import binnie.genetics.integration.jei.inoculator.SplicerRecipeCategory;
+import binnie.genetics.integration.jei.inoculator.SplicerRecipeWrapper;
 import binnie.genetics.integration.jei.isolator.IsolatorRecipeCategory;
 import binnie.genetics.integration.jei.isolator.IsolatorRecipeMaker;
 import binnie.genetics.integration.jei.isolator.IsolatorRecipeWrapper;
@@ -21,6 +23,7 @@ import binnie.genetics.integration.jei.polymeriser.PolymeriserRecipeWrapper;
 import binnie.genetics.integration.jei.sequencer.SequencerRecipeCategory;
 import binnie.genetics.integration.jei.sequencer.SequencerRecipeMaker;
 import binnie.genetics.integration.jei.sequencer.SequencerRecipeWrapper;
+import binnie.genetics.machine.AdvGeneticMachine;
 import binnie.genetics.machine.GeneticMachine;
 import binnie.genetics.machine.LaboratoryMachine;
 import binnie.genetics.machine.incubator.Incubator;
@@ -65,7 +68,8 @@ public class GeneticsJeiPlugin extends BlankModPlugin {
 				new IsolatorRecipeCategory(),
 				new PolymeriserRecipeCategory(),
 				new SequencerRecipeCategory(),
-				new InoculatorRecipeCategory()
+				new InoculatorRecipeCategory(),
+				new SplicerRecipeCategory()
 		);
 
 		registry.addRecipeHandlers(
@@ -74,7 +78,8 @@ public class GeneticsJeiPlugin extends BlankModPlugin {
 				new SimpleRecipeHandler<>(IsolatorRecipeWrapper.class, RecipeUids.ISOLATOR),
 				new SimpleRecipeHandler<>(PolymeriserRecipeWrapper.class, RecipeUids.POLYMERISER),
 				new SimpleRecipeHandler<>(SequencerRecipeWrapper.class, RecipeUids.SEQUENCER),
-				new SimpleRecipeHandler<>(InoculatorRecipeWrapper.class, RecipeUids.INOCULATOR)
+				new SimpleRecipeHandler<>(InoculatorRecipeWrapper.class, RecipeUids.INOCULATOR),
+				new SimpleRecipeHandler<>(SplicerRecipeWrapper.class, RecipeUids.SPLICER)
 		);
 
 		registry.addRecipeCategoryCraftingItem(LaboratoryMachine.Incubator.get(1), RecipeUids.INCUBATOR, RecipeUids.INCUBATOR_LARVAE);
@@ -82,6 +87,7 @@ public class GeneticsJeiPlugin extends BlankModPlugin {
 		registry.addRecipeCategoryCraftingItem(GeneticMachine.Polymeriser.get(1), RecipeUids.POLYMERISER);
 		registry.addRecipeCategoryCraftingItem(GeneticMachine.Sequencer.get(1), RecipeUids.SEQUENCER);
 		registry.addRecipeCategoryCraftingItem(GeneticMachine.Inoculator.get(1), RecipeUids.INOCULATOR);
+		registry.addRecipeCategoryCraftingItem(AdvGeneticMachine.Splicer.get(1), RecipeUids.SPLICER);
 
 		registry.addRecipes(Incubator.getRecipes());
 		registry.addRecipes(LarvaeIncubatorRecipeMaker.create(Incubator.getLarvaeRecipe()));

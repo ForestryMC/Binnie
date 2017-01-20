@@ -7,4 +7,5 @@ public class RecipeUids {
 	public static final String POLYMERISER = "binnie.genetics.polymeriser";
 	public static final String SEQUENCER = "binnie.genetics.sequencer";
 	public static final String INOCULATOR = "binnie.genetics.inoculator";
+	public static final String SPLICER = "binnie.genetics.splicer";
 }
