@@ -27,7 +27,7 @@ public class ModuleGenetics implements IInitializable {
 	@Override
 	public void init() {
 		ExtraTreeFruitGene.init();
-		ExtraTreeSpecies.initTrees();
+		ETTreeDefinition.initTrees();
  		ExtraTreeMutation.init();
 	}
 

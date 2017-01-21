@@ -11,6 +11,7 @@ import binnie.core.proxy.IProxyCore;
 import binnie.extrabees.ExtraBees;
 import binnie.extratrees.alcohol.ModuleAlcohol;
 import binnie.extratrees.alcohol.drink.ItemDrink;
+import binnie.extratrees.block.BlockETDecorativeLeaves;
 import binnie.extratrees.block.ModuleBlocks;
 import binnie.extratrees.block.decor.BlockHedge;
 import binnie.extratrees.block.decor.BlockMultiFence;
@@ -30,10 +31,12 @@ import binnie.extratrees.proxy.Proxy;
 import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.AlleleSpeciesRegisterEvent;
+import forestry.arboriculture.blocks.BlockDecorativeLeaves;
 import forestry.arboriculture.blocks.BlockForestryStairs;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -70,6 +73,8 @@ public class ExtraTrees extends AbstractMod {
 	public static List<BlockETSlab> slabsDoubleFireproof;
 	public static List<BlockForestryStairs> stairs;
 	public static List<BlockForestryStairs> stairsFireproof;
+	public static List<BlockETDecorativeLeaves> leavesDecorative;
+	public static Map<String, ItemStack> speciesToLeavesDecorative;
 	public static Block blockStairs;
 	public static BlockCarpentry blockCarpentry;
 	public static Block blockMachine;
@@ -164,7 +169,7 @@ public class ExtraTrees extends AbstractMod {
 			for (final ExtraTreeFruitGene fruit : ExtraTreeFruitGene.values()) {
 				AlleleManager.alleleRegistry.registerAllele(fruit);
 			}
-			ExtraTreeSpecies.preInitTrees();
+			ETTreeDefinition.preInitTrees();
 
 			if (BinnieCore.isLepidopteryActive()) {
 				for (final ButterflySpecies species2 : ButterflySpecies.values()) {
@@ -187,10 +192,10 @@ public class ExtraTrees extends AbstractMod {
 				.filter(mrl -> mrl.getResourceDomain().startsWith(Constants.EXTRA_TREES_MOD_ID))
 				.filter(mrl -> mrl.getResourcePath().startsWith("germlings")).collect(Collectors.toList());
 		//Replace model
-		Map<String, ExtraTreeSpecies> map = Arrays.stream(ExtraTreeSpecies.values()).collect(Collectors.toMap(o -> o.name().toLowerCase(), o -> o));
+		Map<String, ETTreeDefinition> map = Arrays.stream(ETTreeDefinition.values()).collect(Collectors.toMap(o -> o.name().toLowerCase(), o -> o));
 		models.forEach(model -> {
 			String species = model.getVariant().split("=")[1];
-				ExtraTreeSpecies treeSpecies = map.get(species);
+				ETTreeDefinition treeSpecies = map.get(species);
 				int primaryColor = treeSpecies.getLeafColor().getRGB();
 				int secondaryColor = treeSpecies.getWoodColor().getRGB();
 				e.getModelRegistry().putObject(model, new DoublePassBakedModel(e.getModelRegistry().getObject(model), primaryColor, secondaryColor));

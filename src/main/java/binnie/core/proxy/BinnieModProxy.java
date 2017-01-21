@@ -1,12 +1,18 @@
 package binnie.core.proxy;
 
+import javax.annotation.Nonnull;
+
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.network.packet.MessageBase;
+import forestry.core.models.BlockModelEntry;
+import forestry.core.models.ModelEntry;
+import forestry.core.models.ModelManager;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -81,6 +87,12 @@ public class BinnieModProxy implements IBinnieModProxy {
 
 	public void registermodel(Item item, int meta, ModelResourceLocation modelResourceLocation) {
 
+	}
+	
+	public void registerBlockModel(@Nonnull final BlockModelEntry index) {
+	}
+	
+	public void registerModel(@Nonnull ModelEntry index) {
 	}
 
 

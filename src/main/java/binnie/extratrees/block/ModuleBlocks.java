@@ -1,6 +1,7 @@
 package binnie.extratrees.block;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import binnie.Constants;
 import binnie.core.IInitializable;
@@ -16,6 +17,7 @@ import binnie.extratrees.block.plank.ItemETPlank;
 import binnie.extratrees.block.slab.BlockETSlab;
 import binnie.extratrees.block.slab.ItemETSlab;
 import binnie.extratrees.block.stairs.ItemETStairs;
+import binnie.extratrees.genetics.ETTreeDefinition;
 import binnie.extratrees.item.ExtraTreeLiquid;
 import forestry.api.arboriculture.EnumVanillaWoodType;
 import forestry.api.arboriculture.IWoodAccess;
@@ -24,7 +26,11 @@ import forestry.api.arboriculture.TreeManager;
 import forestry.api.arboriculture.WoodBlockKind;
 import forestry.api.recipes.RecipeManagers;
 import forestry.arboriculture.WoodAccess;
+import forestry.arboriculture.blocks.BlockDecorativeLeaves;
 import forestry.arboriculture.blocks.BlockForestryStairs;
+import forestry.arboriculture.genetics.LeafProvider;
+import forestry.arboriculture.genetics.TreeDefinition;
+import forestry.arboriculture.items.ItemBlockDecorativeLeaves;
 import forestry.core.recipes.RecipeUtil;
 import forestry.core.utils.OreDictUtil;
 import net.minecraft.block.Block;
@@ -47,7 +53,7 @@ public class ModuleBlocks implements IInitializable {
 	@Override
 	public void preInit() {
 		PlankType.setup();
-
+		
 		//TODO: clean up
 		ExtraTrees.logs = BlockETLog.create(false);
 		for (BlockETLog block : ExtraTrees.logs) {
@@ -165,6 +171,19 @@ public class ModuleBlocks implements IInitializable {
 		FMLInterModComms.sendMessage("forestry", "add-fence-block", "ExtraTrees:gate");
 		FMLInterModComms.sendMessage("forestry", "add-fence-block", "ExtraTrees:multifence");
 		//ModuleBlocks.hedgeRenderID = BinnieCore.proxy.getUniqueRenderID();
+		ExtraTrees.leavesDecorative = BlockETDecorativeLeaves.create();
+		ExtraTrees.speciesToLeavesDecorative = new HashMap<>();
+		for (BlockETDecorativeLeaves leaves : ExtraTrees.leavesDecorative) {
+			ExtraTrees.proxy.registerBlock(leaves, new ItemBlockETDecorativeLeaves(leaves));
+			registerOreDictWildcard(OreDictUtil.TREE_LEAVES, leaves);
+
+			for (IBlockState state : leaves.getBlockState().getValidStates()) {
+				ETTreeDefinition treeDefinition = state.getValue(leaves.getVariant());
+				String speciesUid = treeDefinition.getUID();
+				int meta = leaves.getMetaFromState(state);
+				ExtraTrees.speciesToLeavesDecorative.put(speciesUid, new ItemStack(leaves, 1, meta));
+			}
+		}
 	}
 
 	@Override
@@ -250,5 +269,13 @@ public class ModuleBlocks implements IInitializable {
 	
 	private static void registerOreDictWildcard(String oreDictName, Block block) {
 		OreDictionary.registerOre(oreDictName, new ItemStack(block, 1, OreDictionary.WILDCARD_VALUE));
+	}
+	
+	public static ItemStack getDecorativeLeaves(String speciesUid) {
+		ItemStack itemStack = ExtraTrees.speciesToLeavesDecorative.get(speciesUid);
+		if (itemStack == null) {
+			return null;
+		}
+		return itemStack.copy();
 	}
 }

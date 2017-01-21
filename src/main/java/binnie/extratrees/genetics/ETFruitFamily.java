@@ -2,7 +2,7 @@ package binnie.extratrees.genetics;
 
 import forestry.api.genetics.IFruitFamily;
 
-public enum ExtraTreeFruitFamily implements IFruitFamily {
+public enum ETFruitFamily implements IFruitFamily {
 	Berry("Berries", "berry", "berri"),
 	Citrus("Citrus", "citrus", "citrus");
 
@@ -10,7 +10,7 @@ public enum ExtraTreeFruitFamily implements IFruitFamily {
 	String uid;
 	String scientific;
 
-	ExtraTreeFruitFamily(final String name, final String uid, final String scientific) {
+	ETFruitFamily(final String name, final String uid, final String scientific) {
 		this.name = name;
 		this.uid = uid;
 		this.scientific = scientific;

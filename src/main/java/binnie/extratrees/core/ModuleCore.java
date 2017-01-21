@@ -8,7 +8,7 @@ import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.block.EnumExtraTreeLog;
 import binnie.extratrees.block.PlankType;
 import binnie.extratrees.genetics.ExtraTreeFruitGene;
-import binnie.extratrees.genetics.ExtraTreeSpecies;
+import binnie.extratrees.genetics.ETTreeDefinition;
 import forestry.api.arboriculture.IAlleleTreeSpecies;
 import forestry.api.arboriculture.IWoodType;
 
@@ -38,7 +38,7 @@ public class ModuleCore implements IInitializable {
 				final PrintWriter outputFruit = new PrintWriter(new FileWriter("data/fruit.html"));
 				final PrintWriter outputDesigns = new PrintWriter(new FileWriter("data/designs.html"));
 				final Queue<IAlleleTreeSpecies> speciesQueue = new LinkedList<>();
-				for (final ExtraTreeSpecies s : ExtraTreeSpecies.values()) {
+				for (final ETTreeDefinition s : ETTreeDefinition.values()) {
 					speciesQueue.add(s.getSpecies());
 				}
 				final Queue<IWoodType> logQueue = new LinkedList<>();

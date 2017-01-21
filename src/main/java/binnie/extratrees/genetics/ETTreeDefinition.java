@@ -9,14 +9,21 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IClassification;
+import forestry.arboriculture.genetics.ITreeDefinition;
+import forestry.arboriculture.genetics.Tree;
+import forestry.arboriculture.genetics.TreeDefinition;
 import forestry.arboriculture.worldgen.WorldGenLemon;
 import forestry.arboriculture.worldgen.WorldGenPlum;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import org.apache.commons.lang3.StringUtils;
 
 import java.awt.*;
+import java.util.Arrays;
+import java.util.Locale;
 
-public enum ExtraTreeSpecies {
+public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition {
 	OrchardApple("malus", "domestica", EnumLeafType.DECIDUOUS, new Color(0x09E67E), new Color(0xFF9CF3),EnumSaplingType.Default, EnumExtraTreeLog.Apple, new Color(0x7B7A7B), WorldGenApple.OrchardApple.class){
 		@Override
 		protected void setAlleles(AlleleTemplate template) {
@@ -28,7 +35,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	SweetCrabapple("malus", "coronaria", EnumLeafType.DECIDUOUS, new Color(0x7A9953), new Color(0xFC359F),EnumSaplingType.Default, EnumExtraTreeLog.Apple, new Color(0x7B7A7B), WorldGenApple.SweetCrabapple.class){
@@ -44,7 +51,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	FloweringCrabapple("malus", "hopa", EnumLeafType.DECIDUOUS, new Color(0x7A9953), new Color(0xFC359F),EnumSaplingType.Default, EnumExtraTreeLog.Apple, new Color(0x7B7A7B),  WorldGenApple.FloweringCrabapple.class){
@@ -61,7 +68,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	PrairieCrabapple("malus", "ioensis", EnumLeafType.DECIDUOUS, new Color(0x7A9953), new Color(0xFC359F), EnumSaplingType.Default, EnumExtraTreeLog.Apple, new Color(0x7B7A7B),  WorldGenApple.PrairieCrabapple.class){
@@ -78,7 +85,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Blackthorn("prunus", "spinosa", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xFF87C7), EnumSaplingType.Fruit, EnumForestryWoodType.PLUM, new Color(0xB68661),  WorldGenPlum.class){
@@ -95,7 +102,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	CherryPlum("prunus", "cerasifera", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xFF87C7), EnumSaplingType.Fruit, EnumForestryWoodType.PLUM, new Color(0xB68661),  WorldGenPlum.class){
@@ -112,7 +119,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Peach("prunus", "persica", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xFF269A), EnumSaplingType.Fruit, EnumForestryWoodType.PLUM, new Color(0xB68661),  WorldGenPlum.class){
@@ -129,7 +136,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Nectarine("prunus", "nectarina", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xFF269A), EnumSaplingType.Fruit, EnumForestryWoodType.PLUM, new Color(0xB68661),  WorldGenPlum.class){
@@ -145,7 +152,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Apricot("prunus", "armeniaca", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xF5B8D8), EnumSaplingType.Fruit, EnumForestryWoodType.PLUM, new Color(0xB68661),  WorldGenPlum.class){
@@ -161,7 +168,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Almond("prunus", "amygdalus", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xF584C0), EnumSaplingType.Fruit, EnumForestryWoodType.PLUM, new Color(0xB68661),  WorldGenPlum.class){
@@ -177,7 +184,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	WildCherry("prunus", "avium", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xF7EBF6), EnumSaplingType.Fruit, EnumExtraTreeLog.Cherry, new Color(0x716850),  WorldGenPlum.class){
@@ -195,7 +202,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	SourCherry("prunus", "cerasus", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xF7EBF6), EnumSaplingType.Fruit, EnumExtraTreeLog.Cherry, new Color(0x716850),  WorldGenPlum.class){
@@ -210,7 +217,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	BlackCherry("prunus", "serotina", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xFAE1F8), EnumSaplingType.Fruit, EnumExtraTreeLog.Cherry, new Color(0x716850),  WorldGenPlum.class){
@@ -228,7 +235,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Orange("citrus", "sinensis", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39),  WorldGenLemon.class){
@@ -245,7 +252,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Manderin("citrus", "reticulata", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39),  WorldGenLemon.class){
@@ -262,7 +269,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Satsuma("citrus", "unshiu", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39),  WorldGenLemon.class){
@@ -279,7 +286,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Tangerine("citrus", "tangerina", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39),  WorldGenLemon.class){
@@ -297,7 +304,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Lime("citrus", "latifolia", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39),  WorldGenLemon.class){
@@ -313,7 +320,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	KeyLime("citrus", "aurantifolia", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39),  WorldGenLemon.class){
@@ -331,7 +338,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	FingerLime("citrus", "australasica", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39),  WorldGenLemon.class){
@@ -348,7 +355,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Pomelo("citrus", "maxima", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39),  WorldGenLemon.class){
@@ -365,7 +372,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Grapefruit("citrus", "paradisi", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39),  WorldGenLemon.class){
@@ -383,7 +390,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Kumquat("citrus", "margarita", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39),  WorldGenLemon.class){
@@ -399,7 +406,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Citron("citrus", "medica", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39),  WorldGenLemon.class){
@@ -415,7 +422,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	BuddhaHand("citrus", "sarcodactylus", EnumLeafType.JUNGLE, new Color(0x88AF54), new Color(0xA3B850), EnumSaplingType.Fruit, EnumForestryWoodType.CITRUS, new Color(0x5B4B39),  WorldGenLemon.class){
@@ -430,7 +437,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Banana("musa", "sinensis", EnumLeafType.PALM, new Color(0xA1CD8E), new Color(0x44E500), EnumSaplingType.Default, EnumExtraTreeLog.Banana, new Color(0x85924F),  WorldGenBanana.class){
@@ -488,7 +495,7 @@ public enum ExtraTreeSpecies {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Rowan("sorbus", "aucuparia", EnumLeafType.DECIDUOUS, new Color(0x9EC79B), new Color(0x9EE8B2), EnumSaplingType.Default, EnumExtraTreeLog.Rowan, new Color(0xB6B09B),  WorldGenSorbus.Rowan.class){
@@ -502,7 +509,7 @@ public enum ExtraTreeSpecies {
 		@Override
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Berry);
+			species.addFruitFamily(ETFruitFamily.Berry);
 		}
 	},
 	Hemlock("tsuga", "heterophylla", EnumLeafType.CONIFERS, new Color(0x5CAC72), new Color(0x5CD172), EnumSaplingType.Default, EnumExtraTreeLog.Hemlock, new Color(0xADA39B),  WorldGenConifer.WesternHemlock.class){
@@ -526,7 +533,7 @@ public enum ExtraTreeSpecies {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Alder("alnus", "glutinosa", EnumLeafType.DECIDUOUS, new Color(0x698A33), new Color(0x69AE33), EnumSaplingType.Default, EnumExtraTreeLog.Alder, new Color(0xC6C0B8),  WorldGenAlder.CommonAlder.class){
@@ -636,7 +643,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Whitebeam("sorbus", "aria", EnumLeafType.DECIDUOUS, new Color(0xBACE99), new Color(0x72863F), EnumSaplingType.Default, EnumExtraTreeLog.Whitebeam, new Color(0x786A6D),  WorldGenSorbus.Whitebeam.class){
@@ -677,7 +684,7 @@ public enum ExtraTreeSpecies {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Elm("ulmus", "procera", EnumLeafType.DECIDUOUS, new Color(0x7C9048), new Color(0x7CBE48), EnumSaplingType.Default, EnumExtraTreeLog.Elm, new Color(0x848386),  WorldGenTree3.Elm.class){
@@ -706,8 +713,8 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Berry);
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Berry);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Holly("ilex", "aquifolium", EnumLeafType.DECIDUOUS, new Color(0x254B4C), new Color(0x6E9284), EnumSaplingType.Default, EnumExtraTreeLog.Holly, new Color(0xB5AA85),  WorldGenHolly.Holly.class){
@@ -721,7 +728,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Hornbeam("carpinus", "betulus", EnumLeafType.DECIDUOUS, new Color(0x96A71B), new Color(0x96DD1B), EnumSaplingType.Default, EnumExtraTreeLog.Hornbeam, new Color(0xA39276),  WorldGenTree3.Hornbeam.class){
@@ -750,7 +757,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	AcornOak("quercus", "robur", EnumLeafType.DECIDUOUS, new Color(0x66733E), new Color(0x9EA231), EnumSaplingType.Default, EnumVanillaWoodType.OAK, new Color(0x614D30),  WorldGenTree3.AcornOak.class){
@@ -798,7 +805,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	RedMaple("acer", "ubrum", EnumLeafType.MAPLE, new Color(0xE82E17), new Color(0xE82E17), EnumSaplingType.Default, EnumForestryWoodType.MAPLE, new Color(0x8A8781),  WorldGenMaple.RedMaple.class){
@@ -812,7 +819,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	BalsamFir("abies", "balsamea", EnumLeafType.CONIFERS, new Color(0x74A07C), new Color(0x74A07C), EnumSaplingType.Default, EnumExtraTreeLog.Fir, new Color(0x828382),  WorldGenFir.BalsamFir.class){
@@ -855,7 +862,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Pear("pyrus", "communis", EnumLeafType.DECIDUOUS, new Color(0x5E8826), new Color(0x5E8826), EnumSaplingType.Default, EnumExtraTreeLog.Pear, new Color(0xA89779),  WorldGenTree2.Pear.class){
@@ -873,7 +880,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	OsangeOsange("maclura", "pomifera", EnumLeafType.JUNGLE, new Color(0x687A50), new Color(0x687A50), EnumSaplingType.Default, EnumExtraTreeLog.Maclura, new Color(0x8B5734),  WorldGenJungle.OsangeOsange.class){
@@ -888,7 +895,7 @@ public enum ExtraTreeSpecies {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	OldFustic("maclura", "tinctoria", EnumLeafType.JUNGLE, new Color(0x687A50), new Color(0x687A50), EnumSaplingType.Default, EnumExtraTreeLog.Maclura, new Color(0x8B5734),  WorldGenJungle.OldFustic.class){
@@ -1038,7 +1045,7 @@ public enum ExtraTreeSpecies {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Clove("syzygium", "aromaticum", EnumLeafType.DECIDUOUS, new Color(0x7A821F), new Color(0x7A821F), EnumSaplingType.Default, EnumExtraTreeLog.Syzgium, new Color(0xAB6F57), WorldGenTree2.Clove.class){
@@ -1128,7 +1135,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Berry);
+			species.addFruitFamily(ETFruitFamily.Berry);
 		}
 	},
 	Redcurrant("ribes", "rubrum", EnumLeafType.DECIDUOUS, new Color(0x74AC00), new Color(0x74AC00), EnumSaplingType.Shrub, EnumExtraTreeLog.EMPTY, new Color(0xFFFFFF),  WorldGenShrub.Shrub.class){
@@ -1146,7 +1153,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Berry);
+			species.addFruitFamily(ETFruitFamily.Berry);
 		}
 	},
 	Blackberry("rubus", "fruticosus", EnumLeafType.DECIDUOUS, new Color(0x92C15B), new Color(0x92C15B), EnumSaplingType.Shrub, EnumExtraTreeLog.EMPTY, new Color(0xFFFFFF),  WorldGenShrub.Shrub.class){
@@ -1163,7 +1170,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Berry);
+			species.addFruitFamily(ETFruitFamily.Berry);
 		}
 	},
 	Raspberry("rubus", "idaeus", EnumLeafType.DECIDUOUS, new Color(0x83B96E), new Color(0x83B96E), EnumSaplingType.Shrub, EnumExtraTreeLog.EMPTY, new Color(0xFFFFFF),  WorldGenShrub.Shrub.class){
@@ -1181,7 +1188,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Berry);
+			species.addFruitFamily(ETFruitFamily.Berry);
 		}
 	},
 	Blueberry("vaccinium", "corymbosum", EnumLeafType.DECIDUOUS, new Color(0x72C750), new Color(0x72C750), EnumSaplingType.Shrub, EnumExtraTreeLog.EMPTY, new Color(0xFFFFFF),  WorldGenShrub.Shrub.class){
@@ -1199,7 +1206,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Berry);
+			species.addFruitFamily(ETFruitFamily.Berry);
 		}
 	},
 	Cranberry("vaccinium", "oxycoccos", EnumLeafType.DECIDUOUS, new Color(0x96D179), new Color(0x96D179), EnumSaplingType.Shrub, EnumExtraTreeLog.EMPTY, new Color(0xFFFFFF),  WorldGenShrub.Shrub.class){
@@ -1217,7 +1224,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Berry);
+			species.addFruitFamily(ETFruitFamily.Berry);
 		}
 	},
 	Juniper("juniperus", "communis", EnumLeafType.CONIFERS, new Color(0x90B149), new Color(0x90B149), EnumSaplingType.Shrub, EnumExtraTreeLog.EMPTY, new Color(0xFFFFFF),  WorldGenShrub.Shrub.class){
@@ -1235,7 +1242,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Berry);
+			species.addFruitFamily(ETFruitFamily.Berry);
 		}
 	},
 	Gooseberry("ribes", "grossularia", EnumLeafType.DECIDUOUS, new Color(0x79BB00), new Color(0x79BB00), EnumSaplingType.Shrub, EnumExtraTreeLog.EMPTY, new Color(0xFFFFFF),  WorldGenShrub.Shrub.class){
@@ -1252,7 +1259,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Berry);
+			species.addFruitFamily(ETFruitFamily.Berry);
 		}
 	},
 	GoldenRaspberry("rubus", "occidentalis", EnumLeafType.DECIDUOUS, new Color(0x83B96E), new Color(0x83B96E), EnumSaplingType.Shrub, EnumExtraTreeLog.EMPTY, new Color(0xFFFFFF),  WorldGenShrub.Shrub.class){
@@ -1270,7 +1277,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Berry);
+			species.addFruitFamily(ETFruitFamily.Berry);
 		}
 	},
 	Cinnamon("cinnamomum", "cassia", EnumLeafType.JUNGLE, new Color(0x738E0B), new Color(0x738E0B), EnumSaplingType.Default, EnumExtraTreeLog.Cinnamon, new Color(0x86583C),  WorldGenLazy.Tree.class){
@@ -1327,7 +1334,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Nutmeg("myristica", "fragrans", EnumLeafType.JUNGLE, new Color(0x488D4C), new Color(0x488D4C), EnumSaplingType.Default, EnumVanillaWoodType.JUNGLE, new Color(0x53411A),  WorldGenLazy.Tree.class){
@@ -1406,7 +1413,7 @@ public enum ExtraTreeSpecies {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Starfruit("averrhoa", "carambola", EnumLeafType.JUNGLE,  new Color(0x6DA92D), new Color(0x6DA92D), EnumSaplingType.Default, EnumVanillaWoodType.JUNGLE, new Color(0x53411A),  WorldGenLazy.Tree.class){
@@ -1421,7 +1428,7 @@ public enum ExtraTreeSpecies {
 		protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle"));
-			species.addFruitFamily(ExtraTreeFruitFamily.Citrus);
+			species.addFruitFamily(ETFruitFamily.Citrus);
 		}
 	},
 	Candlenut("aleurites", "moluccana", EnumLeafType.DECIDUOUS, new Color(0x8AA36C), new Color(0x8AA36C), EnumSaplingType.Default, EnumVanillaWoodType.JUNGLE, new Color(0x53411A),  WorldGenLazy.Tree.class){
@@ -1455,6 +1462,8 @@ public enum ExtraTreeSpecies {
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 		}
 	};
+	
+	public static ETTreeDefinition[] VALUES = values();
 
 	private String branchName;
 	private String binomial;
@@ -1474,7 +1483,7 @@ public enum ExtraTreeSpecies {
 	private static final String unlocalizedName = "extratrees.species.%s.name";
 	private static final String unlocalizedDesc = "extratrees.species.%s.desc";
 
-	ExtraTreeSpecies(String branch, String binomial, EnumLeafType leafType, Color leafColor, Color leafPollinatedColor, EnumSaplingType saplingType, IWoodType woodType, Color woodColor, Class<? extends WorldGenerator> treeGenerator) {
+	ETTreeDefinition(String branch, String binomial, EnumLeafType leafType, Color leafColor, Color leafPollinatedColor, EnumSaplingType saplingType, IWoodType woodType, Color woodColor, Class<? extends WorldGenerator> treeGenerator) {
 		this.binomial = binomial;
 		this.leafType = leafType;
 		this.leafColor = leafColor;
@@ -1491,16 +1500,16 @@ public enum ExtraTreeSpecies {
 	}
 
 	public static void initTrees() {
-		for (ExtraTreeSpecies tree : values()) {
+		for (ETTreeDefinition tree : values()) {
 			tree.init();
 		}
-		for (ExtraTreeSpecies tree : values()) {
+		for (ETTreeDefinition tree : values()) {
 			tree.registerMutations();
 		}
 	}
 
 	public static void preInitTrees() {
-		for (ExtraTreeSpecies tree : values()) {
+		for (ETTreeDefinition tree : values()) {
 			tree.preInit();
 		}
 	}
@@ -1513,7 +1522,7 @@ public enum ExtraTreeSpecies {
 			branch = AlleleManager.alleleRegistry.createAndRegisterClassification(IClassification.EnumClassLevel.GENUS, uid, scientific);
 		}
 		IAlleleTreeSpeciesBuilder speciesBuilder = TreeManager.treeFactory.createSpecies(getUID(), String.format(unlocalizedName, getUID()), getAuthority(), String.format(unlocalizedDesc, getUID()), isDominant(),
-				branch, getBinomial(), Constants.EXTRA_TREES_MOD_ID, leafSpriteProvider, saplingType.getGermlingModelProvider(leafColor, woodColor), woodProvider, treeGenerator);
+				branch, getBinomial(), Constants.EXTRA_TREES_MOD_ID, leafSpriteProvider, saplingType.getGermlingModelProvider(leafColor, woodColor), woodProvider, treeGenerator, new ETLeafProvider());
 		setSpeciesProperties(speciesBuilder);
 		species = speciesBuilder.build();
 		branch.addMemberSpecies(species);
@@ -1525,6 +1534,28 @@ public enum ExtraTreeSpecies {
 		setAlleles(template);
 		genome = TreeManager.treeRoot.templateAsGenome(template.getAlleles());
 		TreeManager.treeRoot.registerTemplate(template.getAlleles());
+	}
+	
+	@Override
+	public final ITreeGenome getGenome() {
+		return genome;
+	}
+	
+	@Override
+	public final ITree getIndividual() {
+		return new Tree(genome);
+	}
+
+	@Override
+	public final ItemStack getMemberStack(EnumGermlingType treeType) {
+		ITree tree = getIndividual();
+		return TreeManager.treeRoot.getMemberStack(tree, treeType);
+	}
+	
+	@Override
+	public final IAllele[] getTemplate() {
+		IAllele[] alleles = template.getAlleles();
+		return Arrays.copyOf(alleles, alleles.length);
 	}
 
 	protected void setSpeciesProperties(IAlleleTreeSpeciesBuilder species) {
@@ -1569,6 +1600,22 @@ public enum ExtraTreeSpecies {
 
 	public IAlleleTreeSpecies getSpecies() {
 		return species;
+	}
+	
+	public int getMetadata() {
+		return ordinal();
+	}
+
+	public static ETTreeDefinition byMetadata(int meta) {
+		if (meta < 0 || meta >= VALUES.length) {
+			meta = 0;
+		}
+		return VALUES[meta];
+	}
+	
+	@Override
+	public String getName() {
+		return name().toLowerCase(Locale.ENGLISH);
 	}
 
 	private static class AlleleTemplate {

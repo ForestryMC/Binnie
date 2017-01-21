@@ -32,7 +32,7 @@ public class ModuleItems implements IInitializable {
 			ExtraTrees.itemDictionaryLepi = new ItemMothDatabase();
 		}
 		Binnie.Liquid.createLiquids(ExtraTreeLiquid.values(), ItemFluidContainer.LiquidExtraTree);
-		ExtraTrees.itemFood = new ItemFood();
+		ExtraTrees.itemFood = new ItemETFood();
 
 		ExtraTrees.itemHammer = new ItemHammer(false);
 		ExtraTrees.itemDurableHammer = new ItemHammer(true);
@@ -55,56 +55,56 @@ public class ModuleItems implements IInitializable {
 		
 		OreDictionary.registerOre("gearWood", ExtraTreeItems.ProvenGear.get(1));
 
-		Food.Crabapple.addJuice(10, 150, 10);
-		Food.Orange.addJuice(10, 400, 15);
-		Food.Kumquat.addJuice(10, 300, 10);
-		Food.Lime.addJuice(10, 300, 10);
-		Food.WildCherry.addOil(20, 50, 5);
-		Food.SourCherry.addOil(20, 50, 3);
-		Food.BlackCherry.addOil(20, 50, 5);
+		Food.CRABAPPLE.addJuice(10, 150, 10);
+		Food.ORANGE.addJuice(10, 400, 15);
+		Food.KUMQUAT.addJuice(10, 300, 10);
+		Food.LIME.addJuice(10, 300, 10);
+		Food.WILD_CHERRY.addOil(20, 50, 5);
+		Food.SOUR_CHERRY.addOil(20, 50, 3);
+		Food.BLACK_CHERRY.addOil(20, 50, 5);
 		Food.Blackthorn.addJuice(10, 50, 5);
-		Food.CherryPlum.addJuice(10, 100, 60);
-		Food.Almond.addOil(20, 80, 5);
-		Food.Apricot.addJuice(10, 150, 40);
-		Food.Grapefruit.addJuice(10, 500, 15);
-		Food.Peach.addJuice(10, 150, 40);
-		Food.Satsuma.addJuice(10, 300, 10);
-		Food.BuddhaHand.addJuice(10, 400, 15);
-		Food.Citron.addJuice(10, 400, 15);
-		Food.FingerLime.addJuice(10, 300, 10);
-		Food.KeyLime.addJuice(10, 300, 10);
-		Food.Manderin.addJuice(10, 400, 10);
-		Food.Nectarine.addJuice(10, 150, 40);
-		Food.Pomelo.addJuice(10, 300, 10);
-		Food.Tangerine.addJuice(10, 300, 10);
-		Food.Pear.addJuice(10, 300, 20);
-		Food.SandPear.addJuice(10, 200, 10);
-		Food.Hazelnut.addOil(20, 150, 5);
-		Food.Butternut.addOil(20, 180, 5);
-		Food.Beechnut.addOil(20, 100, 4);
-		Food.Pecan.addOil(29, 50, 2);
-		Food.Banana.addJuice(10, 100, 30);
-		Food.RedBanana.addJuice(10, 100, 30);
-		Food.Plantain.addJuice(10, 100, 40);
-		Food.BrazilNut.addOil(20, 20, 2);
-		Food.Fig.addOil(20, 50, 3);
-		Food.Acorn.addOil(20, 50, 3);
-		Food.Elderberry.addJuice(10, 100, 5);
-		Food.Olive.addOil(20, 50, 3);
-		Food.GingkoNut.addOil(20, 50, 5);
-		Food.Coffee.addOil(15, 20, 2);
-		Food.OsangeOrange.addJuice(10, 300, 15);
-		Food.Clove.addOil(10, 25, 2);
-		Food.Coconut.addOil(20, 300, 25);
-		Food.Cashew.addJuice(10, 150, 15);
-		Food.Avacado.addJuice(10, 300, 15);
-		Food.Nutmeg.addOil(20, 50, 10);
-		Food.Allspice.addOil(20, 50, 10);
-		Food.Chilli.addJuice(10, 100, 10);
-		Food.StarAnise.addOil(20, 100, 10);
-		Food.Mango.addJuice(10, 400, 20);
-		Food.Starfruit.addJuice(10, 300, 10);
-		Food.Candlenut.addJuice(20, 50, 10);
+		Food.CHERRY_PLUM.addJuice(10, 100, 60);
+		Food.ALMOND.addOil(20, 80, 5);
+		Food.APRICOT.addJuice(10, 150, 40);
+		Food.GRAPEFRUIT.addJuice(10, 500, 15);
+		Food.PEACH.addJuice(10, 150, 40);
+		Food.SATSUMA.addJuice(10, 300, 10);
+		Food.BUDDHA_HAND.addJuice(10, 400, 15);
+		Food.CITRON.addJuice(10, 400, 15);
+		Food.FINGER_LIME.addJuice(10, 300, 10);
+		Food.KEY_LIME.addJuice(10, 300, 10);
+		Food.MANDERIN.addJuice(10, 400, 10);
+		Food.NECTARINE.addJuice(10, 150, 40);
+		Food.POMELO.addJuice(10, 300, 10);
+		Food.TANGERINE.addJuice(10, 300, 10);
+		Food.PEAR.addJuice(10, 300, 20);
+		Food.SAND_PEAR.addJuice(10, 200, 10);
+		Food.HAZELNUT.addOil(20, 150, 5);
+		Food.BUTTERNUT.addOil(20, 180, 5);
+		Food.BEECHNUT.addOil(20, 100, 4);
+		Food.PECAN.addOil(29, 50, 2);
+		Food.BANANA.addJuice(10, 100, 30);
+		Food.RED_BANANA.addJuice(10, 100, 30);
+		Food.PLANTAIN.addJuice(10, 100, 40);
+		Food.BRAZIL_NUT.addOil(20, 20, 2);
+		Food.FIG.addOil(20, 50, 3);
+		Food.ACORN.addOil(20, 50, 3);
+		Food.ELDERBERRY.addJuice(10, 100, 5);
+		Food.OLIVE.addOil(20, 50, 3);
+		Food.GINGKO_NUT.addOil(20, 50, 5);
+		Food.COFFEE.addOil(15, 20, 2);
+		Food.OSANGE_ORANGE.addJuice(10, 300, 15);
+		Food.CLOVE.addOil(10, 25, 2);
+		Food.COCONUT.addOil(20, 300, 25);
+		Food.CASHEW.addJuice(10, 150, 15);
+		Food.AVACADO.addJuice(10, 300, 15);
+		Food.NUTMEG.addOil(20, 50, 10);
+		Food.ALLSPICE.addOil(20, 50, 10);
+		Food.CHILLI.addJuice(10, 100, 10);
+		Food.STAR_ANISE.addOil(20, 100, 10);
+		Food.MANGO.addJuice(10, 400, 20);
+		Food.STARFRUIT.addJuice(10, 300, 10);
+		Food.CANDLENUT.addJuice(20, 50, 10);
 	}
 
 	@Override
@@ -126,7 +126,7 @@ public class ModuleItems implements IInitializable {
 		GameRegistry.addSmelting(ExtraTreeItems.GrainBarley.get(1), ExtraTreeItems.GrainRoasted.get(1), 0.0f);
 		try {
 			final Item minium = (Item) Class.forName("com.pahimar.ee3.lib.ItemIds").getField("miniumShard").get(null);
-			CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(Food.Papayimar.get(1), minium, "cropPapaya"));
+			CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(Food.PAPAYIMAR.get(1), minium, "cropPapaya"));
 		} catch (Exception ex) {
 		}
 		RecipeManagers.carpenterManager.addRecipe(100, Binnie.Liquid.getFluidStack("water", 2000), null, new ItemStack(ExtraTrees.itemDictionary), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotCopper", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);

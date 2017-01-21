@@ -12,70 +12,72 @@ import net.minecraftforge.oredict.OreDictionary;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 
 public enum Food implements IItemMiscProvider {
-	Crabapple(2),
-	Orange(4),
-	Kumquat(2),
-	Lime(2),
-	WildCherry(2),
-	SourCherry(2),
-	BlackCherry(2),
+	CRABAPPLE(2),
+	ORANGE(4),
+	KUMQUAT(2),
+	LIME(2),
+	WILD_CHERRY(2),
+	SOUR_CHERRY(2),
+	BLACK_CHERRY(2),
 	Blackthorn(3),
-	CherryPlum(3),
-	Almond(1),
-	Apricot(4),
-	Grapefruit(4),
-	Peach(4),
-	Satsuma(3),
-	BuddhaHand(3),
-	Citron(3),
-	FingerLime(3),
-	KeyLime(2),
-	Manderin(3),
-	Nectarine(3),
-	Pomelo(3),
-	Tangerine(3),
-	Pear(4),
-	SandPear(2),
-	Hazelnut(2),
-	Butternut(1),
-	Beechnut(0),
-	Pecan(0),
-	Banana(4),
-	RedBanana(4),
-	Plantain(2),
-	BrazilNut(0),
-	Fig(2),
-	Acorn(0),
-	Elderberry(1),
-	Olive(1),
-	GingkoNut(1),
-	Coffee(0),
-	OsangeOrange(1),
-	Clove(0),
-	Papayimar(8),
-	Blackcurrant(2),
-	Redcurrant(2),
-	Blackberry(2),
-	Raspberry(2),
-	Blueberry(2),
-	Cranberry(2),
-	Juniper(0),
-	Gooseberry(2),
-	GoldenRaspberry(2),
-	Coconut(2),
-	Cashew(0),
-	Avacado(2),
-	Nutmeg(0),
-	Allspice(0),
-	Chilli(2),
-	StarAnise(0),
-	Mango(4),
-	Starfruit(2),
-	Candlenut(0);
+	CHERRY_PLUM(3),
+	ALMOND(1),
+	APRICOT(4),
+	GRAPEFRUIT(4),
+	PEACH(4),
+	SATSUMA(3),
+	BUDDHA_HAND(3),
+	CITRON(3),
+	FINGER_LIME(3),
+	KEY_LIME(2),
+	MANDERIN(3),
+	NECTARINE(3),
+	POMELO(3),
+	TANGERINE(3),
+	PEAR(4),
+	SAND_PEAR(2),
+	HAZELNUT(2),
+	BUTTERNUT(1),
+	BEECHNUT(0),
+	PECAN(0),
+	BANANA(4),
+	RED_BANANA(4),
+	PLANTAIN(2),
+	BRAZIL_NUT(0),
+	FIG(2),
+	ACORN(0),
+	ELDERBERRY(1),
+	OLIVE(1),
+	GINGKO_NUT(1),
+	COFFEE(0),
+	OSANGE_ORANGE(1),
+	CLOVE(0),
+	PAPAYIMAR(8),
+	BLACKCURRANT(2),
+	REDCURRANT(2),
+	BLACKBERRY(2),
+	RASPBERRY(2),
+	BLUEBERRY(2),
+	CRANBERRY(2),
+	JUNIPER(0),
+	GOOSEBERRY(2),
+	GOLDEN_RASPBERRY(2),
+	COCONUT(2),
+	CASHEW(0),
+	AVACADO(2),
+	NUTMEG(0),
+	ALLSPICE(0),
+	CHILLI(2),
+	STAR_ANISE(0),
+	MANGO(4),
+	STARFRUIT(2),
+	CANDLENUT(0);
 
-	//	IIcon icon;
+	public static Food[] VALUES = values();
+	
 	int hunger;
 	private List<String> ores;
 
@@ -113,7 +115,7 @@ public enum Food implements IItemMiscProvider {
 
 	@Override
 	public String getModelPath() {
-		return toString();
+		return name().toLowerCase(Locale.ENGLISH);
 	}
 
 	@Override
@@ -133,46 +135,46 @@ public enum Food implements IItemMiscProvider {
 	}
 
 	public static void registerOreDictionary() {
-		Food.Crabapple.ore("Apple").ore("Crabapple");
-		Food.Orange.ore("Orange");
-		Food.Kumquat.ore("Kumquat");
-		Food.Lime.ore("Lime");
-		Food.WildCherry.ore("Cherry").ore("WildCherry");
-		Food.SourCherry.ore("Cherry").ore("SourCherry");
-		Food.BlackCherry.ore("Cherry").ore("BlackCherry");
+		Food.CRABAPPLE.ore("Apple").ore("Crabapple");
+		Food.ORANGE.ore("Orange");
+		Food.KUMQUAT.ore("Kumquat");
+		Food.LIME.ore("Lime");
+		Food.WILD_CHERRY.ore("Cherry").ore("WildCherry");
+		Food.SOUR_CHERRY.ore("Cherry").ore("SourCherry");
+		Food.BLACK_CHERRY.ore("Cherry").ore("BlackCherry");
 		Food.Blackthorn.ore("Blackthorn");
-		Food.CherryPlum.ore("Plum").ore("CherryPlum");
-		Food.Almond.ore("Almond");
-		Food.Apricot.ore("Apricot");
-		Food.Grapefruit.ore("Grapefruit");
-		Food.Peach.ore("Peach");
-		Food.Satsuma.ore("Satsuma").ore("Orange");
-		Food.BuddhaHand.ore("BuddhaHand").ore("Citron");
-		Food.Citron.ore("Citron");
-		Food.FingerLime.ore("Lime").ore("FingerLime");
-		Food.KeyLime.ore("KeyLime").ore("Lime");
-		Food.Manderin.ore("Orange").ore("Manderin");
-		Food.Nectarine.ore("Peach").ore("Nectarine");
-		Food.Pomelo.ore("Pomelo");
-		Food.Tangerine.ore("Tangerine").ore("Orange");
-		Food.Pear.ore("Pear");
-		Food.SandPear.ore("SandPear");
-		Food.Hazelnut.ore("Hazelnut");
-		Food.Butternut.ore("Butternut").ore("Walnut");
-		Food.Beechnut.ore("Beechnut");
-		Food.Pecan.ore("Pecan");
-		Food.Banana.ore("Banana");
-		Food.RedBanana.ore("RedBanana").ore("Banana");
-		Food.Plantain.ore("Plantain");
-		Food.BrazilNut.ore("BrazilNut");
-		Food.Fig.ore("Fig");
-		Food.Acorn.ore("Acorn");
-		Food.Elderberry.ore("Elderberry");
-		Food.Olive.ore("Olive");
-		Food.GingkoNut.ore("GingkoNut");
-		Food.Coffee.ore("Coffee");
-		Food.OsangeOrange.ore("OsangeOrange");
-		Food.Clove.ore("Clove");
+		Food.CHERRY_PLUM.ore("Plum").ore("CherryPlum");
+		Food.ALMOND.ore("Almond");
+		Food.APRICOT.ore("Apricot");
+		Food.GRAPEFRUIT.ore("Grapefruit");
+		Food.PEACH.ore("Peach");
+		Food.SATSUMA.ore("Satsuma").ore("Orange");
+		Food.BUDDHA_HAND.ore("BuddhaHand").ore("Citron");
+		Food.CITRON.ore("Citron");
+		Food.FINGER_LIME.ore("Lime").ore("FingerLime");
+		Food.KEY_LIME.ore("KeyLime").ore("Lime");
+		Food.MANDERIN.ore("Orange").ore("Manderin");
+		Food.NECTARINE.ore("Peach").ore("Nectarine");
+		Food.POMELO.ore("Pomelo");
+		Food.TANGERINE.ore("Tangerine").ore("Orange");
+		Food.PEAR.ore("Pear");
+		Food.SAND_PEAR.ore("SandPear");
+		Food.HAZELNUT.ore("Hazelnut");
+		Food.BUTTERNUT.ore("Butternut").ore("Walnut");
+		Food.BEECHNUT.ore("Beechnut");
+		Food.PECAN.ore("Pecan");
+		Food.BANANA.ore("Banana");
+		Food.RED_BANANA.ore("RedBanana").ore("Banana");
+		Food.PLANTAIN.ore("Plantain");
+		Food.BRAZIL_NUT.ore("BrazilNut");
+		Food.FIG.ore("Fig");
+		Food.ACORN.ore("Acorn");
+		Food.ELDERBERRY.ore("Elderberry");
+		Food.OLIVE.ore("Olive");
+		Food.GINGKO_NUT.ore("GingkoNut");
+		Food.COFFEE.ore("Coffee");
+		Food.OSANGE_ORANGE.ore("OsangeOrange");
+		Food.CLOVE.ore("Clove");
 	}
 
 	private Food ore(final String string) {

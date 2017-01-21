@@ -2,7 +2,7 @@ package binnie.extratrees.block.log;
 
 import binnie.Constants;
 import binnie.extratrees.block.EnumExtraTreeLog;
-import binnie.extratrees.block.PropertyExtraTreeWoodType;
+import binnie.extratrees.block.property.PropertyETWoodType;
 import forestry.arboriculture.blocks.log.BlockForestryLog;
 import forestry.arboriculture.blocks.property.PropertyWoodType;
 import net.minecraft.util.ResourceLocation;
@@ -13,9 +13,9 @@ import javax.annotation.Nonnull;
 public abstract class BlockETLog extends BlockForestryLog<EnumExtraTreeLog> {
 	public static List<BlockETLog> create(boolean fireproof) {
 		List<BlockETLog> blocks = new ArrayList<>();
-		PropertyExtraTreeWoodType[] variants = PropertyExtraTreeWoodType.create("variant", VARIANTS_PER_BLOCK);
+		PropertyETWoodType[] variants = PropertyETWoodType.create("variant", VARIANTS_PER_BLOCK);
 		for (int i = 0; i < variants.length; i++) {
-			PropertyExtraTreeWoodType variant = variants[i];
+			PropertyETWoodType variant = variants[i];
 			BlockETLog block = new BlockETLog(fireproof, i) {
 				@Nonnull
 				@Override

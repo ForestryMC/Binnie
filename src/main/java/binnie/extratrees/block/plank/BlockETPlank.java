@@ -2,7 +2,7 @@ package binnie.extratrees.block.plank;
 
 import binnie.Constants;
 import binnie.extratrees.block.EnumExtraTreeLog;
-import binnie.extratrees.block.PropertyExtraTreeWoodType;
+import binnie.extratrees.block.property.PropertyETWoodType;
 import forestry.arboriculture.blocks.planks.BlockForestryPlanks;
 import net.minecraft.util.ResourceLocation;
 import java.util.ArrayList;
@@ -14,13 +14,13 @@ public abstract class BlockETPlank extends BlockForestryPlanks<EnumExtraTreeLog>
 	
 	public static List<BlockETPlank> create(boolean fireproof) {
 		List<BlockETPlank> blocks = new ArrayList<>();
-		PropertyExtraTreeWoodType[] variants = PropertyExtraTreeWoodType.create("variant", VARIANTS_PER_BLOCK);
+		PropertyETWoodType[] variants = PropertyETWoodType.create("variant", VARIANTS_PER_BLOCK);
 		for (int i = 0; i < variants.length; i++) {
-			PropertyExtraTreeWoodType variant = variants[i];
+			PropertyETWoodType variant = variants[i];
 			BlockETPlank block = new BlockETPlank(fireproof, i) {
 				@Nonnull
 				@Override
-				public PropertyExtraTreeWoodType getVariant() {
+				public PropertyETWoodType getVariant() {
 					return variant;
 				}
 			};
