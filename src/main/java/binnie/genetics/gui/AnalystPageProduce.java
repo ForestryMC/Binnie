@@ -8,7 +8,7 @@ import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.extratrees.machines.Brewery;
 import binnie.extratrees.machines.Distillery;
-import binnie.extratrees.machines.Press;
+import binnie.extratrees.machines.fruitpress.FruitPressRecipes;
 import forestry.api.recipes.ICentrifugeRecipe;
 import forestry.api.recipes.ISqueezerRecipe;
 import forestry.api.recipes.RecipeManagers;
@@ -123,8 +123,8 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 	public Collection<FluidStack> getAllFluids(final ItemStack stack) {
 		final List<FluidStack> products = new ArrayList<>();
 		products.addAll(this.getSqueezerFluid(stack));
-		if (Press.getOutput(stack) != null) {
-			products.add(Press.getOutput(stack));
+		if (FruitPressRecipes.getOutput(stack) != null) {
+			products.add(FruitPressRecipes.getOutput(stack));
 		}
 		return products;
 	}

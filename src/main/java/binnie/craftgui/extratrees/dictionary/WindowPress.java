@@ -12,7 +12,8 @@ import binnie.craftgui.minecraft.control.ControlLiquidTank;
 import binnie.craftgui.minecraft.control.ControlPlayerInventory;
 import binnie.craftgui.minecraft.control.ControlSlot;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.machines.Press;
+import binnie.extratrees.machines.fruitpress.FruitPressLogic;
+import binnie.extratrees.machines.fruitpress.FruitPressMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.nbt.NBTTagCompound;
@@ -36,13 +37,13 @@ public class WindowPress extends Window {
 	@Override
 	public void initialiseClient() {
 		this.setTitle(Machine.getMachine(this.getInventory()).getPackage().getDisplayName());
-		new ControlSlot(this, 24.0f, 52.0f).assign(Press.slotFruit);
-		new ControlLiquidTank(this, 99, 32).setTankID(Press.tankWater);
+		new ControlSlot(this, 24.0f, 52.0f).assign(FruitPressMachine.SLOT_FRUIT);
+		new ControlLiquidTank(this, 99, 32).setTankID(FruitPressMachine.TANK_OUTPUT);
 		new ControlEnergyBar(this, 154, 32, 16, 60, Position.Bottom);
 		new ControlPlayerInventory(this);
 		new ControlErrorState(this, 128.0f, 54.0f);
 		new ControlFruitPressProgress(this, 62.0f, 24.0f);
-		((Window) this.getSuperParent()).getContainer().getOrCreateSlot(InventoryType.Machine, Press.slotCurrent);
+		((Window) this.getSuperParent()).getContainer().getOrCreateSlot(InventoryType.Machine, FruitPressMachine.SLOT_CURRENT);
 	}
 
 	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
@@ -51,14 +52,14 @@ public class WindowPress extends Window {
 
 	@Override
 	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound action) {
-		final Press.ComponentFruitPressLogic logic = Machine.getInterface(Press.ComponentFruitPressLogic.class, this.getInventory());
+		final FruitPressLogic logic = Machine.getInterface(FruitPressLogic.class, this.getInventory());
 		super.recieveGuiNBT(side, player, name, action);
 		if (side == Side.SERVER && name.equals("fruitpress-click")) {
 			if (logic.canWork() == null && (logic.canProgress() == null || logic.canProgress() instanceof ErrorState.InsufficientPower)) {
 				logic.alterProgress(2.0f);
 			} else if (side == Side.SERVER && name.equals("clear-fruit")) {
 				logic.setProgress(0.0f);
-				this.getInventory().setInventorySlotContents(Press.slotCurrent, null);
+				this.getInventory().setInventorySlotContents(FruitPressMachine.SLOT_CURRENT, null);
 			}
 		}
 	}

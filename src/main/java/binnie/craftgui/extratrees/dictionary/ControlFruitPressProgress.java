@@ -10,7 +10,8 @@ import binnie.craftgui.minecraft.control.ControlProgressBase;
 import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.StandardTexture;
 import binnie.extratrees.core.ExtraTreeTexture;
-import binnie.extratrees.machines.Press;
+import binnie.extratrees.machines.fruitpress.FruitPressRecipes;
+import binnie.extratrees.machines.fruitpress.FruitPressMachine;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -24,16 +25,16 @@ public class ControlFruitPressProgress extends ControlProgressBase {
 	@Override
 	public void onRenderBackground() {
 		CraftGUI.Render.texture(ControlFruitPressProgress.PressSlot, new IPoint(3.0f, 52.0f));
-		Slot slotFromInventory = Window.get(this).getContainer().getSlotFromInventory(Window.get(this).getInventory(), Press.slotCurrent);
+		Slot slotFromInventory = Window.get(this).getContainer().getSlotFromInventory(Window.get(this).getInventory(), FruitPressMachine.SLOT_CURRENT);
 		if (slotFromInventory == null) {
 			return;
 		}
 		final ItemStack input = slotFromInventory.getStack();
-		if (input == null || Press.getOutput(input) == null) {
+		if (input == null || FruitPressRecipes.getOutput(input) == null) {
 			return;
 		}
-		final Fluid fluid = Press.getOutput(input).getFluid();
-		final int hex = fluid.getColor(Press.getOutput(input));
+		final Fluid fluid = FruitPressRecipes.getOutput(input).getFluid();
+		final int hex = fluid.getColor(FruitPressRecipes.getOutput(input));
 		final int r = (hex & 0xFF0000) >> 16;
 		final int g = (hex & 0xFF00) >> 8;
 		final int b = hex & 0xFF;

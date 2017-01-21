@@ -12,7 +12,7 @@ import binnie.extratrees.alcohol.drink.ItemDrink;
 import binnie.extratrees.item.Food;
 import binnie.extratrees.machines.Brewery;
 import binnie.extratrees.machines.Distillery;
-import binnie.extratrees.machines.Press;
+import binnie.extratrees.machines.fruitpress.FruitPressRecipes;
 import forestry.api.recipes.ISqueezerRecipe;
 import forestry.api.recipes.RecipeManagers;
 import net.minecraft.item.ItemStack;
@@ -79,7 +79,7 @@ public class ModuleAlcohol implements IInitializable {
 						if (Objects.equals(output.getFluid().getName(), "seedoil")) {
 							amount *= 2;
 						}
-						Press.addRecipe(stack, juice.get(amount));
+						FruitPressRecipes.addRecipe(stack, juice.get(amount));
 					} catch (Exception ex) {
 					}
 				}

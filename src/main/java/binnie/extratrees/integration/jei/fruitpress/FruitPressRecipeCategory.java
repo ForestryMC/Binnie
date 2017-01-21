@@ -1,0 +1,62 @@
+package binnie.extratrees.integration.jei.fruitpress;
+
+import binnie.extratrees.integration.jei.ExtraTreesJeiPlugin;
+import binnie.extratrees.integration.jei.RecipeUids;
+import binnie.extratrees.machines.fruitpress.FruitPressMachine;
+import mezz.jei.api.gui.IDrawable;
+import mezz.jei.api.gui.IDrawableAnimated;
+import mezz.jei.api.gui.IGuiFluidStackGroup;
+import mezz.jei.api.gui.IGuiItemStackGroup;
+import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.BlankRecipeCategory;
+import mezz.jei.api.recipe.IRecipeWrapper;
+import net.minecraft.client.Minecraft;
+
+public class FruitPressRecipeCategory extends BlankRecipeCategory {
+	private final IDrawableAnimated arrowAnimated;
+
+	public FruitPressRecipeCategory() {
+		this.arrowAnimated = ExtraTreesJeiPlugin.drawables.createArrowAnimated(56);
+	}
+
+	@Override
+	public String getUid() {
+		return RecipeUids.FRUIT_PRESS;
+	}
+
+	@Override
+	public String getTitle() {
+		return "Fruit Press";
+	}
+
+	@Override
+	public IDrawable getBackground() {
+		return ExtraTreesJeiPlugin.guiHelper.createBlankDrawable(74, 60);
+	}
+
+	@Override
+	public void drawExtras(Minecraft minecraft) {
+		IDrawable tank = ExtraTreesJeiPlugin.drawables.getTank();
+		tank.draw(minecraft, 54, 0);
+
+		IDrawable arrow = ExtraTreesJeiPlugin.drawables.getArrow();
+		arrow.draw(minecraft, 27, 26);
+		arrowAnimated.draw(minecraft, 27, 26);
+
+		IDrawable slot = ExtraTreesJeiPlugin.guiHelper.getSlotDrawable();
+		slot.draw(minecraft, 0, 22);
+	}
+
+	@Override
+	public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients) {
+		IDrawable tankOverlay = ExtraTreesJeiPlugin.drawables.getTankOverlay();
+		IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
+		fluidStacks.init(FruitPressMachine.TANK_OUTPUT, false, 55, 1, 16, 58, 1000, false, tankOverlay);
+		fluidStacks.set(ingredients);
+
+		IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
+		itemStacks.init(0, true, 0, 22);
+		itemStacks.set(ingredients);
+	}
+}
