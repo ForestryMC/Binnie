@@ -4,6 +4,7 @@ import binnie.Constants;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.gui.IBinnieGUID;
+import binnie.core.item.ItemMisc;
 import binnie.core.models.DoublePassBakedModel;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
@@ -57,7 +58,7 @@ public class ExtraTrees extends AbstractMod {
 	public static Proxy proxy;
 	public static Item itemDictionary;
 	public static Item itemDictionaryLepi;
-	public static Item itemMisc;
+	public static ItemMisc itemMisc;
 	public static Item itemFood;
 	public static List<BlockETLog> logs;
 	public static List<BlockETLog> logsFireproof;

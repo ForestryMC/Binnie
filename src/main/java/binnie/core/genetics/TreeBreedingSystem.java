@@ -4,7 +4,7 @@ import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.util.UniqueItemStackSet;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.machines.Lumbermill;
+import binnie.extratrees.machines.lumbermill.LumbermillRecipes;
 import com.mojang.authlib.GameProfile;
 import forestry.api.arboriculture.EnumGermlingType;
 import forestry.api.arboriculture.EnumTreeChromosome;
@@ -221,7 +221,7 @@ public class TreeBreedingSystem extends BreedingSystem {
 			ITreeGenome genome = TreeManager.treeRoot.templateAsGenome(TreeManager.treeRoot.getTemplate(tSpecies.getUID()));
 			IAlleleTreeSpecies treeSpecies = genome.getPrimary();
 			final ItemStack woodStack = treeSpecies.getWoodProvider().getWoodStack();
-			if (Lumbermill.getPlankProduct(woodStack) != null && fruit.isItemEqual(Lumbermill.getPlankProduct(woodStack))) {
+			if (LumbermillRecipes.getPlankProduct(woodStack) != null && fruit.isItemEqual(LumbermillRecipes.getPlankProduct(woodStack))) {
 				found.add(species);
 			}
 		}

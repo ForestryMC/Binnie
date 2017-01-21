@@ -10,7 +10,7 @@ import binnie.craftgui.minecraft.control.ControlLiquidTank;
 import binnie.craftgui.minecraft.control.ControlPlayerInventory;
 import binnie.craftgui.minecraft.control.ControlSlot;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.machines.Lumbermill;
+import binnie.extratrees.machines.lumbermill.LumbermillMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
@@ -33,10 +33,10 @@ public class WindowLumbermill extends Window {
 	@Override
 	public void initialiseClient() {
 		this.setTitle(Machine.getMachine(this.getInventory()).getPackage().getDisplayName());
-		new ControlSlot(this, 42.0f, 43.0f).assign(Lumbermill.slotWood);
-		new ControlSlot(this, 148.0f, 43.0f).assign(Lumbermill.slotPlanks);
-		new ControlSlot(this, 172.0f, 28.0f).assign(Lumbermill.slotBark);
-		new ControlSlot(this, 172.0f, 58.0f).assign(Lumbermill.slotSawdust);
+		new ControlSlot(this, 42.0f, 43.0f).assign(LumbermillMachine.SLOT_LOG);
+		new ControlSlot(this, 148.0f, 43.0f).assign(LumbermillMachine.SLOT_PLANKS);
+		new ControlSlot(this, 172.0f, 28.0f).assign(LumbermillMachine.SLOT_BARK);
+		new ControlSlot(this, 172.0f, 58.0f).assign(LumbermillMachine.SLOT_SAWDUST);
 		new ControlLumbermillProgress(this, 70.0f, 43.0f);
 		new ControlLiquidTank(this, 16, 32);
 		new ControlEnergyBar(this, 8, 112, 16, 60, Position.Bottom);

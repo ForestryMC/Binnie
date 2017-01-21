@@ -41,7 +41,7 @@ public class TreeGenerator implements ITreeGenerator {
 		if (woodType != null) {
 			AlleleBoolean fireproofAllele = (AlleleBoolean) genome.getActiveAllele(EnumTreeChromosome.FIREPROOF);
 			boolean fireproof = fireproofAllele.getValue();
-			return world.setBlockState(pos, WoodAccess.getInstance().getBlock(woodType, WoodBlockKind.LOG, fireproof), 2);
+			return world.setBlockState(pos, TreeManager.woodAccess.getBlock(woodType, WoodBlockKind.LOG, fireproof), 2);
 		}
 		return false;
 	}

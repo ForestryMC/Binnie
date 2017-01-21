@@ -6,11 +6,11 @@ import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
 import com.google.common.base.Optional;
 import forestry.api.arboriculture.EnumForestryWoodType;
+import forestry.api.arboriculture.EnumVanillaWoodType;
 import forestry.api.arboriculture.IWoodType;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.arboriculture.WoodBlockKind;
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 
@@ -33,48 +33,50 @@ public class PlankType {
 	}
 
 	public enum ExtraTreePlanks implements IPlankType, IFenceProvider, IStringSerializable {
-		Fir(12815444),
-		Cedar(14181940),
-		Hemlock(13088108),
-		Cypress(16169052),
-		Fig(13142058),
-		Beech(14784849),
-		Alder(12092755),
-		Hazel(13480341),
-		Hornbeam(12818528),
-		Box(16511430),
-		Butternut(15510138),
-		Hickory(14333070),
-		Whitebeam(13222585),
-		Elm(15772004),
-		Apple(6305064),
-		Yew(14722426),
-		Pear(12093805),
-		Hawthorn(13402978),
-		Rowan(13610394),
-		Elder(12489337),
-		Maclura(15970862),
-		Syzgium(15123393),
-		Brazilwood(7487063),
-		Logwood(10762028),
-		Iroko(7681024),
-		Locust(12816736),
-		Eucalyptus(16165771),
-		Purpleheart(5970991),
-		Ash(16107368),
-		Holly(16512743),
-		Olive(11578760),
-		Sweetgum(13997656),
-		Rosewood(7738624),
-		Gingko(16050106),
-		PinkIvory(15502496),
-		Banana(0);
+		Fir(12815444, EnumExtraTreeLog.Fir),
+		Cedar(14181940, EnumExtraTreeLog.Cedar),
+		Hemlock(13088108, EnumExtraTreeLog.Hemlock),
+		Cypress(16169052, EnumExtraTreeLog.Cypress),
+		Fig(13142058, EnumExtraTreeLog.Fig),
+		Beech(14784849, EnumExtraTreeLog.Beech),
+		Alder(12092755, EnumExtraTreeLog.Alder),
+		Hazel(13480341, EnumExtraTreeLog.Hazel),
+		Hornbeam(12818528, EnumExtraTreeLog.Hornbeam),
+		Box(16511430, EnumExtraTreeLog.Box),
+		Butternut(15510138, EnumExtraTreeLog.Butternut),
+		Hickory(14333070, EnumExtraTreeLog.Hickory),
+		Whitebeam(13222585, EnumExtraTreeLog.Whitebeam),
+		Elm(15772004, EnumExtraTreeLog.Elm),
+		Apple(6305064, EnumExtraTreeLog.Apple),
+		Yew(14722426, EnumExtraTreeLog.Yew),
+		Pear(12093805, EnumExtraTreeLog.Pear),
+		Hawthorn(13402978, EnumExtraTreeLog.Hawthorn),
+		Rowan(13610394, EnumExtraTreeLog.Rowan),
+		Elder(12489337, EnumExtraTreeLog.Elder),
+		Maclura(15970862, EnumExtraTreeLog.Maclura),
+		Syzgium(15123393, EnumExtraTreeLog.Syzgium),
+		Brazilwood(7487063, EnumExtraTreeLog.Brazilwood),
+		Logwood(10762028, EnumExtraTreeLog.Logwood),
+		Iroko(7681024, EnumExtraTreeLog.Iroko),
+		Locust(12816736, EnumExtraTreeLog.Locust),
+		Eucalyptus(16165771, EnumExtraTreeLog.Eucalyptus),
+		Purpleheart(5970991, EnumExtraTreeLog.Purpleheart),
+		Ash(16107368, EnumExtraTreeLog.Ash),
+		Holly(16512743, EnumExtraTreeLog.Holly),
+		Olive(11578760, EnumExtraTreeLog.Olive),
+		Sweetgum(13997656, EnumExtraTreeLog.Sweetgum),
+		Rosewood(7738624, EnumExtraTreeLog.Rosewood),
+		Gingko(16050106, EnumExtraTreeLog.Gingko),
+		PinkIvory(15502496, EnumExtraTreeLog.PinkIvory),
+		Banana(0, EnumExtraTreeLog.Banana);
 
-		int color;
+		private final IWoodType woodType;
+		private int color;
 		//IIcon icon;
 
-		ExtraTreePlanks(final int color) {
+		ExtraTreePlanks(final int color, IWoodType woodType) {
 			this.color = color;
+			this.woodType = woodType;
 		}
 
 		@Override
@@ -99,6 +101,7 @@ public class PlankType {
 
 		@Override
 		public ItemStack getStack() {
+			// TODO get stack
 			return null; //TileEntityMetadata.getItemStack(ExtraTrees.blockPlanks, this.ordinal());
 		}
 
@@ -118,17 +121,19 @@ public class PlankType {
 	}
 
 	public enum VanillaPlanks implements IPlankType {
-		OAK(11833434),
-		SPRUCE(8412726),
-		BIRCH(14139781),
-		JUNGLE(11632732),
-		ACACIA(12215095),
-		BIG_OAK(4599061);
+		OAK(11833434, EnumVanillaWoodType.OAK),
+		SPRUCE(8412726, EnumVanillaWoodType.SPRUCE),
+		BIRCH(14139781, EnumVanillaWoodType.BIRCH),
+		JUNGLE(11632732, EnumVanillaWoodType.JUNGLE),
+		ACACIA(12215095, EnumVanillaWoodType.ACACIA),
+		BIG_OAK(4599061, EnumVanillaWoodType.DARK_OAK);
 
-		int color;
+		private final IWoodType woodType;
+		private int color;
 
-		VanillaPlanks(final int color) {
+		VanillaPlanks(final int color, IWoodType woodType) {
 			this.color = color;
+			this.woodType = woodType;
 		}
 
 		@Override
@@ -153,7 +158,7 @@ public class PlankType {
 
 		@Override
 		public ItemStack getStack() {
-			return new ItemStack(Blocks.PLANKS, 1, this.ordinal());
+			return TreeManager.woodAccess.getStack(woodType, WoodBlockKind.PLANKS, false);
 		}
 
 //		@Override

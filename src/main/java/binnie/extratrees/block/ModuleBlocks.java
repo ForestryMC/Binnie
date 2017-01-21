@@ -60,9 +60,11 @@ public class ModuleBlocks implements IInitializable {
 			ExtraTrees.proxy.registerBlock(block, new ItemETLog(block));
 			registerOreDictWildcard(OreDictUtil.LOG_WOOD, block);
 		}
-		
-		WoodAccess.registerLogs(ExtraTrees.logs);
-		WoodAccess.registerLogs(ExtraTrees.logsFireproof);
+
+		WoodAccess woodAccess = WoodAccess.getInstance();
+
+		woodAccess.registerLogs(ExtraTrees.logs);
+		woodAccess.registerLogs(ExtraTrees.logsFireproof);
 		
 		ExtraTrees.planks = BlockETPlank.create(false);
 		for (BlockETPlank block : ExtraTrees.planks) {
@@ -75,9 +77,9 @@ public class ModuleBlocks implements IInitializable {
 			ExtraTrees.proxy.registerBlock(block, new ItemETPlank(block));
 			registerOreDictWildcard(OreDictUtil.PLANK_WOOD, block);
 		}
-		
-		WoodAccess.registerPlanks(ExtraTrees.planks);
-		WoodAccess.registerPlanks(ExtraTrees.planksFireproof);
+
+		woodAccess.registerPlanks(ExtraTrees.planks);
+		woodAccess.registerPlanks(ExtraTrees.planksFireproof);
 		
 		ExtraTrees.slabs = BlockETSlab.create(false, false);
 		ExtraTrees.slabsDouble = BlockETSlab.create(false, true);
@@ -98,8 +100,8 @@ public class ModuleBlocks implements IInitializable {
 			ExtraTrees.proxy.registerBlock(slabDouble, new ItemETSlab(slabDouble, slab, slabDouble));
 			registerOreDictWildcard(OreDictUtil.SLAB_WOOD, slab);
 		}
-		WoodAccess.registerSlabs(ExtraTrees.slabs);
-		WoodAccess.registerSlabs(ExtraTrees.slabsFireproof);
+		woodAccess.registerSlabs(ExtraTrees.slabs);
+		woodAccess.registerSlabs(ExtraTrees.slabsFireproof);
 		
 		ExtraTrees.stairs = new ArrayList<>();
 		for (BlockETPlank plank : ExtraTrees.planks) {
@@ -132,9 +134,9 @@ public class ModuleBlocks implements IInitializable {
 				registerOreDictWildcard(OreDictUtil.STAIR_WOOD, stair);
 			}
 		}
-		
-		WoodAccess.registerStairs(ExtraTrees.stairs);
-		WoodAccess.registerStairs(ExtraTrees.stairsFireproof);
+
+		woodAccess.registerStairs(ExtraTrees.stairs);
+		woodAccess.registerStairs(ExtraTrees.stairsFireproof);
 
 		ExtraTrees.blockFence = new BlockFence("fence");
 		ExtraTrees.blockGate = new BlockGate();
@@ -184,17 +186,24 @@ public class ModuleBlocks implements IInitializable {
 		IWoodAccess woodAccess = TreeManager.woodAccess;
 		for(EnumExtraTreeLog woodType : EnumExtraTreeLog.VALUES){
 			for(boolean fireproof : new boolean[]{false, true}){
+				ItemStack logs = woodAccess.getStack(woodType, WoodBlockKind.LOG, fireproof);
 				ItemStack planks = woodAccess.getStack(woodType, WoodBlockKind.PLANKS, fireproof);
 				ItemStack slabs = woodAccess.getStack(woodType, WoodBlockKind.SLAB, fireproof);
 				ItemStack stairs = woodAccess.getStack(woodType, WoodBlockKind.STAIRS, fireproof);
+
 				stairs.stackSize = 4;
 				RecipeUtil.addPriorityRecipe(stairs.copy(),
 						"#  ",
 						"## ",
 						"###",
 						'#', planks.copy());
+
 				slabs.stackSize = 6;
 				RecipeUtil.addPriorityRecipe(slabs.copy(), "###", '#', planks.copy());
+
+				ItemStack craftedPlanks = planks.copy();
+				craftedPlanks.stackSize = 4;
+				RecipeUtil.addShapelessRecipe(craftedPlanks, logs.copy());
 			}
 		}
 		GameRegistry.addRecipe(new MultiFenceRecipeSize());

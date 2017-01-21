@@ -11,7 +11,9 @@ import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.StandardTexture;
 import binnie.craftgui.window.Panel;
 import binnie.extratrees.core.ExtraTreeTexture;
-import binnie.extratrees.machines.Lumbermill;
+import binnie.extratrees.machines.lumbermill.LumbermillMachine;
+import binnie.extratrees.machines.lumbermill.LumbermillRecipes;
+import forestry.core.proxy.Proxies;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -37,7 +39,7 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 		GL11.glDisable(2896);
 		final int sawX = (int) (63.0f * this.progress);
 		CraftGUI.Render.texture(ControlLumbermillProgress.Saw, new IPoint(sawX, -8.0f + 6.0f * (float) Math.sin(this.animation)));
-		final ItemStack item = Window.get(this).getInventory().getStackInSlot(Lumbermill.slotWood);
+		final ItemStack item = Window.get(this).getInventory().getStackInSlot(LumbermillMachine.SLOT_LOG);
 		if (item == null) {
 			return;
 		}
@@ -54,7 +56,7 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 		for (int i = 0; i < 4; ++i) {
 			//CraftGUI.Render.iconBlock(new IPoint(1 + i * 16, 1.0f), icon);
 		}
-		final ItemStack result = Lumbermill.getPlankProduct(item);
+		final ItemStack result = LumbermillRecipes.getPlankProduct(item);
 		if (result == null) {
 			return;
 		}

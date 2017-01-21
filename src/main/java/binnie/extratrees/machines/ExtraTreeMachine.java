@@ -12,6 +12,7 @@ import binnie.core.resource.BinnieResource;
 import binnie.core.resource.ResourceType;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.core.ExtraTreesGUID;
+import binnie.extratrees.machines.lumbermill.LumbermillMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -19,7 +20,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public enum ExtraTreeMachine implements IMachineType {
-	Lumbermill(Lumbermill.PackageLumbermill.class),
+	Lumbermill(LumbermillMachine.class),
 	Woodworker(Designer.PackageWoodworker.class),
 	Panelworker(Designer.PackagePanelworker.class),
 	Nursery(Nursery.PackageNursery.class),
