@@ -1,10 +1,10 @@
 package binnie.extratrees.gen;
 
-import forestry.api.arboriculture.ITree;
+import forestry.api.world.ITreeGenData;
 
 public class WorldGenApple {
 	public static class OrchardApple extends WorldGenTree {
-		public OrchardApple(final ITree tree) {
+		public OrchardApple(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -28,7 +28,7 @@ public class WorldGenApple {
 	}
 
 	public static class SweetCrabapple extends WorldGenTree {
-		public SweetCrabapple(final ITree tree) {
+		public SweetCrabapple(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -54,7 +54,7 @@ public class WorldGenApple {
 	}
 
 	public static class FloweringCrabapple extends WorldGenTree {
-		public FloweringCrabapple(final ITree tree) {
+		public FloweringCrabapple(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -78,7 +78,7 @@ public class WorldGenApple {
 	}
 
 	public static class PrairieCrabapple extends WorldGenTree {
-		public PrairieCrabapple(final ITree tree) {
+		public PrairieCrabapple(ITreeGenData tree) {
 			super(tree);
 		}
 

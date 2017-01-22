@@ -13,7 +13,6 @@ import org.apache.commons.lang3.time.DurationFormatUtils;
 
 import javax.annotation.Nullable;
 import java.awt.Color;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Map;
@@ -86,7 +85,7 @@ public class InoculatorRecipeWrapper extends BlankRecipeWrapper {
 			}
 
 			// todo: 1.11 use MinecraftForgeClient#getLocale() for integer formatting
-			NumberFormat decimalFormat = DecimalFormat.getIntegerInstance();
+			NumberFormat decimalFormat = NumberFormat.getIntegerInstance();
 			String powerString = decimalFormat.format(power) + " RF";
 			int xPower = 15 + (recipeWidth - minecraft.fontRendererObj.getStringWidth(powerString)) / 2;
 			minecraft.fontRendererObj.drawString(powerString, xPower, 5, Color.gray.getRGB());

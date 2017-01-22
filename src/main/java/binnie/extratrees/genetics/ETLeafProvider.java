@@ -5,8 +5,6 @@ import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.IAlleleTreeSpecies;
 import forestry.api.arboriculture.ILeafProvider;
 import forestry.api.genetics.IAllele;
-import forestry.arboriculture.PluginArboriculture;
-import forestry.arboriculture.genetics.LeafProvider;
 import forestry.arboriculture.genetics.TreeDefinition;
 import net.minecraft.item.ItemStack;
 

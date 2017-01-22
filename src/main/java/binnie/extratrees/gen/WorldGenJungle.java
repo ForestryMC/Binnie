@@ -1,10 +1,10 @@
 package binnie.extratrees.gen;
 
-import forestry.api.arboriculture.ITree;
+import forestry.api.world.ITreeGenData;
 
 public class WorldGenJungle {
 	public static class Brazilwood extends WorldGenTree {
-		public Brazilwood(final ITree tree) {
+		public Brazilwood(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -38,7 +38,7 @@ public class WorldGenJungle {
 	}
 
 	public static class Logwood extends WorldGenTree {
-		public Logwood(final ITree tree) {
+		public Logwood(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -76,7 +76,7 @@ public class WorldGenJungle {
 	}
 
 	public static class Rosewood extends WorldGenTree {
-		public Rosewood(final ITree tree) {
+		public Rosewood(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -118,7 +118,7 @@ public class WorldGenJungle {
 	}
 
 	public static class Purpleheart extends WorldGenTree {
-		public Purpleheart(final ITree tree) {
+		public Purpleheart(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -158,7 +158,7 @@ public class WorldGenJungle {
 	}
 
 	public static class OsangeOsange extends WorldGenTree {
-		public OsangeOsange(final ITree tree) {
+		public OsangeOsange(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -196,7 +196,7 @@ public class WorldGenJungle {
 	}
 
 	public static class OldFustic extends WorldGenTree {
-		public OldFustic(final ITree tree) {
+		public OldFustic(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -234,7 +234,7 @@ public class WorldGenJungle {
 	}
 
 	public static class Coffee extends WorldGenTree {
-		public Coffee(final ITree tree) {
+		public Coffee(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -272,7 +272,7 @@ public class WorldGenJungle {
 	}
 
 	public static class BrazilNut extends WorldGenTree {
-		public BrazilNut(final ITree tree) {
+		public BrazilNut(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -314,7 +314,7 @@ public class WorldGenJungle {
 	}
 
 	public static class Shrub15 extends WorldGenTree {
-		public Shrub15(final ITree tree) {
+		public Shrub15(ITreeGenData tree) {
 			super(tree);
 		}
 

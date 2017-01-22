@@ -1,10 +1,10 @@
 package binnie.extratrees.gen;
 
-import forestry.api.arboriculture.ITree;
+import forestry.api.world.ITreeGenData;
 
 public class WorldGenConifer {
 	public static class WesternHemlock extends WorldGenTree {
-		public WesternHemlock(final ITree tree) {
+		public WesternHemlock(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -45,7 +45,7 @@ public class WorldGenConifer {
 	}
 
 	public static class Cypress extends WorldGenTree {
-		public Cypress(final ITree tree) {
+		public Cypress(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -87,7 +87,7 @@ public class WorldGenConifer {
 	}
 
 	public static class Yew extends WorldGenTree {
-		public Yew(final ITree tree) {
+		public Yew(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -125,7 +125,7 @@ public class WorldGenConifer {
 	}
 
 	public static class Cedar extends WorldGenTree {
-		public Cedar(final ITree tree) {
+		public Cedar(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -191,7 +191,7 @@ public class WorldGenConifer {
 	}
 
 	public static class LoblollyPine extends WorldGenTree {
-		public LoblollyPine(final ITree tree) {
+		public LoblollyPine(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -229,7 +229,7 @@ public class WorldGenConifer {
 	}
 
 	public static class MonkeyPuzzle extends WorldGenTree {
-		public MonkeyPuzzle(final ITree tree) {
+		public MonkeyPuzzle(ITreeGenData tree) {
 			super(tree);
 		}
 

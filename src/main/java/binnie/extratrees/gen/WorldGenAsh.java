@@ -1,10 +1,10 @@
 package binnie.extratrees.gen;
 
-import forestry.api.arboriculture.ITree;
+import forestry.api.world.ITreeGenData;
 
 public class WorldGenAsh {
 	public static class CommonAsh extends WorldGenTree {
-		public CommonAsh(final ITree tree) {
+		public CommonAsh(ITreeGenData tree) {
 			super(tree);
 		}
 

@@ -1,10 +1,10 @@
 package binnie.extratrees.gen;
 
-import forestry.api.arboriculture.ITree;
+import forestry.api.world.ITreeGenData;
 
 public class WorldGenEucalyptus {
 	public static class SwampGum extends WorldGenTree {
-		public SwampGum(final ITree tree) {
+		public SwampGum(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -61,7 +61,7 @@ public class WorldGenEucalyptus {
 	}
 
 	public static class RoseGum extends WorldGenTree {
-		public RoseGum(final ITree tree) {
+		public RoseGum(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -110,7 +110,7 @@ public class WorldGenEucalyptus {
 	}
 
 	public static class RainbowGum extends WorldGenTree {
-		public RainbowGum(final ITree tree) {
+		public RainbowGum(ITreeGenData tree) {
 			super(tree);
 		}
 

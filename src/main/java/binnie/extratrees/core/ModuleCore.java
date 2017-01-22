@@ -7,7 +7,7 @@ import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.block.EnumExtraTreeLog;
 import binnie.extratrees.block.PlankType;
-import binnie.extratrees.genetics.ExtraTreeFruitGene;
+import binnie.extratrees.genetics.AlleleETFruit;
 import binnie.extratrees.genetics.ETTreeDefinition;
 import forestry.api.arboriculture.IAlleleTreeSpecies;
 import forestry.api.arboriculture.IWoodType;
@@ -45,15 +45,15 @@ public class ModuleCore implements IInitializable {
 				Collections.addAll(logQueue, EnumExtraTreeLog.values());
 				final Queue<IDesignMaterial> plankQueue = new LinkedList<>();
 				Collections.addAll(plankQueue, PlankType.ExtraTreePlanks.values());
-				final Queue<ExtraTreeFruitGene> fruitQueue = new LinkedList<>();
-				for (final ExtraTreeFruitGene wood3 : ExtraTreeFruitGene.values()) {
+				final Queue<AlleleETFruit> fruitQueue = new LinkedList<>();
+				for (final AlleleETFruit wood3 : AlleleETFruit.values()) {
 					fruitQueue.add(wood3);
 				}
 				final Queue<IDesign> designQueue = new LinkedList<>();
 				for (final IDesign wood4 : CarpentryManager.carpentryInterface.getSortedDesigns()) {
 					designQueue.add(wood4);
 				}
-				fruitQueue.remove(ExtraTreeFruitGene.Apple);
+				fruitQueue.remove(AlleleETFruit.Apple);
 				outputSpecies.println("<table style=\"width: 100%;\">");
 				while (!speciesQueue.isEmpty()) {
 					outputSpecies.println("<tr>");
@@ -98,7 +98,7 @@ public class ModuleCore implements IInitializable {
 				while (!fruitQueue.isEmpty()) {
 					outputFruit.println("<tr>");
 					for (int i = 0; i < 4; ++i) {
-						final ExtraTreeFruitGene wood6 = fruitQueue.poll();
+						final AlleleETFruit wood6 = fruitQueue.poll();
 						if (wood6 == null) {
 							outputFruit.println("<td></td>");
 						} else {

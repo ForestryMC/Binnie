@@ -1,18 +1,5 @@
 package binnie;
 
-import java.awt.Color;
-import java.util.Collections;
-import java.util.List;
-
-import javax.annotation.Nonnull;
-
-import forestry.core.fluids.BlockForestryFluid;
-import forestry.core.fluids.Fluids;
-import forestry.core.items.DrinkProperties;
-import net.minecraft.block.Block;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-
 public final class Constants {
 	public static final String CORE_MOD_ID = "binniecore";
 	public static final String BOTANY_MOD_ID = "botany";

@@ -1,13 +1,13 @@
 package binnie.extratrees.gen;
 
-import forestry.api.arboriculture.ITree;
+import forestry.api.world.ITreeGenData;
 
 public class WorldGenShrub {
-	public static class Shrub extends WorldGenTree {
-		public Shrub(final ITree tree) {
+	public static class Shrub extends WorldGenTree{
+		public Shrub(ITreeGenData tree) {
 			super(tree);
 		}
-
+	
 		@Override
 		public void generate() {
 			float leafSpawn = this.height;
@@ -30,13 +30,12 @@ public class WorldGenShrub {
 				this.generateCylinder(new Vector(f3, h3, 0.0f), width, 1, this.leaf, false);
 			}
 		}
-
+	
 		@Override
 		public void preGenerate() {
 			this.minHeight = 1;
 			this.height = this.determineHeight(1, 1);
 			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
-
 	}
 }

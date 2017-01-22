@@ -1,10 +1,10 @@
 package binnie.extratrees.gen;
 
-import forestry.api.arboriculture.ITree;
+import forestry.api.world.ITreeGenData;
 
 public class WorldGenMaple {
 	public static class RedMaple extends WorldGenTree {
-		public RedMaple(final ITree tree) {
+		public RedMaple(ITreeGenData tree) {
 			super(tree);
 		}
 

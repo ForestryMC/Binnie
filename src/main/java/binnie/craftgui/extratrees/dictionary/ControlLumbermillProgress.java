@@ -13,7 +13,6 @@ import binnie.craftgui.window.Panel;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.machines.lumbermill.LumbermillMachine;
 import binnie.extratrees.machines.lumbermill.LumbermillRecipes;
-import forestry.core.proxy.Proxies;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;

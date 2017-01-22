@@ -1,10 +1,10 @@
 package binnie.extratrees.gen;
 
-import forestry.api.arboriculture.ITree;
+import forestry.api.world.ITreeGenData;
 
 public class WorldGenWalnut {
 	public static class BlackWalnut extends WorldGenTree {
-		public BlackWalnut(final ITree tree) {
+		public BlackWalnut(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -29,7 +29,7 @@ public class WorldGenWalnut {
 	}
 
 	public static class Butternut extends WorldGenTree {
-		public Butternut(final ITree tree) {
+		public Butternut(ITreeGenData tree) {
 			super(tree);
 		}
 

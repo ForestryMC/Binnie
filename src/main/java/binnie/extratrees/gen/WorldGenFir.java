@@ -1,10 +1,10 @@
 package binnie.extratrees.gen;
 
-import forestry.api.arboriculture.ITree;
+import forestry.api.world.ITreeGenData;
 
 public class WorldGenFir {
 	public static class DouglasFir extends WorldGenTree {
-		public DouglasFir(final ITree tree) {
+		public DouglasFir(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -56,7 +56,7 @@ public class WorldGenFir {
 	}
 
 	public static class SilverFir extends WorldGenTree {
-		public SilverFir(final ITree tree) {
+		public SilverFir(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -96,7 +96,7 @@ public class WorldGenFir {
 	}
 
 	public static class BalsamFir extends WorldGenTree {
-		public BalsamFir(final ITree tree) {
+		public BalsamFir(ITreeGenData tree) {
 			super(tree);
 		}
 

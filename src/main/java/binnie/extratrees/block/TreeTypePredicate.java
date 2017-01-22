@@ -5,7 +5,6 @@ import javax.annotation.Nullable;
 import com.google.common.base.Predicate;
 
 import binnie.extratrees.genetics.ETTreeDefinition;
-import forestry.arboriculture.genetics.TreeDefinition;
 
 public class TreeTypePredicate implements Predicate<ETTreeDefinition> {
 	private final int minMeta;

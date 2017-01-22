@@ -1,35 +1,36 @@
 package binnie.extratrees.genetics;
 
-import binnie.core.resource.BinnieIcon;
+import java.util.Locale;
 
-public enum FruitSprite //implements IIconProvider
-{
-	Tiny,
-	Small,
-	Average,
-	Large,
-	Larger,
-	Pear;
+import binnie.Constants;
+import forestry.core.proxy.Proxies;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-	BinnieIcon icon;
+public enum FruitSprite{
+	TINY,
+	SMALL,
+	AVERAGE,
+	LARGE,
+	LARGER,
+	PEAR;
 
-	public short getIndex() {
-		return (short) (this.ordinal() + 4200);
+	public static final FruitSprite[] VALUES = values();
+	private final ResourceLocation location;
+
+	private FruitSprite() {
+		location = new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/fruit/" + name().toLowerCase(Locale.ENGLISH));
 	}
-
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public IIcon getIcon(final short texUID) {
-//		final int index = texUID - 4200;
-//		if (index >= 0 && index < values().length) {
-//			return values()[index].icon.getIcon();
-//		}
-//		return null;
-//	}
-//
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerIcons(final IIconRegister register) {
-//		this.icon = Binnie.Resource.getBlockIcon(ExtraTrees.instance, "fruit/" + this.toString().toLowerCase());
-//	}
+	
+	public ResourceLocation getLocation() {
+		return location;
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public void registerSprites() {
+		TextureMap map = Proxies.common.getClientInstance().getTextureMapBlocks();
+		map.registerSprite(location);
+	}
 }

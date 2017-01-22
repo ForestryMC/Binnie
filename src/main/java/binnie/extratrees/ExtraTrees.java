@@ -31,7 +31,6 @@ import binnie.extratrees.proxy.Proxy;
 import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.AlleleSpeciesRegisterEvent;
-import forestry.arboriculture.blocks.BlockDecorativeLeaves;
 import forestry.arboriculture.blocks.BlockForestryStairs;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -166,7 +165,7 @@ public class ExtraTrees extends AbstractMod {
 	@SubscribeEvent
 	public void speciesRegister(AlleleSpeciesRegisterEvent event) {
 		if (event.getRoot() instanceof ITreeRoot) {
-			for (final ExtraTreeFruitGene fruit : ExtraTreeFruitGene.values()) {
+			for (final AlleleETFruit fruit : AlleleETFruit.values()) {
 				AlleleManager.alleleRegistry.registerAllele(fruit);
 			}
 			ETTreeDefinition.preInitTrees();

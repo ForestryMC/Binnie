@@ -12,7 +12,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
-public abstract class WorldGenTree extends WorldGenerator {
+public class WorldGenTree extends WorldGenerator {
 	protected ITreeGenData treeGen;
 	protected World world;
 	protected Random rand;
@@ -79,7 +79,7 @@ public abstract class WorldGenTree extends WorldGenerator {
 		return new BlockTypeLog(treeGen);
 	}
 
-	public WorldGenTree(final ITreeGenData tree) {
+	public WorldGenTree(ITreeGenData tree) {
 		this.minHeight = 3;
 		this.maxHeight = 80;
 		this.spawnPods = false;
@@ -88,9 +88,7 @@ public abstract class WorldGenTree extends WorldGenerator {
 		this.air = new BlockTypeVoid();
 		this.bushiness = 0.0f;
 		this.spawnPods = tree.allowsFruitBlocks();
-		if (tree instanceof ITreeGenData) {
-			this.treeGen = tree;
-		}
+		this.treeGen = tree;
 	}
 
 	@Override

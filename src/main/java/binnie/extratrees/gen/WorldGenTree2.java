@@ -1,10 +1,10 @@
 package binnie.extratrees.gen;
 
-import forestry.api.arboriculture.ITree;
+import forestry.api.world.ITreeGenData;
 
 public class WorldGenTree2 {
 	public static class Olive extends WorldGenTree {
-		public Olive(final ITree tree) {
+		public Olive(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -39,7 +39,7 @@ public class WorldGenTree2 {
 	}
 
 	public static class Sweetgum extends WorldGenTree {
-		public Sweetgum(final ITree tree) {
+		public Sweetgum(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -76,7 +76,7 @@ public class WorldGenTree2 {
 	}
 
 	public static class Locust extends WorldGenTree {
-		public Locust(final ITree tree) {
+		public Locust(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -121,7 +121,7 @@ public class WorldGenTree2 {
 	}
 
 	public static class Pear extends WorldGenTree {
-		public Pear(final ITree tree) {
+		public Pear(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -154,7 +154,7 @@ public class WorldGenTree2 {
 	}
 
 	public static class Iroko extends WorldGenTree {
-		public Iroko(final ITree tree) {
+		public Iroko(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -197,7 +197,7 @@ public class WorldGenTree2 {
 	}
 
 	public static class Gingko extends WorldGenTree {
-		public Gingko(final ITree tree) {
+		public Gingko(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -252,7 +252,7 @@ public class WorldGenTree2 {
 	}
 
 	public static class Box extends WorldGenTree {
-		public Box(final ITree tree) {
+		public Box(ITreeGenData tree) {
 			super(tree);
 		}
 
@@ -278,7 +278,7 @@ public class WorldGenTree2 {
 	}
 
 	public static class Clove extends WorldGenTree {
-		public Clove(final ITree tree) {
+		public Clove(ITreeGenData tree) {
 			super(tree);
 		}
 

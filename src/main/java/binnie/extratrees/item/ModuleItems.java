@@ -4,7 +4,6 @@ import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
-import binnie.core.item.ItemMisc;
 import binnie.core.liquid.ItemFluidContainer;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.EnumExtraTreeLog;
@@ -132,9 +131,9 @@ public class ModuleItems implements IInitializable {
 		RecipeManagers.carpenterManager.addRecipe(100, Binnie.Liquid.getFluidStack("water", 2000), null, new ItemStack(ExtraTrees.itemDictionary), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotCopper", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
 		RecipeManagers.carpenterManager.addRecipe(100, Binnie.Liquid.getFluidStack("water", 2000), null, new ItemStack(ExtraTrees.itemDictionaryLepi), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotBronze", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
 		RecipeManagers.stillManager.addRecipe(25, ExtraTreeLiquid.Resin.get(5), ExtraTreeLiquid.Turpentine.get(3));
-		RecipeManagers.carpenterManager.addRecipe(25, ExtraTreeLiquid.Turpentine.get(50), null, ((ItemMisc) ExtraTrees.itemMisc).getStack(ExtraTreeItems.WoodWax, 4), "x", 'x', Mods.Forestry.stack("beeswax"));
+		RecipeManagers.carpenterManager.addRecipe(25, ExtraTreeLiquid.Turpentine.get(50), null, ExtraTrees.itemMisc.getStack(ExtraTreeItems.WoodWax, 4), "x", 'x', Mods.Forestry.stack("beeswax"));
 		if (Binnie.Liquid.getFluidStack("Creosote Oil", 100) != null) {
-			RecipeManagers.carpenterManager.addRecipe(25, Binnie.Liquid.getFluidStack("Creosote Oil", 50), null, ((ItemMisc) ExtraTrees.itemMisc).getStack(ExtraTreeItems.WoodWax, 1), "x", 'x', Mods.Forestry.stack("beeswax"));
+			RecipeManagers.carpenterManager.addRecipe(25, Binnie.Liquid.getFluidStack("Creosote Oil", 50), null, ExtraTrees.itemMisc.getStack(ExtraTreeItems.WoodWax, 1), "x", 'x', Mods.Forestry.stack("beeswax"));
 		}
 		for (final FluidContainerRegistry.FluidContainerData data : FluidContainerRegistry.getRegisteredFluidContainerData()) {
 			if (data.fluid.isFluidEqual(Binnie.Liquid.getFluidStack("water", 0)) && data.fluid.amount == 1000) {

@@ -8,20 +8,9 @@ import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.BlockETDecorativeLeaves;
 import binnie.extratrees.block.slab.BlockETSlab;
 import binnie.extratrees.models.ModelETDecorativeLeaves;
-import forestry.api.arboriculture.EnumPileType;
 import forestry.arboriculture.PluginArboriculture;
-import forestry.arboriculture.blocks.BlockDecorativeLeaves;
-import forestry.arboriculture.blocks.slab.BlockArbSlab;
-import forestry.arboriculture.models.ModelDecorativeLeaves;
-import forestry.arboriculture.models.ModelLeaves;
-import forestry.arboriculture.models.ModelWoodPile;
-import forestry.arboriculture.models.WoodModelLoader;
-import forestry.arboriculture.proxy.ProxyArboricultureClient;
-import forestry.arboriculture.render.CharcoalPileRenderer;
-import forestry.arboriculture.tiles.TilePile;
 import forestry.core.models.BlockModelEntry;
 import forestry.core.models.ModelEntry;
-import forestry.core.proxy.Proxies;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -29,8 +18,6 @@ import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 
 public class ProxyClient extends Proxy implements IExtraTreeProxy {
 	public static ModelManager modelManager = new ModelManager(Constants.EXTRA_TREES_MOD_ID);
@@ -42,7 +29,7 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 	
 	@Override
 	public void registerBlockModel(@Nonnull final BlockModelEntry index) {
-		getModelManager().registerCustomBlockModel(index);
+		ModelManager.registerCustomBlockModel(index);
 		if(index.addStateMapper){
 			StateMapperBase ignoreState = new BlockModeStateMapper(index);
 			ModelLoader.setCustomStateMapper(index.block, ignoreState);
@@ -51,7 +38,7 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 	
 	@Override
 	public void registerModel(@Nonnull ModelEntry index) {
-		getModelManager().registerCustomModel(index);
+		ModelManager.registerCustomModel(index);
 	}
 
 	@Override

@@ -6,8 +6,6 @@ import binnie.extratrees.genetics.ETTreeDefinition;
 import forestry.api.arboriculture.IFruitProvider;
 import forestry.api.arboriculture.ITreeGenome;
 import forestry.arboriculture.PluginArboriculture;
-import forestry.arboriculture.blocks.BlockDecorativeLeaves;
-import forestry.arboriculture.genetics.TreeDefinition;
 import forestry.arboriculture.items.ItemBlockLeaves;
 import forestry.core.items.IColoredItem;
 import forestry.core.items.ItemBlockForestry;
