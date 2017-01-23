@@ -100,4 +100,8 @@ public class BreweryRecipes {
 	public static void addRecipes(IBreweryRecipe... recipes) {
 		Collections.addAll(BreweryRecipes.recipes, recipes);
 	}
+
+	public static List<IBreweryRecipe> getRecipes() {
+		return Collections.unmodifiableList(recipes);
+	}
 }

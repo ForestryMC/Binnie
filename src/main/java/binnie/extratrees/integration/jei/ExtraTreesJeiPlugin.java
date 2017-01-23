@@ -2,6 +2,9 @@ package binnie.extratrees.integration.jei;
 
 import binnie.core.integration.jei.Drawables;
 import binnie.core.integration.jei.SimpleRecipeHandler;
+import binnie.extratrees.integration.jei.brewery.BreweryRecipeCategory;
+import binnie.extratrees.integration.jei.brewery.BreweryRecipeMaker;
+import binnie.extratrees.integration.jei.brewery.BreweryRecipeWrapper;
 import binnie.extratrees.integration.jei.fruitpress.FruitPressRecipeCategory;
 import binnie.extratrees.integration.jei.fruitpress.FruitPressRecipeMaker;
 import binnie.extratrees.integration.jei.fruitpress.FruitPressRecipeWrapper;
@@ -35,18 +38,22 @@ public class ExtraTreesJeiPlugin extends BlankModPlugin {
 
 		registry.addRecipeCategories(
 				new LumbermillRecipeCategory(),
-				new FruitPressRecipeCategory()
+				new FruitPressRecipeCategory(),
+				new BreweryRecipeCategory()
 		);
 
 		registry.addRecipeHandlers(
 				new SimpleRecipeHandler<>(LumbermillRecipeWrapper.class, RecipeUids.LUMBERMILL),
-				new SimpleRecipeHandler<>(FruitPressRecipeWrapper.class, RecipeUids.FRUIT_PRESS)
+				new SimpleRecipeHandler<>(FruitPressRecipeWrapper.class, RecipeUids.FRUIT_PRESS),
+				new SimpleRecipeHandler<>(BreweryRecipeWrapper.class, RecipeUids.BREWING)
 		);
 
 		registry.addRecipeCategoryCraftingItem(ExtraTreeMachine.Lumbermill.get(1), RecipeUids.LUMBERMILL);
 		registry.addRecipeCategoryCraftingItem(ExtraTreeMachine.Press.get(1), RecipeUids.FRUIT_PRESS);
+		registry.addRecipeCategoryCraftingItem(ExtraTreeMachine.Brewery.get(1), RecipeUids.BREWING);
 
 		registry.addRecipes(LumbermillRecipeMaker.create());
 		registry.addRecipes(FruitPressRecipeMaker.create());
+		registry.addRecipes(BreweryRecipeMaker.create());
 	}
 }
