@@ -13,6 +13,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import java.util.Map;
 
 public class DistilleryLogic extends ComponentProcessSetCost implements IProcess, INetwork.SendGuiNBT, INetwork.RecieveGuiNBT {
+	public static final int INPUT_FLUID_AMOUNT = 1000;
+
 	public FluidStack currentFluid;
 	public int level;
 
@@ -73,8 +75,7 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 
 	@Override
 	protected void onFinishTask() {
-		final FluidStack output = DistilleryRecipes.getOutput(this.currentFluid, this.level).copy();
-		output.amount = 1000;
+		final FluidStack output = DistilleryRecipes.getOutput(this.currentFluid, this.level);
 		this.getUtil().fillTank(DistilleryMachine.TANK_OUTPUT, output);
 	}
 
@@ -113,8 +114,8 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		if (this.canWork() == null && this.currentFluid == null && this.getUtil().getTank(DistilleryMachine.TANK_INPUT).getFluidAmount() >= 1000) {
-			this.currentFluid = this.getUtil().drainTank(DistilleryMachine.TANK_INPUT, 1000);
+		if (this.canWork() == null && this.currentFluid == null && this.getUtil().getTank(DistilleryMachine.TANK_INPUT).getFluidAmount() >= INPUT_FLUID_AMOUNT) {
+			this.currentFluid = this.getUtil().drainTank(DistilleryMachine.TANK_INPUT, INPUT_FLUID_AMOUNT);
 		}
 	}
 
@@ -123,6 +124,10 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 		if (this.currentFluid == null) {
 			return "Empty";
 		}
-		return "Creating " + DistilleryRecipes.getOutput(this.currentFluid, this.level).getFluid().getLocalizedName(this.currentFluid);
+		FluidStack output = DistilleryRecipes.getOutput(this.currentFluid, this.level);
+		if (output == null) {
+			return "Empty";
+		}
+		return "Creating " + output.getLocalizedName();
 	}
 }

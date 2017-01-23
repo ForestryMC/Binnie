@@ -13,6 +13,7 @@ import binnie.extratrees.item.ExtraTreeItems;
 import binnie.extratrees.item.Food;
 import binnie.extratrees.machines.brewery.BrewedGrainRecipe;
 import binnie.extratrees.machines.brewery.BreweryRecipes;
+import binnie.extratrees.machines.distillery.DistilleryLogic;
 import binnie.extratrees.machines.distillery.DistilleryRecipes;
 import binnie.extratrees.machines.fruitpress.FruitPressRecipes;
 import forestry.api.recipes.ISqueezerRecipe;
@@ -133,13 +134,18 @@ public class ModuleAlcohol implements IInitializable {
 	}
 
 	private void addDistillery(final IFluidType source, final IFluidType singleDistilled, final IFluidType doubleDistilled, final IFluidType tripleDistilled) {
-		DistilleryRecipes.addRecipe(source.get(5), singleDistilled.get(4), 0);
-		DistilleryRecipes.addRecipe(source.get(5), doubleDistilled.get(2), 1);
-		DistilleryRecipes.addRecipe(source.get(5), tripleDistilled.get(1), 2);
+		final int inAmount = DistilleryLogic.INPUT_FLUID_AMOUNT;
+		final int outAmount1 = inAmount * 4 / 5;
+		final int outAmount2 = inAmount * 2 / 5;
+		final int outAmount3 = inAmount / 5;
 
-		DistilleryRecipes.addRecipe(singleDistilled.get(5), doubleDistilled.get(2), 0);
-		DistilleryRecipes.addRecipe(singleDistilled.get(5), tripleDistilled.get(1), 1);
+		DistilleryRecipes.addRecipe(source.get(inAmount), singleDistilled.get(outAmount1), 0);
+		DistilleryRecipes.addRecipe(source.get(inAmount), doubleDistilled.get(outAmount2), 1);
+		DistilleryRecipes.addRecipe(source.get(inAmount), tripleDistilled.get(outAmount3), 2);
 
-		DistilleryRecipes.addRecipe(doubleDistilled.get(5), tripleDistilled.get(2), 0);
+		DistilleryRecipes.addRecipe(singleDistilled.get(inAmount), doubleDistilled.get(outAmount2), 0);
+		DistilleryRecipes.addRecipe(singleDistilled.get(inAmount), tripleDistilled.get(outAmount3), 1);
+
+		DistilleryRecipes.addRecipe(doubleDistilled.get(inAmount), tripleDistilled.get(outAmount2), 0);
 	}
 }
