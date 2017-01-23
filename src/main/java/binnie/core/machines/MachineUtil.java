@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -108,6 +109,7 @@ public class MachineUtil {
 		return this.getTank(tankInput).getFluidAmount() == 0;
 	}
 
+	@Nullable
 	public FluidStack getFluid(final int tankInput) {
 		return (this.getTank(tankInput).getFluid() == null) ? null : this.getTank(tankInput).getFluid();
 	}

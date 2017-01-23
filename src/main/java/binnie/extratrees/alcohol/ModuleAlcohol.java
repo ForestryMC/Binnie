@@ -9,9 +9,12 @@ import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.alcohol.drink.DrinkLiquid;
 import binnie.extratrees.alcohol.drink.DrinkManager;
 import binnie.extratrees.alcohol.drink.ItemDrink;
+import binnie.extratrees.item.ExtraTreeItems;
 import binnie.extratrees.item.Food;
-import binnie.extratrees.machines.Brewery;
-import binnie.extratrees.machines.Distillery;
+import binnie.extratrees.machines.brewery.BrewedGrainRecipe;
+import binnie.extratrees.machines.brewery.BreweryRecipes;
+import binnie.extratrees.machines.distillery.DistilleryLogic;
+import binnie.extratrees.machines.distillery.DistilleryRecipes;
 import binnie.extratrees.machines.fruitpress.FruitPressRecipes;
 import forestry.api.recipes.ISqueezerRecipe;
 import forestry.api.recipes.RecipeManagers;
@@ -69,19 +72,16 @@ public class ModuleAlcohol implements IInitializable {
 			}
 			for (final ItemStack stack : ores) {
 				for (final ISqueezerRecipe entry : RecipeManagers.squeezerManager.recipes()) {
-					try {
-						final ItemStack input = entry.getResources()[0];
-						final FluidStack output = entry.getFluidOutput();
-						if (!ItemStack.areItemStacksEqual(stack, input) && !OreDictionary.itemMatches(input, stack, true)) {
-							continue;
-						}
-						int amount = output.amount;
-						if (Objects.equals(output.getFluid().getName(), "seedoil")) {
-							amount *= 2;
-						}
-						FruitPressRecipes.addRecipe(stack, juice.get(amount));
-					} catch (Exception ex) {
+					final ItemStack input = entry.getResources()[0];
+					final FluidStack output = entry.getFluidOutput();
+					if (!ItemStack.areItemStacksEqual(stack, input) && !OreDictionary.itemMatches(input, stack, true)) {
+						continue;
 					}
+					int amount = output.amount;
+					if (Objects.equals(output.getFluid().getName(), "seedoil")) {
+						amount *= 2;
+					}
+					FruitPressRecipes.addRecipe(stack, juice.get(amount));
 				}
 			}
 		}
@@ -89,11 +89,25 @@ public class ModuleAlcohol implements IInitializable {
 			for (final String fermentLiquid : alcohol.fermentationLiquid) {
 				final FluidStack fluid = Binnie.Liquid.getFluidStack(fermentLiquid, 5);
 				if (fluid != null) {
-					Brewery.addRecipe(fluid, alcohol.get(5));
+					BreweryRecipes.addRecipe(fluid, alcohol.get(5));
 				}
 			}
 		}
-		Brewery.addBeerAndMashRecipes();
+
+		BreweryRecipes.addRecipes(
+				new BrewedGrainRecipe(Alcohol.Ale, BreweryRecipes.GRAIN_BARLEY, BreweryRecipes.HOPS),
+				new BrewedGrainRecipe(Alcohol.Lager, BreweryRecipes.GRAIN_BARLEY, BreweryRecipes.HOPS, ExtraTreeItems.LagerYeast.get(1)),
+				new BrewedGrainRecipe(Alcohol.Stout, BreweryRecipes.GRAIN_ROASTED, BreweryRecipes.HOPS),
+				new BrewedGrainRecipe(Alcohol.CornBeer, BreweryRecipes.GRAIN_CORN, BreweryRecipes.HOPS),
+				new BrewedGrainRecipe(Alcohol.RyeBeer, BreweryRecipes.GRAIN_RYE, BreweryRecipes.HOPS),
+				new BrewedGrainRecipe(Alcohol.WheatBeer, BreweryRecipes.GRAIN_WHEAT, BreweryRecipes.HOPS),
+
+				new BrewedGrainRecipe(Alcohol.Barley, BreweryRecipes.GRAIN_BARLEY),
+				new BrewedGrainRecipe(Alcohol.Corn, BreweryRecipes.GRAIN_CORN),
+				new BrewedGrainRecipe(Alcohol.Rye, BreweryRecipes.GRAIN_RYE),
+				new BrewedGrainRecipe(Alcohol.Wheat, BreweryRecipes.GRAIN_WHEAT)
+		);
+
 		this.addDistillery(Alcohol.Apple, Spirit.AppleBrandy, Spirit.AppleLiquor, Spirit.NeutralSpirit);
 		this.addDistillery(Alcohol.Pear, Spirit.PearBrandy, Spirit.PearLiquor, Spirit.NeutralSpirit);
 		this.addDistillery(Alcohol.Apricot, Spirit.ApricotBrandy, Spirit.ApricotLiquor, Spirit.NeutralSpirit);
@@ -119,12 +133,19 @@ public class ModuleAlcohol implements IInitializable {
 		this.addDistillery(Alcohol.Corn, Spirit.CornWhiskey, Spirit.Vodka, Spirit.NeutralSpirit);
 	}
 
-	private void addDistillery(final IFluidType source, final IFluidType a, final IFluidType b, final IFluidType c) {
-		Distillery.addRecipe(source.get(5), a.get(4), 0);
-		Distillery.addRecipe(source.get(5), b.get(2), 1);
-		Distillery.addRecipe(source.get(5), c.get(1), 2);
-		Distillery.addRecipe(a.get(5), b.get(2), 0);
-		Distillery.addRecipe(a.get(5), b.get(1), 1);
-		Distillery.addRecipe(b.get(5), c.get(2), 0);
+	private void addDistillery(final IFluidType source, final IFluidType singleDistilled, final IFluidType doubleDistilled, final IFluidType tripleDistilled) {
+		final int inAmount = DistilleryLogic.INPUT_FLUID_AMOUNT;
+		final int outAmount1 = inAmount * 4 / 5;
+		final int outAmount2 = inAmount * 2 / 5;
+		final int outAmount3 = inAmount / 5;
+
+		DistilleryRecipes.addRecipe(source.get(inAmount), singleDistilled.get(outAmount1), 0);
+		DistilleryRecipes.addRecipe(source.get(inAmount), doubleDistilled.get(outAmount2), 1);
+		DistilleryRecipes.addRecipe(source.get(inAmount), tripleDistilled.get(outAmount3), 2);
+
+		DistilleryRecipes.addRecipe(singleDistilled.get(inAmount), doubleDistilled.get(outAmount2), 0);
+		DistilleryRecipes.addRecipe(singleDistilled.get(inAmount), tripleDistilled.get(outAmount3), 1);
+
+		DistilleryRecipes.addRecipe(doubleDistilled.get(inAmount), tripleDistilled.get(outAmount2), 0);
 	}
 }

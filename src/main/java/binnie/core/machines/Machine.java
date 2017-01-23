@@ -36,14 +36,12 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	private Map<Class<? extends MachineComponent>, MachineComponent> componentMap;
 	private TileEntity tile;
 	private boolean queuedInventoryUpdate;
-	private int nextProgressBarID;
 	private GameProfile owner;
 
 	public Machine(final MachinePackage pack, final TileEntity tile) {
 		this.componentInterfaceMap = new LinkedHashMap<>();
 		this.componentMap = new LinkedHashMap<>();
 		this.queuedInventoryUpdate = false;
-		this.nextProgressBarID = 0;
 		this.owner = null;
 		this.tile = tile;
 		pack.createMachine(this);
@@ -246,10 +244,6 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 		for (final MachineComponent component : this.getComponents()) {
 			component.onDestruction();
 		}
-	}
-
-	public int getUniqueProgressBarID() {
-		return this.nextProgressBarID++;
 	}
 
 	@Override
