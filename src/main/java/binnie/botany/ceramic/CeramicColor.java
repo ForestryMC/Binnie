@@ -27,6 +27,11 @@ public class CeramicColor implements IDesignMaterial {
 	}
 
 	@Override
+	public ItemStack getStack(boolean fireproof) {
+		return getStack();
+	}
+
+	@Override
 	public String getName() {
 		return this.color.getName();
 	}
