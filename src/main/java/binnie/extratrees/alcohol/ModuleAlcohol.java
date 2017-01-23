@@ -13,7 +13,7 @@ import binnie.extratrees.item.ExtraTreeItems;
 import binnie.extratrees.item.Food;
 import binnie.extratrees.machines.brewery.BrewedGrainRecipe;
 import binnie.extratrees.machines.brewery.BreweryRecipes;
-import binnie.extratrees.machines.Distillery;
+import binnie.extratrees.machines.distillery.DistilleryRecipes;
 import binnie.extratrees.machines.fruitpress.FruitPressRecipes;
 import forestry.api.recipes.ISqueezerRecipe;
 import forestry.api.recipes.RecipeManagers;
@@ -132,12 +132,14 @@ public class ModuleAlcohol implements IInitializable {
 		this.addDistillery(Alcohol.Corn, Spirit.CornWhiskey, Spirit.Vodka, Spirit.NeutralSpirit);
 	}
 
-	private void addDistillery(final IFluidType source, final IFluidType a, final IFluidType b, final IFluidType c) {
-		Distillery.addRecipe(source.get(5), a.get(4), 0);
-		Distillery.addRecipe(source.get(5), b.get(2), 1);
-		Distillery.addRecipe(source.get(5), c.get(1), 2);
-		Distillery.addRecipe(a.get(5), b.get(2), 0);
-		Distillery.addRecipe(a.get(5), b.get(1), 1);
-		Distillery.addRecipe(b.get(5), c.get(2), 0);
+	private void addDistillery(final IFluidType source, final IFluidType singleDistilled, final IFluidType doubleDistilled, final IFluidType tripleDistilled) {
+		DistilleryRecipes.addRecipe(source.get(5), singleDistilled.get(4), 0);
+		DistilleryRecipes.addRecipe(source.get(5), doubleDistilled.get(2), 1);
+		DistilleryRecipes.addRecipe(source.get(5), tripleDistilled.get(1), 2);
+
+		DistilleryRecipes.addRecipe(singleDistilled.get(5), doubleDistilled.get(2), 0);
+		DistilleryRecipes.addRecipe(singleDistilled.get(5), tripleDistilled.get(1), 1);
+
+		DistilleryRecipes.addRecipe(doubleDistilled.get(5), tripleDistilled.get(2), 0);
 	}
 }
