@@ -1,4 +1,4 @@
-package binnie.extratrees.block;
+package binnie.extratrees.block.property;
 
 import javax.annotation.Nullable;
 

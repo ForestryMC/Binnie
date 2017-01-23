@@ -8,15 +8,22 @@ import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 
 import binnie.extratrees.block.EnumExtraTreeLog;
+import binnie.extratrees.block.PlankType;
 import forestry.arboriculture.blocks.WoodTypePredicate;
 import forestry.arboriculture.blocks.property.PropertyWoodType;
 
 public class PropertyETWoodType extends PropertyWoodType<EnumExtraTreeLog> {
-	public static PropertyETWoodType[] create(@Nonnull String name, int variantsPerBlock) {
-		final int variantCount = (int) Math.ceil((float) EnumExtraTreeLog.VALUES.length / variantsPerBlock);
+	public static PropertyETWoodType[] create(@Nonnull String name, int variantsPerBlock, boolean isLog) {
+		int length;
+		if(isLog){
+			length = EnumExtraTreeLog.VALUES.length;
+		}else{
+			length = PlankType.ExtraTreePlanks.VALUES.length;
+		}
+		final int variantCount = (int) Math.ceil((float) length / variantsPerBlock);
 		PropertyETWoodType[] variants = new PropertyETWoodType[variantCount];
 		for (int variantNumber = 0; variantNumber < variantCount; variantNumber++) {
-			WoodTypePredicate filter = new WoodTypePredicate(variantNumber, variantsPerBlock);
+			ETWoodTypePredicate filter = new ETWoodTypePredicate(variantNumber, variantsPerBlock, isLog);
 			Collection<EnumExtraTreeLog> allowedValues = Collections2.filter(Lists.newArrayList(EnumExtraTreeLog.class.getEnumConstants()), filter);
 			variants[variantNumber] = new PropertyETWoodType(name, EnumExtraTreeLog.class, allowedValues);
 		}

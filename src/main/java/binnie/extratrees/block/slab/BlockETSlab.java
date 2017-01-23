@@ -13,7 +13,7 @@ import java.util.List;
 public abstract class BlockETSlab extends BlockForestrySlab<EnumExtraTreeLog> {
 	public static List<BlockETSlab> create(boolean fireproof, final boolean doubleSlab) {
 		List<BlockETSlab> blocks = new ArrayList<>();
-		PropertyETWoodType[] variants = PropertyETWoodType.create("variant", VARIANTS_PER_BLOCK);
+		PropertyETWoodType[] variants = PropertyETWoodType.create("variant", VARIANTS_PER_BLOCK, false);
 		for (int i = 0; i < variants.length; i++) {
 			PropertyETWoodType variant = variants[i];
 			BlockETSlab block = new BlockETSlab(fireproof, i) {

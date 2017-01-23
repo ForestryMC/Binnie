@@ -3,7 +3,6 @@ package binnie.extratrees.block.property;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 
-import binnie.extratrees.block.TreeTypePredicate;
 import binnie.extratrees.genetics.ETTreeDefinition;
 
 import javax.annotation.Nonnull;

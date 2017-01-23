@@ -199,12 +199,11 @@ public class ModuleBlocks implements IInitializable {
 	@Override
 	public void postInit() {
 		IWoodAccess woodAccess = TreeManager.woodAccess;
-		for(EnumExtraTreeLog woodType : EnumExtraTreeLog.VALUES){
+		for(PlankType.ExtraTreePlanks plankType : PlankType.ExtraTreePlanks.VALUES){
 			for(boolean fireproof : new boolean[]{false, true}){
-				ItemStack logs = woodAccess.getStack(woodType, WoodBlockKind.LOG, fireproof);
-				ItemStack planks = woodAccess.getStack(woodType, WoodBlockKind.PLANKS, fireproof);
-				ItemStack slabs = woodAccess.getStack(woodType, WoodBlockKind.SLAB, fireproof);
-				ItemStack stairs = woodAccess.getStack(woodType, WoodBlockKind.STAIRS, fireproof);
+				ItemStack planks = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.PLANKS, fireproof);
+				ItemStack slabs = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.SLAB, fireproof);
+				ItemStack stairs = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.STAIRS, fireproof);
 
 				stairs.stackSize = 4;
 				RecipeUtil.addPriorityRecipe(stairs.copy(),
@@ -215,10 +214,6 @@ public class ModuleBlocks implements IInitializable {
 
 				slabs.stackSize = 6;
 				RecipeUtil.addPriorityRecipe(slabs.copy(), "###", '#', planks.copy());
-
-				ItemStack craftedPlanks = planks.copy();
-				craftedPlanks.stackSize = 4;
-				RecipeUtil.addShapelessRecipe(craftedPlanks, logs.copy());
 			}
 		}
 		GameRegistry.addRecipe(new MultiFenceRecipeSize());

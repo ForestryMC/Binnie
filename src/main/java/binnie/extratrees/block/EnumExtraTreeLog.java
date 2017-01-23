@@ -13,7 +13,6 @@ public enum EnumExtraTreeLog implements IWoodType {
 	Apple("Apple", PlankType.ExtraTreePlanks.Apple),
 	Fig("Fig", PlankType.ExtraTreePlanks.Fig),
 	Butternut("Butternut", PlankType.ExtraTreePlanks.Butternut),
-	Cherry("Cherry", PlankType.ForestryPlanks.CHERRY),
 	Whitebeam("Whitebeam", PlankType.ExtraTreePlanks.Whitebeam),
 	Rowan("Rowan", PlankType.ExtraTreePlanks.Rowan),
 	Hemlock("Hemlock", PlankType.ExtraTreePlanks.Hemlock),
@@ -48,8 +47,9 @@ public enum EnumExtraTreeLog implements IWoodType {
 	Box("Box", PlankType.ExtraTreePlanks.Box),
 	Syzgium("Syzgium", PlankType.ExtraTreePlanks.Syzgium),
 	Eucalyptus3("Eucalyptus", PlankType.ExtraTreePlanks.Eucalyptus),
-	Cinnamon("Cinnamon", PlankType.VanillaPlanks.JUNGLE),
 	PinkIvory("Pink Ivory", PlankType.ExtraTreePlanks.PinkIvory),
+	Cherry("Cherry", PlankType.ForestryPlanks.CHERRY),
+	Cinnamon("Cinnamon", PlankType.VanillaPlanks.JUNGLE),
 	EMPTY("EMPTY", PlankType.VanillaPlanks.OAK);//TODO change name/create wood for SHRUBS
 
 	public static final EnumExtraTreeLog[] VALUES = values();
@@ -77,12 +77,12 @@ public enum EnumExtraTreeLog implements IWoodType {
            return;
         }
         ItemStack log = TreeManager.woodAccess.getStack(this, WoodBlockKind.LOG, false);
-        ItemStack result = TreeManager.woodAccess.getStack(this, WoodBlockKind.PLANKS, false);
+        ItemStack result = plank.getStack(false);
         result.stackSize = 4;
         GameRegistry.addShapelessRecipe(result, log);
         
         ItemStack logFireproof = TreeManager.woodAccess.getStack(this, WoodBlockKind.LOG, true);
-        ItemStack resultFireproof = TreeManager.woodAccess.getStack(this, WoodBlockKind.PLANKS, true);
+        ItemStack resultFireproof = plank.getStack(true);
         resultFireproof.stackSize = 4;
         GameRegistry.addShapelessRecipe(resultFireproof, logFireproof);
     }
@@ -125,6 +125,10 @@ public enum EnumExtraTreeLog implements IWoodType {
 	@Override
 	public String getPlankTexture() {
 		return plank.getPlankTextureName();
+	}
+	
+	public IPlankType getPlank() {
+		return plank;
 	}
 
 	@Override

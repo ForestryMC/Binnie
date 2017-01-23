@@ -14,7 +14,7 @@ public abstract class BlockETPlank extends BlockForestryPlanks<EnumExtraTreeLog>
 	
 	public static List<BlockETPlank> create(boolean fireproof) {
 		List<BlockETPlank> blocks = new ArrayList<>();
-		PropertyETWoodType[] variants = PropertyETWoodType.create("variant", VARIANTS_PER_BLOCK);
+		PropertyETWoodType[] variants = PropertyETWoodType.create("variant", VARIANTS_PER_BLOCK, false);
 		for (int i = 0; i < variants.length; i++) {
 			PropertyETWoodType variant = variants[i];
 			BlockETPlank block = new BlockETPlank(fireproof, i) {

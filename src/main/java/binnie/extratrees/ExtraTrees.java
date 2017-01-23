@@ -13,6 +13,7 @@ import binnie.extratrees.alcohol.ModuleAlcohol;
 import binnie.extratrees.alcohol.drink.ItemDrink;
 import binnie.extratrees.block.BlockETDecorativeLeaves;
 import binnie.extratrees.block.ModuleBlocks;
+import binnie.extratrees.block.PlankType;
 import binnie.extratrees.block.decor.BlockHedge;
 import binnie.extratrees.block.decor.BlockMultiFence;
 import binnie.extratrees.block.log.BlockETLog;
@@ -169,6 +170,7 @@ public class ExtraTrees extends AbstractMod {
 				AlleleManager.alleleRegistry.registerAllele(fruit);
 			}
 			ETTreeDefinition.preInitTrees();
+			PlankType.ExtraTreePlanks.initWoodTypes();
 
 			if (BinnieCore.isLepidopteryActive()) {
 				for (final ButterflySpecies species2 : ButterflySpecies.values()) {
