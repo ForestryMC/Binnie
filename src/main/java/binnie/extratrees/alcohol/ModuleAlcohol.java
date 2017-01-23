@@ -9,8 +9,10 @@ import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.alcohol.drink.DrinkLiquid;
 import binnie.extratrees.alcohol.drink.DrinkManager;
 import binnie.extratrees.alcohol.drink.ItemDrink;
+import binnie.extratrees.item.ExtraTreeItems;
 import binnie.extratrees.item.Food;
-import binnie.extratrees.machines.Brewery;
+import binnie.extratrees.machines.brewery.BrewedGrainRecipe;
+import binnie.extratrees.machines.brewery.BreweryRecipes;
 import binnie.extratrees.machines.Distillery;
 import binnie.extratrees.machines.fruitpress.FruitPressRecipes;
 import forestry.api.recipes.ISqueezerRecipe;
@@ -69,19 +71,16 @@ public class ModuleAlcohol implements IInitializable {
 			}
 			for (final ItemStack stack : ores) {
 				for (final ISqueezerRecipe entry : RecipeManagers.squeezerManager.recipes()) {
-					try {
-						final ItemStack input = entry.getResources()[0];
-						final FluidStack output = entry.getFluidOutput();
-						if (!ItemStack.areItemStacksEqual(stack, input) && !OreDictionary.itemMatches(input, stack, true)) {
-							continue;
-						}
-						int amount = output.amount;
-						if (Objects.equals(output.getFluid().getName(), "seedoil")) {
-							amount *= 2;
-						}
-						FruitPressRecipes.addRecipe(stack, juice.get(amount));
-					} catch (Exception ex) {
+					final ItemStack input = entry.getResources()[0];
+					final FluidStack output = entry.getFluidOutput();
+					if (!ItemStack.areItemStacksEqual(stack, input) && !OreDictionary.itemMatches(input, stack, true)) {
+						continue;
 					}
+					int amount = output.amount;
+					if (Objects.equals(output.getFluid().getName(), "seedoil")) {
+						amount *= 2;
+					}
+					FruitPressRecipes.addRecipe(stack, juice.get(amount));
 				}
 			}
 		}
@@ -89,11 +88,25 @@ public class ModuleAlcohol implements IInitializable {
 			for (final String fermentLiquid : alcohol.fermentationLiquid) {
 				final FluidStack fluid = Binnie.Liquid.getFluidStack(fermentLiquid, 5);
 				if (fluid != null) {
-					Brewery.addRecipe(fluid, alcohol.get(5));
+					BreweryRecipes.addRecipe(fluid, alcohol.get(5));
 				}
 			}
 		}
-		Brewery.addBeerAndMashRecipes();
+
+		BreweryRecipes.addRecipes(
+				new BrewedGrainRecipe(Alcohol.Ale, BreweryRecipes.GRAIN_BARLEY, BreweryRecipes.HOPS),
+				new BrewedGrainRecipe(Alcohol.Lager, BreweryRecipes.GRAIN_BARLEY, BreweryRecipes.HOPS, ExtraTreeItems.LagerYeast.get(1)),
+				new BrewedGrainRecipe(Alcohol.Stout, BreweryRecipes.GRAIN_ROASTED, BreweryRecipes.HOPS),
+				new BrewedGrainRecipe(Alcohol.CornBeer, BreweryRecipes.GRAIN_CORN, BreweryRecipes.HOPS),
+				new BrewedGrainRecipe(Alcohol.RyeBeer, BreweryRecipes.GRAIN_RYE, BreweryRecipes.HOPS),
+				new BrewedGrainRecipe(Alcohol.WheatBeer, BreweryRecipes.GRAIN_WHEAT, BreweryRecipes.HOPS),
+
+				new BrewedGrainRecipe(Alcohol.Barley, BreweryRecipes.GRAIN_BARLEY),
+				new BrewedGrainRecipe(Alcohol.Corn, BreweryRecipes.GRAIN_CORN),
+				new BrewedGrainRecipe(Alcohol.Rye, BreweryRecipes.GRAIN_RYE),
+				new BrewedGrainRecipe(Alcohol.Wheat, BreweryRecipes.GRAIN_WHEAT)
+		);
+
 		this.addDistillery(Alcohol.Apple, Spirit.AppleBrandy, Spirit.AppleLiquor, Spirit.NeutralSpirit);
 		this.addDistillery(Alcohol.Pear, Spirit.PearBrandy, Spirit.PearLiquor, Spirit.NeutralSpirit);
 		this.addDistillery(Alcohol.Apricot, Spirit.ApricotBrandy, Spirit.ApricotLiquor, Spirit.NeutralSpirit);

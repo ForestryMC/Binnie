@@ -12,6 +12,7 @@ import binnie.core.resource.BinnieResource;
 import binnie.core.resource.ResourceType;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.core.ExtraTreesGUID;
+import binnie.extratrees.machines.brewery.BreweryMachine;
 import binnie.extratrees.machines.lumbermill.LumbermillMachine;
 import binnie.extratrees.machines.fruitpress.FruitPressMachine;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,7 +27,7 @@ public enum ExtraTreeMachine implements IMachineType {
 	Panelworker(Designer.PackagePanelworker.class),
 	Nursery(Nursery.PackageNursery.class),
 	Press(FruitPressMachine.class),
-	Brewery(Brewery.PackageBrewery.class),
+	Brewery(BreweryMachine.class),
 	Distillery(Distillery.PackageDistillery.class),
 	Glassworker(Designer.PackageGlassworker.class),
 	Tileworker(Designer.PackageTileworker.class);

@@ -6,7 +6,7 @@ import binnie.craftgui.controls.ControlTextCentered;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.minecraft.control.ControlItemDisplay;
-import binnie.extratrees.machines.Brewery;
+import binnie.extratrees.machines.brewery.BreweryRecipes;
 import binnie.extratrees.machines.Distillery;
 import binnie.extratrees.machines.fruitpress.FruitPressRecipes;
 import forestry.api.recipes.ICentrifugeRecipe;
@@ -149,7 +149,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 
 	protected Collection<? extends FluidStack> getAllProducts(final FluidStack stack) {
 		final Collection<FluidStack> fluids = new UniqueFluidStackSet();
-		fluids.add(Brewery.getOutput(stack));
+		fluids.add(BreweryRecipes.getOutput(stack));
 		fluids.add(Distillery.getOutput(stack, 0));
 		fluids.add(Distillery.getOutput(stack, 1));
 		fluids.add(Distillery.getOutput(stack, 2));

@@ -1,5 +1,6 @@
 package binnie.extratrees.machines.lumbermill;
 
+import binnie.core.util.OreDictionaryUtil;
 import binnie.core.util.FakeCraftingWorld;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
@@ -66,8 +67,7 @@ public class LumbermillRecipes {
 			try {
 				ItemStack recipeOutput = craftingManager.findMatchingRecipe(fakeCraftingInventory, FakeCraftingWorld.getInstance());
 				if (recipeOutput != null) {
-					int[] outputOreIds = OreDictionary.getOreIDs(recipeOutput);
-					if (contains(outputOreIds, plankOreId)) {
+					if (OreDictionaryUtil.hasOreId(recipeOutput, plankOreId)) {
 						Item logItem = logCopy.getItem();
 						ItemStack outputCopy = recipeOutput.copy();
 						outputCopy.stackSize = (int) Math.ceil(outputCopy.stackSize * 1.5f); // turns stack of 4 up to 6
@@ -78,15 +78,6 @@ public class LumbermillRecipes {
 
 			}
 		}
-	}
-
-	private static boolean contains(int[] array, int value) {
-		for (int arrayValue : array) {
-			if (arrayValue == value) {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	private static class FakeCraftingHandler extends Container {
