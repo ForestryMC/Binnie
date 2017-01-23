@@ -2,14 +2,15 @@ package binnie.core.network.packet;
 
 import binnie.core.network.BinnieCorePacketID;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.util.math.BlockPos;
 
 import java.io.IOException;
 
 public class MessageMetadata extends MessageCoordinates {
 	public int meta;
 
-	public MessageMetadata(final int posX, final int posY, final int posZ, final int meta) {
-		super(BinnieCorePacketID.TileMetadata.ordinal(), posX, posY, posZ);
+	public MessageMetadata(BlockPos coordinates, int meta) {
+		super(BinnieCorePacketID.TileMetadata.ordinal(), coordinates);
 		this.meta = meta;
 	}
 

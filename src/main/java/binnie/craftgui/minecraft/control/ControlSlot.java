@@ -58,7 +58,7 @@ public class ControlSlot extends ControlSlotBase {
 
 	@Override
 	public void onRenderBackground() {
-		CraftGUI.Render.texture(CraftGUITexture.Slot, IPoint.ZERO);
+		CraftGUI.render.texture(CraftGUITexture.Slot, IPoint.ZERO);
 		if (this.slot == null) {
 			return;
 		}
@@ -67,7 +67,7 @@ public class ControlSlot extends ControlSlotBase {
 		if (islot != null && islot.getValidator() != null) {
 			final TextureAtlasSprite icon = islot.getValidator().getIcon(!islot.getInputSides().isEmpty());
 			if (icon != null) {
-				CraftGUI.Render.iconItem(new IPoint(1.0f, 1.0f), icon);
+				CraftGUI.render.sprite(new IPoint(1.0f, 1.0f), icon);
 			}
 		}
 		boolean highlighted = false;
@@ -80,13 +80,13 @@ public class ControlSlot extends ControlSlotBase {
 			}
 			highlighted = true;
 			final int c = -1442840576 + Math.min(highlight.getKey().getColour(), 16777215);
-			CraftGUI.Render.gradientRect(new IArea(1.0f, 1.0f, 16.0f, 16.0f), c, c);
+			CraftGUI.render.gradientRect(new IArea(1.0f, 1.0f, 16.0f, 16.0f), c, c);
 		}
 		if (!highlighted && this.getSuperParent().getMousedOverWidget() == this) {
 			if (Window.get(this).getGui().getDraggedItem() != null && !this.slot.isItemValid(Window.get(this).getGui().getDraggedItem())) {
-				CraftGUI.Render.gradientRect(new IArea(1.0f, 1.0f, 16.0f, 16.0f), -1426089575, -1426089575);
+				CraftGUI.render.gradientRect(new IArea(1.0f, 1.0f, 16.0f, 16.0f), -1426089575, -1426089575);
 			} else {
-				CraftGUI.Render.gradientRect(new IArea(1.0f, 1.0f, 16.0f, 16.0f), -2130706433, -2130706433);
+				CraftGUI.render.gradientRect(new IArea(1.0f, 1.0f, 16.0f, 16.0f), -2130706433, -2130706433);
 			}
 		}
 	}
@@ -111,8 +111,8 @@ public class ControlSlot extends ControlSlotBase {
 				area = this.getParent().getArea();
 				area.setPosition(IPoint.ZERO.sub(this.getPosition()));
 			}
-			CraftGUI.Render.colour(c);
-			CraftGUI.Render.texture(CraftGUITexture.Outline, area.outset(1));
+			CraftGUI.render.colour(c);
+			CraftGUI.render.texture(CraftGUITexture.Outline, area.outset(1));
 		}
 	}
 

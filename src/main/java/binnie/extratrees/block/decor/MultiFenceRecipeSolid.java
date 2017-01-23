@@ -6,6 +6,7 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeHooks;
 
 public class MultiFenceRecipeSolid implements IRecipe {
 	ItemStack cached;
@@ -50,9 +51,8 @@ public class MultiFenceRecipeSolid implements IRecipe {
 		return (this.cached == null) ? new ItemStack(Blocks.OAK_FENCE) : this.cached;
 	}
 
-	//TODO
 	@Override
 	public ItemStack[] getRemainingItems(InventoryCrafting inv) {
-		return new ItemStack[0];
+		return ForgeHooks.defaultRecipeGetRemainingItems(inv);
 	}
 }

@@ -119,7 +119,7 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 		}
 		super.onRenderBackground();
 		final Texture text = this.getTypeTexture();
-		CraftGUI.Render.texture(text, IPoint.ZERO);
+		CraftGUI.render.texture(text, IPoint.ZERO);
 	}
 
 	private Texture getTypeTexture() {

@@ -37,7 +37,7 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 	public void onRenderForeground() {
 		GL11.glDisable(2896);
 		final int sawX = (int) (63.0f * this.progress);
-		CraftGUI.Render.texture(ControlLumbermillProgress.Saw, new IPoint(sawX, -8.0f + 6.0f * (float) Math.sin(this.animation)));
+		CraftGUI.render.texture(ControlLumbermillProgress.Saw, new IPoint(sawX, -8.0f + 6.0f * (float) Math.sin(this.animation)));
 		final ItemStack item = Window.get(this).getInventory().getStackInSlot(LumbermillMachine.SLOT_LOG);
 		if (item == null) {
 			return;
@@ -69,14 +69,14 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 		//final IIcon icon2 = block2.getIcon(2, result.getItemDamage());
 		final IPoint size = this.getSize();
 		final IPoint pos = this.getAbsolutePosition();
-		CraftGUI.Render.limitArea(new IArea(pos.add(new IPoint(0.0f, 0.0f)), new IPoint(this.progress * 64.0f + 2.0f, 18.0f)));
+		CraftGUI.render.limitArea(new IArea(pos.add(new IPoint(0.0f, 0.0f)), new IPoint(this.progress * 64.0f + 2.0f, 18.0f)));
 		GL11.glEnable(3089);
 		for (int j = 0; j < 4; ++j) {
 			//TODO RENDERING
 			//CraftGUI.Render.iconBlock(new IPoint(1 + j * 16, 1.0f), icon2);
 		}
 		GL11.glDisable(3089);
-		CraftGUI.Render.texture(ControlLumbermillProgress.Saw2, new IPoint(sawX + 2, -8.0f + 6.0f * (float) Math.sin(this.animation)));
+		CraftGUI.render.texture(ControlLumbermillProgress.Saw2, new IPoint(sawX + 2, -8.0f + 6.0f * (float) Math.sin(this.animation)));
 	}
 
 	protected ControlLumbermillProgress(final IWidget parent, final float x, final float y) {

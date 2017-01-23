@@ -101,8 +101,7 @@ public class PlankType {
 
 		@Override
 		public ItemStack getStack() {
-			// TODO get stack
-			return null; //TileEntityMetadata.getItemStack(ExtraTrees.blockPlanks, this.ordinal());
+			return TreeManager.woodAccess.getStack(woodType, WoodBlockKind.PLANKS, true);
 		}
 
 //		public IIcon loadIcon(final IIconRegister register) {

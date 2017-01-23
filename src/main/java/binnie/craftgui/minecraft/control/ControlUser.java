@@ -24,7 +24,7 @@ public class ControlUser extends Control implements ITooltip {
 
 	@Override
 	public void onRenderBackground() {
-		CraftGUI.Render.texture(CraftGUITexture.UserButton, this.getArea());
+		CraftGUI.render.texture(CraftGUITexture.UserButton, this.getArea());
 	}
 
 	@Override

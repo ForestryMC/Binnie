@@ -66,10 +66,10 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 				GL11.glPushMatrix();
 				final float scale = this.getSize().x() / 16.0f;
 				GL11.glScalef(scale, scale, 1.0f);
-				CraftGUI.Render.iconBlock(IPoint.ZERO, icon);
+				CraftGUI.render.sprite(IPoint.ZERO, icon);
 				GL11.glPopMatrix();
 			} else {
-				CraftGUI.Render.iconBlock(IPoint.ZERO, icon);
+				CraftGUI.render.sprite(IPoint.ZERO, icon);
 			}
 			GL11.glDisable(3042);
 		}

@@ -37,6 +37,6 @@ class ControlColourSelector extends Control implements ITooltip, IControlValue<E
 	@Override
 	public void onRenderBackground() {
 		super.onRenderBackground();
-		CraftGUI.Render.gradientRect(this.getArea(), -16777216 + this.value.getColour(), -16777216 + this.value.getColour());
+		CraftGUI.render.gradientRect(this.getArea(), -16777216 + this.value.getColour(), -16777216 + this.value.getColour());
 	}
 }

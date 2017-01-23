@@ -74,10 +74,10 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
 	@Override
 	public void onRenderBackground() {
 		if (this.isMouseOver() && this.canFill(Window.get(this).getHeldItemStack())) {
-			CraftGUI.Render.solid(this.getArea(), -1);
-			CraftGUI.Render.solid(this.getArea().inset(1), -12303292);
+			CraftGUI.render.solid(this.getArea(), -1);
+			CraftGUI.render.solid(this.getArea().inset(1), -12303292);
 		}
-		CraftGUI.Render.colour(-1);
-		CraftGUI.Render.iconItem(IPoint.ZERO, BinnieCore.proxy.getTextureAtlasSprite(GeneticsTexture.dnaIcon.getResourceLocation()));
+		CraftGUI.render.colour(-1);
+		CraftGUI.render.sprite(IPoint.ZERO, BinnieCore.proxy.getTextureAtlasSprite(GeneticsTexture.dnaIcon.getResourceLocation()));
 	}
 }

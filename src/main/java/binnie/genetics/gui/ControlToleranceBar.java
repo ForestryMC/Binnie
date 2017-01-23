@@ -48,13 +48,13 @@ public abstract class ControlToleranceBar<T extends Enum<T>> extends Control imp
 
 	@Override
 	public void onRenderBackground() {
-		CraftGUI.Render.gradientRect(this.getArea(), -1431655766, -1431655766);
+		CraftGUI.render.gradientRect(this.getArea(), -1431655766, -1431655766);
 		final float w = this.getArea().w() / this.fullSet.size();
 		int t = 0;
 		for (final T value : this.fullSet) {
 			final int col = (this.tolerated.contains(value) ? -16777216 : 855638016) + this.getColour(value);
 			final IBorder inset = new IBorder(this.tolerated.contains(value) ? 1.0f : 3.0f);
-			CraftGUI.Render.gradientRect(new IArea(w * t, 0.0f, w, this.h()).inset(inset), col, col);
+			CraftGUI.render.gradientRect(new IArea(w * t, 0.0f, w, this.h()).inset(inset), col, col);
 			++t;
 		}
 	}

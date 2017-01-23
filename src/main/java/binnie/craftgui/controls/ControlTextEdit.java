@@ -78,7 +78,7 @@ public class ControlTextEdit extends Control implements IControlValue<String> {
 
 	@Override
 	public void onRenderBackground() {
-		CraftGUI.Render.texture(CraftGUITexture.Slot, this.getArea());
+		CraftGUI.render.texture(CraftGUITexture.Slot, this.getArea());
 		this.renderTextField();
 	}
 

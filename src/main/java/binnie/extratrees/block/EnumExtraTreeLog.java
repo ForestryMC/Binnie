@@ -4,6 +4,10 @@ import javax.annotation.Nonnull;
 
 import binnie.Constants;
 import forestry.api.arboriculture.IWoodType;
+import forestry.api.arboriculture.TreeManager;
+import forestry.api.arboriculture.WoodBlockKind;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public enum EnumExtraTreeLog implements IWoodType {
 	Apple("Apple", PlankType.ExtraTreePlanks.Apple),
@@ -68,15 +72,20 @@ public enum EnumExtraTreeLog implements IWoodType {
 	}
 
 
-//    public void addRecipe() {
-//        if (this.plank == null) {
-//            return;
-//        }
-//        final ItemStack log = this.getItemStack();
-//        final ItemStack result = this.plank.getStack();
-//        result.stackSize = 4;
-//        GameRegistry.addShapelessRecipe(result, new Object[]{log});
-//    }
+    public void addRecipe() {
+        if (this.plank == null) {
+           return;
+        }
+        ItemStack log = TreeManager.woodAccess.getStack(this, WoodBlockKind.LOG, false);
+        ItemStack result = TreeManager.woodAccess.getStack(this, WoodBlockKind.PLANKS, false);
+        result.stackSize = 4;
+        GameRegistry.addShapelessRecipe(result, log);
+        
+        ItemStack logFireproof = TreeManager.woodAccess.getStack(this, WoodBlockKind.LOG, true);
+        ItemStack resultFireproof = TreeManager.woodAccess.getStack(this, WoodBlockKind.PLANKS, true);
+        resultFireproof.stackSize = 4;
+        GameRegistry.addShapelessRecipe(resultFireproof, logFireproof);
+    }
 
 	@Override
 	public float getHardness() {

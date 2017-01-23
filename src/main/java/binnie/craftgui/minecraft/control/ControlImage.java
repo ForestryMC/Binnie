@@ -17,6 +17,6 @@ public class ControlImage extends Control {
 
 	@Override
 	public void onRenderForeground() {
-		CraftGUI.Render.texture(this.key, IPoint.ZERO);
+		CraftGUI.render.texture(this.key, IPoint.ZERO);
 	}
 }

@@ -40,10 +40,10 @@ public class ControlSplicerProgress extends ControlProgressBase {
 				c2 += alpha;
 				c3 += alpha;
 				c4 += alpha;
-				CraftGUI.Render.solidAlpha(new IArea(this.w() / 2.0f + y, offMovement * percentView, 4.0f, h / 2.0f), c1);
-				CraftGUI.Render.solidAlpha(new IArea(this.w() / 2.0f + y, offMovement * percentView + 4.0f, 4.0f, h / 2.0f), (y < 0.0f) ? c2 : c3);
-				CraftGUI.Render.solidAlpha(new IArea(this.w() / 2.0f + y, this.h() - offMovement * percentView - 8.0f, 4.0f, h / 2.0f), (y < 0.0f) ? c3 : c2);
-				CraftGUI.Render.solidAlpha(new IArea(this.w() / 2.0f + y, this.h() - offMovement * percentView - 4.0f, 4.0f, h / 2.0f), c4);
+				CraftGUI.render.solidAlpha(new IArea(this.w() / 2.0f + y, offMovement * percentView, 4.0f, h / 2.0f), c1);
+				CraftGUI.render.solidAlpha(new IArea(this.w() / 2.0f + y, offMovement * percentView + 4.0f, 4.0f, h / 2.0f), (y < 0.0f) ? c2 : c3);
+				CraftGUI.render.solidAlpha(new IArea(this.w() / 2.0f + y, this.h() - offMovement * percentView - 8.0f, 4.0f, h / 2.0f), (y < 0.0f) ? c3 : c2);
+				CraftGUI.render.solidAlpha(new IArea(this.w() / 2.0f + y, this.h() - offMovement * percentView - 4.0f, 4.0f, h / 2.0f), c4);
 			}
 		}
 	}

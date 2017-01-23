@@ -24,10 +24,10 @@ public class ControlPunnett extends Control {
 
 	@Override
 	public void onRenderBackground() {
-		CraftGUI.Render.solid(new IArea(0.0f, ControlPunnett.boxHeight, ControlPunnett.boxWidth * 3, 1.0f), 11184810);
-		CraftGUI.Render.solid(new IArea(ControlPunnett.boxWidth / 2.0f, ControlPunnett.boxHeight * 2, ControlPunnett.boxWidth * 2.5f, 1.0f), 11184810);
-		CraftGUI.Render.solid(new IArea(ControlPunnett.boxWidth, 0.0f, 1.0f, ControlPunnett.boxHeight * 3), 11184810);
-		CraftGUI.Render.solid(new IArea(ControlPunnett.boxWidth * 2, ControlPunnett.boxHeight / 2.0f, 1.0f, ControlPunnett.boxHeight * 2.5f), 11184810);
+		CraftGUI.render.solid(new IArea(0.0f, ControlPunnett.boxHeight, ControlPunnett.boxWidth * 3, 1.0f), 11184810);
+		CraftGUI.render.solid(new IArea(ControlPunnett.boxWidth / 2.0f, ControlPunnett.boxHeight * 2, ControlPunnett.boxWidth * 2.5f, 1.0f), 11184810);
+		CraftGUI.render.solid(new IArea(ControlPunnett.boxWidth, 0.0f, 1.0f, ControlPunnett.boxHeight * 3), 11184810);
+		CraftGUI.render.solid(new IArea(ControlPunnett.boxWidth * 2, ControlPunnett.boxHeight / 2.0f, 1.0f, ControlPunnett.boxHeight * 2.5f), 11184810);
 	}
 
 	public void setup(final IChromosomeType chromosome, final IIndividual ind1, final IIndividual ind2, final ISpeciesRoot root) {

@@ -34,7 +34,7 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener {
 	public CraftGUIResourceManager() {
 		this.textureSheets = new HashMap<>();
 		this.textures = new HashMap<>();
-		CraftGUI.ResourceManager = this;
+		CraftGUI.resourceManager = this;
 	}
 
 	@Override

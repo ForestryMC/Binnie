@@ -26,6 +26,6 @@ public enum CraftGUITextureSheet implements IBinnieTexture {
 		if (BinnieCore.proxy.isServer()) {
 			return null;
 		}
-		return CraftGUI.ResourceManager.getTextureSheet(this.name).getTexture();
+		return CraftGUI.resourceManager.getTextureSheet(this.name).getTexture();
 	}
 }

@@ -12,6 +12,8 @@ import binnie.craftgui.resource.Texture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
+
 import org.lwjgl.opengl.GL11;
 
 import java.util.List;
@@ -171,12 +173,12 @@ public class Renderer {
 		this.gui.renderItem(pos, item, rotating);
 	}
 
-	public void iconBlock(final IPoint pos, final TextureAtlasSprite icon) {
-		this.gui.renderIcon(pos, icon, TextureMap.LOCATION_BLOCKS_TEXTURE);
+	public void sprite(final IPoint pos, final TextureAtlasSprite icon) {
+		this.gui.renderSprite(pos, icon, TextureMap.LOCATION_BLOCKS_TEXTURE);
 	}
-
-	public void iconItem(final IPoint pos, final TextureAtlasSprite icon) {
-		this.gui.renderIcon(pos, icon, TextureMap.LOCATION_BLOCKS_TEXTURE);
+	
+	public void fluid(IPoint pos, FluidStack fluid){
+		this.gui.renderFluid(fluid, pos);
 	}
 
 	public void limitArea(final IArea area) {

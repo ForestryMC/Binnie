@@ -71,7 +71,7 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 		}
 		controlDescription.setValue(descBody + "§r");
 		controlSignature.setValue(descSig + "§r");
-		final float descHeight = CraftGUI.Render.textHeight(controlDescription.getValue(), controlDescription.getSize().x());
+		final float descHeight = CraftGUI.render.textHeight(controlDescription.getValue(), controlDescription.getSize().x());
 		controlSignature.setPosition(new IPoint(controlSignature.pos().x(), controlDescription.getPosition().y() + descHeight + 10.0f));
 	}
 }

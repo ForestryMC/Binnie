@@ -1,11 +1,18 @@
 package binnie.core.block;
 
+import binnie.core.network.packet.MessageMetadata;
+import binnie.core.network.packet.PacketMetadata;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityCommandBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.common.util.BlockSnapshot;
 
 public class TileEntityMetadata extends TileEntity {
 	private int meta;
@@ -19,8 +26,7 @@ public class TileEntityMetadata extends TileEntity {
 	public boolean receiveClientEvent(final int par1, final int par2) {
 		if (par1 == 42) {
 			this.meta = par2;
-			//TODO UPDATE
-			//this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+			markDirty();
 		}
 		return true;
 	}
@@ -38,10 +44,6 @@ public class TileEntityMetadata extends TileEntity {
 		return nbt2;
 	}
 
-//	@Override
-//	public boolean canUpdate() {
-//		return false;
-//	}
 
 	public int getTileMetadata() {
 		return this.meta;
@@ -51,17 +53,21 @@ public class TileEntityMetadata extends TileEntity {
 		if (this.meta != meta) {
 			this.meta = meta;
 			if (notify) {
-				//TODO UPDATE
-				//this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+				IBlockState state = worldObj.getBlockState(pos);
+				worldObj.notifyBlockUpdate(pos, state, state, 3);
 			}
 		}
 	}
-
-	//TODO update packet
-//	@Override
-//	public Packet getDescriptionPacket() {
-//		return BinnieCore.instance.getNetworkWrapper().getPacketFrom(new MessageMetadata(this.xCoord, this.yCoord, this.zCoord, this.meta).GetMessage());
-//	}
+	
+	@Override
+	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
+		super.onDataPacket(net, pkt);
+	}
+	
+	@Override
+	public SPacketUpdateTileEntity getUpdatePacket() {
+		return new PacketMetadata(pos, meta, getUpdateTag());
+	}
 
 	public static TileEntityMetadata getTile(final IBlockAccess world, final BlockPos pos) {
 		final TileEntity tile = world.getTileEntity(pos);

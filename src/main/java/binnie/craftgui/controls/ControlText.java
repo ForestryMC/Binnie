@@ -28,7 +28,7 @@ public class ControlText extends Control implements IControlValue<String> {
 
 	@Override
 	public void onRenderBackground() {
-		CraftGUI.Render.text(this.getArea(), this.align, this.text, this.getColour());
+		CraftGUI.render.text(this.getArea(), this.align, this.text, this.getColour());
 	}
 
 	@Override

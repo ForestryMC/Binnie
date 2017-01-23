@@ -7,6 +7,7 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeHooks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,10 +79,8 @@ public class MultiFenceRecipeSize implements IRecipe {
 		}
 	}
 
-	//TODO
-
 	@Override
 	public ItemStack[] getRemainingItems(InventoryCrafting inv) {
-		return new ItemStack[0];
+		return ForgeHooks.defaultRecipeGetRemainingItems(inv);
 	}
 }

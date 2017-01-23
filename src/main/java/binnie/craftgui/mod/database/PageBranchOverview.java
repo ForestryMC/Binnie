@@ -42,7 +42,7 @@ public class PageBranchOverview extends PageBranch {
 		String line = "";
 		final List<String> descLines = new ArrayList<>();
 		for (final String str : desc.split(" ")) {
-			if (CraftGUI.Render.textWidth(line + " " + str) > 134) {
+			if (CraftGUI.render.textWidth(line + " " + str) > 134) {
 				descLines.add(TextFormatting.ITALIC + line + TextFormatting.RESET);
 				line = "";
 			}

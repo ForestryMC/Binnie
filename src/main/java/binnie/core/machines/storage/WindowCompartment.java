@@ -154,9 +154,9 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			final Panel panel = new Panel(thisPage, 0.0f, 0.0f, thisPage.w(), thisPage.h(), MinecraftGUI.PanelType.Black) {
 				@Override
 				public void onRenderForeground() {
-					final Texture iTexture = CraftGUI.Render.getTexture(CraftGUITexture.TabOutline);
-					CraftGUI.Render.colour(WindowCompartment.this.getTab(WindowCompartment.this.panels.get(this)).getColor().getColour());
-					CraftGUI.Render.texture(iTexture, this.getArea().inset(3));
+					final Texture iTexture = CraftGUI.render.getTexture(CraftGUITexture.TabOutline);
+					CraftGUI.render.colour(WindowCompartment.this.getTab(WindowCompartment.this.panels.get(this)).getColor().getColour());
+					CraftGUI.render.texture(iTexture, this.getArea().inset(3));
 				}
 			};
 			this.panels.put(panel, p2);
@@ -286,7 +286,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			@Override
 			public void onRenderBackground() {
 				final Object texture = this.isMouseOver() ? CraftGUITexture.TabHighlighted : CraftGUITexture.Tab;
-				CraftGUI.Render.texture(CraftGUI.Render.getTexture(texture).crop(Position.Bottom, 8.0f), this.getArea());
+				CraftGUI.render.texture(CraftGUI.render.getTexture(texture).crop(Position.Bottom, 8.0f), this.getArea());
 			}
 		};
 		searchButton.addHelp("Search Button");
@@ -310,8 +310,8 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				final ControlScrollableContent<IWidget> scroll = new ControlScrollableContent<IWidget>(this, 124.0f, 16.0f, 116.0f, 92.0f, 6.0f) {
 					@Override
 					public void onRenderBackground() {
-						CraftGUI.Render.colour(11184810);
-						CraftGUI.Render.texture(CraftGUITexture.Outline, this.getArea().inset(new IBorder(0.0f, 6.0f, 0.0f, 0.0f)));
+						CraftGUI.render.colour(11184810);
+						CraftGUI.render.texture(CraftGUITexture.Outline, this.getArea().inset(new IBorder(0.0f, 6.0f, 0.0f, 0.0f)));
 					}
 				};
 				scroll.setScrollableContent(this.slotGrid = new Control(scroll, 1.0f, 1.0f, 108.0f, 18.0f));

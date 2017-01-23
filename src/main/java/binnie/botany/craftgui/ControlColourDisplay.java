@@ -29,8 +29,8 @@ public class ControlColourDisplay extends Control implements IControlValue<IFlow
 
 	@Override
 	public void onRenderBackground() {
-		CraftGUI.Render.solid(this.getArea(), -1);
-		CraftGUI.Render.solid(this.getArea().inset(1), -16777216 + this.getValue().getColor(false));
+		CraftGUI.render.solid(this.getArea(), -1);
+		CraftGUI.render.solid(this.getArea().inset(1), -16777216 + this.getValue().getColor(false));
 	}
 
 	@Override

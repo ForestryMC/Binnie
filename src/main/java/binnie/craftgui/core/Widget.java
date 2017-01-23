@@ -271,18 +271,18 @@ public class Widget implements IWidget {
 	@Override
 	public final void render() {
 		if (this.isVisible()) {
-			CraftGUI.Render.preRender(this);
+			CraftGUI.render.preRender(this);
 			this.onRender(RenderStage.PreChildren);
 			for (final IWidget widget : this.getWidgets()) {
 				widget.render();
 			}
 			for (final IWidget widget : this.getWidgets()) {
-				CraftGUI.Render.preRender(widget);
+				CraftGUI.render.preRender(widget);
 				widget.onRender(RenderStage.PostSiblings);
-				CraftGUI.Render.postRender(widget);
+				CraftGUI.render.postRender(widget);
 			}
 			this.onRender(RenderStage.PostChildren);
-			CraftGUI.Render.postRender(this);
+			CraftGUI.render.postRender(this);
 		}
 	}
 

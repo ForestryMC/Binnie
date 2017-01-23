@@ -13,6 +13,8 @@ import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.StandardTexture;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.machines.Distillery;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
 import org.lwjgl.opengl.GL11;
@@ -25,8 +27,8 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 
 	@Override
 	public void onRenderBackground() {
-		CraftGUI.Render.texture(ControlDistilleryProgress.DistilleryBase, new IPoint(0.0f, 0.0f));
-		CraftGUI.Render.texturePercentage(ControlDistilleryProgress.LiquidFlow, new IArea(18.0f, 0.0f, 38.0f, 66.0f), Position.Left, this.progress);
+		CraftGUI.render.texture(ControlDistilleryProgress.DistilleryBase, new IPoint(0.0f, 0.0f));
+		CraftGUI.render.texturePercentage(ControlDistilleryProgress.LiquidFlow, new IArea(18.0f, 0.0f, 38.0f, 66.0f), Position.Left, this.progress);
 		final Distillery.ComponentDistilleryLogic component = Machine.getInterface(Distillery.ComponentDistilleryLogic.class, Window.get(this).getInventory());
 		FluidStack stack = null;
 		if (component != null) {
@@ -34,7 +36,7 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 		}
 		if (stack != null) {
 			for (int y = 0; y < 4; ++y) {
-				this.renderFluid(stack, new IPoint(1.0f, 1 + y * 16));
+				CraftGUI.render.fluid(new IPoint(1.0f, 1 + y * 16), stack);
 			}
 		}
 	}
@@ -44,8 +46,8 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 		Distillery.ComponentDistilleryLogic distilleryLogic = Machine.getInterface(Distillery.ComponentDistilleryLogic.class, Window.get(this).getInventory());
 		if (distilleryLogic != null) {
 			final int level = distilleryLogic.level;
-			CraftGUI.Render.texture(ControlDistilleryProgress.Output, new IPoint(47.0f, 14 + level * 15));
-			CraftGUI.Render.texture(ControlDistilleryProgress.DistilleryOverlay, new IPoint(0.0f, 0.0f));
+			CraftGUI.render.texture(ControlDistilleryProgress.Output, new IPoint(47.0f, 14 + level * 15));
+			CraftGUI.render.texture(ControlDistilleryProgress.DistilleryOverlay, new IPoint(0.0f, 0.0f));
 		}
 	}
 
@@ -69,20 +71,6 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 				}
 			}
 		});
-	}
-
-	public void renderFluid(final FluidStack fluid, final IPoint pos) {
-		final int hex = fluid.getFluid().getColor(fluid);
-		final int r = (hex & 0xFF0000) >> 16;
-		final int g = (hex & 0xFF00) >> 8;
-		final int b = hex & 0xFF;
-		//final IIcon icon = fluid.getFluid().getIcon();
-		GL11.glColor4f(r / 255.0f, g / 255.0f, b / 255.0f, 1.0f);
-		GL11.glEnable(3042);
-		GL11.glBlendFunc(770, 771);
-		//TODO RENDERING
-		//CraftGUI.Render.iconBlock(pos, fluid.getFluid().getIcon());
-		GL11.glDisable(3042);
 	}
 
 }

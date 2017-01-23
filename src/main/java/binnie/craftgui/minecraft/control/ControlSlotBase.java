@@ -41,9 +41,9 @@ public abstract class ControlSlotBase extends Control implements ITooltip {
 	@Override
 	public void onRenderBackground() {
 		final int size = (int) this.getSize().x();
-		CraftGUI.Render.texture(CraftGUITexture.Slot, this.getArea());
+		CraftGUI.render.texture(CraftGUITexture.Slot, this.getArea());
 		if (this.getSuperParent().getMousedOverWidget() == this) {
-			CraftGUI.Render.gradientRect(new IArea(new IPoint(1.0f, 1.0f), this.getArea().size().sub(new IPoint(2.0f, 2.0f))), -2130706433, -2130706433);
+			CraftGUI.render.gradientRect(new IArea(new IPoint(1.0f, 1.0f), this.getArea().size().sub(new IPoint(2.0f, 2.0f))), -2130706433, -2130706433);
 		}
 	}
 

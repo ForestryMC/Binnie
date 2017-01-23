@@ -22,9 +22,9 @@ public class ControlColourMixSymbol extends Control implements ITooltip {
 	public void onRenderBackground() {
 		super.onRenderBackground();
 		if (this.type == 0) {
-			CraftGUI.Render.texture(ControlColourMixSymbol.MutationPlus, IPoint.ZERO);
+			CraftGUI.render.texture(ControlColourMixSymbol.MutationPlus, IPoint.ZERO);
 		} else {
-			CraftGUI.Render.texture(ControlColourMixSymbol.MutationArrow, IPoint.ZERO);
+			CraftGUI.render.texture(ControlColourMixSymbol.MutationArrow, IPoint.ZERO);
 		}
 	}
 

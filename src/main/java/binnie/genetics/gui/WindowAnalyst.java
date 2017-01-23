@@ -145,14 +145,14 @@ public class WindowAnalyst extends Window {
 
 					@Override
 					public void onRenderBackground() {
-						CraftGUI.Render.colour(syst.getColour());
+						CraftGUI.render.colour(syst.getColour());
 						final int outset = (WindowAnalyst.this.getSystem() == syst) ? 1 : 0;
-						CraftGUI.Render.texture(CraftGUITexture.TabOutline, this.getArea().outset(outset));
+						CraftGUI.render.texture(CraftGUITexture.TabOutline, this.getArea().outset(outset));
 						if (WindowAnalyst.this.getSystem() == syst) {
-							CraftGUI.Render.colour(1140850688 + syst.getColour());
-							CraftGUI.Render.texture(CraftGUITexture.TabSolid, this.getArea().outset(outset));
+							CraftGUI.render.colour(1140850688 + syst.getColour());
+							CraftGUI.render.texture(CraftGUITexture.TabSolid, this.getArea().outset(outset));
 						}
-						CraftGUI.Render.item(new IPoint(2.0f, 2.0f), syst.getItemStackRepresentitive());
+						CraftGUI.render.item(new IPoint(2.0f, 2.0f), syst.getItemStackRepresentitive());
 					}
 				};
 				x += 22;
@@ -168,7 +168,7 @@ public class WindowAnalyst extends Window {
 		this.analystPanel = new Panel(this, 16.0f, 54.0f, 280.0f, 164.0f, MinecraftGUI.PanelType.Outline) {
 			@Override
 			public void onRenderBackground() {
-				CraftGUI.Render.gradientRect(this.getArea(), 1157627903, 1728053247);
+				CraftGUI.render.gradientRect(this.getArea(), 1157627903, 1728053247);
 				super.onRenderBackground();
 			}
 
@@ -182,8 +182,8 @@ public class WindowAnalyst extends Window {
 						if (this.getContent() == null) {
 							return;
 						}
-						CraftGUI.Render.colour(this.getContent().getColour());
-						CraftGUI.Render.texture(CraftGUITexture.TabOutline, this.getArea());
+						CraftGUI.render.colour(this.getContent().getColour());
+						CraftGUI.render.texture(CraftGUITexture.TabOutline, this.getArea());
 					}
 				};
 				new ControlScrollBar(this, sectionWidth + 2.0f - 3.0f, 6.0f, 3.0f, this.h() - 8.0f + 2.0f - 6.0f, WindowAnalyst.this.leftPage) {
@@ -195,8 +195,8 @@ public class WindowAnalyst extends Window {
 						if (WindowAnalyst.this.leftPage.getContent() == null) {
 							return;
 						}
-						CraftGUI.Render.gradientRect(this.getArea(), 1140850688 + WindowAnalyst.this.leftPage.getContent().getColour(), 1140850688 + WindowAnalyst.this.leftPage.getContent().getColour());
-						CraftGUI.Render.solid(this.getRenderArea(), WindowAnalyst.this.leftPage.getContent().getColour());
+						CraftGUI.render.gradientRect(this.getArea(), 1140850688 + WindowAnalyst.this.leftPage.getContent().getColour(), 1140850688 + WindowAnalyst.this.leftPage.getContent().getColour());
+						CraftGUI.render.solid(this.getRenderArea(), WindowAnalyst.this.leftPage.getContent().getColour());
 					}
 				};
 				WindowAnalyst.this.rightPage = new ControlScrollableContent<IWidget>(this, 3.0f + sectionWidth + 4.0f, 3.0f, sectionWidth + 2.0f, this.h() - 8.0f + 2.0f, 0.0f) {
@@ -205,8 +205,8 @@ public class WindowAnalyst extends Window {
 						if (this.getContent() == null) {
 							return;
 						}
-						CraftGUI.Render.colour(this.getContent().getColour());
-						CraftGUI.Render.texture(CraftGUITexture.TabOutline, this.getArea());
+						CraftGUI.render.colour(this.getContent().getColour());
+						CraftGUI.render.texture(CraftGUITexture.TabOutline, this.getArea());
 					}
 				};
 				new ControlScrollBar(this, sectionWidth + 2.0f - 3.0f + sectionWidth + 4.0f, 6.0f, 3.0f, this.h() - 8.0f + 2.0f - 6.0f, WindowAnalyst.this.rightPage) {
@@ -218,8 +218,8 @@ public class WindowAnalyst extends Window {
 						if (WindowAnalyst.this.rightPage.getContent() == null) {
 							return;
 						}
-						CraftGUI.Render.gradientRect(this.getArea(), 1140850688 + WindowAnalyst.this.rightPage.getContent().getColour(), 1140850688 + WindowAnalyst.this.rightPage.getContent().getColour());
-						CraftGUI.Render.solid(this.getRenderArea(), WindowAnalyst.this.rightPage.getContent().getColour());
+						CraftGUI.render.gradientRect(this.getArea(), 1140850688 + WindowAnalyst.this.rightPage.getContent().getColour(), 1140850688 + WindowAnalyst.this.rightPage.getContent().getColour());
+						CraftGUI.render.solid(this.getRenderArea(), WindowAnalyst.this.rightPage.getContent().getColour());
 					}
 				};
 				WindowAnalyst.this.analystPageSize = new IArea(1.0f, 1.0f, sectionWidth, this.h() - 8.0f);
@@ -375,10 +375,10 @@ public class WindowAnalyst extends Window {
 				@Override
 				public void onRenderBackground() {
 					final boolean active = this.value == WindowAnalyst.this.leftPage.getContent() || this.value == WindowAnalyst.this.rightPage.getContent();
-					CraftGUI.Render.colour((active ? -16777216 : 1140850688) + this.value.getColour());
-					CraftGUI.Render.texture(CraftGUITexture.TabSolid, this.getArea().inset(1));
-					CraftGUI.Render.colour(this.value.getColour());
-					CraftGUI.Render.texture(CraftGUITexture.TabOutline, this.getArea().inset(1));
+					CraftGUI.render.colour((active ? -16777216 : 1140850688) + this.value.getColour());
+					CraftGUI.render.texture(CraftGUITexture.TabSolid, this.getArea().inset(1));
+					CraftGUI.render.colour(this.value.getColour());
+					CraftGUI.render.texture(CraftGUITexture.TabOutline, this.getArea().inset(1));
 					super.onRenderBackground();
 				}
 			};

@@ -38,7 +38,7 @@ public class AnalystPageBehaviour extends ControlAnalystPage {
 				final String effectDesc = BinnieCore.proxy.localiseOrBlank("allele." + effect.getUID() + ".desc");
 				final String loc = effectDesc.equals("") ? ("Effect: " + effect.getName()) : effectDesc;
 				new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 0.0f), loc, TextJustification.TopCenter).setColour(this.getColour());
-				y += (int) (CraftGUI.Render.textHeight(loc, this.w() - 8.0f) + 1.0f);
+				y += (int) (CraftGUI.render.textHeight(loc, this.w() - 8.0f) + 1.0f);
 				new ControlTextCentered(this, y, "§oWithin " + (int) (t.getX() / 2.0f) + " blocks").setColour(this.getColour());
 				y += 22;
 			}
@@ -58,7 +58,7 @@ public class AnalystPageBehaviour extends ControlAnalystPage {
 				final String effectDesc2 = BinnieCore.proxy.localiseOrBlank("allele." + effect2.getUID() + ".desc");
 				final String loc2 = effectDesc2.equals("") ? ("Effect: " + effect2.getName()) : effectDesc2;
 				new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 0.0f), loc2, TextJustification.TopCenter).setColour(this.getColour());
-				y += (int) (CraftGUI.Render.textHeight(loc2, this.w() - 8.0f) + 1.0f);
+				y += (int) (CraftGUI.render.textHeight(loc2, this.w() - 8.0f) + 1.0f);
 				y += 22;
 			}
 		}

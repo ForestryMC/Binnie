@@ -17,6 +17,7 @@ import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
@@ -24,6 +25,8 @@ import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.nbt.NBTException;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
@@ -406,12 +409,25 @@ public class GuiCraftGUI extends GuiContainer {
 		GL11.glEnable(3042);
 		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
 		RenderHelper.disableStandardItemLighting();
-		CraftGUI.Render.colour(-1);
+		CraftGUI.render.colour(-1);
 		GL11.glEnable(32826);
 		GL11.glPopMatrix();
 	}
+	
+	public void renderFluid(FluidStack fluid, IPoint pos) {
+		final int hex = fluid.getFluid().getColor(fluid);
+		final int r = (hex & 0xFF0000) >> 16;
+		final int g = (hex & 0xFF00) >> 8;
+		final int b = hex & 0xFF;
+		TextureAtlasSprite icon = Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(fluid.getFluid().getStill().toString());
+		GL11.glColor4f(r / 255.0f, g / 255.0f, b / 255.0f, 1.0f);
+		GL11.glEnable(3042);
+		GL11.glBlendFunc(770, 771);
+		renderSprite(pos, icon, TextureMap.LOCATION_BLOCKS_TEXTURE);
+		GL11.glDisable(3042);
+	}
 
-	public void renderIcon(final IPoint pos, final TextureAtlasSprite icon, final ResourceLocation map) {
+	public void renderSprite(final IPoint pos, final TextureAtlasSprite icon, final ResourceLocation map) {
 		if (icon == null) {
 			return;
 		}

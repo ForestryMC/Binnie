@@ -18,6 +18,6 @@ public class ControlIconDisplay extends Control {
 
 	@Override
 	public void onRenderForeground() {
-		CraftGUI.Render.iconItem(IPoint.ZERO, this.icon);
+		CraftGUI.render.sprite(IPoint.ZERO, this.icon);
 	}
 }

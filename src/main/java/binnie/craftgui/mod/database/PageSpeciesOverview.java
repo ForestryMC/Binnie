@@ -62,7 +62,7 @@ public class PageSpeciesOverview extends PageSpecies {
 		}
 		this.controlDescription.setValue(descBody + TextFormatting.RESET);
 		this.controlSignature.setValue(descSig);
-		final float descHeight = CraftGUI.Render.textHeight(this.controlDescription.getValue(), this.controlDescription.getSize().x());
+		final float descHeight = CraftGUI.render.textHeight(this.controlDescription.getValue(), this.controlDescription.getSize().x());
 		this.controlSignature.setPosition(new IPoint(this.controlSignature.pos().x(), this.controlDescription.getPosition().y() + descHeight + 10.0f));
 	}
 }

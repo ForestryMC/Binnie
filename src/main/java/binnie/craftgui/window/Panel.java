@@ -29,23 +29,23 @@ public class Panel extends Control {
 		if (panelType instanceof MinecraftGUI.PanelType) {
 			switch ((MinecraftGUI.PanelType) panelType) {
 				case Black: {
-					CraftGUI.Render.texture(CraftGUITexture.PanelBlack, this.getArea());
+					CraftGUI.render.texture(CraftGUITexture.PanelBlack, this.getArea());
 					break;
 				}
 				case Gray: {
-					CraftGUI.Render.texture(CraftGUITexture.PanelGray, this.getArea());
+					CraftGUI.render.texture(CraftGUITexture.PanelGray, this.getArea());
 					break;
 				}
 				case Tinted: {
-					CraftGUI.Render.texture(CraftGUITexture.PanelTinted, this.getArea());
+					CraftGUI.render.texture(CraftGUITexture.PanelTinted, this.getArea());
 					break;
 				}
 				case Outline: {
-					CraftGUI.Render.texture(CraftGUITexture.Outline, this.getArea());
+					CraftGUI.render.texture(CraftGUITexture.Outline, this.getArea());
 					break;
 				}
 				case TabOutline: {
-					CraftGUI.Render.texture(CraftGUITexture.TabOutline, this.getArea());
+					CraftGUI.render.texture(CraftGUITexture.TabOutline, this.getArea());
 					break;
 				}
 				default: {

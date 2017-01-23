@@ -17,6 +17,7 @@ import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.apiculture.PluginApiculture;
+import forestry.core.fluids.FluidHelper;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

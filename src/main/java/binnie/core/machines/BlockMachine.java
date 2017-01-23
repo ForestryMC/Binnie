@@ -21,6 +21,9 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -115,9 +118,15 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 		if (player.isSneaking()) {
 			return true;
 		}
-		final TileEntity entity = world.getTileEntity(pos);
-		if (entity instanceof TileEntityMachine) {
-			((TileEntityMachine) entity).getMachine().onRightClick(world, player, pos);
+		TileEntity tileEntity = world.getTileEntity(pos);
+		if (tileEntity.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side)) {
+			IFluidHandler tileFluidHandler = tileEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side);
+			if (FluidUtil.interactWithFluidHandler(heldItem, tileFluidHandler, player)) {
+				return true;
+			}
+		}
+		if (tileEntity instanceof TileEntityMachine) {
+			((TileEntityMachine) tileEntity).getMachine().onRightClick(world, player, pos);
 		}
 		return true;
 	}
