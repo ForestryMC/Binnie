@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class BinniePacketHandler implements IMessageHandler<MessageBinnie, IMessage> {
 	private IPacketProvider provider;
@@ -37,6 +38,7 @@ public abstract class BinniePacketHandler implements IMessageHandler<MessageBinn
 		return null;
 	}
 
+	@SideOnly(Side.CLIENT)
 	private static void onClientMessage(final IPacketID id, final MessageBinnie message, final MessageContext ctx) {
 		checkThreadAndEnqueue(id, message, ctx, Minecraft.getMinecraft());
 	}
