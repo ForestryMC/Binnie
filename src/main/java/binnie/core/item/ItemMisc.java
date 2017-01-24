@@ -8,16 +8,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public class ItemMisc extends ItemCore {
 	private IItemMiscProvider[] items;
 
-	public ItemMisc() {
-		super("misc");
-	}
-
-	protected ItemMisc(final CreativeTabs tab, final IItemMiscProvider[] items) {
+	public ItemMisc(final CreativeTabs tab, final IItemMiscProvider[] items) {
 		super("misc");
 		this.setCreativeTab(tab);
 		this.setHasSubtypes(true);
@@ -27,14 +24,15 @@ public class ItemMisc extends ItemCore {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, List par3List) {
+	public void getSubItems(@Nonnull final Item itemIn, final CreativeTabs creativeTabs, List<ItemStack> subItems) {
 		for (IItemMiscProvider item : this.items) {
 			if (item.isActive()) {
-				par3List.add(this.getStack(item, 1));
+				subItems.add(this.getStack(item, 1));
 			}
 		}
 	}
 
+	@Nonnull
 	private IItemMiscProvider getItem(int damage) {
 		return (damage >= this.items.length) ? this.items[0] : this.items[damage];
 	}
@@ -48,9 +46,7 @@ public class ItemMisc extends ItemCore {
 	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
 		super.addInformation(stack, playerIn, tooltip, advanced);
 		IItemMiscProvider item = this.getItem(stack.getItemDamage());
-		if (item != null) {
-			item.addInformation(tooltip);
-		}
+		item.addInformation(tooltip);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -59,12 +55,12 @@ public class ItemMisc extends ItemCore {
 		for (IItemMiscProvider type : items) {
 			manager.registerItemModel(item, type.ordinal(), "misc/" + type.getModelPath());
 		}
-
 	}
 
+	@Nonnull
 	@Override
-	public String getItemStackDisplayName(final ItemStack stack) {
+	public String getItemStackDisplayName(@Nonnull final ItemStack stack) {
 		IItemMiscProvider item = this.getItem(stack.getItemDamage());
-		return (item != null) ? item.getName(stack) : "null";
+		return item.getName(stack);
 	}
 }

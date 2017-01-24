@@ -16,7 +16,6 @@ import binnie.craftgui.events.EventHandler;
 import binnie.craftgui.events.EventTextEdit;
 import binnie.craftgui.events.EventValueChanged;
 import binnie.craftgui.minecraft.MinecraftGUI;
-import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.minecraft.control.ControlPlayerInventory;
 import binnie.craftgui.minecraft.control.ControlTabIcon;
 import binnie.craftgui.window.Panel;
@@ -58,8 +57,8 @@ public class WindowGeneBank extends WindowMachine {
 		}
 	}
 
-	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
-		return new WindowGeneBank(player, inventory, side, false);
+	public WindowGeneBank(final EntityPlayer player, final IInventory inventory, final Side side) {
+		this(player, inventory, side, false);
 	}
 
 	public WindowGeneBank(final EntityPlayer player, final IInventory inventory, final Side side, final boolean isNEI) {

@@ -16,7 +16,7 @@ public enum BinnieCoreGUI implements IBinnieGUID {
 	FieldKit,
 	Genesis;
 
-	public Window getWindow(final EntityPlayer player, final IInventory object, final Side side) throws Exception {
+	public Window getWindow(final EntityPlayer player, final IInventory object, final Side side) {
 		switch (this) {
 			case Compartment: {
 				return new WindowCompartment(player, object, side);
@@ -35,17 +35,12 @@ public enum BinnieCoreGUI implements IBinnieGUID {
 
 	@Override
 	public Window getWindow(final EntityPlayer player, final World world, final int x, final int y, final int z, final Side side) {
-		Window window = null;
 		final TileEntity tileEntity = world.getTileEntity(new BlockPos(x, y, z));
 		IInventory object = null;
 		if (tileEntity instanceof IInventory) {
 			object = (IInventory) tileEntity;
 		}
-		try {
-			window = this.getWindow(player, object, side);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return window;
+
+		return this.getWindow(player, object, side);
 	}
 }

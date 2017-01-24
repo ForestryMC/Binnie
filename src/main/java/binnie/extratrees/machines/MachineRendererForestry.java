@@ -1,5 +1,6 @@
 package binnie.extratrees.machines;
 
+import com.google.common.base.Throwables;
 import forestry.core.render.TankRenderInfo;
 import net.minecraft.util.EnumFacing;
 
@@ -19,7 +20,7 @@ public class MachineRendererForestry {
 			MachineRendererForestry.renderMethod.setAccessible(true);
 			MachineRendererForestry.instances.put(file, instance);
 		} catch (Exception ex) {
-			// ex.printStackTrace();
+			throw Throwables.propagate(ex);
 		}
 	}
 
@@ -30,7 +31,7 @@ public class MachineRendererForestry {
 		try {
 			MachineRendererForestry.renderMethod.invoke(MachineRendererForestry.instances.get(name), TankRenderInfo.EMPTY, TankRenderInfo.EMPTY, EnumFacing.UP, x, y, z);
 		} catch (Exception ex) {
-			// ex.printStackTrace();
+			throw Throwables.propagate(ex);
 		}
 	}
 

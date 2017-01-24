@@ -1,14 +1,15 @@
 package binnie.extrabees.core;
 
-import binnie.Binnie;
 import binnie.core.IInitializable;
+import binnie.core.item.IItemMiscProvider;
+import binnie.core.item.ItemMisc;
 import binnie.extrabees.ExtraBees;
 import forestry.api.core.Tabs;
 
 public class ModuleCore implements IInitializable {
 	@Override
 	public void preInit() {
-		ExtraBees.itemMisc = Binnie.Item.registerMiscItems(ExtraBeeItems.values(), Tabs.tabApiculture);
+		ExtraBees.itemMisc = new ItemMisc(Tabs.tabApiculture, (IItemMiscProvider[]) ExtraBeeItems.values());
 		ExtraBees.proxy.registerItem(ExtraBees.itemMisc);
 	}
 

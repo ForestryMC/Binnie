@@ -1,7 +1,6 @@
 package binnie.core.models;
 
 import com.google.common.collect.ImmutableMap;
-
 import forestry.api.core.ForestryAPI;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
@@ -24,6 +23,7 @@ import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.IRegistry;
 import net.minecraft.world.IBlockAccess;
@@ -139,7 +139,7 @@ public class ModelManager implements IModelManager {
 
 	@Override
 	public ModelResourceLocation getModelLocation(String modID, String identifier) {
-		return new ModelResourceLocation(modID + ":" + identifier, "inventory");
+		return new ModelResourceLocation(new ResourceLocation(modID, identifier), "inventory");
 	}
 
 	@SideOnly(Side.CLIENT)

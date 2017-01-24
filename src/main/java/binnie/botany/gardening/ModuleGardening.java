@@ -1,6 +1,5 @@
 package binnie.botany.gardening;
 
-import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.EnumAcidity;
@@ -27,6 +26,8 @@ import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.block.ItemMetadata;
 import binnie.core.block.TileEntityMetadata;
+import binnie.core.item.IItemMiscProvider;
+import binnie.core.item.ItemMisc;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -75,7 +76,7 @@ public class ModuleGardening implements IInitializable {
 		Botany.proxy.registerItem(Botany.trowelDiamond);
 		Botany.trowelGold = new ItemTrowel(Item.ToolMaterial.GOLD, "Gold");
 		Botany.proxy.registerItem(Botany.trowelGold);
-		Botany.misc = Binnie.Item.registerMiscItems(BotanyItems.values(), CreativeTabBotany.instance);
+		Botany.misc = new ItemMisc(CreativeTabBotany.instance, (IItemMiscProvider[]) BotanyItems.values());
 		Botany.proxy.registerItem(Botany.misc);
 		Botany.pigment = new ItemPigment();
 		Botany.proxy.registerItem(Botany.pigment);

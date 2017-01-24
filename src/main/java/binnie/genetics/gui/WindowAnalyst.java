@@ -28,6 +28,7 @@ import binnie.craftgui.minecraft.control.ControlSlot;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.craftgui.window.Panel;
 import binnie.genetics.Genetics;
+import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.ModuleMachine;
 import binnie.genetics.machine.analyser.Analyser;
@@ -61,6 +62,10 @@ public class WindowAnalyst extends Window {
 	private ControlSlide slideUpInv;
 	IIndividual current;
 	BreedingSystem currentSystem;
+
+	public static GeneticsGUI.WindowFactory create(final boolean database, final boolean master) {
+		return (player, inventory, side) -> new WindowAnalyst(player, inventory, side, database, master);
+	}
 
 	public WindowAnalyst(final EntityPlayer player, final IInventory inventory, final Side side, final boolean database, final boolean master) {
 		super(312.0f, 230.0f, player, inventory, side);

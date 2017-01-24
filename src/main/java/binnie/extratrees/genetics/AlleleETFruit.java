@@ -6,6 +6,7 @@ import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.FruitPod;
 import binnie.extratrees.config.ConfigurationMain;
 import binnie.extratrees.item.Food;
+import com.google.common.base.Throwables;
 import forestry.api.arboriculture.IAlleleFruit;
 import forestry.api.arboriculture.IAlleleTreeSpecies;
 import forestry.api.arboriculture.IFruitProvider;
@@ -26,7 +27,6 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -301,7 +301,7 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 				modifiersField.setInt(f, f.getModifiers() & 0xFFFFFFEF);
 				f.set(prov, familyCitrus);
 			} catch (Exception e) {
-				e.printStackTrace();
+				throw Throwables.propagate(e);
 			}
 		}
 		for (final IAlleleSpecies tree : Binnie.Genetics.treeBreedingSystem.getAllSpecies()) {

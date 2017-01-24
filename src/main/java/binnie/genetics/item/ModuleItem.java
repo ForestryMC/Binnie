@@ -5,6 +5,8 @@ import binnie.botany.Botany;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
+import binnie.core.item.IItemMiscProvider;
+import binnie.core.item.ItemMisc;
 import binnie.core.liquid.ItemFluidContainer;
 import binnie.core.resource.BinnieIcon;
 import binnie.extrabees.ExtraBees;
@@ -42,7 +44,7 @@ public class ModuleItem implements IInitializable {
 		Genetics.itemSerum = new ItemSerum();
 		Genetics.itemSerumArray = new ItemSerumArray();
 		Genetics.itemSequencer = new ItemSequence();
-		Genetics.setItemGenetics(Binnie.Item.registerMiscItems(GeneticsItems.values(), CreativeTabGenetics.instance));
+		Genetics.setItemGenetics(new ItemMisc(CreativeTabGenetics.instance, (IItemMiscProvider[]) GeneticsItems.values()));
 		Genetics.proxy.registerItem(Genetics.itemSerum);
 		Genetics.proxy.registerItem(Genetics.itemSerumArray);
 		Genetics.proxy.registerItem(Genetics.itemSequencer);

@@ -4,6 +4,7 @@ import binnie.Constants;
 import binnie.core.models.ModelManager;
 import binnie.core.resource.BinnieResource;
 import binnie.craftgui.resource.minecraft.CraftGUIResourceManager;
+import com.google.common.base.Throwables;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -162,7 +163,8 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 			if (rendererClass != null) {
 				object = rendererClass.newInstance();
 			}
-		} catch (Exception ex) {
+		} catch (IllegalAccessException | InstantiationException | ClassNotFoundException e) {
+			throw Throwables.propagate(e);
 		}
 		return object;
 	}

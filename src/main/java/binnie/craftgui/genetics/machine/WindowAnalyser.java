@@ -4,7 +4,6 @@ import binnie.core.AbstractMod;
 import binnie.craftgui.core.geometry.Position;
 import binnie.craftgui.minecraft.GUIIcon;
 import binnie.craftgui.minecraft.MinecraftGUI;
-import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.minecraft.control.ControlEnergyBar;
 import binnie.craftgui.minecraft.control.ControlErrorState;
 import binnie.craftgui.minecraft.control.ControlIconDisplay;
@@ -27,10 +26,6 @@ import net.minecraftforge.fml.relauncher.Side;
 public class WindowAnalyser extends WindowMachine {
 	static Texture ProgressBase = new StandardTexture(0, 218, 142, 17, ExtraBeeTexture.GUIProgress.getTexture());
 	static Texture Progress = new StandardTexture(0, 201, 142, 17, ExtraBeeTexture.GUIProgress.getTexture());
-
-	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
-		return new WindowAnalyser(player, inventory, side);
-	}
 
 	public WindowAnalyser(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(220, 210, player, inventory, side);

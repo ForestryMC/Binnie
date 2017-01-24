@@ -3,7 +3,6 @@ package binnie.craftgui.genetics.machine;
 import binnie.core.AbstractMod;
 import binnie.craftgui.core.geometry.Position;
 import binnie.craftgui.minecraft.GUIIcon;
-import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.minecraft.control.ControlEnergyBar;
 import binnie.craftgui.minecraft.control.ControlErrorState;
 import binnie.craftgui.minecraft.control.ControlIconDisplay;
@@ -24,10 +23,6 @@ import net.minecraftforge.fml.relauncher.Side;
 public class WindowIncubator extends WindowMachine {
 	static Texture ProgressBase = new StandardTexture(0, 91, 38, 32, GeneticsTexture.GUIProcess);
 	static Texture Progress = new StandardTexture(38, 91, 38, 32, GeneticsTexture.GUIProcess);
-
-	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
-		return new WindowIncubator(player, inventory, side);
-	}
 
 	public WindowIncubator(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(228, 196, player, inventory, side);

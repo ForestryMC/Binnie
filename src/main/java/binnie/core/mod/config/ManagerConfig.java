@@ -6,6 +6,7 @@ import net.minecraftforge.common.config.Configuration;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -28,26 +29,26 @@ public class ManagerConfig extends ManagerBase {
 	}
 
 	public void loadConfiguration(final Class<?> cls, final AbstractMod mod) {
-		try {
-			final String filename = cls.getAnnotation(ConfigFile.class).filename();
-			final BinnieConfiguration config = new BinnieConfiguration(filename, mod);
-			config.load();
-			for (final Field field : cls.getFields()) {
-				if (field.isAnnotationPresent(ConfigProperty.class)) {
-					final ConfigProperty propertyAnnot = field.getAnnotation(ConfigProperty.class);
-					for (final Annotation annotation : field.getAnnotations()) {
-						if (annotation.annotationType().isAnnotationPresent(ConfigProperty.Type.class)) {
-							final Class<?> propertyClass = annotation.annotationType().getAnnotation(ConfigProperty.Type.class).propertyClass();
+		final String filename = cls.getAnnotation(ConfigFile.class).filename();
+		final BinnieConfiguration config = new BinnieConfiguration(filename, mod);
+		config.load();
+		for (final Field field : cls.getFields()) {
+			if (field.isAnnotationPresent(ConfigProperty.class)) {
+				final ConfigProperty propertyAnnot = field.getAnnotation(ConfigProperty.class);
+				for (final Annotation annotation : field.getAnnotations()) {
+					if (annotation.annotationType().isAnnotationPresent(ConfigProperty.Type.class)) {
+						final Class<?> propertyClass = annotation.annotationType().getAnnotation(ConfigProperty.Type.class).propertyClass();
+						try {
 							final PropertyBase property = (PropertyBase) propertyClass.getConstructor(Field.class, BinnieConfiguration.class, ConfigProperty.class, annotation.annotationType()).newInstance(field, config, propertyAnnot, annotation.annotationType().cast(annotation));
+						} catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+							e.printStackTrace();
 						}
 					}
 				}
 			}
-			config.save();
-			this.configurations.put(cls, config);
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
+		config.save();
+		this.configurations.put(cls, config);
 	}
 
 	public void addItemID(final Integer configValue, final String configKey, final BinnieConfiguration configFile) {

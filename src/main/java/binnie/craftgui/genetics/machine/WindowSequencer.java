@@ -7,7 +7,6 @@ import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.Position;
 import binnie.craftgui.core.geometry.TextJustification;
 import binnie.craftgui.minecraft.GUIIcon;
-import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.minecraft.control.ControlEnergyBar;
 import binnie.craftgui.minecraft.control.ControlErrorState;
 import binnie.craftgui.minecraft.control.ControlIconDisplay;
@@ -30,10 +29,6 @@ public class WindowSequencer extends WindowMachine {
 	static Texture ProgressBase = new StandardTexture(64, 114, 98, 9, ExtraBeeTexture.GUIProgress.getTexture());
 	static Texture Progress = new StandardTexture(64, 123, 98, 9, ExtraBeeTexture.GUIProgress.getTexture());
 	ControlText slotText;
-
-	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
-		return new WindowSequencer(player, inventory, side);
-	}
 
 	public WindowSequencer(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(226, 224, player, inventory, side);

@@ -2,7 +2,6 @@ package binnie;
 
 import binnie.core.ManagerBase;
 import binnie.core.genetics.ManagerGenetics;
-import binnie.core.item.ManagerItem;
 import binnie.core.language.ManagerLanguage;
 import binnie.core.liquid.ManagerLiquid;
 import binnie.core.machines.ManagerMachine;
@@ -19,6 +18,5 @@ public final class Binnie {
 	public static final ManagerConfig Configuration = new ManagerConfig();
 	public static final ManagerLiquid Liquid = new ManagerLiquid();
 	public static final ManagerMachine Machine = new ManagerMachine();
-	public static final ManagerItem Item = new ManagerItem();
 	public static final ManagerResource Resource = new ManagerResource();
 }

@@ -2,7 +2,6 @@ package binnie.craftgui.genetics.machine;
 
 import binnie.core.AbstractMod;
 import binnie.craftgui.core.geometry.Position;
-import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.minecraft.control.ControlEnergyBar;
 import binnie.craftgui.minecraft.control.ControlErrorState;
 import binnie.craftgui.minecraft.control.ControlPlayerInventory;
@@ -24,10 +23,6 @@ public class WindowAcclimatiser extends WindowMachine {
 	public static final int slotTarget = 4;
 	public static final int[] slotAcclimatiser = new int[]{5, 6, 7};
 	public static final int[] slotDone = new int[]{8, 9, 10, 11};
-
-	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
-		return new WindowAcclimatiser(player, inventory, side);
-	}
 
 	public WindowAcclimatiser(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(280, 198, player, inventory, side);

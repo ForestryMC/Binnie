@@ -3,7 +3,6 @@ package binnie.craftgui.genetics.machine;
 import binnie.core.AbstractMod;
 import binnie.craftgui.core.geometry.Position;
 import binnie.craftgui.minecraft.GUIIcon;
-import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.minecraft.control.ControlEnergyBar;
 import binnie.craftgui.minecraft.control.ControlErrorState;
 import binnie.craftgui.minecraft.control.ControlIconDisplay;
@@ -25,10 +24,6 @@ import net.minecraftforge.fml.relauncher.Side;
 public class WindowPolymeriser extends WindowMachine {
 	static Texture ProgressBase = new StandardTexture(76, 170, 160, 79, GeneticsTexture.GUIProcess.getTexture());
 	static Texture Progress = new StandardTexture(76, 91, 160, 79, GeneticsTexture.GUIProcess.getTexture());
-
-	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
-		return new WindowPolymeriser(player, inventory, side);
-	}
 
 	public WindowPolymeriser(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(278, 212, player, inventory, side);

@@ -6,6 +6,7 @@ import binnie.core.BinnieCore;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -36,7 +37,7 @@ public class MachineGroup {
 						pack.assignMetadata(type.ordinal());
 						pack.setActive(type.isActive());
 						this.addPackage(pack);
-					} catch (Exception e) {
+					} catch (InstantiationException | IllegalAccessException e) {
 						throw new RuntimeException("Failed to create machine package " + type.toString(), e);
 					}
 				}

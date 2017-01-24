@@ -4,6 +4,8 @@ import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
+import binnie.core.item.IItemMiscProvider;
+import binnie.core.item.ItemMisc;
 import binnie.core.liquid.ItemFluidContainer;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.EnumExtraTreeLog;
@@ -25,7 +27,7 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 public class ModuleItems implements IInitializable {
 	@Override
 	public void preInit() {
-		ExtraTrees.itemMisc = Binnie.Item.registerMiscItems(ExtraTreeItems.values(), Tabs.tabArboriculture);
+		ExtraTrees.itemMisc = new ItemMisc(Tabs.tabArboriculture, (IItemMiscProvider[]) ExtraTreeItems.values());
 		ExtraTrees.proxy.registerItem(ExtraTrees.itemMisc);
 
 		ExtraTrees.itemDictionary = new ItemDictionary();

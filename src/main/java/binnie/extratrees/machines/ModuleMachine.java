@@ -19,7 +19,9 @@ public class ModuleMachine implements IInitializable {
 		final MachineGroup machineGroup = new MachineGroup(ExtraTrees.instance, "machine", "machine", ExtraTreeMachine.values());
 		machineGroup.setCreativeTab(Tabs.tabArboriculture);
 		ExtraTrees.blockMachine = machineGroup.getBlock();
-		BinnieCore.proxy.registerTileEntity(TileEntityNursery.class, "binnie.tile.nursery", BinnieCore.proxy.createObject("binnie.core.machines.RendererMachine"));
+		// TODO fix rendering
+		Object rendererMachine = null;// BinnieCore.proxy.createObject("binnie.core.machines.RendererMachine");
+		BinnieCore.proxy.registerTileEntity(TileEntityNursery.class, "binnie.tile.nursery", rendererMachine);
 	}
 
 	@Override

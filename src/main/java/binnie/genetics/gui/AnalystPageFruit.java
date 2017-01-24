@@ -7,6 +7,7 @@ import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.minecraft.control.ControlItemDisplay;
+import com.google.common.base.Throwables;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.IAlleleFruit;
 import forestry.api.arboriculture.ITree;
@@ -48,7 +49,7 @@ public class AnalystPageFruit extends AnalystPageProduce {
 				Collections.addAll(products, (ItemStack[]) f.get(pod));
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw Throwables.propagate(e);
 		}
 		if (products.size() > 0) {
 			new ControlTextCentered(this, y, "Natural Fruit").setColour(this.getColour());
@@ -117,6 +118,7 @@ public class AnalystPageFruit extends AnalystPageProduce {
 							Collections.addAll(stacks, (ItemStack[]) field.get(pod2));
 						}
 					} catch (Exception ex) {
+						throw Throwables.propagate(ex);
 					}
 				}
 			}

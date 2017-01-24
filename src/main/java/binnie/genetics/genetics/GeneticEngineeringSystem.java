@@ -1,6 +1,7 @@
 package binnie.genetics.genetics;
 
 import binnie.core.genetics.BreedingSystem;
+import com.google.common.base.Throwables;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleFloat;
 import forestry.api.genetics.IAlleleInteger;
@@ -38,6 +39,7 @@ public class GeneticEngineeringSystem {
 						this.chromosomeMap.get(chromosome).add(a2);
 					}
 				} catch (Exception ex) {
+					throw Throwables.propagate(ex);
 				}
 			}
 		}

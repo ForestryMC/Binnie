@@ -149,16 +149,13 @@ public final class BinnieCore extends AbstractMod {
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void handleSpeciesDiscovered(final ForestryEvent.SpeciesDiscovered event) {
-		try {
-			final EntityPlayerMP player = FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUUID(event.username.getId());
-			if (player == null) {
-				return;
-			}
-			event.tracker.synchToPlayer(player);
-			final NBTTagCompound nbt = new NBTTagCompound();
-			nbt.setString("species", event.species.getUID());
-		} catch (Exception ex) {
+		final EntityPlayerMP player = FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUUID(event.username.getId());
+		if (player == null) {
+			return;
 		}
+		event.tracker.synchToPlayer(player);
+		final NBTTagCompound nbt = new NBTTagCompound();
+		nbt.setString("species", event.species.getUID());
 	}
 
 	//TODO RENDERING

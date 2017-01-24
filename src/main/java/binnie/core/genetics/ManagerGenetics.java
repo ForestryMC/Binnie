@@ -171,18 +171,15 @@ public class ManagerGenetics extends ManagerBase {
 				final TreeSet<IAllele> alleles = new TreeSet<>(new ComparatorAllele());
 				for (final IIndividual individual : root.getIndividualTemplates()) {
 					final IGenome genome = individual.getGenome();
-					try {
-						final IAllele a1 = genome.getActiveAllele(chromosome);
-						final IAllele a2 = genome.getInactiveAllele(chromosome);
-						if (chromosome.getAlleleClass().isInstance(a1)) {
-							alleles.add(a1);
-						}
-						if (!chromosome.getAlleleClass().isInstance(a2)) {
-							continue;
-						}
-						alleles.add(a2);
-					} catch (Exception ex) {
+					final IAllele a1 = genome.getActiveAllele(chromosome);
+					final IAllele a2 = genome.getInactiveAllele(chromosome);
+					if (chromosome.getAlleleClass().isInstance(a1)) {
+						alleles.add(a1);
 					}
+					if (!chromosome.getAlleleClass().isInstance(a2)) {
+						continue;
+					}
+					alleles.add(a2);
 				}
 				system.addExtraAlleles(chromosome, alleles);
 				if (alleles.size() == 0) {
