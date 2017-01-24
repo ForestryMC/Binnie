@@ -53,7 +53,8 @@ public enum ExtraTreeMachine implements IMachineType {
 	}
 
 	public ItemStack get(final int i) {
-		return new ItemStack(ExtraTrees.blockMachine, i, this.ordinal());
+		ExtraTrees.machine();
+		return new ItemStack(ModuleMachine.blockMachine, i, this.ordinal());
 	}
 
 	public static class ComponentExtraTreeGUI extends MachineComponent implements IInteraction.RightClick {
@@ -76,7 +77,7 @@ public enum ExtraTreeMachine implements IMachineType {
 
 		protected PackageExtraTreeMachine(final String uid, final String textureName, final boolean powered) {
 			super(uid, powered);
-			this.textureName = Binnie.Resource.getFile(ExtraTrees.instance, ResourceType.Tile, textureName);
+			this.textureName = Binnie.RESOURCE.getFile(ExtraTrees.instance, ResourceType.Tile, textureName);
 		}
 
 		protected PackageExtraTreeMachine(final String uid, final BinnieResource textureName, final boolean powered) {

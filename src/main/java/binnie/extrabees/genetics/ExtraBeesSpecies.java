@@ -310,7 +310,7 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 	}
 
 	public void registerTemplate() {
-		Binnie.Genetics.getBeeRoot().registerTemplate(this.getTemplate());
+		Binnie.GENETICS.getBeeRoot().registerTemplate(this.getTemplate());
 		if (this.state != State.Active) {
 			AlleleManager.alleleRegistry.blacklistAllele(this.getUID());
 		}
@@ -361,7 +361,7 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 	}
 
 	public static IAllele[] getDefaultTemplate() {
-		return Binnie.Genetics.getBeeRoot().getDefaultTemplate();
+		return Binnie.GENETICS.getBeeRoot().getDefaultTemplate();
 	}
 
 	public IAllele[] getTemplate() {
@@ -908,7 +908,7 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 
 	@Override
 	public IBeeRoot getRoot() {
-		return Binnie.Genetics.getBeeRoot();
+		return Binnie.GENETICS.getBeeRoot();
 	}
 
 	@Override

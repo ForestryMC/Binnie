@@ -25,7 +25,7 @@ public enum PacketID implements IPacketID {
 			EntityPlayer player = BinnieCore.proxy.getPlayer();
 			String info = "";
 			if (data.hasNoTags()) {
-				info += Binnie.Language.localise("botany.flowers.species.not.discover");
+				info += Binnie.LANGUAGE.localise("botany.flowers.species.not.discover");
 			} else {
 				IAlleleFlowerSpecies primary = (IAlleleFlowerSpecies) AlleleManager.alleleRegistry.getAllele(data.getString("Species"));
 				IAlleleFlowerSpecies secondary = (IAlleleFlowerSpecies) AlleleManager.alleleRegistry.getAllele(data.getString("Species2"));
@@ -53,13 +53,13 @@ public enum PacketID implements IPacketID {
 				if (primary == secondary) {
 					info = info + " " + primary.getName();
 				} else {
-					info = info + " " + primary.getName() + "-" + secondary.getName() + " " + Binnie.Language.localise("botany.flowers.species.hybrid");
+					info = info + " " + primary.getName() + "-" + secondary.getName() + " " + Binnie.LANGUAGE.localise("botany.flowers.species.hybrid");
 				}
 				if (age == 0.0f) {
-					info += " " + Binnie.Language.localise("botany.flowers.species.germling");
+					info += " " + Binnie.LANGUAGE.localise("botany.flowers.species.germling");
 				}
 				if (data.getBoolean("Wilting")) {
-					info += ". " + Binnie.Language.localise("botany.flowers.species.wilting");
+					info += ". " + Binnie.LANGUAGE.localise("botany.flowers.species.wilting");
 				}
 			}
 			player.addChatMessage(new TextComponentString(info));

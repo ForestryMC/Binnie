@@ -29,7 +29,7 @@ public enum ExtraTreeTexture implements IBinnieTexture {
 
 	@Override
 	public BinnieResource getTexture() {
-		return Binnie.Resource.getPNG(ExtraTrees.instance, this.type, this.texture);
+		return Binnie.RESOURCE.getPNG(ExtraTrees.instance, this.type, this.texture);
 	}
 
 }

@@ -51,7 +51,7 @@ public enum ExtraTreeLiquid implements ILiquidType {
 
 	@Override
 	public FluidStack get(final int i) {
-		return Binnie.Liquid.getFluidStack(this.ident, i);
+		return Binnie.LIQUID.getFluidStack(this.ident, i);
 	}
 
 	@Override

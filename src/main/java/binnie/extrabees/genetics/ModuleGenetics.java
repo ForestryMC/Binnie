@@ -47,11 +47,11 @@ public class ModuleGenetics implements IInitializable {
 				++ebSpeciesCount;
 			}
 		}
-		RecipeManagers.carpenterManager.addRecipe(100, Binnie.Liquid.getFluidStack("water", 2000), null, new ItemStack(ExtraBees.dictionary), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotTin", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
+		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack("water", 2000), null, new ItemStack(ExtraBees.dictionary), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotTin", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
 	}
 
 	public static IGenome getGenome(final IAlleleBeeSpecies allele0) {
-		return Binnie.Genetics.getBeeRoot().templateAsGenome(Binnie.Genetics.getBeeRoot().getTemplate(allele0.getUID()));
+		return Binnie.GENETICS.getBeeRoot().templateAsGenome(Binnie.GENETICS.getBeeRoot().getTemplate(allele0.getUID()));
 	}
 
 //	public static ItemStack getBeeIcon(final IAlleleBeeSpecies species) {

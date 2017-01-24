@@ -215,7 +215,7 @@ public class GardenLogic extends FarmLogic {
 	}
 
 	private boolean trySetWater(World world, BlockPos position, IFarmHousing housing) {
-		final FluidStack water = Binnie.Liquid.getFluidStack("water", 1000);
+		final FluidStack water = Binnie.LIQUID.getFluidStack("water", 1000);
 		if (this.moisture == EnumMoisture.Damp) {
 			if (!housing.hasLiquid(water)) {
 				return false;

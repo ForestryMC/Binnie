@@ -1,4 +1,4 @@
-package binnie.extratrees.block.plank;
+package binnie.extratrees.block.wood;
 
 import binnie.Constants;
 import binnie.extratrees.block.EnumExtraTreeLog;

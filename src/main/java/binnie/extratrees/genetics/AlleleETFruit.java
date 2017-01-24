@@ -304,7 +304,7 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 				throw Throwables.propagate(e);
 			}
 		}
-		for (final IAlleleSpecies tree : Binnie.Genetics.treeBreedingSystem.getAllSpecies()) {
+		for (final IAlleleSpecies tree : Binnie.GENETICS.treeBreedingSystem.getAllSpecies()) {
 			if (tree instanceof AlleleTreeSpecies && ((IAlleleTreeSpecies) tree).getSuitableFruit().contains(familyPrune)) {
 				((AlleleTreeSpecies) tree).addFruitFamily(familyCitrus);
 			}

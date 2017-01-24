@@ -76,11 +76,11 @@ public class Gene implements IGene, INbtReadable, INbtWritable {
 
 	@Override
 	public String getName() {
-		return Binnie.Genetics.getSystem(this.root).getAlleleName(this.chromosome, this.allele);
+		return Binnie.GENETICS.getSystem(this.root).getAlleleName(this.chromosome, this.allele);
 	}
 
 	public BreedingSystem getSystem() {
-		return Binnie.Genetics.getSystem(this.root);
+		return Binnie.GENETICS.getSystem(this.root);
 	}
 
 	@Override

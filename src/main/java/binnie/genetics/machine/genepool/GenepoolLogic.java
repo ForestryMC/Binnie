@@ -18,11 +18,11 @@ public class GenepoolLogic extends ComponentProcessSetCost implements IProcess {
 	public static int getDNAAmount(final ItemStack stack) {
 		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
 
-		if (root == Binnie.Genetics.getBeeRoot()) {
-			if (Binnie.Genetics.getBeeRoot().isDrone(stack)) {
+		if (root == Binnie.GENETICS.getBeeRoot()) {
+			if (Binnie.GENETICS.getBeeRoot().isDrone(stack)) {
 				return 10;
 			}
-			if (Binnie.Genetics.getBeeRoot().isMated(stack)) {
+			if (Binnie.GENETICS.getBeeRoot().isMated(stack)) {
 				return 50;
 			}
 			return 30;

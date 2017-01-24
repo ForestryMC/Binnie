@@ -83,17 +83,17 @@ public class Acclimatiser {
 
 	public static void setupRecipes() {
 		if (BinnieCore.isApicultureActive()) {
-			addTolerance(Binnie.Genetics.getBeeRoot().getUID(), EnumBeeChromosome.HUMIDITY_TOLERANCE, ToleranceType.Humidity);
-			addTolerance(Binnie.Genetics.getBeeRoot().getUID(), EnumBeeChromosome.TEMPERATURE_TOLERANCE, ToleranceType.Temperature);
+			addTolerance(Binnie.GENETICS.getBeeRoot().getUID(), EnumBeeChromosome.HUMIDITY_TOLERANCE, ToleranceType.Humidity);
+			addTolerance(Binnie.GENETICS.getBeeRoot().getUID(), EnumBeeChromosome.TEMPERATURE_TOLERANCE, ToleranceType.Temperature);
 		}
 		if (BinnieCore.isLepidopteryActive()) {
-			addTolerance(Binnie.Genetics.getButterflyRoot().getUID(), EnumButterflyChromosome.HUMIDITY_TOLERANCE, ToleranceType.Humidity);
-			addTolerance(Binnie.Genetics.getButterflyRoot().getUID(), EnumButterflyChromosome.TEMPERATURE_TOLERANCE, ToleranceType.Temperature);
+			addTolerance(Binnie.GENETICS.getButterflyRoot().getUID(), EnumButterflyChromosome.HUMIDITY_TOLERANCE, ToleranceType.Humidity);
+			addTolerance(Binnie.GENETICS.getButterflyRoot().getUID(), EnumButterflyChromosome.TEMPERATURE_TOLERANCE, ToleranceType.Temperature);
 		}
 		if (BinnieCore.isBotanyActive()) {
-			addTolerance(Binnie.Genetics.getFlowerRoot().getUID(), EnumFlowerChromosome.HUMIDITY_TOLERANCE, ToleranceType.Humidity);
-			addTolerance(Binnie.Genetics.getFlowerRoot().getUID(), EnumFlowerChromosome.TEMPERATURE_TOLERANCE, ToleranceType.Temperature);
-			addTolerance(Binnie.Genetics.getFlowerRoot().getUID(), EnumFlowerChromosome.PH_TOLERANCE, ToleranceType.PH);
+			addTolerance(Binnie.GENETICS.getFlowerRoot().getUID(), EnumFlowerChromosome.HUMIDITY_TOLERANCE, ToleranceType.Humidity);
+			addTolerance(Binnie.GENETICS.getFlowerRoot().getUID(), EnumFlowerChromosome.TEMPERATURE_TOLERANCE, ToleranceType.Temperature);
+			addTolerance(Binnie.GENETICS.getFlowerRoot().getUID(), EnumFlowerChromosome.PH_TOLERANCE, ToleranceType.PH);
 		}
 		addTemperatureItem(new ItemStack(Items.BLAZE_POWDER), 0.5f);
 		addTemperatureItem(new ItemStack(Items.BLAZE_ROD), 0.75f);

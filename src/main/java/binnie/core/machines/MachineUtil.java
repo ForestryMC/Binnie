@@ -8,7 +8,6 @@ import binnie.core.machines.power.ITankMachine;
 import binnie.core.machines.power.PowerSystem;
 import binnie.core.util.ItemStackSet;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;

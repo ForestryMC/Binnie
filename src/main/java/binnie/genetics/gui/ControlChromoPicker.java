@@ -51,6 +51,6 @@ public class ControlChromoPicker extends Control implements ITooltip {
 
 	@Override
 	public void getTooltip(final Tooltip tooltip) {
-		tooltip.add(Binnie.Genetics.getSystem(this.parent.getRoot()).getChromosomeName(this.type));
+		tooltip.add(Binnie.GENETICS.getSystem(this.parent.getRoot()).getChromosomeName(this.type));
 	}
 }

@@ -194,9 +194,9 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 					}
 					for (final SpeciesList sortableList : speciesList.values()) {
 						for (final ItemStack beeStack : sortableList.bees) {
-							if (Binnie.Genetics.getBeeRoot().isDrone(beeStack)) {
+							if (Binnie.GENETICS.getBeeRoot().isDrone(beeStack)) {
 								sortableList.drones.add(this.indexerInventory.indexOf(beeStack));
-							} else if (Binnie.Genetics.getBeeRoot().isMated(beeStack)) {
+							} else if (Binnie.GENETICS.getBeeRoot().isMated(beeStack)) {
 								sortableList.queens.add(this.indexerInventory.indexOf(beeStack));
 							} else {
 								sortableList.princesses.add(this.indexerInventory.indexOf(beeStack));

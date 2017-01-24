@@ -54,6 +54,6 @@ public class DrinkLiquid implements IDrinkLiquid {
 
 	@Override
 	public FluidStack get(final int amount) {
-		return Binnie.Liquid.getFluidStack(this.ident, amount);
+		return Binnie.LIQUID.getFluidStack(this.ident, amount);
 	}
 }

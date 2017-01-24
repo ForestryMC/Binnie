@@ -20,8 +20,8 @@ import java.util.TreeSet;
 
 class MothBreedingSystem extends BreedingSystem {
 	public MothBreedingSystem() {
-		this.iconUndiscovered = Binnie.Resource.getItemIcon(ExtraTrees.instance, "icon/undiscoveredMoth");
-		this.iconDiscovered = Binnie.Resource.getItemIcon(ExtraTrees.instance, "icon/discoveredMoth");
+		this.iconUndiscovered = Binnie.RESOURCE.getItemIcon(ExtraTrees.instance, "icon/undiscoveredMoth");
+		this.iconDiscovered = Binnie.RESOURCE.getItemIcon(ExtraTrees.instance, "icon/discoveredMoth");
 	}
 
 	@Override
@@ -31,7 +31,7 @@ class MothBreedingSystem extends BreedingSystem {
 
 	@Override
 	public ISpeciesRoot getSpeciesRoot() {
-		return Binnie.Genetics.getButterflyRoot();
+		return Binnie.GENETICS.getButterflyRoot();
 	}
 
 	@Override
@@ -49,24 +49,24 @@ class MothBreedingSystem extends BreedingSystem {
 		if (chromosome == EnumButterflyChromosome.METABOLISM) {
 			final int metabolism = ((IAlleleInteger) allele).getValue();
 			if (metabolism >= 19) {
-				return Binnie.Language.localise(BinnieCore.instance, "allele.metabolism.highest");
+				return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.metabolism.highest");
 			}
 			if (metabolism >= 16) {
-				return Binnie.Language.localise(BinnieCore.instance, "allele.metabolism.higher");
+				return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.metabolism.higher");
 			}
 			if (metabolism >= 13) {
-				return Binnie.Language.localise(BinnieCore.instance, "allele.metabolism.high");
+				return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.metabolism.high");
 			}
 			if (metabolism >= 10) {
-				return Binnie.Language.localise(BinnieCore.instance, "allele.metabolism.normal");
+				return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.metabolism.normal");
 			}
 			if (metabolism >= 7) {
-				return Binnie.Language.localise(BinnieCore.instance, "allele.metabolism.slow");
+				return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.metabolism.slow");
 			}
 			if (metabolism >= 4) {
-				return Binnie.Language.localise(BinnieCore.instance, "allele.metabolism.slower");
+				return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.metabolism.slower");
 			}
-			return Binnie.Language.localise(BinnieCore.instance, "allele.metabolism.slowest");
+			return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.metabolism.slowest");
 		} else {
 			if (chromosome == EnumButterflyChromosome.FERTILITY) {
 				final int metabolism = ((IAlleleInteger) allele).getValue();

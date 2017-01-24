@@ -55,10 +55,10 @@ public class PageSpeciesGenome extends PageSpecies {
 
 	@Override
 	public void onValueChanged(final IAlleleSpecies species) {
-		final IAllele[] template = Binnie.Genetics.getBeeRoot().getTemplate(species.getUID());
+		final IAllele[] template = Binnie.GENETICS.getBeeRoot().getTemplate(species.getUID());
 		if (template != null) {
-			final IBeeGenome genome = Binnie.Genetics.getBeeRoot().templateAsGenome(template);
-			final IBee bee = Binnie.Genetics.getBeeRoot().getBee(genome);
+			final IBeeGenome genome = Binnie.GENETICS.getBeeRoot().templateAsGenome(template);
+			final IBee bee = Binnie.GENETICS.getBeeRoot().getBee(genome);
 			this.pageSpeciesGenome_SpeedText.setValue(rateSpeed(genome.getSpeed()));
 			this.pageSpeciesGenome_LifespanText.setValue(rateLifespan(genome.getLifespan()));
 			this.pageSpeciesGenome_FertilityText.setValue(genome.getFertility() + " children");

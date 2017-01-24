@@ -25,8 +25,8 @@ public class LarvaeIncubatorRecipeMaker {
 		List<ItemStack> subtypes = GeneticsJeiPlugin.jeiHelpers.getStackHelper().getSubtypes(inputStack);
 		for (ItemStack larvae : subtypes) {
 			IncubatorRecipe recipe = new IncubatorRecipe(larvae, recipeLarvae.getInput(), recipeLarvae.getOutput(), recipeLarvae.getLossChance(), recipeLarvae.getChance());
-			final IBee bee = Binnie.Genetics.getBeeRoot().getMember(larvae);
-			ItemStack drone = Binnie.Genetics.getBeeRoot().getMemberStack(bee, EnumBeeType.DRONE);
+			final IBee bee = Binnie.GENETICS.getBeeRoot().getMember(larvae);
+			ItemStack drone = Binnie.GENETICS.getBeeRoot().getMemberStack(bee, EnumBeeType.DRONE);
 			recipe.setOutputStack(drone);
 			recipes.add(new LarvaeIncubatorRecipeWrapper(recipe));
 		}

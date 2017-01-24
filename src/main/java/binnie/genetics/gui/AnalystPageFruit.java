@@ -30,7 +30,7 @@ public class AnalystPageFruit extends AnalystPageProduce {
 		int y = 4;
 		new ControlTextCentered(this, y, "§nFruit").setColour(this.getColour());
 		y += 12;
-		new ControlTextCentered(this, y, "§oYield: " + Binnie.Genetics.treeBreedingSystem.getAlleleName(EnumTreeChromosome.YIELD, ind.getGenome().getActiveAllele(EnumTreeChromosome.YIELD))).setColour(this.getColour());
+		new ControlTextCentered(this, y, "§oYield: " + Binnie.GENETICS.treeBreedingSystem.getAlleleName(EnumTreeChromosome.YIELD, ind.getGenome().getActiveAllele(EnumTreeChromosome.YIELD))).setColour(this.getColour());
 		y += 20;
 		final Collection<ItemStack> products = new UniqueItemStackSet();
 		final Collection<ItemStack> specialties = new UniqueItemStackSet();
@@ -94,7 +94,7 @@ public class AnalystPageFruit extends AnalystPageProduce {
 		}
 		new ControlTextCentered(this, y, "Possible Fruits").setColour(this.getColour());
 		y += 12;
-		final Collection<IAllele> fruitAlleles = Binnie.Genetics.getChromosomeMap(Binnie.Genetics.getTreeRoot()).get(EnumTreeChromosome.FRUITS);
+		final Collection<IAllele> fruitAlleles = Binnie.GENETICS.getChromosomeMap(Binnie.GENETICS.getTreeRoot()).get(EnumTreeChromosome.FRUITS);
 		for (final IFruitFamily fam : ind.getGenome().getPrimary().getSuitableFruit()) {
 			final Collection<ItemStack> stacks = new UniqueItemStackSet();
 			for (final IAllele a : fruitAlleles) {

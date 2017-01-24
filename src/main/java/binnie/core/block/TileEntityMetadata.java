@@ -1,6 +1,5 @@
 package binnie.core.block;
 
-import binnie.core.network.packet.MessageMetadata;
 import binnie.core.network.packet.PacketMetadata;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -9,10 +8,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityCommandBlock;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.minecraftforge.common.util.BlockSnapshot;
 
 public class TileEntityMetadata extends TileEntity {
 	private int meta;

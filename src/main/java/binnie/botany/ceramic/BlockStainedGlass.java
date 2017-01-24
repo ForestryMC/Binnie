@@ -66,7 +66,7 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 		List<ItemStack> list = new ArrayList<>();
 		TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
 		if (tile != null && !tile.hasDroppedBlock()) {
-			int meta = getDroppedMeta(getMetaFromState(state), tile.getTileMetadata());
+			int meta = getDroppedMeta(state, tile.getTileMetadata());
 			list.add(TileEntityMetadata.getItemStack(this, meta));
 		}
 		return list;
@@ -109,20 +109,16 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 	public int getPlacedMeta(final ItemStack stack, final World world, final BlockPos pos, final EnumFacing clickedBlock) {
 		return TileEntityMetadata.getItemDamage(stack);
 	}
-
+	
 	@Override
-	public int getDroppedMeta(final int blockMeta, final int tileMeta) {
-		return tileMeta;
+	public int getDroppedMeta(IBlockState state, int tileMetadata) {
+		return tileMetadata;
 	}
 
 	@Override
-	public String getBlockName(final ItemStack par1ItemStack) {
+	public String getDisplayName(final ItemStack par1ItemStack) {
 		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
 		return EnumFlowerColor.get(meta).getColourName() + " Pigmented Glass";
-	}
-
-	@Override
-	public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
 	}
 
 	@Override

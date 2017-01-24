@@ -76,7 +76,7 @@ public class ModuleGardening implements IInitializable {
 		Botany.proxy.registerItem(Botany.trowelDiamond);
 		Botany.trowelGold = new ItemTrowel(Item.ToolMaterial.GOLD, "Gold");
 		Botany.proxy.registerItem(Botany.trowelGold);
-		Botany.misc = new ItemMisc(CreativeTabBotany.instance, (IItemMiscProvider[]) BotanyItems.values());
+		Botany.misc = new ItemMisc(CreativeTabBotany.instance, BotanyItems.values());
 		Botany.proxy.registerItem(Botany.misc);
 		Botany.pigment = new ItemPigment();
 		Botany.proxy.registerItem(Botany.pigment);

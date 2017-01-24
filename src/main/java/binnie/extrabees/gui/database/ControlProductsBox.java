@@ -31,13 +31,13 @@ public class ControlProductsBox extends ControlListBox<ControlProductsBox.Produc
 
 	public void setSpecies(final IAlleleBeeSpecies species) {
 		if (species != this.species && (this.species = species) != null) {
-			final IAllele[] template = Binnie.Genetics.getBeeRoot().getTemplate(species.getUID());
+			final IAllele[] template = Binnie.GENETICS.getBeeRoot().getTemplate(species.getUID());
 			if (template == null) {
 				return;
 			}
-			final IBeeGenome genome = Binnie.Genetics.getBeeRoot().templateAsGenome(template);
+			final IBeeGenome genome = Binnie.GENETICS.getBeeRoot().templateAsGenome(template);
 			final float speed = genome.getSpeed();
-			final float modeSpeed = Binnie.Genetics.getBeeRoot().getBeekeepingMode(BinnieCore.proxy.getWorld()).getBeeModifier().getProductionModifier(genome, 1.0f);
+			final float modeSpeed = Binnie.GENETICS.getBeeRoot().getBeekeepingMode(BinnieCore.proxy.getWorld()).getBeeModifier().getProductionModifier(genome, 1.0f);
 			final List<Product> strings = new ArrayList<>();
 			if (this.type == Type.Products) {
 				for (final Map.Entry<ItemStack, Float> entry : species.getProductChances().entrySet()) {

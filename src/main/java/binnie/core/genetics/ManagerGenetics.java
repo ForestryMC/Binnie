@@ -157,7 +157,7 @@ public class ManagerGenetics extends ManagerBase {
 
 	private void refreshData() {
 		this.loadAlleles();
-		for (final BreedingSystem system : Binnie.Genetics.getActiveSystems()) {
+		for (final BreedingSystem system : Binnie.GENETICS.getActiveSystems()) {
 			system.calculateArrays();
 		}
 	}

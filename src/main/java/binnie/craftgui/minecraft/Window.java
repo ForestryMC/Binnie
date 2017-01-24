@@ -107,7 +107,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 	protected abstract String getBackgroundTextureName();
 
 	public BinnieResource getBackgroundTextureFile(final int i) {
-		return Binnie.Resource.getPNG(this.getMod(), ResourceType.GUI, this.getBackgroundTextureName() + ((i == 1) ? "" : i));
+		return Binnie.RESOURCE.getPNG(this.getMod(), ResourceType.GUI, this.getBackgroundTextureName() + ((i == 1) ? "" : i));
 	}
 
 	public boolean showHelpButton() {

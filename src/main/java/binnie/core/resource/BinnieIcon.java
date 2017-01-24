@@ -13,7 +13,7 @@ public class BinnieIcon extends BinnieResource {
 //		this.textureSheet = 0;
 //		this.icon = null;
 		//this.textureSheet = ((type != ResourceType.Block) ? 1 : 0);
-		Binnie.Resource.registerIcon(this);
+		Binnie.RESOURCE.registerIcon(this);
 	}
 
 //	public IIcon getIcon() {

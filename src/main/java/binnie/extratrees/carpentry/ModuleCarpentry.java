@@ -3,7 +3,6 @@ package binnie.extratrees.carpentry;
 import binnie.core.IInitializable;
 import binnie.core.block.ItemMetadata;
 import binnie.core.block.TileEntityMetadata;
-import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignMaterial;
@@ -14,21 +13,26 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModuleCarpentry implements IInitializable {
+	
+	public static BlockCarpentry blockCarpentry;
+	public static BlockCarpentry blockPanel;
+	public static BlockStainedDesign blockStained;
+	
 	@Override
 	public void preInit() {
-		ExtraTrees.blockCarpentry = new BlockCarpentry("carpentry");
-		ExtraTrees.blockPanel = new BlockCarpentryPanel();
-		ExtraTrees.blockStained = new BlockStainedDesign();
-		GameRegistry.register(ExtraTrees.blockCarpentry);
-		GameRegistry.register(new ItemMetadata(ExtraTrees.blockCarpentry).setRegistryName(ExtraTrees.blockCarpentry.getRegistryName()));
-		GameRegistry.register(ExtraTrees.blockPanel);
-		GameRegistry.register(new ItemMetadata(ExtraTrees.blockPanel).setRegistryName(ExtraTrees.blockPanel.getRegistryName()));
-		GameRegistry.register(ExtraTrees.blockStained);
-		GameRegistry.register(new ItemMetadata(ExtraTrees.blockStained).setRegistryName(ExtraTrees.blockStained.getRegistryName()));
+		blockCarpentry = new BlockCarpentry("carpentry");
+		blockPanel = new BlockCarpentryPanel();
+		blockStained = new BlockStainedDesign();
+		GameRegistry.register(blockCarpentry);
+		GameRegistry.register(new ItemMetadata(blockCarpentry).setRegistryName(blockCarpentry.getRegistryName()));
+		GameRegistry.register(blockPanel);
+		GameRegistry.register(new ItemMetadata(blockPanel).setRegistryName(blockPanel.getRegistryName()));
+		GameRegistry.register(blockStained);
+		GameRegistry.register(new ItemMetadata(blockStained).setRegistryName(blockStained.getRegistryName()));
 
 		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockCarpentry), new MultipassItemRenderer());
 		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockStained), new MultipassItemRenderer());
-		MinecraftForge.EVENT_BUS.register(ExtraTrees.blockCarpentry);
+		MinecraftForge.EVENT_BUS.register(blockCarpentry);
 		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockPanel), new MultipassItemRenderer());
 	}
 

@@ -91,11 +91,11 @@ public class ControlClimateBar extends Control implements ITooltip {
 		EnumTolerance tolerance;
 		if (!this.isHumidity) {
 			main = species.getTemperature().ordinal() - 1;
-			final IBeeGenome genome = Binnie.Genetics.getBeeRoot().templateAsGenome(Binnie.Genetics.getBeeRoot().getTemplate(species.getUID()));
+			final IBeeGenome genome = Binnie.GENETICS.getBeeRoot().templateAsGenome(Binnie.GENETICS.getBeeRoot().getTemplate(species.getUID()));
 			tolerance = genome.getToleranceTemp();
 		} else {
 			main = species.getHumidity().ordinal();
-			final IBeeGenome genome = Binnie.Genetics.getBeeRoot().templateAsGenome(Binnie.Genetics.getBeeRoot().getTemplate(species.getUID()));
+			final IBeeGenome genome = Binnie.GENETICS.getBeeRoot().templateAsGenome(Binnie.GENETICS.getBeeRoot().getTemplate(species.getUID()));
 			tolerance = genome.getToleranceHumid();
 		}
 		this.tolerated.add(main);

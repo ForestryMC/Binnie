@@ -67,8 +67,8 @@ public final class BinnieCore extends AbstractMod {
 
 	@Mod.EventHandler
 	public void preInit(final FMLPreInitializationEvent evt) {
-		MinecraftForge.EVENT_BUS.register(Binnie.Liquid);
-		Binnie.Configuration.registerConfiguration(ConfigurationMods.class, this);
+		MinecraftForge.EVENT_BUS.register(Binnie.LIQUID);
+		Binnie.CONFIGURATION.registerConfiguration(ConfigurationMods.class, this);
 		for (final FluidContainer container : FluidContainer.values()) {
 			final Item item = new ItemFluidContainer(container);
 			BinnieCore.proxy.registerItem(item);
@@ -95,7 +95,7 @@ public final class BinnieCore extends AbstractMod {
 
 	@Override
 	protected void registerModules() {
-		for (final ManagerBase baseManager : Binnie.Managers) {
+		for (final ManagerBase baseManager : Binnie.MANAGERS) {
 			this.addModule(baseManager);
 		}
 		this.addModule(new ModuleCraftGUI());
@@ -165,7 +165,7 @@ public final class BinnieCore extends AbstractMod {
 //		if (event.map.getTextureType() == 0) {
 //			Binnie.Liquid.reloadIcons(event.map);
 //		}
-		Binnie.Resource.registerIcons();
+		Binnie.RESOURCE.registerIcons();
 	}
 	
 	@SubscribeEvent

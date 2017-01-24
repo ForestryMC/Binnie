@@ -103,7 +103,7 @@ public class WindowGeneBank extends WindowMachine {
 			}
 		}.setOrigin(EventHandler.Origin.Self, edit));
 		scroll.setScrollableContent(this.genes = new ControlGeneScroll(scroll, 1.0f, 1.0f, geneBoxWidth, 116.0f));
-		this.genes.setGenes(Binnie.Genetics.beeBreedingSystem);
+		this.genes.setGenes(Binnie.GENETICS.beeBreedingSystem);
 		final ControlTabBar<BreedingSystem> tabBar = new ControlTabBar<BreedingSystem>(this, boxX, 32.0f, 24.0f, 120.0f, Position.Left) {
 			@Override
 			public ControlTab<BreedingSystem> createTab(final float x, final float y, final float w, final float h, final BreedingSystem value) {
@@ -114,7 +114,7 @@ public class WindowGeneBank extends WindowMachine {
 						int totalGenes = 0;
 						int seqGenes = 0;
 						final GeneTracker tracker = GeneTracker.getTracker(WindowGeneBank.this.getWorld(), WindowGeneBank.this.getUsername());
-						final Map<IChromosomeType, List<IAllele>> genes = Binnie.Genetics.getChromosomeMap(this.getValue().getSpeciesRoot());
+						final Map<IChromosomeType, List<IAllele>> genes = Binnie.GENETICS.getChromosomeMap(this.getValue().getSpeciesRoot());
 						for (final Map.Entry<IChromosomeType, List<IAllele>> entry : genes.entrySet()) {
 							totalGenes += entry.getValue().size();
 							for (final IAllele allele : entry.getValue()) {
@@ -129,8 +129,8 @@ public class WindowGeneBank extends WindowMachine {
 				};
 			}
 		};
-		tabBar.setValues(Binnie.Genetics.getActiveSystems());
-		tabBar.setValue(Binnie.Genetics.beeBreedingSystem);
+		tabBar.setValues(Binnie.GENETICS.getActiveSystems());
+		tabBar.setValue(Binnie.GENETICS.beeBreedingSystem);
 		boxX -= 8;
 		final ControlTabBar<String> infoTabs = new ControlTabBar<>(this, boxX + 8, 160.0f, 16.0f, 50.0f, Position.Left);
 		infoTabs.setValues(Arrays.asList("Stats", "Ranking"));
@@ -138,9 +138,9 @@ public class WindowGeneBank extends WindowMachine {
 		final Panel panelProject = new Panel(this, boxX + 24, 160.0f, geneBoxWidth + 20, 50.0f, MinecraftGUI.PanelType.Black);
 		int totalGenes = 0;
 		int seqGenes = 0;
-		for (final BreedingSystem system : Binnie.Genetics.getActiveSystems()) {
+		for (final BreedingSystem system : Binnie.GENETICS.getActiveSystems()) {
 			final GeneTracker tracker = GeneTracker.getTracker(this.getWorld(), this.getUsername());
-			final Map<IChromosomeType, List<IAllele>> genes = Binnie.Genetics.getChromosomeMap(system.getSpeciesRoot());
+			final Map<IChromosomeType, List<IAllele>> genes = Binnie.GENETICS.getChromosomeMap(system.getSpeciesRoot());
 			for (final Map.Entry<IChromosomeType, List<IAllele>> entry : genes.entrySet()) {
 				totalGenes += entry.getValue().size();
 				for (final IAllele allele : entry.getValue()) {

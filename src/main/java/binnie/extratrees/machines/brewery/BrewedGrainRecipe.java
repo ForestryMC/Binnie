@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class BrewedGrainRecipe implements IBreweryRecipe {
-	public static final FluidStack WATER = Binnie.Liquid.getFluidStack("water", Fluid.BUCKET_VOLUME);
+	public static final FluidStack WATER = Binnie.LIQUID.getFluidStack("water", Fluid.BUCKET_VOLUME);
 
 	private final FluidStack output;
 	private final int grainOreId;
@@ -90,6 +90,7 @@ public class BrewedGrainRecipe implements IBreweryRecipe {
 		return ingredientOreId != null && OreDictionaryUtil.hasOreId(itemstack, ingredientOreId);
 	}
 
+	@Override
 	public List<ItemStack> getIngredients() {
 		if (ingredientOreId == null) {
 			return Collections.emptyList();

@@ -32,7 +32,7 @@ public class WindowApiaristDatabase extends WindowAbstractDatabase {
 	}
 
 	public WindowApiaristDatabase(final EntityPlayer player, final Side side, final boolean nei) {
-		super(player, side, nei, Binnie.Genetics.beeBreedingSystem, 110.0f);
+		super(player, side, nei, Binnie.GENETICS.beeBreedingSystem, 110.0f);
 	}
 
 	public static Window create(final EntityPlayer player, final Side side, final boolean nei) {

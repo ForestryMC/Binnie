@@ -23,7 +23,7 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
 
 	@Override
 	public void getTooltip(final Tooltip tooltip) {
-		final String cName = Binnie.Genetics.getSystem(this.gene.getSpeciesRoot()).getChromosomeName(this.gene.getChromosome());
+		final String cName = Binnie.GENETICS.getSystem(this.gene.getSpeciesRoot()).getChromosomeName(this.gene.getChromosome());
 		tooltip.add(cName + ": " + this.gene.getName());
 		if (this.isMouseOver() && this.canFill(Window.get(this).getHeldItemStack())) {
 			tooltip.add("Left click to assign gene");
@@ -31,7 +31,7 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
 			if (existingGene == null) {
 				return;
 			}
-			final String dName = Binnie.Genetics.getSystem(this.gene.getSpeciesRoot()).getChromosomeName(this.gene.getChromosome());
+			final String dName = Binnie.GENETICS.getSystem(this.gene.getSpeciesRoot()).getChromosomeName(this.gene.getChromosome());
 			tooltip.add("Will replace " + dName + ": " + existingGene.getName());
 		}
 	}

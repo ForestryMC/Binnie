@@ -63,7 +63,7 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
 		this.name = name;
 		this.branchName = scientific.split(" ")[0].toLowerCase();
 		this.scientific = scientific.split(" ")[1];
-		this.texture = Binnie.Resource.getPNG(ExtraTrees.instance, ResourceType.Entity, this.toString());
+		this.texture = Binnie.RESOURCE.getPNG(ExtraTrees.instance, ResourceType.Entity, this.toString());
 		this.colour = colour;
 	}
 
@@ -170,7 +170,7 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
 
 	@Override
 	public IButterflyRoot getRoot() {
-		return Binnie.Genetics.getButterflyRoot();
+		return Binnie.GENETICS.getButterflyRoot();
 	}
 
 	@Override

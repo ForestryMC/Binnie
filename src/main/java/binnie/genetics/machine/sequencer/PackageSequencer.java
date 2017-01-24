@@ -22,10 +22,10 @@ import net.minecraft.tileentity.TileEntity;
 public class PackageSequencer extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageSequencer() {
 		super("sequencer", GeneticsTexture.Sequencer, 12058418, true);
-		Sequencer.fxSeqA = Binnie.Resource.getBlockIcon(Genetics.instance, "fx/sequencer.a");
-		Sequencer.fxSeqG = Binnie.Resource.getBlockIcon(Genetics.instance, "fx/sequencer.g");
-		Sequencer.fxSeqT = Binnie.Resource.getBlockIcon(Genetics.instance, "fx/sequencer.t");
-		Sequencer.fxSeqC = Binnie.Resource.getBlockIcon(Genetics.instance, "fx/sequencer.c");
+		Sequencer.fxSeqA = Binnie.RESOURCE.getBlockIcon(Genetics.instance, "fx/sequencer.a");
+		Sequencer.fxSeqG = Binnie.RESOURCE.getBlockIcon(Genetics.instance, "fx/sequencer.g");
+		Sequencer.fxSeqT = Binnie.RESOURCE.getBlockIcon(Genetics.instance, "fx/sequencer.t");
+		Sequencer.fxSeqC = Binnie.RESOURCE.getBlockIcon(Genetics.instance, "fx/sequencer.c");
 	}
 
 	@Override

@@ -259,7 +259,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 				return "";
 			}
 		}
-		return TextFormatting.GRAY + Binnie.Language.localise("botany.ph") + ": " + ph.getTranslated(withColor);
+		return TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.ph") + ": " + ph.getTranslated(withColor);
 	}
 
 	public static String getMoisture(ItemStack stack, boolean withColor, boolean byNormalNone) {
@@ -269,7 +269,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 				return "";
 			}
 		}
-		return TextFormatting.GRAY + Binnie.Language.localise("botany.moisture") + ": " + moisure.getTranslated(withColor);
+		return TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.moisture") + ": " + moisure.getTranslated(withColor);
 	}
 
 	@Override

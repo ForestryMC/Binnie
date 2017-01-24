@@ -25,26 +25,34 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class ModuleItems implements IInitializable {
+	
+	public static Item itemDictionary;
+	public static Item itemDictionaryLepi;
+	public static ItemMisc itemMisc;
+	public static Item itemFood;
+	public static Item itemHammer;
+	public static Item itemDurableHammer;
+	
 	@Override
 	public void preInit() {
-		ExtraTrees.itemMisc = new ItemMisc(Tabs.tabArboriculture, (IItemMiscProvider[]) ExtraTreeItems.values());
-		ExtraTrees.proxy.registerItem(ExtraTrees.itemMisc);
+		itemMisc = new ItemMisc(Tabs.tabArboriculture, ExtraTreeItems.values());
+		ExtraTrees.proxy.registerItem(itemMisc);
 
-		ExtraTrees.itemDictionary = new ItemDictionary();
-		ExtraTrees.proxy.registerItem(ExtraTrees.itemDictionary);
+		itemDictionary = new ItemDictionary();
+		ExtraTrees.proxy.registerItem(itemDictionary);
 
 		if (BinnieCore.isLepidopteryActive()) {
-			ExtraTrees.itemDictionaryLepi = new ItemMothDatabase();
-			ExtraTrees.proxy.registerItem(ExtraTrees.itemDictionaryLepi);
+			itemDictionaryLepi = new ItemMothDatabase();
+			ExtraTrees.proxy.registerItem(itemDictionaryLepi);
 		}
-		Binnie.Liquid.createLiquids(ExtraTreeLiquid.values(), ItemFluidContainer.LiquidExtraTree);
-		ExtraTrees.itemFood = new ItemETFood();
-		ExtraTrees.proxy.registerItem(ExtraTrees.itemFood);
+		Binnie.LIQUID.createLiquids(ExtraTreeLiquid.values(), ItemFluidContainer.LiquidExtraTree);
+		itemFood = new ItemETFood();
+		ExtraTrees.proxy.registerItem(itemFood);
 
-		ExtraTrees.itemHammer = new ItemHammer(false);
-		ExtraTrees.proxy.registerItem(ExtraTrees.itemHammer);
-		ExtraTrees.itemDurableHammer = new ItemHammer(true);
-		ExtraTrees.proxy.registerItem(ExtraTrees.itemDurableHammer);
+		itemHammer = new ItemHammer(false);
+		ExtraTrees.proxy.registerItem(itemHammer);
+		itemDurableHammer = new ItemHammer(true);
+		ExtraTrees.proxy.registerItem(itemDurableHammer);
 	}
 
 	@Override
@@ -117,8 +125,10 @@ public class ModuleItems implements IInitializable {
 
 	@Override
 	public void postInit() {
-		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(ExtraTrees.itemDurableHammer, 1, 0), "wiw", " s ", " s ", 'w', Blocks.OBSIDIAN, 'i', Items.GOLD_INGOT, 's', Items.STICK));
-		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(ExtraTrees.itemHammer, 1, 0), "wiw", " s ", " s ", 'w', "plankWood", 'i', Items.IRON_INGOT, 's', Items.STICK));
+		ModuleItems items = ExtraTrees.items();
+		
+		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(ModuleItems.itemDurableHammer, 1, 0), "wiw", " s ", " s ", 'w', Blocks.OBSIDIAN, 'i', Items.GOLD_INGOT, 's', Items.STICK));
+		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(ModuleItems.itemHammer, 1, 0), "wiw", " s ", " s ", 'w', "plankWood", 'i', Items.IRON_INGOT, 's', Items.STICK));
 		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ExtraTreeItems.Yeast.get(8), " m ", "mbm", 'b', Items.BREAD, 'm', Blocks.BROWN_MUSHROOM));
 		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ExtraTreeItems.LagerYeast.get(8), "mbm", " m ", 'b', Items.BREAD, 'm', Blocks.BROWN_MUSHROOM));
 		GameRegistry.addRecipe(ExtraTreeItems.GrainWheat.get(5), " s ", "sss", " s ", 's', Items.WHEAT_SEEDS);
@@ -137,15 +147,15 @@ public class ModuleItems implements IInitializable {
 			CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(Food.PAPAYIMAR.get(1), minium, "cropPapaya"));
 		} catch (Exception ex) {
 		}
-		RecipeManagers.carpenterManager.addRecipe(100, Binnie.Liquid.getFluidStack("water", 2000), null, new ItemStack(ExtraTrees.itemDictionary), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotCopper", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
-		RecipeManagers.carpenterManager.addRecipe(100, Binnie.Liquid.getFluidStack("water", 2000), null, new ItemStack(ExtraTrees.itemDictionaryLepi), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotBronze", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
+		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack("water", 2000), null, new ItemStack(ModuleItems.itemDictionary), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotCopper", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
+		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack("water", 2000), null, new ItemStack(ModuleItems.itemDictionaryLepi), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotBronze", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
 		RecipeManagers.stillManager.addRecipe(25, ExtraTreeLiquid.Resin.get(5), ExtraTreeLiquid.Turpentine.get(3));
-		RecipeManagers.carpenterManager.addRecipe(25, ExtraTreeLiquid.Turpentine.get(50), null, ExtraTrees.itemMisc.getStack(ExtraTreeItems.WoodWax, 4), "x", 'x', Mods.Forestry.stack("beeswax"));
-		if (Binnie.Liquid.getFluidStack("Creosote Oil", 100) != null) {
-			RecipeManagers.carpenterManager.addRecipe(25, Binnie.Liquid.getFluidStack("Creosote Oil", 50), null, ExtraTrees.itemMisc.getStack(ExtraTreeItems.WoodWax, 1), "x", 'x', Mods.Forestry.stack("beeswax"));
+		RecipeManagers.carpenterManager.addRecipe(25, ExtraTreeLiquid.Turpentine.get(50), null, ModuleItems.itemMisc.getStack(ExtraTreeItems.WoodWax, 4), "x", 'x', Mods.Forestry.stack("beeswax"));
+		if (Binnie.LIQUID.getFluidStack("Creosote Oil", 100) != null) {
+			RecipeManagers.carpenterManager.addRecipe(25, Binnie.LIQUID.getFluidStack("Creosote Oil", 50), null, ModuleItems.itemMisc.getStack(ExtraTreeItems.WoodWax, 1), "x", 'x', Mods.Forestry.stack("beeswax"));
 		}
 		for (final FluidContainerRegistry.FluidContainerData data : FluidContainerRegistry.getRegisteredFluidContainerData()) {
-			if (data.fluid.isFluidEqual(Binnie.Liquid.getFluidStack("water", 0)) && data.fluid.amount == 1000) {
+			if (data.fluid.isFluidEqual(Binnie.LIQUID.getFluidStack("water", 0)) && data.fluid.amount == 1000) {
 				CraftingManager.getInstance().addRecipe(Mods.Forestry.stack("mulch"), " b ", "bwb", " b ", 'b', ExtraTreeItems.Bark.get(1), 'w', data.filledContainer.copy());
 			}
 		}

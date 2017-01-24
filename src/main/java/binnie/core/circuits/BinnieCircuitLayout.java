@@ -32,13 +32,13 @@ public class BinnieCircuitLayout implements ICircuitLayout {
 	@Nonnull
 	@Override
 	public String getName() {
-		return Binnie.Language.localise(this.mod, "circuit.layout." + this.uid.toLowerCase());
+		return Binnie.LANGUAGE.localise(this.mod, "circuit.layout." + this.uid.toLowerCase());
 	}
 
 	@Nonnull
 	@Override
 	public String getUsage() {
-		return Binnie.Language.localise(this.mod, "circuit.layout." + this.uid.toLowerCase() + ".usage");
+		return Binnie.LANGUAGE.localise(this.mod, "circuit.layout." + this.uid.toLowerCase() + ".usage");
 	}
 
 	@Nonnull

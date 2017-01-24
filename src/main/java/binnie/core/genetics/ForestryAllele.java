@@ -235,7 +235,7 @@ public class ForestryAllele {
 		}
 
 		public IAllele[] getTemplate() {
-			return Binnie.Genetics.getBeeRoot().getTemplate(this.getAllele().getUID());
+			return Binnie.GENETICS.getBeeRoot().getTemplate(this.getAllele().getUID());
 		}
 	}
 }

@@ -24,13 +24,13 @@ public class PageBreeder extends ControlPage<DatabaseTab> {
 		}
 		final BreedingSystem system = ((WindowAbstractDatabase) Window.get(this)).getBreedingSystem();
 		final String descriptor = system.getDescriptor();
-		new ControlTextCentered(this, 8.0f, TextFormatting.UNDERLINE + system.getDescriptor() + " " + Binnie.Language.localise("binniecore.gui.database.breeder.profile"));
-		new ControlTextCentered(this, 75.0f, "" + system.discoveredSpeciesCount + "/" + system.totalSpeciesCount + " " + Binnie.Language.localise("binniecore.gui.database.species"));
+		new ControlTextCentered(this, 8.0f, TextFormatting.UNDERLINE + system.getDescriptor() + " " + Binnie.LANGUAGE.localise("binniecore.gui.database.breeder.profile"));
+		new ControlTextCentered(this, 75.0f, "" + system.discoveredSpeciesCount + "/" + system.totalSpeciesCount + " " + Binnie.LANGUAGE.localise("binniecore.gui.database.species"));
 		new ControlBreedingProgress(this, 20, 87, 102, 14, system, system.discoveredSpeciesPercentage);
-		new ControlTextCentered(this, 115.0f, "" + system.discoveredBranchCount + "/" + system.totalBranchCount + " " + Binnie.Language.localise("binniecore.gui.database.breeder.branches"));
+		new ControlTextCentered(this, 115.0f, "" + system.discoveredBranchCount + "/" + system.totalBranchCount + " " + Binnie.LANGUAGE.localise("binniecore.gui.database.breeder.branches"));
 		new ControlBreedingProgress(this, 20, 127, 102, 14, system, system.discoveredBranchPercentage);
 		if (system.discoveredSecretCount > 0) {
-			new ControlTextCentered(this, 155.0f, "" + system.discoveredSecretCount + "/" + system.totalSecretCount + " " + Binnie.Language.localise("binniecore.gui.database.breeder.species.secret"));
+			new ControlTextCentered(this, 155.0f, "" + system.discoveredSecretCount + "/" + system.totalSecretCount + " " + Binnie.LANGUAGE.localise("binniecore.gui.database.breeder.species.secret"));
 		}
 		new ControlTextCentered(this, 32.0f, this.player.getName());
 		new ControlTextCentered(this, 44.0f, TextFormatting.ITALIC + system.getEpitome());

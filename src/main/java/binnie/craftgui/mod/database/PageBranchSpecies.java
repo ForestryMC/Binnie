@@ -19,7 +19,7 @@ public class PageBranchSpecies extends PageBranch {
 
 	public PageBranchSpecies(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);
-		this.pageBranchSpecies_title = new ControlTextCentered(this, 8.0f, Binnie.Language.localise("binniecore.gui.database.species"));
+		this.pageBranchSpecies_title = new ControlTextCentered(this, 8.0f, Binnie.LANGUAGE.localise("binniecore.gui.database.species"));
 		this.addEventHandler(new EventValueChanged.Handler() {
 			@Override
 			public void onEvent(final EventValueChanged event) {

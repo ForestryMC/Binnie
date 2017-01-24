@@ -32,12 +32,12 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata {
 
 
 	@Override
-	public String getBlockName(final ItemStack par1ItemStack) {
+	public String getDisplayName(final ItemStack par1ItemStack) {
 		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
 		final IPlankType type1 = this.getDescription(meta).getPlankType();
 		final IPlankType type2 = this.getDescription(meta).getSecondaryPlankType();
 		final boolean twoTypes = type1 != type2;
 		final FenceType type3 = this.getDescription(meta).getFenceType();
-		return Binnie.Language.localise(ExtraTrees.instance, "block.woodslab.name" + (twoTypes ? "2" : ""), type3.getPrefix(), type1.getName(), type2.getName());
+		return Binnie.LANGUAGE.localise(ExtraTrees.instance, "block.woodslab.name" + (twoTypes ? "2" : ""), type3.getPrefix(), type1.getName(), type2.getName());
 	}
 }

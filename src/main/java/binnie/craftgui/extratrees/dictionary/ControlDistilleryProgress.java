@@ -15,7 +15,6 @@ import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.machines.distillery.DistilleryLogic;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
-import org.lwjgl.opengl.GL11;
 
 public class ControlDistilleryProgress extends ControlProgressBase {
 	public static final Texture DISTILLERY_BASE = new StandardTexture(43, 0, 58, 66, ExtraTreeTexture.Gui);

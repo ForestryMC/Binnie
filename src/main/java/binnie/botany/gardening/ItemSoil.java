@@ -35,7 +35,7 @@ public class ItemSoil extends ItemBlock {
 			tooltip.add(info);
 		}
 		if (this.noWeed) {
-			tooltip.add(TextFormatting.GREEN + Binnie.Language.localise("botany.soil.weedkiller"));
+			tooltip.add(TextFormatting.GREEN + Binnie.LANGUAGE.localise("botany.soil.weedkiller"));
 		}
 	}
 

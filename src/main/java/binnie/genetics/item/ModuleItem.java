@@ -11,6 +11,7 @@ import binnie.core.liquid.ItemFluidContainer;
 import binnie.core.resource.BinnieIcon;
 import binnie.extrabees.ExtraBees;
 import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.item.ModuleItems;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
 import forestry.api.recipes.RecipeManagers;
@@ -44,7 +45,7 @@ public class ModuleItem implements IInitializable {
 		Genetics.itemSerum = new ItemSerum();
 		Genetics.itemSerumArray = new ItemSerumArray();
 		Genetics.itemSequencer = new ItemSequence();
-		Genetics.setItemGenetics(new ItemMisc(CreativeTabGenetics.instance, (IItemMiscProvider[]) GeneticsItems.values()));
+		Genetics.setItemGenetics(new ItemMisc(CreativeTabGenetics.instance, GeneticsItems.values()));
 		Genetics.proxy.registerItem(Genetics.itemSerum);
 		Genetics.proxy.registerItem(Genetics.itemSerumArray);
 		Genetics.proxy.registerItem(Genetics.itemSequencer);
@@ -59,26 +60,26 @@ public class ModuleItem implements IInitializable {
 		Genetics.proxy.registerItem(Genetics.registry);
 		Genetics.proxy.registerItem(Genetics.masterRegistry);
 
-		Binnie.Liquid.createLiquids(GeneticLiquid.values(), ItemFluidContainer.LiquidGenetics);
+		Binnie.LIQUID.createLiquids(GeneticLiquid.values(), ItemFluidContainer.LiquidGenetics);
 	}
 
 	@Override
 	public void init() {
-		ModuleItem.iconNight = Binnie.Resource.getItemIcon(BinnieCore.instance, "gui/analyst.night");
-		ModuleItem.iconDaytime = Binnie.Resource.getItemIcon(BinnieCore.instance, "gui/analyst.day");
-		ModuleItem.iconAllDay = Binnie.Resource.getItemIcon(BinnieCore.instance, "gui/analyst.allday");
-		ModuleItem.iconRain = Binnie.Resource.getItemIcon(BinnieCore.instance, "gui/analyst.rain");
-		ModuleItem.iconNoRain = Binnie.Resource.getItemIcon(BinnieCore.instance, "gui/analyst.norain");
-		ModuleItem.iconSky = Binnie.Resource.getItemIcon(BinnieCore.instance, "gui/analyst.sky");
-		ModuleItem.iconNoSky = Binnie.Resource.getItemIcon(BinnieCore.instance, "gui/analyst.nosky");
-		ModuleItem.iconFire = Binnie.Resource.getItemIcon(BinnieCore.instance, "gui/analyst.fire");
-		ModuleItem.iconNoFire = Binnie.Resource.getItemIcon(BinnieCore.instance, "gui/analyst.nofire");
-		ModuleItem.iconAdd = Binnie.Resource.getItemIcon(BinnieCore.instance, "gui/analyst.add");
-		ModuleItem.iconArrow = Binnie.Resource.getItemIcon(BinnieCore.instance, "gui/analyst.arrow");
-		ModuleItem.iconAdd0 = Binnie.Resource.getItemIcon(BinnieCore.instance, "gui/analyst.add.0");
-		ModuleItem.iconArrow0 = Binnie.Resource.getItemIcon(BinnieCore.instance, "gui/analyst.arrow.0");
-		ModuleItem.iconAdd1 = Binnie.Resource.getItemIcon(BinnieCore.instance, "gui/analyst.add.1");
-		ModuleItem.iconArrow1 = Binnie.Resource.getItemIcon(BinnieCore.instance, "gui/analyst.arrow.1");
+		ModuleItem.iconNight = Binnie.RESOURCE.getItemIcon(BinnieCore.instance, "gui/analyst.night");
+		ModuleItem.iconDaytime = Binnie.RESOURCE.getItemIcon(BinnieCore.instance, "gui/analyst.day");
+		ModuleItem.iconAllDay = Binnie.RESOURCE.getItemIcon(BinnieCore.instance, "gui/analyst.allday");
+		ModuleItem.iconRain = Binnie.RESOURCE.getItemIcon(BinnieCore.instance, "gui/analyst.rain");
+		ModuleItem.iconNoRain = Binnie.RESOURCE.getItemIcon(BinnieCore.instance, "gui/analyst.norain");
+		ModuleItem.iconSky = Binnie.RESOURCE.getItemIcon(BinnieCore.instance, "gui/analyst.sky");
+		ModuleItem.iconNoSky = Binnie.RESOURCE.getItemIcon(BinnieCore.instance, "gui/analyst.nosky");
+		ModuleItem.iconFire = Binnie.RESOURCE.getItemIcon(BinnieCore.instance, "gui/analyst.fire");
+		ModuleItem.iconNoFire = Binnie.RESOURCE.getItemIcon(BinnieCore.instance, "gui/analyst.nofire");
+		ModuleItem.iconAdd = Binnie.RESOURCE.getItemIcon(BinnieCore.instance, "gui/analyst.add");
+		ModuleItem.iconArrow = Binnie.RESOURCE.getItemIcon(BinnieCore.instance, "gui/analyst.arrow");
+		ModuleItem.iconAdd0 = Binnie.RESOURCE.getItemIcon(BinnieCore.instance, "gui/analyst.add.0");
+		ModuleItem.iconArrow0 = Binnie.RESOURCE.getItemIcon(BinnieCore.instance, "gui/analyst.arrow.0");
+		ModuleItem.iconAdd1 = Binnie.RESOURCE.getItemIcon(BinnieCore.instance, "gui/analyst.add.1");
+		ModuleItem.iconArrow1 = Binnie.RESOURCE.getItemIcon(BinnieCore.instance, "gui/analyst.arrow.1");
 	}
 
 	@Override
@@ -122,7 +123,7 @@ public class ModuleItem implements IInitializable {
 					'c', GeneticsItems.IntegratedCircuit.get(itemGenetics, 1), 'd', Items.DIAMOND));
 
 
-			RecipeManagers.carpenterManager.addRecipe(100, Binnie.Liquid.getFluidStack("water", 2000), null,
+			RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack("water", 2000), null,
 					new ItemStack(Genetics.database),
 					"X#X", "YEY", "RDR",
 					'#', Blocks.GLASS_PANE, 'X', Items.DIAMOND, 'Y', Items.DIAMOND, 'R', Items.REDSTONE, 'D', Items.ENDER_EYE, 'E', Blocks.OBSIDIAN);
@@ -136,7 +137,9 @@ public class ModuleItem implements IInitializable {
 					'a', Mods.Forestry.item("portableAlyzer"),
 					'd', new ItemStack(Items.DIAMOND));
 
-			final Item[] dbs = {ExtraBees.dictionary, ExtraTrees.itemDictionary, ExtraTrees.itemDictionaryLepi, Botany.database};
+			ExtraTrees.items();
+			ExtraTrees.items();
+			final Item[] dbs = {ExtraBees.dictionary, ModuleItems.itemDictionary, ModuleItems.itemDictionaryLepi, Botany.database};
 			if (BinnieCore.isBotanyActive() && BinnieCore.isExtraBeesActive() && BinnieCore.isExtraTreesActive()) {
 				for (final Item a2 : dbs) {
 					for (final Item b2 : dbs) {

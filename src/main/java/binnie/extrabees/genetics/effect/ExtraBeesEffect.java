@@ -416,7 +416,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 				}
 				IFluidHandler fluidHandler = TileUtil.getCapability(world, pos, CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, EnumFacing.UP);
 				if (fluidHandler != null) {
-					fluidHandler.fill(Binnie.Liquid.getFluidStack("water", 100), true);
+					fluidHandler.fill(Binnie.LIQUID.getFluidStack("water", 100), true);
 					break;
 				}
 				break;

@@ -24,8 +24,8 @@ import java.util.TreeSet;
 
 public class FlowerBreedingSystem extends BreedingSystem {
 	public FlowerBreedingSystem() {
-		this.iconUndiscovered = Binnie.Resource.getItemIcon(ExtraBees.instance, "icon/undiscoveredBee");
-		this.iconDiscovered = Binnie.Resource.getItemIcon(ExtraBees.instance, "icon/discoveredBee");
+		this.iconUndiscovered = Binnie.RESOURCE.getItemIcon(ExtraBees.instance, "icon/undiscoveredBee");
+		this.iconDiscovered = Binnie.RESOURCE.getItemIcon(ExtraBees.instance, "icon/discoveredBee");
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class FlowerBreedingSystem extends BreedingSystem {
 
 	@Override
 	public ISpeciesRoot getSpeciesRoot() {
-		return Binnie.Genetics.getFlowerRoot();
+		return Binnie.GENETICS.getFlowerRoot();
 	}
 
 	@Override
@@ -52,16 +52,16 @@ public class FlowerBreedingSystem extends BreedingSystem {
 	public String getAlleleName(final IChromosomeType chromosome, final IAllele allele) {
 		if (chromosome == EnumFlowerChromosome.FERTILITY) {
 			if (allele.getUID().contains("Low")) {
-				return Binnie.Language.localise(BinnieCore.instance, "allele.fertility.low");
+				return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.fertility.low");
 			}
 			if (allele.getUID().contains("Normal")) {
-				return Binnie.Language.localise(BinnieCore.instance, "allele.fertility.normal");
+				return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.fertility.normal");
 			}
 			if (allele.getUID().contains("High")) {
-				return Binnie.Language.localise(BinnieCore.instance, "allele.fertility.high");
+				return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.fertility.high");
 			}
 			if (allele.getUID().contains("Maximum")) {
-				return Binnie.Language.localise(BinnieCore.instance, "allele.fertility.maximum");
+				return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.fertility.maximum");
 			}
 		}
 		return super.getAlleleName(chromosome, allele);

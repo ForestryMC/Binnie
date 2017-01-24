@@ -26,7 +26,7 @@ public enum GUIIcon {
 	}
 
 	public void register() {
-		this.icon = Binnie.Resource.getItemIcon(BinnieCore.instance, "gui/" + this.path);
+		this.icon = Binnie.RESOURCE.getItemIcon(BinnieCore.instance, "gui/" + this.path);
 	}
 
 	public BinnieIcon getIcon() {

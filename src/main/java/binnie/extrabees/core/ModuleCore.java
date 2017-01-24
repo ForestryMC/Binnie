@@ -9,7 +9,7 @@ import forestry.api.core.Tabs;
 public class ModuleCore implements IInitializable {
 	@Override
 	public void preInit() {
-		ExtraBees.itemMisc = new ItemMisc(Tabs.tabApiculture, (IItemMiscProvider[]) ExtraBeeItems.values());
+		ExtraBees.itemMisc = new ItemMisc(Tabs.tabApiculture, ExtraBeeItems.values());
 		ExtraBees.proxy.registerItem(ExtraBees.itemMisc);
 	}
 

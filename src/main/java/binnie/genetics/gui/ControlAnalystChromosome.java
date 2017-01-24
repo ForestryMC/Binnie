@@ -47,7 +47,7 @@ public class ControlAnalystChromosome extends Control implements ITooltip {
 
 	@Override
 	public void getTooltip(final Tooltip tooltip) {
-		final BreedingSystem system = Binnie.Genetics.getSystem(this.root);
+		final BreedingSystem system = Binnie.GENETICS.getSystem(this.root);
 		tooltip.add(system.getChromosomeName(this.chromosomeType));
 		if (this.isHomozygous()) {
 			tooltip.add(system.getAlleleName(this.chromosomeType, this.allele0));

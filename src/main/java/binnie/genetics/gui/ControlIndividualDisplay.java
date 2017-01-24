@@ -17,7 +17,7 @@ public class ControlIndividualDisplay extends ControlItemDisplay implements IToo
 
 	public ControlIndividualDisplay(final IWidget parent, final float x, final float y, final float size, final IIndividual ind) {
 		super(parent, x, y, size);
-		final BreedingSystem system = Binnie.Genetics.getSystem(ind.getGenome().getSpeciesRoot());
+		final BreedingSystem system = Binnie.GENETICS.getSystem(ind.getGenome().getSpeciesRoot());
 		this.setItemStack(system.getSpeciesRoot().getMemberStack(ind, system.getDefaultType()));
 		this.setTooltip();
 	}

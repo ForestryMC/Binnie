@@ -30,6 +30,6 @@ public enum ExtraBeeTexture implements IBinnieTexture {
 
 	@Override
 	public BinnieResource getTexture() {
-		return Binnie.Resource.getPNG(ExtraBees.instance, this.type, this.texture);
+		return Binnie.RESOURCE.getPNG(ExtraBees.instance, this.type, this.texture);
 	}
 }

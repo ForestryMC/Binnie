@@ -86,7 +86,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 		}
 		IFlower individual = (IFlower) this.getIndividual(itemStack);
 		if (individual == null || individual.getGenome() == null) {
-			list.add(TextFormatting.DARK_RED + Binnie.Language.localise("botany.flower.destroy"));
+			list.add(TextFormatting.DARK_RED + Binnie.LANGUAGE.localise("botany.flower.destroy"));
 			return;
 		}
 		IFlowerGenome genome = individual.getGenome();
@@ -96,9 +96,9 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 		String stemColor = genome.getStemColor().getColourName();
 		String colorInfo;
 		if (!primaryColor.equals(secondaryColor)) {
-			colorInfo = Binnie.Language.localise("botany.grammar.flower.secondary");
+			colorInfo = Binnie.LANGUAGE.localise("botany.grammar.flower.secondary");
 		} else {
-			colorInfo = Binnie.Language.localise("botany.grammar.flower");
+			colorInfo = Binnie.LANGUAGE.localise("botany.grammar.flower");
 		}
 		list.add(TextFormatting.YELLOW + colorInfo.replaceAll("%PRIMARY", primaryColor).replaceAll("%SECONDARY", secondaryColor).replaceAll("%STEM", stemColor));
 
@@ -106,10 +106,10 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 			if (BinnieCore.proxy.isShiftDown()) {
 				individual.addTooltip(list);
 			} else {
-				list.add(TextFormatting.ITALIC + "<" + Binnie.Language.localise("for.gui.tooltip.tmi") + ">");
+				list.add(TextFormatting.ITALIC + "<" + Binnie.LANGUAGE.localise("for.gui.tooltip.tmi") + ">");
 			}
 		} else {
-			list.add("<" + Binnie.Language.localise("for.gui.unknown") + ">");
+			list.add("<" + Binnie.LANGUAGE.localise("for.gui.unknown") + ">");
 		}
 	}
 
@@ -128,13 +128,13 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 	@Override
 	public String getItemStackDisplayName(final ItemStack itemstack) {
 		if (!itemstack.hasTagCompound()) {
-			return Binnie.Language.localise("item.botany.flower.corrupted.name");
+			return Binnie.LANGUAGE.localise("item.botany.flower.corrupted.name");
 		}
 		IIndividual individual = this.getIndividual(itemstack);
 		if (individual != null && individual.getGenome() != null) {
-			return individual.getDisplayName() + (!tag.isEmpty() ? " " + Binnie.Language.localise("item.botany." + tag + ".name") : "");
+			return individual.getDisplayName() + (!tag.isEmpty() ? " " + Binnie.LANGUAGE.localise("item.botany." + tag + ".name") : "");
 		}
-		return Binnie.Language.localise("item.botany.flower.corrupted.name");
+		return Binnie.LANGUAGE.localise("item.botany.flower.corrupted.name");
 	}
 
 	@Override
@@ -187,7 +187,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 	@Override
 	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if (type == EnumFlowerStage.POLLEN) {
-			final IFlower flower = Binnie.Genetics.getFlowerRoot().getMember(stack);
+			final IFlower flower = Binnie.GENETICS.getFlowerRoot().getMember(stack);
 			final TileEntity target = world.getTileEntity(pos);
 			if (!(target instanceof IPollinatable)) {
 				return EnumActionResult.PASS;

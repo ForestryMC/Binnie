@@ -52,7 +52,7 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister, 
 
 	private FluidStack getLiquid(final ItemStack stack) {
 		final String liquid = ItemFluidContainer.idToFluid.get(stack.getItemDamage());
-		return (liquid == null) ? null : Binnie.Liquid.getFluidStack(liquid, 1000);
+		return (liquid == null) ? null : Binnie.LIQUID.getFluidStack(liquid, 1000);
 	}
 
 //	@Override
@@ -75,7 +75,7 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister, 
 
 	@Override
 	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List itemList) {
-		for (final IFluidType liquid : Binnie.Liquid.fluids.values()) {
+		for (final IFluidType liquid : Binnie.LIQUID.fluids.values()) {
 			if (!liquid.canPlaceIn(this.container)) {
 				continue;
 			}

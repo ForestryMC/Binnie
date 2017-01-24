@@ -2,7 +2,6 @@ package binnie.core.network.packet;
 
 import java.io.IOException;
 
-import binnie.botany.flower.TileEntityFlower;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;

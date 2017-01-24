@@ -72,7 +72,7 @@ public enum MiscFluid implements IFluidType, ICocktailLiquid {
 
 	@Override
 	public FluidStack get(final int amount) {
-		return Binnie.Liquid.getFluidStack(this.getIdentifier(), amount);
+		return Binnie.LIQUID.getFluidStack(this.getIdentifier(), amount);
 	}
 
 	@Override

@@ -210,42 +210,32 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 //	public boolean hasTileEntity(final int meta) {
 //		return true;
 //	}
-//
-//	@Override
-//	public boolean onBlockEventReceived(final World par1World, final int par2, final int par3, final int par4, final int par5, final int par6) {
-//		super.onBlockEventReceived(par1World, par2, par3, par4, par5, par6);
-//		final TileEntity tileentity = par1World.getTileEntity(par2, par3, par4);
-//		return tileentity != null && tileentity.receiveClientEvent(par5, par6);
-//	}
+	
+	@Override
+	public boolean eventReceived(IBlockState state, World world, BlockPos pos, int id, int param) {
+		TileEntity tileentity = world.getTileEntity(pos);
+		return tileentity != null && tileentity.receiveClientEvent(id, param);
+	}
 
 	@Override
 	public int getPlacedMeta(final ItemStack stack, final World world, final BlockPos pos, final EnumFacing clickedBlock) {
 		return TileEntityMetadata.getItemDamage(stack);
 	}
-
+	
 	@Override
-	public int getDroppedMeta(final int blockMeta, final int tileMeta) {
-		return tileMeta;
+	public int getDroppedMeta(IBlockState state, int tileMetadata) {
+		return tileMetadata;
 	}
 
 	@Override
-	public String getBlockName(final ItemStack par1ItemStack) {
+	public String getDisplayName(ItemStack par1ItemStack) {
 		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
 		final String typeName = getDoorType(meta).getName();
 		final String woodName = WoodManager.getPlankType(meta & 0xFF).getName();
 		if (typeName.equals("")) {
-			return Binnie.Language.localise(ExtraTrees.instance, "block.door.name", woodName);
+			return Binnie.LANGUAGE.localise(ExtraTrees.instance, "block.door.name", woodName);
 		}
-		return Binnie.Language.localise(ExtraTrees.instance, "block.door.name.adv", woodName, typeName);
-	}
-
-	@Override
-	public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
-	}
-
-	@Override
-	public void dropAsStack(final World world, final BlockPos pos, final ItemStack drop) {
-		//this.dropBlockAsItem(world, x, y, z, drop);
+		return Binnie.LANGUAGE.localise(ExtraTrees.instance, "block.door.name.adv", woodName, typeName);
 	}
 
 	@Override
@@ -256,11 +246,12 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 		for (final IPlankType type : PlankType.ForestryPlanks.values()) {
 			itemList.add(WoodManager.getDoor(type, DoorType.Standard));
 		}
-		for (final IPlankType type : PlankType.ExtraBiomesPlank.values()) {
+		//TODO: extrabiomes 1.10.2
+		/*for (final IPlankType type : PlankType.ExtraBiomesPlank.values()) {
 			if (type.getStack() != null) {
 				itemList.add(WoodManager.getDoor(type, DoorType.Standard));
 			}
-		}
+		}*/
 		for (final IPlankType type : PlankType.VanillaPlanks.values()) {
 			itemList.add(WoodManager.getDoor(type, DoorType.Standard));
 		}

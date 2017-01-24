@@ -16,7 +16,7 @@ public class Analyser {
 
 	public static boolean isAnalysable(final ItemStack stack) {
 		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(stack);
-		return ind != null || stack.getItem() instanceof IItemAnalysable || Binnie.Genetics.getConversion(stack) != null;
+		return ind != null || stack.getItem() instanceof IItemAnalysable || Binnie.GENETICS.getConversion(stack) != null;
 	}
 
 	public static boolean isAnalysed(final ItemStack stack) {
@@ -28,7 +28,7 @@ public class Analyser {
 	}
 
 	public static ItemStack analyse(ItemStack stack) {
-		final ItemStack conv = Binnie.Genetics.getConversionStack(stack);
+		final ItemStack conv = Binnie.GENETICS.getConversionStack(stack);
 		if (conv != null) {
 			stack = conv;
 		}

@@ -55,16 +55,19 @@ public enum DesignerType {
 	private BlockDesign getBlock() {
 		switch (this) {
 			case GlassWorker: {
-				return ExtraTrees.blockStained;
+				ExtraTrees.carpentry();
+				return ModuleCarpentry.blockStained;
 			}
 			case Panelworker: {
-				return ExtraTrees.blockPanel;
+				ExtraTrees.carpentry();
+				return ModuleCarpentry.blockPanel;
 			}
 			case Tileworker: {
 				return Botany.ceramicTile;
 			}
 			default: {
-				return ExtraTrees.blockCarpentry;
+				ExtraTrees.carpentry();
+				return ModuleCarpentry.blockCarpentry;
 			}
 		}
 	}

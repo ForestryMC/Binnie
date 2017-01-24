@@ -59,7 +59,7 @@ public class GeneItem implements INbtReadable, INbtWritable, IGeneItem {
 		if (this.gene == null) {
 			return null;
 		}
-		return Binnie.Genetics.getSystem(this.gene.getSpeciesRoot().getUID());
+		return Binnie.GENETICS.getSystem(this.gene.getSpeciesRoot().getUID());
 	}
 
 	public IGene getGene() {

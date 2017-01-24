@@ -31,7 +31,7 @@ public abstract class MachinePackage {
 	public abstract void renderMachine(Machine machine, double x, double y, double z, float partialTicks, int destroyStage);//, final RenderBlocks p5);
 
 	public final String getDisplayName() {
-		return Binnie.Language.localise(this.group.getMod(), "machine." + this.group.getShortUID() + "." + this.getUID());
+		return Binnie.LANGUAGE.localise(this.group.getMod(), "machine." + this.group.getShortUID() + "." + this.getUID());
 	}
 
 	public final Integer getMetadata() {
@@ -59,6 +59,6 @@ public abstract class MachinePackage {
 	}
 
 	public final String getInformation() {
-		return Binnie.Language.localise(this.group.getMod(), "machine." + this.group.getShortUID() + "." + this.getUID() + ".info");
+		return Binnie.LANGUAGE.localise(this.group.getMod(), "machine." + this.group.getShortUID() + "." + this.getUID() + ".info");
 	}
 }

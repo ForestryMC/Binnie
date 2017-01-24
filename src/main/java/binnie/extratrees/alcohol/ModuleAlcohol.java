@@ -18,9 +18,9 @@ import binnie.extratrees.machines.distillery.DistilleryRecipes;
 import binnie.extratrees.machines.fruitpress.FruitPressRecipes;
 import forestry.api.recipes.ISqueezerRecipe;
 import forestry.api.recipes.RecipeManagers;
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -29,20 +29,22 @@ import java.util.List;
 import java.util.Objects;
 
 public class ModuleAlcohol implements IInitializable {
+	public static ItemDrink drink;
+	public static Block blockDrink;
 	public static int drinkRendererID;
 	public static BinnieIcon liquid;
 
 	@Override
 	public void preInit() {
-		ModuleAlcohol.liquid = Binnie.Resource.getBlockIcon(ExtraTrees.instance, "liquids/liquid");
+		ModuleAlcohol.liquid = Binnie.RESOURCE.getBlockIcon(ExtraTrees.instance, "liquids/liquid");
 		//ModuleAlcohol.drinkRendererID = BinnieCore.proxy.getUniqueRenderID();
-		ExtraTrees.drink = new ItemDrink();
-		ExtraTrees.proxy.registerItem(ExtraTrees.drink);
+		drink = new ItemDrink();
+		ExtraTrees.proxy.registerItem(drink);
 		//BinnieCore.proxy.registerCustomItemRenderer(ExtraTrees.drink, new CocktailRenderer());
-		Binnie.Liquid.createLiquids(Juice.values(), ItemFluidContainer.LiquidJuice);
-		Binnie.Liquid.createLiquids(Alcohol.values(), ItemFluidContainer.LiquidAlcohol);
-		Binnie.Liquid.createLiquids(Spirit.values(), ItemFluidContainer.LiquidSpirit);
-		Binnie.Liquid.createLiquids(Liqueur.values(), ItemFluidContainer.LiquidLiqueuer);
+		Binnie.LIQUID.createLiquids(Juice.values(), ItemFluidContainer.LiquidJuice);
+		Binnie.LIQUID.createLiquids(Alcohol.values(), ItemFluidContainer.LiquidAlcohol);
+		Binnie.LIQUID.createLiquids(Spirit.values(), ItemFluidContainer.LiquidSpirit);
+		Binnie.LIQUID.createLiquids(Liqueur.values(), ItemFluidContainer.LiquidLiqueuer);
 		for (final Juice juice : Juice.values()) {
 			Cocktail.registerIngredient(juice);
 		}
@@ -90,7 +92,7 @@ public class ModuleAlcohol implements IInitializable {
 		}
 		for (final Alcohol alcohol : Alcohol.values()) {
 			for (final String fermentLiquid : alcohol.fermentationLiquid) {
-				final FluidStack fluid = Binnie.Liquid.getFluidStack(fermentLiquid, Fluid.BUCKET_VOLUME);
+				final FluidStack fluid = Binnie.LIQUID.getFluidStack(fermentLiquid, Fluid.BUCKET_VOLUME);
 				if (fluid != null) {
 					BreweryRecipes.addRecipe(fluid, alcohol.get(Fluid.BUCKET_VOLUME));
 				}

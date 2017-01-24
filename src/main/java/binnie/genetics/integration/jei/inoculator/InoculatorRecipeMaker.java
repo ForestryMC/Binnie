@@ -21,7 +21,7 @@ public class InoculatorRecipeMaker {
 	public static List<InoculatorRecipeWrapper> create() {
 		List<InoculatorRecipeWrapper> recipes = new ArrayList<>();
 
-		for (BreedingSystem system : Binnie.Genetics.getActiveSystems()) {
+		for (BreedingSystem system : Binnie.GENETICS.getActiveSystems()) {
 			ISpeciesRoot root = system.getSpeciesRoot();
 			IChromosomeType speciesChromosomeType = root.getSpeciesChromosomeType();
 			IAllele[] defaultTemplate = root.getDefaultTemplate();

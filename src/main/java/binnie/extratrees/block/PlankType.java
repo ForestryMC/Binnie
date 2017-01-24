@@ -1,16 +1,13 @@
 package binnie.extratrees.block;
 
 import binnie.Constants;
-import binnie.core.block.TileEntityMetadata;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
-import com.google.common.base.Optional;
 import forestry.api.arboriculture.EnumForestryWoodType;
 import forestry.api.arboriculture.EnumVanillaWoodType;
 import forestry.api.arboriculture.IWoodType;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.arboriculture.WoodBlockKind;
-import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 
@@ -27,9 +24,9 @@ public class PlankType {
 		for (final ForestryPlanks plank3 : ForestryPlanks.values()) {
 			CarpentryManager.carpentryInterface.registerCarpentryWood(plank3.ordinal() + 128, plank3);
 		}
-		for (final ExtraBiomesPlank plank4 : ExtraBiomesPlank.values()) {
+		/*for (final ExtraBiomesPlank plank4 : ExtraBiomesPlank.values()) {
 			CarpentryManager.carpentryInterface.registerCarpentryWood(plank4.ordinal() + 192, plank4);
-		}
+		}*/
 	}
 
 	public enum ExtraTreePlanks implements IPlankType, IFenceProvider, IStringSerializable {
@@ -123,6 +120,7 @@ public class PlankType {
 			this.woodType = woodType;
 		}
 		
+		@Override
 		public IWoodType getWoodType() {
 			return woodType;
 		}
@@ -168,7 +166,7 @@ public class PlankType {
 
 		@Override
 		public ItemStack getFence() {
-			return TileEntityMetadata.getItemStack(ExtraTrees.blockFence, WoodManager.getPlankTypeIndex(this));
+			return TreeManager.woodAccess.getStack(woodType, WoodBlockKind.FENCE, false);
 		}
 	}
 
@@ -211,6 +209,11 @@ public class PlankType {
 		@Override
 		public ItemStack getStack() {
 			return getStack(true);
+		}
+		
+		@Override
+		public IWoodType getWoodType() {
+			return woodType;
 		}
 
 		@Override
@@ -289,6 +292,11 @@ public class PlankType {
 		}
 		
 		@Override
+		public IWoodType getWoodType() {
+			return woodType;
+		}
+		
+		@Override
 		public ItemStack getStack(boolean fireproof) {
 			return TreeManager.woodAccess.getStack(woodType, WoodBlockKind.PLANKS, fireproof);
 		}
@@ -314,7 +322,9 @@ public class PlankType {
 		}
 	}
 
-	public enum ExtraBiomesPlank implements IPlankType {
+	
+	//TODO: extrabiomes 1.10.2
+	/*public enum ExtraBiomesPlank implements IPlankType {
 		Redwood(10185538),
 		Fir(8288074),
 		Acacia(12561022);
@@ -377,5 +387,5 @@ public class PlankType {
 //			}
 //			return null;
 //		}
-	}
+	}*/
 }

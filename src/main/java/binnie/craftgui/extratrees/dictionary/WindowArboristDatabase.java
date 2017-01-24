@@ -29,7 +29,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 	ControlListBox<ItemStack> selectionBoxPlanks;
 
 	public WindowArboristDatabase(final EntityPlayer player, final Side side, final boolean nei) {
-		super(player, side, nei, Binnie.Genetics.treeBreedingSystem, 120.0f);
+		super(player, side, nei, Binnie.GENETICS.treeBreedingSystem, 120.0f);
 	}
 
 	public static Window create(final EntityPlayer player, final Side side, final boolean nei) {

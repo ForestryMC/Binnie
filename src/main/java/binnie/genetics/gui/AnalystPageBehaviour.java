@@ -47,7 +47,7 @@ public class AnalystPageBehaviour extends ControlAnalystPage {
 		}
 		if (ind instanceof IButterfly) {
 			final IButterfly bee2 = (IButterfly) ind;
-			new ControlTextCentered(this, y, "§oMetabolism: " + Binnie.Genetics.mothBreedingSystem.getAlleleName(EnumButterflyChromosome.METABOLISM, ind.getGenome().getActiveAllele(EnumButterflyChromosome.METABOLISM))).setColour(this.getColour());
+			new ControlTextCentered(this, y, "§oMetabolism: " + Binnie.GENETICS.mothBreedingSystem.getAlleleName(EnumButterflyChromosome.METABOLISM, ind.getGenome().getActiveAllele(EnumButterflyChromosome.METABOLISM))).setColour(this.getColour());
 			y += 20;
 			new ControlTextCentered(this, y, "Pollinates nearby\n" + bee2.getGenome().getFlowerProvider().getDescription()).setColour(this.getColour());
 			y += 20;

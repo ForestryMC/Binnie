@@ -36,7 +36,7 @@ public class TileEntityMachine extends TileEntityMachineBase implements INetwork
 		super.readFromNBT(nbtTagCompound);
 		final String name = nbtTagCompound.getString("name");
 		final String group = nbtTagCompound.getString("group");
-		final MachinePackage pack = Binnie.Machine.getPackage(group, name);
+		final MachinePackage pack = Binnie.MCHINE.getPackage(group, name);
 		if (pack == null) {
 			this.invalidate();
 			return;

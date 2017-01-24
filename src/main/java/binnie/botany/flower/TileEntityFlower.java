@@ -81,7 +81,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		}
 		if (nbtCompound.hasKey("CATER") && BinnieCore.isLepidopteryActive()) {
 			this.matureTime = nbtCompound.getInteger("caterTime");
-			this.caterpillar = Binnie.Genetics.getButterflyRoot().getMember(nbtCompound.getCompoundTag("cater"));
+			this.caterpillar = Binnie.GENETICS.getButterflyRoot().getMember(nbtCompound.getCompoundTag("cater"));
 		}
 		super.readFromNBT(nbtCompound);
 	}
@@ -321,7 +321,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		if (this.flower == null) {
 			return null;
 		}
-		return Binnie.Genetics.getFlowerRoot().getMemberStack(this.getFlower(), EnumFlowerStage.getStage(getFlower()));
+		return Binnie.GENETICS.getFlowerRoot().getMemberStack(this.getFlower(), EnumFlowerStage.getStage(getFlower()));
 	}
 
 	private TileEntityFlower getRoot() {
@@ -466,7 +466,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 
 	private void attemptButterflySpawn(final World world, final IButterfly butterfly, final double x, final double y, final double z) {
 		if (BinnieCore.isLepidopteryActive()) {
-			Binnie.Genetics.getButterflyRoot().spawnButterflyInWorld(world, butterfly.copy(), x, y + 0.10000000149011612, z);
+			Binnie.GENETICS.getButterflyRoot().spawnButterflyInWorld(world, butterfly.copy(), x, y + 0.10000000149011612, z);
 		}
 	}
 

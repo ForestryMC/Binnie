@@ -26,7 +26,7 @@ public enum GeneticsTexture implements IBinnieTexture {
 
 	String texture;
 	ResourceType type;
-	public static BinnieIcon dnaIcon = Binnie.Resource.getItemIcon(Genetics.instance, "dna");
+	public static BinnieIcon dnaIcon = Binnie.RESOURCE.getItemIcon(Genetics.instance, "dna");
 
 	GeneticsTexture(final ResourceType base, final String texture) {
 		this.texture = texture;
@@ -35,7 +35,7 @@ public enum GeneticsTexture implements IBinnieTexture {
 
 	@Override
 	public BinnieResource getTexture() {
-		return Binnie.Resource.getPNG(Genetics.instance, this.type, this.texture);
+		return Binnie.RESOURCE.getPNG(Genetics.instance, this.type, this.texture);
 	}
 
 }

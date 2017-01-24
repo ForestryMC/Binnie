@@ -107,7 +107,7 @@ public class WindowAnalyst extends Window {
 
 	@Override
 	public void initialiseServer() {
-		for (final BreedingSystem system : Binnie.Genetics.getActiveSystems()) {
+		for (final BreedingSystem system : Binnie.GENETICS.getActiveSystems()) {
 			ISpeciesRoot root = system.getSpeciesRoot();
 			if (root != null) {
 				final IBreedingTracker tracker = root.getBreedingTracker(this.getWorld(), this.getUsername());
@@ -122,7 +122,7 @@ public class WindowAnalyst extends Window {
 	@Override
 	public void initialiseClient() {
 		this.setTitle(this.isDatabase ? (this.isMaster ? "Master Registry" : "Registry") : "Analyst");
-		final BreedingSystem system = Binnie.Genetics.beeBreedingSystem;
+		final BreedingSystem system = Binnie.GENETICS.beeBreedingSystem;
 		final IIndividual ind = system.getDefaultIndividual();
 		final ItemStack stack = system.getSpeciesRoot().getMemberStack(ind, system.getDefaultType());
 		this.getWindowInventory().createSlot(0);
@@ -130,7 +130,7 @@ public class WindowAnalyst extends Window {
 		int x = 16;
 		final int y = 28;
 		if (this.isDatabase) {
-			for (final BreedingSystem syst : Binnie.Genetics.getActiveSystems()) {
+			for (final BreedingSystem syst : Binnie.GENETICS.getActiveSystems()) {
 				new Control(this, x, y, 20.0f, 20.0f) {
 					@Override
 					public void initialise() {
@@ -256,7 +256,7 @@ public class WindowAnalyst extends Window {
 			};
 		}
 		this.setIndividual(null);
-		this.setSystem(Binnie.Genetics.beeBreedingSystem);
+		this.setSystem(Binnie.GENETICS.beeBreedingSystem);
 	}
 
 	public void setIndividual(final IIndividual ind) {
@@ -274,7 +274,7 @@ public class WindowAnalyst extends Window {
 		}
 		final boolean systemChange = (this.current = ind) != null && ind.getGenome().getSpeciesRoot() != this.getSystem().getSpeciesRoot();
 		if (systemChange) {
-			this.currentSystem = Binnie.Genetics.getSystem(ind.getGenome().getSpeciesRoot());
+			this.currentSystem = Binnie.GENETICS.getSystem(ind.getGenome().getSpeciesRoot());
 		}
 		this.updatePages(systemChange);
 	}

@@ -19,13 +19,13 @@ public class HiveDrop implements IHiveDrop {
 	private int chance;
 
 	public HiveDrop(final IAlleleBeeSpecies species, final int chance) {
-		this(Binnie.Genetics.getBeeRoot().getTemplate(species.getUID()), new ItemStack[0], chance);
+		this(Binnie.GENETICS.getBeeRoot().getTemplate(species.getUID()), new ItemStack[0], chance);
 	}
 
 	public HiveDrop(IAllele[] template, final ItemStack[] bonus, final int chance) {
 		this.additional = new ArrayList<>();
 		if (template == null) {
-			template = Binnie.Genetics.getBeeRoot().getDefaultTemplate();
+			template = Binnie.GENETICS.getBeeRoot().getDefaultTemplate();
 		}
 		this.template = template;
 		this.chance = chance;
@@ -53,7 +53,7 @@ public class HiveDrop implements IHiveDrop {
 
 	@Override
 	public IBee getBeeType(IBlockAccess world, BlockPos pos) {
-		return Binnie.Genetics.getBeeRoot().getBee(Binnie.Genetics.getBeeRoot().templateAsGenome(this.template));
+		return Binnie.GENETICS.getBeeRoot().getBee(Binnie.GENETICS.getBeeRoot().templateAsGenome(this.template));
 	}
 
 }

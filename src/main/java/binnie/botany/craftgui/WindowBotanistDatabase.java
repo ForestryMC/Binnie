@@ -30,7 +30,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 	ControlListBox<EnumFlowerColor> selectionBoxColors;
 
 	public WindowBotanistDatabase(final EntityPlayer player, final Side side, final boolean nei) {
-		super(player, side, nei, Binnie.Genetics.flowerBreedingSystem, 130.0f);
+		super(player, side, nei, Binnie.GENETICS.flowerBreedingSystem, 130.0f);
 	}
 
 	public static Window create(final EntityPlayer player, final Side side, final boolean nei) {

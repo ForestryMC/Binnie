@@ -28,7 +28,7 @@ public class Incubator {
 	private static IncubatorRecipeLarvae LARVAE_RECIPE;
 
 	public static void addRecipes() {
-		Incubator.RECIPES.add(new IncubatorRecipe(GeneticsItems.GrowthMedium.get(1), Binnie.Liquid.getFluidStack("water", 25), GeneticLiquid.GrowthMedium.get(25), 0.2f));
+		Incubator.RECIPES.add(new IncubatorRecipe(GeneticsItems.GrowthMedium.get(1), Binnie.LIQUID.getFluidStack("water", 25), GeneticLiquid.GrowthMedium.get(25), 0.2f));
 		Incubator.RECIPES.add(new IncubatorRecipe(new ItemStack(Items.WHEAT), GeneticLiquid.GrowthMedium.get(25), GeneticLiquid.Bacteria.get(5), 0.2f));
 		Incubator.RECIPES.add(new IncubatorRecipe(GeneticsItems.GrowthMedium.get(1), GeneticLiquid.Bacteria.get(0), GeneticLiquid.Bacteria.get(5), 0.05f));
 		Incubator.RECIPES.add(new IncubatorRecipe(new ItemStack(Items.SUGAR), GeneticLiquid.Bacteria.get(2), null, 0.5f, 0.2f)
@@ -42,8 +42,8 @@ public class Incubator {
 				@Override
 				public ItemStack getOutputStack(final MachineUtil machine) {
 					final ItemStack larvae = machine.getStack(3);
-					final IBee bee = Binnie.Genetics.getBeeRoot().getMember(larvae);
-					return Binnie.Genetics.getBeeRoot().getMemberStack(bee, EnumBeeType.DRONE);
+					final IBee bee = Binnie.GENETICS.getBeeRoot().getMember(larvae);
+					return Binnie.GENETICS.getBeeRoot().getMemberStack(bee, EnumBeeType.DRONE);
 				}
 
 				@Override

@@ -41,7 +41,7 @@ public enum KitchenMachine implements IMachineType {
 
 		protected PackageKitchenMachine(final String uid, final String textureName) {
 			super(uid, false);
-			this.textureName = Binnie.Resource.getFile(ExtraTrees.instance, ResourceType.Tile, textureName);
+			this.textureName = Binnie.RESOURCE.getFile(ExtraTrees.instance, ResourceType.Tile, textureName);
 		}
 
 		protected PackageKitchenMachine(final String uid, final BinnieResource textureName) {

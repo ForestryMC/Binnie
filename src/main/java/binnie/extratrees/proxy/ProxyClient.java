@@ -6,7 +6,8 @@ import binnie.Constants;
 import binnie.core.models.ModelManager;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.BlockETDecorativeLeaves;
-import binnie.extratrees.block.slab.BlockETSlab;
+import binnie.extratrees.block.ModuleBlocks;
+import binnie.extratrees.block.wood.BlockETSlab;
 import binnie.extratrees.models.ModelETDecorativeLeaves;
 import forestry.arboriculture.PluginArboriculture;
 import forestry.core.models.BlockModelEntry;
@@ -64,7 +65,8 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 
 	@Override
 	public void registerModels() {
-		for (BlockETDecorativeLeaves leaves : ExtraTrees.leavesDecorative) {
+		ExtraTrees.blocks();
+		for (BlockETDecorativeLeaves leaves : ModuleBlocks.leavesDecorative) {
 			String resourceName = leaves.getRegistryName().toString();
 			ModelResourceLocation blockModelLocation = new ModelResourceLocation(resourceName);
 			ModelResourceLocation itemModeLocation = new ModelResourceLocation(resourceName, "inventory");
@@ -72,10 +74,12 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 			registerBlockModel(blockModelIndex);
 		}
 		
-		for(BlockETSlab slab : ExtraTrees.slabsDouble){
+		ExtraTrees.blocks();
+		for(BlockETSlab slab : ModuleBlocks.slabsDouble){
 			PluginArboriculture.proxy.registerWoodModel(slab, true);
 		}
-		for(BlockETSlab slab : ExtraTrees.slabsDoubleFireproof){
+		ExtraTrees.blocks();
+		for(BlockETSlab slab : ModuleBlocks.slabsDoubleFireproof){
 			PluginArboriculture.proxy.registerWoodModel(slab, true);
 		}
 		getModelManager().registerModels();

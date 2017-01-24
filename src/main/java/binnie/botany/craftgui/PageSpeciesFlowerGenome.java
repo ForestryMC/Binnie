@@ -30,11 +30,11 @@ public class PageSpeciesFlowerGenome extends PageSpecies {
 	@Override
 	public void onValueChanged(final IAlleleSpecies species) {
 		this.deleteAllChildren();
-		final IAllele[] template = Binnie.Genetics.getFlowerRoot().getTemplate(species.getUID());
+		final IAllele[] template = Binnie.GENETICS.getFlowerRoot().getTemplate(species.getUID());
 		if (template == null) {
 			return;
 		}
-		final IFlower tree = Binnie.Genetics.getFlowerRoot().templateAsIndividual(template);
+		final IFlower tree = Binnie.GENETICS.getFlowerRoot().templateAsIndividual(template);
 		if (tree == null) {
 			return;
 		}
@@ -55,10 +55,10 @@ public class PageSpeciesFlowerGenome extends PageSpecies {
 		new ControlText(contents, new IArea(w2, y, w3, th), treeSpecies.getTemperature().getName(), TextJustification.MiddleLeft);
 		y += th;
 		new ControlText(contents, new IArea(0.0f, y, w2, th), "Moist. : ", TextJustification.MiddleRight);
-		new ControlText(contents, new IArea(w2, y, w3, th), Binnie.Language.localise(treeSpecies.getMoisture()), TextJustification.MiddleLeft);
+		new ControlText(contents, new IArea(w2, y, w3, th), Binnie.LANGUAGE.localise(treeSpecies.getMoisture()), TextJustification.MiddleLeft);
 		y += th;
 		new ControlText(contents, new IArea(0.0f, y, w2, th), "pH. : ", TextJustification.MiddleRight);
-		new ControlText(contents, new IArea(w2, y, w3, th), Binnie.Language.localise(treeSpecies.getPH()), TextJustification.MiddleLeft);
+		new ControlText(contents, new IArea(w2, y, w3, th), Binnie.LANGUAGE.localise(treeSpecies.getPH()), TextJustification.MiddleLeft);
 		y += th;
 		new ControlText(contents, new IArea(0.0f, y, w2, th), "Fertility : ", TextJustification.MiddleRight);
 		new ControlText(contents, new IArea(w2, y, w3, th), genome.getFertility() + "x", TextJustification.MiddleLeft);

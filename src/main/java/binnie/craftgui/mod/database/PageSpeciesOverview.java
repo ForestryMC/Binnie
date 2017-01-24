@@ -43,13 +43,13 @@ public class PageSpeciesOverview extends PageSpecies {
 		final String branchName = (species.getBranch() != null) ? species.getBranch().getName() : "Unknown";
 		this.controlName.setValue(TextFormatting.UNDERLINE + species.getName());
 		this.controlScientific.setValue(TextFormatting.ITALIC + branchBinomial + " " + species.getBinomial());
-		this.controlAuthority.setValue(Binnie.Language.localise("binniecore.gui.database.discovered") + ": " + TextFormatting.BOLD + species.getAuthority());
-		this.controlComplexity.setValue(Binnie.Language.localise("binniecore.gui.database.overview.complexity") + ": " + species.getComplexity());
+		this.controlAuthority.setValue(Binnie.LANGUAGE.localise("binniecore.gui.database.discovered") + ": " + TextFormatting.BOLD + species.getAuthority());
+		this.controlComplexity.setValue(Binnie.LANGUAGE.localise("binniecore.gui.database.overview.complexity") + ": " + species.getComplexity());
 		final String desc = species.getDescription();
 		String descBody = TextFormatting.ITALIC.toString();
 		String descSig = "";
 		if (desc == null || Objects.equals(desc, "")) {
-			descBody += Binnie.Language.localise("binniecore.gui.database.no.description");
+			descBody += Binnie.LANGUAGE.localise("binniecore.gui.database.no.description");
 		} else {
 			final String[] descStrings = desc.split("\\|");
 			descBody += descStrings[0];

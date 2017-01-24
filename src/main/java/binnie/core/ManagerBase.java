@@ -4,7 +4,7 @@ import binnie.Binnie;
 
 public abstract class ManagerBase implements IInitializable {
 	public ManagerBase() {
-		Binnie.Managers.add(this);
+		Binnie.MANAGERS.add(this);
 	}
 
 	@Override

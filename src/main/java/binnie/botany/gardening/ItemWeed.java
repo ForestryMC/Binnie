@@ -14,7 +14,7 @@ public class ItemWeed extends ItemBlock {
 
 	@Override
 	public String getItemStackDisplayName(final ItemStack stack) {
-		return Binnie.Language.localise("botany.plant." + BlockPlant.Type.values()[stack.getItemDamage()].getName());
+		return Binnie.LANGUAGE.localise("botany.plant." + BlockPlant.Type.values()[stack.getItemDamage()].getName());
 	}
 
 	@Override

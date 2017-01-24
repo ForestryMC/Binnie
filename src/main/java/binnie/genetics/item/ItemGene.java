@@ -43,11 +43,11 @@ public abstract class ItemGene extends ItemCore {
 		super.addInformation(itemstack, entityPlayer, list, advanced);
 		final int damage = this.getMaxDamage() - itemstack.getItemDamage();
 		if (damage == 0) {
-			list.add(Binnie.Language.localise("genetic.item.gene.empty"));
+			list.add(Binnie.LANGUAGE.localise("genetic.item.gene.empty"));
 		} else if (damage == 1) {
-			list.add("1 " + Binnie.Language.localise("genetic.item.gene.charge"));
+			list.add("1 " + Binnie.LANGUAGE.localise("genetic.item.gene.charge"));
 		} else {
-			list.add(damage + " " + Binnie.Language.localise("genetic.item.gene.charges"));
+			list.add(damage + " " + Binnie.LANGUAGE.localise("genetic.item.gene.charges"));
 		}
 		final IGeneItem gene = this.getGeneItem(itemstack);
 		gene.getInfo(list);

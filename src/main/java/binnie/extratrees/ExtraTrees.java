@@ -4,23 +4,13 @@ import binnie.Constants;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.gui.IBinnieGUID;
-import binnie.core.item.ItemMisc;
 import binnie.core.models.DoublePassBakedModel;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
 import binnie.extrabees.ExtraBees;
 import binnie.extratrees.alcohol.ModuleAlcohol;
-import binnie.extratrees.alcohol.drink.ItemDrink;
-import binnie.extratrees.block.BlockETDecorativeLeaves;
 import binnie.extratrees.block.ModuleBlocks;
 import binnie.extratrees.block.PlankType;
-import binnie.extratrees.block.decor.BlockHedge;
-import binnie.extratrees.block.decor.BlockMultiFence;
-import binnie.extratrees.block.log.BlockETLog;
-import binnie.extratrees.block.plank.BlockETPlank;
-import binnie.extratrees.block.slab.BlockETSlab;
-import binnie.extratrees.carpentry.BlockCarpentry;
-import binnie.extratrees.carpentry.BlockStainedDesign;
 import binnie.extratrees.carpentry.ModuleCarpentry;
 import binnie.extratrees.config.ConfigurationMain;
 import binnie.extratrees.core.ExtraTreesGUID;
@@ -32,11 +22,7 @@ import binnie.extratrees.proxy.Proxy;
 import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.AlleleSpeciesRegisterEvent;
-import forestry.arboriculture.blocks.BlockForestryStairs;
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -52,6 +38,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.annotation.Nullable;
+
+import com.google.common.base.Preconditions;
+
 @Mod(modid = Constants.EXTRA_TREES_MOD_ID, name = "Binnie's Extra Trees", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class ExtraTrees extends AbstractMod {
 
@@ -59,43 +49,6 @@ public class ExtraTrees extends AbstractMod {
 	public static ExtraTrees instance;
 	@SidedProxy(clientSide = "binnie.extratrees.proxy.ProxyClient", serverSide = "binnie.extratrees.proxy.ProxyServer")
 	public static Proxy proxy;
-	public static Item itemDictionary;
-	public static Item itemDictionaryLepi;
-	public static ItemMisc itemMisc;
-	public static Item itemFood;
-	public static List<BlockETLog> logs;
-	public static List<BlockETLog> logsFireproof;
-	public static List<BlockETPlank> planks;
-	public static List<BlockETPlank> planksFireproof;
-	public static List<BlockETSlab> slabs;
-	public static List<BlockETSlab> slabsDouble;
-	public static List<BlockETSlab> slabsFireproof;
-	public static List<BlockETSlab> slabsDoubleFireproof;
-	public static List<BlockForestryStairs> stairs;
-	public static List<BlockForestryStairs> stairsFireproof;
-	public static List<BlockETDecorativeLeaves> leavesDecorative;
-	public static Map<String, ItemStack> speciesToLeavesDecorative;
-	public static Block blockStairs;
-	public static BlockCarpentry blockCarpentry;
-	public static Block blockMachine;
-	public static Block blockFence;
-	public static BlockCarpentry blockPanel;
-	public static Block blockKitchen;
-	public static Item itemHammer;
-	public static Item itemDurableHammer;
-	public static Block blockGate;
-	public static Block blockDoor;
-	public static Block blockBranch;
-	public static ItemDrink drink;
-	public static BlockMultiFence blockMultiFence;
-	public static Block blockDrink;
-	public static BlockHedge blockHedge;
-	public static BlockStainedDesign blockStained;
-	public static int fruitPodRenderId;
-	public static int doorRenderId;
-	public static int branchRenderId;
-	public static int fenceID;
-	public static int stairsID;
 
 	@Mod.EventHandler
 	public void onConstruction(FMLConstructionEvent e) {
@@ -116,15 +69,52 @@ public class ExtraTrees extends AbstractMod {
 	public void postInit(final FMLPostInitializationEvent evt) {
 		this.postInit();
 	}
+	
+	@Nullable
+	private static ModuleBlocks blocks;
+	@Nullable
+	private static ModuleItems items;
+	@Nullable
+	private static ModuleAlcohol alcohol;
+	@Nullable
+	private static ModuleCarpentry carpentry;
+	@Nullable
+	private static ModuleMachine machine;
+	
+	public static ModuleItems items() {
+		Preconditions.checkState(items != null);
+		return items;
+	}
+
+	public static ModuleBlocks blocks() {
+		Preconditions.checkState(blocks != null);
+		return blocks;
+	}
+	
+	public static ModuleAlcohol alcohol() {
+		Preconditions.checkState(alcohol != null);
+		return alcohol;
+	}
+
+	
+	public static ModuleCarpentry carpentry() {
+		Preconditions.checkState(carpentry != null);
+		return carpentry;
+	}
+	
+	public static ModuleMachine machine() {
+		Preconditions.checkState(machine != null);
+		return machine;
+	}
 
 	@Override
 	protected void registerModules() {
-		this.addModule(new ModuleBlocks());
-		this.addModule(new ModuleItems());
-		this.addModule(new ModuleAlcohol());
+		this.addModule(blocks = new ModuleBlocks());
+		this.addModule(items = new ModuleItems());
+		this.addModule(alcohol = new ModuleAlcohol());
 		this.addModule(new ModuleGenetics());
-		this.addModule(new ModuleCarpentry());
-		this.addModule(new ModuleMachine());
+		this.addModule(carpentry = new ModuleCarpentry());
+		this.addModule(machine = new ModuleMachine());
 		this.addModule(new ModuleCore());
 	}
 

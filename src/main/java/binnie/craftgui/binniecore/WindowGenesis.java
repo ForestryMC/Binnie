@@ -92,8 +92,8 @@ public class WindowGenesis extends Window {
 				};
 			}
 		};
-		tabSystems.setValues(Binnie.Genetics.getActiveSystems());
-		this.root = Binnie.Genetics.getActiveSystems().iterator().next().getSpeciesRoot();
+		tabSystems.setValues(Binnie.GENETICS.getActiveSystems());
+		this.root = Binnie.GENETICS.getActiveSystems().iterator().next().getSpeciesRoot();
 		this.template = this.root.getDefaultTemplate();
 		final IArea one = new IArea(32.0f, 28.0f, 170.0f, 100.0f);
 		final IArea two = new IArea(214.0f, 28.0f, 100.0f, 100.0f);
@@ -122,7 +122,7 @@ public class WindowGenesis extends Window {
 		this.geneList.addEventHandler(new EventValueChanged.Handler() {
 			@Override
 			public void onEvent(final EventValueChanged event) {
-				final Map<IChromosomeType, List<IAllele>> map = Binnie.Genetics.getChromosomeMap(WindowGenesis.this.root);
+				final Map<IChromosomeType, List<IAllele>> map = Binnie.GENETICS.getChromosomeMap(WindowGenesis.this.root);
 				final List<Gene> opts = new ArrayList<>();
 				final IChromosomeType chromo = event.value != null ? ((Gene) event.value).getChromosome() : null;
 				if (chromo != null)// fix NPE
@@ -153,7 +153,7 @@ public class WindowGenesis extends Window {
 	private void refreshTemplate(final IChromosomeType selection) {
 		final List<Gene> genes = new ArrayList<>();
 		final IChromosomeType[] arr$;
-		final IChromosomeType[] chromos = arr$ = Binnie.Genetics.getChromosomeMap(this.root).keySet().toArray(new IChromosomeType[0]);
+		final IChromosomeType[] chromos = arr$ = Binnie.GENETICS.getChromosomeMap(this.root).keySet().toArray(new IChromosomeType[0]);
 		for (final IChromosomeType type : arr$) {
 			final IAllele allele = this.template[type.ordinal()];
 			if (allele == null) {
@@ -161,7 +161,7 @@ public class WindowGenesis extends Window {
 			}
 			genes.add(new Gene(allele, type, this.root));
 		}
-		final Map<IChromosomeType, List<IAllele>> map = Binnie.Genetics.getChromosomeMap(this.root);
+		final Map<IChromosomeType, List<IAllele>> map = Binnie.GENETICS.getChromosomeMap(this.root);
 		this.geneList.setOptions(genes);
 		if (selection != null) {
 			this.geneList.setValue(new Gene(this.template[selection.ordinal()], selection, this.root));
@@ -174,7 +174,7 @@ public class WindowGenesis extends Window {
 	private void refreshPickup() {
 		this.panelPickup.deleteAllChildren();
 		int i = 0;
-		for (final ISpeciesType type : Binnie.Genetics.getSystem(this.root).getActiveTypes()) {
+		for (final ISpeciesType type : Binnie.GENETICS.getSystem(this.root).getActiveTypes()) {
 			final IIndividual ind = this.root.templateAsIndividual(this.template);
 			ind.analyze();
 			final ItemStack stack = this.root.getMemberStack(ind, type);

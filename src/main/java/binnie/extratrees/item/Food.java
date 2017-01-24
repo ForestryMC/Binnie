@@ -110,7 +110,8 @@ public enum Food implements IItemMiscProvider {
 
 	@Override
 	public ItemStack get(final int i) {
-		return new ItemStack(ExtraTrees.itemFood, i, this.ordinal());
+		ExtraTrees.items();
+		return new ItemStack(ModuleItems.itemFood, i, this.ordinal());
 	}
 
 	@Override

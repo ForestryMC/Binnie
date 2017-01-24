@@ -9,10 +9,13 @@ import com.google.common.collect.Lists;
 
 import binnie.extratrees.block.EnumExtraTreeLog;
 import binnie.extratrees.block.PlankType;
-import forestry.arboriculture.blocks.WoodTypePredicate;
 import forestry.arboriculture.blocks.property.PropertyWoodType;
 
 public class PropertyETWoodType extends PropertyWoodType<EnumExtraTreeLog> {
+	
+	public static PropertyETWoodType[] create(@Nonnull String name, int variantsPerBlock) {
+		return create(name, variantsPerBlock, false);
+	}
 	public static PropertyETWoodType[] create(@Nonnull String name, int variantsPerBlock, boolean isLog) {
 		int length;
 		if(isLog){

@@ -66,7 +66,7 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 		this.furtherMutations = new HashMap<>();
 		this.allResultantMutations = new HashMap<>();
 		this.allFurtherMutations = new HashMap<>();
-		Binnie.Genetics.registerBreedingSystem(this);
+		Binnie.GENETICS.registerBreedingSystem(this);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
@@ -153,7 +153,7 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 		if (this.getSpeciesRoot().getMutations(false) != null) {
 			final Set<IMutation> mutations = new LinkedHashSet<>();
 			mutations.addAll(this.getSpeciesRoot().getMutations(false));
-			if (this == Binnie.Genetics.beeBreedingSystem) {
+			if (this == Binnie.GENETICS.beeBreedingSystem) {
 				mutations.addAll(ExtraBeeMutation.mutations);
 			}
 			for (final IMutation mutation : mutations) {
@@ -425,10 +425,10 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 
 	public String getAlleleName(final IChromosomeType chromosome, final IAllele allele) {
 		if (allele instanceof IAlleleBoolean) {
-			return ((IAlleleBoolean) allele).getValue() ? Binnie.Language.localise(BinnieCore.instance, "allele.true") : Binnie.Language.localise(BinnieCore.instance, "allele.false");
+			return ((IAlleleBoolean) allele).getValue() ? Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.true") : Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.false");
 		}
 		if (Objects.equals(allele.getName(), "for.gui.maximum")) {
-			return Binnie.Language.localise(BinnieCore.instance, "allele.fertility.maximum");
+			return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.fertility.maximum");
 		}
 		return allele.getName();
 	}
@@ -473,7 +473,7 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 	}
 
 	public final Collection<IChromosomeType> getActiveKaryotype() {
-		return Binnie.Genetics.getActiveChromosomes(this.getSpeciesRoot());
+		return Binnie.GENETICS.getActiveChromosomes(this.getSpeciesRoot());
 	}
 
 	public ItemStack getDefaultMember(final String uid) {

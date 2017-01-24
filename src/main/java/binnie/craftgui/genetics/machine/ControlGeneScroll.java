@@ -40,7 +40,7 @@ public class ControlGeneScroll extends Control implements IControlValue<Breeding
 	public void refresh() {
 		this.deleteAllChildren();
 		final GeneTracker tracker = GeneTracker.getTracker(Window.get(this).getWorld(), Window.get(this).getUsername());
-		final Map<IChromosomeType, List<IAllele>> genes = Binnie.Genetics.getChromosomeMap(this.system.getSpeciesRoot());
+		final Map<IChromosomeType, List<IAllele>> genes = Binnie.GENETICS.getChromosomeMap(this.system.getSpeciesRoot());
 		int x = 0;
 		int y = 0;
 		final boolean isNEI = ((WindowGeneBank) Window.get(this)).isNei;

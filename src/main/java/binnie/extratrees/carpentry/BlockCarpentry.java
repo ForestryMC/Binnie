@@ -26,6 +26,6 @@ public class BlockCarpentry extends BlockDesign {
 
 	@Override
 	public String getBlockName(final DesignBlock design) {
-		return Binnie.Language.localise(ExtraTrees.instance, "block.woodentile.name", design.getDesign().getName());
+		return Binnie.LANGUAGE.localise(ExtraTrees.instance, "block.woodentile.name", design.getDesign().getName());
 	}
 }

@@ -14,7 +14,7 @@ public class PageBreederStats extends Control {
 	public PageBreederStats(final IWidget parent, final int w, final int h, final String player) {
 		super(parent, 0.0f, 0.0f, w, h);
 		this.player = player;
-		final ControlText pageBranchOverview_branchName = new ControlTextCentered(this, 8.0f, TextFormatting.UNDERLINE + Binnie.Language.localise("binniecore.gui.database.breeder.stats"));
+		final ControlText pageBranchOverview_branchName = new ControlTextCentered(this, 8.0f, TextFormatting.UNDERLINE + Binnie.LANGUAGE.localise("binniecore.gui.database.breeder.stats"));
 		final BreedingSystem system = ((WindowAbstractDatabase) this.getSuperParent()).getBreedingSystem();
 	}
 }

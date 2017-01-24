@@ -64,7 +64,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 		registerModules();
 		if (this.getConfigs() != null) {
 			for (final Class cls : this.getConfigs()) {
-				Binnie.Configuration.registerConfiguration(cls, this);
+				Binnie.CONFIGURATION.registerConfiguration(cls, this);
 			}
 		}
 		this.getProxy().preInit();

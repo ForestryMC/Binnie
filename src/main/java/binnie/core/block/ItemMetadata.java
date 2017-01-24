@@ -11,8 +11,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
-
 public class ItemMetadata extends ItemBlock {
 	public ItemMetadata(final Block block) {
 		super(block);
@@ -48,13 +46,7 @@ public class ItemMetadata extends ItemBlock {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public String getItemStackDisplayName(final ItemStack par1ItemStack) {
-		return ((IBlockMetadata) block).getBlockName(par1ItemStack);
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
-		((IBlockMetadata) block).getBlockTooltip(stack, tooltip);
+	public String getItemStackDisplayName(ItemStack itemStack) {
+		return ((IBlockMetadata) block).getDisplayName(itemStack);
 	}
 }

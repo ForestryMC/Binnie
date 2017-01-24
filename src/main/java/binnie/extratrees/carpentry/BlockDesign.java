@@ -80,7 +80,7 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 //	}
 
 	@Override
-	public String getBlockName(final ItemStack stack) {
+	public String getDisplayName(final ItemStack stack) {
 		final DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
 		return this.getBlockName(block);
 	}
@@ -111,14 +111,14 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 //		final IIcon icon = (MultipassBlockRenderer.getLayer() > 0) ? block.getSecondaryIcon(this.getDesignSystem(), BlockDesign.RENDER_DIRECTIONS[side]) : block.getPrimaryIcon(this.getDesignSystem(), BlockDesign.RENDER_DIRECTIONS[side]);
 //		return icon;
 //	}
-
+	
 	@Override
-	public void getBlockTooltip(final ItemStack stack, final List par3List) {
-		final DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
+	public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
+		DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
 		if (block.getPrimaryMaterial() != block.getSecondaryMaterial()) {
-			par3List.add(block.getPrimaryMaterial().getName() + " and " + block.getSecondaryMaterial().getName());
+			tooltip.add(block.getPrimaryMaterial().getName() + " and " + block.getSecondaryMaterial().getName());
 		} else {
-			par3List.add(block.getPrimaryMaterial().getName());
+			tooltip.add(block.getPrimaryMaterial().getName());
 		}
 	}
 
@@ -149,11 +149,10 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 //	}
 
 	@Override
-	public int getDroppedMeta(final int blockMeta, final int tileMeta) {
-		final DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), tileMeta);
+	public int getDroppedMeta(IBlockState state, int tileMetadata) {
+		final DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), tileMetadata);
 		return block.getItemMetadata(this.getDesignSystem());
 	}
-
 	@Override
 	public int getRenderPasses() {
 		return 2;

@@ -2,6 +2,7 @@ package binnie.extratrees.integration.jei.lumbermill;
 
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.item.ExtraTreeItems;
+import binnie.extratrees.item.ModuleItems;
 import binnie.extratrees.machines.lumbermill.LumbermillLogic;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
@@ -27,10 +28,12 @@ public class LumbermillRecipeWrapper extends BlankRecipeWrapper {
 		ingredients.setInput(ItemStack.class, inputLog);
 		ingredients.setInput(FluidStack.class, WATER);
 
+		ExtraTrees.items();
+		ExtraTrees.items();
 		ingredients.setOutputs(ItemStack.class, Arrays.asList(
-				ExtraTrees.itemMisc.getStack(ExtraTreeItems.Bark, 1),
+				ModuleItems.itemMisc.getStack(ExtraTreeItems.Bark, 1),
 				outputPlanks,
-				ExtraTrees.itemMisc.getStack(ExtraTreeItems.Sawdust, 1)
+				ModuleItems.itemMisc.getStack(ExtraTreeItems.Sawdust, 1)
 		));
 	}
 }

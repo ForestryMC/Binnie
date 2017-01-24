@@ -85,7 +85,7 @@ public class WindowFieldKit extends Window {
 		this.getWindowInventory().setValidator(0, new SlotValidator(null) {
 			@Override
 			public boolean isValid(final ItemStack object) {
-				return AlleleManager.alleleRegistry.isIndividual(object) || Binnie.Genetics.getConversion(object) != null;
+				return AlleleManager.alleleRegistry.isIndividual(object) || Binnie.GENETICS.getConversion(object) != null;
 			}
 
 			@Override
@@ -184,14 +184,14 @@ public class WindowFieldKit extends Window {
 		final Random rand = new Random();
 		this.info.clear();
 		for (final IChromosomeType type : root.getKaryotype()) {
-			if (!Binnie.Genetics.isInvalidChromosome(type)) {
+			if (!Binnie.GENETICS.isInvalidChromosome(type)) {
 				final IAllele allele = ind.getGenome().getActiveAllele(type);
 				final List<String> infos = new ArrayList<>();
 				int i = 0;
-				for (String pref = root.getUID() + ".fieldkit." + type.getName().toLowerCase() + "."; Binnie.Language.canLocalise(pref + i); ++i) {
-					infos.add(Binnie.Language.localise(pref + i));
+				for (String pref = root.getUID() + ".fieldkit." + type.getName().toLowerCase() + "."; Binnie.LANGUAGE.canLocalise(pref + i); ++i) {
+					infos.add(Binnie.LANGUAGE.localise(pref + i));
 				}
-				String text = Binnie.Genetics.getSystem(root).getAlleleName(type, allele);
+				String text = Binnie.GENETICS.getSystem(root).getAlleleName(type, allele);
 				if (!infos.isEmpty()) {
 					text = infos.get(rand.nextInt(infos.size()));
 				}

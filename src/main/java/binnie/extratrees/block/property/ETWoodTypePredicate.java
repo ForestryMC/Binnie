@@ -4,7 +4,6 @@ import com.google.common.base.Predicate;
 
 import binnie.extratrees.block.EnumExtraTreeLog;
 import binnie.extratrees.block.PlankType;
-import forestry.api.arboriculture.IWoodType;
 
 public class ETWoodTypePredicate implements Predicate<EnumExtraTreeLog> {
 	private final int minWoodTypeMeta;

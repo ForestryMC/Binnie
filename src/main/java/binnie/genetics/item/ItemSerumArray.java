@@ -101,7 +101,7 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 	public String getItemStackDisplayName(final ItemStack itemstack) {
 		ISpeciesRoot speciesRoot = getGeneItem(itemstack).getSpeciesRoot();
 		if (speciesRoot != null)
-			return Binnie.Genetics.getSystem(getGeneItem(itemstack).getSpeciesRoot()).getDescriptor() + " Serum Array";
+			return Binnie.GENETICS.getSystem(getGeneItem(itemstack).getSpeciesRoot()).getDescriptor() + " Serum Array";
 		return "Corrupted Serum Array";
 	}
 

@@ -14,8 +14,8 @@ public class ValidatorIcon {
 	public ValidatorIcon(final AbstractMod mod, final String pathInput, final String pathOutput) {
 		this.iconsInput = new ArrayList<>();
 		this.iconsOutput = new ArrayList<>();
-		this.iconsInput.add(Binnie.Resource.getItemIcon(mod, pathInput));
-		this.iconsOutput.add(Binnie.Resource.getItemIcon(mod, pathOutput));
+		this.iconsInput.add(Binnie.RESOURCE.getItemIcon(mod, pathInput));
+		this.iconsOutput.add(Binnie.RESOURCE.getItemIcon(mod, pathOutput));
 	}
 
 	public BinnieIcon getIcon(final boolean input) {

@@ -183,7 +183,7 @@ public class ExtraBeeMutation implements IBeeMutation {
 		new ExtraBeeMutation(ExtraBeesSpecies.SPATIAL, ForestryAllele.BeeSpecies.Spectral.getAllele(), ExtraBeesSpecies.QUANTUM, 5);
 		new ExtraBeeMutation(ForestryAllele.BeeSpecies.Noble.getAllele(), ForestryAllele.BeeSpecies.Monastic.getAllele(), ExtraBeesSpecies.MYSTICAL, 5);
 		for (final IBeeMutation mutation : ExtraBeeMutation.mutations) {
-			Binnie.Genetics.getBeeRoot().registerMutation(mutation);
+			Binnie.GENETICS.getBeeRoot().registerMutation(mutation);
 		}
 	}
 
@@ -262,7 +262,7 @@ public class ExtraBeeMutation implements IBeeMutation {
 		}
 
 		final int processedChance = Math.round(this.chance * BeeManager.beeRoot.createBeeHousingModifier(housing).getMutationModifier(genome0, genome1, 1.0f)
-				* Binnie.Genetics.getBeeRoot().getBeekeepingMode(world).getBeeModifier().getMutationModifier(genome0, genome1, 1.0f));
+				* Binnie.GENETICS.getBeeRoot().getBeekeepingMode(world).getBeeModifier().getMutationModifier(genome0, genome1, 1.0f));
 		if (this.species0.getUID().equals(allele0.getUID()) && this.species1.getUID().equals(allele1.getUID())) {
 			return processedChance;
 		}
@@ -283,7 +283,7 @@ public class ExtraBeeMutation implements IBeeMutation {
 
 	@Override
 	public IBeeRoot getRoot() {
-		return Binnie.Genetics.getBeeRoot();
+		return Binnie.GENETICS.getBeeRoot();
 	}
 
 	abstract static class MutationRequirement {

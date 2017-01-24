@@ -28,16 +28,16 @@ public class PageBranchOverview extends PageBranch {
 
 	@Override
 	public void onValueChanged(final IClassification branch) {
-		this.pageBranchOverview_branchName.setValue(TextFormatting.UNDERLINE + branch.getName() + Binnie.Language.localise("binniecore.gui.database.branch.branch"));
-		this.pageBranchOverview_branchScientific.setValue(TextFormatting.ITALIC + Binnie.Language.localise("binniecore.gui.database.branch.apidae") + " " + branch.getScientific());
-		this.pageBranchOverview_branchAuthority.setValue(Binnie.Language.localise("binniecore.gui.database.discovered") + " " + TextFormatting.BOLD + branch.getMemberSpecies()[0].getAuthority());
+		this.pageBranchOverview_branchName.setValue(TextFormatting.UNDERLINE + branch.getName() + Binnie.LANGUAGE.localise("binniecore.gui.database.branch.branch"));
+		this.pageBranchOverview_branchScientific.setValue(TextFormatting.ITALIC + Binnie.LANGUAGE.localise("binniecore.gui.database.branch.apidae") + " " + branch.getScientific());
+		this.pageBranchOverview_branchAuthority.setValue(Binnie.LANGUAGE.localise("binniecore.gui.database.discovered") + " " + TextFormatting.BOLD + branch.getMemberSpecies()[0].getAuthority());
 		for (final IWidget widget : this.pageBranchOverview_branchDescription) {
 			this.deleteChild(widget);
 		}
 		this.pageBranchOverview_branchDescription.clear();
 		String desc = branch.getDescription();
 		if (desc == null || Objects.equals(desc, "")) {
-			desc = Binnie.Language.localise("binniecore.gui.database.no.description");
+			desc = Binnie.LANGUAGE.localise("binniecore.gui.database.no.description");
 		}
 		String line = "";
 		final List<String> descLines = new ArrayList<>();

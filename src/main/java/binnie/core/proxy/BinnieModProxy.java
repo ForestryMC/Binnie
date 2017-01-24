@@ -114,10 +114,10 @@ public class BinnieModProxy implements IBinnieModProxy {
 	}
 
 	public String localise(final String string) {
-		return Binnie.Language.localise(this.mod, string);
+		return Binnie.LANGUAGE.localise(this.mod, string);
 	}
 
 	public String localiseOrBlank(final String string) {
-		return Binnie.Language.localiseOrBlank(this.mod, string);
+		return Binnie.LANGUAGE.localiseOrBlank(this.mod, string);
 	}
 }

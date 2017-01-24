@@ -51,7 +51,7 @@ public class ModuleGenetics implements IInitializable {
 	@Override
 	public void postInit() {
 		FlowerManager.flowerRegistry.registerAcceptableFlower(Botany.flower, "flowersVanilla");
-		RecipeManagers.carpenterManager.addRecipe(100, Binnie.Liquid.getFluidStack("water", 2000), null, new ItemStack(Botany.database),
+		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack("water", 2000), null, new ItemStack(Botany.database),
 				"X#X",
 				"YEY",
 				"RDR",

@@ -31,8 +31,8 @@ public class PigmentRecipe implements IRecipe {
 				if (++n > 1) {
 					return null;
 				}
-				if (Binnie.Genetics.getFlowerRoot().isMember(crafting.getStackInSlot(i))) {
-					final IFlower flower = Binnie.Genetics.getFlowerRoot().getMember(crafting.getStackInSlot(i));
+				if (Binnie.GENETICS.getFlowerRoot().isMember(crafting.getStackInSlot(i))) {
+					final IFlower flower = Binnie.GENETICS.getFlowerRoot().getMember(crafting.getStackInSlot(i));
 					if (flower.getAge() >= 1) {
 						stack = new ItemStack(Botany.pigment, 1, flower.getGenome().getPrimaryColor().getID());
 					}

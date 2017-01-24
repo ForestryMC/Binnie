@@ -27,16 +27,16 @@ public class CircuitGarden extends BinnieCircuit {
 		this.moisture = moisture;
 		this.acidity = ph;
 		this.icon = icon;
-		this.logic = new GardenLogic(this.moisture, this.acidity, this.isManual, this.isFertilised, this.icon, Binnie.Language.localise(this.getUnlocalizedName()));
+		this.logic = new GardenLogic(this.moisture, this.acidity, this.isManual, this.isFertilised, this.icon, Binnie.LANGUAGE.localise(this.getUnlocalizedName()));
 		String info = "";
 		if (moisture != EnumMoisture.Normal) {
-			info += TextFormatting.GRAY + Binnie.Language.localise("botany.moisture") + ": " + moisture.getTranslated(true);
+			info += TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.moisture") + ": " + moisture.getTranslated(true);
 		}
 		if (info.length() > 0) {
 			info += ", ";
 		}
 		if (ph != null) {
-			info += TextFormatting.GRAY + Binnie.Language.localise("botany.ph") + ": " + ph.getTranslated(true);
+			info += TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.ph") + ": " + ph.getTranslated(true);
 		}
 		if (info.length() > 0) {
 			info = " (" + info + TextFormatting.RESET + ")";

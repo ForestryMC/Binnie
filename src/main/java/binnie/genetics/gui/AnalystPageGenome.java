@@ -28,7 +28,7 @@ public class AnalystPageGenome extends ControlAnalystPage {
 		new ControlTextCentered(this, y, "§n" + this.getTitle()).setColour(this.getColour());
 		y += 16;
 		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(ind.getClass());
-		final BreedingSystem system = Binnie.Genetics.getSystem(root);
+		final BreedingSystem system = Binnie.GENETICS.getSystem(root);
 		final Control scaled = new Control(this, 0.0f, y, 0.0f, 0.0f) {
 			@Override
 			public void onRenderBackground() {

@@ -18,11 +18,11 @@ public class DatabaseTab implements ITooltipHelp {
 
 	@Override
 	public String toString() {
-		return Binnie.Language.localise(this.mod, "gui.database.tab." + this.unloc);
+		return Binnie.LANGUAGE.localise(this.mod, "gui.database.tab." + this.unloc);
 	}
 
 	@Override
 	public void getHelpTooltip(final Tooltip tooltip) {
-		tooltip.add(Binnie.Language.localiseOrBlank(this.mod, "gui.database.tab." + this.unloc + ".help"));
+		tooltip.add(Binnie.LANGUAGE.localiseOrBlank(this.mod, "gui.database.tab." + this.unloc + ".help"));
 	}
 }

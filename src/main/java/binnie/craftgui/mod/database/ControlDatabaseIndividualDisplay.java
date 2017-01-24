@@ -23,8 +23,8 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 	}
 
 	public void setSpecies(final IAlleleSpecies species, EnumDiscoveryState state) {
-		final ISpeciesRoot speciesRoot = Binnie.Genetics.getSpeciesRoot(species);
-		final BreedingSystem system = Binnie.Genetics.getSystem(speciesRoot.getUID());
+		final ISpeciesRoot speciesRoot = Binnie.GENETICS.getSpeciesRoot(species);
+		final BreedingSystem system = Binnie.GENETICS.getSystem(speciesRoot.getUID());
 		final IIndividual ind = system.getSpeciesRoot().templateAsIndividual(system.getSpeciesRoot().getTemplate(species.getUID()));
 		super.setItemStack(system.getSpeciesRoot().getMemberStack(ind, system.getDefaultType()));
 		this.species = species;

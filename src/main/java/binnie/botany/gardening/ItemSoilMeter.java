@@ -51,11 +51,11 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 		}
 		if (Gardening.isSoil(block) && !BinnieCore.proxy.isSimulating(world)) {
 			IBlockSoil soil = (IBlockSoil) block;
-			String info = Binnie.Language.localise("botany.soil.type") + ": ";
+			String info = Binnie.LANGUAGE.localise("botany.soil.type") + ": ";
 			info = info + soil.getType(world, pos).getTranslated(true);
-			info += ", " + TextFormatting.WHITE + Binnie.Language.localise("botany.moisture") + ": ";
+			info += ", " + TextFormatting.WHITE + Binnie.LANGUAGE.localise("botany.moisture") + ": ";
 			info = info + soil.getMoisture(world, pos).getTranslated(true);
-			info += ", " + TextFormatting.WHITE + Binnie.Language.localise("botany.ph") + ": ";
+			info += ", " + TextFormatting.WHITE + Binnie.LANGUAGE.localise("botany.ph") + ": ";
 			info = info + soil.getPH(world, pos).getTranslated(true);
 			ITextComponent chat = new TextComponentString(info);
 			player.addChatMessage(chat);
@@ -70,7 +70,7 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 				return "";
 			}
 		}
-		return TextFormatting.GRAY + Binnie.Language.localise("botany.ph") + ": " + ph.getTranslated(withColor);
+		return TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.ph") + ": " + ph.getTranslated(withColor);
 	}
 
 	public static String getMoisture(ItemStack stack, boolean withColor, boolean byNormalNone) {
@@ -80,7 +80,7 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 				return "";
 			}
 		}
-		return TextFormatting.GRAY + Binnie.Language.localise("botany.moisture") + ": " + moisure.getTranslated(withColor);
+		return TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.moisture") + ": " + moisure.getTranslated(withColor);
 	}
 
 	@Override

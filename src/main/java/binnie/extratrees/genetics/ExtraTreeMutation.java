@@ -137,7 +137,7 @@ public class ExtraTreeMutation implements ITreeMutation {
 	}
 
 	public ExtraTreeMutation(final IAllele allele0, final IAllele allele1, final IAllele result, final int chance) {
-		this(allele0, allele1, Binnie.Genetics.getTreeRoot().getTemplate(result.getUID()), chance);
+		this(allele0, allele1, Binnie.GENETICS.getTreeRoot().getTemplate(result.getUID()), chance);
 	}
 
 	public ExtraTreeMutation(final IAllele allele0, final IAllele allele1, final IAllele[] template, final int chance) {
@@ -151,7 +151,7 @@ public class ExtraTreeMutation implements ITreeMutation {
 		this.allele1 = (IAlleleTreeSpecies) allele1;
 		this.template = template;
 		this.chance = chance;
-		Binnie.Genetics.getTreeRoot().registerMutation(this);
+		Binnie.GENETICS.getTreeRoot().registerMutation(this);
 	}
 
 	public ExtraTreeMutation setIsSecret() {
@@ -233,7 +233,7 @@ public class ExtraTreeMutation implements ITreeMutation {
 
 	@Override
 	public ITreeRoot getRoot() {
-		return Binnie.Genetics.getTreeRoot();
+		return Binnie.GENETICS.getTreeRoot();
 	}
 
 	@Override

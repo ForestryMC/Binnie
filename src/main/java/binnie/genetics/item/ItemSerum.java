@@ -46,7 +46,7 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 	@Override
 	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
 		for (final ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
-			final Map<IChromosomeType, List<IAllele>> chromosomeMap = Binnie.Genetics.getChromosomeMap(root);
+			final Map<IChromosomeType, List<IAllele>> chromosomeMap = Binnie.GENETICS.getChromosomeMap(root);
 			for (final Map.Entry<IChromosomeType, List<IAllele>> entry : chromosomeMap.entrySet()) {
 				final IChromosomeType chromosome = entry.getKey();
 				for (final IAllele allele : entry.getValue()) {
@@ -87,8 +87,8 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 	public String getItemStackDisplayName(final ItemStack itemstack) {
 		final GeneItem gene = this.getGeneItem(itemstack);
 		if (!gene.isCorrupted())
-			return Binnie.Genetics.getSystem(gene.getSpeciesRoot()).getDescriptor() + " " + Binnie.Language.localise("genetic.item.gene.serum");
-		return Binnie.Language.localise("genetic.item.gene.corrupted.serum");
+			return Binnie.GENETICS.getSystem(gene.getSpeciesRoot()).getDescriptor() + " " + Binnie.LANGUAGE.localise("genetic.item.gene.serum");
+		return Binnie.LANGUAGE.localise("genetic.item.gene.corrupted.serum");
 	}
 
 	@Override

@@ -56,7 +56,7 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 		} else {
 			list.add(totalList.get(0));
 			list.add(totalList.get(1));
-			list.add(totalList.size() - 2 + " " + Binnie.Language.localise("genetic.item.gene.more.genes"));
+			list.add(totalList.size() - 2 + " " + Binnie.LANGUAGE.localise("genetic.item.gene.more.genes"));
 		}
 	}
 
@@ -64,8 +64,8 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 		if (this.genes.size() == 0) {
 			return null;
 		}
-		final BreedingSystem system = Binnie.Genetics.getSystem(this.genes.get(0).getSpeciesRoot().getUID());
-		return (system == null) ? Binnie.Genetics.getActiveSystems().iterator().next() : system;
+		final BreedingSystem system = Binnie.GENETICS.getSystem(this.genes.get(0).getSpeciesRoot().getUID());
+		return (system == null) ? Binnie.GENETICS.getActiveSystems().iterator().next() : system;
 	}
 
 	public List<IGene> getGenes() {

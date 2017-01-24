@@ -7,6 +7,7 @@ import binnie.core.machines.MachineGroup;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.item.ExtraTreeItems;
 import forestry.api.core.Tabs;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.crafting.CraftingManager;
@@ -14,11 +15,14 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ModuleMachine implements IInitializable {
+	
+	public static Block blockMachine;
+	
 	@Override
 	public void preInit() {
 		final MachineGroup machineGroup = new MachineGroup(ExtraTrees.instance, "machine", "machine", ExtraTreeMachine.values());
 		machineGroup.setCreativeTab(Tabs.tabArboriculture);
-		ExtraTrees.blockMachine = machineGroup.getBlock();
+		blockMachine = machineGroup.getBlock();
 		// TODO fix rendering
 		Object rendererMachine = null;// BinnieCore.proxy.createObject("binnie.core.machines.RendererMachine");
 		BinnieCore.proxy.registerTileEntity(TileEntityNursery.class, "binnie.tile.nursery", rendererMachine);

@@ -18,7 +18,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 public class WindowLepidopteristDatabase extends WindowAbstractDatabase {
 	public WindowLepidopteristDatabase(final EntityPlayer player, final Side side, final boolean nei) {
-		super(player, side, nei, Binnie.Genetics.mothBreedingSystem, 160.0f);
+		super(player, side, nei, Binnie.GENETICS.mothBreedingSystem, 160.0f);
 	}
 
 	public static Window create(final EntityPlayer player, final Side side, final boolean nei) {

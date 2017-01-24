@@ -42,7 +42,7 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 		if (root != this.species) {
 			this.species = root;
 			this.deleteAllChildren();
-			if (root == Binnie.Genetics.getBeeRoot()) {
+			if (root == Binnie.GENETICS.getBeeRoot()) {
 				new ControlChromoPicker(this, 28.0f, 47.0f, EnumBeeChromosome.SPECIES);
 				new ControlChromoPicker(this, 28.0f, 72.0f, EnumBeeChromosome.SPEED);
 				new ControlChromoPicker(this, 19.0f, 20.0f, EnumBeeChromosome.LIFESPAN);
@@ -56,7 +56,7 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 				new ControlChromoPicker(this, 83.0f, 27.0f, EnumBeeChromosome.FLOWERING);
 				new ControlChromoPicker(this, 71.0f, 10.0f, EnumBeeChromosome.TERRITORY);
 				new ControlChromoPicker(this, 84.0f, 54.0f, EnumBeeChromosome.EFFECT);
-			} else if (root == Binnie.Genetics.getTreeRoot()) {
+			} else if (root == Binnie.GENETICS.getTreeRoot()) {
 				new ControlChromoPicker(this, 48.0f, 48.0f, EnumTreeChromosome.SPECIES);
 				new ControlChromoPicker(this, 43.0f, 12.0f, EnumTreeChromosome.GROWTH);
 				new ControlChromoPicker(this, 43.0f, 84.0f, EnumTreeChromosome.HEIGHT);
@@ -70,7 +70,7 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 				new ControlChromoPicker(this, 70.0f, 34.0f, EnumTreeChromosome.MATURATION);
 				new ControlChromoPicker(this, 45.0f, 67.0f, EnumTreeChromosome.GIRTH);
 				new ControlChromoPicker(this, 5.0f, 70.0f, EnumTreeChromosome.FIREPROOF);
-			} else if (root == Binnie.Genetics.getFlowerRoot()) {
+			} else if (root == Binnie.GENETICS.getFlowerRoot()) {
 				new ControlChromoPicker(this, 35.0f, 81.0f, EnumFlowerChromosome.SPECIES);
 				new ControlChromoPicker(this, 36.0f, 28.0f, EnumFlowerChromosome.PRIMARY);
 				new ControlChromoPicker(this, 27.0f, 13.0f, EnumFlowerChromosome.SECONDARY);
@@ -83,7 +83,7 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 				new ControlChromoPicker(this, 54.0f, 80.0f, EnumFlowerChromosome.PH_TOLERANCE);
 				new ControlChromoPicker(this, 41.0f, 42.0f, EnumFlowerChromosome.SAPPINESS);
 				new ControlChromoPicker(this, 37.0f, 63.0f, EnumFlowerChromosome.STEM);
-			} else if (root == Binnie.Genetics.getButterflyRoot()) {
+			} else if (root == Binnie.GENETICS.getButterflyRoot()) {
 				new ControlChromoPicker(this, 40.0f, 40.0f, EnumButterflyChromosome.SPECIES);
 				new ControlChromoPicker(this, 63.0f, 32.0f, EnumButterflyChromosome.SIZE);
 				new ControlChromoPicker(this, 32.0f, 63.0f, EnumButterflyChromosome.SPEED);
@@ -123,16 +123,16 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 	}
 
 	private Texture getTypeTexture() {
-		if (this.species == Binnie.Genetics.getBeeRoot()) {
+		if (this.species == Binnie.GENETICS.getBeeRoot()) {
 			return this.BeeTexture;
 		}
-		if (this.species == Binnie.Genetics.getTreeRoot()) {
+		if (this.species == Binnie.GENETICS.getTreeRoot()) {
 			return this.TreeTexture;
 		}
-		if (this.species == Binnie.Genetics.getButterflyRoot()) {
+		if (this.species == Binnie.GENETICS.getButterflyRoot()) {
 			return this.MothTexture;
 		}
-		if (this.species == Binnie.Genetics.getFlowerRoot()) {
+		if (this.species == Binnie.GENETICS.getFlowerRoot()) {
 			return this.FlowerTexture;
 		}
 		return null;

@@ -35,7 +35,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 		int y = 4;
 		new ControlTextCentered(this, y, "§nMutations").setColour(this.getColour());
 		y += 18;
-		final BreedingSystem system = Binnie.Genetics.getSystem(ind.getGenome().getSpeciesRoot());
+		final BreedingSystem system = Binnie.GENETICS.getSystem(ind.getGenome().getSpeciesRoot());
 		final List<IMutation> discovered = system.getDiscoveredMutations(Window.get(this).getWorld(), Window.get(this).getUsername());
 		final IAlleleSpecies speciesCurrent = ind.getGenome().getPrimary();
 		final Collection<IMutation> resultant = system.getResultantMutations(speciesCurrent);

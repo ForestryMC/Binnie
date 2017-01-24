@@ -121,7 +121,7 @@ public class FlowerGenome extends Genome implements IFlowerGenome {
 	@Override
 	public boolean canTolerate(final EnumAcidity ePH) {
 		final int pH = ePH.ordinal();
-		final int[] pHTol = Binnie.Genetics.getTolerance(this.getTolerancePH());
+		final int[] pHTol = Binnie.GENETICS.getTolerance(this.getTolerancePH());
 		final int fPH = this.getPrimary().getPH().ordinal();
 		return pH >= fPH + pHTol[0] && pH <= fPH + pHTol[1];
 	}
@@ -129,7 +129,7 @@ public class FlowerGenome extends Genome implements IFlowerGenome {
 	@Override
 	public boolean canTolerate(final EnumMoisture eMoisture) {
 		final int moisture = eMoisture.ordinal();
-		final int[] moistTol = Binnie.Genetics.getTolerance(this.getToleranceMoisture());
+		final int[] moistTol = Binnie.GENETICS.getTolerance(this.getToleranceMoisture());
 		final int fMoisture = this.getPrimary().getMoisture().ordinal();
 		return moisture >= fMoisture + moistTol[0] && moisture <= fMoisture + moistTol[1];
 	}
@@ -137,7 +137,7 @@ public class FlowerGenome extends Genome implements IFlowerGenome {
 	@Override
 	public boolean canTolerate(final EnumTemperature eTemp) {
 		final int temp = eTemp.ordinal();
-		final int[] tempTol = Binnie.Genetics.getTolerance(this.getToleranceTemperature());
+		final int[] tempTol = Binnie.GENETICS.getTolerance(this.getToleranceTemperature());
 		final int fTemp = this.getPrimary().getTemperature().ordinal();
 		return temp >= fTemp + tempTol[0] && temp <= fTemp + tempTol[1];
 	}

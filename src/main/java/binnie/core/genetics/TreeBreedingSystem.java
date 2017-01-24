@@ -53,8 +53,8 @@ public class TreeBreedingSystem extends BreedingSystem {
 		this.discoveredFruits = new UniqueItemStackSet();
 		this.discoveredWoods = new UniqueItemStackSet();
 		this.discoveredPlanks = new UniqueItemStackSet();
-		this.iconUndiscovered = Binnie.Resource.getItemIcon(ExtraTrees.instance, "icon/undiscoveredTree");
-		this.iconDiscovered = Binnie.Resource.getItemIcon(ExtraTrees.instance, "icon/discoveredTree");
+		this.iconUndiscovered = Binnie.RESOURCE.getItemIcon(ExtraTrees.instance, "icon/undiscoveredTree");
+		this.iconDiscovered = Binnie.RESOURCE.getItemIcon(ExtraTrees.instance, "icon/discoveredTree");
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class TreeBreedingSystem extends BreedingSystem {
 
 	@Override
 	public ISpeciesRoot getSpeciesRoot() {
-		return Binnie.Genetics.getTreeRoot();
+		return Binnie.GENETICS.getTreeRoot();
 	}
 
 	@Override
@@ -86,18 +86,18 @@ public class TreeBreedingSystem extends BreedingSystem {
 		}
 		if (chromosome == EnumTreeChromosome.PLANT) {
 			final EnumSet<EnumPlantType> types = ((IAllelePlantType) allele).getPlantTypes();
-			return types.isEmpty() ? Binnie.Language.localise(BinnieCore.instance, "allele.none") : types.iterator().next().toString();
+			return types.isEmpty() ? Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.none") : types.iterator().next().toString();
 		}
 		if (chromosome == EnumTreeChromosome.FRUITS && allele.getUID().contains(".")) {
 			final IFruitProvider provider = ((IAlleleFruit) allele).getProvider();
-			return (provider.getProducts().size() == 0) ? Binnie.Language.localise(BinnieCore.instance, "allele.none") : provider.getProducts().keySet().iterator().next().getDisplayName();
+			return (provider.getProducts().size() == 0) ? Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.none") : provider.getProducts().keySet().iterator().next().getDisplayName();
 		}
 		if (chromosome == EnumTreeChromosome.GROWTH) {
 			if (allele.getUID().contains("Tropical")) {
-				return Binnie.Language.localise(BinnieCore.instance, "allele.growth.tropical");
+				return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.growth.tropical");
 			}
 			if (allele.getUID().contains("Lightlevel")) {
-				return Binnie.Language.localise(BinnieCore.instance, "allele.growth.lightlevel");
+				return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.growth.lightlevel");
 			}
 		}
 		return super.getAlleleName(chromosome, allele);

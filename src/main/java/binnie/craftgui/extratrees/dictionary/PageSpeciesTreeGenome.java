@@ -34,11 +34,11 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 	@Override
 	public void onValueChanged(final IAlleleSpecies species) {
 		this.deleteAllChildren();
-		final IAllele[] template = Binnie.Genetics.getTreeRoot().getTemplate(species.getUID());
+		final IAllele[] template = Binnie.GENETICS.getTreeRoot().getTemplate(species.getUID());
 		if (template == null) {
 			return;
 		}
-		final ITree tree = Binnie.Genetics.getTreeRoot().templateAsIndividual(template);
+		final ITree tree = Binnie.GENETICS.getTreeRoot().templateAsIndividual(template);
 		if (tree == null) {
 			return;
 		}
@@ -57,7 +57,7 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 		int y = 0;
 		final int th = 14;
 		final int th2 = 18;
-		final BreedingSystem syst = Binnie.Genetics.treeBreedingSystem;
+		final BreedingSystem syst = Binnie.GENETICS.treeBreedingSystem;
 		new ControlText(contents, new IArea(0.0f, y, w2, th), syst.getChromosomeShortName(EnumTreeChromosome.PLANT) + " : ", TextJustification.MiddleRight);
 		new ControlText(contents, new IArea(w2, y, w3, th), treeSpecies.getPlantType().toString(), TextJustification.MiddleLeft);
 		y += th;

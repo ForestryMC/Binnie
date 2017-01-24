@@ -1,20 +1,19 @@
-package binnie.extratrees.block.plank;
+package binnie.extratrees.block.wood;
 
 import binnie.extratrees.block.WoodManager;
 import forestry.api.arboriculture.IWoodType;
 import forestry.arboriculture.IWoodTyped;
 import forestry.arboriculture.items.ItemBlockWood;
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
-public class ItemETPlank<V extends BlockETPlank> extends ItemBlockWood<V> {
+public class ItemBlockETWood<V extends Block & IWoodTyped> extends ItemBlockWood<V> {
 
-	public ItemETPlank(V block) {
+	public ItemBlockETWood(V block) {
 		super(block);
-		setHasSubtypes(true);
-		setMaxDamage(0);
 		setRegistryName(block.getRegistryName());
 	}
-
+	
 	@Override
 	public String getItemStackDisplayName(ItemStack itemstack) {
 		IWoodTyped wood = getBlock();
@@ -22,5 +21,5 @@ public class ItemETPlank<V extends BlockETPlank> extends ItemBlockWood<V> {
 		IWoodType woodType = wood.getWoodType(meta);
 		return WoodManager.getDisplayName(wood, woodType);
 	}
-}
 
+}

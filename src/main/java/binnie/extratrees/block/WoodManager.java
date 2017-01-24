@@ -7,6 +7,7 @@ import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.block.decor.FenceDescription;
 import binnie.extratrees.block.decor.FenceType;
 import forestry.api.arboriculture.IWoodType;
+import forestry.api.arboriculture.TreeManager;
 import forestry.api.arboriculture.WoodBlockKind;
 import forestry.arboriculture.IWoodTyped;
 import forestry.core.utils.Translator;
@@ -70,7 +71,8 @@ public class WoodManager {
 		if (stack == null) {
 			return null;
 		}
-		if (stack.getItem() == Item.getItemFromBlock(ExtraTrees.blockMultiFence)) {
+		ExtraTrees.blocks();
+		if (stack.getItem() == Item.getItemFromBlock(ModuleBlocks.blockMultiFence)) {
 			final int damage = TileEntityMetadata.getItemDamage(stack);
 			return getFenceDescription(damage);
 		}
@@ -98,7 +100,7 @@ public class WoodManager {
 		if (plank == PlankType.VanillaPlanks.OAK) {
 			return new ItemStack(Blocks.OAK_FENCE_GATE);
 		}
-		return TileEntityMetadata.getItemStack(ExtraTrees.blockGate, getPlankTypeIndex(plank));
+		return TreeManager.woodAccess.getStack(plank.getWoodType(), WoodBlockKind.FENCE_GATE, false);
 	}
 
 	public static ItemStack getFence(final IPlankType plank, final FenceType type, final int amount) {
@@ -115,24 +117,27 @@ public class WoodManager {
 		}
 		final int ord = type.ordinal();
 		final int i = getPlankTypeIndex(plank) + 256 * ord;
-		final ItemStack stack = TileEntityMetadata.getItemStack(ExtraTrees.blockMultiFence, i + 65536 * getPlankTypeIndex(plank2));
+		ExtraTrees.blocks();
+		final ItemStack stack = TileEntityMetadata.getItemStack(ModuleBlocks.blockMultiFence, i + 65536 * getPlankTypeIndex(plank2));
 		stack.stackSize = amount;
 		return stack;
 	}
 
 	public static ItemStack getDoor(final IPlankType plank, final DoorType type) {
-		return TileEntityMetadata.getItemStack(ExtraTrees.blockDoor, type.ordinal() * 256 + getPlankTypeIndex(plank));
+		ExtraTrees.blocks();
+		return TileEntityMetadata.getItemStack(ModuleBlocks.blockDoor, type.ordinal() * 256 + getPlankTypeIndex(plank));
 	}
 
 	public static List<IPlankType> getAllPlankTypes() {
 		final List<IPlankType> list = new ArrayList<>();
 		Collections.addAll(list, PlankType.ExtraTreePlanks.values());
 		Collections.addAll(list, PlankType.ForestryPlanks.values());
-		for (final IPlankType type : PlankType.ExtraBiomesPlank.values()) {
+		//TODO: extrabiomes 1.10.2
+		/*for (final IPlankType type : PlankType.ExtraBiomesPlank.values()) {
 			if (type.getStack() != null) {
 				list.add(type);
 			}
-		}
+		}*/
 		Collections.addAll(list, PlankType.VanillaPlanks.values());
 		return list;
 	}
