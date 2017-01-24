@@ -239,10 +239,6 @@ public class ModuleBlocks implements IInitializable {
 
 	@Override
 	public void init() {
-//		ExtraTrees.fenceID = RenderingRegistry.getNextAvailableRenderId();
-//		RenderingRegistry.registerBlockHandler(new FenceRenderer());
-//		ExtraTrees.stairsID = RenderingRegistry.getNextAvailableRenderId();
-//		RenderingRegistry.registerBlockHandler(new StairsRenderer());
 //		ExtraTrees.doorRenderId = RenderingRegistry.getNextAvailableRenderId();
 //		RenderingRegistry.registerBlockHandler(new DoorBlockRenderer());
 //		RenderingRegistry.registerBlockHandler(new HedgeRenderer());

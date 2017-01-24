@@ -3,9 +3,13 @@ package binnie.extratrees.carpentry;
 import binnie.Binnie;
 import binnie.core.block.TileEntityMetadata;
 import binnie.extratrees.ExtraTrees;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import java.util.List;
 
@@ -97,16 +101,14 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 //		return ModuleCarpentry.getCarpentryPanel(this.getDesignSystem(), TileEntityMetadata.getTileMetadata(world, x, y, z));
 //	}
 
-//	public static boolean isValidPanelPlacement(final World world, final int x, final int y, final int z, final ForgeDirection facing) {
-//		if (facing == ForgeDirection.UNKNOWN) {
-//			return false;
-//		}
-//		final int bx = x - facing.offsetX;
-//		final int by = y - facing.offsetY;
-//		final int bz = z - facing.offsetZ;
-//		final Block block = world.getBlock(bx, by, bz);
-//		return block != null && block.isSideSolid(world, bx, by, bz, facing);
-//	}
+	public static boolean isValidPanelPlacement(World world, BlockPos pos, EnumFacing facing) {
+		if (facing == null) {
+			return false;
+		}
+		pos = pos.offset(facing, -1);
+		IBlockState state = world.getBlockState(pos);
+		return state != null && state.isSideSolid(world, pos, facing);
+	}
 //
 //	@Override
 //	public int getPlacedMeta(final ItemStack item, final World world, final int x, final int y, final int z, final ForgeDirection clickedBlock) {

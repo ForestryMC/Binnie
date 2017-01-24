@@ -1,5 +1,9 @@
 package binnie.extratrees.api;
 
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 public interface ILayout {
 	IPattern getPattern();
 
@@ -15,7 +19,9 @@ public interface ILayout {
 
 	ILayout invert();
 
-//	IIcon getPrimaryIcon(final IDesignSystem p0);
-//
-//	IIcon getSecondaryIcon(final IDesignSystem p0);
+	@SideOnly(Side.CLIENT)
+	TextureAtlasSprite getPrimarySprite(IDesignSystem system);
+
+	@SideOnly(Side.CLIENT)
+	TextureAtlasSprite getSecondarySprite(IDesignSystem system);
 }

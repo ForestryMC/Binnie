@@ -152,8 +152,8 @@ public enum DesignSystem implements IDesignSystem {
 	@Override
 	public void registerSprites() {
 		for (final EnumPattern pattern : EnumPattern.values()) {
-			this.primary.put(pattern.ordinal(), TextureManager.registerSprite(new ResourceLocation(getMod().getModID(), getTexturePath() + "/" + pattern.toString().toLowerCase() + ".0")));
-			this.secondary.put(pattern.ordinal(), TextureManager.registerSprite(new ResourceLocation(getMod().getModID(), getTexturePath() + "/" + pattern.toString().toLowerCase() + ".1")));
+			this.primary.put(pattern.ordinal(), TextureManager.registerSprite(new ResourceLocation(getMod().getModID(), "blocks/" + getTexturePath() + "/" + pattern.toString().toLowerCase() + ".0")));
+			this.secondary.put(pattern.ordinal(), TextureManager.registerSprite(new ResourceLocation(getMod().getModID(), "blocks/" + getTexturePath() + "/" + pattern.toString().toLowerCase() + ".1")));
 		}
 	}
 

@@ -7,7 +7,9 @@ import forestry.core.models.baker.ModelBaker;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -32,12 +34,16 @@ public class ModelMutlipass<B extends Block & IMultipassBlock<K>, K> extends Mod
 	@Override
 	protected void bakeBlock(B block, K key, IModelBaker baker, boolean inventory) {
 		for (int pass = 0; pass < block.getRenderPasses(); pass++) {
-			baker.addBlockModel(block, Block.FULL_BLOCK_AABB, null, block.getSprite(key, pass), pass);
+			TextureAtlasSprite[] sprites = new TextureAtlasSprite[6];
+			for(EnumFacing facing : EnumFacing.VALUES){
+				sprites[facing.ordinal()] = block.getSprite(key, facing, pass);
+			}
+			baker.addBlockModel(block, Block.FULL_BLOCK_AABB, null, sprites, pass);
 		}
 
 		// Set the particle sprite
 		//TODO: Adding a preaking sprite
-		baker.setParticleSprite(block.getSprite(key, 0));
+		baker.setParticleSprite(block.getSprite(key, null, 0));
 	}
 	
 	@Override

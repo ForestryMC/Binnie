@@ -1,7 +1,11 @@
 package binnie.extratrees.carpentry;
 
+import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.ILayout;
 import binnie.extratrees.api.IPattern;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Layout implements ILayout {
 	IPattern pattern;
@@ -50,15 +54,17 @@ public class Layout implements ILayout {
 		return this.newLayout(this.pattern.getHorizontalFlip().rotateLeft().rotateLeft());
 	}
 
-//	@Override
-//	public IIcon getPrimaryIcon(final IDesignSystem system) {
-//		return this.inverted ? this.pattern.getSecondaryIcon(system) : this.pattern.getPrimaryIcon(system);
-//	}
-//
-//	@Override
-//	public IIcon getSecondaryIcon(final IDesignSystem system) {
-//		return this.inverted ? this.pattern.getPrimaryIcon(system) : this.pattern.getSecondaryIcon(system);
-//	}
+	@SideOnly(Side.CLIENT)
+	@Override
+	public TextureAtlasSprite getPrimarySprite(IDesignSystem system) {
+		return this.inverted ? this.pattern.getSecondarySprite(system) : this.pattern.getPrimarySprite(system);
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public TextureAtlasSprite getSecondarySprite(IDesignSystem system) {
+		return this.inverted ? this.pattern.getPrimarySprite(system) : this.pattern.getSecondarySprite(system);
+	}
 
 	@Override
 	public ILayout invert() {

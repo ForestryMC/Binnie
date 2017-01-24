@@ -1,7 +1,12 @@
 package binnie.extratrees.carpentry;
 
+import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.ILayout;
 import binnie.extratrees.api.IPattern;
+import forestry.api.core.ITextureManager;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public enum EnumPattern implements IPattern {
 	Blank,
@@ -289,10 +294,11 @@ public enum EnumPattern implements IPattern {
 		setupEdgedPattern(l, t, r, b);
 	}
 
-//	@Override
-//	public IIcon getPrimaryIcon(final IDesignSystem system) {
-//		return system.getPrimaryIcon(this);
-//	}
+	@SideOnly(Side.CLIENT)
+	@Override
+	public TextureAtlasSprite getPrimarySprite(IDesignSystem system) {
+		return system.getPrimarySprite(this);
+	}
 
 	private static void setupRotation(final EnumPattern t, final EnumPattern r, final EnumPattern b, final EnumPattern l) {
 		setupEdgedPattern(l, t, r, b);
@@ -303,10 +309,11 @@ public enum EnumPattern implements IPattern {
 		pattern.horizontalFlip = Layout.get(this, inverted);
 	}
 
-//	@Override
-//	public IIcon getSecondaryIcon(final IDesignSystem system) {
-//		return system.getSecondaryIcon(this);
-//	}
+	@SideOnly(Side.CLIENT)
+	@Override
+	public TextureAtlasSprite getSecondarySprite(IDesignSystem system) {
+		return system.getSecondarySprite(this);
+	}
 
 	@Override
 	public ILayout getRotation() {
@@ -321,10 +328,10 @@ public enum EnumPattern implements IPattern {
 	protected void setLeftRotation(final EnumPattern pattern, final boolean inverted) {
 		this.leftRotation = Layout.get(pattern, inverted);
 	}
-
-//	@Override
-//	public void registerIcons(final IIconRegister register) {
-//	}
+	
+	@Override
+	public void registerSprites(ITextureManager manager) {
+	}
 
 	public ILayout layout() {
 		return this.layout(false);

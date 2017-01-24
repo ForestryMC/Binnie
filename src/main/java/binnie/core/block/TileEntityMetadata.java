@@ -1,5 +1,6 @@
 package binnie.core.block;
 
+import binnie.core.network.packet.MessageMetadata;
 import binnie.core.network.packet.PacketMetadata;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -27,6 +28,11 @@ public class TileEntityMetadata extends TileEntity {
 		}
 		return true;
 	}
+	
+	@Override
+	public NBTTagCompound getUpdateTag() {
+		return writeToNBT(new NBTTagCompound());
+	}
 
 	@Override
 	public void readFromNBT(final NBTTagCompound nbt) {
@@ -36,11 +42,10 @@ public class TileEntityMetadata extends TileEntity {
 
 	@Override
 	public NBTTagCompound writeToNBT(final NBTTagCompound nbt) {
-		NBTTagCompound nbt2 = super.writeToNBT(nbt);
-		nbt2.setInteger("meta", this.meta);
-		return nbt2;
+		super.writeToNBT(nbt);
+		nbt.setInteger("meta", this.meta);
+		return nbt;
 	}
-
 
 	public int getTileMetadata() {
 		return this.meta;
@@ -59,6 +64,10 @@ public class TileEntityMetadata extends TileEntity {
 	@Override
 	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
 		super.onDataPacket(net, pkt);
+		
+		if(pkt instanceof PacketMetadata){
+			setTileMetadata(((PacketMetadata) pkt).getMetadata(), true);
+		}
 	}
 	
 	@Override

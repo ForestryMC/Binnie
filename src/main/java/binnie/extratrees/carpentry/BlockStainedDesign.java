@@ -1,11 +1,21 @@
 package binnie.extratrees.carpentry;
 
 import binnie.Binnie;
+import binnie.botany.Botany;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.IDesign;
 import forestry.api.core.Tabs;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockGlass;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
@@ -20,30 +30,37 @@ public class BlockStainedDesign extends BlockDesign {
 	public int quantityDropped(final Random p_149745_1_) {
 		return 0;
 	}
+	
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
+	}
 
-//	@Override
-//	public boolean isOpaqueCube() {
-//		return false;
-//	}
-//
-//	@Override
-//	public boolean renderAsNormalBlock() {
-//		return false;
-//	}
-//
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public int getRenderBlockPass() {
-//		return 1;
-//	}
-//
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public boolean shouldSideBeRendered(final IBlockAccess p_149646_1_, final int p_149646_2_, final int p_149646_3_, final int p_149646_4_, final int p_149646_5_) {
-//		final Block block2 = p_149646_1_.getBlock(p_149646_2_ - Facing.offsetsXForSide[p_149646_5_], p_149646_3_ - Facing.offsetsYForSide[p_149646_5_], p_149646_4_ - Facing.offsetsZForSide[p_149646_5_]);
-//		final Block block3 = p_149646_1_.getBlock(p_149646_2_, p_149646_3_, p_149646_4_);
-//		return block3 != this && block3 != Botany.stained && super.shouldSideBeRendered(p_149646_1_, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
-//	}
+	@Override
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public int getRenderPasses() {
+		return 1;
+	}
+	
+    @SideOnly(Side.CLIENT)
+    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+        IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
+        Block block = iblockstate.getBlock();
+        if (blockState != iblockstate) {
+            return true;
+        }
+
+        if (block == this){
+            return false;
+        }
+
+        return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+    }
 
 	@Override
 	public ItemStack getCreativeStack(final IDesign design) {

@@ -1,8 +1,11 @@
 package binnie.core.block;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -17,8 +20,8 @@ public interface IMultipassBlock<K> {
 	K getWorldKey(IBlockState state);
 
 	/**
-	 * pass -1 = particle Sprite
+	 * pass -1 and facing null = particle Sprite
 	 */
 	@SideOnly(Side.CLIENT)
-	TextureAtlasSprite getSprite(K key, int pass);
+	TextureAtlasSprite getSprite(K key, @Nullable EnumFacing facing, int pass);
 }

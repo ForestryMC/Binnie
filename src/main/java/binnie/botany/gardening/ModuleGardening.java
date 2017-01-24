@@ -28,6 +28,7 @@ import binnie.core.block.ItemMetadata;
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.item.IItemMiscProvider;
 import binnie.core.item.ItemMisc;
+import binnie.extratrees.carpentry.ItemDesign;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -90,7 +91,7 @@ public class ModuleGardening implements IInitializable {
 		Botany.proxy.registerBlock(Botany.stained, new ItemMetadata(Botany.stained));
 //		BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(Botany.stained), new ItemMetadataRenderer());
 		Botany.ceramicTile = new BlockCeramicPatterned();
-		Botany.proxy.registerBlock(Botany.ceramicTile, new ItemMetadata(Botany.ceramicTile));
+		Botany.proxy.registerBlock(Botany.ceramicTile, new ItemDesign(Botany.ceramicTile));
 		Botany.ceramicBrick = new BlockCeramicBrick();
 		Botany.proxy.registerBlock(Botany.ceramicBrick, new ItemCeramicBrick(Botany.ceramicBrick));
 		GameRegistry.registerTileEntity(TileCeramicBrick.class, "");

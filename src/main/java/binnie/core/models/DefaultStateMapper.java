@@ -4,18 +4,19 @@ import binnie.Constants;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
+import net.minecraft.util.ResourceLocation;
 
 public class DefaultStateMapper extends StateMapperBase {
 
-	private String modelName;
+	private ResourceLocation resourceLocation;
 	
-	public DefaultStateMapper(String modelName) {
-		this.modelName = modelName;
+	public DefaultStateMapper(ResourceLocation resourceLocation) {
+		this.resourceLocation = resourceLocation;
 	}
 	
 	@Override
 	protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-		return new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":" + modelName, "normal");
+		return new ModelResourceLocation(resourceLocation, "normal");
 	}
 
 }

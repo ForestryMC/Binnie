@@ -115,10 +115,11 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerStateMapper() {
-		ModelLoader.setCustomStateMapper(this, new DefaultStateMapper("ceramicBrick"));
+		ResourceLocation resourceLocation = new ResourceLocation(Constants.BOTANY_MOD_ID,  "ceramicBrick");
+		ModelLoader.setCustomStateMapper(this, new DefaultStateMapper(resourceLocation));
 		ModelManager.registerCustomBlockModel(new BlockModelEntry(
-				new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":ceramicBrick", "normal"),
-				new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":ceramicBrick", "inventory"),
+				new ModelResourceLocation(resourceLocation, "normal"),
+				new ModelResourceLocation(resourceLocation, "inventory"),
 				new ModelMutlipass(BlockCeramicBrick.class), this));
 	}
 	
@@ -227,7 +228,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public TextureAtlasSprite getSprite(CeramicBrickPair type, int pass) {
+	public TextureAtlasSprite getSprite(CeramicBrickPair type, EnumFacing facing, int pass) {
 		return type.getSprite(pass);
 	}
 

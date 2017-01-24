@@ -28,4 +28,8 @@ public class PacketMetadata extends SPacketUpdateTileEntity {
 		metadata = buf.readInt();
 	}
 	
+	public int getMetadata() {
+		return metadata;
+	}
+	
 }

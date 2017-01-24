@@ -53,13 +53,20 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 		return BlockRenderLayer.CUTOUT_MIPPED;
 	}
 
-	@SideOnly(Side.CLIENT)
-	@Override
-	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-		Block block2 = blockAccess.getBlockState(pos.offset(side)).getBlock();
-		Block block3 = blockAccess.getBlockState(pos).getBlock();
-		return true/*block3 != this && block3 != ExtraTrees.blockStained && super.shouldSideBeRendered(blockState, blockAccess, pos, side)*/;
-	}
+    @SideOnly(Side.CLIENT)
+    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+        IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
+        Block block = iblockstate.getBlock();
+        if (blockState != iblockstate) {
+            return true;
+        }
+
+        if (block == this){
+            return false;
+        }
+
+        return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+    }
 
 	@Override
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
@@ -119,12 +126,6 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 	public String getDisplayName(final ItemStack par1ItemStack) {
 		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
 		return EnumFlowerColor.get(meta).getColourName() + " Pigmented Glass";
-	}
-
-	@Override
-	public void dropAsStack(World world, BlockPos pos, ItemStack itemStack) {
-		spawnAsEntity(world, pos, itemStack);
-
 	}
 
 	@Override

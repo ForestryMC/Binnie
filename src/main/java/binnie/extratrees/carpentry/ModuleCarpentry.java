@@ -3,6 +3,7 @@ package binnie.extratrees.carpentry;
 import binnie.core.IInitializable;
 import binnie.core.block.ItemMetadata;
 import binnie.core.block.TileEntityMetadata;
+import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignMaterial;
@@ -23,12 +24,9 @@ public class ModuleCarpentry implements IInitializable {
 		blockCarpentry = new BlockCarpentry("carpentry");
 		blockPanel = new BlockCarpentryPanel();
 		blockStained = new BlockStainedDesign();
-		GameRegistry.register(blockCarpentry);
-		GameRegistry.register(new ItemMetadata(blockCarpentry).setRegistryName(blockCarpentry.getRegistryName()));
-		GameRegistry.register(blockPanel);
-		GameRegistry.register(new ItemMetadata(blockPanel).setRegistryName(blockPanel.getRegistryName()));
-		GameRegistry.register(blockStained);
-		GameRegistry.register(new ItemMetadata(blockStained).setRegistryName(blockStained.getRegistryName()));
+		ExtraTrees.proxy.registerBlock(blockCarpentry, new ItemDesign(blockCarpentry));
+		ExtraTrees.proxy.registerBlock(blockPanel, new ItemDesign(blockPanel));
+		ExtraTrees.proxy.registerBlock(blockStained, new ItemDesign(blockPanel));
 
 		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockCarpentry), new MultipassItemRenderer());
 		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockStained), new MultipassItemRenderer());
