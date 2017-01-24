@@ -11,9 +11,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nullable;
 import java.util.Map;
 
 public class BreweryLogic extends ComponentProcessSetCost implements IProcess, INetwork.GuiNBT {
+	@Nullable
 	public BreweryCrafting currentCrafting;
 
 	public BreweryLogic(final Machine machine) {
@@ -65,6 +67,7 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 			output = output.copy();
 			output.amount = 1000;
 			this.getUtil().fillTank(BreweryMachine.TANK_OUTPUT, output);
+			this.currentCrafting = null;
 		}
 	}
 
@@ -75,6 +78,7 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 			final FluidStack stack = this.getUtil().drainTank(BreweryMachine.TANK_INPUT, 1000);
 			this.currentCrafting = this.getInputCrafting();
 			this.currentCrafting.inputFluid = stack;
+			this.getUtil().removeIngredients(new int[]{0, 1, 2, 3, 4}, BreweryMachine.SLOTS_INVENTORY);
 		}
 	}
 

@@ -8,6 +8,7 @@ import binnie.core.machines.power.ITankMachine;
 import binnie.core.machines.power.PowerSystem;
 import binnie.core.util.ItemStackSet;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
@@ -59,8 +60,8 @@ public class MachineUtil {
 		this.setStack(slot, null);
 	}
 
-	public ItemStack decreaseStack(final int slotWood, final int amount) {
-		return this.getInventory().decrStackSize(slotWood, amount);
+	public ItemStack decreaseStack(final int slot, final int amount) {
+		return this.getInventory().decrStackSize(slot, amount);
 	}
 
 	public void setStack(final int slot, final ItemStack stack) {
@@ -78,8 +79,7 @@ public class MachineUtil {
 		} else {
 			final ItemStack merge = this.getStack(slot);
 			if (merge.isItemEqual(addition) && merge.stackSize + addition.stackSize <= merge.getMaxStackSize()) {
-				final ItemStack itemStack = merge;
-				itemStack.stackSize += addition.stackSize;
+				merge.stackSize += addition.stackSize;
 				this.setStack(slot, merge);
 			}
 		}
@@ -114,16 +114,20 @@ public class MachineUtil {
 		return (this.getTank(tankInput).getFluid() == null) ? null : this.getTank(tankInput).getFluid();
 	}
 
-	public ItemStack[] getStacks(final int[] slotGrains) {
-		final ItemStack[] stacks = new ItemStack[slotGrains.length];
-		for (int i = 0; i < slotGrains.length; ++i) {
-			stacks[i] = this.getStack(slotGrains[i]);
-		}
-		return stacks;
+	public ItemStack[] getStacks(final int[] slots) {
+		return getStacks(slots, false);
 	}
 
-	public ItemStack hasIngredients(final int recipe, final int[] inventory) {
-		return null;
+	public ItemStack[] getStacks(final int[] slots, boolean copy) {
+		final ItemStack[] stacks = new ItemStack[slots.length];
+		for (int i = 0; i < slots.length; ++i) {
+			ItemStack stack = this.getStack(slots[i]);
+			if (copy && stack != null) {
+				stack = stack.copy();
+			}
+			stacks[i] = stack;
+		}
+		return stacks;
 	}
 
 	public boolean hasIngredients(final int[] recipe, final int[] inventory) {
@@ -133,6 +137,32 @@ public class MachineUtil {
 		Collections.addAll(inventoryStacks, this.getStacks(inventory));
 		requiredStacks.removeAll(inventoryStacks);
 		return requiredStacks.isEmpty();
+	}
+
+	public boolean removeIngredients(final int[] recipe, final int[] inventorySlots) {
+		if (!hasIngredients(recipe, inventorySlots)) {
+			return false;
+		}
+
+		List<ItemStack> requiredStacks = this.getNonNullStacks(recipe, true);
+		for (ItemStack requiredStack : requiredStacks) {
+			IInventory inventory = this.getInventory();
+			for (int slot : inventorySlots) {
+				ItemStack stackInSlot = this.getStack(slot);
+				if (ItemStack.areItemsEqual(requiredStack, stackInSlot) && ItemStack.areItemStackTagsEqual(requiredStack, stackInSlot)) {
+					if (requiredStack.stackSize >= stackInSlot.stackSize) {
+						requiredStack.stackSize -= stackInSlot.stackSize;
+						inventory.removeStackFromSlot(slot);
+					} else {
+						stackInSlot.stackSize -= requiredStack.stackSize;
+						requiredStack.stackSize = 0;
+						break;
+					}
+				}
+			}
+		}
+
+		return true;
 	}
 
 	public void useEnergyMJ(final float powerUsage) {
@@ -164,9 +194,13 @@ public class MachineUtil {
 		return this.machine.getInterface(IProcess.class);
 	}
 
-	public List<ItemStack> getNonNullStacks(final int[] slotacclimatiser) {
+	public List<ItemStack> getNonNullStacks(final int[] slots) {
+		return getNonNullStacks(slots, false);
+	}
+
+	public List<ItemStack> getNonNullStacks(final int[] slots, boolean copy) {
 		final List<ItemStack> stacks = new ArrayList<>();
-		for (final ItemStack stack : this.getStacks(slotacclimatiser)) {
+		for (final ItemStack stack : this.getStacks(slots, copy)) {
 			if (stack != null) {
 				stacks.add(stack);
 			}

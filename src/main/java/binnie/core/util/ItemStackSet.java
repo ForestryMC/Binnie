@@ -22,7 +22,7 @@ public class ItemStackSet implements Set<ItemStack> {
 
 	protected ItemStack getExisting(final ItemStack stack) {
 		for (final ItemStack stack2 : this.itemStacks) {
-			if (stack2.isItemEqual(stack)) {
+			if (ItemStack.areItemsEqual(stack2, stack) && ItemStack.areItemStackTagsEqual(stack2, stack)) {
 				return stack2;
 			}
 		}
