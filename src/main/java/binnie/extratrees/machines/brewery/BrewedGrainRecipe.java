@@ -5,6 +5,7 @@ import binnie.core.util.OreDictionaryUtil;
 import binnie.extratrees.alcohol.Alcohol;
 import binnie.extratrees.item.ExtraTreeItems;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nonnull;
@@ -13,7 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class BrewedGrainRecipe implements IBreweryRecipe {
-	public static final FluidStack WATER = Binnie.Liquid.getFluidStack("water", 5);
+	public static final FluidStack WATER = Binnie.Liquid.getFluidStack("water", Fluid.BUCKET_VOLUME);
 
 	private final FluidStack output;
 	private final int grainOreId;
@@ -30,7 +31,7 @@ public class BrewedGrainRecipe implements IBreweryRecipe {
 	}
 
 	public BrewedGrainRecipe(Alcohol output, int grainOreId, @Nullable Integer ingredientOreId, @Nullable ItemStack specificYeast) {
-		this.output = output.get(5);
+		this.output = output.get(Fluid.BUCKET_VOLUME);
 		this.grainOreId = grainOreId;
 		this.ingredientOreId = ingredientOreId;
 		if (specificYeast != null) {

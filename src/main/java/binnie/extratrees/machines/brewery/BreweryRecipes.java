@@ -41,8 +41,9 @@ public class BreweryRecipes {
 	public static FluidStack getOutput(final FluidStack stack) {
 		final BreweryCrafting crafting = new BreweryCrafting(stack, null, null, null);
 		for (final IBreweryRecipe recipe : recipes) {
-			if (recipe.getOutput(crafting) != null) {
-				return recipe.getOutput(crafting);
+			FluidStack output = recipe.getOutput(crafting);
+			if (output != null) {
+				return output;
 			}
 		}
 		return null;
@@ -52,8 +53,9 @@ public class BreweryRecipes {
 	public static FluidStack getOutput(final BreweryCrafting crafting) {
 		if (crafting.inputFluid != null && crafting.yeast != null) {
 			for (final IBreweryRecipe recipe : recipes) {
-				if (recipe.getOutput(crafting) != null) {
-					return recipe.getOutput(crafting);
+				FluidStack output = recipe.getOutput(crafting);
+				if (output != null) {
+					return output;
 				}
 			}
 		}

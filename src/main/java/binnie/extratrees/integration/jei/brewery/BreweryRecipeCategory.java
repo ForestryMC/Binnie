@@ -11,6 +11,10 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
+
+import java.util.List;
 
 public class BreweryRecipeCategory extends BlankRecipeCategory<BreweryRecipeWrapper> {
 	private final IDrawableAnimated arrowAnimated;
@@ -41,29 +45,51 @@ public class BreweryRecipeCategory extends BlankRecipeCategory<BreweryRecipeWrap
 		tank.draw(minecraft, 112, 0);
 
 		IDrawable arrow = ExtraTreesJeiPlugin.drawables.getArrow();
-		arrow.draw(minecraft, 69, 25);
-		arrowAnimated.draw(minecraft, 69, 25);
+		arrow.draw(minecraft, 90, 25);
+		arrowAnimated.draw(minecraft, 90, 25);
 
 		IDrawable slot = ExtraTreesJeiPlugin.guiHelper.getSlotDrawable();
 
+		// ingredients (hops)
+		slot.draw(minecraft, 21, 42);
+
+		// grain
 		slot.draw(minecraft, 42, 0);
 		slot.draw(minecraft, 42, 21);
 		slot.draw(minecraft, 42, 42);
+
+		// yeast
+		slot.draw(minecraft, 63, 42);
 	}
 
 	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, BreweryRecipeWrapper recipeWrapper, IIngredients ingredients) {
 		IDrawable tankOverlay = ExtraTreesJeiPlugin.drawables.getTankOverlay();
 		IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
-		fluidStacks.init(BreweryMachine.TANK_INPUT, true, 1, 1, 16, 58, 10, false, tankOverlay);
-		fluidStacks.init(BreweryMachine.TANK_OUTPUT, false, 113, 1, 16, 58, 10, false, tankOverlay);
+		fluidStacks.init(BreweryMachine.TANK_INPUT, true, 1, 1, 16, 58, Fluid.BUCKET_VOLUME, false, tankOverlay);
+		fluidStacks.init(BreweryMachine.TANK_OUTPUT, false, 113, 1, 16, 58, Fluid.BUCKET_VOLUME, false, tankOverlay);
 		fluidStacks.set(ingredients);
 
 		IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
 
-		itemStacks.init(0, true, 42, 0);
-		itemStacks.init(1, true, 42, 21);
-		itemStacks.init(2, true, 42, 42);
-		itemStacks.set(ingredients);
+		// ingredients (hops)
+		itemStacks.init(0, true, 21, 42);
+
+		// grain
+		itemStacks.init(1, true, 42, 0);
+		itemStacks.init(2, true, 42, 21);
+		itemStacks.init(3, true, 42, 42);
+
+		// yeast
+		itemStacks.init(4, true, 63, 42);
+
+		List<List<ItemStack>> inputs = ingredients.getInputs(ItemStack.class);
+		itemStacks.set(0, inputs.get(0));
+
+		itemStacks.set(1, inputs.get(1));
+		itemStacks.set(2, inputs.get(1));
+		itemStacks.set(3, inputs.get(1));
+
+		itemStacks.set(4, inputs.get(2));
 	}
 }

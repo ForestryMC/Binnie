@@ -19,6 +19,8 @@ import binnie.extratrees.machines.fruitpress.FruitPressRecipes;
 import forestry.api.recipes.ISqueezerRecipe;
 import forestry.api.recipes.RecipeManagers;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -87,9 +89,9 @@ public class ModuleAlcohol implements IInitializable {
 		}
 		for (final Alcohol alcohol : Alcohol.values()) {
 			for (final String fermentLiquid : alcohol.fermentationLiquid) {
-				final FluidStack fluid = Binnie.Liquid.getFluidStack(fermentLiquid, 5);
+				final FluidStack fluid = Binnie.Liquid.getFluidStack(fermentLiquid, Fluid.BUCKET_VOLUME);
 				if (fluid != null) {
-					BreweryRecipes.addRecipe(fluid, alcohol.get(5));
+					BreweryRecipes.addRecipe(fluid, alcohol.get(Fluid.BUCKET_VOLUME));
 				}
 			}
 		}

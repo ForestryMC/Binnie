@@ -34,7 +34,7 @@ public class BreweryRecipe implements IBreweryRecipe {
 			return null;
 		}
 		if (this.input.isFluidEqual(crafting.inputFluid)) {
-			return this.output;
+			return this.output.copy();
 		}
 		return null;
 	}

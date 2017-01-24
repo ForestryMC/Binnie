@@ -8,6 +8,7 @@ import binnie.core.machines.power.IProcess;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 
@@ -50,12 +51,15 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 		if (this.currentCrafting == null) {
 			return new ErrorState("Brewery Empty", "No liquid in Brewery");
 		}
-		if (!this.getUtil().spaceInTank(BreweryMachine.TANK_OUTPUT, 1000)) {
+		if (!this.getUtil().spaceInTank(BreweryMachine.TANK_OUTPUT, Fluid.BUCKET_VOLUME)) {
 			return new ErrorState.TankSpace("No Space for Fermented Liquid", BreweryMachine.TANK_OUTPUT);
 		}
 		FluidStack outputFluid = this.getUtil().getFluid(BreweryMachine.TANK_OUTPUT);
-		if (outputFluid != null && !outputFluid.isFluidEqual(BreweryRecipes.getOutput(this.currentCrafting))) {
-			return new ErrorState.TankSpace("Different fluid in tank", BreweryMachine.TANK_OUTPUT);
+		if (outputFluid != null) {
+			FluidStack craftingOutputFluid = BreweryRecipes.getOutput(this.currentCrafting);
+			if (!outputFluid.isFluidEqual(craftingOutputFluid)) {
+				return new ErrorState.TankSpace("Different fluid in tank", BreweryMachine.TANK_OUTPUT);
+			}
 		}
 		return super.canProgress();
 	}
@@ -64,8 +68,6 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 	protected void onFinishTask() {
 		FluidStack output = BreweryRecipes.getOutput(this.currentCrafting);
 		if (output != null) {
-			output = output.copy();
-			output.amount = 1000;
 			this.getUtil().fillTank(BreweryMachine.TANK_OUTPUT, output);
 			this.currentCrafting = null;
 		}
@@ -74,8 +76,8 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		if (this.canWork() == null && this.currentCrafting == null && this.getUtil().getTank(BreweryMachine.TANK_INPUT).getFluidAmount() >= 1000) {
-			final FluidStack stack = this.getUtil().drainTank(BreweryMachine.TANK_INPUT, 1000);
+		if (this.canWork() == null && this.currentCrafting == null && this.getUtil().getTank(BreweryMachine.TANK_INPUT).getFluidAmount() >= Fluid.BUCKET_VOLUME) {
+			final FluidStack stack = this.getUtil().drainTank(BreweryMachine.TANK_INPUT, Fluid.BUCKET_VOLUME);
 			this.currentCrafting = this.getInputCrafting();
 			this.currentCrafting.inputFluid = stack;
 			this.getUtil().removeIngredients(new int[]{0, 1, 2, 3, 4}, BreweryMachine.SLOTS_INVENTORY);
