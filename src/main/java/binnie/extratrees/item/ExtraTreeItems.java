@@ -51,7 +51,6 @@ public enum ExtraTreeItems implements IItemMiscProvider {
 
 	@Override
 	public ItemStack get(final int i) {
-		ExtraTrees.items();
-		return new ItemStack(ModuleItems.itemMisc, i, this.ordinal());
+		return new ItemStack(ExtraTrees.items().itemMisc, i, this.ordinal());
 	}
 }

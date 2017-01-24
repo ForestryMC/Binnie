@@ -1,7 +1,6 @@
 package binnie.extratrees.carpentry;
 
 import binnie.core.IInitializable;
-import binnie.core.block.ItemMetadata;
 import binnie.core.block.TileEntityMetadata;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
@@ -11,13 +10,12 @@ import binnie.extratrees.api.IDesignSystem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModuleCarpentry implements IInitializable {
 	
-	public static BlockCarpentry blockCarpentry;
-	public static BlockCarpentry blockPanel;
-	public static BlockStainedDesign blockStained;
+	public BlockCarpentry blockCarpentry;
+	public BlockCarpentry blockPanel;
+	public BlockStainedDesign blockStained;
 	
 	@Override
 	public void preInit() {

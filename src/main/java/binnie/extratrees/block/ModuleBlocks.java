@@ -48,27 +48,27 @@ import net.minecraftforge.oredict.RecipeSorter;
 public class ModuleBlocks implements IInitializable {
 	// public static int hedgeRenderID;
 
-	public static List<BlockETLog> logs;
-	public static List<BlockETLog> logsFireproof;
-	public static List<BlockETPlank> planks;
-	public static List<BlockETPlank> planksFireproof;
-	public static List<BlockETSlab> slabs;
-	public static List<BlockETSlab> slabsDouble;
-	public static List<BlockETSlab> slabsFireproof;
-	public static List<BlockETSlab> slabsDoubleFireproof;
-	public static List<BlockForestryStairs> stairs;
-	public static List<BlockForestryStairs> stairsFireproof;
-	public static List<BlockETFence> fences;
-	public static List<BlockETFence> fencesFireproof;
-	public static List<BlockForestryFenceGate> fenceGates;
-	public static List<BlockForestryFenceGate> fenceGatesFireproof;
-	public static List<BlockETDecorativeLeaves> leavesDecorative;
-	public static Map<String, ItemStack> speciesToLeavesDecorative;
-	public static Block blockDoor;
-	public static BlockMultiFence blockMultiFence;
-	public static BlockHedge blockHedge;
+	public List<BlockETLog> logs;
+	public List<BlockETLog> logsFireproof;
+	public List<BlockETPlank> planks;
+	public List<BlockETPlank> planksFireproof;
+	public List<BlockETSlab> slabs;
+	public List<BlockETSlab> slabsDouble;
+	public List<BlockETSlab> slabsFireproof;
+	public List<BlockETSlab> slabsDoubleFireproof;
+	public List<BlockForestryStairs> stairs;
+	public List<BlockForestryStairs> stairsFireproof;
+	public List<BlockETFence> fences;
+	public List<BlockETFence> fencesFireproof;
+	public List<BlockForestryFenceGate> fenceGates;
+	public List<BlockForestryFenceGate> fenceGatesFireproof;
+	public List<BlockETDecorativeLeaves> leavesDecorative;
+	public Map<String, ItemStack> speciesToLeavesDecorative;
+	public Block blockDoor;
+	public BlockMultiFence blockMultiFence;
+	public BlockHedge blockHedge;
 	//????
-	public static Block blockBranch;
+	public Block blockBranch;
 	
 	@Override
 	public void preInit() {
@@ -314,8 +314,7 @@ public class ModuleBlocks implements IInitializable {
 	}
 	
 	public static ItemStack getDecorativeLeaves(String speciesUid) {
-		ExtraTrees.blocks();
-		ItemStack itemStack = ModuleBlocks.speciesToLeavesDecorative.get(speciesUid);
+		ItemStack itemStack = ExtraTrees.blocks().speciesToLeavesDecorative.get(speciesUid);
 		if (itemStack == null) {
 			return null;
 		}

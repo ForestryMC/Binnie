@@ -4,7 +4,6 @@ import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
-import binnie.core.item.IItemMiscProvider;
 import binnie.core.item.ItemMisc;
 import binnie.core.liquid.ItemFluidContainer;
 import binnie.extratrees.ExtraTrees;
@@ -26,12 +25,12 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class ModuleItems implements IInitializable {
 	
-	public static Item itemDictionary;
-	public static Item itemDictionaryLepi;
-	public static ItemMisc itemMisc;
-	public static Item itemFood;
-	public static Item itemHammer;
-	public static Item itemDurableHammer;
+	public Item itemDictionary;
+	public Item itemDictionaryLepi;
+	public ItemMisc itemMisc;
+	public Item itemFood;
+	public Item itemHammer;
+	public Item itemDurableHammer;
 	
 	@Override
 	public void preInit() {
@@ -127,8 +126,8 @@ public class ModuleItems implements IInitializable {
 	public void postInit() {
 		ModuleItems items = ExtraTrees.items();
 		
-		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(ModuleItems.itemDurableHammer, 1, 0), "wiw", " s ", " s ", 'w', Blocks.OBSIDIAN, 'i', Items.GOLD_INGOT, 's', Items.STICK));
-		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(ModuleItems.itemHammer, 1, 0), "wiw", " s ", " s ", 'w', "plankWood", 'i', Items.IRON_INGOT, 's', Items.STICK));
+		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(items.itemDurableHammer, 1, 0), "wiw", " s ", " s ", 'w', Blocks.OBSIDIAN, 'i', Items.GOLD_INGOT, 's', Items.STICK));
+		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(items.itemHammer, 1, 0), "wiw", " s ", " s ", 'w', "plankWood", 'i', Items.IRON_INGOT, 's', Items.STICK));
 		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ExtraTreeItems.Yeast.get(8), " m ", "mbm", 'b', Items.BREAD, 'm', Blocks.BROWN_MUSHROOM));
 		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ExtraTreeItems.LagerYeast.get(8), "mbm", " m ", 'b', Items.BREAD, 'm', Blocks.BROWN_MUSHROOM));
 		GameRegistry.addRecipe(ExtraTreeItems.GrainWheat.get(5), " s ", "sss", " s ", 's', Items.WHEAT_SEEDS);
@@ -147,12 +146,12 @@ public class ModuleItems implements IInitializable {
 			CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(Food.PAPAYIMAR.get(1), minium, "cropPapaya"));
 		} catch (Exception ex) {
 		}
-		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack("water", 2000), null, new ItemStack(ModuleItems.itemDictionary), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotCopper", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
-		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack("water", 2000), null, new ItemStack(ModuleItems.itemDictionaryLepi), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotBronze", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
+		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack("water", 2000), null, new ItemStack(items.itemDictionary), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotCopper", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
+		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack("water", 2000), null, new ItemStack(items.itemDictionaryLepi), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotBronze", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
 		RecipeManagers.stillManager.addRecipe(25, ExtraTreeLiquid.Resin.get(5), ExtraTreeLiquid.Turpentine.get(3));
-		RecipeManagers.carpenterManager.addRecipe(25, ExtraTreeLiquid.Turpentine.get(50), null, ModuleItems.itemMisc.getStack(ExtraTreeItems.WoodWax, 4), "x", 'x', Mods.Forestry.stack("beeswax"));
+		RecipeManagers.carpenterManager.addRecipe(25, ExtraTreeLiquid.Turpentine.get(50), null, items.itemMisc.getStack(ExtraTreeItems.WoodWax, 4), "x", 'x', Mods.Forestry.stack("beeswax"));
 		if (Binnie.LIQUID.getFluidStack("Creosote Oil", 100) != null) {
-			RecipeManagers.carpenterManager.addRecipe(25, Binnie.LIQUID.getFluidStack("Creosote Oil", 50), null, ModuleItems.itemMisc.getStack(ExtraTreeItems.WoodWax, 1), "x", 'x', Mods.Forestry.stack("beeswax"));
+			RecipeManagers.carpenterManager.addRecipe(25, Binnie.LIQUID.getFluidStack("Creosote Oil", 50), null, items.itemMisc.getStack(ExtraTreeItems.WoodWax, 1), "x", 'x', Mods.Forestry.stack("beeswax"));
 		}
 		for (final FluidContainerRegistry.FluidContainerData data : FluidContainerRegistry.getRegisteredFluidContainerData()) {
 			if (data.fluid.isFluidEqual(Binnie.LIQUID.getFluidStack("water", 0)) && data.fluid.amount == 1000) {

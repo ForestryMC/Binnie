@@ -16,7 +16,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ModuleMachine implements IInitializable {
 	
-	public static Block blockMachine;
+	public Block blockMachine;
 	
 	@Override
 	public void preInit() {

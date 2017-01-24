@@ -1,9 +1,5 @@
 package binnie.extratrees.carpentry;
 
-import binnie.Constants;
-import binnie.botany.ceramic.brick.BlockCeramicBrick;
-import binnie.botany.ceramic.brick.CeramicBrickPair;
-import binnie.botany.ceramic.brick.TileCeramicBrick;
 import binnie.core.block.BlockMetadata;
 import binnie.core.block.IMultipassBlock;
 import binnie.core.block.TileEntityMetadata;
@@ -23,7 +19,6 @@ import forestry.api.core.ITextureManager;
 import forestry.core.blocks.IColoredBlock;
 import forestry.core.blocks.propertys.UnlistedBlockAccess;
 import forestry.core.blocks.propertys.UnlistedBlockPos;
-import forestry.core.items.IColoredItem;
 import forestry.core.models.BlockModelEntry;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -168,6 +163,7 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 		return block.getItemMetadata(this.getDesignSystem());
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
     public EnumBlockRenderType getRenderType(IBlockState state){
         return EnumBlockRenderType.MODEL;

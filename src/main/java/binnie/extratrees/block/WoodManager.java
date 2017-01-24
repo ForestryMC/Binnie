@@ -71,8 +71,7 @@ public class WoodManager {
 		if (stack == null) {
 			return null;
 		}
-		ExtraTrees.blocks();
-		if (stack.getItem() == Item.getItemFromBlock(ModuleBlocks.blockMultiFence)) {
+		if (stack.getItem() == Item.getItemFromBlock(ExtraTrees.blocks().blockMultiFence)) {
 			final int damage = TileEntityMetadata.getItemDamage(stack);
 			return getFenceDescription(damage);
 		}
@@ -117,15 +116,13 @@ public class WoodManager {
 		}
 		final int ord = type.ordinal();
 		final int i = getPlankTypeIndex(plank) + 256 * ord;
-		ExtraTrees.blocks();
-		final ItemStack stack = TileEntityMetadata.getItemStack(ModuleBlocks.blockMultiFence, i + 65536 * getPlankTypeIndex(plank2));
+		final ItemStack stack = TileEntityMetadata.getItemStack(ExtraTrees.blocks().blockMultiFence, i + 65536 * getPlankTypeIndex(plank2));
 		stack.stackSize = amount;
 		return stack;
 	}
 
 	public static ItemStack getDoor(final IPlankType plank, final DoorType type) {
-		ExtraTrees.blocks();
-		return TileEntityMetadata.getItemStack(ModuleBlocks.blockDoor, type.ordinal() * 256 + getPlankTypeIndex(plank));
+		return TileEntityMetadata.getItemStack(ExtraTrees.blocks().blockDoor, type.ordinal() * 256 + getPlankTypeIndex(plank));
 	}
 
 	public static List<IPlankType> getAllPlankTypes() {

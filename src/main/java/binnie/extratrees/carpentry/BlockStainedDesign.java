@@ -1,15 +1,12 @@
 package binnie.extratrees.carpentry;
 
 import binnie.Binnie;
-import binnie.botany.Botany;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.IDesign;
 import forestry.api.core.Tabs;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockGlass;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -47,7 +44,8 @@ public class BlockStainedDesign extends BlockDesign {
 		return 1;
 	}
 	
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
         IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
         Block block = iblockstate.getBlock();

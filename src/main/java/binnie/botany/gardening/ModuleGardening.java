@@ -26,7 +26,6 @@ import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.block.ItemMetadata;
 import binnie.core.block.TileEntityMetadata;
-import binnie.core.item.IItemMiscProvider;
 import binnie.core.item.ItemMisc;
 import binnie.extratrees.carpentry.ItemDesign;
 import net.minecraft.init.Blocks;

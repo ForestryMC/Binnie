@@ -53,8 +53,7 @@ public enum ExtraTreeMachine implements IMachineType {
 	}
 
 	public ItemStack get(final int i) {
-		ExtraTrees.machine();
-		return new ItemStack(ModuleMachine.blockMachine, i, this.ordinal());
+		return new ItemStack(ExtraTrees.machine().blockMachine, i, this.ordinal());
 	}
 
 	public static class ComponentExtraTreeGUI extends MachineComponent implements IInteraction.RightClick {

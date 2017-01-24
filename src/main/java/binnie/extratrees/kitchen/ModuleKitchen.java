@@ -8,7 +8,7 @@ import net.minecraft.block.Block;
 
 public class ModuleKitchen implements IInitializable {
 	
-	public static Block blockKitchen;
+	public Block blockKitchen;
 	
 	@Override
 	public void preInit() {

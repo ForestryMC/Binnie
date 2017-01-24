@@ -5,13 +5,11 @@ import binnie.botany.Botany;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
-import binnie.core.item.IItemMiscProvider;
 import binnie.core.item.ItemMisc;
 import binnie.core.liquid.ItemFluidContainer;
 import binnie.core.resource.BinnieIcon;
 import binnie.extrabees.ExtraBees;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.item.ModuleItems;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
 import forestry.api.recipes.RecipeManagers;
@@ -137,9 +135,7 @@ public class ModuleItem implements IInitializable {
 					'a', Mods.Forestry.item("portableAlyzer"),
 					'd', new ItemStack(Items.DIAMOND));
 
-			ExtraTrees.items();
-			ExtraTrees.items();
-			final Item[] dbs = {ExtraBees.dictionary, ModuleItems.itemDictionary, ModuleItems.itemDictionaryLepi, Botany.database};
+			final Item[] dbs = {ExtraBees.dictionary, ExtraTrees.items().itemDictionary, ExtraTrees.items().itemDictionaryLepi, Botany.database};
 			if (BinnieCore.isBotanyActive() && BinnieCore.isExtraBeesActive() && BinnieCore.isExtraTreesActive()) {
 				for (final Item a2 : dbs) {
 					for (final Item b2 : dbs) {

@@ -1,6 +1,5 @@
 package binnie.core.block;
 
-import binnie.core.network.packet.MessageMetadata;
 import binnie.core.network.packet.PacketMetadata;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

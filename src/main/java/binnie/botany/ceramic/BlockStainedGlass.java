@@ -53,7 +53,8 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 		return BlockRenderLayer.CUTOUT_MIPPED;
 	}
 
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
         IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
         Block block = iblockstate.getBlock();

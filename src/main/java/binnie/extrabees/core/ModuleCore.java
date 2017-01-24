@@ -1,7 +1,6 @@
 package binnie.extrabees.core;
 
 import binnie.core.IInitializable;
-import binnie.core.item.IItemMiscProvider;
 import binnie.core.item.ItemMisc;
 import binnie.extrabees.ExtraBees;
 import forestry.api.core.Tabs;
