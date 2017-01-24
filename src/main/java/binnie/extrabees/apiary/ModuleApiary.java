@@ -5,6 +5,7 @@ import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.circuits.BinnieCircuitLayout;
+import binnie.core.circuits.BinnieCircuitSocketType;
 import binnie.core.machines.MachineGroup;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.apiary.machine.AlvearyMachine;
@@ -82,6 +83,6 @@ public class ModuleApiary implements IInitializable {
 
 	@Override
 	public void init() {
-		this.stimulatorLayout = new BinnieCircuitLayout(ExtraBees.instance, "Stimulator");
+		this.stimulatorLayout = new BinnieCircuitLayout(ExtraBees.instance, "Stimulator", BinnieCircuitSocketType.STIMULATOR);
 	}
 }

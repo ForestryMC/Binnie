@@ -7,30 +7,23 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeHooks;
+
+import javax.annotation.Nonnull;
 
 public class PigmentRecipe implements IRecipe {
-	private final ItemStack unknown;
-	ItemStack cached;
-
-	public PigmentRecipe() {
-		this.unknown = null;
-	}
-
 	@Override
-	public boolean matches(final InventoryCrafting crafting, final World world) {
+	public boolean matches(@Nonnull final InventoryCrafting crafting, @Nonnull final World world) {
 		return this.getCraftingResult(crafting) != null;
 	}
 
 	@Override
 	public ItemStack getRecipeOutput() {
-		if (this.cached != null) {
-			return this.cached;
-		}
-		return this.unknown;
+		return null;
 	}
 
 	@Override
-	public ItemStack getCraftingResult(final InventoryCrafting crafting) {
+	public ItemStack getCraftingResult(@Nonnull final InventoryCrafting crafting) {
 		int n = 0;
 		ItemStack stack = null;
 		for (int i = 0; i < crafting.getSizeInventory(); ++i) {
@@ -54,10 +47,9 @@ public class PigmentRecipe implements IRecipe {
 		return 1;
 	}
 
-
-	//TODO IMPLEMENT
+	@Nonnull
 	@Override
-	public ItemStack[] getRemainingItems(InventoryCrafting inv) {
-		return new ItemStack[0];
+	public ItemStack[] getRemainingItems(@Nonnull InventoryCrafting inv) {
+		return ForgeHooks.defaultRecipeGetRemainingItems(inv);
 	}
 }

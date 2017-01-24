@@ -24,7 +24,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -117,22 +120,7 @@ public class AnalystPageProducts extends AnalystPageProduce {
 				dx = 0;
 				dy += 18;
 			}
-			ItemStack container = null;
-			//TODO
-			for (final FluidContainerRegistry.FluidContainerData data : FluidContainerRegistry.getRegisteredFluidContainerData()) {
-				if (data.emptyContainer.isItemEqual(new ItemStack(Items.GLASS_BOTTLE)) && data.fluid.isFluidEqual(soilStack2)) {
-					container = data.filledContainer;
-					break;
-				}
-				if (data.emptyContainer.isItemEqual(new ItemStack(Items.BUCKET)) && data.fluid.isFluidEqual(soilStack2)) {
-					container = data.filledContainer;
-					break;
-				}
-				if (data.fluid.isFluidEqual(soilStack2)) {
-					container = data.filledContainer;
-					break;
-				}
-			}
+			ItemStack container = getContainer(soilStack2);
 			if (container == null) {
 				final ControlFluidDisplay display2 = new ControlFluidDisplay(this, biomeListX + dx, y + dy);
 				display2.setItemStack(soilStack2);
@@ -145,6 +133,24 @@ public class AnalystPageProducts extends AnalystPageProduce {
 			dx += 18;
 		}
 		this.setSize(new IPoint(this.w(), y + dy + 18 + 8));
+	}
+
+	@Nullable
+	private static ItemStack getContainer(final FluidStack fluidStack) {
+		ItemStack[] containers = {
+				new ItemStack(Items.GLASS_BOTTLE),
+				new ItemStack(Items.BUCKET)
+		};
+
+		for (ItemStack container : containers) {
+			// TODO 1.11 update for IFluidHandlerItem
+			IFluidHandler fluidHandler = FluidUtil.getFluidHandler(container);
+			if (fluidHandler != null && fluidHandler.fill(fluidStack, true) > 0) {
+				return container;
+			}
+		}
+
+		return null;
 	}
 
 	private void createProductEntry(final ItemStack key, final Float value, final int y, final float speed) {
