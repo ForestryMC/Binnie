@@ -10,6 +10,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -24,38 +25,38 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 		this.inventory = new LinkedHashMap<>();
 	}
 
-	//TODO Implement
 	@Override
 	public void clear() {
-
+		for (InventorySlot slot : this.inventory.values()) {
+			slot.setContent(null);
+		}
 	}
 
-	//TODO Implement
 	@Override
 	public void setField(int id, int value) {
 
 	}
 
-	//TODO Implement
 	@Override
 	public int getField(int id) {
 		return 0;
 	}
 
-	//TODO Implement
 	@Override
 	public int getFieldCount() {
 		return 0;
 	}
 
-	//TODO Implement
 	@Nullable
 	@Override
 	public ItemStack removeStackFromSlot(int index) {
-		return null;
+		InventorySlot inventorySlot = this.inventory.get(index);
+		ItemStack content = inventorySlot.getContent();
+		inventorySlot.setContent(null);
+		return content;
 	}
 
-
+	@Nonnull
 	@Override
 	public ITextComponent getDisplayName() {
 		return new TextComponentString("");
@@ -71,6 +72,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
+	@Nullable
 	public ItemStack getStackInSlot(final int index) {
 		if (this.inventory.containsKey(index)) {
 			return this.inventory.get(index).getContent();
@@ -79,6 +81,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
+	@Nullable
 	public ItemStack decrStackSize(final int index, final int amount) {
 		if (this.inventory.containsKey(index)) {
 			final ItemStack stack = this.inventory.get(index).decrStackSize(amount);
@@ -105,6 +108,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 		this.markDirty();
 	}
 
+	@Nonnull
 	@Override
 	public String getName() {
 		return "";
@@ -116,17 +120,17 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	public boolean isUseableByPlayer(final EntityPlayer var1) {
+	public boolean isUseableByPlayer(@Nonnull final EntityPlayer var1) {
 		return true;
 	}
 
 	@Override
-	public void closeInventory(EntityPlayer player) {
+	public void closeInventory(@Nonnull EntityPlayer player) {
 
 	}
 
 	@Override
-	public void openInventory(EntityPlayer player) {
+	public void openInventory(@Nonnull EntityPlayer player) {
 
 	}
 
@@ -214,7 +218,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	public boolean isItemValidForSlot(final int slot, final ItemStack itemStack) {
+	public boolean isItemValidForSlot(final int slot, @Nonnull final ItemStack itemStack) {
 		final InventorySlot iSlot = this.getSlot(slot);
 		return iSlot != null && (iSlot.isValid(itemStack) && !this.isReadOnly(slot));
 	}
@@ -240,8 +244,9 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 		}
 	}
 
+	@Nonnull
 	@Override
-	public int[] getSlotsForFace(final EnumFacing var1) {
+	public int[] getSlotsForFace(@Nonnull final EnumFacing var1) {
 		final List<Integer> slots = new ArrayList<>();
 		for (final InventorySlot slot : this.inventory.values()) {
 			if (slot.canInsert() || slot.canExtract()) {
@@ -256,12 +261,12 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	public boolean canInsertItem(final int i, final ItemStack itemstack, final EnumFacing j) {
-		return this.isItemValidForSlot(i, itemstack) && this.getSlot(i).canInsert(j);
+	public boolean canInsertItem(final int i, @Nonnull final ItemStack itemstack, @Nonnull final EnumFacing direction) {
+		return this.isItemValidForSlot(i, itemstack) && this.getSlot(i).canInsert(direction);
 	}
 
 	@Override
-	public boolean canExtractItem(final int i, final ItemStack itemstack, final EnumFacing j) {
-		return this.getSlot(i).canExtract(j);
+	public boolean canExtractItem(final int i, @Nonnull final ItemStack itemstack, @Nonnull final EnumFacing direction) {
+		return this.getSlot(i).canExtract(direction);
 	}
 }
