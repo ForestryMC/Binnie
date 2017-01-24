@@ -2,7 +2,6 @@ package binnie.core;
 
 import binnie.Binnie;
 import binnie.core.gui.IBinnieGUID;
-import binnie.core.mod.parser.FieldParser;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
 import binnie.core.network.IPacketProvider;
@@ -13,19 +12,14 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedHashSet;
 import java.util.List;
 
 public abstract class AbstractMod implements IPacketProvider, IInitializable {
 	private SimpleNetworkWrapper wrapper;
-	private LinkedHashSet<Field> fields;
 	protected List<IInitializable> modules;
 
 	public AbstractMod() {
-		this.fields = new LinkedHashSet<>();
 		this.modules = new ArrayList<>();
 		BinnieCore.registerMod(this);
 		MinecraftForge.EVENT_BUS.register(this);
@@ -77,20 +71,6 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 		for (final IInitializable module : this.modules) {
 			module.preInit();
 		}
-		Collections.addAll(this.fields, this.getClass().getFields());
-		for (final Class cls : this.getClass().getClasses()) {
-			Collections.addAll(this.fields, this.getClass().getFields());
-		}
-		for (final IInitializable module : this.modules) {
-			Collections.addAll(this.fields, module.getClass().getFields());
-		}
-		for (final Field field4 : this.fields) {
-			try {
-				FieldParser.preInitParse(field4, this);
-			} catch (Exception e) {
-				throw new RuntimeException(e);
-			}
-		}
 		getProxy().registerModels();
 	}
 
@@ -105,13 +85,6 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 		for (final IInitializable module : this.modules) {
 			module.init();
 		}
-		for (final Field field : this.fields) {
-			try {
-				FieldParser.initParse(field, this);
-			} catch (Exception e) {
-				throw new RuntimeException(e);
-			}
-		}
 		getProxy().registerItemAndBlockColors();
 	}
 
@@ -123,13 +96,6 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 		this.getProxy().postInit();
 		for (final IInitializable module : this.modules) {
 			module.postInit();
-		}
-		for (final Field field : this.fields) {
-			try {
-				FieldParser.postInitParse(field, this);
-			} catch (Exception e) {
-				throw new RuntimeException(e);
-			}
 		}
 	}
 

@@ -26,16 +26,23 @@ public class ModuleItems implements IInitializable {
 	@Override
 	public void preInit() {
 		ExtraTrees.itemMisc = Binnie.Item.registerMiscItems(ExtraTreeItems.values(), Tabs.tabArboriculture);
+		ExtraTrees.proxy.registerItem(ExtraTrees.itemMisc);
+
 		ExtraTrees.itemDictionary = new ItemDictionary();
+		ExtraTrees.proxy.registerItem(ExtraTrees.itemDictionary);
+
 		if (BinnieCore.isLepidopteryActive()) {
 			ExtraTrees.itemDictionaryLepi = new ItemMothDatabase();
+			ExtraTrees.proxy.registerItem(ExtraTrees.itemDictionaryLepi);
 		}
 		Binnie.Liquid.createLiquids(ExtraTreeLiquid.values(), ItemFluidContainer.LiquidExtraTree);
 		ExtraTrees.itemFood = new ItemETFood();
+		ExtraTrees.proxy.registerItem(ExtraTrees.itemFood);
 
 		ExtraTrees.itemHammer = new ItemHammer(false);
+		ExtraTrees.proxy.registerItem(ExtraTrees.itemHammer);
 		ExtraTrees.itemDurableHammer = new ItemHammer(true);
-
+		ExtraTrees.proxy.registerItem(ExtraTrees.itemDurableHammer);
 	}
 
 	@Override

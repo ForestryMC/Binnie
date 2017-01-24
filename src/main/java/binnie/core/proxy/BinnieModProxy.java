@@ -1,7 +1,5 @@
 package binnie.core.proxy;
 
-import javax.annotation.Nonnull;
-
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
@@ -16,7 +14,10 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import javax.annotation.Nonnull;
 
 public class BinnieModProxy implements IBinnieModProxy {
 	private AbstractMod mod;
@@ -31,7 +32,8 @@ public class BinnieModProxy implements IBinnieModProxy {
 
 	@Override
 	public Item registerItem(Item item) {
-		return GameRegistry.register(item);
+		ForgeRegistries.ITEMS.register(item);
+		return item;
 	}
 
 	@Override

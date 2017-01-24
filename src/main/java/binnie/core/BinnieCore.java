@@ -15,8 +15,6 @@ import binnie.core.machines.MachineGroup;
 import binnie.core.machines.storage.ModuleStorage;
 import binnie.core.mod.config.ConfigurationMain;
 import binnie.core.mod.config.ConfigurationMods;
-import binnie.core.mod.parser.FieldParser;
-import binnie.core.mod.parser.ItemParser;
 import binnie.core.models.ModelManager;
 import binnie.core.network.BinnieCorePacketID;
 import binnie.core.network.BinniePacketHandler;
@@ -75,8 +73,6 @@ public final class BinnieCore extends AbstractMod {
 			final Item item = new ItemFluidContainer(container);
 			BinnieCore.proxy.registerItem(item);
 		}
-		//TODO REMOVE ITEMPARSER
-		FieldParser.parsers.add(new ItemParser());
 		this.preInit();
 	}
 

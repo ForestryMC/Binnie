@@ -24,7 +24,9 @@ public class ModuleItems implements IInitializable {
 	@Override
 	public void preInit() {
 		BinnieCore.fieldKit = new ItemFieldKit();
+		BinnieCore.proxy.registerItem(BinnieCore.fieldKit);
 		BinnieCore.genesis = new ItemGenesis();
+		BinnieCore.proxy.registerItem(BinnieCore.genesis);
 	}
 
 	@Override
