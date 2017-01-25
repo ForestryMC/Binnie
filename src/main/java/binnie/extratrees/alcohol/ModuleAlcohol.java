@@ -29,16 +29,16 @@ import java.util.List;
 import java.util.Objects;
 
 public class ModuleAlcohol implements IInitializable {
-	public static ItemDrink drink;
-	public static Block blockDrink;
-	public static int drinkRendererID;
-	public static BinnieIcon liquid;
+	public ItemDrink drink;
+	public Block blockDrink;
+	public int drinkRendererID;
+	public BinnieIcon liquid;
 
 	@Override
 	public void preInit() {
-		ModuleAlcohol.liquid = Binnie.RESOURCE.getBlockIcon(ExtraTrees.instance, "liquids/liquid");
+		this.liquid = Binnie.RESOURCE.getBlockIcon(ExtraTrees.instance, "liquids/liquid");
 		//ModuleAlcohol.drinkRendererID = BinnieCore.proxy.getUniqueRenderID();
-		drink = new ItemDrink();
+		this.drink = new ItemDrink();
 		ExtraTrees.proxy.registerItem(drink);
 		//BinnieCore.proxy.registerCustomItemRenderer(ExtraTrees.drink, new CocktailRenderer());
 		Binnie.LIQUID.createLiquids(Juice.values(), ItemFluidContainer.LiquidJuice);

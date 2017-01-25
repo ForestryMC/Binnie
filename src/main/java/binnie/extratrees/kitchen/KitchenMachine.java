@@ -33,7 +33,7 @@ public enum KitchenMachine implements IMachineType {
 	}
 
 	public ItemStack get(final int i) {
-		return new ItemStack(ExtraTrees.blockKitchen, i, this.ordinal());
+		return new ItemStack(ExtraTrees.getKitchen().blockKitchen, i, this.ordinal());
 	}
 
 	public abstract static class PackageKitchenMachine extends MachinePackage {

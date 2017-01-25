@@ -17,6 +17,7 @@ import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.core.ModuleCore;
 import binnie.extratrees.genetics.*;
 import binnie.extratrees.item.ModuleItems;
+import binnie.extratrees.kitchen.ModuleKitchen;
 import binnie.extratrees.machines.ModuleMachine;
 import binnie.extratrees.proxy.Proxy;
 import forestry.api.arboriculture.ITreeRoot;
@@ -80,6 +81,8 @@ public class ExtraTrees extends AbstractMod {
 	private static ModuleCarpentry carpentry;
 	@Nullable
 	private static ModuleMachine machine;
+	@Nullable
+	private static ModuleKitchen kitchen;
 	
 	public static ModuleItems items() {
 		Preconditions.checkState(items != null);
@@ -107,6 +110,11 @@ public class ExtraTrees extends AbstractMod {
 		return machine;
 	}
 
+	public static ModuleKitchen getKitchen() {
+		Preconditions.checkState(kitchen != null);
+		return kitchen;
+	}
+
 	@Override
 	protected void registerModules() {
 		this.addModule(blocks = new ModuleBlocks());
@@ -116,6 +124,7 @@ public class ExtraTrees extends AbstractMod {
 		this.addModule(carpentry = new ModuleCarpentry());
 		this.addModule(machine = new ModuleMachine());
 		this.addModule(new ModuleCore());
+		this.addModule(kitchen = new ModuleKitchen());
 	}
 
 	@Override

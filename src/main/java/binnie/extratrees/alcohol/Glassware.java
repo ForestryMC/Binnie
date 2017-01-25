@@ -51,7 +51,7 @@ public enum Glassware {
 //	}
 
 	public ItemStack get(final int i) {
-		return ExtraTrees.drink.getStack(this, null);
+		return ExtraTrees.alcohol().drink.getStack(this, null);
 	}
 
 	public float getContentBottom() {

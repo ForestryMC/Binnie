@@ -539,7 +539,7 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 			return "Apple";
 		}
 		for (final ItemStack stack : this.products.keySet()) {
-			if (stack.getItem() == ExtraTrees.itemFood) {
+			if (stack.getItem() == ExtraTrees.items().itemFood) {
 				return Food.values()[stack.getItemDamage()].toString();
 			}
 		}

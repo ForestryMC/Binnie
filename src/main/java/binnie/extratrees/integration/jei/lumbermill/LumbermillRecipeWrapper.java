@@ -31,9 +31,9 @@ public class LumbermillRecipeWrapper extends BlankRecipeWrapper {
 		ExtraTrees.items();
 		ExtraTrees.items();
 		ingredients.setOutputs(ItemStack.class, Arrays.asList(
-				ModuleItems.itemMisc.getStack(ExtraTreeItems.Bark, 1),
+				ExtraTreeItems.Bark.get(1),
 				outputPlanks,
-				ModuleItems.itemMisc.getStack(ExtraTreeItems.Sawdust, 1)
+				ExtraTreeItems.Sawdust.get(1)
 		));
 	}
 }
