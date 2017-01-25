@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 
 public class SlotValidatorSqueezable extends SlotValidator {
 	public SlotValidatorSqueezable() {
-		super(SlotValidator.IconBlock);
+		super(SlotValidator.spriteBlock);
 	}
 
 	@Override

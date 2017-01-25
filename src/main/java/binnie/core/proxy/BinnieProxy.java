@@ -137,7 +137,7 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 		this.sendToAll(packet);
 	}
 
-	public void registerIcon(ResourceLocation location) {
+	public void registerSprite(ResourceLocation location) {
 
 	}
 

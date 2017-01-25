@@ -4,7 +4,7 @@ import binnie.Binnie;
 import binnie.core.IInitializable;
 import binnie.core.liquid.IFluidType;
 import binnie.core.liquid.ItemFluidContainer;
-import binnie.core.resource.BinnieIcon;
+import binnie.core.resource.BinnieSprite;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.alcohol.drink.DrinkLiquid;
 import binnie.extratrees.alcohol.drink.DrinkManager;
@@ -32,11 +32,11 @@ public class ModuleAlcohol implements IInitializable {
 	public ItemDrink drink;
 	public Block blockDrink;
 	public int drinkRendererID;
-	public BinnieIcon liquid;
+	public BinnieSprite liquid;
 
 	@Override
 	public void preInit() {
-		this.liquid = Binnie.RESOURCE.getBlockIcon(ExtraTrees.instance, "liquids/liquid");
+		this.liquid = Binnie.RESOURCE.getBlockSprite(ExtraTrees.instance, "liquids/liquid");
 		//ModuleAlcohol.drinkRendererID = BinnieCore.proxy.getUniqueRenderID();
 		this.drink = new ItemDrink();
 		ExtraTrees.proxy.registerItem(drink);

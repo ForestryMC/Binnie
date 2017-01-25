@@ -1,8 +1,6 @@
 package binnie.extratrees.machines;
 
 import binnie.core.machines.inventory.SlotValidator;
-import binnie.core.machines.inventory.ValidatorIcon;
-import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.IDesignMaterial;
 import net.minecraft.item.ItemStack;
 
@@ -11,7 +9,7 @@ public class Validators {
 		DesignerType type;
 
 		public SlotValidatorBeeswax(final DesignerType type) {
-			super(new ValidatorIcon(ExtraTrees.instance, "validator/polish.0", "validator/polish.1"));
+			super(ModuleMachine.spritePolish);
 			this.type = type;
 		}
 
@@ -30,7 +28,7 @@ public class Validators {
 		DesignerType type;
 
 		public SlotValidatorPlanks(final DesignerType type) {
-			super(SlotValidator.IconBlock);
+			super(SlotValidator.spriteBlock);
 			this.type = type;
 		}
 

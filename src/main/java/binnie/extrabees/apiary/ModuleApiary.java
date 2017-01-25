@@ -1,44 +1,29 @@
 package binnie.extrabees.apiary;
 
-import binnie.Constants;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.circuits.BinnieCircuitLayout;
 import binnie.core.circuits.BinnieCircuitSocketType;
 import binnie.core.machines.MachineGroup;
+import binnie.core.machines.inventory.ValidatorSprite;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.apiary.machine.AlvearyMachine;
 import binnie.extrabees.apiary.machine.AlvearyMutator;
 import binnie.extrabees.apiary.machine.AlvearyStimulator;
 import forestry.api.core.Tabs;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ModuleApiary implements IInitializable {
 	public static Block blockComponent;
+	public static ValidatorSprite spriteMutator;
 	BinnieCircuitLayout stimulatorLayout;
-
-
-	@SubscribeEvent
-	@SideOnly(Side.CLIENT)
-	@Mod.EventHandler
-	public void texture(TextureStitchEvent e) {
-		Minecraft.getMinecraft().getTextureMapBlocks().registerSprite(new ResourceLocation(Constants.EXTRA_BEES_MOD_ID, "items/validator/mutator.0"));
-		Minecraft.getMinecraft().getTextureMapBlocks().registerSprite(new ResourceLocation(Constants.EXTRA_BEES_MOD_ID, "items/validator/mutator.1"));
-	}
 
 	@Override
 	public void preInit() {
@@ -84,5 +69,6 @@ public class ModuleApiary implements IInitializable {
 	@Override
 	public void init() {
 		this.stimulatorLayout = new BinnieCircuitLayout(ExtraBees.instance, "Stimulator", BinnieCircuitSocketType.STIMULATOR);
+		ModuleApiary.spriteMutator = new ValidatorSprite(ExtraBees.instance, "validator/mutator.0", "validator/mutator.1");
 	}
 }

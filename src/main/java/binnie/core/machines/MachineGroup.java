@@ -43,7 +43,7 @@ public class MachineGroup {
 				}
 			}
 		}
-		Binnie.MCHINE.registerMachineGroup(this);
+		Binnie.MACHINE.registerMachineGroup(this);
 		this.block = new BlockMachine(this, blockName);
 		mod.getProxy().registerBlock(this.block);
 		Item i = mod.getProxy().registerItem(new ItemMachine(this.block));

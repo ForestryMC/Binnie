@@ -37,7 +37,7 @@ public class AlvearyFrame {
 
 	public static class SlotValidatorFrame extends SlotValidator {
 		public SlotValidatorFrame() {
-			super(SlotValidator.IconFrame);
+			super(SlotValidator.spriteFrame);
 		}
 
 		@Override

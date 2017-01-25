@@ -1,6 +1,5 @@
 package binnie.core.machines.inventory;
 
-import binnie.core.BinnieCore;
 import forestry.api.genetics.AlleleManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
@@ -8,27 +7,27 @@ import net.minecraft.item.ItemStack;
 import javax.annotation.Nullable;
 
 public abstract class SlotValidator extends Validator<ItemStack> {
-	public static ValidatorIcon IconBee;
-	public static ValidatorIcon IconFrame;
-	public static ValidatorIcon IconCircuit;
-	public static ValidatorIcon IconBlock;
+	public static ValidatorSprite spriteBee;
+	public static ValidatorSprite spriteFrame;
+	public static ValidatorSprite spriteCircuit;
+	public static ValidatorSprite spriteBlock;
 
 	@Nullable
-	private ValidatorIcon icon;
+	private ValidatorSprite sprite;
 
-	public SlotValidator(@Nullable final ValidatorIcon icon) {
-		this.icon = icon;
+	public SlotValidator(@Nullable final ValidatorSprite icon) {
+		this.sprite = icon;
 	}
 
 	@Nullable
 	public TextureAtlasSprite getIcon(final boolean input) {
-		return (this.icon == null) ? null : BinnieCore.proxy.getTextureAtlasSprite(this.icon.getIcon(input).getResourceLocation());
+		return (this.sprite == null) ? null : this.sprite.getSprite(input).getSprite();
 	}
 
 	public static class Item extends SlotValidator {
 		private ItemStack target;
 
-		public Item(final ItemStack target, final ValidatorIcon icon) {
+		public Item(final ItemStack target, final ValidatorSprite icon) {
 			super(icon);
 			this.target = target;
 		}

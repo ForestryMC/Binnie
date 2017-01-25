@@ -36,7 +36,7 @@ public class PackageAnalyser extends GeneticMachine.PackageGeneticBase implement
 		slotTarget.forbidInteraction();
 		InventorySlot slotDye = inventory.addSlot(Analyser.SLOT_DYE, "dye");
 		slotDye.forbidExtraction();
-		slotDye.setValidator(new SlotValidator(ModuleMachine.IconDye) {
+		slotDye.setValidator(new SlotValidator(ModuleMachine.spriteDye) {
 			@Override
 			public boolean isValid(final ItemStack itemStack) {
 				return itemStack.isItemEqual(GeneticsItems.DNADye.get(1));

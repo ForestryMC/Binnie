@@ -8,7 +8,7 @@ public class SlotValidatorLog extends SlotValidator {
 	private static final int logWoodId = OreDictionary.getOreID("logWood");
 
 	public SlotValidatorLog() {
-		super(SlotValidator.IconBlock);
+		super(SlotValidator.spriteBlock);
 	}
 
 	@Override

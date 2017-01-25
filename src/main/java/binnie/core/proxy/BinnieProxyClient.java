@@ -63,7 +63,7 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	}
 
 	@Override
-	public void registerIcon(ResourceLocation location) {
+	public void registerSprite(ResourceLocation location) {
 		Minecraft.getMinecraft().getTextureMapBlocks().registerSprite(location);
 	}
 

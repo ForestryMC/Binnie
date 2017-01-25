@@ -2,7 +2,7 @@ package binnie.core.genetics;
 
 import binnie.Binnie;
 import binnie.core.BinnieCore;
-import binnie.core.resource.BinnieIcon;
+import binnie.core.resource.BinnieSprite;
 import binnie.extrabees.genetics.ExtraBeeMutation;
 import com.mojang.authlib.GameProfile;
 import forestry.api.core.ForestryEvent;
@@ -35,8 +35,8 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public abstract class BreedingSystem implements IItemStackRepresentitive {
-	protected BinnieIcon iconUndiscovered;
-	protected BinnieIcon iconDiscovered;
+	protected BinnieSprite iconUndiscovered;
+	protected BinnieSprite iconDiscovered;
 	private List<IClassification> allBranches;
 	List<IAlleleSpecies> allActiveSpecies;
 	private List<IAlleleSpecies> allSpecies;

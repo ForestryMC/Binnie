@@ -53,8 +53,8 @@ public class TreeBreedingSystem extends BreedingSystem {
 		this.discoveredFruits = new UniqueItemStackSet();
 		this.discoveredWoods = new UniqueItemStackSet();
 		this.discoveredPlanks = new UniqueItemStackSet();
-		this.iconUndiscovered = Binnie.RESOURCE.getItemIcon(ExtraTrees.instance, "icon/undiscoveredTree");
-		this.iconDiscovered = Binnie.RESOURCE.getItemIcon(ExtraTrees.instance, "icon/discoveredTree");
+		this.iconUndiscovered = Binnie.RESOURCE.getItemSprite(ExtraTrees.instance, "icon/undiscoveredTree");
+		this.iconDiscovered = Binnie.RESOURCE.getItemSprite(ExtraTrees.instance, "icon/discoveredTree");
 	}
 
 	@Override

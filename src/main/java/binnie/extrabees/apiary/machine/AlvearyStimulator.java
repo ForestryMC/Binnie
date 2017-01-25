@@ -47,7 +47,7 @@ public class AlvearyStimulator {
 
 	public static class SlotValidatorCircuit extends SlotValidator {
 		public SlotValidatorCircuit() {
-			super(SlotValidator.IconCircuit);
+			super(SlotValidator.spriteCircuit);
 		}
 
 		@Override

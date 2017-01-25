@@ -43,7 +43,7 @@ public class AlvearyHatchery {
 
 	public static class SlotValidatorLarvae extends SlotValidator {
 		public SlotValidatorLarvae() {
-			super(SlotValidator.IconBee);
+			super(SlotValidator.spriteBee);
 		}
 
 		@Override

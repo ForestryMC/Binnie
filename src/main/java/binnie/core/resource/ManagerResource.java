@@ -2,15 +2,17 @@ package binnie.core.resource;
 
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ManagerResource {
-	private List<BinnieIcon> icons;
+	private List<BinnieSprite> sprites;
 
 	public ManagerResource() {
-		this.icons = new ArrayList<>();
+		this.sprites = new ArrayList<>();
 	}
 
 	public BinnieResource getPNG(final AbstractMod mod, final ResourceType type, final String path) {
@@ -21,32 +23,25 @@ public class ManagerResource {
 		return new BinnieResource(mod, type, path);
 	}
 
-	public void registerIcon(final BinnieIcon binnieIcon) {
-		this.icons.add(binnieIcon);
+	public void registerSprite(final BinnieSprite binnieIcon) {
+		this.sprites.add(binnieIcon);
 	}
 
-	public BinnieIcon getItemIcon(final AbstractMod mod, final String iconFile) {
-		return new BinnieIcon(mod, ResourceType.Item, iconFile);
+	public BinnieSprite getItemSprite(final AbstractMod mod, final String iconFile) {
+		return new BinnieSprite(mod, ResourceType.Item, iconFile);
 	}
 
-	public BinnieIcon getBlockIcon(final AbstractMod mod, final String iconFile) {
-		return new BinnieIcon(mod, ResourceType.Block, iconFile);
+	public BinnieSprite getBlockSprite(final AbstractMod mod, final String iconFile) {
+		return new BinnieSprite(mod, ResourceType.Block, iconFile);
 	}
 
-	public void registerIcons() {
-		for (final BinnieIcon icon : this.icons) {
-			BinnieCore.proxy.registerIcon(icon.getResourceLocation());
+	@SideOnly(Side.CLIENT)
+	public void registerSprites() {
+		for (BinnieSprite sprite : this.sprites) {
+			sprite.registerSprites();
 		}
 		BinnieCore.proxy.reloadSprites();
 	}
 
 
-//	@SideOnly(Side.CLIENT)
-//	public void registerIcons(final IIconRegister register, final int type) {
-//		for (final BinnieIcon icon : this.icons) {
-//			if (icon.getTextureSheet() == type) {
-//				icon.registerIcon(register);
-//			}
-//		}
-//	}
 }

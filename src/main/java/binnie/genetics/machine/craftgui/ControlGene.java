@@ -1,7 +1,6 @@
 package binnie.genetics.machine.craftgui;
 
 import binnie.Binnie;
-import binnie.core.BinnieCore;
 import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.controls.core.IControlValue;
 import binnie.craftgui.core.Attribute;
@@ -78,6 +77,6 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
 			RenderUtil.drawSolidRect(this.getArea().inset(1), -12303292);
 		}
 		RenderUtil.setColour(-1);
-		RenderUtil.drawSprite(IPoint.ZERO, BinnieCore.proxy.getTextureAtlasSprite(GeneticsTexture.dnaIcon.getResourceLocation()));
+		RenderUtil.drawSprite(IPoint.ZERO, GeneticsTexture.dnaIcon.getSprite());
 	}
 }

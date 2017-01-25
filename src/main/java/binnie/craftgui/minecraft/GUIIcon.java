@@ -2,7 +2,7 @@ package binnie.craftgui.minecraft;
 
 import binnie.Binnie;
 import binnie.core.BinnieCore;
-import binnie.core.resource.BinnieIcon;
+import binnie.core.resource.BinnieSprite;
 
 public enum GUIIcon {
 	ArrowUp("arrow-up"),
@@ -19,17 +19,17 @@ public enum GUIIcon {
 	ArrowLeftUp("arrow-leftup");
 
 	String path;
-	BinnieIcon icon;
+	BinnieSprite icon;
 
 	GUIIcon(final String path) {
 		this.path = path;
 	}
 
 	public void register() {
-		this.icon = Binnie.RESOURCE.getItemIcon(BinnieCore.instance, "gui/" + this.path);
+		this.icon = Binnie.RESOURCE.getItemSprite(BinnieCore.instance, "gui/" + this.path);
 	}
 
-	public BinnieIcon getIcon() {
+	public BinnieSprite getIcon() {
 		return this.icon;
 	}
 }

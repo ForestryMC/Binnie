@@ -1,7 +1,7 @@
 package binnie.genetics.core;
 
 import binnie.Binnie;
-import binnie.core.resource.BinnieIcon;
+import binnie.core.resource.BinnieSprite;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
@@ -26,7 +26,7 @@ public enum GeneticsTexture implements IBinnieTexture {
 
 	String texture;
 	ResourceType type;
-	public static BinnieIcon dnaIcon = Binnie.RESOURCE.getItemIcon(Genetics.instance, "dna");
+	public static BinnieSprite dnaIcon = Binnie.RESOURCE.getItemSprite(Genetics.instance, "dna");
 
 	GeneticsTexture(final ResourceType base, final String texture) {
 		this.texture = texture;

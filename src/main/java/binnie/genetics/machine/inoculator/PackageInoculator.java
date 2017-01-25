@@ -34,7 +34,7 @@ public class PackageInoculator extends GeneticMachine.PackageGeneticBase impleme
 		InventorySlot slotSerumVial = inventory.addSlot(Inoculator.SLOT_SERUM_VIAL, "serum.active");
 		slotSerumVial.forbidInteraction();
 		slotSerumVial.setReadOnly();
-		final SlotValidator serumValid = new SlotValidator(ModuleMachine.iconSerum) {
+		final SlotValidator serumValid = new SlotValidator(ModuleMachine.spriteSerum) {
 			@Override
 			public boolean isValid(final ItemStack itemStack) {
 				return itemStack.getItem() instanceof IItemSerum;

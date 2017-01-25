@@ -22,8 +22,8 @@ import java.util.TreeSet;
 
 class BeeBreedingSystem extends BreedingSystem {
 	public BeeBreedingSystem() {
-		this.iconUndiscovered = Binnie.RESOURCE.getItemIcon(ExtraBees.instance, "icon/undiscoveredBee");
-		this.iconDiscovered = Binnie.RESOURCE.getItemIcon(ExtraBees.instance, "icon/discoveredBee");
+		this.iconUndiscovered = Binnie.RESOURCE.getItemSprite(ExtraBees.instance, "icon/undiscoveredBee");
+		this.iconDiscovered = Binnie.RESOURCE.getItemSprite(ExtraBees.instance, "icon/discoveredBee");
 	}
 
 	@Override

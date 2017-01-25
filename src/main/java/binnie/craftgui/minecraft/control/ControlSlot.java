@@ -15,6 +15,7 @@ import binnie.craftgui.minecraft.InventoryType;
 import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.minecraft.WindowInventory;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.client.renderer.GlStateManager;
@@ -69,7 +70,7 @@ public class ControlSlot extends ControlSlotBase {
 			SlotValidator validator = islot.getValidator();
 			if (validator != null) {
 				final TextureAtlasSprite icon = validator.getIcon(!islot.getInputSides().isEmpty());
-				if (icon != null) {
+				if (icon != null && icon != Minecraft.getMinecraft().getTextureMapBlocks().getMissingSprite()) {
 					GlStateManager.enableBlend();
 					RenderUtil.drawSprite(new IPoint(1, 1), icon);
 					GlStateManager.disableBlend();

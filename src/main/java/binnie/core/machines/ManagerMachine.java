@@ -3,7 +3,7 @@ package binnie.core.machines;
 import binnie.core.BinnieCore;
 import binnie.core.ManagerBase;
 import binnie.core.machines.inventory.SlotValidator;
-import binnie.core.machines.inventory.ValidatorIcon;
+import binnie.core.machines.inventory.ValidatorSprite;
 import forestry.api.core.INbtReadable;
 import forestry.api.core.INbtWritable;
 
@@ -70,11 +70,10 @@ public class ManagerMachine extends ManagerBase {
 
 	@Override
 	public void init() {
-		//TODO renderupdate
-		SlotValidator.IconBee = new ValidatorIcon(BinnieCore.instance, "validator/bee.0", "validator/bee.1");
-		SlotValidator.IconFrame = new ValidatorIcon(BinnieCore.instance, "validator/frame.0", "validator/frame.1");
-		SlotValidator.IconCircuit = new ValidatorIcon(BinnieCore.instance, "validator/circuit.0", "validator/circuit.1");
-		SlotValidator.IconBlock = new ValidatorIcon(BinnieCore.instance, "validator/block.0", "validator/block.1");
+		SlotValidator.spriteBee = new ValidatorSprite(BinnieCore.instance, "validator/bee.0", "validator/bee.1");
+		SlotValidator.spriteFrame = new ValidatorSprite(BinnieCore.instance, "validator/frame.0", "validator/frame.1");
+		SlotValidator.spriteCircuit = new ValidatorSprite(BinnieCore.instance, "validator/circuit.0", "validator/circuit.1");
+		SlotValidator.spriteBlock = new ValidatorSprite(BinnieCore.instance, "validator/block.0", "validator/block.1");
 	}
 
 	@Override

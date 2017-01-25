@@ -102,7 +102,7 @@ public class WindowAnalyst extends Window {
 					return Analyser.isAnalysed(itemStack) || (Analyser.isAnalysable(itemStack) && WindowAnalyst.this.getWindowInventory().getStackInSlot(1) != null);
 				}
 			});
-			this.getWindowInventory().setValidator(1, new SlotValidator.Item(GeneticsItems.DNADye.get(1), ModuleMachine.IconDye));
+			this.getWindowInventory().setValidator(1, new SlotValidator.Item(GeneticsItems.DNADye.get(1), ModuleMachine.spriteDye));
 		}
 	}
 

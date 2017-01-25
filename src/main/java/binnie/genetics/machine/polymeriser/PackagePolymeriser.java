@@ -34,7 +34,7 @@ public class PackagePolymeriser extends GeneticMachine.PackageGeneticBase implem
 		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		//Slot Gold
 		InventorySlot slotGold = inventory.addSlot(Polymeriser.SLOT_GOLD, "catalyst");
-		slotGold.setValidator(new SlotValidator.Item(new ItemStack(Items.GOLD_NUGGET, 1), ModuleMachine.IconNugget));
+		slotGold.setValidator(new SlotValidator.Item(new ItemStack(Items.GOLD_NUGGET, 1), ModuleMachine.spriteNugget));
 		slotGold.forbidExtraction();
 		//Slot Serum
 		InventorySlot slotSerum = inventory.addSlot(Polymeriser.SLOT_SERUM, "process");

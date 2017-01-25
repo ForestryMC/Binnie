@@ -22,10 +22,10 @@ import net.minecraft.tileentity.TileEntity;
 public class PackageSequencer extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageSequencer() {
 		super("sequencer", GeneticsTexture.Sequencer, 12058418, true);
-		Sequencer.fxSeqA = Binnie.RESOURCE.getBlockIcon(Genetics.instance, "fx/sequencer.a");
-		Sequencer.fxSeqG = Binnie.RESOURCE.getBlockIcon(Genetics.instance, "fx/sequencer.g");
-		Sequencer.fxSeqT = Binnie.RESOURCE.getBlockIcon(Genetics.instance, "fx/sequencer.t");
-		Sequencer.fxSeqC = Binnie.RESOURCE.getBlockIcon(Genetics.instance, "fx/sequencer.c");
+		Sequencer.fxSeqA = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.a");
+		Sequencer.fxSeqG = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.g");
+		Sequencer.fxSeqT = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.t");
+		Sequencer.fxSeqC = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.c");
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class PackageSequencer extends GeneticMachine.PackageGeneticBase implemen
 		new ComponentGeneticGUI(machine, GeneticsGUI.Sequencer);
 		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		InventorySlot slotDye = inventory.addSlot(Sequencer.SLOT_DYE, "dye");
-		slotDye.setValidator(new SlotValidator.Item(GeneticsItems.FluorescentDye.get(1), ModuleMachine.IconDye));
+		slotDye.setValidator(new SlotValidator.Item(GeneticsItems.FluorescentDye.get(1), ModuleMachine.spriteDye));
 		slotDye.forbidExtraction();
 		for (InventorySlot slot : inventory.addSlotArray(Sequencer.SLOT_RESERVE, "input")) {
 			slot.setValidator(new SlotValidatorUnsequenced());

@@ -36,14 +36,14 @@ public class MachineComponent implements INbtReadable, INbtWritable {
 	}
 
 	public Class[] getComponentInterfaces() {
-		return Binnie.MCHINE.getComponentInterfaces(this.getClass());
+		return Binnie.MACHINE.getComponentInterfaces(this.getClass());
 	}
 
 	public void onInventoryUpdate() {
 	}
 
 	public final MachinePayload getPayload() {
-		return new MachinePayload(Binnie.MCHINE.getNetworkID(this.getClass()));
+		return new MachinePayload(Binnie.MACHINE.getNetworkID(this.getClass()));
 	}
 
 	public void recieveData(final MachinePayload payload) {

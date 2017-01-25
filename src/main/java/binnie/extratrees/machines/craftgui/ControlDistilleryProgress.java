@@ -1,4 +1,4 @@
-package binnie.extratrees.item.craftgui;
+package binnie.extratrees.machines.craftgui;
 
 import binnie.core.machines.Machine;
 import binnie.craftgui.core.CraftGUI;

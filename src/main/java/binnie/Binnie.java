@@ -17,6 +17,6 @@ public final class Binnie {
 	public static final ManagerGenetics GENETICS = new ManagerGenetics();
 	public static final ManagerConfig CONFIGURATION = new ManagerConfig();
 	public static final ManagerLiquid LIQUID = new ManagerLiquid();
-	public static final ManagerMachine MCHINE = new ManagerMachine();
+	public static final ManagerMachine MACHINE = new ManagerMachine();
 	public static final ManagerResource RESOURCE = new ManagerResource();
 }

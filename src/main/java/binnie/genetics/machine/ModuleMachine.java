@@ -3,7 +3,7 @@ package binnie.genetics.machine;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.machines.MachineGroup;
-import binnie.core.machines.inventory.ValidatorIcon;
+import binnie.core.machines.inventory.ValidatorSprite;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
 import binnie.genetics.item.GeneticsItems;
@@ -17,12 +17,12 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ModuleMachine implements IInitializable {
-	public static ValidatorIcon IconSequencer;
-	public static ValidatorIcon iconSerum;
-	public static ValidatorIcon IconEnzyme;
-	public static ValidatorIcon IconDye;
-	public static ValidatorIcon IconBacteria;
-	public static ValidatorIcon IconNugget;
+	public static ValidatorSprite spriteSequencer;
+	public static ValidatorSprite spriteSerum;
+	public static ValidatorSprite spriteEnzyme;
+	public static ValidatorSprite spriteDye;
+	public static ValidatorSprite spriteBacteria;
+	public static ValidatorSprite spriteNugget;
 
 	@Override
 	public void preInit() {
@@ -33,12 +33,12 @@ public class ModuleMachine implements IInitializable {
 
 	@Override
 	public void init() {
-		ModuleMachine.IconSequencer = new ValidatorIcon(Genetics.instance, "validator/sequencer.0", "validator/sequencer.1");
-		ModuleMachine.iconSerum = new ValidatorIcon(Genetics.instance, "validator/serum.0", "validator/serum.1");
-		ModuleMachine.IconEnzyme = new ValidatorIcon(Genetics.instance, "validator/enzyme.0", "validator/enzyme.1");
-		ModuleMachine.IconDye = new ValidatorIcon(Genetics.instance, "validator/dye.0", "validator/dye.1");
-		ModuleMachine.IconNugget = new ValidatorIcon(Genetics.instance, "validator/nugget.0", "validator/nugget.1");
-		ModuleMachine.IconBacteria = new ValidatorIcon(Genetics.instance, "validator/bacteria.0", "validator/bacteria.1");
+		ModuleMachine.spriteSequencer = new ValidatorSprite(Genetics.instance, "validator/sequencer.0", "validator/sequencer.1");
+		ModuleMachine.spriteSerum = new ValidatorSprite(Genetics.instance, "validator/serum.0", "validator/serum.1");
+		ModuleMachine.spriteEnzyme = new ValidatorSprite(Genetics.instance, "validator/enzyme.0", "validator/enzyme.1");
+		ModuleMachine.spriteDye = new ValidatorSprite(Genetics.instance, "validator/dye.0", "validator/dye.1");
+		ModuleMachine.spriteNugget = new ValidatorSprite(Genetics.instance, "validator/nugget.0", "validator/nugget.1");
+		ModuleMachine.spriteBacteria = new ValidatorSprite(Genetics.instance, "validator/bacteria.0", "validator/bacteria.1");
 		Incubator.addRecipes();
 	}
 

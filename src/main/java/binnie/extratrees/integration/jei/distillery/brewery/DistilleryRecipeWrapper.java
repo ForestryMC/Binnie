@@ -2,7 +2,7 @@ package binnie.extratrees.integration.jei.distillery.brewery;
 
 import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.geometry.IPoint;
-import binnie.extratrees.item.craftgui.ControlDistilleryProgress;
+import binnie.extratrees.machines.craftgui.ControlDistilleryProgress;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.client.Minecraft;

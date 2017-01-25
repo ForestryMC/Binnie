@@ -168,7 +168,7 @@ public final class BinnieCore extends AbstractMod {
 //		if (event.map.getTextureType() == 0) {
 //			Binnie.Liquid.reloadIcons(event.map);
 //		}
-		Binnie.RESOURCE.registerIcons();
+		Binnie.RESOURCE.registerSprites();
 	}
 	
 	@SubscribeEvent

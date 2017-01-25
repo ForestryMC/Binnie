@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 
 public class SlotValidatorUnsequenced extends SlotValidator {
 	public SlotValidatorUnsequenced() {
-		super(ModuleMachine.IconSequencer);
+		super(ModuleMachine.spriteSequencer);
 	}
 
 	@Override

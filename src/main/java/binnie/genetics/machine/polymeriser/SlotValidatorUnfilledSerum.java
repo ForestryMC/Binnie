@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 
 public class SlotValidatorUnfilledSerum extends SlotValidator {
 	public SlotValidatorUnfilledSerum() {
-		super(ModuleMachine.iconSerum);
+		super(ModuleMachine.spriteSerum);
 	}
 
 	@Override

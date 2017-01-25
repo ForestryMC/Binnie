@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 
 public class SlotValidatorBreweryYeast extends SlotValidator {
 	public SlotValidatorBreweryYeast() {
-		super(SlotValidator.IconBlock);
+		super(SlotValidator.spriteBlock);
 	}
 
 	@Override
