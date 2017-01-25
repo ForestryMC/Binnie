@@ -3,7 +3,6 @@ package binnie.extratrees.alcohol;
 import binnie.Binnie;
 import binnie.core.IInitializable;
 import binnie.core.liquid.IFluidType;
-import binnie.core.liquid.ItemFluidContainer;
 import binnie.core.resource.BinnieSprite;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.alcohol.drink.DrinkLiquid;

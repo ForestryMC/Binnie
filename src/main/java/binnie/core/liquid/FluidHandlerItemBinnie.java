@@ -1,7 +1,5 @@
 package binnie.core.liquid;
 
-import forestry.api.core.EnumContainerType;
-import forestry.core.items.ItemFluidContainerForestry;
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fluids.Fluid;

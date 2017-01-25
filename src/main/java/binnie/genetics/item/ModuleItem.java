@@ -6,7 +6,6 @@ import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.item.ItemMisc;
-import binnie.core.liquid.ItemFluidContainer;
 import binnie.core.resource.BinnieSprite;
 import binnie.extrabees.ExtraBees;
 import binnie.extratrees.ExtraTrees;

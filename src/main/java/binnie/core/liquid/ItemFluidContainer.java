@@ -4,12 +4,8 @@ import binnie.Binnie;
 import binnie.extratrees.alcohol.AlcoholEffect;
 import binnie.extratrees.alcohol.drink.DrinkManager;
 import binnie.extratrees.alcohol.drink.IDrinkLiquid;
-import forestry.api.core.EnumContainerType;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
-import forestry.core.items.FluidHandlerItemForestry;
-import forestry.core.items.IColoredItem;
-import forestry.core.items.ItemFluidContainerForestry;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -27,8 +23,6 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
-import net.minecraftforge.client.model.ModelDynBucket;
-import net.minecraftforge.client.model.ModelFluid;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -37,9 +31,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	private final FluidContainerType container;

@@ -3,7 +3,6 @@ package binnie.core.liquid;
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
 import binnie.genetics.item.GeneticsItems;
-import forestry.api.core.EnumContainerType;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;

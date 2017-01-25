@@ -2,7 +2,6 @@ package binnie.extratrees.machines;
 
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.extratrees.api.IDesignMaterial;
-import forestry.core.models.baker.ModelBaker;
 import net.minecraft.item.ItemStack;
 
 public class Validators {

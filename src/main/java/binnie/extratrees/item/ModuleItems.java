@@ -5,7 +5,6 @@ import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.item.ItemMisc;
-import binnie.core.liquid.ItemFluidContainer;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.EnumETLog;
 import forestry.api.core.Tabs;
