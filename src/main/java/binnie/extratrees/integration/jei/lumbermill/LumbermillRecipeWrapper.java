@@ -2,7 +2,6 @@ package binnie.extratrees.integration.jei.lumbermill;
 
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.item.ExtraTreeItems;
-import binnie.extratrees.item.ModuleItems;
 import binnie.extratrees.machines.lumbermill.LumbermillLogic;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;

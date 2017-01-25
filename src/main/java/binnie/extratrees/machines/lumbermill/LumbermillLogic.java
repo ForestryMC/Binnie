@@ -4,7 +4,6 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
-import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.item.ExtraTreeItems;
 import net.minecraft.item.ItemStack;
 

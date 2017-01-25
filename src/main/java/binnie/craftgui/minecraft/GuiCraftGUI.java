@@ -69,7 +69,7 @@ public class GuiCraftGUI extends GuiContainer {
 
 	@Override
 	public void drawScreen(final int mouseX, final int mouseY, final float par3) {
-		this.window.setMousePosition(mouseX - (int) this.window.getPosition().x(), mouseY - (int) this.window.getPosition().y());
+		this.window.setMousePosition(mouseX - this.window.getPosition().x(), mouseY - this.window.getPosition().y());
 		this.drawDefaultBackground();
 		GlStateManager.disableRescaleNormal();
 		RenderHelper.disableStandardItemLighting();
@@ -110,8 +110,8 @@ public class GuiCraftGUI extends GuiContainer {
 	}
 
 	public void renderTooltip(final IPoint mousePosition, final MinecraftTooltip tooltip) {
-		final int mouseX = (int) mousePosition.x();
-		final int mouseY = (int) mousePosition.y();
+		final int mouseX = mousePosition.x();
+		final int mouseY = mousePosition.y();
 		final FontRenderer font = this.getFontRenderer();
 		GlStateManager.disableRescaleNormal();
 		RenderHelper.disableStandardItemLighting();
@@ -270,8 +270,8 @@ public class GuiCraftGUI extends GuiContainer {
 	}
 
 	public void resize(final IPoint size) {
-		this.xSize = (int) size.x();
-		this.ySize = (int) size.y();
+		this.xSize = size.x();
+		this.ySize = size.y();
 		this.guiLeft = (this.width - this.xSize) / 2;
 		this.guiTop = (this.height - this.ySize) / 2;
 		this.window.setPosition(new IPoint(this.guiLeft, this.guiTop));

@@ -3,7 +3,6 @@ package binnie.extratrees.block;
 import javax.annotation.Nonnull;
 
 import binnie.Constants;
-import forestry.api.arboriculture.EnumForestryWoodType;
 import forestry.api.arboriculture.IWoodType;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.arboriculture.WoodBlockKind;

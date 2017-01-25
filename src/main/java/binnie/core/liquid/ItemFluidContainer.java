@@ -21,8 +21,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
-import scala.concurrent.OnCompleteRunnable;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -164,7 +162,8 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister, 
 		return new ActionResult(EnumActionResult.PASS, stack);
 	}
 	
-    public float getSaturationModifier(ItemStack stack){
+    @Override
+	public float getSaturationModifier(ItemStack stack){
         return 0.0F;
     }
 	

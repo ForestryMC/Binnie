@@ -39,7 +39,7 @@ public class ControlTextEdit extends Control implements IControlValue<String> {
 		this.addEventHandler(new EventMouse.Down.Handler() {
 			@Override
 			public void onEvent(final EventMouse.Down event) {
-				ControlTextEdit.this.field.mouseClicked((int) ControlTextEdit.this.getRelativeMousePosition().x(), (int) ControlTextEdit.this.getRelativeMousePosition().y(), event.getButton());
+				ControlTextEdit.this.field.mouseClicked(ControlTextEdit.this.getRelativeMousePosition().x(), ControlTextEdit.this.getRelativeMousePosition().y(), event.getButton());
 			}
 		}.setOrigin(EventHandler.Origin.Self, this));
 		this.addEventHandler(new EventWidget.GainFocus.Handler() {
@@ -83,8 +83,8 @@ public class ControlTextEdit extends Control implements IControlValue<String> {
 	}
 
 	protected void renderTextField() {
-		this.field.width = (int) this.w();
-		this.field.height = (int) this.h();
+		this.field.width = this.w();
+		this.field.height = this.h();
 		this.field.xPosition = (int) ((this.h() - 8.0f) / 2.0f);
 		this.field.yPosition = (int) ((this.h() - 8.0f) / 2.0f);
 		this.field.drawTextBox();
