@@ -51,6 +51,7 @@ public class ControlItemDisplay extends Control implements ITooltip {
 			return;
 		}
 
+		GlStateManager.enableDepth();
 		if (this.getSize().x() != 16) {
 			GlStateManager.pushMatrix();
 			final float scale = this.getSize().x() / 16.0f;
