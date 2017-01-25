@@ -2,11 +2,11 @@ package binnie.craftgui.controls;
 
 import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.controls.core.IControlValue;
-import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.core.geometry.TextJustification;
+import binnie.craftgui.core.renderer.RenderUtil;
 
 public class ControlText extends Control implements IControlValue<String> {
 	private String text;
@@ -28,7 +28,7 @@ public class ControlText extends Control implements IControlValue<String> {
 
 	@Override
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.render.text(this.getArea(), this.align, this.text, this.getColour());
+		RenderUtil.drawText(this.getArea(), this.align, this.text, this.getColour());
 	}
 
 	@Override

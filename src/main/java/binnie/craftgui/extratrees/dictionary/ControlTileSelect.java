@@ -12,8 +12,8 @@ import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.CraftGUIUtil;
 import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
@@ -160,12 +160,12 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 		@Override
 		public void onRenderForeground(int guiWidth, int guiHeight) {
 			final ItemStack image = ((WindowWoodworker) this.getSuperParent()).getDesignerType().getDisplayStack(this.getValue());
-			CraftGUIUtil.renderItem(new IPoint(1, 1), image);
+			RenderUtil.drawItem(new IPoint(1, 1), image);
 			if (((IControlValue) this.getParent()).getValue() != this.getValue()) {
 				if (Window.get(this).getMousedOverWidget() == this) {
-					CraftGUI.render.gradientRect(this.getArea().inset(1), 1157627903, 1157627903);
+					RenderUtil.drawGradientRect(this.getArea().inset(1), 1157627903, 1157627903);
 				} else {
-					CraftGUI.render.gradientRect(this.getArea().inset(1), -1433892728, -1433892728);
+					RenderUtil.drawGradientRect(this.getArea().inset(1), -1433892728, -1433892728);
 				}
 			}
 		}

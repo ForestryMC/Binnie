@@ -6,6 +6,7 @@ import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.core.geometry.Position;
+import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.minecraft.control.ControlProgressBase;
@@ -33,7 +34,7 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 		}
 		if (stack != null) {
 			for (int y = 0; y < 4; ++y) {
-				CraftGUI.render.fluid(new IPoint(1, 1 + y * 16), stack);
+				RenderUtil.drawFluid(new IPoint(1, 1 + y * 16), stack);
 			}
 		}
 	}

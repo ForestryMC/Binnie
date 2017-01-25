@@ -9,6 +9,7 @@ import binnie.craftgui.core.geometry.IBorder;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.core.geometry.Position;
 import binnie.craftgui.core.geometry.TextJustification;
+import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import net.minecraft.client.renderer.GlStateManager;
@@ -37,8 +38,8 @@ public class ControlSlide extends Control {
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		super.onRenderBackground(guiWidth, guiHeight);
 		if (this.label != null) {
-			final int lw = CraftGUI.render.textWidth(this.label) + 16;
-			final int lh = CraftGUI.render.textHeight() + 16;
+			final int lw = RenderUtil.getTextWidth(this.label) + 16;
+			final int lh = RenderUtil.getTextHeight() + 16;
 			final boolean hor = this.anchor.x() != 0;
 			final IArea ar = this.isSlideActive() ? this.expanded : this.shrunk;
 			IArea tabArea = new IArea(hor ? (-lh / 2) : (-lw / 2), hor ? (-lw / 2) : (-lh / 2), hor ? lh : lw, hor ? lw : lh);
@@ -57,7 +58,7 @@ public class ControlSlide extends Control {
 			if (this.anchor.y() > 0) {
 				GlStateManager.translate(0.0f, -lh, 0.0f);
 			}
-			CraftGUI.render.text(labelArea, TextJustification.MiddleCenter, this.label, 16777215);
+			RenderUtil.drawText(labelArea, TextJustification.MiddleCenter, this.label, 16777215);
 			GlStateManager.popMatrix();
 		}
 		CraftGUI.render.texture(CraftGUITexture.Window, this.getArea());

@@ -21,6 +21,7 @@ import binnie.craftgui.core.geometry.CraftGUIUtil;
 import binnie.craftgui.core.geometry.IBorder;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.core.geometry.Position;
+import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventHandler;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.events.EventTextEdit;
@@ -155,7 +156,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				@Override
 				public void onRenderForeground(int guiWidth, int guiHeight) {
 					final Texture iTexture = CraftGUI.render.getTexture(CraftGUITexture.TabOutline);
-					CraftGUI.render.colour(WindowCompartment.this.getTab(WindowCompartment.this.panels.get(this)).getColor().getColour());
+					RenderUtil.setColour(WindowCompartment.this.getTab(WindowCompartment.this.panels.get(this)).getColor().getColour());
 					CraftGUI.render.texture(iTexture, this.getArea().inset(3));
 				}
 			};
@@ -310,7 +311,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				final ControlScrollableContent<IWidget> scroll = new ControlScrollableContent<IWidget>(this, 124, 16, 116, 92, 6) {
 					@Override
 					public void onRenderBackground(int guiWidth, int guiHeight) {
-						CraftGUI.render.colour(11184810);
+						RenderUtil.setColour(11184810);
 						CraftGUI.render.texture(CraftGUITexture.Outline, this.getArea().inset(new IBorder(0, 6, 0, 0)));
 					}
 				};

@@ -1,9 +1,9 @@
 package binnie.craftgui.extratrees.dictionary;
 
 import binnie.craftgui.controls.core.Control;
-import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.renderer.RenderUtil;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 
 public class ControlBlockIconDisplay extends Control {
@@ -16,6 +16,6 @@ public class ControlBlockIconDisplay extends Control {
 
 	@Override
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.render.sprite(IPoint.ZERO, this.icon);
+		RenderUtil.drawSprite(IPoint.ZERO, this.icon);
 	}
 }

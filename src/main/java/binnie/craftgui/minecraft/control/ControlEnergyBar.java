@@ -13,6 +13,7 @@ import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.core.geometry.Position;
+import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.minecraft.MinecraftTooltip;
 import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
@@ -77,7 +78,7 @@ public class ControlEnergyBar extends Control implements ITooltip {
 		CraftGUI.render.texture(CraftGUITexture.EnergyBarBack, this.getArea());
 		final float percentage = this.getPercentage() / 100.0f;
 		int colourFromPercentage = this.getColourFromPercentage(percentage);
-		CraftGUI.render.colour(colourFromPercentage);
+		RenderUtil.setColour(colourFromPercentage);
 		final IArea area = this.getArea();
 		switch (this.direction) {
 			case Top:
@@ -95,10 +96,10 @@ public class ControlEnergyBar extends Control implements ITooltip {
 		}
 		if (this.isMouseOver() && Window.get(this).getGui().isHelpMode()) {
 			final int c = -1442840576 + MinecraftTooltip.getOutline(Tooltip.Type.Help);
-			CraftGUI.render.gradientRect(this.getArea().inset(1), c, c);
+			RenderUtil.drawGradientRect(this.getArea().inset(1), c, c);
 		} else if (ControlEnergyBar.isError) {
 			final int c = -1442840576 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error);
-			CraftGUI.render.gradientRect(this.getArea().inset(1), c, c);
+			RenderUtil.drawGradientRect(this.getArea().inset(1), c, c);
 		}
 		CraftGUI.render.texture(CraftGUITexture.EnergyBarGlow, area);
 		GlStateManager.color(1, 1, 1, 1);
@@ -109,11 +110,11 @@ public class ControlEnergyBar extends Control implements ITooltip {
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		if (this.isMouseOver() && Window.get(this).getGui().isHelpMode()) {
 			final IArea area = this.getArea();
-			CraftGUI.render.colour(MinecraftTooltip.getOutline(Tooltip.Type.Help));
+			RenderUtil.setColour(MinecraftTooltip.getOutline(Tooltip.Type.Help));
 			CraftGUI.render.texture(CraftGUITexture.Outline, area.outset(1));
 		} else if (ControlEnergyBar.isError) {
 			final IArea area = this.getArea();
-			CraftGUI.render.colour(MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error));
+			RenderUtil.setColour(MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error));
 			CraftGUI.render.texture(CraftGUITexture.Outline, area.outset(1));
 		}
 	}

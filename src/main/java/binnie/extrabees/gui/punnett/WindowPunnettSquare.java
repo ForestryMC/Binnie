@@ -43,7 +43,7 @@ public class WindowPunnettSquare extends Window {
 	@Override
 	public void initialiseClient() {
 		this.setTitle("Punnett Square");
-		CraftGUI.render.stylesheet(new StyleSheetPunnett());
+		CraftGUI.render.setStyleSheet(new StyleSheetPunnett());
 	}
 
 	static class StyleSheetPunnett extends StyleSheet {

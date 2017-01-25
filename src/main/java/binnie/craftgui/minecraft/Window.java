@@ -20,6 +20,7 @@ import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.core.TopLevelWidget;
 import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventWidget;
 import binnie.craftgui.minecraft.control.ControlHelp;
 import binnie.craftgui.minecraft.control.ControlInfo;
@@ -140,7 +141,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		for (final EnumHighlighting h : EnumHighlighting.values()) {
 			ControlSlot.highlighting.put(h, new ArrayList<>());
 		}
-		CraftGUI.render.stylesheet(StyleSheetManager.getDefault());
+		CraftGUI.render.setStyleSheet(StyleSheetManager.getDefault());
 		this.titleButtonLeft = -14;
 		if (this.showHelpButton()) {
 			new ControlHelp(this, this.titleButtonLeft += 22, 8);
@@ -201,14 +202,14 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 
 	@Override
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.render.colour(16777215);
+		RenderUtil.setColour(16777215);
 		if (this.getBackground1() != null) {
 			CraftGUI.render.texture(this.getBackground1(), IPoint.ZERO);
 		}
 		if (this.getBackground2() != null) {
 			CraftGUI.render.texture(this.getBackground2(), new IPoint(256, 0));
 		}
-		CraftGUI.render.colour(this.getColour());
+		RenderUtil.setColour(this.getColour());
 		CraftGUI.render.texture(CraftGUITexture.Window, this.getArea());
 	}
 

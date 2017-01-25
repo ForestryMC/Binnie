@@ -12,6 +12,7 @@ import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.core.geometry.TextJustification;
+import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.minecraft.MinecraftGUI;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
@@ -67,9 +68,9 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 
 			@Override
 			public void onRenderBackground(int guiWidth, int guiHeight) {
-				CraftGUI.render.colour(5592405);
+				RenderUtil.setColour(5592405);
 				CraftGUI.render.texture(CraftGUITexture.TabSolid, this.getArea().inset(1));
-				CraftGUI.render.colour(AnalystPageDatabase.this.getColour());
+				RenderUtil.setColour(AnalystPageDatabase.this.getColour());
 				CraftGUI.render.texture(CraftGUITexture.TabOutline, this.getArea());
 				super.renderTextField();
 			}
@@ -100,7 +101,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 
 						@Override
 						public void onRenderBackground(int guiWidth, int guiHeight) {
-							CraftGUI.render.text(this.getArea(), TextJustification.MiddleCenter, this.value.getName(), 16777215);
+							RenderUtil.drawText(this.getArea(), TextJustification.MiddleCenter, this.value.getName(), 16777215);
 						}
 					};
 				}
@@ -114,8 +115,8 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 				if (!this.isEnabled()) {
 					return;
 				}
-				CraftGUI.render.gradientRect(this.getArea(), 1140850688 + AnalystPageDatabase.this.getColour(), 1140850688 + AnalystPageDatabase.this.getColour());
-				CraftGUI.render.solid(this.getRenderArea(), AnalystPageDatabase.this.getColour());
+				RenderUtil.drawGradientRect(this.getArea(), 1140850688 + AnalystPageDatabase.this.getColour(), 1140850688 + AnalystPageDatabase.this.getColour());
+				RenderUtil.drawSolidRect(this.getRenderArea(), AnalystPageDatabase.this.getColour());
 			}
 		};
 	}
@@ -146,12 +147,12 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 						public void onRenderBackground(int guiWidth, int guiHeight) {
 							final WindowAnalyst window = (WindowAnalyst) AnalystPageDatabase.this.getSuperParent();
 							if (window.getIndividual() != null && window.getIndividual().getGenome().getPrimary() == species) {
-								CraftGUI.render.colour(15658734);
+								RenderUtil.setColour(15658734);
 								CraftGUI.render.texture(CraftGUITexture.TabSolid, this.getArea().outset(1));
-								CraftGUI.render.colour(AnalystPageDatabase.this.getColour());
+								RenderUtil.setColour(AnalystPageDatabase.this.getColour());
 								CraftGUI.render.texture(CraftGUITexture.TabOutline, this.getArea().outset(1));
 							} else if (this.calculateIsMouseOver()) {
-								CraftGUI.render.colour(15658734);
+								RenderUtil.setColour(15658734);
 								CraftGUI.render.texture(CraftGUITexture.TabSolid, this.getArea().outset(1));
 							}
 							super.onRenderBackground(guiWidth, guiHeight);

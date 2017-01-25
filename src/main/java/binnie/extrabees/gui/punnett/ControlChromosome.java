@@ -7,6 +7,7 @@ import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
+import binnie.craftgui.core.renderer.RenderUtil;
 import forestry.api.genetics.IChromosomeType;
 
 public class ControlChromosome extends Control implements IControlValue<IChromosomeType>, ITooltip {
@@ -31,7 +32,7 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 	@Override
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(ExtraBeeGUITexture.Chromosome, this.getArea());
-		CraftGUI.render.colour(16711680);
+		RenderUtil.setColour(16711680);
 		CraftGUI.render.texture(ExtraBeeGUITexture.Chromosome2, this.getArea());
 	}
 

@@ -5,11 +5,11 @@ import binnie.core.BinnieCore;
 import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.controls.core.IControlValue;
 import binnie.craftgui.core.Attribute;
-import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.minecraft.Window;
 import binnie.genetics.api.IGene;
@@ -74,10 +74,10 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
 	@Override
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		if (this.isMouseOver() && this.canFill(Window.get(this).getHeldItemStack())) {
-			CraftGUI.render.solid(this.getArea(), -1);
-			CraftGUI.render.solid(this.getArea().inset(1), -12303292);
+			RenderUtil.drawSolidRect(this.getArea(), -1);
+			RenderUtil.drawSolidRect(this.getArea().inset(1), -12303292);
 		}
-		CraftGUI.render.colour(-1);
-		CraftGUI.render.sprite(IPoint.ZERO, BinnieCore.proxy.getTextureAtlasSprite(GeneticsTexture.dnaIcon.getResourceLocation()));
+		RenderUtil.setColour(-1);
+		RenderUtil.drawSprite(IPoint.ZERO, BinnieCore.proxy.getTextureAtlasSprite(GeneticsTexture.dnaIcon.getResourceLocation()));
 	}
 }

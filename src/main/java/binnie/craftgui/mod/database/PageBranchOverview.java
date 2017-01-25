@@ -3,8 +3,8 @@ package binnie.craftgui.mod.database;
 import binnie.Binnie;
 import binnie.craftgui.controls.ControlText;
 import binnie.craftgui.controls.ControlTextCentered;
-import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
+import binnie.craftgui.core.renderer.RenderUtil;
 import forestry.api.genetics.IClassification;
 import net.minecraft.util.text.TextFormatting;
 
@@ -42,7 +42,7 @@ public class PageBranchOverview extends PageBranch {
 		String line = "";
 		final List<String> descLines = new ArrayList<>();
 		for (final String str : desc.split(" ")) {
-			if (CraftGUI.render.textWidth(line + " " + str) > 134) {
+			if (RenderUtil.getTextWidth(line + " " + str) > 134) {
 				descLines.add(TextFormatting.ITALIC + line + TextFormatting.RESET);
 				line = "";
 			}

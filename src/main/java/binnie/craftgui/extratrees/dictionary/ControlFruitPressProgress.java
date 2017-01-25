@@ -3,8 +3,8 @@ package binnie.craftgui.extratrees.dictionary;
 import binnie.craftgui.core.Attribute;
 import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.CraftGUIUtil;
 import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.minecraft.control.ControlProgressBase;
@@ -34,8 +34,8 @@ public class ControlFruitPressProgress extends ControlProgressBase {
 			return;
 		}
 		FluidStack fluid = FruitPressRecipes.getOutput(input);
-		CraftGUI.render.fluid(new IPoint(4, 52), fluid);
-		CraftGUIUtil.renderItem(new IPoint(4, 52), input);
+		RenderUtil.drawFluid(new IPoint(4, 52), fluid);
+		RenderUtil.drawItem(new IPoint(4, 52), input);
 	}
 
 	@Override

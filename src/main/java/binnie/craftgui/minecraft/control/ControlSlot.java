@@ -8,6 +8,7 @@ import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.minecraft.CustomSlot;
 import binnie.craftgui.minecraft.InventoryType;
@@ -70,7 +71,7 @@ public class ControlSlot extends ControlSlotBase {
 				final TextureAtlasSprite icon = validator.getIcon(!islot.getInputSides().isEmpty());
 				if (icon != null) {
 					GlStateManager.enableBlend();
-					CraftGUI.render.sprite(new IPoint(1, 1), icon);
+					RenderUtil.drawSprite(new IPoint(1, 1), icon);
 					GlStateManager.disableBlend();
 				}
 			}
@@ -85,13 +86,13 @@ public class ControlSlot extends ControlSlotBase {
 			}
 			highlighted = true;
 			final int c = -1442840576 + Math.min(highlight.getKey().getColour(), 16777215);
-			CraftGUI.render.gradientRect(new IArea(1, 1, 16, 16), c, c);
+			RenderUtil.drawGradientRect(new IArea(1, 1, 16, 16), c, c);
 		}
 		if (!highlighted && this.getSuperParent().getMousedOverWidget() == this) {
 			if (Window.get(this).getGui().getDraggedItem() != null && !this.slot.isItemValid(Window.get(this).getGui().getDraggedItem())) {
-				CraftGUI.render.gradientRect(new IArea(1, 1, 16, 16), -1426089575, -1426089575);
+				RenderUtil.drawGradientRect(new IArea(1, 1, 16, 16), -1426089575, -1426089575);
 			} else {
-				CraftGUI.render.gradientRect(new IArea(1, 1, 16, 16), -2130706433, -2130706433);
+				RenderUtil.drawGradientRect(new IArea(1, 1, 16, 16), -2130706433, -2130706433);
 			}
 		}
 	}
@@ -116,7 +117,7 @@ public class ControlSlot extends ControlSlotBase {
 				area = this.getParent().getArea();
 				area.setPosition(IPoint.ZERO.sub(this.getPosition()));
 			}
-			CraftGUI.render.colour(c);
+			RenderUtil.setColour(c);
 			CraftGUI.render.texture(CraftGUITexture.Outline, area.outset(1));
 		}
 	}

@@ -8,6 +8,7 @@ import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventWidget;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import net.minecraftforge.fluids.FluidStack;
@@ -40,7 +41,7 @@ public class ControlSlotFluid extends Control implements ITooltip {
 		final int size = (int) this.getSize().x();
 		CraftGUI.render.texture(CraftGUITexture.Slot, this.getArea());
 		if (this.getSuperParent().getMousedOverWidget() == this) {
-			CraftGUI.render.gradientRect(new IArea(new IPoint(1, 1), this.getArea().size().sub(new IPoint(2, 2))), -2130706433, -2130706433);
+			RenderUtil.drawGradientRect(new IArea(new IPoint(1, 1), this.getArea().size().sub(new IPoint(2, 2))), -2130706433, -2130706433);
 		}
 	}
 

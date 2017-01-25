@@ -17,12 +17,9 @@ import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.minecraft.control.ControlImage;
 import binnie.craftgui.minecraft.control.ControlPlayerInventory;
 import binnie.craftgui.minecraft.control.ControlSlot;
-import binnie.craftgui.resource.StyleSheet;
-import binnie.craftgui.resource.minecraft.CraftGUITexture;
-import binnie.craftgui.resource.minecraft.PaddedTexture;
+import binnie.craftgui.resource.StyleSheetPunnett;
 import binnie.craftgui.resource.minecraft.StandardTexture;
 import binnie.extrabees.core.ExtraBeeTexture;
-import binnie.extrabees.gui.punnett.ExtraBeeGUITexture;
 import binnie.genetics.gui.ControlChromosome;
 import binnie.genetics.machine.analyser.Analyser;
 import forestry.api.genetics.AlleleManager;
@@ -110,7 +107,7 @@ public class WindowFieldKit extends Window {
 	@Override
 	public void initialiseClient() {
 		this.setTitle("Field Kit");
-		CraftGUI.render.stylesheet(new StyleSheetPunnett());
+		CraftGUI.render.setStyleSheet(new StyleSheetPunnett());
 		this.getWindowInventory().createSlot(0);
 		this.getWindowInventory().createSlot(1);
 		this.setupValidators();
@@ -276,14 +273,4 @@ public class WindowFieldKit extends Window {
 		}
 	}
 
-	static class StyleSheetPunnett extends StyleSheet {
-		public StyleSheetPunnett() {
-			this.textures.put(CraftGUITexture.Window, new PaddedTexture(0, 0, 160, 160, 0, ExtraBeeTexture.GUIPunnett, 32, 32, 32, 32));
-			this.textures.put(CraftGUITexture.Slot, new StandardTexture(160, 0, 18, 18, 0, ExtraBeeTexture.GUIPunnett));
-			this.textures.put(ExtraBeeGUITexture.Chromosome, new StandardTexture(160, 36, 16, 16, 0, ExtraBeeTexture.GUIPunnett));
-			this.textures.put(ExtraBeeGUITexture.Chromosome2, new StandardTexture(160, 52, 16, 16, 0, ExtraBeeTexture.GUIPunnett));
-			this.textures.put(CraftGUITexture.HelpButton, new StandardTexture(178, 0, 16, 16, 0, ExtraBeeTexture.GUIPunnett));
-			this.textures.put(CraftGUITexture.InfoButton, new StandardTexture(178, 16, 16, 16, 0, ExtraBeeTexture.GUIPunnett));
-		}
-	}
 }

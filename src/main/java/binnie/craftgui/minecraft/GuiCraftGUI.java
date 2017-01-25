@@ -2,8 +2,8 @@ package binnie.craftgui.minecraft;
 
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.CraftGUIUtil;
 import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventKey;
 import binnie.craftgui.events.EventMouse;
 import net.minecraft.client.Minecraft;
@@ -86,7 +86,7 @@ public class GuiCraftGUI extends GuiContainer {
 		final InventoryPlayer playerInventory = this.mc.thePlayer.inventory;
 		this.draggedItem = playerInventory.getItemStack();
 		if (this.draggedItem != null) {
-			CraftGUIUtil.renderItem(new IPoint(mouseX - 8, mouseY - 8), this.draggedItem, false);
+			RenderUtil.drawItem(new IPoint(mouseX - 8, mouseY - 8), this.draggedItem, false);
 		}
 		RenderHelper.enableGUIStandardItemLighting();
 		GlStateManager.disableRescaleNormal();
@@ -178,7 +178,7 @@ public class GuiCraftGUI extends GuiContainer {
 					GlStateManager.pushMatrix();
 					GlStateManager.translate(i1, j1 - 1.5f, 0.0f);
 					GlStateManager.scale(0.6f, 0.6f, 1.0f);
-					CraftGUIUtil.renderItem(IPoint.ZERO, stack, false);
+					RenderUtil.drawItem(IPoint.ZERO, stack, false);
 					GlStateManager.popMatrix();
 				} catch (NBTException e) {
 					e.printStackTrace();

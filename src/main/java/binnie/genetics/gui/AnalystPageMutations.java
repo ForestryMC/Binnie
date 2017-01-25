@@ -7,12 +7,11 @@ import binnie.core.genetics.ForestryAllele;
 import binnie.craftgui.controls.ControlTextCentered;
 import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.core.Attribute;
-import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.CraftGUIUtil;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.core.geometry.TextJustification;
+import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.minecraft.EnumColor;
 import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.minecraft.control.ControlItemDisplay;
@@ -131,15 +130,15 @@ public class AnalystPageMutations extends ControlAnalystPage {
 
 						@Override
 						public void onRenderBackground(int guiWidth, int guiHeight) {
-							CraftGUIUtil.renderItem(IPoint.ZERO, system.getDefaultMember(mutation.getAllele0().getUID()));
-							CraftGUIUtil.renderItem(new IPoint(28, 0), system.getDefaultMember(mutation.getAllele1().getUID()));
+							RenderUtil.drawItem(IPoint.ZERO, system.getDefaultMember(mutation.getAllele0().getUID()));
+							RenderUtil.drawItem(new IPoint(28, 0), system.getDefaultMember(mutation.getAllele1().getUID()));
 							if (specificChance != mutation.getBaseChance()) {
-								CraftGUI.render.colour(AnalystPageMutations.this.getMutationColour(mutation.getBaseChance()).getColour());
+								RenderUtil.setColour(AnalystPageMutations.this.getMutationColour(mutation.getBaseChance()).getColour());
 								//CraftGUI.Render.iconItem(new IPoint(14, 0), ModuleItem.iconAdd0.getIcon());
-								CraftGUI.render.colour(AnalystPageMutations.this.getMutationColour(specificChance).getColour());
+								RenderUtil.setColour(AnalystPageMutations.this.getMutationColour(specificChance).getColour());
 								//CraftGUI.Render.iconItem(new IPoint(14, 0), ModuleItem.iconAdd1.getIcon());
 							} else {
-								CraftGUI.render.colour(AnalystPageMutations.this.getMutationColour(mutation.getBaseChance()).getColour());
+								RenderUtil.setColour(AnalystPageMutations.this.getMutationColour(mutation.getBaseChance()).getColour());
 								//CraftGUI.Render.iconItem(new IPoint(14, 0), ModuleItem.iconAdd.getIcon());
 							}
 						}
@@ -189,16 +188,16 @@ public class AnalystPageMutations extends ControlAnalystPage {
 
 						@Override
 						public void onRenderBackground(int guiWidth, int guiHeight) {
-							CraftGUIUtil.renderItem(IPoint.ZERO, system.getDefaultMember(speciesComb.getUID()));
-							CraftGUIUtil.renderItem(new IPoint(28, 0), system.getDefaultMember(mutation.getTemplate()[0].getUID()));
-							CraftGUI.render.colour(AnalystPageMutations.this.getMutationColour(mutation.getBaseChance()).getColour());
+							RenderUtil.drawItem(IPoint.ZERO, system.getDefaultMember(speciesComb.getUID()));
+							RenderUtil.drawItem(new IPoint(28, 0), system.getDefaultMember(mutation.getTemplate()[0].getUID()));
+							RenderUtil.setColour(AnalystPageMutations.this.getMutationColour(mutation.getBaseChance()).getColour());
 							if (specificChance2 != mutation.getBaseChance()) {
-								CraftGUI.render.colour(AnalystPageMutations.this.getMutationColour(mutation.getBaseChance()).getColour());
+								RenderUtil.setColour(AnalystPageMutations.this.getMutationColour(mutation.getBaseChance()).getColour());
 								//CraftGUI.Render.iconItem(new IPoint(14, 0), ModuleItem.iconArrow0.getIcon());
-								CraftGUI.render.colour(AnalystPageMutations.this.getMutationColour(specificChance2).getColour());
+								RenderUtil.setColour(AnalystPageMutations.this.getMutationColour(specificChance2).getColour());
 								//CraftGUI.Render.iconItem(new IPoint(14, 0), ModuleItem.iconArrow1.getIcon());
 							} else {
-								CraftGUI.render.colour(AnalystPageMutations.this.getMutationColour(mutation.getBaseChance()).getColour());
+								RenderUtil.setColour(AnalystPageMutations.this.getMutationColour(mutation.getBaseChance()).getColour());
 								//CraftGUI.Render.iconItem(new IPoint(14, 0), ModuleItem.iconArrow.getIcon());
 							}
 						}
@@ -258,7 +257,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 
 		@Override
 		public void onRenderBackground(int guiWidth, int guiHeight) {
-			CraftGUI.render.text(this.getArea(), TextJustification.MiddleCenter, "UNKNOWN", 11184810);
+			RenderUtil.drawText(this.getArea(), TextJustification.MiddleCenter, "UNKNOWN", 11184810);
 		}
 	}
 }

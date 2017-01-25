@@ -8,6 +8,7 @@ import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.core.geometry.IArea;
+import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBeeGenome;
@@ -76,7 +77,7 @@ public class ControlClimateBar extends Control implements ITooltip {
 				} else {
 					colour = this.tempColours[i];
 				}
-				CraftGUI.render.solid(new IArea(x + 1, 1, w, this.getSize().y() - 2), colour);
+				RenderUtil.drawSolidRect(new IArea(x + 1, 1, w, this.getSize().y() - 2), colour);
 			}
 		}
 		CraftGUI.render.texture(CraftGUITexture.EnergyBarGlass, this.getArea());

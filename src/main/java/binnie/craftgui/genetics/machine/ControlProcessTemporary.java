@@ -1,9 +1,9 @@
 package binnie.craftgui.genetics.machine;
 
-import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.minecraft.control.ControlMachineProgress;
 
 public class ControlProcessTemporary extends ControlMachineProgress {
@@ -14,8 +14,8 @@ public class ControlProcessTemporary extends ControlMachineProgress {
 
 	@Override
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.render.solid(this.getArea(), -4868683);
+		RenderUtil.drawSolidRect(this.getArea(), -4868683);
 		final int w = Math.round(this.getSize().y() * this.progress / 100.0f);
-		CraftGUI.render.solid(new IArea(this.getArea().x(), this.getArea().y(), w, this.getArea().h()), -65536);
+		RenderUtil.drawSolidRect(new IArea(this.getArea().x(), this.getArea().y(), w, this.getArea().h()), -65536);
 	}
 }

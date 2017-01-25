@@ -2,11 +2,11 @@ package binnie.craftgui.extratrees.kitchen;
 
 import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.core.Attribute;
-import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.minecraft.Window;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -66,10 +66,10 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 				GlStateManager.pushMatrix();
 				final float scale = this.getSize().x() / 16.0f;
 				GlStateManager.scale(scale, scale, 1.0f);
-				CraftGUI.render.sprite(IPoint.ZERO, icon);
+				RenderUtil.drawSprite(IPoint.ZERO, icon);
 				GlStateManager.popMatrix();
 			} else {
-				CraftGUI.render.sprite(IPoint.ZERO, icon);
+				RenderUtil.drawSprite(IPoint.ZERO, icon);
 			}
 			GlStateManager.disableBlend();
 		}

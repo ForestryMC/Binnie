@@ -9,6 +9,7 @@ import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.core.geometry.Position;
+import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.events.EventValueChanged;
 import binnie.craftgui.minecraft.control.ControlItemDisplay;
@@ -98,7 +99,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 			if (icon.hasOutline()) {
 				iTexture = CraftGUI.render.getTexture(CraftGUITexture.TabOutline);
 				iTexture = iTexture.crop(position, 8);
-				CraftGUI.render.colour(icon.getOutlineColour());
+				RenderUtil.setColour(icon.getOutlineColour());
 				CraftGUI.render.texture(iTexture, area.inset(2));
 			}
 		}

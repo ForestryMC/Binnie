@@ -3,10 +3,10 @@ package binnie.core.machines.storage;
 import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.controls.core.IControlValue;
 import binnie.craftgui.core.Attribute;
-import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
+import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.minecraft.EnumColor;
 
 class ControlColourSelector extends Control implements ITooltip, IControlValue<EnumColor> {
@@ -37,6 +37,6 @@ class ControlColourSelector extends Control implements ITooltip, IControlValue<E
 	@Override
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		super.onRenderBackground(guiWidth, guiHeight);
-		CraftGUI.render.gradientRect(this.getArea(), -16777216 + this.value.getColour(), -16777216 + this.value.getColour());
+		RenderUtil.drawGradientRect(this.getArea(), -16777216 + this.value.getColour(), -16777216 + this.value.getColour());
 	}
 }

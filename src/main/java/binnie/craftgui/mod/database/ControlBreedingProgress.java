@@ -6,6 +6,7 @@ import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.craftgui.resource.minecraft.CraftGUITextureSheet;
@@ -27,7 +28,7 @@ class ControlBreedingProgress extends Control {
 		CraftGUI.render.texture(CraftGUITexture.PanelBlack, this.getArea());
 		final IArea area = this.getArea().inset(1);
 		area.setSize(new IPoint(Math.round(area.size().x() * this.percentage), area.size().y()));
-		CraftGUI.render.colour(this.colour);
+		RenderUtil.setColour(this.colour);
 		CraftGUI.render.texture(ControlBreedingProgress.Progress, area);
 	}
 }

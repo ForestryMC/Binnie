@@ -5,8 +5,8 @@ import binnie.craftgui.core.Attribute;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.CraftGUIUtil;
 import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.minecraft.Window;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
@@ -55,10 +55,10 @@ public class ControlItemDisplay extends Control implements ITooltip {
 			GlStateManager.pushMatrix();
 			final float scale = this.getSize().x() / 16.0f;
 			GlStateManager.scale(scale, scale, 1);
-			CraftGUIUtil.renderItem(IPoint.ZERO, this.itemStack, this.rotating);
+			RenderUtil.drawItem(IPoint.ZERO, this.itemStack, this.rotating);
 			GlStateManager.popMatrix();
 		} else {
-			CraftGUIUtil.renderItem(IPoint.ZERO, this.itemStack, this.rotating);
+			RenderUtil.drawItem(IPoint.ZERO, this.itemStack, this.rotating);
 		}
 		GlStateManager.enableAlpha();
 	}

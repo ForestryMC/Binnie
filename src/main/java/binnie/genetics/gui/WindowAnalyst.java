@@ -14,10 +14,10 @@ import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.core.Widget;
-import binnie.craftgui.core.geometry.CraftGUIUtil;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.core.geometry.Position;
+import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventKey;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.minecraft.InventoryType;
@@ -151,14 +151,14 @@ public class WindowAnalyst extends Window {
 
 					@Override
 					public void onRenderBackground(int guiWidth, int guiHeight) {
-						CraftGUI.render.colour(syst.getColour());
+						RenderUtil.setColour(syst.getColour());
 						final int outset = (WindowAnalyst.this.getSystem() == syst) ? 1 : 0;
 						CraftGUI.render.texture(CraftGUITexture.TabOutline, this.getArea().outset(outset));
 						if (WindowAnalyst.this.getSystem() == syst) {
-							CraftGUI.render.colour(1140850688 + syst.getColour());
+							RenderUtil.setColour(1140850688 + syst.getColour());
 							CraftGUI.render.texture(CraftGUITexture.TabSolid, this.getArea().outset(outset));
 						}
-						CraftGUIUtil.renderItem(new IPoint(2, 2), syst.getItemStackRepresentitive());
+						RenderUtil.drawItem(new IPoint(2, 2), syst.getItemStackRepresentitive());
 					}
 				};
 				x += 22;
@@ -174,7 +174,7 @@ public class WindowAnalyst extends Window {
 		this.analystPanel = new Panel(this, 16, 54, 280, 164, MinecraftGUI.PanelType.Outline) {
 			@Override
 			public void onRenderBackground(int guiWidth, int guiHeight) {
-				CraftGUI.render.gradientRect(this.getArea(), 1157627903, 1728053247);
+				RenderUtil.drawGradientRect(this.getArea(), 1157627903, 1728053247);
 				super.onRenderBackground(guiWidth, guiHeight);
 			}
 
@@ -188,7 +188,7 @@ public class WindowAnalyst extends Window {
 						if (this.getContent() == null) {
 							return;
 						}
-						CraftGUI.render.colour(this.getContent().getColour());
+						RenderUtil.setColour(this.getContent().getColour());
 						CraftGUI.render.texture(CraftGUITexture.TabOutline, this.getArea());
 					}
 				};
@@ -201,8 +201,8 @@ public class WindowAnalyst extends Window {
 						if (WindowAnalyst.this.leftPage.getContent() == null) {
 							return;
 						}
-						CraftGUI.render.gradientRect(this.getArea(), 1140850688 + WindowAnalyst.this.leftPage.getContent().getColour(), 1140850688 + WindowAnalyst.this.leftPage.getContent().getColour());
-						CraftGUI.render.solid(this.getRenderArea(), WindowAnalyst.this.leftPage.getContent().getColour());
+						RenderUtil.drawGradientRect(this.getArea(), 1140850688 + WindowAnalyst.this.leftPage.getContent().getColour(), 1140850688 + WindowAnalyst.this.leftPage.getContent().getColour());
+						RenderUtil.drawSolidRect(this.getRenderArea(), WindowAnalyst.this.leftPage.getContent().getColour());
 					}
 				};
 				WindowAnalyst.this.rightPage = new ControlScrollableContent<IWidget>(this, 3 + sectionWidth + 4, 3, sectionWidth + 2, this.h() - 8 + 2, 0) {
@@ -211,7 +211,7 @@ public class WindowAnalyst extends Window {
 						if (this.getContent() == null) {
 							return;
 						}
-						CraftGUI.render.colour(this.getContent().getColour());
+						RenderUtil.setColour(this.getContent().getColour());
 						CraftGUI.render.texture(CraftGUITexture.TabOutline, this.getArea());
 					}
 				};
@@ -224,8 +224,8 @@ public class WindowAnalyst extends Window {
 						if (WindowAnalyst.this.rightPage.getContent() == null) {
 							return;
 						}
-						CraftGUI.render.gradientRect(this.getArea(), 1140850688 + WindowAnalyst.this.rightPage.getContent().getColour(), 1140850688 + WindowAnalyst.this.rightPage.getContent().getColour());
-						CraftGUI.render.solid(this.getRenderArea(), WindowAnalyst.this.rightPage.getContent().getColour());
+						RenderUtil.drawGradientRect(this.getArea(), 1140850688 + WindowAnalyst.this.rightPage.getContent().getColour(), 1140850688 + WindowAnalyst.this.rightPage.getContent().getColour());
+						RenderUtil.drawSolidRect(this.getRenderArea(), WindowAnalyst.this.rightPage.getContent().getColour());
 					}
 				};
 				WindowAnalyst.this.analystPageSize = new IArea(1, 1, sectionWidth, this.h() - 8);
@@ -381,9 +381,9 @@ public class WindowAnalyst extends Window {
 				@Override
 				public void onRenderBackground(int guiWidth, int guiHeight) {
 					final boolean active = this.value == WindowAnalyst.this.leftPage.getContent() || this.value == WindowAnalyst.this.rightPage.getContent();
-					CraftGUI.render.colour((active ? -16777216 : 1140850688) + this.value.getColour());
+					RenderUtil.setColour((active ? -16777216 : 1140850688) + this.value.getColour());
 					CraftGUI.render.texture(CraftGUITexture.TabSolid, this.getArea().inset(1));
-					CraftGUI.render.colour(this.value.getColour());
+					RenderUtil.setColour(this.value.getColour());
 					CraftGUI.render.texture(CraftGUITexture.TabOutline, this.getArea().inset(1));
 					super.onRenderBackground(guiWidth, guiHeight);
 				}

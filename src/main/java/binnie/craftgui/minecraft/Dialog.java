@@ -5,6 +5,7 @@ import binnie.craftgui.core.Attribute;
 import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventHandler;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
@@ -34,7 +35,7 @@ public abstract class Dialog extends Control {
 
 	@Override
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.render.gradientRect(this.getArea().outset(400), -1442840576, -1442840576);
+		RenderUtil.drawGradientRect(this.getArea().outset(400), -1442840576, -1442840576);
 		CraftGUI.render.texture(CraftGUITexture.Window, this.getArea());
 		CraftGUI.render.texture(CraftGUITexture.TabOutline, this.getArea().inset(4));
 	}

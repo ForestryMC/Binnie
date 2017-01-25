@@ -2,10 +2,10 @@ package binnie.extrabees.gui.punnett;
 
 import binnie.craftgui.controls.ControlText;
 import binnie.craftgui.controls.core.Control;
-import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.TextJustification;
+import binnie.craftgui.core.renderer.RenderUtil;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IIndividual;
@@ -24,10 +24,10 @@ public class ControlPunnett extends Control {
 
 	@Override
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.render.solid(new IArea(0, ControlPunnett.boxHeight, ControlPunnett.boxWidth * 3, 1), 11184810);
-		CraftGUI.render.solid(new IArea(ControlPunnett.boxWidth / 2, ControlPunnett.boxHeight * 2, Math.round(ControlPunnett.boxWidth * 2.5f), 1), 11184810);
-		CraftGUI.render.solid(new IArea(ControlPunnett.boxWidth, 0, 1, ControlPunnett.boxHeight * 3), 11184810);
-		CraftGUI.render.solid(new IArea(ControlPunnett.boxWidth * 2, ControlPunnett.boxHeight / 2, 1, Math.round(ControlPunnett.boxHeight * 2.5f)), 11184810);
+		RenderUtil.drawSolidRect(new IArea(0, ControlPunnett.boxHeight, ControlPunnett.boxWidth * 3, 1), 11184810);
+		RenderUtil.drawSolidRect(new IArea(ControlPunnett.boxWidth / 2, ControlPunnett.boxHeight * 2, Math.round(ControlPunnett.boxWidth * 2.5f), 1), 11184810);
+		RenderUtil.drawSolidRect(new IArea(ControlPunnett.boxWidth, 0, 1, ControlPunnett.boxHeight * 3), 11184810);
+		RenderUtil.drawSolidRect(new IArea(ControlPunnett.boxWidth * 2, ControlPunnett.boxHeight / 2, 1, Math.round(ControlPunnett.boxHeight * 2.5f)), 11184810);
 	}
 
 	public void setup(final IChromosomeType chromosome, final IIndividual ind1, final IIndividual ind2, final ISpeciesRoot root) {

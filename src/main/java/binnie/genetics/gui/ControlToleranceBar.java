@@ -3,12 +3,12 @@ package binnie.genetics.gui;
 import binnie.core.genetics.Tolerance;
 import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.core.Attribute;
-import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IBorder;
+import binnie.craftgui.core.renderer.RenderUtil;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.EnumTolerance;
 import net.minecraft.util.text.TextFormatting;
@@ -48,13 +48,13 @@ public abstract class ControlToleranceBar<T extends Enum<T>> extends Control imp
 
 	@Override
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.render.gradientRect(this.getArea(), -1431655766, -1431655766);
+		RenderUtil.drawGradientRect(this.getArea(), -1431655766, -1431655766);
 		final int w = this.getArea().w() / this.fullSet.size();
 		int t = 0;
 		for (final T value : this.fullSet) {
 			final int col = (this.tolerated.contains(value) ? -16777216 : 855638016) + this.getColour(value);
 			final IBorder inset = new IBorder(this.tolerated.contains(value) ? 1 : 3);
-			CraftGUI.render.gradientRect(new IArea(w * t, 0, w, this.h()).inset(inset), col, col);
+			RenderUtil.drawGradientRect(new IArea(w * t, 0, w, this.h()).inset(inset), col, col);
 			++t;
 		}
 	}
