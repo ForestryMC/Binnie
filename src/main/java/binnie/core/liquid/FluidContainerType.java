@@ -2,8 +2,6 @@ package binnie.core.liquid;
 
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
-import binnie.genetics.item.GeneticsItems;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
@@ -43,7 +41,19 @@ public enum FluidContainerType {
 	public boolean isActive() {
 		return this.getEmpty() != null;
 	}
-
+	
+	@Nullable
+	public ItemFluidContainer getItem() {
+		return item;
+	}
+	
+	public ItemStack get(int amount){
+		if(item == null){
+			throw new IllegalArgumentException("Null container item: " + this);
+		}
+		return new ItemStack(item, amount);
+	}
+	
 	public ItemStack getEmpty() {
 		switch (this) {
 			case CAN: {
@@ -52,14 +62,11 @@ public enum FluidContainerType {
 			case CAPSULE: {
 				return Mods.Forestry.stack("capsule");
 			}
-			case GLASS: {
-				return new ItemStack(Items.GLASS_BOTTLE, 1, 0);
-			}
+			case CYLINDER:
+			case GLASS:
+				return new ItemStack(item);
 			case REFARACTORY: {
 				return Mods.Forestry.stack("refractory");
-			}
-			case CYLINDER: {
-				return GeneticsItems.Cylinder.get(1);
 			}
 			default: {
 				throw new IllegalArgumentException("Unknown container: " + this);

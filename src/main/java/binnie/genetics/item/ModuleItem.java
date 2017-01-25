@@ -6,6 +6,7 @@ import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.item.ItemMisc;
+import binnie.core.liquid.FluidContainerType;
 import binnie.core.resource.BinnieSprite;
 import binnie.extrabees.ExtraBees;
 import binnie.extratrees.ExtraTrees;
@@ -103,7 +104,7 @@ public class ModuleItem implements IInitializable {
 			GameRegistry.addRecipe(new ShapedOreRecipe(GeneticsItems.EmptyGenome.get(itemGenetics, 1),
 					"sss", "sss", "sss",
 					's', GeneticsItems.EmptySerum.get(itemGenetics, 1)));
-			GameRegistry.addRecipe(new ShapedOreRecipe(GeneticsItems.Cylinder.get(itemGenetics, 8),
+			GameRegistry.addRecipe(new ShapedOreRecipe(FluidContainerType.CYLINDER.get(8),
 					" g ", "g g", "   ",
 					'g', Blocks.GLASS_PANE));
 			GameRegistry.addRecipe(new ShapedOreRecipe(GeneticsItems.IntegratedCircuit.get(itemGenetics, 1),

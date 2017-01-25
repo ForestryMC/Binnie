@@ -21,6 +21,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -36,7 +37,7 @@ import java.util.List;
 public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	private final FluidContainerType container;
 
-	public ItemFluidContainer(final FluidContainerType container) {
+	public ItemFluidContainer(FluidContainerType container) {
 		super(0, false);
 		this.container = container;
 		container.item = this;
@@ -54,13 +55,14 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 		}
 		FluidStack fluid = getContained(itemstack);
 		if (fluid == null) {
-			return "Missing Fluid";
+			return "Empty " + container.getDisplayName();
 		}
 		return fluid.getFluid().getLocalizedName(fluid) + " " + this.container.getDisplayName();
 	}
 
 	@Override
-	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List itemList) {
+	public void getSubItems(final Item item, final CreativeTabs tab, final List subItems) {
+		super.getSubItems(item, tab, subItems);
 		for (final IFluidType liquid : Binnie.LIQUID.fluids.values()) {
 			if (!liquid.canPlaceIn(this.container)) {
 				continue;
@@ -68,7 +70,7 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 			if (!liquid.showInCreative(this.container)) {
 				continue;
 			}
-			itemList.add(getContainer(liquid));
+			subItems.add(getContainer(liquid));
 		}
 	}
 	
@@ -84,12 +86,8 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	public ItemStack getContainer(final IFluidType liquid) {
 		ItemStack itemStack = new ItemStack(this);
 		IFluidHandler fluidHandler = new FluidHandlerItemBinnie(itemStack, container);
-		try{
 		if (fluidHandler.fill(new FluidStack(FluidRegistry.getFluid(liquid.getIdentifier()), Fluid.BUCKET_VOLUME), true) == Fluid.BUCKET_VOLUME) {
 			return itemStack;
-		}
-		}catch(Exception e){
-			getClass();
 		}
 		return container.getEmpty();
 	}
@@ -118,11 +116,6 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	}
 
 	@Override
-	public int getMaxItemUseDuration(final ItemStack stack) {
-		return 32;
-	}
-
-	@Override
 	public EnumAction getItemUseAction(final ItemStack stack) {
 		if(isDrinkable(stack)){
 			return EnumAction.DRINK;
@@ -131,12 +124,22 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	}
 	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World worldIn, EntityPlayer player, EnumHand hand) {
-		if (player.canEat(false) && this.isDrinkable(stack)) {
+	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
+		if (this.isDrinkable(stack) && player.canEat(false)) {
 			player.setActiveHand(hand);
 			return new ActionResult(EnumActionResult.SUCCESS, stack);
+		}else{
+			return super.onItemRightClick(stack, world, player, hand);
 		}
-		return new ActionResult(EnumActionResult.PASS, stack);
+	}
+	
+	@Override
+	public int getMaxItemUseDuration(ItemStack stack) {
+		if(isDrinkable(stack)){
+			return 32;
+		}else{
+			return 0;
+		}
 	}
 	
     @Override
@@ -160,7 +163,7 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	public void registerModel(Item item, IModelManager manager) {
 		FluidContainerMeshDefinition meshDefinition = new FluidContainerMeshDefinition();
 		manager.registerItemModel(item, meshDefinition);
-		ModelBakery.registerItemVariants(item, meshDefinition.location);
+		ModelBakery.registerItemVariants(item, meshDefinition.location, meshDefinition.empty);
 	}
 	
 	@Override
@@ -172,13 +175,19 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	private class FluidContainerMeshDefinition implements ItemMeshDefinition{
 
 		final ModelResourceLocation location;
+		final ModelResourceLocation empty;
 		
 		public FluidContainerMeshDefinition() {
-			this.location = new ModelResourceLocation(getRegistryName(), "inventory");
+			ResourceLocation location = getRegistryName();
+			this.location = new ModelResourceLocation(location, "inventory");
+			this.empty = new ModelResourceLocation(new ResourceLocation(location.getResourceDomain(), location.getResourcePath() + "_empty"), "inventory");
 		}
 		
 		@Override
 		public ModelResourceLocation getModelLocation(ItemStack stack) {
+			if(stack.getItemDamage() == 0){
+				return empty;
+			}
 			return location;
 		}
 		

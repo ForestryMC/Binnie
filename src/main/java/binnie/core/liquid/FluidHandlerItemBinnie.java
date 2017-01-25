@@ -6,7 +6,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStackSimple;
 
-public class FluidHandlerItemBinnie extends FluidHandlerItemStackSimple.Consumable {
+public class FluidHandlerItemBinnie extends FluidHandlerItemStackSimple {
 	private final FluidContainerType containerType;
 
 	public FluidHandlerItemBinnie(ItemStack container, FluidContainerType containerType) {
@@ -39,5 +39,18 @@ public class FluidHandlerItemBinnie extends FluidHandlerItemStackSimple.Consumab
 	@Override
 	public boolean canDrainFluidType(FluidStack fluid) {
 		return contentsAllowed(fluid);
+	}
+	
+    @Override
+    protected void setContainerToEmpty()
+    {
+        super.setContainerToEmpty();
+        container.setItemDamage(0); // show the empty container model
+    }
+	
+	@Override
+	protected void setFluid(FluidStack fluid) {
+		super.setFluid(fluid);
+		container.setItemDamage(1); // show the filled container model
 	}
 }
