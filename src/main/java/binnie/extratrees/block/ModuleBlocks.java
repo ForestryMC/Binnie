@@ -133,7 +133,7 @@ public class ModuleBlocks implements IInitializable {
 		for (BlockETPlank plank : planks) {
 			for (IBlockState blockState : plank.getBlockState().getValidStates()) {
 				int meta = plank.getMetaFromState(blockState);
-				EnumExtraTreeLog woodType = plank.getWoodType(meta);
+				EnumETLog woodType = plank.getWoodType(meta);
 
 				BlockForestryStairs stair = new BlockForestryStairs(false, blockState, woodType);
 				String name = "stairs." + woodType;
@@ -149,7 +149,7 @@ public class ModuleBlocks implements IInitializable {
 		for (BlockETPlank plank : planksFireproof) {
 			for (IBlockState blockState : plank.getBlockState().getValidStates()) {
 				int meta = plank.getMetaFromState(blockState);
-				EnumExtraTreeLog woodType = plank.getWoodType(meta);
+				EnumETLog woodType = plank.getWoodType(meta);
 
 				BlockForestryStairs stair = new BlockForestryStairs(true, blockState, woodType);
 				String name = "stairs.fireproof." + woodType;
@@ -183,8 +183,9 @@ public class ModuleBlocks implements IInitializable {
 		
 		fenceGates = new ArrayList<>();
 		fenceGatesFireproof = new ArrayList<>();
-		for (EnumExtraTreeLog woodType : EnumExtraTreeLog.VALUES) {
-			BlockForestryFenceGate fenceGate = new BlockForestryFenceGate<>(false, woodType);
+		for (PlankType.ExtraTreePlanks plankType : PlankType.ExtraTreePlanks.VALUES) {
+			EnumETLog woodType = plankType.getWoodType();
+			BlockForestryFenceGate fenceGate = new BlockForestryFenceGate(false, woodType);
 			String name = "fence.gates." + woodType;
 			fenceGate.setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
 			fenceGate.setUnlocalizedName(name);
@@ -193,7 +194,7 @@ public class ModuleBlocks implements IInitializable {
 			fenceGates.add(fenceGate);
 			FMLInterModComms.sendMessage("forestry", "add-fence-block", fenceGate.getRegistryName().toString());
 
-			BlockForestryFenceGate fenceGateFireproof = new BlockForestryFenceGate<>(true, woodType);
+			BlockForestryFenceGate fenceGateFireproof = new BlockForestryFenceGate(true, woodType);
 			String nameFireproof = "fence.gates.fireproof." + woodType;
 			fenceGateFireproof.setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, nameFireproof));
 			fenceGateFireproof.setUnlocalizedName(nameFireproof);

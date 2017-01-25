@@ -1,7 +1,7 @@
 package binnie.extratrees.block.wood;
 
 import binnie.Constants;
-import binnie.extratrees.block.EnumExtraTreeLog;
+import binnie.extratrees.block.EnumETLog;
 import binnie.extratrees.block.property.PropertyETWoodType;
 import forestry.arboriculture.blocks.log.BlockForestryLog;
 import forestry.arboriculture.blocks.property.PropertyWoodType;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Nonnull;
 
-public abstract class BlockETLog extends BlockForestryLog<EnumExtraTreeLog> {
+public abstract class BlockETLog extends BlockForestryLog<EnumETLog> {
 	public static List<BlockETLog> create(boolean fireproof) {
 		List<BlockETLog> blocks = new ArrayList<>();
 		PropertyETWoodType[] variants = PropertyETWoodType.create("variant", VARIANTS_PER_BLOCK, true);
@@ -19,7 +19,7 @@ public abstract class BlockETLog extends BlockForestryLog<EnumExtraTreeLog> {
 			BlockETLog block = new BlockETLog(fireproof, i) {
 				@Nonnull
 				@Override
-				public PropertyWoodType<EnumExtraTreeLog> getVariant() {
+				public PropertyWoodType<EnumETLog> getVariant() {
 					return variant;
 				}
 			};
@@ -41,10 +41,10 @@ public abstract class BlockETLog extends BlockForestryLog<EnumExtraTreeLog> {
 
 	@Nonnull
 	@Override
-	public EnumExtraTreeLog getWoodType(int meta) {
+	public EnumETLog getWoodType(int meta) {
 		int variantCount = getVariant().getAllowedValues().size();
 		int variantMeta = (meta % variantCount) + getBlockNumber() * VARIANTS_PER_BLOCK;
-		return EnumExtraTreeLog.byMetadata(variantMeta);
+		return EnumETLog.byMetadata(variantMeta);
 	}
 	
 }

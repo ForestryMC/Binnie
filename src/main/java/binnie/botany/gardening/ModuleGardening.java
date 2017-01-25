@@ -10,6 +10,7 @@ import binnie.botany.ceramic.BlockCeramicPatterned;
 import binnie.botany.ceramic.BlockStainedGlass;
 import binnie.botany.ceramic.CeramicTileRecipe;
 import binnie.botany.ceramic.ItemCeramic;
+import binnie.botany.ceramic.ItemStainedGlass;
 import binnie.botany.ceramic.PigmentRecipe;
 import binnie.botany.ceramic.TileCeramic;
 import binnie.botany.ceramic.brick.BlockCeramicBrick;
@@ -87,7 +88,7 @@ public class ModuleGardening implements IInitializable {
 		BinnieCore.proxy.registerTileEntity(TileCeramic.class, "botany.tile.ceramic");
 //		BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(Botany.ceramic), new ItemMetadataRenderer());
 		Botany.stained = new BlockStainedGlass();
-		Botany.proxy.registerBlock(Botany.stained, new ItemMetadata(Botany.stained));
+		Botany.proxy.registerBlock(Botany.stained, new ItemStainedGlass(Botany.stained));
 //		BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(Botany.stained), new ItemMetadataRenderer());
 		Botany.ceramicTile = new BlockCeramicPatterned();
 		Botany.proxy.registerBlock(Botany.ceramicTile, new ItemDesign(Botany.ceramicTile));

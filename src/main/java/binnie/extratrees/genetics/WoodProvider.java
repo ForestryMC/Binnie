@@ -1,7 +1,7 @@
 package binnie.extratrees.genetics;
 
 import binnie.Constants;
-import binnie.extratrees.block.EnumExtraTreeLog;
+import binnie.extratrees.block.EnumETLog;
 import forestry.api.arboriculture.EnumForestryWoodType;
 import forestry.api.arboriculture.EnumVanillaWoodType;
 import forestry.api.arboriculture.IWoodProvider;
@@ -25,7 +25,7 @@ public class WoodProvider implements IWoodProvider {
 
 	public WoodProvider(IWoodType type) {
 		this.type = type;
-		if (type instanceof EnumExtraTreeLog) {
+		if (type instanceof EnumETLog) {
 			modID = Constants.EXTRA_TREES_MOD_ID;
 		} else if (type instanceof EnumVanillaWoodType) {
 			modID = "minecraft";

@@ -1,7 +1,7 @@
 package binnie.extratrees.block.wood;
 
 import binnie.Constants;
-import binnie.extratrees.block.EnumExtraTreeLog;
+import binnie.extratrees.block.EnumETLog;
 import binnie.extratrees.block.property.PropertyETWoodType;
 import forestry.arboriculture.blocks.planks.BlockForestryPlanks;
 import net.minecraft.util.ResourceLocation;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.Nonnull;
 
-public abstract class BlockETPlank extends BlockForestryPlanks<EnumExtraTreeLog> {
+public abstract class BlockETPlank extends BlockForestryPlanks<EnumETLog> {
 	public static final String BLOCK_NAME = "plank";
 	
 	public static List<BlockETPlank> create(boolean fireproof) {
@@ -42,9 +42,9 @@ public abstract class BlockETPlank extends BlockForestryPlanks<EnumExtraTreeLog>
 
 	@Nonnull
 	@Override
-	public EnumExtraTreeLog getWoodType(int meta) {
+	public EnumETLog getWoodType(int meta) {
 		int variantCount = getVariant().getAllowedValues().size();
 		int variantMeta = (meta % variantCount) + getBlockNumber() * VARIANTS_PER_BLOCK;
-		return EnumExtraTreeLog.byMetadata(variantMeta);
+		return EnumETLog.byMetadata(variantMeta);
 	}
 }

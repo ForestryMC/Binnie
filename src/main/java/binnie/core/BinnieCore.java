@@ -149,6 +149,9 @@ public final class BinnieCore extends AbstractMod {
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void handleSpeciesDiscovered(final ForestryEvent.SpeciesDiscovered event) {
+		if(event.username == null){
+			return;
+		}
 		final EntityPlayerMP player = FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUUID(event.username.getId());
 		if (player == null) {
 			return;

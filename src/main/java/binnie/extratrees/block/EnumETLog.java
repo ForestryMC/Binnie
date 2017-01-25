@@ -3,13 +3,14 @@ package binnie.extratrees.block;
 import javax.annotation.Nonnull;
 
 import binnie.Constants;
+import forestry.api.arboriculture.EnumForestryWoodType;
 import forestry.api.arboriculture.IWoodType;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.arboriculture.WoodBlockKind;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public enum EnumExtraTreeLog implements IWoodType {
+public enum EnumETLog implements IWoodType {
 	Apple("Apple", PlankType.ExtraTreePlanks.Apple),
 	Fig("Fig", PlankType.ExtraTreePlanks.Fig),
 	Butternut("Butternut", PlankType.ExtraTreePlanks.Butternut),
@@ -50,14 +51,14 @@ public enum EnumExtraTreeLog implements IWoodType {
 	PinkIvory("Pink Ivory", PlankType.ExtraTreePlanks.PinkIvory),
 	Cherry("Cherry", PlankType.ForestryPlanks.CHERRY),
 	Cinnamon("Cinnamon", PlankType.VanillaPlanks.JUNGLE),
-	EMPTY("EMPTY", PlankType.VanillaPlanks.OAK);//TODO change name/create wood for SHRUBS
+	Shrub("Shrub", PlankType.VanillaPlanks.OAK);
 
-	public static final EnumExtraTreeLog[] VALUES = values();
+	public static final EnumETLog[] VALUES = values();
 	
 	String name;
 	IPlankType plank;
 
-	EnumExtraTreeLog(final String name, final IPlankType plank) {
+	EnumETLog(final String name, final IPlankType plank) {
 		this.name = name;
 		this.plank = plank;
 	}
@@ -94,12 +95,19 @@ public enum EnumExtraTreeLog implements IWoodType {
 
 	@Override
 	public int getCarbonization() {
-		return 0; //TODO return valid value
+		return 4;
 	}
-
+	
 	@Override
 	public float getCharcoalChance(int numberOfCharcoal) {
-		return 0;//TODO return valid value
+		if(numberOfCharcoal == 3){
+			return 0.75F;
+		}else if(numberOfCharcoal == 4){
+			return 0.5F;
+		}else if(numberOfCharcoal == 5){
+			return 0.25F;
+		}
+		return 0.15F;
 	}
 
 	@Override
@@ -137,7 +145,7 @@ public enum EnumExtraTreeLog implements IWoodType {
 	}
 
 	@Nonnull
-	public static EnumExtraTreeLog byMetadata(int meta) {
+	public static EnumETLog byMetadata(int meta) {
 		if (meta < 0 || meta >= VALUES.length) {
 			meta = 0;
 		}

@@ -6,7 +6,7 @@ import java.util.List;
 import javax.annotation.Nonnull;
 
 import binnie.Constants;
-import binnie.extratrees.block.EnumExtraTreeLog;
+import binnie.extratrees.block.EnumETLog;
 import binnie.extratrees.block.property.PropertyETWoodType;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IStateMapperRegister;
@@ -14,7 +14,7 @@ import forestry.arboriculture.IWoodTyped;
 import forestry.arboriculture.blocks.fence.BlockForestryFence;
 import net.minecraft.util.ResourceLocation;
 
-public abstract class BlockETFence extends BlockForestryFence<EnumExtraTreeLog> implements IWoodTyped, IItemModelRegister, IStateMapperRegister {
+public abstract class BlockETFence extends BlockForestryFence<EnumETLog> implements IWoodTyped, IItemModelRegister, IStateMapperRegister {
 	public static List<BlockETFence> create(boolean fireproof) {
 		List<BlockETFence> blocks = new ArrayList<>();
 
@@ -46,9 +46,9 @@ public abstract class BlockETFence extends BlockForestryFence<EnumExtraTreeLog> 
 
 	@Nonnull
 	@Override
-	public EnumExtraTreeLog getWoodType(int meta) {
+	public EnumETLog getWoodType(int meta) {
 		int variantCount = getVariant().getAllowedValues().size();
 		int variantMeta = (meta % variantCount) + getBlockNumber() * VARIANTS_PER_BLOCK;
-		return EnumExtraTreeLog.byMetadata(variantMeta);
+		return EnumETLog.byMetadata(variantMeta);
 	}
 }

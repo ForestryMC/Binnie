@@ -28,7 +28,7 @@ public class WoodManager {
 
 		String displayName;
 
-		if (woodType instanceof EnumExtraTreeLog) {
+		if (woodType instanceof EnumETLog) {
 			String customUnlocalizedName = "tile.et." + blockKind + "." + woodType + ".name";
 			if (Translator.canTranslateToLocal(customUnlocalizedName)) {
 				displayName = Translator.translateToLocal(customUnlocalizedName);

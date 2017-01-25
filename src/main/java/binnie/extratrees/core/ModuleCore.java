@@ -5,7 +5,7 @@ import binnie.core.IInitializable;
 import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignMaterial;
-import binnie.extratrees.block.EnumExtraTreeLog;
+import binnie.extratrees.block.EnumETLog;
 import binnie.extratrees.block.PlankType;
 import binnie.extratrees.genetics.AlleleETFruit;
 import binnie.extratrees.genetics.ETTreeDefinition;
@@ -42,7 +42,7 @@ public class ModuleCore implements IInitializable {
 					speciesQueue.add(s.getSpecies());
 				}
 				final Queue<IWoodType> logQueue = new LinkedList<>();
-				Collections.addAll(logQueue, EnumExtraTreeLog.values());
+				Collections.addAll(logQueue, EnumETLog.values());
 				final Queue<IDesignMaterial> plankQueue = new LinkedList<>();
 				Collections.addAll(plankQueue, PlankType.ExtraTreePlanks.values());
 				final Queue<AlleleETFruit> fruitQueue = new LinkedList<>();
@@ -68,7 +68,7 @@ public class ModuleCore implements IInitializable {
 				while (!logQueue.isEmpty()) {
 					outputLogs.println("<tr>");
 					for (int i = 0; i < 4; ++i) {
-						final EnumExtraTreeLog wood5 = (EnumExtraTreeLog) logQueue.poll();
+						final EnumETLog wood5 = (EnumETLog) logQueue.poll();
 						if (wood5 == null) {
 							outputLogs.println("<td></td>");
 						} else {

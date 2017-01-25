@@ -69,7 +69,7 @@ public class PlankType {
 
 		public static final ExtraTreePlanks[] VALUES = values();
 		
-		private IWoodType woodType;
+		private EnumETLog woodType;
 		private final int color;
 		//IIcon icon;
 
@@ -78,50 +78,50 @@ public class PlankType {
 		}
 
 		public static void initWoodTypes(){
-			Fir.setWoodType(EnumExtraTreeLog.Fir);
-			Cedar.setWoodType(EnumExtraTreeLog.Cedar);
-			Hemlock.setWoodType(EnumExtraTreeLog.Hemlock);
-			Cypress.setWoodType(EnumExtraTreeLog.Cypress);
-			Fig.setWoodType(EnumExtraTreeLog.Fig);
-			Beech.setWoodType(EnumExtraTreeLog.Beech);
-			Alder.setWoodType(EnumExtraTreeLog.Alder);
-			Hazel.setWoodType(EnumExtraTreeLog.Hazel);
-			Hornbeam.setWoodType(EnumExtraTreeLog.Hornbeam);
-			Box.setWoodType(EnumExtraTreeLog.Box);
-			Butternut.setWoodType(EnumExtraTreeLog.Butternut);
-			Hickory.setWoodType(EnumExtraTreeLog.Hickory);
-			Whitebeam.setWoodType(EnumExtraTreeLog.Whitebeam);
-			Elm.setWoodType(EnumExtraTreeLog.Elm);
-			Apple.setWoodType(EnumExtraTreeLog.Apple);
-			Yew.setWoodType(EnumExtraTreeLog.Yew);
-			Pear.setWoodType(EnumExtraTreeLog.Pear);
-			Hawthorn.setWoodType(EnumExtraTreeLog.Hawthorn);
-			Rowan.setWoodType(EnumExtraTreeLog.Rowan);
-			Elder.setWoodType(EnumExtraTreeLog.Elder);
-			Maclura.setWoodType(EnumExtraTreeLog.Maclura);
-			Syzgium.setWoodType(EnumExtraTreeLog.Syzgium);
-			Brazilwood.setWoodType(EnumExtraTreeLog.Brazilwood);
-			Logwood.setWoodType(EnumExtraTreeLog.Logwood);
-			Iroko.setWoodType(EnumExtraTreeLog.Iroko);
-			Locust.setWoodType(EnumExtraTreeLog.Locust);
-			Eucalyptus.setWoodType(EnumExtraTreeLog.Eucalyptus);
-			Purpleheart.setWoodType(EnumExtraTreeLog.Purpleheart);
-			Ash.setWoodType(EnumExtraTreeLog.Ash);
-			Holly.setWoodType(EnumExtraTreeLog.Holly);
-			Olive.setWoodType(EnumExtraTreeLog.Olive);
-			Sweetgum.setWoodType(EnumExtraTreeLog.Sweetgum);
-			Rosewood.setWoodType(EnumExtraTreeLog.Rosewood);
-			Gingko.setWoodType(EnumExtraTreeLog.Gingko);
-			PinkIvory.setWoodType(EnumExtraTreeLog.PinkIvory);
-			Banana.setWoodType(EnumExtraTreeLog.Banana);
+			Fir.setWoodType(EnumETLog.Fir);
+			Cedar.setWoodType(EnumETLog.Cedar);
+			Hemlock.setWoodType(EnumETLog.Hemlock);
+			Cypress.setWoodType(EnumETLog.Cypress);
+			Fig.setWoodType(EnumETLog.Fig);
+			Beech.setWoodType(EnumETLog.Beech);
+			Alder.setWoodType(EnumETLog.Alder);
+			Hazel.setWoodType(EnumETLog.Hazel);
+			Hornbeam.setWoodType(EnumETLog.Hornbeam);
+			Box.setWoodType(EnumETLog.Box);
+			Butternut.setWoodType(EnumETLog.Butternut);
+			Hickory.setWoodType(EnumETLog.Hickory);
+			Whitebeam.setWoodType(EnumETLog.Whitebeam);
+			Elm.setWoodType(EnumETLog.Elm);
+			Apple.setWoodType(EnumETLog.Apple);
+			Yew.setWoodType(EnumETLog.Yew);
+			Pear.setWoodType(EnumETLog.Pear);
+			Hawthorn.setWoodType(EnumETLog.Hawthorn);
+			Rowan.setWoodType(EnumETLog.Rowan);
+			Elder.setWoodType(EnumETLog.Elder);
+			Maclura.setWoodType(EnumETLog.Maclura);
+			Syzgium.setWoodType(EnumETLog.Syzgium);
+			Brazilwood.setWoodType(EnumETLog.Brazilwood);
+			Logwood.setWoodType(EnumETLog.Logwood);
+			Iroko.setWoodType(EnumETLog.Iroko);
+			Locust.setWoodType(EnumETLog.Locust);
+			Eucalyptus.setWoodType(EnumETLog.Eucalyptus);
+			Purpleheart.setWoodType(EnumETLog.Purpleheart);
+			Ash.setWoodType(EnumETLog.Ash);
+			Holly.setWoodType(EnumETLog.Holly);
+			Olive.setWoodType(EnumETLog.Olive);
+			Sweetgum.setWoodType(EnumETLog.Sweetgum);
+			Rosewood.setWoodType(EnumETLog.Rosewood);
+			Gingko.setWoodType(EnumETLog.Gingko);
+			PinkIvory.setWoodType(EnumETLog.PinkIvory);
+			Banana.setWoodType(EnumETLog.Banana);
 		}
 		
-		public void setWoodType(IWoodType woodType) {
+		public void setWoodType(EnumETLog woodType) {
 			this.woodType = woodType;
 		}
 		
 		@Override
-		public IWoodType getWoodType() {
+		public EnumETLog getWoodType() {
 			return woodType;
 		}
 	

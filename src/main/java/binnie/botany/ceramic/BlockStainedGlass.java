@@ -7,6 +7,8 @@ import binnie.core.block.BlockMetadata;
 import binnie.core.block.IBlockMetadata;
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.util.TileUtil;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
 import forestry.core.blocks.IColoredBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -30,7 +32,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-public class BlockStainedGlass extends Block implements IBlockMetadata, IColoredBlock {
+public class BlockStainedGlass extends Block implements IBlockMetadata, IColoredBlock, IItemModelRegister {
 	public BlockStainedGlass() {
 		super(Material.GLASS);
 		this.setCreativeTab(CreativeTabBotany.instance);
@@ -50,7 +52,15 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 	@SideOnly(Side.CLIENT)
 	@Override
 	public BlockRenderLayer getBlockLayer() {
-		return BlockRenderLayer.CUTOUT_MIPPED;
+		return BlockRenderLayer.TRANSLUCENT;
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void registerModel(Item item, IModelManager manager) {
+		for (EnumFlowerColor color : EnumFlowerColor.values()) {
+			manager.registerItemModel(item, color.getID());
+		}
 	}
 
     @Override
@@ -108,7 +118,6 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 
 	@Override
 	public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param) {
-		super.eventReceived(state, worldIn, pos, id, param);
 		TileEntity tileentity = worldIn.getTileEntity(pos);
 		return tileentity == null ? false : tileentity.receiveClientEvent(id, param);
 	}
@@ -135,27 +144,6 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 			itemList.add(TileEntityMetadata.getItemStack(this, c.ordinal()));
 		}
 	}
-
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public IIcon getIcon(final IBlockAccess world, final int x, final int y, final int z, final int side) {
-//		final TileEntityMetadata tile = TileEntityMetadata.getTile(world, x, y, z);
-//		if (tile != null) {
-//			return this.getIcon(side, tile.getTileMetadata());
-//		}
-//		return super.getIcon(world, x, y, z, side);
-//	}
-
-//	@Override
-//	public IIcon getIcon(final int side, final int meta) {
-//		return this.blockIcon;
-//	}
-//
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerBlockIcons(final IIconRegister register) {
-//		this.blockIcon = Botany.proxy.getIcon(register, "stained");
-//	}
 
 	@Override
 	public boolean isWood(IBlockAccess world, BlockPos pos) {
@@ -184,6 +172,9 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 
 	@Override
 	public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
-		return EnumFlowerColor.get(getMetaFromState(state)).getColor(false);
+		if(worldIn == null || pos == null){
+			return 0;
+		}
+		return EnumFlowerColor.get(TileEntityMetadata.getTileMetadata(worldIn, pos)).getColor(false);
 	}
 }

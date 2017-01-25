@@ -7,7 +7,7 @@ import binnie.core.Mods;
 import binnie.core.item.ItemMisc;
 import binnie.core.liquid.ItemFluidContainer;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.block.EnumExtraTreeLog;
+import binnie.extratrees.block.EnumETLog;
 import forestry.api.core.Tabs;
 import forestry.api.fuels.EngineBronzeFuel;
 import forestry.api.fuels.FuelManager;
@@ -37,7 +37,7 @@ public class ModuleItems implements IInitializable {
 		itemMisc = new ItemMisc(Tabs.tabArboriculture, ExtraTreeItems.values());
 		ExtraTrees.proxy.registerItem(itemMisc);
 
-		itemDictionary = new ItemDictionary();
+		itemDictionary = new ItemArboristDatabase();
 		ExtraTrees.proxy.registerItem(itemDictionary);
 
 		if (BinnieCore.isLepidopteryActive()) {
@@ -160,7 +160,7 @@ public class ModuleItems implements IInitializable {
 		}
 		FuelManager.bronzeEngineFuel.put(ExtraTreeLiquid.Sap.get(1).getFluid(), new EngineBronzeFuel(ExtraTreeLiquid.Sap.get(1).getFluid(), 20, 10000, 1));
 		FuelManager.bronzeEngineFuel.put(ExtraTreeLiquid.Resin.get(1).getFluid(), new EngineBronzeFuel(ExtraTreeLiquid.Resin.get(1).getFluid(), 30, 10000, 1));
-		for (EnumExtraTreeLog log : EnumExtraTreeLog.values()) {
+		for (EnumETLog log : EnumETLog.values()) {
 			log.addRecipe();
 		}
 	}

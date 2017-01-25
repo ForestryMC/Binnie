@@ -2,10 +2,10 @@ package binnie.extratrees.block.property;
 
 import com.google.common.base.Predicate;
 
-import binnie.extratrees.block.EnumExtraTreeLog;
+import binnie.extratrees.block.EnumETLog;
 import binnie.extratrees.block.PlankType;
 
-public class ETWoodTypePredicate implements Predicate<EnumExtraTreeLog> {
+public class ETWoodTypePredicate implements Predicate<EnumETLog> {
 	private final int minWoodTypeMeta;
 	private final int maxWoodTypeMeta;
 	private final boolean isLog;
@@ -17,7 +17,7 @@ public class ETWoodTypePredicate implements Predicate<EnumExtraTreeLog> {
 	}
 
 	@Override
-	public boolean apply(EnumExtraTreeLog woodType) {
+	public boolean apply(EnumETLog woodType) {
 		if(!isLog && !(woodType.getPlank() instanceof PlankType.ExtraTreePlanks)){
 			return false;
 		}

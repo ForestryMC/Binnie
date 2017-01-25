@@ -2,6 +2,8 @@ package binnie.extratrees.item;
 
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.core.ExtraTreesGUID;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,34 +12,28 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class ItemDictionary extends Item {
-//	IIcon iconMaster;
-//
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerIcons(final IIconRegister register) {
-//		this.itemIcon = ExtraTrees.proxy.getIcon(register, "arboristDatabase");
-//		this.iconMaster = ExtraTrees.proxy.getIcon(register, "masterArboristDatabase");
-//	}
-//
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public IIcon getIconFromDamage(final int par1) {
-//		return (par1 == 0) ? this.itemIcon : this.iconMaster;
-//	}
+public class ItemArboristDatabase extends Item implements IItemModelRegister {
 
+	public ItemArboristDatabase() {
+		this.setCreativeTab(Tabs.tabArboriculture);
+		this.setUnlocalizedName("database");
+		this.setMaxStackSize(1);
+		setRegistryName("databaseTree");
+	}
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
 		super.addInformation(stack, playerIn, tooltip, advanced);
 		if (stack.getItemDamage() > 0) {
-			tooltip.add("Sengir-in-a-can");
+			tooltip.add(TextFormatting.DARK_PURPLE + "Sengir-in-a-can");
 		}
 	}
 
@@ -48,11 +44,11 @@ public class ItemDictionary extends Item {
 		par3List.add(new ItemStack(par1, 1, 1));
 	}
 
-	public ItemDictionary() {
-		this.setCreativeTab(Tabs.tabArboriculture);
-		this.setUnlocalizedName("database");
-		this.setMaxStackSize(1);
-		setRegistryName("databaseTree");
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerModel(Item item, IModelManager manager) {
+		manager.registerItemModel(item, 0, "arboristDatabase");
+		manager.registerItemModel(item, 1, "masterArboristDatabase");
 	}
 
 	@Override

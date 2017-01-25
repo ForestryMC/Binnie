@@ -24,7 +24,7 @@ public class ModuleCarpentry implements IInitializable {
 		blockStained = new BlockStainedDesign();
 		ExtraTrees.proxy.registerBlock(blockCarpentry, new ItemDesign(blockCarpentry));
 		ExtraTrees.proxy.registerBlock(blockPanel, new ItemDesign(blockPanel));
-		ExtraTrees.proxy.registerBlock(blockStained, new ItemDesign(blockPanel));
+		ExtraTrees.proxy.registerBlock(blockStained, new ItemDesign(blockStained));
 
 		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockCarpentry), new MultipassItemRenderer());
 		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockStained), new MultipassItemRenderer());
