@@ -20,19 +20,19 @@ public class ItemMetadataRenderer //implements IItemRenderer
 //
 //	@Override
 //	public void renderItem(final IItemRenderer.ItemRenderType type, final ItemStack item, final Object... data) {
-//		GL11.glPushMatrix();
+//		GlStateManager.pushMatrix();
 //		final Block block = Block.getBlockFromItem(item.getItem());
 //		if (type == IItemRenderer.ItemRenderType.EQUIPPED_FIRST_PERSON) {
-//			GL11.glTranslated(0.5, 0.5, 0.5);
+//			GlStateManager.translate(0.5, 0.5, 0.5);
 //		}
 //		if (type == IItemRenderer.ItemRenderType.INVENTORY && block.getRenderBlockPass() != 0) {
 //			GL11.glAlphaFunc(516, 0.1f);
-//			GL11.glEnable(3042);
+//			GlStateManager.enableBlend();
 //			OpenGlHelper.glBlendFunc(770, 771, 1, 0);
 //		}
-//		GL11.glPushMatrix();
+//		GlStateManager.pushMatrix();
 //		((RenderBlocks) data[0]).renderBlockAsItem(block, TileEntityMetadata.getItemDamage(item), 1.0f);
-//		GL11.glPopMatrix();
-//		GL11.glPopMatrix();
+//		GlStateManager.popMatrix();
+//		GlStateManager.popMatrix();
 //	}
 }

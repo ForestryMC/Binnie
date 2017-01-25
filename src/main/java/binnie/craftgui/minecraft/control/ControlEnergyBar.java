@@ -18,7 +18,6 @@ import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.inventory.IInventory;
-import org.lwjgl.opengl.GL11;
 
 public class ControlEnergyBar extends Control implements ITooltip {
 	public static boolean isError;
@@ -77,7 +76,8 @@ public class ControlEnergyBar extends Control implements ITooltip {
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(CraftGUITexture.EnergyBarBack, this.getArea());
 		final float percentage = this.getPercentage() / 100.0f;
-		CraftGUI.render.colour(this.getColourFromPercentage(percentage));
+		int colourFromPercentage = this.getColourFromPercentage(percentage);
+		CraftGUI.render.colour(colourFromPercentage);
 		final IArea area = this.getArea();
 		switch (this.direction) {
 			case Top:
@@ -119,14 +119,12 @@ public class ControlEnergyBar extends Control implements ITooltip {
 	}
 
 	public int getColourFromPercentage(final float percentage) {
-		int colour = 16777215;
 		if (percentage > 0.5) {
 			final int r = (int) ((1.0 - 2.0 * (percentage - 0.5)) * 255.0);
-			colour = (r << 16) + 65280;
+			return (r << 16) + 65280;
 		} else {
 			final int g = (int) (255.0f * (2.0f * percentage));
-			colour = 16711680 + (g << 8);
+			return 16711680 + (g << 8);
 		}
-		return colour;
 	}
 }

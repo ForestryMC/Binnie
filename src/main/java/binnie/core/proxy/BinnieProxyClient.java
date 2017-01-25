@@ -23,7 +23,6 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nullable;
 import java.io.File;
@@ -80,7 +79,6 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 
 	@Override
 	public void bindTexture(final BinnieResource texture) {
-		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 		this.bindTexture(texture.getResourceLocation());
 	}
 

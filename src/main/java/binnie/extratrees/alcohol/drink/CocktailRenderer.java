@@ -4,7 +4,7 @@ public class CocktailRenderer //implements IItemRenderer
 {
 //	private void renderCocktail(final RenderBlocks renderBlocks, final ItemStack item, final float p, final float q, final float r) {
 //		final RenderItem renderItem = new RenderItem();
-//		GL11.glEnable(3042);
+//		GlStateManager.enableBlend();
 //		GL11.glBlendFunc(770, 771);
 //		final Glassware glass = ExtraTrees.drink.getGlassware(item);
 //		final FluidStack fluid = ExtraTrees.drink.getFluid(item);
@@ -31,7 +31,7 @@ public class CocktailRenderer //implements IItemRenderer
 //			tessellator.addVertexWithUV(x + 0.0f, y + 0.0f, renderItem.zLevel, icon.getMinU(), minV);
 //			tessellator.draw();
 //		}
-//		GL11.glDisable(3042);
+//		GlStateManager.disableBlend();
 //	}
 //
 //	private void setColor(final int i1, final float alpha) {
@@ -86,7 +86,7 @@ public class CocktailRenderer //implements IItemRenderer
 //		case EQUIPPED:
 //		case EQUIPPED_FIRST_PERSON: {
 //			if (type == IItemRenderer.ItemRenderType.ENTITY) {
-//				GL11.glTranslatef(-0.5f, -0.25f, -0.0f);
+//				GlStateManager.translate(-0.5f, -0.25f, -0.0f);
 //			}
 //			final TextureManager texturemanager = BinnieCore.proxy.getMinecraftInstance().getTextureManager();
 //			final Glassware glass = ExtraTrees.drink.getGlassware(item);

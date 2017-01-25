@@ -11,7 +11,7 @@ import binnie.craftgui.core.geometry.Position;
 import binnie.craftgui.core.geometry.TextJustification;
 import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
-import org.lwjgl.opengl.GL11;
+import net.minecraft.client.renderer.GlStateManager;
 
 public class ControlSlide extends Control {
 	private IArea expanded;
@@ -49,16 +49,16 @@ public class ControlSlide extends Control {
 			texture = CraftGUI.render.getTexture(CraftGUITexture.TabOutline).crop(this.anchor.opposite(), 8);
 			CraftGUI.render.texture(texture, tabArea.inset(2));
 			final IArea labelArea = new IArea(-lw / 2, 0, lw, lh);
-			GL11.glPushMatrix();
-			GL11.glTranslatef(shift.x() + this.anchor.x() * 2, shift.y() + this.anchor.y() * 2, 0);
+			GlStateManager.pushMatrix();
+			GlStateManager.translate(shift.x() + this.anchor.x() * 2, shift.y() + this.anchor.y() * 2, 0);
 			if (this.anchor.x() != 0) {
-				GL11.glRotatef(90.0f, 0.0f, 0.0f, this.anchor.x());
+				GlStateManager.rotate(90.0f, 0.0f, 0.0f, this.anchor.x());
 			}
 			if (this.anchor.y() > 0) {
-				GL11.glTranslatef(0.0f, -lh, 0.0f);
+				GlStateManager.translate(0.0f, -lh, 0.0f);
 			}
 			CraftGUI.render.text(labelArea, TextJustification.MiddleCenter, this.label, 16777215);
-			GL11.glPopMatrix();
+			GlStateManager.popMatrix();
 		}
 		CraftGUI.render.texture(CraftGUITexture.Window, this.getArea());
 		final Object slideTexture = (this.anchor == Position.Bottom) ? CraftGUITexture.SlideDown : ((this.anchor == Position.Top) ? CraftGUITexture.SlideUp : ((this.anchor == Position.Left) ? CraftGUITexture.SlideLeft : CraftGUITexture.SlideRight));

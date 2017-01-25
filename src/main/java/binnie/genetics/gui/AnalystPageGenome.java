@@ -15,7 +15,7 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
-import org.lwjgl.opengl.GL11;
+import net.minecraft.client.renderer.GlStateManager;
 
 public class AnalystPageGenome extends ControlAnalystPage {
 	boolean active;
@@ -32,14 +32,14 @@ public class AnalystPageGenome extends ControlAnalystPage {
 		final Control scaled = new Control(this, 0, y, 0, 0) {
 			@Override
 			public void onRenderBackground(int guiWidth, int guiHeight) {
-				GL11.glPushMatrix();
-				GL11.glTranslatef(10.0f, -15.0f, 0.0f);
-				GL11.glScalef(0.9f, 0.95f, 1.0f);
+				GlStateManager.pushMatrix();
+				GlStateManager.translate(10.0f, -15.0f, 0.0f);
+				GlStateManager.scale(0.9f, 0.95f, 1.0f);
 			}
 
 			@Override
 			public void onRenderForeground(int guiWidth, int guiHeight) {
-				GL11.glPopMatrix();
+				GlStateManager.popMatrix();
 			}
 		};
 		for (final IChromosomeType chromo : system.getActiveKaryotype()) {

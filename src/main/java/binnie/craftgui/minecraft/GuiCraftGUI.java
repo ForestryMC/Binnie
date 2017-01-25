@@ -9,6 +9,7 @@ import binnie.craftgui.events.EventMouse;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -20,7 +21,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -71,17 +71,17 @@ public class GuiCraftGUI extends GuiContainer {
 	public void drawScreen(final int mouseX, final int mouseY, final float par3) {
 		this.window.setMousePosition(mouseX - (int) this.window.getPosition().x(), mouseY - (int) this.window.getPosition().y());
 		this.drawDefaultBackground();
-		GL11.glDisable(32826);
+		GlStateManager.disableRescaleNormal();
 		RenderHelper.disableStandardItemLighting();
-		GL11.glDisable(2896);
-		GL11.glDisable(2929);
+		GlStateManager.disableLighting();
+		GlStateManager.disableDepth();
 		this.zLevel = 10.0f;
 		//GuiScreen.itemRender.zLevel = this.zLevel;
 		this.window.render(this.width, this.height);
 
 
-		GL11.glPushMatrix();
-		GL11.glEnable(32826);
+		GlStateManager.pushMatrix();
+		GlStateManager.enableRescaleNormal();
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0f, 240.0f);
 		final InventoryPlayer playerInventory = this.mc.thePlayer.inventory;
 		this.draggedItem = playerInventory.getItemStack();
@@ -89,10 +89,10 @@ public class GuiCraftGUI extends GuiContainer {
 			CraftGUIUtil.renderItem(new IPoint(mouseX - 8, mouseY - 8), this.draggedItem, false);
 		}
 		RenderHelper.enableGUIStandardItemLighting();
-		GL11.glDisable(32826);
-		GL11.glPopMatrix();
-		GL11.glDisable(2896);
-		GL11.glDisable(2929);
+		GlStateManager.disableRescaleNormal();
+		GlStateManager.popMatrix();
+		GlStateManager.disableLighting();
+		GlStateManager.disableDepth();
 		final MinecraftTooltip tooltip = new MinecraftTooltip();
 		if (this.isHelpMode()) {
 			tooltip.setType(Tooltip.Type.Help);
@@ -105,18 +105,18 @@ public class GuiCraftGUI extends GuiContainer {
 			this.renderTooltip(new IPoint(mouseX, mouseY), tooltip);
 		}
 		this.zLevel = 0.0f;
-		GL11.glEnable(2896);
-		GL11.glEnable(2929);
+		GlStateManager.enableLighting();
+		GlStateManager.enableDepth();
 	}
 
 	public void renderTooltip(final IPoint mousePosition, final MinecraftTooltip tooltip) {
 		final int mouseX = (int) mousePosition.x();
 		final int mouseY = (int) mousePosition.y();
 		final FontRenderer font = this.getFontRenderer();
-		GL11.glDisable(32826);
+		GlStateManager.disableRescaleNormal();
 		RenderHelper.disableStandardItemLighting();
-		GL11.glDisable(2896);
-		GL11.glDisable(2929);
+		GlStateManager.disableLighting();
+		GlStateManager.disableDepth();
 		int k = 0;
 		final List<String> strings = new ArrayList<>();
 		for (final String string : tooltip.getList()) {
@@ -175,11 +175,11 @@ public class GuiCraftGUI extends GuiContainer {
 				try {
 					final NBTTagCompound nbt = JsonToNBT.getTagFromJson(split);
 					final ItemStack stack = ItemStack.loadItemStackFromNBT(nbt);
-					GL11.glPushMatrix();
-					GL11.glTranslatef(i1, j1 - 1.5f, 0.0f);
-					GL11.glScalef(0.6f, 0.6f, 1.0f);
+					GlStateManager.pushMatrix();
+					GlStateManager.translate(i1, j1 - 1.5f, 0.0f);
+					GlStateManager.scale(0.6f, 0.6f, 1.0f);
 					CraftGUIUtil.renderItem(IPoint.ZERO, stack, false);
-					GL11.glPopMatrix();
+					GlStateManager.popMatrix();
 				} catch (NBTException e) {
 					e.printStackTrace();
 				}
@@ -193,10 +193,10 @@ public class GuiCraftGUI extends GuiContainer {
 		}
 		this.zLevel = 0.0f;
 		//GuiScreen.itemRender.zLevel = 0.0f;
-		GL11.glEnable(2896);
-		GL11.glEnable(2929);
+		GlStateManager.enableLighting();
+		GlStateManager.enableDepth();
 		RenderHelper.enableStandardItemLighting();
-		GL11.glEnable(32826);
+		GlStateManager.enableRescaleNormal();
 	}
 
 	@Override

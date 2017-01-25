@@ -9,7 +9,7 @@ public class BlockDrinkRenderer //implements ISimpleBlockRenderingHandler
 //
 //	@Override
 //	public boolean renderWorldBlock(final IBlockAccess world, final int x, final int y, final int z, final Block block, final int modelId, final RenderBlocks renderer) {
-//		GL11.glPushMatrix();
+//		GlStateManager.pushMatrix();
 //		Tessellator.instance.setColorRGBA(255, 255, 255, 150);
 //		final Tessellator tess = Tessellator.instance;
 //		renderer.renderFaceYPos(block, x, y, z, Blocks.dirt.getIcon(0, 0));
@@ -24,7 +24,7 @@ public class BlockDrinkRenderer //implements ISimpleBlockRenderingHandler
 //			tess.addVertexWithUV(x + 0.5f + d1, y + h3, z + 0.5f - d1, 0.0, 0.0);
 //			tess.addVertexWithUV(x + 0.5f + d1, y + h2, z + 0.5f - d1, 0.0, 0.0);
 //		}
-//		GL11.glPopMatrix();
+//		GlStateManager.popMatrix();
 //		return false;
 //	}
 //

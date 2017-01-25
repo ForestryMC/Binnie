@@ -6,6 +6,7 @@ import binnie.core.machines.MachineComponent;
 import binnie.core.machines.component.IRender;
 import binnie.core.machines.network.INetwork;
 import net.minecraft.client.particle.Particle;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,7 +16,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.opengl.GL11;
 
 import java.util.Random;
 
@@ -93,11 +93,11 @@ public class InoculatorFX extends MachineComponent implements IRender.DisplayTic
 		final double dx = x + 0.5 - player.lastTickPosX;
 		final double dz = z + 0.5 - player.lastTickPosZ;
 		final double t = Math.atan2(dz, dx) * 180.0 / 3.1415;
-		GL11.glPushMatrix();
-		GL11.glRotatef(180.0f, 0.0f, 0.0f, 1.0f);
-		GL11.glTranslatef(0.0f, -0.25f, 0.0f);
+		GlStateManager.pushMatrix();
+		GlStateManager.rotate(180.0f, 0.0f, 0.0f, 1.0f);
+		GlStateManager.translate(0.0f, -0.25f, 0.0f);
 		BinnieCore.proxy.getMinecraftInstance().getRenderItem().renderItem(this.dummyEntityItem.getEntityItem(), ItemCameraTransforms.TransformType.FIXED); //, 0.0, 0.0, 0.0, 0.0f, 0.0f);
-		GL11.glPopMatrix();
+		GlStateManager.popMatrix();
 	}
 
 	@Override

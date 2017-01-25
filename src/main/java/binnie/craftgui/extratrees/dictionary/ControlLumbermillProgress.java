@@ -14,6 +14,7 @@ import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.machines.lumbermill.LumbermillMachine;
 import binnie.extratrees.machines.lumbermill.LumbermillRecipes;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
@@ -35,14 +36,14 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 
 	@Override
 	public void onRenderForeground(int guiWidth, int guiHeight) {
-		GL11.glDisable(2896);
+		GlStateManager.disableLighting();
 		final int sawX = (int) (63 * this.progress);
 		CraftGUI.render.texture(ControlLumbermillProgress.Saw, new IPoint(sawX, -8 + Math.round(6 * (float) Math.sin(this.animation))));
 		final ItemStack item = Window.get(this).getInventory().getStackInSlot(LumbermillMachine.SLOT_LOG);
 		if (item == null) {
 			return;
 		}
-		GL11.glDisable(2896);
+		GlStateManager.disableLighting();
 		Block block = null;
 		if (item.getItem() instanceof ItemBlock) {
 			block = ((ItemBlock) item.getItem()).getBlock();
@@ -70,12 +71,12 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 		final IPoint size = this.getSize();
 		final IPoint pos = this.getAbsolutePosition();
 		CraftGUI.render.limitArea(new IArea(pos.add(IPoint.ZERO), new IPoint(Math.round(this.progress * 64) + 2, 18)), guiWidth, guiHeight);
-		GL11.glEnable(3089);
+		GL11.glEnable(GL11.GL_SCISSOR_TEST);
 		for (int j = 0; j < 4; ++j) {
 			//TODO RENDERING
 			//CraftGUI.Render.iconBlock(new IPoint(1 + j * 16, 1), icon2);
 		}
-		GL11.glDisable(3089);
+		GL11.glDisable(GL11.GL_SCISSOR_TEST);
 		CraftGUI.render.texture(ControlLumbermillProgress.Saw2, new IPoint(sawX + 2, -8 + Math.round(6 * (float) Math.sin(this.animation))));
 	}
 

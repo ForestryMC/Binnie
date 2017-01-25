@@ -11,7 +11,7 @@ public class HedgeRenderer //implements ISimpleBlockRenderingHandler
 //		GL11.glColor3f(r / 255.0f, g / 255.0f, b / 255.0f);
 //		renderer.setRenderBounds(0.25, 0.0, 0.25, 0.75, 1.0, 0.75);
 //		final Tessellator tess = Tessellator.instance;
-//		GL11.glTranslatef(-0.5f, -0.5f, -0.5f);
+//		GlStateManager.translate(-0.5f, -0.5f, -0.5f);
 //		tess.startDrawingQuads();
 //		tess.setNormal(0.0f, -1.0f, 0.0f);
 //		renderer.renderFaceYNeg(block, 0.0, 0.0, 0.0, block.getIcon(0, metadata));
@@ -36,7 +36,7 @@ public class HedgeRenderer //implements ISimpleBlockRenderingHandler
 //		tess.setNormal(1.0f, 0.0f, 0.0f);
 //		renderer.renderFaceZPos(block, 0.0, 0.0, 0.0, block.getIcon(5, metadata));
 //		tess.draw();
-//		GL11.glTranslatef(0.5f, 0.5f, 0.5f);
+//		GlStateManager.translate(0.5f, 0.5f, 0.5f);
 //	}
 //
 //	@Override
@@ -47,7 +47,7 @@ public class HedgeRenderer //implements ISimpleBlockRenderingHandler
 //		final boolean connectPosX = hedge.canConnectFenceTo(world, x + 1, y, z);
 //		final boolean connectNegZ = hedge.canConnectFenceTo(world, x, y, z - 1);
 //		final boolean connectPosZ = hedge.canConnectFenceTo(world, x, y, z + 1);
-//		GL11.glPushMatrix();
+//		GlStateManager.pushMatrix();
 //		renderer.setRenderBounds(0.25, 0.0, 0.25, 0.75, 1.0, 0.75);
 //		renderer.renderStandardBlock(block, x, y, z);
 //		renderer.renderFaceYPos(block, x, y, z, icon);
@@ -96,7 +96,7 @@ public class HedgeRenderer //implements ISimpleBlockRenderingHandler
 //			renderer.renderFaceXNeg(block, x, y, z, icon);
 //			renderer.renderFaceXPos(block, x, y, z, icon);
 //		}
-//		GL11.glPopMatrix();
+//		GlStateManager.popMatrix();
 //		return false;
 //	}
 //

@@ -18,7 +18,7 @@ public class GateItemRenderer //implements IItemRenderer
 //			if (k == 2) {
 //				renderBlocks.setRenderBounds(0.5f - f2, 0.5, 0.0, 0.5f + f2, 1.0f - f2, 1.0);
 //			}
-//			GL11.glTranslatef(-0.5f, -0.5f, -0.5f);
+//			GlStateManager.translate(-0.5f, -0.5f, -0.5f);
 //			tessellator.startDrawingQuads();
 //			tessellator.setNormal(0.0f, -1.0f, 0.0f);
 //			renderBlocks.renderFaceYNeg(block, 0.0, 0.0, 0.0, renderBlocks.getBlockIconFromSideAndMetadata(block, 0, item.getItemDamage()));
@@ -43,7 +43,7 @@ public class GateItemRenderer //implements IItemRenderer
 //			tessellator.setNormal(1.0f, 0.0f, 0.0f);
 //			renderBlocks.renderFaceXPos(block, 0.0, 0.0, 0.0, renderBlocks.getBlockIconFromSideAndMetadata(block, 5, item.getItemDamage()));
 //			tessellator.draw();
-//			GL11.glTranslatef(0.5f, 0.5f, 0.5f);
+//			GlStateManager.translate(0.5f, 0.5f, 0.5f);
 //		}
 //	}
 

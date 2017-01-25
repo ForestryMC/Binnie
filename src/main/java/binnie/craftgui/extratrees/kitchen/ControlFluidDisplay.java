@@ -8,12 +8,12 @@ import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.minecraft.Window;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.client.FMLClientHandler;
-import org.lwjgl.opengl.GL11;
 
 public class ControlFluidDisplay extends Control implements ITooltip {
 	FluidStack itemStack;
@@ -59,19 +59,19 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 			final int b = hex & 0xFF;
 			final ResourceLocation iconRL = this.itemStack.getFluid().getStill();
 			TextureAtlasSprite icon = FMLClientHandler.instance().getClient().getTextureMapBlocks().getAtlasSprite(iconRL.toString());
-			GL11.glColor4f(r / 255.0f, g / 255.0f, b / 255.0f, 1.0f);
-			GL11.glEnable(3042);
-			GL11.glBlendFunc(770, 771);
+			GlStateManager.color(r / 255.0f, g / 255.0f, b / 255.0f, 1.0f);
+			GlStateManager.enableBlend();
+			GlStateManager.blendFunc(770, 771);
 			if (this.getSize().x() != 16) {
-				GL11.glPushMatrix();
+				GlStateManager.pushMatrix();
 				final float scale = this.getSize().x() / 16.0f;
-				GL11.glScalef(scale, scale, 1.0f);
+				GlStateManager.scale(scale, scale, 1.0f);
 				CraftGUI.render.sprite(IPoint.ZERO, icon);
-				GL11.glPopMatrix();
+				GlStateManager.popMatrix();
 			} else {
 				CraftGUI.render.sprite(IPoint.ZERO, icon);
 			}
-			GL11.glDisable(3042);
+			GlStateManager.disableBlend();
 		}
 	}
 

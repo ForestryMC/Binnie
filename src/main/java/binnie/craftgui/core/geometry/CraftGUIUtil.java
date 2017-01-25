@@ -14,7 +14,6 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.client.config.GuiUtils;
-import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nonnull;
 
@@ -159,9 +158,9 @@ public class CraftGUIUtil {
 		if (rotating) {
 			GlStateManager.pushMatrix();
 			final float phase = Minecraft.getSystemTime() / 20;
-			GL11.glTranslatef(8, 8, 0);
-			GL11.glRotatef(phase, 0, -0.866f, 0.5f);
-			GL11.glTranslatef(-8, -8, -67.1f);
+			GlStateManager.translate(8, 8, 0);
+			GlStateManager.rotate(phase, 0, -0.866f, 0.5f);
+			GlStateManager.translate(-8, -8, -67.1f);
 		}
 
 		minecraft.getRenderItem().renderItemAndEffectIntoGUI(null, itemStack, pos.x(), pos.y());

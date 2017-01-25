@@ -36,8 +36,8 @@ public class MachineRendererKitchen {
 //			}
 //			tess.startDrawingQuads();
 //			tess.draw();
-//			GL11.glPushMatrix();
-//			GL11.glTranslated(x + 0.5, y + 1.0, z + 0.5);
+//			GlStateManager.pushMatrix();
+//			GlStateManager.translate(x + 0.5, y + 1.0, z + 0.5);
 //			RenderManager.instance.renderEngine.bindTexture(TextureMap.locationBlocksTexture);
 //			final float ux = icon.getMinU();
 //			final float uy = icon.getMinV();
@@ -60,9 +60,9 @@ public class MachineRendererKitchen {
 //					ang += 0.05f;
 //				}
 //				for (int angle = 0; angle < 360; angle += 90) {
-//					GL11.glPushMatrix();
-//					GL11.glRotatef(angle, 0.0f, 1.0f, 0.0f);
-//					GL11.glTranslatef(-0.5f, 0.0f, 0.0f);
+//					GlStateManager.pushMatrix();
+//					GlStateManager.rotate(angle, 0.0f, 1.0f, 0.0f);
+//					GlStateManager.translate(-0.5f, 0.0f, 0.0f);
 //					tess.startDrawingQuads();
 //					tess.setColorRGBA(255, 255, 255, 150);
 //					tess.addVertexWithUV(half - d1 * ang, h2, -d1 * ang, 0.0, 0.0);
@@ -76,10 +76,10 @@ public class MachineRendererKitchen {
 //					tess.addVertexWithUV(half - d2 * ang, h3, -d2 * ang, 0.0, 0.0);
 //					tess.addVertexWithUV(half - d1 * ang, h2, -d1 * ang, 0.0, 0.0);
 //					tess.draw();
-//					GL11.glPopMatrix();
+//					GlStateManager.popMatrix();
 //				}
 //			}
-//			GL11.glPopMatrix();
+//			GlStateManager.popMatrix();
 //			if (wasTessellating) {
 //				tess.startDrawingQuads();
 //			}

@@ -92,7 +92,7 @@ public class FenceRenderer //implements ISimpleBlockRenderingHandler
 //				}
 //			}
 //			renderer.setRenderBoundsFromBlock(block);
-//			GL11.glTranslatef(-0.5f, -0.5f, -0.5f);
+//			GlStateManager.translate(-0.5f, -0.5f, -0.5f);
 //			tess.startDrawingQuads();
 //			tess.setNormal(0.0f, -1.0f, 0.0f);
 //			renderer.renderFaceYNeg(block, 0.0, 0.0, 0.0, block.getIcon(0, metadata));
@@ -117,7 +117,7 @@ public class FenceRenderer //implements ISimpleBlockRenderingHandler
 //			tess.setNormal(1.0f, 0.0f, 0.0f);
 //			renderer.renderFaceZPos(block, 0.0, 0.0, 0.0, block.getIcon(5, metadata));
 //			tess.draw();
-//			GL11.glTranslatef(0.5f, 0.5f, 0.5f);
+//			GlStateManager.translate(0.5f, 0.5f, 0.5f);
 //		}
 //		block.setBlockBounds(0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f);
 //		renderer.setRenderBoundsFromBlock(block);

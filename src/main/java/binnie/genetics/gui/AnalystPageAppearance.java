@@ -31,10 +31,10 @@ public class AnalystPageAppearance extends ControlAnalystPage {
 		new ControlIconDisplay(this, (this.w() - w) / 2, y - ((sections == 1) ? 0 : 0), null) {
 			@Override
 			public void onRenderForeground(int guiWidth, int guiHeight) {
-//				GL11.glPushMatrix();
+//				GlStateManager.pushMatrix();
 //				final float scale = w / 16.0f;
 //				final float dy = (sections > 1) ? 16.0f : 0.0f;
-//				GL11.glScalef(scale, scale, 1.0f);
+//				GlStateManager.scale(scale, scale, 1.0f);
 //				CraftGUI.Render.colour(ind.getGenome().getStemColor().getColor(false));
 //				if (sections > 1) {
 //					CraftGUI.Render.iconBlock(IPoint.ZERO, ind.getGenome().getType().getStem(EnumFlowerStage.FLOWER, true, 1));
@@ -50,7 +50,7 @@ public class AnalystPageAppearance extends ControlAnalystPage {
 //					CraftGUI.Render.iconBlock(IPoint.ZERO, ind.getGenome().getType().getVariantIcon(EnumFlowerStage.FLOWER, true, 1));
 //				}
 //				CraftGUI.Render.iconBlock(new IPoint(0, dy), ind.getGenome().getType().getVariantIcon(EnumFlowerStage.FLOWER, true, 0));
-//				GL11.glPopMatrix();
+//				GlStateManager.popMatrix();
 			}
 		};
 	}
