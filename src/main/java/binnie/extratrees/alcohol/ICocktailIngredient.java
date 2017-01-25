@@ -1,7 +1,7 @@
 package binnie.extratrees.alcohol;
 
 public interface ICocktailIngredient {
-	String getName();
+	String getDisplayName();
 
 	String getIdentifier();
 

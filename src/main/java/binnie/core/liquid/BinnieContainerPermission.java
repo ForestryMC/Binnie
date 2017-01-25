@@ -6,9 +6,9 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class BinnieContainerPermission implements IFluidContainerPermission {
 
-	private final FluidContainer container;
+	private final FluidContainerType container;
 	
-	public BinnieContainerPermission(FluidContainer container) {
+	public BinnieContainerPermission(FluidContainerType container) {
 		this.container = container;
 	}
 	
@@ -17,7 +17,7 @@ public class BinnieContainerPermission implements IFluidContainerPermission {
 		Fluid fluid = fluidStack.getFluid();
 		if(fluid instanceof BinnieFluid){
 			BinnieFluid binnie = (BinnieFluid) fluid;
-			return binnie.fluidType.canPlaceIn(container);
+			return binnie.getType().canPlaceIn(container);
 		}
 		return true;
 	}

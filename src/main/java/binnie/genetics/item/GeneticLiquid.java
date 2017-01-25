@@ -1,18 +1,18 @@
 package binnie.genetics.item;
 
 import binnie.Binnie;
-import binnie.core.liquid.FluidContainer;
+import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.IFluidType;
 import binnie.genetics.Genetics;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
 public enum GeneticLiquid implements IFluidType {
-	GrowthMedium("Growth Medium", "growthMedium", 15460533),
+	GrowthMedium("Growth Medium", "growth.medium", 15460533),
 	Bacteria("Bacteria", "bacteria", 14203521),
-	BacteriaPoly("Polymerising Bacteria", "bacteriaPoly", 11443396),
+	BacteriaPoly("Polymerising Bacteria", "bacteria.poly", 11443396),
 	RawDNA("Raw DNA", "dna.raw", 15089129),
-	BacteriaVector("Bacteria Vector", "bacteriaVector", 15960958);
+	BacteriaVector("Bacteria Vector", "bacteria.vector", 15960958);
 
 	String name;
 	String ident;
@@ -34,16 +34,16 @@ public enum GeneticLiquid implements IFluidType {
 
 	@Override
 	public ResourceLocation getFlowing() {
-		return new ResourceLocation(Genetics.instance.getModID(), "blocks/liquids/" + this.ident);
+		return new ResourceLocation(Genetics.instance.getModID(), "blocks/liquids/" + this.ident.replace(".", "_"));
 	}
 
 	@Override
 	public ResourceLocation getStill() {
-		return new ResourceLocation(Genetics.instance.getModID(), "blocks/liquids/" + this.ident);
+		return new ResourceLocation(Genetics.instance.getModID(), "blocks/liquids/" + this.ident.replace(".", "_"));
 	}
 
 	@Override
-	public String getName() {
+	public String getDisplayName() {
 		return this.name;
 	}
 
@@ -73,12 +73,12 @@ public enum GeneticLiquid implements IFluidType {
 	}
 
 	@Override
-	public boolean canPlaceIn(final FluidContainer container) {
-		return this == GeneticLiquid.GrowthMedium || container == FluidContainer.Cylinder;
+	public boolean canPlaceIn(final FluidContainerType container) {
+		return this == GeneticLiquid.GrowthMedium || container == FluidContainerType.CYLINDER;
 	}
 
 	@Override
-	public boolean showInCreative(final FluidContainer container) {
-		return container == FluidContainer.Cylinder;
+	public boolean showInCreative(final FluidContainerType container) {
+		return container == FluidContainerType.CYLINDER;
 	}
 }

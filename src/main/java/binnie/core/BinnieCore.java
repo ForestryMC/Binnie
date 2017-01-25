@@ -9,7 +9,7 @@ import binnie.core.gui.IBinnieGUID;
 import binnie.core.item.ItemFieldKit;
 import binnie.core.item.ItemGenesis;
 import binnie.core.item.ModuleItems;
-import binnie.core.liquid.FluidContainer;
+import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.ItemFluidContainer;
 import binnie.core.machines.MachineGroup;
 import binnie.core.machines.storage.ModuleStorage;
@@ -69,8 +69,8 @@ public final class BinnieCore extends AbstractMod {
 	public void preInit(final FMLPreInitializationEvent evt) {
 		MinecraftForge.EVENT_BUS.register(Binnie.LIQUID);
 		Binnie.CONFIGURATION.registerConfiguration(ConfigurationMods.class, this);
-		for (final FluidContainer container : FluidContainer.values()) {
-			final Item item = new ItemFluidContainer(container);
+		for (FluidContainerType container : FluidContainerType.getBinnieContainers()) {
+			Item item = new ItemFluidContainer(container);
 			BinnieCore.proxy.registerItem(item);
 		}
 		this.preInit();
@@ -82,9 +82,6 @@ public final class BinnieCore extends AbstractMod {
 		for (final AbstractMod mod : getActiveMods()) {
 			NetworkRegistry.INSTANCE.registerGuiHandler(mod, new BinnieGUIHandler(mod));
 		}
-		//TODO RENDERING
-//		BinnieCore.multipassRenderID = RenderingRegistry.getNextAvailableRenderId();
-//		RenderingRegistry.registerBlockHandler(new MultipassBlockRenderer());
 		GameRegistry.registerTileEntity(TileEntityMetadata.class, "binnie.tile.metadata");
 	}
 

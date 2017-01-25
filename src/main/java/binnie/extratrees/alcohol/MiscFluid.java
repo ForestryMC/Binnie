@@ -2,7 +2,7 @@ package binnie.extratrees.alcohol;
 
 import binnie.Binnie;
 import binnie.Constants;
-import binnie.core.liquid.FluidContainer;
+import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.IFluidType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
@@ -36,13 +36,13 @@ public enum MiscFluid implements IFluidType, ICocktailLiquid {
 	}
 
 	@Override
-	public boolean canPlaceIn(final FluidContainer container) {
+	public boolean canPlaceIn(final FluidContainerType container) {
 		return true;
 	}
 
 	@Override
-	public boolean showInCreative(final FluidContainer container) {
-		return container == FluidContainer.Glass;
+	public boolean showInCreative(final FluidContainerType container) {
+		return container == FluidContainerType.GLASS;
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public enum MiscFluid implements IFluidType, ICocktailLiquid {
 	}
 
 	@Override
-	public String getName() {
+	public String getDisplayName() {
 		return this.name;
 	}
 
@@ -82,7 +82,7 @@ public enum MiscFluid implements IFluidType, ICocktailLiquid {
 
 	@Override
 	public String getTooltip(final int ratio) {
-		return ratio + " Part" + ((ratio > 1) ? "s " : " ") + this.getName();
+		return ratio + " Part" + ((ratio > 1) ? "s " : " ") + this.getDisplayName();
 	}
 
 	@Override

@@ -1,0 +1,13 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "inventory": {
+            "model": "forge:forgebucket",
+            "textures": {
+                "base": "binniecore:items/liquids/cylinder.bottle",
+                "fluid": "binniecore:items/liquids/cylinder.contents"
+            },
+            "transform": "forge:default-item"
+        }
+    }
+}

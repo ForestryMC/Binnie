@@ -101,12 +101,14 @@ public class CarpentryInterface implements ICarpentryInterface {
 			return null;
 		}
 		for (final Map.Entry<Integer, IDesignMaterial> entry : CarpentryInterface.woodMap.entrySet()) {
-			final ItemStack key = entry.getValue().getStack();
-			if (key == null) {
-				continue;
-			}
-			if (key.isItemEqual(stack)) {
-				return entry.getValue();
+			for(boolean fireproof : new boolean[]{true, false}){
+				final ItemStack key = entry.getValue().getStack(fireproof);
+				if (key == null) {
+					continue;
+				}
+				if (key.isItemEqual(stack)) {
+					return entry.getValue();
+				}
 			}
 		}
 		return null;

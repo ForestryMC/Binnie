@@ -3,46 +3,41 @@ package binnie.core.liquid;
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
 import binnie.genetics.item.GeneticsItems;
+import forestry.api.core.EnumContainerType;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
 import javax.annotation.Nullable;
 
-public enum FluidContainer {
-	Capsule,
-	Refractory,
-	Can,
-	Glass,
-	Cylinder;
+public enum FluidContainerType {
+	CAPSULE,
+	REFARACTORY,
+	CAN,
+	GLASS,
+	CYLINDER;
 
-	//	IIcon bottle;
-//	IIcon contents;
+	@Nullable
 	ItemFluidContainer item;
 
 	public int getMaxStackSize() {
 		return 16;
 	}
-
-//	@SideOnly(Side.CLIENT)
-//	public void updateIcons(final IIconRegister register) {
-//		this.bottle = BinnieCore.proxy.getIcon(register, (this == FluidContainer.Cylinder) ? "binniecore" : "forestry", "liquids/" + this.toString().toLowerCase() + ".bottle");
-//		this.contents = BinnieCore.proxy.getIcon(register, (this == FluidContainer.Cylinder) ? "binniecore" : "forestry", "liquids/" + this.toString().toLowerCase() + ".contents");
-//	}
-//
-//	public IIcon getBottleIcon() {
-//		return this.bottle;
-//	}
-//
-//	public IIcon getContentsIcon() {
-//		return this.contents;
-//	}
-
+	
+	public static FluidContainerType[] getBinnieContainers(){
+		return new FluidContainerType[]{GLASS, CYLINDER};
+	}
+	
 	public String getName() {
+		return this.name().toLowerCase();
+	}
+
+	public String getDisplayName() {
 		return BinnieCore.proxy.localise("item.container." + this.name().toLowerCase());
 	}
 
@@ -52,19 +47,19 @@ public enum FluidContainer {
 
 	public ItemStack getEmpty() {
 		switch (this) {
-			case Can: {
+			case CAN: {
 				return Mods.Forestry.stack("can");
 			}
-			case Capsule: {
+			case CAPSULE: {
 				return Mods.Forestry.stack("capsule");
 			}
-			case Glass: {
+			case GLASS: {
 				return new ItemStack(Items.GLASS_BOTTLE, 1, 0);
 			}
-			case Refractory: {
+			case REFARACTORY: {
 				return Mods.Forestry.stack("refractory");
 			}
-			case Cylinder: {
+			case CYLINDER: {
 				return GeneticsItems.Cylinder.get(1);
 			}
 			default: {
@@ -78,7 +73,7 @@ public enum FluidContainer {
 		ItemStack stack = getEmpty();
 		if (stack != null) {
 			stack = stack.copy();
-			IFluidHandler fluidHandler = FluidUtil.getFluidHandler(stack);
+ 			IFluidHandler fluidHandler = FluidUtil.getFluidHandler(stack);
 			if (fluidHandler != null) {
 				int fill = fluidHandler.fill(new FluidStack(fluid, Integer.MAX_VALUE), true);
 				if (fill > 0) {
@@ -93,8 +88,11 @@ public enum FluidContainer {
 		if (!this.isActive()) {
 			return;
 		}
-		final ItemStack filled = this.item.getContainer(fluid);
-		final ItemStack empty = this.getEmpty();
+		ItemStack filled = getFilled(FluidRegistry.getFluid(fluid.getIdentifier().toLowerCase()));
+		if(filled == null){
+			filled = item.getContainer(fluid);
+		}
+		ItemStack empty = this.getEmpty();
 		if (filled == null || empty == null || fluid.get(1000) == null) {
 			return;
 		}

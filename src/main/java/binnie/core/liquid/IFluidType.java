@@ -9,7 +9,7 @@ public interface IFluidType {
 
 	ResourceLocation getStill();
 
-	String getName();
+	String getDisplayName();
 
 	String getIdentifier();
 
@@ -21,7 +21,7 @@ public interface IFluidType {
 
 	int getTransparency();
 
-	boolean canPlaceIn(final FluidContainer p0);
+	boolean canPlaceIn(final FluidContainerType p0);
 
-	boolean showInCreative(final FluidContainer p0);
+	boolean showInCreative(final FluidContainerType p0);
 }

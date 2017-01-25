@@ -44,7 +44,7 @@ public class ModuleItems implements IInitializable {
 			itemDictionaryLepi = new ItemMothDatabase();
 			ExtraTrees.proxy.registerItem(itemDictionaryLepi);
 		}
-		Binnie.LIQUID.createLiquids(ExtraTreeLiquid.values(), ItemFluidContainer.LiquidExtraTree);
+		Binnie.LIQUID.createLiquids(ExtraTreeLiquid.values());
 		itemFood = new ItemETFood();
 		ExtraTrees.proxy.registerItem(itemFood);
 

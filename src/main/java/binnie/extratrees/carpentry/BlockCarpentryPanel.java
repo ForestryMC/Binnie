@@ -2,6 +2,7 @@ package binnie.extratrees.carpentry;
 
 import binnie.Binnie;
 import binnie.core.block.TileEntityMetadata;
+import binnie.core.models.ModelMutlipass;
 import binnie.extratrees.ExtraTrees;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;

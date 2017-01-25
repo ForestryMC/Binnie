@@ -7,7 +7,7 @@ import binnie.core.liquid.ItemFluidContainer;
 public class ModuleLiquids implements IInitializable {
 	@Override
 	public void preInit() {
-		Binnie.LIQUID.createLiquids(ExtraBeeLiquid.values(), ItemFluidContainer.LiquidExtraBee);
+		Binnie.LIQUID.createLiquids(ExtraBeeLiquid.values());
 	}
 
 	@Override

@@ -58,7 +58,7 @@ public class ModuleItem implements IInitializable {
 		Genetics.proxy.registerItem(Genetics.registry);
 		Genetics.proxy.registerItem(Genetics.masterRegistry);
 
-		Binnie.LIQUID.createLiquids(GeneticLiquid.values(), ItemFluidContainer.LiquidGenetics);
+		Binnie.LIQUID.createLiquids(GeneticLiquid.values());
 	}
 
 	@Override

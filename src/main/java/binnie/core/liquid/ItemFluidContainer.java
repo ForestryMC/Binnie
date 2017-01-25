@@ -4,9 +4,15 @@ import binnie.Binnie;
 import binnie.extratrees.alcohol.AlcoholEffect;
 import binnie.extratrees.alcohol.drink.DrinkManager;
 import binnie.extratrees.alcohol.drink.IDrinkLiquid;
+import forestry.api.core.EnumContainerType;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
+import forestry.core.items.FluidHandlerItemForestry;
 import forestry.core.items.IColoredItem;
+import forestry.core.items.ItemFluidContainerForestry;
+import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.model.ModelBakery;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,65 +21,50 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelDynBucket;
+import net.minecraftforge.client.model.ModelFluid;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ItemFluidContainer extends ItemFood implements IItemModelRegister, IColoredItem {
-	private FluidContainer container;
-	public static int LiquidExtraBee = 64;
-	public static int LiquidExtraTree = 128;
-	public static int LiquidJuice = 256;
-	public static int LiquidAlcohol = 384;
-	public static int LiquidSpirit = 512;
-	public static int LiquidLiqueuer = 640;
-	public static int LiquidGenetics = 768;
-	private static Map<Integer, String> idToFluid = new HashMap<>();
-	private static Map<String, Integer> fluidToID = new HashMap<>();
+public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
+	private final FluidContainerType container;
 
-	public static void registerFluid(final IFluidType fluid, final int id) {
-		ItemFluidContainer.idToFluid.put(id, fluid.getIdentifier().toLowerCase());
-		ItemFluidContainer.fluidToID.put(fluid.getIdentifier().toLowerCase(), id);
-	}
-
-	public ItemFluidContainer(final FluidContainer container) {
+	public ItemFluidContainer(final FluidContainerType container) {
 		super(0, false);
 		this.container = container;
 		container.item = this;
 		this.maxStackSize = container.getMaxStackSize();
 		this.setHasSubtypes(true);
-		this.setUnlocalizedName("container" + container.name());
+		this.setUnlocalizedName("container" + container.getName());
 		this.setCreativeTab(CreativeTabs.MATERIALS);
-		setRegistryName(container.name());
+		setRegistryName(container.getName());
 	}
-
-	private FluidStack getLiquid(final ItemStack stack) {
-		final String liquid = ItemFluidContainer.idToFluid.get(stack.getItemDamage());
-		return (liquid == null) ? null : Binnie.LIQUID.getFluidStack(liquid, 1000);
-	}
-
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerIcons(final IIconRegister register) {
-//		this.container.updateIcons(register);
-//	}
 
 	@Override
 	public String getItemStackDisplayName(final ItemStack itemstack) {
 		if (itemstack == null) {
 			return "???";
 		}
-		final FluidStack fluid = this.getLiquid(itemstack);
+		FluidStack fluid = getContained(itemstack);
 		if (fluid == null) {
 			return "Missing Fluid";
 		}
-		return fluid.getFluid().getLocalizedName(fluid) + " " + this.container.getName();
+		return fluid.getFluid().getLocalizedName(fluid) + " " + this.container.getDisplayName();
 	}
 
 	@Override
@@ -85,34 +76,30 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister, 
 			if (!liquid.showInCreative(this.container)) {
 				continue;
 			}
-			itemList.add(this.getContainer(liquid));
+			itemList.add(getContainer(liquid));
 		}
+	}
+	
+	protected FluidStack getContained(ItemStack itemStack) {
+		if (itemStack.stackSize != 1) {
+			itemStack = itemStack.copy();
+			itemStack.stackSize = 1;
+		}
+		IFluidHandler fluidHandler = new FluidHandlerItemBinnie(itemStack, container);
+		return fluidHandler.drain(Integer.MAX_VALUE, false);
 	}
 
 	public ItemStack getContainer(final IFluidType liquid) {
-		final int id = ItemFluidContainer.fluidToID.get(liquid.getIdentifier().toLowerCase());
-		final ItemStack itemstack = new ItemStack(this, 1, id);
-		return itemstack;
-	}
-
-//	@Override
-//	public IIcon getIcon(final ItemStack itemstack, final int j) {
-//		if (j > 0) {
-//			return this.container.getBottleIcon();
-//		}
-//		return this.container.getContentsIcon();
-//	}
-	
-	@Override
-	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
-		final FluidStack fluid = this.getLiquid(stack);
-		if (fluid == null) {
-			return 16777215;
+		ItemStack itemStack = new ItemStack(this);
+		IFluidHandler fluidHandler = new FluidHandlerItemBinnie(itemStack, container);
+		try{
+		if (fluidHandler.fill(new FluidStack(FluidRegistry.getFluid(liquid.getIdentifier()), Fluid.BUCKET_VOLUME), true) == Fluid.BUCKET_VOLUME) {
+			return itemStack;
 		}
-		if (tintIndex == 0 && fluid.getFluid() instanceof BinnieFluid) {
-			return ((BinnieFluid) fluid.getFluid()).fluidType.getContainerColour();
+		}catch(Exception e){
+			getClass();
 		}
-		return -1;
+		return container.getEmpty();
 	}
 	
 	@Override
@@ -128,9 +115,9 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister, 
 	}
 
 	@Override
-	protected void onFoodEaten(final ItemStack stack, final World world, final EntityPlayer player) {
+	protected void onFoodEaten(final ItemStack itemStack, final World world, final EntityPlayer player) {
 		if (!world.isRemote) {
-			final FluidStack fluid = this.getLiquid(stack);
+			FluidStack fluid = getContained(itemStack);
 			final IDrinkLiquid liquid = DrinkManager.getLiquid(fluid);
 			if (liquid != null) {
 				AlcoholEffect.makeDrunk(player, liquid.getABV() * fluid.amount);
@@ -145,12 +132,10 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister, 
 
 	@Override
 	public EnumAction getItemUseAction(final ItemStack stack) {
-		return this.isDrinkable(stack) ? EnumAction.DRINK : EnumAction.NONE;
-	}
-	
-	@Override
-	public void registerModel(Item item, IModelManager manager) {
-		manager.registerItemModel(item, 0);
+		if(isDrinkable(stack)){
+			return EnumAction.DRINK;
+		}
+		return EnumAction.NONE;
 	}
 	
 	@Override
@@ -173,9 +158,38 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister, 
 	}
 
 	private boolean isDrinkable(final ItemStack stack) {
-		final FluidStack fluid = this.getLiquid(stack);
+		final FluidStack fluid = getContained(stack);
 		final IDrinkLiquid liquid = DrinkManager.getLiquid(fluid);
 		return liquid != null && liquid.isConsumable();
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void registerModel(Item item, IModelManager manager) {
+		FluidContainerMeshDefinition meshDefinition = new FluidContainerMeshDefinition();
+		manager.registerItemModel(item, meshDefinition);
+		ModelBakery.registerItemVariants(item, meshDefinition.location);
+	}
+	
+	@Override
+	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt){
+		return new FluidHandlerItemBinnie(stack, container);
+	}
+	
+	@SideOnly(Side.CLIENT)
+	private class FluidContainerMeshDefinition implements ItemMeshDefinition{
+
+		final ModelResourceLocation location;
+		
+		public FluidContainerMeshDefinition() {
+			this.location = new ModelResourceLocation(getRegistryName(), "inventory");
+		}
+		
+		@Override
+		public ModelResourceLocation getModelLocation(ItemStack stack) {
+			return location;
+		}
+		
 	}
 
 }

@@ -4,7 +4,7 @@ import binnie.Binnie;
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.core.BinnieCore;
 import binnie.core.genetics.Tolerance;
-import binnie.core.liquid.FluidContainer;
+import binnie.core.liquid.FluidContainerType;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.EnumTolerance;
@@ -102,11 +102,11 @@ public class Acclimatiser {
 		addTemperatureItem(new ItemStack(Blocks.ICE), -0.75f);
 		addHumidityItem(new ItemStack(Items.WATER_BUCKET), 0.75f);
 		addHumidityItem(new ItemStack(Blocks.SAND), -0.15f);
-		addTemperatureItem(FluidContainer.Can.getFilled(FluidRegistry.LAVA), 0.75f);
-		addTemperatureItem(FluidContainer.Refractory.getFilled(FluidRegistry.LAVA), 0.75f);
-		addHumidityItem(FluidContainer.Can.getFilled(FluidRegistry.WATER), 0.75f);
-		addHumidityItem(FluidContainer.Refractory.getFilled(FluidRegistry.WATER), 0.75f);
-		addHumidityItem(FluidContainer.Capsule.getFilled(FluidRegistry.WATER), 0.75f);
+		addTemperatureItem(FluidContainerType.CAN.getFilled(FluidRegistry.LAVA), 0.75f);
+		addTemperatureItem(FluidContainerType.REFARACTORY.getFilled(FluidRegistry.LAVA), 0.75f);
+		addHumidityItem(FluidContainerType.CAN.getFilled(FluidRegistry.WATER), 0.75f);
+		addHumidityItem(FluidContainerType.REFARACTORY.getFilled(FluidRegistry.WATER), 0.75f);
+		addHumidityItem(FluidContainerType.CAPSULE.getFilled(FluidRegistry.WATER), 0.75f);
 	}
 
 	public static boolean canAcclimatise(final ItemStack stack, final List<ItemStack> acclimatisers) {

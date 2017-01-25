@@ -2,31 +2,31 @@ package binnie.extratrees.alcohol;
 
 import binnie.Binnie;
 import binnie.Constants;
-import binnie.core.liquid.FluidContainer;
+import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.IFluidType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
 public enum Juice implements IFluidType, ICocktailLiquid {
-	Apple("Apple Juice", "juiceApple", 16763442, 0.7, "Apple"),
-	Apricot("Apricot Juice", "juiceApricot", 16758046, 0.6, "Apricot"),
-	Banana("Banana Juice", "juiceBanana", 15324291, 0.6, "Banana"),
-	Cherry("Cherry Juice", "juiceCherry", 13044511, 0.6, "Cherry"),
-	Elderberry("Elderberry Juice", "juiceElderberry", 4204073, 0.6, "Elderberry"),
-	Lemon("Lemon Juice", "juiceLemon", 14604882, 0.7, "Lemon"),
-	Lime("Lime Juice", "juiceLime", 12177007, 0.6, "Lime"),
-	Orange("Orange Juice", "juiceOrange", 16359983, 0.8, "Orange"),
-	Peach("Peach Juice", "juicePeach", 16434525, 0.7, "Peach"),
-	Plum("Plum Juice", "juicePlum", 10559249, 0.7, "Plum"),
-	Carrot("Carrot Juice", "juiceCarrot", 16485911, 0.7, "Carrot"),
-	Tomato("Tomato Juice", "juiceTomato", 12731438, 0.7, "Tomato"),
-	Cranberry("Cranberry Juice", "juiceCranberry", 12920629, 0.7, "Cranberry"),
-	Grapefruit("Grapefruit Juice", "juiceGrapefruit", 15897173, 0.6, "Grapefruit"),
-	Olive("Olive Oil", "juiceOlive", 16042240, 0.6, "Olive"),
-	Pineapple("Pineapple Juice", "juicePineapple", 15189319, 0.6, "Pineapple"),
-	Pear("Pear Juice", "juicePear", 14204773, 0.6, "Pear"),
-	WhiteGrape("White Grape Juice", "juiceWhiteGrape", 16507769, 0.6, "WhiteGrape"),
-	RedGrape("Red Grape Juice", "juiceRedGrape", 9775412, 0.6, "RedGrape");
+	Apple("Apple Juice", "juice.apple", 16763442, 0.7, "Apple"),
+	Apricot("Apricot Juice", "juice.apricot", 16758046, 0.6, "Apricot"),
+	Banana("Banana Juice", "juice.banana", 15324291, 0.6, "Banana"),
+	Cherry("Cherry Juice", "juice.cherry", 13044511, 0.6, "Cherry"),
+	Elderberry("Elderberry Juice", "juice.elderberry", 4204073, 0.6, "Elderberry"),
+	Lemon("Lemon Juice", "juice.lemon", 14604882, 0.7, "Lemon"),
+	Lime("Lime Juice", "juice.lime", 12177007, 0.6, "Lime"),
+	Orange("Orange Juice", "juice.orange", 16359983, 0.8, "Orange"),
+	Peach("Peach Juice", "juice.peach", 16434525, 0.7, "Peach"),
+	Plum("Plum Juice", "juice.plum", 10559249, 0.7, "Plum"),
+	Carrot("Carrot Juice", "juice.carrot", 16485911, 0.7, "Carrot"),
+	Tomato("Tomato Juice", "juice.tomato", 12731438, 0.7, "Tomato"),
+	Cranberry("Cranberry Juice", "juice.cranberry", 12920629, 0.7, "Cranberry"),
+	Grapefruit("Grapefruit Juice", "juice.grapefruit", 15897173, 0.6, "Grapefruit"),
+	Olive("Olive Oil", "juice.olive", 16042240, 0.6, "Olive"),
+	Pineapple("Pineapple Juice", "juice.pineapple", 15189319, 0.6, "Pineapple"),
+	Pear("Pear Juice", "juice.pear", 14204773, 0.6, "Pear"),
+	WhiteGrape("White Grape Juice", "juice.white.grape", 16507769, 0.6, "WhiteGrape"),
+	RedGrape("Red Grape Juice", "juice.red.grape", 9775412, 0.6, "RedGrape");
 
 	String name;
 	String ident;
@@ -53,13 +53,13 @@ public enum Juice implements IFluidType, ICocktailLiquid {
 	}
 
 	@Override
-	public boolean canPlaceIn(final FluidContainer container) {
+	public boolean canPlaceIn(final FluidContainerType container) {
 		return true;
 	}
 
 	@Override
-	public boolean showInCreative(final FluidContainer container) {
-		return container == FluidContainer.Glass;
+	public boolean showInCreative(final FluidContainerType container) {
+		return container == FluidContainerType.GLASS;
 	}
 
 
@@ -74,7 +74,7 @@ public enum Juice implements IFluidType, ICocktailLiquid {
 	}
 
 	@Override
-	public String getName() {
+	public String getDisplayName() {
 		return this.name;
 	}
 
@@ -100,7 +100,7 @@ public enum Juice implements IFluidType, ICocktailLiquid {
 
 	@Override
 	public String getTooltip(final int ratio) {
-		return ratio + " Part" + ((ratio > 1) ? "s " : " ") + this.getName();
+		return ratio + " Part" + ((ratio > 1) ? "s " : " ") + this.getDisplayName();
 	}
 
 	@Override

@@ -19,30 +19,29 @@ public class ManagerLiquid extends ManagerBase {
 
 	public ManagerLiquid() {
 		this.fluids = new LinkedHashMap<>();
-		EnumContainerType.CAN.add(new BinnieContainerPermission(FluidContainer.Can));
-		EnumContainerType.CAPSULE.add(new BinnieContainerPermission(FluidContainer.Capsule));
-		EnumContainerType.REFRACTORY.add(new BinnieContainerPermission(FluidContainer.Refractory));
-		EnumContainerType.GLASS.add(new BinnieContainerPermission(FluidContainer.Glass));
+		EnumContainerType.CAN.add(new BinnieContainerPermission(FluidContainerType.CAN));
+		EnumContainerType.CAPSULE.add(new BinnieContainerPermission(FluidContainerType.CAPSULE));
+		EnumContainerType.REFRACTORY.add(new BinnieContainerPermission(FluidContainerType.REFARACTORY));
+		EnumContainerType.GLASS.add(new BinnieContainerPermission(FluidContainerType.GLASS));
 	}
 
 	public Collection<IFluidType> getFluidTypes() {
 		return this.fluids.values();
 	}
 
-	public void createLiquids(final IFluidType[] liquids, int startID) {
+	public void createLiquids(final IFluidType[] liquids) {
 		for (final IFluidType liquid : liquids) {
-			final BinnieFluid fluid = this.createLiquid(liquid, startID++);
+			final BinnieFluid fluid = this.createLiquid(liquid);
 			if (fluid == null) {
 				throw new RuntimeException("Liquid registered incorrectly - " + liquid.getIdentifier());
 			}
 		}
 	}
 
-	public BinnieFluid createLiquid(final IFluidType fluid, final int id) {
+	public BinnieFluid createLiquid(final IFluidType fluid) {
 		this.fluids.put(fluid.getIdentifier().toLowerCase(), fluid);
 		final BinnieFluid bFluid = new BinnieFluid(fluid);
 		FluidRegistry.registerFluid(bFluid);
-		ItemFluidContainer.registerFluid(fluid, id);
 		FluidRegistry.addBucketForFluid(bFluid);
 		return bFluid;
 	}
@@ -58,7 +57,7 @@ public class ManagerLiquid extends ManagerBase {
 	@Override
 	public void postInit() {
 		for (final IFluidType fluid : this.fluids.values()) {
-			for (final FluidContainer container : FluidContainer.values()) {
+			for (final FluidContainerType container : FluidContainerType.values()) {
 				if (container.isActive() && fluid.canPlaceIn(container)) {
 					container.registerContainerData(fluid);
 				}

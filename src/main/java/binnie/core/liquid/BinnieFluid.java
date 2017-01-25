@@ -7,7 +7,8 @@ import net.minecraftforge.fluids.FluidStack;
 
 class BinnieFluid extends Fluid {
 	private final String name;
-	final IFluidType fluidType;
+	private final IFluidType fluidType;
+	private final int color;
 
 	@Override
 	public String getLocalizedName(FluidStack stack) {
@@ -17,13 +18,13 @@ class BinnieFluid extends Fluid {
 	public BinnieFluid(final IFluidType fluid) {
 		super(fluid.getIdentifier(), fluid.getStill(), fluid.getFlowing());
 		this.fluidType = fluid;
-		this.name = fluid.getName();
+		this.name = fluid.getDisplayName();
+		this.color = new Color(this.fluidType.getColour()).getRGB();
 	}
 
 	@Override
 	public int getColor() {
-		//use color to set the alpha to 1.0F
-		return new Color(this.fluidType.getColour()).getRGB();
+		return color;
 	}
 
 	public IFluidType getType() {

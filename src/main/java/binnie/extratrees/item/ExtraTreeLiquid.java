@@ -2,7 +2,7 @@ package binnie.extratrees.item;
 
 import binnie.Binnie;
 import binnie.Constants;
-import binnie.core.liquid.FluidContainer;
+import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.ILiquidType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
@@ -35,7 +35,7 @@ public enum ExtraTreeLiquid implements ILiquidType {
 	}
 
 	@Override
-	public String getName() {
+	public String getDisplayName() {
 		return this.name;
 	}
 
@@ -60,13 +60,13 @@ public enum ExtraTreeLiquid implements ILiquidType {
 	}
 
 	@Override
-	public boolean canPlaceIn(final FluidContainer container) {
+	public boolean canPlaceIn(final FluidContainerType container) {
 		return true;
 	}
 
 	@Override
-	public boolean showInCreative(final FluidContainer container) {
-		return container == FluidContainer.Can || container == FluidContainer.Capsule;
+	public boolean showInCreative(final FluidContainerType container) {
+		return container == FluidContainerType.CAN || container == FluidContainerType.CAPSULE;
 	}
 
 	@Override

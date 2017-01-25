@@ -72,7 +72,7 @@ public enum Cocktail {
 
 	public static void registerIngredient(final ICocktailIngredient ingredient) {
 		Cocktail.cocktailIngredients.put(ingredient.getIdentifier().toLowerCase(), ingredient);
-		DrinkManager.registerDrinkLiquid(ingredient.getIdentifier().toLowerCase(), new DrinkLiquid(ingredient.getName(), ingredient.getColour(), ingredient.getTransparency(), ingredient.getABV()));
+		DrinkManager.registerDrinkLiquid(ingredient.getIdentifier().toLowerCase(), new DrinkLiquid(ingredient.getDisplayName(), ingredient.getColour(), ingredient.getTransparency(), ingredient.getABV()));
 	}
 
 	public static ICocktailIngredient getIngredient(final String name2) {
