@@ -4,13 +4,17 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.IInventorySlots;
 import binnie.core.machines.inventory.IValidatedTankContainer;
 import binnie.core.machines.power.ITankMachine;
+import com.google.common.base.Preconditions;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.IFluidContainerItem;
 import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +61,47 @@ public class TransferRequest {
 		this.transferLiquids = true;
 	}
 
+	@Nullable
+	public static ItemStack transferItemToInventory(final ItemStack item, final IInventory destination, final boolean doAdd) {
+		if (item == null || destination == null) {
+			return item;
+		}
+		ItemStack addition = item.copy();
+		for (int i = 0; i < destination.getSizeInventory(); ++i) {
+			addition = transferToInventory(addition, destination, new int[]{i}, doAdd, false);
+			if (addition == null) {
+				return null;
+			}
+		}
+		return addition;
+	}
+
+	@Nullable
+	public static ItemStack transferToInventory(ItemStack item, final IInventory destination, final int[] targetSlots, final boolean doAdd, final boolean ignoreValidation) {
+		for (final int i : targetSlots) {
+			if (destination.isItemValidForSlot(i, item) || ignoreValidation) {
+				if (destination.getStackInSlot(i) == null) {
+					if (doAdd) {
+						destination.setInventorySlotContents(i, item.copy());
+					}
+					return null;
+				}
+				if (item.isStackable()) {
+					final ItemStack merged = destination.getStackInSlot(i).copy();
+					final ItemStack[] newStacks = mergeStacks(item.copy(), merged.copy());
+					item = newStacks[0];
+					if (doAdd) {
+						destination.setInventorySlotContents(i, newStacks[1]);
+					}
+					if (item == null) {
+						return null;
+					}
+				}
+			}
+		}
+		return item;
+	}
+
 	private void setItemToTransfer(final ItemStack itemToTransfer) {
 		this.itemToTransfer = itemToTransfer;
 	}
@@ -99,10 +144,16 @@ public class TransferRequest {
 			return null;
 		}
 		if (this.transferLiquids && this.destination instanceof ITankMachine) {
+			ItemStack itemIn = item.copy();
 			for (final int tankID : this.targetTanks) {
-				item = this.transferToTank(item, this.origin, (ITankMachine) this.destination, tankID, doAdd);
-				if (item != null) {
-					item = this.transferFromTank(item, this.origin, (ITankMachine) this.destination, tankID, doAdd);
+				item = transferToTank(item, this.origin, (ITankMachine) this.destination, tankID, doAdd);
+				if (item == null || !ItemStack.areItemStacksEqual(item, itemIn)) {
+					break;
+				}
+
+				item = transferFromTank(item, this.origin, (ITankMachine) this.destination, tankID, doAdd);
+				if (item == null || !ItemStack.areItemStacksEqual(item, itemIn)) {
+					break;
 				}
 			}
 		}
@@ -170,94 +221,92 @@ public class TransferRequest {
 		return new ItemStack[]{itemstack, merged};
 	}
 
-	private ItemStack transferToTank(ItemStack item, final IInventory origin, final ITankMachine destination, final int tankID, final boolean doAdd) {
-		item = this.transferToTankUsingContainerData(item, origin, destination, tankID, doAdd);
-		item = this.transferToTankUsingFluidContainer(item, origin, destination, tankID, doAdd);
-		return item;
-	}
+	@Nullable
+	public static ItemStack transferToTank(@Nonnull final ItemStack itemStack, @Nonnull final IInventory origin, @Nonnull final ITankMachine destination, final int tankID, final boolean doAdd) {
+		Preconditions.checkNotNull(itemStack);
+		Preconditions.checkArgument(itemStack.stackSize >= 1);
 
-	private ItemStack transferToTankUsingFluidContainer(final ItemStack item, final IInventory origin, final ITankMachine destination, final int tankID, final boolean doAdd) {
-		if (item == null || !(item.getItem() instanceof IFluidContainerItem)) {
-			return item;
-		}
-		final IFluidContainerItem fluidContainer = (IFluidContainerItem) item.getItem();
-		final FluidStack fluid = fluidContainer.getFluid(item);
-		if (fluid == null) {
-			return item;
-		}
-		final IFluidTank tank = destination.getTanks()[tankID];
-		final IValidatedTankContainer validated = Machine.getInterface(IValidatedTankContainer.class, destination);
-		if (validated != null && (!validated.isLiquidValidForTank(fluid, tankID) || validated.isTankReadOnly(tankID))) {
-			return item;
-		}
-		final int maxFill = tank.fill(fluid, false);
-		final FluidStack toTake = fluidContainer.drain(item, maxFill, true);
-		if (doAdd) {
-			tank.fill(toTake, true);
-		}
-		return item;
-	}
+		final ItemStack singleCopy = itemStack.copy();
+		singleCopy.stackSize = 1;
 
-	private ItemStack transferToTankUsingContainerData(final ItemStack item, final IInventory origin, final ITankMachine destination, final int tankID, final boolean doAdd) {
-		if (item == null) {
-			return item;
-		}
-		FluidStack containerLiquid = null;
-		FluidContainerRegistry.FluidContainerData containerLiquidData = null;
-		for (final FluidContainerRegistry.FluidContainerData data : FluidContainerRegistry.getRegisteredFluidContainerData()) {
-			if (data.filledContainer.isItemEqual(item)) {
-				containerLiquidData = data;
-				containerLiquid = data.fluid.copy();
-				break;
+		// TODO 1.11: use IFluidHandlerItem
+		final IFluidHandler fluidHandler = FluidUtil.getFluidHandler(singleCopy);
+		if (fluidHandler != null) {
+
+			final FluidStack containerLiquid = fluidHandler.drain(Integer.MAX_VALUE, false);
+			if (containerLiquid != null && containerLiquid.amount > 0) {
+
+				final IFluidTank tank = destination.getTanks()[tankID];
+				final IValidatedTankContainer validated = Machine.getInterface(IValidatedTankContainer.class, destination);
+				if (validated == null || validated.isLiquidValidForTank(containerLiquid, tankID)) {
+
+					final int amountAdded = tank.fill(containerLiquid, false);
+
+					// TODO 1.11: use IFluidHandlerItem
+					fluidHandler.drain(amountAdded, true);
+
+					if (singleCopy.stackSize == 0 || transferItemToInventory(singleCopy, origin, false) == null) {
+						if (doAdd) {
+							tank.fill(containerLiquid, true);
+							if (singleCopy.stackSize > 0) {
+								transferItemToInventory(singleCopy, origin, true);
+							}
+						}
+
+						if (itemStack.stackSize == 1) {
+							return null;
+						} else {
+							final ItemStack leftover = itemStack.copy();
+							leftover.stackSize--;
+							return leftover;
+						}
+					}
+				}
 			}
 		}
-		if (containerLiquid == null) {
-			return item;
-		}
-		final IFluidTank tank = destination.getTanks()[tankID];
-		final IValidatedTankContainer validated = Machine.getInterface(IValidatedTankContainer.class, destination);
-		if (validated != null && (!validated.isLiquidValidForTank(containerLiquid, tankID) || validated.isTankReadOnly(tankID))) {
-			return item;
-		}
-		final FluidStack largeAmountOfLiquid = containerLiquid.copy();
-		largeAmountOfLiquid.amount = tank.getCapacity();
-		final int amountAdded = tank.fill(largeAmountOfLiquid, false);
-		int numberOfContainersToAdd = amountAdded / containerLiquid.amount;
-		if (numberOfContainersToAdd > item.stackSize) {
-			numberOfContainersToAdd = item.stackSize;
-		}
-		final ItemStack copy;
-		ItemStack leftOverContainers = copy = item.copy();
-		copy.stackSize -= numberOfContainersToAdd;
-		if (leftOverContainers.stackSize <= 0) {
-			leftOverContainers = null;
-		}
-		ItemStack emptyContainers = containerLiquidData.emptyContainer.copy();
-		emptyContainers.stackSize = 0;
-		final ItemStack itemStack = emptyContainers;
-		itemStack.stackSize += numberOfContainersToAdd;
-		if (emptyContainers.stackSize <= 0) {
-			emptyContainers = null;
-		}
-		final TransferRequest containersDump = new TransferRequest(emptyContainers, origin);
-		final ItemStack containersThatCantBeDumped = containersDump.transfer(false);
-		if (containersThatCantBeDumped != null) {
-			return item;
-		}
-		if (doAdd) {
-			final FluidStack copy2;
-			final FluidStack liquidToFillTank = copy2 = containerLiquid.copy();
-			copy2.amount *= numberOfContainersToAdd;
-			tank.fill(liquidToFillTank, true);
-			containersDump.transfer(true);
-		}
-		return leftOverContainers;
+		return itemStack;
 	}
 
-	private ItemStack transferFromTank(ItemStack item, final IInventory origin, final ITankMachine destination, final int tankID, final boolean doAdd) {
-		item = this.transferFromTankUsingContainerData(item, origin, destination, tankID, doAdd);
-		item = this.transferFromTankUsingFluidContainer(item, origin, destination, tankID, doAdd);
-		return item;
+	private static ItemStack transferFromTank(@Nonnull ItemStack itemStack, @Nonnull final IInventory origin, @Nonnull final ITankMachine destination, final int tankID, final boolean doAdd) {
+		Preconditions.checkNotNull(itemStack);
+		Preconditions.checkArgument(itemStack.stackSize >= 1);
+
+		final IFluidTank tank = destination.getTanks()[tankID];
+		final FluidStack fluid = tank.getFluid();
+		if (fluid != null) {
+			final ItemStack singleCopy = itemStack.copy();
+			singleCopy.stackSize = 1;
+			// TODO 1.11: use IFluidHandlerItem
+			IFluidHandler fluidHandler = FluidUtil.getFluidHandler(singleCopy);
+			if (fluidHandler != null) {
+				final int fillAmount = fluidHandler.fill(fluid, true);
+				if (fillAmount > 0) {
+					final FluidStack fillFluid = tank.drain(fillAmount, false);
+					if (fillFluid != null) {
+						// TODO 1.11: use IFluidHandlerItem
+						fluidHandler.fill(fillFluid, true);
+						if (singleCopy.stackSize == 0 || transferItemToInventory(singleCopy, origin, false) == null) {
+							if (doAdd) {
+								tank.drain(fillFluid.amount, true);
+								if (singleCopy.stackSize > 0) {
+									transferItemToInventory(singleCopy, origin, true);
+								}
+							}
+
+							if (itemStack.stackSize == 1) {
+								return null;
+							} else {
+								ItemStack leftover = itemStack.copy();
+								leftover.stackSize--;
+								return leftover;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return itemStack;
 	}
 
 	private ItemStack transferFromTankUsingFluidContainer(final ItemStack item, final IInventory origin, final ITankMachine destination, final int tankID, final boolean doAdd) {
@@ -277,63 +326,6 @@ public class TransferRequest {
 		}
 		fluidContainer.fill(item, tank.drain(amount, doAdd), doAdd);
 		return item;
-	}
-
-	private ItemStack transferFromTankUsingContainerData(final ItemStack item, final IInventory origin, final ITankMachine destination, final int tankID, final boolean doAdd) {
-		if (item == null) {
-			return item;
-		}
-		final IFluidTank tank = destination.getTanks()[tankID];
-		final FluidStack liquidInTank = tank.getFluid();
-		if (liquidInTank == null) {
-			return item;
-		}
-		FluidContainerRegistry.FluidContainerData containerLiquidData = null;
-		for (final FluidContainerRegistry.FluidContainerData data : FluidContainerRegistry.getRegisteredFluidContainerData()) {
-			if (data.emptyContainer.isItemEqual(item) && liquidInTank.isFluidEqual(data.fluid)) {
-				containerLiquidData = data;
-				break;
-			}
-		}
-		FluidStack fluid = null;
-		ItemStack filled = null;
-		if (containerLiquidData != null) {
-			fluid = containerLiquidData.fluid;
-			filled = containerLiquidData.filledContainer;
-		}
-		if (fluid == null || filled == null) {
-			return item;
-		}
-		final int maximumExtractedLiquid = item.stackSize * fluid.amount;
-		final FluidStack drainedLiquid = tank.drain(maximumExtractedLiquid, false);
-		final int amountInTank = (drainedLiquid == null) ? 0 : drainedLiquid.amount;
-		int numberOfContainersToFill = amountInTank / fluid.amount;
-		if (numberOfContainersToFill > item.stackSize) {
-			numberOfContainersToFill = item.stackSize;
-		}
-		final ItemStack copy;
-		ItemStack leftOverContainers = copy = item.copy();
-		copy.stackSize -= numberOfContainersToFill;
-		if (leftOverContainers.stackSize <= 0) {
-			leftOverContainers = null;
-		}
-		ItemStack filledContainers = filled.copy();
-		filledContainers.stackSize = 0;
-		final ItemStack itemStack = filledContainers;
-		itemStack.stackSize += numberOfContainersToFill;
-		if (filledContainers.stackSize <= 0) {
-			filledContainers = null;
-		}
-		final TransferRequest containersDump = new TransferRequest(filledContainers, origin);
-		final ItemStack containersThatCantBeDumped = containersDump.transfer(false);
-		if (containersThatCantBeDumped != null) {
-			return item;
-		}
-		if (doAdd) {
-			tank.drain(maximumExtractedLiquid, true);
-			containersDump.transfer(true);
-		}
-		return leftOverContainers;
 	}
 
 	public List<TransferSlot> getInsertedSlots() {

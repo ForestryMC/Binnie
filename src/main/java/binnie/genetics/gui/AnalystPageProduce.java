@@ -12,14 +12,13 @@ import binnie.extratrees.machines.fruitpress.FruitPressRecipes;
 import forestry.api.recipes.ICentrifugeRecipe;
 import forestry.api.recipes.ISqueezerRecipe;
 import forestry.api.recipes.RecipeManagers;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
-import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import java.util.ArrayList;
@@ -186,21 +185,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 		allFluids.addAll(fluids2);
 		allFluids.addAll(fluids3);
 		for (final FluidStack fluid : allFluids) {
-			ItemStack container = null;
-			for (final FluidContainerRegistry.FluidContainerData data : FluidContainerRegistry.getRegisteredFluidContainerData()) {
-				if (data.emptyContainer.isItemEqual(new ItemStack(Items.GLASS_BOTTLE)) && data.fluid.isFluidEqual(fluid)) {
-					container = data.filledContainer;
-					break;
-				}
-				if (data.emptyContainer.isItemEqual(new ItemStack(Items.BUCKET)) && data.fluid.isFluidEqual(fluid)) {
-					container = data.filledContainer;
-					break;
-				}
-				if (data.fluid.isFluidEqual(fluid)) {
-					container = data.filledContainer;
-					break;
-				}
-			}
+			ItemStack container = AnalystPageProducts.getContainer(fluid);
 			if (container != null) {
 				products.add(container);
 			}
@@ -220,7 +205,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 				dx = 0;
 				dy += 18;
 			}
-			final FluidStack fluid = FluidContainerRegistry.getFluidForFilledItem(soilStack);
+			final FluidStack fluid = FluidUtil.getFluidContained(soilStack);
 			soilStack.stackSize = 1;
 			final ControlItemDisplay display = new ControlItemDisplay(this, biomeListX + dx, y + dy, soilStack, fluid == null);
 			if (fluid != null) {

@@ -134,7 +134,7 @@ public class AnalystPageProducts extends AnalystPageProduce {
 	}
 
 	@Nullable
-	private static ItemStack getContainer(final FluidStack fluidStack) {
+	public static ItemStack getContainer(final FluidStack fluidStack) {
 		ItemStack[] containers = {
 				new ItemStack(Items.GLASS_BOTTLE),
 				new ItemStack(Items.BUCKET)
