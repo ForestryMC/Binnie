@@ -14,6 +14,7 @@ import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.StandardTexture;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.machines.distillery.DistilleryLogic;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -44,6 +45,7 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 		DistilleryLogic distilleryLogic = Machine.getInterface(DistilleryLogic.class, Window.get(this).getInventory());
 		if (distilleryLogic != null) {
 			final int level = distilleryLogic.level;
+			GlStateManager.enableAlpha();
 			CraftGUI.render.texture(OUTPUT, new IPoint(47, 14 + level * 15));
 			CraftGUI.render.texture(DISTILLERY_OVERLAY, IPoint.ZERO);
 		}

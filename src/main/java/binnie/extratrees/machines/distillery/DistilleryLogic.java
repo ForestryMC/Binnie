@@ -7,14 +7,17 @@ import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nullable;
 import java.util.Map;
 
 public class DistilleryLogic extends ComponentProcessSetCost implements IProcess, INetwork.SendGuiNBT, INetwork.RecieveGuiNBT {
-	public static final int INPUT_FLUID_AMOUNT = 1000;
+	public static final int INPUT_FLUID_AMOUNT = Fluid.BUCKET_VOLUME;
 
+	@Nullable
 	public FluidStack currentFluid;
 	public int level;
 
@@ -38,12 +41,22 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 	public void readFromNBT(final NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
 		this.level = nbt.getByte("dlevel");
+
+		NBTTagCompound fluidNbt = nbt.getCompoundTag("fluid");
+		this.currentFluid = FluidStack.loadFluidStackFromNBT(fluidNbt);
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(final NBTTagCompound nbt2) {
 		NBTTagCompound nbt = super.writeToNBT(nbt2);
 		nbt.setByte("dlevel", (byte) this.level);
+
+		NBTTagCompound fluidNbt = new NBTTagCompound();
+		if (this.currentFluid != null) {
+			this.currentFluid.writeToNBT(fluidNbt);
+		}
+		nbt.setTag("fluid", fluidNbt);
+
 		return nbt;
 	}
 
@@ -77,6 +90,7 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 	protected void onFinishTask() {
 		final FluidStack output = DistilleryRecipes.getOutput(this.currentFluid, this.level);
 		this.getUtil().fillTank(DistilleryMachine.TANK_OUTPUT, output);
+		this.currentFluid = null;
 	}
 
 	@Override
