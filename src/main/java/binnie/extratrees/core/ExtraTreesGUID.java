@@ -1,16 +1,16 @@
 package binnie.extratrees.core;
 
 import binnie.core.gui.IBinnieGUID;
-import binnie.craftgui.extratrees.dictionary.WindowArboristDatabase;
-import binnie.craftgui.extratrees.dictionary.WindowBrewery;
-import binnie.craftgui.extratrees.dictionary.WindowDistillery;
-import binnie.craftgui.extratrees.dictionary.WindowLepidopteristDatabase;
-import binnie.craftgui.extratrees.dictionary.WindowLumbermill;
-import binnie.craftgui.extratrees.dictionary.WindowPress;
-import binnie.craftgui.extratrees.dictionary.WindowSetSquare;
-import binnie.craftgui.extratrees.dictionary.WindowWoodworker;
-import binnie.craftgui.extratrees.kitchen.WindowBottleRack;
 import binnie.craftgui.minecraft.Window;
+import binnie.extratrees.item.craftgui.WindowArboristDatabase;
+import binnie.extratrees.item.craftgui.WindowBrewery;
+import binnie.extratrees.item.craftgui.WindowDistillery;
+import binnie.extratrees.item.craftgui.WindowLepidopteristDatabase;
+import binnie.extratrees.item.craftgui.WindowLumbermill;
+import binnie.extratrees.item.craftgui.WindowPress;
+import binnie.extratrees.item.craftgui.WindowSetSquare;
+import binnie.extratrees.item.craftgui.WindowWoodworker;
+import binnie.extratrees.kitchen.craftgui.WindowBottleRack;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;

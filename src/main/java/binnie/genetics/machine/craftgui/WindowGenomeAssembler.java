@@ -1,38 +1,33 @@
-package binnie.core.machines.storage;
+package binnie.genetics.machine.craftgui;
 
 import binnie.core.AbstractMod;
-import binnie.core.BinnieCore;
 import binnie.craftgui.minecraft.Window;
-import binnie.genetics.machine.craftgui.WindowMachine;
+import binnie.genetics.Genetics;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
 
-public class WindowTest extends WindowMachine {
+public class WindowGenomeAssembler extends WindowMachine {
 	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
-		return new WindowCompartment(player, inventory, side);
+		return new WindowGenomeAssembler(player, inventory, side);
 	}
 
-	public WindowTest(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowGenomeAssembler(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(320, 240, player, inventory, side);
 	}
 
 	@Override
-	public void initialiseClient() {
-	}
-
-	@Override
 	public String getTitle() {
-		return "Test";
+		return "Genome Assembler";
 	}
 
 	@Override
 	protected AbstractMod getMod() {
-		return BinnieCore.instance;
+		return Genetics.instance;
 	}
 
 	@Override
 	protected String getBackgroundTextureName() {
-		return "Test";
+		return "GenomeAssembler";
 	}
 }

@@ -1,19 +1,17 @@
 package binnie.extratrees.item;
 
 import binnie.extratrees.api.IToolHammer;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemHammer extends Item implements IToolHammer {
-	boolean isDurableHammer;
-
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerIcons(final IIconRegister register) {
-//		this.itemIcon = ExtraTrees.proxy.getIcon(register, this.isDurableHammer ? "durableHammer" : "carpentryHammer");
-//	}
+public class ItemHammer extends Item implements IToolHammer, IItemModelRegister {
+	private boolean isDurableHammer;
 
 	public ItemHammer(final boolean durable) {
 		this.isDurableHammer = false;
@@ -23,6 +21,12 @@ public class ItemHammer extends Item implements IToolHammer {
 		this.setMaxStackSize(1);
 		this.setMaxDamage(durable ? 1562 : 251);
 		setRegistryName(durable ? "durableHammer" : "hammer");
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerModel(Item item, IModelManager manager) {
+		manager.registerItemModel(item, 0, isDurableHammer ? "durableHammer" : "carpentryHammer");
 	}
 
 	@Override

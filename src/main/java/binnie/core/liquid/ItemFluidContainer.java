@@ -15,9 +15,14 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
+import scala.concurrent.OnCompleteRunnable;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -149,24 +154,24 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister, 
 	public void registerModel(Item item, IModelManager manager) {
 		manager.registerItemModel(item, 0);
 	}
-
-//	@Override
-//	public ItemStack onItemRightClick(final ItemStack stack, final World world, final EntityPlayer player) {
-//		if (this.isDrinkable(stack)) {
-//			player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
-//		}
-//		return stack;
-//	}
-
-//	@Override
-//	public int func_150905_g(final ItemStack p_150905_1_) {
-//		return 0;
-//	}
-//
-//	@Override
-//	public float func_150906_h(final ItemStack p_150906_1_) {
-//		return 0.0f;
-//	}
+	
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World worldIn, EntityPlayer player, EnumHand hand) {
+		if (player.canEat(false) && this.isDrinkable(stack)) {
+			player.setActiveHand(hand);
+			return new ActionResult(EnumActionResult.SUCCESS, stack);
+		}
+		return new ActionResult(EnumActionResult.PASS, stack);
+	}
+	
+    public float getSaturationModifier(ItemStack stack){
+        return 0.0F;
+    }
+	
+	@Override
+	public int getHealAmount(ItemStack stack) {
+		return 0;
+	}
 
 	private boolean isDrinkable(final ItemStack stack) {
 		final FluidStack fluid = this.getLiquid(stack);
