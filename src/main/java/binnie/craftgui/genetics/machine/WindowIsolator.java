@@ -54,7 +54,7 @@ public class WindowIsolator extends WindowMachine {
 		x += 18;
 		new ControlSlotArray(this, x, y + 3, 2, 3).create(Isolator.SLOT_FINISHED);
 		new ControlEnergyBar(this, 260, 130, 16, 60, Position.Bottom);
-		new ControlErrorState(this, 153.0f, 81.0f);
+		new ControlErrorState(this, 153, 81);
 		new ControlPlayerInventory(this);
 	}
 

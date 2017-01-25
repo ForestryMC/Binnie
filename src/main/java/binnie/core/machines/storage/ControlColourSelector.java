@@ -12,7 +12,7 @@ import binnie.craftgui.minecraft.EnumColor;
 class ControlColourSelector extends Control implements ITooltip, IControlValue<EnumColor> {
 	private EnumColor value;
 
-	public ControlColourSelector(final IWidget parent, final float x, final float y, final float w, final float h, final EnumColor value) {
+	public ControlColourSelector(final IWidget parent, final int x, final int y, final int w, final int h, final EnumColor value) {
 		super(parent, x, y, w, h);
 		this.setValue(value);
 		this.addAttribute(Attribute.MouseOver);
@@ -35,8 +35,8 @@ class ControlColourSelector extends Control implements ITooltip, IControlValue<E
 	}
 
 	@Override
-	public void onRenderBackground() {
-		super.onRenderBackground();
+	public void onRenderBackground(int guiWidth, int guiHeight) {
+		super.onRenderBackground(guiWidth, guiHeight);
 		CraftGUI.render.gradientRect(this.getArea(), -16777216 + this.value.getColour(), -16777216 + this.value.getColour());
 	}
 }

@@ -25,14 +25,14 @@ public class PageSpeciesOverview extends PageSpecies {
 
 	public PageSpeciesOverview(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);
-		this.controlInd1 = new ControlDatabaseIndividualDisplay(this, 5.0f, 5.0f);
-		this.controlInd2 = new ControlDatabaseIndividualDisplay(this, 123.0f, 5.0f);
-		this.controlName = new ControlTextCentered(this, 8.0f, "");
-		this.controlScientific = new ControlTextCentered(this, 32.0f, "");
-		this.controlAuthority = new ControlTextCentered(this, 44.0f, "");
-		this.controlComplexity = new ControlTextCentered(this, 68.0f, "");
-		this.controlDescription = new ControlText(this, new IArea(8.0f, 84.0f, this.getSize().x() - 16.0f, 0.0f), "", TextJustification.MiddleCenter);
-		this.controlSignature = new ControlText(this, new IArea(8.0f, 84.0f, this.getSize().x() - 16.0f, 0.0f), "", TextJustification.BottomRight);
+		this.controlInd1 = new ControlDatabaseIndividualDisplay(this, 5, 5);
+		this.controlInd2 = new ControlDatabaseIndividualDisplay(this, 123, 5);
+		this.controlName = new ControlTextCentered(this, 8, "");
+		this.controlScientific = new ControlTextCentered(this, 32, "");
+		this.controlAuthority = new ControlTextCentered(this, 44, "");
+		this.controlComplexity = new ControlTextCentered(this, 68, "");
+		this.controlDescription = new ControlText(this, new IArea(8, 84, this.getSize().x() - 16, 0), "", TextJustification.MiddleCenter);
+		this.controlSignature = new ControlText(this, new IArea(8, 84, this.getSize().x() - 16, 0), "", TextJustification.BottomRight);
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class PageSpeciesOverview extends PageSpecies {
 		}
 		this.controlDescription.setValue(descBody + TextFormatting.RESET);
 		this.controlSignature.setValue(descSig);
-		final float descHeight = CraftGUI.render.textHeight(this.controlDescription.getValue(), this.controlDescription.getSize().x());
-		this.controlSignature.setPosition(new IPoint(this.controlSignature.pos().x(), this.controlDescription.getPosition().y() + descHeight + 10.0f));
+		final int descHeight = CraftGUI.render.textHeight(this.controlDescription.getValue(), this.controlDescription.getSize().x());
+		this.controlSignature.setPosition(new IPoint(this.controlSignature.pos().x(), this.controlDescription.getPosition().y() + descHeight + 10));
 	}
 }

@@ -55,13 +55,13 @@ public class AnalystPageDescription extends ControlAnalystPage {
 		y += (int) (3.0f + CraftGUI.render.textHeight("Discovered by §l" + authority + "§r", this.w()));
 		new ControlTextCentered(this, y, "Genetic Complexity: " + species.getComplexity()).setColour(this.getColour());
 		y += 26;
-		final ControlText descText = new ControlText(this, new IArea(8.0f, y, this.w() - 16.0f, 0.0f), descBody + "§r", TextJustification.TopCenter);
-		final IWidget signatureText = new ControlText(this, new IArea(8.0f, y, this.w() - 16.0f, 0.0f), descSig + "§r", TextJustification.BottomRight);
+		final ControlText descText = new ControlText(this, new IArea(8, y, this.w() - 16, 0), descBody + "§r", TextJustification.TopCenter);
+		final IWidget signatureText = new ControlText(this, new IArea(8, y, this.w() - 16, 0), descSig + "§r", TextJustification.BottomRight);
 		descText.setColour(this.getColour());
 		signatureText.setColour(this.getColour());
-		final float descHeight = CraftGUI.render.textHeight(descText.getValue(), descText.getSize().x());
-		signatureText.setPosition(new IPoint(signatureText.pos().x(), descText.getPosition().y() + descHeight + 10.0f));
-		this.setSize(new IPoint(this.w(), 20.0f + signatureText.y()));
+		final int descHeight = CraftGUI.render.textHeight(descText.getValue(), descText.getSize().x());
+		signatureText.setPosition(new IPoint(signatureText.pos().x(), descText.getPosition().y() + descHeight + 10));
+		this.setSize(new IPoint(this.w(), 20 + signatureText.y()));
 	}
 
 	@Override

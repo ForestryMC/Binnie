@@ -32,15 +32,15 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		int y = 4;
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColour(this.getColour());
 		y += 16;
-		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), Genetics.proxy.localise("gui.analyst.soil.tolerance.moisture"), TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new IArea(4, y, this.w() - 8, 14), Genetics.proxy.localise("gui.analyst.soil.tolerance.moisture"), TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
-		this.createMoisture(this, (this.w() - 100.0f) / 2.0f, y, 100.0f, 10.0f, moisture, moistureTol);
+		this.createMoisture(this, (this.w() - 100) / 2, y, 100, 10, moisture, moistureTol);
 		y += 16;
-		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), Genetics.proxy.localise("gui.analyst.soil.tolerance.ph"), TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new IArea(4, y, this.w() - 8, 14), Genetics.proxy.localise("gui.analyst.soil.tolerance.ph"), TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
-		this.createAcidity(this, (this.w() - 100.0f) / 2.0f, y, 100.0f, 10.0f, pH, pHTol);
+		this.createAcidity(this, (this.w() - 100) / 2, y, 100, 10, pH, pHTol);
 		y += 16;
-		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), Genetics.proxy.localise("gui.analyst.soil.recommended"), TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new IArea(4, y, this.w() - 8, 14), Genetics.proxy.localise("gui.analyst.soil.recommended"), TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
 		EnumMoisture recomMoisture = EnumMoisture.Normal;
 		final boolean canTolNormal = Tolerance.canTolerate(moisture, EnumMoisture.Normal, moistureTol);
@@ -79,11 +79,11 @@ public class AnalystPageSoil extends ControlAnalystPage {
 			}
 		}
 		final ItemStack stack = new ItemStack(Botany.soil, 1, BlockSoil.getMeta(recomPH, recomMoisture));
-		final ControlItemDisplay recomSoil = new ControlItemDisplay(this, (this.w() - 24.0f) / 2.0f, y, 24.0f);
+		final ControlItemDisplay recomSoil = new ControlItemDisplay(this, (this.w() - 24) / 2, y, 24);
 		recomSoil.setItemStack(stack);
 		recomSoil.setTooltip();
 		y += 32;
-		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), Genetics.proxy.localise("gui.analyst.soil.other"), TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new IArea(4, y, this.w() - 8, 14), Genetics.proxy.localise("gui.analyst.soil.other"), TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
 		final List<ItemStack> stacks = new ArrayList<>();
 		for (final EnumAcidity a : EnumSet.range(EnumAcidity.Acid, EnumAcidity.Alkaline)) {
@@ -93,8 +93,8 @@ public class AnalystPageSoil extends ControlAnalystPage {
 				}
 			}
 		}
-		final float soilListWidth = 17 * stacks.size() - 1;
-		final float soilListX = (this.w() - soilListWidth) / 2.0f;
+		final int soilListWidth = 17 * stacks.size() - 1;
+		final int soilListX = (this.w() - soilListWidth) / 2;
 		int t = 0;
 		for (final ItemStack soilStack : stacks) {
 			final ControlItemDisplay display = new ControlItemDisplay(this, soilListX + 17 * t++, y);
@@ -103,7 +103,7 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		}
 	}
 
-	protected void createMoisture(final IWidget parent, final float x, final float y, final float w, final float h, final EnumMoisture value, final EnumTolerance tol) {
+	protected void createMoisture(final IWidget parent, final int x, final int y, final int w, final int h, final EnumMoisture value, final EnumTolerance tol) {
 		new ControlToleranceBar<EnumMoisture>(parent, x, y, w, h, EnumMoisture.class) {
 			@Override
 			protected String getName(final EnumMoisture value) {
@@ -117,7 +117,7 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		}.setValues(value, tol);
 	}
 
-	protected void createAcidity(final IWidget parent, final float x, final float y, final float w, final float h, final EnumAcidity value, final EnumTolerance tol) {
+	protected void createAcidity(final IWidget parent, final int x, final int y, final int w, final int h, final EnumAcidity value, final EnumTolerance tol) {
 		new ControlToleranceBar<EnumAcidity>(parent, x, y, w, h, EnumAcidity.class) {
 			@Override
 			protected String getName(final EnumAcidity value) {

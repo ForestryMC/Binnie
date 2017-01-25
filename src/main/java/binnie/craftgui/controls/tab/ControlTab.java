@@ -20,7 +20,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 	private ControlTabBar<T> tabBar;
 	protected T value;
 
-	public ControlTab(final ControlTabBar<T> parent, final float x, final float y, final float w, final float h, final T value) {
+	public ControlTab(final ControlTabBar<T> parent, final int x, final int y, final int w, final int h, final T value) {
 		super(parent, x, y, w, h);
 		this.setValue(value);
 		this.tabBar = parent;
@@ -67,7 +67,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		Object texture = CraftGUITexture.TabDisabled;
 		if (this.isMouseOver()) {
 			texture = CraftGUITexture.TabHighlighted;
@@ -76,7 +76,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 		}
 		final Texture lTexture = CraftGUI.render.getTexture(texture);
 		final Position position = this.getTabPosition();
-		Texture iTexture = lTexture.crop(position, 8.0f);
+		Texture iTexture = lTexture.crop(position, 8);
 		final IArea area = this.getArea();
 		if (texture == CraftGUITexture.TabDisabled) {
 			if (position == Position.Top || position == Position.Left) {
@@ -97,7 +97,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 			}
 			if (icon.hasOutline()) {
 				iTexture = CraftGUI.render.getTexture(CraftGUITexture.TabOutline);
-				iTexture = iTexture.crop(position, 8.0f);
+				iTexture = iTexture.crop(position, 8);
 				CraftGUI.render.colour(icon.getOutlineColour());
 				CraftGUI.render.texture(iTexture, area.inset(2));
 			}

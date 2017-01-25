@@ -100,7 +100,7 @@ public class AnalystPageBiology extends ControlAnalystPage {
 			final int fertility = (int) (1.0f / tree.getGenome().getFertility());
 			new ControlTextCentered(this, y, "1 Sapling per §l" + fertility + "§r leave" + ((fertility > 1) ? "s" : "")).setColour(this.getColour());
 			y += 22;
-			final float butterflySpawn = 1365.3999f / (tree.getGenome().getSappiness() * tree.getGenome().getYield() * 0.5f);
+			final int butterflySpawn = Math.round(1365.3999f / (tree.getGenome().getSappiness() * tree.getGenome().getYield() * 0.5f));
 			new ControlTextCentered(this, y, "Butterfies spawn every\n" + this.getTimeString(butterflySpawn) + " per leaf").setColour(this.getColour());
 			y += 34;
 			new ControlTextCentered(this, y, "Plant Types").setColour(this.getColour());
@@ -112,7 +112,7 @@ public class AnalystPageBiology extends ControlAnalystPage {
 		}
 		if (ind instanceof IFlower) {
 			final IFlower flower = (IFlower) ind;
-			final float butterflySpawn2 = 1365.3999f / (flower.getGenome().getSappiness() * 0.2f);
+			final int butterflySpawn2 = Math.round(1365.3999f / (flower.getGenome().getSappiness() * 0.2f));
 			new ControlTextCentered(this, y, "Butterfies spawn every\n" + this.getTimeString(butterflySpawn2)).setColour(this.getColour());
 			y += 30;
 			float CHANCE_DISPERSAL = 0.8f;

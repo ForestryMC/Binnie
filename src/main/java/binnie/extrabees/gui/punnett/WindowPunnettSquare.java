@@ -26,7 +26,7 @@ public class WindowPunnettSquare extends Window {
 	}
 
 	public WindowPunnettSquare(final EntityPlayer player, final IInventory inventory, final Side side) {
-		super(245.0f, 205.0f, player, inventory, side);
+		super(245, 205, player, inventory, side);
 		this.root = null;
 	}
 

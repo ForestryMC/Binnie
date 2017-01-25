@@ -101,9 +101,9 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		final int compartmentWidth = compartmentPageWidth + (doubleTabbed ? 48 : 24);
 		final int compartmentHeight = compartmentPageHeight;
 		final Control controlCompartment = new Control(this, x, y, compartmentWidth, compartmentHeight);
-		final ControlTabBar<Integer> tab = new ControlTabBar<Integer>(controlCompartment, 0.0f, 0.0f, 24.0f, compartmentPageHeight, Position.Left) {
+		final ControlTabBar<Integer> tab = new ControlTabBar<Integer>(controlCompartment, 0, 0, 24, compartmentPageHeight, Position.Left) {
 			@Override
-			public ControlTab<Integer> createTab(final float x, final float y, final float w, final float h, final Integer value) {
+			public ControlTab<Integer> createTab(final int x, final int y, final int w, final int h, final Integer value) {
 				return new ControlTabIcon<Integer>(this, x, y, w, h, value) {
 					@Override
 					public ItemStack getItemStack() {
@@ -142,7 +142,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			}
 		}.setOrigin(EventHandler.Origin.DirectChild, tab));
 		x += 24;
-		final ControlPages<Integer> compartmentPages = new ControlPages<>(controlCompartment, 24.0f, 0.0f, compartmentPageWidth, compartmentPageHeight);
+		final ControlPages<Integer> compartmentPages = new ControlPages<>(controlCompartment, 24, 0, compartmentPageWidth, compartmentPageHeight);
 		final ControlPage[] page = new ControlPage[inv.getTabNumber()];
 		for (int p = 0; p < inv.getTabNumber(); ++p) {
 			page[p] = new ControlPage(compartmentPages, p);
@@ -151,9 +151,9 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		int i = 0;
 		for (int p2 = 0; p2 < inv.getTabNumber(); ++p2) {
 			final ControlPage thisPage = page[p2];
-			final Panel panel = new Panel(thisPage, 0.0f, 0.0f, thisPage.w(), thisPage.h(), MinecraftGUI.PanelType.Black) {
+			final Panel panel = new Panel(thisPage, 0, 0, thisPage.w(), thisPage.h(), MinecraftGUI.PanelType.Black) {
 				@Override
-				public void onRenderForeground() {
+				public void onRenderForeground(int guiWidth, int guiHeight) {
 					final Texture iTexture = CraftGUI.render.getTexture(CraftGUITexture.TabOutline);
 					CraftGUI.render.colour(WindowCompartment.this.getTab(WindowCompartment.this.panels.get(this)).getColor().getColour());
 					CraftGUI.render.texture(iTexture, this.getArea().inset(3));
@@ -168,9 +168,9 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		}
 		x += compartmentPageWidth;
 		if (tabs2.length > 0) {
-			final ControlTabBar<Integer> tab2 = new ControlTabBar<Integer>(controlCompartment, 24 + compartmentPageWidth, 0.0f, 24.0f, compartmentPageHeight, Position.Right) {
+			final ControlTabBar<Integer> tab2 = new ControlTabBar<Integer>(controlCompartment, 24 + compartmentPageWidth, 0, 24, compartmentPageHeight, Position.Right) {
 				@Override
-				public ControlTab<Integer> createTab(final float x, final float y, final float w, final float h, final Integer value) {
+				public ControlTab<Integer> createTab(final int x, final int y, final int w, final int h, final Integer value) {
 					return new ControlTabIcon<Integer>(this, x, y, w, h, value) {
 						@Override
 						public ItemStack getItemStack() {
@@ -212,20 +212,20 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		}
 		x += 16;
 		this.setSize(new IPoint(Math.max(32 + compartmentWidth, 252), this.h()));
-		controlCompartment.setPosition(new IPoint((this.w() - controlCompartment.w()) / 2.0f, controlCompartment.y()));
+		controlCompartment.setPosition(new IPoint((this.w() - controlCompartment.w()) / 2, controlCompartment.y()));
 		final ControlPlayerInventory invent = new ControlPlayerInventory(this, true);
-		final ControlSlide slide = new ControlSlide(this, 0.0f, 134.0f, 136.0f, 92.0f, Position.Left);
+		final ControlSlide slide = new ControlSlide(this, 0, 134, 136, 92, Position.Left);
 		slide.setLabel("Tab Properties");
 		slide.setSlide(false);
 		slide.addHelp("Tab Properties");
 		slide.addHelp("The label, colour and icon of the Tab can be altered here. Clicking on the icon with a held item will change it.");
-		final Panel tabPropertyPanel = new Panel(slide, 16.0f, 8.0f, 112.0f, 76.0f, MinecraftGUI.PanelType.Gray);
+		final Panel tabPropertyPanel = new Panel(slide, 16, 8, 112, 76, MinecraftGUI.PanelType.Gray);
 		int y2 = 4;
-		new ControlText(tabPropertyPanel, new IPoint(4.0f, y2), "Tab Name:");
+		new ControlText(tabPropertyPanel, new IPoint(4, y2), "Tab Name:");
 		final Panel parent = tabPropertyPanel;
-		final float x2 = 4.0f;
+		final int x2 = 4;
 		y2 += 12;
-		(this.tabName = new ControlTextEdit(parent, x2, y2, 104.0f, 12.0f)).addSelfEventHandler(new EventTextEdit.Handler() {
+		(this.tabName = new ControlTextEdit(parent, x2, y2, 104, 12)).addSelfEventHandler(new EventTextEdit.Handler() {
 			@Override
 			public void onEvent(final EventTextEdit event) {
 				final CompartmentTab tab = WindowCompartment.this.getCurrentTab();
@@ -236,8 +236,8 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			}
 		}.setOrigin(EventHandler.Origin.Self, this.tabName));
 		y2 += 20;
-		new ControlText(tabPropertyPanel, new IPoint(4.0f, y2), "Tab Icon: ");
-		(this.tabIcon = new ControlItemDisplay(tabPropertyPanel, 58.0f, y2 - 4)).setItemStack(new ItemStack(Items.PAPER));
+		new ControlText(tabPropertyPanel, new IPoint(4, y2), "Tab Icon: ");
+		(this.tabIcon = new ControlItemDisplay(tabPropertyPanel, 58, y2 - 4)).setItemStack(new ItemStack(Items.PAPER));
 		this.tabIcon.addAttribute(Attribute.MouseOver);
 		this.tabIcon.addSelfEventHandler(new EventMouse.Down.Handler() {
 			@Override
@@ -254,13 +254,13 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				WindowCompartment.this.sendClientAction("comp-change-tab", nbt);
 			}
 		});
-		this.tabColour = new ControlColourSelector(tabPropertyPanel, 82.0f, y2 - 4, 16.0f, 16.0f, EnumColor.White);
+		this.tabColour = new ControlColourSelector(tabPropertyPanel, 82, y2 - 4, 16, 16, EnumColor.White);
 		this.tabIcon.addHelp("Icon for Current Tab");
 		this.tabIcon.addHelp("Click here with an item to change");
 		y2 += 20;
-		new ControlText(tabPropertyPanel, new IPoint(4.0f, y2), "Colour: ");
+		new ControlText(tabPropertyPanel, new IPoint(4, y2), "Colour: ");
 		final int cw = 8;
-		final Panel panelColour = new Panel(tabPropertyPanel, 40.0f, y2 - 4, cw * 8 + 2, cw * 2 + 1, MinecraftGUI.PanelType.Gray);
+		final Panel panelColour = new Panel(tabPropertyPanel, 40, y2 - 4, cw * 8 + 2, cw * 2 + 1, MinecraftGUI.PanelType.Gray);
 		for (int cc = 0; cc < 16; ++cc) {
 			final ControlColourSelector color = new ControlColourSelector(panelColour, 1 + cw * (cc % 8), 1 + cw * (cc / 8), cw, cw, EnumColor.values()[cc]);
 			color.addSelfEventHandler(new EventMouse.Down.Handler() {
@@ -277,16 +277,16 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			color.addHelp("Select a colour to highlight the current tab");
 		}
 		y2 += 20;
-		final ControlButton searchButton = new ControlButton(controlCompartment, compartmentWidth - 24 - 64 - 8, compartmentPageHeight, 64.0f, 16.0f, "Search") {
+		final ControlButton searchButton = new ControlButton(controlCompartment, compartmentWidth - 24 - 64 - 8, compartmentPageHeight, 64, 16, "Search") {
 			@Override
 			protected void onMouseClick(final EventMouse.Down event) {
 				WindowCompartment.this.createSearchDialog();
 			}
 
 			@Override
-			public void onRenderBackground() {
+			public void onRenderBackground(int guiWidth, int guiHeight) {
 				final Object texture = this.isMouseOver() ? CraftGUITexture.TabHighlighted : CraftGUITexture.Tab;
-				CraftGUI.render.texture(CraftGUI.render.getTexture(texture).crop(Position.Bottom, 8.0f), this.getArea());
+				CraftGUI.render.texture(CraftGUI.render.getTexture(texture).crop(Position.Bottom, 8), this.getArea());
 			}
 		};
 		searchButton.addHelp("Search Button");
@@ -294,7 +294,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 	}
 
 	public void createSearchDialog() {
-		new Dialog(this, 252.0f, 192.0f) {
+		new Dialog(this, 252, 192) {
 			Control slotGrid;
 			String textSearch = "";
 			boolean sortByName = false;
@@ -307,16 +307,16 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 
 			@Override
 			public void initialise() {
-				final ControlScrollableContent<IWidget> scroll = new ControlScrollableContent<IWidget>(this, 124.0f, 16.0f, 116.0f, 92.0f, 6.0f) {
+				final ControlScrollableContent<IWidget> scroll = new ControlScrollableContent<IWidget>(this, 124, 16, 116, 92, 6) {
 					@Override
-					public void onRenderBackground() {
+					public void onRenderBackground(int guiWidth, int guiHeight) {
 						CraftGUI.render.colour(11184810);
-						CraftGUI.render.texture(CraftGUITexture.Outline, this.getArea().inset(new IBorder(0.0f, 6.0f, 0.0f, 0.0f)));
+						CraftGUI.render.texture(CraftGUITexture.Outline, this.getArea().inset(new IBorder(0, 6, 0, 0)));
 					}
 				};
-				scroll.setScrollableContent(this.slotGrid = new Control(scroll, 1.0f, 1.0f, 108.0f, 18.0f));
+				scroll.setScrollableContent(this.slotGrid = new Control(scroll, 1, 1, 108, 18));
 				new ControlPlayerInventory(this, true);
-				new ControlTextEdit(this, 16.0f, 16.0f, 100.0f, 14.0f).addEventHandler(new EventTextEdit.Handler() {
+				new ControlTextEdit(this, 16, 16, 100, 14).addEventHandler(new EventTextEdit.Handler() {
 					@Override
 					public void onEvent(final EventTextEdit event) {
 						textSearch = event.value;
@@ -325,21 +325,21 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				});
 				this.includeItems = true;
 				this.includeBlocks = true;
-				new ControlCheckbox(this, 16.0f, 40.0f, 100.0f, "Sort A-Z", this.sortByName) {
+				new ControlCheckbox(this, 16, 40, 100, "Sort A-Z", this.sortByName) {
 					@Override
 					protected void onValueChanged(final boolean value) {
 						sortByName = value;
 						updateSearch();
 					}
 				};
-				new ControlCheckbox(this, 16.0f, 64.0f, 100.0f, "Include Items", this.includeItems) {
+				new ControlCheckbox(this, 16, 64, 100, "Include Items", this.includeItems) {
 					@Override
 					protected void onValueChanged(final boolean value) {
 						includeItems = value;
 						updateSearch();
 					}
 				};
-				new ControlCheckbox(this, 16.0f, 88.0f, 100.0f, "Include Blocks", this.includeBlocks) {
+				new ControlCheckbox(this, 16, 88, 100, "Include Blocks", this.includeBlocks) {
 					@Override
 					protected void onValueChanged(final boolean value) {
 						includeBlocks = value;

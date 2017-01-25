@@ -16,7 +16,7 @@ public class WindowAlvearyIndustrialFrame extends Window {
 	ControlPlayerInventory playerInventory;
 
 	public WindowAlvearyIndustrialFrame(final EntityPlayer player, final IInventory inventory, final Side side) {
-		super(176.0f, 144.0f, player, inventory, side);
+		super(176, 144, player, inventory, side);
 		this.machine = ((TileEntityMachine) inventory).getMachine();
 	}
 
@@ -31,7 +31,7 @@ public class WindowAlvearyIndustrialFrame extends Window {
 	public void initialiseClient() {
 		this.setTitle("Industrial Frame Housing");
 		this.playerInventory = new ControlPlayerInventory(this);
-		final ControlSlot slot = new ControlSlot(this, 79.0f, 30.0f);
+		final ControlSlot slot = new ControlSlot(this, 79, 30);
 		slot.assign(0);
 	}
 

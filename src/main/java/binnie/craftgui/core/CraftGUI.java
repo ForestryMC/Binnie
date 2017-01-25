@@ -5,5 +5,5 @@ import binnie.craftgui.resource.minecraft.CraftGUIResourceManager;
 
 public class CraftGUI {
 	public static CraftGUIResourceManager resourceManager;
-	public static Renderer render;
+	public static final Renderer render = new Renderer();
 }

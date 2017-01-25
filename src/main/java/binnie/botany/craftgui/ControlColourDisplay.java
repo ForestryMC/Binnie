@@ -12,8 +12,8 @@ import binnie.craftgui.core.Tooltip;
 public class ControlColourDisplay extends Control implements IControlValue<IFlowerColour>, ITooltip {
 	IFlowerColour value;
 
-	public ControlColourDisplay(final IWidget parent, final float x, final float y) {
-		super(parent, x, y, 16.0f, 16.0f);
+	public ControlColourDisplay(final IWidget parent, final int x, final int y) {
+		super(parent, x, y, 16, 16);
 		this.addAttribute(Attribute.MouseOver);
 	}
 
@@ -28,7 +28,7 @@ public class ControlColourDisplay extends Control implements IControlValue<IFlow
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.solid(this.getArea(), -1);
 		CraftGUI.render.solid(this.getArea().inset(1), -16777216 + this.getValue().getColor(false));
 	}

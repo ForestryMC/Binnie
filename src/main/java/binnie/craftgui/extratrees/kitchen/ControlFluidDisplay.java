@@ -24,31 +24,31 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 		this.addAttribute(Attribute.MouseOver);
 	}
 
-	public ControlFluidDisplay(final IWidget parent, final float f, final float y) {
-		this(parent, f, y, 16.0f);
+	public ControlFluidDisplay(final IWidget parent, final int x, final int y) {
+		this(parent, x, y, 16);
 	}
 
-	public ControlFluidDisplay(final IWidget parent, final float f, final float y, final FluidStack stack, final boolean tooltip) {
-		this(parent, f, y, 16.0f);
+	public ControlFluidDisplay(final IWidget parent, final int x, final int y, final FluidStack stack, final boolean tooltip) {
+		this(parent, x, y, 16);
 		this.setItemStack(stack);
 		if (tooltip) {
 			this.setTooltip();
 		}
 	}
 
-	public ControlFluidDisplay(final IWidget parent, final float x, final float y, final float size) {
+	public ControlFluidDisplay(final IWidget parent, final int x, final int y, final int size) {
 		super(parent, x, y, size, size);
 		this.itemStack = null;
 		this.hastooltip = false;
 	}
 
 	@Override
-	public void onRenderForeground() {
+	public void onRenderForeground(int guiWidth, int guiHeight) {
 		if (this.itemStack == null) {
 			return;
 		}
 		final IPoint relativeToWindow = this.getAbsolutePosition().sub(this.getSuperParent().getPosition());
-		if (relativeToWindow.x() > Window.get(this).getSize().x() + 100.0f || relativeToWindow.y() > Window.get(this).getSize().y() + 100.0f) {
+		if (relativeToWindow.x() > Window.get(this).getSize().x() + 100 || relativeToWindow.y() > Window.get(this).getSize().y() + 100) {
 			return;
 		}
 		if (this.itemStack != null) {
@@ -62,7 +62,7 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 			GL11.glColor4f(r / 255.0f, g / 255.0f, b / 255.0f, 1.0f);
 			GL11.glEnable(3042);
 			GL11.glBlendFunc(770, 771);
-			if (this.getSize().x() != 16.0f) {
+			if (this.getSize().x() != 16) {
 				GL11.glPushMatrix();
 				final float scale = this.getSize().x() / 16.0f;
 				GL11.glScalef(scale, scale, 1.0f);

@@ -30,16 +30,16 @@ public class AnalystPageBehaviour extends ControlAnalystPage {
 			final int fertility = bee.getGenome().getFlowering();
 			new ControlTextCentered(this, y, "Pollinates nearby\n" + bee.getGenome().getFlowerProvider().getDescription()).setColour(this.getColour());
 			y += 20;
-			new ControlTextCentered(this, y, "§oEvery " + this.getTimeString(PluginApiculture.ticksPerBeeWorkCycle * 100.0f / fertility)).setColour(this.getColour());
+			new ControlTextCentered(this, y, "§oEvery " + this.getTimeString(PluginApiculture.ticksPerBeeWorkCycle * 100 / fertility)).setColour(this.getColour());
 			y += 22;
 			final IAlleleBeeEffect effect = bee.getGenome().getEffect();
 			final Vec3i t = bee.getGenome().getTerritory();
 			if (!effect.getUID().contains("None")) {
 				final String effectDesc = BinnieCore.proxy.localiseOrBlank("allele." + effect.getUID() + ".desc");
 				final String loc = effectDesc.equals("") ? ("Effect: " + effect.getName()) : effectDesc;
-				new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 0.0f), loc, TextJustification.TopCenter).setColour(this.getColour());
-				y += (int) (CraftGUI.render.textHeight(loc, this.w() - 8.0f) + 1.0f);
-				new ControlTextCentered(this, y, "§oWithin " + (int) (t.getX() / 2.0f) + " blocks").setColour(this.getColour());
+				new ControlText(this, new IArea(4, y, this.w() - 8, 0), loc, TextJustification.TopCenter).setColour(this.getColour());
+				y += (int) (CraftGUI.render.textHeight(loc, this.w() - 8) + 1);
+				new ControlTextCentered(this, y, "§oWithin " + (int) (t.getX() / 2) + " blocks").setColour(this.getColour());
 				y += 22;
 			}
 			new ControlTextCentered(this, y, "Territory: §o" + t.getX() + "x" + t.getY() + "x" + t.getZ()).setColour(this.getColour());
@@ -51,14 +51,14 @@ public class AnalystPageBehaviour extends ControlAnalystPage {
 			y += 20;
 			new ControlTextCentered(this, y, "Pollinates nearby\n" + bee2.getGenome().getFlowerProvider().getDescription()).setColour(this.getColour());
 			y += 20;
-			new ControlTextCentered(this, y, "§oEvery " + this.getTimeString(1500.0f)).setColour(this.getColour());
+			new ControlTextCentered(this, y, "§oEvery " + this.getTimeString(1500)).setColour(this.getColour());
 			y += 22;
 			final IAlleleButterflyEffect effect2 = bee2.getGenome().getEffect();
 			if (!effect2.getUID().contains("None")) {
 				final String effectDesc2 = BinnieCore.proxy.localiseOrBlank("allele." + effect2.getUID() + ".desc");
 				final String loc2 = effectDesc2.equals("") ? ("Effect: " + effect2.getName()) : effectDesc2;
-				new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 0.0f), loc2, TextJustification.TopCenter).setColour(this.getColour());
-				y += (int) (CraftGUI.render.textHeight(loc2, this.w() - 8.0f) + 1.0f);
+				new ControlText(this, new IArea(4, y, this.w() - 8, 0), loc2, TextJustification.TopCenter).setColour(this.getColour());
+				y += (int) (CraftGUI.render.textHeight(loc2, this.w() - 8) + 1);
 				y += 22;
 			}
 		}

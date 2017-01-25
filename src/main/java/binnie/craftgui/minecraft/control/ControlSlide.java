@@ -20,7 +20,7 @@ public class ControlSlide extends Control {
 	private Position anchor;
 	private String label;
 
-	public ControlSlide(final IWidget parent, final float x, final float y, final float w, final float h, final Position anchor2) {
+	public ControlSlide(final IWidget parent, final int x, final int y, final int w, final int h, final Position anchor2) {
 		super(parent, x, y, w, h);
 		this.slideActive = true;
 		this.label = null;
@@ -28,29 +28,29 @@ public class ControlSlide extends Control {
 		this.addAttribute(Attribute.BlockTooltip);
 		this.expanded = new IArea(this.getPosition(), this.getSize());
 		this.anchor = anchor2.opposite();
-		final float border = (this.anchor.x() != 0) ? (this.expanded.w() - 6.0f) : (this.expanded.h() - 6.0f);
+		final int border = (this.anchor.x() != 0) ? (this.expanded.w() - 6) : (this.expanded.h() - 6);
 		this.shrunk = this.expanded.inset(new IBorder(this.anchor, border));
 		this.slideActive = false;
 	}
 
 	@Override
-	public void onRenderBackground() {
-		super.onRenderBackground();
+	public void onRenderBackground(int guiWidth, int guiHeight) {
+		super.onRenderBackground(guiWidth, guiHeight);
 		if (this.label != null) {
-			final float lw = CraftGUI.render.textWidth(this.label) + 16;
-			final float lh = CraftGUI.render.textHeight() + 16;
+			final int lw = CraftGUI.render.textWidth(this.label) + 16;
+			final int lh = CraftGUI.render.textHeight() + 16;
 			final boolean hor = this.anchor.x() != 0;
 			final IArea ar = this.isSlideActive() ? this.expanded : this.shrunk;
-			IArea tabArea = new IArea(hor ? (-lh / 2.0f) : (-lw / 2.0f), hor ? (-lw / 2.0f) : (-lh / 2.0f), hor ? lh : lw, hor ? lw : lh);
-			final IPoint shift = new IPoint(ar.w() * (1 - this.anchor.x()) / 2.0f, ar.h() * (1 - this.anchor.y()) / 2.0f);
-			tabArea = tabArea.shift(shift.x() - (-3.0f + lh / 2.0f) * this.anchor.x(), shift.y() - (-3.0f + lh / 2.0f) * this.anchor.y());
-			Texture texture = CraftGUI.render.getTexture(this.isSlideActive() ? CraftGUITexture.Tab : CraftGUITexture.TabDisabled).crop(this.anchor.opposite(), 8.0f);
+			IArea tabArea = new IArea(hor ? (-lh / 2) : (-lw / 2), hor ? (-lw / 2) : (-lh / 2), hor ? lh : lw, hor ? lw : lh);
+			final IPoint shift = new IPoint(ar.w() * (1 - this.anchor.x()) / 2, ar.h() * (1 - this.anchor.y()) / 2);
+			tabArea = tabArea.shift(shift.x() - (-3 + lh / 2) * this.anchor.x(), shift.y() - (-3 + lh / 2) * this.anchor.y());
+			Texture texture = CraftGUI.render.getTexture(this.isSlideActive() ? CraftGUITexture.Tab : CraftGUITexture.TabDisabled).crop(this.anchor.opposite(), 8);
 			CraftGUI.render.texture(texture, tabArea);
-			texture = CraftGUI.render.getTexture(CraftGUITexture.TabOutline).crop(this.anchor.opposite(), 8.0f);
+			texture = CraftGUI.render.getTexture(CraftGUITexture.TabOutline).crop(this.anchor.opposite(), 8);
 			CraftGUI.render.texture(texture, tabArea.inset(2));
-			final IArea labelArea = new IArea(-lw / 2.0f, 0.0f, lw, lh);
+			final IArea labelArea = new IArea(-lw / 2, 0, lw, lh);
 			GL11.glPushMatrix();
-			GL11.glTranslatef(shift.x() + this.anchor.x() * 2.0f, shift.y() + this.anchor.y() * 2.0f, 0.0f);
+			GL11.glTranslatef(shift.x() + this.anchor.x() * 2, shift.y() + this.anchor.y() * 2, 0);
 			if (this.anchor.x() != 0) {
 				GL11.glRotatef(90.0f, 0.0f, 0.0f, this.anchor.x());
 			}
@@ -62,7 +62,7 @@ public class ControlSlide extends Control {
 		}
 		CraftGUI.render.texture(CraftGUITexture.Window, this.getArea());
 		final Object slideTexture = (this.anchor == Position.Bottom) ? CraftGUITexture.SlideDown : ((this.anchor == Position.Top) ? CraftGUITexture.SlideUp : ((this.anchor == Position.Left) ? CraftGUITexture.SlideLeft : CraftGUITexture.SlideRight));
-		CraftGUI.render.texture(slideTexture, new IPoint((this.anchor.x() + 1.0f) * this.w() / 2.0f - 8.0f, (this.anchor.y() + 1.0f) * this.h() / 2.0f - 8.0f));
+		CraftGUI.render.texture(slideTexture, new IPoint((this.anchor.x() + 1) * this.w() / 2 - 8, (this.anchor.y() + 1) * this.h() / 2 - 8));
 	}
 
 	public boolean isSlideActive() {
@@ -79,7 +79,7 @@ public class ControlSlide extends Control {
 
 	@Override
 	public boolean isMouseOverWidget(final IPoint relativeMouse) {
-		return this.getArea().outset(this.isSlideActive() ? 16 : 8).outset(new IBorder(this.anchor.opposite(), 16.0f)).contains(relativeMouse);
+		return this.getArea().outset(this.isSlideActive() ? 16 : 8).outset(new IBorder(this.anchor.opposite(), 16)).contains(relativeMouse);
 	}
 
 	@Override

@@ -47,7 +47,7 @@ public class WindowGenesis extends Window {
 	private Panel panelPickup;
 
 	public WindowGenesis(final EntityPlayer player, final IInventory inventory, final Side side) {
-		super(342.0f, 228.0f, player, inventory, side);
+		super(342, 228, player, inventory, side);
 	}
 
 	@Override
@@ -64,9 +64,9 @@ public class WindowGenesis extends Window {
 	public void initialiseClient() {
 		new ControlPlayerInventory(this);
 		this.setTitle("Genesis");
-		final ControlTabBar<BreedingSystem> tabSystems = new ControlTabBar<BreedingSystem>(this, 8.0f, 28.0f, 23.0f, 100.0f, Position.Left) {
+		final ControlTabBar<BreedingSystem> tabSystems = new ControlTabBar<BreedingSystem>(this, 8, 28, 23, 100, Position.Left) {
 			@Override
-			public ControlTab<BreedingSystem> createTab(final float x, final float y, final float w, final float h, final BreedingSystem value) {
+			public ControlTab<BreedingSystem> createTab(final int x, final int y, final int w, final int h, final BreedingSystem value) {
 				return new ControlTabIcon<BreedingSystem>(this, x, y, w, h, value) {
 					@Override
 					public ItemStack getItemStack() {
@@ -95,17 +95,17 @@ public class WindowGenesis extends Window {
 		tabSystems.setValues(Binnie.GENETICS.getActiveSystems());
 		this.root = Binnie.GENETICS.getActiveSystems().iterator().next().getSpeciesRoot();
 		this.template = this.root.getDefaultTemplate();
-		final IArea one = new IArea(32.0f, 28.0f, 170.0f, 100.0f);
-		final IArea two = new IArea(214.0f, 28.0f, 100.0f, 100.0f);
+		final IArea one = new IArea(32, 28, 170, 100);
+		final IArea two = new IArea(214, 28, 100, 100);
 		new Panel(this, one.outset(1), MinecraftGUI.PanelType.Black);
 		new Panel(this, two.outset(1), MinecraftGUI.PanelType.Black);
-		this.geneList = new ControlListBox<Gene>(this, one.x(), one.y(), one.w(), one.h(), 10.0f) {
+		this.geneList = new ControlListBox<Gene>(this, one.x(), one.y(), one.w(), one.h(), 10) {
 			@Override
 			public IWidget createOption(final Gene value, final int y) {
 				return new ControlGenesisOption(this.getContent(), value, y);
 			}
 		};
-		this.geneOptions = new ControlListBox<Gene>(this, two.x(), two.y(), two.w(), two.h(), 10.0f) {
+		this.geneOptions = new ControlListBox<Gene>(this, two.x(), two.y(), two.w(), two.h(), 10) {
 			@Override
 			public IWidget createOption(final Gene value, final int y) {
 				return new ControlTextOption<>(this.getContent(), value, y);
@@ -146,7 +146,7 @@ public class WindowGenesis extends Window {
 				WindowGenesis.this.refreshTemplate(chromo);
 			}
 		}.setOrigin(EventHandler.Origin.Self, this.geneOptions));
-		this.panelPickup = new Panel(this, 16.0f, 140.0f, 60.0f, 42.0f, MinecraftGUI.PanelType.Black);
+		this.panelPickup = new Panel(this, 16, 140, 60, 42, MinecraftGUI.PanelType.Black);
 		this.refreshTemplate(null);
 	}
 

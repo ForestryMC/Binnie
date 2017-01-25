@@ -9,9 +9,9 @@ import net.minecraft.item.ItemStack;
 public class ControlTabIcon<T> extends ControlTab<T> {
 	private ControlItemDisplay item;
 
-	public ControlTabIcon(final ControlTabBar<T> parent, final float x, final float y, final float w, final float h, final T value) {
+	public ControlTabIcon(final ControlTabBar<T> parent, final int x, final int y, final int w, final int h, final T value) {
 		super(parent, x, y, w, h, value);
-		this.item = new ControlItemDisplay(this, -8.0f + w / 2.0f, -8.0f + h / 2.0f);
+		this.item = new ControlItemDisplay(this, -8 + w / 2, -8 + h / 2);
 		this.item.hastooltip = false;
 	}
 
@@ -26,8 +26,8 @@ public class ControlTabIcon<T> extends ControlTab<T> {
 	public void onUpdateClient() {
 		super.onUpdateClient();
 		this.item.setItemStack(this.getItemStack());
-		final float x = ((ControlTabBar) this.getParent()).getDirection().x();
-		this.item.setOffset(new IPoint((this.isCurrentSelection() || this.isMouseOver()) ? 0.0f : (-4.0f * x), 0.0f));
+		final int x = ((ControlTabBar) this.getParent()).getDirection().x();
+		this.item.setOffset(new IPoint((this.isCurrentSelection() || this.isMouseOver()) ? 0 : (-4 * x), 0));
 	}
 
 	public boolean hasOutline() {

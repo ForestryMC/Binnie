@@ -12,10 +12,10 @@ public class ControlScrollBar extends Control {
 	protected final IControlScrollable scrollable;
 
 	public ControlScrollBar(final ControlScroll parent) {
-		this(parent, 0.0f, 0.0f, parent.getSize().x(), parent.getSize().y(), parent.getScrollableWidget());
+		this(parent, 0, 0, parent.getSize().x(), parent.getSize().y(), parent.getScrollableWidget());
 	}
 
-	public ControlScrollBar(final IWidget parent, final float x, final float y, final float w, final float h, final IControlScrollable scrollable2) {
+	public ControlScrollBar(final IWidget parent, final int x, final int y, final int w, final int h, final IControlScrollable scrollable2) {
 		super(parent, x, y, w, h);
 		this.scrollable = scrollable2;
 		this.addAttribute(Attribute.MouseOver);
@@ -53,21 +53,21 @@ public class ControlScrollBar extends Control {
 		return this.scrollable.getPercentageShown() < 0.99f;
 	}
 
-	public float getBarHeight() {
-		return this.h() * this.scrollable.getPercentageShown();
+	public int getBarHeight() {
+		return Math.round(this.h() * this.scrollable.getPercentageShown());
 	}
 
 	protected IArea getRenderArea() {
-		float height = this.getBarHeight();
-		if (height < 6.0f) {
-			height = 6.0f;
+		int height = this.getBarHeight();
+		if (height < 6) {
+			height = 6;
 		}
-		final float yOffset = ((int) this.h() - (int) this.getBarHeight()) * this.scrollable.getPercentageIndex();
-		return new IArea(0.0f, yOffset, this.getSize().x(), height);
+		final int yOffset = Math.round((this.h() - this.getBarHeight()) * this.scrollable.getPercentageIndex());
+		return new IArea(0, yOffset, this.getSize().x(), height);
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		final IArea renderArea = this.getRenderArea();
 		Object texture = CraftGUITexture.ScrollDisabled;
 		if (this.isMouseOver()) {

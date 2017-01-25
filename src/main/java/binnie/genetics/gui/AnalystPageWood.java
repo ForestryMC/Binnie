@@ -46,7 +46,7 @@ public class AnalystPageWood extends AnalystPageProduce {
 			final int w = products.size() * 18 - 2;
 			final int i = 0;
 			for (final ItemStack stack : products) {
-				final ControlItemDisplay d = new ControlItemDisplay(this, (this.w() - w) / 2.0f + 18 * i, y);
+				final ControlItemDisplay d = new ControlItemDisplay(this, (this.w() - w) / 2 + 18 * i, y);
 				d.setTooltip();
 				d.setItemStack(stack);
 			}

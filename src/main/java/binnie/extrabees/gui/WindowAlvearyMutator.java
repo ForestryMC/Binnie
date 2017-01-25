@@ -22,7 +22,7 @@ public class WindowAlvearyMutator extends Window {
 	ControlPlayerInventory playerInventory;
 
 	public WindowAlvearyMutator(final EntityPlayer player, final IInventory inventory, final Side side) {
-		super(176.0f, 176.0f, player, inventory, side);
+		super(176, 176, player, inventory, side);
 		this.machine = ((TileEntityMachine) inventory).getMachine();
 	}
 
@@ -37,18 +37,18 @@ public class WindowAlvearyMutator extends Window {
 	public void initialiseClient() {
 		this.setTitle("Mutator");
 		this.playerInventory = new ControlPlayerInventory(this);
-		final ControlSlot slot = new ControlSlot(this, 79.0f, 30.0f);
+		final ControlSlot slot = new ControlSlot(this, 79, 30);
 		slot.assign(0);
-		new ControlText(this, new IArea(0.0f, 52.0f, this.w(), 16.0f), "Possible Mutagens:", TextJustification.MiddleCenter).setColour(5592405);
+		new ControlText(this, new IArea(0, 52, this.w(), 16), "Possible Mutagens:", TextJustification.MiddleCenter).setColour(5592405);
 		final int size = AlvearyMutator.getMutagens().size();
 		final int w = size * 18;
 		if (size > 0) {
-			float x = (this.w() - w) / 2.0f;
+			int x = (this.w() - w) / 2;
 			for (final ItemStack stack : AlvearyMutator.getMutagens()) {
-				final ControlItemDisplay display = new ControlItemDisplay(this, x, 66.0f);
+				final ControlItemDisplay display = new ControlItemDisplay(this, x, 66);
 				display.setItemStack(stack);
 				display.hastooltip = true;
-				x += 18.0f;
+				x += 18;
 			}
 		}
 	}

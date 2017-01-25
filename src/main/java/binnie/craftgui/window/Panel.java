@@ -10,7 +10,7 @@ import binnie.craftgui.resource.minecraft.CraftGUITexture;
 public class Panel extends Control {
 	IPanelType type;
 
-	public Panel(final IWidget parent, final float x, final float y, final float width, final float height, final IPanelType type) {
+	public Panel(final IWidget parent, final int x, final int y, final int width, final int height, final IPanelType type) {
 		super(parent, x, y, width, height);
 		this.type = type;
 	}
@@ -24,7 +24,7 @@ public class Panel extends Control {
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		final IPanelType panelType = this.getType();
 		if (panelType instanceof MinecraftGUI.PanelType) {
 			switch ((MinecraftGUI.PanelType) panelType) {

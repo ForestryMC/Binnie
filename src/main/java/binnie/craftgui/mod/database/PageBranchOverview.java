@@ -21,9 +21,9 @@ public class PageBranchOverview extends PageBranch {
 	public PageBranchOverview(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);
 		this.pageBranchOverview_branchDescription = new ArrayList<>();
-		this.pageBranchOverview_branchName = new ControlTextCentered(this, 8.0f, "");
-		this.pageBranchOverview_branchScientific = new ControlTextCentered(this, 32.0f, "");
-		this.pageBranchOverview_branchAuthority = new ControlTextCentered(this, 44.0f, "");
+		this.pageBranchOverview_branchName = new ControlTextCentered(this, 8, "");
+		this.pageBranchOverview_branchScientific = new ControlTextCentered(this, 32, "");
+		this.pageBranchOverview_branchAuthority = new ControlTextCentered(this, 44, "");
 	}
 
 	@Override

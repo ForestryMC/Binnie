@@ -29,7 +29,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 	ControlListBox<ItemStack> selectionBoxPlanks;
 
 	public WindowArboristDatabase(final EntityPlayer player, final Side side, final boolean nei) {
-		super(player, side, nei, Binnie.GENETICS.treeBreedingSystem, 120.0f);
+		super(player, side, nei, Binnie.GENETICS.treeBreedingSystem, 120);
 	}
 
 	public static Window create(final EntityPlayer player, final Side side, final boolean nei) {
@@ -49,7 +49,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 		this.createMode(TreeMode.Fruit, new ModeWidgets(TreeMode.Fruit, this) {
 			@Override
 			public void createListBox(final IArea area) {
-				(this.listBox = new ControlListBox<ItemStack>(this.modePage, area.x(), area.y(), area.w(), area.h(), 12.0f) {
+				(this.listBox = new ControlListBox<ItemStack>(this.modePage, area.x(), area.y(), area.w(), area.h(), 12) {
 					@Override
 					public IWidget createOption(final ItemStack value, final int y) {
 						return new ControlItemStackOption(this.getContent(), value, y);
@@ -60,7 +60,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 		this.createMode(TreeMode.Wood, new ModeWidgets(TreeMode.Wood, this) {
 			@Override
 			public void createListBox(final IArea area) {
-				(this.listBox = new ControlListBox<ItemStack>(this.modePage, area.x(), area.y(), area.w(), area.h(), 12.0f) {
+				(this.listBox = new ControlListBox<ItemStack>(this.modePage, area.x(), area.y(), area.w(), area.h(), 12) {
 					@Override
 					public IWidget createOption(final ItemStack value, final int y) {
 						return new ControlItemStackOption(this.getContent(), value, y);
@@ -71,7 +71,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 		this.createMode(TreeMode.Planks, new ModeWidgets(TreeMode.Planks, this) {
 			@Override
 			public void createListBox(final IArea area) {
-				this.listBox = new ControlListBox<ItemStack>(this.modePage, area.x(), area.y(), area.w(), area.h(), 12.0f) {
+				this.listBox = new ControlListBox<ItemStack>(this.modePage, area.x(), area.y(), area.w(), area.h(), 12) {
 					@Override
 					public IWidget createOption(final ItemStack value, final int y) {
 						return new ControlItemStackOption(this.getContent(), value, y);

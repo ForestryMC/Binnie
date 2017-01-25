@@ -31,26 +31,26 @@ public class WindowWoodworker extends Window {
 	@Override
 	public void initialiseClient() {
 		this.setTitle(Machine.getMachine(this.getInventory()).getPackage().getDisplayName());
-		new ControlText(this, new IArea(190.0f, 36.0f, 114.0f, 10.0f), BinnieCore.proxy.localise("gui.design"), TextJustification.TopCenter).setColour(4473924);
-		new Panel(this, 188.0f, 48.0f, 118.0f, 126.0f, MinecraftGUI.PanelType.Gray);
-		this.textEdit = new ControlTextEdit(this, 188.0f, 178.0f, 118.0f, 12.0f);
-		final ControlScrollableContent scroll = new ControlScrollableContent(this, 190.0f, 50.0f, 114.0f, 122.0f, 12.0f);
-		scroll.setScrollableContent(this.tileSelect = new ControlTileSelect(scroll, 0.0f, 0.0f));
-		new ControlPlayerInventory(this).setPosition(new IPoint(14.0f, 96.0f));
-		new ControlErrorState(this, 76.0f, 65.0f);
+		new ControlText(this, new IArea(190, 36, 114, 10), BinnieCore.proxy.localise("gui.design"), TextJustification.TopCenter).setColour(4473924);
+		new Panel(this, 188, 48, 118, 126, MinecraftGUI.PanelType.Gray);
+		this.textEdit = new ControlTextEdit(this, 188, 178, 118, 12);
+		final ControlScrollableContent scroll = new ControlScrollableContent(this, 190, 50, 114, 122, 12);
+		scroll.setScrollableContent(this.tileSelect = new ControlTileSelect(scroll, 0, 0));
+		new ControlPlayerInventory(this).setPosition(new IPoint(14, 96));
+		new ControlErrorState(this, 76, 65);
 		if (this.getInventory() != null) {
-			final ControlSlot slotWood1 = new ControlSlot(this, 22.0f, 34.0f);
+			final ControlSlot slotWood1 = new ControlSlot(this, 22, 34);
 			slotWood1.assign(Designer.design1Slot);
-			final ControlSlot slotWood2 = new ControlSlot(this, 62.0f, 34.0f);
+			final ControlSlot slotWood2 = new ControlSlot(this, 62, 34);
 			slotWood2.assign(Designer.design2Slot);
-			final ControlSlot slotBeeswax = new ControlSlot(this, 42.0f, 64.0f);
+			final ControlSlot slotBeeswax = new ControlSlot(this, 42, 64);
 			slotBeeswax.assign(Designer.beeswaxSlot);
 			final ControlRecipeSlot slotFinished = new ControlRecipeSlot(this, 112, 34);
 		}
 	}
 
 	public WindowWoodworker(final EntityPlayer player, final IInventory inventory, final Side side) {
-		super(320.0f, 216.0f, player, inventory, side);
+		super(320, 216, player, inventory, side);
 		this.addEventHandler(new EventTextEdit.Handler() {
 			@Override
 			public void onEvent(final EventTextEdit event) {

@@ -11,7 +11,7 @@ public class ControlBiome extends Control implements ITooltip {
 	Biome biome;
 	String iconCategory;
 
-	public ControlBiome(final IWidget parent, final float x, final float y, final float w, final float h, final Biome biome) {
+	public ControlBiome(final IWidget parent, final int x, final int y, final int w, final int h, final Biome biome) {
 		super(parent, x, y, w, h);
 		this.biome = null;
 		this.iconCategory = "plains";
@@ -19,7 +19,7 @@ public class ControlBiome extends Control implements ITooltip {
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		if (BiomeDictionary.isBiomeOfType(this.biome, BiomeDictionary.Type.MOUNTAIN)) {
 			this.iconCategory = "hills";
 		}

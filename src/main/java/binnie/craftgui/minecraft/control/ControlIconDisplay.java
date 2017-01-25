@@ -11,13 +11,13 @@ import net.minecraft.util.ResourceLocation;
 public class ControlIconDisplay extends Control {
 	private TextureAtlasSprite icon;
 
-	public ControlIconDisplay(final IWidget parent, final float x, final float y, final ResourceLocation icon) {
-		super(parent, x, y, 16.0f, 16.0f);
+	public ControlIconDisplay(final IWidget parent, final int x, final int y, final ResourceLocation icon) {
+		super(parent, x, y, 16, 16);
 		this.icon = BinnieCore.proxy.getTextureAtlasSprite(icon);
 	}
 
 	@Override
-	public void onRenderForeground() {
+	public void onRenderForeground(int guiWidth, int guiHeight) {
 		CraftGUI.render.sprite(IPoint.ZERO, this.icon);
 	}
 }

@@ -30,7 +30,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 	ControlListBox<EnumFlowerColor> selectionBoxColors;
 
 	public WindowBotanistDatabase(final EntityPlayer player, final Side side, final boolean nei) {
-		super(player, side, nei, Binnie.GENETICS.flowerBreedingSystem, 130.0f);
+		super(player, side, nei, Binnie.GENETICS.flowerBreedingSystem, 130);
 	}
 
 	public static Window create(final EntityPlayer player, final Side side, final boolean nei) {
@@ -49,7 +49,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 		this.createMode(FlowerMode.Colour, new ModeWidgets(FlowerMode.Colour, this) {
 			@Override
 			public void createListBox(final IArea area) {
-				this.listBox = new ControlListBox<IFlowerColour>(this.modePage, area.x(), area.y(), area.w(), area.h(), 12.0f) {
+				this.listBox = new ControlListBox<IFlowerColour>(this.modePage, area.x(), area.y(), area.w(), area.h(), 12) {
 					@Override
 					public IWidget createOption(final IFlowerColour value, final int y) {
 						return new ControlColourOption(this.getContent(), value, y);

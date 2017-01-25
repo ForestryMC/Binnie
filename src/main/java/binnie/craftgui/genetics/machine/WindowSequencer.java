@@ -47,12 +47,18 @@ public class WindowSequencer extends WindowMachine {
 		super.initialiseClient();
 		int x = 16;
 		int y = 32;
-		CraftGUIUtil.horizontalGrid(x, y, TextJustification.MiddleCenter, 2.0f, new ControlSlotArray(this, 0, 0, 2, 2).create(Sequencer.SLOT_RESERVE), new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowRight.getIcon().getResourceLocation()), new ControlSequencerProgress(this, 0, 0), new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowRight.getIcon().getResourceLocation()), new ControlSlot(this, 0.0f, 0.0f).assign(6));
+		CraftGUIUtil.horizontalGrid(x, y, TextJustification.MiddleCenter, 2,
+				new ControlSlotArray(this, 0, 0, 2, 2).create(Sequencer.SLOT_RESERVE),
+				new ControlIconDisplay(this, 0, 0, GUIIcon.ArrowRight.getIcon().getResourceLocation()),
+				new ControlSequencerProgress(this, 0, 0),
+				new ControlIconDisplay(this, 0, 0, GUIIcon.ArrowRight.getIcon().getResourceLocation()),
+				new ControlSlot(this, 0, 0).assign(6)
+		);
 		final ControlSlot slotTarget = new ControlSlot(this, x + 96, y + 16);
 		slotTarget.assign(5);
 		x = 34;
 		y = 92;
-		this.slotText = new ControlText(this, new IArea(0.0f, y, this.w(), 12.0f), TextFormatting.DARK_GRAY + Genetics.proxy.localise("machine.machine.sequencer.texts.userless"), TextJustification.MiddleCenter);
+		this.slotText = new ControlText(this, new IArea(0, y, this.w(), 12), TextFormatting.DARK_GRAY + Genetics.proxy.localise("machine.machine.sequencer.texts.userless"), TextJustification.MiddleCenter);
 		y += 20;
 		final ControlSlot slotDye = new ControlSlot(this, x, y);
 		slotDye.assign(0);

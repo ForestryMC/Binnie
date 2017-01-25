@@ -29,26 +29,26 @@ public class AnalystPageGenome extends ControlAnalystPage {
 		y += 16;
 		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(ind.getClass());
 		final BreedingSystem system = Binnie.GENETICS.getSystem(root);
-		final Control scaled = new Control(this, 0.0f, y, 0.0f, 0.0f) {
+		final Control scaled = new Control(this, 0, y, 0, 0) {
 			@Override
-			public void onRenderBackground() {
+			public void onRenderBackground(int guiWidth, int guiHeight) {
 				GL11.glPushMatrix();
 				GL11.glTranslatef(10.0f, -15.0f, 0.0f);
 				GL11.glScalef(0.9f, 0.95f, 1.0f);
 			}
 
 			@Override
-			public void onRenderForeground() {
+			public void onRenderForeground(int guiWidth, int guiHeight) {
 				GL11.glPopMatrix();
 			}
 		};
 		for (final IChromosomeType chromo : system.getActiveKaryotype()) {
 			final IAllele allele = active ? ind.getGenome().getActiveAllele(chromo) : ind.getGenome().getInactiveAllele(chromo);
 			final String alleleName = system.getAlleleName(chromo, allele);
-			final float height = CraftGUI.render.textHeight(alleleName, this.w() / 2.0f - 2.0f);
-			new ControlText(scaled, new IArea(0.0f, y + (height - 9.0f) / 2.0f, this.w() / 2.0f - 2.0f, 0.0f), system.getChromosomeShortName(chromo) + " :", TextJustification.TopRight).setColour(this.getColour());
-			new ControlText(scaled, new IArea(this.w() / 2.0f + 2.0f, y, this.w() / 2.0f - 2.0f, 0.0f), alleleName, TextJustification.TopLeft).setColour(this.getColour());
-			y += (int) (3.0f + height);
+			final int height = CraftGUI.render.textHeight(alleleName, this.w() / 2 - 2);
+			new ControlText(scaled, new IArea(0, y + (height - 9) / 2, this.w() / 2 - 2, 0), system.getChromosomeShortName(chromo) + " :", TextJustification.TopRight).setColour(this.getColour());
+			new ControlText(scaled, new IArea(this.w() / 2 + 2, y, this.w() / 2 - 2, 0), alleleName, TextJustification.TopLeft).setColour(this.getColour());
+			y += 3 + height;
 		}
 		this.setSize(new IPoint(this.w(), y + 8));
 	}

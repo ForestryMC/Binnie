@@ -16,7 +16,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 public class WindowDistillery extends Window {
 	public WindowDistillery(final EntityPlayer player, final IInventory inventory, final Side side) {
-		super(224.0f, 192.0f, player, inventory, side);
+		super(224, 192, player, inventory, side);
 	}
 
 	@Override
@@ -35,13 +35,13 @@ public class WindowDistillery extends Window {
 		int x = 16;
 		new ControlLiquidTank(this, x, 35).setTankID(DistilleryMachine.TANK_INPUT);
 		x += 34;
-		new ControlDistilleryProgress(this, x, 32.0f);
+		new ControlDistilleryProgress(this, x, 32);
 		x += 64;
 		new ControlLiquidTank(this, x, 35).setTankID(DistilleryMachine.TANK_OUTPUT);
 		x += 34;
 		new ControlEnergyBar(this, x, 36, 60, 16, Position.Left);
 		new ControlPlayerInventory(this);
-		new ControlErrorState(this, x + 21, 62.0f);
+		new ControlErrorState(this, x + 21, 62);
 	}
 
 	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {

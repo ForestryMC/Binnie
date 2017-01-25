@@ -14,6 +14,7 @@ import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.core.Widget;
+import binnie.craftgui.core.geometry.CraftGUIUtil;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.core.geometry.Position;
@@ -68,7 +69,7 @@ public class WindowAnalyst extends Window {
 	}
 
 	public WindowAnalyst(final EntityPlayer player, final IInventory inventory, final Side side, final boolean database, final boolean master) {
-		super(312.0f, 230.0f, player, inventory, side);
+		super(312, 230, player, inventory, side);
 		this.baseWidget = null;
 		this.tabBar = null;
 		this.analystPages = new ArrayList<>();
@@ -131,7 +132,7 @@ public class WindowAnalyst extends Window {
 		final int y = 28;
 		if (this.isDatabase) {
 			for (final BreedingSystem syst : Binnie.GENETICS.getActiveSystems()) {
-				new Control(this, x, y, 20.0f, 20.0f) {
+				new Control(this, x, y, 20, 20) {
 					@Override
 					public void initialise() {
 						this.addAttribute(Attribute.MouseOver);
@@ -149,7 +150,7 @@ public class WindowAnalyst extends Window {
 					}
 
 					@Override
-					public void onRenderBackground() {
+					public void onRenderBackground(int guiWidth, int guiHeight) {
 						CraftGUI.render.colour(syst.getColour());
 						final int outset = (WindowAnalyst.this.getSystem() == syst) ? 1 : 0;
 						CraftGUI.render.texture(CraftGUITexture.TabOutline, this.getArea().outset(outset));
@@ -157,7 +158,7 @@ public class WindowAnalyst extends Window {
 							CraftGUI.render.colour(1140850688 + syst.getColour());
 							CraftGUI.render.texture(CraftGUITexture.TabSolid, this.getArea().outset(outset));
 						}
-						CraftGUI.render.item(new IPoint(2.0f, 2.0f), syst.getItemStackRepresentitive());
+						CraftGUIUtil.renderItem(new IPoint(2, 2), syst.getItemStackRepresentitive());
 					}
 				};
 				x += 22;
@@ -169,21 +170,21 @@ public class WindowAnalyst extends Window {
 			x += 26;
 			this.setupValidators();
 		}
-		this.tabBar = new Control(this, x, 28.0f, this.w() - 16.0f - x, 20.0f);
-		this.analystPanel = new Panel(this, 16.0f, 54.0f, 280.0f, 164.0f, MinecraftGUI.PanelType.Outline) {
+		this.tabBar = new Control(this, x, 28, this.w() - 16 - x, 20);
+		this.analystPanel = new Panel(this, 16, 54, 280, 164, MinecraftGUI.PanelType.Outline) {
 			@Override
-			public void onRenderBackground() {
+			public void onRenderBackground(int guiWidth, int guiHeight) {
 				CraftGUI.render.gradientRect(this.getArea(), 1157627903, 1728053247);
-				super.onRenderBackground();
+				super.onRenderBackground(guiWidth, guiHeight);
 			}
 
 			@Override
 			public void initialise() {
 				this.setColour(4473924);
-				final float sectionWidth = (this.w() - 8.0f - 4.0f) / 2.0f;
-				WindowAnalyst.this.leftPage = new ControlScrollableContent<IWidget>(this, 3.0f, 3.0f, sectionWidth + 2.0f, this.h() - 8.0f + 2.0f, 0.0f) {
+				final int sectionWidth = (this.w() - 8 - 4) / 2;
+				WindowAnalyst.this.leftPage = new ControlScrollableContent<IWidget>(this, 3, 3, sectionWidth + 2, this.h() - 8 + 2, 0) {
 					@Override
-					public void onRenderBackground() {
+					public void onRenderBackground(int guiWidth, int guiHeight) {
 						if (this.getContent() == null) {
 							return;
 						}
@@ -191,9 +192,9 @@ public class WindowAnalyst extends Window {
 						CraftGUI.render.texture(CraftGUITexture.TabOutline, this.getArea());
 					}
 				};
-				new ControlScrollBar(this, sectionWidth + 2.0f - 3.0f, 6.0f, 3.0f, this.h() - 8.0f + 2.0f - 6.0f, WindowAnalyst.this.leftPage) {
+				new ControlScrollBar(this, sectionWidth + 2 - 3, 6, 3, this.h() - 8 + 2 - 6, WindowAnalyst.this.leftPage) {
 					@Override
-					public void onRenderBackground() {
+					public void onRenderBackground(int guiWidth, int guiHeight) {
 						if (!this.isEnabled()) {
 							return;
 						}
@@ -204,9 +205,9 @@ public class WindowAnalyst extends Window {
 						CraftGUI.render.solid(this.getRenderArea(), WindowAnalyst.this.leftPage.getContent().getColour());
 					}
 				};
-				WindowAnalyst.this.rightPage = new ControlScrollableContent<IWidget>(this, 3.0f + sectionWidth + 4.0f, 3.0f, sectionWidth + 2.0f, this.h() - 8.0f + 2.0f, 0.0f) {
+				WindowAnalyst.this.rightPage = new ControlScrollableContent<IWidget>(this, 3 + sectionWidth + 4, 3, sectionWidth + 2, this.h() - 8 + 2, 0) {
 					@Override
-					public void onRenderBackground() {
+					public void onRenderBackground(int guiWidth, int guiHeight) {
 						if (this.getContent() == null) {
 							return;
 						}
@@ -214,9 +215,9 @@ public class WindowAnalyst extends Window {
 						CraftGUI.render.texture(CraftGUITexture.TabOutline, this.getArea());
 					}
 				};
-				new ControlScrollBar(this, sectionWidth + 2.0f - 3.0f + sectionWidth + 4.0f, 6.0f, 3.0f, this.h() - 8.0f + 2.0f - 6.0f, WindowAnalyst.this.rightPage) {
+				new ControlScrollBar(this, sectionWidth + 2 - 3 + sectionWidth + 4, 6, 3, this.h() - 8 + 2 - 6, WindowAnalyst.this.rightPage) {
 					@Override
-					public void onRenderBackground() {
+					public void onRenderBackground(int guiWidth, int guiHeight) {
 						if (!this.isEnabled()) {
 							return;
 						}
@@ -227,11 +228,11 @@ public class WindowAnalyst extends Window {
 						CraftGUI.render.solid(this.getRenderArea(), WindowAnalyst.this.rightPage.getContent().getColour());
 					}
 				};
-				WindowAnalyst.this.analystPageSize = new IArea(1.0f, 1.0f, sectionWidth, this.h() - 8.0f);
+				WindowAnalyst.this.analystPageSize = new IArea(1, 1, sectionWidth, this.h() - 8);
 			}
 		};
 		if (!this.isDatabase) {
-			this.slideUpInv = new ControlSlide(this, (this.getSize().x() - 244.0f) / 2.0f, this.getSize().y() - 80.0f + 1.0f, 244.0f, 80.0f, Position.Bottom);
+			this.slideUpInv = new ControlSlide(this, (this.getSize().x() - 244) / 2, this.getSize().y() - 80 + 1, 244, 80, Position.Bottom);
 			new ControlPlayerInventory(this.slideUpInv, true);
 			this.slideUpInv.setSlide(false);
 		}
@@ -247,10 +248,10 @@ public class WindowAnalyst extends Window {
 			}
 		});
 		if (!this.isDatabase) {
-			this.analystNone = new Control(this.analystPanel, 0.0f, 0.0f, this.analystPanel.w(), this.analystPanel.h()) {
+			this.analystNone = new Control(this.analystPanel, 0, 0, this.analystPanel.w(), this.analystPanel.h()) {
 				@Override
 				public void initialise() {
-					new ControlTextCentered(this, 20.0f, "Add a bee, tree, flower or butterfly to the top left slot. DNA Dye is required if it has not been analysed yet. This dye can also convert vanilla items to breedable individuals.").setColour(4473924);
+					new ControlTextCentered(this, 20, "Add a bee, tree, flower or butterfly to the top left slot. DNA Dye is required if it has not been analysed yet. This dye can also convert vanilla items to breedable individuals.").setColour(4473924);
 					new ControlPlayerInventory(this);
 				}
 			};
@@ -336,10 +337,10 @@ public class WindowAnalyst extends Window {
 			this.analystPages.add(new AnalystPageMutations(this.analystPanel, this.analystPageSize, this.current, this.isMaster));
 		}
 		this.tabBar.deleteAllChildren();
-		final float width = this.tabBar.w() / this.analystPages.size();
-		float x = 0.0f;
+		final int width = this.tabBar.w() / this.analystPages.size();
+		int x = 0;
 		for (final ControlAnalystPage page : this.analystPages) {
-			new ControlTooltip(this.tabBar, x, 0.0f, width, this.tabBar.h()) {
+			new ControlTooltip(this.tabBar, x, 0, width, this.tabBar.h()) {
 				ControlAnalystPage value;
 
 				@Override
@@ -378,13 +379,13 @@ public class WindowAnalyst extends Window {
 				}
 
 				@Override
-				public void onRenderBackground() {
+				public void onRenderBackground(int guiWidth, int guiHeight) {
 					final boolean active = this.value == WindowAnalyst.this.leftPage.getContent() || this.value == WindowAnalyst.this.rightPage.getContent();
 					CraftGUI.render.colour((active ? -16777216 : 1140850688) + this.value.getColour());
 					CraftGUI.render.texture(CraftGUITexture.TabSolid, this.getArea().inset(1));
 					CraftGUI.render.colour(this.value.getColour());
 					CraftGUI.render.texture(CraftGUITexture.TabOutline, this.getArea().inset(1));
-					super.onRenderBackground();
+					super.onRenderBackground(guiWidth, guiHeight);
 				}
 			};
 			x += width;
@@ -414,8 +415,8 @@ public class WindowAnalyst extends Window {
 		}
 		final int newRightIndex = rightIndex + (right ? 1 : -1);
 		final int newLeftIndex = this.lockedSearch ? 0 : (newRightIndex - 1);
-		float oldRightPercent = 0.0f;
-		float oldLeftPercent = 0.0f;
+		float oldRightPercent = 0;
+		float oldLeftPercent = 0;
 		if (newLeftIndex == rightIndex) {
 			oldRightPercent = this.rightPage.getPercentageIndex();
 		}
@@ -427,10 +428,10 @@ public class WindowAnalyst extends Window {
 		this.setPage(this.leftPage, this.analystPages.get(newLeftIndex));
 		this.setPage(this.rightPage, this.analystPages.get(newRightIndex));
 		this.analystPages.get(newLeftIndex).show();
-		if (oldRightPercent != 0.0f) {
+		if (oldRightPercent != 0) {
 			this.leftPage.setPercentageIndex(oldRightPercent);
 		}
-		if (oldLeftPercent != 0.0f) {
+		if (oldLeftPercent != 0) {
 			this.rightPage.setPercentageIndex(oldLeftPercent);
 		}
 	}
@@ -444,8 +445,8 @@ public class WindowAnalyst extends Window {
 		if (page != null) {
 			page.show();
 			side.setScrollableContent(page);
-			side.setPercentageIndex(0.0f);
-			page.setPosition(side.pos().add(1.0f, 1.0f));
+			side.setPercentageIndex(0);
+			page.setPosition(side.pos().add(1, 1));
 		}
 	}
 

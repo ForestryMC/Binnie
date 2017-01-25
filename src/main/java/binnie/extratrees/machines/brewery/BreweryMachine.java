@@ -30,11 +30,13 @@ public class BreweryMachine extends ExtraTreeMachine.PackageExtraTreeMachine imp
 	public void createMachine(final Machine machine) {
 		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.Brewery);
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
+
 		inventory.addSlotArray(SLOT_RECIPE_GRAINS, "grain");
 		for (final InventorySlot slot : inventory.getSlots(SLOT_RECIPE_GRAINS)) {
 			slot.setValidator(new SlotValidatorBreweryGrain());
 			slot.setType(InventorySlot.Type.Recipe);
 		}
+
 		inventory.addSlotArray(SLOTS_INVENTORY, "inventory");
 		for (final InventorySlot slot : inventory.getSlots(SLOTS_INVENTORY)) {
 			slot.forbidExtraction();
@@ -42,9 +44,11 @@ public class BreweryMachine extends ExtraTreeMachine.PackageExtraTreeMachine imp
 		inventory.addSlot(SLOT_YEAST, "yeast");
 		inventory.getSlot(SLOT_YEAST).setValidator(new SlotValidatorBreweryYeast());
 		inventory.getSlot(SLOT_YEAST).setType(InventorySlot.Type.Recipe);
+
 		inventory.addSlot(SLOT_RECIPE_INPUT, "ingredient");
 		inventory.getSlot(SLOT_RECIPE_INPUT).setValidator(new SlotValidatorBreweryIngredient());
 		inventory.getSlot(SLOT_RECIPE_INPUT).setType(InventorySlot.Type.Recipe);
+
 		final ComponentTankContainer tanks = new ComponentTankContainer(machine);
 		tanks.addTank(TANK_INPUT, "input", 5000);
 		tanks.getTankSlot(TANK_INPUT).setValidator(new TankValidatorFermentInput());
@@ -53,6 +57,7 @@ public class BreweryMachine extends ExtraTreeMachine.PackageExtraTreeMachine imp
 		tanks.getTankSlot(TANK_OUTPUT).setValidator(new TankValidatorFermentOutput());
 		tanks.getTankSlot(TANK_OUTPUT).forbidInsertion();
 		tanks.getTankSlot(TANK_OUTPUT).setOutputSides(MachineSide.Sides);
+
 		new ComponentPowerReceptor(machine);
 		new BreweryLogic(machine);
 	}

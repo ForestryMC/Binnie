@@ -9,14 +9,14 @@ import binnie.craftgui.resource.Texture;
 public class ControlImage extends Control {
 	private Object key;
 
-	public ControlImage(final IWidget parent, final float x, final float y, final Texture text) {
+	public ControlImage(final IWidget parent, final int x, final int y, final Texture text) {
 		super(parent, x, y, text.w(), text.h());
 		this.key = null;
 		this.key = text;
 	}
 
 	@Override
-	public void onRenderForeground() {
+	public void onRenderForeground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(this.key, IPoint.ZERO);
 	}
 }

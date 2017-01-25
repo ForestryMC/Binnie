@@ -12,8 +12,8 @@ import forestry.api.genetics.IChromosomeType;
 public class ControlChromosome extends Control implements IControlValue<IChromosomeType>, ITooltip {
 	IChromosomeType value;
 
-	protected ControlChromosome(final IWidget parent, final float x, final float y, final IChromosomeType type) {
-		super(parent, x, y, 16.0f, 16.0f);
+	protected ControlChromosome(final IWidget parent, final int x, final int y, final IChromosomeType type) {
+		super(parent, x, y, 16, 16);
 		this.setValue(type);
 		this.addAttribute(Attribute.MouseOver);
 	}
@@ -29,7 +29,7 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(ExtraBeeGUITexture.Chromosome, this.getArea());
 		CraftGUI.render.colour(16711680);
 		CraftGUI.render.texture(ExtraBeeGUITexture.Chromosome2, this.getArea());

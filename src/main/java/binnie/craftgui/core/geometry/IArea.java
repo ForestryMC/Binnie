@@ -12,19 +12,19 @@ public class IArea {
 		this(pos.x(), pos.y(), size.x(), size.y());
 	}
 
-	public IArea(final float xywh) {
+	public IArea(final int xywh) {
 		this(xywh, xywh, xywh, xywh);
 	}
 
-	public IArea(final float xy, final float wh) {
+	public IArea(final int xy, final int wh) {
 		this(xy, xy, wh, wh);
 	}
 
-	public IArea(final float x, final float y, final float wh) {
+	public IArea(final int x, final int y, final int wh) {
 		this(x, y, wh, wh);
 	}
 
-	public IArea(final float x, final float y, final float w, final float h) {
+	public IArea(final int x, final int y, final int w, final int h) {
 		this.setPosition(new IPoint(x, y));
 		this.setSize(new IPoint(w, h));
 	}
@@ -57,36 +57,36 @@ public class IArea {
 		return position.x() >= this.pos().x() && position.y() >= this.pos.y() && position.x() <= this.pos().x() + this.size().x() && position.y() <= this.pos().y() + this.size().y();
 	}
 
-	public float x() {
+	public int x() {
 		return this.pos().x();
 	}
 
-	public float y() {
+	public int y() {
 		return this.pos().y();
 	}
 
-	public float w() {
+	public int w() {
 		return this.size().x();
 	}
 
-	public float h() {
+	public int h() {
 		return this.size().y();
 	}
 
-	public float x(final float n) {
-		return this.pos.x(n);
+	public void x(final int n) {
+		this.pos = new IPoint(n, this.pos.y());
 	}
 
-	public float y(final float n) {
-		return this.pos.y(n);
+	public void y(final int n) {
+		this.pos = new IPoint(this.pos.x(), n);
 	}
 
-	public float w(final float n) {
-		return this.size.x(n);
+	public void w(final int n) {
+		this.size = new IPoint(n, this.size.y());
 	}
 
-	public float h(final float n) {
-		return this.size.y(n);
+	public void h(final int n) {
+		this.size = new IPoint(this.size.x(), n);
 	}
 
 	public IArea inset(final IBorder border) {
@@ -110,7 +110,7 @@ public class IArea {
 		return this.w() + "x" + this.h() + "@" + this.x() + "," + this.y();
 	}
 
-	public IArea shift(final float dx, final float f) {
+	public IArea shift(final int dx, final int f) {
 		return new IArea(this.x() + dx, this.y() + f, this.w(), this.h());
 	}
 }

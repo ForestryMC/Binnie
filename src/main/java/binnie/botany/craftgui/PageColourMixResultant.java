@@ -18,7 +18,7 @@ public class PageColourMixResultant extends PageAbstract<IFlowerColour> {
 
 	public PageColourMixResultant(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);
-		this.pageSpeciesFurther_Title = new ControlTextCentered(this, 8.0f, "Resultant Mixes");
+		this.pageSpeciesFurther_Title = new ControlTextCentered(this, 8, "Resultant Mixes");
 		this.pageSpeciesFurther_List = new ControlColourMixBox(this, 4, 20, 136, 152, ControlColourMixBox.Type.Resultant);
 	}
 

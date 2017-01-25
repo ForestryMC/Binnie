@@ -19,7 +19,7 @@ public class WindowAlvearyStimulator extends Window {
 	ControlPlayerInventory playerInventory;
 
 	public WindowAlvearyStimulator(final EntityPlayer player, final IInventory inventory, final Side side) {
-		super(176.0f, 144.0f, player, inventory, side);
+		super(176, 144, player, inventory, side);
 		this.machine = ((TileEntityMachine) inventory).getMachine();
 	}
 
@@ -34,7 +34,7 @@ public class WindowAlvearyStimulator extends Window {
 	public void initialiseClient() {
 		this.setTitle("Stimulator");
 		new ControlEnergyBar(this, 75, 29, 60, 16, Position.Left);
-		final ControlSlot slot = new ControlSlot(this, 41.0f, 28.0f);
+		final ControlSlot slot = new ControlSlot(this, 41, 28);
 		slot.assign(AlvearyStimulator.slotCircuit);
 		this.playerInventory = new ControlPlayerInventory(this);
 	}

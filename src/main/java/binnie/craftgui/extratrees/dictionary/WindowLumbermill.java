@@ -17,7 +17,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 public class WindowLumbermill extends Window {
 	public WindowLumbermill(final EntityPlayer player, final IInventory inventory, final Side side) {
-		super(220.0f, 192.0f, player, inventory, side);
+		super(220, 192, player, inventory, side);
 	}
 
 	@Override
@@ -33,15 +33,15 @@ public class WindowLumbermill extends Window {
 	@Override
 	public void initialiseClient() {
 		this.setTitle(Machine.getMachine(this.getInventory()).getPackage().getDisplayName());
-		new ControlSlot(this, 42.0f, 43.0f).assign(LumbermillMachine.SLOT_LOG);
-		new ControlSlot(this, 148.0f, 43.0f).assign(LumbermillMachine.SLOT_PLANKS);
-		new ControlSlot(this, 172.0f, 28.0f).assign(LumbermillMachine.SLOT_BARK);
-		new ControlSlot(this, 172.0f, 58.0f).assign(LumbermillMachine.SLOT_SAWDUST);
-		new ControlLumbermillProgress(this, 70.0f, 43.0f);
+		new ControlSlot(this, 42, 43).assign(LumbermillMachine.SLOT_LOG);
+		new ControlSlot(this, 148, 43).assign(LumbermillMachine.SLOT_PLANKS);
+		new ControlSlot(this, 172, 28).assign(LumbermillMachine.SLOT_BARK);
+		new ControlSlot(this, 172, 58).assign(LumbermillMachine.SLOT_SAWDUST);
+		new ControlLumbermillProgress(this, 70, 43);
 		new ControlLiquidTank(this, 16, 32);
 		new ControlEnergyBar(this, 8, 112, 16, 60, Position.Bottom);
 		new ControlPlayerInventory(this);
-		new ControlErrorState(this, 95.0f, 73.0f);
+		new ControlErrorState(this, 95, 73);
 	}
 
 	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {

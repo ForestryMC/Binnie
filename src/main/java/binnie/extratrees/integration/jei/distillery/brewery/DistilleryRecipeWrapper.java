@@ -29,6 +29,6 @@ public class DistilleryRecipeWrapper extends BlankRecipeWrapper {
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 		super.drawInfo(minecraft, recipeWidth, recipeHeight, mouseX, mouseY);
 
-		CraftGUI.render.texture(ControlDistilleryProgress.OUTPUT, new IPoint(47.0f, 14 + level * 15));
+		CraftGUI.render.texture(ControlDistilleryProgress.OUTPUT, new IPoint(47, 14 + level * 15));
 	}
 }

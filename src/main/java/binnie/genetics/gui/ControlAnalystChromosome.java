@@ -24,8 +24,8 @@ public class ControlAnalystChromosome extends Control implements ITooltip {
 	Texture Homozygous;
 	Texture Heterozygous;
 
-	public ControlAnalystChromosome(final IWidget parent, final float x, final float y, final ISpeciesRoot root, final IChromosomeType type, final IAllele allele0, final IAllele allele1) {
-		super(parent, x, y, 16.0f, 22.0f);
+	public ControlAnalystChromosome(final IWidget parent, final int x, final int y, final ISpeciesRoot root, final IChromosomeType type, final IAllele allele0, final IAllele allele1) {
+		super(parent, x, y, 16, 22);
 		this.Homozygous = new StandardTexture(0, 0, 16, 22, BinnieCoreTexture.GUIAnalyst);
 		this.Heterozygous = new StandardTexture(16, 0, 16, 22, BinnieCoreTexture.GUIAnalyst);
 		this.addAttribute(Attribute.MouseOver);
@@ -40,8 +40,8 @@ public class ControlAnalystChromosome extends Control implements ITooltip {
 	}
 
 	@Override
-	public void onRenderBackground() {
-		super.onRenderBackground();
+	public void onRenderBackground(int guiWidth, int guiHeight) {
+		super.onRenderBackground(guiWidth, guiHeight);
 		CraftGUI.render.texture(this.isHomozygous() ? this.Homozygous : this.Heterozygous, IPoint.ZERO);
 	}
 

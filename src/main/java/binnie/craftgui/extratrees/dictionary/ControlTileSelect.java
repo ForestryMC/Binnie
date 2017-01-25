@@ -12,6 +12,7 @@ import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
+import binnie.craftgui.core.geometry.CraftGUIUtil;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.minecraft.Window;
@@ -34,8 +35,8 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 	IDesign value;
 	float shownHeight;
 
-	protected ControlTileSelect(final IWidget parent, final float x, final float y) {
-		super(parent, x, y, 102.0f, 20 * (CarpentryManager.carpentryInterface.getSortedDesigns().size() / 4) + 22);
+	protected ControlTileSelect(final IWidget parent, final int x, final int y) {
+		super(parent, x, y, 102, 20 * (CarpentryManager.carpentryInterface.getSortedDesigns().size() / 4) + 22);
 		this.value = EnumDesign.Blank;
 		this.shownHeight = 92.0f;
 		this.refresh("");
@@ -122,8 +123,8 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 	public static class ControlTile extends Control implements IControlValue<IDesign>, ITooltip {
 		IDesign value;
 
-		protected ControlTile(final IWidget parent, final float x, final float y, final IDesign value) {
-			super(parent, x, y, 18.0f, 18.0f);
+		protected ControlTile(final IWidget parent, final int x, final int y, final IDesign value) {
+			super(parent, x, y, 18, 18);
 			this.setValue(value);
 			this.addAttribute(Attribute.MouseOver);
 			this.addSelfEventHandler(new EventMouse.Down.Handler() {
@@ -152,14 +153,14 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 		}
 
 		@Override
-		public void onRenderBackground() {
+		public void onRenderBackground(int guiWidth, int guiHeight) {
 			CraftGUI.render.texture(CraftGUITexture.Slot, IPoint.ZERO);
 		}
 
 		@Override
-		public void onRenderForeground() {
+		public void onRenderForeground(int guiWidth, int guiHeight) {
 			final ItemStack image = ((WindowWoodworker) this.getSuperParent()).getDesignerType().getDisplayStack(this.getValue());
-			CraftGUI.render.item(new IPoint(1.0f, 1.0f), image);
+			CraftGUIUtil.renderItem(new IPoint(1, 1), image);
 			if (((IControlValue) this.getParent()).getValue() != this.getValue()) {
 				if (Window.get(this).getMousedOverWidget() == this) {
 					CraftGUI.render.gradientRect(this.getArea().inset(1), 1157627903, 1157627903);

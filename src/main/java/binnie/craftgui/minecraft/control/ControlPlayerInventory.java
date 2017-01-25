@@ -13,7 +13,7 @@ public class ControlPlayerInventory extends Control {
 	private List<ControlSlot> slots;
 
 	public ControlPlayerInventory(final IWidget parent, final boolean wide) {
-		super(parent, (int) (parent.getSize().x() / 2.0f) - (wide ? 110 : 81), (int) parent.getSize().y() - (wide ? 54 : 76) - 12, wide ? 220 : 162, wide ? 54 : 76);
+		super(parent, (int) (parent.getSize().x() / 2) - (wide ? 110 : 81), (int) parent.getSize().y() - (wide ? 54 : 76) - 12, wide ? 220 : 162, wide ? 54 : 76);
 		this.slots = new ArrayList<>();
 		for (int row = 0; row < 3; ++row) {
 			for (int column = 0; column < 9; ++column) {
@@ -28,7 +28,7 @@ public class ControlPlayerInventory extends Control {
 			}
 		} else {
 			for (int i1 = 0; i1 < 9; ++i1) {
-				final ControlSlot slot2 = new ControlSlot(this, i1 * 18, 58.0f);
+				final ControlSlot slot2 = new ControlSlot(this, i1 * 18, 58);
 				this.slots.add(slot2);
 			}
 		}
@@ -40,7 +40,7 @@ public class ControlPlayerInventory extends Control {
 	}
 
 	public ControlPlayerInventory(final IWidget parent, final int x, final int y) {
-		super(parent, x, y, 54.0f, 220.0f);
+		super(parent, x, y, 54, 220);
 		this.slots = new ArrayList<>();
 		for (int row = 0; row < 6; ++row) {
 			for (int column = 0; column < 6; ++column) {

@@ -9,20 +9,20 @@ import binnie.craftgui.events.EventWidget;
 
 public class ControlScrollableContent<T extends IWidget> extends Control implements IControlScrollable {
 	protected T controlChild;
-	protected float scrollBarSize;
+	protected int scrollBarSize;
 	float percentageIndex;
 
-	public ControlScrollableContent(final IWidget parent, final float x, final float y, final float w, final float h, final float scrollBarSize) {
+	public ControlScrollableContent(final IWidget parent, final int x, final int y, final int w, final int h, final int scrollBarSize) {
 		super(parent, x, y, w, h);
-		this.percentageIndex = 0.0f;
-		if (scrollBarSize != 0.0f) {
-			new ControlScroll(this, this.getSize().x() - scrollBarSize, 0.0f, scrollBarSize, this.getSize().y(), this);
+		this.percentageIndex = 0;
+		if (scrollBarSize != 0) {
+			new ControlScroll(this, this.getSize().x() - scrollBarSize, 0, scrollBarSize, this.getSize().y(), this);
 		}
 		this.addEventHandler(new EventMouse.Wheel.Handler() {
 			@Override
 			public void onEvent(final EventMouse.Wheel event) {
-				if (ControlScrollableContent.this.getRelativeMousePosition().x() > 0.0f && ControlScrollableContent.this.getRelativeMousePosition().y() > 0.0f && ControlScrollableContent.this.getRelativeMousePosition().x() < ControlScrollableContent.this.getSize().x() && ControlScrollableContent.this.getRelativeMousePosition().y() < ControlScrollableContent.this.getSize().y()) {
-					if (ControlScrollableContent.this.getMovementRange() == 0.0f) {
+				if (ControlScrollableContent.this.getRelativeMousePosition().x() > 0 && ControlScrollableContent.this.getRelativeMousePosition().y() > 0 && ControlScrollableContent.this.getRelativeMousePosition().x() < ControlScrollableContent.this.getSize().x() && ControlScrollableContent.this.getRelativeMousePosition().y() < ControlScrollableContent.this.getSize().y()) {
+					if (ControlScrollableContent.this.getMovementRange() == 0) {
 						return;
 					}
 					final float percentageMove = 0.8f / ControlScrollableContent.this.getMovementRange();
@@ -39,14 +39,14 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 			return;
 		}
 
-		child.setCroppedZone(this, new IArea(1.0F, 1.0F, getSize().x() - 2.0F - this.scrollBarSize, getSize().y() - 2.0F));
+		child.setCroppedZone(this, new IArea(1, 1, getSize().x() - 2 - this.scrollBarSize, getSize().y() - 2));
 
 		child.addSelfEventHandler(new EventWidget.ChangeSize.Handler() {
 			@Override
 			public void onEvent(final EventWidget.ChangeSize event) {
-				ControlScrollableContent.this.controlChild.setOffset(new IPoint(0.0f, -ControlScrollableContent.this.percentageIndex * ControlScrollableContent.this.getMovementRange()));
-				if (ControlScrollableContent.this.getMovementRange() == 0.0f) {
-					ControlScrollableContent.this.percentageIndex = 0.0f;
+				ControlScrollableContent.this.controlChild.setOffset(new IPoint(0, Math.round(-ControlScrollableContent.this.percentageIndex * ControlScrollableContent.this.getMovementRange())));
+				if (ControlScrollableContent.this.getMovementRange() == 0) {
+					ControlScrollableContent.this.percentageIndex = 0;
 				}
 			}
 		});
@@ -58,11 +58,11 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 
 	@Override
 	public float getPercentageShown() {
-		if (this.controlChild == null || this.controlChild.getSize().y() == 0.0f) {
-			return 1.0f;
+		if (this.controlChild == null || this.controlChild.getSize().y() == 0) {
+			return 1;
 		}
 		final float shown = this.getSize().y() / this.controlChild.getSize().y();
-		return Math.min(shown, 1.0f);
+		return Math.min(shown, 1);
 	}
 
 	@Override
@@ -76,15 +76,15 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 			return;
 		}
 		this.percentageIndex += percentage;
-		if (this.percentageIndex > 1.0f) {
-			this.percentageIndex = 1.0f;
-		} else if (this.percentageIndex < 0.0f) {
-			this.percentageIndex = 0.0f;
+		if (this.percentageIndex > 1) {
+			this.percentageIndex = 1;
+		} else if (this.percentageIndex < 0) {
+			this.percentageIndex = 0;
 		}
-		if (this.getMovementRange() == 0.0f) {
-			this.percentageIndex = 0.0f;
+		if (this.getMovementRange() == 0) {
+			this.percentageIndex = 0;
 		}
-		this.controlChild.setOffset(new IPoint(0.0f, -this.percentageIndex * this.getMovementRange()));
+		this.controlChild.setOffset(new IPoint(0, Math.round(-this.percentageIndex * this.getMovementRange())));
 	}
 
 	@Override
@@ -95,10 +95,10 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 	@Override
 	public float getMovementRange() {
 		if (this.controlChild == null) {
-			return 0.0f;
+			return 0;
 		}
 		final float range = this.controlChild.getSize().y() - this.getSize().y();
-		return Math.max(range, 0.0f);
+		return Math.max(range, 0);
 	}
 
 	@Override
@@ -111,13 +111,13 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 		maxY /= totalY;
 		final float shownPercentage = this.getPercentageShown();
 		final float percentageIndex = this.getPercentageIndex();
-		final float minPercent = (1.0f - shownPercentage) * percentageIndex;
+		final float minPercent = (1 - shownPercentage) * percentageIndex;
 		final float maxPercent = minPercent + shownPercentage;
 		if (maxY > maxPercent) {
-			this.setPercentageIndex((maxY - shownPercentage) / (1.0f - shownPercentage));
+			this.setPercentageIndex((maxY - shownPercentage) / (1 - shownPercentage));
 		}
 		if (minY < minPercent) {
-			this.setPercentageIndex(minY / (1.0f - shownPercentage));
+			this.setPercentageIndex(minY / (1 - shownPercentage));
 		}
 	}
 }

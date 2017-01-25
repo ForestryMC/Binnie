@@ -21,7 +21,7 @@ public class ControlGeneScroll extends Control implements IControlValue<Breeding
 	private String filter;
 	private BreedingSystem system;
 
-	protected ControlGeneScroll(final IWidget parent, final float x, final float y, final float w, final float h) {
+	protected ControlGeneScroll(final IWidget parent, final int x, final int y, final int w, final int h) {
 		super(parent, x, y, w, h);
 		this.filter = "";
 		this.system = null;

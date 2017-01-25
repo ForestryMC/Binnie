@@ -19,7 +19,7 @@ public class ControlErrorState extends Control implements ITooltip {
 	private int type;
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		Object texture = CraftGUITexture.StateWarning;
 		if (this.errorState == null) {
 			texture = CraftGUITexture.StateNone;
@@ -27,7 +27,7 @@ public class ControlErrorState extends Control implements ITooltip {
 			texture = CraftGUITexture.StateError;
 		}
 		CraftGUI.render.texture(texture, IPoint.ZERO);
-		super.onRenderBackground();
+		super.onRenderBackground(guiWidth, guiHeight);
 	}
 
 	public ErrorState getError() {
@@ -70,8 +70,8 @@ public class ControlErrorState extends Control implements ITooltip {
 		}
 	}
 
-	public ControlErrorState(final IWidget parent, final float x, final float y) {
-		super(parent, x, y, 16.0f, 16.0f);
+	public ControlErrorState(final IWidget parent, final int x, final int y) {
+		super(parent, x, y, 16, 16);
 		this.type = 0;
 		this.addAttribute(Attribute.MouseOver);
 	}

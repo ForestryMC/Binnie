@@ -43,7 +43,7 @@ public class ControlBiomes extends Control implements ITooltip {
 	}
 
 	@Override
-	public void onRenderForeground() {
+	public void onRenderForeground(int guiWidth, int guiHeight) {
 		for (int i = 0; i < this.tolerated.size(); ++i) {
 			final int x = i % 8 * 16;
 			final int y = i / 8 * 16;
@@ -51,7 +51,7 @@ public class ControlBiomes extends Control implements ITooltip {
 				//TODO FIND COLOR
 				//CraftGUI.Render.colour(Biome.getBiome(i).color);
 			}
-			CraftGUI.render.texture(CraftGUITexture.Button, new IArea(x, y, 16.0f, 16.0f));
+			CraftGUI.render.texture(CraftGUITexture.Button, new IArea(x, y, 16, 16));
 		}
 	}
 

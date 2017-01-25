@@ -23,10 +23,10 @@ class ControlBreedingProgress extends Control {
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(CraftGUITexture.PanelBlack, this.getArea());
 		final IArea area = this.getArea().inset(1);
-		area.setSize(new IPoint(area.size().x() * this.percentage, area.size().y()));
+		area.setSize(new IPoint(Math.round(area.size().x() * this.percentage), area.size().y()));
 		CraftGUI.render.colour(this.colour);
 		CraftGUI.render.texture(ControlBreedingProgress.Progress, area);
 	}

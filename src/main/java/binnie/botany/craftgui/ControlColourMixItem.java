@@ -15,9 +15,9 @@ public class ControlColourMixItem extends ControlOption<IColourMix> {
 
 	public ControlColourMixItem(final ControlList<IColourMix> controlList, final IColourMix option, final int y) {
 		super(controlList, option, y);
-		this.itemWidget1 = new ControlColourDisplay(this, 4.0f, 4.0f);
-		this.itemWidget2 = new ControlColourDisplay(this, 44.0f, 4.0f);
-		this.itemWidget3 = new ControlColourDisplay(this, 104.0f, 4.0f);
+		this.itemWidget1 = new ControlColourDisplay(this, 4, 4);
+		this.itemWidget2 = new ControlColourDisplay(this, 44, 4);
+		this.itemWidget3 = new ControlColourDisplay(this, 104, 4);
 		this.addSymbol = new ControlColourMixSymbol(this, 24, 4, 0);
 		this.arrowSymbol = new ControlColourMixSymbol(this, 64, 4, 1);
 		final BreedingSystem system = ((WindowAbstractDatabase) this.getSuperParent()).getBreedingSystem();

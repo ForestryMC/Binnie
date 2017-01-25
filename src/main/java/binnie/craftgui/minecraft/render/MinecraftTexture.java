@@ -8,6 +8,6 @@ public class MinecraftTexture {
 	IBinnieTexture texture;
 
 	public MinecraftTexture() {
-		this.textureArea = new IArea(0.0f, 0.0f, 0.0f, 0.0f);
+		this.textureArea = new IArea(0, 0, 0, 0);
 	}
 }

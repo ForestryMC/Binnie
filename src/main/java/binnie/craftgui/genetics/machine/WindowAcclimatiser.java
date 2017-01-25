@@ -40,7 +40,7 @@ public class WindowAcclimatiser extends WindowMachine {
 		x += 72;
 		new ControlSlotArray(this, x, y, 2, 2).create(Acclimatiser.SLOT_DRONE);
 		new ControlEnergyBar(this, 21, 115, 16, 60, Position.Bottom);
-		new ControlErrorState(this, 181.0f, 83.0f);
+		new ControlErrorState(this, 181, 83);
 		new ControlPlayerInventory(this);
 	}
 

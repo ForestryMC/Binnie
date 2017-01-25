@@ -13,20 +13,20 @@ public abstract class ControlAnalystPage extends Control {
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 	}
 
 	public abstract String getTitle();
 
-	protected String getTimeString(final float time) {
-		final float seconds = time / 20.0f;
-		final float minutes = seconds / 60.0f;
-		final float hours = minutes / 60.0f;
+	protected String getTimeString(final int time) {
+		final int seconds = time / 20;
+		final int minutes = seconds / 60;
+		final int hours = minutes / 60;
 		final DecimalFormat df = new DecimalFormat("#.0");
-		if (hours > 1.0f) {
+		if (hours > 1) {
 			return df.format(hours) + " hours";
 		}
-		if (minutes > 1.0f) {
+		if (minutes > 1) {
 			return df.format(minutes) + " min.";
 		}
 		return df.format(seconds) + " sec.";

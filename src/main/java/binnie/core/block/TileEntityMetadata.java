@@ -1,8 +1,10 @@
 package binnie.core.block;
 
 import binnie.core.network.packet.PacketMetadata;
+import com.google.common.base.Preconditions;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -83,9 +85,11 @@ public class TileEntityMetadata extends TileEntity {
 	}
 
 	public static ItemStack getItemStack(final Block block, final int damage) {
-		final ItemStack item = new ItemStack(block, 1, 0);
-		setItemDamage(item, damage);
-		return item;
+		final Item item = Item.getItemFromBlock(block);
+		Preconditions.checkNotNull(item, "Could not get item for block %s", block);
+		final ItemStack itemStack = new ItemStack(item, 1, 0);
+		setItemDamage(itemStack, damage);
+		return itemStack;
 	}
 
 	public static void setItemDamage(final ItemStack item, final int i) {

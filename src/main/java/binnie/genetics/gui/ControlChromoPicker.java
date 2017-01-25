@@ -20,8 +20,8 @@ public class ControlChromoPicker extends Control implements ITooltip {
 	IChromosomeType type;
 	ControlChromosome parent;
 
-	public ControlChromoPicker(final ControlChromosome parent, final float x, final float y, final IChromosomeType chromo) {
-		super(parent, x, y, 16.0f, 16.0f);
+	public ControlChromoPicker(final ControlChromosome parent, final int x, final int y, final IChromosomeType chromo) {
+		super(parent, x, y, 16, 16);
 		this.Selected = new StandardTexture(160, 18, 16, 16, ExtraBeeTexture.GUIPunnett);
 		this.Texture = new StandardTexture(160, 34, 16, 16, ExtraBeeTexture.GUIPunnett);
 		this.type = chromo;
@@ -42,8 +42,8 @@ public class ControlChromoPicker extends Control implements ITooltip {
 	}
 
 	@Override
-	public void onRenderBackground() {
-		super.onRenderBackground();
+	public void onRenderBackground(int guiWidth, int guiHeight) {
+		super.onRenderBackground(guiWidth, guiHeight);
 		final boolean selected = this.isMouseOver();
 		final Texture text = selected ? this.Selected : this.Texture;
 		CraftGUI.render.texture(text, IPoint.ZERO);

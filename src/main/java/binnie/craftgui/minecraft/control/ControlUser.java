@@ -14,8 +14,8 @@ public class ControlUser extends Control implements ITooltip {
 	private String username;
 	String team;
 
-	public ControlUser(final IWidget parent, final float x, final float y, final String username) {
-		super(parent, x, y, 16.0f, 16.0f);
+	public ControlUser(final IWidget parent, final int x, final int y, final String username) {
+		super(parent, x, y, 16, 16);
 		this.username = "";
 		this.team = "";
 		this.addAttribute(Attribute.MouseOver);
@@ -23,7 +23,7 @@ public class ControlUser extends Control implements ITooltip {
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(CraftGUITexture.UserButton, this.getArea());
 	}
 

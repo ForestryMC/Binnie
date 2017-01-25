@@ -35,12 +35,12 @@ import java.util.Map;
 import java.util.Objects;
 
 public abstract class WindowAbstractDatabase extends Window {
-	private float selectionBoxWidth;
-	private final float infoBoxWidth = 144.0f;
-	private final float infoBoxHeight = 176.0f;
-	private final float infoTabWidth = 16.0f;
-	private final float modeTabWidth = 22.0f;
-	private final float searchBoxHeight = 16.0f;
+	private int selectionBoxWidth;
+	private final int infoBoxWidth = 144;
+	private final int infoBoxHeight = 176;
+	private final int infoTabWidth = 16;
+	private final int modeTabWidth = 22;
+	private final int searchBoxHeight = 16;
 	private Map<IDatabaseMode, ModeWidgets> modes;
 	boolean isNEI;
 	private BreedingSystem system;
@@ -53,9 +53,9 @@ public abstract class WindowAbstractDatabase extends Window {
 		this.modePages.setValue(mode);
 	}
 
-	public WindowAbstractDatabase(final EntityPlayer player, final Side side, final boolean nei, final BreedingSystem system, final float wid) {
-		super(100.0f, 192.0f, player, null, side);
-		this.selectionBoxWidth = 95.0f;
+	public WindowAbstractDatabase(final EntityPlayer player, final Side side, final boolean nei, final BreedingSystem system, final int wid) {
+		super(100, 192, player, null, side);
+		this.selectionBoxWidth = 95;
 		this.modes = new HashMap<>();
 		this.panelInformation = null;
 		this.panelSearch = null;
@@ -79,7 +79,7 @@ public abstract class WindowAbstractDatabase extends Window {
 	}
 
 	public WindowAbstractDatabase(final EntityPlayer player, final Side side, final boolean nei, final BreedingSystem system) {
-		this(player, side, nei, system, 95.0f);
+		this(player, side, nei, system, 95);
 	}
 
 	protected ModeWidgets createMode(final IDatabaseMode mode, final ModeWidgets widgets) {
@@ -89,7 +89,7 @@ public abstract class WindowAbstractDatabase extends Window {
 
 	@Override
 	public void initialiseClient() {
-		this.setSize(new IPoint(176.0f + this.selectionBoxWidth + 22.0f + 8.0f, 208.0f));
+		this.setSize(new IPoint(176 + this.selectionBoxWidth + 22 + 8, 208));
 		this.addEventHandler(new EventValueChanged.Handler() {
 			@Override
 			public void onEvent(final EventValueChanged event) {
@@ -127,11 +127,11 @@ public abstract class WindowAbstractDatabase extends Window {
 				}
 			}
 		}.setOrigin(EventHandler.Origin.DirectChild, this));
-		new ControlHelp(this, 4.0f, 4.0f);
-		(this.panelInformation = new Panel(this, 24.0f, 24.0f, 144.0f, 176.0f, MinecraftGUI.PanelType.Black)).setColour(860416);
-		(this.panelSearch = new Panel(this, 176.0f, 24.0f, this.selectionBoxWidth, 160.0f, MinecraftGUI.PanelType.Black)).setColour(860416);
-		this.modePages = new ControlPages<>(this, 0.0f, 0.0f, this.getSize().x(), this.getSize().y());
-		new ControlTextEdit(this, 176.0f, 184.0f, this.selectionBoxWidth, 16.0f);
+		new ControlHelp(this, 4, 4);
+		(this.panelInformation = new Panel(this, 24, 24, 144, 176, MinecraftGUI.PanelType.Black)).setColour(860416);
+		(this.panelSearch = new Panel(this, 176, 24, this.selectionBoxWidth, 160, MinecraftGUI.PanelType.Black)).setColour(860416);
+		this.modePages = new ControlPages<>(this, 0, 0, this.getSize().x(), this.getSize().y());
+		new ControlTextEdit(this, 176, 184, this.selectionBoxWidth, 16);
 		this.createMode(Mode.Species, new ModeWidgets(Mode.Species, this) {
 			@Override
 			public void createListBox(final IArea area) {
@@ -152,13 +152,13 @@ public abstract class WindowAbstractDatabase extends Window {
 		this.createMode(Mode.Breeder, new ModeWidgets(Mode.Breeder, this) {
 			@Override
 			public void createListBox(final IArea area) {
-				this.listBox = new ControlListBox(this.modePage, area.x(), area.y(), area.w(), area.h(), 12.0f);
+				this.listBox = new ControlListBox(this.modePage, area.x(), area.y(), area.w(), area.h(), 12);
 			}
 		});
 		this.addTabs();
-		final ControlTabBar<IDatabaseMode> tab = new ControlTabBar<IDatabaseMode>(this, 176.0f + this.selectionBoxWidth, 24.0f, 22.0f, 176.0f, Position.Right) {
+		final ControlTabBar<IDatabaseMode> tab = new ControlTabBar<IDatabaseMode>(this, 176 + this.selectionBoxWidth, 24, 22, 176, Position.Right) {
 			@Override
-			public ControlTab<IDatabaseMode> createTab(final float x, final float y, final float w, final float h, final IDatabaseMode value) {
+			public ControlTab<IDatabaseMode> createTab(final int x, final int y, final int w, final int h, final IDatabaseMode value) {
 				return new ControlTab<IDatabaseMode>(this, x, y, w, h, value) {
 					@Override
 					public String getName() {
@@ -171,7 +171,7 @@ public abstract class WindowAbstractDatabase extends Window {
 		CraftGUIUtil.linkWidgets(tab, this.modePages);
 		this.changeMode(Mode.Species);
 		for (final IDatabaseMode mode : this.modes.keySet()) {
-			this.modes.get(mode).infoTabs = new ControlTabBar(this.modes.get(mode).modePage, 8.0f, 24.0f, 16.0f, 176.0f, Position.Left);
+			this.modes.get(mode).infoTabs = new ControlTabBar(this.modes.get(mode).modePage, 8, 24, 16, 176, Position.Left);
 			this.modes.get(mode).infoTabs.setValues(this.modes.get(mode).infoPages.getValues());
 			CraftGUIUtil.linkWidgets(this.modes.get(mode).infoTabs, this.modes.get(mode).infoPages);
 		}
@@ -229,12 +229,12 @@ public abstract class WindowAbstractDatabase extends Window {
 
 		public ModeWidgets(final IDatabaseMode mode, final WindowAbstractDatabase database) {
 			this.database = database;
-			this.modePage = new ControlPage<>(database.modePages, 0.0f, 0.0f, database.getSize().x(), database.getSize().y(), mode);
+			this.modePage = new ControlPage<>(database.modePages, 0, 0, database.getSize().x(), database.getSize().y(), mode);
 			final IArea listBoxArea = database.panelSearch.area().inset(2);
 			this.createListBox(listBoxArea);
 			CraftGUIUtil.alignToWidget(this.listBox, database.panelSearch);
-			CraftGUIUtil.moveWidget(this.listBox, new IPoint(2.0f, 2.0f));
-			CraftGUIUtil.alignToWidget(this.infoPages = new ControlPages<>(this.modePage, 0.0f, 0.0f, 144.0f, 176.0f), database.panelInformation);
+			CraftGUIUtil.moveWidget(this.listBox, new IPoint(2, 2));
+			CraftGUIUtil.alignToWidget(this.infoPages = new ControlPages<>(this.modePage, 0, 0, 144, 176), database.panelInformation);
 		}
 
 		public abstract void createListBox(final IArea p0);

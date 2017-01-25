@@ -9,13 +9,13 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 public class ControlBlockIconDisplay extends Control {
 	TextureAtlasSprite icon;
 
-	public ControlBlockIconDisplay(final IWidget parent, final float x, final float y, final TextureAtlasSprite icon) {
-		super(parent, x, y, 18.0f, 18.0f);
+	public ControlBlockIconDisplay(final IWidget parent, final int x, final int y, final TextureAtlasSprite icon) {
+		super(parent, x, y, 18, 18);
 		this.icon = icon;
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.sprite(IPoint.ZERO, this.icon);
 	}
 }

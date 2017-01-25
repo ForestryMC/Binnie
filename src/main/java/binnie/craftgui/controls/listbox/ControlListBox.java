@@ -9,13 +9,13 @@ import binnie.craftgui.events.EventKey;
 import java.util.Collection;
 
 public class ControlListBox<T> extends ControlScrollableContent<ControlList<T>> implements IControlValue<T> {
-	public ControlListBox(final IWidget parent, final float x, final float y, final float w, final float h, final float scrollBarSize) {
+	public ControlListBox(final IWidget parent, final int x, final int y, final int w, final int h, final int scrollBarSize) {
 		super(parent, x, y, w, h, scrollBarSize);
 	}
 
 	@Override
 	public void initialise() {
-		this.setScrollableContent(new ControlList<>(this, 1.0f, 1.0f, this.w() - 2.0f - this.scrollBarSize, this.h() - 2.0f));
+		this.setScrollableContent(new ControlList<>(this, 1, 1, this.w() - 2 - this.scrollBarSize, this.h() - 2));
 		this.addEventHandler(new EventKey.Down.Handler() {
 			@Override
 			public void onEvent(final EventKey.Down event) {

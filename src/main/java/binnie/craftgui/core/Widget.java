@@ -30,9 +30,9 @@ public class Widget implements IWidget {
 		this.parent = null;
 		this.subWidgets = new ArrayList<>();
 		this.attributes = new ArrayList<>();
-		this.position = new IPoint(0.0f, 0.0f);
-		this.size = new IPoint(0.0f, 0.0f);
-		this.offset = new IPoint(0.0f, 0.0f);
+		this.position = IPoint.ZERO;
+		this.size = IPoint.ZERO;
+		this.offset = IPoint.ZERO;
 		this.cropped = false;
 		this.colour = 16777215;
 		this.globalEventHandlers = new ArrayList<>();
@@ -269,19 +269,19 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public final void render() {
+	public final void render(int guiWidth, int guiHeight) {
 		if (this.isVisible()) {
-			CraftGUI.render.preRender(this);
-			this.onRender(RenderStage.PreChildren);
+			CraftGUI.render.preRender(this, guiWidth, guiHeight);
+			this.onRender(RenderStage.PreChildren, guiWidth, guiHeight);
 			for (final IWidget widget : this.getWidgets()) {
-				widget.render();
+				widget.render(guiWidth, guiHeight);
 			}
 			for (final IWidget widget : this.getWidgets()) {
-				CraftGUI.render.preRender(widget);
-				widget.onRender(RenderStage.PostSiblings);
+				CraftGUI.render.preRender(widget, guiWidth, guiHeight);
+				widget.onRender(RenderStage.PostSiblings, guiWidth, guiHeight);
 				CraftGUI.render.postRender(widget);
 			}
-			this.onRender(RenderStage.PostChildren);
+			this.onRender(RenderStage.PostChildren, guiWidth, guiHeight);
 			CraftGUI.render.postRender(this);
 		}
 	}
@@ -402,22 +402,22 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public void onRender(final RenderStage stage) {
+	public void onRender(final RenderStage stage, int guiWidth, int guiHeight) {
 		if (stage == RenderStage.PreChildren) {
-			this.onRenderBackground();
+			this.onRenderBackground(guiWidth, guiHeight);
 		}
 		if (stage == RenderStage.PostChildren) {
-			this.onRenderForeground();
+			this.onRenderForeground(guiWidth, guiHeight);
 		}
 		if (stage == RenderStage.PostSiblings) {
 			this.onRenderOverlay();
 		}
 	}
 
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 	}
 
-	public void onRenderForeground() {
+	public void onRenderForeground(int guiWidth, int guiHeight) {
 	}
 
 	public void onRenderOverlay() {
@@ -480,22 +480,22 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public float x() {
+	public int x() {
 		return this.pos().x();
 	}
 
 	@Override
-	public float y() {
+	public int y() {
 		return this.pos().y();
 	}
 
 	@Override
-	public float w() {
+	public int w() {
 		return this.size().x();
 	}
 
 	@Override
-	public float h() {
+	public int h() {
 		return this.size().y();
 	}
 

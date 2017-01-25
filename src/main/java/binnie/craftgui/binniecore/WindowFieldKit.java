@@ -45,10 +45,10 @@ import java.util.Map;
 import java.util.Random;
 
 public class WindowFieldKit extends Window {
-	private float glassOffsetX;
-	private float glassOffsetY;
-	private float glassVX;
-	private float glassVY;
+	private int glassOffsetX;
+	private int glassOffsetY;
+	private int glassVX;
+	private int glassVY;
 	private Random glassRand;
 	private Control GlassControl;
 	private ControlChromosome chromo;
@@ -59,13 +59,13 @@ public class WindowFieldKit extends Window {
 	private ItemStack prev;
 
 	public WindowFieldKit(final EntityPlayer player, final IInventory inventory, final Side side) {
-		super(280.0f, 230.0f, player, inventory, side);
-		this.glassOffsetX = 0.0f;
-		this.glassOffsetY = 0.0f;
-		this.glassVX = 0.0f;
-		this.glassVY = 0.0f;
+		super(280, 230, player, inventory, side);
+		this.glassOffsetX = 0;
+		this.glassOffsetY = 0;
+		this.glassVX = 0;
+		this.glassVY = 0;
 		this.glassRand = new Random();
-		this.analyseProgress = 1.0f;
+		this.analyseProgress = 1;
 		this.isAnalysing = false;
 		this.info = new HashMap<>();
 		this.prev = null;
@@ -115,13 +115,13 @@ public class WindowFieldKit extends Window {
 		this.getWindowInventory().createSlot(1);
 		this.setupValidators();
 		new ControlPlayerInventory(this);
-		final IPoint handGlass = new IPoint(16.0f, 32.0f);
+		final IPoint handGlass = new IPoint(16, 32);
 		this.GlassControl = new ControlImage(this, handGlass.x(), handGlass.y(), new StandardTexture(0, 160, 96, 96, ExtraBeeTexture.GUIPunnett));
-		new ControlSlot(this, handGlass.x() + 54.0f, handGlass.y() + 26.0f).assign(InventoryType.Window, 0);
-		new ControlSlot(this, 208.0f, 8.0f).assign(InventoryType.Window, 1);
-		(this.text = new ControlText(this, new IPoint(232.0f, 13.0f), "Paper")).setColour(2236962);
-		(this.text = new ControlText(this, new IArea(0.0f, 120.0f, this.w(), 24.0f), "", TextJustification.MiddleCenter)).setColour(2236962);
-		this.chromo = new ControlChromosome(this, 150.0f, 24.0f);
+		new ControlSlot(this, handGlass.x() + 54, handGlass.y() + 26).assign(InventoryType.Window, 0);
+		new ControlSlot(this, 208, 8).assign(InventoryType.Window, 1);
+		(this.text = new ControlText(this, new IPoint(232, 13), "Paper")).setColour(2236962);
+		(this.text = new ControlText(this, new IArea(0, 120, this.w(), 24), "", TextJustification.MiddleCenter)).setColour(2236962);
+		this.chromo = new ControlChromosome(this, 150, 24);
 		this.addEventHandler(new EventValueChanged.Handler() {
 			@Override
 			public void onEvent(final EventValueChanged event) {
@@ -151,9 +151,9 @@ public class WindowFieldKit extends Window {
 		super.onUpdateClient();
 		if (this.isAnalysing) {
 			this.analyseProgress += 0.01f;
-			if (this.analyseProgress >= 1.0f) {
+			if (this.analyseProgress >= 1) {
 				this.isAnalysing = false;
-				this.analyseProgress = 1.0f;
+				this.analyseProgress = 1;
 				final ItemStack stack = this.getWindowInventory().getStackInSlot(0);
 				if (stack != null) {
 					this.sendClientAction("analyse", new NBTTagCompound());
@@ -164,9 +164,9 @@ public class WindowFieldKit extends Window {
 		this.glassVX += this.glassRand.nextFloat() - 0.5f - this.glassOffsetX * 0.2f;
 		this.glassVY += this.glassRand.nextFloat() - 0.5f - this.glassOffsetY * 0.2f;
 		this.glassOffsetX += this.glassVX;
-		this.glassOffsetX *= 1.0f - this.analyseProgress;
+		this.glassOffsetX *= 1 - this.analyseProgress;
 		this.glassOffsetY += this.glassVY;
-		this.glassOffsetY *= 1.0f - this.analyseProgress;
+		this.glassOffsetY *= 1 - this.analyseProgress;
 		this.GlassControl.setOffset(new IPoint(this.glassOffsetX, this.glassOffsetY));
 	}
 
@@ -221,7 +221,7 @@ public class WindowFieldKit extends Window {
 				if (this.getWindowInventory().getStackInSlot(1) == null) {
 					this.text.setValue("No Paper!");
 					this.isAnalysing = false;
-					this.analyseProgress = 1.0f;
+					this.analyseProgress = 1;
 				} else {
 					this.startAnalysing();
 					this.chromo.setRoot(null);
@@ -231,14 +231,14 @@ public class WindowFieldKit extends Window {
 				}
 			} else if (item != null) {
 				this.isAnalysing = false;
-				this.analyseProgress = 1.0f;
+				this.analyseProgress = 1;
 				this.refreshSpecies();
 				if (this.damageKit()) {
 					return;
 				}
 			} else {
 				this.isAnalysing = false;
-				this.analyseProgress = 1.0f;
+				this.analyseProgress = 1;
 				this.chromo.setRoot(null);
 			}
 		}
@@ -249,12 +249,12 @@ public class WindowFieldKit extends Window {
 	}
 
 	private void startAnalysing() {
-		this.glassVX = 0.0f;
-		this.glassVY = 0.0f;
-		this.glassOffsetX = 0.0f;
-		this.glassOffsetY = 0.0f;
+		this.glassVX = 0;
+		this.glassVY = 0;
+		this.glassOffsetX = 0;
+		this.glassOffsetY = 0;
 		this.isAnalysing = true;
-		this.analyseProgress = 0.0f;
+		this.analyseProgress = 0;
 	}
 
 	@Override

@@ -17,7 +17,7 @@ public class WindowAlvearyHatchery extends Window {
 	ControlPlayerInventory playerInventory;
 
 	public WindowAlvearyHatchery(final EntityPlayer player, final IInventory inventory, final Side side) {
-		super(176.0f, 144.0f, player, inventory, side);
+		super(176, 144, player, inventory, side);
 		this.machine = ((TileEntityMachine) inventory).getMachine();
 	}
 

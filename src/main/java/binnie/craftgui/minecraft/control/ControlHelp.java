@@ -9,13 +9,13 @@ import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 
 public class ControlHelp extends Control implements ITooltip {
-	public ControlHelp(final IWidget parent, final float x, final float y) {
-		super(parent, x, y, 16.0f, 16.0f);
+	public ControlHelp(final IWidget parent, final int x, final int y) {
+		super(parent, x, y, 16, 16);
 		this.addAttribute(Attribute.MouseOver);
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(CraftGUITexture.HelpButton, this.getArea());
 	}
 

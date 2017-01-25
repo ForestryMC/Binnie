@@ -18,6 +18,7 @@ import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.minecraft.MinecraftTooltip;
 import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.nbt.NBTTagCompound;
@@ -37,7 +38,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	}
 
 	public ControlLiquidTank(final IWidget parent, final int x, final int y, final boolean horizontal) {
-		super(parent, x, y, horizontal ? 60.0f : 18.0f, horizontal ? 18.0f : 60.0f);
+		super(parent, x, y, horizontal ? 60 : 18, horizontal ? 18 : 60);
 		this.tankID = 0;
 		this.horizontal = false;
 		this.horizontal = horizontal;
@@ -71,7 +72,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(this.horizontal ? CraftGUITexture.HorizontalLiquidTank : CraftGUITexture.LiquidTank, IPoint.ZERO);
 		if (this.isMouseOver() && Window.get(this).getGui().isHelpMode()) {
 			final int c = -1442840576 + MinecraftTooltip.getOutline(Tooltip.Type.Help);
@@ -87,42 +88,44 @@ public class ControlLiquidTank extends Control implements ITooltip {
 			}
 		}
 		if (this.isTankValid()) {
-			final Object content = null;
-			final float height = this.horizontal ? 16.0f : 58.0f;
-			final int squaled = (int) (height * (this.getTank().getAmount() / this.getTank().getCapacity()));
-			final int yPos = (int) height + 1;
+			final int height = this.horizontal ? 16 : 58;
+			final int squaled = Math.round(height * (this.getTank().getAmount() / this.getTank().getCapacity()));
+			final int yPos = height + 1;
 			final Fluid fluid = this.getTank().liquid.getFluid();
 			final int hex = fluid.getColor(this.getTank().liquid);
 			final int r = (hex & 0xFF0000) >> 16;
 			final int g = (hex & 0xFF00) >> 8;
 			final int b = hex & 0xFF;
-			GL11.glColor4f(r / 255.0f, g / 255.0f, b / 255.0f, 1.0f);
-			GL11.glEnable(3042);
-			GL11.glBlendFunc(770, 771);
-			final IPoint pos = this.getAbsolutePosition();
-			final IPoint offset = new IPoint(0.0f, height - squaled);
-			final IArea limited = this.getArea().inset(1);
-			if (this.horizontal) {
-				limited.setSize(new IPoint(limited.w() - 1.0f, limited.h()));
-			}
-			CraftGUI.render.limitArea(new IArea(limited.pos().add(pos).add(offset), limited.size().sub(offset)));
-			GL11.glEnable(3089);
-
-			BinnieCore.proxy.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-			for (int y = 0; y < height; y += 16) {
-				for (int x = 0; x < (this.horizontal ? 58 : 16); x += 16) {
-					final TextureAtlasSprite icon = BinnieCore.proxy.getTextureAtlasSprite(fluid.getStill());
-					CraftGUI.render.sprite(new IPoint(1 + x, 1 + y), icon);
+			GlStateManager.color(r / 255.0f, g / 255.0f, b / 255.0f, 1.0f);
+			GlStateManager.enableBlend();
+			{
+				GlStateManager.blendFunc(770, 771);
+				final IPoint pos = this.getAbsolutePosition();
+				final IPoint offset = new IPoint(0, height - squaled);
+				final IArea limited = this.getArea().inset(1);
+				if (this.horizontal) {
+					limited.setSize(new IPoint(limited.w() - 1, limited.h()));
 				}
+				CraftGUI.render.limitArea(new IArea(limited.pos().add(pos).add(offset), limited.size().sub(offset)), guiWidth, guiHeight);
+				GL11.glEnable(GL11.GL_SCISSOR_TEST);
+				{
+					BinnieCore.proxy.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+					for (int y = 0; y < height; y += 16) {
+						for (int x = 0; x < (this.horizontal ? 58 : 16); x += 16) {
+							final TextureAtlasSprite icon = BinnieCore.proxy.getTextureAtlasSprite(fluid.getStill());
+							CraftGUI.render.sprite(new IPoint(1 + x, 1 + y), icon);
+						}
+					}
+				}
+				GL11.glDisable(GL11.GL_SCISSOR_TEST);
 			}
-
-			GL11.glDisable(3089);
-			GL11.glDisable(3042);
+			GlStateManager.disableBlend();
+			GlStateManager.color(1, 1, 1, 1);
 		}
 	}
 
 	@Override
-	public void onRenderForeground() {
+	public void onRenderForeground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(this.horizontal ? CraftGUITexture.HorizontalLiquidTankOverlay : CraftGUITexture.LiquidTankOverlay, IPoint.ZERO);
 		if (this.isMouseOver() && Window.get(this).getGui().isHelpMode()) {
 			final IArea area = this.getArea();

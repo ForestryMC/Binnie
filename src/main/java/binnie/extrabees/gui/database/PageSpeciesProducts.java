@@ -16,9 +16,9 @@ public class PageSpeciesProducts extends PageSpecies {
 
 	public PageSpeciesProducts(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);
-		this.pageSpeciesProducts_Title = new ControlTextCentered(this, 8.0f, "Products");
+		this.pageSpeciesProducts_Title = new ControlTextCentered(this, 8, "Products");
 		this.pageSpeciesProducts_Products = new ControlProductsBox(this, 4, 20, 136, 48, ControlProductsBox.Type.Products);
-		this.pageSpeciesProducts_Title2 = new ControlTextCentered(this, 68.0f, "Specialties");
+		this.pageSpeciesProducts_Title2 = new ControlTextCentered(this, 68, "Specialties");
 		this.pageSpeciesProducts_Specialties = new ControlProductsBox(this, 4, 80, 136, 48, ControlProductsBox.Type.Specialties);
 	}
 

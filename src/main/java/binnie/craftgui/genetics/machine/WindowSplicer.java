@@ -33,14 +33,24 @@ public class WindowSplicer extends WindowMachine {
 	public void initialiseClient() {
 		super.initialiseClient();
 		int x = 16;
-		new ControlSplicerProgress(this, 84.0f, 32.0f, this.w() - 172.0f, 102.0f);
-		CraftGUIUtil.horizontalGrid(x, 62.0f, new ControlSlotArray(this, 0, 0, 2, 1).create(Splicer.SLOT_SERUM_RESERVE), new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowRight.getIcon().getResourceLocation()), new ControlSlot(this, 0.0f, 0.0f).assign(0));
+		new ControlSplicerProgress(this, 84, 32, this.w() - 172, 102);
+		CraftGUIUtil.horizontalGrid(x, 62,
+				new ControlSlotArray(this, 0, 0, 2, 1).create(Splicer.SLOT_SERUM_RESERVE),
+				new ControlIconDisplay(this, 0, 0, GUIIcon.ArrowRight.getIcon().getResourceLocation()),
+				new ControlSlot(this, 0, 0).assign(0)
+		);
 		new ControlSlotArray(this, x + 12, 84, 2, 1).create(Splicer.SLOT_SERUM_EXPENDED);
-		new ControlIconDisplay(this, x + 12 + 36 + 4, 86.0f, GUIIcon.ArrowUpLeft.getIcon().getResourceLocation());
+		new ControlIconDisplay(this, x + 12 + 36 + 4, 86, GUIIcon.ArrowUpLeft.getIcon().getResourceLocation());
 		new ControlEnergyBar(this, 196, 64, 60, 16, Position.Left);
-		new ControlErrorState(this, 218.0f, 86.0f);
+		new ControlErrorState(this, 218, 86);
 		x += 142;
-		CraftGUIUtil.verticalGrid((this.w() - 72.0f) / 2.0f, 32.0f, TextJustification.MiddleCenter, 4.0f, new ControlSlotArray(this, 0, 0, 4, 1).create(Inoculator.SLOT_RESERVE), new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowDown.getIcon().getResourceLocation()), new ControlSlot(this, 0.0f, 0.0f).assign(9), new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowDown.getIcon().getResourceLocation()), new ControlSlotArray(this, 0, 0, 4, 1).create(Inoculator.SLOT_FINISHED));
+		CraftGUIUtil.verticalGrid((this.w() - 72) / 2, 32, TextJustification.MiddleCenter, 4,
+				new ControlSlotArray(this, 0, 0, 4, 1).create(Inoculator.SLOT_RESERVE),
+				new ControlIconDisplay(this, 0, 0, GUIIcon.ArrowDown.getIcon().getResourceLocation()),
+				new ControlSlot(this, 0, 0).assign(9),
+				new ControlIconDisplay(this, 0, 0, GUIIcon.ArrowDown.getIcon().getResourceLocation()),
+				new ControlSlotArray(this, 0, 0, 4, 1).create(Inoculator.SLOT_FINISHED)
+		);
 		new ControlPlayerInventory(this);
 	}
 

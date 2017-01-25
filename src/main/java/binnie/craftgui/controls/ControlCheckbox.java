@@ -17,16 +17,16 @@ public class ControlCheckbox extends Control implements IControlValue<Boolean> {
 	boolean value;
 	String text;
 
-	public ControlCheckbox(final IWidget parent, final float x, final float y, final boolean bool) {
-		this(parent, x, y, 0.0f, "", bool);
+	public ControlCheckbox(final IWidget parent, final int x, final int y, final boolean bool) {
+		this(parent, x, y, 0, "", bool);
 	}
 
-	public ControlCheckbox(final IWidget parent, final float x, final float y, final float w, final String text, final boolean bool) {
-		super(parent, x, y, (w > 16.0f) ? w : 16.0f, 16.0f);
+	public ControlCheckbox(final IWidget parent, final int x, final int y, final int w, final String text, final boolean bool) {
+		super(parent, x, y, (w > 16) ? w : 16, 16);
 		this.text = text;
 		this.value = bool;
-		if (w > 16.0f) {
-			new ControlText(this, new IArea(16.0f, 1.0f, w - 16.0f, 16.0f), text, TextJustification.MiddleCenter).setColour(4473924);
+		if (w > 16) {
+			new ControlText(this, new IArea(16, 1, w - 16, 16), text, TextJustification.MiddleCenter).setColour(4473924);
 		}
 		this.addAttribute(Attribute.MouseOver);
 		this.addEventHandler(new EventMouse.Down.Handler() {
@@ -57,7 +57,7 @@ public class ControlCheckbox extends Control implements IControlValue<Boolean> {
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		Object texture = this.getValue() ? CraftGUITexture.CheckboxChecked : CraftGUITexture.Checkbox;
 		if (this.isMouseOver()) {
 			texture = (this.getValue() ? CraftGUITexture.CheckboxCheckedHighlighted : CraftGUITexture.CheckboxHighlighted);

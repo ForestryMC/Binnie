@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 public class WindowGeneProject extends Window {
 	public WindowGeneProject(final EntityPlayer player, final IInventory inventory, final Side side) {
-		super(100.0f, 100.0f, player, inventory, side);
+		super(100, 100, player, inventory, side);
 	}
 
 	@Override

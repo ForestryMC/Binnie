@@ -16,9 +16,9 @@ class ControlMutationItem extends ControlOption<IMutation> {
 
 	public ControlMutationItem(final ControlList<IMutation> controlList, final IMutation option, final IAlleleSpecies species, final int y) {
 		super(controlList, option, y);
-		this.itemWidget1 = new ControlDatabaseIndividualDisplay(this, 4.0f, 4.0f);
-		this.itemWidget2 = new ControlDatabaseIndividualDisplay(this, 44.0f, 4.0f);
-		this.itemWidget3 = new ControlDatabaseIndividualDisplay(this, 104.0f, 4.0f);
+		this.itemWidget1 = new ControlDatabaseIndividualDisplay(this, 4, 4);
+		this.itemWidget2 = new ControlDatabaseIndividualDisplay(this, 44, 4);
+		this.itemWidget3 = new ControlDatabaseIndividualDisplay(this, 104, 4);
 		this.addSymbol = new ControlMutationSymbol(this, 24, 4, 0);
 		this.arrowSymbol = new ControlMutationSymbol(this, 64, 4, 1);
 		final boolean isNEI = ((WindowAbstractDatabase) this.getSuperParent()).isNEI();

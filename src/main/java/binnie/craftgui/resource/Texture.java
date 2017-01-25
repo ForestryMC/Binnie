@@ -49,46 +49,46 @@ public class Texture {
 		return this.padding.add(this.border);
 	}
 
-	public float w() {
+	public int w() {
 		return this.getArea().w();
 	}
 
-	public float h() {
+	public int h() {
 		return this.getArea().h();
 	}
 
-	public float u() {
+	public int u() {
 		return this.getArea().x();
 	}
 
-	public float v() {
+	public int v() {
 		return this.getArea().y();
 	}
 
-	public Texture crop(final Position anchor, final float dist) {
+	public Texture crop(final Position anchor, final int dist) {
 		return this.crop(new IBorder(anchor.opposite(), dist));
 	}
 
 	public Texture crop(final IBorder crop) {
 		final Texture copy = new Texture(this.area, this.padding, this.border, this.filename);
-		if (crop.b() > 0.0f) {
-			copy.border.b(0.0f);
+		if (crop.b() > 0) {
+			copy.border.b(0);
 			copy.padding.b(copy.padding.b() - Math.min(crop.b(), copy.padding.b()));
 			copy.area.h(copy.area.h() - crop.b());
 		}
-		if (crop.t() > 0.0f) {
-			copy.border.t(0.0f);
+		if (crop.t() > 0) {
+			copy.border.t(0);
 			copy.padding.t(copy.padding.t() - Math.min(crop.t(), copy.padding.t()));
 			copy.area.h(copy.area.h() - crop.t());
 			copy.area.y(copy.area.y() + crop.t());
 		}
-		if (crop.r() > 0.0f) {
-			copy.border.r(0.0f);
+		if (crop.r() > 0) {
+			copy.border.r(0);
 			copy.padding.r(copy.padding.r() - Math.min(crop.r(), copy.padding.r()));
 			copy.area.w(copy.area.w() - crop.r());
 		}
-		if (crop.l() > 0.0f) {
-			copy.border.l(0.0f);
+		if (crop.l() > 0) {
+			copy.border.l(0);
 			copy.padding.l(copy.padding.l() - Math.min(crop.l(), copy.padding.l()));
 			copy.area.w(copy.area.w() - crop.l());
 			copy.area.x(copy.area.x() + crop.l());

@@ -11,7 +11,7 @@ public class ControlProgress extends ControlProgressBase {
 	private Position direction;
 
 	public ControlProgress(final IWidget parent, final int x, final int y, final Texture progressBlank, final Texture progressBar, final Position dir) {
-		super(parent, x, y, (progressBlank == null) ? 0.0f : progressBlank.w(), (progressBlank == null) ? 0.0f : progressBlank.h());
+		super(parent, x, y, (progressBlank == null) ? 0 : progressBlank.w(), (progressBlank == null) ? 0 : progressBlank.h());
 		this.progressBlank = progressBlank;
 		this.progressBar = progressBar;
 		this.progress = 0.0f;
@@ -19,7 +19,7 @@ public class ControlProgress extends ControlProgressBase {
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(this.progressBlank, this.getArea());
 		CraftGUI.render.texturePercentage(this.progressBar, this.getArea(), this.direction, this.progress);
 	}

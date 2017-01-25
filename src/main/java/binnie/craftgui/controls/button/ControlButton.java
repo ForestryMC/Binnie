@@ -15,7 +15,7 @@ public class ControlButton extends Control {
 	private ControlText textWidget;
 	private String text;
 
-	public ControlButton(final IWidget parent, final float x, final float y, final float width, final float height) {
+	public ControlButton(final IWidget parent, final int x, final int y, final int width, final int height) {
 		super(parent, x, y, width, height);
 		this.addAttribute(Attribute.MouseOver);
 		this.addEventHandler(new EventMouse.Down.Handler() {
@@ -30,7 +30,7 @@ public class ControlButton extends Control {
 	protected void onMouseClick(final EventMouse.Down event) {
 	}
 
-	public ControlButton(final IWidget parent, final float x, final float y, final float width, final float height, final String text) {
+	public ControlButton(final IWidget parent, final int x, final int y, final int width, final int height, final String text) {
 		this(parent, x, y, width, height);
 		this.text = text;
 		this.textWidget = new ControlText(this, this.getArea(), text, TextJustification.MiddleCenter);
@@ -48,7 +48,7 @@ public class ControlButton extends Control {
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		Object texture = CraftGUITexture.ButtonDisabled;
 		if (this.isMouseOver()) {
 			texture = CraftGUITexture.ButtonHighlighted;

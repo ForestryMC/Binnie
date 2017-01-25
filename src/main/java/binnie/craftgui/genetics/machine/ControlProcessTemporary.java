@@ -13,9 +13,9 @@ public class ControlProcessTemporary extends ControlMachineProgress {
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.solid(this.getArea(), -4868683);
-		final float w = this.getSize().y() * this.progress / 100.0f;
+		final int w = Math.round(this.getSize().y() * this.progress / 100.0f);
 		CraftGUI.render.solid(new IArea(this.getArea().x(), this.getArea().y(), w, this.getArea().h()), -65536);
 	}
 }

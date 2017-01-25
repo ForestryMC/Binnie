@@ -20,7 +20,7 @@ class ControlMutationBox extends ControlListBox<IMutation> {
 	}
 
 	public ControlMutationBox(final IWidget parent, final int x, final int y, final int width, final int height, final Type type) {
-		super(parent, x, y, width, height, 12.0f);
+		super(parent, x, y, width, height, 12);
 		this.species = null;
 		this.type = type;
 	}

@@ -17,9 +17,9 @@ public class ControlSequencerProgress extends ControlProgressBase {
 	ControlText textControl;
 
 	public ControlSequencerProgress(final IWidget parent, final int x, final int y) {
-		super(parent, x, y, 100.0f, 52.0f);
-		final Panel panel = new Panel(this, 0.0f, 0.0f, 100.0f, 52.0f, MinecraftGUI.PanelType.Gray);
-		this.textControl = new ControlText(panel, new IArea(4.0f, 4.0f, 92.0f, 44.0f), "", TextJustification.MiddleCenter);
+		super(parent, x, y, 100, 52);
+		final Panel panel = new Panel(this, 0, 0, 100, 52, MinecraftGUI.PanelType.Gray);
+		this.textControl = new ControlText(panel, new IArea(4, 4, 92, 44), "", TextJustification.MiddleCenter);
 	}
 
 	@Override
@@ -37,10 +37,10 @@ public class ControlSequencerProgress extends ControlProgressBase {
 				final int k = rand.nextInt(4);
 				final String code = codes[k];
 				if (rand.nextFloat() < this.progress) {
-					final String col = "§" + colors[k];
-					text = text + "§r" + col + "§l" + code;
+					final String col = "ï¿½" + colors[k];
+					text = text + "ï¿½r" + col + "ï¿½l" + code;
 				} else {
-					text = text + "§r§7§k§l" + code;
+					text = text + "ï¿½rï¿½7ï¿½kï¿½l" + code;
 				}
 			}
 			this.textControl.setValue(text);

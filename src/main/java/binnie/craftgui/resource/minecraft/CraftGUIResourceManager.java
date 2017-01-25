@@ -88,20 +88,20 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener {
 		if (split.length < 1 || split.length > 4) {
 			throw new RuntimeException("Parameter must have between one and four numbers");
 		}
-		final List<Float> f = new ArrayList<>();
+		final List<Integer> i = new ArrayList<>();
 		for (final String string : split) {
-			f.add(Float.parseFloat(string));
+			i.add(Integer.parseInt(string));
 		}
-		if (f.size() == 1) {
-			return new IArea(f.get(0));
+		if (i.size() == 1) {
+			return new IArea(i.get(0));
 		}
-		if (f.size() == 2) {
-			return new IArea(f.get(0), f.get(1));
+		if (i.size() == 2) {
+			return new IArea(i.get(0), i.get(1));
 		}
-		if (f.size() == 3) {
-			return new IArea(f.get(0), f.get(1), f.get(2));
+		if (i.size() == 3) {
+			return new IArea(i.get(0), i.get(1), i.get(2));
 		}
-		return new IArea(f.get(0), f.get(1), f.get(2), f.get(3));
+		return new IArea(i.get(0), i.get(1), i.get(2), i.get(3));
 	}
 
 	public IBorder getBorder(final String name) {
@@ -109,20 +109,20 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener {
 		if (split.length < 1 || split.length > 4) {
 			throw new RuntimeException("Parameter must have between one and four numbers");
 		}
-		final List<Float> f = new ArrayList<>();
+		final List<Integer> i = new ArrayList<>();
 		for (final String string : split) {
-			f.add(Float.parseFloat(string));
+			i.add(Integer.parseInt(string));
 		}
-		if (f.size() == 1) {
-			return new IBorder(f.get(0));
+		if (i.size() == 1) {
+			return new IBorder(i.get(0));
 		}
-		if (f.size() == 2) {
-			return new IBorder(f.get(0), f.get(1));
+		if (i.size() == 2) {
+			return new IBorder(i.get(0), i.get(1));
 		}
-		if (f.size() == 3) {
-			return new IBorder(f.get(0), f.get(1), f.get(2));
+		if (i.size() == 3) {
+			return new IBorder(i.get(0), i.get(1), i.get(2));
 		}
-		return new IBorder(f.get(0), f.get(1), f.get(2), f.get(3));
+		return new IBorder(i.get(0), i.get(1), i.get(2), i.get(3));
 	}
 
 	public IBinnieTexture getTextureSheet(final String name) {

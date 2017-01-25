@@ -23,8 +23,8 @@ class ControlMutationSymbol extends Control implements ITooltip {
 	private int type;
 
 	@Override
-	public void onRenderBackground() {
-		super.onRenderBackground();
+	public void onRenderBackground(int guiWidth, int guiHeight) {
+		super.onRenderBackground(guiWidth, guiHeight);
 		if (this.type == 0) {
 			CraftGUI.render.texture(ControlMutationSymbol.MutationPlus, IPoint.ZERO);
 		} else {
@@ -33,7 +33,7 @@ class ControlMutationSymbol extends Control implements ITooltip {
 	}
 
 	protected ControlMutationSymbol(final IWidget parent, final int x, final int y, final int type) {
-		super(parent, x, y, 16 + type * 16, 16.0f);
+		super(parent, x, y, 16 + type * 16, 16);
 		this.value = null;
 		this.type = type;
 		this.addAttribute(Attribute.MouseOver);

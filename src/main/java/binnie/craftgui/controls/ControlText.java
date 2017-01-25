@@ -13,7 +13,7 @@ public class ControlText extends Control implements IControlValue<String> {
 	private TextJustification align;
 
 	public ControlText(final IWidget parent, final IPoint pos, final String text) {
-		this(parent, new IArea(pos, new IPoint(500.0f, 0.0f)), text, TextJustification.TopLeft);
+		this(parent, new IArea(pos, new IPoint(500, 0)), text, TextJustification.TopLeft);
 	}
 
 	public ControlText(final IWidget parent, final String text, final TextJustification align) {
@@ -27,7 +27,7 @@ public class ControlText extends Control implements IControlValue<String> {
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.text(this.getArea(), this.align, this.text, this.getColour());
 	}
 

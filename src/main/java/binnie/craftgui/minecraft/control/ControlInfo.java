@@ -11,14 +11,14 @@ import binnie.craftgui.resource.minecraft.CraftGUITexture;
 public class ControlInfo extends Control implements ITooltip {
 	private String info;
 
-	public ControlInfo(final IWidget parent, final float x, final float y, final String info) {
-		super(parent, x, y, 16.0f, 16.0f);
+	public ControlInfo(final IWidget parent, final int x, final int y, final String info) {
+		super(parent, x, y, 16, 16);
 		this.addAttribute(Attribute.MouseOver);
 		this.info = info;
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(CraftGUITexture.InfoButton, this.getArea());
 	}
 

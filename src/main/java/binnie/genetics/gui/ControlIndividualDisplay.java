@@ -11,11 +11,11 @@ import forestry.api.genetics.IIndividual;
 import net.minecraft.item.ItemStack;
 
 public class ControlIndividualDisplay extends ControlItemDisplay implements ITooltip {
-	public ControlIndividualDisplay(final IWidget parent, final float x, final float y, final IIndividual ind) {
-		this(parent, x, y, 16.0f, ind);
+	public ControlIndividualDisplay(final IWidget parent, final int x, final int y, final IIndividual ind) {
+		this(parent, x, y, 16, ind);
 	}
 
-	public ControlIndividualDisplay(final IWidget parent, final float x, final float y, final float size, final IIndividual ind) {
+	public ControlIndividualDisplay(final IWidget parent, final int x, final int y, final int size, final IIndividual ind) {
 		super(parent, x, y, size);
 		final BreedingSystem system = Binnie.GENETICS.getSystem(ind.getGenome().getSpeciesRoot());
 		this.setItemStack(system.getSpeciesRoot().getMemberStack(ind, system.getDefaultType()));

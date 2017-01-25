@@ -5,17 +5,22 @@ import forestry.api.genetics.AlleleManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nullable;
+
 public abstract class SlotValidator extends Validator<ItemStack> {
 	public static ValidatorIcon IconBee;
 	public static ValidatorIcon IconFrame;
 	public static ValidatorIcon IconCircuit;
 	public static ValidatorIcon IconBlock;
+
+	@Nullable
 	private ValidatorIcon icon;
 
-	public SlotValidator(final ValidatorIcon icon) {
+	public SlotValidator(@Nullable final ValidatorIcon icon) {
 		this.icon = icon;
 	}
 
+	@Nullable
 	public TextureAtlasSprite getIcon(final boolean input) {
 		return (this.icon == null) ? null : BinnieCore.proxy.getTextureAtlasSprite(this.icon.getIcon(input).getResourceLocation());
 	}

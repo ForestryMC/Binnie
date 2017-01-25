@@ -6,7 +6,7 @@ import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
 
 public class ControlTooltip extends Control implements ITooltip {
-	public ControlTooltip(final IWidget parent, final float x, final float y, final float w, final float h) {
+	public ControlTooltip(final IWidget parent, final int x, final int y, final int w, final int h) {
 		super(parent, x, y, w, h);
 	}
 

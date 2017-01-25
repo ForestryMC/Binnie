@@ -29,28 +29,28 @@ public class PageSpeciesGenome extends PageSpecies {
 
 	public PageSpeciesGenome(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);
-		this.pageSpeciesGenome_Title = new ControlTextCentered(this, 8.0f, "Genome");
-		new ControlText(this, new IArea(0.0f, 32.0f, 68.0f, 30.0f), "Speed:", TextJustification.TopRight);
-		new ControlText(this, new IArea(0.0f, 44.0f, 68.0f, 30.0f), "Lifespan:", TextJustification.TopRight);
-		new ControlText(this, new IArea(0.0f, 56.0f, 68.0f, 30.0f), "Fertility:", TextJustification.TopRight);
-		new ControlText(this, new IArea(0.0f, 68.0f, 68.0f, 30.0f), "Flowering:", TextJustification.TopRight);
-		new ControlText(this, new IArea(0.0f, 80.0f, 68.0f, 30.0f), "Territory:", TextJustification.TopRight);
-		new ControlText(this, new IArea(0.0f, 97.0f, 68.0f, 30.0f), "Behavior:", TextJustification.TopRight);
-		new ControlText(this, new IArea(0.0f, 109.0f, 68.0f, 30.0f), "Sunlight:", TextJustification.TopRight);
-		new ControlText(this, new IArea(0.0f, 121.0f, 68.0f, 30.0f), "Rain:", TextJustification.TopRight);
-		new ControlText(this, new IArea(0.0f, 138.0f, 68.0f, 30.0f), "Flower:", TextJustification.TopRight);
-		new ControlText(this, new IArea(0.0f, 155.0f, 68.0f, 30.0f), "Effect:", TextJustification.TopRight);
+		this.pageSpeciesGenome_Title = new ControlTextCentered(this, 8, "Genome");
+		new ControlText(this, new IArea(0, 32, 68, 30), "Speed:", TextJustification.TopRight);
+		new ControlText(this, new IArea(0, 44, 68, 30), "Lifespan:", TextJustification.TopRight);
+		new ControlText(this, new IArea(0, 56, 68, 30), "Fertility:", TextJustification.TopRight);
+		new ControlText(this, new IArea(0, 68, 68, 30), "Flowering:", TextJustification.TopRight);
+		new ControlText(this, new IArea(0, 80, 68, 30), "Territory:", TextJustification.TopRight);
+		new ControlText(this, new IArea(0, 97, 68, 30), "Behavior:", TextJustification.TopRight);
+		new ControlText(this, new IArea(0, 109, 68, 30), "Sunlight:", TextJustification.TopRight);
+		new ControlText(this, new IArea(0, 121, 68, 30), "Rain:", TextJustification.TopRight);
+		new ControlText(this, new IArea(0, 138, 68, 30), "Flower:", TextJustification.TopRight);
+		new ControlText(this, new IArea(0, 155, 68, 30), "Effect:", TextJustification.TopRight);
 		final int x = 72;
-		this.pageSpeciesGenome_SpeedText = new ControlText(this, new IArea(x, 32.0f, 72.0f, 30.0f), "", TextJustification.TopLeft);
-		this.pageSpeciesGenome_LifespanText = new ControlText(this, new IArea(x, 44.0f, 72.0f, 30.0f), "", TextJustification.TopLeft);
-		this.pageSpeciesGenome_FertilityText = new ControlText(this, new IArea(x, 56.0f, 72.0f, 30.0f), "", TextJustification.TopLeft);
-		this.pageSpeciesGenome_FloweringText = new ControlText(this, new IArea(x, 68.0f, 72.0f, 30.0f), "", TextJustification.TopLeft);
-		this.pageSpeciesGenome_TerritoryText = new ControlText(this, new IArea(x, 80.0f, 72.0f, 30.0f), "", TextJustification.TopLeft);
-		this.pageSpeciesGenome_NocturnalText = new ControlText(this, new IArea(x, 97.0f, 72.0f, 30.0f), "", TextJustification.TopLeft);
-		this.pageSpeciesGenome_CaveDwellingText = new ControlText(this, new IArea(x, 109.0f, 72.0f, 30.0f), "", TextJustification.TopLeft);
-		this.pageSpeciesGenome_TolerantFlyerText = new ControlText(this, new IArea(x, 121.0f, 72.0f, 30.0f), "", TextJustification.TopLeft);
-		this.pageSpeciesGenome_FlowerText = new ControlText(this, new IArea(x, 138.0f, 72.0f, 30.0f), "", TextJustification.TopLeft);
-		this.pageSpeciesGenome_EffectText = new ControlText(this, new IArea(x, 155.0f, 72.0f, 30.0f), "", TextJustification.TopLeft);
+		this.pageSpeciesGenome_SpeedText = new ControlText(this, new IArea(x, 32, 72, 30), "", TextJustification.TopLeft);
+		this.pageSpeciesGenome_LifespanText = new ControlText(this, new IArea(x, 44, 72, 30), "", TextJustification.TopLeft);
+		this.pageSpeciesGenome_FertilityText = new ControlText(this, new IArea(x, 56, 72, 30), "", TextJustification.TopLeft);
+		this.pageSpeciesGenome_FloweringText = new ControlText(this, new IArea(x, 68, 72, 30), "", TextJustification.TopLeft);
+		this.pageSpeciesGenome_TerritoryText = new ControlText(this, new IArea(x, 80, 72, 30), "", TextJustification.TopLeft);
+		this.pageSpeciesGenome_NocturnalText = new ControlText(this, new IArea(x, 97, 72, 30), "", TextJustification.TopLeft);
+		this.pageSpeciesGenome_CaveDwellingText = new ControlText(this, new IArea(x, 109, 72, 30), "", TextJustification.TopLeft);
+		this.pageSpeciesGenome_TolerantFlyerText = new ControlText(this, new IArea(x, 121, 72, 30), "", TextJustification.TopLeft);
+		this.pageSpeciesGenome_FlowerText = new ControlText(this, new IArea(x, 138, 72, 30), "", TextJustification.TopLeft);
+		this.pageSpeciesGenome_EffectText = new ControlText(this, new IArea(x, 155, 72, 30), "", TextJustification.TopLeft);
 	}
 
 	@Override

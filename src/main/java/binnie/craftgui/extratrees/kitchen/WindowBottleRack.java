@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 public class WindowBottleRack extends Window {
 	public WindowBottleRack(final EntityPlayer player, final IInventory inventory, final Side side) {
-		super(248.0f, 180.0f, player, inventory, side);
+		super(248, 180, player, inventory, side);
 	}
 
 	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {

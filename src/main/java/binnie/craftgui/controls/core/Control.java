@@ -18,7 +18,7 @@ public class Control extends Widget implements ITooltipHelp, ITooltip {
 	List<String> tooltipStrings;
 	public int extraLevel;
 
-	public Control(final IWidget parent, final float x, final float y, final float w, final float h) {
+	public Control(final IWidget parent, final int x, final int y, final int w, final int h) {
 		super(parent);
 		this.helpStrings = new ArrayList<>();
 		this.tooltipStrings = new ArrayList<>();

@@ -100,7 +100,7 @@ public class AnalystPageProducts extends AnalystPageProduce {
 			}
 		}
 		final int maxBiomePerLine = (int) ((this.w() + 2.0f - 16.0f) / 18.0f);
-		final float biomeListX = (this.w() - (Math.min(maxBiomePerLine, allFluids.size() + refinedProducts.size()) * 18 - 2)) / 2.0f;
+		final int biomeListX = (this.w() - (Math.min(maxBiomePerLine, allFluids.size() + refinedProducts.size()) * 18 - 2)) / 2;
 		int dx = 0;
 		int dy = 0;
 		for (final ItemStack soilStack : refinedProducts) {
@@ -152,7 +152,7 @@ public class AnalystPageProducts extends AnalystPageProduce {
 	}
 
 	private void createProductEntry(final ItemStack key, final Float value, final int y, final float speed) {
-		final ControlItemDisplay item = new ControlItemDisplay(this, 16.0f, y) {
+		final ControlItemDisplay item = new ControlItemDisplay(this, 16, y) {
 			@Override
 			public void getTooltip(final Tooltip tooltip) {
 				super.getTooltip(tooltip);
@@ -179,9 +179,9 @@ public class AnalystPageProducts extends AnalystPageProduce {
 		item.setTooltip();
 		final ControlText textWidget = new ControlTextCentered(this, y + 4, "");
 		textWidget.setColour(this.getColour());
-		CraftGUIUtil.moveWidget(textWidget, new IPoint(12.0f, 0.0f));
+		CraftGUIUtil.moveWidget(textWidget, new IPoint(12, 0));
 		item.setItemStack(key);
-		final float time = (int) (PluginApiculture.ticksPerBeeWorkCycle * 100.0 / (speed * value));
+		final int time = (int) (PluginApiculture.ticksPerBeeWorkCycle * 100.0 / (speed * value));
 		textWidget.setValue(Genetics.proxy.localise("gui.analyst.products.every") + " " + this.getTimeString(time));
 	}
 

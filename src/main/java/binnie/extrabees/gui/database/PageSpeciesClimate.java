@@ -14,10 +14,10 @@ public class PageSpeciesClimate extends PageSpecies {
 
 	public PageSpeciesClimate(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);
-		new ControlTextCentered(this, 8.0f, "Climate");
+		new ControlTextCentered(this, 8, "Climate");
 		this.tempBar = new ControlClimateBar(this, 8, 24, 128, 12);
 		this.humidBar = new ControlClimateBar(this, 8, 42, 128, 12, true);
-		new ControlTextCentered(this, 70.0f, "Biomes");
+		new ControlTextCentered(this, 70, "Biomes");
 		this.biomes = new ControlBiomes(this, 8, 90, 8, 4);
 	}
 

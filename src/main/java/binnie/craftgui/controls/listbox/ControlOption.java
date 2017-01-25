@@ -27,7 +27,7 @@ public class ControlOption<T> extends Control implements IControlValue<T> {
 	}
 
 	public ControlOption(final ControlList<T> controlList, final T option, final int height) {
-		super(controlList, 0.0f, height, controlList.getSize().x(), 20.0f);
+		super(controlList, 0, height, controlList.getSize().x(), 20);
 		this.value = option;
 		if (this.value != null) {
 			this.addAttribute(Attribute.MouseOver);
@@ -55,7 +55,7 @@ public class ControlOption<T> extends Control implements IControlValue<T> {
 	}
 
 	@Override
-	public void onRenderForeground() {
+	public void onRenderForeground(int guiWidth, int guiHeight) {
 		if (this.isCurrentSelection()) {
 			CraftGUI.render.texture(CraftGUITexture.Outline, this.getArea());
 		}

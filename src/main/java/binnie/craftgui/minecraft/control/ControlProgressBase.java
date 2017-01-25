@@ -12,7 +12,7 @@ import binnie.craftgui.minecraft.Window;
 public class ControlProgressBase extends Control {
 	protected float progress;
 
-	public ControlProgressBase(final IWidget parent, final float x, final float y, final float w, final float h) {
+	public ControlProgressBase(final IWidget parent, final int x, final int y, final int w, final int h) {
 		super(parent, x, y, w, h);
 		this.progress = 0.0f;
 		this.addAttribute(Attribute.MouseOver);

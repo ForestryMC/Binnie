@@ -16,6 +16,7 @@ import binnie.craftgui.core.geometry.Position;
 import binnie.craftgui.minecraft.MinecraftTooltip;
 import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.inventory.IInventory;
 import org.lwjgl.opengl.GL11;
 
@@ -73,7 +74,7 @@ public class ControlEnergyBar extends Control implements ITooltip {
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(CraftGUITexture.EnergyBarBack, this.getArea());
 		final float percentage = this.getPercentage() / 100.0f;
 		CraftGUI.render.colour(this.getColourFromPercentage(percentage));
@@ -81,13 +82,13 @@ public class ControlEnergyBar extends Control implements ITooltip {
 		switch (this.direction) {
 			case Top:
 			case Bottom: {
-				final float height = area.size().y() * percentage;
+				final int height = Math.round(area.size().y() * percentage);
 				area.setSize(new IPoint(area.size().x(), height));
 				break;
 			}
 			case Left:
 			case Right: {
-				final float width = area.size().x() * percentage;
+				final int width = Math.round(area.size().x() * percentage);
 				area.setSize(new IPoint(width, area.size().y()));
 				break;
 			}
@@ -100,12 +101,12 @@ public class ControlEnergyBar extends Control implements ITooltip {
 			CraftGUI.render.gradientRect(this.getArea().inset(1), c, c);
 		}
 		CraftGUI.render.texture(CraftGUITexture.EnergyBarGlow, area);
-		GL11.glColor3d(1.0, 1.0, 1.0);
+		GlStateManager.color(1, 1, 1, 1);
 		CraftGUI.render.texture(CraftGUITexture.EnergyBarGlass, this.getArea());
 	}
 
 	@Override
-	public void onRenderForeground() {
+	public void onRenderForeground(int guiWidth, int guiHeight) {
 		if (this.isMouseOver() && Window.get(this).getGui().isHelpMode()) {
 			final IArea area = this.getArea();
 			CraftGUI.render.colour(MinecraftTooltip.getOutline(Tooltip.Type.Help));

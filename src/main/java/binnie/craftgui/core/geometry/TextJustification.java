@@ -11,8 +11,8 @@ public enum TextJustification {
 	BottomCenter(0.5f, 1.0f),
 	BottomRight(1.0f, 1.0f);
 
-	float xOffset;
-	float yOffset;
+	private final float xOffset;
+	private final float yOffset;
 
 	TextJustification(final float xOffset, final float yOffset) {
 		this.xOffset = xOffset;

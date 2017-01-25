@@ -28,13 +28,13 @@ public class ControlTankSlot extends ControlSlotFluid {
 	@Override
 	public void onUpdateClient() {
 		this.fluidStack = Window.get(this).getContainer().getTankInfo(this.tankID).liquid;
-		final int height = (int) (16.0f * (((this.fluidStack == null) ? 0 : this.fluidStack.amount) / 1000.0f));
-		this.itemDisplay.setCroppedZone(this.itemDisplay, new IArea(0.0f, 16 - height, 16.0f, 16.0f));
+		final int height = 16 * (((this.fluidStack == null) ? 0 : this.fluidStack.amount) / 1000);
+		this.itemDisplay.setCroppedZone(this.itemDisplay, new IArea(0, 16 - height, 16, 16));
 		super.onUpdateClient();
 	}
 
 	@Override
-	public void onRenderBackground() {
-		super.onRenderBackground();
+	public void onRenderBackground(int guiWidth, int guiHeight) {
+		super.onRenderBackground(guiWidth, guiHeight);
 	}
 }

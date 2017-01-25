@@ -40,8 +40,8 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
 		return stack != null && stack.stackSize == 1 && Engineering.isGeneAcceptor(stack) && Engineering.canAcceptGene(stack, this.getValue());
 	}
 
-	protected ControlGene(final IWidget parent, final float x, final float y) {
-		super(parent, x, y, 16.0f, 16.0f);
+	protected ControlGene(final IWidget parent, final int x, final int y) {
+		super(parent, x, y, 16, 16);
 		this.addAttribute(Attribute.MouseOver);
 		this.addSelfEventHandler(new EventMouse.Down.Handler() {
 			@Override
@@ -68,11 +68,11 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
 	}
 
 	@Override
-	public void onRenderForeground() {
+	public void onRenderForeground(int guiWidth, int guiHeight) {
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		if (this.isMouseOver() && this.canFill(Window.get(this).getHeldItemStack())) {
 			CraftGUI.render.solid(this.getArea(), -1);
 			CraftGUI.render.solid(this.getArea().inset(1), -12303292);

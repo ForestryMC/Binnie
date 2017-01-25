@@ -19,7 +19,7 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 	boolean creating;
 	IValidator<IWidget> validator;
 
-	protected ControlList(final ControlListBox<T> parent, final float x, final float y, final float w, final float h) {
+	protected ControlList(final ControlListBox<T> parent, final int x, final int y, final int w, final int h) {
 		super(parent, x, y, w, h);
 		this.value = null;
 		this.allOptions = new LinkedHashMap<>();
@@ -67,7 +67,7 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 			if (this.isValidOption(entry.getValue())) {
 				entry.getValue().show();
 				this.optionWidgets.put(entry.getKey(), entry.getValue());
-				entry.getValue().setPosition(new IPoint(0.0f, height));
+				entry.getValue().setPosition(new IPoint(0, height));
 				height += (int) entry.getValue().getSize().y();
 			} else {
 				entry.getValue().hide();

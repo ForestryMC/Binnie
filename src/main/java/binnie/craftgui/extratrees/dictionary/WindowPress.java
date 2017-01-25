@@ -21,7 +21,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 public class WindowPress extends Window {
 	public WindowPress(final EntityPlayer player, final IInventory inventory, final Side side) {
-		super(194.0f, 192.0f, player, inventory, side);
+		super(194, 192, player, inventory, side);
 	}
 
 	@Override
@@ -37,12 +37,12 @@ public class WindowPress extends Window {
 	@Override
 	public void initialiseClient() {
 		this.setTitle(Machine.getMachine(this.getInventory()).getPackage().getDisplayName());
-		new ControlSlot(this, 24.0f, 52.0f).assign(FruitPressMachine.SLOT_FRUIT);
+		new ControlSlot(this, 24, 52).assign(FruitPressMachine.SLOT_FRUIT);
 		new ControlLiquidTank(this, 99, 32).setTankID(FruitPressMachine.TANK_OUTPUT);
 		new ControlEnergyBar(this, 154, 32, 16, 60, Position.Bottom);
 		new ControlPlayerInventory(this);
-		new ControlErrorState(this, 128.0f, 54.0f);
-		new ControlFruitPressProgress(this, 62.0f, 24.0f);
+		new ControlErrorState(this, 128, 54);
+		new ControlFruitPressProgress(this, 62, 24);
 		((Window) this.getSuperParent()).getContainer().getOrCreateSlot(InventoryType.Machine, FruitPressMachine.SLOT_CURRENT);
 	}
 

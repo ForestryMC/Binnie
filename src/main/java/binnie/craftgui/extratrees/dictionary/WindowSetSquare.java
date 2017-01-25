@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 public class WindowSetSquare extends Window {
 	public WindowSetSquare(final EntityPlayer player, final IInventory inventory, final Side side) {
-		super(150.0f, 150.0f, player, inventory, side);
+		super(150, 150, player, inventory, side);
 	}
 
 	@Override

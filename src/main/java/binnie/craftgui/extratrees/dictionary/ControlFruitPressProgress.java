@@ -3,6 +3,7 @@ package binnie.craftgui.extratrees.dictionary;
 import binnie.craftgui.core.Attribute;
 import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
+import binnie.craftgui.core.geometry.CraftGUIUtil;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.minecraft.Window;
@@ -10,8 +11,8 @@ import binnie.craftgui.minecraft.control.ControlProgressBase;
 import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.StandardTexture;
 import binnie.extratrees.core.ExtraTreeTexture;
-import binnie.extratrees.machines.fruitpress.FruitPressRecipes;
 import binnie.extratrees.machines.fruitpress.FruitPressMachine;
+import binnie.extratrees.machines.fruitpress.FruitPressRecipes;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -22,8 +23,8 @@ public class ControlFruitPressProgress extends ControlProgressBase {
 	static Texture PressSlot = new StandardTexture(9, 52, 34, 17, ExtraTreeTexture.Gui);
 
 	@Override
-	public void onRenderBackground() {
-		CraftGUI.render.texture(ControlFruitPressProgress.PressSlot, new IPoint(3.0f, 52.0f));
+	public void onRenderBackground(int guiWidth, int guiHeight) {
+		CraftGUI.render.texture(ControlFruitPressProgress.PressSlot, new IPoint(3, 52));
 		Slot slotFromInventory = Window.get(this).getContainer().getSlotFromInventory(Window.get(this).getInventory(), FruitPressMachine.SLOT_CURRENT);
 		if (slotFromInventory == null) {
 			return;
@@ -33,17 +34,17 @@ public class ControlFruitPressProgress extends ControlProgressBase {
 			return;
 		}
 		FluidStack fluid = FruitPressRecipes.getOutput(input);
-		CraftGUI.render.fluid(new IPoint(4.0f, 52.0f), fluid);
-		CraftGUI.render.item(new IPoint(4.0f, 52.0f), input);
+		CraftGUI.render.fluid(new IPoint(4, 52), fluid);
+		CraftGUIUtil.renderItem(new IPoint(4, 52), input);
 	}
 
 	@Override
-	public void onRenderForeground() {
-		CraftGUI.render.texture(ControlFruitPressProgress.PressTexture, new IPoint(0.0f, 16.0f * this.progress));
+	public void onRenderForeground(int guiWidth, int guiHeight) {
+		CraftGUI.render.texture(ControlFruitPressProgress.PressTexture, new IPoint(0, Math.round(16 * this.progress)));
 	}
 
-	protected ControlFruitPressProgress(final IWidget parent, final float x, final float y) {
-		super(parent, x, y, 37.0f, 69.0f);
+	protected ControlFruitPressProgress(final IWidget parent, final int x, final int y) {
+		super(parent, x, y, 37, 69);
 		this.addAttribute(Attribute.MouseOver);
 		this.addSelfEventHandler(new EventMouse.Down.Handler() {
 			@Override

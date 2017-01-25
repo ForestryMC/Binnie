@@ -39,11 +39,11 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 		this.addAttribute(Attribute.MouseOver);
 	}
 
-	public ControlDatabaseIndividualDisplay(final IWidget parent, final float x, final float y) {
-		this(parent, x, y, 16.0f);
+	public ControlDatabaseIndividualDisplay(final IWidget parent, final int x, final int y) {
+		this(parent, x, y, 16);
 	}
 
-	public ControlDatabaseIndividualDisplay(final IWidget parent, final float x, final float y, final float size) {
+	public ControlDatabaseIndividualDisplay(final IWidget parent, final int x, final int y, final int size) {
 		super(parent, x, y, size);
 		this.species = null;
 		this.discovered = EnumDiscoveryState.Show;
@@ -58,7 +58,7 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 	}
 
 	@Override
-	public void onRenderForeground() {
+	public void onRenderForeground(int guiWidth, int guiHeight) {
 
 		//TODO RENDERING
 //		IIcon icon = null;

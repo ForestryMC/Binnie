@@ -48,17 +48,17 @@ public class AnalystPageClimate extends ControlAnalystPage {
 		int y = 4;
 		new ControlTextCentered(this, y, "§nClimate").setColour(this.getColour());
 		y += 16;
-		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), "Temp. Tolerance", TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new IArea(4, y, this.w() - 8, 14), "Temp. Tolerance", TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
-		this.createTemperatureBar(this, (this.w() - 100.0f) / 2.0f, y, 100.0f, 10.0f, temp, tempTol);
+		this.createTemperatureBar(this, (this.w() - 100) / 2, y, 100, 10, temp, tempTol);
 		y += 16;
 		if (!(ind instanceof IFlower)) {
-			new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), "Humidity Tolerance", TextJustification.MiddleCenter).setColour(this.getColour());
+			new ControlText(this, new IArea(4, y, this.w() - 8, 14), "Humidity Tolerance", TextJustification.MiddleCenter).setColour(this.getColour());
 			y += 12;
-			this.createHumidity(this, (this.w() - 100.0f) / 2.0f, y, 100.0f, 10.0f, humid, humidTol);
+			this.createHumidity(this, (this.w() - 100) / 2, y, 100, 10, humid, humidTol);
 			y += 16;
 		}
-		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), "Biomes", TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new IArea(4, y, this.w() - 8, 14), "Biomes", TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
 		final List<Biome> biomes = new ArrayList<>();
 		for (final Biome biome : Biome.EXPLORATION_BIOMES_LIST) { //TODO check
@@ -82,12 +82,12 @@ public class AnalystPageClimate extends ControlAnalystPage {
 				}
 			}
 		}
-		final int maxBiomePerLine = (int) ((this.w() + 2.0f - 16.0f) / 18.0f);
-		final float biomeListX = (this.w() - (Math.min(maxBiomePerLine, biomes.size()) * 18 - 2)) / 2.0f;
+		final int maxBiomePerLine = (this.w() + 2 - 16) / 18;
+		final int biomeListX = (this.w() - (Math.min(maxBiomePerLine, biomes.size()) * 18 - 2)) / 2;
 		int dx = 0;
 		int dy = 0;
 		for (final Biome biome2 : biomes) {
-			new ControlBiome(this, biomeListX + dx, y + dy, 16.0f, 16.0f, biome2);
+			new ControlBiome(this, biomeListX + dx, y + dy, 16, 16, biome2);
 			dx += 18;
 			if (dx >= 18 * maxBiomePerLine) {
 				dx = 0;
@@ -97,7 +97,7 @@ public class AnalystPageClimate extends ControlAnalystPage {
 		this.setSize(new IPoint(this.w(), y + dy + 18 + 8));
 	}
 
-	protected void createTemperatureBar(final IWidget parent, final float x, final float y, final float w, final float h, final EnumTemperature value, final EnumTolerance tol) {
+	protected void createTemperatureBar(final IWidget parent, final int x, final int y, final int w, final int h, final EnumTemperature value, final EnumTolerance tol) {
 		new ControlToleranceBar<EnumTemperature>(parent, x, y, w, h, EnumTemperature.class) {
 			@Override
 			protected String getName(final EnumTemperature value) {
@@ -111,7 +111,7 @@ public class AnalystPageClimate extends ControlAnalystPage {
 		}.setValues(value, tol);
 	}
 
-	protected void createHumidity(final IWidget parent, final float x, final float y, final float w, final float h, final EnumHumidity value, final EnumTolerance tol) {
+	protected void createHumidity(final IWidget parent, final int x, final int y, final int w, final int h, final EnumHumidity value, final EnumTolerance tol) {
 		new ControlToleranceBar<EnumHumidity>(parent, x, y, w, h, EnumHumidity.class) {
 			@Override
 			protected String getName(final EnumHumidity value) {

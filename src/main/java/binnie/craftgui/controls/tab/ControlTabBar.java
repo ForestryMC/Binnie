@@ -13,7 +13,7 @@ public class ControlTabBar<T> extends Control implements IControlValue<T> {
 	T value;
 	Position position;
 
-	public ControlTabBar(final IWidget parent, final float x, final float y, final float width, final float height, final Position position) {
+	public ControlTabBar(final IWidget parent, final int x, final int y, final int width, final int height, final Position position) {
 		super(parent, x, y, width, height);
 		this.position = position;
 		this.addEventHandler(new EventValueChanged.Handler() {
@@ -37,9 +37,9 @@ public class ControlTabBar<T> extends Control implements IControlValue<T> {
 		int j = 0;
 		for (final T value : values) {
 			if (this.position == Position.Top || this.position == Position.Bottom) {
-				final IWidget tab = this.createTab(j * tabDimension, 0.0f, tabDimension, this.getSize().y(), value);
+				final IWidget tab = this.createTab(j * tabDimension, 0, tabDimension, this.getSize().y(), value);
 			} else {
-				final IWidget tab = this.createTab(0.0f, j * tabDimension, this.getSize().x(), tabDimension, value);
+				final IWidget tab = this.createTab(0, j * tabDimension, this.getSize().x(), tabDimension, value);
 			}
 			++j;
 		}
@@ -48,7 +48,7 @@ public class ControlTabBar<T> extends Control implements IControlValue<T> {
 		}
 	}
 
-	public ControlTab<T> createTab(final float x, final float y, final float w, final float h, final T value) {
+	public ControlTab<T> createTab(final int x, final int y, final int w, final int h, final T value) {
 		return new ControlTab<>(this, x, y, w, h, value);
 	}
 

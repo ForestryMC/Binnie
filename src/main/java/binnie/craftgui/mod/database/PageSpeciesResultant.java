@@ -12,7 +12,7 @@ public class PageSpeciesResultant extends PageSpecies {
 
 	public PageSpeciesResultant(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);
-		this.pageSpeciesResultant_Title = new ControlTextCentered(this, 8.0f, Binnie.LANGUAGE.localise("binniecore.gui.database.mutations.resultant"));
+		this.pageSpeciesResultant_Title = new ControlTextCentered(this, 8, Binnie.LANGUAGE.localise("binniecore.gui.database.mutations.resultant"));
 		this.pageSpeciesResultant_List = new ControlMutationBox(this, 4, 20, 136, 152, ControlMutationBox.Type.Resultant);
 	}
 

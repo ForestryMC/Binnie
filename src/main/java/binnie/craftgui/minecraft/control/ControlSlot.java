@@ -16,6 +16,7 @@ import binnie.craftgui.minecraft.WindowInventory;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ClickType;
@@ -32,7 +33,7 @@ public class ControlSlot extends ControlSlotBase {
 	public static boolean shiftClickActive = false;
 	public Slot slot;
 
-	public ControlSlot(final IWidget parent, final float x, final float y) {
+	public ControlSlot(final IWidget parent, final int x, final int y) {
 		super(parent, x, y);
 		this.slot = null;
 		this.addSelfEventHandler(new EventMouse.Down.Handler() {
@@ -57,17 +58,21 @@ public class ControlSlot extends ControlSlotBase {
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(CraftGUITexture.Slot, IPoint.ZERO);
 		if (this.slot == null) {
 			return;
 		}
 		final InventorySlot islot = this.getInventorySlot();
-		//TODO RENDERING
-		if (islot != null && islot.getValidator() != null) {
-			final TextureAtlasSprite icon = islot.getValidator().getIcon(!islot.getInputSides().isEmpty());
-			if (icon != null) {
-				CraftGUI.render.sprite(new IPoint(1.0f, 1.0f), icon);
+		if (islot != null) {
+			SlotValidator validator = islot.getValidator();
+			if (validator != null) {
+				final TextureAtlasSprite icon = validator.getIcon(!islot.getInputSides().isEmpty());
+				if (icon != null) {
+					GlStateManager.enableBlend();
+					CraftGUI.render.sprite(new IPoint(1, 1), icon);
+					GlStateManager.disableBlend();
+				}
 			}
 		}
 		boolean highlighted = false;
@@ -80,13 +85,13 @@ public class ControlSlot extends ControlSlotBase {
 			}
 			highlighted = true;
 			final int c = -1442840576 + Math.min(highlight.getKey().getColour(), 16777215);
-			CraftGUI.render.gradientRect(new IArea(1.0f, 1.0f, 16.0f, 16.0f), c, c);
+			CraftGUI.render.gradientRect(new IArea(1, 1, 16, 16), c, c);
 		}
 		if (!highlighted && this.getSuperParent().getMousedOverWidget() == this) {
 			if (Window.get(this).getGui().getDraggedItem() != null && !this.slot.isItemValid(Window.get(this).getGui().getDraggedItem())) {
-				CraftGUI.render.gradientRect(new IArea(1.0f, 1.0f, 16.0f, 16.0f), -1426089575, -1426089575);
+				CraftGUI.render.gradientRect(new IArea(1, 1, 16, 16), -1426089575, -1426089575);
 			} else {
-				CraftGUI.render.gradientRect(new IArea(1.0f, 1.0f, 16.0f, 16.0f), -2130706433, -2130706433);
+				CraftGUI.render.gradientRect(new IArea(1, 1, 16, 16), -2130706433, -2130706433);
 			}
 		}
 	}

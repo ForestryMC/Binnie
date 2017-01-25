@@ -15,19 +15,19 @@ public class ControlProductsItem extends ControlOption<ControlProductsBox.Produc
 
 	public ControlProductsItem(final ControlList<ControlProductsBox.Product> controlList, final ControlProductsBox.Product value, final int y) {
 		super(controlList, value, y);
-		(this.item = new ControlItemDisplay(this, 4.0f, 4.0f)).setTooltip();
-		final ControlText textWidget = new ControlTextCentered(this, 2.0f, "");
-		CraftGUIUtil.moveWidget(textWidget, new IPoint(12.0f, 0.0f));
+		(this.item = new ControlItemDisplay(this, 4, 4)).setTooltip();
+		final ControlText textWidget = new ControlTextCentered(this, 2, "");
+		CraftGUIUtil.moveWidget(textWidget, new IPoint(12, 0));
 		if (value != null) {
 			this.item.setItemStack(value.item);
-			final float time = (int) (55000.0 / value.chance);
-			final float seconds = time / 20.0f;
-			final float minutes = seconds / 60.0f;
-			final float hours = minutes / 60.0f;
+			final int time = (int) (55000.0 / value.chance);
+			final int seconds = time / 20;
+			final int minutes = seconds / 60;
+			final int hours = minutes / 60;
 			final DecimalFormat df = new DecimalFormat("#.0");
-			if (hours > 1.0f) {
+			if (hours > 1) {
 				textWidget.setValue("Every " + df.format(hours) + " hours");
-			} else if (minutes > 1.0f) {
+			} else if (minutes > 1) {
 				textWidget.setValue("Every " + df.format(minutes) + " min.");
 			} else {
 				textWidget.setValue("Every " + df.format(seconds) + " sec.");

@@ -24,7 +24,7 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 		this.mousedOverWidget = null;
 		this.draggedWidget = null;
 		this.focusedWidget = null;
-		this.mousePosition = new IPoint(0.0f, 0.0f);
+		this.mousePosition = IPoint.ZERO;
 		this.dragStart = IPoint.ZERO;
 		this.addEventHandler(new EventMouse.Down.Handler() {
 			@Override

@@ -24,8 +24,8 @@ public class PageWood extends PageAbstract<ItemStack> {
 	public void onValueChanged(final ItemStack species) {
 		this.deleteAllChildren();
 		final WindowAbstractDatabase database = Window.get(this);
-		new ControlText(this, new IArea(0.0f, 0.0f, this.size().x(), 24.0f), this.getValue().toString(), TextJustification.MiddleCenter);
+		new ControlText(this, new IArea(0, 0, this.size().x(), 24), this.getValue().toString(), TextJustification.MiddleCenter);
 		final Collection<IAlleleSpecies> trees = ((TreeBreedingSystem) database.getBreedingSystem()).getTreesThatHaveWood(species, database.isNEI(), database.getWorld(), database.getUsername());
-		new ControlSpeciesBox(this, 4.0f, 24.0f, this.size().x() - 8.0f, this.size().y() - 4.0f - 24.0f).setOptions(trees);
+		new ControlSpeciesBox(this, 4, 24, this.size().x() - 8, this.size().y() - 4 - 24).setOptions(trees);
 	}
 }

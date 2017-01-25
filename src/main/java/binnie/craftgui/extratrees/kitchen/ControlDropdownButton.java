@@ -6,7 +6,7 @@ import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.minecraft.Window;
 
 public abstract class ControlDropdownButton extends ControlButton {
-	public ControlDropdownButton(final IWidget parent, final float x, final float y, final float width, final float height, final String text) {
+	public ControlDropdownButton(final IWidget parent, final int x, final int y, final int width, final int height, final String text) {
 		super(parent, x, y, width, height, text);
 		this.addSelfEventHandler(new EventMouse.Down.Handler() {
 			@Override

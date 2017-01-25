@@ -17,7 +17,7 @@ public class ControlTextEdit extends Control implements IControlValue<String> {
 	GuiTextField field;
 	private String cachedValue;
 
-	public ControlTextEdit(final IWidget parent, final float x, final float y, final float width, final float height) {
+	public ControlTextEdit(final IWidget parent, final int x, final int y, final int width, final int height) {
 		super(parent, x, y, width, height);
 		this.cachedValue = "";
 		this.field = new GuiTextField(0, this.getWindow().getGui().getFontRenderer(), 0, 0, 10, 10);
@@ -77,7 +77,7 @@ public class ControlTextEdit extends Control implements IControlValue<String> {
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(CraftGUITexture.Slot, this.getArea());
 		this.renderTextField();
 	}

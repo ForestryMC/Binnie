@@ -22,7 +22,7 @@ public class AnalystPageGrowth extends ControlAnalystPage {
 			final int mat = tree.getGenome().getMaturationTime();
 			new ControlTextCentered(this, y, "Saplings mature in").setColour(this.getColour());
 			y += 12;
-			new ControlTextCentered(this, y, "§l" + this.getTimeString(1373.3999f * mat)).setColour(this.getColour());
+			new ControlTextCentered(this, y, "§l" + this.getTimeString(Math.round(1373.3999f * mat))).setColour(this.getColour());
 			y += 22;
 			new ControlTextCentered(this, y, "§oHeight: " + Binnie.GENETICS.treeBreedingSystem.getAlleleName(EnumTreeChromosome.HEIGHT, ind.getGenome().getActiveAllele(EnumTreeChromosome.HEIGHT))).setColour(this.getColour());
 			y += 12;

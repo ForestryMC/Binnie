@@ -4,7 +4,7 @@ import binnie.craftgui.core.IWidget;
 import binnie.craftgui.minecraft.Dialog;
 
 public class DialogBreweryRecipe extends Dialog {
-	public DialogBreweryRecipe(final IWidget parent, final float w, final float h) {
+	public DialogBreweryRecipe(final IWidget parent, final int w, final int h) {
 		super(parent, w, h);
 	}
 

@@ -16,19 +16,19 @@ import net.minecraft.item.ItemStack;
 public abstract class ControlSlotBase extends Control implements ITooltip {
 	private ControlItemDisplay itemDisplay;
 
-	public ControlSlotBase(final IWidget parent, final float x, final float y) {
+	public ControlSlotBase(final IWidget parent, final int x, final int y) {
 		this(parent, x, y, 18);
 	}
 
-	public ControlSlotBase(final IWidget parent, final float x, final float y, final int size) {
+	public ControlSlotBase(final IWidget parent, final int x, final int y, final int size) {
 		super(parent, x, y, size, size);
 		this.addAttribute(Attribute.MouseOver);
-		this.itemDisplay = new ControlItemDisplay(this, 1.0f, 1.0f, size - 2);
+		this.itemDisplay = new ControlItemDisplay(this, 1, 1, size - 2);
 		this.addSelfEventHandler(new EventWidget.ChangeSize.Handler() {
 			@Override
 			public void onEvent(final EventWidget.ChangeSize event) {
 				if (ControlSlotBase.this.itemDisplay != null) {
-					ControlSlotBase.this.itemDisplay.setSize(ControlSlotBase.this.getSize().sub(new IPoint(2.0f, 2.0f)));
+					ControlSlotBase.this.itemDisplay.setSize(ControlSlotBase.this.getSize().sub(new IPoint(2, 2)));
 				}
 			}
 		});
@@ -39,11 +39,11 @@ public abstract class ControlSlotBase extends Control implements ITooltip {
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		final int size = (int) this.getSize().x();
 		CraftGUI.render.texture(CraftGUITexture.Slot, this.getArea());
 		if (this.getSuperParent().getMousedOverWidget() == this) {
-			CraftGUI.render.gradientRect(new IArea(new IPoint(1.0f, 1.0f), this.getArea().size().sub(new IPoint(2.0f, 2.0f))), -2130706433, -2130706433);
+			CraftGUI.render.gradientRect(new IArea(new IPoint(1, 1), this.getArea().size().sub(new IPoint(2, 2))), -2130706433, -2130706433);
 		}
 	}
 

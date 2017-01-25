@@ -10,8 +10,8 @@ import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 
 public abstract class Dialog extends Control {
-	public Dialog(final IWidget parent, final float w, final float h) {
-		super(parent, (parent.w() - w) / 2.0f, (parent.h() - h) / 2.0f, w, h);
+	public Dialog(final IWidget parent, final int w, final int h) {
+		super(parent, (parent.w() - w) / 2, (parent.h() - h) / 2, w, h);
 		this.addAttribute(Attribute.MouseOver);
 		this.addAttribute(Attribute.AlwaysOnTop);
 		this.addAttribute(Attribute.BlockTooltip);
@@ -33,7 +33,7 @@ public abstract class Dialog extends Control {
 	public abstract void onClose();
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.gradientRect(this.getArea().outset(400), -1442840576, -1442840576);
 		CraftGUI.render.texture(CraftGUITexture.Window, this.getArea());
 		CraftGUI.render.texture(CraftGUITexture.TabOutline, this.getArea().inset(4));

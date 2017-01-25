@@ -12,14 +12,14 @@ import binnie.craftgui.resource.minecraft.CraftGUITexture;
 public class ControlPowerSystem extends Control implements ITooltip {
 	private PowerSystem system;
 
-	public ControlPowerSystem(final IWidget parent, final float x, final float y, final PowerSystem system) {
-		super(parent, x, y, 16.0f, 16.0f);
+	public ControlPowerSystem(final IWidget parent, final int x, final int y, final PowerSystem system) {
+		super(parent, x, y, 16, 16);
 		this.addAttribute(Attribute.MouseOver);
 		this.system = system;
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(CraftGUITexture.PowerButton, this.getArea());
 	}
 

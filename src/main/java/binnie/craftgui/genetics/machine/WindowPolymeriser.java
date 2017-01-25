@@ -47,7 +47,7 @@ public class WindowPolymeriser extends WindowMachine {
 		new ControlSlotCharge(this, x + 30 + 20, y + 18 + 8, 1).setColour(16766976);
 		x += 138;
 		new ControlSlotArray(this, x, y + 9, 2, 2).create(Polymeriser.SLOT_SERUM_FINISHED);
-		final ControlErrorState errorState = new ControlErrorState(this, 244.0f, 97.0f);
+		final ControlErrorState errorState = new ControlErrorState(this, 244, 97);
 		new ControlPlayerInventory(this);
 	}
 

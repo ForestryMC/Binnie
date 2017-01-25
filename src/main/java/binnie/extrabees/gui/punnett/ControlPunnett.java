@@ -18,16 +18,16 @@ public class ControlPunnett extends Control {
 	static int boxWidth = 80;
 	static int boxHeight = 28;
 
-	protected ControlPunnett(final IWidget parent, final float x, final float y) {
+	protected ControlPunnett(final IWidget parent, final int x, final int y) {
 		super(parent, x, y, ControlPunnett.boxWidth * 3, ControlPunnett.boxWidth * 3);
 	}
 
 	@Override
-	public void onRenderBackground() {
-		CraftGUI.render.solid(new IArea(0.0f, ControlPunnett.boxHeight, ControlPunnett.boxWidth * 3, 1.0f), 11184810);
-		CraftGUI.render.solid(new IArea(ControlPunnett.boxWidth / 2.0f, ControlPunnett.boxHeight * 2, ControlPunnett.boxWidth * 2.5f, 1.0f), 11184810);
-		CraftGUI.render.solid(new IArea(ControlPunnett.boxWidth, 0.0f, 1.0f, ControlPunnett.boxHeight * 3), 11184810);
-		CraftGUI.render.solid(new IArea(ControlPunnett.boxWidth * 2, ControlPunnett.boxHeight / 2.0f, 1.0f, ControlPunnett.boxHeight * 2.5f), 11184810);
+	public void onRenderBackground(int guiWidth, int guiHeight) {
+		CraftGUI.render.solid(new IArea(0, ControlPunnett.boxHeight, ControlPunnett.boxWidth * 3, 1), 11184810);
+		CraftGUI.render.solid(new IArea(ControlPunnett.boxWidth / 2, ControlPunnett.boxHeight * 2, Math.round(ControlPunnett.boxWidth * 2.5f), 1), 11184810);
+		CraftGUI.render.solid(new IArea(ControlPunnett.boxWidth, 0, 1, ControlPunnett.boxHeight * 3), 11184810);
+		CraftGUI.render.solid(new IArea(ControlPunnett.boxWidth * 2, ControlPunnett.boxHeight / 2, 1, Math.round(ControlPunnett.boxHeight * 2.5f)), 11184810);
 	}
 
 	public void setup(final IChromosomeType chromosome, final IIndividual ind1, final IIndividual ind2, final ISpeciesRoot root) {
@@ -64,10 +64,10 @@ public class ControlPunnett extends Control {
 			}
 			++x;
 		}
-		new ControlText(this, new IArea(ControlPunnett.boxWidth, 0.0f, ControlPunnett.boxWidth, ControlPunnett.boxHeight), "\n" + primary1.getName(), TextJustification.TopCenter).setColour(11184810);
-		new ControlText(this, new IArea(ControlPunnett.boxWidth * 2, 0.0f, ControlPunnett.boxWidth, ControlPunnett.boxHeight), "\n" + secondary1.getName(), TextJustification.TopCenter).setColour(11184810);
-		new ControlText(this, new IArea(0.0f, ControlPunnett.boxHeight, ControlPunnett.boxWidth, ControlPunnett.boxHeight), primary2.getName(), TextJustification.TopCenter).setColour(11184810);
-		new ControlText(this, new IArea(0.0f, ControlPunnett.boxHeight * 2, ControlPunnett.boxWidth, ControlPunnett.boxHeight), primary2.getName(), TextJustification.TopCenter).setColour(11184810);
+		new ControlText(this, new IArea(ControlPunnett.boxWidth, 0, ControlPunnett.boxWidth, ControlPunnett.boxHeight), "\n" + primary1.getName(), TextJustification.TopCenter).setColour(11184810);
+		new ControlText(this, new IArea(ControlPunnett.boxWidth * 2, 0, ControlPunnett.boxWidth, ControlPunnett.boxHeight), "\n" + secondary1.getName(), TextJustification.TopCenter).setColour(11184810);
+		new ControlText(this, new IArea(0, ControlPunnett.boxHeight, ControlPunnett.boxWidth, ControlPunnett.boxHeight), primary2.getName(), TextJustification.TopCenter).setColour(11184810);
+		new ControlText(this, new IArea(0, ControlPunnett.boxHeight * 2, ControlPunnett.boxWidth, ControlPunnett.boxHeight), primary2.getName(), TextJustification.TopCenter).setColour(11184810);
 	}
 
 }

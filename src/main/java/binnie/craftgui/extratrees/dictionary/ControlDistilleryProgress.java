@@ -23,9 +23,9 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 	public static final Texture OUTPUT = new StandardTexture(68, 66, 17, 7, ExtraTreeTexture.Gui);
 
 	@Override
-	public void onRenderBackground() {
-		CraftGUI.render.texture(DISTILLERY_BASE, new IPoint(0.0f, 0.0f));
-		CraftGUI.render.texturePercentage(LIQUID_FLOW, new IArea(18.0f, 0.0f, 38.0f, 66.0f), Position.Left, this.progress);
+	public void onRenderBackground(int guiWidth, int guiHeight) {
+		CraftGUI.render.texture(DISTILLERY_BASE, IPoint.ZERO);
+		CraftGUI.render.texturePercentage(LIQUID_FLOW, new IArea(18, 0, 38, 66), Position.Left, this.progress);
 		final DistilleryLogic component = Machine.getInterface(DistilleryLogic.class, Window.get(this).getInventory());
 		FluidStack stack = null;
 		if (component != null) {
@@ -33,32 +33,32 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 		}
 		if (stack != null) {
 			for (int y = 0; y < 4; ++y) {
-				CraftGUI.render.fluid(new IPoint(1.0f, 1 + y * 16), stack);
+				CraftGUI.render.fluid(new IPoint(1, 1 + y * 16), stack);
 			}
 		}
 	}
 
 	@Override
-	public void onRenderForeground() {
+	public void onRenderForeground(int guiWidth, int guiHeight) {
 		DistilleryLogic distilleryLogic = Machine.getInterface(DistilleryLogic.class, Window.get(this).getInventory());
 		if (distilleryLogic != null) {
 			final int level = distilleryLogic.level;
-			CraftGUI.render.texture(OUTPUT, new IPoint(47.0f, 14 + level * 15));
-			CraftGUI.render.texture(DISTILLERY_OVERLAY, new IPoint(0.0f, 0.0f));
+			CraftGUI.render.texture(OUTPUT, new IPoint(47, 14 + level * 15));
+			CraftGUI.render.texture(DISTILLERY_OVERLAY, IPoint.ZERO);
 		}
 	}
 
-	protected ControlDistilleryProgress(final IWidget parent, final float x, final float y) {
-		super(parent, x, y, 58.0f, 66.0f);
+	protected ControlDistilleryProgress(final IWidget parent, final int x, final int y) {
+		super(parent, x, y, 58, 66);
 		this.addSelfEventHandler(new EventMouse.Down.Handler() {
 			@Override
 			public void onEvent(final EventMouse.Down event) {
 				int distillationLevel = -1;
-				if (new IArea(45.0f, 8.0f, 19.0f, 11.0f).contains(ControlDistilleryProgress.this.getRelativeMousePosition())) {
+				if (new IArea(45, 8, 19, 11).contains(ControlDistilleryProgress.this.getRelativeMousePosition())) {
 					distillationLevel = 0;
-				} else if (new IArea(45.0f, 23.0f, 19.0f, 11.0f).contains(ControlDistilleryProgress.this.getRelativeMousePosition())) {
+				} else if (new IArea(45, 23, 19, 11).contains(ControlDistilleryProgress.this.getRelativeMousePosition())) {
 					distillationLevel = 1;
-				} else if (new IArea(45.0f, 38.0f, 19.0f, 11.0f).contains(ControlDistilleryProgress.this.getRelativeMousePosition())) {
+				} else if (new IArea(45, 38, 19, 11).contains(ControlDistilleryProgress.this.getRelativeMousePosition())) {
 					distillationLevel = 2;
 				}
 				if (distillationLevel >= 0) {

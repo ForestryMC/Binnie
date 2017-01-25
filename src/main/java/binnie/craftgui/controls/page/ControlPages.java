@@ -18,7 +18,7 @@ public class ControlPages<T> extends Control implements IControlValues<T>, ICont
 		return child != null && this.value == ((IControlValue) child).getValue();
 	}
 
-	public ControlPages(final IWidget parent, final float x, final float y, final float w, final float h) {
+	public ControlPages(final IWidget parent, final int x, final int y, final int w, final int h) {
 		super(parent, x, y, w, h);
 		this.value = null;
 	}

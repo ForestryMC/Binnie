@@ -20,7 +20,7 @@ public abstract class ControlToleranceBar<T extends Enum<T>> extends Control imp
 	EnumSet<T> tolerated;
 	EnumSet<T> fullSet;
 
-	public ControlToleranceBar(final IWidget parent, final float x, final float y, final float width, final float height, final Class<T> clss) {
+	public ControlToleranceBar(final IWidget parent, final int x, final int y, final int width, final int height, final Class<T> clss) {
 		super(parent, x, y, width, height);
 		this.addAttribute(Attribute.MouseOver);
 		this.enumClass = clss;
@@ -47,14 +47,14 @@ public abstract class ControlToleranceBar<T extends Enum<T>> extends Control imp
 	protected abstract int getColour(final T p0);
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.gradientRect(this.getArea(), -1431655766, -1431655766);
-		final float w = this.getArea().w() / this.fullSet.size();
+		final int w = this.getArea().w() / this.fullSet.size();
 		int t = 0;
 		for (final T value : this.fullSet) {
 			final int col = (this.tolerated.contains(value) ? -16777216 : 855638016) + this.getColour(value);
-			final IBorder inset = new IBorder(this.tolerated.contains(value) ? 1.0f : 3.0f);
-			CraftGUI.render.gradientRect(new IArea(w * t, 0.0f, w, this.h()).inset(inset), col, col);
+			final IBorder inset = new IBorder(this.tolerated.contains(value) ? 1 : 3);
+			CraftGUI.render.gradientRect(new IArea(w * t, 0, w, this.h()).inset(inset), col, col);
 			++t;
 		}
 	}

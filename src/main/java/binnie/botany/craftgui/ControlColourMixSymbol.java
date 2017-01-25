@@ -19,8 +19,8 @@ public class ControlColourMixSymbol extends Control implements ITooltip {
 	int type;
 
 	@Override
-	public void onRenderBackground() {
-		super.onRenderBackground();
+	public void onRenderBackground(int guiWidth, int guiHeight) {
+		super.onRenderBackground(guiWidth, guiHeight);
 		if (this.type == 0) {
 			CraftGUI.render.texture(ControlColourMixSymbol.MutationPlus, IPoint.ZERO);
 		} else {
@@ -29,7 +29,7 @@ public class ControlColourMixSymbol extends Control implements ITooltip {
 	}
 
 	protected ControlColourMixSymbol(final IWidget parent, final int x, final int y, final int type) {
-		super(parent, x, y, 16 + type * 16, 16.0f);
+		super(parent, x, y, 16 + type * 16, 16);
 		this.value = null;
 		this.type = type;
 		this.addAttribute(Attribute.MouseOver);

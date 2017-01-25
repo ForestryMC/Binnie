@@ -19,13 +19,13 @@ public class ControlSlotCharge extends Control {
 	}
 
 	@Override
-	public void onRenderBackground() {
+	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(CraftGUITexture.PanelBlack, this.getArea());
 		CraftGUI.render.texturePercentage(CraftGUI.render.getTexture(CraftGUITexture.SlotCharge), this.getArea().inset(1), Position.Bottom, this.getCharge());
 	}
 
 	public ControlSlotCharge(final IWidget parent, final int x, final int y, final int slot) {
-		super(parent, x, y, 4.0f, 18.0f);
+		super(parent, x, y, 4, 18);
 		this.slot = slot;
 	}
 

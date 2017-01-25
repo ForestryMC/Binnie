@@ -52,7 +52,7 @@ public interface IWidget {
 
 	int getColour();
 
-	void render();
+	void render(int guiWidth, int guiHeight);
 
 	void updateClient();
 
@@ -126,13 +126,13 @@ public interface IWidget {
 
 	boolean contains(final IPoint p0);
 
-	float x();
+	int x();
 
-	float y();
+	int y();
 
-	float w();
+	int w();
 
-	float h();
+	int h();
 
-	void onRender(final RenderStage p0);
+	void onRender(final RenderStage stage, int guiWidth, int guiHeight);
 }
