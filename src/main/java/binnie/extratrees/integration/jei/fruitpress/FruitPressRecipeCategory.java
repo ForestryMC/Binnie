@@ -10,10 +10,9 @@ import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
-import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 
-public class FruitPressRecipeCategory extends BlankRecipeCategory {
+public class FruitPressRecipeCategory extends BlankRecipeCategory<FruitPressRecipeWrapper> {
 	private final IDrawableAnimated arrowAnimated;
 
 	public FruitPressRecipeCategory() {
@@ -49,7 +48,7 @@ public class FruitPressRecipeCategory extends BlankRecipeCategory {
 	}
 
 	@Override
-	public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients) {
+	public void setRecipe(IRecipeLayout recipeLayout, FruitPressRecipeWrapper recipeWrapper, IIngredients ingredients) {
 		IDrawable tankOverlay = ExtraTreesJeiPlugin.drawables.getTankOverlay();
 		IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
 		fluidStacks.init(FruitPressMachine.TANK_OUTPUT, false, 55, 1, 16, 58, 1000, false, tankOverlay);

@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface IItemMiscProvider extends IItemEnum {
 
-	void addInformation(List tooltip);
+	void addInformation(List<String> tooltip);
 
 	String getModelPath();
 }

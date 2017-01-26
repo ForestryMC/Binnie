@@ -39,7 +39,7 @@ public class ManagerConfig extends ManagerBase {
 					if (annotation.annotationType().isAnnotationPresent(ConfigProperty.Type.class)) {
 						final Class<?> propertyClass = annotation.annotationType().getAnnotation(ConfigProperty.Type.class).propertyClass();
 						try {
-							final PropertyBase property = (PropertyBase) propertyClass.getConstructor(Field.class, BinnieConfiguration.class, ConfigProperty.class, annotation.annotationType()).newInstance(field, config, propertyAnnot, annotation.annotationType().cast(annotation));
+							final PropertyBase<?, ?> property = (PropertyBase<?, ?>) propertyClass.getConstructor(Field.class, BinnieConfiguration.class, ConfigProperty.class, annotation.annotationType()).newInstance(field, config, propertyAnnot, annotation.annotationType().cast(annotation));
 						} catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
 							e.printStackTrace();
 						}

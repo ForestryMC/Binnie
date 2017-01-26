@@ -6,8 +6,6 @@ import binnie.craftgui.minecraft.Window;
 import com.mojang.authlib.GameProfile;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IClassification;
-import net.minecraft.entity.player.EntityPlayer;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -31,7 +29,7 @@ public class ControlSpeciesBox extends ControlListBox<IAlleleSpecies> {
 			final List<IAlleleSpecies> speciesList2 = new ArrayList<>();
 			this.movePercentage(-100.0f);
 			this.setOptions(speciesList2);
-			final EntityPlayer player = Window.get(this).getPlayer();
+			//final EntityPlayer player = Window.get(this).getPlayer();
 			final GameProfile playerName = Window.get(this).getUsername();
 			final WindowAbstractDatabase db = Window.get(this);
 			final Collection<IAlleleSpecies> speciesList3 = db.isNEI ? db.getBreedingSystem().getAllSpecies() : db.getBreedingSystem().getDiscoveredSpecies(db.getWorld(), playerName);

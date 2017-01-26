@@ -54,9 +54,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicBrickPair>, IColoredBlock, ISpriteRegister, IStateMapperRegister, IItemModelRegister {
-	
+
 	public static final PropertyEnum<CeramicBrickType> TYPE = PropertyEnum.create("type", CeramicBrickType.class);
-	
+
 	public BlockCeramicBrick() {
 		super(Material.ROCK);
 		this.setHardness(1.0f);
@@ -85,7 +85,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 		}
 		return hasBeenBroken;
 	}
-	
+
 	@Override
 	public TileEntity createTileEntity(World world, IBlockState state) {
 		return new TileCeramicBrick();
@@ -111,7 +111,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 		itemList.add(new CeramicBrickPair(EnumFlowerColor.Brown, EnumFlowerColor.Brown, CeramicBrickType.Chequered).getStack(1));
 		itemList.add(new CeramicBrickPair(EnumFlowerColor.Gold, EnumFlowerColor.Brown, CeramicBrickType.LargeBrick).getStack(1));
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerStateMapper() {
@@ -120,49 +120,49 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 		ModelManager.registerCustomBlockModel(new BlockModelEntry(
 				new ModelResourceLocation(resourceLocation, "normal"),
 				new ModelResourceLocation(resourceLocation, "inventory"),
-				new ModelMutlipass(BlockCeramicBrick.class), this));
+				new ModelMutlipass<>(BlockCeramicBrick.class), this));
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
 		manager.registerItemModel(item, new CeramicBrickMeshDefinition());
 	}
-	
+
 	private class CeramicBrickMeshDefinition implements ItemMeshDefinition{
 
 		@Override
 		public ModelResourceLocation getModelLocation(ItemStack stack) {
 			return new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":ceramicBrick", "inventory");
 		}
-		
+
 	}
-	
+
 	@Override
 	protected BlockStateContainer createBlockState() {
 		return new ExtendedBlockState(this, new IProperty[]{TYPE}, new IUnlistedProperty[]{UnlistedBlockPos.POS, UnlistedBlockAccess.BLOCKACCESS});
 	}
-	
+
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		return getDefaultState().withProperty(TYPE, CeramicBrickType.VALUES[meta]);
 	}
-	
+
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		return state.getValue(TYPE).ordinal();
 	}
-	
+
 	@Override
 	public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
 		return ((IExtendedBlockState)super.getExtendedState(state, world, pos)).withProperty(UnlistedBlockPos.POS, pos).withProperty(UnlistedBlockAccess.BLOCKACCESS, world);
 	}
-	
+
 	@Override
 	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, ItemStack stack) {
 		return getDefaultState().withProperty(TYPE, CeramicBrickType.get(meta >> 16 & 0xFF));
 	}
-	
+
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 		TileCeramicBrick ceramic = TileUtil.getTile(worldIn, pos, TileCeramicBrick.class);
@@ -194,13 +194,13 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 		}
 		return 16777215;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderPasses() {

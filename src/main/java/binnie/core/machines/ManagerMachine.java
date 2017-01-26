@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class ManagerMachine extends ManagerBase {
-	private Map<Class<?>, Class<?>[]> componentInterfaceMap;
+	private Map<Class<?>, Class<? extends MachineComponent>[]> componentInterfaceMap;
 	private Map<String, MachineGroup> machineGroups;
 	private Map<Integer, Class<?>> networkIDToComponent;
 	private Map<Class<?>, Integer> componentToNetworkID;
@@ -41,6 +41,7 @@ public class ManagerMachine extends ManagerBase {
 		return (machineGroup == null) ? null : machineGroup.getPackage(name);
 	}
 
+	@SuppressWarnings("unchecked")
 	private void registerComponentClass(final Class<? extends MachineComponent> component) {
 		if (this.componentInterfaceMap.containsKey(component)) {
 			return;
@@ -83,7 +84,7 @@ public class ManagerMachine extends ManagerBase {
 		BinnieCore.proxy.registerTileEntity(TileEntityMachine.class, "binnie.tile.machine", rendererMachine);
 	}
 
-	public Class<?>[] getComponentInterfaces(final Class<? extends MachineComponent> clss) {
+	public Class<? extends MachineComponent>[] getComponentInterfaces(final Class<? extends MachineComponent> clss) {
 		if (!this.componentInterfaceMap.containsKey(clss)) {
 			this.registerComponentClass(clss);
 		}

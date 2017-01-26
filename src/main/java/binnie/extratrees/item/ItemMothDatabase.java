@@ -20,14 +20,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public class ItemMothDatabase extends Item implements IItemModelRegister {
-	
+
 	public ItemMothDatabase() {
 		this.setCreativeTab(Tabs.tabLepidopterology);
 		this.setUnlocalizedName("databaseMoth");
 		this.setMaxStackSize(1);
 		setRegistryName("databaseMoth");
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
@@ -46,7 +46,7 @@ public class ItemMothDatabase extends Item implements IItemModelRegister {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List par3List) {
+	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List<ItemStack> par3List) {
 		super.getSubItems(par1, par2CreativeTabs, par3List);
 		par3List.add(new ItemStack(par1, 1, 1));
 	}

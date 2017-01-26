@@ -24,7 +24,7 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item item, CreativeTabs tab, List subItems) {
+	public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> subItems) {
 		for (Material mat : Material.values()) {
 			for (Insulate ins : Insulate.values()) {
 				subItems.add(new ItemStack(this, 1, mat.ordinal() + ins.ordinal() * 128));
@@ -54,7 +54,7 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack itemStack, EntityPlayer player, List tooltip, boolean advanced) {
+	public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> tooltip, boolean advanced) {
 		tooltip.add(Insulate.get(itemStack.getItemDamage()).getName());
 	}
 

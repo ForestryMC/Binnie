@@ -232,7 +232,7 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	}
 
 	@Override
-	public Class getMemberClass() {
+	public Class<IFlower> getMemberClass() {
 		return IFlower.class;
 	}
 

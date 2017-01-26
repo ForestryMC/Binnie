@@ -29,7 +29,7 @@ public class ItemDictionary extends Item implements IItemModelRegister {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List par3List) {
+	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List<ItemStack> par3List) {
 		super.getSubItems(par1, par2CreativeTabs, par3List);
 		par3List.add(new ItemStack(par1, 1, 1));
 	}

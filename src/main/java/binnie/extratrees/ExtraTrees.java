@@ -70,7 +70,7 @@ public class ExtraTrees extends AbstractMod {
 	public void postInit(final FMLPostInitializationEvent evt) {
 		this.postInit();
 	}
-	
+
 	@Nullable
 	private static ModuleBlocks blocks;
 	@Nullable
@@ -83,7 +83,7 @@ public class ExtraTrees extends AbstractMod {
 	private static ModuleMachine machine;
 	@Nullable
 	private static ModuleKitchen kitchen;
-	
+
 	public static ModuleItems items() {
 		Preconditions.checkState(items != null);
 		return items;
@@ -93,18 +93,18 @@ public class ExtraTrees extends AbstractMod {
 		Preconditions.checkState(blocks != null);
 		return blocks;
 	}
-	
+
 	public static ModuleAlcohol alcohol() {
 		Preconditions.checkState(alcohol != null);
 		return alcohol;
 	}
 
-	
+
 	public static ModuleCarpentry carpentry() {
 		Preconditions.checkState(carpentry != null);
 		return carpentry;
 	}
-	
+
 	public static ModuleMachine machine() {
 		Preconditions.checkState(machine != null);
 		return machine;
@@ -133,7 +133,7 @@ public class ExtraTrees extends AbstractMod {
 	}
 
 	@Override
-	public Class[] getConfigs() {
+	public Class<?>[] getConfigs() {
 		return new Class[]{ConfigurationMain.class};
 	}
 

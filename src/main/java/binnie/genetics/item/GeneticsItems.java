@@ -35,7 +35,7 @@ public enum GeneticsItems implements IItemMiscProvider {
 	}
 
 	@Override
-	public void addInformation(final List par3List) {
+	public void addInformation(final List<String> par3List) {
 	}
 
 	@Override

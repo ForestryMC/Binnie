@@ -13,7 +13,7 @@ public abstract class EventHandler<E extends Event> {
 		this.eventClass = eventClass;
 	}
 
-	public EventHandler setOrigin(final Origin origin, final IWidget relative) {
+	public EventHandler<E> setOrigin(final Origin origin, final IWidget relative) {
 		this.origin = origin;
 		this.relative = relative;
 		return this;

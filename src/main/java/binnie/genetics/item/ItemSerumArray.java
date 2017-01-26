@@ -30,7 +30,7 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation(final ItemStack itemstack, final EntityPlayer entityPlayer, final List list, final boolean par4) {
+	public void addInformation(final ItemStack itemstack, final EntityPlayer entityPlayer, final List<String> list, final boolean par4) {
 		super.addInformation(itemstack, entityPlayer, list, par4);
 	}
 

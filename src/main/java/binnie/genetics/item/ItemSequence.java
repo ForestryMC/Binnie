@@ -43,7 +43,7 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(final ItemStack itemstack, final EntityPlayer entityPlayer, final List list, final boolean par4) {
+	public void addInformation(final ItemStack itemstack, final EntityPlayer entityPlayer, final List<String> list, final boolean par4) {
 		super.addInformation(itemstack, entityPlayer, list, par4);
 		list.add(Genetics.proxy.localise("item.sequence." + (5 - itemstack.getItemDamage() % 6)));
 		final SequencerItem gene = new SequencerItem(itemstack);

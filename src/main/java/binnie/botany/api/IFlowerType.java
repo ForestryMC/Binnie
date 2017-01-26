@@ -8,7 +8,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 
-public interface IFlowerType<I extends IFlowerType> extends Comparable<I> {
+public interface IFlowerType<I extends IFlowerType<I>> extends Comparable<I> {
 
 	@SideOnly(Side.CLIENT)
 	void registerModels(Item item, IModelManager manager, EnumFlowerStage type);

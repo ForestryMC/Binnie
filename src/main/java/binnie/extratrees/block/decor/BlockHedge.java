@@ -69,7 +69,7 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 		}
 		addCollisionBoxToList(pos, entityBox, collidingBoxes, new AxisAlignedBB(f, 0.0f, f3, f2, 1.0f, f4));
 	}
-	
+
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
 		final boolean connectNegZ = this.canConnectFenceTo(world, pos.north());
@@ -94,17 +94,17 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 		}
 		return new AxisAlignedBB(f, 0.0f, f3, f2, 1.0f, f4);
 	}
-	
+
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
-	
+
 	@Override
 	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
-	
+
 	@Override
 	public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
 		return false;
@@ -120,7 +120,7 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 		Block block = state.getBlock();
 		return block == this || canConnectTo(world, pos) || block.isLeaves(state, world, pos) || (state.getMaterial().isOpaque() && state.isFullCube() && state.getMaterial() != Material.GOURD);
 	}
-	
+
 	private boolean canConnectTo(IBlockAccess worldIn, BlockPos pos) {
 		IBlockState state = worldIn.getBlockState(pos);
 		Block block = state.getBlock();
@@ -129,7 +129,7 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 		}
 
 		if (block != Blocks.BARRIER) {
-			Material blockMaterial = block.getMaterial(state);
+			Material blockMaterial = state.getMaterial();
 			if (block instanceof BlockFence || block instanceof BlockFenceGate || block instanceof IBlockFence) {
 				return blockMaterial == this.blockMaterial;
 			}
@@ -163,7 +163,7 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(final Item item, final CreativeTabs tab, final List list) {
+	public void getSubBlocks(final Item item, final CreativeTabs tab, final List<ItemStack> list) {
 		for (int i = 0; i < 6; ++i) {
 			for (int f = 0; f < 2; ++f) {
 				list.add(new ItemStack(item, 1, i + f * 8));

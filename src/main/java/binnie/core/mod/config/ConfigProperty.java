@@ -17,7 +17,7 @@ public @interface ConfigProperty {
 	@Retention(RetentionPolicy.RUNTIME)
 	@Target({ElementType.ANNOTATION_TYPE})
 	@interface Type {
-		Class<? extends PropertyBase> propertyClass();
+		Class<? extends PropertyBase<?, ?>> propertyClass();
 
 		String category() default "general";
 	}

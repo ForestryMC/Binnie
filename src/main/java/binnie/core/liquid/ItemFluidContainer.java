@@ -61,7 +61,7 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	}
 
 	@Override
-	public void getSubItems(final Item item, final CreativeTabs tab, final List subItems) {
+	public void getSubItems(final Item item, final CreativeTabs tab, final List<ItemStack> subItems) {
 		super.getSubItems(item, tab, subItems);
 		for (final IFluidType liquid : Binnie.LIQUID.fluids.values()) {
 			if (!liquid.canPlaceIn(this.container)) {
@@ -127,7 +127,7 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
 		if (this.isDrinkable(stack) && player.canEat(false)) {
 			player.setActiveHand(hand);
-			return new ActionResult(EnumActionResult.SUCCESS, stack);
+			return new ActionResult<>(EnumActionResult.SUCCESS, stack);
 		}else{
 			return super.onItemRightClick(stack, world, player, hand);
 		}

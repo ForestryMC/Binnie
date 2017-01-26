@@ -10,10 +10,9 @@ import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
-import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 
-public class IncubatorRecipeCategory extends BlankRecipeCategory {
+public class IncubatorRecipeCategory extends BlankRecipeCategory<IncubatorRecipeWrapper> {
 	private final IDrawableAnimated arrowAnimated;
 
 	public IncubatorRecipeCategory() {
@@ -51,7 +50,7 @@ public class IncubatorRecipeCategory extends BlankRecipeCategory {
 	}
 
 	@Override
-	public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients) {
+	public void setRecipe(IRecipeLayout recipeLayout, IncubatorRecipeWrapper recipeWrapper, IIngredients ingredients) {
 		IDrawable tankOverlay = GeneticsJeiPlugin.drawables.getTankOverlay();
 		IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
 		fluidStacks.init(Incubator.TANK_INPUT, true, 1, 1, 16, 58, 50, false, tankOverlay);

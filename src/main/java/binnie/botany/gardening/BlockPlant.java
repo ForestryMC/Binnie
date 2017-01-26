@@ -77,7 +77,7 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(final Item p_149666_1_, final CreativeTabs p_149666_2_, final List subBlocks) {
+	public void getSubBlocks(final Item p_149666_1_, final CreativeTabs p_149666_2_, final List<ItemStack> subBlocks) {
 		for (final Type type : Type.values()) {
 			subBlocks.add(type.get());
 		}

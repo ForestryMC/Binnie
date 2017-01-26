@@ -936,7 +936,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		}
 	};
 
-	IFlowerType type;
+	IFlowerType<EnumFlowerType> type;
 	String name;
 	String binomial;
 	String branchName;
@@ -968,19 +968,19 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	private IAllele[] template;
 	private IFlowerGenome genome;
 
-	FlowerDefinition(final String name, final String branch, final String binomial, final IFlowerType type, final EnumFlowerColor colour) {
+	FlowerDefinition(final String name, final String branch, final String binomial, final IFlowerType<EnumFlowerType> type, final EnumFlowerColor colour) {
 		this(name, branch, binomial, type, false, colour, colour);
 	}
 
-	FlowerDefinition(final String name, final String branch, final String binomial, final IFlowerType type, final EnumFlowerColor primaryColor, final EnumFlowerColor secondaryColor) {
+	FlowerDefinition(final String name, final String branch, final String binomial, final IFlowerType<EnumFlowerType> type, final EnumFlowerColor primaryColor, final EnumFlowerColor secondaryColor) {
 		this(name, branch, binomial, type, true, primaryColor, secondaryColor);
 	}
 
-	FlowerDefinition(final String name, final String branch, final String binomial, final IFlowerType type, final boolean isDominant, final EnumFlowerColor colour) {
+	FlowerDefinition(final String name, final String branch, final String binomial, final IFlowerType<EnumFlowerType> type, final boolean isDominant, final EnumFlowerColor colour) {
 		this(name, branch, binomial, type, isDominant, colour, colour);
 	}
 
-	FlowerDefinition(final String name, final String branch, final String binomial, final IFlowerType flowerType, final boolean isDominant, final EnumFlowerColor primaryColor, final EnumFlowerColor secondaryColor) {
+	FlowerDefinition(final String name, final String branch, final String binomial, final IFlowerType<EnumFlowerType> flowerType, final boolean isDominant, final EnumFlowerColor primaryColor, final EnumFlowerColor secondaryColor) {
 		String uid = Constants.BOTANY_MOD_ID + ".flower" + this;
 		String unlocalizedDescription = "botany.description.flower" + this;
 		String unlocalizedName = "botany.flowers.species." + name;
@@ -1068,7 +1068,8 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	public static void preInitFlowers() {
 		MinecraftForge.EVENT_BUS.post(new AlleleSpeciesRegisterEvent(FlowerManager.flowerRoot));
 		for (FlowerDefinition def : values()) {
-			IFlowerType type = def.species.getType();
+			@SuppressWarnings("unchecked")
+			IFlowerType<EnumFlowerType> type = def.species.getType();
 			if (EnumFlowerType.highestSection < type.getSections()) {
 				EnumFlowerType.highestSection = type.getSections();
 			}

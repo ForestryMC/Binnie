@@ -61,8 +61,8 @@ public class ContainerCraftGUI extends Container {
 		this.window = window;
 		final IMachine machine = Machine.getMachine(window.getInventory());
 		if (this.getSide() == Side.SERVER) {
-			this.inventoryItemStacks = new ListMap();
-			this.inventorySlots = new ListMap();
+			this.inventoryItemStacks = new ListMap<>();
+			this.inventorySlots = new ListMap<>();
 			if (machine != null) {
 				final GameProfile user = machine.getOwner();
 				if (user != null) {

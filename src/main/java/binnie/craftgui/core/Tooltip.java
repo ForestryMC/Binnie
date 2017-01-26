@@ -27,9 +27,9 @@ public class Tooltip {
 		return string;
 	}
 
-	public void add(final List list) {
-		for (final Object obj : list) {
-			this.tooltip.add((String) obj);
+	public void add(final List<String> list) {
+		for (final String obj : list) {
+			this.tooltip.add(obj);
 		}
 	}
 

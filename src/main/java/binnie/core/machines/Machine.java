@@ -32,7 +32,7 @@ import java.util.Map;
 
 public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, INetwork.TilePacketSync, IMachine, INetwork.GuiNBT {
 	private MachinePackage machinePackage;
-	private Map<Class, List<MachineComponent>> componentInterfaceMap;
+	private Map<Class<? extends MachineComponent>, List<MachineComponent>> componentInterfaceMap;
 	private Map<Class<? extends MachineComponent>, MachineComponent> componentMap;
 	private TileEntity tile;
 	private boolean queuedInventoryUpdate;
@@ -55,7 +55,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 		}
 		component.setMachine(this);
 		this.componentMap.put(component.getClass(), component);
-		for (final Class inter : component.getComponentInterfaces()) {
+		for (final Class<? extends MachineComponent> inter : component.getComponentInterfaces()) {
 			if (!this.componentInterfaceMap.containsKey(inter)) {
 				this.componentInterfaceMap.put(inter, new ArrayList<>());
 			}
@@ -256,7 +256,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 		this.owner = owner;
 	}
 
-	public Packet getDescriptionPacket() {
+	public Packet<?> getDescriptionPacket() {
 		final NBTTagCompound nbt = new NBTTagCompound();
 		this.syncToNBT(nbt);
 		if (nbt.hasNoTags()) {

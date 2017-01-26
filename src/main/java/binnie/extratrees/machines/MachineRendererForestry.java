@@ -14,7 +14,7 @@ public class MachineRendererForestry {
 
 	private static void loadMethod(final String file, final boolean waterTank, final boolean productTank) {
 		try {
-			final Class clss = Class.forName("forestry.core.render.RenderMachine");
+			final Class<?> clss = Class.forName("forestry.core.render.RenderMachine");
 			final Object instance = clss.getConstructor(String.class).newInstance(file);
 			//MachineRendererForestry.renderMethod = clss.getDeclaredMethod("render", TankRenderInfo.class, TankRenderInfo.class, ForgeDirection.class, Double.TYPE, Double.TYPE, Double.TYPE);
 			MachineRendererForestry.renderMethod.setAccessible(true);

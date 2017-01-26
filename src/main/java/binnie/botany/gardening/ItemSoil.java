@@ -24,7 +24,7 @@ public class ItemSoil extends ItemBlock {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(final ItemStack stack, final EntityPlayer playerIn, final List tooltip, final boolean advanced) {
+	public void addInformation(final ItemStack stack, final EntityPlayer playerIn, final List<String> tooltip, final boolean advanced) {
 		String info = "";
 		info += BlockSoil.getMoisture(stack, true, true);
 		if (info.length() > 0) {

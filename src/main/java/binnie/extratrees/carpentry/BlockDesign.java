@@ -110,12 +110,12 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 	public DesignBlock getCarpentryBlock(final IBlockAccess world, final BlockPos pos) {
 		return ModuleCarpentry.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getTileMetadata(world, pos));
 	}
-	
+
 	@Override
 	public boolean canRenderInLayer(BlockRenderLayer layer) {
 		return layer == BlockRenderLayer.CUTOUT_MIPPED;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex) {
@@ -128,7 +128,7 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 		}
 		return block.getPrimaryColour();
 	}
-	
+
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
 		DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
@@ -162,13 +162,13 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 		final DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), tileMetadata);
 		return block.getItemMetadata(this.getDesignSystem());
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
     public EnumBlockRenderType getRenderType(IBlockState state){
         return EnumBlockRenderType.MODEL;
     }
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerStateMapper() {
@@ -177,34 +177,34 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 		ModelManager.registerCustomBlockModel(new BlockModelEntry(
 				new ModelResourceLocation(registryName, "normal"),
 				new ModelResourceLocation(registryName, "inventory"),
-				new ModelMutlipass(BlockDesign.class), this));
+				new ModelMutlipass<>(BlockDesign.class), this));
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
 		manager.registerItemModel(item, new DesignMeshDefinition());
 	}
-	
+
 	private class DesignMeshDefinition implements ItemMeshDefinition{
 
 		@Override
 		public ModelResourceLocation getModelLocation(ItemStack stack) {
 			return new ModelResourceLocation(getRegistryName(), "inventory");
 		}
-		
+
 	}
-	
+
 	@Override
 	protected BlockStateContainer createBlockState() {
 		return new ExtendedBlockState(this, new IProperty[0], new IUnlistedProperty[]{UnlistedBlockPos.POS, UnlistedBlockAccess.BLOCKACCESS});
 	}
-	
+
 	@Override
 	public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
 		return ((IExtendedBlockState)state).withProperty(UnlistedBlockPos.POS, pos).withProperty(UnlistedBlockAccess.BLOCKACCESS, world);
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public int getRenderPasses() {
@@ -234,7 +234,7 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 		if(facing == null){
 			return block.getPrimarySprite(getDesignSystem(), BlockDesign.RENDER_DIRECTIONS[0]);
 		}
-		
+
 		if(pass > 0){
 			return block.getSecondarySprite(getDesignSystem(), BlockDesign.RENDER_DIRECTIONS[facing.ordinal()]);
 		}

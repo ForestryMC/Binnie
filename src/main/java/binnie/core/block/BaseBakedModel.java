@@ -33,7 +33,7 @@ import javax.vecmath.Vector3f;
 import java.util.EnumMap;
 
 public abstract class BaseBakedModel implements IPerspectiveAwareModel {
-	private final EnumMap<ItemCameraTransforms.TransformType, TRSRTransformation> transformMap = new EnumMap(ItemCameraTransforms.TransformType.class);
+	private final EnumMap<ItemCameraTransforms.TransformType, TRSRTransformation> transformMap = new EnumMap<>(ItemCameraTransforms.TransformType.class);
 	private final ResourceLocation particle;
 
 	public BaseBakedModel() {

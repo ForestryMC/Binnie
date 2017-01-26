@@ -19,7 +19,7 @@ public class ItemIndustrialFrame extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List par3List) {
+	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List<ItemStack> par3List) {
 		for (final IndustrialFrame frame : IndustrialFrame.values()) {
 			final ItemStack stack = new ItemStack(this);
 			final NBTTagCompound nbt = new NBTTagCompound();

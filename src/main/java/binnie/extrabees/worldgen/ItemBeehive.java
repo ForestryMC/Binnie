@@ -22,7 +22,7 @@ public class ItemBeehive extends ItemBlock {
 	}
 
 	@Override
-	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List itemList) {
+	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
 		for (int i = 0; i < EnumHiveType.values().length; ++i) {
 			itemList.add(new ItemStack(this, 1, i));
 		}

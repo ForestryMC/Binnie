@@ -25,7 +25,7 @@ public enum BotanyItems implements IItemMiscProvider {
 	}
 
 	@Override
-	public void addInformation(List tooltip) {
+	public void addInformation(List<String> tooltip) {
 	}
 
 	@Override

@@ -9,7 +9,7 @@ import java.util.List;
 public interface IGeneItem {
 	ISpeciesRoot getSpeciesRoot();
 
-	void getInfo(final List p0);
+	void getInfo(final List<String> p0);
 
 	int getColour(final int p0);
 

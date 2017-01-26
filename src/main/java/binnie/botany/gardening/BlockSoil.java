@@ -107,7 +107,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(final Item par1, final CreativeTabs par2CreativeTabs, final List par3List) {
+	public void getSubBlocks(final Item par1, final CreativeTabs par2CreativeTabs, final List<ItemStack> par3List) {
 		for (int i = 0; i < 9; ++i) {
 			par3List.add(new ItemStack(this, 1, i));
 		}
@@ -192,7 +192,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 			worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());
 		}
 	}
-	
+
 	@Override
 	public EnumAcidity getPH(final World world, final BlockPos pos) {
 		return world.getBlockState(pos).getValue(ACIDITY);

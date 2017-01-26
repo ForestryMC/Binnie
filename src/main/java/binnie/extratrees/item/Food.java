@@ -77,7 +77,7 @@ public enum Food implements IItemMiscProvider {
 	CANDLENUT(0);
 
 	public static Food[] VALUES = values();
-	
+
 	int hunger;
 	private List<String> ores;
 
@@ -119,7 +119,7 @@ public enum Food implements IItemMiscProvider {
 	}
 
 	@Override
-	public void addInformation(final List par3List) {
+	public void addInformation(final List<String> par3List) {
 	}
 
 	public void addJuice(final Juice juice, final int time, final int amount, final int mulch) {

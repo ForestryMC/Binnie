@@ -133,7 +133,7 @@ public class ItemDrink extends ItemFood implements IFluidContainerItem {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List par3List) {
+	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List<ItemStack> par3List) {
 		for (final Glassware glassware : Glassware.values()) {
 			par3List.add(this.getStack(glassware, null));
 		}

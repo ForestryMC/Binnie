@@ -22,7 +22,7 @@ public class Widget implements IWidget {
 	IWidget cropWidget;
 	boolean cropped;
 	int colour;
-	private Collection<EventHandler> globalEventHandlers;
+	private Collection<EventHandler<? extends Event>> globalEventHandlers;
 	private boolean enabled;
 	private boolean visible;
 
@@ -219,12 +219,12 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public void addEventHandler(final EventHandler handler) {
+	public <E extends Event> void addEventHandler(final EventHandler<E> handler) {
 		this.globalEventHandlers.add(handler);
 	}
 
 	@Override
-	public void addSelfEventHandler(final EventHandler handler) {
+	public <E extends Event> void addSelfEventHandler(final EventHandler<E> handler) {
 		this.addEventHandler(handler.setOrigin(EventHandler.Origin.Self, this));
 	}
 
@@ -234,10 +234,11 @@ public class Widget implements IWidget {
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public final void recieveEvent(final Event event) {
-		for (final EventHandler handler : this.globalEventHandlers) {
+		for (final EventHandler<? extends Event> handler : this.globalEventHandlers) {
 			if (handler.handles(event)) {
-				handler.onEvent(event);
+				((EventHandler<Event>)handler).onEvent(event);
 			}
 		}
 		try {
@@ -438,6 +439,7 @@ public class Widget implements IWidget {
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public <T> T getWidget(final Class<T> x) {
 		for (final IWidget child : this.getWidgets()) {
 			if (x.isInstance(child)) {

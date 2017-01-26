@@ -73,8 +73,8 @@ public class ItemFieldKit extends ItemCore {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(final ItemStack p_77624_1_, final EntityPlayer p_77624_2_, final List p_77624_3_, final boolean p_77624_4_) {
-		final int i = this.getMaxDamage() - p_77624_1_.getItemDamage();
+	public void addInformation(final ItemStack p_77624_1_, final EntityPlayer p_77624_2_, final List<String> p_77624_3_, final boolean p_77624_4_) {
+		final int i = p_77624_1_.getMaxDamage() - p_77624_1_.getItemDamage();
 		if (i == 0) {
 			p_77624_3_.add("No paper");
 		} else {

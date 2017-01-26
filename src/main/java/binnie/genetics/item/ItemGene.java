@@ -34,14 +34,15 @@ public abstract class ItemGene extends ItemCore {
 	}
 
 	public int getCharges(final ItemStack stack) {
-		return (stack == null) ? 0 : (stack.getItem().getMaxDamage() - stack.getItemDamage());
+		return (stack == null) ? 0 : (stack.getMaxDamage() - stack.getItemDamage());
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(final ItemStack itemstack, final EntityPlayer entityPlayer, final List list, final boolean advanced) {
+	public void addInformation(final ItemStack itemstack, final EntityPlayer entityPlayer, final List<String> list, final boolean advanced) {
 		super.addInformation(itemstack, entityPlayer, list, advanced);
-		final int damage = this.getMaxDamage() - itemstack.getItemDamage();
+
+		final int damage = itemstack.getMaxDamage() - itemstack.getItemDamage();
 		if (damage == 0) {
 			list.add(Binnie.LANGUAGE.localise("genetic.item.gene.empty"));
 		} else if (damage == 1) {

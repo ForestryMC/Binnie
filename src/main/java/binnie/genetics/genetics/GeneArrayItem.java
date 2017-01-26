@@ -45,8 +45,8 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 	}
 
 	@Override
-	public void getInfo(final List list) {
-		final List<Object> totalList = new ArrayList<>();
+	public void getInfo(final List<String> list) {
+		final List<String> totalList = new ArrayList<>();
 		for (IGene gene : this.genes) {
 			final String chromosomeName = this.getBreedingSystem().getChromosomeName(gene.getChromosome());
 			totalList.add(TextFormatting.GOLD + chromosomeName + TextFormatting.GRAY + ": " + gene.getName());

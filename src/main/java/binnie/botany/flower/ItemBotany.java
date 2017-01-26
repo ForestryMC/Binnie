@@ -80,7 +80,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 	}
 
 	@Override
-	public void addInformation(final ItemStack itemStack, final EntityPlayer player, final List list, final boolean flag) {
+	public void addInformation(final ItemStack itemStack, final EntityPlayer player, final List<String> list, final boolean flag) {
 		if (!itemStack.hasTagCompound()) {
 			return;
 		}
@@ -138,11 +138,11 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 	}
 
 	@Override
-	public void getSubItems(final Item item, final CreativeTabs par2CreativeTabs, final List itemList) {
+	public void getSubItems(final Item item, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
 		this.addCreativeItems(itemList, true);
 	}
 
-	public void addCreativeItems(final List itemList, final boolean hideSecrets) {
+	public void addCreativeItems(final List<ItemStack> itemList, final boolean hideSecrets) {
 		for (final IIndividual individual : BotanyCore.getFlowerRoot().getIndividualTemplates()) {
 			if (hideSecrets && individual.isSecret() && !Config.isDebug) {
 				continue;

@@ -50,7 +50,7 @@ public class GeneItem implements INbtReadable, INbtWritable, IGeneItem {
 	}
 
 	@Override
-	public void getInfo(final List list) {
+	public void getInfo(final List<String> list) {
 		final String chromosomeName = this.getBreedingSystem().getChromosomeName(this.gene.getChromosome());
 		list.add(TextFormatting.GOLD + chromosomeName + TextFormatting.GRAY + ": " + this.gene.getName());
 	}
