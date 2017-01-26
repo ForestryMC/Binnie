@@ -1,5 +1,7 @@
 package binnie.extratrees.machines.craftgui;
 
+import java.util.stream.Collectors;
+
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.genetics.TreeBreedingSystem;
@@ -19,6 +21,7 @@ import binnie.craftgui.mod.database.PageSpeciesOverview;
 import binnie.craftgui.mod.database.PageSpeciesResultant;
 import binnie.craftgui.mod.database.WindowAbstractDatabase;
 import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.block.WoodManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
@@ -71,12 +74,12 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 		this.createMode(TreeMode.Planks, new ModeWidgets(TreeMode.Planks, this) {
 			@Override
 			public void createListBox(final IArea area) {
-				this.listBox = new ControlListBox<ItemStack>(this.modePage, area.x(), area.y(), area.w(), area.h(), 12) {
+				(this.listBox = new ControlListBox<ItemStack>(this.modePage, area.x(), area.y(), area.w(), area.h(), 12) {
 					@Override
 					public IWidget createOption(final ItemStack value, final int y) {
 						return new ControlItemStackOption(this.getContent(), value, y);
 					}
-				};
+				}).setOptions(WoodManager.getAllPlankTypes().stream().<ItemStack>map(type -> type.getStack()).collect(Collectors.toList()));
 			}
 		});
 		new PageFruit(this.getInfoPages(TreeMode.Fruit), new DatabaseTab(ExtraTrees.instance, "fruit.natural", 0), true);
