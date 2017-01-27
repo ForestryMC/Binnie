@@ -68,7 +68,7 @@ public class ModuleCarpentry implements IInitializable {
 		final IDesignMaterial type1 = system.getMaterial(plankID1);
 		final IDesignMaterial type2 = system.getMaterial(plankID2);
 		final IDesign type3 = CarpentryManager.carpentryInterface.getDesign(tile);
-		return new DesignBlock(system, type1, type2, type3, rotation, /*EnumFacing.getOrientation(axis)*/  EnumFacing.UP);
+		return new DesignBlock(system, type1, type2, type3, rotation, EnumFacing.VALUES[axis]);
 	}
 
 	public static DesignBlock getCarpentryPanel(final IDesignSystem system, final int meta) {

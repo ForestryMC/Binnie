@@ -40,8 +40,6 @@ public class DesignBlock {
 	}
 
 	DesignBlock(final IDesignSystem system, final IDesignMaterial primaryWood, final IDesignMaterial secondaryWood, final IDesign design, final int rotation, final EnumFacing dir) {
-		this.rotation = 0;
-		this.facing = EnumFacing.UP;
 		this.panel = false;
 		this.design = design;
 		this.primaryMaterial = primaryWood;
