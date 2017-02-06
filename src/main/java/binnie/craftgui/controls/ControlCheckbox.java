@@ -14,8 +14,8 @@ import binnie.craftgui.events.EventValueChanged;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 
 public class ControlCheckbox extends Control implements IControlValue<Boolean> {
-	boolean value;
-	String text;
+	private boolean value;
+	private String text;
 
 	public ControlCheckbox(final IWidget parent, final int x, final int y, final boolean bool) {
 		this(parent, x, y, 0, "", bool);

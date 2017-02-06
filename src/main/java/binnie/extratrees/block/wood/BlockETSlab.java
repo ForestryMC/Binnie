@@ -17,8 +17,7 @@ public abstract class BlockETSlab extends BlockForestrySlab<EnumETLog> {
 		for (int i = 0; i < variants.length; i++) {
 			PropertyETWoodType variant = variants[i];
 			BlockETSlab block = new BlockETSlab(fireproof, i) {
-				@Nonnull
-				@Override
+							@Override
 				public PropertyETWoodType getVariant() {
 					return variant;
 				}
@@ -47,7 +46,6 @@ public abstract class BlockETSlab extends BlockForestrySlab<EnumETLog> {
 		setUnlocalizedName(name);
 	}
 
-	@Nonnull
 	@Override
 	public EnumETLog getWoodType(int meta) {
 		meta &= ~8; // unset the top/bottom slab bit

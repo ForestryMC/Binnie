@@ -6,7 +6,10 @@ import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.gui.IDrawableStatic;
 import net.minecraft.util.ResourceLocation;
 
+import javax.annotation.Nullable;
+
 public class Drawables {
+	@Nullable
 	private static Drawables INSTANCE;
 
 	public static Drawables getDrawables(IGuiHelper guiHelper) {

@@ -8,11 +8,13 @@ import binnie.genetics.api.IGene;
 import forestry.api.core.INbtReadable;
 import forestry.api.core.INbtWritable;
 import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.text.TextFormatting;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +23,6 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 
 	public GeneArrayItem(final ItemStack stack) {
 		this.genes = new ArrayList<>();
-		if (stack == null) {
-			return;
-		}
 		this.readFromNBT(stack.getTagCompound());
 	}
 
@@ -39,7 +38,10 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 	@Override
 	public int getColour(final int renderPass) {
 		if (renderPass == 2) {
-			return this.getBreedingSystem().getColour();
+			BreedingSystem breedingSystem = this.getBreedingSystem();
+			if (breedingSystem != null) {
+				return breedingSystem.getColour();
+			}
 		}
 		return 16777215;
 	}
@@ -47,11 +49,15 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 	@Override
 	public void getInfo(final List<String> list) {
 		final List<String> totalList = new ArrayList<>();
-		for (IGene gene : this.genes) {
-			final String chromosomeName = this.getBreedingSystem().getChromosomeName(gene.getChromosome());
-			totalList.add(TextFormatting.GOLD + chromosomeName + TextFormatting.GRAY + ": " + gene.getName());
+
+		BreedingSystem breedingSystem = this.getBreedingSystem();
+		if (breedingSystem != null) {
+			for (IGene gene : this.genes) {
+				final String chromosomeName = breedingSystem.getChromosomeName(gene.getChromosome());
+				totalList.add(TextFormatting.GOLD + chromosomeName + TextFormatting.GRAY + ": " + gene.getName());
+			}
 		}
-		if (totalList.size() < 4 || BinnieCore.proxy.isShiftDown()) {
+		if (totalList.size() < 4 || GuiScreen.isShiftKeyDown()) {
 			list.addAll(totalList);
 		} else {
 			list.add(totalList.get(0));
@@ -60,6 +66,7 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 		}
 	}
 
+	@Nullable
 	public BreedingSystem getBreedingSystem() {
 		if (this.genes.size() == 0) {
 			return null;
@@ -99,6 +106,7 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 	}
 
 	@Override
+	@Nullable
 	public ISpeciesRoot getSpeciesRoot() {
 		if (this.genes.size() == 0) {
 			return null;
@@ -106,6 +114,7 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 		return this.genes.get(0).getSpeciesRoot();
 	}
 
+	@Nullable
 	public IGene getGene(final int chromosome) {
 		for (final IGene gene : this.genes) {
 			if (gene.getChromosome().ordinal() == chromosome) {
@@ -117,10 +126,10 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 
 	@Override
 	public void writeToItem(final ItemStack stack) {
-		if (stack == null) {
-			return;
+		NBTTagCompound nbt = stack.getTagCompound();
+		if (nbt == null) {
+			nbt = new NBTTagCompound();
 		}
-		final NBTTagCompound nbt = stack.hasTagCompound() ? stack.getTagCompound() : new NBTTagCompound();
 		this.writeToNBT(nbt);
 		stack.setTagCompound(nbt);
 	}

@@ -43,7 +43,7 @@ public class PackageAcclimatiser extends GeneticMachine.PackageGeneticBase imple
 		transfer.addRestock(Acclimatiser.SLOT_RESERVE, Acclimatiser.SLOT_TARGET, 1);
 		transfer.addStorage(Acclimatiser.SLOT_TARGET, Acclimatiser.SLOT_DRONE, new ComponentInventoryTransfer.Condition() {
 			@Override
-			public boolean fufilled(final ItemStack stack) {
+			public boolean fulfilled(final ItemStack stack) {
 				return !Acclimatiser.canAcclimatise(stack, machine.getMachineUtil().getNonNullStacks(Acclimatiser.SLOT_ACCLIMATISER));
 			}
 		});

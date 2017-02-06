@@ -22,7 +22,7 @@ public class OreDictionaryUtil {
 		}
 	}
 
-	public static boolean hasOreId(@Nonnull ItemStack itemStack, int oreId) {
+	public static boolean hasOreId(ItemStack itemStack, int oreId) {
 		int[] oreIds = OreDictionary.getOreIDs(itemStack);
 		return contains(oreIds, oreId);
 	}

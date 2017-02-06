@@ -12,8 +12,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 
+import javax.annotation.Nullable;
+
 public enum CeramicBrickType implements IStringSerializable {
 	Tile("tile", "Ceramic Tile"){
+		@Nullable
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			if (stacks.size() != 4) {
@@ -49,18 +52,21 @@ public enum CeramicBrickType implements IStringSerializable {
 		}
 	},
 	Brick("brick", "Ceramic Bricks"){
+		@Nullable
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			return getBrickRecipe(this, stacks);
 		}
 	},
 	StripeBrick("brickstripe", "Striped Ceramic Bricks"){
+		@Nullable
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			return getBrickRecipe(this, stacks);
 		}
 	},
 	LargeBrick("bricklarge", "Large Ceramic Bricks"){
+		@Nullable
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			if (stacks.size() == 1) {
@@ -110,6 +116,7 @@ public enum CeramicBrickType implements IStringSerializable {
 		}
 	},
 	Split("split", "Split Ceramic Tile"){
+		@Nullable
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			if (stacks.size() != 4) {
@@ -138,6 +145,7 @@ public enum CeramicBrickType implements IStringSerializable {
 		}
 	},
 	Chequered("cheque", "Chequered Ceramic Tile"){
+		@Nullable
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			if (stacks.size() != 4) {
@@ -168,6 +176,7 @@ public enum CeramicBrickType implements IStringSerializable {
 		}
 	},
 	Mixed("mixed", "Mixed Ceramic Tile"){
+		@Nullable
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			if (stacks.size() != 4) {
@@ -207,18 +216,21 @@ public enum CeramicBrickType implements IStringSerializable {
 		}
 	},
 	VerticalBrick("verticalbrick", "Vertical Ceramic Bricks"){
+		@Nullable
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			return getVerticalBrickRecipe(stacks);
 		}
 	},
 	VerticalStripeBrick("verticalbrickstripe", "Vertical Striped Ceramic Bricks"){
+		@Nullable
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			return getVerticalBrickRecipe(stacks);
 		}
 	},
 	VerticalLargeBrick("verticalbricklarge", "Large Vertical Ceramic Bricks"){
+		@Nullable
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			return getVerticalBrickRecipe(stacks);
@@ -244,9 +256,11 @@ public enum CeramicBrickType implements IStringSerializable {
 	public boolean canDouble() {
 		return this != CeramicBrickType.Tile;
 	}
-	
+
+	@Nullable
 	public abstract ItemStack getRecipe(List<ItemStack> stacks);
 
+	@Nullable
 	protected ItemStack getVerticalBrickRecipe(List<ItemStack> stacks){
 		if (stacks.size() != 1) {
 			return null;
@@ -267,7 +281,8 @@ public enum CeramicBrickType implements IStringSerializable {
 		}
 		return null;
 	}
-	
+
+	@Nullable
 	protected ItemStack getBrickRecipe(CeramicBrickType ceramicType, List<ItemStack> stacks){
 		if (stacks.size() == 1) {
 			final ItemStack stack5 = stacks.get(0);

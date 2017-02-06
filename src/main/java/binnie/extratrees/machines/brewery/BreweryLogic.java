@@ -101,7 +101,7 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 			if (nbt.getBoolean("null")) {
 				this.currentCrafting = null;
 			} else {
-				this.currentCrafting = new BreweryCrafting(nbt);
+				this.currentCrafting = BreweryCrafting.create(nbt);
 			}
 		}
 	}

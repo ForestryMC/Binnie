@@ -13,12 +13,14 @@ import binnie.genetics.genetics.GeneTracker;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class ControlGeneScroll extends Control implements IControlValue<BreedingSystem> {
 	private String filter;
+	@Nullable
 	private BreedingSystem system;
 
 	protected ControlGeneScroll(final IWidget parent, final int x, final int y, final int w, final int h) {
@@ -38,6 +40,9 @@ public class ControlGeneScroll extends Control implements IControlValue<Breeding
 	}
 
 	public void refresh() {
+		if (system == null) {
+			return;
+		}
 		this.deleteAllChildren();
 		final GeneTracker tracker = GeneTracker.getTracker(Window.get(this).getWorld(), Window.get(this).getUsername());
 		final Map<IChromosomeType, List<IAllele>> genes = Binnie.GENETICS.getChromosomeMap(this.system.getSpeciesRoot());
@@ -63,7 +68,7 @@ public class ControlGeneScroll extends Control implements IControlValue<Breeding
 					y += 20;
 					x = 0;
 				}
-				new ControlGene(this, x, y).setValue(new Gene(allele, entry.getKey(), this.system.getSpeciesRoot()));
+				new ControlGene(this, x, y, new Gene(allele, entry.getKey(), this.system.getSpeciesRoot()));
 				x += 18;
 			}
 			y += 24;

@@ -70,7 +70,7 @@ public class WindowFieldKit extends Window {
 
 	@Override
 	protected AbstractMod getMod() {
-		return BinnieCore.instance;
+		return BinnieCore.getInstance();
 	}
 
 	@Override

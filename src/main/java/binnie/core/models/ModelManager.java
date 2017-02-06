@@ -269,11 +269,11 @@ public class ModelManager implements IModelManager {
 		}
 	}
 
-	public static void registerCustomBlockModel(@Nonnull BlockModelEntry index) {
+	public static void registerCustomBlockModel(BlockModelEntry index) {
 		customBlockModels.add(index);
 	}
 
-	public static void registerCustomModel(@Nonnull ModelEntry index) {
+	public static void registerCustomModel(ModelEntry index) {
 		customModels.add(index);
 	}
 

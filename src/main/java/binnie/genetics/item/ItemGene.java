@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public abstract class ItemGene extends ItemCore {
@@ -51,7 +52,9 @@ public abstract class ItemGene extends ItemCore {
 			list.add(damage + " " + Binnie.LANGUAGE.localise("genetic.item.gene.charges"));
 		}
 		final IGeneItem gene = this.getGeneItem(itemstack);
-		gene.getInfo(list);
+		if (gene != null) {
+			gene.getInfo(list);
+		}
 	}
 
 	@Override
@@ -61,5 +64,6 @@ public abstract class ItemGene extends ItemCore {
 	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
 	}
 
-	public abstract IGeneItem getGeneItem(final ItemStack p0);
+	@Nullable
+	public abstract IGeneItem getGeneItem(final ItemStack itemStack);
 }

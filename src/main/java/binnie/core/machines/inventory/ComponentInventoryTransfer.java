@@ -6,6 +6,7 @@ import binnie.core.machines.transfer.TransferRequest;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,19 +19,23 @@ public class ComponentInventoryTransfer extends MachineComponent {
 	}
 
 	public void addRestock(final int[] buffer, final int destination, final int limit) {
-		this.transfers.add(new Restock(this.getMachine(), buffer, destination, limit));
+		Restock restock = new Restock(this.getMachine(), buffer, destination, limit);
+		this.transfers.add(restock);
 	}
 
 	public void addRestock(final int[] buffer, final int destination) {
-		this.transfers.add(new Restock(this.getMachine(), buffer, destination));
+		Restock restock = new Restock(this.getMachine(), buffer, destination);
+		this.transfers.add(restock);
 	}
 
 	public void addStorage(final int source, final int[] destination) {
-		this.transfers.add(new Storage(this.getMachine(), source, destination));
+		Storage storage = new Storage(this.getMachine(), source, destination);
+		this.transfers.add(storage);
 	}
 
 	public void performTransfer(final int source, final int[] destination) {
-		new Storage(this.getMachine(), source, destination).transfer(this.getMachine().getInterface(IInventoryMachine.class));
+		IInventoryMachine inventoryMachine = this.getMachine().getInterface(IInventoryMachine.class);
+		new Storage(this.getMachine(), source, destination).transfer(inventoryMachine);
 	}
 
 	@Override
@@ -41,24 +46,27 @@ public class ComponentInventoryTransfer extends MachineComponent {
 	}
 
 	public void addStorage(final int source, final int[] destination, final Condition condition) {
-		this.transfers.add(new Storage(this.getMachine(), source, destination).setCondition(condition));
+		Storage storage = new Storage(this.getMachine(), source, destination);
+		Transfer transfer = storage.setCondition(condition);
+		this.transfers.add(transfer);
 	}
 
 	public abstract class Transfer {
+		@Nullable
 		protected Condition condition;
-		protected IMachine machine;
+		protected final IMachine machine;
 
 		private Transfer(final IMachine machine) {
 			this.machine = machine;
 		}
 
 		public final void transfer(final IInventory inv) {
-			if (this.condition == null || this.fufilled(inv)) {
+			if (this.condition == null || this.fulfilled(inv)) {
 				this.doTransfer(inv);
 			}
 		}
 
-		protected boolean fufilled(final IInventory inv) {
+		protected boolean fulfilled(final IInventory inv) {
 			return true;
 		}
 
@@ -119,21 +127,25 @@ public class ComponentInventoryTransfer extends MachineComponent {
 
 		@Override
 		protected void doTransfer(final IInventory inv) {
-			if (inv.getStackInSlot(this.source) != null) {
-				inv.setInventorySlotContents(this.source, new TransferRequest(inv.getStackInSlot(this.source), inv).setTargetSlots(this.destination).ignoreValidation().transfer(true));
+			ItemStack stackInSlot = inv.getStackInSlot(this.source);
+			if (stackInSlot != null) {
+				TransferRequest transferRequest = new TransferRequest(stackInSlot, inv).setTargetSlots(this.destination).ignoreValidation();
+				ItemStack transfer = transferRequest.transfer(true);
+				inv.setInventorySlotContents(this.source, transfer);
 			}
 		}
 
 		@Override
-		protected boolean fufilled(final IInventory inv) {
+		protected boolean fulfilled(final IInventory inv) {
 			final ItemStack stack = inv.getStackInSlot(this.source);
-			return stack != null && this.condition.fufilled(stack);
+			return stack != null && (this.condition == null || this.condition.fulfilled(stack));
 		}
 	}
 
 	public abstract static class Condition {
+		@Nullable
 		public Transfer transfer;
 
-		public abstract boolean fufilled(final ItemStack p0);
+		public abstract boolean fulfilled(final ItemStack p0);
 	}
 }

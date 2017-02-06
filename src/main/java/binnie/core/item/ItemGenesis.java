@@ -22,7 +22,7 @@ public class ItemGenesis extends ItemCore {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand) {
-		BinnieCore.proxy.openGui(BinnieCoreGUI.Genesis, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
+		BinnieCore.getBinnieProxy().openGui(BinnieCoreGUI.Genesis, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
 		return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
 	}
 

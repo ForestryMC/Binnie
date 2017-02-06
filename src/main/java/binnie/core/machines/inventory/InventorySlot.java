@@ -5,7 +5,10 @@ import binnie.core.BinnieCore;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import javax.annotation.Nullable;
+
 public class InventorySlot extends BaseSlot<ItemStack> {
+	@Nullable
 	private ItemStack itemStack;
 	private Type type;
 
@@ -16,19 +19,22 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 	}
 
 	@Override
+	@Nullable
 	public ItemStack getContent() {
 		return this.itemStack;
 	}
 
+	@Nullable
 	public ItemStack getItemStack() {
 		return this.getContent();
 	}
 
 	@Override
-	public void setContent(final ItemStack itemStack) {
+	public void setContent(@Nullable final ItemStack itemStack) {
 		this.itemStack = itemStack;
 	}
 
+	@Nullable
 	public ItemStack decrStackSize(final int amount) {
 		if (this.itemStack == null) {
 			return null;
@@ -92,7 +98,7 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 
 	@Override
 	public String getName() {
-		return Binnie.LANGUAGE.localise(BinnieCore.instance, "gui.slot." + this.unlocName);
+		return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "gui.slot." + this.unlocName);
 	}
 
 	public enum Type {

@@ -22,7 +22,7 @@ public class MachineRendererBlock {
 		GlStateManager.translate(x + 0.5, y + 1.5, z + 0.5);
 		GlStateManager.rotate(180.0f, 0.0f, 0.0f, 1.0f);
 
-		BinnieCore.proxy.bindTexture(texture);
+		BinnieCore.getBinnieProxy().bindTexture(texture);
 		this.model.render((float) x, (float) y, (float) z, 0.0625f, 0.0625f, 0.0625f);
 
 		GlStateManager.popMatrix();

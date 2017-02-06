@@ -16,6 +16,7 @@ import forestry.core.genetics.Individual;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -23,7 +24,6 @@ import java.util.List;
 import java.util.Random;
 
 public class Flower extends Individual implements IFlower {
-	@Nonnull
 	public IFlowerGenome genome;
 	@Nullable
 	public IFlowerGenome mate;
@@ -31,34 +31,29 @@ public class Flower extends Individual implements IFlower {
 	private boolean wilting;
 	private boolean flowered;
 
-	public Flower(@Nonnull final NBTTagCompound nbt) {
+	public Flower(final NBTTagCompound nbt) {
 		super(nbt);
-		if (nbt == null) {
-			this.genome = BotanyCore.getFlowerRoot().templateAsGenome(BotanyCore.getFlowerRoot().getDefaultTemplate());
-			return;
-		}
+
 		if (nbt.hasKey("Age")) {
 			this.age = nbt.getInteger("Age");
 		} else {
 			this.age = 0;
 		}
-		if (nbt.hasKey("Wilt")) {
-			this.wilting = nbt.getBoolean("Wilt");
-		} else {
-			this.wilting = false;
-		}
+
+		this.wilting = nbt.hasKey("Wilt") && nbt.getBoolean("Wilt");
+
 		if (nbt.hasKey("Flowered")) {
 			this.flowered = nbt.getBoolean("Flowered");
 		} else {
-			if (age > 0) {
-				this.flowered = true;
-			} else {
-				this.flowered = false;
-			}
+			this.flowered = age > 0;
 		}
+
 		if (nbt.hasKey("Genome")) {
 			this.genome = new FlowerGenome(nbt.getCompoundTag("Genome"));
+		} else {
+			this.genome = BotanyCore.getFlowerRoot().templateAsGenome(BotanyCore.getFlowerRoot().getDefaultTemplate());
 		}
+
 		if (nbt.hasKey("Mate")) {
 			this.mate = new FlowerGenome(nbt.getCompoundTag("Mate"));
 		}
@@ -69,20 +64,13 @@ public class Flower extends Individual implements IFlower {
 		this.wilting = false;
 		this.genome = genome;
 		this.age = age;
-		if (age > 0) {
-			this.flowered = true;
-		} else {
-			this.flowered = false;
-		}
+		this.flowered = age > 0;
 	}
 
 	@Override
 	public String getDisplayName() {
 		final IAlleleFlowerSpecies species = this.getGenome().getPrimary();
-		String name = "";
-		if (species != null) {
-			name += species.getName();
-		}
+		String name = species.getName();
 		if (this.age == 0) {
 			name += "";
 		}
@@ -114,15 +102,13 @@ public class Flower extends Individual implements IFlower {
 		nbttagcompound.setInteger("Age", this.age);
 		nbttagcompound.setBoolean("Wilt", this.wilting);
 		nbttagcompound.setBoolean("Flowered", this.flowered);
-		if (this.genome != null) {
-			final NBTTagCompound NBTmachine = new NBTTagCompound();
-			this.genome.writeToNBT(NBTmachine);
-			nbttagcompound.setTag("Genome", NBTmachine);
-		}
+		final NBTTagCompound nbtGenome = new NBTTagCompound();
+		this.genome.writeToNBT(nbtGenome);
+		nbttagcompound.setTag("Genome", nbtGenome);
 		if (this.mate != null) {
-			final NBTTagCompound NBTmachine = new NBTTagCompound();
-			this.mate.writeToNBT(NBTmachine);
-			nbttagcompound.setTag("Mate", NBTmachine);
+			final NBTTagCompound nbtMate = new NBTTagCompound();
+			this.mate.writeToNBT(nbtMate);
+			nbttagcompound.setTag("Mate", nbtMate);
 		}
 		return nbttagcompound;
 	}
@@ -157,6 +143,7 @@ public class Flower extends Individual implements IFlower {
 	}
 
 	@Override
+	@Nullable
 	public IFlowerGenome getMate() {
 		return this.mate;
 	}
@@ -217,17 +204,21 @@ public class Flower extends Individual implements IFlower {
 
 	@Override
 	public IFlower getOffspring(final World world, final BlockPos pos) {
-		final IChromosome[] chromosomes = new IChromosome[this.genome.getChromosomes().length];
-		IChromosome[] parentFirst = this.genome.getChromosomes();
-		IChromosome[] parentSecond = this.mate.getChromosomes();
-		parentFirst = this.mutateSpecies(world, pos, this.genome, this.mate);
-		parentSecond = this.mutateSpecies(world, pos, this.mate, this.genome);
-		for (int i = 0; i < parentFirst.length; ++i) {
-			if (parentFirst[i] != null && parentSecond[i] != null) {
-				chromosomes[i] = Chromosome.inheritChromosome(world.rand, parentFirst[i], parentSecond[i]);
+		if (this.mate != null) {
+			final IChromosome[] chromosomes = new IChromosome[this.genome.getChromosomes().length];
+			IChromosome[] parentFirst = this.mutateSpecies(world, pos, this.genome, this.mate);
+			IChromosome[] parentSecond = this.mutateSpecies(world, pos, this.mate, this.genome);
+			for (int i = 0; i < parentFirst.length; ++i) {
+				if (parentFirst[i] != null && parentSecond[i] != null) {
+					chromosomes[i] = Chromosome.inheritChromosome(world.rand, parentFirst[i], parentSecond[i]);
+				}
 			}
+			return new Flower(new FlowerGenome(chromosomes), 0);
+		} else {
+			NBTTagCompound nbt = new NBTTagCompound();
+			writeToNBT(nbt);
+			return new Flower(nbt);
 		}
-		return new Flower(new FlowerGenome(chromosomes), 0);
 	}
 
 	private IChromosome[] mutateSpecies(World world, BlockPos pos, IFlowerGenome genomeFirst, IFlowerGenome genomeSecond) {

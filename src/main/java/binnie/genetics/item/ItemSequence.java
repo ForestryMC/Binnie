@@ -10,6 +10,7 @@ import binnie.genetics.api.IItemAnalysable;
 import binnie.genetics.api.IItemChargeable;
 import binnie.genetics.genetics.GeneItem;
 import binnie.genetics.genetics.SequencerItem;
+import com.google.common.base.Preconditions;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.genetics.AlleleManager;
@@ -34,11 +35,12 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 
 	@Override
 	public String getItemStackDisplayName(final ItemStack itemstack) {
-		final GeneItem gene = new GeneItem(itemstack);
-		if (gene.isCorrupted()) {
+		final GeneItem gene = GeneItem.create(itemstack);
+		if (gene == null) {
 			return "Corrupted Sequence";
+		} else {
+			return gene.getBreedingSystem().getDescriptor() + " DNA Sequence";
 		}
-		return gene.getBreedingSystem().getDescriptor() + " DNA Sequence";
 	}
 
 	@Override
@@ -46,22 +48,21 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 	public void addInformation(final ItemStack itemstack, final EntityPlayer entityPlayer, final List<String> list, final boolean par4) {
 		super.addInformation(itemstack, entityPlayer, list, par4);
 		list.add(Genetics.proxy.localise("item.sequence." + (5 - itemstack.getItemDamage() % 6)));
-		final SequencerItem gene = new SequencerItem(itemstack);
-		if (gene.isCorrupted()) {
-			return;
-		}
-		if (gene.analysed) {
-			gene.getInfo(list);
-		} else {
-			list.add("<Unknown>");
-		}
-		final int seq = gene.sequenced;
-		if (seq == 0) {
-			list.add("Unsequenced");
-		} else if (seq < 100) {
-			list.add("Partially Sequenced (" + seq + "%)");
-		} else {
-			list.add("Fully Sequenced");
+		final SequencerItem gene = SequencerItem.create(itemstack);
+		if (gene != null) {
+			if (gene.analysed) {
+				gene.getInfo(list);
+			} else {
+				list.add("<Unknown>");
+			}
+			final int seq = gene.sequenced;
+			if (seq == 0) {
+				list.add("Unsequenced");
+			} else if (seq < 100) {
+				list.add("Partially Sequenced (" + seq + "%)");
+			} else {
+				list.add("Fully Sequenced");
+			}
 		}
 	}
 
@@ -79,13 +80,14 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 
 	@Override
 	public boolean isAnalysed(final ItemStack stack) {
-		final SequencerItem seq = new SequencerItem(stack);
-		return seq.isCorrupted() || seq.analysed;
+		final SequencerItem seq = SequencerItem.create(stack);
+		return seq != null && seq.analysed;
 	}
 
 	@Override
 	public ItemStack analyse(final ItemStack stack) {
-		final SequencerItem seq = new SequencerItem(stack);
+		final SequencerItem seq = SequencerItem.create(stack);
+		Preconditions.checkNotNull(seq, "Cannot analyze itemstack that is not a valid item sequence");
 		seq.analysed = true;
 		seq.writeToItem(stack);
 		return stack;
@@ -120,7 +122,8 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 
 	@Override
 	public ISpeciesRoot getSpeciesRoot(ItemStack itemStack) {
-		final SequencerItem seq = new SequencerItem(itemStack);
+		final SequencerItem seq = SequencerItem.create(itemStack);
+		Preconditions.checkNotNull(seq, "Cannot getSpeciesRoot from itemstack that is not a valid item sequence");
 		return seq.getSpeciesRoot();
 	}
 }

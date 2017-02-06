@@ -102,7 +102,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		final int compartmentWidth = compartmentPageWidth + (doubleTabbed ? 48 : 24);
 		final int compartmentHeight = compartmentPageHeight;
 		final Control controlCompartment = new Control(this, x, y, compartmentWidth, compartmentHeight);
-		final ControlTabBar<Integer> tab = new ControlTabBar<Integer>(controlCompartment, 0, 0, 24, compartmentPageHeight, Position.Left) {
+		final ControlTabBar<Integer> tab = new ControlTabBar<Integer>(controlCompartment, 0, 0, 24, compartmentPageHeight, Position.Left, Arrays.asList(tabs1)) {
 			@Override
 			public ControlTab<Integer> createTab(final int x, final int y, final int w, final int h, final Integer value) {
 				return new ControlTabIcon<Integer>(this, x, y, w, h, value) {
@@ -130,8 +130,6 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		};
 		final String[] tabHelp = {"Compartment Tab", "Tabs that divide the inventory into sections. Each one can be labelled seperately."};
 		tab.addHelp(tabHelp);
-		tab.setValues(Arrays.asList(tabs1));
-		tab.setValue(0);
 		tab.addEventHandler(new EventValueChanged.Handler() {
 			@Override
 			public void onEvent(final EventValueChanged event) {
@@ -169,7 +167,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		}
 		x += compartmentPageWidth;
 		if (tabs2.length > 0) {
-			final ControlTabBar<Integer> tab2 = new ControlTabBar<Integer>(controlCompartment, 24 + compartmentPageWidth, 0, 24, compartmentPageHeight, Position.Right) {
+			final ControlTabBar<Integer> tab2 = new ControlTabBar<Integer>(controlCompartment, 24 + compartmentPageWidth, 0, 24, compartmentPageHeight, Position.Right, Arrays.asList(tabs2)) {
 				@Override
 				public ControlTab<Integer> createTab(final int x, final int y, final int w, final int h, final Integer value) {
 					return new ControlTabIcon<Integer>(this, x, y, w, h, value) {
@@ -195,8 +193,6 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 					};
 				}
 			};
-			tab2.setValues(Arrays.asList(tabs2));
-			tab2.setValue(0);
 			tab2.addHelp(tabHelp);
 			tab2.addEventHandler(new EventValueChanged.Handler() {
 				@Override
@@ -428,7 +424,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 
 	@Override
 	protected AbstractMod getMod() {
-		return BinnieCore.instance;
+		return BinnieCore.getInstance();
 	}
 
 	@Override

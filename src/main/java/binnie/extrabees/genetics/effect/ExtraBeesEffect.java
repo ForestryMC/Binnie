@@ -70,12 +70,16 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	BonemealMushroom,
 	Power;
 
-	String fx;
-	public boolean combinable;
-	public boolean dominant;
-	public int id;
+	private String fx;
+	private boolean combinable;
+	private boolean dominant;
+	private int id;
 	private String uid;
-	static List<Birthday> birthdays;
+	private static final List<Birthday> birthdays = new ArrayList<>();
+
+	static {
+		birthdays.add(new Birthday(3, 10, "Binnie"));
+	}
 
 	ExtraBeesEffect() {
 		this.fx = "";
@@ -192,7 +196,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 					if (world.isAirBlock(pos) && (world.isBlockNormalCube(pos.down(), false) || world.getBlockState(pos.down()).getBlock() == ExtraBees.ectoplasm)) {
 						world.setBlockState(pos, ExtraBees.ectoplasm.getDefaultState());
 					}
-					return null;
+					return storedData;
 				}
 				break;
 			}
@@ -366,7 +370,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 					final double dy = y1 - entity2.posY;
 					final double dz = z1 - entity2.posZ;
 					if (dx * dx + dy * dy + dz * dz < 2.0) {
-						return null;
+						return storedData;
 					}
 					final double strength = 0.5 / (dx * dx + dy * dy + dz * dz) * entityStrength;
 					entity2.addVelocity(dx * strength, dy * strength, dz * strength);
@@ -380,7 +384,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 					final double dy = y1 - entity3.posY;
 					final double dz = z1 - entity3.posZ;
 					if (dx * dx + dy * dy + dz * dz < 2.0) {
-						return null;
+						return storedData;
 					}
 					final double strength = 0.5 / (dx * dx + dy * dy + dz * dz);
 					entity3.addVelocity(-dx * strength, -dy * strength, -dz * strength);
@@ -389,22 +393,22 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 			}
 			case TELEPORT: {
 				if (world.rand.nextInt(80) > 1) {
-					return null;
+					return storedData;
 				}
 				final List<Entity> entities4 = this.getEntities(Entity.class, genome, housing);
 				if (entities4.size() == 0) {
-					return null;
+					return storedData;
 				}
 				final Entity entity4 = entities4.get(world.rand.nextInt(entities4.size()));
 				if (!(entity4 instanceof EntityLiving)) {
-					return null;
+					return storedData;
 				}
 				final float jumpDist = 5.0f;
 				if (y1 < 4) {
 					y1 = 4;
 				}
 				if (!world.isAirBlock(pos) || !world.isAirBlock(pos.up())) {
-					return null;
+					return storedData;
 				}
 				entity4.setPositionAndUpdate(x1, y1, z1);
 				((EntityLiving) entity4).addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 160, 10));
@@ -412,7 +416,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 			}
 			case WATER: {
 				if (world.rand.nextInt(120) > 1) {
-					return null;
+					return storedData;
 				}
 				IFluidHandler fluidHandler = TileUtil.getCapability(world, pos, CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, EnumFacing.UP);
 				if (fluidHandler != null) {
@@ -423,9 +427,9 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 			}
 			case BonemealSapling: {
 				if (world.rand.nextInt(20) > 1) {
-					return null;
+					return storedData;
 				}
-				if (ExtraBeesFlowers.Sapling.isAcceptedFlower(world, null, pos)) {
+				if (ExtraBeesFlowers.Sapling.isAcceptedFlower(world, pos)) {
 					ItemDye.applyBonemeal(new ItemStack(Blocks.DIRT, 1), world, pos);
 					break;
 				}
@@ -433,9 +437,9 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 			}
 			case BonemealFruit: {
 				if (world.rand.nextInt(20) > 1) {
-					return null;
+					return storedData;
 				}
-				if (ExtraBeesFlowers.Fruit.isAcceptedFlower(world, null, pos)) {
+				if (ExtraBeesFlowers.Fruit.isAcceptedFlower(world, pos)) {
 					ItemDye.applyBonemeal(new ItemStack(Blocks.DIRT, 1), world, pos);
 					break;
 				}
@@ -443,7 +447,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 			}
 			case BonemealMushroom: {
 				if (world.rand.nextInt(20) > 1) {
-					return null;
+					return storedData;
 				}
 				if (world.getBlockState(pos).getBlock() == Blocks.BROWN_MUSHROOM || world.getBlockState(pos).getBlock() == Blocks.RED_MUSHROOM) {
 					ItemDye.applyBonemeal(new ItemStack(Blocks.DIRT, 1), world, pos);
@@ -461,7 +465,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 				break;
 			}
 		}
-		return null;
+		return storedData;
 	}
 
 	protected Vec3i getModifiedArea(final IBeeGenome genome, final IBeeHousing housing) {
@@ -545,10 +549,6 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	@Override
 	public String getUnlocalizedName() {
 		return this.getUID();
-	}
-
-	static {
-		(ExtraBeesEffect.birthdays = new ArrayList<>()).add(new Birthday(3, 10, "Binnie"));
 	}
 
 	public static class Birthday {

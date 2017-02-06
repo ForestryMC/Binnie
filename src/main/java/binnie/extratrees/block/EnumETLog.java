@@ -148,7 +148,6 @@ public enum EnumETLog implements IWoodType {
 		return ordinal();
 	}
 
-	@Nonnull
 	public static EnumETLog byMetadata(int meta) {
 		if (meta < 0 || meta >= VALUES.length) {
 			meta = 0;

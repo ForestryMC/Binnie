@@ -53,8 +53,7 @@ public abstract class BlockETDecorativeLeaves extends Block implements IItemMode
 		for (int blockNumber = 0; blockNumber < blockCount; blockNumber++) {
 			final PropertyETType variant = PropertyETType.create("variant", blockNumber, VARIANTS_PER_BLOCK);
 			BlockETDecorativeLeaves block = new BlockETDecorativeLeaves(blockNumber) {
-				@Nonnull
-				@Override
+							@Override
 				public PropertyETType getVariant() {
 					return variant;
 				}
@@ -82,7 +81,6 @@ public abstract class BlockETDecorativeLeaves extends Block implements IItemMode
 		return blockNumber;
 	}
 
-	@Nonnull
 	public abstract PropertyETType getVariant();
 
 	@Override
@@ -165,7 +163,6 @@ public abstract class BlockETDecorativeLeaves extends Block implements IItemMode
 		return getDefaultState().withProperty(getVariant(), type);
 	}
 
-	@Nonnull
 	public ETTreeDefinition getTreeType(int meta) {
 		int variantCount = getVariant().getAllowedValues().size();
 		int variantMeta = (meta % variantCount) + blockNumber * VARIANTS_PER_BLOCK;

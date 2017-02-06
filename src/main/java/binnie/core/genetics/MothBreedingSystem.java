@@ -49,24 +49,24 @@ class MothBreedingSystem extends BreedingSystem {
 		if (chromosome == EnumButterflyChromosome.METABOLISM) {
 			final int metabolism = ((IAlleleInteger) allele).getValue();
 			if (metabolism >= 19) {
-				return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.metabolism.highest");
+				return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.metabolism.highest");
 			}
 			if (metabolism >= 16) {
-				return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.metabolism.higher");
+				return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.metabolism.higher");
 			}
 			if (metabolism >= 13) {
-				return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.metabolism.high");
+				return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.metabolism.high");
 			}
 			if (metabolism >= 10) {
-				return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.metabolism.normal");
+				return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.metabolism.normal");
 			}
 			if (metabolism >= 7) {
-				return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.metabolism.slow");
+				return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.metabolism.slow");
 			}
 			if (metabolism >= 4) {
-				return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.metabolism.slower");
+				return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.metabolism.slower");
 			}
-			return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.metabolism.slowest");
+			return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.metabolism.slowest");
 		} else {
 			if (chromosome == EnumButterflyChromosome.FERTILITY) {
 				final int metabolism = ((IAlleleInteger) allele).getValue();

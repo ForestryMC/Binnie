@@ -156,7 +156,7 @@ public abstract class WindowAbstractDatabase extends Window {
 			}
 		});
 		this.addTabs();
-		final ControlTabBar<IDatabaseMode> tab = new ControlTabBar<IDatabaseMode>(this, 176 + this.selectionBoxWidth, 24, 22, 176, Position.Right) {
+		final ControlTabBar<IDatabaseMode> tab = new ControlTabBar<IDatabaseMode>(this, 176 + this.selectionBoxWidth, 24, 22, 176, Position.Right, this.modePages.getValues()) {
 			@Override
 			public ControlTab<IDatabaseMode> createTab(final int x, final int y, final int w, final int h, final IDatabaseMode value) {
 				return new ControlTab<IDatabaseMode>(this, x, y, w, h, value) {
@@ -167,12 +167,10 @@ public abstract class WindowAbstractDatabase extends Window {
 				};
 			}
 		};
-		tab.setValues(this.modePages.getValues());
 		CraftGUIUtil.linkWidgets(tab, this.modePages);
 		this.changeMode(Mode.Species);
 		for (final IDatabaseMode mode : this.modes.keySet()) {
-			this.modes.get(mode).infoTabs = new ControlTabBar(this.modes.get(mode).modePage, 8, 24, 16, 176, Position.Left);
-			this.modes.get(mode).infoTabs.setValues(this.modes.get(mode).infoPages.getValues());
+			this.modes.get(mode).infoTabs = new ControlTabBar<>(this.modes.get(mode).modePage, 8, 24, 16, 176, Position.Left, this.modes.get(mode).infoPages.getValues());
 			CraftGUIUtil.linkWidgets(this.modes.get(mode).infoTabs, this.modes.get(mode).infoPages);
 		}
 	}
@@ -216,7 +214,7 @@ public abstract class WindowAbstractDatabase extends Window {
 
 		@Override
 		public String getName() {
-			return BinnieCore.proxy.localise("gui.database.mode." + this.name().toLowerCase());
+			return BinnieCore.getBinnieProxy().localise("gui.database.mode." + this.name().toLowerCase());
 		}
 	}
 

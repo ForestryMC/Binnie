@@ -21,7 +21,6 @@ public interface IAlleleFlowerSpecies extends IAlleleSpecies, IAlleleProperty<IA
 	@SideOnly(Side.CLIENT)
 	int getFlowerColour(EnumFlowerStage type, int renderPass);
 
-	@Nonnull
 	@SideOnly(Side.CLIENT)
 	ModelResourceLocation getFlowerModel(EnumFlowerStage type, boolean flowered);
 

@@ -23,7 +23,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 
 	public ControlTab(final ControlTabBar<T> parent, final int x, final int y, final int w, final int h, final T value) {
 		super(parent, x, y, w, h);
-		this.setValue(value);
+		this.value = value;
 		this.tabBar = parent;
 		this.addAttribute(Attribute.MouseOver);
 		this.addSelfEventHandler(new EventMouse.Down.Handler() {
@@ -56,11 +56,11 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 	}
 
 	public boolean isCurrentSelection() {
-		return this.getValue() != null && this.getValue().equals(this.tabBar.getValue());
+		return this.getValue().equals(this.tabBar.getValue());
 	}
 
 	public Position getTabPosition() {
-		return this.tabBar.position;
+		return this.tabBar.getDirection();
 	}
 
 	public String getName() {

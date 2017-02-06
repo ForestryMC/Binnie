@@ -5,6 +5,7 @@ import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.network.packet.MessageBase;
+import com.google.common.base.Preconditions;
 import forestry.core.models.BlockModelEntry;
 import forestry.core.models.ModelEntry;
 import net.minecraft.block.Block;
@@ -18,8 +19,10 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class BinnieModProxy implements IBinnieModProxy {
+	@Nullable
 	private AbstractMod mod;
 
 	public BinnieModProxy() {
@@ -28,6 +31,11 @@ public class BinnieModProxy implements IBinnieModProxy {
 	@Override
 	public void setMod(final AbstractMod mod) {
 		this.mod = mod;
+	}
+
+	private AbstractMod getMod() {
+		Preconditions.checkState(mod != null, "Mod has not been set");
+		return mod;
 	}
 
 	@Override
@@ -61,24 +69,24 @@ public class BinnieModProxy implements IBinnieModProxy {
 
 	@Override
 	public void openGui(final IBinnieGUID ID, final EntityPlayer player, final BlockPos pos) {
-		BinnieCore.proxy.openGui(this.mod, ID.ordinal(), player, pos);
+		BinnieCore.getBinnieProxy().openGui(this.getMod(), ID.ordinal(), player, pos);
 	}
 
 	@Override
 	public void sendToAll(final MessageBase packet) {
-		this.mod.getNetworkWrapper().sendToAll(packet.GetMessage());
+		this.getMod().getNetworkWrapper().sendToAll(packet.GetMessage());
 	}
 
 	@Override
 	public void sendToPlayer(final MessageBase packet, final EntityPlayer entityplayer) {
 		if (entityplayer instanceof EntityPlayerMP) {
-			this.mod.getNetworkWrapper().sendTo(packet.GetMessage(), (EntityPlayerMP) entityplayer);
+			this.getMod().getNetworkWrapper().sendTo(packet.GetMessage(), (EntityPlayerMP) entityplayer);
 		}
 	}
 
 	@Override
 	public void sendToServer(final MessageBase packet) {
-		this.mod.getNetworkWrapper().sendToServer(packet.GetMessage());
+		this.getMod().getNetworkWrapper().sendToServer(packet.GetMessage());
 	}
 
 	public void registermodel(Item item, int meta) {
@@ -89,10 +97,10 @@ public class BinnieModProxy implements IBinnieModProxy {
 
 	}
 	
-	public void registerBlockModel(@Nonnull final BlockModelEntry index) {
+	public void registerBlockModel(final BlockModelEntry index) {
 	}
 	
-	public void registerModel(@Nonnull ModelEntry index) {
+	public void registerModel(ModelEntry index) {
 	}
 
 
@@ -113,11 +121,12 @@ public class BinnieModProxy implements IBinnieModProxy {
 	public void postInit() {
 	}
 
+	@Override
 	public String localise(final String string) {
-		return Binnie.LANGUAGE.localise(this.mod, string);
+		return Binnie.LANGUAGE.localise(this.getMod(), string);
 	}
 
 	public String localiseOrBlank(final String string) {
-		return Binnie.LANGUAGE.localiseOrBlank(this.mod, string);
+		return Binnie.LANGUAGE.localiseOrBlank(this.getMod(), string);
 	}
 }

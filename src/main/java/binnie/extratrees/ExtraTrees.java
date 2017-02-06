@@ -46,8 +46,11 @@ import com.google.common.base.Preconditions;
 @Mod(modid = Constants.EXTRA_TREES_MOD_ID, name = "Binnie's Extra Trees", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class ExtraTrees extends AbstractMod {
 
+	@SuppressWarnings("NullableProblems")
 	@Mod.Instance(Constants.EXTRA_TREES_MOD_ID)
 	public static ExtraTrees instance;
+
+	@SuppressWarnings("NullableProblems")
 	@SidedProxy(clientSide = "binnie.extratrees.proxy.ProxyClient", serverSide = "binnie.extratrees.proxy.ProxyServer")
 	public static Proxy proxy;
 

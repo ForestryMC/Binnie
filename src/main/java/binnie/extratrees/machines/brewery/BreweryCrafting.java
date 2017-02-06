@@ -8,7 +8,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nullable;
 
-public class BreweryCrafting implements INbtWritable, INbtReadable {
+public class BreweryCrafting implements INbtWritable {
 	@Nullable
 	public FluidStack inputFluid;
 	public ItemStack[] inputGrains;
@@ -24,20 +24,16 @@ public class BreweryCrafting implements INbtWritable, INbtReadable {
 		this.yeast = yeast;
 	}
 
-	public BreweryCrafting(final NBTTagCompound nbt) {
-		this.readFromNBT(nbt);
-	}
-
-	@Override
-	public void readFromNBT(final NBTTagCompound nbt) {
-		this.inputFluid = FluidStack.loadFluidStackFromNBT(nbt.getCompoundTag("fluid"));
-		this.ingredient = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("ingr"));
-		this.inputGrains = new ItemStack[] {
+	public static BreweryCrafting create(final NBTTagCompound nbt) {
+		FluidStack inputFluid = FluidStack.loadFluidStackFromNBT(nbt.getCompoundTag("fluid"));
+		ItemStack ingredient = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("ingr"));
+		ItemStack[] inputGrains = new ItemStack[] {
 				ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("in1")),
 				ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("in2")),
 				ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("in3"))
 		};
-		this.yeast = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("yeast"));
+		ItemStack yeast = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("yeast"));
+		return new BreweryCrafting(inputFluid, ingredient, inputGrains, yeast);
 	}
 
 	@Override

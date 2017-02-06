@@ -80,9 +80,8 @@ public class MultiFenceRecipeSize implements IRecipe {
 		}
 	}
 
-	@Nonnull
 	@Override
-	public ItemStack[] getRemainingItems(@Nonnull InventoryCrafting inv) {
+	public ItemStack[] getRemainingItems(InventoryCrafting inv) {
 		return ForgeHooks.defaultRecipeGetRemainingItems(inv);
 	}
 }

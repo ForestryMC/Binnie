@@ -13,10 +13,10 @@ import forestry.arboriculture.blocks.property.PropertyWoodType;
 
 public class PropertyETWoodType extends PropertyWoodType<EnumETLog> {
 	
-	public static PropertyETWoodType[] create(@Nonnull String name, int variantsPerBlock) {
+	public static PropertyETWoodType[] create(String name, int variantsPerBlock) {
 		return create(name, variantsPerBlock, false);
 	}
-	public static PropertyETWoodType[] create(@Nonnull String name, int variantsPerBlock, boolean isLog) {
+	public static PropertyETWoodType[] create(String name, int variantsPerBlock, boolean isLog) {
 		int length;
 		if(isLog){
 			length = EnumETLog.VALUES.length;

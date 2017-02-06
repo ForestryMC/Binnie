@@ -7,7 +7,10 @@ import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.events.EventWidget;
 
+import javax.annotation.Nullable;
+
 public class ControlScrollableContent<T extends IWidget> extends Control implements IControlScrollable {
+	@Nullable
 	protected T controlChild;
 	protected int scrollBarSize;
 	float percentageIndex;
@@ -33,7 +36,7 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 		this.scrollBarSize = scrollBarSize;
 	}
 
-	public void setScrollableContent(final T child) {
+	public void setScrollableContent(@Nullable final T child) {
 		this.controlChild = child;
 		if (child == null) {
 			return;
@@ -44,7 +47,7 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 		child.addSelfEventHandler(new EventWidget.ChangeSize.Handler() {
 			@Override
 			public void onEvent(final EventWidget.ChangeSize event) {
-				ControlScrollableContent.this.controlChild.setOffset(new IPoint(0, Math.round(-ControlScrollableContent.this.percentageIndex * ControlScrollableContent.this.getMovementRange())));
+				child.setOffset(new IPoint(0, Math.round(-ControlScrollableContent.this.percentageIndex * ControlScrollableContent.this.getMovementRange())));
 				if (ControlScrollableContent.this.getMovementRange() == 0) {
 					ControlScrollableContent.this.percentageIndex = 0;
 				}
@@ -52,6 +55,7 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 		});
 	}
 
+	@Nullable
 	public T getContent() {
 		return this.controlChild;
 	}

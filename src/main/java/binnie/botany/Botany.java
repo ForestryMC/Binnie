@@ -4,7 +4,7 @@ import binnie.Constants;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumSoilType;
 import binnie.botany.api.IFlower;
-import binnie.botany.api.gardening.IBlockSoil;
+import binnie.botany.api.IBlockSoil;
 import binnie.botany.ceramic.BlockCeramic;
 import binnie.botany.ceramic.BlockCeramicPatterned;
 import binnie.botany.ceramic.BlockStainedGlass;
@@ -57,9 +57,11 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod(modid = Constants.BOTANY_MOD_ID, name = "Binnie's Botany", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class Botany extends AbstractMod {
 
+	@SuppressWarnings("NullableProblems")
 	@Mod.Instance(Constants.BOTANY_MOD_ID)
 	public static Botany instance;
 
+	@SuppressWarnings("NullableProblems")
 	@SidedProxy(clientSide = "binnie.botany.proxy.ProxyClient", serverSide = "binnie.botany.proxy.ProxyServer")
 	public static Proxy proxy;
 
@@ -255,7 +257,7 @@ public class Botany extends AbstractMod {
 		World world = event.getWorld();
 		EntityPlayer player = event.getEntityPlayer();
 		ItemStack heldItem = player.getHeldItemMainhand();
-		if (!BinnieCore.proxy.isSimulating(event.getWorld())) {
+		if (!BinnieCore.getBinnieProxy().isSimulating(event.getWorld())) {
 			return;
 		}
 

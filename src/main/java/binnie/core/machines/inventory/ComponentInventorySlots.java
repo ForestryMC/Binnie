@@ -56,7 +56,6 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 		return content;
 	}
 
-	@Nonnull
 	@Override
 	public ITextComponent getDisplayName() {
 		return new TextComponentString("");
@@ -92,7 +91,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	public void setInventorySlotContents(final int index, final ItemStack itemStack) {
+	public void setInventorySlotContents(final int index, @Nullable final ItemStack itemStack) {
 		if (this.inventory.containsKey(index) && (itemStack == null || this.inventory.get(index).isValid(itemStack))) {
 			this.inventory.get(index).setContent(itemStack);
 		}
@@ -108,7 +107,6 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 		this.markDirty();
 	}
 
-	@Nonnull
 	@Override
 	public String getName() {
 		return "";
@@ -120,17 +118,17 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	public boolean isUseableByPlayer(@Nonnull final EntityPlayer var1) {
+	public boolean isUseableByPlayer(final EntityPlayer var1) {
 		return true;
 	}
 
 	@Override
-	public void closeInventory(@Nonnull EntityPlayer player) {
+	public void closeInventory(EntityPlayer player) {
 
 	}
 
 	@Override
-	public void openInventory(@Nonnull EntityPlayer player) {
+	public void openInventory(EntityPlayer player) {
 
 	}
 
@@ -218,7 +216,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	public boolean isItemValidForSlot(final int slot, @Nonnull final ItemStack itemStack) {
+	public boolean isItemValidForSlot(final int slot, final ItemStack itemStack) {
 		final InventorySlot iSlot = this.getSlot(slot);
 		return iSlot != null && (iSlot.isValid(itemStack) && !this.isReadOnly(slot));
 	}
@@ -244,9 +242,8 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 		}
 	}
 
-	@Nonnull
 	@Override
-	public int[] getSlotsForFace(@Nonnull final EnumFacing var1) {
+	public int[] getSlotsForFace(final EnumFacing var1) {
 		final List<Integer> slots = new ArrayList<>();
 		for (final InventorySlot slot : this.inventory.values()) {
 			if (slot.canInsert() || slot.canExtract()) {
@@ -261,12 +258,12 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	public boolean canInsertItem(final int i, @Nonnull final ItemStack itemstack, @Nonnull final EnumFacing direction) {
+	public boolean canInsertItem(final int i, final ItemStack itemstack, final EnumFacing direction) {
 		return this.isItemValidForSlot(i, itemstack) && this.getSlot(i).canInsert(direction);
 	}
 
 	@Override
-	public boolean canExtractItem(final int i, @Nonnull final ItemStack itemstack, @Nonnull final EnumFacing direction) {
+	public boolean canExtractItem(final int i, final ItemStack itemstack, final EnumFacing direction) {
 		return this.getSlot(i).canExtract(direction);
 	}
 }

@@ -2,6 +2,7 @@ package binnie.core.network;
 
 import binnie.core.AbstractMod;
 import binnie.core.network.packet.MessageBinnie;
+import com.google.common.base.Preconditions;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.IThreadListener;
@@ -11,7 +12,10 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+
 public abstract class BinniePacketHandler implements IMessageHandler<MessageBinnie, IMessage> {
+	@Nullable
 	private IPacketProvider provider;
 
 	public BinniePacketHandler(final AbstractMod mod) {
@@ -22,10 +26,16 @@ public abstract class BinniePacketHandler implements IMessageHandler<MessageBinn
 		this.provider = provider;
 	}
 
+	private IPacketProvider getProvider() {
+		Preconditions.checkState(provider != null, "provider has not been set.");
+		return provider;
+	}
+
 	@Override
+	@Nullable
 	public IMessage onMessage(final MessageBinnie message, final MessageContext ctx) {
 		final int packetId = message.id;
-		for (final IPacketID id : this.provider.getPacketIDs()) {
+		for (final IPacketID id : this.getProvider().getPacketIDs()) {
 			if (id.ordinal() == packetId) {
 				if (ctx.side == Side.CLIENT) {
 					onClientMessage(id, message, ctx);

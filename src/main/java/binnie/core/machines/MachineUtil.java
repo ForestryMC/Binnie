@@ -51,6 +51,7 @@ public class MachineUtil {
 		return amount <= space;
 	}
 
+	@Nullable
 	public ItemStack getStack(final int slot) {
 		return this.getInventory().getStackInSlot(slot);
 	}
@@ -59,11 +60,12 @@ public class MachineUtil {
 		this.setStack(slot, null);
 	}
 
+	@Nullable
 	public ItemStack decreaseStack(final int slot, final int amount) {
 		return this.getInventory().decrStackSize(slot, amount);
 	}
 
-	public void setStack(final int slot, final ItemStack stack) {
+	public void setStack(final int slot, @Nullable final ItemStack stack) {
 		this.getInventory().setInventorySlotContents(slot, stack);
 	}
 
@@ -73,10 +75,10 @@ public class MachineUtil {
 	}
 
 	public void addStack(final int slot, final ItemStack addition) {
-		if (this.isSlotEmpty(slot)) {
+		final ItemStack merge = this.getStack(slot);
+		if (merge == null) {
 			this.setStack(slot, addition);
 		} else {
-			final ItemStack merge = this.getStack(slot);
 			if (merge.isItemEqual(addition) && merge.stackSize + addition.stackSize <= merge.getMaxStackSize()) {
 				merge.stackSize += addition.stackSize;
 				this.setStack(slot, merge);
@@ -84,6 +86,7 @@ public class MachineUtil {
 		}
 	}
 
+	@Nullable
 	public FluidStack drainTank(final int tank, final int amount) {
 		return this.getTank(tank).drain(amount, true);
 	}
@@ -94,8 +97,7 @@ public class MachineUtil {
 		return drain != null && drain.amount == amount;
 	}
 
-	public void damageItem(final int slot, final int damage) {
-		final ItemStack item = this.getStack(slot);
+	public void damageItem(final ItemStack item, final int slot, final int damage) {
 		if (damage < 0) {
 			item.setItemDamage(Math.max(0, item.getItemDamage() + damage));
 		} else if (item.attemptDamageItem(damage, new Random())) {
@@ -208,6 +210,6 @@ public class MachineUtil {
 	}
 
 	public boolean isServer() {
-		return BinnieCore.proxy.isSimulating(this.machine.getWorld());
+		return BinnieCore.getBinnieProxy().isSimulating(this.machine.getWorld());
 	}
 }

@@ -19,10 +19,13 @@ import binnie.core.models.ModelManager;
 import binnie.core.network.BinnieCorePacketID;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
+import binnie.core.proxy.BinnieModProxy;
 import binnie.core.proxy.BinnieProxy;
+import binnie.core.proxy.IBinnieModProxy;
 import binnie.core.proxy.IBinnieProxy;
 import binnie.core.triggers.ModuleTrigger;
 import binnie.craftgui.minecraft.ModuleCraftGUI;
+import com.google.common.base.Preconditions;
 import forestry.api.core.ForestryEvent;
 import forestry.plugins.PluginManager;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -45,6 +48,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,15 +59,54 @@ public final class BinnieCore extends AbstractMod {
 		FluidRegistry.enableUniversalBucket();
 	}
 	
+	@SuppressWarnings("NullableProblems")
 	@Mod.Instance(Constants.CORE_MOD_ID)
-	public static BinnieCore instance;
+	private static BinnieCore instance;
+
+	@SuppressWarnings("NullableProblems")
 	@SidedProxy(clientSide = "binnie.core.proxy.BinnieProxyClient", serverSide = "binnie.core.proxy.BinnieProxyServer")
-	public static BinnieProxy proxy;
+	private static BinnieProxy proxy;
+
 	public static int multipassRenderID;
-	private static List<AbstractMod> modList = new ArrayList<>();
-	public static MachineGroup packageCompartment;
-	public static ItemGenesis genesis;
-	public static ItemFieldKit fieldKit;
+	private static final List<AbstractMod> modList = new ArrayList<>();
+
+	@Nullable
+	private static MachineGroup packageCompartment;
+	@Nullable
+	private static ItemGenesis genesis;
+	@Nullable
+	private static ItemFieldKit fieldKit;
+
+	public static MachineGroup getPackageCompartment() {
+		Preconditions.checkState(packageCompartment != null, "packageCompartment has not been init");
+		return packageCompartment;
+	}
+
+	public static void setPackageCompartment(MachineGroup packageCompartment) {
+		BinnieCore.packageCompartment = packageCompartment;
+	}
+
+	public static ItemGenesis getGenesis() {
+		Preconditions.checkState(genesis != null, "genesis has not been init");
+		return genesis;
+	}
+
+	public static void setGenesis(ItemGenesis genesis) {
+		BinnieCore.genesis = genesis;
+	}
+
+	public static ItemFieldKit getFieldKit() {
+		Preconditions.checkState(fieldKit != null, "fieldKit has not been init");
+		return fieldKit;
+	}
+
+	public static void setFieldKit(ItemFieldKit fieldKit) {
+		BinnieCore.fieldKit = fieldKit;
+	}
+
+	public static BinnieCore getInstance() {
+		return instance;
+	}
 
 	@Mod.EventHandler
 	public void preInit(final FMLPreInitializationEvent evt) {
@@ -71,7 +114,7 @@ public final class BinnieCore extends AbstractMod {
 		Binnie.CONFIGURATION.registerConfiguration(ConfigurationMods.class, this);
 		for (FluidContainerType container : FluidContainerType.getBinnieContainers()) {
 			Item item = new ItemFluidContainer(container);
-			BinnieCore.proxy.registerItem(item);
+			getProxy().registerItem(item);
 		}
 		this.preInit();
 	}
@@ -115,7 +158,11 @@ public final class BinnieCore extends AbstractMod {
 
 	@Override
 	public IBinnieProxy getProxy() {
-		return BinnieCore.proxy;
+		return proxy;
+	}
+
+	public static BinnieProxy getBinnieProxy() {
+		return proxy;
 	}
 
 	@Override
@@ -176,7 +223,7 @@ public final class BinnieCore extends AbstractMod {
 
 	public static class PacketHandler extends BinniePacketHandler {
 		public PacketHandler() {
-			super(BinnieCore.instance);
+			super(BinnieCore.getInstance());
 		}
 	}
 

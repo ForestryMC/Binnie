@@ -1,12 +1,14 @@
 package binnie.genetics.item;
 
 import binnie.Binnie;
+import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
 import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.genetics.GeneArrayItem;
 import binnie.genetics.genetics.IGeneItem;
+import com.google.common.base.Preconditions;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosome;
@@ -20,6 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemSerumArray extends ItemGene implements IItemSerum {
@@ -46,22 +49,37 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 
 	@Override
 	public IGene[] getGenes(final ItemStack stack) {
-		return this.getGeneItem(stack).getGenes().toArray(new IGene[0]);
+		GeneArrayItem geneItem = this.getGeneItem(stack);
+		if (geneItem != null) {
+			return geneItem.getGenes().toArray(new IGene[0]);
+		}
+		return new IGene[0];
 	}
 
 	@Override
+	@Nullable
 	public ISpeciesRoot getSpeciesRoot(final ItemStack stack) {
-		return this.getGeneItem(stack).getSpeciesRoot();
+		GeneArrayItem geneItem = this.getGeneItem(stack);
+		if (geneItem != null) {
+			return geneItem.getSpeciesRoot();
+		}
+		return null;
 	}
 
 	@Override
+	@Nullable
 	public IGene getGene(final ItemStack stack, final int chromosome) {
-		return this.getGeneItem(stack).getGene(chromosome);
+		GeneArrayItem geneItem = this.getGeneItem(stack);
+		if (geneItem != null) {
+			return geneItem.getGene(chromosome);
+		} else {
+			return null;
+		}
 	}
 
 	@Override
-	public GeneArrayItem getGeneItem(final ItemStack stack) {
-		return new GeneArrayItem(stack);
+	public GeneArrayItem getGeneItem(final ItemStack itemStack) {
+		return new GeneArrayItem(itemStack);
 	}
 
 	@Override
@@ -99,17 +117,23 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 
 	@Override
 	public String getItemStackDisplayName(final ItemStack itemstack) {
-		ISpeciesRoot speciesRoot = getGeneItem(itemstack).getSpeciesRoot();
-		if (speciesRoot != null)
-			return Binnie.GENETICS.getSystem(getGeneItem(itemstack).getSpeciesRoot()).getDescriptor() + " Serum Array";
+		GeneArrayItem geneItem = getGeneItem(itemstack);
+		if (geneItem != null) {
+			ISpeciesRoot speciesRoot = geneItem.getSpeciesRoot();
+			if (speciesRoot != null) {
+				BreedingSystem system = Binnie.GENETICS.getSystem(speciesRoot);
+				return system.getDescriptor() + " Serum Array";
+			}
+		}
 		return "Corrupted Serum Array";
 	}
 
 	@Override
 	public ItemStack addGene(final ItemStack stack, final IGene gene) {
-		final IGeneItem geneI = this.getGeneItem(stack);
-		geneI.addGene(gene);
-		geneI.writeToItem(stack);
+		final IGeneItem geneItem = this.getGeneItem(stack);
+		Preconditions.checkNotNull(geneItem, "Cannot add gene to itemStack that is not a valid serum array.");
+		geneItem.addGene(gene);
+		geneItem.writeToItem(stack);
 		return stack;
 	}
 

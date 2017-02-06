@@ -8,13 +8,12 @@ import forestry.api.genetics.IAllele;
 import forestry.arboriculture.genetics.TreeDefinition;
 import net.minecraft.item.ItemStack;
 
-public class ETLeafProvider implements ILeafProvider {
+import javax.annotation.Nullable;
 
+public class ETLeafProvider implements ILeafProvider {
+	@Nullable
 	private IAlleleTreeSpecies treeSpecies;
-	
-	public ETLeafProvider() {
-	}
-	
+
 	@Override
 	public void init(IAlleleTreeSpecies treeSpecies) {
 		this.treeSpecies = treeSpecies;
@@ -22,11 +21,13 @@ public class ETLeafProvider implements ILeafProvider {
 
 	@Override
 	public ItemStack getDecorativeLeaves() {
-		IAllele allele = treeSpecies;
-		if(allele == null){
-			allele = TreeDefinition.Oak.getTemplate()[EnumTreeChromosome.SPECIES.ordinal()];
+		IAllele species;
+		if (treeSpecies == null) {
+			species = TreeDefinition.Oak.getTemplate()[EnumTreeChromosome.SPECIES.ordinal()];
+		} else {
+			species = treeSpecies;
 		}
-		return ModuleBlocks.getDecorativeLeaves(allele.getUID());
+		return ModuleBlocks.getDecorativeLeaves(species.getUID());
 	}
 	
 }

@@ -119,7 +119,7 @@ public class TextureRenderer {
 
 	public void setTexture(final Texture texture) {
 		if (texture != null) {
-			BinnieCore.proxy.bindTexture(texture.getFilename());
+			BinnieCore.getBinnieProxy().bindTexture(texture.getFilename());
 		}
 	}
 

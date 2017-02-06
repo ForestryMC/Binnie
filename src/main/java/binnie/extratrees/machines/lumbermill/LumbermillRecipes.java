@@ -87,7 +87,7 @@ public class LumbermillRecipes {
 		}
 
 		@Override
-		public boolean canInteractWith(@Nonnull EntityPlayer playerIn) {
+		public boolean canInteractWith(EntityPlayer playerIn) {
 			return true;
 		}
 	}

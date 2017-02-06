@@ -26,7 +26,7 @@ public class MachineRendererGenetics {
 		final float phase = (float) Math.max(0.0, Math.sin((System.currentTimeMillis() + i1) * 0.003));
 		GlStateManager.translate(x + 0.5, y + 1.5, z + 0.5);
 		GlStateManager.rotate(180.0f, 0.0f, 0.0f, 1.0f);
-		BinnieCore.proxy.getMinecraftInstance();
+		BinnieCore.getBinnieProxy().getMinecraftInstance();
 		if (Minecraft.isFancyGraphicsEnabled()) {
 			for (IRender.Render render : machine.getInterfaces(IRender.Render.class)) {
 				render.renderInWorld(x, y, z);

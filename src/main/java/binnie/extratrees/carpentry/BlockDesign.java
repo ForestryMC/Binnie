@@ -47,6 +47,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public abstract class BlockDesign extends BlockMetadata implements IMultipassBlock<Integer>, IColoredBlock, ISpriteRegister, IItemModelRegister, IStateMapperRegister {
@@ -228,7 +229,7 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public TextureAtlasSprite getSprite(Integer key, EnumFacing facing, int pass) {
+	public TextureAtlasSprite getSprite(Integer key, @Nullable EnumFacing facing, int pass) {
 		DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), key);
 
 		if(facing == null){

@@ -77,8 +77,7 @@ public class Mods {
 			super(id);
 		}
 
-		@Nonnull
-		@Override
+			@Override
 		public Item item(final String name) {
 			Item item = super.item(name);
 			if (item == null) {
@@ -87,8 +86,7 @@ public class Mods {
 			return item;
 		}
 
-		@Nonnull
-		@Override
+			@Override
 		public Block block(final String name) {
 			Block block = super.block(name);
 			if (block == null) {
@@ -97,22 +95,19 @@ public class Mods {
 			return block;
 		}
 
-		@Nonnull
-		@Override
+			@Override
 		public ItemStack stack(final String name) {
 			Item item = this.item(name);
 			return new ItemStack(item);
 		}
 
-		@Nonnull
-		@Override
+			@Override
 		public ItemStack stack(final String name, final int amount) {
 			Item item = this.item(name);
 			return new ItemStack(item, amount);
 		}
 
-		@Nonnull
-		@Override
+			@Override
 		public ItemStack stack(final String name, final int amount, final int meta) {
 			Item item = this.item(name);
 			return new ItemStack(item, amount, meta);

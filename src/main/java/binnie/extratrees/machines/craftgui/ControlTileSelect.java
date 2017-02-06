@@ -121,11 +121,11 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 	}
 
 	public static class ControlTile extends Control implements IControlValue<IDesign>, ITooltip {
-		IDesign value;
+		private IDesign value;
 
 		protected ControlTile(final IWidget parent, final int x, final int y, final IDesign value) {
 			super(parent, x, y, 18, 18);
-			this.setValue(value);
+			this.value = value;
 			this.addAttribute(Attribute.MouseOver);
 			this.addSelfEventHandler(new EventMouse.Down.Handler() {
 				@Override
@@ -144,7 +144,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 
 		@Override
 		public void getTooltip(final Tooltip tooltip) {
-			tooltip.add(Binnie.LANGUAGE.localise(BinnieCore.instance, "gui.designer.pattern", this.getValue().getName()));
+			tooltip.add(Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "gui.designer.pattern", this.getValue().getName()));
 		}
 
 		@Override

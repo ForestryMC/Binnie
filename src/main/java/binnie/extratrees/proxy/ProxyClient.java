@@ -28,7 +28,7 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 	}
 	
 	@Override
-	public void registerBlockModel(@Nonnull final BlockModelEntry index) {
+	public void registerBlockModel(final BlockModelEntry index) {
 		ModelManager.registerCustomBlockModel(index);
 		if(index.addStateMapper){
 			StateMapperBase ignoreState = new BlockModeStateMapper(index);
@@ -37,7 +37,7 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 	}
 	
 	@Override
-	public void registerModel(@Nonnull ModelEntry index) {
+	public void registerModel(ModelEntry index) {
 		ModelManager.registerCustomModel(index);
 	}
 

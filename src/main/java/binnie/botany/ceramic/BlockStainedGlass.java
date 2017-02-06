@@ -98,7 +98,7 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 			drops = Collections.singletonList(ceramic.getStack());
 		}
 		boolean hasBeenBroken = world.setBlockToAir(pos);
-		if (hasBeenBroken && BinnieCore.proxy.isSimulating(world) && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
+		if (hasBeenBroken && BinnieCore.getBinnieProxy().isSimulating(world) && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
 			for (ItemStack drop : drops) {
 				spawnAsEntity(world, pos, drop);
 			}

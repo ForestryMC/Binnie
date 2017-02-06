@@ -99,7 +99,7 @@ public class BrewedGrainRecipe implements IBreweryRecipe {
 	}
 
 	@Override
-	public boolean isGrain(@Nonnull ItemStack itemStack) {
+	public boolean isGrain(ItemStack itemStack) {
 		return OreDictionaryUtil.hasOreId(itemStack, grainOreId);
 	}
 

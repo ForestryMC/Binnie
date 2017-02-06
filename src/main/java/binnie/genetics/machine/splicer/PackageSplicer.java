@@ -69,13 +69,13 @@ public class PackageSplicer extends AdvGeneticMachine.PackageAdvGeneticBase impl
 		transfer.addRestock(Splicer.SLOT_SERUM_RESERVE, Splicer.SLOT_SERUM_VIAL);
 		transfer.addStorage(Splicer.SLOT_SERUM_VIAL, Splicer.SLOT_SERUM_EXPENDED, new ComponentInventoryTransfer.Condition() {
 			@Override
-			public boolean fufilled(final ItemStack stack) {
+			public boolean fulfilled(final ItemStack stack) {
 				return Engineering.getCharges(stack) == 0;
 			}
 		});
 		transfer.addStorage(Splicer.SLOT_TARGET, Splicer.SLOT_FINISHED, new ComponentInventoryTransfer.Condition() {
 			@Override
-			public boolean fufilled(final ItemStack stack) {
+			public boolean fulfilled(final ItemStack stack) {
 				return stack != null && this.transfer.getMachine().getMachineUtil().getStack(Splicer.SLOT_SERUM_VIAL) != null && this.transfer.getMachine().getInterface(SplicerLogic.class).isValidSerum() != null;
 			}
 		});

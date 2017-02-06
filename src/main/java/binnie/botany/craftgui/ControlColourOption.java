@@ -15,7 +15,7 @@ public class ControlColourOption extends ControlTextOption<IFlowerColour> {
 	public ControlColourOption(final ControlList<IFlowerColour> controlList, final IFlowerColour option, final int y) {
 		super(controlList, option, option.getColourName(), y);
 		this.setSize(new IPoint(this.getSize().x(), 20));
-		(this.controlBee = new ControlColourDisplay(this, 2, 2)).setValue(option);
+		this.controlBee = new ControlColourDisplay(this, 2, 2, option);
 		this.addAttribute(Attribute.MouseOver);
 		CraftGUIUtil.moveWidget(this.textWidget, new IPoint(22, 0));
 		this.textWidget.setSize(this.textWidget.getSize().sub(new IPoint(24, 0)));

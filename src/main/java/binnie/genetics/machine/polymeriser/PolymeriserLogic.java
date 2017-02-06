@@ -6,7 +6,10 @@ import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import binnie.genetics.Genetics;
 import binnie.genetics.genetics.Engineering;
+import com.google.common.base.Preconditions;
 import net.minecraft.item.ItemStack;
+
+import javax.annotation.Nullable;
 
 public class PolymeriserLogic extends ComponentProcessSetCost implements IProcess {
 	private static float chargePerProcess = 0.4f;
@@ -35,11 +38,11 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 		return (int) (super.getProcessEnergy() * getNumberOfGenes(serum) * this.getCatalyst());
 	}
 
-	public static float getDNAPerProcess(ItemStack serum) {
+	public static float getDNAPerProcess(@Nullable ItemStack serum) {
 		return getNumberOfGenes(serum) * 50;
 	}
 
-	public static float getBacteriaPerProcess(ItemStack serum) {
+	public static float getBacteriaPerProcess(@Nullable ItemStack serum) {
 		return 0.2f * getDNAPerProcess(serum);
 	}
 
@@ -61,7 +64,7 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 		}
 	}
 
-	private static int getNumberOfGenes(ItemStack serum) {
+	private static int getNumberOfGenes(@Nullable ItemStack serum) {
 		if (serum == null) {
 			return 1;
 		}
@@ -81,10 +84,11 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 
 	@Override
 	public ErrorState canWork() {
-		if (this.getUtil().isSlotEmpty(Polymeriser.SLOT_SERUM)) {
+		ItemStack serumStack = this.getUtil().getStack(Polymeriser.SLOT_SERUM);
+		if (serumStack == null) {
 			return new ErrorState.NoItem(Genetics.proxy.localise("machine.machine.polymeriser.errors.item.no"), Polymeriser.SLOT_SERUM);
 		}
-		if (!this.getUtil().getStack(Polymeriser.SLOT_SERUM).isItemDamaged()) {
+		if (!serumStack.isItemDamaged()) {
 			return new ErrorState.InvalidItem(Genetics.proxy.localise("machine.machine.polymeriser.errors.item.filled"), Polymeriser.SLOT_SERUM);
 		}
 		return super.canWork();
@@ -104,6 +108,8 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 	@Override
 	protected void onFinishTask() {
 		super.onFinishTask();
-		this.getUtil().damageItem(Polymeriser.SLOT_SERUM, -1);
+		ItemStack serumStack = this.getUtil().getStack(Polymeriser.SLOT_SERUM);
+		Preconditions.checkState(serumStack != null);
+		this.getUtil().damageItem(serumStack, Polymeriser.SLOT_SERUM, -1);
 	}
 }

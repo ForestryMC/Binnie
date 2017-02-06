@@ -50,7 +50,6 @@ public class Genetics extends AbstractMod {
 	public static Item masterRegistry;
 	public static ItemSerumArray itemSerumArray = null;
 
-	@Nonnull
 	public static Item getItemGenetics() {
 		Preconditions.checkState(itemGenetics != null);
 		return itemGenetics;

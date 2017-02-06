@@ -55,7 +55,7 @@ public class PackageAnalyser extends GeneticMachine.PackageGeneticBase implement
 		transfer.addRestock(Analyser.SLOT_RESERVE, 6, 1);
 		transfer.addStorage(6, Analyser.SLOT_FINISHED, new ComponentInventoryTransfer.Condition() {
 			@Override
-			public boolean fufilled(final ItemStack stack) {
+			public boolean fulfilled(final ItemStack stack) {
 				return Analyser.isAnalysed(stack);
 			}
 		});

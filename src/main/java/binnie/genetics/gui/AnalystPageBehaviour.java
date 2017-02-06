@@ -35,7 +35,7 @@ public class AnalystPageBehaviour extends ControlAnalystPage {
 			final IAlleleBeeEffect effect = bee.getGenome().getEffect();
 			final Vec3i t = bee.getGenome().getTerritory();
 			if (!effect.getUID().contains("None")) {
-				final String effectDesc = BinnieCore.proxy.localiseOrBlank("allele." + effect.getUID() + ".desc");
+				final String effectDesc = BinnieCore.getBinnieProxy().localiseOrBlank("allele." + effect.getUID() + ".desc");
 				final String loc = effectDesc.equals("") ? ("Effect: " + effect.getName()) : effectDesc;
 				new ControlText(this, new IArea(4, y, this.w() - 8, 0), loc, TextJustification.TopCenter).setColour(this.getColour());
 				y += CraftGUI.render.textHeight(loc, this.w() - 8) + 1;
@@ -55,7 +55,7 @@ public class AnalystPageBehaviour extends ControlAnalystPage {
 			y += 22;
 			final IAlleleButterflyEffect effect2 = bee2.getGenome().getEffect();
 			if (!effect2.getUID().contains("None")) {
-				final String effectDesc2 = BinnieCore.proxy.localiseOrBlank("allele." + effect2.getUID() + ".desc");
+				final String effectDesc2 = BinnieCore.getBinnieProxy().localiseOrBlank("allele." + effect2.getUID() + ".desc");
 				final String loc2 = effectDesc2.equals("") ? ("Effect: " + effect2.getName()) : effectDesc2;
 				new ControlText(this, new IArea(4, y, this.w() - 8, 0), loc2, TextJustification.TopCenter).setColour(this.getColour());
 				y += CraftGUI.render.textHeight(loc2, this.w() - 8) + 1;

@@ -6,6 +6,7 @@ import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.FruitPod;
 import binnie.extratrees.config.ConfigurationMain;
 import binnie.extratrees.item.Food;
+import com.google.common.base.Preconditions;
 import com.google.common.base.Throwables;
 import forestry.api.arboriculture.IAlleleFruit;
 import forestry.api.arboriculture.IAlleleTreeSpecies;
@@ -133,17 +134,18 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 	public static final AlleleETFruit Gooseberry = new AlleleETFruit("Gooseberry", 8, 12164944, 12177232, FruitSprite.TINY);
 	public static final AlleleETFruit GoldenRaspberry = new AlleleETFruit("GoldenRaspberry", 8, 12496955, 15970363, FruitSprite.TINY);
 
-	IFruitFamily family;
-	boolean isRipening;
-	int diffR, diffG, diffB;
-	FruitPod pod;
-	int ripeningPeriod;
-	int colourUnripe;
-	int colour;
-	FruitSprite sprite;
-	HashMap<ItemStack, Float> products;
+	@Nullable
+	private IFruitFamily family;
+	private boolean isRipening;
+	private int diffR, diffG, diffB;
+	private FruitPod pod;
+	private int ripeningPeriod;
+	private int colourUnripe;
+	private int colour;
+	private FruitSprite sprite;
+	private Map<ItemStack, Float> products;
 
-
+	@Nullable
 	private static LinkedList<AlleleETFruit> list;
 
 	public static List<AlleleETFruit> values() {
@@ -375,11 +377,10 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 	}
 
 	@Override
-	public int compareTo(@Nonnull IAlleleFruit o) {
+	public int compareTo(IAlleleFruit o) {
 		return o == this ? 0 : -1;
 	}
 
-	@Nonnull
 	@Override
 	public Map<ItemStack, Float> getSpecialty() {
 		return new HashMap<>();
@@ -398,7 +399,6 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 		return false;
 	}
 
-	@Nonnull
 	@Override
 	public List<ItemStack> getFruits(ITreeGenome genome, World world, BlockPos pos, int ripeningTime) {
 		if (this.pod != null) {
@@ -447,7 +447,6 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 		return sprite != null;
 	}
 
-	@Nonnull
 	@Override
 	public String getModID() {
 		return Constants.EXTRA_TREES_MOD_ID;
@@ -477,6 +476,7 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 
 	@Override
 	public IFruitFamily getFamily() {
+		Preconditions.checkState(this.family != null, "Family has not been set.");
 		return this.family;
 	}
 
@@ -485,9 +485,8 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 		return this.ripeningPeriod;
 	}
 
-	@Nonnull
 	@Override
-	public HashMap<ItemStack, Float> getProducts() {
+	public Map<ItemStack, Float> getProducts() {
 		return products;
 	}
 

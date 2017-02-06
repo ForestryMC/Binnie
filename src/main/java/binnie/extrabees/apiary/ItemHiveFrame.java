@@ -21,7 +21,7 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 
 	public ItemHiveFrame(final EnumHiveFrame frame) {
 		this.frame = frame;
-		this.setMaxDamage(frame.maxDamage);
+		this.setMaxDamage(frame.getMaxDamage());
 		this.setCreativeTab(Tabs.tabApiculture);
 		this.setMaxStackSize(1);
 		this.setUnlocalizedName("hiveFrame");

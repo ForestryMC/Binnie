@@ -22,6 +22,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
@@ -32,7 +33,7 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 	}
 
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn) {
+	public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn) {
 		final boolean connectNegZ = this.canConnectFenceTo(world, pos.north());
 		final boolean connectPosZ = this.canConnectFenceTo(world, pos.south());
 		final boolean connectNegX = this.canConnectFenceTo(world, pos.west());

@@ -26,7 +26,7 @@ public class ModelETDecorativeLeaves extends ModelBlockCached<BlockETDecorativeL
 	}
 
 	@Override
-	protected ETTreeDefinition getInventoryKey(@Nonnull ItemStack stack) {
+	protected ETTreeDefinition getInventoryKey(ItemStack stack) {
 		Block block = Block.getBlockFromItem(stack.getItem());
 		if (!(block instanceof BlockETDecorativeLeaves)) {
 			return null;
@@ -36,7 +36,7 @@ public class ModelETDecorativeLeaves extends ModelBlockCached<BlockETDecorativeL
 	}
 
 	@Override
-	protected ETTreeDefinition getWorldKey(@Nonnull IBlockState state) {
+	protected ETTreeDefinition getWorldKey(IBlockState state) {
 		Block block = state.getBlock();
 		if (!(block instanceof BlockETDecorativeLeaves)) {
 			return null;
@@ -46,7 +46,7 @@ public class ModelETDecorativeLeaves extends ModelBlockCached<BlockETDecorativeL
 	}
 
 	@Override
-	protected void bakeBlock(@Nonnull BlockETDecorativeLeaves block, @Nonnull ETTreeDefinition treeDefinition, @Nonnull IModelBaker baker, boolean inventory) {
+	protected void bakeBlock(BlockETDecorativeLeaves block, ETTreeDefinition treeDefinition, IModelBaker baker, boolean inventory) {
 		TextureMap map = Proxies.common.getClientInstance().getTextureMapBlocks();
 
 		ITreeGenome genome = treeDefinition.getGenome();
@@ -72,7 +72,7 @@ public class ModelETDecorativeLeaves extends ModelBlockCached<BlockETDecorativeL
 
 	@Nullable
 	@Override
-	protected IBakedModel bakeModel(@Nonnull IBlockState state, @Nonnull ETTreeDefinition key) {
+	protected IBakedModel bakeModel(IBlockState state, ETTreeDefinition key) {
 		if (key == null) {
 			return null;
 		}

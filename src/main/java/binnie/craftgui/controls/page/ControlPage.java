@@ -5,7 +5,7 @@ import binnie.craftgui.controls.core.IControlValue;
 import binnie.craftgui.core.IWidget;
 
 public class ControlPage<T> extends Control implements IControlValue<T> {
-	T value;
+	private T value;
 
 	public ControlPage(final IWidget parent, final T value) {
 		this(parent, 0, 0, parent.w(), parent.h(), value);
@@ -13,7 +13,7 @@ public class ControlPage<T> extends Control implements IControlValue<T> {
 
 	public ControlPage(final IWidget parent, final int x, final int y, final int w, final int h, final T value) {
 		super(parent, x, y, w, h);
-		this.setValue(value);
+		this.value = value;
 		if (parent instanceof IControlValue && ((IControlValue) parent).getValue() == null) {
 			((IControlValue) parent).setValue(value);
 		}

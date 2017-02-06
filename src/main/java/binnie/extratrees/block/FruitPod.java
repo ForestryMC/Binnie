@@ -16,7 +16,7 @@ public enum FruitPod {
 //	IIcon[] icons;
 
 	FruitPod() {
-		this.textures = new short[]{BinnieCore.proxy.getUniqueTextureUID(), BinnieCore.proxy.getUniqueTextureUID(), BinnieCore.proxy.getUniqueTextureUID()};
+		this.textures = new short[]{BinnieCore.getBinnieProxy().getUniqueTextureUID(), BinnieCore.getBinnieProxy().getUniqueTextureUID(), BinnieCore.getBinnieProxy().getUniqueTextureUID()};
 //		this.icons = new IIcon[3];
 	}
 

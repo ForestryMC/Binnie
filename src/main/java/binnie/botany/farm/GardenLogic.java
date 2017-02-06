@@ -5,7 +5,7 @@ import binnie.botany.Botany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
 import binnie.botany.api.EnumSoilType;
-import binnie.botany.api.gardening.IBlockSoil;
+import binnie.botany.api.IBlockSoil;
 import binnie.botany.flower.TileEntityFlower;
 import binnie.botany.gardening.Gardening;
 import forestry.api.farming.FarmDirection;

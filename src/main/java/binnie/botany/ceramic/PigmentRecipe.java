@@ -13,7 +13,7 @@ import javax.annotation.Nonnull;
 
 public class PigmentRecipe implements IRecipe {
 	@Override
-	public boolean matches(@Nonnull final InventoryCrafting crafting, @Nonnull final World world) {
+	public boolean matches(final InventoryCrafting crafting, final World world) {
 		return this.getCraftingResult(crafting) != null;
 	}
 
@@ -23,7 +23,7 @@ public class PigmentRecipe implements IRecipe {
 	}
 
 	@Override
-	public ItemStack getCraftingResult(@Nonnull final InventoryCrafting crafting) {
+	public ItemStack getCraftingResult(final InventoryCrafting crafting) {
 		int n = 0;
 		ItemStack stack = null;
 		for (int i = 0; i < crafting.getSizeInventory(); ++i) {
@@ -47,9 +47,8 @@ public class PigmentRecipe implements IRecipe {
 		return 1;
 	}
 
-	@Nonnull
 	@Override
-	public ItemStack[] getRemainingItems(@Nonnull InventoryCrafting inv) {
+	public ItemStack[] getRemainingItems(InventoryCrafting inv) {
 		return ForgeHooks.defaultRecipeGetRemainingItems(inv);
 	}
 }

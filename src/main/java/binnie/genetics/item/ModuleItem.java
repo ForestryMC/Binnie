@@ -63,21 +63,21 @@ public class ModuleItem implements IInitializable {
 
 	@Override
 	public void init() {
-		ModuleItem.iconNight = Binnie.RESOURCE.getItemSprite(BinnieCore.instance, "gui/analyst.night");
-		ModuleItem.iconDaytime = Binnie.RESOURCE.getItemSprite(BinnieCore.instance, "gui/analyst.day");
-		ModuleItem.iconAllDay = Binnie.RESOURCE.getItemSprite(BinnieCore.instance, "gui/analyst.allday");
-		ModuleItem.iconRain = Binnie.RESOURCE.getItemSprite(BinnieCore.instance, "gui/analyst.rain");
-		ModuleItem.iconNoRain = Binnie.RESOURCE.getItemSprite(BinnieCore.instance, "gui/analyst.norain");
-		ModuleItem.iconSky = Binnie.RESOURCE.getItemSprite(BinnieCore.instance, "gui/analyst.sky");
-		ModuleItem.iconNoSky = Binnie.RESOURCE.getItemSprite(BinnieCore.instance, "gui/analyst.nosky");
-		ModuleItem.iconFire = Binnie.RESOURCE.getItemSprite(BinnieCore.instance, "gui/analyst.fire");
-		ModuleItem.iconNoFire = Binnie.RESOURCE.getItemSprite(BinnieCore.instance, "gui/analyst.nofire");
-		ModuleItem.iconAdd = Binnie.RESOURCE.getItemSprite(BinnieCore.instance, "gui/analyst.add");
-		ModuleItem.iconArrow = Binnie.RESOURCE.getItemSprite(BinnieCore.instance, "gui/analyst.arrow");
-		ModuleItem.iconAdd0 = Binnie.RESOURCE.getItemSprite(BinnieCore.instance, "gui/analyst.add.0");
-		ModuleItem.iconArrow0 = Binnie.RESOURCE.getItemSprite(BinnieCore.instance, "gui/analyst.arrow.0");
-		ModuleItem.iconAdd1 = Binnie.RESOURCE.getItemSprite(BinnieCore.instance, "gui/analyst.add.1");
-		ModuleItem.iconArrow1 = Binnie.RESOURCE.getItemSprite(BinnieCore.instance, "gui/analyst.arrow.1");
+		ModuleItem.iconNight = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.night");
+		ModuleItem.iconDaytime = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.day");
+		ModuleItem.iconAllDay = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.allday");
+		ModuleItem.iconRain = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.rain");
+		ModuleItem.iconNoRain = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.norain");
+		ModuleItem.iconSky = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.sky");
+		ModuleItem.iconNoSky = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.nosky");
+		ModuleItem.iconFire = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.fire");
+		ModuleItem.iconNoFire = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.nofire");
+		ModuleItem.iconAdd = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.add");
+		ModuleItem.iconArrow = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.arrow");
+		ModuleItem.iconAdd0 = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.add.0");
+		ModuleItem.iconArrow0 = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.arrow.0");
+		ModuleItem.iconAdd1 = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.add.1");
+		ModuleItem.iconArrow1 = Binnie.RESOURCE.getItemSprite(BinnieCore.getInstance(), "gui/analyst.arrow.1");
 	}
 
 	@Override

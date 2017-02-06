@@ -20,22 +20,19 @@ import javax.annotation.Nonnull;
 
 public class AlleleFlowerSpecies extends AlleleSpecies implements IAlleleFlowerSpecies, IAlleleFlowerSpeciesBuilder {
 
-	@Nonnull
 	private final IFlowerType flowerType;
-	@Nonnull
 	private EnumAcidity acidity = EnumAcidity.Neutral;
-	@Nonnull
 	private EnumMoisture moisture = EnumMoisture.Normal;
 
 	public AlleleFlowerSpecies(
-			@Nonnull String uid,
-			@Nonnull String unlocalizedName,
-			@Nonnull String authority,
-			@Nonnull String unlocalizedDescription,
+			String uid,
+			String unlocalizedName,
+			String authority,
+			String unlocalizedDescription,
 			boolean isDominant,
-			@Nonnull IClassification branch,
-			@Nonnull String binomial,
-			@Nonnull IFlowerType flowerType) {
+			IClassification branch,
+			String binomial,
+			IFlowerType flowerType) {
 		super(uid, unlocalizedName, authority, unlocalizedDescription, isDominant, branch, binomial);
 		this.flowerType = flowerType;
 	}
@@ -58,7 +55,6 @@ public class AlleleFlowerSpecies extends AlleleSpecies implements IAlleleFlowerS
 		return this;
 	}
 
-	@Nonnull
 	@Override
 	public ISpeciesRoot getRoot() {
 		return BotanyCore.getFlowerRoot();

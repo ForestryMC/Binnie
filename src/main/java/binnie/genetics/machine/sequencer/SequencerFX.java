@@ -23,7 +23,7 @@ public class SequencerFX extends MachineComponent implements IRender.RandomDispl
 		if (!this.getUtil().getProcess().isInProgress()) {
 			return;
 		}
-		BinnieCore.proxy.getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.5, pos.getY() + 1.2 + rand.nextDouble() * 0.2, pos.getZ() + 0.5, 0.0, 0.0, 0.0) {
+		BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.5, pos.getY() + 1.2 + rand.nextDouble() * 0.2, pos.getZ() + 0.5, 0.0, 0.0, 0.0) {
 			double axisX = this.posX;
 			double axisZ = this.posZ;
 			double angle = this.rand.nextDouble() * 2.0 * 3.1415;
@@ -62,7 +62,7 @@ public class SequencerFX extends MachineComponent implements IRender.RandomDispl
 	public void onDisplayTick(World world, BlockPos pos, Random rand) {
 		final int ticks = (int) (world.getTotalWorldTime() % 16L);
 		if (ticks == 0 && this.getUtil().getProcess().isInProgress()) {
-			BinnieCore.proxy.getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 0.0, 0.0, 0.0) {
+			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 0.0, 0.0, 0.0) {
 				double axisX = 0.0;
 				double axisZ = 0.0;
 				double angle = 0.0;

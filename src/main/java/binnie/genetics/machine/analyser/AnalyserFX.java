@@ -31,7 +31,7 @@ public class AnalyserFX extends MachineComponent implements IRender.DisplayTick,
 	@Override
 	public void onDisplayTick(World world, BlockPos pos, Random rand) {
 		if (rand.nextFloat() < 1.0f && this.getUtil().getProcess().isInProgress()) {
-			BinnieCore.proxy.getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.5, pos.getY() + 1.3 + rand.nextDouble() * 0.2, pos.getZ() + 0.5, 0.0, 0.0, 0.0) {
+			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.5, pos.getY() + 1.3 + rand.nextDouble() * 0.2, pos.getZ() + 0.5, 0.0, 0.0, 0.0) {
 				double axisX = this.posX;
 				double axisZ = this.posZ;
 				double angle = this.rand.nextDouble() * 2.0 * 3.1415;
@@ -78,14 +78,14 @@ public class AnalyserFX extends MachineComponent implements IRender.DisplayTick,
 		if (stack == null) {
 			return;
 		}
-		final EntityPlayer player = BinnieCore.proxy.getPlayer();
+		final EntityPlayer player = BinnieCore.getBinnieProxy().getPlayer();
 		final double dx = x + 0.5 - player.lastTickPosX;
 		final double dz = z + 0.5 - player.lastTickPosZ;
 		final double t = Math.atan2(dz, dx) * 180.0 / 3.1415;
 		GlStateManager.pushMatrix();
 		GlStateManager.rotate(180.0f, 0.0f, 0.0f, 1.0f);
 		GlStateManager.translate(0.0f, -0.2f, 0.0f);
-		BinnieCore.proxy.getMinecraftInstance().getRenderItem().renderItem(dummyEntityItem.getEntityItem(), ItemCameraTransforms.TransformType.FIXED);//doRender(this.dummyEntityItem.getEntityItem(), 0.0, 0.0, 0.0, 0.0f, 0.0f);
+		BinnieCore.getBinnieProxy().getMinecraftInstance().getRenderItem().renderItem(dummyEntityItem.getEntityItem(), ItemCameraTransforms.TransformType.FIXED);//doRender(this.dummyEntityItem.getEntityItem(), 0.0, 0.0, 0.0, 0.0f, 0.0f);
 		GlStateManager.popMatrix();
 	}
 

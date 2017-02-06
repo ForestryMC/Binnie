@@ -40,7 +40,7 @@ public class ManagerResource {
 		for (BinnieSprite sprite : this.sprites) {
 			sprite.registerSprites();
 		}
-		BinnieCore.proxy.reloadSprites();
+		BinnieCore.getBinnieProxy().reloadSprites();
 	}
 
 

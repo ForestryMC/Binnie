@@ -18,8 +18,7 @@ public abstract class BlockETPlank extends BlockForestryPlanks<EnumETLog> {
 		for (int i = 0; i < variants.length; i++) {
 			PropertyETWoodType variant = variants[i];
 			BlockETPlank block = new BlockETPlank(fireproof, i) {
-				@Nonnull
-				@Override
+							@Override
 				public PropertyETWoodType getVariant() {
 					return variant;
 				}
@@ -40,7 +39,6 @@ public abstract class BlockETPlank extends BlockForestryPlanks<EnumETLog> {
 		setUnlocalizedName(name);
 	}
 
-	@Nonnull
 	@Override
 	public EnumETLog getWoodType(int meta) {
 		int variantCount = getVariant().getAllowedValues().size();

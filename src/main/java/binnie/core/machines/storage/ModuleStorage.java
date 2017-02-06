@@ -13,7 +13,9 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 public class ModuleStorage implements IInitializable {
 	@Override
 	public void preInit() {
-		(BinnieCore.packageCompartment = new MachineGroup(BinnieCore.instance, "storage", "storage", Compartment.values())).setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+		MachineGroup machineGroup = new MachineGroup(BinnieCore.getInstance(), "storage", "storage", Compartment.values());
+		BinnieCore.setPackageCompartment(machineGroup);
+		machineGroup.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
 	}
 
 	@Override

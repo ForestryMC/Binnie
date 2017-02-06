@@ -52,8 +52,7 @@ public enum EnumSaplingType {
 			}
 		}
 
-		@Nonnull
-		@Override
+			@Override
 		public ModelResourceLocation getModel(EnumGermlingType type) {
 			if (type == EnumGermlingType.SAPLING) {
 				return germlingModel;

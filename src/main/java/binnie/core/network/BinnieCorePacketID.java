@@ -27,19 +27,19 @@ public enum BinnieCorePacketID implements IPacketID {
 	public void onMessage(final MessageBinnie message, final MessageContext context) {
 		if (this == BinnieCorePacketID.NetworkEntityUpdate) {
 			final MessageUpdate packet = new MessageUpdate(message);
-			final TileEntity tile = packet.getTileEntity(BinnieCore.proxy.getWorld());
+			final TileEntity tile = packet.getTileEntity(BinnieCore.getBinnieProxy().getWorld());
 			if (tile instanceof INetworkedEntity) {
 				((INetworkedEntity) tile).readFromPacket(packet.payload);
 			}
 		} else if (this == BinnieCorePacketID.TileMetadata) {
 			final MessageMetadata packet2 = new MessageMetadata(message);
-			final TileEntity tile = packet2.getTileEntity(BinnieCore.proxy.getWorld());
+			final TileEntity tile = packet2.getTileEntity(BinnieCore.getBinnieProxy().getWorld());
 			if (tile instanceof TileEntityMetadata) {
 				((TileEntityMetadata) tile).setTileMetadata(packet2.meta, true);
 			}
 		} else if (this == BinnieCorePacketID.CraftGUIAction && context.side == Side.CLIENT) {
 			final MessageCraftGUI packet3 = new MessageCraftGUI(message);
-			final EntityPlayer player = BinnieCore.proxy.getPlayer();
+			final EntityPlayer player = BinnieCore.getBinnieProxy().getPlayer();
 			if (player.openContainer instanceof ContainerCraftGUI && packet3.getTagCompound() != null) {
 				((ContainerCraftGUI) player.openContainer).recieveNBT(Side.CLIENT, player, packet3.getTagCompound());
 			}
@@ -51,7 +51,7 @@ public enum BinnieCorePacketID implements IPacketID {
 			}
 		} else if (this == BinnieCorePacketID.TileDescriptionSync && context.side == Side.CLIENT) {
 			final MessageTileNBT packet4 = new MessageTileNBT(message);
-			final TileEntity tile = packet4.getTarget(BinnieCore.proxy.getWorld());
+			final TileEntity tile = packet4.getTarget(BinnieCore.getBinnieProxy().getWorld());
 			if (tile != null && packet4.getTagCompound() != null) {
 				final IMachine machine = Machine.getMachine(tile);
 				if (machine != null && machine instanceof INetwork.TilePacketSync) {

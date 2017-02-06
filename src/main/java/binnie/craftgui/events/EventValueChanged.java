@@ -2,14 +2,18 @@ package binnie.craftgui.events;
 
 import binnie.craftgui.core.IWidget;
 
+import javax.annotation.Nullable;
+
 public class EventValueChanged<T> extends Event {
+	@Nullable
 	public T value;
 
-	public EventValueChanged(final IWidget origin, final T value) {
+	public EventValueChanged(final IWidget origin, @Nullable final T value) {
 		super(origin);
 		this.value = value;
 	}
 
+	@Nullable
 	public T getValue() {
 		return this.value;
 	}

@@ -20,6 +20,8 @@ import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.inventory.IInventory;
 
+import javax.annotation.Nullable;
+
 public class ControlEnergyBar extends Control implements ITooltip {
 	public static boolean isError;
 	private Position direction;
@@ -30,14 +32,14 @@ public class ControlEnergyBar extends Control implements ITooltip {
 		this.addAttribute(Attribute.MouseOver);
 	}
 
+	@Nullable
 	public IPoweredMachine getClientPower() {
 		final IInventory inventory = Window.get(this).getInventory();
 		final TileEntityMachine machine = (inventory instanceof TileEntityMachine) ? (TileEntityMachine) inventory : null;
 		if (machine == null) {
 			return null;
 		}
-		final IPoweredMachine clientPower = machine.getMachine().getInterface(IPoweredMachine.class);
-		return clientPower;
+		return machine.getMachine().getInterface(IPoweredMachine.class);
 	}
 
 	public float getPercentage() {

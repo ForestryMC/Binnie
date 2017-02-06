@@ -36,7 +36,6 @@ public class PanelModelBaker implements IModelBaker {
 	private final float[] quadsUV;
 	private final List<ModelBakerFace> faces = new ArrayList<>();
 	private final List<Pair<IBlockState, IBakedModel>> bakedModels = new ArrayList<>();
-	@Nonnull
 	protected AxisAlignedBB renderBounds = Block.FULL_BLOCK_AABB;
 
 	protected ModelBakerModel currentModel = new ModelBakerModel(ModelManager.getInstance().DEFAULT_BLOCK);
@@ -51,7 +50,7 @@ public class PanelModelBaker implements IModelBaker {
 	}
 	
 	@Override
-	public void setRenderBounds(@Nonnull AxisAlignedBB renderBounds) {
+	public void setRenderBounds(AxisAlignedBB renderBounds) {
 		if (renderBounds == null) {
 			return;
 		}
@@ -72,7 +71,7 @@ public class PanelModelBaker implements IModelBaker {
 	}
 	
 	@Override
-	public void addModel(@Nonnull AxisAlignedBB renderBounds, @Nonnull TextureAtlasSprite[] textures, int colorIndex) {
+	public void addModel(AxisAlignedBB renderBounds, TextureAtlasSprite[] textures, int colorIndex) {
 		
 		setColorIndex(colorIndex);
 		
@@ -82,12 +81,12 @@ public class PanelModelBaker implements IModelBaker {
 	}
 	
 	@Override
-	public void addModel(@Nonnull AxisAlignedBB renderBounds, @Nonnull TextureAtlasSprite texture, int colorIndex) {
+	public void addModel(AxisAlignedBB renderBounds, TextureAtlasSprite texture, int colorIndex) {
 		addModel(renderBounds, new TextureAtlasSprite[]{ texture, texture, texture, texture, texture, texture }, colorIndex);
 	}
 	
 	@Override
-	public void addBlockModel(@Nonnull Block block, @Nonnull AxisAlignedBB renderBounds, @Nullable BlockPos pos, @Nonnull TextureAtlasSprite[] textures, int colorIndex) {
+	public void addBlockModel(Block block, AxisAlignedBB renderBounds, @Nullable BlockPos pos, TextureAtlasSprite[] textures, int colorIndex) {
 		setColorIndex(colorIndex);
 		
 		if(pos != null){
@@ -107,12 +106,12 @@ public class PanelModelBaker implements IModelBaker {
 	}
 
 	@Override
-	public void addBlockModel(@Nonnull Block block, @Nonnull AxisAlignedBB renderBounds, @Nullable BlockPos pos, @Nonnull TextureAtlasSprite texture, int colorIndex) {
+	public void addBlockModel(Block block, AxisAlignedBB renderBounds, @Nullable BlockPos pos, TextureAtlasSprite texture, int colorIndex) {
 		addBlockModel(block, renderBounds, pos, new TextureAtlasSprite[]{ texture, texture, texture, texture, texture, texture }, colorIndex);
 	}
 	
 	@Override
-	public void addBakedModel(@Nullable IBlockState state, @Nonnull IBakedModel model) {
+	public void addBakedModel(@Nullable IBlockState state, IBakedModel model) {
 		if(model != null){
 			this.bakedModels.add(Pair.of(state, model));
 		}
@@ -185,7 +184,7 @@ public class PanelModelBaker implements IModelBaker {
 	}
 
 	@Override
-	public void addFace(@Nonnull EnumFacing facing, @Nonnull TextureAtlasSprite sprite) {
+	public void addFace(EnumFacing facing, TextureAtlasSprite sprite) {
 		if (sprite == null) {
 			return;
 		}

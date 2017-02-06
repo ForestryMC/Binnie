@@ -12,7 +12,7 @@ import java.util.ConcurrentModificationException;
 import java.util.List;
 
 public class Widget implements IWidget {
-	private IWidget parent;
+	private final IWidget parent;
 	private List<IWidget> subWidgets;
 	private List<IWidgetAttribute> attributes;
 	private IPoint position;
@@ -27,7 +27,6 @@ public class Widget implements IWidget {
 	private boolean visible;
 
 	public Widget(final IWidget parent) {
-		this.parent = null;
 		this.subWidgets = new ArrayList<>();
 		this.attributes = new ArrayList<>();
 		this.position = IPoint.ZERO;
@@ -39,9 +38,7 @@ public class Widget implements IWidget {
 		this.enabled = true;
 		this.visible = true;
 		this.parent = parent;
-		if (parent != null) {
-			parent.addWidget(this);
-		}
+		parent.addWidget(this);
 	}
 
 	@Override

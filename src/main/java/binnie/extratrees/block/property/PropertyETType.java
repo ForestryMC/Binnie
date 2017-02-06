@@ -14,7 +14,7 @@ public class PropertyETType extends PropertyEnum<ETTreeDefinition> {
 		return (int) Math.ceil((float) ETTreeDefinition.VALUES.length / variantsPerBlock);
 	}
 
-	public static PropertyETType create(@Nonnull String name, int blockNumber, int variantsPerBlock) {
+	public static PropertyETType create(String name, int blockNumber, int variantsPerBlock) {
 		TreeTypePredicate filter = new TreeTypePredicate(blockNumber, variantsPerBlock);
 		Collection<ETTreeDefinition> allowedValues = Collections2.filter(Lists.newArrayList(ETTreeDefinition.class.getEnumConstants()), filter);
 		return new PropertyETType(name, ETTreeDefinition.class, allowedValues);

@@ -71,17 +71,17 @@ public class ManagerMachine extends ManagerBase {
 
 	@Override
 	public void init() {
-		SlotValidator.spriteBee = new ValidatorSprite(BinnieCore.instance, "validator/bee.0", "validator/bee.1");
-		SlotValidator.spriteFrame = new ValidatorSprite(BinnieCore.instance, "validator/frame.0", "validator/frame.1");
-		SlotValidator.spriteCircuit = new ValidatorSprite(BinnieCore.instance, "validator/circuit.0", "validator/circuit.1");
-		SlotValidator.spriteBlock = new ValidatorSprite(BinnieCore.instance, "validator/block.0", "validator/block.1");
+		SlotValidator.spriteBee = new ValidatorSprite(BinnieCore.getInstance(), "validator/bee.0", "validator/bee.1");
+		SlotValidator.spriteFrame = new ValidatorSprite(BinnieCore.getInstance(), "validator/frame.0", "validator/frame.1");
+		SlotValidator.spriteCircuit = new ValidatorSprite(BinnieCore.getInstance(), "validator/circuit.0", "validator/circuit.1");
+		SlotValidator.spriteBlock = new ValidatorSprite(BinnieCore.getInstance(), "validator/block.0", "validator/block.1");
 	}
 
 	@Override
 	public void postInit() {
 		// TODO fix rendering
 		Object rendererMachine = null; // BinnieCore.proxy.createObject("binnie.core.machines.RendererMachine");
-		BinnieCore.proxy.registerTileEntity(TileEntityMachine.class, "binnie.tile.machine", rendererMachine);
+		BinnieCore.getBinnieProxy().registerTileEntity(TileEntityMachine.class, "binnie.tile.machine", rendererMachine);
 	}
 
 	public Class<? extends MachineComponent>[] getComponentInterfaces(final Class<? extends MachineComponent> clss) {

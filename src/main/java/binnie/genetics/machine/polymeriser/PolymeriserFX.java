@@ -22,7 +22,7 @@ public class PolymeriserFX extends MachineComponent implements IRender.DisplayTi
 	public void onDisplayTick(World world, BlockPos pos, Random rand) {
 		final int tick = (int) (world.getTotalWorldTime() % 8L);
 		if ((tick == 0 || tick == 3) && this.getUtil().getProcess().isInProgress()) {
-			BinnieCore.proxy.getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.5, pos.getY() + 1.8, pos.getZ() + 0.5, 0.0, 0.0, 0.0) {
+			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.5, pos.getY() + 1.8, pos.getZ() + 0.5, 0.0, 0.0, 0.0) {
 				double axisX = this.posX;
 				double axisZ = this.posZ;
 				double angle = 0.7 + (int) (this.worldObj.getTotalWorldTime() % 2L) * 3.1415;

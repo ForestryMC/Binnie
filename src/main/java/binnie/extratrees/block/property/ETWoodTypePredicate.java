@@ -5,6 +5,8 @@ import com.google.common.base.Predicate;
 import binnie.extratrees.block.EnumETLog;
 import binnie.extratrees.block.PlankType;
 
+import javax.annotation.Nullable;
+
 public class ETWoodTypePredicate implements Predicate<EnumETLog> {
 	private final int minWoodTypeMeta;
 	private final int maxWoodTypeMeta;
@@ -17,10 +19,14 @@ public class ETWoodTypePredicate implements Predicate<EnumETLog> {
 	}
 
 	@Override
-	public boolean apply(EnumETLog woodType) {
-		if(!isLog && !(woodType.getPlank() instanceof PlankType.ExtraTreePlanks)){
-			return false;
+	public boolean apply(@Nullable EnumETLog woodType) {
+		if (woodType != null) {
+			if (isLog || woodType.getPlank() instanceof PlankType.ExtraTreePlanks) {
+				if (woodType.getMetadata() >= minWoodTypeMeta && woodType.getMetadata() <= maxWoodTypeMeta) {
+					return true;
+				}
+			}
 		}
-		return woodType.getMetadata() >= minWoodTypeMeta && woodType.getMetadata() <= maxWoodTypeMeta;
+		return false;
 	}
 }

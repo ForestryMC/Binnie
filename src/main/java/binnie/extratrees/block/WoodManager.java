@@ -22,7 +22,6 @@ import java.util.List;
 import javax.annotation.Nonnull;
 
 public class WoodManager {
-	@Nonnull
 	public static String getDisplayName(IWoodTyped wood, IWoodType woodType) {
 		WoodBlockKind blockKind = wood.getBlockKind();
 

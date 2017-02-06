@@ -113,14 +113,14 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	}
 
 	public void sendPacket() {
-		if (!BinnieCore.proxy.isSimulating(this.getTileEntity().getWorld())) {
+		if (!BinnieCore.getBinnieProxy().isSimulating(this.getTileEntity().getWorld())) {
 			return;
 		}
-		BinnieCore.proxy.sendNetworkEntityPacket((INetworkedEntity) this.getTileEntity());
+		BinnieCore.getBinnieProxy().sendNetworkEntityPacket((INetworkedEntity) this.getTileEntity());
 	}
 
 	public Side getSide() {
-		return BinnieCore.proxy.isSimulating(this.getTileEntity().getWorld()) ? Side.SERVER : Side.CLIENT;
+		return BinnieCore.getBinnieProxy().isSimulating(this.getTileEntity().getWorld()) ? Side.SERVER : Side.CLIENT;
 	}
 
 	@Override
@@ -153,7 +153,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	}
 
 	public void onUpdate() {
-		if (BinnieCore.proxy.isSimulating(this.getWorld())) {
+		if (BinnieCore.getBinnieProxy().isSimulating(this.getWorld())) {
 			for (final MachineComponent component : this.getComponents()) {
 				component.onUpdate();
 			}
@@ -262,7 +262,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 		if (nbt.hasNoTags()) {
 			return null;
 		}
-		return BinnieCore.instance.getNetworkWrapper().getPacketFrom(new MessageTileNBT(BinnieCorePacketID.TileDescriptionSync.ordinal(), this.getTileEntity(), nbt).GetMessage());
+		return BinnieCore.getInstance().getNetworkWrapper().getPacketFrom(new MessageTileNBT(BinnieCorePacketID.TileDescriptionSync.ordinal(), this.getTileEntity(), nbt).GetMessage());
 	}
 
 	@Override

@@ -48,7 +48,7 @@ public class MachineGroup {
 		mod.getProxy().registerBlock(this.block);
 		Item i = mod.getProxy().registerItem(new ItemMachine(this.block));
 		for (int j = 0; j < types.length; j++) {
-			BinnieCore.proxy.registermodel(i, j, new ModelResourceLocation(i.getRegistryName(), "machine_type=" + j));
+			BinnieCore.getBinnieProxy().registermodel(i, j, new ModelResourceLocation(i.getRegistryName(), "machine_type=" + j));
 		}
 
 		for (final MachinePackage pack2 : this.getPackages()) {

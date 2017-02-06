@@ -7,21 +7,25 @@ import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.events.EventValueChanged;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ControlList<T> extends Control implements IControlValue<T> {
 	ControlListBox<T> parent;
-	T value;
+	private T defaultValue;
+	private T value;
 	Map<T, IWidget> allOptions;
 	Map<T, IWidget> optionWidgets;
 	boolean creating;
+	@Nullable
 	IValidator<IWidget> validator;
 
-	protected ControlList(final ControlListBox<T> parent, final int x, final int y, final int w, final int h) {
+	protected ControlList(final ControlListBox<T> parent, final int x, final int y, final int w, final int h, final T defaultValue) {
 		super(parent, x, y, w, h);
-		this.value = null;
+		this.value = defaultValue;
+		this.defaultValue = defaultValue;
 		this.allOptions = new LinkedHashMap<>();
 		this.optionWidgets = new LinkedHashMap<>();
 		this.creating = false;
@@ -33,13 +37,17 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 		return this.value;
 	}
 
+	public T getDefaultValue() {
+		return defaultValue;
+	}
+
 	@Override
 	public void setValue(final T value) {
 		if (value == this.value) {
 			return;
 		}
 		this.value = value;
-		if (value != null && this.optionWidgets.containsKey(value)) {
+		if (this.optionWidgets.containsKey(value)) {
 			final IWidget child = this.optionWidgets.get(value);
 			this.parent.ensureVisible(child.y(), child.y() + child.h(), this.h());
 		}
@@ -109,7 +117,7 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 			}
 			++index;
 		}
-		this.setValue(null);
+		this.setValue(defaultValue);
 	}
 
 	private boolean isValidOption(final IWidget widget) {

@@ -6,6 +6,7 @@ import binnie.craftgui.controls.scroll.ControlScrollableContent;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.events.EventKey;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 
 public class ControlListBox<T> extends ControlScrollableContent<ControlList<T>> implements IControlValue<T> {
@@ -15,7 +16,7 @@ public class ControlListBox<T> extends ControlScrollableContent<ControlList<T>> 
 
 	@Override
 	public void initialise() {
-		this.setScrollableContent(new ControlList<>(this, 1, 1, this.w() - 2 - this.scrollBarSize, this.h() - 2));
+		this.setScrollableContent(new ControlList<>(this, 1, 1, this.w() - 2 - this.scrollBarSize, this.h() - 2, this.getContent().getDefaultValue()));
 		this.addEventHandler(new EventKey.Down.Handler() {
 			@Override
 			public void onEvent(final EventKey.Down event) {

@@ -28,9 +28,9 @@ public class ControlColourMixSymbol extends Control implements ITooltip {
 		}
 	}
 
-	protected ControlColourMixSymbol(final IWidget parent, final int x, final int y, final int type) {
+	protected ControlColourMixSymbol(final IWidget parent, final int x, final int y, final int type, final IColourMix value) {
 		super(parent, x, y, 16 + type * 16, 16);
-		this.value = null;
+		this.value = value;
 		this.type = type;
 		this.addAttribute(Attribute.MouseOver);
 	}

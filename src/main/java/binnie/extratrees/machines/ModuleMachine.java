@@ -27,7 +27,7 @@ public class ModuleMachine implements IInitializable {
 		blockMachine = machineGroup.getBlock();
 		// TODO fix rendering
 		Object rendererMachine = null;// BinnieCore.proxy.createObject("binnie.core.machines.RendererMachine");
-		BinnieCore.proxy.registerTileEntity(TileEntityNursery.class, "binnie.tile.nursery", rendererMachine);
+		BinnieCore.getBinnieProxy().registerTileEntity(TileEntityNursery.class, "binnie.tile.nursery", rendererMachine);
 	}
 
 	@Override

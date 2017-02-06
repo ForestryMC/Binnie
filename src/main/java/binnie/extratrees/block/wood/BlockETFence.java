@@ -22,8 +22,7 @@ public abstract class BlockETFence extends BlockForestryFence<EnumETLog> impleme
 		for (int i = 0; i < variants.length; i++) {
 			PropertyETWoodType variant = variants[i];
 			BlockETFence block = new BlockETFence(fireproof, i) {
-				@Nonnull
-				@Override
+							@Override
 				public PropertyETWoodType getVariant() {
 					return variant;
 				}
@@ -44,7 +43,6 @@ public abstract class BlockETFence extends BlockForestryFence<EnumETLog> impleme
 		setUnlocalizedName(name);
 	}
 
-	@Nonnull
 	@Override
 	public EnumETLog getWoodType(int meta) {
 		int variantCount = getVariant().getAllowedValues().size();

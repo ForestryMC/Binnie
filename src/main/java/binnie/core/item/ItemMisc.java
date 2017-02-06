@@ -24,7 +24,7 @@ public class ItemMisc extends ItemCore {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(@Nonnull final Item itemIn, final CreativeTabs creativeTabs, List<ItemStack> subItems) {
+	public void getSubItems(final Item itemIn, final CreativeTabs creativeTabs, List<ItemStack> subItems) {
 		for (IItemMiscProvider item : this.items) {
 			if (item.isActive()) {
 				subItems.add(this.getStack(item, 1));
@@ -32,7 +32,6 @@ public class ItemMisc extends ItemCore {
 		}
 	}
 
-	@Nonnull
 	private IItemMiscProvider getItem(int damage) {
 		return (damage >= this.items.length) ? this.items[0] : this.items[damage];
 	}
@@ -57,9 +56,8 @@ public class ItemMisc extends ItemCore {
 		}
 	}
 
-	@Nonnull
 	@Override
-	public String getItemStackDisplayName(@Nonnull final ItemStack stack) {
+	public String getItemStackDisplayName(final ItemStack stack) {
 		IItemMiscProvider item = this.getItem(stack.getItemDamage());
 		return item.getName(stack);
 	}

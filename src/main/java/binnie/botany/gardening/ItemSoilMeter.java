@@ -4,7 +4,7 @@ import binnie.Binnie;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.gardening.IBlockSoil;
+import binnie.botany.api.IBlockSoil;
 import binnie.core.BinnieCore;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
@@ -49,7 +49,7 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 			pos = pos.down();
 			block = world.getBlockState(pos).getBlock();
 		}
-		if (Gardening.isSoil(block) && !BinnieCore.proxy.isSimulating(world)) {
+		if (Gardening.isSoil(block) && !BinnieCore.getBinnieProxy().isSimulating(world)) {
 			IBlockSoil soil = (IBlockSoil) block;
 			String info = Binnie.LANGUAGE.localise("botany.soil.type") + ": ";
 			info = info + soil.getType(world, pos).getTranslated(true);

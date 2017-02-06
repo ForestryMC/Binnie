@@ -4,6 +4,7 @@ import binnie.craftgui.controls.core.IControlValue;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.events.EventValueChanged;
+import com.google.common.base.Preconditions;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,6 +14,14 @@ public class ControlEnumButton<T> extends ControlButton implements IControlValue
 	public static final String eventEnumChanged = "eventEnumButtonChanged";
 	private T currentSelection;
 	private List<T> enumConstants;
+
+	public ControlEnumButton(final IWidget parent, final int x, final int y, final int width, final int height, final T[] values) {
+		super(parent, x, y, width, height, "");
+		Preconditions.checkArgument(values.length > 0, "Tried to create ControlEnumButton with no values.");
+		this.enumConstants = new ArrayList<>();
+		Collections.addAll(this.enumConstants, values);
+		this.currentSelection = values[0];
+	}
 
 	@Override
 	public String getText() {
@@ -36,15 +45,6 @@ public class ControlEnumButton<T> extends ControlButton implements IControlValue
 		if (this.currentSelection != selection) {
 			this.currentSelection = selection;
 			this.callEvent(new EventValueChanged<Object>(this, this.getValue()));
-		}
-	}
-
-	public ControlEnumButton(final IWidget parent, final int x, final int y, final int width, final int height, final T[] values) {
-		super(parent, x, y, width, height, "");
-		this.enumConstants = new ArrayList<>();
-		Collections.addAll(this.enumConstants, values);
-		if (values.length > 0) {
-			this.currentSelection = values[0];
 		}
 	}
 

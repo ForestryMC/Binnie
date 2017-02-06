@@ -27,10 +27,14 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 @Mod(modid = Constants.EXTRA_BEES_MOD_ID, name = "Binnie's Extra Bees", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class ExtraBees extends AbstractMod {
 
+	@SuppressWarnings("NullableProblems")
 	@Mod.Instance(Constants.EXTRA_BEES_MOD_ID)
 	public static ExtraBees instance;
+
+	@SuppressWarnings("NullableProblems")
 	@SidedProxy(clientSide = "binnie.extrabees.proxy.ExtraBeesProxyClient", serverSide = "binnie.extrabees.proxy.ExtraBeesProxyServer")
 	public static ExtraBeesProxy proxy;
+
 	public static Block hive;
 	public static Material materialBeehive;
 	public static Block ectoplasm;

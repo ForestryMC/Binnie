@@ -23,10 +23,10 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class ModuleItems implements IInitializable {
 	@Override
 	public void preInit() {
-		BinnieCore.fieldKit = new ItemFieldKit();
-		BinnieCore.proxy.registerItem(BinnieCore.fieldKit);
-		BinnieCore.genesis = new ItemGenesis();
-		BinnieCore.proxy.registerItem(BinnieCore.genesis);
+		BinnieCore.setFieldKit(new ItemFieldKit());
+		BinnieCore.getBinnieProxy().registerItem(BinnieCore.getFieldKit());
+		BinnieCore.setGenesis(new ItemGenesis());
+		BinnieCore.getBinnieProxy().registerItem(BinnieCore.getGenesis());
 	}
 
 	@Override
@@ -35,7 +35,7 @@ public class ModuleItems implements IInitializable {
 
 	@Override
 	public void postInit() {
-		GameRegistry.addRecipe(new ItemStack(BinnieCore.fieldKit, 1, 63), "g  ", " is", " pi", 'g', Blocks.GLASS_PANE, 'i', Items.IRON_INGOT, 'p', Items.PAPER, 's', new ItemStack(Items.DYE, 1));
+		GameRegistry.addRecipe(new ItemStack(BinnieCore.getFieldKit(), 1, 63), "g  ", " is", " pi", 'g', Blocks.GLASS_PANE, 'i', Items.IRON_INGOT, 'p', Items.PAPER, 's', new ItemStack(Items.DYE, 1));
 	}
 
 	@SubscribeEvent
@@ -50,7 +50,7 @@ public class ModuleItems implements IInitializable {
 
 			if (player != null) {
 				ItemStack heldItem = player.getHeldItemMainhand();
-				if (heldItem != null && heldItem.getItem() == BinnieCore.fieldKit && player.isSneaking()) {
+				if (heldItem != null && heldItem.getItem() == BinnieCore.getFieldKit() && player.isSneaking()) {
 					TileEntity tile = world.getTileEntity(pos);
 					if (tile instanceof TileEntityFlower) {
 						TileEntityFlower tileFlower = (TileEntityFlower) tile;

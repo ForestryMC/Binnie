@@ -174,15 +174,7 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 
 	@Override
 	public TextureAtlasSprite getTextureAtlasSprite(ResourceLocation location) {
-		if (location == null) {
-			return null;
-		}
 		return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(location.toString());
-	}
-
-	@Override
-	public boolean isShiftDown() {
-		return Keyboard.isKeyDown(42) || Keyboard.isKeyDown(54);
 	}
 
 	@Override

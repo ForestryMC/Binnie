@@ -1,4 +1,4 @@
-package binnie.botany.api.gardening;
+package binnie.botany.api;
 
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;

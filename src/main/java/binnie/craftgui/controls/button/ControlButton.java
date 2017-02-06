@@ -11,8 +11,12 @@ import binnie.craftgui.events.EventHandler;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 
+import javax.annotation.Nullable;
+
 public class ControlButton extends Control {
+	@Nullable
 	private ControlText textWidget;
+	@Nullable
 	private String text;
 
 	public ControlButton(final IWidget parent, final int x, final int y, final int width, final int height) {
@@ -39,10 +43,14 @@ public class ControlButton extends Control {
 	@Override
 	public void onUpdateClient() {
 		if (this.textWidget != null) {
-			this.textWidget.setValue(this.getText());
+			String text = this.getText();
+			if (text != null) {
+				this.textWidget.setValue(text);
+			}
 		}
 	}
 
+	@Nullable
 	public String getText() {
 		return this.text;
 	}

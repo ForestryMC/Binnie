@@ -4,17 +4,18 @@ import binnie.Binnie;
 import net.minecraftforge.fluids.FluidStack;
 
 public class DrinkLiquid implements IDrinkLiquid {
-	String name;
-	int colour;
-	float transparency;
-	float abv;
-	public String ident;
+	private final String name;
+	private final int colour;
+	private final float transparency;
+	private final float abv;
+	private final String ident;
 
-	public DrinkLiquid(final String name, final int colour, final float transparency, final float abv) {
+	public DrinkLiquid(final String name, final int colour, final float transparency, final float abv, final String ident) {
 		this.name = name;
 		this.colour = colour;
 		this.transparency = transparency;
 		this.abv = abv;
+		this.ident = ident;
 	}
 
 	@Override
@@ -40,11 +41,6 @@ public class DrinkLiquid implements IDrinkLiquid {
 	@Override
 	public String getIdentifier() {
 		return this.ident;
-	}
-
-	@Override
-	public void setIdent(final String lowerCase) {
-		this.ident = lowerCase;
 	}
 
 	@Override

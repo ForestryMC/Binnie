@@ -8,14 +8,17 @@ import binnie.genetics.Genetics;
 import binnie.genetics.genetics.GeneTracker;
 import binnie.genetics.genetics.SequencerItem;
 import binnie.genetics.item.GeneticsItems;
+import com.google.common.base.Preconditions;
 import net.minecraft.item.ItemStack;
+
+import javax.annotation.Nullable;
 
 public class SequencerLogic extends ComponentProcess implements IProcess {
 	public SequencerLogic(final Machine machine) {
 		super(machine);
 	}
 
-	public static float getSequenceStrength(ItemStack stack) {
+	public static float getSequenceStrength(@Nullable ItemStack stack) {
 		if (stack == null) {
 			return 1.0f;
 		}
@@ -61,10 +64,14 @@ public class SequencerLogic extends ComponentProcess implements IProcess {
 	protected void onStartTask() {
 		super.onStartTask();
 		final ItemStack item = this.getUtil().getStack(Sequencer.SLOT_TARGET);
-		final SequencerItem seqItem = new SequencerItem(item);
-		final int seq = seqItem.sequenced;
-		if (seq != 0) {
-			this.setProgress(seq);
+		if (item != null) {
+			final SequencerItem seqItem = SequencerItem.create(item);
+			if (seqItem != null) {
+				final int seq = seqItem.sequenced;
+				if (seq != 0) {
+					this.setProgress(seq);
+				}
+			}
 		}
 	}
 
@@ -72,7 +79,10 @@ public class SequencerLogic extends ComponentProcess implements IProcess {
 	protected void onFinishTask() {
 		super.onFinishTask();
 		this.updateSequence();
-		final SequencerItem seqItem = new SequencerItem(this.getUtil().getStack(Sequencer.SLOT_TARGET));
+		ItemStack stack = this.getUtil().getStack(Sequencer.SLOT_TARGET);
+		Preconditions.checkState(stack != null);
+		final SequencerItem seqItem = SequencerItem.create(stack);
+		Preconditions.checkState(seqItem != null);
 		GeneTracker.getTracker(this.getMachine().getWorld(), this.getMachine().getOwner()).registerGene(seqItem.getGene());
 		this.getUtil().decreaseStack(Sequencer.SLOT_TARGET, 1);
 		if (this.getUtil().getStack(Sequencer.SLOT_DONE) == null) {
@@ -91,7 +101,9 @@ public class SequencerLogic extends ComponentProcess implements IProcess {
 	private void updateSequence() {
 		final int prog = (int) this.getProgress();
 		final ItemStack item = this.getUtil().getStack(Sequencer.SLOT_TARGET);
-		final SequencerItem seqItem = new SequencerItem(item);
+		Preconditions.checkState(item != null);
+		final SequencerItem seqItem = SequencerItem.create(item);
+		Preconditions.checkState(seqItem != null);
 		final int seq = seqItem.sequenced;
 		if (prog != seq) {
 			seqItem.sequenced = prog;

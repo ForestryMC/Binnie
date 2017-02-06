@@ -23,6 +23,7 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 	public int guiRefreshCounter;
 	List<ItemStack> indexerInventory;
 	public List<Integer> sortedInventory;
+	@Nullable
 	T sortingMode;
 	boolean needsSorting;
 
@@ -69,7 +70,7 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 	}
 
 	@Override
-	public void setInventorySlotContents(final int index, final ItemStack itemStack) {
+	public void setInventorySlotContents(final int index, @Nullable final ItemStack itemStack) {
 		if (index >= 0 && index < this.indexerInventory.size()) {
 			this.indexerInventory.set(index, itemStack);
 		} else if (itemStack != null) {
@@ -112,6 +113,7 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 		this.needsSorting = true;
 	}
 
+	@Nullable
 	public T getMode() {
 		return this.sortingMode;
 	}
@@ -159,7 +161,7 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 					++i;
 				}
 			}
-			if (!this.needsSorting) {
+			if (!this.needsSorting || this.sortingMode == null) {
 				return;
 			}
 			this.needsSorting = false;

@@ -27,7 +27,7 @@ public final class BinnieGUIHandler implements IGuiHandler {
 
 	@Override
 	public final Object getClientGuiElement(final int id, final EntityPlayer player, final World world, final int x, final int y, final int z) {
-		if (BinnieCore.proxy.isSimulating(world)) {
+		if (BinnieCore.getBinnieProxy().isSimulating(world)) {
 			return this.getServerGuiElement(id, player, world, x, y, z);
 		}
 		final Window window = this.getWindow(id, player, world, x, y, z, Side.CLIENT);

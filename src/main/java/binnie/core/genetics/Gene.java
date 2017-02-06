@@ -2,15 +2,14 @@ package binnie.core.genetics;
 
 import binnie.Binnie;
 import binnie.genetics.api.IGene;
-import forestry.api.core.INbtReadable;
-import forestry.api.core.INbtWritable;
+import com.google.common.base.Preconditions;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class Gene implements IGene, INbtReadable, INbtWritable {
+public class Gene implements IGene {
 	private IAllele allele;
 	private IChromosomeType chromosome;
 	private ISpeciesRoot root;
@@ -32,17 +31,26 @@ public class Gene implements IGene, INbtReadable, INbtWritable {
 	}
 
 	public Gene(final NBTTagCompound nbt) {
-		this.readFromNBT(nbt);
+		this.allele = AlleleManager.alleleRegistry.getAllele(nbt.getString("allele"));
+		String rootKey = nbt.getString("root");
+		ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(rootKey);
+		Preconditions.checkArgument(root != null, "Could not find root: %s", rootKey);
+		this.root = root;
+		final int chromoID = nbt.getByte("chromo");
+		Preconditions.checkArgument(chromoID >= 0 && chromoID < this.root.getKaryotype().length, "Invalid chromosomeId: %s", chromoID);
+		this.chromosome = this.root.getKaryotype()[chromoID];
 	}
 
 	@Override
 	public void readFromNBT(final NBTTagCompound nbt) {
 		this.allele = AlleleManager.alleleRegistry.getAllele(nbt.getString("allele"));
-		this.root = AlleleManager.alleleRegistry.getSpeciesRoot(nbt.getString("root"));
+		String rootKey = nbt.getString("root");
+		ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(rootKey);
+		Preconditions.checkArgument(root != null, "Could not find root: %s", rootKey);
+		this.root = root;
 		final int chromoID = nbt.getByte("chromo");
-		if (this.root != null && chromoID >= 0 && chromoID < this.root.getKaryotype().length) {
-			this.chromosome = this.root.getKaryotype()[chromoID];
-		}
+		Preconditions.checkArgument(chromoID >= 0 && chromoID < this.root.getKaryotype().length, "Invalid chromosomeId: %s", chromoID);
+		this.chromosome = this.root.getKaryotype()[chromoID];
 	}
 
 	@Override
@@ -53,18 +61,12 @@ public class Gene implements IGene, INbtReadable, INbtWritable {
 		return nbt;
 	}
 
-	public boolean isCorrupted() {
-		return this.allele == null || this.chromosome == null || this.root == null;
-	}
-
 	public static Gene create(final NBTTagCompound nbt) {
-		final Gene gene = new Gene(nbt);
-		return gene.isCorrupted() ? null : gene;
+		return new Gene(nbt);
 	}
 
 	public static Gene create(final IAllele allele, final IChromosomeType chromosome, final ISpeciesRoot root) {
-		final Gene gene = new Gene(allele, chromosome, root);
-		return gene.isCorrupted() ? null : gene;
+		return new Gene(allele, chromosome, root);
 	}
 
 	@Override

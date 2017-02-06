@@ -61,7 +61,7 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 		new ControlText(contents, new IArea(0, y, w2, th), syst.getChromosomeShortName(EnumTreeChromosome.PLANT) + " : ", TextJustification.MiddleRight);
 		new ControlText(contents, new IArea(w2, y, w3, th), treeSpecies.getPlantType().toString(), TextJustification.MiddleLeft);
 		y += th;
-		new ControlText(contents, new IArea(0, y, w2, th), BinnieCore.proxy.localise("gui.temperature.short") + " : ", TextJustification.MiddleRight);
+		new ControlText(contents, new IArea(0, y, w2, th), BinnieCore.getBinnieProxy().localise("gui.temperature.short") + " : ", TextJustification.MiddleRight);
 		new ControlText(contents, new IArea(w2, y, w3, th), treeSpecies.getTemperature().getName(), TextJustification.MiddleLeft);
 		y += th;
 		//TODO RENDERING
@@ -134,8 +134,8 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 
 	public static String tolerated(final boolean t) {
 		if (t) {
-			return BinnieCore.proxy.localise("gui.tolerated");
+			return BinnieCore.getBinnieProxy().localise("gui.tolerated");
 		}
-		return BinnieCore.proxy.localise("gui.nottolerated");
+		return BinnieCore.getBinnieProxy().localise("gui.nottolerated");
 	}
 }

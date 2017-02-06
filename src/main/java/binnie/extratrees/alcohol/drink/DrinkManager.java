@@ -13,9 +13,8 @@ public class DrinkManager {
 		return DrinkManager.drinkLiquids.get(id.toLowerCase());
 	}
 
-	public static void registerDrinkLiquid(final String id, final IDrinkLiquid liquid) {
-		liquid.setIdent(id.toLowerCase());
-		DrinkManager.drinkLiquids.put(id.toLowerCase(), liquid);
+	public static void registerDrinkLiquid(final IDrinkLiquid liquid) {
+		DrinkManager.drinkLiquids.put(liquid.getIdentifier(), liquid);
 	}
 
 	public static IDrinkLiquid getLiquid(final Fluid fluid) {

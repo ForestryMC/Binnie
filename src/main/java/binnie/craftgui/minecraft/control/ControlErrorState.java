@@ -14,7 +14,10 @@ import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import net.minecraft.entity.player.InventoryPlayer;
 
+import javax.annotation.Nullable;
+
 public class ControlErrorState extends Control implements ITooltip {
+	@Nullable
 	private ErrorState errorState;
 	private int type;
 
@@ -92,6 +95,7 @@ public class ControlErrorState extends Control implements ITooltip {
 		}
 	}
 
+	@Nullable
 	public ErrorState getErrorState() {
 		return this.errorState;
 	}

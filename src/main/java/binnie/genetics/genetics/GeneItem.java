@@ -4,46 +4,49 @@ import binnie.Binnie;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
 import binnie.genetics.api.IGene;
-import forestry.api.core.INbtReadable;
+import binnie.genetics.item.GeneticsItems;
+import com.google.common.base.Preconditions;
 import forestry.api.core.INbtWritable;
 import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.common.util.Constants;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
-public class GeneItem implements INbtReadable, INbtWritable, IGeneItem {
-	IGene gene;
+public class GeneItem implements INbtWritable, IGeneItem {
+	private IGene gene;
 
-	public GeneItem(final ItemStack stack) {
-		if (stack == null) {
-			return;
+	@Nullable
+	public static GeneItem create(final ItemStack stack) {
+		NBTTagCompound tagCompound = stack.getTagCompound();
+		if (tagCompound != null && tagCompound.hasKey("gene", Constants.NBT.TAG_COMPOUND)) {
+			NBTTagCompound geneNbt = tagCompound.getCompoundTag("gene");
+			Gene gene = Gene.create(geneNbt);
+			return new GeneItem(gene);
 		}
-		this.readFromNBT(stack.getTagCompound());
+		return null;
 	}
 
 	public GeneItem(final IGene gene) {
 		this.gene = gene;
 	}
 
-	public boolean isCorrupted() {
-		return this.gene == null;
-	}
-
 	@Override
 	public void writeToItem(final ItemStack stack) {
-		if (this.gene == null || stack == null) {
-			return;
+		NBTTagCompound nbt = stack.getTagCompound();
+		if (nbt == null) {
+			nbt = new NBTTagCompound();
 		}
-		final NBTTagCompound nbt = stack.hasTagCompound() ? stack.getTagCompound() : new NBTTagCompound();
 		this.writeToNBT(nbt);
 		stack.setTagCompound(nbt);
 	}
 
 	@Override
 	public int getColour(final int renderPass) {
-		if (renderPass == 2 && this.getBreedingSystem() != null) {
+		if (renderPass == 2) {
 			return this.getBreedingSystem().getColour();
 		}
 		return 16777215;
@@ -56,10 +59,7 @@ public class GeneItem implements INbtReadable, INbtWritable, IGeneItem {
 	}
 
 	public BreedingSystem getBreedingSystem() {
-		if (this.gene == null) {
-			return null;
-		}
-		return Binnie.GENETICS.getSystem(this.gene.getSpeciesRoot().getUID());
+		return Binnie.GENETICS.getSystem(this.gene.getSpeciesRoot());
 	}
 
 	public IGene getGene() {
@@ -67,17 +67,7 @@ public class GeneItem implements INbtReadable, INbtWritable, IGeneItem {
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbt) {
-		if (nbt != null) {
-			this.gene = Gene.create(nbt.getCompoundTag("gene"));
-		}
-	}
-
-	@Override
 	public NBTTagCompound writeToNBT(final NBTTagCompound nbt) {
-		if (this.gene == null) {
-			return nbt;
-		}
 		final NBTTagCompound geneNBT = this.gene.getNBTTagCompound();
 		nbt.setTag("gene", geneNBT);
 		return nbt;

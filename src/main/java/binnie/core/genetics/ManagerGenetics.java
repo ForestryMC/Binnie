@@ -6,6 +6,7 @@ import binnie.botany.genetics.EnumFlowerColor;
 import binnie.botany.genetics.FlowerBreedingSystem;
 import binnie.core.BinnieCore;
 import binnie.core.ManagerBase;
+import com.google.common.base.Preconditions;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.IBeeRoot;
 import forestry.api.arboriculture.ITreeRoot;
@@ -101,18 +102,15 @@ public class ManagerGenetics extends ManagerBase {
 		return null;
 	}
 
-	@Nullable
 	public BreedingSystem getSystem(final ISpeciesRoot root) {
-		return this.getSystem(root.getUID());
+		String rootUID = root.getUID();
+		BreedingSystem system = this.getSystem(rootUID);
+		Preconditions.checkState(system != null, "Could not find system for species root %s", rootUID);
+		return system;
 	}
 
 	public ISpeciesRoot getSpeciesRoot(final IAlleleSpecies species) {
-		for (final ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
-			if (root.getKaryotype()[0].getAlleleClass().isInstance(species)) {
-				return root;
-			}
-		}
-		return null;
+		return species.getRoot();
 	}
 
 	public IAllele getToleranceAllele(final EnumTolerance tol) {
@@ -131,6 +129,7 @@ public class ManagerGenetics extends ManagerBase {
 		this.BREEDING_SYSTEMS.put(system.getSpeciesRoot(), system);
 	}
 
+	@Nullable
 	public BreedingSystem getConversionSystem(final ItemStack stack) {
 		for (final BreedingSystem system : this.getActiveSystems()) {
 			if (system.getConversion(stack) != null) {
@@ -140,11 +139,13 @@ public class ManagerGenetics extends ManagerBase {
 		return null;
 	}
 
+	@Nullable
 	public ItemStack getConversionStack(final ItemStack stack) {
 		final BreedingSystem system = this.getConversionSystem(stack);
 		return (system == null) ? null : system.getConversionStack(stack);
 	}
 
+	@Nullable
 	public IIndividual getConversion(final ItemStack stack) {
 		final BreedingSystem system = this.getConversionSystem(stack);
 		return (system == null) ? null : system.getConversion(stack);

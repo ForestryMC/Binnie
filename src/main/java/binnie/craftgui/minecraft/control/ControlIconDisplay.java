@@ -13,7 +13,7 @@ public class ControlIconDisplay extends Control {
 
 	public ControlIconDisplay(final IWidget parent, final int x, final int y, final ResourceLocation icon) {
 		super(parent, x, y, 16, 16);
-		this.sprite = BinnieCore.proxy.getTextureAtlasSprite(icon);
+		this.sprite = BinnieCore.getBinnieProxy().getTextureAtlasSprite(icon);
 	}
 
 	@Override

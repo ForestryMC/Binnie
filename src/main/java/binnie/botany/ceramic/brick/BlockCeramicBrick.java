@@ -49,6 +49,7 @@ import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -78,7 +79,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 			drops = Collections.singletonList(ceramic.getStack());
 		}
 		boolean hasBeenBroken = world.setBlockToAir(pos);
-		if (hasBeenBroken && BinnieCore.proxy.isSimulating(world) && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
+		if (hasBeenBroken && BinnieCore.getBinnieProxy().isSimulating(world) && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
 			for (ItemStack drop : drops) {
 				spawnAsEntity(world, pos, drop);
 			}
@@ -228,7 +229,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public TextureAtlasSprite getSprite(CeramicBrickPair type, EnumFacing facing, int pass) {
+	public TextureAtlasSprite getSprite(CeramicBrickPair type, @Nullable EnumFacing facing, int pass) {
 		return type.getSprite(pass);
 	}
 

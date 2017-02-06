@@ -16,16 +16,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
+import javax.annotation.Nullable;
+
 public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 	Cocoa,
 	Cage,
-	Soul,
+	Soul(80),
 	Clay,
 	Debug;
-
-	Item item;
-	int maxDamage;
-	BeeModifierLogic logic;
 
 	public static void init() {
 		EnumHiveFrame.Cocoa.logic.setModifier(EnumBeeModifier.Lifespan, 0.75f, 0.25f);
@@ -36,7 +34,6 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 		EnumHiveFrame.Soul.logic.setModifier(EnumBeeModifier.Mutation, 1.5f, 5.0f);
 		EnumHiveFrame.Soul.logic.setModifier(EnumBeeModifier.Lifespan, 0.75f, 0.5f);
 		EnumHiveFrame.Soul.logic.setModifier(EnumBeeModifier.Production, 0.25f, 0.1f);
-		EnumHiveFrame.Soul.setMaxDamage(80);
 		EnumHiveFrame.Clay.logic.setModifier(EnumBeeModifier.Lifespan, 1.5f, 5.0f);
 		EnumHiveFrame.Clay.logic.setModifier(EnumBeeModifier.Mutation, 0.5f, 0.2f);
 		EnumHiveFrame.Clay.logic.setModifier(EnumBeeModifier.Production, 0.75f, 0.2f);
@@ -47,20 +44,30 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 		GameRegistry.addRecipe(new ItemStack(EnumHiveFrame.Clay.item), " c ", "cFc", " c ", 'F', Mods.Forestry.stack("frameImpregnated"), 'c', Items.CLAY_BALL);
 	}
 
+	private final Item item;
+	private final int maxDamage;
+	private final BeeModifierLogic logic;
+
+	EnumHiveFrame() {
+		this(240);
+	}
+
+	EnumHiveFrame(int maxDamage) {
+		this.maxDamage = maxDamage;
+		this.logic = new BeeModifierLogic();
+		this.item = new ItemHiveFrame(this).setRegistryName("hiveFrame." + name().toLowerCase());
+	}
+
 	public int getIconIndex() {
 		return 55 + this.ordinal();
 	}
 
-	public void setMaxDamage(final int damage) {
-		this.maxDamage = damage;
-	}
-
-	EnumHiveFrame() {
-		this.maxDamage = 240;
-		this.logic = new BeeModifierLogic();
+	public int getMaxDamage() {
+		return maxDamage;
 	}
 
 	@Override
+	@Nullable
 	public ItemStack frameUsed(final IBeeHousing house, final ItemStack frame, final IBee queen, final int wear) {
 		frame.setItemDamage(frame.getItemDamage() + wear);
 		if (frame.getItemDamage() >= frame.getMaxDamage()) {
@@ -126,5 +133,9 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 	@Override
 	public IBeeModifier getBeeModifier() {
 		return this;
+	}
+
+	public Item getItem() {
+		return item;
 	}
 }

@@ -10,12 +10,14 @@ import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.core.renderer.RenderUtil;
 import forestry.api.genetics.IChromosomeType;
 
+import javax.annotation.Nullable;
+
 public class ControlChromosome extends Control implements IControlValue<IChromosomeType>, ITooltip {
-	IChromosomeType value;
+	private IChromosomeType value;
 
 	protected ControlChromosome(final IWidget parent, final int x, final int y, final IChromosomeType type) {
 		super(parent, x, y, 16, 16);
-		this.setValue(type);
+		this.value = type;
 		this.addAttribute(Attribute.MouseOver);
 	}
 
@@ -38,8 +40,6 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 
 	@Override
 	public void getTooltip(final Tooltip tooltip) {
-		if (this.value != null) {
-			tooltip.add(this.value.getName());
-		}
+		tooltip.add(this.value.getName());
 	}
 }

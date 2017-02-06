@@ -5,6 +5,7 @@ import forestry.api.core.INbtReadable;
 import forestry.api.core.INbtWritable;
 import net.minecraft.util.EnumFacing;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.EnumSet;
 
@@ -34,6 +35,7 @@ public abstract class BaseSlot<T> implements INbtWritable, INbtReadable, IValida
 		return item == null || this.validator == null || this.validator.isValid(item);
 	}
 
+	@Nullable
 	public abstract T getContent();
 
 	public abstract void setContent(final T p0);

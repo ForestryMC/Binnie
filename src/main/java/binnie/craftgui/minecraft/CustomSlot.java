@@ -9,16 +9,19 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nullable;
+
 public class CustomSlot extends Slot {
 	@Override
-	public boolean isItemValid(final ItemStack par1ItemStack) {
-		return this.inventory.isItemValidForSlot(this.getSlotIndex(), par1ItemStack);
+	public boolean isItemValid(@Nullable final ItemStack stack) {
+		return stack != null && this.inventory.isItemValidForSlot(this.getSlotIndex(), stack);
 	}
 
 	public CustomSlot(final IInventory inventory, final int index) {
 		super(inventory, index, 0, 0);
 	}
 
+	@Nullable
 	public InventorySlot getInventorySlot() {
 		final IInventorySlots slots = Machine.getInterface(IInventorySlots.class, this.inventory);
 		if (slots != null) {

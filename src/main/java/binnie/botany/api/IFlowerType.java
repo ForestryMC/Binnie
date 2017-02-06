@@ -13,7 +13,6 @@ public interface IFlowerType<I extends IFlowerType<I>> extends Comparable<I> {
 	@SideOnly(Side.CLIENT)
 	void registerModels(Item item, IModelManager manager, EnumFlowerStage type);
 
-	@Nonnull
 	@SideOnly(Side.CLIENT)
 	ModelResourceLocation getModel(EnumFlowerStage type, boolean flowered);
 

@@ -93,7 +93,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 			drops = block.getDrops(world, pos, world.getBlockState(pos), 0);
 		}
 		boolean hasBeenBroken = world.setBlockToAir(pos);
-		if (hasBeenBroken && BinnieCore.proxy.isSimulating(world) && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
+		if (hasBeenBroken && BinnieCore.getBinnieProxy().isSimulating(world) && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
 			for(ItemStack drop : drops) {
 				spawnAsEntity(world, pos, drop);
 			}

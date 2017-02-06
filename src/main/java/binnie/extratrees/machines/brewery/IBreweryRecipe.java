@@ -13,11 +13,11 @@ public interface IBreweryRecipe {
 
 	FluidStack getOutput();
 
-	boolean isIngredient(@Nonnull ItemStack itemstack);
+	boolean isIngredient(ItemStack itemstack);
 
 	List<ItemStack> getIngredients();
 
-	boolean isGrain(@Nonnull ItemStack itemStack);
+	boolean isGrain(ItemStack itemStack);
 
 	List<ItemStack> getGrains();
 

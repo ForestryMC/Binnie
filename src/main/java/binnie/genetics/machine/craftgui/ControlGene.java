@@ -1,6 +1,7 @@
 package binnie.genetics.machine.craftgui;
 
 import binnie.Binnie;
+import binnie.core.genetics.BreedingSystem;
 import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.controls.core.IControlValue;
 import binnie.craftgui.core.Attribute;
@@ -18,29 +19,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class ControlGene extends Control implements IControlValue<IGene>, ITooltip {
-	IGene gene;
+	private IGene gene;
 
-	@Override
-	public void getTooltip(final Tooltip tooltip) {
-		final String cName = Binnie.GENETICS.getSystem(this.gene.getSpeciesRoot()).getChromosomeName(this.gene.getChromosome());
-		tooltip.add(cName + ": " + this.gene.getName());
-		if (this.isMouseOver() && this.canFill(Window.get(this).getHeldItemStack())) {
-			tooltip.add("Left click to assign gene");
-			final IGene existingGene = Engineering.getGene(Window.get(this).getHeldItemStack(), this.gene.getChromosome().ordinal());
-			if (existingGene == null) {
-				return;
-			}
-			final String dName = Binnie.GENETICS.getSystem(this.gene.getSpeciesRoot()).getChromosomeName(this.gene.getChromosome());
-			tooltip.add("Will replace " + dName + ": " + existingGene.getName());
-		}
-	}
-
-	private boolean canFill(final ItemStack stack) {
-		return stack != null && stack.stackSize == 1 && Engineering.isGeneAcceptor(stack) && Engineering.canAcceptGene(stack, this.getValue());
-	}
-
-	protected ControlGene(final IWidget parent, final int x, final int y) {
+	protected ControlGene(final IWidget parent, final int x, final int y, final IGene gene) {
 		super(parent, x, y, 16, 16);
+		this.gene = gene;
 		this.addAttribute(Attribute.MouseOver);
 		this.addSelfEventHandler(new EventMouse.Down.Handler() {
 			@Override
@@ -54,6 +37,26 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
 				}
 			}
 		});
+	}
+
+	@Override
+	public void getTooltip(final Tooltip tooltip) {
+		BreedingSystem system = Binnie.GENETICS.getSystem(this.gene.getSpeciesRoot());
+		final String cName = system.getChromosomeName(this.gene.getChromosome());
+		tooltip.add(cName + ": " + this.gene.getName());
+		if (this.isMouseOver() && this.canFill(Window.get(this).getHeldItemStack())) {
+			tooltip.add("Left click to assign gene");
+			final IGene existingGene = Engineering.getGene(Window.get(this).getHeldItemStack(), this.gene.getChromosome().ordinal());
+			if (existingGene == null) {
+				return;
+			}
+			final String dName = system.getChromosomeName(this.gene.getChromosome());
+			tooltip.add("Will replace " + dName + ": " + existingGene.getName());
+		}
+	}
+
+	private boolean canFill(final ItemStack stack) {
+		return stack != null && stack.stackSize == 1 && Engineering.isGeneAcceptor(stack) && Engineering.canAcceptGene(stack, this.getValue());
 	}
 
 	@Override

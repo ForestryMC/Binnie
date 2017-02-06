@@ -122,7 +122,7 @@ public class InoculatorLogic extends ComponentProcess implements IProcess {
 
 		ItemStack applied = applySerum(target, serum);
 		util.setStack(Inoculator.SLOT_TARGET, applied);
-		util.damageItem(Inoculator.SLOT_SERUM_VIAL, 1);
+		util.damageItem(serum, Inoculator.SLOT_SERUM_VIAL, 1);
 	}
 
 	public static ItemStack applySerum(ItemStack target, ItemStack serum) {

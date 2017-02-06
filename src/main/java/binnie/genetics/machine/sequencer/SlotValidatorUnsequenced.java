@@ -14,8 +14,8 @@ public class SlotValidatorUnsequenced extends SlotValidator {
 	@Override
 	public boolean isValid(final ItemStack itemStack) {
 		if (itemStack.getItem() == Genetics.itemSequencer) {
-			final SequencerItem seq = new SequencerItem(itemStack);
-			return seq.sequenced < 100;
+			final SequencerItem seq = SequencerItem.create(itemStack);
+			return seq != null && seq.sequenced < 100;
 		}
 		return false;
 	}

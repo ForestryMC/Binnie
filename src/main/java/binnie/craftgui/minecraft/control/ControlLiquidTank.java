@@ -110,10 +110,10 @@ public class ControlLiquidTank extends Control implements ITooltip {
 				CraftGUI.render.limitArea(new IArea(limited.pos().add(pos).add(offset), limited.size().sub(offset)), guiWidth, guiHeight);
 				GL11.glEnable(GL11.GL_SCISSOR_TEST);
 				{
-					BinnieCore.proxy.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+					BinnieCore.getBinnieProxy().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 					for (int y = 0; y < height; y += 16) {
 						for (int x = 0; x < (this.horizontal ? 58 : 16); x += 16) {
-							final TextureAtlasSprite icon = BinnieCore.proxy.getTextureAtlasSprite(fluid.getStill());
+							final TextureAtlasSprite icon = BinnieCore.getBinnieProxy().getTextureAtlasSprite(fluid.getStill());
 							RenderUtil.drawSprite(new IPoint(1 + x, 1 + y), icon);
 						}
 					}

@@ -53,9 +53,8 @@ public class MultiFenceRecipeSolid implements IRecipe {
 		return (this.cached == null) ? new ItemStack(Blocks.OAK_FENCE) : this.cached;
 	}
 
-	@Nonnull
 	@Override
-	public ItemStack[] getRemainingItems(@Nonnull InventoryCrafting inv) {
+	public ItemStack[] getRemainingItems(InventoryCrafting inv) {
 		return ForgeHooks.defaultRecipeGetRemainingItems(inv);
 	}
 }

@@ -24,6 +24,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -254,6 +255,7 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	}
 
 	@Override
+	@Nullable
 	public IFlower getConversion(final ItemStack itemstack) {
 		for (final Map.Entry<ItemStack, IFlower> entry : this.conversions.entrySet()) {
 			if (entry.getKey().isItemEqual(itemstack)) {

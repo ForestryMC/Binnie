@@ -2,10 +2,14 @@ package binnie.core.proxy;
 
 
 import binnie.core.AbstractMod;
+import binnie.core.network.INetworkedEntity;
+import binnie.core.network.packet.MessageBase;
 import binnie.core.resource.BinnieResource;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -34,6 +38,10 @@ public interface IBinnieProxy extends IProxyCore {
 	boolean isSimulating(final World p0);
 
 	World getWorld();
+//
+//	EntityPlayer getPlayer();
+//
+//	MinecraftServer getServer();
 
 	Minecraft getMinecraftInstance();
 
@@ -50,6 +58,24 @@ public interface IBinnieProxy extends IProxyCore {
 	boolean isDebug();
 
 	void registerBlockRenderer(final Object p0);
+//
+//	String localise(final String string);
+//
+//	void sendToPlayer(final MessageBase packet, final EntityPlayer entityplayer);
+//
+//	void sendToServer(final MessageBase packet);
+//
+//	void sendNetworkEntityPacket(final INetworkedEntity entity);
+//
+//	TextureAtlasSprite getTextureAtlasSprite(ResourceLocation location);
+//
+//	void reloadSprites();
+//
+//	void registerSprite(ResourceLocation location);
+//
+//	short getUniqueTextureUID();
+//
+//	boolean checkTexture(final BinnieResource location);
 //
 //	IIcon getIcon(final IIconRegister p0, final String p1, final String p2);
 }

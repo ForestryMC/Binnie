@@ -21,7 +21,7 @@ public class GenepoolFX extends MachineComponent implements IRender.DisplayTick 
 	@Override
 	public void onDisplayTick(World world, BlockPos pos, Random rand) {
 		if (rand.nextFloat() < 1.0f && this.getUtil().getProcess().isInProgress()) {
-			BinnieCore.proxy.getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.3 + rand.nextDouble() * 0.4, pos.getY() + 1, pos.getZ() + 0.3 + rand.nextDouble() * 0.4, 0.0, 0.0, 0.0) {
+			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.3 + rand.nextDouble() * 0.4, pos.getY() + 1, pos.getZ() + 0.3 + rand.nextDouble() * 0.4, 0.0, 0.0, 0.0) {
 				double axisX = this.posX;
 				double axisZ = this.posZ;
 				double angle = this.rand.nextDouble() * 2.0 * 3.1415;

@@ -10,10 +10,11 @@ import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.core.renderer.RenderUtil;
 
 public class ControlColourDisplay extends Control implements IControlValue<IFlowerColour>, ITooltip {
-	IFlowerColour value;
+	private IFlowerColour value;
 
-	public ControlColourDisplay(final IWidget parent, final int x, final int y) {
+	public ControlColourDisplay(final IWidget parent, final int x, final int y, final IFlowerColour value) {
 		super(parent, x, y, 16, 16);
+		this.value = value;
 		this.addAttribute(Attribute.MouseOver);
 	}
 

@@ -30,7 +30,7 @@ public class ModuleCore implements IInitializable {
 
 	@Override
 	public void postInit() {
-		if (BinnieCore.proxy.isDebug()) {
+		if (BinnieCore.getBinnieProxy().isDebug()) {
 			try {
 				final PrintWriter outputSpecies = new PrintWriter(new FileWriter("data/species.html"));
 				final PrintWriter outputLogs = new PrintWriter(new FileWriter("data/logs.html"));

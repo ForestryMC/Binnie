@@ -22,7 +22,7 @@ public class MachineRendererNursery {
 		GlStateManager.pushMatrix();
 		GlStateManager.translate(x + 0.5, y, z + 0.5);
 		GlStateManager.scale(0.05, 0.05, 0.05);
-		BinnieCore.proxy.bindTexture(new BinnieResource(ExtraTrees.instance, ResourceType.Tile, "test.png"));
+		BinnieCore.getBinnieProxy().bindTexture(new BinnieResource(ExtraTrees.instance, ResourceType.Tile, "test.png"));
 		//this.casinoMachine.renderAll();
 		GlStateManager.popMatrix();
 	}

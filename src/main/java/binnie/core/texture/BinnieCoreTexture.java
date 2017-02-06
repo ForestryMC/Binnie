@@ -26,6 +26,6 @@ public enum BinnieCoreTexture implements IBinnieTexture {
 
 	@Override
 	public BinnieResource getTexture() {
-		return Binnie.RESOURCE.getPNG(BinnieCore.instance, this.type, this.texture);
+		return Binnie.RESOURCE.getPNG(BinnieCore.getInstance(), this.type, this.texture);
 	}
 }

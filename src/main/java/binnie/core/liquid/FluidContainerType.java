@@ -35,7 +35,7 @@ public enum FluidContainerType {
 	}
 
 	public String getDisplayName() {
-		return BinnieCore.proxy.localise("item.container." + this.name().toLowerCase());
+		return BinnieCore.getBinnieProxy().localise("item.container." + this.name().toLowerCase());
 	}
 
 	public boolean isActive() {

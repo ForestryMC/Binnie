@@ -23,7 +23,7 @@ public class IsolaterFX extends MachineComponent implements IRender.RandomDispla
 		if (!this.getUtil().getProcess().isInProgress()) {
 			return;
 		}
-		BinnieCore.proxy.getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.4 + 0.2 * rand.nextDouble(), pos.getY() + 1.6, pos.getZ() + 0.4 + rand.nextDouble() * 0.2, 0.0, 0.0, 0.0) {
+		BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.4 + 0.2 * rand.nextDouble(), pos.getY() + 1.6, pos.getZ() + 0.4 + rand.nextDouble() * 0.2, 0.0, 0.0, 0.0) {
 			double axisX = 0.0;
 			double axisZ = 0.0;
 			double angle = 0.0;
@@ -57,7 +57,7 @@ public class IsolaterFX extends MachineComponent implements IRender.RandomDispla
 	public void onDisplayTick(World world, BlockPos pos, Random rand) {
 		final int tick = (int) (world.getTotalWorldTime() % 6L);
 		if ((tick == 0 || tick == 5) && this.getUtil().getProcess().isInProgress()) {
-			BinnieCore.proxy.getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 0.0, 0.0, 0.0) {
+			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 0.0, 0.0, 0.0) {
 				double axisX = this.posX;
 				double axisZ = this.posZ;
 				double angle = 0.7 + (int) (this.worldObj.getTotalWorldTime() % 2L) * 3.1415;

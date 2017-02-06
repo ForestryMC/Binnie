@@ -50,7 +50,7 @@ public class BreweryRecipe implements IBreweryRecipe {
 	}
 
 	@Override
-	public boolean isGrain(@Nonnull ItemStack itemStack) {
+	public boolean isGrain(ItemStack itemStack) {
 		return false;
 	}
 
@@ -60,7 +60,7 @@ public class BreweryRecipe implements IBreweryRecipe {
 	}
 
 	@Override
-	public boolean isIngredient(@Nonnull ItemStack itemstack) {
+	public boolean isIngredient(ItemStack itemstack) {
 		return false;
 	}
 

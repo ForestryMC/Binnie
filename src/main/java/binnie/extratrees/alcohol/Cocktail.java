@@ -3,6 +3,7 @@ package binnie.extratrees.alcohol;
 import binnie.extratrees.alcohol.drink.DrinkLiquid;
 import binnie.extratrees.alcohol.drink.DrinkManager;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -55,6 +56,7 @@ public enum Cocktail {
 		this.ingredients.put(ingredient, ratio);
 	}
 
+	@Nullable
 	public static Cocktail get(final Map<ICocktailIngredient, Integer> ingredients) {
 		for (final Cocktail cocktail : values()) {
 			boolean is = true;
@@ -71,8 +73,10 @@ public enum Cocktail {
 	}
 
 	public static void registerIngredient(final ICocktailIngredient ingredient) {
-		Cocktail.cocktailIngredients.put(ingredient.getIdentifier().toLowerCase(), ingredient);
-		DrinkManager.registerDrinkLiquid(ingredient.getIdentifier().toLowerCase(), new DrinkLiquid(ingredient.getDisplayName(), ingredient.getColour(), ingredient.getTransparency(), ingredient.getABV()));
+		String id = ingredient.getIdentifier().toLowerCase();
+		Cocktail.cocktailIngredients.put(id, ingredient);
+		DrinkLiquid liquid = new DrinkLiquid(ingredient.getDisplayName(), ingredient.getColour(), ingredient.getTransparency(), ingredient.getABV(), id);
+		DrinkManager.registerDrinkLiquid(liquid);
 	}
 
 	public static ICocktailIngredient getIngredient(final String name2) {

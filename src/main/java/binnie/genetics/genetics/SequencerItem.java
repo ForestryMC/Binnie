@@ -1,28 +1,39 @@
 package binnie.genetics.genetics;
 
+import binnie.core.genetics.Gene;
 import binnie.genetics.api.IGene;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.util.Constants;
+
+import javax.annotation.Nullable;
 
 public class SequencerItem extends GeneItem {
 	public int sequenced;
 	public boolean analysed;
 
-	public SequencerItem(final ItemStack stack) {
-		super(stack);
+	@Nullable
+	public static SequencerItem create(final ItemStack itemStack) {
+		NBTTagCompound nbt = itemStack.getTagCompound();
+		if (nbt != null &&
+				nbt.hasKey("gene", Constants.NBT.TAG_COMPOUND) &&
+				nbt.hasKey("seq", Constants.NBT.TAG_BYTE) &&
+				nbt.hasKey("ana")
+				) {
+			NBTTagCompound geneNbt = nbt.getCompoundTag("gene");
+			Gene gene = Gene.create(geneNbt);
+			SequencerItem sequencerItem = new SequencerItem(gene);
+			sequencerItem.sequenced = nbt.getByte("seq");
+			sequencerItem.analysed = nbt.getBoolean("ana");
+			return sequencerItem;
+		}
+		return null;
 	}
 
 	public SequencerItem(final IGene gene) {
 		super(gene);
 		this.sequenced = 0;
 		this.analysed = false;
-	}
-
-	@Override
-	public void readFromNBT(final NBTTagCompound nbt) {
-		super.readFromNBT(nbt);
-		this.sequenced = nbt.getByte("seq");
-		this.analysed = nbt.getBoolean("ana");
 	}
 
 	@Override

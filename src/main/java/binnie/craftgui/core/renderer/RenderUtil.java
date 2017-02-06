@@ -57,7 +57,6 @@ public class RenderUtil {
 		net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
 	}
 
-	@Nonnull
 	private static FontRenderer getFontRenderer(Minecraft minecraft, ItemStack ingredient) {
 		FontRenderer fontRenderer = ingredient.getItem().getFontRenderer(ingredient);
 		if (fontRenderer == null) {
@@ -154,7 +153,7 @@ public class RenderUtil {
 
 	public static void drawSprite(final IPoint pos, final TextureAtlasSprite icon) {
 		if (icon != null) {
-			BinnieCore.proxy.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+			BinnieCore.getBinnieProxy().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 			drawTexture(pos.x(), pos.y(), icon, 0, 0, 0);
 		}
 	}

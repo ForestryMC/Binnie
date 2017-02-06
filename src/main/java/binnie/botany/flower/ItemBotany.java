@@ -21,6 +21,7 @@ import forestry.core.items.IColoredItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -103,7 +104,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 		list.add(TextFormatting.YELLOW + colorInfo.replaceAll("%PRIMARY", primaryColor).replaceAll("%SECONDARY", secondaryColor).replaceAll("%STEM", stemColor));
 
 		if (individual.isAnalyzed()) {
-			if (BinnieCore.proxy.isShiftDown()) {
+			if (GuiScreen.isShiftKeyDown()) {
 				individual.addTooltip(list);
 			} else {
 				list.add(TextFormatting.ITALIC + "<" + Binnie.LANGUAGE.localise("for.gui.tooltip.tmi") + ">");

@@ -6,15 +6,23 @@ import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.geometry.Position;
 import binnie.craftgui.events.EventHandler;
 import binnie.craftgui.events.EventValueChanged;
+import com.google.common.collect.Iterables;
 
 import java.util.Collection;
+import java.util.List;
 
 public class ControlTabBar<T> extends Control implements IControlValue<T> {
-	T value;
-	Position position;
+	private T value;
+	private Position position;
 
-	public ControlTabBar(final IWidget parent, final int x, final int y, final int width, final int height, final Position position) {
+	public ControlTabBar(final IWidget parent, final int x, final int y, final int width, final int height, final Position position, final Collection<T> values) {
+		this(parent, x, y, width, height, position, Iterables.get(values, 0));
+		setValues(values);
+	}
+
+	public ControlTabBar(final IWidget parent, final int x, final int y, final int width, final int height, final Position position, final T value) {
 		super(parent, x, y, width, height);
+		this.value = value;
 		this.position = position;
 		this.addEventHandler(new EventValueChanged.Handler() {
 			@Override
@@ -24,7 +32,7 @@ public class ControlTabBar<T> extends Control implements IControlValue<T> {
 		}.setOrigin(EventHandler.Origin.DirectChild, this));
 	}
 
-	public void setValues(final Collection<T> values) {
+	private void setValues(final Collection<T> values) {
 		final int i = 0;
 		while (i < this.getWidgets().size()) {
 			this.deleteChild(this.getWidgets().get(0));
@@ -42,9 +50,6 @@ public class ControlTabBar<T> extends Control implements IControlValue<T> {
 				final IWidget tab = this.createTab(0, j * tabDimension, this.getSize().x(), tabDimension, value);
 			}
 			++j;
-		}
-		if (this.value == null && !values.isEmpty()) {
-			this.setValue(values.iterator().next());
 		}
 	}
 

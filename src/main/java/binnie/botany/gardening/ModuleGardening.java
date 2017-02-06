@@ -84,7 +84,7 @@ public class ModuleGardening implements IInitializable {
 		Botany.proxy.registerItem(Botany.clay);
 		Botany.ceramic = new BlockCeramic();
 		Botany.proxy.registerBlock(Botany.ceramic, new ItemCeramic(Botany.ceramic));
-		BinnieCore.proxy.registerTileEntity(TileCeramic.class, "botany.tile.ceramic");
+		BinnieCore.getBinnieProxy().registerTileEntity(TileCeramic.class, "botany.tile.ceramic");
 //		BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(Botany.ceramic), new ItemMetadataRenderer());
 		Botany.stained = new BlockStainedGlass();
 		Botany.proxy.registerBlock(Botany.stained, new ItemStainedGlass(Botany.stained));
@@ -94,7 +94,7 @@ public class ModuleGardening implements IInitializable {
 		Botany.ceramicBrick = new BlockCeramicBrick();
 		Botany.proxy.registerBlock(Botany.ceramicBrick, new ItemCeramicBrick(Botany.ceramicBrick));
 		GameRegistry.registerTileEntity(TileCeramicBrick.class, "");
-		BinnieCore.proxy.registerTileEntity(TileCeramicBrick.class, "botany.tile.ceramicBrick");
+		BinnieCore.getBinnieProxy().registerTileEntity(TileCeramicBrick.class, "botany.tile.ceramicBrick");
 //		BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(Botany.ceramicTile), new MultipassItemRenderer());
 //		BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(Botany.ceramicBrick), new MultipassItemRenderer());
 	}

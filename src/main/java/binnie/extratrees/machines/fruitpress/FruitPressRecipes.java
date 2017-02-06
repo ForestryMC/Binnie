@@ -35,7 +35,7 @@ public class FruitPressRecipes {
 		return null;
 	}
 
-	public static void addRecipe(@Nonnull final ItemStack stack, @Nonnull final FluidStack fluid) {
+	public static void addRecipe(final ItemStack stack, final FluidStack fluid) {
 		if (getOutput(stack) != null) {
 			return;
 		}

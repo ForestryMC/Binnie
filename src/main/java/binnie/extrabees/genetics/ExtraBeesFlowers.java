@@ -118,7 +118,7 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 		}
 	}
 
-	public boolean isAcceptedFlower(final World world, final IIndividual individual, final BlockPos pos) {
+	public boolean isAcceptedFlower(final World world, final BlockPos pos) {
 		final Block block = world.getBlockState(pos).getBlock();
 		switch (this) {
 			case WATER: {

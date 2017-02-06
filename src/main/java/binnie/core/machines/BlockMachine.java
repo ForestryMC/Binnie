@@ -112,7 +112,7 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if (!BinnieCore.proxy.isSimulating(world)) {
+		if (!BinnieCore.getBinnieProxy().isSimulating(world)) {
 			return true;
 		}
 		if (player.isSneaking()) {
@@ -134,7 +134,7 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase entityliving, ItemStack stack) {
 		super.onBlockPlacedBy(world, pos, state, entityliving, stack);
-		if (!BinnieCore.proxy.isSimulating(world)) {
+		if (!BinnieCore.getBinnieProxy().isSimulating(world)) {
 			return;
 		}
 		final IMachine machine = Machine.getMachine(world.getTileEntity(pos));
@@ -173,7 +173,7 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 
 	@Override
 	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
-		if (BinnieCore.proxy.isSimulating(world) && this.canHarvestBlock(world, pos, player) && !player.capabilities.isCreativeMode) {
+		if (BinnieCore.getBinnieProxy().isSimulating(world) && this.canHarvestBlock(world, pos, player) && !player.capabilities.isCreativeMode) {
 			//final int metadata = this.getMetaFromState(state);
 			//final ItemStack stack = new ItemStack(Item.getItemFromBlock(this), 1, this.damageDropped(state));
 			this.dropBlockAsItem(world, pos, state, 0);

@@ -24,6 +24,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -71,11 +72,11 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 	}
 
 	public String getChromosomeName(final IChromosomeType chromo) {
-		return BinnieCore.proxy.localise(this.getSpeciesRoot().getUID() + ".chromosome." + chromo.getName());
+		return BinnieCore.getBinnieProxy().localise(this.getSpeciesRoot().getUID() + ".chromosome." + chromo.getName());
 	}
 
 	public String getChromosomeShortName(final IChromosomeType chromo) {
-		return BinnieCore.proxy.localise(this.getSpeciesRoot().getUID() + ".chromosome." + chromo.getName() + ".short");
+		return BinnieCore.getBinnieProxy().localise(this.getSpeciesRoot().getUID() + ".chromosome." + chromo.getName() + ".short");
 	}
 
 	public final String getEpitome(final float discoveredPercentage) {
@@ -95,7 +96,7 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 		} else if (discoveredPercentage < 1.0f) {
 			i = 5;
 		}
-		return BinnieCore.proxy.localise(this.getSpeciesRoot().getUID() + ".epitome." + i);
+		return BinnieCore.getBinnieProxy().localise(this.getSpeciesRoot().getUID() + ".epitome." + i);
 	}
 
 	public abstract ISpeciesRoot getSpeciesRoot();
@@ -405,7 +406,7 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 	}
 
 	public final String getDescriptor() {
-		return BinnieCore.proxy.localise(this.getSpeciesRoot().getUID() + ".descriptor");
+		return BinnieCore.getBinnieProxy().localise(this.getSpeciesRoot().getUID() + ".descriptor");
 	}
 
 	public final String getIdent() {
@@ -425,16 +426,16 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 
 	public String getAlleleName(final IChromosomeType chromosome, final IAllele allele) {
 		if (allele instanceof IAlleleBoolean) {
-			return ((IAlleleBoolean) allele).getValue() ? Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.true") : Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.false");
+			return ((IAlleleBoolean) allele).getValue() ? Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.true") : Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.false");
 		}
 		if (Objects.equals(allele.getName(), "for.gui.maximum")) {
-			return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.fertility.maximum");
+			return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.fertility.maximum");
 		}
 		return allele.getName();
 	}
 
 	public String getName() {
-		return BinnieCore.proxy.localise(this.getSpeciesRoot().getUID() + ".shortName");
+		return BinnieCore.getBinnieProxy().localise(this.getSpeciesRoot().getUID() + ".shortName");
 	}
 
 	@Override
@@ -452,6 +453,7 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 
 	public abstract boolean isDNAManipulable(final ISpeciesType type);
 
+	@Nullable
 	public IIndividual getConversion(final ItemStack stack) {
 		return null;
 	}

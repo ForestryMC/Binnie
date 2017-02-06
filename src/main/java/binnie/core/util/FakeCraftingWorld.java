@@ -47,19 +47,16 @@ public class FakeCraftingWorld extends World {
 		this.mapStorage = new SaveDataMemoryStorage();
 	}
 
-	@Nonnull
 	@Override
 	public BlockPos getSpawnPoint() {
 		return new BlockPos(0, 0, 0);
 	}
 
-	@Nonnull
 	@Override
 	public IBlockState getBlockState(BlockPos pos) {
 		return Blocks.AIR.getDefaultState();
 	}
 
-	@Nonnull
 	@Override
 	protected IChunkProvider createChunkProvider() {
 		return new IChunkProvider() {
@@ -69,8 +66,7 @@ public class FakeCraftingWorld extends World {
 				return new EmptyChunk(FakeCraftingWorld.this, x, z);
 			}
 
-			@Nonnull
-			@Override
+					@Override
 			public Chunk provideChunk(int x, int z) {
 				return new EmptyChunk(FakeCraftingWorld.this, x, z);
 			}
@@ -80,8 +76,7 @@ public class FakeCraftingWorld extends World {
 				return true;
 			}
 
-			@Nonnull
-			@Override
+					@Override
 			public String makeString() {
 				return "";
 			}

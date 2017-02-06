@@ -41,7 +41,7 @@ public class ModelMutlipass<B extends Block & IMultipassBlock<K>, K> extends Mod
 	}
 	
 	@Nullable
-	protected IBakedModel bakeModel(@Nonnull IBlockState state, @Nonnull K key) {
+	protected IBakedModel bakeModel(IBlockState state, K key) {
 		if (key == null) {
 			return null;
 		}

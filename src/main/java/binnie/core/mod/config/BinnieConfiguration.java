@@ -11,7 +11,7 @@ class BinnieConfiguration extends Configuration {
 	private String filename;
 
 	public BinnieConfiguration(final String filename, final AbstractMod mod) {
-		super(new File(BinnieCore.proxy.getDirectory(), filename));
+		super(new File(BinnieCore.getBinnieProxy().getDirectory(), filename));
 		this.mod = mod;
 		this.filename = filename;
 	}

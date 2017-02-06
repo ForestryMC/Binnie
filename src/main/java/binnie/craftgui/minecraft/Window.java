@@ -41,6 +41,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Deque;
 
@@ -51,10 +52,13 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 	private ControlText title;
 	protected int titleButtonLeft;
 	protected int titleButtonRight;
+	@Nullable
 	private StandardTexture bgText1;
+	@Nullable
 	private StandardTexture bgText2;
 	private boolean hasBeenInitialised;
 	private EntityPlayer player;
+	@Nullable
 	private IInventory entityInventory;
 	private Side side;
 
@@ -187,7 +191,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		if (this.getSize().x() > 256) {
 			this.bgText2 = new StandardTexture(0, 0, 256, 256, this.getBackgroundTextureFile(2));
 		}
-		if (!BinnieCore.proxy.checkTexture(this.bgText1.getTexture())) {
+		if (!BinnieCore.getBinnieProxy().checkTexture(this.bgText1.getTexture())) {
 			this.bgText1 = null;
 			this.bgText2 = null;
 		}
@@ -234,6 +238,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		return null;
 	}
 
+	@Nullable
 	public IInventory getInventory() {
 		return this.entityInventory;
 	}
@@ -264,7 +269,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		if (this.getPlayer() != null) {
 			return this.getPlayer().worldObj;
 		}
-		return BinnieCore.proxy.getWorld();
+		return BinnieCore.getBinnieProxy().getWorld();
 	}
 
 	public void onInventoryUpdate() {
@@ -273,7 +278,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 	public void sendClientAction(final String name, final NBTTagCompound action) {
 		action.setString("type", name);
 		final MessageCraftGUI packet = new MessageCraftGUI(action);
-		BinnieCore.proxy.sendToServer(packet);
+		BinnieCore.getBinnieProxy().sendToServer(packet);
 	}
 
 	@Override

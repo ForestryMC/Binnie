@@ -6,6 +6,7 @@ import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.List;
 
@@ -38,6 +39,7 @@ public interface IFlowerRoot extends ISpeciesRoot {
 
 	void addConversion(ItemStack memberStack, IAllele[] template);
 
+	@Nullable
 	IFlower getConversion(ItemStack memberStack);
 
 	Collection<IColourMix> getColourMixes(boolean p0);

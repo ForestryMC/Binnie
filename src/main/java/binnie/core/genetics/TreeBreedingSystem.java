@@ -32,6 +32,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumSet;
@@ -86,18 +87,18 @@ public class TreeBreedingSystem extends BreedingSystem {
 		}
 		if (chromosome == EnumTreeChromosome.PLANT) {
 			final EnumSet<EnumPlantType> types = ((IAllelePlantType) allele).getPlantTypes();
-			return types.isEmpty() ? Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.none") : types.iterator().next().toString();
+			return types.isEmpty() ? Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.none") : types.iterator().next().toString();
 		}
 		if (chromosome == EnumTreeChromosome.FRUITS && allele.getUID().contains(".")) {
 			final IFruitProvider provider = ((IAlleleFruit) allele).getProvider();
-			return (provider.getProducts().size() == 0) ? Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.none") : provider.getProducts().keySet().iterator().next().getDisplayName();
+			return (provider.getProducts().size() == 0) ? Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.none") : provider.getProducts().keySet().iterator().next().getDisplayName();
 		}
 		if (chromosome == EnumTreeChromosome.GROWTH) {
 			if (allele.getUID().contains("Tropical")) {
-				return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.growth.tropical");
+				return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.growth.tropical");
 			}
 			if (allele.getUID().contains("Lightlevel")) {
-				return Binnie.LANGUAGE.localise(BinnieCore.instance, "allele.growth.lightlevel");
+				return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.growth.lightlevel");
 			}
 		}
 		return super.getAlleleName(chromosome, allele);
@@ -240,10 +241,8 @@ public class TreeBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
+	@Nullable
 	public IIndividual getConversion(final ItemStack stack) {
-		if (stack == null) {
-			return null;
-		}
 //		for (final Map.Entry<ItemStack, IIndividual> entry : TreeManager.treeRoot.getIndividualTemplates()) {
 //			if (ItemStack.areItemStacksEqual(stack, entry.getKey())) {
 //				return entry.getValue();

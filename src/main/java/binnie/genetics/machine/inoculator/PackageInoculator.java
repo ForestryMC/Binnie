@@ -72,13 +72,13 @@ public class PackageInoculator extends GeneticMachine.PackageGeneticBase impleme
 		transfer.addRestock(Inoculator.SLOT_SERUM_RESERVE, 0);
 		transfer.addStorage(Inoculator.SLOT_SERUM_VIAL, Inoculator.SLOT_SERUM_EXPENDED, new ComponentInventoryTransfer.Condition() {
 			@Override
-			public boolean fufilled(final ItemStack stack) {
+			public boolean fulfilled(final ItemStack stack) {
 				return Engineering.getCharges(stack) == 0;
 			}
 		});
 		transfer.addStorage(Inoculator.SLOT_TARGET, Inoculator.SLOT_FINISHED, new ComponentInventoryTransfer.Condition() {
 			@Override
-			public boolean fufilled(final ItemStack stack) {
+			public boolean fulfilled(final ItemStack stack) {
 				return stack != null && this.transfer.getMachine().getMachineUtil().getStack(Inoculator.SLOT_SERUM_VIAL) != null && this.transfer.getMachine().getInterface(InoculatorLogic.class).isValidSerum() != null;
 			}
 		});

@@ -7,15 +7,18 @@ import binnie.core.network.IPacketID;
 import binnie.core.network.IPacketProvider;
 import binnie.core.network.packet.MessageBinnie;
 import binnie.core.proxy.IProxyCore;
+import com.google.common.base.Preconditions;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractMod implements IPacketProvider, IInitializable {
+	@Nullable
 	private SimpleNetworkWrapper wrapper;
 	protected List<IInitializable> modules;
 
@@ -50,6 +53,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 	public abstract String getModID();
 
 	public SimpleNetworkWrapper getNetworkWrapper() {
+		Preconditions.checkState(wrapper != null, "Tried to get network wrapper before it has been init.");
 		return this.wrapper;
 	}
 
@@ -80,7 +84,8 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 			return;
 		}
 		this.getProxy().init();
-		(this.wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(this.getChannel())).registerMessage(this.getPacketHandler(), MessageBinnie.class, 1, Side.CLIENT);
+		this.wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(this.getChannel());
+		this.wrapper.registerMessage(this.getPacketHandler(), MessageBinnie.class, 1, Side.CLIENT);
 		this.wrapper.registerMessage(this.getPacketHandler(), MessageBinnie.class, 1, Side.SERVER);
 		for (final IInitializable module : this.modules) {
 			module.init();

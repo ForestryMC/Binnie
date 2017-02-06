@@ -58,7 +58,7 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 		String descBody = "§o";
 		String descSig = "";
 		if (desc == null || desc.length() == 0) {
-			descBody += BinnieCore.proxy.localise("gui.database.nodescription");
+			descBody += BinnieCore.getBinnieProxy().localise("gui.database.nodescription");
 		} else {
 			final String[] descStrings = desc.split("\\|");
 			descBody += descStrings[0];

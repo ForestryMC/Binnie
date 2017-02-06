@@ -35,7 +35,7 @@ enum Compartment implements IMachineType {
 	}
 
 	public ItemStack get(final int i) {
-		return new ItemStack(BinnieCore.packageCompartment.getBlock(), i, this.ordinal());
+		return new ItemStack(BinnieCore.getPackageCompartment().getBlock(), i, this.ordinal());
 	}
 
 	public abstract static class PackageCompartment extends MachinePackage {

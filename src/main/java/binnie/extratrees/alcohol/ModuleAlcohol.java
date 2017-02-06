@@ -56,7 +56,7 @@ public class ModuleAlcohol implements IInitializable {
 		for (final Liqueur juice4 : Liqueur.values()) {
 			Cocktail.registerIngredient(juice4);
 		}
-		DrinkManager.registerDrinkLiquid("water", new DrinkLiquid("Water", 13421823, 0.1f, 0.0f));
+		DrinkManager.registerDrinkLiquid(new DrinkLiquid("Water", 13421823, 0.1f, 0.0f, "water"));
 	}
 
 	@Override

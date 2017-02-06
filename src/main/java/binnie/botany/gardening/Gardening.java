@@ -5,7 +5,7 @@ import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
 import binnie.botany.api.EnumSoilType;
 import binnie.botany.api.IFlower;
-import binnie.botany.api.gardening.IBlockSoil;
+import binnie.botany.api.IBlockSoil;
 import binnie.botany.flower.TileEntityFlower;
 import binnie.botany.items.BotanyItems;
 import binnie.core.BinnieCore;
@@ -114,7 +114,7 @@ public class Gardening {
 	}
 
 	public static void tryGrowSection(final World world, final BlockPos pos) {
-		if (!BinnieCore.proxy.isSimulating(world)) {
+		if (!BinnieCore.getBinnieProxy().isSimulating(world)) {
 			return;
 		}
 		final TileEntity flower = world.getTileEntity(pos);

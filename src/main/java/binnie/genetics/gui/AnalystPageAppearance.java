@@ -16,14 +16,11 @@ public class AnalystPageAppearance extends ControlAnalystPage {
 		final IAlleleSpecies species = ind.getGenome().getPrimary();
 		new ControlTextCentered(this, y, "§nAppearance").setColour(this.getColour());
 		y += 12;
-		final ControlColourDisplay a = new ControlColourDisplay(this, this.w() / 2 - 28, y);
-		a.setValue(ind.getGenome().getPrimaryColor());
+		final ControlColourDisplay a = new ControlColourDisplay(this, this.w() / 2 - 28, y, ind.getGenome().getPrimaryColor());
 		a.addTooltip("Primary Petal Colour");
-		final ControlColourDisplay b = new ControlColourDisplay(this, this.w() / 2 - 8, y);
-		b.setValue(ind.getGenome().getSecondaryColor());
+		final ControlColourDisplay b = new ControlColourDisplay(this, this.w() / 2 - 8, y, ind.getGenome().getSecondaryColor());
 		b.addTooltip("Secondary Petal Colour");
-		final ControlColourDisplay c = new ControlColourDisplay(this, this.w() / 2 + 12, y);
-		c.setValue(ind.getGenome().getStemColor());
+		final ControlColourDisplay c = new ControlColourDisplay(this, this.w() / 2 + 12, y, ind.getGenome().getStemColor());
 		c.addTooltip("Stem Colour");
 		y += 26;
 		final int sections = ind.getGenome().getType().getSections();

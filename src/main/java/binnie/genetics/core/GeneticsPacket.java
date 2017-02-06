@@ -16,9 +16,9 @@ public enum GeneticsPacket implements IPacketID {
 	public void onMessage(final MessageBinnie message, final MessageContext context) {
 		if (this == GeneticsPacket.GeneTrackerSync && context.side == Side.CLIENT) {
 			final MessageNBT packet = new MessageNBT(message);
-			final EntityPlayer player = BinnieCore.proxy.getPlayer();
+			final EntityPlayer player = BinnieCore.getBinnieProxy().getPlayer();
 			GeneTracker tracker = null;
-			tracker = GeneTracker.getTracker(BinnieCore.proxy.getWorld(), player.getGameProfile());
+			tracker = GeneTracker.getTracker(BinnieCore.getBinnieProxy().getWorld(), player.getGameProfile());
 			if (tracker != null) {
 				tracker.readFromNBT(packet.getTagCompound());
 			}

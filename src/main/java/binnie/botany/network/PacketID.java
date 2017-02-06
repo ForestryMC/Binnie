@@ -22,7 +22,7 @@ public enum PacketID implements IPacketID {
 		if (this == PacketID.FIELDKIT && context.side == Side.CLIENT) {
 			MessageNBT packet = new MessageNBT(message);
 			NBTTagCompound data = packet.getTagCompound();
-			EntityPlayer player = BinnieCore.proxy.getPlayer();
+			EntityPlayer player = BinnieCore.getBinnieProxy().getPlayer();
 			String info = "";
 			if (data.hasNoTags()) {
 				info += Binnie.LANGUAGE.localise("botany.flowers.species.not.discover");

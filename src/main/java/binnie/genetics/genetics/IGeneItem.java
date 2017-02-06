@@ -4,9 +4,11 @@ import binnie.genetics.api.IGene;
 import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public interface IGeneItem {
+	@Nullable
 	ISpeciesRoot getSpeciesRoot();
 
 	void getInfo(final List<String> p0);

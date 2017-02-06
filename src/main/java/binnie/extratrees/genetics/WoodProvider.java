@@ -42,7 +42,6 @@ public class WoodProvider implements IWoodProvider {
 
 	}
 
-	@Nonnull
 	@Override
 	public TextureAtlasSprite getSprite(boolean isTop) {
 		if (isTop) {

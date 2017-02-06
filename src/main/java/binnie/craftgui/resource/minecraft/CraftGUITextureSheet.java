@@ -23,7 +23,7 @@ public enum CraftGUITextureSheet implements IBinnieTexture {
 
 	@Override
 	public BinnieResource getTexture() {
-		if (BinnieCore.proxy.isServer()) {
+		if (BinnieCore.getBinnieProxy().isServer()) {
 			return null;
 		}
 		return CraftGUI.resourceManager.getTextureSheet(this.name).getTexture();

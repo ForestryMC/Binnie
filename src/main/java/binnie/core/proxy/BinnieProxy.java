@@ -67,7 +67,7 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 //	}
 
 	public TextureAtlasSprite getTextureAtlasSprite(ResourceLocation location) {
-		return null;
+		throw new UnsupportedOperationException("Cannot call getTextureAtlasSprite on server side");
 	}
 
 	@Override
@@ -129,7 +129,7 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 
 	@Override
 	public Object createObject(final String renderer) {
-		return null;
+		throw new UnsupportedOperationException("Cannot call createObject on server side");
 	}
 
 	public void sendNetworkEntityPacket(final INetworkedEntity entity) {
@@ -161,16 +161,12 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 	@Override
 	public void bindTexture(final ResourceLocation location) {
 	}
-	
+
 	public void reloadSprites(){
 	}
 
-	public boolean isShiftDown() {
-		return false;
-	}
-
 	public EntityPlayer getPlayer() {
-		return null;
+		throw new UnsupportedOperationException("Cannot call getPlayer on server side");
 	}
 
 	public MinecraftServer getServer() {

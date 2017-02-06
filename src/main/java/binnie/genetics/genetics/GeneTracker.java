@@ -17,13 +17,15 @@ import net.minecraft.nbt.NBTTagString;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSavedData;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 
 public class GeneTracker extends WorldSavedData {
 	private ArrayList<IGene> discoveredGenes;
-	GameProfile username;
+	@Nullable
+	private GameProfile username;
 
-	public GeneTracker(final String s, final GameProfile username) {
+	public GeneTracker(final String s, @Nullable final GameProfile username) {
 		super(s);
 		this.discoveredGenes = new ArrayList<>();
 		this.username = username;
@@ -38,7 +40,7 @@ public class GeneTracker extends WorldSavedData {
 		return getTracker(player.worldObj, null);
 	}
 
-	public static GeneTracker getTracker(final World world, final GameProfile player) {
+	public static GeneTracker getTracker(final World world, @Nullable final GameProfile player) {
 		final String filename = "GeneTracker." + ((player == null) ? "common" : player.getId());
 		GeneTracker tracker = (GeneTracker) world.loadItemData(GeneTracker.class, filename);
 		if (tracker == null) {

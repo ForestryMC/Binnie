@@ -1,32 +1,23 @@
 package binnie.botany.craftgui;
 
 import binnie.botany.api.IColourMix;
-import binnie.core.genetics.BreedingSystem;
 import binnie.craftgui.controls.listbox.ControlList;
 import binnie.craftgui.controls.listbox.ControlOption;
-import binnie.craftgui.mod.database.WindowAbstractDatabase;
 
 public class ControlColourMixItem extends ControlOption<IColourMix> {
-	ControlColourDisplay itemWidget1;
-	ControlColourDisplay itemWidget2;
-	ControlColourDisplay itemWidget3;
-	ControlColourMixSymbol addSymbol;
-	ControlColourMixSymbol arrowSymbol;
+	private final ControlColourDisplay itemWidget1;
+	private final ControlColourDisplay itemWidget2;
+	private final ControlColourDisplay itemWidget3;
+	private final ControlColourMixSymbol addSymbol;
+	private final ControlColourMixSymbol arrowSymbol;
 
 	public ControlColourMixItem(final ControlList<IColourMix> controlList, final IColourMix option, final int y) {
 		super(controlList, option, y);
-		this.itemWidget1 = new ControlColourDisplay(this, 4, 4);
-		this.itemWidget2 = new ControlColourDisplay(this, 44, 4);
-		this.itemWidget3 = new ControlColourDisplay(this, 104, 4);
-		this.addSymbol = new ControlColourMixSymbol(this, 24, 4, 0);
-		this.arrowSymbol = new ControlColourMixSymbol(this, 64, 4, 1);
-		final BreedingSystem system = ((WindowAbstractDatabase) this.getSuperParent()).getBreedingSystem();
-		if (this.getValue() != null) {
-			this.itemWidget1.setValue(this.getValue().getColourFirst());
-			this.itemWidget2.setValue(this.getValue().getColourSecond());
-			this.itemWidget3.setValue(this.getValue().getResult());
-			this.addSymbol.setValue(this.getValue());
-			this.arrowSymbol.setValue(this.getValue());
-		}
+		IColourMix value = this.getValue();
+		this.itemWidget1 = new ControlColourDisplay(this, 4, 4, value.getColourFirst());
+		this.itemWidget2 = new ControlColourDisplay(this, 44, 4, value.getColourSecond());
+		this.itemWidget3 = new ControlColourDisplay(this, 104, 4, value.getResult());
+		this.addSymbol = new ControlColourMixSymbol(this, 24, 4, 0, value);
+		this.arrowSymbol = new ControlColourMixSymbol(this, 64, 4, 1, value);
 	}
 }

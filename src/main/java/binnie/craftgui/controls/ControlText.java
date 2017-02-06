@@ -22,7 +22,7 @@ public class ControlText extends Control implements IControlValue<String> {
 
 	public ControlText(final IWidget parent, final IArea area, final String text, final TextJustification align) {
 		super(parent, area.pos().x(), area.pos().y(), area.size().x(), area.size().y());
-		this.setValue(text);
+		this.text = text;
 		this.align = align;
 	}
 

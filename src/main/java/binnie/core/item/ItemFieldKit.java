@@ -66,7 +66,7 @@ public class ItemFieldKit extends ItemCore {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand) {
 		if (!player.isSneaking() && hand == EnumHand.MAIN_HAND) {
-			BinnieCore.proxy.openGui(BinnieCoreGUI.FieldKit, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
+			BinnieCore.getBinnieProxy().openGui(BinnieCoreGUI.FieldKit, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
 		}
 		return super.onItemRightClick(itemStack, world, player, hand);
 	}

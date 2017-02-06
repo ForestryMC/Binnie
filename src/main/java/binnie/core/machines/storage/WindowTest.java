@@ -28,7 +28,7 @@ public class WindowTest extends WindowMachine {
 
 	@Override
 	protected AbstractMod getMod() {
-		return BinnieCore.instance;
+		return BinnieCore.getInstance();
 	}
 
 	@Override

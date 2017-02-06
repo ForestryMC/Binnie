@@ -43,7 +43,7 @@ public class MachineRendererLab {
 		LaboratoryMachine.ComponentGUIHolder holder = Machine.getInterface(LaboratoryMachine.ComponentGUIHolder.class, machine);
 		Label_0591: {
 			if (world != null && holder != null && holder.getStack() != null) {
-				BinnieCore.proxy.getMinecraftInstance();
+				BinnieCore.getBinnieProxy().getMinecraftInstance();
 				if (Minecraft.isFancyGraphicsEnabled()) {
 					final ItemStack stack = holder.getStack();
 					this.dummyEntityItem.worldObj = world;
@@ -53,7 +53,7 @@ public class MachineRendererLab {
 						this.dummyEntityItem.onUpdate();
 					}
 					GlStateManager.pushMatrix();
-					final EntityPlayer player = BinnieCore.proxy.getPlayer();
+					final EntityPlayer player = BinnieCore.getBinnieProxy().getPlayer();
 					final double dx = ix + 0.5 - player.lastTickPosX;
 					final double dz = iz + 0.5 - player.lastTickPosZ;
 					final double t = Math.atan2(dz, dx) * 180.0 / 3.1415;
@@ -64,7 +64,7 @@ public class MachineRendererLab {
 					GlStateManager.scale(1.2f, 1.2f, 1.2f);
 					GlStateManager.rotate(45.0f, 1.0f, 0.0f, 0.0f);
 					GlStateManager.translate(0.0f, 0.1f, 0.1f);
-					RenderManager renderManager = BinnieCore.proxy.getMinecraftInstance().getRenderManager();
+					RenderManager renderManager = BinnieCore.getBinnieProxy().getMinecraftInstance().getRenderManager();
 					renderManager.doRenderEntity(this.dummyEntityItem, 0.0, 0.0, 0.0, 0.0f, 0.0f, false);
 					GlStateManager.popMatrix();
 					int rot = 0;

@@ -9,8 +9,10 @@ import binnie.genetics.item.ItemSerum;
 import binnie.genetics.item.ItemSerumArray;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nullable;
+
 public class Engineering {
-	public static boolean isGeneAcceptor(final ItemStack stack) {
+	public static boolean isGeneAcceptor(@Nullable final ItemStack stack) {
 		if (stack == null) {
 			return false;
 		}
@@ -30,6 +32,7 @@ public class Engineering {
 		return isGeneAcceptor(stack);
 	}
 
+	@Nullable
 	public static IGene getGene(final ItemStack stack, final int chromosome) {
 		if (stack.getItem() instanceof IItemSerum) {
 			return ((IItemSerum) stack.getItem()).getGene(stack, chromosome);
@@ -55,7 +58,10 @@ public class Engineering {
 			return ((IItemSerum) serum.getItem()).getGenes(serum);
 		}
 		if (serum.getItem() == Genetics.itemSequencer) {
-			return new IGene[]{new SequencerItem(serum).gene};
+			SequencerItem sequencerItem = SequencerItem.create(serum);
+			if (sequencerItem != null) {
+				return new IGene[]{sequencerItem.getGene()};
+			}
 		}
 		return new IGene[0];
 	}

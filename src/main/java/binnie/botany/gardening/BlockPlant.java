@@ -3,7 +3,7 @@ package binnie.botany.gardening;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.EnumSoilType;
-import binnie.botany.api.gardening.IBlockSoil;
+import binnie.botany.api.IBlockSoil;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import net.minecraft.block.Block;

@@ -8,6 +8,7 @@ import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.genetics.Engineering;
+import com.google.common.base.Preconditions;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IIndividual;
@@ -107,21 +108,29 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 		if (this.getUtil().isSlotEmpty(Splicer.SLOT_TARGET)) {
 			return new ErrorState.NoItem(Genetics.proxy.localise("machine.advMachine.splicer.errors.no.individual.desc"), Splicer.SLOT_TARGET);
 		}
-		if (this.getUtil().isSlotEmpty(Splicer.SLOT_SERUM_VIAL)) {
+
+		ItemStack serum = this.getUtil().getStack(Splicer.SLOT_SERUM_VIAL);
+		if (serum == null) {
 			return new ErrorState.NoItem(Genetics.proxy.localise("machine.errors.no.serum.desc"), Splicer.SLOT_SERUM_VIAL);
 		}
+
 		final ErrorState state = this.isValidSerum();
 		if (state != null) {
 			return state;
 		}
-		if (this.getUtil().getStack(Splicer.SLOT_SERUM_VIAL) != null && Engineering.getCharges(this.getUtil().getStack(Splicer.SLOT_SERUM_VIAL)) == 0) {
+
+		if (Engineering.getCharges(serum) == 0) {
 			return new ErrorState(Genetics.proxy.localise("machine.errors.empty.serum.desc"), Genetics.proxy.localise("machine.errors.empty.serum.info"));
 		}
 		return super.canWork();
 	}
 
+	@Nullable
 	public ErrorState isValidSerum() {
 		final ItemStack serum = this.getUtil().getStack(Splicer.SLOT_SERUM_VIAL);
+		if (serum == null) {
+			return null;
+		}
 		final ItemStack target = this.getUtil().getStack(Splicer.SLOT_TARGET);
 		final IGene[] genes = Engineering.getGenes(serum);
 		if (genes.length == 0) {
@@ -154,7 +163,9 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 	protected void onFinishTask() {
 		super.onFinishTask();
 		final ItemStack serum = this.getUtil().getStack(Splicer.SLOT_SERUM_VIAL);
+		Preconditions.checkState(serum != null);
 		final ItemStack target = this.getUtil().getStack(Splicer.SLOT_TARGET);
+		Preconditions.checkState(target != null);
 		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(target);
 		if (!ind.isAnalyzed()) {
 			ind.analyze();
@@ -167,7 +178,7 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 			Splicer.setGene(gene, target, 0);
 			Splicer.setGene(gene, target, 1);
 		}
-		this.getUtil().damageItem(Splicer.SLOT_SERUM_VIAL, 1);
+		this.getUtil().damageItem(serum, Splicer.SLOT_SERUM_VIAL, 1);
 	}
 
 	@Override

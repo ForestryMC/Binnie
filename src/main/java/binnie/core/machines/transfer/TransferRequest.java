@@ -222,7 +222,7 @@ public class TransferRequest {
 	}
 
 	@Nullable
-	public static ItemStack transferToTank(@Nonnull final ItemStack itemStack, @Nonnull final IInventory origin, @Nonnull final ITankMachine destination, final int tankID, final boolean doAdd) {
+	public static ItemStack transferToTank(final ItemStack itemStack, final IInventory origin, final ITankMachine destination, final int tankID, final boolean doAdd) {
 		Preconditions.checkNotNull(itemStack);
 		Preconditions.checkArgument(itemStack.stackSize >= 1);
 
@@ -267,7 +267,7 @@ public class TransferRequest {
 		return itemStack;
 	}
 
-	private static ItemStack transferFromTank(@Nonnull ItemStack itemStack, @Nonnull final IInventory origin, @Nonnull final ITankMachine destination, final int tankID, final boolean doAdd) {
+	private static ItemStack transferFromTank(ItemStack itemStack, final IInventory origin, final ITankMachine destination, final int tankID, final boolean doAdd) {
 		Preconditions.checkNotNull(itemStack);
 		Preconditions.checkArgument(itemStack.stackSize >= 1);
 

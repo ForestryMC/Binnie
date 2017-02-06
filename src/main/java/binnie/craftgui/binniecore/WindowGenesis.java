@@ -52,7 +52,7 @@ public class WindowGenesis extends Window {
 
 	@Override
 	protected AbstractMod getMod() {
-		return BinnieCore.instance;
+		return BinnieCore.getInstance();
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class WindowGenesis extends Window {
 	public void initialiseClient() {
 		new ControlPlayerInventory(this);
 		this.setTitle("Genesis");
-		final ControlTabBar<BreedingSystem> tabSystems = new ControlTabBar<BreedingSystem>(this, 8, 28, 23, 100, Position.Left) {
+		final ControlTabBar<BreedingSystem> tabSystems = new ControlTabBar<BreedingSystem>(this, 8, 28, 23, 100, Position.Left, Binnie.GENETICS.getActiveSystems()) {
 			@Override
 			public ControlTab<BreedingSystem> createTab(final int x, final int y, final int w, final int h, final BreedingSystem value) {
 				return new ControlTabIcon<BreedingSystem>(this, x, y, w, h, value) {
@@ -92,7 +92,6 @@ public class WindowGenesis extends Window {
 				};
 			}
 		};
-		tabSystems.setValues(Binnie.GENETICS.getActiveSystems());
 		this.root = Binnie.GENETICS.getActiveSystems().iterator().next().getSpeciesRoot();
 		this.template = this.root.getDefaultTemplate();
 		final IArea one = new IArea(32, 28, 170, 100);

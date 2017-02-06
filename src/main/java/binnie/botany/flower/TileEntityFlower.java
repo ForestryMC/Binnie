@@ -312,7 +312,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 
 	public void setSection(final int i) {
 		this.section = i;
-		if (BinnieCore.proxy.isSimulating(this.worldObj)) {
+		if (BinnieCore.getBinnieProxy().isSimulating(this.worldObj)) {
 			this.updateRender(true);
 		}
 	}
