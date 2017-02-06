@@ -19,6 +19,8 @@ import java.util.List;
 
 import binnie.core.BinnieCore;
 
+import javax.annotation.Nullable;
+
 public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	static int temporyMeta = -1;
 
@@ -47,6 +49,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	}
 	
 	@Override
+	@Nullable
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		return getPickBlock(world, pos);
 	}
@@ -59,15 +62,15 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 
 	@Override
 	public int getPlacedMeta(final ItemStack item, final World world, final BlockPos pos, final EnumFacing clickedBlock) {
-		final int damage = TileEntityMetadata.getItemDamage(item);
-		return damage;
+		return TileEntityMetadata.getItemDamage(item);
 	}
 	
 	@Override
 	public int getDroppedMeta(IBlockState state, int tileMetadata) {
 		return getMetaFromState(state);
 	}
-	
+
+	@Nullable
 	public static ItemStack getBlockDropped(IBlockMetadata block, IBlockAccess world, BlockPos pos) {
 		TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
 		if (tile != null && !tile.hasDroppedBlock()) {
@@ -85,7 +88,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 		return Collections.emptyList();
 	}
 
-	public static boolean breakBlock(IBlockMetadata blockMetadata, EntityPlayer player, World world, BlockPos pos) {
+	public static boolean breakBlock(IBlockMetadata blockMetadata, @Nullable EntityPlayer player, World world, BlockPos pos) {
 		List<ItemStack> drops = new ArrayList<>();
 		Block block = (Block) blockMetadata;
 		TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
@@ -94,16 +97,20 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 		}
 		boolean hasBeenBroken = world.setBlockToAir(pos);
 		if (hasBeenBroken && BinnieCore.getBinnieProxy().isSimulating(world) && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
-			for(ItemStack drop : drops) {
+			for (ItemStack drop : drops) {
 				spawnAsEntity(world, pos, drop);
 			}
-			tile.dropBlock();
+			if (tile != null) {
+				tile.dropBlock();
+			}
 		}
 		return hasBeenBroken;
 	}
 
+	@Nullable
 	public static ItemStack getPickBlock(World world, BlockPos pos) {
-		return getBlockDropped((IBlockMetadata) world.getBlockState(pos).getBlock(), world, pos);
+		Block block = world.getBlockState(pos).getBlock();
+		return getBlockDropped((IBlockMetadata) block, world, pos);
 	}
 
 }

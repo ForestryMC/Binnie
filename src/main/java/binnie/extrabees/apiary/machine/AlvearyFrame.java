@@ -17,6 +17,8 @@ import forestry.api.apiculture.IHiveFrame;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
+
 public class AlvearyFrame {
 	public static int slotFrame = 0;
 
@@ -66,6 +68,7 @@ public class AlvearyFrame {
 			this.getInventory().setInventorySlotContents(AlvearyFrame.slotFrame, this.getHiveFrame().frameUsed(((TileExtraBeeAlveary) this.getMachine().getTileEntity()).getMultiblockLogic().getController(), this.getInventory().getStackInSlot(AlvearyFrame.slotFrame), null, wear));
 		}
 
+		@Nullable
 		public IHiveFrame getHiveFrame() {
 			ItemStack stackInSlot = this.getInventory().getStackInSlot(AlvearyFrame.slotFrame);
 			if (stackInSlot != null) {

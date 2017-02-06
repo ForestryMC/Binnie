@@ -8,6 +8,7 @@ import binnie.extratrees.api.ILayout;
 import binnie.extratrees.api.IPattern;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -22,7 +23,7 @@ public class CarpentryInterface implements ICarpentryInterface {
 
 	@Override
 	public boolean registerCarpentryWood(final int index, final IDesignMaterial wood) {
-		return wood != null && CarpentryInterface.woodMap.put(index, wood) == null;
+		return CarpentryInterface.woodMap.put(index, wood) == null;
 	}
 
 	@Override
@@ -42,7 +43,7 @@ public class CarpentryInterface implements ICarpentryInterface {
 
 	@Override
 	public boolean registerDesign(final int index, final IDesign wood) {
-		return wood != null && CarpentryInterface.designMap.put(index, wood) == null;
+		return CarpentryInterface.designMap.put(index, wood) == null;
 	}
 
 	@Override
@@ -67,7 +68,7 @@ public class CarpentryInterface implements ICarpentryInterface {
 
 	@Override
 	public boolean registerDesignCategory(final IDesignCategory category) {
-		return category != null && category.getId() != null && CarpentryInterface.designCategories.put(category.getId(), category) == null;
+		return CarpentryInterface.designCategories.put(category.getId(), category) == null;
 	}
 
 	@Override
@@ -96,16 +97,11 @@ public class CarpentryInterface implements ICarpentryInterface {
 	}
 
 	@Override
+	@Nullable
 	public IDesignMaterial getWoodMaterial(final ItemStack stack) {
-		if (stack == null) {
-			return null;
-		}
 		for (final Map.Entry<Integer, IDesignMaterial> entry : CarpentryInterface.woodMap.entrySet()) {
 			for(boolean fireproof : new boolean[]{true, false}){
 				final ItemStack key = entry.getValue().getStack(fireproof);
-				if (key == null) {
-					continue;
-				}
 				if (key.isItemEqual(stack)) {
 					return entry.getValue();
 				}

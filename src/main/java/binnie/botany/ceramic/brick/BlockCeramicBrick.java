@@ -72,7 +72,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 	}
 
 	@Override
-	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
+	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, @Nullable EntityPlayer player, boolean willHarvest) {
 		List<ItemStack> drops = new ArrayList<>();
 		TileCeramic ceramic = TileUtil.getTile(world, pos, TileCeramic.class);
 		if (ceramic != null) {

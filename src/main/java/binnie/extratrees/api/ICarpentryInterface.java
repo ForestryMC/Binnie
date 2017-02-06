@@ -2,13 +2,14 @@ package binnie.extratrees.api;
 
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.List;
 
 public interface ICarpentryInterface {
-	boolean registerCarpentryWood(final int p0, final IDesignMaterial p1);
+	boolean registerCarpentryWood(final int index, final IDesignMaterial material);
 
-	int getCarpentryWoodIndex(final IDesignMaterial p0);
+	int getCarpentryWoodIndex(final IDesignMaterial material);
 
 	IDesignMaterial getWoodMaterial(final int p0);
 
@@ -20,7 +21,8 @@ public interface ICarpentryInterface {
 
 	ILayout getLayout(final IPattern p0, final boolean p1);
 
-	IDesignMaterial getWoodMaterial(final ItemStack p0);
+	@Nullable
+	IDesignMaterial getWoodMaterial(final ItemStack stack);
 
 	boolean registerDesignCategory(final IDesignCategory p0);
 

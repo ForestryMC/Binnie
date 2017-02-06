@@ -56,7 +56,7 @@ class CompartmentTab implements INbtWritable, INbtReadable {
 	}
 
 	public void setName(final String name) {
-		this.name = ((name == null) ? "" : name);
+		this.name = name;
 	}
 
 	public void setIcon(final ItemStack icon) {

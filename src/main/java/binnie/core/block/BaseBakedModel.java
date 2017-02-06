@@ -28,6 +28,7 @@ import net.minecraftforge.common.model.TRSRTransformation;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 
+import javax.annotation.Nullable;
 import javax.vecmath.Matrix4f;
 import javax.vecmath.Vector3f;
 import java.util.EnumMap;
@@ -40,7 +41,7 @@ public abstract class BaseBakedModel implements IPerspectiveAwareModel {
 		this(null);
 	}
 
-	public BaseBakedModel(ResourceLocation particle) {
+	public BaseBakedModel(@Nullable ResourceLocation particle) {
 		this.particle = particle != null ? particle : TextureMap.LOCATION_MISSING_TEXTURE;
 	}
 

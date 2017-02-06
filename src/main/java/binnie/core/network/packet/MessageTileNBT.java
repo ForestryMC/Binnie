@@ -6,6 +6,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
 
 public class MessageTileNBT extends MessageNBT implements IPacketLocation {
@@ -42,6 +43,7 @@ public class MessageTileNBT extends MessageNBT implements IPacketLocation {
 	}
 
 	@Override
+	@Nullable
 	public TileEntity getTarget(final World world) {
 		return world.getTileEntity(new BlockPos(this.posX, this.posY, this.posZ));
 	}

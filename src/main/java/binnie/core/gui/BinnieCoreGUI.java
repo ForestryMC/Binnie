@@ -11,12 +11,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nullable;
+
 public enum BinnieCoreGUI implements IBinnieGUID {
 	Compartment,
 	FieldKit,
 	Genesis;
 
-	public Window getWindow(final EntityPlayer player, final IInventory object, final Side side) {
+	public Window getWindow(final EntityPlayer player, @Nullable final IInventory object, final Side side) {
 		switch (this) {
 			case Compartment: {
 				return new WindowCompartment(player, object, side);

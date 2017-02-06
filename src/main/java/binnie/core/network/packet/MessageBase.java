@@ -4,6 +4,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.nbt.NBTTagCompound;
 
+import javax.annotation.Nullable;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -27,6 +28,7 @@ public class MessageBase {
 		return new MessageBinnie(this.id, this);
 	}
 
+	@Nullable
 	protected NBTTagCompound readNBTTagCompound(final ByteBuf data) throws IOException {
 		final short length = data.readShort();
 		if (length < 0) {
@@ -37,7 +39,7 @@ public class MessageBase {
 		return CompressedStreamTools.readCompressed(new ByteArrayInputStream(compressed));
 	}
 
-	protected void writeNBTTagCompound(final NBTTagCompound nbttagcompound, final ByteBuf data) throws IOException {
+	protected void writeNBTTagCompound(@Nullable final NBTTagCompound nbttagcompound, final ByteBuf data) throws IOException {
 		if (nbttagcompound == null) {
 			data.writeShort(-1);
 		} else {

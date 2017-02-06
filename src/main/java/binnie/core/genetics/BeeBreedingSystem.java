@@ -18,6 +18,7 @@ import forestry.api.genetics.ISpeciesType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nullable;
 import java.util.TreeSet;
 
 class BeeBreedingSystem extends BreedingSystem {
@@ -78,7 +79,7 @@ class BeeBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public boolean isDNAManipulable(ISpeciesType type) {
+	public boolean isDNAManipulable(@Nullable ISpeciesType type) {
 		return type == EnumBeeType.LARVAE;
 	}
 

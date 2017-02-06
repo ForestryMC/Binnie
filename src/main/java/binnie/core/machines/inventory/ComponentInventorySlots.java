@@ -10,7 +10,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -100,8 +99,10 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
 	protected void transferItem(final int indexFrom, final int indexTo) {
 		if (this.inventory.containsKey(indexFrom) && this.inventory.containsKey(indexTo)) {
-			final ItemStack newStack = this.inventory.get(indexFrom).getContent().copy();
-			this.inventory.get(indexFrom).setContent(null);
+			final InventorySlot slotFrom = this.inventory.get(indexFrom);
+			final ItemStack oldStack = slotFrom.getContent();
+			final ItemStack newStack = oldStack == null ? null : oldStack.copy();
+			slotFrom.setContent(null);
 			this.inventory.get(indexTo).setContent(newStack);
 		}
 		this.markDirty();
@@ -181,6 +182,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
+	@Nullable
 	public InventorySlot getSlot(final int index) {
 		if (this.inventory.containsKey(index)) {
 			return this.inventory.get(index);
@@ -243,7 +245,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	public int[] getSlotsForFace(final EnumFacing var1) {
+	public int[] getSlotsForFace(final EnumFacing facing) {
 		final List<Integer> slots = new ArrayList<>();
 		for (final InventorySlot slot : this.inventory.values()) {
 			if (slot.canInsert() || slot.canExtract()) {
@@ -258,12 +260,19 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	public boolean canInsertItem(final int i, final ItemStack itemstack, final EnumFacing direction) {
-		return this.isItemValidForSlot(i, itemstack) && this.getSlot(i).canInsert(direction);
+	public boolean canInsertItem(final int index, final ItemStack itemstack, final EnumFacing direction) {
+		if (this.isItemValidForSlot(index, itemstack)) {
+			InventorySlot slot = this.getSlot(index);
+			if (slot != null && slot.canInsert(direction)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
-	public boolean canExtractItem(final int i, final ItemStack itemstack, final EnumFacing direction) {
-		return this.getSlot(i).canExtract(direction);
+	public boolean canExtractItem(final int index, final ItemStack itemstack, final EnumFacing direction) {
+		InventorySlot slot = this.getSlot(index);
+		return slot != null && slot.canExtract(direction);
 	}
 }

@@ -28,7 +28,7 @@ public class AlvearyMutator {
 		return getMutationMult(item) > 0.0f;
 	}
 
-	public static float getMutationMult(final ItemStack item) {
+	public static float getMutationMult(@Nullable final ItemStack item) {
 		if (item == null) {
 			return 1.0f;
 		}

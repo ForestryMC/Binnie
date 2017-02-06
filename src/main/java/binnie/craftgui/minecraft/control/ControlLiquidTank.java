@@ -16,6 +16,7 @@ import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventMouse;
+import binnie.craftgui.minecraft.GuiCraftGUI;
 import binnie.craftgui.minecraft.MinecraftTooltip;
 import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
@@ -26,6 +27,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.Fluid;
 import org.lwjgl.opengl.GL11;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,17 +77,20 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	@Override
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(this.horizontal ? CraftGUITexture.HorizontalLiquidTank : CraftGUITexture.LiquidTank, IPoint.ZERO);
-		if (this.isMouseOver() && Window.get(this).getGui().isHelpMode()) {
-			final int c = -1442840576 + MinecraftTooltip.getOutline(Tooltip.Type.Help);
-			RenderUtil.drawGradientRect(this.getArea().inset(1), c, c);
-		} else if (ControlLiquidTank.tankError.contains(this.tankID)) {
-			final int c = -1442840576 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error);
-			RenderUtil.drawGradientRect(this.getArea().inset(1), c, c);
-		} else if (this.getSuperParent().getMousedOverWidget() == this) {
-			if (Window.get(this).getGui().getDraggedItem() != null) {
-				RenderUtil.drawGradientRect(this.getArea().inset(1), -1426089575, -1426089575);
-			} else {
-				RenderUtil.drawGradientRect(this.getArea().inset(1), -2130706433, -2130706433);
+		GuiCraftGUI gui = Window.get(this).getGui();
+		if (gui != null) {
+			if (this.isMouseOver() && gui.isHelpMode()) {
+				final int c = -1442840576 + MinecraftTooltip.getOutline(Tooltip.Type.Help);
+				RenderUtil.drawGradientRect(this.getArea().inset(1), c, c);
+			} else if (ControlLiquidTank.tankError.contains(this.tankID)) {
+				final int c = -1442840576 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error);
+				RenderUtil.drawGradientRect(this.getArea().inset(1), c, c);
+			} else if (this.getSuperParent().getMousedOverWidget() == this) {
+				if (gui.getDraggedItem() != null) {
+					RenderUtil.drawGradientRect(this.getArea().inset(1), -1426089575, -1426089575);
+				} else {
+					RenderUtil.drawGradientRect(this.getArea().inset(1), -2130706433, -2130706433);
+				}
 			}
 		}
 		if (this.isTankValid()) {
@@ -128,7 +133,8 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	@Override
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(this.horizontal ? CraftGUITexture.HorizontalLiquidTankOverlay : CraftGUITexture.LiquidTankOverlay, IPoint.ZERO);
-		if (this.isMouseOver() && Window.get(this).getGui().isHelpMode()) {
+		GuiCraftGUI gui = Window.get(this).getGui();
+		if (this.isMouseOver() && gui != null && gui.isHelpMode()) {
 			final IArea area = this.getArea();
 			RenderUtil.setColour(MinecraftTooltip.getOutline(Tooltip.Type.Help));
 			CraftGUI.render.texture(CraftGUITexture.Outline, area.outset(1));
@@ -167,6 +173,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 		tooltip.add("Empty");
 	}
 
+	@Nullable
 	private TankSlot getTankSlot() {
 		final ITankMachine tank = Machine.getInterface(ITankMachine.class, Window.get(this).getInventory());
 		return (tank != null) ? tank.getTankSlot(this.tankID) : null;

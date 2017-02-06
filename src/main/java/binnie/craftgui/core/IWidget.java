@@ -5,9 +5,11 @@ import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.events.Event;
 import binnie.craftgui.events.EventHandler;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public interface IWidget {
+	@Nullable
 	IWidget getParent();
 
 	void deleteChild(final IWidget p0);
@@ -98,8 +100,10 @@ public interface IWidget {
 
 	void onDelete();
 
-	<T> T getWidget(final Class<T> p0);
+	@Nullable
+	<T> T getWidget(final Class<T> widgetClass);
 
+	@Nullable
 	IArea getCroppedZone();
 
 	void setCroppedZone(final IWidget p0, final IArea p1);

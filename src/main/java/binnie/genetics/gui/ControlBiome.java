@@ -7,13 +7,14 @@ import binnie.craftgui.core.Tooltip;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 
+import javax.annotation.Nullable;
+
 public class ControlBiome extends Control implements ITooltip {
-	Biome biome;
-	String iconCategory;
+	private final Biome biome;
+	private String iconCategory;
 
 	public ControlBiome(final IWidget parent, final int x, final int y, final int w, final int h, final Biome biome) {
 		super(parent, x, y, w, h);
-		this.biome = null;
 		this.iconCategory = "plains";
 		this.biome = biome;
 	}

@@ -8,6 +8,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nullable;
+
 public final class BinnieGUIHandler implements IGuiHandler {
 	private AbstractMod mod;
 
@@ -16,6 +18,7 @@ public final class BinnieGUIHandler implements IGuiHandler {
 	}
 
 	@Override
+	@Nullable
 	public final Object getServerGuiElement(final int id, final EntityPlayer player, final World world, final int x, final int y, final int z) {
 		final Window window = this.getWindow(id, player, world, x, y, z, Side.SERVER);
 		if (window == null) {
@@ -26,6 +29,7 @@ public final class BinnieGUIHandler implements IGuiHandler {
 	}
 
 	@Override
+	@Nullable
 	public final Object getClientGuiElement(final int id, final EntityPlayer player, final World world, final int x, final int y, final int z) {
 		if (BinnieCore.getBinnieProxy().isSimulating(world)) {
 			return this.getServerGuiElement(id, player, world, x, y, z);
@@ -37,6 +41,7 @@ public final class BinnieGUIHandler implements IGuiHandler {
 		return window.getGui();
 	}
 
+	@Nullable
 	public Window getWindow(final int id, final EntityPlayer player, final World world, final int x, final int y, final int z, final Side side) {
 		for (final IBinnieGUID guid : this.mod.getGUIDs()) {
 			if (guid.ordinal() == id) {

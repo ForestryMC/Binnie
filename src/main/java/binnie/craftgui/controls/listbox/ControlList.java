@@ -51,18 +51,15 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 			final IWidget child = this.optionWidgets.get(value);
 			this.parent.ensureVisible(child.y(), child.y() + child.h(), this.h());
 		}
-		this.getParent().callEvent(new EventValueChanged<Object>(this.getParent(), value));
+		this.parent.callEvent(new EventValueChanged<Object>(this.parent, value));
 	}
 
 	public void setOptions(final Collection<T> options) {
 		this.deleteAllChildren();
 		this.allOptions.clear();
 		for (final T option : options) {
-			@SuppressWarnings("unchecked")
-			final IWidget optionWidget = ((ControlListBox<T>) this.getParent()).createOption(option, 0);
-			if (optionWidget != null) {
-				this.allOptions.put(option, optionWidget);
-			}
+			final IWidget optionWidget = this.parent.createOption(option, 0);
+			this.allOptions.put(option, optionWidget);
 		}
 		this.filterOptions();
 	}

@@ -13,6 +13,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,6 +61,7 @@ public enum DesignSystem implements IDesignSystem {
 	}
 
 	@Override
+	@Nullable
 	public IDesignMaterial getMaterial(final int id) {
 		switch (this) {
 			case Glass: {
@@ -134,6 +136,7 @@ public enum DesignSystem implements IDesignSystem {
 	}
 
 	@Override
+	@Nullable
 	public TextureAtlasSprite getPrimarySprite(final IPattern pattern) {
 		if (pattern instanceof EnumPattern) {
 			return this.primary.get(((EnumPattern) pattern).ordinal());
@@ -142,6 +145,7 @@ public enum DesignSystem implements IDesignSystem {
 	}
 
 	@Override
+	@Nullable
 	public TextureAtlasSprite getSecondarySprite(final IPattern pattern) {
 		if (pattern instanceof EnumPattern) {
 			return this.secondary.get(((EnumPattern) pattern).ordinal());

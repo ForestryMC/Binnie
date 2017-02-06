@@ -1,7 +1,10 @@
 package binnie.core.machines;
 
-interface IBlockMachine {
-	MachinePackage getPackage(final int p0);
+import javax.annotation.Nullable;
 
-	String getMachineName(final int p0);
+interface IBlockMachine {
+	@Nullable
+	MachinePackage getPackage(final int meta);
+
+	String getMachineName(final int meta);
 }

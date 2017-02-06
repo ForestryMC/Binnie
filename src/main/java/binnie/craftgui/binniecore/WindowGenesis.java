@@ -35,6 +35,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +47,7 @@ public class WindowGenesis extends Window {
 	private ControlListBox<Gene> geneOptions;
 	private Panel panelPickup;
 
-	public WindowGenesis(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowGenesis(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
 		super(342, 228, player, inventory, side);
 	}
 
@@ -149,7 +150,7 @@ public class WindowGenesis extends Window {
 		this.refreshTemplate(null);
 	}
 
-	private void refreshTemplate(final IChromosomeType selection) {
+	private void refreshTemplate(@Nullable final IChromosomeType selection) {
 		final List<Gene> genes = new ArrayList<>();
 		final IChromosomeType[] arr$;
 		final IChromosomeType[] chromos = arr$ = Binnie.GENETICS.getChromosomeMap(this.root).keySet().toArray(new IChromosomeType[0]);

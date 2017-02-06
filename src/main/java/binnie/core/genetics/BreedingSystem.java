@@ -219,7 +219,7 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 	}
 
 	public final boolean isMutationDiscovered(final IMutation mutation, final IBreedingTracker tracker) {
-		return tracker == null || tracker.isDiscovered(mutation);
+		return tracker.isDiscovered(mutation);
 	}
 
 	public final boolean isSpeciesDiscovered(final IAlleleSpecies species, final World world, final GameProfile name) {
@@ -227,7 +227,7 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 	}
 
 	public final boolean isSpeciesDiscovered(final IAlleleSpecies species, final IBreedingTracker tracker) {
-		return tracker == null || tracker.isDiscovered(species);
+		return tracker.isDiscovered(species);
 	}
 
 	public final boolean isSecret(final IAlleleSpecies species) {
@@ -413,6 +413,7 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 		return this.getSpeciesRoot().getUID();
 	}
 
+	@Nullable
 	public final IChromosomeType getChromosome(final int i) {
 		for (final IChromosomeType chromosome : this.getSpeciesRoot().getKaryotype()) {
 			if (i == chromosome.ordinal()) {

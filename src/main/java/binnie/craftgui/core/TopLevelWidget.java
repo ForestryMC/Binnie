@@ -1,10 +1,12 @@
 package binnie.craftgui.core;
 
+import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.events.EventWidget;
 import org.lwjgl.input.Mouse;
 
+import javax.annotation.Nullable;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,8 +15,11 @@ import java.util.List;
 import java.util.ListIterator;
 
 public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
+	@Nullable
 	IWidget mousedOverWidget;
+	@Nullable
 	IWidget draggedWidget;
+	@Nullable
 	IWidget focusedWidget;
 	protected IPoint mousePosition;
 	IPoint dragStart;
@@ -47,7 +52,7 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 		});
 	}
 
-	public void setMousedOverWidget(final IWidget widget) {
+	public void setMousedOverWidget(@Nullable final IWidget widget) {
 		if (this.mousedOverWidget == widget) {
 			return;
 		}
@@ -60,11 +65,11 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 		}
 	}
 
-	public void setDraggedWidget(final IWidget widget) {
+	public void setDraggedWidget(@Nullable final IWidget widget) {
 		this.setDraggedWidget(widget, -1);
 	}
 
-	public void setDraggedWidget(final IWidget widget, final int button) {
+	public void setDraggedWidget(@Nullable final IWidget widget, final int button) {
 		if (this.draggedWidget == widget) {
 			return;
 		}
@@ -77,7 +82,7 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 		}
 	}
 
-	public void setFocusedWidget(final IWidget widget) {
+	public void setFocusedWidget(@Nullable final IWidget widget) {
 		IWidget newWidget = widget;
 		if (this.focusedWidget == newWidget) {
 			return;
@@ -95,16 +100,19 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 	}
 
 	@Override
+	@Nullable
 	public IWidget getMousedOverWidget() {
 		return this.mousedOverWidget;
 	}
 
 	@Override
+	@Nullable
 	public IWidget getDraggedWidget() {
 		return this.draggedWidget;
 	}
 
 	@Override
+	@Nullable
 	public IWidget getFocusedWidget() {
 		return this.focusedWidget;
 	}
@@ -137,6 +145,7 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 		}
 	}
 
+	@Nullable
 	private IWidget calculateMousedOverWidget() {
 		final Deque<IWidget> queue = this.calculateMousedOverWidgets();
 		while (!queue.isEmpty()) {
@@ -167,8 +176,9 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 	private Collection<IWidget> getQueuedWidgets(final IWidget widget) {
 		final List<IWidget> widgets = new ArrayList<>();
 		boolean addChildren = true;
-		if (widget.isCroppedWidet()) {
-			addChildren = widget.getCroppedZone().contains(widget.getCropWidget().getRelativeMousePosition());
+		IArea croppedZone = widget.getCroppedZone();
+		if (croppedZone != null) {
+			addChildren = croppedZone.contains(widget.getCropWidget().getRelativeMousePosition());
 		}
 		if (addChildren) {
 			final ListIterator<IWidget> li = widget.getWidgets().listIterator(widget.getWidgets().size());

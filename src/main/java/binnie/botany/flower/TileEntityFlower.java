@@ -39,15 +39,20 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.EnumPlantType;
 
+import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
 public class TileEntityFlower extends TileEntity implements IPollinatable, IButterflyNursery {
+	@Nullable
 	IFlower flower;
+	@Nullable
 	GameProfile owner;
 	int section;
+	@Nullable
 	RenderInfo renderInfo;
+	@Nullable
 	IButterfly caterpillar;
 	int matureTime;
 
@@ -147,6 +152,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		}
 	}
 
+	@Nullable
 	public IFlower getFlower() {
 		if (this.getSection() <= 0) {
 			return this.flower;

@@ -3,8 +3,11 @@ package binnie.core.network.packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
+
 interface IPacketLocation {
-	TileEntity getTarget(final World p0);
+	@Nullable
+	TileEntity getTarget(final World world);
 
 	int getX();
 

@@ -6,6 +6,8 @@ import binnie.core.machines.MachineComponent;
 import binnie.core.machines.network.INetwork;
 import net.minecraft.nbt.NBTTagCompound;
 
+import javax.annotation.Nullable;
+
 public abstract class ComponentProcessIndefinate extends MachineComponent implements IProcess, INetwork.TilePacketSync {
 	private float energyPerTick;
 	private boolean inProgress;
@@ -73,16 +75,25 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 	}
 
 	@Override
+	@Nullable
 	public ErrorState canWork() {
-		return (this.actionCancelTask == 0.0f) ? null : new ErrorState(BinnieCore.getBinnieProxy().localise("machine.errors.task.cancelled.desc"), BinnieCore.getBinnieProxy().localise("machine.errors.task.cancelled.info"));
+		if (this.actionCancelTask == 0.0f) {
+			return null;
+		} else {
+			return new ErrorState(BinnieCore.getBinnieProxy().localise("machine.errors.task.cancelled.desc"), BinnieCore.getBinnieProxy().localise("machine.errors.task.cancelled.info"));
+		}
 	}
 
 	@Override
+	@Nullable
 	public ErrorState canProgress() {
 		if (this.actionPauseProcess != 0.0f) {
 			return new ErrorState(BinnieCore.getBinnieProxy().localise("machine.errors.task.process.paused.desc"), BinnieCore.getBinnieProxy().localise("machine.errors.task.process.paused.info"));
+		} else if (this.getPower().getInterface().getEnergy(PowerSystem.RF) < this.getEnergyPerTick()) {
+			return new ErrorState.InsufficientPower();
+		} else {
+			return null;
 		}
-		return (this.getPower().getInterface().getEnergy(PowerSystem.RF) < this.getEnergyPerTick()) ? new ErrorState.InsufficientPower() : null;
 	}
 
 	@Override

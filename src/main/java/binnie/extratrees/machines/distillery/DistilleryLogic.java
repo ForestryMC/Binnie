@@ -61,6 +61,7 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 	}
 
 	@Override
+	@Nullable
 	public ErrorState canWork() {
 		if (this.getUtil().isTankEmpty(DistilleryMachine.TANK_INPUT) && this.currentFluid == null) {
 			return new ErrorState.InsufficientLiquid("No Input Liquid", DistilleryMachine.TANK_INPUT);
@@ -89,7 +90,9 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 	@Override
 	protected void onFinishTask() {
 		final FluidStack output = DistilleryRecipes.getOutput(this.currentFluid, this.level);
-		this.getUtil().fillTank(DistilleryMachine.TANK_OUTPUT, output);
+		if (output != null) {
+			this.getUtil().fillTank(DistilleryMachine.TANK_OUTPUT, output);
+		}
 		this.currentFluid = null;
 	}
 

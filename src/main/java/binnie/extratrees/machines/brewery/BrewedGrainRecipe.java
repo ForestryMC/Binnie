@@ -8,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
@@ -42,34 +41,24 @@ public class BrewedGrainRecipe implements IBreweryRecipe {
 	}
 
 	@Override
+	@Nullable
 	public FluidStack getOutput(final BreweryCrafting crafting) {
-		if (!WATER.isFluidEqual(crafting.inputFluid)) {
-			return null;
-		}
-
-		if (!isIngredient(crafting.ingredient)) {
-			return null;
-		}
-
-		if (!yeast.isItemEqual(crafting.yeast)) {
-			return null;
-		}
-
-		int grainCount = 0;
-		for (final ItemStack stack : crafting.inputGrains) {
-			if (stack == null) {
-				return null;
+		if (WATER.isFluidEqual(crafting.inputFluid) && isIngredient(crafting.ingredient) && yeast.isItemEqual(crafting.yeast)) {
+			int grainCount = 0;
+			for (final ItemStack stack : crafting.inputGrains) {
+				if (stack == null) {
+					return null;
+				}
+				if (isGrain(stack)) {
+					grainCount++;
+				}
 			}
-			if (isGrain(stack)) {
-				grainCount++;
+
+			if (grainCount >= 2) {
+				return output.copy();
 			}
 		}
-
-		if (grainCount >= 2) {
-			return output.copy();
-		} else {
-			return null;
-		}
+		return null;
 	}
 
 	@Override

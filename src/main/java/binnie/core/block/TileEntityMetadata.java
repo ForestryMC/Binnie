@@ -13,6 +13,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
+import javax.annotation.Nullable;
+
 public class TileEntityMetadata extends TileEntity {
 	private int meta;
 	private boolean droppedBlock;
@@ -76,6 +78,7 @@ public class TileEntityMetadata extends TileEntity {
 		return new PacketMetadata(pos, meta, getUpdateTag());
 	}
 
+	@Nullable
 	public static TileEntityMetadata getTile(final IBlockAccess world, final BlockPos pos) {
 		final TileEntity tile = world.getTileEntity(pos);
 		if (!(tile instanceof TileEntityMetadata)) {

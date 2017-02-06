@@ -16,12 +16,16 @@ import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
 
+import javax.annotation.Nullable;
+
 public class ControlChromosome extends Control implements IControlValue<IChromosomeType> {
 	Texture BeeTexture;
 	Texture TreeTexture;
 	Texture MothTexture;
 	Texture FlowerTexture;
+	@Nullable
 	IChromosomeType chromo;
+	@Nullable
 	ISpeciesRoot species;
 
 	public ControlChromosome(final IWidget parent, final int x, final int y) {
@@ -34,11 +38,12 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 		this.species = null;
 	}
 
+	@Nullable
 	public ISpeciesRoot getRoot() {
 		return this.species;
 	}
 
-	public void setRoot(final ISpeciesRoot root) {
+	public void setRoot(@Nullable final ISpeciesRoot root) {
 		if (root != this.species) {
 			this.species = root;
 			this.deleteAllChildren();
@@ -122,6 +127,7 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 		CraftGUI.render.texture(text, IPoint.ZERO);
 	}
 
+	@Nullable
 	private Texture getTypeTexture() {
 		if (this.species == Binnie.GENETICS.getBeeRoot()) {
 			return this.BeeTexture;

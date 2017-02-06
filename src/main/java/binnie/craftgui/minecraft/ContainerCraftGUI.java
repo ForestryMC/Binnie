@@ -45,6 +45,7 @@ public class ContainerCraftGUI extends Container {
 	private PowerInfo syncedPower;
 	private ProcessInfo syncedProcess;
 	private int errorType;
+	@Nullable
 	private ErrorState error;
 	private int mousedOverSlotNumber;
 	private final Set<EntityPlayer> crafters = Sets.newConcurrentHashSet();
@@ -79,25 +80,28 @@ public class ContainerCraftGUI extends Container {
 	}
 
 	@Override
-	public Slot getSlot(final int par1) {
-		if (par1 < 0 || par1 >= this.inventorySlots.size()) {
+	@Nullable
+	public Slot getSlot(final int index) {
+		if (index < 0 || index >= this.inventorySlots.size()) {
 			return null;
 		}
-		return this.inventorySlots.get(par1);
+		return this.inventorySlots.get(index);
 	}
 
 	@Override
-	public void putStackInSlot(final int par1, final ItemStack par2ItemStack) {
-		if (this.getSlot(par1) != null) {
-			this.getSlot(par1).putStack(par2ItemStack);
+	public void putStackInSlot(final int index, final ItemStack par2ItemStack) {
+		Slot slot = this.getSlot(index);
+		if (slot != null) {
+			slot.putStack(par2ItemStack);
 		}
 	}
 
 	@Override
 	public void putStacksInSlots(final ItemStack[] par1ArrayOfItemStack) {
 		for (int i = 0; i < par1ArrayOfItemStack.length; ++i) {
-			if (this.getSlot(i) != null) {
-				this.getSlot(i).putStack(par1ArrayOfItemStack[i]);
+			Slot slot = this.getSlot(i);
+			if (slot != null) {
+				slot.putStack(par1ArrayOfItemStack[i]);
 			}
 		}
 	}
@@ -111,7 +115,8 @@ public class ContainerCraftGUI extends Container {
 			if (inventory.dispenseOnClose(i)) {
 				ItemStack stack = inventory.getStackInSlot(i);
 				if (stack != null) {
-					stack = new TransferRequest(stack, par1EntityPlayer.inventory).transfer(true);
+					TransferRequest transferRequest = new TransferRequest(stack, par1EntityPlayer.inventory);
+					stack = transferRequest.transfer(true);
 					if (stack != null) {
 						par1EntityPlayer.dropItem(stack, false);
 					}

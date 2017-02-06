@@ -12,6 +12,7 @@ import java.util.List;
 
 public interface IFlowerRoot extends ISpeciesRoot {
 	@Override
+	@Nullable
 	IFlower getMember(ItemStack memberStack);
 
 	@Override
@@ -27,15 +28,16 @@ public interface IFlowerRoot extends ISpeciesRoot {
 	IFlowerGenome templateAsGenome(IAllele[] templateFrist, IAllele[] templateSecond);
 
 	@Override
-	IBotanistTracker getBreedingTracker(World world, GameProfile profile);
+	IBotanistTracker getBreedingTracker(World world, @Nullable GameProfile profile);
 
 	@Override
 	List<? extends IFlowerMutation> getMutations(boolean shuffle);
 
 	@Override
+	@Nullable
 	EnumFlowerStage getType(ItemStack itemStack);
 
-	IFlower getFlower(World world, IFlowerGenome genome);
+	IFlower getFlower(IFlowerGenome genome);
 
 	void addConversion(ItemStack memberStack, IAllele[] template);
 

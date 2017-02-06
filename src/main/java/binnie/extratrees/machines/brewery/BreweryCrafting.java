@@ -51,7 +51,7 @@ public class BreweryCrafting implements INbtWritable {
 		return nbt;
 	}
 
-	private NBTTagCompound getNBT(final ItemStack ingr) {
+	private NBTTagCompound getNBT(@Nullable final ItemStack ingr) {
 		if (ingr == null) {
 			return new NBTTagCompound();
 		}

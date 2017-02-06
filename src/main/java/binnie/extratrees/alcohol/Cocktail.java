@@ -84,7 +84,7 @@ public enum Cocktail {
 	}
 
 	public static boolean isIngredient(final String name) {
-		return name != null && Cocktail.cocktailIngredients.containsKey(name.toLowerCase());
+		return Cocktail.cocktailIngredients.containsKey(name.toLowerCase());
 	}
 
 	static {

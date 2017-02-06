@@ -22,6 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,7 @@ import java.util.List;
 public class GuiCraftGUI extends GuiContainer {
 	IPoint mousePos;
 	private Window window;
+	@Nullable
 	private ItemStack draggedItem;
 
 	@Override
@@ -63,6 +65,7 @@ public class GuiCraftGUI extends GuiContainer {
 		this.window.initGui();
 	}
 
+	@Nullable
 	public ItemStack getDraggedItem() {
 		return this.draggedItem;
 	}

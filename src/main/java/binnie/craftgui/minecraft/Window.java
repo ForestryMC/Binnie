@@ -46,9 +46,11 @@ import java.util.ArrayList;
 import java.util.Deque;
 
 public abstract class Window extends TopLevelWidget implements INetwork.RecieveGuiNBT {
+	@Nullable
 	private GuiCraftGUI gui;
 	private ContainerCraftGUI container;
 	private WindowInventory windowInventory;
+	@Nullable
 	private ControlText title;
 	protected int titleButtonLeft;
 	protected int titleButtonRight;
@@ -57,6 +59,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 	@Nullable
 	private StandardTexture bgText2;
 	private boolean hasBeenInitialised;
+	@Nullable
 	private EntityPlayer player;
 	@Nullable
 	private IInventory entityInventory;
@@ -118,6 +121,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		return Machine.getInterface(IInventoryMachine.class, this.getInventory()) != null;
 	}
 
+	@Nullable
 	public String showInfoButton() {
 		IMachineInformation machineInformation = Machine.getInterface(IMachineInformation.class, this.getInventory());
 		if (machineInformation != null) {
@@ -126,7 +130,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		return null;
 	}
 
-	public Window(final int width, final int height, final EntityPlayer player, final IInventory inventory, final Side side) {
+	public Window(final int width, final int height, final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
 		this.titleButtonLeft = 8;
 		this.titleButtonRight = 8;
 		this.bgText1 = null;
@@ -150,8 +154,9 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		if (this.showHelpButton()) {
 			new ControlHelp(this, this.titleButtonLeft += 22, 8);
 		}
-		if (this.showInfoButton() != null) {
-			new ControlInfo(this, this.titleButtonLeft += 22, 8, this.showInfoButton());
+		String showInfoButton = this.showInfoButton();
+		if (showInfoButton != null) {
+			new ControlInfo(this, this.titleButtonLeft += 22, 8, showInfoButton);
 		}
 		this.addSelfEventHandler(new EventWidget.ChangeSize.Handler() {
 			@Override
@@ -171,6 +176,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 	}
 
 	@SideOnly(Side.CLIENT)
+	@Nullable
 	public final GuiCraftGUI getGui() {
 		return this.gui;
 	}
@@ -231,6 +237,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		return this.getPlayer().getGameProfile();
 	}
 
+	@Nullable
 	public ItemStack getHeldItemStack() {
 		if (this.player != null) {
 			return this.player.inventory.getItemStack();
@@ -243,7 +250,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		return this.entityInventory;
 	}
 
-	public void setInventories(final EntityPlayer player2, final IInventory inventory) {
+	public void setInventories(final EntityPlayer player2, @Nullable final IInventory inventory) {
 		this.player = player2;
 		this.entityInventory = inventory;
 	}
@@ -302,10 +309,12 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 	public void onWindowInventoryChanged() {
 	}
 
+	@Nullable
 	public Texture getBackground1() {
 		return this.bgText1;
 	}
 
+	@Nullable
 	public Texture getBackground2() {
 		return this.bgText2;
 	}

@@ -33,7 +33,7 @@ public class Acclimatiser {
 	private static Map<ItemStack, Float> humidityItems = new HashMap<>();
 
 	@Nullable
-	private static ToleranceSystem getToleranceSystem(final ItemStack stack, final ItemStack acclim) {
+	private static ToleranceSystem getToleranceSystem(@Nullable final ItemStack stack, final ItemStack acclim) {
 		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
 		if (root != null) {
 			for (final ToleranceSystem system : Acclimatiser.toleranceSystems) {
@@ -67,14 +67,14 @@ public class Acclimatiser {
 		return 0.0f;
 	}
 
-	public static void addTemperatureItem(final ItemStack itemstack, final float amount) {
+	public static void addTemperatureItem(@Nullable final ItemStack itemstack, final float amount) {
 		if (itemstack == null) {
 			return;
 		}
 		Acclimatiser.temperatureItems.put(itemstack, amount);
 	}
 
-	public static void addHumidityItem(final ItemStack itemstack, final float amount) {
+	public static void addHumidityItem(@Nullable final ItemStack itemstack, final float amount) {
 		if (itemstack == null) {
 			return;
 		}
@@ -109,7 +109,7 @@ public class Acclimatiser {
 		addHumidityItem(FluidContainerType.CAPSULE.getFilled(FluidRegistry.WATER), 0.75f);
 	}
 
-	public static boolean canAcclimatise(final ItemStack stack, final List<ItemStack> acclimatisers) {
+	public static boolean canAcclimatise(@Nullable final ItemStack stack, final List<ItemStack> acclimatisers) {
 		if (stack == null || acclimatisers.isEmpty()) {
 			return true;
 		}
@@ -136,7 +136,7 @@ public class Acclimatiser {
 
 	public static Tolerance alterTolerance(final Tolerance tol, final float effect) {
 		final int[] is = tol.getBounds();
-		int[] range = new int[2];
+		int[] range;
 		if (effect < 0.0f) {
 			range = new int[]{is[0] - 1, is[1]};
 		} else {

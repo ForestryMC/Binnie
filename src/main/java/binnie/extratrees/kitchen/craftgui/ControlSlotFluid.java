@@ -48,7 +48,7 @@ public class ControlSlotFluid extends Control implements ITooltip {
 	@Override
 	public void onUpdateClient() {
 		super.onUpdateClient();
-		this.itemDisplay.setItemStack(this.getFluidStack());
+		this.itemDisplay.setFluidStack(this.getFluidStack());
 	}
 
 	@Override

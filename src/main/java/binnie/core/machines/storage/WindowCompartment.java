@@ -50,6 +50,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -70,7 +71,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		return new WindowCompartment(player, inventory, side);
 	}
 
-	public WindowCompartment(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowCompartment(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
 		super(320, 226, player, inventory, side);
 		this.panels = new HashMap<>();
 		this.currentTab = 0;

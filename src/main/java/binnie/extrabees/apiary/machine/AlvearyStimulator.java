@@ -23,6 +23,7 @@ import forestry.api.circuits.ICircuitBoard;
 import forestry.api.circuits.ICircuitLayout;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,6 +85,7 @@ public class AlvearyStimulator {
 			this.powered = this.getUtil().hasEnergyMJ(this.powerUsage);
 		}
 
+		@Nullable
 		public ICircuitBoard getHiveFrame() {
 			if (!this.getUtil().isSlotEmpty(AlvearyStimulator.slotCircuit)) {
 				return ChipsetManager.circuitRegistry.getCircuitBoard(this.getUtil().getStack(AlvearyStimulator.slotCircuit));

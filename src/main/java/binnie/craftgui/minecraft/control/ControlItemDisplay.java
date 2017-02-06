@@ -11,7 +11,10 @@ import binnie.craftgui.minecraft.Window;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nullable;
+
 public class ControlItemDisplay extends Control implements ITooltip {
+	@Nullable
 	private ItemStack itemStack;
 	public boolean hastooltip;
 	private boolean rotating;
@@ -68,6 +71,7 @@ public class ControlItemDisplay extends Control implements ITooltip {
 		this.itemStack = itemStack;
 	}
 
+	@Nullable
 	public ItemStack getItemStack() {
 		return this.itemStack;
 	}

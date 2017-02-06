@@ -48,21 +48,24 @@ public class AcclimatiserLogic extends ComponentProcessIndefinate {
 
 	protected void attemptAcclimatisation() {
 		final List<ItemStack> acclms = new ArrayList<>();
+		ItemStack target = this.getUtil().getStack(Acclimatiser.SLOT_TARGET);
+		if (target == null) {
+			return;
+		}
+
 		for (final ItemStack s : this.getUtil().getNonNullStacks(Acclimatiser.SLOT_ACCLIMATISER)) {
-			if (Acclimatiser.canAcclimatise(this.getUtil().getStack(Acclimatiser.SLOT_TARGET), s)) {
+			if (Acclimatiser.canAcclimatise(target, s)) {
 				acclms.add(s);
 			}
 		}
 		final ItemStack acc = acclms.get(this.getUtil().getRandom().nextInt(acclms.size()));
-		final ItemStack acclimed = Acclimatiser.acclimatise(this.getUtil().getStack(Acclimatiser.SLOT_TARGET), acc);
-		if (acclimed != null) {
-			this.getUtil().setStack(Acclimatiser.SLOT_TARGET, acclimed);
-			boolean removed = false;
-			for (final int i : Acclimatiser.SLOT_ACCLIMATISER) {
-				if (!removed && this.getUtil().getStack(i) != null && this.getUtil().getStack(i).isItemEqual(acc)) {
-					this.getUtil().decreaseStack(i, 1);
-					removed = true;
-				}
+		final ItemStack acclimed = Acclimatiser.acclimatise(target, acc);
+		this.getUtil().setStack(Acclimatiser.SLOT_TARGET, acclimed);
+		for (final int i : Acclimatiser.SLOT_ACCLIMATISER) {
+			ItemStack stack = this.getUtil().getStack(i);
+			if (stack != null && stack.isItemEqual(acc)) {
+				this.getUtil().decreaseStack(i, 1);
+				break;
 			}
 		}
 	}

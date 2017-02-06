@@ -155,16 +155,15 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 
 	@Override
 	public Object createObject(final String renderer) {
-		Object object = null;
 		try {
 			final Class<?> rendererClass = Class.forName(renderer);
 			if (rendererClass != null) {
-				object = rendererClass.newInstance();
+				return rendererClass.newInstance();
 			}
 		} catch (IllegalAccessException | InstantiationException | ClassNotFoundException e) {
 			throw Throwables.propagate(e);
 		}
-		return object;
+		throw new IllegalArgumentException("Could not create object for class name " + renderer);
 	}
 
 //	@Override

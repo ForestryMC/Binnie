@@ -3,10 +3,11 @@ package binnie.extratrees.machines.brewery;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 
 public interface IBreweryRecipe {
+	@Nullable
 	FluidStack getOutput(final BreweryCrafting crafting);
 
 	FluidStack getInput();

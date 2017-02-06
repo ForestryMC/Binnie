@@ -46,7 +46,7 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 
 	@Override
 	public String getUID() {
-		return "rootFlowers";
+		return UID;
 	}
 
 	@Override
@@ -79,6 +79,7 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 
 	@Override
 	public IAlyzerPlugin getAlyzerPlugin() {
+		// TODO write flower alyzer plugin
 		return null;
 	}
 
@@ -88,11 +89,8 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	}
 
 	@Override
+	@Nullable
 	public EnumFlowerStage getType(ItemStack stack) {
-		if (stack == null) {
-			return null;
-		}
-
 		Item item = stack.getItem();
 
 		if (Botany.flowerItem == item) {
@@ -107,6 +105,7 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	}
 
 	@Override
+	@Nullable
 	public ItemStack getMemberStack(IIndividual flower, ISpeciesType type) {
 		if (!this.isMember(flower)) {
 			return null;
@@ -129,15 +128,16 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	}
 
 	@Override
+	@Nullable
 	public IFlower getMember(final ItemStack stack) {
-		if (!this.isMember(stack)) {
+		if (!this.isMember(stack) || stack.getTagCompound() == null) {
 			return null;
 		}
 		return new Flower(stack.getTagCompound());
 	}
 
 	@Override
-	public IFlower getFlower(final World world, final IFlowerGenome genome) {
+	public IFlower getFlower(final IFlowerGenome genome) {
 		return new Flower(genome, 2);
 	}
 
@@ -217,7 +217,7 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	}
 
 	@Override
-	public IBotanistTracker getBreedingTracker(final World world, final GameProfile player) {
+	public IBotanistTracker getBreedingTracker(final World world, @Nullable final GameProfile player) {
 		final String filename = "BotanistTracker." + ((player == null) ? "common" : player.getId());
 		BotanistTracker tracker = (BotanistTracker) world.loadItemData(BotanistTracker.class, filename);
 		if (tracker == null) {
@@ -250,7 +250,7 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 
 	@Override
 	public void addConversion(final ItemStack itemstack, final IAllele[] template) {
-		final IFlower flower = this.getFlower(null, this.templateAsGenome(template));
+		final IFlower flower = this.getFlower(this.templateAsGenome(template));
 		this.conversions.put(itemstack, flower);
 	}
 

@@ -26,12 +26,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 public class GardenLogic extends FarmLogic {
 	EnumMoisture moisture;
+	@Nullable
 	EnumAcidity acidity;
 	boolean fertilised;
 	String name;
@@ -39,7 +41,7 @@ public class GardenLogic extends FarmLogic {
 	private ItemStack icon;
 	List<IFarmable> farmables;
 
-	public GardenLogic(EnumMoisture moisture2, EnumAcidity acidity2, boolean isManual, boolean isFertilised, ItemStack icon2, String name2) {
+	public GardenLogic(EnumMoisture moisture2, @Nullable EnumAcidity acidity2, boolean isManual, boolean isFertilised, ItemStack icon2, String name2) {
 		this.produce = new ArrayList<>();
 		(this.farmables = new ArrayList<>()).add(new FarmableFlower());
 		this.farmables.add(new FarmableVanillaFlower());
@@ -170,11 +172,12 @@ public class GardenLogic extends FarmLogic {
 		return false;
 	}
 
+	@Nullable
 	private ItemStack getAvailableLoam(IFarmHousing housing) {
 		EnumMoisture[] moistures;
 		if (this.moisture == EnumMoisture.Damp) {
 			moistures = new EnumMoisture[]{EnumMoisture.Damp, EnumMoisture.Normal, EnumMoisture.Dry};
-		} else if (this.moisture == EnumMoisture.Damp) {
+		} else if (this.moisture == EnumMoisture.Dry) {
 			moistures = new EnumMoisture[]{EnumMoisture.Dry, EnumMoisture.Damp, EnumMoisture.Dry};
 		} else {
 			moistures = new EnumMoisture[]{EnumMoisture.Dry, EnumMoisture.Normal, EnumMoisture.Damp};
@@ -201,7 +204,7 @@ public class GardenLogic extends FarmLogic {
 		return this.trySetSoil(world, position, this.getAvailableLoam(housing), housing);
 	}
 
-	private boolean trySetSoil(World world, BlockPos position, ItemStack loam, IFarmHousing housing) {
+	private boolean trySetSoil(World world, BlockPos position, @Nullable ItemStack loam, IFarmHousing housing) {
 		ItemStack copy = loam;
 		if (loam != null) {
 			if (loam.getItem() == Item.getItemFromBlock(Blocks.DIRT)) {
@@ -252,6 +255,7 @@ public class GardenLogic extends FarmLogic {
 	}
 
 	@Override
+	@Nullable
 	public Collection<ICrop> harvest(World world, BlockPos pos, FarmDirection direction, int extent) {
 		return null;
 	}
@@ -302,6 +306,7 @@ public class GardenLogic extends FarmLogic {
 		return false;
 	}
 
+	@Nullable
 	public ItemStack getAvailableAcid(IFarmHousing housing) {
 		for (final ItemStack stack : Gardening.getAcidFertilisers()) {
 			if (stack != null && stack.getItem() != null && housing.getFarmInventory().hasResources(new ItemStack[]{stack})) {
@@ -311,6 +316,7 @@ public class GardenLogic extends FarmLogic {
 		return null;
 	}
 
+	@Nullable
 	public ItemStack getAvailableAlkaline(IFarmHousing housing) {
 		for (final ItemStack stack : Gardening.getAlkalineFertilisers()) {
 			if (stack != null && stack.getItem() != null && housing.getFarmInventory().hasResources(new ItemStack[]{stack})) {

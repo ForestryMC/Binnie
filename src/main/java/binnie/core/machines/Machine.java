@@ -10,6 +10,7 @@ import binnie.core.network.BinnieCorePacketID;
 import binnie.core.network.INetworkedEntity;
 import binnie.core.network.packet.MessageTileNBT;
 import binnie.core.network.packet.PacketPayload;
+import com.google.common.base.Preconditions;
 import com.mojang.authlib.GameProfile;
 import forestry.api.core.INbtReadable;
 import forestry.api.core.INbtWritable;
@@ -36,6 +37,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	private Map<Class<? extends MachineComponent>, MachineComponent> componentMap;
 	private TileEntity tile;
 	private boolean queuedInventoryUpdate;
+	@Nullable
 	private GameProfile owner;
 
 	public Machine(final MachinePackage pack, final TileEntity tile) {
@@ -50,9 +52,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 
 	@Override
 	public void addComponent(final MachineComponent component) {
-		if (component == null) {
-			throw new NullPointerException("Can't have a null machine component!");
-		}
+		Preconditions.checkNotNull(component, "Can't have a null machine component!");
 		component.setMachine(this);
 		this.componentMap.put(component.getClass(), component);
 		for (final Class<? extends MachineComponent> inter : component.getComponentInterfaces()) {
@@ -67,8 +67,12 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 		return this.componentMap.values();
 	}
 
+	@Nullable
 	public <T extends MachineComponent> T getComponent(final Class<T> componentClass) {
-		return this.hasComponent(componentClass) ? componentClass.cast(this.componentMap.get(componentClass)) : null;
+		if (this.hasComponent(componentClass)) {
+			return componentClass.cast(this.componentMap.get(componentClass));
+		}
+		return null;
 	}
 
 	@Override
@@ -84,7 +88,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 				return interfaceClass.cast(component);
 			}
 		}
-		return null;
+		throw new IllegalArgumentException("No interface for : " + interfaceClass);
 	}
 
 	@Override
@@ -205,21 +209,22 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 		return this.machinePackage;
 	}
 
-	public static IMachine getMachine(final Object inventory) {
-		if (inventory != null && inventory instanceof IMachine) {
+	@Nullable
+	public static IMachine getMachine(@Nullable final Object inventory) {
+		if (inventory instanceof IMachine) {
 			return (IMachine) inventory;
 		}
-		if (inventory != null && inventory instanceof TileEntityMachine) {
+		if (inventory instanceof TileEntityMachine) {
 			return ((TileEntityMachine) inventory).getMachine();
 		}
-		if (inventory != null && inventory instanceof MachineComponent) {
+		if (inventory instanceof MachineComponent) {
 			return ((MachineComponent) inventory).getMachine();
 		}
 		return null;
 	}
 
 	@Nullable
-	public static <T> T getInterface(final Class<T> interfac, final Object inventory) {
+	public static <T> T getInterface(final Class<T> interfac, @Nullable final Object inventory) {
 		final IMachine machine = getMachine(inventory);
 		if (machine != null) {
 			return machine.getInterface(interfac);
@@ -256,6 +261,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 		this.owner = owner;
 	}
 
+	@Nullable
 	public Packet<?> getDescriptionPacket() {
 		final NBTTagCompound nbt = new NBTTagCompound();
 		this.syncToNBT(nbt);

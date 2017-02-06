@@ -130,19 +130,26 @@ public class ManagerGenetics extends ManagerBase {
 	}
 
 	@Nullable
-	public BreedingSystem getConversionSystem(final ItemStack stack) {
-		for (final BreedingSystem system : this.getActiveSystems()) {
-			if (system.getConversion(stack) != null) {
-				return system;
+	public BreedingSystem getConversionSystem(@Nullable final ItemStack stack) {
+		if (stack != null) {
+			for (final BreedingSystem system : this.getActiveSystems()) {
+				if (system.getConversion(stack) != null) {
+					return system;
+				}
 			}
 		}
 		return null;
 	}
 
 	@Nullable
-	public ItemStack getConversionStack(final ItemStack stack) {
-		final BreedingSystem system = this.getConversionSystem(stack);
-		return (system == null) ? null : system.getConversionStack(stack);
+	public ItemStack getConversionStack(@Nullable final ItemStack stack) {
+		if (stack != null) {
+			final BreedingSystem system = this.getConversionSystem(stack);
+			if (system != null) {
+				return system.getConversionStack(stack);
+			}
+		}
+		return null;
 	}
 
 	@Nullable

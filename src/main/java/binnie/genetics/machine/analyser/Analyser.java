@@ -8,6 +8,8 @@ import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import javax.annotation.Nullable;
+
 public class Analyser {
 	public static final int[] SLOT_RESERVE = new int[]{0, 1, 2, 3, 4, 5};
 	public static final int SLOT_TARGET = 6;
@@ -27,7 +29,7 @@ public class Analyser {
 		return stack.getItem() instanceof IItemAnalysable && ((IItemAnalysable) stack.getItem()).isAnalysed(stack);
 	}
 
-	public static ItemStack analyse(ItemStack stack) {
+	public static ItemStack analyse(@Nullable ItemStack stack) {
 		final ItemStack conv = Binnie.GENETICS.getConversionStack(stack);
 		if (conv != null) {
 			stack = conv;

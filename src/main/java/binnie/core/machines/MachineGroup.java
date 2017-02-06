@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -70,6 +71,7 @@ public class MachineGroup {
 		return this.block;
 	}
 
+	@Nullable
 	public MachinePackage getPackage(final int metadata) {
 		return this.packagesID.get(metadata);
 	}

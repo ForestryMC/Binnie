@@ -121,7 +121,7 @@ public class AnalystPageProducts extends AnalystPageProduce {
 			ItemStack container = getContainer(soilStack2);
 			if (container == null) {
 				final ControlFluidDisplay display2 = new ControlFluidDisplay(this, biomeListX + dx, y + dy);
-				display2.setItemStack(soilStack2);
+				display2.setFluidStack(soilStack2);
 				display2.setTooltip();
 			} else {
 				final ControlItemDisplay display3 = new ControlItemDisplay(this, biomeListX + dx, y + dy);

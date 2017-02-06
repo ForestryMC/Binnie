@@ -20,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nullable;
 import java.util.Map;
 
 public abstract class Designer {
@@ -63,12 +64,9 @@ public abstract class Designer {
 		public void createMachine(final Machine machine) {
 			new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.Woodworker);
 			final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-			inventory.addSlot(Designer.beeswaxSlot, "polish");
-			inventory.addSlot(Designer.design1Slot, "wood");
-			inventory.addSlot(Designer.design2Slot, "wood");
-			inventory.getSlot(Designer.beeswaxSlot).setValidator(new Validators.SlotValidatorBeeswax(this.type));
-			inventory.getSlot(Designer.design1Slot).setValidator(new Validators.SlotValidatorPlanks(this.type));
-			inventory.getSlot(Designer.design2Slot).setValidator(new Validators.SlotValidatorPlanks(this.type));
+			inventory.addSlot(Designer.beeswaxSlot, "polish").setValidator(new Validators.SlotValidatorBeeswax(this.type));
+			inventory.addSlot(Designer.design1Slot, "wood").setValidator(new Validators.SlotValidatorPlanks(this.type));
+			inventory.addSlot(Designer.design2Slot, "wood").setValidator(new Validators.SlotValidatorPlanks(this.type));
 			new ComponentWoodworkerRecipe(machine, this.type);
 		}
 	}
@@ -102,6 +100,7 @@ public abstract class Designer {
 		}
 
 		@Override
+		@Nullable
 		public ItemStack getProduct() {
 			final ItemStack plank1 = this.getUtil().getStack(Designer.design1Slot);
 			final ItemStack plank2 = this.getUtil().getStack(Designer.design2Slot);
@@ -111,11 +110,11 @@ public abstract class Designer {
 			final IDesignMaterial type1 = this.type.getSystem().getMaterial(plank1);
 			final IDesignMaterial type2 = this.type.getSystem().getMaterial(plank2);
 			final IDesign design = this.getDesign();
-			final ItemStack stack = this.type.getBlock(type1, type2, design);
-			return stack;
+			return this.type.getBlock(type1, type2, design);
 		}
 
 		@Override
+		@Nullable
 		public ItemStack doRecipe(final boolean takeItem) {
 			if (!this.isRecipe()) {
 				return null;
@@ -145,23 +144,21 @@ public abstract class Designer {
 			if (name.equals("recipe")) {
 				final InventoryPlayer playerInv = player.inventory;
 				final ItemStack recipe = this.doRecipe(false);
-				if (recipe == null) {
-					return;
-				}
-				if (playerInv.getItemStack() == null) {
-					playerInv.setItemStack(this.doRecipe(true));
-				} else if (playerInv.getItemStack().isItemEqual(recipe) && ItemStack.areItemStackTagsEqual(playerInv.getItemStack(), recipe)) {
-					final int fit = recipe.getMaxStackSize() - (recipe.stackSize + playerInv.getItemStack().stackSize);
-					if (fit >= 0) {
-						final ItemStack doRecipe;
-						final ItemStack rec = doRecipe = this.doRecipe(true);
-						doRecipe.stackSize += playerInv.getItemStack().stackSize;
-						playerInv.setItemStack(rec);
+				if (recipe != null) {
+					if (playerInv.getItemStack() == null) {
+						playerInv.setItemStack(this.doRecipe(true));
+					} else if (playerInv.getItemStack().isItemEqual(recipe) && ItemStack.areItemStackTagsEqual(playerInv.getItemStack(), recipe)) {
+						final int fit = recipe.getMaxStackSize() - (recipe.stackSize + playerInv.getItemStack().stackSize);
+						if (fit >= 0) {
+							this.doRecipe(true);
+							recipe.stackSize += playerInv.getItemStack().stackSize;
+							playerInv.setItemStack(recipe);
+						}
 					}
-				}
-				player.openContainer.detectAndSendChanges();
-				if (player instanceof EntityPlayerMP) {
-					((EntityPlayerMP) player).updateHeldItem();
+					player.openContainer.detectAndSendChanges();
+					if (player instanceof EntityPlayerMP) {
+						((EntityPlayerMP) player).updateHeldItem();
+					}
 				}
 			} else if (name.equals("design")) {
 				this.setDesign(CarpentryManager.carpentryInterface.getDesign(nbt.getShort("d")));

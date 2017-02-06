@@ -38,6 +38,7 @@ public class BreweryRecipes {
 		return false;
 	}
 
+	@Nullable
 	public static FluidStack getOutput(final FluidStack stack) {
 		final BreweryCrafting crafting = new BreweryCrafting(stack, null, null, null);
 		for (final IBreweryRecipe recipe : recipes) {

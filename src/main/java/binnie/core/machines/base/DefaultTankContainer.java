@@ -35,7 +35,7 @@ class DefaultTankContainer implements ITankMachine {
 	}
 
 	@Override
-	public TankSlot getTankSlot(final int slot) {
+	public TankSlot getTankSlot(final int index) {
 		return null;
 	}
 

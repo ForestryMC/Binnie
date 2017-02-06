@@ -27,6 +27,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -91,7 +92,7 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 	}
 
 	@Override
-	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
+	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, @Nullable EntityPlayer player, boolean willHarvest) {
 		List<ItemStack> drops = new ArrayList<>();
 		TileCeramic ceramic = TileUtil.getTile(world, pos, TileCeramic.class);
 		if (ceramic != null) {

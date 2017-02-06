@@ -13,6 +13,7 @@ import net.minecraftforge.fluids.capability.FluidTankProperties;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.LinkedHashMap;
@@ -39,7 +40,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 		return tank;
 	}
 
-	private final int fill(final int tankIndex, final FluidStack resource, final boolean doFill) {
+	private int fill(final int tankIndex, final FluidStack resource, final boolean doFill) {
 		if (!this.tanks.containsKey(tankIndex)) {
 			return 0;
 		}
@@ -54,7 +55,8 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 		return filled;
 	}
 
-	private final FluidStack drain(final int tankIndex, final int maxDrain, final boolean doDrain) {
+	@Nullable
+	private FluidStack drain(final int tankIndex, final int maxDrain, final boolean doDrain) {
 		if (!this.tanks.containsKey(tankIndex)) {
 			return null;
 		}
@@ -75,7 +77,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 		return -1;
 	}
 
-	private int getTankIndexToDrain(final EnumFacing from, final FluidStack resource) {
+	private int getTankIndexToDrain(final EnumFacing from, @Nullable final FluidStack resource) {
 		for (final TankSlot tank : this.tanks.values()) {
 			if (tank.getContent() != null && tank.canExtract(from) && (resource == null || resource.isFluidEqual(tank.getContent()))) {
 				return tank.getIndex();
@@ -144,6 +146,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 	}
 
 	@Override
+	@Nullable
 	public TankSlot getTankSlot(final int index) {
 		return this.tanks.get(index);
 	}

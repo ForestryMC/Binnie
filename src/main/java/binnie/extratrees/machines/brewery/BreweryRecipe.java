@@ -29,6 +29,7 @@ public class BreweryRecipe implements IBreweryRecipe {
 	}
 
 	@Override
+	@Nullable
 	public FluidStack getOutput(final BreweryCrafting crafting) {
 		if (!this.yeast.isItemEqual(crafting.yeast)) {
 			return null;

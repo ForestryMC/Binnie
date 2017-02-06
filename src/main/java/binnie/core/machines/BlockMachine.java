@@ -88,13 +88,15 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 	}
 
 	@Override
+	@Nullable
 	public MachinePackage getPackage(final int meta) {
 		return this.group.getPackage(meta);
 	}
 
 	@Override
 	public String getMachineName(final int meta) {
-		return (this.getPackage(meta) == null) ? "Unnamed Machine" : this.getPackage(meta).getDisplayName();
+		MachinePackage machinePackage = this.getPackage(meta);
+		return (machinePackage == null) ? "Unnamed Machine" : machinePackage.getDisplayName();
 	}
 
 	@Override
@@ -104,10 +106,11 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 
 	@Override
 	public TileEntity createNewTileEntity(final World var1, final int meta) {
-		if (this.group.getPackage(meta) == null) {
-			return null;
+		MachinePackage machinePackage = this.group.getPackage(meta);
+		if (machinePackage == null) {
+			throw new IllegalArgumentException("Could not find package for meta value " + meta);
 		}
-		return this.group.getPackage(meta).createTileEntity();
+		return machinePackage.createTileEntity();
 	}
 
 	@Override
@@ -119,14 +122,16 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 			return true;
 		}
 		TileEntity tileEntity = world.getTileEntity(pos);
-		if (tileEntity.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side)) {
-			IFluidHandler tileFluidHandler = tileEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side);
-			if (FluidUtil.interactWithFluidHandler(heldItem, tileFluidHandler, player)) {
-				return true;
+		if (tileEntity != null) {
+			if (tileEntity.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side)) {
+				IFluidHandler tileFluidHandler = tileEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side);
+				if (FluidUtil.interactWithFluidHandler(heldItem, tileFluidHandler, player)) {
+					return true;
+				}
 			}
-		}
-		if (tileEntity instanceof TileEntityMachine) {
-			((TileEntityMachine) tileEntity).getMachine().onRightClick(world, player, pos);
+			if (tileEntity instanceof TileEntityMachine) {
+				((TileEntityMachine) tileEntity).getMachine().onRightClick(world, player, pos);
+			}
 		}
 		return true;
 	}

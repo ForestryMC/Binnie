@@ -241,9 +241,6 @@ public abstract class BlockETDecorativeLeaves extends Block implements IItemMode
 	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
 		ETTreeDefinition treeDefinition = state.getValue(getVariant());
-		if (treeDefinition == null) {
-			return PluginArboriculture.proxy.getFoliageColorBasic();
-		}
 
 		ITreeGenome genome = treeDefinition.getGenome();
 

@@ -77,16 +77,12 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 
 	@Override
 	public World getWorld() {
-		return null;
-	}
-
-	public void throwException(final String message, final Throwable e) {
-		FMLCommonHandler.instance().raiseException(e, message, true);
+		return getServer().getEntityWorld();
 	}
 
 	@Override
 	public Minecraft getMinecraftInstance() {
-		return null;
+		throw new UnsupportedOperationException("Cannot call getMinecraftInstance on server side");
 	}
 
 	@Override

@@ -20,6 +20,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.client.config.GuiUtils;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class RenderUtil {
@@ -158,7 +159,7 @@ public class RenderUtil {
 		}
 	}
 
-	public static void drawFluid(IPoint pos, FluidStack fluid) {
+	public static void drawFluid(IPoint pos, @Nullable FluidStack fluid) {
 		GlStateManager.enableBlend();
 		GlStateManager.enableAlpha();
 

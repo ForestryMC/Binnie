@@ -14,7 +14,10 @@ import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 
+import javax.annotation.Nullable;
+
 public class ControlDatabaseIndividualDisplay extends ControlItemDisplay implements ITooltip {
+	@Nullable
 	private IAlleleSpecies species;
 	EnumDiscoveryState discovered;
 
@@ -24,7 +27,7 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 
 	public void setSpecies(final IAlleleSpecies species, EnumDiscoveryState state) {
 		final ISpeciesRoot speciesRoot = Binnie.GENETICS.getSpeciesRoot(species);
-		final BreedingSystem system = Binnie.GENETICS.getSystem(speciesRoot.getUID());
+		final BreedingSystem system = Binnie.GENETICS.getSystem(speciesRoot);
 		final IIndividual ind = system.getSpeciesRoot().templateAsIndividual(system.getSpeciesRoot().getTemplate(species.getUID()));
 		super.setItemStack(system.getSpeciesRoot().getMemberStack(ind, system.getDefaultType()));
 		this.species = species;

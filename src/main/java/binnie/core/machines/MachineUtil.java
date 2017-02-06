@@ -150,7 +150,7 @@ public class MachineUtil {
 			IInventory inventory = this.getInventory();
 			for (int slot : inventorySlots) {
 				ItemStack stackInSlot = this.getStack(slot);
-				if (ItemStack.areItemsEqual(requiredStack, stackInSlot) && ItemStack.areItemStackTagsEqual(requiredStack, stackInSlot)) {
+				if (stackInSlot != null && ItemStack.areItemsEqual(requiredStack, stackInSlot) && ItemStack.areItemStackTagsEqual(requiredStack, stackInSlot)) {
 					if (requiredStack.stackSize >= stackInSlot.stackSize) {
 						requiredStack.stackSize -= stackInSlot.stackSize;
 						inventory.removeStackFromSlot(slot);

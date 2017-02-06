@@ -15,6 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,6 +55,7 @@ public class CeramicDesignSystem implements IDesignSystem {
 	}
 
 	@Override
+	@Nullable
 	public TextureAtlasSprite getPrimarySprite(IPattern pattern) {
 		if (pattern instanceof EnumPattern) {
 			return this.primary.get(((EnumPattern) pattern).ordinal());
@@ -62,6 +64,7 @@ public class CeramicDesignSystem implements IDesignSystem {
 	}
 
 	@Override
+	@Nullable
 	public TextureAtlasSprite getSecondarySprite(IPattern pattern) {
 		if (pattern instanceof EnumPattern) {
 			return this.secondary.get(((EnumPattern) pattern).ordinal());

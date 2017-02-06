@@ -4,7 +4,6 @@ import binnie.Binnie;
 import binnie.core.block.BlockMetadata;
 import binnie.core.block.TileEntityMetadata;
 import binnie.extratrees.ExtraTrees;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -15,6 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class BlockCarpentryPanel extends BlockCarpentry {
@@ -80,13 +80,13 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 		return ModuleCarpentry.getCarpentryPanel(this.getDesignSystem(), TileEntityMetadata.getTileMetadata(world, pos));
 	}
 
-	public static boolean isValidPanelPlacement(IBlockAccess world, BlockPos pos, EnumFacing facing) {
+	public static boolean isValidPanelPlacement(IBlockAccess world, BlockPos pos, @Nullable EnumFacing facing) {
 		if (facing == null) {
 			return false;
 		}
 		pos = pos.offset(facing);
 		IBlockState state = world.getBlockState(pos);
-		return state != null && state.isSideSolid(world, pos, facing.getOpposite());
+		return state.isSideSolid(world, pos, facing.getOpposite());
 	}
 	
 	@Override

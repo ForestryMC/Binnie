@@ -138,10 +138,12 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 	private IFruitFamily family;
 	private boolean isRipening;
 	private int diffR, diffG, diffB;
+	@Nullable
 	private FruitPod pod;
 	private int ripeningPeriod;
 	private int colourUnripe;
 	private int colour;
+	@Nullable
 	private FruitSprite sprite;
 	private Map<ItemStack, Float> products;
 

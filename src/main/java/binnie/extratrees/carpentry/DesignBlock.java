@@ -14,6 +14,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+
 public class DesignBlock {
 	IDesign design;
 	IDesignMaterial primaryMaterial;
@@ -39,27 +41,32 @@ public class DesignBlock {
 		return this.secondaryMaterial;
 	}
 
-	DesignBlock(final IDesignSystem system, final IDesignMaterial primaryWood, final IDesignMaterial secondaryWood, final IDesign design, final int rotation, final EnumFacing dir) {
+	DesignBlock(final IDesignSystem system, @Nullable final IDesignMaterial primaryWood, @Nullable final IDesignMaterial secondaryWood, @Nullable final IDesign design, final int rotation, @Nullable final EnumFacing dir) {
 		this.panel = false;
-		this.design = design;
-		this.primaryMaterial = primaryWood;
-		this.secondaryMaterial = secondaryWood;
 		this.rotation = rotation;
-		this.facing = dir;
+
 		if (design == null) {
 			this.design = EnumDesign.Blank;
+		} else {
+			this.design = design;
 		}
 		if (primaryWood == null) {
 			this.primaryMaterial = system.getDefaultMaterial();
+		} else {
+			this.primaryMaterial = primaryWood;
 		}
 		if (secondaryWood == null) {
 			this.secondaryMaterial = system.getDefaultMaterial();
+		} else {
+			this.secondaryMaterial = secondaryWood;
 		}
 		if (this.rotation > 3 || this.rotation < 0) {
 			this.rotation = 0;
 		}
-		if (this.facing == null) {
+		if (dir == null) {
 			this.facing = EnumFacing.UP;
+		} else {
+			this.facing = dir;
 		}
 	}
 
@@ -379,13 +386,13 @@ public class DesignBlock {
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getPrimarySprite(IDesignSystem system, EnumFacing facing) {
 		ILayout layout = this.getLayout(facing);
-		return (layout == null) ? null : layout.getPrimarySprite(system);
+		return layout.getPrimarySprite(system);
 	}
 
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getSecondarySprite(IDesignSystem system, EnumFacing facing) {
 		ILayout layout = this.getLayout(facing);
-		return (layout == null) ? null : layout.getSecondarySprite(system);
+		return layout.getSecondarySprite(system);
 	}
 
 	@SideOnly(Side.CLIENT)

@@ -11,6 +11,7 @@ import java.util.EnumSet;
 
 public abstract class BaseSlot<T> implements INbtWritable, INbtReadable, IValidator<T> {
 	private SidedAccess access;
+	@Nullable
 	Validator<T> validator;
 	private boolean readOnly;
 	private int index;
@@ -38,7 +39,7 @@ public abstract class BaseSlot<T> implements INbtWritable, INbtReadable, IValida
 	@Nullable
 	public abstract T getContent();
 
-	public abstract void setContent(final T p0);
+	public abstract void setContent(final T content);
 
 	public void setValidator(final Validator<T> val) {
 		this.validator = val;
@@ -121,6 +122,7 @@ public abstract class BaseSlot<T> implements INbtWritable, INbtReadable, IValida
 
 	public abstract String getName();
 
+	@Nullable
 	public Validator<T> getValidator() {
 		return this.validator;
 	}

@@ -14,6 +14,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.fml.client.config.GuiUtils;
 import org.lwjgl.opengl.GL11;
 
+import javax.annotation.Nullable;
+
 public class TextureRenderer {
 	private static void renderTexturePadded(final IArea area, final IArea texture, final IBorder padding) {
 		int borderLeft = padding.l();
@@ -117,7 +119,7 @@ public class TextureRenderer {
 		return this.styleSheet.getTexture(key);
 	}
 
-	public void setTexture(final Texture texture) {
+	public void setTexture(@Nullable final Texture texture) {
 		if (texture != null) {
 			BinnieCore.getBinnieProxy().bindTexture(texture.getFilename());
 		}
@@ -127,7 +129,7 @@ public class TextureRenderer {
 		this.texture(this.getTexture(texture), position);
 	}
 
-	public void texture(final Texture texture, final IPoint position) {
+	public void texture(@Nullable final Texture texture, final IPoint position) {
 		if (texture == null) {
 			return;
 		}
@@ -141,7 +143,7 @@ public class TextureRenderer {
 		this.texture(this.getTexture(window), area);
 	}
 
-	public void texture(final Texture texture, final IArea area) {
+	public void texture(@Nullable final Texture texture, final IArea area) {
 		if (texture == null) {
 			return;
 		}

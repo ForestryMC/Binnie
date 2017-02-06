@@ -23,6 +23,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -175,9 +176,6 @@ public class Gardening {
 	}
 
 	public static int getFertiliserStrength(final ItemStack stack) {
-		if (stack == null) {
-			return 1;
-		}
 		for (final Map.Entry<ItemStack, Integer> entry : Gardening.fertiliserAcid.entrySet()) {
 			if (entry.getKey().isItemEqual(stack)) {
 				return entry.getValue();
@@ -196,8 +194,8 @@ public class Gardening {
 		return 1;
 	}
 
-	public static boolean canTolerate(final IFlower flower, final World world, final BlockPos pos) {
-		if (flower == null || flower.getGenome() == null) {
+	public static boolean canTolerate(@Nullable final IFlower flower, final World world, final BlockPos pos) {
+		if (flower == null) {
 			return false;
 		}
 		IBlockState soil = world.getBlockState(pos.down());
@@ -237,7 +235,7 @@ public class Gardening {
 	}
 
 	public static boolean isWeedkiller(ItemStack heldItem) {
-		return heldItem != null && heldItem.isItemEqual(BotanyItems.Weedkiller.get(1));
+		return heldItem.isItemEqual(BotanyItems.Weedkiller.get(1));
 	}
 
 	public static boolean addWeedKiller(World world, BlockPos pos) {

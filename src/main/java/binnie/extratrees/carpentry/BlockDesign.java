@@ -75,7 +75,7 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 		}
 		final DesignBlock block = blockC.getCarpentryBlock(world, pos);
 		final TileEntityMetadata tile = TileUtil.getTile(world, pos, TileEntityMetadata.class);
-		if (tile != null) {
+		if (tile != null && event.getFace() != null) {
 			block.rotate(event.getFace(), item, player, world, pos);
 			final int meta = block.getBlockMetadata(blockC.getDesignSystem());
 			tile.setTileMetadata(meta, true);

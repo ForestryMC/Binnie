@@ -21,11 +21,13 @@ import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Objects;
 
 public class AnalystPageDatabase extends ControlAnalystPage {
+	@Nullable
 	ControlScrollableContent scroll;
 	boolean isMaster;
 

@@ -6,16 +6,19 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
+import javax.annotation.Nullable;
+
 public interface ITankMachine extends IValidatedTankContainer {
 	TankInfo[] getTankInfos();
 
 	IFluidTank[] getTanks();
 
-	TankSlot addTank(final int p0, final String p1, final int p2);
+	TankSlot addTank(final int index, final String p1, final int p2);
 
-	IFluidTank getTank(final int p0);
+	IFluidTank getTank(final int index);
 
-	TankSlot getTankSlot(final int p0);
+	@Nullable
+	TankSlot getTankSlot(final int index);
 	
 	IFluidHandler getHandler(EnumFacing from);
 }

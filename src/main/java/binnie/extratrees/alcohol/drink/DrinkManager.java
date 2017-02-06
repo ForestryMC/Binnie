@@ -22,7 +22,7 @@ public class DrinkManager {
 	}
 
 	public static IDrinkLiquid getLiquid(final FluidStack fluid) {
-		return (fluid != null) ? getLiquid(fluid.getFluid()) : null;
+		return getLiquid(fluid.getFluid());
 	}
 
 }

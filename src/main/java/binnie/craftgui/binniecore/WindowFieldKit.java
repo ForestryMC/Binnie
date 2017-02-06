@@ -35,6 +35,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,9 +54,10 @@ public class WindowFieldKit extends Window {
 	private float analyseProgress;
 	private boolean isAnalysing;
 	private Map<IChromosomeType, String> info;
+	@Nullable
 	private ItemStack prev;
 
-	public WindowFieldKit(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowFieldKit(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
 		super(280, 230, player, inventory, side);
 		this.glassOffsetX = 0;
 		this.glassOffsetY = 0;

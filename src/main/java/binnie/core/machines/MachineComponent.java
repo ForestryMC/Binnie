@@ -11,7 +11,7 @@ public class MachineComponent implements INbtReadable, INbtWritable {
 	private IMachine machine;
 
 	public MachineComponent(final IMachine machine) {
-		this.setMachine(machine);
+		this.machine = machine;
 		machine.addComponent(this);
 	}
 

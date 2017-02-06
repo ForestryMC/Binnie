@@ -3,11 +3,14 @@ package binnie.core.network.packet;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
 
 public class MessageNBT extends MessageBase {
+	@Nullable
 	NBTTagCompound nbt;
 
+	@Nullable
 	public NBTTagCompound getTagCompound() {
 		return this.nbt;
 	}
