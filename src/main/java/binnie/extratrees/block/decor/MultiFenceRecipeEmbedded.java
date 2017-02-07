@@ -10,9 +10,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class MultiFenceRecipeEmbedded implements IRecipe {
-	ItemStack cached;
+	@Nullable
+	private ItemStack cached;
 
 	@Override
 	public boolean matches(final InventoryCrafting inv, final World world) {
@@ -29,8 +31,9 @@ public class MultiFenceRecipeEmbedded implements IRecipe {
 					if (type != null && type2 != null) {
 						if (type.equals(type2)) {
 							final IPlankType pType = WoodManager.get(b);
-							if (WoodManager.getFenceDescription(a).getPlankType() == pType) {
-								this.cached = WoodManager.getFence(WoodManager.getFenceDescription(a).getPlankType(), WoodManager.getFenceDescription(a).getSecondaryPlankType(), new FenceType(type.size, type.solid, true), 2);
+							FenceDescription fenceDescription = WoodManager.getFenceDescription(a);
+							if (fenceDescription != null && fenceDescription.getPlankType() == pType) {
+								this.cached = WoodManager.getFence(fenceDescription.getPlankType(), fenceDescription.getSecondaryPlankType(), new FenceType(type.size, type.solid, true), 2);
 								return true;
 							}
 						}

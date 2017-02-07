@@ -53,9 +53,9 @@ public enum EnumETLog implements IWoodType {
 	Shrub("Shrub", PlankType.VanillaPlanks.OAK);
 
 	public static final EnumETLog[] VALUES = values();
-	
-	String name;
-	IPlankType plank;
+
+	private final String name;
+	private final IPlankType plank;
 
 	EnumETLog(final String name, final IPlankType plank) {
 		this.name = name;
@@ -138,7 +138,7 @@ public enum EnumETLog implements IWoodType {
 	public String getPlankTexture() {
 		return plank.getPlankTextureName();
 	}
-	
+
 	public IPlankType getPlank() {
 		return plank;
 	}

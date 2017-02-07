@@ -6,7 +6,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 
+import javax.annotation.Nullable;
+
 public class TankInfo implements INbtReadable, INbtWritable {
+	@Nullable
 	public FluidStack liquid;
 	private float capacity;
 

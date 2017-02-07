@@ -2,7 +2,7 @@ package binnie.core.util;
 
 import net.minecraftforge.fluids.FluidStack;
 
-import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -10,19 +10,20 @@ import java.util.List;
 import java.util.Set;
 
 class FluidStackSet implements Set<FluidStack> {
-	List<FluidStack> itemStacks;
+	protected final List<FluidStack> fluidStacks;
 
 	FluidStackSet() {
-		this.itemStacks = new ArrayList<>();
+		this.fluidStacks = new ArrayList<>();
 	}
 
 	@Override
 	public String toString() {
-		return this.itemStacks.toString();
+		return this.fluidStacks.toString();
 	}
 
+	@Nullable
 	protected FluidStack getExisting(final FluidStack stack) {
-		for (final FluidStack stack2 : this.itemStacks) {
+		for (final FluidStack stack2 : this.fluidStacks) {
 			if (stack2.isFluidEqual(stack)) {
 				return stack2;
 			}
@@ -33,10 +34,10 @@ class FluidStackSet implements Set<FluidStack> {
 	@Override
 	public boolean add(final FluidStack e) {
 		if (e != null) {
-			if (this.getExisting(e) == null) {
-				return this.itemStacks.add(e.copy());
+			FluidStack existing = this.getExisting(e);
+			if (existing == null) {
+				return this.fluidStacks.add(e.copy());
 			}
-			final FluidStack existing = this.getExisting(e);
 			existing.amount += e.amount;
 		}
 		return false;
@@ -53,7 +54,7 @@ class FluidStackSet implements Set<FluidStack> {
 
 	@Override
 	public void clear() {
-		this.itemStacks.clear();
+		this.fluidStacks.clear();
 	}
 
 	@Override
@@ -72,12 +73,12 @@ class FluidStackSet implements Set<FluidStack> {
 
 	@Override
 	public boolean isEmpty() {
-		return this.itemStacks.isEmpty();
+		return this.fluidStacks.isEmpty();
 	}
 
 	@Override
 	public Iterator<FluidStack> iterator() {
-		return this.itemStacks.iterator();
+		return this.fluidStacks.iterator();
 	}
 
 	@Override
@@ -85,10 +86,10 @@ class FluidStackSet implements Set<FluidStack> {
 		if (this.contains(o)) {
 			final FluidStack r = (FluidStack) o;
 			final FluidStack existing = this.getExisting(r);
-			if (existing.amount > r.amount) {
+			if (existing != null && existing.amount > r.amount) {
 				existing.amount -= r.amount;
 			} else {
-				this.itemStacks.remove(existing);
+				this.fluidStacks.remove(existing);
 			}
 		}
 		return false;
@@ -106,21 +107,21 @@ class FluidStackSet implements Set<FluidStack> {
 
 	@Override
 	public boolean retainAll(final Collection<?> c) {
-		return this.itemStacks.retainAll(c);
+		return this.fluidStacks.retainAll(c);
 	}
 
 	@Override
 	public int size() {
-		return this.itemStacks.size();
+		return this.fluidStacks.size();
 	}
 
 	@Override
 	public Object[] toArray() {
-		return this.itemStacks.toArray();
+		return this.fluidStacks.toArray();
 	}
 
 	@Override
 	public <T> T[] toArray(final T[] a) {
-		return this.itemStacks.toArray(a);
+		return this.fluidStacks.toArray(a);
 	}
 }

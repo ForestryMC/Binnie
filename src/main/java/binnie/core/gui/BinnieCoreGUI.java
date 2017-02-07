@@ -30,7 +30,7 @@ public enum BinnieCoreGUI implements IBinnieGUID {
 				return new WindowGenesis(player, null, side);
 			}
 			default: {
-				return null;
+				throw new IllegalArgumentException("Unknown GUI type: " + this);
 			}
 		}
 	}

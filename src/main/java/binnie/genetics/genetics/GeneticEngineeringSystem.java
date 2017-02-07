@@ -32,12 +32,8 @@ public class GeneticEngineeringSystem {
 				try {
 					final IAllele a1 = indiv.getGenome().getActiveAllele(chromosome);
 					final IAllele a2 = indiv.getGenome().getInactiveAllele(chromosome);
-					if (a1 != null) {
-						this.chromosomeMap.get(chromosome).add(a1);
-					}
-					if (a2 != null) {
-						this.chromosomeMap.get(chromosome).add(a2);
-					}
+					this.chromosomeMap.get(chromosome).add(a1);
+					this.chromosomeMap.get(chromosome).add(a2);
 				} catch (Exception ex) {
 					throw Throwables.propagate(ex);
 				}

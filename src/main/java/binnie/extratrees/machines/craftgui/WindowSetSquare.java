@@ -8,8 +8,10 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nullable;
+
 public class WindowSetSquare extends Window {
-	public WindowSetSquare(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowSetSquare(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
 		super(150, 150, player, inventory, side);
 	}
 
@@ -20,6 +22,7 @@ public class WindowSetSquare extends Window {
 
 	@Override
 	protected String getBackgroundTextureName() {
+		// TODO background should not be null
 		return null;
 	}
 

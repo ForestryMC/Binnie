@@ -23,11 +23,11 @@ public class InoculatorLogic extends ComponentProcess implements IProcess {
 	public static final int PROCESS_BASE_ENERGY = 600000;
 	public static final int BACTERIA_PER_PROCESS = 15;
 
-	public static int getProcessLength(ItemStack itemStack) {
+	public static int getProcessLength(@Nullable ItemStack itemStack) {
 		return PROCESS_BASE_LENGTH * getNumberOfGenes(itemStack);
 	}
 
-	public static int getProcessBaseEnergy(ItemStack itemStack) {
+	public static int getProcessBaseEnergy(@Nullable ItemStack itemStack) {
 		return PROCESS_BASE_ENERGY * getNumberOfGenes(itemStack);
 	}
 
@@ -80,12 +80,14 @@ public class InoculatorLogic extends ComponentProcess implements IProcess {
 		if (state != null) {
 			return state;
 		}
-		if (this.getUtil().getStack(Inoculator.SLOT_SERUM_VIAL) != null && Engineering.getCharges(this.getUtil().getStack(Inoculator.SLOT_SERUM_VIAL)) == 0) {
+		ItemStack serum = this.getUtil().getStack(Inoculator.SLOT_SERUM_VIAL);
+		if (serum != null && Engineering.getCharges(serum) == 0) {
 			return new ErrorState(Genetics.proxy.localise("machine.errors.empty.serum.desc"), Genetics.proxy.localise("machine.errors.empty.serum.info"));
 		}
 		return super.canWork();
 	}
 
+	@Nullable
 	public ErrorState isValidSerum() {
 		final ItemStack serum = this.getUtil().getStack(Inoculator.SLOT_SERUM_VIAL);
 		final ItemStack target = this.getUtil().getStack(Inoculator.SLOT_TARGET);

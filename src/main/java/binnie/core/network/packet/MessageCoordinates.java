@@ -5,6 +5,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
 
 public class MessageCoordinates extends MessageBase {
@@ -45,6 +46,7 @@ public class MessageCoordinates extends MessageBase {
 		return new BlockPos(this.posX, this.posY, this.posZ);
 	}
 
+	@Nullable
 	public TileEntity getTileEntity(final World world) {
 		return world.getTileEntity(getCoordinates());
 	}

@@ -11,6 +11,8 @@ import forestry.api.core.Tabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nullable;
+
 public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IItemModelRegister {
 	EnumHiveFrame frame;
 
@@ -53,6 +55,7 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 	}
 
 	@Override
+	@Nullable
 	public ItemStack frameUsed(final IBeeHousing housing, final ItemStack frame, final IBee queen, final int wear) {
 		frame.setItemDamage(frame.getItemDamage() + wear);
 		if (frame.getItemDamage() >= frame.getMaxDamage()) {

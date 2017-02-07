@@ -170,6 +170,7 @@ public abstract class Designer {
 		}
 
 		@Override
+		@Nullable
 		public ErrorState canWork() {
 			if (this.getUtil().isSlotEmpty(Designer.beeswaxSlot)) {
 				return new ErrorState.NoItem("Requires Adhesive to Function", Designer.beeswaxSlot);
@@ -178,6 +179,7 @@ public abstract class Designer {
 		}
 
 		@Override
+		@Nullable
 		public ErrorState canProgress() {
 			return null;
 		}

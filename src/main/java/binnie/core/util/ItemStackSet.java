@@ -2,6 +2,7 @@ package binnie.core.util;
 
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -20,6 +21,7 @@ public class ItemStackSet implements Set<ItemStack> {
 		return this.itemStacks.toString();
 	}
 
+	@Nullable
 	protected ItemStack getExisting(final ItemStack stack) {
 		for (final ItemStack stack2 : this.itemStacks) {
 			if (ItemStack.areItemsEqual(stack2, stack) && ItemStack.areItemStackTagsEqual(stack2, stack)) {
@@ -32,10 +34,10 @@ public class ItemStackSet implements Set<ItemStack> {
 	@Override
 	public boolean add(final ItemStack e) {
 		if (e != null) {
-			if (this.getExisting(e) == null) {
+			ItemStack existing = this.getExisting(e);
+			if (existing == null) {
 				return this.itemStacks.add(e.copy());
 			}
-			final ItemStack existing = this.getExisting(e);
 			existing.stackSize += e.stackSize;
 		}
 		return false;
@@ -84,9 +86,8 @@ public class ItemStackSet implements Set<ItemStack> {
 		if (this.contains(o)) {
 			final ItemStack r = (ItemStack) o;
 			final ItemStack existing = this.getExisting(r);
-			if (existing.stackSize > r.stackSize) {
-				final ItemStack itemStack = existing;
-				itemStack.stackSize -= r.stackSize;
+			if (existing != null && existing.stackSize > r.stackSize) {
+				existing.stackSize -= r.stackSize;
 			} else {
 				this.itemStacks.remove(existing);
 			}

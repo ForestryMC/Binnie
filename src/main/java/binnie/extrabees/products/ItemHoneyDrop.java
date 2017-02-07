@@ -18,9 +18,9 @@ public class ItemHoneyDrop extends ItemProduct implements IColoredItem {
 	@Override
 	public int getColorFromItemstack(ItemStack itemStack, int tintIndex) {
 		if (tintIndex == 0) {
-			return EnumHoneyDrop.get(itemStack).colour[0];
+			return EnumHoneyDrop.get(itemStack).getColour()[0];
 		}
-		return EnumHoneyDrop.get(itemStack).colour[1];
+		return EnumHoneyDrop.get(itemStack).getColour()[1];
 	}
 
 }

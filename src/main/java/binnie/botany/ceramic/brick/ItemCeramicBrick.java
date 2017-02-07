@@ -20,12 +20,10 @@ public class ItemCeramicBrick extends ItemBlock implements IColoredItem {
 	@Override
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
 		CeramicBrickPair ceramic = new CeramicBrickPair(stack.getItemDamage());
-		if(ceramic != null){
-			if (tintIndex == 1) {
-				return ceramic.colorFirst.getColor(false);
-			}else if (tintIndex == 2) {
-				return ceramic.colorSecond.getColor(false);
-			}
+		if (tintIndex == 1) {
+			return ceramic.colorFirst.getColor(false);
+		} else if (tintIndex == 2) {
+			return ceramic.colorSecond.getColor(false);
 		}
 		return 16777215;
 	}

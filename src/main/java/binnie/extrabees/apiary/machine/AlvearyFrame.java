@@ -31,8 +31,7 @@ public class AlvearyFrame {
 		public void createMachine(final Machine machine) {
 			new ComponentExtraBeeGUI(machine, ExtraBeeGUID.AlvearyFrame);
 			final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-			inventory.addSlot(AlvearyFrame.slotFrame, "frame");
-			inventory.getSlot(AlvearyFrame.slotFrame).setValidator(new SlotValidatorFrame());
+			inventory.addSlot(AlvearyFrame.slotFrame, "frame").setValidator(new SlotValidatorFrame());
 			new ComponentFrameModifier(machine);
 		}
 	}

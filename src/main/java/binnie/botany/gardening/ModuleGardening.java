@@ -38,6 +38,7 @@ import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -158,18 +159,18 @@ public class ModuleGardening implements IInitializable {
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Botany.pigment, 2, EnumFlowerColor.Black.ordinal()), "pigment", "pigment", "dyeBlack"));
 		ModuleGardening.queuedAcidFertilisers.put(BotanyItems.SulphurPowder.get(1), 1);
 		ModuleGardening.queuedAcidFertilisers.put(BotanyItems.MulchPowder.get(1), 1);
-		ModuleGardening.queuedAcidFertilisers.put(new ItemStack(GameRegistry.findItem("forestry", "mulch")), 2);
+		ModuleGardening.queuedAcidFertilisers.put(Mods.Forestry.stack("mulch"), 2);
 		for (final ItemStack stack : OreDictionary.getOres("dustSulfur")) {
 			ModuleGardening.queuedAcidFertilisers.put(stack, 2);
 		}
 		ModuleGardening.queuedAlkalineFertilisers.put(BotanyItems.AshPowder.get(1), 1);
 		ModuleGardening.queuedAlkalineFertilisers.put(BotanyItems.PulpPowder.get(1), 1);
-		ModuleGardening.queuedAlkalineFertilisers.put(new ItemStack(GameRegistry.findItem("forestry", "ash")), 2);
-		ModuleGardening.queuedAlkalineFertilisers.put(new ItemStack(GameRegistry.findItem("forestry", "woodPulp")), 2);
+		ModuleGardening.queuedAlkalineFertilisers.put(Mods.Forestry.stack("ash"), 2);
+		ModuleGardening.queuedAlkalineFertilisers.put(Mods.Forestry.stack( "woodPulp"), 2);
 		ModuleGardening.queuedNutrientFertilisers.put(BotanyItems.CompostPowder.get(1), 1);
 		ModuleGardening.queuedNutrientFertilisers.put(BotanyItems.FertiliserPowder.get(1), 1);
-		ModuleGardening.queuedNutrientFertilisers.put(new ItemStack(GameRegistry.findItem("forestry", "fertilizerBio")), 2);
-		ModuleGardening.queuedNutrientFertilisers.put(new ItemStack(GameRegistry.findItem("forestry", "fertilizerCompound")), 2);
+		ModuleGardening.queuedNutrientFertilisers.put(Mods.Forestry.stack( "fertilizerBio"), 2);
+		ModuleGardening.queuedNutrientFertilisers.put(Mods.Forestry.stack("fertilizerCompound"), 2);
 		for (final Map.Entry<ItemStack, Integer> entry : ModuleGardening.queuedAcidFertilisers.entrySet()) {
 			this.addAcidFertiliser(entry.getKey(), entry.getValue());
 		}
@@ -192,17 +193,15 @@ public class ModuleGardening implements IInitializable {
 		GameRegistry.addRecipe(new PigmentRecipe());
 	}
 
+	@Nullable
 	private ItemStack getStack(final int type, final int pH, final int moisture) {
-		if (type < 0 || type > 2 || pH < 0 || pH > 2 || moisture < 0 || moisture > 2) {
-			return null;
+		if (type >= 0 && type <= 2 && pH >= 0 && pH <= 2 && moisture >= 0 && moisture <= 2) {
+			return new ItemStack(Gardening.getSoilBlock(EnumSoilType.values()[type]), 1, BlockSoil.getMeta(EnumAcidity.values()[pH], EnumMoisture.values()[moisture]));
 		}
-		return new ItemStack(Gardening.getSoilBlock(EnumSoilType.values()[type]), 1, BlockSoil.getMeta(EnumAcidity.values()[pH], EnumMoisture.values()[moisture]));
+		return null;
 	}
 
 	private void addAcidFertiliser(final ItemStack stack, final int strengthMax) {
-		if (stack == null) {
-			return;
-		}
 		Gardening.fertiliserAcid.put(stack, strengthMax);
 		for (int moisture = 0; moisture < 3; ++moisture) {
 			for (int pH = 0; pH < 3; ++pH) {
@@ -211,7 +210,7 @@ public class ModuleGardening implements IInitializable {
 					for (int strength = 1; strength < strengthMax; ++strength) {
 						final ItemStack start = this.getStack(type, pH, moisture);
 						final ItemStack end = this.getStack(type, pH - strength, moisture);
-						if (end != null) {
+						if (start != null && end != null) {
 							end.stackSize = numOfBlocks;
 							final Object[] stacks = new Object[numOfBlocks + 1];
 							for (int i = 0; i < numOfBlocks; ++i) {
@@ -228,9 +227,6 @@ public class ModuleGardening implements IInitializable {
 	}
 
 	private void addAlkalineFertiliser(final ItemStack stack, final int strengthMax) {
-		if (stack == null) {
-			return;
-		}
 		Gardening.fertiliserAlkaline.put(stack, strengthMax);
 		for (int moisture = 0; moisture < 3; ++moisture) {
 			for (int pH = 0; pH < 3; ++pH) {
@@ -256,9 +252,6 @@ public class ModuleGardening implements IInitializable {
 	}
 
 	private void addNutrientFertiliser(final ItemStack stack, final int strengthMax) {
-		if (stack == null) {
-			return;
-		}
 		Gardening.fertiliserNutrient.put(stack, strengthMax);
 		for (int moisture = 0; moisture < 3; ++moisture) {
 			for (int pH = 0; pH < 3; ++pH) {

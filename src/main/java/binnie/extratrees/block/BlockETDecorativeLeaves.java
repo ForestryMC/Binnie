@@ -1,6 +1,7 @@
 package binnie.extratrees.block;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import binnie.Constants;
 import binnie.extratrees.block.property.PropertyETType;
@@ -99,15 +100,6 @@ public abstract class BlockETDecorativeLeaves extends Block implements IItemMode
 			ItemStack itemStack = new ItemStack(item, 1, meta);
 			list.add(itemStack);
 		}
-	}
-
-	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
-		ETTreeDefinition treeDefinition = blockState.getValue(getVariant());
-		if (TreeDefinition.Willow.equals(treeDefinition)) {
-			return null;
-		}
-		return super.getCollisionBoundingBox(blockState, worldIn, pos);
 	}
 
 	/**

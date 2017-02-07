@@ -11,6 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
+import java.util.Collections;
 import java.util.Set;
 
 class VirtualHousing implements IHousing {
@@ -75,7 +76,7 @@ class VirtualHousing implements IHousing {
 	}
 
 	public Set<IErrorState> getErrorStates() {
-		return null;
+		return Collections.emptySet();
 	}
 
 	@Override

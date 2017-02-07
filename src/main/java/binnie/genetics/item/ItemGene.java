@@ -35,7 +35,7 @@ public abstract class ItemGene extends ItemCore {
 	}
 
 	public int getCharges(final ItemStack stack) {
-		return (stack == null) ? 0 : (stack.getMaxDamage() - stack.getItemDamage());
+		return stack.getMaxDamage() - stack.getItemDamage();
 	}
 
 	@Override

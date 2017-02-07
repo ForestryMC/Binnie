@@ -12,6 +12,7 @@ import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.genetics.Flower;
 import binnie.core.BinnieCore;
+import com.google.common.base.Preconditions;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.genetics.IIndividual;
@@ -29,6 +30,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -40,6 +42,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemBotany extends Item implements IColoredItem, IItemModelRegister {
@@ -77,7 +80,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 			return false;
 		}
 		final IIndividual individual = this.getIndividual(itemstack);
-		return individual != null && individual.getGenome() != null && individual.hasEffect();
+		return individual != null && individual.hasEffect();
 	}
 
 	@Override
@@ -86,7 +89,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 			return;
 		}
 		IFlower individual = (IFlower) this.getIndividual(itemStack);
-		if (individual == null || individual.getGenome() == null) {
+		if (individual == null) {
 			list.add(TextFormatting.DARK_RED + Binnie.LANGUAGE.localise("botany.flower.destroy"));
 			return;
 		}
@@ -114,8 +117,13 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 		}
 	}
 
+	@Nullable
 	protected IIndividual getIndividual(final ItemStack itemstack) {
-		return new Flower(itemstack.getTagCompound());
+		NBTTagCompound tagCompound = itemstack.getTagCompound();
+		if (tagCompound == null) {
+			return null;
+		}
+		return new Flower(tagCompound);
 	}
 
 	private IAlleleFlowerSpecies getPrimarySpecies(final ItemStack itemstack) {
@@ -132,7 +140,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 			return Binnie.LANGUAGE.localise("item.botany.flower.corrupted.name");
 		}
 		IIndividual individual = this.getIndividual(itemstack);
-		if (individual != null && individual.getGenome() != null) {
+		if (individual != null) {
 			return individual.getDisplayName() + (!tag.isEmpty() ? " " + Binnie.LANGUAGE.localise("item.botany." + tag + ".name") : "");
 		}
 		return Binnie.LANGUAGE.localise("item.botany.flower.corrupted.name");
@@ -155,7 +163,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 	@Override
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
 		IFlower flower = BotanyCore.getFlowerRoot().getMember(stack);
-		if (flower == null || flower.getGenome() == null) {
+		if (flower == null) {
 			return 16777215;
 		}
 		return (tintIndex == 0) ? flower.getGenome().getStemColor().getColor(flower.isWilted()) : ((tintIndex == 1) ? flower.getGenome().getPrimaryColor().getColor(flower.isWilted()) : flower.getGenome().getSecondaryColor().getColor(flower.isWilted()));
@@ -175,9 +183,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 		@Override
 		public ModelResourceLocation getModelLocation(ItemStack stack) {
 			IFlower flower = BotanyCore.getFlowerRoot().getMember(stack);
-			if (flower == null || flower.getGenome() == null || flower.getGenome().getPrimary() == null) {
-				return null;
-			}
+			Preconditions.checkNotNull(flower);
 			IAlleleFlowerSpecies flowerSpecies = flower.getGenome().getPrimary();
 			IFlowerType flowerType = flowerSpecies.getType();
 			return flowerSpecies.getFlowerModel(type, flower.hasFlowered());

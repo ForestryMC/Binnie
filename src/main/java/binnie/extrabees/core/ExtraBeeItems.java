@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public enum ExtraBeeItems implements IItemMiscProvider {
@@ -48,7 +49,9 @@ public enum ExtraBeeItems implements IItemMiscProvider {
 
 	String name;
 	String modelPath;
+	@Nullable
 	String metalString;
+	@Nullable
 	String gemString;
 
 	public static void init() {

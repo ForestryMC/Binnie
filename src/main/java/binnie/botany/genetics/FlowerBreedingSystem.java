@@ -70,7 +70,7 @@ public class FlowerBreedingSystem extends BreedingSystem {
 	@Override
 	public boolean isDNAManipulable(final ItemStack member) {
 		ISpeciesType type = this.getSpeciesRoot().getType(member);
-		return isDNAManipulable(type);
+		return type != null && isDNAManipulable(type);
 	}
 
 	@Override

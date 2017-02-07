@@ -11,6 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
+import javax.annotation.Nullable;
+
 public class ControlRecipeSlot extends ControlSlotBase {
 	public ControlRecipeSlot(final IWidget parent, final int x, final int y) {
 		super(parent, x, y, 50);
@@ -29,6 +31,7 @@ public class ControlRecipeSlot extends ControlSlotBase {
 	}
 
 	@Override
+	@Nullable
 	public ItemStack getItemStack() {
 		final IComponentRecipe recipe = Machine.getInterface(IComponentRecipe.class, Window.get(this).getInventory());
 		if (recipe != null && recipe.isRecipe()) {

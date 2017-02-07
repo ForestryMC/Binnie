@@ -24,7 +24,7 @@ public class PageBranchSpecies extends PageBranch {
 			@Override
 			public void onEvent(final EventValueChanged event) {
 				if (event.isOrigin(PageBranchSpecies.this.pageBranchSpecies_speciesList)) {
-					((WindowAbstractDatabase) PageBranchSpecies.this.getSuperParent()).gotoSpecies((IAlleleSpecies) event.getValue());
+					((WindowAbstractDatabase) PageBranchSpecies.this.getTopParent()).gotoSpecies((IAlleleSpecies) event.getValue());
 				}
 			}
 		});

@@ -35,6 +35,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -68,6 +69,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 	}
 
 	@Override
+	@Nullable
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
 		return null;
 	}
@@ -113,7 +115,9 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		if (!BinnieCore.getBinnieProxy().isSimulating(world)) {
 			if (flower != null && flower instanceof TileEntityFlower) {
 				final IFlower f = BotanyCore.getFlowerRoot().getMember(stack);
-				((TileEntityFlower) flower).setRender(new TileEntityFlower.RenderInfo(f, (TileEntityFlower) flower));
+				if (f != null) {
+					((TileEntityFlower) flower).setRender(new TileEntityFlower.RenderInfo(f, (TileEntityFlower) flower));
+				}
 			}
 			return;
 		}

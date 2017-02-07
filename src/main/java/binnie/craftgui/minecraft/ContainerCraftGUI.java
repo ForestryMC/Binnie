@@ -16,6 +16,7 @@ import binnie.core.machines.transfer.TransferRequest;
 import binnie.core.network.packet.MessageContainerUpdate;
 import binnie.craftgui.minecraft.control.ControlSlot;
 import binnie.craftgui.minecraft.control.EnumHighlighting;
+import com.google.common.base.Preconditions;
 import com.google.common.collect.Sets;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.player.EntityPlayer;
@@ -80,33 +81,6 @@ public class ContainerCraftGUI extends Container {
 	}
 
 	@Override
-	@Nullable
-	public Slot getSlot(final int index) {
-		if (index < 0 || index >= this.inventorySlots.size()) {
-			return null;
-		}
-		return this.inventorySlots.get(index);
-	}
-
-	@Override
-	public void putStackInSlot(final int index, final ItemStack par2ItemStack) {
-		Slot slot = this.getSlot(index);
-		if (slot != null) {
-			slot.putStack(par2ItemStack);
-		}
-	}
-
-	@Override
-	public void putStacksInSlots(final ItemStack[] par1ArrayOfItemStack) {
-		for (int i = 0; i < par1ArrayOfItemStack.length; ++i) {
-			Slot slot = this.getSlot(i);
-			if (slot != null) {
-				slot.putStack(par1ArrayOfItemStack[i]);
-			}
-		}
-	}
-
-	@Override
 	public void onContainerClosed(final EntityPlayer par1EntityPlayer) {
 		this.crafters.remove(par1EntityPlayer);
 		super.onContainerClosed(par1EntityPlayer);
@@ -125,7 +99,6 @@ public class ContainerCraftGUI extends Container {
 		}
 	}
 
-
 	@Nullable
 	@Override
 	public ItemStack slotClick(int slotNum, int dragType, ClickType clickType, EntityPlayer player) {
@@ -134,10 +107,8 @@ public class ContainerCraftGUI extends Container {
 			((CustomSlot) slot).onSlotClick(this, dragType, clickType, player);
 			return player.inventory.getItemStack();
 		}
-		final ItemStack stack = super.slotClick(slotNum, dragType, clickType, player);
-		return stack;
+		return super.slotClick(slotNum, dragType, clickType, player);
 	}
-
 
 	public void sendNBTToClient(final String key, final NBTTagCompound nbt) {
 		this.syncedNBT.put(key, nbt);
@@ -153,15 +124,14 @@ public class ContainerCraftGUI extends Container {
 	}
 
 	@Override
+	@Nullable
 	public final ItemStack transferStackInSlot(final EntityPlayer player, final int slotID) {
 		return this.shiftClick(player, slotID);
 	}
 
+	@Nullable
 	private ItemStack shiftClick(final EntityPlayer player, final int slotnumber) {
 		final TransferRequest request = this.getShiftClickRequest(player, slotnumber);
-		if (request == null) {
-			return null;
-		}
 		final ItemStack itemstack = request.transfer(true);
 		final Slot shiftClickedSlot = this.inventorySlots.get(slotnumber);
 		shiftClickedSlot.putStack(itemstack);
@@ -170,9 +140,6 @@ public class ContainerCraftGUI extends Container {
 	}
 
 	private TransferRequest getShiftClickRequest(final EntityPlayer player, final int slotnumber) {
-		if (slotnumber < 0) {
-			return null;
-		}
 		final Slot shiftClickedSlot = this.inventorySlots.get(slotnumber);
 		ItemStack itemstack = null;
 		if (shiftClickedSlot.getHasStack()) {
@@ -201,12 +168,19 @@ public class ContainerCraftGUI extends Container {
 		return request;
 	}
 
+	@Nullable
 	public final ItemStack tankClick(final EntityPlayer player, final int slotID) {
-		if (player.inventory.getItemStack() == null) {
+		IInventory inventory = this.window.getInventory();
+		if (inventory == null) {
 			return null;
 		}
-		ItemStack heldItem = player.inventory.getItemStack().copy();
-		heldItem = new TransferRequest(heldItem, this.window.getInventory()).setOrigin(player.inventory).setTargetSlots(new int[0]).setTargetTanks(new int[]{slotID}).transfer(true);
+		ItemStack heldItem = player.inventory.getItemStack();
+		if (heldItem == null) {
+			return null;
+		}
+		heldItem = heldItem.copy();
+		TransferRequest transferRequest = new TransferRequest(heldItem, inventory).setOrigin(player.inventory).setTargetSlots(new int[0]).setTargetTanks(new int[]{slotID});
+		heldItem = transferRequest.transfer(true);
 		player.inventory.setItemStack(heldItem);
 		if (player instanceof EntityPlayerMP) {
 			((EntityPlayerMP) player).updateHeldItem();
@@ -295,18 +269,6 @@ public class ContainerCraftGUI extends Container {
 		this.syncedNBT.clear();
 	}
 
-//FIXME hack
-
-	/**
-	 * sets whether the player can craft in this inventory or not
-	 */
-	@Override
-	public void setCanCraft(EntityPlayer player, boolean canCraft) {
-		super.setCanCraft(player, canCraft);
-	}
-//end
-
-
 	private NBTTagCompound createErrorNBT(final IErrorStateSource error) {
 		final NBTTagCompound nbt = new NBTTagCompound();
 		ErrorState state = null;
@@ -378,6 +340,7 @@ public class ContainerCraftGUI extends Container {
 		}
 	}
 
+	@Nullable
 	public ErrorState getErrorState() {
 		return this.error;
 	}
@@ -409,9 +372,6 @@ public class ContainerCraftGUI extends Container {
 	private void onMouseOverSlot(final EntityPlayer player, final NBTTagCompound data) {
 		final int slotnumber = data.getShort("slot");
 		final TransferRequest request = this.getShiftClickRequest(player, slotnumber);
-		if (request == null) {
-			return;
-		}
 		request.transfer(false);
 		final NBTTagCompound nbt = new NBTTagCompound();
 		final List<Integer> slots = new ArrayList<>();
@@ -437,11 +397,14 @@ public class ContainerCraftGUI extends Container {
 		}
 	}
 
-	private CustomSlot getSlot(final IInventory inventory, final int id) {
-		for (final Object o : this.inventorySlots) {
-			final CustomSlot slot = (CustomSlot) o;
-			if (slot.inventory == inventory && slot.getSlotIndex() == id) {
-				return slot;
+	@Nullable
+	private CustomSlot getSlot(@Nullable final IInventory inventory, final int id) {
+		if (inventory != null) {
+			for (final Object o : this.inventorySlots) {
+				final CustomSlot slot = (CustomSlot) o;
+				if (slot.inventory == inventory && slot.getSlotIndex() == id) {
+					return slot;
+				}
 			}
 		}
 		return null;
@@ -475,18 +438,22 @@ public class ContainerCraftGUI extends Container {
 	}
 
 	protected IInventory getInventory(final InventoryType type) {
-		if (type == InventoryType.Machine) {
-			return this.window.getInventory();
+		switch (type) {
+			case Machine: {
+				IInventory inventory = this.window.getInventory();
+				Preconditions.checkState(inventory != null, "Window has no machine inventory: %s", this.window);
+				return inventory;
+			}
+			case Player:
+				return this.window.getPlayer().inventory;
+			case Window:
+				return this.window.getWindowInventory();
+			default:
+				throw new IllegalArgumentException("Unknown type: " + type);
 		}
-		if (type == InventoryType.Player) {
-			return this.window.getPlayer().inventory;
-		}
-		if (type == InventoryType.Window) {
-			return this.window.getWindowInventory();
-		}
-		return null;
 	}
 
+	@Nullable
 	private Slot createServerSlot(final InventoryType type, final int index, final int slotNumber) {
 		final IInventory inventory = this.getInventory(type);
 		if (this.inventorySlots.get(slotNumber) != null) {

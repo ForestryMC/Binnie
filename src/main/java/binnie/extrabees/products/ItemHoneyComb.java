@@ -12,6 +12,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 
+import javax.annotation.Nullable;
+
 public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 
 	public ItemHoneyComb() {
@@ -214,10 +216,11 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 				}
 			}
 			type.addProduct(drop.get(1), 1.00f);
-			drop.addRemenant(dye);
+			drop.addRemnant(dye);
 		}
 	}
 
+	@Nullable
 	private static ItemStack getOreDictionary(final String string) {
 		if (OreDictionary.getOres(string).size() > 0) {
 			return OreDictionary.getOres(string).get(0);
@@ -228,13 +231,11 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
-		if (EnumHoneyComb.get(stack) == null) {
-			return 16777215;
-		}
+		EnumHoneyComb honeyComb = EnumHoneyComb.get(stack);
 		if (tintIndex == 1) {
-			return EnumHoneyComb.get(stack).colour[0];
+			return honeyComb.colour[0];
 		}
-		return EnumHoneyComb.get(stack).colour[1];
+		return honeyComb.colour[1];
 	}
 
 	public enum VanillaComb {

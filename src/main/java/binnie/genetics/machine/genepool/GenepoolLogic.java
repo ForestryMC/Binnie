@@ -48,7 +48,8 @@ public class GenepoolLogic extends ComponentProcessSetCost implements IProcess {
 
 	@Override
 	public ErrorState canProgress() {
-		if (!this.getUtil().spaceInTank(Genepool.TANK_DNA, getDNAAmount(this.getUtil().getStack(0)))) {
+		ItemStack individual = this.getUtil().getStack(Genepool.SLOT_BEE);
+		if (!this.getUtil().spaceInTank(Genepool.TANK_DNA, getDNAAmount(individual))) {
 			return new ErrorState.NoSpace(Genetics.proxy.localise("machine.errors.tanks.no.room.desc"), new int[]{0});
 		}
 		if (!this.getUtil().liquidInTank(Genepool.TANK_ETHANOL, 1)) {
@@ -77,6 +78,7 @@ public class GenepoolLogic extends ComponentProcessSetCost implements IProcess {
 			this.getUtil().drainTank(Genepool.TANK_ETHANOL, 1);
 			--this.ethanolDrain;
 		}
-		this.getMachine().getInterface(IChargedSlots.class).alterCharge(Genepool.SLOT_ENZYME, -ENZYME_PER_PROCESS * this.getProgressPerTick() / 100.0f);
+		IChargedSlots chargedSlots = this.getMachine().getInterface(IChargedSlots.class);
+		chargedSlots.alterCharge(Genepool.SLOT_ENZYME, -ENZYME_PER_PROCESS * this.getProgressPerTick() / 100.0f);
 	}
 }

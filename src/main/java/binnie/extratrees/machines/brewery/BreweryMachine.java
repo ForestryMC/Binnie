@@ -6,6 +6,7 @@ import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.inventory.ComponentTankContainer;
 import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.inventory.MachineSide;
+import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.craftgui.minecraft.IMachineInformation;
 import binnie.extratrees.core.ExtraTreeTexture;
@@ -41,22 +42,24 @@ public class BreweryMachine extends ExtraTreeMachine.PackageExtraTreeMachine imp
 		for (final InventorySlot slot : inventory.getSlots(SLOTS_INVENTORY)) {
 			slot.forbidExtraction();
 		}
-		inventory.addSlot(SLOT_YEAST, "yeast");
-		inventory.getSlot(SLOT_YEAST).setValidator(new SlotValidatorBreweryYeast());
-		inventory.getSlot(SLOT_YEAST).setType(InventorySlot.Type.Recipe);
 
-		inventory.addSlot(SLOT_RECIPE_INPUT, "ingredient");
-		inventory.getSlot(SLOT_RECIPE_INPUT).setValidator(new SlotValidatorBreweryIngredient());
-		inventory.getSlot(SLOT_RECIPE_INPUT).setType(InventorySlot.Type.Recipe);
+		final InventorySlot yeast = inventory.addSlot(SLOT_YEAST, "yeast");
+		yeast.setValidator(new SlotValidatorBreweryYeast());
+		yeast.setType(InventorySlot.Type.Recipe);
+
+		final InventorySlot ingredient = inventory.addSlot(SLOT_RECIPE_INPUT, "ingredient");
+		ingredient.setValidator(new SlotValidatorBreweryIngredient());
+		ingredient.setType(InventorySlot.Type.Recipe);
 
 		final ComponentTankContainer tanks = new ComponentTankContainer(machine);
-		tanks.addTank(TANK_INPUT, "input", 5000);
-		tanks.getTankSlot(TANK_INPUT).setValidator(new TankValidatorFermentInput());
-		tanks.getTankSlot(TANK_INPUT).setOutputSides(MachineSide.TopAndBottom);
-		tanks.addTank(TANK_OUTPUT, "output", 5000);
-		tanks.getTankSlot(TANK_OUTPUT).setValidator(new TankValidatorFermentOutput());
-		tanks.getTankSlot(TANK_OUTPUT).forbidInsertion();
-		tanks.getTankSlot(TANK_OUTPUT).setOutputSides(MachineSide.Sides);
+		TankSlot input = tanks.addTank(TANK_INPUT, "input", 5000);
+		input.setValidator(new TankValidatorFermentInput());
+		input.setOutputSides(MachineSide.TopAndBottom);
+
+		final TankSlot output = tanks.addTank(TANK_OUTPUT, "output", 5000);
+		output.setValidator(new TankValidatorFermentOutput());
+		output.forbidInsertion();
+		output.setOutputSides(MachineSide.Sides);
 
 		new ComponentPowerReceptor(machine);
 		new BreweryLogic(machine);

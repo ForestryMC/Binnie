@@ -8,6 +8,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
+import javax.annotation.Nullable;
+
 public enum EnumHoneyDrop implements IItemEnum {
 	ENERGY(10242418, 14905713, ""),
 	ACID(4961601, 4841020, "acid"),
@@ -39,14 +41,13 @@ public enum EnumHoneyDrop implements IItemEnum {
 	MAGENTA(15040472, 16711884, "for.honey"),
 	LIGHTGRAY(10066329, 13224393, "for.honey");
 
-	int[] colour;
-	String liquidName;
-	ItemStack remenant;
-	public boolean deprecated;
+	private int[] colour;
+	private String liquidName;
+	@Nullable
+	private ItemStack remnant;
 
-	public void addRemenant(final ItemStack stack) {
-		this.remenant = stack;
-		this.deprecated = true;
+	public void addRemnant(final ItemStack stack) {
+		this.remnant = stack;
 	}
 
 	EnumHoneyDrop() {
@@ -54,23 +55,21 @@ public enum EnumHoneyDrop implements IItemEnum {
 	}
 
 	EnumHoneyDrop(final int colour, final int colour2, final String liquid) {
-		this.liquidName = "";
-		this.remenant = null;
-		this.deprecated = false;
+		this.remnant = null;
 		this.colour = new int[]{colour, colour2};
 		this.liquidName = liquid;
 	}
 
 	public void addRecipe() {
-		final FluidStack liquid = Binnie.LIQUID.getFluidStack(this.liquidName, 200);
+		final FluidStack liquid = Binnie.LIQUID.getFluidStack(this.getLiquidName(), 200);
 		if (liquid != null) {
-			RecipeManagers.squeezerManager.addRecipe(10, new ItemStack[]{this.get(1)}, liquid, this.remenant, 100);
+			RecipeManagers.squeezerManager.addRecipe(10, new ItemStack[]{this.get(1)}, liquid, this.getRemnant(), 100);
 		}
 	}
 
 	@Override
 	public boolean isActive() {
-		return !this.deprecated && (this.liquidName == null || FluidRegistry.isFluidRegistered(this.liquidName));
+		return this.remnant != null && FluidRegistry.isFluidRegistered(this.getLiquidName());
 	}
 
 	public static EnumHoneyDrop get(final ItemStack itemStack) {
@@ -89,5 +88,18 @@ public enum EnumHoneyDrop implements IItemEnum {
 	@Override
 	public String getName(final ItemStack stack) {
 		return ExtraBees.proxy.localise("item.honeydrop." + this.name().toLowerCase());
+	}
+
+	public int[] getColour() {
+		return colour;
+	}
+
+	public String getLiquidName() {
+		return liquidName;
+	}
+
+	@Nullable
+	public ItemStack getRemnant() {
+		return remnant;
 	}
 }

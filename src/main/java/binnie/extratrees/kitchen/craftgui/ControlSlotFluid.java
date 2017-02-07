@@ -40,7 +40,7 @@ public class ControlSlotFluid extends Control implements ITooltip {
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		final int size = this.getSize().x();
 		CraftGUI.render.texture(CraftGUITexture.Slot, this.getArea());
-		if (this.getSuperParent().getMousedOverWidget() == this) {
+		if (this.getTopParent().getMousedOverWidget() == this) {
 			RenderUtil.drawGradientRect(new IArea(new IPoint(1, 1), this.getArea().size().sub(new IPoint(2, 2))), -2130706433, -2130706433);
 		}
 	}

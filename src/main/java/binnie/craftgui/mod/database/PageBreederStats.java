@@ -15,6 +15,6 @@ public class PageBreederStats extends Control {
 		super(parent, 0, 0, w, h);
 		this.player = player;
 		final ControlText pageBranchOverview_branchName = new ControlTextCentered(this, 8, TextFormatting.UNDERLINE + Binnie.LANGUAGE.localise("binniecore.gui.database.breeder.stats"));
-		final BreedingSystem system = ((WindowAbstractDatabase) this.getSuperParent()).getBreedingSystem();
+		final BreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
 	}
 }

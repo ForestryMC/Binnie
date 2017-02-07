@@ -68,7 +68,7 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 //	}
 
 	@Override
-	public void setInventorySlotContents(final int index, final ItemStack itemStack) {
+	public void setInventorySlotContents(final int index, @Nullable final ItemStack itemStack) {
 		this.getInventory().setInventorySlotContents(index, itemStack);
 	}
 
@@ -113,29 +113,24 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 		return this.getInventory().isItemValidForSlot(slot, itemStack);
 	}
 
-
-	//TODO Implement
 	@Override
 	public int getField(int id) {
-		return 0;
+		return this.getInventory().getField(id);
 	}
 
-	//TODO Implement
 	@Override
 	public void setField(int id, int value) {
-
+		this.getInventory().setField(id, value);
 	}
 
-	//TODO Implement
 	@Override
 	public int getFieldCount() {
-		return 0;
+		return this.getInventory().getFieldCount();
 	}
 
-	//TODO Implement
 	@Override
 	public void clear() {
-
+		this.getInventory().clear();
 	}
 
 	@Override

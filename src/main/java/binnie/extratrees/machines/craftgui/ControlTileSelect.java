@@ -134,6 +134,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 					if (tile == null) {
 						return;
 					}
+					// TODO: why is recipe unused here?
 					final Designer.ComponentWoodworkerRecipe recipe = tile.getMachine().getComponent(Designer.ComponentWoodworkerRecipe.class);
 					final NBTTagCompound nbt = new NBTTagCompound();
 					nbt.setShort("d", (short) CarpentryManager.carpentryInterface.getDesignIndex(ControlTile.this.getValue()));
@@ -159,7 +160,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 
 		@Override
 		public void onRenderForeground(int guiWidth, int guiHeight) {
-			final ItemStack image = ((WindowWoodworker) this.getSuperParent()).getDesignerType().getDisplayStack(this.getValue());
+			final ItemStack image = ((WindowWoodworker) this.getTopParent()).getDesignerType().getDisplayStack(this.getValue());
 			RenderUtil.drawItem(new IPoint(1, 1), image);
 			if (((IControlValue) this.getParent()).getValue() != this.getValue()) {
 				if (Window.get(this).getMousedOverWidget() == this) {

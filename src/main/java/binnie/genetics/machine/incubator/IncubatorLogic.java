@@ -10,10 +10,12 @@ import binnie.genetics.api.IIncubatorRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 public class IncubatorLogic extends ComponentProcessIndefinate implements IProcess {
-	IIncubatorRecipe recipe;
+	@Nullable
+	private IIncubatorRecipe recipe;
 	private Random rand;
 	private boolean roomForOutput;
 
@@ -57,6 +59,7 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 		return this.recipe != null;
 	}
 
+	@Nullable
 	private IIncubatorRecipe getRecipe(final ItemStack stack, final FluidStack liquid) {
 		for (final IIncubatorRecipe recipe : Incubator.getRecipes()) {
 			final boolean rightLiquid = recipe.isInputLiquid(liquid);

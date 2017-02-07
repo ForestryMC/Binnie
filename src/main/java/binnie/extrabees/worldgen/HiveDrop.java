@@ -24,9 +24,6 @@ public class HiveDrop implements IHiveDrop {
 
 	public HiveDrop(IAllele[] template, final ItemStack[] bonus, final int chance) {
 		this.additional = new ArrayList<>();
-		if (template == null) {
-			template = Binnie.GENETICS.getBeeRoot().getDefaultTemplate();
-		}
 		this.template = template;
 		this.chance = chance;
 		Collections.addAll(this.additional, bonus);

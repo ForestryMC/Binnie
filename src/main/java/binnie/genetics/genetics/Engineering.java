@@ -53,14 +53,16 @@ public class Engineering {
 		return stack;
 	}
 
-	public static IGene[] getGenes(final ItemStack serum) {
-		if (serum.getItem() instanceof IItemSerum) {
-			return ((IItemSerum) serum.getItem()).getGenes(serum);
-		}
-		if (serum.getItem() == Genetics.itemSequencer) {
-			SequencerItem sequencerItem = SequencerItem.create(serum);
-			if (sequencerItem != null) {
-				return new IGene[]{sequencerItem.getGene()};
+	public static IGene[] getGenes(@Nullable final ItemStack serum) {
+		if (serum != null) {
+			if (serum.getItem() instanceof IItemSerum) {
+				return ((IItemSerum) serum.getItem()).getGenes(serum);
+			}
+			if (serum.getItem() == Genetics.itemSequencer) {
+				SequencerItem sequencerItem = SequencerItem.create(serum);
+				if (sequencerItem != null) {
+					return new IGene[]{sequencerItem.getGene()};
+				}
 			}
 		}
 		return new IGene[0];

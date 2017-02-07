@@ -1,6 +1,7 @@
 package binnie.core.genetics;
 
 import com.mojang.authlib.GameProfile;
+import forestry.api.apiculture.DefaultBeeListener;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
@@ -10,14 +11,18 @@ import forestry.api.apiculture.IBeeModifier;
 import forestry.api.apiculture.IBeekeepingLogic;
 import forestry.api.core.IErrorLogic;
 import forestry.api.genetics.IIndividual;
+import forestry.apiculture.FakeBeekeepingLogic;
 import forestry.apiculture.InventoryBeeHousing;
+import forestry.core.errors.FakeErrorLogic;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Biomes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IBeeModifier {
 	ArrayList<IBeeModifier> beeModifier = new ArrayList<>();
@@ -50,10 +55,12 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 		return 1.0f;
 	}
 
+	@Nullable
 	public ItemStack getQueen() {
 		return null;
 	}
 
+	@Nullable
 	public ItemStack getDrone() {
 		return null;
 	}
@@ -125,7 +132,7 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 
 	@Override
 	public IErrorLogic getErrorLogic() {
-		return null;
+		return FakeErrorLogic.instance;
 	}
 
 	// TODO ??
@@ -157,7 +164,7 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 	// TODO ??
 	@Override
 	public Iterable<IBeeListener> getBeeListeners() {
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -167,7 +174,7 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 
 	@Override
 	public IBeekeepingLogic getBeekeepingLogic() {
-		return null;
+		return FakeBeekeepingLogic.instance;
 	}
 
 	@Override

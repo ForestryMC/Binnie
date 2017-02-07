@@ -21,8 +21,8 @@ class ControlMutationItem extends ControlOption<IMutation> {
 		this.itemWidget3 = new ControlDatabaseIndividualDisplay(this, 104, 4);
 		this.addSymbol = new ControlMutationSymbol(this, 24, 4, 0);
 		this.arrowSymbol = new ControlMutationSymbol(this, 64, 4, 1);
-		final boolean isNEI = ((WindowAbstractDatabase) this.getSuperParent()).isNEI();
-		final BreedingSystem system = ((WindowAbstractDatabase) this.getSuperParent()).getBreedingSystem();
+		final boolean isNEI = ((WindowAbstractDatabase) this.getTopParent()).isNEI();
+		final BreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
 		if (this.getValue() != null) {
 			final boolean isMutationDiscovered = system.isMutationDiscovered(this.getValue(), Window.get(this).getWorld(), Window.get(this).getUsername());
 			IAlleleSpecies allele = null;

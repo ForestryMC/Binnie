@@ -6,21 +6,24 @@ import binnie.genetics.api.IIncubatorRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 public class IncubatorRecipe implements IIncubatorRecipe {
 	private final FluidStack input;
+	@Nullable
 	private final FluidStack output;
 	private final ItemStack itemStack;
 	private final float lossChance;
 	private final float tickChance;
+	@Nullable
 	private ItemStack outputStack;
 
-	public IncubatorRecipe(ItemStack itemStack, final FluidStack input, final FluidStack output, final float lossChance) {
+	public IncubatorRecipe(ItemStack itemStack, final FluidStack input, @Nullable final FluidStack output, final float lossChance) {
 		this(itemStack, input, output, lossChance, 1.0f);
 	}
 
-	public IncubatorRecipe(ItemStack itemStack, final FluidStack input, final FluidStack output, final float lossChance, final float chance) {
+	public IncubatorRecipe(ItemStack itemStack, final FluidStack input, @Nullable final FluidStack output, final float lossChance, final float chance) {
 		this.itemStack = itemStack;
 		this.input = input;
 		this.output = output;
@@ -39,12 +42,12 @@ public class IncubatorRecipe implements IIncubatorRecipe {
 	}
 
 	@Override
-	public boolean isInputLiquid(final FluidStack fluid) {
+	public boolean isInputLiquid(@Nullable final FluidStack fluid) {
 		return fluid != null && this.input.isFluidEqual(fluid);
 	}
 
 	@Override
-	public boolean isInputLiquidSufficient(final FluidStack fluid) {
+	public boolean isInputLiquidSufficient(@Nullable final FluidStack fluid) {
 		return fluid != null && fluid.amount >= 500;
 	}
 
@@ -54,6 +57,7 @@ public class IncubatorRecipe implements IIncubatorRecipe {
 	}
 
 	@Override
+	@Nullable
 	public FluidStack getOutput() {
 		return output;
 	}
@@ -91,6 +95,7 @@ public class IncubatorRecipe implements IIncubatorRecipe {
 		return this;
 	}
 
+	@Nullable
 	protected ItemStack getOutputStack(final MachineUtil util) {
 		return getExpectedOutput();
 	}
@@ -98,7 +103,7 @@ public class IncubatorRecipe implements IIncubatorRecipe {
 	@Override
 	public boolean roomForOutput(final MachineUtil machine) {
 		if (this.output != null && !machine.isTankEmpty(1)) {
-			if (!machine.getFluid(Incubator.TANK_OUTPUT).isFluidEqual(this.output)) {
+			if (!this.output.isFluidEqual(machine.getFluid(Incubator.TANK_OUTPUT))) {
 				return false;
 			}
 			if (!machine.spaceInTank(Incubator.TANK_OUTPUT, this.output.amount)) {

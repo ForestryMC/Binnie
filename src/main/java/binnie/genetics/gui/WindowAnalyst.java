@@ -45,6 +45,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -164,9 +165,9 @@ public class WindowAnalyst extends Window {
 				x += 22;
 			}
 		} else {
-			new ControlSlot(this, x, y + 1).assign(InventoryType.Window, 0);
+			new ControlSlot.Builder(this, x, y + 1).assign(InventoryType.Window, 0);
 			x += 22;
-			new ControlSlot(this, x, y + 1).assign(InventoryType.Window, 1);
+			new ControlSlot.Builder(this, x, y + 1).assign(InventoryType.Window, 1);
 			x += 26;
 			this.setupValidators();
 		}
@@ -461,13 +462,14 @@ public class WindowAnalyst extends Window {
 		if (ind != null) {
 			ind.getGenome().getSpeciesRoot().getBreedingTracker(this.getWorld(), this.getUsername()).registerBirth(ind);
 		}
+		// TODO why is this specific client/server code needed?
 		if (this.isClient()) {
 			this.setStack(this.getWindowInventory().getStackInSlot(0));
 		} else if (this.isServer()) {
 		}
 	}
 
-	public void setStack(final ItemStack stack) {
+	public void setStack(@Nullable final ItemStack stack) {
 		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(stack);
 		this.setIndividual(ind);
 	}

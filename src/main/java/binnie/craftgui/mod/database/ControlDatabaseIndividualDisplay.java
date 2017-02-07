@@ -54,7 +54,7 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 			@Override
 			public void onEvent(final EventMouse.Down event) {
 				if (event.getButton() == 0 && ControlDatabaseIndividualDisplay.this.species != null && EnumDiscoveryState.Show == ControlDatabaseIndividualDisplay.this.discovered) {
-					((WindowAbstractDatabase) ControlDatabaseIndividualDisplay.this.getSuperParent()).gotoSpeciesDelayed(ControlDatabaseIndividualDisplay.this.species);
+					((WindowAbstractDatabase) ControlDatabaseIndividualDisplay.this.getTopParent()).gotoSpeciesDelayed(ControlDatabaseIndividualDisplay.this.species);
 				}
 			}
 		});

@@ -21,6 +21,8 @@ import forestry.core.genetics.Genome;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import javax.annotation.Nullable;
+
 public class FlowerGenome extends Genome implements IFlowerGenome {
 	public FlowerGenome(final NBTTagCompound nbttagcompound) {
 		super(nbttagcompound);
@@ -30,6 +32,7 @@ public class FlowerGenome extends Genome implements IFlowerGenome {
 		super(chromosomes);
 	}
 
+	@Nullable
 	public static IAlleleFlowerSpecies getSpecies(ItemStack itemStack) {
 		if (!FlowerManager.flowerRoot.isMember(itemStack)) {
 			return null;

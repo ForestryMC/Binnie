@@ -4,6 +4,7 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 
+import javax.annotation.Nullable;
 import java.util.Locale;
 
 public enum EnumSoilType implements IStringSerializable {
@@ -11,13 +12,10 @@ public enum EnumSoilType implements IStringSerializable {
 	LOAM(TextFormatting.GOLD),
 	FLOWERBED(TextFormatting.LIGHT_PURPLE);
 
+	@Nullable
 	final TextFormatting color;
 
-	EnumSoilType() {
-		this(null);
-	}
-
-	EnumSoilType(TextFormatting color) {
+	EnumSoilType(@Nullable TextFormatting color) {
 		this.color = color;
 	}
 

@@ -8,6 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemIndustrialFrame extends Item {
@@ -53,10 +54,12 @@ public class ItemIndustrialFrame extends Item {
 		this.setUnlocalizedName("industrialFrame");
 	}
 
+	@Nullable
 	public static IndustrialFrame getFrame(final ItemStack stack) {
-		if (stack == null || !stack.hasTagCompound() || !stack.getTagCompound().hasKey("frame")) {
+		NBTTagCompound tagCompound = stack.getTagCompound();
+		if (tagCompound == null || !tagCompound.hasKey("frame")) {
 			return null;
 		}
-		return IndustrialFrame.values()[stack.getTagCompound().getInteger("frame")];
+		return IndustrialFrame.values()[tagCompound.getInteger("frame")];
 	}
 }

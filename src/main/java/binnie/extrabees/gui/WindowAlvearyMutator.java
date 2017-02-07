@@ -17,17 +17,16 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 
-public class WindowAlvearyMutator extends Window {
-	Machine machine;
-	ControlPlayerInventory playerInventory;
+import javax.annotation.Nullable;
 
+public class WindowAlvearyMutator extends Window {
 	public WindowAlvearyMutator(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(176, 176, player, inventory, side);
-		this.machine = ((TileEntityMachine) inventory).getMachine();
 	}
 
-	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
-		if (player == null || inventory == null) {
+	@Nullable
+	public static Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
+		if (inventory == null) {
 			return null;
 		}
 		return new WindowAlvearyMutator(player, inventory, side);
@@ -36,9 +35,8 @@ public class WindowAlvearyMutator extends Window {
 	@Override
 	public void initialiseClient() {
 		this.setTitle("Mutator");
-		this.playerInventory = new ControlPlayerInventory(this);
-		final ControlSlot slot = new ControlSlot(this, 79, 30);
-		slot.assign(0);
+		new ControlPlayerInventory(this);
+		new ControlSlot.Builder(this, 79, 30).assign(0);
 		new ControlText(this, new IArea(0, 52, this.w(), 16), "Possible Mutagens:", TextJustification.MiddleCenter).setColour(5592405);
 		final int size = AlvearyMutator.getMutagens().size();
 		final int w = size * 18;

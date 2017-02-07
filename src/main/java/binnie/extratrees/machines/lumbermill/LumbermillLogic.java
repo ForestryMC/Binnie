@@ -18,10 +18,10 @@ public class LumbermillLogic extends ComponentProcessSetCost implements IProcess
 
 	@Override
 	public ErrorState canWork() {
-		if (this.getUtil().isSlotEmpty(LumbermillMachine.SLOT_LOG)) {
+		ItemStack logStack = this.getUtil().getStack(LumbermillMachine.SLOT_LOG);
+		if (logStack == null) {
 			return new ErrorState.NoItem("No Wood", LumbermillMachine.SLOT_LOG);
 		}
-		ItemStack logStack = this.getUtil().getStack(LumbermillMachine.SLOT_LOG);
 		final ItemStack plankResult = LumbermillRecipes.getPlankProduct(logStack);
 		if (!this.getUtil().isSlotEmpty(LumbermillMachine.SLOT_PLANKS) && plankResult != null) {
 			final ItemStack currentPlank = this.getUtil().getStack(LumbermillMachine.SLOT_PLANKS);

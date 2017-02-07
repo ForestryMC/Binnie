@@ -26,6 +26,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -941,6 +942,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	String binomial;
 	String branchName;
 	List<IAllele[]> variantTemplates;
+	@Nullable
 	IClassification branch;
 	EnumFlowerColor primaryColor, secondaryColor;
 
@@ -996,7 +998,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		IAlleleFlowerSpeciesBuilder speciesBuilder = FlowerManager.flowerFactory.createSpecies(uid, unlocalizedName, "Binnie's Mod Team", unlocalizedDescription, isDominant, getBranch(), binomial, flowerType);
 		setSpeciesProperties(speciesBuilder);
 		this.species = speciesBuilder.build();
-		if (branch != null) {
+		if (this.branch != null) {
 			this.branch.addMemberSpecies(species);
 		}
 	}

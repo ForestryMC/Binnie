@@ -7,6 +7,7 @@ import binnie.extratrees.api.IDesignMaterial;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nullable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -58,10 +59,8 @@ public class GlassType implements IDesignMaterial {
 		return GlassType.types.get(id);
 	}
 
+	@Nullable
 	public static IDesignMaterial get(final ItemStack stack) {
-		if (stack == null) {
-			return null;
-		}
 		for (final Map.Entry<Integer, GlassType> entry : GlassType.types.entrySet()) {
 			if (stack.isItemEqual(entry.getValue().getStack())) {
 				return entry.getValue();

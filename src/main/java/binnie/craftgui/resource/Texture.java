@@ -5,7 +5,10 @@ import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IBorder;
 import binnie.craftgui.core.geometry.Position;
 
+import javax.annotation.Nullable;
+
 public class Texture {
+	@Nullable
 	public static final Texture NULL = null;
 	IArea area;
 	IBorder padding;

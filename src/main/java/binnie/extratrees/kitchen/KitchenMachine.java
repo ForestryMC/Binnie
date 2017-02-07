@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
 public enum KitchenMachine implements IMachineType {
+	// TODO implement
 	Worktop(null),
 	Cupboard(null),
 	BottleRack(BottleRack.PackageBottleRack.class);

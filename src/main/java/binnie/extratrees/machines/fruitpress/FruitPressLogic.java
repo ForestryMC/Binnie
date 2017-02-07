@@ -30,7 +30,9 @@ public class FruitPressLogic extends ComponentProcessSetCost implements IProcess
 		if (!this.getUtil().spaceInTank(FruitPressMachine.TANK_OUTPUT, 5)) {
 			return new ErrorState.TankSpace("No room in tank", FruitPressMachine.TANK_OUTPUT);
 		}
-		if (this.getUtil().getFluid(FruitPressMachine.TANK_OUTPUT) != null && !this.getUtil().getFluid(FruitPressMachine.TANK_OUTPUT).isFluidEqual(FruitPressRecipes.getOutput(this.getUtil().getStack(FruitPressMachine.SLOT_CURRENT)))) {
+		FluidStack fluidOutputTank = this.getUtil().getFluid(FruitPressMachine.TANK_OUTPUT);
+		FluidStack recipeOutput = FruitPressRecipes.getOutput(this.getUtil().getStack(FruitPressMachine.SLOT_CURRENT));
+		if (fluidOutputTank != null && !fluidOutputTank.isFluidEqual(recipeOutput)) {
 			return new ErrorState.TankSpace("Different fluid in tank", FruitPressMachine.TANK_OUTPUT);
 		}
 		return super.canProgress();

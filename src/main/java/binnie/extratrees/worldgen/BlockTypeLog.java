@@ -9,6 +9,7 @@ public class BlockTypeLog extends BlockType {
 	ITreeGenData treeGenData;
 
 	public BlockTypeLog(ITreeGenData treeGenData) {
+		// TODO why is block param null here?
 		super(null, 0);
 		this.treeGenData = treeGenData;
 	}

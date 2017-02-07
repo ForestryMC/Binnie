@@ -34,6 +34,7 @@ public class CreativeTabGenetics extends CreativeTabs {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Item getTabIconItem() {
+		//TODO add icon item for genetics
 		return null;
 	}
 

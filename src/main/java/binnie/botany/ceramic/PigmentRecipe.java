@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class PigmentRecipe implements IRecipe {
 	@Override
@@ -18,11 +19,13 @@ public class PigmentRecipe implements IRecipe {
 	}
 
 	@Override
+	@Nullable
 	public ItemStack getRecipeOutput() {
 		return null;
 	}
 
 	@Override
+	@Nullable
 	public ItemStack getCraftingResult(final InventoryCrafting crafting) {
 		int n = 0;
 		ItemStack stack = null;

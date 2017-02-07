@@ -28,6 +28,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class BlockFence extends net.minecraft.block.BlockFence implements IBlockMetadata, IBlockFence {
@@ -170,6 +171,7 @@ public class BlockFence extends net.minecraft.block.BlockFence implements IBlock
 //	}
 	
 	@Override
+	@Nullable
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		return BlockMetadata.getPickBlock(world, pos);
 	}

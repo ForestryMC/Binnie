@@ -33,8 +33,8 @@ import java.util.Map;
 
 public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, INetwork.TilePacketSync, IMachine, INetwork.GuiNBT {
 	private MachinePackage machinePackage;
-	private Map<Class<? extends MachineComponent>, List<MachineComponent>> componentInterfaceMap;
-	private Map<Class<? extends MachineComponent>, MachineComponent> componentMap;
+	private Map<Class<?>, List<MachineComponent>> componentInterfaceMap;
+	private Map<Class<?>, MachineComponent> componentMap;
 	private TileEntity tile;
 	private boolean queuedInventoryUpdate;
 	@Nullable
@@ -55,7 +55,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 		Preconditions.checkNotNull(component, "Can't have a null machine component!");
 		component.setMachine(this);
 		this.componentMap.put(component.getClass(), component);
-		for (final Class<? extends MachineComponent> inter : component.getComponentInterfaces()) {
+		for (final Class<?> inter : component.getComponentInterfaces()) {
 			if (!this.componentInterfaceMap.containsKey(inter)) {
 				this.componentInterfaceMap.put(inter, new ArrayList<>());
 			}
@@ -67,15 +67,15 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 		return this.componentMap.values();
 	}
 
-	@Nullable
 	public <T extends MachineComponent> T getComponent(final Class<T> componentClass) {
 		if (this.hasComponent(componentClass)) {
 			return componentClass.cast(this.componentMap.get(componentClass));
 		}
-		return null;
+		throw new IllegalArgumentException("No component found for " + componentClass);
 	}
 
 	@Override
+	@Nullable
 	public <T> T getInterface(final Class<T> interfaceClass) {
 		if (this.hasInterface(interfaceClass)) {
 			return this.getInterfaces(interfaceClass).get(0);
@@ -88,12 +88,12 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 				return interfaceClass.cast(component);
 			}
 		}
-		throw new IllegalArgumentException("No interface for : " + interfaceClass);
+		return null;
 	}
 
 	@Override
 	public <T> List<T> getInterfaces(final Class<T> interfaceClass) {
-		final ArrayList<T> interfaces = new ArrayList<>();
+		final List<T> interfaces = new ArrayList<>();
 		if (!this.hasInterface(interfaceClass)) {
 			return interfaces;
 		}
@@ -107,7 +107,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 		return this.componentInterfaceMap.containsKey(interfaceClass);
 	}
 
-	public boolean hasComponent(final Class<? extends MachineComponent> componentClass) {
+	public boolean hasComponent(final Class<?> componentClass) {
 		return this.componentMap.containsKey(componentClass);
 	}
 
@@ -146,7 +146,8 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	}
 
 	public void onRightClick(final World world, final EntityPlayer player, final BlockPos pos) {
-		for (final IInteraction.RightClick component : this.getInterfaces(IInteraction.RightClick.class)) {
+		List<IInteraction.RightClick> interfaces = this.getInterfaces(IInteraction.RightClick.class);
+		for (final IInteraction.RightClick component : interfaces) {
 			component.onRightClick(world, player, pos);
 		}
 	}

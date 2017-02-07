@@ -5,6 +5,7 @@ import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.inventory.ComponentTankContainer;
 import binnie.core.machines.inventory.MachineSide;
+import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.craftgui.minecraft.IMachineInformation;
 import binnie.extratrees.core.ExtraTreeTexture;
@@ -25,13 +26,16 @@ public class DistilleryMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.Distillery);
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		final ComponentTankContainer tanks = new ComponentTankContainer(machine);
-		tanks.addTank(TANK_INPUT, "input", 5000);
-		tanks.getTankSlot(TANK_INPUT).setValidator(new TankValidatorDistilleryInput());
-		tanks.getTankSlot(TANK_INPUT).setOutputSides(MachineSide.TopAndBottom);
-		tanks.addTank(TANK_OUTPUT, "output", 5000);
-		tanks.getTankSlot(TANK_OUTPUT).setValidator(new TankValidatorDistilleryOutput());
-		tanks.getTankSlot(TANK_OUTPUT).setReadOnly();
-		tanks.getTankSlot(TANK_OUTPUT).setOutputSides(MachineSide.Sides);
+
+		final TankSlot input = tanks.addTank(TANK_INPUT, "input", 5000);
+		input.setValidator(new TankValidatorDistilleryInput());
+		input.setOutputSides(MachineSide.TopAndBottom);
+
+		final TankSlot output = tanks.addTank(TANK_OUTPUT, "output", 5000);
+		output.setValidator(new TankValidatorDistilleryOutput());
+		output.setReadOnly();
+		output.setOutputSides(MachineSide.Sides);
+
 		new ComponentPowerReceptor(machine);
 		new DistilleryLogic(machine);
 	}

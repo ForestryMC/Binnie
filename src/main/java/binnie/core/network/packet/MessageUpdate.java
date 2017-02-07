@@ -5,9 +5,11 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
 
 public class MessageUpdate extends MessageCoordinates {
+	@Nullable
 	public PacketPayload payload;
 
 	public MessageUpdate(final MessageBinnie message) {
@@ -67,6 +69,7 @@ public class MessageUpdate extends MessageCoordinates {
 		}
 	}
 
+	@Nullable
 	public TileEntity getTarget(final World world) {
 		return world.getTileEntity(getCoordinates());
 	}

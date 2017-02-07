@@ -202,7 +202,7 @@ public abstract class WindowAbstractDatabase extends Window {
 	public void onUpdateClient() {
 		super.onUpdateClient();
 		if (this.gotoSpecies != null) {
-			((WindowAbstractDatabase) this.getSuperParent()).gotoSpecies(this.gotoSpecies);
+			((WindowAbstractDatabase) this.getTopParent()).gotoSpecies(this.gotoSpecies);
 			this.gotoSpecies = null;
 		}
 	}

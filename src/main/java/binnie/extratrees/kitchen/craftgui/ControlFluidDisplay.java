@@ -50,7 +50,7 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 		if (this.fluidStack == null) {
 			return;
 		}
-		final IPoint relativeToWindow = this.getAbsolutePosition().sub(this.getSuperParent().getPosition());
+		final IPoint relativeToWindow = this.getAbsolutePosition().sub(this.getTopParent().getPosition());
 		if (relativeToWindow.x() > Window.get(this).getSize().x() + 100 || relativeToWindow.y() > Window.get(this).getSize().y() + 100) {
 			return;
 		}

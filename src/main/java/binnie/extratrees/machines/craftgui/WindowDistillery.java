@@ -14,6 +14,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nullable;
+
 public class WindowDistillery extends Window {
 	public WindowDistillery(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(224, 192, player, inventory, side);
@@ -44,7 +46,11 @@ public class WindowDistillery extends Window {
 		new ControlErrorState(this, x + 21, 62);
 	}
 
-	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
+	@Nullable
+	public static Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
+		if (inventory == null) {
+			return null;
+		}
 		return new WindowDistillery(player, inventory, side);
 	}
 }

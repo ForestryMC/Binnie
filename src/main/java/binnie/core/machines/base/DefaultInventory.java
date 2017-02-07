@@ -16,17 +16,19 @@ class DefaultInventory implements IInventoryMachine {
 	}
 
 	@Override
+	@Nullable
 	public ItemStack getStackInSlot(final int i) {
 		return null;
 	}
 
 	@Override
+	@Nullable
 	public ItemStack decrStackSize(final int i, final int j) {
 		return null;
 	}
 
-	@Nullable
 	@Override
+	@Nullable
 	public ItemStack removeStackFromSlot(int index) {
 		return null;
 	}

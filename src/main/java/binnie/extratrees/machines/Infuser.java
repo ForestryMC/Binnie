@@ -5,6 +5,7 @@ import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.inventory.ComponentTankContainer;
 import binnie.core.machines.inventory.MachineSide;
+import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.inventory.TankValidator;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.core.machines.power.ComponentProcessSetCost;
@@ -18,18 +19,17 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
+import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Infuser {
-	public static int tankInput = 0;
-	public static int tankOutput = 1;
+	public static final int tankInput = 0;
+	public static final int tankOutput = 1;
 	static Map<Fluid, FluidStack> recipes = new HashMap<>();
 
+	@Nullable
 	public static FluidStack getOutput(final FluidStack fluid, final ItemStack stack) {
-		if (fluid == null) {
-			return null;
-		}
 		return Infuser.recipes.get(fluid.getFluid());
 	}
 
@@ -60,13 +60,16 @@ public class Infuser {
 			new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.Infuser);
 			final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 			final ComponentTankContainer tanks = new ComponentTankContainer(machine);
-			tanks.addTank(Infuser.tankInput, "input", 5000);
-			tanks.getTankSlot(Infuser.tankInput).setValidator(new TankValidatorInfuserInput());
-			tanks.getTankSlot(Infuser.tankInput).setOutputSides(MachineSide.TopAndBottom);
-			tanks.addTank(Infuser.tankOutput, "output", 5000);
-			tanks.getTankSlot(Infuser.tankOutput).setValidator(new TankValidatorInfuserOutput());
-			tanks.getTankSlot(Infuser.tankOutput).setReadOnly();
-			tanks.getTankSlot(Infuser.tankOutput).setOutputSides(MachineSide.Sides);
+
+			final TankSlot input = tanks.addTank(Infuser.tankInput, "input", 5000);
+			input.setValidator(new TankValidatorInfuserInput());
+			input.setOutputSides(MachineSide.TopAndBottom);
+
+			final TankSlot output = tanks.addTank(Infuser.tankOutput, "output", 5000);
+			output.setValidator(new TankValidatorInfuserOutput());
+			output.setReadOnly();
+			output.setOutputSides(MachineSide.Sides);
+
 			new ComponentPowerReceptor(machine);
 			new ComponentInfuserLogic(machine);
 		}
@@ -108,23 +111,31 @@ public class Infuser {
 
 		@Override
 		public ErrorState canProgress() {
-			if (!this.getUtil().isTankEmpty(Infuser.tankOutput) && this.getOutput() != null && !this.getOutput().isFluidEqual(this.getUtil().getFluid(Infuser.tankOutput))) {
+			FluidStack outputTankFluid = this.getUtil().getFluid(Infuser.tankOutput);
+			if (!this.getUtil().isTankEmpty(Infuser.tankOutput) && this.getOutput() != null && !this.getOutput().isFluidEqual(outputTankFluid)) {
 				return new ErrorState.Tank("No Room", "No room for liquid", new int[]{Infuser.tankOutput});
 			}
-			if (this.getUtil().getFluid(Infuser.tankOutput) != null && !this.getUtil().getFluid(Infuser.tankOutput).isFluidEqual(this.getOutput())) {
+			if (outputTankFluid != null && !outputTankFluid.isFluidEqual(this.getOutput())) {
 				return new ErrorState.TankSpace("Different fluid in tank", Infuser.tankOutput);
 			}
 			return super.canProgress();
 		}
 
+		@Nullable
 		private FluidStack getOutput() {
-			return Infuser.getOutput(this.getUtil().getFluid(Infuser.tankInput), this.infusing);
+			FluidStack fluid = this.getUtil().getFluid(Infuser.tankInput);
+			if (fluid == null) {
+				return null;
+			}
+			return Infuser.getOutput(fluid, this.infusing);
 		}
 
 		@Override
 		protected void onFinishTask() {
-			final FluidStack output = this.getOutput().copy();
-			this.getUtil().fillTank(Infuser.tankOutput, output);
+			final FluidStack output = this.getOutput();
+			if (output != null) {
+				this.getUtil().fillTank(Infuser.tankOutput, output.copy());
+			}
 		}
 
 		@Override

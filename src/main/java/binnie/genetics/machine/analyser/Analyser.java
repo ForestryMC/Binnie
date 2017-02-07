@@ -21,7 +21,10 @@ public class Analyser {
 		return ind != null || stack.getItem() instanceof IItemAnalysable || Binnie.GENETICS.getConversion(stack) != null;
 	}
 
-	public static boolean isAnalysed(final ItemStack stack) {
+	public static boolean isAnalysed(@Nullable final ItemStack stack) {
+		if (stack == null) {
+			return false;
+		}
 		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(stack);
 		if (ind != null) {
 			return ind.isAnalyzed();
@@ -29,7 +32,11 @@ public class Analyser {
 		return stack.getItem() instanceof IItemAnalysable && ((IItemAnalysable) stack.getItem()).isAnalysed(stack);
 	}
 
+	@Nullable
 	public static ItemStack analyse(@Nullable ItemStack stack) {
+		if (stack == null) {
+			return null;
+		}
 		final ItemStack conv = Binnie.GENETICS.getConversionStack(stack);
 		if (conv != null) {
 			stack = conv;

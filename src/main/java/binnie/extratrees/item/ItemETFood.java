@@ -48,18 +48,13 @@ public class ItemETFood extends ItemFood implements IItemModelRegister {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
 		IItemMiscProvider item = this.getItem(stack.getItemDamage());
-		if (item != null) {
-			item.addInformation(tooltip);
-		}
+		item.addInformation(tooltip);
 	}
 
 	@Override
 	public String getItemStackDisplayName(final ItemStack stack) {
 		IItemMiscProvider item = this.getItem(stack.getItemDamage());
-		if(item != null){
-			return item.getName(stack);
-		}
-		return "null";
+		return item.getName(stack);
 	}
 	
 	@SideOnly(Side.CLIENT)

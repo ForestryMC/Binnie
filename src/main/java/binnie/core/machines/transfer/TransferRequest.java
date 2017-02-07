@@ -35,7 +35,7 @@ public class TransferRequest {
 	private List<TransferSlot> insertedSlots;
 	private List<Integer> insertedTanks;
 
-	public TransferRequest(final ItemStack toTransfer, final IInventory destination) {
+	public TransferRequest(@Nullable final ItemStack toTransfer, final IInventory destination) {
 		this.itemToTransfer = null;
 		this.returnItem = null;
 		this.targetSlots = new int[0];
@@ -68,9 +68,6 @@ public class TransferRequest {
 
 	@Nullable
 	public static ItemStack transferItemToInventory(final ItemStack item, final IInventory destination, final boolean doAdd) {
-		if (item == null || destination == null) {
-			return item;
-		}
 		ItemStack addition = item.copy();
 		for (int i = 0; i < destination.getSizeInventory(); ++i) {
 			addition = transferToInventory(addition, destination, new int[]{i}, doAdd, false);

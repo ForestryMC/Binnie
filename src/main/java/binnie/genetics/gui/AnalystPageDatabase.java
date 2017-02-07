@@ -27,13 +27,11 @@ import java.util.Collection;
 import java.util.Objects;
 
 public class AnalystPageDatabase extends ControlAnalystPage {
-	@Nullable
-	ControlScrollableContent scroll;
+	private final ControlScrollableContent scroll;
 	boolean isMaster;
 
 	public AnalystPageDatabase(final IWidget parent, final IArea area, final BreedingSystem system, final boolean isMaster) {
 		super(parent, area);
-		this.scroll = null;
 		this.isMaster = isMaster;
 		final int cOfSystem = system.getColour();
 		final int cr = (0xFF0000 & cOfSystem) >> 16;
@@ -109,7 +107,8 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 				}
 			};
 		} else {
-			(this.scroll = new ControlScrollableContent(this, 4, y, this.w() - 8, this.h() - y - 8, 0)).setScrollableContent(this.getItemScrollList(system, options));
+			this.scroll = new ControlScrollableContent(this, 4, y, this.w() - 8, this.h() - y - 8, 0);
+			this.scroll.setScrollableContent(this.getItemScrollList(system, options));
 		}
 		new ControlScrollBar(this, this.scroll.x() + this.scroll.w() - 6, this.scroll.y() + 3, 3, this.scroll.h() - 6, this.scroll) {
 			@Override
@@ -139,7 +138,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 							this.addSelfEventHandler(new EventMouse.Down.Handler() {
 								@Override
 								public void onEvent(final EventMouse.Down event) {
-									final WindowAnalyst window = (WindowAnalyst) AnalystPageDatabase.this.getSuperParent();
+									final WindowAnalyst window = (WindowAnalyst) AnalystPageDatabase.this.getTopParent();
 									window.setIndividual(ind);
 								}
 							});
@@ -147,7 +146,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 
 						@Override
 						public void onRenderBackground(int guiWidth, int guiHeight) {
-							final WindowAnalyst window = (WindowAnalyst) AnalystPageDatabase.this.getSuperParent();
+							final WindowAnalyst window = (WindowAnalyst) AnalystPageDatabase.this.getTopParent();
 							if (window.getIndividual() != null && window.getIndividual().getGenome().getPrimary() == species) {
 								RenderUtil.setColour(15658734);
 								CraftGUI.render.texture(CraftGUITexture.TabSolid, this.getArea().outset(1));

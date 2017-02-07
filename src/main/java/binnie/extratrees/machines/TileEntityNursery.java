@@ -12,6 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
+import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,6 +21,7 @@ public class TileEntityNursery extends TileEntityMachine implements IButterflyNu
 		super(pack);
 	}
 
+	@Nullable
 	IButterflyNursery getNursery() {
 		return this.getMachine().getInterface(IButterflyNursery.class);
 	}
@@ -36,12 +38,12 @@ public class TileEntityNursery extends TileEntityMachine implements IButterflyNu
 
 	@Override
 	public EnumTemperature getTemperature() {
-		return null;
+		return EnumTemperature.NORMAL;
 	}
 
 	@Override
 	public EnumHumidity getHumidity() {
-		return null;
+		return EnumHumidity.NORMAL;
 	}
 
 	public boolean addProduct(final ItemStack product, final boolean all) {
@@ -49,19 +51,23 @@ public class TileEntityNursery extends TileEntityMachine implements IButterflyNu
 	}
 
 	@Override
+	@Nullable
 	public IButterfly getCaterpillar() {
-		return this.hasNursery() ? this.getNursery().getCaterpillar() : null;
+		IButterflyNursery nursery = this.getNursery();
+		return nursery != null ? nursery.getCaterpillar() : null;
 	}
 
 	@Override
+	@Nullable
 	public IIndividual getNanny() {
 		return null;
 	}
 
 	@Override
 	public void setCaterpillar(final IButterfly butterfly) {
-		if (this.hasNursery()) {
-			this.getNursery().setCaterpillar(butterfly);
+		IButterflyNursery nursery = this.getNursery();
+		if (nursery != null) {
+			nursery.setCaterpillar(butterfly);
 		}
 	}
 
@@ -78,6 +84,7 @@ public class TileEntityNursery extends TileEntityMachine implements IButterflyNu
 	public void setErrorState(final IErrorState state) {
 	}
 
+	@Nullable
 	public IErrorState getErrorState() {
 		return null;
 	}

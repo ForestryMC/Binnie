@@ -10,6 +10,7 @@ import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.StandardTexture;
+import com.google.common.base.Preconditions;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.genetics.IChromosomeType;
@@ -38,8 +39,8 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 		this.species = null;
 	}
 
-	@Nullable
 	public ISpeciesRoot getRoot() {
+		Preconditions.checkState(this.species != null, "root has not been set");
 		return this.species;
 	}
 

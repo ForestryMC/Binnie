@@ -1,5 +1,6 @@
 package binnie.craftgui.minecraft;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -96,6 +97,7 @@ class ListMap<T> implements List<T> {
 	}
 
 	@Override
+	@Nullable
 	public T get(final int index) {
 		return this.map.get(index);
 	}
@@ -112,6 +114,7 @@ class ListMap<T> implements List<T> {
 	}
 
 	@Override
+	@Nullable
 	public T remove(final int index) {
 		return null;
 	}
@@ -133,16 +136,16 @@ class ListMap<T> implements List<T> {
 
 	@Override
 	public ListIterator<T> listIterator() {
-		return null;
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public ListIterator<T> listIterator(final int index) {
-		return null;
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public List<T> subList(final int fromIndex, final int toIndex) {
-		return null;
+		throw new UnsupportedOperationException();
 	}
 }

@@ -16,7 +16,7 @@ public interface IWidget {
 
 	void deleteAllChildren();
 
-	ITopLevelWidget getSuperParent();
+	ITopLevelWidget getTopParent();
 
 	boolean isTopLevel();
 

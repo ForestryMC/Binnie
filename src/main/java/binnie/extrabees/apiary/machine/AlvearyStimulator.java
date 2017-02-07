@@ -39,8 +39,7 @@ public class AlvearyStimulator {
 		public void createMachine(final Machine machine) {
 			new ComponentExtraBeeGUI(machine, ExtraBeeGUID.AlvearyStimulator);
 			final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-			inventory.addSlot(AlvearyStimulator.slotCircuit, "circuit");
-			inventory.getSlot(AlvearyStimulator.slotCircuit).setValidator(new SlotValidatorCircuit());
+			inventory.addSlot(AlvearyStimulator.slotCircuit, "circuit").setValidator(new SlotValidatorCircuit());
 			final ComponentPowerReceptor power = new ComponentPowerReceptor(machine);
 			new ComponentStimulatorModifier(machine);
 		}

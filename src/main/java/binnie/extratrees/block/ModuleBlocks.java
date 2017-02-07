@@ -44,6 +44,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.RecipeSorter;
 
+import javax.annotation.Nullable;
+
 
 public class ModuleBlocks implements IInitializable {
 	// public static int hedgeRenderID;
@@ -280,10 +282,7 @@ public class ModuleBlocks implements IInitializable {
 			final ItemStack doorSolid = WoodManager.getDoor(plank2, DoorType.Solid);
 			final ItemStack doorSplit = WoodManager.getDoor(plank2, DoorType.Double);
 			final ItemStack doorFull = WoodManager.getDoor(plank2, DoorType.Full);
-			if (planks2 != null) {
-				if (gate == null) {
-					continue;
-				}
+			if (planks2 != null && gate != null) {
 				gate.stackSize = 1;
 				GameRegistry.addRecipe(gate.copy(), "fpf", 'f', fenceNormal.copy(), 'p', planks2.copy());
 				fenceNormal.stackSize = 4;
@@ -317,9 +316,6 @@ public class ModuleBlocks implements IInitializable {
 
 	public static ItemStack getDecorativeLeaves(String speciesUid) {
 		ItemStack itemStack = ExtraTrees.blocks().speciesToLeavesDecorative.get(speciesUid);
-		if (itemStack == null) {
-			return null;
-		}
 		return itemStack.copy();
 	}
 }

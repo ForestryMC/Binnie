@@ -7,9 +7,9 @@ import net.minecraftforge.fluids.FluidStack;
 import javax.annotation.Nullable;
 
 public interface IIncubatorRecipe {
-	boolean isInputLiquid(final FluidStack p0);
+	boolean isInputLiquid(@Nullable final FluidStack fluid);
 
-	boolean isInputLiquidSufficient(final FluidStack p0);
+	boolean isInputLiquidSufficient(@Nullable final FluidStack fluid);
 
 	void doTask(final MachineUtil p0);
 
@@ -21,6 +21,7 @@ public interface IIncubatorRecipe {
 
 	FluidStack getInput();
 
+	@Nullable
 	FluidStack getOutput();
 
 	ItemStack getInputStack();

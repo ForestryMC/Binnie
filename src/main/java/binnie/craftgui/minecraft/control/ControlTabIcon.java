@@ -6,6 +6,8 @@ import binnie.craftgui.controls.tab.ControlTabBar;
 import binnie.craftgui.core.geometry.IPoint;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nullable;
+
 public class ControlTabIcon<T> extends ControlTab<T> {
 	private ControlItemDisplay item;
 
@@ -15,6 +17,7 @@ public class ControlTabIcon<T> extends ControlTab<T> {
 		this.item.hastooltip = false;
 	}
 
+	@Nullable
 	public ItemStack getItemStack() {
 		if (this.value instanceof IItemStackRepresentitive) {
 			return ((IItemStackRepresentitive) this.value).getItemStackRepresentitive();
@@ -26,7 +29,8 @@ public class ControlTabIcon<T> extends ControlTab<T> {
 	public void onUpdateClient() {
 		super.onUpdateClient();
 		this.item.setItemStack(this.getItemStack());
-		final int x = ((ControlTabBar) this.getParent()).getDirection().x();
+		ControlTabBar parent = (ControlTabBar) this.getParent();
+		final int x = parent.getDirection().x();
 		this.item.setOffset(new IPoint((this.isCurrentSelection() || this.isMouseOver()) ? 0 : (-4 * x), 0));
 	}
 

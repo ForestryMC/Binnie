@@ -3,6 +3,7 @@ package binnie.craftgui.minecraft.control;
 import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.minecraft.InventoryType;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
@@ -10,24 +11,45 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
-	private int rows;
-	private int columns;
-	private List<ControlSlot> slots;
+	public static class Builder {
+		private final IWidget parent;
+		private final int x;
+		private final int y;
+		private final int columns;
+		private final int rows;
 
-	public ControlSlotArray(final IWidget parent, final int x, final int y, final int columns, final int rows) {
-		super(parent, x, y, columns * 18, rows * 18);
-		this.slots = new ArrayList<>();
-		this.rows = rows;
-		this.columns = columns;
-		for (int row = 0; row < rows; ++row) {
-			for (int column = 0; column < columns; ++column) {
-				this.slots.add(this.createSlot(column * 18, row * 18));
+		public Builder(final IWidget parent, final int x, final int y, final int columns, final int rows) {
+			this.parent = parent;
+			this.x = x;
+			this.y = y;
+			this.columns = columns;
+			this.rows = rows;
+		}
+
+		public ControlSlotArray create(final int[] index) {
+			return this.create(InventoryType.Machine, index);
+		}
+
+		public ControlSlotArray create(final InventoryType type, final int[] index) {
+			ControlSlotArray controlSlots = new ControlSlotArray(parent, x, y,  columns, rows);
+			int i = 0;
+			for (int row = 0; row < rows; ++row) {
+				for (int column = 0; column < columns; ++column) {
+					ControlSlot.Builder slotBuilder = new ControlSlot.Builder(controlSlots, column * 18, row * 18);
+					ControlSlot slot = slotBuilder.assign(type, index[i++]);
+					controlSlots.slots.add(slot);
+				}
 			}
+
+			return controlSlots;
 		}
 	}
 
-	public ControlSlot createSlot(final int x, final int y) {
-		return new ControlSlot(this, x, y);
+	private List<ControlSlot> slots = new ArrayList<>();
+
+	private ControlSlotArray(final IWidget parent, final int x, final int y, final int columns, final int rows) {
+		super(parent, x, y, columns * 18, rows * 18);
+		this.slots = new ArrayList<>();
 	}
 
 	public void setItemStacks(final ItemStack[] array) {
@@ -36,28 +58,15 @@ public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
 			if (i >= this.slots.size()) {
 				return;
 			}
-			this.slots.get(i).slot.putStack(item);
+			ControlSlot controlSlot = this.slots.get(i);
+			Slot slot = controlSlot.slot;
+			slot.putStack(item);
 			++i;
 		}
 	}
 
 	public ControlSlot getControlSlot(final int i) {
-		if (i < 0 || i >= this.slots.size()) {
-			return null;
-		}
 		return this.slots.get(i);
-	}
-
-	public ControlSlotArray create(final int[] index) {
-		return this.create(InventoryType.Machine, index);
-	}
-
-	public ControlSlotArray create(final InventoryType type, final int[] index) {
-		int i = 0;
-		for (final ControlSlot slot : this.slots) {
-			slot.assign(type, index[i++]);
-		}
-		return this;
 	}
 
 	@Override

@@ -25,5 +25,6 @@ public interface IDesignSystem {
 
 	ItemStack getAdhesive();
 
+	@Nullable
 	IDesignMaterial getMaterial(final ItemStack p0);
 }

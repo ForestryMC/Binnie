@@ -11,6 +11,7 @@ public interface IMachine extends IOwnable {
 
 	MachineUtil getMachineUtil();
 
+	@Nullable
 	<T> T getInterface(Class<T> Interface);
 
 	void markDirty();

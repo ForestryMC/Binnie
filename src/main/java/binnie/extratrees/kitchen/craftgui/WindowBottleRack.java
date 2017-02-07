@@ -9,12 +9,18 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nullable;
+
 public class WindowBottleRack extends Window {
 	public WindowBottleRack(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(248, 180, player, inventory, side);
 	}
 
-	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
+	@Nullable
+	public static Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
+		if (inventory == null) {
+			return null;
+		}
 		return new WindowBottleRack(player, inventory, side);
 	}
 

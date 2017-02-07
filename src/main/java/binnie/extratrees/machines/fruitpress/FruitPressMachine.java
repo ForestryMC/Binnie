@@ -5,6 +5,7 @@ import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.inventory.ComponentInventoryTransfer;
 import binnie.core.machines.inventory.ComponentTankContainer;
+import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.craftgui.minecraft.IMachineInformation;
 import binnie.extratrees.core.ExtraTreeTexture;
@@ -26,12 +27,14 @@ public class FruitPressMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 	public void createMachine(final Machine machine) {
 		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.Press);
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-		inventory.addSlot(SLOT_FRUIT, "input");
-		inventory.getSlot(SLOT_FRUIT).setValidator(new SlotValidatorSqueezable());
-		inventory.getSlot(SLOT_FRUIT).forbidExtraction();
-		inventory.addSlot(SLOT_CURRENT, "process");
-		inventory.getSlot(SLOT_CURRENT).setValidator(new SlotValidatorSqueezable());
-		inventory.getSlot(SLOT_CURRENT).forbidInteraction();
+		final InventorySlot input = inventory.addSlot(SLOT_FRUIT, "input");
+		input.setValidator(new SlotValidatorSqueezable());
+		input.forbidExtraction();
+
+		final InventorySlot process = inventory.addSlot(SLOT_CURRENT, "process");
+		process.setValidator(new SlotValidatorSqueezable());
+		process.forbidInteraction();
+
 		final ComponentTankContainer tanks = new ComponentTankContainer(machine);
 		tanks.addTank(TANK_OUTPUT, "output", TANK_OUTPUT_CAPACITY);
 		new ComponentPowerReceptor(machine);

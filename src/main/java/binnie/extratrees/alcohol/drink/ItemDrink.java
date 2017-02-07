@@ -14,8 +14,10 @@ import net.minecraftforge.fluids.IFluidContainerItem;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
+// TODO use capabilities and remove IFluidContainerItem
 public class ItemDrink extends ItemFood implements IFluidContainerItem {
 	public ItemDrink() {
 		super(0, 0.0f, false);
@@ -28,13 +30,14 @@ public class ItemDrink extends ItemFood implements IFluidContainerItem {
 	}
 
 	public Glassware getGlassware(final ItemStack container) {
-		if (!container.hasTagCompound() || !container.getTagCompound().hasKey("glassware")) {
+		NBTTagCompound nbt = container.getTagCompound();
+		if (nbt == null || !nbt.hasKey("glassware")) {
 			return Glassware.BeerMug;
 		}
-		return Glassware.values()[container.getTagCompound().getShort("glassware")];
+		return Glassware.values()[nbt.getShort("glassware")];
 	}
 
-	public ItemStack getStack(final Glassware glass, final FluidStack fluid) {
+	public ItemStack getStack(final Glassware glass, @Nullable final FluidStack fluid) {
 		final ItemStack stack = new ItemStack(this);
 		this.saveGlassware(glass, stack);
 		this.saveFluid(fluid, stack);
@@ -42,17 +45,21 @@ public class ItemDrink extends ItemFood implements IFluidContainerItem {
 	}
 
 	public void saveGlassware(final Glassware container, final ItemStack stack) {
-		if (!stack.hasTagCompound()) {
-			stack.setTagCompound(new NBTTagCompound());
+		NBTTagCompound nbt = stack.getTagCompound();
+		if (nbt == null) {
+			nbt = new NBTTagCompound();
+			stack.setTagCompound(nbt);
 		}
-		stack.getTagCompound().setShort("glassware", (short) container.ordinal());
+		nbt.setShort("glassware", (short) container.ordinal());
 	}
 
-	public void saveFluid(final FluidStack fluid, final ItemStack stack) {
-		if (!stack.hasTagCompound()) {
-			stack.setTagCompound(new NBTTagCompound());
+	public void saveFluid(@Nullable final FluidStack fluid, final ItemStack stack) {
+		NBTTagCompound nbt = stack.getTagCompound();
+		if (nbt == null) {
+			nbt = new NBTTagCompound();
+			stack.setTagCompound(nbt);
 		}
-		final NBTTagCompound nbt = stack.getTagCompound();
+
 		if (fluid == null) {
 			nbt.removeTag("fluid");
 		} else {
@@ -63,6 +70,7 @@ public class ItemDrink extends ItemFood implements IFluidContainerItem {
 	}
 
 	@Override
+	@Nullable
 	public FluidStack getFluid(final ItemStack container) {
 		if (container.getTagCompound() == null || !container.getTagCompound().hasKey("fluid")) {
 			return null;
@@ -109,6 +117,7 @@ public class ItemDrink extends ItemFood implements IFluidContainerItem {
 	}
 
 	@Override
+	@Nullable
 	public FluidStack drain(final ItemStack container, final int maxDrain, final boolean doDrain) {
 		if (!container.hasTagCompound()) {
 			return null;
@@ -143,8 +152,20 @@ public class ItemDrink extends ItemFood implements IFluidContainerItem {
 	@Override
 	public String getItemStackDisplayName(final ItemStack stack) {
 		final FluidStack fluid = this.getFluid(stack);
-		final IDrinkLiquid liquid = (fluid == null) ? null : DrinkManager.getLiquid(fluid.getFluid());
-		return this.getGlassware(stack).getName((liquid == null) ? null : liquid.getName());
+		final IDrinkLiquid liquid;
+		if (fluid == null) {
+			liquid = null;
+		} else {
+			liquid = DrinkManager.getLiquid(fluid.getFluid());
+		}
+
+		final String liquidName;
+		if (liquid == null) {
+			liquidName = null;
+		} else {
+			liquidName = liquid.getName();
+		}
+		return this.getGlassware(stack).getName(liquidName);
 	}
 
 //	@Override

@@ -24,6 +24,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nullable;
+
 public class WindowWoodworker extends Window {
 	ControlTextEdit textEdit;
 	ControlTileSelect tileSelect;
@@ -39,12 +41,9 @@ public class WindowWoodworker extends Window {
 		new ControlPlayerInventory(this).setPosition(new IPoint(14, 96));
 		new ControlErrorState(this, 76, 65);
 		if (this.getInventory() != null) {
-			final ControlSlot slotWood1 = new ControlSlot(this, 22, 34);
-			slotWood1.assign(Designer.design1Slot);
-			final ControlSlot slotWood2 = new ControlSlot(this, 62, 34);
-			slotWood2.assign(Designer.design2Slot);
-			final ControlSlot slotBeeswax = new ControlSlot(this, 42, 64);
-			slotBeeswax.assign(Designer.beeswaxSlot);
+			final ControlSlot slotWood1 = new ControlSlot.Builder(this, 22, 34).assign(Designer.design1Slot);
+			final ControlSlot slotWood2 = new ControlSlot.Builder(this, 62, 34).assign(Designer.design2Slot);
+			final ControlSlot slotBeeswax = new ControlSlot.Builder(this, 42, 64).assign(Designer.beeswaxSlot);
 			final ControlRecipeSlot slotFinished = new ControlRecipeSlot(this, 112, 34);
 		}
 	}
@@ -59,7 +58,11 @@ public class WindowWoodworker extends Window {
 		}.setOrigin(EventHandler.Origin.DirectChild, this));
 	}
 
-	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
+	@Nullable
+	public static Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
+		if (inventory == null) {
+			return null;
+		}
 		return new WindowWoodworker(player, inventory, side);
 	}
 

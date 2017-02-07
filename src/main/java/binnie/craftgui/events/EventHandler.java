@@ -2,6 +2,8 @@ package binnie.craftgui.events;
 
 import binnie.craftgui.core.IWidget;
 
+import javax.annotation.Nullable;
+
 public abstract class EventHandler<E extends Event> {
 	Class<E> eventClass;
 	Origin origin;

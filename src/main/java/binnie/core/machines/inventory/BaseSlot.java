@@ -41,8 +41,9 @@ public abstract class BaseSlot<T> implements INbtWritable, INbtReadable, IValida
 
 	public abstract void setContent(final T content);
 
-	public void setValidator(final Validator<T> val) {
+	public BaseSlot<T> setValidator(final Validator<T> val) {
 		this.validator = val;
+		return this;
 	}
 
 	public boolean isEmpty() {

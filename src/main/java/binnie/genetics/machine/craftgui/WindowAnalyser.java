@@ -38,9 +38,9 @@ public class WindowAnalyser extends WindowMachine {
 		WindowAnalyser.Progress = new StandardTexture(66, 51, 66, 40, GeneticsTexture.GUIProcess.getTexture());
 		int x = 16;
 		final int y = 32;
-		new ControlSlotArray(this, x, y, 2, 3).create(Analyser.SLOT_RESERVE);
+		new ControlSlotArray.Builder(this, x, y, 2, 3).create(Analyser.SLOT_RESERVE);
 		x += 28;
-		new ControlSlot(this, x, y + 54 + 8).assign(13);
+		new ControlSlot.Builder(this, x, y + 54 + 8).assign(13);
 		new ControlSlotCharge(this, x + 20, y + 54 + 8, 13).setColour(10040319);
 		new ControlEnergyBar(this, x + 24 + 16, y + 54 + 8 + 1, 60, 16, Position.Left);
 		new ControlErrorState(this, x + 24 + 16 + 60 + 16, y + 54 + 8 + 1);
@@ -49,10 +49,10 @@ public class WindowAnalyser extends WindowMachine {
 		x += 56;
 		new Panel(this, x, y, 76, 50, MinecraftGUI.PanelType.Tinted);
 		new ControlProgress(this, x + 5, y + 5, WindowAnalyser.ProgressBase, WindowAnalyser.Progress, Position.Left);
-		new ControlSlot(this, x + 38 - 9, y + 25 - 9).assign(6);
+		new ControlSlot.Builder(this, x + 38 - 9, y + 25 - 9).assign(6);
 		new ControlIconDisplay(this, x + 76 + 2, y + 18, GUIIcon.ArrowRight.getIcon().getResourceLocation());
 		x += 96;
-		new ControlSlotArray(this, x, y, 2, 3).create(Analyser.SLOT_FINISHED);
+		new ControlSlotArray.Builder(this, x, y, 2, 3).create(Analyser.SLOT_FINISHED);
 		x += 52;
 		new ControlPlayerInventory(this);
 	}

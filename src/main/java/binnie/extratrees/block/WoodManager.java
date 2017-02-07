@@ -20,6 +20,7 @@ import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class WoodManager {
 	public static String getDisplayName(IWoodTyped wood, IWoodType woodType) {
@@ -61,15 +62,14 @@ public class WoodManager {
 		return (index < 0) ? 0 : index;
 	}
 
+	@Nullable
 	public static FenceType getFenceType(final ItemStack stack) {
 		final FenceDescription desc = getFenceDescription(stack);
 		return (desc == null) ? null : desc.getFenceType();
 	}
 
+	@Nullable
 	public static FenceDescription getFenceDescription(final ItemStack stack) {
-		if (stack == null) {
-			return null;
-		}
 		if (stack.getItem() == Item.getItemFromBlock(ExtraTrees.blocks().blockMultiFence)) {
 			final int damage = TileEntityMetadata.getItemDamage(stack);
 			return getFenceDescription(damage);
@@ -77,10 +77,9 @@ public class WoodManager {
 		for (final IPlankType type : getAllPlankTypes()) {
 			if (type instanceof IFenceProvider) {
 				final ItemStack f = ((IFenceProvider) type).getFence();
-				if (f != null && ItemStack.areItemStacksEqual(stack, f)) {
+				if (ItemStack.areItemStacksEqual(stack, f)) {
 					return new FenceDescription(new FenceType(0), type, type);
 				}
-				continue;
 			}
 		}
 		return null;
@@ -138,9 +137,10 @@ public class WoodManager {
 		return list;
 	}
 
+	@Nullable
 	public static IPlankType get(final ItemStack species) {
 		for (final IPlankType type : getAllPlankTypes()) {
-			if (type.getStack() != null && type.getStack().isItemEqual(species)) {
+			if (type.getStack().isItemEqual(species)) {
 				return type;
 			}
 		}

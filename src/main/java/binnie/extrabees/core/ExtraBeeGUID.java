@@ -14,6 +14,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nullable;
+
 public enum ExtraBeeGUID implements IBinnieGUID {
 	Database,
 	DatabaseNEI,
@@ -24,6 +26,7 @@ public enum ExtraBeeGUID implements IBinnieGUID {
 	AlvearyHatchery;
 
 	@Override
+	@Nullable
 	public Window getWindow(final EntityPlayer player, final World world, final int x, final int y, final int z, final Side side) {
 		Window window = null;
 		final TileEntity tileEntity = world.getTileEntity(new BlockPos(x, y, z));

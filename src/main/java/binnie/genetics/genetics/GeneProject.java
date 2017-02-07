@@ -6,18 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GeneProject {
-	int id;
-	String name;
-	GameProfile leader;
-	List<GameProfile> members;
+	private int id;
+	private String name;
+	private GameProfile leader;
+	private List<GameProfile> members;
 
 	public GeneProject(final int id, final String name, final GameProfile leader) {
 		this.id = 0;
-		this.leader = null;
+		this.leader = leader;
 		this.members = new ArrayList<>();
 		this.setID(id);
-		this.setName(name);
-		this.setLeader(leader);
+		this.name = name;
 	}
 
 	public int getID() {
@@ -38,10 +37,6 @@ public class GeneProject {
 
 	public GameProfile getLeader() {
 		return this.leader;
-	}
-
-	public void setLeader(final GameProfile leader) {
-		this.addPlayer(this.leader = leader);
 	}
 
 	public boolean isEmpty() {

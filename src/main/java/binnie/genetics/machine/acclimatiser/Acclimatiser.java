@@ -103,9 +103,9 @@ public class Acclimatiser {
 		addHumidityItem(new ItemStack(Items.WATER_BUCKET), 0.75f);
 		addHumidityItem(new ItemStack(Blocks.SAND), -0.15f);
 		addTemperatureItem(FluidContainerType.CAN.getFilled(FluidRegistry.LAVA), 0.75f);
-		addTemperatureItem(FluidContainerType.REFARACTORY.getFilled(FluidRegistry.LAVA), 0.75f);
+		addTemperatureItem(FluidContainerType.REFRACTORY.getFilled(FluidRegistry.LAVA), 0.75f);
 		addHumidityItem(FluidContainerType.CAN.getFilled(FluidRegistry.WATER), 0.75f);
-		addHumidityItem(FluidContainerType.REFARACTORY.getFilled(FluidRegistry.WATER), 0.75f);
+		addHumidityItem(FluidContainerType.REFRACTORY.getFilled(FluidRegistry.WATER), 0.75f);
 		addHumidityItem(FluidContainerType.CAPSULE.getFilled(FluidRegistry.WATER), 0.75f);
 	}
 

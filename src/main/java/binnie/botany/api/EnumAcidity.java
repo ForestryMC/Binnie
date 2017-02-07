@@ -4,18 +4,17 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 
+import javax.annotation.Nullable;
+
 public enum EnumAcidity implements IStringSerializable {
 	Acid(TextFormatting.RED),
-	Neutral,
+	Neutral(null),
 	Alkaline(TextFormatting.AQUA);
 
+	@Nullable
 	final TextFormatting color;
 
-	EnumAcidity() {
-		this(null);
-	}
-
-	EnumAcidity(TextFormatting color) {
+	EnumAcidity(@Nullable TextFormatting color) {
 		this.color = color;
 	}
 

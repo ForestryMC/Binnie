@@ -34,19 +34,19 @@ public class WindowPolymeriser extends WindowMachine {
 		super.initialiseClient();
 		int x = 16;
 		final int y = 38;
-		new ControlSlotArray(this, x, y, 1, 4).create(Polymeriser.SLOT_SERUM_RESERVE);
+		new ControlSlotArray.Builder(this, x, y, 1, 4).create(Polymeriser.SLOT_SERUM_RESERVE);
 		new ControlIconDisplay(this, x + 18, y + 1, GUIIcon.ArrowRight.getIcon().getResourceLocation());
 		x += 34;
 		new ControlMachineProgress(this, x + 18, y - 6, WindowPolymeriser.ProgressBase, WindowPolymeriser.Progress, Position.Left);
-		new ControlSlot(this, x, y).assign(0);
+		new ControlSlot.Builder(this, x, y).assign(0);
 		new ControlLiquidTank(this, x, y + 18 + 16, true).setTankID(0);
 		new ControlLiquidTank(this, x, y + 18 + 16 + 18 + 8, true).setTankID(1);
 		new ControlEnergyBar(this, x + 120, 96, 64, 16, Position.Left);
 		x += 40;
-		new ControlSlot(this, x + 30, y + 18 + 8).assign(1);
+		new ControlSlot.Builder(this, x + 30, y + 18 + 8).assign(1);
 		new ControlSlotCharge(this, x + 30 + 20, y + 18 + 8, 1).setColour(16766976);
 		x += 138;
-		new ControlSlotArray(this, x, y + 9, 2, 2).create(Polymeriser.SLOT_SERUM_FINISHED);
+		new ControlSlotArray.Builder(this, x, y + 9, 2, 2).create(Polymeriser.SLOT_SERUM_FINISHED);
 		final ControlErrorState errorState = new ControlErrorState(this, 244, 97);
 		new ControlPlayerInventory(this);
 	}

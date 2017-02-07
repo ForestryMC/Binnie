@@ -33,12 +33,12 @@ public class WindowAcclimatiser extends WindowMachine {
 		super.initialiseClient();
 		int x = 16;
 		final int y = 32;
-		new ControlSlotArray(this, x, y, 2, 2).create(Acclimatiser.SLOT_RESERVE);
+		new ControlSlotArray.Builder(this, x, y, 2, 2).create(Acclimatiser.SLOT_RESERVE);
 		x += 54;
-		new ControlSlot(this, x + 18, y).assign(4);
-		new ControlSlotArray(this, x, y + 18 + 18, 3, 1).create(Acclimatiser.SLOT_ACCLIMATISER);
+		new ControlSlot.Builder(this, x + 18, y).assign(4);
+		new ControlSlotArray.Builder(this, x, y + 18 + 18, 3, 1).create(Acclimatiser.SLOT_ACCLIMATISER);
 		x += 72;
-		new ControlSlotArray(this, x, y, 2, 2).create(Acclimatiser.SLOT_DRONE);
+		new ControlSlotArray.Builder(this, x, y, 2, 2).create(Acclimatiser.SLOT_DRONE);
 		new ControlEnergyBar(this, 21, 115, 16, 60, Position.Bottom);
 		new ControlErrorState(this, 181, 83);
 		new ControlPlayerInventory(this);

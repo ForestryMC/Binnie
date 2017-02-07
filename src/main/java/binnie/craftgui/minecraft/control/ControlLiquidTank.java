@@ -78,21 +78,20 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(this.horizontal ? CraftGUITexture.HorizontalLiquidTank : CraftGUITexture.LiquidTank, IPoint.ZERO);
 		GuiCraftGUI gui = Window.get(this).getGui();
-		if (gui != null) {
-			if (this.isMouseOver() && gui.isHelpMode()) {
-				final int c = -1442840576 + MinecraftTooltip.getOutline(Tooltip.Type.Help);
-				RenderUtil.drawGradientRect(this.getArea().inset(1), c, c);
-			} else if (ControlLiquidTank.tankError.contains(this.tankID)) {
-				final int c = -1442840576 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error);
-				RenderUtil.drawGradientRect(this.getArea().inset(1), c, c);
-			} else if (this.getSuperParent().getMousedOverWidget() == this) {
-				if (gui.getDraggedItem() != null) {
-					RenderUtil.drawGradientRect(this.getArea().inset(1), -1426089575, -1426089575);
-				} else {
-					RenderUtil.drawGradientRect(this.getArea().inset(1), -2130706433, -2130706433);
-				}
+		if (this.isMouseOver() && gui.isHelpMode()) {
+			final int c = -1442840576 + MinecraftTooltip.getOutline(Tooltip.Type.Help);
+			RenderUtil.drawGradientRect(this.getArea().inset(1), c, c);
+		} else if (ControlLiquidTank.tankError.contains(this.tankID)) {
+			final int c = -1442840576 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error);
+			RenderUtil.drawGradientRect(this.getArea().inset(1), c, c);
+		} else if (this.getTopParent().getMousedOverWidget() == this) {
+			if (gui.getDraggedItem() != null) {
+				RenderUtil.drawGradientRect(this.getArea().inset(1), -1426089575, -1426089575);
+			} else {
+				RenderUtil.drawGradientRect(this.getArea().inset(1), -2130706433, -2130706433);
 			}
 		}
+
 		if (this.isTankValid()) {
 			final int height = this.horizontal ? 16 : 58;
 			final int squaled = Math.round(height * (this.getTank().getAmount() / this.getTank().getCapacity()));
@@ -134,7 +133,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(this.horizontal ? CraftGUITexture.HorizontalLiquidTankOverlay : CraftGUITexture.LiquidTankOverlay, IPoint.ZERO);
 		GuiCraftGUI gui = Window.get(this).getGui();
-		if (this.isMouseOver() && gui != null && gui.isHelpMode()) {
+		if (this.isMouseOver() && gui.isHelpMode()) {
 			final IArea area = this.getArea();
 			RenderUtil.setColour(MinecraftTooltip.getOutline(Tooltip.Type.Help));
 			CraftGUI.render.texture(CraftGUITexture.Outline, area.outset(1));

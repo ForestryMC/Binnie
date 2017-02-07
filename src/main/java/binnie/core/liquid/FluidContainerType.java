@@ -4,8 +4,6 @@ import binnie.core.BinnieCore;
 import binnie.core.Mods;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -14,13 +12,13 @@ import javax.annotation.Nullable;
 
 public enum FluidContainerType {
 	CAPSULE,
-	REFARACTORY,
+	REFRACTORY,
 	CAN,
 	GLASS,
 	CYLINDER;
 
 	@Nullable
-	ItemFluidContainer item;
+	private ItemFluidContainer item;
 
 	public int getMaxStackSize() {
 		return 16;
@@ -38,22 +36,22 @@ public enum FluidContainerType {
 		return BinnieCore.getBinnieProxy().localise("item.container." + this.name().toLowerCase());
 	}
 
-	public boolean isActive() {
-		return this.getEmpty() != null;
-	}
-	
 	@Nullable
 	public ItemFluidContainer getItem() {
 		return item;
 	}
+
+	public void setItem(ItemFluidContainer item) {
+		this.item = item;
+	}
 	
 	public ItemStack get(int amount){
-		if(item == null){
+		if (item == null){
 			throw new IllegalArgumentException("Null container item: " + this);
 		}
 		return new ItemStack(item, amount);
 	}
-	
+
 	public ItemStack getEmpty() {
 		switch (this) {
 			case CAN: {
@@ -63,9 +61,14 @@ public enum FluidContainerType {
 				return Mods.Forestry.stack("capsule");
 			}
 			case CYLINDER:
-			case GLASS:
-				return new ItemStack(item);
-			case REFARACTORY: {
+			case GLASS: {
+				if (item != null) {
+					return new ItemStack(item);
+				} else {
+					throw new IllegalArgumentException("Null container item: " + this);
+				}
+			}
+			case REFRACTORY: {
 				return Mods.Forestry.stack("refractory");
 			}
 			default: {
@@ -74,35 +77,16 @@ public enum FluidContainerType {
 		}
 	}
 
-	@Nullable
 	public ItemStack getFilled(Fluid fluid) {
 		ItemStack stack = getEmpty();
-		if (stack != null) {
-			stack = stack.copy();
- 			IFluidHandler fluidHandler = FluidUtil.getFluidHandler(stack);
-			if (fluidHandler != null) {
-				int fill = fluidHandler.fill(new FluidStack(fluid, Integer.MAX_VALUE), true);
-				if (fill > 0) {
-					return stack;
-				}
+		stack = stack.copy();
+		IFluidHandler fluidHandler = FluidUtil.getFluidHandler(stack);
+		if (fluidHandler != null) {
+			int fill = fluidHandler.fill(new FluidStack(fluid, Integer.MAX_VALUE), true);
+			if (fill > 0) {
+				return stack;
 			}
 		}
-		return null;
-	}
-
-	public void registerContainerData(final IFluidType fluid) {
-		if (!this.isActive()) {
-			return;
-		}
-		ItemStack filled = getFilled(FluidRegistry.getFluid(fluid.getIdentifier().toLowerCase()));
-		if(filled == null){
-			filled = item.getContainer(fluid);
-		}
-		ItemStack empty = this.getEmpty();
-		if (filled == null || empty == null || fluid.get(1000) == null) {
-			return;
-		}
-		final FluidContainerRegistry.FluidContainerData data = new FluidContainerRegistry.FluidContainerData(fluid.get(1000), filled, empty);
-		FluidContainerRegistry.registerFluidContainer(data);
+		throw new IllegalStateException("Could not fill fluid handler for container: " + this);
 	}
 }

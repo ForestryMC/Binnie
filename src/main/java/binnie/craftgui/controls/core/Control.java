@@ -10,6 +10,8 @@ import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.minecraft.Window;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +39,13 @@ public class Control extends Widget implements ITooltipHelp, ITooltip {
 
 	@Override
 	public void onUpdateClient() {
+	}
+
+	@Nonnull
+	@Override
+	public IWidget getParent() {
+		//noinspection ConstantConditions
+		return super.getParent();
 	}
 
 	public void addHelp(final String string) {
@@ -76,6 +85,6 @@ public class Control extends Widget implements ITooltipHelp, ITooltip {
 	}
 
 	public Window getWindow() {
-		return (Window) this.getSuperParent();
+		return (Window) this.getTopParent();
 	}
 }

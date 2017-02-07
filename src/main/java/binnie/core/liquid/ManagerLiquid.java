@@ -15,6 +15,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class ManagerLiquid extends ManagerBase {
 		this.fluids = new LinkedHashMap<>();
 		EnumContainerType.CAN.add(new BinnieContainerPermission(FluidContainerType.CAN));
 		EnumContainerType.CAPSULE.add(new BinnieContainerPermission(FluidContainerType.CAPSULE));
-		EnumContainerType.REFRACTORY.add(new BinnieContainerPermission(FluidContainerType.REFARACTORY));
+		EnumContainerType.REFRACTORY.add(new BinnieContainerPermission(FluidContainerType.REFRACTORY));
 		EnumContainerType.GLASS.add(new BinnieContainerPermission(FluidContainerType.GLASS));
 	}
 
@@ -51,6 +52,7 @@ public class ManagerLiquid extends ManagerBase {
 		return bFluid;
 	}
 
+	@Nullable
 	public FluidStack getFluidStack(final String name, final int amount) {
 		return FluidRegistry.getFluidStack(name.toLowerCase(), amount);
 	}
@@ -61,13 +63,6 @@ public class ManagerLiquid extends ManagerBase {
 
 	@Override
 	public void postInit() {
-		for (final IFluidType fluid : this.fluids.values()) {
-			for (final FluidContainerType container : FluidContainerType.values()) {
-				if (container.isActive() && fluid.canPlaceIn(container)) {
-					container.registerContainerData(fluid);
-				}
-			}
-		}
 		GameRegistry.addShapelessRecipe(FluidContainerType.GLASS.get(1), Items.GLASS_BOTTLE);
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.GLASS_BOTTLE), FluidContainerType.GLASS.get(1));
 		GameRegistry.addRecipe(new ShapedOreRecipe(FluidContainerType.GLASS.get(3),

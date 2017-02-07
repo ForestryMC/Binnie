@@ -4,6 +4,7 @@ import binnie.Constants;
 import binnie.core.genetics.ForestryAllele;
 import binnie.extratrees.block.EnumETLog;
 import binnie.extratrees.gen.*;
+import com.google.common.base.Preconditions;
 import forestry.api.arboriculture.*;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
@@ -2258,9 +2259,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		}
 
 		public <T extends Enum<T> & IChromosomeType> void set(T chromosomeType, IAllele allele) {
-			if (allele == null) {
-				throw new NullPointerException("Allele must not be null");
-			}
+			Preconditions.checkNotNull(allele, "Allele must not be null");
 			if (!chromosomeType.getAlleleClass().isInstance(allele)) {
 				throw new IllegalArgumentException("Allele is the wrong type. Expected: " + chromosomeType + " Got: " + allele);
 			}

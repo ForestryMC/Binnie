@@ -164,7 +164,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			for (int k = 0; k < inv.getPageSize(); ++k) {
 				slotsIDs[k] = i++;
 			}
-			new ControlSlotArray(thisPage, 8, 8, inv.getPageSize() / 5, 5).create(slotsIDs);
+			new ControlSlotArray.Builder(thisPage, 8, 8, inv.getPageSize() / 5, 5).create(slotsIDs);
 		}
 		x += compartmentPageWidth;
 		if (tabs2.length > 0) {
@@ -379,7 +379,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				this.slotGrid.deleteAllChildren();
 				this.slotGrid.setSize(new IPoint(width, height));
 				for (final int k : slotIds.keySet()) {
-					new ControlSlot(this.slotGrid, x, y).assign(k);
+					new ControlSlot.Builder(this.slotGrid, x, y).assign(k);
 					x += 18;
 					if (x >= 108) {
 						x = 0;
@@ -387,7 +387,8 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 					}
 				}
 				while (y < 108 || x != 0) {
-					new ControlSlot(this.slotGrid, x, y);
+					// TODO: what was this supposed to do?
+					new ControlSlot.Builder(this.slotGrid, x, y);
 					x += 18;
 					if (x >= 108) {
 						x = 0;

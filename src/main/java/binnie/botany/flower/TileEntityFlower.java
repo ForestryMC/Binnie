@@ -111,11 +111,12 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		return super.writeToNBT(nbtCompound);
 	}
 
-	public void create(final ItemStack stack, final GameProfile owner) {
-		this.create(BotanyCore.getFlowerRoot().getMember(stack), owner);
+	public void create(final ItemStack stack, @Nullable final GameProfile owner) {
+		IFlower flower = BotanyCore.getFlowerRoot().getMember(stack);
+		this.create(flower, owner);
 	}
 
-	public void create(final IFlower flower, final GameProfile owner) {
+	public void create(final IFlower flower, @Nullable final GameProfile owner) {
 		this.flower = flower;
 		if (this.flower.getAge() == 0) {
 			this.flower.setFlowered(false);
@@ -130,6 +131,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 	}
 
 	@Override
+	@Nullable
 	public IIndividual getPollen() {
 		return this.getFlower();
 	}
@@ -323,6 +325,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		}
 	}
 
+	@Nullable
 	public ItemStack getItemStack() {
 		if (this.flower == null) {
 			return null;
@@ -330,6 +333,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		return Binnie.GENETICS.getFlowerRoot().getMemberStack(this.getFlower(), EnumFlowerStage.getStage(getFlower()));
 	}
 
+	@Nullable
 	private TileEntityFlower getRoot() {
 		if (this.getSection() == 0) {
 			return null;
@@ -600,6 +604,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 	public void setErrorState(final IErrorState state) {
 	}
 
+	@Nullable
 	public IErrorState getErrorState() {
 		return null;
 	}

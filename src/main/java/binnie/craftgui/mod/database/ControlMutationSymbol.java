@@ -41,8 +41,8 @@ class ControlMutationSymbol extends Control implements ITooltip {
 
 	public void setValue(final IMutation value) {
 		this.value = value;
-		final boolean isNEI = ((WindowAbstractDatabase) this.getSuperParent()).isNEI();
-		final BreedingSystem system = ((WindowAbstractDatabase) this.getSuperParent()).getBreedingSystem();
+		final boolean isNEI = ((WindowAbstractDatabase) this.getTopParent()).isNEI();
+		final BreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
 		this.discovered = (isNEI || system.isMutationDiscovered(value, Window.get(this).getWorld(), Window.get(this).getUsername()));
 		if (this.discovered) {
 			this.setColour(16777215);
@@ -56,7 +56,7 @@ class ControlMutationSymbol extends Control implements ITooltip {
 		if (this.type == 1 && this.discovered) {
 			final IAllele species1 = this.value.getAllele0();
 			final IAllele species2 = this.value.getAllele1();
-			final BreedingSystem system = ((WindowAbstractDatabase) this.getSuperParent()).getBreedingSystem();
+			final BreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
 			final float chance = system.getChance(this.value, Window.get(this).getPlayer(), species1, species2);
 			tooltip.add("Current Chance - " + chance + "%");
 			if (this.value.getSpecialConditions() != null) {

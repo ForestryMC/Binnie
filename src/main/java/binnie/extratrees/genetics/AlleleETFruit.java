@@ -371,9 +371,9 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 	@Nullable
 	@Override
 	public ResourceLocation getSprite(ITreeGenome genome, IBlockAccess world, BlockPos pos, int ripeningTime) {
-		if(sprite != null){
+		if (sprite != null) {
 			return sprite.getLocation();
-		}else{
+		} else {
 			return null;
 		}
 	}
@@ -437,9 +437,9 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 	@Nullable
 	@Override
 	public String getModelName() {
-		if(pod != null){
+		if (pod != null) {
 			return pod.name();
-		}else{
+		} else {
 			return null;
 		}
 	}
@@ -523,9 +523,9 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 	@Nullable
 	@Override
 	public ResourceLocation getDecorativeSprite() {
-		if(sprite != null){
+		if (sprite != null) {
 			return sprite.getLocation();
-		}else{
+		} else {
 			return null;
 		}
 	}

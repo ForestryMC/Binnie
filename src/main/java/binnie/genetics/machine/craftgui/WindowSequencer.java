@@ -48,20 +48,18 @@ public class WindowSequencer extends WindowMachine {
 		int x = 16;
 		int y = 32;
 		CraftGUIUtil.horizontalGrid(x, y, TextJustification.MiddleCenter, 2,
-				new ControlSlotArray(this, 0, 0, 2, 2).create(Sequencer.SLOT_RESERVE),
+				new ControlSlotArray.Builder(this, 0, 0, 2, 2).create(Sequencer.SLOT_RESERVE),
 				new ControlIconDisplay(this, 0, 0, GUIIcon.ArrowRight.getIcon().getResourceLocation()),
 				new ControlSequencerProgress(this, 0, 0),
 				new ControlIconDisplay(this, 0, 0, GUIIcon.ArrowRight.getIcon().getResourceLocation()),
-				new ControlSlot(this, 0, 0).assign(6)
+				new ControlSlot.Builder(this, 0, 0).assign(6)
 		);
-		final ControlSlot slotTarget = new ControlSlot(this, x + 96, y + 16);
-		slotTarget.assign(5);
+		final ControlSlot slotTarget = new ControlSlot.Builder(this, x + 96, y + 16).assign(5);
 		x = 34;
 		y = 92;
 		this.slotText = new ControlText(this, new IArea(0, y, this.w(), 12), TextFormatting.DARK_GRAY + Genetics.proxy.localise("machine.machine.sequencer.texts.userless"), TextJustification.MiddleCenter);
 		y += 20;
-		final ControlSlot slotDye = new ControlSlot(this, x, y);
-		slotDye.assign(0);
+		final ControlSlot slotDye = new ControlSlot.Builder(this, x, y).assign(0);
 		x += 20;
 		new ControlSlotCharge(this, x, y, 0).setColour(16750848);
 		x += 32;

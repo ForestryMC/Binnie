@@ -12,27 +12,19 @@ import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class WindowAlvearyIndustrialFrame extends Window {
-	Machine machine;
-	ControlPlayerInventory playerInventory;
-
 	public WindowAlvearyIndustrialFrame(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(176, 144, player, inventory, side);
-		this.machine = ((TileEntityMachine) inventory).getMachine();
 	}
 
 	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
-		if (player == null || inventory == null) {
-			return null;
-		}
 		return new WindowAlvearyIndustrialFrame(player, inventory, side);
 	}
 
 	@Override
 	public void initialiseClient() {
 		this.setTitle("Industrial Frame Housing");
-		this.playerInventory = new ControlPlayerInventory(this);
-		final ControlSlot slot = new ControlSlot(this, 79, 30);
-		slot.assign(0);
+		ControlPlayerInventory playerInventory = new ControlPlayerInventory(this);
+		new ControlSlot.Builder(this, 79, 30).assign(0);
 	}
 
 	@Override

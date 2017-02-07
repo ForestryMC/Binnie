@@ -30,7 +30,7 @@ class ControlMutationBox extends ControlListBox<IMutation> {
 			this.species = species;
 			this.index = 0;
 			this.movePercentage(-100.0f);
-			final BreedingSystem system = ((WindowAbstractDatabase) this.getSuperParent()).getBreedingSystem();
+			final BreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
 			final List<IMutation> discovered = system.getDiscoveredMutations(Window.get(this).getWorld(), Window.get(this).getUsername());
 			if (species != null) {
 				if (this.type == Type.Resultant) {

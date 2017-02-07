@@ -19,6 +19,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nullable;
+
 public class WindowPress extends Window {
 	public WindowPress(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(194, 192, player, inventory, side);
@@ -37,16 +39,20 @@ public class WindowPress extends Window {
 	@Override
 	public void initialiseClient() {
 		this.setTitle(Machine.getMachine(this.getInventory()).getPackage().getDisplayName());
-		new ControlSlot(this, 24, 52).assign(FruitPressMachine.SLOT_FRUIT);
+		new ControlSlot.Builder(this, 24, 52).assign(FruitPressMachine.SLOT_FRUIT);
 		new ControlLiquidTank(this, 99, 32).setTankID(FruitPressMachine.TANK_OUTPUT);
 		new ControlEnergyBar(this, 154, 32, 16, 60, Position.Bottom);
 		new ControlPlayerInventory(this);
 		new ControlErrorState(this, 128, 54);
 		new ControlFruitPressProgress(this, 62, 24);
-		((Window) this.getSuperParent()).getContainer().getOrCreateSlot(InventoryType.Machine, FruitPressMachine.SLOT_CURRENT);
+		((Window) this.getTopParent()).getContainer().getOrCreateSlot(InventoryType.Machine, FruitPressMachine.SLOT_CURRENT);
 	}
 
-	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
+	@Nullable
+	public static Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
+		if (inventory == null) {
+			return null;
+		}
 		return new WindowPress(player, inventory, side);
 	}
 
@@ -54,10 +60,10 @@ public class WindowPress extends Window {
 	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound action) {
 		final FruitPressLogic logic = Machine.getInterface(FruitPressLogic.class, this.getInventory());
 		super.recieveGuiNBT(side, player, name, action);
-		if (side == Side.SERVER && name.equals("fruitpress-click")) {
-			if (logic.canWork() == null && (logic.canProgress() == null || logic.canProgress() instanceof ErrorState.InsufficientPower)) {
+		if (logic != null && side == Side.SERVER) {
+			if (name.equals("fruitpress-click") && logic.canWork() == null && (logic.canProgress() == null || logic.canProgress() instanceof ErrorState.InsufficientPower)) {
 				logic.alterProgress(2.0f);
-			} else if (side == Side.SERVER && name.equals("clear-fruit")) {
+			} else if (name.equals("clear-fruit")) {
 				logic.setProgress(0.0f);
 				this.getInventory().setInventorySlotContents(FruitPressMachine.SLOT_CURRENT, null);
 			}

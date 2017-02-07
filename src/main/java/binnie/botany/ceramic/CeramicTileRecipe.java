@@ -25,6 +25,7 @@ public class CeramicTileRecipe implements IRecipe {
 	}
 
 	@Override
+	@Nullable
 	public ItemStack getCraftingResult(final InventoryCrafting inv) {
 		final Item ceramicBlock = Item.getItemFromBlock(Botany.ceramic);
 		final Item ceramicTile = Item.getItemFromBlock(Botany.ceramicTile);

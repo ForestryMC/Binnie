@@ -11,6 +11,8 @@ import forestry.api.apiculture.EnumBeeType;
 import forestry.api.apiculture.IBee;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nullable;
@@ -28,7 +30,7 @@ public class Incubator {
 	private static IncubatorRecipeLarvae LARVAE_RECIPE;
 
 	public static void addRecipes() {
-		Incubator.RECIPES.add(new IncubatorRecipe(GeneticsItems.GrowthMedium.get(1), Binnie.LIQUID.getFluidStack("water", 25), GeneticLiquid.GrowthMedium.get(25), 0.2f));
+		Incubator.RECIPES.add(new IncubatorRecipe(GeneticsItems.GrowthMedium.get(1), new FluidStack(FluidRegistry.WATER, 25), GeneticLiquid.GrowthMedium.get(25), 0.2f));
 		Incubator.RECIPES.add(new IncubatorRecipe(new ItemStack(Items.WHEAT), GeneticLiquid.GrowthMedium.get(25), GeneticLiquid.Bacteria.get(5), 0.2f));
 		Incubator.RECIPES.add(new IncubatorRecipe(GeneticsItems.GrowthMedium.get(1), GeneticLiquid.Bacteria.get(0), GeneticLiquid.Bacteria.get(5), 0.05f));
 		Incubator.RECIPES.add(new IncubatorRecipe(new ItemStack(Items.SUGAR), GeneticLiquid.Bacteria.get(2), null, 0.5f, 0.2f)

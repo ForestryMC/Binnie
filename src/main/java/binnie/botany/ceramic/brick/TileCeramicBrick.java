@@ -7,9 +7,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
-public class TileCeramicBrick extends TileEntity{
+import javax.annotation.Nullable;
 
+public class TileCeramicBrick extends TileEntity{
+	@Nullable
 	private EnumFlowerColor colorFirst;
+	@Nullable
 	private EnumFlowerColor colorSecond;
 	
 	public void setColors(EnumFlowerColor colorFirst, EnumFlowerColor colorSecond) {

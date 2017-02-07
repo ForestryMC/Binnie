@@ -40,7 +40,7 @@ public enum DesignSystem implements IDesignSystem {
 				return PlankType.ExtraTreePlanks.Fir;
 			}
 			default: {
-				return null;
+				throw new IllegalStateException("Unknown design system: " + this);
 			}
 		}
 	}
@@ -55,7 +55,7 @@ public enum DesignSystem implements IDesignSystem {
 				return PlankType.ExtraTreePlanks.Whitebeam;
 			}
 			default: {
-				return null;
+				throw new IllegalStateException("Unknown design system: " + this);
 			}
 		}
 	}
@@ -71,7 +71,7 @@ public enum DesignSystem implements IDesignSystem {
 				return CarpentryManager.carpentryInterface.getWoodMaterial(id);
 			}
 			default: {
-				return null;
+				throw new IllegalStateException("Unknown design system: " + this);
 			}
 		}
 	}
@@ -86,7 +86,7 @@ public enum DesignSystem implements IDesignSystem {
 				return CarpentryManager.carpentryInterface.getCarpentryWoodIndex(id);
 			}
 			default: {
-				return 0;
+				throw new IllegalStateException("Unknown design system: " + this);
 			}
 		}
 	}
@@ -100,12 +100,13 @@ public enum DesignSystem implements IDesignSystem {
 				return "patterns";
 			}
 			default: {
-				return "";
+				throw new IllegalStateException("Unknown design system: " + this);
 			}
 		}
 	}
 
 	@Override
+	@Nullable
 	public IDesignMaterial getMaterial(final ItemStack stack) {
 		switch (this) {
 			case Glass: {
@@ -115,7 +116,7 @@ public enum DesignSystem implements IDesignSystem {
 				return CarpentryManager.carpentryInterface.getWoodMaterial(stack);
 			}
 			default: {
-				return null;
+				throw new IllegalStateException("Unknown design system: " + this);
 			}
 		}
 	}
@@ -130,7 +131,7 @@ public enum DesignSystem implements IDesignSystem {
 				return ExtraTreeItems.WoodWax.get(1);
 			}
 			default: {
-				return null;
+				throw new IllegalStateException("Unknown design system: " + this);
 			}
 		}
 	}

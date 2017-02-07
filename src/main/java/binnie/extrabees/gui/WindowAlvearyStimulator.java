@@ -14,17 +14,16 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
 
-public class WindowAlvearyStimulator extends Window {
-	Machine machine;
-	ControlPlayerInventory playerInventory;
+import javax.annotation.Nullable;
 
+public class WindowAlvearyStimulator extends Window {
 	public WindowAlvearyStimulator(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(176, 144, player, inventory, side);
-		this.machine = ((TileEntityMachine) inventory).getMachine();
 	}
 
-	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
-		if (player == null || inventory == null) {
+	@Nullable
+	public static Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
+		if (inventory == null) {
 			return null;
 		}
 		return new WindowAlvearyStimulator(player, inventory, side);
@@ -34,9 +33,8 @@ public class WindowAlvearyStimulator extends Window {
 	public void initialiseClient() {
 		this.setTitle("Stimulator");
 		new ControlEnergyBar(this, 75, 29, 60, 16, Position.Left);
-		final ControlSlot slot = new ControlSlot(this, 41, 28);
-		slot.assign(AlvearyStimulator.slotCircuit);
-		this.playerInventory = new ControlPlayerInventory(this);
+		new ControlSlot.Builder(this, 41, 28).assign(AlvearyStimulator.slotCircuit);
+		new ControlPlayerInventory(this);
 	}
 
 	@Override

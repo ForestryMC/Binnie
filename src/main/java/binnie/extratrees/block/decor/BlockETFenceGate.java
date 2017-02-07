@@ -23,6 +23,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class BlockETFenceGate extends BlockFenceGate implements IBlockMetadata {
@@ -127,6 +128,7 @@ public class BlockETFenceGate extends BlockFenceGate implements IBlockMetadata {
 	}
 	
 	@Override
+	@Nullable
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		return BlockMetadata.getPickBlock(world, pos);
 	}
@@ -138,6 +140,6 @@ public class BlockETFenceGate extends BlockFenceGate implements IBlockMetadata {
 	
 	@Override
     public boolean isPassable(IBlockAccess worldIn, BlockPos pos){
-        return worldIn.getBlockState(pos).getValue(OPEN).booleanValue();
+        return worldIn.getBlockState(pos).getValue(OPEN);
     }
 }

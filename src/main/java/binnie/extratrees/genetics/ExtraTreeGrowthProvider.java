@@ -41,11 +41,13 @@ public class ExtraTreeGrowthProvider implements IAlleleGrowth, IGrowthProvider {
 	}
 
 	@Override
+	@Nullable
 	public String getDescription() {
 		return null;
 	}
 
 	@Override
+	@Nullable
 	public String[] getInfo() {
 		return null;
 	}

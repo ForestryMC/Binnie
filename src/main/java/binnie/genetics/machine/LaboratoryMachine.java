@@ -77,9 +77,6 @@ public enum LaboratoryMachine implements IMachineType {
 		@Override
 		public void readFromNBT(final NBTTagCompound nbttagcompound) {
 			super.readFromNBT(nbttagcompound);
-			if (nbttagcompound == null) {
-				return;
-			}
 			this.stack = ItemStack.loadItemStackFromNBT(nbttagcompound.getCompoundTag("Item"));
 		}
 

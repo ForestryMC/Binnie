@@ -6,6 +6,7 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IClassification;
 
+import javax.annotation.Nullable;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -271,6 +272,7 @@ public enum ExtraBeesBranch implements IClassification {
 	}
 
 	@Override
+	@Nullable
 	public IClassification[] getMemberGroups() {
 		return null;
 	}

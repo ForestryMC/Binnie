@@ -49,7 +49,7 @@ public class ControlItemDisplay extends Control implements ITooltip {
 			return;
 		}
 
-		final IPoint relativeToWindow = this.getAbsolutePosition().sub(this.getSuperParent().getPosition());
+		final IPoint relativeToWindow = this.getAbsolutePosition().sub(this.getTopParent().getPosition());
 		if (relativeToWindow.x() > Window.get(this).getSize().x() + 100 || relativeToWindow.y() > Window.get(this).getSize().y() + 100) {
 			return;
 		}
@@ -67,7 +67,7 @@ public class ControlItemDisplay extends Control implements ITooltip {
 		GlStateManager.enableAlpha();
 	}
 
-	public void setItemStack(final ItemStack itemStack) {
+	public void setItemStack(@Nullable final ItemStack itemStack) {
 		this.itemStack = itemStack;
 	}
 
@@ -79,7 +79,7 @@ public class ControlItemDisplay extends Control implements ITooltip {
 	@Override
 	public void getTooltip(final Tooltip tooltip) {
 		if (this.hastooltip && this.itemStack != null) {
-			tooltip.add(this.itemStack.getTooltip(((Window) this.getSuperParent()).getPlayer(), false));
+			tooltip.add(this.itemStack.getTooltip(((Window) this.getTopParent()).getPlayer(), false));
 		}
 		super.getTooltip(tooltip);
 	}

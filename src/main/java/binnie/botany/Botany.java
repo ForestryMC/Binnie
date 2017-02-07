@@ -261,14 +261,14 @@ public class Botany extends AbstractMod {
 			return;
 		}
 
-		if (player != null && heldItem != null) {
+		if (heldItem != null) {
 			Block block = world.getBlockState(pos).getBlock();
 			int py = -1;
 			if (block instanceof IBlockSoil && (world.isAirBlock(pos.up()) || block.isReplaceable(world, pos))) {
 				py = 1;
 			}
 			if (py >= 0) {
-				IFlower flower = BotanyCore.getFlowerRoot().getConversion(event.getEntityPlayer().getHeldItemMainhand());
+				IFlower flower = BotanyCore.getFlowerRoot().getConversion(heldItem);
 				if (flower != null && Gardening.plant(world, pos.add(0, py, 0), flower, player.getGameProfile()) && !player.capabilities.isCreativeMode) {
 					--heldItem.stackSize;
 				}

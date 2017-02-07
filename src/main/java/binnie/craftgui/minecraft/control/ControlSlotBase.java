@@ -14,6 +14,8 @@ import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nullable;
+
 public abstract class ControlSlotBase extends Control implements ITooltip {
 	private ControlItemDisplay itemDisplay;
 
@@ -43,7 +45,7 @@ public abstract class ControlSlotBase extends Control implements ITooltip {
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		final int size = this.getSize().x();
 		CraftGUI.render.texture(CraftGUITexture.Slot, this.getArea());
-		if (this.getSuperParent().getMousedOverWidget() == this) {
+		if (this.getTopParent().getMousedOverWidget() == this) {
 			RenderUtil.drawGradientRect(new IArea(new IPoint(1, 1), this.getArea().size().sub(new IPoint(2, 2))), -2130706433, -2130706433);
 		}
 	}
@@ -60,8 +62,9 @@ public abstract class ControlSlotBase extends Control implements ITooltip {
 		if (item == null) {
 			return;
 		}
-		tooltip.add(item.getTooltip(((Window) this.getSuperParent()).getPlayer(), false));
+		tooltip.add(item.getTooltip(((Window) this.getTopParent()).getPlayer(), false));
 	}
 
+	@Nullable
 	public abstract ItemStack getItemStack();
 }

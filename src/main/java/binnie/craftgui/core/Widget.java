@@ -9,7 +9,6 @@ import binnie.craftgui.events.EventWidget;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.ConcurrentModificationException;
 import java.util.List;
 
 public class Widget implements IWidget {
@@ -80,13 +79,17 @@ public class Widget implements IWidget {
 
 	@Override
 	@Nullable
-	public final IWidget getParent() {
+	public IWidget getParent() {
 		return this.parent;
 	}
 
 	@Override
-	public final ITopLevelWidget getSuperParent() {
-		return (ITopLevelWidget) (this.parent == null ? this : this.parent.getSuperParent());
+	public final ITopLevelWidget getTopParent() {
+		if (this.parent == null) {
+			return (ITopLevelWidget) this;
+		} else {
+			return this.parent.getTopParent();
+		}
 	}
 
 	@Override
@@ -237,7 +240,7 @@ public class Widget implements IWidget {
 
 	@Override
 	public final void callEvent(final Event event) {
-		this.getSuperParent().recieveEvent(event);
+		this.getTopParent().recieveEvent(event);
 	}
 
 	@Override
@@ -255,7 +258,7 @@ public class Widget implements IWidget {
 
 	@Override
 	public final IPoint getMousePosition() {
-		return this.getSuperParent().getAbsoluteMousePosition();
+		return this.getTopParent().getAbsoluteMousePosition();
 	}
 
 	@Override
@@ -297,7 +300,7 @@ public class Widget implements IWidget {
 		if (!this.isVisible()) {
 			return;
 		}
-		if (this.getSuperParent() == this) {
+		if (this.getTopParent() == this) {
 			((ITopLevelWidget) this).updateTopLevel();
 		}
 		this.onUpdateClient();
@@ -386,17 +389,17 @@ public class Widget implements IWidget {
 
 	@Override
 	public final boolean isFocused() {
-		return this.getSuperParent().isFocused(this);
+		return this.getTopParent().isFocused(this);
 	}
 
 	@Override
 	public final boolean isDragged() {
-		return this.getSuperParent().isDragged(this);
+		return this.getTopParent().isDragged(this);
 	}
 
 	@Override
 	public final boolean isMouseOver() {
-		return this.getSuperParent().isMouseOver(this);
+		return this.getTopParent().isMouseOver(this);
 	}
 
 	@Override
@@ -437,7 +440,7 @@ public class Widget implements IWidget {
 
 	@Override
 	public final void delete() {
-		this.getSuperParent().widgetDeleted(this);
+		this.getTopParent().widgetDeleted(this);
 		this.onDelete();
 	}
 
@@ -446,12 +449,11 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
 	@Nullable
 	public <T> T getWidget(final Class<T> widgetClass) {
 		for (final IWidget child : this.getWidgets()) {
 			if (widgetClass.isInstance(child)) {
-				return (T) child;
+				return widgetClass.cast(child);
 			}
 			final T found = child.getWidget(widgetClass);
 			if (found != null) {

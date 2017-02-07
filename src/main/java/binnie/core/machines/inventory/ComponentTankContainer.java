@@ -179,6 +179,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 		}
 
 		@Override
+		@Nullable
 		public FluidStack drain(final FluidStack resource, final boolean doDrain) {
 			final int index = getTankIndexToDrain(from, null);
 			if (tanks.containsKey(index)) {
@@ -188,6 +189,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 		}
 
 		@Override
+		@Nullable
 		public final FluidStack drain(final int maxDrain, final boolean doDrain) {
 			final int index = getTankIndexToDrain(from, null);
 			if (tanks.containsKey(index)) {

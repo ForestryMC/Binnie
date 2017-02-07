@@ -4,6 +4,8 @@ import binnie.Binnie;
 import binnie.extratrees.ExtraTrees;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nullable;
+
 
 public enum Glassware {
 	BeerMug(16, 10, 14),
@@ -28,7 +30,7 @@ public enum Glassware {
 //	public IIcon glass;
 //	public IIcon contents;
 
-	public String getName(final String liquid) {
+	public String getName(@Nullable final String liquid) {
 		if (liquid == null) {
 			return ExtraTrees.proxy.localise("item.glassware." + this.name().toLowerCase());
 		}

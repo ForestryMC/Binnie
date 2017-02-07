@@ -32,6 +32,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
@@ -40,7 +41,7 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	public ItemFluidContainer(FluidContainerType container) {
 		super(0, false);
 		this.container = container;
-		container.item = this;
+		container.setItem(this);
 		this.maxStackSize = container.getMaxStackSize();
 		this.setHasSubtypes(true);
 		this.setUnlocalizedName("container" + container.getName());
@@ -50,9 +51,6 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 
 	@Override
 	public String getItemStackDisplayName(final ItemStack itemstack) {
-		if (itemstack == null) {
-			return "???";
-		}
 		FluidStack fluid = getContained(itemstack);
 		if (fluid == null) {
 			return "Empty " + container.getDisplayName();
@@ -73,7 +71,8 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 			subItems.add(getContainer(liquid));
 		}
 	}
-	
+
+	@Nullable
 	protected FluidStack getContained(ItemStack itemStack) {
 		if (itemStack.stackSize != 1) {
 			itemStack = itemStack.copy();

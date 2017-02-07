@@ -10,11 +10,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MultiFenceRecipeSize implements IRecipe {
-	ItemStack cached;
+	@Nullable
+	private ItemStack cached;
 
 	@Override
 	public boolean matches(final InventoryCrafting inv, final World world) {

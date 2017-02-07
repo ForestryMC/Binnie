@@ -60,8 +60,7 @@ public class AlvearyMutator {
 		public void createMachine(final Machine machine) {
 			new ComponentExtraBeeGUI(machine, ExtraBeeGUID.AlvearyMutator);
 			final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-			inventory.addSlot(AlvearyMutator.slotMutator, "mutator");
-			inventory.getSlot(AlvearyMutator.slotMutator).setValidator(new SlotValidatorMutator());
+			inventory.addSlot(AlvearyMutator.slotMutator, "mutator").setValidator(new SlotValidatorMutator());
 			new ComponentMutatorModifier(machine);
 		}
 	}

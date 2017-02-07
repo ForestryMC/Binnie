@@ -150,14 +150,8 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 		final Deque<IWidget> queue = this.calculateMousedOverWidgets();
 		while (!queue.isEmpty()) {
 			final IWidget widget = queue.removeFirst();
-			if (widget.isEnabled() && widget.isVisible()) {
-				if (!widget.canMouseOver()) {
-					continue;
-				}
-				if (widget.isEnabled() && widget.isVisible() && widget.canMouseOver() && widget.calculateIsMouseOver()) {
-					return widget;
-				}
-				continue;
+			if (widget.isEnabled() && widget.isVisible() && widget.canMouseOver() && widget.calculateIsMouseOver()) {
+				return widget;
 			}
 		}
 		return null;

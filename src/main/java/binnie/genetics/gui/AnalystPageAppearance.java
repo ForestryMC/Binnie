@@ -25,6 +25,7 @@ public class AnalystPageAppearance extends ControlAnalystPage {
 		y += 26;
 		final int sections = ind.getGenome().getType().getSections();
 		final int w = (sections > 1) ? 50 : 100;
+		// TODO fix this control icon display
 		new ControlIconDisplay(this, (this.w() - w) / 2, y - ((sections == 1) ? 0 : 0), null) {
 			@Override
 			public void onRenderForeground(int guiWidth, int guiHeight) {

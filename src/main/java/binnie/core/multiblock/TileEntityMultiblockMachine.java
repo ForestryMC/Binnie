@@ -4,6 +4,8 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
 import net.minecraft.tileentity.TileEntity;
 
+import javax.annotation.Nullable;
+
 class TileEntityMultiblockMachine extends TileEntity {
 	private boolean inStructure;
 	private int tileX;
@@ -14,10 +16,12 @@ class TileEntityMultiblockMachine extends TileEntity {
 		return this.inStructure;
 	}
 
+	@Nullable
 	public Machine getMachine() {
 		return this.getMasterMachine();
 	}
 
+	@Nullable
 	private Machine getMasterMachine() {
 		if (!this.inStructure) {
 			return null;
