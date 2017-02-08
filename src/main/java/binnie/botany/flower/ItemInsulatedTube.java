@@ -2,17 +2,27 @@ package binnie.botany.flower;
 
 import binnie.botany.CreativeTabBotany;
 import binnie.core.item.ItemCore;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
+import forestry.api.circuits.ChipsetManager;
+import forestry.api.circuits.ICircuit;
+import forestry.api.circuits.ICircuitLayout;
 import forestry.api.core.IModelManager;
+import forestry.core.circuits.SolderManager;
 import forestry.core.items.IColoredItem;
+import forestry.core.proxy.Proxies;
+import forestry.core.utils.Translator;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.util.Collection;
 import java.util.List;
 
 public class ItemInsulatedTube extends ItemCore implements IColoredItem {
@@ -21,6 +31,7 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 		super("insulatedTube");
 		setUnlocalizedName("insulatedTube");
 		setCreativeTab(CreativeTabBotany.instance);
+		setHasSubtypes(true);
 	}
 
 	@Override
@@ -54,14 +65,42 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> tooltip, boolean advanced) {
-		tooltip.add(Insulate.get(itemStack.getItemDamage()).getName());
+	public void addInformation(ItemStack itemstack, EntityPlayer player, List<String> list, boolean flag) {
+		super.addInformation(itemstack, player, list, flag);
+		Multimap<ICircuitLayout, ICircuit> circuits = getCircuits(itemstack);
+		if (!circuits.isEmpty()) {
+			if (Proxies.common.isShiftDown()) {
+				for (ICircuitLayout circuitLayout : circuits.keys()) {
+					String circuitLayoutName = circuitLayout.getUsage();
+					list.add(TextFormatting.WHITE.toString() + TextFormatting.UNDERLINE + circuitLayoutName);
+					for (ICircuit circuit : circuits.get(circuitLayout)) {
+						circuit.addTooltip(list);
+					}
+				}
+			} else {
+				list.add(TextFormatting.ITALIC + "<" + Translator.translateToLocal("for.gui.tooltip.tmi") + ">");
+			}
+		} else {
+			list.add("<" + Translator.translateToLocal("for.gui.noeffect") + ">");
+		}
+	}
+
+	private static Multimap<ICircuitLayout, ICircuit> getCircuits(ItemStack itemStack) {
+		Multimap<ICircuitLayout, ICircuit> circuits = ArrayListMultimap.create();
+		Collection<ICircuitLayout> allLayouts = ChipsetManager.circuitRegistry.getRegisteredLayouts().values();
+		for (ICircuitLayout circuitLayout : allLayouts) {
+			ICircuit circuit = SolderManager.getCircuit(circuitLayout, itemStack);
+			if (circuit != null) {
+				circuits.put(circuitLayout, circuit);
+			}
+		}
+		return circuits;
 	}
 
 	@Override
-	public String getItemStackDisplayName(ItemStack p_77653_1_) {
-		return Material.get(p_77653_1_.getItemDamage()).getName() + " " + super.getItemStackDisplayName(p_77653_1_);
+	public String getItemStackDisplayName(ItemStack itemStack) {
+		int meta = itemStack.getMetadata();
+		return Material.get(meta).getName() + " " + Insulate.get(meta).getName() + " " + super.getItemStackDisplayName(itemStack);
 	}
 
 	public static String getInsulate(ItemStack stack) {

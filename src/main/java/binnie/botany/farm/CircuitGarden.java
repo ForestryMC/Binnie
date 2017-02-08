@@ -13,38 +13,32 @@ import net.minecraft.util.text.TextFormatting;
 import javax.annotation.Nullable;
 
 public class CircuitGarden extends BinnieCircuit {
-	private Class<? extends FarmLogic> logicClass;
 	private boolean isManual;
-	private boolean isFertilised;
-	private ItemStack icon;
-	private EnumMoisture moisture;
-	@Nullable
-	private EnumAcidity acidity;
 	private GardenLogic logic;
 
 	public CircuitGarden(EnumMoisture moisture, @Nullable EnumAcidity ph, boolean manual, boolean fertilised, ItemStack recipe, ItemStack icon) {
 		super(getName(moisture, ph, manual, fertilised), 4, manual ? ChipsetManager.circuitRegistry.getLayout("forestry.farms.manual") : ChipsetManager.circuitRegistry.getLayout("forestry.farms.managed"), recipe);
-		this.isFertilised = false;
 		this.isManual = manual;
-		this.isFertilised = fertilised;
-		this.moisture = moisture;
-		this.acidity = ph;
-		this.icon = icon;
-		this.logic = new GardenLogic(this.moisture, this.acidity, this.isManual, this.isFertilised, this.icon, Binnie.LANGUAGE.localise(this.getUnlocalizedName()));
-		String info = "";
-		if (moisture != EnumMoisture.Normal) {
-			info += TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.moisture") + ": " + moisture.getTranslated(true);
-		}
-		if (info.length() > 0) {
-			info += ", ";
-		}
+		this.logic = new GardenLogic(moisture, ph, this.isManual, fertilised, icon, Binnie.LANGUAGE.localise(this.getUnlocalizedName()));
+		StringBuilder info = new StringBuilder("Flowers (")
+				.append(TextFormatting.GRAY.toString())
+				.append(Binnie.LANGUAGE.localise("botany.moisture"))
+				.append(": ")
+				.append(moisture.getTranslated(true));
+
 		if (ph != null) {
-			info += TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.ph") + ": " + ph.getTranslated(true);
+			info.append(TextFormatting.GRAY.toString())
+					.append(", ")
+					.append(Binnie.LANGUAGE.localise("botany.ph"))
+					.append(": ")
+					.append(ph.getTranslated(true));
 		}
-		if (info.length() > 0) {
-			info = " (" + info + TextFormatting.RESET + ")";
-		}
-		this.addTooltipString("Flowers" + info);
+		String fertilizedKey = fertilised ? "for.binnie.circuit.garden.fertilized" : "for.binnie.circuit.garden.unfertilized";
+		info.append(TextFormatting.RESET.toString())
+				.append(" ")
+				.append(Binnie.LANGUAGE.localise(fertilizedKey))
+				.append(")");
+		this.addTooltipString(info.toString());
 	}
 
 	private static String getName(EnumMoisture moisture, @Nullable EnumAcidity ph, boolean manual, boolean fertilised) {

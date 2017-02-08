@@ -5,7 +5,7 @@ botany.ph.acid=Acidic
 botany.ph.neutral=Neutral
 botany.ph.alkaline=Alkaline
 
-botany.moisture=M
+botany.moisture=Moisture
 botany.moisture.dry=Dry
 botany.moisture.normal=Normal
 botany.moisture.damp=Damp
@@ -125,6 +125,9 @@ botany.colour.wheat=Pale Orange
 botany.colour.white=White
 botany.colour.yellow=Yellow
 botany.colour.yellowgreen=Yellow-Green
+
+for.binnie.circuit.garden.fertilized=Fertilized
+for.binnie.circuit.garden.unfertilized=Unfertilized
 
 for.binnie.circuit.garden.dry.manual.fert=Fert. Garden (Dry)
 for.binnie.circuit.garden.dry.acid.manual.fert=Fert. Garden (Dry, Acidic)
