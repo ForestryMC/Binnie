@@ -35,7 +35,7 @@ public class GenepoolFX extends MachineComponent implements IRender.DisplayTick 
 					this.motionY = this.rand.nextFloat() * 0.01;
 					this.particleMaxAge = 25;
 					this.particleGravity = 0.0f;
-					this.field_190017_n = true;
+					this.canCollide = true;
 					this.setRBGColorF(0.4f + 0.6f * this.rand.nextFloat(), 0.6f * this.rand.nextFloat(), 0.6f + 0.4f * this.rand.nextFloat());
 				}
 

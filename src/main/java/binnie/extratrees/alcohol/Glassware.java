@@ -8,21 +8,21 @@ import javax.annotation.Nullable;
 
 
 public enum Glassware {
-	BeerMug(16, 10, 14),
-	Pint(20, 6, 20),
-	Snifter(17, 14, 11),
-	Flute(6, 13, 15),
-	Cocktail(8, 20, 8),
-	Cordial(2, 15, 7),
-	Collins(12, 8, 18),
-	Highball(8, 10, 14),
-	Hurricane(15, 10, 18),
-	Margarita(12, 18, 9),
-	OldFashioned(8, 13, 8),
-	Wine(8, 17, 10),
-	Shot(1, 13, 7),
-	Sherry(2, 17, 7),
-	Coupe(6, 19, 8);
+	BeerMug(480, 10, 14),
+	Pint(600, 6, 20),
+	Snifter(510, 14, 11),
+	Flute(180, 13, 15),
+	Cocktail(240, 20, 8),
+	Cordial(60, 15, 7),
+	Collins(360, 8, 18),
+	Highball(240, 10, 14),
+	Hurricane(450, 10, 18),
+	Margarita(360, 18, 9),
+	OldFashioned(240, 13, 8),
+	Wine(240, 17, 10),
+	Shot(30, 13, 7),
+	Sherry(60, 17, 7),
+	Coupe(180, 19, 8);
 
 	private int capacity;
 	float contentBottom;
@@ -42,7 +42,7 @@ public enum Glassware {
 	}
 
 	Glassware(final int capacity, final int contentBottom, final int contentHeight) {
-		this.capacity = 30 * capacity;
+		this.capacity = capacity;
 		this.contentBottom = contentBottom / 32.0f;
 		this.contentHeight = contentHeight / 32.0f;
 	}

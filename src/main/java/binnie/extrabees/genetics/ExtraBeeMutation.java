@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -22,8 +23,11 @@ import java.util.List;
 
 public class ExtraBeeMutation implements IBeeMutation {
 	public static List<IBeeMutation> mutations = new ArrayList<>();
+	@Nullable
 	MutationRequirement req;
+	@Nullable
 	IAlleleBeeSpecies species0;
+	@Nullable
 	IAlleleBeeSpecies species1;
 	IAllele[] template;
 	int chance;
@@ -199,7 +203,7 @@ public class ExtraBeeMutation implements IBeeMutation {
 		this(allele0, allele1, mutation, chance, null);
 	}
 
-	public ExtraBeeMutation(final IAlleleBeeSpecies allele0, final IAlleleBeeSpecies allele1, final IAllele[] mutation, final int chance, final MutationRequirement req) {
+	public ExtraBeeMutation(final IAlleleBeeSpecies allele0, final IAlleleBeeSpecies allele1, final IAllele[] mutation, final int chance, @Nullable final MutationRequirement req) {
 		this.species0 = null;
 		this.species1 = null;
 		this.template = new IAllele[0];
@@ -306,7 +310,7 @@ public class ExtraBeeMutation implements IBeeMutation {
 
 		@Override
 		public boolean fufilled(final IBeeHousing housing, final IAllele allele0, final IAllele allele1, final IGenome genome0, final IGenome genome1) {
-			return BiomeDictionary.isBiomeOfType(housing.getBiome(), this.type);
+			return BiomeDictionary.hasType(housing.getBiome(), this.type);
 		}
 	}
 

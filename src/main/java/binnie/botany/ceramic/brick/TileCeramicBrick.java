@@ -26,7 +26,7 @@ public class TileCeramicBrick extends TileEntity{
 
 	public ItemStack getStack(final int i) {
 		final ItemStack s = TileEntityMetadata.getItemStack(Botany.ceramicBrick, this.ordinal());
-		s.stackSize = i;
+		s.setCount(i);
 		return s;
 	}
 

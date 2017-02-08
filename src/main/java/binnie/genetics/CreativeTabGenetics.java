@@ -3,7 +3,6 @@ package binnie.genetics;
 import binnie.extrabees.ExtraBees;
 import binnie.genetics.item.GeneticsItems;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -21,6 +20,7 @@ public class CreativeTabGenetics extends CreativeTabs {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public String getTranslatedTabLabel() {
 		return this.getTabLabel();
 	}
@@ -33,9 +33,9 @@ public class CreativeTabGenetics extends CreativeTabs {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Item getTabIconItem() {
+	public ItemStack getTabIconItem() {
 		//TODO add icon item for genetics
-		return null;
+		return ItemStack.EMPTY;
 	}
 
 }

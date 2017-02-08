@@ -6,6 +6,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 
@@ -24,11 +25,11 @@ public class MultiFenceRecipeSize implements IRecipe {
 		final List<IPlankType> types = new ArrayList<>();
 		for (int i = 0; i < inv.getSizeInventory(); ++i) {
 			final ItemStack stack = inv.getStackInSlot(i);
-			final IPlankType type = (stack == null) ? null : WoodManager.get(stack);
-			if (stack != null && type == null) {
+			final IPlankType type = (stack.isEmpty()) ? null : WoodManager.get(stack);
+			if (!stack.isEmpty() && type == null) {
 				return false;
 			}
-			if (stack == null) {
+			if (stack.isEmpty()) {
 				pattern += " ";
 			} else {
 				if (!types.contains(type)) {
@@ -76,6 +77,7 @@ public class MultiFenceRecipeSize implements IRecipe {
 		return (this.cached == null) ? new ItemStack(Blocks.OAK_FENCE) : this.cached;
 	}
 
+	// TODO: what is this?
 	public static void generateTypes() {
 		final int type = 0;
 		for (int type2 = 0; type2 < 2; ++type2) {
@@ -83,7 +85,7 @@ public class MultiFenceRecipeSize implements IRecipe {
 	}
 
 	@Override
-	public ItemStack[] getRemainingItems(InventoryCrafting inv) {
+	public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv) {
 		return ForgeHooks.defaultRecipeGetRemainingItems(inv);
 	}
 }

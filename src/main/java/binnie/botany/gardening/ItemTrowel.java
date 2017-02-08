@@ -53,21 +53,22 @@ public class ItemTrowel extends Item implements IItemModelRegister {
 	}
 
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		ItemStack stack = player.getHeldItem(hand);
 		if (!player.canPlayerEdit(pos, facing, stack)) {
 			return EnumActionResult.FAIL;
 		}
-		Block block = world.getBlockState(pos).getBlock();
-		if (facing == EnumFacing.DOWN || (!world.isAirBlock(pos.up()) && world.getBlockState(pos.up()).getBlock() != Botany.flower) || (block != Blocks.GRASS && block != Blocks.DIRT && block != Blocks.GRASS_PATH)) {
+		Block block = worldIn.getBlockState(pos).getBlock();
+		if (facing == EnumFacing.DOWN || (!worldIn.isAirBlock(pos.up()) && worldIn.getBlockState(pos.up()).getBlock() != Botany.flower) || (block != Blocks.GRASS && block != Blocks.DIRT && block != Blocks.GRASS_PATH)) {
 			return EnumActionResult.PASS;
 		}
-		world.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
-		if (world.isRemote) {
+		worldIn.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
+		if (worldIn.isRemote) {
 			return EnumActionResult.SUCCESS;
 		}
-		EnumMoisture moisture = Gardening.getNaturalMoisture(world, pos);
-		EnumAcidity acidity = Gardening.getNaturalPH(world, pos);
-		Gardening.plantSoil(world, pos, EnumSoilType.SOIL, moisture, acidity);
+		EnumMoisture moisture = Gardening.getNaturalMoisture(worldIn, pos);
+		EnumAcidity acidity = Gardening.getNaturalPH(worldIn, pos);
+		Gardening.plantSoil(worldIn, pos, EnumSoilType.SOIL, moisture, acidity);
 		stack.damageItem(1, player);
 		return EnumActionResult.SUCCESS;
 	}
@@ -77,8 +78,8 @@ public class ItemTrowel extends Item implements IItemModelRegister {
 		Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
 
 		if (equipmentSlot == EntityEquipmentSlot.MAINHAND) {
-			multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", theToolMaterial.getDamageVsEntity() + 0.5, 0));
-			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getAttributeUnlocalizedName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", -1.5, 0));
+			multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", theToolMaterial.getDamageVsEntity() + 0.5, 0));
+			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", -1.5, 0));
 		}
 
 		return multimap;

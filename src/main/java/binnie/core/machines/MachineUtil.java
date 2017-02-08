@@ -79,8 +79,8 @@ public class MachineUtil {
 		if (merge == null) {
 			this.setStack(slot, addition);
 		} else {
-			if (merge.isItemEqual(addition) && merge.stackSize + addition.stackSize <= merge.getMaxStackSize()) {
-				merge.stackSize += addition.stackSize;
+			if (merge.isItemEqual(addition) && merge.getCount() + addition.getCount() <= merge.getMaxStackSize()) {
+				merge.grow(addition.getCount());
 				this.setStack(slot, merge);
 			}
 		}
@@ -151,12 +151,12 @@ public class MachineUtil {
 			for (int slot : inventorySlots) {
 				ItemStack stackInSlot = this.getStack(slot);
 				if (stackInSlot != null && ItemStack.areItemsEqual(requiredStack, stackInSlot) && ItemStack.areItemStackTagsEqual(requiredStack, stackInSlot)) {
-					if (requiredStack.stackSize >= stackInSlot.stackSize) {
-						requiredStack.stackSize -= stackInSlot.stackSize;
+					if (requiredStack.getCount() >= stackInSlot.getCount()) {
+						requiredStack.shrink(stackInSlot.getCount());
 						inventory.removeStackFromSlot(slot);
 					} else {
-						stackInSlot.stackSize -= requiredStack.stackSize;
-						requiredStack.stackSize = 0;
+						stackInSlot.shrink(requiredStack.getCount());
+						requiredStack.setCount(0);
 						break;
 					}
 				}

@@ -10,21 +10,16 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldSettings;
 import net.minecraft.world.WorldType;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.EmptyChunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.storage.ISaveHandler;
-import net.minecraft.world.storage.SaveDataMemoryStorage;
-import net.minecraft.world.storage.SaveHandlerMP;
 import net.minecraft.world.storage.WorldInfo;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class FakeCraftingWorld extends World {
 	private static final WorldSettings worldSettings = new WorldSettings(0, GameType.SURVIVAL, false, false, WorldType.DEFAULT);
 	private static final WorldInfo worldInfo = new WorldInfo(worldSettings, "fake");
-	private static final ISaveHandler saveHandler = new SaveHandlerMP();
+	private static final ISaveHandler saveHandler = new FakeSaveHandler();
 	private static final WorldProvider worldProvider = new WorldProvider() {
 		@Override
 		public DimensionType getDimensionType() {
@@ -43,8 +38,8 @@ public class FakeCraftingWorld extends World {
 
 	private FakeCraftingWorld() {
 		super(saveHandler, worldInfo, worldProvider, new Profiler(), true);
-		this.provider.registerWorld(this);
-		this.mapStorage = new SaveDataMemoryStorage();
+		this.provider.setWorld(this);
+		this.mapStorage = new FakeMapStorage();
 	}
 
 	@Override
@@ -59,28 +54,7 @@ public class FakeCraftingWorld extends World {
 
 	@Override
 	protected IChunkProvider createChunkProvider() {
-		return new IChunkProvider() {
-			@Nullable
-			@Override
-			public Chunk getLoadedChunk(int x, int z) {
-				return new EmptyChunk(FakeCraftingWorld.this, x, z);
-			}
-
-					@Override
-			public Chunk provideChunk(int x, int z) {
-				return new EmptyChunk(FakeCraftingWorld.this, x, z);
-			}
-
-			@Override
-			public boolean unloadQueuedChunks() {
-				return true;
-			}
-
-					@Override
-			public String makeString() {
-				return "";
-			}
-		};
+		throw new UnsupportedOperationException();
 	}
 
 	@Override

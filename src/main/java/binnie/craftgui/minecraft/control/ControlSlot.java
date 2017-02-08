@@ -25,6 +25,8 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ClickType;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -70,6 +72,7 @@ public class ControlSlot extends ControlSlotBase {
 		this.slot = slot;
 		this.addSelfEventHandler(new EventMouse.Down.Handler() {
 			@Override
+			@SideOnly(Side.CLIENT)
 			public void onEvent(final EventMouse.Down event) {
 				Window superParent = (Window) ControlSlot.this.getTopParent();
 				GuiCraftGUI superParentGui = superParent.getGui();
@@ -80,13 +83,14 @@ public class ControlSlot extends ControlSlotBase {
 				final int button = event.getButton();
 				Window.get(ControlSlot.this.getWidget()).getGui();
 				if (playerController != null) {
-					playerController.windowClick(windowId, slotNumber, button, GuiScreen.isShiftKeyDown() ? ClickType.QUICK_MOVE : ClickType.PICKUP, minecraft.thePlayer);
+					playerController.windowClick(windowId, slotNumber, button, GuiScreen.isShiftKeyDown() ? ClickType.QUICK_MOVE : ClickType.PICKUP, minecraft.player);
 				}
 			}
 		});
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(CraftGUITexture.Slot, IPoint.ZERO);
 		final InventorySlot islot = this.getInventorySlot();
@@ -146,6 +150,7 @@ public class ControlSlot extends ControlSlotBase {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onUpdateClient() {
 		super.onUpdateClient();
 		if (this.isMouseOver() && GuiScreen.isShiftKeyDown()) {

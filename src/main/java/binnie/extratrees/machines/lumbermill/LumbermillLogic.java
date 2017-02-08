@@ -25,7 +25,7 @@ public class LumbermillLogic extends ComponentProcessSetCost implements IProcess
 		final ItemStack plankResult = LumbermillRecipes.getPlankProduct(logStack);
 		if (!this.getUtil().isSlotEmpty(LumbermillMachine.SLOT_PLANKS) && plankResult != null) {
 			final ItemStack currentPlank = this.getUtil().getStack(LumbermillMachine.SLOT_PLANKS);
-			if (!plankResult.isItemEqual(currentPlank) || plankResult.stackSize + currentPlank.stackSize > currentPlank.getMaxStackSize()) {
+			if (!plankResult.isItemEqual(currentPlank) || plankResult.getCount() + currentPlank.getCount() > currentPlank.getMaxStackSize()) {
 				return new ErrorState.NoSpace("No room for new planks", new int[]{LumbermillMachine.SLOT_PLANKS});
 			}
 		}

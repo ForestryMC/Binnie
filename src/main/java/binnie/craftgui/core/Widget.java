@@ -5,6 +5,8 @@ import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.events.Event;
 import binnie.craftgui.events.EventHandler;
 import binnie.craftgui.events.EventWidget;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -278,6 +280,7 @@ public class Widget implements IWidget {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public final void render(int guiWidth, int guiHeight) {
 		if (this.isVisible()) {
 			CraftGUI.render.preRender(this, guiWidth, guiHeight);
@@ -413,6 +416,7 @@ public class Widget implements IWidget {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRender(final RenderStage stage, int guiWidth, int guiHeight) {
 		if (stage == RenderStage.PreChildren) {
 			this.onRenderBackground(guiWidth, guiHeight);
@@ -425,16 +429,20 @@ public class Widget implements IWidget {
 		}
 	}
 
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 	}
 
+	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 	}
 
+	@SideOnly(Side.CLIENT)
 	public void onRenderOverlay() {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onUpdateClient() {
 	}
 

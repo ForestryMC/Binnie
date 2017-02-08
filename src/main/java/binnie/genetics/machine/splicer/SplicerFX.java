@@ -35,7 +35,7 @@ public class SplicerFX extends MachineComponent implements IRender.DisplayTick, 
 			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.5, pos.getY() + 1.5, pos.getZ() + 0.5, 0.0, 0.0, 0.0) {
 				double axisX = this.posX;
 				double axisZ = this.posZ;
-				double angle = (int) (this.worldObj.getTotalWorldTime() % 4L) * 0.5 * 3.1415;
+				double angle = (int) (this.world.getTotalWorldTime() % 4L) * 0.5 * 3.1415;
 
 				{
 					this.axisX = 0.0;
@@ -46,11 +46,12 @@ public class SplicerFX extends MachineComponent implements IRender.DisplayTick, 
 					this.motionY = (this.rand.nextDouble() - 0.5) * 0.02;
 					this.particleMaxAge = 240;
 					this.particleGravity = 0.0f;
-					this.field_190017_n = true;
+					this.canCollide = true;
 					this.setRBGColorF(0.3f + this.rand.nextFloat() * 0.5f, 0.3f + this.rand.nextFloat() * 0.5f, 0.0f);
 				}
 
 				@Override
+				@SideOnly(Side.CLIENT)
 				public void onUpdate() {
 					super.onUpdate();
 					final double speed = 0.04;
@@ -75,7 +76,7 @@ public class SplicerFX extends MachineComponent implements IRender.DisplayTick, 
 			return;
 		}
 		final ItemStack stack = this.getUtil().getStack(9);
-		this.dummyEntityItem.worldObj = this.getMachine().getWorld();
+		this.dummyEntityItem.world = this.getMachine().getWorld();
 		this.dummyEntityItem.setEntityItemStack(stack);
 		final EntityItem dummyEntityItem = this.dummyEntityItem;
 		dummyEntityItem.setAgeToCreativeDespawnTime(); //++dummyEntityItem.age;
@@ -107,7 +108,7 @@ public class SplicerFX extends MachineComponent implements IRender.DisplayTick, 
 	@Override
 	public void syncFromNBT(final NBTTagCompound nbt) {
 		if (nbt.hasKey("item")) {
-			this.getUtil().setStack(9, ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("item")));
+			this.getUtil().setStack(9, new ItemStack(nbt.getCompoundTag("item")));
 		} else {
 			this.getUtil().setStack(9, null);
 		}

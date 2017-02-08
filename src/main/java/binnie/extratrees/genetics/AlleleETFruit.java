@@ -21,10 +21,13 @@ import forestry.arboriculture.genetics.alleles.AlleleTreeSpecies;
 import forestry.core.genetics.alleles.AlleleCategorized;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -360,6 +363,7 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerSprites() {
 		if(this == Apple){
 			for(FruitSprite sprite : FruitSprite.VALUES){
@@ -396,42 +400,38 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 	@Override
 	public boolean trySpawnFruitBlock(ITreeGenome genome, World world, Random rand, BlockPos pos) {
 		if(this.pod != null && world.rand.nextFloat() <= genome.getSappiness()){
-			TreeManager.treeRoot.setFruitBlock(world, this, genome.getSappiness(), pos);
+			TreeManager.treeRoot.setFruitBlock(world, genome, this, genome.getSappiness(), pos);
 		}
 		return false;
 	}
 
 	@Override
-	public List<ItemStack> getFruits(ITreeGenome genome, World world, BlockPos pos, int ripeningTime) {
+	public NonNullList<ItemStack> getFruits(ITreeGenome genome, World world, BlockPos pos, int ripeningTime) {
+		NonNullList<ItemStack> products = NonNullList.create();
 		if (this.pod != null) {
 			if (ripeningTime >= 2) {
-				List<ItemStack> products = new ArrayList<ItemStack>();
 				for (Map.Entry<ItemStack, Float> product : this.products.entrySet()) {
 					ItemStack single = product.getKey().copy();
-					single.stackSize = 1;
-					for (int i = 0; i < product.getKey().stackSize; ++i) {
+					single.setCount(1);
+					for (int i = 0; i < product.getKey().getCount(); ++i) {
 						if (world.rand.nextFloat() <= product.getValue()) {
 							products.add(single.copy());
 						}
 					}
 				}
-				return products;
 			}
-			return Collections.emptyList();
 		} else {
-			ArrayList<ItemStack> products = new ArrayList<ItemStack>();
 			float stage = this.getRipeningStage(ripeningTime);
-			if (stage < 0.5f) {
-				return Collections.emptyList();
-			}
-			float modeYieldMod = 1.0f;
-			for (final Map.Entry<ItemStack, Float> product : this.products.entrySet()) {
-				if (world.rand.nextFloat() <= genome.getYield() * modeYieldMod * product.getValue() * 5.0f * stage) {
-					products.add(product.getKey().copy());
+			if (stage >= 0.5f) {
+				float modeYieldMod = 1.0f;
+				for (final Map.Entry<ItemStack, Float> product : this.products.entrySet()) {
+					if (world.rand.nextFloat() <= genome.getYield() * modeYieldMod * product.getValue() * 5.0f * stage) {
+						products.add(product.getKey().copy());
+					}
 				}
 			}
-			return products;
 		}
+		return products;
 	}
 
 	@Nullable

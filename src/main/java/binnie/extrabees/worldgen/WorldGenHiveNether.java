@@ -15,7 +15,7 @@ public class WorldGenHiveNether extends WorldGenerator {
 	@Override
 	public boolean generate(final World world, final Random random, final BlockPos pos) {
 		final Biome biome = world.getBiome(pos);
-		if (!BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.NETHER)) {
+		if (!BiomeDictionary.hasType(biome, BiomeDictionary.Type.NETHER)) {
 			return true;
 		}
 		if (this.embedInWall(world, Blocks.NETHERRACK, pos)) {

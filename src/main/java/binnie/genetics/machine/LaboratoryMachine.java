@@ -77,7 +77,7 @@ public enum LaboratoryMachine implements IMachineType {
 		@Override
 		public void readFromNBT(final NBTTagCompound nbttagcompound) {
 			super.readFromNBT(nbttagcompound);
-			this.stack = ItemStack.loadItemStackFromNBT(nbttagcompound.getCompoundTag("Item"));
+			this.stack = new ItemStack(nbttagcompound.getCompoundTag("Item"));
 		}
 
 		@Override
@@ -108,15 +108,15 @@ public enum LaboratoryMachine implements IMachineType {
 				final float f = this.getMachine().getWorld().rand.nextFloat() * 0.8f + 0.1f;
 				final float f2 = this.getMachine().getWorld().rand.nextFloat() * 0.8f + 0.1f;
 				final float f3 = this.getMachine().getWorld().rand.nextFloat() * 0.8f + 0.1f;
-				if (this.stack.stackSize == 0) {
-					this.stack.stackSize = 1;
+				if (this.stack.getCount() == 0) {
+					this.stack.setCount(1);
 				}
 				final EntityItem entityitem = new EntityItem(this.getMachine().getWorld(), this.getMachine().getTileEntity().getPos().getX() + f, this.getMachine().getTileEntity().getPos().getY() + f2, this.getMachine().getTileEntity().getPos().getZ() + f3, this.stack.copy());
 				final float accel = 0.05f;
 				entityitem.motionX = (float) this.getMachine().getWorld().rand.nextGaussian() * accel;
 				entityitem.motionY = (float) this.getMachine().getWorld().rand.nextGaussian() * accel + 0.2f;
 				entityitem.motionZ = (float) this.getMachine().getWorld().rand.nextGaussian() * accel;
-				this.getMachine().getWorld().spawnEntityInWorld(entityitem);
+				this.getMachine().getWorld().spawnEntity(entityitem);
 			}
 		}
 
@@ -134,7 +134,7 @@ public enum LaboratoryMachine implements IMachineType {
 //					final double d3 = world.rand.nextFloat() * f + (1.0f - f) * 0.5;
 //					final EntityItem entityitem = new EntityItem(world, x + d0, y + d2, z + d3, this.stack);
 //					entityitem.delayBeforeCanPickup = 10;
-//					world.spawnEntityInWorld(entityitem);
+//					world.spawnEntity(entityitem);
 //					this.stack = null;
 //					((IToolWrench) player.getHeldItem().getItem()).wrenchUsed(player, x, y, z);
 //					this.getUtil().refreshBlock();
@@ -161,7 +161,7 @@ public enum LaboratoryMachine implements IMachineType {
 //				if (this.stack == null && validSelections.contains(player.getHeldItem().getItem())) {
 //					this.stack = player.getHeldItem().copy();
 //					final ItemStack heldItem = player.getHeldItem();
-//					--heldItem.stackSize;
+//					heldItem.shrink(1);
 //					world.markBlockForUpdate(x, y, z);
 //					return;
 //				}

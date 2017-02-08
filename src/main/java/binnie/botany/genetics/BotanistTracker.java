@@ -1,7 +1,9 @@
 package binnie.botany.genetics;
 
 import binnie.Binnie;
+import binnie.botany.Botany;
 import binnie.botany.api.IBotanistTracker;
+import binnie.botany.core.BotanyCore;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IIndividual;
 import forestry.core.genetics.BreedingTracker;
@@ -9,7 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 
 public class BotanistTracker extends BreedingTracker implements IBotanistTracker {
 	public BotanistTracker(final String s) {
-		super(s);
+		super(s, "NORMAL");
 	}
 
 	@Override
@@ -18,7 +20,7 @@ public class BotanistTracker extends BreedingTracker implements IBotanistTracker
 
 	@Override
 	protected IBreedingTracker getBreedingTracker(final EntityPlayer player) {
-		return Binnie.GENETICS.getFlowerRoot().getBreedingTracker(player.worldObj, player.getGameProfile());
+		return Binnie.GENETICS.getFlowerRoot().getBreedingTracker(player.world, player.getGameProfile());
 	}
 
 	@Override

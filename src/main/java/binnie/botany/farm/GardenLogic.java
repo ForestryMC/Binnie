@@ -21,6 +21,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -29,20 +30,21 @@ import net.minecraftforge.fluids.FluidStack;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class GardenLogic extends FarmLogic {
-	EnumMoisture moisture;
+	private EnumMoisture moisture;
 	@Nullable
-	EnumAcidity acidity;
-	boolean fertilised;
-	String name;
-	ArrayList<ItemStack> produce;
+	private EnumAcidity acidity;
+	private boolean fertilised;
+	private String name;
+	private NonNullList<ItemStack> produce;
 	private ItemStack icon;
 	List<IFarmable> farmables;
 
 	public GardenLogic(EnumMoisture moisture2, @Nullable EnumAcidity acidity2, boolean isManual, boolean isFertilised, ItemStack icon2, String name2) {
-		this.produce = new ArrayList<>();
+		this.produce = NonNullList.create();
 		(this.farmables = new ArrayList<>()).add(new FarmableFlower());
 		this.farmables.add(new FarmableVanillaFlower());
 		this.moisture = moisture2;
@@ -65,19 +67,25 @@ public class GardenLogic extends FarmLogic {
 
 	@Override
 	public boolean isAcceptedResource(final ItemStack itemstack) {
-		return Gardening.isSoil(itemstack.getItem()) || itemstack.getItem() == Item.getItemFromBlock(Blocks.SAND) || itemstack.getItem() == Item.getItemFromBlock(Blocks.DIRT) || Gardening.isAcidFertiliser(itemstack) || Gardening.isAlkalineFertiliser(itemstack);
+		return Gardening.isSoil(itemstack.getItem()) ||
+				itemstack.getItem() == Item.getItemFromBlock(Blocks.SAND) ||
+				itemstack.getItem() == Item.getItemFromBlock(Blocks.DIRT) ||
+				Gardening.isAcidFertiliser(itemstack) ||
+				Gardening.isAlkalineFertiliser(itemstack);
 	}
 
 	@Override
-	public Collection<ItemStack> collect(World world, IFarmHousing farmHousing) {
-		final Collection<ItemStack> products = this.produce;
-		this.produce = new ArrayList<>();
+	public NonNullList<ItemStack> collect(World world, IFarmHousing farmHousing) {
+		final NonNullList<ItemStack> products = this.produce;
+		this.produce = NonNullList.create();
 		return products;
 	}
 
 	@Override
 	public boolean cultivate(World world, IFarmHousing farmHousing, BlockPos pos, FarmDirection direction, int extent) {
-		return this.maintainSoil(world, pos, direction, extent, farmHousing) || (!this.isManual && this.maintainWater(world, pos, direction, extent, farmHousing)) || this.maintainCrops(world, pos.up(), direction, extent, farmHousing);
+		return this.maintainSoil(world, pos, direction, extent, farmHousing) ||
+				(!this.isManual && this.maintainWater(world, pos, direction, extent, farmHousing)) ||
+				this.maintainCrops(world, pos.up(), direction, extent, farmHousing);
 	}
 
 	private boolean isWaste(final ItemStack stack) {
@@ -102,14 +110,18 @@ public class GardenLogic extends FarmLogic {
 					if (pH.ordinal() < this.acidity.ordinal()) {
 						ItemStack stack = this.getAvailableAlkaline(housing);
 						if (stack != null && soil.setPH(world, position, EnumAcidity.values()[pH.ordinal() + 1])) {
-							housing.getFarmInventory().removeResources(new ItemStack[]{stack});
+							NonNullList<ItemStack> resources = NonNullList.create();
+							resources.add(stack);
+							housing.getFarmInventory().removeResources(resources);
 							continue;
 						}
 					}
 					if (pH.ordinal() > this.acidity.ordinal()) {
 						final ItemStack stack = this.getAvailableAcid(housing);
 						if (stack != null && soil.setPH(world, position, EnumAcidity.values()[pH.ordinal() - 1])) {
-							housing.getFarmInventory().removeResources(new ItemStack[]{stack});
+							NonNullList<ItemStack> resources = NonNullList.create();
+							resources.add(stack);
+							housing.getFarmInventory().removeResources(resources);
 							continue;
 						}
 					}
@@ -187,14 +199,19 @@ public class GardenLogic extends FarmLogic {
 			for (final EnumAcidity acid : acidities) {
 				for (final Block type : new Block[]{Botany.flowerbed, Botany.loam, Botany.soil}) {
 					final int meta = acid.ordinal() * 3 + moist.ordinal();
-					final ItemStack[] resource = {new ItemStack(type, 1, meta)};
-					if (housing.getFarmInventory().hasResources(resource)) {
-						return resource[0];
+					final NonNullList<ItemStack> resources = NonNullList.create();
+					ItemStack resourceStack = new ItemStack(type, 1, meta);
+					resources.add(resourceStack);
+					if (housing.getFarmInventory().hasResources(resources)) {
+						return resourceStack;
 					}
 				}
 			}
 		}
-		if (housing.getFarmInventory().hasResources(new ItemStack[]{new ItemStack(Blocks.DIRT)})) {
+		final NonNullList<ItemStack> resources = NonNullList.create();
+		ItemStack resourceStack = new ItemStack(Blocks.DIRT);
+		resources.add(resourceStack);
+		if (housing.getFarmInventory().hasResources(resources)) {
 			return new ItemStack(Blocks.DIRT);
 		}
 		return null;
@@ -211,7 +228,9 @@ public class GardenLogic extends FarmLogic {
 				loam = new ItemStack(Botany.soil, 0, 4);
 			}
 			setBlock(world, position, ((ItemBlock) loam.getItem()).getBlock(), loam.getItemDamage());
-			housing.getFarmInventory().removeResources(new ItemStack[]{copy});
+			final NonNullList<ItemStack> resources = NonNullList.create();
+			resources.add(copy);
+			housing.getFarmInventory().removeResources(resources);
 			return true;
 		}
 		return false;
@@ -220,7 +239,7 @@ public class GardenLogic extends FarmLogic {
 	private boolean trySetWater(World world, BlockPos position, IFarmHousing housing) {
 		final FluidStack water = Binnie.LIQUID.getFluidStack("water", 1000);
 		if (this.moisture == EnumMoisture.Damp) {
-			if (!housing.hasLiquid(water)) {
+			if (water == null || !housing.hasLiquid(water)) {
 				return false;
 			}
 			this.setBlock(world, position, Blocks.WATER, 0);
@@ -230,12 +249,14 @@ public class GardenLogic extends FarmLogic {
 			if (this.moisture != EnumMoisture.Dry) {
 				return trySetSoil(world, position, housing);
 			}
-			final ItemStack[] sand = {new ItemStack(Blocks.SAND, 1)};
-			if (!housing.getFarmInventory().hasResources(sand)) {
+			final ItemStack sand = new ItemStack(Blocks.SAND, 1);
+			final NonNullList<ItemStack> resources = NonNullList.create();
+			resources.add(sand);
+			if (!housing.getFarmInventory().hasResources(resources)) {
 				return false;
 			}
 			this.setBlock(world, position, Blocks.SAND, 0);
-			housing.getFarmInventory().removeResources(sand);
+			housing.getFarmInventory().removeResources(resources);
 			return true;
 		}
 	}
@@ -255,9 +276,8 @@ public class GardenLogic extends FarmLogic {
 	}
 
 	@Override
-	@Nullable
 	public Collection<ICrop> harvest(World world, BlockPos pos, FarmDirection direction, int extent) {
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -309,8 +329,12 @@ public class GardenLogic extends FarmLogic {
 	@Nullable
 	public ItemStack getAvailableAcid(IFarmHousing housing) {
 		for (final ItemStack stack : Gardening.getAcidFertilisers()) {
-			if (stack != null && stack.getItem() != null && housing.getFarmInventory().hasResources(new ItemStack[]{stack})) {
-				return stack;
+			if (!stack.isEmpty()) {
+				final NonNullList<ItemStack> resources = NonNullList.create();
+				resources.add(stack);
+				if (housing.getFarmInventory().hasResources(resources)) {
+					return stack;
+				}
 			}
 		}
 		return null;
@@ -319,8 +343,12 @@ public class GardenLogic extends FarmLogic {
 	@Nullable
 	public ItemStack getAvailableAlkaline(IFarmHousing housing) {
 		for (final ItemStack stack : Gardening.getAlkalineFertilisers()) {
-			if (stack != null && stack.getItem() != null && housing.getFarmInventory().hasResources(new ItemStack[]{stack})) {
-				return stack;
+			if (!stack.isEmpty()) {
+				final NonNullList<ItemStack> resources = NonNullList.create();
+				resources.add(stack);
+				if (housing.getFarmInventory().hasResources(resources)) {
+					return stack;
+				}
 			}
 		}
 		return null;

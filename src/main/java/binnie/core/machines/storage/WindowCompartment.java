@@ -245,7 +245,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				}
 				final CompartmentTab tab = WindowCompartment.this.getCurrentTab();
 				final ItemStack stack = WindowCompartment.this.getHeldItemStack().copy();
-				stack.stackSize = 1;
+				stack.setCount(1);
 				tab.setIcon(stack);
 				final NBTTagCompound nbt = new NBTTagCompound();
 				tab.writeToNBT(nbt);

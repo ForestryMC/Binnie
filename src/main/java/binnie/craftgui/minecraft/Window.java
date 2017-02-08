@@ -265,7 +265,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 	}
 
 	public World getWorld() {
-		return this.getPlayer().worldObj;
+		return this.getPlayer().world;
 	}
 
 	public void onInventoryUpdate() {

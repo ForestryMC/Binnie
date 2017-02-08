@@ -148,10 +148,10 @@ public abstract class Designer {
 					if (playerInv.getItemStack() == null) {
 						playerInv.setItemStack(this.doRecipe(true));
 					} else if (playerInv.getItemStack().isItemEqual(recipe) && ItemStack.areItemStackTagsEqual(playerInv.getItemStack(), recipe)) {
-						final int fit = recipe.getMaxStackSize() - (recipe.stackSize + playerInv.getItemStack().stackSize);
+						final int fit = recipe.getMaxStackSize() - (recipe.getCount() + playerInv.getItemStack().getCount());
 						if (fit >= 0) {
 							this.doRecipe(true);
-							recipe.stackSize += playerInv.getItemStack().stackSize;
+							recipe.grow(playerInv.getItemStack().getCount());
 							playerInv.setItemStack(recipe);
 						}
 					}

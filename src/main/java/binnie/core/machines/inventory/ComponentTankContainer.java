@@ -4,6 +4,7 @@ import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
 import binnie.core.machines.power.ITankMachine;
 import binnie.core.machines.power.TankInfo;
+import com.google.common.collect.Iterables;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
@@ -12,6 +13,7 @@ import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.FluidTankProperties;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
+import net.minecraftforge.fluids.capability.templates.FluidHandlerConcatenate;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -158,7 +160,11 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 	}
 
 	@Override
-	public IFluidHandler getHandler(EnumFacing from) {
+	@Nullable
+	public IFluidHandler getHandler(@Nullable EnumFacing from) {
+		if (from == null) {
+			return new FluidHandlerConcatenate(handlers.values());
+		}
 		return handlers.get(from);
 	}
 

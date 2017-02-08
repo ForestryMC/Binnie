@@ -8,6 +8,8 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
+import javax.annotation.Nullable;
+
 class DefaultTankContainer implements ITankMachine {
 	@Override
 	public TankInfo[] getTankInfos() {
@@ -40,7 +42,8 @@ class DefaultTankContainer implements ITankMachine {
 	}
 
 	@Override
-	public IFluidHandler getHandler(EnumFacing from) {
+	@Nullable
+	public IFluidHandler getHandler(@Nullable EnumFacing from) {
 		return null;
 	}
 

@@ -6,26 +6,23 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CeramicTileRecipe implements IRecipe {
-	@Nullable
-	private ItemStack cached;
+	private ItemStack cached = ItemStack.EMPTY;
 
 	@Override
 	public boolean matches(final InventoryCrafting inv, final World world) {
 		this.cached = this.getCraftingResult(inv);
-		return this.cached != null;
+		return !this.cached.isEmpty();
 	}
 
 	@Override
-	@Nullable
 	public ItemStack getCraftingResult(final InventoryCrafting inv) {
 		final Item ceramicBlock = Item.getItemFromBlock(Botany.ceramic);
 		final Item ceramicTile = Item.getItemFromBlock(Botany.ceramicTile);
@@ -36,7 +33,7 @@ public class CeramicTileRecipe implements IRecipe {
 		int iy = -1;
 		for (int i = 0; i < inv.getSizeInventory(); ++i) {
 			final ItemStack stack = inv.getStackInSlot(i);
-			if (stack != null) {
+			if (!stack.isEmpty()) {
 				final int x = i / 3;
 				final int y = i % 3;
 				if (ix == -1) {
@@ -44,10 +41,10 @@ public class CeramicTileRecipe implements IRecipe {
 					iy = y;
 				}
 				if (x - ix >= 2 || y - iy >= 2 || y < iy || x < ix) {
-					return null;
+					return ItemStack.EMPTY;
 				}
 				if (stack.getItem() != ceramicBlock && stack.getItem() != ceramicTile && stack.getItem() != ceramicBrick && stack.getItem() != mortar) {
-					return null;
+					return ItemStack.EMPTY;
 				}
 				stacks.add(stack);
 			}
@@ -58,7 +55,7 @@ public class CeramicTileRecipe implements IRecipe {
 				return result;
 			}
 		}
-		return null;
+		return ItemStack.EMPTY;
 	}
 
 	@Override
@@ -72,7 +69,7 @@ public class CeramicTileRecipe implements IRecipe {
 	}
 
 	@Override
-	public ItemStack[] getRemainingItems(InventoryCrafting inv) {
+	public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv) {
 		return ForgeHooks.defaultRecipeGetRemainingItems(inv);
 	}
 }

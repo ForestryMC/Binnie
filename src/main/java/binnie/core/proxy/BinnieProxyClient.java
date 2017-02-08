@@ -22,12 +22,15 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 
 import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
 
+@SideOnly(Side.CLIENT)
 public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy {
 	public static ModelManager modelManager = new ModelManager(Constants.CORE_MOD_ID);
 
@@ -110,7 +113,7 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 
 	@Override
 	public World getWorld() {
-		return this.getMinecraftInstance().theWorld;
+		return this.getMinecraftInstance().world;
 	}
 
 	@Override
@@ -178,7 +181,7 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 
 	@Override
 	public EntityPlayer getPlayer() {
-		return Minecraft.getMinecraft().thePlayer;
+		return Minecraft.getMinecraft().player;
 	}
 
 //	public void handlePreTextureRefresh(final IIconRegister register, final int type) {

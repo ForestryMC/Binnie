@@ -6,6 +6,7 @@ import binnie.botany.api.IFlower;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 
@@ -15,28 +16,27 @@ import javax.annotation.Nullable;
 public class PigmentRecipe implements IRecipe {
 	@Override
 	public boolean matches(final InventoryCrafting crafting, final World world) {
-		return this.getCraftingResult(crafting) != null;
+		return !this.getCraftingResult(crafting).isEmpty();
 	}
 
 	@Override
-	@Nullable
 	public ItemStack getRecipeOutput() {
-		return null;
+		return ItemStack.EMPTY;
 	}
 
 	@Override
-	@Nullable
 	public ItemStack getCraftingResult(final InventoryCrafting crafting) {
 		int n = 0;
-		ItemStack stack = null;
+		ItemStack stack = ItemStack.EMPTY;
 		for (int i = 0; i < crafting.getSizeInventory(); ++i) {
-			if (crafting.getStackInSlot(i) != null) {
+			ItemStack stackInSlot = crafting.getStackInSlot(i);
+			if (!stackInSlot.isEmpty()) {
 				if (++n > 1) {
-					return null;
+					return ItemStack.EMPTY;
 				}
-				if (Binnie.GENETICS.getFlowerRoot().isMember(crafting.getStackInSlot(i))) {
-					final IFlower flower = Binnie.GENETICS.getFlowerRoot().getMember(crafting.getStackInSlot(i));
-					if (flower.getAge() >= 1) {
+				if (Binnie.GENETICS.getFlowerRoot().isMember(stackInSlot)) {
+					final IFlower flower = Binnie.GENETICS.getFlowerRoot().getMember(stackInSlot);
+					if (flower != null && flower.getAge() >= 1) {
 						stack = new ItemStack(Botany.pigment, 1, flower.getGenome().getPrimaryColor().getID());
 					}
 				}
@@ -51,7 +51,7 @@ public class PigmentRecipe implements IRecipe {
 	}
 
 	@Override
-	public ItemStack[] getRemainingItems(InventoryCrafting inv) {
+	public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv) {
 		return ForgeHooks.defaultRecipeGetRemainingItems(inv);
 	}
 }

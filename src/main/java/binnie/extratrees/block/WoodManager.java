@@ -108,14 +108,14 @@ public class WoodManager {
 		if (plank instanceof IFenceProvider && plank == plank2 && type.isPlain()) {
 			final ItemStack original = ((IFenceProvider) plank).getFence();
 			if (original != null) {
-				original.stackSize = amount;
+				original.setCount(amount);
 				return original;
 			}
 		}
 		final int ord = type.ordinal();
 		final int i = getPlankTypeIndex(plank) + 256 * ord;
 		final ItemStack stack = TileEntityMetadata.getItemStack(ExtraTrees.blocks().blockMultiFence, i + 65536 * getPlankTypeIndex(plank2));
-		stack.stackSize = amount;
+		stack.setCount(amount);
 		return stack;
 	}
 

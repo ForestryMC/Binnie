@@ -62,7 +62,7 @@ public enum PacketID implements IPacketID {
 					info += ". " + Binnie.LANGUAGE.localise("botany.flowers.species.wilting");
 				}
 			}
-			player.addChatMessage(new TextComponentString(info));
+			player.sendStatusMessage(new TextComponentString(info), false);
 		}
 	}
 }

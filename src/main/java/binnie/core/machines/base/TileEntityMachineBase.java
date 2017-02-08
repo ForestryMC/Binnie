@@ -28,7 +28,7 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 
 	public IInventoryMachine getInventory() {
 		final IInventoryMachine inv = Machine.getInterface(IInventoryMachine.class, this);
-		return (inv == null || inv == this) ? new DefaultInventory() : inv;
+		return (inv == null || inv == this) ? new DefaultMachineInventory() : inv;
 	}
 
 	public ITankMachine getTankContainer() {
@@ -41,96 +41,23 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 		return (inv == null || inv == this) ? DefaultPower.INSTANCE : inv;
 	}
 
-	@Override
-	public int getSizeInventory() {
-		return this.getInventory().getSizeInventory();
-	}
-
-	@Override
-	public ItemStack getStackInSlot(final int index) {
-		return this.getInventory().getStackInSlot(index);
-	}
-
-	@Override
-	public ItemStack decrStackSize(final int index, final int amount) {
-		return this.getInventory().decrStackSize(index, amount);
-	}
-
-	@Nullable
-	@Override
-	public ItemStack removeStackFromSlot(int index) {
-		return null;
-	}
-
 //	@Override
 //	public ItemStack getStackInSlotOnClosing(final int var1) {
 //		return this.getInventory().getStackInSlotOnClosing(var1);
 //	}
 
 	@Override
-	public void setInventorySlotContents(final int index, @Nullable final ItemStack itemStack) {
-		this.getInventory().setInventorySlotContents(index, itemStack);
-	}
-
-	@Override
-	public String getName() {
-		return this.getInventory().getName();
-	}
-
-	@Override
-	public int getInventoryStackLimit() {
-		return this.getInventory().getInventoryStackLimit();
-	}
-
-	@Override
-	public boolean isUseableByPlayer(final EntityPlayer entityplayer) {
-		return !this.isInvalid() && this.getWorld().getTileEntity(getPos()) == this && entityplayer.getDistanceSq(getPos().getX() + 0.5, getPos().getY() + 0.5, getPos().getZ() + 0.5) <= 64.0 && this.getInventory().isUseableByPlayer(entityplayer);
-	}
-
-	@Override
-	public void openInventory(EntityPlayer player) {
-		this.getInventory().openInventory(player);
-	}
-
-	@Override
-	public void closeInventory(EntityPlayer player) {
-		this.getInventory().closeInventory(player);
-	}
-
-	@Override
-	public boolean hasCustomName() {
-		return this.getInventory().hasCustomName();
+	public boolean isUsableByPlayer(final EntityPlayer entityplayer) {
+		return !this.isInvalid() &&
+				this.getWorld().getTileEntity(getPos()) == this &&
+				entityplayer.getDistanceSqToCenter(getPos()) <= 64.0 &&
+				this.getInventory().isUsableByPlayer(entityplayer);
 	}
 
 	@Override
 	public void markDirty() {
 		super.markDirty();
 		this.getInventory().markDirty();
-	}
-
-	@Override
-	public boolean isItemValidForSlot(final int slot, final ItemStack itemStack) {
-		return this.getInventory().isItemValidForSlot(slot, itemStack);
-	}
-
-	@Override
-	public int getField(int id) {
-		return this.getInventory().getField(id);
-	}
-
-	@Override
-	public void setField(int id, int value) {
-		this.getInventory().setField(id, value);
-	}
-
-	@Override
-	public int getFieldCount() {
-		return this.getInventory().getFieldCount();
-	}
-
-	@Override
-	public void clear() {
-		this.getInventory().clear();
 	}
 
 	@Override
@@ -248,12 +175,13 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 	}
 
 	@Override
-	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
 		return (capability == CapabilityEnergy.ENERGY && (canExtract() || canReceive())) || capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
 	}
 
 	@Override
-	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+	@Nullable
+	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
 		if (capability == CapabilityEnergy.ENERGY) {
 			return CapabilityEnergy.ENERGY.cast(this);
 		} else if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
@@ -275,7 +203,8 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 	}
 
 	@Override
-	public IFluidHandler getHandler(EnumFacing from) {
+	@Nullable
+	public IFluidHandler getHandler(@Nullable EnumFacing from) {
 		return getTankContainer().getHandler(from);
 	}
 

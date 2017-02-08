@@ -16,6 +16,8 @@ import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
@@ -64,14 +66,11 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 				new ControlChromoPicker(this, 84, 54, EnumBeeChromosome.EFFECT);
 			} else if (root == Binnie.GENETICS.getTreeRoot()) {
 				new ControlChromoPicker(this, 48, 48, EnumTreeChromosome.SPECIES);
-				new ControlChromoPicker(this, 43, 12, EnumTreeChromosome.GROWTH);
 				new ControlChromoPicker(this, 43, 84, EnumTreeChromosome.HEIGHT);
 				new ControlChromoPicker(this, 25, 63, EnumTreeChromosome.FERTILITY);
 				new ControlChromoPicker(this, 72, 57, EnumTreeChromosome.FRUITS);
 				new ControlChromoPicker(this, 21, 43, EnumTreeChromosome.YIELD);
-				new ControlChromoPicker(this, 38, 32, EnumTreeChromosome.PLANT);
 				new ControlChromoPicker(this, 15, 17, EnumTreeChromosome.SAPPINESS);
-				new ControlChromoPicker(this, 75, 78, EnumTreeChromosome.TERRITORY);
 				new ControlChromoPicker(this, 67, 15, EnumTreeChromosome.EFFECT);
 				new ControlChromoPicker(this, 70, 34, EnumTreeChromosome.MATURATION);
 				new ControlChromoPicker(this, 45, 67, EnumTreeChromosome.GIRTH);
@@ -119,6 +118,7 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		if (this.species == null) {
 			return;

@@ -1,5 +1,6 @@
 package binnie.extratrees;
 
+import binnie.Binnie;
 import binnie.Constants;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
@@ -23,6 +24,7 @@ import binnie.extratrees.proxy.Proxy;
 import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.AlleleSpeciesRegisterEvent;
+import forestry.api.genetics.IClassification;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -42,6 +44,8 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 import com.google.common.base.Preconditions;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Mod(modid = Constants.EXTRA_TREES_MOD_ID, name = "Binnie's Extra Trees", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class ExtraTrees extends AbstractMod {
@@ -175,8 +179,8 @@ public class ExtraTrees extends AbstractMod {
 			PlankType.ExtraTreePlanks.initWoodTypes();
 
 			if (BinnieCore.isLepidopteryActive()) {
-				for (final ButterflySpecies species2 : ButterflySpecies.values()) {
-					AlleleManager.alleleRegistry.registerAllele(species2);
+				for (final ButterflySpecies species : ButterflySpecies.values()) {
+					AlleleManager.alleleRegistry.registerAllele(species);
 				}
 			}
 		}
@@ -189,6 +193,7 @@ public class ExtraTrees extends AbstractMod {
 	}
 
 	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
 	public void onBakedEvent(ModelBakeEvent e) {
 		//Find all ExtraTrees saplings
 		List<ModelResourceLocation> models = e.getModelRegistry().getKeys().stream()

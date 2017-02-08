@@ -37,7 +37,7 @@ public class SequencerFX extends MachineComponent implements IRender.RandomDispl
 				this.motionY = 0.0;
 				this.particleMaxAge = 200;
 				this.particleGravity = 0.0f;
-				this.field_190017_n = true;
+				this.canCollide = true;
 				this.setRBGColorF(0.6f + this.rand.nextFloat() * 0.2f, 1.0f, 0.8f * this.rand.nextFloat() * 0.2f);
 			}
 
@@ -73,7 +73,7 @@ public class SequencerFX extends MachineComponent implements IRender.RandomDispl
 					this.motionY = 0.012;
 					this.particleMaxAge = 50;
 					this.particleGravity = 0.0f;
-					this.field_190017_n = true;
+					this.canCollide = true;
 					this.particleScale = 2.0f;
 					//TODO: Add sprites
 					//this.setParticleIcon((new BinnieIcon[] { Sequencer.fxSeqA, Sequencer.fxSeqG, Sequencer.fxSeqC, Sequencer.fxSeqT })[this.rand.nextInt(4)].getIcon());

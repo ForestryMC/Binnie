@@ -32,7 +32,7 @@ public class TileEntityNursery extends TileEntityMachine implements IButterflyNu
 
 	@Override
 	public World getWorld() {
-		return this.worldObj;
+		return this.world;
 	}
 
 

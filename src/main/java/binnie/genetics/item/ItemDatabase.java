@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -36,19 +37,20 @@ public class ItemDatabase extends ItemCore {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item itemIn, CreativeTabs tab, List<ItemStack> subItems) {
+	public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {
 		super.getSubItems(itemIn, tab, subItems);
 		subItems.add(new ItemStack(itemIn, 1, 1));
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World worldIn, EntityPlayer player, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+		final ItemStack itemStack = playerIn.getHeldItem(handIn);
 		if (itemStack.getItemDamage() == 0) {
-			Genetics.proxy.openGui(GeneticsGUI.Database, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
+			Genetics.proxy.openGui(GeneticsGUI.Database, playerIn, playerIn.getPosition());
 		} else {
-			Genetics.proxy.openGui(GeneticsGUI.DatabaseNEI, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
+			Genetics.proxy.openGui(GeneticsGUI.DatabaseNEI, playerIn, playerIn.getPosition());
 		}
-		return super.onItemRightClick(itemStack, worldIn, player, hand);
+		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
 
 	@Override

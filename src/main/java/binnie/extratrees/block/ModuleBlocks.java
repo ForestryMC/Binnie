@@ -260,14 +260,14 @@ public class ModuleBlocks implements IInitializable {
 				ItemStack slabs = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.SLAB, fireproof);
 				ItemStack stairs = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.STAIRS, fireproof);
 
-				stairs.stackSize = 4;
+				stairs.setCount(4);
 				RecipeUtil.addPriorityRecipe(stairs.copy(),
 						"#  ",
 						"## ",
 						"###",
 						'#', planks.copy());
 
-				slabs.stackSize = 6;
+				slabs.setCount(6);
 				RecipeUtil.addPriorityRecipe(slabs.copy(), "###", '#', planks.copy());
 			}
 		}
@@ -283,9 +283,9 @@ public class ModuleBlocks implements IInitializable {
 			final ItemStack doorSplit = WoodManager.getDoor(plank2, DoorType.Double);
 			final ItemStack doorFull = WoodManager.getDoor(plank2, DoorType.Full);
 			if (planks2 != null && gate != null) {
-				gate.stackSize = 1;
+				gate.setCount(1);
 				GameRegistry.addRecipe(gate.copy(), "fpf", 'f', fenceNormal.copy(), 'p', planks2.copy());
-				fenceNormal.stackSize = 4;
+				fenceNormal.setCount(4);
 				GameRegistry.addRecipe(fenceNormal.copy(), "###", "# #", '#', planks2.copy());
 				GameRegistry.addRecipe(doorSolid.copy(), "###", "###", "###", '#', planks2.copy());
 				GameRegistry.addRecipe(doorStandard.copy(), "# #", "###", "###", '#', planks2.copy());
@@ -298,7 +298,8 @@ public class ModuleBlocks implements IInitializable {
 
 	public void addSqueezer(final IWoodType log, final ILiquidType liquid, final int amount, final float pulpChance) {
 		final FluidStack liquidStack = liquid.get(amount);
-		RecipeManagers.squeezerManager.addRecipe(10, new ItemStack[]{TreeManager.woodAccess.getStack(log, WoodBlockKind.LOG, false)}, liquidStack, Mods.Forestry.stack("woodPulp"), (int) (100.0f * pulpChance));
+		ItemStack logStack = TreeManager.woodAccess.getStack(log, WoodBlockKind.LOG, false);
+		RecipeManagers.squeezerManager.addRecipe(10, logStack, liquidStack, Mods.Forestry.stack("woodPulp"), (int) (100.0f * pulpChance));
 	}
 
 	public void addSqueezer(final IWoodType log, final ILiquidType liquid, final int amount) {

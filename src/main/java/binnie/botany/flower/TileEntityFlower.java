@@ -148,9 +148,9 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		}
 		final IAlleleFlowerSpecies primary = (IAlleleFlowerSpecies) individual.getGenome().getPrimary();
 		final IAlleleFlowerSpecies primary2 = this.getFlower().getGenome().getPrimary();
-		if (primary == primary2 || this.worldObj.rand.nextInt(4) == 0) {
+		if (primary == primary2 || this.world.rand.nextInt(4) == 0) {
 			this.getFlower().mate((IFlower) individual);
-			worldObj.markBlockRangeForRenderUpdate(pos, pos);
+			world.markBlockRangeForRenderUpdate(pos, pos);
 		}
 	}
 
@@ -159,7 +159,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		if (this.getSection() <= 0) {
 			return this.flower;
 		}
-		TileEntity tile = this.worldObj.getTileEntity(pos.down(getSection()));
+		TileEntity tile = this.world.getTileEntity(pos.down(getSection()));
 		if (tile instanceof TileEntityFlower) {
 			return ((TileEntityFlower) tile).getFlower();
 		}
@@ -172,7 +172,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 	}
 
 	public void randomUpdate(final Random rand) {
-		if (this.worldObj.getBlockState(pos).getBlock() != Botany.flower) {
+		if (this.world.getBlockState(pos).getBlock() != Botany.flower) {
 			this.invalidate();
 			return;
 		}
@@ -189,16 +189,16 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		if (!this.isBreeding()) {
 			return;
 		}
-		float light = this.worldObj.getLight(pos);
+		float light = this.world.getLight(pos);
 		if (light < 6.0f) {
 			for (int dx = -2; dx <= 2; ++dx) {
 				for (int dy = -2; dy <= 2; ++dy) {
-					light -= (this.worldObj.canBlockSeeSky(pos) ? 0.0f : 0.5f);
+					light -= (this.world.canBlockSeeSky(pos) ? 0.0f : 0.5f);
 				}
 			}
 		}
-		final boolean canTolerate = Gardening.canTolerate(this.getFlower(), this.worldObj, pos);
-		final EnumSoilType soil = Gardening.getSoilType(this.worldObj, pos.down());
+		final boolean canTolerate = Gardening.canTolerate(this.getFlower(), this.world, pos);
+		final EnumSoilType soil = Gardening.getSoilType(this.world, pos.down());
 		if (rand.nextFloat() < this.getFlower().getGenome().getAgeChance()) {
 			if (this.flower.getAge() < 1) {
 				if (canTolerate && light > 6.0f) {
@@ -231,7 +231,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		CHANCE_POLLINATE += 0.25f * this.flower.getGenome().getFertility();
 		CHANCE_POLLINATE *= 1.0f + soil.ordinal() * 0.5f;
 		final float CHANCE_SELFPOLLINATE = 0.2f * CHANCE_POLLINATE;
-		if (this.worldObj.rand.nextFloat() < CHANCE_DISPERSAL && this.flower.hasFlowered() && !this.flower.isWilted()) {
+		if (this.world.rand.nextFloat() < CHANCE_DISPERSAL && this.flower.hasFlowered() && !this.flower.isWilted()) {
 			final IFlowerGenome mate = this.flower.getMate();
 			if (mate != null) {
 				boolean dispersed = false;
@@ -241,11 +241,11 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 					for (dx2 = 0, dz = 0; dx2 == 0 && dz == 0; dx2 = rand.nextInt(3) - 1, dz = rand.nextInt(3) - 1) {
 					}
 
-					final Block b2 = worldObj.getBlockState(pos.add(dx2, -1, dz)).getBlock();
-					if (worldObj.isAirBlock(pos.add(dx2, 0, dz)) && Gardening.isSoil(b2)) {
-						final IFlower offspring = this.flower.getOffspring(worldObj, pos);
+					final Block b2 = world.getBlockState(pos.add(dx2, -1, dz)).getBlock();
+					if (world.isAirBlock(pos.add(dx2, 0, dz)) && Gardening.isSoil(b2)) {
+						final IFlower offspring = this.flower.getOffspring(world, pos);
 						if (offspring != null) {
-							Gardening.plant(worldObj, pos.add(dx2, 0, dz), offspring, this.getOwner());
+							Gardening.plant(world, pos.add(dx2, 0, dz), offspring, this.getOwner());
 							this.flower.removeMate();
 							dispersed = true;
 						}
@@ -253,19 +253,19 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 				}
 			}
 		}
-		if (this.worldObj.rand.nextFloat() < CHANCE_POLLINATE && this.flower.hasFlowered() && !this.flower.isWilted()) {
+		if (this.world.rand.nextFloat() < CHANCE_POLLINATE && this.flower.hasFlowered() && !this.flower.isWilted()) {
 			for (int a2 = 0; a2 < 4; ++a2) {
 				int dx3;
 				int dz2;
 				for (dx3 = 0, dz2 = 0; dx3 == 0 && dz2 == 0; dx3 = rand.nextInt(5) - 2, dz2 = rand.nextInt(5) - 2) {
 				}
-				final TileEntity tile = worldObj.getTileEntity(pos.add(dx3, 0, dz2));
+				final TileEntity tile = world.getTileEntity(pos.add(dx3, 0, dz2));
 				if (tile instanceof IPollinatable && ((IPollinatable) tile).canMateWith(this.getFlower())) {
 					((IPollinatable) tile).mateWith(this.getFlower());
 				}
 			}
 		}
-		if (this.worldObj.rand.nextFloat() < CHANCE_SELFPOLLINATE && this.flower.hasFlowered() && this.flower.getMate() == null) {
+		if (this.world.rand.nextFloat() < CHANCE_SELFPOLLINATE && this.flower.hasFlowered() && this.flower.getMate() == null) {
 			this.mateWith(this.getFlower());
 		}
 		this.spawnButterflies();
@@ -277,9 +277,9 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 	private void doFlowerAge() {
 		this.getFlower().age();
 		if (this.getFlower().getAge() == 1) {
-			Gardening.onGrowFromSeed(this.worldObj, pos);
+			Gardening.onGrowFromSeed(this.world, pos);
 			if (this.getOwner() != null && this.getFlower() != null) {
-				BotanyCore.getFlowerRoot().getBreedingTracker(worldObj, this.getOwner()).registerBirth(this.getFlower());
+				BotanyCore.getFlowerRoot().getBreedingTracker(world, this.getOwner()).registerBirth(this.getFlower());
 			}
 		}
 	}
@@ -308,7 +308,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 				this.setRender(newInfo);
 			}
 		}
-		final TileEntity above = this.worldObj.getTileEntity(pos.up());
+		final TileEntity above = this.world.getTileEntity(pos.up());
 		if (above instanceof TileEntityFlower) {
 			((TileEntityFlower) above).updateRender(true);
 		}
@@ -320,7 +320,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 
 	public void setSection(final int i) {
 		this.section = i;
-		if (BinnieCore.getBinnieProxy().isSimulating(this.worldObj)) {
+		if (BinnieCore.getBinnieProxy().isSimulating(this.world)) {
 			this.updateRender(true);
 		}
 	}
@@ -338,7 +338,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		if (this.getSection() == 0) {
 			return null;
 		}
-		final TileEntity tile = this.worldObj.getTileEntity(pos.down(getSection()));
+		final TileEntity tile = this.world.getTileEntity(pos.down(getSection()));
 		return (tile instanceof TileEntityFlower) ? ((TileEntityFlower) tile) : null;
 	}
 
@@ -355,9 +355,9 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 			final double d = rand.nextFloat() * f + (1.0f - f) * 0.5;
 			final double d2 = rand.nextFloat() * f + (1.0f - f) * 0.5;
 			final double d3 = rand.nextFloat() * f + (1.0f - f) * 0.5;
-			final EntityItem entityitem = new EntityItem(this.worldObj, pos.getX() + d, pos.getY() + d2, pos.getZ() + d3, cuttingStack);
+			final EntityItem entityitem = new EntityItem(this.world, pos.getX() + d, pos.getY() + d2, pos.getZ() + d3, cuttingStack);
 			entityitem.setPickupDelay(10);
-			this.worldObj.spawnEntityInWorld(entityitem);
+			this.world.spawnEntity(entityitem);
 			for (int maxAge = this.getFlower().getMaxAge(), i = 0; i < maxAge; ++i) {
 				if (rand.nextBoolean()) {
 					this.getFlower().age();
@@ -373,17 +373,17 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		if (this.getSection() != 0) {
 			return this.getRoot().checkIfDead(wasCut);
 		}
-		final EnumSoilType soil = Gardening.getSoilType(this.worldObj, pos);
+		final EnumSoilType soil = Gardening.getSoilType(this.world, pos);
 		final int maxAge = (int) (this.flower.getMaxAge() * (1.0f + soil.ordinal() * 0.25f));
 		if (this.flower.getAge() > maxAge) {
 			if (!wasCut && this.flower.getMate() != null) {
-				this.worldObj.setBlockToAir(pos);
-				final IFlower offspring = this.flower.getOffspring(worldObj, pos.down());
-				final TileEntity above = this.worldObj.getTileEntity(pos.up());
+				this.world.setBlockToAir(pos);
+				final IFlower offspring = this.flower.getOffspring(this.world, pos.down());
+				final TileEntity above = this.world.getTileEntity(pos.up());
 				if (above instanceof TileEntityFlower) {
-					this.worldObj.setBlockToAir(pos.up());
+					this.world.setBlockToAir(pos.up());
 				}
-				Gardening.plant(this.worldObj, pos, offspring, this.getOwner());
+				Gardening.plant(this.world, pos, offspring, this.getOwner());
 			} else {
 				this.kill();
 			}
@@ -394,12 +394,12 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 
 	public void kill() {
 		if (this.flower.getAge() > 0) {
-			this.worldObj.setBlockState(pos, Botany.plant.getStateFromMeta(BlockPlant.Type.DeadFlower.ordinal()), 2);
+			this.world.setBlockState(pos, Botany.plant.getStateFromMeta(BlockPlant.Type.DeadFlower.ordinal()), 2);
 		} else {
-			this.worldObj.setBlockToAir(pos);
+			this.world.setBlockToAir(pos);
 		}
-		for (int i = 1; this.worldObj.getTileEntity(pos.up(i)) instanceof TileEntityFlower; ++i) {
-			this.worldObj.setBlockToAir(pos.up(i));
+		for (int i = 1; this.world.getTileEntity(pos.up(i)) instanceof TileEntityFlower; ++i) {
+			this.world.setBlockToAir(pos.up(i));
 		}
 	}
 
@@ -487,12 +487,12 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 
 	@Override
 	public EnumTemperature getTemperature() {
-		return EnumTemperature.getFromValue(this.worldObj.getBiome(getPos()).getTemperature());
+		return EnumTemperature.getFromValue(this.world.getBiome(getPos()).getTemperature());
 	}
 
 	@Override
 	public EnumHumidity getHumidity() {
-		return EnumHumidity.getFromValue(this.worldObj.getBiome(getPos()).getRainfall());
+		return EnumHumidity.getFromValue(this.world.getBiome(getPos()).getRainfall());
 	}
 
 	public void setErrorState(final int state) {
@@ -556,11 +556,11 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 	public void setRender(final RenderInfo render) {
 		this.renderInfo = render;
 		this.section = this.renderInfo.section;
-		if (!worldObj.isRemote) {
-			IBlockState blockState = worldObj.getBlockState(pos);
-			worldObj.notifyBlockUpdate(pos, blockState, blockState, 0);
+		if (!world.isRemote) {
+			IBlockState blockState = world.getBlockState(pos);
+			world.notifyBlockUpdate(pos, blockState, blockState, 0);
 		} else {
-			worldObj.markBlockRangeForRenderUpdate(pos, pos);
+			world.markBlockRangeForRenderUpdate(pos, pos);
 		}
 	}
 

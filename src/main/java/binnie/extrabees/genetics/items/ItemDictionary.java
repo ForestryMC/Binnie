@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -38,20 +39,23 @@ public class ItemDictionary extends Item implements IItemModelRegister {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List<ItemStack> par3List) {
+	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final NonNullList<ItemStack> par3List) {
 		super.getSubItems(par1, par2CreativeTabs, par3List);
 		par3List.add(new ItemStack(par1, 1, 1));
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+		final ItemStack itemStack = playerIn.getHeldItem(handIn);
+		final ExtraBeeGUID id;
 		if (itemStack.getItemDamage() == 0) {
-			ExtraBees.proxy.openGui(ExtraBeeGUID.Database, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
+			id = ExtraBeeGUID.Database;
 		} else {
-			ExtraBees.proxy.openGui(ExtraBeeGUID.DatabaseNEI, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
+			id = ExtraBeeGUID.DatabaseNEI;
 		}
+		ExtraBees.proxy.openGui(id, playerIn, playerIn.getPosition());
 
-		return super.onItemRightClick(itemStack, world, player, hand);
+		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
 
 	@Override
@@ -60,6 +64,7 @@ public class ItemDictionary extends Item implements IItemModelRegister {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
 		manager.registerItemModel(item, 0, getRegistryName().getResourcePath());
 		manager.registerItemModel(item, 1, getRegistryName().getResourcePath() + "Master");

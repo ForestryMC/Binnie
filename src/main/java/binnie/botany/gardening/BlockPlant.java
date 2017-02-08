@@ -16,6 +16,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -77,7 +78,7 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(final Item p_149666_1_, final CreativeTabs p_149666_2_, final List<ItemStack> subBlocks) {
+	public void getSubBlocks(final Item p_149666_1_, final CreativeTabs p_149666_2_, final NonNullList<ItemStack> subBlocks) {
 		for (final Type type : Type.values()) {
 			subBlocks.add(type.get());
 		}

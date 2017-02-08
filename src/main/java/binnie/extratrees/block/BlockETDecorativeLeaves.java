@@ -24,6 +24,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -94,7 +96,7 @@ public abstract class BlockETDecorativeLeaves extends Block implements IItemMode
 	 */
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
+	public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> list) {
 		for (IBlockState state : getBlockState().getValidStates()) {
 			int meta = getMetaFromState(state);
 			ItemStack itemStack = new ItemStack(item, 1, meta);
@@ -120,12 +122,12 @@ public abstract class BlockETDecorativeLeaves extends Block implements IItemMode
 	}
 
 	@Override
-	public boolean isVisuallyOpaque()
-	{
+	public boolean causesSuffocation(IBlockState state) {
 		return false;
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
 		return (Proxies.render.fancyGraphicsEnabled() || blockAccess.getBlockState(pos.offset(side)).getBlock() != this) && super.shouldSideBeRendered(blockState, blockAccess, pos, side);
 	}
@@ -187,11 +189,8 @@ public abstract class BlockETDecorativeLeaves extends Block implements IItemMode
 		return Collections.emptyList();
 	}
 
-	/**
-	 * Called by ItemBlocks just before a block is actually set in the world, to allow for adjustments to the IBlockstate
-	 */
 	@Override
-	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
 		ETTreeDefinition type = getTreeType(meta);
 		return getDefaultState().withProperty(getVariant(), type);
 	}

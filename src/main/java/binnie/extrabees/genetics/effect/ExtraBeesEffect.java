@@ -23,6 +23,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntitySmallFireball;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
@@ -30,6 +31,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
@@ -132,14 +134,14 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 		return this.dominant;
 	}
 
-	public void spawnMob(final World world, final BlockPos pos, final String name) {
+	public void spawnMob(final World world, final BlockPos pos, final ResourceLocation name) {
 		if (this.anyPlayerInRange(world, pos, 16)) {
 			final double var1 = pos.getX() + world.rand.nextFloat();
 			final double var2 = pos.getY() + world.rand.nextFloat();
 			final double var3 = pos.getZ() + world.rand.nextFloat();
 			world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, var1, var2, var3, 0.0, 0.0, 0.0);
 			world.spawnParticle(EnumParticleTypes.FLAME, var1, var2, var3, 0.0, 0.0, 0.0);
-			final EntityLiving entity = (EntityLiving) EntityList.createEntityByName(name, world);
+			final EntityLiving entity = (EntityLiving) EntityList.createEntityByIDFromName(name, world);
 			if (entity != null) {
 				final int nearbyEntityCount = world.getEntitiesWithinAABB(entity.getClass(), new AxisAlignedBB(pos, pos.add(1, 1, 1)).expand(8.0, 4.0, 8.0)).size();
 				if (nearbyEntityCount < 6) {
@@ -148,7 +150,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 					final double var8 = pos.getZ() + (world.rand.nextDouble() - world.rand.nextDouble()) * 4.0;
 					entity.setLocationAndAngles(var6, var7, var8, world.rand.nextFloat() * 360.0f, 0.0f);
 					if (entity.getCanSpawnHere()) {
-						world.spawnEntityInWorld(entity);
+						world.spawnEntity(entity);
 						world.playEvent(2004, pos, 0);//playSFX
 						entity.spawnExplosionParticle();
 					}
@@ -209,21 +211,21 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 			}
 			case SPAWN_ZOMBIE: {
 				if (world.rand.nextInt(200) < 2) {
-					this.spawnMob(world, pos, "Zombie");
+					this.spawnMob(world, pos, new ResourceLocation("zombie"));
 					break;
 				}
 				break;
 			}
 			case SPAWN_SKELETON: {
 				if (world.rand.nextInt(200) < 2) {
-					this.spawnMob(world, pos, "Skeleton");
+					this.spawnMob(world, pos, new ResourceLocation("skeleton"));
 					break;
 				}
 				break;
 			}
 			case SPAWN_CREEPER: {
 				if (world.rand.nextInt(200) < 2) {
-					this.spawnMob(world, pos, "Creeper");
+					this.spawnMob(world, pos, new ResourceLocation("creeper"));
 					break;
 				}
 				break;
@@ -237,7 +239,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 			}
 			case METEOR: {
 				if (world.rand.nextInt(100) < 1 && world.canBlockSeeSky(pos)) {
-					world.spawnEntityInWorld(new EntitySmallFireball(world, x1, y1 + 64, z1, 0.0, -0.6, 0.0));
+					world.spawnEntity(new EntitySmallFireball(world, x1, y1 + 64, z1, 0.0, -0.6, 0.0));
 					break;
 				}
 				break;
@@ -258,7 +260,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 							damage = 3;
 						}
 					}
-					entity.attackEntityFrom(DamageSource.generic, damage);
+					entity.attackEntityFrom(DamageSource.GENERIC, damage);
 				}
 				break;
 			}
@@ -353,7 +355,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 					}
 					final EntityFireworkRocket var11 = new EntityFireworkRocket(world, x1, y1, z1, firework.getFirework());
 					if (world.canBlockSeeSky(pos)) {
-						world.spawnEntityInWorld(var11);
+						world.spawnEntity(var11);
 					}
 					break;
 				}
@@ -509,41 +511,8 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 		return housing.getWorldObj().getEntitiesWithinAABB(eClass, box);
 	}
 
-	public static boolean wearsHelmet(final EntityPlayer player) {
-		final ItemStack armorItem = player.inventory.armorInventory[3];
-		return armorItem != null && armorItem.getItem() instanceof IArmorApiarist;
-	}
-
-	public static boolean wearsChest(final EntityPlayer player) {
-		final ItemStack armorItem = player.inventory.armorInventory[2];
-		return armorItem != null && armorItem.getItem() instanceof IArmorApiarist;
-	}
-
-	public static boolean wearsLegs(final EntityPlayer player) {
-		final ItemStack armorItem = player.inventory.armorInventory[1];
-		return armorItem != null && armorItem.getItem() instanceof IArmorApiarist;
-	}
-
-	public static boolean wearsBoots(final EntityPlayer player) {
-		final ItemStack armorItem = player.inventory.armorInventory[0];
-		return armorItem != null && armorItem.getItem() instanceof IArmorApiarist;
-	}
-
 	public static int wearsItems(final EntityPlayer player) {
-		int count = 0;
-		if (wearsHelmet(player)) {
-			++count;
-		}
-		if (wearsChest(player)) {
-			++count;
-		}
-		if (wearsLegs(player)) {
-			++count;
-		}
-		if (wearsBoots(player)) {
-			++count;
-		}
-		return count;
+		return BeeManager.armorApiaristHelper.wearsItems(player, "", false);
 	}
 
 	@Override

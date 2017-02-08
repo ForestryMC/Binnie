@@ -5,6 +5,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 
@@ -23,8 +24,8 @@ public class MultiFenceRecipeSolid implements IRecipe {
 			final ItemStack a = inv.getStackInSlot(row * 3);
 			final ItemStack b = inv.getStackInSlot(row * 3 + 1);
 			final ItemStack c = inv.getStackInSlot(row * 3 + 2);
-			if (a != null && b != null) {
-				if (c != null) {
+			if (!a.isEmpty() && !b.isEmpty()) {
+				if (!c.isEmpty()) {
 					type = WoodManager.getFenceType(a);
 					final FenceType type2 = WoodManager.getFenceType(b);
 					final FenceType type3 = WoodManager.getFenceType(c);
@@ -57,7 +58,7 @@ public class MultiFenceRecipeSolid implements IRecipe {
 	}
 
 	@Override
-	public ItemStack[] getRemainingItems(InventoryCrafting inv) {
+	public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv) {
 		return ForgeHooks.defaultRecipeGetRemainingItems(inv);
 	}
 }

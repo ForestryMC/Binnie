@@ -10,7 +10,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.IFluidContainerItem;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
@@ -221,13 +220,13 @@ public class TransferRequest {
 
 	public static ItemStack[] mergeStacks(ItemStack itemstack, final ItemStack merged) {
 		if (areItemsEqual(itemstack, merged)) {
-			final int space = merged.getMaxStackSize() - merged.stackSize;
+			final int space = merged.getMaxStackSize() - merged.getCount();
 			if (space > 0) {
-				if (itemstack.stackSize > space) {
-					itemstack.stackSize -= space;
-					merged.stackSize += space;
-				} else if (itemstack.stackSize <= space) {
-					merged.stackSize += itemstack.stackSize;
+				if (itemstack.getCount() > space) {
+					itemstack.shrink(space);
+					merged.grow(space);
+				} else if (itemstack.getCount() <= space) {
+					merged.grow(itemstack.getCount());
 					itemstack = null;
 				}
 			}
@@ -238,10 +237,10 @@ public class TransferRequest {
 	@Nullable
 	public static ItemStack transferToTank(final ItemStack itemStack, final IInventory origin, final ITankMachine destination, final int tankID, final boolean doAdd) {
 		Preconditions.checkNotNull(itemStack);
-		Preconditions.checkArgument(itemStack.stackSize >= 1);
+		Preconditions.checkArgument(itemStack.getCount() >= 1);
 
 		final ItemStack singleCopy = itemStack.copy();
-		singleCopy.stackSize = 1;
+		singleCopy.setCount(1);
 
 		// TODO 1.11: use IFluidHandlerItem
 		final IFluidHandler fluidHandler = FluidUtil.getFluidHandler(singleCopy);
@@ -259,19 +258,19 @@ public class TransferRequest {
 					// TODO 1.11: use IFluidHandlerItem
 					fluidHandler.drain(amountAdded, true);
 
-					if (singleCopy.stackSize == 0 || transferItemToInventory(singleCopy, origin, false) == null) {
+					if (singleCopy.getCount() == 0 || transferItemToInventory(singleCopy, origin, false) == null) {
 						if (doAdd) {
 							tank.fill(containerLiquid, true);
-							if (singleCopy.stackSize > 0) {
+							if (singleCopy.getCount() > 0) {
 								transferItemToInventory(singleCopy, origin, true);
 							}
 						}
 
-						if (itemStack.stackSize == 1) {
+						if (itemStack.getCount() == 1) {
 							return null;
 						} else {
 							final ItemStack leftover = itemStack.copy();
-							leftover.stackSize--;
+							leftover.shrink(1);
 							return leftover;
 						}
 					}
@@ -284,13 +283,13 @@ public class TransferRequest {
 	@Nullable
 	private static ItemStack transferFromTank(ItemStack itemStack, final IInventory origin, final ITankMachine destination, final int tankID, final boolean doAdd) {
 		Preconditions.checkNotNull(itemStack);
-		Preconditions.checkArgument(itemStack.stackSize >= 1);
+		Preconditions.checkArgument(itemStack.getCount() >= 1);
 
 		final IFluidTank tank = destination.getTanks()[tankID];
 		final FluidStack fluid = tank.getFluid();
 		if (fluid != null) {
 			final ItemStack singleCopy = itemStack.copy();
-			singleCopy.stackSize = 1;
+			singleCopy.setCount(1);
 			// TODO 1.11: use IFluidHandlerItem
 			IFluidHandler fluidHandler = FluidUtil.getFluidHandler(singleCopy);
 			if (fluidHandler != null) {
@@ -300,19 +299,19 @@ public class TransferRequest {
 					if (fillFluid != null) {
 						// TODO 1.11: use IFluidHandlerItem
 						fluidHandler.fill(fillFluid, true);
-						if (singleCopy.stackSize == 0 || transferItemToInventory(singleCopy, origin, false) == null) {
+						if (singleCopy.getCount() == 0 || transferItemToInventory(singleCopy, origin, false) == null) {
 							if (doAdd) {
 								tank.drain(fillFluid.amount, true);
-								if (singleCopy.stackSize > 0) {
+								if (singleCopy.getCount() > 0) {
 									transferItemToInventory(singleCopy, origin, true);
 								}
 							}
 
-							if (itemStack.stackSize == 1) {
+							if (itemStack.getCount() == 1) {
 								return null;
 							} else {
 								ItemStack leftover = itemStack.copy();
-								leftover.stackSize--;
+								leftover.shrink(1);
 								return leftover;
 							}
 						}

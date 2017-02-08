@@ -9,18 +9,18 @@ public class FlowerTemplates {
 	public static IAllele[] getDefaultTemplate() {
 		final IAllele[] alleles = new IAllele[EnumFlowerChromosome.values().length];
 		//TODO: Test flower reset
-		AlleleHelper.instance.set(alleles, EnumFlowerChromosome.SPECIES, FlowerDefinition.Poppy.getSpecies());
-		AlleleHelper.instance.set(alleles, EnumFlowerChromosome.PRIMARY, EnumFlowerColor.Red);
-		AlleleHelper.instance.set(alleles, EnumFlowerChromosome.SECONDARY, EnumFlowerColor.Red);
-		AlleleHelper.instance.set(alleles, EnumFlowerChromosome.FERTILITY, EnumAllele.Fertility.NORMAL);
-		AlleleHelper.instance.set(alleles, EnumFlowerChromosome.TERRITORY, EnumAllele.Territory.AVERAGE);
-		AlleleHelper.instance.set(alleles, EnumFlowerChromosome.EFFECT, ModuleGenetics.alleleEffectNone);
-		AlleleHelper.instance.set(alleles, EnumFlowerChromosome.LIFESPAN, EnumAllele.Lifespan.NORMAL);
-		AlleleHelper.instance.set(alleles, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.NONE);
-		AlleleHelper.instance.set(alleles, EnumFlowerChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.NONE);
-		AlleleHelper.instance.set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.NONE);
-		AlleleHelper.instance.set(alleles, EnumFlowerChromosome.SAPPINESS, EnumAllele.Sappiness.AVERAGE);
-		AlleleHelper.instance.set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.Green);
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.SPECIES, FlowerDefinition.Poppy.getSpecies());
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PRIMARY, EnumFlowerColor.Red);
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.SECONDARY, EnumFlowerColor.Red);
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.FERTILITY, EnumAllele.Fertility.NORMAL);
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.TERRITORY, EnumAllele.Territory.AVERAGE);
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.EFFECT, ModuleGenetics.alleleEffectNone);
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.LIFESPAN, EnumAllele.Lifespan.NORMAL);
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.NONE);
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.NONE);
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.NONE);
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.SAPPINESS, EnumAllele.Sappiness.AVERAGE);
+		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.Green);
 		return alleles;
 	}
 }

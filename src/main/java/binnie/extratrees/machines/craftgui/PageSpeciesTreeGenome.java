@@ -58,7 +58,6 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 		final int th = 14;
 		final int th2 = 18;
 		final BreedingSystem syst = Binnie.GENETICS.treeBreedingSystem;
-		new ControlText(contents, new IArea(0, y, w2, th), syst.getChromosomeShortName(EnumTreeChromosome.PLANT) + " : ", TextJustification.MiddleRight);
 		new ControlText(contents, new IArea(w2, y, w3, th), treeSpecies.getPlantType().toString(), TextJustification.MiddleLeft);
 		y += th;
 		new ControlText(contents, new IArea(0, y, w2, th), BinnieCore.getBinnieProxy().localise("gui.temperature.short") + " : ", TextJustification.MiddleRight);
@@ -94,9 +93,6 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 			display.setTooltip();
 			y += th2;
 		}
-		new ControlText(contents, new IArea(0, y, w2, th), syst.getChromosomeShortName(EnumTreeChromosome.GROWTH) + " : ", TextJustification.MiddleRight);
-		//new ControlText(contents, new IArea(w2, y, w3, th), genome.getGrowthProvider().getDescription(), TextJustification.MiddleLeft);
-		y += th;
 		new ControlText(contents, new IArea(0, y, w2, th), syst.getChromosomeShortName(EnumTreeChromosome.HEIGHT) + " : ", TextJustification.MiddleRight);
 		new ControlText(contents, new IArea(w2, y, w3, th), genome.getHeight() + "x", TextJustification.MiddleLeft);
 		y += th;

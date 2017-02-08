@@ -21,40 +21,40 @@ public class ControlBiome extends Control implements ITooltip {
 
 	@Override
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		if (BiomeDictionary.isBiomeOfType(this.biome, BiomeDictionary.Type.MOUNTAIN)) {
+		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.MOUNTAIN)) {
 			this.iconCategory = "hills";
 		}
-		if (BiomeDictionary.isBiomeOfType(this.biome, BiomeDictionary.Type.HILLS)) {
+		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.HILLS)) {
 			this.iconCategory = "hills";
 		}
-		if (BiomeDictionary.isBiomeOfType(this.biome, BiomeDictionary.Type.SANDY)) {
+		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.SANDY)) {
 			this.iconCategory = "desert";
 		}
-		if (BiomeDictionary.isBiomeOfType(this.biome, BiomeDictionary.Type.SNOWY)) {
+		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.SNOWY)) {
 			this.iconCategory = "snow";
 		}
-		if (BiomeDictionary.isBiomeOfType(this.biome, BiomeDictionary.Type.FOREST)) {
+		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.FOREST)) {
 			this.iconCategory = "forest";
 		}
-		if (BiomeDictionary.isBiomeOfType(this.biome, BiomeDictionary.Type.SWAMP)) {
+		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.SWAMP)) {
 			this.iconCategory = "swamp";
 		}
-		if (BiomeDictionary.isBiomeOfType(this.biome, BiomeDictionary.Type.JUNGLE)) {
+		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.JUNGLE)) {
 			this.iconCategory = "jungle";
 		}
-		if (BiomeDictionary.isBiomeOfType(this.biome, BiomeDictionary.Type.COLD) && BiomeDictionary.isBiomeOfType(this.biome, BiomeDictionary.Type.FOREST)) {
+		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.COLD) && BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.FOREST)) {
 			this.iconCategory = "taiga";
 		}
-		if (BiomeDictionary.isBiomeOfType(this.biome, BiomeDictionary.Type.MUSHROOM)) {
+		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.MUSHROOM)) {
 			this.iconCategory = "mushroom";
 		}
-		if (BiomeDictionary.isBiomeOfType(this.biome, BiomeDictionary.Type.OCEAN)) {
+		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.OCEAN)) {
 			this.iconCategory = "ocean";
 		}
-		if (BiomeDictionary.isBiomeOfType(this.biome, BiomeDictionary.Type.NETHER)) {
+		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.NETHER)) {
 			this.iconCategory = "nether";
 		}
-		if (BiomeDictionary.isBiomeOfType(this.biome, BiomeDictionary.Type.END)) {
+		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.END)) {
 			this.iconCategory = "end";
 		}
 //		final IIcon icon = TextureManager.getInstance().getDefault("habitats/" + this.iconCategory);

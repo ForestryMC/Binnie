@@ -27,7 +27,7 @@ public class ItemETDoor extends ItemMetadata {
 	}
 
 	@Override
-	public EnumActionResult onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, BlockPos pos, EnumHand hand, EnumFacing facing, float par8, float par9, float par10) {
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 //		if (par7 != 1) {
 //			return false;
 //		}
@@ -39,10 +39,10 @@ public class ItemETDoor extends ItemMetadata {
 //		if (!block.canPlaceBlockAt(par3World, pos)) {
 //			return false;
 //		}
-//		final int i1 = MathHelper.floor_double((par2EntityPlayer.rotationYaw + 180.0f) * 4.0f / 360.0f - 0.5) & 0x3;
+//		final int i1 = MathHelper.floor((par2EntityPlayer.rotationYaw + 180.0f) * 4.0f / 360.0f - 0.5) & 0x3;
 //		placeDoorBlock(par3World, par4, par5, par6, i1, block, par1ItemStack, par2EntityPlayer);
-//		--par1ItemStack.stackSize;
-		return super.onItemUse(par1ItemStack, par2EntityPlayer, par3World, pos, hand, facing, par8, par9, par10);
+//		par1ItemStack.shrink(1);
+		return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 	}
 
 	public static void placeDoorBlock(final World par0World, final int par1, final int par2, final int par3, final int par4, final Block par5Block, final ItemStack item, final EntityPlayer player) {

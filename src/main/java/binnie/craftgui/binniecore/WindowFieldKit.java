@@ -206,7 +206,7 @@ public class WindowFieldKit extends Window {
 		if (this.isServer()) {
 			final ItemStack kit = this.getPlayer().getHeldItemMainhand();
 			final int sheets = 64 - kit.getItemDamage();
-			final int size = (this.getWindowInventory().getStackInSlot(1) == null) ? 0 : this.getWindowInventory().getStackInSlot(1).stackSize;
+			final int size = (this.getWindowInventory().getStackInSlot(1) == null) ? 0 : this.getWindowInventory().getStackInSlot(1).getCount();
 			if (sheets != size) {
 				kit.setItemDamage(64 - size);
 			}

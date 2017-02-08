@@ -14,6 +14,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerFoliage;
@@ -33,7 +34,7 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 	}
 
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn) {
+	public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_) {
 		final boolean connectNegZ = this.canConnectFenceTo(world, pos.north());
 		final boolean connectPosZ = this.canConnectFenceTo(world, pos.south());
 		final boolean connectNegX = this.canConnectFenceTo(world, pos.west());
@@ -164,7 +165,7 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(final Item item, final CreativeTabs tab, final List<ItemStack> list) {
+	public void getSubBlocks(final Item item, final CreativeTabs tab, final NonNullList<ItemStack> list) {
 		for (int i = 0; i < 6; ++i) {
 			for (int f = 0; f < 2; ++f) {
 				list.add(new ItemStack(item, 1, i + f * 8));

@@ -6,6 +6,9 @@ import forestry.api.core.IModelManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
@@ -33,7 +36,7 @@ public class ItemProduct extends Item implements IItemModelRegister {
 	}
 
 	@Override
-	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
+	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final NonNullList<ItemStack> itemList) {
 		for (final IItemEnum type : this.types) {
 			if (type.isActive()) {
 				itemList.add(new ItemStack(this, 1, type.ordinal()));
@@ -42,6 +45,7 @@ public class ItemProduct extends Item implements IItemModelRegister {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
 		for (IItemEnum type : types) {
 			manager.registerItemModel(item, type.ordinal(), getRegistryName().getResourcePath());

@@ -94,7 +94,6 @@ public class ModuleGardening implements IInitializable {
 		Botany.proxy.registerBlock(Botany.ceramicTile, new ItemDesign(Botany.ceramicTile));
 		Botany.ceramicBrick = new BlockCeramicBrick();
 		Botany.proxy.registerBlock(Botany.ceramicBrick, new ItemCeramicBrick(Botany.ceramicBrick));
-		GameRegistry.registerTileEntity(TileCeramicBrick.class, "");
 		BinnieCore.getBinnieProxy().registerTileEntity(TileCeramicBrick.class, "botany.tile.ceramicBrick");
 //		BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(Botany.ceramicTile), new MultipassItemRenderer());
 //		BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(Botany.ceramicBrick), new MultipassItemRenderer());
@@ -187,7 +186,7 @@ public class ModuleGardening implements IInitializable {
 			GameRegistry.addShapelessRecipe(clay, Items.CLAY_BALL, Items.CLAY_BALL, Items.CLAY_BALL, pigment);
 			GameRegistry.addSmelting(clay, TileEntityMetadata.getItemStack(Botany.ceramic, c.ordinal()), 0.0f);
 			final ItemStack glass = TileEntityMetadata.getItemStack(Botany.stained, c.ordinal());
-			glass.stackSize = 4;
+			glass.setCount(4);
 			GameRegistry.addShapedRecipe(glass, " g ", "gpg", " g ", 'g', Blocks.GLASS, 'p', pigment);
 		}
 		GameRegistry.addRecipe(new PigmentRecipe());
@@ -211,7 +210,7 @@ public class ModuleGardening implements IInitializable {
 						final ItemStack start = this.getStack(type, pH, moisture);
 						final ItemStack end = this.getStack(type, pH - strength, moisture);
 						if (start != null && end != null) {
-							end.stackSize = numOfBlocks;
+							end.setCount(numOfBlocks);
 							final Object[] stacks = new Object[numOfBlocks + 1];
 							for (int i = 0; i < numOfBlocks; ++i) {
 								stacks[i] = start;
@@ -236,7 +235,7 @@ public class ModuleGardening implements IInitializable {
 						final ItemStack start = this.getStack(type, pH, moisture);
 						final ItemStack end = this.getStack(type, pH + strength, moisture);
 						if (end != null) {
-							end.stackSize = numOfBlocks;
+							end.setCount(numOfBlocks);
 							final Object[] stacks = new Object[numOfBlocks + 1];
 							for (int i = 0; i < numOfBlocks; ++i) {
 								stacks[i] = start;
@@ -261,7 +260,7 @@ public class ModuleGardening implements IInitializable {
 						final ItemStack start = this.getStack(type, pH, moisture);
 						final ItemStack end = this.getStack(type + strength, pH, moisture);
 						if (end != null) {
-							end.stackSize = numOfBlocks;
+							end.setCount(numOfBlocks);
 							final Object[] stacks = new Object[numOfBlocks + 1];
 							for (int i = 0; i < numOfBlocks; ++i) {
 								stacks[i] = start;

@@ -70,7 +70,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 
 	@Override
 	@Nullable
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
 		return null;
 	}
 
@@ -215,14 +215,14 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 	}
 
 	@Override
-	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block blockIn) {
-		this.checkAndDropBlock(world, pos);
-		final TileEntity tile = world.getTileEntity(pos);
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
+		this.checkAndDropBlock(worldIn, pos);
+		final TileEntity tile = worldIn.getTileEntity(pos);
 		if (tile instanceof TileEntityFlower) {
 			final TileEntityFlower flower = (TileEntityFlower) tile;
-			if (flower.getSection() == 0 && flower.getFlower() != null && flower.getFlower().getAge() > 0 && flower.getFlower().getGenome().getPrimary().getType().getSections() > 1 && world.getBlockState(pos.up()).getBlock() != Botany.flower) {
-				this.dropBlockAsItem(world, pos, world.getBlockState(pos), 0);
-				world.setBlockToAir(pos);
+			if (flower.getSection() == 0 && flower.getFlower() != null && flower.getFlower().getAge() > 0 && flower.getFlower().getGenome().getPrimary().getType().getSections() > 1 && worldIn.getBlockState(pos.up()).getBlock() != Botany.flower) {
+				this.dropBlockAsItem(worldIn, pos, worldIn.getBlockState(pos), 0);
+				worldIn.setBlockToAir(pos);
 			}
 		}
 	}

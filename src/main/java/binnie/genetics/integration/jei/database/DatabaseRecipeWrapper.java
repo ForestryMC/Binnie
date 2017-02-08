@@ -8,9 +8,12 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.awt.Color;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class DatabaseRecipeWrapper extends BlankRecipeWrapper {
@@ -26,6 +29,7 @@ public class DatabaseRecipeWrapper extends BlankRecipeWrapper {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 		IDrawable arrow = GeneticsJeiPlugin.drawables.getArrow();
 		arrow.draw(minecraft, 60, 4);
@@ -42,6 +46,6 @@ public class DatabaseRecipeWrapper extends BlankRecipeWrapper {
 				new ItemStack(Genetics.database)
 		));
 
-		ingredients.setOutputs(ItemStack.class, outputs);
+		ingredients.setOutputLists(ItemStack.class, Collections.singletonList(outputs));
 	}
 }

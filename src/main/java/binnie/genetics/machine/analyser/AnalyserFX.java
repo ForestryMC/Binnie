@@ -45,7 +45,7 @@ public class AnalyserFX extends MachineComponent implements IRender.DisplayTick,
 					this.motionY = 0.0;
 					this.particleMaxAge = 25;
 					this.particleGravity = 0.05f;
-					this.field_190017_n = true;
+					this.canCollide = true;
 					this.setRBGColorF(0.6f, 0.0f, 1.0f);
 				}
 
@@ -70,7 +70,7 @@ public class AnalyserFX extends MachineComponent implements IRender.DisplayTick,
 			return;
 		}
 		final ItemStack stack = this.getUtil().getStack(6);
-		this.dummyEntityItem.worldObj = this.getMachine().getWorld();
+		this.dummyEntityItem.world = this.getMachine().getWorld();
 		this.dummyEntityItem.setEntityItemStack(stack);
 		final EntityItem dummyEntityItem = this.dummyEntityItem;
 		dummyEntityItem.setAgeToCreativeDespawnTime(); //++dummyEntityItem.age;
@@ -102,7 +102,7 @@ public class AnalyserFX extends MachineComponent implements IRender.DisplayTick,
 	@Override
 	public void syncFromNBT(final NBTTagCompound nbt) {
 		if (nbt.hasKey("item")) {
-			this.getUtil().setStack(6, ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("item")));
+			this.getUtil().setStack(6, new ItemStack(nbt.getCompoundTag("item")));
 		} else {
 			this.getUtil().setStack(6, null);
 		}

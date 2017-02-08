@@ -54,7 +54,7 @@ public class SequencerLogic extends ComponentProcess implements IProcess {
 			return new ErrorState.NoItem(Genetics.proxy.localise("machine.machine.sequencer.errors.insufficient.dye"), Sequencer.SLOT_DYE);
 		}
 		ItemStack stackDone = this.getUtil().getStack(Sequencer.SLOT_DONE);
-		if (stackDone != null && stackDone.stackSize >= 64) {
+		if (stackDone != null && stackDone.getCount() >= 64) {
 			return new ErrorState.NoSpace(Genetics.proxy.localise("machine.machine.sequencer.errors.no.space"), new int[]{Sequencer.SLOT_DONE});
 		}
 		return super.canProgress();

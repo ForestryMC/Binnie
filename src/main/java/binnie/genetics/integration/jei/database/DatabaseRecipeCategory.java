@@ -42,11 +42,6 @@ public class DatabaseRecipeCategory extends BlankRecipeCategory<DatabaseRecipeWr
 		itemStacks.init(1, true, 58, 18);
 		itemStacks.init(2, false, 85, 0);
 
-		// workaround to support multiple outputs in one slot on 1.10.
-		// Todo: 1.11 use simpler itemStack.set(ingredients)
-		List<List<ItemStack>> inputs = ingredients.getInputs(ItemStack.class);
-		itemStacks.set(0, inputs.get(0));
-		itemStacks.set(1, inputs.get(1));
-		itemStacks.set(2, ingredients.getOutputs(ItemStack.class));
+		itemStacks.set(ingredients);
 	}
 }

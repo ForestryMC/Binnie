@@ -176,7 +176,7 @@ public class Botany extends AbstractMod {
 						if (pollen != null && flower.canMateWith(pollen)) {
 							flower.mateWith(pollen);
 							if (!player.capabilities.isCreativeMode) {
-								--heldItem.stackSize;
+								heldItem.shrink(1);
 							}
 						}
 					}
@@ -208,7 +208,7 @@ public class Botany extends AbstractMod {
 						EnumSoilType type = soil.getType(world, pos);
 						int next = Math.min(type.ordinal() + fertiliserStrength, 2);
 						if (soil.fertilise(world, pos, EnumSoilType.values()[next]) && !player.capabilities.isCreativeMode) {
-							--heldItem.stackSize;
+							heldItem.shrink(1);
 							return;
 						}
 					}
@@ -216,7 +216,7 @@ public class Botany extends AbstractMod {
 						EnumAcidity pH = soil.getPH(world, pos);
 						int next = Math.max(pH.ordinal() - fertiliserStrength, 0);
 						if (soil.setPH(world, pos, EnumAcidity.values()[next]) && !player.capabilities.isCreativeMode) {
-							--heldItem.stackSize;
+							heldItem.shrink(1);
 							return;
 						}
 					}
@@ -224,12 +224,12 @@ public class Botany extends AbstractMod {
 						EnumAcidity pH = soil.getPH(world, pos);
 						int next = Math.min(pH.ordinal() + fertiliserStrength, 2);
 						if (soil.setPH(world, pos, EnumAcidity.values()[next]) && !player.capabilities.isCreativeMode) {
-							--heldItem.stackSize;
+							heldItem.shrink(1);
 							return;
 						}
 					}
 					if (Gardening.isWeedkiller(heldItem) && Gardening.addWeedKiller(world, pos) && !player.capabilities.isCreativeMode) {
-						--heldItem.stackSize;
+						heldItem.shrink(1);
 					}
 				}
 			}
@@ -270,7 +270,7 @@ public class Botany extends AbstractMod {
 			if (py >= 0) {
 				IFlower flower = BotanyCore.getFlowerRoot().getConversion(heldItem);
 				if (flower != null && Gardening.plant(world, pos.add(0, py, 0), flower, player.getGameProfile()) && !player.capabilities.isCreativeMode) {
-					--heldItem.stackSize;
+					heldItem.shrink(1);
 				}
 			}
 		}

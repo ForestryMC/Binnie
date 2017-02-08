@@ -9,16 +9,16 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidContainerItem;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
-// TODO use capabilities and remove IFluidContainerItem
-public class ItemDrink extends ItemFood implements IFluidContainerItem {
+public class ItemDrink extends ItemFood {
 	public ItemDrink() {
 		super(0, 0.0f, false);
 		this.setCreativeTab(Tabs.tabArboriculture);
@@ -69,89 +69,24 @@ public class ItemDrink extends ItemFood implements IFluidContainerItem {
 		}
 	}
 
-	@Override
 	@Nullable
-	public FluidStack getFluid(final ItemStack container) {
-		if (container.getTagCompound() == null || !container.getTagCompound().hasKey("fluid")) {
-			return null;
-		}
-		return FluidStack.loadFluidStackFromNBT(container.getTagCompound().getCompoundTag("fluid"));
-	}
-
 	@Override
-	public int getCapacity(final ItemStack container) {
-		return this.getGlassware(container).getCapacity();
-	}
-
-	@Override
-	public int fill(final ItemStack container, final FluidStack resource, final boolean doFill) {
-		if (resource == null || !container.hasTagCompound()) {
-			return 0;
-		}
-		if (DrinkManager.getLiquid(resource.getFluid()) == null) {
-			return 0;
-		}
-		final FluidStack existing = this.getFluid(container);
-		final int space = this.getGlassware(container).getCapacity() - ((existing == null) ? 0 : existing.amount);
-		final int added = Math.min(space, resource.amount);
-		if (space <= 0) {
-			return 0;
-		}
-		if (existing == null) {
-			if (doFill) {
-				final FluidStack fill = resource.copy();
-				fill.amount = added;
-				this.saveFluid(fill, container);
-			}
-			return added;
-		}
-		if (!existing.isFluidEqual(resource)) {
-			return 0;
-		}
-		if (doFill) {
-			final FluidStack fill = existing.copy();
-			fill.amount += added;
-			this.saveFluid(fill, container);
-		}
-		return added;
-	}
-
-	@Override
-	@Nullable
-	public FluidStack drain(final ItemStack container, final int maxDrain, final boolean doDrain) {
-		if (!container.hasTagCompound()) {
-			return null;
-		}
-		final FluidStack content = this.getFluid(container);
-		if (content == null) {
-			return null;
-		}
-		final int toRemove = Math.min(maxDrain, content.amount);
-		FluidStack fill = content.copy();
-		final FluidStack drain = content.copy();
-		drain.amount = toRemove;
-		fill.amount -= toRemove;
-		if (fill.amount == 0) {
-			fill = null;
-		}
-		if (doDrain) {
-			this.saveFluid(fill, container);
-		}
-		return drain;
+	public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
+		return new FluidHandlerItemGlassware(stack, getGlassware(stack));
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List<ItemStack> par3List) {
+	public void getSubItems(final Item item, final CreativeTabs creativeTabs, final NonNullList<ItemStack> itemList) {
 		for (final Glassware glassware : Glassware.values()) {
-			par3List.add(this.getStack(glassware, null));
+			itemList.add(this.getStack(glassware, null));
 		}
-		par3List.add(this.getStack(Glassware.Wine, Alcohol.RedWine.get(Glassware.Wine.getCapacity())));
+		itemList.add(this.getStack(Glassware.Wine, Alcohol.RedWine.get(Glassware.Wine.getCapacity())));
 	}
 
 	@Override
 	public String getItemStackDisplayName(final ItemStack stack) {
-		final FluidStack fluid = this.getFluid(stack);
+		final FluidStack fluid = FluidUtil.getFluidContained(stack);
 		final IDrinkLiquid liquid;
 		if (fluid == null) {
 			liquid = null;
@@ -203,8 +138,12 @@ public class ItemDrink extends ItemFood implements IFluidContainerItem {
 //	}
 
 	@Override
-	public EnumAction getItemUseAction(final ItemStack p_77661_1_) {
-		return (this.getFluid(p_77661_1_) == null) ? EnumAction.NONE : EnumAction.DRINK;
+	public EnumAction getItemUseAction(final ItemStack itemStack) {
+		if (FluidUtil.getFluidContained(itemStack) != null) {
+			return EnumAction.DRINK;
+		} else {
+			return EnumAction.NONE;
+		}
 	}
 
 //	@Override

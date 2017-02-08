@@ -4,6 +4,8 @@ import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.events.Event;
 import binnie.craftgui.events.EventHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -54,6 +56,7 @@ public interface IWidget {
 
 	int getColour();
 
+	@SideOnly(Side.CLIENT)
 	void render(int guiWidth, int guiHeight);
 
 	void updateClient();
@@ -94,6 +97,7 @@ public interface IWidget {
 
 	void recieveEvent(final Event p0);
 
+	@SideOnly(Side.CLIENT)
 	void onUpdateClient();
 
 	void delete();
@@ -138,5 +142,6 @@ public interface IWidget {
 
 	int h();
 
+	@SideOnly(Side.CLIENT)
 	void onRender(final RenderStage stage, int guiWidth, int guiHeight);
 }

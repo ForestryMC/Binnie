@@ -35,7 +35,7 @@ public class InoculatorFX extends MachineComponent implements IRender.DisplayTic
 			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.5, pos.getY() + 0.92, pos.getZ() + 0.5, 0.0, 0.0, 0.0) {
 				double axisX = this.posX;
 				double axisZ = this.posZ;
-				double angle = (int) (this.worldObj.getTotalWorldTime() % 4L) * 0.5 * 3.1415;
+				double angle = (int) (this.world.getTotalWorldTime() % 4L) * 0.5 * 3.1415;
 
 				{
 					this.axisX = 0.0;
@@ -46,7 +46,7 @@ public class InoculatorFX extends MachineComponent implements IRender.DisplayTic
 					this.motionY = 0.007 + this.rand.nextDouble() * 0.002;
 					this.particleMaxAge = 240;
 					this.particleGravity = 0.0f;
-					this.field_190017_n = true;
+					this.canCollide = true;
 					this.setRBGColorF(0.8f, 0.0f, 1.0f);
 				}
 
@@ -81,7 +81,7 @@ public class InoculatorFX extends MachineComponent implements IRender.DisplayTic
 			return;
 		}
 		final ItemStack stack = this.getUtil().getStack(9);
-		this.dummyEntityItem.worldObj = this.getMachine().getWorld();
+		this.dummyEntityItem.world = this.getMachine().getWorld();
 		this.dummyEntityItem.setEntityItemStack(stack);
 		final EntityItem dummyEntityItem = this.dummyEntityItem;
 		dummyEntityItem.setAgeToCreativeDespawnTime(); //			++dummyEntityItem.age;
@@ -113,7 +113,7 @@ public class InoculatorFX extends MachineComponent implements IRender.DisplayTic
 	@Override
 	public void syncFromNBT(final NBTTagCompound nbt) {
 		if (nbt.hasKey("item")) {
-			this.getUtil().setStack(9, ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("item")));
+			this.getUtil().setStack(9, new ItemStack(nbt.getCompoundTag("item")));
 		} else {
 			this.getUtil().setStack(9, null);
 		}

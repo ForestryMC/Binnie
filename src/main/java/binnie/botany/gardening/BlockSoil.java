@@ -20,6 +20,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
@@ -29,6 +30,7 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Random;
 
@@ -95,8 +97,9 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 		return SOIL_BLOCK_AABB;
 	}
 
+	@Nullable
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
 		return SOIL_BLOCK_AABB;
 	}
 
@@ -107,7 +110,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(final Item par1, final CreativeTabs par2CreativeTabs, final List<ItemStack> par3List) {
+	public void getSubBlocks(final Item par1, final CreativeTabs par2CreativeTabs, final NonNullList<ItemStack> par3List) {
 		for (int i = 0; i < 9; ++i) {
 			par3List.add(new ItemStack(this, 1, i));
 		}
@@ -185,8 +188,8 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 	}
 
 	@Override
-	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn) {
-		super.neighborChanged(state, worldIn, pos, blockIn);
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
+		super.neighborChanged(state, worldIn, pos, blockIn, fromPos);
 
 		if (worldIn.getBlockState(pos.up()).getMaterial().isSolid()) {
 			worldIn.setBlockState(pos, Blocks.DIRT.getDefaultState());

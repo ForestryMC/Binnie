@@ -29,11 +29,12 @@ public class ItemPunnettSquare extends Item {
 		return "Punnett Square";
 	}
 
-
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World world, EntityPlayer player, EnumHand hand) {
-		if (hand == EnumHand.MAIN_HAND)
-			ExtraBees.proxy.openGui(ExtraBeeGUID.PunnettSquare, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
-		return new ActionResult<>(EnumActionResult.PASS, itemStackIn);
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+		if (handIn == EnumHand.MAIN_HAND) {
+			ExtraBees.proxy.openGui(ExtraBeeGUID.PunnettSquare, playerIn, playerIn.getPosition());
+		}
+		ItemStack itemStack = playerIn.getHeldItem(handIn);
+		return new ActionResult<>(EnumActionResult.PASS, itemStack);
 	}
 }

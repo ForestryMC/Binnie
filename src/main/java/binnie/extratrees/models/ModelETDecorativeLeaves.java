@@ -19,7 +19,10 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class ModelETDecorativeLeaves extends ModelBlockCached<BlockETDecorativeLeaves, ETTreeDefinition> {
 	public ModelETDecorativeLeaves() {
 		super(BlockETDecorativeLeaves.class);
@@ -57,35 +60,33 @@ public class ModelETDecorativeLeaves extends ModelBlockCached<BlockETDecorativeL
 		TextureAtlasSprite leafSprite = map.getAtlasSprite(leafSpriteLocation.toString());
 
 		// Render the plain leaf block.
-		baker.addBlockModel(block, Block.FULL_BLOCK_AABB, null, leafSprite, 0);
+		baker.addBlockModel(null, leafSprite, 0);
 
 		// Render overlay for fruit leaves.
 		ResourceLocation fruitSpriteLocation = genome.getFruitProvider().getDecorativeSprite();
 		if (fruitSpriteLocation != null) {
 			TextureAtlasSprite fruitSprite = map.getAtlasSprite(fruitSpriteLocation.toString());
-			baker.addBlockModel(block, Block.FULL_BLOCK_AABB, null, fruitSprite, 1);
+			baker.addBlockModel(null, fruitSprite, 1);
 		}
 
 		// Set the particle sprite
 		baker.setParticleSprite(leafSprite);
 	}
 
-	@Nullable
 	@Override
-	protected IBakedModel bakeModel(IBlockState state, ETTreeDefinition key) {
+	protected IBakedModel bakeModel(IBlockState state, ETTreeDefinition key, BlockETDecorativeLeaves block) {
 		if (key == null) {
 			return null;
 		}
 
 		IModelBaker baker = new ModelBaker();
 
-		Block block = state.getBlock();
 		if (!blockClass.isInstance(block)) {
 			return null;
 		}
 		BlockETDecorativeLeaves bBlock = blockClass.cast(block);
 
-		baker.setRenderBounds(Block.FULL_BLOCK_AABB);
+//		baker.setRenderBounds(Block.FULL_BLOCK_AABB);
 		bakeBlock(bBlock, key, baker, false);
 
 		blockModel = baker.bakeModel(false);

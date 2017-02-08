@@ -41,36 +41,39 @@ public class WindowInventory implements IInventory {
 	}
 
 	@Override
-	@Nullable
+	public boolean isEmpty() {
+		return this.inventory.isEmpty();
+	}
+
+	@Override
 	public ItemStack getStackInSlot(final int var1) {
 		if (this.inventory.containsKey(var1)) {
 			return this.inventory.get(var1);
 		}
-		return null;
+		return ItemStack.EMPTY;
 	}
 
 	@Override
-	@Nullable
 	public ItemStack decrStackSize(final int index, int amount) {
 		if (this.inventory.containsKey(index)) {
 			final ItemStack item = this.inventory.get(index);
 			final ItemStack output = item.copy();
-			final int available = item.stackSize;
+			final int available = item.getCount();
 			if (amount > available) {
 				amount = available;
 			}
-			item.stackSize -= amount;
-			output.stackSize = amount;
-			if (item.stackSize == 0) {
-				this.setInventorySlotContents(index, null);
+			item.shrink(amount);
+			output.setCount(amount);
+			if (item.isEmpty()) {
+				this.setInventorySlotContents(index, ItemStack.EMPTY);
 			}
 			return output;
 		}
-		return null;
+		return ItemStack.EMPTY;
 	}
 
 	@Override
-	public void setInventorySlotContents(final int index, @Nullable final ItemStack stack) {
+	public void setInventorySlotContents(final int index, final ItemStack stack) {
 		this.inventory.put(index, stack);
 		this.markDirty();
 	}
@@ -87,7 +90,7 @@ public class WindowInventory implements IInventory {
 	}
 
 	@Override
-	public boolean isUseableByPlayer(final EntityPlayer var1) {
+	public boolean isUsableByPlayer(final EntityPlayer var1) {
 		return true;
 	}
 

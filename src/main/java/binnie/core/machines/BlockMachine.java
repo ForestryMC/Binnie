@@ -18,6 +18,7 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -44,7 +45,7 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 	}
 
 	@Override
-	public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
+	public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> itemList) {
 		for (final MachinePackage pack : this.group.getPackages()) {
 			if (pack.isActive()) {
 				itemList.add(new ItemStack(this, 1, pack.getMetadata()));
@@ -66,9 +67,9 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 	public EnumBlockRenderType getRenderType(IBlockState state) {
 		return EnumBlockRenderType.MODEL;
 	}
-	
+
 	@Override
-	public boolean canRenderInLayer(BlockRenderLayer layer) {
+	public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
 		return layer == BlockRenderLayer.CUTOUT;
 	}
 
@@ -114,23 +115,24 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 	}
 
 	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if (!BinnieCore.getBinnieProxy().isSimulating(world)) {
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (!BinnieCore.getBinnieProxy().isSimulating(worldIn)) {
 			return true;
 		}
-		if (player.isSneaking()) {
+		if (playerIn.isSneaking()) {
 			return true;
 		}
-		TileEntity tileEntity = world.getTileEntity(pos);
+		TileEntity tileEntity = worldIn.getTileEntity(pos);
 		if (tileEntity != null) {
-			if (tileEntity.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side)) {
-				IFluidHandler tileFluidHandler = tileEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, side);
-				if (FluidUtil.interactWithFluidHandler(heldItem, tileFluidHandler, player)) {
+			if (tileEntity.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing)) {
+				IFluidHandler tileFluidHandler = tileEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing);
+				ItemStack heldItem = playerIn.getHeldItem(hand);
+				if (FluidUtil.interactWithFluidHandler(heldItem, tileFluidHandler, playerIn).isSuccess()) {
 					return true;
 				}
 			}
 			if (tileEntity instanceof TileEntityMachine) {
-				((TileEntityMachine) tileEntity).getMachine().onRightClick(world, player, pos);
+				((TileEntityMachine) tileEntity).getMachine().onRightClick(worldIn, playerIn, pos);
 			}
 		}
 		return true;

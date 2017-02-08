@@ -42,7 +42,7 @@ public class CustomSlot extends Slot {
 			this.putStack(null);
 		} else {
 			stack = stack.copy();
-			stack.stackSize = 1;
+			stack.setCount(1);
 			this.putStack(stack);
 		}
 	}

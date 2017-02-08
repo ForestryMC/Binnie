@@ -48,7 +48,7 @@ public enum DesignerType {
 			stackSize = 1;
 		}
 		final ItemStack stack = ModuleCarpentry.getItemStack(this.getBlock(), type1, type2, design);
-		stack.stackSize = stackSize;
+		stack.setCount(stackSize);
 		return stack;
 	}
 

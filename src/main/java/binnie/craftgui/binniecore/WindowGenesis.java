@@ -197,7 +197,7 @@ public class WindowGenesis extends Window {
 	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound action) {
 		super.recieveGuiNBT(side, player, name, action);
 		if (side == Side.SERVER && name.equals("genesis")) {
-			final ItemStack stack = ItemStack.loadItemStackFromNBT(action);
+			final ItemStack stack = new ItemStack(action);
 			final InventoryPlayer playerInv = player.inventory;
 			if (stack == null) {
 				return;
@@ -205,11 +205,11 @@ public class WindowGenesis extends Window {
 			if (playerInv.getItemStack() == null) {
 				playerInv.setItemStack(stack);
 			} else if (playerInv.getItemStack().isItemEqual(stack) && ItemStack.areItemStackTagsEqual(playerInv.getItemStack(), stack)) {
-				final int fit = stack.getMaxStackSize() - (stack.stackSize + playerInv.getItemStack().stackSize);
+				final int fit = stack.getMaxStackSize() - (stack.getCount() + playerInv.getItemStack().getCount());
 				if (fit >= 0) {
 					final ItemStack itemStack;
 					final ItemStack rec = itemStack = stack;
-					itemStack.stackSize += playerInv.getItemStack().stackSize;
+					itemStack.grow(playerInv.getItemStack().getCount());
 					playerInv.setItemStack(rec);
 				}
 			}

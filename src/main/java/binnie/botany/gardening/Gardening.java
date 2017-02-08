@@ -10,6 +10,7 @@ import binnie.botany.flower.TileEntityFlower;
 import binnie.botany.items.BotanyItems;
 import binnie.core.BinnieCore;
 import com.mojang.authlib.GameProfile;
+import forestry.api.climate.IClimateInfo;
 import forestry.api.core.EnumTemperature;
 import forestry.api.core.ForestryAPI;
 import net.minecraft.block.Block;
@@ -79,15 +80,17 @@ public class Gardening {
 	}
 
 	public static float getBiomeMoisture(World world, BlockPos pos) {
-		double humidity = ForestryAPI.climateManager.getHumidity(world, pos);
-		double temperature = ForestryAPI.climateManager.getTemperature(world, pos);
+		IClimateInfo info = ForestryAPI.climateManager.getInfo(world, pos);
+		double humidity = info.getHumidity();
+		double temperature = info.getTemperature();
 		double m = 3.2 * (humidity - 0.5) - 0.4 * (1.0 + temperature + 0.5 * temperature * temperature) + 1.1 - 1.6 * (temperature - 0.9) * (temperature - 0.9) - 0.002 * (pos.getY() - 64);
 		return (float) ((m == 0.0) ? m : ((m < 0.0) ? (-Math.sqrt(m * m)) : Math.sqrt(m * m)));
 	}
 
 	public static float getBiomePH(World world, BlockPos pos) {
-		double humidity = ForestryAPI.climateManager.getHumidity(world, pos);
-		double temperature = ForestryAPI.climateManager.getTemperature(world, pos);
+		IClimateInfo info = ForestryAPI.climateManager.getInfo(world, pos);
+		double humidity = info.getHumidity();
+		double temperature = info.getTemperature();
 		return (float) (-3.0 * (humidity - 0.5) + 0.5 * (temperature - 0.699999988079071) * (temperature - 0.699999988079071) + 0.02f * (pos.getY() - 64) - 0.15000000596046448);
 	}
 

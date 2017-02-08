@@ -34,6 +34,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -1100,8 +1101,8 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 	}
 
 	@Override
-	public ItemStack[] getResearchBounty(final World world, final GameProfile researcher, final IIndividual individual, final int bountyLevel) {
-		final ArrayList<ItemStack> bounty = new ArrayList<>();
+	public NonNullList<ItemStack> getResearchBounty(final World world, final GameProfile researcher, final IIndividual individual, final int bountyLevel) {
+		final NonNullList<ItemStack> bounty = NonNullList.create();
 		ItemStack research = null;
 		if (world.rand.nextFloat() < 10.0f / bountyLevel) {
 			final Collection<? extends IMutation> combinations = this.getRoot().getCombinations(this);
@@ -1116,16 +1117,16 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 		if (bountyLevel > 10) {
 			for (final ItemStack stack : this.specialties.keySet()) {
 				final ItemStack stack2 = stack.copy();
-				stack2.stackSize = world.rand.nextInt((int) (bountyLevel / 2.0f)) + 1;
+				stack2.setCount(world.rand.nextInt((int) (bountyLevel / 2.0f)) + 1);
 				bounty.add(stack2);
 			}
 		}
 		for (final ItemStack stack : this.products.keySet()) {
 			final ItemStack stack2 = stack.copy();
-			stack2.stackSize = world.rand.nextInt((int) (bountyLevel / 2.0f)) + 1;
+			stack2.setCount(world.rand.nextInt((int) (bountyLevel / 2.0f)) + 1);
 			bounty.add(stack2);
 		}
-		return bounty.toArray(new ItemStack[0]);
+		return bounty;
 	}
 
 //	@Override

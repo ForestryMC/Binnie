@@ -45,24 +45,22 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 	}
 
 	@Override
-	@Nullable
 	public ItemStack getStackInSlot(final int index) {
 		if (index >= 0 && index < this.indexerInventory.size()) {
 			return this.indexerInventory.get(index);
 		}
-		return null;
+		return ItemStack.EMPTY;
 	}
 
 	@Override
-	@Nullable
 	public ItemStack decrStackSize(final int index, final int amount) {
 		ItemStack stackInSlot = this.getStackInSlot(index);
-		if (stackInSlot != null) {
+		if (!stackInSlot.isEmpty()) {
 			final ItemStack returnStack = stackInSlot.copy();
-			this.setInventorySlotContents(index, null);
+			this.setInventorySlotContents(index, ItemStack.EMPTY);
 			return returnStack;
 		}
-		return null;
+		return ItemStack.EMPTY;
 	}
 
 	@Override
@@ -72,10 +70,10 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 	}
 
 	@Override
-	public void setInventorySlotContents(final int index, @Nullable final ItemStack itemStack) {
+	public void setInventorySlotContents(final int index, final ItemStack itemStack) {
 		if (index >= 0 && index < this.indexerInventory.size()) {
 			this.indexerInventory.set(index, itemStack);
-		} else if (itemStack != null) {
+		} else if (!itemStack.isEmpty()) {
 			this.indexerInventory.add(itemStack);
 		}
 		this.needsSorting = true;
@@ -98,7 +96,7 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 	}
 
 	@Override
-	public boolean isUseableByPlayer(final EntityPlayer var1) {
+	public boolean isUsableByPlayer(final EntityPlayer var1) {
 		return true;
 	}
 
@@ -140,7 +138,7 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 		this.indexerInventory.clear();
 		for (int i = 0; i < indexerNBT.tagCount(); ++i) {
 			final NBTTagCompound itemNBT = indexerNBT.getCompoundTagAt(i);
-			this.setInventorySlotContents(i, ItemStack.loadItemStackFromNBT(itemNBT));
+			this.setInventorySlotContents(i, new ItemStack(itemNBT));
 		}
 		this.needsSorting = true;
 		this.markDirty();
@@ -271,10 +269,14 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 		}
 
 
-		@Nullable
+		@Override
+		public boolean isEmpty() {
+			return this.sortedInventory.isEmpty();
+		}
+
 		@Override
 		public ItemStack removeStackFromSlot(int index) {
-			return null;
+			return ItemStack.EMPTY;
 		}
 
 		@Override

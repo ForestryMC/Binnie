@@ -8,15 +8,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DrinkManager {
-	static Map<String, IDrinkLiquid> drinkLiquids = new HashMap<>();
+	private static final Map<String, IDrinkLiquid> DRINK_LIQUIDS = new HashMap<>();
 
 	@Nullable
 	public static IDrinkLiquid getLiquid(final String id) {
-		return DrinkManager.drinkLiquids.get(id.toLowerCase());
+		return DrinkManager.DRINK_LIQUIDS.get(id.toLowerCase());
 	}
 
 	public static void registerDrinkLiquid(final IDrinkLiquid liquid) {
-		DrinkManager.drinkLiquids.put(liquid.getIdentifier(), liquid);
+		DrinkManager.DRINK_LIQUIDS.put(liquid.getIdentifier(), liquid);
 	}
 
 	@Nullable

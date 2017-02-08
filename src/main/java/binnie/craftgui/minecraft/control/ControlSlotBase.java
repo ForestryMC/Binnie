@@ -13,6 +13,8 @@ import binnie.craftgui.events.EventWidget;
 import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
@@ -42,6 +44,7 @@ public abstract class ControlSlotBase extends Control implements ITooltip {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		final int size = this.getSize().x();
 		CraftGUI.render.texture(CraftGUITexture.Slot, this.getArea());
@@ -51,6 +54,7 @@ public abstract class ControlSlotBase extends Control implements ITooltip {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onUpdateClient() {
 		super.onUpdateClient();
 		this.itemDisplay.setItemStack(this.getItemStack());

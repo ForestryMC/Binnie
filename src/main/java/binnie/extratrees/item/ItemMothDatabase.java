@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -46,19 +47,24 @@ public class ItemMothDatabase extends Item implements IItemModelRegister {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List<ItemStack> par3List) {
+	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final NonNullList<ItemStack> par3List) {
 		super.getSubItems(par1, par2CreativeTabs, par3List);
 		par3List.add(new ItemStack(par1, 1, 1));
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStack, World world, EntityPlayer player, EnumHand hand) {
-		if (itemStack.getItemDamage() == 0) {
-			ExtraTrees.proxy.openGui(ExtraTreesGUID.MothDatabase, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+		final ItemStack itemStack = playerIn.getHeldItem(handIn);
+		final ExtraTreesGUID id;
+		if (itemStack.getMetadata() == 0) {
+			id = ExtraTreesGUID.MothDatabase;
 		} else {
-			ExtraTrees.proxy.openGui(ExtraTreesGUID.MothDatabaseNEI, player, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ));
+			id = ExtraTreesGUID.MothDatabaseNEI;
 		}
-		return super.onItemRightClick(itemStack, world, player, hand);
+
+		ExtraTrees.proxy.openGui(id, playerIn, playerIn.getPosition());
+
+		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
 
 	@Override

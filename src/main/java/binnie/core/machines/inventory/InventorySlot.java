@@ -39,15 +39,15 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 		if (this.itemStack == null) {
 			return null;
 		}
-		if (this.itemStack.stackSize <= amount) {
+		if (this.itemStack.getCount() <= amount) {
 			final ItemStack returnStack = this.itemStack.copy();
 			this.itemStack = null;
 			return returnStack;
 		}
 		final ItemStack returnStack = this.itemStack.copy();
 		final ItemStack itemStack = this.itemStack;
-		itemStack.stackSize -= amount;
-		returnStack.stackSize = amount;
+		itemStack.shrink(amount);
+		returnStack.setCount(amount);
 		return returnStack;
 	}
 
@@ -55,7 +55,7 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 	public void readFromNBT(final NBTTagCompound slotNBT) {
 		if (slotNBT.hasKey("item")) {
 			final NBTTagCompound itemNBT = slotNBT.getCompoundTag("item");
-			this.itemStack = ItemStack.loadItemStackFromNBT(itemNBT);
+			this.itemStack = new ItemStack(itemNBT);
 		} else {
 			this.itemStack = null;
 		}

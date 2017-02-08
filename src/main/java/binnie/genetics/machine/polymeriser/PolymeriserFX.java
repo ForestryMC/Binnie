@@ -25,7 +25,7 @@ public class PolymeriserFX extends MachineComponent implements IRender.DisplayTi
 			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.5, pos.getY() + 1.8, pos.getZ() + 0.5, 0.0, 0.0, 0.0) {
 				double axisX = this.posX;
 				double axisZ = this.posZ;
-				double angle = 0.7 + (int) (this.worldObj.getTotalWorldTime() % 2L) * 3.1415;
+				double angle = 0.7 + (int) (this.world.getTotalWorldTime() % 2L) * 3.1415;
 
 				{
 					this.axisX = 0.0;
@@ -36,7 +36,7 @@ public class PolymeriserFX extends MachineComponent implements IRender.DisplayTi
 					this.motionY = -0.006;
 					this.particleMaxAge = 140;
 					this.particleGravity = 0.0f;
-					this.field_190017_n = true;
+					this.canCollide = true;
 					this.setRBGColorF(0.8f, 0.0f, 1.0f);
 				}
 

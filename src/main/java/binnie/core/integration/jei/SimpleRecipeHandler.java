@@ -18,11 +18,6 @@ public class SimpleRecipeHandler<T extends IRecipeWrapper> implements IRecipeHan
 	}
 
 	@Override
-	public String getRecipeCategoryUid() {
-		return recipeCategoryUid;
-	}
-
-	@Override
 	public String getRecipeCategoryUid(T recipe) {
 		return recipeCategoryUid;
 	}

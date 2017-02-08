@@ -119,7 +119,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	public boolean isUseableByPlayer(final EntityPlayer var1) {
+	public boolean isUsableByPlayer(final EntityPlayer var1) {
 		return true;
 	}
 
@@ -231,15 +231,15 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 				final float f = this.getMachine().getWorld().rand.nextFloat() * 0.8f + 0.1f;
 				final float f2 = this.getMachine().getWorld().rand.nextFloat() * 0.8f + 0.1f;
 				final float f3 = this.getMachine().getWorld().rand.nextFloat() * 0.8f + 0.1f;
-				if (stack.stackSize == 0) {
-					stack.stackSize = 1;
+				if (stack.getCount() == 0) {
+					stack.setCount(1);
 				}
 				final EntityItem entityitem = new EntityItem(this.getMachine().getWorld(), this.getMachine().getTileEntity().getPos().getX() + f, this.getMachine().getTileEntity().getPos().getY() + f2, this.getMachine().getTileEntity().getPos().getZ() + f3, stack.copy());
 				final float accel = 0.05f;
 				entityitem.motionX = (float) this.getMachine().getWorld().rand.nextGaussian() * accel;
 				entityitem.motionY = (float) this.getMachine().getWorld().rand.nextGaussian() * accel + 0.2f;
 				entityitem.motionZ = (float) this.getMachine().getWorld().rand.nextGaussian() * accel;
-				this.getMachine().getWorld().spawnEntityInWorld(entityitem);
+				this.getMachine().getWorld().spawnEntity(entityitem);
 			}
 		}
 	}

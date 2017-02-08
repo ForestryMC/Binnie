@@ -13,11 +13,6 @@ public class IncubatorRecipeHandler implements IRecipeHandler<IIncubatorRecipe> 
 	}
 
 	@Override
-	public String getRecipeCategoryUid() {
-		return RecipeUids.INCUBATOR;
-	}
-
-	@Override
 	public String getRecipeCategoryUid(IIncubatorRecipe recipe) {
 		return RecipeUids.INCUBATOR;
 	}

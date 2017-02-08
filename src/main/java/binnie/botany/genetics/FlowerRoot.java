@@ -219,10 +219,10 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	@Override
 	public IBotanistTracker getBreedingTracker(final World world, @Nullable final GameProfile player) {
 		final String filename = "BotanistTracker." + ((player == null) ? "common" : player.getId());
-		BotanistTracker tracker = (BotanistTracker) world.loadItemData(BotanistTracker.class, filename);
+		BotanistTracker tracker = (BotanistTracker) world.loadData(BotanistTracker.class, filename);
 		if (tracker == null) {
 			tracker = new BotanistTracker(filename);
-			world.setItemData(filename, tracker);
+			world.setData(filename, tracker);
 		}
 		return tracker;
 	}

@@ -3,9 +3,8 @@ package binnie.extratrees.block.wood;
 import binnie.Constants;
 import binnie.extratrees.block.EnumETLog;
 import binnie.extratrees.block.property.PropertyETWoodType;
-import forestry.arboriculture.blocks.slab.BlockForestrySlab;
+import forestry.arboriculture.blocks.BlockForestrySlab;
 import net.minecraft.util.ResourceLocation;
-import javax.annotation.Nonnull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +16,7 @@ public abstract class BlockETSlab extends BlockForestrySlab<EnumETLog> {
 		for (int i = 0; i < variants.length; i++) {
 			PropertyETWoodType variant = variants[i];
 			BlockETSlab block = new BlockETSlab(fireproof, i) {
-							@Override
+				@Override
 				public PropertyETWoodType getVariant() {
 					return variant;
 				}

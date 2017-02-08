@@ -16,13 +16,16 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 
+import javax.annotation.Nullable;
 import java.util.LinkedList;
 import java.util.List;
 
 public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyComponent.Active, IAlvearyComponent.BeeModifier, IAlvearyComponent.BeeListener, IBeeListener, IBeeModifier {
-	IMultiblockLogicAlveary structureLogic;
-	BlockPos min;
-	BlockPos max;
+	private IMultiblockLogicAlveary structureLogic;
+	@Nullable
+	private BlockPos min;
+	@Nullable
+	private BlockPos max;
 
 	public TileExtraBeeAlveary() {
 		this.structureLogic = MultiblockManager.logicFactory.createAlvearyLogic();
@@ -91,18 +94,18 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
 	@Override
 	public void invalidate() {
 		super.invalidate();
-		structureLogic.invalidate(worldObj, this);
+		structureLogic.invalidate(world, this);
 	}
 
 	@Override
 	public void onChunkUnload() {
 		super.onChunkUnload();
-		structureLogic.onChunkUnload(worldObj, this);
+		structureLogic.onChunkUnload(world, this);
 	}
 
 	@Override
 	public void validate() {
-		structureLogic.validate(worldObj, this);
+		structureLogic.validate(world, this);
 	}
 
 	@Override

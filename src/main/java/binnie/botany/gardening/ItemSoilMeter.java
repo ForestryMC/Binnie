@@ -39,26 +39,26 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 	}
 
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		Block block = world.getBlockState(pos).getBlock();
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		Block block = worldIn.getBlockState(pos).getBlock();
 		if (!Gardening.isSoil(block)) {
 			pos = pos.down();
-			block = world.getBlockState(pos).getBlock();
+			block = worldIn.getBlockState(pos).getBlock();
 		}
 		if (!Gardening.isSoil(block)) {
 			pos = pos.down();
-			block = world.getBlockState(pos).getBlock();
+			block = worldIn.getBlockState(pos).getBlock();
 		}
-		if (Gardening.isSoil(block) && !BinnieCore.getBinnieProxy().isSimulating(world)) {
+		if (Gardening.isSoil(block) && !BinnieCore.getBinnieProxy().isSimulating(worldIn)) {
 			IBlockSoil soil = (IBlockSoil) block;
 			String info = Binnie.LANGUAGE.localise("botany.soil.type") + ": ";
-			info = info + soil.getType(world, pos).getTranslated(true);
+			info = info + soil.getType(worldIn, pos).getTranslated(true);
 			info += ", " + TextFormatting.WHITE + Binnie.LANGUAGE.localise("botany.moisture") + ": ";
-			info = info + soil.getMoisture(world, pos).getTranslated(true);
+			info = info + soil.getMoisture(worldIn, pos).getTranslated(true);
 			info += ", " + TextFormatting.WHITE + Binnie.LANGUAGE.localise("botany.ph") + ": ";
-			info = info + soil.getPH(world, pos).getTranslated(true);
+			info = info + soil.getPH(worldIn, pos).getTranslated(true);
 			ITextComponent chat = new TextComponentString(info);
-			player.addChatMessage(chat);
+			player.sendStatusMessage(chat, false);
 		}
 		return EnumActionResult.SUCCESS;
 	}

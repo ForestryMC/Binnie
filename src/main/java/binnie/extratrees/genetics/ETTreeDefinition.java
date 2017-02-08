@@ -2223,13 +2223,13 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 
 	@Override
 	public boolean setLeaves(ITreeGenome genome, World world, GameProfile owner, BlockPos pos) {
-		boolean placed = world.setBlockState(pos, PluginArboriculture.blocks.leaves.getDefaultState());
+		boolean placed = world.setBlockState(pos, PluginArboriculture.getBlocks().leaves.getDefaultState());
 		if (!placed) {
 			return false;
 		}
 
 		Block block = world.getBlockState(pos).getBlock();
-		if (PluginArboriculture.blocks.leaves != block) {
+		if (PluginArboriculture.getBlocks().leaves != block) {
 			world.setBlockToAir(pos);
 			return false;
 		}

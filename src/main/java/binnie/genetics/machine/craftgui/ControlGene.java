@@ -56,7 +56,7 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
 	}
 
 	private boolean canFill(final ItemStack stack) {
-		return stack != null && stack.stackSize == 1 && Engineering.isGeneAcceptor(stack) && Engineering.canAcceptGene(stack, this.getValue());
+		return stack != null && stack.getCount() == 1 && Engineering.isGeneAcceptor(stack) && Engineering.canAcceptGene(stack, this.getValue());
 	}
 
 	@Override

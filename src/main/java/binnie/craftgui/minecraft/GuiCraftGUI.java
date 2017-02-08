@@ -57,7 +57,7 @@ public class GuiCraftGUI extends GuiContainer {
 	@Override
 	public void initGui() {
 		super.initGui();
-		this.mc.thePlayer.openContainer = this.inventorySlots;
+		this.mc.player.openContainer = this.inventorySlots;
 		this.guiLeft = (this.width - this.xSize) / 2;
 		this.guiTop = (this.height - this.ySize) / 2;
 		this.window.setSize(new IPoint(this.xSize, this.ySize));
@@ -86,9 +86,9 @@ public class GuiCraftGUI extends GuiContainer {
 		GlStateManager.pushMatrix();
 		GlStateManager.enableRescaleNormal();
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0f, 240.0f);
-		final InventoryPlayer playerInventory = this.mc.thePlayer.inventory;
+		final InventoryPlayer playerInventory = this.mc.player.inventory;
 		this.draggedItem = playerInventory.getItemStack();
-		if (this.draggedItem != null) {
+		if (!this.draggedItem.isEmpty()) {
 			RenderUtil.drawItem(new IPoint(mouseX - 8, mouseY - 8), this.draggedItem, false);
 		}
 		RenderHelper.enableGUIStandardItemLighting();
@@ -177,7 +177,7 @@ public class GuiCraftGUI extends GuiContainer {
 				final String split = s2.split("~~~")[1];
 				try {
 					final NBTTagCompound nbt = JsonToNBT.getTagFromJson(split);
-					final ItemStack stack = ItemStack.loadItemStackFromNBT(nbt);
+					final ItemStack stack = new ItemStack(nbt);
 					GlStateManager.pushMatrix();
 					GlStateManager.translate(i1, j1 - 1.5f, 0.0f);
 					GlStateManager.scale(0.6f, 0.6f, 1.0f);
@@ -218,7 +218,7 @@ public class GuiCraftGUI extends GuiContainer {
 	@Override
 	protected void keyTyped(final char c, final int key) {
 		if (key == 1 || (key == this.mc.gameSettings.keyBindInventory.getKeyCode() && this.window.getFocusedWidget() == null)) {
-			this.mc.thePlayer.closeScreen();
+			this.mc.player.closeScreen();
 		}
 		final IWidget origin = (this.window.getFocusedWidget() == null) ? this.window : this.window.getFocusedWidget();
 		this.window.callEvent(new EventKey.Down(origin, c, key));

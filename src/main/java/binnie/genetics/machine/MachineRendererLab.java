@@ -21,7 +21,7 @@ public class MachineRendererLab {
 	private long lastTick;
 
 	public MachineRendererLab() {
-		World world = Minecraft.getMinecraft().theWorld;
+		World world = Minecraft.getMinecraft().world;
 		this.dummyEntityItem = new EntityItem(world);
 		this.itemSides = new EntityItem[]{new EntityItem(world), new EntityItem(world), new EntityItem(world), new EntityItem(world)};
 	}
@@ -46,7 +46,7 @@ public class MachineRendererLab {
 				BinnieCore.getBinnieProxy().getMinecraftInstance();
 				if (Minecraft.isFancyGraphicsEnabled()) {
 					final ItemStack stack = holder.getStack();
-					this.dummyEntityItem.worldObj = world;
+					this.dummyEntityItem.world = world;
 					this.dummyEntityItem.setEntityItemStack(stack);
 					if (world.getTotalWorldTime() != this.lastTick) {
 						this.lastTick = world.getTotalWorldTime();
@@ -70,7 +70,7 @@ public class MachineRendererLab {
 					int rot = 0;
 					for (EntityItem item : this.itemSides) {
 						GlStateManager.pushMatrix();
-						item.worldObj = world;
+						item.world = world;
 						item.setEntityItemStack(stack);
 						GlStateManager.rotate(rot, 0.0f, 1.0f, 0.0f);
 						GlStateManager.rotate(180.0f, 1.0f, 0.0f, 0.0f);

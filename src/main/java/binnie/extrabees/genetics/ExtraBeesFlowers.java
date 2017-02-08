@@ -17,11 +17,11 @@ import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -212,10 +212,10 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 	}
 
 	@Override
-	public ItemStack[] affectProducts(World world, IIndividual individual, BlockPos pos, ItemStack[] products) {
+	public NonNullList<ItemStack> affectProducts(World world, IIndividual individual, BlockPos pos, NonNullList<ItemStack> products) {
 		if (this == ExtraBeesFlowers.Mystical) {
-			final List<ItemStack> prods = new ArrayList<>();
-			Collections.addAll(prods, products);
+			final NonNullList<ItemStack> prods = NonNullList.create();
+			prods.addAll(products);
 			for (int k = 0; k < 50; ++k) {
 				final int tX = 7;
 				final int tY = 7;
@@ -233,7 +233,7 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 					}
 				}
 			}
-			return prods.toArray(new ItemStack[0]);
+			return prods;
 		}
 		return products;
 	}

@@ -22,10 +22,10 @@ public class GeneProjectTracker extends WorldSavedData {
 
 	public static GeneProjectTracker getTracker(final World world) {
 		final String filename = "GeneProjectTracker.common";
-		GeneProjectTracker tracker = (GeneProjectTracker) world.loadItemData(GeneProjectTracker.class, filename);
+		GeneProjectTracker tracker = (GeneProjectTracker) world.loadData(GeneProjectTracker.class, filename);
 		if (tracker == null) {
 			tracker = new GeneProjectTracker(filename);
-			world.setItemData(filename, tracker);
+			world.setData(filename, tracker);
 		}
 		return tracker;
 	}

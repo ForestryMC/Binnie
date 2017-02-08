@@ -37,15 +37,15 @@ public class GeneTracker extends WorldSavedData {
 	}
 
 	protected static GeneTracker getCommonTracker(final EntityPlayer player) {
-		return getTracker(player.worldObj, null);
+		return getTracker(player.world, null);
 	}
 
 	public static GeneTracker getTracker(final World world, @Nullable final GameProfile player) {
 		final String filename = "GeneTracker." + ((player == null) ? "common" : player.getId());
-		GeneTracker tracker = (GeneTracker) world.loadItemData(GeneTracker.class, filename);
+		GeneTracker tracker = (GeneTracker) world.loadData(GeneTracker.class, filename);
 		if (tracker == null) {
 			tracker = new GeneTracker(filename, player);
-			world.setItemData(filename, tracker);
+			world.setData(filename, tracker);
 		} else {
 			tracker.username = player;
 		}

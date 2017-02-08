@@ -21,6 +21,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
@@ -59,7 +60,8 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	}
 
 	@Override
-	public void getSubItems(final Item item, final CreativeTabs tab, final List<ItemStack> subItems) {
+	@SideOnly(Side.CLIENT)
+	public void getSubItems(final Item item, final CreativeTabs tab, final NonNullList<ItemStack> subItems) {
 		super.getSubItems(item, tab, subItems);
 		for (final IFluidType liquid : Binnie.LIQUID.fluids.values()) {
 			if (!liquid.canPlaceIn(this.container)) {
@@ -74,9 +76,9 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 
 	@Nullable
 	protected FluidStack getContained(ItemStack itemStack) {
-		if (itemStack.stackSize != 1) {
+		if (itemStack.getCount() != 1) {
 			itemStack = itemStack.copy();
-			itemStack.stackSize = 1;
+			itemStack.setCount(1);
 		}
 		IFluidHandler fluidHandler = new FluidHandlerItemBinnie(itemStack, container);
 		return fluidHandler.drain(Integer.MAX_VALUE, false);
@@ -121,14 +123,15 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 		}
 		return EnumAction.NONE;
 	}
-	
+
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World world, EntityPlayer player, EnumHand hand) {
-		if (this.isDrinkable(stack) && player.canEat(false)) {
-			player.setActiveHand(hand);
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+		ItemStack stack = playerIn.getHeldItem(handIn);
+		if (this.isDrinkable(stack) && playerIn.canEat(false)) {
+			playerIn.setActiveHand(handIn);
 			return new ActionResult<>(EnumActionResult.SUCCESS, stack);
 		}else{
-			return super.onItemRightClick(stack, world, player, hand);
+			return super.onItemRightClick(worldIn, playerIn, handIn);
 		}
 	}
 	

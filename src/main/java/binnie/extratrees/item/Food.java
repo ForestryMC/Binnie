@@ -123,15 +123,15 @@ public enum Food implements IItemMiscProvider {
 	}
 
 	public void addJuice(final Juice juice, final int time, final int amount, final int mulch) {
-		RecipeManagers.squeezerManager.addRecipe(time, new ItemStack[]{this.get(1)}, Fluids.JUICE.getFluid(amount), Mods.Forestry.stack("mulch"), mulch);
+		RecipeManagers.squeezerManager.addRecipe(time, this.get(1), Fluids.JUICE.getFluid(amount), Mods.Forestry.stack("mulch"), mulch);
 	}
 
 	public void addJuice(final int time, final int amount, final int mulch) {
-		RecipeManagers.squeezerManager.addRecipe(time, new ItemStack[]{this.get(1)}, Fluids.JUICE.getFluid(amount), Mods.Forestry.stack("mulch"), mulch);
+		RecipeManagers.squeezerManager.addRecipe(time, this.get(1), Fluids.JUICE.getFluid(amount), Mods.Forestry.stack("mulch"), mulch);
 	}
 
 	public void addOil(final int time, final int amount, final int mulch) {
-		RecipeManagers.squeezerManager.addRecipe(time, new ItemStack[]{this.get(1)}, Fluids.SEED_OIL.getFluid(amount), Mods.Forestry.stack("mulch"), mulch);
+		RecipeManagers.squeezerManager.addRecipe(time, this.get(1), Fluids.SEED_OIL.getFluid(amount), Mods.Forestry.stack("mulch"), mulch);
 	}
 
 	public static void registerOreDictionary() {

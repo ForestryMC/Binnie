@@ -206,7 +206,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 				dy += 18;
 			}
 			final FluidStack fluid = FluidUtil.getFluidContained(soilStack);
-			soilStack.stackSize = 1;
+			soilStack.setCount(1);
 			final ControlItemDisplay display = new ControlItemDisplay(this, biomeListX + dx, y + dy, soilStack, fluid == null);
 			if (fluid != null) {
 				display.addTooltip(fluid.getLocalizedName());

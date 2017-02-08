@@ -34,7 +34,7 @@ public class IsolaterFX extends MachineComponent implements IRender.RandomDispla
 				this.motionY = -0.012;
 				this.particleMaxAge = 100;
 				this.particleGravity = 0.0f;
-				this.field_190017_n = true;
+				this.canCollide = true;
 				this.setRBGColorF(0.8f, 0.4f, 0.0f);
 			}
 
@@ -60,7 +60,7 @@ public class IsolaterFX extends MachineComponent implements IRender.RandomDispla
 			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 0.0, 0.0, 0.0) {
 				double axisX = this.posX;
 				double axisZ = this.posZ;
-				double angle = 0.7 + (int) (this.worldObj.getTotalWorldTime() % 2L) * 3.1415;
+				double angle = 0.7 + (int) (this.world.getTotalWorldTime() % 2L) * 3.1415;
 
 				{
 					this.axisX = 0.0;
@@ -71,7 +71,7 @@ public class IsolaterFX extends MachineComponent implements IRender.RandomDispla
 					this.motionY = 0.012;
 					this.particleMaxAge = 100;
 					this.particleGravity = 0.0f;
-					this.field_190017_n = true;
+					this.canCollide = true;
 					this.setRBGColorF(0.8f, 0.0f, 1.0f);
 				}
 

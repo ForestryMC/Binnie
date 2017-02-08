@@ -38,7 +38,7 @@ public class ItemStackSet implements Set<ItemStack> {
 			if (existing == null) {
 				return this.itemStacks.add(e.copy());
 			}
-			existing.stackSize += e.stackSize;
+			existing.grow(e.getCount());
 		}
 		return false;
 	}
@@ -86,8 +86,8 @@ public class ItemStackSet implements Set<ItemStack> {
 		if (this.contains(o)) {
 			final ItemStack r = (ItemStack) o;
 			final ItemStack existing = this.getExisting(r);
-			if (existing != null && existing.stackSize > r.stackSize) {
-				existing.stackSize -= r.stackSize;
+			if (existing != null && existing.getCount() > r.getCount()) {
+				existing.shrink(r.getCount());
 			} else {
 				this.itemStacks.remove(existing);
 			}

@@ -6,33 +6,29 @@ import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IHiveDrop;
 import forestry.api.genetics.IAllele;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-
 public class HiveDrop implements IHiveDrop {
 	private IAllele[] template;
-	private ArrayList<ItemStack> additional;
+	private NonNullList<ItemStack> extra;
 	private int chance;
 
 	public HiveDrop(final IAlleleBeeSpecies species, final int chance) {
-		this(Binnie.GENETICS.getBeeRoot().getTemplate(species.getUID()), new ItemStack[0], chance);
+		this(Binnie.GENETICS.getBeeRoot().getTemplate(species), NonNullList.create(), chance);
 	}
 
-	public HiveDrop(IAllele[] template, final ItemStack[] bonus, final int chance) {
-		this.additional = new ArrayList<>();
+	public HiveDrop(IAllele[] template, final NonNullList<ItemStack> extra, final int chance) {
+		this.extra = extra;
 		this.template = template;
 		this.chance = chance;
-		Collections.addAll(this.additional, bonus);
 	}
 
 	@Override
-	public Collection<ItemStack> getExtraItems(IBlockAccess world, BlockPos pos, int fortune) {
-		final ArrayList<ItemStack> ret = new ArrayList<>();
-		for (final ItemStack stack : this.additional) {
+	public NonNullList<ItemStack> getExtraItems(IBlockAccess world, BlockPos pos, int fortune) {
+		final NonNullList<ItemStack> ret = NonNullList.create();
+		for (final ItemStack stack : this.extra) {
 			ret.add(stack.copy());
 		}
 		return ret;
@@ -45,7 +41,7 @@ public class HiveDrop implements IHiveDrop {
 
 	@Override
 	public double getIgnobleChance(IBlockAccess world, BlockPos pos, int fortune) {
-		return 0; //TODO implement
+		return 0.5; //TODO implement
 	}
 
 	@Override

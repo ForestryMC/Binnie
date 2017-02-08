@@ -76,7 +76,7 @@ public class ModuleAlcohol implements IInitializable {
 			}
 			for (final ItemStack stack : ores) {
 				for (final ISqueezerRecipe entry : RecipeManagers.squeezerManager.recipes()) {
-					final ItemStack input = entry.getResources()[0];
+					final ItemStack input = entry.getResources().get(0);
 					final FluidStack output = entry.getFluidOutput();
 					if (!ItemStack.areItemStacksEqual(stack, input) && !OreDictionary.itemMatches(input, stack, true)) {
 						continue;

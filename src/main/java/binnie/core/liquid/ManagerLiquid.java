@@ -1,7 +1,7 @@
 package binnie.core.liquid;
 
 import binnie.core.ManagerBase;
-import forestry.api.core.EnumContainerType;
+import forestry.core.items.EnumContainerType;
 import forestry.core.render.TextureManager;
 import forestry.core.utils.OreDictUtil;
 import net.minecraft.init.Items;
@@ -25,10 +25,6 @@ public class ManagerLiquid extends ManagerBase {
 
 	public ManagerLiquid() {
 		this.fluids = new LinkedHashMap<>();
-		EnumContainerType.CAN.add(new BinnieContainerPermission(FluidContainerType.CAN));
-		EnumContainerType.CAPSULE.add(new BinnieContainerPermission(FluidContainerType.CAPSULE));
-		EnumContainerType.REFRACTORY.add(new BinnieContainerPermission(FluidContainerType.REFRACTORY));
-		EnumContainerType.GLASS.add(new BinnieContainerPermission(FluidContainerType.GLASS));
 	}
 
 	public Collection<IFluidType> getFluidTypes() {

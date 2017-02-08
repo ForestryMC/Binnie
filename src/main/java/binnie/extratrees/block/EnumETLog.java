@@ -83,12 +83,12 @@ public enum EnumETLog implements IWoodType {
         }
         ItemStack log = TreeManager.woodAccess.getStack(this, WoodBlockKind.LOG, false);
         ItemStack result = plank.getStack(false);
-        result.stackSize = 4;
+        result.setCount(4);
         GameRegistry.addShapelessRecipe(result, log);
         
         ItemStack logFireproof = TreeManager.woodAccess.getStack(this, WoodBlockKind.LOG, true);
         ItemStack resultFireproof = plank.getStack(true);
-        resultFireproof.stackSize = 4;
+        resultFireproof.setCount(4);
         GameRegistry.addShapelessRecipe(resultFireproof, logFireproof);
     }
 

@@ -19,6 +19,7 @@ public interface ITankMachine extends IValidatedTankContainer {
 
 	@Nullable
 	TankSlot getTankSlot(final int index);
-	
-	IFluidHandler getHandler(EnumFacing from);
+
+	@Nullable
+	IFluidHandler getHandler(@Nullable EnumFacing from);
 }

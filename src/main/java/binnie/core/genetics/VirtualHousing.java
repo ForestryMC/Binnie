@@ -42,7 +42,7 @@ class VirtualHousing implements IHousing {
 	}
 
 	public World getWorld() {
-		return this.player.worldObj;
+		return this.player.world;
 	}
 
 	public void setErrorState(final int state) {
@@ -61,7 +61,7 @@ class VirtualHousing implements IHousing {
 	}
 
 	public Biome getBiome() {
-		return this.player.worldObj.getBiome(getCoordinates());
+		return this.player.world.getBiome(getCoordinates());
 	}
 
 	// public EnumErrorCode getErrorState() {

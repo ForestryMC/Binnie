@@ -17,7 +17,6 @@ import forestry.api.arboriculture.ITreeMutation;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleInteger;
-import forestry.api.genetics.IAllelePlantType;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IChromosomeType;
@@ -30,12 +29,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.EnumPlantType;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -62,7 +59,7 @@ public class TreeBreedingSystem extends BreedingSystem {
 	public float getChance(final IMutation mutation, final EntityPlayer player, final IAllele species1, final IAllele species2) {
 		final ITreeGenome genome0 = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(species1.getUID()));
 		final ITreeGenome genome2 = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(species2.getUID()));
-		return ((ITreeMutation) mutation).getChance(player.worldObj, new BlockPos((int) player.posX, (int) player.posY, (int) player.posZ), (IAlleleTreeSpecies) species1, (IAlleleTreeSpecies) species2, genome0, genome2);
+		return ((ITreeMutation) mutation).getChance(player.world, player.getPosition(), (IAlleleTreeSpecies) species1, (IAlleleTreeSpecies) species2, genome0, genome2);
 	}
 
 	@Override
@@ -85,21 +82,9 @@ public class TreeBreedingSystem extends BreedingSystem {
 		if (chromosome == EnumTreeChromosome.GIRTH) {
 			return ((IAlleleInteger) allele).getValue() + "x" + ((IAlleleInteger) allele).getValue();
 		}
-		if (chromosome == EnumTreeChromosome.PLANT) {
-			final EnumSet<EnumPlantType> types = ((IAllelePlantType) allele).getPlantTypes();
-			return types.isEmpty() ? Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.none") : types.iterator().next().toString();
-		}
 		if (chromosome == EnumTreeChromosome.FRUITS && allele.getUID().contains(".")) {
 			final IFruitProvider provider = ((IAlleleFruit) allele).getProvider();
 			return (provider.getProducts().size() == 0) ? Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.none") : provider.getProducts().keySet().iterator().next().getDisplayName();
-		}
-		if (chromosome == EnumTreeChromosome.GROWTH) {
-			if (allele.getUID().contains("Tropical")) {
-				return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.growth.tropical");
-			}
-			if (allele.getUID().contains("Lightlevel")) {
-				return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.growth.lightlevel");
-			}
 		}
 		return super.getAlleleName(chromosome, allele);
 	}
@@ -286,12 +271,6 @@ public class TreeBreedingSystem extends BreedingSystem {
 			case SAPPINESS: {
 				for (final ForestryAllele.Sappiness a5 : ForestryAllele.Sappiness.values()) {
 					alleles.add(a5.getAllele());
-				}
-				break;
-			}
-			case TERRITORY: {
-				for (final ForestryAllele.Territory a6 : ForestryAllele.Territory.values()) {
-					alleles.add(a6.getAllele());
 				}
 				break;
 			}

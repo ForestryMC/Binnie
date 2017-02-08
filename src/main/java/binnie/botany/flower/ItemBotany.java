@@ -35,6 +35,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
@@ -84,6 +85,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void addInformation(final ItemStack itemStack, final EntityPlayer player, final List<String> list, final boolean flag) {
 		if (!itemStack.hasTagCompound()) {
 			return;
@@ -147,11 +149,11 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 	}
 
 	@Override
-	public void getSubItems(final Item item, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
+	public void getSubItems(final Item item, final CreativeTabs par2CreativeTabs, final NonNullList<ItemStack> itemList) {
 		this.addCreativeItems(itemList, true);
 	}
 
-	public void addCreativeItems(final List<ItemStack> itemList, final boolean hideSecrets) {
+	public void addCreativeItems(final NonNullList<ItemStack> itemList, final boolean hideSecrets) {
 		for (final IIndividual individual : BotanyCore.getFlowerRoot().getIndividualTemplates()) {
 			if (hideSecrets && individual.isSecret() && !Config.isDebug) {
 				continue;
@@ -192,7 +194,8 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 	}
 
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		ItemStack stack = player.getHeldItem(hand);
 		if (type == EnumFlowerStage.POLLEN) {
 			final IFlower flower = Binnie.GENETICS.getFlowerRoot().getMember(stack);
 			final TileEntity target = world.getTileEntity(pos);
@@ -205,7 +208,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 			}
 			pollinatable.mateWith(flower);
 			if (!player.capabilities.isCreativeMode) {
-				--stack.stackSize;
+				stack.shrink(1);
 			}
 			return EnumActionResult.SUCCESS;
 		} else {
@@ -216,14 +219,14 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 				pos = pos.offset(facing);
 			}
 
-			if (stack.stackSize != 0 && player.canPlayerEdit(pos, facing, stack) && world.canBlockBePlaced(Botany.flower, pos, false, facing, null, stack)) {
+			if (stack.getCount() != 0 && player.canPlayerEdit(pos, facing, stack) && world.mayPlace(Botany.flower, pos, false, facing, null)) {
 				int i = this.getMetadata(stack.getMetadata());
-				IBlockState iblockstate1 = Botany.flower.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, i, player, stack);
+				IBlockState iblockstate1 = Botany.flower.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, i, player, hand);
 
 				if (placeBlockAt(stack, player, world, pos, facing, hitX, hitY, hitZ, iblockstate1)) {
 					SoundType soundtype = world.getBlockState(pos).getBlock().getSoundType(world.getBlockState(pos), world, pos, player);
 					world.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-					--stack.stackSize;
+					stack.shrink(1);
 				}
 
 				return EnumActionResult.SUCCESS;

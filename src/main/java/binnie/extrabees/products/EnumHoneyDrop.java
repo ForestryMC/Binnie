@@ -8,8 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-import javax.annotation.Nullable;
-
 public enum EnumHoneyDrop implements IItemEnum {
 	ENERGY(10242418, 14905713, ""),
 	ACID(4961601, 4841020, "acid"),
@@ -43,7 +41,6 @@ public enum EnumHoneyDrop implements IItemEnum {
 
 	private int[] colour;
 	private String liquidName;
-	@Nullable
 	private ItemStack remnant;
 
 	public void addRemnant(final ItemStack stack) {
@@ -55,7 +52,7 @@ public enum EnumHoneyDrop implements IItemEnum {
 	}
 
 	EnumHoneyDrop(final int colour, final int colour2, final String liquid) {
-		this.remnant = null;
+		this.remnant = ItemStack.EMPTY;
 		this.colour = new int[]{colour, colour2};
 		this.liquidName = liquid;
 	}
@@ -63,13 +60,13 @@ public enum EnumHoneyDrop implements IItemEnum {
 	public void addRecipe() {
 		final FluidStack liquid = Binnie.LIQUID.getFluidStack(this.getLiquidName(), 200);
 		if (liquid != null) {
-			RecipeManagers.squeezerManager.addRecipe(10, new ItemStack[]{this.get(1)}, liquid, this.getRemnant(), 100);
+			RecipeManagers.squeezerManager.addRecipe(10, this.get(1), liquid, this.getRemnant(), 100);
 		}
 	}
 
 	@Override
 	public boolean isActive() {
-		return this.remnant != null && FluidRegistry.isFluidRegistered(this.getLiquidName());
+		return !this.remnant.isEmpty() && FluidRegistry.isFluidRegistered(this.getLiquidName());
 	}
 
 	public static EnumHoneyDrop get(final ItemStack itemStack) {
@@ -98,7 +95,6 @@ public enum EnumHoneyDrop implements IItemEnum {
 		return liquidName;
 	}
 
-	@Nullable
 	public ItemStack getRemnant() {
 		return remnant;
 	}

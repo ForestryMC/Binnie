@@ -5,6 +5,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -24,7 +25,7 @@ public class ItemMisc extends ItemCore {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(final Item itemIn, final CreativeTabs creativeTabs, List<ItemStack> subItems) {
+	public void getSubItems(final Item itemIn, final CreativeTabs creativeTabs, NonNullList<ItemStack> subItems) {
 		for (IItemMiscProvider item : this.items) {
 			if (item.isActive()) {
 				subItems.add(this.getStack(item, 1));

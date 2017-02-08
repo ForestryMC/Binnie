@@ -16,8 +16,8 @@ import forestry.api.core.ISpriteRegister;
 import forestry.api.core.IStateMapperRegister;
 import forestry.api.core.ITextureManager;
 import forestry.core.blocks.IColoredBlock;
-import forestry.core.blocks.propertys.UnlistedBlockAccess;
-import forestry.core.blocks.propertys.UnlistedBlockPos;
+import forestry.core.blocks.properties.UnlistedBlockAccess;
+import forestry.core.blocks.properties.UnlistedBlockPos;
 import forestry.core.models.BlockModelEntry;
 import forestry.core.render.TextureManager;
 import net.minecraft.block.Block;
@@ -37,6 +37,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -99,7 +101,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void getSubBlocks(Item item, final CreativeTabs par2CreativeTabs, final List<ItemStack> itemList) {
+	public void getSubBlocks(Item item, final CreativeTabs par2CreativeTabs, final NonNullList<ItemStack> itemList) {
 		for (final EnumFlowerColor color : EnumFlowerColor.values()) {
 			itemList.add(new CeramicBrickPair(color, color, CeramicBrickType.Tile).getStack(1));
 		}
@@ -160,7 +162,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 	}
 
 	@Override
-	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, ItemStack stack) {
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
 		return getDefaultState().withProperty(TYPE, CeramicBrickType.get(meta >> 16 & 0xFF));
 	}
 

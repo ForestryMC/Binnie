@@ -23,7 +23,7 @@ class CompartmentTab implements INbtWritable, INbtReadable {
 	@Override
 	public void readFromNBT(final NBTTagCompound nbt) {
 		this.name = nbt.getString("name");
-		this.icon = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("icon"));
+		this.icon = new ItemStack(nbt.getCompoundTag("icon"));
 		this.color = EnumColor.values()[nbt.getByte("color")];
 		this.id = nbt.getByte("id");
 	}

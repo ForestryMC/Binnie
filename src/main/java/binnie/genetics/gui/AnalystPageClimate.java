@@ -62,23 +62,18 @@ public class AnalystPageClimate extends ControlAnalystPage {
 		y += 12;
 		final List<Biome> biomes = new ArrayList<>();
 		for (final Biome biome : Biome.EXPLORATION_BIOMES_LIST) { //TODO check
-			if (biome != null) {
-				if (BiomeDictionary.isBiomeRegistered(biome)) {
-					if (biome != Biomes.FROZEN_OCEAN) {
-						if (Tolerance.canTolerate(temp, EnumTemperature.getFromBiome(biome), tempTol)) {
-							if (Tolerance.canTolerate(humid, EnumHumidity.getFromValue(biome.getRainfall()), humidTol)) {
-								boolean match = false;
-								for (final Biome eBiome : biomes) {
-									if (biome.getBiomeName().contains(eBiome.getBiomeName()) && EnumHumidity.getFromValue(eBiome.getRainfall()) == EnumHumidity.getFromValue(biome.getRainfall()) && EnumTemperature.getFromBiome(eBiome) == EnumTemperature.getFromBiome(biome)) {
-										match = true;
-									}
-								}
-								if (!match) {
-									biomes.add(biome);
-								}
-							}
-						}
+			if (biome != null &&
+					biome != Biomes.FROZEN_OCEAN &&
+					Tolerance.canTolerate(temp, EnumTemperature.getFromBiome(biome), tempTol) &&
+					Tolerance.canTolerate(humid, EnumHumidity.getFromValue(biome.getRainfall()), humidTol)) {
+				boolean match = false;
+				for (final Biome eBiome : biomes) {
+					if (biome.getBiomeName().contains(eBiome.getBiomeName()) && EnumHumidity.getFromValue(eBiome.getRainfall()) == EnumHumidity.getFromValue(biome.getRainfall()) && EnumTemperature.getFromBiome(eBiome) == EnumTemperature.getFromBiome(biome)) {
+						match = true;
 					}
+				}
+				if (!match) {
+					biomes.add(biome);
 				}
 			}
 		}

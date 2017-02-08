@@ -5,8 +5,8 @@ import javax.annotation.Nullable;
 
 import binnie.core.block.IMultipassBlock;
 import forestry.api.core.IModelBaker;
-import forestry.core.blocks.propertys.UnlistedBlockAccess;
-import forestry.core.blocks.propertys.UnlistedBlockPos;
+import forestry.core.blocks.properties.UnlistedBlockAccess;
+import forestry.core.blocks.properties.UnlistedBlockPos;
 import forestry.core.models.ModelBlockCached;
 import forestry.core.models.baker.ModelBaker;
 import net.minecraft.block.Block;
@@ -58,7 +58,7 @@ public class ModelMutlipass<B extends Block & IMultipassBlock<K>, K> extends Mod
 			IExtendedBlockState stateExtended = (IExtendedBlockState) state;
 			IBlockAccess world = stateExtended.getValue(UnlistedBlockAccess.BLOCKACCESS);
 			BlockPos pos = stateExtended.getValue(UnlistedBlockPos.POS);
-			baker.setRenderBounds(state.getBoundingBox(world, pos));
+//			baker.setRenderBounds(state.getBoundingBox(world, pos));
 		}
 
 		bakeBlock(bBlock, key, baker, false);
@@ -75,7 +75,7 @@ public class ModelMutlipass<B extends Block & IMultipassBlock<K>, K> extends Mod
 			for(EnumFacing facing : EnumFacing.VALUES){
 				sprites[facing.ordinal()] = block.getSprite(key, facing, pass);
 			}
-			baker.addBlockModel(block, null, null, sprites, pass);
+			baker.addBlockModel(null, sprites, pass);
 		}
 
 		// Set the particle sprite
@@ -96,7 +96,7 @@ public class ModelMutlipass<B extends Block & IMultipassBlock<K>, K> extends Mod
 		}
 		B bBlock = blockClass.cast(block);
 		
-		baker.setRenderBounds(bBlock.getItemBoundingBox());
+//		baker.setRenderBounds(bBlock.getItemBoundingBox());
 		bakeBlock(bBlock, key, baker, true);
 
 		return itemModel = baker.bakeModel(true);

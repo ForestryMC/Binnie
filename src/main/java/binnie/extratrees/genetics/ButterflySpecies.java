@@ -5,6 +5,7 @@ import binnie.core.Mods;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.ResourceType;
 import binnie.extratrees.ExtraTrees;
+import com.google.common.base.Preconditions;
 import com.mojang.authlib.GameProfile;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
@@ -17,12 +18,16 @@ import forestry.api.lepidopterology.IAlleleButterflySpecies;
 import forestry.api.lepidopterology.IButterflyRoot;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.BiomeDictionary;
 
+import javax.annotation.Nullable;
+import java.util.Collections;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public enum ButterflySpecies implements IAlleleButterflySpecies {
 	WhiteAdmiral("White Admiral", "Limenitis camilla", 16448250),
@@ -48,12 +53,12 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
 	Monarch("Monarch", "Danaus plexippus", 16757254),
 	MarbledWhite("Marbled White", "Melanargia galathea", 15527148);
 
-	String name;
-	String branchName;
-	String scientific;
-	BinnieResource texture;
-	public IClassification branch;
-	int colour;
+	private String name;
+	private String branchName;
+	private String scientific;
+	private BinnieResource texture;
+	private IClassification branch;
+	private int colour;
 	private Map<ItemStack, Float> butterflyLoot;
 	private Map<ItemStack, Float> caterpillarLoot;
 
@@ -65,6 +70,22 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
 		this.scientific = scientific.split(" ")[1];
 		this.texture = Binnie.RESOURCE.getPNG(ExtraTrees.instance, ResourceType.Entity, this.toString());
 		this.colour = colour;
+
+		final String uid = "trees." + branchName.toLowerCase();
+		IClassification branch = AlleleManager.alleleRegistry.getClassification("genus." + uid);
+		if (branch == null) {
+			branch = AlleleManager.alleleRegistry.createAndRegisterClassification(IClassification.EnumClassLevel.GENUS, uid, scientific);
+		}
+		this.branch = branch;
+
+//		final String scientific = species2.branchName.substring(0, 1).toUpperCase() + species2.branchName.substring(1).toLowerCase();
+//		final String uid = "trees." + species2.branchName.toLowerCase();
+//		IClassification branch = AlleleManager.alleleRegistry.getClassification("genus." + uid);
+//		if (branch == null) {
+//			branch = AlleleManager.alleleRegistry.createAndRegisterClassification(IClassification.EnumClassLevel.GENUS, uid, scientific);
+//		}
+//		(species2.branch = branch).addMemberSpecies(species2);
+
 	}
 
 
@@ -115,6 +136,7 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
 
 	@Override
 	public IClassification getBranch() {
+		Preconditions.checkState(this.branch != null, "branch has not been initialized yet");
 		return this.branch;
 	}
 
@@ -237,13 +259,16 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
 	}
 
 	@Override
-	public ItemStack[] getResearchBounty(final World world, final GameProfile researcher, final IIndividual individual, final int bountyLevel) {
-		return new ItemStack[]{this.getRoot().getMemberStack(individual.copy(), EnumFlutterType.SERUM)};
+	public NonNullList<ItemStack> getResearchBounty(final World world, final GameProfile researcher, final IIndividual individual, final int bountyLevel) {
+		NonNullList<ItemStack> bounty = NonNullList.create();
+		ItemStack serum = this.getRoot().getMemberStack(individual.copy(), EnumFlutterType.SERUM);
+		bounty.add(serum);
+		return bounty;
 	}
 
 	@Override
-	public EnumSet<BiomeDictionary.Type> getSpawnBiomes() {
-		return EnumSet.noneOf(BiomeDictionary.Type.class);
+	public Set<BiomeDictionary.Type> getSpawnBiomes() {
+		return Collections.emptySet();
 	}
 
 	@Override
