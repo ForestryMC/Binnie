@@ -244,8 +244,8 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		return this.player.inventory.getItemStack();
 	}
 
-	@Nullable
 	public IInventory getInventory() {
+		Preconditions.checkState(this.entityInventory != null, "This window has no inventory.");
 		return this.entityInventory;
 	}
 
