@@ -7,3 +7,9 @@
 *.iml
 *.ipr
 *.iws
+# minecraft
+/config
+/logs
+/saves
+/options.txt
+/usernamecache.json
