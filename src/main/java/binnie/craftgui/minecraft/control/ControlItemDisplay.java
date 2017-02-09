@@ -10,11 +10,13 @@ import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.minecraft.Window;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opencl.CL;
 
 import javax.annotation.Nullable;
 
 public class ControlItemDisplay extends Control implements ITooltip {
-	@Nullable
 	private ItemStack itemStack;
 	public boolean hastooltip;
 	private boolean rotating;
@@ -38,14 +40,15 @@ public class ControlItemDisplay extends Control implements ITooltip {
 
 	public ControlItemDisplay(final IWidget parent, final int x, final int y, final int size) {
 		super(parent, x, y, size, size);
-		this.itemStack = null;
+		this.itemStack = ItemStack.EMPTY;
 		this.hastooltip = false;
 		this.rotating = false;
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		if (this.itemStack == null) {
+		if (this.itemStack.isEmpty()) {
 			return;
 		}
 
@@ -67,18 +70,18 @@ public class ControlItemDisplay extends Control implements ITooltip {
 		GlStateManager.enableAlpha();
 	}
 
-	public void setItemStack(@Nullable final ItemStack itemStack) {
+	public void setItemStack(final ItemStack itemStack) {
 		this.itemStack = itemStack;
 	}
 
-	@Nullable
 	public ItemStack getItemStack() {
 		return this.itemStack;
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void getTooltip(final Tooltip tooltip) {
-		if (this.hastooltip && this.itemStack != null) {
+		if (this.hastooltip && !this.itemStack.isEmpty()) {
 			tooltip.add(this.itemStack.getTooltip(((Window) this.getTopParent()).getPlayer(), false));
 		}
 		super.getTooltip(tooltip);

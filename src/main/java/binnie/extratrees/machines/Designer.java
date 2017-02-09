@@ -96,16 +96,15 @@ public abstract class Designer {
 
 		@Override
 		public boolean isRecipe() {
-			return this.getProduct() != null;
+			return !this.getProduct().isEmpty();
 		}
 
 		@Override
-		@Nullable
 		public ItemStack getProduct() {
 			final ItemStack plank1 = this.getUtil().getStack(Designer.design1Slot);
 			final ItemStack plank2 = this.getUtil().getStack(Designer.design2Slot);
-			if (plank1 == null || plank2 == null) {
-				return null;
+			if (plank1.isEmpty() || plank2.isEmpty()) {
+				return ItemStack.EMPTY;
 			}
 			final IDesignMaterial type1 = this.type.getSystem().getMaterial(plank1);
 			final IDesignMaterial type2 = this.type.getSystem().getMaterial(plank2);
@@ -114,18 +113,17 @@ public abstract class Designer {
 		}
 
 		@Override
-		@Nullable
 		public ItemStack doRecipe(final boolean takeItem) {
 			if (!this.isRecipe()) {
-				return null;
+				return ItemStack.EMPTY;
 			}
 			if (this.canWork() != null) {
-				return null;
+				return ItemStack.EMPTY;
 			}
 			final ItemStack product = this.getProduct();
 			if (takeItem) {
 				final ItemStack a = this.getUtil().decreaseStack(Designer.design1Slot, 1);
-				if (a == null) {
+				if (a.isEmpty()) {
 					this.getUtil().decreaseStack(Designer.design2Slot, 1);
 				} else if (this.design != EnumDesign.Blank) {
 					this.getUtil().decreaseStack(Designer.design2Slot, 1);
@@ -144,8 +142,8 @@ public abstract class Designer {
 			if (name.equals("recipe")) {
 				final InventoryPlayer playerInv = player.inventory;
 				final ItemStack recipe = this.doRecipe(false);
-				if (recipe != null) {
-					if (playerInv.getItemStack() == null) {
+				if (!recipe.isEmpty()) {
+					if (playerInv.getItemStack().isEmpty()) {
 						playerInv.setItemStack(this.doRecipe(true));
 					} else if (playerInv.getItemStack().isItemEqual(recipe) && ItemStack.areItemStackTagsEqual(playerInv.getItemStack(), recipe)) {
 						final int fit = recipe.getMaxStackSize() - (recipe.getCount() + playerInv.getItemStack().getCount());

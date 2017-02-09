@@ -27,7 +27,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	@Override
 	public void clear() {
 		for (InventorySlot slot : this.inventory.values()) {
-			slot.setContent(null);
+			slot.setContent(ItemStack.EMPTY);
 		}
 	}
 
@@ -46,12 +46,11 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 		return 0;
 	}
 
-	@Nullable
 	@Override
 	public ItemStack removeStackFromSlot(int index) {
 		InventorySlot inventorySlot = this.inventory.get(index);
-		ItemStack content = inventorySlot.getContent();
-		inventorySlot.setContent(null);
+		ItemStack content = inventorySlot.getItemStack();
+		inventorySlot.setContent(ItemStack.EMPTY);
 		return content;
 	}
 
@@ -70,28 +69,26 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	@Nullable
 	public ItemStack getStackInSlot(final int index) {
 		if (this.inventory.containsKey(index)) {
-			return this.inventory.get(index).getContent();
+			return this.inventory.get(index).getItemStack();
 		}
-		return null;
+		return ItemStack.EMPTY;
 	}
 
 	@Override
-	@Nullable
 	public ItemStack decrStackSize(final int index, final int amount) {
 		if (this.inventory.containsKey(index)) {
 			final ItemStack stack = this.inventory.get(index).decrStackSize(amount);
 			this.markDirty();
 			return stack;
 		}
-		return null;
+		return ItemStack.EMPTY;
 	}
 
 	@Override
-	public void setInventorySlotContents(final int index, @Nullable final ItemStack itemStack) {
-		if (this.inventory.containsKey(index) && (itemStack == null || this.inventory.get(index).isValid(itemStack))) {
+	public void setInventorySlotContents(final int index, final ItemStack itemStack) {
+		if (this.inventory.containsKey(index) && (itemStack.isEmpty() || this.inventory.get(index).isValid(itemStack))) {
 			this.inventory.get(index).setContent(itemStack);
 		}
 		this.markDirty();
@@ -100,9 +97,9 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	protected void transferItem(final int indexFrom, final int indexTo) {
 		if (this.inventory.containsKey(indexFrom) && this.inventory.containsKey(indexTo)) {
 			final InventorySlot slotFrom = this.inventory.get(indexFrom);
-			final ItemStack oldStack = slotFrom.getContent();
-			final ItemStack newStack = oldStack == null ? null : oldStack.copy();
-			slotFrom.setContent(null);
+			final ItemStack oldStack = slotFrom.getItemStack();
+			final ItemStack newStack = oldStack.isEmpty() ? ItemStack.EMPTY : oldStack.copy();
+			slotFrom.setContent(ItemStack.EMPTY);
 			this.inventory.get(indexTo).setContent(newStack);
 		}
 		this.markDirty();
@@ -226,8 +223,8 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	@Override
 	public void onDestruction() {
 		for (final InventorySlot slot : this.inventory.values()) {
-			final ItemStack stack = slot.getContent();
-			if (!slot.isRecipe() && stack != null) {
+			final ItemStack stack = slot.getItemStack();
+			if (!slot.isRecipe() && !stack.isEmpty()) {
 				final float f = this.getMachine().getWorld().rand.nextFloat() * 0.8f + 0.1f;
 				final float f2 = this.getMachine().getWorld().rand.nextFloat() * 0.8f + 0.1f;
 				final float f3 = this.getMachine().getWorld().rand.nextFloat() * 0.8f + 0.1f;

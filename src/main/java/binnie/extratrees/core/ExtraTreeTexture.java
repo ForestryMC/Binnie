@@ -5,6 +5,8 @@ import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
 import binnie.extratrees.ExtraTrees;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public enum ExtraTreeTexture implements IBinnieTexture {
 	Gui(ResourceType.GUI, "gui"),
@@ -28,6 +30,7 @@ public enum ExtraTreeTexture implements IBinnieTexture {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public BinnieResource getTexture() {
 		return Binnie.RESOURCE.getPNG(ExtraTrees.instance, this.type, this.texture);
 	}

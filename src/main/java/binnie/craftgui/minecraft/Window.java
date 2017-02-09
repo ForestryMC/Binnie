@@ -213,6 +213,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		RenderUtil.setColour(16777215);
 		if (this.getBackground1() != null) {
@@ -226,7 +227,9 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onUpdateClient() {
+		super.onUpdateClient();
 		ControlSlot.highlighting.get(EnumHighlighting.Help).clear();
 		ControlSlot.shiftClickActive = false;
 	}
@@ -239,7 +242,6 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		return this.getPlayer().getGameProfile();
 	}
 
-	@Nullable
 	public ItemStack getHeldItemStack() {
 		return this.player.inventory.getItemStack();
 	}

@@ -25,6 +25,8 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nullable;
@@ -75,6 +77,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(this.horizontal ? CraftGUITexture.HorizontalLiquidTank : CraftGUITexture.LiquidTank, IPoint.ZERO);
 		GuiCraftGUI gui = Window.get(this).getGui();
@@ -85,7 +88,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 			final int c = -1442840576 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error);
 			RenderUtil.drawGradientRect(this.getArea().inset(1), c, c);
 		} else if (this.getTopParent().getMousedOverWidget() == this) {
-			if (gui.getDraggedItem() != null) {
+			if (!gui.getDraggedItem().isEmpty()) {
 				RenderUtil.drawGradientRect(this.getArea().inset(1), -1426089575, -1426089575);
 			} else {
 				RenderUtil.drawGradientRect(this.getArea().inset(1), -2130706433, -2130706433);
@@ -130,6 +133,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(this.horizontal ? CraftGUITexture.HorizontalLiquidTankOverlay : CraftGUITexture.LiquidTankOverlay, IPoint.ZERO);
 		GuiCraftGUI gui = Window.get(this).getGui();

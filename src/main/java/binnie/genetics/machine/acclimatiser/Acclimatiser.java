@@ -33,7 +33,7 @@ public class Acclimatiser {
 	private static Map<ItemStack, Float> humidityItems = new HashMap<>();
 
 	@Nullable
-	private static ToleranceSystem getToleranceSystem(@Nullable final ItemStack stack, final ItemStack acclim) {
+	private static ToleranceSystem getToleranceSystem(final ItemStack stack, final ItemStack acclim) {
 		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
 		if (root != null) {
 			for (final ToleranceSystem system : Acclimatiser.toleranceSystems) {
@@ -67,15 +67,15 @@ public class Acclimatiser {
 		return 0.0f;
 	}
 
-	public static void addTemperatureItem(@Nullable final ItemStack itemstack, final float amount) {
-		if (itemstack == null) {
+	public static void addTemperatureItem(final ItemStack itemstack, final float amount) {
+		if (itemstack.isEmpty()) {
 			return;
 		}
 		Acclimatiser.temperatureItems.put(itemstack, amount);
 	}
 
-	public static void addHumidityItem(@Nullable final ItemStack itemstack, final float amount) {
-		if (itemstack == null) {
+	public static void addHumidityItem(final ItemStack itemstack, final float amount) {
+		if (itemstack.isEmpty()) {
 			return;
 		}
 		Acclimatiser.humidityItems.put(itemstack, amount);
@@ -109,8 +109,8 @@ public class Acclimatiser {
 		addHumidityItem(FluidContainerType.CAPSULE.getFilled(FluidRegistry.WATER), 0.75f);
 	}
 
-	public static boolean canAcclimatise(@Nullable final ItemStack stack, final List<ItemStack> acclimatisers) {
-		if (stack == null || acclimatisers.isEmpty()) {
+	public static boolean canAcclimatise(final ItemStack stack, final List<ItemStack> acclimatisers) {
+		if (stack.isEmpty() || acclimatisers.isEmpty()) {
 			return true;
 		}
 		for (final ItemStack acclim : acclimatisers) {

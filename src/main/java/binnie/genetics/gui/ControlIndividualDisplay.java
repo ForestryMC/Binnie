@@ -25,7 +25,7 @@ public class ControlIndividualDisplay extends ControlItemDisplay implements IToo
 	@Override
 	public void getTooltip(final Tooltip tooltip) {
 		final ItemStack stack = this.getItemStack();
-		if (stack == null) {
+		if (stack.isEmpty()) {
 			return;
 		}
 		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(stack);

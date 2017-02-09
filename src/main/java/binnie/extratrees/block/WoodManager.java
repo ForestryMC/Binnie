@@ -107,7 +107,7 @@ public class WoodManager {
 	public static ItemStack getFence(final IPlankType plank, final IPlankType plank2, final FenceType type, final int amount) {
 		if (plank instanceof IFenceProvider && plank == plank2 && type.isPlain()) {
 			final ItemStack original = ((IFenceProvider) plank).getFence();
-			if (original != null) {
+			if (!original.isEmpty()) {
 				original.setCount(amount);
 				return original;
 			}

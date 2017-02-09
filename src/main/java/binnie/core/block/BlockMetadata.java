@@ -1,5 +1,6 @@
 package binnie.core.block;
 
+import binnie.core.BinnieCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -8,18 +9,15 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import binnie.core.BinnieCore;
-
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	static int temporyMeta = -1;
@@ -49,7 +47,6 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	}
 	
 	@Override
-	@Nullable
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		return getPickBlock(world, pos);
 	}
@@ -70,22 +67,22 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 		return getMetaFromState(state);
 	}
 
-	@Nullable
 	public static ItemStack getBlockDropped(IBlockMetadata block, IBlockAccess world, BlockPos pos) {
 		TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
 		if (tile != null && !tile.hasDroppedBlock()) {
 			int meta = block.getDroppedMeta(world.getBlockState(pos), tile.getTileMetadata());
 			return TileEntityMetadata.getItemStack((Block) block, meta);
 		}
-		return null;
+		return ItemStack.EMPTY;
 	}
 
-	public static List<ItemStack> getBlockDroppedAsList(IBlockMetadata block, IBlockAccess world, BlockPos pos) {
+	public static NonNullList<ItemStack> getBlockDroppedAsList(IBlockMetadata block, IBlockAccess world, BlockPos pos) {
 		ItemStack drop = getBlockDropped(block, world, pos);
-		if(drop != null){
-			return Collections.singletonList(getBlockDropped(block, world, pos));
+		NonNullList<ItemStack> list = NonNullList.create();
+		if (!drop.isEmpty()) {
+			list.add(drop);
 		}
-		return Collections.emptyList();
+		return list;
 	}
 
 	public static boolean breakBlock(IBlockMetadata blockMetadata, @Nullable EntityPlayer player, World world, BlockPos pos) {
@@ -107,7 +104,6 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 		return hasBeenBroken;
 	}
 
-	@Nullable
 	public static ItemStack getPickBlock(World world, BlockPos pos) {
 		Block block = world.getBlockState(pos).getBlock();
 		return getBlockDropped((IBlockMetadata) block, world, pos);

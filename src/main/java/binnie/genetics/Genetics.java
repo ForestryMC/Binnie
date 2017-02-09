@@ -27,6 +27,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 @Mod(modid = Constants.GENETICS_MOD_ID, name = "Binnie's Genetics", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class Genetics extends AbstractMod {
@@ -38,6 +39,7 @@ public class Genetics extends AbstractMod {
 	public static Proxy proxy;
 
 	public static String channel = "GEN";
+	@Nullable
 	private static Item itemGenetics;
 	public static ItemSerum itemSerum;
 	public static ItemSequence itemSequencer;

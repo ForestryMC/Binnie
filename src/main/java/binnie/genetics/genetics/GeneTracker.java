@@ -71,9 +71,11 @@ public class GeneTracker extends WorldSavedData {
 					for (int i = 0; i < nbtChromo.tagCount(); ++i) {
 						final String uid = nbtChromo.getStringTagAt(i);
 						final IAllele allele = AlleleManager.alleleRegistry.getAllele(uid);
-						final Gene gene = new Gene(allele, chromo, root);
-						if (allele != null && !this.discoveredGenes.contains(gene)) {
-							this.discoveredGenes.add(gene);
+						if (allele != null) {
+							final Gene gene = new Gene(allele, chromo, root);
+							if (!this.discoveredGenes.contains(gene)) {
+								this.discoveredGenes.add(gene);
+							}
 						}
 					}
 				}

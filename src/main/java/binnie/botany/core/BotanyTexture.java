@@ -5,6 +5,8 @@ import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
 import binnie.extrabees.ExtraBees;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public enum BotanyTexture implements IBinnieTexture {
 	;
@@ -17,6 +19,7 @@ public enum BotanyTexture implements IBinnieTexture {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public BinnieResource getTexture() {
 		return Binnie.RESOURCE.getPNG(ExtraBees.instance, this.type, this.texture);
 	}

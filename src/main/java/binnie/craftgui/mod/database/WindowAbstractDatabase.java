@@ -29,6 +29,7 @@ import forestry.api.genetics.IClassification;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,9 +45,13 @@ public abstract class WindowAbstractDatabase extends Window {
 	private Map<IDatabaseMode, ModeWidgets> modes;
 	boolean isNEI;
 	private BreedingSystem system;
+	@Nullable
 	private Panel panelInformation;
+	@Nullable
 	private Panel panelSearch;
+	@Nullable
 	private ControlPages<IDatabaseMode> modePages;
+	@Nullable
 	private IAlleleSpecies gotoSpecies;
 
 	public void changeMode(final IDatabaseMode mode) {

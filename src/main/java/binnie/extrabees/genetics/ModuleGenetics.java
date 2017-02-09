@@ -19,6 +19,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class ModuleGenetics implements IInitializable {
 	@Override
 	public void preInit() {
+		ExtraBeesBranch.setSpeciesBranches();
 		for (final ExtraBeesSpecies species : ExtraBeesSpecies.values()) {
 			AlleleManager.alleleRegistry.registerAllele(species);
 		}
@@ -34,7 +35,6 @@ public class ModuleGenetics implements IInitializable {
 		ExtraBeesFlowers.doInit();
 		ExtraBeesSpecies.doInit();
 		ExtraBeeMutation.doInit();
-		ExtraBeesBranch.doInit();
 	}
 
 	@Override
@@ -47,11 +47,11 @@ public class ModuleGenetics implements IInitializable {
 				++ebSpeciesCount;
 			}
 		}
-		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack("water", 2000), null, new ItemStack(ExtraBees.dictionary), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotTin", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
+		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack("water", 2000), ItemStack.EMPTY, new ItemStack(ExtraBees.dictionary), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotTin", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
 	}
 
 	public static IGenome getGenome(final IAlleleBeeSpecies allele0) {
-		return Binnie.GENETICS.getBeeRoot().templateAsGenome(Binnie.GENETICS.getBeeRoot().getTemplate(allele0.getUID()));
+		return Binnie.GENETICS.getBeeRoot().templateAsGenome(Binnie.GENETICS.getBeeRoot().getTemplate(allele0));
 	}
 
 //	public static ItemStack getBeeIcon(final IAlleleBeeSpecies species) {

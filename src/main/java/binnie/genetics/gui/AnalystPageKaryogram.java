@@ -18,7 +18,7 @@ public class AnalystPageKaryogram extends ControlAnalystPage {
 		new ControlTextCentered(this, y, "§nKaryogram").setColour(this.getColour());
 		y += 16;
 		y += 8;
-		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(ind.getClass());
+		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(ind);
 		final BreedingSystem system = Binnie.GENETICS.getSystem(root);
 		final int maxBiomePerLine = (int) ((this.w() + 4.0f - 16.0f) / 22.0f);
 		int karygramX = (this.w() - (Math.min(maxBiomePerLine, system.getActiveKaryotype().size()) * 18 - 4)) / 2;

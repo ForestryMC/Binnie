@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 public class UniqueItemStackSet extends ItemStackSet {
 	@Override
 	public boolean add(final ItemStack e) {
-		return e != null && this.getExisting(e) == null && this.itemStacks.add(e.copy());
+		return !e.isEmpty() && this.getExisting(e).isEmpty() && this.itemStacks.add(e.copy());
 	}
 
 	@Override

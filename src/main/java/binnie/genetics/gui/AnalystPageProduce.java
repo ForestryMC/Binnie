@@ -17,6 +17,7 @@ import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
@@ -43,7 +44,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 		final List<ItemStack> products = new ArrayList<>();
 		for (final ICentrifugeRecipe recipe : RecipeManagers.centrifugeManager.recipes()) {
 			boolean isRecipe = false;
-			if (recipe.getInput() != null && stack.isItemEqual(recipe.getInput())) {
+			if (stack.isItemEqual(recipe.getInput())) {
 				isRecipe = true;
 			}
 			if (isRecipe) {
@@ -57,8 +58,8 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 		return products;
 	}
 
-	public Collection<ItemStack> getSqueezer(final ItemStack stack) {
-		final List<ItemStack> products = new ArrayList<>();
+	public NonNullList<ItemStack> getSqueezer(final ItemStack stack) {
+		final NonNullList<ItemStack> products = NonNullList.create();
 		for (ISqueezerRecipe recipe : RecipeManagers.squeezerManager.recipes()) {
 			boolean isRecipe = false;
 			for (final Object obj : recipe.getResources()) {
@@ -67,7 +68,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 				}
 			}
 			if (isRecipe) {
-				if (recipe.getRemnants() != null) {
+				if (!recipe.getRemnants().isEmpty()) {
 					products.add(recipe.getRemnants());
 				}
 			}
@@ -138,9 +139,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 				}
 			}
 			if (isRecipe) {
-				if (recipe.getFluidOutput() != null) {
-					products.add(recipe.getFluidOutput());
-				}
+				products.add(recipe.getFluidOutput());
 			}
 		}
 		return products;

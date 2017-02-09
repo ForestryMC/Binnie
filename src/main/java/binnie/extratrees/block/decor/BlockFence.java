@@ -172,7 +172,6 @@ public class BlockFence extends net.minecraft.block.BlockFence implements IBlock
 //	}
 	
 	@Override
-	@Nullable
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		return BlockMetadata.getPickBlock(world, pos);
 	}

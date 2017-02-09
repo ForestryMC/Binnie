@@ -12,16 +12,21 @@ import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventWidget;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 public class ControlSlotFluid extends Control implements ITooltip {
 	ControlFluidDisplay itemDisplay;
+	@Nullable
 	FluidStack fluidStack;
 
-	public ControlSlotFluid(final IWidget parent, final int x, final int y, final FluidStack fluid) {
+	public ControlSlotFluid(final IWidget parent, final int x, final int y, @Nullable final FluidStack fluid) {
 		this(parent, x, y, 18, fluid);
 	}
 
-	public ControlSlotFluid(final IWidget parent, final int x, final int y, final int size, final FluidStack fluid) {
+	public ControlSlotFluid(final IWidget parent, final int x, final int y, final int size, @Nullable final FluidStack fluid) {
 		super(parent, x, y, size, size);
 		this.addAttribute(Attribute.MouseOver);
 		this.itemDisplay = new ControlFluidDisplay(this, 1, 1, size - 2);
@@ -29,9 +34,7 @@ public class ControlSlotFluid extends Control implements ITooltip {
 		this.addSelfEventHandler(new EventWidget.ChangeSize.Handler() {
 			@Override
 			public void onEvent(final EventWidget.ChangeSize event) {
-				if (ControlSlotFluid.this.itemDisplay != null) {
-					ControlSlotFluid.this.itemDisplay.setSize(ControlSlotFluid.this.getSize().sub(new IPoint(2, 2)));
-				}
+				ControlSlotFluid.this.itemDisplay.setSize(ControlSlotFluid.this.getSize().sub(new IPoint(2, 2)));
 			}
 		});
 	}
@@ -46,6 +49,7 @@ public class ControlSlotFluid extends Control implements ITooltip {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onUpdateClient() {
 		super.onUpdateClient();
 		this.itemDisplay.setFluidStack(this.getFluidStack());
@@ -60,6 +64,7 @@ public class ControlSlotFluid extends Control implements ITooltip {
 		tooltip.add(item.getFluid().getLocalizedName(item));
 	}
 
+	@Nullable
 	public FluidStack getFluidStack() {
 		return this.fluidStack;
 	}

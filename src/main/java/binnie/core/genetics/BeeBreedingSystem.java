@@ -10,6 +10,7 @@ import forestry.api.apiculture.IApiaristTracker;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeMutation;
 import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IMutation;
@@ -28,14 +29,14 @@ class BeeBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public float getChance(final IMutation mutation, final EntityPlayer player, final IAllele species1, final IAllele species2) {
+	public float getChance(final IMutation mutation, final EntityPlayer player, final IAlleleSpecies species1, final IAlleleSpecies species2) {
 		return ((IBeeMutation) mutation).
 				getChance(new VirtualBeeHousing(player),
 						(IAlleleBeeSpecies) species1,
 						(IAlleleBeeSpecies) species2,
 						(IBeeGenome) this.getSpeciesRoot().
-								templateAsGenome(this.getSpeciesRoot().getTemplate(species1.getUID())),
-						(IBeeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(species2.getUID())));
+								templateAsGenome(this.getSpeciesRoot().getTemplate(species1)),
+						(IBeeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(species2)));
 	}
 
 	@Override

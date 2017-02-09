@@ -9,6 +9,8 @@ import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 enum Compartment implements IMachineType {
 	Compartment(StandardCompartment.PackageCompartment.class),
@@ -56,6 +58,7 @@ enum Compartment implements IMachineType {
 		}
 
 		@Override
+		@SideOnly(Side.CLIENT)
 		public void renderMachine(Machine machine, double x, double y, double z, float partialTicks, int destroyStage) {
 			MachineRendererCompartment.instance.renderMachine(machine, 16777215, renderTexture, x, y, z, partialTicks);
 		}

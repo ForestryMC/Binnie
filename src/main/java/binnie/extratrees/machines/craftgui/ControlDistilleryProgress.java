@@ -17,6 +17,8 @@ import binnie.extratrees.machines.distillery.DistilleryLogic;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlDistilleryProgress extends ControlProgressBase {
 	public static final Texture DISTILLERY_BASE = new StandardTexture(43, 0, 58, 66, ExtraTreeTexture.Gui);
@@ -41,6 +43,7 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		DistilleryLogic distilleryLogic = Machine.getInterface(DistilleryLogic.class, Window.get(this).getInventory());
 		if (distilleryLogic != null) {

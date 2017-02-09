@@ -12,6 +12,8 @@ import forestry.core.render.TextureManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -138,6 +140,7 @@ public enum DesignSystem implements IDesignSystem {
 
 	@Override
 	@Nullable
+	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getPrimarySprite(final IPattern pattern) {
 		if (pattern instanceof EnumPattern) {
 			return this.primary.get(((EnumPattern) pattern).ordinal());
@@ -147,6 +150,7 @@ public enum DesignSystem implements IDesignSystem {
 
 	@Override
 	@Nullable
+	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getSecondarySprite(final IPattern pattern) {
 		if (pattern instanceof EnumPattern) {
 			return this.secondary.get(((EnumPattern) pattern).ordinal());
@@ -155,6 +159,7 @@ public enum DesignSystem implements IDesignSystem {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerSprites() {
 		for (final EnumPattern pattern : EnumPattern.values()) {
 			this.primary.put(pattern.ordinal(), TextureManager.registerSprite(new ResourceLocation(getMod().getModID(), "blocks/" + getTexturePath() + "/" + pattern.toString().toLowerCase() + ".0")));

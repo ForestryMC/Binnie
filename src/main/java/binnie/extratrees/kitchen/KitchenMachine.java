@@ -10,6 +10,10 @@ import binnie.core.resource.ResourceType;
 import binnie.extratrees.ExtraTrees;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 public enum KitchenMachine implements IMachineType {
 	// TODO implement
@@ -17,9 +21,10 @@ public enum KitchenMachine implements IMachineType {
 	Cupboard(null),
 	BottleRack(BottleRack.PackageBottleRack.class);
 
+	@Nullable
 	Class<? extends MachinePackage> clss;
 
-	KitchenMachine(final Class<? extends MachinePackage> clss) {
+	KitchenMachine(@Nullable final Class<? extends MachinePackage> clss) {
 		this.clss = clss;
 	}
 
@@ -60,6 +65,7 @@ public enum KitchenMachine implements IMachineType {
 		}
 		
 		@Override
+		@SideOnly(Side.CLIENT)
 		public void renderMachine(Machine machine, double x, double y, double z, float partialTicks, int destroyStage) {
 			MachineRendererKitchen.instance.renderMachine(machine, textureName, x, y, z, partialTicks);
 		}

@@ -18,7 +18,10 @@ import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class ProxyClient extends Proxy implements IExtraTreeProxy {
 	public static ModelManager modelManager = new ModelManager(Constants.EXTRA_TREES_MOD_ID);
 

@@ -85,7 +85,7 @@ public enum ExtraBeesBranch implements IClassification {
 		}
 	}
 
-	public static void doInit() {
+	public static void setSpeciesBranches() {
 		final IClassification frozenBranch = AlleleManager.alleleRegistry.getClassification("genus.bees.frozen");
 		if (frozenBranch != null) {
 			frozenBranch.addMemberSpecies(ExtraBeesSpecies.ARTIC);

@@ -5,6 +5,7 @@ import binnie.core.machines.network.INetwork;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
+import com.google.common.base.Preconditions;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -66,6 +67,7 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 
 	@Override
 	protected void onFinishTask() {
+		Preconditions.checkState(this.currentCrafting != null);
 		FluidStack output = BreweryRecipes.getOutput(this.currentCrafting);
 		if (output != null) {
 			this.getUtil().fillTank(BreweryMachine.TANK_OUTPUT, output);

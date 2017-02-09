@@ -122,7 +122,9 @@ public class GeneticsJeiPlugin extends BlankModPlugin {
 				boolean fullyCharged = (itemChargeable.getCharges(itemStack) == itemChargeable.getMaxCharges(itemStack));
 				String info = fullyCharged ? "charged" : "uncharged";
 				ISpeciesRoot root = itemChargeable.getSpeciesRoot(itemStack);
-				return info + ":" + root.getUID();
+				if (root != null) {
+					return info + ":" + root.getUID();
+				}
 			}
 
 			return null;

@@ -9,8 +9,6 @@ import binnie.genetics.genetics.Engineering;
 import com.google.common.base.Preconditions;
 import net.minecraft.item.ItemStack;
 
-import javax.annotation.Nullable;
-
 public class PolymeriserLogic extends ComponentProcessSetCost implements IProcess {
 	private static float chargePerProcess = 0.4f;
 	private float dnaDrain;
@@ -38,11 +36,11 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 		return (int) (super.getProcessEnergy() * getNumberOfGenes(serum) * this.getCatalyst());
 	}
 
-	public static float getDNAPerProcess(@Nullable ItemStack serum) {
+	public static float getDNAPerProcess(ItemStack serum) {
 		return getNumberOfGenes(serum) * 50;
 	}
 
-	public static float getBacteriaPerProcess(@Nullable ItemStack serum) {
+	public static float getBacteriaPerProcess(ItemStack serum) {
 		return 0.2f * getDNAPerProcess(serum);
 	}
 
@@ -64,8 +62,8 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 		}
 	}
 
-	private static int getNumberOfGenes(@Nullable ItemStack serum) {
-		if (serum == null) {
+	private static int getNumberOfGenes(ItemStack serum) {
+		if (serum.isEmpty()) {
 			return 1;
 		}
 		return Engineering.getGenes(serum).length;
@@ -85,7 +83,7 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 	@Override
 	public ErrorState canWork() {
 		ItemStack serumStack = this.getUtil().getStack(Polymeriser.SLOT_SERUM);
-		if (serumStack == null) {
+		if (serumStack.isEmpty()) {
 			return new ErrorState.NoItem(Genetics.proxy.localise("machine.machine.polymeriser.errors.item.no"), Polymeriser.SLOT_SERUM);
 		}
 		if (!serumStack.isItemDamaged()) {
@@ -109,7 +107,7 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 	protected void onFinishTask() {
 		super.onFinishTask();
 		ItemStack serumStack = this.getUtil().getStack(Polymeriser.SLOT_SERUM);
-		Preconditions.checkState(serumStack != null);
+		Preconditions.checkState(!serumStack.isEmpty());
 		this.getUtil().damageItem(serumStack, Polymeriser.SLOT_SERUM, -1);
 	}
 }

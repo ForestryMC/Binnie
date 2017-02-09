@@ -64,7 +64,7 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 
 	@Override
 	public boolean isMember(final ItemStack stack) {
-		return stack != null && this.getType(stack) != null;
+		return !stack.isEmpty() && this.getType(stack) != null;
 	}
 
 	@Override
@@ -105,10 +105,9 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	}
 
 	@Override
-	@Nullable
 	public ItemStack getMemberStack(IIndividual flower, ISpeciesType type) {
 		if (!this.isMember(flower)) {
-			return null;
+			return ItemStack.EMPTY;
 		}
 		Item flowerItem = Botany.flowerItem;
 		if (type == EnumFlowerStage.SEED) {

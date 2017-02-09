@@ -1,6 +1,8 @@
 package binnie.genetics.machine.inoculator;
 
+import binnie.core.machines.IMachine;
 import binnie.core.machines.Machine;
+import binnie.core.machines.MachineUtil;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.inventory.ComponentInventoryTransfer;
@@ -79,7 +81,14 @@ public class PackageInoculator extends GeneticMachine.PackageGeneticBase impleme
 		transfer.addStorage(Inoculator.SLOT_TARGET, Inoculator.SLOT_FINISHED, new ComponentInventoryTransfer.Condition() {
 			@Override
 			public boolean fulfilled(final ItemStack stack) {
-				return stack != null && this.transfer.getMachine().getMachineUtil().getStack(Inoculator.SLOT_SERUM_VIAL) != null && this.transfer.getMachine().getInterface(InoculatorLogic.class).isValidSerum() != null;
+				if (!stack.isEmpty()) {
+					IMachine machine = this.transfer.getMachine();
+					MachineUtil machineUtil = machine.getMachineUtil();
+					if (!machineUtil.getStack(Inoculator.SLOT_SERUM_VIAL).isEmpty() && machine.getInterface(InoculatorLogic.class).isValidSerum() != null) {
+						return true;
+					}
+				}
+				return false;
 			}
 		});
 		new ComponentPowerReceptor(machine, 15000);

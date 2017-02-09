@@ -49,6 +49,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -153,6 +154,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			final ControlPage thisPage = page[p2];
 			final Panel panel = new Panel(thisPage, 0, 0, thisPage.w(), thisPage.h(), MinecraftGUI.PanelType.Black) {
 				@Override
+				@SideOnly(Side.CLIENT)
 				public void onRenderForeground(int guiWidth, int guiHeight) {
 					final Texture iTexture = CraftGUI.render.getTexture(CraftGUITexture.TabOutline);
 					RenderUtil.setColour(WindowCompartment.this.getTab(WindowCompartment.this.panels.get(this)).getColor().getColour());
@@ -307,6 +309,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			public void initialise() {
 				final ControlScrollableContent<IWidget> scroll = new ControlScrollableContent<IWidget>(this, 124, 16, 116, 92, 6) {
 					@Override
+					@SideOnly(Side.CLIENT)
 					public void onRenderBackground(int guiWidth, int guiHeight) {
 						RenderUtil.setColour(11184810);
 						CraftGUI.render.texture(CraftGUITexture.Outline, this.getArea().inset(new IBorder(0, 6, 0, 0)));
@@ -352,7 +355,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				final IInventory inv = WindowCompartment.this.getInventory();
 				for (int i = 0; i < inv.getSizeInventory(); ++i) {
 					final ItemStack stack = inv.getStackInSlot(i);
-					if (stack != null) {
+					if (!stack.isEmpty()) {
 						final String name = stack.getDisplayName().toLowerCase();
 						if (this.textSearch == null || name.contains(this.textSearch)) {
 							if (this.includeBlocks || Block.getBlockFromItem(stack.getItem()) == Blocks.AIR) {
@@ -400,11 +403,13 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onUpdateClient() {
 		super.onUpdateClient();
 		this.updateTabs();
 	}
 
+	@SideOnly(Side.CLIENT)
 	public void updateTabs() {
 		this.tabName.setValue(this.getCurrentTab().getName());
 		this.tabIcon.setItemStack(this.getCurrentTab().getIcon());

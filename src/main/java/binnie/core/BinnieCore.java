@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mod(modid = Constants.CORE_MOD_ID, name = "Binnie Core", useMetadata = true, dependencies = "required-after:forestry")
+@Mod(modid = Constants.CORE_MOD_ID, name = "Binnie Core", useMetadata = true, dependencies = "required-after:forestry@[5.3.1.34,)")
 public final class BinnieCore extends AbstractMod {
 
 	public BinnieCore() {

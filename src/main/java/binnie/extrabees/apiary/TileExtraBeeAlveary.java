@@ -129,7 +129,7 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
 	}
 
 	@Override
-	public float getLifespanModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
+	public float getLifespanModifier(final IBeeGenome genome, @Nullable final IBeeGenome mate, final float currentModifier) {
 		return (this.getBeeModifier() == null) ? 1.0f : this.getBeeModifier().getLifespanModifier(genome, mate, currentModifier);
 	}
 

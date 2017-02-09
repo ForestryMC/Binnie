@@ -50,7 +50,7 @@ public class ControlPlayerInventory extends Control {
 		}
 	}
 
-	public void addItem(@Nullable final ItemStack item) {
+	public void addItem(final ItemStack item) {
 		for (final ControlSlot slot : this.slots) {
 			if (!slot.slot.getHasStack()) {
 				slot.slot.putStack(item);

@@ -21,6 +21,7 @@ import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.lepidopterology.ButterflyManager;
 import forestry.api.lepidopterology.IButterflyRoot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -85,7 +86,7 @@ public class ManagerGenetics extends ManagerBase {
 	}
 
 	public IButterflyRoot getButterflyRoot() {
-		return (IButterflyRoot) AlleleManager.alleleRegistry.getSpeciesRoot("rootButterflies");
+		return ButterflyManager.butterflyRoot;
 	}
 
 	public IFlowerRoot getFlowerRoot() {
@@ -130,8 +131,8 @@ public class ManagerGenetics extends ManagerBase {
 	}
 
 	@Nullable
-	public BreedingSystem getConversionSystem(@Nullable final ItemStack stack) {
-		if (stack != null) {
+	public BreedingSystem getConversionSystem(final ItemStack stack) {
+		if (!stack.isEmpty()) {
 			for (final BreedingSystem system : this.getActiveSystems()) {
 				if (system.getConversion(stack) != null) {
 					return system;
@@ -141,15 +142,14 @@ public class ManagerGenetics extends ManagerBase {
 		return null;
 	}
 
-	@Nullable
-	public ItemStack getConversionStack(@Nullable final ItemStack stack) {
-		if (stack != null) {
+	public ItemStack getConversionStack(final ItemStack stack) {
+		if (!stack.isEmpty()) {
 			final BreedingSystem system = this.getConversionSystem(stack);
 			if (system != null) {
 				return system.getConversionStack(stack);
 			}
 		}
-		return null;
+		return ItemStack.EMPTY;
 	}
 
 	@Nullable

@@ -21,21 +21,20 @@ public class ItemStackSet implements Set<ItemStack> {
 		return this.itemStacks.toString();
 	}
 
-	@Nullable
 	protected ItemStack getExisting(final ItemStack stack) {
 		for (final ItemStack stack2 : this.itemStacks) {
 			if (ItemStack.areItemsEqual(stack2, stack) && ItemStack.areItemStackTagsEqual(stack2, stack)) {
 				return stack2;
 			}
 		}
-		return null;
+		return ItemStack.EMPTY;
 	}
 
 	@Override
 	public boolean add(final ItemStack e) {
 		if (e != null) {
 			ItemStack existing = this.getExisting(e);
-			if (existing == null) {
+			if (existing.isEmpty()) {
 				return this.itemStacks.add(e.copy());
 			}
 			existing.grow(e.getCount());
@@ -59,7 +58,7 @@ public class ItemStackSet implements Set<ItemStack> {
 
 	@Override
 	public boolean contains(final Object o) {
-		return o instanceof ItemStack && this.getExisting((ItemStack) o) != null;
+		return o instanceof ItemStack && !this.getExisting((ItemStack) o).isEmpty();
 	}
 
 	@Override
@@ -86,7 +85,7 @@ public class ItemStackSet implements Set<ItemStack> {
 		if (this.contains(o)) {
 			final ItemStack r = (ItemStack) o;
 			final ItemStack existing = this.getExisting(r);
-			if (existing != null && existing.getCount() > r.getCount()) {
+			if (!existing.isEmpty() && existing.getCount() > r.getCount()) {
 				existing.shrink(r.getCount());
 			} else {
 				this.itemStacks.remove(existing);

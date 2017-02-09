@@ -52,7 +52,7 @@ public class ModuleMachine implements IInitializable {
 		final String diamondGear = !OreDictionary.getOres("gearDiamond").isEmpty() ? "gearIron" : "ingotIron";
 		for (final Object circuit : standardCircuit) {
 			GameRegistry.addRecipe(new ShapedOreRecipe(LaboratoryMachine.Incubator.get(1), "gFg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.get(1), 'F', Blocks.FURNACE, 'c', circuit, 'g', Blocks.GLASS_PANE, 'P', "gearBronze", 'a', ironGear));
-			Item alyzer = Mods.Forestry.item("portableAlyzer");
+			Item alyzer = Mods.Forestry.item("portable_alyzer");
 			GameRegistry.addRecipe(new ShapedOreRecipe(LaboratoryMachine.Analyser.get(1), "gBg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.get(1), 'B', alyzer, 'c', circuit, 'g', Blocks.GLASS_PANE, 'P', "gearBronze", 'a', GeneticsItems.DNADye.get(1)));
 			GameRegistry.addRecipe(new ShapedOreRecipe(LaboratoryMachine.Genepool.get(1), "gBg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.get(1), 'B', "gearBronze", 'c', circuit, 'g', Blocks.GLASS_PANE, 'P', "gearBronze", 'a', Blocks.GLASS));
 			GameRegistry.addRecipe(new ShapedOreRecipe(LaboratoryMachine.Acclimatiser.get(1), "gBg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.get(1), 'B', Items.LAVA_BUCKET, 'c', circuit, 'g', Blocks.GLASS_PANE, 'P', "gearBronze", 'a', Items.WATER_BUCKET));

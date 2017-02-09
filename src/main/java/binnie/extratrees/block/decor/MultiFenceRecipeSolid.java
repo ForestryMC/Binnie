@@ -13,8 +13,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class MultiFenceRecipeSolid implements IRecipe {
-	@Nullable
-	private ItemStack cached;
+	private ItemStack cached = ItemStack.EMPTY;
 
 	@Override
 	public boolean matches(final InventoryCrafting inv, final World world) {
@@ -32,8 +31,11 @@ public class MultiFenceRecipeSolid implements IRecipe {
 					if (type != null && type2 != null && type3 != null && type.equals(type2)) {
 						if (type.equals(type3)) {
 							FenceDescription fenceDescription = WoodManager.getFenceDescription(a);
-							this.cached = WoodManager.getFence(fenceDescription.getPlankType(), fenceDescription.getSecondaryPlankType(), new FenceType(type.size, true, type.solid), 2);
-							return true;
+							if (fenceDescription != null) {
+								FenceType fenceType = new FenceType(type.size, true, type.solid);
+								this.cached = WoodManager.getFence(fenceDescription.getPlankType(), fenceDescription.getSecondaryPlankType(), fenceType, 2);
+								return true;
+							}
 						}
 					}
 				}
@@ -54,7 +56,7 @@ public class MultiFenceRecipeSolid implements IRecipe {
 
 	@Override
 	public ItemStack getRecipeOutput() {
-		return (this.cached == null) ? new ItemStack(Blocks.OAK_FENCE) : this.cached;
+		return (this.cached.isEmpty()) ? new ItemStack(Blocks.OAK_FENCE) : this.cached;
 	}
 
 	@Override

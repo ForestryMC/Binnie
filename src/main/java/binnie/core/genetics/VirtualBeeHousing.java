@@ -55,14 +55,12 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 		return 1.0f;
 	}
 
-	@Nullable
 	public ItemStack getQueen() {
-		return null;
+		return ItemStack.EMPTY;
 	}
 
-	@Nullable
 	public ItemStack getDrone() {
-		return null;
+		return ItemStack.EMPTY;
 	}
 
 	public void setQueen(final ItemStack itemstack) {

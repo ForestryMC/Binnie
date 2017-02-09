@@ -22,22 +22,18 @@ public class BrewedGrainRecipe implements IBreweryRecipe {
 	private final ItemStack yeast;
 
 	public BrewedGrainRecipe(Alcohol output, int grainOreId) {
-		this(output, grainOreId, null, null);
+		this(output, grainOreId, null, ExtraTreeItems.Yeast.get(1));
 	}
 
 	public BrewedGrainRecipe(Alcohol output, int grainOreId, Integer ingredientOreId) {
-		this(output, grainOreId, ingredientOreId, null);
+		this(output, grainOreId, ingredientOreId, ExtraTreeItems.Yeast.get(1));
 	}
 
-	public BrewedGrainRecipe(Alcohol output, int grainOreId, @Nullable Integer ingredientOreId, @Nullable ItemStack specificYeast) {
+	public BrewedGrainRecipe(Alcohol output, int grainOreId, @Nullable Integer ingredientOreId, ItemStack specificYeast) {
 		this.output = output.get(Fluid.BUCKET_VOLUME);
 		this.grainOreId = grainOreId;
 		this.ingredientOreId = ingredientOreId;
-		if (specificYeast != null) {
-			this.yeast = specificYeast;
-		} else {
-			this.yeast = ExtraTreeItems.Yeast.get(1);
-		}
+		this.yeast = specificYeast;
 	}
 
 	@Override
@@ -72,8 +68,8 @@ public class BrewedGrainRecipe implements IBreweryRecipe {
 	}
 
 	@Override
-	public boolean isIngredient(@Nullable ItemStack itemstack) {
-		if (itemstack == null) {
+	public boolean isIngredient(ItemStack itemstack) {
+		if (itemstack.isEmpty()) {
 			return ingredientOreId == null;
 		}
 		return ingredientOreId != null && OreDictionaryUtil.hasOreId(itemstack, ingredientOreId);

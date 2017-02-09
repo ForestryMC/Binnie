@@ -44,32 +44,38 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class WindowAnalyst extends Window {
+	@Nullable
 	IWidget baseWidget;
 	ControlScrollableContent leftPage;
 	ControlScrollableContent rightPage;
+	@Nullable
 	Control tabBar;
 	Panel analystPanel;
 	List<ControlAnalystPage> analystPages;
+	@Nullable
 	IArea analystPageSize;
 	boolean isDatabase;
 	boolean isMaster;
 	boolean lockedSearch;
 	private Control analystNone;
 	private ControlSlide slideUpInv;
+	@Nullable
 	IIndividual current;
+	@Nullable
 	BreedingSystem currentSystem;
 
 	public static GeneticsGUI.WindowFactory create(final boolean database, final boolean master) {
 		return (player, inventory, side) -> new WindowAnalyst(player, inventory, side, database, master);
 	}
 
-	public WindowAnalyst(final EntityPlayer player, final IInventory inventory, final Side side, final boolean database, final boolean master) {
+	public WindowAnalyst(final EntityPlayer player, @Nullable final IInventory inventory, final Side side, final boolean database, final boolean master) {
 		super(312, 230, player, inventory, side);
 		this.baseWidget = null;
 		this.tabBar = null;
@@ -151,6 +157,7 @@ public class WindowAnalyst extends Window {
 					}
 
 					@Override
+					@SideOnly(Side.CLIENT)
 					public void onRenderBackground(int guiWidth, int guiHeight) {
 						RenderUtil.setColour(syst.getColour());
 						final int outset = (WindowAnalyst.this.getSystem() == syst) ? 1 : 0;
@@ -174,6 +181,7 @@ public class WindowAnalyst extends Window {
 		this.tabBar = new Control(this, x, 28, this.w() - 16 - x, 20);
 		this.analystPanel = new Panel(this, 16, 54, 280, 164, MinecraftGUI.PanelType.Outline) {
 			@Override
+			@SideOnly(Side.CLIENT)
 			public void onRenderBackground(int guiWidth, int guiHeight) {
 				RenderUtil.drawGradientRect(this.getArea(), 1157627903, 1728053247);
 				super.onRenderBackground(guiWidth, guiHeight);
@@ -185,6 +193,7 @@ public class WindowAnalyst extends Window {
 				final int sectionWidth = (this.w() - 8 - 4) / 2;
 				WindowAnalyst.this.leftPage = new ControlScrollableContent<IWidget>(this, 3, 3, sectionWidth + 2, this.h() - 8 + 2, 0) {
 					@Override
+					@SideOnly(Side.CLIENT)
 					public void onRenderBackground(int guiWidth, int guiHeight) {
 						if (this.getContent() == null) {
 							return;
@@ -195,6 +204,7 @@ public class WindowAnalyst extends Window {
 				};
 				new ControlScrollBar(this, sectionWidth + 2 - 3, 6, 3, this.h() - 8 + 2 - 6, WindowAnalyst.this.leftPage) {
 					@Override
+					@SideOnly(Side.CLIENT)
 					public void onRenderBackground(int guiWidth, int guiHeight) {
 						if (!this.isEnabled()) {
 							return;
@@ -208,6 +218,7 @@ public class WindowAnalyst extends Window {
 				};
 				WindowAnalyst.this.rightPage = new ControlScrollableContent<IWidget>(this, 3 + sectionWidth + 4, 3, sectionWidth + 2, this.h() - 8 + 2, 0) {
 					@Override
+					@SideOnly(Side.CLIENT)
 					public void onRenderBackground(int guiWidth, int guiHeight) {
 						if (this.getContent() == null) {
 							return;
@@ -218,6 +229,7 @@ public class WindowAnalyst extends Window {
 				};
 				new ControlScrollBar(this, sectionWidth + 2 - 3 + sectionWidth + 4, 6, 3, this.h() - 8 + 2 - 6, WindowAnalyst.this.rightPage) {
 					@Override
+					@SideOnly(Side.CLIENT)
 					public void onRenderBackground(int guiWidth, int guiHeight) {
 						if (!this.isEnabled()) {
 							return;
@@ -380,6 +392,7 @@ public class WindowAnalyst extends Window {
 				}
 
 				@Override
+				@SideOnly(Side.CLIENT)
 				public void onRenderBackground(int guiWidth, int guiHeight) {
 					final boolean active = this.value == WindowAnalyst.this.leftPage.getContent() || this.value == WindowAnalyst.this.rightPage.getContent();
 					RenderUtil.setColour((active ? -16777216 : 1140850688) + this.value.getColour());
@@ -437,7 +450,7 @@ public class WindowAnalyst extends Window {
 		}
 	}
 
-	public void setPage(final ControlScrollableContent side, final ControlAnalystPage page) {
+	public void setPage(final ControlScrollableContent side, @Nullable final ControlAnalystPage page) {
 		final ControlAnalystPage existingPage = (ControlAnalystPage) side.getContent();
 		if (existingPage != null) {
 			existingPage.hide();
@@ -469,7 +482,7 @@ public class WindowAnalyst extends Window {
 		}
 	}
 
-	public void setStack(@Nullable final ItemStack stack) {
+	public void setStack(final ItemStack stack) {
 		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(stack);
 		this.setIndividual(ind);
 	}

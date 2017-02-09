@@ -10,6 +10,8 @@ import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
@@ -30,6 +32,7 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
 		manager.registerItemModel(item, 0, "frames/" + getRegistryName().getResourcePath());
 	}
@@ -45,7 +48,7 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 	}
 
 	@Override
-	public float getLifespanModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
+	public float getLifespanModifier(final IBeeGenome genome, @Nullable final IBeeGenome mate, final float currentModifier) {
 		return this.frame.getLifespanModifier(genome, mate, currentModifier);
 	}
 
@@ -55,11 +58,10 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 	}
 
 	@Override
-	@Nullable
 	public ItemStack frameUsed(final IBeeHousing housing, final ItemStack frame, final IBee queen, final int wear) {
 		frame.setItemDamage(frame.getItemDamage() + wear);
 		if (frame.getItemDamage() >= frame.getMaxDamage()) {
-			return null;
+			return ItemStack.EMPTY;
 		}
 		return frame;
 	}

@@ -26,7 +26,6 @@ public class LumbermillRecipes {
 	// Map<input log item, Pair<input log, output planks>>
 	private static Multimap<Item, Pair<ItemStack, ItemStack>> recipes = ArrayListMultimap.create();
 
-	@Nullable
 	public static ItemStack getPlankProduct(final ItemStack logStack) {
 		if (recipes.isEmpty()) {
 			calculateLumbermillProducts();
@@ -38,7 +37,7 @@ public class LumbermillRecipes {
 				return entry.getValue().copy();
 			}
 		}
-		return null;
+		return ItemStack.EMPTY;
 	}
 
 	public static Collection<Pair<ItemStack, ItemStack>> getRecipes() {
@@ -66,7 +65,7 @@ public class LumbermillRecipes {
 
 			try {
 				ItemStack recipeOutput = craftingManager.findMatchingRecipe(fakeCraftingInventory, FakeCraftingWorld.getInstance());
-				if (recipeOutput != null) {
+				if (!recipeOutput.isEmpty()) {
 					if (OreDictionaryUtil.hasOreId(recipeOutput, plankOreId)) {
 						Item logItem = logCopy.getItem();
 						ItemStack outputCopy = recipeOutput.copy();

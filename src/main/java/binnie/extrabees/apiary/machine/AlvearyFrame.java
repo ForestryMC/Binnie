@@ -10,10 +10,14 @@ import binnie.extrabees.apiary.ComponentExtraBeeGUI;
 import binnie.extrabees.apiary.TileExtraBeeAlveary;
 import binnie.extrabees.core.ExtraBeeGUID;
 import binnie.extrabees.core.ExtraBeeTexture;
+import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
+import forestry.api.apiculture.IBeeRoot;
 import forestry.api.apiculture.IHiveFrame;
+import forestry.api.multiblock.IAlvearyController;
+import forestry.api.multiblock.IMultiblockLogicAlveary;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -43,7 +47,7 @@ public class AlvearyFrame {
 
 		@Override
 		public boolean isValid(final ItemStack itemStack) {
-			return itemStack != null && itemStack.getItem() instanceof IHiveFrame;
+			return !itemStack.isEmpty() && itemStack.getItem() instanceof IHiveFrame;
 		}
 
 		@Override
@@ -59,18 +63,27 @@ public class AlvearyFrame {
 
 		@Override
 		public void wearOutEquipment(final int amount) {
-			if (this.getHiveFrame() == null) {
-				return;
+			IHiveFrame hiveFrame = this.getHiveFrame();
+			if (hiveFrame != null) {
+				final World world = this.getMachine().getTileEntity().getWorld();
+				IBeeRoot beeRoot = Binnie.GENETICS.getBeeRoot();
+				IMultiblockLogicAlveary multiblockLogic = ((TileExtraBeeAlveary) this.getMachine().getTileEntity()).getMultiblockLogic();
+				IAlvearyController alvearyController = multiblockLogic.getController();
+				ItemStack queenStack = alvearyController.getBeeInventory().getQueen();
+				IBee queen = beeRoot.getMember(queenStack);
+				if (queen != null) {
+					final int wear = Math.round(amount * 5 * beeRoot.getBeekeepingMode(world).getWearModifier());
+					ItemStack frame = this.getInventory().getStackInSlot(AlvearyFrame.slotFrame);
+					ItemStack frameUsed = hiveFrame.frameUsed(alvearyController, frame, queen, wear);
+					this.getInventory().setInventorySlotContents(AlvearyFrame.slotFrame, frameUsed);
+				}
 			}
-			final World world = this.getMachine().getTileEntity().getWorld();
-			final int wear = Math.round(amount * 5 * Binnie.GENETICS.getBeeRoot().getBeekeepingMode(world).getWearModifier());
-			this.getInventory().setInventorySlotContents(AlvearyFrame.slotFrame, this.getHiveFrame().frameUsed(((TileExtraBeeAlveary) this.getMachine().getTileEntity()).getMultiblockLogic().getController(), this.getInventory().getStackInSlot(AlvearyFrame.slotFrame), null, wear));
 		}
 
 		@Nullable
 		public IHiveFrame getHiveFrame() {
 			ItemStack stackInSlot = this.getInventory().getStackInSlot(AlvearyFrame.slotFrame);
-			if (stackInSlot != null) {
+			if (!stackInSlot.isEmpty()) {
 				return (IHiveFrame) stackInSlot.getItem();
 			}
 			return null;
@@ -87,7 +100,7 @@ public class AlvearyFrame {
 		}
 
 		@Override
-		public float getLifespanModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
+		public float getLifespanModifier(final IBeeGenome genome, @Nullable final IBeeGenome mate, final float currentModifier) {
 			return (this.getHiveFrame() == null) ? 1.0f : this.getHiveFrame().getBeeModifier().getLifespanModifier(genome, mate, currentModifier);
 		}
 

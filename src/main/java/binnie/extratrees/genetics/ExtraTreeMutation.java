@@ -1,12 +1,14 @@
 package binnie.extratrees.genetics;
 
 import binnie.Binnie;
+import com.google.common.base.Preconditions;
 import forestry.api.arboriculture.IAlleleTreeSpecies;
 import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.arboriculture.ITreeMutation;
 import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleSpecies;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -128,16 +130,16 @@ public class ExtraTreeMutation implements ITreeMutation {
 		new ExtraTreeMutation(ETTreeDefinition.Hazel.getSpecies(), ETTreeDefinition.Alder.getSpecies(), ETTreeDefinition.DwarfHazel.getSpecies(), 10);
 	}
 
-	public static IAllele getVanilla(final String uid) {
-		final IAllele allele = AlleleManager.alleleRegistry.getAllele("forestry.tree" + uid);
-		if (allele == null) {
-			throw new RuntimeException("No forestry species with id " + uid);
-		}
-		return allele;
+	public static IAlleleSpecies getVanilla(final String uid) {
+		String forestryUid = "forestry.tree" + uid;
+		final IAllele allele = AlleleManager.alleleRegistry.getAllele(forestryUid);
+		Preconditions.checkArgument(allele != null);
+		Preconditions.checkArgument(allele instanceof IAlleleSpecies, "No Forestry species with uid: %s", forestryUid);
+		return (IAlleleSpecies) allele;
 	}
 
-	public ExtraTreeMutation(final IAllele allele0, final IAllele allele1, final IAllele result, final int chance) {
-		this(allele0, allele1, Binnie.GENETICS.getTreeRoot().getTemplate(result.getUID()), chance);
+	public ExtraTreeMutation(final IAlleleSpecies allele0, final IAlleleSpecies allele1, final IAlleleSpecies result, final int chance) {
+		this(allele0, allele1, Binnie.GENETICS.getTreeRoot().getTemplate(result), chance);
 	}
 
 	public ExtraTreeMutation(final IAllele allele0, final IAllele allele1, final IAllele[] template, final int chance) {

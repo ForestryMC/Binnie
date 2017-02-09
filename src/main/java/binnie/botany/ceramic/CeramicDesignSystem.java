@@ -14,6 +14,8 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -56,6 +58,7 @@ public class CeramicDesignSystem implements IDesignSystem {
 
 	@Override
 	@Nullable
+	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getPrimarySprite(IPattern pattern) {
 		if (pattern instanceof EnumPattern) {
 			return this.primary.get(((EnumPattern) pattern).ordinal());
@@ -65,6 +68,7 @@ public class CeramicDesignSystem implements IDesignSystem {
 
 	@Override
 	@Nullable
+	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getSecondarySprite(IPattern pattern) {
 		if (pattern instanceof EnumPattern) {
 			return this.secondary.get(((EnumPattern) pattern).ordinal());
@@ -73,6 +77,7 @@ public class CeramicDesignSystem implements IDesignSystem {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerSprites() {
 		for (EnumPattern pattern : EnumPattern.values()) {
 			this.primary.put(pattern.ordinal(), TextureManager.registerSprite(new ResourceLocation(getMod().getModID(), getTexturePath() + "/" + pattern.toString().toLowerCase() + ".0")));

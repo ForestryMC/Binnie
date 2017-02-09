@@ -9,7 +9,10 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class ExtraBeesProxyClient extends ExtraBeesProxy {
 	public static ModelManager modelManager = new ModelManager(Constants.EXTRA_BEES_MOD_ID);
 

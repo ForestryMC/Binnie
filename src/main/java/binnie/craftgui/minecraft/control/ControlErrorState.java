@@ -13,6 +13,8 @@ import binnie.craftgui.minecraft.MinecraftTooltip;
 import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
@@ -22,6 +24,7 @@ public class ControlErrorState extends Control implements ITooltip {
 	private int type;
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		Object texture = CraftGUITexture.StateWarning;
 		if (this.errorState == null) {
@@ -33,6 +36,7 @@ public class ControlErrorState extends Control implements ITooltip {
 		super.onRenderBackground(guiWidth, guiHeight);
 	}
 
+	@Nullable
 	public ErrorState getError() {
 		return Window.get(this).getContainer().getErrorState();
 	}

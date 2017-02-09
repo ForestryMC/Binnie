@@ -15,17 +15,13 @@ public class BreweryRecipe implements IBreweryRecipe {
 	private final ItemStack yeast;
 
 	public BreweryRecipe(final FluidStack input, final FluidStack output) {
-		this(input, output, null);
+		this(input, output, ExtraTreeItems.Yeast.get(1));
 	}
 
-	public BreweryRecipe(final FluidStack input, final FluidStack output, @Nullable final ItemStack specificYeast) {
+	public BreweryRecipe(final FluidStack input, final FluidStack output, final ItemStack specificYeast) {
 		this.input = input;
 		this.output = output;
-		if (specificYeast != null) {
-			this.yeast = specificYeast;
-		} else {
-			this.yeast = ExtraTreeItems.Yeast.get(1);
-		}
+		this.yeast = specificYeast;
 	}
 
 	@Override

@@ -15,10 +15,14 @@ import binnie.botany.api.IFlowerMutationBuilder;
 import binnie.botany.api.IFlowerRoot;
 import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
+import forestry.api.apiculture.EnumBeeChromosome;
+import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.AlleleSpeciesRegisterEvent;
 import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleRegistry;
+import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IClassification;
 import forestry.core.genetics.alleles.AlleleHelper;
 import forestry.core.genetics.alleles.EnumAllele;
@@ -29,6 +33,7 @@ import net.minecraftforge.common.MinecraftForge;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 public enum FlowerDefinition implements IFlowerDefinition {
@@ -1089,6 +1094,14 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	}
 
 	private void init() {
+		markAllelesAsValid(EnumBeeChromosome.FERTILITY, EnumFlowerChromosome.FERTILITY);
+		markAllelesAsValid(EnumBeeChromosome.TERRITORY, EnumFlowerChromosome.TERRITORY);
+		markAllelesAsValid(EnumBeeChromosome.LIFESPAN, EnumFlowerChromosome.LIFESPAN);
+		markAllelesAsValid(EnumBeeChromosome.TEMPERATURE_TOLERANCE, EnumFlowerChromosome.TEMPERATURE_TOLERANCE);
+		markAllelesAsValid(EnumBeeChromosome.HUMIDITY_TOLERANCE, EnumFlowerChromosome.HUMIDITY_TOLERANCE);
+		markAllelesAsValid(EnumBeeChromosome.HUMIDITY_TOLERANCE, EnumFlowerChromosome.PH_TOLERANCE);
+		markAllelesAsValid(EnumTreeChromosome.SAPPINESS, EnumFlowerChromosome.SAPPINESS);
+
 		template = Arrays.copyOf(FlowerTemplates.getDefaultTemplate(), EnumFlowerChromosome.values().length);
 		AlleleHelper.getInstance().set(template, EnumFlowerChromosome.SPECIES, species);
 		AlleleHelper.getInstance().set(template, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.BOTH_1);
@@ -1101,6 +1114,14 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		BotanyCore.getFlowerRoot().registerTemplate(template);
 		for (IAllele[] template : variantTemplates) {
 			BotanyCore.getFlowerRoot().registerTemplate(template);
+		}
+	}
+
+	private static void markAllelesAsValid(IChromosomeType existingType, IChromosomeType newType) {
+		IAlleleRegistry alleleRegistry = AlleleManager.alleleRegistry;
+		Collection<IAllele> alleles = alleleRegistry.getRegisteredAlleles(existingType);
+		for (IAllele allele : alleles) {
+			alleleRegistry.addValidAlleleTypes(allele, newType);
 		}
 	}
 

@@ -107,7 +107,7 @@ public enum ExtraBeeItems implements IItemMiscProvider {
 		if (woodGear != null) {
 			gear = new ItemStack(woodGear, 1);
 		}
-		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack("for.honey", 500), null, ExtraBeeItems.ScentedGear.get(1), " j ", "bgb", " p ", 'j', Mods.Forestry.item("royalJelly"), 'b', Mods.Forestry.item("beeswax"), 'p', Mods.Forestry.item("pollen"), 'g', gear);
+		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack("for.honey", 500), ItemStack.EMPTY, ExtraBeeItems.ScentedGear.get(1), " j ", "bgb", " p ", 'j', Mods.Forestry.item("royal_jelly"), 'b', Mods.Forestry.item("beeswax"), 'p', Mods.Forestry.item("pollen"), 'g', gear);
 	}
 
 	ExtraBeeItems(String name, String modelPath) {

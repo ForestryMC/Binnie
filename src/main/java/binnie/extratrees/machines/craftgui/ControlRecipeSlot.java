@@ -31,12 +31,11 @@ public class ControlRecipeSlot extends ControlSlotBase {
 	}
 
 	@Override
-	@Nullable
 	public ItemStack getItemStack() {
 		final IComponentRecipe recipe = Machine.getInterface(IComponentRecipe.class, Window.get(this).getInventory());
 		if (recipe != null && recipe.isRecipe()) {
 			return recipe.getProduct();
 		}
-		return null;
+		return ItemStack.EMPTY;
 	}
 }

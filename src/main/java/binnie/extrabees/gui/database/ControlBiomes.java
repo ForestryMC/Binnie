@@ -60,7 +60,7 @@ public class ControlBiomes extends Control implements ITooltip {
 		if (species == null) {
 			return;
 		}
-		final IBeeGenome genome = Binnie.GENETICS.getBeeRoot().templateAsGenome(Binnie.GENETICS.getBeeRoot().getTemplate(species.getUID()));
+		final IBeeGenome genome = Binnie.GENETICS.getBeeRoot().templateAsGenome(Binnie.GENETICS.getBeeRoot().getTemplate(species));
 		final IBee bee = Binnie.GENETICS.getBeeRoot().getBee(genome);
 	}
 }

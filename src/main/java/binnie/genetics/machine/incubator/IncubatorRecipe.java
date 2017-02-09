@@ -16,7 +16,6 @@ public class IncubatorRecipe implements IIncubatorRecipe {
 	private final ItemStack itemStack;
 	private final float lossChance;
 	private final float tickChance;
-	@Nullable
 	private ItemStack outputStack;
 
 	public IncubatorRecipe(ItemStack itemStack, final FluidStack input, @Nullable final FluidStack output, final float lossChance) {
@@ -25,6 +24,7 @@ public class IncubatorRecipe implements IIncubatorRecipe {
 
 	public IncubatorRecipe(ItemStack itemStack, final FluidStack input, @Nullable final FluidStack output, final float lossChance, final float chance) {
 		this.itemStack = itemStack;
+		this.outputStack = ItemStack.EMPTY;
 		this.input = input;
 		this.output = output;
 		this.lossChance = lossChance;
@@ -79,7 +79,7 @@ public class IncubatorRecipe implements IIncubatorRecipe {
 			machine.fillTank(Incubator.TANK_OUTPUT, this.output);
 		}
 		this.outputStack = this.getOutputStack(machine);
-		if (this.outputStack != null) {
+		if (!this.outputStack.isEmpty()) {
 			final ItemStack output = this.outputStack.copy();
 			final TransferRequest product = new TransferRequest(output, machine.getInventory()).setTargetSlots(Incubator.SLOT_OUTPUT).ignoreValidation();
 			product.transfer(true);
@@ -95,7 +95,6 @@ public class IncubatorRecipe implements IIncubatorRecipe {
 		return this;
 	}
 
-	@Nullable
 	protected ItemStack getOutputStack(final MachineUtil util) {
 		return getExpectedOutput();
 	}
@@ -111,11 +110,11 @@ public class IncubatorRecipe implements IIncubatorRecipe {
 			}
 		}
 		final ItemStack outputStack = this.getOutputStack(machine);
-		if (outputStack != null) {
+		if (!outputStack.isEmpty()) {
 			final ItemStack output = outputStack.copy();
 			final TransferRequest product = new TransferRequest(output, machine.getInventory()).setTargetSlots(Incubator.SLOT_OUTPUT).ignoreValidation();
 			final ItemStack leftover = product.transfer(false);
-			return leftover == null;
+			return leftover.isEmpty();
 		}
 		return true;
 	}

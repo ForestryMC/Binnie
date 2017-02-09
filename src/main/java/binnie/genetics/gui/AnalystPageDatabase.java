@@ -131,7 +131,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 				int dx = 0;
 				int dy = 0;
 				for (final IAlleleSpecies species : options) {
-					final IIndividual ind = system.getSpeciesRoot().templateAsIndividual(system.getSpeciesRoot().getTemplate(species.getUID()));
+					final IIndividual ind = system.getSpeciesRoot().templateAsIndividual(system.getSpeciesRoot().getTemplate(species));
 					new ControlIndividualDisplay(this, biomeListX + dx, 2 + dy, ind) {
 						@Override
 						public void initialise() {

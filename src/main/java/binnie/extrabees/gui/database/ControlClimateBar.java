@@ -15,6 +15,7 @@ import forestry.api.apiculture.IBeeGenome;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.EnumTolerance;
+import forestry.api.genetics.IAllele;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,13 +91,14 @@ public class ControlClimateBar extends Control implements ITooltip {
 		}
 		int main;
 		EnumTolerance tolerance;
+		final IAllele[] template = Binnie.GENETICS.getBeeRoot().getTemplate(species);
+		final IBeeGenome genome = Binnie.GENETICS.getBeeRoot().templateAsGenome(template);
+
 		if (!this.isHumidity) {
 			main = species.getTemperature().ordinal() - 1;
-			final IBeeGenome genome = Binnie.GENETICS.getBeeRoot().templateAsGenome(Binnie.GENETICS.getBeeRoot().getTemplate(species.getUID()));
 			tolerance = genome.getToleranceTemp();
 		} else {
 			main = species.getHumidity().ordinal();
-			final IBeeGenome genome = Binnie.GENETICS.getBeeRoot().templateAsGenome(Binnie.GENETICS.getBeeRoot().getTemplate(species.getUID()));
 			tolerance = genome.getToleranceHumid();
 		}
 		this.tolerated.add(main);

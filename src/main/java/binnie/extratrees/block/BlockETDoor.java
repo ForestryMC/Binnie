@@ -287,7 +287,6 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 //	}
 
 	@Override
-	@Nullable
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		return BlockMetadata.getPickBlock(world, pos);
 	}

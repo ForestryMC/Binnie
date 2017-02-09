@@ -13,8 +13,8 @@ import javax.annotation.Nullable;
 
 public class CustomSlot extends Slot {
 	@Override
-	public boolean isItemValid(@Nullable final ItemStack stack) {
-		return stack != null && this.inventory.isItemValidForSlot(this.getSlotIndex(), stack);
+	public boolean isItemValid(final ItemStack stack) {
+		return !stack.isEmpty() && this.inventory.isItemValidForSlot(this.getSlotIndex(), stack);
 	}
 
 	public CustomSlot(final IInventory inventory, final int index) {
@@ -38,8 +38,8 @@ public class CustomSlot extends Slot {
 	public void onSlotClick(final ContainerCraftGUI container, final int dragType, final ClickType modifier, final EntityPlayer player) {
 		ItemStack stack = player.inventory.getItemStack();
 		//TODO modifier==mouseButton2?
-		if (stack == null || modifier == ClickType.PICKUP_ALL) {
-			this.putStack(null);
+		if (stack.isEmpty() || modifier == ClickType.PICKUP_ALL) {
+			this.putStack(ItemStack.EMPTY);
 		} else {
 			stack = stack.copy();
 			stack.setCount(1);

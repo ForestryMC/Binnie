@@ -14,6 +14,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
@@ -46,6 +48,7 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		if (this.fluidStack == null) {
 			return;
@@ -78,7 +81,7 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 		}
 	}
 
-	public void setFluidStack(final FluidStack fluidStack) {
+	public void setFluidStack(@Nullable final FluidStack fluidStack) {
 		this.fluidStack = fluidStack;
 	}
 

@@ -84,7 +84,7 @@ public enum LaboratoryMachine implements IMachineType {
 		public NBTTagCompound writeToNBT(final NBTTagCompound nbttagcompound1) {
 			NBTTagCompound nbttagcompound = super.writeToNBT(nbttagcompound1);
 			final NBTTagCompound nbt = new NBTTagCompound();
-			if (this.stack != null) {
+			if (!this.stack.isEmpty()) {
 				this.stack.writeToNBT(nbt);
 			}
 			nbttagcompound.setTag("Item", nbt);
@@ -104,7 +104,7 @@ public enum LaboratoryMachine implements IMachineType {
 		@Override
 		public void onDestruction() {
 			super.onDestruction();
-			if (this.stack != null) {
+			if (!this.stack.isEmpty()) {
 				final float f = this.getMachine().getWorld().rand.nextFloat() * 0.8f + 0.1f;
 				final float f2 = this.getMachine().getWorld().rand.nextFloat() * 0.8f + 0.1f;
 				final float f3 = this.getMachine().getWorld().rand.nextFloat() * 0.8f + 0.1f;
@@ -127,7 +127,7 @@ public enum LaboratoryMachine implements IMachineType {
 //		@Override
 //		public void onRightClick(final World world, final EntityPlayer player, final int x, final int y, final int z) {
 //			if (BinnieCore.proxy.isSimulating(world) && player.getHeldItem() != null) {
-//				if (this.stack != null && player.getHeldItem().getItem() instanceof IToolWrench) {
+//				if (!this.stack.isEmpty() && player.getHeldItem().getItem() instanceof IToolWrench) {
 //					final float f = 0.7f;
 //					final double d0 = world.rand.nextFloat() * f + (1.0f - f) * 0.5;
 //					final double d2 = world.rand.nextFloat() * f + (1.0f - f) * 0.5;
@@ -158,18 +158,18 @@ public enum LaboratoryMachine implements IMachineType {
 //				validSelections.add(Genetics.registry);
 //				validSelections.add(Genetics.masterRegistry);
 //				validSelections.add(BinnieCore.genesis);
-//				if (this.stack == null && validSelections.contains(player.getHeldItem().getItem())) {
+//				if (this.stack.isEmpty() && validSelections.contains(player.getHeldItem().getItem())) {
 //					this.stack = player.getHeldItem().copy();
 //					final ItemStack heldItem = player.getHeldItem();
 //					heldItem.shrink(1);
 //					world.markBlockForUpdate(x, y, z);
 //					return;
 //				}
-//				if (this.stack != null && player.getHeldItem().getItem() instanceof IToolWrench) {
+//				if (!this.stack.isEmpty() && player.getHeldItem().getItem() instanceof IToolWrench) {
 //					this.stack.getItem().onItemRightClick(this.stack, world, player);
 //				}
 //			}
-//			if (this.stack != null) {
+//			if (!this.stack.isEmpty()) {
 //				this.stack.getItem().onItemRightClick(this.stack, world, player);
 //			}
 //		}

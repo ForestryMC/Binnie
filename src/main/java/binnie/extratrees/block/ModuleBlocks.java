@@ -282,7 +282,7 @@ public class ModuleBlocks implements IInitializable {
 			final ItemStack doorSolid = WoodManager.getDoor(plank2, DoorType.Solid);
 			final ItemStack doorSplit = WoodManager.getDoor(plank2, DoorType.Double);
 			final ItemStack doorFull = WoodManager.getDoor(plank2, DoorType.Full);
-			if (planks2 != null && gate != null) {
+			if (!planks2.isEmpty() && !gate.isEmpty()) {
 				gate.setCount(1);
 				GameRegistry.addRecipe(gate.copy(), "fpf", 'f', fenceNormal.copy(), 'p', planks2.copy());
 				fenceNormal.setCount(4);
@@ -299,7 +299,7 @@ public class ModuleBlocks implements IInitializable {
 	public void addSqueezer(final IWoodType log, final ILiquidType liquid, final int amount, final float pulpChance) {
 		final FluidStack liquidStack = liquid.get(amount);
 		ItemStack logStack = TreeManager.woodAccess.getStack(log, WoodBlockKind.LOG, false);
-		RecipeManagers.squeezerManager.addRecipe(10, logStack, liquidStack, Mods.Forestry.stack("woodPulp"), (int) (100.0f * pulpChance));
+		RecipeManagers.squeezerManager.addRecipe(10, logStack, liquidStack, Mods.Forestry.stack("wood_pulp"), (int) (100.0f * pulpChance));
 	}
 
 	public void addSqueezer(final IWoodType log, final ILiquidType liquid, final int amount) {

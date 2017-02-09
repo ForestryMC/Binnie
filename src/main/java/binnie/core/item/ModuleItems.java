@@ -50,12 +50,12 @@ public class ModuleItems implements IInitializable {
 
 			if (player != null) {
 				ItemStack heldItem = player.getHeldItemMainhand();
-				if (heldItem != null && heldItem.getItem() == BinnieCore.getFieldKit() && player.isSneaking()) {
+				if (!heldItem.isEmpty() && heldItem.getItem() == BinnieCore.getFieldKit() && player.isSneaking()) {
 					TileEntity tile = world.getTileEntity(pos);
 					if (tile instanceof TileEntityFlower) {
 						TileEntityFlower tileFlower = (TileEntityFlower) tile;
 						IFlower flower = tileFlower.getFlower();
-						if (flower != null && flower.getGenome() != null) {
+						if (flower != null) {
 							IFlowerGenome flowerGenome = flower.getGenome();
 							NBTTagCompound info = new NBTTagCompound();
 							info.setString("Species", flowerGenome.getPrimary().getUID());

@@ -4,7 +4,9 @@ import binnie.Binnie;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
 import binnie.core.circuits.BinnieCircuit;
+import com.google.common.base.Preconditions;
 import forestry.api.circuits.ChipsetManager;
+import forestry.api.circuits.ICircuitLayout;
 import forestry.api.farming.FarmDirection;
 import forestry.api.farming.IFarmHousing;
 import net.minecraft.item.ItemStack;
@@ -17,7 +19,7 @@ public class CircuitGarden extends BinnieCircuit {
 	private GardenLogic logic;
 
 	public CircuitGarden(EnumMoisture moisture, @Nullable EnumAcidity ph, boolean manual, boolean fertilised, ItemStack recipe, ItemStack icon) {
-		super(getName(moisture, ph, manual, fertilised), 4, manual ? ChipsetManager.circuitRegistry.getLayout("forestry.farms.manual") : ChipsetManager.circuitRegistry.getLayout("forestry.farms.managed"), recipe);
+		super(getName(moisture, ph, manual, fertilised), 4, getLayout(manual), recipe);
 		this.isManual = manual;
 		this.logic = new GardenLogic(moisture, ph, this.isManual, fertilised, icon, Binnie.LANGUAGE.localise(this.getUnlocalizedName()));
 		StringBuilder info = new StringBuilder("Flowers (")
@@ -39,6 +41,13 @@ public class CircuitGarden extends BinnieCircuit {
 				.append(Binnie.LANGUAGE.localise(fertilizedKey))
 				.append(")");
 		this.addTooltipString(info.toString());
+	}
+
+	private static ICircuitLayout getLayout(boolean manual) {
+		String layoutUid = manual ? "forestry.farms.manual" : "forestry.farms.managed";
+		ICircuitLayout layout = ChipsetManager.circuitRegistry.getLayout(layoutUid);
+		Preconditions.checkState(layout != null, "Couldn't find Forestry circuit layout %s.", layoutUid);
+		return layout;
 	}
 
 	private static String getName(EnumMoisture moisture, @Nullable EnumAcidity ph, boolean manual, boolean fertilised) {

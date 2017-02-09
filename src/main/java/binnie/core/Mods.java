@@ -40,29 +40,26 @@ public class Mods {
 			return ForgeRegistries.BLOCKS.getValue(key);
 		}
 
-		@Nullable
 		public ItemStack stack(final String name) {
 			Item item = this.item(name);
 			if (item == null) {
-				return null;
+				return ItemStack.EMPTY;
 			}
 			return new ItemStack(item);
 		}
 
-		@Nullable
 		public ItemStack stack(final String name, final int amount) {
 			Item item = this.item(name);
 			if (item == null) {
-				return null;
+				return ItemStack.EMPTY;
 			}
 			return new ItemStack(item, amount);
 		}
 
-		@Nullable
 		public ItemStack stack(final String name, final int amount, final int meta) {
 			Item item = this.item(name);
 			if (item == null) {
-				return null;
+				return ItemStack.EMPTY;
 			}
 			return new ItemStack(item, amount, meta);
 		}

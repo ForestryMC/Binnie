@@ -29,7 +29,7 @@ interface IBreedingMessage {
 				}
 			}
 			if (root != null) {
-				this.stack = root.getMemberStack(root.templateAsIndividual(root.getTemplate(species.getUID())), EnumBeeType.DRONE);
+				this.stack = root.getMemberStack(root.templateAsIndividual(root.getTemplate(species)), EnumBeeType.DRONE);
 			}
 		}
 
@@ -64,7 +64,7 @@ interface IBreedingMessage {
 				}
 			}
 			if (root != null) {
-				this.stack = root.getMemberStack(root.templateAsIndividual(root.getTemplate(species.getUID())), EnumBeeType.DRONE);
+				this.stack = root.getMemberStack(root.templateAsIndividual(root.getTemplate(species)), EnumBeeType.DRONE);
 			}
 		}
 

@@ -11,6 +11,7 @@ import binnie.genetics.api.IItemSerum;
 import binnie.genetics.genetics.Engineering;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IIndividual;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -23,16 +24,16 @@ public class InoculatorLogic extends ComponentProcess implements IProcess {
 	public static final int PROCESS_BASE_ENERGY = 600000;
 	public static final int BACTERIA_PER_PROCESS = 15;
 
-	public static int getProcessLength(@Nullable ItemStack itemStack) {
+	public static int getProcessLength(ItemStack itemStack) {
 		return PROCESS_BASE_LENGTH * getNumberOfGenes(itemStack);
 	}
 
-	public static int getProcessBaseEnergy(@Nullable ItemStack itemStack) {
+	public static int getProcessBaseEnergy(ItemStack itemStack) {
 		return PROCESS_BASE_ENERGY * getNumberOfGenes(itemStack);
 	}
 
-	private static int getNumberOfGenes(@Nullable ItemStack serum) {
-		if (serum == null) {
+	private static int getNumberOfGenes(ItemStack serum) {
+		if (serum.isEmpty()) {
 			return 1;
 		}
 		return Engineering.getGenes(serum).length;
@@ -81,7 +82,7 @@ public class InoculatorLogic extends ComponentProcess implements IProcess {
 			return state;
 		}
 		ItemStack serum = this.getUtil().getStack(Inoculator.SLOT_SERUM_VIAL);
-		if (serum != null && Engineering.getCharges(serum) == 0) {
+		if (!serum.isEmpty() && Engineering.getCharges(serum) == 0) {
 			return new ErrorState(Genetics.proxy.localise("machine.errors.empty.serum.desc"), Genetics.proxy.localise("machine.errors.empty.serum.info"));
 		}
 		return super.canWork();
@@ -99,11 +100,14 @@ public class InoculatorLogic extends ComponentProcess implements IProcess {
 			return new ErrorState(Genetics.proxy.localise("machine.errors.invalid.serum.desc"), Genetics.proxy.localise("machine.errors.invalid.serum.mismatch.info"));
 		}
 		final IIndividual individual = genes[0].getSpeciesRoot().getMember(target);
-		for (final IGene gene : genes) {
-			final IAllele a = individual.getGenome().getActiveAllele(gene.getChromosome());
-			final IAllele b = individual.getGenome().getInactiveAllele(gene.getChromosome());
-			if (!a.getUID().equals(gene.getAllele().getUID()) || !b.getUID().equals(gene.getAllele().getUID())) {
-				return null;
+		if (individual != null) {
+			final IGenome genome = individual.getGenome();
+			for (final IGene gene : genes) {
+				final IAllele a = genome.getActiveAllele(gene.getChromosome());
+				final IAllele b = genome.getInactiveAllele(gene.getChromosome());
+				if (!a.getUID().equals(gene.getAllele().getUID()) || !b.getUID().equals(gene.getAllele().getUID())) {
+					return null;
+				}
 			}
 		}
 		return new ErrorState(Genetics.proxy.localise("genetics.machine.errors.defunct.serum.desc"), Genetics.proxy.localise("genetics.machine.errors.defunct.serum.info"));

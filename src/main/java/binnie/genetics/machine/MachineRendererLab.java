@@ -42,7 +42,7 @@ public class MachineRendererLab {
 		World world = machine.getWorld();
 		LaboratoryMachine.ComponentGUIHolder holder = Machine.getInterface(LaboratoryMachine.ComponentGUIHolder.class, machine);
 		Label_0591: {
-			if (world != null && holder != null && holder.getStack() != null) {
+			if (world != null && holder != null && !holder.getStack().isEmpty()) {
 				BinnieCore.getBinnieProxy().getMinecraftInstance();
 				if (Minecraft.isFancyGraphicsEnabled()) {
 					final ItemStack stack = holder.getStack();
@@ -83,9 +83,9 @@ public class MachineRendererLab {
 					break Label_0591;
 				}
 			}
-			this.dummyEntityItem.setEntityItemStack((ItemStack) null);
+			this.dummyEntityItem.setEntityItemStack(ItemStack.EMPTY);
 			for (final EntityItem item2 : this.itemSides) {
-				item2.setEntityItemStack((ItemStack) null);
+				item2.setEntityItemStack(ItemStack.EMPTY);
 			}
 		}
 		GlStateManager.popMatrix();

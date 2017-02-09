@@ -31,7 +31,6 @@ import java.util.List;
 public class GuiCraftGUI extends GuiContainer {
 	IPoint mousePos;
 	private Window window;
-	@Nullable
 	private ItemStack draggedItem;
 
 	@Override
@@ -47,6 +46,7 @@ public class GuiCraftGUI extends GuiContainer {
 		super(window.getContainer());
 		this.mousePos = IPoint.ZERO;
 		this.window = window;
+		this.draggedItem = ItemStack.EMPTY;
 		this.resize(window.getSize());
 	}
 
@@ -65,7 +65,6 @@ public class GuiCraftGUI extends GuiContainer {
 		this.window.initGui();
 	}
 
-	@Nullable
 	public ItemStack getDraggedItem() {
 		return this.draggedItem;
 	}

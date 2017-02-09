@@ -164,7 +164,7 @@ public class Botany extends AbstractMod {
 		EntityPlayer player = event.getEntityPlayer();
 		if (player != null) {
 			ItemStack heldItem = player.getHeldItemMainhand();
-			if (heldItem != null) {
+			if (!heldItem.isEmpty()) {
 				TileEntity tile = event.getWorld().getTileEntity(event.getPos());
 				if (tile instanceof TileEntityFlower) {
 					TileEntityFlower flower = (TileEntityFlower) tile;
@@ -195,7 +195,7 @@ public class Botany extends AbstractMod {
 		EntityPlayer player = event.getEntityPlayer();
 		if (player != null) {
 			ItemStack heldItem = player.getHeldItemMainhand();
-			if (heldItem != null) {
+			if (!heldItem.isEmpty()) {
 				Block block = world.getBlockState(event.getPos()).getBlock();
 				if (!Gardening.isSoil(block)) {
 					pos = pos.down();
@@ -245,9 +245,11 @@ public class Botany extends AbstractMod {
 		if (!Gardening.isSoil(block)) {
 			return;
 		}
-		IFlower flower = BotanyCore.getFlowerRoot().getConversion(event.getItemInHand());
+		EntityPlayer player = event.getPlayer();
+		ItemStack heldItem = player.getHeldItem(event.getHand());
+		IFlower flower = BotanyCore.getFlowerRoot().getConversion(heldItem);
 		if (flower != null) {
-			Gardening.plant(world, pos, flower, event.getPlayer().getGameProfile());
+			Gardening.plant(world, pos, flower, player.getGameProfile());
 		}
 	}
 
@@ -261,7 +263,7 @@ public class Botany extends AbstractMod {
 			return;
 		}
 
-		if (heldItem != null) {
+		if (!heldItem.isEmpty()) {
 			Block block = world.getBlockState(pos).getBlock();
 			int py = -1;
 			if (block instanceof IBlockSoil && (world.isAirBlock(pos.up()) || block.isReplaceable(world, pos))) {

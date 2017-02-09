@@ -32,9 +32,7 @@ public abstract class ControlSlotBase extends Control implements ITooltip {
 		this.addSelfEventHandler(new EventWidget.ChangeSize.Handler() {
 			@Override
 			public void onEvent(final EventWidget.ChangeSize event) {
-				if (ControlSlotBase.this.itemDisplay != null) {
-					ControlSlotBase.this.itemDisplay.setSize(ControlSlotBase.this.getSize().sub(new IPoint(2, 2)));
-				}
+				ControlSlotBase.this.itemDisplay.setSize(ControlSlotBase.this.getSize().sub(new IPoint(2, 2)));
 			}
 		});
 	}
@@ -61,14 +59,14 @@ public abstract class ControlSlotBase extends Control implements ITooltip {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void getTooltip(final Tooltip tooltip) {
 		final ItemStack item = this.getItemStack();
-		if (item == null) {
+		if (item.isEmpty()) {
 			return;
 		}
 		tooltip.add(item.getTooltip(((Window) this.getTopParent()).getPlayer(), false));
 	}
 
-	@Nullable
 	public abstract ItemStack getItemStack();
 }

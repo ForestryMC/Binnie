@@ -95,9 +95,7 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 					final IChromosome c = template.getGenome().getChromosomes()[type.ordinal()];
 					if (c != null) {
 						final IAllele active = c.getActiveAllele();
-						if (active != null) {
-							item.addGene(new Gene(active, type, root));
-						}
+						item.addGene(new Gene(active, type, root));
 					}
 				}
 				final ItemStack array = new ItemStack(this);

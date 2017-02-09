@@ -1,9 +1,10 @@
 package binnie.craftgui.resource.minecraft;
 
-import binnie.core.BinnieCore;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 import binnie.craftgui.core.CraftGUI;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public enum CraftGUITextureSheet implements IBinnieTexture {
 	Controls2("controls"),
@@ -22,10 +23,8 @@ public enum CraftGUITextureSheet implements IBinnieTexture {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public BinnieResource getTexture() {
-		if (BinnieCore.getBinnieProxy().isServer()) {
-			return null;
-		}
 		return CraftGUI.resourceManager.getTextureSheet(this.name).getTexture();
 	}
 }

@@ -101,11 +101,11 @@ public class ComponentInventoryTransfer extends MachineComponent {
 
 		@Override
 		protected void doTransfer(final IInventory inv) {
-			if (inv.getStackInSlot(this.destination) == null) {
+			if (inv.getStackInSlot(this.destination).isEmpty()) {
 				for (final int i : this.buffer) {
-					if (inv.getStackInSlot(i) != null) {
+					if (!inv.getStackInSlot(i).isEmpty()) {
 						final ItemStack newStack = inv.decrStackSize(i, this.limit);
-						if (newStack != null) {
+						if (!newStack.isEmpty()) {
 							inv.setInventorySlotContents(this.destination, newStack);
 							return;
 						}
@@ -128,7 +128,7 @@ public class ComponentInventoryTransfer extends MachineComponent {
 		@Override
 		protected void doTransfer(final IInventory inv) {
 			ItemStack stackInSlot = inv.getStackInSlot(this.source);
-			if (stackInSlot != null) {
+			if (!stackInSlot.isEmpty()) {
 				TransferRequest transferRequest = new TransferRequest(stackInSlot, inv).setTargetSlots(this.destination).ignoreValidation();
 				ItemStack transfer = transferRequest.transfer(true);
 				inv.setInventorySlotContents(this.source, transfer);
@@ -138,7 +138,7 @@ public class ComponentInventoryTransfer extends MachineComponent {
 		@Override
 		protected boolean fulfilled(final IInventory inv) {
 			final ItemStack stack = inv.getStackInSlot(this.source);
-			return stack != null && (this.condition == null || this.condition.fulfilled(stack));
+			return !stack.isEmpty() && (this.condition == null || this.condition.fulfilled(stack));
 		}
 	}
 

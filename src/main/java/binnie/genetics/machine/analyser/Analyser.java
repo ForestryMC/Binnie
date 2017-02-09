@@ -21,8 +21,8 @@ public class Analyser {
 		return ind != null || stack.getItem() instanceof IItemAnalysable || Binnie.GENETICS.getConversion(stack) != null;
 	}
 
-	public static boolean isAnalysed(@Nullable final ItemStack stack) {
-		if (stack == null) {
+	public static boolean isAnalysed(final ItemStack stack) {
+		if (stack.isEmpty()) {
 			return false;
 		}
 		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(stack);
@@ -32,26 +32,24 @@ public class Analyser {
 		return stack.getItem() instanceof IItemAnalysable && ((IItemAnalysable) stack.getItem()).isAnalysed(stack);
 	}
 
-	@Nullable
-	public static ItemStack analyse(@Nullable ItemStack stack) {
-		if (stack == null) {
-			return null;
-		}
-		final ItemStack conv = Binnie.GENETICS.getConversionStack(stack);
-		if (conv != null) {
-			stack = conv;
-		}
-		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
-		if (root != null) {
-			final IIndividual ind = root.getMember(stack);
-			ind.analyze();
-			final NBTTagCompound nbttagcompound = new NBTTagCompound();
-			ind.writeToNBT(nbttagcompound);
-			stack.setTagCompound(nbttagcompound);
-			return stack;
-		}
-		if (stack.getItem() instanceof IItemAnalysable) {
-			return ((IItemAnalysable) stack.getItem()).analyse(stack);
+	public static ItemStack analyse(ItemStack stack) {
+		if (!stack.isEmpty()) {
+			final ItemStack conv = Binnie.GENETICS.getConversionStack(stack);
+			if (!conv.isEmpty()) {
+				stack = conv;
+			}
+			final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
+			if (root != null) {
+				final IIndividual ind = root.getMember(stack);
+				ind.analyze();
+				final NBTTagCompound nbttagcompound = new NBTTagCompound();
+				ind.writeToNBT(nbttagcompound);
+				stack.setTagCompound(nbttagcompound);
+				return stack;
+			}
+			if (stack.getItem() instanceof IItemAnalysable) {
+				return ((IItemAnalysable) stack.getItem()).analyse(stack);
+			}
 		}
 		return stack;
 	}

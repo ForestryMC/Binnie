@@ -66,8 +66,8 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 		this.nOfGenes = getGenesToUse(serum, target);
 	}
 
-	public static int getGenesToUse(@Nullable ItemStack serum, @Nullable ItemStack target) {
-		if (serum == null || target == null) {
+	public static int getGenesToUse(ItemStack serum, ItemStack target) {
+		if (serum.isEmpty() || target.isEmpty()) {
 			return 1;
 		}
 		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(target);
@@ -86,7 +86,7 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 
 	private int getFullNumberOfGenes() {
 		final ItemStack serum = this.getUtil().getStack(0);
-		if (serum == null) {
+		if (serum.isEmpty()) {
 			return 1;
 		}
 		return Engineering.getGenes(serum).length;
@@ -110,7 +110,7 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 		}
 
 		ItemStack serum = this.getUtil().getStack(Splicer.SLOT_SERUM_VIAL);
-		if (serum == null) {
+		if (serum.isEmpty()) {
 			return new ErrorState.NoItem(Genetics.proxy.localise("machine.errors.no.serum.desc"), Splicer.SLOT_SERUM_VIAL);
 		}
 
@@ -128,7 +128,7 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 	@Nullable
 	public ErrorState isValidSerum() {
 		final ItemStack serum = this.getUtil().getStack(Splicer.SLOT_SERUM_VIAL);
-		if (serum == null) {
+		if (serum.isEmpty()) {
 			return null;
 		}
 		final ItemStack target = this.getUtil().getStack(Splicer.SLOT_TARGET);
@@ -163,9 +163,9 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 	protected void onFinishTask() {
 		super.onFinishTask();
 		final ItemStack serum = this.getUtil().getStack(Splicer.SLOT_SERUM_VIAL);
-		Preconditions.checkState(serum != null);
+		Preconditions.checkState(!serum.isEmpty());
 		final ItemStack target = this.getUtil().getStack(Splicer.SLOT_TARGET);
-		Preconditions.checkState(target != null);
+		Preconditions.checkState(!target.isEmpty());
 		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(target);
 		if (!ind.isAnalyzed()) {
 			ind.analyze();

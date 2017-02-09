@@ -65,7 +65,7 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 		}
 		final BlockDesign blockC = (BlockDesign) world.getBlockState(pos).getBlock();
 		final ItemStack item = player.getHeldItemMainhand();
-		if (item == null) {
+		if (item.isEmpty()) {
 			return;
 		}
 		if (!(item.getItem() instanceof IToolHammer)) {

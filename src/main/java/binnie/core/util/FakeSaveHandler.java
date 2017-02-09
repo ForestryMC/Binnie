@@ -26,7 +26,7 @@ public class FakeSaveHandler implements ISaveHandler {
 	@Override
 	public IChunkLoader getChunkLoader(WorldProvider provider)
 	{
-		return null;
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -42,7 +42,7 @@ public class FakeSaveHandler implements ISaveHandler {
 	@Override
 	public IPlayerFileData getPlayerNBTManager()
 	{
-		return null;
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -53,18 +53,18 @@ public class FakeSaveHandler implements ISaveHandler {
 	@Override
 	public File getMapFileFromName(String mapName)
 	{
-		return null;
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public File getWorldDirectory()
 	{
-		return null;
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
 	public TemplateManager getStructureTemplateManager()
 	{
-		return null;
+		throw new UnsupportedOperationException();
 	}
 }

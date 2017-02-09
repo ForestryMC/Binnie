@@ -35,7 +35,7 @@ public class Validators {
 		@Override
 		public boolean isValid(final ItemStack itemStack) {
 			final IDesignMaterial mat = this.type.getSystem().getMaterial(itemStack);
-			return itemStack != null && mat != null;
+			return !itemStack.isEmpty() && mat != null;
 		}
 
 		@Override

@@ -5,6 +5,8 @@ import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.minecraft.Window;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlTankSlot extends ControlSlotFluid {
 	int tankID;
@@ -26,6 +28,7 @@ public class ControlTankSlot extends ControlSlotFluid {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onUpdateClient() {
 		this.fluidStack = Window.get(this).getContainer().getTankInfo(this.tankID).liquid;
 		final int height = 16 * (((this.fluidStack == null) ? 0 : this.fluidStack.amount) / 1000);

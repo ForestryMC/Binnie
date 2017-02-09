@@ -13,6 +13,8 @@ import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlSlide extends Control {
 	private IArea expanded;
@@ -35,6 +37,7 @@ public class ControlSlide extends Control {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		super.onRenderBackground(guiWidth, guiHeight);
 		if (this.label != null) {

@@ -24,6 +24,8 @@ import binnie.extratrees.carpentry.EnumDesign;
 import binnie.extratrees.machines.Designer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,6 +64,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onUpdateClient() {
 		super.onUpdateClient();
 		final TileEntityMachine tile = (TileEntityMachine) Window.get(this).getInventory();

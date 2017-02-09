@@ -28,8 +28,7 @@ public class CeramicBrickPair {
 	}
 
 	public ItemStack getStack(int i) {
-		ItemStack s = new ItemStack(Botany.ceramicBrick, i, this.ordinal());
-		return s;
+		return new ItemStack(Botany.ceramicBrick, i, this.ordinal());
 	}
 
 	public CeramicBrickPair(int id) {

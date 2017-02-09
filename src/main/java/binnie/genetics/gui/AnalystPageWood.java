@@ -33,7 +33,7 @@ public class AnalystPageWood extends AnalystPageProduce {
 
 		final IAlleleTreeSpecies treeSpecies = genome.getPrimary();
 		final ItemStack stackWood = treeSpecies.getWoodProvider().getWoodStack();
-		if (stackWood != null) {
+		if (!stackWood.isEmpty()) {
 			products.add(stackWood);
 		}
 		// for (final ItemStack stack :

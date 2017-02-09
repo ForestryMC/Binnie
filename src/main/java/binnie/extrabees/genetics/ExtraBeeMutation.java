@@ -2,6 +2,7 @@ package binnie.extrabees.genetics;
 
 import binnie.Binnie;
 import binnie.core.genetics.ForestryAllele;
+import com.google.common.base.Preconditions;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBeeGenome;
@@ -25,9 +26,7 @@ public class ExtraBeeMutation implements IBeeMutation {
 	public static List<IBeeMutation> mutations = new ArrayList<>();
 	@Nullable
 	MutationRequirement req;
-	@Nullable
 	IAlleleBeeSpecies species0;
-	@Nullable
 	IAlleleBeeSpecies species1;
 	IAllele[] template;
 	int chance;
@@ -204,18 +203,16 @@ public class ExtraBeeMutation implements IBeeMutation {
 	}
 
 	public ExtraBeeMutation(final IAlleleBeeSpecies allele0, final IAlleleBeeSpecies allele1, final IAllele[] mutation, final int chance, @Nullable final MutationRequirement req) {
-		this.species0 = null;
-		this.species1 = null;
-		this.template = new IAllele[0];
+		Preconditions.checkNotNull(allele0);
+		Preconditions.checkNotNull(allele1);
+		Preconditions.checkNotNull(mutation);
 		this.chance = 80;
 		this.chance = chance;
 		this.req = req;
 		this.species0 = allele0;
 		this.species1 = allele1;
 		this.template = mutation;
-		if (this.species0 != null && this.species1 != null && this.template != null) {
-			ExtraBeeMutation.mutations.add(this);
-		}
+		ExtraBeeMutation.mutations.add(this);
 	}
 
 	@Override
@@ -255,10 +252,6 @@ public class ExtraBeeMutation implements IBeeMutation {
 
 	@Override
 	public float getChance(final IBeeHousing housing, final IAlleleBeeSpecies allele0, final IAlleleBeeSpecies allele1, final IBeeGenome genome0, final IBeeGenome genome1) {
-		if (this.species0 == null || this.species1 == null || allele0 == null || allele1 == null) {
-			return 0.0f;
-		}
-
 		final World world = housing.getWorldObj();
 		final Biome biome = housing.getBiome();
 		if (this.req != null && !this.req.fufilled(housing, allele0, allele1, genome0, genome1)) {

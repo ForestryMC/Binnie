@@ -19,7 +19,7 @@ public class BinnieCircuit implements ICircuit {
 		this.uid = "binnie.circuit." + uid;
 		this.limit = limit;
 		ChipsetManager.circuitRegistry.registerCircuit(this);
-		if (itemStack != null) {
+		if (!itemStack.isEmpty()) {
 			ChipsetManager.solderManager.addRecipe(layout, itemStack, this);
 		}
 	}

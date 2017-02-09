@@ -23,6 +23,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -163,15 +164,20 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 				component.onUpdate();
 			}
 		} else {
-			for (IRender.DisplayTick renders : this.getInterfaces(IRender.DisplayTick.class)) {
-				renders.onDisplayTick(this.getWorld(), this.getTileEntity().getPos(), this.getWorld().rand);
-			}
+			updateClient();
 		}
 		if (this.queuedInventoryUpdate) {
 			for (final MachineComponent component : this.getComponents()) {
 				component.onInventoryUpdate();
 			}
 			this.queuedInventoryUpdate = false;
+		}
+	}
+
+	@SideOnly(Side.CLIENT)
+	private void updateClient() {
+		for (IRender.DisplayTick renders : this.getInterfaces(IRender.DisplayTick.class)) {
+			renders.onDisplayTick(this.getWorld(), this.getTileEntity().getPos(), this.getWorld().rand);
 		}
 	}
 

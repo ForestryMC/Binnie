@@ -13,7 +13,10 @@ import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.CraftGUITextureSheet;
 import binnie.craftgui.resource.minecraft.StandardTexture;
 import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IMutation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 class ControlMutationSymbol extends Control implements ITooltip {
 	private static Texture MutationPlus = new StandardTexture(2, 94, 16, 16, CraftGUITextureSheet.Controls2);
@@ -23,6 +26,7 @@ class ControlMutationSymbol extends Control implements ITooltip {
 	private int type;
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		super.onRenderBackground(guiWidth, guiHeight);
 		if (this.type == 0) {
@@ -54,15 +58,13 @@ class ControlMutationSymbol extends Control implements ITooltip {
 	@Override
 	public void getTooltip(final Tooltip tooltip) {
 		if (this.type == 1 && this.discovered) {
-			final IAllele species1 = this.value.getAllele0();
-			final IAllele species2 = this.value.getAllele1();
+			final IAlleleSpecies species1 = this.value.getAllele0();
+			final IAlleleSpecies species2 = this.value.getAllele1();
 			final BreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
 			final float chance = system.getChance(this.value, Window.get(this).getPlayer(), species1, species2);
 			tooltip.add("Current Chance - " + chance + "%");
-			if (this.value.getSpecialConditions() != null) {
-				for (final String string : this.value.getSpecialConditions()) {
-					tooltip.add(string);
-				}
+			for (final String string : this.value.getSpecialConditions()) {
+				tooltip.add(string);
 			}
 		}
 	}

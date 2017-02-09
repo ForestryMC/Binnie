@@ -8,7 +8,10 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.time.DurationFormatUtils;
 
 import javax.annotation.Nullable;
@@ -55,6 +58,7 @@ public class InoculatorRecipeWrapper extends BlankRecipeWrapper {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 		if (currentIngredients == null) {
 			return;
@@ -84,8 +88,7 @@ public class InoculatorRecipeWrapper extends BlankRecipeWrapper {
 				processTicks = InoculatorLogic.getProcessLength(inputSerum);
 			}
 
-			// todo: 1.11 use MinecraftForgeClient#getLocale() for integer formatting
-			NumberFormat decimalFormat = NumberFormat.getIntegerInstance();
+			NumberFormat decimalFormat = NumberFormat.getIntegerInstance(MinecraftForgeClient.getLocale());
 			String powerString = decimalFormat.format(power) + " RF";
 			int xPower = 15 + (recipeWidth - minecraft.fontRendererObj.getStringWidth(powerString)) / 2;
 			minecraft.fontRendererObj.drawString(powerString, xPower, 5, Color.gray.getRGB());

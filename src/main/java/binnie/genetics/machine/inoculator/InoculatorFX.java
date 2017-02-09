@@ -24,7 +24,7 @@ public class InoculatorFX extends MachineComponent implements IRender.DisplayTic
 
 	public InoculatorFX(final IMachine machine) {
 		super(machine);
-		this.dummyEntityItem = new EntityItem(null);
+		this.dummyEntityItem = new EntityItem(machine.getWorld());
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -86,7 +86,7 @@ public class InoculatorFX extends MachineComponent implements IRender.DisplayTic
 		final EntityItem dummyEntityItem = this.dummyEntityItem;
 		dummyEntityItem.setAgeToCreativeDespawnTime(); //			++dummyEntityItem.age;
 		this.dummyEntityItem.hoverStart = 0.0f;
-		if (stack == null) {
+		if (stack.isEmpty()) {
 			return;
 		}
 		final EntityPlayer player = BinnieCore.getBinnieProxy().getPlayer();
@@ -104,7 +104,7 @@ public class InoculatorFX extends MachineComponent implements IRender.DisplayTic
 	public void syncToNBT(final NBTTagCompound nbt) {
 		final NBTTagCompound item = new NBTTagCompound();
 		final ItemStack stack = this.getUtil().getStack(9);
-		if (stack != null) {
+		if (!stack.isEmpty()) {
 			stack.writeToNBT(item);
 			nbt.setTag("item", item);
 		}
@@ -115,7 +115,7 @@ public class InoculatorFX extends MachineComponent implements IRender.DisplayTic
 		if (nbt.hasKey("item")) {
 			this.getUtil().setStack(9, new ItemStack(nbt.getCompoundTag("item")));
 		} else {
-			this.getUtil().setStack(9, null);
+			this.getUtil().setStack(9, ItemStack.EMPTY);
 		}
 	}
 

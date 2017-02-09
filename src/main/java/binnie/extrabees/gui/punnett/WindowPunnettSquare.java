@@ -15,10 +15,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
 
+import javax.annotation.Nullable;
+
 public class WindowPunnettSquare extends Window {
 	ControlSlot bee1;
 	ControlSlot bee2;
 	ControlPunnett punnett;
+	@Nullable
 	ISpeciesRoot root;
 
 	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {

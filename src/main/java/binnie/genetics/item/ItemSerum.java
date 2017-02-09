@@ -94,7 +94,7 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 	@Override
 	public String getItemStackDisplayName(final ItemStack itemstack) {
 		final GeneItem gene = this.getGeneItem(itemstack);
-		if (gene != null) {
+		if (gene != null && gene.getSpeciesRoot() != null) {
 			BreedingSystem system = Binnie.GENETICS.getSystem(gene.getSpeciesRoot());
 			return system.getDescriptor() + " " + Binnie.LANGUAGE.localise("genetic.item.gene.serum");
 		} else {

@@ -25,7 +25,7 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 
 	public static void addSubtypes() {
 		final ItemStack beeswax = Mods.Forestry.stack("beeswax");
-		final ItemStack honeyDrop = Mods.Forestry.stack("honeyDrop");
+		final ItemStack honeyDrop = Mods.Forestry.stack("honey_drop");
 		OreDictionary.registerOre("ingotIron", Items.IRON_INGOT);
 		OreDictionary.registerOre("ingotGold", Items.GOLD_INGOT);
 		OreDictionary.registerOre("gemDiamond", Items.DIAMOND);
@@ -150,7 +150,7 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 		EnumHoneyComb.SALTPETER.addProduct(honeyDrop, 0.25f);
 		EnumHoneyComb.SALTPETER.tryAddProduct(getOreDictionary("dustSaltpeter"), 1.00f);
 		EnumHoneyComb.COMPOST.addProduct(honeyDrop, 0.25f);
-		EnumHoneyComb.COMPOST.tryAddProduct(Mods.Forestry.stack("fertilizerBio"), 1.00f);
+		EnumHoneyComb.COMPOST.tryAddProduct(Mods.Forestry.stack("fertilizer_bio"), 1.00f);
 		EnumHoneyComb.SAWDUST.addProduct(honeyDrop, 0.25f);
 		if (!OreDictionary.getOres("dustSawdust").isEmpty()) {
 			EnumHoneyComb.SAWDUST.tryAddProduct(OreDictionary.getOres("dustSawdust").get(0), 1.00f);
@@ -220,12 +220,11 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 		}
 	}
 
-	@Nullable
 	private static ItemStack getOreDictionary(final String string) {
 		if (OreDictionary.getOres(string).size() > 0) {
 			return OreDictionary.getOres(string).get(0);
 		}
-		return null;
+		return ItemStack.EMPTY;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -258,7 +257,7 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 		QUARTZ;
 
 		public ItemStack get() {
-			return Mods.Forestry.stack("beeCombs", 1, this.ordinal());
+			return Mods.Forestry.stack("bee_combs", 1, this.ordinal());
 		}
 	}
 }

@@ -325,12 +325,12 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		}
 	}
 
-	@Nullable
 	public ItemStack getItemStack() {
-		if (this.flower == null) {
-			return null;
+		IFlower flower = this.getFlower();
+		if (flower == null) {
+			return ItemStack.EMPTY;
 		}
-		return Binnie.GENETICS.getFlowerRoot().getMemberStack(this.getFlower(), EnumFlowerStage.getStage(getFlower()));
+		return Binnie.GENETICS.getFlowerRoot().getMemberStack(flower, EnumFlowerStage.getStage(flower));
 	}
 
 	@Nullable

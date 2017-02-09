@@ -56,9 +56,10 @@ public class TreeBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public float getChance(final IMutation mutation, final EntityPlayer player, final IAllele species1, final IAllele species2) {
-		final ITreeGenome genome0 = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(species1.getUID()));
-		final ITreeGenome genome2 = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(species2.getUID()));
+	public float getChance(final IMutation mutation, final EntityPlayer player, final IAlleleSpecies species1, final IAlleleSpecies species2) {
+		ISpeciesRoot speciesRoot = this.getSpeciesRoot();
+		final ITreeGenome genome0 = (ITreeGenome) speciesRoot.templateAsGenome(speciesRoot.getTemplate(species1));
+		final ITreeGenome genome2 = (ITreeGenome) speciesRoot.templateAsGenome(speciesRoot.getTemplate(species2));
 		return ((ITreeMutation) mutation).getChance(player.world, player.getPosition(), (IAlleleTreeSpecies) species1, (IAlleleTreeSpecies) species2, genome0, genome2);
 	}
 
@@ -95,11 +96,11 @@ public class TreeBreedingSystem extends BreedingSystem {
 		this.discoveredWoods.clear();
 		for (final IAlleleSpecies species : this.getDiscoveredSpecies(tracker)) {
 			final IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
-			final ITreeGenome genome = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(tSpecies.getUID()));
+			final ITreeGenome genome = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(tSpecies));
 
 			IAlleleTreeSpecies treeSpecies = genome.getPrimary();
 			final ItemStack wood = treeSpecies.getWoodProvider().getWoodStack();
-			if (wood != null) {
+			if (!wood.isEmpty()) {
 				this.discoveredWoods.add(wood);
 			}
 
@@ -121,11 +122,11 @@ public class TreeBreedingSystem extends BreedingSystem {
 		super.calculateArrays();
 		for (final IAlleleSpecies species : this.allActiveSpecies) {
 			final IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
-			final ITreeGenome genome = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(tSpecies.getUID()));
+			final ITreeGenome genome = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(tSpecies));
 
 			IAlleleTreeSpecies treeSpecies = genome.getPrimary();
 			final ItemStack wood = treeSpecies.getWoodProvider().getWoodStack();
-			if (wood != null) {
+			if (!wood.isEmpty()) {
 				this.allWoods.add(wood);
 			}
 
@@ -145,7 +146,7 @@ public class TreeBreedingSystem extends BreedingSystem {
 		final List<IAlleleSpecies> found = new ArrayList<>();
 		for (final IAlleleSpecies species : set) {
 			final IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
-			final ITreeGenome genome = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(tSpecies.getUID()));
+			final ITreeGenome genome = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(tSpecies));
 			for (final ItemStack fruit2 : genome.getFruitProvider().getProducts().keySet()) {
 				if (fruit2.isItemEqual(fruit)) {
 					found.add(species);
@@ -161,7 +162,7 @@ public class TreeBreedingSystem extends BreedingSystem {
 		final Set<IFruitFamily> providers = new HashSet<>();
 		for (final IAlleleSpecies species : set) {
 			final IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
-			final ITreeGenome genome = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(tSpecies.getUID()));
+			final ITreeGenome genome = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(tSpecies));
 			for (final ItemStack fruit2 : genome.getFruitProvider().getProducts().keySet()) {
 				if (fruit2.isItemEqual(fruit)) {
 					providers.add(genome.getFruitProvider().getFamily());
@@ -185,7 +186,7 @@ public class TreeBreedingSystem extends BreedingSystem {
 		final List<IAlleleSpecies> found = new ArrayList<>();
 		for (final IAlleleSpecies species : set) {
 			IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
-			ITreeGenome genome = TreeManager.treeRoot.templateAsGenome(TreeManager.treeRoot.getTemplate(tSpecies.getUID()));
+			ITreeGenome genome = TreeManager.treeRoot.templateAsGenome(TreeManager.treeRoot.getTemplate(tSpecies));
 			IAlleleTreeSpecies treeSpecies = genome.getPrimary();
 			final ItemStack woodStack = treeSpecies.getWoodProvider().getWoodStack();
 
@@ -204,10 +205,11 @@ public class TreeBreedingSystem extends BreedingSystem {
 		final List<IAlleleSpecies> found = new ArrayList<>();
 		for (final IAlleleSpecies species : set) {
 			final IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
-			ITreeGenome genome = TreeManager.treeRoot.templateAsGenome(TreeManager.treeRoot.getTemplate(tSpecies.getUID()));
+			ITreeGenome genome = TreeManager.treeRoot.templateAsGenome(TreeManager.treeRoot.getTemplate(tSpecies));
 			IAlleleTreeSpecies treeSpecies = genome.getPrimary();
 			final ItemStack woodStack = treeSpecies.getWoodProvider().getWoodStack();
-			if (LumbermillRecipes.getPlankProduct(woodStack) != null && fruit.isItemEqual(LumbermillRecipes.getPlankProduct(woodStack))) {
+			ItemStack plankProduct = LumbermillRecipes.getPlankProduct(woodStack);
+			if (!plankProduct.isEmpty() && fruit.isItemEqual(plankProduct)) {
 				found.add(species);
 			}
 		}
@@ -221,7 +223,7 @@ public class TreeBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public boolean isDNAManipulable(ISpeciesType type) {
+	public boolean isDNAManipulable(@Nullable ISpeciesType type) {
 		return type == EnumGermlingType.POLLEN;
 	}
 

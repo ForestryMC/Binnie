@@ -4,10 +4,13 @@ import forestry.api.genetics.IIndividual;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
+
 public interface IFlower extends IIndividual {
 	@Override
 	IFlowerGenome getGenome();
 
+	@Nullable
 	IFlowerGenome getMate();
 
 	void mate(final IFlower flower);

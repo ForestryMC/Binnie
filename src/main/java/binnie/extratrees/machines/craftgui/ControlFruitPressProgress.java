@@ -20,6 +20,8 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlFruitPressProgress extends ControlProgressBase {
 	private static final Texture PressTexture = new StandardTexture(6, 0, 24, 52, ExtraTreeTexture.Gui);
@@ -35,7 +37,7 @@ public class ControlFruitPressProgress extends ControlProgressBase {
 			return;
 		}
 		final ItemStack input = slotFromInventory.getStack();
-		if (input == null || FruitPressRecipes.getOutput(input) == null) {
+		if (input.isEmpty() || FruitPressRecipes.getOutput(input) == null) {
 			return;
 		}
 		FluidStack fluid = FruitPressRecipes.getOutput(input);
@@ -44,6 +46,7 @@ public class ControlFruitPressProgress extends ControlProgressBase {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		GlStateManager.enableBlend();
 		CraftGUI.render.texture(ControlFruitPressProgress.PressTexture, new IPoint(0, Math.round(16 * this.progress)));

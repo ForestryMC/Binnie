@@ -5,6 +5,7 @@ import binnie.core.BinnieCore;
 import binnie.extratrees.ExtraTrees;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleInteger;
+import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IMutation;
@@ -25,7 +26,7 @@ class MothBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public float getChance(final IMutation mutation, final EntityPlayer player, final IAllele species1, final IAllele species2) {
+	public float getChance(final IMutation mutation, final EntityPlayer player, final IAlleleSpecies species1, final IAlleleSpecies species2) {
 		return 0.0f;
 	}
 

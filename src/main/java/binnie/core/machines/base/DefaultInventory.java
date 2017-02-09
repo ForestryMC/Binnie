@@ -35,7 +35,7 @@ class DefaultInventory implements IInventory {
 	}
 
 	@Override
-	public void setInventorySlotContents(final int i, @Nullable final ItemStack itemstack) {
+	public void setInventorySlotContents(final int i, final ItemStack itemstack) {
 	}
 
 	@Override

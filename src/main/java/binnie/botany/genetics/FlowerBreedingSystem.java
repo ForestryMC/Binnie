@@ -11,6 +11,7 @@ import binnie.core.genetics.ForestryAllele;
 import binnie.core.genetics.Tolerance;
 import binnie.extrabees.ExtraBees;
 import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IIndividual;
@@ -29,7 +30,7 @@ public class FlowerBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public float getChance(final IMutation mutation, final EntityPlayer player, final IAllele species1, final IAllele species2) {
+	public float getChance(final IMutation mutation, final EntityPlayer player, final IAlleleSpecies species1, final IAlleleSpecies species2) {
 		return mutation.getBaseChance();
 	}
 

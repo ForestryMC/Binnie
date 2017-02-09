@@ -6,6 +6,8 @@ import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
 import binnie.genetics.Genetics;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public enum GeneticsTexture implements IBinnieTexture {
 	GeneticMachine(ResourceType.Tile, "GeneticMachine"),
@@ -34,6 +36,7 @@ public enum GeneticsTexture implements IBinnieTexture {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public BinnieResource getTexture() {
 		return Binnie.RESOURCE.getPNG(Genetics.instance, this.type, this.texture);
 	}

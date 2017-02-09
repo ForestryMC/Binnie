@@ -76,6 +76,7 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 	@Override
 	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final NonNullList<ItemStack> itemList) {
 		final IAlleleBeeSpecies species = (IAlleleBeeSpecies) AlleleManager.alleleRegistry.getAllele("forestry.speciesMeadows");
+		Preconditions.checkNotNull(species);
 		itemList.add(create(new Gene(species, EnumBeeChromosome.SPECIES, Binnie.GENETICS.getBeeRoot()), false));
 	}
 

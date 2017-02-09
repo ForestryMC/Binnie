@@ -16,6 +16,8 @@ import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class AnalystPageGenome extends ControlAnalystPage {
 	boolean active;
@@ -27,10 +29,11 @@ public class AnalystPageGenome extends ControlAnalystPage {
 		int y = 4;
 		new ControlTextCentered(this, y, "§n" + this.getTitle()).setColour(this.getColour());
 		y += 16;
-		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(ind.getClass());
+		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(ind);
 		final BreedingSystem system = Binnie.GENETICS.getSystem(root);
 		final Control scaled = new Control(this, 0, y, 0, 0) {
 			@Override
+			@SideOnly(Side.CLIENT)
 			public void onRenderBackground(int guiWidth, int guiHeight) {
 				GlStateManager.pushMatrix();
 				GlStateManager.translate(10.0f, -15.0f, 0.0f);
@@ -38,6 +41,7 @@ public class AnalystPageGenome extends ControlAnalystPage {
 			}
 
 			@Override
+			@SideOnly(Side.CLIENT)
 			public void onRenderForeground(int guiWidth, int guiHeight) {
 				GlStateManager.popMatrix();
 			}

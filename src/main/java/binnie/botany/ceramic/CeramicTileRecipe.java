@@ -51,7 +51,7 @@ public class CeramicTileRecipe implements IRecipe {
 		}
 		for (CeramicBrickType type : CeramicBrickType.VALUES) {
 			ItemStack result = type.getRecipe(stacks);
-			if (result != null) {
+			if (!result.isEmpty()) {
 				return result;
 			}
 		}

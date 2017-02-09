@@ -84,36 +84,40 @@ public class InoculatorRecipeCategory extends BlankRecipeCategory<InoculatorReci
 		recipeWrapper.setCurrentIngredients(itemStacks.getGuiIngredients());
 
 		IFocus<?> focus = recipeLayout.getFocus();
-		Object focusValue = focus.getValue();
-		if (focusValue instanceof ItemStack) {
-			ItemStack focusStack = (ItemStack) focusValue;
-			if (AlleleManager.alleleRegistry.isIndividual(focusStack)) {
-				if (focus.getMode() == IFocus.Mode.INPUT) {
-					ItemStack serum = recipeWrapper.getInputSerum();
-					ItemStack output = InoculatorLogic.applySerum(focusStack, serum);
-					itemStacks.set(0, serum);
-					itemStacks.set(1, focusStack);
+		if (focus != null) {
+			Object focusValue = focus.getValue();
+			if (focusValue instanceof ItemStack) {
+				ItemStack focusStack = (ItemStack) focusValue;
+				if (AlleleManager.alleleRegistry.isIndividual(focusStack)) {
+					if (focus.getMode() == IFocus.Mode.INPUT) {
+						ItemStack serum = recipeWrapper.getInputSerum();
+						ItemStack output = InoculatorLogic.applySerum(focusStack, serum);
+						itemStacks.set(0, serum);
+						itemStacks.set(1, focusStack);
+						itemStacks.set(2, output);
+						return;
+					} else if (focus.getMode() == IFocus.Mode.OUTPUT) {
+						IIndividual individual = AlleleManager.alleleRegistry.getIndividual(focusStack);
+						if (individual != null) {
+							ISpeciesRoot speciesRoot = individual.getGenome().getSpeciesRoot();
+							IAlleleSpecies species = individual.getGenome().getPrimary();
+							ItemStack serum = ItemSerum.create(new Gene(species, speciesRoot.getSpeciesChromosomeType(), speciesRoot));
+							serum.setItemDamage(0); // set fully charged
+
+							itemStacks.set(0, serum);
+							itemStacks.set(1, recipeWrapper.getWildcardTarget());
+							itemStacks.set(2, focusStack);
+							return;
+						}
+					}
+				} else if (focusStack.getItem() instanceof ItemSerum) {
+					ItemStack input = recipeWrapper.getWildcardTarget();
+					ItemStack output = InoculatorLogic.applySerum(input, focusStack);
+					itemStacks.set(0, focusStack);
+					itemStacks.set(1, input);
 					itemStacks.set(2, output);
 					return;
-				} else if (focus.getMode() == IFocus.Mode.OUTPUT) {
-					IIndividual individual = AlleleManager.alleleRegistry.getIndividual(focusStack);
-					ISpeciesRoot speciesRoot = individual.getGenome().getSpeciesRoot();
-					IAlleleSpecies species = individual.getGenome().getPrimary();
-					ItemStack serum = ItemSerum.create(new Gene(species, speciesRoot.getSpeciesChromosomeType(), speciesRoot));
-					serum.setItemDamage(0); // set fully charged
-
-					itemStacks.set(0, serum);
-					itemStacks.set(1, recipeWrapper.getWildcardTarget());
-					itemStacks.set(2, focusStack);
-					return;
 				}
-			} else if (focusStack.getItem() instanceof ItemSerum) {
-				ItemStack input = recipeWrapper.getWildcardTarget();
-				ItemStack output = InoculatorLogic.applySerum(input, focusStack);
-				itemStacks.set(0, focusStack);
-				itemStacks.set(1, input);
-				itemStacks.set(2, output);
-				return;
 			}
 		}
 

@@ -10,6 +10,7 @@ import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.minecraft.control.ControlItemDisplay;
 import com.mojang.authlib.GameProfile;
+import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
@@ -28,7 +29,8 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 	public void setSpecies(final IAlleleSpecies species, EnumDiscoveryState state) {
 		final ISpeciesRoot speciesRoot = Binnie.GENETICS.getSpeciesRoot(species);
 		final BreedingSystem system = Binnie.GENETICS.getSystem(speciesRoot);
-		final IIndividual ind = system.getSpeciesRoot().templateAsIndividual(system.getSpeciesRoot().getTemplate(species.getUID()));
+		final IAllele[] template = system.getSpeciesRoot().getTemplate(species);
+		final IIndividual ind = system.getSpeciesRoot().templateAsIndividual(template);
 		super.setItemStack(system.getSpeciesRoot().getMemberStack(ind, system.getDefaultType()));
 		this.species = species;
 		final GameProfile username = Window.get(this).getUsername();

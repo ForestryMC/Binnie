@@ -1,13 +1,14 @@
 package binnie.core.util;
 
 import net.minecraft.world.WorldSavedData;
+import net.minecraft.world.storage.ISaveHandler;
 import net.minecraft.world.storage.MapStorage;
 
 import javax.annotation.Nullable;
 
 public class FakeMapStorage extends MapStorage {
-	public FakeMapStorage() {
-		super(null);
+	public FakeMapStorage(ISaveHandler fakeSaveHandler) {
+		super(fakeSaveHandler);
 	}
 
 	@Override

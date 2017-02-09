@@ -133,7 +133,7 @@ public class ModuleItems implements IInitializable {
 		GameRegistry.addRecipe(ExtraTreeItems.GrainCorn.get(3), " s ", "  s", " s ", 's', ExtraTreeItems.GrainWheat.get(1));
 		GameRegistry.addRecipe(ExtraTreeItems.GrainRye.get(3), "   ", "s s", " s ", 's', ExtraTreeItems.GrainWheat.get(1));
 		GameRegistry.addRecipe(ExtraTreeItems.Hops.get(3), " s ", "sps", " s ", 's', Items.WHEAT_SEEDS, 'p', Items.APPLE);
-		GameRegistry.addRecipe(ExtraTreeItems.ProvenGear.get(1), " s ", "s s", " s ", 's', Mods.Forestry.stack("oakStick"));
+		GameRegistry.addRecipe(ExtraTreeItems.ProvenGear.get(1), " s ", "s s", " s ", 's', Mods.Forestry.stack("oak_stick"));
 		GameRegistry.addRecipe(ExtraTreeItems.GlassFitting.get(6), "s s", " i ", "s s", 'i', Items.IRON_INGOT, 's', Items.STICK);
 		GameRegistry.addSmelting(ExtraTreeItems.GrainWheat.get(1), ExtraTreeItems.GrainRoasted.get(1), 0.0f);
 		GameRegistry.addSmelting(ExtraTreeItems.GrainRye.get(1), ExtraTreeItems.GrainRoasted.get(1), 0.0f);
@@ -144,12 +144,12 @@ public class ModuleItems implements IInitializable {
 			CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(Food.PAPAYIMAR.get(1), minium, "cropPapaya"));
 		} catch (Exception ex) {
 		}
-		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack("water", 2000), null, new ItemStack(items.itemDictionary), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotCopper", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
-		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack("water", 2000), null, new ItemStack(items.itemDictionaryLepi), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotBronze", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
+		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack("water", 2000), ItemStack.EMPTY, new ItemStack(items.itemDictionary), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotCopper", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
+		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack("water", 2000), ItemStack.EMPTY, new ItemStack(items.itemDictionaryLepi), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotBronze", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
 		RecipeManagers.stillManager.addRecipe(25, ExtraTreeLiquid.Resin.get(5), ExtraTreeLiquid.Turpentine.get(3));
-		RecipeManagers.carpenterManager.addRecipe(25, ExtraTreeLiquid.Turpentine.get(50), null, items.itemMisc.getStack(ExtraTreeItems.WoodWax, 4), "x", 'x', Mods.Forestry.stack("beeswax"));
+		RecipeManagers.carpenterManager.addRecipe(25, ExtraTreeLiquid.Turpentine.get(50), ItemStack.EMPTY, items.itemMisc.getStack(ExtraTreeItems.WoodWax, 4), "x", 'x', Mods.Forestry.stack("beeswax"));
 		if (Binnie.LIQUID.getFluidStack("Creosote Oil", 100) != null) {
-			RecipeManagers.carpenterManager.addRecipe(25, Binnie.LIQUID.getFluidStack("Creosote Oil", 50), null, items.itemMisc.getStack(ExtraTreeItems.WoodWax, 1), "x", 'x', Mods.Forestry.stack("beeswax"));
+			RecipeManagers.carpenterManager.addRecipe(25, Binnie.LIQUID.getFluidStack("Creosote Oil", 50), ItemStack.EMPTY, items.itemMisc.getStack(ExtraTreeItems.WoodWax, 1), "x", 'x', Mods.Forestry.stack("beeswax"));
 		}
 
 		FuelManager.bronzeEngineFuel.put(ExtraTreeLiquid.Sap.get(1).getFluid(), new EngineBronzeFuel(ExtraTreeLiquid.Sap.get(1).getFluid(), 20, 10000, 1));

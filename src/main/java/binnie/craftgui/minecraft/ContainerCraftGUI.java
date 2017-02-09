@@ -87,10 +87,10 @@ public class ContainerCraftGUI extends Container {
 		for (int i = 0; i < inventory.getSizeInventory(); ++i) {
 			if (inventory.dispenseOnClose(i)) {
 				ItemStack stack = inventory.getStackInSlot(i);
-				if (stack != null) {
+				if (!stack.isEmpty()) {
 					TransferRequest transferRequest = new TransferRequest(stack, par1EntityPlayer.inventory);
 					stack = transferRequest.transfer(true);
-					if (stack != null) {
+					if (!stack.isEmpty()) {
 						par1EntityPlayer.dropItem(stack, false);
 					}
 				}
@@ -123,27 +123,25 @@ public class ContainerCraftGUI extends Container {
 	}
 
 	@Override
-	@Nullable
 	public final ItemStack transferStackInSlot(final EntityPlayer player, final int slotID) {
 		return this.shiftClick(player, slotID);
 	}
 
-	@Nullable
 	private ItemStack shiftClick(final EntityPlayer player, final int slotnumber) {
 		final TransferRequest request = this.getShiftClickRequest(player, slotnumber);
 		final ItemStack itemstack = request.transfer(true);
 		final Slot shiftClickedSlot = this.inventorySlots.get(slotnumber);
 		shiftClickedSlot.putStack(itemstack);
 		shiftClickedSlot.onSlotChanged();
-		return null;
+		return ItemStack.EMPTY;
 	}
 
 	private TransferRequest getShiftClickRequest(final EntityPlayer player, final int slotnumber) {
 		final Slot shiftClickedSlot = this.inventorySlots.get(slotnumber);
-		ItemStack itemstack = null;
+		ItemStack itemstack = ItemStack.EMPTY;
 		if (shiftClickedSlot.getHasStack()) {
 			ItemStack shiftClickedStack = shiftClickedSlot.getStack();
-			if (shiftClickedStack != null) {
+			if (!shiftClickedStack.isEmpty()) {
 				itemstack = shiftClickedStack.copy();
 			}
 		}
@@ -174,7 +172,7 @@ public class ContainerCraftGUI extends Container {
 			return null;
 		}
 		ItemStack heldItem = player.inventory.getItemStack();
-		if (heldItem == null) {
+		if (heldItem.isEmpty()) {
 			return null;
 		}
 		heldItem = heldItem.copy();
@@ -461,7 +459,7 @@ public class ContainerCraftGUI extends Container {
 		final Slot slot = new CustomSlot(inventory, index);
 		slot.slotNumber = slotNumber;
 		this.inventorySlots.add(slotNumber, slot);
-		this.inventoryItemStacks.add(slotNumber, null);
+		this.inventoryItemStacks.add(slotNumber, ItemStack.EMPTY);
 		return slot;
 	}
 }

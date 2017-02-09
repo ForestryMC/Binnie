@@ -139,9 +139,11 @@ public class WindowGenesis extends Window {
 					return;
 				}
 				final IChromosomeType chromo = ((Gene) event.value).getChromosome();
-				WindowGenesis.this.template[chromo.ordinal()] = ((Gene) event.value).getAllele();
-				if (chromo == ((Gene) event.value).getSpeciesRoot().getSpeciesChromosomeType()) {
-					WindowGenesis.this.template = ((Gene) event.value).getSpeciesRoot().getTemplate(((Gene) event.value).getAllele().getUID());
+				IAllele allele = ((Gene) event.value).getAllele();
+				WindowGenesis.this.template[chromo.ordinal()] = allele;
+				ISpeciesRoot speciesRoot = ((Gene) event.value).getSpeciesRoot();
+				if (chromo == speciesRoot.getSpeciesChromosomeType()) {
+					WindowGenesis.this.template = speciesRoot.getTemplate(allele.getUID());
 				}
 				WindowGenesis.this.refreshTemplate(chromo);
 			}
@@ -199,10 +201,10 @@ public class WindowGenesis extends Window {
 		if (side == Side.SERVER && name.equals("genesis")) {
 			final ItemStack stack = new ItemStack(action);
 			final InventoryPlayer playerInv = player.inventory;
-			if (stack == null) {
+			if (stack.isEmpty()) {
 				return;
 			}
-			if (playerInv.getItemStack() == null) {
+			if (playerInv.getItemStack().isEmpty()) {
 				playerInv.setItemStack(stack);
 			} else if (playerInv.getItemStack().isItemEqual(stack) && ItemStack.areItemStackTagsEqual(playerInv.getItemStack(), stack)) {
 				final int fit = stack.getMaxStackSize() - (stack.getCount() + playerInv.getItemStack().getCount());

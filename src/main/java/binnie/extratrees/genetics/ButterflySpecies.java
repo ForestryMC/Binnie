@@ -222,7 +222,7 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
 
 	@Override
 	public float getResearchSuitability(final ItemStack itemstack) {
-		if (itemstack == null) {
+		if (itemstack.isEmpty()) {
 			return 0.0f;
 		}
 		if (itemstack.getItem() == Items.GLASS_BOTTLE) {
@@ -238,13 +238,13 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
 				return 1.0f;
 			}
 		}
-		if (itemstack.getItem() == Mods.Forestry.item("honeyDrop")) {
+		if (itemstack.getItem() == Mods.Forestry.item("honey_drop")) {
 			return 0.5f;
 		}
 		if (itemstack.getItem() == Mods.Forestry.item("honeydew")) {
 			return 0.7f;
 		}
-		if (itemstack.getItem() == Mods.Forestry.item("beeComb")) {
+		if (itemstack.getItem() == Mods.Forestry.item("bee_comb")) {
 			return 0.4f;
 		}
 		if (AlleleManager.alleleRegistry.isIndividual(itemstack)) {

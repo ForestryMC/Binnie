@@ -50,7 +50,7 @@ public class ModuleApiary implements IInitializable {
 	public void postInit() {
 		EnumHiveFrame.init();
 		Block alveary = Mods.Forestry.block("alveary.plain");
-		Item thermionicTubes = Mods.Forestry.item("thermionicTubes");
+		Item thermionicTubes = Mods.Forestry.item("thermionic_tubes");
 		Item chipsets = Mods.Forestry.item("chipsets");
 
 		GameRegistry.addRecipe(AlvearyMachine.Mutator.get(1), "g g", " a ", "t t", 'g', Items.GOLD_INGOT, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 5));

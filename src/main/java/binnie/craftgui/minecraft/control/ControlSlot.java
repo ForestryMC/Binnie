@@ -119,7 +119,7 @@ public class ControlSlot extends ControlSlotBase {
 		}
 		if (!highlighted && this.getTopParent().getMousedOverWidget() == this) {
 			GuiCraftGUI gui = Window.get(this).getGui();
-			if (gui.getDraggedItem() != null && !this.slot.isItemValid(gui.getDraggedItem())) {
+			if (!gui.getDraggedItem().isEmpty() && !this.slot.isItemValid(gui.getDraggedItem())) {
 				RenderUtil.drawGradientRect(new IArea(1, 1, 16, 16), -1426089575, -1426089575);
 			} else {
 				RenderUtil.drawGradientRect(new IArea(1, 1, 16, 16), -2130706433, -2130706433);

@@ -144,15 +144,15 @@ public enum EnumHoneyComb implements IItemEnum {
 		return ExtraBees.proxy.localise("item.comb." + this.name().toLowerCase());
 	}
 
-	public boolean addProduct(@Nullable final ItemStack item, final Float chance) {
-		if (item == null) {
+	public boolean addProduct(final ItemStack item, final Float chance) {
+		if (item.isEmpty()) {
 			return false;
 		}
 		this.products.put(item.copy(), chance);
 		return true;
 	}
 
-	public void tryAddProduct(@Nullable final ItemStack item, final Float chance) {
+	public void tryAddProduct(final ItemStack item, final Float chance) {
 		this.active = this.addProduct(item, chance);
 	}
 

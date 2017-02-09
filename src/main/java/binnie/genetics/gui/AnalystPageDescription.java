@@ -18,12 +18,12 @@ public class AnalystPageDescription extends ControlAnalystPage {
 		this.setColour(3355443);
 		int y = 4;
 		final IAlleleSpecies species = ind.getGenome().getPrimary();
-		final String branchBinomial = (species.getBranch() != null) ? species.getBranch().getScientific() : "<Unknown>";
-		final String branchName = (species.getBranch() != null) ? species.getBranch().getName() : "Unknown";
+		final String branchBinomial = species.getBranch().getScientific();
+		final String branchName = species.getBranch().getName();
 		final String desc = species.getDescription();
 		String descBody = "§o";
 		String descSig = "";
-		if (desc == null || Objects.equals(desc, "") || desc.contains("for.description")) {
+		if (Objects.equals(desc, "") || desc.contains("for.description")) {
 			descBody += "";
 		} else {
 			final String[] descStrings = desc.split("\\|");

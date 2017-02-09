@@ -16,8 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MultiFenceRecipeSize implements IRecipe {
-	@Nullable
-	private ItemStack cached;
+	private ItemStack cached = ItemStack.EMPTY;
 
 	@Override
 	public boolean matches(final InventoryCrafting inv, final World world) {
@@ -44,7 +43,7 @@ public class MultiFenceRecipeSize implements IRecipe {
 		if (types.isEmpty()) {
 			return false;
 		}
-		ItemStack fence = null;
+		ItemStack fence = ItemStack.EMPTY;
 		if (pattern.contains("0100 0   ")) {
 			fence = WoodManager.getFence(types.get(0), types.get(1), new FenceType(0, false, false), 4);
 		} else if (pattern.contains("0000 0   ")) {
@@ -59,7 +58,7 @@ public class MultiFenceRecipeSize implements IRecipe {
 			fence = WoodManager.getFence(types.get(0), types.get(0), new FenceType(2, false, false), 4);
 		}
 		this.cached = fence;
-		return fence != null;
+		return !fence.isEmpty();
 	}
 
 	@Override
@@ -74,7 +73,7 @@ public class MultiFenceRecipeSize implements IRecipe {
 
 	@Override
 	public ItemStack getRecipeOutput() {
-		return (this.cached == null) ? new ItemStack(Blocks.OAK_FENCE) : this.cached;
+		return (this.cached.isEmpty()) ? new ItemStack(Blocks.OAK_FENCE) : this.cached;
 	}
 
 	// TODO: what is this?

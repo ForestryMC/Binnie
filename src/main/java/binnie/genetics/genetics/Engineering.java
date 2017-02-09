@@ -12,8 +12,8 @@ import net.minecraft.item.ItemStack;
 import javax.annotation.Nullable;
 
 public class Engineering {
-	public static boolean isGeneAcceptor(@Nullable final ItemStack stack) {
-		if (stack == null) {
+	public static boolean isGeneAcceptor(final ItemStack stack) {
+		if (stack.isEmpty()) {
 			return false;
 		}
 		if (stack.getItem() instanceof IItemSerum) {
@@ -53,8 +53,8 @@ public class Engineering {
 		return stack;
 	}
 
-	public static IGene[] getGenes(@Nullable final ItemStack serum) {
-		if (serum != null) {
+	public static IGene[] getGenes(final ItemStack serum) {
+		if (!serum.isEmpty()) {
 			if (serum.getItem() instanceof IItemSerum) {
 				return ((IItemSerum) serum.getItem()).getGenes(serum);
 			}

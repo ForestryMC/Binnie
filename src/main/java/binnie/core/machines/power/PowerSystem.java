@@ -31,7 +31,10 @@ public enum PowerSystem {
 	}
 
 	public ItemStack saveTo(final ItemStack stack) {
-		final NBTTagCompound tag = stack.hasTagCompound() ? stack.getTagCompound() : new NBTTagCompound();
+		NBTTagCompound tag = stack.getTagCompound();
+		if (tag == null) {
+			tag = new NBTTagCompound();
+		}
 		tag.setByte("power-system", (byte) this.ordinal());
 		stack.setTagCompound(tag);
 		return stack;

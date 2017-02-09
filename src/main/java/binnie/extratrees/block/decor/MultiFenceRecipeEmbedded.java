@@ -14,8 +14,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class MultiFenceRecipeEmbedded implements IRecipe {
-	@Nullable
-	private ItemStack cached;
+	private ItemStack cached = ItemStack.EMPTY;
 
 	@Override
 	public boolean matches(final InventoryCrafting inv, final World world) {
@@ -25,18 +24,16 @@ public class MultiFenceRecipeEmbedded implements IRecipe {
 			final ItemStack a = inv.getStackInSlot(row * 3);
 			final ItemStack b = inv.getStackInSlot(row * 3 + 1);
 			final ItemStack c = inv.getStackInSlot(row * 3 + 2);
-			if (a != null && b != null) {
-				if (c != null) {
-					type = WoodManager.getFenceType(a);
-					final FenceType type2 = WoodManager.getFenceType(c);
-					if (type != null && type2 != null) {
-						if (type.equals(type2)) {
-							final IPlankType pType = WoodManager.get(b);
-							FenceDescription fenceDescription = WoodManager.getFenceDescription(a);
-							if (fenceDescription != null && fenceDescription.getPlankType() == pType) {
-								this.cached = WoodManager.getFence(fenceDescription.getPlankType(), fenceDescription.getSecondaryPlankType(), new FenceType(type.size, type.solid, true), 2);
-								return true;
-							}
+			if (!a.isEmpty() && !b.isEmpty() && !c.isEmpty()) {
+				type = WoodManager.getFenceType(a);
+				final FenceType type2 = WoodManager.getFenceType(c);
+				if (type != null && type2 != null) {
+					if (type.equals(type2)) {
+						final IPlankType pType = WoodManager.get(b);
+						FenceDescription fenceDescription = WoodManager.getFenceDescription(a);
+						if (fenceDescription != null && fenceDescription.getPlankType() == pType) {
+							this.cached = WoodManager.getFence(fenceDescription.getPlankType(), fenceDescription.getSecondaryPlankType(), new FenceType(type.size, type.solid, true), 2);
+							return true;
 						}
 					}
 				}
@@ -57,7 +54,7 @@ public class MultiFenceRecipeEmbedded implements IRecipe {
 
 	@Override
 	public ItemStack getRecipeOutput() {
-		return (this.cached == null) ? new ItemStack(Blocks.OAK_FENCE) : this.cached;
+		return (this.cached.isEmpty()) ? new ItemStack(Blocks.OAK_FENCE) : this.cached;
 	}
 
 	@Override

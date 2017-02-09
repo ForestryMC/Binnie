@@ -5,6 +5,8 @@ import binnie.craftgui.controls.tab.ControlTab;
 import binnie.craftgui.controls.tab.ControlTabBar;
 import binnie.craftgui.core.geometry.IPoint;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
@@ -17,15 +19,15 @@ public class ControlTabIcon<T> extends ControlTab<T> {
 		this.item.hastooltip = false;
 	}
 
-	@Nullable
 	public ItemStack getItemStack() {
 		if (this.value instanceof IItemStackRepresentitive) {
 			return ((IItemStackRepresentitive) this.value).getItemStackRepresentitive();
 		}
-		return null;
+		return ItemStack.EMPTY;
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onUpdateClient() {
 		super.onUpdateClient();
 		this.item.setItemStack(this.getItemStack());

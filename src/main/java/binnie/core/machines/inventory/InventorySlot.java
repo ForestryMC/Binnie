@@ -8,40 +8,42 @@ import net.minecraft.nbt.NBTTagCompound;
 import javax.annotation.Nullable;
 
 public class InventorySlot extends BaseSlot<ItemStack> {
-	@Nullable
 	private ItemStack itemStack;
 	private Type type;
 
 	public InventorySlot(final int index, final String unlocName) {
 		super(index, unlocName);
-		this.itemStack = null;
+		this.itemStack = ItemStack.EMPTY;
 		this.type = Type.Standard;
 	}
 
 	@Override
 	@Nullable
 	public ItemStack getContent() {
+		return this.itemStack.isEmpty() ? null : this.itemStack;
+	}
+
+	public ItemStack getItemStack() {
 		return this.itemStack;
 	}
 
-	@Nullable
-	public ItemStack getItemStack() {
-		return this.getContent();
+	@Override
+	public boolean isEmpty() {
+		return this.itemStack.isEmpty();
 	}
 
 	@Override
-	public void setContent(@Nullable final ItemStack itemStack) {
+	public void setContent(final ItemStack itemStack) {
 		this.itemStack = itemStack;
 	}
 
-	@Nullable
 	public ItemStack decrStackSize(final int amount) {
-		if (this.itemStack == null) {
-			return null;
+		if (this.itemStack.isEmpty()) {
+			return ItemStack.EMPTY;
 		}
 		if (this.itemStack.getCount() <= amount) {
 			final ItemStack returnStack = this.itemStack.copy();
-			this.itemStack = null;
+			this.itemStack = ItemStack.EMPTY;
 			return returnStack;
 		}
 		final ItemStack returnStack = this.itemStack.copy();
@@ -57,14 +59,14 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 			final NBTTagCompound itemNBT = slotNBT.getCompoundTag("item");
 			this.itemStack = new ItemStack(itemNBT);
 		} else {
-			this.itemStack = null;
+			this.itemStack = ItemStack.EMPTY;
 		}
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(final NBTTagCompound slotNBT) {
 		final NBTTagCompound itemNBT = new NBTTagCompound();
-		if (this.itemStack != null) {
+		if (!this.itemStack.isEmpty()) {
 			this.itemStack.writeToNBT(itemNBT);
 		}
 		slotNBT.setTag("item", itemNBT);

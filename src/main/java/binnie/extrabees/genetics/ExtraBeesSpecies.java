@@ -301,8 +301,8 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 		}
 	}
 
-	public void addProduct(@Nullable final ItemStack product, final Float chance) {
-		if (product == null) {
+	public void addProduct(final ItemStack product, final Float chance) {
+		if (product.isEmpty()) {
 			this.setState(State.Inactive);
 		} else {
 			this.products.put(product, chance);
@@ -319,8 +319,8 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 		}
 	}
 
-	public void addSpecialty(@Nullable final ItemStack product, final Float chance) {
-		if (product == null) {
+	public void addSpecialty(final ItemStack product, final Float chance) {
+		if (product.isEmpty()) {
 			this.setState(State.Inactive);
 		} else {
 			this.specialties.put(product, chance);
@@ -1064,7 +1064,7 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 
 	@Override
 	public float getResearchSuitability(final ItemStack itemstack) {
-		if (itemstack == null) {
+		if (itemstack.isEmpty()) {
 			return 0.0f;
 		}
 		for (final ItemStack stack : this.products.keySet()) {
@@ -1080,13 +1080,13 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 		if (itemstack.getItem() == Items.GLASS_BOTTLE) {
 			return 0.9f;
 		}
-		if (itemstack.getItem() == Mods.Forestry.item("honeyDrop")) {
+		if (itemstack.getItem() == Mods.Forestry.item("honey_drop")) {
 			return 0.5f;
 		}
 		if (itemstack.getItem() == Mods.Forestry.item("honeydew")) {
 			return 0.7f;
 		}
-		if (itemstack.getItem() == Mods.Forestry.item("beeComb")) {
+		if (itemstack.getItem() == Mods.Forestry.item("bee_comb")) {
 			return 0.4f;
 		}
 		if (AlleleManager.alleleRegistry.isIndividual(itemstack)) {

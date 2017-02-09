@@ -5,6 +5,8 @@ import binnie.core.BinnieCore;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public enum BinnieCoreTexture implements IBinnieTexture {
 	Compartment(ResourceType.Tile, "Compartment"),
@@ -25,6 +27,7 @@ public enum BinnieCoreTexture implements IBinnieTexture {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public BinnieResource getTexture() {
 		return Binnie.RESOURCE.getPNG(BinnieCore.getInstance(), this.type, this.texture);
 	}

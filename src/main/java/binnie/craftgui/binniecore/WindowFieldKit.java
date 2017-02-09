@@ -34,6 +34,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -54,8 +55,6 @@ public class WindowFieldKit extends Window {
 	private float analyseProgress;
 	private boolean isAnalysing;
 	private Map<IChromosomeType, String> info;
-	@Nullable
-	private ItemStack prev;
 
 	public WindowFieldKit(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
 		super(280, 230, player, inventory, side);
@@ -67,7 +66,6 @@ public class WindowFieldKit extends Window {
 		this.analyseProgress = 1;
 		this.isAnalysing = false;
 		this.info = new HashMap<>();
-		this.prev = null;
 	}
 
 	@Override
@@ -146,6 +144,7 @@ public class WindowFieldKit extends Window {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onUpdateClient() {
 		super.onUpdateClient();
 		if (this.isAnalysing) {
@@ -154,7 +153,7 @@ public class WindowFieldKit extends Window {
 				this.isAnalysing = false;
 				this.analyseProgress = 1;
 				final ItemStack stack = this.getWindowInventory().getStackInSlot(0);
-				if (stack != null) {
+				if (!stack.isEmpty()) {
 					this.sendClientAction("analyse", new NBTTagCompound());
 				}
 				this.refreshSpecies();
@@ -171,7 +170,7 @@ public class WindowFieldKit extends Window {
 
 	private void refreshSpecies() {
 		final ItemStack item = this.getWindowInventory().getStackInSlot(0);
-		if (item == null || !AlleleManager.alleleRegistry.isIndividual(item)) {
+		if (item.isEmpty() || !AlleleManager.alleleRegistry.isIndividual(item)) {
 			return;
 		}
 		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(item);
@@ -214,10 +213,9 @@ public class WindowFieldKit extends Window {
 		}
 		if (this.isClient()) {
 			final ItemStack item = this.getWindowInventory().getStackInSlot(0);
-			this.prev = item;
 			this.text.setValue("");
-			if (item != null && !Analyser.isAnalysed(item)) {
-				if (this.getWindowInventory().getStackInSlot(1) == null) {
+			if (!item.isEmpty() && !Analyser.isAnalysed(item)) {
+				if (this.getWindowInventory().getStackInSlot(1).isEmpty()) {
 					this.text.setValue("No Paper!");
 					this.isAnalysing = false;
 					this.analyseProgress = 1;
@@ -228,7 +226,7 @@ public class WindowFieldKit extends Window {
 						return;
 					}
 				}
-			} else if (item != null) {
+			} else if (!item.isEmpty()) {
 				this.isAnalysing = false;
 				this.analyseProgress = 1;
 				this.refreshSpecies();

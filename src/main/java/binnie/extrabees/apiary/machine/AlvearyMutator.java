@@ -28,8 +28,8 @@ public class AlvearyMutator {
 		return getMutationMult(item) > 0.0f;
 	}
 
-	public static float getMutationMult(@Nullable final ItemStack item) {
-		if (item == null) {
+	public static float getMutationMult(final ItemStack item) {
+		if (item.isEmpty()) {
 			return 1.0f;
 		}
 		for (final ItemStack comp : AlvearyMutator.mutations.keySet()) {
@@ -40,8 +40,8 @@ public class AlvearyMutator {
 		return 1.0f;
 	}
 
-	public static void addMutationItem(@Nullable final ItemStack item, final float chance) {
-		if (item == null) {
+	public static void addMutationItem(final ItemStack item, final float chance) {
+		if (item.isEmpty()) {
 			return;
 		}
 		AlvearyMutator.mutations.put(item, chance);

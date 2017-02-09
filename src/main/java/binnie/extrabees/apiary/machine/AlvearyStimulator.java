@@ -52,7 +52,7 @@ public class AlvearyStimulator {
 
 		@Override
 		public boolean isValid(final ItemStack itemStack) {
-			return itemStack != null && ChipsetManager.circuitRegistry.isChipset(itemStack);
+			return !itemStack.isEmpty() && ChipsetManager.circuitRegistry.isChipset(itemStack);
 		}
 
 		@Override
@@ -241,7 +241,7 @@ public class AlvearyStimulator {
 		CircuitType type;
 
 		public StimulatorCircuit(final CircuitType type, final ICircuitLayout layout) {
-			super("stimulator." + type.toString().toLowerCase(), 4, layout, Mods.Forestry.item("thermionicTubes"), type.recipe);
+			super("stimulator." + type.toString().toLowerCase(), 4, layout, Mods.Forestry.item("thermionic_tubes"), type.recipe);
 			this.type = type;
 		}
 

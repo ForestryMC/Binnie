@@ -17,6 +17,8 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 
 public class ControlLumbermillProgress extends ControlProgressBase {
@@ -35,12 +37,13 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		GlStateManager.disableLighting();
 		final int sawX = (int) (63 * this.progress);
 		CraftGUI.render.texture(ControlLumbermillProgress.Saw, new IPoint(sawX, -8 + Math.round(6 * (float) Math.sin(this.animation))));
 		final ItemStack item = Window.get(this).getInventory().getStackInSlot(LumbermillMachine.SLOT_LOG);
-		if (item == null) {
+		if (item.isEmpty()) {
 			return;
 		}
 		GlStateManager.disableLighting();

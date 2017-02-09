@@ -26,7 +26,7 @@ public class ControlSequencerProgress extends ControlProgressBase {
 	public void onUpdateClient() {
 		super.onUpdateClient();
 		final ItemStack stack = Machine.getMachine(Window.get(this).getInventory()).getMachineUtil().getStack(5);
-		if (stack == null) {
+		if (stack.isEmpty()) {
 			this.textControl.setValue("");
 		} else {
 			final Random rand = new Random(stack.getDisplayName().length());

@@ -109,9 +109,11 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	protected void onFoodEaten(final ItemStack itemStack, final World world, final EntityPlayer player) {
 		if (!world.isRemote) {
 			FluidStack fluid = getContained(itemStack);
-			final IDrinkLiquid liquid = DrinkManager.getLiquid(fluid);
-			if (liquid != null) {
-				AlcoholEffect.makeDrunk(player, liquid.getABV() * fluid.amount);
+			if (fluid != null) {
+				final IDrinkLiquid liquid = DrinkManager.getLiquid(fluid);
+				if (liquid != null) {
+					AlcoholEffect.makeDrunk(player, liquid.getABV() * fluid.amount);
+				}
 			}
 		}
 	}

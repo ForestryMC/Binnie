@@ -16,6 +16,7 @@ import binnie.extratrees.machines.fruitpress.FruitPressLogic;
 import binnie.extratrees.machines.fruitpress.FruitPressMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 
@@ -65,7 +66,7 @@ public class WindowPress extends Window {
 				logic.alterProgress(2.0f);
 			} else if (name.equals("clear-fruit")) {
 				logic.setProgress(0.0f);
-				this.getInventory().setInventorySlotContents(FruitPressMachine.SLOT_CURRENT, null);
+				this.getInventory().setInventorySlotContents(FruitPressMachine.SLOT_CURRENT, ItemStack.EMPTY);
 			}
 		}
 	}

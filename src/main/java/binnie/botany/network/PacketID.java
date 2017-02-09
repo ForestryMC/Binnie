@@ -24,7 +24,7 @@ public enum PacketID implements IPacketID {
 			NBTTagCompound data = packet.getTagCompound();
 			EntityPlayer player = BinnieCore.getBinnieProxy().getPlayer();
 			String info = "";
-			if (data.hasNoTags()) {
+			if (data == null || data.hasNoTags()) {
 				info += Binnie.LANGUAGE.localise("botany.flowers.species.not.discover");
 			} else {
 				IAlleleFlowerSpecies primary = (IAlleleFlowerSpecies) AlleleManager.alleleRegistry.getAllele(data.getString("Species"));

@@ -83,7 +83,7 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 		}
 		final FluidStack liquid = this.getUtil().getFluid(Incubator.TANK_INPUT);
 		final ItemStack incubator = this.getUtil().getStack(Incubator.SLOT_INCUBATOR);
-		if (this.recipe != null && (incubator == null || liquid == null || !this.recipe.isInputLiquid(liquid) || !isStackValid(incubator, recipe))) {
+		if (this.recipe != null && (incubator.isEmpty() || liquid == null || !this.recipe.isInputLiquid(liquid) || !isStackValid(incubator, recipe))) {
 			this.recipe = null;
 			final ItemStack leftover = new TransferRequest(incubator, this.getInventory()).setTargetSlots(Incubator.SLOT_OUTPUT).ignoreValidation().transfer(true);
 			this.getUtil().setStack(Incubator.SLOT_INCUBATOR, leftover);
@@ -92,7 +92,7 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 			if (liquid == null) {
 				return;
 			}
-			if (incubator != null) {
+			if (!incubator.isEmpty()) {
 				final IIncubatorRecipe recipe = this.getRecipe(incubator, liquid);
 				if (recipe != null) {
 					this.recipe = recipe;
@@ -103,7 +103,7 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 			int potentialSlot = 0;
 			for (final int slot : Incubator.SLOT_QUEUE) {
 				final ItemStack stack = this.getUtil().getStack(slot);
-				if (stack != null) {
+				if (!stack.isEmpty()) {
 					if (potential == null) {
 						for (final IIncubatorRecipe recipe2 : Incubator.getRecipes()) {
 							final boolean rightLiquid = recipe2.isInputLiquid(liquid);
@@ -119,12 +119,12 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 			}
 			if (potential != null) {
 				final TransferRequest removal = new TransferRequest(incubator, this.getInventory()).setTargetSlots(Incubator.SLOT_OUTPUT).ignoreValidation();
-				if (removal.transfer(false) == null) {
+				if (removal.transfer(false).isEmpty()) {
 					this.recipe = potential;
 				}
 				removal.transfer(true);
 				final ItemStack stack2 = this.getUtil().getStack(potentialSlot);
-				this.getUtil().setStack(potentialSlot, null);
+				this.getUtil().setStack(potentialSlot, ItemStack.EMPTY);
 				this.getUtil().setStack(Incubator.SLOT_INCUBATOR, stack2);
 			}
 		}

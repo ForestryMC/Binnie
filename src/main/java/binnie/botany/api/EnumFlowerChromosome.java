@@ -9,6 +9,8 @@ import forestry.api.genetics.IAlleleTolerance;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
 
+import java.util.Locale;
+
 public enum EnumFlowerChromosome implements IChromosomeType {
 	SPECIES(IAlleleFlowerSpecies.class),
 	PRIMARY(IAlleleInteger.class),
@@ -36,7 +38,7 @@ public enum EnumFlowerChromosome implements IChromosomeType {
 
 	@Override
 	public String getName() {
-		return this.toString().toLowerCase();
+		return this.toString().toLowerCase(Locale.ENGLISH);
 	}
 
 	@Override

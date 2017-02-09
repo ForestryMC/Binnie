@@ -27,6 +27,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -35,6 +36,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
@@ -246,12 +248,12 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 	}
 
 	@Override
-	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-		ArrayList<ItemStack> drops = new ArrayList<>();
+	public NonNullList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+		NonNullList<ItemStack> drops = NonNullList.create();
 		TileEntity tile = world.getTileEntity(pos);
 		if (tile instanceof TileEntityFlower && ((TileEntityFlower) tile).getSection() == 0) {
 			ItemStack flower = ((TileEntityFlower) tile).getItemStack();
-			if (flower != null) {
+			if (!flower.isEmpty()) {
 				drops.add(flower);
 			}
 		}

@@ -50,6 +50,7 @@ public class AnalyserFX extends MachineComponent implements IRender.DisplayTick,
 				}
 
 				@Override
+				@SideOnly(Side.CLIENT)
 				public void onUpdate() {
 					super.onUpdate();
 					this.setAlphaF((float) Math.cos(1.57 * this.particleAge / this.particleMaxAge));
@@ -75,7 +76,7 @@ public class AnalyserFX extends MachineComponent implements IRender.DisplayTick,
 		final EntityItem dummyEntityItem = this.dummyEntityItem;
 		dummyEntityItem.setAgeToCreativeDespawnTime(); //++dummyEntityItem.age;
 		this.dummyEntityItem.hoverStart = 0.0f;
-		if (stack == null) {
+		if (stack.isEmpty()) {
 			return;
 		}
 		final EntityPlayer player = BinnieCore.getBinnieProxy().getPlayer();
@@ -93,7 +94,7 @@ public class AnalyserFX extends MachineComponent implements IRender.DisplayTick,
 	public void syncToNBT(final NBTTagCompound nbt) {
 		final NBTTagCompound item = new NBTTagCompound();
 		final ItemStack stack = this.getUtil().getStack(6);
-		if (stack != null) {
+		if (!stack.isEmpty()) {
 			stack.writeToNBT(item);
 			nbt.setTag("item", item);
 		}
@@ -104,7 +105,7 @@ public class AnalyserFX extends MachineComponent implements IRender.DisplayTick,
 		if (nbt.hasKey("item")) {
 			this.getUtil().setStack(6, new ItemStack(nbt.getCompoundTag("item")));
 		} else {
-			this.getUtil().setStack(6, null);
+			this.getUtil().setStack(6, ItemStack.EMPTY);
 		}
 	}
 

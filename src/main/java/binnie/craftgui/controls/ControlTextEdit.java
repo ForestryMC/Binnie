@@ -12,7 +12,10 @@ import binnie.craftgui.events.EventTextEdit;
 import binnie.craftgui.events.EventWidget;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import net.minecraft.client.gui.GuiTextField;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class ControlTextEdit extends Control implements IControlValue<String> {
 	GuiTextField field;
 	private String cachedValue;

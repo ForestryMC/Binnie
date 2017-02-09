@@ -151,21 +151,18 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 				this.allBranches.add(branch);
 			}
 		}
-		if (this.getSpeciesRoot().getMutations(false) != null) {
+		List<? extends IMutation> speciesMutations = this.getSpeciesRoot().getMutations(false);
+		if (!speciesMutations.isEmpty()) {
 			final Set<IMutation> mutations = new LinkedHashSet<>();
-			mutations.addAll(this.getSpeciesRoot().getMutations(false));
+			mutations.addAll(speciesMutations);
 			if (this == Binnie.GENETICS.beeBreedingSystem) {
 				mutations.addAll(ExtraBeeMutation.mutations);
 			}
 			for (final IMutation mutation : mutations) {
 				this.allMutations.add(mutation);
 				final Set<IAlleleSpecies> participatingSpecies = new LinkedHashSet<>();
-				if (mutation.getAllele0() != null) {
-					participatingSpecies.add(mutation.getAllele0());
-				}
-				if (mutation.getAllele1() != null) {
-					participatingSpecies.add(mutation.getAllele1());
-				}
+				participatingSpecies.add(mutation.getAllele0());
+				participatingSpecies.add(mutation.getAllele1());
 				for (final IAlleleSpecies species3 : participatingSpecies) {
 					this.allFurtherMutations.get(species3).add(mutation);
 					if (this.allActiveSpecies.contains(species3)) {
@@ -333,7 +330,7 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 //		return this.iconDiscovered.getIcon();
 //	}
 
-	public abstract float getChance(final IMutation p0, final EntityPlayer p1, final IAllele p2, final IAllele p3);
+	public abstract float getChance(final IMutation p0, final EntityPlayer p1, final IAlleleSpecies p2, final IAlleleSpecies p3);
 
 	public abstract Class<? extends IBreedingTracker> getTrackerClass();
 
@@ -472,7 +469,11 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 	public abstract void addExtraAlleles(final IChromosomeType p0, final TreeSet<IAllele> p1);
 
 	public ItemStack getConversionStack(final ItemStack stack) {
-		return this.getSpeciesRoot().getMemberStack(this.getConversion(stack), this.getDefaultType());
+		IIndividual conversion = this.getConversion(stack);
+		if (conversion == null) {
+			return ItemStack.EMPTY;
+		}
+		return this.getSpeciesRoot().getMemberStack(conversion, this.getDefaultType());
 	}
 
 	public final Collection<IChromosomeType> getActiveKaryotype() {
@@ -480,14 +481,28 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 	}
 
 	public ItemStack getDefaultMember(final String uid) {
-		return this.getSpeciesRoot().getMemberStack(this.getIndividual(uid), this.getDefaultType());
+		IIndividual individual = this.getIndividual(uid);
+		if (individual == null) {
+			return ItemStack.EMPTY;
+		}
+		return this.getSpeciesRoot().getMemberStack(individual, this.getDefaultType());
 	}
 
+	@Nullable
 	public IIndividual getIndividual(final String uid) {
-		return this.getSpeciesRoot().templateAsIndividual(this.getSpeciesRoot().getTemplate(uid));
+		IAllele[] template = this.getSpeciesRoot().getTemplate(uid);
+		if (template == null) {
+			return null;
+		}
+		return this.getSpeciesRoot().templateAsIndividual(template);
 	}
 
+	@Nullable
 	public IGenome getGenome(final String uid) {
-		return this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(uid));
+		IAllele[] template = this.getSpeciesRoot().getTemplate(uid);
+		if (template == null) {
+			return null;
+		}
+		return this.getSpeciesRoot().templateAsGenome(template);
 	}
 }

@@ -153,7 +153,7 @@ public class Gardening {
 
 	public static boolean isAcidFertiliser(final ItemStack itemstack) {
 		for (final ItemStack stack : getAcidFertilisers()) {
-			if (stack != null && stack.isItemEqual(itemstack)) {
+			if (!stack.isEmpty() && stack.isItemEqual(itemstack)) {
 				return true;
 			}
 		}
@@ -162,7 +162,7 @@ public class Gardening {
 
 	public static boolean isAlkalineFertiliser(final ItemStack itemstack) {
 		for (final ItemStack stack : getAlkalineFertilisers()) {
-			if (stack != null && stack.isItemEqual(itemstack)) {
+			if (!stack.isEmpty() && stack.isItemEqual(itemstack)) {
 				return true;
 			}
 		}
@@ -171,7 +171,7 @@ public class Gardening {
 
 	public static boolean isNutrientFertiliser(final ItemStack itemstack) {
 		for (final ItemStack stack : getNutrientFertilisers()) {
-			if (stack != null && stack.isItemEqual(itemstack)) {
+			if (!stack.isEmpty() && stack.isItemEqual(itemstack)) {
 				return true;
 			}
 		}

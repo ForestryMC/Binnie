@@ -26,6 +26,5 @@ public interface IIncubatorRecipe {
 
 	ItemStack getInputStack();
 
-	@Nullable
 	ItemStack getExpectedOutput();
 }

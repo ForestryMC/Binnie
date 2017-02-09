@@ -3,6 +3,8 @@ package binnie.craftgui.resource.minecraft;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 class ParsedTextureSheet implements IBinnieTexture {
 	private String name;
@@ -16,6 +18,7 @@ class ParsedTextureSheet implements IBinnieTexture {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public BinnieResource getTexture() {
 		return new BinnieResource(this.modid, ResourceType.GUI, this.path);
 	}

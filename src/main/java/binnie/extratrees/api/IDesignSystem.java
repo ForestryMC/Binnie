@@ -2,16 +2,21 @@ package binnie.extratrees.api;
 
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
 public interface IDesignSystem {
 	@Nullable
+	@SideOnly(Side.CLIENT)
 	TextureAtlasSprite getPrimarySprite(final IPattern pattern);
 
 	@Nullable
+	@SideOnly(Side.CLIENT)
 	TextureAtlasSprite getSecondarySprite(final IPattern pattern);
 
+	@SideOnly(Side.CLIENT)
 	void registerSprites();
 
 	IDesignMaterial getDefaultMaterial();

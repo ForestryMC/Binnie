@@ -40,7 +40,7 @@ public class BreweryRecipes {
 
 	@Nullable
 	public static FluidStack getOutput(final FluidStack stack) {
-		final BreweryCrafting crafting = new BreweryCrafting(stack, null, null, null);
+		final BreweryCrafting crafting = new BreweryCrafting(stack, ItemStack.EMPTY, null, ItemStack.EMPTY);
 		for (final IBreweryRecipe recipe : recipes) {
 			FluidStack output = recipe.getOutput(crafting);
 			if (output != null) {
@@ -52,7 +52,7 @@ public class BreweryRecipes {
 
 	@Nullable
 	public static FluidStack getOutput(final BreweryCrafting crafting) {
-		if (crafting.inputFluid != null && crafting.yeast != null) {
+		if (crafting.inputFluid != null && !crafting.yeast.isEmpty()) {
 			for (final IBreweryRecipe recipe : recipes) {
 				FluidStack output = recipe.getOutput(crafting);
 				if (output != null) {

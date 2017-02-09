@@ -39,9 +39,6 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 			return;
 		}
 		final ITree tree = Binnie.GENETICS.getTreeRoot().templateAsIndividual(template);
-		if (tree == null) {
-			return;
-		}
 
 		final ITreeGenome genome = tree.getGenome();
 		final IAlleleTreeSpecies treeSpecies = genome.getPrimary();

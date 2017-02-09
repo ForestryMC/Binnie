@@ -9,11 +9,11 @@ import binnie.core.machines.power.PowerSystem;
 import binnie.core.util.ItemStackSet;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -38,7 +38,7 @@ public class MachineUtil {
 	}
 
 	public boolean isSlotEmpty(final int slot) {
-		return this.getInventory().getStackInSlot(slot) == null;
+		return this.getInventory().getStackInSlot(slot).isEmpty();
 	}
 
 	public IFluidTank getTank(final int id) {
@@ -51,21 +51,19 @@ public class MachineUtil {
 		return amount <= space;
 	}
 
-	@Nullable
 	public ItemStack getStack(final int slot) {
 		return this.getInventory().getStackInSlot(slot);
 	}
 
 	public void deleteStack(final int slot) {
-		this.setStack(slot, null);
+		this.setStack(slot, ItemStack.EMPTY);
 	}
 
-	@Nullable
 	public ItemStack decreaseStack(final int slot, final int amount) {
 		return this.getInventory().decrStackSize(slot, amount);
 	}
 
-	public void setStack(final int slot, @Nullable final ItemStack stack) {
+	public void setStack(final int slot, final ItemStack stack) {
 		this.getInventory().setInventorySlotContents(slot, stack);
 	}
 
@@ -76,7 +74,7 @@ public class MachineUtil {
 
 	public void addStack(final int slot, final ItemStack addition) {
 		final ItemStack merge = this.getStack(slot);
-		if (merge == null) {
+		if (merge.isEmpty()) {
 			this.setStack(slot, addition);
 		} else {
 			if (merge.isItemEqual(addition) && merge.getCount() + addition.getCount() <= merge.getMaxStackSize()) {
@@ -101,7 +99,7 @@ public class MachineUtil {
 		if (damage < 0) {
 			item.setItemDamage(Math.max(0, item.getItemDamage() + damage));
 		} else if (item.attemptDamageItem(damage, new Random())) {
-			this.setStack(slot, null);
+			this.setStack(slot, ItemStack.EMPTY);
 		}
 		this.setStack(slot, item);
 	}
@@ -123,7 +121,7 @@ public class MachineUtil {
 		final ItemStack[] stacks = new ItemStack[slots.length];
 		for (int i = 0; i < slots.length; ++i) {
 			ItemStack stack = this.getStack(slots[i]);
-			if (copy && stack != null) {
+			if (copy && !stack.isEmpty()) {
 				stack = stack.copy();
 			}
 			stacks[i] = stack;
@@ -145,12 +143,12 @@ public class MachineUtil {
 			return false;
 		}
 
-		List<ItemStack> requiredStacks = this.getNonNullStacks(recipe, true);
+		List<ItemStack> requiredStacks = this.getNonEmptyStacks(recipe, true);
 		for (ItemStack requiredStack : requiredStacks) {
 			IInventory inventory = this.getInventory();
 			for (int slot : inventorySlots) {
 				ItemStack stackInSlot = this.getStack(slot);
-				if (stackInSlot != null && ItemStack.areItemsEqual(requiredStack, stackInSlot) && ItemStack.areItemStackTagsEqual(requiredStack, stackInSlot)) {
+				if (!stackInSlot.isEmpty() && ItemStack.areItemsEqual(requiredStack, stackInSlot) && ItemStack.areItemStackTagsEqual(requiredStack, stackInSlot)) {
 					if (requiredStack.getCount() >= stackInSlot.getCount()) {
 						requiredStack.shrink(stackInSlot.getCount());
 						inventory.removeStackFromSlot(slot);
@@ -195,14 +193,14 @@ public class MachineUtil {
 		return this.machine.getInterface(IProcess.class);
 	}
 
-	public List<ItemStack> getNonNullStacks(final int[] slots) {
-		return getNonNullStacks(slots, false);
+	public NonNullList<ItemStack> getNonEmptyStacks(final int[] slots) {
+		return getNonEmptyStacks(slots, false);
 	}
 
-	public List<ItemStack> getNonNullStacks(final int[] slots, boolean copy) {
-		final List<ItemStack> stacks = new ArrayList<>();
+	public NonNullList<ItemStack> getNonEmptyStacks(final int[] slots, boolean copy) {
+		final NonNullList<ItemStack> stacks = NonNullList.create();
 		for (final ItemStack stack : this.getStacks(slots, copy)) {
-			if (stack != null) {
+			if (!stack.isEmpty()) {
 				stacks.add(stack);
 			}
 		}

@@ -1,6 +1,8 @@
 package binnie.genetics.machine.splicer;
 
+import binnie.core.machines.IMachine;
 import binnie.core.machines.Machine;
+import binnie.core.machines.MachineUtil;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.inventory.ComponentInventoryTransfer;
@@ -76,7 +78,14 @@ public class PackageSplicer extends AdvGeneticMachine.PackageAdvGeneticBase impl
 		transfer.addStorage(Splicer.SLOT_TARGET, Splicer.SLOT_FINISHED, new ComponentInventoryTransfer.Condition() {
 			@Override
 			public boolean fulfilled(final ItemStack stack) {
-				return stack != null && this.transfer.getMachine().getMachineUtil().getStack(Splicer.SLOT_SERUM_VIAL) != null && this.transfer.getMachine().getInterface(SplicerLogic.class).isValidSerum() != null;
+				if (!stack.isEmpty()) {
+					IMachine machine = this.transfer.getMachine();
+					MachineUtil machineUtil = machine.getMachineUtil();
+					if (!machineUtil.getStack(Splicer.SLOT_SERUM_VIAL).isEmpty() && machine.getInterface(SplicerLogic.class).isValidSerum() != null) {
+						return true;
+					}
+				}
+				return false;
 			}
 		});
 		new ComponentPowerReceptor(machine, 20000);

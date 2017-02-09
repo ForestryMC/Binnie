@@ -1,6 +1,5 @@
 package binnie.extratrees.machines.brewery;
 
-import forestry.api.core.INbtReadable;
 import forestry.api.core.INbtWritable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -12,12 +11,10 @@ public class BreweryCrafting implements INbtWritable {
 	@Nullable
 	public FluidStack inputFluid;
 	public ItemStack[] inputGrains;
-	@Nullable
 	public ItemStack ingredient;
-	@Nullable
 	public ItemStack yeast;
 
-	public BreweryCrafting(@Nullable final FluidStack inputFluid, @Nullable final ItemStack ingredient, @Nullable final ItemStack[] inputGrains, final @Nullable ItemStack yeast) {
+	public BreweryCrafting(@Nullable final FluidStack inputFluid, final ItemStack ingredient, @Nullable final ItemStack[] inputGrains, final ItemStack yeast) {
 		this.inputFluid = inputFluid;
 		this.inputGrains = ((inputGrains == null) ? new ItemStack[3] : inputGrains);
 		this.ingredient = ingredient;
@@ -51,8 +48,8 @@ public class BreweryCrafting implements INbtWritable {
 		return nbt;
 	}
 
-	private NBTTagCompound getNBT(@Nullable final ItemStack ingr) {
-		if (ingr == null) {
+	private NBTTagCompound getNBT(final ItemStack ingr) {
+		if (ingr.isEmpty()) {
 			return new NBTTagCompound();
 		}
 		final NBTTagCompound nbt = new NBTTagCompound();

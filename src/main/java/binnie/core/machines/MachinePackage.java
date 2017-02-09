@@ -2,6 +2,8 @@ package binnie.core.machines;
 
 import binnie.Binnie;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class MachinePackage {
 	private String uid;
@@ -27,7 +29,8 @@ public abstract class MachinePackage {
 	public abstract TileEntity createTileEntity();
 
 	public abstract void register();
-	
+
+	@SideOnly(Side.CLIENT)
 	public abstract void renderMachine(Machine machine, double x, double y, double z, float partialTicks, int destroyStage);//, final RenderBlocks p5);
 
 	public final String getDisplayName() {
