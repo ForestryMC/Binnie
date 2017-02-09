@@ -20,7 +20,7 @@ public class FruitPressMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 	public static final int TANK_OUTPUT_CAPACITY = 5000;
 
 	public FruitPressMachine() {
-		super("press", ExtraTreeTexture.pressTexture, true);
+		super("press", ExtraTreeTexture.Press, true);
 	}
 
 	@Override

@@ -12,10 +12,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraftforge.fml.client.config.GuiUtils;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nullable;
 
+@SideOnly(Side.CLIENT)
 public class TextureRenderer {
 	private static void renderTexturePadded(final IArea area, final IArea texture, final IBorder padding) {
 		int borderLeft = padding.l();

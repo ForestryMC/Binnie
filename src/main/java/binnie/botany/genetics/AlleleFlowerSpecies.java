@@ -15,8 +15,8 @@ import forestry.api.genetics.ISpeciesRoot;
 import forestry.core.genetics.alleles.AlleleSpecies;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-
-import javax.annotation.Nonnull;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class AlleleFlowerSpecies extends AlleleSpecies implements IAlleleFlowerSpecies, IAlleleFlowerSpeciesBuilder {
 
@@ -86,11 +86,13 @@ public class AlleleFlowerSpecies extends AlleleSpecies implements IAlleleFlowerS
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public ModelResourceLocation getFlowerModel(EnumFlowerStage type, boolean flowered) {
 		return flowerType.getModel(type, flowered);
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerModels(Item item, IModelManager manager, EnumFlowerStage type) {
 		flowerType.registerModels(item, manager, type);
 	}

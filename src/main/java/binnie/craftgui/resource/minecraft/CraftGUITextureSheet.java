@@ -6,12 +6,18 @@ import binnie.craftgui.core.CraftGUI;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+
 public enum CraftGUITextureSheet implements IBinnieTexture {
 	Controls2("controls"),
 	Panel2("panels"),
 	Slots("slots");
 
-	String name;
+	private final String name;
+
+	@SideOnly(Side.CLIENT)
+	@Nullable
+	private BinnieResource resource;
 
 	CraftGUITextureSheet(final String name) {
 		this.name = name;
@@ -25,6 +31,9 @@ public enum CraftGUITextureSheet implements IBinnieTexture {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public BinnieResource getTexture() {
-		return CraftGUI.resourceManager.getTextureSheet(this.name).getTexture();
+		if (resource == null) {
+			resource = CraftGUI.resourceManager.getTextureSheet(this.name).getTexture();
+		}
+		return resource;
 	}
 }

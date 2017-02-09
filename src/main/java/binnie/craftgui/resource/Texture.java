@@ -1,35 +1,32 @@
 package binnie.craftgui.resource;
 
 import binnie.core.resource.BinnieResource;
+import binnie.core.resource.IBinnieTexture;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IBorder;
 import binnie.craftgui.core.geometry.Position;
-
-import javax.annotation.Nullable;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Texture {
-	@Nullable
-	public static final Texture NULL = null;
-	IArea area;
-	IBorder padding;
-	IBorder border;
-	BinnieResource filename;
+	private final IArea area;
+	private final IBorder padding;
+	private final IBorder border;
+	private final IBinnieTexture binnieTexture;
 
-	public Texture(final IArea area, final BinnieResource filename) {
-		this(area, IBorder.ZERO, IBorder.ZERO, filename);
+	public Texture(final IArea area, final IBinnieTexture binnieTexture) {
+		this(area, IBorder.ZERO, IBorder.ZERO, binnieTexture);
 	}
 
-	public Texture(final IArea area, final IBorder padding, final BinnieResource filename) {
-		this(area, padding, IBorder.ZERO, filename);
+	public Texture(final IArea area, final IBorder padding, final IBinnieTexture binnieTexture) {
+		this(area, padding, IBorder.ZERO, binnieTexture);
 	}
 
-	public Texture(final IArea area, final IBorder padding, final IBorder border, final BinnieResource filename) {
-		this.padding = IBorder.ZERO;
-		this.border = IBorder.ZERO;
+	public Texture(final IArea area, final IBorder padding, final IBorder border, final IBinnieTexture binnieTexture) {
 		this.area = new IArea(area);
 		this.padding = new IBorder(padding);
 		this.border = new IBorder(border);
-		this.filename = filename;
+		this.binnieTexture = binnieTexture;
 	}
 
 	public IArea getArea() {
@@ -44,8 +41,9 @@ public class Texture {
 		return this.border;
 	}
 
+	@SideOnly(Side.CLIENT)
 	public BinnieResource getFilename() {
-		return this.filename;
+		return this.binnieTexture.getTexture();
 	}
 
 	public IBorder getTotalPadding() {
@@ -73,7 +71,7 @@ public class Texture {
 	}
 
 	public Texture crop(final IBorder crop) {
-		final Texture copy = new Texture(this.area, this.padding, this.border, this.filename);
+		final Texture copy = new Texture(this.area, this.padding, this.border, this.binnieTexture);
 		if (crop.b() > 0) {
 			copy.border.b(0);
 			copy.padding.b(copy.padding.b() - Math.min(crop.b(), copy.padding.b()));

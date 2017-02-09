@@ -18,7 +18,7 @@ public class DistilleryMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 	public static final int TANK_OUTPUT = 1;
 
 	public DistilleryMachine() {
-		super("distillery", ExtraTreeTexture.distilleryTexture, true);
+		super("distillery", ExtraTreeTexture.Distillery, true);
 	}
 
 	@Override

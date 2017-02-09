@@ -8,10 +8,16 @@ import binnie.extrabees.ExtraBees;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+
 public enum BotanyTexture implements IBinnieTexture {
 	;
 	String texture;
 	ResourceType type;
+
+	@SideOnly(Side.CLIENT)
+	@Nullable
+	private BinnieResource resource;
 
 	BotanyTexture(final ResourceType base, final String texture) {
 		this.texture = texture;
@@ -21,6 +27,9 @@ public enum BotanyTexture implements IBinnieTexture {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public BinnieResource getTexture() {
-		return Binnie.RESOURCE.getPNG(ExtraBees.instance, this.type, this.texture);
+		if (resource == null) {
+			resource = Binnie.RESOURCE.getPNG(ExtraBees.instance, this.type, this.texture);
+		}
+		return resource;
 	}
 }

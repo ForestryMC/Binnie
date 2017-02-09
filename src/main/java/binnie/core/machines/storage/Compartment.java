@@ -5,7 +5,6 @@ import binnie.core.machines.IMachineType;
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachinePackage;
 import binnie.core.machines.TileEntityMachine;
-import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -41,11 +40,11 @@ enum Compartment implements IMachineType {
 	}
 
 	public abstract static class PackageCompartment extends MachinePackage {
-		private BinnieResource renderTexture;
+		private IBinnieTexture renderTexture;
 
 		protected PackageCompartment(final String uid, final IBinnieTexture renderTexture) {
 			super(uid, false);
-			this.renderTexture = renderTexture.getTexture();
+			this.renderTexture = renderTexture;
 		}
 
 		@Override
@@ -60,7 +59,7 @@ enum Compartment implements IMachineType {
 		@Override
 		@SideOnly(Side.CLIENT)
 		public void renderMachine(Machine machine, double x, double y, double z, float partialTicks, int destroyStage) {
-			MachineRendererCompartment.instance.renderMachine(machine, 16777215, renderTexture, x, y, z, partialTicks);
+			MachineRendererCompartment.instance.renderMachine(machine, 16777215, renderTexture.getTexture(), x, y, z, partialTicks);
 		}
 	}
 }

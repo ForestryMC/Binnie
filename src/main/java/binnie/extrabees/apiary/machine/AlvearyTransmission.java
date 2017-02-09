@@ -20,7 +20,7 @@ import java.util.List;
 public class AlvearyTransmission {
 	public static class PackageAlvearyTransmission extends AlvearyMachine.AlvearyPackage implements IMachineInformation {
 		public PackageAlvearyTransmission() {
-			super("transmission", ExtraBeeTexture.AlvearyTransmission.getTexture(), false);
+			super("transmission", ExtraBeeTexture.AlvearyTransmission, false);
 		}
 
 		@Override

@@ -4,6 +4,7 @@ import binnie.craftgui.minecraft.Window;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
@@ -15,6 +16,7 @@ public abstract class WindowMachine extends Window {
 	public abstract String getTitle();
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		this.setTitle(this.getTitle());
 	}

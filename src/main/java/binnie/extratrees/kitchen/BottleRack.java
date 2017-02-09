@@ -10,7 +10,7 @@ import binnie.extratrees.machines.ExtraTreeMachine;
 public class BottleRack {
 	public static class PackageBottleRack extends KitchenMachine.PackageKitchenMachine implements IMachineInformation {
 		public PackageBottleRack() {
-			super("bottleRack", ExtraTreeTexture.lumbermillTexture);
+			super("bottleRack", ExtraTreeTexture.Lumbermill);
 		}
 
 		@Override

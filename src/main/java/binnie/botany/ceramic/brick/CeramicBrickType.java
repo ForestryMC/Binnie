@@ -1,8 +1,5 @@
 package binnie.botany.ceramic.brick;
 
-import java.util.List;
-import java.util.Locale;
-
 import binnie.botany.Botany;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.botany.items.BotanyItems;
@@ -11,8 +8,12 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Locale;
 
 public enum CeramicBrickType implements IStringSerializable {
 	Tile("tile", "Ceramic Tile"){
@@ -229,10 +230,12 @@ public enum CeramicBrickType implements IStringSerializable {
 	
 	String id;
 	String name;
+
+	@SideOnly(Side.CLIENT)
+	@Nullable
 	TextureAtlasSprite[] sprites;
 
 	CeramicBrickType(final String id, final String name) {
-		this.sprites = new TextureAtlasSprite[3];
 		this.id = id;
 		this.name = name;
 	}

@@ -239,6 +239,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 	@SideOnly(Side.CLIENT)
 	public void registerSprites(ITextureManager manager) {
 		for (CeramicBrickType type : CeramicBrickType.VALUES) {
+			type.sprites = new TextureAtlasSprite[3];
 			for (int i = 0; i < 3; ++i) {
 				type.sprites[i] = TextureManager.registerSprite(new ResourceLocation(Constants.BOTANY_MOD_ID + ":blocks/ceramic." + type.id + "." + i));
 			}

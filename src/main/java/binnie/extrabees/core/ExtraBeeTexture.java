@@ -8,6 +8,8 @@ import binnie.extrabees.ExtraBees;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+
 public enum ExtraBeeTexture implements IBinnieTexture {
 	AlvearyMutator(ResourceType.Tile, "alveary/AlvearyMutator"),
 	AlvearyNovaBlock(ResourceType.Tile, "alveary/AlvearyNovaBlock"),
@@ -22,8 +24,12 @@ public enum ExtraBeeTexture implements IBinnieTexture {
 	GUIProgress2(ResourceType.GUI, "processes2"),
 	AlvearyTransmission(ResourceType.Tile, "alveary/AlvearyTransmission");
 
-	String texture;
-	ResourceType type;
+	private final String texture;
+	private final ResourceType type;
+
+	@SideOnly(Side.CLIENT)
+	@Nullable
+	private BinnieResource resource;
 
 	ExtraBeeTexture(final ResourceType base, final String texture) {
 		this.texture = texture;
@@ -33,6 +39,9 @@ public enum ExtraBeeTexture implements IBinnieTexture {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public BinnieResource getTexture() {
-		return Binnie.RESOURCE.getPNG(ExtraBees.instance, this.type, this.texture);
+		if (resource == null) {
+			resource = Binnie.RESOURCE.getPNG(ExtraBees.instance, this.type, this.texture);
+		}
+		return resource;
 	}
 }

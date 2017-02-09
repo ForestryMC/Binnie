@@ -23,7 +23,7 @@ public class LumbermillMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 	public static final int TANK_WATER_CAPACITY = 10000;
 
 	public LumbermillMachine() {
-		super("lumbermill", ExtraTreeTexture.lumbermillTexture, true);
+		super("lumbermill", ExtraTreeTexture.Lumbermill, true);
 	}
 
 	@Override

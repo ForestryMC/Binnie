@@ -6,10 +6,16 @@ import binnie.core.resource.ResourceType;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+
 class ParsedTextureSheet implements IBinnieTexture {
 	private String name;
 	private String modid;
 	private String path;
+
+	@SideOnly(Side.CLIENT)
+	@Nullable
+	private BinnieResource resource;
 
 	public ParsedTextureSheet(final String name, final String modid, final String path) {
 		this.name = name;
@@ -20,6 +26,9 @@ class ParsedTextureSheet implements IBinnieTexture {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public BinnieResource getTexture() {
-		return new BinnieResource(this.modid, ResourceType.GUI, this.path);
+		if (resource == null) {
+			resource = new BinnieResource(this.modid, ResourceType.GUI, this.path);
+		}
+		return resource;
 	}
 }

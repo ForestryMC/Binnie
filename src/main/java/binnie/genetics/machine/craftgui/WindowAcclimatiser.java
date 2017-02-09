@@ -15,10 +15,11 @@ import binnie.genetics.machine.acclimatiser.Acclimatiser;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowAcclimatiser extends WindowMachine {
-	static Texture ProgressBase = new StandardTexture(64, 0, 130, 21, ExtraBeeTexture.GUIProgress.getTexture());
-	static Texture Progress = new StandardTexture(64, 21, 130, 21, ExtraBeeTexture.GUIProgress.getTexture());
+	static Texture ProgressBase = new StandardTexture(64, 0, 130, 21, ExtraBeeTexture.GUIProgress);
+	static Texture Progress = new StandardTexture(64, 21, 130, 21, ExtraBeeTexture.GUIProgress);
 	public static final int[] slotReserve = new int[]{0, 1, 2, 3};
 	public static final int slotTarget = 4;
 	public static final int[] slotAcclimatiser = new int[]{5, 6, 7};
@@ -29,6 +30,7 @@ public class WindowAcclimatiser extends WindowMachine {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		super.initialiseClient();
 		int x = 16;

@@ -52,7 +52,7 @@ public class Infuser {
 
 	public static class PackageInfuser extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
 		public PackageInfuser() {
-			super("infuser", ExtraTreeTexture.infuserTexture, true);
+			super("infuser", ExtraTreeTexture.Infuser, true);
 		}
 
 		@Override

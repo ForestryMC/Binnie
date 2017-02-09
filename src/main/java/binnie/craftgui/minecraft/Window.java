@@ -9,6 +9,7 @@ import binnie.core.machines.network.INetwork;
 import binnie.core.machines.power.PowerSystem;
 import binnie.core.network.packet.MessageCraftGUI;
 import binnie.core.resource.BinnieResource;
+import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
 import binnie.craftgui.controls.ControlText;
 import binnie.craftgui.controls.ControlTextCentered;
@@ -156,8 +157,14 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 
 	protected abstract String getBackgroundTextureName();
 
-	public BinnieResource getBackgroundTextureFile(final int i) {
-		return Binnie.RESOURCE.getPNG(this.getMod(), ResourceType.GUI, this.getBackgroundTextureName() + ((i == 1) ? "" : i));
+	public IBinnieTexture getBackgroundTextureFile(final int i) {
+		return new IBinnieTexture() {
+			@Override
+			@SideOnly(Side.CLIENT)
+			public BinnieResource getTexture() {
+				return Binnie.RESOURCE.getPNG(getMod(), ResourceType.GUI, getBackgroundTextureName() + ((i == 1) ? "" : i));
+			}
+		};
 	}
 
 	public boolean showHelpButton() {
@@ -191,6 +198,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		return this.windowInventory;
 	}
 
+	@SideOnly(Side.CLIENT)
 	public final void initGui() {
 		if (this.hasBeenInitialised) {
 			return;
@@ -207,6 +215,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		this.hasBeenInitialised = true;
 	}
 
+	@SideOnly(Side.CLIENT)
 	public abstract void initialiseClient();
 
 	public void initialiseServer() {

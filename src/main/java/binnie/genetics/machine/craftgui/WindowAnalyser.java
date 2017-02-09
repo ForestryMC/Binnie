@@ -22,20 +22,22 @@ import binnie.genetics.machine.analyser.Analyser;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowAnalyser extends WindowMachine {
-	static Texture ProgressBase = new StandardTexture(0, 218, 142, 17, ExtraBeeTexture.GUIProgress.getTexture());
-	static Texture Progress = new StandardTexture(0, 201, 142, 17, ExtraBeeTexture.GUIProgress.getTexture());
+	static Texture ProgressBase = new StandardTexture(0, 218, 142, 17, ExtraBeeTexture.GUIProgress);
+	static Texture Progress = new StandardTexture(0, 201, 142, 17, ExtraBeeTexture.GUIProgress);
 
 	public WindowAnalyser(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(220, 210, player, inventory, side);
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		super.initialiseClient();
-		WindowAnalyser.ProgressBase = new StandardTexture(0, 51, 66, 40, GeneticsTexture.GUIProcess.getTexture());
-		WindowAnalyser.Progress = new StandardTexture(66, 51, 66, 40, GeneticsTexture.GUIProcess.getTexture());
+		WindowAnalyser.ProgressBase = new StandardTexture(0, 51, 66, 40, GeneticsTexture.GUIProcess);
+		WindowAnalyser.Progress = new StandardTexture(66, 51, 66, 40, GeneticsTexture.GUIProcess);
 		int x = 16;
 		final int y = 32;
 		new ControlSlotArray.Builder(this, x, y, 2, 3).create(Analyser.SLOT_RESERVE);

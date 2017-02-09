@@ -8,21 +8,27 @@ import binnie.extratrees.ExtraTrees;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+
 public enum ExtraTreeTexture implements IBinnieTexture {
 	Gui(ResourceType.GUI, "gui"),
-	Nursery(ResourceType.Tile, "Nursery");
+	Nursery(ResourceType.Tile, "Nursery"),
+	Carpenter(ResourceType.Tile, "extratrees/carpenter_"),
+	Paneler(ResourceType.Tile, "extratrees/paneler_"),
+	Tileworker(ResourceType.Tile, "extratrees/tileworker_"),
+	Incubator(ResourceType.Tile, "extratrees/incubator_"),
+	Lumbermill(ResourceType.Tile, "extratrees/sawmill_"),
+	Press(ResourceType.Tile, "extratrees/press_"),
+	Distillery(ResourceType.Tile, "extratrees/distillery_"),
+	Brewery(ResourceType.Tile, "extratrees/brewery_"),
+	Infuser(ResourceType.Tile, "extratrees/infuser_");
 
-	String texture;
-	ResourceType type;
-	public static String carpenterTexture = "extratrees/carpenter_";
-	public static String panelerTexture = "extratrees/paneler_";
-	public static String tileworkerTexture = "extratrees/tileworker_";
-	public static String incubatorTexture = "extratrees/incubator_";
-	public static String lumbermillTexture = "extratrees/sawmill_";
-	public static String pressTexture = "extratrees/press_";
-	public static String distilleryTexture = "extratrees/distillery_";
-	public static String breweryTexture = "extratrees/brewery_";
-	public static String infuserTexture = "extratrees/infuser_";
+	private final String texture;
+	private final ResourceType type;
+
+	@SideOnly(Side.CLIENT)
+	@Nullable
+	private BinnieResource resource;
 
 	ExtraTreeTexture(final ResourceType base, final String texture) {
 		this.texture = texture;
@@ -32,7 +38,10 @@ public enum ExtraTreeTexture implements IBinnieTexture {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public BinnieResource getTexture() {
-		return Binnie.RESOURCE.getPNG(ExtraTrees.instance, this.type, this.texture);
+		if (resource == null) {
+			resource = Binnie.RESOURCE.getPNG(ExtraTrees.instance, this.type, this.texture);
+		}
+		return resource;
 	}
 
 }

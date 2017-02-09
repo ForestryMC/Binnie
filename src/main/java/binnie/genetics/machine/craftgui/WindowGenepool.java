@@ -20,16 +20,18 @@ import binnie.genetics.machine.genepool.Genepool;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowGenepool extends WindowMachine {
-	static Texture ProgressBase = new StandardTexture(64, 0, 130, 21, ExtraBeeTexture.GUIProgress.getTexture());
-	static Texture Progress = new StandardTexture(64, 21, 130, 21, ExtraBeeTexture.GUIProgress.getTexture());
+	static Texture ProgressBase = new StandardTexture(64, 0, 130, 21, ExtraBeeTexture.GUIProgress);
+	static Texture Progress = new StandardTexture(64, 21, 130, 21, ExtraBeeTexture.GUIProgress);
 
 	public WindowGenepool(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(280, 198, player, inventory, side);
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		super.initialiseClient();
 		int x = 16;

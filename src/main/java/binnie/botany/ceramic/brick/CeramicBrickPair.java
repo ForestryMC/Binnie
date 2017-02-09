@@ -3,8 +3,11 @@ package binnie.botany.ceramic.brick;
 import binnie.botany.Botany;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.block.TileEntityMetadata;
+import com.google.common.base.Preconditions;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class CeramicBrickPair {
 	EnumFlowerColor colorFirst;
@@ -49,8 +52,11 @@ public class CeramicBrickPair {
 		return ordinal;
 	}
 
+	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getSprite(int pass) {
-		return this.type.sprites[pass];
+		TextureAtlasSprite[] sprites = this.type.sprites;
+		Preconditions.checkState(sprites != null, "Sprites have not been registered.");
+		return sprites[pass];
 	}
 	
 	@Override

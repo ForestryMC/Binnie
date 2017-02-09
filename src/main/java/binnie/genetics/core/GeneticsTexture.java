@@ -1,13 +1,15 @@
 package binnie.genetics.core;
 
 import binnie.Binnie;
-import binnie.core.resource.BinnieSprite;
 import binnie.core.resource.BinnieResource;
+import binnie.core.resource.BinnieSprite;
 import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
 import binnie.genetics.Genetics;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 public enum GeneticsTexture implements IBinnieTexture {
 	GeneticMachine(ResourceType.Tile, "GeneticMachine"),
@@ -26,8 +28,13 @@ public enum GeneticsTexture implements IBinnieTexture {
 	Acclimatiser(ResourceType.Tile, "Acclimatiser"),
 	Splicer(ResourceType.Tile, "Splicer");
 
-	String texture;
-	ResourceType type;
+	private final String texture;
+	private final ResourceType type;
+
+	@SideOnly(Side.CLIENT)
+	@Nullable
+	private BinnieResource resource;
+
 	public static BinnieSprite dnaIcon = Binnie.RESOURCE.getItemSprite(Genetics.instance, "dna");
 
 	GeneticsTexture(final ResourceType base, final String texture) {
@@ -38,7 +45,10 @@ public enum GeneticsTexture implements IBinnieTexture {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public BinnieResource getTexture() {
-		return Binnie.RESOURCE.getPNG(Genetics.instance, this.type, this.texture);
+		if (resource == null) {
+			resource = Binnie.RESOURCE.getPNG(Genetics.instance, this.type, this.texture);
+		}
+		return resource;
 	}
 
 }

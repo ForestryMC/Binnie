@@ -20,16 +20,18 @@ import binnie.genetics.machine.splicer.Splicer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowSplicer extends WindowMachine {
-	static Texture ProgressBase = new StandardTexture(0, 72, 142, 72, GeneticsTexture.GUIProcess2.getTexture());
-	static Texture Progress = new StandardTexture(0, 0, 142, 72, GeneticsTexture.GUIProcess2.getTexture());
+	static Texture ProgressBase = new StandardTexture(0, 72, 142, 72, GeneticsTexture.GUIProcess2);
+	static Texture Progress = new StandardTexture(0, 0, 142, 72, GeneticsTexture.GUIProcess2);
 
 	public WindowSplicer(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(280, 240, player, inventory, side);
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		super.initialiseClient();
 		int x = 16;

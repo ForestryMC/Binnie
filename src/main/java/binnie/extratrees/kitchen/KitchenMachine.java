@@ -1,12 +1,10 @@
 package binnie.extratrees.kitchen;
 
-import binnie.Binnie;
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachinePackage;
 import binnie.core.machines.TileEntityMachine;
-import binnie.core.resource.BinnieResource;
-import binnie.core.resource.ResourceType;
+import binnie.core.resource.IBinnieTexture;
 import binnie.extratrees.ExtraTrees;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -43,14 +41,9 @@ public enum KitchenMachine implements IMachineType {
 	}
 
 	public abstract static class PackageKitchenMachine extends MachinePackage {
-		BinnieResource textureName;
+		private final IBinnieTexture textureName;
 
-		protected PackageKitchenMachine(final String uid, final String textureName) {
-			super(uid, false);
-			this.textureName = Binnie.RESOURCE.getFile(ExtraTrees.instance, ResourceType.Tile, textureName);
-		}
-
-		protected PackageKitchenMachine(final String uid, final BinnieResource textureName) {
+		protected PackageKitchenMachine(final String uid, final IBinnieTexture textureName) {
 			super(uid, false);
 			this.textureName = textureName;
 		}
@@ -67,7 +60,7 @@ public enum KitchenMachine implements IMachineType {
 		@Override
 		@SideOnly(Side.CLIENT)
 		public void renderMachine(Machine machine, double x, double y, double z, float partialTicks, int destroyStage) {
-			MachineRendererKitchen.instance.renderMachine(machine, textureName, x, y, z, partialTicks);
+			MachineRendererKitchen.instance.renderMachine(machine, textureName.getTexture(), x, y, z, partialTicks);
 		}
 	}
 }

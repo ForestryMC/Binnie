@@ -86,8 +86,8 @@ public enum EnumFlowerType implements IFlowerType<EnumFlowerType> {
 		ModelBakery.registerItemVariants(item, pollen, seed, flower);
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
+	@SideOnly(Side.CLIENT)
 	public ModelResourceLocation getModel(EnumFlowerStage type, boolean flowered) {
 		if (type == EnumFlowerStage.SEED) {
 			return seed;

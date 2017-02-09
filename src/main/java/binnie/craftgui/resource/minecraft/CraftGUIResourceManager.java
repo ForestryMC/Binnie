@@ -70,7 +70,7 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener {
 						if (sheet.has("padding")) {
 							padding = this.getBorder(sheet.get("padding").getAsString());
 						}
-						this.textures.put(name, new Texture(uv, padding, border, textureSheet.getTexture()));
+						this.textures.put(name, new Texture(uv, padding, border, textureSheet));
 					}
 				}
 			} catch (RuntimeException runtimeexception) {

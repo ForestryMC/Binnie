@@ -2,6 +2,7 @@ package binnie.extratrees.machines;
 
 import binnie.botany.Botany;
 import binnie.botany.ceramic.CeramicDesignSystem;
+import binnie.core.resource.IBinnieTexture;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignMaterial;
@@ -14,15 +15,15 @@ import binnie.extratrees.core.ExtraTreeTexture;
 import net.minecraft.item.ItemStack;
 
 public enum DesignerType {
-	Woodworker("woodworker", ExtraTreeTexture.carpenterTexture),
-	Panelworker("panelworker", ExtraTreeTexture.panelerTexture),
-	GlassWorker("glassworker", ExtraTreeTexture.panelerTexture),
-	Tileworker("tileworker", ExtraTreeTexture.tileworkerTexture);
+	Woodworker("woodworker", ExtraTreeTexture.Carpenter),
+	Panelworker("panelworker", ExtraTreeTexture.Paneler),
+	GlassWorker("glassworker", ExtraTreeTexture.Paneler), // TODO why is this the Paneler texture?
+	Tileworker("tileworker", ExtraTreeTexture.Tileworker);
 
 	public String name;
-	public String texture;
+	public IBinnieTexture texture;
 
-	DesignerType(final String name, final String texture) {
+	DesignerType(final String name, final IBinnieTexture texture) {
 		this.name = name;
 		this.texture = texture;
 	}

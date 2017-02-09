@@ -10,7 +10,7 @@ import forestry.api.apiculture.IBeeModifier;
 public class AlvearyRainShield {
 	public static class PackageAlvearyRainShield extends AlvearyMachine.AlvearyPackage implements IMachineInformation {
 		public PackageAlvearyRainShield() {
-			super("rainShield", ExtraBeeTexture.AlvearyRainShield.getTexture(), false);
+			super("rainShield", ExtraBeeTexture.AlvearyRainShield, false);
 		}
 
 		@Override

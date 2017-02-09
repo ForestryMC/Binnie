@@ -28,7 +28,7 @@ public class AlvearyFrame {
 
 	public static class PackageAlvearyFrame extends AlvearyMachine.AlvearyPackage implements IMachineInformation {
 		public PackageAlvearyFrame() {
-			super("frame", ExtraBeeTexture.AlvearyFrame.getTexture(), false);
+			super("frame", ExtraBeeTexture.AlvearyFrame, false);
 		}
 
 		@Override

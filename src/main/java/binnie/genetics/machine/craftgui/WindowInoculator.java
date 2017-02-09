@@ -21,16 +21,18 @@ import binnie.genetics.machine.inoculator.Inoculator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowInoculator extends WindowMachine {
-	static Texture ProgressBase = new StandardTexture(0, 72, 142, 72, GeneticsTexture.GUIProcess2.getTexture());
-	static Texture Progress = new StandardTexture(0, 0, 142, 72, GeneticsTexture.GUIProcess2.getTexture());
+	static Texture ProgressBase = new StandardTexture(0, 72, 142, 72, GeneticsTexture.GUIProcess2);
+	static Texture Progress = new StandardTexture(0, 0, 142, 72, GeneticsTexture.GUIProcess2);
 
 	public WindowInoculator(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(266, 240, player, inventory, side);
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		super.initialiseClient();
 		int x = 16;

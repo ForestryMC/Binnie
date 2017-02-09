@@ -27,7 +27,7 @@ public class AlvearyHatchery {
 
 	public static class PackageAlvearyHatchery extends AlvearyMachine.AlvearyPackage implements IMachineInformation {
 		public PackageAlvearyHatchery() {
-			super("hatchery", ExtraBeeTexture.AlvearyHatchery.getTexture(), false);
+			super("hatchery", ExtraBeeTexture.AlvearyHatchery, false);
 		}
 
 		@Override

@@ -1182,7 +1182,6 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 		Deprecated;
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
 	public int getSpriteColour(int renderPass) {
 		return (renderPass == 0) ? this.primaryColor : ((renderPass == 1) ? this.secondaryColor : 16777215);

@@ -4,11 +4,13 @@ import binnie.core.machines.IMachineType;
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachinePackage;
 import binnie.core.machines.MachineRendererBlock;
-import binnie.core.resource.BinnieResource;
+import binnie.core.resource.IBinnieTexture;
 import binnie.extrabees.apiary.ModuleApiary;
 import binnie.extrabees.apiary.TileExtraBeeAlveary;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public enum AlvearyMachine implements IMachineType {
 	Mutator(AlvearyMutator.PackageAlvearyMutator.class),
@@ -40,9 +42,9 @@ public enum AlvearyMachine implements IMachineType {
 	}
 
 	public abstract static class AlvearyPackage extends MachinePackage {
-		BinnieResource machineTexture;
+		private final IBinnieTexture machineTexture;
 
-		public AlvearyPackage(final String id, final BinnieResource machineTexture, final boolean powered) {
+		public AlvearyPackage(final String id, final IBinnieTexture machineTexture, final boolean powered) {
 			super(id, powered);
 			this.machineTexture = machineTexture;
 		}
@@ -61,8 +63,9 @@ public enum AlvearyMachine implements IMachineType {
 		}
 
 		@Override
+		@SideOnly(Side.CLIENT)
 		public void renderMachine(Machine machine, double x, double y, double z, float partialTicks, int destroyStage) {
-			MachineRendererBlock.instance.renderMachine(this.machineTexture, x, y, z, partialTicks);
+			MachineRendererBlock.instance.renderMachine(this.machineTexture.getTexture(), x, y, z, partialTicks);
 		}
 	}
 }

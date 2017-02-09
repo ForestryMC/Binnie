@@ -32,7 +32,7 @@ public class AlvearyStimulator {
 
 	public static class PackageAlvearyStimulator extends AlvearyMachine.AlvearyPackage implements IMachineInformation {
 		public PackageAlvearyStimulator() {
-			super("stimulator", ExtraBeeTexture.AlvearyStimulator.getTexture(), true);
+			super("stimulator", ExtraBeeTexture.AlvearyStimulator, true);
 		}
 
 		@Override

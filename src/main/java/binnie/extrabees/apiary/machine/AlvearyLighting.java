@@ -10,7 +10,7 @@ import forestry.api.apiculture.IBeeModifier;
 public class AlvearyLighting {
 	public static class PackageAlvearyLighting extends AlvearyMachine.AlvearyPackage implements IMachineInformation {
 		public PackageAlvearyLighting() {
-			super("lighting", ExtraBeeTexture.AlvearyLighting.getTexture(), false);
+			super("lighting", ExtraBeeTexture.AlvearyLighting, false);
 		}
 
 		@Override

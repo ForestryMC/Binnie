@@ -10,7 +10,7 @@ public class Nursery {
 
 	public static class PackageNursery extends ExtraTreeMachine.PackageExtraTreeMachine {
 		public PackageNursery() {
-			super("nursery", ExtraTreeTexture.Nursery.getTexture(), false);
+			super("nursery", ExtraTreeTexture.Nursery, false);
 		}
 
 		@Override
