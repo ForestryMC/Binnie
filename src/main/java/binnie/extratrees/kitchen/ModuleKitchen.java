@@ -5,17 +5,19 @@ import binnie.core.machines.MachineGroup;
 import binnie.extratrees.ExtraTrees;
 import forestry.api.core.Tabs;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 
 public class ModuleKitchen implements IInitializable {
 	
-	public Block blockKitchen;
+	public Block blockKitchen = Blocks.AIR;
 	
 	@Override
 	public void preInit() {
-		final MachineGroup machineGroup = new MachineGroup(ExtraTrees.instance, "kitchen", "kitchen", KitchenMachine.values());
-		machineGroup.setCreativeTab(Tabs.tabArboriculture);
-		machineGroup.customRenderer = false;
-		blockKitchen = machineGroup.getBlock();
+		// TODO implement kitchen
+//		final MachineGroup machineGroup = new MachineGroup(ExtraTrees.instance, "kitchen", "kitchen", KitchenMachine.values());
+//		machineGroup.setCreativeTab(Tabs.tabArboriculture);
+//		machineGroup.customRenderer = false;
+//		blockKitchen = machineGroup.getBlock();
 	}
 
 	@Override

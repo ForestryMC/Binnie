@@ -3,6 +3,7 @@ package binnie.core.machines;
 import binnie.core.BinnieCore;
 import binnie.core.machines.component.IRender;
 import binnie.core.util.TileUtil;
+import com.google.common.base.Preconditions;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
@@ -106,10 +107,11 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(final World var1, final int meta) {
+	public TileEntity createNewTileEntity(final World world, final int meta) {
 		MachinePackage machinePackage = this.group.getPackage(meta);
 		if (machinePackage == null) {
-			throw new IllegalArgumentException("Could not find package for meta value " + meta);
+			machinePackage = this.group.getPackage(0);
+			Preconditions.checkNotNull(machinePackage, "Machine has no packages %s", this);
 		}
 		return machinePackage.createTileEntity();
 	}
@@ -165,10 +167,12 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
-		IMachine machine = Machine.getMachine(world.getTileEntity(pos));
-		if (machine != null) {
-			for (IRender.RandomDisplayTick renders : machine.getInterfaces(IRender.RandomDisplayTick.class)) {
-				renders.onRandomDisplayTick(world, pos, rand);
+		if (world.isBlockLoaded(pos)) {
+			IMachine machine = Machine.getMachine(world.getTileEntity(pos));
+			if (machine != null) {
+				for (IRender.RandomDisplayTick renders : machine.getInterfaces(IRender.RandomDisplayTick.class)) {
+					renders.onRandomDisplayTick(world, pos, rand);
+				}
 			}
 		}
 	}
