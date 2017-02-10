@@ -39,7 +39,7 @@ public class FakeCraftingWorld extends World {
 	private FakeCraftingWorld() {
 		super(saveHandler, worldInfo, worldProvider, new Profiler(), true);
 		this.provider.setWorld(this);
-		this.mapStorage = new FakeMapStorage(saveHandler);
+		this.mapStorage = new FakeMapStorage();
 	}
 
 	@Override

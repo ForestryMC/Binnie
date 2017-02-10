@@ -7,8 +7,8 @@ import net.minecraft.world.storage.MapStorage;
 import javax.annotation.Nullable;
 
 public class FakeMapStorage extends MapStorage {
-	public FakeMapStorage(ISaveHandler fakeSaveHandler) {
-		super(fakeSaveHandler);
+	public FakeMapStorage() {
+		super(null);
 	}
 
 	@Override
