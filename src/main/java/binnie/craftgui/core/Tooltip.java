@@ -11,11 +11,26 @@ public class Tooltip {
 	List<String> tooltip;
 	ITooltipType type;
 	public int maxWidth;
+	private ItemStack itemStack = ItemStack.EMPTY;
 
 	public Tooltip() {
 		this.tooltip = new ArrayList<>();
 		this.type = Type.Standard;
 		this.maxWidth = 256;
+	}
+
+	/**
+	 * Sets the itemStack seen by tooltip event handlers.
+	 */
+	public void setItemStack(ItemStack itemStack) {
+		this.itemStack = itemStack;
+	}
+
+	/**
+	 * Gets the itemStack seen by tooltip event handlers.
+	 */
+	public ItemStack getItemStack() {
+		return itemStack;
 	}
 
 	public void add(final String string) {
@@ -53,6 +68,9 @@ public class Tooltip {
 		return this.type;
 	}
 
+	/**
+	 * Add a tooltip that also displays an itemStack on the tooltip directly.
+	 */
 	public void add(final ItemStack item, final String string) {
 		final NBTTagCompound nbt = new NBTTagCompound();
 		item.writeToNBT(nbt);
@@ -60,6 +78,9 @@ public class Tooltip {
 		this.add("~~~" + nbt.toString() + "~~~" + string);
 	}
 
+	/**
+	 * Add a tooltip that also displays an fluidStack on the tooltip directly.
+	 */
 	public void add(final FluidStack item, final String string) {
 		final NBTTagCompound nbt = new NBTTagCompound();
 		item.writeToNBT(nbt);

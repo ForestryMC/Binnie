@@ -17,12 +17,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.nbt.NBTException;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fml.client.config.GuiUtils;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
-import javax.annotation.Nullable;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -115,10 +115,9 @@ public class GuiCraftGUI extends GuiContainer {
 		final int mouseX = mousePosition.x();
 		final int mouseY = mousePosition.y();
 		final FontRenderer font = this.getFontRenderer();
-		GlStateManager.disableRescaleNormal();
-		RenderHelper.disableStandardItemLighting();
-		GlStateManager.disableLighting();
-		GlStateManager.disableDepth();
+
+		boolean containsItemRender = false;
+
 		int k = 0;
 		final List<String> strings = new ArrayList<>();
 		for (final String string : tooltip.getList()) {
@@ -127,6 +126,7 @@ public class GuiCraftGUI extends GuiContainer {
 					strings.addAll(font.listFormattedStringToWidth(string, tooltip.maxWidth));
 				} else {
 					strings.add(string);
+					containsItemRender = true;
 				}
 			}
 		}
@@ -139,66 +139,77 @@ public class GuiCraftGUI extends GuiContainer {
 				k = l;
 			}
 		}
-		int i1 = mouseX + 12;
-		int j1 = mouseY - 12;
-		int k2 = 8;
-		if (strings.size() > 1) {
-			k2 += 2 + (strings.size() - 1) * 10;
-		}
-		if (i1 + k > this.width) {
-			i1 -= 28 + k;
-		}
-		if (j1 + k2 + 6 > this.height) {
-			j1 = this.height - k2 - 6;
-		}
-		this.zLevel = 300.0f;
-		//GuiScreen.itemRender.zLevel = 300.0f;
-		final int l2 = -267386864;
-		final int j2;
-		final int i2 = j2 = 1342177280 + MinecraftTooltip.getOutline(tooltip.getType());
-		this.drawGradientRect(i1 - 3, j1 - 4, i1 + k + 3, j1 - 3, l2, l2);
-		this.drawGradientRect(i1 - 3, j1 + k2 + 3, i1 + k + 3, j1 + k2 + 4, l2, l2);
-		this.drawGradientRect(i1 - 3, j1 - 3, i1 + k + 3, j1 + k2 + 3, l2, l2);
-		this.drawGradientRect(i1 - 4, j1 - 3, i1 - 3, j1 + k2 + 3, l2, l2);
-		this.drawGradientRect(i1 + k + 3, j1 - 3, i1 + k + 4, j1 + k2 + 3, l2, l2);
-		this.drawGradientRect(i1 - 3, j1 - 3 + 1, i1 - 3 + 1, j1 + k2 + 3 - 1, i2, j2);
-		this.drawGradientRect(i1 + k + 2, j1 - 3 + 1, i1 + k + 3, j1 + k2 + 3 - 1, i2, j2);
-		this.drawGradientRect(i1 - 3, j1 - 3, i1 + k + 3, j1 - 3 + 1, i2, i2);
-		this.drawGradientRect(i1 - 3, j1 + k2 + 2, i1 + k + 3, j1 + k2 + 3, j2, j2);
-		for (int k3 = 0; k3 < strings.size(); ++k3) {
-			String s2 = strings.get(k3);
-			if (k3 == 0) {
-				s2 = MinecraftTooltip.getTitle(tooltip.getType()) + s2;
-			} else {
-				s2 = MinecraftTooltip.getBody(tooltip.getType()) + s2;
+
+		if (!containsItemRender) {
+			ItemStack itemStack = tooltip.getItemStack();
+			GuiUtils.drawHoveringText(itemStack, strings, mouseX, mouseY, width, height, tooltip.maxWidth, font);
+		} else {
+			GlStateManager.disableRescaleNormal();
+			RenderHelper.disableStandardItemLighting();
+			GlStateManager.disableLighting();
+			GlStateManager.disableDepth();
+
+			int i1 = mouseX + 12;
+			int j1 = mouseY - 12;
+			int k2 = 8;
+			if (strings.size() > 1) {
+				k2 += 2 + (strings.size() - 1) * 10;
 			}
-			if (s2.contains("~~~")) {
-				final String split = s2.split("~~~")[1];
-				try {
-					final NBTTagCompound nbt = JsonToNBT.getTagFromJson(split);
-					final ItemStack stack = new ItemStack(nbt);
-					GlStateManager.pushMatrix();
-					GlStateManager.translate(i1, j1 - 1.5f, 0.0f);
-					GlStateManager.scale(0.6f, 0.6f, 1.0f);
-					RenderUtil.drawItem(IPoint.ZERO, stack, false);
-					GlStateManager.popMatrix();
-				} catch (NBTException e) {
-					e.printStackTrace();
+			if (i1 + k > this.width) {
+				i1 -= 28 + k;
+			}
+			if (j1 + k2 + 6 > this.height) {
+				j1 = this.height - k2 - 6;
+			}
+			this.zLevel = 300.0f;
+			//GuiScreen.itemRender.zLevel = 300.0f;
+			final int l2 = -267386864;
+			final int j2;
+			final int i2 = j2 = 1342177280 + MinecraftTooltip.getOutline(tooltip.getType());
+			this.drawGradientRect(i1 - 3, j1 - 4, i1 + k + 3, j1 - 3, l2, l2);
+			this.drawGradientRect(i1 - 3, j1 + k2 + 3, i1 + k + 3, j1 + k2 + 4, l2, l2);
+			this.drawGradientRect(i1 - 3, j1 - 3, i1 + k + 3, j1 + k2 + 3, l2, l2);
+			this.drawGradientRect(i1 - 4, j1 - 3, i1 - 3, j1 + k2 + 3, l2, l2);
+			this.drawGradientRect(i1 + k + 3, j1 - 3, i1 + k + 4, j1 + k2 + 3, l2, l2);
+			this.drawGradientRect(i1 - 3, j1 - 3 + 1, i1 - 3 + 1, j1 + k2 + 3 - 1, i2, j2);
+			this.drawGradientRect(i1 + k + 2, j1 - 3 + 1, i1 + k + 3, j1 + k2 + 3 - 1, i2, j2);
+			this.drawGradientRect(i1 - 3, j1 - 3, i1 + k + 3, j1 - 3 + 1, i2, i2);
+			this.drawGradientRect(i1 - 3, j1 + k2 + 2, i1 + k + 3, j1 + k2 + 3, j2, j2);
+			for (int k3 = 0; k3 < strings.size(); ++k3) {
+				String s2 = strings.get(k3);
+				if (k3 == 0) {
+					s2 = MinecraftTooltip.getTitle(tooltip.getType()) + s2;
+				} else {
+					s2 = MinecraftTooltip.getBody(tooltip.getType()) + s2;
 				}
-				s2 = "   " + s2.replaceAll("~~~(.*?)~~~", "");
+				if (s2.contains("~~~")) {
+					final String split = s2.split("~~~")[1];
+					try {
+						final NBTTagCompound nbt = JsonToNBT.getTagFromJson(split);
+						final ItemStack stack = new ItemStack(nbt);
+						GlStateManager.pushMatrix();
+						GlStateManager.translate(i1, j1 - 1.5f, 0.0f);
+						GlStateManager.scale(0.6f, 0.6f, 1.0f);
+						RenderUtil.drawItem(IPoint.ZERO, stack, false);
+						GlStateManager.popMatrix();
+					} catch (NBTException e) {
+						e.printStackTrace();
+					}
+					s2 = "   " + s2.replaceAll("~~~(.*?)~~~", "");
+				}
+				font.drawStringWithShadow(s2, i1, j1, -1);
+				if (k3 == 0) {
+					j1 += 2;
+				}
+				j1 += 10;
 			}
-			font.drawStringWithShadow(s2, i1, j1, -1);
-			if (k3 == 0) {
-				j1 += 2;
-			}
-			j1 += 10;
+			this.zLevel = 0.0f;
+			//GuiScreen.itemRender.zLevel = 0.0f;
+			GlStateManager.enableLighting();
+			GlStateManager.enableDepth();
+			RenderHelper.enableStandardItemLighting();
+			GlStateManager.enableRescaleNormal();
 		}
-		this.zLevel = 0.0f;
-		//GuiScreen.itemRender.zLevel = 0.0f;
-		GlStateManager.enableLighting();
-		GlStateManager.enableDepth();
-		RenderHelper.enableStandardItemLighting();
-		GlStateManager.enableRescaleNormal();
 	}
 
 	@Override

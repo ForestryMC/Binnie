@@ -113,10 +113,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 		final Deque<IWidget> queue = this.calculateMousedOverWidgets();
 		while (!queue.isEmpty()) {
 			final IWidget widget = queue.removeFirst();
-			if (widget.isEnabled() && widget.isVisible()) {
-				if (!widget.calculateIsMouseOver()) {
-					continue;
-				}
+			if (widget.isEnabled() && widget.isVisible() && widget.calculateIsMouseOver()) {
 				if (widget instanceof ITooltip) {
 					((ITooltip) widget).getTooltip(tooltip);
 					if (tooltip.exists()) {
@@ -126,7 +123,6 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 				if (widget.hasAttribute(Attribute.BlockTooltip)) {
 					return;
 				}
-				continue;
 			}
 		}
 	}
@@ -135,10 +131,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 		final Deque<IWidget> queue = this.calculateMousedOverWidgets();
 		while (!queue.isEmpty()) {
 			final IWidget widget = queue.removeFirst();
-			if (widget.isEnabled() && widget.isVisible()) {
-				if (!widget.calculateIsMouseOver()) {
-					continue;
-				}
+			if (widget.isEnabled() && widget.isVisible() && widget.calculateIsMouseOver()) {
 				if (widget instanceof ITooltipHelp) {
 					((ITooltipHelp) widget).getHelpTooltip(tooltip);
 					if (tooltip.exists()) {
@@ -148,7 +141,6 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 				if (widget.hasAttribute(Attribute.BlockTooltip)) {
 					return;
 				}
-				continue;
 			}
 		}
 	}
