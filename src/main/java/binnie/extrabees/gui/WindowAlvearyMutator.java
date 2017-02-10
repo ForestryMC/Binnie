@@ -1,8 +1,6 @@
 package binnie.extrabees.gui;
 
 import binnie.core.AbstractMod;
-import binnie.core.machines.Machine;
-import binnie.core.machines.TileEntityMachine;
 import binnie.craftgui.controls.ControlText;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.TextJustification;
@@ -15,9 +13,14 @@ import binnie.extrabees.apiary.machine.AlvearyMutator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.fml.relauncher.Side;
+import org.apache.commons.lang3.tuple.Pair;
 
 import javax.annotation.Nullable;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
 public class WindowAlvearyMutator extends Window {
 	public WindowAlvearyMutator(final EntityPlayer player, final IInventory inventory, final Side side) {
@@ -40,12 +43,17 @@ public class WindowAlvearyMutator extends Window {
 		new ControlText(this, new IArea(0, 52, this.w(), 16), "Possible Mutagens:", TextJustification.MiddleCenter).setColour(5592405);
 		final int size = AlvearyMutator.getMutagens().size();
 		final int w = size * 18;
+		NumberFormat numberFormat = DecimalFormat.getNumberInstance(MinecraftForgeClient.getLocale());
 		if (size > 0) {
 			int x = (this.w() - w) / 2;
-			for (final ItemStack stack : AlvearyMutator.getMutagens()) {
+			for (final Pair<ItemStack, Float> mutagen : AlvearyMutator.getMutagens()) {
 				final ControlItemDisplay display = new ControlItemDisplay(this, x, 66);
-				display.setItemStack(stack);
+				display.setItemStack(mutagen.getKey());
 				display.hastooltip = true;
+				Float multiplier = mutagen.getValue();
+
+				String format = numberFormat.format(multiplier);
+				display.addTooltip(TextFormatting.GRAY + "Multiplier: " + format + "x");
 				x += 18;
 			}
 		}

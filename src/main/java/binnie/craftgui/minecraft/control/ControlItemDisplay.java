@@ -8,13 +8,13 @@ import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.minecraft.Window;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.opencl.CL;
 
-import javax.annotation.Nullable;
+import java.util.List;
 
 public class ControlItemDisplay extends Control implements ITooltip {
 	private ItemStack itemStack;
@@ -82,7 +82,10 @@ public class ControlItemDisplay extends Control implements ITooltip {
 	@SideOnly(Side.CLIENT)
 	public void getTooltip(final Tooltip tooltip) {
 		if (this.hastooltip && !this.itemStack.isEmpty()) {
-			tooltip.add(this.itemStack.getTooltip(((Window) this.getTopParent()).getPlayer(), false));
+			final boolean advancedItemTooltips = Minecraft.getMinecraft().gameSettings.advancedItemTooltips;
+			List<String> itemStackTooltip = this.itemStack.getTooltip(((Window) this.getTopParent()).getPlayer(), advancedItemTooltips);
+			tooltip.add(itemStackTooltip);
+			tooltip.setItemStack(this.itemStack);
 		}
 		super.getTooltip(tooltip);
 	}

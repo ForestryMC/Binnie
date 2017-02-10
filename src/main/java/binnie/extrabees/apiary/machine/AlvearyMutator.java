@@ -14,26 +14,28 @@ import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
 import net.minecraft.item.ItemStack;
+import org.apache.commons.lang3.tuple.Pair;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class AlvearyMutator {
 	public static int slotMutator = 0;
-	static Map<ItemStack, Float> mutations = new HashMap<>();
+	private static final List<Pair<ItemStack, Float>> MUTATIONS = new ArrayList<>();
 
 	public static boolean isMutationItem(final ItemStack item) {
 		return getMutationMult(item) > 0.0f;
 	}
 
 	public static float getMutationMult(final ItemStack item) {
-		if (item.isEmpty()) {
-			return 1.0f;
-		}
-		for (final ItemStack comp : AlvearyMutator.mutations.keySet()) {
-			if (ItemStack.areItemStackTagsEqual(item, comp) && item.isItemEqual(comp)) {
-				return AlvearyMutator.mutations.get(comp);
+		if (!item.isEmpty()) {
+			for (final Pair<ItemStack, Float> comp : AlvearyMutator.MUTATIONS) {
+				ItemStack key = comp.getKey();
+				if (item.isItemEqual(key) && ItemStack.areItemStackTagsEqual(item, key)) {
+					return comp.getValue();
+				}
 			}
 		}
 		return 1.0f;
@@ -43,11 +45,12 @@ public class AlvearyMutator {
 		if (item.isEmpty()) {
 			return;
 		}
-		AlvearyMutator.mutations.put(item, chance);
+		AlvearyMutator.MUTATIONS.add(Pair.of(item, chance));
+		AlvearyMutator.MUTATIONS.sort(Comparator.comparing(Pair::getValue));
 	}
 
-	public static Collection<ItemStack> getMutagens() {
-		return AlvearyMutator.mutations.keySet();
+	public static List<Pair<ItemStack, Float>> getMutagens() {
+		return Collections.unmodifiableList(AlvearyMutator.MUTATIONS);
 	}
 
 	public static class PackageAlvearyMutator extends AlvearyMachine.AlvearyPackage implements IMachineInformation {
@@ -87,11 +90,9 @@ public class AlvearyMutator {
 
 		@Override
 		public float getMutationModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
-			if (this.getUtil().isSlotEmpty(AlvearyMutator.slotMutator)) {
-				return 1.0f;
-			}
-			final float mult = AlvearyMutator.getMutationMult(this.getUtil().getStack(AlvearyMutator.slotMutator));
-			return Math.min(mult, 15.0f / currentModifier);
+			ItemStack mutator = this.getUtil().getStack(AlvearyMutator.slotMutator);
+			final float mult = AlvearyMutator.getMutationMult(mutator);
+			return Math.min(mult * currentModifier, 15f);
 		}
 
 		@Override
