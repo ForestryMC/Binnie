@@ -30,6 +30,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Arrays;
 import java.util.List;
@@ -41,10 +42,10 @@ public class WindowGeneBank extends WindowMachine {
 	ControlGeneScroll genes;
 
 	@Override
-	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound action) {
-		super.recieveGuiNBT(side, player, name, action);
-		if (side == Side.SERVER && name.equals("gene-select")) {
-			final Gene gene = new Gene(action.getCompoundTag("gene"));
+	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+		super.receiveGuiNBTOnServer(player, name, nbt);
+		if (name.equals("gene-select")) {
+			final Gene gene = new Gene(nbt.getCompoundTag("gene"));
 			if (gene != null && !false) {
 				final ItemStack held = this.getHeldItemStack();
 				final ItemStack converted = Engineering.addGene(held, gene);
@@ -75,8 +76,9 @@ public class WindowGeneBank extends WindowMachine {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
-		this.setTitle("Gene Bank");
+		super.initialiseClient();
 		this.addEventHandler(new EventValueChanged.Handler() {
 			@Override
 			public void onEvent(final EventValueChanged event) {

@@ -12,6 +12,8 @@ import binnie.craftgui.core.renderer.RenderUtil;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.EnumTolerance;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.EnumSet;
 
@@ -47,6 +49,7 @@ public abstract class ControlToleranceBar<T extends Enum<T>> extends Control imp
 	protected abstract int getColour(final T p0);
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		RenderUtil.drawGradientRect(this.getArea(), -1431655766, -1431655766);
 		final int w = this.getArea().w() / this.fullSet.size();

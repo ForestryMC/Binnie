@@ -7,6 +7,8 @@ import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlScrollBar extends Control {
 	protected final IControlScrollable scrollable;
@@ -67,6 +69,7 @@ public class ControlScrollBar extends Control {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		final IArea renderArea = this.getRenderArea();
 		Object texture = CraftGUITexture.ScrollDisabled;

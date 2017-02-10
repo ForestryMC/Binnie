@@ -28,6 +28,7 @@ public class ControlFruitPressProgress extends ControlProgressBase {
 	private static final Texture PressSlot = new StandardTexture(9, 52, 34, 17, ExtraTreeTexture.Gui);
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(ControlFruitPressProgress.PressSlot, new IPoint(3, 52));
 		ContainerCraftGUI container = Window.get(this).getContainer();

@@ -128,6 +128,7 @@ public class ControlSlot extends ControlSlotBase {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderOverlay() {
 		boolean highlighted = false;
 		for (final Map.Entry<EnumHighlighting, List<Integer>> highlight : ControlSlot.highlighting.entrySet()) {

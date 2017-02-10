@@ -32,45 +32,8 @@ public class InoculatorFX extends MachineComponent implements IRender.DisplayTic
 	public void onDisplayTick(World world, BlockPos pos, Random rand) {
 		final int tick = (int) (world.getTotalWorldTime() % 3L);
 		if (tick == 0 && this.getUtil().getProcess().isInProgress()) {
-			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.5, pos.getY() + 0.92, pos.getZ() + 0.5, 0.0, 0.0, 0.0) {
-				double axisX = this.posX;
-				double axisZ = this.posZ;
-				double angle = (int) (this.world.getTotalWorldTime() % 4L) * 0.5 * 3.1415;
-
-				{
-					this.axisX = 0.0;
-					this.axisZ = 0.0;
-					this.angle = 0.0;
-					this.motionX = 0.0;
-					this.motionZ = 0.0;
-					this.motionY = 0.007 + this.rand.nextDouble() * 0.002;
-					this.particleMaxAge = 240;
-					this.particleGravity = 0.0f;
-					this.canCollide = true;
-					this.setRBGColorF(0.8f, 0.0f, 1.0f);
-				}
-
-				@Override
-				public void onUpdate() {
-					super.onUpdate();
-					double speed = 5.0E-4;
-					if (this.particleAge > 60) {
-						speed += (this.particleAge - 60) / 4000.0f;
-					}
-					this.angle += speed;
-					final double dist = 0.27;
-					this.setPosition(this.axisX + dist * Math.sin(this.angle), this.posY, this.axisZ + dist * Math.cos(this.angle));
-					this.setAlphaF((float) Math.cos(1.57 * this.particleAge / this.particleMaxAge));
-					if (this.particleAge > 40) {
-						this.setRBGColorF(this.particleRed + (1.0f - this.particleRed) / 10.0f, this.particleGreen + (0.0f - this.particleGreen) / 10.0f, this.particleBlue + (0.0f - this.particleBlue) / 10.0f);
-					}
-				}
-
-				@Override
-				public int getFXLayer() {
-					return 0;
-				}
-			});
+			final Particle particle = new InoculatorParticle(world, pos);
+			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(particle);
 		}
 	}
 
@@ -125,5 +88,50 @@ public class InoculatorFX extends MachineComponent implements IRender.DisplayTic
 			return;
 		}
 		this.getUtil().refreshBlock();
+	}
+
+	@SideOnly(Side.CLIENT)
+	private static class InoculatorParticle extends Particle {
+		double axisX;
+		double axisZ;
+		double angle;
+
+		public InoculatorParticle(World world, BlockPos pos) {
+			super(world, pos.getX() + 0.5, pos.getY() + 0.92, pos.getZ() + 0.5, 0.0, 0.0, 0.0);
+			axisX = this.posX;
+			axisZ = this.posZ;
+			angle = (int) (this.world.getTotalWorldTime() % 4L) * 0.5 * 3.1415;
+			this.axisX = 0.0;
+			this.axisZ = 0.0;
+			this.angle = 0.0;
+			this.motionX = 0.0;
+			this.motionZ = 0.0;
+			this.motionY = 0.007 + this.rand.nextDouble() * 0.002;
+			this.particleMaxAge = 240;
+			this.particleGravity = 0.0f;
+			this.canCollide = true;
+			this.setRBGColorF(0.8f, 0.0f, 1.0f);
+		}
+
+		@Override
+		public void onUpdate() {
+			super.onUpdate();
+			double speed = 5.0E-4;
+			if (this.particleAge > 60) {
+				speed += (this.particleAge - 60) / 4000.0f;
+			}
+			this.angle += speed;
+			final double dist = 0.27;
+			this.setPosition(this.axisX + dist * Math.sin(this.angle), this.posY, this.axisZ + dist * Math.cos(this.angle));
+			this.setAlphaF((float) Math.cos(1.57 * this.particleAge / this.particleMaxAge));
+			if (this.particleAge > 40) {
+				this.setRBGColorF(this.particleRed + (1.0f - this.particleRed) / 10.0f, this.particleGreen + (0.0f - this.particleGreen) / 10.0f, this.particleBlue + (0.0f - this.particleBlue) / 10.0f);
+			}
+		}
+
+		@Override
+		public int getFXLayer() {
+			return 0;
+		}
 	}
 }

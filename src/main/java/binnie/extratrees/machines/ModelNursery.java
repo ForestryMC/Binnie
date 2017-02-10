@@ -3,6 +3,8 @@ package binnie.extratrees.machines;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ModelNursery extends ModelBase {
 	ModelRenderer Shape1;
@@ -90,6 +92,7 @@ public class ModelNursery extends ModelBase {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void render(final Entity entity, final float f, final float f1, final float f2, final float f3, final float f4, final float f5) {
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);

@@ -17,7 +17,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ControlTextEdit extends Control implements IControlValue<String> {
-	GuiTextField field;
+	private GuiTextField field;
 	private String cachedValue;
 
 	public ControlTextEdit(final IWidget parent, final int x, final int y, final int width, final int height) {

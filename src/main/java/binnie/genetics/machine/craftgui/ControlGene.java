@@ -17,6 +17,8 @@ import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.genetics.Engineering;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlGene extends Control implements IControlValue<IGene>, ITooltip {
 	private IGene gene;
@@ -74,6 +76,7 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		if (this.isMouseOver() && this.canFill(Window.get(this).getHeldItemStack())) {
 			RenderUtil.drawSolidRect(this.getArea(), -1);

@@ -5,6 +5,8 @@ import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.minecraft.control.ControlMachineProgress;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlProcessTemporary extends ControlMachineProgress {
 	public ControlProcessTemporary(final IWidget parent, final int x, final int y, final int width, final int height) {
@@ -13,6 +15,7 @@ public class ControlProcessTemporary extends ControlMachineProgress {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		RenderUtil.drawSolidRect(this.getArea(), -4868683);
 		final int w = Math.round(this.getSize().y() * this.progress / 100.0f);

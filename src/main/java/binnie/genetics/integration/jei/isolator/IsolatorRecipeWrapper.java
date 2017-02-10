@@ -8,6 +8,8 @@ import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -40,6 +42,7 @@ public class IsolatorRecipeWrapper extends BlankRecipeWrapper {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 		float loss = IsolatorLogic.TARGET_LOSS_CHANCE;
 		String lossString = String.format("Loss: %.0f%%", loss * 100);

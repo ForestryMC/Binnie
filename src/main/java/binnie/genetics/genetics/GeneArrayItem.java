@@ -13,6 +13,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -47,6 +49,7 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void getInfo(final List<String> list) {
 		final List<String> totalList = new ArrayList<>();
 

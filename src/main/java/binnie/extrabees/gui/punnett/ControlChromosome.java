@@ -9,6 +9,8 @@ import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.core.renderer.RenderUtil;
 import forestry.api.genetics.IChromosomeType;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
@@ -32,6 +34,7 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(ExtraBeeGUITexture.Chromosome, this.getArea());
 		RenderUtil.setColour(16711680);

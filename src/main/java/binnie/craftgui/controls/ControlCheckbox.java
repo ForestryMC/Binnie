@@ -12,6 +12,8 @@ import binnie.craftgui.events.EventHandler;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.events.EventValueChanged;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlCheckbox extends Control implements IControlValue<Boolean> {
 	private boolean value;
@@ -57,6 +59,7 @@ public class ControlCheckbox extends Control implements IControlValue<Boolean> {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		Object texture = this.getValue() ? CraftGUITexture.CheckboxChecked : CraftGUITexture.Checkbox;
 		if (this.isMouseOver()) {

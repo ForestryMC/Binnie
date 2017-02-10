@@ -59,6 +59,7 @@ public interface IWidget {
 	@SideOnly(Side.CLIENT)
 	void render(int guiWidth, int guiHeight);
 
+	@SideOnly(Side.CLIENT)
 	void updateClient();
 
 	void enable();

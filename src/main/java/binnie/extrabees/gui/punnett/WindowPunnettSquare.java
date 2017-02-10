@@ -14,6 +14,7 @@ import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
@@ -44,6 +45,7 @@ public class WindowPunnettSquare extends Window {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		this.setTitle("Punnett Square");
 		CraftGUI.render.setStyleSheet(new StyleSheetPunnett());

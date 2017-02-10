@@ -20,6 +20,8 @@ import binnie.craftgui.window.Panel;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -67,6 +69,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 			}
 
 			@Override
+			@SideOnly(Side.CLIENT)
 			public void onRenderBackground(int guiWidth, int guiHeight) {
 				RenderUtil.setColour(5592405);
 				CraftGUI.render.texture(CraftGUITexture.TabSolid, this.getArea().inset(1));
@@ -100,6 +103,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 						IAlleleSpecies value = v;
 
 						@Override
+						@SideOnly(Side.CLIENT)
 						public void onRenderBackground(int guiWidth, int guiHeight) {
 							RenderUtil.drawText(this.getArea(), TextJustification.MiddleCenter, this.value.getName(), 16777215);
 						}
@@ -112,6 +116,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 		}
 		new ControlScrollBar(this, this.scroll.x() + this.scroll.w() - 6, this.scroll.y() + 3, 3, this.scroll.h() - 6, this.scroll) {
 			@Override
+			@SideOnly(Side.CLIENT)
 			public void onRenderBackground(int guiWidth, int guiHeight) {
 				if (!this.isEnabled()) {
 					return;
@@ -137,6 +142,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 						public void initialise() {
 							this.addSelfEventHandler(new EventMouse.Down.Handler() {
 								@Override
+								@SideOnly(Side.CLIENT)
 								public void onEvent(final EventMouse.Down event) {
 									final WindowAnalyst window = (WindowAnalyst) AnalystPageDatabase.this.getTopParent();
 									window.setIndividual(ind);
@@ -145,6 +151,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 						}
 
 						@Override
+						@SideOnly(Side.CLIENT)
 						public void onRenderBackground(int guiWidth, int guiHeight) {
 							final WindowAnalyst window = (WindowAnalyst) AnalystPageDatabase.this.getTopParent();
 							if (window.getIndividual() != null && window.getIndividual().getGenome().getPrimary() == species) {

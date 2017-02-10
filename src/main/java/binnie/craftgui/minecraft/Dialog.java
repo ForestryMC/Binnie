@@ -9,6 +9,8 @@ import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventHandler;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class Dialog extends Control {
 	public Dialog(final IWidget parent, final int w, final int h) {
@@ -34,6 +36,7 @@ public abstract class Dialog extends Control {
 	public abstract void onClose();
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		RenderUtil.drawGradientRect(this.getArea().outset(400), -1442840576, -1442840576);
 		CraftGUI.render.texture(CraftGUITexture.Window, this.getArea());

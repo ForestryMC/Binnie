@@ -3,6 +3,8 @@ package binnie.core.machines.inventory;
 import forestry.api.genetics.AlleleManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
@@ -20,6 +22,7 @@ public abstract class SlotValidator extends Validator<ItemStack> {
 	}
 
 	@Nullable
+	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getIcon(final boolean input) {
 		return (this.sprite == null) ? null : this.sprite.getSprite(input).getSprite();
 	}

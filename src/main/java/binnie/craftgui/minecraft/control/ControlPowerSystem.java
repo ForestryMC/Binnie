@@ -8,6 +8,8 @@ import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlPowerSystem extends Control implements ITooltip {
 	private PowerSystem system;
@@ -19,6 +21,7 @@ public class ControlPowerSystem extends Control implements ITooltip {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(CraftGUITexture.PowerButton, this.getArea());
 	}

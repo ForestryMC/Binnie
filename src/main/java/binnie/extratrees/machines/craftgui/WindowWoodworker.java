@@ -23,6 +23,7 @@ import binnie.extratrees.machines.DesignerType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
@@ -31,6 +32,7 @@ public class WindowWoodworker extends Window {
 	ControlTileSelect tileSelect;
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		this.setTitle(Machine.getMachine(this.getInventory()).getPackage().getDisplayName());
 		new ControlText(this, new IArea(190, 36, 114, 10), BinnieCore.getBinnieProxy().localise("gui.design"), TextJustification.TopCenter).setColour(4473924);

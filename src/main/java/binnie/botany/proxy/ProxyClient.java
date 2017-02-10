@@ -4,7 +4,10 @@ import binnie.Constants;
 import binnie.core.models.ModelManager;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class ProxyClient extends Proxy implements IBotanyProxy {
 	public static ModelManager modelManager = new ModelManager(Constants.BOTANY_MOD_ID);
 

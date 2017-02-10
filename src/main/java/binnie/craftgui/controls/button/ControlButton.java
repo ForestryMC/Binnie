@@ -10,6 +10,8 @@ import binnie.craftgui.events.EventButtonClicked;
 import binnie.craftgui.events.EventHandler;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
@@ -56,6 +58,7 @@ public class ControlButton extends Control {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		Object texture = CraftGUITexture.ButtonDisabled;
 		if (this.isMouseOver()) {

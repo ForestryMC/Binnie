@@ -40,6 +40,7 @@ public class ControlSlotFluid extends Control implements ITooltip {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		final int size = this.getSize().x();
 		CraftGUI.render.texture(CraftGUITexture.Slot, this.getArea());

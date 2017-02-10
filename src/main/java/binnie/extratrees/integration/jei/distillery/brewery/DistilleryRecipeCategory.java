@@ -18,6 +18,8 @@ import mezz.jei.api.gui.ITickTimer;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class DistilleryRecipeCategory extends BlankRecipeCategory<DistilleryRecipeWrapper> {
 	private static final Texture DISTILLERY_BASE = new StandardTexture(43, 0, 58, 60, ExtraTreeTexture.Gui);
@@ -45,6 +47,7 @@ public class DistilleryRecipeCategory extends BlankRecipeCategory<DistilleryReci
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void drawExtras(Minecraft minecraft) {
 		CraftGUI.render.texture(DISTILLERY_BASE, IPoint.ZERO);
 		CraftGUI.render.texturePercentage(LIQUID_FLOW, new IArea(18, 0, 38, 60), Position.Left, progress.getValue() / 100f);

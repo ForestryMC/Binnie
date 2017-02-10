@@ -79,6 +79,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		this.setTitle(Machine.getMachine(this.getInventory()).getPackage().getDisplayName());
 		int x = 16;
@@ -279,11 +280,13 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		y2 += 20;
 		final ControlButton searchButton = new ControlButton(controlCompartment, compartmentWidth - 24 - 64 - 8, compartmentPageHeight, 64, 16, "Search") {
 			@Override
+			@SideOnly(Side.CLIENT)
 			protected void onMouseClick(final EventMouse.Down event) {
 				WindowCompartment.this.createSearchDialog();
 			}
 
 			@Override
+			@SideOnly(Side.CLIENT)
 			public void onRenderBackground(int guiWidth, int guiHeight) {
 				final Object texture = this.isMouseOver() ? CraftGUITexture.TabHighlighted : CraftGUITexture.Tab;
 				CraftGUI.render.texture(CraftGUI.render.getTexture(texture).crop(Position.Bottom, 8), this.getArea());
@@ -293,6 +296,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		searchButton.addHelp("Clicking this will open the Search dialog. This allows you to search the inventory for specific items.");
 	}
 
+	@SideOnly(Side.CLIENT)
 	public void createSearchDialog() {
 		new Dialog(this, 252, 192) {
 			Control slotGrid;
@@ -417,10 +421,10 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 	}
 
 	@Override
-	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound action) {
-		super.recieveGuiNBT(side, player, name, action);
+	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+		super.receiveGuiNBTOnServer(player, name, nbt);
 		if (name.equals("tab-change")) {
-			this.currentTab = action.getByte("i");
+			this.currentTab = nbt.getByte("i");
 		}
 	}
 

@@ -3,12 +3,13 @@ package binnie.core.machines.network;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Map;
 
 public interface INetwork {
 	interface SendGuiNBT {
-		void sendGuiNBT(final Map<String, NBTTagCompound> p0);
+		void sendGuiNBTToClient(final Map<String, NBTTagCompound> p0);
 	}
 
 	interface TilePacketSync {
@@ -17,10 +18,13 @@ public interface INetwork {
 		void syncFromNBT(final NBTTagCompound p0);
 	}
 
-	interface RecieveGuiNBT {
-		void recieveGuiNBT(final Side p0, final EntityPlayer p1, final String p2, final NBTTagCompound p3);
+	interface ReceiveGuiNBT {
+		void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt);
+
+		@SideOnly(Side.CLIENT)
+		void receiveGuiNBTOnClient(final EntityPlayer player, final String name, final NBTTagCompound nbt);
 	}
 
-	interface GuiNBT extends RecieveGuiNBT, SendGuiNBT {
+	interface GuiNBT extends ReceiveGuiNBT, SendGuiNBT {
 	}
 }

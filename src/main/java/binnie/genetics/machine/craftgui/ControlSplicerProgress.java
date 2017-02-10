@@ -4,6 +4,8 @@ import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.minecraft.control.ControlProgressBase;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlSplicerProgress extends ControlProgressBase {
 	float strength;
@@ -15,6 +17,7 @@ public class ControlSplicerProgress extends ControlProgressBase {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		final float progress = this.getProcess().getCurrentProgress() / 100.0f;
 		final float n = this.getProcess().getProcessTime() / 12.0f;

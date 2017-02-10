@@ -22,51 +22,59 @@ public class PolymeriserFX extends MachineComponent implements IRender.DisplayTi
 	public void onDisplayTick(World world, BlockPos pos, Random rand) {
 		final int tick = (int) (world.getTotalWorldTime() % 8L);
 		if ((tick == 0 || tick == 3) && this.getUtil().getProcess().isInProgress()) {
-			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.5, pos.getY() + 1.8, pos.getZ() + 0.5, 0.0, 0.0, 0.0) {
-				double axisX = this.posX;
-				double axisZ = this.posZ;
-				double angle = 0.7 + (int) (this.world.getTotalWorldTime() % 2L) * 3.1415;
+			PolymeriserParticle polymeriserParticle = new PolymeriserParticle(world, pos);
+			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(polymeriserParticle);
+		}
+	}
 
-				{
-					this.axisX = 0.0;
-					this.axisZ = 0.0;
-					this.angle = 0.0;
-					this.motionX = 0.0;
-					this.motionZ = 0.0;
-					this.motionY = -0.006;
-					this.particleMaxAge = 140;
-					this.particleGravity = 0.0f;
-					this.canCollide = true;
-					this.setRBGColorF(0.8f, 0.0f, 1.0f);
-				}
+	@SideOnly(Side.CLIENT)
+	private static class PolymeriserParticle extends Particle {
+		double axisX;
+		double axisZ;
+		double angle;
 
-				@Override
-				public void onUpdate() {
-					super.onUpdate();
-					this.angle += 0.1;
-					this.motionY = -0.006;
-					double dist = 0.2;
-					if (this.particleAge > 60) {
-						if (this.particleAge > 120) {
-							dist = 0.1;
-						} else {
-							dist = 0.2 - 0.1 * ((this.particleAge - 60.0f) / 60.0f);
-						}
-					}
-					this.setPosition(this.axisX + dist * Math.sin(this.angle), this.posY, this.axisZ + dist * Math.cos(this.angle));
-					if (this.particleAge <= 40) {
-						this.setAlphaF(this.particleAge / 40.0f);
-					}
-					if (this.particleAge > 80) {
-						this.setRBGColorF(this.particleRed + (0.0f - this.particleRed) / 10.0f, this.particleGreen + (1.0f - this.particleGreen) / 10.0f, this.particleBlue + (1.0f - this.particleBlue) / 10.0f);
-					}
-				}
+		public PolymeriserParticle(World world, BlockPos pos) {
+			super(world, pos.getX() + 0.5, pos.getY() + 1.8, pos.getZ() + 0.5, 0.0, 0.0, 0.0);
+			axisX = this.posX;
+			axisZ = this.posZ;
+			angle = 0.7 + (int) (this.world.getTotalWorldTime() % 2L) * 3.1415;
+			this.axisX = 0.0;
+			this.axisZ = 0.0;
+			this.angle = 0.0;
+			this.motionX = 0.0;
+			this.motionZ = 0.0;
+			this.motionY = -0.006;
+			this.particleMaxAge = 140;
+			this.particleGravity = 0.0f;
+			this.canCollide = true;
+			this.setRBGColorF(0.8f, 0.0f, 1.0f);
+		}
 
-				@Override
-				public int getFXLayer() {
-					return 0;
+		@Override
+		public void onUpdate() {
+			super.onUpdate();
+			this.angle += 0.1;
+			this.motionY = -0.006;
+			double dist = 0.2;
+			if (this.particleAge > 60) {
+				if (this.particleAge > 120) {
+					dist = 0.1;
+				} else {
+					dist = 0.2 - 0.1 * ((this.particleAge - 60.0f) / 60.0f);
 				}
-			});
+			}
+			this.setPosition(this.axisX + dist * Math.sin(this.angle), this.posY, this.axisZ + dist * Math.cos(this.angle));
+			if (this.particleAge <= 40) {
+				this.setAlphaF(this.particleAge / 40.0f);
+			}
+			if (this.particleAge > 80) {
+				this.setRBGColorF(this.particleRed + (0.0f - this.particleRed) / 10.0f, this.particleGreen + (1.0f - this.particleGreen) / 10.0f, this.particleBlue + (1.0f - this.particleBlue) / 10.0f);
+			}
+		}
+
+		@Override
+		public int getFXLayer() {
+			return 0;
 		}
 	}
 }

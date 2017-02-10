@@ -6,7 +6,6 @@ import binnie.core.machines.network.INetwork;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraftforge.fml.relauncher.Side;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,7 +48,12 @@ public class ComponentChargedSlots extends MachineComponent implements INetwork.
 	}
 
 	@Override
-	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+
+	}
+
+	@Override
+	public void receiveGuiNBTOnClient(EntityPlayer player, String name, NBTTagCompound nbt) {
 		if (name.equals("slot-charges")) {
 			for (final int i : this.charges.keySet()) {
 				this.charges.put(i, nbt.getShort("" + i) / 100.0f);
@@ -58,7 +62,7 @@ public class ComponentChargedSlots extends MachineComponent implements INetwork.
 	}
 
 	@Override
-	public void sendGuiNBT(final Map<String, NBTTagCompound> nbt) {
+	public void sendGuiNBTToClient(final Map<String, NBTTagCompound> nbt) {
 		final NBTTagCompound tag = new NBTTagCompound();
 		for (final int i : this.charges.keySet()) {
 			tag.setShort("" + i, (short) (this.charges.get(i) * 100.0f));

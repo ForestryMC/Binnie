@@ -9,12 +9,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.relauncher.Side;
 
 import javax.annotation.Nullable;
 import java.util.Map;
 
-public class DistilleryLogic extends ComponentProcessSetCost implements IProcess, INetwork.SendGuiNBT, INetwork.RecieveGuiNBT {
+public class DistilleryLogic extends ComponentProcessSetCost implements IProcess, INetwork.SendGuiNBT, INetwork.ReceiveGuiNBT {
 	public static final int INPUT_FLUID_AMOUNT = Fluid.BUCKET_VOLUME;
 
 	@Nullable
@@ -101,7 +100,12 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 	}
 
 	@Override
-	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+
+	}
+
+	@Override
+	public void receiveGuiNBTOnClient(EntityPlayer player, String name, NBTTagCompound nbt) {
 		if (name.equals("still-level")) {
 			this.level = nbt.getByte("i");
 			this.setProgress(0);
@@ -116,7 +120,7 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 	}
 
 	@Override
-	public void sendGuiNBT(final Map<String, NBTTagCompound> data) {
+	public void sendGuiNBTToClient(final Map<String, NBTTagCompound> data) {
 		final NBTTagCompound nbt = new NBTTagCompound();
 		if (this.currentFluid == null) {
 			nbt.setBoolean("null", true);

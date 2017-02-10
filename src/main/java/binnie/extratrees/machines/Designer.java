@@ -18,7 +18,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fml.relauncher.Side;
 
 import javax.annotation.Nullable;
 import java.util.Map;
@@ -137,32 +136,6 @@ public abstract class Designer {
 			return this.design;
 		}
 
-		@Override
-		public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound nbt) {
-			if (name.equals("recipe")) {
-				final InventoryPlayer playerInv = player.inventory;
-				final ItemStack recipe = this.doRecipe(false);
-				if (!recipe.isEmpty()) {
-					if (playerInv.getItemStack().isEmpty()) {
-						playerInv.setItemStack(this.doRecipe(true));
-					} else if (playerInv.getItemStack().isItemEqual(recipe) && ItemStack.areItemStackTagsEqual(playerInv.getItemStack(), recipe)) {
-						final int fit = recipe.getMaxStackSize() - (recipe.getCount() + playerInv.getItemStack().getCount());
-						if (fit >= 0) {
-							this.doRecipe(true);
-							recipe.grow(playerInv.getItemStack().getCount());
-							playerInv.setItemStack(recipe);
-						}
-					}
-					player.openContainer.detectAndSendChanges();
-					if (player instanceof EntityPlayerMP) {
-						((EntityPlayerMP) player).updateHeldItem();
-					}
-				}
-			} else if (name.equals("design")) {
-				this.setDesign(CarpentryManager.carpentryInterface.getDesign(nbt.getShort("d")));
-			}
-		}
-
 		private void setDesign(final IDesign design) {
 			this.design = design;
 		}
@@ -183,10 +156,41 @@ public abstract class Designer {
 		}
 
 		@Override
-		public void sendGuiNBT(final Map<String, NBTTagCompound> nbt) {
+		public void sendGuiNBTToClient(final Map<String, NBTTagCompound> nbt) {
 			final NBTTagCompound tag = new NBTTagCompound();
 			tag.setShort("d", (short) CarpentryManager.carpentryInterface.getDesignIndex(this.getDesign()));
 			nbt.put("design", tag);
+		}
+
+		@Override
+		public void receiveGuiNBTOnClient(EntityPlayer player, String name, NBTTagCompound nbt) {
+			 if (name.equals("design")) {
+				this.setDesign(CarpentryManager.carpentryInterface.getDesign(nbt.getShort("d")));
+			}
+		}
+
+		@Override
+		public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+			if (name.equals("recipe")) {
+				final InventoryPlayer playerInv = player.inventory;
+				final ItemStack recipe = this.doRecipe(false);
+				if (!recipe.isEmpty()) {
+					if (playerInv.getItemStack().isEmpty()) {
+						playerInv.setItemStack(this.doRecipe(true));
+					} else if (playerInv.getItemStack().isItemEqual(recipe) && ItemStack.areItemStackTagsEqual(playerInv.getItemStack(), recipe)) {
+						final int fit = recipe.getMaxStackSize() - (recipe.getCount() + playerInv.getItemStack().getCount());
+						if (fit >= 0) {
+							this.doRecipe(true);
+							recipe.grow(playerInv.getItemStack().getCount());
+							playerInv.setItemStack(recipe);
+						}
+					}
+					player.openContainer.detectAndSendChanges();
+					if (player instanceof EntityPlayerMP) {
+						((EntityPlayerMP) player).updateHeldItem();
+					}
+				}
+			}
 		}
 
 		public DesignerType getDesignerType() {

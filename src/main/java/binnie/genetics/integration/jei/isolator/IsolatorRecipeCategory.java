@@ -11,6 +11,8 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.awt.*;
 
@@ -37,6 +39,7 @@ public class IsolatorRecipeCategory extends BlankRecipeCategory<IsolatorRecipeWr
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void drawExtras(Minecraft minecraft) {
 		IDrawable tank = GeneticsJeiPlugin.drawables.getTank();
 		tank.draw(minecraft, 0, 0);

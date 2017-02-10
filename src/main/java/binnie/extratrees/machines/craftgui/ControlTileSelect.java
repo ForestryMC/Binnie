@@ -157,11 +157,13 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 		}
 
 		@Override
+		@SideOnly(Side.CLIENT)
 		public void onRenderBackground(int guiWidth, int guiHeight) {
 			CraftGUI.render.texture(CraftGUITexture.Slot, IPoint.ZERO);
 		}
 
 		@Override
+		@SideOnly(Side.CLIENT)
 		public void onRenderForeground(int guiWidth, int guiHeight) {
 			final ItemStack image = ((WindowWoodworker) this.getTopParent()).getDesignerType().getDisplayStack(this.getValue());
 			RenderUtil.drawItem(new IPoint(1, 1), image);

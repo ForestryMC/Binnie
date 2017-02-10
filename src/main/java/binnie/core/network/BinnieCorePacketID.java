@@ -41,13 +41,14 @@ public enum BinnieCorePacketID implements IPacketID {
 			final MessageCraftGUI packet3 = new MessageCraftGUI(message);
 			final EntityPlayer player = BinnieCore.getBinnieProxy().getPlayer();
 			if (player.openContainer instanceof ContainerCraftGUI && packet3.getTagCompound() != null) {
-				((ContainerCraftGUI) player.openContainer).recieveNBT(Side.CLIENT, player, packet3.getTagCompound());
+				//noinspection MethodCallSideOnly
+				((ContainerCraftGUI) player.openContainer).receiveNBTClient(player, packet3.getTagCompound());
 			}
 		} else if (this == BinnieCorePacketID.CraftGUIAction && context.side == Side.SERVER && context.netHandler instanceof NetHandlerPlayServer) {
 			final MessageCraftGUI packet3 = new MessageCraftGUI(message);
 			final EntityPlayer player = ((NetHandlerPlayServer) context.netHandler).playerEntity;
 			if (player.openContainer instanceof ContainerCraftGUI && packet3.getTagCompound() != null) {
-				((ContainerCraftGUI) player.openContainer).recieveNBT(Side.SERVER, player, packet3.getTagCompound());
+				((ContainerCraftGUI) player.openContainer).receiveNBTServer(player, packet3.getTagCompound());
 			}
 		} else if (this == BinnieCorePacketID.TileDescriptionSync && context.side == Side.CLIENT) {
 			final MessageTileNBT packet4 = new MessageTileNBT(message);

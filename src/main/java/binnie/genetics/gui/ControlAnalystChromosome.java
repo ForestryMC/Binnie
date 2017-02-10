@@ -15,6 +15,8 @@ import binnie.craftgui.resource.minecraft.StandardTexture;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlAnalystChromosome extends Control implements ITooltip {
 	IAllele allele0;
@@ -40,6 +42,7 @@ public class ControlAnalystChromosome extends Control implements ITooltip {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		super.onRenderBackground(guiWidth, guiHeight);
 		CraftGUI.render.texture(this.isHomozygous() ? this.Homozygous : this.Heterozygous, IPoint.ZERO);

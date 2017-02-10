@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
@@ -30,6 +31,7 @@ public final class BinnieGUIHandler implements IGuiHandler {
 
 	@Override
 	@Nullable
+	@SideOnly(Side.CLIENT)
 	public final Object getClientGuiElement(final int id, final EntityPlayer player, final World world, final int x, final int y, final int z) {
 		if (BinnieCore.getBinnieProxy().isSimulating(world)) {
 			return this.getServerGuiElement(id, player, world, x, y, z);

@@ -24,6 +24,8 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -154,6 +156,7 @@ public class AnalystPageProducts extends AnalystPageProduce {
 	private void createProductEntry(final ItemStack key, final Float value, final int y, final float speed) {
 		final ControlItemDisplay item = new ControlItemDisplay(this, 16, y) {
 			@Override
+			@SideOnly(Side.CLIENT)
 			public void getTooltip(final Tooltip tooltip) {
 				super.getTooltip(tooltip);
 				final Collection<ItemStack> products = AnalystPageProducts.this.getCentrifuge(key);

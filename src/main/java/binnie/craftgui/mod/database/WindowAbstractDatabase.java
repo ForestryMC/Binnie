@@ -28,6 +28,7 @@ import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IClassification;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.Collection;
@@ -93,6 +94,7 @@ public abstract class WindowAbstractDatabase extends Window {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		this.setSize(new IPoint(176 + this.selectionBoxWidth + 22 + 8, 208));
 		this.addEventHandler(new EventValueChanged.Handler() {
@@ -204,6 +206,7 @@ public abstract class WindowAbstractDatabase extends Window {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onUpdateClient() {
 		super.onUpdateClient();
 		if (this.gotoSpecies != null) {

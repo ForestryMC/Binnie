@@ -128,6 +128,7 @@ public class WindowAnalyst extends Window {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		this.setTitle(this.isDatabase ? (this.isMaster ? "Master Registry" : "Registry") : "Analyst");
 		final BreedingSystem system = Binnie.GENETICS.beeBreedingSystem;
@@ -145,6 +146,7 @@ public class WindowAnalyst extends Window {
 						this.addAttribute(Attribute.MouseOver);
 						this.addSelfEventHandler(new EventMouse.Down.Handler() {
 							@Override
+							@SideOnly(Side.CLIENT)
 							public void onEvent(final EventMouse.Down event) {
 								WindowAnalyst.this.setSystem(syst);
 							}
@@ -273,6 +275,7 @@ public class WindowAnalyst extends Window {
 		this.setSystem(Binnie.GENETICS.beeBreedingSystem);
 	}
 
+	@SideOnly(Side.CLIENT)
 	public void setIndividual(final IIndividual ind) {
 		if (!this.isDatabase) {
 			if (ind == null) {
@@ -293,6 +296,7 @@ public class WindowAnalyst extends Window {
 		this.updatePages(systemChange);
 	}
 
+	@SideOnly(Side.CLIENT)
 	public void setSystem(final BreedingSystem system) {
 		if (system == this.currentSystem) {
 			return;
@@ -302,6 +306,7 @@ public class WindowAnalyst extends Window {
 		this.updatePages(true);
 	}
 
+	@SideOnly(Side.CLIENT)
 	public void updatePages(final boolean systemChange) {
 		int oldLeft = -1;
 		int oldRight = -1;
@@ -475,13 +480,14 @@ public class WindowAnalyst extends Window {
 		if (ind != null) {
 			ind.getGenome().getSpeciesRoot().getBreedingTracker(this.getWorld(), this.getUsername()).registerBirth(ind);
 		}
-		// TODO why is this specific client/server code needed?
+
 		if (this.isClient()) {
+			//noinspection MethodCallSideOnly
 			this.setStack(this.getWindowInventory().getStackInSlot(0));
-		} else if (this.isServer()) {
 		}
 	}
 
+	@SideOnly(Side.CLIENT)
 	public void setStack(final ItemStack stack) {
 		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(stack);
 		this.setIndividual(ind);

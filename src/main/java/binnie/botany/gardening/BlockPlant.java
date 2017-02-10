@@ -38,6 +38,7 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
 		int index = 0;
 		for (Type type : Type.values()) {

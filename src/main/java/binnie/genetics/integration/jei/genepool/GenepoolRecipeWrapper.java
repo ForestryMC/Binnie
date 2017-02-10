@@ -9,6 +9,8 @@ import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -40,6 +42,7 @@ public class GenepoolRecipeWrapper extends BlankRecipeWrapper {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 		float usedEnzyme = GenepoolLogic.ENZYME_PER_PROCESS;
 		String usedString = String.format("%.2f", usedEnzyme);

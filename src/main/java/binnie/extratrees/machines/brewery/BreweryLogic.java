@@ -11,7 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.relauncher.Side;
 
 import javax.annotation.Nullable;
 import java.util.Map;
@@ -87,7 +86,7 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 	}
 
 	@Override
-	public void sendGuiNBT(final Map<String, NBTTagCompound> data) {
+	public void sendGuiNBTToClient(final Map<String, NBTTagCompound> data) {
 		final NBTTagCompound nbt = new NBTTagCompound();
 		if (this.currentCrafting == null) {
 			nbt.setBoolean("null", true);
@@ -98,7 +97,12 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 	}
 
 	@Override
-	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+
+	}
+
+	@Override
+	public void receiveGuiNBTOnClient(EntityPlayer player, String name, NBTTagCompound nbt) {
 		if (name.equals("brewery-recipe")) {
 			if (nbt.getBoolean("null")) {
 				this.currentCrafting = null;

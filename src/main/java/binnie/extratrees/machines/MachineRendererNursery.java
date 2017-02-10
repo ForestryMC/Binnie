@@ -5,6 +5,8 @@ import binnie.core.resource.BinnieResource;
 import binnie.core.resource.ResourceType;
 import binnie.extratrees.ExtraTrees;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class MachineRendererNursery {
 	public static MachineRendererNursery instance = new MachineRendererNursery();
@@ -17,6 +19,7 @@ public class MachineRendererNursery {
 		this.model = new ModelNursery();
 	}
 
+	@SideOnly(Side.CLIENT)
 	public void renderMachine(final BinnieResource texture, final double x, final double y, final double z, final float var8) {
 		this.texture = texture;
 		GlStateManager.pushMatrix();

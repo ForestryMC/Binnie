@@ -5,6 +5,8 @@ import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.core.renderer.RenderUtil;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlBlockIconDisplay extends Control {
 	TextureAtlasSprite icon;
@@ -15,6 +17,7 @@ public class ControlBlockIconDisplay extends Control {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		RenderUtil.drawSprite(IPoint.ZERO, this.icon);
 	}

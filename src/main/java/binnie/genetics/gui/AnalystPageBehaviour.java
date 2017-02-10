@@ -16,7 +16,10 @@ import forestry.api.lepidopterology.IAlleleButterflyEffect;
 import forestry.api.lepidopterology.IButterfly;
 import forestry.apiculture.PluginApiculture;
 import net.minecraft.util.math.Vec3i;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class AnalystPageBehaviour extends ControlAnalystPage {
 	public AnalystPageBehaviour(final IWidget parent, final IArea area, final IIndividual ind) {
 		super(parent, area);

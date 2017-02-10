@@ -58,10 +58,10 @@ public class WindowPress extends Window {
 	}
 
 	@Override
-	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound action) {
+	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+		super.receiveGuiNBTOnServer(player, name, nbt);
 		final FruitPressLogic logic = Machine.getInterface(FruitPressLogic.class, this.getInventory());
-		super.recieveGuiNBT(side, player, name, action);
-		if (logic != null && side == Side.SERVER) {
+		if (logic != null) {
 			if (name.equals("fruitpress-click") && logic.canWork() == null && (logic.canProgress() == null || logic.canProgress() instanceof ErrorState.InsufficientPower)) {
 				logic.alterProgress(2.0f);
 			} else if (name.equals("clear-fruit")) {

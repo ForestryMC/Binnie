@@ -21,35 +21,43 @@ public class GenepoolFX extends MachineComponent implements IRender.DisplayTick 
 	@Override
 	public void onDisplayTick(World world, BlockPos pos, Random rand) {
 		if (rand.nextFloat() < 1.0f && this.getUtil().getProcess().isInProgress()) {
-			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(new Particle(world, pos.getX() + 0.3 + rand.nextDouble() * 0.4, pos.getY() + 1, pos.getZ() + 0.3 + rand.nextDouble() * 0.4, 0.0, 0.0, 0.0) {
-				double axisX = this.posX;
-				double axisZ = this.posZ;
-				double angle = this.rand.nextDouble() * 2.0 * 3.1415;
+			final Particle particle = new GenepoolParticle(world, pos, rand);
+			BinnieCore.getBinnieProxy().getMinecraftInstance().effectRenderer.addEffect(particle);
+		}
+	}
 
-				{
-					this.axisX = 0.0;
-					this.axisZ = 0.0;
-					this.angle = 0.0;
-					this.motionX = 0.0;
-					this.motionZ = 0.0;
-					this.motionY = this.rand.nextFloat() * 0.01;
-					this.particleMaxAge = 25;
-					this.particleGravity = 0.0f;
-					this.canCollide = true;
-					this.setRBGColorF(0.4f + 0.6f * this.rand.nextFloat(), 0.6f * this.rand.nextFloat(), 0.6f + 0.4f * this.rand.nextFloat());
-				}
+	@SideOnly(Side.CLIENT)
+	private static class GenepoolParticle extends Particle {
+		double axisX;
+		double axisZ;
+		double angle;
 
-				@Override
-				public void onUpdate() {
-					super.onUpdate();
-					this.setAlphaF((float) Math.cos(1.57 * this.particleAge / this.particleMaxAge));
-				}
+		public GenepoolParticle(World world, BlockPos pos, Random rand) {
+			super(world, pos.getX() + 0.3 + rand.nextDouble() * 0.4, pos.getY() + 1, pos.getZ() + 0.3 + rand.nextDouble() * 0.4, 0.0, 0.0, 0.0);
+			axisX = this.posX;
+			axisZ = this.posZ;
+			angle = this.rand.nextDouble() * 2.0 * 3.1415;
+			this.axisX = 0.0;
+			this.axisZ = 0.0;
+			this.angle = 0.0;
+			this.motionX = 0.0;
+			this.motionZ = 0.0;
+			this.motionY = this.rand.nextFloat() * 0.01;
+			this.particleMaxAge = 25;
+			this.particleGravity = 0.0f;
+			this.canCollide = true;
+			this.setRBGColorF(0.4f + 0.6f * this.rand.nextFloat(), 0.6f * this.rand.nextFloat(), 0.6f + 0.4f * this.rand.nextFloat());
+		}
 
-				@Override
-				public int getFXLayer() {
-					return 0;
-				}
-			});
+		@Override
+		public void onUpdate() {
+			super.onUpdate();
+			this.setAlphaF((float) Math.cos(1.57 * this.particleAge / this.particleMaxAge));
+		}
+
+		@Override
+		public int getFXLayer() {
+			return 0;
 		}
 	}
 }

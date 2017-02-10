@@ -8,6 +8,8 @@ import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.core.renderer.RenderUtil;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlColourDisplay extends Control implements IControlValue<IFlowerColour>, ITooltip {
 	private IFlowerColour value;
@@ -29,6 +31,7 @@ public class ControlColourDisplay extends Control implements IControlValue<IFlow
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		RenderUtil.drawSolidRect(this.getArea(), -1);
 		RenderUtil.drawSolidRect(this.getArea().inset(1), -16777216 + this.getValue().getColor(false));

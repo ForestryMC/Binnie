@@ -8,11 +8,14 @@ import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.EnumFacing;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.LinkedList;
 import java.util.List;
 
+@SideOnly(Side.CLIENT)
 public class DoublePassBakedModel implements IBakedModel {
 	private IBakedModel mainModel;
 	private int primaryColor = 0xFF000000;

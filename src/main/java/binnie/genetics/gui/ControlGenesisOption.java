@@ -6,6 +6,8 @@ import binnie.craftgui.controls.listbox.ControlOption;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.TextJustification;
 import binnie.craftgui.core.renderer.RenderUtil;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlGenesisOption extends ControlOption<Gene> {
 	public ControlGenesisOption(final ControlList<Gene> parent, final Gene gene, final int y) {
@@ -21,6 +23,7 @@ public class ControlGenesisOption extends ControlOption<Gene> {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		super.onRenderBackground(guiWidth, guiHeight);
 		RenderUtil.drawText(new IArea(0, 0, 70, 22), TextJustification.MiddleCenter, this.getChromosomeName(), this.getColour());

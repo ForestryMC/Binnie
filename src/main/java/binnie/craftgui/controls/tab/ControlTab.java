@@ -16,6 +16,8 @@ import binnie.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.craftgui.minecraft.control.ControlTabIcon;
 import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlTab<T> extends Control implements ITooltip, IControlValue<T> {
 	private ControlTabBar<T> tabBar;
@@ -68,6 +70,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		Object texture = CraftGUITexture.TabDisabled;
 		if (this.isMouseOver()) {

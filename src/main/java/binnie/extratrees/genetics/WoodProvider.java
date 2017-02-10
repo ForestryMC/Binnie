@@ -1,9 +1,6 @@
 package binnie.extratrees.genetics;
 
-import binnie.Constants;
-import binnie.extratrees.block.EnumETLog;
-import forestry.api.arboriculture.EnumForestryWoodType;
-import forestry.api.arboriculture.EnumVanillaWoodType;
+import com.google.common.base.Preconditions;
 import forestry.api.arboriculture.IWoodProvider;
 import forestry.api.arboriculture.IWoodType;
 import forestry.api.arboriculture.TreeManager;
@@ -15,26 +12,28 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.FMLClientHandler;
-import javax.annotation.Nonnull;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 public class WoodProvider implements IWoodProvider {
 	private IWoodType type;
+
+	@SideOnly(Side.CLIENT)
+	@Nullable
 	private TextureAtlasSprite trunk;
+
+	@SideOnly(Side.CLIENT)
+	@Nullable
 	private TextureAtlasSprite bark;
-	private String modID = "";
 
 	public WoodProvider(IWoodType type) {
 		this.type = type;
-		if (type instanceof EnumETLog) {
-			modID = Constants.EXTRA_TREES_MOD_ID;
-		} else if (type instanceof EnumVanillaWoodType) {
-			modID = "minecraft";
-		} else if (type instanceof EnumForestryWoodType) {
-			modID = "forestry";
-		}
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerSprites(Item item, ITextureManager manager) {
 		TextureMap textureMap = FMLClientHandler.instance().getClient().getTextureMapBlocks();
 		trunk = textureMap.registerSprite(new ResourceLocation(type.getHeartTexture()));
@@ -43,10 +42,13 @@ public class WoodProvider implements IWoodProvider {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getSprite(boolean isTop) {
 		if (isTop) {
+			Preconditions.checkState(trunk != null, "sprites have not been registered");
 			return trunk;
 		} else {
+			Preconditions.checkState(bark != null, "sprites have not been registered");
 			return bark;
 		}
 	}

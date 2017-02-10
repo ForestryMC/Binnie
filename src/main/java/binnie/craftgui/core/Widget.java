@@ -299,6 +299,7 @@ public class Widget implements IWidget {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public final void updateClient() {
 		if (!this.isVisible()) {
 			return;

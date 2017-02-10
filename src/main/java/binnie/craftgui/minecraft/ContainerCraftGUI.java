@@ -29,6 +29,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -185,21 +186,24 @@ public class ContainerCraftGUI extends Container {
 		return heldItem;
 	}
 
-	public boolean handleNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound action) {
-		if (side == Side.SERVER) {
-			if (name.equals("tank-click")) {
-				this.tankClick(player, action.getByte("id"));
-			}
-			if (name.equals("slot-reg")) {
-				final int type = action.getByte("t");
-				final int index = action.getShort("i");
-				final int slotNumber = action.getShort("n");
-				this.createServerSlot(InventoryType.values()[type % 4], index, slotNumber);
-				for (IContainerListener listener : listeners) {
-					listener.updateCraftingInventory(this, this.getInventory());
-				}
+	public boolean handleNBTServer(final EntityPlayer player, final String name, final NBTTagCompound action) {
+		if (name.equals("tank-click")) {
+			this.tankClick(player, action.getByte("id"));
+		}
+		if (name.equals("slot-reg")) {
+			final int type = action.getByte("t");
+			final int index = action.getShort("i");
+			final int slotNumber = action.getShort("n");
+			this.createServerSlot(InventoryType.values()[type % 4], index, slotNumber);
+			for (IContainerListener listener : listeners) {
+				listener.updateCraftingInventory(this, this.getInventory());
 			}
 		}
+		return false;
+	}
+
+	@SideOnly(Side.CLIENT)
+	public boolean handleNBTClient( final EntityPlayer player, final String name, final NBTTagCompound action) {
 		if (name.contains("tank-update")) {
 			this.onTankUpdate(action);
 		} else if (name.equals("power-update")) {
@@ -216,7 +220,6 @@ public class ContainerCraftGUI extends Container {
 		return false;
 	}
 
-	//TODO: Fix random NullPointerException
 	@Override
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
@@ -244,7 +247,7 @@ public class ContainerCraftGUI extends Container {
 		}
 		final INetwork.SendGuiNBT machineSync = Machine.getInterface(INetwork.SendGuiNBT.class, this.window.getInventory());
 		if (machineSync != null) {
-			machineSync.sendGuiNBT(this.syncedNBT);
+			machineSync.sendGuiNBTToClient(this.syncedNBT);
 		}
 		final Map<String, NBTTagCompound> sentThisTime = new HashMap<>();
 		for (final Map.Entry<String, NBTTagCompound> nbt : this.syncedNBT.entrySet()) {
@@ -356,6 +359,7 @@ public class ContainerCraftGUI extends Container {
 		return slots.toArray(new CustomSlot[0]);
 	}
 
+	@SideOnly(Side.CLIENT)
 	public void setMouseOverSlot(final Slot slot) {
 		if (slot.slotNumber != this.mousedOverSlotNumber) {
 			this.mousedOverSlotNumber = slot.slotNumber;
@@ -387,6 +391,7 @@ public class ContainerCraftGUI extends Container {
 		this.syncedNBT.put("shift-click-info", nbt);
 	}
 
+	@SideOnly(Side.CLIENT)
 	private void onRecieveShiftClickHighlights(final EntityPlayer player, final NBTTagCompound data) {
 		ControlSlot.highlighting.get(EnumHighlighting.ShiftClick).clear();
 		for (final int slotnumber : data.getIntArray("slots")) {
@@ -407,15 +412,28 @@ public class ContainerCraftGUI extends Container {
 		return null;
 	}
 
-	public void recieveNBT(final Side side, final EntityPlayer player, final NBTTagCompound action) {
+	public void receiveNBTServer(final EntityPlayer player, final NBTTagCompound action) {
 		final String name = action.getString("type");
-		if (this.handleNBT(side, player, name, action)) {
+		if (this.handleNBTServer(player, name, action)) {
 			return;
 		}
-		this.window.recieveGuiNBT(this.getSide(), player, name, action);
-		final INetwork.RecieveGuiNBT machine = Machine.getInterface(INetwork.RecieveGuiNBT.class, this.window.getInventory());
+		this.window.receiveGuiNBTOnServer(player, name, action);
+		final INetwork.ReceiveGuiNBT machine = Machine.getInterface(INetwork.ReceiveGuiNBT.class, this.window.getInventory());
 		if (machine != null) {
-			machine.recieveGuiNBT(this.getSide(), player, name, action);
+			machine.receiveGuiNBTOnServer(player, name, action);
+		}
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void receiveNBTClient(final EntityPlayer player, final NBTTagCompound action) {
+		final String name = action.getString("type");
+		if (this.handleNBTClient(player, name, action)) {
+			return;
+		}
+		this.window.receiveGuiNBTOnClient(player, name, action);
+		final INetwork.ReceiveGuiNBT machine = Machine.getInterface(INetwork.ReceiveGuiNBT.class, this.window.getInventory());
+		if (machine != null) {
+			machine.receiveGuiNBTOnClient(player, name, action);
 		}
 	}
 

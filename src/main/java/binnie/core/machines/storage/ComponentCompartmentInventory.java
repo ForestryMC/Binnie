@@ -6,7 +6,6 @@ import binnie.core.machines.network.INetwork;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraftforge.fml.relauncher.Side;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -54,7 +53,7 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
 	}
 
 	@Override
-	public void sendGuiNBT(final Map<String, NBTTagCompound> nbt) {
+	public void sendGuiNBTToClient(final Map<String, NBTTagCompound> nbt) {
 		final NBTTagList list = new NBTTagList();
 		for (int i = 0; i < this.numberOfTabs; ++i) {
 			final NBTTagCompound nbt2 = new NBTTagCompound();
@@ -67,7 +66,7 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
 	}
 
 	@Override
-	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+	public void receiveGuiNBTOnClient(EntityPlayer player, String name, NBTTagCompound nbt) {
 		if (name.equals("comp-tabs")) {
 			final NBTTagList tags = nbt.getTagList("tabs", 10);
 			for (int i = 0; i < tags.tagCount(); ++i) {
@@ -77,6 +76,10 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
 				this.tabs.put(tab.getId(), tab);
 			}
 		}
+	}
+
+	@Override
+	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
 		if (name.equals("comp-change-tab")) {
 			final CompartmentTab tab2 = new CompartmentTab(0);
 			tab2.readFromNBT(nbt);

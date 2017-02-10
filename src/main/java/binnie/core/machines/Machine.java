@@ -164,6 +164,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 				component.onUpdate();
 			}
 		} else {
+			//noinspection MethodCallSideOnly
 			updateClient();
 		}
 		if (this.queuedInventoryUpdate) {
@@ -293,16 +294,24 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	}
 
 	@Override
-	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound nbt) {
-		for (final INetwork.RecieveGuiNBT recieve : this.getInterfaces(INetwork.RecieveGuiNBT.class)) {
-			recieve.recieveGuiNBT(side, player, name, nbt);
+	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+		for (final INetwork.ReceiveGuiNBT receive : this.getInterfaces(INetwork.ReceiveGuiNBT.class)) {
+			receive.receiveGuiNBTOnServer(player, name, nbt);
 		}
 	}
 
 	@Override
-	public void sendGuiNBT(final Map<String, NBTTagCompound> nbt) {
-		for (final INetwork.SendGuiNBT recieve : this.getInterfaces(INetwork.SendGuiNBT.class)) {
-			recieve.sendGuiNBT(nbt);
+	@SideOnly(Side.CLIENT)
+	public void receiveGuiNBTOnClient(EntityPlayer player, String name, NBTTagCompound nbt) {
+		for (final INetwork.ReceiveGuiNBT receive : this.getInterfaces(INetwork.ReceiveGuiNBT.class)) {
+			receive.receiveGuiNBTOnClient(player, name, nbt);
+		}
+	}
+
+	@Override
+	public void sendGuiNBTToClient(final Map<String, NBTTagCompound> nbt) {
+		for (final INetwork.SendGuiNBT send : this.getInterfaces(INetwork.SendGuiNBT.class)) {
+			send.sendGuiNBTToClient(nbt);
 		}
 	}
 }

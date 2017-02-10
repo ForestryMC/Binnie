@@ -7,6 +7,8 @@ import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.core.geometry.TextJustification;
 import binnie.craftgui.core.renderer.RenderUtil;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlText extends Control implements IControlValue<String> {
 	private String text;
@@ -27,6 +29,7 @@ public class ControlText extends Control implements IControlValue<String> {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		RenderUtil.drawText(this.getArea(), this.align, this.text, this.getColour());
 	}

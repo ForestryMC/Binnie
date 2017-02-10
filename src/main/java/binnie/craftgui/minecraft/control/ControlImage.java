@@ -5,6 +5,8 @@ import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.resource.Texture;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlImage extends Control {
 	private Object key;
@@ -15,6 +17,7 @@ public class ControlImage extends Control {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(this.key, IPoint.ZERO);
 	}

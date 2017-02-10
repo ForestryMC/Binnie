@@ -8,6 +8,8 @@ import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.minecraft.EnumColor;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 class ControlColourSelector extends Control implements ITooltip, IControlValue<EnumColor> {
 	private EnumColor value;
@@ -35,6 +37,7 @@ class ControlColourSelector extends Control implements ITooltip, IControlValue<E
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		super.onRenderBackground(guiWidth, guiHeight);
 		RenderUtil.drawGradientRect(this.getArea(), -16777216 + this.value.getColour(), -16777216 + this.value.getColour());

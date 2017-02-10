@@ -6,6 +6,8 @@ import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.geometry.IArea;
 import binnie.craftgui.minecraft.MinecraftGUI;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Panel extends Control {
 	IPanelType type;
@@ -24,6 +26,7 @@ public class Panel extends Control {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		final IPanelType panelType = this.getType();
 		if (panelType instanceof MinecraftGUI.PanelType) {

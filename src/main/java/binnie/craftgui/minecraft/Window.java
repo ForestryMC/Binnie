@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Deque;
 
-public abstract class Window extends TopLevelWidget implements INetwork.RecieveGuiNBT {
+public abstract class Window extends TopLevelWidget implements INetwork.ReceiveGuiNBT {
 	@Nullable // client side only
 	private GuiCraftGUI gui;
 	private ContainerCraftGUI container;
@@ -289,19 +289,24 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 	}
 
 	@Override
-	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound action) {
-		if (side == Side.CLIENT && name.equals("username")) {
+	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+
+	}
+
+	@Override
+	public void receiveGuiNBTOnClient(EntityPlayer player, String name, NBTTagCompound nbt) {
+		if (name.equals("username")) {
 			final int w = this.w();
 			final int titleButtonRight = this.titleButtonRight + 16;
 			this.titleButtonRight = titleButtonRight;
-			final ControlUser controlUser = new ControlUser(this, w - titleButtonRight, 8, action.getString("username"));
+			final ControlUser controlUser = new ControlUser(this, w - titleButtonRight, 8, nbt.getString("username"));
 			this.titleButtonRight += 6;
 		}
-		if (side == Side.CLIENT && name.equals("power-system")) {
+		if (name.equals("power-system")) {
 			final int w2 = this.w();
 			final int titleButtonRight2 = this.titleButtonRight + 16;
 			this.titleButtonRight = titleButtonRight2;
-			final ControlPowerSystem controlPowerSystem = new ControlPowerSystem(this, w2 - titleButtonRight2, 8, PowerSystem.get(action.getByte("system")));
+			final ControlPowerSystem controlPowerSystem = new ControlPowerSystem(this, w2 - titleButtonRight2, 8, PowerSystem.get(nbt.getByte("system")));
 			this.titleButtonRight += 6;
 		}
 	}

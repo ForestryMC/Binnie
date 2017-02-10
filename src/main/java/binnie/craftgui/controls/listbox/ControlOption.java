@@ -7,6 +7,8 @@ import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlOption<T> extends Control implements IControlValue<T> {
 	private T value;
@@ -51,6 +53,7 @@ public class ControlOption<T> extends Control implements IControlValue<T> {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		if (this.isCurrentSelection()) {
 			CraftGUI.render.texture(CraftGUITexture.Outline, this.getArea());

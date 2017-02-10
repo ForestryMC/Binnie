@@ -105,6 +105,7 @@ public class WindowFieldKit extends Window {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		this.setTitle("Field Kit");
 		CraftGUI.render.setStyleSheet(new StyleSheetPunnett());
@@ -265,9 +266,9 @@ public class WindowFieldKit extends Window {
 	}
 
 	@Override
-	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound action) {
-		super.recieveGuiNBT(side, player, name, action);
-		if (side == Side.SERVER && name.equals("analyse")) {
+	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+		super.receiveGuiNBTOnServer(player, name, nbt);
+		if (name.equals("analyse")) {
 			this.getWindowInventory().setInventorySlotContents(0, Analyser.analyse(this.getWindowInventory().getStackInSlot(0)));
 			this.getWindowInventory().decrStackSize(1, 1);
 		}

@@ -12,6 +12,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -53,6 +55,7 @@ public class GeneItem implements INbtWritable, IGeneItem {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void getInfo(final List<String> list) {
 		final String chromosomeName = this.getBreedingSystem().getChromosomeName(this.gene.getChromosome());
 		list.add(TextFormatting.GOLD + chromosomeName + TextFormatting.GRAY + ": " + this.gene.getName());

@@ -16,6 +16,8 @@ import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.machines.brewery.BreweryLogic;
 import binnie.extratrees.machines.brewery.BreweryRecipes;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 
 import java.util.Collections;
@@ -25,6 +27,7 @@ public class ControlBreweryProgress extends ControlProgressBase {
 	static Texture BreweryOverlay = new StandardTexture(34, 69, 34, 39, ExtraTreeTexture.Gui);
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(ControlBreweryProgress.Brewery, IPoint.ZERO);
 		final BreweryLogic logic = Machine.getInterface(BreweryLogic.class, Window.get(this).getInventory());

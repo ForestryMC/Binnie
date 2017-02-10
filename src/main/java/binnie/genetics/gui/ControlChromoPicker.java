@@ -13,6 +13,8 @@ import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.StandardTexture;
 import binnie.extrabees.core.ExtraBeeTexture;
 import forestry.api.genetics.IChromosomeType;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlChromoPicker extends Control implements ITooltip {
 	Texture Selected;
@@ -42,6 +44,7 @@ public class ControlChromoPicker extends Control implements ITooltip {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		super.onRenderBackground(guiWidth, guiHeight);
 		final boolean selected = this.isMouseOver();

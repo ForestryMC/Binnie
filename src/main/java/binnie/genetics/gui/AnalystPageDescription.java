@@ -9,9 +9,12 @@ import binnie.craftgui.core.geometry.IPoint;
 import binnie.craftgui.core.geometry.TextJustification;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Objects;
 
+@SideOnly(Side.CLIENT)
 public class AnalystPageDescription extends ControlAnalystPage {
 	public AnalystPageDescription(final IWidget parent, final IArea area, final IIndividual ind) {
 		super(parent, area);

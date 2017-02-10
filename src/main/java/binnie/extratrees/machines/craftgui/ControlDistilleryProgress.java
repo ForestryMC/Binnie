@@ -27,6 +27,7 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 	public static final Texture OUTPUT = new StandardTexture(68, 66, 17, 7, ExtraTreeTexture.Gui);
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(DISTILLERY_BASE, IPoint.ZERO);
 		CraftGUI.render.texturePercentage(LIQUID_FLOW, new IArea(18, 0, 38, 66), Position.Left, this.progress);

@@ -19,6 +19,8 @@ import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.inventory.IInventory;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
@@ -76,6 +78,7 @@ public class ControlEnergyBar extends Control implements ITooltip {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(CraftGUITexture.EnergyBarBack, this.getArea());
 		final float percentage = this.getPercentage() / 100.0f;
@@ -109,6 +112,7 @@ public class ControlEnergyBar extends Control implements ITooltip {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		if (this.isMouseOver() && Window.get(this).getGui().isHelpMode()) {
 			final IArea area = this.getArea();

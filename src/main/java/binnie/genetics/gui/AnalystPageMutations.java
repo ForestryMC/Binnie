@@ -24,6 +24,8 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IMutation;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Collection;
 import java.util.List;
@@ -129,6 +131,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 						}
 
 						@Override
+						@SideOnly(Side.CLIENT)
 						public void onRenderBackground(int guiWidth, int guiHeight) {
 							RenderUtil.drawItem(IPoint.ZERO, system.getDefaultMember(mutation.getAllele0().getUID()));
 							RenderUtil.drawItem(new IPoint(28, 0), system.getDefaultMember(mutation.getAllele1().getUID()));
@@ -187,6 +190,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 						}
 
 						@Override
+						@SideOnly(Side.CLIENT)
 						public void onRenderBackground(int guiWidth, int guiHeight) {
 							RenderUtil.drawItem(IPoint.ZERO, system.getDefaultMember(speciesComb.getUID()));
 							RenderUtil.drawItem(new IPoint(28, 0), system.getDefaultMember(mutation.getTemplate()[0].getUID()));
@@ -256,6 +260,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 		}
 
 		@Override
+		@SideOnly(Side.CLIENT)
 		public void onRenderBackground(int guiWidth, int guiHeight) {
 			RenderUtil.drawText(this.getArea(), TextJustification.MiddleCenter, "UNKNOWN", 11184810);
 		}

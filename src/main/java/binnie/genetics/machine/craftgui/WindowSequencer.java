@@ -36,11 +36,12 @@ public class WindowSequencer extends WindowMachine {
 	}
 
 	@Override
-	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound action) {
-		if (side == Side.CLIENT && name.equals("username")) {
-			this.slotText.setValue(TextFormatting.DARK_GRAY + String.format(Genetics.proxy.localise("machine.machine.sequencer.texts.sequenced.by"), action.getString("username")));
+	@SideOnly(Side.CLIENT)
+	public void receiveGuiNBTOnClient(EntityPlayer player, String name, NBTTagCompound nbt) {
+		if (name.equals("username")) {
+			this.slotText.setValue(TextFormatting.DARK_GRAY + String.format(Genetics.proxy.localise("machine.machine.sequencer.texts.sequenced.by"), nbt.getString("username")));
 		}
-		super.recieveGuiNBT(side, player, name, action);
+		super.receiveGuiNBTOnClient(player, name, nbt);
 	}
 
 	@Override
