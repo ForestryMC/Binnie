@@ -48,8 +48,8 @@ public class ItemArboristDatabase extends Item implements IItemModelRegister {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
-		manager.registerItemModel(item, 0, "arboristDatabase");
-		manager.registerItemModel(item, 1, "masterArboristDatabase");
+		manager.registerItemModel(item, 0, "arborist_database");
+		manager.registerItemModel(item, 1, "master_arborist_database");
 	}
 
 	@Override

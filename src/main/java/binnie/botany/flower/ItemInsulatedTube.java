@@ -28,8 +28,8 @@ import java.util.List;
 public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 
 	public ItemInsulatedTube() {
-		super("insulatedTube");
-		setUnlocalizedName("insulatedTube");
+		super("insulated_tube");
+		setUnlocalizedName("insulated_tube");
 		setCreativeTab(CreativeTabBotany.instance);
 		setHasSubtypes(true);
 	}

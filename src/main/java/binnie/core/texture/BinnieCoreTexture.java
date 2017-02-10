@@ -11,12 +11,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 
 public enum BinnieCoreTexture implements IBinnieTexture {
-	Compartment(ResourceType.Tile, "Compartment"),
-	CompartmentIron(ResourceType.Tile, "CompartmentIron"),
-	CompartmentDiamond(ResourceType.Tile, "CompartmentDiamond"),
-	CompartmentCopper(ResourceType.Tile, "CompartmentCopper"),
-	CompartmentGold(ResourceType.Tile, "CompartmentGold"),
-	CompartmentBronze(ResourceType.Tile, "CompartmentBronze"),
+	Compartment(ResourceType.Tile, "compartment"),
+	CompartmentIron(ResourceType.Tile, "compartment_iron"),
+	CompartmentDiamond(ResourceType.Tile, "compartment_diamond"),
+	CompartmentCopper(ResourceType.Tile, "compartment_copper"),
+	CompartmentGold(ResourceType.Tile, "compartment_gold"),
+	CompartmentBronze(ResourceType.Tile, "compartment_bronze"),
 	GUIBreeding(ResourceType.GUI, "breeding"),
 	GUIAnalyst(ResourceType.GUI, "guianalyst");
 

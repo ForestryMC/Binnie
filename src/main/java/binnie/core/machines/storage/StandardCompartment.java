@@ -30,7 +30,7 @@ class StandardCompartment {
 
 	public static class PackageCompartmentCopper extends Compartment.PackageCompartment {
 		public PackageCompartmentCopper() {
-			super("compartmentCopper", BinnieCoreTexture.CompartmentCopper);
+			super("compartment_copper", BinnieCoreTexture.CompartmentCopper);
 		}
 
 		@Override
@@ -51,7 +51,7 @@ class StandardCompartment {
 
 	public static class PackageCompartmentBronze extends Compartment.PackageCompartment {
 		public PackageCompartmentBronze() {
-			super("compartmentBronze", BinnieCoreTexture.CompartmentBronze);
+			super("compartment_bronze", BinnieCoreTexture.CompartmentBronze);
 		}
 
 		@Override
@@ -72,7 +72,7 @@ class StandardCompartment {
 
 	public static class PackageCompartmentIron extends Compartment.PackageCompartment {
 		public PackageCompartmentIron() {
-			super("compartmentIron", BinnieCoreTexture.CompartmentIron);
+			super("compartment_iron", BinnieCoreTexture.CompartmentIron);
 		}
 
 		@Override
@@ -93,7 +93,7 @@ class StandardCompartment {
 
 	public static class PackageCompartmentGold extends Compartment.PackageCompartment {
 		public PackageCompartmentGold() {
-			super("compartmentGold", BinnieCoreTexture.CompartmentGold);
+			super("compartment_gold", BinnieCoreTexture.CompartmentGold);
 		}
 
 		@Override
@@ -114,7 +114,7 @@ class StandardCompartment {
 
 	public static class PackageCompartmentDiamond extends Compartment.PackageCompartment {
 		public PackageCompartmentDiamond() {
-			super("compartmentDiamond", BinnieCoreTexture.CompartmentDiamond);
+			super("compartment_diamond", BinnieCoreTexture.CompartmentDiamond);
 		}
 
 		@Override

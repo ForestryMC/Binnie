@@ -32,8 +32,8 @@ public class ItemMothDatabase extends Item implements IItemModelRegister {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
-		manager.registerItemModel(item, 0, "lepiDatabase");
-		manager.registerItemModel(item, 1, "masterLepiDatabase");
+		manager.registerItemModel(item, 0, "lepi_database");
+		manager.registerItemModel(item, 1, "master_lepi_database");
 	}
 
 	@Override

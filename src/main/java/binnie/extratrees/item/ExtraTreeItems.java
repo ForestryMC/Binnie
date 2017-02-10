@@ -7,20 +7,20 @@ import net.minecraft.item.ItemStack;
 import java.util.List;
 
 public enum ExtraTreeItems implements IItemMiscProvider {
-	CarpentryHammer("Fake Hammer", "carpentryHammer"),
+	CarpentryHammer("Fake Hammer", "carpentry_hammer"),
 	Sawdust("Sawdust", "sawdust"),
 	Bark("Bark", "bark"),
-	ProvenGear("Proven Gear", "provenGear"),
-	WoodWax("Wood Polish", "woodWax"),
+	ProvenGear("Proven Gear", "proven_gear"),
+	WoodWax("Wood Polish", "wood_wax"),
 	Hops("Hops", "hops"),
 	Yeast("Yeast", "yeast"),
-	LagerYeast("Lager Yeast", "yeastLager"),
-	GrainWheat("Wheat Grain", "grainWheat"),
-	GrainBarley("Barley Grain", "grainBarley"),
-	GrainRye("Rye Grain", "grainRye"),
-	GrainCorn("Corn Grain", "grainCorn"),
-	GrainRoasted("Roasted Grain", "grainRoasted"),
-	GlassFitting("Glass Fittings", "glassFitting");
+	LagerYeast("Lager Yeast", "yeast_lager"),
+	GrainWheat("Wheat Grain", "grain_wheat"),
+	GrainBarley("Barley Grain", "grain_barley"),
+	GrainRye("Rye Grain", "grain_rye"),
+	GrainCorn("Corn Grain", "grain_corn"),
+	GrainRoasted("Roasted Grain", "grain_roasted"),
+	GlassFitting("Glass Fittings", "glass_fitting");
 
 	String name;
 	String modelPath;

@@ -9,17 +9,17 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 public enum GeneticsItems implements IItemMiscProvider {
-	LaboratoryCasing("Reinforced Casing", "casingIron"),
-	DNADye("DNA Dye", "dnaDye"),
-	FluorescentDye("Fluorescent Dye", "dyeFluor"),
+	LaboratoryCasing("Reinforced Casing", "casing_iron"),
+	DNADye("DNA Dye", "dna_dye"),
+	FluorescentDye("Fluorescent Dye", "dye_fluor"),
 	Enzyme("Enzyme", "enzyme"),
-	GrowthMedium("Growth Medium", "growthMedium"),
-	EmptySequencer("Blank Sequence", "sequencerEmpty"),
-	EmptySerum("Empty Serum Vial", "serumEmpty"),
-	EmptyGenome("Empty Serum Array", "genomeEmpty"),
-	IntegratedCircuit("Integrated Circuit Board", "integratedCircuit"),
-	IntegratedCPU("Integrated CPU", "integratedCPU"),
-	IntegratedCasing("Integrated Casing", "casingCircuit");
+	GrowthMedium("Growth Medium", "growth_medium"),
+	EmptySequencer("Blank Sequence", "sequencer_empty"),
+	EmptySerum("Empty Serum Vial", "serum_empty"),
+	EmptyGenome("Empty Serum Array", "genome_empty"),
+	IntegratedCircuit("Integrated Circuit Board", "integrated_circuit"),
+	IntegratedCPU("Integrated CPU", "integrated_cpu"),
+	IntegratedCasing("Integrated Casing", "casing_circuit");
 
 	String name;
 	String modelPath;

@@ -10,8 +10,8 @@ public class ItemHoneyDrop extends ItemProduct implements IColoredItem {
 	public ItemHoneyDrop() {
 		super(EnumHoneyDrop.values());
 		this.setCreativeTab(Tabs.tabApiculture);
-		this.setUnlocalizedName("honeyDrop");
-		setRegistryName("honeyDrop");
+		this.setUnlocalizedName("honey_drop");
+		setRegistryName("honey_drop");
 
 	}
 

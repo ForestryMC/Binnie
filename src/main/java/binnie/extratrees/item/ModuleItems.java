@@ -140,7 +140,7 @@ public class ModuleItems implements IInitializable {
 		GameRegistry.addSmelting(ExtraTreeItems.GrainCorn.get(1), ExtraTreeItems.GrainRoasted.get(1), 0.0f);
 		GameRegistry.addSmelting(ExtraTreeItems.GrainBarley.get(1), ExtraTreeItems.GrainRoasted.get(1), 0.0f);
 		try {
-			final Item minium = (Item) Class.forName("com.pahimar.ee3.lib.ItemIds").getField("miniumShard").get(null);
+			final Item minium = (Item) Class.forName("com.pahimar.ee3.lib.ItemIds").getField("minium_shard").get(null);
 			CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(Food.PAPAYIMAR.get(1), minium, "cropPapaya"));
 		} catch (Exception ex) {
 		}

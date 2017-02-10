@@ -49,38 +49,38 @@ genetics.machine.machine.inoculator.errors.no.individual.desc=No Individual to I
 genetics.machine.machine.inoculator.tooltips.logic.gene=Inoculating with 1 gene
 genetics.machine.machine.inoculator.tooltips.logic.genes=Inoculating with %s genes
 
-genetics.machine.labMachine.genepool=Genepool
-genetics.machine.labMachine.genepool.info=The Genepool uses enzymes and ethanol to break down living things into DNA. During this process, all genetic information is lost and the source of the DNA is destroyed.
-genetics.machine.labMachine.genepool.errors.not.enough.ethanol.desc=Not enough Ethanol
-genetics.machine.labMachine.genepool.errors.insufficient.enzyme.desc=Insufficient Enzyme
+genetics.machine.lab_machine.genepool=Genepool
+genetics.machine.lab_machine.genepool.info=The Genepool uses enzymes and ethanol to break down living things into DNA. During this process, all genetic information is lost and the source of the DNA is destroyed.
+genetics.machine.lab_machine.genepool.errors.not.enough.ethanol.desc=Not enough Ethanol
+genetics.machine.lab_machine.genepool.errors.insufficient.enzyme.desc=Insufficient Enzyme
 
-genetics.machine.labMachine.labMachine=Lab Stand
+genetics.machine.lab_machine.lab_machine=Lab Stand
 
-genetics.machine.labMachine.analyser=Analyser
-genetics.machine.labMachine.analyser.info=The Analyser takes breedable individuals and DNA sequencers and analyses them to determine the genes present. This requires DNA Dye, created from purple dye and glowstone
-genetics.machine.labMachine.analyser.errors.insufficient.dye.desc=Insufficient Dye
-genetics.machine.labMachine.analyser.errors.insufficient.dye.info=Not enough DNA dye to analyse
-genetics.machine.labMachine.analyser.errors.already.analysed.desc=Already Analysed
-genetics.machine.labMachine.analyser.errors.already.analysed.info=Item has already been analysed
-genetics.machine.labMachine.analyser.errors.no.item.desc=No item to analyse
-genetics.machine.labMachine.analyser.tooltips.slots.unanalysed=Unanalysed Item
+genetics.machine.lab_machine.analyser=Analyser
+genetics.machine.lab_machine.analyser.info=The Analyser takes breedable individuals and DNA sequencers and analyses them to determine the genes present. This requires DNA Dye, created from purple dye and glowstone
+genetics.machine.lab_machine.analyser.errors.insufficient.dye.desc=Insufficient Dye
+genetics.machine.lab_machine.analyser.errors.insufficient.dye.info=Not enough DNA dye to analyse
+genetics.machine.lab_machine.analyser.errors.already.analysed.desc=Already Analysed
+genetics.machine.lab_machine.analyser.errors.already.analysed.info=Item has already been analysed
+genetics.machine.lab_machine.analyser.errors.no.item.desc=No item to analyse
+genetics.machine.lab_machine.analyser.tooltips.slots.unanalysed=Unanalysed Item
 
-genetics.machine.labMachine.incubator=Incubator
-genetics.machine.labMachine.incubator.info=The Incubator combines liquids and items and allows them to sit at an ideal temperature to encourage bacterial growth.
-genetics.machine.labMachine.incubator.errors.no.liquid.desc=Not enough incubation liquid
-genetics.machine.labMachine.incubator.errors.no.room.desc=No room for output
+genetics.machine.lab_machine.incubator=Incubator
+genetics.machine.lab_machine.incubator.info=The Incubator combines liquids and items and allows them to sit at an ideal temperature to encourage bacterial growth.
+genetics.machine.lab_machine.incubator.errors.no.liquid.desc=Not enough incubation liquid
+genetics.machine.lab_machine.incubator.errors.no.room.desc=No room for output
 
-genetics.machine.labMachine.acclimatiser=Acclimatiser
-genetics.machine.labMachine.acclimatiser.errors.no.individual.desc=No Individual to Acclimatise
-genetics.machine.labMachine.acclimatiser.errors.no.item.desc=No Acclimatising Items
-genetics.machine.labMachine.acclimatiser.errors.can.not.acclimatise.desc=Cannot Acclimatise this individual with these items
-genetics.machine.labMachine.acclimatiser.tooltips.slots.acclimatising=Acclimatising Items
+genetics.machine.lab_machine.acclimatiser=Acclimatiser
+genetics.machine.lab_machine.acclimatiser.errors.no.individual.desc=No Individual to Acclimatise
+genetics.machine.lab_machine.acclimatiser.errors.no.item.desc=No Acclimatising Items
+genetics.machine.lab_machine.acclimatiser.errors.can.not.acclimatise.desc=Cannot Acclimatise this individual with these items
+genetics.machine.lab_machine.acclimatiser.tooltips.slots.acclimatising=Acclimatising Items
 
-genetics.machine.advMachine.splicer=Splicer
-genetics.machine.advMachine.splicer.info=The Splicer is an incredibly powerful machine that is used to insert genes into individuals. This process is fast, but requires monumental amounts of power.
-genetics.machine.advMachine.splicer.tooltips.slots.serum=Serum Vials & Arrays
-genetics.machine.advMachine.splicer.tooltips.slots.individual=Splicable Individual
-genetics.machine.advMachine.splicer.errors.no.individual.desc=No Individual to Splice
+genetics.machine.adv_machine.splicer=Splicer
+genetics.machine.adv_machine.splicer.info=The Splicer is an incredibly powerful machine that is used to insert genes into individuals. This process is fast, but requires monumental amounts of power.
+genetics.machine.adv_machine.splicer.tooltips.slots.serum=Serum Vials & Arrays
+genetics.machine.adv_machine.splicer.tooltips.slots.individual=Splicable Individual
+genetics.machine.adv_machine.splicer.errors.no.individual.desc=No Individual to Splice
 
 genetics.gui.analyst.soil.title=Soil
 genetics.gui.analyst.soil.tolerance.moisture=Moisture Tolerance

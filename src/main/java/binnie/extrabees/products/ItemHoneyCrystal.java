@@ -24,7 +24,7 @@ public class ItemHoneyCrystal extends Item {
 		this.setMaxDamage(27);
 		this.setMaxStackSize(1);
 		this.setCreativeTab(Tabs.tabApiculture);
-		this.setUnlocalizedName("honeyCrystal");
+		this.setUnlocalizedName("honey_crystal");
 		setRegistryName(name);
 		ExtraBees.proxy.registermodel(this, 0);
 	}

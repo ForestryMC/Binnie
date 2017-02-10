@@ -8,7 +8,7 @@ public class ItemHoneyCrystalEmpty extends ItemHoneyCrystal {
 		super(name);
 		this.setMaxDamage(0);
 		this.setMaxStackSize(64);
-		this.setUnlocalizedName("honeyCrystalEmpty");
+		this.setUnlocalizedName("honey_crystal_empty");
 	}
 
 //	@SideOnly(Side.CLIENT)

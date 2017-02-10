@@ -72,7 +72,7 @@ public class WindowIsolator extends WindowMachine {
 
 	@Override
 	protected String getBackgroundTextureName() {
-		return "Isolator";
+		return "isolator";
 	}
 
 }

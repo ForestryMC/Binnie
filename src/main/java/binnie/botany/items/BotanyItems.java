@@ -7,12 +7,12 @@ import net.minecraft.item.ItemStack;
 import java.util.List;
 
 public enum BotanyItems implements IItemMiscProvider {
-	AshPowder("Ash Powder", "powderAsh"),
-	PulpPowder("Wood Pulp Powder", "powderPulp"),
-	MulchPowder("Mulch Powder", "powderMulch"),
-	SulphurPowder("Sulphur Powder", "powderSulphur"),
-	FertiliserPowder("Fertiliser Powder", "powderFertiliser"),
-	CompostPowder("Compost Powder", "powderCompost"),
+	AshPowder("Ash Powder", "powder_ash"),
+	PulpPowder("Wood Pulp Powder", "powder_pulp"),
+	MulchPowder("Mulch Powder", "powder_mulch"),
+	SulphurPowder("Sulphur Powder", "powder_sulphur"),
+	FertiliserPowder("Fertiliser Powder", "powder_fertiliser"),
+	CompostPowder("Compost Powder", "powder_compost"),
 	Mortar("Mortar", "mortar"),
 	Weedkiller("Weedkiller", "weedkiller");
 

@@ -13,20 +13,20 @@ import javax.annotation.Nullable;
 
 public enum GeneticsTexture implements IBinnieTexture {
 	GeneticMachine(ResourceType.Tile, "GeneticMachine"),
-	Genepool(ResourceType.Tile, "Genepool"),
-	Incubator(ResourceType.Tile, "Incubator"),
+	Genepool(ResourceType.Tile, "genepool"),
+	Incubator(ResourceType.Tile, "incubator"),
 	GUIProcess(ResourceType.GUI, "process"),
 	GUIProcess2(ResourceType.GUI, "process2"),
-	Isolator(ResourceType.Tile, "Isolator"),
-	Sequencer(ResourceType.Tile, "Sequencer"),
-	Polymeriser(ResourceType.Tile, "Polymeriser"),
-	Inoculator(ResourceType.Tile, "Inoculator"),
-	Analyser(ResourceType.Tile, "Analyser"),
+	Isolator(ResourceType.Tile, "isolator"),
+	Sequencer(ResourceType.Tile, "sequencer"),
+	Polymeriser(ResourceType.Tile, "polymeriser"),
+	Inoculator(ResourceType.Tile, "inoculator"),
+	Analyser(ResourceType.Tile, "analyser"),
 	MachineGlow(ResourceType.Tile, "MachineGlow"),
 	GeneBank(ResourceType.Tile, "GeneBank"),
-	LabMachine(ResourceType.Tile, "LabMachine"),
-	Acclimatiser(ResourceType.Tile, "Acclimatiser"),
-	Splicer(ResourceType.Tile, "Splicer");
+	LabMachine(ResourceType.Tile, "lab_machine"),
+	Acclimatiser(ResourceType.Tile, "acclimatiser"),
+	Splicer(ResourceType.Tile, "splicer");
 
 	private final String texture;
 	private final ResourceType type;

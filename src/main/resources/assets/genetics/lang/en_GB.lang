@@ -13,22 +13,22 @@ genetics.machine.machine.polymeriser.info=The Polymeriser takes serums and refil
 genetics.machine.machine.inoculator=Inoculator
 genetics.machine.machine.inoculator.info=The Inoculator uses serums to add genes to breedable individuals. This process takes a very long time and requires a Bacteria Vector, but is 100% successful. 
 
-genetics.machine.labMachine.genepool=Genepool
-genetics.machine.labMachine.genepool.info=The Genepool uses enzymes and ethanol to break down living things into DNA. All genetic information is lost and the source of the DNA is destroyed.
+genetics.machine.lab_machine.genepool=Genepool
+genetics.machine.lab_machine.genepool.info=The Genepool uses enzymes and ethanol to break down living things into DNA. All genetic information is lost and the source of the DNA is destroyed.
 
 
-genetics.machine.labMachine.labMachine=Lab Stand
+genetics.machine.lab_machine.lab_machine=Lab Stand
 
-genetics.machine.labMachine.analyser=Analyser
-genetics.machine.labMachine.analyser.info=The Analyser takes breedable individuals and DNA sequencers and analyses them to determine the genes present. This requires DNA Dye, created from purple dye and glowstone
+genetics.machine.lab_machine.analyser=Analyser
+genetics.machine.lab_machine.analyser.info=The Analyser takes breedable individuals and DNA sequencers and analyses them to determine the genes present. This requires DNA Dye, created from purple dye and glowstone
 
-genetics.machine.labMachine.incubator=Incubator
-genetics.machine.labMachine.incubator.info=The Incubator combines liquids and items and allows them to sit at an ideal temperature to encourage bacterial growth. 
+genetics.machine.lab_machine.incubator=Incubator
+genetics.machine.lab_machine.incubator.info=The Incubator combines liquids and items and allows them to sit at an ideal temperature to encourage bacterial growth.
 
-genetics.machine.labMachine.acclimatiser=Acclimatiser
+genetics.machine.lab_machine.acclimatiser=Acclimatiser
 
-genetics.machine.advMachine.splicer=Splicer
-genetics.machine.advMachine.splicer.info=The Splicer is an incredibly powerful machine to insert genes into individuals. It is fast, but needs insane amounts of power.
+genetics.machine.adv_machine.splicer=Splicer
+genetics.machine.adv_machine.splicer.info=The Splicer is an incredibly powerful machine to insert genes into individuals. It is fast, but needs insane amounts of power.
 
 
 

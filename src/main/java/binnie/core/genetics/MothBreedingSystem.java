@@ -21,8 +21,8 @@ import java.util.TreeSet;
 
 class MothBreedingSystem extends BreedingSystem {
 	public MothBreedingSystem() {
-		this.iconUndiscovered = Binnie.RESOURCE.getItemSprite(ExtraTrees.instance, "icon/undiscoveredMoth");
-		this.iconDiscovered = Binnie.RESOURCE.getItemSprite(ExtraTrees.instance, "icon/discoveredMoth");
+		this.iconUndiscovered = Binnie.RESOURCE.getItemSprite(ExtraTrees.instance, "icon/undiscovered_moth");
+		this.iconDiscovered = Binnie.RESOURCE.getItemSprite(ExtraTrees.instance, "icon/discovered_moth");
 	}
 
 	@Override

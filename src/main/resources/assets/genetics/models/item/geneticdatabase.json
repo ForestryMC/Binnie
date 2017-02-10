@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "genetics:items/geneDatabase"
+        "layer0": "genetics:items/gene_database"
     }
 }

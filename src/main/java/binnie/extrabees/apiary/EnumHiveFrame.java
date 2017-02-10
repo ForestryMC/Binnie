@@ -55,7 +55,7 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 	EnumHiveFrame(int maxDamage) {
 		this.maxDamage = maxDamage;
 		this.logic = new BeeModifierLogic();
-		this.item = new ItemHiveFrame(this).setRegistryName("hiveFrame." + name().toLowerCase());
+		this.item = new ItemHiveFrame(this).setRegistryName("hive_frame." + name().toLowerCase());
 	}
 
 	public int getIconIndex() {

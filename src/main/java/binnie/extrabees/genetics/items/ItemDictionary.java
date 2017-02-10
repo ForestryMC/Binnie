@@ -67,6 +67,6 @@ public class ItemDictionary extends Item implements IItemModelRegister {
 	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
 		manager.registerItemModel(item, 0, getRegistryName().getResourcePath());
-		manager.registerItemModel(item, 1, getRegistryName().getResourcePath() + "Master");
+		manager.registerItemModel(item, 1, getRegistryName().getResourcePath() + "_master");
 	}
 }

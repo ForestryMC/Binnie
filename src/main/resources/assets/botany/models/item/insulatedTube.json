@@ -1,8 +1,0 @@
-{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "botany:items/insulatedTube.0",
-		"layer1": "botany:items/insulatedTube.1",
-		"layer2": "botany:items/insulatedTube.2"
-    }
-}

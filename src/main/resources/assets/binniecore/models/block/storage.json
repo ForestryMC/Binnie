@@ -156,7 +156,7 @@
     }
   ],
   "textures": {
-    "all": "binniecore:tile/Compartment",
-    "particle": "binniecore:tile/Compartment"
+    "all": "binniecore:tile/compartment",
+    "particle": "binniecore:tile/compartment"
   }
 }

@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "extrabees:items/misc/scented_gear"
+  }
+}

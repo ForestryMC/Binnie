@@ -26,7 +26,7 @@ public class GenepoolRecipeCategory extends BlankRecipeCategory<GenepoolRecipeWr
 
 	@Override
 	public String getTitle() {
-		return "Genepool";
+		return "genepool";
 	}
 
 	@Override

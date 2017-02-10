@@ -65,7 +65,7 @@ public class WindowPolymeriser extends WindowMachine {
 
 	@Override
 	protected String getBackgroundTextureName() {
-		return "Polymeriser";
+		return "polymeriser";
 	}
 
 }

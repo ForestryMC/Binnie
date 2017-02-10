@@ -58,7 +58,7 @@ public class WindowAcclimatiser extends WindowMachine {
 
 	@Override
 	protected String getBackgroundTextureName() {
-		return "Acclimatiser";
+		return "acclimatiser";
 	}
 
 }

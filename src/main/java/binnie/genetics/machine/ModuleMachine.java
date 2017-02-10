@@ -27,8 +27,8 @@ public class ModuleMachine implements IInitializable {
 	@Override
 	public void preInit() {
 		(Genetics.packageGenetic = new MachineGroup(Genetics.instance, "machine", "machine", GeneticMachine.values())).setCreativeTab(CreativeTabGenetics.instance);
-		(Genetics.packageLabMachine = new MachineGroup(Genetics.instance, "labMachine", "labMachine", LaboratoryMachine.values())).setCreativeTab(CreativeTabGenetics.instance);
-		(Genetics.packageAdvGenetic = new MachineGroup(Genetics.instance, "advMachine", "advMachine", AdvGeneticMachine.values())).setCreativeTab(CreativeTabGenetics.instance);
+		(Genetics.packageLabMachine = new MachineGroup(Genetics.instance, "lab_machine", "lab_machine", LaboratoryMachine.values())).setCreativeTab(CreativeTabGenetics.instance);
+		(Genetics.packageAdvGenetic = new MachineGroup(Genetics.instance, "adv_machine", "adv_machine", AdvGeneticMachine.values())).setCreativeTab(CreativeTabGenetics.instance);
 	}
 
 	@Override

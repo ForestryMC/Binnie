@@ -92,7 +92,7 @@
     }
   ],
   "textures": {
-    "all": "genetics:tile/LabMachineBase",
-    "particle": "genetics:tile/LabMachineBase"
+    "all": "genetics:tile/lab_machine_base",
+    "particle": "genetics:tile/lab_machine_base"
   }
 }

@@ -1,0 +1,49 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "genetics:machine"
+  },
+
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}],
+    "machine_type":{
+      "0": {
+        "textures":{
+          "all": "genetics:tile/lab_machine"
+        }
+      },
+      "1": {
+         "textures":{
+           "all": "genetics:tile/analyser"
+         }
+      },
+      "2": {
+         "textures":{
+           "all": "genetics:tile/incubator"
+         }
+      },
+      "3": {
+        "textures":{
+          "all": "genetics:tile/genepool"
+        }
+      },
+      "4": {
+        "textures":{
+          "all": "genetics:tile/acclimatiser"
+        }
+      },
+      "5": {},
+      "6": {},
+      "7": {},
+      "8": {},
+      "9": {},
+      "10": {},
+      "11": {},
+      "12": {},
+      "13": {},
+      "14": {},
+      "15": {}
+    }
+  }
+}

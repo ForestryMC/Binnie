@@ -27,9 +27,9 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 
 	public ItemSoilMeter() {
 		this.setCreativeTab(CreativeTabBotany.instance);
-		this.setUnlocalizedName("soilMeter");
+		this.setUnlocalizedName("soil_meter");
 		this.setMaxStackSize(1);
-		setRegistryName("soilMeter");
+		setRegistryName("soil_meter");
 	}
 
 	@SideOnly(Side.CLIENT)

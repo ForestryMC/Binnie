@@ -17,16 +17,16 @@ public class ItemHammer extends Item implements IToolHammer, IItemModelRegister 
 		this.isDurableHammer = false;
 		this.isDurableHammer = durable;
 		this.setCreativeTab(CreativeTabs.TOOLS);
-		this.setUnlocalizedName(durable ? "durableHammer" : "hammer");
+		this.setUnlocalizedName(durable ? "durable_hammer" : "hammer");
 		this.setMaxStackSize(1);
 		this.setMaxDamage(durable ? 1562 : 251);
-		setRegistryName(durable ? "durableHammer" : "hammer");
+		setRegistryName(durable ? "durable_hammer" : "hammer");
 	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
-		manager.registerItemModel(item, 0, isDurableHammer ? "durableHammer" : "carpentryHammer");
+		manager.registerItemModel(item, 0, isDurableHammer ? "durable_hammer" : "carpentry_hammer");
 	}
 
 	@Override

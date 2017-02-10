@@ -10,22 +10,22 @@
     "machine_type":{
       "0": {
         "textures":{
-          "all": "genetics:tile/Isolator"
+          "all": "genetics:tile/isolator"
         }
       },
       "1": {
         "textures":{
-          "all": "genetics:tile/Sequencer"
+          "all": "genetics:tile/sequencer"
         }
       },
       "2": {
         "textures":{
-          "all": "genetics:tile/Polymeriser"
+          "all": "genetics:tile/polymeriser"
         }
       },
       "3": {
         "textures":{
-          "all": "genetics:tile/Inoculator"
+          "all": "genetics:tile/inoculator"
         }
       },
       "4": {},

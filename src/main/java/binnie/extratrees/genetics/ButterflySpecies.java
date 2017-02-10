@@ -244,7 +244,7 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
 		if (itemstack.getItem() == Mods.Forestry.item("honeydew")) {
 			return 0.7f;
 		}
-		if (itemstack.getItem() == Mods.Forestry.item("bee_comb")) {
+		if (itemstack.getItem() == Mods.Forestry.item("bee_combs")) {
 			return 0.4f;
 		}
 		if (AlleleManager.alleleRegistry.isIndividual(itemstack)) {

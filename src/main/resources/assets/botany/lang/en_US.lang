@@ -26,13 +26,13 @@ item.botany.germling.name=Germling
 item.botany.pollen.name=Pollen
 item.botany.flower.corrupted.name=Corrupted Flower
 
-item.trowelWood.name=Wooden Trowel
-item.trowelStone.name=Stone Trowel
-item.trowelIron.name=Iron Trowel
-item.trowelGold.name=Gold Trowel
-item.trowelDiamond.name=Diamond Trowel
+item.trowel_wood.name=Wooden Trowel
+item.trowel_stone.name=Stone Trowel
+item.trowel_iron.name=Iron Trowel
+item.trowel_gold.name=Gold Trowel
+item.trowel_diamond.name=Diamond Trowel
 
-item.insulatedTube.name=Insulated Electron Tube
+item.insulated_tube.name=Insulated Electron Tube
 
 item.botany.encylopedia=Florist's Encyclopaedia
 item.botany.encylopedia_reinforced=Reinforced Florist's Encyclopaedia

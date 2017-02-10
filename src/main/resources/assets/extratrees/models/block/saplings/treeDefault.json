@@ -1,7 +1,0 @@
-{
-  "parent": "extratrees:block/saplings/baseSapling",
-  "textures": {
-    "leaves": "extratrees:blocks/saplings/default.leaves",
-    "trunk": "extratrees:blocks/saplings/default.trunk"
-  }
-}

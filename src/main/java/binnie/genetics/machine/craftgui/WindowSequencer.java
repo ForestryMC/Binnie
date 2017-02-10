@@ -84,7 +84,7 @@ public class WindowSequencer extends WindowMachine {
 
 	@Override
 	protected String getBackgroundTextureName() {
-		return "Sequencer";
+		return "sequencer";
 	}
 
 }

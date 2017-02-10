@@ -10,32 +10,32 @@
     "machine_type":{
       "0": {
         "textures":{
-          "all": "binniecore:tile/Compartment"
+          "all": "binniecore:tile/compartment"
         }
       },
       "1": {
         "textures":{
-          "all": "binniecore:tile/CompartmentCopper"
+          "all": "binniecore:tile/compartment_copper"
         }
       },
       "2": {
         "textures":{
-          "all": "binniecore:tile/CompartmentBronze"
+          "all": "binniecore:tile/compartment_bronze"
         }
       },
       "3": {
         "textures":{
-          "all": "binniecore:tile/CompartmentIron"
+          "all": "binniecore:tile/compartment_iron"
         }
       },
       "4": {
         "textures":{
-          "all": "binniecore:tile/CompartmentGold"
+          "all": "binniecore:tile/compartment_gold"
         }
       },
       "5": {
         "textures":{
-          "all": "binniecore:tile/CompartmentDiamond"
+          "all": "binniecore:tile/compartment_diamond"
         }
       },
       "6": {},

@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "forestry:items/bee_combs.0",
+    "layer1": "forestry:items/bee_combs.1"
+  }
+}

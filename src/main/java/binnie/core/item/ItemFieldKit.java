@@ -27,8 +27,8 @@ public class ItemFieldKit extends ItemCore {
 	private ModelResourceLocation fieldKit3;
 
 	public ItemFieldKit() {
-		super("fieldKit");
-		this.setUnlocalizedName("fieldKit");
+		super("field_kit");
+		this.setUnlocalizedName("field_kit");
 		this.setCreativeTab(CreativeTabs.TOOLS);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(64);
@@ -38,10 +38,10 @@ public class ItemFieldKit extends ItemCore {
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
 		manager.registerItemModel(item, new FieldKitMeshDefinition());
-		fieldKit = new ModelResourceLocation(Constants.CORE_MOD_ID + ":fieldKit", "inventory");
-		fieldKit1 = new ModelResourceLocation(Constants.CORE_MOD_ID + ":fieldKit1", "inventory");
-		fieldKit2 = new ModelResourceLocation(Constants.CORE_MOD_ID + ":fieldKit2", "inventory");
-		fieldKit3 = new ModelResourceLocation(Constants.CORE_MOD_ID + ":fieldKit3", "inventory");
+		fieldKit = new ModelResourceLocation(Constants.CORE_MOD_ID + ":field_kit", "inventory");
+		fieldKit1 = new ModelResourceLocation(Constants.CORE_MOD_ID + ":field_kit1", "inventory");
+		fieldKit2 = new ModelResourceLocation(Constants.CORE_MOD_ID + ":field_kit2", "inventory");
+		fieldKit3 = new ModelResourceLocation(Constants.CORE_MOD_ID + ":field_kit3", "inventory");
 		ModelBakery.registerItemVariants(item, fieldKit, fieldKit1, fieldKit2, fieldKit3);
 	}
 

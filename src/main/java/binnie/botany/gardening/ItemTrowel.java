@@ -40,9 +40,9 @@ public class ItemTrowel extends Item implements IItemModelRegister {
 		this.maxStackSize = 1;
 		this.setMaxDamage(p_i45343_1_.getMaxUses());
 		this.setCreativeTab(CreativeTabBotany.instance);
-		this.setUnlocalizedName("trowel" + material);
-		this.locName = "trowel" + material;
-		setRegistryName("trowel" + material);
+		this.setUnlocalizedName("trowel_" + material);
+		this.locName = "trowel_" + material;
+		setRegistryName("trowel_" + material);
 	}
 
 	@SideOnly(Side.CLIENT)

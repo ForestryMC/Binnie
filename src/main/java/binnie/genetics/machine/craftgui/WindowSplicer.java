@@ -68,7 +68,7 @@ public class WindowSplicer extends WindowMachine {
 
 	@Override
 	protected String getBackgroundTextureName() {
-		return "Inoculator";
+		return "inoculator";
 	}
 
 }

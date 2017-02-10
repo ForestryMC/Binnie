@@ -12,11 +12,11 @@ botany.soil.soil=Soil
 botany.soil.loam=Loam
 botany.soil.flowerbed=Flowerbed
 
-item.trowelWood.name=Wooden Trowel
-item.trowelStone.name=Stone Trowel
-item.trowelIron.name=Iron Trowel
-item.trowelGold.name=Gold Trowel
-item.trowelDiamond.name=Diamond Trowel
+item.trowel_wood.name=Wooden Trowel
+item.trowel_stone.name=Stone Trowel
+item.trowel_iron.name=Iron Trowel
+item.trowel_gold.name=Gold Trowel
+item.trowel_diamond.name=Diamond Trowel
 
 botany.colour.aquamarine=Aquamarine
 botany.colour.black=Black

@@ -19,8 +19,8 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 	public ItemHoneyComb() {
 		super(EnumHoneyComb.values());
 		this.setCreativeTab(Tabs.tabApiculture);
-		this.setUnlocalizedName("honeyComb");
-		setRegistryName("honeyComb");
+		this.setUnlocalizedName("honey_comb");
+		setRegistryName("honey_comb");
 	}
 
 	public static void addSubtypes() {

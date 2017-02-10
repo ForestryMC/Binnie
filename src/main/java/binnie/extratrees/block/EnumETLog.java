@@ -1,13 +1,13 @@
 package binnie.extratrees.block;
 
-import javax.annotation.Nonnull;
-
 import binnie.Constants;
 import forestry.api.arboriculture.IWoodType;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.arboriculture.WoodBlockKind;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import java.util.Locale;
 
 public enum EnumETLog implements IWoodType {
 	Apple("Apple", PlankType.ExtraTreePlanks.Apple),
@@ -76,7 +76,6 @@ public enum EnumETLog implements IWoodType {
 		return this.name;
 	}
 
-
     public void addRecipe() {
         if (this.plank == null) {
            return;
@@ -116,7 +115,8 @@ public enum EnumETLog implements IWoodType {
 
 	@Override
 	public String getHeartTexture() {
-		return Constants.EXTRA_TREES_MOD_ID + ":blocks/logs/" + name().toLowerCase() + "Trunk";
+		String name = name().toLowerCase(Locale.ENGLISH).replace(" ", "_");
+		return Constants.EXTRA_TREES_MOD_ID + ":blocks/logs/" + name + "_trunk";
 	}
 
 	@Override
@@ -131,7 +131,8 @@ public enum EnumETLog implements IWoodType {
 
 	@Override
 	public String getBarkTexture() {
-		return Constants.EXTRA_TREES_MOD_ID + ":blocks/logs/" + name().toLowerCase() + "Bark";
+		String name = name().toLowerCase(Locale.ENGLISH).replace(" ", "_");
+		return Constants.EXTRA_TREES_MOD_ID + ":blocks/logs/" + name + "_bark";
 	}
 
 	@Override

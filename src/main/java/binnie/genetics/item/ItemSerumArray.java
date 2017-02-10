@@ -28,7 +28,7 @@ import java.util.List;
 
 public class ItemSerumArray extends ItemGene implements IItemSerum {
 	public ItemSerumArray() {
-		super("serumArray");
+		super("serum_array");
 		this.setMaxDamage(16);
 	}
 

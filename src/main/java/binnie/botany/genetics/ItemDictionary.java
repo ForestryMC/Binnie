@@ -35,8 +35,8 @@ public class ItemDictionary extends Item implements IItemModelRegister {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
-		manager.registerItemModel(item, 0, "botanistDatabase");
-		manager.registerItemModel(item, 1, "masterBotanistDatabase");
+		manager.registerItemModel(item, 0, "botanist_database");
+		manager.registerItemModel(item, 1, "master_botanist_database");
 	}
 
 	@Override

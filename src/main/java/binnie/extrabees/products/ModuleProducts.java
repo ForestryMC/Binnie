@@ -11,8 +11,8 @@ import net.minecraftforge.oredict.OreDictionary;
 public class ModuleProducts implements IInitializable {
 	@Override
 	public void preInit() {
-		ExtraBees.honeyCrystal = new ItemHoneyCrystal("honeyCrystal");
-		ExtraBees.honeyCrystalEmpty = new ItemHoneyCrystalEmpty("honeyCrystalEmpty");
+		ExtraBees.honeyCrystal = new ItemHoneyCrystal("honey_crystal");
+		ExtraBees.honeyCrystalEmpty = new ItemHoneyCrystalEmpty("honey_crystal_empty");
 		ExtraBees.honeyDrop = new ItemHoneyDrop();
 		ExtraBees.comb = new ItemHoneyComb();
 		ExtraBees.propolis = new ItemPropolis();
