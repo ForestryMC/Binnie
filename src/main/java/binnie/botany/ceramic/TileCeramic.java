@@ -7,8 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
 public class TileCeramic extends TileEntity {
-
-	protected EnumFlowerColor color;
+	protected EnumFlowerColor color = EnumFlowerColor.Black;
 	
 	public void setColor(EnumFlowerColor color) {
 		this.color = color;

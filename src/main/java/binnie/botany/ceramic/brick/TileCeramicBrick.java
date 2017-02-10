@@ -10,10 +10,8 @@ import net.minecraft.tileentity.TileEntity;
 import javax.annotation.Nullable;
 
 public class TileCeramicBrick extends TileEntity{
-	@Nullable
-	private EnumFlowerColor colorFirst;
-	@Nullable
-	private EnumFlowerColor colorSecond;
+	private EnumFlowerColor colorFirst = EnumFlowerColor.Black;
+	private EnumFlowerColor colorSecond = EnumFlowerColor.White;
 	
 	public void setColors(EnumFlowerColor colorFirst, EnumFlowerColor colorSecond) {
 		this.colorFirst = colorFirst;
@@ -48,16 +46,10 @@ public class TileCeramicBrick extends TileEntity{
 	}
 	
 	public EnumFlowerColor getColorFirst() {
-		if(colorFirst == null){
-			colorFirst = EnumFlowerColor.Aquamarine;
-		}
 		return colorFirst;
 	}
 	
 	public EnumFlowerColor getColorSecond() {
-		if(colorSecond == null){
-			colorSecond = EnumFlowerColor.Aquamarine;
-		}
 		return colorSecond;
 	}
 	
