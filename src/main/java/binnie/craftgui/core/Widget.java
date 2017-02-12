@@ -253,7 +253,8 @@ public class Widget implements IWidget {
 				((EventHandler<Event>)handler).onEvent(event);
 			}
 		}
-		for (final IWidget child : this.getWidgets()) {
+		List<IWidget> widgets = new ArrayList<>(this.getWidgets());
+		for (final IWidget child : widgets) {
 			child.recieveEvent(event);
 		}
 	}

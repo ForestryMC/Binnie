@@ -14,7 +14,9 @@ import java.util.Map;
 
 public class ControlList<T> extends Control implements IControlValue<T> {
 	ControlListBox<T> parent;
+	@Nullable
 	private T defaultValue;
+	@Nullable
 	private T value;
 	Map<T, IWidget> allOptions;
 	Map<T, IWidget> optionWidgets;
@@ -22,7 +24,7 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 	@Nullable
 	IValidator<IWidget> validator;
 
-	protected ControlList(final ControlListBox<T> parent, final int x, final int y, final int w, final int h, final T defaultValue) {
+	protected ControlList(final ControlListBox<T> parent, final int x, final int y, final int w, final int h, @Nullable final T defaultValue) {
 		super(parent, x, y, w, h);
 		this.value = defaultValue;
 		this.defaultValue = defaultValue;
@@ -33,16 +35,18 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 	}
 
 	@Override
+	@Nullable
 	public T getValue() {
 		return this.value;
 	}
 
+	@Nullable
 	public T getDefaultValue() {
 		return defaultValue;
 	}
 
 	@Override
-	public void setValue(final T value) {
+	public void setValue(@Nullable final T value) {
 		if (value == this.value) {
 			return;
 		}

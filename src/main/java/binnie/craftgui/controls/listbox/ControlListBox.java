@@ -17,7 +17,7 @@ public class ControlListBox<T> extends ControlScrollableContent<ControlList<T>> 
 	@Override
 	public void initialise() {
 		ControlList<T> content = this.getContent();
-		T defaultValue = content.getDefaultValue();
+		T defaultValue = content == null ? null : content.getDefaultValue();
 		ControlList<T> child = new ControlList<>(this, 1, 1, this.w() - 2 - this.scrollBarSize, this.h() - 2, defaultValue);
 		this.setScrollableContent(child);
 		this.addEventHandler(new EventKey.Down.Handler() {
