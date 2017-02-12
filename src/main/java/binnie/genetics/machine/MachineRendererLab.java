@@ -41,7 +41,8 @@ public class MachineRendererLab {
 		GlStateManager.rotate(180.0f, 0.0f, 0.0f, 1.0f);
 		World world = machine.getWorld();
 		LaboratoryMachine.ComponentGUIHolder holder = Machine.getInterface(LaboratoryMachine.ComponentGUIHolder.class, machine);
-		Label_0591: {
+		Label_0591:
+		{
 			if (world != null && holder != null && !holder.getStack().isEmpty()) {
 				BinnieCore.getBinnieProxy().getMinecraftInstance();
 				if (Minecraft.isFancyGraphicsEnabled()) {

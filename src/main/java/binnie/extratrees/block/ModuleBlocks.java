@@ -1,17 +1,17 @@
 package binnie.extratrees.block;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import binnie.Constants;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.block.ItemMetadata;
 import binnie.core.liquid.ILiquidType;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.block.decor.*;
+import binnie.extratrees.block.decor.BlockHedge;
+import binnie.extratrees.block.decor.BlockMultiFence;
+import binnie.extratrees.block.decor.FenceType;
+import binnie.extratrees.block.decor.MultiFenceRecipeEmbedded;
+import binnie.extratrees.block.decor.MultiFenceRecipeSize;
+import binnie.extratrees.block.decor.MultiFenceRecipeSolid;
 import binnie.extratrees.block.wood.BlockETFence;
 import binnie.extratrees.block.wood.BlockETLog;
 import binnie.extratrees.block.wood.BlockETPlank;
@@ -44,7 +44,10 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.RecipeSorter;
 
-import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class ModuleBlocks implements IInitializable {
@@ -254,8 +257,8 @@ public class ModuleBlocks implements IInitializable {
 	@Override
 	public void postInit() {
 		IWoodAccess woodAccess = TreeManager.woodAccess;
-		for(PlankType.ExtraTreePlanks plankType : PlankType.ExtraTreePlanks.VALUES){
-			for(boolean fireproof : new boolean[]{false, true}){
+		for (PlankType.ExtraTreePlanks plankType : PlankType.ExtraTreePlanks.VALUES) {
+			for (boolean fireproof : new boolean[]{false, true}) {
 				ItemStack planks = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.PLANKS, fireproof);
 				ItemStack slabs = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.SLAB, fireproof);
 				ItemStack stairs = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.STAIRS, fireproof);
@@ -306,7 +309,7 @@ public class ModuleBlocks implements IInitializable {
 		this.addSqueezer(log, liquid, amount, 0.5f);
 	}
 
-	private static void addRecipeAtPosition(int position, IRecipe recipe){
+	private static void addRecipeAtPosition(int position, IRecipe recipe) {
 		CraftingManager manager = CraftingManager.getInstance();
 		manager.getRecipeList().add(position, recipe);
 	}

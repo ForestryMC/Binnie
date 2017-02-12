@@ -1,6 +1,5 @@
 package binnie.extratrees;
 
-import binnie.Binnie;
 import binnie.Constants;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
@@ -16,15 +15,18 @@ import binnie.extratrees.carpentry.ModuleCarpentry;
 import binnie.extratrees.config.ConfigurationMain;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.core.ModuleCore;
-import binnie.extratrees.genetics.*;
+import binnie.extratrees.genetics.AlleleETFruit;
+import binnie.extratrees.genetics.ButterflySpecies;
+import binnie.extratrees.genetics.ETTreeDefinition;
+import binnie.extratrees.genetics.ModuleGenetics;
 import binnie.extratrees.item.ModuleItems;
 import binnie.extratrees.kitchen.ModuleKitchen;
 import binnie.extratrees.machines.ModuleMachine;
 import binnie.extratrees.proxy.Proxy;
+import com.google.common.base.Preconditions;
 import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.AlleleSpeciesRegisterEvent;
-import forestry.api.genetics.IClassification;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -35,17 +37,14 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import javax.annotation.Nullable;
-
-import com.google.common.base.Preconditions;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Mod(modid = Constants.EXTRA_TREES_MOD_ID, name = "Binnie's Extra Trees", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class ExtraTrees extends AbstractMod {
@@ -203,10 +202,10 @@ public class ExtraTrees extends AbstractMod {
 		Map<String, ETTreeDefinition> map = Arrays.stream(ETTreeDefinition.values()).collect(Collectors.toMap(o -> o.name().toLowerCase(), o -> o));
 		models.forEach(model -> {
 			String species = model.getVariant().split("=")[1];
-				ETTreeDefinition treeSpecies = map.get(species);
-				int primaryColor = treeSpecies.getLeafColor().getRGB();
-				int secondaryColor = treeSpecies.getWoodColor().getRGB();
-				e.getModelRegistry().putObject(model, new DoublePassBakedModel(e.getModelRegistry().getObject(model), primaryColor, secondaryColor));
+			ETTreeDefinition treeSpecies = map.get(species);
+			int primaryColor = treeSpecies.getLeafColor().getRGB();
+			int secondaryColor = treeSpecies.getWoodColor().getRGB();
+			e.getModelRegistry().putObject(model, new DoublePassBakedModel(e.getModelRegistry().getObject(model), primaryColor, secondaryColor));
 		});
 
 	}

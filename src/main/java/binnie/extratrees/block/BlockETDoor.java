@@ -22,9 +22,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
-import java.util.List;
-
 public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 //	private IIcon getFlippedIcon(final boolean upper, final boolean flip, final int tileMeta) {
 //		final DoorType type = getDoorType(tileMeta);
@@ -212,7 +209,7 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 //	public boolean hasTileEntity(final int meta) {
 //		return true;
 //	}
-	
+
 	@Override
 	public boolean eventReceived(IBlockState state, World world, BlockPos pos, int id, int param) {
 		TileEntity tileentity = world.getTileEntity(pos);
@@ -223,7 +220,7 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 	public int getPlacedMeta(final ItemStack stack, final World world, final BlockPos pos, final EnumFacing clickedBlock) {
 		return TileEntityMetadata.getItemDamage(stack);
 	}
-	
+
 	@Override
 	public int getDroppedMeta(IBlockState state, int tileMetadata) {
 		return tileMetadata;

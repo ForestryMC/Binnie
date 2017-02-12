@@ -1,7 +1,5 @@
 package binnie.extratrees.proxy;
 
-import javax.annotation.Nonnull;
-
 import binnie.Constants;
 import binnie.core.models.ModelManager;
 import binnie.extratrees.ExtraTrees;
@@ -29,16 +27,16 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 	public void init() {
 		//ForestryAPI.textureManager.registerIconProvider(FruitSprite.Average);
 	}
-	
+
 	@Override
 	public void registerBlockModel(final BlockModelEntry index) {
 		ModelManager.registerCustomBlockModel(index);
-		if(index.addStateMapper){
+		if (index.addStateMapper) {
 			StateMapperBase ignoreState = new BlockModeStateMapper(index);
 			ModelLoader.setCustomStateMapper(index.block, ignoreState);
 		}
 	}
-	
+
 	@Override
 	public void registerModel(ModelEntry index) {
 		ModelManager.registerCustomModel(index);
@@ -74,11 +72,11 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 			BlockModelEntry blockModelIndex = new BlockModelEntry(blockModelLocation, itemModeLocation, new ModelETDecorativeLeaves(), leaves);
 			registerBlockModel(blockModelIndex);
 		}
-		
-		for(BlockETSlab slab : ExtraTrees.blocks().slabsDouble){
+
+		for (BlockETSlab slab : ExtraTrees.blocks().slabsDouble) {
 			PluginArboriculture.proxy.registerWoodModel(slab, true);
 		}
-		for(BlockETSlab slab : ExtraTrees.blocks().slabsDoubleFireproof){
+		for (BlockETSlab slab : ExtraTrees.blocks().slabsDoubleFireproof) {
 			PluginArboriculture.proxy.registerWoodModel(slab, true);
 		}
 		getModelManager().registerModels();
@@ -88,7 +86,7 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 	public void registerItemAndBlockColors() {
 		getModelManager().registerItemAndBlockColors();
 	}
-	
+
 	class CustomMapper extends StateMapperBase {
 		ResourceLocation rl;
 
@@ -101,7 +99,7 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 			return new ModelResourceLocation(rl, this.getPropertyString(state.getProperties()));
 		}
 	}
-	
+
 	class BlockModeStateMapper extends StateMapperBase {
 		private final BlockModelEntry index;
 

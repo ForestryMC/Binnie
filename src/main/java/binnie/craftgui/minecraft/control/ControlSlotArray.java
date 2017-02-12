@@ -31,7 +31,7 @@ public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
 		}
 
 		public ControlSlotArray create(final InventoryType type, final int[] index) {
-			ControlSlotArray controlSlots = new ControlSlotArray(parent, x, y,  columns, rows);
+			ControlSlotArray controlSlots = new ControlSlotArray(parent, x, y, columns, rows);
 			int i = 0;
 			for (int row = 0; row < rows; ++row) {
 				for (int column = 0; column < columns; ++column) {

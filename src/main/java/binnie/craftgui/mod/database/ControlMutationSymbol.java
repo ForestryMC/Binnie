@@ -12,7 +12,6 @@ import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.CraftGUITextureSheet;
 import binnie.craftgui.resource.minecraft.StandardTexture;
-import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IMutation;
 import net.minecraftforge.fml.relauncher.Side;

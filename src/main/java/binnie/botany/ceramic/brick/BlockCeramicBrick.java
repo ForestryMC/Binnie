@@ -118,7 +118,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerStateMapper() {
-		ResourceLocation resourceLocation = new ResourceLocation(Constants.BOTANY_MOD_ID,  "ceramicBrick");
+		ResourceLocation resourceLocation = new ResourceLocation(Constants.BOTANY_MOD_ID, "ceramicBrick");
 		ModelLoader.setCustomStateMapper(this, new DefaultStateMapper(resourceLocation));
 		ModelManager.registerCustomBlockModel(new BlockModelEntry(
 				new ModelResourceLocation(resourceLocation, "normal"),
@@ -132,7 +132,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 		manager.registerItemModel(item, new CeramicBrickMeshDefinition());
 	}
 
-	private class CeramicBrickMeshDefinition implements ItemMeshDefinition{
+	private class CeramicBrickMeshDefinition implements ItemMeshDefinition {
 
 		@Override
 		public ModelResourceLocation getModelLocation(ItemStack stack) {
@@ -158,7 +158,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 
 	@Override
 	public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
-		return ((IExtendedBlockState)super.getExtendedState(state, world, pos)).withProperty(UnlistedBlockPos.POS, pos).withProperty(UnlistedBlockAccess.BLOCKACCESS, world);
+		return ((IExtendedBlockState) super.getExtendedState(state, world, pos)).withProperty(UnlistedBlockPos.POS, pos).withProperty(UnlistedBlockAccess.BLOCKACCESS, world);
 	}
 
 	@Override
@@ -169,7 +169,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 		TileCeramicBrick ceramic = TileUtil.getTile(worldIn, pos, TileCeramicBrick.class);
-		if(ceramic != null){
+		if (ceramic != null) {
 			int damage = stack.getItemDamage();
 			ceramic.setColors(EnumFlowerColor.get(damage & 0xFF), EnumFlowerColor.get(damage >> 8 & 0xFF));
 		}
@@ -178,7 +178,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		TileCeramicBrick ceramic = TileUtil.getTile(world, pos, TileCeramicBrick.class);
-		if(ceramic != null){
+		if (ceramic != null) {
 			return ceramic.pair().getStack(0);
 		}
 		return super.getPickBlock(state, target, world, pos, player);
@@ -188,10 +188,10 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 	@Override
 	public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex) {
 		TileCeramicBrick ceramic = TileUtil.getTile(world, pos, TileCeramicBrick.class);
-		if(ceramic != null){
+		if (ceramic != null) {
 			if (tintIndex == 1) {
 				return ceramic.getColorFirst().getColor(false);
-			}else if(tintIndex == 2){
+			} else if (tintIndex == 2) {
 				return ceramic.getColorSecond().getColor(false);
 			}
 		}
@@ -223,7 +223,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 		IBlockAccess world = extendedState.getValue(UnlistedBlockAccess.BLOCKACCESS);
 		BlockPos pos = extendedState.getValue(UnlistedBlockPos.POS);
 		TileCeramicBrick ceramic = TileUtil.getTile(world, pos, TileCeramicBrick.class);
-		if(ceramic != null){
+		if (ceramic != null) {
 			return ceramic.pair();
 		}
 		return null;

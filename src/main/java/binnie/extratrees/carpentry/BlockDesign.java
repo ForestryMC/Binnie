@@ -121,11 +121,11 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 	@SideOnly(Side.CLIENT)
 	@Override
 	public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex) {
-		if(world == null || pos == null){
+		if (world == null || pos == null) {
 			return 0;
 		}
 		DesignBlock block = this.getCarpentryBlock(world, pos);
-		if(tintIndex > 0){
+		if (tintIndex > 0) {
 			return block.getSecondaryColour();
 		}
 		return block.getPrimaryColour();
@@ -167,9 +167,9 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 
 	@Override
 	@SideOnly(Side.CLIENT)
-    public EnumBlockRenderType getRenderType(IBlockState state){
-        return EnumBlockRenderType.MODEL;
-    }
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		return EnumBlockRenderType.MODEL;
+	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
@@ -188,7 +188,7 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 		manager.registerItemModel(item, new DesignMeshDefinition());
 	}
 
-	private class DesignMeshDefinition implements ItemMeshDefinition{
+	private class DesignMeshDefinition implements ItemMeshDefinition {
 
 		@Override
 		public ModelResourceLocation getModelLocation(ItemStack stack) {
@@ -204,7 +204,7 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 
 	@Override
 	public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
-		return ((IExtendedBlockState)state).withProperty(UnlistedBlockPos.POS, pos).withProperty(UnlistedBlockAccess.BLOCKACCESS, world);
+		return ((IExtendedBlockState) state).withProperty(UnlistedBlockPos.POS, pos).withProperty(UnlistedBlockAccess.BLOCKACCESS, world);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -233,11 +233,11 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 	public TextureAtlasSprite getSprite(Integer key, @Nullable EnumFacing facing, int pass) {
 		DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), key);
 
-		if(facing == null){
+		if (facing == null) {
 			return block.getPrimarySprite(getDesignSystem(), BlockDesign.RENDER_DIRECTIONS[0]);
 		}
 
-		if(pass > 0){
+		if (pass > 0) {
 			return block.getSecondarySprite(getDesignSystem(), BlockDesign.RENDER_DIRECTIONS[facing.ordinal()]);
 		}
 		return block.getPrimarySprite(getDesignSystem(), BlockDesign.RENDER_DIRECTIONS[facing.ordinal()]);

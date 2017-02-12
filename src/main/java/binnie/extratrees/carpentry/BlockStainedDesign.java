@@ -28,7 +28,7 @@ public class BlockStainedDesign extends BlockDesign {
 	public int quantityDropped(final Random p_149745_1_) {
 		return 0;
 	}
-	
+
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
@@ -43,28 +43,28 @@ public class BlockStainedDesign extends BlockDesign {
 	public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
 		return layer == BlockRenderLayer.TRANSLUCENT;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public int getRenderPasses() {
 		return 2;
 	}
-	
-    @Override
+
+	@Override
 	@SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-        IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
-        Block block = iblockstate.getBlock();
-        if (blockState != iblockstate) {
-            return true;
-        }
+	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+		IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
+		Block block = iblockstate.getBlock();
+		if (blockState != iblockstate) {
+			return true;
+		}
 
-        if (block == this){
-            return false;
-        }
+		if (block == this) {
+			return false;
+		}
 
-        return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
-    }
+		return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+	}
 
 	@Override
 	public ItemStack getCreativeStack(final IDesign design) {

@@ -19,9 +19,7 @@ import binnie.core.models.ModelManager;
 import binnie.core.network.BinnieCorePacketID;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
-import binnie.core.proxy.BinnieModProxy;
 import binnie.core.proxy.BinnieProxy;
-import binnie.core.proxy.IBinnieModProxy;
 import binnie.core.proxy.IBinnieProxy;
 import binnie.core.triggers.ModuleTrigger;
 import binnie.craftgui.minecraft.ModuleCraftGUI;
@@ -58,7 +56,7 @@ public final class BinnieCore extends AbstractMod {
 	public BinnieCore() {
 		FluidRegistry.enableUniversalBucket();
 	}
-	
+
 	@SuppressWarnings("NullableProblems")
 	@Mod.Instance(Constants.CORE_MOD_ID)
 	private static BinnieCore instance;
@@ -193,7 +191,7 @@ public final class BinnieCore extends AbstractMod {
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void handleSpeciesDiscovered(final ForestryEvent.SpeciesDiscovered event) {
-		if(event.username == null){
+		if (event.username == null) {
 			return;
 		}
 		final EntityPlayerMP player = FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayerByUUID(event.username.getId());
@@ -214,7 +212,7 @@ public final class BinnieCore extends AbstractMod {
 //		}
 		Binnie.RESOURCE.registerSprites();
 	}
-	
+
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void handleModelBake(ModelBakeEvent event) {

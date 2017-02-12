@@ -57,11 +57,11 @@ public class ItemETFood extends ItemFood implements IItemModelRegister {
 		IItemMiscProvider item = this.getItem(stack.getItemDamage());
 		return item.getName(stack);
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
-		for(IItemMiscProvider provider : items){
+		for (IItemMiscProvider provider : items) {
 			manager.registerItemModel(item, provider.ordinal(), "foods/" + provider.getModelPath());
 		}
 	}
@@ -69,14 +69,14 @@ public class ItemETFood extends ItemFood implements IItemModelRegister {
 	private Food getFood(final ItemStack par1ItemStack) {
 		return Food.VALUES[par1ItemStack.getItemDamage()];
 	}
-	
+
 	@Override
 	public int getHealAmount(ItemStack stack) {
 		return getFood(stack).getHealth();
 	}
-	
+
 	@Override
-    public float getSaturationModifier(ItemStack stack) {
-        return 3.0f;
-    }
+	public float getSaturationModifier(ItemStack stack) {
+		return 3.0f;
+	}
 }

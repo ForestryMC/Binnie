@@ -17,9 +17,9 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ModuleMachine implements IInitializable {
 	public static ValidatorSprite spritePolish;
-	
+
 	public Block blockMachine;
-	
+
 	@Override
 	public void preInit() {
 		final MachineGroup machineGroup = new MachineGroup(ExtraTrees.instance, "machine", "machine", ExtraTreeMachine.values());

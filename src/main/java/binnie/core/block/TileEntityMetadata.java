@@ -31,7 +31,7 @@ public class TileEntityMetadata extends TileEntity {
 		}
 		return true;
 	}
-	
+
 	@Override
 	public NBTTagCompound getUpdateTag() {
 		return writeToNBT(new NBTTagCompound());
@@ -63,16 +63,16 @@ public class TileEntityMetadata extends TileEntity {
 			}
 		}
 	}
-	
+
 	@Override
 	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
 		super.onDataPacket(net, pkt);
-		
-		if(pkt instanceof PacketMetadata){
+
+		if (pkt instanceof PacketMetadata) {
 			setTileMetadata(((PacketMetadata) pkt).getMetadata(), true);
 		}
 	}
-	
+
 	@Override
 	public SPacketUpdateTileEntity getUpdatePacket() {
 		return new PacketMetadata(pos, meta, getUpdateTag());

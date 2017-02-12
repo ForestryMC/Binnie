@@ -16,7 +16,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
 public class BlockCarpentryPanel extends BlockCarpentry {
 	public BlockCarpentryPanel() {
@@ -28,7 +27,7 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 	@Override
 	public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final NonNullList<ItemStack> itemList) {
 	}
-	
+
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		final DesignBlock block = this.getCarpentryBlock(source, pos);
@@ -65,12 +64,12 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 		final DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
 		return Binnie.LANGUAGE.localise(ExtraTrees.instance, "block.woodenpanel.name", block.getDesign().getName());
 	}
-	
+
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
-	
+
 	@Override
 	public boolean isFullCube(IBlockState state) {
 		return false;
@@ -89,7 +88,7 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 		IBlockState state = world.getBlockState(pos);
 		return state.isSideSolid(world, pos, facing.getOpposite());
 	}
-	
+
 	@Override
 	public int getPlacedMeta(ItemStack item, World world, BlockPos pos, EnumFacing clickedBlock) {
 		final DesignBlock block = ModuleCarpentry.getCarpentryPanel(this.getDesignSystem(), TileEntityMetadata.getItemDamage(item));
@@ -111,12 +110,12 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 		block.setFacing(facing);
 		return block.getBlockMetadata(this.getDesignSystem());
 	}
-	
+
 	@Override
 	public boolean isSideSolid(IBlockState base_state, IBlockAccess world, BlockPos pos, EnumFacing side) {
 		return false;
 	}
-	
+
 	@Override
 	public void onNeighborChange(IBlockAccess blockAccess, BlockPos pos, BlockPos neighbor) {
 		super.onNeighborChange(blockAccess, pos, neighbor);
@@ -129,5 +128,5 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 			world.setBlockToAir(pos);
 		}
 	}
-	
+
 }

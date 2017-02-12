@@ -20,7 +20,7 @@ public class ItemSetSquare extends Item implements IToolHammer, IItemModelRegist
 		setRegistryName("setSquare" + mode);
 		this.setMaxStackSize(1);
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item, IModelManager manager) {

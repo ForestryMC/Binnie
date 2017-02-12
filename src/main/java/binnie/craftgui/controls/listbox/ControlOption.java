@@ -4,7 +4,6 @@ import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.controls.core.IControlValue;
 import binnie.craftgui.core.Attribute;
 import binnie.craftgui.core.CraftGUI;
-import binnie.craftgui.core.IWidget;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import net.minecraftforge.fml.relauncher.Side;

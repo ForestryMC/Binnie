@@ -1,7 +1,6 @@
 package binnie.genetics.genetics;
 
 import binnie.Binnie;
-import binnie.core.BinnieCore;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
 import binnie.genetics.api.IGene;

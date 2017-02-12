@@ -2,6 +2,7 @@ package binnie.extratrees.integration.jei.brewery;
 
 import binnie.extratrees.machines.brewery.BreweryRecipes;
 import binnie.extratrees.machines.brewery.IBreweryRecipe;
+
 import java.util.ArrayList;
 import java.util.List;
 

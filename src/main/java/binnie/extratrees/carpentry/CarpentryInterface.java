@@ -100,7 +100,7 @@ public class CarpentryInterface implements ICarpentryInterface {
 	@Nullable
 	public IDesignMaterial getWoodMaterial(final ItemStack stack) {
 		for (final Map.Entry<Integer, IDesignMaterial> entry : CarpentryInterface.woodMap.entrySet()) {
-			for(boolean fireproof : new boolean[]{true, false}){
+			for (boolean fireproof : new boolean[]{true, false}) {
 				final ItemStack key = entry.getValue().getStack(fireproof);
 				if (key.isItemEqual(stack)) {
 					return entry.getValue();

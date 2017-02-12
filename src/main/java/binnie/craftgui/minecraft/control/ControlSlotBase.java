@@ -16,8 +16,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
-
 public abstract class ControlSlotBase extends Control implements ITooltip {
 	private ControlItemDisplay itemDisplay;
 

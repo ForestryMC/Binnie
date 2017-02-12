@@ -1,8 +1,5 @@
 package binnie.extratrees.models;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import binnie.extratrees.block.BlockETDecorativeLeaves;
 import binnie.extratrees.genetics.ETTreeDefinition;
 import forestry.api.arboriculture.IAlleleTreeSpecies;

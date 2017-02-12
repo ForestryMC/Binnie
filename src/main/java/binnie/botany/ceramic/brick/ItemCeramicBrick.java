@@ -10,7 +10,7 @@ public class ItemCeramicBrick extends ItemBlock implements IColoredItem {
 	public ItemCeramicBrick(BlockCeramicBrick block) {
 		super(block);
 	}
-	
+
 	@Override
 	public int getMetadata(final int metadata) {
 		return metadata;
@@ -27,7 +27,7 @@ public class ItemCeramicBrick extends ItemBlock implements IColoredItem {
 		}
 		return 16777215;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getItemStackDisplayName(ItemStack itemStack) {

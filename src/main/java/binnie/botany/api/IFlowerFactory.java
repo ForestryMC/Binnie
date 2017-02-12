@@ -3,8 +3,6 @@ package binnie.botany.api;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IClassification;
 
-import javax.annotation.Nonnull;
-
 public interface IFlowerFactory {
 
 	IAlleleFlowerSpeciesBuilder createSpecies(String uid, String unlocalizedName, String authority, String unlocalizedDescription, boolean isDominant, IClassification branch, String binomial, IFlowerType flowerType);

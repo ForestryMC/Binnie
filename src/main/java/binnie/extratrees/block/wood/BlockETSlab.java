@@ -34,13 +34,13 @@ public abstract class BlockETSlab extends BlockForestrySlab<EnumETLog> {
 	private BlockETSlab(boolean fireproof, int blockNumber) {
 		super(fireproof, blockNumber);
 		String name = "slabs.";
-		if(fireproof){
-			name+="fireproof.";
+		if (fireproof) {
+			name += "fireproof.";
 		}
-		if(isDouble()){
-			name+="double.";
+		if (isDouble()) {
+			name += "double.";
 		}
-		name+=blockNumber;
+		name += blockNumber;
 		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
 		setUnlocalizedName(name);
 	}

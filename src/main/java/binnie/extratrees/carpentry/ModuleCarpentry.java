@@ -12,11 +12,11 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.MinecraftForge;
 
 public class ModuleCarpentry implements IInitializable {
-	
+
 	public BlockCarpentry blockCarpentry;
 	public BlockCarpentry blockPanel;
 	public BlockStainedDesign blockStained;
-	
+
 	@Override
 	public void preInit() {
 		blockCarpentry = new BlockCarpentry("carpentry");

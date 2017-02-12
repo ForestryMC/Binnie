@@ -1,16 +1,13 @@
 package binnie.extratrees.kitchen;
 
 import binnie.core.IInitializable;
-import binnie.core.machines.MachineGroup;
-import binnie.extratrees.ExtraTrees;
-import forestry.api.core.Tabs;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 
 public class ModuleKitchen implements IInitializable {
-	
+
 	public Block blockKitchen = Blocks.AIR;
-	
+
 	@Override
 	public void preInit() {
 		// TODO implement kitchen

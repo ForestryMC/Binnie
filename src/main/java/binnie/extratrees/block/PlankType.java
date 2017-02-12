@@ -68,7 +68,7 @@ public class PlankType {
 		Banana(0);
 
 		public static final ExtraTreePlanks[] VALUES = values();
-		
+
 		private EnumETLog woodType;
 		private final int color;
 		//IIcon icon;
@@ -77,7 +77,7 @@ public class PlankType {
 			this.color = color;
 		}
 
-		public static void initWoodTypes(){
+		public static void initWoodTypes() {
 			Fir.setWoodType(EnumETLog.Fir);
 			Cedar.setWoodType(EnumETLog.Cedar);
 			Hemlock.setWoodType(EnumETLog.Hemlock);
@@ -115,23 +115,23 @@ public class PlankType {
 			PinkIvory.setWoodType(EnumETLog.PinkIvory);
 			Banana.setWoodType(EnumETLog.Banana);
 		}
-		
+
 		public void setWoodType(EnumETLog woodType) {
 			this.woodType = woodType;
 		}
-		
+
 		@Override
 		public EnumETLog getWoodType() {
 			return woodType;
 		}
-	
+
 		@Override
 		public String getName() {
 			return ExtraTrees.proxy.localise("block.planks." + this.toString().toLowerCase());
 		}
 
 		@Override
-		public String getPlankTextureName(){
+		public String getPlankTextureName() {
 			return Constants.EXTRA_TREES_MOD_ID + ":blocks/planks/" + name();
 		}
 
@@ -144,7 +144,7 @@ public class PlankType {
 		public int getColour() {
 			return this.color;
 		}
-		
+
 		@Override
 		public ItemStack getStack(boolean fireproof) {
 			return TreeManager.woodAccess.getStack(woodType, WoodBlockKind.PLANKS, fireproof);
@@ -197,7 +197,7 @@ public class PlankType {
 		}
 
 		@Override
-		public String getPlankTextureName(){
+		public String getPlankTextureName() {
 			return "minecraft:blocks/planks_" + name().toLowerCase();
 		}
 
@@ -205,12 +205,12 @@ public class PlankType {
 		public int getColour() {
 			return this.color;
 		}
-		
+
 		@Override
 		public ItemStack getStack() {
 			return getStack(true);
 		}
-		
+
 		@Override
 		public IWoodType getWoodType() {
 			return woodType;
@@ -272,7 +272,7 @@ public class PlankType {
 		}
 
 		@Override
-		public String getPlankTextureName(){
+		public String getPlankTextureName() {
 			return "forestry:blocks/wood/planks." + name().toLowerCase();
 		}
 
@@ -290,12 +290,12 @@ public class PlankType {
 		public int getColour() {
 			return this.color;
 		}
-		
+
 		@Override
 		public IWoodType getWoodType() {
 			return woodType;
 		}
-		
+
 		@Override
 		public ItemStack getStack(boolean fireproof) {
 			return TreeManager.woodAccess.getStack(woodType, WoodBlockKind.PLANKS, fireproof);
@@ -322,7 +322,7 @@ public class PlankType {
 		}
 	}
 
-	
+
 	//TODO: extrabiomes 1.10.2
 	/*public enum ExtraBiomesPlank implements IPlankType {
 		Redwood(10185538),

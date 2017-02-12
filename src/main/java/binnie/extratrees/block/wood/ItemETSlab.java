@@ -6,7 +6,7 @@ import net.minecraft.item.ItemSlab;
 import net.minecraft.item.ItemStack;
 
 public class ItemETSlab extends ItemSlab {
-	
+
 	public ItemETSlab(BlockETSlab block, BlockETSlab slab, BlockETSlab doubleSlab) {
 		super(block, slab, doubleSlab);
 		setRegistryName(block.getRegistryName());

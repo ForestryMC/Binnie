@@ -29,7 +29,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
 import java.util.List;
 
 public class BlockFence extends net.minecraft.block.BlockFence implements IBlockMetadata, IBlockFence {
@@ -72,18 +71,18 @@ public class BlockFence extends net.minecraft.block.BlockFence implements IBlock
 //	public int getRenderType() {
 //		return ExtraTrees.fenceID;
 //	}
-	
+
 	@Override
 	public boolean eventReceived(IBlockState state, World world, BlockPos pos, int id, int param) {
 		TileEntity tileentity = world.getTileEntity(pos);
 		return tileentity != null && tileentity.receiveClientEvent(id, param);
 	}
-	
+
 	@Override
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 		return BlockMetadata.getBlockDroppedAsList(this, world, pos);
 	}
-	
+
 	@Override
 	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
 		return BlockMetadata.breakBlock(this, player, world, pos);
@@ -93,7 +92,7 @@ public class BlockFence extends net.minecraft.block.BlockFence implements IBlock
 	public TileEntity createNewTileEntity(final World var1, final int i) {
 		return new TileEntityMetadata();
 	}
-	
+
 	@Override
 	public boolean hasTileEntity(IBlockState state) {
 		return true;
@@ -119,7 +118,7 @@ public class BlockFence extends net.minecraft.block.BlockFence implements IBlock
 	public boolean canPlaceTorchOnTop(IBlockState state, IBlockAccess world, BlockPos pos) {
 		return true;
 	}
-	
+
 	@Override
 	public boolean canConnectTo(IBlockAccess worldIn, BlockPos pos) {
 		IBlockState state = worldIn.getBlockState(pos);
@@ -145,7 +144,7 @@ public class BlockFence extends net.minecraft.block.BlockFence implements IBlock
 		super.breakBlock(world, pos, state);
 		world.removeTileEntity(pos);
 	}
-	
+
 	@Override
 	public boolean isWood(final IBlockAccess world, final BlockPos pos) {
 		return true;
@@ -170,7 +169,7 @@ public class BlockFence extends net.minecraft.block.BlockFence implements IBlock
 //	@SideOnly(Side.CLIENT)
 //	public void registerBlockIcons(final IIconRegister p_149651_1_) {
 //	}
-	
+
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		return BlockMetadata.getPickBlock(world, pos);

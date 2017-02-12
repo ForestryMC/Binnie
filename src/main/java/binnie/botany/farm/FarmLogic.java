@@ -24,7 +24,7 @@ public abstract class FarmLogic implements IFarmLogic {
 	protected final IBlockState getBlockState(World world, BlockPos pos) {
 		return world.getBlockState(pos);
 	}
-	
+
 	protected final Block getBlock(World world, BlockPos pos) {
 		return getBlockState(world, pos).getBlock();
 	}

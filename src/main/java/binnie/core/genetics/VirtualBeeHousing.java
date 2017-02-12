@@ -1,7 +1,6 @@
 package binnie.core.genetics;
 
 import com.mojang.authlib.GameProfile;
-import forestry.api.apiculture.DefaultBeeListener;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
@@ -20,7 +19,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 

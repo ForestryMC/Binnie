@@ -27,7 +27,6 @@ import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.genetics.ISpeciesType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;

@@ -5,7 +5,6 @@ import binnie.genetics.Genetics;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 
 public enum GeneticsItems implements IItemMiscProvider {

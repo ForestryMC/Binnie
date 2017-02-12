@@ -1,7 +1,6 @@
 package binnie.core.util;
 
 import net.minecraft.world.WorldSavedData;
-import net.minecraft.world.storage.ISaveHandler;
 import net.minecraft.world.storage.MapStorage;
 
 import javax.annotation.Nullable;

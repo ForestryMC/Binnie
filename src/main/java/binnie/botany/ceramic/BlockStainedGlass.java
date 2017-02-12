@@ -56,7 +56,7 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
@@ -65,21 +65,21 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 		}
 	}
 
-    @Override
+	@Override
 	@SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-        IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
-        Block block = iblockstate.getBlock();
-        if (blockState != iblockstate) {
-            return true;
-        }
+	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+		IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
+		Block block = iblockstate.getBlock();
+		if (blockState != iblockstate) {
+			return true;
+		}
 
-        if (block == this){
-            return false;
-        }
+		if (block == this) {
+			return false;
+		}
 
-        return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
-    }
+		return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+	}
 
 	@Override
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
@@ -128,7 +128,7 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 	public int getPlacedMeta(final ItemStack stack, final World world, final BlockPos pos, final EnumFacing clickedBlock) {
 		return TileEntityMetadata.getItemDamage(stack);
 	}
-	
+
 	@Override
 	public int getDroppedMeta(IBlockState state, int tileMetadata) {
 		return tileMetadata;
@@ -174,7 +174,7 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 
 	@Override
 	public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
-		if(worldIn == null || pos == null){
+		if (worldIn == null || pos == null) {
 			return 0;
 		}
 		return EnumFlowerColor.get(TileEntityMetadata.getTileMetadata(worldIn, pos)).getColor(false);

@@ -23,11 +23,11 @@ public enum FluidContainerType {
 	public int getMaxStackSize() {
 		return 16;
 	}
-	
-	public static FluidContainerType[] getBinnieContainers(){
+
+	public static FluidContainerType[] getBinnieContainers() {
 		return new FluidContainerType[]{GLASS, CYLINDER};
 	}
-	
+
 	public String getName() {
 		return this.name().toLowerCase();
 	}
@@ -44,9 +44,9 @@ public enum FluidContainerType {
 	public void setItem(ItemFluidContainer item) {
 		this.item = item;
 	}
-	
-	public ItemStack get(int amount){
-		if (item == null){
+
+	public ItemStack get(int amount) {
+		if (item == null) {
 			throw new IllegalArgumentException("Null container item: " + this);
 		}
 		return new ItemStack(item, amount);

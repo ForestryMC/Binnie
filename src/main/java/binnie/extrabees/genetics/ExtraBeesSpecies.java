@@ -394,7 +394,7 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 		final int rockBody = 10066329;
 		final int endBody = 14278302;
 
-		for	(ExtraBeesSpecies species : values()) {
+		for (ExtraBeesSpecies species : values()) {
 			species.importTemplate(getDefaultTemplate());
 		}
 

@@ -1,7 +1,5 @@
 package binnie.core.block;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -11,12 +9,14 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+
 public interface IMultipassBlock<K> {
-	
-	default AxisAlignedBB getItemBoundingBox(){
+
+	default AxisAlignedBB getItemBoundingBox() {
 		return Block.FULL_BLOCK_AABB;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	int getRenderPasses();
 

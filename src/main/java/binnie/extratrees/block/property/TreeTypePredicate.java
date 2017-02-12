@@ -1,10 +1,9 @@
 package binnie.extratrees.block.property;
 
-import javax.annotation.Nullable;
-
+import binnie.extratrees.genetics.ETTreeDefinition;
 import com.google.common.base.Predicate;
 
-import binnie.extratrees.genetics.ETTreeDefinition;
+import javax.annotation.Nullable;
 
 public class TreeTypePredicate implements Predicate<ETTreeDefinition> {
 	private final int minMeta;

@@ -20,7 +20,6 @@ import forestry.api.lepidopterology.EnumButterflyChromosome;
 import forestry.api.lepidopterology.IButterfly;
 import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
-import net.minecraftforge.common.BiomeDictionary;
 
 import java.util.ArrayList;
 import java.util.List;

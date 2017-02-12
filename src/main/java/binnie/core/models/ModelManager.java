@@ -35,7 +35,6 @@ import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nonnull;
 import javax.vecmath.Vector3f;
 import java.util.ArrayList;
 import java.util.List;
@@ -190,11 +189,11 @@ public class ModelManager implements IModelManager {
 			stateMapperRegister.registerStateMapper();
 		}
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public static void reloadSprites() {
 		for (ISpriteRegister spriteRegister : spriteRegister) {
-			if(spriteRegister != null){
+			if (spriteRegister != null) {
 				spriteRegister.registerSprites(ForestryAPI.textureManager);
 			}
 		}

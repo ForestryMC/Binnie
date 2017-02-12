@@ -1,7 +1,5 @@
 package binnie.genetics.machine.sequencer;
 
-import java.util.Random;
-
 import binnie.core.BinnieCore;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
@@ -11,6 +9,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Random;
 
 public class SequencerFX extends MachineComponent implements IRender.RandomDisplayTick, IRender.DisplayTick {
 	public SequencerFX(final IMachine machine) {

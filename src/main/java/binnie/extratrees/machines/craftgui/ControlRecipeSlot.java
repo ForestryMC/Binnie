@@ -11,8 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
-import javax.annotation.Nullable;
-
 public class ControlRecipeSlot extends ControlSlotBase {
 	public ControlRecipeSlot(final IWidget parent, final int x, final int y) {
 		super(parent, x, y, 50);

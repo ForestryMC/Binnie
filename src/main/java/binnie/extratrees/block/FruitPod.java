@@ -1,8 +1,8 @@
 package binnie.extratrees.block;
 
-import java.util.Locale;
-
 import binnie.core.BinnieCore;
+
+import java.util.Locale;
 
 public enum FruitPod {
 	Cocoa,
@@ -23,7 +23,7 @@ public enum FruitPod {
 	public short[] getTextures() {
 		return this.textures;
 	}
-	
+
 	public String getModelName() {
 		return name().toLowerCase(Locale.ENGLISH);
 	}

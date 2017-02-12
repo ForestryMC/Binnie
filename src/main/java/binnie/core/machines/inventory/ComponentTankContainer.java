@@ -4,7 +4,6 @@ import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
 import binnie.core.machines.power.ITankMachine;
 import binnie.core.machines.power.TankInfo;
-import com.google.common.collect.Iterables;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;

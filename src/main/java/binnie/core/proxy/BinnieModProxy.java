@@ -18,7 +18,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class BinnieModProxy implements IBinnieModProxy {
@@ -48,12 +47,12 @@ public class BinnieModProxy implements IBinnieModProxy {
 	public Block registerBlock(Block block) {
 		return GameRegistry.register(block);
 	}
-	
+
 	@Override
 	public <T extends Block> void registerBlock(T block, ItemBlock itemBlock) {
 		registerBlock(block);
 
-		if(itemBlock.getRegistryName() == null){
+		if (itemBlock.getRegistryName() == null) {
 			itemBlock.setRegistryName(block.getRegistryName());
 		}
 		registerItem(itemBlock);
@@ -96,10 +95,10 @@ public class BinnieModProxy implements IBinnieModProxy {
 	public void registermodel(Item item, int meta, ModelResourceLocation modelResourceLocation) {
 
 	}
-	
+
 	public void registerBlockModel(final BlockModelEntry index) {
 	}
-	
+
 	public void registerModel(ModelEntry index) {
 	}
 

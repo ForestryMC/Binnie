@@ -10,9 +10,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 public class PigmentRecipe implements IRecipe {
 	@Override
 	public boolean matches(final InventoryCrafting crafting, final World world) {

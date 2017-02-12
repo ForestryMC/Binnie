@@ -38,7 +38,6 @@ import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
-import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -165,10 +164,10 @@ public class ModuleGardening implements IInitializable {
 		ModuleGardening.queuedAlkalineFertilisers.put(BotanyItems.AshPowder.get(1), 1);
 		ModuleGardening.queuedAlkalineFertilisers.put(BotanyItems.PulpPowder.get(1), 1);
 		ModuleGardening.queuedAlkalineFertilisers.put(Mods.Forestry.stack("ash"), 2);
-		ModuleGardening.queuedAlkalineFertilisers.put(Mods.Forestry.stack( "wood_pulp"), 2);
+		ModuleGardening.queuedAlkalineFertilisers.put(Mods.Forestry.stack("wood_pulp"), 2);
 		ModuleGardening.queuedNutrientFertilisers.put(BotanyItems.CompostPowder.get(1), 1);
 		ModuleGardening.queuedNutrientFertilisers.put(BotanyItems.FertiliserPowder.get(1), 1);
-		ModuleGardening.queuedNutrientFertilisers.put(Mods.Forestry.stack( "fertilizer_bio"), 2);
+		ModuleGardening.queuedNutrientFertilisers.put(Mods.Forestry.stack("fertilizer_bio"), 2);
 		ModuleGardening.queuedNutrientFertilisers.put(Mods.Forestry.stack("fertilizer_compound"), 2);
 		for (final Map.Entry<ItemStack, Integer> entry : ModuleGardening.queuedAcidFertilisers.entrySet()) {
 			this.addAcidFertiliser(entry.getKey(), entry.getValue());

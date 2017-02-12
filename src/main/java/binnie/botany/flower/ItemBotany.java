@@ -11,7 +11,6 @@ import binnie.botany.api.IFlowerGenome;
 import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.genetics.Flower;
-import binnie.core.BinnieCore;
 import com.google.common.base.Preconditions;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;

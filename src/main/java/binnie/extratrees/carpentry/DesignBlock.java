@@ -135,249 +135,250 @@ public class DesignBlock {
 			}
 		}
 	}
-	
-    private static final int[][] ROTATION_MATRIX = {
-            {0, 1, 4, 5, 3, 2, 6},
-            {0, 1, 5, 4, 2, 3, 6},
-        	{5, 4, 2, 3, 0, 1, 6},
-        	{4, 5, 2, 3, 1, 0, 6},
-        	{2, 3, 1, 0, 4, 5, 6},
-        	{3, 2, 0, 1, 4, 5, 6},
-        	{0, 1, 2, 3, 4, 5, 6},
-        };
-    
-    public EnumFacing getRotation(EnumFacing facing, EnumFacing axis) {
-    	return getNewFacing(ROTATION_MATRIX[axis.ordinal()][facing.ordinal()]);
-    }
+
+	private static final int[][] ROTATION_MATRIX = {
+			{0, 1, 4, 5, 3, 2, 6},
+			{0, 1, 5, 4, 2, 3, 6},
+			{5, 4, 2, 3, 0, 1, 6},
+			{4, 5, 2, 3, 1, 0, 6},
+			{2, 3, 1, 0, 4, 5, 6},
+			{3, 2, 0, 1, 4, 5, 6},
+			{0, 1, 2, 3, 4, 5, 6},
+	};
+
+	public EnumFacing getRotation(EnumFacing facing, EnumFacing axis) {
+		return getNewFacing(ROTATION_MATRIX[axis.ordinal()][facing.ordinal()]);
+	}
 
 	public ILayout getLayout(EnumFacing facing) {
 		EnumFacing adjustedFacing;
 		facing = (adjustedFacing = getRotation(facing, EnumFacing.DOWN));
 		switch (this.getFacing()) {
-		case DOWN: {
-			adjustedFacing = getRotation(adjustedFacing, EnumFacing.EAST);
-			adjustedFacing = getRotation(adjustedFacing, EnumFacing.EAST);
-			break;
-		}
-		case EAST: {
-			adjustedFacing = getRotation(adjustedFacing, EnumFacing.EAST);
-			adjustedFacing = getRotation(adjustedFacing, EnumFacing.NORTH);
-			break;
-		}
-		case NORTH: {
-			adjustedFacing = getRotation(adjustedFacing, EnumFacing.EAST);
-			adjustedFacing = getRotation(adjustedFacing, EnumFacing.SOUTH);
-			adjustedFacing = getRotation(adjustedFacing, EnumFacing.SOUTH);
-			break;
-		}
-		case SOUTH: {
-			adjustedFacing = getRotation(adjustedFacing, EnumFacing.EAST);
-			break;
-		}
-		case WEST: {
-			adjustedFacing = getRotation(adjustedFacing, EnumFacing.EAST);
-			adjustedFacing = getRotation(adjustedFacing, EnumFacing.SOUTH);
-			break;
-		}
+			case DOWN: {
+				adjustedFacing = getRotation(adjustedFacing, EnumFacing.EAST);
+				adjustedFacing = getRotation(adjustedFacing, EnumFacing.EAST);
+				break;
+			}
+			case EAST: {
+				adjustedFacing = getRotation(adjustedFacing, EnumFacing.EAST);
+				adjustedFacing = getRotation(adjustedFacing, EnumFacing.NORTH);
+				break;
+			}
+			case NORTH: {
+				adjustedFacing = getRotation(adjustedFacing, EnumFacing.EAST);
+				adjustedFacing = getRotation(adjustedFacing, EnumFacing.SOUTH);
+				adjustedFacing = getRotation(adjustedFacing, EnumFacing.SOUTH);
+				break;
+			}
+			case SOUTH: {
+				adjustedFacing = getRotation(adjustedFacing, EnumFacing.EAST);
+				break;
+			}
+			case WEST: {
+				adjustedFacing = getRotation(adjustedFacing, EnumFacing.EAST);
+				adjustedFacing = getRotation(adjustedFacing, EnumFacing.SOUTH);
+				break;
+			}
 		}
 		for (int i = 0; i < this.rotation; ++i) {
 			adjustedFacing = getRotation(adjustedFacing, EnumFacing.DOWN);
 		}
 		ILayout layout = null;
 		switch (adjustedFacing) {
-		case EAST: {
-			layout = this.getDesign().getEastPattern();
-			break;
-		}
-		case NORTH: {
-			layout = this.getDesign().getNorthPattern();
-			break;
-		}
-		case SOUTH: {
-			layout = this.getDesign().getSouthPattern();
-			break;
-		}
-		case WEST: {
-			layout = this.getDesign().getWestPattern();
-			break;
-		}
-		case DOWN: {
-			layout = this.getDesign().getBottomPattern();
-			break;
-		}
-		default: {
-			layout = this.getDesign().getTopPattern();
-			break;
-		}
-		}
-		LAYOUTS: {
-			switch (this.getFacing()) {
-			case UP: {
-				if (facing == EnumFacing.DOWN || facing == EnumFacing.UP) {
-					for (int j = 0; j < this.rotation; ++j) {
-						layout = layout.rotateRight();
-					}
-					break;
-				}
-				break;
-			}
-			case DOWN: {
-				switch (facing) {
-				case UP:
-				case DOWN: {
-					layout = layout.flipVertical();
-					break;
-				}
-				case EAST:
-				case NORTH:
-				case SOUTH:
-				case WEST: {
-					layout = layout.rotateRight().rotateRight();
-					break;
-				}
-				}
-				if (facing == EnumFacing.DOWN || facing == EnumFacing.UP) {
-					for (int j = 0; j < this.rotation; ++j) {
-						layout = layout.rotateLeft();
-					}
-					break;
-				}
-				break;
-			}
 			case EAST: {
-				switch (facing) {
-				case SOUTH:
-				case UP: {
-					layout = layout.rotateRight();
-					break;
-				}
-				case NORTH: {
-					layout = layout.rotateLeft();
-					break;
-				}
-				case DOWN: {
-					layout = layout.rotateLeft().flipHorizontal();
-					break;
-				}
-				case WEST: {
-					layout = layout.flipHorizontal();
-					break;
-				}
-				}
-				if (facing == EnumFacing.EAST) {
-					for (int j = 0; j < this.rotation; ++j) {
-						layout = layout.rotateRight();
-					}
-				}
-				if (facing == EnumFacing.WEST) {
-					for (int j = 0; j < this.rotation; ++j) {
-						layout = layout.rotateLeft();
-					}
-					break;
-				}
-				break;
-			}
-			case WEST: {
-				switch (facing) {
-				case NORTH: {
-					layout = layout.rotateRight();
-					break;
-				}
-				case SOUTH:
-				case UP: {
-					layout = layout.rotateLeft();
-					break;
-				}
-				case DOWN: {
-					layout = layout.rotateLeft().flipVertical();
-					break;
-				}
-				case EAST: {
-					layout = layout.flipHorizontal();
-					for (int j = 0; j < this.rotation; ++j) {
-						layout = layout.rotateLeft();
-					}
-					break;
-				}
-				case WEST: {
-					for (int j = 0; j < this.rotation; ++j) {
-						layout = layout.rotateRight();
-					}
-					break;
-				}
-				}
+				layout = this.getDesign().getEastPattern();
 				break;
 			}
 			case NORTH: {
-				switch (facing) {
-				case WEST: {
-					layout = layout.rotateLeft();
-					break LAYOUTS;
-				}
-				case EAST: {
-					layout = layout.rotateRight();
-					break LAYOUTS;
-				}
-				case DOWN: {
-					layout = layout.flipHorizontal();
-					break LAYOUTS;
-				}
-				case SOUTH: {
-					layout = layout.flipHorizontal();
-					for (int j = 0; j < this.rotation; ++j) {
-						layout = layout.rotateLeft();
-					}
-					break LAYOUTS;
-				}
-				case NORTH: {
-					for (int j = 0; j < this.rotation; ++j) {
-						layout = layout.rotateRight();
-					}
-					break LAYOUTS;
-				}
-				default: {
-					break LAYOUTS;
-				}
-				}
-
+				layout = this.getDesign().getNorthPattern();
+				break;
 			}
 			case SOUTH: {
-				switch (facing) {
-				case EAST: {
-					layout = layout.rotateLeft();
-					break LAYOUTS;
-				}
-				case WEST: {
-					layout = layout.rotateRight();
-					break LAYOUTS;
-				}
+				layout = this.getDesign().getSouthPattern();
+				break;
+			}
+			case WEST: {
+				layout = this.getDesign().getWestPattern();
+				break;
+			}
+			case DOWN: {
+				layout = this.getDesign().getBottomPattern();
+				break;
+			}
+			default: {
+				layout = this.getDesign().getTopPattern();
+				break;
+			}
+		}
+		LAYOUTS:
+		{
+			switch (this.getFacing()) {
 				case UP: {
-					layout = layout.rotateRight().rotateRight();
-					break LAYOUTS;
+					if (facing == EnumFacing.DOWN || facing == EnumFacing.UP) {
+						for (int j = 0; j < this.rotation; ++j) {
+							layout = layout.rotateRight();
+						}
+						break;
+					}
+					break;
 				}
 				case DOWN: {
-					layout = layout.flipVertical();
-					break LAYOUTS;
+					switch (facing) {
+						case UP:
+						case DOWN: {
+							layout = layout.flipVertical();
+							break;
+						}
+						case EAST:
+						case NORTH:
+						case SOUTH:
+						case WEST: {
+							layout = layout.rotateRight().rotateRight();
+							break;
+						}
+					}
+					if (facing == EnumFacing.DOWN || facing == EnumFacing.UP) {
+						for (int j = 0; j < this.rotation; ++j) {
+							layout = layout.rotateLeft();
+						}
+						break;
+					}
+					break;
+				}
+				case EAST: {
+					switch (facing) {
+						case SOUTH:
+						case UP: {
+							layout = layout.rotateRight();
+							break;
+						}
+						case NORTH: {
+							layout = layout.rotateLeft();
+							break;
+						}
+						case DOWN: {
+							layout = layout.rotateLeft().flipHorizontal();
+							break;
+						}
+						case WEST: {
+							layout = layout.flipHorizontal();
+							break;
+						}
+					}
+					if (facing == EnumFacing.EAST) {
+						for (int j = 0; j < this.rotation; ++j) {
+							layout = layout.rotateRight();
+						}
+					}
+					if (facing == EnumFacing.WEST) {
+						for (int j = 0; j < this.rotation; ++j) {
+							layout = layout.rotateLeft();
+						}
+						break;
+					}
+					break;
+				}
+				case WEST: {
+					switch (facing) {
+						case NORTH: {
+							layout = layout.rotateRight();
+							break;
+						}
+						case SOUTH:
+						case UP: {
+							layout = layout.rotateLeft();
+							break;
+						}
+						case DOWN: {
+							layout = layout.rotateLeft().flipVertical();
+							break;
+						}
+						case EAST: {
+							layout = layout.flipHorizontal();
+							for (int j = 0; j < this.rotation; ++j) {
+								layout = layout.rotateLeft();
+							}
+							break;
+						}
+						case WEST: {
+							for (int j = 0; j < this.rotation; ++j) {
+								layout = layout.rotateRight();
+							}
+							break;
+						}
+					}
+					break;
 				}
 				case NORTH: {
-					layout = layout.flipHorizontal();
-					for (int j = 0; j < this.rotation; ++j) {
-						layout = layout.rotateLeft();
+					switch (facing) {
+						case WEST: {
+							layout = layout.rotateLeft();
+							break LAYOUTS;
+						}
+						case EAST: {
+							layout = layout.rotateRight();
+							break LAYOUTS;
+						}
+						case DOWN: {
+							layout = layout.flipHorizontal();
+							break LAYOUTS;
+						}
+						case SOUTH: {
+							layout = layout.flipHorizontal();
+							for (int j = 0; j < this.rotation; ++j) {
+								layout = layout.rotateLeft();
+							}
+							break LAYOUTS;
+						}
+						case NORTH: {
+							for (int j = 0; j < this.rotation; ++j) {
+								layout = layout.rotateRight();
+							}
+							break LAYOUTS;
+						}
+						default: {
+							break LAYOUTS;
+						}
 					}
-					break LAYOUTS;
+
 				}
 				case SOUTH: {
-					for (int j = 0; j < this.rotation; ++j) {
-						layout = layout.rotateRight();
+					switch (facing) {
+						case EAST: {
+							layout = layout.rotateLeft();
+							break LAYOUTS;
+						}
+						case WEST: {
+							layout = layout.rotateRight();
+							break LAYOUTS;
+						}
+						case UP: {
+							layout = layout.rotateRight().rotateRight();
+							break LAYOUTS;
+						}
+						case DOWN: {
+							layout = layout.flipVertical();
+							break LAYOUTS;
+						}
+						case NORTH: {
+							layout = layout.flipHorizontal();
+							for (int j = 0; j < this.rotation; ++j) {
+								layout = layout.rotateLeft();
+							}
+							break LAYOUTS;
+						}
+						case SOUTH: {
+							for (int j = 0; j < this.rotation; ++j) {
+								layout = layout.rotateRight();
+							}
+							break LAYOUTS;
+						}
+						default: {
+							break LAYOUTS;
+						}
 					}
-					break LAYOUTS;
-				}
-				default: {
-					break LAYOUTS;
-				}
-				}
 
-			}
+				}
 			}
 		}
 		return layout;
@@ -420,15 +421,13 @@ public class DesignBlock {
 					hammerI.onHammerUsed(hammer, player);
 				}
 				this.setFacing(newFacing);
-			}
-			else {
+			} else {
 				if (facing != this.getFacing()) {
 					hammerI.onHammerUsed(hammer, player);
 				}
 				this.setFacing(facing);
 			}
-		}
-		else {
+		} else {
 			++this.rotation;
 			hammerI.onHammerUsed(hammer, player);
 		}
@@ -439,14 +438,13 @@ public class DesignBlock {
 			this.rotation = 3;
 		}
 	}
-	
-	private EnumFacing getNewFacing(int index){
-        if (index >= 0 && index < EnumFacing.VALUES.length)
-        {
-            return EnumFacing.VALUES[index];
-        }
-        return EnumFacing.DOWN;
-    }
+
+	private EnumFacing getNewFacing(int index) {
+		if (index >= 0 && index < EnumFacing.VALUES.length) {
+			return EnumFacing.VALUES[index];
+		}
+		return EnumFacing.DOWN;
+	}
 
 	public void setFacing(final EnumFacing facing) {
 		this.facing = facing;

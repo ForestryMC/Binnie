@@ -20,7 +20,7 @@ public abstract class BlockETFence extends BlockForestryFence<EnumETLog> impleme
 		for (int i = 0; i < variants.length; i++) {
 			PropertyETWoodType variant = variants[i];
 			BlockETFence block = new BlockETFence(fireproof, i) {
-							@Override
+				@Override
 				public PropertyETWoodType getVariant() {
 					return variant;
 				}
@@ -33,10 +33,10 @@ public abstract class BlockETFence extends BlockForestryFence<EnumETLog> impleme
 	private BlockETFence(boolean fireproof, int blockNumber) {
 		super(fireproof, blockNumber);
 		String name = "fences.";
-		if(fireproof){
-			name+="fireproof.";
+		if (fireproof) {
+			name += "fireproof.";
 		}
-		name+=blockNumber;
+		name += blockNumber;
 		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
 		setUnlocalizedName(name);
 	}

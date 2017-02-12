@@ -2,7 +2,6 @@ package binnie.core.util;
 
 import net.minecraft.item.ItemStack;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;

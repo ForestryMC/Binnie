@@ -3,11 +3,11 @@ package binnie.extratrees.gen;
 import forestry.api.world.ITreeGenData;
 
 public class WorldGenShrub {
-	public static class Shrub extends WorldGenTree{
+	public static class Shrub extends WorldGenTree {
 		public Shrub(ITreeGenData tree) {
 			super(tree);
 		}
-	
+
 		@Override
 		public void generate() {
 			float leafSpawn = this.height;
@@ -30,7 +30,7 @@ public class WorldGenShrub {
 				this.generateCylinder(new Vector(f3, h3, 0.0f), width, 1, this.leaf, false);
 			}
 		}
-	
+
 		@Override
 		public void preGenerate() {
 			this.minHeight = 1;

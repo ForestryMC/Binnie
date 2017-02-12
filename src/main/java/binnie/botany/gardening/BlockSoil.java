@@ -31,7 +31,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-import java.util.List;
 import java.util.Random;
 
 public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
@@ -54,38 +53,38 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 		this.setHardness(0.5f);
 		this.setSoundType(SoundType.GROUND);
 		this.type = type;
-    }
+	}
 
-    @Override
+	@Override
 	@SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
-        switch (side){
-            case UP:
-                return true;
-            case NORTH:
-            case SOUTH:
-            case WEST:
-            case EAST:
-                IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
-                Block block = iblockstate.getBlock();
-                return !iblockstate.isOpaqueCube() && block != Blocks.FARMLAND && block != Blocks.GRASS_PATH && block != this;
-            default:
-                return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
-        }
-    }
+	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
+		switch (side) {
+			case UP:
+				return true;
+			case NORTH:
+			case SOUTH:
+			case WEST:
+			case EAST:
+				IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
+				Block block = iblockstate.getBlock();
+				return !iblockstate.isOpaqueCube() && block != Blocks.FARMLAND && block != Blocks.GRASS_PATH && block != this;
+			default:
+				return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+		}
+	}
 
-    /**
-     * Used to determine ambient occlusion and culling when rebuilding chunks for render
-     */
-    @Override
-	public boolean isOpaqueCube(IBlockState state){
-        return false;
-    }
+	/**
+	 * Used to determine ambient occlusion and culling when rebuilding chunks for render
+	 */
+	@Override
+	public boolean isOpaqueCube(IBlockState state) {
+		return false;
+	}
 
-    @Override
-	public boolean isFullCube(IBlockState state){
-        return false;
-    }
+	@Override
+	public boolean isFullCube(IBlockState state) {
+		return false;
+	}
 
 	@Override
 	public String getUnlocalizedName() {

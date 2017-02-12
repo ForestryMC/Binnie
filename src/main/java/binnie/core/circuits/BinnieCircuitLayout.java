@@ -6,8 +6,6 @@ import forestry.api.circuits.ChipsetManager;
 import forestry.api.circuits.ICircuitLayout;
 import forestry.api.circuits.ICircuitSocketType;
 
-import javax.annotation.Nonnull;
-
 public class BinnieCircuitLayout implements ICircuitLayout {
 	private final String uid;
 	private final AbstractMod mod;

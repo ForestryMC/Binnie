@@ -3,7 +3,6 @@ package binnie.core.util;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-import javax.annotation.Nonnull;
 import java.util.Collections;
 import java.util.List;
 

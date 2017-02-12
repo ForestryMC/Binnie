@@ -164,7 +164,7 @@ public abstract class Designer {
 
 		@Override
 		public void receiveGuiNBTOnClient(EntityPlayer player, String name, NBTTagCompound nbt) {
-			 if (name.equals("design")) {
+			if (name.equals("design")) {
 				this.setDesign(CarpentryManager.carpentryInterface.getDesign(nbt.getShort("d")));
 			}
 		}

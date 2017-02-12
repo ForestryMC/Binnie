@@ -250,7 +250,7 @@ public class Widget implements IWidget {
 	public final void recieveEvent(final Event event) {
 		for (final EventHandler<? extends Event> handler : this.globalEventHandlers) {
 			if (handler.handles(event)) {
-				((EventHandler<Event>)handler).onEvent(event);
+				((EventHandler<Event>) handler).onEvent(event);
 			}
 		}
 		List<IWidget> widgets = new ArrayList<>(this.getWidgets());

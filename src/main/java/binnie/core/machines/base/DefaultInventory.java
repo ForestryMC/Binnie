@@ -6,8 +6,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 
-import javax.annotation.Nullable;
-
 class DefaultInventory implements IInventory {
 	@Override
 	public int getSizeInventory() {

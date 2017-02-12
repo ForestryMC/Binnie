@@ -29,11 +29,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -42,7 +39,7 @@ import java.util.Random;
 
 
 public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IFruitProvider {
-	
+
 	/*public static void createAlleles() {
 		List<IAlleleFruit> fruitAlleles = Arrays.asList(
 				fruitNone = new AlleleFruit("none", new FruitProviderNone("for.fruits.none", null)),
@@ -352,7 +349,7 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 	public void addProduct(ItemStack product, float chance) {
 		this.products.put(product, chance);
 	}
-	
+
 	private void setFamily(IFruitFamily family) {
 		this.family = family;
 	}
@@ -365,8 +362,8 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerSprites() {
-		if(this == Apple){
-			for(FruitSprite sprite : FruitSprite.VALUES){
+		if (this == Apple) {
+			for (FruitSprite sprite : FruitSprite.VALUES) {
 				sprite.registerSprites();
 			}
 		}
@@ -399,7 +396,7 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 
 	@Override
 	public boolean trySpawnFruitBlock(ITreeGenome genome, World world, Random rand, BlockPos pos) {
-		if(this.pod != null && world.rand.nextFloat() <= genome.getSappiness()){
+		if (this.pod != null && world.rand.nextFloat() <= genome.getSappiness()) {
 			TreeManager.treeRoot.setFruitBlock(world, genome, this, genome.getSappiness(), pos);
 		}
 		return false;
@@ -453,7 +450,7 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 	public String getModID() {
 		return Constants.EXTRA_TREES_MOD_ID;
 	}
-	
+
 	@Override
 	public int getColour(ITreeGenome genome, IBlockAccess world, BlockPos pos, int ripeningTime) {
 		if (!this.isRipening) {

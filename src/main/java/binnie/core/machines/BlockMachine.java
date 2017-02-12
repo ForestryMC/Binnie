@@ -53,7 +53,7 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 			}
 		}
 	}
-	
+
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;

@@ -24,7 +24,6 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.input.Keyboard;
 
 import javax.annotation.Nullable;
 import java.io.File;
@@ -54,7 +53,7 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	public void registerModels() {
 		getModelManager().registerModels();
 	}
-	
+
 	@Override
 	public void reloadSprites() {
 		ModelManager.reloadSprites();

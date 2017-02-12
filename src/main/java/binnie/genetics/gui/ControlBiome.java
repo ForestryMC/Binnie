@@ -7,8 +7,6 @@ import binnie.craftgui.core.Tooltip;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 
-import javax.annotation.Nullable;
-
 public class ControlBiome extends Control implements ITooltip {
 	private final Biome biome;
 	private String iconCategory;

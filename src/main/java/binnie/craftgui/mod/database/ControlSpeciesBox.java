@@ -6,6 +6,7 @@ import binnie.craftgui.minecraft.Window;
 import com.mojang.authlib.GameProfile;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IClassification;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

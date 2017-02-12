@@ -22,7 +22,7 @@ public class ItemHammer extends Item implements IToolHammer, IItemModelRegister 
 		this.setMaxDamage(durable ? 1562 : 251);
 		setRegistryName(durable ? "durable_hammer" : "hammer");
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {

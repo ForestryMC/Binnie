@@ -1,9 +1,8 @@
 package binnie.extratrees.block.property;
 
-import com.google.common.base.Predicate;
-
 import binnie.extratrees.block.EnumETLog;
 import binnie.extratrees.block.PlankType;
+import com.google.common.base.Predicate;
 
 import javax.annotation.Nullable;
 

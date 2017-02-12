@@ -5,6 +5,8 @@ import net.minecraft.block.properties.PropertyEnum;
 
 public interface IWoodKind {
 	PropertyEnum<EnumETLog> getVariant();
+
 	EnumETLog getWoodType(int meta);
+
 	WoodBlockKind getWoodKind();
 }

@@ -26,7 +26,7 @@ public class BinnieSprite extends BinnieResource {
 		Preconditions.checkState(this.sprite != null, "Tried to get sprite before it is registered.");
 		return this.sprite;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public void registerSprites() {
 		sprite = TextureManager.registerSprite(getResourceLocation());

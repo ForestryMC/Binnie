@@ -1,7 +1,6 @@
 package binnie.core.liquid;
 
 import net.minecraft.item.ItemStack;
-
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStackSimple;
@@ -24,7 +23,7 @@ public class FluidHandlerItemBinnie extends FluidHandlerItemStackSimple {
 			return false;
 		}
 
-		if(fluid instanceof BinnieFluid) {
+		if (fluid instanceof BinnieFluid) {
 			BinnieFluid binnieFluid = (BinnieFluid) fluid;
 			return binnieFluid.getType().canPlaceIn(containerType);
 		}
@@ -40,14 +39,13 @@ public class FluidHandlerItemBinnie extends FluidHandlerItemStackSimple {
 	public boolean canDrainFluidType(FluidStack fluid) {
 		return contentsAllowed(fluid);
 	}
-	
-    @Override
-    protected void setContainerToEmpty()
-    {
-        super.setContainerToEmpty();
-        container.setItemDamage(0); // show the empty container model
-    }
-	
+
+	@Override
+	protected void setContainerToEmpty() {
+		super.setContainerToEmpty();
+		container.setItemDamage(0); // show the empty container model
+	}
+
 	@Override
 	protected void setFluid(FluidStack fluid) {
 		super.setFluid(fluid);

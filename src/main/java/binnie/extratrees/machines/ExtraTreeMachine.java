@@ -87,7 +87,7 @@ public enum ExtraTreeMachine implements IMachineType {
 		@Override
 		public void register() {
 		}
-		
+
 		@Override
 		@SideOnly(Side.CLIENT)
 		public void renderMachine(Machine machine, double x, double y, double z, float partialTicks, int destroyStage) {

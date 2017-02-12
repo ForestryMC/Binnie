@@ -148,9 +148,9 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 		return true;
 	}
 
-    private EnumLeafType getType(int meta) {
-        return EnumLeafType.values()[meta % 8];
-    }
+	private EnumLeafType getType(int meta) {
+		return EnumLeafType.values()[meta % 8];
+	}
 
 	private boolean isFull(final int meta) {
 		return meta / 8 > 0;
@@ -182,9 +182,9 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 	@SideOnly(Side.CLIENT)
 	public static int getColor(int meta) {
 		EnumLeafType type = EnumLeafType.values()[meta % 6];
-        if (type == EnumLeafType.CONIFERS) {
-            return ColorizerFoliage.getFoliageColorPine();
-        }
+		if (type == EnumLeafType.CONIFERS) {
+			return ColorizerFoliage.getFoliageColorPine();
+		}
 		final double d0 = 0.5;
 		final double d2 = 1.0;
 		return ColorizerFoliage.getFoliageColor(d0, d2);

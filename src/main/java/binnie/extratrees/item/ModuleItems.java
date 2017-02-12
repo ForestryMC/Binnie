@@ -22,14 +22,14 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class ModuleItems implements IInitializable {
-	
+
 	public Item itemDictionary;
 	public Item itemDictionaryLepi;
 	public ItemMisc itemMisc;
 	public Item itemFood;
 	public Item itemHammer;
 	public Item itemDurableHammer;
-	
+
 	@Override
 	public void preInit() {
 		itemMisc = new ItemMisc(Tabs.tabArboriculture, ExtraTreeItems.values());
@@ -65,7 +65,7 @@ public class ModuleItems implements IInitializable {
 		OreDictionary.registerOre("seedCorn", ExtraTreeItems.GrainCorn.get(1));
 		OreDictionary.registerOre("seedRye", ExtraTreeItems.GrainRye.get(1));
 		OreDictionary.registerOre("seedRoasted", ExtraTreeItems.GrainRoasted.get(1));
-		
+
 		OreDictionary.registerOre("gearWood", ExtraTreeItems.ProvenGear.get(1));
 
 		Food.CRABAPPLE.addJuice(10, 150, 10);
@@ -123,7 +123,7 @@ public class ModuleItems implements IInitializable {
 	@Override
 	public void postInit() {
 		ModuleItems items = ExtraTrees.items();
-		
+
 		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(items.itemDurableHammer, 1, 0), "wiw", " s ", " s ", 'w', Blocks.OBSIDIAN, 'i', Items.GOLD_INGOT, 's', Items.STICK));
 		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(items.itemHammer, 1, 0), "wiw", " s ", " s ", 'w', "plankWood", 'i', Items.IRON_INGOT, 's', Items.STICK));
 		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ExtraTreeItems.Yeast.get(8), " m ", "mbm", 'b', Items.BREAD, 'm', Blocks.BROWN_MUSHROOM));

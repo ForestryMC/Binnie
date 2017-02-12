@@ -11,8 +11,6 @@ import binnie.genetics.item.GeneticsItems;
 import com.google.common.base.Preconditions;
 import net.minecraft.item.ItemStack;
 
-import javax.annotation.Nullable;
-
 public class SequencerLogic extends ComponentProcess implements IProcess {
 	public SequencerLogic(final Machine machine) {
 		super(machine);

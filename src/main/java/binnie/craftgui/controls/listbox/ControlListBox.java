@@ -6,7 +6,6 @@ import binnie.craftgui.controls.scroll.ControlScrollableContent;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.events.EventKey;
 
-import javax.annotation.Nullable;
 import java.util.Collection;
 
 public class ControlListBox<T> extends ControlScrollableContent<ControlList<T>> implements IControlValue<T> {

@@ -23,7 +23,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fluids.FluidStack;
 
 public class PackagePolymeriser extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
-	
+
 	public PackagePolymeriser() {
 		super("polymeriser", GeneticsTexture.Polymeriser, 58819, true);
 	}

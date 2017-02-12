@@ -7,8 +7,6 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
-import java.util.List;
-
 public class ItemBeehive extends ItemBlock {
 	public ItemBeehive(final Block block) {
 		super(block);

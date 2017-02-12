@@ -13,7 +13,7 @@ public class ItemBlockETWood<V extends Block & IWoodTyped> extends ItemBlockWood
 		super(block);
 		setRegistryName(block.getRegistryName());
 	}
-	
+
 	@Override
 	public String getItemStackDisplayName(ItemStack itemstack) {
 		IWoodTyped wood = getBlock();

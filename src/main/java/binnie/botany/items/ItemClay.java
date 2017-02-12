@@ -12,8 +12,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
-
 public class ItemClay extends Item implements IColoredItem, IItemModelRegister {
 	public ItemClay() {
 		this.setUnlocalizedName("clay");

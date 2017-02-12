@@ -9,15 +9,16 @@ import forestry.arboriculture.blocks.PropertyWoodType;
 import java.util.Collection;
 
 public class PropertyETWoodType extends PropertyWoodType<EnumETLog> {
-	
+
 	public static PropertyETWoodType[] create(String name, int variantsPerBlock) {
 		return create(name, variantsPerBlock, false);
 	}
+
 	public static PropertyETWoodType[] create(String name, int variantsPerBlock, boolean isLog) {
 		int length;
-		if(isLog){
+		if (isLog) {
 			length = EnumETLog.VALUES.length;
-		}else{
+		} else {
 			length = PlankType.ExtraTreePlanks.VALUES.length;
 		}
 		final int variantCount = (int) Math.ceil((float) length / variantsPerBlock);

@@ -1,8 +1,6 @@
 package binnie.extrabees.gui;
 
 import binnie.core.AbstractMod;
-import binnie.core.machines.Machine;
-import binnie.core.machines.TileEntityMachine;
 import binnie.craftgui.core.geometry.Position;
 import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.minecraft.control.ControlEnergyBar;

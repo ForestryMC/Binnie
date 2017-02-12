@@ -1,13 +1,11 @@
 package binnie.extratrees.block.property;
 
+import binnie.extratrees.genetics.ETTreeDefinition;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
-
-import binnie.extratrees.genetics.ETTreeDefinition;
-
-import javax.annotation.Nonnull;
-import java.util.Collection;
 import net.minecraft.block.properties.PropertyEnum;
+
+import java.util.Collection;
 
 public class PropertyETType extends PropertyEnum<ETTreeDefinition> {
 	public static int getBlockCount(int variantsPerBlock) {

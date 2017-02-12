@@ -1,7 +1,5 @@
 package binnie.extratrees.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
 import binnie.extratrees.genetics.ETTreeDefinition;
 import forestry.api.arboriculture.IFruitProvider;
 import forestry.api.arboriculture.ITreeGenome;
@@ -10,6 +8,8 @@ import forestry.arboriculture.items.ItemBlockLeaves;
 import forestry.core.items.IColoredItem;
 import forestry.core.items.ItemBlockForestry;
 import forestry.core.utils.Translator;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

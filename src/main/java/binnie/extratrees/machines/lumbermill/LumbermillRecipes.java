@@ -1,7 +1,7 @@
 package binnie.extratrees.machines.lumbermill;
 
-import binnie.core.util.OreDictionaryUtil;
 import binnie.core.util.FakeCraftingWorld;
+import binnie.core.util.OreDictionaryUtil;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import forestry.api.arboriculture.IWoodType;
@@ -17,8 +17,6 @@ import net.minecraft.item.crafting.CraftingManager;
 import net.minecraftforge.oredict.OreDictionary;
 import org.apache.commons.lang3.tuple.Pair;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.List;
 

@@ -9,9 +9,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 public class MultiFenceRecipeSolid implements IRecipe {
 	private ItemStack cached = ItemStack.EMPTY;
 

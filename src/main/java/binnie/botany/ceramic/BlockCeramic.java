@@ -66,7 +66,7 @@ public class BlockCeramic extends Block implements IColoredBlock, IItemModelRegi
 		}
 		return hasBeenBroken;
 	}
-	
+
 	@Override
 	public TileEntity createTileEntity(World world, IBlockState state) {
 		return new TileCeramic();
@@ -76,11 +76,11 @@ public class BlockCeramic extends Block implements IColoredBlock, IItemModelRegi
 	public boolean hasTileEntity(IBlockState state) {
 		return true;
 	}
-	
+
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 		TileCeramic ceramic = TileUtil.getTile(worldIn, pos, TileCeramic.class);
-		if(ceramic != null){
+		if (ceramic != null) {
 			ceramic.setColor(EnumFlowerColor.VALUES[stack.getItemDamage()]);
 		}
 	}
@@ -96,7 +96,7 @@ public class BlockCeramic extends Block implements IColoredBlock, IItemModelRegi
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		TileCeramic ceramic = TileUtil.getTile(world, pos, TileCeramic.class);
-		if(ceramic != null){
+		if (ceramic != null) {
 			return ceramic.getStack();
 		}
 		return super.getPickBlock(state, target, world, pos, player);
@@ -106,7 +106,7 @@ public class BlockCeramic extends Block implements IColoredBlock, IItemModelRegi
 	@Override
 	public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex) {
 		TileCeramic ceramic = TileUtil.getTile(world, pos, TileCeramic.class);
-		if(ceramic != null){
+		if (ceramic != null) {
 			return ceramic.getColor().getColor(false);
 		}
 		return EnumFlowerColor.get(0).getColor(false);

@@ -1,9 +1,7 @@
 package binnie.botany.genetics;
 
 import binnie.Binnie;
-import binnie.botany.Botany;
 import binnie.botany.api.IBotanistTracker;
-import binnie.botany.core.BotanyCore;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IIndividual;
 import forestry.core.genetics.BreedingTracker;

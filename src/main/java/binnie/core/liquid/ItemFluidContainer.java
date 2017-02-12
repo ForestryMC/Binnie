@@ -34,7 +34,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
 public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	private final FluidContainerType container;
@@ -92,13 +91,13 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 		}
 		return container.getEmpty();
 	}
-	
+
 	@Override
 	public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving) {
-		if(entityLiving instanceof EntityPlayer){
+		if (entityLiving instanceof EntityPlayer) {
 			EntityPlayer player = (EntityPlayer) entityLiving;
 			player.getFoodStats().addStats(this, stack);
-            world.playSound((EntityPlayer)null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+			world.playSound((EntityPlayer) null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
 			onFoodEaten(stack, world, player);
 			return this.container.getEmpty();
 		}
@@ -120,7 +119,7 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 
 	@Override
 	public EnumAction getItemUseAction(final ItemStack stack) {
-		if(isDrinkable(stack)){
+		if (isDrinkable(stack)) {
 			return EnumAction.DRINK;
 		}
 		return EnumAction.NONE;
@@ -132,25 +131,25 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 		if (this.isDrinkable(stack) && playerIn.canEat(false)) {
 			playerIn.setActiveHand(handIn);
 			return new ActionResult<>(EnumActionResult.SUCCESS, stack);
-		}else{
+		} else {
 			return super.onItemRightClick(worldIn, playerIn, handIn);
 		}
 	}
-	
+
 	@Override
 	public int getMaxItemUseDuration(ItemStack stack) {
-		if(isDrinkable(stack)){
+		if (isDrinkable(stack)) {
 			return 32;
-		}else{
+		} else {
 			return 0;
 		}
 	}
-	
-    @Override
-	public float getSaturationModifier(ItemStack stack){
-        return 0.0F;
-    }
-	
+
+	@Override
+	public float getSaturationModifier(ItemStack stack) {
+		return 0.0F;
+	}
+
 	@Override
 	public int getHealAmount(ItemStack stack) {
 		return 0;
@@ -161,7 +160,7 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 		final IDrinkLiquid liquid = DrinkManager.getLiquid(fluid);
 		return liquid != null && liquid.isConsumable();
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
@@ -169,32 +168,32 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 		manager.registerItemModel(item, meshDefinition);
 		ModelBakery.registerItemVariants(item, meshDefinition.location, meshDefinition.empty);
 	}
-	
+
 	@Override
-	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt){
+	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
 		return new FluidHandlerItemBinnie(stack, container);
 	}
-	
+
 	@SideOnly(Side.CLIENT)
-	private class FluidContainerMeshDefinition implements ItemMeshDefinition{
+	private class FluidContainerMeshDefinition implements ItemMeshDefinition {
 
 		final ModelResourceLocation location;
 		final ModelResourceLocation empty;
-		
+
 		public FluidContainerMeshDefinition() {
 			ResourceLocation location = getRegistryName();
 			this.location = new ModelResourceLocation(location, "inventory");
 			this.empty = new ModelResourceLocation(new ResourceLocation(location.getResourceDomain(), location.getResourcePath() + "_empty"), "inventory");
 		}
-		
+
 		@Override
 		public ModelResourceLocation getModelLocation(ItemStack stack) {
-			if(stack.getItemDamage() == 0){
+			if (stack.getItemDamage() == 0) {
 				return empty;
 			}
 			return location;
 		}
-		
+
 	}
 
 }

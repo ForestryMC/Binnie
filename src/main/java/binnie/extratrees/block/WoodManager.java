@@ -15,12 +15,10 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public class WoodManager {
 	public static String getDisplayName(IWoodTyped wood, IWoodType woodType) {
@@ -48,7 +46,7 @@ public class WoodManager {
 
 		return displayName;
 	}
-	
+
 	public static IPlankType getPlankType(final int index) {
 		final IDesignMaterial wood = CarpentryManager.carpentryInterface.getWoodMaterial(index);
 		if (wood instanceof IPlankType) {

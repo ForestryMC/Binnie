@@ -9,7 +9,6 @@ import binnie.craftgui.events.EventValueChanged;
 import com.google.common.collect.Iterables;
 
 import java.util.Collection;
-import java.util.List;
 
 public class ControlTabBar<T> extends Control implements IControlValue<T> {
 	private T value;

@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Locale;
 
 public enum CeramicBrickType implements IStringSerializable {
-	Tile("tile", "Ceramic Tile"){
+	Tile("tile", "Ceramic Tile") {
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			if (stacks.size() != 4) {
@@ -50,19 +50,19 @@ public enum CeramicBrickType implements IStringSerializable {
 			return new CeramicBrickPair(c, c, CeramicBrickType.Tile).getStack(3);
 		}
 	},
-	Brick("brick", "Ceramic Bricks"){
+	Brick("brick", "Ceramic Bricks") {
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			return getBrickRecipe(this, stacks);
 		}
 	},
-	StripeBrick("brickstripe", "Striped Ceramic Bricks"){
+	StripeBrick("brickstripe", "Striped Ceramic Bricks") {
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			return getBrickRecipe(this, stacks);
 		}
 	},
-	LargeBrick("bricklarge", "Large Ceramic Bricks"){
+	LargeBrick("bricklarge", "Large Ceramic Bricks") {
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			if (stacks.size() == 1) {
@@ -111,7 +111,7 @@ public enum CeramicBrickType implements IStringSerializable {
 			}
 		}
 	},
-	Split("split", "Split Ceramic Tile"){
+	Split("split", "Split Ceramic Tile") {
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			if (stacks.size() != 4) {
@@ -139,7 +139,7 @@ public enum CeramicBrickType implements IStringSerializable {
 			return new CeramicBrickPair(EnumFlowerColor.get(colors[0]), EnumFlowerColor.get(colors[1]), CeramicBrickType.Split).getStack(4);
 		}
 	},
-	Chequered("cheque", "Chequered Ceramic Tile"){
+	Chequered("cheque", "Chequered Ceramic Tile") {
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			if (stacks.size() != 4) {
@@ -168,7 +168,7 @@ public enum CeramicBrickType implements IStringSerializable {
 			return new CeramicBrickPair(EnumFlowerColor.get(colors[0]), EnumFlowerColor.get(colors[1]), CeramicBrickType.Chequered).getStack(4);
 		}
 	},
-	Mixed("mixed", "Mixed Ceramic Tile"){
+	Mixed("mixed", "Mixed Ceramic Tile") {
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			if (stacks.size() != 4) {
@@ -207,19 +207,19 @@ public enum CeramicBrickType implements IStringSerializable {
 			return new CeramicBrickPair(EnumFlowerColor.get(colors[0]), EnumFlowerColor.get(colors[1]), CeramicBrickType.Mixed).getStack(4);
 		}
 	},
-	VerticalBrick("verticalbrick", "Vertical Ceramic Bricks"){
+	VerticalBrick("verticalbrick", "Vertical Ceramic Bricks") {
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			return getVerticalBrickRecipe(stacks);
 		}
 	},
-	VerticalStripeBrick("verticalbrickstripe", "Vertical Striped Ceramic Bricks"){
+	VerticalStripeBrick("verticalbrickstripe", "Vertical Striped Ceramic Bricks") {
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			return getVerticalBrickRecipe(stacks);
 		}
 	},
-	VerticalLargeBrick("verticalbricklarge", "Large Vertical Ceramic Bricks"){
+	VerticalLargeBrick("verticalbricklarge", "Large Vertical Ceramic Bricks") {
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			return getVerticalBrickRecipe(stacks);
@@ -227,7 +227,7 @@ public enum CeramicBrickType implements IStringSerializable {
 	};
 
 	public static final CeramicBrickType[] VALUES = values();
-	
+
 	String id;
 	String name;
 
@@ -250,7 +250,7 @@ public enum CeramicBrickType implements IStringSerializable {
 
 	public abstract ItemStack getRecipe(List<ItemStack> stacks);
 
-	protected ItemStack getVerticalBrickRecipe(List<ItemStack> stacks){
+	protected ItemStack getVerticalBrickRecipe(List<ItemStack> stacks) {
 		if (stacks.size() != 1) {
 			return ItemStack.EMPTY;
 		}
@@ -271,7 +271,7 @@ public enum CeramicBrickType implements IStringSerializable {
 		return ItemStack.EMPTY;
 	}
 
-	protected ItemStack getBrickRecipe(CeramicBrickType ceramicType, List<ItemStack> stacks){
+	protected ItemStack getBrickRecipe(CeramicBrickType ceramicType, List<ItemStack> stacks) {
 		if (stacks.size() == 1) {
 			final ItemStack stack5 = stacks.get(0);
 			final CeramicBrickPair type = new CeramicBrickPair(stack5);
@@ -317,7 +317,7 @@ public enum CeramicBrickType implements IStringSerializable {
 	protected boolean isMortar(final ItemStack stack) {
 		return stack.getItem() == Botany.misc && stack.getItemDamage() == BotanyItems.Mortar.ordinal();
 	}
-	
+
 	@Override
 	public String getName() {
 		return name().toLowerCase(Locale.ENGLISH);

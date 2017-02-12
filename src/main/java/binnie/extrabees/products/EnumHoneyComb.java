@@ -6,7 +6,6 @@ import forestry.api.recipes.RecipeManagers;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
-import javax.annotation.Nullable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 

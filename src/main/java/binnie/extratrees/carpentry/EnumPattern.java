@@ -328,7 +328,7 @@ public enum EnumPattern implements IPattern {
 	protected void setLeftRotation(final EnumPattern pattern, final boolean inverted) {
 		this.leftRotation = Layout.get(pattern, inverted);
 	}
-	
+
 	@Override
 	public void registerSprites(ITextureManager manager) {
 	}

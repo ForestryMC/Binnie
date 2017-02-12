@@ -12,8 +12,6 @@ import forestry.api.genetics.IChromosomeType;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
-
 public class ControlChromosome extends Control implements IControlValue<IChromosomeType>, ITooltip {
 	private IChromosomeType value;
 

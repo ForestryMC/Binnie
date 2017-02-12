@@ -45,13 +45,13 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	public boolean hasTileEntity(IBlockState state) {
 		return true;
 	}
-	
+
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		return getPickBlock(world, pos);
 	}
-	
-	/* IBLOCKMETADATA */	
+
+	/* IBLOCKMETADATA */
 	@Override
 	public String getDisplayName(final ItemStack par1ItemStack) {
 		return this.getLocalizedName();
@@ -61,7 +61,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	public int getPlacedMeta(final ItemStack item, final World world, final BlockPos pos, final EnumFacing clickedBlock) {
 		return TileEntityMetadata.getItemDamage(item);
 	}
-	
+
 	@Override
 	public int getDroppedMeta(IBlockState state, int tileMetadata) {
 		return getMetaFromState(state);

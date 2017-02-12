@@ -1,8 +1,5 @@
 package binnie.botany.api;
 
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.EnumSoilType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 

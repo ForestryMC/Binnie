@@ -6,6 +6,7 @@ import binnie.extratrees.block.property.PropertyETWoodType;
 import forestry.arboriculture.blocks.BlockForestryLog;
 import forestry.arboriculture.blocks.PropertyWoodType;
 import net.minecraft.util.ResourceLocation;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,10 +30,10 @@ public abstract class BlockETLog extends BlockForestryLog<EnumETLog> {
 	private BlockETLog(boolean fireproof, int blockNumber) {
 		super(fireproof, blockNumber);
 		String name = "logs.";
-		if(fireproof){
-			name+="fireproof.";
+		if (fireproof) {
+			name += "fireproof.";
 		}
-		name+=blockNumber;
+		name += blockNumber;
 		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
 		setUnlocalizedName(name);
 	}
@@ -43,5 +44,5 @@ public abstract class BlockETLog extends BlockForestryLog<EnumETLog> {
 		int variantMeta = (meta % variantCount) + getBlockNumber() * VARIANTS_PER_BLOCK;
 		return EnumETLog.byMetadata(variantMeta);
 	}
-	
+
 }

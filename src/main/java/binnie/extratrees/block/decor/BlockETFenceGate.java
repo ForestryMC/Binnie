@@ -24,9 +24,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
-import java.util.List;
-
 public class BlockETFenceGate extends BlockFenceGate implements IBlockMetadata {
 	public BlockETFenceGate() {
 		super(BlockPlanks.EnumType.OAK);
@@ -79,7 +76,7 @@ public class BlockETFenceGate extends BlockFenceGate implements IBlockMetadata {
 	public boolean hasTileEntity(IBlockState state) {
 		return true;
 	}
-	
+
 	@Override
 	public boolean eventReceived(IBlockState state, World world, BlockPos pos, int id, int param) {
 		TileEntity tileentity = world.getTileEntity(pos);
@@ -90,7 +87,7 @@ public class BlockETFenceGate extends BlockFenceGate implements IBlockMetadata {
 	public int getPlacedMeta(final ItemStack stack, final World world, final BlockPos pos, final EnumFacing clickedBlock) {
 		return TileEntityMetadata.getItemDamage(stack);
 	}
-	
+
 	@Override
 	public int getDroppedMeta(IBlockState state, int tileMetadata) {
 		return tileMetadata;
@@ -101,7 +98,7 @@ public class BlockETFenceGate extends BlockFenceGate implements IBlockMetadata {
 		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
 		return Binnie.LANGUAGE.localise(ExtraTrees.instance, "block.woodgate.name", WoodManager.getPlankType(meta).getName());
 	}
-	
+
 	@Override
 	public void breakBlock(World world, BlockPos pos, IBlockState state) {
 		super.breakBlock(world, pos, state);
@@ -127,19 +124,19 @@ public class BlockETFenceGate extends BlockFenceGate implements IBlockMetadata {
 	public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
 		return 5;
 	}
-	
+
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		return BlockMetadata.getPickBlock(world, pos);
 	}
-	
+
 //	@Override
 //	public ItemStack getPickBlock(final MovingObjectPosition target, final World world, final int x, final int y, final int z) {
 //		return BlockMetadata.getPickBlock(world, x, y, z);
 //	}
-	
+
 	@Override
-    public boolean isPassable(IBlockAccess worldIn, BlockPos pos){
-        return worldIn.getBlockState(pos).getValue(OPEN);
-    }
+	public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
+		return worldIn.getBlockState(pos).getValue(OPEN);
+	}
 }

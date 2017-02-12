@@ -12,7 +12,7 @@ public class ItemCeramic extends ItemBlock implements IColoredItem {
 	public ItemCeramic(BlockCeramic block) {
 		super(block);
 	}
-	
+
 	@Override
 	public int getMetadata(final int metadata) {
 		return metadata;
@@ -23,7 +23,7 @@ public class ItemCeramic extends ItemBlock implements IColoredItem {
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
 		return EnumFlowerColor.get(stack.getMetadata()).getColor(false);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getItemStackDisplayName(ItemStack itemStack) {

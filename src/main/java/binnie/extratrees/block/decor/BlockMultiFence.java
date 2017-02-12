@@ -12,8 +12,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
-import java.util.List;
-
 public class BlockMultiFence extends BlockFence implements IBlockMetadata {
 	public BlockMultiFence() {
 		super("multifence");

@@ -13,7 +13,7 @@ public interface IProxyCore extends IInitializable {
 	Item registerItem(Item item);
 
 	Block registerBlock(Block block);
-	
+
 	<B extends Block> void registerBlock(B block, ItemBlock itemBlock);
 
 	public void registerModels();

@@ -1,7 +1,6 @@
 package binnie.core.liquid;
 
 import binnie.core.ManagerBase;
-import forestry.core.items.EnumContainerType;
 import forestry.core.render.TextureManager;
 import forestry.core.utils.OreDictUtil;
 import net.minecraft.init.Items;
@@ -63,7 +62,7 @@ public class ManagerLiquid extends ManagerBase {
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.GLASS_BOTTLE), FluidContainerType.GLASS.get(1));
 		GameRegistry.addRecipe(new ShapedOreRecipe(FluidContainerType.GLASS.get(3),
 				" b ", "g g", " g ",
-			'g', OreDictUtil.BLOCK_GLASS, 'b', OreDictUtil.SLAB_WOOD));
+				'g', OreDictUtil.BLOCK_GLASS, 'b', OreDictUtil.SLAB_WOOD));
 	}
 
 	public IFluidType getFluidType(final String liquid) {

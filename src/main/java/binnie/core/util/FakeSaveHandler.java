@@ -13,58 +13,48 @@ import java.io.File;
 
 public class FakeSaveHandler implements ISaveHandler {
 	@Override
-	public WorldInfo loadWorldInfo()
-	{
+	public WorldInfo loadWorldInfo() {
 		return null;
 	}
 
 	@Override
-	public void checkSessionLock() throws MinecraftException
-	{
+	public void checkSessionLock() throws MinecraftException {
 	}
 
 	@Override
-	public IChunkLoader getChunkLoader(WorldProvider provider)
-	{
+	public IChunkLoader getChunkLoader(WorldProvider provider) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void saveWorldInfoWithPlayer(WorldInfo worldInformation, NBTTagCompound tagCompound)
-	{
+	public void saveWorldInfoWithPlayer(WorldInfo worldInformation, NBTTagCompound tagCompound) {
 	}
 
 	@Override
-	public void saveWorldInfo(WorldInfo worldInformation)
-	{
+	public void saveWorldInfo(WorldInfo worldInformation) {
 	}
 
 	@Override
-	public IPlayerFileData getPlayerNBTManager()
-	{
+	public IPlayerFileData getPlayerNBTManager() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public void flush()
-	{
+	public void flush() {
 	}
 
 	@Override
-	public File getMapFileFromName(String mapName)
-	{
+	public File getMapFileFromName(String mapName) {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public File getWorldDirectory()
-	{
+	public File getWorldDirectory() {
 		throw new UnsupportedOperationException();
 	}
 
 	@Override
-	public TemplateManager getStructureTemplateManager()
-	{
+	public TemplateManager getStructureTemplateManager() {
 		throw new UnsupportedOperationException();
 	}
 }

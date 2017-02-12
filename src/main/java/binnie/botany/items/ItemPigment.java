@@ -12,8 +12,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
-
 public class ItemPigment extends Item implements IItemModelRegister, IColoredItem {
 	public ItemPigment() {
 		this.setUnlocalizedName("pigment");

@@ -203,7 +203,7 @@ public class ContainerCraftGUI extends Container {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public boolean handleNBTClient( final EntityPlayer player, final String name, final NBTTagCompound action) {
+	public boolean handleNBTClient(final EntityPlayer player, final String name, final NBTTagCompound action) {
 		if (name.contains("tank-update")) {
 			this.onTankUpdate(action);
 		} else if (name.equals("power-update")) {

@@ -4,8 +4,6 @@ import binnie.Binnie;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
 import binnie.genetics.api.IGene;
-import binnie.genetics.item.GeneticsItems;
-import com.google.common.base.Preconditions;
 import forestry.api.core.INbtWritable;
 import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.item.ItemStack;

@@ -45,7 +45,7 @@ public class PanelModelBaker implements IModelBaker {
 
 	public PanelModelBaker() {
 		quadsUV = new float[]{0, 0, 1, 1, 0, 0, 1, 1};
-		defUVs = new float[] { 0, 0, 1, 1 };
+		defUVs = new float[]{0, 0, 1, 1};
 	}
 
 //	@Override
@@ -87,7 +87,7 @@ public class PanelModelBaker implements IModelBaker {
 	public void addBlockModel(@Nullable BlockPos pos, TextureAtlasSprite[] sprites, int colorIndex) {
 		setColorIndex(colorIndex);
 
-		if(pos != null){
+		if (pos != null) {
 			World world = Proxies.common.getRenderWorld();
 			IBlockState blockState = world.getBlockState(pos);
 			for (EnumFacing facing : EnumFacing.VALUES) {
@@ -95,7 +95,7 @@ public class PanelModelBaker implements IModelBaker {
 					addFace(facing, sprites[facing.ordinal()]);
 				}
 			}
-		}else {
+		} else {
 			for (EnumFacing facing : EnumFacing.VALUES) {
 				addFace(facing, sprites[facing.ordinal()]);
 			}
@@ -110,7 +110,7 @@ public class PanelModelBaker implements IModelBaker {
 
 	@Override
 	public void addBakedModel(@Nullable IBlockState state, IBakedModel model) {
-		if(model != null){
+		if (model != null) {
 			this.bakedModels.add(Pair.of(state, model));
 		}
 	}
@@ -202,7 +202,7 @@ public class PanelModelBaker implements IModelBaker {
 		}
 
 		//Add baked models to the current model.
-		for(Pair<IBlockState, IBakedModel> bakedModel : bakedModels){
+		for (Pair<IBlockState, IBakedModel> bakedModel : bakedModels) {
 			currentModel.addModelQuads(bakedModel);
 		}
 
@@ -226,7 +226,7 @@ public class PanelModelBaker implements IModelBaker {
 	}
 
 	@Override
-	public void setModelState(IModelState modelState){
+	public void setModelState(IModelState modelState) {
 		currentModel.setModelState(modelState);
 	}
 

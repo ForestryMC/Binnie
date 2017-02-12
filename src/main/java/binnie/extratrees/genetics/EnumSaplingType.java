@@ -10,8 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nonnull;
-import java.awt.*;
+import java.awt.Color;
 
 public enum EnumSaplingType {
 	Default,
@@ -22,7 +21,7 @@ public enum EnumSaplingType {
 	Palm,
 	Shrub;
 
-	public IGermlingModelProvider getGermlingModelProvider(Color leaf, Color wood){
+	public IGermlingModelProvider getGermlingModelProvider(Color leaf, Color wood) {
 		return new DefaultGermlingModelProvider(this, leaf, wood);
 	}
 
@@ -52,7 +51,7 @@ public enum EnumSaplingType {
 			}
 		}
 
-			@Override
+		@Override
 		public ModelResourceLocation getModel(EnumGermlingType type) {
 			if (type == EnumGermlingType.SAPLING) {
 				return germlingModel;
@@ -65,7 +64,7 @@ public enum EnumSaplingType {
 
 		@Override
 		public int getSpriteColor(EnumGermlingType type, int renderPass) {
-			return type == EnumGermlingType.SAPLING && renderPass==0 ? wood.getRGB() : leaf.getRGB();
+			return type == EnumGermlingType.SAPLING && renderPass == 0 ? wood.getRGB() : leaf.getRGB();
 		}
 	}
 }

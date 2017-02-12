@@ -3,8 +3,6 @@ package binnie.extratrees.genetics;
 import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IClassification;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +26,7 @@ public class ModuleGenetics implements IInitializable {
 	public void init() {
 		AlleleETFruit.init();
 		ETTreeDefinition.initTrees();
- 		ExtraTreeMutation.init();
+		ExtraTreeMutation.init();
 	}
 
 	@Override
