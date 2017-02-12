@@ -115,3 +115,6 @@ genetics.item.sequence.2=Weak
 genetics.item.sequence.3=Average
 genetics.item.sequence.4=Strong
 genetics.item.sequence.5=Very Strong
+
+bee.modifier.format.max=%.2fx (Max: %.2fx)
+bee.modifier.format.min=%.2fx (Min: %.2fx)

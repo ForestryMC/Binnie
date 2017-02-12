@@ -8,15 +8,18 @@ import forestry.api.apiculture.IHiveFrame;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
+import forestry.core.utils.Translator;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IItemModelRegister {
-	EnumHiveFrame frame;
+	private final EnumHiveFrame frame;
 
 	@Override
 	public String getItemStackDisplayName(final ItemStack par1ItemStack) {
@@ -91,11 +94,15 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 		return false;
 	}
 
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerIcons(final IIconRegister register) {
-//		this.itemIcon = ExtraBees.proxy.getIcon(register, "frame" + this.frame.toString());
-//	}
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+		super.addInformation(stack, playerIn, tooltip, advanced);
+		this.frame.addInformation(stack, playerIn, tooltip, advanced);
+		if (!stack.isItemDamaged()) {
+			tooltip.add(Translator.translateToLocalFormatted("item.for.durability", stack.getMaxDamage()));
+		}
+	}
 
 	@Override
 	public float getGeneticDecay(final IBeeGenome genome, final float currentModifier) {
