@@ -35,7 +35,7 @@ public class PanelModelBaker implements IModelBaker {
 	private final float[] quadsUV;
 	private final List<ModelBakerFace> faces = new ArrayList<>();
 	private final List<Pair<IBlockState, IBakedModel>> bakedModels = new ArrayList<>();
-	protected AxisAlignedBB renderBounds = Block.FULL_BLOCK_AABB;
+	protected AxisAlignedBB renderBounds;
 
 	protected ModelBakerModel currentModel = new ModelBakerModel(ModelManager.getInstance().getDefaultBlockState());
 
@@ -44,23 +44,14 @@ public class PanelModelBaker implements IModelBaker {
 	protected final float[] defUVs;
 
 	public PanelModelBaker() {
+		this(Block.FULL_BLOCK_AABB);
+	}
+	
+	public PanelModelBaker(AxisAlignedBB renderBounds) {
 		quadsUV = new float[]{0, 0, 1, 1, 0, 0, 1, 1};
 		defUVs = new float[]{0, 0, 1, 1};
+		this.renderBounds = renderBounds;
 	}
-
-//	@Override
-//	public void setRenderBounds(AxisAlignedBB renderBounds) {
-//		if (renderBounds == null) {
-//			return;
-//		}
-//
-//		this.renderBounds = renderBounds;
-//	}
-//
-//	@Override
-//	public void setRenderBounds(double minX, double minY, double minZ, double maxX, double maxY, double maxZ) {
-//		renderBounds = new AxisAlignedBB(minX, minY, minZ, maxX, maxY, maxZ);
-//	}
 
 	protected int colorIndex = -1;
 
@@ -186,9 +177,6 @@ public class PanelModelBaker implements IModelBaker {
 		if (sprite == null) {
 			return;
 		}
-
-//		Vector3f to = new Vector3f((float) renderBounds.minX * 16.0f, (float) renderBounds.minY * 16.0f, (float) renderBounds.minZ * 16.0f);
-//		Vector3f from = new Vector3f((float) renderBounds.maxX * 16.0f, (float) renderBounds.maxY * 16.0f, (float) renderBounds.maxZ * 16.0f);
 
 		faces.add(new ModelBakerFace(facing, colorIndex, sprite));
 	}

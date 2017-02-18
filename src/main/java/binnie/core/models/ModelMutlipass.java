@@ -36,29 +36,24 @@ public class ModelMutlipass<B extends Block & IMultipassBlock<K>, K> extends Mod
 	protected K getWorldKey(IBlockState state) {
 		return ((B) state.getBlock()).getWorldKey(state);
 	}
-
-	@Nullable
-	protected IBakedModel bakeModel(IBlockState state, K key) {
+	
+	@Override
+	protected IBakedModel bakeModel(IBlockState state, K key, B block) {
 		if (key == null) {
 			return null;
 		}
 
-		IModelBaker baker = new PanelModelBaker();
-
-		Block block = state.getBlock();
-		if (!blockClass.isInstance(block)) {
-			return null;
-		}
-		B bBlock = blockClass.cast(block);
-
+		IModelBaker baker;
 		if (state instanceof IExtendedBlockState) {
 			IExtendedBlockState stateExtended = (IExtendedBlockState) state;
 			IBlockAccess world = stateExtended.getValue(UnlistedBlockAccess.BLOCKACCESS);
 			BlockPos pos = stateExtended.getValue(UnlistedBlockPos.POS);
-//			baker.setRenderBounds(state.getBoundingBox(world, pos));
+			baker = new PanelModelBaker(state.getBoundingBox(world, pos));
+		}else{
+			baker = new PanelModelBaker(block.getItemBoundingBox());
 		}
 
-		bakeBlock(bBlock, key, baker, false);
+		bakeBlock(block, key, baker, false);
 
 		blockModel = baker.bakeModel(false);
 		onCreateModel(blockModel);
@@ -86,14 +81,14 @@ public class ModelMutlipass<B extends Block & IMultipassBlock<K>, K> extends Mod
 			return null;
 		}
 
-		IModelBaker baker = new PanelModelBaker();
 		Block block = Block.getBlockFromItem(stack.getItem());
 		if (!blockClass.isInstance(block)) {
 			return null;
 		}
 		B bBlock = blockClass.cast(block);
 
-//		baker.setRenderBounds(bBlock.getItemBoundingBox());
+
+		IModelBaker baker = new PanelModelBaker(bBlock.getItemBoundingBox());
 		bakeBlock(bBlock, key, baker, true);
 
 		return itemModel = baker.bakeModel(true);
