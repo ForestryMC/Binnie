@@ -26,6 +26,7 @@ import javax.annotation.Nullable;
 
 public class TileEntityMachineBase extends TileEntity implements IInventoryMachine, ITankMachine, IPoweredMachine, ITickable {
 
+	@Override
 	public IInventoryMachine getInventory() {
 		final IInventoryMachine inv = Machine.getInterface(IInventoryMachine.class, this);
 		return (inv == null || inv == this) ? new DefaultMachineInventory() : inv;

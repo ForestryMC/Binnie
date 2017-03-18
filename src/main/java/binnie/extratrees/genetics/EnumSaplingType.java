@@ -42,8 +42,8 @@ public enum EnumSaplingType {
 		@Override
 		public void registerModels(Item item, IModelManager manager, EnumGermlingType type) {
 			if (type == EnumGermlingType.SAPLING) {
-				germlingModel = manager.getModelLocation("extratrees", "saplings/tree" + name());
-				ModelBakery.registerItemVariants(item, new ResourceLocation("extratrees", "saplings/tree" + name()));
+				germlingModel = manager.getModelLocation("extratrees", "saplings/tree_" + name());
+				ModelBakery.registerItemVariants(item, new ResourceLocation("extratrees", "saplings/tree_" + name()));
 			}
 			if (type == EnumGermlingType.POLLEN) {
 				pollenModel = manager.getModelLocation("pollen");

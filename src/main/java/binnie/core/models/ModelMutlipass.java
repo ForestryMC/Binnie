@@ -18,8 +18,6 @@ import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
-
 @SideOnly(Side.CLIENT)
 public class ModelMutlipass<B extends Block & IMultipassBlock<K>, K> extends ModelBlockCached<B, K> {
 
