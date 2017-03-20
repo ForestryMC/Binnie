@@ -19,7 +19,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import org.apache.commons.lang3.tuple.Pair;
 
 import javax.annotation.Nullable;
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class WindowAlvearyMutator extends Window {
@@ -40,12 +39,12 @@ public class WindowAlvearyMutator extends Window {
 		this.setTitle("Mutator");
 		new ControlPlayerInventory(this);
 		new ControlSlot.Builder(this, 79, 30).assign(0);
-		new ControlText(this, new IArea(0, 52, this.w(), 16), "Possible Mutagens:", TextJustification.MiddleCenter).setColour(5592405);
+		new ControlText(this, new IArea(0, 52, this.width(), 16), "Possible Mutagens:", TextJustification.MiddleCenter).setColour(5592405);
 		final int size = AlvearyMutator.getMutagens().size();
 		final int w = size * 18;
 		NumberFormat numberFormat = NumberFormat.getNumberInstance(MinecraftForgeClient.getLocale());
 		if (size > 0) {
-			int x = (this.w() - w) / 2;
+			int x = (this.width() - w) / 2;
 			for (final Pair<ItemStack, Float> mutagen : AlvearyMutator.getMutagens()) {
 				final ControlItemDisplay display = new ControlItemDisplay(this, x, 66);
 				display.setItemStack(mutagen.getKey());

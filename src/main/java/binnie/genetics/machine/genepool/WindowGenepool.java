@@ -1,4 +1,4 @@
-package binnie.genetics.machine.craftgui;
+package binnie.genetics.machine.genepool;
 
 import binnie.core.AbstractMod;
 import binnie.craftgui.core.geometry.Position;
@@ -16,7 +16,7 @@ import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.StandardTexture;
 import binnie.extrabees.core.ExtraBeeTexture;
 import binnie.genetics.Genetics;
-import binnie.genetics.machine.genepool.Genepool;
+import binnie.genetics.machine.craftgui.WindowMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
@@ -40,14 +40,14 @@ public class WindowGenepool extends WindowMachine {
 		x += 26;
 		new ControlSlotArray.Builder(this, x, y + 3, 2, 3).create(Genepool.SLOT_RESERVE);
 		x += 38;
-		new ControlIconDisplay(this, x, y + 3 + 18 + 1, GUIIcon.ArrowRight.getIcon().getResourceLocation());
+		new ControlIconDisplay(this, x, y + 3 + 18 + 1, GUIIcon.ARROW_RIGHT.getIcon().getResourceLocation());
 		x += 18;
 		new ControlSlot.Builder(this, x, y + 3 + 18).assign(0);
 		x += 18;
-		new ControlMachineProgress(this, x, y + 19, WindowGenepool.ProgressBase, WindowGenepool.Progress, Position.Left);
+		new ControlMachineProgress(this, x, y + 19, WindowGenepool.ProgressBase, WindowGenepool.Progress, Position.LEFT);
 		x += 130;
 		new ControlLiquidTank(this, x, y).setTankID(0);
-		new ControlEnergyBar(this, 21, 115, 16, 60, Position.Bottom);
+		new ControlEnergyBar(this, 21, 115, 16, 60, Position.BOTTOM);
 		new ControlSlot.Builder(this, 121, 82).assign(7);
 		new ControlSlotCharge(this, 143, 82, 7).setColour(15722671);
 		new ControlErrorState(this, 181, 83);

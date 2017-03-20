@@ -50,20 +50,20 @@ public class Texture {
 		return this.padding.add(this.border);
 	}
 
-	public int w() {
-		return this.getArea().w();
+	public int width() {
+		return this.getArea().width();
 	}
 
-	public int h() {
-		return this.getArea().h();
+	public int height() {
+		return this.getArea().height();
 	}
 
 	public int u() {
-		return this.getArea().x();
+		return this.getArea().xPos();
 	}
 
 	public int v() {
-		return this.getArea().y();
+		return this.getArea().yPos();
 	}
 
 	public Texture crop(final Position anchor, final int dist) {
@@ -75,24 +75,24 @@ public class Texture {
 		if (crop.b() > 0) {
 			copy.border.b(0);
 			copy.padding.b(copy.padding.b() - Math.min(crop.b(), copy.padding.b()));
-			copy.area.h(copy.area.h() - crop.b());
+			copy.area.setHeight(copy.area.height() - crop.b());
 		}
 		if (crop.t() > 0) {
 			copy.border.t(0);
 			copy.padding.t(copy.padding.t() - Math.min(crop.t(), copy.padding.t()));
-			copy.area.h(copy.area.h() - crop.t());
-			copy.area.y(copy.area.y() + crop.t());
+			copy.area.setHeight(copy.area.height() - crop.t());
+			copy.area.setYPos(copy.area.yPos() + crop.t());
 		}
 		if (crop.r() > 0) {
 			copy.border.r(0);
 			copy.padding.r(copy.padding.r() - Math.min(crop.r(), copy.padding.r()));
-			copy.area.w(copy.area.w() - crop.r());
+			copy.area.setWidth(copy.area.width() - crop.r());
 		}
 		if (crop.l() > 0) {
 			copy.border.l(0);
 			copy.padding.l(copy.padding.l() - Math.min(crop.l(), copy.padding.l()));
-			copy.area.w(copy.area.w() - crop.l());
-			copy.area.x(copy.area.x() + crop.l());
+			copy.area.setWidth(copy.area.width() - crop.l());
+			copy.area.setXPos(copy.area.xPos() + crop.l());
 		}
 		return copy;
 	}

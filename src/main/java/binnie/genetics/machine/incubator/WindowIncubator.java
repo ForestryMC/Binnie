@@ -1,4 +1,4 @@
-package binnie.genetics.machine.craftgui;
+package binnie.genetics.machine.incubator;
 
 import binnie.core.AbstractMod;
 import binnie.craftgui.core.geometry.Position;
@@ -15,7 +15,7 @@ import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.StandardTexture;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
-import binnie.genetics.machine.incubator.Incubator;
+import binnie.genetics.machine.craftgui.WindowMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
@@ -39,18 +39,18 @@ public class WindowIncubator extends WindowMachine {
 		x += 26;
 		new ControlSlotArray.Builder(this, x, y + 3, 1, 3).create(Incubator.SLOT_QUEUE);
 		x += 20;
-		new ControlIconDisplay(this, x, y + 3 + 10, GUIIcon.ArrowRight.getIcon().getResourceLocation());
+		new ControlIconDisplay(this, x, y + 3 + 10, GUIIcon.ARROW_RIGHT.getIcon().getResourceLocation());
 		x += 18;
-		new ControlMachineProgress(this, x, y + 6, WindowIncubator.ProgressBase, WindowIncubator.Progress, Position.Left);
+		new ControlMachineProgress(this, x, y + 6, WindowIncubator.ProgressBase, WindowIncubator.Progress, Position.LEFT);
 		new ControlSlot.Builder(this, x + 11, y + 3 + 10).assign(3);
 		x += 40;
-		new ControlIconDisplay(this, x, y + 3 + 10, GUIIcon.ArrowRight.getIcon().getResourceLocation());
+		new ControlIconDisplay(this, x, y + 3 + 10, GUIIcon.ARROW_RIGHT.getIcon().getResourceLocation());
 		x += 18;
 		new ControlSlotArray.Builder(this, x, y + 3, 1, 3).create(Incubator.SLOT_OUTPUT);
 		x += 26;
 		new ControlLiquidTank(this, x, y).setTankID(1);
 		x += 34;
-		new ControlEnergyBar(this, x, y + 3, 16, 54, Position.Bottom);
+		new ControlEnergyBar(this, x, y + 3, 16, 54, Position.BOTTOM);
 		new ControlErrorState(this, 91, 82);
 		new ControlPlayerInventory(this);
 	}

@@ -16,17 +16,17 @@ public class AnalystPageAppearance extends ControlAnalystPage {
 		final IAlleleSpecies species = ind.getGenome().getPrimary();
 		new ControlTextCentered(this, y, "§nAppearance").setColour(this.getColour());
 		y += 12;
-		final ControlColourDisplay a = new ControlColourDisplay(this, this.w() / 2 - 28, y, ind.getGenome().getPrimaryColor());
+		final ControlColourDisplay a = new ControlColourDisplay(this, this.width() / 2 - 28, y, ind.getGenome().getPrimaryColor());
 		a.addTooltip("Primary Petal Colour");
-		final ControlColourDisplay b = new ControlColourDisplay(this, this.w() / 2 - 8, y, ind.getGenome().getSecondaryColor());
+		final ControlColourDisplay b = new ControlColourDisplay(this, this.width() / 2 - 8, y, ind.getGenome().getSecondaryColor());
 		b.addTooltip("Secondary Petal Colour");
-		final ControlColourDisplay c = new ControlColourDisplay(this, this.w() / 2 + 12, y, ind.getGenome().getStemColor());
+		final ControlColourDisplay c = new ControlColourDisplay(this, this.width() / 2 + 12, y, ind.getGenome().getStemColor());
 		c.addTooltip("Stem Colour");
 		y += 26;
 		final int sections = ind.getGenome().getType().getSections();
 		final int w = (sections > 1) ? 50 : 100;
 		// TODO fix this control icon display
-		new ControlIconDisplay(this, (this.w() - w) / 2, y - ((sections == 1) ? 0 : 0), null) {
+		new ControlIconDisplay(this, (this.width() - w) / 2, y - ((sections == 1) ? 0 : 0), null) {
 			@Override
 			public void onRenderForeground(int guiWidth, int guiHeight) {
 //				GlStateManager.pushMatrix();

@@ -5,17 +5,17 @@ import binnie.core.BinnieCore;
 import binnie.core.resource.BinnieSprite;
 
 public enum GUIIcon {
-	ArrowUp("arrow-up"),
-	ArrowDown("arrow-down"),
+	ARROW_UP("arrow-up"),
+	ARROW_DOWN("arrow-down"),
 	ArrowLeft("arrow-left"),
-	ArrowRight("arrow-right"),
-	ArrowUpLeft("arrow-upleft"),
+	ARROW_RIGHT("arrow-right"),
+	ARROW_UP_LEFT("arrow-upleft"),
 	ArrowUpRight("arrow-upright"),
 	ArrowRightUp("arrow-rightup"),
 	ArrowRightDown("arrow-rightdown"),
 	ArrowDownRight("arrow-downright"),
 	ArrowDownLeft("arrow-downleft"),
-	ArrowLeftDown("arrow-leftdown"),
+	ARROW_LEFT_DOWN("arrow-leftdown"),
 	ArrowLeftUp("arrow-leftup");
 
 	String path;

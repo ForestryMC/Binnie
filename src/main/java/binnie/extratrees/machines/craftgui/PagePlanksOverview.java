@@ -29,7 +29,7 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 		this.deleteAllChildren();
 		final WindowAbstractDatabase database = Window.get(this);
 		new ControlText(this, new IArea(0, 0, this.size().x(), 24), species.getDisplayName(), TextJustification.MiddleCenter);
-		new ControlText(this, new IArea(12, 24, this.size().x() - 24, 24), ExtraTrees.proxy.localise("gui.database.planks.use"), TextJustification.MiddleLeft);
+		new ControlText(this, new IArea(12, 24, this.size().x() - 24, 24), ExtraTrees.proxy.localise("gui.database.planks.use"), TextJustification.MIDDLE_LEFTt);
 		final IPlankType type = WoodManager.get(species);
 		int x = 12;
 		if (type != null) {

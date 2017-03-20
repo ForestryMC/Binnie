@@ -18,7 +18,7 @@ public class Panel extends Control {
 	}
 
 	public Panel(final IWidget parent, final IArea area, final IPanelType type) {
-		this(parent, area.x(), area.y(), area.w(), area.h(), type);
+		this(parent, area.xPos(), area.yPos(), area.width(), area.height(), type);
 	}
 
 	public IPanelType getType() {

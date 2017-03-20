@@ -48,7 +48,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 		int y = 4;
 		new ControlTextCentered(this, y, "§nRegistry").setColour(this.getColour());
 		y += 16;
-		new ControlTextEdit(this, 20, y, this.w() - 40, 16) {
+		new ControlTextEdit(this, 20, y, this.width() - 40, 16) {
 			@Override
 			public void onTextEdit(final String value) {
 				final Collection<IAlleleSpecies> options = new ArrayList<>();
@@ -78,7 +78,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 			}
 		};
 		y += 22;
-		new Panel(this, 3, y - 1, this.w() - 6, this.h() - y - 8 + 2, MinecraftGUI.PanelType.TabOutline).setColour(this.getColour());
+		new Panel(this, 3, y - 1, this.width() - 6, this.height() - y - 8 + 2, MinecraftGUI.PanelType.TabOutline).setColour(this.getColour());
 		final boolean textView = false;
 		final Collection<IAlleleSpecies> options = this.getSpecies(system);
 		for (final IAlleleSpecies species : options) {
@@ -89,7 +89,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 			final String maturation = system.getAlleleName(EnumTreeChromosome.MATURATION, system.getIndividual(species.getUID()).getGenome().getActiveAllele(EnumTreeChromosome.MATURATION));
 		}
 		if (textView) {
-			this.scroll = new ControlListBox<IAlleleSpecies>(this, 4, y, this.w() - 8, this.h() - y - 8 - 20, 0) {
+			this.scroll = new ControlListBox<IAlleleSpecies>(this, 4, y, this.width() - 8, this.height() - y - 8 - 20, 0) {
 				@Override
 				public void initialise() {
 					super.initialise();
@@ -98,7 +98,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 
 				@Override
 				public IWidget createOption(final IAlleleSpecies v, final int y) {
-					return new Control(this.getContent(), 0, y, this.w(), 12) {
+					return new Control(this.getContent(), 0, y, this.width(), 12) {
 						IAlleleSpecies value = v;
 
 						@Override
@@ -110,10 +110,10 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 				}
 			};
 		} else {
-			this.scroll = new ControlScrollableContent(this, 4, y, this.w() - 8, this.h() - y - 8, 0);
+			this.scroll = new ControlScrollableContent(this, 4, y, this.width() - 8, this.height() - y - 8, 0);
 			this.scroll.setScrollableContent(this.getItemScrollList(system, options));
 		}
-		new ControlScrollBar(this, this.scroll.x() + this.scroll.w() - 6, this.scroll.y() + 3, 3, this.scroll.h() - 6, this.scroll) {
+		new ControlScrollBar(this, this.scroll.xPos() + this.scroll.width() - 6, this.scroll.yPos() + 3, 3, this.scroll.height() - 6, this.scroll) {
 			@Override
 			@SideOnly(Side.CLIENT)
 			public void onRenderBackground(int guiWidth, int guiHeight) {
@@ -127,11 +127,11 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 	}
 
 	private IWidget getItemScrollList(final BreedingSystem system, final Collection<IAlleleSpecies> options) {
-		return new Control(this.scroll, 0, 0, this.scroll.w(), this.scroll.h()) {
+		return new Control(this.scroll, 0, 0, this.scroll.width(), this.scroll.height()) {
 			@Override
 			public void initialise() {
-				final int maxBiomePerLine = (this.w() - 4 + 2) / 18;
-				final int biomeListX = -6 + (this.w() - (maxBiomePerLine * 18 - 2)) / 2;
+				final int maxBiomePerLine = (this.width() - 4 + 2) / 18;
+				final int biomeListX = -6 + (this.width() - (maxBiomePerLine * 18 - 2)) / 2;
 				int dx = 0;
 				int dy = 0;
 				for (final IAlleleSpecies species : options) {
@@ -171,7 +171,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 						dy += 18;
 					}
 				}
-				this.setSize(new IPoint(this.w(), 4 + dy + 18));
+				this.setSize(new IPoint(this.width(), 4 + dy + 18));
 			}
 		};
 	}

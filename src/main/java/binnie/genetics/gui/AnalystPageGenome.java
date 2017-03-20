@@ -50,12 +50,12 @@ public class AnalystPageGenome extends ControlAnalystPage {
 		for (final IChromosomeType chromo : system.getActiveKaryotype()) {
 			final IAllele allele = active ? ind.getGenome().getActiveAllele(chromo) : ind.getGenome().getInactiveAllele(chromo);
 			final String alleleName = system.getAlleleName(chromo, allele);
-			final int height = CraftGUI.render.textHeight(alleleName, this.w() / 2 - 2);
-			new ControlText(scaled, new IArea(0, y + (height - 9) / 2, this.w() / 2 - 2, 0), system.getChromosomeShortName(chromo) + " :", TextJustification.TopRight).setColour(this.getColour());
-			new ControlText(scaled, new IArea(this.w() / 2 + 2, y, this.w() / 2 - 2, 0), alleleName, TextJustification.TopLeft).setColour(this.getColour());
+			final int height = CraftGUI.render.textHeight(alleleName, this.width() / 2 - 2);
+			new ControlText(scaled, new IArea(0, y + (height - 9) / 2, this.width() / 2 - 2, 0), system.getChromosomeShortName(chromo) + " :", TextJustification.TopRight).setColour(this.getColour());
+			new ControlText(scaled, new IArea(this.width() / 2 + 2, y, this.width() / 2 - 2, 0), alleleName, TextJustification.TopLeft).setColour(this.getColour());
 			y += 3 + height;
 		}
-		this.setSize(new IPoint(this.w(), y + 8));
+		this.setSize(new IPoint(this.width(), y + 8));
 	}
 
 	@Override

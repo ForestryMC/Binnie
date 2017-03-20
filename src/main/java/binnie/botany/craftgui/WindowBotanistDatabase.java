@@ -39,17 +39,17 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 
 	@Override
 	protected void addTabs() {
-		new PageSpeciesOverview(this.getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "species.overview", 0));
-		new PageSpeciesFlowerGenome(this.getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "species.genome", 0));
-		new PageSpeciesClassification(this.getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "species.classification", 0));
-		new PageSpeciesResultant(this.getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "species.resultant", 0));
-		new PageSpeciesMutations(this.getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "species.further", 0));
-		new PageBranchOverview(this.getInfoPages(Mode.Branches), new DatabaseTab(Botany.instance, "branches.overview", 0));
-		new PageBranchSpecies(this.getInfoPages(Mode.Branches), new DatabaseTab(Botany.instance, "branches.species", 0));
+		new PageSpeciesOverview(this.getInfoPages(Mode.SPECIES), new DatabaseTab(Botany.instance, "species.overview", 0));
+		new PageSpeciesFlowerGenome(this.getInfoPages(Mode.SPECIES), new DatabaseTab(Botany.instance, "species.genome", 0));
+		new PageSpeciesClassification(this.getInfoPages(Mode.SPECIES), new DatabaseTab(Botany.instance, "species.classification", 0));
+		new PageSpeciesResultant(this.getInfoPages(Mode.SPECIES), new DatabaseTab(Botany.instance, "species.resultant", 0));
+		new PageSpeciesMutations(this.getInfoPages(Mode.SPECIES), new DatabaseTab(Botany.instance, "species.further", 0));
+		new PageBranchOverview(this.getInfoPages(Mode.BRANCHES), new DatabaseTab(Botany.instance, "branches.overview", 0));
+		new PageBranchSpecies(this.getInfoPages(Mode.BRANCHES), new DatabaseTab(Botany.instance, "branches.species", 0));
 		this.createMode(FlowerMode.Colour, new ModeWidgets(FlowerMode.Colour, this) {
 			@Override
 			public void createListBox(final IArea area) {
-				this.listBox = new ControlListBox<IFlowerColour>(this.modePage, area.x(), area.y(), area.w(), area.h(), 12) {
+				this.listBox = new ControlListBox<IFlowerColour>(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
 					@Override
 					public IWidget createOption(final IFlowerColour value, final int y) {
 						return new ControlColourOption(this.getContent(), value, y);
@@ -62,7 +62,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 		});
 		new PageColourMixResultant(this.getInfoPages(FlowerMode.Colour), new DatabaseTab(Botany.instance, "colour.resultant", 0));
 		new PageColourMix(this.getInfoPages(FlowerMode.Colour), new DatabaseTab(Botany.instance, "colour.further", 0));
-		new PageBreeder(this.getInfoPages(Mode.Breeder), this.getUsername(), new DatabaseTab(Botany.instance, "breeder", 0));
+		new PageBreeder(this.getInfoPages(Mode.BREEDER), this.getUsername(), new DatabaseTab(Botany.instance, "breeder", 0));
 	}
 
 	@Override

@@ -105,7 +105,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		final int compartmentWidth = compartmentPageWidth + (doubleTabbed ? 48 : 24);
 		final int compartmentHeight = compartmentPageHeight;
 		final Control controlCompartment = new Control(this, x, y, compartmentWidth, compartmentHeight);
-		final ControlTabBar<Integer> tab = new ControlTabBar<Integer>(controlCompartment, 0, 0, 24, compartmentPageHeight, Position.Left, Arrays.asList(tabs1)) {
+		final ControlTabBar<Integer> tab = new ControlTabBar<Integer>(controlCompartment, 0, 0, 24, compartmentPageHeight, Position.LEFT, Arrays.asList(tabs1)) {
 			@Override
 			public ControlTab<Integer> createTab(final int x, final int y, final int w, final int h, final Integer value) {
 				return new ControlTabIcon<Integer>(this, x, y, w, h, value) {
@@ -153,7 +153,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		int i = 0;
 		for (int p2 = 0; p2 < inv.getTabNumber(); ++p2) {
 			final ControlPage thisPage = page[p2];
-			final Panel panel = new Panel(thisPage, 0, 0, thisPage.w(), thisPage.h(), MinecraftGUI.PanelType.Black) {
+			final Panel panel = new Panel(thisPage, 0, 0, thisPage.width(), thisPage.height(), MinecraftGUI.PanelType.Black) {
 				@Override
 				@SideOnly(Side.CLIENT)
 				public void onRenderForeground(int guiWidth, int guiHeight) {
@@ -171,7 +171,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		}
 		x += compartmentPageWidth;
 		if (tabs2.length > 0) {
-			final ControlTabBar<Integer> tab2 = new ControlTabBar<Integer>(controlCompartment, 24 + compartmentPageWidth, 0, 24, compartmentPageHeight, Position.Right, Arrays.asList(tabs2)) {
+			final ControlTabBar<Integer> tab2 = new ControlTabBar<Integer>(controlCompartment, 24 + compartmentPageWidth, 0, 24, compartmentPageHeight, Position.RIGHT, Arrays.asList(tabs2)) {
 				@Override
 				public ControlTab<Integer> createTab(final int x, final int y, final int w, final int h, final Integer value) {
 					return new ControlTabIcon<Integer>(this, x, y, w, h, value) {
@@ -212,10 +212,10 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			x += 24;
 		}
 		x += 16;
-		this.setSize(new IPoint(Math.max(32 + compartmentWidth, 252), this.h()));
-		controlCompartment.setPosition(new IPoint((this.w() - controlCompartment.w()) / 2, controlCompartment.y()));
+		this.setSize(new IPoint(Math.max(32 + compartmentWidth, 252), this.height()));
+		controlCompartment.setPosition(new IPoint((this.width() - controlCompartment.width()) / 2, controlCompartment.yPos()));
 		final ControlPlayerInventory invent = new ControlPlayerInventory(this, true);
-		final ControlSlide slide = new ControlSlide(this, 0, 134, 136, 92, Position.Left);
+		final ControlSlide slide = new ControlSlide(this, 0, 134, 136, 92, Position.LEFT);
 		slide.setLabel("Tab Properties");
 		slide.setSlide(false);
 		slide.addHelp("Tab Properties");
@@ -289,7 +289,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			@SideOnly(Side.CLIENT)
 			public void onRenderBackground(int guiWidth, int guiHeight) {
 				final Object texture = this.isMouseOver() ? CraftGUITexture.TabHighlighted : CraftGUITexture.Tab;
-				CraftGUI.render.texture(CraftGUI.render.getTexture(texture).crop(Position.Bottom, 8), this.getArea());
+				CraftGUI.render.texture(CraftGUI.render.getTexture(texture).crop(Position.BOTTOM, 8), this.getArea());
 			}
 		};
 		searchButton.addHelp("Search Button");

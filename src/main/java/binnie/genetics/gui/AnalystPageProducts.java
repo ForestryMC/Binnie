@@ -101,8 +101,8 @@ public class AnalystPageProducts extends AnalystPageProduce {
 				}
 			}
 		}
-		final int maxBiomePerLine = (int) ((this.w() + 2.0f - 16.0f) / 18.0f);
-		final int biomeListX = (this.w() - (Math.min(maxBiomePerLine, allFluids.size() + refinedProducts.size()) * 18 - 2)) / 2;
+		final int maxBiomePerLine = (int) ((this.width() + 2.0f - 16.0f) / 18.0f);
+		final int biomeListX = (this.width() - (Math.min(maxBiomePerLine, allFluids.size() + refinedProducts.size()) * 18 - 2)) / 2;
 		int dx = 0;
 		int dy = 0;
 		for (final ItemStack soilStack : refinedProducts) {
@@ -132,7 +132,7 @@ public class AnalystPageProducts extends AnalystPageProduce {
 			}
 			dx += 18;
 		}
-		this.setSize(new IPoint(this.w(), y + dy + 18 + 8));
+		this.setSize(new IPoint(this.width(), y + dy + 18 + 8));
 	}
 
 	@Nullable

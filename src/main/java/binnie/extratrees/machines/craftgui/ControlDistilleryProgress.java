@@ -30,7 +30,7 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(DISTILLERY_BASE, IPoint.ZERO);
-		CraftGUI.render.texturePercentage(LIQUID_FLOW, new IArea(18, 0, 38, 66), Position.Left, this.progress);
+		CraftGUI.render.texturePercentage(LIQUID_FLOW, new IArea(18, 0, 38, 66), Position.LEFT, this.progress);
 		final DistilleryLogic component = Machine.getInterface(DistilleryLogic.class, Window.get(this).getInventory());
 		FluidStack stack = null;
 		if (component != null) {

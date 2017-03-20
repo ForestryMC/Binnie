@@ -41,18 +41,18 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 
 	@Override
 	protected void addTabs() {
-		new PageSpeciesOverview(this.getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "species.overview", 0));
-		new PageSpeciesTreeGenome(this.getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "species.genome", 0));
-		new PageSpeciesClassification(this.getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "species.classification", 0));
-		new PageSpeciesResultant(this.getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "species.resultant", 0));
-		new PageSpeciesMutations(this.getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "species.further", 0));
-		new PageBranchOverview(this.getInfoPages(Mode.Branches), new DatabaseTab(ExtraTrees.instance, "branches.overview", 0));
-		new PageBranchSpecies(this.getInfoPages(Mode.Branches), new DatabaseTab(ExtraTrees.instance, "branches.species", 0));
-		new PageBreeder(this.getInfoPages(Mode.Breeder), this.getUsername(), new DatabaseTab(ExtraTrees.instance, "breeder", 0));
-		this.createMode(TreeMode.Fruit, new ModeWidgets(TreeMode.Fruit, this) {
+		new PageSpeciesOverview(this.getInfoPages(Mode.SPECIES), new DatabaseTab(ExtraTrees.instance, "species.overview", 0));
+		new PageSpeciesTreeGenome(this.getInfoPages(Mode.SPECIES), new DatabaseTab(ExtraTrees.instance, "species.genome", 0));
+		new PageSpeciesClassification(this.getInfoPages(Mode.SPECIES), new DatabaseTab(ExtraTrees.instance, "species.classification", 0));
+		new PageSpeciesResultant(this.getInfoPages(Mode.SPECIES), new DatabaseTab(ExtraTrees.instance, "species.resultant", 0));
+		new PageSpeciesMutations(this.getInfoPages(Mode.SPECIES), new DatabaseTab(ExtraTrees.instance, "species.further", 0));
+		new PageBranchOverview(this.getInfoPages(Mode.BRANCHES), new DatabaseTab(ExtraTrees.instance, "branches.overview", 0));
+		new PageBranchSpecies(this.getInfoPages(Mode.BRANCHES), new DatabaseTab(ExtraTrees.instance, "branches.species", 0));
+		new PageBreeder(this.getInfoPages(Mode.BREEDER), this.getUsername(), new DatabaseTab(ExtraTrees.instance, "breeder", 0));
+		this.createMode(TreeMode.FRUIT, new ModeWidgets(TreeMode.FRUIT, this) {
 			@Override
 			public void createListBox(final IArea area) {
-				(this.listBox = new ControlListBox<ItemStack>(this.modePage, area.x(), area.y(), area.w(), area.h(), 12) {
+				(this.listBox = new ControlListBox<ItemStack>(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
 					@Override
 					public IWidget createOption(final ItemStack value, final int y) {
 						return new ControlItemStackOption(this.getContent(), value, y);
@@ -60,10 +60,10 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 				}).setOptions(((TreeBreedingSystem) WindowArboristDatabase.this.getBreedingSystem()).allFruits);
 			}
 		});
-		this.createMode(TreeMode.Wood, new ModeWidgets(TreeMode.Wood, this) {
+		this.createMode(TreeMode.WOOD, new ModeWidgets(TreeMode.WOOD, this) {
 			@Override
 			public void createListBox(final IArea area) {
-				(this.listBox = new ControlListBox<ItemStack>(this.modePage, area.x(), area.y(), area.w(), area.h(), 12) {
+				(this.listBox = new ControlListBox<ItemStack>(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
 					@Override
 					public IWidget createOption(final ItemStack value, final int y) {
 						return new ControlItemStackOption(this.getContent(), value, y);
@@ -71,10 +71,10 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 				}).setOptions(((TreeBreedingSystem) WindowArboristDatabase.this.getBreedingSystem()).allWoods);
 			}
 		});
-		this.createMode(TreeMode.Planks, new ModeWidgets(TreeMode.Planks, this) {
+		this.createMode(TreeMode.PLANKS, new ModeWidgets(TreeMode.PLANKS, this) {
 			@Override
 			public void createListBox(final IArea area) {
-				(this.listBox = new ControlListBox<ItemStack>(this.modePage, area.x(), area.y(), area.w(), area.h(), 12) {
+				(this.listBox = new ControlListBox<ItemStack>(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
 					@Override
 					public IWidget createOption(final ItemStack value, final int y) {
 						return new ControlItemStackOption(this.getContent(), value, y);
@@ -82,11 +82,11 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 				}).setOptions(WoodManager.getAllPlankTypes().stream().<ItemStack>map(type -> type.getStack()).collect(Collectors.toList()));
 			}
 		});
-		new PageFruit(this.getInfoPages(TreeMode.Fruit), new DatabaseTab(ExtraTrees.instance, "fruit.natural", 0), true);
-		new PageFruit(this.getInfoPages(TreeMode.Fruit), new DatabaseTab(ExtraTrees.instance, "fruit.potential", 0), false);
-		new PageWood(this.getInfoPages(TreeMode.Wood), new DatabaseTab(ExtraTrees.instance, "wood.natural", 0));
-		new PagePlanksOverview(this.getInfoPages(TreeMode.Planks), new DatabaseTab(ExtraTrees.instance, "planks.overview", 0));
-		new PagePlanksTrees(this.getInfoPages(TreeMode.Planks), new DatabaseTab(ExtraTrees.instance, "planks.natural", 1));
+		new PageFruit(this.getInfoPages(TreeMode.FRUIT), new DatabaseTab(ExtraTrees.instance, "fruit.natural", 0), true);
+		new PageFruit(this.getInfoPages(TreeMode.FRUIT), new DatabaseTab(ExtraTrees.instance, "fruit.potential", 0), false);
+		new PageWood(this.getInfoPages(TreeMode.WOOD), new DatabaseTab(ExtraTrees.instance, "wood.natural", 0));
+		new PagePlanksOverview(this.getInfoPages(TreeMode.PLANKS), new DatabaseTab(ExtraTrees.instance, "planks.overview", 0));
+		new PagePlanksTrees(this.getInfoPages(TreeMode.PLANKS), new DatabaseTab(ExtraTrees.instance, "planks.natural", 1));
 	}
 
 	@Override
@@ -100,9 +100,9 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 	}
 
 	enum TreeMode implements IDatabaseMode {
-		Fruit,
-		Wood,
-		Planks;
+		FRUIT,
+		WOOD,
+		PLANKS;
 
 		@Override
 		public String getName() {

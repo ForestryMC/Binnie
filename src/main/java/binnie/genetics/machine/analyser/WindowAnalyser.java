@@ -1,4 +1,4 @@
-package binnie.genetics.machine.craftgui;
+package binnie.genetics.machine.analyser;
 
 import binnie.core.AbstractMod;
 import binnie.craftgui.core.geometry.Position;
@@ -18,7 +18,7 @@ import binnie.craftgui.window.Panel;
 import binnie.extrabees.core.ExtraBeeTexture;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
-import binnie.genetics.machine.analyser.Analyser;
+import binnie.genetics.machine.craftgui.WindowMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
@@ -44,15 +44,15 @@ public class WindowAnalyser extends WindowMachine {
 		x += 28;
 		new ControlSlot.Builder(this, x, y + 54 + 8).assign(13);
 		new ControlSlotCharge(this, x + 20, y + 54 + 8, 13).setColour(10040319);
-		new ControlEnergyBar(this, x + 24 + 16, y + 54 + 8 + 1, 60, 16, Position.Left);
+		new ControlEnergyBar(this, x + 24 + 16, y + 54 + 8 + 1, 60, 16, Position.LEFT);
 		new ControlErrorState(this, x + 24 + 16 + 60 + 16, y + 54 + 8 + 1);
 		x -= 28;
-		new ControlIconDisplay(this, x + 36 + 2, y + 18, GUIIcon.ArrowRight.getIcon().getResourceLocation());
+		new ControlIconDisplay(this, x + 36 + 2, y + 18, GUIIcon.ARROW_RIGHT.getIcon().getResourceLocation());
 		x += 56;
 		new Panel(this, x, y, 76, 50, MinecraftGUI.PanelType.Tinted);
-		new ControlProgress(this, x + 5, y + 5, WindowAnalyser.ProgressBase, WindowAnalyser.Progress, Position.Left);
+		new ControlProgress(this, x + 5, y + 5, WindowAnalyser.ProgressBase, WindowAnalyser.Progress, Position.LEFT);
 		new ControlSlot.Builder(this, x + 38 - 9, y + 25 - 9).assign(6);
-		new ControlIconDisplay(this, x + 76 + 2, y + 18, GUIIcon.ArrowRight.getIcon().getResourceLocation());
+		new ControlIconDisplay(this, x + 76 + 2, y + 18, GUIIcon.ARROW_RIGHT.getIcon().getResourceLocation());
 		x += 96;
 		new ControlSlotArray.Builder(this, x, y, 2, 3).create(Analyser.SLOT_FINISHED);
 		x += 52;

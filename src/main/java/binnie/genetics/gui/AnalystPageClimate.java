@@ -47,17 +47,17 @@ public class AnalystPageClimate extends ControlAnalystPage {
 		int y = 4;
 		new ControlTextCentered(this, y, "§nClimate").setColour(this.getColour());
 		y += 16;
-		new ControlText(this, new IArea(4, y, this.w() - 8, 14), "Temp. Tolerance", TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new IArea(4, y, this.width() - 8, 14), "Temp. Tolerance", TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
-		this.createTemperatureBar(this, (this.w() - 100) / 2, y, 100, 10, temp, tempTol);
+		this.createTemperatureBar(this, (this.width() - 100) / 2, y, 100, 10, temp, tempTol);
 		y += 16;
 		if (!(ind instanceof IFlower)) {
-			new ControlText(this, new IArea(4, y, this.w() - 8, 14), "Humidity Tolerance", TextJustification.MiddleCenter).setColour(this.getColour());
+			new ControlText(this, new IArea(4, y, this.width() - 8, 14), "Humidity Tolerance", TextJustification.MiddleCenter).setColour(this.getColour());
 			y += 12;
-			this.createHumidity(this, (this.w() - 100) / 2, y, 100, 10, humid, humidTol);
+			this.createHumidity(this, (this.width() - 100) / 2, y, 100, 10, humid, humidTol);
 			y += 16;
 		}
-		new ControlText(this, new IArea(4, y, this.w() - 8, 14), "Biomes", TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new IArea(4, y, this.width() - 8, 14), "Biomes", TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
 		final List<Biome> biomes = new ArrayList<>();
 		for (final Biome biome : Biome.EXPLORATION_BIOMES_LIST) { //TODO check
@@ -76,8 +76,8 @@ public class AnalystPageClimate extends ControlAnalystPage {
 				}
 			}
 		}
-		final int maxBiomePerLine = (this.w() + 2 - 16) / 18;
-		final int biomeListX = (this.w() - (Math.min(maxBiomePerLine, biomes.size()) * 18 - 2)) / 2;
+		final int maxBiomePerLine = (this.width() + 2 - 16) / 18;
+		final int biomeListX = (this.width() - (Math.min(maxBiomePerLine, biomes.size()) * 18 - 2)) / 2;
 		int dx = 0;
 		int dy = 0;
 		for (final Biome biome2 : biomes) {
@@ -88,7 +88,7 @@ public class AnalystPageClimate extends ControlAnalystPage {
 				dy += 18;
 			}
 		}
-		this.setSize(new IPoint(this.w(), y + dy + 18 + 8));
+		this.setSize(new IPoint(this.width(), y + dy + 18 + 8));
 	}
 
 	protected void createTemperatureBar(final IWidget parent, final int x, final int y, final int w, final int h, final EnumTemperature value, final EnumTolerance tol) {

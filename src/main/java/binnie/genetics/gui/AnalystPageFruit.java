@@ -57,7 +57,7 @@ public class AnalystPageFruit extends AnalystPageProduce {
 			final int w = products.size() * 18 - 2;
 			final int i = 0;
 			for (final ItemStack stack : products) {
-				final ControlItemDisplay d = new ControlItemDisplay(this, (this.w() - w) / 2 + 18 * i, y);
+				final ControlItemDisplay d = new ControlItemDisplay(this, (this.width() - w) / 2 + 18 * i, y);
 				d.setTooltip();
 				d.setItemStack(stack);
 			}
@@ -69,7 +69,7 @@ public class AnalystPageFruit extends AnalystPageProduce {
 			final int w = products.size() * 18 - 2;
 			final int i = 0;
 			for (final ItemStack stack : specialties) {
-				final ControlItemDisplay d = new ControlItemDisplay(this, (this.w() - w) / 2 + 18 * i, y);
+				final ControlItemDisplay d = new ControlItemDisplay(this, (this.width() - w) / 2 + 18 * i, y);
 				d.setTooltip();
 				d.setItemStack(stack);
 			}
@@ -125,7 +125,7 @@ public class AnalystPageFruit extends AnalystPageProduce {
 			y = this.getRefined("§o" + fam.getName(), y, stacks);
 			y += 2;
 		}
-		this.setSize(new IPoint(this.w(), y + 8));
+		this.setSize(new IPoint(this.width(), y + 8));
 	}
 
 	@Override

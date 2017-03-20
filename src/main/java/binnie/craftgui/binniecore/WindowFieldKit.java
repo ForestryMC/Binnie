@@ -118,7 +118,7 @@ public class WindowFieldKit extends Window {
 		new ControlSlot.Builder(this, handGlass.x() + 54, handGlass.y() + 26).assign(InventoryType.Window, 0);
 		new ControlSlot.Builder(this, 208, 8).assign(InventoryType.Window, 1);
 		(this.text = new ControlText(this, new IPoint(232, 13), "Paper")).setColour(2236962);
-		(this.text = new ControlText(this, new IArea(0, 120, this.w(), 24), "", TextJustification.MiddleCenter)).setColour(2236962);
+		(this.text = new ControlText(this, new IArea(0, 120, this.width(), 24), "", TextJustification.MiddleCenter)).setColour(2236962);
 		this.chromo = new ControlChromosome(this, 150, 24);
 		this.addEventHandler(new EventValueChanged.Handler() {
 			@Override

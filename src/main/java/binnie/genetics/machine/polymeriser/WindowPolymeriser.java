@@ -1,4 +1,4 @@
-package binnie.genetics.machine.craftgui;
+package binnie.genetics.machine.polymeriser;
 
 import binnie.core.AbstractMod;
 import binnie.craftgui.core.geometry.Position;
@@ -16,7 +16,7 @@ import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.StandardTexture;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
-import binnie.genetics.machine.polymeriser.Polymeriser;
+import binnie.genetics.machine.craftgui.WindowMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
@@ -37,13 +37,13 @@ public class WindowPolymeriser extends WindowMachine {
 		int x = 16;
 		final int y = 38;
 		new ControlSlotArray.Builder(this, x, y, 1, 4).create(Polymeriser.SLOT_SERUM_RESERVE);
-		new ControlIconDisplay(this, x + 18, y + 1, GUIIcon.ArrowRight.getIcon().getResourceLocation());
+		new ControlIconDisplay(this, x + 18, y + 1, GUIIcon.ARROW_RIGHT.getIcon().getResourceLocation());
 		x += 34;
-		new ControlMachineProgress(this, x + 18, y - 6, WindowPolymeriser.ProgressBase, WindowPolymeriser.Progress, Position.Left);
+		new ControlMachineProgress(this, x + 18, y - 6, WindowPolymeriser.ProgressBase, WindowPolymeriser.Progress, Position.LEFT);
 		new ControlSlot.Builder(this, x, y).assign(0);
 		new ControlLiquidTank(this, x, y + 18 + 16, true).setTankID(0);
 		new ControlLiquidTank(this, x, y + 18 + 16 + 18 + 8, true).setTankID(1);
-		new ControlEnergyBar(this, x + 120, 96, 64, 16, Position.Left);
+		new ControlEnergyBar(this, x + 120, 96, 64, 16, Position.LEFT);
 		x += 40;
 		new ControlSlot.Builder(this, x + 30, y + 18 + 8).assign(1);
 		new ControlSlotCharge(this, x + 30 + 20, y + 18 + 8, 1).setColour(16766976);

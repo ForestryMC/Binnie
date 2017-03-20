@@ -90,7 +90,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 			} else if (hive != null) {
 				new ControlTextCentered(this, y, "Natural Habitat").setColour(this.getColour());
 				y += 10;
-				final ControlItemDisplay display = new ControlItemDisplay(this, (this.w() - 16) / 2, y);
+				final ControlItemDisplay display = new ControlItemDisplay(this, (this.width() - 16) / 2, y);
 				if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Steadfast.getAllele()) {
 					display.addTooltip("Dungeon Chests");
 				} else {
@@ -100,11 +100,11 @@ public class AnalystPageMutations extends ControlAnalystPage {
 				y += 24;
 			}
 		}
-		int ox = (this.w() - 88 - 8) / 2;
+		int ox = (this.width() - 88 - 8) / 2;
 		int dx = 0;
 		if (!resultant.isEmpty()) {
 			if (resultant.size() == 1) {
-				ox = (this.w() - 44) / 2;
+				ox = (this.width() - 44) / 2;
 			}
 			new ControlTextCentered(this, y, "Resultant Mutations").setColour(this.getColour());
 			y += 10;
@@ -157,11 +157,11 @@ public class AnalystPageMutations extends ControlAnalystPage {
 			}
 			y += 10;
 		}
-		ox = (this.w() - 88 - 8) / 2;
+		ox = (this.width() - 88 - 8) / 2;
 		dx = 0;
 		if (!further.isEmpty()) {
 			if (further.size() == 1) {
-				ox = (this.w() - 44) / 2;
+				ox = (this.width() - 44) / 2;
 			}
 			new ControlTextCentered(this, y, "Further Mutations").setColour(this.getColour());
 			y += 10;
@@ -217,7 +217,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 			}
 		}
 		y += 8;
-		this.setSize(new IPoint(this.w(), y));
+		this.setSize(new IPoint(this.width(), y));
 	}
 
 	private boolean isKnown(final BreedingSystem system, final IMutation mutation) {

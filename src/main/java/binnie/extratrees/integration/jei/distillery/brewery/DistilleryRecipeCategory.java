@@ -50,7 +50,7 @@ public class DistilleryRecipeCategory extends BlankRecipeCategory<DistilleryReci
 	@SideOnly(Side.CLIENT)
 	public void drawExtras(Minecraft minecraft) {
 		CraftGUI.render.texture(DISTILLERY_BASE, IPoint.ZERO);
-		CraftGUI.render.texturePercentage(LIQUID_FLOW, new IArea(18, 0, 38, 60), Position.Left, progress.getValue() / 100f);
+		CraftGUI.render.texturePercentage(LIQUID_FLOW, new IArea(18, 0, 38, 60), Position.LEFT, progress.getValue() / 100f);
 
 		IDrawable tank = ExtraTreesJeiPlugin.drawables.getTank();
 		tank.draw(minecraft, 0, 0);

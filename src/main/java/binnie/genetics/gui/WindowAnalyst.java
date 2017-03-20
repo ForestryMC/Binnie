@@ -180,7 +180,7 @@ public class WindowAnalyst extends Window {
 			x += 26;
 			this.setupValidators();
 		}
-		this.tabBar = new Control(this, x, 28, this.w() - 16 - x, 20);
+		this.tabBar = new Control(this, x, 28, this.width() - 16 - x, 20);
 		this.analystPanel = new Panel(this, 16, 54, 280, 164, MinecraftGUI.PanelType.Outline) {
 			@Override
 			@SideOnly(Side.CLIENT)
@@ -192,8 +192,8 @@ public class WindowAnalyst extends Window {
 			@Override
 			public void initialise() {
 				this.setColour(4473924);
-				final int sectionWidth = (this.w() - 8 - 4) / 2;
-				WindowAnalyst.this.leftPage = new ControlScrollableContent<IWidget>(this, 3, 3, sectionWidth + 2, this.h() - 8 + 2, 0) {
+				final int sectionWidth = (this.width() - 8 - 4) / 2;
+				WindowAnalyst.this.leftPage = new ControlScrollableContent<IWidget>(this, 3, 3, sectionWidth + 2, this.height() - 8 + 2, 0) {
 					@Override
 					@SideOnly(Side.CLIENT)
 					public void onRenderBackground(int guiWidth, int guiHeight) {
@@ -204,7 +204,7 @@ public class WindowAnalyst extends Window {
 						CraftGUI.render.texture(CraftGUITexture.TabOutline, this.getArea());
 					}
 				};
-				new ControlScrollBar(this, sectionWidth + 2 - 3, 6, 3, this.h() - 8 + 2 - 6, WindowAnalyst.this.leftPage) {
+				new ControlScrollBar(this, sectionWidth + 2 - 3, 6, 3, this.height() - 8 + 2 - 6, WindowAnalyst.this.leftPage) {
 					@Override
 					@SideOnly(Side.CLIENT)
 					public void onRenderBackground(int guiWidth, int guiHeight) {
@@ -218,7 +218,7 @@ public class WindowAnalyst extends Window {
 						RenderUtil.drawSolidRect(this.getRenderArea(), WindowAnalyst.this.leftPage.getContent().getColour());
 					}
 				};
-				WindowAnalyst.this.rightPage = new ControlScrollableContent<IWidget>(this, 3 + sectionWidth + 4, 3, sectionWidth + 2, this.h() - 8 + 2, 0) {
+				WindowAnalyst.this.rightPage = new ControlScrollableContent<IWidget>(this, 3 + sectionWidth + 4, 3, sectionWidth + 2, this.height() - 8 + 2, 0) {
 					@Override
 					@SideOnly(Side.CLIENT)
 					public void onRenderBackground(int guiWidth, int guiHeight) {
@@ -229,7 +229,7 @@ public class WindowAnalyst extends Window {
 						CraftGUI.render.texture(CraftGUITexture.TabOutline, this.getArea());
 					}
 				};
-				new ControlScrollBar(this, sectionWidth + 2 - 3 + sectionWidth + 4, 6, 3, this.h() - 8 + 2 - 6, WindowAnalyst.this.rightPage) {
+				new ControlScrollBar(this, sectionWidth + 2 - 3 + sectionWidth + 4, 6, 3, this.height() - 8 + 2 - 6, WindowAnalyst.this.rightPage) {
 					@Override
 					@SideOnly(Side.CLIENT)
 					public void onRenderBackground(int guiWidth, int guiHeight) {
@@ -243,11 +243,11 @@ public class WindowAnalyst extends Window {
 						RenderUtil.drawSolidRect(this.getRenderArea(), WindowAnalyst.this.rightPage.getContent().getColour());
 					}
 				};
-				WindowAnalyst.this.analystPageSize = new IArea(1, 1, sectionWidth, this.h() - 8);
+				WindowAnalyst.this.analystPageSize = new IArea(1, 1, sectionWidth, this.height() - 8);
 			}
 		};
 		if (!this.isDatabase) {
-			this.slideUpInv = new ControlSlide(this, (this.getSize().x() - 244) / 2, this.getSize().y() - 80 + 1, 244, 80, Position.Bottom);
+			this.slideUpInv = new ControlSlide(this, (this.getSize().x() - 244) / 2, this.getSize().y() - 80 + 1, 244, 80, Position.BOTTOM);
 			new ControlPlayerInventory(this.slideUpInv, true);
 			this.slideUpInv.setSlide(false);
 		}
@@ -263,7 +263,7 @@ public class WindowAnalyst extends Window {
 			}
 		});
 		if (!this.isDatabase) {
-			this.analystNone = new Control(this.analystPanel, 0, 0, this.analystPanel.w(), this.analystPanel.h()) {
+			this.analystNone = new Control(this.analystPanel, 0, 0, this.analystPanel.width(), this.analystPanel.height()) {
 				@Override
 				public void initialise() {
 					new ControlTextCentered(this, 20, "Add a bee, tree, flower or butterfly to the top left slot. DNA Dye is required if it has not been analysed yet. This dye can also convert vanilla items to breedable individuals.").setColour(4473924);
@@ -355,10 +355,10 @@ public class WindowAnalyst extends Window {
 			this.analystPages.add(new AnalystPageMutations(this.analystPanel, this.analystPageSize, this.current, this.isMaster));
 		}
 		this.tabBar.deleteAllChildren();
-		final int width = this.tabBar.w() / this.analystPages.size();
+		final int width = this.tabBar.width() / this.analystPages.size();
 		int x = 0;
 		for (final ControlAnalystPage page : this.analystPages) {
-			new ControlTooltip(this.tabBar, x, 0, width, this.tabBar.h()) {
+			new ControlTooltip(this.tabBar, x, 0, width, this.tabBar.height()) {
 				ControlAnalystPage value;
 
 				@Override

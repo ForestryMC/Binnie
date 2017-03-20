@@ -32,15 +32,15 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		int y = 4;
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColour(this.getColour());
 		y += 16;
-		new ControlText(this, new IArea(4, y, this.w() - 8, 14), Genetics.proxy.localise("gui.analyst.soil.tolerance.moisture"), TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new IArea(4, y, this.width() - 8, 14), Genetics.proxy.localise("gui.analyst.soil.tolerance.moisture"), TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
-		this.createMoisture(this, (this.w() - 100) / 2, y, 100, 10, moisture, moistureTol);
+		this.createMoisture(this, (this.width() - 100) / 2, y, 100, 10, moisture, moistureTol);
 		y += 16;
-		new ControlText(this, new IArea(4, y, this.w() - 8, 14), Genetics.proxy.localise("gui.analyst.soil.tolerance.ph"), TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new IArea(4, y, this.width() - 8, 14), Genetics.proxy.localise("gui.analyst.soil.tolerance.ph"), TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
-		this.createAcidity(this, (this.w() - 100) / 2, y, 100, 10, pH, pHTol);
+		this.createAcidity(this, (this.width() - 100) / 2, y, 100, 10, pH, pHTol);
 		y += 16;
-		new ControlText(this, new IArea(4, y, this.w() - 8, 14), Genetics.proxy.localise("gui.analyst.soil.recommended"), TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new IArea(4, y, this.width() - 8, 14), Genetics.proxy.localise("gui.analyst.soil.recommended"), TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
 		EnumMoisture recomMoisture = EnumMoisture.Normal;
 		final boolean canTolNormal = Tolerance.canTolerate(moisture, EnumMoisture.Normal, moistureTol);
@@ -79,11 +79,11 @@ public class AnalystPageSoil extends ControlAnalystPage {
 			}
 		}
 		final ItemStack stack = new ItemStack(Botany.soil, 1, BlockSoil.getMeta(recomPH, recomMoisture));
-		final ControlItemDisplay recomSoil = new ControlItemDisplay(this, (this.w() - 24) / 2, y, 24);
+		final ControlItemDisplay recomSoil = new ControlItemDisplay(this, (this.width() - 24) / 2, y, 24);
 		recomSoil.setItemStack(stack);
 		recomSoil.setTooltip();
 		y += 32;
-		new ControlText(this, new IArea(4, y, this.w() - 8, 14), Genetics.proxy.localise("gui.analyst.soil.other"), TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new IArea(4, y, this.width() - 8, 14), Genetics.proxy.localise("gui.analyst.soil.other"), TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
 		final List<ItemStack> stacks = new ArrayList<>();
 		for (final EnumAcidity a : EnumSet.range(EnumAcidity.Acid, EnumAcidity.Alkaline)) {
@@ -94,7 +94,7 @@ public class AnalystPageSoil extends ControlAnalystPage {
 			}
 		}
 		final int soilListWidth = 17 * stacks.size() - 1;
-		final int soilListX = (this.w() - soilListWidth) / 2;
+		final int soilListX = (this.width() - soilListWidth) / 2;
 		int t = 0;
 		for (final ItemStack soilStack : stacks) {
 			final ControlItemDisplay display = new ControlItemDisplay(this, soilListX + 17 * t++, y);

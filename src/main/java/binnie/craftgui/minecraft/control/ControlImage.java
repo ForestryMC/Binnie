@@ -12,7 +12,7 @@ public class ControlImage extends Control {
 	private Object key;
 
 	public ControlImage(final IWidget parent, final int x, final int y, final Texture text) {
-		super(parent, x, y, text.w(), text.h());
+		super(parent, x, y, text.width(), text.height());
 		this.key = text;
 	}
 

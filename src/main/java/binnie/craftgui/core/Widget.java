@@ -502,22 +502,22 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public int x() {
+	public int xPos() {
 		return this.pos().x();
 	}
 
 	@Override
-	public int y() {
+	public int yPos() {
 		return this.pos().y();
 	}
 
 	@Override
-	public int w() {
+	public int width() {
 		return this.size().x();
 	}
 
 	@Override
-	public int h() {
+	public int height() {
 		return this.size().y();
 	}
 

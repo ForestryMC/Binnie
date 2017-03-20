@@ -144,7 +144,7 @@ public class AnalystPageBiology extends ControlAnalystPage {
 			new ControlTextCentered(this, y, "§o" + (int) (floweringLifespan / pollinateTime) + " per lifetime").setColour(this.getColour());
 			y += 22;
 		}
-		this.setSize(new IPoint(this.w(), y));
+		this.setSize(new IPoint(this.width(), y));
 	}
 
 	private String getMCDayString(final float time) {

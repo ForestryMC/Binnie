@@ -46,7 +46,7 @@ public class AnalystPageWood extends AnalystPageProduce {
 			final int w = products.size() * 18 - 2;
 			final int i = 0;
 			for (final ItemStack stack : products) {
-				final ControlItemDisplay d = new ControlItemDisplay(this, (this.w() - w) / 2 + 18 * i, y);
+				final ControlItemDisplay d = new ControlItemDisplay(this, (this.width() - w) / 2 + 18 * i, y);
 				d.setTooltip();
 				d.setItemStack(stack);
 			}
@@ -66,7 +66,7 @@ public class AnalystPageWood extends AnalystPageProduce {
 			new ControlTextCentered(this, y, "This tree has no \nfruits or nuts").setColour(this.getColour());
 			y += 28;
 		}
-		this.setSize(new IPoint(this.w(), y + 8));
+		this.setSize(new IPoint(this.width(), y + 8));
 	}
 
 	@Override

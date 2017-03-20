@@ -133,15 +133,15 @@ public interface IWidget {
 
 	<E extends Event> void addSelfEventHandler(final EventHandler<E> p0);
 
-	boolean contains(final IPoint p0);
+	boolean contains(final IPoint point);
 
-	int x();
+	int xPos();
 
-	int y();
+	int yPos();
 
-	int w();
+	int width();
 
-	int h();
+	int height();
 
 	@SideOnly(Side.CLIENT)
 	void onRender(final RenderStage stage, int guiWidth, int guiHeight);

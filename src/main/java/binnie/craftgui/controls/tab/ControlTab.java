@@ -83,7 +83,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 		Texture iTexture = lTexture.crop(position, 8);
 		final IArea area = this.getArea();
 		if (texture == CraftGUITexture.TabDisabled) {
-			if (position == Position.Top || position == Position.Left) {
+			if (position == Position.Top || position == Position.LEFT) {
 				area.setPosition(area.getPosition().sub(new IPoint(4 * position.x(), 4 * position.y())));
 				area.setSize(area.getSize().add(new IPoint(4 * position.x(), 4 * position.y())));
 			} else {

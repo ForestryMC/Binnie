@@ -24,7 +24,7 @@ public class ControlScrollBar extends Control {
 		this.addSelfEventHandler(new EventMouse.Drag.Handler() {
 			@Override
 			public void onEvent(final EventMouse.Drag event) {
-				ControlScrollBar.this.scrollable.movePercentage(event.getDy() / (ControlScrollBar.this.h() - ControlScrollBar.this.getBarHeight()));
+				ControlScrollBar.this.scrollable.movePercentage(event.getDy() / (ControlScrollBar.this.height() - ControlScrollBar.this.getBarHeight()));
 			}
 		});
 		this.addSelfEventHandler(new EventMouse.Down.Handler() {
@@ -34,7 +34,7 @@ public class ControlScrollBar extends Control {
 				final float percentageIndex = ControlScrollBar.this.scrollable.getPercentageIndex();
 				final float minPercent = (1.0f - shownPercentage) * percentageIndex;
 				final float maxPercent = minPercent + shownPercentage;
-				float clickedPercentage = ControlScrollBar.this.getRelativeMousePosition().y() / (ControlScrollBar.this.h() - 2.0f);
+				float clickedPercentage = ControlScrollBar.this.getRelativeMousePosition().y() / (ControlScrollBar.this.height() - 2.0f);
 				clickedPercentage = Math.max(Math.min(clickedPercentage, 1.0f), 0.0f);
 				if (clickedPercentage > maxPercent) {
 					ControlScrollBar.this.scrollable.setPercentageIndex((clickedPercentage - shownPercentage) / (1.0f - shownPercentage));
@@ -56,7 +56,7 @@ public class ControlScrollBar extends Control {
 	}
 
 	public int getBarHeight() {
-		return Math.round(this.h() * this.scrollable.getPercentageShown());
+		return Math.round(this.height() * this.scrollable.getPercentageShown());
 	}
 
 	protected IArea getRenderArea() {
@@ -64,7 +64,7 @@ public class ControlScrollBar extends Control {
 		if (height < 6) {
 			height = 6;
 		}
-		final int yOffset = Math.round((this.h() - this.getBarHeight()) * this.scrollable.getPercentageIndex());
+		final int yOffset = Math.round((this.height() - this.getBarHeight()) * this.scrollable.getPercentageIndex());
 		return new IArea(0, yOffset, this.getSize().x(), height);
 	}
 

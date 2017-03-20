@@ -32,7 +32,7 @@ public class Control extends Widget implements ITooltipHelp, ITooltip {
 	}
 
 	public Control(final IWidget parent, final IArea area) {
-		this(parent, area.x(), area.y(), area.w(), area.h());
+		this(parent, area.xPos(), area.yPos(), area.width(), area.height());
 	}
 
 	protected void initialise() {

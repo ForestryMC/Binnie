@@ -31,7 +31,7 @@ public class ControlSlide extends Control {
 		this.addAttribute(Attribute.BlockTooltip);
 		this.expanded = new IArea(this.getPosition(), this.getSize());
 		this.anchor = anchor2.opposite();
-		final int border = (this.anchor.x() != 0) ? (this.expanded.w() - 6) : (this.expanded.h() - 6);
+		final int border = (this.anchor.x() != 0) ? (this.expanded.width() - 6) : (this.expanded.height() - 6);
 		this.shrunk = this.expanded.inset(new IBorder(this.anchor, border));
 		this.slideActive = false;
 	}
@@ -46,7 +46,7 @@ public class ControlSlide extends Control {
 			final boolean hor = this.anchor.x() != 0;
 			final IArea ar = this.isSlideActive() ? this.expanded : this.shrunk;
 			IArea tabArea = new IArea(hor ? (-lh / 2) : (-lw / 2), hor ? (-lw / 2) : (-lh / 2), hor ? lh : lw, hor ? lw : lh);
-			final IPoint shift = new IPoint(ar.w() * (1 - this.anchor.x()) / 2, ar.h() * (1 - this.anchor.y()) / 2);
+			final IPoint shift = new IPoint(ar.width() * (1 - this.anchor.x()) / 2, ar.height() * (1 - this.anchor.y()) / 2);
 			tabArea = tabArea.shift(shift.x() - (-3 + lh / 2) * this.anchor.x(), shift.y() - (-3 + lh / 2) * this.anchor.y());
 			Texture texture = CraftGUI.render.getTexture(this.isSlideActive() ? CraftGUITexture.Tab : CraftGUITexture.TabDisabled).crop(this.anchor.opposite(), 8);
 			CraftGUI.render.texture(texture, tabArea);
@@ -65,8 +65,8 @@ public class ControlSlide extends Control {
 			GlStateManager.popMatrix();
 		}
 		CraftGUI.render.texture(CraftGUITexture.Window, this.getArea());
-		final Object slideTexture = (this.anchor == Position.Bottom) ? CraftGUITexture.SlideDown : ((this.anchor == Position.Top) ? CraftGUITexture.SlideUp : ((this.anchor == Position.Left) ? CraftGUITexture.SlideLeft : CraftGUITexture.SlideRight));
-		CraftGUI.render.texture(slideTexture, new IPoint((this.anchor.x() + 1) * this.w() / 2 - 8, (this.anchor.y() + 1) * this.h() / 2 - 8));
+		final Object slideTexture = (this.anchor == Position.BOTTOM) ? CraftGUITexture.SlideDown : ((this.anchor == Position.Top) ? CraftGUITexture.SlideUp : ((this.anchor == Position.LEFT) ? CraftGUITexture.SlideLeft : CraftGUITexture.SlideRight));
+		CraftGUI.render.texture(slideTexture, new IPoint((this.anchor.x() + 1) * this.width() / 2 - 8, (this.anchor.y() + 1) * this.height() / 2 - 8));
 	}
 
 	public boolean isSlideActive() {

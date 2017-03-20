@@ -29,10 +29,10 @@ public class TextureRenderer {
 		final int posY = area.pos().y();
 		final int width = area.size().x();
 		final int height = area.size().y();
-		final int textWidth = texture.w();
-		final int textHeight = texture.h();
-		final int u = texture.x();
-		final int v = texture.y();
+		final int textWidth = texture.width();
+		final int textHeight = texture.height();
+		final int u = texture.xPos();
+		final int v = texture.yPos();
 		if (borderTop + borderBottom > height) {
 			borderTop = height / 2;
 			borderBottom = height / 2;
@@ -153,7 +153,7 @@ public class TextureRenderer {
 		this.setTexture(texture);
 		final IArea textureArea = texture.getArea().outset(texture.getBorder());
 		final IArea targetArea = area.outset(texture.getBorder());
-		if (textureArea.w() == targetArea.w() && textureArea.h() == targetArea.h()) {
+		if (textureArea.width() == targetArea.width() && textureArea.height() == targetArea.height()) {
 			final IPoint position = targetArea.pos();
 			GuiUtils.drawTexturedModalRect(position.x(), position.y(), textureArea.pos().x(), textureArea.pos().y(), textureArea.size().x(), textureArea.size().y(), 0);
 		} else {
@@ -184,8 +184,8 @@ public class TextureRenderer {
 	}
 
 	public void texturePercentage(final Texture texture, final IArea area, final Position direction, final float percentage) {
-		final int dist = (direction == Position.Top || direction == Position.Bottom) ? Math.round(percentage * texture.h()) : Math.round(percentage * texture.w());
-		final int dim = (direction == Position.Top || direction == Position.Bottom) ? texture.h() : texture.w();
+		final int dist = (direction == Position.Top || direction == Position.BOTTOM) ? Math.round(percentage * texture.height()) : Math.round(percentage * texture.width());
+		final int dim = (direction == Position.Top || direction == Position.BOTTOM) ? texture.height() : texture.width();
 		int x = area.pos().x();
 		int y = area.pos().y();
 		int w = area.size().x();
@@ -195,16 +195,16 @@ public class TextureRenderer {
 				h *= percentage;
 				break;
 			}
-			case Right: {
+			case RIGHT: {
 				x += (1.0f - percentage) * w;
 				w *= percentage;
 				break;
 			}
-			case Left: {
+			case LEFT: {
 				w *= percentage;
 				break;
 			}
-			case Bottom: {
+			case BOTTOM: {
 				y += h - (int) (percentage * h);
 				h *= percentage;
 				break;

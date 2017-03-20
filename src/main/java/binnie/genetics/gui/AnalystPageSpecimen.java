@@ -14,8 +14,8 @@ public class AnalystPageSpecimen extends ControlAnalystPage {
 		int y = 4;
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColour(this.getColour());
 		y += 12;
-		final int w = Math.round((this.w() - 16) * ind.getSize());
-		new ControlIndividualDisplay(this, (this.w() - w) / 2, y + (this.w() - w) / 2, w, ind);
+		final int w = Math.round((this.width() - 16) * ind.getSize());
+		new ControlIndividualDisplay(this, (this.width() - w) / 2, y + (this.width() - w) / 2, w, ind);
 	}
 
 	@Override

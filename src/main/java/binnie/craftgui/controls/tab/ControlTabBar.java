@@ -38,12 +38,12 @@ public class ControlTabBar<T> extends Control implements IControlValue<T> {
 		}
 		final float length = values.size();
 		int tabDimension = (int) (this.getSize().y() / length);
-		if (this.position == Position.Top || this.position == Position.Bottom) {
+		if (this.position == Position.Top || this.position == Position.BOTTOM) {
 			tabDimension = (int) (this.getSize().x() / length);
 		}
 		int j = 0;
 		for (final T value : values) {
-			if (this.position == Position.Top || this.position == Position.Bottom) {
+			if (this.position == Position.Top || this.position == Position.BOTTOM) {
 				final IWidget tab = this.createTab(j * tabDimension, 0, tabDimension, this.getSize().y(), value);
 			} else {
 				final IWidget tab = this.createTab(0, j * tabDimension, this.getSize().x(), tabDimension, value);

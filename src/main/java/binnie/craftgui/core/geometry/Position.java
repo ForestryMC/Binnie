@@ -2,9 +2,9 @@ package binnie.craftgui.core.geometry;
 
 public enum Position {
 	Top(0, -1),
-	Bottom(0, 1),
-	Left(-1, 0),
-	Right(1, 0);
+	BOTTOM(0, 1),
+	LEFT(-1, 0),
+	RIGHT(1, 0);
 
 	int x;
 	int y;
@@ -24,17 +24,17 @@ public enum Position {
 
 	public Position opposite() {
 		switch (this) {
-			case Bottom: {
+			case BOTTOM: {
 				return Position.Top;
 			}
-			case Left: {
-				return Position.Right;
+			case LEFT: {
+				return Position.RIGHT;
 			}
-			case Right: {
-				return Position.Left;
+			case RIGHT: {
+				return Position.LEFT;
 			}
 			case Top: {
-				return Position.Bottom;
+				return Position.BOTTOM;
 			}
 			default: {
 				throw new IllegalStateException();

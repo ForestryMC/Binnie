@@ -27,7 +27,7 @@ public class IBorder {
 	}
 
 	public IBorder(final Position edge, final int n) {
-		this((edge == Position.Top) ? n : 0, (edge == Position.Right) ? n : 0, (edge == Position.Bottom) ? n : 0, (edge == Position.Left) ? n : 0);
+		this((edge == Position.Top) ? n : 0, (edge == Position.RIGHT) ? n : 0, (edge == Position.BOTTOM) ? n : 0, (edge == Position.LEFT) ? n : 0);
 	}
 
 	public IBorder(final IBorder padding) {

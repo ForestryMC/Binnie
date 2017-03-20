@@ -52,12 +52,12 @@ public abstract class ControlToleranceBar<T extends Enum<T>> extends Control imp
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		RenderUtil.drawGradientRect(this.getArea(), -1431655766, -1431655766);
-		final int w = this.getArea().w() / this.fullSet.size();
+		final int w = this.getArea().width() / this.fullSet.size();
 		int t = 0;
 		for (final T value : this.fullSet) {
 			final int col = (this.tolerated.contains(value) ? -16777216 : 855638016) + this.getColour(value);
 			final IBorder inset = new IBorder(this.tolerated.contains(value) ? 1 : 3);
-			RenderUtil.drawGradientRect(new IArea(w * t, 0, w, this.h()).inset(inset), col, col);
+			RenderUtil.drawGradientRect(new IArea(w * t, 0, w, this.height()).inset(inset), col, col);
 			++t;
 		}
 	}

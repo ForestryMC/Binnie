@@ -139,31 +139,31 @@ public abstract class WindowAbstractDatabase extends Window {
 		(this.panelSearch = new Panel(this, 176, 24, this.selectionBoxWidth, 160, MinecraftGUI.PanelType.Black)).setColour(860416);
 		this.modePages = new ControlPages<>(this, 0, 0, this.getSize().x(), this.getSize().y());
 		new ControlTextEdit(this, 176, 184, this.selectionBoxWidth, 16);
-		this.createMode(Mode.Species, new ModeWidgets(Mode.Species, this) {
+		this.createMode(Mode.SPECIES, new ModeWidgets(Mode.SPECIES, this) {
 			@Override
 			public void createListBox(final IArea area) {
 				final GameProfile playerName = WindowAbstractDatabase.this.getUsername();
 				final Collection<IAlleleSpecies> speciesList = this.database.isNEI ? this.database.system.getAllSpecies() : this.database.system.getDiscoveredSpecies(this.database.getWorld(), playerName);
-				(this.listBox = new ControlSpeciesBox(this.modePage, area.x(), area.y(), area.w(), area.h())).setOptions(speciesList);
+				(this.listBox = new ControlSpeciesBox(this.modePage, area.xPos(), area.yPos(), area.width(), area.height())).setOptions(speciesList);
 			}
 		});
-		this.createMode(Mode.Branches, new ModeWidgets(Mode.Branches, this) {
+		this.createMode(Mode.BRANCHES, new ModeWidgets(Mode.BRANCHES, this) {
 			@Override
 			public void createListBox(final IArea area) {
 				final EntityPlayer player = this.database.getPlayer();
 				final GameProfile playerName = WindowAbstractDatabase.this.getUsername();
 				final Collection<IClassification> speciesList = this.database.isNEI ? this.database.system.getAllBranches() : this.database.system.getDiscoveredBranches(this.database.getWorld(), playerName);
-				(this.listBox = new ControlBranchBox(this.modePage, area.x(), area.y(), area.w(), area.h())).setOptions(speciesList);
+				(this.listBox = new ControlBranchBox(this.modePage, area.xPos(), area.yPos(), area.width(), area.height())).setOptions(speciesList);
 			}
 		});
-		this.createMode(Mode.Breeder, new ModeWidgets(Mode.Breeder, this) {
+		this.createMode(Mode.BREEDER, new ModeWidgets(Mode.BREEDER, this) {
 			@Override
 			public void createListBox(final IArea area) {
-				this.listBox = new ControlListBox(this.modePage, area.x(), area.y(), area.w(), area.h(), 12);
+				this.listBox = new ControlListBox(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12);
 			}
 		});
 		this.addTabs();
-		final ControlTabBar<IDatabaseMode> tab = new ControlTabBar<IDatabaseMode>(this, 176 + this.selectionBoxWidth, 24, 22, 176, Position.Right, this.modePages.getValues()) {
+		final ControlTabBar<IDatabaseMode> tab = new ControlTabBar<IDatabaseMode>(this, 176 + this.selectionBoxWidth, 24, 22, 176, Position.RIGHT, this.modePages.getValues()) {
 			@Override
 			public ControlTab<IDatabaseMode> createTab(final int x, final int y, final int w, final int h, final IDatabaseMode value) {
 				return new ControlTab<IDatabaseMode>(this, x, y, w, h, value) {
@@ -175,9 +175,9 @@ public abstract class WindowAbstractDatabase extends Window {
 			}
 		};
 		CraftGUIUtil.linkWidgets(tab, this.modePages);
-		this.changeMode(Mode.Species);
+		this.changeMode(Mode.SPECIES);
 		for (final IDatabaseMode mode : this.modes.keySet()) {
-			this.modes.get(mode).infoTabs = new ControlTabBar<>(this.modes.get(mode).modePage, 8, 24, 16, 176, Position.Left, this.modes.get(mode).infoPages.getValues());
+			this.modes.get(mode).infoTabs = new ControlTabBar<>(this.modes.get(mode).modePage, 8, 24, 16, 176, Position.LEFT, this.modes.get(mode).infoPages.getValues());
 			CraftGUIUtil.linkWidgets(this.modes.get(mode).infoTabs, this.modes.get(mode).infoPages);
 		}
 	}
@@ -195,8 +195,8 @@ public abstract class WindowAbstractDatabase extends Window {
 
 	public void gotoSpecies(final IAlleleSpecies value) {
 		if (value != null) {
-			this.modePages.setValue(Mode.Species);
-			this.changeMode(Mode.Species);
+			this.modePages.setValue(Mode.SPECIES);
+			this.changeMode(Mode.SPECIES);
 			this.modes.get(this.modePages.getValue()).listBox.setValue(value);
 		}
 	}
@@ -216,9 +216,9 @@ public abstract class WindowAbstractDatabase extends Window {
 	}
 
 	public enum Mode implements IDatabaseMode {
-		Species,
-		Branches,
-		Breeder;
+		SPECIES,
+		BRANCHES,
+		BREEDER;
 
 		@Override
 		public String getName() {

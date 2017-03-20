@@ -24,7 +24,7 @@ public class ControlSlotCharge extends Control {
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.render.texture(CraftGUITexture.PanelBlack, this.getArea());
-		CraftGUI.render.texturePercentage(CraftGUI.render.getTexture(CraftGUITexture.SlotCharge), this.getArea().inset(1), Position.Bottom, this.getCharge());
+		CraftGUI.render.texturePercentage(CraftGUI.render.getTexture(CraftGUITexture.SlotCharge), this.getArea().inset(1), Position.BOTTOM, this.getCharge());
 	}
 
 	public ControlSlotCharge(final IWidget parent, final int x, final int y, final int slot) {

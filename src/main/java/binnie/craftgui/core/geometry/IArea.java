@@ -57,40 +57,40 @@ public class IArea {
 		return position.x() >= this.pos().x() && position.y() >= this.pos.y() && position.x() <= this.pos().x() + this.size().x() && position.y() <= this.pos().y() + this.size().y();
 	}
 
-	public int x() {
+	public int xPos() {
 		return this.pos().x();
 	}
 
-	public int y() {
+	public int yPos() {
 		return this.pos().y();
 	}
 
-	public int w() {
+	public int width() {
 		return this.size().x();
 	}
 
-	public int h() {
+	public int height() {
 		return this.size().y();
 	}
-
-	public void x(final int n) {
-		this.pos = new IPoint(n, this.pos.y());
+	
+	public void setXPos(final int xPos) {
+		this.pos = new IPoint(xPos, this.pos.y());
 	}
 
-	public void y(final int n) {
-		this.pos = new IPoint(this.pos.x(), n);
+	public void setYPos(final int yPos) {
+		this.pos = new IPoint(this.pos.x(), yPos);
 	}
 
-	public void w(final int n) {
-		this.size = new IPoint(n, this.size.y());
+	public void setWidth(final int width) {
+		this.size = new IPoint(width, this.size.y());
 	}
 
-	public void h(final int n) {
-		this.size = new IPoint(this.size.x(), n);
+	public void setHeight(final int height) {
+		this.size = new IPoint(this.size.x(), height);
 	}
 
 	public IArea inset(final IBorder border) {
-		return new IArea(this.x() + border.l(), this.y() + border.t(), this.w() - border.l() - border.r(), this.h() - border.t() - border.b());
+		return new IArea(this.xPos() + border.l(), this.yPos() + border.t(), this.width() - border.l() - border.r(), this.height() - border.t() - border.b());
 	}
 
 	public IArea outset(final int outset) {
@@ -98,7 +98,7 @@ public class IArea {
 	}
 
 	public IArea outset(final IBorder border) {
-		return new IArea(this.x() - border.l(), this.y() - border.t(), this.w() + border.l() + border.r(), this.h() + border.t() + border.b());
+		return new IArea(this.xPos() - border.l(), this.yPos() - border.t(), this.width() + border.l() + border.r(), this.height() + border.t() + border.b());
 	}
 
 	public IArea inset(final int inset) {
@@ -107,10 +107,10 @@ public class IArea {
 
 	@Override
 	public String toString() {
-		return this.w() + "x" + this.h() + "@" + this.x() + "," + this.y();
+		return this.width() + "x" + this.height() + "@" + this.xPos() + "," + this.yPos();
 	}
 
 	public IArea shift(final int dx, final int f) {
-		return new IArea(this.x() + dx, this.y() + f, this.w(), this.h());
+		return new IArea(this.xPos() + dx, this.yPos() + f, this.width(), this.height());
 	}
 }

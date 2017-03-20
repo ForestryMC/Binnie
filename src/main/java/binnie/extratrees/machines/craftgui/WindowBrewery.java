@@ -41,7 +41,7 @@ public class WindowBrewery extends Window {
 		new ControlSlot.Builder(this, 105, 77).assign(BreweryMachine.SLOT_YEAST);
 		new ControlLiquidTank(this, 76, 32).setTankID(BreweryMachine.TANK_INPUT);
 		new ControlLiquidTank(this, 162, 32).setTankID(BreweryMachine.TANK_OUTPUT);
-		new ControlEnergyBar(this, 196, 32, 16, 60, Position.Bottom);
+		new ControlEnergyBar(this, 196, 32, 16, 60, Position.BOTTOM);
 		new ControlBreweryProgress(this, 110, 32);
 		new ControlSlotArray.Builder(this, this.getSize().x() / 2 - 81, 104, 9, 1).create(BreweryMachine.SLOTS_INVENTORY);
 		new ControlPlayerInventory(this);

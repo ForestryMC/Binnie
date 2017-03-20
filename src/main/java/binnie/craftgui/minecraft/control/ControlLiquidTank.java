@@ -112,7 +112,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 				final IPoint offset = new IPoint(0, height - squaled);
 				final IArea limited = this.getArea().inset(1);
 				if (this.horizontal) {
-					limited.setSize(new IPoint(limited.w() - 1, limited.h()));
+					limited.setSize(new IPoint(limited.width() - 1, limited.height()));
 				}
 				CraftGUI.render.limitArea(new IArea(limited.pos().add(pos).add(offset), limited.size().sub(offset)), guiWidth, guiHeight);
 				GL11.glEnable(GL11.GL_SCISSOR_TEST);

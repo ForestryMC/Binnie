@@ -65,7 +65,7 @@ public class WindowGenesis extends Window {
 	public void initialiseClient() {
 		new ControlPlayerInventory(this);
 		this.setTitle("Genesis");
-		final ControlTabBar<BreedingSystem> tabSystems = new ControlTabBar<BreedingSystem>(this, 8, 28, 23, 100, Position.Left, Binnie.GENETICS.getActiveSystems()) {
+		final ControlTabBar<BreedingSystem> tabSystems = new ControlTabBar<BreedingSystem>(this, 8, 28, 23, 100, Position.LEFT, Binnie.GENETICS.getActiveSystems()) {
 			@Override
 			public ControlTab<BreedingSystem> createTab(final int x, final int y, final int w, final int h, final BreedingSystem value) {
 				return new ControlTabIcon<BreedingSystem>(this, x, y, w, h, value) {
@@ -99,13 +99,13 @@ public class WindowGenesis extends Window {
 		final IArea two = new IArea(214, 28, 100, 100);
 		new Panel(this, one.outset(1), MinecraftGUI.PanelType.Black);
 		new Panel(this, two.outset(1), MinecraftGUI.PanelType.Black);
-		this.geneList = new ControlListBox<Gene>(this, one.x(), one.y(), one.w(), one.h(), 10) {
+		this.geneList = new ControlListBox<Gene>(this, one.xPos(), one.yPos(), one.width(), one.height(), 10) {
 			@Override
 			public IWidget createOption(final Gene value, final int y) {
 				return new ControlGenesisOption(this.getContent(), value, y);
 			}
 		};
-		this.geneOptions = new ControlListBox<Gene>(this, two.x(), two.y(), two.w(), two.h(), 10) {
+		this.geneOptions = new ControlListBox<Gene>(this, two.xPos(), two.yPos(), two.width(), two.height(), 10) {
 			@Override
 			public IWidget createOption(final Gene value, final int y) {
 				return new ControlTextOption<>(this.getContent(), value, y);

@@ -87,13 +87,13 @@ public class ControlEnergyBar extends Control implements ITooltip {
 		final IArea area = this.getArea();
 		switch (this.direction) {
 			case Top:
-			case Bottom: {
+			case BOTTOM: {
 				final int height = Math.round(area.size().y() * percentage);
 				area.setSize(new IPoint(area.size().x(), height));
 				break;
 			}
-			case Left:
-			case Right: {
+			case LEFT:
+			case RIGHT: {
 				final int width = Math.round(area.size().x() * percentage);
 				area.setSize(new IPoint(width, area.size().y()));
 				break;

@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class Dialog extends Control {
 	public Dialog(final IWidget parent, final int w, final int h) {
-		super(parent, (parent.w() - w) / 2, (parent.h() - h) / 2, w, h);
+		super(parent, (parent.width() - w) / 2, (parent.height() - h) / 2, w, h);
 		this.addAttribute(Attribute.MouseOver);
 		this.addAttribute(Attribute.AlwaysOnTop);
 		this.addAttribute(Attribute.BlockTooltip);
