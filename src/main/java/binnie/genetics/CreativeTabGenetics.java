@@ -10,11 +10,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class CreativeTabGenetics extends CreativeTabs {
 	public static CreativeTabs instance = new CreativeTabGenetics();
 
-	@Override
-	public ItemStack getIconItemStack() {
-		return GeneticsItems.EmptySerum.get(1);
-	}
-
 	public CreativeTabGenetics() {
 		super("Genetics");
 	}
@@ -34,8 +29,7 @@ public class CreativeTabGenetics extends CreativeTabs {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ItemStack getTabIconItem() {
-		//TODO add icon item for genetics
-		return ItemStack.EMPTY;
+		return GeneticsItems.EmptySerum.get(1);
 	}
 
 }

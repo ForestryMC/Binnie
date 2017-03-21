@@ -11,6 +11,7 @@ import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.core.blocks.IColoredBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -39,6 +40,7 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 		super(Material.GLASS);
 		this.setCreativeTab(CreativeTabBotany.instance);
 		this.setRegistryName("stained");
+		setSoundType(SoundType.GLASS);
 	}
 
 	@Override
@@ -137,6 +139,7 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 	@Override
 	public String getDisplayName(final ItemStack par1ItemStack) {
 		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
+		//TODO:localise
 		return EnumFlowerColor.get(meta).getColourName() + " Pigmented Glass";
 	}
 

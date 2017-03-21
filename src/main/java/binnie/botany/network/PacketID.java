@@ -21,48 +21,52 @@ public enum PacketID implements IPacketID {
 	public void onMessage(MessageBinnie message, MessageContext context) {
 		if (this == PacketID.FIELDKIT && context.side == Side.CLIENT) {
 			MessageNBT packet = new MessageNBT(message);
-			NBTTagCompound data = packet.getTagCompound();
-			EntityPlayer player = BinnieCore.getBinnieProxy().getPlayer();
-			String info = "";
-			if (data == null || data.hasNoTags()) {
-				info += Binnie.LANGUAGE.localise("botany.flowers.species.not.discover");
-			} else {
-				IAlleleFlowerSpecies primary = (IAlleleFlowerSpecies) AlleleManager.alleleRegistry.getAllele(data.getString("Species"));
-				IAlleleFlowerSpecies secondary = (IAlleleFlowerSpecies) AlleleManager.alleleRegistry.getAllele(data.getString("Species2"));
-				float age = data.getFloat("Age");
-				EnumFlowerColor color1 = EnumFlowerColor.get(data.getShort("Colour"));
-				EnumFlowerColor color2 = EnumFlowerColor.get(data.getShort("Colour2"));
-				if (primary == null || secondary == null) {
-					return;
-				}
-				info += "A";
-				if (age == 0.0f) {
-					info += "";
-				} else if (age < 0.25f) {
-					info += " Young";
-				} else if (age < 0.75f) {
-					info += " Mature";
-				} else {
-					info += " Old";
-				}
-				if (color1 == color2) {
-					info = info + " " + color1.getName();
-				} else {
-					info = info + " " + color1.getName() + " & " + color2.getName();
-				}
-				if (primary == secondary) {
-					info = info + " " + primary.getName();
-				} else {
-					info = info + " " + primary.getName() + "-" + secondary.getName() + " " + Binnie.LANGUAGE.localise("botany.flowers.species.hybrid");
-				}
-				if (age == 0.0f) {
-					info += " " + Binnie.LANGUAGE.localise("botany.flowers.species.germling");
-				}
-				if (data.getBoolean("Wilting")) {
-					info += ". " + Binnie.LANGUAGE.localise("botany.flowers.species.wilting");
-				}
-			}
-			player.sendStatusMessage(new TextComponentString(info), false);
+			onUseFieldKit(packet.getTagCompound());
 		}
+	}
+	
+	//TODO: localise
+	public void onUseFieldKit(NBTTagCompound data){
+		EntityPlayer player = BinnieCore.getBinnieProxy().getPlayer();
+		String info = "";
+		if (data == null || data.hasNoTags()) {
+			info += Binnie.LANGUAGE.localise("botany.flowers.species.not.discover");
+		} else {
+			IAlleleFlowerSpecies primary = (IAlleleFlowerSpecies) AlleleManager.alleleRegistry.getAllele(data.getString("Species"));
+			IAlleleFlowerSpecies secondary = (IAlleleFlowerSpecies) AlleleManager.alleleRegistry.getAllele(data.getString("Species2"));
+			float age = data.getFloat("Age");
+			EnumFlowerColor color1 = EnumFlowerColor.get(data.getShort("Colour"));
+			EnumFlowerColor color2 = EnumFlowerColor.get(data.getShort("Colour2"));
+			if (primary == null || secondary == null) {
+				return;
+			}
+			info += "A";
+			if (age == 0.0f) {
+				info += "";
+			} else if (age < 0.25f) {
+				info += " Young";
+			} else if (age < 0.75f) {
+				info += " Mature";
+			} else {
+				info += " Old";
+			}
+			if (color1 == color2) {
+				info = info + " " + color1.getName();
+			} else {
+				info = info + " " + color1.getName() + " & " + color2.getName();
+			}
+			if (primary == secondary) {
+				info = info + " " + primary.getName();
+			} else {
+				info = info + " " + primary.getName() + "-" + secondary.getName() + " " + Binnie.LANGUAGE.localise("botany.flowers.species.hybrid");
+			}
+			if (age == 0.0f) {
+				info += " " + Binnie.LANGUAGE.localise("botany.flowers.species.germling");
+			}
+			if (data.getBoolean("Wilting")) {
+				info += ". " + Binnie.LANGUAGE.localise("botany.flowers.species.wilting");
+			}
+		}
+		player.sendStatusMessage(new TextComponentString(info), false);
 	}
 }

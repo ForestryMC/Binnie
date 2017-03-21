@@ -179,6 +179,9 @@ public class DesignBlock {
 				adjustedFacing = getRotation(adjustedFacing, EnumFacing.SOUTH);
 				break;
 			}
+			default: {
+				break;
+			}
 		}
 		for (int i = 0; i < this.rotation; ++i) {
 			adjustedFacing = getRotation(adjustedFacing, EnumFacing.DOWN);
@@ -262,6 +265,9 @@ public class DesignBlock {
 						}
 						case WEST: {
 							layout = layout.flipHorizontal();
+							break;
+						}
+						default: {
 							break;
 						}
 					}

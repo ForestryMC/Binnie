@@ -23,7 +23,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -143,10 +143,9 @@ public class AnalystPageProducts extends AnalystPageProduce {
 		};
 
 		for (ItemStack container : containers) {
-			// TODO 1.11 update for IFluidHandlerItem
-			IFluidHandler fluidHandler = FluidUtil.getFluidHandler(container);
+			IFluidHandlerItem fluidHandler = FluidUtil.getFluidHandler(container);
 			if (fluidHandler != null && fluidHandler.fill(fluidStack, true) > 0) {
-				return container;
+				return fluidHandler.getContainer();
 			}
 		}
 

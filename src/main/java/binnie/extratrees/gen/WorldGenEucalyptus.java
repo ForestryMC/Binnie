@@ -72,8 +72,8 @@ public class WorldGenEucalyptus {
 			for (int x = 0; x < this.girth; ++x) {
 				for (int y = 0; y < this.girth; ++y) {
 					for (int i = 0; i < 2; ++i) {
-						//TODO Eucalyptus2 log
-						//this.addBlock(x - offset, i, y - offset, new BlockTypeLog(EnumExtraTreeLog.Eucalyptus2), true);
+						//TODO:
+						//this.addBlock(x - offset, i, y - offset, new BlockTypeLog(EnumETLog.Eucalyptus2), true);
 					}
 				}
 			}

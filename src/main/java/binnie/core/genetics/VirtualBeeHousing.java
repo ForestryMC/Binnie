@@ -131,7 +131,6 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 		return FakeErrorLogic.instance;
 	}
 
-	// TODO ??
 	@Override
 	public boolean canBlockSeeTheSky() {
 		return true;
@@ -157,7 +156,6 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 		return beeInventory;
 	}
 
-	// TODO ??
 	@Override
 	public Iterable<IBeeListener> getBeeListeners() {
 		return Collections.emptyList();
