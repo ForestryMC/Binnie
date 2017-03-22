@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
+	static final String GENES_NBT = "genes";
 	List<IGene> genes;
 
 	public GeneArrayItem(final ItemStack stack) {
@@ -83,12 +84,12 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbt) {
+	public void readFromNBT(@Nullable NBTTagCompound nbt) {
 		this.genes.clear();
 		if (nbt != null) {
-			final NBTTagList list = nbt.getTagList("genes", 10);
+			NBTTagList list = nbt.getTagList(GENES_NBT, 10);
 			for (int i = 0; i < list.tagCount(); ++i) {
-				final Gene gene = Gene.create(list.getCompoundTagAt(i));
+				Gene gene = Gene.create(list.getCompoundTagAt(i));
 				this.genes.add(gene);
 			}
 		}
@@ -99,12 +100,11 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 		if (this.genes.size() == 0) {
 			return nbt;
 		}
-		final NBTTagList list = new NBTTagList();
-		for (final IGene gene : this.genes) {
-			final NBTTagCompound geneNBT = gene.getNBTTagCompound();
-			list.appendTag(geneNBT);
+		NBTTagList list = new NBTTagList();
+		for (IGene gene : this.genes) {
+			list.appendTag(gene.getNBTTagCompound());
 		}
-		nbt.setTag("genes", list);
+		nbt.setTag(GENES_NBT, list);
 		return nbt;
 	}
 

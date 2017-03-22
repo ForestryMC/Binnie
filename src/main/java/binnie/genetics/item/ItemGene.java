@@ -4,6 +4,7 @@ import binnie.core.item.ItemCore;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
 import binnie.genetics.genetics.IGeneItem;
+import forestry.core.items.IColoredItem;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -15,7 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public abstract class ItemGene extends ItemCore {
+public abstract class ItemGene extends ItemCore implements IColoredItem {
 
 	public ItemGene(String unlocName) {
 		super(unlocName);
@@ -55,6 +56,16 @@ public abstract class ItemGene extends ItemCore {
 	
 	@Nullable
 	public abstract IGeneItem getGeneItem(ItemStack itemStack);
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
+		IGeneItem gene = this.getGeneItem(stack);
+		if (gene != null) {
+			return gene.getColour(tintIndex);
+		}
+		return 16777215;
+	}
 	
 	@Override
 	public boolean getShareTag() {

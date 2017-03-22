@@ -14,11 +14,11 @@ public interface IGeneItem {
 	ISpeciesRoot getSpeciesRoot();
 
 	@SideOnly(Side.CLIENT)
-	void getInfo(final List<String> p0);
+	void getInfo(List<String> info);
 
-	int getColour(final int p0);
+	int getColour(int p0);
 
-	void writeToItem(final ItemStack p0);
+	void writeToItem(ItemStack itemStack);
 
-	void addGene(final IGene p0);
+	void addGene(IGene gene);
 }
