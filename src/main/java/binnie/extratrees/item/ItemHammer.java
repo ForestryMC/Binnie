@@ -1,5 +1,6 @@
 package binnie.extratrees.item;
 
+import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.IToolHammer;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
@@ -13,14 +14,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemHammer extends Item implements IToolHammer, IItemModelRegister {
 	private boolean isDurableHammer;
 
-	public ItemHammer(final boolean durable) {
-		this.isDurableHammer = false;
+	public ItemHammer(boolean durable) {
 		this.isDurableHammer = durable;
-		this.setCreativeTab(CreativeTabs.TOOLS);
-		this.setUnlocalizedName(durable ? "durable_hammer" : "hammer");
-		this.setMaxStackSize(1);
-		this.setMaxDamage(durable ? 1562 : 251);
-		setRegistryName(durable ? "durable_hammer" : "hammer");
+		setCreativeTab(CreativeTabs.TOOLS);
+		setMaxStackSize(1);
+		setMaxDamage(durable ? 1562 : 251);
+		String name = durable ? "durable_hammer" : "hammer";
+		setUnlocalizedName(name);
+		setRegistryName(name);
 	}
 
 	@Override
@@ -30,17 +31,17 @@ public class ItemHammer extends Item implements IToolHammer, IItemModelRegister 
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack i) {
-		return this.isDurableHammer ? "Master Carpentry Hammer" : "Carpentry Hammer";
+	public String getItemStackDisplayName(ItemStack itemStack) {
+		return ExtraTrees.proxy.localise(isDurableHammer ? "item.hammer.master.name" : "item.hammer.name"); 
 	}
 
 	@Override
-	public boolean isActive(final ItemStack item) {
+	public boolean isActive(ItemStack itemStack) {
 		return true;
 	}
 
 	@Override
-	public void onHammerUsed(final ItemStack item, final EntityPlayer player) {
-		item.damageItem(1, player);
+	public void onHammerUsed(ItemStack itemStack, EntityPlayer player) {
+		itemStack.damageItem(1, player);
 	}
 }

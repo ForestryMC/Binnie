@@ -16,7 +16,6 @@ import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -24,18 +23,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
 public class ItemSerumArray extends ItemGene implements IItemSerum {
 	public ItemSerumArray() {
 		super("serum_array");
 		this.setMaxDamage(16);
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void addInformation(final ItemStack itemstack, final EntityPlayer entityPlayer, final List<String> list, final boolean par4) {
-		super.addInformation(itemstack, entityPlayer, list, par4);
 	}
 
 	@Override
@@ -83,36 +75,28 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 		return new GeneArrayItem(itemStack);
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
-	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final NonNullList<ItemStack> itemList) {
-		for (final ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
-			for (final IIndividual template : root.getIndividualTemplates()) {
+	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems) {
+		for (ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
+			for (IIndividual template : root.getIndividualTemplates()) {
 				if (template.getGenome().getPrimary().isSecret()) {
 					continue;
 				}
-				final IGeneItem item = new GeneArrayItem();
-				for (final IChromosomeType type : root.getKaryotype()) {
-					final IChromosome c = template.getGenome().getChromosomes()[type.ordinal()];
-					if (c != null) {
-						final IAllele active = c.getActiveAllele();
-						item.addGene(new Gene(active, type, root));
+				IGeneItem geneItem = new GeneArrayItem();
+				for (IChromosomeType type : root.getKaryotype()) {
+					IChromosome chromosome = template.getGenome().getChromosomes()[type.ordinal()];
+					if (chromosome != null) {
+						IAllele active = chromosome.getActiveAllele();
+						geneItem.addGene(new Gene(active, type, root));
 					}
 				}
-				final ItemStack array = new ItemStack(this);
-				item.writeToItem(array);
-				itemList.add(array);
+				ItemStack array = new ItemStack(item);
+				geneItem.writeToItem(array);
+				subItems.add(array);
 			}
 		}
 	}
-
-//	@SideOnly(Side.CLIENT)
-//	@Override
-//	public void registerIcons(final IIconRegister register) {
-//		this.icons[0] = Genetics.proxy.getIcon(register, "machines/genome.glass");
-//		this.icons[1] = Genetics.proxy.getIcon(register, "machines/genome.cap");
-//		this.icons[2] = Genetics.proxy.getIcon(register, "machines/genome.edges");
-//		this.icons[3] = Genetics.proxy.getIcon(register, "machines/genome.dna");
-//	}
 
 	@Override
 	public String getItemStackDisplayName(final ItemStack itemstack) {
@@ -121,10 +105,10 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 			ISpeciesRoot speciesRoot = geneItem.getSpeciesRoot();
 			if (speciesRoot != null) {
 				BreedingSystem system = Binnie.GENETICS.getSystem(speciesRoot);
-				return system.getDescriptor() + " Serum Array";
+				return system.getDescriptor() + " " + Genetics.proxy.localise("item.gene.serum.array");
 			}
 		}
-		return "Corrupted Serum Array";
+		return Genetics.proxy.localise("item.gene.serum.array.corrupted");
 	}
 
 	@Override

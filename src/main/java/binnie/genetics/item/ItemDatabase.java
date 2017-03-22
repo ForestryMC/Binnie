@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
@@ -21,7 +22,6 @@ public class ItemDatabase extends ItemCore {
 	public ItemDatabase() {
 		super("geneticdatabase");
 		this.setCreativeTab(CreativeTabGenetics.instance);
-		this.setUnlocalizedName("database");
 		this.setMaxStackSize(1);
 	}
 
@@ -40,18 +40,26 @@ public class ItemDatabase extends ItemCore {
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		final ItemStack itemStack = playerIn.getHeldItem(handIn);
-		if (itemStack.getItemDamage() == 0) {
-			Genetics.proxy.openGui(GeneticsGUI.Database, playerIn, playerIn.getPosition());
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+		ItemStack itemStack = player.getHeldItem(hand);
+		final GeneticsGUI id;
+		if (isMaster(itemStack)) {
+			id = GeneticsGUI.Database;
 		} else {
-			Genetics.proxy.openGui(GeneticsGUI.DatabaseNEI, playerIn, playerIn.getPosition());
+			id = GeneticsGUI.DatabaseNEI;
 		}
-		return super.onItemRightClick(worldIn, playerIn, handIn);
+
+		Genetics.proxy.openGui(id, player, player.getPosition());
+		
+		return new ActionResult(EnumActionResult.PASS, itemStack);
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack i) {
-		return (i.getItemDamage() == 0) ? "Gene Database" : "Master Gene Database";
+	public String getItemStackDisplayName(ItemStack itemStack) {
+		return Genetics.proxy.localise(isMaster(itemStack) ? "item.database.master.name" : "item.database.name");
+	}
+	
+	protected boolean isMaster(ItemStack itemStack){
+		return itemStack.getItemDamage() > 0;
 	}
 }

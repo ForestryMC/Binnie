@@ -16,21 +16,20 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public class ItemETFood extends ItemFood implements IItemModelRegister {
-	IItemMiscProvider[] items;
+	static final IItemMiscProvider[] items = Food.VALUES;
 
 	public ItemETFood() {
 		super(0, 0.0f, false);
 		this.setUnlocalizedName("food");
 		this.setCreativeTab(Tabs.tabArboriculture);
 		this.setHasSubtypes(true);
-		this.items = Food.VALUES;
 		setRegistryName("food");
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {
-		for (IItemMiscProvider item : this.items) {
+		for (IItemMiscProvider item : ItemETFood.items) {
 			if (item.isActive()) {
 				subItems.add(this.getStack(item, 1));
 			}
@@ -38,7 +37,7 @@ public class ItemETFood extends ItemFood implements IItemModelRegister {
 	}
 
 	private IItemMiscProvider getItem(int damage) {
-		return (damage >= this.items.length) ? this.items[0] : this.items[damage];
+		return (damage >= ItemETFood.items.length) ? ItemETFood.items[0] : ItemETFood.items[damage];
 	}
 
 	public ItemStack getStack(IItemMiscProvider type, int size) {
@@ -47,15 +46,15 @@ public class ItemETFood extends ItemFood implements IItemModelRegister {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
+	public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
 		IItemMiscProvider item = this.getItem(stack.getItemDamage());
 		item.addInformation(tooltip);
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack stack) {
-		IItemMiscProvider item = this.getItem(stack.getItemDamage());
-		return item.getName(stack);
+	public String getItemStackDisplayName(ItemStack itemStack) {
+		IItemMiscProvider item = this.getItem(itemStack.getItemDamage());
+		return item.getName(itemStack);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -66,17 +65,17 @@ public class ItemETFood extends ItemFood implements IItemModelRegister {
 		}
 	}
 
-	private Food getFood(final ItemStack par1ItemStack) {
-		return Food.VALUES[par1ItemStack.getItemDamage()];
+	private Food getFood(ItemStack itemStack) {
+		return Food.VALUES[itemStack.getItemDamage()];
 	}
 
 	@Override
-	public int getHealAmount(ItemStack stack) {
-		return getFood(stack).getHealth();
+	public int getHealAmount(ItemStack itemStack) {
+		return getFood(itemStack).getHealth();
 	}
 
 	@Override
-	public float getSaturationModifier(ItemStack stack) {
+	public float getSaturationModifier(ItemStack itemStack) {
 		return 3.0f;
 	}
 }

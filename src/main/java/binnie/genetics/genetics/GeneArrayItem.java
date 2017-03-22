@@ -3,6 +3,7 @@ package binnie.genetics.genetics;
 import binnie.Binnie;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
+import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
 import forestry.api.core.INbtReadable;
 import forestry.api.core.INbtWritable;
@@ -64,7 +65,7 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 		} else {
 			list.add(totalList.get(0));
 			list.add(totalList.get(1));
-			list.add(totalList.size() - 2 + " " + Binnie.LANGUAGE.localise("genetic.item.gene.more.genes"));
+			list.add(totalList.size() - 2 + " " + Genetics.proxy.localise("item.gene.more.genes"));
 		}
 	}
 

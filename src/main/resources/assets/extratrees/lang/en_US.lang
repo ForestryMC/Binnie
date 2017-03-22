@@ -341,6 +341,14 @@ extratrees.species.candlenut.name=Candlenut
 extratrees.species.dwarfhazel.name=Dwarf Hazel
 
 
+extratrees.item.database.arborist.name=Arborist Database
+extratrees.item.database.arborist.master.tooltip=Sengir-in-a-can
+extratrees.item.database.arborist.master.name=Master Arborist Database
+extratrees.item.database.lepi.name=Lepidopterist Database
+extratrees.item.database.lepi.master.tooltip=Binnie's Emporium of Lepidopterans
+extratrees.item.database.lepi.master.name=Master Lepidopterist Database
+extratrees.item.hammer.name=Carpentry Hammer
+extratrees.item.hammer.master.name=Master Carpentry Hammer
 
 extratrees.item.food.apple=Apple
 extratrees.item.food.crabapple=Crabapple

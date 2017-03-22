@@ -99,15 +99,20 @@ genetics.gui.analyst.products.centrifuges=Centrifuges to give
 genetics.gui.analyst.products.squeezes=Squeezes to give
 genetics.gui.analyst.products.every=Every
 
-genetic.item.gene.empty=Empty
-genetic.item.gene.charge=Charge
-genetic.item.gene.charges=Charges
-genetic.item.gene.serum=Serum
-genetic.item.gene.serum.corrupted=Corrupted Serum
-genetic.item.gene.more.genes=more genes. Hold shift to display.
+genetics.item.gene.empty=Empty
+genetics.item.gene.charge=Charge
+genetics.item.gene.charges=Charges
+genetics.item.gene.serum=Serum
+genetics.item.gene.serum.corrupted=Corrupted Serum
+genetics.item.gene.serum.array=Serum Array
+genetics.item.gene.serum.array.corrupted=Corrupted Serum Array
+genetics.item.gene.more.genes=more genes. Hold shift to display.
 
+genetics.item.database.name=Gene Database
+genetics.item.database.master.name=Master Gene Database
 
-genetics.item.sequence=DNA Sequence
+genetics.item.sequence.corrupted.name=Corrupted Sequence
+genetics.item.sequence.name=DNA Sequence
 
 genetics.item.sequence.0=Very Faint
 genetics.item.sequence.1=Faint
@@ -115,6 +120,10 @@ genetics.item.sequence.2=Weak
 genetics.item.sequence.3=Average
 genetics.item.sequence.4=Strong
 genetics.item.sequence.5=Very Strong
+genetics.item.sequence.unknown=Unknown
+genetics.item.sequence.unsequenced=Unsequenced
+genetics.item.sequence.partially=Partially Sequenced (%s%)
+genetics.item.sequence.sequenced=Fully Sequenced
 
 bee.modifier.format.max=%.2fx (Max: %.2fx)
 bee.modifier.format.min=%.2fx (Min: %.2fx)

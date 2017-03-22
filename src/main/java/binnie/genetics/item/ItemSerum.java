@@ -14,7 +14,6 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -31,14 +30,8 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 		this.setMaxDamage(16);
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation(final ItemStack itemstack, final EntityPlayer entityPlayer, final List<String> list, final boolean par4) {
-		super.addInformation(itemstack, entityPlayer, list, par4);
-	}
-
-	@Override
-	public int getCharges(final ItemStack itemStack) {
+	public int getCharges(ItemStack itemStack) {
 		return itemStack.getMaxDamage() - itemStack.getItemDamage();
 	}
 
@@ -47,39 +40,40 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 		return itemStack.getMaxDamage();
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
-	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final NonNullList<ItemStack> itemList) {
-		for (final ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
-			final Map<IChromosomeType, List<IAllele>> chromosomeMap = Binnie.GENETICS.getChromosomeMap(root);
-			for (final Map.Entry<IChromosomeType, List<IAllele>> entry : chromosomeMap.entrySet()) {
-				final IChromosomeType chromosome = entry.getKey();
+	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems) {
+		for (ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
+			Map<IChromosomeType, List<IAllele>> chromosomeMap = Binnie.GENETICS.getChromosomeMap(root);
+			for (Map.Entry<IChromosomeType, List<IAllele>> entry : chromosomeMap.entrySet()) {
+				IChromosomeType chromosome = entry.getKey();
 				for (final IAllele allele : entry.getValue()) {
-					final Gene gene = Gene.create(allele, chromosome, root);
-					final IGeneItem item = new GeneItem(gene);
-					final ItemStack stack = new ItemStack(this);
-					item.writeToItem(stack);
-					itemList.add(stack);
+					Gene gene = Gene.create(allele, chromosome, root);
+					IGeneItem geneItem = new GeneItem(gene);
+					ItemStack stack = new ItemStack(item);
+					geneItem.writeToItem(stack);
+					subItems.add(stack);
 				}
 			}
 		}
 	}
 
 	@Override
-	public IGene[] getGenes(final ItemStack stack) {
-		GeneItem geneItem = this.getGeneItem(stack);
+	public IGene[] getGenes(ItemStack itemStack) {
+		GeneItem geneItem = this.getGeneItem(itemStack);
 		Preconditions.checkNotNull(geneItem, "Cannot get genes from itemStack that is not a valid serum.");
 		return new IGene[]{geneItem.getGene()};
 	}
 
 	@Override
-	public ISpeciesRoot getSpeciesRoot(final ItemStack stack) {
-		GeneItem geneItem = this.getGeneItem(stack);
+	public ISpeciesRoot getSpeciesRoot(ItemStack itemStack) {
+		GeneItem geneItem = this.getGeneItem(itemStack);
 		Preconditions.checkNotNull(geneItem, "Cannot get species root from itemStack that is not a valid serum.");
 		return geneItem.getSpeciesRoot();
 	}
 
 	@Override
-	public IGene getGene(final ItemStack stack, final int chromosome) {
+	public IGene getGene(ItemStack stack, int chromosome) {
 		GeneItem geneItem = this.getGeneItem(stack);
 		Preconditions.checkNotNull(geneItem, "Cannot get gene from itemStack that is not a valid serum.");
 		return geneItem.getGene();
@@ -87,23 +81,23 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 
 	@Override
 	@Nullable
-	public GeneItem getGeneItem(final ItemStack itemStack) {
+	public GeneItem getGeneItem(ItemStack itemStack) {
 		return GeneItem.create(itemStack);
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack itemstack) {
-		final GeneItem gene = this.getGeneItem(itemstack);
+	public String getItemStackDisplayName(ItemStack itemstack) {
+		GeneItem gene = this.getGeneItem(itemstack);
 		if (gene != null && gene.getSpeciesRoot() != null) {
 			BreedingSystem system = Binnie.GENETICS.getSystem(gene.getSpeciesRoot());
-			return system.getDescriptor() + " " + Binnie.LANGUAGE.localise("genetic.item.gene.serum");
+			return system.getDescriptor() + " " + Genetics.proxy.localise("item.gene.serum");
 		} else {
-			return Binnie.LANGUAGE.localise("genetic.item.gene.corrupted.serum");
+			return Genetics.proxy.localise("item.gene.corrupted.serum");
 		}
 	}
 
 	@Override
-	public ItemStack addGene(final ItemStack stack, final IGene gene) {
+	public ItemStack addGene(ItemStack stack, IGene gene) {
 		final IGeneItem geneI = this.getGeneItem(stack);
 		Preconditions.checkNotNull(geneI, "Cannot add gene to itemStack that is not a valid serum.");
 		geneI.addGene(gene);

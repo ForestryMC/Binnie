@@ -30,54 +30,47 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 		super("sequence");
 		this.setMaxStackSize(1);
 		this.setMaxDamage(5);
-		this.setUnlocalizedName("sequence");
 		this.setCreativeTab(CreativeTabGenetics.instance);
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack itemstack) {
-		final GeneItem gene = GeneItem.create(itemstack);
+	public String getItemStackDisplayName(ItemStack itemstack) {
+		GeneItem gene = GeneItem.create(itemstack);
 		if (gene == null) {
-			return "Corrupted Sequence";
+			return Genetics.proxy.localise("item.sequence.corrupted");
 		} else {
-			return gene.getBreedingSystem().getDescriptor() + " DNA Sequence";
+			return gene.getBreedingSystem().getDescriptor() + " " + Genetics.proxy.localise("item.sequence.name");
 		}
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(final ItemStack itemstack, final EntityPlayer entityPlayer, final List<String> list, final boolean par4) {
-		super.addInformation(itemstack, entityPlayer, list, par4);
-		list.add(Genetics.proxy.localise("item.sequence." + (5 - itemstack.getItemDamage() % 6)));
-		final SequencerItem gene = SequencerItem.create(itemstack);
+	public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> subItems, boolean advanced) {
+		subItems.add(Genetics.proxy.localise("item.sequence." + (5 - itemStack.getItemDamage() % 6)));
+		SequencerItem gene = SequencerItem.create(itemStack);
 		if (gene != null) {
 			if (gene.analysed) {
-				gene.getInfo(list);
+				gene.getInfo(subItems);
 			} else {
-				list.add("<Unknown>");
+				subItems.add("<" + Genetics.proxy.localise("item.sequence.unknown") + ">");
 			}
-			final int seq = gene.sequenced;
+			int seq = gene.sequenced;
 			if (seq == 0) {
-				list.add("Unsequenced");
+				subItems.add(Genetics.proxy.localise("item.sequence.unsequenced"));
 			} else if (seq < 100) {
-				list.add("Partially Sequenced (" + seq + "%)");
+				subItems.add(String.format(Genetics.proxy.localise("genetics.item.sequence.partially"), seq));
 			} else {
-				list.add("Fully Sequenced");
+				subItems.add(Genetics.proxy.localise("item.sequence.sequenced"));
 			}
 		}
 	}
 
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerIcons(final IIconRegister register) {
-//		this.itemIcon = Genetics.proxy.getIcon(register, "sequencer");
-//	}
-
+	@SideOnly(Side.CLIENT)
 	@Override
-	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final NonNullList<ItemStack> itemList) {
+	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems) {
 		final IAlleleBeeSpecies species = (IAlleleBeeSpecies) AlleleManager.alleleRegistry.getAllele("forestry.speciesMeadows");
 		Preconditions.checkNotNull(species);
-		itemList.add(create(new Gene(species, EnumBeeChromosome.SPECIES, Binnie.GENETICS.getBeeRoot()), false));
+		subItems.add(create(new Gene(species, EnumBeeChromosome.SPECIES, Binnie.GENETICS.getBeeRoot()), false));
 	}
 
 	@Override
