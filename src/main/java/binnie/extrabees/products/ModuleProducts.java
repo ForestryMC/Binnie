@@ -22,11 +22,11 @@ public class ModuleProducts implements IInitializable {
 		ExtraBees.proxy.registerItem(ExtraBees.comb);
 		ExtraBees.proxy.registerItem(ExtraBees.honeyDrop);
 		ExtraBees.proxy.registerItem(ExtraBees.propolis);
-		ExtraBees.proxy.registermodel(ExtraBees.honeyCrystal, 0);
-		ExtraBees.proxy.registermodel(ExtraBees.honeyCrystalEmpty, 0);
+		ExtraBees.proxy.registerModel(ExtraBees.honeyCrystal, 0);
+		ExtraBees.proxy.registerModel(ExtraBees.honeyCrystalEmpty, 0);
 		for (EnumHoneyComb c : EnumHoneyComb.values()) {
 			if (c.isActive())
-				ExtraBees.proxy.registermodel(ExtraBees.comb, c.ordinal());
+				ExtraBees.proxy.registerModel(ExtraBees.comb, c.ordinal());
 		}
 
 

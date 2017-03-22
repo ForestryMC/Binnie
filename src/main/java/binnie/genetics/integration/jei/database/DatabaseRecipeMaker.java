@@ -3,6 +3,7 @@ package binnie.genetics.integration.jei.database;
 import binnie.genetics.Genetics;
 import binnie.genetics.integration.jei.GeneticsJeiPlugin;
 import binnie.genetics.item.GeneticsItems;
+import binnie.genetics.item.ModuleItems;
 import mezz.jei.api.recipe.IStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -13,10 +14,11 @@ import java.util.List;
 public class DatabaseRecipeMaker {
 	public static List<DatabaseRecipeWrapper> create() {
 		List<DatabaseRecipeWrapper> recipes = new ArrayList<>();
+		ModuleItems items = Genetics.items();
 
 		{
 			ItemStack emptySerum = GeneticsItems.EmptySerum.get(1);
-			ItemStack resultSerum = new ItemStack(Genetics.itemSerum, 1, OreDictionary.WILDCARD_VALUE);
+			ItemStack resultSerum = new ItemStack(items.itemSerum, 1, OreDictionary.WILDCARD_VALUE);
 			IStackHelper stackHelper = GeneticsJeiPlugin.jeiHelpers.getStackHelper();
 			List<ItemStack> subtypes = stackHelper.toItemStackList(resultSerum);
 			List<ItemStack> resultSerums = new ArrayList<>();
@@ -30,7 +32,7 @@ public class DatabaseRecipeMaker {
 
 		{
 			ItemStack emptySerumArray = GeneticsItems.EmptyGenome.get(1);
-			ItemStack resultSerumArray = new ItemStack(Genetics.itemSerumArray, 1, OreDictionary.WILDCARD_VALUE);
+			ItemStack resultSerumArray = new ItemStack(items.itemSerumArray, 1, OreDictionary.WILDCARD_VALUE);
 			IStackHelper stackHelper = GeneticsJeiPlugin.jeiHelpers.getStackHelper();
 			List<ItemStack> subtypes = stackHelper.toItemStackList(resultSerumArray);
 			List<ItemStack> resultSerumArrays = new ArrayList<>();

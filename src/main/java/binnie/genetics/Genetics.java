@@ -4,22 +4,15 @@ import binnie.Constants;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.gui.IBinnieGUID;
-import binnie.core.machines.MachineGroup;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
 import binnie.core.proxy.IProxyCore;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsPacket;
-import binnie.genetics.item.ItemAnalyst;
-import binnie.genetics.item.ItemDatabase;
-import binnie.genetics.item.ItemSequence;
-import binnie.genetics.item.ItemSerum;
-import binnie.genetics.item.ItemSerumArray;
-import binnie.genetics.item.ModuleItem;
+import binnie.genetics.item.ModuleItems;
 import binnie.genetics.machine.ModuleMachine;
 import binnie.genetics.proxy.Proxy;
 import com.google.common.base.Preconditions;
-import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -37,28 +30,11 @@ public class Genetics extends AbstractMod {
 	@SidedProxy(clientSide = "binnie.genetics.proxy.ProxyClient", serverSide = "binnie.genetics.proxy.ProxyServer")
 	public static Proxy proxy;
 
-	public static String channel = "GEN";
+	public static final String CHANNEL = "GEN";
 	@Nullable
-	private static Item itemGenetics;
-	public static ItemSerum itemSerum;
-	public static ItemSequence itemSequencer;
-	public static MachineGroup packageGenetic;
-	public static MachineGroup packageAdvGenetic;
-	public static MachineGroup packageLabMachine;
-	public static ItemDatabase database;
-	public static ItemAnalyst analyst;
-	public static Item registry;
-	public static Item masterRegistry;
-	public static ItemSerumArray itemSerumArray = null;
-
-	public static Item getItemGenetics() {
-		Preconditions.checkState(itemGenetics != null);
-		return itemGenetics;
-	}
-
-	public static void setItemGenetics(Item itemGenetics) {
-		Genetics.itemGenetics = itemGenetics;
-	}
+	private static ModuleItems items;
+	@Nullable
+	private static ModuleMachine machine;
 
 	@Mod.EventHandler
 	public void preInit(final FMLPreInitializationEvent evt) {
@@ -75,10 +51,20 @@ public class Genetics extends AbstractMod {
 		this.postInit();
 	}
 
+	public static ModuleItems items() {
+		Preconditions.checkState(items != null);
+		return items;
+	}
+	
+	public static ModuleMachine machine() {
+		Preconditions.checkState(machine != null);
+		return machine;
+	}
+
 	@Override
 	protected void registerModules() {
-		this.addModule(new ModuleItem());
-		this.addModule(new ModuleMachine());
+		this.addModule(items = new ModuleItems());
+		this.addModule(machine = new ModuleMachine());
 	}
 
 	@Override
@@ -93,7 +79,7 @@ public class Genetics extends AbstractMod {
 
 	@Override
 	public String getChannel() {
-		return "GEN";
+		return CHANNEL;
 	}
 
 	@Override

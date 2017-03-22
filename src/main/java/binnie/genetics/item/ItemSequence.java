@@ -98,7 +98,7 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 	}
 
 	public static ItemStack create(final IGene gene, final boolean sequenced) {
-		final ItemStack item = new ItemStack(Genetics.itemSequencer);
+		final ItemStack item = new ItemStack(Genetics.items().itemSequencer);
 		item.setItemDamage(sequenced ? 0 : item.getMaxDamage());
 		final SequencerItem seq = new SequencerItem(gene);
 		seq.writeToItem(item);

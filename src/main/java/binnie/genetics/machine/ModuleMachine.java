@@ -23,12 +23,16 @@ public class ModuleMachine implements IInitializable {
 	public static ValidatorSprite spriteDye;
 	public static ValidatorSprite spriteBacteria;
 	public static ValidatorSprite spriteNugget;
+	
+	public static MachineGroup packageGenetic;
+	public static MachineGroup packageAdvGenetic;
+	public static MachineGroup packageLabMachine;
 
 	@Override
 	public void preInit() {
-		(Genetics.packageGenetic = new MachineGroup(Genetics.instance, "machine", "machine", GeneticMachine.values())).setCreativeTab(CreativeTabGenetics.instance);
-		(Genetics.packageLabMachine = new MachineGroup(Genetics.instance, "lab_machine", "lab_machine", LaboratoryMachine.values())).setCreativeTab(CreativeTabGenetics.instance);
-		(Genetics.packageAdvGenetic = new MachineGroup(Genetics.instance, "adv_machine", "adv_machine", AdvGeneticMachine.values())).setCreativeTab(CreativeTabGenetics.instance);
+		(packageGenetic = new MachineGroup(Genetics.instance, "machine", "machine", GeneticMachine.values())).setCreativeTab(CreativeTabGenetics.instance);
+		(packageLabMachine = new MachineGroup(Genetics.instance, "lab_machine", "lab_machine", LaboratoryMachine.values())).setCreativeTab(CreativeTabGenetics.instance);
+		(packageAdvGenetic = new MachineGroup(Genetics.instance, "adv_machine", "adv_machine", AdvGeneticMachine.values())).setCreativeTab(CreativeTabGenetics.instance);
 	}
 
 	@Override

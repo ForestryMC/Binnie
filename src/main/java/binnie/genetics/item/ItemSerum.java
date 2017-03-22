@@ -106,7 +106,7 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 	}
 
 	public static ItemStack create(final IGene gene) {
-		final ItemStack item = new ItemStack(Genetics.itemSerum);
+		final ItemStack item = new ItemStack(Genetics.items().itemSerum);
 		item.setItemDamage(item.getMaxDamage());
 		final GeneItem seq = new GeneItem(gene);
 		seq.writeToItem(item);

@@ -30,11 +30,26 @@ public class MachineGroup {
 		this.mod = mod;
 		this.uid = uid;
 		this.blockName = blockName;
-		for (final IMachineType type : types) {
+		createPackages(types);
+		Binnie.MACHINE.registerMachineGroup(this);
+		this.block = new BlockMachine(this, blockName);
+		mod.getProxy().registerBlock(this.block);
+		Item i = mod.getProxy().registerItem(new ItemMachine(this.block));
+		for (int j = 0; j < types.length; j++) {
+			BinnieCore.getBinnieProxy().registerModel(i, j, new ModelResourceLocation(i.getRegistryName(), "machine_type=" + j));
+		}
+
+		for (final MachinePackage pack : this.getPackages()) {
+			pack.register();
+		}
+	}
+	
+	private void createPackages(IMachineType[] types){
+		for (IMachineType type : types) {
 			if (type.getPackageClass() != null) {
 				if (type.isActive()) {
 					try {
-						final MachinePackage pack = type.getPackageClass().newInstance();
+						MachinePackage pack = type.getPackageClass().newInstance();
 						pack.assignMetadata(type.ordinal());
 						pack.setActive(type.isActive());
 						this.addPackage(pack);
@@ -43,17 +58,6 @@ public class MachineGroup {
 					}
 				}
 			}
-		}
-		Binnie.MACHINE.registerMachineGroup(this);
-		this.block = new BlockMachine(this, blockName);
-		mod.getProxy().registerBlock(this.block);
-		Item i = mod.getProxy().registerItem(new ItemMachine(this.block));
-		for (int j = 0; j < types.length; j++) {
-			BinnieCore.getBinnieProxy().registermodel(i, j, new ModelResourceLocation(i.getRegistryName(), "machine_type=" + j));
-		}
-
-		for (final MachinePackage pack2 : this.getPackages()) {
-			pack2.register();
 		}
 	}
 

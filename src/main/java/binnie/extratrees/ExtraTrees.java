@@ -56,6 +56,19 @@ public class ExtraTrees extends AbstractMod {
 	@SuppressWarnings("NullableProblems")
 	@SidedProxy(clientSide = "binnie.extratrees.proxy.ProxyClient", serverSide = "binnie.extratrees.proxy.ProxyServer")
 	public static Proxy proxy;
+	
+	@Nullable
+	private static ModuleBlocks blocks;
+	@Nullable
+	private static ModuleItems items;
+	@Nullable
+	private static ModuleAlcohol alcohol;
+	@Nullable
+	private static ModuleCarpentry carpentry;
+	@Nullable
+	private static ModuleMachine machine;
+	@Nullable
+	private static ModuleKitchen kitchen;
 
 	@Mod.EventHandler
 	public void onConstruction(FMLConstructionEvent e) {
@@ -76,19 +89,6 @@ public class ExtraTrees extends AbstractMod {
 	public void postInit(final FMLPostInitializationEvent evt) {
 		this.postInit();
 	}
-
-	@Nullable
-	private static ModuleBlocks blocks;
-	@Nullable
-	private static ModuleItems items;
-	@Nullable
-	private static ModuleAlcohol alcohol;
-	@Nullable
-	private static ModuleCarpentry carpentry;
-	@Nullable
-	private static ModuleMachine machine;
-	@Nullable
-	private static ModuleKitchen kitchen;
 
 	public static ModuleItems items() {
 		Preconditions.checkState(items != null);

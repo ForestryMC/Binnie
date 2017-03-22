@@ -19,7 +19,7 @@ public class Engineering {
 		if (stack.getItem() instanceof IItemSerum) {
 			return ((IItemSerum) stack.getItem()).getCharges(stack) == 0;
 		}
-		return stack.getItem() == Genetics.getItemGenetics() && (stack.getItemDamage() == GeneticsItems.EmptySerum.ordinal() || stack.getItemDamage() == GeneticsItems.EmptyGenome.ordinal());
+		return stack.getItem() == Genetics.items().getItemGenetics() && (stack.getItemDamage() == GeneticsItems.EmptySerum.ordinal() || stack.getItemDamage() == GeneticsItems.EmptyGenome.ordinal());
 	}
 
 	public static boolean canAcceptGene(final ItemStack stack, final IGene gene) {
@@ -44,10 +44,10 @@ public class Engineering {
 		if (stack.getItem() instanceof IItemSerum) {
 			((IItemSerum) stack.getItem()).addGene(stack, gene);
 		}
-		if (stack.getItem() == Genetics.getItemGenetics() && stack.getItemDamage() == GeneticsItems.EmptySerum.ordinal()) {
+		if (stack.getItem() == Genetics.items().getItemGenetics() && stack.getItemDamage() == GeneticsItems.EmptySerum.ordinal()) {
 			return ItemSerum.create(gene);
 		}
-		if (stack.getItem() == Genetics.getItemGenetics() && stack.getItemDamage() == GeneticsItems.EmptyGenome.ordinal()) {
+		if (stack.getItem() == Genetics.items().getItemGenetics() && stack.getItemDamage() == GeneticsItems.EmptyGenome.ordinal()) {
 			return ItemSerumArray.create(gene);
 		}
 		return stack;
@@ -58,7 +58,7 @@ public class Engineering {
 			if (serum.getItem() instanceof IItemSerum) {
 				return ((IItemSerum) serum.getItem()).getGenes(serum);
 			}
-			if (serum.getItem() == Genetics.itemSequencer) {
+			if (serum.getItem() == Genetics.items().itemSequencer) {
 				SequencerItem sequencerItem = SequencerItem.create(serum);
 				if (sequencerItem != null) {
 					return new IGene[]{sequencerItem.getGene()};

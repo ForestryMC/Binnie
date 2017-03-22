@@ -88,11 +88,11 @@ public class BinnieModProxy implements IBinnieModProxy {
 		this.getMod().getNetworkWrapper().sendToServer(packet.GetMessage());
 	}
 
-	public void registermodel(Item item, int meta) {
+	public void registerModel(Item item, int meta) {
 
 	}
 
-	public void registermodel(Item item, int meta, ModelResourceLocation modelResourceLocation) {
+	public void registerModel(Item item, int meta, ModelResourceLocation modelResourceLocation) {
 
 	}
 

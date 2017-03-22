@@ -29,6 +29,7 @@ import binnie.genetics.integration.jei.polymeriser.PolymeriserRecipeWrapper;
 import binnie.genetics.integration.jei.sequencer.SequencerRecipeCategory;
 import binnie.genetics.integration.jei.sequencer.SequencerRecipeMaker;
 import binnie.genetics.integration.jei.sequencer.SequencerRecipeWrapper;
+import binnie.genetics.item.ModuleItems;
 import binnie.genetics.machine.AdvGeneticMachine;
 import binnie.genetics.machine.GeneticMachine;
 import binnie.genetics.machine.LaboratoryMachine;
@@ -55,7 +56,8 @@ public class GeneticsJeiPlugin extends BlankModPlugin {
 
 	@Override
 	public void registerItemSubtypes(ISubtypeRegistry subtypeRegistry) {
-		List<Item> chargeables = Arrays.asList(Genetics.itemSequencer, Genetics.itemSerum, Genetics.itemSerumArray);
+		ModuleItems items = Genetics.items();
+		List<Item> chargeables = Arrays.asList(items.itemSequencer, items.itemSerum, items.itemSerumArray);
 		ChargeableSubtypeInterpreter chargeableSubtypeInterpreter = new ChargeableSubtypeInterpreter();
 		for (Item chargeable : chargeables) {
 			subtypeRegistry.registerSubtypeInterpreter(chargeable, chargeableSubtypeInterpreter);
@@ -99,8 +101,8 @@ public class GeneticsJeiPlugin extends BlankModPlugin {
 		registry.addRecipeCategoryCraftingItem(GeneticMachine.Inoculator.get(1), RecipeUids.INOCULATOR);
 		registry.addRecipeCategoryCraftingItem(AdvGeneticMachine.Splicer.get(1), RecipeUids.SPLICER);
 		registry.addRecipeCategoryCraftingItem(LaboratoryMachine.Genepool.get(1), RecipeUids.GENEPOOL);
-		registry.addRecipeCategoryCraftingItem(new ItemStack(Genetics.database), RecipeUids.DATABASE);
-		registry.addRecipeCategoryCraftingItem(new ItemStack(Genetics.database, 1, 1), RecipeUids.DATABASE);
+		registry.addRecipeCategoryCraftingItem(new ItemStack(Genetics.items().database), RecipeUids.DATABASE);
+		registry.addRecipeCategoryCraftingItem(new ItemStack(Genetics.items().database, 1, 1), RecipeUids.DATABASE);
 
 		registry.addRecipes(Incubator.getRecipes());
 		registry.addRecipes(LarvaeIncubatorRecipeMaker.create(Incubator.getLarvaeRecipe()));

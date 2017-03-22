@@ -23,12 +23,12 @@ public class ExtraBeesProxyClient extends ExtraBeesProxy {
 	}
 
 	@Override
-	public void registermodel(Item item, int meta) {
-		registermodel(item, meta, new ModelResourceLocation(item.getRegistryName(), "inventory"));
+	public void registerModel(Item item, int meta) {
+		registerModel(item, meta, new ModelResourceLocation(item.getRegistryName(), "inventory"));
 	}
 
 	@Override
-	public void registermodel(Item item, int meta, ModelResourceLocation modelResourceLocation) {
+	public void registerModel(Item item, int meta, ModelResourceLocation modelResourceLocation) {
 		ModelLoader.setCustomModelResourceLocation(item, meta, modelResourceLocation);
 	}
 

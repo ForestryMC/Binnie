@@ -43,7 +43,7 @@ public class DatabaseRecipeWrapper extends BlankRecipeWrapper {
 	public void getIngredients(IIngredients ingredients) {
 		ingredients.setInputs(ItemStack.class, Arrays.asList(
 				input,
-				new ItemStack(Genetics.database)
+				new ItemStack(Genetics.items().database)
 		));
 
 		ingredients.setOutputLists(ItemStack.class, Collections.singletonList(outputs));

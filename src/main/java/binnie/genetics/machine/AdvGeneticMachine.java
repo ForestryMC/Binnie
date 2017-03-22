@@ -27,7 +27,8 @@ public enum AdvGeneticMachine implements IMachineType {
 	}
 
 	public ItemStack get(final int i) {
-		return new ItemStack(Genetics.packageAdvGenetic.getBlock(), i, this.ordinal());
+		Genetics.machine();
+		return new ItemStack(ModuleMachine.packageAdvGenetic.getBlock(), i, this.ordinal());
 	}
 
 	public abstract static class PackageAdvGeneticBase extends GeneticMachine.PackageGeneticBase {
