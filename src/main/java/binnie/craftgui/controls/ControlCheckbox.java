@@ -5,8 +5,8 @@ import binnie.craftgui.controls.core.IControlValue;
 import binnie.craftgui.core.Attribute;
 import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.geometry.TextJustification;
 import binnie.craftgui.events.EventHandler;
 import binnie.craftgui.events.EventMouse;
@@ -28,7 +28,7 @@ public class ControlCheckbox extends Control implements IControlValue<Boolean> {
 		this.text = text;
 		this.value = bool;
 		if (w > 16) {
-			new ControlText(this, new IArea(16, 1, w - 16, 16), text, TextJustification.MiddleCenter).setColour(4473924);
+			new ControlText(this, new Area(16, 1, w - 16, 16), text, TextJustification.MiddleCenter).setColour(4473924);
 		}
 		this.addAttribute(Attribute.MouseOver);
 		this.addEventHandler(new EventMouse.Down.Handler() {
@@ -65,6 +65,6 @@ public class ControlCheckbox extends Control implements IControlValue<Boolean> {
 		if (this.isMouseOver()) {
 			texture = (this.getValue() ? CraftGUITexture.CheckboxCheckedHighlighted : CraftGUITexture.CheckboxHighlighted);
 		}
-		CraftGUI.render.texture(texture, IPoint.ZERO);
+		CraftGUI.render.texture(texture, Point.ZERO);
 	}
 }

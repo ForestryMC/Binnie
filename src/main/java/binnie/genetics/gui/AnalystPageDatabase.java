@@ -9,17 +9,19 @@ import binnie.craftgui.controls.scroll.ControlScrollBar;
 import binnie.craftgui.controls.scroll.ControlScrollableContent;
 import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.geometry.TextJustification;
 import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.minecraft.MinecraftGUI;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.craftgui.window.Panel;
+import binnie.genetics.Genetics;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -31,7 +33,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 	private final ControlScrollableContent scroll;
 	boolean isMaster;
 
-	public AnalystPageDatabase(final IWidget parent, final IArea area, final BreedingSystem system, final boolean isMaster) {
+	public AnalystPageDatabase(final IWidget parent, final Area area, final BreedingSystem system, final boolean isMaster) {
 		super(parent, area);
 		this.isMaster = isMaster;
 		final int cOfSystem = system.getColour();
@@ -46,7 +48,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 		final int newColour = (int) (cr * brightness) * 65536 + (int) (cg * brightness) * 256 + (int) (cb * brightness);
 		this.setColour(newColour);
 		int y = 4;
-		new ControlTextCentered(this, y, "§nRegistry").setColour(this.getColour());
+		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColour(this.getColour());
 		y += 16;
 		new ControlTextEdit(this, 20, y, this.width() - 40, 16) {
 			@Override
@@ -171,14 +173,14 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 						dy += 18;
 					}
 				}
-				this.setSize(new IPoint(this.width(), 4 + dy + 18));
+				this.setSize(new Point(this.width(), 4 + dy + 18));
 			}
 		};
 	}
 
 	@Override
 	public String getTitle() {
-		return "Registry";
+		return Genetics.proxy.localise("gui.analyst.registry.title");
 	}
 
 	private Collection<IAlleleSpecies> getSpecies(final BreedingSystem system) {

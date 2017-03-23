@@ -5,7 +5,7 @@ import binnie.craftgui.controls.ControlTextCentered;
 import binnie.craftgui.controls.listbox.ControlList;
 import binnie.craftgui.controls.listbox.ControlOption;
 import binnie.craftgui.core.geometry.CraftGUIUtil;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.minecraft.control.ControlItemDisplay;
 
 import java.text.DecimalFormat;
@@ -17,7 +17,7 @@ public class ControlProductsItem extends ControlOption<ControlProductsBox.Produc
 		super(controlList, value, y);
 		(this.item = new ControlItemDisplay(this, 4, 4)).setTooltip();
 		final ControlText textWidget = new ControlTextCentered(this, 2, "");
-		CraftGUIUtil.moveWidget(textWidget, new IPoint(12, 0));
+		CraftGUIUtil.moveWidget(textWidget, new Point(12, 0));
 		if (value != null) {
 			this.item.setItemStack(value.item);
 			final int time = (int) (55000.0 / value.chance);

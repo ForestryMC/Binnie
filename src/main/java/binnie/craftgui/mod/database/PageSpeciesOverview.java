@@ -5,8 +5,8 @@ import binnie.craftgui.controls.ControlText;
 import binnie.craftgui.controls.ControlTextCentered;
 import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.geometry.TextJustification;
 import forestry.api.genetics.IAlleleSpecies;
 import net.minecraft.util.text.TextFormatting;
@@ -31,8 +31,8 @@ public class PageSpeciesOverview extends PageSpecies {
 		this.controlScientific = new ControlTextCentered(this, 32, "");
 		this.controlAuthority = new ControlTextCentered(this, 44, "");
 		this.controlComplexity = new ControlTextCentered(this, 68, "");
-		this.controlDescription = new ControlText(this, new IArea(8, 84, this.getSize().x() - 16, 0), "", TextJustification.MiddleCenter);
-		this.controlSignature = new ControlText(this, new IArea(8, 84, this.getSize().x() - 16, 0), "", TextJustification.BottomRight);
+		this.controlDescription = new ControlText(this, new Area(8, 84, this.getSize().x() - 16, 0), "", TextJustification.MiddleCenter);
+		this.controlSignature = new ControlText(this, new Area(8, 84, this.getSize().x() - 16, 0), "", TextJustification.BottomRight);
 	}
 
 	@Override
@@ -63,6 +63,6 @@ public class PageSpeciesOverview extends PageSpecies {
 		this.controlDescription.setValue(descBody + TextFormatting.RESET);
 		this.controlSignature.setValue(descSig);
 		final int descHeight = CraftGUI.render.textHeight(this.controlDescription.getValue(), this.controlDescription.getSize().x());
-		this.controlSignature.setPosition(new IPoint(this.controlSignature.pos().x(), this.controlDescription.getPosition().y() + descHeight + 10));
+		this.controlSignature.setPosition(new Point(this.controlSignature.pos().x(), this.controlDescription.getPosition().y() + descHeight + 10));
 	}
 }

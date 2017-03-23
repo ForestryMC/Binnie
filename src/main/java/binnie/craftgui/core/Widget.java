@@ -1,7 +1,7 @@
 package binnie.craftgui.core;
 
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.events.Event;
 import binnie.craftgui.events.EventHandler;
 import binnie.craftgui.events.EventWidget;
@@ -18,11 +18,11 @@ public class Widget implements IWidget {
 	private final IWidget parent;
 	private List<IWidget> subWidgets;
 	private List<IWidgetAttribute> attributes;
-	private IPoint position;
-	private IPoint size;
-	private IPoint offset;
+	private Point position;
+	private Point size;
+	private Point offset;
 	@Nullable
-	IArea cropArea;
+	Area cropArea;
 	@Nullable
 	IWidget cropWidget;
 	boolean cropped;
@@ -34,9 +34,9 @@ public class Widget implements IWidget {
 	public Widget(@Nullable final IWidget parent) {
 		this.subWidgets = new ArrayList<>();
 		this.attributes = new ArrayList<>();
-		this.position = IPoint.ZERO;
-		this.size = IPoint.ZERO;
-		this.offset = IPoint.ZERO;
+		this.position = Point.ZERO;
+		this.size = Point.ZERO;
+		this.offset = Point.ZERO;
 		this.cropped = false;
 		this.colour = 16777215;
 		this.globalEventHandlers = new ArrayList<>();
@@ -119,90 +119,90 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public final IPoint pos() {
+	public final Point pos() {
 		return this.position.add(this.offset);
 	}
 
 	@Override
-	public final IPoint size() {
+	public final Point size() {
 		return this.size;
 	}
 
 	@Override
-	public final IArea area() {
+	public final Area area() {
 		return this.getArea();
 	}
 
 	@Override
-	public final IPoint getPosition() {
+	public final Point getPosition() {
 		return this.pos();
 	}
 
 	@Override
-	public final IArea getArea() {
-		return new IArea(IPoint.ZERO, this.size());
+	public final Area getArea() {
+		return new Area(Point.ZERO, this.size());
 	}
 
 	@Override
-	public final IPoint getOriginalPosition() {
+	public final Point getOriginalPosition() {
 		return this.position;
 	}
 
 	@Override
 	@Nullable
-	public IArea getCroppedZone() {
+	public Area getCroppedZone() {
 		return this.cropArea;
 	}
 
 	@Override
-	public void setCroppedZone(final IWidget relative, final IArea area) {
+	public void setCroppedZone(final IWidget relative, final Area area) {
 		this.cropArea = area;
 		this.cropped = true;
 		this.cropWidget = relative;
 	}
 
 	@Override
-	public final IPoint getAbsolutePosition() {
+	public final Point getAbsolutePosition() {
 		IWidget parent = this.getParent();
 		return parent == null ? this.getPosition() : parent.getAbsolutePosition().add(this.getPosition());
 	}
 
 	@Override
-	public final IPoint getOriginalAbsolutePosition() {
+	public final Point getOriginalAbsolutePosition() {
 		IWidget parent = this.getParent();
 		return parent == null ? this.getOriginalPosition() : parent.getOriginalPosition().sub(this.getOriginalPosition());
 	}
 
 	@Override
-	public final IPoint getSize() {
+	public final Point getSize() {
 		return this.size();
 	}
 
 	@Override
-	public final IPoint getOffset() {
+	public final Point getOffset() {
 		return this.offset;
 	}
 
 	@Override
-	public final void setPosition(final IPoint vector) {
+	public final void setPosition(final Point vector) {
 		if (!vector.equals(this.position)) {
-			this.position = new IPoint(vector);
+			this.position = new Point(vector);
 			this.callEvent(new EventWidget.ChangePosition(this));
 		}
 	}
 
 	@Override
-	public final void setSize(final IPoint vector) {
+	public final void setSize(final Point vector) {
 		if (!vector.equals(this.size)) {
-			this.size = new IPoint(vector);
+			this.size = new Point(vector);
 			this.callEvent(new EventWidget.ChangeSize(this));
 		}
 	}
 
 	@Override
-	public final void setOffset(final IPoint vector) {
+	public final void setOffset(final Point vector) {
 		if (vector != this.offset) {
-			this.offset = new IPoint(vector);
+			this.offset = new Point(vector);
 			this.callEvent(new EventWidget.ChangeOffset(this));
 		}
 	}
@@ -260,12 +260,12 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public final IPoint getMousePosition() {
+	public final Point getMousePosition() {
 		return this.getTopParent().getAbsoluteMousePosition();
 	}
 
 	@Override
-	public final IPoint getRelativeMousePosition() {
+	public final Point getRelativeMousePosition() {
 		IWidget parent = this.getParent();
 		return parent == null ? this.getMousePosition() : parent.getRelativeMousePosition().sub(this.getPosition());
 	}
@@ -324,19 +324,19 @@ public class Widget implements IWidget {
 
 	@Override
 	public final boolean calculateIsMouseOver() {
-		final IPoint mouse = this.getRelativeMousePosition();
+		final Point mouse = this.getRelativeMousePosition();
 		if (!this.cropped || this.cropArea == null) {
 			return this.isMouseOverWidget(mouse);
 		}
 		final IWidget cropRelative = (this.cropWidget != null) ? this.cropWidget : this;
-		final IPoint pos = IPoint.sub(cropRelative.getAbsolutePosition(), this.getAbsolutePosition());
-		final IPoint size = new IPoint(this.cropArea.size().x(), this.cropArea.size().y());
+		final Point pos = Point.sub(cropRelative.getAbsolutePosition(), this.getAbsolutePosition());
+		final Point size = new Point(this.cropArea.size().x(), this.cropArea.size().y());
 		final boolean inCrop = mouse.x() > pos.x() && mouse.y() > pos.y() && mouse.x() < pos.x() + size.x() && mouse.y() < pos.y() + size.y();
 		return inCrop && this.isMouseOverWidget(mouse);
 	}
 
 	@Override
-	public boolean isMouseOverWidget(final IPoint relativeMouse) {
+	public boolean isMouseOverWidget(final Point relativeMouse) {
 		return this.getArea().contains(relativeMouse);
 	}
 
@@ -474,7 +474,7 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public final boolean contains(final IPoint position) {
+	public final boolean contains(final Point position) {
 		return this.getArea().contains(position);
 	}
 

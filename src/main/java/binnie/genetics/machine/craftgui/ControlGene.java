@@ -8,7 +8,7 @@ import binnie.craftgui.core.Attribute;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.minecraft.Window;
@@ -83,6 +83,6 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
 			RenderUtil.drawSolidRect(this.getArea().inset(1), -12303292);
 		}
 		RenderUtil.setColour(-1);
-		RenderUtil.drawSprite(IPoint.ZERO, GeneticsTexture.dnaIcon.getSprite());
+		RenderUtil.drawSprite(Point.ZERO, GeneticsTexture.dnaIcon.getSprite());
 	}
 }

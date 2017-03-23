@@ -2,8 +2,8 @@ package binnie.extratrees.machines.craftgui;
 
 import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.minecraft.MinecraftGUI;
 import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.minecraft.control.ControlProgressBase;
@@ -41,7 +41,7 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		GlStateManager.disableLighting();
 		final int sawX = (int) (63 * this.progress);
-		CraftGUI.render.texture(ControlLumbermillProgress.Saw, new IPoint(sawX, -8 + Math.round(6 * (float) Math.sin(this.animation))));
+		CraftGUI.render.texture(ControlLumbermillProgress.Saw, new Point(sawX, -8 + Math.round(6 * (float) Math.sin(this.animation))));
 		final ItemStack item = Window.get(this).getInventory().getStackInSlot(LumbermillMachine.SLOT_LOG);
 		if (item.isEmpty()) {
 			return;
@@ -71,16 +71,16 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 			return;
 		}
 		//final IIcon icon2 = block2.getIcon(2, result.getItemDamage());
-		final IPoint size = this.getSize();
-		final IPoint pos = this.getAbsolutePosition();
-		CraftGUI.render.limitArea(new IArea(pos.add(IPoint.ZERO), new IPoint(Math.round(this.progress * 64) + 2, 18)), guiWidth, guiHeight);
+		final Point size = this.getSize();
+		final Point pos = this.getAbsolutePosition();
+		CraftGUI.render.limitArea(new Area(pos.add(Point.ZERO), new Point(Math.round(this.progress * 64) + 2, 18)), guiWidth, guiHeight);
 		GL11.glEnable(GL11.GL_SCISSOR_TEST);
 		for (int j = 0; j < 4; ++j) {
 			//TODO RENDERING
 			//CraftGUI.Render.iconBlock(new IPoint(1 + j * 16, 1), icon2);
 		}
 		GL11.glDisable(GL11.GL_SCISSOR_TEST);
-		CraftGUI.render.texture(ControlLumbermillProgress.Saw2, new IPoint(sawX + 2, -8 + Math.round(6 * (float) Math.sin(this.animation))));
+		CraftGUI.render.texture(ControlLumbermillProgress.Saw2, new Point(sawX + 2, -8 + Math.round(6 * (float) Math.sin(this.animation))));
 	}
 
 	protected ControlLumbermillProgress(final IWidget parent, final int x, final int y) {

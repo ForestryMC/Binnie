@@ -2,8 +2,8 @@ package binnie.craftgui.resource.minecraft;
 
 import binnie.core.resource.IBinnieTexture;
 import binnie.craftgui.core.CraftGUI;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IBorder;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Border;
 import binnie.craftgui.resource.Texture;
 import com.google.common.base.Charsets;
 import com.google.gson.JsonElement;
@@ -61,9 +61,9 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener {
 						final JsonObject sheet = (JsonObject) el;
 						final String name = sheet.get("name").getAsString();
 						final IBinnieTexture textureSheet = this.getTextureSheet(sheet.get("sheet").getAsString());
-						final IArea uv = this.getArea(sheet.get("uv").getAsString());
-						IBorder border = IBorder.ZERO;
-						IBorder padding = IBorder.ZERO;
+						final Area uv = this.getArea(sheet.get("uv").getAsString());
+						Border border = Border.ZERO;
+						Border padding = Border.ZERO;
 						if (sheet.has("border")) {
 							border = this.getBorder(sheet.get("border").getAsString());
 						}
@@ -83,7 +83,7 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener {
 		}
 	}
 
-	public IArea getArea(final String name) {
+	public Area getArea(final String name) {
 		final String[] split = name.split(" ");
 		if (split.length < 1 || split.length > 4) {
 			throw new RuntimeException("Parameter must have between one and four numbers");
@@ -93,18 +93,18 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener {
 			i.add(Integer.parseInt(string));
 		}
 		if (i.size() == 1) {
-			return new IArea(i.get(0));
+			return new Area(i.get(0));
 		}
 		if (i.size() == 2) {
-			return new IArea(i.get(0), i.get(1));
+			return new Area(i.get(0), i.get(1));
 		}
 		if (i.size() == 3) {
-			return new IArea(i.get(0), i.get(1), i.get(2));
+			return new Area(i.get(0), i.get(1), i.get(2));
 		}
-		return new IArea(i.get(0), i.get(1), i.get(2), i.get(3));
+		return new Area(i.get(0), i.get(1), i.get(2), i.get(3));
 	}
 
-	public IBorder getBorder(final String name) {
+	public Border getBorder(final String name) {
 		final String[] split = name.split(" ");
 		if (split.length < 1 || split.length > 4) {
 			throw new RuntimeException("Parameter must have between one and four numbers");
@@ -114,15 +114,15 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener {
 			i.add(Integer.parseInt(string));
 		}
 		if (i.size() == 1) {
-			return new IBorder(i.get(0));
+			return new Border(i.get(0));
 		}
 		if (i.size() == 2) {
-			return new IBorder(i.get(0), i.get(1));
+			return new Border(i.get(0), i.get(1));
 		}
 		if (i.size() == 3) {
-			return new IBorder(i.get(0), i.get(1), i.get(2));
+			return new Border(i.get(0), i.get(1), i.get(2));
 		}
-		return new IBorder(i.get(0), i.get(1), i.get(2), i.get(3));
+		return new Border(i.get(0), i.get(1), i.get(2), i.get(3));
 	}
 
 	public IBinnieTexture getTextureSheet(final String name) {

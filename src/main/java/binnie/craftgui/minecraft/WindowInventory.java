@@ -100,7 +100,7 @@ public class WindowInventory implements IInventory {
 	}
 
 	public void createSlot(final int slot) {
-		this.inventory.put(slot, null);
+		this.inventory.put(slot, ItemStack.EMPTY);
 	}
 
 	public void setValidator(final int slot, final SlotValidator validator) {

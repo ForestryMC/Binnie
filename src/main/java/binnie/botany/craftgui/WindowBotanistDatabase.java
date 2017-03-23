@@ -7,7 +7,7 @@ import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.AbstractMod;
 import binnie.craftgui.controls.listbox.ControlListBox;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
+import binnie.craftgui.core.geometry.Area;
 import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.mod.database.DatabaseTab;
 import binnie.craftgui.mod.database.IDatabaseMode;
@@ -48,7 +48,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 		new PageBranchSpecies(this.getInfoPages(Mode.BRANCHES), new DatabaseTab(Botany.instance, "branches.species", 0));
 		this.createMode(FlowerMode.Colour, new ModeWidgets(FlowerMode.Colour, this) {
 			@Override
-			public void createListBox(final IArea area) {
+			public void createListBox(final Area area) {
 				this.listBox = new ControlListBox<IFlowerColour>(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
 					@Override
 					public IWidget createOption(final IFlowerColour value, final int y) {

@@ -1,7 +1,7 @@
 package binnie.extratrees.kitchen.craftgui;
 
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
+import binnie.craftgui.core.geometry.Area;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.minecraft.Window;
 import net.minecraft.nbt.NBTTagCompound;
@@ -32,7 +32,7 @@ public class ControlTankSlot extends ControlSlotFluid {
 	public void onUpdateClient() {
 		this.fluidStack = Window.get(this).getContainer().getTankInfo(this.tankID).liquid;
 		final int height = 16 * (((this.fluidStack == null) ? 0 : this.fluidStack.amount) / 1000);
-		this.itemDisplay.setCroppedZone(this.itemDisplay, new IArea(0, 16 - height, 16, 16));
+		this.itemDisplay.setCroppedZone(this.itemDisplay, new Area(0, 16 - height, 16, 16));
 		super.onUpdateClient();
 	}
 

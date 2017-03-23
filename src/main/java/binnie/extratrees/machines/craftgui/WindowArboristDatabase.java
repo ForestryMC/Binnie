@@ -5,7 +5,7 @@ import binnie.core.AbstractMod;
 import binnie.core.genetics.TreeBreedingSystem;
 import binnie.craftgui.controls.listbox.ControlListBox;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
+import binnie.craftgui.core.geometry.Area;
 import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.mod.database.ControlItemStackOption;
 import binnie.craftgui.mod.database.DatabaseTab;
@@ -51,7 +51,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 		new PageBreeder(this.getInfoPages(Mode.BREEDER), this.getUsername(), new DatabaseTab(ExtraTrees.instance, "breeder", 0));
 		this.createMode(TreeMode.FRUIT, new ModeWidgets(TreeMode.FRUIT, this) {
 			@Override
-			public void createListBox(final IArea area) {
+			public void createListBox(final Area area) {
 				(this.listBox = new ControlListBox<ItemStack>(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
 					@Override
 					public IWidget createOption(final ItemStack value, final int y) {
@@ -62,7 +62,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 		});
 		this.createMode(TreeMode.WOOD, new ModeWidgets(TreeMode.WOOD, this) {
 			@Override
-			public void createListBox(final IArea area) {
+			public void createListBox(final Area area) {
 				(this.listBox = new ControlListBox<ItemStack>(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
 					@Override
 					public IWidget createOption(final ItemStack value, final int y) {
@@ -73,7 +73,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 		});
 		this.createMode(TreeMode.PLANKS, new ModeWidgets(TreeMode.PLANKS, this) {
 			@Override
-			public void createListBox(final IArea area) {
+			public void createListBox(final Area area) {
 				(this.listBox = new ControlListBox<ItemStack>(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
 					@Override
 					public IWidget createOption(final ItemStack value, final int y) {

@@ -5,7 +5,7 @@ import binnie.craftgui.core.Attribute;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.minecraft.Window;
 import net.minecraft.client.renderer.GlStateManager;
@@ -53,7 +53,7 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 		if (this.fluidStack == null) {
 			return;
 		}
-		final IPoint relativeToWindow = this.getAbsolutePosition().sub(this.getTopParent().getPosition());
+		final Point relativeToWindow = this.getAbsolutePosition().sub(this.getTopParent().getPosition());
 		if (relativeToWindow.x() > Window.get(this).getSize().x() + 100 || relativeToWindow.y() > Window.get(this).getSize().y() + 100) {
 			return;
 		}
@@ -72,10 +72,10 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 				GlStateManager.pushMatrix();
 				final float scale = this.getSize().x() / 16.0f;
 				GlStateManager.scale(scale, scale, 1.0f);
-				RenderUtil.drawSprite(IPoint.ZERO, icon);
+				RenderUtil.drawSprite(Point.ZERO, icon);
 				GlStateManager.popMatrix();
 			} else {
-				RenderUtil.drawSprite(IPoint.ZERO, icon);
+				RenderUtil.drawSprite(Point.ZERO, icon);
 			}
 			GlStateManager.disableBlend();
 		}

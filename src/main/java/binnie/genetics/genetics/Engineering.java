@@ -7,6 +7,7 @@ import binnie.genetics.api.IItemSerum;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.item.ItemSerum;
 import binnie.genetics.item.ItemSerumArray;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nullable;
@@ -16,18 +17,21 @@ public class Engineering {
 		if (stack.isEmpty()) {
 			return false;
 		}
-		if (stack.getItem() instanceof IItemSerum) {
-			return ((IItemSerum) stack.getItem()).getCharges(stack) == 0;
+		Item item = stack.getItem();
+		if (item instanceof IItemSerum) {
+			return ((IItemSerum) item).getCharges(stack) == 0;
 		}
-		return stack.getItem() == Genetics.items().getItemGenetics() && (stack.getItemDamage() == GeneticsItems.EmptySerum.ordinal() || stack.getItemDamage() == GeneticsItems.EmptyGenome.ordinal());
+		int metadata = stack.getMetadata();
+		return item == Genetics.items().getItemGenetics() && (metadata == GeneticsItems.EMPTY_SERUM.ordinal() || metadata == GeneticsItems.EMPTY_GENOME.ordinal());
 	}
 
 	public static boolean canAcceptGene(final ItemStack stack, final IGene gene) {
-		if (stack.getItem() instanceof ItemSerum) {
+		Item item = stack.getItem();
+		if (item instanceof ItemSerum) {
 			return true;
 		}
-		if (stack.getItem() instanceof IItemSerum) {
-			return ((IItemSerum) stack.getItem()).getSpeciesRoot(stack) == gene.getSpeciesRoot();
+		if (item instanceof IItemSerum) {
+			return ((IItemSerum) item).getSpeciesRoot(stack) == gene.getSpeciesRoot();
 		}
 		return isGeneAcceptor(stack);
 	}
@@ -41,24 +45,28 @@ public class Engineering {
 	}
 
 	public static ItemStack addGene(final ItemStack stack, final IGene gene) {
-		if (stack.getItem() instanceof IItemSerum) {
-			((IItemSerum) stack.getItem()).addGene(stack, gene);
+		Item item = stack.getItem();
+		int metadata = stack.getMetadata();
+		if (item instanceof IItemSerum) {
+			((IItemSerum) item).addGene(stack, gene);
 		}
-		if (stack.getItem() == Genetics.items().getItemGenetics() && stack.getItemDamage() == GeneticsItems.EmptySerum.ordinal()) {
-			return ItemSerum.create(gene);
-		}
-		if (stack.getItem() == Genetics.items().getItemGenetics() && stack.getItemDamage() == GeneticsItems.EmptyGenome.ordinal()) {
-			return ItemSerumArray.create(gene);
+		if(item == Genetics.items().getItemGenetics()){
+			if (metadata == GeneticsItems.EMPTY_SERUM.ordinal()) {
+				return ItemSerum.create(gene);
+			}else if (metadata == GeneticsItems.EMPTY_GENOME.ordinal()) {
+				return ItemSerumArray.create(gene);
+			}
 		}
 		return stack;
 	}
 
 	public static IGene[] getGenes(final ItemStack serum) {
 		if (!serum.isEmpty()) {
-			if (serum.getItem() instanceof IItemSerum) {
-				return ((IItemSerum) serum.getItem()).getGenes(serum);
+			Item item = serum.getItem();
+			if (item instanceof IItemSerum) {
+				return ((IItemSerum) item).getGenes(serum);
 			}
-			if (serum.getItem() == Genetics.items().itemSequencer) {
+			if (item == Genetics.items().itemSequencer) {
 				SequencerItem sequencerItem = SequencerItem.create(serum);
 				if (sequencerItem != null) {
 					return new IGene[]{sequencerItem.getGene()};

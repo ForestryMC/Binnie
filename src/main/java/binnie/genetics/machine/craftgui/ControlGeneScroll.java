@@ -7,7 +7,7 @@ import binnie.craftgui.controls.ControlText;
 import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.controls.core.IControlValue;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.minecraft.Window;
 import binnie.genetics.genetics.GeneTracker;
 import forestry.api.genetics.IAllele;
@@ -61,7 +61,7 @@ public class ControlGeneScroll extends Control implements IControlValue<Breeding
 				continue;
 			}
 			x = 0;
-			new ControlText(this, new IPoint(x, y), this.system.getChromosomeName(entry.getKey()));
+			new ControlText(this, new Point(x, y), this.system.getChromosomeName(entry.getKey()));
 			y += 12;
 			for (final IAllele allele : discovered) {
 				if (x + 18 > this.getSize().x()) {
@@ -73,7 +73,7 @@ public class ControlGeneScroll extends Control implements IControlValue<Breeding
 			}
 			y += 24;
 		}
-		this.setSize(new IPoint(this.getSize().x(), y));
+		this.setSize(new Point(this.getSize().x(), y));
 	}
 
 	@Override

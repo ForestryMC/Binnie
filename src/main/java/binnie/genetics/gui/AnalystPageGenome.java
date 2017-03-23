@@ -7,15 +7,17 @@ import binnie.craftgui.controls.ControlTextCentered;
 import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.geometry.TextJustification;
+import binnie.genetics.Genetics;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -23,12 +25,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class AnalystPageGenome extends ControlAnalystPage {
 	boolean active;
 
-	public AnalystPageGenome(final IWidget parent, final IArea area, final boolean active, final IIndividual ind) {
+	public AnalystPageGenome(final IWidget parent, final Area area, final boolean active, final IIndividual ind) {
 		super(parent, area);
 		this.active = active;
 		this.setColour(26265);
 		int y = 4;
-		new ControlTextCentered(this, y, "§n" + this.getTitle()).setColour(this.getColour());
+		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + this.getTitle()).setColour(this.getColour());
 		y += 16;
 		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(ind);
 		final BreedingSystem system = Binnie.GENETICS.getSystem(root);
@@ -51,15 +53,15 @@ public class AnalystPageGenome extends ControlAnalystPage {
 			final IAllele allele = active ? ind.getGenome().getActiveAllele(chromo) : ind.getGenome().getInactiveAllele(chromo);
 			final String alleleName = system.getAlleleName(chromo, allele);
 			final int height = CraftGUI.render.textHeight(alleleName, this.width() / 2 - 2);
-			new ControlText(scaled, new IArea(0, y + (height - 9) / 2, this.width() / 2 - 2, 0), system.getChromosomeShortName(chromo) + " :", TextJustification.TopRight).setColour(this.getColour());
-			new ControlText(scaled, new IArea(this.width() / 2 + 2, y, this.width() / 2 - 2, 0), alleleName, TextJustification.TopLeft).setColour(this.getColour());
+			new ControlText(scaled, new Area(0, y + (height - 9) / 2, this.width() / 2 - 2, 0), system.getChromosomeShortName(chromo) + " :", TextJustification.TopRight).setColour(this.getColour());
+			new ControlText(scaled, new Area(this.width() / 2 + 2, y, this.width() / 2 - 2, 0), alleleName, TextJustification.TopLeft).setColour(this.getColour());
 			y += 3 + height;
 		}
-		this.setSize(new IPoint(this.width(), y + 8));
+		this.setSize(new Point(this.width(), y + 8));
 	}
 
 	@Override
 	public String getTitle() {
-		return (this.active ? "Active" : "Inactive") + " Genome";
+		return Genetics.proxy.localise("gui.analyst.genome." + (this.active ? "active" : "inactive")) + " " + Genetics.proxy.localise("gui.analyst.genome.title");
 	}
 }

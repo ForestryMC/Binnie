@@ -4,18 +4,20 @@ import binnie.Binnie;
 import binnie.core.genetics.BreedingSystem;
 import binnie.craftgui.controls.ControlTextCentered;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
+import binnie.craftgui.core.geometry.Area;
+import binnie.genetics.Genetics;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.util.text.TextFormatting;
 
 public class AnalystPageKaryogram extends ControlAnalystPage {
-	public AnalystPageKaryogram(final IWidget parent, final IArea area, final IIndividual ind) {
+	public AnalystPageKaryogram(final IWidget parent, final Area area, final IIndividual ind) {
 		super(parent, area);
 		this.setColour(10040319);
 		int y = 4;
-		new ControlTextCentered(this, y, "§nKaryogram").setColour(this.getColour());
+		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColour(this.getColour());
 		y += 16;
 		y += 8;
 		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(ind);
@@ -41,6 +43,6 @@ public class AnalystPageKaryogram extends ControlAnalystPage {
 
 	@Override
 	public String getTitle() {
-		return "Karyogram";
+		return Genetics.proxy.localise("gui.analyst.karyogram.title");
 	}
 }

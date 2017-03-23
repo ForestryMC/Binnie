@@ -84,7 +84,7 @@ public class ContainerCraftGUI extends Container {
 	public void onContainerClosed(final EntityPlayer par1EntityPlayer) {
 		this.crafters.remove(par1EntityPlayer);
 		super.onContainerClosed(par1EntityPlayer);
-		final WindowInventory inventory = this.window.getWindowInventory();
+		WindowInventory inventory = this.window.getWindowInventory();
 		for (int i = 0; i < inventory.getSizeInventory(); ++i) {
 			if (inventory.dispenseOnClose(i)) {
 				ItemStack stack = inventory.getStackInSlot(i);

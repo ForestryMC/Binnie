@@ -7,8 +7,8 @@ import binnie.core.machines.inventory.SlotValidator;
 import binnie.craftgui.controls.ControlText;
 import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.core.CraftGUI;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.geometry.TextJustification;
 import binnie.craftgui.events.EventHandler;
 import binnie.craftgui.events.EventValueChanged;
@@ -113,12 +113,12 @@ public class WindowFieldKit extends Window {
 		this.getWindowInventory().createSlot(1);
 		this.setupValidators();
 		new ControlPlayerInventory(this);
-		final IPoint handGlass = new IPoint(16, 32);
+		final Point handGlass = new Point(16, 32);
 		this.GlassControl = new ControlImage(this, handGlass.x(), handGlass.y(), new StandardTexture(0, 160, 96, 96, ExtraBeeTexture.GUIPunnett));
 		new ControlSlot.Builder(this, handGlass.x() + 54, handGlass.y() + 26).assign(InventoryType.Window, 0);
 		new ControlSlot.Builder(this, 208, 8).assign(InventoryType.Window, 1);
-		(this.text = new ControlText(this, new IPoint(232, 13), "Paper")).setColour(2236962);
-		(this.text = new ControlText(this, new IArea(0, 120, this.width(), 24), "", TextJustification.MiddleCenter)).setColour(2236962);
+		(this.text = new ControlText(this, new Point(232, 13), "Paper")).setColour(2236962);
+		(this.text = new ControlText(this, new Area(0, 120, this.width(), 24), "", TextJustification.MiddleCenter)).setColour(2236962);
 		this.chromo = new ControlChromosome(this, 150, 24);
 		this.addEventHandler(new EventValueChanged.Handler() {
 			@Override
@@ -166,7 +166,7 @@ public class WindowFieldKit extends Window {
 		this.glassOffsetX *= 1 - this.analyseProgress;
 		this.glassOffsetY += this.glassVY;
 		this.glassOffsetY *= 1 - this.analyseProgress;
-		this.GlassControl.setOffset(new IPoint(this.glassOffsetX, this.glassOffsetY));
+		this.GlassControl.setOffset(new Point(this.glassOffsetX, this.glassOffsetY));
 	}
 
 	private void refreshSpecies() {

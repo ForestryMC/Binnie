@@ -61,6 +61,7 @@ public enum EnumFlowerType implements IFlowerType<EnumFlowerType> {
 	Delphinium(2),
 	Hollyhock(2);
 
+	public static EnumFlowerType[] VALUES = values();
 	public static int highestSection = 2;
 
 	int sections;

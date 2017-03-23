@@ -1,13 +1,13 @@
 package binnie.craftgui.core;
 
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Point;
 
 import javax.annotation.Nullable;
 
 public interface ITopLevelWidget extends IWidget {
 	void setMousePosition(final int p0, final int p1);
 
-	IPoint getAbsoluteMousePosition();
+	Point getAbsoluteMousePosition();
 
 	@Nullable
 	IWidget getFocusedWidget();
@@ -28,5 +28,5 @@ public interface ITopLevelWidget extends IWidget {
 
 	void widgetDeleted(final IWidget p0);
 
-	IPoint getDragDistance();
+	Point getDragDistance();
 }

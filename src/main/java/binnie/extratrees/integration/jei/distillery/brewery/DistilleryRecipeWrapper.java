@@ -1,7 +1,7 @@
 package binnie.extratrees.integration.jei.distillery.brewery;
 
 import binnie.craftgui.core.CraftGUI;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Point;
 import binnie.extratrees.machines.craftgui.ControlDistilleryProgress;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
@@ -32,6 +32,6 @@ public class DistilleryRecipeWrapper extends BlankRecipeWrapper {
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 		super.drawInfo(minecraft, recipeWidth, recipeHeight, mouseX, mouseY);
 
-		CraftGUI.render.texture(ControlDistilleryProgress.OUTPUT, new IPoint(47, 14 + level * 15));
+		CraftGUI.render.texture(ControlDistilleryProgress.OUTPUT, new Point(47, 14 + level * 15));
 	}
 }

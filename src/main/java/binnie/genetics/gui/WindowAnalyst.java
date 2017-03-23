@@ -14,8 +14,8 @@ import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.core.Widget;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.geometry.Position;
 import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventKey;
@@ -23,6 +23,7 @@ import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.minecraft.InventoryType;
 import binnie.craftgui.minecraft.MinecraftGUI;
 import binnie.craftgui.minecraft.Window;
+import binnie.craftgui.minecraft.WindowInventory;
 import binnie.craftgui.minecraft.control.ControlPlayerInventory;
 import binnie.craftgui.minecraft.control.ControlSlide;
 import binnie.craftgui.minecraft.control.ControlSlot;
@@ -30,6 +31,14 @@ import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.craftgui.window.Panel;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsGUI;
+import binnie.genetics.gui.bee.AnalystPageProducts;
+import binnie.genetics.gui.butterfly.AnalystPageSpecimen;
+import binnie.genetics.gui.flower.AnalystPageAppearance;
+import binnie.genetics.gui.flower.AnalystPageSoil;
+import binnie.genetics.gui.tree.AnalystPageClimate;
+import binnie.genetics.gui.tree.AnalystPageFruit;
+import binnie.genetics.gui.tree.AnalystPageGrowth;
+import binnie.genetics.gui.tree.AnalystPageWood;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.ModuleMachine;
 import binnie.genetics.machine.analyser.Analyser;
@@ -60,7 +69,7 @@ public class WindowAnalyst extends Window {
 	Panel analystPanel;
 	List<ControlAnalystPage> analystPages;
 	@Nullable
-	IArea analystPageSize;
+	Area analystPageSize;
 	boolean isDatabase;
 	boolean isMaster;
 	boolean lockedSearch;
@@ -106,7 +115,7 @@ public class WindowAnalyst extends Window {
 			this.getWindowInventory().setValidator(0, new SlotValidator.Individual() {
 				@Override
 				public boolean isValid(final ItemStack itemStack) {
-					return Analyser.isAnalysed(itemStack) || (Analyser.isAnalysable(itemStack) && WindowAnalyst.this.getWindowInventory().getStackInSlot(1) != null);
+					return Analyser.isAnalysed(itemStack) || (Analyser.isAnalysable(itemStack) && !WindowAnalyst.this.getWindowInventory().getStackInSlot(1).isEmpty());
 				}
 			});
 			this.getWindowInventory().setValidator(1, new SlotValidator.Item(GeneticsItems.DNADye.get(1), ModuleMachine.spriteDye));
@@ -168,7 +177,7 @@ public class WindowAnalyst extends Window {
 							RenderUtil.setColour(1140850688 + syst.getColour());
 							CraftGUI.render.texture(CraftGUITexture.TabSolid, this.getArea().outset(outset));
 						}
-						RenderUtil.drawItem(new IPoint(2, 2), syst.getItemStackRepresentitive());
+						RenderUtil.drawItem(new Point(2, 2), syst.getItemStackRepresentitive());
 					}
 				};
 				x += 22;
@@ -243,7 +252,7 @@ public class WindowAnalyst extends Window {
 						RenderUtil.drawSolidRect(this.getRenderArea(), WindowAnalyst.this.rightPage.getContent().getColour());
 					}
 				};
-				WindowAnalyst.this.analystPageSize = new IArea(1, 1, sectionWidth, this.height() - 8);
+				WindowAnalyst.this.analystPageSize = new Area(1, 1, sectionWidth, this.height() - 8);
 			}
 		};
 		if (!this.isDatabase) {
@@ -355,6 +364,7 @@ public class WindowAnalyst extends Window {
 			this.analystPages.add(new AnalystPageMutations(this.analystPanel, this.analystPageSize, this.current, this.isMaster));
 		}
 		this.tabBar.deleteAllChildren();
+		if (this.analystPages.size() > 0) {
 		final int width = this.tabBar.width() / this.analystPages.size();
 		int x = 0;
 		for (final ControlAnalystPage page : this.analystPages) {
@@ -408,12 +418,11 @@ public class WindowAnalyst extends Window {
 				}
 			};
 			x += width;
-		}
-		if (this.analystPages.size() > 0) {
+			}
 			this.setPage(this.leftPage, this.analystPages.get((oldLeft >= 0) ? oldLeft : 0));
-		}
-		if (this.analystPages.size() > 1) {
-			this.setPage(this.rightPage, this.analystPages.get((oldRight >= 0) ? oldRight : 1));
+			if (this.analystPages.size() > 1) {
+				this.setPage(this.rightPage, this.analystPages.get((oldRight >= 0) ? oldRight : 1));
+			}
 		}
 	}
 
@@ -472,18 +481,20 @@ public class WindowAnalyst extends Window {
 	@Override
 	public void onWindowInventoryChanged() {
 		super.onWindowInventoryChanged();
-		if (this.getWindowInventory().getStackInSlot(0) != null && !Analyser.isAnalysed(this.getWindowInventory().getStackInSlot(0))) {
-			this.getWindowInventory().setInventorySlotContents(0, Analyser.analyse(this.getWindowInventory().getStackInSlot(0)));
-			this.getWindowInventory().decrStackSize(1, 1);
+		WindowInventory inv = getWindowInventory();
+		ItemStack stack = inv.getStackInSlot(0);
+		if (!stack.isEmpty() && !Analyser.isAnalysed(stack)) {
+			inv.setInventorySlotContents(0, Analyser.analyse(stack));
+			inv.decrStackSize(1, 1);
 		}
-		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(this.getWindowInventory().getStackInSlot(0));
+		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(stack);
 		if (ind != null) {
 			ind.getGenome().getSpeciesRoot().getBreedingTracker(this.getWorld(), this.getUsername()).registerBirth(ind);
 		}
 
 		if (this.isClient()) {
 			//noinspection MethodCallSideOnly
-			this.setStack(this.getWindowInventory().getStackInSlot(0));
+			this.setStack(stack);
 		}
 	}
 

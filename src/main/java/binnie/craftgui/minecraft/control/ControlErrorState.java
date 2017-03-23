@@ -7,7 +7,7 @@ import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.minecraft.CustomSlot;
 import binnie.craftgui.minecraft.MinecraftTooltip;
 import binnie.craftgui.minecraft.Window;
@@ -32,7 +32,7 @@ public class ControlErrorState extends Control implements ITooltip {
 		} else if (this.type == 0) {
 			texture = CraftGUITexture.StateError;
 		}
-		CraftGUI.render.texture(texture, IPoint.ZERO);
+		CraftGUI.render.texture(texture, Point.ZERO);
 		super.onRenderBackground(guiWidth, guiHeight);
 	}
 

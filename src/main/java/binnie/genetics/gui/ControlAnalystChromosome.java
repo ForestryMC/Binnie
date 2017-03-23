@@ -9,7 +9,7 @@ import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.StandardTexture;
 import forestry.api.genetics.IAllele;
@@ -45,7 +45,7 @@ public class ControlAnalystChromosome extends Control implements ITooltip {
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		super.onRenderBackground(guiWidth, guiHeight);
-		CraftGUI.render.texture(this.isHomozygous() ? this.Homozygous : this.Heterozygous, IPoint.ZERO);
+		CraftGUI.render.texture(this.isHomozygous() ? this.Homozygous : this.Heterozygous, Point.ZERO);
 	}
 
 	@Override

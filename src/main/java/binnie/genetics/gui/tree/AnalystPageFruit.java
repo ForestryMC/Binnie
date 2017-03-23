@@ -1,12 +1,15 @@
-package binnie.genetics.gui;
+package binnie.genetics.gui.tree;
 
 import binnie.Binnie;
 import binnie.core.util.UniqueItemStackSet;
 import binnie.craftgui.controls.ControlTextCentered;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.genetics.Genetics;
+import binnie.genetics.gui.AnalystPageProduce;
+
 import com.google.common.base.Throwables;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.IAlleleFruit;
@@ -17,20 +20,21 @@ import forestry.api.genetics.IFruitFamily;
 import forestry.arboriculture.FruitProviderPod;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
 
 import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.Collections;
 
 public class AnalystPageFruit extends AnalystPageProduce {
-	public AnalystPageFruit(final IWidget parent, final IArea area, final ITree ind) {
+	public AnalystPageFruit(final IWidget parent, final Area area, final ITree ind) {
 		super(parent, area);
 		this.setColour(13382400);
 		final ITreeGenome genome = ind.getGenome();
 		int y = 4;
-		new ControlTextCentered(this, y, "§nFruit").setColour(this.getColour());
+		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColour(this.getColour());
 		y += 12;
-		new ControlTextCentered(this, y, "§oYield: " + Binnie.GENETICS.treeBreedingSystem.getAlleleName(EnumTreeChromosome.YIELD, ind.getGenome().getActiveAllele(EnumTreeChromosome.YIELD))).setColour(this.getColour());
+		new ControlTextCentered(this, y, TextFormatting.ITALIC + Genetics.proxy.localise("gui.analyst.fruit.yield") + ": " + Binnie.GENETICS.treeBreedingSystem.getAlleleName(EnumTreeChromosome.YIELD, ind.getGenome().getActiveAllele(EnumTreeChromosome.YIELD))).setColour(this.getColour());
 		y += 20;
 		final Collection<ItemStack> products = new UniqueItemStackSet();
 		final Collection<ItemStack> specialties = new UniqueItemStackSet();
@@ -52,7 +56,7 @@ public class AnalystPageFruit extends AnalystPageProduce {
 			throw Throwables.propagate(e);
 		}
 		if (products.size() > 0) {
-			new ControlTextCentered(this, y, "Natural Fruit").setColour(this.getColour());
+			new ControlTextCentered(this, y, Genetics.proxy.localise("gui.analyst.fruit.natural")).setColour(this.getColour());
 			y += 10;
 			final int w = products.size() * 18 - 2;
 			final int i = 0;
@@ -64,7 +68,7 @@ public class AnalystPageFruit extends AnalystPageProduce {
 			y += 26;
 		}
 		if (specialties.size() > 0) {
-			new ControlTextCentered(this, y, "Specialty Fruit").setColour(this.getColour());
+			new ControlTextCentered(this, y, Genetics.proxy.localise("gui.analyst.fruit.specialty")).setColour(this.getColour());
 			y += 10;
 			final int w = products.size() * 18 - 2;
 			final int i = 0;
@@ -85,14 +89,14 @@ public class AnalystPageFruit extends AnalystPageProduce {
 		final Collection<ItemStack> refinedProducts = new UniqueItemStackSet();
 		refinedProducts.addAll(this.getAllProductsAndFluids(allProducts));
 		if (refinedProducts.size() > 0) {
-			y = this.getRefined("Refined Products", y, refinedProducts);
+			y = this.getRefined(Genetics.proxy.localise("gui.analyst.fruit.refined"), y, refinedProducts);
 			y += 8;
 		}
 		if (products.size() == 0 && specialties.size() == 0) {
-			new ControlTextCentered(this, y, "This tree has no \nfruits or nuts").setColour(this.getColour());
+			new ControlTextCentered(this, y, Genetics.proxy.localise("gui.analyst.fruit.noFruits")).setColour(this.getColour());
 			y += 28;
 		}
-		new ControlTextCentered(this, y, "Possible Fruits").setColour(this.getColour());
+		new ControlTextCentered(this, y, Genetics.proxy.localise("gui.analyst.fruit.possible")).setColour(this.getColour());
 		y += 12;
 		final Collection<IAllele> fruitAlleles = Binnie.GENETICS.getChromosomeMap(Binnie.GENETICS.getTreeRoot()).get(EnumTreeChromosome.FRUITS);
 		for (final IFruitFamily fam : ind.getGenome().getPrimary().getSuitableFruit()) {
@@ -122,14 +126,14 @@ public class AnalystPageFruit extends AnalystPageProduce {
 					}
 				}
 			}
-			y = this.getRefined("§o" + fam.getName(), y, stacks);
+			y = this.getRefined(TextFormatting.ITALIC + fam.getName(), y, stacks);
 			y += 2;
 		}
-		this.setSize(new IPoint(this.width(), y + 8));
+		this.setSize(new Point(this.width(), y + 8));
 	}
 
 	@Override
 	public String getTitle() {
-		return "Fruit";
+		return Genetics.proxy.localise("gui.analyst.fruit.title");
 	}
 }

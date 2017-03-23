@@ -1,36 +1,36 @@
 package binnie.craftgui.core.geometry;
 
-public class IBorder {
-	public static final IBorder ZERO = new IBorder(0);
+public class Border {
+	public static final Border ZERO = new Border(0);
 	int t;
 	int b;
 	int l;
 	int r;
 
-	public IBorder(final int pad) {
+	public Border(final int pad) {
 		this(pad, pad, pad, pad);
 	}
 
-	public IBorder(final int tb, final int rl) {
+	public Border(final int tb, final int rl) {
 		this(tb, rl, tb, rl);
 	}
 
-	public IBorder(final int t, final int rl, final int b) {
+	public Border(final int t, final int rl, final int b) {
 		this(t, rl, b, rl);
 	}
 
-	public IBorder(final int t, final int r, final int b, final int l) {
+	public Border(final int t, final int r, final int b, final int l) {
 		this.t = t;
 		this.b = b;
 		this.l = l;
 		this.r = r;
 	}
 
-	public IBorder(final Position edge, final int n) {
+	public Border(final Position edge, final int n) {
 		this((edge == Position.Top) ? n : 0, (edge == Position.RIGHT) ? n : 0, (edge == Position.BOTTOM) ? n : 0, (edge == Position.LEFT) ? n : 0);
 	}
 
-	public IBorder(final IBorder padding) {
+	public Border(final Border padding) {
 		this(padding.t(), padding.r(), padding.b(), padding.l());
 	}
 
@@ -71,27 +71,27 @@ public class IBorder {
 	}
 
 	@Deprecated
-	public IPoint tl() {
-		return new IPoint(this.l(), this.t());
+	public Point tl() {
+		return new Point(this.l(), this.t());
 	}
 
 	@Deprecated
-	public IPoint tr() {
-		return new IPoint(this.r(), this.t());
+	public Point tr() {
+		return new Point(this.r(), this.t());
 	}
 
 	@Deprecated
-	public IPoint bl() {
-		return new IPoint(this.l(), this.b());
+	public Point bl() {
+		return new Point(this.l(), this.b());
 	}
 
 	@Deprecated
-	public IPoint br() {
-		return new IPoint(this.r(), this.b());
+	public Point br() {
+		return new Point(this.r(), this.b());
 	}
 
-	public IBorder add(final IBorder o) {
-		return new IBorder(this.t() + o.t(), this.r() + o.r(), this.b() + o.b(), this.l() + o.l());
+	public Border add(final Border o) {
+		return new Border(this.t() + o.t(), this.r() + o.r(), this.b() + o.b(), this.l() + o.l());
 	}
 
 	@Override

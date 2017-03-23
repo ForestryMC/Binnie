@@ -10,7 +10,7 @@ import binnie.craftgui.controls.scroll.ControlScrollableContent;
 import binnie.craftgui.controls.tab.ControlTab;
 import binnie.craftgui.controls.tab.ControlTabBar;
 import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.geometry.Position;
 import binnie.craftgui.events.EventHandler;
 import binnie.craftgui.events.EventTextEdit;
@@ -155,8 +155,8 @@ public class WindowGeneBank extends WindowMachine {
 				}
 			}
 		}
-		new ControlText(panelProject, new IPoint(4, 4), "§nFull Genome Project");
-		new ControlText(panelProject, new IPoint(4, 18), "§oSequenced §r" + seqGenes + "/" + totalGenes + " §oGenes");
+		new ControlText(panelProject, new Point(4, 4), "§nFull Genome Project");
+		new ControlText(panelProject, new Point(4, 18), "§oSequenced §r" + seqGenes + "/" + totalGenes + " §oGenes");
 	}
 
 	@Override

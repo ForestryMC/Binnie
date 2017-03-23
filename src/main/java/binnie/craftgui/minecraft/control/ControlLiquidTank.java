@@ -12,8 +12,8 @@ import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.minecraft.GuiCraftGUI;
@@ -79,7 +79,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.render.texture(this.horizontal ? CraftGUITexture.HorizontalLiquidTank : CraftGUITexture.LiquidTank, IPoint.ZERO);
+		CraftGUI.render.texture(this.horizontal ? CraftGUITexture.HorizontalLiquidTank : CraftGUITexture.LiquidTank, Point.ZERO);
 		GuiCraftGUI gui = Window.get(this).getGui();
 		if (this.isMouseOver() && gui.isHelpMode()) {
 			final int c = -1442840576 + MinecraftTooltip.getOutline(Tooltip.Type.Help);
@@ -108,20 +108,20 @@ public class ControlLiquidTank extends Control implements ITooltip {
 			GlStateManager.enableBlend();
 			{
 				GlStateManager.blendFunc(770, 771);
-				final IPoint pos = this.getAbsolutePosition();
-				final IPoint offset = new IPoint(0, height - squaled);
-				final IArea limited = this.getArea().inset(1);
+				final Point pos = this.getAbsolutePosition();
+				final Point offset = new Point(0, height - squaled);
+				final Area limited = this.getArea().inset(1);
 				if (this.horizontal) {
-					limited.setSize(new IPoint(limited.width() - 1, limited.height()));
+					limited.setSize(new Point(limited.width() - 1, limited.height()));
 				}
-				CraftGUI.render.limitArea(new IArea(limited.pos().add(pos).add(offset), limited.size().sub(offset)), guiWidth, guiHeight);
+				CraftGUI.render.limitArea(new Area(limited.pos().add(pos).add(offset), limited.size().sub(offset)), guiWidth, guiHeight);
 				GL11.glEnable(GL11.GL_SCISSOR_TEST);
 				{
 					BinnieCore.getBinnieProxy().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 					for (int y = 0; y < height; y += 16) {
 						for (int x = 0; x < (this.horizontal ? 58 : 16); x += 16) {
 							final TextureAtlasSprite icon = BinnieCore.getBinnieProxy().getTextureAtlasSprite(fluid.getStill());
-							RenderUtil.drawSprite(new IPoint(1 + x, 1 + y), icon);
+							RenderUtil.drawSprite(new Point(1 + x, 1 + y), icon);
 						}
 					}
 				}
@@ -135,15 +135,15 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {
-		CraftGUI.render.texture(this.horizontal ? CraftGUITexture.HorizontalLiquidTankOverlay : CraftGUITexture.LiquidTankOverlay, IPoint.ZERO);
+		CraftGUI.render.texture(this.horizontal ? CraftGUITexture.HorizontalLiquidTankOverlay : CraftGUITexture.LiquidTankOverlay, Point.ZERO);
 		GuiCraftGUI gui = Window.get(this).getGui();
 		if (this.isMouseOver() && gui.isHelpMode()) {
-			final IArea area = this.getArea();
+			final Area area = this.getArea();
 			RenderUtil.setColour(MinecraftTooltip.getOutline(Tooltip.Type.Help));
 			CraftGUI.render.texture(CraftGUITexture.Outline, area.outset(1));
 		}
 		if (ControlLiquidTank.tankError.contains(this.tankID)) {
-			final IArea area = this.getArea();
+			final Area area = this.getArea();
 			RenderUtil.setColour(MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error));
 			CraftGUI.render.texture(CraftGUITexture.Outline, area.outset(1));
 		}

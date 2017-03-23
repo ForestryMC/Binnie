@@ -4,7 +4,7 @@ import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.core.Attribute;
 import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
+import binnie.craftgui.core.geometry.Area;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import net.minecraftforge.fml.relauncher.Side;
@@ -59,19 +59,19 @@ public class ControlScrollBar extends Control {
 		return Math.round(this.height() * this.scrollable.getPercentageShown());
 	}
 
-	protected IArea getRenderArea() {
+	protected Area getRenderArea() {
 		int height = this.getBarHeight();
 		if (height < 6) {
 			height = 6;
 		}
 		final int yOffset = Math.round((this.height() - this.getBarHeight()) * this.scrollable.getPercentageIndex());
-		return new IArea(0, yOffset, this.getSize().x(), height);
+		return new Area(0, yOffset, this.getSize().x(), height);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		final IArea renderArea = this.getRenderArea();
+		final Area renderArea = this.getRenderArea();
 		Object texture = CraftGUITexture.ScrollDisabled;
 		if (this.isMouseOver()) {
 			texture = CraftGUITexture.ScrollHighlighted;

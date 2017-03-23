@@ -5,7 +5,7 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.MachineUtil;
 import binnie.craftgui.controls.ControlText;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
+import binnie.craftgui.core.geometry.Area;
 import binnie.craftgui.core.geometry.TextJustification;
 import binnie.craftgui.minecraft.MinecraftGUI;
 import binnie.craftgui.minecraft.Window;
@@ -23,7 +23,7 @@ public class ControlSequencerProgress extends ControlProgressBase {
 	public ControlSequencerProgress(final IWidget parent, final int x, final int y) {
 		super(parent, x, y, 100, 52);
 		final Panel panel = new Panel(this, 0, 0, 100, 52, MinecraftGUI.PanelType.Gray);
-		this.textControl = new ControlText(panel, new IArea(4, 4, 92, 44), "", TextJustification.MiddleCenter);
+		this.textControl = new ControlText(panel, new Area(4, 4, 92, 44), "", TextJustification.MiddleCenter);
 	}
 
 	@Override

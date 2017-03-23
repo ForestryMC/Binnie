@@ -2,7 +2,7 @@ package binnie.extrabees.gui;
 
 import binnie.core.AbstractMod;
 import binnie.craftgui.controls.ControlText;
-import binnie.craftgui.core.geometry.IArea;
+import binnie.craftgui.core.geometry.Area;
 import binnie.craftgui.core.geometry.TextJustification;
 import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.minecraft.control.ControlItemDisplay;
@@ -39,7 +39,7 @@ public class WindowAlvearyMutator extends Window {
 		this.setTitle("Mutator");
 		new ControlPlayerInventory(this);
 		new ControlSlot.Builder(this, 79, 30).assign(0);
-		new ControlText(this, new IArea(0, 52, this.width(), 16), "Possible Mutagens:", TextJustification.MiddleCenter).setColour(5592405);
+		new ControlText(this, new Area(0, 52, this.width(), 16), "Possible Mutagens:", TextJustification.MiddleCenter).setColour(5592405);
 		final int size = AlvearyMutator.getMutagens().size();
 		final int w = size * 18;
 		NumberFormat numberFormat = NumberFormat.getNumberInstance(MinecraftForgeClient.getLocale());

@@ -116,16 +116,16 @@ public class ModuleItems implements IInitializable {
 				"iGi", 
 				" p ",
 				'i', "ingotGold", 'G', Blocks.GLASS_PANE, 'p', Items.PAPER));
-		GameRegistry.addRecipe(new ShapedOreRecipe(GeneticsItems.EmptySerum.get(itemGenetics, 1),
+		GameRegistry.addRecipe(new ShapedOreRecipe(GeneticsItems.EMPTY_SERUM.get(itemGenetics, 1),
 				" g ", 
 				" G ", 
 				"GGG",
 				'g', "ingotGold", 'G', Blocks.GLASS_PANE));
-		GameRegistry.addRecipe(new ShapedOreRecipe(GeneticsItems.EmptyGenome.get(itemGenetics, 1),
+		GameRegistry.addRecipe(new ShapedOreRecipe(GeneticsItems.EMPTY_GENOME.get(itemGenetics, 1),
 				"sss", 
 				"sss", 
 				"sss",
-				's', GeneticsItems.EmptySerum.get(itemGenetics, 1)));
+				's', GeneticsItems.EMPTY_SERUM.get(itemGenetics, 1)));
 		GameRegistry.addRecipe(new ShapedOreRecipe(FluidContainerType.CYLINDER.get(8),
 				" g ", 
 				"g g", 
@@ -160,8 +160,8 @@ public class ModuleItems implements IInitializable {
 				"RDR",
 				'#', Blocks.GLASS_PANE, 'X', Items.DIAMOND, 'Y', Items.DIAMOND, 'R', Items.REDSTONE, 'D', Items.ENDER_EYE, 'E', Blocks.OBSIDIAN);
 		GameRegistry.addSmelting(itemSequencer, GeneticsItems.EmptySequencer.get(itemGenetics, 1), 0.0f);
-		GameRegistry.addSmelting(itemSerum, GeneticsItems.EmptySerum.get(itemGenetics, 1), 0.0f);
-		GameRegistry.addSmelting(itemSerumArray, GeneticsItems.EmptyGenome.get(itemGenetics, 1), 0.0f);
+		GameRegistry.addSmelting(itemSerum, GeneticsItems.EMPTY_SERUM.get(itemGenetics, 1), 0.0f);
+		GameRegistry.addSmelting(itemSerumArray, GeneticsItems.EMPTY_GENOME.get(itemGenetics, 1), 0.0f);
 
 		GameRegistry.addShapedRecipe(new ItemStack(analyst),
 				" c ", 

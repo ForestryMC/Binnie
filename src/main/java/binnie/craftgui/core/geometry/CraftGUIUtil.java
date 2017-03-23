@@ -6,12 +6,12 @@ import binnie.craftgui.events.EventValueChanged;
 
 public class CraftGUIUtil {
 	public static void alignToWidget(final IWidget target, final IWidget relativeTo) {
-		final IPoint startPos = target.getAbsolutePosition();
-		final IPoint endPos = relativeTo.getAbsolutePosition();
+		final Point startPos = target.getAbsolutePosition();
+		final Point endPos = relativeTo.getAbsolutePosition();
 		moveWidget(target, endPos.sub(startPos));
 	}
 
-	public static void moveWidget(final IWidget target, final IPoint movement) {
+	public static void moveWidget(final IWidget target, final Point movement) {
 		target.setPosition(target.getPosition().add(movement));
 	}
 
@@ -26,7 +26,7 @@ public class CraftGUIUtil {
 			h = Math.max(h, widget.getSize().y());
 		}
 		for (final IWidget widget : widgets) {
-			widget.setPosition(new IPoint(px + x, py + Math.round((h - widget.getSize().y()) * just.getYOffset())));
+			widget.setPosition(new Point(px + x, py + Math.round((h - widget.getSize().y()) * just.getYOffset())));
 			x += widget.getSize().x() + spacing;
 		}
 	}
@@ -42,7 +42,7 @@ public class CraftGUIUtil {
 			w = Math.max(w, widget.getSize().x());
 		}
 		for (final IWidget widget : widgets) {
-			widget.setPosition(new IPoint(px + Math.round((w - widget.getSize().x()) * just.getXOffset()), py + y));
+			widget.setPosition(new Point(px + Math.round((w - widget.getSize().x()) * just.getXOffset()), py + y));
 			y += widget.getSize().y() + spacing;
 		}
 	}

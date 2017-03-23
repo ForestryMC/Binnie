@@ -12,7 +12,7 @@ import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.minecraft.Window;
@@ -93,7 +93,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 		}
 		for (final IDesignCategory category : designs.keySet()) {
 			cx = 2;
-			new ControlText(this, new IPoint(cx, cy + 3), category.getName());
+			new ControlText(this, new Point(cx, cy + 3), category.getName());
 			cy += 16;
 			for (final IDesign tile : designs.get(category)) {
 				if (cx > 90) {
@@ -106,7 +106,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 			cy += 20;
 		}
 		final int height = cy;
-		this.setSize(new IPoint(this.getSize().x(), height));
+		this.setSize(new Point(this.getSize().x(), height));
 	}
 
 	@Override
@@ -159,14 +159,14 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 		@Override
 		@SideOnly(Side.CLIENT)
 		public void onRenderBackground(int guiWidth, int guiHeight) {
-			CraftGUI.render.texture(CraftGUITexture.Slot, IPoint.ZERO);
+			CraftGUI.render.texture(CraftGUITexture.Slot, Point.ZERO);
 		}
 
 		@Override
 		@SideOnly(Side.CLIENT)
 		public void onRenderForeground(int guiWidth, int guiHeight) {
 			final ItemStack image = ((WindowWoodworker) this.getTopParent()).getDesignerType().getDisplayStack(this.getValue());
-			RenderUtil.drawItem(new IPoint(1, 1), image);
+			RenderUtil.drawItem(new Point(1, 1), image);
 			if (((IControlValue) this.getParent()).getValue() != this.getValue()) {
 				if (Window.get(this).getMousedOverWidget() == this) {
 					RenderUtil.drawGradientRect(this.getArea().inset(1), 1157627903, 1157627903);

@@ -1,7 +1,7 @@
 package binnie.craftgui.core;
 
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.events.EventWidget;
 import org.lwjgl.input.Mouse;
@@ -21,16 +21,16 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 	IWidget draggedWidget;
 	@Nullable
 	IWidget focusedWidget;
-	protected IPoint mousePosition;
-	IPoint dragStart;
+	protected Point mousePosition;
+	Point dragStart;
 
 	public TopLevelWidget() {
 		super(null);
 		this.mousedOverWidget = null;
 		this.draggedWidget = null;
 		this.focusedWidget = null;
-		this.mousePosition = IPoint.ZERO;
-		this.dragStart = IPoint.ZERO;
+		this.mousePosition = Point.ZERO;
+		this.dragStart = Point.ZERO;
 		this.addEventHandler(new EventMouse.Down.Handler() {
 			@Override
 			public void onEvent(final EventMouse.Down event) {
@@ -170,7 +170,7 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 	private Collection<IWidget> getQueuedWidgets(final IWidget widget) {
 		final List<IWidget> widgets = new ArrayList<>();
 		boolean addChildren = true;
-		IArea croppedZone = widget.getCroppedZone();
+		Area croppedZone = widget.getCroppedZone();
 		if (croppedZone != null) {
 			addChildren = croppedZone.contains(widget.getCropWidget().getRelativeMousePosition());
 		}
@@ -197,13 +197,13 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 			}
 		}
 		if (this.mousePosition.x() != x || this.mousePosition.y() != y) {
-			this.mousePosition = new IPoint(x, y);
+			this.mousePosition = new Point(x, y);
 			this.setMousedOverWidget(this.calculateMousedOverWidget());
 		}
 	}
 
 	@Override
-	public IPoint getAbsoluteMousePosition() {
+	public Point getAbsoluteMousePosition() {
 		return this.mousePosition;
 	}
 
@@ -221,7 +221,7 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 	}
 
 	@Override
-	public IPoint getDragDistance() {
+	public Point getDragDistance() {
 		return this.getRelativeMousePosition().sub(this.dragStart);
 	}
 }

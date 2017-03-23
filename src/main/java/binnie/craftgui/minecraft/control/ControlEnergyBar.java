@@ -10,8 +10,8 @@ import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.geometry.Position;
 import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.minecraft.MinecraftTooltip;
@@ -84,18 +84,18 @@ public class ControlEnergyBar extends Control implements ITooltip {
 		final float percentage = this.getPercentage() / 100.0f;
 		int colourFromPercentage = this.getColourFromPercentage(percentage);
 		RenderUtil.setColour(colourFromPercentage);
-		final IArea area = this.getArea();
+		final Area area = this.getArea();
 		switch (this.direction) {
 			case Top:
 			case BOTTOM: {
 				final int height = Math.round(area.size().y() * percentage);
-				area.setSize(new IPoint(area.size().x(), height));
+				area.setSize(new Point(area.size().x(), height));
 				break;
 			}
 			case LEFT:
 			case RIGHT: {
 				final int width = Math.round(area.size().x() * percentage);
-				area.setSize(new IPoint(width, area.size().y()));
+				area.setSize(new Point(width, area.size().y()));
 				break;
 			}
 		}
@@ -115,11 +115,11 @@ public class ControlEnergyBar extends Control implements ITooltip {
 	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		if (this.isMouseOver() && Window.get(this).getGui().isHelpMode()) {
-			final IArea area = this.getArea();
+			final Area area = this.getArea();
 			RenderUtil.setColour(MinecraftTooltip.getOutline(Tooltip.Type.Help));
 			CraftGUI.render.texture(CraftGUITexture.Outline, area.outset(1));
 		} else if (ControlEnergyBar.isError) {
-			final IArea area = this.getArea();
+			final Area area = this.getArea();
 			RenderUtil.setColour(MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error));
 			CraftGUI.render.texture(CraftGUITexture.Outline, area.outset(1));
 		}

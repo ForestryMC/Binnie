@@ -1,4 +1,4 @@
-package binnie.genetics.gui;
+package binnie.genetics.gui.bee;
 
 import binnie.Binnie;
 import binnie.core.BinnieCore;
@@ -8,11 +8,12 @@ import binnie.craftgui.controls.ControlTextCentered;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.core.geometry.CraftGUIUtil;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.extratrees.kitchen.craftgui.ControlFluidDisplay;
 import binnie.genetics.Genetics;
+import binnie.genetics.gui.AnalystPageProduce;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
@@ -34,7 +35,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AnalystPageProducts extends AnalystPageProduce {
-	public AnalystPageProducts(final IWidget parent, final IArea area, final IBee ind) {
+	public AnalystPageProducts(final IWidget parent, final Area area, final IBee ind) {
 		super(parent, area);
 		this.setColour(13382400);
 		final IBeeGenome genome = ind.getGenome();
@@ -132,7 +133,7 @@ public class AnalystPageProducts extends AnalystPageProduce {
 			}
 			dx += 18;
 		}
-		this.setSize(new IPoint(this.width(), y + dy + 18 + 8));
+		this.setSize(new Point(this.width(), y + dy + 18 + 8));
 	}
 
 	@Nullable
@@ -181,7 +182,7 @@ public class AnalystPageProducts extends AnalystPageProduce {
 		item.setTooltip();
 		final ControlText textWidget = new ControlTextCentered(this, y + 4, "");
 		textWidget.setColour(this.getColour());
-		CraftGUIUtil.moveWidget(textWidget, new IPoint(12, 0));
+		CraftGUIUtil.moveWidget(textWidget, new Point(12, 0));
 		item.setItemStack(key);
 		final int time = (int) (PluginApiculture.ticksPerBeeWorkCycle * 100.0 / (speed * value));
 		textWidget.setValue(Genetics.proxy.localise("gui.analyst.products.every") + " " + this.getTimeString(time));
@@ -189,6 +190,6 @@ public class AnalystPageProducts extends AnalystPageProduce {
 
 	@Override
 	public String getTitle() {
-		return Genetics.proxy.localise("gui.analyst.produces.tile");
+		return Genetics.proxy.localise("gui.analyst.produces.title");
 	}
 }

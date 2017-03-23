@@ -7,7 +7,7 @@ import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.CraftGUITextureSheet;
@@ -29,9 +29,9 @@ class ControlMutationSymbol extends Control implements ITooltip {
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		super.onRenderBackground(guiWidth, guiHeight);
 		if (this.type == 0) {
-			CraftGUI.render.texture(ControlMutationSymbol.MutationPlus, IPoint.ZERO);
+			CraftGUI.render.texture(ControlMutationSymbol.MutationPlus, Point.ZERO);
 		} else {
-			CraftGUI.render.texture(ControlMutationSymbol.MutationArrow, IPoint.ZERO);
+			CraftGUI.render.texture(ControlMutationSymbol.MutationArrow, Point.ZERO);
 		}
 	}
 

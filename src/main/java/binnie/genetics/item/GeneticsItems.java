@@ -14,8 +14,8 @@ public enum GeneticsItems implements IItemMiscProvider {
 	Enzyme("Enzyme", "enzyme"),
 	GrowthMedium("Growth Medium", "growth_medium"),
 	EmptySequencer("Blank Sequence", "sequencer_empty"),
-	EmptySerum("Empty Serum Vial", "serum_empty"),
-	EmptyGenome("Empty Serum Array", "genome_empty"),
+	EMPTY_SERUM("Empty Serum Vial", "serum_empty"),
+	EMPTY_GENOME("Empty Serum Array", "genome_empty"),
 	IntegratedCircuit("Integrated Circuit Board", "integrated_circuit"),
 	IntegratedCPU("Integrated CPU", "integrated_cpu"),
 	IntegratedCasing("Integrated Casing", "casing_circuit");

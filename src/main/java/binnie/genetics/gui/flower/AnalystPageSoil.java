@@ -1,4 +1,4 @@
-package binnie.genetics.gui;
+package binnie.genetics.gui.flower;
 
 import binnie.botany.Botany;
 import binnie.botany.api.EnumAcidity;
@@ -9,10 +9,12 @@ import binnie.core.genetics.Tolerance;
 import binnie.craftgui.controls.ControlText;
 import binnie.craftgui.controls.ControlTextCentered;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
+import binnie.craftgui.core.geometry.Area;
 import binnie.craftgui.core.geometry.TextJustification;
 import binnie.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.genetics.Genetics;
+import binnie.genetics.gui.ControlAnalystPage;
+import binnie.genetics.gui.ControlToleranceBar;
 import forestry.api.genetics.EnumTolerance;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
@@ -22,7 +24,7 @@ import java.util.EnumSet;
 import java.util.List;
 
 public class AnalystPageSoil extends ControlAnalystPage {
-	public AnalystPageSoil(final IWidget parent, final IArea area, final IFlower flower) {
+	public AnalystPageSoil(final IWidget parent, final Area area, final IFlower flower) {
 		super(parent, area);
 		this.setColour(6697728);
 		final EnumMoisture moisture = flower.getGenome().getPrimary().getMoisture();
@@ -32,15 +34,15 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		int y = 4;
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColour(this.getColour());
 		y += 16;
-		new ControlText(this, new IArea(4, y, this.width() - 8, 14), Genetics.proxy.localise("gui.analyst.soil.tolerance.moisture"), TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new Area(4, y, this.width() - 8, 14), Genetics.proxy.localise("gui.analyst.soil.tolerance.moisture"), TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
 		this.createMoisture(this, (this.width() - 100) / 2, y, 100, 10, moisture, moistureTol);
 		y += 16;
-		new ControlText(this, new IArea(4, y, this.width() - 8, 14), Genetics.proxy.localise("gui.analyst.soil.tolerance.ph"), TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new Area(4, y, this.width() - 8, 14), Genetics.proxy.localise("gui.analyst.soil.tolerance.ph"), TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
 		this.createAcidity(this, (this.width() - 100) / 2, y, 100, 10, pH, pHTol);
 		y += 16;
-		new ControlText(this, new IArea(4, y, this.width() - 8, 14), Genetics.proxy.localise("gui.analyst.soil.recommended"), TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new Area(4, y, this.width() - 8, 14), Genetics.proxy.localise("gui.analyst.soil.recommended"), TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
 		EnumMoisture recomMoisture = EnumMoisture.Normal;
 		final boolean canTolNormal = Tolerance.canTolerate(moisture, EnumMoisture.Normal, moistureTol);
@@ -83,7 +85,7 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		recomSoil.setItemStack(stack);
 		recomSoil.setTooltip();
 		y += 32;
-		new ControlText(this, new IArea(4, y, this.width() - 8, 14), Genetics.proxy.localise("gui.analyst.soil.other"), TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new Area(4, y, this.width() - 8, 14), Genetics.proxy.localise("gui.analyst.soil.other"), TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
 		final List<ItemStack> stacks = new ArrayList<>();
 		for (final EnumAcidity a : EnumSet.range(EnumAcidity.Acid, EnumAcidity.Alkaline)) {

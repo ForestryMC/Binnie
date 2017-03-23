@@ -17,7 +17,7 @@ public class DatabaseRecipeMaker {
 		ModuleItems items = Genetics.items();
 
 		{
-			ItemStack emptySerum = GeneticsItems.EmptySerum.get(1);
+			ItemStack emptySerum = GeneticsItems.EMPTY_SERUM.get(1);
 			ItemStack resultSerum = new ItemStack(items.itemSerum, 1, OreDictionary.WILDCARD_VALUE);
 			IStackHelper stackHelper = GeneticsJeiPlugin.jeiHelpers.getStackHelper();
 			List<ItemStack> subtypes = stackHelper.toItemStackList(resultSerum);
@@ -31,7 +31,7 @@ public class DatabaseRecipeMaker {
 		}
 
 		{
-			ItemStack emptySerumArray = GeneticsItems.EmptyGenome.get(1);
+			ItemStack emptySerumArray = GeneticsItems.EMPTY_GENOME.get(1);
 			ItemStack resultSerumArray = new ItemStack(items.itemSerumArray, 1, OreDictionary.WILDCARD_VALUE);
 			IStackHelper stackHelper = GeneticsJeiPlugin.jeiHelpers.getStackHelper();
 			List<ItemStack> subtypes = stackHelper.toItemStackList(resultSerumArray);

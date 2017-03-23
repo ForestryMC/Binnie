@@ -82,15 +82,56 @@ genetics.machine.adv_machine.splicer.tooltips.slots.serum=Serum Vials & Arrays
 genetics.machine.adv_machine.splicer.tooltips.slots.individual=Splicable Individual
 genetics.machine.adv_machine.splicer.errors.no.individual.desc=No Individual to Splice
 
+genetics.gui.analyst.biology.title=Biology
+genetics.gui.analyst.biology.bee.allday=Active all day and night
+genetics.gui.analyst.biology.bee.day=Active during the day
+genetics.gui.analyst.biology.bee.night=Active at night
+genetics.gui.analyst.biology.bee.norain=Cannot work during rain
+genetics.gui.analyst.biology.bee.rain=Can work during rain
+genetics.gui.analyst.biology.bee.nosky=Can work underground
+genetics.gui.analyst.biology.bee.sky=Cannot work underground
+
+genetics.gui.analyst.genome.title=Genome
+genetics.gui.analyst.genome.active=Active
+genetics.gui.analyst.genome.inactive=Inactive
+
+genetics.gui.analyst.registry.title=Registry
+
+genetics.gui.analyst.karyogram.title=Karyogram
+
+genetics.gui.analyst.mutations.title=Mutations
+genetics.gui.analyst.mutations.unknown.tooltip=Unknown Mutation
+genetics.gui.analyst.mutations.unknown=UNKNOWN
+genetics.gui.analyst.mutations.further=Further Mutations
+genetics.gui.analyst.mutations.resultant=Resultant Mutations
+genetics.gui.analyst.mutations.currently=currently
+genetics.gui.analyst.mutations.chance=Chance
+genetics.gui.analyst.mutations.bee.natural=Natural Habitat
+genetics.gui.analyst.mutations.bee.hive=Found in any Hive
+genetics.gui.analyst.mutations.bee.villager=Bought from Villagers
+genetics.gui.analyst.mutations.bee.dungeon=Dungeon Chests
+
+genetics.gui.analyst.desc.title=Description
+genetics.gui.analyst.desc.discovered=Discovered by
+genetics.gui.analyst.desc.complexity=Genetic Complexity
+
+//Flower
 genetics.gui.analyst.soil.title=Soil
 genetics.gui.analyst.soil.tolerance.moisture=Moisture Tolerance
 genetics.gui.analyst.soil.tolerance.ph=pH Tolerance
 genetics.gui.analyst.soil.recommended=Recommended Soil
 genetics.gui.analyst.soil.other=Other Soils
 
+genetics.gui.analyst.appearance.title=Appearance
+genetics.gui.analyst.appearance.primary=Primary Petal Colour
+genetics.gui.analyst.appearance.secondary=Secondary Petal Colour
+genetics.gui.analyst.appearance.stem=Stem Colour
+
+//Butterfly
 genetics.gui.analyst.specimen.title=Specimen
 
-genetics.gui.analyst.produces.tile=Produce
+//Bee
+genetics.gui.analyst.produces.title=Produce
 genetics.gui.analyst.produces.rate=Rate
 genetics.gui.analyst.products.natural=Natural Products
 genetics.gui.analyst.products.specialty=Specialty Products
@@ -98,6 +139,32 @@ genetics.gui.analyst.products.refined=Refined Products
 genetics.gui.analyst.products.centrifuges=Centrifuges to give
 genetics.gui.analyst.products.squeezes=Squeezes to give
 genetics.gui.analyst.products.every=Every
+
+//Tree
+genetics.gui.analyst.wood.title=Wood
+genetics.gui.analyst.wood.fireproof=Fireproof
+genetics.gui.analyst.wood.flammable=Flammable
+genetics.gui.analyst.wood.logs=Logs
+genetics.gui.analyst.wood.refined=Refined Products
+genetics.gui.analyst.wood.noFruits=This tree has no \n fruits or nuts
+
+genetics.gui.analyst.growth.title=Growth
+genetics.gui.analyst.growth.mature=Saplings mature in
+genetics.gui.analyst.growth.height=Height
+genetics.gui.analyst.growth.girth=Girth
+
+genetics.gui.analyst.climate.title=Climate
+genetics.gui.analyst.climate.temp=Temp. Tolerance
+genetics.gui.analyst.climate.hum=Humidity Tolerance
+genetics.gui.analyst.climate.biomes=Biomes
+
+genetics.gui.analyst.fruit.title=Fruit
+genetics.gui.analyst.fruit.possible=Possible Fruits
+genetics.gui.analyst.fruit.specialty=Specialty Fruit
+genetics.gui.analyst.fruit.natural=Natural Fruit
+genetics.gui.analyst.fruit.yield=Yield
+genetics.gui.analyst.fruit.refined=Refined Products
+genetics.gui.analyst.fruit.noFruits=This tree has no \n fruits or nuts
 
 genetics.item.gene.empty=Empty
 genetics.item.gene.charge=Charge

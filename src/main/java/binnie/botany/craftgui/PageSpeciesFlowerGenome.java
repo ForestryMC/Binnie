@@ -11,8 +11,8 @@ import binnie.craftgui.controls.ControlText;
 import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.controls.scroll.ControlScrollableContent;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.geometry.TextJustification;
 import binnie.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.craftgui.mod.database.DatabaseTab;
@@ -42,7 +42,7 @@ public class PageSpeciesFlowerGenome extends PageSpecies {
 		final IAlleleFlowerSpecies treeSpecies = genome.getPrimary();
 		final int w = 144;
 		final int h = 176;
-		new ControlText(this, new IArea(0, 4, w, 16), "Genome", TextJustification.MiddleCenter);
+		new ControlText(this, new Area(0, 4, w, 16), "Genome", TextJustification.MiddleCenter);
 		final ControlScrollableContent scrollable = new ControlScrollableContent(this, 4, 20, w - 8, h - 8 - 16, 12);
 		final Control contents = new Control(scrollable, 0, 0, w - 8 - 12, h - 8 - 16);
 		final int tw = w - 8 - 12;
@@ -51,24 +51,24 @@ public class PageSpeciesFlowerGenome extends PageSpecies {
 		int y = 0;
 		final int th = 14;
 		final int th2 = 18;
-		new ControlText(contents, new IArea(0, y, w2, th), "Temp. : ", TextJustification.MiddleRight);
-		new ControlText(contents, new IArea(w2, y, w3, th), treeSpecies.getTemperature().getName(), TextJustification.MIDDLE_LEFTt);
+		new ControlText(contents, new Area(0, y, w2, th), "Temp. : ", TextJustification.MiddleRight);
+		new ControlText(contents, new Area(w2, y, w3, th), treeSpecies.getTemperature().getName(), TextJustification.MIDDLE_LEFTt);
 		y += th;
-		new ControlText(contents, new IArea(0, y, w2, th), "Moist. : ", TextJustification.MiddleRight);
-		new ControlText(contents, new IArea(w2, y, w3, th), Binnie.LANGUAGE.localise(treeSpecies.getMoisture()), TextJustification.MIDDLE_LEFTt);
+		new ControlText(contents, new Area(0, y, w2, th), "Moist. : ", TextJustification.MiddleRight);
+		new ControlText(contents, new Area(w2, y, w3, th), Binnie.LANGUAGE.localise(treeSpecies.getMoisture()), TextJustification.MIDDLE_LEFTt);
 		y += th;
-		new ControlText(contents, new IArea(0, y, w2, th), "pH. : ", TextJustification.MiddleRight);
-		new ControlText(contents, new IArea(w2, y, w3, th), Binnie.LANGUAGE.localise(treeSpecies.getPH()), TextJustification.MIDDLE_LEFTt);
+		new ControlText(contents, new Area(0, y, w2, th), "pH. : ", TextJustification.MiddleRight);
+		new ControlText(contents, new Area(w2, y, w3, th), Binnie.LANGUAGE.localise(treeSpecies.getPH()), TextJustification.MIDDLE_LEFTt);
 		y += th;
-		new ControlText(contents, new IArea(0, y, w2, th), "Fertility : ", TextJustification.MiddleRight);
-		new ControlText(contents, new IArea(w2, y, w3, th), genome.getFertility() + "x", TextJustification.MIDDLE_LEFTt);
+		new ControlText(contents, new Area(0, y, w2, th), "Fertility : ", TextJustification.MiddleRight);
+		new ControlText(contents, new Area(w2, y, w3, th), genome.getFertility() + "x", TextJustification.MIDDLE_LEFTt);
 		y += th;
 		final float lifespan = genome.getLifespan() * 68.27f / genome.getAgeChance() / 24000.0f;
-		new ControlText(contents, new IArea(0, y, w2, th), "Lifespan : ", TextJustification.MiddleRight);
-		new ControlText(contents, new IArea(w2, y, w3, th), "" + String.format("%.2f", lifespan) + " days", TextJustification.MIDDLE_LEFTt);
+		new ControlText(contents, new Area(0, y, w2, th), "Lifespan : ", TextJustification.MiddleRight);
+		new ControlText(contents, new Area(w2, y, w3, th), "" + String.format("%.2f", lifespan) + " days", TextJustification.MIDDLE_LEFTt);
 		y += th;
-		new ControlText(contents, new IArea(0, y, w2, th), "Nectar : ", TextJustification.MiddleRight);
-		new ControlText(contents, new IArea(w2, y, w3, th), genome.getActiveAllele(EnumFlowerChromosome.SAPPINESS).getName(), TextJustification.MIDDLE_LEFTt);
+		new ControlText(contents, new Area(0, y, w2, th), "Nectar : ", TextJustification.MiddleRight);
+		new ControlText(contents, new Area(w2, y, w3, th), genome.getActiveAllele(EnumFlowerChromosome.SAPPINESS).getName(), TextJustification.MIDDLE_LEFTt);
 		y += th;
 		int x = w2;
 		int tot = 0;
@@ -86,9 +86,9 @@ public class PageSpeciesFlowerGenome extends PageSpecies {
 			}
 		}
 		final int numOfLines = 1 + (tot - 1) / 3;
-		new ControlText(contents, new IArea(0, y - (numOfLines - 1) * 18, w2, 4 + 18 * numOfLines), "Varieties : ", TextJustification.MiddleRight);
+		new ControlText(contents, new Area(0, y - (numOfLines - 1) * 18, w2, 4 + 18 * numOfLines), "Varieties : ", TextJustification.MiddleRight);
 		y += th;
-		contents.setSize(new IPoint(contents.size().x(), y));
+		contents.setSize(new Point(contents.size().x(), y));
 		scrollable.setScrollableContent(contents);
 	}
 

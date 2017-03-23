@@ -3,7 +3,7 @@ package binnie.genetics.machine.sequencer;
 import binnie.core.AbstractMod;
 import binnie.craftgui.controls.ControlText;
 import binnie.craftgui.core.geometry.CraftGUIUtil;
-import binnie.craftgui.core.geometry.IArea;
+import binnie.craftgui.core.geometry.Area;
 import binnie.craftgui.core.geometry.Position;
 import binnie.craftgui.core.geometry.TextJustification;
 import binnie.craftgui.minecraft.GUIIcon;
@@ -60,7 +60,7 @@ public class WindowSequencer extends WindowMachine {
 		final ControlSlot slotTarget = new ControlSlot.Builder(this, x + 96, y + 16).assign(5);
 		x = 34;
 		y = 92;
-		this.slotText = new ControlText(this, new IArea(0, y, this.width(), 12), TextFormatting.DARK_GRAY + Genetics.proxy.localise("machine.machine.sequencer.texts.userless"), TextJustification.MiddleCenter);
+		this.slotText = new ControlText(this, new Area(0, y, this.width(), 12), TextFormatting.DARK_GRAY + Genetics.proxy.localise("machine.machine.sequencer.texts.userless"), TextJustification.MiddleCenter);
 		y += 20;
 		final ControlSlot slotDye = new ControlSlot.Builder(this, x, y).assign(0);
 		x += 20;

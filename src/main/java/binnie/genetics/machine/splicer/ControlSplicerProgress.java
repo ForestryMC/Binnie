@@ -1,7 +1,7 @@
 package binnie.genetics.machine.splicer;
 
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
+import binnie.craftgui.core.geometry.Area;
 import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.minecraft.control.ControlProgressBase;
 import net.minecraftforge.fml.relauncher.Side;
@@ -44,10 +44,10 @@ public class ControlSplicerProgress extends ControlProgressBase {
 				c3 += alpha;
 				c4 += alpha;
 				int viewAmount = Math.round(offMovement * percentView);
-				RenderUtil.drawSolidRectWithAlpha(new IArea(this.width() / 2 + y, viewAmount, 4, h / 2), c1);
-				RenderUtil.drawSolidRectWithAlpha(new IArea(this.width() / 2 + y, viewAmount + 4, 4, h / 2), (y < 0) ? c2 : c3);
-				RenderUtil.drawSolidRectWithAlpha(new IArea(this.width() / 2 + y, this.height() - viewAmount - 8, 4, h / 2), (y < 0) ? c3 : c2);
-				RenderUtil.drawSolidRectWithAlpha(new IArea(this.width() / 2 + y, this.height() - viewAmount - 4, 4, h / 2), c4);
+				RenderUtil.drawSolidRectWithAlpha(new Area(this.width() / 2 + y, viewAmount, 4, h / 2), c1);
+				RenderUtil.drawSolidRectWithAlpha(new Area(this.width() / 2 + y, viewAmount + 4, 4, h / 2), (y < 0) ? c2 : c3);
+				RenderUtil.drawSolidRectWithAlpha(new Area(this.width() / 2 + y, this.height() - viewAmount - 8, 4, h / 2), (y < 0) ? c3 : c2);
+				RenderUtil.drawSolidRectWithAlpha(new Area(this.width() / 2 + y, this.height() - viewAmount - 4, 4, h / 2), c4);
 			}
 		}
 	}

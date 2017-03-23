@@ -6,8 +6,8 @@ import binnie.craftgui.core.Attribute;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IBorder;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Border;
 import binnie.craftgui.core.renderer.RenderUtil;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.EnumTolerance;
@@ -56,8 +56,8 @@ public abstract class ControlToleranceBar<T extends Enum<T>> extends Control imp
 		int t = 0;
 		for (final T value : this.fullSet) {
 			final int col = (this.tolerated.contains(value) ? -16777216 : 855638016) + this.getColour(value);
-			final IBorder inset = new IBorder(this.tolerated.contains(value) ? 1 : 3);
-			RenderUtil.drawGradientRect(new IArea(w * t, 0, w, this.height()).inset(inset), col, col);
+			final Border inset = new Border(this.tolerated.contains(value) ? 1 : 3);
+			RenderUtil.drawGradientRect(new Area(w * t, 0, w, this.height()).inset(inset), col, col);
 			++t;
 		}
 	}

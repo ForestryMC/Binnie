@@ -20,7 +20,7 @@ import binnie.craftgui.core.ITooltipHelp;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.core.TopLevelWidget;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventWidget;
 import binnie.craftgui.minecraft.control.ControlHelp;
@@ -82,7 +82,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 			return;
 		}
 
-		this.setSize(new IPoint(width, height));
+		this.setSize(new Point(width, height));
 		this.gui = new GuiCraftGUI(this);
 		for (final EnumHighlighting h : EnumHighlighting.values()) {
 			ControlSlot.highlighting.put(h, new ArrayList<>());
@@ -102,7 +102,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 				if (Window.this.isClient()) {
 					Window.this.getGui().resize(Window.this.getSize());
 					if (Window.this.title != null) {
-						Window.this.title.setSize(new IPoint(Window.this.width(), Window.this.title.height()));
+						Window.this.title.setSize(new Point(Window.this.width(), Window.this.title.height()));
 					}
 				}
 			}
@@ -218,10 +218,10 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		RenderUtil.setColour(16777215);
 		if (this.getBackground1() != null) {
-			CraftGUI.render.texture(this.getBackground1(), IPoint.ZERO);
+			CraftGUI.render.texture(this.getBackground1(), Point.ZERO);
 		}
 		if (this.getBackground2() != null) {
-			CraftGUI.render.texture(this.getBackground2(), new IPoint(256, 0));
+			CraftGUI.render.texture(this.getBackground2(), new Point(256, 0));
 		}
 		RenderUtil.setColour(this.getColour());
 		CraftGUI.render.texture(CraftGUITexture.Window, this.getArea());

@@ -3,7 +3,7 @@ package binnie.craftgui.window;
 import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
+import binnie.craftgui.core.geometry.Area;
 import binnie.craftgui.minecraft.MinecraftGUI;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import net.minecraftforge.fml.relauncher.Side;
@@ -17,7 +17,7 @@ public class Panel extends Control {
 		this.type = type;
 	}
 
-	public Panel(final IWidget parent, final IArea area, final IPanelType type) {
+	public Panel(final IWidget parent, final Area area, final IPanelType type) {
 		this(parent, area.xPos(), area.yPos(), area.width(), area.height(), type);
 	}
 

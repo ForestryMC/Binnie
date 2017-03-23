@@ -3,7 +3,7 @@ package binnie.extratrees.machines.craftgui;
 import binnie.craftgui.core.Attribute;
 import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.minecraft.ContainerCraftGUI;
@@ -30,7 +30,7 @@ public class ControlFruitPressProgress extends ControlProgressBase {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.render.texture(ControlFruitPressProgress.PressSlot, new IPoint(3, 52));
+		CraftGUI.render.texture(ControlFruitPressProgress.PressSlot, new Point(3, 52));
 		ContainerCraftGUI container = Window.get(this).getContainer();
 		IInventory inventory = Window.get(this).getInventory();
 		Slot slotFromInventory = container.getSlotFromInventory(inventory, FruitPressMachine.SLOT_CURRENT);
@@ -42,15 +42,15 @@ public class ControlFruitPressProgress extends ControlProgressBase {
 			return;
 		}
 		FluidStack fluid = FruitPressRecipes.getOutput(input);
-		RenderUtil.drawFluid(new IPoint(4, 52), fluid);
-		RenderUtil.drawItem(new IPoint(4, 52), input);
+		RenderUtil.drawFluid(new Point(4, 52), fluid);
+		RenderUtil.drawItem(new Point(4, 52), input);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		GlStateManager.enableBlend();
-		CraftGUI.render.texture(ControlFruitPressProgress.PressTexture, new IPoint(0, Math.round(16 * this.progress)));
+		CraftGUI.render.texture(ControlFruitPressProgress.PressTexture, new Point(0, Math.round(16 * this.progress)));
 	}
 
 	protected ControlFruitPressProgress(final IWidget parent, final int x, final int y) {

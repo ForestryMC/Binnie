@@ -1,13 +1,13 @@
 package binnie.craftgui.minecraft.render;
 
 import binnie.core.resource.IBinnieTexture;
-import binnie.craftgui.core.geometry.IArea;
+import binnie.craftgui.core.geometry.Area;
 
 public class MinecraftTexture {
-	IArea textureArea;
+	Area textureArea;
 	IBinnieTexture texture;
 
 	public MinecraftTexture() {
-		this.textureArea = new IArea(0, 0, 0, 0);
+		this.textureArea = new Area(0, 0, 0, 0);
 	}
 }

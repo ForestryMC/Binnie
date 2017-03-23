@@ -6,7 +6,7 @@ import binnie.craftgui.core.Attribute;
 import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.events.EventValueChanged;
 import binnie.craftgui.events.EventWidget;
 import binnie.craftgui.resource.Texture;
@@ -49,7 +49,7 @@ public class ControlChromoPicker extends Control implements ITooltip {
 		super.onRenderBackground(guiWidth, guiHeight);
 		final boolean selected = this.isMouseOver();
 		final Texture text = selected ? this.Selected : this.Texture;
-		CraftGUI.render.texture(text, IPoint.ZERO);
+		CraftGUI.render.texture(text, Point.ZERO);
 	}
 
 	@Override

@@ -3,7 +3,7 @@ package binnie.craftgui.minecraft.control;
 import binnie.core.genetics.IItemStackRepresentitive;
 import binnie.craftgui.controls.tab.ControlTab;
 import binnie.craftgui.controls.tab.ControlTabBar;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Point;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -31,7 +31,7 @@ public class ControlTabIcon<T> extends ControlTab<T> {
 		this.item.setItemStack(this.getItemStack());
 		ControlTabBar parent = (ControlTabBar) this.getParent();
 		final int x = parent.getDirection().x();
-		this.item.setOffset(new IPoint((this.isCurrentSelection() || this.isMouseOver()) ? 0 : (-4 * x), 0));
+		this.item.setOffset(new Point((this.isCurrentSelection() || this.isMouseOver()) ? 0 : (-4 * x), 0));
 	}
 
 	public boolean hasOutline() {

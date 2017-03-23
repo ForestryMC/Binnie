@@ -5,7 +5,7 @@ import binnie.craftgui.core.Attribute;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.minecraft.Window;
 import net.minecraft.client.Minecraft;
@@ -52,7 +52,7 @@ public class ControlItemDisplay extends Control implements ITooltip {
 			return;
 		}
 
-		final IPoint relativeToWindow = this.getAbsolutePosition().sub(this.getTopParent().getPosition());
+		final Point relativeToWindow = this.getAbsolutePosition().sub(this.getTopParent().getPosition());
 		if (relativeToWindow.x() > Window.get(this).getSize().x() + 100 || relativeToWindow.y() > Window.get(this).getSize().y() + 100) {
 			return;
 		}
@@ -62,15 +62,15 @@ public class ControlItemDisplay extends Control implements ITooltip {
 			GlStateManager.pushMatrix();
 			final float scale = this.getSize().x() / 16.0f;
 			GlStateManager.scale(scale, scale, 1);
-			RenderUtil.drawItem(IPoint.ZERO, this.itemStack, this.rotating);
+			RenderUtil.drawItem(Point.ZERO, this.itemStack, this.rotating);
 			GlStateManager.popMatrix();
 		} else {
-			RenderUtil.drawItem(IPoint.ZERO, this.itemStack, this.rotating);
+			RenderUtil.drawItem(Point.ZERO, this.itemStack, this.rotating);
 		}
 		GlStateManager.enableAlpha();
 	}
 
-	public void setItemStack(final ItemStack itemStack) {
+	public void setItemStack(ItemStack itemStack) {
 		this.itemStack = itemStack;
 	}
 

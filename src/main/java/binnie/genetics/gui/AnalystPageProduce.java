@@ -4,11 +4,12 @@ import binnie.core.util.UniqueFluidStackSet;
 import binnie.core.util.UniqueItemStackSet;
 import binnie.craftgui.controls.ControlTextCentered;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
+import binnie.craftgui.core.geometry.Area;
 import binnie.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.extratrees.machines.brewery.BreweryRecipes;
 import binnie.extratrees.machines.distillery.DistilleryRecipes;
 import binnie.extratrees.machines.fruitpress.FruitPressRecipes;
+import binnie.genetics.gui.bee.AnalystPageProducts;
 import forestry.api.recipes.ICentrifugeRecipe;
 import forestry.api.recipes.ISqueezerRecipe;
 import forestry.api.recipes.RecipeManagers;
@@ -27,7 +28,7 @@ import java.util.Collection;
 import java.util.List;
 
 public abstract class AnalystPageProduce extends ControlAnalystPage {
-	public AnalystPageProduce(final IWidget parent, final IArea area) {
+	public AnalystPageProduce(final IWidget parent, final Area area) {
 		super(parent, area);
 	}
 

@@ -2,12 +2,12 @@ package binnie.genetics.gui;
 
 import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
+import binnie.craftgui.core.geometry.Area;
 
 import java.text.DecimalFormat;
 
 public abstract class ControlAnalystPage extends Control {
-	public ControlAnalystPage(final IWidget parent, final IArea area) {
+	public ControlAnalystPage(final IWidget parent, final Area area) {
 		super(parent, area);
 		this.hide();
 	}

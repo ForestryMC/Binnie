@@ -1,7 +1,7 @@
 package binnie.craftgui.core;
 
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.events.Event;
 import binnie.craftgui.events.EventHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -22,35 +22,35 @@ public interface IWidget {
 
 	boolean isTopLevel();
 
-	IPoint getPosition();
+	Point getPosition();
 
-	IPoint pos();
+	Point pos();
 
-	void setPosition(final IPoint p0);
+	void setPosition(final Point p0);
 
-	IPoint getSize();
+	Point getSize();
 
-	IPoint size();
+	Point size();
 
-	void setSize(final IPoint p0);
+	void setSize(final Point p0);
 
-	IPoint getOriginalPosition();
+	Point getOriginalPosition();
 
-	IPoint getAbsolutePosition();
+	Point getAbsolutePosition();
 
-	IPoint getOriginalAbsolutePosition();
+	Point getOriginalAbsolutePosition();
 
-	IPoint getOffset();
+	Point getOffset();
 
-	IArea getArea();
+	Area getArea();
 
-	IArea area();
+	Area area();
 
-	void setOffset(final IPoint p0);
+	void setOffset(final Point p0);
 
-	IPoint getMousePosition();
+	Point getMousePosition();
 
-	IPoint getRelativeMousePosition();
+	Point getRelativeMousePosition();
 
 	void setColour(final int p0);
 
@@ -109,15 +109,15 @@ public interface IWidget {
 	<T> T getWidget(final Class<T> widgetClass);
 
 	@Nullable
-	IArea getCroppedZone();
+	Area getCroppedZone();
 
-	void setCroppedZone(final IWidget p0, final IArea p1);
+	void setCroppedZone(final IWidget p0, final Area p1);
 
 	boolean isCroppedWidet();
 
 	IWidget getCropWidget();
 
-	boolean isMouseOverWidget(final IPoint p0);
+	boolean isMouseOverWidget(final Point p0);
 
 	int getLevel();
 
@@ -133,7 +133,7 @@ public interface IWidget {
 
 	<E extends Event> void addSelfEventHandler(final EventHandler<E> p0);
 
-	boolean contains(final IPoint point);
+	boolean contains(final Point point);
 
 	int xPos();
 

@@ -6,8 +6,8 @@ import binnie.craftgui.core.ITooltipHelp;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
 import binnie.craftgui.core.Widget;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.minecraft.Window;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -26,12 +26,12 @@ public class Control extends Widget implements ITooltipHelp, ITooltip {
 		this.helpStrings = new ArrayList<>();
 		this.tooltipStrings = new ArrayList<>();
 		this.extraLevel = 0;
-		this.setPosition(new IPoint(x, y));
-		this.setSize(new IPoint(w, h));
+		this.setPosition(new Point(x, y));
+		this.setSize(new Point(w, h));
 		this.initialise();
 	}
 
-	public Control(final IWidget parent, final IArea area) {
+	public Control(final IWidget parent, final Area area) {
 		this(parent, area.xPos(), area.yPos(), area.width(), area.height());
 	}
 

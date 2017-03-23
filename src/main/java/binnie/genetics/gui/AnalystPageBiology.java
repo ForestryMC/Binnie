@@ -4,62 +4,67 @@ import binnie.Binnie;
 import binnie.botany.api.IFlower;
 import binnie.craftgui.controls.ControlTextCentered;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
+import binnie.craftgui.minecraft.control.ControlIconDisplay;
+import binnie.genetics.Genetics;
+import binnie.genetics.item.ModuleItems;
 import forestry.api.apiculture.IBee;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.ITree;
 import forestry.api.genetics.IIndividual;
 import forestry.api.lepidopterology.IButterfly;
 import forestry.apiculture.PluginApiculture;
-
+import net.minecraft.util.text.TextFormatting;
 import java.text.DecimalFormat;
+import java.util.Locale;
 
+//TODO:localise
 public class AnalystPageBiology extends ControlAnalystPage {
-	public AnalystPageBiology(final IWidget parent, final IArea area, final IIndividual ind) {
+	public AnalystPageBiology(final IWidget parent, final Area area, final IIndividual ind) {
 		super(parent, area);
 		this.setColour(26214);
 		int y = 4;
-		new ControlTextCentered(this, y, "§nBiology").setColour(this.getColour());
+		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColour(this.getColour());
 		y += 12;
 		if (ind instanceof IBee) {
 			final IBee bee = (IBee) ind;
 			if (bee.getGenome().getNeverSleeps()) {
-				//new ControlIconDisplay(this, (this.w() - 64.0f) / 2.0f, y, ModuleItem.iconAllDay.getIcon()).addTooltip("Active all day and night");
+				new ControlIconDisplay(this, (width() - 64) / 2, y, ModuleItems.iconAllDay).addTooltip(Genetics.proxy.localise("gui.analyst.biology.bee.allday"));
 			} else if (bee.getGenome().getPrimary().isNocturnal()) {
-				//new ControlIconDisplay(this, (this.w() - 64.0f) / 2.0f, y, ModuleItem.iconNight.getIcon()).addTooltip("Active at night");
+				new ControlIconDisplay(this, (width() - 64) / 2, y, ModuleItems.iconNight).addTooltip(Genetics.proxy.localise("gui.analyst.biology.bee.night"));
 			} else {
-				//new ControlIconDisplay(this, (this.w() - 64.0f) / 2.0f, y, ModuleItem.iconDaytime.getIcon()).addTooltip("Active during the day");
+				new ControlIconDisplay(this, (width() - 64) / 2, y, ModuleItems.iconDaytime).addTooltip(Genetics.proxy.localise("gui.analyst.biology.bee.day"));
 			}
 			if (!bee.getGenome().getToleratesRain()) {
-				//new ControlIconDisplay(this, (this.w() - 64.0f) / 2.0f + 24.0f, y, ModuleItem.iconNoRain.getIcon()).addTooltip("Cannot work during rain");
+				new ControlIconDisplay(this, (width() - 64) / 2 + 24, y, ModuleItems.iconNoRain).addTooltip(Genetics.proxy.localise("gui.analyst.biology.bee.norain"));
 			} else {
-				//new ControlIconDisplay(this, (this.w() - 64.0f) / 2.0f + 24.0f, y, ModuleItem.iconRain.getIcon()).addTooltip("Can work during rain");
+				new ControlIconDisplay(this, (width() - 64) / 2 + 24, y, ModuleItems.iconRain).addTooltip(Genetics.proxy.localise("gui.analyst.biology.bee.rain"));
 			}
 			if (bee.getGenome().getCaveDwelling()) {
-				//new ControlIconDisplay(this, (this.w() - 64.0f) / 2.0f + 48.0f, y, ModuleItem.iconNoSky.getIcon()).addTooltip("Can work underground");
+				new ControlIconDisplay(this, (width() - 64) / 2 + 48, y, ModuleItems.iconNoSky).addTooltip(Genetics.proxy.localise("gui.analyst.biology.bee.nosky"));
 			} else {
-				//new ControlIconDisplay(this, (this.w() - 64.0f) / 2.0f + 48.0f, y, ModuleItem.iconSky.getIcon()).addTooltip("Cannot work underground");
+				new ControlIconDisplay(this, (width() - 64) / 2 + 48, y, ModuleItems.iconSky).addTooltip(Genetics.proxy.localise("gui.analyst.biology.bee.sky"));
 			}
 			y += 30;
 		} else if (ind instanceof IButterfly) {
 			final IButterfly moth = (IButterfly) ind;
 			if (moth.getGenome().getNocturnal()) {
-				//new ControlIconDisplay(this, (this.w() - 64.0f) / 2.0f, y, ModuleItem.iconAllDay.getIcon()).addTooltip("Active all day and night");
+				new ControlIconDisplay(this, (width() - 64) / 2, y, ModuleItems.iconAllDay).addTooltip("Active all day and night");
 			} else if (moth.getGenome().getPrimary().isNocturnal()) {
-				//new ControlIconDisplay(this, (this.w() - 64.0f) / 2.0f, y, ModuleItem.iconNight.getIcon()).addTooltip("Active at night");
+				new ControlIconDisplay(this, (width() - 64) / 2, y, ModuleItems.iconNight).addTooltip("Active at night");
 			} else {
-				//new ControlIconDisplay(this, (this.w() - 64.0f) / 2.0f, y, ModuleItem.iconDaytime.getIcon()).addTooltip("Active during the day");
+				new ControlIconDisplay(this, (width() - 64) / 2, y, ModuleItems.iconDaytime).addTooltip("Active during the day");
 			}
 			if (!moth.getGenome().getTolerantFlyer()) {
-				//new ControlIconDisplay(this, (this.w() - 64.0f) / 2.0f + 24.0f, y, ModuleItem.iconNoRain.getIcon()).addTooltip("Cannot work during rain");
+				new ControlIconDisplay(this, (width() - 64) / 2 + 24, y, ModuleItems.iconNoRain).addTooltip("Cannot work during rain");
 			} else {
-				//new ControlIconDisplay(this, (this.w() - 64.0f) / 2.0f + 24.0f, y, ModuleItem.iconRain.getIcon()).addTooltip("Can work during rain");
+				new ControlIconDisplay(this, (width() - 64) / 2 + 24, y, ModuleItems.iconRain).addTooltip("Can work during rain");
 			}
 			if (moth.getGenome().getFireResist()) {
-				//new ControlIconDisplay(this, (this.w() - 64.0f) / 2.0f + 48.0f, y, ModuleItem.iconNoFire.getIcon()).addTooltip("Nonflammable");
+				new ControlIconDisplay(this, (width() - 64) / 2 + 48, y, ModuleItems.iconNoFire).addTooltip("Nonflammable");
 			} else {
-				//new ControlIconDisplay(this, (this.w() - 64.0f) / 2.0f + 48.0f, y, ModuleItem.iconFire.getIcon()).addTooltip("Flammable");
+				new ControlIconDisplay(this, (width() - 64) / 2 + 48, y, ModuleItems.iconFire).addTooltip("Flammable");
 			}
 			y += 30;
 		} else if (ind instanceof ITree) {
@@ -103,12 +108,9 @@ public class AnalystPageBiology extends ControlAnalystPage {
 			final int butterflySpawn = Math.round(1365.3999f / (tree.getGenome().getSappiness() * tree.getGenome().getYield() * 0.5f));
 			new ControlTextCentered(this, y, "Butterfies spawn every\n" + this.getTimeString(butterflySpawn) + " per leaf").setColour(this.getColour());
 			y += 34;
-			new ControlTextCentered(this, y, "Plant Types").setColour(this.getColour());
+			new ControlTextCentered(this, y, "Plant Type").setColour(this.getColour());
 			y += 12;
-//			for (final EnumPlantType type : tree.getGenome().getPlantTypes()) {
-//				new ControlTextCentered(this, y, "§o" + type.name()).setColour(this.getColour());
-//				y += 12;
-//			}
+			new ControlTextCentered(this, y, "§o" + tree.getGenome().getPrimary().getPlantType().toString().toLowerCase(Locale.ENGLISH)).setColour(this.getColour());
 		}
 		if (ind instanceof IFlower) {
 			final IFlower flower = (IFlower) ind;
@@ -144,7 +146,7 @@ public class AnalystPageBiology extends ControlAnalystPage {
 			new ControlTextCentered(this, y, "§o" + (int) (floweringLifespan / pollinateTime) + " per lifetime").setColour(this.getColour());
 			y += 22;
 		}
-		this.setSize(new IPoint(this.width(), y));
+		this.setSize(new Point(this.width(), y));
 	}
 
 	private String getMCDayString(final float time) {
@@ -157,6 +159,6 @@ public class AnalystPageBiology extends ControlAnalystPage {
 
 	@Override
 	public String getTitle() {
-		return "Biology";
+		return Genetics.proxy.localise("gui.analyst.biology.title");
 	}
 }

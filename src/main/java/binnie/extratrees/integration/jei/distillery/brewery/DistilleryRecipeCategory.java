@@ -1,8 +1,8 @@
 package binnie.extratrees.integration.jei.distillery.brewery;
 
 import binnie.craftgui.core.CraftGUI;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.geometry.Position;
 import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.StandardTexture;
@@ -49,8 +49,8 @@ public class DistilleryRecipeCategory extends BlankRecipeCategory<DistilleryReci
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawExtras(Minecraft minecraft) {
-		CraftGUI.render.texture(DISTILLERY_BASE, IPoint.ZERO);
-		CraftGUI.render.texturePercentage(LIQUID_FLOW, new IArea(18, 0, 38, 60), Position.LEFT, progress.getValue() / 100f);
+		CraftGUI.render.texture(DISTILLERY_BASE, Point.ZERO);
+		CraftGUI.render.texturePercentage(LIQUID_FLOW, new Area(18, 0, 38, 60), Position.LEFT, progress.getValue() / 100f);
 
 		IDrawable tank = ExtraTreesJeiPlugin.drawables.getTank();
 		tank.draw(minecraft, 0, 0);

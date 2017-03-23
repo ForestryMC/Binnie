@@ -7,7 +7,7 @@ import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.IArea;
+import binnie.craftgui.core.geometry.Area;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBee;
@@ -54,7 +54,7 @@ public class ControlBiomes extends Control implements ITooltip {
 				//TODO FIND COLOR
 				//CraftGUI.Render.colour(Biome.getBiome(i).color);
 			}
-			CraftGUI.render.texture(CraftGUITexture.Button, new IArea(x, y, 16, 16));
+			CraftGUI.render.texture(CraftGUITexture.Button, new Area(x, y, 16, 16));
 		}
 	}
 

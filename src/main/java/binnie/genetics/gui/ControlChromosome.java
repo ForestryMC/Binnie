@@ -7,7 +7,7 @@ import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.controls.core.IControlValue;
 import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.StandardTexture;
 import com.google.common.base.Preconditions;
@@ -125,7 +125,7 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 		}
 		super.onRenderBackground(guiWidth, guiHeight);
 		final Texture text = this.getTypeTexture();
-		CraftGUI.render.texture(text, IPoint.ZERO);
+		CraftGUI.render.texture(text, Point.ZERO);
 	}
 
 	@Nullable

@@ -2,7 +2,7 @@ package binnie.craftgui.minecraft;
 
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventKey;
 import binnie.craftgui.events.EventMouse;
@@ -29,7 +29,7 @@ import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class GuiCraftGUI extends GuiContainer {
-	IPoint mousePos;
+	Point mousePos;
 	private Window window;
 	private ItemStack draggedItem;
 
@@ -44,7 +44,7 @@ public class GuiCraftGUI extends GuiContainer {
 
 	public GuiCraftGUI(final Window window) {
 		super(window.getContainer());
-		this.mousePos = IPoint.ZERO;
+		this.mousePos = Point.ZERO;
 		this.window = window;
 		this.draggedItem = ItemStack.EMPTY;
 		this.resize(window.getSize());
@@ -60,8 +60,8 @@ public class GuiCraftGUI extends GuiContainer {
 		this.mc.player.openContainer = this.inventorySlots;
 		this.guiLeft = (this.width - this.xSize) / 2;
 		this.guiTop = (this.height - this.ySize) / 2;
-		this.window.setSize(new IPoint(this.xSize, this.ySize));
-		this.window.setPosition(new IPoint(this.guiLeft, this.guiTop));
+		this.window.setSize(new Point(this.xSize, this.ySize));
+		this.window.setPosition(new Point(this.guiLeft, this.guiTop));
 		this.window.initGui();
 	}
 
@@ -88,7 +88,7 @@ public class GuiCraftGUI extends GuiContainer {
 		final InventoryPlayer playerInventory = this.mc.player.inventory;
 		this.draggedItem = playerInventory.getItemStack();
 		if (!this.draggedItem.isEmpty()) {
-			RenderUtil.drawItem(new IPoint(mouseX - 8, mouseY - 8), this.draggedItem, false);
+			RenderUtil.drawItem(new Point(mouseX - 8, mouseY - 8), this.draggedItem, false);
 		}
 		RenderHelper.enableGUIStandardItemLighting();
 		GlStateManager.disableRescaleNormal();
@@ -104,14 +104,14 @@ public class GuiCraftGUI extends GuiContainer {
 			this.window.getTooltip(tooltip);
 		}
 		if (tooltip.exists()) {
-			this.renderTooltip(new IPoint(mouseX, mouseY), tooltip);
+			this.renderTooltip(new Point(mouseX, mouseY), tooltip);
 		}
 		this.zLevel = 0.0f;
 		GlStateManager.enableLighting();
 		GlStateManager.enableDepth();
 	}
 
-	public void renderTooltip(final IPoint mousePosition, final MinecraftTooltip tooltip) {
+	public void renderTooltip(final Point mousePosition, final MinecraftTooltip tooltip) {
 		final int mouseX = mousePosition.x();
 		final int mouseY = mousePosition.y();
 		final FontRenderer font = this.getFontRenderer();
@@ -190,7 +190,7 @@ public class GuiCraftGUI extends GuiContainer {
 						GlStateManager.pushMatrix();
 						GlStateManager.translate(i1, j1 - 1.5f, 0.0f);
 						GlStateManager.scale(0.6f, 0.6f, 1.0f);
-						RenderUtil.drawItem(IPoint.ZERO, stack, false);
+						RenderUtil.drawItem(Point.ZERO, stack, false);
 						GlStateManager.popMatrix();
 					} catch (NBTException e) {
 						e.printStackTrace();
@@ -282,12 +282,12 @@ public class GuiCraftGUI extends GuiContainer {
 		return this.fontRendererObj;
 	}
 
-	public void resize(final IPoint size) {
+	public void resize(final Point size) {
 		this.xSize = size.x();
 		this.ySize = size.y();
 		this.guiLeft = (this.width - this.xSize) / 2;
 		this.guiTop = (this.height - this.ySize) / 2;
-		this.window.setPosition(new IPoint(this.guiLeft, this.guiTop));
+		this.window.setPosition(new Point(this.guiLeft, this.guiTop));
 	}
 
 }

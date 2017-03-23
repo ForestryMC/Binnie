@@ -6,7 +6,7 @@ import binnie.craftgui.controls.ControlText;
 import binnie.craftgui.controls.ControlTextCentered;
 import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
+import binnie.craftgui.core.geometry.Area;
 import binnie.craftgui.core.geometry.TextJustification;
 import forestry.api.apiculture.IAlleleBeeEffect;
 import forestry.api.apiculture.IBee;
@@ -19,9 +19,10 @@ import net.minecraft.util.math.Vec3i;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+//TODO:localise
 @SideOnly(Side.CLIENT)
 public class AnalystPageBehaviour extends ControlAnalystPage {
-	public AnalystPageBehaviour(final IWidget parent, final IArea area, final IIndividual ind) {
+	public AnalystPageBehaviour(final IWidget parent, final Area area, final IIndividual ind) {
 		super(parent, area);
 		this.setColour(6684723);
 		int y = 4;
@@ -40,7 +41,7 @@ public class AnalystPageBehaviour extends ControlAnalystPage {
 			if (!effect.getUID().contains("None")) {
 				final String effectDesc = BinnieCore.getBinnieProxy().localiseOrBlank("allele." + effect.getUID() + ".desc");
 				final String loc = effectDesc.equals("") ? ("Effect: " + effect.getName()) : effectDesc;
-				new ControlText(this, new IArea(4, y, this.width() - 8, 0), loc, TextJustification.TopCenter).setColour(this.getColour());
+				new ControlText(this, new Area(4, y, this.width() - 8, 0), loc, TextJustification.TopCenter).setColour(this.getColour());
 				y += CraftGUI.render.textHeight(loc, this.width() - 8) + 1;
 				new ControlTextCentered(this, y, "§oWithin " + t.getX() / 2 + " blocks").setColour(this.getColour());
 				y += 22;
@@ -60,7 +61,7 @@ public class AnalystPageBehaviour extends ControlAnalystPage {
 			if (!effect2.getUID().contains("None")) {
 				final String effectDesc2 = BinnieCore.getBinnieProxy().localiseOrBlank("allele." + effect2.getUID() + ".desc");
 				final String loc2 = effectDesc2.equals("") ? ("Effect: " + effect2.getName()) : effectDesc2;
-				new ControlText(this, new IArea(4, y, this.width() - 8, 0), loc2, TextJustification.TopCenter).setColour(this.getColour());
+				new ControlText(this, new Area(4, y, this.width() - 8, 0), loc2, TextJustification.TopCenter).setColour(this.getColour());
 				y += CraftGUI.render.textHeight(loc2, this.width() - 8) + 1;
 				y += 22;
 			}

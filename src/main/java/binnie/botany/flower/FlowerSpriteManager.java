@@ -1,0 +1,95 @@
+package binnie.botany.flower;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Nullable;
+
+import binnie.Binnie;
+import binnie.botany.Botany;
+import binnie.botany.api.IFlowerType;
+import binnie.botany.genetics.EnumFlowerType;
+import binnie.core.resource.BinnieSprite;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+public class FlowerSpriteManager {
+	 
+	private static final Map<IFlowerType, FlowerSprites> flowerSprites = new HashMap<>();
+	
+	public static void initSprites(IFlowerType type) {
+		if(flowerSprites.containsKey(type)){
+			return;
+		}
+		flowerSprites.put(type, new FlowerSprites(type));
+	}
+	
+	@Nullable
+	public static TextureAtlasSprite getStem(IFlowerType type, int section, boolean flowered){
+		FlowerSprites flower = flowerSprites.get(type);
+		if(flower == null){
+			return null;
+		}
+		return flower.getStem(type, section, flowered);
+	}
+	
+	@Nullable
+	public static TextureAtlasSprite getPetal(IFlowerType type, int section, boolean flowered){
+		FlowerSprites flower = flowerSprites.get(type);
+		if(flower == null){
+			return null;
+		}
+		return flower.getPetal(type, section, flowered);
+	}
+	
+	@Nullable
+	public static TextureAtlasSprite getVariant(IFlowerType type, int section, boolean flowered){
+		FlowerSprites flower = flowerSprites.get(type);
+		if(flower == null){
+			return null;
+		}
+		return flower.getVariant(type, section, flowered);
+	}
+	
+	private static class FlowerSprites{
+		private BinnieSprite[] stem;
+		private BinnieSprite[] variant;
+		private BinnieSprite[] petal;
+		private BinnieSprite[] unflowered;
+		private int sections;
+		
+		public FlowerSprites(IFlowerType type) {
+			this.sections = type.getSections();
+			this.stem = new BinnieSprite[sections];
+			this.petal = new BinnieSprite[sections];
+			this.variant = new BinnieSprite[sections];
+			this.unflowered = new BinnieSprite[sections];
+			for (int section = 0; section < sections; ++section) {
+				final String suf = (section == 0) ? "" : ("" + (section + 1));
+				final String pre = (sections == 1) ? "" : "double/";
+				this.stem[section] = Binnie.RESOURCE.getBlockSprite(Botany.instance, "flowers/" + pre + type.toString().toLowerCase() + suf + ".0");
+				this.petal[section] = Binnie.RESOURCE.getBlockSprite(Botany.instance, "flowers/" + pre + type.toString().toLowerCase() + suf + ".1");
+				this.variant[section] = Binnie.RESOURCE.getBlockSprite(Botany.instance, "flowers/" + pre + type.toString().toLowerCase() + suf + ".2");
+				this.unflowered[section] = Binnie.RESOURCE.getBlockSprite(Botany.instance, "flowers/" + pre + type.toString().toLowerCase() + suf + ".3");
+			}
+		}
+		
+		public TextureAtlasSprite getStem(IFlowerType type, int section, boolean flowered){
+			return stem[section % sections].getSprite();
+		}
+		
+		public TextureAtlasSprite getPetal(IFlowerType type, int section, boolean flowered){
+			return (flowered ? petal[section % this.sections] : this.unflowered[section % this.sections]).getSprite();
+		}
+		
+		@Nullable
+		public TextureAtlasSprite getVariant(IFlowerType type, int section, boolean flowered){
+			return flowered ? variant[section % this.sections].getSprite() : null;
+		}
+		
+	}
+
+}

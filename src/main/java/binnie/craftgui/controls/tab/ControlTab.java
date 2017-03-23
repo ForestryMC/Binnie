@@ -6,8 +6,8 @@ import binnie.craftgui.core.Attribute;
 import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.geometry.Position;
 import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventMouse;
@@ -81,13 +81,13 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 		final Texture lTexture = CraftGUI.render.getTexture(texture);
 		final Position position = this.getTabPosition();
 		Texture iTexture = lTexture.crop(position, 8);
-		final IArea area = this.getArea();
+		final Area area = this.getArea();
 		if (texture == CraftGUITexture.TabDisabled) {
 			if (position == Position.Top || position == Position.LEFT) {
-				area.setPosition(area.getPosition().sub(new IPoint(4 * position.x(), 4 * position.y())));
-				area.setSize(area.getSize().add(new IPoint(4 * position.x(), 4 * position.y())));
+				area.setPosition(area.getPosition().sub(new Point(4 * position.x(), 4 * position.y())));
+				area.setSize(area.getSize().add(new Point(4 * position.x(), 4 * position.y())));
 			} else {
-				area.setSize(area.getSize().sub(new IPoint(4 * position.x(), 4 * position.y())));
+				area.setSize(area.getSize().sub(new Point(4 * position.x(), 4 * position.y())));
 			}
 		}
 		CraftGUI.render.texture(iTexture, area);

@@ -1,9 +1,11 @@
 package binnie.craftgui.core.renderer;
 
 import binnie.core.BinnieCore;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.geometry.TextJustification;
+import forestry.core.render.TextureManager;
+
 import com.google.common.base.Preconditions;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -31,11 +33,11 @@ public class RenderUtil {
 
 	}
 
-	public static void drawItem(final IPoint pos, final ItemStack itemStack) {
+	public static void drawItem(final Point pos, final ItemStack itemStack) {
 		drawItem(pos, itemStack, false);
 	}
 
-	public static void drawItem(final IPoint pos, final ItemStack itemStack, final boolean rotating) {
+	public static void drawItem(final Point pos, final ItemStack itemStack, final boolean rotating) {
 		Preconditions.checkNotNull(itemStack);
 		Minecraft minecraft = Minecraft.getMinecraft();
 		net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
@@ -111,12 +113,12 @@ public class RenderUtil {
 		return (fontRendererObj == null) ? 0 : fontRendererObj.FONT_HEIGHT;
 	}
 
-	public static void drawText(final IPoint pos, final String text, final int colour) {
-		drawText(new IArea(pos, new IPoint(500, 500)), TextJustification.TopLeft, text, colour);
+	public static void drawText(final Point pos, final String text, final int colour) {
+		drawText(new Area(pos, new Point(500, 500)), TextJustification.TopLeft, text, colour);
 	}
 
-	public static void drawText(final IArea area, final TextJustification justification, final String text, final int colour) {
-		final IPoint pos = area.pos();
+	public static void drawText(final Area area, final TextJustification justification, final String text, final int colour) {
+		final Point pos = area.pos();
 		if (area.size().x() <= 0.0f) {
 			return;
 		}
@@ -142,26 +144,33 @@ public class RenderUtil {
 		GuiUtils.drawGradientRect(0, (int) left, (int) top, (int) right, (int) bottom, color, color);
 	}
 
-	public static void drawSolidRect(final IArea area, final int colour) {
+	public static void drawSolidRect(final Area area, final int colour) {
 		drawSolidRect(area.pos().x(), area.pos().y(), area.pos().x() + area.size().x(), area.pos().y() + area.size().y(), 0xFF000000 | colour);
 	}
 
-	public static void drawSolidRectWithAlpha(final IArea area, final int color) {
+	public static void drawSolidRectWithAlpha(final Area area, final int color) {
 		drawSolidRect(area.pos().x(), area.pos().y(), area.pos().x() + area.size().x(), area.pos().y() + area.size().y(), color);
 	}
 
-	public static void drawGradientRect(final IArea area, final int startColor, final int endColor) {
+	public static void drawGradientRect(final Area area, final int startColor, final int endColor) {
 		GuiUtils.drawGradientRect(0, area.pos().x(), area.pos().y(), area.pos().x() + area.size().x(), area.pos().y() + area.size().y(), startColor, endColor);
 	}
 
-	public static void drawSprite(final IPoint pos, final TextureAtlasSprite icon) {
+	public static void drawSprite(final Point pos, final TextureAtlasSprite icon) {
 		if (icon != null) {
 			BinnieCore.getBinnieProxy().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 			drawTexture(pos.x(), pos.y(), icon, 0, 0, 0);
 		}
 	}
+	
+	public static void drawGuiSprite(final Point pos, final TextureAtlasSprite icon) {
+		if (icon != null) {
+			BinnieCore.getBinnieProxy().bindTexture(TextureManager.LOCATION_FORESTRY_TEXTURE);
+			drawTexture(pos.x(), pos.y(), icon, 0, 0, 0);
+		}
+	}
 
-	public static void drawFluid(IPoint pos, @Nullable FluidStack fluid) {
+	public static void drawFluid(Point pos, @Nullable FluidStack fluid) {
 		GlStateManager.enableBlend();
 		GlStateManager.enableAlpha();
 

@@ -5,6 +5,7 @@ import binnie.botany.Botany;
 import binnie.botany.api.EnumFlowerStage;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.flower.BlockFlower;
+import binnie.botany.flower.FlowerSpriteManager;
 import binnie.botany.flower.ItemBotany;
 import binnie.botany.flower.TileEntityFlower;
 import binnie.core.BinnieCore;

@@ -4,6 +4,10 @@ import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
+import binnie.craftgui.core.geometry.Point;
+import binnie.craftgui.core.renderer.RenderUtil;
+import forestry.core.render.TextureManager;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 
@@ -19,10 +23,7 @@ public class ControlBiome extends Control implements ITooltip {
 
 	@Override
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.MOUNTAIN)) {
-			this.iconCategory = "hills";
-		}
-		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.HILLS)) {
+		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.MOUNTAIN) || BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.HILLS)) {
 			this.iconCategory = "hills";
 		}
 		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.SANDY)) {
@@ -55,8 +56,8 @@ public class ControlBiome extends Control implements ITooltip {
 		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.END)) {
 			this.iconCategory = "end";
 		}
-//		final IIcon icon = TextureManager.getInstance().getDefault("habitats/" + this.iconCategory);
-//		CraftGUI.Render.iconItem(IPoint.ZERO, icon);
+		TextureAtlasSprite sprite = TextureManager.getInstance().getDefault("habitats/" + this.iconCategory);
+		RenderUtil.drawGuiSprite(Point.ZERO, sprite);
 	}
 
 	@Override

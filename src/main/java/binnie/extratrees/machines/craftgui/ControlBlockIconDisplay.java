@@ -2,7 +2,7 @@ package binnie.extratrees.machines.craftgui;
 
 import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.renderer.RenderUtil;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraftforge.fml.relauncher.Side;
@@ -19,6 +19,6 @@ public class ControlBlockIconDisplay extends Control {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		RenderUtil.drawSprite(IPoint.ZERO, this.icon);
+		RenderUtil.drawSprite(Point.ZERO, this.icon);
 	}
 }

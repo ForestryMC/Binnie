@@ -6,8 +6,8 @@ import binnie.core.machines.Machine;
 import binnie.craftgui.controls.ControlText;
 import binnie.craftgui.controls.ControlTextEdit;
 import binnie.craftgui.controls.scroll.ControlScrollableContent;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.geometry.TextJustification;
 import binnie.craftgui.events.EventHandler;
 import binnie.craftgui.events.EventTextEdit;
@@ -35,12 +35,12 @@ public class WindowWoodworker extends Window {
 	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		this.setTitle(Machine.getMachine(this.getInventory()).getPackage().getDisplayName());
-		new ControlText(this, new IArea(190, 36, 114, 10), BinnieCore.getBinnieProxy().localise("gui.design"), TextJustification.TopCenter).setColour(4473924);
+		new ControlText(this, new Area(190, 36, 114, 10), BinnieCore.getBinnieProxy().localise("gui.design"), TextJustification.TopCenter).setColour(4473924);
 		new Panel(this, 188, 48, 118, 126, MinecraftGUI.PanelType.Gray);
 		this.textEdit = new ControlTextEdit(this, 188, 178, 118, 12);
 		final ControlScrollableContent scroll = new ControlScrollableContent(this, 190, 50, 114, 122, 12);
 		scroll.setScrollableContent(this.tileSelect = new ControlTileSelect(scroll, 0, 0));
-		new ControlPlayerInventory(this).setPosition(new IPoint(14, 96));
+		new ControlPlayerInventory(this).setPosition(new Point(14, 96));
 		new ControlErrorState(this, 76, 65);
 		if (this.getInventory() != null) {
 			final ControlSlot slotWood1 = new ControlSlot.Builder(this, 22, 34).assign(Designer.design1Slot);

@@ -7,7 +7,7 @@ import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.CraftGUITextureSheet;
 import binnie.craftgui.resource.minecraft.StandardTexture;
@@ -25,9 +25,9 @@ public class ControlColourMixSymbol extends Control implements ITooltip {
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		super.onRenderBackground(guiWidth, guiHeight);
 		if (this.type == 0) {
-			CraftGUI.render.texture(ControlColourMixSymbol.MutationPlus, IPoint.ZERO);
+			CraftGUI.render.texture(ControlColourMixSymbol.MutationPlus, Point.ZERO);
 		} else {
-			CraftGUI.render.texture(ControlColourMixSymbol.MutationArrow, IPoint.ZERO);
+			CraftGUI.render.texture(ControlColourMixSymbol.MutationArrow, Point.ZERO);
 		}
 	}
 

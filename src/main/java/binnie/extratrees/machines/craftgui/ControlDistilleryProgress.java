@@ -3,8 +3,8 @@ package binnie.extratrees.machines.craftgui;
 import binnie.core.machines.Machine;
 import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.geometry.Position;
 import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventMouse;
@@ -29,8 +29,8 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.render.texture(DISTILLERY_BASE, IPoint.ZERO);
-		CraftGUI.render.texturePercentage(LIQUID_FLOW, new IArea(18, 0, 38, 66), Position.LEFT, this.progress);
+		CraftGUI.render.texture(DISTILLERY_BASE, Point.ZERO);
+		CraftGUI.render.texturePercentage(LIQUID_FLOW, new Area(18, 0, 38, 66), Position.LEFT, this.progress);
 		final DistilleryLogic component = Machine.getInterface(DistilleryLogic.class, Window.get(this).getInventory());
 		FluidStack stack = null;
 		if (component != null) {
@@ -38,7 +38,7 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 		}
 		if (stack != null) {
 			for (int y = 0; y < 4; ++y) {
-				RenderUtil.drawFluid(new IPoint(1, 1 + y * 16), stack);
+				RenderUtil.drawFluid(new Point(1, 1 + y * 16), stack);
 			}
 		}
 	}
@@ -50,8 +50,8 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 		if (distilleryLogic != null) {
 			final int level = distilleryLogic.level;
 			GlStateManager.enableAlpha();
-			CraftGUI.render.texture(OUTPUT, new IPoint(47, 14 + level * 15));
-			CraftGUI.render.texture(DISTILLERY_OVERLAY, IPoint.ZERO);
+			CraftGUI.render.texture(OUTPUT, new Point(47, 14 + level * 15));
+			CraftGUI.render.texture(DISTILLERY_OVERLAY, Point.ZERO);
 		}
 	}
 
@@ -61,11 +61,11 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 			@Override
 			public void onEvent(final EventMouse.Down event) {
 				int distillationLevel = -1;
-				if (new IArea(45, 8, 19, 11).contains(ControlDistilleryProgress.this.getRelativeMousePosition())) {
+				if (new Area(45, 8, 19, 11).contains(ControlDistilleryProgress.this.getRelativeMousePosition())) {
 					distillationLevel = 0;
-				} else if (new IArea(45, 23, 19, 11).contains(ControlDistilleryProgress.this.getRelativeMousePosition())) {
+				} else if (new Area(45, 23, 19, 11).contains(ControlDistilleryProgress.this.getRelativeMousePosition())) {
 					distillationLevel = 1;
-				} else if (new IArea(45, 38, 19, 11).contains(ControlDistilleryProgress.this.getRelativeMousePosition())) {
+				} else if (new Area(45, 38, 19, 11).contains(ControlDistilleryProgress.this.getRelativeMousePosition())) {
 					distillationLevel = 2;
 				}
 				if (distillationLevel >= 0) {

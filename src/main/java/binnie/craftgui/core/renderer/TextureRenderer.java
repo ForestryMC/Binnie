@@ -2,9 +2,9 @@ package binnie.craftgui.core.renderer;
 
 import binnie.core.BinnieCore;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IBorder;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Border;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.geometry.Position;
 import binnie.craftgui.resource.IStyleSheet;
 import binnie.craftgui.resource.Texture;
@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
 
 @SideOnly(Side.CLIENT)
 public class TextureRenderer {
-	private static void renderTexturePadded(final IArea area, final IArea texture, final IBorder padding) {
+	private static void renderTexturePadded(final Area area, final Area texture, final Border padding) {
 		int borderLeft = padding.l();
 		int borderRight = padding.r();
 		int borderTop = padding.t();
@@ -41,7 +41,7 @@ public class TextureRenderer {
 			borderLeft = width / 2;
 			borderRight = width / 2;
 		}
-		final IPoint origin = area.pos();
+		final Point origin = area.pos();
 		GuiUtils.drawTexturedModalRect(posX, posY, u, v, borderLeft, borderTop, 0);
 		GuiUtils.drawTexturedModalRect(posX + width - borderRight, posY, u + textWidth - borderRight, v, borderRight, borderTop, 0);
 		GuiUtils.drawTexturedModalRect(posX, posY + height - borderBottom, u, v + textHeight - borderBottom, borderLeft, borderBottom, 0);
@@ -98,10 +98,10 @@ public class TextureRenderer {
 		RenderUtil.setColour(widget.getColour());
 		if (widget.isCroppedWidet()) {
 			final IWidget cropRelative = (widget.getCropWidget() != null) ? widget.getCropWidget() : widget;
-			final IPoint pos = cropRelative.getAbsolutePosition();
-			final IArea cropZone = widget.getCroppedZone();
+			final Point pos = cropRelative.getAbsolutePosition();
+			final Area cropZone = widget.getCroppedZone();
 			GL11.glEnable(GL11.GL_SCISSOR_TEST);
-			this.limitArea(new IArea(pos.add(cropZone.pos()), cropZone.size()), guiWidth, guiHeight);
+			this.limitArea(new Area(pos.add(cropZone.pos()), cropZone.size()), guiWidth, guiHeight);
 
 		}
 		GlStateManager.disableDepth();
@@ -128,40 +128,40 @@ public class TextureRenderer {
 		}
 	}
 
-	public void texture(final Object texture, final IPoint position) {
+	public void texture(final Object texture, final Point position) {
 		this.texture(this.getTexture(texture), position);
 	}
 
-	public void texture(@Nullable final Texture texture, final IPoint position) {
+	public void texture(@Nullable final Texture texture, final Point position) {
 		if (texture == null) {
 			return;
 		}
 		this.setTexture(texture);
-		final IPoint point = position.sub(new IPoint(texture.getBorder().l(), texture.getBorder().t()));
-		final IArea textureArea = texture.getArea().outset(texture.getBorder());
+		final Point point = position.sub(new Point(texture.getBorder().l(), texture.getBorder().t()));
+		final Area textureArea = texture.getArea().outset(texture.getBorder());
 		GuiUtils.drawTexturedModalRect(point.x(), point.y(), textureArea.pos().x(), textureArea.pos().y(), textureArea.size().x(), textureArea.size().y(), 0);
 	}
 
-	public void texture(final Object window, final IArea area) {
+	public void texture(final Object window, final Area area) {
 		this.texture(this.getTexture(window), area);
 	}
 
-	public void texture(@Nullable final Texture texture, final IArea area) {
+	public void texture(@Nullable final Texture texture, final Area area) {
 		if (texture == null) {
 			return;
 		}
 		this.setTexture(texture);
-		final IArea textureArea = texture.getArea().outset(texture.getBorder());
-		final IArea targetArea = area.outset(texture.getBorder());
+		final Area textureArea = texture.getArea().outset(texture.getBorder());
+		final Area targetArea = area.outset(texture.getBorder());
 		if (textureArea.width() == targetArea.width() && textureArea.height() == targetArea.height()) {
-			final IPoint position = targetArea.pos();
+			final Point position = targetArea.pos();
 			GuiUtils.drawTexturedModalRect(position.x(), position.y(), textureArea.pos().x(), textureArea.pos().y(), textureArea.size().x(), textureArea.size().y(), 0);
 		} else {
 			renderTexturePadded(targetArea, textureArea, texture.getTotalPadding());
 		}
 	}
 
-	public void limitArea(final IArea area, int guiWidth, int guiHeight) {
+	public void limitArea(final Area area, int guiWidth, int guiHeight) {
 		float x = area.pos().x();
 		float y = area.pos().y();
 		float w = area.size().x();
@@ -183,7 +183,7 @@ public class TextureRenderer {
 		return fontRenderer.listFormattedStringToWidth(text, width).size() * RenderUtil.getTextHeight();
 	}
 
-	public void texturePercentage(final Texture texture, final IArea area, final Position direction, final float percentage) {
+	public void texturePercentage(final Texture texture, final Area area, final Position direction, final float percentage) {
 		final int dist = (direction == Position.Top || direction == Position.BOTTOM) ? Math.round(percentage * texture.height()) : Math.round(percentage * texture.width());
 		final int dim = (direction == Position.Top || direction == Position.BOTTOM) ? texture.height() : texture.width();
 		int x = area.pos().x();
@@ -210,7 +210,7 @@ public class TextureRenderer {
 				break;
 			}
 		}
-		this.texture(texture.crop(direction, dim - dist), new IArea(x, y, w, h));
+		this.texture(texture.crop(direction, dim - dist), new Area(x, y, w, h));
 	}
 
 	public void test(final IWidget widget) {

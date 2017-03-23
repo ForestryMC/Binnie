@@ -4,8 +4,8 @@ import binnie.core.BinnieCore;
 import binnie.craftgui.controls.ControlText;
 import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.geometry.TextJustification;
 import binnie.craftgui.minecraft.Window;
 import binnie.craftgui.minecraft.control.ControlItemDisplay;
@@ -28,8 +28,8 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 	public void onValueChanged(final ItemStack species) {
 		this.deleteAllChildren();
 		final WindowAbstractDatabase database = Window.get(this);
-		new ControlText(this, new IArea(0, 0, this.size().x(), 24), species.getDisplayName(), TextJustification.MiddleCenter);
-		new ControlText(this, new IArea(12, 24, this.size().x() - 24, 24), ExtraTrees.proxy.localise("gui.database.planks.use"), TextJustification.MIDDLE_LEFTt);
+		new ControlText(this, new Area(0, 0, this.size().x(), 24), species.getDisplayName(), TextJustification.MiddleCenter);
+		new ControlText(this, new Area(12, 24, this.size().x() - 24, 24), ExtraTrees.proxy.localise("gui.database.planks.use"), TextJustification.MIDDLE_LEFTt);
 		final IPlankType type = WoodManager.get(species);
 		int x = 12;
 		if (type != null) {
@@ -49,8 +49,8 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 				x += 22;
 			}
 		}
-		final ControlText controlDescription = new ControlText(this, new IArea(8, 84, this.getSize().x() - 16, 0), "", TextJustification.MiddleCenter);
-		final ControlText controlSignature = new ControlText(this, new IArea(8, 84, this.getSize().x() - 16, 0), "", TextJustification.BottomRight);
+		final ControlText controlDescription = new ControlText(this, new Area(8, 84, this.getSize().x() - 16, 0), "", TextJustification.MiddleCenter);
+		final ControlText controlSignature = new ControlText(this, new Area(8, 84, this.getSize().x() - 16, 0), "", TextJustification.BottomRight);
 		String desc = "";
 		if (type != null) {
 			desc = type.getDescription();
@@ -72,6 +72,6 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 		controlDescription.setValue(descBody + "§r");
 		controlSignature.setValue(descSig + "§r");
 		final int descHeight = CraftGUI.render.textHeight(controlDescription.getValue(), controlDescription.getSize().x());
-		controlSignature.setPosition(new IPoint(controlSignature.pos().x(), controlDescription.getPosition().y() + descHeight + 10));
+		controlSignature.setPosition(new Point(controlSignature.pos().x(), controlDescription.getPosition().y() + descHeight + 10));
 	}
 }

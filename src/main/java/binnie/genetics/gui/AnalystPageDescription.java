@@ -4,11 +4,13 @@ import binnie.craftgui.controls.ControlText;
 import binnie.craftgui.controls.ControlTextCentered;
 import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.geometry.TextJustification;
+import binnie.genetics.Genetics;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -16,7 +18,7 @@ import java.util.Objects;
 
 @SideOnly(Side.CLIENT)
 public class AnalystPageDescription extends ControlAnalystPage {
-	public AnalystPageDescription(final IWidget parent, final IArea area, final IIndividual ind) {
+	public AnalystPageDescription(final IWidget parent, final Area area, final IIndividual ind) {
 		super(parent, area);
 		this.setColour(3355443);
 		int y = 4;
@@ -24,7 +26,7 @@ public class AnalystPageDescription extends ControlAnalystPage {
 		final String branchBinomial = species.getBranch().getScientific();
 		final String branchName = species.getBranch().getName();
 		final String desc = species.getDescription();
-		String descBody = "§o";
+		String descBody = TextFormatting.ITALIC.toString();
 		String descSig = "";
 		if (Objects.equals(desc, "") || desc.contains("for.description")) {
 			descBody += "";
@@ -40,35 +42,36 @@ public class AnalystPageDescription extends ControlAnalystPage {
 		}
 		String authority = species.getAuthority();
 		if (authority.contains("Binnie")) {
-			authority = "§1§l" + authority;
+			authority = TextFormatting.DARK_BLUE.toString() + TextFormatting.BOLD + authority;
 		}
 		if (authority.contains("Sengir")) {
-			authority = "§2§l" + authority;
+			authority = TextFormatting.DARK_GREEN.toString() + TextFormatting.BOLD + authority;
 		}
 		if (authority.contains("MysteriousAges")) {
-			authority = "§5§l" + authority;
+			authority = TextFormatting.DARK_PURPLE.toString() + TextFormatting.BOLD + authority;
 		}
-		new ControlTextCentered(this, y, "§nDescription").setColour(this.getColour());
+		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColour(this.getColour());
 		y += 16;
-		new ControlTextCentered(this, y, species.getName() + "§r").setColour(this.getColour());
+		new ControlTextCentered(this, y, species.getName() + TextFormatting.RESET).setColour(this.getColour());
 		y += 10;
-		new ControlTextCentered(this, y, "§o" + branchBinomial + " " + species.getBinomial() + "§r").setColour(this.getColour());
+		new ControlTextCentered(this, y, TextFormatting.ITALIC + branchBinomial + " " + species.getBinomial() + TextFormatting.RESET).setColour(this.getColour());
 		y += 20;
-		new ControlTextCentered(this, y, "Discovered by §l" + authority + "§r").setColour(this.getColour());
-		y += (int) (3.0f + CraftGUI.render.textHeight("Discovered by §l" + authority + "§r", this.width()));
-		new ControlTextCentered(this, y, "Genetic Complexity: " + species.getComplexity()).setColour(this.getColour());
+		String discovered = Genetics.proxy.localise("gui.analyst.desc.discovered") + " " + TextFormatting.BOLD + authority + TextFormatting.RESET;
+		new ControlTextCentered(this, y, discovered).setColour(this.getColour());
+		y += (int) (3.0f + CraftGUI.render.textHeight(discovered, this.width()));
+		new ControlTextCentered(this, y, Genetics.proxy.localise("gui.analyst.desc.complexity") + ": " + species.getComplexity()).setColour(this.getColour());
 		y += 26;
-		final ControlText descText = new ControlText(this, new IArea(8, y, this.width() - 16, 0), descBody + "§r", TextJustification.TopCenter);
-		final IWidget signatureText = new ControlText(this, new IArea(8, y, this.width() - 16, 0), descSig + "§r", TextJustification.BottomRight);
+		final ControlText descText = new ControlText(this, new Area(8, y, this.width() - 16, 0), descBody + "§r", TextJustification.TopCenter);
+		final IWidget signatureText = new ControlText(this, new Area(8, y, this.width() - 16, 0), descSig + "§r", TextJustification.BottomRight);
 		descText.setColour(this.getColour());
 		signatureText.setColour(this.getColour());
 		final int descHeight = CraftGUI.render.textHeight(descText.getValue(), descText.getSize().x());
-		signatureText.setPosition(new IPoint(signatureText.pos().x(), descText.getPosition().y() + descHeight + 10));
-		this.setSize(new IPoint(this.width(), 20 + signatureText.yPos()));
+		signatureText.setPosition(new Point(signatureText.pos().x(), descText.getPosition().y() + descHeight + 10));
+		this.setSize(new Point(this.width(), 20 + signatureText.yPos()));
 	}
 
 	@Override
 	public String getTitle() {
-		return "Description";
+		return Genetics.proxy.localise("gui.analyst.desc.title");
 	}
 }

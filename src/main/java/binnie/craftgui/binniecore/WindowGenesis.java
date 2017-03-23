@@ -10,7 +10,7 @@ import binnie.craftgui.controls.listbox.ControlTextOption;
 import binnie.craftgui.controls.tab.ControlTab;
 import binnie.craftgui.controls.tab.ControlTabBar;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
+import binnie.craftgui.core.geometry.Area;
 import binnie.craftgui.core.geometry.Position;
 import binnie.craftgui.events.EventHandler;
 import binnie.craftgui.events.EventMouse;
@@ -95,8 +95,8 @@ public class WindowGenesis extends Window {
 		};
 		this.root = Binnie.GENETICS.getActiveSystems().iterator().next().getSpeciesRoot();
 		this.template = this.root.getDefaultTemplate();
-		final IArea one = new IArea(32, 28, 170, 100);
-		final IArea two = new IArea(214, 28, 100, 100);
+		final Area one = new Area(32, 28, 170, 100);
+		final Area two = new Area(214, 28, 100, 100);
 		new Panel(this, one.outset(1), MinecraftGUI.PanelType.Black);
 		new Panel(this, two.outset(1), MinecraftGUI.PanelType.Black);
 		this.geneList = new ControlListBox<Gene>(this, one.xPos(), one.yPos(), one.width(), one.height(), 10) {

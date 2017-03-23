@@ -136,10 +136,13 @@ public class TransferRequest {
 
 	public ItemStack transfer(final boolean doAdd) {
 		ItemStack item = this.returnItem;
-		if (item.isEmpty() || this.destination == null || this.origin == null) {
+		if (item.isEmpty() || this.destination == null) {
 			return ItemStack.EMPTY;
 		}
 		if (this.transferLiquids && this.destination instanceof ITankMachine) {
+			if(origin == null){
+				return ItemStack.EMPTY;
+			}
 			ItemStack itemIn = item.copy();
 			for (final int tankID : this.targetTanks) {
 				item = transferToTank(item, this.origin, (ITankMachine) this.destination, tankID, doAdd);

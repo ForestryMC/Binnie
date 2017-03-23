@@ -4,7 +4,7 @@ import binnie.core.util.IValidator;
 import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.controls.core.IControlValue;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.events.EventValueChanged;
 
 import javax.annotation.Nullable;
@@ -75,7 +75,7 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 			if (this.isValidOption(entry.getValue())) {
 				entry.getValue().show();
 				this.optionWidgets.put(entry.getKey(), entry.getValue());
-				entry.getValue().setPosition(new IPoint(0, height));
+				entry.getValue().setPosition(new Point(0, height));
 				height += entry.getValue().getSize().y();
 			} else {
 				entry.getValue().hide();
@@ -83,7 +83,7 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 		}
 		this.creating = true;
 		this.setValue(this.getValue());
-		this.setSize(new IPoint(this.getSize().x(), height));
+		this.setSize(new Point(this.getSize().x(), height));
 	}
 
 	public Collection<T> getOptions() {

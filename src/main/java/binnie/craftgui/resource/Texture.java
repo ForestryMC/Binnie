@@ -2,42 +2,42 @@ package binnie.craftgui.resource;
 
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IBorder;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Border;
 import binnie.craftgui.core.geometry.Position;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Texture {
-	private final IArea area;
-	private final IBorder padding;
-	private final IBorder border;
+	private final Area area;
+	private final Border padding;
+	private final Border border;
 	private final IBinnieTexture binnieTexture;
 
-	public Texture(final IArea area, final IBinnieTexture binnieTexture) {
-		this(area, IBorder.ZERO, IBorder.ZERO, binnieTexture);
+	public Texture(final Area area, final IBinnieTexture binnieTexture) {
+		this(area, Border.ZERO, Border.ZERO, binnieTexture);
 	}
 
-	public Texture(final IArea area, final IBorder padding, final IBinnieTexture binnieTexture) {
-		this(area, padding, IBorder.ZERO, binnieTexture);
+	public Texture(final Area area, final Border padding, final IBinnieTexture binnieTexture) {
+		this(area, padding, Border.ZERO, binnieTexture);
 	}
 
-	public Texture(final IArea area, final IBorder padding, final IBorder border, final IBinnieTexture binnieTexture) {
-		this.area = new IArea(area);
-		this.padding = new IBorder(padding);
-		this.border = new IBorder(border);
+	public Texture(final Area area, final Border padding, final Border border, final IBinnieTexture binnieTexture) {
+		this.area = new Area(area);
+		this.padding = new Border(padding);
+		this.border = new Border(border);
 		this.binnieTexture = binnieTexture;
 	}
 
-	public IArea getArea() {
+	public Area getArea() {
 		return this.area;
 	}
 
-	public IBorder getPadding() {
+	public Border getPadding() {
 		return this.padding;
 	}
 
-	public IBorder getBorder() {
+	public Border getBorder() {
 		return this.border;
 	}
 
@@ -46,7 +46,7 @@ public class Texture {
 		return this.binnieTexture.getTexture();
 	}
 
-	public IBorder getTotalPadding() {
+	public Border getTotalPadding() {
 		return this.padding.add(this.border);
 	}
 
@@ -67,10 +67,10 @@ public class Texture {
 	}
 
 	public Texture crop(final Position anchor, final int dist) {
-		return this.crop(new IBorder(anchor.opposite(), dist));
+		return this.crop(new Border(anchor.opposite(), dist));
 	}
 
-	public Texture crop(final IBorder crop) {
+	public Texture crop(final Border crop) {
 		final Texture copy = new Texture(this.area, this.padding, this.border, this.binnieTexture);
 		if (crop.b() > 0) {
 			copy.border.b(0);

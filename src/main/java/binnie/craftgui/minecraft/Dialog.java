@@ -4,7 +4,7 @@ import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.core.Attribute;
 import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventHandler;
 import binnie.craftgui.events.EventMouse;
@@ -44,7 +44,7 @@ public abstract class Dialog extends Control {
 	}
 
 	@Override
-	public boolean isMouseOverWidget(final IPoint relativeMouse) {
+	public boolean isMouseOverWidget(final Point relativeMouse) {
 		return true;
 	}
 }

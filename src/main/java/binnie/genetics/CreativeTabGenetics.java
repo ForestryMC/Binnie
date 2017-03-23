@@ -29,7 +29,7 @@ public class CreativeTabGenetics extends CreativeTabs {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ItemStack getTabIconItem() {
-		return GeneticsItems.EmptySerum.get(1);
+		return GeneticsItems.EMPTY_SERUM.get(1);
 	}
 
 }

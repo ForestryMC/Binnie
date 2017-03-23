@@ -6,8 +6,8 @@ import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventWidget;
 import binnie.craftgui.minecraft.Window;
@@ -30,7 +30,7 @@ public abstract class ControlSlotBase extends Control implements ITooltip {
 		this.addSelfEventHandler(new EventWidget.ChangeSize.Handler() {
 			@Override
 			public void onEvent(final EventWidget.ChangeSize event) {
-				ControlSlotBase.this.itemDisplay.setSize(ControlSlotBase.this.getSize().sub(new IPoint(2, 2)));
+				ControlSlotBase.this.itemDisplay.setSize(ControlSlotBase.this.getSize().sub(new Point(2, 2)));
 			}
 		});
 	}
@@ -45,7 +45,7 @@ public abstract class ControlSlotBase extends Control implements ITooltip {
 		final int size = this.getSize().x();
 		CraftGUI.render.texture(CraftGUITexture.Slot, this.getArea());
 		if (this.getTopParent().getMousedOverWidget() == this) {
-			RenderUtil.drawGradientRect(new IArea(new IPoint(1, 1), this.getArea().size().sub(new IPoint(2, 2))), -2130706433, -2130706433);
+			RenderUtil.drawGradientRect(new Area(new Point(1, 1), this.getArea().size().sub(new Point(2, 2))), -2130706433, -2130706433);
 		}
 	}
 

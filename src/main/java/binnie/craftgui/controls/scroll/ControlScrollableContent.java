@@ -2,8 +2,8 @@ package binnie.craftgui.controls.scroll;
 
 import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.events.EventWidget;
 
@@ -42,12 +42,12 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 			return;
 		}
 
-		child.setCroppedZone(this, new IArea(1, 1, getSize().x() - 2 - this.scrollBarSize, getSize().y() - 2));
+		child.setCroppedZone(this, new Area(1, 1, getSize().x() - 2 - this.scrollBarSize, getSize().y() - 2));
 
 		child.addSelfEventHandler(new EventWidget.ChangeSize.Handler() {
 			@Override
 			public void onEvent(final EventWidget.ChangeSize event) {
-				child.setOffset(new IPoint(0, Math.round(-ControlScrollableContent.this.percentageIndex * ControlScrollableContent.this.getMovementRange())));
+				child.setOffset(new Point(0, Math.round(-ControlScrollableContent.this.percentageIndex * ControlScrollableContent.this.getMovementRange())));
 				if (ControlScrollableContent.this.getMovementRange() == 0) {
 					ControlScrollableContent.this.percentageIndex = 0;
 				}
@@ -88,7 +88,7 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 		if (this.getMovementRange() == 0) {
 			this.percentageIndex = 0;
 		}
-		this.controlChild.setOffset(new IPoint(0, Math.round(-this.percentageIndex * this.getMovementRange())));
+		this.controlChild.setOffset(new Point(0, Math.round(-this.percentageIndex * this.getMovementRange())));
 	}
 
 	@Override

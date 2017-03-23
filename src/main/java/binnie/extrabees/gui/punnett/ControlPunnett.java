@@ -3,7 +3,7 @@ package binnie.extrabees.gui.punnett;
 import binnie.craftgui.controls.ControlText;
 import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
+import binnie.craftgui.core.geometry.Area;
 import binnie.craftgui.core.geometry.TextJustification;
 import binnie.craftgui.core.renderer.RenderUtil;
 import forestry.api.genetics.IAllele;
@@ -27,10 +27,10 @@ public class ControlPunnett extends Control {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		RenderUtil.drawSolidRect(new IArea(0, ControlPunnett.boxHeight, ControlPunnett.boxWidth * 3, 1), 11184810);
-		RenderUtil.drawSolidRect(new IArea(ControlPunnett.boxWidth / 2, ControlPunnett.boxHeight * 2, Math.round(ControlPunnett.boxWidth * 2.5f), 1), 11184810);
-		RenderUtil.drawSolidRect(new IArea(ControlPunnett.boxWidth, 0, 1, ControlPunnett.boxHeight * 3), 11184810);
-		RenderUtil.drawSolidRect(new IArea(ControlPunnett.boxWidth * 2, ControlPunnett.boxHeight / 2, 1, Math.round(ControlPunnett.boxHeight * 2.5f)), 11184810);
+		RenderUtil.drawSolidRect(new Area(0, ControlPunnett.boxHeight, ControlPunnett.boxWidth * 3, 1), 11184810);
+		RenderUtil.drawSolidRect(new Area(ControlPunnett.boxWidth / 2, ControlPunnett.boxHeight * 2, Math.round(ControlPunnett.boxWidth * 2.5f), 1), 11184810);
+		RenderUtil.drawSolidRect(new Area(ControlPunnett.boxWidth, 0, 1, ControlPunnett.boxHeight * 3), 11184810);
+		RenderUtil.drawSolidRect(new Area(ControlPunnett.boxWidth * 2, ControlPunnett.boxHeight / 2, 1, Math.round(ControlPunnett.boxHeight * 2.5f)), 11184810);
 	}
 
 	public void setup(final IChromosomeType chromosome, final IIndividual ind1, final IIndividual ind2, final ISpeciesRoot root) {
@@ -62,15 +62,15 @@ public class ControlPunnett extends Control {
 				for (final IAllele allele3 : alleles) {
 					text = text + allele3.getName() + ": " + 25.0f / alleles.size() + "%\n";
 				}
-				new ControlText(this, new IArea(x * ControlPunnett.boxWidth, ControlPunnett.boxHeight * y, ControlPunnett.boxWidth, ControlPunnett.boxHeight), text, TextJustification.TopCenter).setColour(11184810);
+				new ControlText(this, new Area(x * ControlPunnett.boxWidth, ControlPunnett.boxHeight * y, ControlPunnett.boxWidth, ControlPunnett.boxHeight), text, TextJustification.TopCenter).setColour(11184810);
 				++y;
 			}
 			++x;
 		}
-		new ControlText(this, new IArea(ControlPunnett.boxWidth, 0, ControlPunnett.boxWidth, ControlPunnett.boxHeight), "\n" + primary1.getName(), TextJustification.TopCenter).setColour(11184810);
-		new ControlText(this, new IArea(ControlPunnett.boxWidth * 2, 0, ControlPunnett.boxWidth, ControlPunnett.boxHeight), "\n" + secondary1.getName(), TextJustification.TopCenter).setColour(11184810);
-		new ControlText(this, new IArea(0, ControlPunnett.boxHeight, ControlPunnett.boxWidth, ControlPunnett.boxHeight), primary2.getName(), TextJustification.TopCenter).setColour(11184810);
-		new ControlText(this, new IArea(0, ControlPunnett.boxHeight * 2, ControlPunnett.boxWidth, ControlPunnett.boxHeight), primary2.getName(), TextJustification.TopCenter).setColour(11184810);
+		new ControlText(this, new Area(ControlPunnett.boxWidth, 0, ControlPunnett.boxWidth, ControlPunnett.boxHeight), "\n" + primary1.getName(), TextJustification.TopCenter).setColour(11184810);
+		new ControlText(this, new Area(ControlPunnett.boxWidth * 2, 0, ControlPunnett.boxWidth, ControlPunnett.boxHeight), "\n" + secondary1.getName(), TextJustification.TopCenter).setColour(11184810);
+		new ControlText(this, new Area(0, ControlPunnett.boxHeight, ControlPunnett.boxWidth, ControlPunnett.boxHeight), primary2.getName(), TextJustification.TopCenter).setColour(11184810);
+		new ControlText(this, new Area(0, ControlPunnett.boxHeight * 2, ControlPunnett.boxWidth, ControlPunnett.boxHeight), primary2.getName(), TextJustification.TopCenter).setColour(11184810);
 	}
 
 }

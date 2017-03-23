@@ -18,8 +18,8 @@ import binnie.craftgui.core.Attribute;
 import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.IWidget;
 import binnie.craftgui.core.geometry.CraftGUIUtil;
-import binnie.craftgui.core.geometry.IBorder;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Border;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.geometry.Position;
 import binnie.craftgui.core.renderer.RenderUtil;
 import binnie.craftgui.events.EventHandler;
@@ -212,8 +212,8 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			x += 24;
 		}
 		x += 16;
-		this.setSize(new IPoint(Math.max(32 + compartmentWidth, 252), this.height()));
-		controlCompartment.setPosition(new IPoint((this.width() - controlCompartment.width()) / 2, controlCompartment.yPos()));
+		this.setSize(new Point(Math.max(32 + compartmentWidth, 252), this.height()));
+		controlCompartment.setPosition(new Point((this.width() - controlCompartment.width()) / 2, controlCompartment.yPos()));
 		final ControlPlayerInventory invent = new ControlPlayerInventory(this, true);
 		final ControlSlide slide = new ControlSlide(this, 0, 134, 136, 92, Position.LEFT);
 		slide.setLabel("Tab Properties");
@@ -222,7 +222,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		slide.addHelp("The label, colour and icon of the Tab can be altered here. Clicking on the icon with a held item will change it.");
 		final Panel tabPropertyPanel = new Panel(slide, 16, 8, 112, 76, MinecraftGUI.PanelType.Gray);
 		int y2 = 4;
-		new ControlText(tabPropertyPanel, new IPoint(4, y2), "Tab Name:");
+		new ControlText(tabPropertyPanel, new Point(4, y2), "Tab Name:");
 		final Panel parent = tabPropertyPanel;
 		final int x2 = 4;
 		y2 += 12;
@@ -237,7 +237,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			}
 		}.setOrigin(EventHandler.Origin.Self, this.tabName));
 		y2 += 20;
-		new ControlText(tabPropertyPanel, new IPoint(4, y2), "Tab Icon: ");
+		new ControlText(tabPropertyPanel, new Point(4, y2), "Tab Icon: ");
 		(this.tabIcon = new ControlItemDisplay(tabPropertyPanel, 58, y2 - 4)).setItemStack(new ItemStack(Items.PAPER));
 		this.tabIcon.addAttribute(Attribute.MouseOver);
 		this.tabIcon.addSelfEventHandler(new EventMouse.Down.Handler() {
@@ -259,7 +259,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		this.tabIcon.addHelp("Icon for Current Tab");
 		this.tabIcon.addHelp("Click here with an item to change");
 		y2 += 20;
-		new ControlText(tabPropertyPanel, new IPoint(4, y2), "Colour: ");
+		new ControlText(tabPropertyPanel, new Point(4, y2), "Colour: ");
 		final int cw = 8;
 		final Panel panelColour = new Panel(tabPropertyPanel, 40, y2 - 4, cw * 8 + 2, cw * 2 + 1, MinecraftGUI.PanelType.Gray);
 		for (int cc = 0; cc < 16; ++cc) {
@@ -316,7 +316,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 					@SideOnly(Side.CLIENT)
 					public void onRenderBackground(int guiWidth, int guiHeight) {
 						RenderUtil.setColour(11184810);
-						CraftGUI.render.texture(CraftGUITexture.Outline, this.getArea().inset(new IBorder(0, 6, 0, 0)));
+						CraftGUI.render.texture(CraftGUITexture.Outline, this.getArea().inset(new Border(0, 6, 0, 0)));
 					}
 				};
 				scroll.setScrollableContent(this.slotGrid = new Control(scroll, 1, 1, 108, 18));
@@ -384,7 +384,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				final int width = 108;
 				final int height = 2 + 18 * (1 + (slotIds.size() - 1) / 6);
 				this.slotGrid.deleteAllChildren();
-				this.slotGrid.setSize(new IPoint(width, height));
+				this.slotGrid.setSize(new Point(width, height));
 				for (final int k : slotIds.keySet()) {
 					new ControlSlot.Builder(this.slotGrid, x, y).assign(k);
 					x += 18;

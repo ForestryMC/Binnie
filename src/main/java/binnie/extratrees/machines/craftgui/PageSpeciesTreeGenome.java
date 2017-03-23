@@ -7,8 +7,8 @@ import binnie.craftgui.controls.ControlText;
 import binnie.craftgui.controls.core.Control;
 import binnie.craftgui.controls.scroll.ControlScrollableContent;
 import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.craftgui.core.geometry.Area;
+import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.geometry.TextJustification;
 import binnie.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.craftgui.mod.database.DatabaseTab;
@@ -45,7 +45,7 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 		final ItemStack log = treeSpecies.getWoodProvider().getWoodStack();
 		final int w = 144;
 		final int h = 176;
-		new ControlText(this, new IArea(0, 4, w, 16), this.getValue().toString(), TextJustification.MiddleCenter);
+		new ControlText(this, new Area(0, 4, w, 16), this.getValue().toString(), TextJustification.MiddleCenter);
 		final ControlScrollableContent scrollable = new ControlScrollableContent(this, 4, 20, w - 8, h - 8 - 16, 12);
 		final Control contents = new Control(scrollable, 0, 0, w - 8 - 12, h - 8 - 16);
 		final int tw = w - 8 - 12;
@@ -55,10 +55,10 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 		final int th = 14;
 		final int th2 = 18;
 		final BreedingSystem syst = Binnie.GENETICS.treeBreedingSystem;
-		new ControlText(contents, new IArea(w2, y, w3, th), treeSpecies.getPlantType().toString(), TextJustification.MIDDLE_LEFTt);
+		new ControlText(contents, new Area(w2, y, w3, th), treeSpecies.getPlantType().toString(), TextJustification.MIDDLE_LEFTt);
 		y += th;
-		new ControlText(contents, new IArea(0, y, w2, th), BinnieCore.getBinnieProxy().localise("gui.temperature.short") + " : ", TextJustification.MiddleRight);
-		new ControlText(contents, new IArea(w2, y, w3, th), treeSpecies.getTemperature().getName(), TextJustification.MIDDLE_LEFTt);
+		new ControlText(contents, new Area(0, y, w2, th), BinnieCore.getBinnieProxy().localise("gui.temperature.short") + " : ", TextJustification.MiddleRight);
+		new ControlText(contents, new Area(w2, y, w3, th), treeSpecies.getTemperature().getName(), TextJustification.MIDDLE_LEFTt);
 		y += th;
 		//TODO RENDERING
 		//final IIcon leaf = treeSpecies.getLeafIcon(false, false);
@@ -84,24 +84,24 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 		// final ItemStack log = (genome.getFruitProvider().getProducts().length
 		// > 0) ? genome.getFruitProvider().getProducts()[0] : null;
 		if (log != null) {
-			new ControlText(contents, new IArea(0, y, w2, th2), ExtraTrees.proxy.localise("gui.database.log") + " : ", TextJustification.MiddleRight);
+			new ControlText(contents, new Area(0, y, w2, th2), ExtraTrees.proxy.localise("gui.database.log") + " : ", TextJustification.MiddleRight);
 			final ControlItemDisplay display = new ControlItemDisplay(contents, w2, y);
 			display.setItemStack(log);
 			display.setTooltip();
 			y += th2;
 		}
-		new ControlText(contents, new IArea(0, y, w2, th), syst.getChromosomeShortName(EnumTreeChromosome.HEIGHT) + " : ", TextJustification.MiddleRight);
-		new ControlText(contents, new IArea(w2, y, w3, th), genome.getHeight() + "x", TextJustification.MIDDLE_LEFTt);
+		new ControlText(contents, new Area(0, y, w2, th), syst.getChromosomeShortName(EnumTreeChromosome.HEIGHT) + " : ", TextJustification.MiddleRight);
+		new ControlText(contents, new Area(w2, y, w3, th), genome.getHeight() + "x", TextJustification.MIDDLE_LEFTt);
 		y += th;
-		new ControlText(contents, new IArea(0, y, w2, th), syst.getChromosomeShortName(EnumTreeChromosome.FERTILITY) + " : ", TextJustification.MiddleRight);
-		new ControlText(contents, new IArea(w2, y, w3, th), genome.getFertility() + "x", TextJustification.MIDDLE_LEFTt);
+		new ControlText(contents, new Area(0, y, w2, th), syst.getChromosomeShortName(EnumTreeChromosome.FERTILITY) + " : ", TextJustification.MiddleRight);
+		new ControlText(contents, new Area(w2, y, w3, th), genome.getFertility() + "x", TextJustification.MIDDLE_LEFTt);
 		y += th;
 		final List<ItemStack> fruits = new ArrayList<>();
 		for (final ItemStack stack : genome.getFruitProvider().getProducts().keySet()) {
 			fruits.add(stack);
 		}
 		if (!fruits.isEmpty()) {
-			new ControlText(contents, new IArea(0, y, w2, th2), syst.getChromosomeShortName(EnumTreeChromosome.FRUITS) + " : ", TextJustification.MiddleRight);
+			new ControlText(contents, new Area(0, y, w2, th2), syst.getChromosomeShortName(EnumTreeChromosome.FRUITS) + " : ", TextJustification.MiddleRight);
 			for (final ItemStack fruitw : fruits) {
 				final ControlItemDisplay display2 = new ControlItemDisplay(contents, w2, y);
 				display2.setItemStack(fruitw);
@@ -109,19 +109,19 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 				y += th2;
 			}
 		}
-		new ControlText(contents, new IArea(0, y, w2, th), syst.getChromosomeShortName(EnumTreeChromosome.YIELD) + " : ", TextJustification.MiddleRight);
-		new ControlText(contents, new IArea(w2, y, w3, th), genome.getYield() + "x", TextJustification.MIDDLE_LEFTt);
+		new ControlText(contents, new Area(0, y, w2, th), syst.getChromosomeShortName(EnumTreeChromosome.YIELD) + " : ", TextJustification.MiddleRight);
+		new ControlText(contents, new Area(w2, y, w3, th), genome.getYield() + "x", TextJustification.MIDDLE_LEFTt);
 		y += th;
-		new ControlText(contents, new IArea(0, y, w2, th), syst.getChromosomeShortName(EnumTreeChromosome.SAPPINESS) + " : ", TextJustification.MiddleRight);
-		new ControlText(contents, new IArea(w2, y, w3, th), genome.getSappiness() + "x", TextJustification.MIDDLE_LEFTt);
+		new ControlText(contents, new Area(0, y, w2, th), syst.getChromosomeShortName(EnumTreeChromosome.SAPPINESS) + " : ", TextJustification.MiddleRight);
+		new ControlText(contents, new Area(w2, y, w3, th), genome.getSappiness() + "x", TextJustification.MIDDLE_LEFTt);
 		y += th;
-		new ControlText(contents, new IArea(0, y, w2, th), syst.getChromosomeShortName(EnumTreeChromosome.MATURATION) + " : ", TextJustification.MiddleRight);
-		new ControlText(contents, new IArea(w2, y, w3, th), genome.getMaturationTime() + "x", TextJustification.MIDDLE_LEFTt);
+		new ControlText(contents, new Area(0, y, w2, th), syst.getChromosomeShortName(EnumTreeChromosome.MATURATION) + " : ", TextJustification.MiddleRight);
+		new ControlText(contents, new Area(w2, y, w3, th), genome.getMaturationTime() + "x", TextJustification.MIDDLE_LEFTt);
 		y += th;
-		new ControlText(contents, new IArea(0, y, w2, th), syst.getChromosomeShortName(EnumTreeChromosome.GIRTH) + " : ", TextJustification.MiddleRight);
-		new ControlText(contents, new IArea(w2, y, w3, th), genome.getGirth() + "x" + genome.getGirth(), TextJustification.MIDDLE_LEFTt);
+		new ControlText(contents, new Area(0, y, w2, th), syst.getChromosomeShortName(EnumTreeChromosome.GIRTH) + " : ", TextJustification.MiddleRight);
+		new ControlText(contents, new Area(w2, y, w3, th), genome.getGirth() + "x" + genome.getGirth(), TextJustification.MIDDLE_LEFTt);
 		y += th;
-		contents.setSize(new IPoint(contents.size().x(), y));
+		contents.setSize(new Point(contents.size().x(), y));
 		scrollable.setScrollableContent(contents);
 	}
 
