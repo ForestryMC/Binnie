@@ -8,6 +8,7 @@ import forestry.core.models.baker.ModelBakerModel;
 import forestry.core.proxy.Proxies;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.BlockFaceUV;
 import net.minecraft.client.renderer.block.model.BlockPartFace;
@@ -79,7 +80,7 @@ public class PanelModelBaker implements IModelBaker {
 		setColorIndex(colorIndex);
 
 		if (pos != null) {
-			World world = Proxies.common.getRenderWorld();
+			World world = Minecraft.getMinecraft().world;
 			IBlockState blockState = world.getBlockState(pos);
 			for (EnumFacing facing : EnumFacing.VALUES) {
 				if (blockState.shouldSideBeRendered(world, pos, facing)) {

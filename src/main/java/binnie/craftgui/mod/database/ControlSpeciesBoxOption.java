@@ -7,11 +7,14 @@ import binnie.craftgui.core.CraftGUI;
 import binnie.craftgui.core.geometry.CraftGUIUtil;
 import binnie.craftgui.core.geometry.Point;
 import forestry.api.genetics.IAlleleSpecies;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-class ControlSpeciexBoxOption extends ControlTextOption<IAlleleSpecies> {
+@SideOnly(Side.CLIENT)
+class ControlSpeciesBoxOption extends ControlTextOption<IAlleleSpecies> {
 	private ControlDatabaseIndividualDisplay controlBee;
 
-	public ControlSpeciexBoxOption(final ControlList<IAlleleSpecies> controlList, final IAlleleSpecies option, final int y) {
+	public ControlSpeciesBoxOption(final ControlList<IAlleleSpecies> controlList, final IAlleleSpecies option, final int y) {
 		super(controlList, option, option.getName(), y);
 		this.setSize(new Point(this.getSize().x(), 20));
 		(this.controlBee = new ControlDatabaseIndividualDisplay(this, 2, 2)).setSpecies(this.getValue(), EnumDiscoveryState.Undetermined);

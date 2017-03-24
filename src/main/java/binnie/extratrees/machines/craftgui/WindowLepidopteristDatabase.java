@@ -15,6 +15,7 @@ import binnie.craftgui.mod.database.WindowAbstractDatabase;
 import binnie.extratrees.ExtraTrees;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowLepidopteristDatabase extends WindowAbstractDatabase {
 	public WindowLepidopteristDatabase(final EntityPlayer player, final Side side, final boolean nei) {
@@ -26,6 +27,7 @@ public class WindowLepidopteristDatabase extends WindowAbstractDatabase {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	protected void addTabs() {
 		new PageSpeciesOverview(this.getInfoPages(Mode.SPECIES), new DatabaseTab(ExtraTrees.instance, "butterfly.species.overview", 0));
 		new PageSpeciesClassification(this.getInfoPages(Mode.SPECIES), new DatabaseTab(ExtraTrees.instance, "butterfly.species.classification", 0));

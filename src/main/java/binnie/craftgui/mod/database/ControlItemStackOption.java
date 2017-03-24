@@ -8,7 +8,10 @@ import binnie.craftgui.core.geometry.CraftGUIUtil;
 import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.minecraft.control.ControlItemDisplay;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class ControlItemStackOption extends ControlTextOption<ItemStack> {
 	private ControlItemDisplay controlBee;
 

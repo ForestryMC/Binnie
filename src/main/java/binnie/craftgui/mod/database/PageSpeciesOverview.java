@@ -10,9 +10,12 @@ import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.geometry.TextJustification;
 import forestry.api.genetics.IAlleleSpecies;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Objects;
 
+@SideOnly(Side.CLIENT)
 public class PageSpeciesOverview extends PageSpecies {
 	private ControlText controlName;
 	private ControlText controlScientific;

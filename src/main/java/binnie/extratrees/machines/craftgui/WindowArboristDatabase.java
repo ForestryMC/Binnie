@@ -23,6 +23,7 @@ import binnie.extratrees.block.WoodManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.stream.Collectors;
 
@@ -40,6 +41,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	protected void addTabs() {
 		new PageSpeciesOverview(this.getInfoPages(Mode.SPECIES), new DatabaseTab(ExtraTrees.instance, "species.overview", 0));
 		new PageSpeciesTreeGenome(this.getInfoPages(Mode.SPECIES), new DatabaseTab(ExtraTrees.instance, "species.genome", 0));
@@ -54,6 +56,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 			public void createListBox(final Area area) {
 				(this.listBox = new ControlListBox<ItemStack>(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
 					@Override
+					@SideOnly(Side.CLIENT)
 					public IWidget createOption(final ItemStack value, final int y) {
 						return new ControlItemStackOption(this.getContent(), value, y);
 					}
@@ -65,6 +68,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 			public void createListBox(final Area area) {
 				(this.listBox = new ControlListBox<ItemStack>(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
 					@Override
+					@SideOnly(Side.CLIENT)
 					public IWidget createOption(final ItemStack value, final int y) {
 						return new ControlItemStackOption(this.getContent(), value, y);
 					}
@@ -76,6 +80,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 			public void createListBox(final Area area) {
 				(this.listBox = new ControlListBox<ItemStack>(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
 					@Override
+					@SideOnly(Side.CLIENT)
 					public IWidget createOption(final ItemStack value, final int y) {
 						return new ControlItemStackOption(this.getContent(), value, y);
 					}

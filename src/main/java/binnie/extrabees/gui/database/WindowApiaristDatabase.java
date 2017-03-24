@@ -15,9 +15,11 @@ import binnie.craftgui.mod.database.WindowAbstractDatabase;
 import binnie.extrabees.ExtraBees;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowApiaristDatabase extends WindowAbstractDatabase {
 	@Override
+	@SideOnly(Side.CLIENT)
 	protected void addTabs() {
 		new PageSpeciesOverview(this.getInfoPages(Mode.SPECIES), new DatabaseTab(ExtraBees.instance, "species.overview", 0));
 		new PageSpeciesClassification(this.getInfoPages(Mode.SPECIES), new DatabaseTab(ExtraBees.instance, "species.classification", 0));

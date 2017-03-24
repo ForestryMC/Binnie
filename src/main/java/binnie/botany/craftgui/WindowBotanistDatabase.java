@@ -21,6 +21,7 @@ import binnie.craftgui.mod.database.PageSpeciesResultant;
 import binnie.craftgui.mod.database.WindowAbstractDatabase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,6 +39,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	protected void addTabs() {
 		new PageSpeciesOverview(this.getInfoPages(Mode.SPECIES), new DatabaseTab(Botany.instance, "species.overview", 0));
 		new PageSpeciesFlowerGenome(this.getInfoPages(Mode.SPECIES), new DatabaseTab(Botany.instance, "species.genome", 0));

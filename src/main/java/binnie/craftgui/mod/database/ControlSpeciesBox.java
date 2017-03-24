@@ -16,7 +16,7 @@ public class ControlSpeciesBox extends ControlListBox<IAlleleSpecies> {
 
 	@Override
 	public IWidget createOption(final IAlleleSpecies value, final int y) {
-		return new ControlSpeciexBoxOption(this.getContent(), value, y);
+		return new ControlSpeciesBoxOption(this.getContent(), value, y);
 	}
 
 	public ControlSpeciesBox(final IWidget parent, final int x, final int y, final int width, final int height) {

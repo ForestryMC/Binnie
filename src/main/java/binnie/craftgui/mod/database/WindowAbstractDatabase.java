@@ -190,6 +190,7 @@ public abstract class WindowAbstractDatabase extends Window {
 		}
 	}
 
+	@SideOnly(Side.CLIENT)
 	protected void addTabs() {
 	}
 
