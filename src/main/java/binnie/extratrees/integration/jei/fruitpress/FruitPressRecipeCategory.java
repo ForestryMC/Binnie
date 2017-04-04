@@ -36,26 +36,26 @@ public class FruitPressRecipeCategory extends BlankRecipeCategory<FruitPressReci
 
 	@Override
 	public void drawExtras(Minecraft minecraft) {
-		IDrawable tank = ExtraTreesJeiPlugin.drawables.getTank();
-		tank.draw(minecraft, 54, 0);
-
 		IDrawable arrow = ExtraTreesJeiPlugin.drawables.getArrow();
 		arrow.draw(minecraft, 27, 26);
 		arrowAnimated.draw(minecraft, 27, 26);
-
-		IDrawable slot = ExtraTreesJeiPlugin.guiHelper.getSlotDrawable();
-		slot.draw(minecraft, 0, 22);
 	}
 
 	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, FruitPressRecipeWrapper recipeWrapper, IIngredients ingredients) {
 		IDrawable tankOverlay = ExtraTreesJeiPlugin.drawables.getTankOverlay();
+		IDrawable tank = ExtraTreesJeiPlugin.drawables.getTank();
+
 		IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
 		fluidStacks.init(FruitPressMachine.TANK_OUTPUT, false, 55, 1, 16, 58, 1000, false, tankOverlay);
+		fluidStacks.setBackground(FruitPressMachine.TANK_OUTPUT, tank);
 		fluidStacks.set(ingredients);
 
 		IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
 		itemStacks.init(0, true, 0, 22);
 		itemStacks.set(ingredients);
+
+		IDrawable slot = ExtraTreesJeiPlugin.guiHelper.getSlotDrawable();
+		itemStacks.setBackground(0, slot);
 	}
 }

@@ -37,27 +37,19 @@ public class LumbermillRecipeCategory extends BlankRecipeCategory<LumbermillReci
 
 	@Override
 	public void drawExtras(Minecraft minecraft) {
-		IDrawable tank = ExtraTreesJeiPlugin.drawables.getTank();
-		tank.draw(minecraft, 0, 0);
-
 		IDrawable arrow = ExtraTreesJeiPlugin.drawables.getArrow();
 		arrow.draw(minecraft, 69, 25);
 		arrowAnimated.draw(minecraft, 69, 25);
-
-		IDrawable slot = ExtraTreesJeiPlugin.guiHelper.getSlotDrawable();
-
-		slot.draw(minecraft, 42, 21);
-
-		slot.draw(minecraft, 112, 0);
-		slot.draw(minecraft, 92, 21);
-		slot.draw(minecraft, 112, 42);
 	}
 
 	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, LumbermillRecipeWrapper recipeWrapper, IIngredients ingredients) {
 		IDrawable tankOverlay = ExtraTreesJeiPlugin.drawables.getTankOverlay();
+		IDrawable tank = ExtraTreesJeiPlugin.drawables.getTank();
+
 		IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
 		fluidStacks.init(LumbermillMachine.TANK_WATER, true, 1, 1, 16, 58, LumbermillMachine.TANK_WATER_CAPACITY, false, tankOverlay);
+		fluidStacks.setBackground(LumbermillMachine.TANK_WATER, tank);
 		fluidStacks.set(ingredients);
 
 		IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
@@ -68,5 +60,10 @@ public class LumbermillRecipeCategory extends BlankRecipeCategory<LumbermillReci
 		itemStacks.init(2, false, 92, 21);
 		itemStacks.init(3, false, 112, 42);
 		itemStacks.set(ingredients);
+
+		IDrawable slot = ExtraTreesJeiPlugin.guiHelper.getSlotDrawable();
+		for (int i = 0; i <= 3; i++) {
+			itemStacks.setBackground(i, slot);
+		}
 	}
 }

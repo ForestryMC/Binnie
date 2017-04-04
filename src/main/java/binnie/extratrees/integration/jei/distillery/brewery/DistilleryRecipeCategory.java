@@ -51,18 +51,17 @@ public class DistilleryRecipeCategory extends BlankRecipeCategory<DistilleryReci
 	public void drawExtras(Minecraft minecraft) {
 		CraftGUI.render.texture(DISTILLERY_BASE, Point.ZERO);
 		CraftGUI.render.texturePercentage(LIQUID_FLOW, new Area(18, 0, 38, 60), Position.LEFT, progress.getValue() / 100f);
-
-		IDrawable tank = ExtraTreesJeiPlugin.drawables.getTank();
-		tank.draw(minecraft, 0, 0);
-		tank.draw(minecraft, 64, 0);
 	}
 
 	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, DistilleryRecipeWrapper recipeWrapper, IIngredients ingredients) {
+		IDrawable tank = ExtraTreesJeiPlugin.drawables.getTank();
 		IDrawable tankOverlay = ExtraTreesJeiPlugin.drawables.getTankOverlay();
 		IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
 		fluidStacks.init(DistilleryMachine.TANK_INPUT, true, 1, 1, 16, 58, DistilleryLogic.INPUT_FLUID_AMOUNT, false, tankOverlay);
+		fluidStacks.setBackground(DistilleryMachine.TANK_INPUT, tank);
 		fluidStacks.init(DistilleryMachine.TANK_OUTPUT, false, 65, 1, 16, 58, DistilleryLogic.INPUT_FLUID_AMOUNT, false, tankOverlay);
+		fluidStacks.setBackground(DistilleryMachine.TANK_OUTPUT, tank);
 		fluidStacks.set(ingredients);
 	}
 }

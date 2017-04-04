@@ -40,34 +40,20 @@ public class BreweryRecipeCategory extends BlankRecipeCategory<BreweryRecipeWrap
 
 	@Override
 	public void drawExtras(Minecraft minecraft) {
-		IDrawable tank = ExtraTreesJeiPlugin.drawables.getTank();
-		tank.draw(minecraft, 0, 0);
-		tank.draw(minecraft, 112, 0);
-
 		IDrawable arrow = ExtraTreesJeiPlugin.drawables.getArrow();
 		arrow.draw(minecraft, 90, 25);
 		arrowAnimated.draw(minecraft, 90, 25);
-
-		IDrawable slot = ExtraTreesJeiPlugin.guiHelper.getSlotDrawable();
-
-		// ingredients (hops)
-		slot.draw(minecraft, 21, 42);
-
-		// grain
-		slot.draw(minecraft, 42, 0);
-		slot.draw(minecraft, 42, 21);
-		slot.draw(minecraft, 42, 42);
-
-		// yeast
-		slot.draw(minecraft, 63, 42);
 	}
 
 	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, BreweryRecipeWrapper recipeWrapper, IIngredients ingredients) {
+		IDrawable tank = ExtraTreesJeiPlugin.drawables.getTank();
 		IDrawable tankOverlay = ExtraTreesJeiPlugin.drawables.getTankOverlay();
 		IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
 		fluidStacks.init(BreweryMachine.TANK_INPUT, true, 1, 1, 16, 58, Fluid.BUCKET_VOLUME, false, tankOverlay);
+		fluidStacks.setBackground(BreweryMachine.TANK_INPUT, tank);
 		fluidStacks.init(BreweryMachine.TANK_OUTPUT, false, 113, 1, 16, 58, Fluid.BUCKET_VOLUME, false, tankOverlay);
+		fluidStacks.setBackground(BreweryMachine.TANK_OUTPUT, tank);
 		fluidStacks.set(ingredients);
 
 		IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
@@ -91,5 +77,10 @@ public class BreweryRecipeCategory extends BlankRecipeCategory<BreweryRecipeWrap
 		itemStacks.set(3, inputs.get(1));
 
 		itemStacks.set(4, inputs.get(2));
+
+		IDrawable slot = ExtraTreesJeiPlugin.guiHelper.getSlotDrawable();
+		for (int i = 0; i <= 4; i++) {
+			itemStacks.setBackground(i, slot);
+		}
 	}
 }

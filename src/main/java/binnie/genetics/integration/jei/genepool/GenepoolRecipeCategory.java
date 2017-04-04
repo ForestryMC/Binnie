@@ -36,30 +36,29 @@ public class GenepoolRecipeCategory extends BlankRecipeCategory<GenepoolRecipeWr
 
 	@Override
 	public void drawExtras(Minecraft minecraft) {
-		IDrawable tank = GeneticsJeiPlugin.drawables.getTank();
-		tank.draw(minecraft, 0, 0);
-		tank.draw(minecraft, 95, 0);
-
 		IDrawable arrow = GeneticsJeiPlugin.drawables.getArrow();
 		arrow.draw(minecraft, 69, 45);
 		arrowAnimated.draw(minecraft, 69, 45);
-
-		IDrawable slot = GeneticsJeiPlugin.guiHelper.getSlotDrawable();
-		slot.draw(minecraft, 22, 0);
-		slot.draw(minecraft, 42, 41);
 	}
 
 	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, GenepoolRecipeWrapper recipeWrapper, IIngredients ingredients) {
+		IDrawable tank = GeneticsJeiPlugin.drawables.getTank();
 		IDrawable tankOverlay = GeneticsJeiPlugin.drawables.getTankOverlay();
 		IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
 		fluidStacks.init(Genepool.TANK_DNA, false, 96, 1, 16, 58, 100, false, tankOverlay);
+		fluidStacks.setBackground(Genepool.TANK_DNA, tank);
 		fluidStacks.init(Genepool.TANK_ETHANOL, true, 1, 1, 16, 58, 100, false, tankOverlay);
+		fluidStacks.setBackground(Genepool.TANK_ETHANOL, tank);
 		fluidStacks.set(ingredients);
 
 		IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
 		itemStacks.init(0, true, 22, 0);
 		itemStacks.init(1, true, 42, 41);
 		itemStacks.set(ingredients);
+
+		IDrawable slot = GeneticsJeiPlugin.guiHelper.getSlotDrawable();
+		itemStacks.setBackground(0, slot);
+		itemStacks.setBackground(1, slot);
 	}
 }

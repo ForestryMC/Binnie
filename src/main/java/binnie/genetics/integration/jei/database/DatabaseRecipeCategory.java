@@ -7,7 +7,6 @@ import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
-import net.minecraft.client.Minecraft;
 
 public class DatabaseRecipeCategory extends BlankRecipeCategory<DatabaseRecipeWrapper> {
 	@Override
@@ -26,13 +25,6 @@ public class DatabaseRecipeCategory extends BlankRecipeCategory<DatabaseRecipeWr
 	}
 
 	@Override
-	public void drawExtras(Minecraft minecraft) {
-		IDrawable slot = GeneticsJeiPlugin.guiHelper.getSlotDrawable();
-		slot.draw(minecraft, 30, 0);
-		slot.draw(minecraft, 85, 0);
-	}
-
-	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, DatabaseRecipeWrapper recipeWrapper, IIngredients ingredients) {
 		IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
 		itemStacks.init(0, true, 30, 0);
@@ -40,5 +32,9 @@ public class DatabaseRecipeCategory extends BlankRecipeCategory<DatabaseRecipeWr
 		itemStacks.init(2, false, 85, 0);
 
 		itemStacks.set(ingredients);
+
+		IDrawable slot = GeneticsJeiPlugin.guiHelper.getSlotDrawable();
+		itemStacks.setBackground(0, slot);
+		itemStacks.setBackground(2, slot);
 	}
 }

@@ -1,6 +1,5 @@
 package binnie.genetics.integration.jei.polymeriser;
 
-import binnie.core.integration.jei.Drawables;
 import binnie.genetics.integration.jei.GeneticsJeiPlugin;
 import binnie.genetics.integration.jei.RecipeUids;
 import binnie.genetics.machine.polymeriser.Polymeriser;
@@ -31,21 +30,10 @@ public class PolymeriserRecipeCategory extends BlankRecipeCategory<PolymeriserRe
 
 	@Override
 	public void drawExtras(Minecraft minecraft) {
-		Drawables drawables = GeneticsJeiPlugin.drawables;
-		IDrawable tank = drawables.getTank();
-		tank.draw(minecraft, 0, 0);
-		tank.draw(minecraft, 20, 0);
-
-		IDrawable arrow = drawables.getArrow();
+		IDrawable arrow = GeneticsJeiPlugin.drawables.getArrow();
 		arrow.draw(minecraft, 69, 25);
-		IDrawableAnimated arrowAnimated = drawables.getArrowAnimated();
+		IDrawableAnimated arrowAnimated = GeneticsJeiPlugin.drawables.getArrowAnimated();
 		arrowAnimated.draw(minecraft, 69, 25);
-
-		IDrawable slot = GeneticsJeiPlugin.guiHelper.getSlotDrawable();
-		slot.draw(minecraft, 42, 21);
-		slot.draw(minecraft, 42, 42);
-
-		slot.draw(minecraft, 92, 21);
 	}
 
 	@Override
@@ -56,16 +44,24 @@ public class PolymeriserRecipeCategory extends BlankRecipeCategory<PolymeriserRe
 		itemStacks.init(2, false, 92, 21);
 		itemStacks.set(ingredients);
 
+		IDrawable slot = GeneticsJeiPlugin.guiHelper.getSlotDrawable();
+		for (int i = 0; i <= 2; i++) {
+			itemStacks.setBackground(i, slot);
+		}
+
 		itemStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
 			if (slotIndex == 1) {
 				tooltip.add("5x Processing Speed");
 			}
 		});
 
+		IDrawable tank = GeneticsJeiPlugin.drawables.getTank();
 		IDrawable tankOverlay = GeneticsJeiPlugin.drawables.getTankOverlay();
 		IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
 		fluidStacks.init(Polymeriser.TANK_BACTERIA, true, 1, 1, 16, 58, 10000, false, tankOverlay);
+		fluidStacks.setBackground(Polymeriser.TANK_BACTERIA, tank);
 		fluidStacks.init(Polymeriser.TANK_DNA, true, 21, 1, 16, 58, 10000, false, tankOverlay);
+		fluidStacks.setBackground(Polymeriser.TANK_DNA, tank);
 		fluidStacks.set(ingredients);
 	}
 }

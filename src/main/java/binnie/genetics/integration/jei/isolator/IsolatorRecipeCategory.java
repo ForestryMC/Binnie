@@ -41,19 +41,9 @@ public class IsolatorRecipeCategory extends BlankRecipeCategory<IsolatorRecipeWr
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawExtras(Minecraft minecraft) {
-		IDrawable tank = GeneticsJeiPlugin.drawables.getTank();
-		tank.draw(minecraft, 0, 0);
-
 		IDrawable arrow = GeneticsJeiPlugin.drawables.getArrow();
 		arrow.draw(minecraft, 69, 25);
 		arrowAnimated.draw(minecraft, 69, 25);
-
-		IDrawable slot = GeneticsJeiPlugin.guiHelper.getSlotDrawable();
-		slot.draw(minecraft, 22, 0);
-		slot.draw(minecraft, 42, 21);
-		slot.draw(minecraft, 22, 42);
-
-		slot.draw(minecraft, 92, 21);
 
 		String randomText = "(Random)";
 		int textWidth = minecraft.fontRendererObj.getStringWidth(randomText);
@@ -62,9 +52,11 @@ public class IsolatorRecipeCategory extends BlankRecipeCategory<IsolatorRecipeWr
 
 	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, IsolatorRecipeWrapper recipeWrapper, IIngredients ingredients) {
+		IDrawable tank = GeneticsJeiPlugin.drawables.getTank();
 		IDrawable tankOverlay = GeneticsJeiPlugin.drawables.getTankOverlay();
 		IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
 		fluidStacks.init(Isolator.TANK_ETHANOL, true, 1, 1, 16, 58, 100, false, tankOverlay);
+		fluidStacks.setBackground(Isolator.TANK_ETHANOL, tank);
 		fluidStacks.set(ingredients);
 
 		IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
@@ -73,5 +65,10 @@ public class IsolatorRecipeCategory extends BlankRecipeCategory<IsolatorRecipeWr
 		itemStacks.init(2, true, 22, 42);
 		itemStacks.init(3, false, 92, 21);
 		itemStacks.set(ingredients);
+
+		IDrawable slot = GeneticsJeiPlugin.guiHelper.getSlotDrawable();
+		for (int i = 0; i <= 3; i++) {
+			itemStacks.setBackground(i, slot);
+		}
 	}
 }

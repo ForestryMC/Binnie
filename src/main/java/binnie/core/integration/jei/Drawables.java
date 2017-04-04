@@ -31,7 +31,7 @@ public class Drawables {
 
 	private Drawables(IGuiHelper guiHelper) {
 		this.guiHelper = guiHelper;
-		this.tank = guiHelper.createDrawable(guiTank, 8, 28, 18, 60);
+		this.tank = guiHelper.createDrawable(guiTank, 8, 28, 18, 60, -1, -1, -1, -1);
 		this.tankOverlay = guiHelper.createDrawable(guiTank, 33, 29, 16, 58);
 		this.arrow = guiHelper.createDrawable(guiArrow, 191, 79, 14, 10);
 		this.arrowWhite = guiHelper.createDrawable(guiArrow, 207, 79, 14, 10);

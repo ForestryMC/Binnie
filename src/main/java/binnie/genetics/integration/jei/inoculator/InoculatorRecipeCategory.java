@@ -51,28 +51,19 @@ public class InoculatorRecipeCategory extends BlankRecipeCategory<InoculatorReci
 
 	@Override
 	public void drawExtras(Minecraft minecraft) {
-		if (!splicer) {
-			IDrawable tank = GeneticsJeiPlugin.drawables.getTank();
-			tank.draw(minecraft, 0, 0);
-		}
-
 		IDrawable arrow = GeneticsJeiPlugin.drawables.getArrow();
 		arrow.draw(minecraft, 69, 25);
 		arrowAnimated.draw(minecraft, 69, 25);
-
-		IDrawable slot = GeneticsJeiPlugin.guiHelper.getSlotDrawable();
-		slot.draw(minecraft, 22, 0);
-		slot.draw(minecraft, 42, 21);
-
-		slot.draw(minecraft, 92, 21);
 	}
 
 	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, InoculatorRecipeWrapper recipeWrapper, IIngredients ingredients) {
 		if (!splicer) {
+			IDrawable tank = GeneticsJeiPlugin.drawables.getTank();
 			IDrawable tankOverlay = GeneticsJeiPlugin.drawables.getTankOverlay();
 			IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
 			fluidStacks.init(Inoculator.TANK_VEKTOR, true, 1, 1, 16, 58, 100, false, tankOverlay);
+			fluidStacks.setBackground(Inoculator.TANK_VEKTOR, tank);
 			fluidStacks.set(ingredients);
 		}
 
@@ -80,6 +71,11 @@ public class InoculatorRecipeCategory extends BlankRecipeCategory<InoculatorReci
 		itemStacks.init(0, true, 22, 0);
 		itemStacks.init(1, true, 42, 21);
 		itemStacks.init(2, false, 92, 21);
+
+		IDrawable slot = GeneticsJeiPlugin.guiHelper.getSlotDrawable();
+		for (int i = 0; i <= 2; i++) {
+			itemStacks.setBackground(i, slot);
+		}
 
 		recipeWrapper.setCurrentIngredients(itemStacks.getGuiIngredients());
 
