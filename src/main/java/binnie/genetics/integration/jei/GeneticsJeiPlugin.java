@@ -1,34 +1,26 @@
 package binnie.genetics.integration.jei;
 
 import binnie.core.integration.jei.Drawables;
-import binnie.core.integration.jei.SimpleRecipeHandler;
 import binnie.genetics.Genetics;
+import binnie.genetics.api.IIncubatorRecipe;
 import binnie.genetics.api.IItemChargeable;
 import binnie.genetics.integration.jei.database.DatabaseRecipeCategory;
 import binnie.genetics.integration.jei.database.DatabaseRecipeMaker;
-import binnie.genetics.integration.jei.database.DatabaseRecipeWrapper;
 import binnie.genetics.integration.jei.genepool.GenepoolRecipeCategory;
 import binnie.genetics.integration.jei.genepool.GenepoolRecipeMaker;
-import binnie.genetics.integration.jei.genepool.GenepoolRecipeWrapper;
 import binnie.genetics.integration.jei.incubator.IncubatorRecipeCategory;
-import binnie.genetics.integration.jei.incubator.IncubatorRecipeHandler;
+import binnie.genetics.integration.jei.incubator.IncubatorRecipeWrapper;
 import binnie.genetics.integration.jei.incubator.LarvaeIncubatorRecipeCategory;
 import binnie.genetics.integration.jei.incubator.LarvaeIncubatorRecipeMaker;
-import binnie.genetics.integration.jei.incubator.LarvaeIncubatorRecipeWrapper;
 import binnie.genetics.integration.jei.inoculator.InoculatorRecipeCategory;
 import binnie.genetics.integration.jei.inoculator.InoculatorRecipeMaker;
-import binnie.genetics.integration.jei.inoculator.InoculatorRecipeWrapper;
 import binnie.genetics.integration.jei.inoculator.SplicerRecipeCategory;
-import binnie.genetics.integration.jei.inoculator.SplicerRecipeWrapper;
 import binnie.genetics.integration.jei.isolator.IsolatorRecipeCategory;
 import binnie.genetics.integration.jei.isolator.IsolatorRecipeMaker;
-import binnie.genetics.integration.jei.isolator.IsolatorRecipeWrapper;
 import binnie.genetics.integration.jei.polymeriser.PolymeriserRecipeCategory;
 import binnie.genetics.integration.jei.polymeriser.PolymeriserRecipeMaker;
-import binnie.genetics.integration.jei.polymeriser.PolymeriserRecipeWrapper;
 import binnie.genetics.integration.jei.sequencer.SequencerRecipeCategory;
 import binnie.genetics.integration.jei.sequencer.SequencerRecipeMaker;
-import binnie.genetics.integration.jei.sequencer.SequencerRecipeWrapper;
 import binnie.genetics.item.ModuleItems;
 import binnie.genetics.machine.AdvGeneticMachine;
 import binnie.genetics.machine.GeneticMachine;
@@ -82,18 +74,6 @@ public class GeneticsJeiPlugin extends BlankModPlugin {
 				new DatabaseRecipeCategory()
 		);
 
-		registry.addRecipeHandlers(
-				new IncubatorRecipeHandler(),
-				new SimpleRecipeHandler<>(LarvaeIncubatorRecipeWrapper.class, RecipeUids.INCUBATOR_LARVAE),
-				new SimpleRecipeHandler<>(IsolatorRecipeWrapper.class, RecipeUids.ISOLATOR),
-				new SimpleRecipeHandler<>(PolymeriserRecipeWrapper.class, RecipeUids.POLYMERISER),
-				new SimpleRecipeHandler<>(SequencerRecipeWrapper.class, RecipeUids.SEQUENCER),
-				new SimpleRecipeHandler<>(InoculatorRecipeWrapper.class, RecipeUids.INOCULATOR),
-				new SimpleRecipeHandler<>(SplicerRecipeWrapper.class, RecipeUids.SPLICER),
-				new SimpleRecipeHandler<>(GenepoolRecipeWrapper.class, RecipeUids.GENEPOOL),
-				new SimpleRecipeHandler<>(DatabaseRecipeWrapper.class, RecipeUids.DATABASE)
-		);
-
 		registry.addRecipeCategoryCraftingItem(LaboratoryMachine.Incubator.get(1), RecipeUids.INCUBATOR, RecipeUids.INCUBATOR_LARVAE);
 		registry.addRecipeCategoryCraftingItem(GeneticMachine.Isolator.get(1), RecipeUids.ISOLATOR);
 		registry.addRecipeCategoryCraftingItem(GeneticMachine.Polymeriser.get(1), RecipeUids.POLYMERISER);
@@ -104,14 +84,16 @@ public class GeneticsJeiPlugin extends BlankModPlugin {
 		registry.addRecipeCategoryCraftingItem(new ItemStack(Genetics.items().database), RecipeUids.DATABASE);
 		registry.addRecipeCategoryCraftingItem(new ItemStack(Genetics.items().database, 1, 1), RecipeUids.DATABASE);
 
-		registry.addRecipes(Incubator.getRecipes());
-		registry.addRecipes(LarvaeIncubatorRecipeMaker.create(Incubator.getLarvaeRecipe()));
-		registry.addRecipes(IsolatorRecipeMaker.create());
-		registry.addRecipes(PolymeriserRecipeMaker.create());
-		registry.addRecipes(SequencerRecipeMaker.create());
-		registry.addRecipes(InoculatorRecipeMaker.create());
-		registry.addRecipes(GenepoolRecipeMaker.create());
-		registry.addRecipes(DatabaseRecipeMaker.create());
+		registry.addRecipes(Incubator.getRecipes(), RecipeUids.INCUBATOR);
+		registry.addRecipes(LarvaeIncubatorRecipeMaker.create(Incubator.getLarvaeRecipe()), RecipeUids.INCUBATOR);
+		registry.addRecipes(IsolatorRecipeMaker.create(), RecipeUids.ISOLATOR);
+		registry.addRecipes(PolymeriserRecipeMaker.create(), RecipeUids.POLYMERISER);
+		registry.addRecipes(SequencerRecipeMaker.create(), RecipeUids.SEQUENCER);
+		registry.addRecipes(InoculatorRecipeMaker.create(), RecipeUids.INOCULATOR);
+		registry.addRecipes(GenepoolRecipeMaker.create(), RecipeUids.GENEPOOL);
+		registry.addRecipes(DatabaseRecipeMaker.create(), RecipeUids.DATABASE);
+
+		registry.handleRecipes(IIncubatorRecipe.class, IncubatorRecipeWrapper::new, RecipeUids.INCUBATOR);
 	}
 
 	private static class ChargeableSubtypeInterpreter implements ISubtypeRegistry.ISubtypeInterpreter {

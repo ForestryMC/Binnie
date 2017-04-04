@@ -27,6 +27,7 @@ public class Incubator {
 	public static final int TANK_INPUT = 0;
 	public static final int TANK_OUTPUT = 1;
 	private static List<IIncubatorRecipe> RECIPES = new ArrayList<>();
+	@Nullable
 	private static IncubatorRecipeLarvae LARVAE_RECIPE;
 
 	public static void addRecipes() {
