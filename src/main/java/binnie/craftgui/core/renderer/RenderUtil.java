@@ -4,9 +4,8 @@ import binnie.core.BinnieCore;
 import binnie.craftgui.core.geometry.Area;
 import binnie.craftgui.core.geometry.Point;
 import binnie.craftgui.core.geometry.TextJustification;
-import forestry.core.render.TextureManager;
-
 import com.google.common.base.Preconditions;
+import forestry.api.core.ForestryAPI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
@@ -165,7 +164,7 @@ public class RenderUtil {
 	
 	public static void drawGuiSprite(final Point pos, final TextureAtlasSprite icon) {
 		if (icon != null) {
-			BinnieCore.getBinnieProxy().bindTexture(TextureManager.LOCATION_FORESTRY_TEXTURE);
+			BinnieCore.getBinnieProxy().bindTexture(ForestryAPI.textureManager.getGuiTextureMap());
 			drawTexture(pos.x(), pos.y(), icon, 0, 0, 0);
 		}
 	}

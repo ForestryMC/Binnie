@@ -9,8 +9,9 @@ import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.IPattern;
 import binnie.extratrees.carpentry.DesignerManager;
 import binnie.extratrees.carpentry.EnumPattern;
-import forestry.core.render.TextureManager;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -79,9 +80,12 @@ public class CeramicDesignSystem implements IDesignSystem {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerSprites() {
+		TextureMap textureMap = Minecraft.getMinecraft().getTextureMapBlocks();
 		for (EnumPattern pattern : EnumPattern.values()) {
-			this.primary.put(pattern.ordinal(), TextureManager.registerSprite(new ResourceLocation(getMod().getModID(), getTexturePath() + "/" + pattern.toString().toLowerCase() + ".0")));
-			this.secondary.put(pattern.ordinal(), TextureManager.registerSprite(new ResourceLocation(getMod().getModID(), getTexturePath() + "/" + pattern.toString().toLowerCase() + ".1")));
+			ResourceLocation primaryLocation = new ResourceLocation(getMod().getModID(), getTexturePath() + "/" + pattern.toString().toLowerCase() + ".0");
+			ResourceLocation secondaryLocation = new ResourceLocation(getMod().getModID(), getTexturePath() + "/" + pattern.toString().toLowerCase() + ".1");
+			this.primary.put(pattern.ordinal(), textureMap.registerSprite(primaryLocation));
+			this.secondary.put(pattern.ordinal(), textureMap.registerSprite(secondaryLocation));
 		}
 	}
 

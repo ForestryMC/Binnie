@@ -4,8 +4,9 @@ package binnie.core.resource;
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import com.google.common.base.Preconditions;
-import forestry.core.render.TextureManager;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -29,6 +30,7 @@ public class BinnieSprite extends BinnieResource {
 
 	@SideOnly(Side.CLIENT)
 	public void registerSprites() {
-		sprite = TextureManager.registerSprite(getResourceLocation());
+		TextureMap textureMap = Minecraft.getMinecraft().getTextureMapBlocks();
+		sprite = textureMap.registerSprite(getResourceLocation());
 	}
 }

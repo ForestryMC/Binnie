@@ -1,7 +1,7 @@
 package binnie.extratrees.genetics;
 
 import binnie.Constants;
-import forestry.core.proxy.Proxies;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
@@ -30,7 +30,7 @@ public enum FruitSprite {
 
 	@SideOnly(Side.CLIENT)
 	public void registerSprites() {
-		TextureMap map = Proxies.common.getClientInstance().getTextureMapBlocks();
+		TextureMap map = Minecraft.getMinecraft().getTextureMapBlocks();
 		map.registerSprite(location);
 	}
 }

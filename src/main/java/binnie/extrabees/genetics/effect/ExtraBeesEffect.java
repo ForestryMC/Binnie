@@ -8,9 +8,10 @@ import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.IAlleleBeeEffect;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
+import forestry.api.apiculture.IBeekeepingLogic;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IEffectData;
-import forestry.core.proxy.Proxies;
+import forestry.core.render.ParticleRender;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -37,10 +38,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.List;
 
 public enum ExtraBeesEffect implements IAlleleBeeEffect {
@@ -488,11 +490,11 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public IEffectData doFX(final IBeeGenome genome, final IEffectData storedData, final IBeeHousing housing) {
-		//Proxies.render.addBeeHiveFX("particles/swarm_bee", housing.getWorldObj(), housing.getBeeFXCoordinates().xCoord, housing.getBeeFXCoordinates().yCoord, housing.getBeeFXCoordinates().zCoord, genome.getPrimary().getSpriteColour(0));
-		//TODO LAST ARGUMENT
-		Proxies.render.addBeeHiveFX(housing, genome, Collections.emptyList());
-
+		IBeekeepingLogic beekeepingLogic = housing.getBeekeepingLogic();
+		List<BlockPos> flowerPositions = beekeepingLogic.getFlowerPositions();
+		ParticleRender.addBeeHiveFX(housing, genome, flowerPositions);
 		return storedData;
 	}
 

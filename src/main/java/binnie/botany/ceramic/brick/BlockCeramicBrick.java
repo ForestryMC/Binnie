@@ -19,16 +19,17 @@ import forestry.core.blocks.IColoredBlock;
 import forestry.core.blocks.properties.UnlistedBlockAccess;
 import forestry.core.blocks.properties.UnlistedBlockPos;
 import forestry.core.models.BlockModelEntry;
-import forestry.core.render.TextureManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -238,10 +239,11 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerSprites(ITextureManager manager) {
+		TextureMap textureMap = Minecraft.getMinecraft().getTextureMapBlocks();
 		for (CeramicBrickType type : CeramicBrickType.VALUES) {
 			type.sprites = new TextureAtlasSprite[3];
 			for (int i = 0; i < 3; ++i) {
-				type.sprites[i] = TextureManager.registerSprite(new ResourceLocation(Constants.BOTANY_MOD_ID + ":blocks/ceramic." + type.id + "." + i));
+				type.sprites[i] = textureMap.registerSprite(new ResourceLocation(Constants.BOTANY_MOD_ID + ":blocks/ceramic." + type.id + "." + i));
 			}
 		}
 	}

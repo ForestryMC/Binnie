@@ -1,8 +1,9 @@
 package binnie.core.liquid;
 
 import binnie.core.ManagerBase;
-import forestry.core.render.TextureManager;
 import forestry.core.utils.OreDictUtil;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -72,9 +73,10 @@ public class ManagerLiquid extends ManagerBase {
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void registerSprites(TextureStitchEvent event) {
+		TextureMap textureMap = Minecraft.getMinecraft().getTextureMapBlocks();
 		for (IFluidType fluid : this.fluids.values()) {
-			TextureManager.registerSprite(fluid.getFlowing());
-			TextureManager.registerSprite(fluid.getStill());
+			textureMap.registerSprite(fluid.getFlowing());
+			textureMap.registerSprite(fluid.getStill());
 		}
 	}
 }

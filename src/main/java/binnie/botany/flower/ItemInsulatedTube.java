@@ -10,8 +10,8 @@ import forestry.api.circuits.ICircuitLayout;
 import forestry.api.core.IModelManager;
 import forestry.core.circuits.SolderManager;
 import forestry.core.items.IColoredItem;
-import forestry.core.proxy.Proxies;
 import forestry.core.utils.Translator;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -70,7 +70,7 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 		super.addInformation(itemstack, player, list, flag);
 		Multimap<ICircuitLayout, ICircuit> circuits = getCircuits(itemstack);
 		if (!circuits.isEmpty()) {
-			if (Proxies.common.isShiftDown()) {
+			if (GuiScreen.isShiftKeyDown()) {
 				for (ICircuitLayout circuitLayout : circuits.keys()) {
 					String circuitLayoutName = circuitLayout.getUsage();
 					list.add(TextFormatting.WHITE.toString() + TextFormatting.UNDERLINE + circuitLayoutName);

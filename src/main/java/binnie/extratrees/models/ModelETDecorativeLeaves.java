@@ -11,6 +11,7 @@ import forestry.core.models.baker.ModelBaker;
 import forestry.core.proxy.Proxies;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -47,7 +48,7 @@ public class ModelETDecorativeLeaves extends ModelBlockCached<BlockETDecorativeL
 
 	@Override
 	protected void bakeBlock(BlockETDecorativeLeaves block, ETTreeDefinition treeDefinition, IModelBaker baker, boolean inventory) {
-		TextureMap map = Proxies.common.getClientInstance().getTextureMapBlocks();
+		TextureMap map = Minecraft.getMinecraft().getTextureMapBlocks();
 
 		ITreeGenome genome = treeDefinition.getGenome();
 		IAlleleTreeSpecies species = genome.getPrimary();
