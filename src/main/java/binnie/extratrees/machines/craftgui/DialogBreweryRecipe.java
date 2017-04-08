@@ -1,7 +1,7 @@
 package binnie.extratrees.machines.craftgui;
 
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.minecraft.Dialog;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.minecraft.Dialog;
 
 public class DialogBreweryRecipe extends Dialog {
 	public DialogBreweryRecipe(final IWidget parent, final int w, final int h) {

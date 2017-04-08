@@ -1,14 +1,14 @@
 package binnie.extratrees.machines.craftgui;
 
 import binnie.core.AbstractMod;
+import binnie.core.craftgui.geometry.Position;
+import binnie.core.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.control.ControlEnergyBar;
+import binnie.core.craftgui.minecraft.control.ControlErrorState;
+import binnie.core.craftgui.minecraft.control.ControlLiquidTank;
+import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
+import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.core.machines.Machine;
-import binnie.craftgui.core.geometry.Position;
-import binnie.craftgui.minecraft.Window;
-import binnie.craftgui.minecraft.control.ControlEnergyBar;
-import binnie.craftgui.minecraft.control.ControlErrorState;
-import binnie.craftgui.minecraft.control.ControlLiquidTank;
-import binnie.craftgui.minecraft.control.ControlPlayerInventory;
-import binnie.craftgui.minecraft.control.ControlSlot;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.machines.lumbermill.LumbermillMachine;
 import net.minecraft.entity.player.EntityPlayer;

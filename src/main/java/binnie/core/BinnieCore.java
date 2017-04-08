@@ -3,6 +3,7 @@ package binnie.core;
 import binnie.Binnie;
 import binnie.Constants;
 import binnie.core.block.TileEntityMetadata;
+import binnie.core.craftgui.minecraft.ModuleCraftGUI;
 import binnie.core.gui.BinnieCoreGUI;
 import binnie.core.gui.BinnieGUIHandler;
 import binnie.core.gui.IBinnieGUID;
@@ -22,7 +23,7 @@ import binnie.core.network.IPacketID;
 import binnie.core.proxy.BinnieProxy;
 import binnie.core.proxy.IBinnieProxy;
 import binnie.core.triggers.ModuleTrigger;
-import binnie.craftgui.minecraft.ModuleCraftGUI;
+
 import com.google.common.base.Preconditions;
 import forestry.api.core.ForestryEvent;
 import forestry.plugins.PluginManager;

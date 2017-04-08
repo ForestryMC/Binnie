@@ -1,13 +1,13 @@
 package binnie.extrabees.gui.punnett;
 
-import binnie.craftgui.controls.core.Control;
-import binnie.craftgui.controls.core.IControlValue;
-import binnie.craftgui.core.Attribute;
-import binnie.craftgui.core.CraftGUI;
-import binnie.craftgui.core.ITooltip;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.renderer.RenderUtil;
+import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.ITooltip;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.controls.core.Control;
+import binnie.core.craftgui.controls.core.IControlValue;
+import binnie.core.craftgui.renderer.RenderUtil;
 import forestry.api.genetics.IChromosomeType;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

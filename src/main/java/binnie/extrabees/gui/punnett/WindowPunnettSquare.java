@@ -1,13 +1,13 @@
 package binnie.extrabees.gui.punnett;
 
 import binnie.core.AbstractMod;
-import binnie.craftgui.core.CraftGUI;
-import binnie.craftgui.minecraft.Window;
-import binnie.craftgui.minecraft.control.ControlSlot;
-import binnie.craftgui.resource.StyleSheet;
-import binnie.craftgui.resource.minecraft.CraftGUITexture;
-import binnie.craftgui.resource.minecraft.PaddedTexture;
-import binnie.craftgui.resource.minecraft.StandardTexture;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.control.ControlSlot;
+import binnie.core.craftgui.resource.StyleSheet;
+import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
+import binnie.core.craftgui.resource.minecraft.PaddedTexture;
+import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.core.ExtraBeeTexture;
 import forestry.api.genetics.ISpeciesRoot;

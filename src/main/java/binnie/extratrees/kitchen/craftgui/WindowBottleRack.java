@@ -1,9 +1,9 @@
 package binnie.extratrees.kitchen.craftgui;
 
 import binnie.core.AbstractMod;
+import binnie.core.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
 import binnie.core.machines.Machine;
-import binnie.craftgui.minecraft.Window;
-import binnie.craftgui.minecraft.control.ControlPlayerInventory;
 import binnie.extratrees.ExtraTrees;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

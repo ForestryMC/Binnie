@@ -1,10 +1,10 @@
 package binnie.genetics.machine.craftgui;
 
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.Area;
-import binnie.craftgui.core.geometry.Point;
-import binnie.craftgui.core.renderer.RenderUtil;
-import binnie.craftgui.minecraft.control.ControlMachineProgress;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.geometry.Area;
+import binnie.core.craftgui.geometry.Point;
+import binnie.core.craftgui.minecraft.control.ControlMachineProgress;
+import binnie.core.craftgui.renderer.RenderUtil;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

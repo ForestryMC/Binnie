@@ -2,7 +2,7 @@ package binnie.core.gui;
 
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
-import binnie.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.Window;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;

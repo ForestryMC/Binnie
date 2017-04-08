@@ -1,8 +1,8 @@
 package binnie.extratrees.kitchen.craftgui;
 
-import binnie.craftgui.controls.core.IControlValue;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.minecraft.control.ControlSlotBase;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.core.IControlValue;
+import binnie.core.craftgui.minecraft.control.ControlSlotBase;
 import binnie.extratrees.alcohol.Glassware;
 import net.minecraft.item.ItemStack;
 

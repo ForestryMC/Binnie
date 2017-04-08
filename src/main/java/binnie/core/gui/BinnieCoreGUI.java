@@ -1,9 +1,9 @@
 package binnie.core.gui;
 
+import binnie.core.craftgui.WindowFieldKit;
+import binnie.core.craftgui.WindowGenesis;
+import binnie.core.craftgui.minecraft.Window;
 import binnie.core.machines.storage.WindowCompartment;
-import binnie.craftgui.binniecore.WindowFieldKit;
-import binnie.craftgui.binniecore.WindowGenesis;
-import binnie.craftgui.minecraft.Window;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;

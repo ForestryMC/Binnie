@@ -1,7 +1,7 @@
 package binnie.genetics.core;
 
+import binnie.core.craftgui.minecraft.Window;
 import binnie.core.gui.IBinnieGUID;
-import binnie.craftgui.minecraft.Window;
 import binnie.genetics.gui.WindowAnalyst;
 import binnie.genetics.machine.acclimatiser.WindowAcclimatiser;
 import binnie.genetics.machine.analyser.WindowAnalyser;

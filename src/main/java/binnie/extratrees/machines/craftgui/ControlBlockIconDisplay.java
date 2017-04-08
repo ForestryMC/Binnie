@@ -1,9 +1,9 @@
 package binnie.extratrees.machines.craftgui;
 
-import binnie.craftgui.controls.core.Control;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.Point;
-import binnie.craftgui.core.renderer.RenderUtil;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.core.Control;
+import binnie.core.craftgui.geometry.Point;
+import binnie.core.craftgui.renderer.RenderUtil;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

@@ -1,5 +1,6 @@
 package binnie.genetics.machine.inoculator;
 
+import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachineUtil;
@@ -11,7 +12,6 @@ import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.machines.inventory.Validator;
 import binnie.core.machines.power.ComponentPowerReceptor;
-import binnie.craftgui.minecraft.IMachineInformation;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsTexture;

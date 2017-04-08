@@ -1,13 +1,13 @@
 package binnie.extratrees.kitchen.craftgui;
 
-import binnie.craftgui.controls.core.Control;
-import binnie.craftgui.core.Attribute;
-import binnie.craftgui.core.ITooltip;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.Point;
-import binnie.craftgui.core.renderer.RenderUtil;
-import binnie.craftgui.minecraft.Window;
+import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.ITooltip;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.controls.core.Control;
+import binnie.core.craftgui.geometry.Point;
+import binnie.core.craftgui.minecraft.Window;
+import binnie.core.craftgui.renderer.RenderUtil;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.ResourceLocation;

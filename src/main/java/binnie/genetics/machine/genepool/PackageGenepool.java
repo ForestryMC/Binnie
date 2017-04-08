@@ -1,5 +1,6 @@
 package binnie.genetics.machine.genepool;
 
+import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentChargedSlots;
@@ -11,7 +12,6 @@ import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.inventory.TankValidator;
 import binnie.core.machines.power.ComponentPowerReceptor;
-import binnie.craftgui.minecraft.IMachineInformation;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.item.GeneticsItems;

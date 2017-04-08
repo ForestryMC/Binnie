@@ -1,10 +1,10 @@
 package binnie.genetics.gui;
 
 import binnie.Binnie;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.geometry.Area;
 import binnie.core.genetics.BreedingSystem;
-import binnie.craftgui.controls.ControlTextCentered;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.Area;
 import binnie.genetics.Genetics;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IChromosomeType;

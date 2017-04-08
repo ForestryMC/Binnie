@@ -1,8 +1,8 @@
 package binnie.genetics.gui.butterfly;
 
-import binnie.craftgui.controls.ControlTextCentered;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.Area;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.geometry.Area;
 import binnie.genetics.Genetics;
 import binnie.genetics.gui.ControlAnalystPage;
 import binnie.genetics.gui.ControlIndividualDisplay;

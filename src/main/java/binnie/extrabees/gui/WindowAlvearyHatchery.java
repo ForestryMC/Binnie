@@ -1,9 +1,9 @@
 package binnie.extrabees.gui;
 
 import binnie.core.AbstractMod;
-import binnie.craftgui.minecraft.Window;
-import binnie.craftgui.minecraft.control.ControlPlayerInventory;
-import binnie.craftgui.minecraft.control.ControlSlotArray;
+import binnie.core.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
+import binnie.core.craftgui.minecraft.control.ControlSlotArray;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.apiary.machine.AlvearyHatchery;
 import net.minecraft.entity.player.EntityPlayer;

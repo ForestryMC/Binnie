@@ -1,11 +1,11 @@
 package binnie.extrabees.gui.punnett;
 
-import binnie.craftgui.controls.ControlText;
-import binnie.craftgui.controls.core.Control;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.Area;
-import binnie.craftgui.core.geometry.TextJustification;
-import binnie.craftgui.core.renderer.RenderUtil;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.ControlText;
+import binnie.core.craftgui.controls.core.Control;
+import binnie.core.craftgui.geometry.Area;
+import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.renderer.RenderUtil;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IIndividual;

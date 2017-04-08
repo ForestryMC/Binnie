@@ -1,7 +1,7 @@
 package binnie.core.gui;
 
+import binnie.core.craftgui.minecraft.Window;
 import binnie.core.network.IOrdinaled;
-import binnie.craftgui.minecraft.Window;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;

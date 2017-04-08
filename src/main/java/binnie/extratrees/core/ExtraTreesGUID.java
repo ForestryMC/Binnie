@@ -1,7 +1,7 @@
 package binnie.extratrees.core;
 
+import binnie.core.craftgui.minecraft.Window;
 import binnie.core.gui.IBinnieGUID;
-import binnie.craftgui.minecraft.Window;
 import binnie.extratrees.kitchen.craftgui.WindowBottleRack;
 import binnie.extratrees.machines.craftgui.WindowArboristDatabase;
 import binnie.extratrees.machines.craftgui.WindowBrewery;

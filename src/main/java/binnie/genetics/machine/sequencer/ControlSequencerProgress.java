@@ -1,16 +1,16 @@
 package binnie.genetics.machine.sequencer;
 
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.ControlText;
+import binnie.core.craftgui.geometry.Area;
+import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.minecraft.MinecraftGUI;
+import binnie.core.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.control.ControlProgressBase;
+import binnie.core.craftgui.window.Panel;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachineUtil;
-import binnie.craftgui.controls.ControlText;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.Area;
-import binnie.craftgui.core.geometry.TextJustification;
-import binnie.craftgui.minecraft.MinecraftGUI;
-import binnie.craftgui.minecraft.Window;
-import binnie.craftgui.minecraft.control.ControlProgressBase;
-import binnie.craftgui.window.Panel;
 import net.minecraft.item.ItemStack;
 
 import java.util.Random;

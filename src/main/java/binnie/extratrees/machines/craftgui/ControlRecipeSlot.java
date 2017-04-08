@@ -1,12 +1,12 @@
 package binnie.extratrees.machines.craftgui;
 
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.events.EventMouse;
+import binnie.core.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.control.ControlSlotBase;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.component.IComponentRecipe;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.events.EventMouse;
-import binnie.craftgui.minecraft.Window;
-import binnie.craftgui.minecraft.control.ControlSlotBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;

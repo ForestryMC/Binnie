@@ -1,9 +1,9 @@
 package binnie.extratrees.kitchen.craftgui;
 
-import binnie.craftgui.core.Attribute;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.minecraft.MinecraftGUI;
-import binnie.craftgui.window.Panel;
+import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.minecraft.MinecraftGUI;
+import binnie.core.craftgui.window.Panel;
 
 public class ControlDropDownMenu extends Panel {
 	public boolean stayOpenOnChildClick;

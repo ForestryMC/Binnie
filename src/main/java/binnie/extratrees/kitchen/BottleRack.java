@@ -1,8 +1,8 @@
 package binnie.extratrees.kitchen;
 
+import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.ComponentTankContainer;
-import binnie.craftgui.minecraft.IMachineInformation;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.machines.ExtraTreeMachine;

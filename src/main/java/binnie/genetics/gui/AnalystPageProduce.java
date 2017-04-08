@@ -1,11 +1,11 @@
 package binnie.genetics.gui;
 
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.geometry.Area;
+import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.UniqueFluidStackSet;
 import binnie.core.util.UniqueItemStackSet;
-import binnie.craftgui.controls.ControlTextCentered;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.Area;
-import binnie.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.extratrees.machines.brewery.BreweryRecipes;
 import binnie.extratrees.machines.distillery.DistilleryRecipes;
 import binnie.extratrees.machines.fruitpress.FruitPressRecipes;

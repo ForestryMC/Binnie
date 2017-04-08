@@ -1,14 +1,14 @@
 package binnie.genetics.machine.craftgui;
 
 import binnie.Binnie;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.ControlText;
+import binnie.core.craftgui.controls.core.Control;
+import binnie.core.craftgui.controls.core.IControlValue;
+import binnie.core.craftgui.geometry.Point;
+import binnie.core.craftgui.minecraft.Window;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
-import binnie.craftgui.controls.ControlText;
-import binnie.craftgui.controls.core.Control;
-import binnie.craftgui.controls.core.IControlValue;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.Point;
-import binnie.craftgui.minecraft.Window;
 import binnie.genetics.genetics.GeneTracker;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;

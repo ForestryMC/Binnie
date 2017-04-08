@@ -1,14 +1,14 @@
 package binnie.genetics.gui;
 
+import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.ITooltip;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.controls.core.Control;
+import binnie.core.craftgui.geometry.Area;
+import binnie.core.craftgui.geometry.Border;
+import binnie.core.craftgui.renderer.RenderUtil;
 import binnie.core.genetics.Tolerance;
-import binnie.craftgui.controls.core.Control;
-import binnie.craftgui.core.Attribute;
-import binnie.craftgui.core.ITooltip;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.Area;
-import binnie.craftgui.core.geometry.Border;
-import binnie.craftgui.core.renderer.RenderUtil;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.EnumTolerance;
 import net.minecraft.util.text.TextFormatting;

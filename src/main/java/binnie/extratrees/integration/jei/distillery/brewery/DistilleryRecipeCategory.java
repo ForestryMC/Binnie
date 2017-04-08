@@ -1,11 +1,11 @@
 package binnie.extratrees.integration.jei.distillery.brewery;
 
-import binnie.craftgui.core.CraftGUI;
-import binnie.craftgui.core.geometry.Area;
-import binnie.craftgui.core.geometry.Point;
-import binnie.craftgui.core.geometry.Position;
-import binnie.craftgui.resource.Texture;
-import binnie.craftgui.resource.minecraft.StandardTexture;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.geometry.Area;
+import binnie.core.craftgui.geometry.Point;
+import binnie.core.craftgui.geometry.Position;
+import binnie.core.craftgui.resource.Texture;
+import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.integration.jei.ExtraTreesJeiPlugin;
 import binnie.extratrees.integration.jei.RecipeUids;

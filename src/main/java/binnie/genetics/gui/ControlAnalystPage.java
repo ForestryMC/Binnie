@@ -1,8 +1,8 @@
 package binnie.genetics.gui;
 
-import binnie.craftgui.controls.core.Control;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.Area;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.core.Control;
+import binnie.core.craftgui.geometry.Area;
 
 import java.text.DecimalFormat;
 

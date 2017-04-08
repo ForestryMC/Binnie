@@ -1,17 +1,17 @@
 package binnie.extratrees.machines.craftgui;
 
+import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.geometry.Area;
+import binnie.core.craftgui.geometry.Point;
+import binnie.core.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.control.ControlProgressBase;
+import binnie.core.craftgui.renderer.RenderUtil;
+import binnie.core.craftgui.resource.Texture;
+import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.core.machines.Machine;
 import binnie.core.util.ItemStackSet;
-import binnie.craftgui.core.Attribute;
-import binnie.craftgui.core.CraftGUI;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.Area;
-import binnie.craftgui.core.geometry.Point;
-import binnie.craftgui.core.renderer.RenderUtil;
-import binnie.craftgui.minecraft.Window;
-import binnie.craftgui.minecraft.control.ControlProgressBase;
-import binnie.craftgui.resource.Texture;
-import binnie.craftgui.resource.minecraft.StandardTexture;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.machines.brewery.BreweryLogic;
 import binnie.extratrees.machines.brewery.BreweryRecipes;

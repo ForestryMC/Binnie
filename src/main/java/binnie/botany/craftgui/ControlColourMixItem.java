@@ -1,8 +1,8 @@
 package binnie.botany.craftgui;
 
 import binnie.botany.api.IColourMix;
-import binnie.craftgui.controls.listbox.ControlList;
-import binnie.craftgui.controls.listbox.ControlOption;
+import binnie.core.craftgui.controls.listbox.ControlList;
+import binnie.core.craftgui.controls.listbox.ControlOption;
 
 public class ControlColourMixItem extends ControlOption<IColourMix> {
 	private final ControlColourDisplay itemWidget1;

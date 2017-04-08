@@ -1,11 +1,11 @@
 package binnie.genetics.gui;
 
 import binnie.Binnie;
+import binnie.core.craftgui.ITooltip;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.genetics.BreedingSystem;
-import binnie.craftgui.core.ITooltip;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.minecraft.control.ControlItemDisplay;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IIndividual;
 import net.minecraft.item.ItemStack;

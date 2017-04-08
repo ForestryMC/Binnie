@@ -1,7 +1,7 @@
 package binnie.extratrees.machines.craftgui;
 
 import binnie.core.AbstractMod;
-import binnie.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.Window;
 import binnie.extratrees.ExtraTrees;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

@@ -2,7 +2,7 @@ package binnie.core.machines.storage;
 
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
-import binnie.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.Window;
 import binnie.genetics.machine.craftgui.WindowMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

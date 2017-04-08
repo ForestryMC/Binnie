@@ -1,13 +1,13 @@
 package binnie.extratrees.machines.craftgui;
 
-import binnie.craftgui.controls.ControlTextCentered;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.minecraft.MinecraftGUI;
-import binnie.craftgui.mod.database.ControlDatabaseIndividualDisplay;
-import binnie.craftgui.mod.database.DatabaseTab;
-import binnie.craftgui.mod.database.EnumDiscoveryState;
-import binnie.craftgui.mod.database.PageSpecies;
-import binnie.craftgui.window.Panel;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.database.ControlDatabaseIndividualDisplay;
+import binnie.core.craftgui.database.DatabaseTab;
+import binnie.core.craftgui.database.EnumDiscoveryState;
+import binnie.core.craftgui.database.PageSpecies;
+import binnie.core.craftgui.minecraft.MinecraftGUI;
+import binnie.core.craftgui.window.Panel;
 import forestry.api.genetics.IAlleleSpecies;
 
 public class PageSpeciesImage extends PageSpecies {

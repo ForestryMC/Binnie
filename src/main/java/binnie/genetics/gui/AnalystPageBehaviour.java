@@ -2,12 +2,12 @@ package binnie.genetics.gui;
 
 import binnie.Binnie;
 import binnie.core.BinnieCore;
-import binnie.craftgui.controls.ControlText;
-import binnie.craftgui.controls.ControlTextCentered;
-import binnie.craftgui.core.CraftGUI;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.Area;
-import binnie.craftgui.core.geometry.TextJustification;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.ControlText;
+import binnie.core.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.geometry.Area;
+import binnie.core.craftgui.geometry.TextJustification;
 import forestry.api.apiculture.IAlleleBeeEffect;
 import forestry.api.apiculture.IBee;
 import forestry.api.genetics.IIndividual;

@@ -1,7 +1,7 @@
 package binnie.extrabees.core;
 
+import binnie.core.craftgui.minecraft.Window;
 import binnie.core.gui.IBinnieGUID;
-import binnie.craftgui.minecraft.Window;
 import binnie.extrabees.gui.WindowAlvearyFrame;
 import binnie.extrabees.gui.WindowAlvearyHatchery;
 import binnie.extrabees.gui.WindowAlvearyMutator;

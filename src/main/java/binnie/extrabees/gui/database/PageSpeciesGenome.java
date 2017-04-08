@@ -1,13 +1,13 @@
 package binnie.extrabees.gui.database;
 
 import binnie.Binnie;
-import binnie.craftgui.controls.ControlText;
-import binnie.craftgui.controls.ControlTextCentered;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.Area;
-import binnie.craftgui.core.geometry.TextJustification;
-import binnie.craftgui.mod.database.DatabaseTab;
-import binnie.craftgui.mod.database.PageSpecies;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.ControlText;
+import binnie.core.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.database.DatabaseTab;
+import binnie.core.craftgui.database.PageSpecies;
+import binnie.core.craftgui.geometry.Area;
+import binnie.core.craftgui.geometry.TextJustification;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.genetics.IAllele;

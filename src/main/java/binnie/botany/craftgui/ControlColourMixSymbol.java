@@ -1,16 +1,16 @@
 package binnie.botany.craftgui;
 
 import binnie.botany.api.IColourMix;
-import binnie.craftgui.controls.core.Control;
-import binnie.craftgui.core.Attribute;
-import binnie.craftgui.core.CraftGUI;
-import binnie.craftgui.core.ITooltip;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.Point;
-import binnie.craftgui.resource.Texture;
-import binnie.craftgui.resource.minecraft.CraftGUITextureSheet;
-import binnie.craftgui.resource.minecraft.StandardTexture;
+import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.ITooltip;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.controls.core.Control;
+import binnie.core.craftgui.geometry.Point;
+import binnie.core.craftgui.resource.Texture;
+import binnie.core.craftgui.resource.minecraft.CraftGUITextureSheet;
+import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

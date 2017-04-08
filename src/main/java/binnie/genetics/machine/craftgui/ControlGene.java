@@ -1,17 +1,17 @@
 package binnie.genetics.machine.craftgui;
 
 import binnie.Binnie;
+import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.ITooltip;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.controls.core.Control;
+import binnie.core.craftgui.controls.core.IControlValue;
+import binnie.core.craftgui.events.EventMouse;
+import binnie.core.craftgui.geometry.Point;
+import binnie.core.craftgui.minecraft.Window;
+import binnie.core.craftgui.renderer.RenderUtil;
 import binnie.core.genetics.BreedingSystem;
-import binnie.craftgui.controls.core.Control;
-import binnie.craftgui.controls.core.IControlValue;
-import binnie.craftgui.core.Attribute;
-import binnie.craftgui.core.ITooltip;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.Point;
-import binnie.craftgui.core.renderer.RenderUtil;
-import binnie.craftgui.events.EventMouse;
-import binnie.craftgui.minecraft.Window;
 import binnie.genetics.api.IGene;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.genetics.Engineering;

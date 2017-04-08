@@ -1,11 +1,11 @@
 package binnie.genetics.gui;
 
+import binnie.core.craftgui.controls.listbox.ControlList;
+import binnie.core.craftgui.controls.listbox.ControlOption;
+import binnie.core.craftgui.geometry.Area;
+import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.renderer.RenderUtil;
 import binnie.core.genetics.Gene;
-import binnie.craftgui.controls.listbox.ControlList;
-import binnie.craftgui.controls.listbox.ControlOption;
-import binnie.craftgui.core.geometry.Area;
-import binnie.craftgui.core.geometry.TextJustification;
-import binnie.craftgui.core.renderer.RenderUtil;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

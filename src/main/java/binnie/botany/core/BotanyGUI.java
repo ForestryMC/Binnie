@@ -1,8 +1,8 @@
 package binnie.botany.core;
 
 import binnie.botany.craftgui.WindowBotanistDatabase;
+import binnie.core.craftgui.minecraft.Window;
 import binnie.core.gui.IBinnieGUID;
-import binnie.craftgui.minecraft.Window;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;

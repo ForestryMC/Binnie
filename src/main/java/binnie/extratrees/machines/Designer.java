@@ -1,5 +1,6 @@
 package binnie.extratrees.machines;
 
+import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.component.ComponentRecipe;
 import binnie.core.machines.component.IComponentRecipe;
@@ -7,7 +8,6 @@ import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.network.INetwork;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IErrorStateSource;
-import binnie.craftgui.minecraft.IMachineInformation;
 import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignMaterial;

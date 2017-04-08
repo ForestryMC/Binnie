@@ -1,12 +1,12 @@
 package binnie.extrabees.gui.database;
 
-import binnie.craftgui.controls.ControlText;
-import binnie.craftgui.controls.ControlTextCentered;
-import binnie.craftgui.controls.listbox.ControlList;
-import binnie.craftgui.controls.listbox.ControlOption;
-import binnie.craftgui.core.geometry.CraftGUIUtil;
-import binnie.craftgui.core.geometry.Point;
-import binnie.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.core.craftgui.controls.ControlText;
+import binnie.core.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.controls.listbox.ControlList;
+import binnie.core.craftgui.controls.listbox.ControlOption;
+import binnie.core.craftgui.geometry.CraftGUIUtil;
+import binnie.core.craftgui.geometry.Point;
+import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 
 import java.text.DecimalFormat;
 

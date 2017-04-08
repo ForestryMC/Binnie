@@ -1,11 +1,11 @@
 package binnie.genetics.gui;
 
-import binnie.craftgui.controls.core.Control;
-import binnie.craftgui.core.ITooltip;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.geometry.Point;
-import binnie.craftgui.core.renderer.RenderUtil;
+import binnie.core.craftgui.ITooltip;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.controls.core.Control;
+import binnie.core.craftgui.geometry.Point;
+import binnie.core.craftgui.renderer.RenderUtil;
 import forestry.api.core.ForestryAPI;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.world.biome.Biome;

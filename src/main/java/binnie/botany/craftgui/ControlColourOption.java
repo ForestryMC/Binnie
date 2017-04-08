@@ -1,12 +1,12 @@
 package binnie.botany.craftgui;
 
 import binnie.botany.api.IFlowerColour;
-import binnie.craftgui.controls.listbox.ControlList;
-import binnie.craftgui.controls.listbox.ControlTextOption;
-import binnie.craftgui.core.Attribute;
-import binnie.craftgui.core.CraftGUI;
-import binnie.craftgui.core.geometry.CraftGUIUtil;
-import binnie.craftgui.core.geometry.Point;
+import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.controls.listbox.ControlList;
+import binnie.core.craftgui.controls.listbox.ControlTextOption;
+import binnie.core.craftgui.geometry.CraftGUIUtil;
+import binnie.core.craftgui.geometry.Point;
 
 public class ControlColourOption extends ControlTextOption<IFlowerColour> {
 	ControlColourDisplay controlBee;

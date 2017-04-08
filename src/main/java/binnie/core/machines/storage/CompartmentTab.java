@@ -1,6 +1,6 @@
 package binnie.core.machines.storage;
 
-import binnie.craftgui.minecraft.EnumColor;
+import binnie.core.craftgui.minecraft.EnumColor;
 import forestry.api.core.INbtReadable;
 import forestry.api.core.INbtWritable;
 import net.minecraft.init.Items;

@@ -1,9 +1,9 @@
 package binnie.genetics.gui.tree;
 
 import binnie.Binnie;
-import binnie.craftgui.controls.ControlTextCentered;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.Area;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.geometry.Area;
 import binnie.genetics.Genetics;
 import binnie.genetics.gui.ControlAnalystPage;
 import forestry.api.arboriculture.EnumTreeChromosome;

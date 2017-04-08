@@ -2,8 +2,8 @@ package binnie.extrabees.gui.database;
 
 import binnie.Binnie;
 import binnie.core.BinnieCore;
-import binnie.craftgui.controls.listbox.ControlListBox;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.listbox.ControlListBox;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.genetics.IAllele;

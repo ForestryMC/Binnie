@@ -1,13 +1,13 @@
 package binnie.extrabees.gui;
 
 import binnie.core.AbstractMod;
-import binnie.craftgui.controls.ControlText;
-import binnie.craftgui.core.geometry.Area;
-import binnie.craftgui.core.geometry.TextJustification;
-import binnie.craftgui.minecraft.Window;
-import binnie.craftgui.minecraft.control.ControlItemDisplay;
-import binnie.craftgui.minecraft.control.ControlPlayerInventory;
-import binnie.craftgui.minecraft.control.ControlSlot;
+import binnie.core.craftgui.controls.ControlText;
+import binnie.core.craftgui.geometry.Area;
+import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
+import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.apiary.machine.AlvearyMutator;
 import net.minecraft.entity.player.EntityPlayer;

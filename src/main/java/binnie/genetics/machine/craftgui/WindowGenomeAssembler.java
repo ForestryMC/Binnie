@@ -1,7 +1,7 @@
 package binnie.genetics.machine.craftgui;
 
 import binnie.core.AbstractMod;
-import binnie.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.Window;
 import binnie.genetics.Genetics;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

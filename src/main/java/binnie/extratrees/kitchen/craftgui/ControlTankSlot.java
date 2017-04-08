@@ -1,9 +1,9 @@
 package binnie.extratrees.kitchen.craftgui;
 
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.Area;
-import binnie.craftgui.events.EventMouse;
-import binnie.craftgui.minecraft.Window;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.events.EventMouse;
+import binnie.core.craftgui.geometry.Area;
+import binnie.core.craftgui.minecraft.Window;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

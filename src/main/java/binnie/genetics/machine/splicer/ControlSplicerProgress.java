@@ -1,9 +1,9 @@
 package binnie.genetics.machine.splicer;
 
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.Area;
-import binnie.craftgui.core.renderer.RenderUtil;
-import binnie.craftgui.minecraft.control.ControlProgressBase;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.geometry.Area;
+import binnie.core.craftgui.minecraft.control.ControlProgressBase;
+import binnie.core.craftgui.renderer.RenderUtil;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
