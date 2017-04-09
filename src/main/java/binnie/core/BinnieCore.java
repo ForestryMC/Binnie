@@ -55,8 +55,8 @@ import java.util.List;
 		modid = Constants.CORE_MOD_ID,
 		name = "Binnie Core",
 		useMetadata = true,
-		dependencies = "required-after:forge@[13.20.0.2230,);" +
-				"required-after:forestry@[5.3.2.68,);" +
+		dependencies = "required-after:forge@[13.20.0.2279,);" +
+				"required-after:forestry@[5.3.3.89,);" +
 				"after:jei@[4.3.1,);"
 )
 public final class BinnieCore extends AbstractMod {

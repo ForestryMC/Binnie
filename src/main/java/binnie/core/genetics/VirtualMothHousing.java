@@ -4,6 +4,7 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.lepidopterology.IButterfly;
 import forestry.api.lepidopterology.IButterflyNursery;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
@@ -31,5 +32,11 @@ public class VirtualMothHousing extends VirtualHousing implements IButterflyNurs
 	@Override
 	public boolean canNurse(final IButterfly butterfly) {
 		return false;
+	}
+
+	@Override
+	public World getWorldObj() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

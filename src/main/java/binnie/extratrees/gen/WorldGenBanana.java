@@ -1,28 +1,29 @@
 package binnie.extratrees.gen;
 
+import java.util.List;
+import java.util.Random;
+
 import forestry.api.world.ITreeGenData;
+import forestry.arboriculture.worldgen.ITreeBlockType;
+import forestry.arboriculture.worldgen.TreeBlockTypeLeaf;
+import forestry.core.worldgen.WorldGenHelper;
+import forestry.core.worldgen.WorldGenHelper.EnumReplaceMode;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3i;
+import net.minecraft.world.World;
 
-public class WorldGenBanana extends WorldGenTree {
+public class WorldGenBanana extends forestry.arboriculture.worldgen.WorldGenTree {
 	public WorldGenBanana(ITreeGenData tree) {
-		super(tree);
+		super(tree, 6, 1);
 	}
-
+	
 	@Override
-	public void generate() {
-		this.bushiness = 0.9f;
-		this.generateTreeTrunk(this.height, this.girth);
+	protected void generateLeaves(World world, Random rand, TreeBlockTypeLeaf leaf, List<BlockPos> branchEnds, BlockPos startPos) {
 		int leafSpawn = this.height + 1;
-		final float width = this.height / this.randBetween(1.8f, 2.0f);
-		final int bottom = this.randBetween(3, 4);
-		this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 0.4f * width, 1, this.leaf, false);
-		this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width, 1, this.leaf, false);
-		this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 0.9f * width, 1, this.leaf, false);
-	}
-
-	@Override
-	public void preGenerate() {
-		this.height = this.determineHeight(6, 1);
-		this.girth = this.determineGirth(this.treeGen.getGirth());
+		final float width = this.height / WorldGenUtils.randBetween(rand, 3f, 3.25f);
+		WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 0.25F * width + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
+		WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, width + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
+		WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 0.75F * width + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
 	}
 
 }

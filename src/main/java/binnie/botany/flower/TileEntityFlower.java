@@ -661,4 +661,10 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		return isBreeding();
 	}
 
+
+	@Override
+	public World getWorldObj() {
+		return world;
+	}
+
 }

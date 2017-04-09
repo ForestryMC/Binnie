@@ -112,4 +112,10 @@ public class TileEntityNursery extends TileEntityMachine implements IButterflyNu
 	public BlockPos getCoordinates() {
 		return getPos();
 	}
+
+	@Override
+	public World getWorldObj() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

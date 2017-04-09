@@ -73,6 +73,10 @@ public class ExtraTrees extends AbstractMod {
 	private static ModuleMachine machine;
 	@Nullable
 	private static ModuleKitchen kitchen;
+	
+	public ExtraTrees() {
+		MinecraftForge.EVENT_BUS.register(ModuleGenetics.class);
+	}
 
 	@Mod.EventHandler
 	public void onConstruction(FMLConstructionEvent e) {
@@ -175,9 +179,6 @@ public class ExtraTrees extends AbstractMod {
 	@SubscribeEvent
 	public void speciesRegister(AlleleSpeciesRegisterEvent event) {
 		if (event.getRoot() instanceof ITreeRoot) {
-			for (final AlleleETFruit fruit : AlleleETFruit.values()) {
-				AlleleManager.alleleRegistry.registerAllele(fruit);
-			}
 			ETTreeDefinition.preInitTrees();
 			PlankType.ExtraTreePlanks.initWoodTypes();
 

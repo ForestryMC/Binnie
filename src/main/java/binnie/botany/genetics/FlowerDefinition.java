@@ -1073,7 +1073,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	}
 
 	public static void preInitFlowers() {
-		MinecraftForge.EVENT_BUS.post(new AlleleSpeciesRegisterEvent(FlowerManager.flowerRoot));
+		MinecraftForge.EVENT_BUS.post(new AlleleSpeciesRegisterEvent(FlowerManager.flowerRoot, IAlleleFlowerSpecies.class));
 		for (FlowerDefinition def : values()) {
 			@SuppressWarnings("unchecked")
 			IFlowerType<EnumFlowerType> type = def.species.getType();

@@ -8,6 +8,8 @@ import binnie.extratrees.config.ConfigurationMain;
 import binnie.extratrees.item.Food;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Throwables;
+
+import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.IAlleleFruit;
 import forestry.api.arboriculture.IAlleleTreeSpecies;
 import forestry.api.arboriculture.IFruitProvider;
@@ -34,45 +36,12 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 
 
 public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IFruitProvider {
-
-	/*public static void createAlleles() {
-		List<IAlleleFruit> fruitAlleles = Arrays.asList(
-				fruitNone = new AlleleFruit("none", new FruitProviderNone("for.fruits.none", null)),
-				fruitApple = new AlleleFruit("apple", new FruitProviderRandom("for.fruits.apple", EnumFruitFamily.POMES, new ItemStack(Items.APPLE), 1.0f)
-						.setColour(new Color(0xff2e2e))
-						.setOverlay("pomes")),
-				fruitCocoa = new AlleleFruit("cocoa", new FruitProviderPod("for.fruits.cocoa", EnumFruitFamily.JUNGLE, FruitProviderPod.EnumPodType.COCOA, new ItemStack(Items.DYE, 1, EnumDyeColor.BROWN.getDyeDamage()))),
-				// .setColours(0xecdca5, 0xc4d24a), true);
-				fruitChestnut = new AlleleFruit("chestnut", new FruitProviderRipening("for.fruits.chestnut", EnumFruitFamily.NUX, ItemFruit.EnumFruit.CHESTNUT.getStack(), 1.0f)
-						.setRipeningPeriod(6)
-						.setColours(new Color(0x7f333d), new Color(0xc4d24a))
-						.setOverlay("nuts"), true),
-				fruitWalnut = new AlleleFruit("walnut", new FruitProviderRipening("for.fruits.walnut", EnumFruitFamily.NUX, ItemFruit.EnumFruit.WALNUT.getStack(), 1.0f)
-						.setRipeningPeriod(8)
-						.setColours(new Color(0xfba248), new Color(0xc4d24a))
-						.setOverlay("nuts"), true),
-				fruitCherry = new AlleleFruit("cherry", new FruitProviderRipening("for.fruits.cherry", EnumFruitFamily.PRUNES, ItemFruit.EnumFruit.CHERRY.getStack(), 1.0f)
-						.setColours(new Color(0xff2e2e), new Color(0xc4d24a))
-						.setOverlay("berries"), true),
-				fruitDates = new AlleleFruit("dates", new FruitProviderPod("for.fruits.dates", EnumFruitFamily.JUNGLE, FruitProviderPod.EnumPodType.DATES, ItemFruit.EnumFruit.DATES.getStack(4))),
-				fruitPapaya = new AlleleFruit("papaya", new FruitProviderPod("for.fruits.papaya", EnumFruitFamily.JUNGLE, FruitProviderPod.EnumPodType.PAPAYA, ItemFruit.EnumFruit.PAPAYA.getStack())),
-				fruitLemon = new AlleleFruit("lemon", new FruitProviderRipening("for.fruits.lemon", EnumFruitFamily.PRUNES, ItemFruit.EnumFruit.LEMON.getStack(), 1.0f)
-						.setColours(new Color(0xeeee00), new Color(0x99ff00))
-						.setOverlay("citrus"), true),
-				fruitPlum = new AlleleFruit("plum", new FruitProviderRipening("for.fruits.plum", EnumFruitFamily.PRUNES, ItemFruit.EnumFruit.PLUM.getStack(), 1.0f)
-						.setColours(new Color(0x663446), new Color(0xeeff1a))
-						.setOverlay("plums"), true)
-		);
-
-		for (IAlleleFruit fruitAllele : fruitAlleles) {
-			AlleleManager.alleleRegistry.registerAllele(fruitAllele, EnumTreeChromosome.FRUITS);
-		}
-	}*/
 	public static final AlleleETFruit Blackthorn = new AlleleETFruit("Blackthorn", 10, 7180062, 14561129, FruitSprite.SMALL);
 	public static final AlleleETFruit CherryPlum = new AlleleETFruit("CherryPlum", 10, 7180062, 15211595, FruitSprite.SMALL);
 	public static final AlleleETFruit Peach = new AlleleETFruit("Peach", 10, 7180062, 16424995, FruitSprite.AVERAGE);
@@ -165,6 +134,12 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 		}
 
 		return list;
+	}
+	
+	public static void preInit(){
+		for (final AlleleETFruit fruit : AlleleETFruit.values()) {
+			AlleleManager.alleleRegistry.registerAllele(fruit, EnumTreeChromosome.FRUITS);
+		}
 	}
 
 	public static void init() {
@@ -397,7 +372,7 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 	@Override
 	public boolean trySpawnFruitBlock(ITreeGenome genome, World world, Random rand, BlockPos pos) {
 		if (this.pod != null && world.rand.nextFloat() <= genome.getSappiness()) {
-			TreeManager.treeRoot.setFruitBlock(world, genome, this, genome.getSappiness(), pos);
+			return TreeManager.treeRoot.setFruitBlock(world, genome, this, genome.getSappiness(), pos);
 		}
 		return false;
 	}
@@ -435,7 +410,7 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 	@Override
 	public String getModelName() {
 		if (pod != null) {
-			return pod.name();
+			return pod.getModelName();
 		} else {
 			return null;
 		}
@@ -500,22 +475,6 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 	public boolean requiresFruitBlocks() {
 		return this.pod != null;
 	}
-
-//	@Override
-//	public short getIconIndex(final ITreeGenome genome, final IBlockAccess world, final int x, final int y, final int z, final int ripeningTime, final boolean fancy) {
-//		return this.index.getIndex();
-//	}
-//
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerIcons(final IIconRegister register) {
-//		if (this.ordinal() == 0) {
-//			for (final FruitSprite sprite : FruitSprite.values()) {
-//				sprite.registerIcons(register);
-//			}
-//		}
-//	}
-
 
 	@Nullable
 	@Override
