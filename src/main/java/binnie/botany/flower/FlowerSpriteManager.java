@@ -8,13 +8,8 @@ import javax.annotation.Nullable;
 import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.api.IFlowerType;
-import binnie.botany.genetics.EnumFlowerType;
 import binnie.core.resource.BinnieSprite;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class FlowerSpriteManager {
 	 

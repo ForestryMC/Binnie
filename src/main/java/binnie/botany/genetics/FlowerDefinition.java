@@ -15,7 +15,6 @@ import binnie.botany.api.IFlowerMutationBuilder;
 import binnie.botany.api.IFlowerRoot;
 import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
-import binnie.botany.flower.FlowerSpriteManager;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.core.EnumTemperature;

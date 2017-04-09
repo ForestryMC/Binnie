@@ -5,7 +5,6 @@ import forestry.api.core.IModelBakerModel;
 import forestry.core.models.ModelManager;
 import forestry.core.models.baker.ModelBakerFace;
 import forestry.core.models.baker.ModelBakerModel;
-import forestry.core.proxy.Proxies;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;

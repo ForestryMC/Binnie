@@ -18,17 +18,20 @@ import binnie.extratrees.core.ModuleCore;
 import binnie.extratrees.genetics.AlleleETFruit;
 import binnie.extratrees.genetics.ButterflySpecies;
 import binnie.extratrees.genetics.ETTreeDefinition;
+import binnie.extratrees.genetics.FruitSprite;
 import binnie.extratrees.genetics.ModuleGenetics;
 import binnie.extratrees.item.ModuleItems;
 import binnie.extratrees.kitchen.ModuleKitchen;
 import binnie.extratrees.machines.ModuleMachine;
 import binnie.extratrees.proxy.Proxy;
 import com.google.common.base.Preconditions;
+
 import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.AlleleSpeciesRegisterEvent;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -41,6 +44,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -208,6 +212,14 @@ public class ExtraTrees extends AbstractMod {
 			e.getModelRegistry().putObject(model, new DoublePassBakedModel(e.getModelRegistry().getObject(model), primaryColor, secondaryColor));
 		});
 
+	}
+	
+	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
+	public void registerSprites(TextureStitchEvent.Pre event) {
+		for (FruitSprite sprite : FruitSprite.VALUES) {
+			sprite.registerSprites();
+		}
 	}
 
 }

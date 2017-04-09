@@ -1,6 +1,5 @@
 package binnie.genetics.gui.flower;
 
-import binnie.botany.api.EnumFlowerStage;
 import binnie.botany.api.IFlower;
 import binnie.botany.api.IFlowerGenome;
 import binnie.botany.api.IFlowerType;
