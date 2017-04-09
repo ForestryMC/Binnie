@@ -1,6 +1,7 @@
 package binnie.extratrees.genetics;
 
 import binnie.Binnie;
+import binnie.Constants;
 import binnie.core.Mods;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.ResourceType;
@@ -16,9 +17,13 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.lepidopterology.EnumFlutterType;
 import forestry.api.lepidopterology.IAlleleButterflySpecies;
 import forestry.api.lepidopterology.IButterflyRoot;
+import forestry.lepidopterology.genetics.alleles.AlleleButterflySpecies;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.BiomeDictionary;
 
@@ -28,28 +33,28 @@ import java.util.Map;
 import java.util.Set;
 
 public enum ButterflySpecies implements IAlleleButterflySpecies {
-	WhiteAdmiral("White Admiral", "Limenitis camilla", 16448250),
-	PurpleEmperor("Purple Emperor", "Apatura iris", 4338374),
-	RedAdmiral("Red Admiral", "Vanessa atalanta", 15101764),
-	PaintedLady("Painted Lady", "Vanessa cardui", 15573064),
-	SmallTortoiseshell("Small Tortoiseshell", "Aglais urticae", 15365387),
-	CamberwellBeauty("Camberwell Beauty", "Aglais antiopa", 9806540),
+	White_Admiral("White Admiral", "Limenitis camilla", 16448250),
+	Purple_Emperor("Purple Emperor", "Apatura iris", 4338374),
+	Red_Admiral("Red Admiral", "Vanessa atalanta", 15101764),
+	Painted_Lady("Painted Lady", "Vanessa cardui", 15573064),
+	Small_Tortoiseshell("Small Tortoiseshell", "Aglais urticae", 15365387),
+	Camberwell_Beauty("Camberwell Beauty", "Aglais antiopa", 9806540),
 	Peacock("Peacock", "Inachis io", 13842434),
 	Wall("Wall", "Lasiommata megera", 15707678),
-	CrimsonRose("Crimson Rose", "Atrophaneura hector", 16736891),
-	KaiserIHind("Kaiser-i-Hind", "Teinopalpus imperialis", 7839808),
-	GoldenBirdwing("Golden Birdwing", "Troides aeacus", 16374814),
-	MarshFritillary("Marsh Fritillary", "Euphydryas aurinia", 16747520),
-	PearlBorderedFritillary("Pearl-bordered Fritillary", "Boloria euphrosyne", 16747267),
-	QueenOfSpainFritillary("Queen of Spain Fritillary", "Issoria lathonia", 16765247),
-	SpeckledWood("Speckled Wood", "Pararge aegeria", 16119949),
-	ScotchAngus("Scotch Angus", "Erebia aethiops", 12735523),
+	Crimson_Rose("Crimson Rose", "Atrophaneura hector", 16736891),
+	Kaiser_I_Hind("Kaiser-i-Hind", "Teinopalpus imperialis", 7839808),
+	Golden_Birdwing("Golden Birdwing", "Troides aeacus", 16374814),
+	Marsh_Fritillary("Marsh Fritillary", "Euphydryas aurinia", 16747520),
+	Pearl_Bordered_Fritillary("Pearl-bordered Fritillary", "Boloria euphrosyne", 16747267),
+	Queen_Of_Spain_Fritillary("Queen of Spain Fritillary", "Issoria lathonia", 16765247),
+	Speckled_Wood("Speckled Wood", "Pararge aegeria", 16119949),
+	Scotch_Angus("Scotch Angus", "Erebia aethiops", 12735523),
 	Gatekeeper("Gatekeeper", "Pyronia tithonus", 16433962),
-	MeadowBrown("Meadow Brown", "Maniola jurtina", 14914841),
-	SmallHeath("Small Heath", "Coenonympha pamphilus", 16754226),
+	Meadow_Brown("Meadow Brown", "Maniola jurtina", 14914841),
+	Small_Heath("Small Heath", "Coenonympha pamphilus", 16754226),
 	Ringlet("Ringlet", "Aphantopus hyperantus", 9919799),
 	Monarch("Monarch", "Danaus plexippus", 16757254),
-	MarbledWhite("Marbled White", "Melanargia galathea", 15527148);
+	Marbled_White("Marbled White", "Melanargia galathea", 15527148);
 
 	private String name;
 	private String branchName;
@@ -151,17 +156,19 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
 
 	@Override
 	public String getItemTexture() {
-		return "";
+		return getModID() + ":items/butterflies/" + toString().toLowerCase();
 	}
 
 	@Override
 	public void registerSprites() {
-
+		String spriteName = getItemTexture();
+		TextureMap textureMap = Minecraft.getMinecraft().getTextureMapBlocks();
+		textureMap.registerSprite(new ResourceLocation(spriteName));
 	}
 
 	@Override
 	public String getModID() {
-		return "extratrees";
+		return Constants.EXTRA_TREES_MOD_ID;
 	}
 
 
@@ -169,7 +176,7 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
 
 	@Override
 	public String getUID() {
-		return "extrabutterflies.species." + this.toString().toLowerCase();
+		return "extrabutterflies.species." + this.toString().toLowerCase().replace("_", "");
 	}
 
 	@Override
