@@ -43,11 +43,8 @@ public class WorldGenShrub {
 			if (width < 1.5f) {
 				width = 1.5f;
 			}
-			final float f = 0.0f;
-			final float h = leafSpawn;
-			leafSpawn = h - 1.0f;
-			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 0.25f * width + girth, 1, EnumReplaceMode.SOFT);
-			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 0.5f * width + girth, 1, EnumReplaceMode.SOFT);
+			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 0.15f * width + girth, 1, EnumReplaceMode.SOFT);
+			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 0.75f * width + girth, 1, EnumReplaceMode.SOFT);
 			while (leafSpawn >= 0.0f) {
 				WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, width + girth, 1, EnumReplaceMode.SOFT);
 			}

@@ -3,6 +3,7 @@ package binnie.extratrees.block.wood;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import javax.annotation.Nullable;
 
@@ -18,6 +19,7 @@ import forestry.apiculture.blocks.BlockAlveary;
 import forestry.arboriculture.IWoodTyped;
 import forestry.greenhouse.blocks.BlockGreenhouseDoor;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -29,7 +31,9 @@ import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.statemap.BlockStateMapper;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.entity.Entity;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.ResourceLocation;
@@ -83,6 +87,7 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "shrub_log"));
 		setUnlocalizedName("shrub_log");
 		setSoundType(SoundType.WOOD);
+		setHardness(EnumShrubLog.INSTANCE.getHardness());
 	}
 
 	@Override
@@ -177,9 +182,23 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 	private boolean canFenceConnectTo(IBlockAccess world, BlockPos pos, EnumFacing facing) {
 		IBlockState blockState = world.getBlockState(pos.offset(facing));
 		Block block = blockState.getBlock();
-		return block.isLeaves(blockState, world, pos);
+		return block.isLeaves(blockState, world, pos) || block == this;
 	}
 
+	@Override
+	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+		Random rand = world instanceof World ? ((World)world).rand : RANDOM;
+		List<ItemStack> ret = new java.util.ArrayList<ItemStack>();
+		float chance = 0.75F;
+		int amount = 2;
+		while(chance >= rand.nextFloat()){
+			chance-=0.25;
+			amount++;
+		}
+		ret.add(new ItemStack(Items.STICK, amount));
+		return ret;
+	}
+	
 	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot) {
 		switch (rot) {
