@@ -62,7 +62,7 @@ et.trees.woodType.pinkivory=Pink Ivory
 et.trees.woodType.banana=Banana
 et.trees.woodType.cherry=Cherry
 et.trees.woodType.cinnamon=Cinnamon
-et.trees.woodType.shrub=Shrub
+et.trees.woodType.shrub_log=Shrub
 		
 extratrees.block.planks.fir=Fir
 extratrees.block.planks.cedar=Cedar

@@ -2,7 +2,9 @@ package binnie.extratrees.genetics;
 
 import binnie.Constants;
 import binnie.core.genetics.ForestryAllele;
+import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.EnumETLog;
+import binnie.extratrees.block.EnumShrubLog;
 import binnie.extratrees.gen.WorldGenAlder;
 import binnie.extratrees.gen.WorldGenApple;
 import binnie.extratrees.gen.WorldGenAsh;
@@ -1548,7 +1550,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 		}
 	},
-	Blackcurrant("ribes", "nigrum", EnumLeafType.DECIDUOUS, new Color(0xA6DA5C), new Color(0xA6DA5C), EnumSaplingType.Shrub, EnumETLog.Shrub, new Color(0xFFFFFF)) {
+	Blackcurrant("ribes", "nigrum", EnumLeafType.DECIDUOUS, new Color(0xA6DA5C), new Color(0xA6DA5C), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
 		@Override
 		public WorldGenerator getWorldGenerator(ITreeGenData tree) {
 			return new WorldGenShrub.Shrub(tree);
@@ -1571,7 +1573,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(ETFruitFamily.Berry);
 		}
 	},
-	Redcurrant("ribes", "rubrum", EnumLeafType.DECIDUOUS, new Color(0x74AC00), new Color(0x74AC00), EnumSaplingType.Shrub, EnumETLog.Shrub, new Color(0xFFFFFF)) {
+	Redcurrant("ribes", "rubrum", EnumLeafType.DECIDUOUS, new Color(0x74AC00), new Color(0x74AC00), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
 		@Override
 		public WorldGenerator getWorldGenerator(ITreeGenData tree) {
 			return new WorldGenShrub.Shrub(tree);
@@ -1594,7 +1596,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(ETFruitFamily.Berry);
 		}
 	},
-	Blackberry("rubus", "fruticosus", EnumLeafType.DECIDUOUS, new Color(0x92C15B), new Color(0x92C15B), EnumSaplingType.Shrub, EnumETLog.Shrub, new Color(0xFFFFFF)) {
+	Blackberry("rubus", "fruticosus", EnumLeafType.DECIDUOUS, new Color(0x92C15B), new Color(0x92C15B), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
 		@Override
 		public WorldGenerator getWorldGenerator(ITreeGenData tree) {
 			return new WorldGenShrub.Shrub(tree);
@@ -1616,7 +1618,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(ETFruitFamily.Berry);
 		}
 	},
-	Raspberry("rubus", "idaeus", EnumLeafType.DECIDUOUS, new Color(0x83B96E), new Color(0x83B96E), EnumSaplingType.Shrub, EnumETLog.Shrub, new Color(0xFFFFFF)) {
+	Raspberry("rubus", "idaeus", EnumLeafType.DECIDUOUS, new Color(0x83B96E), new Color(0x83B96E), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
 		@Override
 		public WorldGenerator getWorldGenerator(ITreeGenData tree) {
 			return new WorldGenShrub.Shrub(tree);
@@ -1639,7 +1641,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(ETFruitFamily.Berry);
 		}
 	},
-	Blueberry("vaccinium", "corymbosum", EnumLeafType.DECIDUOUS, new Color(0x72C750), new Color(0x72C750), EnumSaplingType.Shrub, EnumETLog.Shrub, new Color(0xFFFFFF)) {
+	Blueberry("vaccinium", "corymbosum", EnumLeafType.DECIDUOUS, new Color(0x72C750), new Color(0x72C750), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
 		@Override
 		public WorldGenerator getWorldGenerator(ITreeGenData tree) {
 			return new WorldGenShrub.Shrub(tree);
@@ -1662,7 +1664,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(ETFruitFamily.Berry);
 		}
 	},
-	Cranberry("vaccinium", "oxycoccos", EnumLeafType.DECIDUOUS, new Color(0x96D179), new Color(0x96D179), EnumSaplingType.Shrub, EnumETLog.Shrub, new Color(0xFFFFFF)) {
+	Cranberry("vaccinium", "oxycoccos", EnumLeafType.DECIDUOUS, new Color(0x96D179), new Color(0x96D179), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
 		@Override
 		public WorldGenerator getWorldGenerator(ITreeGenData tree) {
 			return new WorldGenShrub.Shrub(tree);
@@ -1685,7 +1687,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(ETFruitFamily.Berry);
 		}
 	},
-	Juniper("juniperus", "communis", EnumLeafType.CONIFERS, new Color(0x90B149), new Color(0x90B149), EnumSaplingType.Shrub, EnumETLog.Shrub, new Color(0xFFFFFF)) {
+	Juniper("juniperus", "communis", EnumLeafType.CONIFERS, new Color(0x90B149), new Color(0x90B149), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
 		@Override
 		public WorldGenerator getWorldGenerator(ITreeGenData tree) {
 			return new WorldGenShrub.Shrub(tree);
@@ -1708,7 +1710,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(ETFruitFamily.Berry);
 		}
 	},
-	Gooseberry("ribes", "grossularia", EnumLeafType.DECIDUOUS, new Color(0x79BB00), new Color(0x79BB00), EnumSaplingType.Shrub, EnumETLog.Shrub, new Color(0xFFFFFF)) {
+	Gooseberry("ribes", "grossularia", EnumLeafType.DECIDUOUS, new Color(0x79BB00), new Color(0x79BB00), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
 		@Override
 		public WorldGenerator getWorldGenerator(ITreeGenData tree) {
 			return new WorldGenShrub.Shrub(tree);
@@ -1730,7 +1732,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(ETFruitFamily.Berry);
 		}
 	},
-	GoldenRaspberry("rubus", "occidentalis", EnumLeafType.DECIDUOUS, new Color(0x83B96E), new Color(0x83B96E), EnumSaplingType.Shrub, EnumETLog.Shrub, new Color(0xFFFFFF)) {
+	GoldenRaspberry("rubus", "occidentalis", EnumLeafType.DECIDUOUS, new Color(0x83B96E), new Color(0x83B96E), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
 		@Override
 		public WorldGenerator getWorldGenerator(ITreeGenData tree) {
 			return new WorldGenShrub.Shrub(tree);
@@ -2156,7 +2158,10 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		IBlockState logBlock = TreeManager.woodAccess.getBlock(woodType, WoodBlockKind.LOG, fireproof);
 
 		BlockLog.EnumAxis axis = BlockLog.EnumAxis.fromFacingAxis(facing.getAxis());
-		return world.setBlockState(pos, logBlock.withProperty(BlockLog.LOG_AXIS, axis));
+		if(logBlock.getBlock() instanceof BlockLog){
+			logBlock = logBlock.withProperty(BlockLog.LOG_AXIS, axis);
+		}
+		return world.setBlockState(pos, logBlock);
 	}
 
 	@Override

@@ -16,6 +16,7 @@ import binnie.extratrees.block.wood.BlockETFence;
 import binnie.extratrees.block.wood.BlockETLog;
 import binnie.extratrees.block.wood.BlockETPlank;
 import binnie.extratrees.block.wood.BlockETSlab;
+import binnie.extratrees.block.wood.BlockShrubLog;
 import binnie.extratrees.block.wood.ItemBlockETWood;
 import binnie.extratrees.block.wood.ItemETSlab;
 import binnie.extratrees.genetics.ETTreeDefinition;
@@ -29,6 +30,8 @@ import forestry.api.recipes.RecipeManagers;
 import forestry.arboriculture.WoodAccess;
 import forestry.arboriculture.blocks.BlockForestryFenceGate;
 import forestry.arboriculture.blocks.BlockForestryStairs;
+import forestry.arboriculture.items.ItemBlockWood;
+import forestry.arboriculture.items.ItemBlockWoodDoor;
 import forestry.core.recipes.RecipeUtil;
 import forestry.core.utils.OreDictUtil;
 import net.minecraft.block.Block;
@@ -72,6 +75,7 @@ public class ModuleBlocks implements IInitializable {
 	public Block blockDoor;
 	public BlockMultiFence blockMultiFence;
 	public BlockHedge blockHedge;
+	public BlockShrubLog shrubLog;
 	//????
 	public Block blockBranch;
 
@@ -242,6 +246,11 @@ public class ModuleBlocks implements IInitializable {
 				speciesToLeavesDecorative.put(speciesUid, new ItemStack(leaves, 1, meta));
 			}
 		}
+		
+		shrubLog = new BlockShrubLog();
+		ExtraTrees.proxy.registerBlock(shrubLog, new ItemBlockETWood(shrubLog));
+		woodAccess.register(EnumShrubLog.INSTANCE, WoodBlockKind.LOG, false, shrubLog.getStateFromMeta(0), new ItemStack(shrubLog, 1, 0));
+		woodAccess.register(EnumShrubLog.INSTANCE, WoodBlockKind.LOG, true, shrubLog.getStateFromMeta(1), new ItemStack(shrubLog, 1, 1));
 	}
 
 	@Override

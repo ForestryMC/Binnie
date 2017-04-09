@@ -1,0 +1,17 @@
+{
+    "multipart": [
+        {   "apply": { "model": "extratrees:shrub_trunk" }},
+        {   "when": { "north": "true" },
+            "apply": { "model": "extratrees:shrub_side", "y": 90, "uvlock": true }
+        },
+        {   "when": { "east": "true" },
+            "apply": { "model": "extratrees:shrub_side", "y": 180, "uvlock": true }
+        },
+        {   "when": { "south": "true" },
+            "apply": { "model": "extratrees:shrub_side", "y": 270, "uvlock": true }
+        },
+        {   "when": { "west": "true" },
+            "apply": { "model": "extratrees:shrub_side", "uvlock": true }
+        }
+    ]
+}

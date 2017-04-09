@@ -49,8 +49,7 @@ public enum EnumETLog implements IWoodType {
 	Eucalyptus3("Eucalyptus", PlankType.ExtraTreePlanks.Eucalyptus),
 	PinkIvory("Pink Ivory", PlankType.ExtraTreePlanks.PinkIvory),
 	Cherry("Cherry", PlankType.ForestryPlanks.CHERRY),
-	Cinnamon("Cinnamon", PlankType.VanillaPlanks.JUNGLE),
-	Shrub("Shrub", PlankType.VanillaPlanks.OAK);
+	Cinnamon("Cinnamon", PlankType.VanillaPlanks.JUNGLE);
 
 	public static final EnumETLog[] VALUES = values();
 
