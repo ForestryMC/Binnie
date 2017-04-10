@@ -2,7 +2,6 @@ package binnie.extratrees.genetics;
 
 import binnie.Constants;
 import binnie.core.genetics.ForestryAllele;
-import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.EnumETLog;
 import binnie.extratrees.block.EnumShrubLog;
 import binnie.extratrees.gen.WorldGenAlder;
@@ -52,7 +51,6 @@ import forestry.arboriculture.PluginArboriculture;
 import forestry.arboriculture.genetics.ITreeDefinition;
 import forestry.arboriculture.genetics.Tree;
 import forestry.arboriculture.tiles.TileLeaves;
-import forestry.arboriculture.worldgen.WorldGenDate;
 import forestry.arboriculture.worldgen.WorldGenLemon;
 import forestry.arboriculture.worldgen.WorldGenPlum;
 import forestry.core.genetics.alleles.AlleleBoolean;

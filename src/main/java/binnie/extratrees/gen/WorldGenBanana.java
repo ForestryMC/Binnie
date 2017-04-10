@@ -4,12 +4,9 @@ import java.util.List;
 import java.util.Random;
 
 import forestry.api.world.ITreeGenData;
-import forestry.arboriculture.worldgen.ITreeBlockType;
 import forestry.arboriculture.worldgen.TreeBlockTypeLeaf;
 import forestry.core.worldgen.WorldGenHelper;
-import forestry.core.worldgen.WorldGenHelper.EnumReplaceMode;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 
 public class WorldGenBanana extends forestry.arboriculture.worldgen.WorldGenTree {

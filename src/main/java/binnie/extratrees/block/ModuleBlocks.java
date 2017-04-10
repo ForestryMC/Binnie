@@ -30,8 +30,6 @@ import forestry.api.recipes.RecipeManagers;
 import forestry.arboriculture.WoodAccess;
 import forestry.arboriculture.blocks.BlockForestryFenceGate;
 import forestry.arboriculture.blocks.BlockForestryStairs;
-import forestry.arboriculture.items.ItemBlockWood;
-import forestry.arboriculture.items.ItemBlockWoodDoor;
 import forestry.core.recipes.RecipeUtil;
 import forestry.core.utils.OreDictUtil;
 import net.minecraft.block.Block;

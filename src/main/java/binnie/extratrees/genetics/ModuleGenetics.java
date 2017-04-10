@@ -1,15 +1,9 @@
 package binnie.extratrees.genetics;
 
-import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
-import binnie.extratrees.block.PlankType;
 import forestry.api.arboriculture.IAlleleFruit;
-import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.genetics.AlleleRegisterEvent;
-import forestry.api.genetics.AlleleSpeciesRegisterEvent;
-import forestry.api.lepidopterology.IButterflyRoot;
-import forestry.arboriculture.genetics.alleles.AlleleFruits;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.ArrayList;

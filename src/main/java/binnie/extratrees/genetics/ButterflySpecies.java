@@ -1,20 +1,9 @@
 package binnie.extratrees.genetics;
 
-import binnie.Binnie;
 import binnie.Constants;
-import binnie.core.Mods;
-import binnie.core.resource.BinnieResource;
-import binnie.core.resource.ResourceType;
-import binnie.extratrees.ExtraTrees;
-import com.google.common.base.Preconditions;
-import com.mojang.authlib.GameProfile;
-import forestry.api.core.EnumHumidity;
-import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IClassification;
-import forestry.api.genetics.IGenome;
-import forestry.api.genetics.IIndividual;
 import forestry.api.lepidopterology.ButterflyManager;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
 import forestry.api.lepidopterology.EnumFlutterType;
@@ -23,32 +12,14 @@ import forestry.api.lepidopterology.IAlleleButterflySpeciesBuilder;
 import forestry.api.lepidopterology.IButterfly;
 import forestry.api.lepidopterology.IButterflyGenome;
 import forestry.api.lepidopterology.IButterflyMutationBuilder;
-import forestry.api.lepidopterology.IButterflyRoot;
-import forestry.apiculture.genetics.IBeeDefinition;
 import forestry.core.genetics.alleles.AlleleHelper;
-import forestry.core.utils.StringUtil;
 import forestry.lepidopterology.genetics.Butterfly;
-import forestry.lepidopterology.genetics.ButterflyBranchDefinition;
 import forestry.lepidopterology.genetics.ButterflyDefinition;
 import forestry.lepidopterology.genetics.IButterflyDefinition;
 import forestry.lepidopterology.genetics.MothDefinition;
-import forestry.lepidopterology.genetics.alleles.AlleleButterflySpecies;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-import net.minecraftforge.common.BiomeDictionary;
-
 import java.awt.Color;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
 
 public enum ButterflySpecies implements IButterflyDefinition {
 	White_Admiral("White Admiral", "Limenitis camilla", 16448250),

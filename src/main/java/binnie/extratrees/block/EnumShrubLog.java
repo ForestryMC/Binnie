@@ -1,13 +1,6 @@
 package binnie.extratrees.block;
 
-import java.util.Locale;
-
-import binnie.Constants;
 import forestry.api.arboriculture.IWoodType;
-import forestry.api.arboriculture.TreeManager;
-import forestry.api.arboriculture.WoodBlockKind;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public enum EnumShrubLog implements IWoodType {
 	INSTANCE;
