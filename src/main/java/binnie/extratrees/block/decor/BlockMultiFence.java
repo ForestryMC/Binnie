@@ -19,9 +19,13 @@ import forestry.api.core.IModelManager;
 import forestry.api.core.IStateMapperRegister;
 import forestry.api.core.Tabs;
 import forestry.arboriculture.PluginArboriculture;
+import forestry.arboriculture.WoodAccess;
+import forestry.arboriculture.items.ItemBlockWood;
+import forestry.arboriculture.items.ItemBlockWoodDoor;
 import forestry.core.blocks.properties.UnlistedBlockAccess;
 import forestry.core.blocks.properties.UnlistedBlockPos;
 import forestry.core.models.BlockModelEntry;
+import forestry.core.utils.Translator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockFenceGate;
@@ -191,13 +195,18 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata, IStat
 
 
 	@Override
-	public String getDisplayName(final ItemStack par1ItemStack) {
-		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
-		final IPlankType type1 = this.getDescription(meta).getPlankType();
-		final IPlankType type2 = this.getDescription(meta).getSecondaryPlankType();
-		final boolean twoTypes = type1 != type2;
-		final FenceType type3 = this.getDescription(meta).getFenceType();
-		return Binnie.LANGUAGE.localise(ExtraTrees.instance, "block.woodslab.name" + (twoTypes ? "2" : ""), type3.getPrefix(), type1.getName(), type2.getName());
+	public String getDisplayName(ItemStack itemStack) {
+		int meta = TileEntityMetadata.getItemDamage(itemStack);
+		IPlankType typeFirst = this.getDescription(meta).getPlankType();
+		IPlankType typeSecond = this.getDescription(meta).getSecondaryPlankType();
+		boolean twoTypes = typeFirst != typeSecond;
+		FenceType fenceType = this.getDescription(meta).getFenceType();
+		String woodGrammar = ExtraTrees.proxy.localise("block.multifence" + (twoTypes ? "2" : "") + ".grammar");
+
+		woodGrammar = woodGrammar.replaceAll("%PREFIX", fenceType.getPrefix());
+		woodGrammar = woodGrammar.replaceAll("%TYPE", typeSecond.getName());
+		woodGrammar = woodGrammar.replaceAll("%WOOD", typeFirst.getName());
+		return woodGrammar;
 	}
 
 	@SideOnly(Side.CLIENT)

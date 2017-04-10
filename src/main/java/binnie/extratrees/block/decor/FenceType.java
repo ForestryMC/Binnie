@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import binnie.extratrees.ExtraTrees;
+
 public class FenceType {
 	public static List<FenceType> VALUES;
 	
@@ -18,7 +20,28 @@ public class FenceType {
 	}
 
 	public String getPrefix() {
-		return ((this.size == 0) ? "" : ((this.size == 1) ? "Full " : "Low ")) + (this.solid ? "Solid " : "") + (this.embossed ? "Embedded " : "");
+		String prefix = "";
+		if(size == 1){
+			prefix+=ExtraTrees.proxy.localise("multifence.low.type");
+		}else if(size == 2){
+			prefix+=ExtraTrees.proxy.localise("multifence.full.type");
+		}
+		if(solid){
+			if(!prefix.isEmpty()){
+				prefix+=" ";
+			}
+			prefix+=ExtraTrees.proxy.localise("multifence.solid.type");
+		}
+		if(embossed){
+			if(!prefix.isEmpty()){
+				prefix+=" ";
+			}
+			prefix+=ExtraTrees.proxy.localise("multifence.embedded.type");
+		}
+		if(!prefix.isEmpty()){
+			prefix+=" ";
+		}
+		return prefix;
 	}
 
 	public int ordinal() {
@@ -33,6 +56,7 @@ public class FenceType {
 
 	public static Collection<FenceType> values() {
 		if(VALUES == null){
+			VALUES = new ArrayList<>();
 			for (int size = 0; size < 3; ++size) {
 				for (final boolean solid : new boolean[]{false, true}) {
 					for (final boolean embedded : new boolean[]{false, true}) {
