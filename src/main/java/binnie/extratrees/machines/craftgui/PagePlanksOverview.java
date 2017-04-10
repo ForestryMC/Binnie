@@ -30,7 +30,7 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 		final WindowAbstractDatabase database = Window.get(this);
 		new ControlText(this, new Area(0, 0, this.size().x(), 24), species.getDisplayName(), TextJustification.MiddleCenter);
 		new ControlText(this, new Area(12, 24, this.size().x() - 24, 24), ExtraTrees.proxy.localise("gui.database.planks.use"), TextJustification.MIDDLE_LEFTt);
-		final IPlankType type = WoodManager.get(species);
+		final IPlankType type = WoodManager.getPlankType(species);
 		int x = 12;
 		if (type != null) {
 			final ItemStack fence = WoodManager.getFence(type, new FenceType(0), 1);

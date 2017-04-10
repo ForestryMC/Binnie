@@ -2,6 +2,7 @@ package binnie.extratrees.block.decor;
 
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.models.AABBModelBaker;
+import binnie.core.models.ModelManager;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.WoodManager;
 import forestry.api.core.IModelBaker;
@@ -9,10 +10,10 @@ import forestry.core.blocks.properties.UnlistedBlockAccess;
 import forestry.core.blocks.properties.UnlistedBlockPos;
 import forestry.core.models.ModelBlockDefault;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFence;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -42,7 +43,7 @@ public class ModelMultiFence extends ModelBlockDefault<BlockMultiFence, ModelMul
 
 	@Override
 	protected Key getInventoryKey(ItemStack stack) {
-		return new Key(stack.getItemDamage(), ExtraTrees.blocks().blockMultiFence.getDefaultState());
+		return new Key(TileEntityMetadata.getItemDamage(stack), ExtraTrees.blocks().blockMultiFence.getDefaultState());
 	}
 
 	@Override
@@ -50,14 +51,7 @@ public class ModelMultiFence extends ModelBlockDefault<BlockMultiFence, ModelMul
 		IExtendedBlockState stateExtended = (IExtendedBlockState) state;
 		IBlockAccess world = stateExtended.getValue(UnlistedBlockAccess.BLOCKACCESS);
 		BlockPos pos = stateExtended.getValue(UnlistedBlockPos.POS);
-		TileEntity tileEntity = world.getTileEntity(pos);
-		int meta;
-		if(tileEntity instanceof TileEntityMetadata){
-			TileEntityMetadata tileMeta = (TileEntityMetadata) tileEntity;
-			meta = tileMeta.getBlockMetadata();
-		}else{
-			meta = 0;
-		}
+		int meta = TileEntityMetadata.getTileMetadata(world, pos);
 		return new Key(meta, stateExtended);
 	}
 	
@@ -90,6 +84,7 @@ public class ModelMultiFence extends ModelBlockDefault<BlockMultiFence, ModelMul
 
 		IModelBaker baker = new AABBModelBaker();
 		bakeBlock(bBlock, key, baker, true);
+		baker.setModelState(ModelManager.getDefaultFenceState());
 
 		return itemModel = baker.bakeModel(true);
 	}
@@ -98,6 +93,102 @@ public class ModelMultiFence extends ModelBlockDefault<BlockMultiFence, ModelMul
 	@Override
 	protected void bakeBlock(BlockMultiFence block, Key key, IModelBaker baker, boolean inventory) {
 		AABBModelBaker modelBaker = (AABBModelBaker) baker;
+		if(inventory){
+			bakeItemModel(block, modelBaker, key);
+		}else{
+			bakeBlockModel(block, modelBaker, key);
+		}
+	}
+	
+	private void bakeItemModel(BlockMultiFence block, AABBModelBaker modelBaker, Key key){
+		int meta = key.meta;
+		FenceType type = key.type;
+		for (int i = 0; i < 5; ++i) {
+			final float thickness = 0.125f;
+			boolean secondary = false;
+			if (i == 0) {
+				modelBaker.setModelBounds(new AxisAlignedBB(0.5f - thickness, 0.0f, 0.0f, 0.5f + thickness, 1.0f, thickness * 2.0f));
+			}
+			if (i == 1) {
+				modelBaker.setModelBounds(new AxisAlignedBB(0.5f - thickness, 0.0f, 1.0f - thickness * 2.0f, 0.5f + thickness, 1.0f, 1.0f));
+			}
+			final float s = 0.0625f;
+			final boolean bottomBar = !type.solid;
+			float topBarMaxY = 1.0f - s;
+			float topBarMinY = 1.0f - s * 3.0f;
+			float bottomBarMaxY = 0.5f - s;
+			float bottomBarMinY = 0.5f - s * 3.0f;
+			if (type.size == 2) {
+				bottomBarMinY -= 4.0f * s;
+				bottomBarMaxY -= 4.0f * s;
+				topBarMinY -= 4.0f * s;
+				topBarMaxY -= 4.0f * s;
+			}
+			if (type.size == 1) {
+				bottomBarMinY -= 4.0f * s;
+				bottomBarMaxY -= 4.0f * s;
+			}
+			if (type.solid) {
+				topBarMinY = bottomBarMinY;
+			}
+			float minX = 0.5f - s;
+			float maxX = 0.5f + s;
+			float minZ = -s * 2.0f;
+			float maxZ = 1.0f + s * 2.0f;
+			if (i == 2) {
+				modelBaker.setModelBounds(new AxisAlignedBB(minX, topBarMinY, minZ, maxX, topBarMaxY, maxZ));
+				secondary = true;
+			}
+			if (i == 3) {
+				if (!bottomBar) {
+					continue;
+				}
+				modelBaker.setModelBounds(new AxisAlignedBB(minX, bottomBarMinY, minZ, maxX, bottomBarMaxY, maxZ));
+				secondary = true;
+			}
+			if (i == 4) {
+				if (type.embossed) {
+					minX -= s * 0.9f;
+					maxX += s * 0.9f;
+					minZ -= s;
+					maxZ += s;
+					float minY = 0.0f;
+					float maxY = 1.0f;
+					if (type.size != 1 && !type.solid) {
+						minY = bottomBarMinY + 2.0f * s;
+						maxY = topBarMaxY - 2.0f * s;
+					}
+					else if (type.size == 1 && type.solid) {
+						minY = bottomBarMinY + 2.0f * s;
+						maxY = topBarMaxY - 2.0f * s;
+					}
+					else {
+						minY = 0.5f - 2.0f * s;
+						maxY = 0.5f + 2.0f * s;
+					}
+					if (type.solid && type.size == 0) {
+						minY -= s;
+						maxY -= s;
+					}
+					if (type.solid && type.size == 2) {
+						minY += s;
+						maxY += s;
+					}
+					modelBaker.setModelBounds(new AxisAlignedBB(minX, minY, minZ, maxX, maxY, maxZ));
+				}
+				else {
+					if (type.size != 1 || type.solid) {
+						continue;
+					}
+					modelBaker.setModelBounds(new AxisAlignedBB(minX, 0.5f - s, minZ, maxX, 0.5f + s, maxZ));
+					secondary = true;
+				}
+			}
+			modelBaker.addBlockModel(null, block.getSprite(meta, secondary), 0);
+		}
+	}
+	
+	private void bakeBlockModel(BlockMultiFence block, AABBModelBaker modelBaker, Key key){
 		float minPostPos = 0.5f - POST_WIDGTH / 2.0f;
 		float maxPostPos = 0.5f + POST_WIDGTH / 2.0f;
 		IBlockState state = key.state;
@@ -107,10 +198,10 @@ public class ModelMultiFence extends ModelBlockDefault<BlockMultiFence, ModelMul
 		modelBaker.setModelBounds(new AxisAlignedBB(minPostPos, 0.0, minPostPos, maxPostPos, POST_HEIGHT, maxPostPos));
 		modelBaker.addBlockModel(null, block.getSprite(meta, false), 0);
 		
-		boolean connectNegX = state.getValue(net.minecraft.block.BlockFence.WEST);
-		boolean connectPosX = state.getValue(net.minecraft.block.BlockFence.EAST);
-		boolean connectNegZ = state.getValue(net.minecraft.block.BlockFence.NORTH);
-		boolean connectPosZ = state.getValue(net.minecraft.block.BlockFence.SOUTH);
+		boolean connectNegX = state.getValue(BlockFence.WEST);
+		boolean connectPosX = state.getValue(BlockFence.EAST);
+		boolean connectNegZ = state.getValue(BlockFence.NORTH);
+		boolean connectPosZ = state.getValue(BlockFence.SOUTH);
 		boolean connectAnyX = connectNegX || connectPosX;
 		boolean connectAnyZ = connectNegZ || connectPosZ;
 		if (!connectAnyX && !connectAnyZ) {

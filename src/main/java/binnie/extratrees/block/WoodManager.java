@@ -122,7 +122,7 @@ public class WoodManager {
 	}
 
 	public static List<IPlankType> getAllPlankTypes() {
-		final List<IPlankType> list = new ArrayList<>();
+		List<IPlankType> list = new ArrayList<>();
 		Collections.addAll(list, PlankType.ExtraTreePlanks.values());
 		Collections.addAll(list, PlankType.ForestryPlanks.values());
 		//TODO: extrabiomes 1.10.2
@@ -136,9 +136,9 @@ public class WoodManager {
 	}
 
 	@Nullable
-	public static IPlankType get(final ItemStack species) {
-		for (final IPlankType type : getAllPlankTypes()) {
-			if (type.getStack().isItemEqual(species)) {
+	public static IPlankType getPlankType(ItemStack itemStack) {
+		for (IPlankType type : getAllPlankTypes()) {
+			if (type.getStack(false).isItemEqual(itemStack)) {
 				return type;
 			}
 		}

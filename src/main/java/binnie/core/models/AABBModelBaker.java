@@ -105,7 +105,7 @@ public class AABBModelBaker implements IModelBaker {
 		}
 	}
 
-	protected float[] getFaceUvs(final EnumFacing face, final Vector3f to, final Vector3f from) {
+	protected float[] getFaceUvs(EnumFacing face, Vector3f to, Vector3f from) {
 		float minU;
 		float minV;
 		float maxU;
@@ -153,14 +153,22 @@ public class AABBModelBaker implements IModelBaker {
 				maxV = to.z;
 				break;
 			}
-			default:{
-				minU= 6;
+			default: {
+				minU = 0;
 				minV = 0;
-				maxU= 10;
+				maxU = 16;
 				maxV = 16;
 				break;
 			}
 		}
+        if (minU < 0 || maxU > 16) {
+            minU = 0;
+            maxU = 16;
+        }
+        if (minV < 0 || maxV > 16) {
+            minV = 0;
+            maxV = 16;
+        }
 		minU = 16 - minU;
 		minV = 16 - minV;
 		maxU = 16 - maxU;
