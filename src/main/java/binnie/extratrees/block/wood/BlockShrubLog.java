@@ -220,6 +220,27 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 		return true;
 	}
 	
+    @Override 
+    public boolean canSustainLeaves(IBlockState state, IBlockAccess world, BlockPos pos){
+    	return true;
+    }
+    
+    @Override
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state){
+        int i = 4;
+        int j = 5;
+
+        if (worldIn.isAreaLoaded(pos.add(-5, -5, -5), pos.add(5, 5, 5))) {
+            for (BlockPos blockpos : BlockPos.getAllInBox(pos.add(-4, -4, -4), pos.add(4, 4, 4))) {
+                IBlockState iblockstate = worldIn.getBlockState(blockpos);
+
+                if (iblockstate.getBlock().isLeaves(iblockstate, worldIn, blockpos)) {
+                    iblockstate.getBlock().beginLeavesDecay(iblockstate, worldIn, blockpos);
+                }
+            }
+        }
+    }
+	
 	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot) {
 		switch (rot) {
