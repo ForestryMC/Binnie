@@ -37,6 +37,15 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 		public Key(int meta, boolean west, boolean east, boolean north, boolean south) {
 			this.meta = meta;
 			this.type = WoodManager.getFenceType(meta);
+			this.west = west;
+			this.east = east;
+			this.south = south;
+			this.north = north;
+		}
+		
+		@Override
+		public int hashCode() {
+			return Integer.hashCode(meta) + Boolean.hashCode(east)+ Boolean.hashCode(west)+ Boolean.hashCode(south)+ Boolean.hashCode(north);
 		}
 		
 		@Override
