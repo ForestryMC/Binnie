@@ -92,7 +92,7 @@ public class ExtraTreeMutation implements ITreeMutation {
 		new ExtraTreeMutation(getVanilla("Balsa"), getVanilla("Teak"), ETTreeDefinition.Iroko.getSpecies(), 10);
 		new ExtraTreeMutation(ETTreeDefinition.OrchardApple.getSpecies(), getVanilla("Birch"), ETTreeDefinition.Pear.getSpecies(), 10);
 		new ExtraTreeMutation(getVanilla("Ebony"), getVanilla("Teak"), ETTreeDefinition.OldFustic.getSpecies(), 10);
-		new ExtraTreeMutation(ETTreeDefinition.OldFustic.getSpecies(), getVanilla("Kapok"), ETTreeDefinition.OsangeOsange.getSpecies(), 10);
+		new ExtraTreeMutation(ETTreeDefinition.OldFustic.getSpecies(), getVanilla("Kapok"), ETTreeDefinition.OsangeOrange.getSpecies(), 10);
 		new ExtraTreeMutation(getVanilla("Ebony"), getVanilla("Teak"), ETTreeDefinition.Brazilwood.getSpecies(), 10);
 		new ExtraTreeMutation(ETTreeDefinition.Brazilwood.getSpecies(), getVanilla("Kapok"), ETTreeDefinition.Purpleheart.getSpecies(), 10);
 		new ExtraTreeMutation(getVanilla("Ebony"), getVanilla("Teak"), ETTreeDefinition.Rosewood.getSpecies(), 10);

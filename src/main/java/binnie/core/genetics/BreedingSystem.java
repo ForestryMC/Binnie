@@ -155,9 +155,6 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 		if (!speciesMutations.isEmpty()) {
 			final Set<IMutation> mutations = new LinkedHashSet<>();
 			mutations.addAll(speciesMutations);
-			if (this == Binnie.GENETICS.beeBreedingSystem) {
-				mutations.addAll(ExtraBeeMutation.mutations);
-			}
 			for (final IMutation mutation : mutations) {
 				this.allMutations.add(mutation);
 				final Set<IAlleleSpecies> participatingSpecies = new LinkedHashSet<>();

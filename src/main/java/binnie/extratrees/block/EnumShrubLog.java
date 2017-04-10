@@ -41,27 +41,27 @@ public enum EnumShrubLog implements IWoodType {
 	
 	@Override
 	public String getPlankTexture() {
-		return "tetxures/planks_oak";
+		return "blocks/planks_oak";
 	}
 
 	@Override
 	public String getHeartTexture() {
-		return "tetxures/log_oak_top";
+		return "blocks/log_oak_top";
 	}
 
 	@Override
 	public String getDoorLowerTexture() {
-		return "tetxures/door_wood_lower";
+		return "blocks/door_wood_lower";
 	}
 
 	@Override
 	public String getDoorUpperTexture() {
-		return "tetxures/door_wood_upper";
+		return "blocks/door_wood_upper";
 	}
 
 	@Override
 	public String getBarkTexture() {
-		return "tetxures/log_oak";
+		return "blocks/log_oak";
 	}
 
 	@Override
