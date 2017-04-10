@@ -58,6 +58,11 @@ public class CeramicBrickPair {
 		Preconditions.checkState(sprites != null, "Sprites have not been registered.");
 		return sprites[pass];
 	}
+	
+	@Override
+	public int hashCode() {
+		return Integer.hashCode(ordinal());
+	}
 
 	@Override
 	public boolean equals(Object obj) {
