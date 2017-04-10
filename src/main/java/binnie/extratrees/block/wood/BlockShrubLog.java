@@ -155,6 +155,29 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 	}
 
 	@Override
+	public final int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
+		IBlockState state = world.getBlockState(pos);
+		if (state.getValue(FIREPROOF)) {
+			return 0;
+		} else if (face == EnumFacing.DOWN) {
+			return 20;
+		} else if (face != EnumFacing.UP) {
+			return 10;
+		} else {
+			return 5;
+		}
+	}
+
+	@Override
+	public final int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
+		IBlockState state = world.getBlockState(pos);
+		if (state.getValue(FIREPROOF)) {
+			return 0;
+		}
+		return 5;
+	}
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos,
 			EnumFacing side) {
