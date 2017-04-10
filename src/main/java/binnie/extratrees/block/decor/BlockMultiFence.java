@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
-import binnie.Binnie;
 import binnie.core.block.BlockMetadata;
 import binnie.core.block.IBlockMetadata;
 import binnie.core.block.TileEntityMetadata;
@@ -14,18 +13,15 @@ import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.IPlankType;
 import binnie.extratrees.block.PlankType;
 import binnie.extratrees.block.WoodManager;
+import binnie.extratrees.models.ModelMultiFence;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.IStateMapperRegister;
 import forestry.api.core.Tabs;
 import forestry.arboriculture.PluginArboriculture;
-import forestry.arboriculture.WoodAccess;
-import forestry.arboriculture.items.ItemBlockWood;
-import forestry.arboriculture.items.ItemBlockWoodDoor;
 import forestry.core.blocks.properties.UnlistedBlockAccess;
 import forestry.core.blocks.properties.UnlistedBlockPos;
 import forestry.core.models.BlockModelEntry;
-import forestry.core.utils.Translator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockFenceGate;

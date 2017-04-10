@@ -1,14 +1,15 @@
-package binnie.extratrees.block.decor;
+package binnie.extratrees.models;
 
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.models.AABBModelBaker;
 import binnie.core.models.ModelManager;
-import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.WoodManager;
+import binnie.extratrees.block.decor.BlockMultiFence;
+import binnie.extratrees.block.decor.FenceType;
 import forestry.api.core.IModelBaker;
 import forestry.core.blocks.properties.UnlistedBlockAccess;
 import forestry.core.blocks.properties.UnlistedBlockPos;
-import forestry.core.models.ModelBlockDefault;
+import forestry.core.models.ModelBlockCached;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.state.IBlockState;
@@ -20,7 +21,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.IExtendedBlockState;
 
-public class ModelMultiFence extends ModelBlockDefault<BlockMultiFence, ModelMultiFence.Key> {
+public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMultiFence.Key> {
 
 	public static final float POST_WIDGTH = 0.25F;
 	public static final float POST_HEIGHT = 1F;
@@ -29,11 +30,22 @@ public class ModelMultiFence extends ModelBlockDefault<BlockMultiFence, ModelMul
 	public static class Key{
 		private int meta;
 		private FenceType type;
-		private IBlockState state;
-		public Key(int meta, IBlockState state) {
+		boolean west;
+		boolean east; 
+		boolean north; 
+		boolean south;
+		public Key(int meta, boolean west, boolean east, boolean north, boolean south) {
 			this.meta = meta;
 			this.type = WoodManager.getFenceType(meta);
-			this.state = state;
+		}
+		
+		@Override
+		public boolean equals(Object obj) {
+			if(!(obj instanceof Key)){
+				return false;
+			}
+			Key key = (Key) obj;
+			return key.meta == meta && west == key.west && south == key.south &&north == key.north && east == key.east;
 		}
 	}
 	
@@ -43,7 +55,7 @@ public class ModelMultiFence extends ModelBlockDefault<BlockMultiFence, ModelMul
 
 	@Override
 	protected Key getInventoryKey(ItemStack stack) {
-		return new Key(TileEntityMetadata.getItemDamage(stack), ExtraTrees.blocks().blockMultiFence.getDefaultState());
+		return new Key(TileEntityMetadata.getItemDamage(stack), false, false, false, false);
 	}
 
 	@Override
@@ -52,7 +64,7 @@ public class ModelMultiFence extends ModelBlockDefault<BlockMultiFence, ModelMul
 		IBlockAccess world = stateExtended.getValue(UnlistedBlockAccess.BLOCKACCESS);
 		BlockPos pos = stateExtended.getValue(UnlistedBlockPos.POS);
 		int meta = TileEntityMetadata.getTileMetadata(world, pos);
-		return new Key(meta, stateExtended);
+		return new Key(meta, state.getValue(BlockFence.WEST),state.getValue(BlockFence.EAST),state.getValue(BlockFence.NORTH),state.getValue(BlockFence.SOUTH));
 	}
 	
 	@Override
@@ -191,17 +203,16 @@ public class ModelMultiFence extends ModelBlockDefault<BlockMultiFence, ModelMul
 	private void bakeBlockModel(BlockMultiFence block, AABBModelBaker modelBaker, Key key){
 		float minPostPos = 0.5f - POST_WIDGTH / 2.0f;
 		float maxPostPos = 0.5f + POST_WIDGTH / 2.0f;
-		IBlockState state = key.state;
 		int meta = key.meta;
 		FenceType fenceType = key.type;
 		
 		modelBaker.setModelBounds(new AxisAlignedBB(minPostPos, 0.0, minPostPos, maxPostPos, POST_HEIGHT, maxPostPos));
 		modelBaker.addBlockModel(null, block.getSprite(meta, false), 0);
 		
-		boolean connectNegX = state.getValue(BlockFence.WEST);
-		boolean connectPosX = state.getValue(BlockFence.EAST);
-		boolean connectNegZ = state.getValue(BlockFence.NORTH);
-		boolean connectPosZ = state.getValue(BlockFence.SOUTH);
+		boolean connectNegX = key.west;
+		boolean connectPosX = key.east;
+		boolean connectNegZ = key.north;
+		boolean connectPosZ = key.south;
 		boolean connectAnyX = connectNegX || connectPosX;
 		boolean connectAnyZ = connectNegZ || connectPosZ;
 		if (!connectAnyX && !connectAnyZ) {
