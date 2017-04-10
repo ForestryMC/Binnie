@@ -43,6 +43,7 @@ public class RenderUtil {
 		net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
 		FontRenderer font = getFontRenderer(minecraft, itemStack);
 
+		//TODO: Fix the rotation
 		if (rotating) {
 			GlStateManager.pushMatrix();
 			final float phase = Minecraft.getSystemTime() / 20;
@@ -52,11 +53,10 @@ public class RenderUtil {
 		}
 
 		minecraft.getRenderItem().renderItemAndEffectIntoGUI(null, itemStack, pos.x(), pos.y());
-		minecraft.getRenderItem().renderItemOverlayIntoGUI(font, itemStack, pos.x(), pos.y(), null);
-
 		if (rotating) {
 			GlStateManager.popMatrix();
 		}
+		minecraft.getRenderItem().renderItemOverlayIntoGUI(font, itemStack, pos.x(), pos.y(), null);
 
 		GlStateManager.disableBlend();
 		net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();

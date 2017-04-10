@@ -42,12 +42,16 @@ import forestry.api.arboriculture.IWoodProvider;
 import forestry.api.arboriculture.IWoodType;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.arboriculture.WoodBlockKind;
+import forestry.api.core.EnumHumidity;
+import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IClassification;
 import forestry.api.world.ITreeGenData;
 import forestry.arboriculture.PluginArboriculture;
+import forestry.arboriculture.genetics.ClimateGrowthProvider;
 import forestry.arboriculture.genetics.ITreeDefinition;
 import forestry.arboriculture.genetics.Tree;
 import forestry.arboriculture.tiles.TileLeaves;
@@ -1570,6 +1574,8 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 			species.addFruitFamily(ETFruitFamily.Berry);
+			species.setRarity(0.0025F);
+			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
 		}
 	},
 	Redcurrant("ribes", "rubrum", EnumLeafType.DECIDUOUS, new Color(0x74AC00), new Color(0x74AC00), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
@@ -1593,6 +1599,8 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 			species.addFruitFamily(ETFruitFamily.Berry);
+			species.setRarity(0.0025F);
+			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
 		}
 	},
 	Blackberry("rubus", "fruticosus", EnumLeafType.DECIDUOUS, new Color(0x92C15B), new Color(0x92C15B), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
@@ -1638,6 +1646,8 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 			species.addFruitFamily(ETFruitFamily.Berry);
+			species.setRarity(0.0025F);
+			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
 		}
 	},
 	Blueberry("vaccinium", "corymbosum", EnumLeafType.DECIDUOUS, new Color(0x72C750), new Color(0x72C750), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
@@ -1661,6 +1671,8 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 			species.addFruitFamily(ETFruitFamily.Berry);
+			species.setRarity(0.0025F);
+			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
 		}
 	},
 	Cranberry("vaccinium", "oxycoccos", EnumLeafType.DECIDUOUS, new Color(0x96D179), new Color(0x96D179), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
@@ -1684,6 +1696,8 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 			species.addFruitFamily(ETFruitFamily.Berry);
+			species.setRarity(0.0025F);
+			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
 		}
 	},
 	Juniper("juniperus", "communis", EnumLeafType.CONIFERS, new Color(0x90B149), new Color(0x90B149), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
@@ -1707,6 +1721,8 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 			species.addFruitFamily(ETFruitFamily.Berry);
+			species.setRarity(0.0025F);
+			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
 		}
 	},
 	Gooseberry("ribes", "grossularia", EnumLeafType.DECIDUOUS, new Color(0x79BB00), new Color(0x79BB00), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
@@ -1729,6 +1745,8 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 			species.addFruitFamily(ETFruitFamily.Berry);
+			species.setRarity(0.0025F);
+			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
 		}
 	},
 	GoldenRaspberry("rubus", "occidentalis", EnumLeafType.DECIDUOUS, new Color(0x83B96E), new Color(0x83B96E), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
@@ -1752,6 +1770,8 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 			species.addFruitFamily(ETFruitFamily.Berry);
+			species.setRarity(0.0025F);
+			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
 		}
 	},
 	Cinnamon("cinnamomum", "cassia", EnumLeafType.JUNGLE, new Color(0x738E0B), new Color(0x738E0B), EnumSaplingType.Default, EnumETLog.Cinnamon, new Color(0x86583C)) {

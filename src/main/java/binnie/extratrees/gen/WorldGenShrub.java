@@ -38,15 +38,13 @@ public class WorldGenShrub {
 		
 		@Override
 		protected void generateLeaves(World world, Random rand, TreeBlockTypeLeaf leaf, List<BlockPos> branchEnds, BlockPos startPos) {
-			float leafSpawn = this.height + 1;
-			float width = this.height * WorldGenUtils.randBetween(rand, 0.7f, 0.9f);
-			if (width < 1.5f) {
-				width = 1.5f;
-			}
-			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 0.15f * width + girth, 1, EnumReplaceMode.SOFT);
-			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 0.75f * width + girth, 1, EnumReplaceMode.SOFT);
+			float leafSpawn = this.height;
+			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth, 1, EnumReplaceMode.SOFT);
+			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 1F, 1, EnumReplaceMode.SOFT);
+			int i = 0;
 			while (leafSpawn >= 0.0f) {
-				WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, width + girth, 1, EnumReplaceMode.SOFT);
+				WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 2F + i * 1, 1, EnumReplaceMode.SOFT);
+				i++;
 			}
 		}
 		

@@ -1,45 +1,36 @@
 package binnie.extratrees.gen;
 
+import java.util.List;
+import java.util.Random;
+
 import forestry.api.world.ITreeGenData;
+import forestry.arboriculture.worldgen.TreeBlockTypeLeaf;
+import forestry.core.worldgen.WorldGenHelper;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class WorldGenConifer {
-	public static class WesternHemlock extends WorldGenTree {
+	public static class WesternHemlock extends forestry.arboriculture.worldgen.WorldGenTree {
 		public WesternHemlock(ITreeGenData tree) {
-			super(tree);
+			super(tree, 7, 3);
 		}
-
+		
 		@Override
-		public void generate() {
-			this.generateTreeTrunk(this.height, this.girth);
-			float leafSpawn = this.height + 6;
-			final float bottom = this.randBetween(2, 3);
-			float width = this.height / this.randBetween(2.0f, 2.5f);
-			if (width > 7.0f) {
-				width = 7.0f;
-			}
+		protected void generateLeaves(World world, Random rand, TreeBlockTypeLeaf leaf, List<BlockPos> branchEnds, BlockPos startPos) {
+			float leafSpawn = this.height + girth * 4;
+			float bottom = WorldGenUtils.randBetween(rand, 2, 3);
 			final float coneHeight = leafSpawn - bottom;
+			float width = (girth * height / 3);
+			if(width > 9){
+				width = 9;
+			}
 			while (leafSpawn > bottom) {
 				float radius = 1.0f - (leafSpawn - bottom) / coneHeight;
 				radius *= width;
-				final float f = 0.0f;
-				final float h = leafSpawn;
-				leafSpawn = h - 1.0f;
-				this.generateCylinder(new Vector(f, h, 0.0f), radius, 1, this.leaf, false);
+				WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, radius, 1, WorldGenHelper.EnumReplaceMode.AIR);
 			}
-			final float f2 = 0.0f;
-			final float h2 = leafSpawn;
-			leafSpawn = h2 - 1.0f;
-			this.generateCylinder(new Vector(f2, h2, 0.0f), 0.7f * width, 1, this.leaf, false);
-			final float f3 = 0.0f;
-			final float h3 = leafSpawn;
-			leafSpawn = h3 - 1.0f;
-			this.generateCylinder(new Vector(f3, h3, 0.0f), 0.4f * width, 1, this.leaf, false);
-		}
-
-		@Override
-		public void preGenerate() {
-			this.height = this.determineHeight(7, 3);
-			this.girth = this.determineGirth(this.treeGen.getGirth());
+			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + width * 0.7F, 1, WorldGenHelper.EnumReplaceMode.AIR);
+			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + width * 0.4F, 1, WorldGenHelper.EnumReplaceMode.AIR);
 		}
 
 	}

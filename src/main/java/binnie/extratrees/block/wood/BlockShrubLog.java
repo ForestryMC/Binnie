@@ -216,6 +216,11 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 	}
 	
 	@Override
+	public boolean isWood(IBlockAccess world, BlockPos pos) {
+		return true;
+	}
+	
+	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot) {
 		switch (rot) {
 		case CLOCKWISE_180:

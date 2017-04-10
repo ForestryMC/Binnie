@@ -2,7 +2,6 @@ package binnie.extratrees.gen;
 
 import java.util.List;
 import java.util.Random;
-
 import forestry.api.world.ITreeGenData;
 import forestry.arboriculture.worldgen.TreeBlockTypeLeaf;
 import forestry.core.worldgen.WorldGenHelper;
@@ -33,7 +32,7 @@ public class WorldGenWalnut {
 		public Butternut(ITreeGenData tree) {
 			super(tree, 6, 3);
 		}
-		
+
 		@Override
 		protected void generateLeaves(World world, Random rand, TreeBlockTypeLeaf leaf, List<BlockPos> branchEnds, BlockPos startPos) {
 			int leafSpawn = this.height + 1;

@@ -17,10 +17,9 @@ public class WorldGenBanana extends forestry.arboriculture.worldgen.WorldGenTree
 	@Override
 	protected void generateLeaves(World world, Random rand, TreeBlockTypeLeaf leaf, List<BlockPos> branchEnds, BlockPos startPos) {
 		int leafSpawn = this.height + 1;
-		final float width = this.height / WorldGenUtils.randBetween(rand, 3f, 3.25f);
-		WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 0.25F * width + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
-		WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, width + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
-		WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 0.75F * width + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
+		WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
+		WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 1.5F, 1, WorldGenHelper.EnumReplaceMode.AIR);
+		WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 1, 1, WorldGenHelper.EnumReplaceMode.AIR);
 	}
 
 }
