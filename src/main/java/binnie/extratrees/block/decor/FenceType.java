@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.List;
 
 public class FenceType {
+	public static List<FenceType> VALUES;
+	
 	public int size;
 	public boolean solid;
 	public boolean embossed;
@@ -30,15 +32,16 @@ public class FenceType {
 	}
 
 	public static Collection<FenceType> values() {
-		final List<FenceType> list = new ArrayList<>();
-		for (int size = 0; size < 3; ++size) {
-			for (final boolean solid : new boolean[]{false, true}) {
-				for (final boolean embedded : new boolean[]{false, true}) {
-					list.add(new FenceType(size, solid, embedded));
+		if(VALUES == null){
+			for (int size = 0; size < 3; ++size) {
+				for (final boolean solid : new boolean[]{false, true}) {
+					for (final boolean embedded : new boolean[]{false, true}) {
+						VALUES.add(new FenceType(size, solid, embedded));
+					}
 				}
 			}
 		}
-		return list;
+		return VALUES;
 	}
 
 	public boolean isPlain() {

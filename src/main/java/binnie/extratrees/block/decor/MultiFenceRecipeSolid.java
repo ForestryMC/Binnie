@@ -14,26 +14,20 @@ public class MultiFenceRecipeSolid implements IRecipe {
 
 	@Override
 	public boolean matches(final InventoryCrafting inv, final World world) {
-		final String pattern = "";
-		FenceType type = null;
 		for (int row = 0; row < 3; ++row) {
-			final ItemStack a = inv.getStackInSlot(row * 3);
-			final ItemStack b = inv.getStackInSlot(row * 3 + 1);
-			final ItemStack c = inv.getStackInSlot(row * 3 + 2);
-			if (!a.isEmpty() && !b.isEmpty()) {
-				if (!c.isEmpty()) {
-					type = WoodManager.getFenceType(a);
-					final FenceType type2 = WoodManager.getFenceType(b);
-					final FenceType type3 = WoodManager.getFenceType(c);
-					if (type != null && type2 != null && type3 != null && type.equals(type2)) {
-						if (type.equals(type3)) {
-							FenceDescription fenceDescription = WoodManager.getFenceDescription(a);
-							if (fenceDescription != null) {
-								FenceType fenceType = new FenceType(type.size, true, type.solid);
-								this.cached = WoodManager.getFence(fenceDescription.getPlankType(), fenceDescription.getSecondaryPlankType(), fenceType, 2);
-								return true;
-							}
-						}
+			ItemStack a = inv.getStackInSlot(row * 3);
+			ItemStack b = inv.getStackInSlot(row * 3 + 1);
+			ItemStack c = inv.getStackInSlot(row * 3 + 2);
+			if (!a.isEmpty() && !b.isEmpty() && !c.isEmpty()) {
+				FenceType type = WoodManager.getFenceType(a);
+				FenceType type2 = WoodManager.getFenceType(b);
+				FenceType type3 = WoodManager.getFenceType(c);
+				if (type != null && type2 != null && type3 != null && type.equals(type2) && type.equals(type3)) {
+					FenceDescription fenceDescription = WoodManager.getFenceDescription(a);
+					if (fenceDescription != null) {
+						FenceType fenceType = new FenceType(type.size, true, type.solid);
+						this.cached = WoodManager.getFence(fenceDescription.getPlankType(), fenceDescription.getSecondaryPlankType(), fenceType, 2);
+						return true;
 					}
 				}
 			}

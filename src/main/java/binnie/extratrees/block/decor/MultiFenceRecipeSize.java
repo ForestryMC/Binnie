@@ -25,7 +25,12 @@ public class MultiFenceRecipeSize implements IRecipe {
 		for (int i = 0; i < inv.getSizeInventory(); ++i) {
 			ItemStack stack = inv.getStackInSlot(i);
 			boolean isEmpty = stack.isEmpty();
-			IPlankType type = isEmpty ? null : WoodManager.getPlankType(stack);
+			IPlankType type;
+			if(isEmpty){
+				type = null;
+			}else{
+				type = WoodManager.getPlankType(stack);
+			}
 			if (!isEmpty && type == null) {
 				return false;
 			}
@@ -46,7 +51,7 @@ public class MultiFenceRecipeSize implements IRecipe {
 		}
 		for(MultiFenceRecipePattern pattern : MultiFenceRecipePattern.VALUES){
 			if(pattern.matches(recipePattern)){
-				cached = pattern.createFence(types.get(0), types.get(1));
+				cached = pattern.createFence(types.get(0), types.get(pattern.getTypeCount() - 1));
 				return true;
 			}
 		}

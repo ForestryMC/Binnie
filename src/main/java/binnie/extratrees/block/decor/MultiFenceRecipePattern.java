@@ -9,21 +9,27 @@ public class MultiFenceRecipePattern{
 	
 	static{
 		VALUES = new MultiFenceRecipePattern[] {
-			new MultiFenceRecipePattern(0, "010"+"0 0"+"   "),
-			new MultiFenceRecipePattern(0, "000"+"0 0"+"   "),
-			new MultiFenceRecipePattern(1, "010"+"0 0"+" 1 "),
-			new MultiFenceRecipePattern(1, "000"+"0 0"+" 0 "),
-			new MultiFenceRecipePattern(2, " 0 "+"1 1"+"101"),
-			new MultiFenceRecipePattern(2, " 0 "+"0 0"+"000")
+			new MultiFenceRecipePattern(0, 2, "010"+"0 0"+"   "),
+			new MultiFenceRecipePattern(0, 1, "000"+"0 0"+"   "),
+			new MultiFenceRecipePattern(1, 2, "010"+"0 0"+" 1 "),
+			new MultiFenceRecipePattern(1, 1, "000"+"0 0"+" 0 "),
+			new MultiFenceRecipePattern(2, 2, " 0 "+"1 1"+"101"),
+			new MultiFenceRecipePattern(2, 1, " 0 "+"0 0"+"000")
 		};
 	}
 	
 	private final String pattern;
 	private final int size;
+	private final int typeCount;
 	
-	private MultiFenceRecipePattern(int size, String pattern) {
+	private MultiFenceRecipePattern(int size, int typeCount, String pattern) {
 		this.size = size;
+		this.typeCount = typeCount;
 		this.pattern = pattern;
+	}
+	
+	public int getTypeCount() {
+		return typeCount;
 	}
 	
 	public boolean matches(String recipePattern){
