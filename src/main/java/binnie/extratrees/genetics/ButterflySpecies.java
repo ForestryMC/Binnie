@@ -13,10 +13,25 @@ import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IClassification;
+import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IIndividual;
+import forestry.api.lepidopterology.ButterflyManager;
+import forestry.api.lepidopterology.EnumButterflyChromosome;
 import forestry.api.lepidopterology.EnumFlutterType;
 import forestry.api.lepidopterology.IAlleleButterflySpecies;
+import forestry.api.lepidopterology.IAlleleButterflySpeciesBuilder;
+import forestry.api.lepidopterology.IButterfly;
+import forestry.api.lepidopterology.IButterflyGenome;
+import forestry.api.lepidopterology.IButterflyMutationBuilder;
 import forestry.api.lepidopterology.IButterflyRoot;
+import forestry.apiculture.genetics.IBeeDefinition;
+import forestry.core.genetics.alleles.AlleleHelper;
+import forestry.core.utils.StringUtil;
+import forestry.lepidopterology.genetics.Butterfly;
+import forestry.lepidopterology.genetics.ButterflyBranchDefinition;
+import forestry.lepidopterology.genetics.ButterflyDefinition;
+import forestry.lepidopterology.genetics.IButterflyDefinition;
+import forestry.lepidopterology.genetics.MothDefinition;
 import forestry.lepidopterology.genetics.alleles.AlleleButterflySpecies;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -27,12 +42,15 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.BiomeDictionary;
 
+import java.awt.Color;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-public enum ButterflySpecies implements IAlleleButterflySpecies {
+public enum ButterflySpecies implements IButterflyDefinition {
 	White_Admiral("White Admiral", "Limenitis camilla", 16448250),
 	Purple_Emperor("Purple Emperor", "Apatura iris", 4338374),
 	Red_Admiral("Red Admiral", "Vanessa atalanta", 15101764),
@@ -56,238 +74,119 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
 	Monarch("Monarch", "Danaus plexippus", 16757254),
 	Marbled_White("Marbled White", "Melanargia galathea", 15527148);
 
-	private String name;
-	private String branchName;
-	private String scientific;
-	private BinnieResource texture;
-	private IClassification branch;
-	private int colour;
-	private Map<ItemStack, Float> butterflyLoot;
-	private Map<ItemStack, Float> caterpillarLoot;
+	public static final ButterflySpecies[] VALUES = values();
+	
+	private final IAlleleButterflySpecies species;
+	private final IClassification branch;
+	private IAllele[] template;
+	private IButterflyGenome genome;
+	
+	ButterflySpecies(String name, String scientific, int colour) {
+		String branchName = scientific.split(" ")[0].toLowerCase();
+		String binomial = scientific.split(" ")[1];
 
-	ButterflySpecies(final String name, final String scientific, final int colour) {
-		this.butterflyLoot = new HashMap<>();
-		this.caterpillarLoot = new HashMap<>();
-		this.name = name;
-		this.branchName = scientific.split(" ")[0].toLowerCase();
-		this.scientific = scientific.split(" ")[1];
-		this.texture = Binnie.RESOURCE.getPNG(ExtraTrees.instance, ResourceType.Entity, this.toString());
-		this.colour = colour;
-
-		final String uid = "trees." + branchName.toLowerCase();
-		IClassification branch = AlleleManager.alleleRegistry.getClassification("genus." + uid);
+		final String branchUid = "trees." + branchName.toLowerCase();
+		IClassification branch = AlleleManager.alleleRegistry.getClassification("genus." + branchUid);
 		if (branch == null) {
-			branch = AlleleManager.alleleRegistry.createAndRegisterClassification(IClassification.EnumClassLevel.GENUS, uid, scientific);
+			branch = AlleleManager.alleleRegistry.createAndRegisterClassification(IClassification.EnumClassLevel.GENUS, branchUid, scientific);
 		}
 		this.branch = branch;
 
-//		final String scientific = species2.branchName.substring(0, 1).toUpperCase() + species2.branchName.substring(1).toLowerCase();
-//		final String uid = "trees." + species2.branchName.toLowerCase();
-//		IClassification branch = AlleleManager.alleleRegistry.getClassification("genus." + uid);
-//		if (branch == null) {
-//			branch = AlleleManager.alleleRegistry.createAndRegisterClassification(IClassification.EnumClassLevel.GENUS, uid, scientific);
-//		}
-//		(species2.branch = branch).addMemberSpecies(species2);
+		String uid = "extrabutterflies.species." + this.toString().toLowerCase().replace("_", "");
+		IClassification parent = branch.getParent();
+		String unlocalizedDescription = "for.description." + uid;
+		String texture = "butterflies/" + toString().toLowerCase();
 
+		IAlleleButterflySpeciesBuilder speciesBuilder = ButterflyManager.butterflyFactory.createSpecies(uid, uid, "Binnie", unlocalizedDescription, Constants.EXTRA_TREES_MOD_ID, texture, true, branch, binomial, new Color(colour));
+		speciesBuilder.setRarity(0.5F);
+		setSpeciesProperties(speciesBuilder);
+		species = speciesBuilder.build();
 	}
 
-
-	@Override
-	public String getName() {
-		return this.name;
-	}
-
-	@Override
-	public String getDescription() {
-		return "";
-	}
-
-	@Override
-	public EnumTemperature getTemperature() {
-		return EnumTemperature.NORMAL;
-	}
-
-	@Override
-	public EnumHumidity getHumidity() {
-		return EnumHumidity.NORMAL;
-	}
-
-	@Override
-	public boolean hasEffect() {
-		return false;
-	}
-
-	@Override
-	public boolean isSecret() {
-		return false;
-	}
-
-	@Override
-	public boolean isCounted() {
-		return true;
-	}
-
-	@Override
-	public String getBinomial() {
-		return this.scientific;
-	}
-
-	@Override
-	public String getAuthority() {
-		return "Binnie";
-	}
-
-	@Override
-	public IClassification getBranch() {
-		Preconditions.checkState(this.branch != null, "branch has not been initialized yet");
-		return this.branch;
-	}
-
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public IIconProvider getIconProvider() {
-//		return null;
-//	}
-
-	@Override
-	public int getSpriteColour(int renderPass) {
-		return (renderPass == 0) ? 0xFFFFFF : this.colour;
-	}
-
-	@Override
-	public String getItemTexture() {
-		return getModID() + ":items/butterflies/" + toString().toLowerCase();
-	}
-
-	@Override
-	public void registerSprites() {
-		String spriteName = getItemTexture();
-		TextureMap textureMap = Minecraft.getMinecraft().getTextureMapBlocks();
-		textureMap.registerSprite(new ResourceLocation(spriteName));
-	}
-
-	@Override
-	public String getModID() {
-		return Constants.EXTRA_TREES_MOD_ID;
-	}
-
-
-	/////////
-
-	@Override
-	public String getUID() {
-		return "extrabutterflies.species." + this.toString().toLowerCase().replace("_", "");
-	}
-
-	@Override
-	public boolean isDominant() {
-		return true;
-	}
-
-	@Override
-	public String getEntityTexture() {
-		return this.texture.getResourceLocation().toString();
-	}
-
-	public IAllele[] getTemplate() {
-		final IAllele[] def = this.getRoot().getDefaultTemplate().clone();
-		def[0] = this;
-		return def;
-	}
-
-	@Override
-	public IButterflyRoot getRoot() {
-		return Binnie.GENETICS.getButterflyRoot();
-	}
-
-	@Override
-	public float getRarity() {
-		return 0.5f;
-	}
-
-	@Override
-	public boolean isNocturnal() {
-		return false;
-	}
-
-	@Override
-	public Map<ItemStack, Float> getButterflyLoot() {
-		return new HashMap<>();
-	}
-
-	@Override
-	public Map<ItemStack, Float> getCaterpillarLoot() {
-		return new HashMap<>();
-	}
-
-	@Override
-	public int getComplexity() {
-		return 4;
-	}
-
-	@Override
-	public float getResearchSuitability(final ItemStack itemstack) {
-		if (itemstack.isEmpty()) {
-			return 0.0f;
+	public static void initButterflies() {
+		for (ButterflySpecies butterfly : VALUES) {
+			butterfly.init();
 		}
-		if (itemstack.getItem() == Items.GLASS_BOTTLE) {
-			return 0.9f;
+		for (ButterflySpecies butterfly : VALUES) {
+			butterfly.registerMutations();
 		}
-		for (final ItemStack stack : this.butterflyLoot.keySet()) {
-			if (stack.isItemEqual(itemstack)) {
-				return 1.0f;
-			}
+	}
+
+	private void init() {
+		template = ButterflyManager.butterflyRoot.getDefaultTemplate();
+		AlleleHelper.getInstance().set(template, EnumButterflyChromosome.SPECIES, species);
+		setAlleles(template);
+
+		genome = ButterflyManager.butterflyRoot.templateAsGenome(template);
+
+		ButterflyManager.butterflyRoot.registerTemplate(template);
+	}
+
+	protected void setSpeciesProperties(IAlleleButterflySpeciesBuilder species) {
+
+	}
+
+	protected void setAlleles(IAllele[] alleles) {
+
+	}
+
+	protected void registerMutations() {
+
+	}
+
+	protected final IButterflyMutationBuilder registerMutation(IButterflyDefinition parent1, IButterflyDefinition parent2, int chance) {
+		IAlleleButterflySpecies species1;
+		IAlleleButterflySpecies species2;
+
+		if (parent1 instanceof ButterflySpecies) {
+			species1 = ((ButterflySpecies) parent1).species;
+		} else if (parent1 instanceof ButterflyDefinition) {
+			species1 = ((ButterflyDefinition) parent1).getSpecies();
+		} else if (parent1 instanceof MothDefinition) {
+			species1 = ((MothDefinition) parent1).getSpecies();
+		} else {
+			throw new IllegalArgumentException("Unknown parent1: " + parent1);
 		}
-		for (final ItemStack stack : this.caterpillarLoot.keySet()) {
-			if (stack.isItemEqual(itemstack)) {
-				return 1.0f;
-			}
+
+		if (parent2 instanceof ButterflySpecies) {
+			species2 = ((ButterflySpecies) parent2).species;
+		} else if (parent2 instanceof ButterflySpecies) {
+			species2 = ((ButterflyDefinition) parent2).getSpecies();
+		} else if (parent2 instanceof MothDefinition) {
+			species2 = ((MothDefinition) parent2).getSpecies();
+		} else {
+			throw new IllegalArgumentException("Unknown parent2: " + parent2);
 		}
-		if (itemstack.getItem() == Mods.Forestry.item("honey_drop")) {
-			return 0.5f;
-		}
-		if (itemstack.getItem() == Mods.Forestry.item("honeydew")) {
-			return 0.7f;
-		}
-		if (itemstack.getItem() == Mods.Forestry.item("bee_combs")) {
-			return 0.4f;
-		}
-		if (AlleleManager.alleleRegistry.isIndividual(itemstack)) {
-			return 1.0f;
-		}
-		for (final Map.Entry<ItemStack, Float> entry : this.getRoot().getResearchCatalysts().entrySet()) {
-			if (entry.getKey().isItemEqual(itemstack)) {
-				return entry.getValue();
-			}
-		}
-		return 0.0f;
+
+		return ButterflyManager.butterflyMutationFactory.createMutation(species1, species2, getTemplate(), chance);
 	}
 
 	@Override
-	public NonNullList<ItemStack> getResearchBounty(final World world, final GameProfile researcher, final IIndividual individual, final int bountyLevel) {
-		NonNullList<ItemStack> bounty = NonNullList.create();
-		ItemStack serum = this.getRoot().getMemberStack(individual.copy(), EnumFlutterType.SERUM);
-		bounty.add(serum);
-		return bounty;
+	public final IAllele[] getTemplate() {
+		return Arrays.copyOf(template, template.length);
 	}
 
 	@Override
-	public Set<BiomeDictionary.Type> getSpawnBiomes() {
-		return Collections.emptySet();
+	public final IButterflyGenome getGenome() {
+		return genome;
 	}
 
 	@Override
-	public boolean strictSpawnMatch() {
-		return false;
+	public final IButterfly getIndividual() {
+		return new Butterfly(genome);
 	}
 
 	@Override
-	public float getFlightDistance() {
-		return 5.0f;
+	public final ItemStack getMemberStack(EnumFlutterType flutterType) {
+		IButterfly butterfly = getIndividual();
+		return ButterflyManager.butterflyRoot.getMemberStack(butterfly, flutterType);
 	}
 
-	@Override
-	public String getUnlocalizedName() {
-		return this.getUID();
+	public IAlleleButterflySpecies getSpecies() {
+		return species;
+	}
+
+	public static void preInit() {
+		
 	}
 }

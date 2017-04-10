@@ -3,8 +3,12 @@ package binnie.extratrees.genetics;
 import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
+import binnie.extratrees.block.PlankType;
 import forestry.api.arboriculture.IAlleleFruit;
+import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.genetics.AlleleRegisterEvent;
+import forestry.api.genetics.AlleleSpeciesRegisterEvent;
+import forestry.api.lepidopterology.IButterflyRoot;
 import forestry.arboriculture.genetics.alleles.AlleleFruits;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -22,7 +26,6 @@ public class ModuleGenetics implements IInitializable {
 
 	@Override
 	public void preInit() {
-
 	}
 
 
@@ -31,17 +34,13 @@ public class ModuleGenetics implements IInitializable {
 		AlleleETFruit.init();
 		ETTreeDefinition.initTrees();
 		ExtraTreeMutation.init();
+		if(BinnieCore.isLepidopteryActive()){
+			ButterflySpecies.initButterflies();
+		}
 	}
 
 	@Override
 	public void postInit() {
-		if (BinnieCore.isLepidopteryActive()) {
-			for (final ButterflySpecies species2 : ButterflySpecies.values()) {
-				//AlleleManager.alleleRegistry.registerAllele(species2);
-				Binnie.GENETICS.getButterflyRoot().registerTemplate(species2.getTemplate());
-				species2.getBranch().addMemberSpecies(species2);
-			}
-		}
 	}
 	
 	@SubscribeEvent

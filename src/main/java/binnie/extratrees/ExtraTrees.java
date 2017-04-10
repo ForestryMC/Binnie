@@ -29,6 +29,7 @@ import com.google.common.base.Preconditions;
 import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.AlleleSpeciesRegisterEvent;
+import forestry.api.lepidopterology.IButterflyRoot;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -165,6 +166,17 @@ public class ExtraTrees extends AbstractMod {
 	public String getModID() {
 		return Constants.EXTRA_TREES_MOD_ID;
 	}
+	
+	@SubscribeEvent
+	public void speciesRegister(AlleleSpeciesRegisterEvent event) {
+		if (event.getRoot() instanceof ITreeRoot) {
+			ETTreeDefinition.preInitTrees();
+			PlankType.ExtraTreePlanks.initWoodTypes();
+		}else if(event.getRoot() instanceof IButterflyRoot && BinnieCore.isLepidopteryActive()) {
+			ButterflySpecies.preInit();
+			getClass();
+		}
+	}
 
 	@Override
 	protected Class<? extends BinniePacketHandler> getPacketHandler() {
@@ -174,20 +186,6 @@ public class ExtraTrees extends AbstractMod {
 	@Override
 	public boolean isActive() {
 		return BinnieCore.isExtraTreesActive();
-	}
-
-	@SubscribeEvent
-	public void speciesRegister(AlleleSpeciesRegisterEvent event) {
-		if (event.getRoot() instanceof ITreeRoot) {
-			ETTreeDefinition.preInitTrees();
-			PlankType.ExtraTreePlanks.initWoodTypes();
-
-			if (BinnieCore.isLepidopteryActive()) {
-				for (final ButterflySpecies species : ButterflySpecies.values()) {
-					AlleleManager.alleleRegistry.registerAllele(species);
-				}
-			}
-		}
 	}
 
 	public static class PacketHandler extends BinniePacketHandler {
