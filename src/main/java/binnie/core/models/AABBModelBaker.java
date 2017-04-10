@@ -29,28 +29,28 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+//AABB = AxisAlignedBoundingBox
 @SideOnly(Side.CLIENT)
-public class PanelModelBaker implements IModelBaker {
-
-	private final float[] quadsUV;
-	private final List<ModelBakerFace> faces = new ArrayList<>();
+public class AABBModelBaker implements IModelBaker {
+	private final static float[] quadsUV = new float[]{0, 0, 1, 1, 0, 0, 1, 1};
+	private final List<BoundModelBakerFace> faces = new ArrayList<>();
 	private final List<Pair<IBlockState, IBakedModel>> bakedModels = new ArrayList<>();
-	protected AxisAlignedBB renderBounds;
+	protected AxisAlignedBB modelBounds;
 
 	protected ModelBakerModel currentModel = new ModelBakerModel(ModelManager.getInstance().getDefaultBlockState());
 
 	protected final FaceBakery faceBakery = new FaceBakery();
 
-	protected final float[] defUVs;
-
-	public PanelModelBaker() {
+	public AABBModelBaker() {
 		this(Block.FULL_BLOCK_AABB);
 	}
 	
-	public PanelModelBaker(AxisAlignedBB renderBounds) {
-		quadsUV = new float[]{0, 0, 1, 1, 0, 0, 1, 1};
-		defUVs = new float[]{0, 0, 1, 1};
-		this.renderBounds = renderBounds;
+	public AABBModelBaker(AxisAlignedBB modelBounds) {
+		this.modelBounds = modelBounds;
+	}
+	
+	public void setModelBounds(AxisAlignedBB modelBounds) {
+		this.modelBounds = modelBounds;
 	}
 
 	protected int colorIndex = -1;
@@ -106,69 +106,72 @@ public class PanelModelBaker implements IModelBaker {
 		}
 	}
 
-	protected float[] getFaceUvs(final EnumFacing face, final Vector3f to_16, final Vector3f from_16) {
-		float from_a = 0;
-		float from_b = 0;
-		float to_a = 0;
-		float to_b = 0;
-
-		switch (face) {
-			case UP:
-				from_a = from_16.x / 16.0f;
-				from_b = from_16.z / 16.0f;
-				to_a = to_16.x / 16.0f;
-				to_b = to_16.z / 16.0f;
+	protected float[] getFaceUvs(final EnumFacing face, final Vector3f to, final Vector3f from) {
+		float minU;
+		float minV;
+		float maxU;
+		float maxV;
+		switch(face){
+			case SOUTH:{
+				minU= from.x;
+				minV = from.y;
+				maxU= to.x;
+				maxV = to.y;
 				break;
-			case DOWN:
-				from_a = from_16.x / 16.0f;
-				from_b = from_16.z / 16.0f;
-				to_a = to_16.x / 16.0f;
-				to_b = to_16.z / 16.0f;
+			}
+			case NORTH:{
+				minU= from.x;
+				minV = from.y;
+				maxU= to.x;
+				maxV = to.y;
 				break;
-			case SOUTH:
-				from_a = from_16.y / 16.0f;
-				from_b = from_16.x / 16.0f;
-				to_a = to_16.y / 16.0f;
-				to_b = to_16.x / 16.0f;
+			}
+			case WEST:{
+				minU= from.z;
+				minV = from.y;
+				maxU= to.z;
+				maxV = to.y;
 				break;
-			case NORTH:
-				from_a = from_16.y / 16.0f;
-				from_b = from_16.x / 16.0f;
-				to_a = to_16.y / 16.0f;
-				to_b = to_16.x / 16.0f;
+			}
+			case EAST:{
+				minU= from.z;
+				minV = from.y;
+				maxU= to.z;
+				maxV = to.y;
 				break;
-			case EAST:
-				from_a = from_16.y / 16.0f;
-				from_b = from_16.z / 16.0f;
-				to_a = to_16.y / 16.0f;
-				to_b = to_16.z / 16.0f;
+			}
+			case UP:{
+				minU= from.x;
+				minV = from.z;
+				maxU= to.x;
+				maxV = to.z;
 				break;
-			case WEST:
-				from_a = from_16.y / 16.0f;
-				from_b = from_16.z / 16.0f;
-				to_a = to_16.y / 16.0f;
-				to_b = to_16.z / 16.0f;
+			}
+			case DOWN:{
+				minU= from.x;
+				minV = from.z;
+				maxU= to.x;
+				maxV = to.z;
 				break;
-			default:
+			}
+			default:{
+				minU= 6;
+				minV = 0;
+				maxU= 10;
+				maxV = 16;
+				break;
+			}
 		}
+		minU = 16 - minU;
+		minV = 16 - minV;
+		maxU = 16 - maxU;
+		maxV = 16 - maxV;
+		return new float[]{ 
+				minU,
+				minV,
 
-		from_a = 1.0f - from_a;
-		from_b = 1.0f - from_b;
-		to_a = 1.0f - to_a;
-		to_b = 1.0f - to_b;
-
-		return new float[]{ // :P
-				16.0f * (quadsUV[0] + quadsUV[2] * from_a + quadsUV[4] * from_b), // 0
-				16.0f * (quadsUV[1] + quadsUV[3] * from_a + quadsUV[5] * from_b), // 1
-
-				16.0f * (quadsUV[0] + quadsUV[2] * to_a + quadsUV[4] * from_b), // 2
-				16.0f * (quadsUV[1] + quadsUV[3] * to_a + quadsUV[5] * from_b), // 3
-
-				16.0f * (quadsUV[0] + quadsUV[2] * to_a + quadsUV[4] * to_b), // 2
-				16.0f * (quadsUV[1] + quadsUV[3] * to_a + quadsUV[5] * to_b), // 3
-
-				16.0f * (quadsUV[0] + quadsUV[2] * from_a + quadsUV[4] * to_b), // 0
-				16.0f * (quadsUV[1] + quadsUV[3] * from_a + quadsUV[5] * to_b), // 1
+				maxU,
+				maxV
 		};
 	}
 
@@ -178,7 +181,19 @@ public class PanelModelBaker implements IModelBaker {
 			return;
 		}
 
-		faces.add(new ModelBakerFace(facing, colorIndex, sprite));
+		faces.add(new BoundModelBakerFace(facing, colorIndex, sprite, modelBounds));
+	}
+	
+	private static class BoundModelBakerFace extends ModelBakerFace{
+
+		protected final AxisAlignedBB modelBounds;
+		
+		public BoundModelBakerFace(EnumFacing face, int colorIndex, TextureAtlasSprite sprite, AxisAlignedBB modelBounds) {
+			super(face, colorIndex, sprite);
+			
+			this.modelBounds = modelBounds;
+		}
+		
 	}
 
 	@Override
@@ -194,11 +209,10 @@ public class PanelModelBaker implements IModelBaker {
 			currentModel.addModelQuads(bakedModel);
 		}
 
-		Vector3f to = new Vector3f((float) renderBounds.minX * 16.0f, (float) renderBounds.minY * 16.0f, (float) renderBounds.minZ * 16.0f);
-		Vector3f from = new Vector3f((float) renderBounds.maxX * 16.0f, (float) renderBounds.maxY * 16.0f, (float) renderBounds.maxZ * 16.0f);
-
-		for (ModelBakerFace face : faces) {
-
+		for (BoundModelBakerFace face : faces) {
+			final AxisAlignedBB modelBounds = face.modelBounds;
+			final Vector3f to = new Vector3f((float) modelBounds.minX * 16.0f, (float) modelBounds.minY * 16.0f, (float) modelBounds.minZ * 16.0f);
+			final Vector3f from = new Vector3f((float) modelBounds.maxX * 16.0f, (float) modelBounds.maxY * 16.0f, (float) modelBounds.maxZ * 16.0f);
 			final EnumFacing myFace = face.face;
 			final float[] uvs = getFaceUvs(myFace, from, to);
 

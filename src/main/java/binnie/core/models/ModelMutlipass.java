@@ -41,14 +41,14 @@ public class ModelMutlipass<B extends Block & IMultipassBlock<K>, K> extends Mod
 			return null;
 		}
 
-		IModelBaker baker;
+		AABBModelBaker baker = new AABBModelBaker();
 		if (state instanceof IExtendedBlockState) {
 			IExtendedBlockState stateExtended = (IExtendedBlockState) state;
 			IBlockAccess world = stateExtended.getValue(UnlistedBlockAccess.BLOCKACCESS);
 			BlockPos pos = stateExtended.getValue(UnlistedBlockPos.POS);
-			baker = new PanelModelBaker(state.getBoundingBox(world, pos));
+			baker.setModelBounds(state.getBoundingBox(world, pos));
 		}else{
-			baker = new PanelModelBaker(block.getItemBoundingBox());
+			baker.setModelBounds(block.getItemBoundingBox());
 		}
 
 		bakeBlock(block, key, baker, false);
@@ -86,7 +86,7 @@ public class ModelMutlipass<B extends Block & IMultipassBlock<K>, K> extends Mod
 		B bBlock = blockClass.cast(block);
 
 
-		IModelBaker baker = new PanelModelBaker(bBlock.getItemBoundingBox());
+		IModelBaker baker = new AABBModelBaker(bBlock.getItemBoundingBox());
 		bakeBlock(bBlock, key, baker, true);
 
 		return itemModel = baker.bakeModel(true);

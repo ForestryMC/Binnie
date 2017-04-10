@@ -216,9 +216,7 @@ public class ModuleBlocks implements IInitializable {
 		woodAccess.registerFenceGates(new ArrayList<>(fenceGatesFireproof));
 
 		blockMultiFence = new BlockMultiFence();
-		GameRegistry.register(blockMultiFence);
-		GameRegistry.register(new ItemMetadata(blockMultiFence).setRegistryName(blockMultiFence.getRegistryName()));
-		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockMultiFence), new ItemMetadataRenderer());
+		ExtraTrees.proxy.registerBlock(blockMultiFence, new ItemMetadata(blockMultiFence));
 
 		blockDoor = new BlockETDoor();
 		GameRegistry.register(blockDoor);

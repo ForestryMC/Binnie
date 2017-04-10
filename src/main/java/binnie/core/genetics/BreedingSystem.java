@@ -3,7 +3,6 @@ package binnie.core.genetics;
 import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.resource.BinnieSprite;
-import binnie.extrabees.genetics.ExtraBeeMutation;
 import com.mojang.authlib.GameProfile;
 import forestry.api.core.ForestryEvent;
 import forestry.api.genetics.AlleleManager;

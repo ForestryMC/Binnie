@@ -8,8 +8,13 @@ import forestry.api.arboriculture.EnumVanillaWoodType;
 import forestry.api.arboriculture.IWoodType;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.arboriculture.WoodBlockKind;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class PlankType {
 	public static final int MAX_PLANKS = 256;
@@ -71,7 +76,8 @@ public class PlankType {
 
 		private EnumETLog woodType;
 		private final int color;
-		//IIcon icon;
+		@SideOnly(Side.CLIENT)
+		private TextureAtlasSprite sprite;
 
 		ExtraTreePlanks(final int color) {
 			this.color = color;
@@ -154,15 +160,18 @@ public class PlankType {
 		public ItemStack getStack() {
 			return getStack(true);
 		}
-
-//		public IIcon loadIcon(final IIconRegister register) {
-//			return this.icon = ExtraTrees.proxy.getIcon(register, "planks/" + this.toString());
-//		}
-//
-//		@Override
-//		public IIcon getIcon() {
-//			return this.icon;
-//		}
+		
+		@SideOnly(Side.CLIENT)
+		@Override
+		public TextureAtlasSprite getSprite() {
+			return sprite;
+		}
+		
+		@SideOnly(Side.CLIENT)
+		@Override
+		public void registerSprites(TextureMap map) {
+			sprite = map.registerSprite(new ResourceLocation(getPlankTextureName()));
+		}
 
 		@Override
 		public ItemStack getFence() {
@@ -180,6 +189,8 @@ public class PlankType {
 
 		private final IWoodType woodType;
 		private int color;
+		@SideOnly(Side.CLIENT)
+		private TextureAtlasSprite sprite;
 
 		VanillaPlanks(final int color, IWoodType woodType) {
 			this.color = color;
@@ -199,6 +210,18 @@ public class PlankType {
 		@Override
 		public String getPlankTextureName() {
 			return "minecraft:blocks/planks_" + name().toLowerCase();
+		}
+		
+		@SideOnly(Side.CLIENT)
+		@Override
+		public TextureAtlasSprite getSprite() {
+			return sprite;
+		}
+		
+		@SideOnly(Side.CLIENT)
+		@Override
+		public void registerSprites(TextureMap map) {
+			sprite = map.registerSprite(new ResourceLocation(getPlankTextureName()));
 		}
 
 		@Override
@@ -265,6 +288,8 @@ public class PlankType {
 
 		private final IWoodType woodType;
 		private final int color;
+		@SideOnly(Side.CLIENT)
+		private TextureAtlasSprite sprite;
 
 		ForestryPlanks(final int color, IWoodType woodType) {
 			this.color = color;
@@ -284,6 +309,18 @@ public class PlankType {
 		@Override
 		public String getDescription() {
 			return ExtraTrees.proxy.localise("block.planks.forestry." + this.toString().toLowerCase() + ".desc");
+		}
+		
+		@SideOnly(Side.CLIENT)
+		@Override
+		public TextureAtlasSprite getSprite() {
+			return sprite;
+		}
+		
+		@SideOnly(Side.CLIENT)
+		@Override
+		public void registerSprites(TextureMap map) {
+			sprite = map.registerSprite(new ResourceLocation(getPlankTextureName()));
 		}
 
 		@Override

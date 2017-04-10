@@ -9,6 +9,7 @@ import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
 import binnie.extrabees.ExtraBees;
 import binnie.extratrees.alcohol.ModuleAlcohol;
+import binnie.extratrees.block.IPlankType;
 import binnie.extratrees.block.ModuleBlocks;
 import binnie.extratrees.block.PlankType;
 import binnie.extratrees.carpentry.ModuleCarpentry;
@@ -28,7 +29,13 @@ import com.google.common.base.Preconditions;
 import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.genetics.AlleleSpeciesRegisterEvent;
 import forestry.api.lepidopterology.IButterflyRoot;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -190,6 +197,24 @@ public class ExtraTrees extends AbstractMod {
 			super(ExtraBees.instance);
 		}
 	}
+	
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent
+	public void openGui(GuiScreenEvent.InitGuiEvent event){
+		if(event.getGui() instanceof GuiContainer){
+			GuiContainer gui = (GuiContainer) event.getGui();
+			event.getButtonList().add(new GuiButton(90, 60, 90, "gfrwgrweg"));
+		}
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent
+	public void openGui(GuiScreenEvent.ActionPerformedEvent event){
+		if(event.getGui() instanceof GuiContainer && event.getButton().id == 90){
+			Minecraft.getMinecraft().displayGuiScreen(new GuiScreen() {
+			});
+		}
+	}
 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
@@ -215,6 +240,16 @@ public class ExtraTrees extends AbstractMod {
 	public void registerSprites(TextureStitchEvent.Pre event) {
 		for (FruitSprite sprite : FruitSprite.VALUES) {
 			sprite.registerSprites();
+		}
+		TextureMap map = Minecraft.getMinecraft().getTextureMapBlocks();
+		for(IPlankType type : PlankType.ExtraTreePlanks.VALUES){
+			type.registerSprites(map);
+		}
+		for(IPlankType type : PlankType.ForestryPlanks.values()){
+			type.registerSprites(map);
+		}
+		for(IPlankType type : PlankType.VanillaPlanks.values()){
+			type.registerSprites(map);
 		}
 	}
 
