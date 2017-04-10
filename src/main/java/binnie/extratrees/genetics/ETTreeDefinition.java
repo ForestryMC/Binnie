@@ -1745,8 +1745,6 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts"));
 			species.addFruitFamily(ETFruitFamily.Berry);
-			species.setRarity(0.0025F);
-			species.setGrowthProvider(new ClimateGrowthProvider(EnumTemperature.NORMAL, EnumTolerance.BOTH_1, EnumHumidity.NORMAL, EnumTolerance.NONE));
 		}
 	},
 	GoldenRaspberry("rubus", "occidentalis", EnumLeafType.DECIDUOUS, new Color(0x83B96E), new Color(0x83B96E), EnumSaplingType.Shrub, EnumShrubLog.INSTANCE, new Color(0xFFFFFF)) {
