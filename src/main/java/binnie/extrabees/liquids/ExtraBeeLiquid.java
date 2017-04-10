@@ -33,7 +33,7 @@ public enum ExtraBeeLiquid implements ILiquidType {
 
 	@Override
 	public String getDisplayName() {
-		return ExtraBees.proxy.localise(this.toString().toLowerCase());
+		return ExtraBees.proxy.localise(this.toString().toLowerCase() + ".name");
 	}
 
 	@Override

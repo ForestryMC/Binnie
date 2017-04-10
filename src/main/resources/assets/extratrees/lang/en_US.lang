@@ -229,6 +229,10 @@ extratrees.block.woodstairs.name=%1$s Stairs
 extratrees.block.woodfence.name=%1$s Fence
 extratrees.block.woodgate.name=%1$s Gate
 
+extrabees.poison=Poison
+extrabees.acid=Acid
+extrabees.glacial=Glacial
+
 < %1$s is the adjective for the fence type, %2$s is the name of the wood >
 extratrees.block.multifence.name=%2$s %1$s Gate
 < %3$s is the name of the second wood >
