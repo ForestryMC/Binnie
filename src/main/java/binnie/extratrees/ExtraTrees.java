@@ -30,12 +30,8 @@ import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.genetics.AlleleSpeciesRegisterEvent;
 import forestry.api.lepidopterology.IButterflyRoot;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -195,24 +191,6 @@ public class ExtraTrees extends AbstractMod {
 	public static class PacketHandler extends BinniePacketHandler {
 		public PacketHandler() {
 			super(ExtraBees.instance);
-		}
-	}
-	
-	@SideOnly(Side.CLIENT)
-	@SubscribeEvent
-	public void openGui(GuiScreenEvent.InitGuiEvent event){
-		if(event.getGui() instanceof GuiContainer){
-			GuiContainer gui = (GuiContainer) event.getGui();
-			event.getButtonList().add(new GuiButton(90, 60, 90, "gfrwgrweg"));
-		}
-	}
-	
-	@SideOnly(Side.CLIENT)
-	@SubscribeEvent
-	public void openGui(GuiScreenEvent.ActionPerformedEvent event){
-		if(event.getGui() instanceof GuiContainer && event.getButton().id == 90){
-			Minecraft.getMinecraft().displayGuiScreen(new GuiScreen() {
-			});
 		}
 	}
 

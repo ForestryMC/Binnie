@@ -32,7 +32,6 @@ import java.util.List;
 //AABB = AxisAlignedBoundingBox
 @SideOnly(Side.CLIENT)
 public class AABBModelBaker implements IModelBaker {
-	private final static float[] quadsUV = new float[]{0, 0, 1, 1, 0, 0, 1, 1};
 	private final List<BoundModelBakerFace> faces = new ArrayList<>();
 	private final List<Pair<IBlockState, IBakedModel>> bakedModels = new ArrayList<>();
 	protected AxisAlignedBB modelBounds;
