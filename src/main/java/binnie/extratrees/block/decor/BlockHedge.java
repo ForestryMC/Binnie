@@ -5,6 +5,7 @@ import forestry.api.core.Tabs;
 import forestry.arboriculture.PluginArboriculture;
 import forestry.core.blocks.IColoredBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
