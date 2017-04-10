@@ -464,6 +464,11 @@ extrabees.species.yellorium.name=Yellorium
 extrabees.species.cyanite.name=Cyanite
 extrabees.species.blutonium.name=Blutonium
 extrabees.species.mystical.name=Mystical
+extrabees.species.marble.name=Marble
+extrabees.species.angry.name=Angry
+extrabees.species.classical.name=Classical
+extrabees.species.greek.name=Greek
+extrabees.species.roman.name=Roman
 
 extrabees.effect.ectoplasm.name=Ectoplasm
 extrabees.effect.acid.name=Acidic

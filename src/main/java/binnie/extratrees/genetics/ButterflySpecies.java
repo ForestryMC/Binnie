@@ -64,11 +64,12 @@ public enum ButterflySpecies implements IButterflyDefinition {
 		this.branch = branch;
 
 		String uid = "extrabutterflies.species." + this.toString().toLowerCase().replace("_", "");
+		String unlocalizedName = uid + ".name";
 		IClassification parent = branch.getParent();
 		String unlocalizedDescription = "for.description." + uid;
 		String texture = "butterflies/" + toString().toLowerCase();
 
-		IAlleleButterflySpeciesBuilder speciesBuilder = ButterflyManager.butterflyFactory.createSpecies(uid, uid, "Binnie", unlocalizedDescription, Constants.EXTRA_TREES_MOD_ID, texture, true, branch, binomial, new Color(colour));
+		IAlleleButterflySpeciesBuilder speciesBuilder = ButterflyManager.butterflyFactory.createSpecies(uid, unlocalizedName, "Binnie", unlocalizedDescription, Constants.EXTRA_TREES_MOD_ID, texture, true, branch, binomial, new Color(colour));
 		speciesBuilder.setRarity(0.5F);
 		setSpeciesProperties(speciesBuilder);
 		species = speciesBuilder.build();

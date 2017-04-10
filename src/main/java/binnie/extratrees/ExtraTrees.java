@@ -15,7 +15,6 @@ import binnie.extratrees.carpentry.ModuleCarpentry;
 import binnie.extratrees.config.ConfigurationMain;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.core.ModuleCore;
-import binnie.extratrees.genetics.AlleleETFruit;
 import binnie.extratrees.genetics.ButterflySpecies;
 import binnie.extratrees.genetics.ETTreeDefinition;
 import binnie.extratrees.genetics.FruitSprite;
@@ -27,7 +26,6 @@ import binnie.extratrees.proxy.Proxy;
 import com.google.common.base.Preconditions;
 
 import forestry.api.arboriculture.ITreeRoot;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.AlleleSpeciesRegisterEvent;
 import forestry.api.lepidopterology.IButterflyRoot;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -174,7 +172,6 @@ public class ExtraTrees extends AbstractMod {
 			PlankType.ExtraTreePlanks.initWoodTypes();
 		}else if(event.getRoot() instanceof IButterflyRoot && BinnieCore.isLepidopteryActive()) {
 			ButterflySpecies.preInit();
-			getClass();
 		}
 	}
 
