@@ -67,16 +67,6 @@ public class MultiFenceRecipeSolidWrapper extends BlankRecipeWrapper implements 
 		itemOutputs.add(outputFences);
 		ingredients.setOutputLists(ItemStack.class, itemOutputs);
 		ingredients.setInputLists(ItemStack.class, itemInputs);
-		/*List<ItemStack> fences = Collections.singletonList(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.size, false, fenceType.embossed), 1));
-		List<ItemStack> outputFences = Collections.singletonList(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.size, true, fenceType.embossed), 2));
-		List<List<ItemStack>> itemInputs = new ArrayList<>();
-		itemInputs.add(fences);
-		itemInputs.add(fences);
-		itemInputs.add(fences);
-		List<List<ItemStack>> itemOutputs = new ArrayList<>();
-		itemOutputs.add(outputFences);
-		ingredients.setOutputLists(ItemStack.class, itemOutputs);
-		ingredients.setInputLists(ItemStack.class, itemInputs);*/
 	}
 
 	@Override
