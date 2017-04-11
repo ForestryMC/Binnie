@@ -89,14 +89,14 @@ public class MultiFenceRecipeSizeWrapper extends BlankRecipeWrapper {
 		List<ItemStack> outputs = new ArrayList<>();
 		itemOutputs.add(outputs);
 		for(int i = 0;i < size;i++){
-			ItemStack item = types.get(0).get(i);
-			ItemStack itemSecond = types.get(1).get(i);
 			IPlankType plankType = this.plankType;
 			if(plankType == null){
+				ItemStack item = types.get(0).get(i);
 				plankType = WoodManager.getPlankType(item);
 			}
 			IPlankType plankTypeSecond = this.plankTypeSecond;
 			if(plankTypeSecond == null){
+				ItemStack itemSecond = types.get(1).get(i);
 				plankTypeSecond = WoodManager.getPlankType(itemSecond);
 			}
 			outputs.add(pattern.createFence(plankType, plankTypeSecond));
