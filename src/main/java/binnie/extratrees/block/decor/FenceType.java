@@ -71,6 +71,11 @@ public class FenceType {
 	public boolean isPlain() {
 		return this.size == 0 && !this.embossed && !this.solid;
 	}
+	
+	@Override
+	public String toString() {
+		return size + (embossed ? ":embossed" : "") + (solid ? ":solid" : "");
+	}
 
 	@Override
 	public boolean equals(final Object obj) {

@@ -1,6 +1,10 @@
 package binnie.extratrees.integration.jei;
 
 import binnie.core.integration.jei.Drawables;
+import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.block.WoodManager;
+import binnie.extratrees.block.decor.FenceDescription;
+import binnie.extratrees.block.decor.FenceType;
 import binnie.extratrees.integration.jei.brewery.BreweryRecipeCategory;
 import binnie.extratrees.integration.jei.brewery.BreweryRecipeMaker;
 import binnie.extratrees.integration.jei.distillery.brewery.DistilleryRecipeCategory;
@@ -9,6 +13,7 @@ import binnie.extratrees.integration.jei.fruitpress.FruitPressRecipeCategory;
 import binnie.extratrees.integration.jei.fruitpress.FruitPressRecipeMaker;
 import binnie.extratrees.integration.jei.lumbermill.LumbermillRecipeCategory;
 import binnie.extratrees.integration.jei.lumbermill.LumbermillRecipeMaker;
+import binnie.extratrees.integration.jei.multifence.MultiFenceRecipeRegistryPlugin;
 import binnie.extratrees.machines.ExtraTreeMachine;
 import mezz.jei.api.BlankModPlugin;
 import mezz.jei.api.IGuiHelper;
@@ -16,6 +21,8 @@ import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.ISubtypeRegistry;
 import mezz.jei.api.JEIPlugin;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 @JEIPlugin
 public class ExtraTreesJeiPlugin extends BlankModPlugin {
@@ -25,7 +32,14 @@ public class ExtraTreesJeiPlugin extends BlankModPlugin {
 
 	@Override
 	public void registerItemSubtypes(ISubtypeRegistry subtypeRegistry) {
-
+		subtypeRegistry.registerSubtypeInterpreter(Item.getItemFromBlock(ExtraTrees.blocks().blockMultiFence), (ItemStack itemStack)->{
+			FenceDescription desc = WoodManager.getFenceDescription(itemStack);
+			if(desc != null){
+				FenceType type = WoodManager.getFenceType(itemStack);
+				return type + ":" + desc.getPlankType().getName().toLowerCase() + ":" + desc.getSecondaryPlankType().getName().toLowerCase();
+			}
+			return Integer.toString(itemStack.getItemDamage());
+		});
 	}
 
 	@Override
@@ -50,5 +64,7 @@ public class ExtraTreesJeiPlugin extends BlankModPlugin {
 		registry.addRecipes(FruitPressRecipeMaker.create(), RecipeUids.FRUIT_PRESS);
 		registry.addRecipes(BreweryRecipeMaker.create(), RecipeUids.BREWING);
 		registry.addRecipes(DistilleryRecipeMaker.create(), RecipeUids.DISTILLING);
+		
+		registry.addRecipeRegistryPlugin(new MultiFenceRecipeRegistryPlugin());
 	}
 }

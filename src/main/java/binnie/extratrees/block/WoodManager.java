@@ -14,13 +14,16 @@ import forestry.core.utils.Translator;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class WoodManager {
+	public static Map<IPlankType, ItemStack> PLANKS;
 	public static String getDisplayName(IWoodTyped wood, IWoodType woodType) {
 		WoodBlockKind blockKind = wood.getBlockKind();
 
@@ -133,6 +136,22 @@ public class WoodManager {
 		}*/
 		Collections.addAll(list, PlankType.VanillaPlanks.values());
 		return list;
+	}
+	
+	public static Map<IPlankType, ItemStack> getAllPlankStacks(){
+		if(PLANKS == null){
+			PLANKS = new HashMap<>();
+			for(IPlankType type : getAllPlankTypes()){
+				PLANKS.put(type, type.getStack(false));
+			}
+		}
+		return PLANKS;
+	}
+	
+	public static Collection<ItemStack> getAllPlankStacks(IPlankType type){
+		Map<IPlankType, ItemStack> planks = new HashMap<>(getAllPlankStacks());
+		planks.remove(type);
+		return planks.values();
 	}
 
 	@Nullable

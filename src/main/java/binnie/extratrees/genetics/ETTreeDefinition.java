@@ -310,6 +310,8 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes"));
 			species.addFruitFamily(AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes"));
 			species.addFruitFamily(ETFruitFamily.Citrus);
+			species.setTemperature(EnumTemperature.NORMAL);
+			species.setRarity(0.0015F);
 		}
 	},
 	SourCherry("prunus", "cerasus", EnumLeafType.DECIDUOUS, new Color(0x6D8F1E), new Color(0xF7EBF6), EnumSaplingType.Fruit, EnumETLog.Cherry, new Color(0x716850)) {

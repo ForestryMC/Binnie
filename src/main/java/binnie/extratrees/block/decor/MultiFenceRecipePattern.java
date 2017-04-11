@@ -28,6 +28,10 @@ public class MultiFenceRecipePattern{
 		this.pattern = pattern;
 	}
 	
+	public String getPattern() {
+		return pattern;
+	}
+	
 	public int getTypeCount() {
 		return typeCount;
 	}
