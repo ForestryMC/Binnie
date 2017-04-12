@@ -42,14 +42,17 @@ public class RenderUtil {
 		Minecraft minecraft = Minecraft.getMinecraft();
 		net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
 		FontRenderer font = getFontRenderer(minecraft, itemStack);
-
-		//TODO: Fix the rotation
+		
 		if (rotating) {
 			GlStateManager.pushMatrix();
 			final float phase = Minecraft.getSystemTime() / 20;
-			GlStateManager.translate(8, 8, 0);
+			/** {@link net.minecraft.client.renderer.RenderItem#setupGuiTransform(int, int, boolean)} It adds 100 to zLevel from
+			 * {@link net.minecraft.client.renderer.RenderItem#renderItemAndEffectIntoGUI(net.minecraft.entity.EntityLivingBase, net.minecraft.item.ItemStack, int, int)}.
+			 * So z=150
+			 **/
+			GlStateManager.translate(8, 8, 150);
 			GlStateManager.rotate(phase, 0, -0.866f, 0.5f);
-			GlStateManager.translate(-8, -8, -67.1f);
+			GlStateManager.translate(-8, -8, -150);
 		}
 
 		minecraft.getRenderItem().renderItemAndEffectIntoGUI(null, itemStack, pos.x(), pos.y());
