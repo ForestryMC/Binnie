@@ -105,11 +105,6 @@ public class FlowerGenome extends Genome implements IFlowerGenome {
 	public EnumTolerance getTolerancePH() {
 		return ((IAlleleTolerance) this.getActiveAllele(EnumFlowerChromosome.PH_TOLERANCE)).getValue();
 	}
-//TODO TEST
-//	@Override
-//	public void readFromNBT(final NBTTagCompound nbttagcompound) {
-//		super.readFromNBT(nbttagcompound);
-//	}
 
 	@Override
 	public float getAgeChance() {

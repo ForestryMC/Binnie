@@ -16,15 +16,21 @@ import binnie.core.genetics.BreedingSystem;
 import binnie.extratrees.ExtraTrees;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.IAlleleTreeSpecies;
+import forestry.api.arboriculture.IFruitProvider;
+import forestry.api.arboriculture.ILeafSpriteProvider;
 import forestry.api.arboriculture.ITree;
 import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleSpecies;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class PageSpeciesTreeGenome extends PageSpecies {
 	public PageSpeciesTreeGenome(final IWidget parent, final DatabaseTab tab) {
@@ -42,7 +48,6 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 
 		final ITreeGenome genome = tree.getGenome();
 		final IAlleleTreeSpecies treeSpecies = genome.getPrimary();
-		final ItemStack log = treeSpecies.getWoodProvider().getWoodStack();
 		final int w = 144;
 		final int h = 176;
 		new ControlText(this, new Area(0, 4, w, 16), this.getValue().toString(), TextJustification.MiddleCenter);
@@ -60,30 +65,30 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 		new ControlText(contents, new Area(0, y, w2, th), BinnieCore.getBinnieProxy().localise("gui.temperature.short") + " : ", TextJustification.MiddleRight);
 		new ControlText(contents, new Area(w2, y, w3, th), treeSpecies.getTemperature().getName(), TextJustification.MIDDLE_LEFTt);
 		y += th;
-		//TODO RENDERING
-		//final IIcon leaf = treeSpecies.getLeafIcon(false, false);
-		//IIcon fruit = null;
+		TextureMap map = Minecraft.getMinecraft().getTextureMapBlocks();
+		ILeafSpriteProvider spriteProvider = treeSpecies.getLeafSpriteProvider();
+		TextureAtlasSprite leaf = map.getAtlasSprite(spriteProvider.getSprite(false, false).toString());
+		int leafColour = spriteProvider.getColor(false);
+		TextureAtlasSprite fruit = null;
 		int fruitColour = 16777215;
+		IFruitProvider fruitProvider = genome.getFruitProvider();
 		try {
-			//TODO RENDERING
-			//fruit = ForestryAPI.textureManager.getIcon(genome.getFruitProvider().getIconIndex(genome, (IBlockAccess) null, 0, 0, 0, 100, false));
-			fruitColour = genome.getFruitProvider().getColour(genome, null, new BlockPos(0, 0, 0), 100);
+			fruit = map.getAtlasSprite(fruitProvider.getSprite(genome, null, BlockPos.ORIGIN, 100).toString());
+			fruitColour = fruitProvider.getColour(genome, null, BlockPos.ORIGIN, 100);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		//if (leaf != null) {
-		//new ControlText(contents, new IArea(0, y, w2, th2), ExtraTrees.proxy.localise("gui.database.leaves") + " : ", TextJustification.MiddleRight);
-		//TODO RENDERING
-		//new ControlBlockIconDisplay(contents, w2, y, leaf).setColour(treeSpecies.getLeafColour(false));
-		//if (fruit != null && !treeSpecies.getUID().equals("forestry.treeOak")) {
-		//TODO RENDERING
-		// new ControlBlockIconDisplay(contents, w2, y, fruit).setColour(fruitColour);
-		//}
-		//	y += th2;
-		//}
-		// final ItemStack log = (genome.getFruitProvider().getProducts().length
-		// > 0) ? genome.getFruitProvider().getProducts()[0] : null;
-		if (log != null) {
+		if (leaf != null) {
+		new ControlText(contents, new Area(0, y, w2, th2), ExtraTrees.proxy.localise("gui.database.leaves") + " : ", TextJustification.MiddleRight);
+		new ControlBlockIconDisplay(contents, w2, y, leaf).setColour(leafColour);
+		if (fruit != null && !treeSpecies.getUID().equals("forestry.treeOak")) {
+		 new ControlBlockIconDisplay(contents, w2, y, fruit).setColour(fruitColour);
+		}
+			y += th2;
+		}
+		Map<ItemStack, Float> products = fruitProvider.getProducts();
+		ItemStack log = treeSpecies.getWoodProvider().getWoodStack();
+		if (log.isEmpty()) {
 			new ControlText(contents, new Area(0, y, w2, th2), ExtraTrees.proxy.localise("gui.database.log") + " : ", TextJustification.MiddleRight);
 			final ControlItemDisplay display = new ControlItemDisplay(contents, w2, y);
 			display.setItemStack(log);
@@ -96,13 +101,13 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 		new ControlText(contents, new Area(0, y, w2, th), syst.getChromosomeShortName(EnumTreeChromosome.FERTILITY) + " : ", TextJustification.MiddleRight);
 		new ControlText(contents, new Area(w2, y, w3, th), genome.getFertility() + "x", TextJustification.MIDDLE_LEFTt);
 		y += th;
-		final List<ItemStack> fruits = new ArrayList<>();
-		for (final ItemStack stack : genome.getFruitProvider().getProducts().keySet()) {
+		List<ItemStack> fruits = new ArrayList<>();
+		for (ItemStack stack : products.keySet()) {
 			fruits.add(stack);
 		}
 		if (!fruits.isEmpty()) {
 			new ControlText(contents, new Area(0, y, w2, th2), syst.getChromosomeShortName(EnumTreeChromosome.FRUITS) + " : ", TextJustification.MiddleRight);
-			for (final ItemStack fruitw : fruits) {
+			for (ItemStack fruitw : fruits) {
 				final ControlItemDisplay display2 = new ControlItemDisplay(contents, w2, y);
 				display2.setItemStack(fruitw);
 				display2.setTooltip();

@@ -8,7 +8,6 @@ import binnie.core.block.IBlockMetadata;
 import binnie.core.block.TileEntityMetadata;
 import binnie.extratrees.ExtraTrees;
 import forestry.api.core.Tabs;
-import forestry.arboriculture.blocks.BlockArbDoor;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
