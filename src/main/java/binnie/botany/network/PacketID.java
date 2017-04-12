@@ -25,7 +25,6 @@ public enum PacketID implements IPacketID {
 		}
 	}
 	
-	//TODO: localise
 	public void onUseFieldKit(NBTTagCompound data){
 		EntityPlayer player = BinnieCore.getBinnieProxy().getPlayer();
 		String info = "";
@@ -40,15 +39,15 @@ public enum PacketID implements IPacketID {
 			if (primary == null || secondary == null) {
 				return;
 			}
-			info += "A";
+			info += Binnie.LANGUAGE.localise("botany.flowers.fielkit.a");
 			if (age == 0.0f) {
 				info += "";
 			} else if (age < 0.25f) {
-				info += " Young";
+				info += " " + Binnie.LANGUAGE.localise("botany.flowers.fielkit.young");
 			} else if (age < 0.75f) {
-				info += " Mature";
+				info += " " + Binnie.LANGUAGE.localise("botany.flowers.fielkit.mature");
 			} else {
-				info += " Old";
+				info += " " + Binnie.LANGUAGE.localise("botany.flowers.fielkit.old");
 			}
 			if (color1 == color2) {
 				info = info + " " + color1.getName();

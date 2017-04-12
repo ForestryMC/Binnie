@@ -4,6 +4,7 @@ import binnie.core.BinnieCore;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
 import binnie.core.machines.component.IRender;
+import binnie.core.resource.BinnieSprite;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -77,6 +78,10 @@ public class SequencerFX extends MachineComponent implements IRender.RandomDispl
 
 	@SideOnly(Side.CLIENT)
 	private static class SequencerParticle extends Particle {
+		private static final BinnieSprite[] SPRITES;
+		static{
+			SPRITES = new BinnieSprite[] { Sequencer.fxSeqA, Sequencer.fxSeqG, Sequencer.fxSeqC, Sequencer.fxSeqT};
+		}
 		double axisX;
 		double axisZ;
 		double angle;
@@ -93,8 +98,7 @@ public class SequencerFX extends MachineComponent implements IRender.RandomDispl
 			this.particleGravity = 0.0f;
 			this.canCollide = true;
 			this.particleScale = 2.0f;
-			//TODO: Add sprites
-			//this.setParticleIcon((new BinnieIcon[] { Sequencer.fxSeqA, Sequencer.fxSeqG, Sequencer.fxSeqC, Sequencer.fxSeqT })[this.rand.nextInt(4)].getIcon());
+			setParticleTexture(SPRITES[this.rand.nextInt(4)].getSprite());
 		}
 
 		@Override

@@ -115,7 +115,6 @@ public class TileEntityNursery extends TileEntityMachine implements IButterflyNu
 
 	@Override
 	public World getWorldObj() {
-		// TODO Auto-generated method stub
-		return null;
+		return world;
 	}
 }

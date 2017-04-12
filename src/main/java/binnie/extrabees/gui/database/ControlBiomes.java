@@ -53,6 +53,7 @@ public class ControlBiomes extends Control implements ITooltip {
 			if (Biome.getBiome(i) != null) {
 				//TODO FIND COLOR
 				//CraftGUI.Render.colour(Biome.getBiome(i).color);
+				
 			}
 			CraftGUI.render.texture(CraftGUITexture.Button, new Area(x, y, 16, 16));
 		}

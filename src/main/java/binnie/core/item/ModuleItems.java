@@ -37,41 +37,4 @@ public class ModuleItems implements IInitializable {
 	public void postInit() {
 		GameRegistry.addRecipe(new ItemStack(BinnieCore.getFieldKit(), 1, 63), "g  ", " is", " pi", 'g', Blocks.GLASS_PANE, 'i', Items.IRON_INGOT, 'p', Items.PAPER, 's', new ItemStack(Items.DYE, 1));
 	}
-
-	@SubscribeEvent
-	public void onUseFieldKit(PlayerInteractEvent.RightClickBlock event) {
-		if (!BinnieCore.isBotanyActive()) {
-			return;
-		}
-		BlockPos pos = event.getPos();
-		World world = event.getWorld();
-		if (!world.isRemote) {
-			EntityPlayer player = event.getEntityPlayer();
-
-			if (player != null) {
-				ItemStack heldItem = player.getHeldItemMainhand();
-				if (!heldItem.isEmpty() && heldItem.getItem() == BinnieCore.getFieldKit() && player.isSneaking()) {
-					TileEntity tile = world.getTileEntity(pos);
-					if (tile instanceof TileEntityFlower) {
-						TileEntityFlower tileFlower = (TileEntityFlower) tile;
-						IFlower flower = tileFlower.getFlower();
-						if (flower != null) {
-							IFlowerGenome flowerGenome = flower.getGenome();
-							NBTTagCompound info = new NBTTagCompound();
-							info.setString("Species", flowerGenome.getPrimary().getUID());
-							info.setString("Species2", flowerGenome.getSecondary().getUID());
-							info.setFloat("Age", flower.getAge() / flowerGenome.getLifespan());
-							info.setShort("Colour", (short) flowerGenome.getPrimaryColor().getID());
-							info.setShort("Colour2", (short) flowerGenome.getSecondaryColor().getID());
-							info.setBoolean("Wilting", flower.isWilted());
-							info.setBoolean("Flowered", flower.hasFlowered());
-							//TODO: Find out why minecraft post 2 messages
-							Botany.proxy.sendToPlayer(new MessageNBT(PacketID.FIELDKIT.ordinal(), info), player);
-							heldItem.damageItem(1, event.getEntityPlayer());
-						}
-					}
-				}
-			}
-		}
-	}
 }

@@ -1,12 +1,16 @@
 package binnie.extratrees.block;
 
+import java.util.List;
+
 import binnie.Binnie;
 import binnie.core.block.BlockMetadata;
 import binnie.core.block.IBlockMetadata;
 import binnie.core.block.TileEntityMetadata;
 import binnie.extratrees.ExtraTrees;
 import forestry.api.core.Tabs;
+import forestry.arboriculture.blocks.BlockArbDoor;
 import net.minecraft.block.BlockDoor;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -21,8 +25,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockETDoor extends BlockDoor implements IBlockMetadata {
+public class BlockETDoor extends BlockDoor implements IBlockMetadata, ITileEntityProvider {
 //	private IIcon getFlippedIcon(final boolean upper, final boolean flip, final int tileMeta) {
 //		final DoorType type = getDoorType(tileMeta);
 //		return upper ? (flip ? type.iconDoorUpperFlip : type.iconDoorUpper) : (flip ? type.iconDoorLowerFlip : type.iconDoorLower);
@@ -181,34 +187,30 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 //		final boolean flag2 = (j1 & 0x1) != 0x0;
 //		return (i1 & 0x7) | (flag ? 8 : 0) | (flag2 ? 16 : 0);
 //	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
+		int meta = getMetaFromState(state);
+		if (player.capabilities.isCreativeMode && (meta & 0x8) != 0x0 && world.getBlockState(pos.down()).getBlock() == this) {
+			world.setBlockToAir(pos.down());
+		}
+	}
 
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void onBlockHarvested(final World par1World, final int par2, final int par3, final int par4, final int par5, final EntityPlayer par6EntityPlayer) {
-//		if (par6EntityPlayer.capabilities.isCreativeMode && (par5 & 0x8) != 0x0 && par1World.getBlock(par2, par3 - 1, par4) == this) {
-//			par1World.setBlockToAir(par2, par3 - 1, par4);
-//		}
-//	}
-//
-//	@Override
-//	public ArrayList<ItemStack> getDrops(final World world, final int x, final int y, final int z, final int blockMeta, final int fortune) {
-//		return BlockMetadata.getBlockDropped(this, world, x, y, z, blockMeta);
-//	}
+	@Override
+	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+		return BlockMetadata.getBlockDroppedAsList(this, world, pos);
+	}
 
-//	@Override
-//	public boolean removedByPlayer(final World world, final EntityPlayer player, final int x, final int y, final int z) {
-//		return BlockMetadata.breakBlock(this, player, world, x, y, z);
-//	}
+	@Override
+	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
+		return BlockMetadata.breakBlock(this, player, world, pos);
+	}
 
 	@Override
 	public TileEntity createNewTileEntity(final World var1, final int k) {
 		return new TileEntityMetadata();
 	}
-
-//	@Override
-//	public boolean hasTileEntity(final int meta) {
-//		return true;
-//	}
 
 	@Override
 	public boolean eventReceived(IBlockState state, World world, BlockPos pos, int id, int param) {
@@ -276,12 +278,6 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 	public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
 		return 5;
 	}
-
-//	@Override
-//	public void breakBlock(final World par1World, final int par2, final int par3, final int par4, final Block par5, final int par6) {
-//		super.breakBlock(par1World, par2, par3, par4, par5, par6);
-//		par1World.removeTileEntity(par2, par3, par4);
-//	}
 
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {

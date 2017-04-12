@@ -1,5 +1,6 @@
 package binnie.botany.ceramic;
 
+import binnie.Binnie;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.BinnieCore;
@@ -139,8 +140,7 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 	@Override
 	public String getDisplayName(final ItemStack par1ItemStack) {
 		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
-		//TODO:localise
-		return EnumFlowerColor.get(meta).getColourName() + " Pigmented Glass";
+		return EnumFlowerColor.get(meta).getColourName() + " " + Binnie.LANGUAGE.localise("tile.botany.pigmented.glass.name");
 	}
 
 	@Override

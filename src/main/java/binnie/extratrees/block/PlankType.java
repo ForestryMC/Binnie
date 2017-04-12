@@ -380,7 +380,6 @@ public class PlankType {
 
 		@Override
 		public String getPlankTextureName() {
-			//TODO implement
 			return "";
 		}
 

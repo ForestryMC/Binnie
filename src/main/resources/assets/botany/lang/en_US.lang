@@ -44,6 +44,7 @@ botany.grammar.flower=%PRIMARY, %STEM Stem
 botany.grammar.flower.secondary=%PRIMARY and %SECONDARY, %STEM Stem
 
 tile.botany.ceramic.name=Ceramic Block
+tile.botany.pigmented.glass.name=Pigmented Glass
 
 botany.colour.aquamarine=Aquamarine
 botany.colour.black=Black
@@ -190,6 +191,10 @@ botany.gui.database.tab.breeder=Breeder
 botany.gui.database.tab.colour.resultant=Resultant Mixes
 botany.gui.database.tab.colour.further=Further Mixes
 
+botany.flowers.fielkit.a=A
+botany.flowers.fielkit.young=Young
+botany.flowers.fielkit.mature=Mature
+botany.flowers.fielkit.old=Old
 botany.flowers.species.not.discover=Flower has not been discovered by you. Breed this flower yourself to discover.
 botany.flowers.species.hybrid=Hybrid
 botany.flowers.species.germling=Germling

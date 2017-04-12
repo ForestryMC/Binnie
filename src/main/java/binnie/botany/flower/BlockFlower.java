@@ -2,12 +2,15 @@ package binnie.botany.flower;
 
 import binnie.botany.Botany;
 import binnie.botany.api.IFlower;
+import binnie.botany.api.IFlowerGenome;
 import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.gardening.Gardening;
 import binnie.botany.genetics.EnumFlowerType;
 import binnie.botany.genetics.FlowerDefinition;
+import binnie.botany.network.PacketID;
 import binnie.core.BinnieCore;
+import binnie.core.network.packet.MessageNBT;
 import binnie.core.util.TileUtil;
 import com.mojang.authlib.GameProfile;
 import forestry.api.core.IStateMapperRegister;
@@ -24,9 +27,12 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -66,6 +72,35 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 	@SideOnly(Side.CLIENT)
 	public void registerStateMapper() {
 		ModelLoader.setCustomStateMapper(this, new StateMapperFlower());
+	}
+	@Override
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		ItemStack heldItem = player.getHeldItemMainhand();
+		if (!heldItem.isEmpty() && heldItem.getItem() == BinnieCore.getFieldKit() && player.isSneaking()) {
+			if (world.isRemote) {
+				return true;
+			}
+			TileEntity tile = world.getTileEntity(pos);
+			if (tile instanceof TileEntityFlower) {
+				TileEntityFlower tileFlower = (TileEntityFlower) tile;
+				IFlower flower = tileFlower.getFlower();
+				if (flower != null) {
+					IFlowerGenome flowerGenome = flower.getGenome();
+					NBTTagCompound info = new NBTTagCompound();
+					info.setString("Species", flowerGenome.getPrimary().getUID());
+					info.setString("Species2", flowerGenome.getSecondary().getUID());
+					info.setFloat("Age", flower.getAge() / flowerGenome.getLifespan());
+					info.setShort("Colour", (short) flowerGenome.getPrimaryColor().getID());
+					info.setShort("Colour2", (short) flowerGenome.getSecondaryColor().getID());
+					info.setBoolean("Wilting", flower.isWilted());
+					info.setBoolean("Flowered", flower.hasFlowered());
+					Botany.proxy.sendToPlayer(new MessageNBT(PacketID.FIELDKIT.ordinal(), info), player);
+					heldItem.damageItem(1, player);
+				}
+			}
+			return true;
+		}
+		return false;
 	}
 
 	@Override

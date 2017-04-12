@@ -6,8 +6,10 @@ import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.events.EventMouse;
+import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.core.craftgui.renderer.RenderUtil;
 import binnie.core.genetics.BreedingSystem;
 
 import com.mojang.authlib.GameProfile;
@@ -15,6 +17,7 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 
 import javax.annotation.Nullable;
 
@@ -66,29 +69,28 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 	@Override
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 
-		//TODO RENDERING
-//		IIcon icon = null;
-//		if (this.species == null) {
-//			return;
-//		}
-//		final BreedingSystem system = Binnie.Genetics.getSystem(this.species.getRoot());
-//		switch (this.discovered) {
-//		case Show: {
-//			super.onRenderForeground();
-//			return;
-//		}
-//		case Discovered: {
-//			icon = system.getDiscoveredIcon();
-//			break;
-//		}
-//		case Undiscovered: {
-//			icon = system.getUndiscoveredIcon();
-//			break;
-//		}
-//		}
-//		if (icon != null) {
-//			CraftGUI.Render.iconItem(IPoint.ZERO, icon);
-//		}
+		TextureAtlasSprite icon = null;
+		if (this.species == null) {
+			return;
+		}
+		BreedingSystem system = Binnie.GENETICS.getSystem(this.species.getRoot());
+		switch (this.discovered) {
+			case Show: {
+				super.onRenderForeground(guiWidth, guiHeight);
+				return;
+			}
+			case Discovered: {
+				icon = system.getDiscoveredIcon();
+				break;
+			}
+			case Undiscovered: {
+				icon = system.getUndiscoveredIcon();
+				break;
+			}
+		}
+		if (icon != null) {
+			RenderUtil.drawGuiSprite(Point.ZERO, icon);
+		}
 	}
 
 	@Override

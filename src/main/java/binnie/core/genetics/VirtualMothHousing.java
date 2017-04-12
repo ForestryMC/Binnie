@@ -36,7 +36,6 @@ public class VirtualMothHousing extends VirtualHousing implements IButterflyNurs
 
 	@Override
 	public World getWorldObj() {
-		// TODO Auto-generated method stub
-		return null;
+		return getWorld();
 	}
 }

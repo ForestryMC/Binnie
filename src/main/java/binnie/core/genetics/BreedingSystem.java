@@ -17,11 +17,14 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IMutation;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.genetics.ISpeciesType;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -318,13 +321,15 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 		return discoveredSpecies;
 	}
 
-//	public IIcon getUndiscoveredIcon() {
-//		return this.iconUndiscovered.getIcon();
-//	}
-//
-//	public IIcon getDiscoveredIcon() {
-//		return this.iconDiscovered.getIcon();
-//	}
+	@SideOnly(Side.CLIENT)
+	public TextureAtlasSprite getUndiscoveredIcon() {
+		return this.iconUndiscovered.getSprite();
+	}
+
+	@SideOnly(Side.CLIENT)
+	public TextureAtlasSprite getDiscoveredIcon() {
+		return this.iconDiscovered.getSprite();
+	}
 
 	public abstract float getChance(final IMutation p0, final EntityPlayer p1, final IAlleleSpecies p2, final IAlleleSpecies p3);
 
