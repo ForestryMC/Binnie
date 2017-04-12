@@ -36,6 +36,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -459,11 +461,10 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 			}
 			case Power: {
 				final TileEntity tile2 = world.getTileEntity(pos);
-				//TODO ENERGY
-//			if (tile2 instanceof IEnergyReceiver) {
-//				((IEnergyReceiver) tile2).receiveEnergy(EnumFacing.UP, 5, true);
-//				break;
-//			}
+				if (tile2.hasCapability(CapabilityEnergy.ENERGY, EnumFacing.UP)) {
+					IEnergyStorage storage = tile2.getCapability(CapabilityEnergy.ENERGY, EnumFacing.UP);
+					storage.receiveEnergy(5, false);
+				}
 				break;
 			}
 		}
