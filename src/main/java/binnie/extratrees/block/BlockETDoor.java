@@ -1,40 +1,39 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.block;
 
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import java.util.List;
 import binnie.Binnie;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraft.tileentity.TileEntity;
 import binnie.core.block.BlockMetadata;
-import net.minecraft.item.ItemStack;
-import java.util.ArrayList;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
-import net.minecraft.client.renderer.IconFlipped;
+import binnie.core.block.IBlockMetadata;
+import binnie.core.block.TileEntityMetadata;
 import binnie.extratrees.ExtraTrees;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import binnie.core.block.TileEntityMetadata;
-import net.minecraft.world.IBlockAccess;
 import forestry.api.core.Tabs;
-import net.minecraft.block.material.Material;
-import net.minecraft.util.IIcon;
-import binnie.core.block.IBlockMetadata;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.IconFlipped;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockETDoor extends BlockDoor implements IBlockMetadata
-{
+import java.util.ArrayList;
+import java.util.List;
+
+public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 	private IIcon getFlippedIcon(final boolean upper, final boolean flip, final int tileMeta) {
 		final DoorType type = getDoorType(tileMeta);
-		return upper ? (flip ? type.iconDoorUpperFlip : type.iconDoorUpper) : (flip ? type.iconDoorLowerFlip : type.iconDoorLower);
+		if (upper) {
+			return flip ? type.iconDoorUpperFlip : type.iconDoorUpper;
+		}
+		return flip ? type.iconDoorLowerFlip : type.iconDoorLower;
 	}
 
 	public static DoorType getDoorType(final int tileMeta) {
@@ -59,9 +58,9 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(final IBlockAccess par1IBlockAccess, final int par2, final int par3, final int par4, final int par5) {
+	public IIcon getIcon(final IBlockAccess blockAccess, final int x, final int y, final int z, final int par5) {
 		if (par5 != 1 && par5 != 0) {
-			final int i1 = this.getFullMetadata(par1IBlockAccess, par2, par3, par4);
+			final int i1 = this.getFullMetadata(blockAccess, x, y, z);
 			final int j1 = i1 & 0x3;
 			final boolean flag = (i1 & 0x4) != 0x0;
 			boolean flag2 = false;
@@ -69,42 +68,34 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata
 			if (flag) {
 				if (j1 == 0 && par5 == 2) {
 					flag2 = !flag2;
-				}
-				else if (j1 == 1 && par5 == 5) {
+				} else if (j1 == 1 && par5 == 5) {
+					flag2 = !flag2;
+				} else if (j1 == 2 && par5 == 3) {
+					flag2 = !flag2;
+				} else if (j1 == 3 && par5 == 4) {
 					flag2 = !flag2;
 				}
-				else if (j1 == 2 && par5 == 3) {
-					flag2 = !flag2;
-				}
-				else if (j1 == 3 && par5 == 4) {
-					flag2 = !flag2;
-				}
-			}
-			else {
+			} else {
 				if (j1 == 0 && par5 == 5) {
 					flag2 = !flag2;
-				}
-				else if (j1 == 1 && par5 == 3) {
+				} else if (j1 == 1 && par5 == 3) {
 					flag2 = !flag2;
-				}
-				else if (j1 == 2 && par5 == 4) {
+				} else if (j1 == 2 && par5 == 4) {
 					flag2 = !flag2;
-				}
-				else if (j1 == 3 && par5 == 2) {
+				} else if (j1 == 3 && par5 == 2) {
 					flag2 = !flag2;
 				}
 				if ((i1 & 0x10) != 0x0) {
 					flag2 = !flag2;
 				}
 			}
-			int tileMeta = 0;
+			int tileMeta;
 			if (flag3) {
-				tileMeta = TileEntityMetadata.getTileMetadata(par1IBlockAccess, par2, par3 - 1, par4);
+				tileMeta = TileEntityMetadata.getTileMetadata(blockAccess, x, y - 1, z);
+			} else {
+				tileMeta = TileEntityMetadata.getTileMetadata(blockAccess, x, y, z);
 			}
-			else {
-				tileMeta = TileEntityMetadata.getTileMetadata(par1IBlockAccess, par2, par3, par4);
-			}
-			return this.getFlippedIcon(flag3, flag2, tileMeta);
+			return getFlippedIcon(flag3, flag2, tileMeta);
 		}
 		return DoorType.Standard.iconDoorLower;
 	}
@@ -127,38 +118,32 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int colorMultiplier(final IBlockAccess par1IBlockAccess, final int par2, final int par3, final int par4) {
+	public int colorMultiplier(final IBlockAccess blockAccess, final int x, final int y, final int z) {
 		final int par5 = 2;
-		final int i1 = this.getFullMetadata(par1IBlockAccess, par2, par3, par4);
+		final int i1 = this.getFullMetadata(blockAccess, x, y, z);
 		final int j1 = i1 & 0x3;
 		final boolean flag = (i1 & 0x4) != 0x0;
 		boolean flag2 = false;
 		final boolean flag3 = (i1 & 0x8) != 0x0;
+		// TODO useless code?
 		if (flag) {
 			if (j1 == 0 && par5 == 2) {
 				flag2 = !flag2;
-			}
-			else if (j1 == 1 && par5 == 5) {
+			} else if (j1 == 1 && par5 == 5) {
+				flag2 = !flag2;
+			} else if (j1 == 2 && par5 == 3) {
+				flag2 = !flag2;
+			} else if (j1 == 3 && par5 == 4) {
 				flag2 = !flag2;
 			}
-			else if (j1 == 2 && par5 == 3) {
-				flag2 = !flag2;
-			}
-			else if (j1 == 3 && par5 == 4) {
-				flag2 = !flag2;
-			}
-		}
-		else {
+		} else {
 			if (j1 == 0 && par5 == 5) {
 				flag2 = !flag2;
-			}
-			else if (j1 == 1 && par5 == 3) {
+			} else if (j1 == 1 && par5 == 3) {
 				flag2 = !flag2;
-			}
-			else if (j1 == 2 && par5 == 4) {
+			} else if (j1 == 2 && par5 == 4) {
 				flag2 = !flag2;
-			}
-			else if (j1 == 3 && par5 == 2) {
+			} else if (j1 == 3 && par5 == 2) {
 				flag2 = !flag2;
 			}
 			if ((i1 & 0x10) != 0x0) {
@@ -166,25 +151,24 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata
 			}
 		}
 		if (flag3) {
-			final int meta = TileEntityMetadata.getTileMetadata(par1IBlockAccess, par2, par3 - 1, par4);
+			final int meta = TileEntityMetadata.getTileMetadata(blockAccess, x, y - 1, z);
 			return WoodManager.getPlankType(meta & 0xFF).getColour();
 		}
-		final int meta = TileEntityMetadata.getTileMetadata(par1IBlockAccess, par2, par3, par4);
+		final int meta = TileEntityMetadata.getTileMetadata(blockAccess, x, y, z);
 		return WoodManager.getPlankType(meta & 0xFF).getColour();
 	}
 
-	public int getFullMetadata(final IBlockAccess par1IBlockAccess, final int par2, final int par3, final int par4) {
-		final int l = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
+	public int getFullMetadata(final IBlockAccess blockAccess, final int x, final int y, final int pzr4) {
+		final int l = blockAccess.getBlockMetadata(x, y, pzr4);
 		final boolean flag = (l & 0x8) != 0x0;
 		int i1;
 		int j1;
 		if (flag) {
-			i1 = par1IBlockAccess.getBlockMetadata(par2, par3 - 1, par4);
+			i1 = blockAccess.getBlockMetadata(x, y - 1, pzr4);
 			j1 = l;
-		}
-		else {
+		} else {
 			i1 = l;
-			j1 = par1IBlockAccess.getBlockMetadata(par2, par3 + 1, par4);
+			j1 = blockAccess.getBlockMetadata(x, y + 1, pzr4);
 		}
 		final boolean flag2 = (j1 & 0x1) != 0x0;
 		return (i1 & 0x7) | (flag ? 8 : 0) | (flag2 ? 16 : 0);
@@ -192,24 +176,29 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void onBlockHarvested(final World par1World, final int par2, final int par3, final int par4, final int par5, final EntityPlayer par6EntityPlayer) {
-		if (par6EntityPlayer.capabilities.isCreativeMode && (par5 & 0x8) != 0x0 && par1World.getBlock(par2, par3 - 1, par4) == this) {
-			par1World.setBlockToAir(par2, par3 - 1, par4);
+	public void onBlockHarvested(final World world, final int x, final int y, final int z, final int par5, final EntityPlayer player) {
+		if (player.capabilities.isCreativeMode && (par5 & 0x8) != 0x0 && world.getBlock(x, y - 1, z) == this) {
+			world.setBlockToAir(x, y - 1, z);
 		}
 	}
 
 	@Override
 	public ArrayList<ItemStack> getDrops(final World world, final int x, final int y, final int z, final int blockMeta, final int fortune) {
-		return BlockMetadata.getBlockDropped(this, world, x, y, z, blockMeta);
+		int yCoord = y;
+		if ((blockMeta & 0x08) != 0) {
+			yCoord -= 1;
+		}
+		return BlockMetadata.getBlockDropped(this, world, x, yCoord, z, blockMeta);
 	}
 
 	@Override
+	// TODO fix deprecated code
 	public boolean removedByPlayer(final World world, final EntityPlayer player, final int x, final int y, final int z) {
 		return BlockMetadata.breakBlock(this, player, world, x, y, z);
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(final World var1, final int k) {
+	public TileEntity createNewTileEntity(final World world, final int k) {
 		return new TileEntityMetadata();
 	}
 
@@ -219,14 +208,14 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata
 	}
 
 	@Override
-	public boolean onBlockEventReceived(final World par1World, final int par2, final int par3, final int par4, final int par5, final int par6) {
-		super.onBlockEventReceived(par1World, par2, par3, par4, par5, par6);
-		final TileEntity tileentity = par1World.getTileEntity(par2, par3, par4);
-		return tileentity != null && tileentity.receiveClientEvent(par5, par6);
+	public boolean onBlockEventReceived(final World world, final int x, final int y, final int z, final int eventId, final int eventType) {
+		super.onBlockEventReceived(world, x, y, z, eventId, eventType);
+		final TileEntity tileentity = world.getTileEntity(x, y, z);
+		return tileentity != null && tileentity.receiveClientEvent(eventId, eventType);
 	}
 
 	@Override
-	public int getPlacedMeta(final ItemStack stack, final World world, final int x, final int y, final int z, final ForgeDirection clickedBlock) {
+	public int getPlacedMeta(final ItemStack stack, final World world, final int x, final int y, final int z, final ForgeDirection direction) {
 		return TileEntityMetadata.getItemDamage(stack);
 	}
 
@@ -236,8 +225,8 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata
 	}
 
 	@Override
-	public String getBlockName(final ItemStack par1ItemStack) {
-		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
+	public String getBlockName(final ItemStack itemStack) {
+		final int meta = TileEntityMetadata.getItemDamage(itemStack);
 		final String typeName = getDoorType(meta).getName();
 		final String woodName = WoodManager.getPlankType(meta & 0xFF).getName();
 		if (typeName.equals("")) {
@@ -247,7 +236,8 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata
 	}
 
 	@Override
-	public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
+	public void getBlockTooltip(final ItemStack itemStack, final List par3List) {
+		// ignored
 	}
 
 	@Override
@@ -256,7 +246,7 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata
 	}
 
 	@Override
-	public void getSubBlocks(final Item par1, final CreativeTabs par2CreativeTabs, final List itemList) {
+	public void getSubBlocks(final Item item, final CreativeTabs tab, final List itemList) {
 		for (final IPlankType type : PlankType.ExtraTreePlanks.values()) {
 			itemList.add(WoodManager.getDoor(type, DoorType.Standard));
 		}
@@ -294,9 +284,9 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata
 	}
 
 	@Override
-	public void breakBlock(final World par1World, final int par2, final int par3, final int par4, final Block par5, final int par6) {
-		super.breakBlock(par1World, par2, par3, par4, par5, par6);
-		par1World.removeTileEntity(par2, par3, par4);
+	public void breakBlock(final World world, final int x, final int y, final int z, final Block block, final int par6) {
+		super.breakBlock(world, x, y, z, block, par6);
+		world.removeTileEntity(x, y, z);
 	}
 
 	@Override
