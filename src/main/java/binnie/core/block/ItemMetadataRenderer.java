@@ -1,21 +1,19 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.block;
 
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.block.Block;
-import org.lwjgl.opengl.GL11;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
+import org.lwjgl.opengl.GL11;
 
-public class ItemMetadataRenderer implements IItemRenderer
-{
+public class ItemMetadataRenderer implements IItemRenderer {
 	@Override
 	public boolean handleRenderType(final ItemStack item, final IItemRenderer.ItemRenderType type) {
-		return type == IItemRenderer.ItemRenderType.INVENTORY || type == IItemRenderer.ItemRenderType.ENTITY || type == IItemRenderer.ItemRenderType.EQUIPPED || type == IItemRenderer.ItemRenderType.EQUIPPED_FIRST_PERSON;
+		return type == IItemRenderer.ItemRenderType.INVENTORY
+			|| type == IItemRenderer.ItemRenderType.ENTITY
+			|| type == IItemRenderer.ItemRenderType.EQUIPPED
+			|| type == IItemRenderer.ItemRenderType.EQUIPPED_FIRST_PERSON;
 	}
 
 	@Override
@@ -24,9 +22,11 @@ public class ItemMetadataRenderer implements IItemRenderer
 			return helper == IItemRenderer.ItemRendererHelper.INVENTORY_BLOCK;
 		}
 		if (type == IItemRenderer.ItemRenderType.ENTITY) {
-			return helper == IItemRenderer.ItemRendererHelper.ENTITY_BOBBING || helper == IItemRenderer.ItemRendererHelper.ENTITY_ROTATION;
+			return helper == IItemRenderer.ItemRendererHelper.ENTITY_BOBBING
+				|| helper == IItemRenderer.ItemRendererHelper.ENTITY_ROTATION;
 		}
-		return (type == IItemRenderer.ItemRenderType.EQUIPPED || type == IItemRenderer.ItemRenderType.EQUIPPED_FIRST_PERSON) && helper == IItemRenderer.ItemRendererHelper.EQUIPPED_BLOCK;
+		return (type == IItemRenderer.ItemRenderType.EQUIPPED || type == IItemRenderer.ItemRenderType.EQUIPPED_FIRST_PERSON)
+			&& helper == IItemRenderer.ItemRendererHelper.EQUIPPED_BLOCK;
 	}
 
 	@Override

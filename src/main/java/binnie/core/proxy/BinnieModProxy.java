@@ -30,19 +30,19 @@ public class BinnieModProxy implements IBinnieModProxy
 
 	@Override
 	public void sendToAll(final MessageBase packet) {
-		this.mod.getNetworkWrapper().sendToAll(packet.GetMessage());
+		this.mod.getNetworkWrapper().sendToAll(packet.getMessage());
 	}
 
 	@Override
 	public void sendToPlayer(final MessageBase packet, final EntityPlayer entityplayer) {
 		if (entityplayer instanceof EntityPlayerMP) {
-			this.mod.getNetworkWrapper().sendTo((IMessage) packet.GetMessage(), (EntityPlayerMP) entityplayer);
+			this.mod.getNetworkWrapper().sendTo((IMessage) packet.getMessage(), (EntityPlayerMP) entityplayer);
 		}
 	}
 
 	@Override
 	public void sendToServer(final MessageBase packet) {
-		this.mod.getNetworkWrapper().sendToServer(packet.GetMessage());
+		this.mod.getNetworkWrapper().sendToServer(packet.getMessage());
 	}
 
 	@Override

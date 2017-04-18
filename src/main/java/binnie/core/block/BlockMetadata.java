@@ -1,28 +1,22 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.block;
 
-import net.minecraft.util.MovingObjectPosition;
 import binnie.core.BinnieCore;
 import net.minecraft.block.Block;
-import net.minecraftforge.common.util.ForgeDirection;
-import java.util.List;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.block.BlockContainer;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import java.util.ArrayList;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.BlockContainer;
+import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockMetadata extends BlockContainer implements IBlockMetadata
-{
-	static int temporyMeta;
+import java.util.ArrayList;
+import java.util.List;
 
+public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	public BlockMetadata(final Material material) {
 		super(material);
 	}
@@ -33,12 +27,13 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata
 	}
 
 	@Override
+	// TODO fix deprecated usage
 	public boolean removedByPlayer(final World world, final EntityPlayer player, final int x, final int y, final int z) {
 		return breakBlock(this, player, world, x, y, z);
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(final World var1, final int i) {
+	public TileEntity createNewTileEntity(final World world, final int i) {
 		return new TileEntityMetadata();
 	}
 
@@ -48,31 +43,31 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata
 	}
 
 	@Override
-	public boolean onBlockEventReceived(final World par1World, final int par2, final int par3, final int par4, final int par5, final int par6) {
-		super.onBlockEventReceived(par1World, par2, par3, par4, par5, par6);
-		final TileEntity tileentity = par1World.getTileEntity(par2, par3, par4);
+	public boolean onBlockEventReceived(final World world, final int x, final int y, final int z, final int par5, final int par6) {
+		super.onBlockEventReceived(world, x, y, z, par5, par6);
+		final TileEntity tileentity = world.getTileEntity(x, y, z);
 		return tileentity != null && tileentity.receiveClientEvent(par5, par6);
 	}
 
 	@Override
-	public IIcon getIcon(final IBlockAccess par1IBlockAccess, final int par2, final int par3, final int par4, final int par5) {
-		final int metadata = TileEntityMetadata.getTileMetadata(par1IBlockAccess, par2, par3, par4);
+	public IIcon getIcon(final IBlockAccess block, final int x, final int y, final int z, final int par5) {
+		final int metadata = TileEntityMetadata.getTileMetadata(block, x, y, z);
 		return this.getIcon(par5, metadata);
 	}
 
 	@Override
-	public String getBlockName(final ItemStack par1ItemStack) {
-		return this.getLocalizedName();
+	public String getBlockName(final ItemStack itemStack) {
+		return getLocalizedName();
 	}
 
 	@Override
-	public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
+	public void getBlockTooltip(final ItemStack itemStack, final List par3List) {
+		// ignored
 	}
 
 	@Override
-	public int getPlacedMeta(final ItemStack item, final World world, final int x, final int y, final int z, final ForgeDirection clickedBlock) {
-		final int damage = TileEntityMetadata.getItemDamage(item);
-		return damage;
+	public int getPlacedMeta(final ItemStack itemStack, final World world, final int x, final int y, final int z, final ForgeDirection direction) {
+		return TileEntityMetadata.getItemDamage(itemStack);
 	}
 
 	@Override
@@ -95,9 +90,9 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata
 		final Block block2 = (Block) block;
 		final TileEntityMetadata tile = TileEntityMetadata.getTile(world, i, j, k);
 		if (tile != null && !tile.hasDroppedBlock()) {
-			final int tileMeta = TileEntityMetadata.getTileMetadata(world, i, j, k);
 			drops = block2.getDrops(world, i, j, k, world.getBlockMetadata(i, j, k), 0);
 		}
+
 		final boolean hasBeenBroken = world.setBlockToAir(i, j, k);
 		if (hasBeenBroken && BinnieCore.proxy.isSimulating(world) && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
 			for (final ItemStack drop : drops) {
@@ -109,27 +104,25 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata
 	}
 
 	@Override
-	public void dropAsStack(final World world, final int x, final int y, final int z, final ItemStack drop) {
-		this.dropBlockAsItem(world, x, y, z, drop);
+	public void dropAsStack(final World world, final int x, final int y, final int z, final ItemStack itemStack) {
+		this.dropBlockAsItem(world, x, y, z, itemStack);
 	}
 
 	@Override
-	public void breakBlock(final World par1World, final int par2, final int par3, final int par4, final Block par5, final int par6) {
-		super.breakBlock(par1World, par2, par3, par4, par5, par6);
-		par1World.removeTileEntity(par2, par3, par4);
+	public void breakBlock(final World world, final int x, final int y, final int z, final Block block, final int meta) {
+		super.breakBlock(world, x, y, z, block, meta);
+		world.removeTileEntity(x, y, z);
 	}
 
 	public static ItemStack getPickBlock(final World world, final int x, final int y, final int z) {
-		final List<ItemStack> list = getBlockDropped((IBlockMetadata) world.getBlock(x, y, z), world, x, y, z, world.getBlockMetadata(x, y, z));
+		IBlockMetadata block = (IBlockMetadata) world.getBlock(x, y, z);
+		List<ItemStack> list = getBlockDropped(block, world, x, y, z, world.getBlockMetadata(x, y, z));
 		return list.isEmpty() ? null : list.get(0);
 	}
 
 	@Override
+	// TODO fix deprecated usage
 	public ItemStack getPickBlock(final MovingObjectPosition target, final World world, final int x, final int y, final int z) {
 		return getPickBlock(world, x, y, z);
-	}
-
-	static {
-		BlockMetadata.temporyMeta = -1;
 	}
 }

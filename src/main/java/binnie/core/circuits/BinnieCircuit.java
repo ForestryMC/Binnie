@@ -1,25 +1,15 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.circuits;
 
-import net.minecraft.item.Item;
-
 import forestry.api.circuits.ChipsetManager;
-
-import java.util.ArrayList;
-
+import forestry.api.circuits.ICircuit;
+import forestry.api.circuits.ICircuitLayout;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import forestry.api.circuits.ICircuitLayout;
-
+import java.util.ArrayList;
 import java.util.List;
 
-import forestry.api.circuits.ICircuit;
-
-public class BinnieCircuit implements ICircuit
-{
+public class BinnieCircuit implements ICircuit {
 	private String uid;
 	private int limit;
 	private List<String> tooltips;
@@ -39,12 +29,12 @@ public class BinnieCircuit implements ICircuit
 	}
 
 	public void addTooltipString(final String string) {
-		this.tooltips.add(string);
+		tooltips.add(string);
 	}
 
 	@Override
 	public String getUID() {
-		return this.uid;
+		return uid;
 	}
 
 	@Override
@@ -54,17 +44,17 @@ public class BinnieCircuit implements ICircuit
 
 	@Override
 	public int getLimit() {
-		return this.limit;
+		return limit;
 	}
 
 	@Override
 	public String getName() {
-		return this.uid;
+		return uid;
 	}
 
 	@Override
 	public void addTooltip(final List<String> list) {
-		for (final String string : this.tooltips) {
+		for (final String string : tooltips) {
 			list.add(" - " + string);
 		}
 	}
@@ -76,17 +66,21 @@ public class BinnieCircuit implements ICircuit
 
 	@Override
 	public void onInsertion(int arg0, Object arg1) {
+		// ignored
 	}
 
 	@Override
 	public void onLoad(int arg0, Object arg1) {
+		// ignored
 	}
 
 	@Override
 	public void onRemoval(int arg0, Object arg1) {
+		// ignored
 	}
 
 	@Override
 	public void onTick(int arg0, Object arg1) {
+		// ignored
 	}
 }

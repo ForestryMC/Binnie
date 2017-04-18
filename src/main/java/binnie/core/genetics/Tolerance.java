@@ -1,15 +1,10 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.genetics;
 
 import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
 import forestry.api.genetics.EnumTolerance;
+import forestry.api.genetics.IAllele;
 
-public enum Tolerance
-{
+public enum Tolerance {
 	None(0, 0),
 	Both1(-1, 1),
 	Both2(-2, 2),
@@ -29,8 +24,8 @@ public enum Tolerance
 
 	private int[] bounds;
 
-	private Tolerance(final int a, final int b) {
-		this.bounds = new int[] { a, b };
+	Tolerance(final int a, final int b) {
+		this.bounds = new int[]{a, b};
 	}
 
 	public String getUID() {
@@ -50,7 +45,8 @@ public enum Tolerance
 	}
 
 	public <T extends Enum<T>> boolean canTolerate(final T base, final T test) {
-		return test.ordinal() <= base.ordinal() + this.bounds[1] && test.ordinal() >= base.ordinal() + this.bounds[0];
+		return test.ordinal() <= base.ordinal() + bounds[1]
+			&& test.ordinal() >= base.ordinal() + bounds[0];
 	}
 
 	public static <T extends Enum<T>> boolean canTolerate(final T base, final T test, final EnumTolerance tol) {

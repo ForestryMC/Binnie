@@ -76,8 +76,8 @@ public class BlockCarpentryPanel extends BlockCarpentry
 	}
 
 	@Override
-	public String getBlockName(final ItemStack stack) {
-		final DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
+	public String getBlockName(final ItemStack itemStack) {
+		final DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(itemStack));
 		return Binnie.Language.localise(ExtraTrees.instance, "block.woodenpanel.name", block.getDesign().getName());
 	}
 
@@ -120,8 +120,8 @@ public class BlockCarpentryPanel extends BlockCarpentry
 	}
 
 	@Override
-	public int getPlacedMeta(final ItemStack item, final World world, final int x, final int y, final int z, final ForgeDirection clickedBlock) {
-		final DesignBlock block = ModuleCarpentry.getCarpentryPanel(this.getDesignSystem(), TileEntityMetadata.getItemDamage(item));
+	public int getPlacedMeta(final ItemStack itemStack, final World world, final int x, final int y, final int z, final ForgeDirection clickedBlock) {
+		final DesignBlock block = ModuleCarpentry.getCarpentryPanel(this.getDesignSystem(), TileEntityMetadata.getItemDamage(itemStack));
 		ForgeDirection facing = clickedBlock;
 		boolean valid = true;
 		if (!isValidPanelPlacement(world, x, y, z, facing)) {

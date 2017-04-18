@@ -1,22 +1,14 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.util;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.ArrayList;
-import java.util.List;
 import net.minecraftforge.fluids.FluidStack;
-import java.util.Set;
 
-class FluidStackSet implements Set<FluidStack>
-{
+import java.util.*;
+
+class FluidStackSet implements Set<FluidStack> {
 	List<FluidStack> itemStacks;
 
 	FluidStackSet() {
-		this.itemStacks = new ArrayList<FluidStack>();
+		itemStacks = new ArrayList<FluidStack>();
 	}
 
 	@Override
@@ -56,12 +48,13 @@ class FluidStackSet implements Set<FluidStack>
 
 	@Override
 	public void clear() {
-		this.itemStacks.clear();
+		itemStacks.clear();
 	}
 
 	@Override
 	public boolean contains(final Object o) {
-		return o instanceof FluidStack && this.getExisting((FluidStack) o) != null;
+		return o instanceof FluidStack
+				&& getExisting((FluidStack) o) != null;
 	}
 
 	@Override
@@ -75,25 +68,23 @@ class FluidStackSet implements Set<FluidStack>
 
 	@Override
 	public boolean isEmpty() {
-		return this.itemStacks.isEmpty();
+		return itemStacks.isEmpty();
 	}
 
 	@Override
 	public Iterator<FluidStack> iterator() {
-		return this.itemStacks.iterator();
+		return itemStacks.iterator();
 	}
 
 	@Override
 	public boolean remove(final Object o) {
-		if (this.contains(o)) {
+		if (contains(o)) {
 			final FluidStack r = (FluidStack) o;
-			final FluidStack existing = this.getExisting(r);
+			final FluidStack existing = getExisting(r);
 			if (existing.amount > r.amount) {
-				final FluidStack fluidStack = existing;
-				fluidStack.amount -= r.amount;
-			}
-			else {
-				this.itemStacks.remove(existing);
+				existing.amount -= r.amount;
+			} else {
+				itemStacks.remove(existing);
 			}
 		}
 		return false;

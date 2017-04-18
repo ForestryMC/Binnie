@@ -1,30 +1,19 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.genetics;
+
+import com.mojang.authlib.GameProfile;
+import forestry.api.core.EnumHumidity;
+import forestry.api.core.EnumTemperature;
+import forestry.api.core.IErrorState;
+import forestry.api.genetics.IHousing;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 
 import java.util.Set;
 
-import forestry.api.core.IErrorState;
-
-import net.minecraft.util.ChunkCoordinates;
-import net.minecraft.world.biome.BiomeGenBase;
-
-import com.mojang.authlib.GameProfile;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-
-import forestry.api.core.EnumHumidity;
-import forestry.api.core.EnumTemperature;
-
-import net.minecraft.entity.player.EntityPlayer;
-
-import forestry.api.genetics.IHousing;
-
-class VirtualHousing implements IHousing
-{
+class VirtualHousing implements IHousing {
 	private EntityPlayer player;
 
 	public VirtualHousing(final EntityPlayer player) {

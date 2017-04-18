@@ -1,18 +1,13 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.circuits;
 
 import binnie.Binnie;
+import binnie.core.AbstractMod;
 import forestry.api.circuits.ChipsetManager;
 import forestry.api.circuits.CircuitSocketType;
-import forestry.api.circuits.ICircuitSocketType;
-import binnie.core.AbstractMod;
 import forestry.api.circuits.ICircuitLayout;
+import forestry.api.circuits.ICircuitSocketType;
 
-public class BinnieCircuitLayout implements ICircuitLayout
-{
+public class BinnieCircuitLayout implements ICircuitLayout {
 	private String uid;
 	private AbstractMod mod;
 
@@ -24,21 +19,22 @@ public class BinnieCircuitLayout implements ICircuitLayout
 
 	@Override
 	public String getUID() {
-		return "binnie.circuitLayout" + this.uid;
+		return "binnie.circuitLayout" + uid;
 	}
 
 	@Override
 	public String getName() {
-		return Binnie.Language.localise(this.mod, "circuit.layout." + this.uid.toLowerCase());
+		return Binnie.Language.localise(mod, "circuit.layout." + uid.toLowerCase());
 	}
 
 	@Override
 	public String getUsage() {
-		return Binnie.Language.localise(this.mod, "circuit.layout." + this.uid.toLowerCase() + ".usage");
+		return Binnie.Language.localise(mod, "circuit.layout." + uid.toLowerCase() + ".usage");
 	}
 
 	@Override
 	public ICircuitSocketType getSocketType() {
-		return CircuitSocketType.NONE;// TODO hmm? CircuitSocketType
+		// TODO hmm? CircuitSocketType
+		return CircuitSocketType.NONE;
 	}
 }

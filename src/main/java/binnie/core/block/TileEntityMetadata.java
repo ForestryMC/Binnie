@@ -1,21 +1,15 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.block;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.block.Block;
-import net.minecraft.world.IBlockAccess;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import binnie.core.network.packet.MessageMetadata;
 import binnie.core.BinnieCore;
-import net.minecraft.network.Packet;
+import binnie.core.network.packet.MessageMetadata;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockAccess;
 
-public class TileEntityMetadata extends TileEntity
-{
+public class TileEntityMetadata extends TileEntity {
 	private int meta;
 	private boolean droppedBlock;
 
@@ -24,10 +18,11 @@ public class TileEntityMetadata extends TileEntity
 	}
 
 	@Override
-	public boolean receiveClientEvent(final int par1, final int par2) {
+	public boolean receiveClientEvent(final int par1, final int meta) {
+		// TODO fix magic const
 		if (par1 == 42) {
-			this.meta = par2;
-			this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+			this.meta = meta;
+			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		}
 		return true;
 	}
@@ -35,7 +30,7 @@ public class TileEntityMetadata extends TileEntity
 	@Override
 	public void readFromNBT(final NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.meta = nbt.getInteger("meta");
+		meta = nbt.getInteger("meta");
 	}
 
 	@Override
@@ -50,42 +45,42 @@ public class TileEntityMetadata extends TileEntity
 	}
 
 	public int getTileMetadata() {
-		return this.meta;
+		return meta;
 	}
 
 	public void setTileMetadata(final int meta, final boolean notify) {
-		if (this.meta != meta) {
-			this.meta = meta;
-			if (notify) {
-				this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
-			}
+		if (this.meta == meta) {
+			return;
+		}
+
+		this.meta = meta;
+		if (notify) {
+			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		}
 	}
 
 	@Override
 	public Packet getDescriptionPacket() {
-		return BinnieCore.instance.getNetworkWrapper().getPacketFrom(new MessageMetadata(this.xCoord, this.yCoord, this.zCoord, this.meta).GetMessage());
+		MessageMetadata message = new MessageMetadata(xCoord, yCoord, zCoord, meta);
+		return BinnieCore.instance.getNetworkWrapper().getPacketFrom(message.getMessage());
 	}
 
 	public static TileEntityMetadata getTile(final IBlockAccess world, final int x, final int y, final int z) {
 		final TileEntity tile = world.getTileEntity(x, y, z);
-		if (!(tile instanceof TileEntityMetadata)) {
-			return null;
+		if (tile instanceof TileEntityMetadata) {
+			return (TileEntityMetadata) tile;
 		}
-		return (TileEntityMetadata) tile;
+		return null;
 	}
 
 	public static ItemStack getItemStack(final Block block, final int damage) {
-		final ItemStack item = new ItemStack(block, 1, 0);
-		setItemDamage(item, damage);
-		return item;
-	}
-
-	public static void setItemDamage(final ItemStack item, final int i) {
-		item.setItemDamage((i < 16387) ? i : 16387);
 		final NBTTagCompound tag = new NBTTagCompound();
-		tag.setInteger("meta", i);
+		tag.setInteger("meta", damage);
+
+		final ItemStack item = new ItemStack(block, 1, 0);
+		item.setItemDamage((damage < 16387) ? damage : 16387);
 		item.setTagCompound(tag);
+		return item;
 	}
 
 	public static int getItemDamage(final ItemStack item) {
@@ -101,10 +96,10 @@ public class TileEntityMetadata extends TileEntity
 	}
 
 	public boolean hasDroppedBlock() {
-		return this.droppedBlock;
+		return droppedBlock;
 	}
 
 	public void dropBlock() {
-		this.droppedBlock = true;
+		droppedBlock = true;
 	}
 }

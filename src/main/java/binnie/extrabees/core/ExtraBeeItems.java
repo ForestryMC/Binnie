@@ -141,7 +141,7 @@ public enum ExtraBeeItems implements IItemMisc
 	}
 
 	@Override
-	public IIcon getIcon(final ItemStack stack) {
+	public IIcon getIcon(final ItemStack itemStack) {
 		return this.icon;
 	}
 
@@ -152,11 +152,11 @@ public enum ExtraBeeItems implements IItemMisc
 	}
 
 	@Override
-	public void addInformation(final List par3List) {
+	public void addInformation(final List data) {
 	}
 
 	@Override
-	public String getName(final ItemStack stack) {
+	public String getName(final ItemStack itemStack) {
 		return this.name;
 	}
 

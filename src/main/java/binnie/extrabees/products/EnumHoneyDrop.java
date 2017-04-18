@@ -92,7 +92,7 @@ public enum EnumHoneyDrop implements IItemEnum
 	}
 
 	@Override
-	public String getName(final ItemStack stack) {
+	public String getName(final ItemStack itemStack) {
 		return ExtraBees.proxy.localise("item.honeydrop." + this.name().toLowerCase());
 	}
 }

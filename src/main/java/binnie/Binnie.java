@@ -1,22 +1,18 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie;
 
-import java.util.ArrayList;
-import binnie.core.resource.ManagerResource;
-import binnie.core.item.ManagerItem;
-import binnie.core.machines.ManagerMachine;
-import binnie.core.liquid.ManagerLiquid;
-import binnie.core.mod.config.ManagerConfig;
-import binnie.core.genetics.ManagerGenetics;
-import binnie.core.language.ManagerLanguage;
 import binnie.core.ManagerBase;
+import binnie.core.genetics.ManagerGenetics;
+import binnie.core.item.ManagerItem;
+import binnie.core.language.ManagerLanguage;
+import binnie.core.liquid.ManagerLiquid;
+import binnie.core.machines.ManagerMachine;
+import binnie.core.mod.config.ManagerConfig;
+import binnie.core.resource.ManagerResource;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public final class Binnie
-{
+public final class Binnie {
 	public static final List<ManagerBase> Managers;
 	public static final ManagerLanguage Language;
 	public static final ManagerGenetics Genetics;

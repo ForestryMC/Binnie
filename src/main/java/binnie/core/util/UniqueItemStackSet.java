@@ -1,24 +1,20 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.util;
 
 import net.minecraft.item.ItemStack;
 
-public class UniqueItemStackSet extends ItemStackSet
-{
+public class UniqueItemStackSet extends ItemStackSet {
 	@Override
 	public boolean add(final ItemStack e) {
-		return e != null && this.getExisting(e) == null && this.itemStacks.add(e.copy());
+		return e != null
+				&& getExisting(e) == null
+				&& itemStacks.add(e.copy());
 	}
 
 	@Override
 	public boolean remove(final Object o) {
-		if (this.contains(o)) {
-			final ItemStack r = (ItemStack) o;
-			final ItemStack existing = this.getExisting(r);
-			this.itemStacks.remove(existing);
+		if (contains(o)) {
+			final ItemStack existing = getExisting((ItemStack) o);
+			itemStacks.remove(existing);
 		}
 		return false;
 	}

@@ -1,18 +1,13 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.base;
 
+import binnie.core.machines.power.IPoweredMachine;
+import binnie.core.machines.power.PowerInfo;
 import binnie.core.machines.power.PowerInterface;
+import cpw.mods.fml.common.Optional;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
-import cpw.mods.fml.common.Optional;
-import binnie.core.machines.power.PowerInfo;
-import binnie.core.machines.power.IPoweredMachine;
 
-class DefaultPower implements IPoweredMachine
-{
+class DefaultPower implements IPoweredMachine {
 	@Override
 	public PowerInfo getPowerInfo() {
 		return new PowerInfo(this, 0.0f);

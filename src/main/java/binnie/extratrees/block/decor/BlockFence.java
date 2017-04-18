@@ -77,8 +77,8 @@ public class BlockFence extends net.minecraft.block.BlockFence implements IBlock
 	}
 
 	@Override
-	public void dropAsStack(final World world, final int x, final int y, final int z, final ItemStack drop) {
-		this.dropBlockAsItem(world, x, y, z, drop);
+	public void dropAsStack(final World world, final int x, final int y, final int z, final ItemStack itemStack) {
+		this.dropBlockAsItem(world, x, y, z, itemStack);
 	}
 
 	@Override
@@ -109,8 +109,8 @@ public class BlockFence extends net.minecraft.block.BlockFence implements IBlock
 	}
 
 	@Override
-	public int getPlacedMeta(final ItemStack stack, final World world, final int x, final int y, final int z, final ForgeDirection clickedBlock) {
-		return TileEntityMetadata.getItemDamage(stack);
+	public int getPlacedMeta(final ItemStack itemStack, final World world, final int x, final int y, final int z, final ForgeDirection direction) {
+		return TileEntityMetadata.getItemDamage(itemStack);
 	}
 
 	@Override
@@ -119,13 +119,13 @@ public class BlockFence extends net.minecraft.block.BlockFence implements IBlock
 	}
 
 	@Override
-	public String getBlockName(final ItemStack par1ItemStack) {
-		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
+	public String getBlockName(final ItemStack itemStack) {
+		final int meta = TileEntityMetadata.getItemDamage(itemStack);
 		return Binnie.Language.localise(ExtraTrees.instance, "block.woodfence.name", this.getDescription(meta).getPlankType().getName());
 	}
 
 	@Override
-	public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
+	public void getBlockTooltip(final ItemStack itemStack, final List par3List) {
 	}
 
 	@Override

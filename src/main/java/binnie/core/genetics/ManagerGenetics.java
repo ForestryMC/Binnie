@@ -1,68 +1,49 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.genetics;
 
-import binnie.botany.genetics.AlleleColor;
-import forestry.api.genetics.IAlleleInteger;
-import forestry.api.genetics.IAlleleFloat;
-import forestry.api.genetics.IGenome;
-import java.util.Comparator;
-import java.util.TreeSet;
 import binnie.Binnie;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.event.world.WorldEvent;
-import forestry.api.genetics.IIndividual;
-import net.minecraft.item.ItemStack;
-import java.util.Collection;
-import forestry.api.genetics.EnumTolerance;
 import binnie.botany.api.IFlowerRoot;
-import forestry.api.lepidopterology.IButterflyRoot;
-import forestry.api.apiculture.IBeeRoot;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.arboriculture.ITreeRoot;
-import net.minecraft.world.World;
-import forestry.api.genetics.IAlleleSpecies;
+import binnie.botany.genetics.AlleleColor;
 import binnie.core.BinnieCore;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IChromosomeType;
-import java.util.List;
-import forestry.api.genetics.ISpeciesRoot;
-import java.util.Map;
 import binnie.core.ManagerBase;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import forestry.api.apiculture.IBeeRoot;
+import forestry.api.arboriculture.ITreeRoot;
+import forestry.api.genetics.*;
+import forestry.api.lepidopterology.IButterflyRoot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import net.minecraftforge.event.world.WorldEvent;
 
-public class ManagerGenetics extends ManagerBase
-{
+import java.util.*;
+
+public class ManagerGenetics extends ManagerBase {
 	public BreedingSystem beeBreedingSystem;
 	public BreedingSystem treeBreedingSystem;
 	public BreedingSystem mothBreedingSystem;
 	public BreedingSystem flowerBreedingSystem;
-	private final Map<ISpeciesRoot, BreedingSystem> BREEDING_SYSTEMS;
+	private final Map<ISpeciesRoot, BreedingSystem> breedingSystems;
 	private List<IChromosomeType> invalidChromosomeTypes;
 	private Map<ISpeciesRoot, Map<IChromosomeType, List<IAllele>>> chromosomeArray;
 
 	public ManagerGenetics() {
-		this.BREEDING_SYSTEMS = new LinkedHashMap<ISpeciesRoot, BreedingSystem>();
-		this.invalidChromosomeTypes = new ArrayList<IChromosomeType>();
-		this.chromosomeArray = new LinkedHashMap<ISpeciesRoot, Map<IChromosomeType, List<IAllele>>>();
+		breedingSystems = new LinkedHashMap<ISpeciesRoot, BreedingSystem>();
+		invalidChromosomeTypes = new ArrayList<IChromosomeType>();
+		chromosomeArray = new LinkedHashMap<ISpeciesRoot, Map<IChromosomeType, List<IAllele>>>();
 	}
 
 	@Override
 	public void init() {
 		if (BinnieCore.isApicultureActive()) {
-			this.beeBreedingSystem = new BeeBreedingSystem();
+			beeBreedingSystem = new BeeBreedingSystem();
 		}
 		if (BinnieCore.isArboricultureActive()) {
-			this.treeBreedingSystem = new TreeBreedingSystem();
+			treeBreedingSystem = new TreeBreedingSystem();
 		}
 		if (BinnieCore.isLepidopteryActive()) {
-			this.mothBreedingSystem = new MothBreedingSystem();
+			mothBreedingSystem = new MothBreedingSystem();
 		}
 		if (BinnieCore.isBotanyActive()) {
-			this.flowerBreedingSystem = new FlowerBreedingSystem();
+			flowerBreedingSystem = new FlowerBreedingSystem();
 		}
 	}
 
@@ -92,7 +73,7 @@ public class ManagerGenetics extends ManagerBase
 	}
 
 	public BreedingSystem getSystem(final String string) {
-		for (final BreedingSystem system : this.BREEDING_SYSTEMS.values()) {
+		for (final BreedingSystem system : this.breedingSystems.values()) {
 			if (system.getIdent().equals(string)) {
 				return system;
 			}
@@ -122,11 +103,11 @@ public class ManagerGenetics extends ManagerBase
 	}
 
 	public Collection<BreedingSystem> getActiveSystems() {
-		return this.BREEDING_SYSTEMS.values();
+		return this.breedingSystems.values();
 	}
 
 	public void registerBreedingSystem(final BreedingSystem system) {
-		this.BREEDING_SYSTEMS.put(system.getSpeciesRoot(), system);
+		this.breedingSystems.put(system.getSpeciesRoot(), system);
 	}
 
 	public BreedingSystem getConversionSystem(final ItemStack stack) {
@@ -185,8 +166,7 @@ public class ManagerGenetics extends ManagerBase
 				system.addExtraAlleles(chromosome, alleles);
 				if (alleles.size() == 0) {
 					this.invalidChromosomeTypes.add(chromosome);
-				}
-				else {
+				} else {
 					final List<IAllele> alleleList = new ArrayList<IAllele>();
 					alleleList.addAll(alleles);
 					chromosomeMap.put(chromosome, alleleList);
@@ -197,19 +177,18 @@ public class ManagerGenetics extends ManagerBase
 	}
 
 	public Map<IChromosomeType, List<IAllele>> getChromosomeMap(final ISpeciesRoot root) {
-		return this.chromosomeArray.get(root);
+		return chromosomeArray.get(root);
 	}
 
 	public Collection<IChromosomeType> getActiveChromosomes(final ISpeciesRoot root) {
-		return this.getChromosomeMap(root).keySet();
+		return getChromosomeMap(root).keySet();
 	}
 
 	public boolean isInvalidChromosome(final IChromosomeType type) {
-		return this.invalidChromosomeTypes.contains(type);
+		return invalidChromosomeTypes.contains(type);
 	}
 
-	static class ComparatorAllele implements Comparator<IAllele>
-	{
+	static class ComparatorAllele implements Comparator<IAllele> {
 		@Override
 		public int compare(final IAllele o1, final IAllele o2) {
 			if (o1 == null || o2 == null) {

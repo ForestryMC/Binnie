@@ -104,8 +104,8 @@ public class ItemETDoor extends ItemMetadata
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public IIcon getIconFromDamage(final int par1) {
-		final DoorType type = BlockETDoor.getDoorType(par1);
+	public IIcon getIconFromDamage(final int damage) {
+		final DoorType type = BlockETDoor.getDoorType(damage);
 		return type.iconItem;
 	}
 

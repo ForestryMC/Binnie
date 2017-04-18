@@ -1,22 +1,17 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.base;
 
+import binnie.core.machines.inventory.IInventoryMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import binnie.core.machines.inventory.IInventoryMachine;
 
-class DefaultInventory implements IInventoryMachine
-{
+class DefaultInventory implements IInventoryMachine {
 	@Override
 	public int getSizeInventory() {
 		return 0;
 	}
 
 	@Override
-	public ItemStack getStackInSlot(final int i) {
+	public ItemStack getStackInSlot(final int slot) {
 		return null;
 	}
 
@@ -31,7 +26,8 @@ class DefaultInventory implements IInventoryMachine
 	}
 
 	@Override
-	public void setInventorySlotContents(final int i, final ItemStack itemstack) {
+	public void setInventorySlotContents(final int i, final ItemStack itemStack) {
+		// ignored
 	}
 
 	@Override
@@ -40,12 +36,12 @@ class DefaultInventory implements IInventoryMachine
 	}
 
 	@Override
-	public boolean isUseableByPlayer(final EntityPlayer entityplayer) {
+	public boolean isUseableByPlayer(final EntityPlayer player) {
 		return false;
 	}
 
 	@Override
-	public boolean isItemValidForSlot(final int i, final ItemStack itemstack) {
+	public boolean isItemValidForSlot(final int i, final ItemStack itemStack) {
 		return false;
 	}
 
@@ -55,12 +51,12 @@ class DefaultInventory implements IInventoryMachine
 	}
 
 	@Override
-	public boolean canInsertItem(final int i, final ItemStack itemstack, final int j) {
+	public boolean canInsertItem(final int i, final ItemStack itemStack, final int j) {
 		return false;
 	}
 
 	@Override
-	public boolean canExtractItem(final int i, final ItemStack itemstack, final int j) {
+	public boolean canExtractItem(final int i, final ItemStack itemStack, final int j) {
 		return false;
 	}
 
@@ -81,13 +77,16 @@ class DefaultInventory implements IInventoryMachine
 
 	@Override
 	public void markDirty() {
+		// ignored
 	}
 
 	@Override
 	public void openInventory() {
+		// ignored
 	}
 
 	@Override
 	public void closeInventory() {
+		// ignored
 	}
 }

@@ -1,24 +1,18 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.block;
 
-import net.minecraft.util.IIcon;
-import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.world.IBlockAccess;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraft.world.World;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
-public class ItemMetadata extends ItemBlock
-{
+import java.util.List;
+
+public class ItemMetadata extends ItemBlock {
 	public ItemMetadata(final Block block) {
 		super(block);
 	}
@@ -34,13 +28,12 @@ public class ItemMetadata extends ItemBlock
 		if (!(block instanceof IBlockMetadata)) {
 			return false;
 		}
+
 		final int placedMeta = ((IBlockMetadata) block).getPlacedMeta(stack, world, x, y, z, ForgeDirection.values()[side]);
-		if (placedMeta < 0) {
+		if (placedMeta < 0 || !world.setBlock(x, y, z, block, metadata, 3)) {
 			return false;
 		}
-		if (!world.setBlock(x, y, z, block, metadata, 3)) {
-			return false;
-		}
+
 		if (world.getBlock(x, y, z) == block) {
 			final TileEntityMetadata tile = TileEntityMetadata.getTile(world, x, y, z);
 			if (tile != null) {
@@ -60,12 +53,12 @@ public class ItemMetadata extends ItemBlock
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final List par3List, final boolean par4) {
-		((IBlockMetadata) this.field_150939_a).getBlockTooltip(par1ItemStack, par3List);
+	public void addInformation(final ItemStack itemStack, final EntityPlayer player, final List par3List, final boolean par4) {
+		((IBlockMetadata) this.field_150939_a).getBlockTooltip(itemStack, par3List);
 	}
 
 	@Override
-	public IIcon getIconFromDamage(final int par1) {
-		return this.field_150939_a.getIcon(1, par1);
+	public IIcon getIconFromDamage(final int damage) {
+		return this.field_150939_a.getIcon(1, damage);
 	}
 }

@@ -1,22 +1,14 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.util;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.ArrayList;
-import java.util.List;
 import net.minecraft.item.ItemStack;
-import java.util.Set;
 
-public class ItemStackSet implements Set<ItemStack>
-{
+import java.util.*;
+
+public class ItemStackSet implements Set<ItemStack> {
 	List<ItemStack> itemStacks;
 
 	public ItemStackSet() {
-		this.itemStacks = new ArrayList<ItemStack>();
+		itemStacks = new ArrayList<ItemStack>();
 	}
 
 	@Override
@@ -25,7 +17,7 @@ public class ItemStackSet implements Set<ItemStack>
 	}
 
 	protected ItemStack getExisting(final ItemStack stack) {
-		for (final ItemStack stack2 : this.itemStacks) {
+		for (final ItemStack stack2 : itemStacks) {
 			if (stack2.isItemEqual(stack)) {
 				return stack2;
 			}
@@ -36,8 +28,8 @@ public class ItemStackSet implements Set<ItemStack>
 	@Override
 	public boolean add(final ItemStack e) {
 		if (e != null) {
-			if (this.getExisting(e) == null) {
-				return this.itemStacks.add(e.copy());
+			if (getExisting(e) == null) {
+				return itemStacks.add(e.copy());
 			}
 			final ItemStack existing = this.getExisting(e);
 			existing.stackSize += e.stackSize;
@@ -56,12 +48,13 @@ public class ItemStackSet implements Set<ItemStack>
 
 	@Override
 	public void clear() {
-		this.itemStacks.clear();
+		itemStacks.clear();
 	}
 
 	@Override
 	public boolean contains(final Object o) {
-		return o instanceof ItemStack && this.getExisting((ItemStack) o) != null;
+		return o instanceof ItemStack
+				&& getExisting((ItemStack) o) != null;
 	}
 
 	@Override
@@ -75,12 +68,12 @@ public class ItemStackSet implements Set<ItemStack>
 
 	@Override
 	public boolean isEmpty() {
-		return this.itemStacks.isEmpty();
+		return itemStacks.isEmpty();
 	}
 
 	@Override
 	public Iterator<ItemStack> iterator() {
-		return this.itemStacks.iterator();
+		return itemStacks.iterator();
 	}
 
 	@Override
@@ -89,11 +82,9 @@ public class ItemStackSet implements Set<ItemStack>
 			final ItemStack r = (ItemStack) o;
 			final ItemStack existing = this.getExisting(r);
 			if (existing.stackSize > r.stackSize) {
-				final ItemStack itemStack = existing;
-				itemStack.stackSize -= r.stackSize;
-			}
-			else {
-				this.itemStacks.remove(existing);
+				existing.stackSize -= r.stackSize;
+			} else {
+				itemStacks.remove(existing);
 			}
 		}
 		return false;
@@ -103,8 +94,8 @@ public class ItemStackSet implements Set<ItemStack>
 	public boolean removeAll(final Collection<?> c) {
 		boolean addedAll = true;
 		for (final Object o : c) {
-			final boolean removed = this.remove(o);
-			addedAll = (removed && addedAll);
+			final boolean removed = remove(o);
+			addedAll = removed && addedAll;
 		}
 		return false;
 	}
@@ -116,16 +107,16 @@ public class ItemStackSet implements Set<ItemStack>
 
 	@Override
 	public int size() {
-		return this.itemStacks.size();
+		return itemStacks.size();
 	}
 
 	@Override
 	public Object[] toArray() {
-		return this.itemStacks.toArray();
+		return itemStacks.toArray();
 	}
 
 	@Override
 	public <T> T[] toArray(final T[] a) {
-		return this.itemStacks.toArray(a);
+		return itemStacks.toArray(a);
 	}
 }

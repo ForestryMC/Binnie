@@ -66,7 +66,7 @@ public enum EnumPropolis implements IItemEnum
 	}
 
 	@Override
-	public String getName(final ItemStack stack) {
+	public String getName(final ItemStack itemStack) {
 		return ExtraBees.proxy.localise("item.propolis." + this.name().toLowerCase());
 	}
 }

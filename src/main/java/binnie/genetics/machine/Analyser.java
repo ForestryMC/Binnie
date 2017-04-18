@@ -260,7 +260,7 @@ public class Analyser
 
 		@SideOnly(Side.CLIENT)
 		@Override
-		public void renderInWorld(final RenderItem customRenderItem, final double x, final double y, final double z) {
+		public void renderInWorld(final RenderItem renderItem, final double x, final double y, final double z) {
 			if (!this.getUtil().getProcess().isInProgress()) {
 				return;
 			}
@@ -280,7 +280,7 @@ public class Analyser
 			GL11.glPushMatrix();
 			GL11.glRotatef(180.0f, 0.0f, 0.0f, 1.0f);
 			GL11.glTranslatef(0.0f, -0.2f, 0.0f);
-			customRenderItem.doRender(this.dummyEntityItem, 0.0, 0.0, 0.0, 0.0f, 0.0f);
+			renderItem.doRender(this.dummyEntityItem, 0.0, 0.0, 0.0, 0.0f, 0.0f);
 			GL11.glPopMatrix();
 		}
 

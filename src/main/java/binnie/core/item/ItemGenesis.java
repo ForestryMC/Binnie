@@ -1,32 +1,27 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.item;
 
+import binnie.core.BinnieCore;
 import binnie.core.gui.BinnieCoreGUI;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
-import net.minecraft.item.ItemStack;
-import forestry.api.core.Tabs;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import binnie.core.BinnieCore;
+import forestry.api.core.Tabs;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
-public class ItemGenesis extends Item
-{
+public class ItemGenesis extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(final IIconRegister register) {
-		this.itemIcon = BinnieCore.proxy.getIcon(register, "genesis");
+		itemIcon = BinnieCore.proxy.getIcon(register, "genesis");
 	}
 
 	public ItemGenesis() {
-		this.setCreativeTab(Tabs.tabApiculture);
-		this.setUnlocalizedName("genesis");
-		this.setMaxStackSize(1);
+		setCreativeTab(Tabs.tabApiculture);
+		setUnlocalizedName("genesis");
+		setMaxStackSize(1);
 	}
 
 	@Override

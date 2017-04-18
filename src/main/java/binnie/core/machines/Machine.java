@@ -4,11 +4,9 @@
 
 package binnie.core.machines;
 
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import binnie.core.network.packet.MessageTileNBT;
 import binnie.core.network.BinnieCorePacketID;
 import net.minecraft.network.Packet;
-import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTUtil;
 import net.minecraft.nbt.NBTTagCompound;
 import binnie.core.machines.power.ITankMachine;
@@ -269,7 +267,7 @@ public class Machine implements INetworkedEntity, INBTTagable, INetwork.TilePack
 		if (nbt.hasNoTags()) {
 			return null;
 		}
-		return BinnieCore.instance.getNetworkWrapper().getPacketFrom(new MessageTileNBT(BinnieCorePacketID.TileDescriptionSync.ordinal(), this.getTileEntity(), nbt).GetMessage());
+		return BinnieCore.instance.getNetworkWrapper().getPacketFrom(new MessageTileNBT(BinnieCorePacketID.TileDescriptionSync.ordinal(), this.getTileEntity(), nbt).getMessage());
 	}
 
 	@Override

@@ -1,11 +1,6 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.inventory;
 
-enum AccessDirection
-{
+enum AccessDirection {
 	Both,
 	In,
 	Out,
@@ -31,8 +26,7 @@ enum AccessDirection
 			if (this == AccessDirection.Neither) {
 				return AccessDirection.In;
 			}
-		}
-		else {
+		} else {
 			if (this == AccessDirection.Both) {
 				return AccessDirection.Out;
 			}
@@ -51,8 +45,7 @@ enum AccessDirection
 			if (this == AccessDirection.Neither) {
 				return AccessDirection.Out;
 			}
-		}
-		else {
+		} else {
 			if (this == AccessDirection.Both) {
 				return AccessDirection.In;
 			}
@@ -65,35 +58,29 @@ enum AccessDirection
 
 	public String getTextColour() {
 		switch (this) {
-		case Both: {
-			return "§a";
+			case Both:
+				return "§a";
+
+			case In:
+				return "§e";
+
+			case Neither:
+				return "§c";
 		}
-		case In: {
-			return "§e";
-		}
-		case Neither: {
-			return "§c";
-		}
-		default: {
-			return "§b";
-		}
-		}
+		return "§b";
 	}
 
 	public int getShadeColour() {
 		switch (this) {
-		case Both: {
-			return 1431699285;
+			case Both:
+				return 0x5555ff55;
+
+			case In:
+				return 0x55ffff55;
+
+			case Neither:
+				return 0x55ff5555;
 		}
-		case In: {
-			return 1442840405;
-		}
-		case Neither: {
-			return 1442796885;
-		}
-		default: {
-			return 1431699455;
-		}
-		}
+		return 0x5555ffff;
 	}
 }

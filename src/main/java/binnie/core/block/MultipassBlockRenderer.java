@@ -1,31 +1,19 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.block;
 
 import binnie.core.BinnieCore;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.block.Block;
-import org.lwjgl.opengl.GL11;
-import net.minecraft.client.renderer.Tessellator;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.world.IBlockAccess;
+import org.lwjgl.opengl.GL11;
 
-public class MultipassBlockRenderer implements ISimpleBlockRenderingHandler
-{
+public class MultipassBlockRenderer implements ISimpleBlockRenderingHandler {
 	public static MultipassBlockRenderer instance;
-	private static int layer;
+	private static int layer = 0;
 
 	public MultipassBlockRenderer() {
 		MultipassBlockRenderer.instance = this;
-	}
-
-	private void setColour(final Tessellator tess, final int colour) {
-		final float var6 = (colour >> 16 & 0xFF) / 255.0f;
-		final float var7 = (colour >> 8 & 0xFF) / 255.0f;
-		final float var8 = (colour & 0xFF) / 255.0f;
-		GL11.glColor3f(var6, var7, var8);
 	}
 
 	public static int getLayer() {
@@ -37,10 +25,11 @@ public class MultipassBlockRenderer implements ISimpleBlockRenderingHandler
 		block.setBlockBoundsForItemRender();
 		renderer.setRenderBoundsFromBlock(block);
 		GL11.glTranslatef(-0.5f, -0.5f, -0.5f);
+
 		MultipassBlockRenderer.layer = 0;
 		while (MultipassBlockRenderer.layer < ((IMultipassBlock) block).getNumberOfPasses()) {
 			this.renderItem(block, renderer, meta);
-			++MultipassBlockRenderer.layer;
+			MultipassBlockRenderer.layer++;
 		}
 		MultipassBlockRenderer.layer = 0;
 	}
@@ -51,7 +40,7 @@ public class MultipassBlockRenderer implements ISimpleBlockRenderingHandler
 		MultipassBlockRenderer.layer = 0;
 		while (MultipassBlockRenderer.layer < ((IMultipassBlock) block).getNumberOfPasses()) {
 			r = renderer.renderStandardBlock(block, x, y, z);
-			++MultipassBlockRenderer.layer;
+			MultipassBlockRenderer.layer++;
 		}
 		MultipassBlockRenderer.layer = 0;
 		return r;
@@ -68,28 +57,33 @@ public class MultipassBlockRenderer implements ISimpleBlockRenderingHandler
 	}
 
 	public void renderItem(final Block block, final RenderBlocks renderer, final int meta) {
-		this.setColor(((IMultipassBlock) block).colorMultiplier(meta));
+		setColor(((IMultipassBlock) block).colorMultiplier(meta));
 		final Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
 		tessellator.setNormal(0.0f, -1.0f, 0.0f);
 		renderer.renderFaceYNeg(block, 0.0, 0.0, 0.0, renderer.getBlockIconFromSideAndMetadata(block, 0, meta));
 		tessellator.draw();
+
 		tessellator.startDrawingQuads();
 		tessellator.setNormal(0.0f, 1.0f, 0.0f);
 		renderer.renderFaceYPos(block, 0.0, 0.0, 0.0, renderer.getBlockIconFromSideAndMetadata(block, 1, meta));
 		tessellator.draw();
+
 		tessellator.startDrawingQuads();
 		tessellator.setNormal(0.0f, 0.0f, -1.0f);
 		renderer.renderFaceZNeg(block, 0.0, 0.0, 0.0, renderer.getBlockIconFromSideAndMetadata(block, 2, meta));
 		tessellator.draw();
+
 		tessellator.startDrawingQuads();
 		tessellator.setNormal(0.0f, 0.0f, 1.0f);
 		renderer.renderFaceZPos(block, 0.0, 0.0, 0.0, renderer.getBlockIconFromSideAndMetadata(block, 3, meta));
 		tessellator.draw();
+
 		tessellator.startDrawingQuads();
 		tessellator.setNormal(-1.0f, 0.0f, 0.0f);
 		renderer.renderFaceXNeg(block, 0.0, 0.0, 0.0, renderer.getBlockIconFromSideAndMetadata(block, 4, meta));
 		tessellator.draw();
+
 		tessellator.startDrawingQuads();
 		tessellator.setNormal(1.0f, 0.0f, 0.0f);
 		renderer.renderFaceXPos(block, 0.0, 0.0, 0.0, renderer.getBlockIconFromSideAndMetadata(block, 5, meta));
@@ -101,9 +95,5 @@ public class MultipassBlockRenderer implements ISimpleBlockRenderingHandler
 		final float f2 = (l >> 8 & 0xFF) / 255.0f;
 		final float f3 = (l & 0xFF) / 255.0f;
 		GL11.glColor3f(f, f2, f3);
-	}
-
-	static {
-		MultipassBlockRenderer.layer = 0;
 	}
 }

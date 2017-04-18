@@ -1,13 +1,8 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core;
 
 import binnie.Binnie;
 
-public abstract class ManagerBase implements IInitializable
-{
+public abstract class ManagerBase implements IInitializable {
 	public ManagerBase() {
 		Binnie.Managers.add(this);
 	}

@@ -1,42 +1,38 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.liquid;
 
-import java.util.HashMap;
-import net.minecraft.item.EnumAction;
-import binnie.extratrees.alcohol.drink.IDrinkLiquid;
+import binnie.Binnie;
 import binnie.extratrees.alcohol.AlcoholEffect;
 import binnie.extratrees.alcohol.drink.DrinkManager;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
-import net.minecraft.util.IIcon;
-import java.util.List;
-import net.minecraft.item.Item;
+import binnie.extratrees.alcohol.drink.IDrinkLiquid;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import binnie.Binnie;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraft.item.ItemStack;
 import net.minecraft.creativetab.CreativeTabs;
-import java.util.Map;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumAction;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
 
-public class ItemFluidContainer extends ItemFood
-{
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class ItemFluidContainer extends ItemFood {
 	private FluidContainer container;
-	public static int LiquidExtraBee;
-	public static int LiquidExtraTree;
-	public static int LiquidJuice;
-	public static int LiquidAlcohol;
-	public static int LiquidSpirit;
-	public static int LiquidLiqueuer;
-	public static int LiquidGenetics;
-	private static Map<Integer, String> idToFluid;
-	private static Map<String, Integer> fluidToID;
+	public static int LiquidExtraBee = 64;
+	public static int LiquidExtraTree = 128;
+	public static int LiquidJuice = 256;
+	public static int LiquidAlcohol = 384;
+	public static int LiquidSpirit = 512;
+	public static int LiquidLiqueuer = 640;
+	public static int LiquidGenetics = 768;
+
+	private static Map<Integer, String> idToFluid = new HashMap<Integer, String>();
+	private static Map<String, Integer> fluidToID = new HashMap<String, Integer>();
 
 	public static void registerFluid(final IFluidType fluid, final int id) {
 		ItemFluidContainer.idToFluid.put(id, fluid.getIdentifier().toLowerCase());
@@ -47,10 +43,10 @@ public class ItemFluidContainer extends ItemFood
 		super(0, false);
 		this.container = container;
 		container.item = this;
-		this.maxStackSize = container.getMaxStackSize();
-		this.setHasSubtypes(true);
-		this.setUnlocalizedName("container" + container.name());
-		this.setCreativeTab(CreativeTabs.tabMaterials);
+		maxStackSize = container.getMaxStackSize();
+		setHasSubtypes(true);
+		setUnlocalizedName("container" + container.name());
+		setCreativeTab(CreativeTabs.tabMaterials);
 	}
 
 	private FluidStack getLiquid(final ItemStack stack) {
@@ -61,7 +57,7 @@ public class ItemFluidContainer extends ItemFood
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(final IIconRegister register) {
-		this.container.updateIcons(register);
+		container.updateIcons(register);
 	}
 
 	@Override
@@ -69,20 +65,18 @@ public class ItemFluidContainer extends ItemFood
 		if (itemstack == null) {
 			return "???";
 		}
-		final FluidStack fluid = this.getLiquid(itemstack);
+
+		final FluidStack fluid = getLiquid(itemstack);
 		if (fluid == null) {
 			return "Missing Fluid";
 		}
-		return fluid.getFluid().getLocalizedName(fluid) + " " + this.container.getName();
+		return fluid.getFluid().getLocalizedName(fluid) + " " + container.getName();
 	}
 
 	@Override
-	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List itemList) {
+	public void getSubItems(final Item item, final CreativeTabs tab, final List itemList) {
 		for (final IFluidType liquid : Binnie.Liquid.fluids.values()) {
-			if (!liquid.canPlaceIn(this.container)) {
-				continue;
-			}
-			if (!liquid.showInCreative(this.container)) {
+			if (!liquid.canPlaceIn(container) || !liquid.showInCreative(container)) {
 				continue;
 			}
 			itemList.add(this.getContainer(liquid));
@@ -91,16 +85,15 @@ public class ItemFluidContainer extends ItemFood
 
 	public ItemStack getContainer(final IFluidType liquid) {
 		final int id = ItemFluidContainer.fluidToID.get(liquid.getIdentifier().toLowerCase());
-		final ItemStack itemstack = new ItemStack(this, 1, id);
-		return itemstack;
+		return new ItemStack(this, 1, id);
 	}
 
 	@Override
-	public IIcon getIcon(final ItemStack itemstack, final int j) {
+	public IIcon getIcon(final ItemStack itemStack, final int j) {
 		if (j > 0) {
-			return this.container.getBottleIcon();
+			return container.getBottleIcon();
 		}
-		return this.container.getContentsIcon();
+		return container.getContentsIcon();
 	}
 
 	@Override
@@ -125,18 +118,20 @@ public class ItemFluidContainer extends ItemFood
 	public ItemStack onEaten(final ItemStack stack, final World world, final EntityPlayer player) {
 		player.getFoodStats().func_151686_a(this, stack);
 		world.playSoundAtEntity(player, "random.burp", 0.5f, world.rand.nextFloat() * 0.1f + 0.9f);
-		this.onFoodEaten(stack, world, player);
-		return this.container.getEmpty();
+		onFoodEaten(stack, world, player);
+		return container.getEmpty();
 	}
 
 	@Override
 	protected void onFoodEaten(final ItemStack stack, final World world, final EntityPlayer player) {
-		if (!world.isRemote) {
-			final FluidStack fluid = this.getLiquid(stack);
-			final IDrinkLiquid liquid = DrinkManager.getLiquid(fluid);
-			if (liquid != null) {
-				AlcoholEffect.makeDrunk(player, liquid.getABV() * fluid.amount);
-			}
+		if (world.isRemote) {
+			return;
+		}
+
+		final FluidStack fluid = this.getLiquid(stack);
+		final IDrinkLiquid liquid = DrinkManager.getLiquid(fluid);
+		if (liquid != null) {
+			AlcoholEffect.makeDrunk(player, liquid.getABV() * fluid.amount);
 		}
 	}
 
@@ -147,12 +142,12 @@ public class ItemFluidContainer extends ItemFood
 
 	@Override
 	public EnumAction getItemUseAction(final ItemStack stack) {
-		return this.isDrinkable(stack) ? EnumAction.drink : EnumAction.none;
+		return isDrinkable(stack) ? EnumAction.drink : EnumAction.none;
 	}
 
 	@Override
 	public ItemStack onItemRightClick(final ItemStack stack, final World world, final EntityPlayer player) {
-		if (this.isDrinkable(stack)) {
+		if (isDrinkable(stack)) {
 			player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
 		}
 		return stack;
@@ -172,17 +167,5 @@ public class ItemFluidContainer extends ItemFood
 		final FluidStack fluid = this.getLiquid(stack);
 		final IDrinkLiquid liquid = DrinkManager.getLiquid(fluid);
 		return liquid != null && liquid.isConsumable();
-	}
-
-	static {
-		ItemFluidContainer.LiquidExtraBee = 64;
-		ItemFluidContainer.LiquidExtraTree = 128;
-		ItemFluidContainer.LiquidJuice = 256;
-		ItemFluidContainer.LiquidAlcohol = 384;
-		ItemFluidContainer.LiquidSpirit = 512;
-		ItemFluidContainer.LiquidLiqueuer = 640;
-		ItemFluidContainer.LiquidGenetics = 768;
-		ItemFluidContainer.idToFluid = new HashMap<Integer, String>();
-		ItemFluidContainer.fluidToID = new HashMap<String, Integer>();
 	}
 }

@@ -4,59 +4,55 @@
 
 package binnie.core;
 
-import binnie.core.network.BinniePacketHandler;
-import binnie.core.mod.config.ConfigurationMain;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraftforge.client.event.TextureStitchEvent;
-import binnie.core.network.BinnieCorePacketID;
-import binnie.core.network.IPacketID;
-import binnie.core.proxy.IBinnieProxy;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.server.MinecraftServer;
-import forestry.api.core.ForestryEvent;
-import java.util.ArrayList;
-import forestry.plugins.PluginManager;
-import binnie.core.block.TileEntityMetadata;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import binnie.core.block.MultipassBlockRenderer;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.network.IGuiHandler;
-import binnie.core.gui.BinnieGUIHandler;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import net.minecraft.item.Item;
-import binnie.core.mod.parser.ItemParser;
-import binnie.core.mod.parser.FieldParser;
-import cpw.mods.fml.common.registry.GameRegistry;
-import binnie.core.liquid.ItemFluidContainer;
-import binnie.core.liquid.FluidContainer;
-import binnie.core.gui.BinnieCoreGUI;
-import binnie.core.gui.IBinnieGUID;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import binnie.core.triggers.ModuleTrigger;
-import cpw.mods.fml.common.Loader;
-import binnie.core.item.ModuleItems;
-import binnie.core.machines.storage.ModuleStorage;
-import binnie.craftgui.minecraft.ModuleCraftGUI;
-import binnie.core.mod.config.ConfigurationMods;
 import binnie.Binnie;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import binnie.core.block.MultipassBlockRenderer;
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.gui.BinnieCoreGUI;
+import binnie.core.gui.BinnieGUIHandler;
+import binnie.core.gui.IBinnieGUID;
 import binnie.core.item.ItemFieldKit;
 import binnie.core.item.ItemGenesis;
+import binnie.core.item.ModuleItems;
+import binnie.core.liquid.FluidContainer;
+import binnie.core.liquid.ItemFluidContainer;
 import binnie.core.machines.MachineGroup;
-import java.util.List;
-import cpw.mods.fml.common.SidedProxy;
+import binnie.core.machines.storage.ModuleStorage;
+import binnie.core.mod.config.ConfigurationMain;
+import binnie.core.mod.config.ConfigurationMods;
+import binnie.core.mod.parser.FieldParser;
+import binnie.core.mod.parser.ItemParser;
+import binnie.core.network.BinnieCorePacketID;
+import binnie.core.network.BinniePacketHandler;
+import binnie.core.network.IPacketID;
 import binnie.core.proxy.BinnieProxy;
+import binnie.core.proxy.IBinnieProxy;
+import binnie.core.triggers.ModuleTrigger;
+import binnie.craftgui.minecraft.ModuleCraftGUI;
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.ForestryEvent;
+import forestry.plugins.PluginManager;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
+import net.minecraftforge.client.event.TextureStitchEvent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Mod(modid = "BinnieCore", name = "Binnie Core", useMetadata = true)
-public final class BinnieCore extends AbstractMod
-{
+public final class BinnieCore extends AbstractMod {
 	@Mod.Instance("BinnieCore")
 	public static BinnieCore instance;
 	@SidedProxy(clientSide = "binnie.core.proxy.BinnieProxyClient", serverSide = "binnie.core.proxy.BinnieProxyServer")
@@ -71,15 +67,16 @@ public final class BinnieCore extends AbstractMod
 	public void preInit(final FMLPreInitializationEvent evt) {
 		Binnie.Configuration.registerConfiguration(ConfigurationMods.class, this);
 		for (final ManagerBase baseManager : Binnie.Managers) {
-			this.addModule(baseManager);
+			addModule(baseManager);
 		}
-		this.addModule(new ModuleCraftGUI());
-		this.addModule(new ModuleStorage());
-		this.addModule(new ModuleItems());
+
+		addModule(new ModuleCraftGUI());
+		addModule(new ModuleStorage());
+		addModule(new ModuleItems());
 		if (Loader.isModLoaded("BuildCraft|Silicon")) {
-			this.addModule(new ModuleTrigger());
+			addModule(new ModuleTrigger());
 		}
-		this.preInit();
+		preInit();
 	}
 
 	@Mod.EventHandler
@@ -114,6 +111,7 @@ public final class BinnieCore extends AbstractMod
 		for (final AbstractMod mod : getActiveMods()) {
 			NetworkRegistry.INSTANCE.registerGuiHandler(mod, new BinnieGUIHandler(mod));
 		}
+
 		BinnieCore.multipassRenderID = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(new MultipassBlockRenderer());
 		GameRegistry.registerTileEntity(TileEntityMetadata.class, "binnie.tile.metadata");
@@ -212,7 +210,7 @@ public final class BinnieCore extends AbstractMod
 
 	@Override
 	public Class<?>[] getConfigs() {
-		return new Class[] { ConfigurationMain.class };
+		return new Class[]{ConfigurationMain.class};
 	}
 
 	@Override
@@ -229,8 +227,7 @@ public final class BinnieCore extends AbstractMod
 		BinnieCore.modList = new ArrayList<AbstractMod>();
 	}
 
-	public static class PacketHandler extends BinniePacketHandler
-	{
+	public static class PacketHandler extends BinniePacketHandler {
 		public PacketHandler() {
 			super(BinnieCore.instance);
 		}

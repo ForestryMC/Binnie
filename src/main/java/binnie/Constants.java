@@ -1,11 +1,6 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie;
 
-public final class Constants
-{
+public final class Constants {
 	public static final String LiquidJuice = "juice";
 	public static final String LiquidWater = "water";
 	public static final String LiquidSeedOil = "seedoil";
