@@ -2,6 +2,7 @@
 # IntelliJ
 /build
 /run
+/eclipse
 /out
 .idea
 *.iml
