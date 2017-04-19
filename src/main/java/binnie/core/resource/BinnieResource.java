@@ -1,14 +1,9 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.resource;
 
-import net.minecraft.util.ResourceLocation;
 import binnie.core.AbstractMod;
+import net.minecraft.util.ResourceLocation;
 
-public class BinnieResource
-{
+public class BinnieResource {
 	String mod;
 	private ResourceType type;
 	String path;
@@ -23,15 +18,16 @@ public class BinnieResource
 		this.path = path;
 	}
 
+	// TODO unused method?
 	public String getFullPath() {
-		return "/assets/" + this.mod + "/textures/" + this.type.toString() + "/" + this.path;
+		return "/assets/" + mod + "/textures/" + type.toString() + "/" + path;
 	}
 
 	public ResourceLocation getResourceLocation() {
-		return new ResourceLocation(this.mod, "textures/" + this.type.toString() + "/" + this.path);
+		return new ResourceLocation(mod, "textures/" + type.toString() + "/" + path);
 	}
 
 	public String getShortPath() {
-		return "textures/" + this.type.toString() + "/" + this.path;
+		return "textures/" + type.toString() + "/" + path;
 	}
 }

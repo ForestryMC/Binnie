@@ -1,11 +1,6 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.resource;
 
-public enum ResourceType
-{
+public enum ResourceType {
 	Item("items"),
 	Block("blocks"),
 	Tile("tile"),
@@ -15,12 +10,12 @@ public enum ResourceType
 
 	String name;
 
-	private ResourceType(final String name) {
+	ResourceType(final String name) {
 		this.name = name;
 	}
 
 	@Override
 	public String toString() {
-		return this.name;
+		return name;
 	}
 }

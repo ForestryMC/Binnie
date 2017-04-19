@@ -1,22 +1,18 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.resource;
 
+import binnie.core.AbstractMod;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import binnie.core.AbstractMod;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class ManagerResource
-{
+public class ManagerResource {
 	private List<BinnieIcon> icons;
 
 	public ManagerResource() {
-		this.icons = new ArrayList<BinnieIcon>();
+		this.icons = new ArrayList<>();
 	}
 
 	public BinnieResource getPNG(final AbstractMod mod, final ResourceType type, final String path) {
