@@ -35,9 +35,4 @@ public class ControlTankSlot extends ControlSlotFluid {
 		this.itemDisplay.setCroppedZone(this.itemDisplay, new Area(0, 16 - height, 16, 16));
 		super.onUpdateClient();
 	}
-
-	@Override
-	public void onRenderBackground(int guiWidth, int guiHeight) {
-		super.onRenderBackground(guiWidth, guiHeight);
-	}
 }

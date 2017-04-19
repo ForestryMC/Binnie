@@ -38,14 +38,11 @@ public class Tooltip {
 	}
 
 	public String getLine(final int index) {
-		final String string = this.getList().get(index);
-		return string;
+		return this.getList().get(index);
 	}
 
 	public void add(final List<String> list) {
-		for (final String obj : list) {
-			this.tooltip.add(obj);
-		}
+		this.tooltip.addAll(list);
 	}
 
 	public List<String> getList() {

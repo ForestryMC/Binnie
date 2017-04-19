@@ -370,10 +370,9 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 
 	@Override
 	public boolean trySpawnFruitBlock(ITreeGenome genome, World world, Random rand, BlockPos pos) {
-		if (this.pod != null && world.rand.nextFloat() <= genome.getSappiness()) {
-			return TreeManager.treeRoot.setFruitBlock(world, genome, this, genome.getSappiness(), pos);
-		}
-		return false;
+		return this.pod != null &&
+				world.rand.nextFloat() <= genome.getSappiness() &&
+				TreeManager.treeRoot.setFruitBlock(world, genome, this, genome.getSappiness(), pos);
 	}
 
 	@Override

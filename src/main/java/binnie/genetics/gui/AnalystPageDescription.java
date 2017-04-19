@@ -26,15 +26,15 @@ public class AnalystPageDescription extends ControlAnalystPage {
 		final String branchBinomial = species.getBranch().getScientific();
 		final String branchName = species.getBranch().getName();
 		final String desc = species.getDescription();
-		String descBody = TextFormatting.ITALIC.toString();
+		StringBuilder descBody = new StringBuilder(TextFormatting.ITALIC.toString());
 		String descSig = "";
 		if (Objects.equals(desc, "") || desc.contains("for.description")) {
-			descBody += "";
+			descBody.append("");
 		} else {
 			final String[] descStrings = desc.split("\\|");
-			descBody += descStrings[0];
+			descBody.append(descStrings[0]);
 			for (int i = 1; i < descStrings.length - 1; ++i) {
-				descBody = descBody + " " + descStrings[i];
+				descBody.append(" ").append(descStrings[i]);
 			}
 			if (descStrings.length > 1) {
 				descSig += descStrings[descStrings.length - 1];

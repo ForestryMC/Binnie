@@ -259,9 +259,8 @@ public class ContainerCraftGUI extends Container {
 			}
 			if (shouldSend) {
 				//TODO INVENTORY
-				this.crafters.stream().filter(Objects::nonNull).forEach(entityPlayer -> {
-					BinnieCore.getBinnieProxy().sendToPlayer(new MessageContainerUpdate(nbt.getValue()), entityPlayer);
-				});
+				this.crafters.stream().filter(Objects::nonNull).forEach(entityPlayer ->
+						BinnieCore.getBinnieProxy().sendToPlayer(new MessageContainerUpdate(nbt.getValue()), entityPlayer));
 				sentThisTime.put(nbt.getKey(), nbt.getValue());
 			}
 		}

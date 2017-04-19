@@ -19,6 +19,7 @@ import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.genetics.TreeBreedingSystem;
 import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.block.WoodManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -54,37 +55,43 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 		this.createMode(TreeMode.FRUIT, new ModeWidgets(TreeMode.FRUIT, this) {
 			@Override
 			public void createListBox(final Area area) {
-				(this.listBox = new ControlListBox<ItemStack>(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
+				ControlListBox<ItemStack> controlListBox = new ControlListBox<ItemStack>(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
 					@Override
 					@SideOnly(Side.CLIENT)
 					public IWidget createOption(final ItemStack value, final int y) {
 						return new ControlItemStackOption(this.getContent(), value, y);
 					}
-				}).setOptions(((TreeBreedingSystem) WindowArboristDatabase.this.getBreedingSystem()).allFruits);
+				};
+				controlListBox.setOptions(((TreeBreedingSystem) WindowArboristDatabase.this.getBreedingSystem()).allFruits);
+				this.listBox = controlListBox;
 			}
 		});
 		this.createMode(TreeMode.WOOD, new ModeWidgets(TreeMode.WOOD, this) {
 			@Override
 			public void createListBox(final Area area) {
-				(this.listBox = new ControlListBox<ItemStack>(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
+				ControlListBox<ItemStack> controlListBox = new ControlListBox<ItemStack>(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
 					@Override
 					@SideOnly(Side.CLIENT)
 					public IWidget createOption(final ItemStack value, final int y) {
 						return new ControlItemStackOption(this.getContent(), value, y);
 					}
-				}).setOptions(((TreeBreedingSystem) WindowArboristDatabase.this.getBreedingSystem()).allWoods);
+				};
+				controlListBox.setOptions(((TreeBreedingSystem) WindowArboristDatabase.this.getBreedingSystem()).allWoods);
+				this.listBox = controlListBox;
 			}
 		});
 		this.createMode(TreeMode.PLANKS, new ModeWidgets(TreeMode.PLANKS, this) {
 			@Override
 			public void createListBox(final Area area) {
-				(this.listBox = new ControlListBox<ItemStack>(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
+				ControlListBox<ItemStack> controlListBox = new ControlListBox<ItemStack>(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
 					@Override
 					@SideOnly(Side.CLIENT)
 					public IWidget createOption(final ItemStack value, final int y) {
 						return new ControlItemStackOption(this.getContent(), value, y);
 					}
-				}).setOptions(WoodManager.getAllPlankTypes().stream().<ItemStack>map(type -> type.getStack()).collect(Collectors.toList()));
+				};
+				controlListBox.setOptions(WoodManager.getAllPlankTypes().stream().map(IDesignMaterial::getStack).collect(Collectors.toList()));
+				this.listBox = controlListBox;
 			}
 		});
 		new PageFruit(this.getInfoPages(TreeMode.FRUIT), new DatabaseTab(ExtraTrees.instance, "fruit.natural", 0), true);

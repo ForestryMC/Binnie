@@ -22,7 +22,7 @@ class SidedAccess {
 	}
 
 	public AccessDirection getAccess(final EnumFacing side) {
-		return this.accesses.containsKey(side) ? this.accesses.get(side) : this.base;
+		return this.accesses.getOrDefault(side, this.base);
 	}
 
 	public boolean canInsert(final EnumFacing side) {

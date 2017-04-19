@@ -55,15 +55,15 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 		if (type != null) {
 			desc = type.getDescription();
 		}
-		String descBody = "§o";
+		StringBuilder descBody = new StringBuilder("§o");
 		String descSig = "";
 		if (desc == null || desc.length() == 0) {
-			descBody += BinnieCore.getBinnieProxy().localise("gui.database.nodescription");
+			descBody.append(BinnieCore.getBinnieProxy().localise("gui.database.nodescription"));
 		} else {
 			final String[] descStrings = desc.split("\\|");
-			descBody += descStrings[0];
+			descBody.append(descStrings[0]);
 			for (int i = 1; i < descStrings.length - 1; ++i) {
-				descBody = descBody + " " + descStrings[i];
+				descBody.append(" ").append(descStrings[i]);
 			}
 			if (descStrings.length > 1) {
 				descSig += descStrings[descStrings.length - 1];

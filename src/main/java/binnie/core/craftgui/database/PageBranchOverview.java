@@ -39,16 +39,16 @@ public class PageBranchOverview extends PageBranch {
 		if (desc == null || Objects.equals(desc, "")) {
 			desc = Binnie.LANGUAGE.localise("binniecore.gui.database.no.description");
 		}
-		String line = "";
+		StringBuilder line = new StringBuilder();
 		final List<String> descLines = new ArrayList<>();
 		for (final String str : desc.split(" ")) {
 			if (RenderUtil.getTextWidth(line + " " + str) > 134) {
-				descLines.add(TextFormatting.ITALIC + line + TextFormatting.RESET);
-				line = "";
+				descLines.add(TextFormatting.ITALIC + line.toString() + TextFormatting.RESET);
+				line = new StringBuilder();
 			}
-			line = line + " " + str;
+			line.append(" ").append(str);
 		}
-		descLines.add(line);
+		descLines.add(line.toString());
 		int i = 0;
 		for (final String dLine : descLines) {
 			this.pageBranchOverview_branchDescription.add(new ControlTextCentered(this, 84 + 12 * i++, dLine));

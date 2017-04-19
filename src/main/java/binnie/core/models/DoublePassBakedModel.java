@@ -40,7 +40,7 @@ public class DoublePassBakedModel implements IBakedModel {
 	public List<BakedQuad> getQuads(@Nullable IBlockState state, @Nullable EnumFacing side, long rand) {
 		List<BakedQuad> quads = mainModel.getQuads(state, side, rand);
 		List<BakedQuad> recolored = new LinkedList<>();
-		quads.stream().forEach(quad -> {
+		quads.forEach(quad -> {
 			if (quad.hasTintIndex()) {
 				if (quad.getTintIndex() == 0)
 					recolored.add(recolorQuad(quad, primaryColor));

@@ -16,9 +16,9 @@ public interface IProxyCore extends IInitializable {
 
 	<B extends Block> void registerBlock(B block, ItemBlock itemBlock);
 
-	public void registerModels();
+	void registerModels();
 
-	public void registerItemAndBlockColors();
+	void registerItemAndBlockColors();
 
 
 }

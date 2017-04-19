@@ -20,7 +20,7 @@ public enum FruitSprite {
 	public static final FruitSprite[] VALUES = values();
 	private final ResourceLocation location;
 
-	private FruitSprite() {
+	FruitSprite() {
 		location = new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "blocks/fruit/" + name().toLowerCase(Locale.ENGLISH));
 	}
 

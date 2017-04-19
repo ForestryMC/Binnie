@@ -18,7 +18,6 @@ import forestry.arboriculture.IWoodTyped;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -204,7 +203,7 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 	@Override
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 		Random rand = world instanceof World ? ((World)world).rand : RANDOM;
-		List<ItemStack> ret = new java.util.ArrayList<ItemStack>();
+		List<ItemStack> ret = new java.util.ArrayList<>();
 		float chance = 0.75F;
 		int amount = 2;
 		while(chance >= rand.nextFloat()){
@@ -272,7 +271,7 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] { NORTH, EAST, WEST, SOUTH, FIREPROOF });
+		return new BlockStateContainer(this, NORTH, EAST, WEST, SOUTH, FIREPROOF);
 	}
 
 	@Override

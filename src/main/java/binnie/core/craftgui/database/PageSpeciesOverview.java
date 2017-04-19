@@ -49,21 +49,21 @@ public class PageSpeciesOverview extends PageSpecies {
 		this.controlAuthority.setValue(Binnie.LANGUAGE.localise("binniecore.gui.database.discovered") + ": " + TextFormatting.BOLD + species.getAuthority());
 		this.controlComplexity.setValue(Binnie.LANGUAGE.localise("binniecore.gui.database.overview.complexity") + ": " + species.getComplexity());
 		final String desc = species.getDescription();
-		String descBody = TextFormatting.ITALIC.toString();
+		StringBuilder descBody = new StringBuilder(TextFormatting.ITALIC.toString());
 		String descSig = "";
 		if (desc == null || Objects.equals(desc, "")) {
-			descBody += Binnie.LANGUAGE.localise("binniecore.gui.database.no.description");
+			descBody.append(Binnie.LANGUAGE.localise("binniecore.gui.database.no.description"));
 		} else {
 			final String[] descStrings = desc.split("\\|");
-			descBody += descStrings[0];
+			descBody.append(descStrings[0]);
 			for (int i = 1; i < descStrings.length - 1; ++i) {
-				descBody = descBody + " " + descStrings[i];
+				descBody.append(" ").append(descStrings[i]);
 			}
 			if (descStrings.length > 1) {
 				descSig += descStrings[descStrings.length - 1];
 			}
 		}
-		this.controlDescription.setValue(descBody + TextFormatting.RESET);
+		this.controlDescription.setValue(descBody.toString() + TextFormatting.RESET);
 		this.controlSignature.setValue(descSig);
 		final int descHeight = CraftGUI.render.textHeight(this.controlDescription.getValue(), this.controlDescription.getSize().x());
 		this.controlSignature.setPosition(new Point(this.controlSignature.pos().x(), this.controlDescription.getPosition().y() + descHeight + 10));

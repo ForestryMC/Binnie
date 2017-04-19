@@ -46,13 +46,9 @@ public class ModuleCore implements IInitializable {
 				final Queue<IDesignMaterial> plankQueue = new LinkedList<>();
 				Collections.addAll(plankQueue, PlankType.ExtraTreePlanks.values());
 				final Queue<AlleleETFruit> fruitQueue = new LinkedList<>();
-				for (final AlleleETFruit wood3 : AlleleETFruit.values()) {
-					fruitQueue.add(wood3);
-				}
+				fruitQueue.addAll(AlleleETFruit.values());
 				final Queue<IDesign> designQueue = new LinkedList<>();
-				for (final IDesign wood4 : CarpentryManager.carpentryInterface.getSortedDesigns()) {
-					designQueue.add(wood4);
-				}
+				designQueue.addAll(CarpentryManager.carpentryInterface.getSortedDesigns());
 				fruitQueue.remove(AlleleETFruit.Apple);
 				outputSpecies.println("<table style=\"width: 100%;\">");
 				while (!speciesQueue.isEmpty()) {

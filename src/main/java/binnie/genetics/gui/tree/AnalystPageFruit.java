@@ -39,12 +39,8 @@ public class AnalystPageFruit extends AnalystPageProduce {
 		final Collection<ItemStack> products = new UniqueItemStackSet();
 		final Collection<ItemStack> specialties = new UniqueItemStackSet();
 		final Collection<ItemStack> wiid = new UniqueItemStackSet();
-		for (final ItemStack stack : ind.getProducts().keySet()) {
-			products.add(stack);
-		}
-		for (final ItemStack stack : ind.getSpecialties().keySet()) {
-			specialties.add(stack);
-		}
+		products.addAll(ind.getProducts().keySet());
+		specialties.addAll(ind.getSpecialties().keySet());
 		try {
 			if (ind.getGenome().getFruitProvider() instanceof FruitProviderPod) {
 				final FruitProviderPod pod = (FruitProviderPod) ind.getGenome().getFruitProvider();
@@ -80,12 +76,8 @@ public class AnalystPageFruit extends AnalystPageProduce {
 			y += 26;
 		}
 		final Collection<ItemStack> allProducts = new UniqueItemStackSet();
-		for (final ItemStack stack3 : products) {
-			allProducts.add(stack3);
-		}
-		for (final ItemStack stack3 : specialties) {
-			allProducts.add(stack3);
-		}
+		allProducts.addAll(products);
+		allProducts.addAll(specialties);
 		final Collection<ItemStack> refinedProducts = new UniqueItemStackSet();
 		refinedProducts.addAll(this.getAllProductsAndFluids(allProducts));
 		if (refinedProducts.size() > 0) {
@@ -103,12 +95,8 @@ public class AnalystPageFruit extends AnalystPageProduce {
 			final Collection<ItemStack> stacks = new UniqueItemStackSet();
 			for (final IAllele a : fruitAlleles) {
 				if (((IAlleleFruit) a).getProvider().getFamily() == fam) {
-					for (final ItemStack p : ((IAlleleFruit) a).getProvider().getProducts().keySet()) {
-						stacks.add(p);
-					}
-					for (final ItemStack p : ((IAlleleFruit) a).getProvider().getSpecialty().keySet()) {
-						stacks.add(p);
-					}
+					stacks.addAll(((IAlleleFruit) a).getProvider().getProducts().keySet());
+					stacks.addAll(((IAlleleFruit) a).getProvider().getSpecialty().keySet());
 					try {
 						if (a.getUID().contains("fruitCocoa")) {
 							stacks.add(new ItemStack(Items.DYE, 1, 3));

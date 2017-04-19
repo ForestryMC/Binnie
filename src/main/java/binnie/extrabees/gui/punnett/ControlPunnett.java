@@ -58,11 +58,11 @@ public class ControlPunnett extends Control {
 						alleles.add(allele2);
 					}
 				}
-				String text = "";
+				StringBuilder text = new StringBuilder();
 				for (final IAllele allele3 : alleles) {
-					text = text + allele3.getName() + ": " + 25.0f / alleles.size() + "%\n";
+					text.append(allele3.getName()).append(": ").append(25.0f / alleles.size()).append("%\n");
 				}
-				new ControlText(this, new Area(x * ControlPunnett.boxWidth, ControlPunnett.boxHeight * y, ControlPunnett.boxWidth, ControlPunnett.boxHeight), text, TextJustification.TopCenter).setColour(11184810);
+				new ControlText(this, new Area(x * ControlPunnett.boxWidth, ControlPunnett.boxHeight * y, ControlPunnett.boxWidth, ControlPunnett.boxHeight), text.toString(), TextJustification.TopCenter).setColour(11184810);
 				++y;
 			}
 			++x;

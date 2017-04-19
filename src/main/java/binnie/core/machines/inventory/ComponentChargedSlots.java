@@ -72,7 +72,7 @@ public class ComponentChargedSlots extends MachineComponent implements INetwork.
 
 	@Override
 	public float getCharge(final int slot) {
-		return this.charges.containsKey(slot) ? this.charges.get(slot) : 0.0f;
+		return this.charges.getOrDefault(slot, 0.0f);
 	}
 
 	@Override

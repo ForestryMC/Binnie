@@ -110,7 +110,7 @@ public class MachineUtil {
 
 	@Nullable
 	public FluidStack getFluid(final int tankInput) {
-		return (this.getTank(tankInput).getFluid() == null) ? null : this.getTank(tankInput).getFluid();
+		return this.getTank(tankInput).getFluid();
 	}
 
 	public ItemStack[] getStacks(final int[] slots) {

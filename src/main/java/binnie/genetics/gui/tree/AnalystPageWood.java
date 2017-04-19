@@ -41,9 +41,7 @@ public class AnalystPageWood extends AnalystPageProduce {
 		if (!stackWood.isEmpty()) {
 			products.add(stackWood);
 		}
-		for (final ItemStack stack : ind.getGenome().getFruitProvider().getProducts().keySet()) {
-			products.add(stack);
-		}
+		products.addAll(ind.getGenome().getFruitProvider().getProducts().keySet());
 		if (products.size() > 0) {
 			new ControlTextCentered(this, y, Genetics.proxy.localise("gui.analyst.wood.logs")).setColour(this.getColour());
 			y += 10;
@@ -57,9 +55,7 @@ public class AnalystPageWood extends AnalystPageProduce {
 			y += 26;
 		}
 		final Collection<ItemStack> allProducts = new UniqueItemStackSet();
-		for (final ItemStack stack2 : products) {
-			allProducts.add(stack2);
-		}
+		allProducts.addAll(products);
 		final Collection<ItemStack> refinedProducts = new UniqueItemStackSet();
 		refinedProducts.addAll(this.getAllProductsAndFluids(allProducts));
 		if (refinedProducts.size() > 0) {

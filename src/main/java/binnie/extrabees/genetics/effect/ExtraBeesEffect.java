@@ -522,21 +522,21 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	}
 
 	public static class Birthday {
-		int day;
-		int month;
-		String name;
+		private final int month;
+		private final int date;
+		private final String name;
 
 		public boolean isToday() {
-			return Calendar.getInstance().get(5) == this.month && Calendar.getInstance().get(2) == this.day;
+			return Calendar.getInstance().get(Calendar.DATE) == this.date && Calendar.getInstance().get(Calendar.MONTH) == this.month;
 		}
 
 		public String getName() {
 			return this.name;
 		}
 
-		private Birthday(final int day, final int month, final String name) {
-			this.day = day;
-			this.month = month + 1;
+		private Birthday(final int month, final int date, final String name) {
+			this.month = month;
+			this.date = date + 1;
 			this.name = name;
 		}
 	}

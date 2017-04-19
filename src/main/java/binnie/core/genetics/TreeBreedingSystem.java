@@ -108,9 +108,7 @@ public class TreeBreedingSystem extends BreedingSystem {
 			// {
 			// this.discoveredWoods.add(wood);
 			// }
-			for (final ItemStack fruit : genome.getFruitProvider().getProducts().keySet()) {
-				this.discoveredFruits.add(fruit);
-			}
+			this.discoveredFruits.addAll(genome.getFruitProvider().getProducts().keySet());
 			for (ItemStack wood2 : this.discoveredWoods) {
 			}
 		}
@@ -134,9 +132,7 @@ public class TreeBreedingSystem extends BreedingSystem {
 			// {
 			// this.allWoods.add(wood);
 			// }
-			for (final ItemStack fruit : genome.getFruitProvider().getProducts().keySet()) {
-				this.allFruits.add(fruit);
-			}
+			this.allFruits.addAll(genome.getFruitProvider().getProducts().keySet());
 		}
 	}
 

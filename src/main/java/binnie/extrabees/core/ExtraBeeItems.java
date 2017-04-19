@@ -101,7 +101,7 @@ public enum ExtraBeeItems implements IItemMiscProvider {
 		Item woodGear = null;
 		try {
 			woodGear = (Item) Class.forName("buildcraft.BuildCraftCore").getField("woodenGearItem").get(null);
-		} catch (Exception ex) {
+		} catch (Exception ignored) {
 		}
 		ItemStack gear = new ItemStack(Blocks.PLANKS, 1);
 		if (woodGear != null) {

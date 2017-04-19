@@ -36,18 +36,18 @@ public class ControlSequencerProgress extends ControlProgressBase {
 			this.textControl.setValue("");
 		} else {
 			Random rand = new Random(stackTarget.getDisplayName().length());
-			String text = "";
+			StringBuilder text = new StringBuilder();
 			for (int i = 0; i < 65; ++i) {
 				int k = rand.nextInt(4);
 				String code = CODES[k];
 				if (rand.nextFloat() < this.progress) {
 					String color = "�" + COLORS[k];
-					text = text + "�r" + color + "�l" + code;
+					text.append("�r").append(color).append("�l").append(code);
 				} else {
-					text = text + "�r�7�k�l" + code;
+					text.append("�r�7�k�l").append(code);
 				}
 			}
-			this.textControl.setValue(text);
+			this.textControl.setValue(text.toString());
 		}
 	}
 }

@@ -20,7 +20,7 @@ public class MultiFenceRecipeSize implements IRecipe {
 	
 	@Override
 	public boolean matches(final InventoryCrafting inv, final World world) {
-		String recipePattern = "";
+		StringBuilder recipePattern = new StringBuilder();
 		List<IPlankType> types = new ArrayList<>();
 		for (int i = 0; i < inv.getSizeInventory(); ++i) {
 			ItemStack stack = inv.getStackInSlot(i);
@@ -35,7 +35,7 @@ public class MultiFenceRecipeSize implements IRecipe {
 				return false;
 			}
 			if (isEmpty) {
-				recipePattern += " ";
+				recipePattern.append(" ");
 			} else {
 				if (!types.contains(type)) {
 					types.add(type);
@@ -43,14 +43,14 @@ public class MultiFenceRecipeSize implements IRecipe {
 						return false;
 					}
 				}
-				recipePattern += types.indexOf(type);
+				recipePattern.append(types.indexOf(type));
 			}
 		}
 		if (types.isEmpty()) {
 			return false;
 		}
 		for(MultiFenceRecipePattern pattern : MultiFenceRecipePattern.VALUES){
-			if(pattern.matches(recipePattern)){
+			if(pattern.matches(recipePattern.toString())){
 				cached = pattern.createFence(types.get(0), types.get(pattern.getTypeCount() - 1));
 				return true;
 			}
