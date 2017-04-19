@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core;
 
 import binnie.Binnie;
@@ -81,12 +77,12 @@ public final class BinnieCore extends AbstractMod {
 
 	@Mod.EventHandler
 	public void init(final FMLInitializationEvent evt) {
-		this.init();
+		init();
 	}
 
 	@Mod.EventHandler
 	public void postInit(final FMLPostInitializationEvent evt) {
-		this.postInit();
+		postInit();
 	}
 
 	@Override
@@ -224,7 +220,7 @@ public final class BinnieCore extends AbstractMod {
 	}
 
 	static {
-		BinnieCore.modList = new ArrayList<AbstractMod>();
+		BinnieCore.modList = new ArrayList<>();
 	}
 
 	public static class PacketHandler extends BinniePacketHandler {

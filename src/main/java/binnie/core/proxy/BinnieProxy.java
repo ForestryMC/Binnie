@@ -1,32 +1,28 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.proxy;
 
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.IIcon;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import binnie.core.network.packet.MessageUpdate;
-import binnie.core.network.BinnieCorePacketID;
-import binnie.core.network.INetworkedEntity;
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.tileentity.TileEntity;
-import java.io.File;
-import net.minecraft.client.Minecraft;
-import cpw.mods.fml.common.FMLCommonHandler;
-import net.minecraftforge.client.IItemRenderer;
-import net.minecraft.item.Item;
-import net.minecraft.world.World;
-import net.minecraft.entity.player.EntityPlayer;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import binnie.core.resource.BinnieResource;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
+import binnie.core.network.BinnieCorePacketID;
+import binnie.core.network.INetworkedEntity;
+import binnie.core.network.packet.MessageUpdate;
+import binnie.core.resource.BinnieResource;
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
+import net.minecraftforge.client.IItemRenderer;
 
-public class BinnieProxy extends BinnieModProxy implements IBinnieProxy
-{
+import java.io.File;
+
+public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 	private short uniqueTextureUID;
 
 	public BinnieProxy() {
@@ -36,18 +32,22 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy
 
 	@Override
 	public void preInit() {
+		// ignored
 	}
 
 	@Override
 	public void init() {
+		// ignored
 	}
 
 	@Override
 	public void postInit() {
+		// ignored
 	}
 
 	@Override
 	public void bindTexture(final BinnieResource texture) {
+		// ignored
 	}
 
 	public boolean checkTexture(final BinnieResource location) {
@@ -83,6 +83,7 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy
 		return null;
 	}
 
+	// TODO unused method?
 	public void throwException(final String message, final Throwable e) {
 		FMLCommonHandler.instance().raiseException(e, message, true);
 	}
@@ -114,6 +115,7 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy
 
 	@Override
 	public void createPipe(final Item pipe) {
+		// ignored
 	}
 
 	@Override
@@ -123,6 +125,7 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy
 
 	@Override
 	public void registerBlockRenderer(final Object renderer) {
+		// ignored
 	}
 
 	@Override
@@ -131,8 +134,8 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy
 	}
 
 	public void sendNetworkEntityPacket(final INetworkedEntity entity) {
-		final MessageUpdate packet = new MessageUpdate(BinnieCorePacketID.NetworkEntityUpdate.ordinal(), entity);
-		this.sendToAll(packet);
+		MessageUpdate packet = new MessageUpdate(BinnieCorePacketID.NetworkEntityUpdate.ordinal(), entity);
+		sendToAll(packet);
 	}
 
 	@Override
@@ -140,20 +143,24 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy
 		return null;
 	}
 
+	// TODO unused method?
 	public void handleTextureRefresh(final IIconRegister register, final int type) {
+		// ignored
 	}
 
+	// TODO unused method?
 	public void handlePostTextureRefresh(final IIconRegister register, final int type) {
+		// ignored
 	}
 
 	public short getUniqueTextureUID() {
-		final short uniqueTextureUID = this.uniqueTextureUID;
-		this.uniqueTextureUID = (short) (uniqueTextureUID + 1);
+		uniqueTextureUID++;
 		return uniqueTextureUID;
 	}
 
 	@Override
 	public void bindTexture(final ResourceLocation location) {
+		// ignored
 	}
 
 	public boolean isShiftDown() {

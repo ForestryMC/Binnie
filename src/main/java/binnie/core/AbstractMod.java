@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core;
 
 import binnie.Binnie;
@@ -29,8 +25,8 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 	protected List<IInitializable> modules;
 
 	public AbstractMod() {
-		this.fields = new LinkedHashSet<Field>();
-		this.modules = new ArrayList<IInitializable>();
+		this.fields = new LinkedHashSet<>();
+		this.modules = new ArrayList<>();
 		BinnieCore.registerMod(this);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
@@ -58,7 +54,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 	public abstract String getModID();
 
 	public SimpleNetworkWrapper getNetworkWrapper() {
-		return this.wrapper;
+		return wrapper;
 	}
 
 	protected abstract Class<? extends BinniePacketHandler> getPacketHandler();
@@ -70,7 +66,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 		}
 
 		if (getConfigs() != null) {
-			for (final Class cls : this.getConfigs()) {
+			for (final Class cls : getConfigs()) {
 				Binnie.Configuration.registerConfiguration(cls, this);
 			}
 		}
@@ -79,6 +75,8 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 		for (final IInitializable module : modules) {
 			module.preInit();
 		}
+		
+		// TODO what does it mean?
 		Collections.addAll(fields, getClass().getFields());
 		for (final Class cls : getClass().getClasses()) {
 			Collections.addAll(fields, getClass().getFields());
