@@ -7,7 +7,10 @@ import binnie.core.craftgui.controls.listbox.ControlList;
 import binnie.core.craftgui.controls.listbox.ControlTextOption;
 import binnie.core.craftgui.geometry.CraftGUIUtil;
 import binnie.core.craftgui.geometry.Point;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class ControlColourOption extends ControlTextOption<IFlowerColour> {
 	ControlColourDisplay controlBee;
 	Point boxPosition;

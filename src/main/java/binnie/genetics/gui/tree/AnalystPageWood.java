@@ -17,9 +17,12 @@ import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.genetics.IAlleleBoolean;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Collection;
 
+@SideOnly(Side.CLIENT)
 public class AnalystPageWood extends AnalystPageProduce {
 	public AnalystPageWood(final IWidget parent, final Area area, final ITree ind) {
 		super(parent, area);

@@ -298,112 +298,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 
 	@SideOnly(Side.CLIENT)
 	public void createSearchDialog() {
-		new Dialog(this, 252, 192) {
-			Control slotGrid;
-			String textSearch = "";
-			boolean sortByName = false;
-			boolean includeItems = true;
-			boolean includeBlocks = true;
-
-			@Override
-			public void onClose() {
-			}
-
-			@Override
-			public void initialise() {
-				final ControlScrollableContent<IWidget> scroll = new ControlScrollableContent<IWidget>(this, 124, 16, 116, 92, 6) {
-					@Override
-					@SideOnly(Side.CLIENT)
-					public void onRenderBackground(int guiWidth, int guiHeight) {
-						RenderUtil.setColour(11184810);
-						CraftGUI.render.texture(CraftGUITexture.Outline, this.getArea().inset(new Border(0, 6, 0, 0)));
-					}
-				};
-				scroll.setScrollableContent(this.slotGrid = new Control(scroll, 1, 1, 108, 18));
-				new ControlPlayerInventory(this, true);
-				new ControlTextEdit(this, 16, 16, 100, 14).addEventHandler(new EventTextEdit.Handler() {
-					@Override
-					public void onEvent(final EventTextEdit event) {
-						textSearch = event.value;
-						updateSearch();
-					}
-				});
-				this.includeItems = true;
-				this.includeBlocks = true;
-				new ControlCheckbox(this, 16, 40, 100, "Sort A-Z", this.sortByName) {
-					@Override
-					protected void onValueChanged(final boolean value) {
-						sortByName = value;
-						updateSearch();
-					}
-				};
-				new ControlCheckbox(this, 16, 64, 100, "Include Items", this.includeItems) {
-					@Override
-					protected void onValueChanged(final boolean value) {
-						includeItems = value;
-						updateSearch();
-					}
-				};
-				new ControlCheckbox(this, 16, 88, 100, "Include Blocks", this.includeBlocks) {
-					@Override
-					protected void onValueChanged(final boolean value) {
-						includeBlocks = value;
-						updateSearch();
-					}
-				};
-				this.updateSearch();
-			}
-
-			private void updateSearch() {
-				Map<Integer, String> slotIds = new HashMap<>();
-				final IInventory inv = WindowCompartment.this.getInventory();
-				for (int i = 0; i < inv.getSizeInventory(); ++i) {
-					final ItemStack stack = inv.getStackInSlot(i);
-					if (!stack.isEmpty()) {
-						final String name = stack.getDisplayName().toLowerCase();
-						if (this.textSearch == null || name.contains(this.textSearch)) {
-							if (this.includeBlocks || Block.getBlockFromItem(stack.getItem()) == Blocks.AIR) {
-								if (this.includeItems || Block.getBlockFromItem(stack.getItem()) != Blocks.AIR) {
-									slotIds.put(i, name);
-								}
-							}
-						}
-					}
-				}
-				if (this.sortByName) {
-					final List<Entry<Integer, String>> list = new LinkedList<>(slotIds.entrySet());
-					list.sort((o1, o2) -> -o2.getValue().compareTo(o1.getValue()));
-					final Map<Integer, String> result = new LinkedHashMap<>();
-					for (final Map.Entry<Integer, String> entry : list) {
-						result.put(entry.getKey(), entry.getValue());
-					}
-					slotIds = result;
-				}
-				int y = 0;
-				int x = 0;
-				final int width = 108;
-				final int height = 2 + 18 * (1 + (slotIds.size() - 1) / 6);
-				this.slotGrid.deleteAllChildren();
-				this.slotGrid.setSize(new Point(width, height));
-				for (final int k : slotIds.keySet()) {
-					new ControlSlot.Builder(this.slotGrid, x, y).assign(k);
-					x += 18;
-					if (x >= 108) {
-						x = 0;
-						y += 18;
-					}
-				}
-				while (y < 108 || x != 0) {
-					// TODO: what was this supposed to do?
-					new ControlSlot.Builder(this.slotGrid, x, y);
-					x += 18;
-					if (x >= 108) {
-						x = 0;
-						y += 18;
-					}
-				}
-			}
-		};
+		new SearchDialog();
 	}
 
 	@Override
@@ -457,5 +352,116 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 
 	public CompartmentTab getCurrentTab() {
 		return this.getTab(this.currentTab);
+	}
+
+	private class SearchDialog extends Dialog {
+		Control slotGrid;
+		String textSearch = "";
+		boolean sortByName = false;
+		boolean includeItems = true;
+		boolean includeBlocks = true;
+
+		public SearchDialog() {
+			super(WindowCompartment.this, 252, 192);
+		}
+
+		@Override
+		public void onClose() {
+		}
+
+		@Override
+		public void initialise() {
+			final ControlScrollableContent<IWidget> scroll = new ControlScrollableContent<IWidget>(this, 124, 16, 116, 92, 6) {
+				@Override
+				@SideOnly(Side.CLIENT)
+				public void onRenderBackground(int guiWidth, int guiHeight) {
+					RenderUtil.setColour(11184810);
+					CraftGUI.render.texture(CraftGUITexture.Outline, this.getArea().inset(new Border(0, 6, 0, 0)));
+				}
+			};
+			scroll.setScrollableContent(this.slotGrid = new Control(scroll, 1, 1, 108, 18));
+			new ControlPlayerInventory(this, true);
+			new ControlTextEdit(this, 16, 16, 100, 14).addEventHandler(new EventTextEdit.Handler() {
+				@Override
+				public void onEvent(final EventTextEdit event) {
+					textSearch = event.value;
+					updateSearch();
+				}
+			});
+			this.includeItems = true;
+			this.includeBlocks = true;
+			new ControlCheckbox(this, 16, 40, 100, "Sort A-Z", this.sortByName) {
+				@Override
+				protected void onValueChanged(final boolean value) {
+					sortByName = value;
+					updateSearch();
+				}
+			};
+			new ControlCheckbox(this, 16, 64, 100, "Include Items", this.includeItems) {
+				@Override
+				protected void onValueChanged(final boolean value) {
+					includeItems = value;
+					updateSearch();
+				}
+			};
+			new ControlCheckbox(this, 16, 88, 100, "Include Blocks", this.includeBlocks) {
+				@Override
+				protected void onValueChanged(final boolean value) {
+					includeBlocks = value;
+					updateSearch();
+				}
+			};
+			this.updateSearch();
+		}
+
+		private void updateSearch() {
+			Map<Integer, String> slotIds = new HashMap<>();
+			final IInventory inv = WindowCompartment.this.getInventory();
+			for (int i = 0; i < inv.getSizeInventory(); ++i) {
+				final ItemStack stack = inv.getStackInSlot(i);
+				if (!stack.isEmpty()) {
+					final String name = stack.getDisplayName().toLowerCase();
+					if (this.textSearch == null || name.contains(this.textSearch)) {
+						if (this.includeBlocks || Block.getBlockFromItem(stack.getItem()) == Blocks.AIR) {
+							if (this.includeItems || Block.getBlockFromItem(stack.getItem()) != Blocks.AIR) {
+								slotIds.put(i, name);
+							}
+						}
+					}
+				}
+			}
+			if (this.sortByName) {
+				final List<Entry<Integer, String>> list = new LinkedList<>(slotIds.entrySet());
+				list.sort((o1, o2) -> -o2.getValue().compareTo(o1.getValue()));
+				final Map<Integer, String> result = new LinkedHashMap<>();
+				for (final Entry<Integer, String> entry : list) {
+					result.put(entry.getKey(), entry.getValue());
+				}
+				slotIds = result;
+			}
+			int y = 0;
+			int x = 0;
+			final int width = 108;
+			final int height = 2 + 18 * (1 + (slotIds.size() - 1) / 6);
+			this.slotGrid.deleteAllChildren();
+			this.slotGrid.setSize(new Point(width, height));
+			for (final int k : slotIds.keySet()) {
+				new ControlSlot.Builder(this.slotGrid, x, y).assign(k);
+				x += 18;
+				if (x >= 108) {
+					x = 0;
+					y += 18;
+				}
+			}
+			while (y < 108 || x != 0) {
+				// TODO: what was this supposed to do?
+				new ControlSlot.Builder(this.slotGrid, x, y);
+				x += 18;
+				if (x >= 108) {
+					x = 0;
+					y += 18;
+				}
+			}
+		}
 	}
 }

@@ -27,11 +27,14 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+@SideOnly(Side.CLIENT)
 public class PageSpeciesTreeGenome extends PageSpecies {
 	public PageSpeciesTreeGenome(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);

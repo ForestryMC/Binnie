@@ -12,9 +12,12 @@ import binnie.core.craftgui.minecraft.Window;
 import binnie.core.genetics.TreeBreedingSystem;
 import forestry.api.genetics.IAlleleSpecies;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Collection;
 
+@SideOnly(Side.CLIENT)
 public class PageWood extends PageAbstract<ItemStack> {
 	public PageWood(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);

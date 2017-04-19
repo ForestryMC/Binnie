@@ -18,7 +18,10 @@ import binnie.extratrees.block.IPlankType;
 import binnie.extratrees.block.WoodManager;
 import binnie.extratrees.block.decor.FenceType;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class PagePlanksOverview extends PageAbstract<ItemStack> {
 	public PagePlanksOverview(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);

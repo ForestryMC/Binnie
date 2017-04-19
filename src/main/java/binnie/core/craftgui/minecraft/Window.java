@@ -65,7 +65,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 	private EntityPlayer player;
 	@Nullable
 	private IInventory entityInventory;
-	private Side side;
+	private final Side side;
 
 	public Window(final int width, final int height, final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
 		this.titleButtonLeft = 8;
@@ -73,41 +73,39 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 		this.bgText1 = null;
 		this.bgText2 = null;
 		this.hasBeenInitialised = false;
-		this.side = Side.CLIENT;
 		this.side = side;
 		this.player = player;
 		this.entityInventory = inventory;
 		this.container = new ContainerCraftGUI(this);
 		this.windowInventory = new WindowInventory(this);
-		if (side == Side.SERVER) {
-			return;
-		}
 
-		this.setSize(new Point(width, height));
-		this.gui = new GuiCraftGUI(this);
-		for (final EnumHighlighting h : EnumHighlighting.values()) {
-			ControlSlot.highlighting.put(h, new ArrayList<>());
-		}
-		CraftGUI.render.setStyleSheet(StyleSheetManager.getDefault());
-		this.titleButtonLeft = -14;
-		if (this.showHelpButton()) {
-			new ControlHelp(this, this.titleButtonLeft += 22, 8);
-		}
-		String showInfoButton = this.showInfoButton();
-		if (showInfoButton != null) {
-			new ControlInfo(this, this.titleButtonLeft += 22, 8, showInfoButton);
-		}
-		this.addSelfEventHandler(new EventWidget.ChangeSize.Handler() {
-			@Override
-			public void onEvent(final EventWidget.ChangeSize event) {
-				if (Window.this.isClient()) {
-					Window.this.getGui().resize(Window.this.getSize());
-					if (Window.this.title != null) {
-						Window.this.title.setSize(new Point(Window.this.width(), Window.this.title.height()));
+		if (side == Side.CLIENT) {
+			this.setSize(new Point(width, height));
+			this.gui = new GuiCraftGUI(this);
+			for (final EnumHighlighting h : EnumHighlighting.values()) {
+				ControlSlot.highlighting.put(h, new ArrayList<>());
+			}
+			CraftGUI.render.setStyleSheet(StyleSheetManager.getDefault());
+			this.titleButtonLeft = -14;
+			if (this.showHelpButton()) {
+				new ControlHelp(this, this.titleButtonLeft += 22, 8);
+			}
+			String showInfoButton = this.showInfoButton();
+			if (showInfoButton != null) {
+				new ControlInfo(this, this.titleButtonLeft += 22, 8, showInfoButton);
+			}
+			this.addSelfEventHandler(new EventWidget.ChangeSize.Handler() {
+				@Override
+				public void onEvent(final EventWidget.ChangeSize event) {
+					if (Window.this.isClient()) {
+						Window.this.getGui().resize(Window.this.getSize());
+						if (Window.this.title != null) {
+							Window.this.title.setSize(new Point(Window.this.width(), Window.this.title.height()));
+						}
 					}
 				}
-			}
-		});
+			});
+		}
 	}
 
 	public void getTooltip(final Tooltip tooltip) {

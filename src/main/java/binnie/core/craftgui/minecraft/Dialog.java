@@ -12,6 +12,7 @@ import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public abstract class Dialog extends Control {
 	public Dialog(final IWidget parent, final int w, final int h) {
 		super(parent, (parent.width() - w) / 2, (parent.height() - h) / 2, w, h);

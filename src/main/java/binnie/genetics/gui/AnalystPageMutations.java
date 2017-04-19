@@ -223,7 +223,8 @@ public class AnalystPageMutations extends ControlAnalystPage {
 		y += 8;
 		this.setSize(new Point(this.width(), y));
 	}
-	
+
+	@SideOnly(Side.CLIENT)
 	private void drawSprite(BinnieSprite sprite){
 		RenderUtil.drawSprite(new Point(14, 0), sprite.getSprite());
 	}

@@ -7,7 +7,10 @@ import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.events.EventValueChanged;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IClassification;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class PageBranchSpecies extends PageBranch {
 	private ControlText pageBranchSpecies_title;
 	private ControlSpeciesBox pageBranchSpecies_speciesList;

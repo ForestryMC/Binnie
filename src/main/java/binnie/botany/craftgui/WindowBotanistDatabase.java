@@ -48,20 +48,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 		new PageSpeciesMutations(this.getInfoPages(Mode.SPECIES), new DatabaseTab(Botany.instance, "species.further", 0));
 		new PageBranchOverview(this.getInfoPages(Mode.BRANCHES), new DatabaseTab(Botany.instance, "branches.overview", 0));
 		new PageBranchSpecies(this.getInfoPages(Mode.BRANCHES), new DatabaseTab(Botany.instance, "branches.species", 0));
-		this.createMode(FlowerMode.Colour, new ModeWidgets(FlowerMode.Colour, this) {
-			@Override
-			public void createListBox(final Area area) {
-				this.listBox = new ControlListBox<IFlowerColour>(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
-					@Override
-					public IWidget createOption(final IFlowerColour value, final int y) {
-						return new ControlColourOption(this.getContent(), value, y);
-					}
-				};
-				final List<IFlowerColour> colors = new ArrayList<>();
-				Collections.addAll(colors, EnumFlowerColor.values());
-				this.listBox.setOptions(colors);
-			}
-		});
+		this.createMode(FlowerMode.Colour, new FlowerColourModeWidgets());
 		new PageColourMixResultant(this.getInfoPages(FlowerMode.Colour), new DatabaseTab(Botany.instance, "colour.resultant", 0));
 		new PageColourMix(this.getInfoPages(FlowerMode.Colour), new DatabaseTab(Botany.instance, "colour.further", 0));
 		new PageBreeder(this.getInfoPages(Mode.BREEDER), this.getUsername(), new DatabaseTab(Botany.instance, "breeder", 0));
@@ -83,6 +70,26 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 		@Override
 		public String getName() {
 			return Botany.proxy.localise("gui.database.mode." + this.name().toLowerCase());
+		}
+	}
+
+	@SideOnly(Side.CLIENT)
+	private class FlowerColourModeWidgets extends ModeWidgets {
+		public FlowerColourModeWidgets() {
+			super(FlowerMode.Colour, WindowBotanistDatabase.this);
+		}
+
+		@Override
+		public void createListBox(final Area area) {
+			this.listBox = new ControlListBox<IFlowerColour>(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
+				@Override
+				public IWidget createOption(final IFlowerColour value, final int y) {
+					return new ControlColourOption(this.getContent(), value, y);
+				}
+			};
+			final List<IFlowerColour> colors = new ArrayList<>();
+			Collections.addAll(colors, EnumFlowerColor.values());
+			this.listBox.setOptions(colors);
 		}
 	}
 }

@@ -21,7 +21,6 @@ import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlHelp;
 import binnie.core.craftgui.window.Panel;
 import binnie.core.genetics.BreedingSystem;
-import binnie.core.util.IValidator;
 
 import com.mojang.authlib.GameProfile;
 import forestry.api.genetics.IAlleleSpecies;
@@ -126,12 +125,7 @@ public abstract class WindowAbstractDatabase extends Window {
 			@Override
 			public void onEvent(final EventTextEdit event) {
 				for (final ModeWidgets widgets : WindowAbstractDatabase.this.modes.values()) {
-					widgets.listBox.setValidator(new IValidator<IWidget>() {
-						@Override
-						public boolean isValid(final IWidget object) {
-							return Objects.equals(event.getValue(), "") || ((ControlTextOption) object).getText().toLowerCase().contains(event.getValue().toLowerCase());
-						}
-					});
+					widgets.listBox.setValidator(object -> Objects.equals(event.getValue(), "") || ((ControlTextOption) object).getText().toLowerCase().contains(event.getValue().toLowerCase()));
 				}
 			}
 		}.setOrigin(EventHandler.Origin.DirectChild, this));
@@ -140,29 +134,9 @@ public abstract class WindowAbstractDatabase extends Window {
 		(this.panelSearch = new Panel(this, 176, 24, this.selectionBoxWidth, 160, MinecraftGUI.PanelType.Black)).setColour(860416);
 		this.modePages = new ControlPages<>(this, 0, 0, this.getSize().x(), this.getSize().y());
 		new ControlTextEdit(this, 176, 184, this.selectionBoxWidth, 16);
-		this.createMode(Mode.SPECIES, new ModeWidgets(Mode.SPECIES, this) {
-			@Override
-			public void createListBox(final Area area) {
-				final GameProfile playerName = WindowAbstractDatabase.this.getUsername();
-				final Collection<IAlleleSpecies> speciesList = this.database.isNEI ? this.database.system.getAllSpecies() : this.database.system.getDiscoveredSpecies(this.database.getWorld(), playerName);
-				(this.listBox = new ControlSpeciesBox(this.modePage, area.xPos(), area.yPos(), area.width(), area.height())).setOptions(speciesList);
-			}
-		});
-		this.createMode(Mode.BRANCHES, new ModeWidgets(Mode.BRANCHES, this) {
-			@Override
-			public void createListBox(final Area area) {
-				final EntityPlayer player = this.database.getPlayer();
-				final GameProfile playerName = WindowAbstractDatabase.this.getUsername();
-				final Collection<IClassification> speciesList = this.database.isNEI ? this.database.system.getAllBranches() : this.database.system.getDiscoveredBranches(this.database.getWorld(), playerName);
-				(this.listBox = new ControlBranchBox(this.modePage, area.xPos(), area.yPos(), area.width(), area.height())).setOptions(speciesList);
-			}
-		});
-		this.createMode(Mode.BREEDER, new ModeWidgets(Mode.BREEDER, this) {
-			@Override
-			public void createListBox(final Area area) {
-				this.listBox = new ControlListBox(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12);
-			}
-		});
+		this.createMode(Mode.SPECIES, new SpeciesModeWidgets());
+		this.createMode(Mode.BRANCHES, new BranchesModeWidgets());
+		this.createMode(Mode.BREEDER, new BreederModeWidgets());
 		this.addTabs();
 		final ControlTabBar<IDatabaseMode> tab = new ControlTabBar<IDatabaseMode>(this, 176 + this.selectionBoxWidth, 24, 22, 176, Position.RIGHT, this.modePages.getValues()) {
 			@Override
@@ -246,5 +220,50 @@ public abstract class WindowAbstractDatabase extends Window {
 		}
 
 		public abstract void createListBox(final Area p0);
+	}
+
+	@SideOnly(Side.CLIENT)
+	private class SpeciesModeWidgets extends ModeWidgets {
+		public SpeciesModeWidgets() {
+			super(Mode.SPECIES, WindowAbstractDatabase.this);
+		}
+
+		@Override
+		public void createListBox(final Area area) {
+			final GameProfile playerName = WindowAbstractDatabase.this.getUsername();
+			final Collection<IAlleleSpecies> speciesList = this.database.isNEI ? this.database.system.getAllSpecies() : this.database.system.getDiscoveredSpecies(this.database.getWorld(), playerName);
+			ControlSpeciesBox controlSpeciesBox = new ControlSpeciesBox(this.modePage, area.xPos(), area.yPos(), area.width(), area.height());
+			controlSpeciesBox.setOptions(speciesList);
+			this.listBox = controlSpeciesBox;
+		}
+	}
+
+	@SideOnly(Side.CLIENT)
+	private class BranchesModeWidgets extends ModeWidgets {
+		public BranchesModeWidgets() {
+			super(Mode.BRANCHES, WindowAbstractDatabase.this);
+		}
+
+		@Override
+		public void createListBox(final Area area) {
+			final EntityPlayer player = this.database.getPlayer();
+			final GameProfile playerName = WindowAbstractDatabase.this.getUsername();
+			final Collection<IClassification> speciesList = this.database.isNEI ? this.database.system.getAllBranches() : this.database.system.getDiscoveredBranches(this.database.getWorld(), playerName);
+			ControlBranchBox controlBranchBox = new ControlBranchBox(this.modePage, area.xPos(), area.yPos(), area.width(), area.height());
+			controlBranchBox.setOptions(speciesList);
+			this.listBox = controlBranchBox;
+		}
+	}
+
+	@SideOnly(Side.CLIENT)
+	private class BreederModeWidgets extends ModeWidgets {
+		public BreederModeWidgets() {
+			super(Mode.BREEDER, WindowAbstractDatabase.this);
+		}
+
+		@Override
+		public void createListBox(final Area area) {
+			this.listBox = new ControlListBox(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12);
+		}
 	}
 }

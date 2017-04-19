@@ -16,10 +16,14 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.lepidopterology.IButterfly;
 import forestry.apiculture.PluginApiculture;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import java.text.DecimalFormat;
 import java.util.Locale;
 
 //TODO:localise
+@SideOnly(Side.CLIENT)
 public class AnalystPageBiology extends ControlAnalystPage {
 	public AnalystPageBiology(final IWidget parent, final Area area, final IIndividual ind) {
 		super(parent, area);

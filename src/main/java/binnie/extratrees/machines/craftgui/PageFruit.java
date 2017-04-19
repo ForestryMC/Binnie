@@ -13,9 +13,12 @@ import binnie.core.genetics.TreeBreedingSystem;
 import binnie.extratrees.ExtraTrees;
 import forestry.api.genetics.IAlleleSpecies;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Collection;
 
+@SideOnly(Side.CLIENT)
 public class PageFruit extends PageAbstract<ItemStack> {
 	boolean treesThatBearFruit;
 
