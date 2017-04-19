@@ -4,37 +4,40 @@
 
 package binnie.core.machines.inventory;
 
-import java.util.Collection;
-import net.minecraftforge.common.util.ForgeDirection;
-import java.util.EnumSet;
 import binnie.core.util.IValidator;
 import forestry.api.core.INBTTagable;
+import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.Collection;
+import java.util.EnumSet;
 
 public abstract class BaseSlot<T> implements INBTTagable, IValidator<T>
 {
-	private SidedAccess access;
-	Validator<T> validator;
-	private boolean readOnly;
-	private int index;
+	protected Validator<T> validator;
 	protected String unlocName;
 
-	public BaseSlot(final int index, final String unlocName) {
-		this.access = new SidedAccess();
-		this.validator = null;
-		this.readOnly = false;
-		this.unlocName = "";
-		this.setIndex(index);
-		this.setUnlocalisedName(unlocName);
+	private SidedAccess access;
+	private boolean readOnly;
+	private int index;
+
+	public BaseSlot(final int index, final String unlocalizedName) {
+		access = new SidedAccess();
+		validator = null;
+		readOnly = false;
+		setIndex(index);
+		setUnlocalizedName(unlocalizedName);
 	}
 
 	public void setReadOnly() {
-		this.readOnly = true;
-		this.forbidInsertion();
+		readOnly = true;
+		forbidInsertion();
 	}
 
 	@Override
 	public boolean isValid(final T item) {
-		return item == null || this.validator == null || this.validator.isValid(item);
+		return item == null
+			|| validator == null
+			|| validator.isValid(item);
 	}
 
 	public abstract T getContent();
@@ -46,15 +49,15 @@ public abstract class BaseSlot<T> implements INBTTagable, IValidator<T>
 	}
 
 	public boolean isEmpty() {
-		return this.getContent() == null;
+		return getContent() == null;
 	}
 
 	public boolean isReadOnly() {
-		return this.readOnly;
+		return readOnly;
 	}
 
 	public int getIndex() {
-		return this.index;
+		return index;
 	}
 
 	private void setIndex(final int index) {
@@ -62,22 +65,23 @@ public abstract class BaseSlot<T> implements INBTTagable, IValidator<T>
 	}
 
 	public boolean canInsert() {
-		return !this.access.getInsertionSides().isEmpty();
+		return !access.getInsertionSides().isEmpty();
 	}
 
 	public boolean canExtract() {
-		return !this.access.getExtractionSides().isEmpty();
+		return !access.getExtractionSides().isEmpty();
 	}
 
 	public void forbidInteraction() {
-		this.forbidInsertion();
-		this.forbidExtraction();
+		forbidInsertion();
+		forbidExtraction();
 	}
 
+	// TODO unusing method?
 	public void setInputSides(final EnumSet<ForgeDirection> sides) {
 		for (final ForgeDirection side : EnumSet.complementOf(sides)) {
 			if (side != ForgeDirection.UNKNOWN) {
-				this.access.setInsert(side, false);
+				access.setInsert(side, false);
 			}
 		}
 	}
@@ -85,27 +89,27 @@ public abstract class BaseSlot<T> implements INBTTagable, IValidator<T>
 	public void setOutputSides(final EnumSet<ForgeDirection> sides) {
 		for (final ForgeDirection side : EnumSet.complementOf(sides)) {
 			if (side != ForgeDirection.UNKNOWN) {
-				this.access.setExtract(side, false);
+				access.setExtract(side, false);
 			}
 		}
 	}
 
 	public void forbidExtraction() {
-		this.access.setExtract(false);
-		this.access.forbidExtractChange();
+		access.setExtract(false);
+		access.forbidExtractChange();
 	}
 
 	public void forbidInsertion() {
-		this.access.setInsert(false);
-		this.access.forbidInsertChange();
+		access.setInsert(false);
+		access.forbidInsertChange();
 	}
 
 	public boolean canInsert(final ForgeDirection dir) {
-		return this.access.canInsert(dir);
+		return access.canInsert(dir);
 	}
 
 	public boolean canExtract(final ForgeDirection dir) {
-		return this.access.canExtract(dir);
+		return access.canExtract(dir);
 	}
 
 	public Collection<ForgeDirection> getInputSides() {
@@ -116,7 +120,7 @@ public abstract class BaseSlot<T> implements INBTTagable, IValidator<T>
 		return this.access.getExtractionSides();
 	}
 
-	public void setUnlocalisedName(final String name) {
+	public void setUnlocalizedName(final String name) {
 		this.unlocName = name;
 	}
 

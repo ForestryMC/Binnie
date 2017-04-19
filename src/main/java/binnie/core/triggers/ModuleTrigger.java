@@ -1,19 +1,13 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.triggers;
 
-import buildcraft.api.statements.ITriggerProvider;
-import binnie.extrabees.ExtraBees;
-import buildcraft.api.statements.IActionProvider;
-import buildcraft.api.statements.StatementManager;
 import binnie.core.IInitializable;
+import binnie.extrabees.ExtraBees;
+import buildcraft.api.statements.StatementManager;
 
-public class ModuleTrigger implements IInitializable
-{
+public class ModuleTrigger implements IInitializable {
 	@Override
 	public void preInit() {
+		// ignored
 	}
 
 	@Override
@@ -40,5 +34,6 @@ public class ModuleTrigger implements IInitializable
 
 	@Override
 	public void postInit() {
+		// ignored
 	}
 }

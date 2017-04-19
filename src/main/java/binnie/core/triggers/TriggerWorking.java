@@ -1,15 +1,10 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.triggers;
 
-import buildcraft.api.statements.ITriggerExternal;
 import binnie.core.machines.Machine;
 import binnie.core.machines.power.IProcess;
 
-public class TriggerWorking
-{
+// TODO unusing class?
+public class TriggerWorking {
 	public static TriggerData isNotWorking(final Object inventory) {
 		final IProcess process = Machine.getInterface(IProcess.class, inventory);
 		boolean b = false;

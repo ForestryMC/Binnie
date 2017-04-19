@@ -1,14 +1,10 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.triggers;
 
 import buildcraft.api.statements.ITriggerExternal;
+
 import java.util.Map;
 
-public class TriggerData implements Map.Entry<ITriggerExternal, Boolean>
-{
+public class TriggerData implements Map.Entry<ITriggerExternal, Boolean> {
 	private final ITriggerExternal key;
 	private Boolean value;
 
@@ -22,12 +18,12 @@ public class TriggerData implements Map.Entry<ITriggerExternal, Boolean>
 
 	@Override
 	public ITriggerExternal getKey() {
-		return this.key;
+		return key;
 	}
 
 	@Override
 	public Boolean getValue() {
-		return this.value;
+		return value;
 	}
 
 	@Override

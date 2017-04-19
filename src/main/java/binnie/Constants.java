@@ -1,5 +1,6 @@
 package binnie;
 
+// TODO unusing class?
 public final class Constants {
 	public static final String LiquidJuice = "juice";
 	public static final String LiquidWater = "water";
