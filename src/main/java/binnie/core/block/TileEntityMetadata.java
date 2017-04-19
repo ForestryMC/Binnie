@@ -24,9 +24,9 @@ public class TileEntityMetadata extends TileEntity {
 	}
 
 	@Override
-	public boolean receiveClientEvent(final int par1, final int par2) {
-		if (par1 == 42) {
-			this.meta = par2;
+	public boolean receiveClientEvent(final int id, final int type) {
+		if (id == 42) {
+			this.meta = type;
 			markDirty();
 		}
 		return true;

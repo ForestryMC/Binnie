@@ -102,7 +102,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void getSubBlocks(Item item, final CreativeTabs par2CreativeTabs, final NonNullList<ItemStack> itemList) {
+	public void getSubBlocks(Item item, final CreativeTabs tab, final NonNullList<ItemStack> itemList) {
 		for (final EnumFlowerColor color : EnumFlowerColor.values()) {
 			itemList.add(new CeramicBrickPair(color, color, CeramicBrickType.Tile).getStack(1));
 		}

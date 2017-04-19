@@ -17,7 +17,7 @@ public class ItemMetadata extends ItemBlock {
 	}
 
 	@Override
-	public int getMetadata(final int par1) {
+	public int getMetadata(final int damage) {
 		return 0;
 	}
 

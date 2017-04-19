@@ -228,8 +228,8 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata, ITileEntit
 	}
 
 	@Override
-	public String getDisplayName(ItemStack par1ItemStack) {
-		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
+	public String getDisplayName(ItemStack itemStack) {
+		final int meta = TileEntityMetadata.getItemDamage(itemStack);
 		final String typeName = getDoorType(meta).getName();
 		final String woodName = WoodManager.getPlankType(meta & 0xFF).getName();
 		if (typeName.equals("")) {
@@ -239,7 +239,7 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata, ITileEntit
 	}
 
 	@Override
-	public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final NonNullList<ItemStack> itemList) {
+	public void getSubBlocks(final Item itemIn, final CreativeTabs tab, final NonNullList<ItemStack> itemList) {
 		for (final IPlankType type : PlankType.ExtraTreePlanks.values()) {
 			itemList.add(WoodManager.getDoor(type, DoorType.Standard));
 		}

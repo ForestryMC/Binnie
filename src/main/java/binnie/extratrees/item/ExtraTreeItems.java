@@ -36,7 +36,7 @@ public enum ExtraTreeItems implements IItemMiscProvider {
 	}
 
 	@Override
-	public void addInformation(final List<String> par3List) {
+	public void addInformation(final List<String> tooltip) {
 	}
 
 	@Override

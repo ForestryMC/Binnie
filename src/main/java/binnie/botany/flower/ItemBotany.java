@@ -148,7 +148,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 	}
 
 	@Override
-	public void getSubItems(final Item item, final CreativeTabs par2CreativeTabs, final NonNullList<ItemStack> itemList) {
+	public void getSubItems(final Item item, final CreativeTabs tab, final NonNullList<ItemStack> itemList) {
 		this.addCreativeItems(itemList, true);
 	}
 

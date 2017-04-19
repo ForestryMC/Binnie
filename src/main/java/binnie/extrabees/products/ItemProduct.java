@@ -34,10 +34,10 @@ public class ItemProduct extends Item implements IItemModelRegister {
 	}
 
 	@Override
-	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final NonNullList<ItemStack> itemList) {
+	public void getSubItems(final Item itemIn, final CreativeTabs tab, final NonNullList<ItemStack> subItems) {
 		for (final IItemEnum type : this.types) {
 			if (type.isActive()) {
-				itemList.add(new ItemStack(this, 1, type.ordinal()));
+				subItems.add(new ItemStack(this, 1, type.ordinal()));
 			}
 		}
 	}

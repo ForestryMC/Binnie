@@ -53,7 +53,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 
 	/* IBLOCKMETADATA */
 	@Override
-	public String getDisplayName(final ItemStack par1ItemStack) {
+	public String getDisplayName(final ItemStack itemStack) {
 		return this.getLocalizedName();
 	}
 

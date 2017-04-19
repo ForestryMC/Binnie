@@ -102,8 +102,8 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 	}
 
 	@Override
-	public String getDisplayName(final ItemStack stack) {
-		final DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
+	public String getDisplayName(final ItemStack itemStack) {
+		final DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(itemStack));
 		return this.getBlockName(block);
 	}
 

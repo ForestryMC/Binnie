@@ -22,7 +22,7 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 	private final EnumHiveFrame frame;
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack par1ItemStack) {
+	public String getItemStackDisplayName(final ItemStack itemStack) {
 		return this.frame.getName();
 	}
 

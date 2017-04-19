@@ -19,8 +19,8 @@ public class EntityBeeLightning extends EntityLightningBolt {
 		super(world, 0, 0, 0, true);
 	}
 
-	public EntityBeeLightning(final World par1World, final double par2, final double par4, final double par6) {
-		super(par1World, par2, par4, par6, false);
+	public EntityBeeLightning(final World world, final double x, final double y, final double z) {
+		super(world, x, y, z, false);
 		this.lightningState = 2;
 		this.boltLivingTime = this.rand.nextInt(3) + 1;
 	}

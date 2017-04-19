@@ -70,7 +70,7 @@ public class GuiCraftGUI extends GuiContainer {
 	}
 
 	@Override
-	public void drawScreen(final int mouseX, final int mouseY, final float par3) {
+	public void drawScreen(final int mouseX, final int mouseY, final float partialTicks) {
 		this.window.setMousePosition(mouseX - this.window.getPosition().x(), mouseY - this.window.getPosition().y());
 		this.drawDefaultBackground();
 		GlStateManager.disableRescaleNormal();

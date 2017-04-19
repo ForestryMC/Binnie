@@ -25,7 +25,7 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 	}
 
 	@Override
-	public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final NonNullList<ItemStack> itemList) {
+	public void getSubBlocks(final Item itemIn, final CreativeTabs tab, final NonNullList<ItemStack> itemList) {
 	}
 
 	@Override
@@ -60,8 +60,8 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 	}
 
 	@Override
-	public String getDisplayName(final ItemStack stack) {
-		final DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
+	public String getDisplayName(final ItemStack itemStack) {
+		final DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(itemStack));
 		return Binnie.LANGUAGE.localise(ExtraTrees.instance, "block.woodenpanel.name", block.getDesign().getName());
 	}
 

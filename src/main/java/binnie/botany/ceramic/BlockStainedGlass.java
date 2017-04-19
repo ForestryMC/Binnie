@@ -138,13 +138,13 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 	}
 
 	@Override
-	public String getDisplayName(final ItemStack par1ItemStack) {
-		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
+	public String getDisplayName(final ItemStack itemStack) {
+		final int meta = TileEntityMetadata.getItemDamage(itemStack);
 		return EnumFlowerColor.get(meta).getColourName() + " " + Binnie.LANGUAGE.localise("tile.botany.pigmented.glass.name");
 	}
 
 	@Override
-	public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final NonNullList<ItemStack> itemList) {
+	public void getSubBlocks(final Item itemIn, final CreativeTabs tab, final NonNullList<ItemStack> itemList) {
 		for (final EnumFlowerColor c : EnumFlowerColor.values()) {
 			itemList.add(TileEntityMetadata.getItemStack(this, c.ordinal()));
 		}

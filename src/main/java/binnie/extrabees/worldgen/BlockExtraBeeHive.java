@@ -30,12 +30,12 @@ public class BlockExtraBeeHive extends Block {
 		this.setCreativeTab(Tabs.tabApiculture);
 	}
 
-	public String getUnlocalizedName(final ItemStack par1ItemStack) {
-		return "extrabees.block.hive." + par1ItemStack.getItemDamage();
+	public String getUnlocalizedName(final ItemStack itemStack) {
+		return "extrabees.block.hive." + itemStack.getItemDamage();
 	}
 
 	@Override
-	public void getSubBlocks(final Item itemIn, final CreativeTabs par2CreativeTabs, final NonNullList<ItemStack> itemList) {
+	public void getSubBlocks(final Item itemIn, final CreativeTabs tab, final NonNullList<ItemStack> itemList) {
 		for (int i = 0; i < EnumHiveType.values().length; ++i) {
 			itemList.add(new ItemStack(this, 1, i));
 		}

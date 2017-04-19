@@ -109,9 +109,9 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(final Item par1, final CreativeTabs par2CreativeTabs, final NonNullList<ItemStack> par3List) {
+	public void getSubBlocks(final Item itemIn, final CreativeTabs tab, final NonNullList<ItemStack> list) {
 		for (int i = 0; i < 9; ++i) {
-			par3List.add(new ItemStack(this, 1, i));
+			list.add(new ItemStack(this, 1, i));
 		}
 	}
 

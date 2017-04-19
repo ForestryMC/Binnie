@@ -82,18 +82,18 @@ public class ContainerCraftGUI extends Container {
 	}
 
 	@Override
-	public void onContainerClosed(final EntityPlayer par1EntityPlayer) {
-		this.crafters.remove(par1EntityPlayer);
-		super.onContainerClosed(par1EntityPlayer);
+	public void onContainerClosed(final EntityPlayer playerIn) {
+		this.crafters.remove(playerIn);
+		super.onContainerClosed(playerIn);
 		WindowInventory inventory = this.window.getWindowInventory();
 		for (int i = 0; i < inventory.getSizeInventory(); ++i) {
 			if (inventory.dispenseOnClose(i)) {
 				ItemStack stack = inventory.getStackInSlot(i);
 				if (!stack.isEmpty()) {
-					TransferRequest transferRequest = new TransferRequest(stack, par1EntityPlayer.inventory);
+					TransferRequest transferRequest = new TransferRequest(stack, playerIn.inventory);
 					stack = transferRequest.transfer(true);
 					if (!stack.isEmpty()) {
-						par1EntityPlayer.dropItem(stack, false);
+						playerIn.dropItem(stack, false);
 					}
 				}
 			}

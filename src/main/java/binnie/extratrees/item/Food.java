@@ -119,7 +119,7 @@ public enum Food implements IItemMiscProvider {
 	}
 
 	@Override
-	public void addInformation(final List<String> par3List) {
+	public void addInformation(final List<String> tooltip) {
 	}
 
 	public void addJuice(final Juice juice, final int time, final int amount, final int mulch) {
