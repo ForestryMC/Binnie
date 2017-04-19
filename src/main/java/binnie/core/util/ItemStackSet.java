@@ -5,34 +5,34 @@ import net.minecraft.item.ItemStack;
 import java.util.*;
 
 public class ItemStackSet implements Set<ItemStack> {
-	List<ItemStack> itemStacks;
+	protected List<ItemStack> itemStacks;
 
 	public ItemStackSet() {
-		itemStacks = new ArrayList<ItemStack>();
+		itemStacks = new ArrayList<>();
 	}
 
 	@Override
 	public String toString() {
-		return this.itemStacks.toString();
+		return itemStacks.toString();
 	}
 
 	protected ItemStack getExisting(final ItemStack stack) {
-		for (final ItemStack stack2 : itemStacks) {
-			if (stack2.isItemEqual(stack)) {
-				return stack2;
+		for (final ItemStack existStack : itemStacks) {
+			if (existStack.isItemEqual(stack)) {
+				return existStack;
 			}
 		}
 		return null;
 	}
 
 	@Override
-	public boolean add(final ItemStack e) {
-		if (e != null) {
-			if (getExisting(e) == null) {
-				return itemStacks.add(e.copy());
+	public boolean add(final ItemStack itemStack) {
+		if (itemStack != null) {
+			ItemStack existing = getExisting(itemStack);
+			if (existing == null) {
+				return itemStacks.add(itemStack.copy());
 			}
-			final ItemStack existing = this.getExisting(e);
-			existing.stackSize += e.stackSize;
+			existing.stackSize += itemStack.stackSize;
 		}
 		return false;
 	}
@@ -41,7 +41,7 @@ public class ItemStackSet implements Set<ItemStack> {
 	public boolean addAll(final Collection<? extends ItemStack> c) {
 		boolean addedAll = true;
 		for (final ItemStack stack : c) {
-			addedAll = (this.add(stack) && addedAll);
+			addedAll = add(stack) && addedAll;
 		}
 		return addedAll;
 	}
@@ -54,14 +54,14 @@ public class ItemStackSet implements Set<ItemStack> {
 	@Override
 	public boolean contains(final Object o) {
 		return o instanceof ItemStack
-				&& getExisting((ItemStack) o) != null;
+			&& getExisting((ItemStack) o) != null;
 	}
 
 	@Override
-	public boolean containsAll(final Collection<?> c) {
+	public boolean containsAll(final Collection<?> collection) {
 		boolean addedAll = true;
-		for (final Object o : c) {
-			addedAll = (addedAll && this.contains(o));
+		for (final Object object : collection) {
+			addedAll = addedAll && contains(object);
 		}
 		return false;
 	}
@@ -77,9 +77,9 @@ public class ItemStackSet implements Set<ItemStack> {
 	}
 
 	@Override
-	public boolean remove(final Object o) {
-		if (this.contains(o)) {
-			final ItemStack r = (ItemStack) o;
+	public boolean remove(final Object object) {
+		if (this.contains(object)) {
+			final ItemStack r = (ItemStack) object;
 			final ItemStack existing = this.getExisting(r);
 			if (existing.stackSize > r.stackSize) {
 				existing.stackSize -= r.stackSize;
@@ -91,18 +91,18 @@ public class ItemStackSet implements Set<ItemStack> {
 	}
 
 	@Override
-	public boolean removeAll(final Collection<?> c) {
+	public boolean removeAll(final Collection<?> collection) {
 		boolean addedAll = true;
-		for (final Object o : c) {
-			final boolean removed = remove(o);
+		for (final Object object : collection) {
+			final boolean removed = remove(object);
 			addedAll = removed && addedAll;
 		}
 		return false;
 	}
 
 	@Override
-	public boolean retainAll(final Collection<?> c) {
-		return this.itemStacks.retainAll(c);
+	public boolean retainAll(final Collection<?> collection) {
+		return itemStacks.retainAll(collection);
 	}
 
 	@Override
@@ -116,7 +116,7 @@ public class ItemStackSet implements Set<ItemStack> {
 	}
 
 	@Override
-	public <T> T[] toArray(final T[] a) {
-		return itemStacks.toArray(a);
+	public <T> T[] toArray(final T[] array) {
+		return itemStacks.toArray(array);
 	}
 }

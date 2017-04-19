@@ -4,16 +4,16 @@ import net.minecraft.item.ItemStack;
 
 public class UniqueItemStackSet extends ItemStackSet {
 	@Override
-	public boolean add(final ItemStack e) {
-		return e != null
-				&& getExisting(e) == null
-				&& itemStacks.add(e.copy());
+	public boolean add(final ItemStack itemStack) {
+		return itemStack != null
+			&& getExisting(itemStack) == null
+			&& itemStacks.add(itemStack.copy());
 	}
 
 	@Override
-	public boolean remove(final Object o) {
-		if (contains(o)) {
-			final ItemStack existing = getExisting((ItemStack) o);
+	public boolean remove(final Object object) {
+		if (contains(object)) {
+			final ItemStack existing = getExisting((ItemStack) object);
 			itemStacks.remove(existing);
 		}
 		return false;

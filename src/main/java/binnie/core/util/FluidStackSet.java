@@ -5,43 +5,43 @@ import net.minecraftforge.fluids.FluidStack;
 import java.util.*;
 
 class FluidStackSet implements Set<FluidStack> {
-	List<FluidStack> itemStacks;
+	protected List<FluidStack> itemStacks;
 
 	FluidStackSet() {
-		itemStacks = new ArrayList<FluidStack>();
+		itemStacks = new ArrayList<>();
 	}
 
 	@Override
 	public String toString() {
-		return this.itemStacks.toString();
+		return itemStacks.toString();
 	}
 
 	protected FluidStack getExisting(final FluidStack stack) {
-		for (final FluidStack stack2 : this.itemStacks) {
-			if (stack2.isFluidEqual(stack)) {
-				return stack2;
+		for (final FluidStack existStack : itemStacks) {
+			if (existStack.isFluidEqual(stack)) {
+				return existStack;
 			}
 		}
 		return null;
 	}
 
 	@Override
-	public boolean add(final FluidStack e) {
-		if (e != null) {
-			if (this.getExisting(e) == null) {
-				return this.itemStacks.add(e.copy());
+	public boolean add(final FluidStack fluidStack) {
+		if (fluidStack != null) {
+			FluidStack existing = getExisting(fluidStack);
+			if (existing == null) {
+				return itemStacks.add(fluidStack.copy());
 			}
-			final FluidStack existing = this.getExisting(e);
-			existing.amount += e.amount;
+			existing.amount += fluidStack.amount;
 		}
 		return false;
 	}
 
 	@Override
-	public boolean addAll(final Collection<? extends FluidStack> c) {
+	public boolean addAll(final Collection<? extends FluidStack> collection) {
 		boolean addedAll = true;
-		for (final FluidStack stack : c) {
-			addedAll = (this.add(stack) && addedAll);
+		for (final FluidStack stack : collection) {
+			addedAll = add(stack) && addedAll;
 		}
 		return addedAll;
 	}
@@ -52,16 +52,16 @@ class FluidStackSet implements Set<FluidStack> {
 	}
 
 	@Override
-	public boolean contains(final Object o) {
-		return o instanceof FluidStack
-				&& getExisting((FluidStack) o) != null;
+	public boolean contains(final Object object) {
+		return object instanceof FluidStack
+			&& getExisting((FluidStack) object) != null;
 	}
 
 	@Override
-	public boolean containsAll(final Collection<?> c) {
+	public boolean containsAll(final Collection<?> collection) {
 		boolean addedAll = true;
-		for (final Object o : c) {
-			addedAll = (addedAll && this.contains(o));
+		for (final Object object : collection) {
+			addedAll = addedAll && contains(object);
 		}
 		return false;
 	}
@@ -77,9 +77,9 @@ class FluidStackSet implements Set<FluidStack> {
 	}
 
 	@Override
-	public boolean remove(final Object o) {
-		if (contains(o)) {
-			final FluidStack r = (FluidStack) o;
+	public boolean remove(final Object object) {
+		if (contains(object)) {
+			final FluidStack r = (FluidStack) object;
 			final FluidStack existing = getExisting(r);
 			if (existing.amount > r.amount) {
 				existing.amount -= r.amount;
@@ -91,32 +91,32 @@ class FluidStackSet implements Set<FluidStack> {
 	}
 
 	@Override
-	public boolean removeAll(final Collection<?> c) {
+	public boolean removeAll(final Collection<?> collection) {
 		boolean addedAll = true;
-		for (final Object o : c) {
-			final boolean removed = this.remove(o);
+		for (final Object object : collection) {
+			final boolean removed = this.remove(object);
 			addedAll = (removed && addedAll);
 		}
 		return false;
 	}
 
 	@Override
-	public boolean retainAll(final Collection<?> c) {
-		return this.itemStacks.retainAll(c);
+	public boolean retainAll(final Collection<?> collection) {
+		return itemStacks.retainAll(collection);
 	}
 
 	@Override
 	public int size() {
-		return this.itemStacks.size();
+		return itemStacks.size();
 	}
 
 	@Override
 	public Object[] toArray() {
-		return this.itemStacks.toArray();
+		return itemStacks.toArray();
 	}
 
 	@Override
-	public <T> T[] toArray(final T[] a) {
-		return this.itemStacks.toArray(a);
+	public <T> T[] toArray(final T[] array) {
+		return itemStacks.toArray(array);
 	}
 }
