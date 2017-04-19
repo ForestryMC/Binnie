@@ -18,34 +18,34 @@ buildscript {
 apply plugin: 'forge'
 
 version = "2.0-pre15"
-group= "binnie" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = "binnie" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "binnie-mods"
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+// uncoment this hack if you use old IDEA
+/*sourceSets {
+    main {
+        output.resourcesDir = output.classesDir
+    }
+}*/
 
 minecraft {
     version = "1.7.10-10.13.4.1614-1.7.10"
-	if (file('../run').exists()){
-		assetDir = "../run/assets"
-	}else{
-		assetDir = "assets"
-	}
+    runDir = "eclipse"
 }
 
-
-processResources
-{
-    // this will ensure that this task is redone when the versions change.
+processResources {
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
 
-    // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-                
-        // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'version': project.version, 
+                'mcversion': project.minecraft.version,
+                'modid': archivesBaseName
     }
         
-    // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
