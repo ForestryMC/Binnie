@@ -6,6 +6,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import javax.annotation.Nullable;
+
 public enum IndustrialFrame implements IBeeModifier {
 	Empty("Empty", 5, 0),
 	Light("Glowstone Lighting", 2, 4),
@@ -69,7 +71,7 @@ public enum IndustrialFrame implements IBeeModifier {
 	}
 
 	@Override
-	public float getLifespanModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
+	public float getLifespanModifier(final IBeeGenome genome, @Nullable final IBeeGenome mate, final float currentModifier) {
 		return this.lifespanMod;
 	}
 

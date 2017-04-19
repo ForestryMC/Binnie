@@ -159,14 +159,14 @@ public class RenderUtil {
 		GuiUtils.drawGradientRect(0, area.pos().x(), area.pos().y(), area.pos().x() + area.size().x(), area.pos().y() + area.size().y(), startColor, endColor);
 	}
 
-	public static void drawSprite(final Point pos, final TextureAtlasSprite icon) {
+	public static void drawSprite(final Point pos, @Nullable final TextureAtlasSprite icon) {
 		if (icon != null) {
 			BinnieCore.getBinnieProxy().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 			drawTexture(pos.x(), pos.y(), icon, 0, 0, 0);
 		}
 	}
 	
-	public static void drawGuiSprite(final Point pos, final TextureAtlasSprite icon) {
+	public static void drawGuiSprite(final Point pos, @Nullable final TextureAtlasSprite icon) {
 		if (icon != null) {
 			BinnieCore.getBinnieProxy().bindTexture(ForestryAPI.textureManager.getGuiTextureMap());
 			drawTexture(pos.x(), pos.y(), icon, 0, 0, 0);

@@ -26,7 +26,7 @@ public class VirtualMothHousing extends VirtualHousing implements IButterflyNurs
 	}
 
 	@Override
-	public void setCaterpillar(final IButterfly butterfly) {
+	public void setCaterpillar(@Nullable final IButterfly butterfly) {
 	}
 
 	@Override

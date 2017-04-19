@@ -422,6 +422,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		return true;
 	}
 
+	@Nullable
 	public GameProfile getOwner() {
 		return this.owner;
 	}
@@ -507,6 +508,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 	}
 
 	@Override
+	@Nullable
 	public IButterfly getCaterpillar() {
 		return this.caterpillar;
 	}
@@ -517,7 +519,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 	}
 
 	@Override
-	public void setCaterpillar(final IButterfly butterfly) {
+	public void setCaterpillar(@Nullable final IButterfly butterfly) {
 		this.caterpillar = butterfly;
 		this.matureTime = 0;
 	}

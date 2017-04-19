@@ -120,7 +120,7 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex) {
+	public int colorMultiplier(IBlockState state, @Nullable IBlockAccess world, @Nullable BlockPos pos, int tintIndex) {
 		if (world == null || pos == null) {
 			return 0;
 		}

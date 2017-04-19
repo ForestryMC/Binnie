@@ -176,7 +176,7 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex) {
+	public int colorMultiplier(IBlockState state, @Nullable IBlockAccess world, @Nullable BlockPos pos, int tintIndex) {
 		return getColor(getMetaFromState(state));
 	}
 

@@ -260,6 +260,7 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	}
 
 	@Override
+	@Nullable
 	public GameProfile getOwner() {
 		return this.owner;
 	}

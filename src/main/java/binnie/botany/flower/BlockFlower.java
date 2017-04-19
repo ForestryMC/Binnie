@@ -170,8 +170,8 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex) {
-		if (pos != null) {
+	public int colorMultiplier(IBlockState state, @Nullable IBlockAccess world, @Nullable BlockPos pos, int tintIndex) {
+		if (world != null && pos != null) {
 			TileEntity tile = world.getTileEntity(pos);
 			if (tile instanceof TileEntityFlower) {
 				TileEntityFlower flower = (TileEntityFlower) tile;

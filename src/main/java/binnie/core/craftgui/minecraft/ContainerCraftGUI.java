@@ -100,7 +100,6 @@ public class ContainerCraftGUI extends Container {
 		}
 	}
 
-	@Nullable
 	@Override
 	public ItemStack slotClick(int slotNum, int dragType, ClickType clickType, EntityPlayer player) {
 		final Slot slot = this.getSlot(slotNum);

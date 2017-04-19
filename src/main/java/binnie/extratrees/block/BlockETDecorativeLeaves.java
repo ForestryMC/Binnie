@@ -34,6 +34,7 @@ import net.minecraftforge.common.IShearable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -221,7 +222,7 @@ public abstract class BlockETDecorativeLeaves extends Block implements IItemMode
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) {
+	public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex) {
 		ETTreeDefinition treeDefinition = state.getValue(getVariant());
 
 		ITreeGenome genome = treeDefinition.getGenome();

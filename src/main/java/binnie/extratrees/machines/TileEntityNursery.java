@@ -64,7 +64,7 @@ public class TileEntityNursery extends TileEntityMachine implements IButterflyNu
 	}
 
 	@Override
-	public void setCaterpillar(final IButterfly butterfly) {
+	public void setCaterpillar(@Nullable final IButterfly butterfly) {
 		IButterflyNursery nursery = this.getNursery();
 		if (nursery != null) {
 			nursery.setCaterpillar(butterfly);

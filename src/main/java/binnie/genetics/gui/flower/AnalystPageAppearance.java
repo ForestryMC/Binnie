@@ -16,6 +16,8 @@ import binnie.genetics.gui.ControlAnalystPage;
 import forestry.api.genetics.IAlleleSpecies;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class AnalystPageAppearance extends ControlAnalystPage {
 	public AnalystPageAppearance(final IWidget parent, final Area area, final IFlower flower) {
@@ -38,6 +40,7 @@ public class AnalystPageAppearance extends ControlAnalystPage {
 		final int width = (sections > 1) ? 50 : 100;
 		new ControlIconDisplay(this, (this.width() - width) / 2, y - ((sections == 1) ? 0 : 0)) {
 			@Override
+			@SideOnly(Side.CLIENT)
 			public void onRenderForeground(int guiWidth, int guiHeight) {
 				GlStateManager.pushMatrix();
 				final float scale = width / 16.0f;

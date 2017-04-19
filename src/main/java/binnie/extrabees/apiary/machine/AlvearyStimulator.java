@@ -132,7 +132,7 @@ public class AlvearyStimulator {
 		}
 
 		@Override
-		public float getLifespanModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
+		public float getLifespanModifier(final IBeeGenome genome, @Nullable final IBeeGenome mate, final float currentModifier) {
 			float mod = 1.0f;
 			if (!this.powered) {
 				return mod;
@@ -260,7 +260,7 @@ public class AlvearyStimulator {
 		}
 
 		@Override
-		public float getLifespanModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
+		public float getLifespanModifier(final IBeeGenome genome, @Nullable final IBeeGenome mate, final float currentModifier) {
 			return this.type.getLifespanModifier(genome, mate, currentModifier);
 		}
 
@@ -348,7 +348,7 @@ public class AlvearyStimulator {
 		}
 
 		@Override
-		public float getLifespanModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
+		public float getLifespanModifier(final IBeeGenome genome, @Nullable final IBeeGenome mate, final float currentModifier) {
 			return this.logic.getModifier(EnumBeeModifier.Lifespan, currentModifier);
 		}
 

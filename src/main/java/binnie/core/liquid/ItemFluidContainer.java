@@ -170,7 +170,7 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 	}
 
 	@Override
-	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound nbt) {
+	public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
 		return new FluidHandlerItemBinnie(stack, container);
 	}
 

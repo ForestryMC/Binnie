@@ -235,7 +235,7 @@ public class AABBModelBaker implements IModelBaker {
 	}
 
 	@Override
-	public void setModelState(IModelState modelState) {
+	public void setModelState(@Nullable IModelState modelState) {
 		currentModel.setModelState(modelState);
 	}
 

@@ -160,7 +160,6 @@ public class WindowInventory implements IInventory {
 
 	}
 
-	@Nullable
 	@Override
 	public ItemStack removeStackFromSlot(int index) {
 		return this.inventory.remove(index);

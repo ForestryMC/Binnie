@@ -1,6 +1,6 @@
 package binnie.core.craftgui.geometry;
 
-public class Area {
+public final class Area {
 	private Point pos;
 	private Point size;
 
@@ -25,8 +25,8 @@ public class Area {
 	}
 
 	public Area(final int x, final int y, final int w, final int h) {
-		this.setPosition(new Point(x, y));
-		this.setSize(new Point(w, h));
+		this.pos = new Point(x, y);
+		this.size = new Point(w, h);
 	}
 
 	public Point pos() {

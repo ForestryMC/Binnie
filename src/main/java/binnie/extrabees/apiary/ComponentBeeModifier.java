@@ -9,6 +9,8 @@ import forestry.api.apiculture.IBeeModifier;
 import forestry.api.genetics.IIndividual;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nullable;
+
 public class ComponentBeeModifier extends MachineComponent implements IBeeModifier, IBeeListener {
 	public ComponentBeeModifier(final Machine machine) {
 		super(machine);
@@ -25,7 +27,7 @@ public class ComponentBeeModifier extends MachineComponent implements IBeeModifi
 	}
 
 	@Override
-	public float getLifespanModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
+	public float getLifespanModifier(final IBeeGenome genome, @Nullable final IBeeGenome mate, final float currentModifier) {
 		return 1.0f;
 	}
 

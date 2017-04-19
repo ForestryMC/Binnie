@@ -187,13 +187,15 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex) {
-		TileCeramicBrick ceramic = TileUtil.getTile(world, pos, TileCeramicBrick.class);
-		if (ceramic != null) {
-			if (tintIndex == 1) {
-				return ceramic.getColorFirst().getColor(false);
-			} else if (tintIndex == 2) {
-				return ceramic.getColorSecond().getColor(false);
+	public int colorMultiplier(IBlockState state, @Nullable IBlockAccess world, @Nullable BlockPos pos, int tintIndex) {
+		if (world != null && pos != null) {
+			TileCeramicBrick ceramic = TileUtil.getTile(world, pos, TileCeramicBrick.class);
+			if (ceramic != null) {
+				if (tintIndex == 1) {
+					return ceramic.getColorFirst().getColor(false);
+				} else if (tintIndex == 2) {
+					return ceramic.getColorSecond().getColor(false);
+				}
 			}
 		}
 		return 16777215;

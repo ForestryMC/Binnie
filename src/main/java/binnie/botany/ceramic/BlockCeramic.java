@@ -104,10 +104,12 @@ public class BlockCeramic extends Block implements IColoredBlock, IItemModelRegi
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public int colorMultiplier(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex) {
-		TileCeramic ceramic = TileUtil.getTile(world, pos, TileCeramic.class);
-		if (ceramic != null) {
-			return ceramic.getColor().getColor(false);
+	public int colorMultiplier(IBlockState state, @Nullable IBlockAccess world, @Nullable BlockPos pos, int tintIndex) {
+		if (world != null && pos != null) {
+			TileCeramic ceramic = TileUtil.getTile(world, pos, TileCeramic.class);
+			if (ceramic != null) {
+				return ceramic.getColor().getColor(false);
+			}
 		}
 		return EnumFlowerColor.get(0).getColor(false);
 	}
