@@ -18,7 +18,7 @@ enum AccessDirection {
 		return this != AccessDirection.Neither;
 	}
 
-	AccessDirection changeInsert(final boolean b) {
+	AccessDirection changeInsert(boolean b) {
 		if (b) {
 			if (this == AccessDirection.Out) {
 				return AccessDirection.Both;
@@ -37,7 +37,7 @@ enum AccessDirection {
 		return this;
 	}
 
-	AccessDirection changeExtract(final boolean b) {
+	AccessDirection changeExtract(boolean b) {
 		if (b) {
 			if (this == AccessDirection.In) {
 				return AccessDirection.Both;

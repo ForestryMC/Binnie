@@ -54,15 +54,15 @@ public final class BinnieCore extends AbstractMod {
 	@SidedProxy(clientSide = "binnie.core.proxy.BinnieProxyClient", serverSide = "binnie.core.proxy.BinnieProxyServer")
 	public static BinnieProxy proxy;
 	public static int multipassRenderID;
-	private static List<AbstractMod> modList;
+	private static List<AbstractMod> modList = new ArrayList<>();
 	public static MachineGroup packageCompartment;
 	public static ItemGenesis genesis;
 	public static ItemFieldKit fieldKit;
 
 	@Mod.EventHandler
-	public void preInit(final FMLPreInitializationEvent evt) {
+	public void preInit(FMLPreInitializationEvent evt) {
 		Binnie.Configuration.registerConfiguration(ConfigurationMods.class, this);
-		for (final ManagerBase baseManager : Binnie.Managers) {
+		for (ManagerBase baseManager : Binnie.Managers) {
 			addModule(baseManager);
 		}
 
@@ -76,12 +76,12 @@ public final class BinnieCore extends AbstractMod {
 	}
 
 	@Mod.EventHandler
-	public void init(final FMLInitializationEvent evt) {
+	public void init(FMLInitializationEvent evt) {
 		init();
 	}
 
 	@Mod.EventHandler
-	public void postInit(final FMLPostInitializationEvent evt) {
+	public void postInit(FMLPostInitializationEvent evt) {
 		postInit();
 	}
 
@@ -93,8 +93,8 @@ public final class BinnieCore extends AbstractMod {
 	@Override
 	public void preInit() {
 		BinnieCore.instance = this;
-		for (final FluidContainer container : FluidContainer.values()) {
-			final Item item = new ItemFluidContainer(container);
+		for (FluidContainer container : FluidContainer.values()) {
+			Item item = new ItemFluidContainer(container);
 			GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
 		}
 		FieldParser.parsers.add(new ItemParser());
@@ -104,7 +104,7 @@ public final class BinnieCore extends AbstractMod {
 	@Override
 	public void init() {
 		super.init();
-		for (final AbstractMod mod : getActiveMods()) {
+		for (AbstractMod mod : getActiveMods()) {
 			NetworkRegistry.INSTANCE.registerGuiHandler(mod, new BinnieGUIHandler(mod));
 		}
 
@@ -146,13 +146,13 @@ public final class BinnieCore extends AbstractMod {
 		super.postInit();
 	}
 
-	static void registerMod(final AbstractMod mod) {
+	static void registerMod(AbstractMod mod) {
 		BinnieCore.modList.add(mod);
 	}
 
 	private static List<AbstractMod> getActiveMods() {
-		final List<AbstractMod> list = new ArrayList<AbstractMod>();
-		for (final AbstractMod mod : BinnieCore.modList) {
+		List<AbstractMod> list = new ArrayList<>();
+		for (AbstractMod mod : BinnieCore.modList) {
 			if (mod.isActive()) {
 				list.add(mod);
 			}
@@ -162,16 +162,17 @@ public final class BinnieCore extends AbstractMod {
 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
-	public void handleSpeciesDiscovered(final ForestryEvent.SpeciesDiscovered event) {
+	public void handleSpeciesDiscovered(ForestryEvent.SpeciesDiscovered event) {
 		try {
-			final EntityPlayerMP player = MinecraftServer.getServer().getConfigurationManager().func_152612_a(event.username.getName());
+			EntityPlayerMP player = MinecraftServer.getServer().getConfigurationManager().func_152612_a(event.username.getName());
 			if (player == null) {
 				return;
 			}
 			event.tracker.synchToPlayer(player);
-			final NBTTagCompound nbt = new NBTTagCompound();
+			NBTTagCompound nbt = new NBTTagCompound();
 			nbt.setString("species", event.species.getUID());
 		} catch (Exception ex) {
+			// ignored
 		}
 	}
 
@@ -197,7 +198,7 @@ public final class BinnieCore extends AbstractMod {
 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
-	public void handleTextureRemap(final TextureStitchEvent.Pre event) {
+	public void handleTextureRemap(TextureStitchEvent.Pre event) {
 		if (event.map.getTextureType() == 0) {
 			Binnie.Liquid.reloadIcons(event.map);
 		}
@@ -217,10 +218,6 @@ public final class BinnieCore extends AbstractMod {
 	@Override
 	public boolean isActive() {
 		return true;
-	}
-
-	static {
-		BinnieCore.modList = new ArrayList<>();
 	}
 
 	public static class PacketHandler extends BinniePacketHandler {

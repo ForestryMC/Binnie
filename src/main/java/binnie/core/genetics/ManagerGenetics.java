@@ -21,7 +21,7 @@ public class ManagerGenetics extends ManagerBase {
 	public BreedingSystem treeBreedingSystem;
 	public BreedingSystem mothBreedingSystem;
 	public BreedingSystem flowerBreedingSystem;
-	private final Map<ISpeciesRoot, BreedingSystem> breedingSystems;
+	private Map<ISpeciesRoot, BreedingSystem> breedingSystems;
 	private List<IChromosomeType> invalidChromosomeTypes;
 	private Map<ISpeciesRoot, Map<IChromosomeType, List<IAllele>>> chromosomeArray;
 
@@ -52,7 +52,7 @@ public class ManagerGenetics extends ManagerBase {
 		this.refreshData();
 	}
 
-	public boolean isSpeciesDiscovered(final IAlleleSpecies species, final World world, final boolean nei) {
+	public boolean isSpeciesDiscovered(IAlleleSpecies species, World world, boolean nei) {
 		return true;
 	}
 
@@ -72,8 +72,8 @@ public class ManagerGenetics extends ManagerBase {
 		return (IFlowerRoot) AlleleManager.alleleRegistry.getSpeciesRoot("rootFlowers");
 	}
 
-	public BreedingSystem getSystem(final String string) {
-		for (final BreedingSystem system : this.breedingSystems.values()) {
+	public BreedingSystem getSystem(String string) {
+		for (BreedingSystem system : this.breedingSystems.values()) {
 			if (system.getIdent().equals(string)) {
 				return system;
 			}
@@ -81,12 +81,12 @@ public class ManagerGenetics extends ManagerBase {
 		return null;
 	}
 
-	public BreedingSystem getSystem(final ISpeciesRoot root) {
+	public BreedingSystem getSystem(ISpeciesRoot root) {
 		return this.getSystem(root.getUID());
 	}
 
-	public ISpeciesRoot getSpeciesRoot(final IAlleleSpecies species) {
-		for (final ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
+	public ISpeciesRoot getSpeciesRoot(IAlleleSpecies species) {
+		for (ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
 			if (root.getKaryotype()[0].getAlleleClass().isInstance(species)) {
 				return root;
 			}
@@ -94,11 +94,11 @@ public class ManagerGenetics extends ManagerBase {
 		return null;
 	}
 
-	public IAllele getToleranceAllele(final EnumTolerance tol) {
+	public IAllele getToleranceAllele(EnumTolerance tol) {
 		return AlleleManager.alleleRegistry.getAllele(Tolerance.values()[tol.ordinal()].getUID());
 	}
 
-	public int[] getTolerance(final EnumTolerance tol) {
+	public int[] getTolerance(EnumTolerance tol) {
 		return Tolerance.values()[tol.ordinal()].getBounds();
 	}
 
@@ -106,12 +106,12 @@ public class ManagerGenetics extends ManagerBase {
 		return this.breedingSystems.values();
 	}
 
-	public void registerBreedingSystem(final BreedingSystem system) {
+	public void registerBreedingSystem(BreedingSystem system) {
 		this.breedingSystems.put(system.getSpeciesRoot(), system);
 	}
 
-	public BreedingSystem getConversionSystem(final ItemStack stack) {
-		for (final BreedingSystem system : this.getActiveSystems()) {
+	public BreedingSystem getConversionSystem(ItemStack stack) {
+		for (BreedingSystem system : this.getActiveSystems()) {
 			if (system.getConversion(stack) != null) {
 				return system;
 			}
@@ -119,40 +119,40 @@ public class ManagerGenetics extends ManagerBase {
 		return null;
 	}
 
-	public ItemStack getConversionStack(final ItemStack stack) {
-		final BreedingSystem system = this.getConversionSystem(stack);
+	public ItemStack getConversionStack(ItemStack stack) {
+		BreedingSystem system = this.getConversionSystem(stack);
 		return (system == null) ? null : system.getConversionStack(stack);
 	}
 
-	public IIndividual getConversion(final ItemStack stack) {
-		final BreedingSystem system = this.getConversionSystem(stack);
+	public IIndividual getConversion(ItemStack stack) {
+		BreedingSystem system = this.getConversionSystem(stack);
 		return (system == null) ? null : system.getConversion(stack);
 	}
 
 	@SubscribeEvent
-	public void onWorldLoad(final WorldEvent.Load event) {
+	public void onWorldLoad(WorldEvent.Load event) {
 		this.refreshData();
 	}
 
 	private void refreshData() {
 		this.loadAlleles();
-		for (final BreedingSystem system : Binnie.Genetics.getActiveSystems()) {
+		for (BreedingSystem system : Binnie.Genetics.getActiveSystems()) {
 			system.calculateArrays();
 		}
 	}
 
 	private void loadAlleles() {
 		this.invalidChromosomeTypes.clear();
-		for (final ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
-			final BreedingSystem system = this.getSystem(root);
-			final Map<IChromosomeType, List<IAllele>> chromosomeMap = new LinkedHashMap<IChromosomeType, List<IAllele>>();
-			for (final IChromosomeType chromosome : root.getKaryotype()) {
-				final TreeSet<IAllele> alleles = new TreeSet<IAllele>(new ComparatorAllele());
-				for (final IIndividual individual : root.getIndividualTemplates()) {
-					final IGenome genome = individual.getGenome();
+		for (ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
+			BreedingSystem system = this.getSystem(root);
+			Map<IChromosomeType, List<IAllele>> chromosomeMap = new LinkedHashMap<IChromosomeType, List<IAllele>>();
+			for (IChromosomeType chromosome : root.getKaryotype()) {
+				TreeSet<IAllele> alleles = new TreeSet<IAllele>(new ComparatorAllele());
+				for (IIndividual individual : root.getIndividualTemplates()) {
+					IGenome genome = individual.getGenome();
 					try {
-						final IAllele a1 = genome.getActiveAllele(chromosome);
-						final IAllele a2 = genome.getInactiveAllele(chromosome);
+						IAllele a1 = genome.getActiveAllele(chromosome);
+						IAllele a2 = genome.getInactiveAllele(chromosome);
 						if (chromosome.getAlleleClass().isInstance(a1)) {
 							alleles.add(a1);
 						}
@@ -167,7 +167,7 @@ public class ManagerGenetics extends ManagerBase {
 				if (alleles.size() == 0) {
 					this.invalidChromosomeTypes.add(chromosome);
 				} else {
-					final List<IAllele> alleleList = new ArrayList<IAllele>();
+					List<IAllele> alleleList = new ArrayList<IAllele>();
 					alleleList.addAll(alleles);
 					chromosomeMap.put(chromosome, alleleList);
 				}
@@ -176,21 +176,21 @@ public class ManagerGenetics extends ManagerBase {
 		}
 	}
 
-	public Map<IChromosomeType, List<IAllele>> getChromosomeMap(final ISpeciesRoot root) {
+	public Map<IChromosomeType, List<IAllele>> getChromosomeMap(ISpeciesRoot root) {
 		return chromosomeArray.get(root);
 	}
 
-	public Collection<IChromosomeType> getActiveChromosomes(final ISpeciesRoot root) {
+	public Collection<IChromosomeType> getActiveChromosomes(ISpeciesRoot root) {
 		return getChromosomeMap(root).keySet();
 	}
 
-	public boolean isInvalidChromosome(final IChromosomeType type) {
+	public boolean isInvalidChromosome(IChromosomeType type) {
 		return invalidChromosomeTypes.contains(type);
 	}
 
 	static class ComparatorAllele implements Comparator<IAllele> {
 		@Override
-		public int compare(final IAllele o1, final IAllele o2) {
+		public int compare(IAllele o1, IAllele o2) {
 			if (o1 == null || o2 == null) {
 				throw new NullPointerException("Allele is null!");
 			}

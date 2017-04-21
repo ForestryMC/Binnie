@@ -1,20 +1,15 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines;
 
-import net.minecraft.creativetab.CreativeTabs;
-import java.util.Collection;
-import net.minecraft.block.Block;
-import cpw.mods.fml.common.registry.GameRegistry;
 import binnie.Binnie;
+import binnie.core.AbstractMod;
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.creativetab.CreativeTabs;
+
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import binnie.core.AbstractMod;
 
-public class MachineGroup
-{
+public class MachineGroup {
 	private AbstractMod mod;
 	private String blockName;
 	private String uid;
@@ -24,81 +19,78 @@ public class MachineGroup
 	public boolean customRenderer;
 	private boolean renderedTileEntity;
 
-	public MachineGroup(final AbstractMod mod, final String uid, final String blockName, final IMachineType[] types) {
-		this.packages = new LinkedHashMap<String, MachinePackage>();
-		this.packagesID = new LinkedHashMap<Integer, MachinePackage>();
-		this.customRenderer = true;
-		this.renderedTileEntity = true;
+	public MachineGroup(AbstractMod mod, String uid, String blockName, IMachineType[] types) {
+		packages = new LinkedHashMap<>();
+		packagesID = new LinkedHashMap<>();
+		customRenderer = true;
+		renderedTileEntity = true;
 		this.mod = mod;
 		this.uid = uid;
 		this.blockName = blockName;
-		for (final IMachineType type : types) {
-			if (type.getPackageClass() != null) {
-				if (type.isActive()) {
-					try {
-						final MachinePackage pack = type.getPackageClass().newInstance();
-						pack.assignMetadata(type.ordinal());
-						pack.setActive(type.isActive());
-						this.addPackage(pack);
-					} catch (Exception e) {
-						throw new RuntimeException("Failed to create machine package " + type.toString(), e);
-					}
+
+		for (IMachineType type : types) {
+			if (type.getPackageClass() != null && type.isActive()) {
+				try {
+					MachinePackage pack = type.getPackageClass().newInstance();
+					pack.assignMetadata(type.ordinal());
+					pack.setActive(type.isActive());
+					addPackage(pack);
+				} catch (Exception e) {
+					throw new RuntimeException("Failed to create machine package " + type.toString(), e);
 				}
 			}
 		}
 		Binnie.Machine.registerMachineGroup(this);
-		this.block = new BlockMachine(this, blockName);
-		if (this.block != null) {
-			GameRegistry.registerBlock(this.block, ItemMachine.class, blockName);
-			for (final MachinePackage pack2 : this.getPackages()) {
-				pack2.register();
-			}
+		block = new BlockMachine(this, blockName);
+		GameRegistry.registerBlock(block, ItemMachine.class, blockName);
+		for (MachinePackage pack2 : getPackages()) {
+			pack2.register();
 		}
 	}
 
-	private void addPackage(final MachinePackage pack) {
-		this.packages.put(pack.getUID(), pack);
-		this.packagesID.put(pack.getMetadata(), pack);
+	private void addPackage(MachinePackage pack) {
+		packages.put(pack.getUID(), pack);
+		packagesID.put(pack.getMetadata(), pack);
 		pack.setGroup(this);
 	}
 
 	public Collection<MachinePackage> getPackages() {
-		return this.packages.values();
+		return packages.values();
 	}
 
 	public BlockMachine getBlock() {
-		return this.block;
+		return block;
 	}
 
-	public MachinePackage getPackage(final int metadata) {
-		return this.packagesID.get(metadata);
+	public MachinePackage getPackage(int metadata) {
+		return packagesID.get(metadata);
 	}
 
-	public MachinePackage getPackage(final String name) {
-		return this.packages.get(name);
+	public MachinePackage getPackage(String name) {
+		return packages.get(name);
 	}
 
 	public String getUID() {
-		return this.mod.getModID() + "." + this.uid;
+		return mod.getModID() + "." + uid;
 	}
 
 	public String getShortUID() {
-		return this.uid;
+		return uid;
 	}
 
 	boolean isTileEntityRenderered() {
-		return this.renderedTileEntity;
+		return renderedTileEntity;
 	}
 
 	public void renderAsBlock() {
-		this.renderedTileEntity = false;
+		renderedTileEntity = false;
 	}
 
-	public void setCreativeTab(final CreativeTabs tab) {
-		this.block.setCreativeTab(tab);
+	public void setCreativeTab(CreativeTabs tab) {
+		block.setCreativeTab(tab);
 	}
 
 	public AbstractMod getMod() {
-		return this.mod;
+		return mod;
 	}
 }

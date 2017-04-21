@@ -28,7 +28,7 @@ public enum FluidContainer {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void updateIcons(final IIconRegister register) {
+	public void updateIcons(IIconRegister register) {
 		String liquidName = "liquids/" + toString().toLowerCase();
 		String modName;
 		if (this == FluidContainer.Cylinder) {
@@ -79,18 +79,18 @@ public enum FluidContainer {
 		return null;
 	}
 
-	public void registerContainerData(final IFluidType fluid) {
+	public void registerContainerData(IFluidType fluid) {
 		if (!isActive()) {
 			return;
 		}
 
-		final ItemStack filled = item.getContainer(fluid);
-		final ItemStack empty = getEmpty();
+		ItemStack filled = item.getContainer(fluid);
+		ItemStack empty = getEmpty();
 		if (filled == null || empty == null || fluid.get(1000) == null) {
 			return;
 		}
 
-		final FluidContainerRegistry.FluidContainerData data = new FluidContainerRegistry.FluidContainerData(fluid.get(1000), filled, empty);
+		FluidContainerRegistry.FluidContainerData data = new FluidContainerRegistry.FluidContainerData(fluid.get(1000), filled, empty);
 		FluidContainerRegistry.registerFluidContainer(data);
 	}
 }

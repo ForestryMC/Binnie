@@ -1,63 +1,56 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.mod.config;
 
-import java.util.ArrayList;
-import java.lang.reflect.Field;
-import java.lang.annotation.Annotation;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
 import binnie.core.AbstractMod;
-import net.minecraftforge.common.config.Configuration;
-import java.util.Map;
 import binnie.core.ManagerBase;
+import net.minecraftforge.common.config.Configuration;
 
-public class ManagerConfig extends ManagerBase
-{
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.util.*;
+
+public class ManagerConfig extends ManagerBase {
 	private Map<Class<?>, Configuration> configurations;
 	private Map<AbstractMod, List<BinnieItemData>> itemIDs;
 
 	public ManagerConfig() {
-		this.configurations = new LinkedHashMap<Class<?>, Configuration>();
-		this.itemIDs = new HashMap<AbstractMod, List<BinnieItemData>>();
+		configurations = new LinkedHashMap<>();
+		itemIDs = new HashMap<>();
 	}
 
-	public void registerConfiguration(final Class<?> cls, final AbstractMod mod) {
+	public void registerConfiguration(Class<?> cls, AbstractMod mod) {
 		if (cls.isAnnotationPresent(ConfigFile.class)) {
-			this.loadConfiguration(cls, mod);
+			loadConfiguration(cls, mod);
 		}
 	}
 
-	public void loadConfiguration(final Class<?> cls, final AbstractMod mod) {
+	public void loadConfiguration(Class<?> cls, AbstractMod mod) {
 		try {
-			final String filename = cls.getAnnotation(ConfigFile.class).filename();
-			final BinnieConfiguration config = new BinnieConfiguration(filename, mod);
+			String filename = cls.getAnnotation(ConfigFile.class).filename();
+			BinnieConfiguration config = new BinnieConfiguration(filename, mod);
 			config.load();
-			for (final Field field : cls.getFields()) {
+			for (Field field : cls.getFields()) {
 				if (field.isAnnotationPresent(ConfigProperty.class)) {
-					final ConfigProperty propertyAnnot = field.getAnnotation(ConfigProperty.class);
-					for (final Annotation annotation : field.getAnnotations()) {
+					ConfigProperty propertyAnnot = field.getAnnotation(ConfigProperty.class);
+					for (Annotation annotation : field.getAnnotations()) {
 						if (annotation.annotationType().isAnnotationPresent(ConfigProperty.Type.class)) {
-							final Class<?> propertyClass = annotation.annotationType().getAnnotation(ConfigProperty.Type.class).propertyClass();
-							final PropertyBase property = (PropertyBase) propertyClass.getConstructor(Field.class, BinnieConfiguration.class, ConfigProperty.class, annotation.annotationType()).newInstance(field, config, propertyAnnot, annotation.annotationType().cast(annotation));
+							Class<?> propertyClass = annotation.annotationType().getAnnotation(ConfigProperty.Type.class).propertyClass();
+							// TODO what for?
+							PropertyBase property = (PropertyBase) propertyClass.getConstructor(Field.class, BinnieConfiguration.class, ConfigProperty.class, annotation.annotationType()).newInstance(field, config, propertyAnnot, annotation.annotationType().cast(annotation));
 						}
 					}
 				}
 			}
 			config.save();
-			this.configurations.put(cls, config);
+			configurations.put(cls, config);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void addItemID(final Integer configValue, final String configKey, final BinnieConfiguration configFile) {
-		if (!this.itemIDs.containsKey(configFile.mod)) {
-			this.itemIDs.put(configFile.mod, new ArrayList<BinnieItemData>());
+	public void addItemID(Integer configValue, String configKey, BinnieConfiguration configFile) {
+		if (!itemIDs.containsKey(configFile.mod)) {
+			itemIDs.put(configFile.mod, new ArrayList<>());
 		}
-		this.itemIDs.get(configFile.mod).add(new BinnieItemData(configValue + 256, configFile, configKey));
+		itemIDs.get(configFile.mod).add(new BinnieItemData(configValue + 256, configFile, configKey));
 	}
 }

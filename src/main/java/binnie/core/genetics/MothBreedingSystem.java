@@ -20,7 +20,7 @@ class MothBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public float getChance(final IMutation mutation, final EntityPlayer player, final IAllele species1, final IAllele species2) {
+	public float getChance(IMutation mutation, EntityPlayer player, IAllele species1, IAllele species2) {
 		return 0.0f;
 	}
 
@@ -40,9 +40,9 @@ class MothBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public String getAlleleName(final IChromosomeType chromosome, final IAllele allele) {
+	public String getAlleleName(IChromosomeType chromosome, IAllele allele) {
 		if (chromosome == EnumButterflyChromosome.METABOLISM) {
-			final int metabolism = ((IAlleleInteger) allele).getValue();
+			int metabolism = ((IAlleleInteger) allele).getValue();
 			if (metabolism >= 19) {
 				return Binnie.Language.localise(BinnieCore.instance, "allele.metabolism.highest");
 			}
@@ -70,7 +70,7 @@ class MothBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public boolean isDNAManipulable(final ItemStack member) {
+	public boolean isDNAManipulable(ItemStack member) {
 		return ((IButterflyRoot) getSpeciesRoot()).getType(member) == EnumFlutterType.SERUM;
 	}
 
@@ -84,22 +84,22 @@ class MothBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public void addExtraAlleles(final IChromosomeType chromosome, final TreeSet<IAllele> alleles) {
+	public void addExtraAlleles(IChromosomeType chromosome, TreeSet<IAllele> alleles) {
 		switch ((EnumButterflyChromosome) chromosome) {
 			case FERTILITY:
-				for (final ForestryAllele.Int a : ForestryAllele.Int.values()) {
+				for (ForestryAllele.Int a : ForestryAllele.Int.values()) {
 					alleles.add(a.getAllele());
 				}
 				break;
 
 			case LIFESPAN:
-				for (final ForestryAllele.Lifespan a2 : ForestryAllele.Lifespan.values()) {
+				for (ForestryAllele.Lifespan a2 : ForestryAllele.Lifespan.values()) {
 					alleles.add(a2.getAllele());
 				}
 				break;
 
 			case METABOLISM:
-				for (final ForestryAllele.Int a : ForestryAllele.Int.values()) {
+				for (ForestryAllele.Int a : ForestryAllele.Int.values()) {
 					alleles.add(a.getAllele());
 				}
 				break;
@@ -107,26 +107,26 @@ class MothBreedingSystem extends BreedingSystem {
 			case TOLERANT_FLYER:
 			case FIRE_RESIST:
 			case NOCTURNAL:
-				for (final ForestryAllele.Bool a3 : ForestryAllele.Bool.values()) {
+				for (ForestryAllele.Bool a3 : ForestryAllele.Bool.values()) {
 					alleles.add(a3.getAllele());
 				}
 				break;
 
 			case SIZE:
-				for (final ForestryAllele.Size a4 : ForestryAllele.Size.values()) {
+				for (ForestryAllele.Size a4 : ForestryAllele.Size.values()) {
 					alleles.add(a4.getAllele());
 				}
 				break;
 
 			case SPEED:
-				for (final ForestryAllele.Speed a5 : ForestryAllele.Speed.values()) {
+				for (ForestryAllele.Speed a5 : ForestryAllele.Speed.values()) {
 					alleles.add(a5.getAllele());
 				}
 				break;
 
 			case HUMIDITY_TOLERANCE:
 			case TEMPERATURE_TOLERANCE:
-				for (final Tolerance a6 : Tolerance.values()) {
+				for (Tolerance a6 : Tolerance.values()) {
 					alleles.add(a6.getAllele());
 				}
 				break;

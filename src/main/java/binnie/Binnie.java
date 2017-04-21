@@ -13,23 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Binnie {
-	public static final List<ManagerBase> Managers;
-	public static final ManagerLanguage Language;
-	public static final ManagerGenetics Genetics;
-	public static final ManagerConfig Configuration;
-	public static final ManagerLiquid Liquid;
-	public static final ManagerMachine Machine;
-	public static final ManagerItem Item;
-	public static final ManagerResource Resource;
-
-	static {
-		Managers = new ArrayList<ManagerBase>();
-		Language = new ManagerLanguage();
-		Genetics = new ManagerGenetics();
-		Configuration = new ManagerConfig();
-		Liquid = new ManagerLiquid();
-		Machine = new ManagerMachine();
-		Item = new ManagerItem();
-		Resource = new ManagerResource();
-	}
+	public static List<ManagerBase> Managers = new ArrayList<>();
+	public static ManagerLanguage Language = new ManagerLanguage();
+	public static ManagerGenetics Genetics = new ManagerGenetics();
+	public static ManagerConfig Configuration = new ManagerConfig();
+	public static ManagerLiquid Liquid = new ManagerLiquid();
+	public static ManagerMachine Machine = new ManagerMachine();
+	public static ManagerItem Item = new ManagerItem();
+	public static ManagerResource Resource = new ManagerResource();
 }

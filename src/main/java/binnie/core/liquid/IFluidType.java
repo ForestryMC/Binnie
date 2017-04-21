@@ -7,13 +7,13 @@ import net.minecraftforge.fluids.FluidStack;
 public interface IFluidType {
 	IIcon getIcon();
 
-	void registerIcon(final IIconRegister register);
+	void registerIcon(IIconRegister register);
 
 	String getName();
 
 	String getIdentifier();
 
-	FluidStack get(final int amount);
+	FluidStack get(int amount);
 
 	int getColour();
 
@@ -21,7 +21,7 @@ public interface IFluidType {
 
 	int getTransparency();
 
-	boolean canPlaceIn(final FluidContainer container);
+	boolean canPlaceIn(FluidContainer container);
 
-	boolean showInCreative(final FluidContainer container);
+	boolean showInCreative(FluidContainer container);
 }

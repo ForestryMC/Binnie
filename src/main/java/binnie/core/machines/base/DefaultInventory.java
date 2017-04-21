@@ -11,22 +11,22 @@ class DefaultInventory implements IInventoryMachine {
 	}
 
 	@Override
-	public ItemStack getStackInSlot(final int slot) {
+	public ItemStack getStackInSlot(int slot) {
 		return null;
 	}
 
 	@Override
-	public ItemStack decrStackSize(final int i, final int j) {
+	public ItemStack decrStackSize(int index, int count) {
 		return null;
 	}
 
 	@Override
-	public ItemStack getStackInSlotOnClosing(final int i) {
+	public ItemStack getStackInSlotOnClosing(int index) {
 		return null;
 	}
 
 	@Override
-	public void setInventorySlotContents(final int i, final ItemStack itemStack) {
+	public void setInventorySlotContents(int index, ItemStack itemStack) {
 		// ignored
 	}
 
@@ -36,32 +36,32 @@ class DefaultInventory implements IInventoryMachine {
 	}
 
 	@Override
-	public boolean isUseableByPlayer(final EntityPlayer player) {
+	public boolean isUseableByPlayer(EntityPlayer player) {
 		return false;
 	}
 
 	@Override
-	public boolean isItemValidForSlot(final int i, final ItemStack itemStack) {
+	public boolean isItemValidForSlot(int index, ItemStack itemStack) {
 		return false;
 	}
 
 	@Override
-	public int[] getAccessibleSlotsFromSide(final int var1) {
+	public int[] getAccessibleSlotsFromSide(int side) {
 		return new int[0];
 	}
 
 	@Override
-	public boolean canInsertItem(final int i, final ItemStack itemStack, final int j) {
+	public boolean canInsertItem(int index, ItemStack itemStack, int direction) {
 		return false;
 	}
 
 	@Override
-	public boolean canExtractItem(final int i, final ItemStack itemStack, final int j) {
+	public boolean canExtractItem(int index, ItemStack itemStack, int direction) {
 		return false;
 	}
 
 	@Override
-	public boolean isReadOnly(final int slot) {
+	public boolean isReadOnly(int slot) {
 		return false;
 	}
 

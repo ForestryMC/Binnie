@@ -1,15 +1,10 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.network.packet;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-interface IPacketLocation
-{
-	TileEntity getTarget(final World p0);
+interface IPacketLocation {
+	TileEntity getTarget(World world);
 
 	int getX();
 

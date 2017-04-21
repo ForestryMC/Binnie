@@ -66,25 +66,25 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 		}
 
 		if (getConfigs() != null) {
-			for (final Class cls : getConfigs()) {
+			for (Class cls : getConfigs()) {
 				Binnie.Configuration.registerConfiguration(cls, this);
 			}
 		}
 
 		getProxy().preInit();
-		for (final IInitializable module : modules) {
+		for (IInitializable module : modules) {
 			module.preInit();
 		}
 		
 		// TODO what does it mean?
 		Collections.addAll(fields, getClass().getFields());
-		for (final Class cls : getClass().getClasses()) {
+		for (Class cls : getClass().getClasses()) {
 			Collections.addAll(fields, getClass().getFields());
 		}
-		for (final IInitializable module : modules) {
+		for (IInitializable module : modules) {
 			Collections.addAll(fields, module.getClass().getFields());
 		}
-		for (final Field field4 : this.fields) {
+		for (Field field4 : this.fields) {
 			try {
 				FieldParser.preInitParse(field4, this);
 			} catch (Exception e) {
@@ -103,11 +103,11 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 		wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(this.getChannel());
 		wrapper.registerMessage(getPacketHandler(), MessageBinnie.class, 1, Side.CLIENT);
 		wrapper.registerMessage(getPacketHandler(), MessageBinnie.class, 1, Side.SERVER);
-		for (final IInitializable module : this.modules) {
+		for (IInitializable module : this.modules) {
 			module.init();
 		}
 
-		for (final Field field : this.fields) {
+		for (Field field : this.fields) {
 			try {
 				FieldParser.initParse(field, this);
 			} catch (Exception e) {
@@ -123,11 +123,11 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 		}
 
 		getProxy().postInit();
-		for (final IInitializable module : this.modules) {
+		for (IInitializable module : this.modules) {
 			module.postInit();
 		}
 
-		for (final Field field : this.fields) {
+		for (Field field : this.fields) {
 			try {
 				FieldParser.postInitParse(field, this);
 			} catch (Exception e) {
@@ -136,7 +136,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 		}
 	}
 
-	protected final void addModule(final IInitializable init) {
+	protected void addModule(IInitializable init) {
 		modules.add(init);
 		MinecraftForge.EVENT_BUS.register(init);
 	}

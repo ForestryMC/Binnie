@@ -21,7 +21,7 @@ public class MultipassBlockRenderer implements ISimpleBlockRenderingHandler {
 	}
 
 	@Override
-	public void renderInventoryBlock(final Block block, final int meta, final int modelID, final RenderBlocks renderer) {
+	public void renderInventoryBlock(Block block, int meta, int modelID, RenderBlocks renderer) {
 		block.setBlockBoundsForItemRender();
 		renderer.setRenderBoundsFromBlock(block);
 		GL11.glTranslatef(-0.5f, -0.5f, -0.5f);
@@ -35,7 +35,7 @@ public class MultipassBlockRenderer implements ISimpleBlockRenderingHandler {
 	}
 
 	@Override
-	public boolean renderWorldBlock(final IBlockAccess world, final int x, final int y, final int z, final Block block, final int modelId, final RenderBlocks renderer) {
+	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
 		boolean r = true;
 		MultipassBlockRenderer.layer = 0;
 		while (MultipassBlockRenderer.layer < ((IMultipassBlock) block).getNumberOfPasses()) {
@@ -47,7 +47,7 @@ public class MultipassBlockRenderer implements ISimpleBlockRenderingHandler {
 	}
 
 	@Override
-	public boolean shouldRender3DInInventory(final int i) {
+	public boolean shouldRender3DInInventory(int i) {
 		return true;
 	}
 
@@ -56,9 +56,9 @@ public class MultipassBlockRenderer implements ISimpleBlockRenderingHandler {
 		return BinnieCore.multipassRenderID;
 	}
 
-	public void renderItem(final Block block, final RenderBlocks renderer, final int meta) {
+	public void renderItem(Block block, RenderBlocks renderer, int meta) {
 		setColor(((IMultipassBlock) block).colorMultiplier(meta));
-		final Tessellator tessellator = Tessellator.instance;
+		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
 		tessellator.setNormal(0.0f, -1.0f, 0.0f);
 		renderer.renderFaceYNeg(block, 0.0, 0.0, 0.0, renderer.getBlockIconFromSideAndMetadata(block, 0, meta));
@@ -90,10 +90,10 @@ public class MultipassBlockRenderer implements ISimpleBlockRenderingHandler {
 		tessellator.draw();
 	}
 
-	public void setColor(final int l) {
-		final float f = (l >> 16 & 0xFF) / 255.0f;
-		final float f2 = (l >> 8 & 0xFF) / 255.0f;
-		final float f3 = (l & 0xFF) / 255.0f;
+	public void setColor(int l) {
+		float f = (l >> 16 & 0xFF) / 255.0f;
+		float f2 = (l >> 8 & 0xFF) / 255.0f;
+		float f3 = (l & 0xFF) / 255.0f;
 		GL11.glColor3f(f, f2, f3);
 	}
 }

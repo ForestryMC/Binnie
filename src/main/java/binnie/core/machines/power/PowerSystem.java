@@ -1,33 +1,28 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.power;
 
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
-public enum PowerSystem
-{
+public enum PowerSystem {
 	MJ(100.0),
 	RF(10.0),
 	EU(40.0);
 
-	double conversion;
+	private double conversion;
 
-	private PowerSystem(final double conversion) {
+	PowerSystem(double conversion) {
 		this.conversion = conversion;
 	}
 
-	public double convertTo(final int value) {
-		return value / this.conversion;
+	public double convertTo(int value) {
+		return value / conversion;
 	}
 
-	public int convertFrom(final double value) {
-		return (int) (value * this.conversion);
+	public int convertFrom(double value) {
+		return (int) (value * conversion);
 	}
 
-	public static PowerSystem get(final int i) {
+	public static PowerSystem get(int i) {
 		return values()[i % values().length];
 	}
 
@@ -35,9 +30,9 @@ public enum PowerSystem
 		return this.name();
 	}
 
-	public ItemStack saveTo(final ItemStack stack) {
-		final NBTTagCompound tag = stack.hasTagCompound() ? stack.getTagCompound() : new NBTTagCompound();
-		tag.setByte("power-system", (byte) this.ordinal());
+	public ItemStack saveTo(ItemStack stack) {
+		NBTTagCompound tag = stack.hasTagCompound() ? stack.getTagCompound() : new NBTTagCompound();
+		tag.setByte("power-system", (byte) ordinal());
 		stack.setTagCompound(tag);
 		return stack;
 	}

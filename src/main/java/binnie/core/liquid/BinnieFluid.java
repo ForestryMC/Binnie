@@ -3,8 +3,8 @@ package binnie.core.liquid;
 import net.minecraftforge.fluids.Fluid;
 
 class BinnieFluid extends Fluid {
-	private final String name;
-	final IFluidType fluidType;
+	private String name;
+	IFluidType fluidType;
 
 	@Override
 	// TODO fix deprecated usage
@@ -12,7 +12,7 @@ class BinnieFluid extends Fluid {
 		return name;
 	}
 
-	public BinnieFluid(final IFluidType fluid) {
+	public BinnieFluid(IFluidType fluid) {
 		super(fluid.getIdentifier());
 		fluidType = fluid;
 		name = fluid.getName();

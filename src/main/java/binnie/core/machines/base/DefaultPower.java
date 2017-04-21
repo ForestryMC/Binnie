@@ -27,38 +27,38 @@ class DefaultPower implements IPoweredMachine {
 
 	@Override
 	@Optional.Method(modid = "IC2")
-	public double injectEnergy(final ForgeDirection directionFrom, final double amount, final double voltage) {
+	public double injectEnergy(ForgeDirection directionFrom, double amount, double voltage) {
 		return 0.0;
 	}
 
 	@Override
 	@Optional.Method(modid = "IC2")
-	public boolean acceptsEnergyFrom(final TileEntity emitter, final ForgeDirection direction) {
+	public boolean acceptsEnergyFrom(TileEntity emitter, ForgeDirection direction) {
 		return false;
 	}
 
 	@Override
-	public int receiveEnergy(final ForgeDirection from, final int maxReceive, final boolean simulate) {
+	public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate) {
 		return 0;
 	}
 
 	@Override
-	public int extractEnergy(final ForgeDirection from, final int maxExtract, final boolean simulate) {
+	public int extractEnergy(ForgeDirection from, int maxExtract, boolean simulate) {
 		return 0;
 	}
 
 	@Override
-	public int getEnergyStored(final ForgeDirection from) {
+	public int getEnergyStored(ForgeDirection from) {
 		return 0;
 	}
 
 	@Override
-	public int getMaxEnergyStored(final ForgeDirection from) {
+	public int getMaxEnergyStored(ForgeDirection from) {
 		return 0;
 	}
 
 	@Override
-	public boolean canConnectEnergy(final ForgeDirection from) {
+	public boolean canConnectEnergy(ForgeDirection from) {
 		return false;
 	}
 

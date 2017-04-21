@@ -15,13 +15,13 @@ import java.util.LinkedList;
 class ActionProvider implements IActionProvider {
 	@Override
 	@Optional.Method(modid = "BuildCraft|Silicon")
-	public Collection<IActionInternal> getInternalActions(final IStatementContainer container) {
+	public Collection<IActionInternal> getInternalActions(IStatementContainer container) {
 		return null;
 	}
 
 	@Override
 	@Optional.Method(modid = "BuildCraft|Silicon")
-	public Collection<IActionExternal> getExternalActions(final ForgeDirection side, final TileEntity tile) {
+	public Collection<IActionExternal> getExternalActions(ForgeDirection side, TileEntity tile) {
 		LinkedList<IActionExternal> list = new LinkedList<>();
 		if (tile instanceof IBuildcraft.ActionProvider) {
 			((IBuildcraft.ActionProvider) tile).getActions(list);

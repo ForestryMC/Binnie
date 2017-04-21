@@ -14,16 +14,16 @@ public class ManagerLanguage extends ManagerBase {
 		objNames = new HashMap<Object, String>();
 	}
 
-	public void addObjectName(final Object obj, final String name) {
+	public void addObjectName(Object obj, String name) {
 		objNames.put(obj, name);
 	}
 
-	public String unlocalised(final AbstractMod mod, final String id) {
+	public String unlocalised(AbstractMod mod, String id) {
 		return mod.getModID() + "." + id;
 	}
 
-	public String localise(final Object key) {
-		final String loc = StatCollector.translateToLocal(key.toString());
+	public String localise(Object key) {
+		String loc = StatCollector.translateToLocal(key.toString());
 		if (loc.equals(key.toString())) {
 			if (objNames.containsKey(key)) {
 				return localise(objNames.get(key));
@@ -33,25 +33,25 @@ public class ManagerLanguage extends ManagerBase {
 		return loc;
 	}
 
-	public String localise(final AbstractMod mod, final String id) {
+	public String localise(AbstractMod mod, String id) {
 		return localise(unlocalised(mod, id));
 	}
 
-	public String localiseOrBlank(final AbstractMod mod, final String id) {
+	public String localiseOrBlank(AbstractMod mod, String id) {
 		return localiseOrBlank(unlocalised(mod, id));
 	}
 
-	public String localise(final AbstractMod mod, final String id, final Object... objs) {
+	public String localise(AbstractMod mod, String id, Object... objs) {
 		return String.format(localise(mod, id), objs);
 	}
 
-	public String localiseOrBlank(final Object key) {
-		final String trans = localise(key);
+	public String localiseOrBlank(Object key) {
+		String trans = localise(key);
 		return trans.equals(key) ? "" : trans;
 	}
 
-	public boolean canLocalise(final Object key) {
-		final String trans = localise(key);
+	public boolean canLocalise(Object key) {
+		String trans = localise(key);
 		return !trans.equals(key);
 	}
 }

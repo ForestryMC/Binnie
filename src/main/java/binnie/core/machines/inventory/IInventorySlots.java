@@ -1,18 +1,13 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.inventory;
 
-public interface IInventorySlots
-{
-	InventorySlot addSlot(final int p0, final String p1);
+public interface IInventorySlots {
+	InventorySlot addSlot(int index, String unlocalizedName);
 
-	InventorySlot[] addSlotArray(final int[] p0, final String p1);
+	InventorySlot[] addSlotArray(int[] indexes, String unlocalizedName);
 
-	InventorySlot getSlot(final int p0);
+	InventorySlot getSlot(int index);
 
-	InventorySlot[] getSlots(final int[] p0);
+	InventorySlot[] getSlots(int[] indexes);
 
 	InventorySlot[] getAllSlots();
 }

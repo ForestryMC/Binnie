@@ -8,10 +8,10 @@ import java.util.List;
 
 public interface IBuildcraft {
 	interface TriggerProvider {
-		void getTriggers(final List<TriggerData> p0);
+		void getTriggers(List<TriggerData> p0);
 	}
 
 	interface ActionProvider extends IActionReceptor {
-		void getActions(final List<IActionExternal> p0);
+		void getActions(List<IActionExternal> p0);
 	}
 }

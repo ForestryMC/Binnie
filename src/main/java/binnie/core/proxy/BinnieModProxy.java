@@ -13,34 +13,34 @@ import net.minecraft.util.IIcon;
 public class BinnieModProxy implements IBinnieModProxy {
 	private AbstractMod mod;
 
-	public BinnieModProxy(final AbstractMod mod) {
+	public BinnieModProxy(AbstractMod mod) {
 		this.mod = mod;
 	}
 
 	@Override
-	public void openGui(final IBinnieGUID ID, final EntityPlayer player, final int x, final int y, final int z) {
+	public void openGui(IBinnieGUID ID, EntityPlayer player, int x, int y, int z) {
 		BinnieCore.proxy.openGui(mod, ID.ordinal(), player, x, y, z);
 	}
 
 	@Override
-	public void sendToAll(final MessageBase packet) {
+	public void sendToAll(MessageBase packet) {
 		mod.getNetworkWrapper().sendToAll(packet.getMessage());
 	}
 
 	@Override
-	public void sendToPlayer(final MessageBase packet, final EntityPlayer entityplayer) {
+	public void sendToPlayer(MessageBase packet, EntityPlayer entityplayer) {
 		if (entityplayer instanceof EntityPlayerMP) {
 			mod.getNetworkWrapper().sendTo(packet.getMessage(), (EntityPlayerMP) entityplayer);
 		}
 	}
 
 	@Override
-	public void sendToServer(final MessageBase packet) {
+	public void sendToServer(MessageBase packet) {
 		mod.getNetworkWrapper().sendToServer(packet.getMessage());
 	}
 
 	@Override
-	public IIcon getIcon(final IIconRegister register, final String string) {
+	public IIcon getIcon(IIconRegister register, String string) {
 		return BinnieCore.proxy.getIcon(register, mod.getModID(), string);
 	}
 
@@ -59,11 +59,11 @@ public class BinnieModProxy implements IBinnieModProxy {
 		// ignored
 	}
 
-	public String localise(final String string) {
+	public String localise(String string) {
 		return Binnie.Language.localise(mod, string);
 	}
 
-	public String localiseOrBlank(final String string) {
+	public String localiseOrBlank(String string) {
 		return Binnie.Language.localiseOrBlank(mod, string);
 	}
 }

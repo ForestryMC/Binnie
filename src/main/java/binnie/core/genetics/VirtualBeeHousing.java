@@ -30,7 +30,7 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 	ArrayList<IBeeModifier> beeModifier = new ArrayList<IBeeModifier>();
 	private InventoryBeeHousing beeInventory;
 
-	public VirtualBeeHousing(final EntityPlayer player) {
+	public VirtualBeeHousing(EntityPlayer player) {
 		super(player);
 		beeModifier.add(this);
 		beeInventory = new InventoryBeeHousing(12, FakeAccessHandler.getInstance());
@@ -38,22 +38,22 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 	}
 
 	@Override
-	public float getTerritoryModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getTerritoryModifier(IBeeGenome genome, float currentModifier) {
 		return 1.0f;
 	}
 
 	@Override
-	public float getMutationModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
+	public float getMutationModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
 		return 1.0f;
 	}
 
 	@Override
-	public float getLifespanModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
+	public float getLifespanModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
 		return 1.0f;
 	}
 
 	@Override
-	public float getProductionModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getProductionModifier(IBeeGenome genome, float currentModifier) {
 		return 1.0f;
 	}
 
@@ -65,10 +65,10 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 		return null;
 	}
 
-	public void setQueen(final ItemStack itemstack) {
+	public void setQueen(ItemStack itemstack) {
 	}
 
-	public void setDrone(final ItemStack itemstack) {
+	public void setDrone(ItemStack itemstack) {
 	}
 
 	public boolean canBreed() {
@@ -76,14 +76,14 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 	}
 
 	@Override
-	public boolean addProduct(final ItemStack product, final boolean all) {
+	public boolean addProduct(ItemStack product, boolean all) {
 		return false;
 	}
 
-	public void wearOutEquipment(final int amount) {
+	public void wearOutEquipment(int amount) {
 	}
 
-	public void onQueenChange(final ItemStack queen) {
+	public void onQueenChange(ItemStack queen) {
 	}
 
 	@Override
@@ -107,26 +107,26 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 	}
 
 	@Override
-	public float getFloweringModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getFloweringModifier(IBeeGenome genome, float currentModifier) {
 		return 1.0f;
 	}
 
-	public void onQueenDeath(final IBee queen) {
+	public void onQueenDeath(IBee queen) {
 	}
 
-	public void onPostQueenDeath(final IBee queen) {
+	public void onPostQueenDeath(IBee queen) {
 	}
 
-	public boolean onPollenRetrieved(final IBee queen, final IIndividual pollen, final boolean isHandled) {
+	public boolean onPollenRetrieved(IBee queen, IIndividual pollen, boolean isHandled) {
 		return false;
 	}
 
-	public boolean onEggLaid(final IBee queen) {
+	public boolean onEggLaid(IBee queen) {
 		return false;
 	}
 
 	@Override
-	public float getGeneticDecay(final IBeeGenome genome, final float currentModifier) {
+	public float getGeneticDecay(IBeeGenome genome, float currentModifier) {
 		return 1.0f;
 	}
 

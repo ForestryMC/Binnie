@@ -1,71 +1,70 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.power;
 
-import ic2.api.energy.event.EnergyTileUnloadEvent;
-import cpw.mods.fml.common.eventhandler.Event;
-import ic2.api.energy.event.EnergyTileLoadEvent;
-import ic2.api.energy.tile.IEnergyTile;
-import net.minecraftforge.common.MinecraftForge;
 import binnie.core.Mods;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.ForgeDirection;
-import binnie.core.triggers.TriggerPower;
-import binnie.core.triggers.TriggerData;
-import java.util.List;
-import net.minecraft.nbt.NBTTagCompound;
 import binnie.core.machines.IMachine;
-import java.util.LinkedList;
-import cpw.mods.fml.common.Optional;
-import binnie.core.machines.component.IInteraction;
-import binnie.core.machines.component.IBuildcraft;
 import binnie.core.machines.MachineComponent;
+import binnie.core.machines.component.IBuildcraft;
+import binnie.core.machines.component.IInteraction;
+import binnie.core.triggers.TriggerData;
+import binnie.core.triggers.TriggerPower;
+import cpw.mods.fml.common.Optional;
+import ic2.api.energy.event.EnergyTileLoadEvent;
+import ic2.api.energy.event.EnergyTileUnloadEvent;
+import ic2.api.energy.tile.IEnergyTile;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.LinkedList;
+import java.util.List;
 
 @Optional.Interface(iface = "binnie.core.machines.component.IBuildcraft.TriggerProvider", modid = "BuildCraft|Silicon")
-public class ComponentPowerReceptor extends MachineComponent implements IPoweredMachine, IBuildcraft.TriggerProvider, IInteraction.ChunkUnload, IInteraction.Invalidation
-{
+public class ComponentPowerReceptor extends MachineComponent implements
+		IPoweredMachine,
+		IBuildcraft.TriggerProvider,
+		IInteraction.ChunkUnload,
+		IInteraction.Invalidation {
 	private boolean registeredToIC2EnergyNet;
 	float previousPower;
 	LinkedList<Float> inputs;
-	static final int inputAverageTicks = 20;
+	static int inputAverageTicks = 20;
 	private PowerInterface container;
 
-	public ComponentPowerReceptor(final IMachine machine) {
+	public ComponentPowerReceptor(IMachine machine) {
 		this(machine, 1000);
 	}
 
-	public ComponentPowerReceptor(final IMachine machine, final int storage) {
+	public ComponentPowerReceptor(IMachine machine, int storage) {
 		super(machine);
-		this.registeredToIC2EnergyNet = false;
-		this.previousPower = 0.0f;
-		this.inputs = new LinkedList<Float>();
-		this.container = new PowerInterface(storage);
-		if (!this.registeredToIC2EnergyNet) {
-			this.addToEnergyNet();
+		registeredToIC2EnergyNet = false;
+		previousPower = 0.0f;
+		inputs = new LinkedList<>();
+		container = new PowerInterface(storage);
+		if (!registeredToIC2EnergyNet) {
+			addToEnergyNet();
 		}
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbttagcompound) {
+	public void readFromNBT(NBTTagCompound nbttagcompound) {
 		super.readFromNBT(nbttagcompound);
-		this.container.readFromNBT(nbttagcompound);
-		if (!this.registeredToIC2EnergyNet) {
-			this.addToEnergyNet();
+		container.readFromNBT(nbttagcompound);
+		if (!registeredToIC2EnergyNet) {
+			addToEnergyNet();
 		}
 	}
 
 	@Override
-	public void writeToNBT(final NBTTagCompound nbttagcompound) {
+	public void writeToNBT(NBTTagCompound nbttagcompound) {
 		super.writeToNBT(nbttagcompound);
-		this.container.writeToNBT(nbttagcompound);
+		container.writeToNBT(nbttagcompound);
 	}
 
 	@Override
 	public void onUpdate() {
-		if (!this.registeredToIC2EnergyNet && !this.getMachine().getTileEntity().isInvalid()) {
-			this.addToEnergyNet();
+		if (!registeredToIC2EnergyNet && !getMachine().getTileEntity().isInvalid()) {
+			addToEnergyNet();
 		}
 	}
 
@@ -76,7 +75,7 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 
 	@Optional.Method(modid = "BuildCraft|Silicon")
 	@Override
-	public final void getTriggers(final List<TriggerData> triggers) {
+	public void getTriggers(List<TriggerData> triggers) {
 		triggers.add(TriggerPower.powerNone(this));
 		triggers.add(TriggerPower.powerLow(this));
 		triggers.add(TriggerPower.powerMedium(this));
@@ -87,7 +86,7 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 	@Override
 	@Optional.Method(modid = "IC2")
 	public double getDemandedEnergy() {
-		return this.container.getEnergySpace(PowerSystem.EU);
+		return container.getEnergySpace(PowerSystem.EU);
 	}
 
 	@Override
@@ -98,89 +97,88 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 
 	@Override
 	@Optional.Method(modid = "IC2")
-	public double injectEnergy(final ForgeDirection directionFrom, final double amount, final double voltage) {
-		this.container.addEnergy(PowerSystem.EU, amount, true);
+	public double injectEnergy(ForgeDirection directionFrom, double amount, double voltage) {
+		container.addEnergy(PowerSystem.EU, amount, true);
 		return 0.0;
 	}
 
 	@Override
 	@Optional.Method(modid = "IC2")
-	public boolean acceptsEnergyFrom(final TileEntity emitter, final ForgeDirection direction) {
-		return this.acceptsPowerSystem(PowerSystem.EU);
+	public boolean acceptsEnergyFrom(TileEntity emitter, ForgeDirection direction) {
+		return acceptsPowerSystem(PowerSystem.EU);
 	}
 
 	@Override
-	public int receiveEnergy(final ForgeDirection from, final int maxReceive, final boolean simulate) {
-		return (int) this.container.addEnergy(PowerSystem.RF, maxReceive, !simulate);
+	public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate) {
+		return (int) container.addEnergy(PowerSystem.RF, maxReceive, !simulate);
 	}
 
 	@Override
-	public int extractEnergy(final ForgeDirection from, final int maxExtract, final boolean simulate) {
-		return this.container.useEnergy(maxExtract, simulate);
+	public int extractEnergy(ForgeDirection from, int maxExtract, boolean simulate) {
+		return container.useEnergy(maxExtract, simulate);
 	}
 
 	@Override
-	public int getEnergyStored(final ForgeDirection from) {
-		return (int) this.container.getEnergy(PowerSystem.RF);
+	public int getEnergyStored(ForgeDirection from) {
+		return (int) container.getEnergy(PowerSystem.RF);
 	}
 
 	@Override
-	public int getMaxEnergyStored(final ForgeDirection from) {
-		return (int) this.container.getCapacity(PowerSystem.RF);
+	public int getMaxEnergyStored(ForgeDirection from) {
+		return (int) container.getCapacity(PowerSystem.RF);
 	}
 
 	@Override
-	public boolean canConnectEnergy(final ForgeDirection from) {
-		final boolean can = this.acceptsPowerSystem(PowerSystem.RF);
-		return can;
+	public boolean canConnectEnergy(ForgeDirection from) {
+		return acceptsPowerSystem(PowerSystem.RF);
 	}
 
 	@Override
 	public PowerInterface getInterface() {
-		return this.container;
+		return container;
 	}
 
-	private boolean acceptsPowerSystem(final PowerSystem system) {
+	private boolean acceptsPowerSystem(PowerSystem system) {
 		return true;
 	}
 
 	@Override
 	public void onInvalidation() {
-		this.removeFromEnergyNet();
+		removeFromEnergyNet();
 	}
 
 	@Override
 	public void onChunkUnload() {
-		this.removeFromEnergyNet();
+		removeFromEnergyNet();
 	}
 
 	private void addToEnergyNet() {
-		if (this.getMachine().getWorld() == null) {
+		if (getMachine().getWorld() == null) {
 			return;
 		}
 		if (Mods.IC2.active()) {
-			this.do_addToEnergyNet();
+			do_addToEnergyNet();
 		}
 	}
 
 	private void removeFromEnergyNet() {
-		if (this.getMachine().getWorld() == null) {
+		if (getMachine().getWorld() == null) {
 			return;
 		}
 		if (Mods.IC2.active()) {
-			this.do_removeFromEnergyNet();
+			do_removeFromEnergyNet();
 		}
 	}
 
 	@Optional.Method(modid = "IC2")
 	private void do_addToEnergyNet() {
-		MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent((IEnergyTile) this.getMachine().getTileEntity()));
-		this.registeredToIC2EnergyNet = true;
+		MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent((IEnergyTile) getMachine().getTileEntity()));
+		registeredToIC2EnergyNet = true;
 	}
 
 	@Optional.Method(modid = "IC2")
 	private void do_removeFromEnergyNet() {
-		MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent((IEnergyTile) this.getMachine().getTileEntity()));
-		this.registeredToIC2EnergyNet = false;
+		MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent((IEnergyTile) getMachine().getTileEntity()));
+		registeredToIC2EnergyNet = false;
 	}
 }

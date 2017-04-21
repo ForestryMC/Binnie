@@ -23,31 +23,31 @@ public class ManagerLiquid extends ManagerBase {
 		return fluids.values();
 	}
 
-	public void createLiquids(final IFluidType[] liquids, int startID) {
-		for (final IFluidType liquid : liquids) {
-			final BinnieFluid fluid = this.createLiquid(liquid, startID++);
+	public void createLiquids(IFluidType[] liquids, int startID) {
+		for (IFluidType liquid : liquids) {
+			BinnieFluid fluid = this.createLiquid(liquid, startID++);
 			if (fluid == null) {
 				throw new RuntimeException("Liquid registered incorrectly - " + liquid.getIdentifier());
 			}
 		}
 	}
 
-	public BinnieFluid createLiquid(final IFluidType fluid, final int id) {
+	public BinnieFluid createLiquid(IFluidType fluid, int id) {
 		fluids.put(fluid.getIdentifier().toLowerCase(), fluid);
-		final BinnieFluid binnieFluid = new BinnieFluid(fluid);
+		BinnieFluid binnieFluid = new BinnieFluid(fluid);
 		FluidRegistry.registerFluid(binnieFluid);
 		ItemFluidContainer.registerFluid(fluid, id);
 		return binnieFluid;
 	}
 
-	public FluidStack getLiquidStack(final String name, final int amount) {
+	public FluidStack getLiquidStack(String name, int amount) {
 		return FluidRegistry.getFluidStack(name.toLowerCase(), amount);
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void reloadIcons(final IIconRegister register) {
-		for (final IFluidType type : fluids.values()) {
-			final Fluid fluid = getLiquidStack(type.getIdentifier(), 1).getFluid();
+	public void reloadIcons(IIconRegister register) {
+		for (IFluidType type : fluids.values()) {
+			Fluid fluid = getLiquidStack(type.getIdentifier(), 1).getFluid();
 			type.registerIcon(register);
 			if (fluid == null) {
 				throw new RuntimeException("[Binnie] Liquid not registered properly - " + type.getIdentifier());
@@ -63,8 +63,8 @@ public class ManagerLiquid extends ManagerBase {
 
 	@Override
 	public void postInit() {
-		for (final IFluidType fluid : fluids.values()) {
-			for (final FluidContainer container : FluidContainer.values()) {
+		for (IFluidType fluid : fluids.values()) {
+			for (FluidContainer container : FluidContainer.values()) {
 				if (container.isActive() && fluid.canPlaceIn(container)) {
 					container.registerContainerData(fluid);
 				}
@@ -72,7 +72,7 @@ public class ManagerLiquid extends ManagerBase {
 		}
 	}
 
-	public IFluidType getFluidType(final String liquid) {
+	public IFluidType getFluidType(String liquid) {
 		return fluids.get(liquid.toLowerCase());
 	}
 }

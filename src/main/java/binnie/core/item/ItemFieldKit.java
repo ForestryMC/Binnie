@@ -29,7 +29,7 @@ public class ItemFieldKit extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(final IIconRegister register) {
+	public void registerIcons(IIconRegister register) {
 		fieldKit0 = BinnieCore.proxy.getIcon(register, "fieldKit");
 		fieldKit1 = BinnieCore.proxy.getIcon(register, "fieldKit1");
 		fieldKit2 = BinnieCore.proxy.getIcon(register, "fieldKit2");
@@ -38,8 +38,8 @@ public class ItemFieldKit extends Item {
 	}
 
 	@Override
-	public IIcon getIcon(final ItemStack stack, final int pass) {
-		final int damage = stack.getItemDamage();
+	public IIcon getIcon(ItemStack stack, int pass) {
+		int damage = stack.getItemDamage();
 		if (damage < 24) {
 			return fieldKit3;
 		}
@@ -53,7 +53,7 @@ public class ItemFieldKit extends Item {
 	}
 
 	@Override
-	public ItemStack onItemRightClick(final ItemStack itemstack, final World world, final EntityPlayer player) {
+	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player) {
 		if (!player.isSneaking()) {
 			BinnieCore.proxy.openGui(BinnieCoreGUI.FieldKit, player, (int) player.posX, (int) player.posY, (int) player.posZ);
 		}
@@ -62,8 +62,8 @@ public class ItemFieldKit extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(final ItemStack p_77624_1_, final EntityPlayer p_77624_2_, final List p_77624_3_, final boolean p_77624_4_) {
-		final int i = getMaxDamage() - p_77624_1_.getItemDamage();
+	public void addInformation(ItemStack p_77624_1_, EntityPlayer p_77624_2_, List p_77624_3_, boolean p_77624_4_) {
+		int i = getMaxDamage() - p_77624_1_.getItemDamage();
 		if (i == 0) {
 			p_77624_3_.add("No paper");
 		} else {
@@ -73,7 +73,7 @@ public class ItemFieldKit extends Item {
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack p_77653_1_) {
+	public String getItemStackDisplayName(ItemStack p_77653_1_) {
 		return "Field Kit";
 	}
 }

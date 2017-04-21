@@ -21,11 +21,11 @@ class BinnieAction implements IActionExternal {
 	private String tag;
 	private int id;
 
-	BinnieAction(final String desc, final String tag, final String iconFile) {
+	BinnieAction(String desc, String tag, String iconFile) {
 		this(desc, tag, BinnieCore.instance, iconFile);
 	}
 
-	private BinnieAction(final String desc, final String tag, final AbstractMod mod, final String iconFile) {
+	private BinnieAction(String desc, String tag, AbstractMod mod, String iconFile) {
 		// TODO why? Where is used?
 		id = BinnieAction.incrementalID++;
 		this.tag = tag;
@@ -52,7 +52,7 @@ class BinnieAction implements IActionExternal {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(final IIconRegister iconRegister) {
+	public void registerIcons(IIconRegister iconRegister) {
 		icon.registerIcon(iconRegister);
 	}
 
@@ -67,7 +67,7 @@ class BinnieAction implements IActionExternal {
 	}
 
 	@Override
-	public IStatementParameter createParameter(final int index) {
+	public IStatementParameter createParameter(int index) {
 		return null;
 	}
 
@@ -77,7 +77,7 @@ class BinnieAction implements IActionExternal {
 	}
 
 	@Override
-	public void actionActivate(final TileEntity target, final ForgeDirection side, final IStatementContainer source, final IStatementParameter[] parameters) {
+	public void actionActivate(TileEntity target, ForgeDirection side, IStatementContainer source, IStatementParameter[] parameters) {
 		// ignored
 	}
 }

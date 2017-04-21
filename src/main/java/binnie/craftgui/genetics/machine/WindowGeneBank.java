@@ -47,10 +47,10 @@ public class WindowGeneBank extends WindowMachine
 	ControlGeneScroll genes;
 
 	@Override
-	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound action) {
-		super.recieveGuiNBT(side, player, name, action);
+	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+		super.recieveGuiNBT(side, player, name, nbt);
 		if (side == Side.SERVER && name.equals("gene-select")) {
-			final Gene gene = new Gene(action.getCompoundTag("gene"));
+			final Gene gene = new Gene(nbt.getCompoundTag("gene"));
 			if (gene != null && !gene.isCorrupted()) {
 				final ItemStack held = this.getHeldItemStack();
 				final ItemStack converted = Engineering.addGene(held, gene);

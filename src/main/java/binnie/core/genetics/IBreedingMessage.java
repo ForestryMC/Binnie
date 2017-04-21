@@ -25,10 +25,10 @@ interface IBreedingMessage
 		IAlleleSpecies species;
 		ItemStack stack;
 
-		public MessageSpeciesDiscovered(final IAlleleSpecies species) {
+		public MessageSpeciesDiscovered(IAlleleSpecies species) {
 			this.species = species;
 			ISpeciesRoot root = null;
-			for (final ISpeciesRoot sRoot : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
+			for (ISpeciesRoot sRoot : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
 				if (sRoot.getKaryotype()[0].getAlleleClass().isInstance(species)) {
 					root = sRoot;
 				}
@@ -60,11 +60,11 @@ interface IBreedingMessage
 		IClassification classification;
 		ItemStack stack;
 
-		public BranchDiscovered(final IAlleleSpecies species, final IClassification classification) {
+		public BranchDiscovered(IAlleleSpecies species, IClassification classification) {
 			this.species = species;
 			this.classification = classification;
 			ISpeciesRoot root = null;
-			for (final ISpeciesRoot sRoot : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
+			for (ISpeciesRoot sRoot : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
 				if (sRoot.getKaryotype()[0].getAlleleClass().isInstance(species)) {
 					root = sRoot;
 				}
@@ -95,7 +95,7 @@ interface IBreedingMessage
 		String epithet;
 		ItemStack stack;
 
-		public EpithetGained(final String epithet, final ISpeciesRoot root) {
+		public EpithetGained(String epithet, ISpeciesRoot root) {
 			this.epithet = epithet;
 			this.stack = root.getMemberStack(root.templateAsIndividual(root.getDefaultTemplate()), 0);
 		}

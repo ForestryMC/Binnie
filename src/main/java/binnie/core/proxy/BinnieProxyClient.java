@@ -28,21 +28,21 @@ import org.lwjgl.opengl.GL11;
 import java.io.File;
 import java.io.IOException;
 
-public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy {
+public class BinnieProxyClient extends BinnieProxy implements IBinnieProxy {
 	@Override
-	public void bindTexture(final BinnieResource texture) {
+	public void bindTexture(BinnieResource texture) {
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 		this.bindTexture(texture.getResourceLocation());
 	}
 
 	@Override
-	public void bindTexture(final ResourceLocation location) {
+	public void bindTexture(ResourceLocation location) {
 		this.getMinecraftInstance().getTextureManager().bindTexture(location);
 	}
 
 	@Override
-	public boolean checkTexture(final BinnieResource location) {
-		final SimpleTexture texture = new SimpleTexture(location.getResourceLocation());
+	public boolean checkTexture(BinnieResource location) {
+		SimpleTexture texture = new SimpleTexture(location.getResourceLocation());
 		try {
 			texture.loadTexture(this.getMinecraftInstance().getResourceManager());
 		} catch (IOException e) {
@@ -52,12 +52,12 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	}
 
 	@Override
-	public boolean isSimulating(final World world) {
+	public boolean isSimulating(World world) {
 		return !world.isRemote;
 	}
 
 	@Override
-	public void registerCustomItemRenderer(final Item item, final IItemRenderer itemRenderer) {
+	public void registerCustomItemRenderer(Item item, IItemRenderer itemRenderer) {
 		MinecraftForgeClient.registerItemRenderer(item, itemRenderer);
 	}
 
@@ -87,7 +87,7 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	}
 
 	@Override
-	public void registerTileEntity(final Class<? extends TileEntity> tile, final String id, final Object renderer) {
+	public void registerTileEntity(Class<? extends TileEntity> tile, String id, Object renderer) {
 		if (renderer != null && renderer instanceof TileEntitySpecialRenderer) {
 			ClientRegistry.registerTileEntity(tile, id, (TileEntitySpecialRenderer) renderer);
 		} else {
@@ -96,22 +96,22 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	}
 
 	@Override
-	public void registerBlockRenderer(final Object renderer) {
+	public void registerBlockRenderer(Object renderer) {
 		if (renderer != null && renderer instanceof ISimpleBlockRenderingHandler) {
 			RenderingRegistry.registerBlockHandler((ISimpleBlockRenderingHandler) renderer);
 		}
 	}
 
 	@Override
-	public void createPipe(final Item pipe) {
+	public void createPipe(Item pipe) {
 		// ignored
 	}
 
 	@Override
-	public Object createObject(final String renderer) {
+	public Object createObject(String renderer) {
 		Object object = null;
 		try {
-			final Class<?> rendererClass = Class.forName(renderer);
+			Class<?> rendererClass = Class.forName(renderer);
 			if (rendererClass != null) {
 				object = rendererClass.newInstance();
 			}
@@ -122,7 +122,7 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	}
 
 	@Override
-	public IIcon getIcon(final IIconRegister register, final String mod, final String name) {
+	public IIcon getIcon(IIconRegister register, String mod, String name) {
 		return register.registerIcon(mod + ":" + name);
 	}
 
@@ -137,7 +137,7 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	}
 
 	// TODO unused method?
-	public void handlePreTextureRefresh(final IIconRegister register, final int type) {
+	public void handlePreTextureRefresh(IIconRegister register, int type) {
 		if (type == 0) {
 			Binnie.Liquid.reloadIcons(register);
 		}

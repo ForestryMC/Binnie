@@ -204,10 +204,10 @@ public abstract class Designer
 		}
 
 		@Override
-		public void sendGuiNBT(final Map<String, NBTTagCompound> nbt) {
+		public void sendGuiNBT(final Map<String, NBTTagCompound> nbts) {
 			final NBTTagCompound tag = new NBTTagCompound();
 			tag.setShort("d", (short) CarpentryManager.carpentryInterface.getDesignIndex(this.getDesign()));
-			nbt.put("design", tag);
+			nbts.put("design", tag);
 		}
 
 		public DesignerType getDesignerType() {

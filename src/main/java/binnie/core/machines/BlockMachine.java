@@ -1,46 +1,42 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines;
 
-import java.util.ArrayList;
+import binnie.Binnie;
+import binnie.core.BinnieCore;
 import binnie.core.machines.component.IRender;
-import java.util.Random;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.entity.EntityLivingBase;
-import binnie.core.BinnieCore;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import binnie.Binnie;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
-import java.util.List;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.BlockContainer;
 
-class BlockMachine extends BlockContainer implements IBlockMachine
-{
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+class BlockMachine extends BlockContainer implements IBlockMachine {
 	private MachineGroup group;
 
-	public BlockMachine(final MachineGroup group, final String blockName) {
+	public BlockMachine(MachineGroup group, String blockName) {
 		super(Material.iron);
 		this.group = group;
-		this.setHardness(1.5f);
-		this.setBlockName(blockName);
+		setHardness(1.5f);
+		setBlockName(blockName);
 	}
 
 	@Override
-	public void getSubBlocks(final Item par1, final CreativeTabs par2CreativeTabs, final List itemList) {
-		for (final MachinePackage pack : this.group.getPackages()) {
+	public void getSubBlocks(Item item, CreativeTabs tab, List itemList) {
+		for (MachinePackage pack : group.getPackages()) {
 			if (pack.isActive()) {
 				itemList.add(new ItemStack(this, 1, pack.getMetadata()));
 			}
@@ -54,7 +50,7 @@ class BlockMachine extends BlockContainer implements IBlockMachine
 
 	@Override
 	public boolean renderAsNormalBlock() {
-		return !this.group.customRenderer;
+		return !group.customRenderer;
 	}
 
 	@Override
@@ -63,42 +59,42 @@ class BlockMachine extends BlockContainer implements IBlockMachine
 	}
 
 	@Override
-	public TileEntity createTileEntity(final World world, final int metadata) {
-		if (this.group.getPackage(metadata) == null) {
+	public TileEntity createTileEntity(World world, int meta) {
+		MachinePackage pkg = group.getPackage(meta);
+		if (pkg == null) {
 			return null;
 		}
-		return this.group.getPackage(metadata).createTileEntity();
+		return pkg.createTileEntity();
 	}
 
 	@Override
-	public MachinePackage getPackage(final int meta) {
-		return this.group.getPackage(meta);
+	public MachinePackage getPackage(int meta) {
+		return group.getPackage(meta);
 	}
 
 	@Override
-	public String getMachineName(final int meta) {
-		return (this.getPackage(meta) == null) ? "Unnamed Machine" : this.getPackage(meta).getDisplayName();
+	public String getMachineName(int meta) {
+		MachinePackage pkg = getPackage(meta);
+		return (pkg == null) ? "Unnamed Machine" : pkg.getDisplayName();
 	}
 
 	@Override
-	public int damageDropped(final int par1) {
-		return par1;
+	public int damageDropped(int meta) {
+		return meta;
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(final World var1, final int meta) {
-		return this.createTileEntity(var1, meta);
+	public TileEntity createNewTileEntity(World world, int meta) {
+		return createTileEntity(world, meta);
 	}
 
 	@Override
-	public boolean onBlockActivated(final World world, final int x, final int y, final int z, final EntityPlayer player, final int par6, final float par7, final float par8, final float par9) {
-		if (!BinnieCore.proxy.isSimulating(world)) {
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float xOffset, float yOffset, float zOffset) {
+		if (!BinnieCore.proxy.isSimulating(world) || player.isSneaking()) {
 			return true;
 		}
-		if (player.isSneaking()) {
-			return true;
-		}
-		final TileEntity entity = world.getTileEntity(x, y, z);
+
+		TileEntity entity = world.getTileEntity(x, y, z);
 		if (entity instanceof TileEntityMachine) {
 			((TileEntityMachine) entity).getMachine().onRightClick(world, player, x, y, z);
 		}
@@ -106,23 +102,25 @@ class BlockMachine extends BlockContainer implements IBlockMachine
 	}
 
 	@Override
-	public void onBlockPlacedBy(final World world, final int i, final int j, final int k, final EntityLivingBase entityliving, final ItemStack stack) {
-		super.onBlockPlacedBy(world, i, j, k, entityliving, stack);
+	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
+		super.onBlockPlacedBy(world, x, y, z, entity, stack);
 		if (!BinnieCore.proxy.isSimulating(world)) {
 			return;
 		}
-		final IMachine machine = Machine.getMachine(world.getTileEntity(i, j, k));
+
+		IMachine machine = Machine.getMachine(world.getTileEntity(x, y, z));
 		if (machine == null) {
 			return;
 		}
-		if (entityliving instanceof EntityPlayer) {
-			machine.setOwner(((EntityPlayer) entityliving).getGameProfile());
+
+		if (entity instanceof EntityPlayer) {
+			machine.setOwner(((EntityPlayer) entity).getGameProfile());
 		}
 	}
 
 	@Override
-	public IIcon getIcon(final IBlockAccess world, final int x, final int y, final int z, final int side) {
-		final TileEntity entity = world.getTileEntity(x, y, z);
+	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
+		TileEntity entity = world.getTileEntity(x, y, z);
 		if (entity instanceof TileEntityMachine && ((TileEntityMachine) entity).getMachine().hasInterface(IMachineTexturedFaces.class)) {
 			return ((TileEntityMachine) entity).getMachine().getInterface(IMachineTexturedFaces.class).getIcon(side);
 		}
@@ -130,51 +128,50 @@ class BlockMachine extends BlockContainer implements IBlockMachine
 	}
 
 	@Override
-	public void breakBlock(final World world, final int x, final int y, final int z, final Block par5, final int par6) {
-		final TileEntity tileentity = world.getTileEntity(x, y, z);
+	public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
+		TileEntity tileentity = world.getTileEntity(x, y, z);
 		if (!(tileentity instanceof TileEntityMachine)) {
 			return;
 		}
-		final TileEntityMachine entity = (TileEntityMachine) tileentity;
-		if (entity != null) {
-			entity.onBlockDestroy();
-		}
-		super.breakBlock(world, x, y, z, par5, par6);
+
+		TileEntityMachine entity = (TileEntityMachine) tileentity;
+		entity.onBlockDestroy();
+		super.breakBlock(world, x, y, z, block, meta);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(final IIconRegister register) {
+	public void registerBlockIcons(IIconRegister register) {
+		// ignored
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void randomDisplayTick(final World world, final int x, final int y, final int z, final Random rand) {
-		final IMachine machine = Machine.getMachine(world.getTileEntity(x, y, z));
+	public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
+		IMachine machine = Machine.getMachine(world.getTileEntity(x, y, z));
 		if (machine != null) {
-			for (final IRender.RandomDisplayTick renders : machine.getInterfaces(IRender.RandomDisplayTick.class)) {
+			for (IRender.RandomDisplayTick renders : machine.getInterfaces(IRender.RandomDisplayTick.class)) {
 				renders.onRandomDisplayTick(world, x, y, z, rand);
 			}
 		}
 	}
 
 	@Override
-	public ArrayList<ItemStack> getDrops(final World world, final int x, final int y, final int z, final int metadata, final int fortune) {
-		return new ArrayList<ItemStack>();
+	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int meta, int fortune) {
+		return new ArrayList<>();
 	}
 
 	@Override
-	public boolean removedByPlayer(final World world, final EntityPlayer player, final int x, final int y, final int z, final boolean willHarvest) {
-		if (BinnieCore.proxy.isSimulating(world) && this.canHarvestBlock(player, world.getBlockMetadata(x, y, z)) && !player.capabilities.isCreativeMode) {
-			final int metadata = world.getBlockMetadata(x, y, z);
-			final ItemStack stack = new ItemStack(Item.getItemFromBlock(this), 1, this.damageDropped(metadata));
-			this.dropBlockAsItem(world, x, y, z, stack);
+	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
+		if (BinnieCore.proxy.isSimulating(world) && canHarvestBlock(player, world.getBlockMetadata(x, y, z)) && !player.capabilities.isCreativeMode) {
+			int metadata = world.getBlockMetadata(x, y, z);
+			ItemStack stack = new ItemStack(Item.getItemFromBlock(this), 1, damageDropped(metadata));
+			dropBlockAsItem(world, x, y, z, stack);
 		}
 		return world.setBlockToAir(x, y, z);
 	}
 
-	public interface IMachineTexturedFaces
-	{
-		IIcon getIcon(final int p0);
+	public interface IMachineTexturedFaces {
+		IIcon getIcon(int p0);
 	}
 }

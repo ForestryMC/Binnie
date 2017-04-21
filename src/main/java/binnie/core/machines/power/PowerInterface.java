@@ -1,83 +1,77 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.power;
 
-import net.minecraft.nbt.NBTTagCompound;
 import forestry.api.core.INBTTagable;
+import net.minecraft.nbt.NBTTagCompound;
 
-public class PowerInterface implements INBTTagable
-{
+public class PowerInterface implements INBTTagable {
 	private int capacity;
 	private int energy;
 
-	public PowerInterface(final int capacity) {
+	public PowerInterface(int capacity) {
 		this.capacity = capacity * 100;
 		this.energy = 0;
 	}
 
 	public int getCapacity() {
-		return this.capacity;
+		return capacity;
 	}
 
 	public int getEnergy() {
-		return this.energy;
+		return energy;
 	}
 
-	public int addEnergy(final int amount, final boolean shouldDo) {
-		final int added = Math.min(this.getEnergySpace(), amount);
+	public int addEnergy(int amount, boolean shouldDo) {
+		int added = Math.min(this.getEnergySpace(), amount);
 		if (shouldDo) {
-			this.energy += added;
+			energy += added;
 		}
 		return added;
 	}
 
-	public int useEnergy(final int amount, final boolean simulate) {
-		final int added = Math.min(this.getEnergy(), amount);
+	public int useEnergy(int amount, boolean simulate) {
+		int added = Math.min(getEnergy(), amount);
 		if (simulate) {
-			this.energy -= added;
+			energy -= added;
 		}
 		return added;
 	}
 
 	public int getEnergySpace() {
-		return this.getCapacity() - this.getEnergy();
+		return getCapacity() - getEnergy();
 	}
 
-	public double addEnergy(final PowerSystem unit, final double amount, final boolean simulate) {
-		return unit.convertTo(this.addEnergy(unit.convertFrom(amount), simulate));
+	public double addEnergy(PowerSystem unit, double amount, boolean simulate) {
+		return unit.convertTo(addEnergy(unit.convertFrom(amount), simulate));
 	}
 
-	public double useEnergy(final PowerSystem unit, final double amount, final boolean simulate) {
-		return unit.convertTo(this.useEnergy(unit.convertFrom(amount), simulate));
+	public double useEnergy(PowerSystem unit, double amount, boolean simulate) {
+		return unit.convertTo(useEnergy(unit.convertFrom(amount), simulate));
 	}
 
-	public double getEnergy(final PowerSystem unit) {
-		return unit.convertTo(this.getEnergy());
+	public double getEnergy(PowerSystem unit) {
+		return unit.convertTo(getEnergy());
 	}
 
-	public double getCapacity(final PowerSystem unit) {
-		return unit.convertTo(this.getCapacity());
+	public double getCapacity(PowerSystem unit) {
+		return unit.convertTo(getCapacity());
 	}
 
-	public double getEnergySpace(final PowerSystem unit) {
-		return unit.convertTo(this.getEnergySpace());
-	}
-
-	@Override
-	public void readFromNBT(final NBTTagCompound nbt) {
-		this.energy = nbt.getInteger("Energy");
-		if (this.energy > this.capacity) {
-			this.energy = this.capacity;
-		}
-		else if (this.energy < 0) {
-			this.energy = 0;
-		}
+	public double getEnergySpace(PowerSystem unit) {
+		return unit.convertTo(getEnergySpace());
 	}
 
 	@Override
-	public void writeToNBT(final NBTTagCompound nbt) {
-		nbt.setInteger("Energy", this.getEnergy());
+	public void readFromNBT(NBTTagCompound nbt) {
+		energy = nbt.getInteger("Energy");
+		if (energy > capacity) {
+			energy = capacity;
+		} else if (energy < 0) {
+			energy = 0;
+		}
+	}
+
+	@Override
+	public void writeToNBT(NBTTagCompound nbt) {
+		nbt.setInteger("Energy", getEnergy());
 	}
 }

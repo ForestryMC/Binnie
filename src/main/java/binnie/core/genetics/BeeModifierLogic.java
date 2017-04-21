@@ -14,14 +14,14 @@ public class BeeModifierLogic {
 		this.booleanModifiers = new ArrayList<EnumBeeBooleanModifier>();
 	}
 
-	public float getModifier(final EnumBeeModifier modifier, final float currentModifier) {
+	public float getModifier(EnumBeeModifier modifier, float currentModifier) {
 		if (!this.modifiers.containsKey(modifier)) {
 			return 1.0f;
 		}
 
 		Float[] values = modifiers.get(modifier);
-		final float mult = values[0];
-		final float max = values[1];
+		float mult = values[0];
+		float max = values[1];
 		if (max >= 1.0f) {
 			if (max <= currentModifier) {
 				return 1.0f;
@@ -35,15 +35,15 @@ public class BeeModifierLogic {
 		return Math.max(max / currentModifier, mult);
 	}
 
-	public boolean getModifier(final EnumBeeBooleanModifier modifier) {
+	public boolean getModifier(EnumBeeBooleanModifier modifier) {
 		return booleanModifiers.contains(modifier);
 	}
 
-	public void setModifier(final EnumBeeBooleanModifier modifier) {
+	public void setModifier(EnumBeeBooleanModifier modifier) {
 		booleanModifiers.add(modifier);
 	}
 
-	public void setModifier(final EnumBeeModifier modifier, final float mult, final float max) {
+	public void setModifier(EnumBeeModifier modifier, float mult, float max) {
 		modifiers.put(modifier, new Float[] { mult, max });
 	}
 }

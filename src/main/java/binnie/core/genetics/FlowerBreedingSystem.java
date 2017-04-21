@@ -32,7 +32,7 @@ class FlowerBreedingSystem extends BreedingSystem
 	}
 
 	@Override
-	public float getChance(final IMutation mutation, final EntityPlayer player, final IAllele species1, final IAllele species2) {
+	public float getChance(IMutation mutation, EntityPlayer player, IAllele species1, IAllele species2) {
 		return ((IFlowerMutation) mutation).getBaseChance();
 	}
 
@@ -52,7 +52,7 @@ class FlowerBreedingSystem extends BreedingSystem
 	}
 
 	@Override
-	public String getAlleleName(final IChromosomeType chromosome, final IAllele allele) {
+	public String getAlleleName(IChromosomeType chromosome, IAllele allele) {
 		if (chromosome == EnumFlowerChromosome.FERTILITY) {
 			if (allele.getUID().contains("Low")) {
 				return Binnie.Language.localise(BinnieCore.instance, "allele.fertility.low");
@@ -71,12 +71,12 @@ class FlowerBreedingSystem extends BreedingSystem
 	}
 
 	@Override
-	public boolean isDNAManipulable(final ItemStack member) {
+	public boolean isDNAManipulable(ItemStack member) {
 		return ((IFlowerRoot) this.getSpeciesRoot()).getStageType(member) == EnumFlowerStage.POLLEN;
 	}
 
 	@Override
-	public IIndividual getConversion(final ItemStack stack) {
+	public IIndividual getConversion(ItemStack stack) {
 		return BotanyCore.getFlowerRoot().getConversion(stack);
 	}
 
@@ -86,16 +86,16 @@ class FlowerBreedingSystem extends BreedingSystem
 	}
 
 	@Override
-	public void addExtraAlleles(final IChromosomeType chromosome, final TreeSet<IAllele> alleles) {
+	public void addExtraAlleles(IChromosomeType chromosome, TreeSet<IAllele> alleles) {
 		switch ((EnumFlowerChromosome) chromosome) {
 		case FERTILITY: {
-			for (final ForestryAllele.Fertility a : ForestryAllele.Fertility.values()) {
+			for (ForestryAllele.Fertility a : ForestryAllele.Fertility.values()) {
 				alleles.add(a.getAllele());
 			}
 			break;
 		}
 		case LIFESPAN: {
-			for (final ForestryAllele.Lifespan a2 : ForestryAllele.Lifespan.values()) {
+			for (ForestryAllele.Lifespan a2 : ForestryAllele.Lifespan.values()) {
 				alleles.add(a2.getAllele());
 			}
 			break;
@@ -103,7 +103,7 @@ class FlowerBreedingSystem extends BreedingSystem
 		case HUMIDITY_TOLERANCE:
 		case PH_TOLERANCE:
 		case TEMPERATURE_TOLERANCE: {
-			for (final Tolerance a3 : Tolerance.values()) {
+			for (Tolerance a3 : Tolerance.values()) {
 				alleles.add(a3.getAllele());
 			}
 			break;
@@ -111,19 +111,19 @@ class FlowerBreedingSystem extends BreedingSystem
 		case PRIMARY:
 		case SECONDARY:
 		case STEM: {
-			for (final EnumFlowerColor a4 : EnumFlowerColor.values()) {
+			for (EnumFlowerColor a4 : EnumFlowerColor.values()) {
 				alleles.add(a4.getAllele());
 			}
 			break;
 		}
 		case SAPPINESS: {
-			for (final ForestryAllele.Sappiness a5 : ForestryAllele.Sappiness.values()) {
+			for (ForestryAllele.Sappiness a5 : ForestryAllele.Sappiness.values()) {
 				alleles.add(a5.getAllele());
 			}
 			break;
 		}
 		case TERRITORY: {
-			for (final ForestryAllele.Territory a6 : ForestryAllele.Territory.values()) {
+			for (ForestryAllele.Territory a6 : ForestryAllele.Territory.values()) {
 				alleles.add(a6.getAllele());
 			}
 			break;

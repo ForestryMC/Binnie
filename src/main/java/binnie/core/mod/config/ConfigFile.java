@@ -1,11 +1,7 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.mod.config;
 
-import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ConfigFile {

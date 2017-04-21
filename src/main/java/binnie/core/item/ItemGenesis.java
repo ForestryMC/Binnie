@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 public class ItemGenesis extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(final IIconRegister register) {
+	public void registerIcons(IIconRegister register) {
 		itemIcon = BinnieCore.proxy.getIcon(register, "genesis");
 	}
 
@@ -25,13 +25,13 @@ public class ItemGenesis extends Item {
 	}
 
 	@Override
-	public ItemStack onItemRightClick(final ItemStack itemstack, final World world, final EntityPlayer player) {
+	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player) {
 		BinnieCore.proxy.openGui(BinnieCoreGUI.Genesis, player, (int) player.posX, (int) player.posY, (int) player.posZ);
 		return itemstack;
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack i) {
+	public String getItemStackDisplayName(ItemStack i) {
 		return "Genesis";
 	}
 }

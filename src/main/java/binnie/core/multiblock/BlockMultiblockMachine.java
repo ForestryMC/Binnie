@@ -1,29 +1,25 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.multiblock;
 
+import net.minecraft.block.BlockContainer;
+import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.BlockContainer;
 
-public class BlockMultiblockMachine extends BlockContainer
-{
-	public BlockMultiblockMachine(final String blockName) {
+// TODO unused class?
+public class BlockMultiblockMachine extends BlockContainer {
+	public BlockMultiblockMachine(String blockName) {
 		super(Material.iron);
 		this.setHardness(1.5f);
-		this.setBlockName(blockName);
+		setBlockName(blockName);
 	}
 
 	@Override
-	public TileEntity createTileEntity(final World world, final int metadata) {
+	public TileEntity createTileEntity(World world, int metadata) {
 		return new TileEntityMultiblockMachine();
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(final World var1, final int i) {
+	public TileEntity createNewTileEntity(World world, int metadata) {
 		return new TileEntityMultiblockMachine();
 	}
 }

@@ -14,7 +14,7 @@ public class BinnieCircuit implements ICircuit {
 	private int limit;
 	private List<String> tooltips;
 
-	public BinnieCircuit(final String uid, final int limit, final ICircuitLayout layout, final ItemStack itemStack) {
+	public BinnieCircuit(String uid, int limit, ICircuitLayout layout, ItemStack itemStack) {
 		this.tooltips = new ArrayList<String>();
 		this.uid = "binnie.circuit." + uid;
 		this.limit = limit;
@@ -24,11 +24,11 @@ public class BinnieCircuit implements ICircuit {
 		}
 	}
 
-	public BinnieCircuit(final String uid, final int limit, final ICircuitLayout layout, final Item item, final int itemMeta) {
+	public BinnieCircuit(String uid, int limit, ICircuitLayout layout, Item item, int itemMeta) {
 		this(uid, limit, layout, new ItemStack(item, 1, itemMeta));
 	}
 
-	public void addTooltipString(final String string) {
+	public void addTooltipString(String string) {
 		tooltips.add(string);
 	}
 
@@ -53,8 +53,8 @@ public class BinnieCircuit implements ICircuit {
 	}
 
 	@Override
-	public void addTooltip(final List<String> list) {
-		for (final String string : tooltips) {
+	public void addTooltip(List<String> list) {
+		for (String string : tooltips) {
 			list.add(" - " + string);
 		}
 	}

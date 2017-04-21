@@ -7,13 +7,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.IIcon;
 
 interface IBinnieModProxy extends IProxyCore {
-	void openGui(final IBinnieGUID mod, final EntityPlayer player, final int x, final int y, final int z);
+	void openGui(IBinnieGUID mod, EntityPlayer player, int x, int y, int z);
 
-	void sendToAll(final MessageBase p0);
+	void sendToAll(MessageBase p0);
 
-	void sendToPlayer(final MessageBase p0, final EntityPlayer p1);
+	void sendToPlayer(MessageBase p0, EntityPlayer p1);
 
-	void sendToServer(final MessageBase p0);
+	void sendToServer(MessageBase p0);
 
-	IIcon getIcon(final IIconRegister p0, final String p1);
+	IIcon getIcon(IIconRegister p0, String p1);
 }

@@ -13,29 +13,29 @@ import net.minecraftforge.common.util.ForgeDirection;
 import java.util.List;
 
 public class ItemMetadata extends ItemBlock {
-	public ItemMetadata(final Block block) {
+	public ItemMetadata(Block block) {
 		super(block);
 	}
 
 	@Override
-	public int getMetadata(final int par1) {
+	public int getMetadata(int par1) {
 		return 0;
 	}
 
 	@Override
-	public boolean placeBlockAt(final ItemStack stack, final EntityPlayer player, final World world, final int x, final int y, final int z, final int side, final float hitX, final float hitY, final float hitZ, final int metadata) {
-		final Block block = this.field_150939_a;
+	public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata) {
+		Block block = this.field_150939_a;
 		if (!(block instanceof IBlockMetadata)) {
 			return false;
 		}
 
-		final int placedMeta = ((IBlockMetadata) block).getPlacedMeta(stack, world, x, y, z, ForgeDirection.values()[side]);
+		int placedMeta = ((IBlockMetadata) block).getPlacedMeta(stack, world, x, y, z, ForgeDirection.values()[side]);
 		if (placedMeta < 0 || !world.setBlock(x, y, z, block, metadata, 3)) {
 			return false;
 		}
 
 		if (world.getBlock(x, y, z) == block) {
-			final TileEntityMetadata tile = TileEntityMetadata.getTile(world, x, y, z);
+			TileEntityMetadata tile = TileEntityMetadata.getTile(world, x, y, z);
 			if (tile != null) {
 				tile.setTileMetadata(placedMeta, false);
 			}
@@ -47,18 +47,18 @@ public class ItemMetadata extends ItemBlock {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public String getItemStackDisplayName(final ItemStack par1ItemStack) {
+	public String getItemStackDisplayName(ItemStack par1ItemStack) {
 		return ((IBlockMetadata) this.field_150939_a).getBlockName(par1ItemStack);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(final ItemStack itemStack, final EntityPlayer player, final List par3List, final boolean par4) {
+	public void addInformation(ItemStack itemStack, EntityPlayer player, List par3List, boolean par4) {
 		((IBlockMetadata) this.field_150939_a).getBlockTooltip(itemStack, par3List);
 	}
 
 	@Override
-	public IIcon getIconFromDamage(final int damage) {
+	public IIcon getIconFromDamage(int damage) {
 		return this.field_150939_a.getIcon(1, damage);
 	}
 }

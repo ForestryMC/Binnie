@@ -9,10 +9,10 @@ import net.minecraft.util.IIcon;
 import java.util.List;
 
 public interface IItemMisc extends IItemEnum {
-	IIcon getIcon(final ItemStack itemStack);
+	IIcon getIcon(ItemStack itemStack);
 
 	@SideOnly(Side.CLIENT)
-	void registerIcons(final IIconRegister register);
+	void registerIcons(IIconRegister register);
 
-	void addInformation(final List data);
+	void addInformation(List data);
 }

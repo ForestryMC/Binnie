@@ -41,7 +41,7 @@ public class ModuleItems implements IInitializable {
 	}
 
 	@SubscribeEvent
-	public void onUseFieldKit(final PlayerInteractEvent event) {
+	public void onUseFieldKit(PlayerInteractEvent event) {
 		if (!BinnieCore.isBotanyActive() || event.action != PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
 			return;
 		}
@@ -49,18 +49,18 @@ public class ModuleItems implements IInitializable {
 			&& event.entityPlayer.getHeldItem() != null
 			&& event.entityPlayer.getHeldItem().getItem() == BinnieCore.fieldKit
 			&& event.entityPlayer.isSneaking()) {
-			final TileEntity tile = event.world.getTileEntity(event.x, event.y, event.z);
+			TileEntity tile = event.world.getTileEntity(event.x, event.y, event.z);
 			if (!(tile instanceof TileEntityFlower)) {
 				return;
 			}
 
-			final TileEntityFlower tileFlower = (TileEntityFlower) tile;
-			final IFlower flower = tileFlower.getFlower();
+			TileEntityFlower tileFlower = (TileEntityFlower) tile;
+			IFlower flower = tileFlower.getFlower();
 			if (flower == null) {
 				return;
 			}
 
-			final NBTTagCompound info = new NBTTagCompound();
+			NBTTagCompound info = new NBTTagCompound();
 			info.setString("Species", flower.getGenome().getPrimary().getUID());
 			info.setString("Species2", flower.getGenome().getSecondary().getUID());
 			info.setFloat("Age", flower.getAge() / flower.getGenome().getLifespan());

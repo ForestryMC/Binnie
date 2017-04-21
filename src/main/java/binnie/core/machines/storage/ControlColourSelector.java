@@ -1,47 +1,38 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.storage;
 
-import binnie.craftgui.core.CraftGUI;
-import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.Attribute;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.minecraft.EnumColor;
-import binnie.craftgui.controls.core.IControlValue;
-import binnie.craftgui.core.ITooltip;
 import binnie.craftgui.controls.core.Control;
+import binnie.craftgui.controls.core.IControlValue;
+import binnie.craftgui.core.*;
+import binnie.craftgui.minecraft.EnumColor;
 
-class ControlColourSelector extends Control implements ITooltip, IControlValue<EnumColor>
-{
+class ControlColourSelector extends Control implements ITooltip, IControlValue<EnumColor> {
 	private EnumColor value;
 
-	public ControlColourSelector(final IWidget parent, final float x, final float y, final float w, final float h, final EnumColor value) {
+	public ControlColourSelector(IWidget parent, float x, float y, float w, float h, EnumColor value) {
 		super(parent, x, y, w, h);
-		this.setValue(value);
-		this.addAttribute(Attribute.MouseOver);
+		setValue(value);
+		addAttribute(Attribute.MouseOver);
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
-		tooltip.add(this.value.toString());
+	public void getTooltip(Tooltip tooltip) {
+		tooltip.add(value.toString());
 	}
 
 	@Override
 	public EnumColor getValue() {
-		return this.value;
+		return value;
 	}
 
 	@Override
-	public void setValue(final EnumColor value) {
+	public void setValue(EnumColor value) {
 		this.value = value;
-		this.setColour(this.getValue().getColour());
+		setColour(value.getColour());
 	}
 
 	@Override
 	public void onRenderBackground() {
 		super.onRenderBackground();
-		CraftGUI.Render.gradientRect(this.getArea(), -16777216 + this.value.getColour(), -16777216 + this.value.getColour());
+		CraftGUI.Render.gradientRect(getArea(), 0xff000000 + value.getColour(), 0xff000000 + value.getColour());
 	}
 }

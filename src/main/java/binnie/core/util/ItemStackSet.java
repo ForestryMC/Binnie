@@ -16,8 +16,8 @@ public class ItemStackSet implements Set<ItemStack> {
 		return itemStacks.toString();
 	}
 
-	protected ItemStack getExisting(final ItemStack stack) {
-		for (final ItemStack existStack : itemStacks) {
+	protected ItemStack getExisting(ItemStack stack) {
+		for (ItemStack existStack : itemStacks) {
 			if (existStack.isItemEqual(stack)) {
 				return existStack;
 			}
@@ -26,7 +26,7 @@ public class ItemStackSet implements Set<ItemStack> {
 	}
 
 	@Override
-	public boolean add(final ItemStack itemStack) {
+	public boolean add(ItemStack itemStack) {
 		if (itemStack != null) {
 			ItemStack existing = getExisting(itemStack);
 			if (existing == null) {
@@ -38,9 +38,9 @@ public class ItemStackSet implements Set<ItemStack> {
 	}
 
 	@Override
-	public boolean addAll(final Collection<? extends ItemStack> c) {
+	public boolean addAll(Collection<? extends ItemStack> c) {
 		boolean addedAll = true;
-		for (final ItemStack stack : c) {
+		for (ItemStack stack : c) {
 			addedAll = add(stack) && addedAll;
 		}
 		return addedAll;
@@ -52,15 +52,15 @@ public class ItemStackSet implements Set<ItemStack> {
 	}
 
 	@Override
-	public boolean contains(final Object o) {
+	public boolean contains(Object o) {
 		return o instanceof ItemStack
 			&& getExisting((ItemStack) o) != null;
 	}
 
 	@Override
-	public boolean containsAll(final Collection<?> collection) {
+	public boolean containsAll(Collection<?> collection) {
 		boolean addedAll = true;
-		for (final Object object : collection) {
+		for (Object object : collection) {
 			addedAll = addedAll && contains(object);
 		}
 		return false;
@@ -77,10 +77,10 @@ public class ItemStackSet implements Set<ItemStack> {
 	}
 
 	@Override
-	public boolean remove(final Object object) {
+	public boolean remove(Object object) {
 		if (this.contains(object)) {
-			final ItemStack r = (ItemStack) object;
-			final ItemStack existing = this.getExisting(r);
+			ItemStack r = (ItemStack) object;
+			ItemStack existing = this.getExisting(r);
 			if (existing.stackSize > r.stackSize) {
 				existing.stackSize -= r.stackSize;
 			} else {
@@ -91,17 +91,17 @@ public class ItemStackSet implements Set<ItemStack> {
 	}
 
 	@Override
-	public boolean removeAll(final Collection<?> collection) {
+	public boolean removeAll(Collection<?> collection) {
 		boolean addedAll = true;
-		for (final Object object : collection) {
-			final boolean removed = remove(object);
+		for (Object object : collection) {
+			boolean removed = remove(object);
 			addedAll = removed && addedAll;
 		}
 		return false;
 	}
 
 	@Override
-	public boolean retainAll(final Collection<?> collection) {
+	public boolean retainAll(Collection<?> collection) {
 		return itemStacks.retainAll(collection);
 	}
 
@@ -116,7 +116,7 @@ public class ItemStackSet implements Set<ItemStack> {
 	}
 
 	@Override
-	public <T> T[] toArray(final T[] array) {
+	public <T> T[] toArray(T[] array) {
 		return itemStacks.toArray(array);
 	}
 }

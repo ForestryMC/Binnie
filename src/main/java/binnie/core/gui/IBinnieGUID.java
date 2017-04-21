@@ -7,5 +7,5 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 public interface IBinnieGUID extends IOrdinaled {
-	Window getWindow(final EntityPlayer player, final World world, final int x, final int y, final int z, final Side side);
+	Window getWindow(EntityPlayer player, World world, int x, int y, int z, Side side);
 }

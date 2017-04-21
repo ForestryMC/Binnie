@@ -27,7 +27,7 @@ class BeeBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public float getChance(final IMutation mutation, final EntityPlayer player, final IAllele species1, final IAllele species2) {
+	public float getChance(IMutation mutation, EntityPlayer player, IAllele species1, IAllele species2) {
 		return ((IBeeMutation) mutation).getChance(
 			new VirtualBeeHousing(player),
 			(IAlleleBeeSpecies) species1,
@@ -53,7 +53,7 @@ class BeeBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public String getAlleleName(final IChromosomeType chromosome, final IAllele allele) {
+	public String getAlleleName(IChromosomeType chromosome, IAllele allele) {
 		if (chromosome == EnumBeeChromosome.FERTILITY) {
 			if (allele.getUID().contains("Low")) {
 				return Binnie.Language.localise(BinnieCore.instance, "allele.fertility.low");
@@ -72,7 +72,7 @@ class BeeBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public boolean isDNAManipulable(final ItemStack member) {
+	public boolean isDNAManipulable(ItemStack member) {
 		return ((IBeeRoot) getSpeciesRoot()).getType(member) == EnumBeeType.LARVAE;
 	}
 
@@ -87,41 +87,41 @@ class BeeBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public void addExtraAlleles(final IChromosomeType chromosome, final TreeSet<IAllele> alleles) {
+	public void addExtraAlleles(IChromosomeType chromosome, TreeSet<IAllele> alleles) {
 		switch ((EnumBeeChromosome) chromosome) {
 			case FERTILITY:
-				for (final ForestryAllele.Fertility a : ForestryAllele.Fertility.values()) {
+				for (ForestryAllele.Fertility a : ForestryAllele.Fertility.values()) {
 					alleles.add(a.getAllele());
 				}
 				break;
 
 			case FLOWERING:
-				for (final ForestryAllele.Flowering a2 : ForestryAllele.Flowering.values()) {
+				for (ForestryAllele.Flowering a2 : ForestryAllele.Flowering.values()) {
 					alleles.add(a2.getAllele());
 				}
 				break;
 
 			case HUMIDITY_TOLERANCE:
 			case TEMPERATURE_TOLERANCE:
-				for (final Tolerance a3 : Tolerance.values()) {
+				for (Tolerance a3 : Tolerance.values()) {
 					alleles.add(a3.getAllele());
 				}
 				break;
 
 			case LIFESPAN:
-				for (final ForestryAllele.Lifespan a4 : ForestryAllele.Lifespan.values()) {
+				for (ForestryAllele.Lifespan a4 : ForestryAllele.Lifespan.values()) {
 					alleles.add(a4.getAllele());
 				}
 				break;
 
 			case SPEED:
-				for (final ForestryAllele.Speed a5 : ForestryAllele.Speed.values()) {
+				for (ForestryAllele.Speed a5 : ForestryAllele.Speed.values()) {
 					alleles.add(a5.getAllele());
 				}
 				break;
 
 			case TERRITORY:
-				for (final ForestryAllele.Territory a6 : ForestryAllele.Territory.values()) {
+				for (ForestryAllele.Territory a6 : ForestryAllele.Territory.values()) {
 					alleles.add(a6.getAllele());
 				}
 				break;
@@ -129,7 +129,7 @@ class BeeBreedingSystem extends BreedingSystem {
 			case NOCTURNAL:
 			case CAVE_DWELLING:
 			case TOLERANT_FLYER:
-				for (final ForestryAllele.Bool a7 : ForestryAllele.Bool.values()) {
+				for (ForestryAllele.Bool a7 : ForestryAllele.Bool.values()) {
 					alleles.add(a7.getAllele());
 				}
 				break;

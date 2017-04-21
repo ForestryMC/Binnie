@@ -1,45 +1,41 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.network.packet;
 
-import java.io.IOException;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class MessageNBT extends MessageBase
-{
-	NBTTagCompound nbt;
+import java.io.IOException;
+
+public class MessageNBT extends MessageBase {
+	protected NBTTagCompound nbt;
 
 	public NBTTagCompound getTagCompound() {
-		return this.nbt;
+		return nbt;
 	}
 
-	void setTagCompound(final NBTTagCompound nbt) {
+	void setTagCompound(NBTTagCompound nbt) {
 		this.nbt = nbt;
 	}
 
-	public MessageNBT(final int id) {
+	public MessageNBT(int id) {
 		super(id);
 	}
 
-	public MessageNBT(final int id, final NBTTagCompound nbt) {
+	public MessageNBT(int id, NBTTagCompound nbt) {
 		this(id);
-		this.setTagCompound(nbt);
+		setTagCompound(nbt);
 	}
 
-	public MessageNBT(final MessageBinnie message) {
+	public MessageNBT(MessageBinnie message) {
 		super(message);
 	}
 
 	@Override
-	public void writeData(final ByteBuf data) throws IOException {
-		this.writeNBTTagCompound(this.nbt, data);
+	public void writeData(ByteBuf data) throws IOException {
+		writeNBTTagCompound(nbt, data);
 	}
 
 	@Override
-	public void readData(final ByteBuf data) throws IOException {
-		this.nbt = this.readNBTTagCompound(data);
+	public void readData(ByteBuf data) throws IOException {
+		nbt = readNBTTagCompound(data);
 	}
 }

@@ -9,7 +9,7 @@ import org.lwjgl.opengl.GL11;
 
 public class ItemMetadataRenderer implements IItemRenderer {
 	@Override
-	public boolean handleRenderType(final ItemStack item, final IItemRenderer.ItemRenderType type) {
+	public boolean handleRenderType(ItemStack item, IItemRenderer.ItemRenderType type) {
 		return type == IItemRenderer.ItemRenderType.INVENTORY
 			|| type == IItemRenderer.ItemRenderType.ENTITY
 			|| type == IItemRenderer.ItemRenderType.EQUIPPED
@@ -17,7 +17,7 @@ public class ItemMetadataRenderer implements IItemRenderer {
 	}
 
 	@Override
-	public boolean shouldUseRenderHelper(final IItemRenderer.ItemRenderType type, final ItemStack item, final IItemRenderer.ItemRendererHelper helper) {
+	public boolean shouldUseRenderHelper(IItemRenderer.ItemRenderType type, ItemStack item, IItemRenderer.ItemRendererHelper helper) {
 		if (type == IItemRenderer.ItemRenderType.INVENTORY) {
 			return helper == IItemRenderer.ItemRendererHelper.INVENTORY_BLOCK;
 		}
@@ -30,9 +30,9 @@ public class ItemMetadataRenderer implements IItemRenderer {
 	}
 
 	@Override
-	public void renderItem(final IItemRenderer.ItemRenderType type, final ItemStack item, final Object... data) {
+	public void renderItem(IItemRenderer.ItemRenderType type, ItemStack item, Object... data) {
 		GL11.glPushMatrix();
-		final Block block = Block.getBlockFromItem(item.getItem());
+		Block block = Block.getBlockFromItem(item.getItem());
 		if (type == IItemRenderer.ItemRenderType.EQUIPPED_FIRST_PERSON) {
 			GL11.glTranslated(0.5, 0.5, 0.5);
 		}

@@ -9,9 +9,9 @@ import net.minecraftforge.client.IItemRenderer;
 import org.lwjgl.opengl.GL11;
 
 public class MultipassItemRenderer implements IItemRenderer {
-	private void render(final RenderBlocks renderer, final ItemStack item, final float f, final float g, final float h) {
+	private void render(RenderBlocks renderer, ItemStack item, float f, float g, float h) {
 		GL11.glTranslatef(f, g, h);
-		final Block block = ((ItemBlock) item.getItem()).field_150939_a;
+		Block block = ((ItemBlock) item.getItem()).field_150939_a;
 		GL11.glEnable(3008);
 		if (block.getRenderBlockPass() != 0) {
 			GL11.glAlphaFunc(516, 0.1f);
@@ -30,7 +30,7 @@ public class MultipassItemRenderer implements IItemRenderer {
 	}
 
 	@Override
-	public boolean handleRenderType(final ItemStack item, final IItemRenderer.ItemRenderType type) {
+	public boolean handleRenderType(ItemStack item, IItemRenderer.ItemRenderType type) {
 		switch (type) {
 			case ENTITY:
 			case EQUIPPED:
@@ -42,12 +42,12 @@ public class MultipassItemRenderer implements IItemRenderer {
 	}
 
 	@Override
-	public boolean shouldUseRenderHelper(final IItemRenderer.ItemRenderType type, final ItemStack item, final IItemRenderer.ItemRendererHelper helper) {
+	public boolean shouldUseRenderHelper(IItemRenderer.ItemRenderType type, ItemStack item, IItemRenderer.ItemRendererHelper helper) {
 		return true;
 	}
 
 	@Override
-	public void renderItem(final IItemRenderer.ItemRenderType type, final ItemStack item, final Object... data) {
+	public void renderItem(IItemRenderer.ItemRenderType type, ItemStack item, Object... data) {
 		switch (type) {
 			case INVENTORY:
 			case ENTITY:

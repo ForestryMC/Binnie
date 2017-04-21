@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.inventory;
 
 import binnie.core.util.IValidator;
@@ -11,8 +7,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import java.util.Collection;
 import java.util.EnumSet;
 
-public abstract class BaseSlot<T> implements INBTTagable, IValidator<T>
-{
+public abstract class BaseSlot<T> implements INBTTagable, IValidator<T> {
 	protected Validator<T> validator;
 	protected String unlocName;
 
@@ -20,7 +15,7 @@ public abstract class BaseSlot<T> implements INBTTagable, IValidator<T>
 	private boolean readOnly;
 	private int index;
 
-	public BaseSlot(final int index, final String unlocalizedName) {
+	public BaseSlot(int index, String unlocalizedName) {
 		access = new SidedAccess();
 		validator = null;
 		readOnly = false;
@@ -34,7 +29,7 @@ public abstract class BaseSlot<T> implements INBTTagable, IValidator<T>
 	}
 
 	@Override
-	public boolean isValid(final T item) {
+	public boolean isValid(T item) {
 		return item == null
 			|| validator == null
 			|| validator.isValid(item);
@@ -42,10 +37,10 @@ public abstract class BaseSlot<T> implements INBTTagable, IValidator<T>
 
 	public abstract T getContent();
 
-	public abstract void setContent(final T p0);
+	public abstract void setContent(T p0);
 
-	public void setValidator(final Validator<T> val) {
-		this.validator = val;
+	public void setValidator(Validator<T> validator) {
+		this.validator = validator;
 	}
 
 	public boolean isEmpty() {
@@ -60,7 +55,7 @@ public abstract class BaseSlot<T> implements INBTTagable, IValidator<T>
 		return index;
 	}
 
-	private void setIndex(final int index) {
+	private void setIndex(int index) {
 		this.index = index;
 	}
 
@@ -78,16 +73,16 @@ public abstract class BaseSlot<T> implements INBTTagable, IValidator<T>
 	}
 
 	// TODO unusing method?
-	public void setInputSides(final EnumSet<ForgeDirection> sides) {
-		for (final ForgeDirection side : EnumSet.complementOf(sides)) {
+	public void setInputSides(EnumSet<ForgeDirection> sides) {
+		for (ForgeDirection side : EnumSet.complementOf(sides)) {
 			if (side != ForgeDirection.UNKNOWN) {
 				access.setInsert(side, false);
 			}
 		}
 	}
 
-	public void setOutputSides(final EnumSet<ForgeDirection> sides) {
-		for (final ForgeDirection side : EnumSet.complementOf(sides)) {
+	public void setOutputSides(EnumSet<ForgeDirection> sides) {
+		for (ForgeDirection side : EnumSet.complementOf(sides)) {
 			if (side != ForgeDirection.UNKNOWN) {
 				access.setExtract(side, false);
 			}
@@ -104,24 +99,24 @@ public abstract class BaseSlot<T> implements INBTTagable, IValidator<T>
 		access.forbidInsertChange();
 	}
 
-	public boolean canInsert(final ForgeDirection dir) {
+	public boolean canInsert(ForgeDirection dir) {
 		return access.canInsert(dir);
 	}
 
-	public boolean canExtract(final ForgeDirection dir) {
+	public boolean canExtract(ForgeDirection dir) {
 		return access.canExtract(dir);
 	}
 
 	public Collection<ForgeDirection> getInputSides() {
-		return this.access.getInsertionSides();
+		return access.getInsertionSides();
 	}
 
 	public Collection<ForgeDirection> getOutputSides() {
-		return this.access.getExtractionSides();
+		return access.getExtractionSides();
 	}
 
-	public void setUnlocalizedName(final String name) {
-		this.unlocName = name;
+	public void setUnlocalizedName(String name) {
+		unlocName = name;
 	}
 
 	public abstract String getName();

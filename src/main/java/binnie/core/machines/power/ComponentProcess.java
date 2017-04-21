@@ -1,29 +1,24 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.power;
 
-import net.minecraft.nbt.NBTTagCompound;
 import binnie.core.machines.IMachine;
+import net.minecraft.nbt.NBTTagCompound;
 
-public abstract class ComponentProcess extends ComponentProcessIndefinate implements IProcessTimed
-{
+public abstract class ComponentProcess extends ComponentProcessIndefinate implements IProcessTimed {
 	private float progressAmount;
 
-	public ComponentProcess(final IMachine machine) {
+	public ComponentProcess(IMachine machine) {
 		super(machine, 0.0f);
-		this.progressAmount = 0.0f;
+		progressAmount = 0.0f;
 	}
 
 	@Override
 	public float getEnergyPerTick() {
-		return this.getProcessEnergy() / this.getProcessLength();
+		return getProcessEnergy() / getProcessLength();
 	}
 
 	@Override
 	public float getProgressPerTick() {
-		return 100.0f / this.getProcessLength();
+		return 100.0f / getProcessLength();
 	}
 
 	@Override
@@ -39,49 +34,50 @@ public abstract class ComponentProcess extends ComponentProcessIndefinate implem
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		if (this.progressAmount >= 100.0f) {
-			this.onFinishTask();
-			this.progressAmount = 0.0f;
+		if (progressAmount >= 100.0f) {
+			onFinishTask();
+			progressAmount = 0.0f;
 		}
 	}
 
-	public void alterProgress(final float f) {
-		this.progressAmount += f;
+	public void alterProgress(float value) {
+		progressAmount += value;
 	}
 
-	public void setProgress(final float f) {
-		this.progressAmount = f;
+	public void setProgress(float value) {
+		progressAmount = value;
 	}
 
 	@Override
 	protected void progressTick() {
 		super.progressTick();
-		this.alterProgress(this.getProgressPerTick());
+		alterProgress(getProgressPerTick());
 	}
 
 	@Override
 	public boolean inProgress() {
-		return this.progressAmount > 0.0f;
+		return progressAmount > 0.0f;
 	}
 
 	@Override
 	public float getProgress() {
-		return this.progressAmount;
+		return progressAmount;
 	}
 
 	protected void onFinishTask() {
+		// ignored
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbt) {
+	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.progressAmount = nbt.getFloat("progress");
+		progressAmount = nbt.getFloat("progress");
 	}
 
 	@Override
-	public void writeToNBT(final NBTTagCompound nbt) {
+	public void writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		nbt.setFloat("progress", this.progressAmount);
+		nbt.setFloat("progress", progressAmount);
 	}
 
 	@Override

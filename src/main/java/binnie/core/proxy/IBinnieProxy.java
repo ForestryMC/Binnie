@@ -21,33 +21,33 @@ public interface IBinnieProxy extends IProxyCore {
 
 	File getDirectory();
 
-	void bindTexture(final BinnieResource texture);
+	void bindTexture(BinnieResource texture);
 
-	void bindTexture(final ResourceLocation location);
+	void bindTexture(ResourceLocation location);
 
 	int getUniqueRenderID();
 
-	void registerCustomItemRenderer(final Item item, final IItemRenderer itemRenderer);
+	void registerCustomItemRenderer(Item item, IItemRenderer itemRenderer);
 
-	void openGui(final AbstractMod mod, final int id, final EntityPlayer player, final int x, final int y, final int z);
+	void openGui(AbstractMod mod, int id, EntityPlayer player, int x, int y, int z);
 
-	boolean isSimulating(final World world);
+	boolean isSimulating(World world);
 
 	World getWorld();
 
 	Minecraft getMinecraftInstance();
 
-	boolean needsTagCompoundSynched(final Item item);
+	boolean needsTagCompoundSynched(Item item);
 
-	Object createObject(final String renderer);
+	Object createObject(String renderer);
 
-	void registerTileEntity(final Class<? extends TileEntity> tile, final String id, final Object renderer);
+	void registerTileEntity(Class<? extends TileEntity> tile, String id, Object renderer);
 
-	void createPipe(final Item pipe);
+	void createPipe(Item pipe);
 
 	boolean isDebug();
 
-	void registerBlockRenderer(final Object renderer);
+	void registerBlockRenderer(Object renderer);
 
-	IIcon getIcon(final IIconRegister register, final String mod, final String name);
+	IIcon getIcon(IIconRegister register, String mod, String name);
 }
