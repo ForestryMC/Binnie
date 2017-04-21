@@ -14,13 +14,13 @@ public class TileEntityMetadata extends TileEntity {
 	private boolean droppedBlock;
 
 	public TileEntityMetadata() {
-		this.droppedBlock = false;
+		droppedBlock = false;
 	}
 
 	@Override
-	public boolean receiveClientEvent(int par1, int meta) {
+	public boolean receiveClientEvent(int id, int meta) {
 		// TODO fix magic const
-		if (par1 == 42) {
+		if (id == 42) {
 			this.meta = meta;
 			worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 		}
@@ -36,7 +36,7 @@ public class TileEntityMetadata extends TileEntity {
 	@Override
 	public void writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		nbt.setInteger("meta", this.meta);
+		nbt.setInteger("meta", meta);
 	}
 
 	@Override

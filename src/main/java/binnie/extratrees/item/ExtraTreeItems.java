@@ -62,7 +62,7 @@ public enum ExtraTreeItems implements IItemMisc
 	}
 
 	@Override
-	public ItemStack get(final int i) {
-		return new ItemStack(ExtraTrees.itemMisc, i, this.ordinal());
+	public ItemStack get(final int count) {
+		return new ItemStack(ExtraTrees.itemMisc, count, this.ordinal());
 	}
 }

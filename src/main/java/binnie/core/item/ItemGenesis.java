@@ -25,13 +25,13 @@ public class ItemGenesis extends Item {
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player) {
+	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
 		BinnieCore.proxy.openGui(BinnieCoreGUI.Genesis, player, (int) player.posX, (int) player.posY, (int) player.posZ);
-		return itemstack;
+		return itemStack;
 	}
 
 	@Override
-	public String getItemStackDisplayName(ItemStack i) {
+	public String getItemStackDisplayName(ItemStack itemStack) {
 		return "Genesis";
 	}
 }

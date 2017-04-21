@@ -1,40 +1,26 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.genetics;
 
-import java.util.ArrayList;
-
 import com.mojang.authlib.GameProfile;
-
+import forestry.api.apiculture.*;
+import forestry.api.core.IErrorLogic;
+import forestry.api.genetics.IIndividual;
+import forestry.apiculture.InventoryBeeHousing;
+import forestry.core.access.FakeAccessHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.biome.BiomeGenBase;
 
-import forestry.api.apiculture.IBee;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeHousing;
-import forestry.api.apiculture.IBeeHousingInventory;
-import forestry.api.apiculture.IBeeListener;
-import forestry.api.apiculture.IBeeModifier;
-import forestry.api.apiculture.IBeekeepingLogic;
-import forestry.api.core.IErrorLogic;
-import forestry.api.genetics.IIndividual;
-import forestry.apiculture.InventoryBeeHousing;
-import forestry.core.access.FakeAccessHandler;
+import java.util.ArrayList;
 
-public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IBeeModifier
-{
-	ArrayList<IBeeModifier> beeModifier = new ArrayList<IBeeModifier>();
+public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IBeeModifier {
+	ArrayList<IBeeModifier> beeModifier = new ArrayList<>();
 	private InventoryBeeHousing beeInventory;
 
 	public VirtualBeeHousing(EntityPlayer player) {
 		super(player);
 		beeModifier.add(this);
 		beeInventory = new InventoryBeeHousing(12, FakeAccessHandler.getInstance());
-
 	}
 
 	@Override
@@ -65,10 +51,11 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 		return null;
 	}
 
-	public void setQueen(ItemStack itemstack) {
+	public void setQueen(ItemStack itemStack) {
+		// ignored
 	}
 
-	public void setDrone(ItemStack itemstack) {
+	public void setDrone(ItemStack itemStack) {
 	}
 
 	public boolean canBreed() {
@@ -177,5 +164,4 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 	public GameProfile getOwner() {
 		return getOwnerName();
 	}
-
 }

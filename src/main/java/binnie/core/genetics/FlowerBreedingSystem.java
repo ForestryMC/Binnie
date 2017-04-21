@@ -1,39 +1,29 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.genetics;
 
-import binnie.botany.genetics.EnumFlowerColor;
-import java.util.TreeSet;
-import binnie.botany.core.BotanyCore;
-import forestry.api.genetics.IIndividual;
-import binnie.botany.api.EnumFlowerStage;
-import binnie.botany.api.IFlowerRoot;
-import net.minecraft.item.ItemStack;
-import binnie.core.BinnieCore;
-import binnie.botany.api.EnumFlowerChromosome;
-import forestry.api.genetics.IChromosomeType;
-import binnie.botany.api.IBotanistTracker;
-import forestry.api.genetics.IBreedingTracker;
-import forestry.api.genetics.ISpeciesRoot;
-import binnie.botany.api.IFlowerMutation;
-import forestry.api.genetics.IAllele;
-import net.minecraft.entity.player.EntityPlayer;
-import forestry.api.genetics.IMutation;
-import binnie.extrabees.ExtraBees;
 import binnie.Binnie;
+import binnie.botany.api.EnumFlowerChromosome;
+import binnie.botany.api.EnumFlowerStage;
+import binnie.botany.api.IBotanistTracker;
+import binnie.botany.api.IFlowerRoot;
+import binnie.botany.core.BotanyCore;
+import binnie.botany.genetics.EnumFlowerColor;
+import binnie.core.BinnieCore;
+import binnie.extrabees.ExtraBees;
+import forestry.api.genetics.*;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 
-class FlowerBreedingSystem extends BreedingSystem
-{
+import java.util.TreeSet;
+
+class FlowerBreedingSystem extends BreedingSystem {
 	public FlowerBreedingSystem() {
-		this.iconUndiscovered = Binnie.Resource.getItemIcon(ExtraBees.instance, "icon/undiscoveredBee");
-		this.iconDiscovered = Binnie.Resource.getItemIcon(ExtraBees.instance, "icon/discoveredBee");
+		iconUndiscovered = Binnie.Resource.getItemIcon(ExtraBees.instance, "icon/undiscoveredBee");
+		iconDiscovered = Binnie.Resource.getItemIcon(ExtraBees.instance, "icon/discoveredBee");
 	}
 
 	@Override
 	public float getChance(IMutation mutation, EntityPlayer player, IAllele species1, IAllele species2) {
-		return ((IFlowerMutation) mutation).getBaseChance();
+		return mutation.getBaseChance();
 	}
 
 	@Override
@@ -43,7 +33,7 @@ class FlowerBreedingSystem extends BreedingSystem
 
 	@Override
 	public int getColour() {
-		return 14563127;
+		return 0xde3737;
 	}
 
 	@Override
@@ -72,7 +62,7 @@ class FlowerBreedingSystem extends BreedingSystem
 
 	@Override
 	public boolean isDNAManipulable(ItemStack member) {
-		return ((IFlowerRoot) this.getSpeciesRoot()).getStageType(member) == EnumFlowerStage.POLLEN;
+		return ((IFlowerRoot) getSpeciesRoot()).getStageType(member) == EnumFlowerStage.POLLEN;
 	}
 
 	@Override
@@ -82,52 +72,55 @@ class FlowerBreedingSystem extends BreedingSystem
 
 	@Override
 	public int[] getActiveTypes() {
-		return new int[] { EnumFlowerStage.FLOWER.ordinal(), EnumFlowerStage.POLLEN.ordinal(), EnumFlowerStage.SEED.ordinal() };
+		return new int[]{
+				EnumFlowerStage.FLOWER.ordinal(),
+				EnumFlowerStage.POLLEN.ordinal(),
+				EnumFlowerStage.SEED.ordinal()
+		};
 	}
 
 	@Override
 	public void addExtraAlleles(IChromosomeType chromosome, TreeSet<IAllele> alleles) {
 		switch ((EnumFlowerChromosome) chromosome) {
-		case FERTILITY: {
-			for (ForestryAllele.Fertility a : ForestryAllele.Fertility.values()) {
-				alleles.add(a.getAllele());
-			}
-			break;
-		}
-		case LIFESPAN: {
-			for (ForestryAllele.Lifespan a2 : ForestryAllele.Lifespan.values()) {
-				alleles.add(a2.getAllele());
-			}
-			break;
-		}
-		case HUMIDITY_TOLERANCE:
-		case PH_TOLERANCE:
-		case TEMPERATURE_TOLERANCE: {
-			for (Tolerance a3 : Tolerance.values()) {
-				alleles.add(a3.getAllele());
-			}
-			break;
-		}
-		case PRIMARY:
-		case SECONDARY:
-		case STEM: {
-			for (EnumFlowerColor a4 : EnumFlowerColor.values()) {
-				alleles.add(a4.getAllele());
-			}
-			break;
-		}
-		case SAPPINESS: {
-			for (ForestryAllele.Sappiness a5 : ForestryAllele.Sappiness.values()) {
-				alleles.add(a5.getAllele());
-			}
-			break;
-		}
-		case TERRITORY: {
-			for (ForestryAllele.Territory a6 : ForestryAllele.Territory.values()) {
-				alleles.add(a6.getAllele());
-			}
-			break;
-		}
+			case FERTILITY:
+				for (ForestryAllele.Fertility a : ForestryAllele.Fertility.values()) {
+					alleles.add(a.getAllele());
+				}
+				break;
+
+			case LIFESPAN:
+				for (ForestryAllele.Lifespan a2 : ForestryAllele.Lifespan.values()) {
+					alleles.add(a2.getAllele());
+				}
+				break;
+
+			case HUMIDITY_TOLERANCE:
+			case PH_TOLERANCE:
+			case TEMPERATURE_TOLERANCE:
+				for (Tolerance a3 : Tolerance.values()) {
+					alleles.add(a3.getAllele());
+				}
+				break;
+
+			case PRIMARY:
+			case SECONDARY:
+			case STEM:
+				for (EnumFlowerColor a4 : EnumFlowerColor.values()) {
+					alleles.add(a4.getAllele());
+				}
+				break;
+
+			case SAPPINESS:
+				for (ForestryAllele.Sappiness a5 : ForestryAllele.Sappiness.values()) {
+					alleles.add(a5.getAllele());
+				}
+				break;
+
+			case TERRITORY:
+				for (ForestryAllele.Territory a6 : ForestryAllele.Territory.values()) {
+					alleles.add(a6.getAllele());
+				}
+				break;
 		}
 	}
 }

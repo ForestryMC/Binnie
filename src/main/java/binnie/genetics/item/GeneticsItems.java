@@ -55,8 +55,8 @@ public enum GeneticsItems implements IItemMisc
 	}
 
 	@Override
-	public ItemStack get(final int size) {
-		return (Genetics.itemGenetics == null) ? null : new ItemStack(Genetics.itemGenetics, size, this.ordinal());
+	public ItemStack get(final int count) {
+		return (Genetics.itemGenetics == null) ? null : new ItemStack(Genetics.itemGenetics, count, this.ordinal());
 	}
 
 	@Override

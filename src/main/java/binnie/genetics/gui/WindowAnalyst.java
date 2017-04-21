@@ -152,7 +152,7 @@ public class WindowAnalyst extends Window
 							CraftGUI.Render.colour(1140850688 + syst.getColour());
 							CraftGUI.Render.texture(CraftGUITexture.TabSolid, this.getArea().outset(outset));
 						}
-						CraftGUI.Render.item(new IPoint(2.0f, 2.0f), syst.getItemStackRepresentitive());
+						CraftGUI.Render.item(new IPoint(2.0f, 2.0f), syst.getItemStackRepresentative());
 					}
 				};
 				x += 22;

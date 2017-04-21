@@ -197,7 +197,7 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 	}
 
 	@Override
-	public void getBlockTooltip(final ItemStack itemStack, final List par3List) {
+	public void getBlockTooltip(final ItemStack itemStack, final List tooltip) {
 		// ignored
 	}
 

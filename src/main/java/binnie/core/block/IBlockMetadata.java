@@ -10,11 +10,11 @@ import java.util.List;
 public interface IBlockMetadata extends ITileEntityProvider {
 	int getPlacedMeta(ItemStack itemStack, World world, int x, int y, int z, ForgeDirection direction);
 
-	int getDroppedMeta(int p0, int p1);
+	int getDroppedMeta(int blockMeta, int tileMeta);
 
 	String getBlockName(ItemStack itemStack);
 
-	void getBlockTooltip(ItemStack itemStack, List p1);
+	void getBlockTooltip(ItemStack itemStack, List tooltip);
 
 	void dropAsStack(World world, int x, int y, int z, ItemStack itemStack);
 }

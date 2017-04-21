@@ -3,8 +3,9 @@ package binnie.core.liquid;
 import net.minecraftforge.fluids.Fluid;
 
 class BinnieFluid extends Fluid {
+	protected IFluidType fluidType;
+
 	private String name;
-	IFluidType fluidType;
 
 	@Override
 	// TODO fix deprecated usage

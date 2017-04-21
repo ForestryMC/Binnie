@@ -4,29 +4,30 @@
 
 package binnie.botany.ceramic;
 
-import net.minecraft.util.MovingObjectPosition;
 import binnie.botany.Botany;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.genetics.EnumFlowerColor;
+import binnie.core.block.BlockMetadata;
+import binnie.core.block.IBlockMetadata;
+import binnie.core.block.TileEntityMetadata;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import java.util.List;
-import binnie.botany.genetics.EnumFlowerColor;
-import net.minecraftforge.common.util.ForgeDirection;
-import binnie.core.block.TileEntityMetadata;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.entity.player.EntityPlayer;
-import binnie.core.block.BlockMetadata;
-import net.minecraft.item.ItemStack;
-import java.util.ArrayList;
-import net.minecraft.world.World;
-import binnie.botany.CreativeTabBotany;
-import net.minecraft.block.material.Material;
-import binnie.core.block.IBlockMetadata;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlockCeramic extends Block implements IBlockMetadata
 {
@@ -82,7 +83,7 @@ public class BlockCeramic extends Block implements IBlockMetadata
 	}
 
 	@Override
-	public void getBlockTooltip(final ItemStack itemStack, final List par3List) {
+	public void getBlockTooltip(final ItemStack itemStack, final List tooltip) {
 	}
 
 	@Override

@@ -140,7 +140,7 @@ public class BlockETLog extends BlockLog implements IBlockMetadata
 	}
 
 	@Override
-	public void getBlockTooltip(final ItemStack itemStack, final List par3List) {
+	public void getBlockTooltip(final ItemStack itemStack, final List tooltip) {
 	}
 
 	@Override

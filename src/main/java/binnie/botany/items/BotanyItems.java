@@ -52,8 +52,8 @@ public enum BotanyItems implements IItemMisc
 	}
 
 	@Override
-	public ItemStack get(final int size) {
-		return new ItemStack(Botany.misc, size, this.ordinal());
+	public ItemStack get(final int count) {
+		return new ItemStack(Botany.misc, count, this.ordinal());
 	}
 
 	@Override

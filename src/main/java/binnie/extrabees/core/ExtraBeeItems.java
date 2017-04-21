@@ -161,8 +161,8 @@ public enum ExtraBeeItems implements IItemMisc
 	}
 
 	@Override
-	public ItemStack get(final int i) {
-		return new ItemStack(ExtraBees.itemMisc, i, this.ordinal());
+	public ItemStack get(final int count) {
+		return new ItemStack(ExtraBees.itemMisc, count, this.ordinal());
 	}
 
 	static {

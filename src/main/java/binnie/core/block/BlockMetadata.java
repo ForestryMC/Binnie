@@ -61,7 +61,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	}
 
 	@Override
-	public void getBlockTooltip(ItemStack itemStack, List par3List) {
+	public void getBlockTooltip(ItemStack itemStack, List tooltip) {
 		// ignored
 	}
 
@@ -71,12 +71,12 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	}
 
 	@Override
-	public int getDroppedMeta(int tileMeta, int blockMeta) {
-		return tileMeta;
+	public int getDroppedMeta(int blockMeta, int tileMeta) {
+		return blockMeta;
 	}
 
 	public static ArrayList<ItemStack> getBlockDropped(IBlockMetadata block, World world, int x, int y, int z, int blockMeta) {
-		ArrayList<ItemStack> array = new ArrayList<ItemStack>();
+		ArrayList<ItemStack> array = new ArrayList<>();
 		TileEntityMetadata tile = TileEntityMetadata.getTile(world, x, y, z);
 		if (tile != null && !tile.hasDroppedBlock()) {
 			int meta = block.getDroppedMeta(world.getBlockMetadata(x, y, z), tile.getTileMetadata());
@@ -86,7 +86,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	}
 
 	public static boolean breakBlock(IBlockMetadata block, EntityPlayer player, World world, int i, int j, int k) {
-		List<ItemStack> drops = new ArrayList<ItemStack>();
+		List<ItemStack> drops = new ArrayList<>();
 		Block block2 = (Block) block;
 		TileEntityMetadata tile = TileEntityMetadata.getTile(world, i, j, k);
 		if (tile != null && !tile.hasDroppedBlock()) {

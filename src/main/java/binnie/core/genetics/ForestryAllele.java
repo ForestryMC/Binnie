@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.genetics;
 
 import binnie.Binnie;
@@ -9,10 +5,8 @@ import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 
-public class ForestryAllele
-{
-	public enum Lifespan
-	{
+public class ForestryAllele {
+	public enum Lifespan {
 		Shortest,
 		Shorter,
 		Short,
@@ -24,12 +18,11 @@ public class ForestryAllele
 		Longest;
 
 		public IAllele getAllele() {
-			return AlleleManager.alleleRegistry.getAllele("forestry.lifespan" + this.toString());
+			return AlleleManager.alleleRegistry.getAllele("forestry.lifespan" + toString());
 		}
 	}
 
-	public enum Speed
-	{
+	public enum Speed {
 		Slowest,
 		Slower,
 		Slow,
@@ -39,24 +32,22 @@ public class ForestryAllele
 		Fastest;
 
 		public IAllele getAllele() {
-			return AlleleManager.alleleRegistry.getAllele("forestry.speed" + this.toString());
+			return AlleleManager.alleleRegistry.getAllele("forestry.speed" + toString());
 		}
 	}
 
-	public enum Fertility
-	{
+	public enum Fertility {
 		Low,
 		Normal,
 		High,
 		Maximum;
 
 		public IAllele getAllele() {
-			return AlleleManager.alleleRegistry.getAllele("forestry.fertility" + this.toString());
+			return AlleleManager.alleleRegistry.getAllele("forestry.fertility" + toString());
 		}
 	}
 
-	public enum Flowering
-	{
+	public enum Flowering {
 		Slowest,
 		Slower,
 		Slow,
@@ -67,24 +58,22 @@ public class ForestryAllele
 		Maximum;
 
 		public IAllele getAllele() {
-			return AlleleManager.alleleRegistry.getAllele("forestry.flowering" + this.toString());
+			return AlleleManager.alleleRegistry.getAllele("forestry.flowering" + toString());
 		}
 	}
 
-	public enum Territory
-	{
+	public enum Territory {
 		Default,
 		Large,
 		Larger,
 		Largest;
 
 		public IAllele getAllele() {
-			return AlleleManager.alleleRegistry.getAllele("forestry.territory" + this.toString());
+			return AlleleManager.alleleRegistry.getAllele("forestry.territory" + toString());
 		}
 	}
 
-	public enum Sappiness
-	{
+	public enum Sappiness {
 		Lowest,
 		Lower,
 		Low,
@@ -94,12 +83,11 @@ public class ForestryAllele
 		Highest;
 
 		public IAllele getAllele() {
-			return AlleleManager.alleleRegistry.getAllele("forestry.sappiness" + this.toString());
+			return AlleleManager.alleleRegistry.getAllele("forestry.sappiness" + toString());
 		}
 	}
 
-	public enum TreeHeight
-	{
+	public enum TreeHeight {
 		Smallest,
 		Smaller,
 		Small,
@@ -110,12 +98,11 @@ public class ForestryAllele
 		Gigantic;
 
 		public IAllele getAllele() {
-			return AlleleManager.alleleRegistry.getAllele("forestry.height" + ((this == TreeHeight.Average) ? "Max10" : this.toString()));
+			return AlleleManager.alleleRegistry.getAllele("forestry.height" + ((this == TreeHeight.Average) ? "Max10" : toString()));
 		}
 	}
 
-	public enum Size
-	{
+	public enum Size {
 		Smallest,
 		Smaller,
 		Small,
@@ -125,12 +112,11 @@ public class ForestryAllele
 		Largest;
 
 		public IAllele getAllele() {
-			return AlleleManager.alleleRegistry.getAllele("forestry.size" + this.toString());
+			return AlleleManager.alleleRegistry.getAllele("forestry.size" + toString());
 		}
 	}
 
-	public enum Saplings
-	{
+	public enum Saplings {
 		Lowest,
 		Lower,
 		Low,
@@ -140,7 +126,7 @@ public class ForestryAllele
 		Highest;
 
 		public IAllele getAllele() {
-			String s = this.toString();
+			String s = toString();
 			if (this == Saplings.Average) {
 				s = "Default";
 			}
@@ -154,8 +140,7 @@ public class ForestryAllele
 		}
 	}
 
-	public enum Yield
-	{
+	public enum Yield {
 		Lowest,
 		Lower,
 		Low,
@@ -165,12 +150,11 @@ public class ForestryAllele
 		Highest;
 
 		public IAllele getAllele() {
-			return AlleleManager.alleleRegistry.getAllele("forestry.yield" + ((this == Yield.Average) ? "Default" : this.toString()));
+			return AlleleManager.alleleRegistry.getAllele("forestry.yield" + ((this == Yield.Average) ? "Default" : toString()));
 		}
 	}
 
-	public enum Maturation
-	{
+	public enum Maturation {
 		Slowest,
 		Slower,
 		Slow,
@@ -180,17 +164,16 @@ public class ForestryAllele
 		Fastest;
 
 		public IAllele getAllele() {
-			return AlleleManager.alleleRegistry.getAllele("forestry.maturation" + this.toString());
+			return AlleleManager.alleleRegistry.getAllele("forestry.maturation" + toString());
 		}
 	}
 
-	public enum Bool
-	{
+	public enum Bool {
 		True,
 		False;
 
 		public IAllele getAllele() {
-			return AlleleManager.alleleRegistry.getAllele("forestry.bool" + this.toString());
+			return AlleleManager.alleleRegistry.getAllele("forestry.bool" + toString());
 		}
 
 		public static IAllele get(boolean bool) {
@@ -198,17 +181,15 @@ public class ForestryAllele
 		}
 	}
 
-	public enum Growth
-	{
+	public enum Growth {
 		Tropical;
 
 		public IAllele getAllele() {
-			return AlleleManager.alleleRegistry.getAllele("forestry.growth" + this.toString());
+			return AlleleManager.alleleRegistry.getAllele("forestry.growth" + toString());
 		}
 	}
 
-	public enum Int
-	{
+	public enum Int {
 		Int1,
 		Int2,
 		Int3,
@@ -221,12 +202,11 @@ public class ForestryAllele
 		Int10;
 
 		public IAllele getAllele() {
-			return AlleleManager.alleleRegistry.getAllele("forestry.i" + (this.ordinal() + 1) + "d");
+			return AlleleManager.alleleRegistry.getAllele("forestry.i" + (ordinal() + 1) + "d");
 		}
 	}
 
-	public enum BeeSpecies
-	{
+	public enum BeeSpecies {
 		Modest,
 		Noble,
 		Forest,
@@ -261,11 +241,11 @@ public class ForestryAllele
 		Demonic;
 
 		public IAlleleBeeSpecies getAllele() {
-			return (IAlleleBeeSpecies) AlleleManager.alleleRegistry.getAllele("forestry.species" + this.toString());
+			return (IAlleleBeeSpecies) AlleleManager.alleleRegistry.getAllele("forestry.species" + toString());
 		}
 
 		public IAllele[] getTemplate() {
-			return Binnie.Genetics.getBeeRoot().getTemplate(this.getAllele().getUID());
+			return Binnie.Genetics.getBeeRoot().getTemplate(getAllele().getUID());
 		}
 	}
 }

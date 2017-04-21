@@ -44,11 +44,11 @@ public class ItemMisc extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-		super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
-		IItemMisc item = this.getItem(par1ItemStack.getItemDamage());
+	public void addInformation(ItemStack itemStack, EntityPlayer player, List tooltip, boolean advanced) {
+		super.addInformation(itemStack, player, tooltip, advanced);
+		IItemMisc item = getItem(itemStack.getItemDamage());
 		if (item != null) {
-			item.addInformation(par3List);
+			item.addInformation(tooltip);
 		}
 	}
 

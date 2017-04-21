@@ -28,7 +28,7 @@ public class MultipassBlockRenderer implements ISimpleBlockRenderingHandler {
 
 		MultipassBlockRenderer.layer = 0;
 		while (MultipassBlockRenderer.layer < ((IMultipassBlock) block).getNumberOfPasses()) {
-			this.renderItem(block, renderer, meta);
+			renderItem(block, renderer, meta);
 			MultipassBlockRenderer.layer++;
 		}
 		MultipassBlockRenderer.layer = 0;

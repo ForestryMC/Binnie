@@ -20,20 +20,20 @@ class VirtualHousing implements IHousing {
 		this.player = player;
 	}
 
-	public int getXCoord() {
-		return (int) this.player.posX;
+	public int getX() {
+		return (int) player.posX;
 	}
 
-	public int getYCoord() {
-		return (int) this.player.posY;
+	public int getY() {
+		return (int) player.posY;
 	}
 
-	public int getZCoord() {
-		return (int) this.player.posZ;
+	public int getZ() {
+		return (int) player.posZ;
 	}
 
 	public int getBiomeId() {
-		return this.player.worldObj.getBiomeGenForCoords(this.getXCoord(), this.getYCoord()).biomeID;
+		return player.worldObj.getBiomeGenForCoords(getX(), getY()).biomeID;
 	}
 
 	public EnumTemperature getTemperature() {
@@ -49,6 +49,7 @@ class VirtualHousing implements IHousing {
 	}
 
 	public void setErrorState(int state) {
+		// ignored
 	}
 
 	public int getErrorOrdinal() {
@@ -60,11 +61,11 @@ class VirtualHousing implements IHousing {
 	}
 
 	public GameProfile getOwnerName() {
-		return this.player.getGameProfile();
+		return player.getGameProfile();
 	}
 
 	public BiomeGenBase getBiome() {
-		return this.player.worldObj.getBiomeGenForCoords(this.getXCoord(), this.getZCoord());
+		return player.worldObj.getBiomeGenForCoords(getX(), getZ());
 	}
 
 	// public EnumErrorCode getErrorState() {
@@ -84,6 +85,6 @@ class VirtualHousing implements IHousing {
 
 	@Override
 	public ChunkCoordinates getCoordinates() {
-		return new ChunkCoordinates(getXCoord(), getYCoord(), getZCoord());
+		return new ChunkCoordinates(getX(), getY(), getZ());
 	}
 }

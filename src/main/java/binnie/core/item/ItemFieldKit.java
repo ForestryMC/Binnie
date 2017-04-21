@@ -53,23 +53,23 @@ public class ItemFieldKit extends Item {
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player) {
+	public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
 		if (!player.isSneaking()) {
 			BinnieCore.proxy.openGui(BinnieCoreGUI.FieldKit, player, (int) player.posX, (int) player.posY, (int) player.posZ);
 		}
-		return itemstack;
+		return itemStack;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack p_77624_1_, EntityPlayer p_77624_2_, List p_77624_3_, boolean p_77624_4_) {
-		int i = getMaxDamage() - p_77624_1_.getItemDamage();
+	public void addInformation(ItemStack itemStack, EntityPlayer player, List tooltip, boolean advanced) {
+		int i = getMaxDamage() - itemStack.getItemDamage();
 		if (i == 0) {
-			p_77624_3_.add("No paper");
+			tooltip.add("No paper");
 		} else {
-			p_77624_3_.add("" + i + " sheet" + ((i > 1) ? "s" : "") + " of paper");
+			tooltip.add("" + i + " sheet" + ((i > 1) ? "s" : "") + " of paper");
 		}
-		super.addInformation(p_77624_1_, p_77624_2_, p_77624_3_, p_77624_4_);
+		super.addInformation(itemStack, player, tooltip, advanced);
 	}
 
 	@Override

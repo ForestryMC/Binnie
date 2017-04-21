@@ -87,8 +87,8 @@ public enum EnumHoneyDrop implements IItemEnum
 	}
 
 	@Override
-	public ItemStack get(final int size) {
-		return new ItemStack(ExtraBees.honeyDrop, size, this.ordinal());
+	public ItemStack get(final int count) {
+		return new ItemStack(ExtraBees.honeyDrop, count, this.ordinal());
 	}
 
 	@Override

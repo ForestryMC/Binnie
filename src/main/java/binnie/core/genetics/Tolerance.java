@@ -25,15 +25,15 @@ public enum Tolerance {
 	private int[] bounds;
 
 	Tolerance(int a, int b) {
-		this.bounds = new int[]{a, b};
+		bounds = new int[]{a, b};
 	}
 
 	public String getUID() {
-		return "forestry.tolerance" + this.toString();
+		return "forestry.tolerance" + toString();
 	}
 
 	public int[] getBounds() {
-		return this.bounds;
+		return bounds;
 	}
 
 	public static Tolerance get(EnumTolerance tol) {
@@ -41,7 +41,7 @@ public enum Tolerance {
 	}
 
 	public IAllele getAllele() {
-		return AlleleManager.alleleRegistry.getAllele(this.getUID());
+		return AlleleManager.alleleRegistry.getAllele(getUID());
 	}
 
 	public <T extends Enum<T>> boolean canTolerate(T base, T test) {

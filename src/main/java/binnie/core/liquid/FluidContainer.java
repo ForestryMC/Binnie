@@ -19,9 +19,9 @@ public enum FluidContainer {
 	Glass,
 	Cylinder;
 
-	IIcon bottle;
-	IIcon contents;
-	ItemFluidContainer item;
+	protected IIcon bottle;
+	protected IIcon contents;
+	protected ItemFluidContainer item;
 
 	public int getMaxStackSize() {
 		return (this == FluidContainer.Bucket) ? 1 : 16;

@@ -18,13 +18,13 @@ public class ItemMetadata extends ItemBlock {
 	}
 
 	@Override
-	public int getMetadata(int par1) {
+	public int getMetadata(int damage) {
 		return 0;
 	}
 
 	@Override
 	public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata) {
-		Block block = this.field_150939_a;
+		Block block = field_150939_a;
 		if (!(block instanceof IBlockMetadata)) {
 			return false;
 		}
@@ -48,17 +48,17 @@ public class ItemMetadata extends ItemBlock {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getItemStackDisplayName(ItemStack par1ItemStack) {
-		return ((IBlockMetadata) this.field_150939_a).getBlockName(par1ItemStack);
+		return ((IBlockMetadata) field_150939_a).getBlockName(par1ItemStack);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack itemStack, EntityPlayer player, List par3List, boolean par4) {
-		((IBlockMetadata) this.field_150939_a).getBlockTooltip(itemStack, par3List);
+		((IBlockMetadata) field_150939_a).getBlockTooltip(itemStack, par3List);
 	}
 
 	@Override
 	public IIcon getIconFromDamage(int damage) {
-		return this.field_150939_a.getIcon(1, damage);
+		return field_150939_a.getIcon(1, damage);
 	}
 }

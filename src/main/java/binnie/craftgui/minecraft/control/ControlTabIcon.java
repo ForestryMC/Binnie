@@ -5,7 +5,7 @@
 package binnie.craftgui.minecraft.control;
 
 import binnie.craftgui.core.geometry.IPoint;
-import binnie.core.genetics.IItemStackRepresentitive;
+import binnie.core.genetics.IItemStackRepresentative;
 import net.minecraft.item.ItemStack;
 import binnie.craftgui.controls.tab.ControlTabBar;
 import binnie.craftgui.controls.tab.ControlTab;
@@ -21,8 +21,8 @@ public class ControlTabIcon<T> extends ControlTab<T>
 	}
 
 	public ItemStack getItemStack() {
-		if (this.value instanceof IItemStackRepresentitive) {
-			return ((IItemStackRepresentitive) this.value).getItemStackRepresentitive();
+		if (this.value instanceof IItemStackRepresentative) {
+			return ((IItemStackRepresentative) this.value).getItemStackRepresentative();
 		}
 		return null;
 	}

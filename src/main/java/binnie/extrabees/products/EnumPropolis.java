@@ -61,8 +61,8 @@ public enum EnumPropolis implements IItemEnum
 	}
 
 	@Override
-	public ItemStack get(final int size) {
-		return new ItemStack(ExtraBees.propolis, size, this.ordinal());
+	public ItemStack get(final int count) {
+		return new ItemStack(ExtraBees.propolis, count, this.ordinal());
 	}
 
 	@Override

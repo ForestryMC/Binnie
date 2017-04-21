@@ -113,8 +113,8 @@ public enum Food implements IItemMisc
 	}
 
 	@Override
-	public ItemStack get(final int i) {
-		return new ItemStack(ExtraTrees.itemFood, i, this.ordinal());
+	public ItemStack get(final int count) {
+		return new ItemStack(ExtraTrees.itemFood, count, this.ordinal());
 	}
 
 	@Override

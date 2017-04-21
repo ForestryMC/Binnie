@@ -9,5 +9,5 @@ public interface IItemEnum {
 
 	int ordinal();
 
-	ItemStack get(int p0);
+	ItemStack get(int count);
 }

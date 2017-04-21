@@ -138,8 +138,8 @@ public enum EnumHoneyComb implements IItemEnum
 	}
 
 	@Override
-	public ItemStack get(final int size) {
-		return new ItemStack(ExtraBees.comb, size, this.ordinal());
+	public ItemStack get(final int count) {
+		return new ItemStack(ExtraBees.comb, count, this.ordinal());
 	}
 
 	@Override

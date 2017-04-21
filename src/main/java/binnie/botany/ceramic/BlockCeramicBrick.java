@@ -90,7 +90,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
 	}
 
 	@Override
-	public void getBlockTooltip(final ItemStack itemStack, final List par3List) {
+	public void getBlockTooltip(final ItemStack itemStack, final List tooltip) {
 	}
 
 	@Override

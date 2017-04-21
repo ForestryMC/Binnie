@@ -26,9 +26,9 @@ public class ManagerGenetics extends ManagerBase {
 	private Map<ISpeciesRoot, Map<IChromosomeType, List<IAllele>>> chromosomeArray;
 
 	public ManagerGenetics() {
-		breedingSystems = new LinkedHashMap<ISpeciesRoot, BreedingSystem>();
-		invalidChromosomeTypes = new ArrayList<IChromosomeType>();
-		chromosomeArray = new LinkedHashMap<ISpeciesRoot, Map<IChromosomeType, List<IAllele>>>();
+		breedingSystems = new LinkedHashMap<>();
+		invalidChromosomeTypes = new ArrayList<>();
+		chromosomeArray = new LinkedHashMap<>();
 	}
 
 	@Override
@@ -52,6 +52,7 @@ public class ManagerGenetics extends ManagerBase {
 		this.refreshData();
 	}
 
+	// TODO unused method?
 	public boolean isSpeciesDiscovered(IAlleleSpecies species, World world, boolean nei) {
 		return true;
 	}
@@ -73,7 +74,7 @@ public class ManagerGenetics extends ManagerBase {
 	}
 
 	public BreedingSystem getSystem(String string) {
-		for (BreedingSystem system : this.breedingSystems.values()) {
+		for (BreedingSystem system : breedingSystems.values()) {
 			if (system.getIdent().equals(string)) {
 				return system;
 			}
@@ -82,7 +83,7 @@ public class ManagerGenetics extends ManagerBase {
 	}
 
 	public BreedingSystem getSystem(ISpeciesRoot root) {
-		return this.getSystem(root.getUID());
+		return getSystem(root.getUID());
 	}
 
 	public ISpeciesRoot getSpeciesRoot(IAlleleSpecies species) {
@@ -103,15 +104,15 @@ public class ManagerGenetics extends ManagerBase {
 	}
 
 	public Collection<BreedingSystem> getActiveSystems() {
-		return this.breedingSystems.values();
+		return breedingSystems.values();
 	}
 
 	public void registerBreedingSystem(BreedingSystem system) {
-		this.breedingSystems.put(system.getSpeciesRoot(), system);
+		breedingSystems.put(system.getSpeciesRoot(), system);
 	}
 
 	public BreedingSystem getConversionSystem(ItemStack stack) {
-		for (BreedingSystem system : this.getActiveSystems()) {
+		for (BreedingSystem system : getActiveSystems()) {
 			if (system.getConversion(stack) != null) {
 				return system;
 			}
@@ -120,12 +121,12 @@ public class ManagerGenetics extends ManagerBase {
 	}
 
 	public ItemStack getConversionStack(ItemStack stack) {
-		BreedingSystem system = this.getConversionSystem(stack);
+		BreedingSystem system = getConversionSystem(stack);
 		return (system == null) ? null : system.getConversionStack(stack);
 	}
 
 	public IIndividual getConversion(ItemStack stack) {
-		BreedingSystem system = this.getConversionSystem(stack);
+		BreedingSystem system = getConversionSystem(stack);
 		return (system == null) ? null : system.getConversion(stack);
 	}
 
@@ -135,7 +136,7 @@ public class ManagerGenetics extends ManagerBase {
 	}
 
 	private void refreshData() {
-		this.loadAlleles();
+		loadAlleles();
 		for (BreedingSystem system : Binnie.Genetics.getActiveSystems()) {
 			system.calculateArrays();
 		}
@@ -144,10 +145,10 @@ public class ManagerGenetics extends ManagerBase {
 	private void loadAlleles() {
 		this.invalidChromosomeTypes.clear();
 		for (ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
-			BreedingSystem system = this.getSystem(root);
-			Map<IChromosomeType, List<IAllele>> chromosomeMap = new LinkedHashMap<IChromosomeType, List<IAllele>>();
+			BreedingSystem system = getSystem(root);
+			Map<IChromosomeType, List<IAllele>> chromosomeMap = new LinkedHashMap<>();
 			for (IChromosomeType chromosome : root.getKaryotype()) {
-				TreeSet<IAllele> alleles = new TreeSet<IAllele>(new ComparatorAllele());
+				TreeSet<IAllele> alleles = new TreeSet<>(new ComparatorAllele());
 				for (IIndividual individual : root.getIndividualTemplates()) {
 					IGenome genome = individual.getGenome();
 					try {
@@ -161,18 +162,20 @@ public class ManagerGenetics extends ManagerBase {
 						}
 						alleles.add(a2);
 					} catch (Exception ex) {
+						// ignored
 					}
 				}
+
 				system.addExtraAlleles(chromosome, alleles);
 				if (alleles.size() == 0) {
-					this.invalidChromosomeTypes.add(chromosome);
+					invalidChromosomeTypes.add(chromosome);
 				} else {
-					List<IAllele> alleleList = new ArrayList<IAllele>();
+					List<IAllele> alleleList = new ArrayList<>();
 					alleleList.addAll(alleles);
 					chromosomeMap.put(chromosome, alleleList);
 				}
 			}
-			this.chromosomeArray.put(root, chromosomeMap);
+			chromosomeArray.put(root, chromosomeMap);
 		}
 	}
 

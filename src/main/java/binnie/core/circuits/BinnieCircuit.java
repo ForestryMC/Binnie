@@ -15,9 +15,10 @@ public class BinnieCircuit implements ICircuit {
 	private List<String> tooltips;
 
 	public BinnieCircuit(String uid, int limit, ICircuitLayout layout, ItemStack itemStack) {
-		this.tooltips = new ArrayList<String>();
+		tooltips = new ArrayList<>();
 		this.uid = "binnie.circuit." + uid;
 		this.limit = limit;
+
 		ChipsetManager.circuitRegistry.registerCircuit(this);
 		if (itemStack != null) {
 			ChipsetManager.solderManager.addRecipe(layout, itemStack, this);
