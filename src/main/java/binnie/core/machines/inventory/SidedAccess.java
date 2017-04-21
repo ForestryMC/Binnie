@@ -10,6 +10,10 @@ class SidedAccess {
 	private boolean insertLocked;
 	private boolean extractLocked;
 
+	public SidedAccess() {
+		// ignored
+	}
+
 	public AccessDirection getAccess(ForgeDirection side) {
 		return accesses.containsKey(side) ? accesses.get(side) : base;
 	}

@@ -10,6 +10,10 @@ public class MessageBinnie implements IMessage {
 	private MessageBase message;
 	protected ByteBuf data;
 
+	public MessageBinnie() {
+		// ignored
+	}
+
 	public MessageBinnie(int id, MessageBase message) {
 		this.id = id;
 		this.message = message;
