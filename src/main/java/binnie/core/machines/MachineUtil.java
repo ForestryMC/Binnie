@@ -1,22 +1,15 @@
 package binnie.core.machines;
 
-import binnie.core.BinnieCore;
-import binnie.core.machines.inventory.IChargedSlots;
-import binnie.core.machines.power.IPoweredMachine;
-import binnie.core.machines.power.IProcess;
-import binnie.core.machines.power.ITankMachine;
-import binnie.core.machines.power.PowerSystem;
-import binnie.core.util.ItemStackSet;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidTank;
+import binnie.core.*;
+import binnie.core.machines.inventory.*;
+import binnie.core.machines.power.*;
+import binnie.core.util.*;
+import net.minecraft.inventory.*;
+import net.minecraft.item.*;
+import net.minecraft.tileentity.*;
+import net.minecraftforge.fluids.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class MachineUtil {
 	private IMachine machine;

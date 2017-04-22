@@ -1,24 +1,20 @@
 package binnie.core.machines;
 
-import binnie.core.BinnieCore;
-import binnie.core.machines.component.IInteraction;
-import binnie.core.machines.component.IRender;
-import binnie.core.machines.network.INetwork;
-import binnie.core.machines.power.ITankMachine;
-import binnie.core.network.BinnieCorePacketID;
-import binnie.core.network.INetworkedEntity;
-import binnie.core.network.packet.MessageTileNBT;
-import binnie.core.network.packet.PacketPayload;
-import com.mojang.authlib.GameProfile;
-import cpw.mods.fml.relauncher.Side;
-import forestry.api.core.INBTTagable;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTUtil;
-import net.minecraft.network.Packet;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
+import binnie.core.*;
+import binnie.core.machines.component.*;
+import binnie.core.machines.network.*;
+import binnie.core.machines.power.*;
+import binnie.core.network.*;
+import binnie.core.network.packet.*;
+import com.mojang.authlib.*;
+import cpw.mods.fml.relauncher.*;
+import forestry.api.core.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
+import net.minecraft.nbt.*;
+import net.minecraft.network.*;
+import net.minecraft.tileentity.*;
+import net.minecraft.world.*;
 
 import java.util.*;
 

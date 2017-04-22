@@ -1,8 +1,8 @@
 package binnie.core.liquid;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.fluids.FluidStack;
+import net.minecraft.client.renderer.texture.*;
+import net.minecraft.util.*;
+import net.minecraftforge.fluids.*;
 
 public interface IFluidType {
 	IIcon getIcon();

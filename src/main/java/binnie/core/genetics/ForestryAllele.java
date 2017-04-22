@@ -1,9 +1,8 @@
 package binnie.core.genetics;
 
-import binnie.Binnie;
-import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
+import binnie.*;
+import forestry.api.apiculture.*;
+import forestry.api.genetics.*;
 
 public class ForestryAllele {
 	public enum Lifespan {

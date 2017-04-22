@@ -1,11 +1,9 @@
 package binnie.core.texture;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import cpw.mods.fml.relauncher.*;
 
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 // TODO unused class?
 @SideOnly(Side.CLIENT)

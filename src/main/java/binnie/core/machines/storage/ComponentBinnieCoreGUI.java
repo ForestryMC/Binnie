@@ -1,12 +1,11 @@
 package binnie.core.machines.storage;
 
-import binnie.core.BinnieCore;
-import binnie.core.gui.BinnieCoreGUI;
-import binnie.core.machines.Machine;
-import binnie.core.machines.MachineComponent;
-import binnie.core.machines.component.IInteraction;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
+import binnie.core.*;
+import binnie.core.gui.*;
+import binnie.core.machines.*;
+import binnie.core.machines.component.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.world.*;
 
 class ComponentBinnieCoreGUI extends MachineComponent implements IInteraction.RightClick {
 	private BinnieCoreGUI id;

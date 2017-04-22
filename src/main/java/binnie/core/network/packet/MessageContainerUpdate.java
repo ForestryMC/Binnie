@@ -1,6 +1,6 @@
 package binnie.core.network.packet;
 
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.*;
 
 public class MessageContainerUpdate extends MessageCraftGUI {
 	public MessageContainerUpdate(NBTTagCompound nbt) {

@@ -1,9 +1,9 @@
 package binnie.core.multiblock;
 
-import net.minecraft.block.BlockContainer;
-import net.minecraft.block.material.Material;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
+import net.minecraft.block.*;
+import net.minecraft.block.material.*;
+import net.minecraft.tileentity.*;
+import net.minecraft.world.*;
 
 // TODO unused class?
 public class BlockMultiblockMachine extends BlockContainer {

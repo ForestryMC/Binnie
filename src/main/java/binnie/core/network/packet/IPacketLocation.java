@@ -1,7 +1,7 @@
 package binnie.core.network.packet;
 
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
+import net.minecraft.tileentity.*;
+import net.minecraft.world.*;
 
 interface IPacketLocation {
 	TileEntity getTarget(World world);

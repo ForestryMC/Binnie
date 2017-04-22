@@ -1,23 +1,18 @@
 package binnie.core;
 
-import binnie.Binnie;
-import binnie.core.gui.IBinnieGUID;
-import binnie.core.mod.parser.FieldParser;
-import binnie.core.network.BinniePacketHandler;
-import binnie.core.network.IPacketID;
-import binnie.core.network.IPacketProvider;
-import binnie.core.network.packet.MessageBinnie;
-import binnie.core.proxy.IProxyCore;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import cpw.mods.fml.relauncher.Side;
-import net.minecraftforge.common.MinecraftForge;
+import binnie.*;
+import binnie.core.gui.*;
+import binnie.core.mod.parser.*;
+import binnie.core.network.*;
+import binnie.core.network.packet.*;
+import binnie.core.proxy.*;
+import cpw.mods.fml.common.network.*;
+import cpw.mods.fml.common.network.simpleimpl.*;
+import cpw.mods.fml.relauncher.*;
+import net.minecraftforge.common.*;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.List;
+import java.lang.reflect.*;
+import java.util.*;
 
 public abstract class AbstractMod implements IPacketProvider, IInitializable {
 	private SimpleNetworkWrapper wrapper;

@@ -1,15 +1,13 @@
 package binnie.core.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import cpw.mods.fml.relauncher.*;
+import net.minecraft.client.renderer.texture.*;
+import net.minecraft.creativetab.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
 
-import java.util.List;
+import java.util.*;
 
 public class ItemMisc extends Item {
 	private IItemMisc[] items;

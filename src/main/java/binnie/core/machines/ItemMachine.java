@@ -1,8 +1,7 @@
 package binnie.core.machines;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
+import net.minecraft.block.*;
+import net.minecraft.item.*;
 
 public class ItemMachine extends ItemBlock {
 	private IBlockMachine associatedBlock;

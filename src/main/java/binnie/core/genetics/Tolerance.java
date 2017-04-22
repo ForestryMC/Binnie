@@ -1,8 +1,6 @@
 package binnie.core.genetics;
 
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.EnumTolerance;
-import forestry.api.genetics.IAllele;
+import forestry.api.genetics.*;
 
 public enum Tolerance {
 	None(0, 0),

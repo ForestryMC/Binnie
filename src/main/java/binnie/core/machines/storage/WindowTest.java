@@ -1,12 +1,11 @@
 package binnie.core.machines.storage;
 
-import binnie.core.AbstractMod;
-import binnie.core.BinnieCore;
-import binnie.craftgui.genetics.machine.WindowMachine;
-import binnie.craftgui.minecraft.Window;
-import cpw.mods.fml.relauncher.Side;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
+import binnie.core.*;
+import binnie.craftgui.genetics.machine.*;
+import binnie.craftgui.minecraft.*;
+import cpw.mods.fml.relauncher.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.inventory.*;
 
 // TODO unused class?
 public class WindowTest extends WindowMachine {

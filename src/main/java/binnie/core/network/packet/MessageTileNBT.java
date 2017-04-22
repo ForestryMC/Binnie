@@ -1,11 +1,11 @@
 package binnie.core.network.packet;
 
-import io.netty.buffer.ByteBuf;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
+import io.netty.buffer.*;
+import net.minecraft.nbt.*;
+import net.minecraft.tileentity.*;
+import net.minecraft.world.*;
 
-import java.io.IOException;
+import java.io.*;
 
 public class MessageTileNBT extends MessageNBT implements IPacketLocation {
 	private int posX;

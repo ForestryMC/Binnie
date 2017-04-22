@@ -1,9 +1,9 @@
 package binnie.core.machines.inventory;
 
-import binnie.Binnie;
-import binnie.core.BinnieCore;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import binnie.*;
+import binnie.core.*;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
 
 public class InventorySlot extends BaseSlot<ItemStack> {
 	private ItemStack itemStack;

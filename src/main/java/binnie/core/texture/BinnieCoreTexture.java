@@ -1,10 +1,8 @@
 package binnie.core.texture;
 
-import binnie.Binnie;
-import binnie.core.BinnieCore;
-import binnie.core.resource.BinnieResource;
-import binnie.core.resource.IBinnieTexture;
-import binnie.core.resource.ResourceType;
+import binnie.*;
+import binnie.core.*;
+import binnie.core.resource.*;
 
 public enum BinnieCoreTexture implements IBinnieTexture {
 	Compartment(ResourceType.Tile, "Compartment"),

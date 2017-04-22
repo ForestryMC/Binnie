@@ -1,18 +1,14 @@
 package binnie.core.machines.base;
 
-import binnie.core.machines.Machine;
-import binnie.core.machines.inventory.IInventoryMachine;
-import binnie.core.machines.inventory.TankSlot;
+import binnie.core.machines.*;
+import binnie.core.machines.inventory.*;
 import binnie.core.machines.power.*;
-import cpw.mods.fml.common.Optional;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidTank;
+import cpw.mods.fml.common.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.tileentity.*;
+import net.minecraftforge.common.util.*;
+import net.minecraftforge.fluids.*;
 
 public class TileEntityMachineBase extends TileEntity implements IInventoryMachine, ITankMachine, IPoweredMachine {
 	public IInventoryMachine getInventory() {

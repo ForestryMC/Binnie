@@ -1,24 +1,14 @@
 package binnie.core.genetics;
 
-import binnie.Binnie;
-import binnie.core.BinnieCore;
-import binnie.extrabees.ExtraBees;
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.apiculture.EnumBeeType;
-import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.apiculture.IApiaristTracker;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeMutation;
-import forestry.api.apiculture.IBeeRoot;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IBreedingTracker;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IMutation;
-import forestry.api.genetics.ISpeciesRoot;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
+import binnie.*;
+import binnie.core.*;
+import binnie.extrabees.*;
+import forestry.api.apiculture.*;
+import forestry.api.genetics.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
 
-import java.util.TreeSet;
+import java.util.*;
 
 class BeeBreedingSystem extends BreedingSystem {
 	public BeeBreedingSystem() {

@@ -1,18 +1,17 @@
 package binnie.core.genetics;
 
-import binnie.Binnie;
-import binnie.botany.api.IFlowerRoot;
-import binnie.botany.genetics.AlleleColor;
-import binnie.core.BinnieCore;
-import binnie.core.ManagerBase;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import forestry.api.apiculture.IBeeRoot;
-import forestry.api.arboriculture.ITreeRoot;
+import binnie.*;
+import binnie.botany.api.*;
+import binnie.botany.genetics.*;
+import binnie.core.*;
+import cpw.mods.fml.common.eventhandler.*;
+import forestry.api.apiculture.*;
+import forestry.api.arboriculture.*;
 import forestry.api.genetics.*;
-import forestry.api.lepidopterology.IButterflyRoot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import net.minecraftforge.event.world.WorldEvent;
+import forestry.api.lepidopterology.*;
+import net.minecraft.item.*;
+import net.minecraft.world.*;
+import net.minecraftforge.event.world.*;
 
 import java.util.*;
 

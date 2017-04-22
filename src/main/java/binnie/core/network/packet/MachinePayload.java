@@ -1,7 +1,6 @@
 package binnie.core.network.packet;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class MachinePayload {
 	private List<Integer> intPayload;

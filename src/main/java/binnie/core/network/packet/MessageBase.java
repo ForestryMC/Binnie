@@ -1,11 +1,9 @@
 package binnie.core.network.packet;
 
-import io.netty.buffer.ByteBuf;
-import net.minecraft.nbt.CompressedStreamTools;
-import net.minecraft.nbt.NBTTagCompound;
+import io.netty.buffer.*;
+import net.minecraft.nbt.*;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
+import java.io.*;
 
 public class MessageBase {
 	private int id;

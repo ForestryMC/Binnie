@@ -1,16 +1,14 @@
 package binnie.core.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
+import cpw.mods.fml.relauncher.*;
+import net.minecraft.block.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import net.minecraftforge.common.util.*;
 
-import java.util.List;
+import java.util.*;
 
 public class ItemMetadata extends ItemBlock {
 	public ItemMetadata(Block block) {

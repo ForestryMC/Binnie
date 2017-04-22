@@ -1,20 +1,16 @@
 package binnie.core.block;
 
-import binnie.core.BinnieCore;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
+import binnie.core.*;
+import net.minecraft.block.*;
+import net.minecraft.block.material.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.tileentity.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import net.minecraftforge.common.util.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	public BlockMetadata(Material material) {

@@ -1,16 +1,14 @@
 package binnie.core.triggers;
 
-import binnie.Binnie;
-import binnie.core.AbstractMod;
-import binnie.core.BinnieCore;
-import binnie.core.resource.BinnieIcon;
+import binnie.*;
+import binnie.core.*;
+import binnie.core.resource.*;
 import buildcraft.api.statements.*;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.common.util.ForgeDirection;
+import cpw.mods.fml.relauncher.*;
+import net.minecraft.client.renderer.texture.*;
+import net.minecraft.tileentity.*;
+import net.minecraft.util.*;
+import net.minecraftforge.common.util.*;
 
 class BinnieTrigger implements ITriggerExternal {
 	private static int incrementalID = 800;

@@ -1,10 +1,10 @@
 package binnie.core.proxy;
 
-import binnie.core.gui.IBinnieGUID;
-import binnie.core.network.packet.MessageBase;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.IIcon;
+import binnie.core.gui.*;
+import binnie.core.network.packet.*;
+import net.minecraft.client.renderer.texture.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.util.*;
 
 interface IBinnieModProxy extends IProxyCore {
 	void openGui(IBinnieGUID mod, EntityPlayer player, int x, int y, int z);

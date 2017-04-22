@@ -1,8 +1,8 @@
 package binnie.core.triggers;
 
-import buildcraft.api.statements.ITriggerExternal;
+import buildcraft.api.statements.*;
 
-import java.util.Map;
+import java.util.*;
 
 public class TriggerData implements Map.Entry<ITriggerExternal, Boolean> {
 	private ITriggerExternal key;

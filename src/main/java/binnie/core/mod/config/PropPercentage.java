@@ -1,10 +1,9 @@
 package binnie.core.mod.config;
 
-import net.minecraftforge.common.config.Property;
+import net.minecraftforge.common.config.*;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.reflect.Field;
+import java.lang.annotation.*;
+import java.lang.reflect.*;
 
 @Retention(RetentionPolicy.RUNTIME)
 @ConfigProperty.Type(propertyClass = PropPercentage.PropertyPercentage.class)

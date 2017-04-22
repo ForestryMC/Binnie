@@ -1,7 +1,7 @@
 package binnie.core.machines.power;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.item.*;
+import net.minecraft.nbt.*;
 
 public enum PowerSystem {
 	MJ(100.0),

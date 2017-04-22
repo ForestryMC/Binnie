@@ -1,7 +1,7 @@
 package binnie.core.triggers;
 
-import binnie.core.machines.Machine;
-import binnie.core.machines.power.IPoweredMachine;
+import binnie.core.machines.*;
+import binnie.core.machines.power.*;
 
 public class TriggerPower {
 	public static TriggerData powerNone(Object tile) {

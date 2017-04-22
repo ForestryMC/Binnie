@@ -1,9 +1,9 @@
 package binnie.core.network.packet;
 
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import io.netty.buffer.ByteBuf;
+import cpw.mods.fml.common.network.simpleimpl.*;
+import io.netty.buffer.*;
 
-import java.io.IOException;
+import java.io.*;
 
 public class MessageBinnie implements IMessage {
 	public int id;

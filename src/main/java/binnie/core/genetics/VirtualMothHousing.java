@@ -1,9 +1,8 @@
 package binnie.core.genetics;
 
-import forestry.api.genetics.IIndividual;
-import forestry.api.lepidopterology.IButterfly;
-import forestry.api.lepidopterology.IButterflyNursery;
-import net.minecraft.entity.player.EntityPlayer;
+import forestry.api.genetics.*;
+import forestry.api.lepidopterology.*;
+import net.minecraft.entity.player.*;
 
 // TODO unused class?
 public class VirtualMothHousing extends VirtualHousing implements IButterflyNursery {

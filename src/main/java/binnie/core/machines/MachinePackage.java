@@ -1,8 +1,8 @@
 package binnie.core.machines;
 
-import binnie.Binnie;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.tileentity.TileEntity;
+import binnie.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.tileentity.*;
 
 public abstract class MachinePackage {
 	private String uid;

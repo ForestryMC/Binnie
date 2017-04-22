@@ -1,19 +1,18 @@
 package binnie.core.genetics;
 
-import binnie.Binnie;
-import binnie.core.BinnieCore;
-import binnie.core.util.UniqueItemStackSet;
-import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.FakeWorld;
-import binnie.extratrees.machines.Lumbermill;
-import com.mojang.authlib.GameProfile;
+import binnie.*;
+import binnie.core.*;
+import binnie.core.util.*;
+import binnie.extratrees.*;
+import binnie.extratrees.machines.*;
+import com.mojang.authlib.*;
 import forestry.api.arboriculture.*;
 import forestry.api.genetics.*;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.world.*;
+import net.minecraftforge.common.*;
+import net.minecraftforge.common.util.*;
 
 import java.util.*;
 

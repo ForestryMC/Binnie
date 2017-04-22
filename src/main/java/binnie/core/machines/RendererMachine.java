@@ -1,13 +1,12 @@
 package binnie.core.machines;
 
-import binnie.Binnie;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import net.minecraft.block.Block;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
+import binnie.*;
+import cpw.mods.fml.client.registry.*;
+import net.minecraft.block.*;
+import net.minecraft.client.renderer.*;
+import net.minecraft.client.renderer.tileentity.*;
+import net.minecraft.tileentity.*;
+import net.minecraft.world.*;
 
 // TODO unused class?
 public class RendererMachine extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler {

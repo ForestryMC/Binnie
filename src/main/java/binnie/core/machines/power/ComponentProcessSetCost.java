@@ -1,6 +1,6 @@
 package binnie.core.machines.power;
 
-import binnie.core.machines.IMachine;
+import binnie.core.machines.*;
 
 public class ComponentProcessSetCost extends ComponentProcess {
 	private int processLength;

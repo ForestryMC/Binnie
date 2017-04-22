@@ -1,10 +1,9 @@
 package binnie.core.mod.parser;
 
-import binnie.core.AbstractMod;
+import binnie.core.*;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.lang.reflect.*;
+import java.util.*;
 
 public abstract class FieldParser {
 	public static Collection<FieldParser> parsers = new ArrayList<>();

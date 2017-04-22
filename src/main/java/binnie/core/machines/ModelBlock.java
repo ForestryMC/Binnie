@@ -1,7 +1,6 @@
 package binnie.core.machines;
 
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.model.*;
 
 class ModelBlock extends ModelBase {
 	private ModelRenderer block;

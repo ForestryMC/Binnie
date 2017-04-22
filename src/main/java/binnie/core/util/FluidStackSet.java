@@ -1,6 +1,6 @@
 package binnie.core.util;
 
-import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.*;
 
 import java.util.*;
 

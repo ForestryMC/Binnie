@@ -1,8 +1,6 @@
 package binnie.core.machines.inventory;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Set;
+import java.util.*;
 
 public class SetList<E> extends ArrayList<E> implements Set<E> {
 	private static long serialVersionUID = 1277112003159980135L;

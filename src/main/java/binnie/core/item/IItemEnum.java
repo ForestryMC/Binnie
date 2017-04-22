@@ -1,6 +1,6 @@
 package binnie.core.item;
 
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 
 public interface IItemEnum {
 	boolean isActive();

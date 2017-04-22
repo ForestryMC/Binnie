@@ -1,9 +1,9 @@
 package binnie.core.machines;
 
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
+import net.minecraft.tileentity.*;
+import net.minecraft.world.*;
 
-import java.util.Collection;
+import java.util.*;
 
 public interface IMachine extends IOwnable {
 	void addComponent(MachineComponent component);

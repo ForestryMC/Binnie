@@ -1,32 +1,25 @@
 package binnie.core.proxy;
 
-import binnie.Binnie;
-import binnie.core.resource.BinnieResource;
-import binnie.craftgui.resource.minecraft.CraftGUIResourceManager;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.client.registry.ClientRegistry;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.client.renderer.texture.SimpleTexture;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.client.resources.IReloadableResourceManager;
-import net.minecraft.client.resources.IResourceManager;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
-import net.minecraftforge.client.IItemRenderer;
-import net.minecraftforge.client.MinecraftForgeClient;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.GL11;
+import binnie.*;
+import binnie.core.resource.*;
+import binnie.craftgui.resource.minecraft.*;
+import cpw.mods.fml.client.*;
+import cpw.mods.fml.client.registry.*;
+import cpw.mods.fml.common.registry.*;
+import net.minecraft.client.*;
+import net.minecraft.client.renderer.texture.*;
+import net.minecraft.client.renderer.tileentity.*;
+import net.minecraft.client.resources.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
+import net.minecraft.tileentity.*;
+import net.minecraft.util.*;
+import net.minecraft.world.*;
+import net.minecraftforge.client.*;
+import org.lwjgl.input.*;
+import org.lwjgl.opengl.*;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public class BinnieProxyClient extends BinnieProxy implements IBinnieProxy {
 	@Override

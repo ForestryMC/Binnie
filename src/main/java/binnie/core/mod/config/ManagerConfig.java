@@ -1,11 +1,10 @@
 package binnie.core.mod.config;
 
-import binnie.core.AbstractMod;
-import binnie.core.ManagerBase;
-import net.minecraftforge.common.config.Configuration;
+import binnie.core.*;
+import net.minecraftforge.common.config.*;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
+import java.lang.annotation.*;
+import java.lang.reflect.*;
 import java.util.*;
 
 public class ManagerConfig extends ManagerBase {

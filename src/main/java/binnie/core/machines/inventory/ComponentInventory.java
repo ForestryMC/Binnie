@@ -1,8 +1,7 @@
 package binnie.core.machines.inventory;
 
-import binnie.core.machines.IMachine;
-import binnie.core.machines.MachineComponent;
-import net.minecraft.inventory.IInventory;
+import binnie.core.machines.*;
+import net.minecraft.inventory.*;
 
 public abstract class ComponentInventory extends MachineComponent implements IInventory {
 	public ComponentInventory(IMachine machine) {

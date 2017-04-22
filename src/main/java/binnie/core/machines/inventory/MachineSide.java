@@ -1,9 +1,8 @@
 package binnie.core.machines.inventory;
 
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.common.util.*;
 
-import java.util.Collection;
-import java.util.EnumSet;
+import java.util.*;
 
 public class MachineSide {
 	private static EnumSet<ForgeDirection> All = EnumSet.of(ForgeDirection.UP, ForgeDirection.DOWN, ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST);

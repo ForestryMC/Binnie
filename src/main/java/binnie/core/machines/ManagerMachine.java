@@ -1,10 +1,8 @@
 package binnie.core.machines;
 
-import binnie.core.BinnieCore;
-import binnie.core.ManagerBase;
-import binnie.core.machines.inventory.SlotValidator;
-import binnie.core.machines.inventory.ValidatorIcon;
-import forestry.api.core.INBTTagable;
+import binnie.core.*;
+import binnie.core.machines.inventory.*;
+import forestry.api.core.*;
 
 import java.util.*;
 

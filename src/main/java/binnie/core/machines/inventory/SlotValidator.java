@@ -1,8 +1,8 @@
 package binnie.core.machines.inventory;
 
-import forestry.api.genetics.AlleleManager;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import forestry.api.genetics.*;
+import net.minecraft.item.*;
+import net.minecraft.util.*;
 
 public abstract class SlotValidator extends Validator<ItemStack> {
 	public static ValidatorIcon IconBee;

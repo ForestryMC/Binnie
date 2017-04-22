@@ -1,11 +1,11 @@
 package binnie.core.block;
 
-import net.minecraft.block.ITileEntityProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraft.block.*;
+import net.minecraft.item.*;
+import net.minecraft.world.*;
+import net.minecraftforge.common.util.*;
 
-import java.util.List;
+import java.util.*;
 
 public interface IBlockMetadata extends ITileEntityProvider {
 	int getPlacedMeta(ItemStack itemStack, World world, int x, int y, int z, ForgeDirection direction);

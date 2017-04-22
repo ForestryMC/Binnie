@@ -1,7 +1,7 @@
 package binnie.core.machines.power;
 
-import forestry.api.core.INBTTagable;
-import net.minecraft.nbt.NBTTagCompound;
+import forestry.api.core.*;
+import net.minecraft.nbt.*;
 
 public class PowerInfo implements INBTTagable {
 	private float currentEnergy;

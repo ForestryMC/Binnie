@@ -1,13 +1,9 @@
 package binnie.core.circuits;
 
-import forestry.api.circuits.ChipsetManager;
-import forestry.api.circuits.ICircuit;
-import forestry.api.circuits.ICircuitLayout;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import forestry.api.circuits.*;
+import net.minecraft.item.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class BinnieCircuit implements ICircuit {
 	private String uid;
