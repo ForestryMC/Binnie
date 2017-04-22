@@ -1,8 +1,9 @@
 package binnie.core.network.packet;
 
-import binnie.core.network.*;
+import binnie.core.network.INetworkedEntity;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PacketPayload {
 	public List<Integer> intPayload;

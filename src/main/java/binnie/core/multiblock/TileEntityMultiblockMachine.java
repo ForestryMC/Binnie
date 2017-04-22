@@ -1,7 +1,8 @@
 package binnie.core.multiblock;
 
-import binnie.core.machines.*;
-import net.minecraft.tileentity.*;
+import binnie.core.machines.Machine;
+import binnie.core.machines.TileEntityMachine;
+import net.minecraft.tileentity.TileEntity;
 
 class TileEntityMultiblockMachine extends TileEntity {
 	private boolean inStructure;

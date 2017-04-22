@@ -1,10 +1,10 @@
 package binnie.core.mod.parser;
 
-import binnie.core.*;
-import cpw.mods.fml.common.registry.*;
-import net.minecraft.item.*;
+import binnie.core.AbstractMod;
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.item.Item;
 
-import java.lang.reflect.*;
+import java.lang.reflect.Field;
 
 public class ItemParser extends FieldParser {
 	@Override

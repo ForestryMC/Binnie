@@ -1,6 +1,6 @@
 package binnie.core.util;
 
-import net.minecraft.item.*;
+import net.minecraft.item.ItemStack;
 
 public class UniqueItemStackSet extends ItemStackSet {
 	@Override

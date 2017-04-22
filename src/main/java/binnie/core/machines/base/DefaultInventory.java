@@ -1,8 +1,8 @@
 package binnie.core.machines.base;
 
-import binnie.core.machines.inventory.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
+import binnie.core.machines.inventory.IInventoryMachine;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 
 class DefaultInventory implements IInventoryMachine {
 	@Override

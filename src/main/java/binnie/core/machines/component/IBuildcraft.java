@@ -1,9 +1,10 @@
 package binnie.core.machines.component;
 
-import binnie.core.triggers.*;
-import buildcraft.api.statements.*;
+import binnie.core.triggers.TriggerData;
+import buildcraft.api.statements.IActionExternal;
+import buildcraft.api.statements.IActionReceptor;
 
-import java.util.*;
+import java.util.List;
 
 public interface IBuildcraft {
 	interface TriggerProvider {

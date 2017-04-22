@@ -1,10 +1,11 @@
 package binnie.core.block;
 
-import net.minecraft.block.*;
-import net.minecraft.client.renderer.*;
-import net.minecraft.item.*;
-import net.minecraftforge.client.*;
-import org.lwjgl.opengl.*;
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.IItemRenderer;
+import org.lwjgl.opengl.GL11;
 
 public class ItemMetadataRenderer implements IItemRenderer {
 	@Override

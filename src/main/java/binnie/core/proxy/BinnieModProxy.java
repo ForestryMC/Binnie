@@ -1,12 +1,14 @@
 package binnie.core.proxy;
 
-import binnie.*;
-import binnie.core.*;
-import binnie.core.gui.*;
-import binnie.core.network.packet.*;
-import net.minecraft.client.renderer.texture.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.util.*;
+import binnie.Binnie;
+import binnie.core.AbstractMod;
+import binnie.core.BinnieCore;
+import binnie.core.gui.IBinnieGUID;
+import binnie.core.network.packet.MessageBase;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.IIcon;
 
 public class BinnieModProxy implements IBinnieModProxy {
 	private AbstractMod mod;

@@ -1,12 +1,16 @@
 package binnie.core.triggers;
 
-import binnie.core.machines.component.*;
-import buildcraft.api.statements.*;
+import binnie.core.machines.component.IBuildcraft;
+import buildcraft.api.statements.IActionExternal;
+import buildcraft.api.statements.IActionInternal;
+import buildcraft.api.statements.IActionProvider;
+import buildcraft.api.statements.IStatementContainer;
 import cpw.mods.fml.common.Optional;
-import net.minecraft.tileentity.*;
-import net.minecraftforge.common.util.*;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.ForgeDirection;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.LinkedList;
 
 class ActionProvider implements IActionProvider {
 	@Override

@@ -1,10 +1,12 @@
 package binnie.core;
 
-import cpw.mods.fml.common.*;
-import cpw.mods.fml.common.registry.*;
-import cpw.mods.fml.common.versioning.*;
-import net.minecraft.block.*;
-import net.minecraft.item.*;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.versioning.DefaultArtifactVersion;
+import cpw.mods.fml.common.versioning.Restriction;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class Mods {
 	public static Mod Forestry;

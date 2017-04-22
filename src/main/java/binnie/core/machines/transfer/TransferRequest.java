@@ -1,13 +1,18 @@
 package binnie.core.machines.transfer;
 
-import binnie.core.machines.*;
-import binnie.core.machines.inventory.*;
-import binnie.core.machines.power.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
-import net.minecraftforge.fluids.*;
+import binnie.core.machines.Machine;
+import binnie.core.machines.inventory.IInventorySlots;
+import binnie.core.machines.inventory.IValidatedTankContainer;
+import binnie.core.machines.power.ITankMachine;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.IFluidContainerItem;
+import net.minecraftforge.fluids.IFluidTank;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TransferRequest {
 	private ItemStack itemToTransfer;

@@ -1,15 +1,16 @@
 package binnie;
 
-import binnie.core.*;
-import binnie.core.genetics.*;
-import binnie.core.item.*;
-import binnie.core.language.*;
-import binnie.core.liquid.*;
-import binnie.core.machines.*;
-import binnie.core.mod.config.*;
-import binnie.core.resource.*;
+import binnie.core.ManagerBase;
+import binnie.core.genetics.ManagerGenetics;
+import binnie.core.item.ManagerItem;
+import binnie.core.language.ManagerLanguage;
+import binnie.core.liquid.ManagerLiquid;
+import binnie.core.machines.ManagerMachine;
+import binnie.core.mod.config.ManagerConfig;
+import binnie.core.resource.ManagerResource;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class Binnie {
 	public static List<ManagerBase> Managers = new ArrayList<>();

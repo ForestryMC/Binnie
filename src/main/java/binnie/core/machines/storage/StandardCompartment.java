@@ -1,9 +1,10 @@
 package binnie.core.machines.storage;
 
-import binnie.core.gui.*;
-import binnie.core.machines.*;
-import binnie.core.texture.*;
-import net.minecraft.tileentity.*;
+import binnie.core.gui.BinnieCoreGUI;
+import binnie.core.machines.Machine;
+import binnie.core.machines.TileEntityMachine;
+import binnie.core.texture.BinnieCoreTexture;
+import net.minecraft.tileentity.TileEntity;
 
 class StandardCompartment {
 	public static class PackageCompartment extends Compartment.PackageCompartment {

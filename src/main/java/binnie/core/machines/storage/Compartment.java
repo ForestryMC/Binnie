@@ -1,11 +1,15 @@
 package binnie.core.machines.storage;
 
-import binnie.core.*;
-import binnie.core.machines.*;
-import binnie.core.resource.*;
-import net.minecraft.client.renderer.*;
-import net.minecraft.item.*;
-import net.minecraft.tileentity.*;
+import binnie.core.BinnieCore;
+import binnie.core.machines.IMachineType;
+import binnie.core.machines.Machine;
+import binnie.core.machines.MachinePackage;
+import binnie.core.machines.TileEntityMachine;
+import binnie.core.resource.BinnieResource;
+import binnie.core.resource.IBinnieTexture;
+import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 
 enum Compartment implements IMachineType {
 	Compartment(StandardCompartment.PackageCompartment.class),

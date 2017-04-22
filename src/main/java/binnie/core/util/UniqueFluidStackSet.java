@@ -1,6 +1,6 @@
 package binnie.core.util;
 
-import net.minecraftforge.fluids.*;
+import net.minecraftforge.fluids.FluidStack;
 
 public class UniqueFluidStackSet extends FluidStackSet {
 	@Override

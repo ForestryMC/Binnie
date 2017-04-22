@@ -1,7 +1,7 @@
 package binnie.core.genetics;
 
-import binnie.*;
-import binnie.core.*;
+import binnie.Binnie;
+import binnie.core.BinnieCore;
 
 public enum EnumBeeModifier {
 	Territory,

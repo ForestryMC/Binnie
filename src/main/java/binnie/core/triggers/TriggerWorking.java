@@ -1,7 +1,7 @@
 package binnie.core.triggers;
 
-import binnie.core.machines.*;
-import binnie.core.machines.power.*;
+import binnie.core.machines.Machine;
+import binnie.core.machines.power.IProcess;
 
 // TODO unusing class?
 public class TriggerWorking {

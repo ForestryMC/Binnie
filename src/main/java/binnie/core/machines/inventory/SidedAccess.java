@@ -1,6 +1,6 @@
 package binnie.core.machines.inventory;
 
-import net.minecraftforge.common.util.*;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.*;
 

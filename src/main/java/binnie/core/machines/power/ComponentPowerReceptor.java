@@ -1,18 +1,23 @@
 package binnie.core.machines.power;
 
-import binnie.core.*;
-import binnie.core.machines.*;
-import binnie.core.machines.component.*;
-import binnie.core.triggers.*;
+import binnie.core.Mods;
+import binnie.core.machines.IMachine;
+import binnie.core.machines.MachineComponent;
+import binnie.core.machines.component.IBuildcraft;
+import binnie.core.machines.component.IInteraction;
+import binnie.core.triggers.TriggerData;
+import binnie.core.triggers.TriggerPower;
 import cpw.mods.fml.common.Optional;
-import ic2.api.energy.event.*;
-import ic2.api.energy.tile.*;
-import net.minecraft.nbt.*;
-import net.minecraft.tileentity.*;
-import net.minecraftforge.common.*;
-import net.minecraftforge.common.util.*;
+import ic2.api.energy.event.EnergyTileLoadEvent;
+import ic2.api.energy.event.EnergyTileUnloadEvent;
+import ic2.api.energy.tile.IEnergyTile;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.ForgeDirection;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
 
 @Optional.Interface(iface = "binnie.core.machines.component.IBuildcraft.TriggerProvider", modid = "BuildCraft|Silicon")
 public class ComponentPowerReceptor extends MachineComponent implements

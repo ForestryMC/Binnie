@@ -1,13 +1,13 @@
 package binnie.core.block;
 
-import binnie.core.*;
-import binnie.core.network.packet.*;
-import net.minecraft.block.*;
-import net.minecraft.item.*;
-import net.minecraft.nbt.*;
-import net.minecraft.network.*;
-import net.minecraft.tileentity.*;
-import net.minecraft.world.*;
+import binnie.core.BinnieCore;
+import binnie.core.network.packet.MessageMetadata;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.Packet;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockAccess;
 
 public class TileEntityMetadata extends TileEntity {
 	private int meta;

@@ -1,11 +1,17 @@
 package binnie.core.triggers;
 
-import binnie.core.machines.component.*;
-import buildcraft.api.statements.*;
-import net.minecraft.tileentity.*;
-import net.minecraftforge.common.util.*;
+import binnie.core.machines.component.IBuildcraft;
+import buildcraft.api.statements.IStatementContainer;
+import buildcraft.api.statements.ITriggerExternal;
+import buildcraft.api.statements.ITriggerInternal;
+import buildcraft.api.statements.ITriggerProvider;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.ForgeDirection;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
 
 class TriggerProvider implements ITriggerProvider {
 	static TriggerProvider instance = new TriggerProvider();

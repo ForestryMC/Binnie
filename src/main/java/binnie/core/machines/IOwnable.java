@@ -1,6 +1,6 @@
 package binnie.core.machines;
 
-import com.mojang.authlib.*;
+import com.mojang.authlib.GameProfile;
 
 interface IOwnable {
 	GameProfile getOwner();

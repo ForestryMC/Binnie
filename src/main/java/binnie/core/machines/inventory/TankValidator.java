@@ -1,7 +1,8 @@
 package binnie.core.machines.inventory;
 
-import binnie.*;
-import net.minecraftforge.fluids.*;
+import binnie.Binnie;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 
 public abstract class TankValidator extends Validator<FluidStack> {
 	@Override

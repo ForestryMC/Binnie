@@ -1,10 +1,13 @@
 package binnie.core.genetics;
 
-import binnie.*;
-import binnie.genetics.api.*;
-import forestry.api.core.*;
-import forestry.api.genetics.*;
-import net.minecraft.nbt.*;
+import binnie.Binnie;
+import binnie.genetics.api.IGene;
+import forestry.api.core.INBTTagable;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.nbt.NBTTagCompound;
 
 public class Gene implements INBTTagable, IGene {
 	private IAllele allele;

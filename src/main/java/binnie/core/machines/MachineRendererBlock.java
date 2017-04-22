@@ -1,9 +1,10 @@
 package binnie.core.machines;
 
-import binnie.core.*;
-import binnie.core.resource.*;
-import cpw.mods.fml.relauncher.*;
-import org.lwjgl.opengl.*;
+import binnie.core.BinnieCore;
+import binnie.core.resource.BinnieResource;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class MachineRendererBlock {

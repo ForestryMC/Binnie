@@ -1,6 +1,6 @@
 package binnie.core.machines.inventory;
 
-import net.minecraftforge.fluids.*;
+import net.minecraftforge.fluids.FluidStack;
 
 public interface IValidatedTankContainer {
 	boolean isTankReadOnly(int tank);

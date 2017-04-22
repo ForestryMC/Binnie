@@ -1,6 +1,6 @@
 package binnie.core.liquid;
 
-import net.minecraftforge.fluids.*;
+import net.minecraftforge.fluids.Fluid;
 
 class BinnieFluid extends Fluid {
 	protected IFluidType fluidType;

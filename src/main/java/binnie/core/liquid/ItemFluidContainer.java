@@ -1,18 +1,25 @@
 package binnie.core.liquid;
 
-import binnie.*;
-import binnie.extratrees.alcohol.*;
-import binnie.extratrees.alcohol.drink.*;
-import cpw.mods.fml.relauncher.*;
-import net.minecraft.client.renderer.texture.*;
-import net.minecraft.creativetab.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
-import net.minecraftforge.fluids.*;
+import binnie.Binnie;
+import binnie.extratrees.alcohol.AlcoholEffect;
+import binnie.extratrees.alcohol.drink.DrinkManager;
+import binnie.extratrees.alcohol.drink.IDrinkLiquid;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumAction;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ItemFluidContainer extends ItemFood {
 	private FluidContainer container;

@@ -1,6 +1,6 @@
 package binnie.core;
 
-import binnie.*;
+import binnie.Binnie;
 
 public abstract class ManagerBase implements IInitializable {
 	public ManagerBase() {

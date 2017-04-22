@@ -1,10 +1,12 @@
 package binnie.core.resource;
 
-import binnie.*;
-import binnie.core.*;
-import cpw.mods.fml.relauncher.*;
-import net.minecraft.client.renderer.texture.*;
-import net.minecraft.util.*;
+import binnie.Binnie;
+import binnie.core.AbstractMod;
+import binnie.core.BinnieCore;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.IIcon;
 
 public class BinnieIcon extends BinnieResource {
 	private int textureSheet;

@@ -1,7 +1,7 @@
 package binnie.core.machines.component;
 
-import net.minecraft.entity.player.*;
-import net.minecraft.world.*;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 
 public interface IInteraction {
 	interface ChunkUnload {

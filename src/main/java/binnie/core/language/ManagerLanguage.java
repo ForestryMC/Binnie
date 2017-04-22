@@ -1,9 +1,11 @@
 package binnie.core.language;
 
-import binnie.core.*;
-import net.minecraft.util.*;
+import binnie.core.AbstractMod;
+import binnie.core.ManagerBase;
+import net.minecraft.util.StatCollector;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ManagerLanguage extends ManagerBase {
 	private Map<Object, String> objNames;

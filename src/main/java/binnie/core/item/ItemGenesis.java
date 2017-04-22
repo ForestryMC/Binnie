@@ -1,13 +1,15 @@
 package binnie.core.item;
 
-import binnie.core.*;
-import binnie.core.gui.*;
-import cpw.mods.fml.relauncher.*;
-import forestry.api.core.*;
-import net.minecraft.client.renderer.texture.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.world.*;
+import binnie.core.BinnieCore;
+import binnie.core.gui.BinnieCoreGUI;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class ItemGenesis extends Item {
 	@Override

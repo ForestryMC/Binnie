@@ -1,10 +1,12 @@
 package binnie.core.mod.config;
 
-import net.minecraftforge.common.config.*;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 
-import java.lang.annotation.*;
-import java.lang.reflect.*;
-import java.util.*;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 abstract class PropertyBase<ValueType, AnnotationType extends Annotation> {
 	protected Configuration file;

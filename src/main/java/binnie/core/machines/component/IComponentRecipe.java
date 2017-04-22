@@ -1,6 +1,6 @@
 package binnie.core.machines.component;
 
-import net.minecraft.item.*;
+import net.minecraft.item.ItemStack;
 
 public interface IComponentRecipe {
 	boolean isRecipe();

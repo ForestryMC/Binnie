@@ -1,10 +1,10 @@
 package binnie.core.machines.storage;
 
-import binnie.craftgui.minecraft.*;
-import forestry.api.core.*;
-import net.minecraft.init.*;
-import net.minecraft.item.*;
-import net.minecraft.nbt.*;
+import binnie.craftgui.minecraft.EnumColor;
+import forestry.api.core.INBTTagable;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 class CompartmentTab implements INBTTagable {
 	private String name;

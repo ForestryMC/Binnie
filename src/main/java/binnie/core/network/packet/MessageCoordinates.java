@@ -1,11 +1,11 @@
 package binnie.core.network.packet;
 
-import io.netty.buffer.*;
-import net.minecraft.tileentity.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.world.World;
 
-import java.io.*;
+import java.io.IOException;
 
 public class MessageCoordinates extends MessageBase {
 	public int posX;

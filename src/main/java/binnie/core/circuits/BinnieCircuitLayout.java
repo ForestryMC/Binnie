@@ -1,8 +1,11 @@
 package binnie.core.circuits;
 
-import binnie.*;
-import binnie.core.*;
-import forestry.api.circuits.*;
+import binnie.Binnie;
+import binnie.core.AbstractMod;
+import forestry.api.circuits.ChipsetManager;
+import forestry.api.circuits.CircuitSocketType;
+import forestry.api.circuits.ICircuitLayout;
+import forestry.api.circuits.ICircuitSocketType;
 
 public class BinnieCircuitLayout implements ICircuitLayout {
 	private String uid;

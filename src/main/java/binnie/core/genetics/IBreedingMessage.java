@@ -1,9 +1,12 @@
 package binnie.core.genetics;
 
-import binnie.*;
-import binnie.core.*;
-import forestry.api.genetics.*;
-import net.minecraft.item.*;
+import binnie.Binnie;
+import binnie.core.BinnieCore;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IClassification;
+import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.item.ItemStack;
 
 // TODO unused interface?
 interface IBreedingMessage {

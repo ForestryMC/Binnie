@@ -1,7 +1,7 @@
 package binnie.core.machines.power;
 
-import forestry.api.core.*;
-import net.minecraft.nbt.*;
+import forestry.api.core.INBTTagable;
+import net.minecraft.nbt.NBTTagCompound;
 
 public class PowerInterface implements INBTTagable {
 	private int capacity;

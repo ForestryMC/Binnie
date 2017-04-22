@@ -1,16 +1,17 @@
 package binnie.core.network;
 
-import binnie.core.*;
-import binnie.core.block.*;
-import binnie.core.machines.*;
-import binnie.core.machines.network.*;
+import binnie.core.BinnieCore;
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.machines.IMachine;
+import binnie.core.machines.Machine;
+import binnie.core.machines.network.INetwork;
 import binnie.core.network.packet.*;
-import binnie.craftgui.minecraft.*;
-import cpw.mods.fml.common.network.simpleimpl.*;
-import cpw.mods.fml.relauncher.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.network.*;
-import net.minecraft.tileentity.*;
+import binnie.craftgui.minecraft.ContainerCraftGUI;
+import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.relauncher.Side;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.network.NetHandlerPlayServer;
+import net.minecraft.tileentity.TileEntity;
 
 public enum BinnieCorePacketID implements IPacketID {
 	NetworkEntityUpdate,

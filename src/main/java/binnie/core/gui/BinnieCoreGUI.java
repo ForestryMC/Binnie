@@ -1,13 +1,14 @@
 package binnie.core.gui;
 
-import binnie.core.machines.storage.*;
-import binnie.craftgui.binniecore.*;
-import binnie.craftgui.minecraft.*;
-import cpw.mods.fml.relauncher.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.inventory.*;
-import net.minecraft.tileentity.*;
-import net.minecraft.world.*;
+import binnie.core.machines.storage.WindowCompartment;
+import binnie.craftgui.binniecore.WindowFieldKit;
+import binnie.craftgui.binniecore.WindowGenesis;
+import binnie.craftgui.minecraft.Window;
+import cpw.mods.fml.relauncher.Side;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 public enum BinnieCoreGUI implements IBinnieGUID {
 	Compartment,

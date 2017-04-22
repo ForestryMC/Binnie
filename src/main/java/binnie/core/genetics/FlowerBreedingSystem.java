@@ -1,16 +1,19 @@
 package binnie.core.genetics;
 
-import binnie.*;
-import binnie.botany.api.*;
-import binnie.botany.core.*;
-import binnie.botany.genetics.*;
-import binnie.core.*;
-import binnie.extrabees.*;
+import binnie.Binnie;
+import binnie.botany.api.EnumFlowerChromosome;
+import binnie.botany.api.EnumFlowerStage;
+import binnie.botany.api.IBotanistTracker;
+import binnie.botany.api.IFlowerRoot;
+import binnie.botany.core.BotanyCore;
+import binnie.botany.genetics.EnumFlowerColor;
+import binnie.core.BinnieCore;
+import binnie.extrabees.ExtraBees;
 import forestry.api.genetics.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 
-import java.util.*;
+import java.util.TreeSet;
 
 class FlowerBreedingSystem extends BreedingSystem {
 	public FlowerBreedingSystem() {

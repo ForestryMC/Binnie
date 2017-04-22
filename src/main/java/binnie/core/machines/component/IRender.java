@@ -1,10 +1,11 @@
 package binnie.core.machines.component;
 
-import cpw.mods.fml.relauncher.*;
-import net.minecraft.client.renderer.entity.*;
-import net.minecraft.world.*;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.world.World;
 
-import java.util.*;
+import java.util.Random;
 
 public interface IRender {
 	interface DisplayTick {

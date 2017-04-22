@@ -1,9 +1,9 @@
 package binnie.core.network.packet;
 
-import binnie.core.network.*;
-import io.netty.buffer.*;
+import binnie.core.network.BinnieCorePacketID;
+import io.netty.buffer.ByteBuf;
 
-import java.io.*;
+import java.io.IOException;
 
 public class MessageMetadata extends MessageCoordinates {
 	public int meta;

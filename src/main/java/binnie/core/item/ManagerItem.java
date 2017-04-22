@@ -1,6 +1,6 @@
 package binnie.core.item;
 
-import net.minecraft.creativetab.*;
+import net.minecraft.creativetab.CreativeTabs;
 
 public class ManagerItem {
 	public ItemMisc registerMiscItems(IItemMisc[] items, CreativeTabs tab) {

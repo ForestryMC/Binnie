@@ -1,9 +1,10 @@
 package binnie.core.machines.power;
 
-import forestry.api.core.*;
-import net.minecraft.nbt.*;
-import net.minecraft.util.*;
-import net.minecraftforge.fluids.*;
+import forestry.api.core.INBTTagable;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.IFluidTank;
 
 public class TankInfo implements INBTTagable {
 	public FluidStack liquid;

@@ -1,18 +1,18 @@
 package binnie.core.genetics;
 
-import binnie.*;
-import binnie.core.*;
-import binnie.core.resource.*;
-import binnie.extrabees.genetics.*;
-import com.mojang.authlib.*;
-import cpw.mods.fml.common.eventhandler.*;
-import forestry.api.core.*;
+import binnie.Binnie;
+import binnie.core.BinnieCore;
+import binnie.core.resource.BinnieIcon;
+import binnie.extrabees.genetics.ExtraBeeMutation;
+import com.mojang.authlib.GameProfile;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import forestry.api.core.ForestryEvent;
 import forestry.api.genetics.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.item.*;
-import net.minecraft.util.*;
-import net.minecraft.world.*;
-import net.minecraftforge.common.*;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 
 import java.util.*;
 

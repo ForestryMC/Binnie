@@ -1,10 +1,12 @@
 package binnie.core.machines.inventory;
 
-import binnie.core.machines.*;
-import binnie.core.machines.power.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
-import net.minecraftforge.fluids.*;
+import binnie.core.machines.Machine;
+import binnie.core.machines.power.ITankMachine;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.IFluidTank;
 
 // TODO unused class?
 public class TransferHandler {

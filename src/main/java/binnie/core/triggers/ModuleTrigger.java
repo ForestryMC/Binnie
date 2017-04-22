@@ -1,8 +1,8 @@
 package binnie.core.triggers;
 
-import binnie.core.*;
-import binnie.extrabees.*;
-import buildcraft.api.statements.*;
+import binnie.core.IInitializable;
+import binnie.extrabees.ExtraBees;
+import buildcraft.api.statements.StatementManager;
 
 public class ModuleTrigger implements IInitializable {
 	@Override

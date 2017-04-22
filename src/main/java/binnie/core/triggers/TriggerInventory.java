@@ -1,6 +1,6 @@
 package binnie.core.triggers;
 
-import net.minecraft.inventory.*;
+import net.minecraft.inventory.IInventory;
 
 // TODO unusing class?
 public class TriggerInventory {

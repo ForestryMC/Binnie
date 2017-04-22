@@ -1,11 +1,11 @@
 package binnie.core.network.packet;
 
-import binnie.core.network.*;
-import io.netty.buffer.*;
-import net.minecraft.tileentity.*;
-import net.minecraft.world.*;
+import binnie.core.network.INetworkedEntity;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
-import java.io.*;
+import java.io.IOException;
 
 public class MessageUpdate extends MessageCoordinates {
 	public PacketPayload payload;

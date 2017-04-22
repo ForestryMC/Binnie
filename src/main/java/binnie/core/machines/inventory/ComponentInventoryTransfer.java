@@ -1,11 +1,13 @@
 package binnie.core.machines.inventory;
 
-import binnie.core.machines.*;
-import binnie.core.machines.transfer.*;
-import net.minecraft.inventory.*;
-import net.minecraft.item.*;
+import binnie.core.machines.IMachine;
+import binnie.core.machines.MachineComponent;
+import binnie.core.machines.transfer.TransferRequest;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ComponentInventoryTransfer extends MachineComponent {
 	private List<Transfer> transfers = new ArrayList<>();

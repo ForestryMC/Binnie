@@ -1,8 +1,9 @@
 package binnie.core.machines.storage;
 
-import binnie.craftgui.controls.core.*;
+import binnie.craftgui.controls.core.Control;
+import binnie.craftgui.controls.core.IControlValue;
 import binnie.craftgui.core.*;
-import binnie.craftgui.minecraft.*;
+import binnie.craftgui.minecraft.EnumColor;
 
 class ControlColourSelector extends Control implements ITooltip, IControlValue<EnumColor> {
 	private EnumColor value;

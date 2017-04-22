@@ -1,10 +1,10 @@
 package binnie.core.machines.network;
 
-import cpw.mods.fml.relauncher.*;
-import net.minecraft.entity.player.*;
-import net.minecraft.nbt.*;
+import cpw.mods.fml.relauncher.Side;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 
-import java.util.*;
+import java.util.Map;
 
 public interface INetwork {
 	interface SendGuiNBT {
