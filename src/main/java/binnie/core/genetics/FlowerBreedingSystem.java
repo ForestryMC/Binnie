@@ -9,7 +9,12 @@ import binnie.botany.core.BotanyCore;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.BinnieCore;
 import binnie.extrabees.ExtraBees;
-import forestry.api.genetics.*;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IBreedingTracker;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IMutation;
+import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 

@@ -26,8 +26,17 @@ import binnie.craftgui.events.EventMouse;
 import binnie.craftgui.events.EventTextEdit;
 import binnie.craftgui.events.EventValueChanged;
 import binnie.craftgui.genetics.machine.WindowMachine;
-import binnie.craftgui.minecraft.*;
-import binnie.craftgui.minecraft.control.*;
+import binnie.craftgui.minecraft.Dialog;
+import binnie.craftgui.minecraft.EnumColor;
+import binnie.craftgui.minecraft.IWindowAffectsShiftClick;
+import binnie.craftgui.minecraft.MinecraftGUI;
+import binnie.craftgui.minecraft.Window;
+import binnie.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.craftgui.minecraft.control.ControlPlayerInventory;
+import binnie.craftgui.minecraft.control.ControlSlide;
+import binnie.craftgui.minecraft.control.ControlSlot;
+import binnie.craftgui.minecraft.control.ControlSlotArray;
+import binnie.craftgui.minecraft.control.ControlTabIcon;
 import binnie.craftgui.resource.Texture;
 import binnie.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.craftgui.window.Panel;
@@ -40,7 +49,14 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 public class WindowCompartment extends WindowMachine implements IWindowAffectsShiftClick {

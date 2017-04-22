@@ -6,7 +6,11 @@ import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.machines.inventory.ValidatorIcon;
 import forestry.api.core.INBTTagable;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class ManagerMachine extends ManagerBase {
 	private Map<Class<?>, Class<?>[]> componentInterfaceMap;

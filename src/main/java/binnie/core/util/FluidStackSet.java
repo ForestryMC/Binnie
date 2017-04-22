@@ -2,7 +2,11 @@ package binnie.core.util;
 
 import net.minecraftforge.fluids.FluidStack;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 class FluidStackSet implements Set<FluidStack> {
 	protected List<FluidStack> itemStacks;
