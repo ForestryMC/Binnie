@@ -18,9 +18,9 @@ public class MessageTileNBT extends MessageNBT implements IPacketLocation {
 
 	public MessageTileNBT(int id, TileEntity tile, NBTTagCompound nbt) {
 		super(id);
-		this.posX = tile.xCoord;
-		this.posY = tile.yCoord;
-		this.posZ = tile.zCoord;
+		posX = tile.xCoord;
+		posY = tile.yCoord;
+		posZ = tile.zCoord;
 		this.nbt = nbt;
 	}
 

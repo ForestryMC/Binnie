@@ -84,7 +84,7 @@ public class ComponentChargedSlots extends MachineComponent implements INetwork.
 
 	@Override
 	public void onUpdate() {
-		for (int slot : this.charges.keySet()) {
+		for (int slot : charges.keySet()) {
 			if (getCharge(slot) <= 0.0f && getUtil().decreaseStack(slot, 1) != null) {
 				setCharge(slot, 1.0f);
 			}

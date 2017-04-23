@@ -52,7 +52,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	@Override
 	public IIcon getIcon(IBlockAccess block, int x, int y, int z, int par5) {
 		int metadata = TileEntityMetadata.getTileMetadata(block, x, y, z);
-		return this.getIcon(par5, metadata);
+		return getIcon(par5, metadata);
 	}
 
 	@Override
@@ -105,7 +105,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 
 	@Override
 	public void dropAsStack(World world, int x, int y, int z, ItemStack itemStack) {
-		this.dropBlockAsItem(world, x, y, z, itemStack);
+		dropBlockAsItem(world, x, y, z, itemStack);
 	}
 
 	@Override

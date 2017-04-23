@@ -105,7 +105,7 @@ public class MachineUtil {
 	}
 
 	public boolean isTankEmpty(int tankInput) {
-		return this.getTank(tankInput).getFluidAmount() == 0;
+		return getTank(tankInput).getFluidAmount() == 0;
 	}
 
 	public FluidStack getFluid(int tankInput) {

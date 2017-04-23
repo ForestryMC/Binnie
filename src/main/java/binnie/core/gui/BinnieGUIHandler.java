@@ -17,7 +17,7 @@ public class BinnieGUIHandler implements IGuiHandler {
 
 	@Override
 	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
-		Window window = this.getWindow(id, player, world, x, y, z, Side.SERVER);
+		Window window = getWindow(id, player, world, x, y, z, Side.SERVER);
 		if (window == null) {
 			return null;
 		}

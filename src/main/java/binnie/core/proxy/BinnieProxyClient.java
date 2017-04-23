@@ -32,19 +32,19 @@ public class BinnieProxyClient extends BinnieProxy implements IBinnieProxy {
 	@Override
 	public void bindTexture(BinnieResource texture) {
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-		this.bindTexture(texture.getResourceLocation());
+		bindTexture(texture.getResourceLocation());
 	}
 
 	@Override
 	public void bindTexture(ResourceLocation location) {
-		this.getMinecraftInstance().getTextureManager().bindTexture(location);
+		getMinecraftInstance().getTextureManager().bindTexture(location);
 	}
 
 	@Override
 	public boolean checkTexture(BinnieResource location) {
 		SimpleTexture texture = new SimpleTexture(location.getResourceLocation());
 		try {
-			texture.loadTexture(this.getMinecraftInstance().getResourceManager());
+			texture.loadTexture(getMinecraftInstance().getResourceManager());
 		} catch (IOException e) {
 			return false;
 		}

@@ -10,12 +10,12 @@ public class BeeModifierLogic {
 	private List<EnumBeeBooleanModifier> booleanModifiers;
 
 	public BeeModifierLogic() {
-		this.modifiers = new HashMap<>();
-		this.booleanModifiers = new ArrayList<>();
+		modifiers = new HashMap<>();
+		booleanModifiers = new ArrayList<>();
 	}
 
 	public float getModifier(EnumBeeModifier modifier, float currentModifier) {
-		if (!this.modifiers.containsKey(modifier)) {
+		if (!modifiers.containsKey(modifier)) {
 			return 1.0f;
 		}
 

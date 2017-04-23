@@ -12,11 +12,11 @@ public class ManagerResource {
 	private List<BinnieIcon> icons;
 
 	public ManagerResource() {
-		this.icons = new ArrayList<>();
+		icons = new ArrayList<>();
 	}
 
 	public BinnieResource getPNG(AbstractMod mod, ResourceType type, String path) {
-		return this.getFile(mod, type, path + ".png");
+		return getFile(mod, type, path + ".png");
 	}
 
 	public BinnieResource getFile(AbstractMod mod, ResourceType type, String path) {
@@ -24,7 +24,7 @@ public class ManagerResource {
 	}
 
 	public void registerIcon(BinnieIcon binnieIcon) {
-		this.icons.add(binnieIcon);
+		icons.add(binnieIcon);
 	}
 
 	public BinnieIcon getItemIcon(AbstractMod mod, String iconFile) {
@@ -37,7 +37,7 @@ public class ManagerResource {
 
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister register, int type) {
-		for (BinnieIcon icon : this.icons) {
+		for (BinnieIcon icon : icons) {
 			if (icon.getTextureSheet() == type) {
 				icon.registerIcon(register);
 			}

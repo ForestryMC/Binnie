@@ -82,9 +82,9 @@ public class ItemStackSet implements Set<ItemStack> {
 
 	@Override
 	public boolean remove(Object object) {
-		if (this.contains(object)) {
+		if (contains(object)) {
 			ItemStack r = (ItemStack) object;
-			ItemStack existing = this.getExisting(r);
+			ItemStack existing = getExisting(r);
 			if (existing.stackSize > r.stackSize) {
 				existing.stackSize -= r.stackSize;
 			} else {

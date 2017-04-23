@@ -20,7 +20,7 @@ public class BinnieIcon extends BinnieResource {
 	}
 
 	public IIcon getIcon() {
-		return this.icon;
+		return icon;
 	}
 
 	@SideOnly(Side.CLIENT)

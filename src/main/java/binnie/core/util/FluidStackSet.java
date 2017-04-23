@@ -98,7 +98,7 @@ class FluidStackSet implements Set<FluidStack> {
 	public boolean removeAll(Collection<?> collection) {
 		boolean addedAll = true;
 		for (Object object : collection) {
-			boolean removed = this.remove(object);
+			boolean removed = remove(object);
 			addedAll = (removed && addedAll);
 		}
 		return false;

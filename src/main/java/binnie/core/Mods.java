@@ -60,27 +60,27 @@ public class Mods {
 		}
 
 		public Item item(String name) {
-			return findItem(this.id, name);
+			return findItem(id, name);
 		}
 
 		public Block block(String name) {
-			return findBlock(this.id, name);
+			return findBlock(id, name);
 		}
 
 		public ItemStack stack(String name, int stackSize) {
-			return findItemStack(this.id, name, stackSize);
+			return findItemStack(id, name, stackSize);
 		}
 
 		public ItemStack stack(String name) {
-			return this.stack(name, 1);
+			return stack(name, 1);
 		}
 
 		public ItemStack stack(String string, int i, int j) {
-			return new ItemStack(this.item(string), i, j);
+			return new ItemStack(item(string), i, j);
 		}
 
 		public boolean active() {
-			return Loader.isModLoaded(this.id);
+			return Loader.isModLoaded(id);
 		}
 
 		public boolean dev() {

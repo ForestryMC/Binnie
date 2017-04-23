@@ -11,19 +11,19 @@ class TileEntityMultiblockMachine extends TileEntity {
 	private int tileZ;
 
 	boolean inStructure() {
-		return this.inStructure;
+		return inStructure;
 	}
 
 	public Machine getMachine() {
-		return this.getMasterMachine();
+		return getMasterMachine();
 	}
 
 	private Machine getMasterMachine() {
-		if (!this.inStructure) {
+		if (!inStructure) {
 			return null;
 		}
 
-		TileEntity tile = this.worldObj.getTileEntity(xCoord + tileX, yCoord + tileY, zCoord + tileZ);
+		TileEntity tile = worldObj.getTileEntity(xCoord + tileX, yCoord + tileY, zCoord + tileZ);
 		if (tile instanceof TileEntityMachine) {
 			return ((TileEntityMachine) tile).getMachine();
 		}

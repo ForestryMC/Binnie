@@ -74,7 +74,7 @@ public class Machine implements INetworkedEntity, INBTTagable, INetwork.TilePack
 
 	@Override
 	public <T> T getInterface(Class<T> cls) {
-		if (this.hasInterface(cls)) {
+		if (hasInterface(cls)) {
 			return getInterfaces(cls).get(0);
 		}
 		if (cls.isInstance(getPackage())) {
@@ -111,7 +111,7 @@ public class Machine implements INetworkedEntity, INBTTagable, INetwork.TilePack
 
 	@Override
 	public TileEntity getTileEntity() {
-		return this.tile;
+		return tile;
 	}
 
 	public void sendPacket() {
@@ -205,7 +205,7 @@ public class Machine implements INetworkedEntity, INBTTagable, INetwork.TilePack
 
 	@Override
 	public MachinePackage getPackage() {
-		return this.machinePackage;
+		return machinePackage;
 	}
 
 	public static IMachine getMachine(Object inventory) {
@@ -274,7 +274,7 @@ public class Machine implements INetworkedEntity, INBTTagable, INetwork.TilePack
 
 	@Override
 	public void syncToNBT(NBTTagCompound nbt) {
-		for (INetwork.TilePacketSync comp : this.getInterfaces(INetwork.TilePacketSync.class)) {
+		for (INetwork.TilePacketSync comp : getInterfaces(INetwork.TilePacketSync.class)) {
 			comp.syncToNBT(nbt);
 		}
 	}

@@ -56,7 +56,7 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
 	@Override
 	public void sendGuiNBT(Map<String, NBTTagCompound> nbts) {
 		NBTTagList list = new NBTTagList();
-		for (int i = 0; i < this.numberOfTabs; ++i) {
+		for (int i = 0; i < numberOfTabs; ++i) {
 			NBTTagCompound nbt2 = new NBTTagCompound();
 			getTab(i).writeToNBT(nbt2);
 			list.appendTag(nbt2);

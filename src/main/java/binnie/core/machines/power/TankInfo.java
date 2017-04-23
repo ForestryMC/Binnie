@@ -41,7 +41,7 @@ public class TankInfo implements INBTTagable {
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
-		this.capacity = nbt.getInteger("capacity");
+		capacity = nbt.getInteger("capacity");
 		if (nbt.hasKey("liquid")) {
 			liquid = FluidStack.loadFluidStackFromNBT(nbt.getCompoundTag("liquid"));
 		}

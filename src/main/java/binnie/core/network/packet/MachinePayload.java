@@ -17,10 +17,10 @@ public class MachinePayload {
 	}
 
 	public MachinePayload() {
-		this.intPayload = new ArrayList<>();
-		this.floatPayload = new ArrayList<>();
-		this.stringPayload = new ArrayList<>();
-		this.id = 0;
+		intPayload = new ArrayList<>();
+		floatPayload = new ArrayList<>();
+		stringPayload = new ArrayList<>();
+		id = 0;
 	}
 
 	public void addInteger(int a) {
@@ -63,10 +63,10 @@ public class MachinePayload {
 	}
 
 	public int getID() {
-		return this.id;
+		return id;
 	}
 
 	public void setID(int readInt) {
-		this.id = readInt;
+		id = readInt;
 	}
 }

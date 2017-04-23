@@ -29,7 +29,7 @@ class CompartmentTab implements INBTTagable {
 
 	@Override
 	public void writeToNBT(NBTTagCompound nbt) {
-		nbt.setString("name", this.name);
+		nbt.setString("name", name);
 		NBTTagCompound n = new NBTTagCompound();
 		icon.writeToNBT(n);
 		nbt.setTag("icon", n);

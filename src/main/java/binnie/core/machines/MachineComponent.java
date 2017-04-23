@@ -56,6 +56,6 @@ public class MachineComponent implements INBTTagable {
 	}
 
 	public IInventory getInventory() {
-		return this.getMachine().getInterface(IInventory.class);
+		return getMachine().getInterface(IInventory.class);
 	}
 }

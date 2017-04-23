@@ -27,7 +27,7 @@ public enum PowerSystem {
 	}
 
 	public String getUnitName() {
-		return this.name();
+		return name();
 	}
 
 	public ItemStack saveTo(ItemStack stack) {

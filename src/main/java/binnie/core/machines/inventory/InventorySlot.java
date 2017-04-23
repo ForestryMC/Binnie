@@ -11,8 +11,8 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 
 	public InventorySlot(int index, String unlocalizedName) {
 		super(index, unlocalizedName);
-		this.itemStack = null;
-		this.type = Type.Standard;
+		itemStack = null;
+		type = Type.Standard;
 	}
 
 	@Override

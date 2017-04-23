@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 public class BlockMultiblockMachine extends BlockContainer {
 	public BlockMultiblockMachine(String blockName) {
 		super(Material.iron);
-		this.setHardness(1.5f);
+		setHardness(1.5f);
 		setBlockName(blockName);
 	}
 

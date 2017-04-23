@@ -60,7 +60,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 		if (inventory.containsKey(index) && (itemStack == null || inventory.get(index).isValid(itemStack))) {
 			inventory.get(index).setContent(itemStack);
 		}
-		this.markDirty();
+		markDirty();
 	}
 
 	protected void transferItem(int indexFrom, int indexTo) {
@@ -186,7 +186,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
 	@Override
 	public void onDestruction() {
-		for (InventorySlot slot : this.inventory.values()) {
+		for (InventorySlot slot : inventory.values()) {
 			ItemStack stack = slot.getContent();
 			if (slot.isRecipe() || stack == null) {
 				continue;

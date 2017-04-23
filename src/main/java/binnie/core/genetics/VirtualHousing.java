@@ -37,15 +37,15 @@ class VirtualHousing implements IHousing {
 	}
 
 	public EnumTemperature getTemperature() {
-		return EnumTemperature.getFromValue(this.getBiome().temperature);
+		return EnumTemperature.getFromValue(getBiome().temperature);
 	}
 
 	public EnumHumidity getHumidity() {
-		return EnumHumidity.getFromValue(this.getBiome().rainfall);
+		return EnumHumidity.getFromValue(getBiome().rainfall);
 	}
 
 	public World getWorld() {
-		return this.player.worldObj;
+		return player.worldObj;
 	}
 
 	public void setErrorState(int state) {

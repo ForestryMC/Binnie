@@ -17,15 +17,15 @@ public class ComponentInventoryTransfer extends MachineComponent {
 	}
 
 	public void addRestock(int[] buffer, int destination, int limit) {
-		this.transfers.add(new Restock(getMachine(), buffer, destination, limit));
+		transfers.add(new Restock(getMachine(), buffer, destination, limit));
 	}
 
 	public void addRestock(int[] buffer, int destination) {
-		this.transfers.add(new Restock(getMachine(), buffer, destination));
+		transfers.add(new Restock(getMachine(), buffer, destination));
 	}
 
 	public void addStorage(int source, int[] destination) {
-		this.transfers.add(new Storage(getMachine(), source, destination));
+		transfers.add(new Storage(getMachine(), source, destination));
 	}
 
 	public void performTransfer(int source, int[] destination) {
@@ -40,7 +40,7 @@ public class ComponentInventoryTransfer extends MachineComponent {
 	}
 
 	public void addStorage(int source, int[] destination, Condition condition) {
-		this.transfers.add(new Storage(getMachine(), source, destination).setCondition(condition));
+		transfers.add(new Storage(getMachine(), source, destination).setCondition(condition));
 	}
 
 	public abstract class Transfer {
@@ -52,8 +52,8 @@ public class ComponentInventoryTransfer extends MachineComponent {
 		}
 
 		public void transfer(IInventory inv) {
-			if (this.condition == null || fufilled(inv)) {
-				this.doTransfer(inv);
+			if (condition == null || fufilled(inv)) {
+				doTransfer(inv);
 			}
 		}
 
@@ -92,7 +92,7 @@ public class ComponentInventoryTransfer extends MachineComponent {
 
 		@Override
 		protected void doTransfer(IInventory inv) {
-			if (inv.getStackInSlot(this.destination) == null) {
+			if (inv.getStackInSlot(destination) == null) {
 				for (int i : buffer) {
 					if (inv.getStackInSlot(i) == null) {
 						continue;

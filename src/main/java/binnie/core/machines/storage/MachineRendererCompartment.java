@@ -13,7 +13,7 @@ class MachineRendererCompartment {
 	private ModelCompartment model;
 
 	public MachineRendererCompartment() {
-		this.model = new ModelCompartment();
+		model = new ModelCompartment();
 	}
 
 	public void renderMachine(Machine machine, int colour, BinnieResource texture, double x, double y, double z, float var8) {

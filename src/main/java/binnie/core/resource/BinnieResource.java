@@ -13,7 +13,7 @@ public class BinnieResource {
 	}
 
 	public BinnieResource(String modid, ResourceType type, String path) {
-		this.mod = modid;
+		mod = modid;
 		this.type = type;
 		this.path = path;
 	}
