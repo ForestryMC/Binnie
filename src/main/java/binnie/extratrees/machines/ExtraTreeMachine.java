@@ -96,8 +96,8 @@ public enum ExtraTreeMachine implements IMachineType
 		}
 
 		@Override
-		public void renderMachine(final Machine machine, final double x, final double y, final double z, final float var8, final RenderBlocks renderer) {
-			MachineRendererForestry.renderMachine(this.textureName.getShortPath(), x, y, z, var8);
+		public void renderMachine(final Machine machine, final double x, final double y, final double z, final float partialTick, final RenderBlocks renderer) {
+			MachineRendererForestry.renderMachine(this.textureName.getShortPath(), x, y, z, partialTick);
 		}
 	}
 }

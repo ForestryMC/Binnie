@@ -1,17 +1,13 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.genetics;
 
 import forestry.api.genetics.IIndividual;
 import forestry.api.lepidopterology.IButterfly;
-import net.minecraft.entity.player.EntityPlayer;
 import forestry.api.lepidopterology.IButterflyNursery;
+import net.minecraft.entity.player.EntityPlayer;
 
-public class VirtualMothHousing extends VirtualHousing implements IButterflyNursery
-{
-	public VirtualMothHousing(final EntityPlayer player) {
+// TODO unused class?
+public class VirtualMothHousing extends VirtualHousing implements IButterflyNursery {
+	public VirtualMothHousing(EntityPlayer player) {
 		super(player);
 	}
 
@@ -26,11 +22,11 @@ public class VirtualMothHousing extends VirtualHousing implements IButterflyNurs
 	}
 
 	@Override
-	public void setCaterpillar(final IButterfly butterfly) {
+	public void setCaterpillar(IButterfly butterfly) {
 	}
 
 	@Override
-	public boolean canNurse(final IButterfly butterfly) {
+	public boolean canNurse(IButterfly butterfly) {
 		return false;
 	}
 }

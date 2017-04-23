@@ -1,32 +1,25 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.component;
 
-import net.minecraft.client.renderer.entity.RenderItem;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import java.util.Random;
+import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.world.World;
 
-public interface IRender
-{
-	public interface DisplayTick
-	{
+import java.util.Random;
+
+public interface IRender {
+	interface DisplayTick {
 		@SideOnly(Side.CLIENT)
-		void onDisplayTick(final World p0, final int p1, final int p2, final int p3, final Random p4);
+		void onDisplayTick(World world, int x, int y, int z, Random rand);
 	}
 
-	public interface RandomDisplayTick
-	{
+	interface RandomDisplayTick {
 		@SideOnly(Side.CLIENT)
-		void onRandomDisplayTick(final World p0, final int p1, final int p2, final int p3, final Random p4);
+		void onRandomDisplayTick(World world, int x, int y, int p3, Random rand);
 	}
 
-	public interface Render
-	{
+	interface Render {
 		@SideOnly(Side.CLIENT)
-		void renderInWorld(final RenderItem p0, final double p1, final double p2, final double p3);
+		void renderInWorld(RenderItem renderItem, double x, double y, double z);
 	}
 }

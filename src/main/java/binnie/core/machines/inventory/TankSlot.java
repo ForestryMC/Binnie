@@ -1,61 +1,53 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.inventory;
 
-import binnie.core.BinnieCore;
 import binnie.Binnie;
-import net.minecraftforge.fluids.IFluidTank;
+import binnie.core.BinnieCore;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.IFluidTank;
 
-public class TankSlot extends BaseSlot<FluidStack>
-{
-	public static final String NameJuice = "Juice Tank";
-	public static final String NameWater = "Water Tank";
-	public static String NameCupboard;
+public class TankSlot extends BaseSlot<FluidStack> {
+	public static String NameJuice = "Juice Tank";
+	public static String NameWater = "Water Tank";
+	public static String NameCupboard = "Cupboard Slot";
 	private FluidTank tank;
 
-	public TankSlot(final int index, final String name, final int capacity) {
+	public TankSlot(int index, String name, int capacity) {
 		super(index, name);
-		this.tank = new FluidTank(capacity);
+		tank = new FluidTank(capacity);
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbttagcompound) {
-		final FluidStack liquid = FluidStack.loadFluidStackFromNBT(nbttagcompound);
-		this.setContent(liquid);
+	public void readFromNBT(NBTTagCompound nbttagcompound) {
+		FluidStack liquid = FluidStack.loadFluidStackFromNBT(nbttagcompound);
+		setContent(liquid);
 	}
 
 	@Override
-	public void writeToNBT(final NBTTagCompound nbttagcompound) {
-		if (this.getContent() != null) {
-			this.getContent().writeToNBT(nbttagcompound);
+	public void writeToNBT(NBTTagCompound nbttagcompound) {
+		FluidStack content = getContent();
+		if (content != null) {
+			content.writeToNBT(nbttagcompound);
 		}
 	}
 
 	@Override
 	public FluidStack getContent() {
-		return this.tank.getFluid();
+		return tank.getFluid();
 	}
 
 	@Override
-	public void setContent(final FluidStack itemStack) {
-		this.tank.setFluid(itemStack);
+	public void setContent(FluidStack itemStack) {
+		tank.setFluid(itemStack);
 	}
 
 	public IFluidTank getTank() {
-		return this.tank;
+		return tank;
 	}
 
 	@Override
 	public String getName() {
-		return Binnie.Language.localise(BinnieCore.instance, "gui.slot." + this.unlocName);
-	}
-
-	static {
-		TankSlot.NameCupboard = "Cupboard Slot";
+		return Binnie.Language.localise(BinnieCore.instance, "gui.slot." + unlocName);
 	}
 }

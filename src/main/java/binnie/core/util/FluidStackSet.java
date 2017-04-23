@@ -1,131 +1,126 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.util;
 
+import net.minecraftforge.fluids.FluidStack;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.ArrayList;
 import java.util.List;
-import net.minecraftforge.fluids.FluidStack;
 import java.util.Set;
 
-class FluidStackSet implements Set<FluidStack>
-{
-	List<FluidStack> itemStacks;
+class FluidStackSet implements Set<FluidStack> {
+	protected List<FluidStack> itemStacks;
 
 	FluidStackSet() {
-		this.itemStacks = new ArrayList<FluidStack>();
+		itemStacks = new ArrayList<>();
 	}
 
 	@Override
 	public String toString() {
-		return this.itemStacks.toString();
+		return itemStacks.toString();
 	}
 
-	protected FluidStack getExisting(final FluidStack stack) {
-		for (final FluidStack stack2 : this.itemStacks) {
-			if (stack2.isFluidEqual(stack)) {
-				return stack2;
+	protected FluidStack getExisting(FluidStack stack) {
+		for (FluidStack existStack : itemStacks) {
+			if (existStack.isFluidEqual(stack)) {
+				return existStack;
 			}
 		}
 		return null;
 	}
 
 	@Override
-	public boolean add(final FluidStack e) {
-		if (e != null) {
-			if (this.getExisting(e) == null) {
-				return this.itemStacks.add(e.copy());
+	public boolean add(FluidStack fluidStack) {
+		if (fluidStack != null) {
+			FluidStack existing = getExisting(fluidStack);
+			if (existing == null) {
+				return itemStacks.add(fluidStack.copy());
 			}
-			final FluidStack existing = this.getExisting(e);
-			existing.amount += e.amount;
+			existing.amount += fluidStack.amount;
 		}
 		return false;
 	}
 
 	@Override
-	public boolean addAll(final Collection<? extends FluidStack> c) {
+	public boolean addAll(Collection<? extends FluidStack> collection) {
 		boolean addedAll = true;
-		for (final FluidStack stack : c) {
-			addedAll = (this.add(stack) && addedAll);
+		for (FluidStack stack : collection) {
+			addedAll = add(stack) && addedAll;
 		}
 		return addedAll;
 	}
 
 	@Override
 	public void clear() {
-		this.itemStacks.clear();
+		itemStacks.clear();
 	}
 
 	@Override
-	public boolean contains(final Object o) {
-		return o instanceof FluidStack && this.getExisting((FluidStack) o) != null;
+	public boolean contains(Object object) {
+		return object instanceof FluidStack
+			&& getExisting((FluidStack) object) != null;
 	}
 
 	@Override
-	public boolean containsAll(final Collection<?> c) {
+	public boolean containsAll(Collection<?> collection) {
 		boolean addedAll = true;
-		for (final Object o : c) {
-			addedAll = (addedAll && this.contains(o));
+		for (Object object : collection) {
+			addedAll = addedAll && contains(object);
 		}
 		return false;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return this.itemStacks.isEmpty();
+		return itemStacks.isEmpty();
 	}
 
 	@Override
 	public Iterator<FluidStack> iterator() {
-		return this.itemStacks.iterator();
+		return itemStacks.iterator();
 	}
 
 	@Override
-	public boolean remove(final Object o) {
-		if (this.contains(o)) {
-			final FluidStack r = (FluidStack) o;
-			final FluidStack existing = this.getExisting(r);
+	public boolean remove(Object object) {
+		if (contains(object)) {
+			FluidStack r = (FluidStack) object;
+			FluidStack existing = getExisting(r);
 			if (existing.amount > r.amount) {
-				final FluidStack fluidStack = existing;
-				fluidStack.amount -= r.amount;
-			}
-			else {
-				this.itemStacks.remove(existing);
+				existing.amount -= r.amount;
+			} else {
+				itemStacks.remove(existing);
 			}
 		}
 		return false;
 	}
 
 	@Override
-	public boolean removeAll(final Collection<?> c) {
+	public boolean removeAll(Collection<?> collection) {
 		boolean addedAll = true;
-		for (final Object o : c) {
-			final boolean removed = this.remove(o);
+		for (Object object : collection) {
+			boolean removed = this.remove(object);
 			addedAll = (removed && addedAll);
 		}
 		return false;
 	}
 
 	@Override
-	public boolean retainAll(final Collection<?> c) {
-		return this.itemStacks.retainAll(c);
+	public boolean retainAll(Collection<?> collection) {
+		return itemStacks.retainAll(collection);
 	}
 
 	@Override
 	public int size() {
-		return this.itemStacks.size();
+		return itemStacks.size();
 	}
 
 	@Override
 	public Object[] toArray() {
-		return this.itemStacks.toArray();
+		return itemStacks.toArray();
 	}
 
 	@Override
-	public <T> T[] toArray(final T[] a) {
-		return this.itemStacks.toArray(a);
+	public <T> T[] toArray(T[] array) {
+		return itemStacks.toArray(array);
 	}
 }

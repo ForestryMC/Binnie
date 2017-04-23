@@ -276,8 +276,8 @@ public class WindowFieldKit extends Window
 	}
 
 	@Override
-	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound action) {
-		super.recieveGuiNBT(side, player, name, action);
+	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+		super.recieveGuiNBT(side, player, name, nbt);
 		if (side == Side.SERVER && name.equals("analyse")) {
 			this.getWindowInventory().setInventorySlotContents(0, Analyser.analyse(this.getWindowInventory().getStackInSlot(0)));
 			this.getWindowInventory().decrStackSize(1, 1);

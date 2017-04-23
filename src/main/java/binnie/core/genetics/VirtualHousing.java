@@ -1,50 +1,39 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.genetics;
+
+import com.mojang.authlib.GameProfile;
+import forestry.api.core.EnumHumidity;
+import forestry.api.core.EnumTemperature;
+import forestry.api.core.IErrorState;
+import forestry.api.genetics.IHousing;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 
 import java.util.Set;
 
-import forestry.api.core.IErrorState;
-
-import net.minecraft.util.ChunkCoordinates;
-import net.minecraft.world.biome.BiomeGenBase;
-
-import com.mojang.authlib.GameProfile;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-
-import forestry.api.core.EnumHumidity;
-import forestry.api.core.EnumTemperature;
-
-import net.minecraft.entity.player.EntityPlayer;
-
-import forestry.api.genetics.IHousing;
-
-class VirtualHousing implements IHousing
-{
+class VirtualHousing implements IHousing {
 	private EntityPlayer player;
 
-	public VirtualHousing(final EntityPlayer player) {
+	public VirtualHousing(EntityPlayer player) {
 		this.player = player;
 	}
 
-	public int getXCoord() {
-		return (int) this.player.posX;
+	public int getX() {
+		return (int) player.posX;
 	}
 
-	public int getYCoord() {
-		return (int) this.player.posY;
+	public int getY() {
+		return (int) player.posY;
 	}
 
-	public int getZCoord() {
-		return (int) this.player.posZ;
+	public int getZ() {
+		return (int) player.posZ;
 	}
 
 	public int getBiomeId() {
-		return this.player.worldObj.getBiomeGenForCoords(this.getXCoord(), this.getYCoord()).biomeID;
+		return player.worldObj.getBiomeGenForCoords(getX(), getY()).biomeID;
 	}
 
 	public EnumTemperature getTemperature() {
@@ -59,33 +48,34 @@ class VirtualHousing implements IHousing
 		return this.player.worldObj;
 	}
 
-	public void setErrorState(final int state) {
+	public void setErrorState(int state) {
+		// ignored
 	}
 
 	public int getErrorOrdinal() {
 		return 0;
 	}
 
-	public boolean addProduct(final ItemStack product, final boolean all) {
+	public boolean addProduct(ItemStack product, boolean all) {
 		return false;
 	}
 
 	public GameProfile getOwnerName() {
-		return this.player.getGameProfile();
+		return player.getGameProfile();
 	}
 
 	public BiomeGenBase getBiome() {
-		return this.player.worldObj.getBiomeGenForCoords(this.getXCoord(), this.getZCoord());
+		return player.worldObj.getBiomeGenForCoords(getX(), getZ());
 	}
 
 	// public EnumErrorCode getErrorState() {
 	// return null;
 	// }
 
-	public void setErrorState(final IErrorState state) {
+	public void setErrorState(IErrorState state) {
 	}
 
-	public boolean setErrorCondition(final boolean condition, final IErrorState errorState) {
+	public boolean setErrorCondition(boolean condition, IErrorState errorState) {
 		return false;
 	}
 
@@ -95,6 +85,6 @@ class VirtualHousing implements IHousing
 
 	@Override
 	public ChunkCoordinates getCoordinates() {
-		return new ChunkCoordinates(getXCoord(), getYCoord(), getZCoord());
+		return new ChunkCoordinates(getX(), getY(), getZ());
 	}
 }

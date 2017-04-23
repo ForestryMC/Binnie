@@ -1,57 +1,53 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.proxy;
 
-import net.minecraft.util.IIcon;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.client.Minecraft;
-import net.minecraft.world.World;
-import net.minecraft.entity.player.EntityPlayer;
 import binnie.core.AbstractMod;
-import net.minecraftforge.client.IItemRenderer;
-import net.minecraft.item.Item;
-import net.minecraft.util.ResourceLocation;
 import binnie.core.resource.BinnieResource;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
+import net.minecraftforge.client.IItemRenderer;
+
 import java.io.File;
 
-public interface IBinnieProxy extends IProxyCore
-{
+public interface IBinnieProxy extends IProxyCore {
 	boolean isClient();
 
 	boolean isServer();
 
 	File getDirectory();
 
-	void bindTexture(final BinnieResource p0);
+	void bindTexture(BinnieResource texture);
 
-	void bindTexture(final ResourceLocation p0);
+	void bindTexture(ResourceLocation location);
 
 	int getUniqueRenderID();
 
-	void registerCustomItemRenderer(final Item p0, final IItemRenderer p1);
+	void registerCustomItemRenderer(Item item, IItemRenderer itemRenderer);
 
-	void openGui(final AbstractMod p0, final int p1, final EntityPlayer p2, final int p3, final int p4, final int p5);
+	void openGui(AbstractMod mod, int id, EntityPlayer player, int x, int y, int z);
 
-	boolean isSimulating(final World p0);
+	boolean isSimulating(World world);
 
 	World getWorld();
 
 	Minecraft getMinecraftInstance();
 
-	boolean needsTagCompoundSynched(final Item p0);
+	boolean needsTagCompoundSynched(Item item);
 
-	Object createObject(final String p0);
+	Object createObject(String renderer);
 
-	void registerTileEntity(final Class<? extends TileEntity> p0, final String p1, final Object p2);
+	void registerTileEntity(Class<? extends TileEntity> tile, String id, Object renderer);
 
-	void createPipe(final Item p0);
+	void createPipe(Item pipe);
 
 	boolean isDebug();
 
-	void registerBlockRenderer(final Object p0);
+	void registerBlockRenderer(Object renderer);
 
-	IIcon getIcon(final IIconRegister p0, final String p1, final String p2);
+	IIcon getIcon(IIconRegister register, String mod, String name);
 }

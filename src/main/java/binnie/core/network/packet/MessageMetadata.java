@@ -1,35 +1,31 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.network.packet;
 
-import java.io.IOException;
-import io.netty.buffer.ByteBuf;
 import binnie.core.network.BinnieCorePacketID;
+import io.netty.buffer.ByteBuf;
 
-public class MessageMetadata extends MessageCoordinates
-{
+import java.io.IOException;
+
+public class MessageMetadata extends MessageCoordinates {
 	public int meta;
 
-	public MessageMetadata(final int posX, final int posY, final int posZ, final int meta) {
+	public MessageMetadata(int posX, int posY, int posZ, int meta) {
 		super(BinnieCorePacketID.TileMetadata.ordinal(), posX, posY, posZ);
 		this.meta = meta;
 	}
 
-	public MessageMetadata(final MessageBinnie message) {
+	public MessageMetadata(MessageBinnie message) {
 		super(message);
 	}
 
 	@Override
-	public void writeData(final ByteBuf data) throws IOException {
+	public void writeData(ByteBuf data) throws IOException {
 		super.writeData(data);
-		data.writeInt(this.meta);
+		data.writeInt(meta);
 	}
 
 	@Override
-	public void readData(final ByteBuf data) throws IOException {
+	public void readData(ByteBuf data) throws IOException {
 		super.readData(data);
-		this.meta = data.readInt();
+		meta = data.readInt();
 	}
 }

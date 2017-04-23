@@ -4,27 +4,28 @@
 
 package binnie.extratrees.block;
 
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.entity.player.EntityPlayer;
 import binnie.core.block.BlockMetadata;
-import java.util.ArrayList;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import binnie.core.block.IBlockMetadata;
+import binnie.core.block.TileEntityMetadata;
 import binnie.extratrees.ExtraTrees;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.block.Block;
-import binnie.core.block.TileEntityMetadata;
-import java.util.List;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import forestry.api.core.Tabs;
-import binnie.core.block.IBlockMetadata;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlockBranch extends BlockLog implements IBlockMetadata
 {
@@ -73,8 +74,8 @@ public class BlockBranch extends BlockLog implements IBlockMetadata
 	}
 
 	@Override
-	public void dropAsStack(final World world, final int x, final int y, final int z, final ItemStack drop) {
-		this.dropBlockAsItem(world, x, y, z, drop);
+	public void dropAsStack(final World world, final int x, final int y, final int z, final ItemStack itemStack) {
+		this.dropBlockAsItem(world, x, y, z, itemStack);
 	}
 
 	@Override
@@ -110,18 +111,18 @@ public class BlockBranch extends BlockLog implements IBlockMetadata
 	}
 
 	@Override
-	public String getBlockName(final ItemStack par1ItemStack) {
-		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
+	public String getBlockName(final ItemStack itemStack) {
+		final int meta = TileEntityMetadata.getItemDamage(itemStack);
 		return ILogType.ExtraTreeLog.values()[meta].getName() + " Branch";
 	}
 
 	@Override
-	public void getBlockTooltip(final ItemStack par1ItemStack, final List par3List) {
+	public void getBlockTooltip(final ItemStack itemStack, final List tooltip) {
 	}
 
 	@Override
-	public int getPlacedMeta(final ItemStack stack, final World world, final int x, final int y, final int z, final ForgeDirection clickedBlock) {
-		return TileEntityMetadata.getItemDamage(stack);
+	public int getPlacedMeta(final ItemStack itemStack, final World world, final int x, final int y, final int z, final ForgeDirection direction) {
+		return TileEntityMetadata.getItemDamage(itemStack);
 	}
 
 	@Override

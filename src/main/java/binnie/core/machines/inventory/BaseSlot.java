@@ -1,123 +1,122 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.inventory;
 
-import java.util.Collection;
-import net.minecraftforge.common.util.ForgeDirection;
-import java.util.EnumSet;
 import binnie.core.util.IValidator;
 import forestry.api.core.INBTTagable;
+import net.minecraftforge.common.util.ForgeDirection;
 
-public abstract class BaseSlot<T> implements INBTTagable, IValidator<T>
-{
-	private SidedAccess access;
-	Validator<T> validator;
-	private boolean readOnly;
-	private int index;
+import java.util.Collection;
+import java.util.EnumSet;
+
+public abstract class BaseSlot<T> implements INBTTagable, IValidator<T> {
+	protected Validator<T> validator;
 	protected String unlocName;
 
-	public BaseSlot(final int index, final String unlocName) {
-		this.access = new SidedAccess();
-		this.validator = null;
-		this.readOnly = false;
-		this.unlocName = "";
-		this.setIndex(index);
-		this.setUnlocalisedName(unlocName);
+	private SidedAccess access;
+	private boolean readOnly;
+	private int index;
+
+	public BaseSlot(int index, String unlocalizedName) {
+		access = new SidedAccess();
+		validator = null;
+		readOnly = false;
+		setIndex(index);
+		setUnlocalizedName(unlocalizedName);
 	}
 
 	public void setReadOnly() {
-		this.readOnly = true;
-		this.forbidInsertion();
+		readOnly = true;
+		forbidInsertion();
 	}
 
 	@Override
-	public boolean isValid(final T item) {
-		return item == null || this.validator == null || this.validator.isValid(item);
+	public boolean isValid(T item) {
+		return item == null
+			|| validator == null
+			|| validator.isValid(item);
 	}
 
 	public abstract T getContent();
 
-	public abstract void setContent(final T p0);
+	public abstract void setContent(T p0);
 
-	public void setValidator(final Validator<T> val) {
-		this.validator = val;
+	public void setValidator(Validator<T> validator) {
+		this.validator = validator;
 	}
 
 	public boolean isEmpty() {
-		return this.getContent() == null;
+		return getContent() == null;
 	}
 
 	public boolean isReadOnly() {
-		return this.readOnly;
+		return readOnly;
 	}
 
 	public int getIndex() {
-		return this.index;
+		return index;
 	}
 
-	private void setIndex(final int index) {
+	private void setIndex(int index) {
 		this.index = index;
 	}
 
 	public boolean canInsert() {
-		return !this.access.getInsertionSides().isEmpty();
+		return !access.getInsertionSides().isEmpty();
 	}
 
 	public boolean canExtract() {
-		return !this.access.getExtractionSides().isEmpty();
+		return !access.getExtractionSides().isEmpty();
 	}
 
 	public void forbidInteraction() {
-		this.forbidInsertion();
-		this.forbidExtraction();
+		forbidInsertion();
+		forbidExtraction();
 	}
 
-	public void setInputSides(final EnumSet<ForgeDirection> sides) {
-		for (final ForgeDirection side : EnumSet.complementOf(sides)) {
+	// TODO unusing method?
+	public void setInputSides(EnumSet<ForgeDirection> sides) {
+		for (ForgeDirection side : EnumSet.complementOf(sides)) {
 			if (side != ForgeDirection.UNKNOWN) {
-				this.access.setInsert(side, false);
+				access.setInsert(side, false);
 			}
 		}
 	}
 
-	public void setOutputSides(final EnumSet<ForgeDirection> sides) {
-		for (final ForgeDirection side : EnumSet.complementOf(sides)) {
+	public void setOutputSides(EnumSet<ForgeDirection> sides) {
+		for (ForgeDirection side : EnumSet.complementOf(sides)) {
 			if (side != ForgeDirection.UNKNOWN) {
-				this.access.setExtract(side, false);
+				access.setExtract(side, false);
 			}
 		}
 	}
 
 	public void forbidExtraction() {
-		this.access.setExtract(false);
-		this.access.forbidExtractChange();
+		access.setExtract(false);
+		access.forbidExtractChange();
 	}
 
 	public void forbidInsertion() {
-		this.access.setInsert(false);
-		this.access.forbidInsertChange();
+		access.setInsert(false);
+		access.forbidInsertChange();
 	}
 
-	public boolean canInsert(final ForgeDirection dir) {
-		return this.access.canInsert(dir);
+	public boolean canInsert(ForgeDirection dir) {
+		return access.canInsert(dir);
 	}
 
-	public boolean canExtract(final ForgeDirection dir) {
-		return this.access.canExtract(dir);
+	public boolean canExtract(ForgeDirection dir) {
+		return access.canExtract(dir);
 	}
 
 	public Collection<ForgeDirection> getInputSides() {
-		return this.access.getInsertionSides();
+		return access.getInsertionSides();
 	}
 
 	public Collection<ForgeDirection> getOutputSides() {
-		return this.access.getExtractionSides();
+		return access.getExtractionSides();
 	}
 
-	public void setUnlocalisedName(final String name) {
-		this.unlocName = name;
+	public void setUnlocalizedName(String name) {
+		unlocName = name;
 	}
 
 	public abstract String getName();

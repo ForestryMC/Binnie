@@ -152,8 +152,8 @@ public class Infuser
 	public static class TankValidatorInfuserInput extends TankValidator
 	{
 		@Override
-		public boolean isValid(final FluidStack itemStack) {
-			return Infuser.isValidInputLiquid(itemStack);
+		public boolean isValid(final FluidStack liquid) {
+			return Infuser.isValidInputLiquid(liquid);
 		}
 
 		@Override
@@ -165,8 +165,8 @@ public class Infuser
 	public static class TankValidatorInfuserOutput extends TankValidator
 	{
 		@Override
-		public boolean isValid(final FluidStack itemStack) {
-			return Infuser.isValidOutputLiquid(itemStack);
+		public boolean isValid(final FluidStack liquid) {
+			return Infuser.isValidOutputLiquid(liquid);
 		}
 
 		@Override

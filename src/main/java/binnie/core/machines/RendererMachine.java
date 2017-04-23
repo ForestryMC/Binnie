@@ -1,57 +1,53 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines;
 
-import net.minecraft.world.IBlockAccess;
 import binnie.Binnie;
-import net.minecraft.world.World;
-import net.minecraft.block.Block;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.client.renderer.RenderBlocks;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 
-public class RendererMachine extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler
-{
+// TODO unused class?
+public class RendererMachine extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler {
 	RenderBlocks blockRenderer;
 
 	@Override
-	public void renderTileEntityAt(final TileEntity entity, final double x, final double y, final double z, final float var8) {
-		this.renderTileEntity((TileEntityMachine) entity, x, y, z, var8, this.blockRenderer);
+	public void renderTileEntityAt(TileEntity entity, double x, double y, double z, float partialTick) {
+		renderTileEntity((TileEntityMachine) entity, x, y, z, partialTick, blockRenderer);
 	}
 
-	public void renderTileEntity(final TileEntityMachine entity, final double x, final double y, final double z, final float var8, final RenderBlocks renderer) {
+	public void renderTileEntity(TileEntityMachine entity, double x, double y, double z, float partialTick, RenderBlocks renderer) {
 		if (entity != null && entity.getMachine() != null) {
-			final MachinePackage machinePackage = entity.getMachine().getPackage();
-			machinePackage.renderMachine(entity.getMachine(), x, y, z, var8, renderer);
+			MachinePackage machinePackage = entity.getMachine().getPackage();
+			machinePackage.renderMachine(entity.getMachine(), x, y, z, partialTick, renderer);
 		}
 	}
 
-	public void renderInvBlock(final RenderBlocks renderblocks, final Block block, final int i, final int j) {
-		final TileEntity entity = block.createTileEntity((World) null, i);
+	public void renderInvBlock(RenderBlocks renderblocks, Block block, int i, int j) {
+		TileEntity entity = block.createTileEntity(null, i);
 		this.renderTileEntity((TileEntityMachine) entity, 0.0, -0.1, 0.0, 0.0625f, renderblocks);
 	}
 
 	@Override
-	public void renderInventoryBlock(final Block block, final int metadata, final int modelID, final RenderBlocks renderer) {
+	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
 		if (modelID == Binnie.Machine.getMachineRenderID()) {
-			this.renderInvBlock(renderer, block, metadata, modelID);
+			renderInvBlock(renderer, block, metadata, modelID);
 		}
 	}
 
 	@Override
-	public boolean renderWorldBlock(final IBlockAccess world, final int x, final int y, final int z, final Block block, final int modelId, final RenderBlocks renderer) {
-		final TileEntityMachine tile = (TileEntityMachine) world.getTileEntity(x, y, z);
+	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+		TileEntityMachine tile = (TileEntityMachine) world.getTileEntity(x, y, z);
 		if (tile != null && tile.getMachine() != null && tile.getMachine().getPackage() != null && tile.getMachine().getPackage().getGroup() != null && !tile.getMachine().getPackage().getGroup().customRenderer) {
-			this.renderTileEntity(tile, x, y, z, 1.0f, renderer);
+			renderTileEntity(tile, x, y, z, 1.0f, renderer);
 		}
 		return true;
 	}
 
 	@Override
-	public boolean shouldRender3DInInventory(final int i) {
+	public boolean shouldRender3DInInventory(int i) {
 		return true;
 	}
 
@@ -61,7 +57,7 @@ public class RendererMachine extends TileEntitySpecialRenderer implements ISimpl
 	}
 
 	@Override
-	public void func_147496_a(final World par1World) {
-		this.blockRenderer = new RenderBlocks(par1World);
+	public void func_147496_a(World par1World) {
+		blockRenderer = new RenderBlocks(par1World);
 	}
 }

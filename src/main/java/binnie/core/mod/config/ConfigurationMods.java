@@ -1,29 +1,20 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.mod.config;
 
 @ConfigFile(filename = "/config/forestry/binnie-mods.conf")
-public class ConfigurationMods
-{
-	@ConfigProperty(key = "extraBees", comment = { "Enables the Extra Bees Mod." })
+public class ConfigurationMods {
+	@ConfigProperty(key = "extraBees", comment = {"Enables the Extra Bees Mod."})
 	@PropBoolean
-	public static boolean extraBees;
-	@ConfigProperty(key = "extraTrees", comment = { "Enables the Extra Trees Mod." })
-	@PropBoolean
-	public static boolean extraTrees;
-	@ConfigProperty(key = "botany", comment = { "Enables the Botany Mod." })
-	@PropBoolean
-	public static boolean botany;
-	@ConfigProperty(key = "genetics", comment = { "Enables the Genetics Mod." })
-	@PropBoolean
-	public static boolean genetics;
+	public static boolean extraBees = true;
 
-	static {
-		ConfigurationMods.extraBees = true;
-		ConfigurationMods.extraTrees = true;
-		ConfigurationMods.botany = true;
-		ConfigurationMods.genetics = true;
-	}
+	@ConfigProperty(key = "extraTrees", comment = {"Enables the Extra Trees Mod."})
+	@PropBoolean
+	public static boolean extraTrees = true;
+
+	@ConfigProperty(key = "botany", comment = {"Enables the Botany Mod."})
+	@PropBoolean
+	public static boolean botany = true;
+
+	@ConfigProperty(key = "genetics", comment = {"Enables the Genetics Mod."})
+	@PropBoolean
+	public static boolean genetics = true;
 }

@@ -1,72 +1,69 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.proxy;
 
 import binnie.Binnie;
-import net.minecraft.util.IIcon;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.player.EntityPlayerMP;
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
-import binnie.core.network.packet.MessageBase;
-import binnie.core.BinnieCore;
-import net.minecraft.entity.player.EntityPlayer;
-import binnie.core.gui.IBinnieGUID;
 import binnie.core.AbstractMod;
+import binnie.core.BinnieCore;
+import binnie.core.gui.IBinnieGUID;
+import binnie.core.network.packet.MessageBase;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.IIcon;
 
-public class BinnieModProxy implements IBinnieModProxy
-{
+public class BinnieModProxy implements IBinnieModProxy {
 	private AbstractMod mod;
 
-	public BinnieModProxy(final AbstractMod mod) {
+	public BinnieModProxy(AbstractMod mod) {
 		this.mod = mod;
 	}
 
 	@Override
-	public void openGui(final IBinnieGUID ID, final EntityPlayer player, final int x, final int y, final int z) {
-		BinnieCore.proxy.openGui(this.mod, ID.ordinal(), player, x, y, z);
+	public void openGui(IBinnieGUID ID, EntityPlayer player, int x, int y, int z) {
+		BinnieCore.proxy.openGui(mod, ID.ordinal(), player, x, y, z);
 	}
 
 	@Override
-	public void sendToAll(final MessageBase packet) {
-		this.mod.getNetworkWrapper().sendToAll(packet.GetMessage());
+	public void sendToAll(MessageBase packet) {
+		mod.getNetworkWrapper().sendToAll(packet.getMessage());
 	}
 
 	@Override
-	public void sendToPlayer(final MessageBase packet, final EntityPlayer entityplayer) {
+	public void sendToPlayer(MessageBase packet, EntityPlayer entityplayer) {
 		if (entityplayer instanceof EntityPlayerMP) {
-			this.mod.getNetworkWrapper().sendTo((IMessage) packet.GetMessage(), (EntityPlayerMP) entityplayer);
+			mod.getNetworkWrapper().sendTo(packet.getMessage(), (EntityPlayerMP) entityplayer);
 		}
 	}
 
 	@Override
-	public void sendToServer(final MessageBase packet) {
-		this.mod.getNetworkWrapper().sendToServer(packet.GetMessage());
+	public void sendToServer(MessageBase packet) {
+		mod.getNetworkWrapper().sendToServer(packet.getMessage());
 	}
 
 	@Override
-	public IIcon getIcon(final IIconRegister register, final String string) {
-		return BinnieCore.proxy.getIcon(register, this.mod.getModID(), string);
+	public IIcon getIcon(IIconRegister register, String string) {
+		return BinnieCore.proxy.getIcon(register, mod.getModID(), string);
 	}
 
 	@Override
 	public void preInit() {
+		// ignored
 	}
 
 	@Override
 	public void init() {
+		// ignored
 	}
 
 	@Override
 	public void postInit() {
+		// ignored
 	}
 
-	public String localise(final String string) {
-		return Binnie.Language.localise(this.mod, string);
+	public String localise(String string) {
+		return Binnie.Language.localise(mod, string);
 	}
 
-	public String localiseOrBlank(final String string) {
-		return Binnie.Language.localiseOrBlank(this.mod, string);
+	public String localiseOrBlank(String string) {
+		return Binnie.Language.localiseOrBlank(mod, string);
 	}
 }

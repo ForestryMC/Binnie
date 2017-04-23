@@ -1,15 +1,10 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.genetics;
 
 import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
 import forestry.api.genetics.EnumTolerance;
+import forestry.api.genetics.IAllele;
 
-public enum Tolerance
-{
+public enum Tolerance {
 	None(0, 0),
 	Both1(-1, 1),
 	Both2(-2, 2),
@@ -29,31 +24,32 @@ public enum Tolerance
 
 	private int[] bounds;
 
-	private Tolerance(final int a, final int b) {
-		this.bounds = new int[] { a, b };
+	Tolerance(int a, int b) {
+		bounds = new int[]{a, b};
 	}
 
 	public String getUID() {
-		return "forestry.tolerance" + this.toString();
+		return "forestry.tolerance" + toString();
 	}
 
 	public int[] getBounds() {
-		return this.bounds;
+		return bounds;
 	}
 
-	public static Tolerance get(final EnumTolerance tol) {
+	public static Tolerance get(EnumTolerance tol) {
 		return values()[tol.ordinal()];
 	}
 
 	public IAllele getAllele() {
-		return AlleleManager.alleleRegistry.getAllele(this.getUID());
+		return AlleleManager.alleleRegistry.getAllele(getUID());
 	}
 
-	public <T extends Enum<T>> boolean canTolerate(final T base, final T test) {
-		return test.ordinal() <= base.ordinal() + this.bounds[1] && test.ordinal() >= base.ordinal() + this.bounds[0];
+	public <T extends Enum<T>> boolean canTolerate(T base, T test) {
+		return test.ordinal() <= base.ordinal() + bounds[1]
+			&& test.ordinal() >= base.ordinal() + bounds[0];
 	}
 
-	public static <T extends Enum<T>> boolean canTolerate(final T base, final T test, final EnumTolerance tol) {
+	public static <T extends Enum<T>> boolean canTolerate(T base, T test, EnumTolerance tol) {
 		return get(tol).canTolerate(base, test);
 	}
 }

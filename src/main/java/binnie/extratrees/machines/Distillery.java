@@ -4,30 +4,31 @@
 
 package binnie.extratrees.machines;
 
-import binnie.core.machines.inventory.TankValidator;
-import net.minecraft.entity.player.EntityPlayer;
-import cpw.mods.fml.relauncher.Side;
-import binnie.core.machines.power.ErrorState;
-import net.minecraft.nbt.NBTTagCompound;
-import binnie.core.machines.network.INetwork;
-import binnie.core.machines.power.IProcess;
-import binnie.core.machines.power.ComponentProcessSetCost;
-import binnie.core.machines.TileEntityMachine;
-import net.minecraft.tileentity.TileEntity;
-import binnie.core.machines.power.ComponentPowerReceptor;
-import binnie.core.machines.inventory.MachineSide;
-import binnie.core.machines.inventory.ComponentTankContainer;
-import binnie.core.machines.inventory.ComponentInventorySlots;
-import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.core.machines.Machine;
-import binnie.extratrees.core.ExtraTreeTexture;
+import binnie.core.machines.TileEntityMachine;
+import binnie.core.machines.inventory.ComponentInventorySlots;
+import binnie.core.machines.inventory.ComponentTankContainer;
+import binnie.core.machines.inventory.MachineSide;
+import binnie.core.machines.inventory.TankValidator;
+import binnie.core.machines.network.INetwork;
+import binnie.core.machines.power.ComponentPowerReceptor;
+import binnie.core.machines.power.ComponentProcessSetCost;
+import binnie.core.machines.power.ErrorState;
+import binnie.core.machines.power.IProcess;
 import binnie.craftgui.minecraft.IMachineInformation;
-import java.util.HashMap;
-import java.util.ArrayList;
-import net.minecraftforge.fluids.FluidStack;
+import binnie.extratrees.core.ExtraTreeTexture;
+import binnie.extratrees.core.ExtraTreesGUID;
+import cpw.mods.fml.relauncher.Side;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fluids.Fluid;
-import java.util.Map;
+import net.minecraftforge.fluids.FluidStack;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Distillery
 {
@@ -194,7 +195,7 @@ public class Distillery
 		}
 
 		@Override
-		public void sendGuiNBT(final Map<String, NBTTagCompound> data) {
+		public void sendGuiNBT(final Map<String, NBTTagCompound> nbts) {
 			final NBTTagCompound nbt = new NBTTagCompound();
 			if (this.currentFluid == null) {
 				nbt.setBoolean("null", true);
@@ -202,10 +203,10 @@ public class Distillery
 			else {
 				this.currentFluid.writeToNBT(nbt);
 			}
-			data.put("still-recipe", nbt);
+			nbts.put("still-recipe", nbt);
 			final NBTTagCompound nbt2 = new NBTTagCompound();
 			nbt.setByte("i", (byte) this.level);
-			data.put("still-level", nbt);
+			nbts.put("still-level", nbt);
 		}
 
 		@Override
@@ -229,8 +230,8 @@ public class Distillery
 	public static class TankValidatorDistilleryInput extends TankValidator
 	{
 		@Override
-		public boolean isValid(final FluidStack itemStack) {
-			return Distillery.isValidInputLiquid(itemStack);
+		public boolean isValid(final FluidStack liquid) {
+			return Distillery.isValidInputLiquid(liquid);
 		}
 
 		@Override
@@ -242,8 +243,8 @@ public class Distillery
 	public static class TankValidatorDistilleryOutput extends TankValidator
 	{
 		@Override
-		public boolean isValid(final FluidStack itemStack) {
-			return Distillery.isValidOutputLiquid(itemStack);
+		public boolean isValid(final FluidStack liquid) {
+			return Distillery.isValidOutputLiquid(liquid);
 		}
 
 		@Override

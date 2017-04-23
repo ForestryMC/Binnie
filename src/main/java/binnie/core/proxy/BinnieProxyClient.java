@@ -1,56 +1,50 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.proxy;
 
-import net.minecraft.client.renderer.texture.ITextureObject;
-import net.minecraft.client.resources.IResourceManager;
-import net.minecraft.client.resources.IResourceManagerReloadListener;
-import binnie.craftgui.resource.minecraft.CraftGUIResourceManager;
-import net.minecraft.client.resources.IReloadableResourceManager;
 import binnie.Binnie;
-import net.minecraft.entity.player.EntityPlayer;
-import org.lwjgl.input.Keyboard;
-import net.minecraft.util.IIcon;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.client.registry.ClientRegistry;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.tileentity.TileEntity;
-import java.io.File;
-import cpw.mods.fml.client.FMLClientHandler;
-import net.minecraft.client.Minecraft;
-import net.minecraftforge.client.MinecraftForgeClient;
-import net.minecraftforge.client.IItemRenderer;
-import net.minecraft.item.Item;
-import net.minecraft.world.World;
-import java.io.IOException;
-import net.minecraft.client.renderer.texture.SimpleTexture;
-import net.minecraft.util.ResourceLocation;
-import org.lwjgl.opengl.GL11;
 import binnie.core.resource.BinnieResource;
+import binnie.craftgui.resource.minecraft.CraftGUIResourceManager;
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.client.registry.ClientRegistry;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.client.renderer.texture.SimpleTexture;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.client.resources.IReloadableResourceManager;
+import net.minecraft.client.resources.IResourceManager;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
+import net.minecraftforge.client.IItemRenderer;
+import net.minecraftforge.client.MinecraftForgeClient;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
 
-public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
-{
+import java.io.File;
+import java.io.IOException;
+
+public class BinnieProxyClient extends BinnieProxy implements IBinnieProxy {
 	@Override
-	public void bindTexture(final BinnieResource texture) {
+	public void bindTexture(BinnieResource texture) {
 		GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 		this.bindTexture(texture.getResourceLocation());
 	}
 
 	@Override
-	public void bindTexture(final ResourceLocation location) {
+	public void bindTexture(ResourceLocation location) {
 		this.getMinecraftInstance().getTextureManager().bindTexture(location);
 	}
 
 	@Override
-	public boolean checkTexture(final BinnieResource location) {
-		final SimpleTexture texture = new SimpleTexture(location.getResourceLocation());
+	public boolean checkTexture(BinnieResource location) {
+		SimpleTexture texture = new SimpleTexture(location.getResourceLocation());
 		try {
-			((ITextureObject) texture).loadTexture(this.getMinecraftInstance().getResourceManager());
+			texture.loadTexture(this.getMinecraftInstance().getResourceManager());
 		} catch (IOException e) {
 			return false;
 		}
@@ -58,18 +52,18 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	}
 
 	@Override
-	public boolean isSimulating(final World world) {
+	public boolean isSimulating(World world) {
 		return !world.isRemote;
 	}
 
 	@Override
-	public void registerCustomItemRenderer(final Item item, final IItemRenderer itemRenderer) {
+	public void registerCustomItemRenderer(Item item, IItemRenderer itemRenderer) {
 		MinecraftForgeClient.registerItemRenderer(item, itemRenderer);
 	}
 
 	@Override
 	public World getWorld() {
-		return this.getMinecraftInstance().theWorld;
+		return getMinecraftInstance().theWorld;
 	}
 
 	@Override
@@ -93,41 +87,42 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 	}
 
 	@Override
-	public void registerTileEntity(final Class<? extends TileEntity> tile, final String id, final Object renderer) {
+	public void registerTileEntity(Class<? extends TileEntity> tile, String id, Object renderer) {
 		if (renderer != null && renderer instanceof TileEntitySpecialRenderer) {
-			ClientRegistry.registerTileEntity((Class) tile, id, (TileEntitySpecialRenderer) renderer);
-		}
-		else {
+			ClientRegistry.registerTileEntity(tile, id, (TileEntitySpecialRenderer) renderer);
+		} else {
 			GameRegistry.registerTileEntity(tile, id);
 		}
 	}
 
 	@Override
-	public void registerBlockRenderer(final Object renderer) {
+	public void registerBlockRenderer(Object renderer) {
 		if (renderer != null && renderer instanceof ISimpleBlockRenderingHandler) {
 			RenderingRegistry.registerBlockHandler((ISimpleBlockRenderingHandler) renderer);
 		}
 	}
 
 	@Override
-	public void createPipe(final Item pipe) {
+	public void createPipe(Item pipe) {
+		// ignored
 	}
 
 	@Override
-	public Object createObject(final String renderer) {
+	public Object createObject(String renderer) {
 		Object object = null;
 		try {
-			final Class<?> rendererClass = Class.forName(renderer);
+			Class<?> rendererClass = Class.forName(renderer);
 			if (rendererClass != null) {
 				object = rendererClass.newInstance();
 			}
 		} catch (Exception ex) {
+			// ignored
 		}
 		return object;
 	}
 
 	@Override
-	public IIcon getIcon(final IIconRegister register, final String mod, final String name) {
+	public IIcon getIcon(IIconRegister register, String mod, String name) {
 		return register.registerIcon(mod + ":" + name);
 	}
 
@@ -141,7 +136,8 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 		return Minecraft.getMinecraft().thePlayer;
 	}
 
-	public void handlePreTextureRefresh(final IIconRegister register, final int type) {
+	// TODO unused method?
+	public void handlePreTextureRefresh(IIconRegister register, int type) {
 		if (type == 0) {
 			Binnie.Liquid.reloadIcons(register);
 		}
@@ -149,7 +145,7 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 
 	@Override
 	public void preInit() {
-		final IResourceManager manager = Minecraft.getMinecraft().getResourceManager();
+		IResourceManager manager = Minecraft.getMinecraft().getResourceManager();
 		if (manager instanceof IReloadableResourceManager) {
 			((IReloadableResourceManager) manager).registerReloadListener(new CraftGUIResourceManager());
 		}

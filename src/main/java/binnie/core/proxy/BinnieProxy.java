@@ -1,32 +1,28 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.proxy;
 
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.IIcon;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import binnie.core.network.packet.MessageUpdate;
-import binnie.core.network.BinnieCorePacketID;
-import binnie.core.network.INetworkedEntity;
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.tileentity.TileEntity;
-import java.io.File;
-import net.minecraft.client.Minecraft;
-import cpw.mods.fml.common.FMLCommonHandler;
-import net.minecraftforge.client.IItemRenderer;
-import net.minecraft.item.Item;
-import net.minecraft.world.World;
-import net.minecraft.entity.player.EntityPlayer;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import binnie.core.resource.BinnieResource;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
+import binnie.core.network.BinnieCorePacketID;
+import binnie.core.network.INetworkedEntity;
+import binnie.core.network.packet.MessageUpdate;
+import binnie.core.resource.BinnieResource;
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
+import net.minecraftforge.client.IItemRenderer;
 
-public class BinnieProxy extends BinnieModProxy implements IBinnieProxy
-{
+import java.io.File;
+
+public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 	private short uniqueTextureUID;
 
 	public BinnieProxy() {
@@ -36,21 +32,25 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy
 
 	@Override
 	public void preInit() {
+		// ignored
 	}
 
 	@Override
 	public void init() {
+		// ignored
 	}
 
 	@Override
 	public void postInit() {
+		// ignored
 	}
 
 	@Override
-	public void bindTexture(final BinnieResource texture) {
+	public void bindTexture(BinnieResource texture) {
+		// ignored
 	}
 
-	public boolean checkTexture(final BinnieResource location) {
+	public boolean checkTexture(BinnieResource location) {
 		return false;
 	}
 
@@ -60,21 +60,21 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy
 	}
 
 	@Override
-	public void openGui(final AbstractMod mod, final int id, final EntityPlayer player, final int x, final int y, final int z) {
+	public void openGui(AbstractMod mod, int id, EntityPlayer player, int x, int y, int z) {
 		player.openGui(mod, id, player.worldObj, x, y, z);
 	}
 
 	@Override
-	public boolean isSimulating(final World world) {
+	public boolean isSimulating(World world) {
 		return true;
 	}
 
 	@Override
-	public void registerCustomItemRenderer(final Item item, final IItemRenderer itemRenderer) {
+	public void registerCustomItemRenderer(Item item, IItemRenderer itemRenderer) {
 	}
 
 	@Override
-	public boolean needsTagCompoundSynched(final Item item) {
+	public boolean needsTagCompoundSynched(Item item) {
 		return item.getShareTag();
 	}
 
@@ -83,7 +83,8 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy
 		return null;
 	}
 
-	public void throwException(final String message, final Throwable e) {
+	// TODO unused method?
+	public void throwException(String message, Throwable e) {
 		FMLCommonHandler.instance().raiseException(e, message, true);
 	}
 
@@ -108,12 +109,13 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy
 	}
 
 	@Override
-	public void registerTileEntity(final Class<? extends TileEntity> tile, final String id, final Object renderer) {
+	public void registerTileEntity(Class<? extends TileEntity> tile, String id, Object renderer) {
 		GameRegistry.registerTileEntity(tile, id);
 	}
 
 	@Override
-	public void createPipe(final Item pipe) {
+	public void createPipe(Item pipe) {
+		// ignored
 	}
 
 	@Override
@@ -122,38 +124,43 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy
 	}
 
 	@Override
-	public void registerBlockRenderer(final Object renderer) {
+	public void registerBlockRenderer(Object renderer) {
+		// ignored
 	}
 
 	@Override
-	public Object createObject(final String renderer) {
+	public Object createObject(String renderer) {
 		return null;
 	}
 
-	public void sendNetworkEntityPacket(final INetworkedEntity entity) {
-		final MessageUpdate packet = new MessageUpdate(BinnieCorePacketID.NetworkEntityUpdate.ordinal(), entity);
-		this.sendToAll(packet);
+	public void sendNetworkEntityPacket(INetworkedEntity entity) {
+		MessageUpdate packet = new MessageUpdate(BinnieCorePacketID.NetworkEntityUpdate.ordinal(), entity);
+		sendToAll(packet);
 	}
 
 	@Override
-	public IIcon getIcon(final IIconRegister register, final String mod, final String name) {
+	public IIcon getIcon(IIconRegister register, String mod, String name) {
 		return null;
 	}
 
-	public void handleTextureRefresh(final IIconRegister register, final int type) {
+	// TODO unused method?
+	public void handleTextureRefresh(IIconRegister register, int type) {
+		// ignored
 	}
 
-	public void handlePostTextureRefresh(final IIconRegister register, final int type) {
+	// TODO unused method?
+	public void handlePostTextureRefresh(IIconRegister register, int type) {
+		// ignored
 	}
 
 	public short getUniqueTextureUID() {
-		final short uniqueTextureUID = this.uniqueTextureUID;
-		this.uniqueTextureUID = (short) (uniqueTextureUID + 1);
+		uniqueTextureUID++;
 		return uniqueTextureUID;
 	}
 
 	@Override
-	public void bindTexture(final ResourceLocation location) {
+	public void bindTexture(ResourceLocation location) {
+		// ignored
 	}
 
 	public boolean isShiftDown() {

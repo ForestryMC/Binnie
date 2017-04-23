@@ -1,251 +1,249 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.base;
 
-import binnie.core.machines.power.PowerInterface;
-import cpw.mods.fml.common.Optional;
-import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.IFluidTank;
-import binnie.core.machines.inventory.TankSlot;
-import net.minecraftforge.fluids.FluidStack;
-import binnie.core.machines.power.TankInfo;
-import binnie.core.machines.power.PowerInfo;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import binnie.core.machines.Machine;
+import binnie.core.machines.inventory.IInventoryMachine;
+import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.power.IPoweredMachine;
 import binnie.core.machines.power.ITankMachine;
-import binnie.core.machines.inventory.IInventoryMachine;
+import binnie.core.machines.power.PowerInfo;
+import binnie.core.machines.power.PowerInterface;
+import binnie.core.machines.power.TankInfo;
+import cpw.mods.fml.common.Optional;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTankInfo;
+import net.minecraftforge.fluids.IFluidTank;
 
-public class TileEntityMachineBase extends TileEntity implements IInventoryMachine, ITankMachine, IPoweredMachine
-{
+public class TileEntityMachineBase extends TileEntity implements IInventoryMachine, ITankMachine, IPoweredMachine {
 	public IInventoryMachine getInventory() {
-		final IInventoryMachine inv = Machine.getInterface(IInventoryMachine.class, this);
+		IInventoryMachine inv = Machine.getInterface(IInventoryMachine.class, this);
 		return (inv == null || inv == this) ? new DefaultInventory() : inv;
 	}
 
 	public ITankMachine getTankContainer() {
-		final ITankMachine inv = Machine.getInterface(ITankMachine.class, this);
+		ITankMachine inv = Machine.getInterface(ITankMachine.class, this);
 		return (inv == null || inv == this) ? new DefaultTankContainer() : inv;
 	}
 
 	public IPoweredMachine getPower() {
-		final IPoweredMachine inv = Machine.getInterface(IPoweredMachine.class, this);
+		IPoweredMachine inv = Machine.getInterface(IPoweredMachine.class, this);
 		return (inv == null || inv == this) ? new DefaultPower() : inv;
 	}
 
 	@Override
 	public int getSizeInventory() {
-		return this.getInventory().getSizeInventory();
+		return getInventory().getSizeInventory();
 	}
 
 	@Override
-	public ItemStack getStackInSlot(final int index) {
-		return this.getInventory().getStackInSlot(index);
+	public ItemStack getStackInSlot(int index) {
+		return getInventory().getStackInSlot(index);
 	}
 
 	@Override
-	public ItemStack decrStackSize(final int index, final int amount) {
-		return this.getInventory().decrStackSize(index, amount);
+	public ItemStack decrStackSize(int index, int amount) {
+		return getInventory().decrStackSize(index, amount);
 	}
 
 	@Override
-	public ItemStack getStackInSlotOnClosing(final int var1) {
-		return this.getInventory().getStackInSlotOnClosing(var1);
+	public ItemStack getStackInSlotOnClosing(int var1) {
+		return getInventory().getStackInSlotOnClosing(var1);
 	}
 
 	@Override
-	public void setInventorySlotContents(final int index, final ItemStack itemStack) {
-		this.getInventory().setInventorySlotContents(index, itemStack);
+	public void setInventorySlotContents(int index, ItemStack itemStack) {
+		getInventory().setInventorySlotContents(index, itemStack);
 	}
 
 	@Override
 	public String getInventoryName() {
-		return this.getInventory().getInventoryName();
+		return getInventory().getInventoryName();
 	}
 
 	@Override
 	public int getInventoryStackLimit() {
-		return this.getInventory().getInventoryStackLimit();
+		return getInventory().getInventoryStackLimit();
 	}
 
 	@Override
-	public boolean isUseableByPlayer(final EntityPlayer entityplayer) {
-		return !this.isInvalid() && this.getWorldObj().getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this && entityplayer.getDistanceSq(this.xCoord + 0.5, this.yCoord + 0.5, this.zCoord + 0.5) <= 64.0 && this.getInventory().isUseableByPlayer(entityplayer);
+	public boolean isUseableByPlayer(EntityPlayer player) {
+		return !isInvalid()
+			&& getWorldObj().getTileEntity(xCoord, yCoord, zCoord) == this
+			&& player.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) <= 64.0
+			&& getInventory().isUseableByPlayer(player);
 	}
 
 	@Override
 	public void openInventory() {
-		this.getInventory().openInventory();
+		getInventory().openInventory();
 	}
 
 	@Override
 	public void closeInventory() {
-		this.getInventory().closeInventory();
+		getInventory().closeInventory();
 	}
 
 	@Override
 	public boolean hasCustomInventoryName() {
-		return this.getInventory().hasCustomInventoryName();
+		return getInventory().hasCustomInventoryName();
 	}
 
 	@Override
 	public void markDirty() {
 		super.markDirty();
-		this.getInventory().markDirty();
+		getInventory().markDirty();
 	}
 
 	@Override
-	public boolean isItemValidForSlot(final int slot, final ItemStack itemStack) {
-		return this.getInventory().isItemValidForSlot(slot, itemStack);
+	public boolean isItemValidForSlot(int slot, ItemStack itemStack) {
+		return getInventory().isItemValidForSlot(slot, itemStack);
 	}
 
 	@Override
-	public int[] getAccessibleSlotsFromSide(final int var1) {
-		return this.getInventory().getAccessibleSlotsFromSide(var1);
+	public int[] getAccessibleSlotsFromSide(int var1) {
+		return getInventory().getAccessibleSlotsFromSide(var1);
 	}
 
 	@Override
-	public boolean canInsertItem(final int i, final ItemStack itemstack, final int j) {
-		return this.getInventory().canInsertItem(i, itemstack, j);
+	public boolean canInsertItem(int i, ItemStack itemstack, int j) {
+		return getInventory().canInsertItem(i, itemstack, j);
 	}
 
 	@Override
-	public boolean canExtractItem(final int i, final ItemStack itemstack, final int j) {
-		return this.getInventory().canExtractItem(i, itemstack, j);
+	public boolean canExtractItem(int i, ItemStack itemstack, int j) {
+		return getInventory().canExtractItem(i, itemstack, j);
 	}
 
 	@Override
-	public boolean isReadOnly(final int slot) {
-		return this.getInventory().isReadOnly(slot);
+	public boolean isReadOnly(int slot) {
+		return getInventory().isReadOnly(slot);
 	}
 
 	@Override
 	public PowerInfo getPowerInfo() {
-		return this.getPower().getPowerInfo();
+		return getPower().getPowerInfo();
 	}
 
 	@Override
 	public TankInfo[] getTankInfos() {
-		return this.getTankContainer().getTankInfos();
+		return getTankContainer().getTankInfos();
 	}
 
 	@Override
-	public boolean isTankReadOnly(final int tank) {
-		return this.getTankContainer().isTankReadOnly(tank);
+	public boolean isTankReadOnly(int tank) {
+		return getTankContainer().isTankReadOnly(tank);
 	}
 
 	@Override
-	public boolean isLiquidValidForTank(final FluidStack liquid, final int tank) {
-		return this.getTankContainer().isLiquidValidForTank(liquid, tank);
+	public boolean isLiquidValidForTank(FluidStack liquid, int tank) {
+		return getTankContainer().isLiquidValidForTank(liquid, tank);
 	}
 
 	@Override
-	public TankSlot addTank(final int index, final String name, final int capacity) {
-		return this.getTankContainer().addTank(index, name, capacity);
+	public TankSlot addTank(int index, String name, int capacity) {
+		return getTankContainer().addTank(index, name, capacity);
 	}
 
 	@Override
-	public IFluidTank getTank(final int index) {
-		return this.getTankContainer().getTank(index);
+	public IFluidTank getTank(int index) {
+		return getTankContainer().getTank(index);
 	}
 
 	@Override
-	public TankSlot getTankSlot(final int index) {
-		return this.getTankContainer().getTankSlot(index);
+	public TankSlot getTankSlot(int slot) {
+		return getTankContainer().getTankSlot(slot);
 	}
 
 	@Override
-	public int fill(final ForgeDirection from, final FluidStack resource, final boolean doFill) {
-		return this.getTankContainer().fill(from, resource, doFill);
+	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
+		return getTankContainer().fill(from, resource, doFill);
 	}
 
 	@Override
-	public FluidStack drain(final ForgeDirection from, final FluidStack resource, final boolean doDrain) {
-		return this.getTankContainer().drain(from, resource, doDrain);
+	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
+		return getTankContainer().drain(from, resource, doDrain);
 	}
 
 	@Override
-	public FluidStack drain(final ForgeDirection from, final int maxDrain, final boolean doDrain) {
-		return this.getTankContainer().drain(from, maxDrain, doDrain);
+	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
+		return getTankContainer().drain(from, maxDrain, doDrain);
 	}
 
 	@Override
-	public boolean canFill(final ForgeDirection from, final Fluid fluid) {
-		return this.getTankContainer().canFill(from, fluid);
+	public boolean canFill(ForgeDirection from, Fluid fluid) {
+		return getTankContainer().canFill(from, fluid);
 	}
 
 	@Override
-	public boolean canDrain(final ForgeDirection from, final Fluid fluid) {
-		return this.getTankContainer().canDrain(from, fluid);
+	public boolean canDrain(ForgeDirection from, Fluid fluid) {
+		return getTankContainer().canDrain(from, fluid);
 	}
 
 	@Override
-	public FluidTankInfo[] getTankInfo(final ForgeDirection from) {
-		return this.getTankContainer().getTankInfo(from);
+	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
+		return getTankContainer().getTankInfo(from);
 	}
 
 	@Override
 	public IFluidTank[] getTanks() {
-		return this.getTankContainer().getTanks();
+		return getTankContainer().getTanks();
 	}
 
 	@Override
 	@Optional.Method(modid = "IC2")
 	public double getDemandedEnergy() {
-		return this.getPower().getDemandedEnergy();
+		return getPower().getDemandedEnergy();
 	}
 
 	@Override
 	@Optional.Method(modid = "IC2")
 	public int getSinkTier() {
-		return this.getPower().getSinkTier();
+		return getPower().getSinkTier();
 	}
 
 	@Override
 	@Optional.Method(modid = "IC2")
-	public double injectEnergy(final ForgeDirection directionFrom, final double amount, final double voltage) {
-		return this.getPower().injectEnergy(directionFrom, amount, voltage);
+	public double injectEnergy(ForgeDirection directionFrom, double amount, double voltage) {
+		return getPower().injectEnergy(directionFrom, amount, voltage);
 	}
 
 	@Override
 	@Optional.Method(modid = "IC2")
-	public boolean acceptsEnergyFrom(final TileEntity emitter, final ForgeDirection direction) {
-		return this.getPower().acceptsEnergyFrom(emitter, direction);
+	public boolean acceptsEnergyFrom(TileEntity emitter, ForgeDirection direction) {
+		return getPower().acceptsEnergyFrom(emitter, direction);
 	}
 
 	@Override
-	public int receiveEnergy(final ForgeDirection from, final int maxReceive, final boolean simulate) {
-		return this.getPower().receiveEnergy(from, maxReceive, simulate);
+	public int receiveEnergy(ForgeDirection from, int maxReceive, boolean simulate) {
+		return getPower().receiveEnergy(from, maxReceive, simulate);
 	}
 
 	@Override
-	public int extractEnergy(final ForgeDirection from, final int maxExtract, final boolean simulate) {
-		return this.getPower().extractEnergy(from, maxExtract, simulate);
+	public int extractEnergy(ForgeDirection from, int maxExtract, boolean simulate) {
+		return getPower().extractEnergy(from, maxExtract, simulate);
 	}
 
 	@Override
-	public int getEnergyStored(final ForgeDirection from) {
-		return this.getPower().getEnergyStored(from);
+	public int getEnergyStored(ForgeDirection from) {
+		return getPower().getEnergyStored(from);
 	}
 
 	@Override
-	public int getMaxEnergyStored(final ForgeDirection from) {
-		return this.getPower().getMaxEnergyStored(from);
+	public int getMaxEnergyStored(ForgeDirection from) {
+		return getPower().getMaxEnergyStored(from);
 	}
 
 	@Override
-	public boolean canConnectEnergy(final ForgeDirection from) {
-		return this.getPower().canConnectEnergy(from);
+	public boolean canConnectEnergy(ForgeDirection from) {
+		return getPower().canConnectEnergy(from);
 	}
 
 	@Override
 	public PowerInterface getInterface() {
-		return this.getPower().getInterface();
+		return getPower().getInterface();
 	}
 }

@@ -1,34 +1,26 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.network;
 
-import net.minecraft.entity.player.EntityPlayer;
 import cpw.mods.fml.relauncher.Side;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+
 import java.util.Map;
 
-public interface INetwork
-{
-	public interface SendGuiNBT
-	{
-		void sendGuiNBT(final Map<String, NBTTagCompound> p0);
+public interface INetwork {
+	interface SendGuiNBT {
+		void sendGuiNBT(Map<String, NBTTagCompound> nbts);
 	}
 
-	public interface TilePacketSync
-	{
-		void syncToNBT(final NBTTagCompound p0);
+	interface TilePacketSync {
+		void syncToNBT(NBTTagCompound nbt);
 
-		void syncFromNBT(final NBTTagCompound p0);
+		void syncFromNBT(NBTTagCompound nbt);
 	}
 
-	public interface RecieveGuiNBT
-	{
-		void recieveGuiNBT(final Side p0, final EntityPlayer p1, final String p2, final NBTTagCompound p3);
+	interface RecieveGuiNBT {
+		void recieveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt);
 	}
 
-	public interface GuiNBT extends RecieveGuiNBT, SendGuiNBT
-	{
+	interface GuiNBT extends RecieveGuiNBT, SendGuiNBT {
 	}
 }

@@ -1,53 +1,49 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.genetics;
 
-import forestry.api.genetics.IGenome;
-import java.util.TreeSet;
-import forestry.api.genetics.IIndividual;
-import net.minecraft.item.ItemStack;
-import forestry.api.genetics.IAlleleBoolean;
+import binnie.Binnie;
+import binnie.core.BinnieCore;
+import binnie.core.resource.BinnieIcon;
+import binnie.extrabees.genetics.ExtraBeeMutation;
+import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import forestry.api.core.ForestryEvent;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.IIcon;
-import forestry.api.genetics.IBreedingTracker;
-import com.mojang.authlib.GameProfile;
-import net.minecraft.world.World;
-import java.util.Set;
-import binnie.extrabees.genetics.ExtraBeeMutation;
-import java.util.LinkedHashSet;
-import forestry.api.genetics.IAllele;
 import forestry.api.genetics.AlleleManager;
-import java.util.Collection;
-import forestry.api.genetics.ISpeciesRoot;
-import binnie.core.BinnieCore;
-import forestry.api.genetics.IChromosomeType;
-import net.minecraftforge.common.MinecraftForge;
-import binnie.Binnie;
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.Map;
-import forestry.api.genetics.IMutation;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleBoolean;
 import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IBreedingTracker;
+import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IClassification;
-import java.util.List;
-import binnie.core.resource.BinnieIcon;
+import forestry.api.genetics.IGenome;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IMutation;
+import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 
-public abstract class BreedingSystem implements IItemStackRepresentitive
-{
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+
+public abstract class BreedingSystem implements IItemStackRepresentative {
 	protected BinnieIcon iconUndiscovered;
 	protected BinnieIcon iconDiscovered;
-	private List<IClassification> allBranches;
-	List<IAlleleSpecies> allActiveSpecies;
-	private List<IAlleleSpecies> allSpecies;
-	private List<IMutation> allMutations;
-	private Map<IAlleleSpecies, List<IMutation>> resultantMutations;
-	private Map<IAlleleSpecies, List<IMutation>> furtherMutations;
-	private Map<IAlleleSpecies, List<IMutation>> allResultantMutations;
-	private Map<IAlleleSpecies, List<IMutation>> allFurtherMutations;
+	private List<IClassification> allBranches = new ArrayList<>();
+	List<IAlleleSpecies> allActiveSpecies = new ArrayList<>();
+	private List<IAlleleSpecies> allSpecies = new ArrayList<>();
+	private List<IMutation> allMutations = new ArrayList<>();
+	private Map<IAlleleSpecies, List<IMutation>> resultantMutations = new HashMap<>();
+	private Map<IAlleleSpecies, List<IMutation>> furtherMutations = new HashMap<>();
+	private Map<IAlleleSpecies, List<IMutation>> allResultantMutations = new HashMap<>();
+	private Map<IAlleleSpecies, List<IMutation>> allFurtherMutations = new HashMap<>();
 	public float discoveredSpeciesPercentage;
 	public int totalSpeciesCount;
 	public int discoveredSpeciesCount;
@@ -61,200 +57,190 @@ public abstract class BreedingSystem implements IItemStackRepresentitive
 	String currentEpithet;
 
 	public BreedingSystem() {
-		this.allBranches = new ArrayList<IClassification>();
-		this.allActiveSpecies = new ArrayList<IAlleleSpecies>();
-		this.allSpecies = new ArrayList<IAlleleSpecies>();
-		this.allMutations = new ArrayList<IMutation>();
-		this.resultantMutations = new HashMap<IAlleleSpecies, List<IMutation>>();
-		this.furtherMutations = new HashMap<IAlleleSpecies, List<IMutation>>();
-		this.allResultantMutations = new HashMap<IAlleleSpecies, List<IMutation>>();
-		this.allFurtherMutations = new HashMap<IAlleleSpecies, List<IMutation>>();
 		Binnie.Genetics.registerBreedingSystem(this);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
-	public String getChromosomeName(final IChromosomeType chromo) {
-		return BinnieCore.proxy.localise(this.getSpeciesRoot().getUID() + ".chromosome." + chromo.getName());
+	public String getChromosomeName(IChromosomeType chromo) {
+		return BinnieCore.proxy.localise(getSpeciesRoot().getUID() + ".chromosome." + chromo.getName());
 	}
 
-	public String getChromosomeShortName(final IChromosomeType chromo) {
-		return BinnieCore.proxy.localise(this.getSpeciesRoot().getUID() + ".chromosome." + chromo.getName() + ".short");
+	public String getChromosomeShortName(IChromosomeType chromo) {
+		return BinnieCore.proxy.localise(getSpeciesRoot().getUID() + ".chromosome." + chromo.getName() + ".short");
 	}
 
-	public final String getEpitome(final float discoveredPercentage) {
+	public String getEpitome(float discoveredPercentage) {
+		// TODO refactor
 		int i = 0;
 		if (discoveredPercentage == 1.0f) {
 			i = 6;
-		}
-		else if (discoveredPercentage < 0.1f) {
+		} else if (discoveredPercentage < 0.1f) {
 			i = 0;
-		}
-		else if (discoveredPercentage < 0.3f) {
+		} else if (discoveredPercentage < 0.3f) {
 			i = 1;
-		}
-		else if (discoveredPercentage < 0.5f) {
+		} else if (discoveredPercentage < 0.5f) {
 			i = 2;
-		}
-		else if (discoveredPercentage < 0.7f) {
+		} else if (discoveredPercentage < 0.7f) {
 			i = 3;
-		}
-		else if (discoveredPercentage < 0.9f) {
+		} else if (discoveredPercentage < 0.9f) {
 			i = 4;
-		}
-		else if (discoveredPercentage < 1.0f) {
+		} else if (discoveredPercentage < 1.0f) {
 			i = 5;
 		}
-		return BinnieCore.proxy.localise(this.getSpeciesRoot().getUID() + ".epitome." + i);
+		return BinnieCore.proxy.localise(getSpeciesRoot().getUID() + ".epitome." + i);
 	}
 
 	public abstract ISpeciesRoot getSpeciesRoot();
 
-	public final List<IClassification> getAllBranches() {
-		return this.allBranches;
+	public List<IClassification> getAllBranches() {
+		return allBranches;
 	}
 
-	public final Collection<IAlleleSpecies> getAllSpecies() {
-		return this.allActiveSpecies;
+	public Collection<IAlleleSpecies> getAllSpecies() {
+		return allActiveSpecies;
 	}
 
-	public final Collection<IMutation> getAllMutations() {
-		return this.allMutations;
+	public Collection<IMutation> getAllMutations() {
+		return allMutations;
 	}
 
 	public void calculateArrays() {
-		final Collection<IAllele> allAlleles = AlleleManager.alleleRegistry.getRegisteredAlleles().values();
-		this.resultantMutations = new HashMap<IAlleleSpecies, List<IMutation>>();
-		this.furtherMutations = new HashMap<IAlleleSpecies, List<IMutation>>();
-		this.allResultantMutations = new HashMap<IAlleleSpecies, List<IMutation>>();
-		this.allFurtherMutations = new HashMap<IAlleleSpecies, List<IMutation>>();
-		this.allActiveSpecies = new ArrayList<IAlleleSpecies>();
-		this.allSpecies = new ArrayList<IAlleleSpecies>();
-		for (final IAllele species : allAlleles) {
-			if (this.getSpeciesRoot().getTemplate(species.getUID()) != null) {
-				this.resultantMutations.put((IAlleleSpecies) species, new ArrayList<IMutation>());
-				this.furtherMutations.put((IAlleleSpecies) species, new ArrayList<IMutation>());
-				this.allResultantMutations.put((IAlleleSpecies) species, new ArrayList<IMutation>());
-				this.allFurtherMutations.put((IAlleleSpecies) species, new ArrayList<IMutation>());
-				this.allSpecies.add((IAlleleSpecies) species);
-				if (this.isBlacklisted(species) || species.getUID().contains("speciesBotAlfheim")) {
+		Collection<IAllele> allAlleles = AlleleManager.alleleRegistry.getRegisteredAlleles().values();
+		resultantMutations = new HashMap<>();
+		furtherMutations = new HashMap<>();
+		allResultantMutations = new HashMap<>();
+		allFurtherMutations = new HashMap<>();
+		allActiveSpecies = new ArrayList<>();
+		allSpecies = new ArrayList<>();
+		for (IAllele species : allAlleles) {
+			if (getSpeciesRoot().getTemplate(species.getUID()) != null) {
+				resultantMutations.put((IAlleleSpecies) species, new ArrayList<>());
+				furtherMutations.put((IAlleleSpecies) species, new ArrayList<>());
+				allResultantMutations.put((IAlleleSpecies) species, new ArrayList<>());
+				allFurtherMutations.put((IAlleleSpecies) species, new ArrayList<>());
+				allSpecies.add((IAlleleSpecies) species);
+
+				if (isBlacklisted(species) || species.getUID().contains("speciesBotAlfheim")) {
 					continue;
 				}
-				this.allActiveSpecies.add((IAlleleSpecies) species);
+				allActiveSpecies.add((IAlleleSpecies) species);
 			}
 		}
-		this.allMutations = new ArrayList<IMutation>();
-		final Collection<IClassification> allRegBranches = AlleleManager.alleleRegistry.getRegisteredClassifications().values();
-		this.allBranches = new ArrayList<IClassification>();
-		for (final IClassification branch : allRegBranches) {
-			if (branch.getMemberSpecies().length > 0 && this.getSpeciesRoot().getTemplate(branch.getMemberSpecies()[0].getUID()) != null) {
+
+		allMutations = new ArrayList<>();
+		Collection<IClassification> allRegBranches = AlleleManager.alleleRegistry.getRegisteredClassifications().values();
+		allBranches = new ArrayList<>();
+		for (IClassification branch : allRegBranches) {
+			if (branch.getMemberSpecies().length > 0 && getSpeciesRoot().getTemplate(branch.getMemberSpecies()[0].getUID()) != null) {
 				boolean possible = false;
-				for (final IAlleleSpecies species2 : branch.getMemberSpecies()) {
-					if (this.allActiveSpecies.contains(species2)) {
+				for (IAlleleSpecies species2 : branch.getMemberSpecies()) {
+					if (allActiveSpecies.contains(species2)) {
 						possible = true;
 					}
 				}
 				if (!possible) {
 					continue;
 				}
-				this.allBranches.add(branch);
+				allBranches.add(branch);
 			}
 		}
-		if (this.getSpeciesRoot().getMutations(false) != null) {
-			final Set<IMutation> mutations = new LinkedHashSet<IMutation>();
-			mutations.addAll(this.getSpeciesRoot().getMutations(false));
+		if (getSpeciesRoot().getMutations(false) != null) {
+			Set<IMutation> mutations = new LinkedHashSet<>();
+			mutations.addAll(getSpeciesRoot().getMutations(false));
 			if (this == Binnie.Genetics.beeBreedingSystem) {
 				mutations.addAll(ExtraBeeMutation.mutations);
 			}
-			for (final IMutation mutation : mutations) {
-				this.allMutations.add(mutation);
-				final Set<IAlleleSpecies> participatingSpecies = new LinkedHashSet<IAlleleSpecies>();
-				if (mutation.getAllele0() instanceof IAlleleSpecies) {
+			for (IMutation mutation : mutations) {
+				allMutations.add(mutation);
+				Set<IAlleleSpecies> participatingSpecies = new LinkedHashSet<>();
+				if (mutation.getAllele0() != null) {
 					participatingSpecies.add(mutation.getAllele0());
 				}
-				if (mutation.getAllele1() instanceof IAlleleSpecies) {
+				if (mutation.getAllele1() != null) {
 					participatingSpecies.add(mutation.getAllele1());
 				}
-				for (final IAlleleSpecies species3 : participatingSpecies) {
-					this.allFurtherMutations.get(species3).add(mutation);
-					if (this.allActiveSpecies.contains(species3)) {
-						this.furtherMutations.get(species3).add(mutation);
+
+				for (IAlleleSpecies species3 : participatingSpecies) {
+					allFurtherMutations.get(species3).add(mutation);
+					if (allActiveSpecies.contains(species3)) {
+						furtherMutations.get(species3).add(mutation);
 					}
 				}
-				if (this.resultantMutations.containsKey(mutation.getTemplate()[0])) {
-					this.allResultantMutations.get(mutation.getTemplate()[0]).add(mutation);
-					this.resultantMutations.get(mutation.getTemplate()[0]).add(mutation);
+				if (resultantMutations.containsKey(mutation.getTemplate()[0])) {
+					allResultantMutations.get(mutation.getTemplate()[0]).add(mutation);
+					resultantMutations.get(mutation.getTemplate()[0]).add(mutation);
 				}
 			}
 		}
 	}
 
-	public final boolean isBlacklisted(final IAllele allele) {
+	public boolean isBlacklisted(IAllele allele) {
 		return AlleleManager.alleleRegistry.isBlacklisted(allele.getUID());
 	}
 
-	public final List<IMutation> getResultantMutations(final IAlleleSpecies species, final boolean includeInactive) {
-		if (this.resultantMutations.isEmpty()) {
-			this.calculateArrays();
+	public List<IMutation> getResultantMutations(IAlleleSpecies species, boolean includeInactive) {
+		if (resultantMutations.isEmpty()) {
+			calculateArrays();
 		}
-		return includeInactive ? this.allResultantMutations.get(species) : this.resultantMutations.get(species);
+		return includeInactive ? allResultantMutations.get(species) : resultantMutations.get(species);
 	}
 
-	public final List<IMutation> getResultantMutations(final IAlleleSpecies species) {
-		if (this.resultantMutations.isEmpty()) {
-			this.calculateArrays();
+	public List<IMutation> getResultantMutations(IAlleleSpecies species) {
+		if (resultantMutations.isEmpty()) {
+			calculateArrays();
 		}
-		return this.resultantMutations.get(species);
+		return resultantMutations.get(species);
 	}
 
-	public final List<IMutation> getFurtherMutations(final IAlleleSpecies species, final boolean includeInactive) {
-		if (this.furtherMutations.isEmpty()) {
-			this.calculateArrays();
+	public List<IMutation> getFurtherMutations(IAlleleSpecies species, boolean includeInactive) {
+		if (furtherMutations.isEmpty()) {
+			calculateArrays();
 		}
-		return includeInactive ? this.allFurtherMutations.get(species) : this.furtherMutations.get(species);
+		return includeInactive ? allFurtherMutations.get(species) : furtherMutations.get(species);
 	}
 
-	public final List<IMutation> getFurtherMutations(final IAlleleSpecies species) {
-		if (this.furtherMutations.isEmpty()) {
-			this.calculateArrays();
+	public List<IMutation> getFurtherMutations(IAlleleSpecies species) {
+		if (furtherMutations.isEmpty()) {
+			calculateArrays();
 		}
-		return this.furtherMutations.get(species);
+		return furtherMutations.get(species);
 	}
 
-	public final boolean isMutationDiscovered(final IMutation mutation, final World world, final GameProfile name) {
-		return this.isMutationDiscovered(mutation, this.getSpeciesRoot().getBreedingTracker(world, name));
+	public boolean isMutationDiscovered(IMutation mutation, World world, GameProfile name) {
+		return isMutationDiscovered(mutation, getSpeciesRoot().getBreedingTracker(world, name));
 	}
 
-	public final boolean isMutationDiscovered(final IMutation mutation, final IBreedingTracker tracker) {
+	public boolean isMutationDiscovered(IMutation mutation, IBreedingTracker tracker) {
 		return tracker == null || tracker.isDiscovered(mutation);
 	}
 
-	public final boolean isSpeciesDiscovered(final IAlleleSpecies species, final World world, final GameProfile name) {
-		return this.isSpeciesDiscovered(species, this.getSpeciesRoot().getBreedingTracker(world, name));
+	public boolean isSpeciesDiscovered(IAlleleSpecies species, World world, GameProfile name) {
+		return isSpeciesDiscovered(species, getSpeciesRoot().getBreedingTracker(world, name));
 	}
 
-	public final boolean isSpeciesDiscovered(final IAlleleSpecies species, final IBreedingTracker tracker) {
+	public boolean isSpeciesDiscovered(IAlleleSpecies species, IBreedingTracker tracker) {
 		return tracker == null || tracker.isDiscovered(species);
 	}
 
-	public final boolean isSecret(final IAlleleSpecies species) {
+	public boolean isSecret(IAlleleSpecies species) {
 		return !species.isCounted();
 	}
 
-	public final boolean isSecret(final IClassification branch) {
-		for (final IAlleleSpecies species : branch.getMemberSpecies()) {
-			if (!this.isSecret(species)) {
+	public boolean isSecret(IClassification branch) {
+		for (IAlleleSpecies species : branch.getMemberSpecies()) {
+			if (!isSecret(species)) {
 				return false;
 			}
 		}
 		return true;
 	}
 
-	public final Collection<IClassification> getDiscoveredBranches(final World world, final GameProfile player) {
-		final List<IClassification> branches = new ArrayList<IClassification>();
-		for (final IClassification branch : this.getAllBranches()) {
+	public Collection<IClassification> getDiscoveredBranches(World world, GameProfile player) {
+		List<IClassification> branches = new ArrayList<>();
+		for (IClassification branch : getAllBranches()) {
 			boolean discovered = false;
-			for (final IAlleleSpecies species : branch.getMemberSpecies()) {
-				if (this.isSpeciesDiscovered(species, world, player)) {
+			for (IAlleleSpecies species : branch.getMemberSpecies()) {
+				if (isSpeciesDiscovered(species, world, player)) {
 					discovered = true;
 				}
 			}
@@ -265,12 +251,12 @@ public abstract class BreedingSystem implements IItemStackRepresentitive
 		return branches;
 	}
 
-	public final Collection<IClassification> getDiscoveredBranches(final IBreedingTracker tracker) {
-		final List<IClassification> branches = new ArrayList<IClassification>();
-		for (final IClassification branch : this.getAllBranches()) {
+	public Collection<IClassification> getDiscoveredBranches(IBreedingTracker tracker) {
+		List<IClassification> branches = new ArrayList<>();
+		for (IClassification branch : getAllBranches()) {
 			boolean discovered = false;
-			for (final IAlleleSpecies species : branch.getMemberSpecies()) {
-				if (this.isSpeciesDiscovered(species, tracker)) {
+			for (IAlleleSpecies species : branch.getMemberSpecies()) {
+				if (isSpeciesDiscovered(species, tracker)) {
 					discovered = true;
 				}
 			}
@@ -281,145 +267,148 @@ public abstract class BreedingSystem implements IItemStackRepresentitive
 		return branches;
 	}
 
-	public final Collection<IAlleleSpecies> getDiscoveredSpecies(final World world, final GameProfile player) {
-		final List<IAlleleSpecies> speciesList = new ArrayList<IAlleleSpecies>();
-		for (final IAlleleSpecies species : this.getAllSpecies()) {
-			if (this.isSpeciesDiscovered(species, world, player)) {
+	public Collection<IAlleleSpecies> getDiscoveredSpecies(World world, GameProfile player) {
+		List<IAlleleSpecies> speciesList = new ArrayList<>();
+		for (IAlleleSpecies species : getAllSpecies()) {
+			if (isSpeciesDiscovered(species, world, player)) {
 				speciesList.add(species);
 			}
 		}
 		return speciesList;
 	}
 
-	public final Collection<IAlleleSpecies> getDiscoveredSpecies(final IBreedingTracker tracker) {
-		final List<IAlleleSpecies> speciesList = new ArrayList<IAlleleSpecies>();
-		for (final IAlleleSpecies species : this.getAllSpecies()) {
-			if (this.isSpeciesDiscovered(species, tracker)) {
+	public Collection<IAlleleSpecies> getDiscoveredSpecies(IBreedingTracker tracker) {
+		List<IAlleleSpecies> speciesList = new ArrayList<>();
+		for (IAlleleSpecies species : getAllSpecies()) {
+			if (isSpeciesDiscovered(species, tracker)) {
 				speciesList.add(species);
 			}
 		}
 		return speciesList;
 	}
 
-	public final List<IMutation> getDiscoveredMutations(final World world, final GameProfile player) {
-		final List<IMutation> speciesList = new ArrayList<IMutation>();
-		for (final IMutation species : this.getAllMutations()) {
-			if (this.isMutationDiscovered(species, world, player)) {
+	public List<IMutation> getDiscoveredMutations(World world, GameProfile player) {
+		List<IMutation> speciesList = new ArrayList<>();
+		for (IMutation species : getAllMutations()) {
+			if (isMutationDiscovered(species, world, player)) {
 				speciesList.add(species);
 			}
 		}
 		return speciesList;
 	}
 
-	public final List<IMutation> getDiscoveredMutations(final IBreedingTracker tracker) {
-		final List<IMutation> speciesList = new ArrayList<IMutation>();
-		for (final IMutation species : this.getAllMutations()) {
-			if (this.isMutationDiscovered(species, tracker)) {
+	public List<IMutation> getDiscoveredMutations(IBreedingTracker tracker) {
+		List<IMutation> speciesList = new ArrayList<>();
+		for (IMutation species : getAllMutations()) {
+			if (isMutationDiscovered(species, tracker)) {
 				speciesList.add(species);
 			}
 		}
 		return speciesList;
 	}
 
-	public final int getDiscoveredBranchMembers(final IClassification branch, final IBreedingTracker tracker) {
+	public int getDiscoveredBranchMembers(IClassification branch, IBreedingTracker tracker) {
 		int discoveredSpecies = 0;
-		for (final IAlleleSpecies species : branch.getMemberSpecies()) {
-			if (this.isSpeciesDiscovered(species, tracker)) {
-				++discoveredSpecies;
+		for (IAlleleSpecies species : branch.getMemberSpecies()) {
+			if (isSpeciesDiscovered(species, tracker)) {
+				discoveredSpecies++;
 			}
 		}
 		return discoveredSpecies;
 	}
 
 	public IIcon getUndiscoveredIcon() {
-		return this.iconUndiscovered.getIcon();
+		return iconUndiscovered.getIcon();
 	}
 
 	public IIcon getDiscoveredIcon() {
-		return this.iconDiscovered.getIcon();
+		return iconDiscovered.getIcon();
 	}
 
-	public abstract float getChance(final IMutation p0, final EntityPlayer p1, final IAllele p2, final IAllele p3);
+	public abstract float getChance(IMutation mutation, EntityPlayer player, IAllele allele1, IAllele allele2);
 
 	public abstract Class<? extends IBreedingTracker> getTrackerClass();
 
 	@SubscribeEvent
-	public final void onSyncBreedingTracker(final ForestryEvent.SyncedBreedingTracker event) {
-		final IBreedingTracker tracker = event.tracker;
-		if (!this.getTrackerClass().isInstance(tracker)) {
+	public void onSyncBreedingTracker(ForestryEvent.SyncedBreedingTracker event) {
+		IBreedingTracker tracker = event.tracker;
+		if (!getTrackerClass().isInstance(tracker)) {
 			return;
 		}
-		this.syncTracker(tracker);
+		syncTracker(tracker);
 	}
 
-	public final void syncTracker(final IBreedingTracker tracker) {
-		this.discoveredSpeciesPercentage = 0.0f;
-		this.totalSpeciesCount = 0;
-		this.discoveredSpeciesCount = 0;
-		this.totalSecretCount = 0;
-		this.discoveredSecretCount = 0;
-		final Collection<IAlleleSpecies> discoveredSpecies = this.getDiscoveredSpecies(tracker);
-		final Collection<IAlleleSpecies> allSpecies = this.getAllSpecies();
-		for (final IAlleleSpecies species : allSpecies) {
-			if (!this.isSecret(species)) {
-				++this.totalSpeciesCount;
-				if (!this.isSpeciesDiscovered(species, tracker)) {
+	public void syncTracker(IBreedingTracker tracker) {
+		discoveredSpeciesPercentage = 0.0f;
+		totalSpeciesCount = 0;
+		discoveredSpeciesCount = 0;
+		totalSecretCount = 0;
+		discoveredSecretCount = 0;
+		Collection<IAlleleSpecies> discoveredSpecies = getDiscoveredSpecies(tracker);
+		Collection<IAlleleSpecies> allSpecies = getAllSpecies();
+
+		for (IAlleleSpecies species : allSpecies) {
+			if (!isSecret(species)) {
+				totalSpeciesCount++;
+				if (!isSpeciesDiscovered(species, tracker)) {
 					continue;
 				}
-				++this.discoveredSpeciesCount;
-			}
-			else {
-				++this.totalSecretCount;
-				if (!this.isSpeciesDiscovered(species, tracker)) {
+				discoveredSpeciesCount++;
+			} else {
+				totalSecretCount++;
+				if (!isSpeciesDiscovered(species, tracker)) {
 					continue;
 				}
-				++this.discoveredSecretCount;
+				discoveredSecretCount++;
 			}
 		}
-		this.discoveredBranchPercentage = 0.0f;
-		this.totalBranchCount = 0;
-		this.discoveredBranchCount = 0;
-		final Collection<IClassification> discoveredBranches = this.getDiscoveredBranches(tracker);
-		final Collection<IClassification> allBranches = this.getAllBranches();
-		for (final IClassification branch : allBranches) {
-			if (!this.isSecret(branch)) {
-				++this.totalBranchCount;
+
+		discoveredBranchPercentage = 0.0f;
+		totalBranchCount = 0;
+		discoveredBranchCount = 0;
+		Collection<IClassification> discoveredBranches = getDiscoveredBranches(tracker);
+		Collection<IClassification> allBranches = getAllBranches();
+
+		for (IClassification branch : allBranches) {
+			if (!isSecret(branch)) {
+				totalBranchCount++;
 				if (!discoveredBranches.contains(branch)) {
 					continue;
 				}
-				++this.discoveredBranchCount;
-			}
-			else {
-				++this.totalSecretBranchCount;
+				discoveredBranchCount++;
+			} else {
+				totalSecretBranchCount++;
 				if (!discoveredBranches.contains(branch)) {
 					continue;
 				}
-				++this.discoveredSecretBranchCount;
+				discoveredSecretBranchCount++;
 			}
 		}
-		this.discoveredSpeciesPercentage = this.discoveredSpeciesCount / this.totalSpeciesCount;
-		this.discoveredBranchPercentage = this.discoveredBranchCount / this.totalBranchCount;
-		final String epithet = this.getEpitome();
-		this.onSyncBreedingTracker(tracker);
+
+		discoveredSpeciesPercentage = discoveredSpeciesCount / totalSpeciesCount;
+		discoveredBranchPercentage = discoveredBranchCount / totalBranchCount;
+		String epithet = getEpitome();
+		onSyncBreedingTracker(tracker);
 	}
 
-	public void onSyncBreedingTracker(final IBreedingTracker tracker) {
+	public void onSyncBreedingTracker(IBreedingTracker tracker) {
+		// ignored
 	}
 
 	public String getEpitome() {
-		return this.getEpitome(this.discoveredSpeciesPercentage);
+		return getEpitome(discoveredSpeciesPercentage);
 	}
 
-	public final String getDescriptor() {
-		return BinnieCore.proxy.localise(this.getSpeciesRoot().getUID() + ".descriptor");
+	public String getDescriptor() {
+		return BinnieCore.proxy.localise(getSpeciesRoot().getUID() + ".descriptor");
 	}
 
-	public final String getIdent() {
-		return this.getSpeciesRoot().getUID();
+	public String getIdent() {
+		return getSpeciesRoot().getUID();
 	}
 
-	public final IChromosomeType getChromosome(final int i) {
-		for (final IChromosomeType chromosome : this.getSpeciesRoot().getKaryotype()) {
+	public IChromosomeType getChromosome(int i) {
+		for (IChromosomeType chromosome : getSpeciesRoot().getKaryotype()) {
 			if (i == chromosome.ordinal()) {
 				return chromosome;
 			}
@@ -429,9 +418,11 @@ public abstract class BreedingSystem implements IItemStackRepresentitive
 
 	public abstract int getColour();
 
-	public String getAlleleName(final IChromosomeType chromosome, final IAllele allele) {
+	public String getAlleleName(IChromosomeType chromosome, IAllele allele) {
 		if (allele instanceof IAlleleBoolean) {
-			return ((IAlleleBoolean) allele).getValue() ? Binnie.Language.localise(BinnieCore.instance, "allele.true") : Binnie.Language.localise(BinnieCore.instance, "allele.false");
+			return ((IAlleleBoolean) allele).getValue() ?
+				Binnie.Language.localise(BinnieCore.instance, "allele.true") :
+				Binnie.Language.localise(BinnieCore.instance, "allele.false");
 		}
 		if (allele.getName() == "for.gui.maximum") {
 			return Binnie.Language.localise(BinnieCore.instance, "allele.fertility.maximum");
@@ -440,55 +431,56 @@ public abstract class BreedingSystem implements IItemStackRepresentitive
 	}
 
 	public String getName() {
-		return BinnieCore.proxy.localise(this.getSpeciesRoot().getUID() + ".shortName");
+		return BinnieCore.proxy.localise(getSpeciesRoot().getUID() + ".shortName");
 	}
 
 	@Override
-	public ItemStack getItemStackRepresentitive() {
-		final IIndividual first = this.getSpeciesRoot().getIndividualTemplates().get(0);
-		return this.getSpeciesRoot().getMemberStack(first, this.getDefaultType());
+	public ItemStack getItemStackRepresentative() {
+		ISpeciesRoot speciesRoot = getSpeciesRoot();
+		IIndividual first = speciesRoot.getIndividualTemplates().get(0);
+		return speciesRoot.getMemberStack(first, getDefaultType());
 	}
 
 	@Override
 	public String toString() {
-		return this.getName();
+		return getName();
 	}
 
-	public abstract boolean isDNAManipulable(final ItemStack p0);
+	public abstract boolean isDNAManipulable(ItemStack p0);
 
-	public IIndividual getConversion(final ItemStack stack) {
+	public IIndividual getConversion(ItemStack stack) {
 		return null;
 	}
 
-	public final IIndividual getDefaultIndividual() {
-		return this.getSpeciesRoot().templateAsIndividual(this.getSpeciesRoot().getDefaultTemplate());
+	public IIndividual getDefaultIndividual() {
+		return getSpeciesRoot().templateAsIndividual(getSpeciesRoot().getDefaultTemplate());
 	}
 
-	public final int getDefaultType() {
-		return this.getActiveTypes()[0];
+	public int getDefaultType() {
+		return getActiveTypes()[0];
 	}
 
 	public abstract int[] getActiveTypes();
 
-	public abstract void addExtraAlleles(final IChromosomeType p0, final TreeSet<IAllele> p1);
+	public abstract void addExtraAlleles(IChromosomeType chromosome, TreeSet<IAllele> alleles);
 
-	public ItemStack getConversionStack(final ItemStack stack) {
-		return this.getSpeciesRoot().getMemberStack(this.getConversion(stack), this.getDefaultType());
+	public ItemStack getConversionStack(ItemStack stack) {
+		return getSpeciesRoot().getMemberStack(getConversion(stack), getDefaultType());
 	}
 
-	public final Collection<IChromosomeType> getActiveKaryotype() {
-		return Binnie.Genetics.getActiveChromosomes(this.getSpeciesRoot());
+	public Collection<IChromosomeType> getActiveKaryotype() {
+		return Binnie.Genetics.getActiveChromosomes(getSpeciesRoot());
 	}
 
-	public ItemStack getDefaultMember(final String uid) {
-		return this.getSpeciesRoot().getMemberStack(this.getIndividual(uid), this.getDefaultType());
+	public ItemStack getDefaultMember(String uid) {
+		return getSpeciesRoot().getMemberStack(getIndividual(uid), getDefaultType());
 	}
 
-	public IIndividual getIndividual(final String uid) {
-		return this.getSpeciesRoot().templateAsIndividual(this.getSpeciesRoot().getTemplate(uid));
+	public IIndividual getIndividual(String uid) {
+		return getSpeciesRoot().templateAsIndividual(getSpeciesRoot().getTemplate(uid));
 	}
 
-	public IGenome getGenome(final String uid) {
-		return this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(uid));
+	public IGenome getGenome(String uid) {
+		return getSpeciesRoot().templateAsGenome(getSpeciesRoot().getTemplate(uid));
 	}
 }

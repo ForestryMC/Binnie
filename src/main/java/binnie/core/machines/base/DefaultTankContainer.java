@@ -1,27 +1,22 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.base;
 
-import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.IFluidTank;
 import binnie.core.machines.inventory.TankSlot;
-import binnie.core.machines.power.TankInfo;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.common.util.ForgeDirection;
 import binnie.core.machines.power.ITankMachine;
+import binnie.core.machines.power.TankInfo;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTankInfo;
+import net.minecraftforge.fluids.IFluidTank;
 
-class DefaultTankContainer implements ITankMachine
-{
+class DefaultTankContainer implements ITankMachine {
 	@Override
-	public int fill(final ForgeDirection from, final FluidStack resource, final boolean doFill) {
+	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
 		return 0;
 	}
 
 	@Override
-	public FluidStack drain(final ForgeDirection from, final int maxDrain, final boolean doDrain) {
+	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
 		return null;
 	}
 
@@ -31,47 +26,47 @@ class DefaultTankContainer implements ITankMachine
 	}
 
 	@Override
-	public boolean isTankReadOnly(final int tank) {
+	public boolean isTankReadOnly(int tank) {
 		return false;
 	}
 
 	@Override
-	public boolean isLiquidValidForTank(final FluidStack liquid, final int tank) {
+	public boolean isLiquidValidForTank(FluidStack liquid, int tank) {
 		return false;
 	}
 
 	@Override
-	public TankSlot addTank(final int index, final String name, final int capacity) {
+	public TankSlot addTank(int index, String name, int capacity) {
 		return null;
 	}
 
 	@Override
-	public IFluidTank getTank(final int index) {
+	public IFluidTank getTank(int index) {
 		return null;
 	}
 
 	@Override
-	public TankSlot getTankSlot(final int slot) {
+	public TankSlot getTankSlot(int slot) {
 		return null;
 	}
 
 	@Override
-	public FluidStack drain(final ForgeDirection from, final FluidStack resource, final boolean doDrain) {
+	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
 		return null;
 	}
 
 	@Override
-	public boolean canFill(final ForgeDirection from, final Fluid fluid) {
+	public boolean canFill(ForgeDirection from, Fluid fluid) {
 		return false;
 	}
 
 	@Override
-	public boolean canDrain(final ForgeDirection from, final Fluid fluid) {
+	public boolean canDrain(ForgeDirection from, Fluid fluid) {
 		return false;
 	}
 
 	@Override
-	public FluidTankInfo[] getTankInfo(final ForgeDirection from) {
+	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
 		return new FluidTankInfo[0];
 	}
 

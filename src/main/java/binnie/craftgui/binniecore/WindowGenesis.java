@@ -198,10 +198,10 @@ public class WindowGenesis extends Window
 	}
 
 	@Override
-	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound action) {
-		super.recieveGuiNBT(side, player, name, action);
+	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+		super.recieveGuiNBT(side, player, name, nbt);
 		if (side == Side.SERVER && name.equals("genesis")) {
-			final ItemStack stack = ItemStack.loadItemStackFromNBT(action);
+			final ItemStack stack = ItemStack.loadItemStackFromNBT(nbt);
 			final InventoryPlayer playerInv = player.inventory;
 			if (stack == null) {
 				return;

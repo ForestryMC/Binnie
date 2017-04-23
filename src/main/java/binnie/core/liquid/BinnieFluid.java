@@ -1,33 +1,30 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.liquid;
 
 import net.minecraftforge.fluids.Fluid;
 
-class BinnieFluid extends Fluid
-{
-	private final String name;
-	final IFluidType fluidType;
+class BinnieFluid extends Fluid {
+	protected IFluidType fluidType;
+
+	private String name;
 
 	@Override
+	// TODO fix deprecated usage
 	public String getLocalizedName() {
-		return this.name;
+		return name;
 	}
 
-	public BinnieFluid(final IFluidType fluid) {
+	public BinnieFluid(IFluidType fluid) {
 		super(fluid.getIdentifier());
-		this.fluidType = fluid;
-		this.name = fluid.getName();
+		fluidType = fluid;
+		name = fluid.getName();
 	}
 
 	@Override
 	public int getColor() {
-		return this.fluidType.getColour();
+		return fluidType.getColour();
 	}
 
 	public IFluidType getType() {
-		return this.fluidType;
+		return fluidType;
 	}
 }

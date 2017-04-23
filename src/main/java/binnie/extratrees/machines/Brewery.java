@@ -4,39 +4,34 @@
 
 package binnie.extratrees.machines;
 
-import binnie.core.liquid.IFluidType;
-import binnie.extratrees.alcohol.Alcohol;
 import binnie.Binnie;
-import net.minecraftforge.oredict.OreDictionary;
-import java.util.HashMap;
-import binnie.extratrees.item.ExtraTreeItems;
-import binnie.core.machines.inventory.TankValidator;
-import binnie.core.machines.inventory.SlotValidator;
-import net.minecraft.entity.player.EntityPlayer;
-import cpw.mods.fml.relauncher.Side;
-import java.util.Map;
-import binnie.core.machines.power.ErrorState;
-import binnie.core.machines.network.INetwork;
-import binnie.core.machines.power.IProcess;
-import binnie.core.machines.power.ComponentProcessSetCost;
-import net.minecraft.nbt.NBTBase;
-import net.minecraft.nbt.NBTTagCompound;
-import forestry.api.core.INBTTagable;
-import binnie.core.machines.TileEntityMachine;
-import net.minecraft.tileentity.TileEntity;
-import binnie.core.machines.power.ComponentPowerReceptor;
-import binnie.core.machines.inventory.MachineSide;
-import binnie.core.machines.inventory.ComponentTankContainer;
-import binnie.core.machines.inventory.InventorySlot;
-import binnie.core.machines.inventory.ComponentInventorySlots;
-import binnie.extratrees.core.ExtraTreesGUID;
+import binnie.core.liquid.IFluidType;
 import binnie.core.machines.Machine;
-import binnie.extratrees.core.ExtraTreeTexture;
+import binnie.core.machines.TileEntityMachine;
+import binnie.core.machines.inventory.*;
+import binnie.core.machines.network.INetwork;
+import binnie.core.machines.power.ComponentPowerReceptor;
+import binnie.core.machines.power.ComponentProcessSetCost;
+import binnie.core.machines.power.ErrorState;
+import binnie.core.machines.power.IProcess;
 import binnie.craftgui.minecraft.IMachineInformation;
-import java.util.ArrayList;
-import net.minecraftforge.fluids.FluidStack;
+import binnie.extratrees.alcohol.Alcohol;
+import binnie.extratrees.core.ExtraTreeTexture;
+import binnie.extratrees.core.ExtraTreesGUID;
+import binnie.extratrees.item.ExtraTreeItems;
+import cpw.mods.fml.relauncher.Side;
+import forestry.api.core.INBTTagable;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Brewery
 {
@@ -302,7 +297,7 @@ public class Brewery
 		}
 
 		@Override
-		public void sendGuiNBT(final Map<String, NBTTagCompound> data) {
+		public void sendGuiNBT(final Map<String, NBTTagCompound> nbts) {
 			final NBTTagCompound nbt = new NBTTagCompound();
 			if (this.currentCrafting == null) {
 				nbt.setBoolean("null", true);
@@ -310,7 +305,7 @@ public class Brewery
 			else {
 				this.currentCrafting.writeToNBT(nbt);
 			}
-			data.put("brewery-recipe", nbt);
+			nbts.put("brewery-recipe", nbt);
 		}
 
 		@Override
@@ -388,8 +383,8 @@ public class Brewery
 	public static class TankValidatorFermentInput extends TankValidator
 	{
 		@Override
-		public boolean isValid(final FluidStack itemStack) {
-			return Brewery.isValidInputLiquid(itemStack);
+		public boolean isValid(final FluidStack liquid) {
+			return Brewery.isValidInputLiquid(liquid);
 		}
 
 		@Override
@@ -401,8 +396,8 @@ public class Brewery
 	public static class TankValidatorFermentOutput extends TankValidator
 	{
 		@Override
-		public boolean isValid(final FluidStack itemStack) {
-			return Brewery.isValidOutputLiquid(itemStack);
+		public boolean isValid(final FluidStack liquid) {
+			return Brewery.isValidOutputLiquid(liquid);
 		}
 
 		@Override

@@ -1,22 +1,18 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.item;
 
-import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.util.IIcon;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 
-public interface IItemMisc extends IItemEnum
-{
-	IIcon getIcon(final ItemStack p0);
+import java.util.List;
+
+public interface IItemMisc extends IItemEnum {
+	IIcon getIcon(ItemStack itemStack);
 
 	@SideOnly(Side.CLIENT)
-	void registerIcons(final IIconRegister p0);
+	void registerIcons(IIconRegister register);
 
-	void addInformation(final List p0);
+	void addInformation(List data);
 }

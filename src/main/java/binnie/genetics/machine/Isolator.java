@@ -99,8 +99,8 @@ public class Isolator
 				}
 
 				@Override
-				public boolean isValid(final FluidStack stack) {
-					return stack.getFluid().getName() == "bioethanol";
+				public boolean isValid(final FluidStack liquid) {
+					return liquid.getFluid().getName() == "bioethanol";
 				}
 			});
 			final ComponentChargedSlots chargedSlots = new ComponentChargedSlots(machine);

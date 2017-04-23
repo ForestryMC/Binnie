@@ -1,16 +1,11 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.power;
 
 import binnie.core.machines.IMachine;
-import net.minecraft.nbt.NBTTagCompound;
-import binnie.core.machines.network.INetwork;
 import binnie.core.machines.MachineComponent;
+import binnie.core.machines.network.INetwork;
+import net.minecraft.nbt.NBTTagCompound;
 
-public abstract class ComponentProcessIndefinate extends MachineComponent implements IProcess, INetwork.TilePacketSync
-{
+public abstract class ComponentProcessIndefinate extends MachineComponent implements IProcess, INetwork.TilePacketSync {
 	private float energyPerTick;
 	private boolean inProgress;
 	private float actionPauseProcess;
@@ -19,25 +14,24 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 	int clientInProgress;
 
 	@Override
-	public void syncFromNBT(final NBTTagCompound nbt) {
-		this.inProgress = nbt.getBoolean("progress");
+	public void syncFromNBT(NBTTagCompound nbt) {
+		inProgress = nbt.getBoolean("progress");
 	}
 
 	@Override
-	public void syncToNBT(final NBTTagCompound nbt) {
-		nbt.setBoolean("progress", this.inProgress);
+	public void syncToNBT(NBTTagCompound nbt) {
+		nbt.setBoolean("progress", inProgress);
 	}
 
-	public ComponentProcessIndefinate(final IMachine machine, final float energyPerTick) {
+	public ComponentProcessIndefinate(IMachine machine, float energyPerTick) {
 		super(machine);
-		this.energyPerTick = 0.1f;
-		this.actionPauseProcess = 0.0f;
-		this.actionCancelTask = 0.0f;
-		this.clientEnergyPerSecond = 0;
+		actionPauseProcess = 0.0f;
+		actionCancelTask = 0.0f;
+		clientEnergyPerSecond = 0;
 		this.energyPerTick = energyPerTick;
 	}
 
-	protected final IPoweredMachine getPower() {
+	protected IPoweredMachine getPower() {
 		return this.getMachine().getInterface(IPoweredMachine.class);
 	}
 
@@ -48,63 +42,71 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 
 	@Override
 	public void onUpdate() {
-		final float energyAvailable = (float) this.getPower().getInterface().useEnergy(PowerSystem.RF, this.getEnergyPerTick(), false);
-		if (this.canWork() == null) {
-			if (!this.isInProgress() && this.canProgress() == null) {
-				this.onStartTask();
+		float energyAvailable = (float) this.getPower().getInterface().useEnergy(PowerSystem.RF, this.getEnergyPerTick(), false);
+		if (canWork() == null) {
+			if (!isInProgress() && canProgress() == null) {
+				onStartTask();
+			} else if (canProgress() == null) {
+				progressTick();
+				onTickTask();
 			}
-			else if (this.canProgress() == null) {
-				this.progressTick();
-				this.onTickTask();
-			}
+		} else if (isInProgress()) {
+			onCancelTask();
 		}
-		else if (this.isInProgress()) {
-			this.onCancelTask();
-		}
-		if (this.actionPauseProcess > 0.0f) {
-			--this.actionPauseProcess;
+		if (actionPauseProcess > 0.0f) {
+			actionPauseProcess--;
 		}
 		if (this.actionCancelTask > 0.0f) {
-			--this.actionCancelTask;
+			actionCancelTask--;
 		}
+
 		super.onUpdate();
-		if (this.inProgress != this.inProgress()) {
-			this.inProgress = this.inProgress();
-			this.getUtil().refreshBlock();
+		if (inProgress != inProgress()) {
+			inProgress = inProgress();
+			getUtil().refreshBlock();
 		}
 	}
 
 	protected void progressTick() {
-		this.getPower().getInterface().useEnergy(PowerSystem.RF, this.getEnergyPerTick(), true);
+		getPower().getInterface().useEnergy(PowerSystem.RF, getEnergyPerTick(), true);
 	}
 
 	@Override
 	public ErrorState canWork() {
-		return (this.actionCancelTask == 0.0f) ? null : new ErrorState("Task Cancelled", "Cancelled by Buildcraft Gate");
+		if (actionCancelTask == 0.0f) {
+			return null;
+		}
+		return new ErrorState("Task Cancelled", "Cancelled by Buildcraft Gate");
 	}
 
 	@Override
 	public ErrorState canProgress() {
-		if (this.actionPauseProcess != 0.0f) {
+		if (actionPauseProcess != 0.0f) {
 			return new ErrorState("Process Paused", "Paused by Buildcraft Gate");
 		}
-		return (this.getPower().getInterface().getEnergy(PowerSystem.RF) < this.getEnergyPerTick()) ? new ErrorState.InsufficientPower() : null;
+		if (getPower().getInterface().getEnergy(PowerSystem.RF) < getEnergyPerTick()) {
+			return new ErrorState.InsufficientPower();
+		}
+		return null;
 	}
 
 	@Override
-	public final boolean isInProgress() {
-		return this.inProgress;
+	public boolean isInProgress() {
+		return inProgress;
 	}
 
 	protected abstract boolean inProgress();
 
 	protected void onCancelTask() {
+		// ignored
 	}
 
 	protected void onStartTask() {
+		// ignored
 	}
 
 	protected void onTickTask() {
+		// ignored
 	}
 
 	@Override
@@ -113,7 +115,7 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 	}
 
 	@Override
-	public final ProcessInfo getInfo() {
+	public ProcessInfo getInfo() {
 		return new ProcessInfo(this);
 	}
 }

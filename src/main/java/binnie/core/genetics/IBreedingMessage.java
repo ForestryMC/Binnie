@@ -1,40 +1,35 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.genetics;
 
-import forestry.api.genetics.IClassification;
-import binnie.core.BinnieCore;
 import binnie.Binnie;
-import forestry.api.genetics.ISpeciesRoot;
+import binnie.core.BinnieCore;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IClassification;
+import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.item.ItemStack;
 
-interface IBreedingMessage
-{
+// TODO unused interface?
+interface IBreedingMessage {
 	String getTitle();
 
 	String getBody();
 
 	ItemStack getIcon();
 
-	public static class MessageSpeciesDiscovered implements IBreedingMessage
-	{
+	class MessageSpeciesDiscovered implements IBreedingMessage {
 		IAlleleSpecies species;
 		ItemStack stack;
 
-		public MessageSpeciesDiscovered(final IAlleleSpecies species) {
+		public MessageSpeciesDiscovered(IAlleleSpecies species) {
 			this.species = species;
 			ISpeciesRoot root = null;
-			for (final ISpeciesRoot sRoot : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
+			for (ISpeciesRoot sRoot : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
 				if (sRoot.getKaryotype()[0].getAlleleClass().isInstance(species)) {
 					root = sRoot;
 				}
 			}
 			if (root != null) {
-				this.stack = root.getMemberStack(root.templateAsIndividual(root.getTemplate(species.getUID())), 0);
+				stack = root.getMemberStack(root.templateAsIndividual(root.getTemplate(species.getUID())), 0);
 			}
 		}
 
@@ -45,32 +40,31 @@ interface IBreedingMessage
 
 		@Override
 		public String getBody() {
-			return this.species.getName();
+			return species.getName();
 		}
 
 		@Override
 		public ItemStack getIcon() {
-			return this.stack;
+			return stack;
 		}
 	}
 
-	public static class BranchDiscovered implements IBreedingMessage
-	{
+	class BranchDiscovered implements IBreedingMessage {
 		IAlleleSpecies species;
 		IClassification classification;
 		ItemStack stack;
 
-		public BranchDiscovered(final IAlleleSpecies species, final IClassification classification) {
+		public BranchDiscovered(IAlleleSpecies species, IClassification classification) {
 			this.species = species;
 			this.classification = classification;
 			ISpeciesRoot root = null;
-			for (final ISpeciesRoot sRoot : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
+			for (ISpeciesRoot sRoot : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
 				if (sRoot.getKaryotype()[0].getAlleleClass().isInstance(species)) {
 					root = sRoot;
 				}
 			}
 			if (root != null) {
-				this.stack = root.getMemberStack(root.templateAsIndividual(root.getTemplate(species.getUID())), 0);
+				stack = root.getMemberStack(root.templateAsIndividual(root.getTemplate(species.getUID())), 0);
 			}
 		}
 
@@ -90,14 +84,13 @@ interface IBreedingMessage
 		}
 	}
 
-	public static class EpithetGained implements IBreedingMessage
-	{
+	class EpithetGained implements IBreedingMessage {
 		String epithet;
 		ItemStack stack;
 
-		public EpithetGained(final String epithet, final ISpeciesRoot root) {
+		public EpithetGained(String epithet, ISpeciesRoot root) {
 			this.epithet = epithet;
-			this.stack = root.getMemberStack(root.templateAsIndividual(root.getDefaultTemplate()), 0);
+			stack = root.getMemberStack(root.templateAsIndividual(root.getDefaultTemplate()), 0);
 		}
 
 		@Override
@@ -107,12 +100,12 @@ interface IBreedingMessage
 
 		@Override
 		public String getBody() {
-			return this.epithet;
+			return epithet;
 		}
 
 		@Override
 		public ItemStack getIcon() {
-			return this.stack;
+			return stack;
 		}
 	}
 }

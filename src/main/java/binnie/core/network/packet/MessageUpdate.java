@@ -1,77 +1,79 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.network.packet;
 
-import net.minecraft.world.World;
-import java.io.IOException;
+import binnie.core.network.INetworkedEntity;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.tileentity.TileEntity;
-import binnie.core.network.INetworkedEntity;
+import net.minecraft.world.World;
 
-public class MessageUpdate extends MessageCoordinates
-{
+import java.io.IOException;
+
+public class MessageUpdate extends MessageCoordinates {
 	public PacketPayload payload;
 
-	public MessageUpdate(final MessageBinnie message) {
+	public MessageUpdate(MessageBinnie message) {
 		super(message);
 	}
 
-	public MessageUpdate(final int id, final INetworkedEntity tile) {
+	public MessageUpdate(int id, INetworkedEntity tile) {
 		super(id, ((TileEntity) tile).xCoord, ((TileEntity) tile).yCoord, ((TileEntity) tile).zCoord);
-		tile.writeToPacket(this.payload = new PacketPayload());
+		payload = new PacketPayload();
+		tile.writeToPacket(payload);
 	}
 
 	@Override
-	public void writeData(final ByteBuf data) throws IOException {
+	public void writeData(ByteBuf data) throws IOException {
 		super.writeData(data);
-		if (this.payload == null) {
+		if (payload == null) {
 			data.writeInt(0);
 			data.writeInt(0);
 			data.writeInt(0);
 			return;
 		}
-		data.writeInt(this.payload.intPayload.size());
-		data.writeInt(this.payload.floatPayload.size());
-		data.writeInt(this.payload.stringPayload.size());
-		for (final int intData : this.payload.intPayload) {
+
+		data.writeInt(payload.intPayload.size());
+		data.writeInt(payload.floatPayload.size());
+		data.writeInt(payload.stringPayload.size());
+
+		for (int intData : payload.intPayload) {
 			data.writeInt(intData);
 		}
-		for (final float floatData : this.payload.floatPayload) {
+		for (float floatData : payload.floatPayload) {
 			data.writeFloat(floatData);
 		}
-		for (final String stringData : this.payload.stringPayload) {
-			final byte[] bytes = stringData.getBytes("UTF-8");
+		for (String stringData : payload.stringPayload) {
+			byte[] bytes = stringData.getBytes("UTF-8");
 			data.writeShort(bytes.length);
 			data.writeBytes(bytes);
 		}
 	}
 
 	@Override
-	public void readData(final ByteBuf data) throws IOException {
+	public void readData(ByteBuf data) throws IOException {
 		super.readData(data);
-		this.payload = new PacketPayload();
-		final int intLength = data.readInt();
-		final int floatLength = data.readInt();
-		final int stringLength = data.readInt();
-		this.payload.intPayload.clear();
-		this.payload.floatPayload.clear();
-		this.payload.stringPayload.clear();
+		payload = new PacketPayload();
+		payload.intPayload.clear();
+		payload.floatPayload.clear();
+		payload.stringPayload.clear();
+
+		int intLength = data.readInt();
+		int floatLength = data.readInt();
+		int stringLength = data.readInt();
+
 		for (int i = 0; i < intLength; ++i) {
-			this.payload.addInteger(data.readInt());
+			payload.addInteger(data.readInt());
 		}
 		for (int i = 0; i < floatLength; ++i) {
-			this.payload.addFloat(data.readFloat());
+			payload.addFloat(data.readFloat());
 		}
 		for (int i = 0; i < stringLength; ++i) {
-			final int length = data.readShort();
-			final byte[] string = data.readBytes(length).array();
-			this.payload.addString(new String(string, "UTF-8"));
+			int length = data.readShort();
+			byte[] string = data.readBytes(length).array();
+			payload.addString(new String(string, "UTF-8"));
 		}
 	}
 
-	public TileEntity getTarget(final World world) {
+	// TODO unused method?
+	public TileEntity getTarget(World world) {
 		return world.getTileEntity(this.posX, this.posY, this.posZ);
 	}
 }

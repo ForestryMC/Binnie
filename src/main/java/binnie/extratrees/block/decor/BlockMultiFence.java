@@ -36,8 +36,8 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata
 	}
 
 	@Override
-	public String getBlockName(final ItemStack par1ItemStack) {
-		final int meta = TileEntityMetadata.getItemDamage(par1ItemStack);
+	public String getBlockName(final ItemStack itemStack) {
+		final int meta = TileEntityMetadata.getItemDamage(itemStack);
 		final IPlankType type1 = this.getDescription(meta).getPlankType();
 		final IPlankType type2 = this.getDescription(meta).getSecondaryPlankType();
 		final boolean twoTypes = type1 != type2;

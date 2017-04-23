@@ -90,8 +90,8 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 	}
 
 	@Override
-	public String getBlockName(final ItemStack stack) {
-		final DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
+	public String getBlockName(final ItemStack itemStack) {
+		final DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(itemStack));
 		return this.getBlockName(block);
 	}
 
@@ -122,13 +122,13 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 	}
 
 	@Override
-	public void getBlockTooltip(final ItemStack stack, final List par3List) {
-		final DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
+	public void getBlockTooltip(final ItemStack itemStack, final List tooltip) {
+		final DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(itemStack));
 		if (block.getPrimaryMaterial() != block.getSecondaryMaterial()) {
-			par3List.add(block.getPrimaryMaterial().getName() + " and " + block.getSecondaryMaterial().getName());
+			tooltip.add(block.getPrimaryMaterial().getName() + " and " + block.getSecondaryMaterial().getName());
 		}
 		else {
-			par3List.add(block.getPrimaryMaterial().getName());
+			tooltip.add(block.getPrimaryMaterial().getName());
 		}
 	}
 

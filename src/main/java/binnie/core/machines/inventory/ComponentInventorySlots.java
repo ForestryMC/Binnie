@@ -1,79 +1,75 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.inventory;
 
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraft.entity.Entity;
+import binnie.core.machines.IMachine;
 import net.minecraft.entity.item.EntityItem;
-import java.util.List;
-import java.util.ArrayList;
-import net.minecraft.nbt.NBTBase;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import binnie.core.machines.IMachine;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
-public class ComponentInventorySlots extends ComponentInventory implements IInventoryMachine, IInventorySlots
-{
-	private Map<Integer, InventorySlot> inventory;
+public class ComponentInventorySlots extends ComponentInventory implements IInventoryMachine, IInventorySlots {
+	private Map<Integer, InventorySlot> inventory = new LinkedHashMap<>();
 
-	public ComponentInventorySlots(final IMachine machine) {
+	public ComponentInventorySlots(IMachine machine) {
 		super(machine);
-		this.inventory = new LinkedHashMap<Integer, InventorySlot>();
 	}
 
 	@Override
 	public int getSizeInventory() {
 		int size = 0;
-		for (final Integer index : this.inventory.keySet()) {
+		for (Integer index : inventory.keySet()) {
 			size = Math.max(size, index + 1);
 		}
 		return size;
 	}
 
 	@Override
-	public ItemStack getStackInSlot(final int index) {
-		if (this.inventory.containsKey(index)) {
-			return this.inventory.get(index).getContent();
+	public ItemStack getStackInSlot(int index) {
+		if (inventory.containsKey(index)) {
+			return inventory.get(index).getContent();
 		}
 		return null;
 	}
 
 	@Override
-	public ItemStack decrStackSize(final int index, final int amount) {
-		if (this.inventory.containsKey(index)) {
-			final ItemStack stack = this.inventory.get(index).decrStackSize(amount);
-			this.markDirty();
+	public ItemStack decrStackSize(int index, int amount) {
+		if (inventory.containsKey(index)) {
+			ItemStack stack = inventory.get(index).decrStackSize(amount);
+			markDirty();
 			return stack;
 		}
 		return null;
 	}
 
 	@Override
-	public ItemStack getStackInSlotOnClosing(final int var1) {
+	public ItemStack getStackInSlotOnClosing(int var1) {
 		return null;
 	}
 
 	@Override
-	public void setInventorySlotContents(final int index, final ItemStack itemStack) {
-		if (this.inventory.containsKey(index) && (itemStack == null || this.inventory.get(index).isValid(itemStack))) {
-			this.inventory.get(index).setContent(itemStack);
+	public void setInventorySlotContents(int index, ItemStack itemStack) {
+		if (inventory.containsKey(index) && (itemStack == null || inventory.get(index).isValid(itemStack))) {
+			inventory.get(index).setContent(itemStack);
 		}
 		this.markDirty();
 	}
 
-	protected void transferItem(final int indexFrom, final int indexTo) {
-		if (this.inventory.containsKey(indexFrom) && this.inventory.containsKey(indexTo)) {
-			final ItemStack newStack = this.inventory.get(indexFrom).getContent().copy();
-			this.inventory.get(indexFrom).setContent(null);
-			this.inventory.get(indexTo).setContent(newStack);
+	protected void transferItem(int indexFrom, int indexTo) {
+		if (inventory.containsKey(indexFrom) && inventory.containsKey(indexTo)) {
+			ItemStack newStack = inventory.get(indexFrom).getContent().copy();
+			inventory.get(indexFrom).setContent(null);
+			inventory.get(indexTo).setContent(newStack);
 		}
-		this.markDirty();
+		markDirty();
 	}
 
 	@Override
@@ -87,43 +83,45 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	public boolean isUseableByPlayer(final EntityPlayer var1) {
+	public boolean isUseableByPlayer(EntityPlayer var1) {
 		return true;
 	}
 
 	@Override
 	public void openInventory() {
+		// ignored
 	}
 
 	@Override
 	public void closeInventory() {
+		// ignored
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbttagcompound) {
+	public void readFromNBT(NBTTagCompound nbttagcompound) {
 		super.readFromNBT(nbttagcompound);
 		if (nbttagcompound.hasKey("inventory")) {
-			final NBTTagList inventoryNBT = nbttagcompound.getTagList("inventory", 10);
+			NBTTagList inventoryNBT = nbttagcompound.getTagList("inventory", 10);
 			for (int i = 0; i < inventoryNBT.tagCount(); ++i) {
-				final NBTTagCompound slotNBT = inventoryNBT.getCompoundTagAt(i);
+				NBTTagCompound slotNBT = inventoryNBT.getCompoundTagAt(i);
 				int index = slotNBT.getInteger("id");
 				if (slotNBT.hasKey("Slot")) {
 					index = (slotNBT.getByte("Slot") & 0xFF);
 				}
-				if (this.inventory.containsKey(index)) {
-					this.inventory.get(index).readFromNBT(slotNBT);
+				if (inventory.containsKey(index)) {
+					inventory.get(index).readFromNBT(slotNBT);
 				}
 			}
 		}
-		this.markDirty();
+		markDirty();
 	}
 
 	@Override
-	public void writeToNBT(final NBTTagCompound nbttagcompound) {
+	public void writeToNBT(NBTTagCompound nbttagcompound) {
 		super.writeToNBT(nbttagcompound);
-		final NBTTagList inventoryNBT = new NBTTagList();
-		for (final Map.Entry<Integer, InventorySlot> entry : this.inventory.entrySet()) {
-			final NBTTagCompound slotNBT = new NBTTagCompound();
+		NBTTagList inventoryNBT = new NBTTagList();
+		for (Map.Entry<Integer, InventorySlot> entry : inventory.entrySet()) {
+			NBTTagCompound slotNBT = new NBTTagCompound();
 			slotNBT.setInteger("id", entry.getKey());
 			entry.getValue().writeToNBT(slotNBT);
 			inventoryNBT.appendTag(slotNBT);
@@ -132,46 +130,46 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	public final InventorySlot addSlot(final int index, final String unlocName) {
-		this.inventory.put(index, new InventorySlot(index, unlocName));
-		return this.getSlot(index);
+	public InventorySlot addSlot(int index, String unlocalizedName) {
+		inventory.put(index, new InventorySlot(index, unlocalizedName));
+		return getSlot(index);
 	}
 
 	@Override
-	public final InventorySlot[] addSlotArray(final int[] indexes, final String unlocName) {
-		for (final int k : indexes) {
-			this.addSlot(k, unlocName);
+	public InventorySlot[] addSlotArray(int[] indexes, String unlocalizedName) {
+		for (int k : indexes) {
+			addSlot(k, unlocalizedName);
 		}
-		return this.getSlots(indexes);
+		return getSlots(indexes);
 	}
 
 	@Override
-	public InventorySlot getSlot(final int index) {
-		if (this.inventory.containsKey(index)) {
-			return this.inventory.get(index);
+	public InventorySlot getSlot(int index) {
+		if (inventory.containsKey(index)) {
+			return inventory.get(index);
 		}
 		return null;
 	}
 
 	@Override
 	public InventorySlot[] getAllSlots() {
-		return this.inventory.values().toArray(new InventorySlot[0]);
+		return inventory.values().toArray(new InventorySlot[0]);
 	}
 
 	@Override
-	public InventorySlot[] getSlots(final int[] indexes) {
-		final List<InventorySlot> list = new ArrayList<InventorySlot>();
-		for (final int i : indexes) {
-			if (this.getSlot(i) != null) {
-				list.add(this.getSlot(i));
+	public InventorySlot[] getSlots(int[] indexes) {
+		List<InventorySlot> list = new ArrayList<InventorySlot>();
+		for (int i : indexes) {
+			if (getSlot(i) != null) {
+				list.add(getSlot(i));
 			}
 		}
 		return list.toArray(new InventorySlot[0]);
 	}
 
 	@Override
-	public boolean isReadOnly(final int slot) {
-		final InventorySlot iSlot = this.getSlot(slot);
+	public boolean isReadOnly(int slot) {
+		InventorySlot iSlot = getSlot(slot);
 		return iSlot == null || iSlot.isReadOnly();
 	}
 
@@ -181,41 +179,49 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	public boolean isItemValidForSlot(final int slot, final ItemStack itemStack) {
-		final InventorySlot iSlot = this.getSlot(slot);
-		return iSlot != null && (iSlot.isValid(itemStack) && !this.isReadOnly(slot));
+	public boolean isItemValidForSlot(int slot, ItemStack itemStack) {
+		InventorySlot iSlot = getSlot(slot);
+		return iSlot != null && (iSlot.isValid(itemStack) && !isReadOnly(slot));
 	}
 
 	@Override
 	public void onDestruction() {
-		for (final InventorySlot slot : this.inventory.values()) {
-			final ItemStack stack = slot.getContent();
-			if (!slot.isRecipe() && stack != null) {
-				final float f = this.getMachine().getWorld().rand.nextFloat() * 0.8f + 0.1f;
-				final float f2 = this.getMachine().getWorld().rand.nextFloat() * 0.8f + 0.1f;
-				final float f3 = this.getMachine().getWorld().rand.nextFloat() * 0.8f + 0.1f;
-				if (stack.stackSize == 0) {
-					stack.stackSize = 1;
-				}
-				final EntityItem entityitem = new EntityItem(this.getMachine().getWorld(), this.getMachine().getTileEntity().xCoord + f, this.getMachine().getTileEntity().yCoord + f2, this.getMachine().getTileEntity().zCoord + f3, stack.copy());
-				final float accel = 0.05f;
-				entityitem.motionX = (float) this.getMachine().getWorld().rand.nextGaussian() * accel;
-				entityitem.motionY = (float) this.getMachine().getWorld().rand.nextGaussian() * accel + 0.2f;
-				entityitem.motionZ = (float) this.getMachine().getWorld().rand.nextGaussian() * accel;
-				this.getMachine().getWorld().spawnEntityInWorld(entityitem);
+		for (InventorySlot slot : this.inventory.values()) {
+			ItemStack stack = slot.getContent();
+			if (slot.isRecipe() || stack == null) {
+				continue;
 			}
+			
+			IMachine machine = getMachine();
+			World world = machine.getWorld();
+			Random rand = world.rand;
+			TileEntity tileEntity = machine.getTileEntity();
+			float xOffset = rand.nextFloat() * 0.8f + 0.1f;
+			float yOffset = rand.nextFloat() * 0.8f + 0.1f;
+			float zOffset = rand.nextFloat() * 0.8f + 0.1f;
+			
+			if (stack.stackSize == 0) {
+				stack.stackSize = 1;
+			}
+
+			EntityItem entityItem = new EntityItem(world, tileEntity.xCoord + xOffset, tileEntity.yCoord + yOffset, tileEntity.zCoord + zOffset, stack.copy());
+			float accel = 0.05f;
+			entityItem.motionX = (float) rand.nextGaussian() * accel;
+			entityItem.motionY = (float) rand.nextGaussian() * accel + 0.2f;
+			entityItem.motionZ = (float) rand.nextGaussian() * accel;
+			world.spawnEntityInWorld(entityItem);
 		}
 	}
 
 	@Override
-	public int[] getAccessibleSlotsFromSide(final int var1) {
-		final List<Integer> slots = new ArrayList<Integer>();
-		for (final InventorySlot slot : this.inventory.values()) {
+	public int[] getAccessibleSlotsFromSide(int var1) {
+		List<Integer> slots = new ArrayList<>();
+		for (InventorySlot slot : inventory.values()) {
 			if (slot.canInsert() || slot.canExtract()) {
 				slots.add(slot.getIndex());
 			}
 		}
-		final int[] ids = new int[slots.size()];
+		int[] ids = new int[slots.size()];
 		for (int i = 0; i < slots.size(); ++i) {
 			ids[i] = slots.get(i);
 		}
@@ -223,12 +229,13 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 	}
 
 	@Override
-	public boolean canInsertItem(final int i, final ItemStack itemstack, final int j) {
-		return this.isItemValidForSlot(i, itemstack) && this.getSlot(i).canInsert(ForgeDirection.getOrientation(j));
+	public boolean canInsertItem(int slot, ItemStack itemstack, int direction) {
+		return isItemValidForSlot(slot, itemstack)
+			&& getSlot(slot).canInsert(ForgeDirection.getOrientation(direction));
 	}
 
 	@Override
-	public boolean canExtractItem(final int i, final ItemStack itemstack, final int j) {
-		return this.getSlot(i).canExtract(ForgeDirection.getOrientation(j));
+	public boolean canExtractItem(int slot, ItemStack itemstack, int direction) {
+		return getSlot(slot).canExtract(ForgeDirection.getOrientation(direction));
 	}
 }

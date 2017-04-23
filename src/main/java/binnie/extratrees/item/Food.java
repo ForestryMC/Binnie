@@ -108,17 +108,17 @@ public enum Food implements IItemMisc
 	}
 
 	@Override
-	public String getName(final ItemStack stack) {
+	public String getName(final ItemStack itemStack) {
 		return ExtraTrees.proxy.localise("item.food." + this.name().toLowerCase());
 	}
 
 	@Override
-	public ItemStack get(final int i) {
-		return new ItemStack(ExtraTrees.itemFood, i, this.ordinal());
+	public ItemStack get(final int count) {
+		return new ItemStack(ExtraTrees.itemFood, count, this.ordinal());
 	}
 
 	@Override
-	public IIcon getIcon(final ItemStack stack) {
+	public IIcon getIcon(final ItemStack itemStack) {
 		return this.icon;
 	}
 
@@ -128,7 +128,7 @@ public enum Food implements IItemMisc
 	}
 
 	@Override
-	public void addInformation(final List par3List) {
+	public void addInformation(final List data) {
 	}
 
 	public void addJuice(final Juice juice, final int time, final int amount, final int mulch) {

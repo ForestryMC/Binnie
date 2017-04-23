@@ -1,72 +1,66 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.power;
 
-import net.minecraft.nbt.NBTTagCompound;
 import forestry.api.core.INBTTagable;
+import net.minecraft.nbt.NBTTagCompound;
 
-public class ProcessInfo implements INBTTagable
-{
+public class ProcessInfo implements INBTTagable {
 	private float currentProgress;
 	private int processEnergy;
 	private int processTime;
 	private float energyPerTick;
 
-	public ProcessInfo(final IProcess process) {
-		this.currentProgress = 0.0f;
-		this.processEnergy = 0;
-		this.processTime = 0;
-		this.energyPerTick = 0.0f;
-		this.energyPerTick = process.getEnergyPerTick();
+	public ProcessInfo(IProcess process) {
+		currentProgress = 0.0f;
+		processEnergy = 0;
+		processTime = 0;
+		energyPerTick = process.getEnergyPerTick();
+
 		if (process instanceof IProcessTimed) {
-			final IProcessTimed time = (IProcessTimed) process;
-			this.currentProgress = time.getProgress();
-			this.processEnergy = time.getProcessEnergy();
-			this.processTime = time.getProcessLength();
-		}
-		else {
-			this.currentProgress = (process.isInProgress() ? 100.0f : 0.0f);
+			IProcessTimed time = (IProcessTimed) process;
+			currentProgress = time.getProgress();
+			processEnergy = time.getProcessEnergy();
+			processTime = time.getProcessLength();
+		} else {
+			currentProgress = process.isInProgress() ? 100.0f : 0.0f;
 		}
 	}
 
 	public ProcessInfo() {
-		this.currentProgress = 0.0f;
-		this.processEnergy = 0;
-		this.processTime = 0;
-		this.energyPerTick = 0.0f;
+		currentProgress = 0.0f;
+		processEnergy = 0;
+		processTime = 0;
+		energyPerTick = 0.0f;
 	}
 
 	public float getCurrentProgress() {
-		return this.currentProgress;
+		return currentProgress;
 	}
 
 	public int getProcessEnergy() {
-		return this.processEnergy;
+		return processEnergy;
 	}
 
 	public int getProcessTime() {
-		return this.processTime;
+		return processTime;
 	}
 
 	public float getEnergyPerTick() {
-		return this.energyPerTick;
+		return energyPerTick;
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbttagcompound) {
-		this.energyPerTick = nbttagcompound.getFloat("ept");
-		this.processEnergy = nbttagcompound.getInteger("e");
-		this.processTime = nbttagcompound.getInteger("t");
-		this.currentProgress = nbttagcompound.getFloat("p");
+	public void readFromNBT(NBTTagCompound nbttagcompound) {
+		energyPerTick = nbttagcompound.getFloat("ept");
+		processEnergy = nbttagcompound.getInteger("e");
+		processTime = nbttagcompound.getInteger("t");
+		currentProgress = nbttagcompound.getFloat("p");
 	}
 
 	@Override
-	public void writeToNBT(final NBTTagCompound nbttagcompound) {
-		nbttagcompound.setFloat("ept", this.energyPerTick);
-		nbttagcompound.setFloat("p", this.currentProgress);
-		nbttagcompound.setInteger("e", this.processEnergy);
-		nbttagcompound.setInteger("t", this.processTime);
+	public void writeToNBT(NBTTagCompound nbttagcompound) {
+		nbttagcompound.setFloat("ept", energyPerTick);
+		nbttagcompound.setFloat("p", currentProgress);
+		nbttagcompound.setInteger("e", processEnergy);
+		nbttagcompound.setInteger("t", processTime);
 	}
 }

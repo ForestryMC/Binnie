@@ -1,23 +1,18 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.power;
 
-import binnie.core.machines.inventory.TankSlot;
-import net.minecraftforge.fluids.IFluidTank;
 import binnie.core.machines.inventory.IValidatedTankContainer;
+import binnie.core.machines.inventory.TankSlot;
 import net.minecraftforge.fluids.IFluidHandler;
+import net.minecraftforge.fluids.IFluidTank;
 
-public interface ITankMachine extends IFluidHandler, IValidatedTankContainer
-{
+public interface ITankMachine extends IFluidHandler, IValidatedTankContainer {
 	TankInfo[] getTankInfos();
 
 	IFluidTank[] getTanks();
 
-	TankSlot addTank(final int p0, final String p1, final int p2);
+	TankSlot addTank(int index, String name, int capacity);
 
-	IFluidTank getTank(final int p0);
+	IFluidTank getTank(int index);
 
-	TankSlot getTankSlot(final int p0);
+	TankSlot getTankSlot(int slot);
 }

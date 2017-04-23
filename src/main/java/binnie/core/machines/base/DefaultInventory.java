@@ -1,37 +1,33 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.machines.base;
 
+import binnie.core.machines.inventory.IInventoryMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import binnie.core.machines.inventory.IInventoryMachine;
 
-class DefaultInventory implements IInventoryMachine
-{
+class DefaultInventory implements IInventoryMachine {
 	@Override
 	public int getSizeInventory() {
 		return 0;
 	}
 
 	@Override
-	public ItemStack getStackInSlot(final int i) {
+	public ItemStack getStackInSlot(int slot) {
 		return null;
 	}
 
 	@Override
-	public ItemStack decrStackSize(final int i, final int j) {
+	public ItemStack decrStackSize(int index, int count) {
 		return null;
 	}
 
 	@Override
-	public ItemStack getStackInSlotOnClosing(final int i) {
+	public ItemStack getStackInSlotOnClosing(int index) {
 		return null;
 	}
 
 	@Override
-	public void setInventorySlotContents(final int i, final ItemStack itemstack) {
+	public void setInventorySlotContents(int index, ItemStack itemStack) {
+		// ignored
 	}
 
 	@Override
@@ -40,32 +36,32 @@ class DefaultInventory implements IInventoryMachine
 	}
 
 	@Override
-	public boolean isUseableByPlayer(final EntityPlayer entityplayer) {
+	public boolean isUseableByPlayer(EntityPlayer player) {
 		return false;
 	}
 
 	@Override
-	public boolean isItemValidForSlot(final int i, final ItemStack itemstack) {
+	public boolean isItemValidForSlot(int index, ItemStack itemStack) {
 		return false;
 	}
 
 	@Override
-	public int[] getAccessibleSlotsFromSide(final int var1) {
+	public int[] getAccessibleSlotsFromSide(int side) {
 		return new int[0];
 	}
 
 	@Override
-	public boolean canInsertItem(final int i, final ItemStack itemstack, final int j) {
+	public boolean canInsertItem(int index, ItemStack itemStack, int direction) {
 		return false;
 	}
 
 	@Override
-	public boolean canExtractItem(final int i, final ItemStack itemstack, final int j) {
+	public boolean canExtractItem(int index, ItemStack itemStack, int direction) {
 		return false;
 	}
 
 	@Override
-	public boolean isReadOnly(final int slot) {
+	public boolean isReadOnly(int slot) {
 		return false;
 	}
 
@@ -81,13 +77,16 @@ class DefaultInventory implements IInventoryMachine
 
 	@Override
 	public void markDirty() {
+		// ignored
 	}
 
 	@Override
 	public void openInventory() {
+		// ignored
 	}
 
 	@Override
 	public void closeInventory() {
+		// ignored
 	}
 }

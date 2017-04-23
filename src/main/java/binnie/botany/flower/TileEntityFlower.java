@@ -24,12 +24,9 @@ import net.minecraft.world.World;
 import forestry.lepidopterology.entities.EntityButterfly;
 import binnie.botany.gardening.BlockPlant;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 
 import binnie.botany.api.EnumFlowerStage;
-
-import cpw.mods.fml.common.network.simpleimpl.IMessage;
 
 import binnie.botany.network.MessageFlowerUpdate;
 
@@ -57,7 +54,6 @@ import java.util.EnumSet;
 import binnie.botany.core.BotanyCore;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTBase;
 
 import binnie.Binnie;
 import binnie.core.BinnieCore;
@@ -307,7 +303,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		if (this.renderInfo == null && this.getFlower() != null && this.getFlower().getGenome() != null) {
 			this.renderInfo = new RenderInfo(this.getFlower(), this);
 		}
-		return (this.renderInfo != null) ? Botany.instance.getNetworkWrapper().getPacketFrom(new MessageFlowerUpdate(this.xCoord, this.yCoord, this.zCoord, this.renderInfo).GetMessage()) : null;
+		return (this.renderInfo != null) ? Botany.instance.getNetworkWrapper().getPacketFrom(new MessageFlowerUpdate(this.xCoord, this.yCoord, this.zCoord, this.renderInfo).getMessage()) : null;
 	}
 
 	public void updateRender(final boolean update) {

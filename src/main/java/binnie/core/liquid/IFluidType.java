@@ -1,24 +1,19 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.liquid;
 
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
+import net.minecraftforge.fluids.FluidStack;
 
-public interface IFluidType
-{
+public interface IFluidType {
 	IIcon getIcon();
 
-	void registerIcon(final IIconRegister p0);
+	void registerIcon(IIconRegister register);
 
 	String getName();
 
 	String getIdentifier();
 
-	FluidStack get(final int p0);
+	FluidStack get(int amount);
 
 	int getColour();
 
@@ -26,7 +21,7 @@ public interface IFluidType
 
 	int getTransparency();
 
-	boolean canPlaceIn(final FluidContainer p0);
+	boolean canPlaceIn(FluidContainer container);
 
-	boolean showInCreative(final FluidContainer p0);
+	boolean showInCreative(FluidContainer container);
 }

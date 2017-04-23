@@ -1,24 +1,20 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.block;
 
-import java.util.List;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraft.world.World;
-import net.minecraft.item.ItemStack;
 import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
-public interface IBlockMetadata extends ITileEntityProvider
-{
-	int getPlacedMeta(final ItemStack p0, final World p1, final int p2, final int p3, final int p4, final ForgeDirection p5);
+import java.util.List;
 
-	int getDroppedMeta(final int p0, final int p1);
+public interface IBlockMetadata extends ITileEntityProvider {
+	int getPlacedMeta(ItemStack itemStack, World world, int x, int y, int z, ForgeDirection direction);
 
-	String getBlockName(final ItemStack p0);
+	int getDroppedMeta(int blockMeta, int tileMeta);
 
-	void getBlockTooltip(final ItemStack p0, final List p1);
+	String getBlockName(ItemStack itemStack);
 
-	void dropAsStack(final World p0, final int p1, final int p2, final int p3, final ItemStack p4);
+	void getBlockTooltip(ItemStack itemStack, List tooltip);
+
+	void dropAsStack(World world, int x, int y, int z, ItemStack itemStack);
 }
