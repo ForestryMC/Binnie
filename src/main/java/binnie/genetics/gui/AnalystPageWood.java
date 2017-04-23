@@ -5,26 +5,25 @@
 package binnie.genetics.gui;
 
 import forestry.api.arboriculture.ITreeGenome;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.core.craftgui.geometry.IPoint;
 
 import java.util.Collection;
 
-import binnie.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.common.util.ForgeDirection;
 
 import binnie.core.util.UniqueItemStackSet;
-import binnie.craftgui.minecraft.control.ControlIconDisplay;
+import binnie.core.craftgui.minecraft.control.ControlIconDisplay;
 import binnie.genetics.item.ModuleItem;
-import forestry.api.genetics.IChromosomeType;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.genetics.IAlleleBoolean;
-import binnie.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.controls.ControlTextCentered;
 import forestry.api.arboriculture.ITree;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.IWidget;
 import binnie.extratrees.FakeWorld;
 
 public class AnalystPageWood extends AnalystPageProduce

@@ -4,8 +4,8 @@
 
 package binnie.genetics.gui;
 
-import binnie.craftgui.minecraft.control.ControlItemDisplay;
-import binnie.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.core.craftgui.controls.ControlTextCentered;
 import net.minecraft.init.Items;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import binnie.extratrees.machines.Distillery;
@@ -25,8 +25,8 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import binnie.core.util.UniqueItemStackSet;
 import java.util.Collection;
 import net.minecraft.item.ItemStack;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.IWidget;
 
 public abstract class AnalystPageProduce extends ControlAnalystPage
 {

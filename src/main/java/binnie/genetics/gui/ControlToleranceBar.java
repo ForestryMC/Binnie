@@ -6,16 +6,16 @@ package binnie.genetics.gui;
 
 import binnie.core.genetics.Tolerance;
 import forestry.api.genetics.EnumTolerance;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.geometry.IBorder;
-import binnie.craftgui.core.CraftGUI;
-import binnie.craftgui.core.Tooltip;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.geometry.IBorder;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.Tooltip;
 import forestry.api.core.EnumTemperature;
-import binnie.craftgui.core.Attribute;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.IWidget;
 import java.util.EnumSet;
-import binnie.craftgui.core.ITooltip;
-import binnie.craftgui.controls.core.Control;
+import binnie.core.craftgui.ITooltip;
+import binnie.core.craftgui.controls.core.Control;
 
 public abstract class ControlToleranceBar<T extends Enum<T>> extends Control implements ITooltip
 {

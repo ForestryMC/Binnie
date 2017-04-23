@@ -4,28 +4,27 @@
 
 package binnie.genetics.gui;
 
-import binnie.craftgui.core.geometry.IPoint;
-import binnie.craftgui.events.EventMouse;
+import binnie.core.craftgui.geometry.IPoint;
+import binnie.core.craftgui.events.EventMouse;
 import forestry.api.genetics.IIndividual;
-import binnie.craftgui.controls.scroll.ControlScrollBar;
-import binnie.craftgui.core.geometry.TextJustification;
-import binnie.craftgui.controls.core.Control;
-import binnie.craftgui.controls.listbox.ControlListBox;
-import forestry.api.genetics.IChromosomeType;
+import binnie.core.craftgui.controls.scroll.ControlScrollBar;
+import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.controls.core.Control;
+import binnie.core.craftgui.controls.listbox.ControlListBox;
 import forestry.api.arboriculture.EnumTreeChromosome;
-import binnie.craftgui.window.Panel;
-import binnie.craftgui.minecraft.MinecraftGUI;
-import binnie.craftgui.resource.minecraft.CraftGUITexture;
-import binnie.craftgui.core.CraftGUI;
+import binnie.core.craftgui.window.Panel;
+import binnie.core.craftgui.minecraft.MinecraftGUI;
+import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
+import binnie.core.craftgui.CraftGUI;
 import java.util.Collection;
 import forestry.api.genetics.IAlleleSpecies;
 import java.util.ArrayList;
-import binnie.craftgui.controls.ControlTextEdit;
-import binnie.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.controls.ControlTextEdit;
+import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.genetics.BreedingSystem;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.controls.scroll.ControlScrollableContent;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.scroll.ControlScrollableContent;
 
 public class AnalystPageDatabase extends ControlAnalystPage
 {

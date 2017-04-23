@@ -1,0 +1,31 @@
+// 
+// Decompiled by Procyon v0.5.30
+// 
+
+package binnie.core.craftgui.minecraft.control;
+
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.geometry.Position;
+import binnie.core.craftgui.resource.Texture;
+
+public class ControlProgress extends ControlProgressBase
+{
+	private Texture progressBlank;
+	private Texture progressBar;
+	private Position direction;
+
+	public ControlProgress(final IWidget parent, final int x, final int y, final Texture progressBlank, final Texture progressBar, final Position dir) {
+		super(parent, x, y, (progressBlank == null) ? 0.0f : progressBlank.w(), (progressBlank == null) ? 0.0f : progressBlank.h());
+		this.progressBlank = progressBlank;
+		this.progressBar = progressBar;
+		progress = 0.0f;
+		direction = dir;
+	}
+
+	@Override
+	public void onRenderBackground() {
+		CraftGUI.Render.texture(progressBlank, getArea());
+		CraftGUI.Render.texturePercentage(progressBar, getArea(), direction, progress);
+	}
+}

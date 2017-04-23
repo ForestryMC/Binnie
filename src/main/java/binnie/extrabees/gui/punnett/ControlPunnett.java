@@ -5,17 +5,17 @@
 package binnie.extrabees.gui.punnett;
 
 import java.util.List;
-import binnie.craftgui.controls.ControlText;
-import binnie.craftgui.core.geometry.TextJustification;
+import binnie.core.craftgui.controls.ControlText;
+import binnie.core.craftgui.geometry.TextJustification;
 import java.util.LinkedList;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IChromosomeType;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.CraftGUI;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.controls.core.Control;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.core.Control;
 
 public class ControlPunnett extends Control
 {

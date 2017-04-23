@@ -5,9 +5,9 @@
 package binnie.genetics.gui;
 
 import java.text.DecimalFormat;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.controls.core.Control;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.core.Control;
 
 public abstract class ControlAnalystPage extends Control
 {

@@ -4,21 +4,21 @@
 
 package binnie.extrabees.gui.database;
 
-import binnie.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.Window;
 import binnie.Binnie;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
-import binnie.craftgui.mod.database.PageBreeder;
-import binnie.craftgui.mod.database.PageBranchSpecies;
-import binnie.craftgui.mod.database.PageBranchOverview;
-import binnie.craftgui.mod.database.PageSpeciesMutations;
-import binnie.craftgui.mod.database.PageSpeciesResultant;
-import binnie.craftgui.mod.database.PageSpeciesClassification;
+import binnie.core.craftgui.database.PageBreeder;
+import binnie.core.craftgui.database.PageBranchSpecies;
+import binnie.core.craftgui.database.PageBranchOverview;
+import binnie.core.craftgui.database.PageSpeciesMutations;
+import binnie.core.craftgui.database.PageSpeciesResultant;
+import binnie.core.craftgui.database.PageSpeciesClassification;
 import binnie.core.AbstractMod;
-import binnie.craftgui.mod.database.DatabaseTab;
+import binnie.core.craftgui.database.DatabaseTab;
 import binnie.extrabees.ExtraBees;
-import binnie.craftgui.mod.database.PageSpeciesOverview;
-import binnie.craftgui.mod.database.WindowAbstractDatabase;
+import binnie.core.craftgui.database.PageSpeciesOverview;
+import binnie.core.craftgui.database.WindowAbstractDatabase;
 
 public class WindowApiaristDatabase extends WindowAbstractDatabase
 {

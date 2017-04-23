@@ -4,21 +4,20 @@
 
 package binnie.genetics.gui;
 
-import binnie.craftgui.core.geometry.TextJustification;
-import binnie.craftgui.core.Attribute;
-import binnie.craftgui.minecraft.EnumColor;
+import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.minecraft.EnumColor;
 import java.util.Collection;
 import java.util.List;
 import forestry.api.genetics.IAllele;
 import binnie.genetics.item.ModuleItem;
-import binnie.craftgui.core.geometry.IPoint;
-import binnie.craftgui.core.CraftGUI;
+import binnie.core.craftgui.geometry.IPoint;
+import binnie.core.craftgui.CraftGUI;
 import forestry.api.genetics.IAlleleSpecies;
 import binnie.core.genetics.BreedingSystem;
-import binnie.craftgui.controls.core.Control;
+import binnie.core.craftgui.controls.core.Control;
 import forestry.api.genetics.IMutation;
-import binnie.craftgui.minecraft.control.ControlItemDisplay;
-import net.minecraft.block.Block;
+import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import net.minecraft.init.Blocks;
 import binnie.core.Mods;
 import binnie.core.genetics.ForestryAllele;
@@ -26,12 +25,12 @@ import net.minecraft.item.ItemStack;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.genetics.ExtraBeesSpecies;
 import forestry.api.apiculture.IBee;
-import binnie.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.Window;
 import binnie.Binnie;
-import binnie.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.controls.ControlTextCentered;
 import forestry.api.genetics.IIndividual;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.IWidget;
 
 public class AnalystPageMutations extends ControlAnalystPage
 {

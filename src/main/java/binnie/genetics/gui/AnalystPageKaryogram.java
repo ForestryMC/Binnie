@@ -9,10 +9,10 @@ import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.genetics.IChromosomeType;
 import binnie.Binnie;
 import forestry.api.genetics.AlleleManager;
-import binnie.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.controls.ControlTextCentered;
 import forestry.api.genetics.IIndividual;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.IWidget;
 
 public class AnalystPageKaryogram extends ControlAnalystPage
 {

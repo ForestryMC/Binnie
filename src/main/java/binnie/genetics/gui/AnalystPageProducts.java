@@ -4,17 +4,17 @@
 
 package binnie.genetics.gui;
 
-import binnie.craftgui.controls.ControlText;
+import binnie.core.craftgui.controls.ControlText;
 import forestry.plugins.PluginApiculture;
-import binnie.craftgui.core.geometry.CraftGUIUtil;
+import binnie.core.craftgui.geometry.CraftGUIUtil;
 import net.minecraft.nbt.NBTTagCompound;
-import binnie.craftgui.core.Tooltip;
+import binnie.core.craftgui.Tooltip;
 import forestry.api.apiculture.IBeeGenome;
-import binnie.craftgui.core.geometry.IPoint;
-import binnie.craftgui.extratrees.kitchen.ControlFluidDisplay;
+import binnie.core.craftgui.geometry.IPoint;
+import binnie.extratrees.craftgui.kitchen.ControlFluidDisplay;
 import net.minecraft.init.Items;
 import net.minecraftforge.fluids.FluidContainerRegistry;
-import binnie.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import net.minecraftforge.fluids.FluidStack;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,14 +22,13 @@ import java.util.Map;
 import net.minecraft.item.ItemStack;
 import java.util.HashMap;
 import binnie.core.util.UniqueItemStackSet;
-import forestry.api.genetics.IChromosomeType;
 import forestry.api.apiculture.EnumBeeChromosome;
-import binnie.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.BinnieCore;
 import binnie.Binnie;
 import forestry.api.apiculture.IBee;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.IWidget;
 
 public class AnalystPageProducts extends AnalystPageProduce
 {

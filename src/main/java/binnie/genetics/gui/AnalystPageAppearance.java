@@ -6,15 +6,15 @@ package binnie.genetics.gui;
 
 import forestry.api.genetics.IAlleleSpecies;
 import binnie.botany.api.EnumFlowerStage;
-import binnie.craftgui.core.geometry.IPoint;
-import binnie.craftgui.core.CraftGUI;
+import binnie.core.craftgui.geometry.IPoint;
+import binnie.core.craftgui.CraftGUI;
 import org.lwjgl.opengl.GL11;
-import binnie.craftgui.minecraft.control.ControlIconDisplay;
-import binnie.craftgui.botany.ControlColourDisplay;
-import binnie.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.minecraft.control.ControlIconDisplay;
+import binnie.botany.craftgui.ControlColourDisplay;
+import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.botany.api.IFlower;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.IWidget;
 
 public class AnalystPageAppearance extends ControlAnalystPage
 {

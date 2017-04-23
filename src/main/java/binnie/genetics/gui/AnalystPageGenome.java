@@ -7,19 +7,19 @@ package binnie.genetics.gui;
 import forestry.api.genetics.IAllele;
 import binnie.core.genetics.BreedingSystem;
 import forestry.api.genetics.ISpeciesRoot;
-import binnie.craftgui.core.geometry.IPoint;
-import binnie.craftgui.controls.ControlText;
-import binnie.craftgui.core.geometry.TextJustification;
-import binnie.craftgui.core.CraftGUI;
+import binnie.core.craftgui.geometry.IPoint;
+import binnie.core.craftgui.controls.ControlText;
+import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.CraftGUI;
 import forestry.api.genetics.IChromosomeType;
 import org.lwjgl.opengl.GL11;
-import binnie.craftgui.controls.core.Control;
+import binnie.core.craftgui.controls.core.Control;
 import binnie.Binnie;
 import forestry.api.genetics.AlleleManager;
-import binnie.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.controls.ControlTextCentered;
 import forestry.api.genetics.IIndividual;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.IWidget;
 
 public class AnalystPageGenome extends ControlAnalystPage
 {

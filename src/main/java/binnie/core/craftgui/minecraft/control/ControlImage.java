@@ -1,0 +1,27 @@
+// 
+// Decompiled by Procyon v0.5.30
+// 
+
+package binnie.core.craftgui.minecraft.control;
+
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.core.Control;
+import binnie.core.craftgui.geometry.IPoint;
+import binnie.core.craftgui.resource.Texture;
+
+public class ControlImage extends Control
+{
+	private Object key;
+
+	public ControlImage(final IWidget parent, final float x, final float y, final Texture text) {
+		super(parent, x, y, text.w(), text.h());
+		key = null;
+		key = text;
+	}
+
+	@Override
+	public void onRenderForeground() {
+		CraftGUI.Render.texture(key, IPoint.ZERO);
+	}
+}

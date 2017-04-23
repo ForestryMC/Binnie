@@ -2,6 +2,7 @@ package binnie.core.network;
 
 import binnie.core.BinnieCore;
 import binnie.core.block.TileEntityMetadata;
+import binnie.core.craftgui.minecraft.ContainerCraftGUI;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.Machine;
 import binnie.core.machines.network.INetwork;
@@ -10,7 +11,6 @@ import binnie.core.network.packet.MessageCraftGUI;
 import binnie.core.network.packet.MessageMetadata;
 import binnie.core.network.packet.MessageTileNBT;
 import binnie.core.network.packet.MessageUpdate;
-import binnie.craftgui.minecraft.ContainerCraftGUI;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;

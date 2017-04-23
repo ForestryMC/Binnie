@@ -11,7 +11,7 @@ import binnie.extrabees.gui.WindowAlvearyFrame;
 import binnie.extrabees.gui.WindowAlvearyMutator;
 import binnie.extrabees.gui.database.WindowApiaristDatabase;
 import net.minecraft.inventory.IInventory;
-import binnie.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.Window;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.world.World;
 import net.minecraft.entity.player.EntityPlayer;

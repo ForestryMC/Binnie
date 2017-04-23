@@ -1,0 +1,50 @@
+// 
+// Decompiled by Procyon v0.5.30
+// 
+
+package binnie.core.craftgui.database;
+
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.ControlText;
+import binnie.core.craftgui.controls.ControlTextCentered;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IClassification;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+public class PageSpeciesClassification extends PageSpecies
+{
+	private Map<IClassification.EnumClassLevel, ControlText> levels;
+	private ControlText genus;
+
+	public PageSpeciesClassification(final IWidget parent, final DatabaseTab tab) {
+		super(parent, tab);
+		levels = new LinkedHashMap<IClassification.EnumClassLevel, ControlText>();
+		int y = 16;
+		for (final IClassification.EnumClassLevel level : IClassification.EnumClassLevel.values()) {
+			final ControlText text = new ControlTextCentered(this, y, "");
+			text.setColour(level.getColour());
+			levels.put(level, text);
+			y += 12;
+		}
+		(genus = new ControlTextCentered(this, y, "")).setColour(16759415);
+	}
+
+	@Override
+	public void onValueChanged(final IAlleleSpecies species) {
+		if (species != null) {
+			for (final ControlText text : levels.values()) {
+				text.setValue("- - -");
+			}
+			genus.setValue(species.getBinomial());
+			for (IClassification classification = species.getBranch(); classification != null; classification = classification.getParent()) {
+				final IClassification.EnumClassLevel level = classification.getLevel();
+				String text2 = "";
+				final int n = level.ordinal();
+				text2 += classification.getScientific();
+				levels.get(level).setValue(text2);
+			}
+		}
+	}
+}

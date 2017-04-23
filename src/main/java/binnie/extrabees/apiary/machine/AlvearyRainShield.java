@@ -9,7 +9,7 @@ import forestry.api.apiculture.IBeeModifier;
 import binnie.extrabees.apiary.ComponentBeeModifier;
 import binnie.core.machines.Machine;
 import binnie.extrabees.core.ExtraBeeTexture;
-import binnie.craftgui.minecraft.IMachineInformation;
+import binnie.core.craftgui.minecraft.IMachineInformation;
 
 public class AlvearyRainShield
 {

@@ -5,22 +5,21 @@
 package binnie.genetics.gui;
 
 import java.text.DecimalFormat;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.core.craftgui.geometry.IPoint;
 import binnie.botany.api.IFlower;
 import net.minecraftforge.common.EnumPlantType;
 import forestry.plugins.PluginApiculture;
-import forestry.api.genetics.IChromosomeType;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import binnie.Binnie;
 import forestry.api.arboriculture.ITree;
 import forestry.api.lepidopterology.IButterfly;
-import binnie.craftgui.minecraft.control.ControlIconDisplay;
+import binnie.core.craftgui.minecraft.control.ControlIconDisplay;
 import binnie.genetics.item.ModuleItem;
 import forestry.api.apiculture.IBee;
-import binnie.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.controls.ControlTextCentered;
 import forestry.api.genetics.IIndividual;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.IWidget;
 
 public class AnalystPageBiology extends ControlAnalystPage
 {

@@ -10,13 +10,13 @@ import forestry.api.genetics.IAllele;
 import binnie.core.BinnieCore;
 import binnie.Binnie;
 import forestry.api.genetics.IAlleleSpecies;
-import binnie.craftgui.core.geometry.TextJustification;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.controls.ControlTextCentered;
-import binnie.craftgui.mod.database.DatabaseTab;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.controls.ControlText;
-import binnie.craftgui.mod.database.PageSpecies;
+import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.database.DatabaseTab;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.ControlText;
+import binnie.core.craftgui.database.PageSpecies;
 
 public class PageSpeciesGenome extends PageSpecies
 {

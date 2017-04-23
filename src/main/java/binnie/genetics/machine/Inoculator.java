@@ -6,7 +6,6 @@ package binnie.genetics.machine;
 
 import forestry.api.genetics.ISpeciesRoot;
 import binnie.Binnie;
-import net.minecraft.nbt.NBTBase;
 import net.minecraft.entity.player.EntityPlayer;
 import org.lwjgl.opengl.GL11;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -42,7 +41,7 @@ import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.core.machines.Machine;
 import binnie.genetics.core.GeneticsTexture;
-import binnie.craftgui.minecraft.IMachineInformation;
+import binnie.core.craftgui.minecraft.IMachineInformation;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagCompound;
 import forestry.api.genetics.IAllele;

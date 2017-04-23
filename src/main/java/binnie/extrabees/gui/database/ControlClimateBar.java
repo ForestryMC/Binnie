@@ -8,18 +8,18 @@ import forestry.api.genetics.EnumTolerance;
 import forestry.api.apiculture.IBeeGenome;
 import binnie.Binnie;
 import forestry.api.apiculture.IAlleleBeeSpecies;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.resource.minecraft.CraftGUITexture;
-import binnie.craftgui.core.CraftGUI;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
+import binnie.core.craftgui.CraftGUI;
 import forestry.api.core.EnumTemperature;
 import forestry.api.core.EnumHumidity;
-import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.core.Attribute;
+import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.Attribute;
 import java.util.ArrayList;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.IWidget;
 import java.util.List;
-import binnie.craftgui.core.ITooltip;
-import binnie.craftgui.controls.core.Control;
+import binnie.core.craftgui.ITooltip;
+import binnie.core.craftgui.controls.core.Control;
 
 public class ControlClimateBar extends Control implements ITooltip
 {

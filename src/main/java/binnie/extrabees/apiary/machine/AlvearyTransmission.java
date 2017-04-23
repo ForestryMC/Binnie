@@ -17,7 +17,7 @@ import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
 import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentPowerReceptor;
-import binnie.craftgui.minecraft.IMachineInformation;
+import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.extrabees.apiary.ComponentBeeModifier;
 import binnie.extrabees.apiary.TileExtraBeeAlveary;
 import binnie.extrabees.core.ExtraBeeTexture;

@@ -5,14 +5,14 @@
 package binnie.genetics.gui;
 
 import forestry.api.genetics.IAlleleSpecies;
-import binnie.craftgui.core.geometry.IPoint;
-import binnie.craftgui.controls.ControlText;
-import binnie.craftgui.core.geometry.TextJustification;
-import binnie.craftgui.core.CraftGUI;
-import binnie.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.geometry.IPoint;
+import binnie.core.craftgui.controls.ControlText;
+import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.controls.ControlTextCentered;
 import forestry.api.genetics.IIndividual;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.IWidget;
 
 public class AnalystPageDescription extends ControlAnalystPage
 {

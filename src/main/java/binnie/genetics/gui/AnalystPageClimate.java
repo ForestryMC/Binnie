@@ -5,28 +5,27 @@
 package binnie.genetics.gui;
 
 import java.util.List;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.core.craftgui.geometry.IPoint;
 import forestry.api.core.EnumHumidity;
 import binnie.core.genetics.Tolerance;
 import forestry.api.core.EnumTemperature;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraft.world.biome.BiomeGenBase;
 import java.util.ArrayList;
-import binnie.craftgui.controls.ControlText;
-import binnie.craftgui.core.geometry.TextJustification;
-import binnie.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.controls.ControlText;
+import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.controls.ControlTextCentered;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
 import forestry.api.lepidopterology.IButterfly;
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.IFlower;
-import forestry.api.genetics.IChromosomeType;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.genetics.IAlleleTolerance;
 import forestry.api.apiculture.IBee;
 import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IIndividual;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.IWidget;
 
 public class AnalystPageClimate extends ControlAnalystPage
 {

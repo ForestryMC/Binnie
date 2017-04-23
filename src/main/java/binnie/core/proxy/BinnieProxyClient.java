@@ -1,8 +1,8 @@
 package binnie.core.proxy;
 
 import binnie.Binnie;
+import binnie.core.craftgui.resource.minecraft.CraftGUIResourceManager;
 import binnie.core.resource.BinnieResource;
-import binnie.craftgui.resource.minecraft.CraftGUIResourceManager;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;

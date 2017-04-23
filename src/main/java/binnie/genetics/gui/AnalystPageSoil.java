@@ -9,20 +9,19 @@ import java.util.List;
 import forestry.api.genetics.EnumTolerance;
 import java.util.EnumSet;
 import java.util.ArrayList;
-import binnie.craftgui.minecraft.control.ControlItemDisplay;
-import net.minecraft.block.Block;
+import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import net.minecraft.item.ItemStack;
 import binnie.botany.gardening.BlockSoil;
 import binnie.botany.Botany;
 import binnie.botany.api.EnumAcidity;
 import binnie.core.genetics.Tolerance;
 import binnie.botany.api.EnumMoisture;
-import binnie.craftgui.controls.ControlText;
-import binnie.craftgui.core.geometry.TextJustification;
-import binnie.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.controls.ControlText;
+import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.botany.api.IFlower;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.IWidget;
 
 public class AnalystPageSoil extends ControlAnalystPage
 {

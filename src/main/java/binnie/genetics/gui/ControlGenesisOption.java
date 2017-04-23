@@ -4,12 +4,12 @@
 
 package binnie.genetics.gui;
 
-import binnie.craftgui.core.geometry.TextJustification;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.CraftGUI;
-import binnie.craftgui.controls.listbox.ControlList;
+import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.controls.listbox.ControlList;
 import binnie.core.genetics.Gene;
-import binnie.craftgui.controls.listbox.ControlOption;
+import binnie.core.craftgui.controls.listbox.ControlOption;
 
 public class ControlGenesisOption extends ControlOption<Gene>
 {

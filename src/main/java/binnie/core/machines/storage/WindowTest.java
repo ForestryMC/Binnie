@@ -2,8 +2,8 @@ package binnie.core.machines.storage;
 
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
-import binnie.craftgui.genetics.machine.WindowMachine;
-import binnie.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.Window;
+import binnie.genetics.craftgui.WindowMachine;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

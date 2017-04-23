@@ -5,17 +5,17 @@
 package binnie.extratrees.core;
 
 import net.minecraft.tileentity.TileEntity;
-import binnie.craftgui.extratrees.dictionary.WindowSetSquare;
-import binnie.craftgui.extratrees.dictionary.WindowLepidopteristDatabase;
-import binnie.craftgui.extratrees.dictionary.WindowDistillery;
-import binnie.craftgui.extratrees.dictionary.WindowBrewery;
-import binnie.craftgui.extratrees.dictionary.WindowPress;
-import binnie.craftgui.extratrees.kitchen.WindowBottleRack;
-import binnie.craftgui.extratrees.dictionary.WindowLumbermill;
-import binnie.craftgui.extratrees.dictionary.WindowWoodworker;
-import binnie.craftgui.extratrees.dictionary.WindowArboristDatabase;
+import binnie.extratrees.craftgui.dictionary.WindowSetSquare;
+import binnie.extratrees.craftgui.dictionary.WindowLepidopteristDatabase;
+import binnie.extratrees.craftgui.dictionary.WindowDistillery;
+import binnie.extratrees.craftgui.dictionary.WindowBrewery;
+import binnie.extratrees.craftgui.dictionary.WindowPress;
+import binnie.extratrees.craftgui.kitchen.WindowBottleRack;
+import binnie.extratrees.craftgui.dictionary.WindowLumbermill;
+import binnie.extratrees.craftgui.dictionary.WindowWoodworker;
+import binnie.extratrees.craftgui.dictionary.WindowArboristDatabase;
 import net.minecraft.inventory.IInventory;
-import binnie.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.Window;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.world.World;
 import net.minecraft.entity.player.EntityPlayer;

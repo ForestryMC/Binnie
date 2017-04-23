@@ -1,0 +1,249 @@
+// 
+// Decompiled by Procyon v0.5.30
+// 
+
+package binnie.core.craftgui.database;
+
+import binnie.core.BinnieCore;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.ControlTextEdit;
+import binnie.core.craftgui.controls.listbox.ControlListBox;
+import binnie.core.craftgui.controls.listbox.ControlTextOption;
+import binnie.core.craftgui.controls.page.ControlPage;
+import binnie.core.craftgui.controls.page.ControlPages;
+import binnie.core.craftgui.controls.tab.ControlTab;
+import binnie.core.craftgui.controls.tab.ControlTabBar;
+import binnie.core.craftgui.events.EventHandler;
+import binnie.core.craftgui.events.EventTextEdit;
+import binnie.core.craftgui.events.EventValueChanged;
+import binnie.core.craftgui.geometry.CraftGUIUtil;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.geometry.IPoint;
+import binnie.core.craftgui.geometry.Position;
+import binnie.core.craftgui.minecraft.MinecraftGUI;
+import binnie.core.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.control.ControlHelp;
+import binnie.core.craftgui.window.Panel;
+import binnie.core.genetics.BreedingSystem;
+import binnie.core.util.IValidator;
+import com.mojang.authlib.GameProfile;
+import cpw.mods.fml.relauncher.Side;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IBreedingTracker;
+import forestry.api.genetics.IClassification;
+import net.minecraft.entity.player.EntityPlayer;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+public abstract class WindowAbstractDatabase extends Window
+{
+	private float selectionBoxWidth;
+	private final float infoBoxWidth = 144.0f;
+	private final float infoBoxHeight = 176.0f;
+	private final float infoTabWidth = 16.0f;
+	private final float modeTabWidth = 22.0f;
+	private final float searchBoxHeight = 16.0f;
+	private Map<IDatabaseMode, ModeWidgets> modes;
+	boolean isNEI;
+	private BreedingSystem system;
+	private Panel panelInformation;
+	private Panel panelSearch;
+	private ControlPages<IDatabaseMode> modePages;
+	private IAlleleSpecies gotoSpecies;
+
+	public void changeMode(final IDatabaseMode mode) {
+		modePages.setValue(mode);
+	}
+
+	public WindowAbstractDatabase(final EntityPlayer player, final Side side, final boolean nei, final BreedingSystem system, final float wid) {
+		super(100.0f, 192.0f, player, null, side);
+		selectionBoxWidth = 95.0f;
+		modes = new HashMap<IDatabaseMode, ModeWidgets>();
+		panelInformation = null;
+		panelSearch = null;
+		modePages = null;
+		gotoSpecies = null;
+		isNEI = nei;
+		this.system = system;
+		selectionBoxWidth = wid;
+	}
+
+	public ControlPages<DatabaseTab> getInfoPages(final IDatabaseMode mode) {
+		return modes.get(mode).infoPages;
+	}
+
+	public boolean isNEI() {
+		return isNEI;
+	}
+
+	public BreedingSystem getBreedingSystem() {
+		return system;
+	}
+
+	public WindowAbstractDatabase(final EntityPlayer player, final Side side, final boolean nei, final BreedingSystem system) {
+		this(player, side, nei, system, 95.0f);
+	}
+
+	protected ModeWidgets createMode(final IDatabaseMode mode, final ModeWidgets widgets) {
+		modes.put(mode, widgets);
+		return widgets;
+	}
+
+	@Override
+	public void initialiseClient() {
+		setSize(new IPoint(176.0f + selectionBoxWidth + 22.0f + 8.0f, 208.0f));
+		addEventHandler(new EventValueChanged.Handler() {
+			@Override
+			public void onEvent(final EventValueChanged event) {
+				if (event.getOrigin().getParent() instanceof ControlPage && !(event.getValue() instanceof DatabaseTab)) {
+					final ControlPage parent = (ControlPage) event.getOrigin().getParent();
+					if (parent.getValue() instanceof IDatabaseMode) {
+						for (final IWidget widget : parent.getWidgets()) {
+							if (widget instanceof ControlPages) {
+								if (event.getValue() == null) {
+									widget.hide();
+								}
+								else {
+									widget.show();
+									for (final IWidget widget2 : widget.getWidgets()) {
+										if (widget2 instanceof PageAbstract) {
+											((PageAbstract) widget2).onValueChanged(event.getValue());
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		});
+		addEventHandler(new EventTextEdit.Handler() {
+			@Override
+			public void onEvent(final EventTextEdit event) {
+				for (final ModeWidgets widgets : modes.values()) {
+					widgets.listBox.setValidator(new IValidator<IWidget>() {
+						@Override
+						public boolean isValid(final IWidget object) {
+							return event.getValue() == "" || ((ControlTextOption) object).getText().toLowerCase().contains(event.getValue().toLowerCase());
+						}
+					});
+				}
+			}
+		}.setOrigin(EventHandler.Origin.DirectChild, this));
+		new ControlHelp(this, 4.0f, 4.0f);
+		(panelInformation = new Panel(this, 24.0f, 24.0f, 144.0f, 176.0f, MinecraftGUI.PanelType.Black)).setColour(860416);
+		(panelSearch = new Panel(this, 176.0f, 24.0f, selectionBoxWidth, 160.0f, MinecraftGUI.PanelType.Black)).setColour(860416);
+		modePages = new ControlPages<IDatabaseMode>(this, 0.0f, 0.0f, getSize().x(), getSize().y());
+		new ControlTextEdit(this, 176.0f, 184.0f, selectionBoxWidth, 16.0f);
+		createMode(Mode.Species, new ModeWidgets(Mode.Species, this) {
+			@Override
+			public void createListBox(final IArea area) {
+				final GameProfile playerName = getUsername();
+				final Collection<IAlleleSpecies> speciesList = database.isNEI ? database.system.getAllSpecies() : database.system.getDiscoveredSpecies(database.getWorld(), playerName);
+				(listBox = new ControlSpeciesBox(modePage, area.x(), area.y(), area.w(), area.h())).setOptions(speciesList);
+			}
+		});
+		createMode(Mode.Branches, new ModeWidgets(Mode.Branches, this) {
+			@Override
+			public void createListBox(final IArea area) {
+				final EntityPlayer player = database.getPlayer();
+				final GameProfile playerName = getUsername();
+				final Collection<IClassification> speciesList = database.isNEI ? database.system.getAllBranches() : database.system.getDiscoveredBranches(database.getWorld(), playerName);
+				(listBox = new ControlBranchBox(modePage, area.x(), area.y(), area.w(), area.h())).setOptions(speciesList);
+			}
+		});
+		createMode(Mode.Breeder, new ModeWidgets(Mode.Breeder, this) {
+			@Override
+			public void createListBox(final IArea area) {
+				listBox = new ControlListBox(modePage, area.x(), area.y(), area.w(), area.h(), 12.0f);
+			}
+		});
+		addTabs();
+		final ControlTabBar<IDatabaseMode> tab = new ControlTabBar<IDatabaseMode>(this, 176.0f + selectionBoxWidth, 24.0f, 22.0f, 176.0f, Position.Right) {
+			@Override
+			public ControlTab<IDatabaseMode> createTab(final float x, final float y, final float w, final float h, final IDatabaseMode value) {
+				return new ControlTab<IDatabaseMode>(this, x, y, w, h, value) {
+					@Override
+					public String getName() {
+						return value.getName();
+					}
+				};
+			}
+		};
+		tab.setValues(modePages.getValues());
+		CraftGUIUtil.linkWidgets(tab, modePages);
+		changeMode(Mode.Species);
+		for (final IDatabaseMode mode : modes.keySet()) {
+			modes.get(mode).infoTabs = new ControlTabBar(modes.get(mode).modePage, 8.0f, 24.0f, 16.0f, 176.0f, Position.Left);
+			modes.get(mode).infoTabs.setValues(modes.get(mode).infoPages.getValues());
+			CraftGUIUtil.linkWidgets(modes.get(mode).infoTabs, modes.get(mode).infoPages);
+		}
+	}
+
+	@Override
+	public void initialiseServer() {
+		final IBreedingTracker tracker = system.getSpeciesRoot().getBreedingTracker(getWorld(), getUsername());
+		if (tracker != null) {
+			tracker.synchToPlayer(getPlayer());
+		}
+	}
+
+	protected void addTabs() {
+	}
+
+	public void gotoSpecies(final IAlleleSpecies value) {
+		if (value != null) {
+			modePages.setValue(Mode.Species);
+			changeMode(Mode.Species);
+			modes.get(modePages.getValue()).listBox.setValue(value);
+		}
+	}
+
+	public void gotoSpeciesDelayed(final IAlleleSpecies species) {
+		gotoSpecies = species;
+	}
+
+	@Override
+	public void onUpdateClient() {
+		super.onUpdateClient();
+		if (gotoSpecies != null) {
+			((WindowAbstractDatabase) getSuperParent()).gotoSpecies(gotoSpecies);
+			gotoSpecies = null;
+		}
+	}
+
+	public enum Mode implements IDatabaseMode
+	{
+		Species,
+		Branches,
+		Breeder;
+
+		@Override
+		public String getName() {
+			return BinnieCore.proxy.localise("gui.database.mode." + name().toLowerCase());
+		}
+	}
+
+	public abstract static class ModeWidgets
+	{
+		public WindowAbstractDatabase database;
+		public ControlPage<IDatabaseMode> modePage;
+		private ControlPages<DatabaseTab> infoPages;
+		public ControlListBox listBox;
+		private ControlTabBar<DatabaseTab> infoTabs;
+
+		public ModeWidgets(final IDatabaseMode mode, final WindowAbstractDatabase database) {
+			this.database = database;
+			modePage = new ControlPage<IDatabaseMode>(database.modePages, 0.0f, 0.0f, database.getSize().x(), database.getSize().y(), mode);
+			final IArea listBoxArea = database.panelSearch.area().inset(2);
+			createListBox(listBoxArea);
+			CraftGUIUtil.alignToWidget(listBox, database.panelSearch);
+			CraftGUIUtil.moveWidget(listBox, new IPoint(2.0f, 2.0f));
+			CraftGUIUtil.alignToWidget(infoPages = new ControlPages<DatabaseTab>(modePage, 0.0f, 0.0f, 144.0f, 176.0f), database.panelInformation);
+		}
+
+		public abstract void createListBox(final IArea p0);
+	}
+}

@@ -6,24 +6,22 @@ package binnie.genetics.gui;
 
 import java.lang.reflect.Field;
 import forestry.api.arboriculture.ITreeGenome;
-import binnie.craftgui.core.geometry.IPoint;
+import binnie.core.craftgui.geometry.IPoint;
 import net.minecraft.init.Items;
 import forestry.api.arboriculture.IAlleleFruit;
 import forestry.api.genetics.IFruitFamily;
-import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.genetics.IAllele;
 import java.util.Collection;
-import binnie.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import net.minecraft.item.ItemStack;
 import forestry.arboriculture.FruitProviderPod;
 import binnie.core.util.UniqueItemStackSet;
-import forestry.api.genetics.IChromosomeType;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import binnie.Binnie;
-import binnie.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.controls.ControlTextCentered;
 import forestry.api.arboriculture.ITree;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.IWidget;
 
 public class AnalystPageFruit extends AnalystPageProduce
 {

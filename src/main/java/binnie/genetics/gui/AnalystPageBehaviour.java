@@ -6,20 +6,19 @@ package binnie.genetics.gui;
 
 import forestry.api.lepidopterology.IAlleleButterflyEffect;
 import forestry.api.apiculture.IAlleleBeeEffect;
-import forestry.api.genetics.IChromosomeType;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
 import binnie.Binnie;
 import forestry.api.lepidopterology.IButterfly;
-import binnie.craftgui.core.CraftGUI;
-import binnie.craftgui.controls.ControlText;
-import binnie.craftgui.core.geometry.TextJustification;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.controls.ControlText;
+import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.BinnieCore;
 import forestry.plugins.PluginApiculture;
 import forestry.api.apiculture.IBee;
-import binnie.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.controls.ControlTextCentered;
 import forestry.api.genetics.IIndividual;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.IWidget;
 
 public class AnalystPageBehaviour extends ControlAnalystPage
 {
