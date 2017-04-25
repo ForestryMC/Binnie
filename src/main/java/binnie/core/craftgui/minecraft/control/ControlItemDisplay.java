@@ -1,15 +1,11 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.minecraft.control;
 
 import binnie.core.BinnieCore;
-import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.minecraft.Window;
@@ -17,8 +13,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
 
-public class ControlItemDisplay extends Control implements ITooltip
-{
+public class ControlItemDisplay extends Control implements ITooltip {
 	private ItemStack itemStack;
 	public boolean hastooltip;
 	private boolean rotating;
@@ -53,20 +48,21 @@ public class ControlItemDisplay extends Control implements ITooltip
 		if (relativeToWindow.x() > Window.get(this).getSize().x() + 100.0f || relativeToWindow.y() > Window.get(this).getSize().y() + 100.0f) {
 			return;
 		}
-		if (itemStack != null) {
 
-			if (getSize().x() != 16.0f) {
-				GL11.glPushMatrix();
-				float scale = getSize().x() / 16.0f;
-				GL11.glScalef(scale, scale, 1.0f);
-				BinnieCore.proxy.getMinecraftInstance();
-				float phase = Minecraft.getSystemTime() / 20.0f;
-				CraftGUI.Render.item(IPoint.ZERO, itemStack, rotating);
-				GL11.glPopMatrix();
-			}
-			else {
-				CraftGUI.Render.item(IPoint.ZERO, itemStack, rotating);
-			}
+		if (itemStack == null) {
+			return;
+		}
+
+		if (getSize().x() != 16.0f) {
+			GL11.glPushMatrix();
+			float scale = getSize().x() / 16.0f;
+			GL11.glScalef(scale, scale, 1.0f);
+			BinnieCore.proxy.getMinecraftInstance();
+			float phase = Minecraft.getSystemTime() / 20.0f;
+			CraftGUI.Render.item(IPoint.ZERO, itemStack, rotating);
+			GL11.glPopMatrix();
+		} else {
+			CraftGUI.Render.item(IPoint.ZERO, itemStack, rotating);
 		}
 	}
 

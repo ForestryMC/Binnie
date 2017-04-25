@@ -1,20 +1,15 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.minecraft.control;
 
-import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.machines.Machine;
 import binnie.core.machines.power.IProcess;
 import binnie.core.machines.power.ProcessInfo;
 
-public class ControlProgressBase extends Control
-{
+public class ControlProgressBase extends Control {
 	protected float progress;
 
 	public ControlProgressBase(IWidget parent, float x, float y, float w, float h) {
@@ -27,8 +22,7 @@ public class ControlProgressBase extends Control
 		this.progress = progress;
 		if (this.progress < 0.0f) {
 			this.progress = 0.0f;
-		}
-		else if (this.progress > 1.0f) {
+		} else if (this.progress > 1.0f) {
 			this.progress = 1.0f;
 		}
 	}
@@ -53,19 +47,17 @@ public class ControlProgressBase extends Control
 			tooltip.add("Progress");
 			if (progress == 0.0f) {
 				tooltip.add("Not in Progress");
-			}
-			else if (process.getProcessTime() > 0) {
+			} else if (process.getProcessTime() > 0) {
 				tooltip.add(machineProcess.getTooltip() + " (" + (int) process.getCurrentProgress() + "%)");
-			}
-			else {
+			} else {
 				tooltip.add("In Progress");
 			}
+
 			if (process.getProcessTime() > 0) {
 				tooltip.add("Time Left: " + convertTime((int) ((1.0f - progress) * process.getProcessTime())));
 				tooltip.add("Total Time: " + convertTime(process.getProcessTime()));
 				tooltip.add("Energy Cost: " + process.getProcessEnergy() * 10 + " RF");
-			}
-			else {
+			} else {
 				tooltip.add("Energy Cost: " + process.getEnergyPerTick() * 10.0f + " RF / tick");
 			}
 		}
@@ -75,13 +67,15 @@ public class ControlProgressBase extends Control
 		int seconds = (int) (time / 20.0f);
 		int minutes = 0;
 		while (seconds >= 60) {
-			++minutes;
+			minutes++;
 			seconds -= 60;
 		}
+
 		String ts = "";
 		if (minutes > 0) {
 			ts = ts + minutes + " minute" + ((minutes == 1) ? "" : "s");
 		}
+
 		if (seconds > 0) {
 			if (ts.length() > 0) {
 				ts += " ";

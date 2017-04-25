@@ -1,12 +1,8 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.minecraft.control;
 
-import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IBorder;
@@ -17,8 +13,7 @@ import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import org.lwjgl.opengl.GL11;
 
-public class ControlSlide extends Control
-{
+public class ControlSlide extends Control {
 	private IArea expanded;
 	private IArea shrunk;
 	private boolean slideActive;

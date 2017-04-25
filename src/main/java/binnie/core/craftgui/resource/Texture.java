@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.resource;
 
 import binnie.core.craftgui.geometry.IArea;
@@ -9,9 +5,8 @@ import binnie.core.craftgui.geometry.IBorder;
 import binnie.core.craftgui.geometry.Position;
 import binnie.core.resource.BinnieResource;
 
-public class Texture
-{
-	public static Texture NULL;
+public class Texture {
+	public static Texture NULL = null;
 	IArea area;
 	IBorder padding;
 	IBorder border;
@@ -112,9 +107,5 @@ public class Texture
 			out = out + " border:" + border.toString();
 		}
 		return out + "]";
-	}
-
-	static {
-		NULL = null;
 	}
 }

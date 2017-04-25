@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.resource.minecraft;
 
 import binnie.core.BinnieCore;
@@ -9,8 +5,7 @@ import binnie.core.craftgui.CraftGUI;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 
-public enum CraftGUITextureSheet implements IBinnieTexture
-{
+public enum CraftGUITextureSheet implements IBinnieTexture {
 	Controls2("controls"),
 	Panel2("panels"),
 	Slots("slots");

@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.minecraft.control;
 
 import binnie.core.craftgui.IWidget;
@@ -13,15 +9,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class ControlSlotArray extends Control implements Iterable<ControlSlot>
-{
+public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
 	private int rows;
 	private int columns;
 	private List<ControlSlot> slots;
 
 	public ControlSlotArray(IWidget parent, int x, int y, int columns, int rows) {
 		super(parent, x, y, columns * 18, rows * 18);
-		slots = new ArrayList<ControlSlot>();
+		slots = new ArrayList<>();
 		this.rows = rows;
 		this.columns = columns;
 		for (int row = 0; row < rows; ++row) {
@@ -42,7 +37,7 @@ public class ControlSlotArray extends Control implements Iterable<ControlSlot>
 				return;
 			}
 			slots.get(i).slot.putStack(item);
-			++i;
+			i++;
 		}
 	}
 

@@ -1,15 +1,11 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.minecraft.control;
 
 import binnie.core.BinnieCore;
-import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.events.EventMouse;
 import binnie.core.craftgui.geometry.IArea;
@@ -31,9 +27,8 @@ import org.lwjgl.opengl.GL11;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ControlLiquidTank extends Control implements ITooltip
-{
-	public static List<Integer> tankError;
+public class ControlLiquidTank extends Control implements ITooltip {
+	public static List<Integer> tankError = new ArrayList<>();
 	private int tankID;
 	private boolean horizontal;
 
@@ -44,7 +39,6 @@ public class ControlLiquidTank extends Control implements ITooltip
 	public ControlLiquidTank(IWidget parent, int x, int y, boolean horizontal) {
 		super(parent, x, y, horizontal ? 60.0f : 18.0f, horizontal ? 18.0f : 60.0f);
 		tankID = 0;
-		this.horizontal = false;
 		this.horizontal = horizontal;
 		addAttribute(WidgetAttribute.MouseOver);
 		addSelfEventHandler(new EventMouse.Down.Handler() {
@@ -79,23 +73,20 @@ public class ControlLiquidTank extends Control implements ITooltip
 	public void onRenderBackground() {
 		CraftGUI.Render.texture(horizontal ? CraftGUITexture.HorizontalLiquidTank : CraftGUITexture.LiquidTank, IPoint.ZERO);
 		if (isMouseOver() && Window.get(this).getGui().isHelpMode()) {
-			int c = -1442840576 + MinecraftTooltip.getOutline(Tooltip.Type.Help);
+			int c = 0xaa000000 + MinecraftTooltip.getOutline(Tooltip.Type.Help);
 			CraftGUI.Render.gradientRect(getArea().inset(1), c, c);
-		}
-		else if (ControlLiquidTank.tankError.contains(tankID)) {
-			int c = -1442840576 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error);
+		} else if (ControlLiquidTank.tankError.contains(tankID)) {
+			int c = 0xaa000000 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error);
 			CraftGUI.Render.gradientRect(getArea().inset(1), c, c);
-		}
-		else if (getSuperParent().getMousedOverWidget() == this) {
+		} else if (getSuperParent().getMousedOverWidget() == this) {
 			if (Window.get(this).getGui().getDraggedItem() != null) {
-				CraftGUI.Render.gradientRect(getArea().inset(1), -1426089575, -1426089575);
-			}
-			else {
-				CraftGUI.Render.gradientRect(getArea().inset(1), -2130706433, -2130706433);
+				CraftGUI.Render.gradientRect(getArea().inset(1), 0xaaff9999, 0xaaff9999);
+			} else {
+				CraftGUI.Render.gradientRect(getArea().inset(1), 0x80ffffff, 0x80ffffff);
 			}
 		}
+
 		if (isTankValid()) {
-			Object content = null;
 			float height = horizontal ? 16.0f : 58.0f;
 			int squaled = (int) (height * (getTank().getAmount() / getTank().getCapacity()));
 			int yPos = (int) height + 1;
@@ -113,6 +104,7 @@ public class ControlLiquidTank extends Control implements ITooltip
 			if (horizontal) {
 				limited.setSize(new IPoint(limited.w() - 1.0f, limited.h()));
 			}
+
 			CraftGUI.Render.limitArea(new IArea(limited.pos().add(pos).add(offset), limited.size().sub(offset)));
 			GL11.glEnable(3089);
 			BinnieCore.proxy.bindTexture(TextureMap.locationItemsTexture);
@@ -122,6 +114,7 @@ public class ControlLiquidTank extends Control implements ITooltip
 					CraftGUI.Render.iconBlock(new IPoint(1 + x, 1 + y), icon);
 				}
 			}
+
 			GL11.glDisable(3089);
 			GL11.glDisable(3042);
 		}
@@ -135,6 +128,7 @@ public class ControlLiquidTank extends Control implements ITooltip
 			CraftGUI.Render.colour(MinecraftTooltip.getOutline(Tooltip.Type.Help));
 			CraftGUI.Render.texture(CraftGUITexture.Outline, area.outset(1));
 		}
+
 		if (ControlLiquidTank.tankError.contains(tankID)) {
 			IArea area = getArea();
 			CraftGUI.Render.colour(MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error));
@@ -144,17 +138,19 @@ public class ControlLiquidTank extends Control implements ITooltip
 
 	@Override
 	public void getHelpTooltip(Tooltip tooltip) {
-		if (getTankSlot() != null) {
-			TankSlot slot = getTankSlot();
-			tooltip.add(slot.getName());
-			tooltip.add("Capacity: " + getTankCapacity() + " mB");
-			tooltip.add("Insert Side: " + MachineSide.asString(slot.getInputSides()));
-			tooltip.add("Extract Side: " + MachineSide.asString(slot.getOutputSides()));
-			if (slot.isReadOnly()) {
-				tooltip.add("Output Only Tank");
-			}
-			tooltip.add("Accepts: " + ((slot.getValidator() == null) ? "Any Item" : slot.getValidator().getTooltip()));
+		if (getTankSlot() == null) {
+			return;
 		}
+
+		TankSlot slot = getTankSlot();
+		tooltip.add(slot.getName());
+		tooltip.add("Capacity: " + getTankCapacity() + " mB");
+		tooltip.add("Insert Side: " + MachineSide.asString(slot.getInputSides()));
+		tooltip.add("Extract Side: " + MachineSide.asString(slot.getOutputSides()));
+		if (slot.isReadOnly()) {
+			tooltip.add("Output Only Tank");
+		}
+		tooltip.add("Accepts: " + ((slot.getValidator() == null) ? "Any Item" : slot.getValidator().getTooltip()));
 	}
 
 	@Override
@@ -172,9 +168,5 @@ public class ControlLiquidTank extends Control implements ITooltip
 	private TankSlot getTankSlot() {
 		ITankMachine tank = Machine.getInterface(ITankMachine.class, Window.get(this).getInventory());
 		return (tank != null) ? tank.getTankSlot(tankID) : null;
-	}
-
-	static {
-		ControlLiquidTank.tankError = new ArrayList<Integer>();
 	}
 }

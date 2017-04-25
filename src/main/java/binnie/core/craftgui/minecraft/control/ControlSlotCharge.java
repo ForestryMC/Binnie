@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.minecraft.control;
 
 import binnie.core.craftgui.CraftGUI;
@@ -14,8 +10,7 @@ import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.IChargedSlots;
 
-public class ControlSlotCharge extends Control
-{
+public class ControlSlotCharge extends Control {
 	private int slot;
 
 	float getCharge() {

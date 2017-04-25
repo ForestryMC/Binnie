@@ -1,14 +1,9 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.resource;
 
 import binnie.core.craftgui.CraftGUI;
 
-public class StyleSheetManager
-{
-	static IStyleSheet defaultSS;
+public class StyleSheetManager {
+	static IStyleSheet defaultSS = new DefaultStyleSheet();
 
 	public static Texture getTexture(Object key) {
 		return StyleSheetManager.defaultSS.getTexture(key);
@@ -18,12 +13,7 @@ public class StyleSheetManager
 		return StyleSheetManager.defaultSS;
 	}
 
-	static {
-		StyleSheetManager.defaultSS = new DefaultStyleSheet();
-	}
-
-	private static class DefaultStyleSheet implements IStyleSheet
-	{
+	private static class DefaultStyleSheet implements IStyleSheet {
 		@Override
 		public Texture getTexture(Object key) {
 			return CraftGUI.ResourceManager.getTexture(key.toString());

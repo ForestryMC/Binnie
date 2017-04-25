@@ -1,14 +1,10 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.minecraft.control;
 
-import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.minecraft.CustomSlot;
@@ -18,8 +14,7 @@ import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.machines.power.ErrorState;
 import net.minecraft.entity.player.InventoryPlayer;
 
-public class ControlErrorState extends Control implements ITooltip
-{
+public class ControlErrorState extends Control implements ITooltip {
 	private ErrorState errorState;
 	private int type;
 
@@ -28,8 +23,7 @@ public class ControlErrorState extends Control implements ITooltip
 		Object texture = CraftGUITexture.StateWarning;
 		if (errorState == null) {
 			texture = CraftGUITexture.StateNone;
-		}
-		else if (type == 0) {
+		} else if (type == 0) {
 			texture = CraftGUITexture.StateError;
 		}
 		CraftGUI.Render.texture(texture, IPoint.ZERO);
@@ -48,9 +42,11 @@ public class ControlErrorState extends Control implements ITooltip
 		ControlSlot.highlighting.get(EnumHighlighting.Warning).clear();
 		ControlLiquidTank.tankError.clear();
 		ControlEnergyBar.isError = false;
+
 		if (!isMouseOver() || errorState == null) {
 			return;
 		}
+
 		ControlEnergyBar.isError = errorState.isPowerError();
 		if (errorState.isItemError()) {
 			for (int slot : errorState.getData()) {
@@ -63,13 +59,13 @@ public class ControlErrorState extends Control implements ITooltip
 				if (id >= 0) {
 					if (type == 0) {
 						ControlSlot.highlighting.get(EnumHighlighting.Error).add(id);
-					}
-					else {
+					} else {
 						ControlSlot.highlighting.get(EnumHighlighting.Warning).add(id);
 					}
 				}
 			}
 		}
+
 		if (errorState.isTankError()) {
 			for (int slot : errorState.getData()) {
 				ControlLiquidTank.tankError.add(slot);
@@ -86,17 +82,19 @@ public class ControlErrorState extends Control implements ITooltip
 	@Override
 	public void getTooltip(Tooltip tooltipOrig) {
 		MinecraftTooltip tooltip = (MinecraftTooltip) tooltipOrig;
-		if (errorState != null) {
-			if (type == 0) {
-				tooltip.setType(MinecraftTooltip.Type.Error);
-			}
-			else {
-				tooltip.setType(MinecraftTooltip.Type.Warning);
-			}
-			tooltip.add(errorState.toString());
-			if (errorState.getTooltip().length() > 0) {
-				tooltip.add(errorState.getTooltip());
-			}
+		if (errorState == null) {
+			return;
+		}
+
+		if (type == 0) {
+			tooltip.setType(MinecraftTooltip.Type.Error);
+		} else {
+			tooltip.setType(MinecraftTooltip.Type.Warning);
+		}
+
+		tooltip.add(errorState.toString());
+		if (errorState.getTooltip().length() > 0) {
+			tooltip.add(errorState.getTooltip());
 		}
 	}
 

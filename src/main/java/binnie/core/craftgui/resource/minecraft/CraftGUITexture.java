@@ -1,11 +1,6 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.resource.minecraft;
 
-public enum CraftGUITexture
-{
+public enum CraftGUITexture {
 	Window("window"),
 	PanelGray("panel.gray"),
 	PanelBlack("panel.black"),

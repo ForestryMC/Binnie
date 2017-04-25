@@ -1,15 +1,10 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.resource.minecraft;
 
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
 
-class ParsedTextureSheet implements IBinnieTexture
-{
+class ParsedTextureSheet implements IBinnieTexture {
 	private String name;
 	private String modid;
 	private String path;

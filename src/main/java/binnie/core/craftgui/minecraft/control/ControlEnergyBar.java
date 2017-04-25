@@ -1,14 +1,10 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.minecraft.control;
 
-import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
@@ -23,9 +19,9 @@ import binnie.core.machines.power.IProcess;
 import net.minecraft.inventory.IInventory;
 import org.lwjgl.opengl.GL11;
 
-public class ControlEnergyBar extends Control implements ITooltip
-{
+public class ControlEnergyBar extends Control implements ITooltip {
 	public static boolean isError;
+
 	private Position direction;
 
 	public ControlEnergyBar(IWidget parent, int x, int y, int width, int height, Position direction) {
@@ -83,28 +79,29 @@ public class ControlEnergyBar extends Control implements ITooltip
 		float percentage = getPercentage() / 100.0f;
 		CraftGUI.Render.colour(getColourFromPercentage(percentage));
 		IArea area = getArea();
+
 		switch (direction) {
-		case Top:
-		case Bottom: {
-			float height = area.size().y() * percentage;
-			area.setSize(new IPoint(area.size().x(), height));
-			break;
+			case Top:
+			case Bottom:
+				float height = area.size().y() * percentage;
+				area.setSize(new IPoint(area.size().x(), height));
+				break;
+
+			case Left:
+			case Right:
+				float width = area.size().x() * percentage;
+				area.setSize(new IPoint(width, area.size().y()));
+				break;
 		}
-		case Left:
-		case Right: {
-			float width = area.size().x() * percentage;
-			area.setSize(new IPoint(width, area.size().y()));
-			break;
-		}
-		}
+
 		if (isMouseOver() && Window.get(this).getGui().isHelpMode()) {
-			int c = -1442840576 + MinecraftTooltip.getOutline(Tooltip.Type.Help);
+			int c = 0xaa000000 + MinecraftTooltip.getOutline(Tooltip.Type.Help);
+			CraftGUI.Render.gradientRect(getArea().inset(1), c, c);
+		} else if (ControlEnergyBar.isError) {
+			int c = 0xaa000000 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error);
 			CraftGUI.Render.gradientRect(getArea().inset(1), c, c);
 		}
-		else if (ControlEnergyBar.isError) {
-			int c = -1442840576 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error);
-			CraftGUI.Render.gradientRect(getArea().inset(1), c, c);
-		}
+
 		CraftGUI.Render.texture(CraftGUITexture.EnergyBarGlow, area);
 		GL11.glColor3d(1.0, 1.0, 1.0);
 		CraftGUI.Render.texture(CraftGUITexture.EnergyBarGlass, getArea());
@@ -116,8 +113,7 @@ public class ControlEnergyBar extends Control implements ITooltip
 			IArea area = getArea();
 			CraftGUI.Render.colour(MinecraftTooltip.getOutline(Tooltip.Type.Help));
 			CraftGUI.Render.texture(CraftGUITexture.Outline, area.outset(1));
-		}
-		else if (ControlEnergyBar.isError) {
+		} else if (ControlEnergyBar.isError) {
 			IArea area = getArea();
 			CraftGUI.Render.colour(MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error));
 			CraftGUI.Render.texture(CraftGUITexture.Outline, area.outset(1));
@@ -125,15 +121,14 @@ public class ControlEnergyBar extends Control implements ITooltip
 	}
 
 	public int getColourFromPercentage(float percentage) {
-		int colour = 16777215;
+		int color;
 		if (percentage > 0.5) {
 			int r = (int) ((1.0 - 2.0 * (percentage - 0.5)) * 255.0);
-			colour = (r << 16) + 65280;
-		}
-		else {
+			color = (r << 16) + 0xff00;
+		} else {
 			int g = (int) (255.0f * (2.0f * percentage));
-			colour = 16711680 + (g << 8);
+			color = 0xff0000 + (g << 8);
 		}
-		return colour;
+		return color;
 	}
 }

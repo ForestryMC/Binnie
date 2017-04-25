@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.renderer;
 
 import binnie.core.BinnieCore;
@@ -20,12 +16,11 @@ import org.lwjgl.opengl.GL11;
 
 import java.util.List;
 
-public class Renderer
-{
-	GuiCraftGUI gui;
-	int currentColour;
-	Texture currentTexture;
-	IStyleSheet stylesheet;
+public class Renderer {
+	protected GuiCraftGUI gui;
+	protected int currentColour;
+	protected Texture currentTexture;
+	protected IStyleSheet stylesheet;
 
 	public Renderer(GuiCraftGUI gui) {
 		currentColour = 16777215;
@@ -67,8 +62,7 @@ public class Renderer
 		if (a > 0 && a != 255) {
 			GL11.glColor4f(r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f);
 			GL11.glEnable(3042);
-		}
-		else {
+		} else {
 			GL11.glColor3f(r / 255.0f, g / 255.0f, b / 255.0f);
 		}
 	}
@@ -114,8 +108,7 @@ public class Renderer
 		IArea targetArea = area.outset(texture.getBorder());
 		if (textureArea.w() == targetArea.w() && textureArea.h() == targetArea.h()) {
 			gui.renderTexture(targetArea.pos(), textureArea);
-		}
-		else {
+		} else {
 			gui.renderTexturePadded(targetArea, textureArea, texture.getTotalPadding());
 		}
 	}
@@ -141,12 +134,14 @@ public class Renderer
 		if (area.size().x() <= 0.0f) {
 			return;
 		}
+
 		List<String> wrappedStrings = gui.getFontRenderer().listFormattedStringToWidth(text, (int) area.size().x());
 		float totalHeight = wrappedStrings.size() * textHeight();
 		float posY = area.pos().y();
 		if (area.size().y() > totalHeight) {
 			posY += (area.size().y() - totalHeight) * justification.getYOffset();
 		}
+
 		for (String string : wrappedStrings) {
 			float stringWidth = textWidth(string);
 			float posX = area.size().x() - stringWidth;
@@ -201,29 +196,26 @@ public class Renderer
 		float y = area.pos().y();
 		float w = area.size().x();
 		float h = area.size().y();
+
 		switch (direction) {
-		case Top: {
-			h *= percentage;
-			break;
-		}
-		case Right: {
-			x += (1.0f - percentage) * w;
-			w *= percentage;
-			break;
-		}
-		case Left: {
-			w *= percentage;
-			break;
-		}
-		case Bottom: {
-			y += h - (int) (percentage * h);
-			h *= percentage;
-			break;
-		}
+			case Top:
+				h *= percentage;
+				break;
+
+			case Right:
+				x += (1.0f - percentage) * w;
+				w *= percentage;
+				break;
+
+			case Left:
+				w *= percentage;
+				break;
+
+			case Bottom:
+				y += h - (int) (percentage * h);
+				h *= percentage;
+				break;
 		}
 		texture(texture.crop(direction, dim - dist), new IArea(x, y, w, h));
-	}
-
-	public void test(IWidget widget) {
 	}
 }

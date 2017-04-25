@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.minecraft.control;
 
 import binnie.core.craftgui.controls.tab.ControlTab;
@@ -10,8 +6,7 @@ import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.genetics.IItemStackRepresentative;
 import net.minecraft.item.ItemStack;
 
-public class ControlTabIcon<T> extends ControlTab<T>
-{
+public class ControlTabIcon<T> extends ControlTab<T> {
 	private ControlItemDisplay item;
 
 	public ControlTabIcon(ControlTabBar<T> parent, float x, float y, float w, float h, T value) {
@@ -40,6 +35,6 @@ public class ControlTabIcon<T> extends ControlTab<T>
 	}
 
 	public int getOutlineColour() {
-		return 16777215;
+		return 0xffffff;
 	}
 }

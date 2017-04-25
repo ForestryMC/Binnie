@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.resource.minecraft;
 
 import binnie.core.craftgui.CraftGUI;
@@ -31,14 +27,13 @@ import java.util.List;
 import java.util.Map;
 
 @SideOnly(Side.CLIENT)
-public class CraftGUIResourceManager implements IResourceManagerReloadListener
-{
+public class CraftGUIResourceManager implements IResourceManagerReloadListener {
 	private Map<String, ParsedTextureSheet> textureSheets;
 	private Map<String, Texture> textures;
 
 	public CraftGUIResourceManager() {
-		textureSheets = new HashMap<String, ParsedTextureSheet>();
-		textures = new HashMap<String, Texture>();
+		textureSheets = new HashMap<>();
+		textures = new HashMap<>();
 		CraftGUI.ResourceManager = this;
 	}
 
@@ -47,8 +42,9 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener
 		textureSheets.clear();
 		try {
 			IResource res = manager.getResource(new ResourceLocation("binniecore", "gui/stylesheet.json"));
-			JsonObject jsonobject = null;
+			JsonObject jsonobject;
 			BufferedReader bufferedreader = null;
+
 			try {
 				bufferedreader = new BufferedReader(new InputStreamReader(res.getInputStream(), Charsets.UTF_8));
 				jsonobject = new JsonParser().parse(bufferedreader).getAsJsonObject();
@@ -61,6 +57,7 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener
 						textureSheets.put(name, new ParsedTextureSheet(name, modid, path));
 					}
 				}
+
 				for (JsonElement el : jsonobject.get("textures").getAsJsonArray()) {
 					if (el instanceof JsonObject) {
 						JsonObject sheet = (JsonObject) el;
@@ -72,6 +69,7 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener
 						if (sheet.has("border")) {
 							border = getBorder(sheet.get("border").getAsString());
 						}
+
 						if (sheet.has("padding")) {
 							padding = getBorder(sheet.get("padding").getAsString());
 						}
@@ -93,6 +91,7 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener
 		if (split.length < 1 || split.length > 4) {
 			throw new RuntimeException("Parameter must have between one and four numbers");
 		}
+
 		List<Float> f = new ArrayList<Float>();
 		for (String string : split) {
 			f.add(Float.parseFloat(string));

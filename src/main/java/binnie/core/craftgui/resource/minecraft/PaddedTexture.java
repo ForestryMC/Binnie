@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.resource.minecraft;
 
 import binnie.core.craftgui.geometry.IArea;
@@ -10,8 +6,7 @@ import binnie.core.craftgui.resource.Texture;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 
-public class PaddedTexture extends Texture
-{
+public class PaddedTexture extends Texture {
 	public PaddedTexture(int u, int v, int w, int h, int offset, IBinnieTexture textureFile, int leftPadding, int rightPadding, int topPadding, int bottomPadding) {
 		this(u, v, w, h, offset, textureFile.getTexture(), leftPadding, rightPadding, topPadding, bottomPadding);
 	}
