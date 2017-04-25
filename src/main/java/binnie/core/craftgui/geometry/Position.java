@@ -1,18 +1,13 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.geometry;
 
-public enum Position
-{
+public enum Position {
 	Top(0, -1),
 	Bottom(0, 1),
 	Left(-1, 0),
 	Right(1, 0);
 
-	int x;
-	int y;
+	protected int x;
+	protected int y;
 
 	Position(int x, int y) {
 		this.x = x;
@@ -29,21 +24,18 @@ public enum Position
 
 	public Position opposite() {
 		switch (this) {
-		case Bottom: {
-			return Position.Top;
+			case Bottom:
+				return Position.Top;
+
+			case Left:
+				return Position.Right;
+
+			case Right:
+				return Position.Left;
+
+			case Top:
+				return Position.Bottom;
 		}
-		case Left: {
-			return Position.Right;
-		}
-		case Right: {
-			return Position.Left;
-		}
-		case Top: {
-			return Position.Bottom;
-		}
-		default: {
-			return null;
-		}
-		}
+		return null;
 	}
 }

@@ -1,15 +1,10 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.geometry;
 
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.IControlValue;
 import binnie.core.craftgui.events.EventValueChanged;
 
-public class CraftGUIUtil
-{
+public class CraftGUIUtil {
 	public static void alignToWidget(IWidget target, IWidget relativeTo) {
 		IPoint startPos = target.getAbsolutePosition();
 		IPoint endPos = relativeTo.getAbsolutePosition();
@@ -59,6 +54,7 @@ public class CraftGUIUtil
 				target.setValue((T) event.getValue());
 			}
 		});
+
 		target.addSelfEventHandler(new EventValueChanged.Handler() {
 			@Override
 			public void onEvent(EventValueChanged event) {

@@ -1,16 +1,12 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.geometry;
 
-public class IBorder
-{
-	public static IBorder ZERO;
-	float t;
-	float b;
-	float l;
-	float r;
+public class IBorder {
+	public static IBorder ZERO = new IBorder(0.0f);
+	
+	protected float t;
+	protected float b;
+	protected float l;
+	protected float r;
 
 	public IBorder(float pad) {
 		this(pad, pad, pad, pad);
@@ -72,7 +68,7 @@ public class IBorder
 	}
 
 	public boolean isNonZero() {
-		return t != 0.0f || r != 0.0f || l != 0.0f || r != 0.0f;
+		return t != 0.0f || r != 0.0f || l != 0.0f || b != 0.0f;
 	}
 
 	@Deprecated
@@ -102,9 +98,5 @@ public class IBorder
 	@Override
 	public String toString() {
 		return t() + "-" + r() + "-" + b() + "-" + l();
-	}
-
-	static {
-		ZERO = new IBorder(0.0f);
 	}
 }

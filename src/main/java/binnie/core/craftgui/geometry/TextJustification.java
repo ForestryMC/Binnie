@@ -1,11 +1,6 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.geometry;
 
-public enum TextJustification
-{
+public enum TextJustification {
 	TopLeft(0.0f, 0.0f),
 	TopCenter(0.5f, 0.0f),
 	TopRight(1.0f, 0.0f),
@@ -16,8 +11,8 @@ public enum TextJustification
 	BottomCenter(0.5f, 1.0f),
 	BottomRight(1.0f, 1.0f);
 
-	float xOffset;
-	float yOffset;
+	protected float xOffset;
+	protected float yOffset;
 
 	TextJustification(float xOffset, float yOffset) {
 		this.xOffset = xOffset;
