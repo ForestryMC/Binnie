@@ -1,13 +1,8 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.events;
 
 import binnie.core.craftgui.IWidget;
 
-public class EventCycleChanged extends Event
-{
+public class EventCycleChanged extends Event {
 	public int value;
 
 	public EventCycleChanged(IWidget origin, int value) {

@@ -1,22 +1,16 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.events;
 
 import binnie.core.craftgui.IWidget;
 
-public abstract class EventMouse extends Event
-{
+public abstract class EventMouse extends Event {
 	public EventMouse(IWidget origin) {
 		super(origin);
 	}
 
-	public static class Button extends EventMouse
-	{
-		int x;
-		int y;
-		int button;
+	public static class Button extends EventMouse {
+		protected int x;
+		protected int y;
+		protected int button;
 
 		public int getX() {
 			return x;
@@ -38,38 +32,33 @@ public abstract class EventMouse extends Event
 		}
 	}
 
-	public static class Down extends Button
-	{
+	public static class Down extends Button {
 		public Down(IWidget currentMousedOverWidget, int x, int y, int button) {
 			super(currentMousedOverWidget, x, y, button);
 		}
 
-		public abstract static class Handler extends EventHandler<Down>
-		{
+		public abstract static class Handler extends EventHandler<Down> {
 			public Handler() {
 				super(Down.class);
 			}
 		}
 	}
 
-	public static class Up extends Button
-	{
+	public static class Up extends Button {
 		public Up(IWidget currentMousedOverWidget, int x, int y, int button) {
 			super(currentMousedOverWidget, x, y, button);
 		}
 
-		public abstract static class Handler extends EventHandler<Up>
-		{
+		public abstract static class Handler extends EventHandler<Up> {
 			public Handler() {
 				super(Up.class);
 			}
 		}
 	}
 
-	public static class Move extends EventMouse
-	{
-		float dx;
-		float dy;
+	public static class Move extends EventMouse {
+		protected float dx;
+		protected float dy;
 
 		public float getDx() {
 			return dx;
@@ -85,31 +74,27 @@ public abstract class EventMouse extends Event
 			this.dy = dy;
 		}
 
-		public abstract static class Handler extends EventHandler<Move>
-		{
+		public abstract static class Handler extends EventHandler<Move> {
 			public Handler() {
 				super(Move.class);
 			}
 		}
 	}
 
-	public static class Drag extends Move
-	{
+	public static class Drag extends Move {
 		public Drag(IWidget draggedWidget, float dx, float dy) {
 			super(draggedWidget, dx, dy);
 		}
 
-		public abstract static class Handler extends EventHandler<Drag>
-		{
+		public abstract static class Handler extends EventHandler<Drag> {
 			public Handler() {
 				super(Drag.class);
 			}
 		}
 	}
 
-	public static class Wheel extends EventMouse
-	{
-		int dWheel;
+	public static class Wheel extends EventMouse {
+		protected int dWheel;
 
 		public Wheel(IWidget origin, int dWheel) {
 			super(origin);
@@ -121,8 +106,7 @@ public abstract class EventMouse extends Event
 			return dWheel;
 		}
 
-		public abstract static class Handler extends EventHandler<Wheel>
-		{
+		public abstract static class Handler extends EventHandler<Wheel> {
 			public Handler() {
 				super(Wheel.class);
 			}

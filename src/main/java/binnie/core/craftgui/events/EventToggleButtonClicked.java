@@ -1,14 +1,9 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.events;
 
 import binnie.core.craftgui.IWidget;
 
-public class EventToggleButtonClicked extends Event
-{
-	boolean toggled;
+public class EventToggleButtonClicked extends Event {
+	protected boolean toggled;
 
 	public EventToggleButtonClicked(IWidget origin, boolean toggled) {
 		super(origin);

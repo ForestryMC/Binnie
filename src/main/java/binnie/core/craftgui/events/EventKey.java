@@ -1,13 +1,8 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.events;
 
 import binnie.core.craftgui.IWidget;
 
-public abstract class EventKey extends Event
-{
+public abstract class EventKey extends Event {
 	char character;
 	int key;
 
@@ -25,28 +20,25 @@ public abstract class EventKey extends Event
 		return key;
 	}
 
-	public static class Down extends EventKey
-	{
+	public static class Down extends EventKey {
 		public Down(IWidget origin, char character, int key) {
 			super(origin, character, key);
 		}
 
-		public abstract static class Handler extends EventHandler<Down>
-		{
+		public abstract static class Handler extends EventHandler<Down> {
 			public Handler() {
 				super(Down.class);
 			}
 		}
 	}
 
-	public static class Up extends EventKey
-	{
+	// TODO unused class?
+	public static class Up extends EventKey {
 		public Up(IWidget origin, char character, int key) {
 			super(origin, character, key);
 		}
 
-		public abstract static class Handler extends EventHandler<Up>
-		{
+		public abstract static class Handler extends EventHandler<Up> {
 			public Handler() {
 				super(Up.class);
 			}
