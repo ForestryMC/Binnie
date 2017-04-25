@@ -9,7 +9,7 @@ import binnie.Binnie;
 import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.CraftGUI;
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.core.texture.BinnieCoreTexture;
 import binnie.core.craftgui.IWidget;
@@ -33,7 +33,7 @@ public class ControlAnalystChromosome extends Control implements ITooltip
 		super(parent, x, y, 16.0f, 22.0f);
 		this.Homozygous = new StandardTexture(0, 0, 16, 22, BinnieCoreTexture.GUIAnalyst);
 		this.Heterozygous = new StandardTexture(16, 0, 16, 22, BinnieCoreTexture.GUIAnalyst);
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(WidgetAttribute.MouseOver);
 		this.root = root;
 		this.chromosomeType = type;
 		this.allele0 = allele0;

@@ -6,41 +6,41 @@ package binnie.core.craftgui.geometry;
 
 public class IPoint
 {
-	public static final IPoint ZERO;
+	public static IPoint ZERO;
 	float x;
 	float y;
 
-	public IPoint(final float x, final float y) {
+	public IPoint(float x, float y) {
 		this.x = 0.0f;
 		this.y = 0.0f;
 		this.x = x;
 		this.y = y;
 	}
 
-	public IPoint(final IPoint o) {
+	public IPoint(IPoint o) {
 		x = 0.0f;
 		y = 0.0f;
 		x = o.x();
 		y = o.y();
 	}
 
-	public static IPoint add(final IPoint a, final IPoint b) {
+	public static IPoint add(IPoint a, IPoint b) {
 		return new IPoint(a.x() + b.x(), a.y() + b.y());
 	}
 
-	public static IPoint sub(final IPoint a, final IPoint b) {
+	public static IPoint sub(IPoint a, IPoint b) {
 		return new IPoint(a.x() - b.x(), a.y() - b.y());
 	}
 
-	public IPoint sub(final IPoint a) {
+	public IPoint sub(IPoint a) {
 		return sub(this, a);
 	}
 
-	public IPoint add(final IPoint other) {
+	public IPoint add(IPoint other) {
 		return add(this, other);
 	}
 
-	public IPoint add(final float dx, final float dy) {
+	public IPoint add(float dx, float dy) {
 		return add(this, new IPoint(dx, dy));
 	}
 
@@ -56,20 +56,20 @@ public class IPoint
 		return y;
 	}
 
-	public void xy(final float x, final float y) {
+	public void xy(float x, float y) {
 		x(x);
 		y(y);
 	}
 
-	public float x(final float x) {
+	public float x(float x) {
 		return this.x = x;
 	}
 
-	public float y(final float y) {
+	public float y(float y) {
 		return this.y = y;
 	}
 
-	public boolean equals(final IPoint other) {
+	public boolean equals(IPoint other) {
 		return x() == other.x() && y() == other.y();
 	}
 

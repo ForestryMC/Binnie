@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.controls.listbox;
 
 import binnie.core.craftgui.IWidget;
@@ -15,21 +11,16 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class ControlList<T> extends Control implements IControlValue<T>
-{
-	ControlListBox<T> parent;
-	T value;
-	Map<T, IWidget> allOptions;
-	Map<T, IWidget> optionWidgets;
-	boolean creating;
-	IValidator<IWidget> validator;
+public class ControlList<T> extends Control implements IControlValue<T> {
+	protected ControlListBox<T> parent;
+	protected T value;
+	protected Map<T, IWidget> allOptions = new LinkedHashMap<>();
+	protected Map<T, IWidget> optionWidgets = new LinkedHashMap<>();
+	protected boolean creating;
+	protected IValidator<IWidget> validator;
 
-	protected ControlList(final ControlListBox<T> parent, final float x, final float y, final float w, final float h) {
+	protected ControlList(ControlListBox<T> parent, float x, float y, float w, float h) {
 		super(parent, x, y, w, h);
-		value = null;
-		allOptions = new LinkedHashMap<T, IWidget>();
-		optionWidgets = new LinkedHashMap<T, IWidget>();
-		creating = false;
 		this.parent = parent;
 	}
 
@@ -39,28 +30,28 @@ public class ControlList<T> extends Control implements IControlValue<T>
 	}
 
 	@Override
-	public void setValue(final T value) {
+	public void setValue(T value) {
 		if (value == this.value) {
 			return;
 		}
+
 		this.value = value;
 		if (value != null && optionWidgets.containsKey(value)) {
-			final IWidget child = optionWidgets.get(value);
+			IWidget child = optionWidgets.get(value);
 			parent.ensureVisible(child.y(), child.y() + child.h(), h());
 		}
 		getParent().callEvent(new EventValueChanged<Object>(getParent(), value));
 	}
 
-	public void setOptions(final Collection<T> options) {
+	public void setOptions(Collection<T> options) {
 		deleteAllChildren();
 		allOptions.clear();
-		int i = 0;
-		for (final T option : options) {
-			final IWidget optionWidget = ((ControlListBox) getParent()).createOption(option, 0);
+
+		for (T option : options) {
+			IWidget optionWidget = ((ControlListBox) getParent()).createOption(option, 0);
 			if (optionWidget != null) {
 				allOptions.put(option, optionWidget);
 			}
-			++i;
 		}
 		filterOptions();
 	}
@@ -68,17 +59,18 @@ public class ControlList<T> extends Control implements IControlValue<T>
 	public void filterOptions() {
 		int height = 0;
 		optionWidgets.clear();
-		for (final Map.Entry<T, IWidget> entry : allOptions.entrySet()) {
+
+		for (Map.Entry<T, IWidget> entry : allOptions.entrySet()) {
 			if (isValidOption(entry.getValue())) {
 				entry.getValue().show();
 				optionWidgets.put(entry.getKey(), entry.getValue());
 				entry.getValue().setPosition(new IPoint(0.0f, height));
 				height += (int) entry.getValue().getSize().y();
-			}
-			else {
+			} else {
 				entry.getValue().hide();
 			}
 		}
+
 		creating = true;
 		setValue(getValue());
 		setSize(new IPoint(getSize().x(), height));
@@ -92,13 +84,13 @@ public class ControlList<T> extends Control implements IControlValue<T>
 		return allOptions.keySet();
 	}
 
-	public int getIndexOf(final T value) {
+	public int getIndexOf(T value) {
 		int index = 0;
-		for (final T option : getOptions()) {
+		for (T option : getOptions()) {
 			if (option.equals(value)) {
 				return index;
 			}
-			++index;
+			index++;
 		}
 		return -1;
 	}
@@ -107,23 +99,23 @@ public class ControlList<T> extends Control implements IControlValue<T>
 		return getIndexOf(getValue());
 	}
 
-	public void setIndex(final int currentIndex) {
+	public void setIndex(int currentIndex) {
 		int index = 0;
-		for (final T option : getOptions()) {
+		for (T option : getOptions()) {
 			if (index == currentIndex) {
 				setValue(option);
 				return;
 			}
-			++index;
+			index++;
 		}
 		setValue(null);
 	}
 
-	private boolean isValidOption(final IWidget widget) {
+	private boolean isValidOption(IWidget widget) {
 		return validator == null || validator.isValid(widget);
 	}
 
-	public void setValidator(final IValidator<IWidget> validator) {
+	public void setValidator(IValidator<IWidget> validator) {
 		if (this.validator != validator) {
 			this.validator = validator;
 			filterOptions();

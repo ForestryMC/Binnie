@@ -16,7 +16,7 @@ public class StyleSheet implements IStyleSheet
 	}
 
 	@Override
-	public Texture getTexture(final Object key) {
+	public Texture getTexture(Object key) {
 		if (!textures.containsKey(key)) {
 			return StyleSheetManager.getTexture(key);
 		}

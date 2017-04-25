@@ -5,7 +5,7 @@
 package binnie.core.craftgui.database;
 
 import binnie.Binnie;
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -26,17 +26,17 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 	private IAlleleSpecies species;
 	EnumDiscoveryState discovered;
 
-	public void setSpecies(final IAlleleSpecies species) {
+	public void setSpecies(IAlleleSpecies species) {
 		setSpecies(species, EnumDiscoveryState.Show);
 	}
 
-	public void setSpecies(final IAlleleSpecies species, EnumDiscoveryState state) {
-		final ISpeciesRoot speciesRoot = Binnie.Genetics.getSpeciesRoot(species);
-		final BreedingSystem system = Binnie.Genetics.getSystem(speciesRoot.getUID());
-		final IIndividual ind = system.getSpeciesRoot().templateAsIndividual(system.getSpeciesRoot().getTemplate(species.getUID()));
+	public void setSpecies(IAlleleSpecies species, EnumDiscoveryState state) {
+		ISpeciesRoot speciesRoot = Binnie.Genetics.getSpeciesRoot(species);
+		BreedingSystem system = Binnie.Genetics.getSystem(speciesRoot.getUID());
+		IIndividual ind = system.getSpeciesRoot().templateAsIndividual(system.getSpeciesRoot().getTemplate(species.getUID()));
 		super.setItemStack(system.getSpeciesRoot().getMemberStack(ind, system.getDefaultType()));
 		this.species = species;
-		final GameProfile username = Window.get(this).getUsername();
+		GameProfile username = Window.get(this).getUsername();
 		if (state == EnumDiscoveryState.Undetermined) {
 			state = (system.isSpeciesDiscovered(species, Window.get(this).getWorld(), username) ? EnumDiscoveryState.Discovered : EnumDiscoveryState.Undiscovered);
 		}
@@ -44,20 +44,20 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 			state = EnumDiscoveryState.Show;
 		}
 		discovered = state;
-		addAttribute(Attribute.MouseOver);
+		addAttribute(WidgetAttribute.MouseOver);
 	}
 
-	public ControlDatabaseIndividualDisplay(final IWidget parent, final float x, final float y) {
+	public ControlDatabaseIndividualDisplay(IWidget parent, float x, float y) {
 		this(parent, x, y, 16.0f);
 	}
 
-	public ControlDatabaseIndividualDisplay(final IWidget parent, final float x, final float y, final float size) {
+	public ControlDatabaseIndividualDisplay(IWidget parent, float x, float y, float size) {
 		super(parent, x, y, size);
 		species = null;
 		discovered = EnumDiscoveryState.Show;
 		addSelfEventHandler(new EventMouse.Down.Handler() {
 			@Override
-			public void onEvent(final EventMouse.Down event) {
+			public void onEvent(EventMouse.Down event) {
 				if (event.getButton() == 0 && species != null && EnumDiscoveryState.Show == discovered) {
 					((WindowAbstractDatabase) getSuperParent()).gotoSpeciesDelayed(species);
 				}
@@ -71,7 +71,7 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 		if (species == null) {
 			return;
 		}
-		final BreedingSystem system = Binnie.Genetics.getSystem(species.getRoot());
+		BreedingSystem system = Binnie.Genetics.getSystem(species.getRoot());
 		switch (discovered) {
 		case Show: {
 			super.onRenderForeground();
@@ -92,7 +92,7 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
+	public void getTooltip(Tooltip tooltip) {
 		if (species != null) {
 			switch (discovered) {
 			case Show: {

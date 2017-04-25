@@ -44,7 +44,7 @@ public class WindowAlvearyMutator extends Window
 		this.playerInventory = new ControlPlayerInventory(this);
 		final ControlSlot slot = new ControlSlot(this, 79.0f, 30.0f);
 		slot.assign(0);
-		new ControlText(this, new IArea(0.0f, 52.0f, this.w(), 16.0f), "Possible Mutagens:", TextJustification.MiddleCenter).setColour(5592405);
+		new ControlText(this, new IArea(0.0f, 52.0f, this.w(), 16.0f), "Possible Mutagens:", TextJustification.MiddleCenter).setColor(5592405);
 		final int size = AlvearyMutator.getMutagens().size();
 		final int w = size * 18;
 		if (size > 0) {

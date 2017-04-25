@@ -4,7 +4,7 @@
 
 package binnie.core.craftgui.minecraft.control;
 
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.controls.core.Control;
@@ -17,13 +17,13 @@ public class ControlProgressBase extends Control
 {
 	protected float progress;
 
-	public ControlProgressBase(final IWidget parent, final float x, final float y, final float w, final float h) {
+	public ControlProgressBase(IWidget parent, float x, float y, float w, float h) {
 		super(parent, x, y, w, h);
 		progress = 0.0f;
-		addAttribute(Attribute.MouseOver);
+		addAttribute(WidgetAttribute.MouseOver);
 	}
 
-	public void setProgress(final float progress) {
+	public void setProgress(float progress) {
 		this.progress = progress;
 		if (this.progress < 0.0f) {
 			this.progress = 0.0f;
@@ -39,16 +39,16 @@ public class ControlProgressBase extends Control
 
 	@Override
 	public void onUpdateClient() {
-		final ProcessInfo process = getProcess();
+		ProcessInfo process = getProcess();
 		if (process != null) {
 			setProgress(process.getCurrentProgress() / 100.0f);
 		}
 	}
 
 	@Override
-	public void getHelpTooltip(final Tooltip tooltip) {
-		final ProcessInfo process = getProcess();
-		final IProcess machineProcess = Machine.getMachine(Window.get(this).getInventory()).getInterface(IProcess.class);
+	public void getHelpTooltip(Tooltip tooltip) {
+		ProcessInfo process = getProcess();
+		IProcess machineProcess = Machine.getMachine(Window.get(this).getInventory()).getInterface(IProcess.class);
 		if (process != null) {
 			tooltip.add("Progress");
 			if (progress == 0.0f) {
@@ -71,7 +71,7 @@ public class ControlProgressBase extends Control
 		}
 	}
 
-	public static String convertTime(final int time) {
+	public static String convertTime(int time) {
 		int seconds = (int) (time / 20.0f);
 		int minutes = 0;
 		while (seconds >= 60) {

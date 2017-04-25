@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui;
 
 import binnie.Binnie;
@@ -47,8 +43,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class WindowFieldKit extends Window
-{
+public class WindowFieldKit extends Window {
 	private float glassOffsetX;
 	private float glassOffsetY;
 	private float glassVX;
@@ -62,7 +57,7 @@ public class WindowFieldKit extends Window
 	private Map<IChromosomeType, String> info;
 	private ItemStack prev;
 
-	public WindowFieldKit(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowFieldKit(EntityPlayer player, IInventory inventory, Side side) {
 		super(280.0f, 230.0f, player, inventory, side);
 		glassOffsetX = 0.0f;
 		glassOffsetY = 0.0f;
@@ -71,7 +66,7 @@ public class WindowFieldKit extends Window
 		glassRand = new Random();
 		analyseProgress = 1.0f;
 		isAnalysing = false;
-		info = new HashMap<IChromosomeType, String>();
+		info = new HashMap<>();
 		prev = null;
 	}
 
@@ -88,8 +83,9 @@ public class WindowFieldKit extends Window
 	private void setupValidators() {
 		getWindowInventory().setValidator(0, new SlotValidator(null) {
 			@Override
-			public boolean isValid(final ItemStack object) {
-				return AlleleManager.alleleRegistry.isIndividual(object) || Binnie.Genetics.getConversion(object) != null;
+			public boolean isValid(ItemStack object) {
+				return AlleleManager.alleleRegistry.isIndividual(object)
+					|| Binnie.Genetics.getConversion(object) != null;
 			}
 
 			@Override
@@ -97,9 +93,10 @@ public class WindowFieldKit extends Window
 				return "Individual";
 			}
 		});
+
 		getWindowInventory().setValidator(1, new SlotValidator(null) {
 			@Override
-			public boolean isValid(final ItemStack object) {
+			public boolean isValid(ItemStack object) {
 				return object.getItem() == Items.paper;
 			}
 
@@ -119,22 +116,22 @@ public class WindowFieldKit extends Window
 		getWindowInventory().createSlot(1);
 		setupValidators();
 		new ControlPlayerInventory(this);
-		final IPoint handGlass = new IPoint(16.0f, 32.0f);
+		IPoint handGlass = new IPoint(16.0f, 32.0f);
 		GlassControl = new ControlImage(this, handGlass.x(), handGlass.y(), new StandardTexture(0, 160, 96, 96, ExtraBeeTexture.GUIPunnett));
 		new ControlSlot(this, handGlass.x() + 54.0f, handGlass.y() + 26.0f).assign(InventoryType.Window, 0);
 		new ControlSlot(this, 208.0f, 8.0f).assign(InventoryType.Window, 1);
-		(text = new ControlText(this, new IPoint(232.0f, 13.0f), "Paper")).setColour(2236962);
-		(text = new ControlText(this, new IArea(0.0f, 120.0f, w(), 24.0f), "", TextJustification.MiddleCenter)).setColour(2236962);
+		(text = new ControlText(this, new IPoint(232.0f, 13.0f), "Paper")).setColor(2236962);
+		(text = new ControlText(this, new IArea(0.0f, 120.0f, w(), 24.0f), "", TextJustification.MiddleCenter)).setColor(2236962);
 		chromo = new ControlChromosome(this, 150.0f, 24.0f);
+
 		addEventHandler(new EventValueChanged.Handler() {
 			@Override
-			public void onEvent(final EventValueChanged event) {
-				final IChromosomeType type = (IChromosomeType) event.getValue();
+			public void onEvent(EventValueChanged event) {
+				IChromosomeType type = (IChromosomeType) event.getValue();
 				if (type != null && info.containsKey(type)) {
-					final String t = info.get(type);
+					String t = info.get(type);
 					text.setValue(t);
-				}
-				else {
+				} else {
 					text.setValue("");
 				}
 			}
@@ -143,8 +140,8 @@ public class WindowFieldKit extends Window
 
 	@Override
 	public void initialiseServer() {
-		final ItemStack kit = getPlayer().getHeldItem();
-		final int sheets = 64 - kit.getItemDamage();
+		ItemStack kit = getPlayer().getHeldItem();
+		int sheets = 64 - kit.getItemDamage();
 		if (sheets != 0) {
 			getWindowInventory().setInventorySlotContents(1, new ItemStack(Items.paper, sheets));
 		}
@@ -159,13 +156,14 @@ public class WindowFieldKit extends Window
 			if (analyseProgress >= 1.0f) {
 				isAnalysing = false;
 				analyseProgress = 1.0f;
-				final ItemStack stack = getWindowInventory().getStackInSlot(0);
+				ItemStack stack = getWindowInventory().getStackInSlot(0);
 				if (stack != null) {
 					sendClientAction("analyse", new NBTTagCompound());
 				}
 				refreshSpecies();
 			}
 		}
+
 		glassVX += glassRand.nextFloat() - 0.5f - glassOffsetX * 0.2f;
 		glassVY += glassRand.nextFloat() - 0.5f - glassOffsetY * 0.2f;
 		glassOffsetX += glassVX;
@@ -176,30 +174,35 @@ public class WindowFieldKit extends Window
 	}
 
 	private void refreshSpecies() {
-		final ItemStack item = getWindowInventory().getStackInSlot(0);
+		ItemStack item = getWindowInventory().getStackInSlot(0);
 		if (item == null || !AlleleManager.alleleRegistry.isIndividual(item)) {
 			return;
 		}
-		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(item);
+
+		IIndividual ind = AlleleManager.alleleRegistry.getIndividual(item);
 		if (ind == null) {
 			return;
 		}
-		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(item);
+
+		ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(item);
 		chromo.setRoot(root);
-		final Random rand = new Random();
+		Random rand = new Random();
 		info.clear();
-		for (final IChromosomeType type : root.getKaryotype()) {
+		for (IChromosomeType type : root.getKaryotype()) {
 			if (!Binnie.Genetics.isInvalidChromosome(type)) {
-				final IAllele allele = ind.getGenome().getActiveAllele(type);
-				final List<String> infos = new ArrayList<String>();
+				IAllele allele = ind.getGenome().getActiveAllele(type);
+				List<String> infos = new ArrayList<>();
+
 				int i = 0;
 				for (String pref = root.getUID() + ".fieldkit." + type.getName().toLowerCase() + "."; Binnie.Language.canLocalise(pref + i); ++i) {
 					infos.add(Binnie.Language.localise(pref + i));
 				}
+
 				String text = Binnie.Genetics.getSystem(root).getAlleleName(type, allele);
 				if (!infos.isEmpty()) {
 					text = infos.get(rand.nextInt(infos.size()));
 				}
+
 				info.put(type, text);
 				chromo.setRoot(root);
 			}
@@ -210,16 +213,17 @@ public class WindowFieldKit extends Window
 	public void onWindowInventoryChanged() {
 		super.onWindowInventoryChanged();
 		if (isServer()) {
-			final ItemStack kit = getPlayer().getHeldItem();
-			final int sheets = 64 - kit.getItemDamage();
-			final int size = (getWindowInventory().getStackInSlot(1) == null) ? 0 : getWindowInventory().getStackInSlot(1).stackSize;
+			ItemStack kit = getPlayer().getHeldItem();
+			int sheets = 64 - kit.getItemDamage();
+			int size = (getWindowInventory().getStackInSlot(1) == null) ? 0 : getWindowInventory().getStackInSlot(1).stackSize;
 			if (sheets != size) {
 				kit.setItemDamage(64 - size);
 			}
 			((EntityPlayerMP) getPlayer()).updateHeldItem();
 		}
+
 		if (isClient()) {
-			final ItemStack item = getWindowInventory().getStackInSlot(0);
+			ItemStack item = getWindowInventory().getStackInSlot(0);
 			prev = item;
 			text.setValue("");
 			if (item != null && !Analyser.isAnalysed(item)) {
@@ -227,33 +231,20 @@ public class WindowFieldKit extends Window
 					text.setValue("No Paper!");
 					isAnalysing = false;
 					analyseProgress = 1.0f;
-				}
-				else {
+				} else {
 					startAnalysing();
 					chromo.setRoot(null);
-					if (damageKit()) {
-						return;
-					}
 				}
-			}
-			else if (item != null) {
+			} else if (item != null) {
 				isAnalysing = false;
 				analyseProgress = 1.0f;
 				refreshSpecies();
-				if (damageKit()) {
-					return;
-				}
-			}
-			else {
+			} else {
 				isAnalysing = false;
 				analyseProgress = 1.0f;
 				chromo.setRoot(null);
 			}
 		}
-	}
-
-	private boolean damageKit() {
-		return false;
 	}
 
 	private void startAnalysing() {
@@ -276,7 +267,7 @@ public class WindowFieldKit extends Window
 	}
 
 	@Override
-	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+	public void recieveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt) {
 		super.recieveGuiNBT(side, player, name, nbt);
 		if (side == Side.SERVER && name.equals("analyse")) {
 			getWindowInventory().setInventorySlotContents(0, Analyser.analyse(getWindowInventory().getStackInSlot(0)));
@@ -284,8 +275,7 @@ public class WindowFieldKit extends Window
 		}
 	}
 
-	static class StyleSheetPunnett extends StyleSheet
-	{
+	static class StyleSheetPunnett extends StyleSheet {
 		public StyleSheetPunnett() {
 			textures.put(CraftGUITexture.Window, new PaddedTexture(0, 0, 160, 160, 0, ExtraBeeTexture.GUIPunnett, 32, 32, 32, 32));
 			textures.put(CraftGUITexture.Slot, new StandardTexture(160, 0, 18, 18, 0, ExtraBeeTexture.GUIPunnett));

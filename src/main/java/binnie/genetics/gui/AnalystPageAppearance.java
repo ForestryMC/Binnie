@@ -20,10 +20,10 @@ public class AnalystPageAppearance extends ControlAnalystPage
 {
 	public AnalystPageAppearance(final IWidget parent, final IArea area, final IFlower ind) {
 		super(parent, area);
-		this.setColour(3355443);
+		this.setColor(3355443);
 		int y = 4;
 		final IAlleleSpecies species = ind.getGenome().getPrimary();
-		new ControlTextCentered(this, y, "§nAppearance").setColour(this.getColour());
+		new ControlTextCentered(this, y, "§nAppearance").setColor(this.getColor());
 		y += 12;
 		final ControlColourDisplay a = new ControlColourDisplay(this, this.w() / 2.0f - 28.0f, y);
 		a.setValue(ind.getGenome().getPrimaryColor());

@@ -52,7 +52,7 @@ public class GuiCraftGUI extends GuiContainer
 		return mc;
 	}
 
-	public GuiCraftGUI(final Window window) {
+	public GuiCraftGUI(Window window) {
 		super(window.getContainer());
 		mousePos = new IPoint(0.0f, 0.0f);
 		this.window = window;
@@ -60,7 +60,7 @@ public class GuiCraftGUI extends GuiContainer
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(final float var1, final int var2, final int var3) {
+	protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3) {
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class GuiCraftGUI extends GuiContainer
 	}
 
 	@Override
-	public void drawScreen(final int mouseX, final int mouseY, final float par3) {
+	public void drawScreen(int mouseX, int mouseY, float par3) {
 		window.setMousePosition(mouseX - (int) window.getPosition().x(), mouseY - (int) window.getPosition().y());
 		drawDefaultBackground();
 
@@ -96,7 +96,7 @@ public class GuiCraftGUI extends GuiContainer
 		GL11.glPushMatrix();
 		GL11.glEnable(32826);
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0f, 240.0f);
-		final InventoryPlayer playerInventory = mc.thePlayer.inventory;
+		InventoryPlayer playerInventory = mc.thePlayer.inventory;
 		draggedItem = playerInventory.getItemStack();
 		if (draggedItem != null) {
 			renderItem(new IPoint(mouseX - 8, mouseY - 8), draggedItem, 200, false);
@@ -106,7 +106,7 @@ public class GuiCraftGUI extends GuiContainer
 		GL11.glPopMatrix();
 		GL11.glDisable(2896);
 		GL11.glDisable(2929);
-		final MinecraftTooltip tooltip = new MinecraftTooltip();
+		MinecraftTooltip tooltip = new MinecraftTooltip();
 		if (isHelpMode()) {
 			tooltip.setType(Tooltip.Type.Help);
 			window.getHelpTooltip(tooltip);
@@ -123,17 +123,17 @@ public class GuiCraftGUI extends GuiContainer
 		GL11.glEnable(2929);
 	}
 
-	public void renderTooltip(final IPoint mousePosition, final MinecraftTooltip tooltip) {
-		final int mouseX = (int) mousePosition.x();
-		final int mouseY = (int) mousePosition.y();
-		final FontRenderer font = getFontRenderer();
+	public void renderTooltip(IPoint mousePosition, MinecraftTooltip tooltip) {
+		int mouseX = (int) mousePosition.x();
+		int mouseY = (int) mousePosition.y();
+		FontRenderer font = getFontRenderer();
 		GL11.glDisable(32826);
 		RenderHelper.disableStandardItemLighting();
 		GL11.glDisable(2896);
 		GL11.glDisable(2929);
 		int k = 0;
-		final List<String> strings = new ArrayList<String>();
-		for (final String string : tooltip.getList()) {
+		List<String> strings = new ArrayList<String>();
+		for (String string : tooltip.getList()) {
 			if (string != null) {
 				if (!string.contains("~~~")) {
 					strings.addAll(font.listFormattedStringToWidth(string, tooltip.maxWidth));
@@ -143,7 +143,7 @@ public class GuiCraftGUI extends GuiContainer
 				}
 			}
 		}
-		for (final String s : strings) {
+		for (String s : strings) {
 			int l = font.getStringWidth(s);
 			if (s.contains("~~~")) {
 				l = 12 + font.getStringWidth(s.replaceAll("~~~(.*?)~~~", ""));
@@ -166,9 +166,9 @@ public class GuiCraftGUI extends GuiContainer
 		}
 		zLevel = 300.0f;
 		GuiScreen.itemRender.zLevel = 300.0f;
-		final int l2 = -267386864;
-		final int j2;
-		final int i2 = j2 = 1342177280 + MinecraftTooltip.getOutline(tooltip.getType());
+		int l2 = -267386864;
+		int j2;
+		int i2 = j2 = 1342177280 + MinecraftTooltip.getOutline(tooltip.getType());
 		drawGradientRect(i1 - 3, j1 - 4, i1 + k + 3, j1 - 3, l2, l2);
 		drawGradientRect(i1 - 3, j1 + k2 + 3, i1 + k + 3, j1 + k2 + 4, l2, l2);
 		drawGradientRect(i1 - 3, j1 - 3, i1 + k + 3, j1 + k2 + 3, l2, l2);
@@ -187,10 +187,10 @@ public class GuiCraftGUI extends GuiContainer
 				s2 = MinecraftTooltip.getBody(tooltip.getType()) + s2;
 			}
 			if (s2.contains("~~~")) {
-				final String split = s2.split("~~~")[1];
+				String split = s2.split("~~~")[1];
 				try {
-					final NBTTagCompound nbt = (NBTTagCompound) JsonToNBT.func_150315_a(split);
-					final ItemStack stack = ItemStack.loadItemStackFromNBT(nbt);
+					NBTTagCompound nbt = (NBTTagCompound) JsonToNBT.func_150315_a(split);
+					ItemStack stack = ItemStack.loadItemStackFromNBT(nbt);
 					GL11.glPushMatrix();
 					GL11.glTranslatef(i1, j1 - 1.5f, 0.0f);
 					GL11.glScalef(0.6f, 0.6f, 1.0f);
@@ -216,7 +216,7 @@ public class GuiCraftGUI extends GuiContainer
 	}
 
 	@Override
-	protected void mouseClicked(final int x, final int y, final int button) {
+	protected void mouseClicked(int x, int y, int button) {
 		IWidget origin = window;
 		if (window.getMousedOverWidget() != null) {
 			origin = window.getMousedOverWidget();
@@ -229,20 +229,20 @@ public class GuiCraftGUI extends GuiContainer
 	}
 
 	@Override
-	protected void keyTyped(final char c, final int key) {
+	protected void keyTyped(char c, int key) {
 		if (key == 1 || (key == mc.gameSettings.keyBindInventory.getKeyCode() && window.getFocusedWidget() == null)) {
 			mc.thePlayer.closeScreen();
 		}
-		final IWidget origin = (window.getFocusedWidget() == null) ? window : window.getFocusedWidget();
+		IWidget origin = (window.getFocusedWidget() == null) ? window : window.getFocusedWidget();
 		window.callEvent(new EventKey.Down(origin, c, key));
 	}
 
 	@Override
-	protected void mouseMovedOrUp(final int x, final int y, final int button) {
-		final IWidget origin = (window.getMousedOverWidget() == null) ? window : window.getMousedOverWidget();
+	protected void mouseMovedOrUp(int x, int y, int button) {
+		IWidget origin = (window.getMousedOverWidget() == null) ? window : window.getMousedOverWidget();
 		if (button == -1) {
-			final float dx = Mouse.getEventDX() * width / (float) mc.displayWidth;
-			final float dy = -(Mouse.getEventDY() * height / (float) mc.displayHeight);
+			float dx = Mouse.getEventDX() * width / (float) mc.displayWidth;
+			float dy = -(Mouse.getEventDY() * height / (float) mc.displayHeight);
 		}
 		else {
 			window.callEvent(new EventMouse.Up(origin, x, y, button));
@@ -252,8 +252,8 @@ public class GuiCraftGUI extends GuiContainer
 	@Override
 	public void handleMouseInput() {
 		super.handleMouseInput();
-		final int dWheel = Mouse.getDWheel();
-		final IWidget origin = (window.getFocusedWidget() == null) ? window : window.getFocusedWidget();
+		int dWheel = Mouse.getDWheel();
+		IWidget origin = (window.getFocusedWidget() == null) ? window : window.getFocusedWidget();
 		if (dWheel != 0) {
 			window.callEvent(new EventMouse.Wheel(window, dWheel));
 		}
@@ -264,31 +264,31 @@ public class GuiCraftGUI extends GuiContainer
 		window.onClose();
 	}
 
-	public void renderTexturedRect(final float x, final float y, final float u, final float v, final float w, final float h) {
+	public void renderTexturedRect(float x, float y, float u, float v, float w, float h) {
 		drawTexturedModalRect((int) x, (int) y, (int) u, (int) v, (int) w, (int) h);
 	}
 
-	public void renderTexture(final IPoint position, final IArea textureArea) {
+	public void renderTexture(IPoint position, IArea textureArea) {
 		drawTexturedModalRect((int) position.x(), (int) position.y(), (int) textureArea.pos().x(), (int) textureArea.pos().y(), (int) textureArea.size().x(), (int) textureArea.size().y());
 	}
 
-	private void renderTexturedRect(final IArea area, final IPoint uv) {
+	private void renderTexturedRect(IArea area, IPoint uv) {
 		renderTexturedRect(area.pos().x(), area.pos().y(), uv.x(), uv.y(), area.size().x(), area.size().y());
 	}
 
-	public void renderTexturePadded(final IArea area, final IArea texture, final IBorder padding) {
+	public void renderTexturePadded(IArea area, IArea texture, IBorder padding) {
 		int borderLeft = (int) padding.l();
 		int borderRight = (int) padding.r();
 		int borderTop = (int) padding.t();
 		int borderBottom = (int) padding.b();
-		final int posX = (int) area.pos().x();
-		final int posY = (int) area.pos().y();
-		final int width = (int) area.size().x();
-		final int height = (int) area.size().y();
-		final int textWidth = (int) texture.w();
-		final int textHeight = (int) texture.h();
-		final int u = (int) texture.x();
-		final int v = (int) texture.y();
+		int posX = (int) area.pos().x();
+		int posY = (int) area.pos().y();
+		int width = (int) area.size().x();
+		int height = (int) area.size().y();
+		int textWidth = (int) texture.w();
+		int textHeight = (int) texture.h();
+		int u = (int) texture.x();
+		int v = (int) texture.y();
 		if (borderTop + borderBottom > height) {
 			borderTop = height / 2;
 			borderBottom = height / 2;
@@ -297,14 +297,14 @@ public class GuiCraftGUI extends GuiContainer
 			borderLeft = width / 2;
 			borderRight = width / 2;
 		}
-		final IPoint origin = area.pos();
+		IPoint origin = area.pos();
 		drawTexturedModalRect(posX, posY, u, v, borderLeft, borderTop);
 		drawTexturedModalRect(posX + width - borderRight, posY, u + textWidth - borderRight, v, borderRight, borderTop);
 		drawTexturedModalRect(posX, posY + height - borderBottom, u, v + textHeight - borderBottom, borderLeft, borderBottom);
 		drawTexturedModalRect(posX + width - borderRight, posY + height - borderBottom, u + textWidth - borderRight, v + textHeight - borderBottom, borderRight, borderBottom);
 		int texturingWidth;
 		for (int currentXPos = borderLeft; currentXPos < width - borderRight; currentXPos += texturingWidth) {
-			final int distanceXRemaining = width - borderRight - currentXPos;
+			int distanceXRemaining = width - borderRight - currentXPos;
 			texturingWidth = textWidth - borderLeft - borderRight;
 			if (texturingWidth > distanceXRemaining) {
 				texturingWidth = distanceXRemaining;
@@ -316,7 +316,7 @@ public class GuiCraftGUI extends GuiContainer
 			drawTexturedModalRect(posX + currentXPos, posY + height - borderBottom, u + borderLeft, v + textHeight - borderBottom, texturingWidth, borderBottom);
 			int texturingHeight;
 			for (int currentYPos = borderTop; currentYPos < height - borderBottom; currentYPos += texturingHeight) {
-				final int distanceYRemaining = height - borderBottom - currentYPos;
+				int distanceYRemaining = height - borderBottom - currentYPos;
 				texturingHeight = textHeight - borderTop - borderBottom;
 				if (texturingHeight > distanceYRemaining) {
 					texturingHeight = distanceYRemaining;
@@ -329,7 +329,7 @@ public class GuiCraftGUI extends GuiContainer
 		}
 		int texturingHeight2;
 		for (int currentYPos2 = borderTop; currentYPos2 < height - borderBottom; currentYPos2 += texturingHeight2) {
-			final int distanceYRemaining2 = height - borderBottom - currentYPos2;
+			int distanceYRemaining2 = height - borderBottom - currentYPos2;
 			texturingHeight2 = textHeight - borderTop - borderBottom;
 			if (texturingHeight2 > distanceYRemaining2) {
 				texturingHeight2 = distanceYRemaining2;
@@ -342,21 +342,21 @@ public class GuiCraftGUI extends GuiContainer
 		}
 	}
 
-	public void drawGradientArea(final float p_73733_1_, final float p_73733_2_, final float p_73733_3_, final float p_73733_4_, final int p_73733_5_, final int p_73733_6_) {
-		final float f = (p_73733_5_ >> 24 & 0xFF) / 255.0f;
-		final float f2 = (p_73733_5_ >> 16 & 0xFF) / 255.0f;
-		final float f3 = (p_73733_5_ >> 8 & 0xFF) / 255.0f;
-		final float f4 = (p_73733_5_ & 0xFF) / 255.0f;
-		final float f5 = (p_73733_6_ >> 24 & 0xFF) / 255.0f;
-		final float f6 = (p_73733_6_ >> 16 & 0xFF) / 255.0f;
-		final float f7 = (p_73733_6_ >> 8 & 0xFF) / 255.0f;
-		final float f8 = (p_73733_6_ & 0xFF) / 255.0f;
+	public void drawGradientArea(float p_73733_1_, float p_73733_2_, float p_73733_3_, float p_73733_4_, int p_73733_5_, int p_73733_6_) {
+		float f = (p_73733_5_ >> 24 & 0xFF) / 255.0f;
+		float f2 = (p_73733_5_ >> 16 & 0xFF) / 255.0f;
+		float f3 = (p_73733_5_ >> 8 & 0xFF) / 255.0f;
+		float f4 = (p_73733_5_ & 0xFF) / 255.0f;
+		float f5 = (p_73733_6_ >> 24 & 0xFF) / 255.0f;
+		float f6 = (p_73733_6_ >> 16 & 0xFF) / 255.0f;
+		float f7 = (p_73733_6_ >> 8 & 0xFF) / 255.0f;
+		float f8 = (p_73733_6_ & 0xFF) / 255.0f;
 		GL11.glDisable(3553);
 		GL11.glEnable(3042);
 		GL11.glDisable(3008);
 		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
 		GL11.glShadeModel(7425);
-		final Tessellator tessellator = Tessellator.instance;
+		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
 		tessellator.setColorRGBA_F(f2, f3, f4, f);
 		tessellator.addVertex(p_73733_3_, p_73733_2_, zLevel);
@@ -371,11 +371,11 @@ public class GuiCraftGUI extends GuiContainer
 		GL11.glEnable(3553);
 	}
 
-	public void renderItem(final IPoint pos, final ItemStack item, final boolean rotating) {
+	public void renderItem(IPoint pos, ItemStack item, boolean rotating) {
 		renderItem(pos, item, (int) zLevel + 3, rotating);
 	}
 
-	private void renderItem(final IPoint pos, final ItemStack item, final int zLevel, final boolean rotating) {
+	private void renderItem(IPoint pos, ItemStack item, int zLevel, boolean rotating) {
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0f, 240.0f);
 		GL11.glPushMatrix();
 		RenderHelper.enableGUIStandardItemLighting();
@@ -387,7 +387,7 @@ public class GuiCraftGUI extends GuiContainer
 		}
 		if (item != null) {
 			BinnieCore.proxy.getMinecraftInstance();
-			final float phase = Minecraft.getSystemTime() / 20.0f;
+			float phase = Minecraft.getSystemTime() / 20.0f;
 			GL11.glPushMatrix();
 			if (rotating) {
 				GL11.glTranslatef(8.0f, 8.0f, 0.0f);
@@ -407,7 +407,7 @@ public class GuiCraftGUI extends GuiContainer
 		GL11.glPopMatrix();
 	}
 
-	public void renderIcon(final IPoint pos, final IIcon icon, final ResourceLocation map) {
+	public void renderIcon(IPoint pos, IIcon icon, ResourceLocation map) {
 		if (icon == null) {
 			return;
 		}
@@ -428,7 +428,7 @@ public class GuiCraftGUI extends GuiContainer
 		return fontRendererObj;
 	}
 
-	public void resize(final IPoint size) {
+	public void resize(IPoint size) {
 		xSize = (int) size.x();
 		ySize = (int) size.y();
 		guiLeft = (width - xSize) / 2;
@@ -436,15 +436,15 @@ public class GuiCraftGUI extends GuiContainer
 		window.setPosition(new IPoint(guiLeft, guiTop));
 	}
 
-	public void limitArea(final IArea area) {
+	public void limitArea(IArea area) {
 		float x = area.pos().x();
 		float y = area.pos().y();
 		float w = area.size().x();
 		float h = area.size().y();
 		y = height - (y + h);
-		final float k = xSize;
-		final float scaleX = width / (float) mc.displayWidth;
-		final float scaleY = height / (float) mc.displayHeight;
+		float k = xSize;
+		float scaleX = width / (float) mc.displayWidth;
+		float scaleY = height / (float) mc.displayHeight;
 		x += 0.0f;
 		y += 0.0f;
 		w += 0.0f;
@@ -456,22 +456,22 @@ public class GuiCraftGUI extends GuiContainer
 		return (int) zLevel;
 	}
 
-	public void drawRect(float p_73734_0_, float p_73734_1_, float p_73734_2_, float p_73734_3_, final int p_73734_4_) {
+	public void drawRect(float p_73734_0_, float p_73734_1_, float p_73734_2_, float p_73734_3_, int p_73734_4_) {
 		if (p_73734_0_ < p_73734_2_) {
-			final float j1 = p_73734_0_;
+			float j1 = p_73734_0_;
 			p_73734_0_ = p_73734_2_;
 			p_73734_2_ = j1;
 		}
 		if (p_73734_1_ < p_73734_3_) {
-			final float j1 = p_73734_1_;
+			float j1 = p_73734_1_;
 			p_73734_1_ = p_73734_3_;
 			p_73734_3_ = j1;
 		}
-		final float f3 = (p_73734_4_ >> 24 & 0xFF) / 255.0f;
-		final float f4 = (p_73734_4_ >> 16 & 0xFF) / 255.0f;
-		final float f5 = (p_73734_4_ >> 8 & 0xFF) / 255.0f;
-		final float f6 = (p_73734_4_ & 0xFF) / 255.0f;
-		final Tessellator tessellator = Tessellator.instance;
+		float f3 = (p_73734_4_ >> 24 & 0xFF) / 255.0f;
+		float f4 = (p_73734_4_ >> 16 & 0xFF) / 255.0f;
+		float f5 = (p_73734_4_ >> 8 & 0xFF) / 255.0f;
+		float f6 = (p_73734_4_ & 0xFF) / 255.0f;
+		Tessellator tessellator = Tessellator.instance;
 		GL11.glEnable(3042);
 		GL11.glDisable(3553);
 		OpenGlHelper.glBlendFunc(770, 771, 1, 0);

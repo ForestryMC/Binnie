@@ -28,9 +28,9 @@ public class AnalystPageGenome extends ControlAnalystPage
 	public AnalystPageGenome(final IWidget parent, final IArea area, final boolean active, final IIndividual ind) {
 		super(parent, area);
 		this.active = active;
-		this.setColour(26265);
+		this.setColor(26265);
 		int y = 4;
-		new ControlTextCentered(this, y, "§n" + this.getTitle()).setColour(this.getColour());
+		new ControlTextCentered(this, y, "§n" + this.getTitle()).setColor(this.getColor());
 		y += 16;
 		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(ind.getClass());
 		final BreedingSystem system = Binnie.Genetics.getSystem(root);
@@ -51,8 +51,8 @@ public class AnalystPageGenome extends ControlAnalystPage
 			final IAllele allele = active ? ind.getGenome().getActiveAllele(chromo) : ind.getGenome().getInactiveAllele(chromo);
 			final String alleleName = system.getAlleleName(chromo, allele);
 			final float height = CraftGUI.Render.textHeight(alleleName, this.w() / 2.0f - 2.0f);
-			new ControlText(scaled, new IArea(0.0f, y + (height - 9.0f) / 2.0f, this.w() / 2.0f - 2.0f, 0.0f), system.getChromosomeShortName(chromo) + " :", TextJustification.TopRight).setColour(this.getColour());
-			new ControlText(scaled, new IArea(this.w() / 2.0f + 2.0f, y, this.w() / 2.0f - 2.0f, 0.0f), alleleName, TextJustification.TopLeft).setColour(this.getColour());
+			new ControlText(scaled, new IArea(0.0f, y + (height - 9.0f) / 2.0f, this.w() / 2.0f - 2.0f, 0.0f), system.getChromosomeShortName(chromo) + " :", TextJustification.TopRight).setColor(this.getColor());
+			new ControlText(scaled, new IArea(this.w() / 2.0f + 2.0f, y, this.w() / 2.0f - 2.0f, 0.0f), alleleName, TextJustification.TopLeft).setColor(this.getColor());
 			y += (int) (3.0f + height);
 		}
 		this.setSize(new IPoint(this.w(), y + 8));

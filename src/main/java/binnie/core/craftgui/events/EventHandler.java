@@ -12,21 +12,21 @@ public abstract class EventHandler<E extends Event>
 	Origin origin;
 	IWidget relative;
 
-	public EventHandler(final Class<E> eventClass) {
+	public EventHandler(Class<E> eventClass) {
 		origin = Origin.Any;
 		relative = null;
 		this.eventClass = eventClass;
 	}
 
-	public EventHandler setOrigin(final Origin origin, final IWidget relative) {
+	public EventHandler setOrigin(Origin origin, IWidget relative) {
 		this.origin = origin;
 		this.relative = relative;
 		return this;
 	}
 
-	public abstract void onEvent(final E p0);
+	public abstract void onEvent(E p0);
 
-	public final boolean handles(final Event e) {
+	public boolean handles(Event e) {
 		return eventClass.isInstance(e) && origin.isOrigin(e.getOrigin(), relative);
 	}
 
@@ -37,7 +37,7 @@ public abstract class EventHandler<E extends Event>
 		Parent,
 		DirectChild;
 
-		public boolean isOrigin(final IWidget origin, final IWidget test) {
+		public boolean isOrigin(IWidget origin, IWidget test) {
 			switch (this) {
 			case Any: {
 				return true;

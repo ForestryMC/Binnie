@@ -9,7 +9,7 @@ import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.CraftGUI;
 import net.minecraft.nbt.NBTTagCompound;
 import binnie.core.craftgui.events.EventMouse;
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import net.minecraft.item.ItemStack;
 import binnie.genetics.genetics.Engineering;
 import binnie.core.craftgui.IWidget;
@@ -46,7 +46,7 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
 
 	protected ControlGene(final IWidget parent, final float x, final float y) {
 		super(parent, x, y, 16.0f, 16.0f);
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(WidgetAttribute.MouseOver);
 		this.addSelfEventHandler(new EventMouse.Down.Handler() {
 			@Override
 			public void onEvent(final EventMouse.Down event) {

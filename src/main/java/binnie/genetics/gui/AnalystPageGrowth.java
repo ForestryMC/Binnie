@@ -17,28 +17,28 @@ public class AnalystPageGrowth extends ControlAnalystPage
 {
 	public AnalystPageGrowth(final IWidget parent, final IArea area, final IIndividual ind) {
 		super(parent, area);
-		this.setColour(3355443);
+		this.setColor(3355443);
 		int y = 4;
 		final IAlleleSpecies species = ind.getGenome().getPrimary();
-		new ControlTextCentered(this, y, "§nGrowth").setColour(this.getColour());
+		new ControlTextCentered(this, y, "§nGrowth").setColor(this.getColor());
 		y += 12;
 		if (ind instanceof ITree) {
 			final ITree tree = (ITree) ind;
 			final int mat = tree.getGenome().getMaturationTime();
-			new ControlTextCentered(this, y, "Saplings mature in").setColour(this.getColour());
+			new ControlTextCentered(this, y, "Saplings mature in").setColor(this.getColor());
 			y += 12;
-			new ControlTextCentered(this, y, "§l" + this.getTimeString(1373.3999f * mat)).setColour(this.getColour());
+			new ControlTextCentered(this, y, "§l" + this.getTimeString(1373.3999f * mat)).setColor(this.getColor());
 			y += 22;
-			new ControlTextCentered(this, y, "§oHeight: " + Binnie.Genetics.treeBreedingSystem.getAlleleName(EnumTreeChromosome.HEIGHT, ind.getGenome().getActiveAllele(EnumTreeChromosome.HEIGHT))).setColour(this.getColour());
+			new ControlTextCentered(this, y, "§oHeight: " + Binnie.Genetics.treeBreedingSystem.getAlleleName(EnumTreeChromosome.HEIGHT, ind.getGenome().getActiveAllele(EnumTreeChromosome.HEIGHT))).setColor(this.getColor());
 			y += 12;
-			new ControlTextCentered(this, y, "§oGirth: " + Binnie.Genetics.treeBreedingSystem.getAlleleName(EnumTreeChromosome.GIRTH, ind.getGenome().getActiveAllele(EnumTreeChromosome.GIRTH))).setColour(this.getColour());
+			new ControlTextCentered(this, y, "§oGirth: " + Binnie.Genetics.treeBreedingSystem.getAlleleName(EnumTreeChromosome.GIRTH, ind.getGenome().getActiveAllele(EnumTreeChromosome.GIRTH))).setColor(this.getColor());
 			y += 20;
-			new ControlTextCentered(this, y, "Growth Conditions").setColour(this.getColour());
+			new ControlTextCentered(this, y, "Growth Conditions").setColor(this.getColor());
 			y += 12;
-			new ControlTextCentered(this, y, "§o" + tree.getGenome().getGrowthProvider().getDescription()).setColour(this.getColour());
+			new ControlTextCentered(this, y, "§o" + tree.getGenome().getGrowthProvider().getDescription()).setColor(this.getColor());
 			y += 12;
 			for (final String s : tree.getGenome().getGrowthProvider().getInfo()) {
-				new ControlTextCentered(this, y, "§o" + s).setColour(this.getColour());
+				new ControlTextCentered(this, y, "§o" + s).setColor(this.getColor());
 				y += 12;
 			}
 		}

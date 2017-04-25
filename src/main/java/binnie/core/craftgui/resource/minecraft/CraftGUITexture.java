@@ -51,7 +51,7 @@ public enum CraftGUITexture
 
 	String name;
 
-	CraftGUITexture(final String name) {
+	CraftGUITexture(String name) {
 		this.name = name;
 	}
 

@@ -14,7 +14,7 @@ public class ControlTabIcon<T> extends ControlTab<T>
 {
 	private ControlItemDisplay item;
 
-	public ControlTabIcon(final ControlTabBar<T> parent, final float x, final float y, final float w, final float h, final T value) {
+	public ControlTabIcon(ControlTabBar<T> parent, float x, float y, float w, float h, T value) {
 		super(parent, x, y, w, h, value);
 		item = new ControlItemDisplay(this, -8.0f + w / 2.0f, -8.0f + h / 2.0f);
 		item.hastooltip = false;
@@ -31,7 +31,7 @@ public class ControlTabIcon<T> extends ControlTab<T>
 	public void onUpdateClient() {
 		super.onUpdateClient();
 		item.setItemStack(getItemStack());
-		final float x = ((ControlTabBar) getParent()).getDirection().x();
+		float x = ((ControlTabBar) getParent()).getDirection().x();
 		item.setOffset(new IPoint((isCurrentSelection() || isMouseOver()) ? 0.0f : (-4.0f * x), 0.0f));
 	}
 

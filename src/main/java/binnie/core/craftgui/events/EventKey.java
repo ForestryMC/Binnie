@@ -11,7 +11,7 @@ public abstract class EventKey extends Event
 	char character;
 	int key;
 
-	public EventKey(final IWidget origin, final char character, final int key) {
+	public EventKey(IWidget origin, char character, int key) {
 		super(origin);
 		this.character = character;
 		this.key = key;
@@ -27,7 +27,7 @@ public abstract class EventKey extends Event
 
 	public static class Down extends EventKey
 	{
-		public Down(final IWidget origin, final char character, final int key) {
+		public Down(IWidget origin, char character, int key) {
 			super(origin, character, key);
 		}
 
@@ -41,7 +41,7 @@ public abstract class EventKey extends Event
 
 	public static class Up extends EventKey
 	{
-		public Up(final IWidget origin, final char character, final int key) {
+		public Up(IWidget origin, char character, int key) {
 			super(origin, character, key);
 		}
 

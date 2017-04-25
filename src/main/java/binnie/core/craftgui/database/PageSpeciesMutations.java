@@ -14,14 +14,14 @@ public class PageSpeciesMutations extends PageSpecies
 	private ControlText pageSpeciesFurther_Title;
 	private ControlMutationBox pageSpeciesFurther_List;
 
-	public PageSpeciesMutations(final IWidget parent, final DatabaseTab tab) {
+	public PageSpeciesMutations(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
 		pageSpeciesFurther_Title = new ControlTextCentered(this, 8.0f, "Further Mutations");
 		pageSpeciesFurther_List = new ControlMutationBox(this, 4, 20, 136, 152, ControlMutationBox.Type.Further);
 	}
 
 	@Override
-	public void onValueChanged(final IAlleleSpecies species) {
+	public void onValueChanged(IAlleleSpecies species) {
 		pageSpeciesFurther_List.setSpecies(species);
 	}
 }

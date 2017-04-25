@@ -4,7 +4,7 @@
 
 package binnie.core.craftgui.minecraft.control;
 
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -17,11 +17,11 @@ public class ControlUser extends Control implements ITooltip
 	private String username;
 	String team;
 
-	public ControlUser(final IWidget parent, final float x, final float y, final String username) {
+	public ControlUser(IWidget parent, float x, float y, String username) {
 		super(parent, x, y, 16.0f, 16.0f);
 		this.username = "";
 		team = "";
-		addAttribute(Attribute.MouseOver);
+		addAttribute(WidgetAttribute.MouseOver);
 		this.username = username;
 	}
 
@@ -31,7 +31,7 @@ public class ControlUser extends Control implements ITooltip
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
+	public void getTooltip(Tooltip tooltip) {
 		tooltip.setType(Tooltip.Type.User);
 		tooltip.add("Owner");
 		if (username != "") {

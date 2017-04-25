@@ -13,9 +13,9 @@ public class AnalystPageSpecimen extends ControlAnalystPage
 {
 	public AnalystPageSpecimen(final IWidget parent, final IArea area, final IButterfly ind) {
 		super(parent, area);
-		this.setColour(3355443);
+		this.setColor(3355443);
 		int y = 4;
-		new ControlTextCentered(this, y, "§nSpecimen").setColour(this.getColour());
+		new ControlTextCentered(this, y, "§nSpecimen").setColor(this.getColor());
 		y += 12;
 		final float w = (this.w() - 16.0f) * ind.getSize();
 		new ControlIndividualDisplay(this, (this.w() - w) / 2.0f, y + (this.w() - w) / 2.0f, w, ind);

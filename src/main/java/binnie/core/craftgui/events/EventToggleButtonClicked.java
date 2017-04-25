@@ -10,7 +10,7 @@ public class EventToggleButtonClicked extends Event
 {
 	boolean toggled;
 
-	public EventToggleButtonClicked(final IWidget origin, final boolean toggled) {
+	public EventToggleButtonClicked(IWidget origin, boolean toggled) {
 		super(origin);
 		this.toggled = toggled;
 	}

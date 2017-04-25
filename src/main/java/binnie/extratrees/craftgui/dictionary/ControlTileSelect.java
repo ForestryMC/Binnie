@@ -12,7 +12,7 @@ import binnie.Binnie;
 import binnie.core.craftgui.Tooltip;
 import net.minecraft.nbt.NBTTagCompound;
 import binnie.core.craftgui.events.EventMouse;
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.ITooltip;
 import java.util.Map;
 import binnie.core.craftgui.geometry.IPoint;
@@ -129,7 +129,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 		protected ControlTile(final IWidget parent, final float x, final float y, final IDesign value) {
 			super(parent, x, y, 18.0f, 18.0f);
 			this.setValue(value);
-			this.addAttribute(Attribute.MouseOver);
+			this.addAttribute(WidgetAttribute.MouseOver);
 			this.addSelfEventHandler(new EventMouse.Down.Handler() {
 				@Override
 				public void onEvent(final EventMouse.Down event) {

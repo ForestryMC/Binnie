@@ -19,7 +19,7 @@ public class ControlSlotCharge extends Control
 	private int slot;
 
 	float getCharge() {
-		final IChargedSlots slots = Machine.getInterface(IChargedSlots.class, Window.get(this).getInventory());
+		IChargedSlots slots = Machine.getInterface(IChargedSlots.class, Window.get(this).getInventory());
 		return (slots == null) ? 0.0f : slots.getCharge(slot);
 	}
 
@@ -29,13 +29,13 @@ public class ControlSlotCharge extends Control
 		CraftGUI.Render.texturePercentage(CraftGUI.Render.getTexture(CraftGUITexture.SlotCharge), getArea().inset(1), Position.Bottom, getCharge());
 	}
 
-	public ControlSlotCharge(final IWidget parent, final int x, final int y, final int slot) {
+	public ControlSlotCharge(IWidget parent, int x, int y, int slot) {
 		super(parent, x, y, 4.0f, 18.0f);
 		this.slot = slot;
 	}
 
 	@Override
-	public void getHelpTooltip(final Tooltip tooltip) {
+	public void getHelpTooltip(Tooltip tooltip) {
 		tooltip.add("Charge Remaining: " + (int) (getCharge() * 100.0f) + "%");
 	}
 }

@@ -4,7 +4,7 @@
 
 package binnie.core.craftgui.minecraft.control;
 
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -21,17 +21,17 @@ public abstract class ControlSlotBase extends Control implements ITooltip
 {
 	private ControlItemDisplay itemDisplay;
 
-	public ControlSlotBase(final IWidget parent, final float x, final float y) {
+	public ControlSlotBase(IWidget parent, float x, float y) {
 		this(parent, x, y, 18);
 	}
 
-	public ControlSlotBase(final IWidget parent, final float x, final float y, final int size) {
+	public ControlSlotBase(IWidget parent, float x, float y, int size) {
 		super(parent, x, y, size, size);
-		addAttribute(Attribute.MouseOver);
+		addAttribute(WidgetAttribute.MouseOver);
 		itemDisplay = new ControlItemDisplay(this, 1.0f, 1.0f, size - 2);
 		addSelfEventHandler(new EventWidget.ChangeSize.Handler() {
 			@Override
-			public void onEvent(final EventWidget.ChangeSize event) {
+			public void onEvent(EventWidget.ChangeSize event) {
 				if (itemDisplay != null) {
 					itemDisplay.setSize(getSize().sub(new IPoint(2.0f, 2.0f)));
 				}
@@ -45,7 +45,7 @@ public abstract class ControlSlotBase extends Control implements ITooltip
 
 	@Override
 	public void onRenderBackground() {
-		final int size = (int) getSize().x();
+		int size = (int) getSize().x();
 		CraftGUI.Render.texture(CraftGUITexture.Slot, getArea());
 		if (getSuperParent().getMousedOverWidget() == this) {
 			CraftGUI.Render.gradientRect(new IArea(new IPoint(1.0f, 1.0f), getArea().size().sub(new IPoint(2.0f, 2.0f))), -2130706433, -2130706433);
@@ -59,8 +59,8 @@ public abstract class ControlSlotBase extends Control implements ITooltip
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
-		final ItemStack item = getItemStack();
+	public void getTooltip(Tooltip tooltip) {
+		ItemStack item = getItemStack();
 		if (item == null) {
 			return;
 		}

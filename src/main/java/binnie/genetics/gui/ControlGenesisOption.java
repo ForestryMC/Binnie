@@ -28,9 +28,9 @@ public class ControlGenesisOption extends ControlOption<Gene>
 	@Override
 	public void onRenderBackground() {
 		super.onRenderBackground();
-		CraftGUI.Render.text(new IArea(0.0f, 0.0f, 70.0f, 22.0f), TextJustification.MiddleCenter, this.getChromosomeName(), this.getColour());
-		CraftGUI.Render.text(new IArea(75.0f, 0.0f, 80.0f, 22.0f), TextJustification.MiddleCenter, this.getAlleleName(), this.getColour());
-		CraftGUI.Render.solid(new IArea(70.0f, 2.0f, 1.0f, 16.0f), -16777216 + this.getColour());
+		CraftGUI.Render.text(new IArea(0.0f, 0.0f, 70.0f, 22.0f), TextJustification.MiddleCenter, this.getChromosomeName(), this.getColor());
+		CraftGUI.Render.text(new IArea(75.0f, 0.0f, 80.0f, 22.0f), TextJustification.MiddleCenter, this.getAlleleName(), this.getColor());
+		CraftGUI.Render.solid(new IArea(70.0f, 2.0f, 1.0f, 16.0f), -16777216 + this.getColor());
 
 	}
 }

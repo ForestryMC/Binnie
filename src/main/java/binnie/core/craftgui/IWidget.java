@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui;
 
 import binnie.core.craftgui.events.Event;
@@ -11,11 +7,10 @@ import binnie.core.craftgui.geometry.IPoint;
 
 import java.util.List;
 
-public interface IWidget
-{
+public interface IWidget {
 	IWidget getParent();
 
-	void deleteChild(final IWidget p0);
+	void deleteChild(IWidget child);
 
 	void deleteAllChildren();
 
@@ -27,13 +22,13 @@ public interface IWidget
 
 	IPoint pos();
 
-	void setPosition(final IPoint p0);
+	void setPosition(IPoint position);
 
 	IPoint getSize();
 
 	IPoint size();
 
-	void setSize(final IPoint p0);
+	void setSize(IPoint size);
 
 	IPoint getOriginalPosition();
 
@@ -47,15 +42,15 @@ public interface IWidget
 
 	IArea area();
 
-	void setOffset(final IPoint p0);
+	void setOffset(IPoint offset);
 
 	IPoint getMousePosition();
 
 	IPoint getRelativeMousePosition();
 
-	void setColour(final int p0);
+	void setColor(int color);
 
-	int getColour();
+	int getColor();
 
 	void render();
 
@@ -81,21 +76,21 @@ public interface IWidget
 
 	boolean isDragged();
 
-	boolean isChildVisible(final IWidget p0);
+	boolean isChildVisible(IWidget child);
 
-	boolean isChildEnabled(final IWidget p0);
+	boolean isChildEnabled(IWidget child);
 
 	boolean canMouseOver();
 
 	boolean canFocus();
 
-	IWidget addWidget(final IWidget p0);
+	IWidget addWidget(IWidget widget);
 
 	List<IWidget> getWidgets();
 
-	void callEvent(final Event p0);
+	void callEvent(Event event);
 
-	void recieveEvent(final Event p0);
+	void recieveEvent(Event event);
 
 	void onUpdateClient();
 
@@ -103,33 +98,33 @@ public interface IWidget
 
 	void onDelete();
 
-	<T> T getWidget(final Class<T> p0);
+	<T> T getWidget(Class<T> p0);
 
 	IArea getCroppedZone();
 
-	void setCroppedZone(final IWidget p0, final IArea p1);
+	void setCroppedZone(IWidget relative, IArea area);
 
 	boolean isCroppedWidet();
 
 	IWidget getCropWidget();
 
-	boolean isMouseOverWidget(final IPoint p0);
+	boolean isMouseOverWidget(IPoint p0);
 
 	int getLevel();
 
-	boolean isDescendant(final IWidget p0);
+	boolean isDescendant(IWidget widget);
 
-	List<IWidgetAttribute> getAttributes();
+	List<WidgetAttribute> getAttributes();
 
-	boolean hasAttribute(final IWidgetAttribute p0);
+	boolean hasAttribute(WidgetAttribute attribute);
 
-	boolean addAttribute(final IWidgetAttribute p0);
+	boolean addAttribute(WidgetAttribute attribute);
 
-	<E extends Event> void addEventHandler(final EventHandler<E> p0);
+	<E extends Event> void addEventHandler(EventHandler<E> handler);
 
-	<E extends Event> void addSelfEventHandler(final EventHandler<E> p0);
+	<E extends Event> void addSelfEventHandler(EventHandler<E> handler);
 
-	boolean contains(final IPoint p0);
+	boolean contains(IPoint p0);
 
 	float x();
 
@@ -139,5 +134,5 @@ public interface IWidget
 
 	float h();
 
-	void onRender(final RenderStage p0);
+	void onRender(RenderStage stage);
 }

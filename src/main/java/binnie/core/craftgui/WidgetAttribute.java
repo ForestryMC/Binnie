@@ -1,11 +1,6 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui;
 
-public enum Attribute implements IWidgetAttribute
-{
+public enum WidgetAttribute {
 	MouseOver,
 	CanFocus,
 	NeedsDeletion,

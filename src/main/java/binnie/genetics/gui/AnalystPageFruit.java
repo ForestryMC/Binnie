@@ -27,12 +27,12 @@ public class AnalystPageFruit extends AnalystPageProduce
 {
 	public AnalystPageFruit(final IWidget parent, final IArea area, final ITree ind) {
 		super(parent, area);
-		this.setColour(13382400);
+		this.setColor(13382400);
 		final ITreeGenome genome = ind.getGenome();
 		int y = 4;
-		new ControlTextCentered(this, y, "§nFruit").setColour(this.getColour());
+		new ControlTextCentered(this, y, "§nFruit").setColor(this.getColor());
 		y += 12;
-		new ControlTextCentered(this, y, "§oYield: " + Binnie.Genetics.treeBreedingSystem.getAlleleName(EnumTreeChromosome.YIELD, ind.getGenome().getActiveAllele(EnumTreeChromosome.YIELD))).setColour(this.getColour());
+		new ControlTextCentered(this, y, "§oYield: " + Binnie.Genetics.treeBreedingSystem.getAlleleName(EnumTreeChromosome.YIELD, ind.getGenome().getActiveAllele(EnumTreeChromosome.YIELD))).setColor(this.getColor());
 		y += 20;
 		final Collection<ItemStack> products = new UniqueItemStackSet();
 		final Collection<ItemStack> specialties = new UniqueItemStackSet();
@@ -56,7 +56,7 @@ public class AnalystPageFruit extends AnalystPageProduce
 			e.printStackTrace();
 		}
 		if (products.size() > 0) {
-			new ControlTextCentered(this, y, "Natural Fruit").setColour(this.getColour());
+			new ControlTextCentered(this, y, "Natural Fruit").setColor(this.getColor());
 			y += 10;
 			final int w = products.size() * 18 - 2;
 			final int i = 0;
@@ -68,7 +68,7 @@ public class AnalystPageFruit extends AnalystPageProduce
 			y += 26;
 		}
 		if (specialties.size() > 0) {
-			new ControlTextCentered(this, y, "Specialty Fruit").setColour(this.getColour());
+			new ControlTextCentered(this, y, "Specialty Fruit").setColor(this.getColor());
 			y += 10;
 			final int w = products.size() * 18 - 2;
 			final int i = 0;
@@ -93,10 +93,10 @@ public class AnalystPageFruit extends AnalystPageProduce
 			y += 8;
 		}
 		if (products.size() == 0 && specialties.size() == 0) {
-			new ControlTextCentered(this, y, "This tree has no \nfruits or nuts").setColour(this.getColour());
+			new ControlTextCentered(this, y, "This tree has no \nfruits or nuts").setColor(this.getColor());
 			y += 28;
 		}
-		new ControlTextCentered(this, y, "Possible Fruits").setColour(this.getColour());
+		new ControlTextCentered(this, y, "Possible Fruits").setColor(this.getColor());
 		y += 12;
 		final Collection<IAllele> fruitAlleles = Binnie.Genetics.getChromosomeMap(Binnie.Genetics.getTreeRoot()).get(EnumTreeChromosome.FRUITS);
 		for (final IFruitFamily fam : ind.getGenome().getPrimary().getSuitableFruit()) {

@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui;
 
 import binnie.Binnie;
@@ -41,15 +37,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class WindowGenesis extends Window
-{
+public class WindowGenesis extends Window {
 	private ISpeciesRoot root;
 	private IAllele[] template;
 	private ControlListBox<Gene> geneList;
 	private ControlListBox<Gene> geneOptions;
 	private Panel panelPickup;
 
-	public WindowGenesis(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowGenesis(EntityPlayer player, IInventory inventory, Side side) {
 		super(342.0f, 228.0f, player, inventory, side);
 	}
 
@@ -67,14 +62,14 @@ public class WindowGenesis extends Window
 	public void initialiseClient() {
 		new ControlPlayerInventory(this);
 		setTitle("Genesis");
-		final ControlTabBar<BreedingSystem> tabSystems = new ControlTabBar<BreedingSystem>(this, 8.0f, 28.0f, 23.0f, 100.0f, Position.Left) {
+		ControlTabBar<BreedingSystem> tabSystems = new ControlTabBar<BreedingSystem>(this, 8.0f, 28.0f, 23.0f, 100.0f, Position.Left) {
 			@Override
-			public ControlTab<BreedingSystem> createTab(final float x, final float y, final float w, final float h, final BreedingSystem value) {
+			public ControlTab<BreedingSystem> createTab(float x, float y, float w, float h, BreedingSystem value) {
 				return new ControlTabIcon<BreedingSystem>(this, x, y, w, h, value) {
 					@Override
 					public ItemStack getItemStack() {
-						final int type = value.getDefaultType();
-						final IIndividual ind = value.getDefaultIndividual();
+						int type = value.getDefaultType();
+						IIndividual ind = value.getDefaultIndividual();
 						return value.getSpeciesRoot().getMemberStack(ind, type);
 					}
 
@@ -95,53 +90,61 @@ public class WindowGenesis extends Window
 				};
 			}
 		};
+
 		tabSystems.setValues(Binnie.Genetics.getActiveSystems());
 		root = Binnie.Genetics.getActiveSystems().iterator().next().getSpeciesRoot();
 		template = root.getDefaultTemplate();
-		final IArea one = new IArea(32.0f, 28.0f, 170.0f, 100.0f);
-		final IArea two = new IArea(214.0f, 28.0f, 100.0f, 100.0f);
+		IArea one = new IArea(32.0f, 28.0f, 170.0f, 100.0f);
+		IArea two = new IArea(214.0f, 28.0f, 100.0f, 100.0f);
 		new Panel(this, one.outset(1), MinecraftGUI.PanelType.Black);
 		new Panel(this, two.outset(1), MinecraftGUI.PanelType.Black);
+
 		geneList = new ControlListBox<Gene>(this, one.x(), one.y(), one.w(), one.h(), 10.0f) {
 			@Override
-			public IWidget createOption(final Gene value, final int y) {
+			public IWidget createOption(Gene value, int y) {
 				return new ControlGenesisOption(getContent(), value, y);
 			}
 		};
+
 		geneOptions = new ControlListBox<Gene>(this, two.x(), two.y(), two.w(), two.h(), 10.0f) {
 			@Override
-			public IWidget createOption(final Gene value, final int y) {
-				return new ControlTextOption<Gene>(getContent(), value, y);
+			public IWidget createOption(Gene value, int y) {
+				return new ControlTextOption<>(getContent(), value, y);
 			}
 		};
+
 		tabSystems.addEventHandler(new EventValueChanged.Handler() {
 			@Override
-			public void onEvent(final EventValueChanged event) {
+			public void onEvent(EventValueChanged event) {
 				root = ((BreedingSystem) event.getValue()).getSpeciesRoot();
 				template = root.getDefaultTemplate();
 				refreshTemplate(null);
 			}
 		}.setOrigin(EventHandler.Origin.Self, tabSystems));
+
 		geneList.addEventHandler(new EventValueChanged.Handler() {
 			@Override
-			public void onEvent(final EventValueChanged event) {
-				final Map<IChromosomeType, List<IAllele>> map = Binnie.Genetics.getChromosomeMap(root);
-				final List<Gene> opts = new ArrayList<Gene>();
-				final IChromosomeType chromo = event.value != null ? ((Gene) event.value).getChromosome() : null;
-				if (chromo != null)// fix NPE
-					for (final IAllele allele : map.get(chromo)) {
+			public void onEvent(EventValueChanged event) {
+				Map<IChromosomeType, List<IAllele>> map = Binnie.Genetics.getChromosomeMap(root);
+				List<Gene> opts = new ArrayList<>();
+				IChromosomeType chromo = event.value != null ? ((Gene) event.value).getChromosome() : null;
+				if (chromo != null) {// fix NPE
+					for (IAllele allele : map.get(chromo)) {
 						opts.add(new Gene(allele, chromo, root));
 					}
+				}
 				geneOptions.setOptions(opts);
 			}
 		}.setOrigin(EventHandler.Origin.Self, geneList));
+
 		geneOptions.addEventHandler(new EventValueChanged.Handler() {
 			@Override
-			public void onEvent(final EventValueChanged event) {
+			public void onEvent(EventValueChanged event) {
 				if (event.value == null) {
 					return;
 				}
-				final IChromosomeType chromo = ((Gene) event.value).getChromosome();
+
+				IChromosomeType chromo = ((Gene) event.value).getChromosome();
 				template[chromo.ordinal()] = ((Gene) event.value).getAllele();
 				if (chromo == ((Gene) event.value).getSpeciesRoot().getKaryotypeKey()) {
 					template = ((Gene) event.value).getSpeciesRoot().getTemplate(((Gene) event.value).getAllele().getUID());
@@ -153,24 +156,24 @@ public class WindowGenesis extends Window
 		refreshTemplate(null);
 	}
 
-	private void refreshTemplate(final IChromosomeType selection) {
-		final List<Gene> genes = new ArrayList<Gene>();
-		final IChromosomeType[] arr$;
-		final IChromosomeType[] chromos = arr$ = Binnie.Genetics.getChromosomeMap(root).keySet().toArray(new IChromosomeType[0]);
-		for (final IChromosomeType type : arr$) {
-			final IAllele allele = template[type.ordinal()];
+	private void refreshTemplate(IChromosomeType selection) {
+		List<Gene> genes = new ArrayList<>();
+		IChromosomeType[] chromos = Binnie.Genetics.getChromosomeMap(root).keySet().toArray(new IChromosomeType[0]);
+
+		for (IChromosomeType type : chromos) {
+			IAllele allele = template[type.ordinal()];
 			if (allele == null) {
 				throw new NullPointerException("Allele missing for Chromosome " + type.getName());
 			}
 			genes.add(new Gene(allele, type, root));
 		}
-		final Map<IChromosomeType, List<IAllele>> map = Binnie.Genetics.getChromosomeMap(root);
+
+		Map<IChromosomeType, List<IAllele>> map = Binnie.Genetics.getChromosomeMap(root);
 		geneList.setOptions(genes);
 		if (selection != null) {
 			geneList.setValue(new Gene(template[selection.ordinal()], selection, root));
-		}
-		else {
-			geneOptions.setOptions(new ArrayList<Gene>());
+		} else {
+			geneOptions.setOptions(new ArrayList<>());
 		}
 		refreshPickup();
 	}
@@ -178,46 +181,47 @@ public class WindowGenesis extends Window
 	private void refreshPickup() {
 		panelPickup.deleteAllChildren();
 		int i = 0;
-		for (final int type : Binnie.Genetics.getSystem(root).getActiveTypes()) {
-			final IIndividual ind = root.templateAsIndividual(template);
+		for (int type : Binnie.Genetics.getSystem(root).getActiveTypes()) {
+			IIndividual ind = root.templateAsIndividual(template);
 			ind.analyze();
-			final ItemStack stack = root.getMemberStack(ind, type);
-			final ControlItemDisplay display = new ControlItemDisplay(panelPickup, 4 + i % 3 * 18, 4 + i / 3 * 18);
+			ItemStack stack = root.getMemberStack(ind, type);
+			ControlItemDisplay display = new ControlItemDisplay(panelPickup, 4 + i % 3 * 18, 4 + i / 3 * 18);
 			display.setItemStack(stack);
 			display.setTooltip();
 			display.addEventHandler(new EventMouse.Down.Handler() {
 				@Override
-				public void onEvent(final EventMouse.Down event) {
-					final NBTTagCompound nbt = new NBTTagCompound();
+				public void onEvent(EventMouse.Down event) {
+					NBTTagCompound nbt = new NBTTagCompound();
 					stack.writeToNBT(nbt);
 					Window.get(event.getOrigin()).sendClientAction("genesis", nbt);
 				}
 			}.setOrigin(EventHandler.Origin.Self, display));
-			++i;
+			i++;
 		}
 	}
 
 	@Override
-	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+	public void recieveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt) {
 		super.recieveGuiNBT(side, player, name, nbt);
 		if (side == Side.SERVER && name.equals("genesis")) {
-			final ItemStack stack = ItemStack.loadItemStackFromNBT(nbt);
-			final InventoryPlayer playerInv = player.inventory;
+			ItemStack stack = ItemStack.loadItemStackFromNBT(nbt);
+			InventoryPlayer playerInv = player.inventory;
 			if (stack == null) {
 				return;
 			}
+
 			if (playerInv.getItemStack() == null) {
 				playerInv.setItemStack(stack);
-			}
-			else if (playerInv.getItemStack().isItemEqual(stack) && ItemStack.areItemStackTagsEqual(playerInv.getItemStack(), stack)) {
-				final int fit = stack.getMaxStackSize() - (stack.stackSize + playerInv.getItemStack().stackSize);
+			} else if (playerInv.getItemStack().isItemEqual(stack) && ItemStack.areItemStackTagsEqual(playerInv.getItemStack(), stack)) {
+				int fit = stack.getMaxStackSize() - (stack.stackSize + playerInv.getItemStack().stackSize);
 				if (fit >= 0) {
-					final ItemStack itemStack;
-					final ItemStack rec = itemStack = stack;
+					ItemStack itemStack;
+					ItemStack rec = itemStack = stack;
 					itemStack.stackSize += playerInv.getItemStack().stackSize;
 					playerInv.setItemStack(rec);
 				}
 			}
+
 			player.openContainer.detectAndSendChanges();
 			if (player instanceof EntityPlayerMP) {
 				((EntityPlayerMP) player).updateHeldItem();

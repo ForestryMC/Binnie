@@ -17,40 +17,40 @@ public class ControlPlayerInventory extends Control
 {
 	private List<ControlSlot> slots;
 
-	public ControlPlayerInventory(final IWidget parent, final boolean wide) {
+	public ControlPlayerInventory(IWidget parent, boolean wide) {
 		super(parent, (int) (parent.getSize().x() / 2.0f) - (wide ? 110 : 81), (int) parent.getSize().y() - (wide ? 54 : 76) - 12, wide ? 220 : 162, wide ? 54 : 76);
 		slots = new ArrayList<ControlSlot>();
 		for (int row = 0; row < 3; ++row) {
 			for (int column = 0; column < 9; ++column) {
-				final ControlSlot slot = new ControlSlot(this, (wide ? 58 : 0) + column * 18, row * 18);
+				ControlSlot slot = new ControlSlot(this, (wide ? 58 : 0) + column * 18, row * 18);
 				slots.add(slot);
 			}
 		}
 		if (wide) {
 			for (int i1 = 0; i1 < 9; ++i1) {
-				final ControlSlot slot2 = new ControlSlot(this, i1 % 3 * 18, i1 / 3 * 18);
+				ControlSlot slot2 = new ControlSlot(this, i1 % 3 * 18, i1 / 3 * 18);
 				slots.add(slot2);
 			}
 		}
 		else {
 			for (int i1 = 0; i1 < 9; ++i1) {
-				final ControlSlot slot2 = new ControlSlot(this, i1 * 18, 58.0f);
+				ControlSlot slot2 = new ControlSlot(this, i1 * 18, 58.0f);
 				slots.add(slot2);
 			}
 		}
 		create();
 	}
 
-	public ControlPlayerInventory(final IWidget parent) {
+	public ControlPlayerInventory(IWidget parent) {
 		this(parent, false);
 	}
 
-	public ControlPlayerInventory(final IWidget parent, final int x, final int y) {
+	public ControlPlayerInventory(IWidget parent, int x, int y) {
 		super(parent, x, y, 54.0f, 220.0f);
 		slots = new ArrayList<ControlSlot>();
 		for (int row = 0; row < 6; ++row) {
 			for (int column = 0; column < 6; ++column) {
-				final ControlSlot slot = new ControlSlot(this, column * 18, row * 18);
+				ControlSlot slot = new ControlSlot(this, column * 18, row * 18);
 				slots.add(slot);
 			}
 		}
@@ -60,34 +60,34 @@ public class ControlPlayerInventory extends Control
 	public void create() {
 		for (int row = 0; row < 3; ++row) {
 			for (int column = 0; column < 9; ++column) {
-				final ControlSlot slot = slots.get(column + row * 9);
+				ControlSlot slot = slots.get(column + row * 9);
 				slot.assign(InventoryType.Player, 9 + column + row * 9);
 			}
 		}
 		for (int i1 = 0; i1 < 9; ++i1) {
-			final ControlSlot slot2 = slots.get(27 + i1);
+			ControlSlot slot2 = slots.get(27 + i1);
 			slot2.assign(InventoryType.Player, i1);
 		}
 	}
 
-	public void addItem(final ItemStack item) {
+	public void addItem(ItemStack item) {
 		if (item == null) {
 			return;
 		}
-		for (final ControlSlot slot : slots) {
+		for (ControlSlot slot : slots) {
 			if (!slot.slot.getHasStack()) {
 				slot.slot.putStack(item);
 			}
 		}
 	}
 
-	public void addInventory(final IInventory inventory) {
+	public void addInventory(IInventory inventory) {
 		for (int i = 0; i < inventory.getSizeInventory(); ++i) {
 			addItem(inventory.getStackInSlot(i));
 		}
 	}
 
-	public ControlSlot getSlot(final int i) {
+	public ControlSlot getSlot(int i) {
 		if (i < 0 || i >= slots.size()) {
 			return null;
 		}

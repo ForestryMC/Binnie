@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.controls.page;
 
 import binnie.core.craftgui.IWidget;
@@ -14,22 +10,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class ControlPages<T> extends Control implements IControlValues<T>, IControlValue<T>
-{
-	T value;
+public class ControlPages<T> extends Control implements IControlValues<T>, IControlValue<T> {
+	protected T value;
 
-	@Override
-	public boolean isChildVisible(final IWidget child) {
-		return child != null && value == ((IControlValue) child).getValue();
-	}
-
-	public ControlPages(final IWidget parent, final float x, final float y, final float w, final float h) {
+	public ControlPages(IWidget parent, float x, float y, float w, float h) {
 		super(parent, x, y, w, h);
 		value = null;
 	}
 
 	@Override
-	public void onAddChild(final IWidget widget) {
+	public void onAddChild(IWidget widget) {
+		// ignored
 	}
 
 	@Override
@@ -38,7 +29,7 @@ public class ControlPages<T> extends Control implements IControlValues<T>, ICont
 	}
 
 	@Override
-	public void setValue(final T value) {
+	public void setValue(T value) {
 		if (this.value != value) {
 			this.value = value;
 			callEvent(new EventValueChanged<Object>(this, value));
@@ -47,14 +38,20 @@ public class ControlPages<T> extends Control implements IControlValues<T>, ICont
 
 	@Override
 	public Collection<T> getValues() {
-		final List<T> list = new ArrayList<T>();
-		for (final IWidget child : getWidgets()) {
+		List<T> list = new ArrayList<>();
+		for (IWidget child : getWidgets()) {
 			list.add((T) ((IControlValue) child).getValue());
 		}
 		return list;
 	}
 
 	@Override
-	public void setValues(final Collection<T> values) {
+	public void setValues(Collection<T> values) {
+		// ignored
+	}
+
+	@Override
+	public boolean isChildVisible(IWidget child) {
+		return child != null && value == ((IControlValue) child).getValue();
 	}
 }

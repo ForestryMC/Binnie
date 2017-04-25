@@ -54,7 +54,7 @@ public class WindowPolymeriser extends WindowMachine
 		new ControlEnergyBar(this, x + 120, 96, 64, 16, Position.Left);
 		x += 40;
 		new ControlSlot(this, x + 30, y + 18 + 8).assign(1);
-		new ControlSlotCharge(this, x + 30 + 20, y + 18 + 8, 1).setColour(16766976);
+		new ControlSlotCharge(this, x + 30 + 20, y + 18 + 8, 1).setColor(16766976);
 		x += 138;
 		new ControlSlotArray(this, x, y + 9, 2, 2).create(Polymeriser.slotSerumFinished);
 		final ControlErrorState errorState = new ControlErrorState(this, 244.0f, 97.0f);

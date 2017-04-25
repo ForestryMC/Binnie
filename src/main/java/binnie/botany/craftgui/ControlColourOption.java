@@ -6,7 +6,7 @@ package binnie.botany.craftgui;
 
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.geometry.CraftGUIUtil;
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.controls.listbox.ControlList;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.botany.api.IFlowerColour;
@@ -21,7 +21,7 @@ public class ControlColourOption extends ControlTextOption<IFlowerColour>
 		super(controlList, option, option.getName(), y);
 		this.setSize(new IPoint(this.getSize().x(), 20.0f));
 		(this.controlBee = new ControlColourDisplay(this, 2.0f, 2.0f)).setValue(option);
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(WidgetAttribute.MouseOver);
 		CraftGUIUtil.moveWidget(this.textWidget, new IPoint(22.0f, 0.0f));
 		this.textWidget.setSize(this.textWidget.getSize().sub(new IPoint(24.0f, 0.0f)));
 		final int th = (int) CraftGUI.Render.textHeight(this.textWidget.getValue(), this.textWidget.getSize().x());

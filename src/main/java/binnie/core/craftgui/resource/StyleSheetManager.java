@@ -10,7 +10,7 @@ public class StyleSheetManager
 {
 	static IStyleSheet defaultSS;
 
-	public static Texture getTexture(final Object key) {
+	public static Texture getTexture(Object key) {
 		return StyleSheetManager.defaultSS.getTexture(key);
 	}
 
@@ -25,7 +25,7 @@ public class StyleSheetManager
 	private static class DefaultStyleSheet implements IStyleSheet
 	{
 		@Override
-		public Texture getTexture(final Object key) {
+		public Texture getTexture(Object key) {
 			return CraftGUI.ResourceManager.getTexture(key.toString());
 		}
 	}

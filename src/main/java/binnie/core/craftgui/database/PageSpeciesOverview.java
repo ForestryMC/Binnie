@@ -24,7 +24,7 @@ public class PageSpeciesOverview extends PageSpecies
 	private ControlDatabaseIndividualDisplay controlInd1;
 	private ControlDatabaseIndividualDisplay controlInd2;
 
-	public PageSpeciesOverview(final IWidget parent, final DatabaseTab tab) {
+	public PageSpeciesOverview(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
 		controlInd1 = new ControlDatabaseIndividualDisplay(this, 5.0f, 5.0f);
 		controlInd2 = new ControlDatabaseIndividualDisplay(this, 123.0f, 5.0f);
@@ -37,23 +37,23 @@ public class PageSpeciesOverview extends PageSpecies
 	}
 
 	@Override
-	public void onValueChanged(final IAlleleSpecies species) {
+	public void onValueChanged(IAlleleSpecies species) {
 		controlInd1.setSpecies(species, EnumDiscoveryState.Show);
 		controlInd2.setSpecies(species, EnumDiscoveryState.Show);
-		final String branchBinomial = (species.getBranch() != null) ? species.getBranch().getScientific() : "<Unknown>";
-		final String branchName = (species.getBranch() != null) ? species.getBranch().getName() : "Unknown";
+		String branchBinomial = (species.getBranch() != null) ? species.getBranch().getScientific() : "<Unknown>";
+		String branchName = (species.getBranch() != null) ? species.getBranch().getName() : "Unknown";
 		controlName.setValue("§n" + species.getName() + "§r");
 		controlScientific.setValue("§o" + branchBinomial + " " + species.getBinomial() + "§r");
 		controlAuthority.setValue("Discovered by §l" + species.getAuthority() + "§r");
 		controlComplexity.setValue("Complexity: " + species.getComplexity());
-		final String desc = species.getDescription();
+		String desc = species.getDescription();
 		String descBody = "§o";
 		String descSig = "";
 		if (desc == null || desc == "") {
 			descBody += "No Description Provided.";
 		}
 		else {
-			final String[] descStrings = desc.split("\\|");
+			String[] descStrings = desc.split("\\|");
 			descBody += descStrings[0];
 			for (int i = 1; i < descStrings.length - 1; ++i) {
 				descBody = descBody + " " + descStrings[i];
@@ -64,7 +64,7 @@ public class PageSpeciesOverview extends PageSpecies
 		}
 		controlDescription.setValue(descBody + "§r");
 		controlSignature.setValue(descSig + "§r");
-		final float descHeight = CraftGUI.Render.textHeight(controlDescription.getValue(), controlDescription.getSize().x());
+		float descHeight = CraftGUI.Render.textHeight(controlDescription.getValue(), controlDescription.getSize().x());
 		controlSignature.setPosition(new IPoint(controlSignature.pos().x(), controlDescription.getPosition().y() + descHeight + 10.0f));
 	}
 }

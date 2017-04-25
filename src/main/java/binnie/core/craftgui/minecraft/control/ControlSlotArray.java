@@ -19,7 +19,7 @@ public class ControlSlotArray extends Control implements Iterable<ControlSlot>
 	private int columns;
 	private List<ControlSlot> slots;
 
-	public ControlSlotArray(final IWidget parent, final int x, final int y, final int columns, final int rows) {
+	public ControlSlotArray(IWidget parent, int x, int y, int columns, int rows) {
 		super(parent, x, y, columns * 18, rows * 18);
 		slots = new ArrayList<ControlSlot>();
 		this.rows = rows;
@@ -31,13 +31,13 @@ public class ControlSlotArray extends Control implements Iterable<ControlSlot>
 		}
 	}
 
-	public ControlSlot createSlot(final int x, final int y) {
+	public ControlSlot createSlot(int x, int y) {
 		return new ControlSlot(this, x, y);
 	}
 
-	public void setItemStacks(final ItemStack[] array) {
+	public void setItemStacks(ItemStack[] array) {
 		int i = 0;
-		for (final ItemStack item : array) {
+		for (ItemStack item : array) {
 			if (i >= slots.size()) {
 				return;
 			}
@@ -46,20 +46,20 @@ public class ControlSlotArray extends Control implements Iterable<ControlSlot>
 		}
 	}
 
-	public ControlSlot getControlSlot(final int i) {
+	public ControlSlot getControlSlot(int i) {
 		if (i < 0 || i >= slots.size()) {
 			return null;
 		}
 		return slots.get(i);
 	}
 
-	public ControlSlotArray create(final int[] index) {
+	public ControlSlotArray create(int[] index) {
 		return create(InventoryType.Machine, index);
 	}
 
-	public ControlSlotArray create(final InventoryType type, final int[] index) {
+	public ControlSlotArray create(InventoryType type, int[] index) {
 		int i = 0;
-		for (final ControlSlot slot : slots) {
+		for (ControlSlot slot : slots) {
 			slot.assign(type, index[i++]);
 		}
 		return this;

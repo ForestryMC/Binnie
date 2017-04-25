@@ -6,5 +6,5 @@ package binnie.core.craftgui.resource;
 
 public interface IStyleSheet
 {
-	Texture getTexture(final Object p0);
+	Texture getTexture(Object p0);
 }

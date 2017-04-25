@@ -43,30 +43,30 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener
 	}
 
 	@Override
-	public void onResourceManagerReload(final IResourceManager manager) {
+	public void onResourceManagerReload(IResourceManager manager) {
 		textureSheets.clear();
 		try {
-			final IResource res = manager.getResource(new ResourceLocation("binniecore", "gui/stylesheet.json"));
+			IResource res = manager.getResource(new ResourceLocation("binniecore", "gui/stylesheet.json"));
 			JsonObject jsonobject = null;
 			BufferedReader bufferedreader = null;
 			try {
 				bufferedreader = new BufferedReader(new InputStreamReader(res.getInputStream(), Charsets.UTF_8));
 				jsonobject = new JsonParser().parse(bufferedreader).getAsJsonObject();
-				for (final JsonElement el : jsonobject.get("texture-sheets").getAsJsonArray()) {
+				for (JsonElement el : jsonobject.get("texture-sheets").getAsJsonArray()) {
 					if (el instanceof JsonObject) {
-						final JsonObject sheet = (JsonObject) el;
-						final String name = sheet.get("name").getAsString();
-						final String modid = sheet.get("modid").getAsString();
-						final String path = sheet.get("path").getAsString();
+						JsonObject sheet = (JsonObject) el;
+						String name = sheet.get("name").getAsString();
+						String modid = sheet.get("modid").getAsString();
+						String path = sheet.get("path").getAsString();
 						textureSheets.put(name, new ParsedTextureSheet(name, modid, path));
 					}
 				}
-				for (final JsonElement el : jsonobject.get("textures").getAsJsonArray()) {
+				for (JsonElement el : jsonobject.get("textures").getAsJsonArray()) {
 					if (el instanceof JsonObject) {
-						final JsonObject sheet = (JsonObject) el;
-						final String name = sheet.get("name").getAsString();
-						final IBinnieTexture textureSheet = getTextureSheet(sheet.get("sheet").getAsString());
-						final IArea uv = getArea(sheet.get("uv").getAsString());
+						JsonObject sheet = (JsonObject) el;
+						String name = sheet.get("name").getAsString();
+						IBinnieTexture textureSheet = getTextureSheet(sheet.get("sheet").getAsString());
+						IArea uv = getArea(sheet.get("uv").getAsString());
 						IBorder border = IBorder.ZERO;
 						IBorder padding = IBorder.ZERO;
 						if (sheet.has("border")) {
@@ -88,13 +88,13 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener
 		}
 	}
 
-	public IArea getArea(final String name) {
-		final String[] split = name.split(" ");
+	public IArea getArea(String name) {
+		String[] split = name.split(" ");
 		if (split.length < 1 || split.length > 4) {
 			throw new RuntimeException("Parameter must have between one and four numbers");
 		}
-		final List<Float> f = new ArrayList<Float>();
-		for (final String string : split) {
+		List<Float> f = new ArrayList<Float>();
+		for (String string : split) {
 			f.add(Float.parseFloat(string));
 		}
 		if (f.size() == 1) {
@@ -109,13 +109,13 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener
 		return new IArea(f.get(0), f.get(1), f.get(2), f.get(3));
 	}
 
-	public IBorder getBorder(final String name) {
-		final String[] split = name.split(" ");
+	public IBorder getBorder(String name) {
+		String[] split = name.split(" ");
 		if (split.length < 1 || split.length > 4) {
 			throw new RuntimeException("Parameter must have between one and four numbers");
 		}
-		final List<Float> f = new ArrayList<Float>();
-		for (final String string : split) {
+		List<Float> f = new ArrayList<Float>();
+		for (String string : split) {
 			f.add(Float.parseFloat(string));
 		}
 		if (f.size() == 1) {
@@ -130,14 +130,14 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener
 		return new IBorder(f.get(0), f.get(1), f.get(2), f.get(3));
 	}
 
-	public IBinnieTexture getTextureSheet(final String name) {
+	public IBinnieTexture getTextureSheet(String name) {
 		if (!textureSheets.containsKey(name)) {
 			throw new RuntimeException("Missing GUI texture sheet for Binnie Mods: " + name);
 		}
 		return textureSheets.get(name);
 	}
 
-	public Texture getTexture(final String name) {
+	public Texture getTexture(String name) {
 		if (!textures.containsKey(name)) {
 			throw new RuntimeException("Missing GUI texture Binnie Mods: " + name);
 		}

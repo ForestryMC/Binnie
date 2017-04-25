@@ -4,7 +4,7 @@
 
 package binnie.core.craftgui.database;
 
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -38,36 +38,36 @@ class ControlMutationSymbol extends Control implements ITooltip
 		}
 	}
 
-	protected ControlMutationSymbol(final IWidget parent, final int x, final int y, final int type) {
+	protected ControlMutationSymbol(IWidget parent, int x, int y, int type) {
 		super(parent, x, y, 16 + type * 16, 16.0f);
 		value = null;
 		this.type = type;
-		addAttribute(Attribute.MouseOver);
+		addAttribute(WidgetAttribute.MouseOver);
 	}
 
-	public void setValue(final IMutation value) {
+	public void setValue(IMutation value) {
 		this.value = value;
-		final boolean isNEI = ((WindowAbstractDatabase) getSuperParent()).isNEI();
-		final BreedingSystem system = ((WindowAbstractDatabase) getSuperParent()).getBreedingSystem();
+		boolean isNEI = ((WindowAbstractDatabase) getSuperParent()).isNEI();
+		BreedingSystem system = ((WindowAbstractDatabase) getSuperParent()).getBreedingSystem();
 		discovered = (isNEI || system.isMutationDiscovered(value, Window.get(this).getWorld(), Window.get(this).getUsername()));
 		if (discovered) {
-			setColour(16777215);
+			setColor(16777215);
 		}
 		else {
-			setColour(7829367);
+			setColor(7829367);
 		}
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
+	public void getTooltip(Tooltip tooltip) {
 		if (type == 1 && discovered) {
-			final IAllele species1 = value.getAllele0();
-			final IAllele species2 = value.getAllele1();
-			final BreedingSystem system = ((WindowAbstractDatabase) getSuperParent()).getBreedingSystem();
-			final float chance = system.getChance(value, Window.get(this).getPlayer(), species1, species2);
+			IAllele species1 = value.getAllele0();
+			IAllele species2 = value.getAllele1();
+			BreedingSystem system = ((WindowAbstractDatabase) getSuperParent()).getBreedingSystem();
+			float chance = system.getChance(value, Window.get(this).getPlayer(), species1, species2);
 			tooltip.add("Current Chance - " + chance + "%");
 			if (value.getSpecialConditions() != null) {
-				for (final String string : value.getSpecialConditions()) {
+				for (String string : value.getSpecialConditions()) {
 					tooltip.add(string);
 				}
 			}

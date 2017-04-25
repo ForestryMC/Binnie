@@ -18,9 +18,9 @@ public class AnalystPageKaryogram extends ControlAnalystPage
 {
 	public AnalystPageKaryogram(final IWidget parent, final IArea area, final IIndividual ind) {
 		super(parent, area);
-		this.setColour(10040319);
+		this.setColor(10040319);
 		int y = 4;
-		new ControlTextCentered(this, y, "§nKaryogram").setColour(this.getColour());
+		new ControlTextCentered(this, y, "§nKaryogram").setColor(this.getColor());
 		y += 16;
 		y += 8;
 		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(ind.getClass());

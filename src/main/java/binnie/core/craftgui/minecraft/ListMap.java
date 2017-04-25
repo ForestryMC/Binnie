@@ -22,7 +22,7 @@ class ListMap<T> implements List<T>
 	@Override
 	public int size() {
 		int i = -1;
-		for (final int k : map.keySet()) {
+		for (int k : map.keySet()) {
 			if (k > i) {
 				i = k;
 			}
@@ -36,7 +36,7 @@ class ListMap<T> implements List<T>
 	}
 
 	@Override
-	public boolean contains(final Object o) {
+	public boolean contains(Object o) {
 		return map.containsValue(o);
 	}
 
@@ -51,12 +51,12 @@ class ListMap<T> implements List<T>
 	}
 
 	@Override
-	public <P> P[] toArray(final P[] a) {
+	public <P> P[] toArray(P[] a) {
 		return map.values().toArray(a);
 	}
 
 	@Override
-	public boolean add(final T e) {
+	public boolean add(T e) {
 		if (get(size()) == null) {
 			add(size(), e);
 			return true;
@@ -65,32 +65,32 @@ class ListMap<T> implements List<T>
 	}
 
 	@Override
-	public boolean remove(final Object o) {
+	public boolean remove(Object o) {
 		return false;
 	}
 
 	@Override
-	public boolean containsAll(final Collection<?> c) {
+	public boolean containsAll(Collection<?> c) {
 		return map.values().containsAll(c);
 	}
 
 	@Override
-	public boolean addAll(final Collection<? extends T> c) {
+	public boolean addAll(Collection<? extends T> c) {
 		return false;
 	}
 
 	@Override
-	public boolean addAll(final int index, final Collection<? extends T> c) {
+	public boolean addAll(int index, Collection<? extends T> c) {
 		return false;
 	}
 
 	@Override
-	public boolean removeAll(final Collection<?> c) {
+	public boolean removeAll(Collection<?> c) {
 		return false;
 	}
 
 	@Override
-	public boolean retainAll(final Collection<?> c) {
+	public boolean retainAll(Collection<?> c) {
 		return false;
 	}
 
@@ -100,29 +100,29 @@ class ListMap<T> implements List<T>
 	}
 
 	@Override
-	public T get(final int index) {
+	public T get(int index) {
 		return map.get(index);
 	}
 
 	@Override
-	public T set(final int index, final T element) {
+	public T set(int index, T element) {
 		map.put(index, element);
 		return element;
 	}
 
 	@Override
-	public void add(final int index, final T element) {
+	public void add(int index, T element) {
 		map.put(index, element);
 	}
 
 	@Override
-	public T remove(final int index) {
+	public T remove(int index) {
 		return null;
 	}
 
 	@Override
-	public int indexOf(final Object o) {
-		for (final Map.Entry<Integer, T> entry : map.entrySet()) {
+	public int indexOf(Object o) {
+		for (Map.Entry<Integer, T> entry : map.entrySet()) {
 			if (entry.getValue() == o) {
 				return entry.getKey();
 			}
@@ -131,7 +131,7 @@ class ListMap<T> implements List<T>
 	}
 
 	@Override
-	public int lastIndexOf(final Object o) {
+	public int lastIndexOf(Object o) {
 		return indexOf(o);
 	}
 
@@ -141,12 +141,12 @@ class ListMap<T> implements List<T>
 	}
 
 	@Override
-	public ListIterator<T> listIterator(final int index) {
+	public ListIterator<T> listIterator(int index) {
 		return null;
 	}
 
 	@Override
-	public List<T> subList(final int fromIndex, final int toIndex) {
+	public List<T> subList(int fromIndex, int toIndex) {
 		return null;
 	}
 }

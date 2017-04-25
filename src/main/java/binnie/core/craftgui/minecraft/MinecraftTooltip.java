@@ -9,15 +9,15 @@ import net.minecraft.util.EnumChatFormatting;
 
 public class MinecraftTooltip extends Tooltip
 {
-	public static int getOutline(final ITooltipType type) {
+	public static int getOutline(ITooltipType type) {
 		return TypeColour.valueOf(type.toString()).getOutline();
 	}
 
-	public static String getTitle(final ITooltipType type) {
+	public static String getTitle(ITooltipType type) {
 		return TypeColour.valueOf(type.toString()).getTitle();
 	}
 
-	public static String getBody(final ITooltipType type) {
+	public static String getBody(ITooltipType type) {
 		return TypeColour.valueOf(type.toString()).getBody();
 	}
 
@@ -41,7 +41,7 @@ public class MinecraftTooltip extends Tooltip
 		String mainText;
 		String bodyText;
 
-		TypeColour(final int outline, final EnumChatFormatting mainText, final EnumChatFormatting bodyText) {
+		TypeColour(int outline, EnumChatFormatting mainText, EnumChatFormatting bodyText) {
 			this.outline = outline;
 			this.mainText = mainText.toString();
 			this.bodyText = bodyText.toString();

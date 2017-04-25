@@ -14,7 +14,7 @@ public class ControlImage extends Control
 {
 	private Object key;
 
-	public ControlImage(final IWidget parent, final float x, final float y, final Texture text) {
+	public ControlImage(IWidget parent, float x, float y, Texture text) {
 		super(parent, x, y, text.w(), text.h());
 		key = null;
 		key = text;

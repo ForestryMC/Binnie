@@ -4,7 +4,7 @@
 
 package binnie.core.craftgui.minecraft.control;
 
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -17,9 +17,9 @@ public class ControlPowerSystem extends Control implements ITooltip
 {
 	private PowerSystem system;
 
-	public ControlPowerSystem(final IWidget parent, final float x, final float y, final PowerSystem system) {
+	public ControlPowerSystem(IWidget parent, float x, float y, PowerSystem system) {
 		super(parent, x, y, 16.0f, 16.0f);
-		addAttribute(Attribute.MouseOver);
+		addAttribute(WidgetAttribute.MouseOver);
 		this.system = system;
 	}
 
@@ -29,7 +29,7 @@ public class ControlPowerSystem extends Control implements ITooltip
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
+	public void getTooltip(Tooltip tooltip) {
 		tooltip.setType(Tooltip.Type.Power);
 		tooltip.add("Power Supply");
 		tooltip.add("Powered by " + system.getUnitName());

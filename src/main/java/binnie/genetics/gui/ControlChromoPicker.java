@@ -10,7 +10,7 @@ import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.events.EventValueChanged;
 import binnie.core.craftgui.events.EventWidget;
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.extrabees.core.ExtraBeeTexture;
 import forestry.api.genetics.IChromosomeType;
@@ -30,7 +30,7 @@ public class ControlChromoPicker extends Control implements ITooltip
 		this.Selected = new StandardTexture(160, 18, 16, 16, ExtraBeeTexture.GUIPunnett);
 		this.Texture = new StandardTexture(160, 34, 16, 16, ExtraBeeTexture.GUIPunnett);
 		this.type = chromo;
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(WidgetAttribute.MouseOver);
 		this.parent = parent;
 		this.addSelfEventHandler(new EventWidget.StartMouseOver.Handler() {
 			@Override

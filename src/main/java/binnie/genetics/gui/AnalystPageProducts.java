@@ -34,14 +34,14 @@ public class AnalystPageProducts extends AnalystPageProduce
 {
 	public AnalystPageProducts(final IWidget parent, final IArea area, final IBee ind) {
 		super(parent, area);
-		this.setColour(13382400);
+		this.setColor(13382400);
 		final IBeeGenome genome = ind.getGenome();
 		final float speed = genome.getSpeed();
 		final float modeSpeed = Binnie.Genetics.getBeeRoot().getBeekeepingMode(BinnieCore.proxy.getWorld()).getBeeModifier().getProductionModifier(genome, 1.0f);
 		int y = 4;
-		new ControlTextCentered(this, y, "§nProduce").setColour(this.getColour());
+		new ControlTextCentered(this, y, "§nProduce").setColor(this.getColor());
 		y += 12;
-		new ControlTextCentered(this, y, "§oRate: " + Binnie.Genetics.beeBreedingSystem.getAlleleName(EnumBeeChromosome.SPEED, ind.getGenome().getActiveAllele(EnumBeeChromosome.SPEED))).setColour(this.getColour());
+		new ControlTextCentered(this, y, "§oRate: " + Binnie.Genetics.beeBreedingSystem.getAlleleName(EnumBeeChromosome.SPEED, ind.getGenome().getActiveAllele(EnumBeeChromosome.SPEED))).setColor(this.getColor());
 		y += 20;
 		final Collection<ItemStack> refinedProducts = new UniqueItemStackSet();
 		final Collection<ItemStack> productList = new UniqueItemStackSet();
@@ -50,7 +50,7 @@ public class AnalystPageProducts extends AnalystPageProduce
 		products.putAll(genome.getPrimary().getProductChances());
 		products.putAll(genome.getSecondary().getProductChances());
 		if (!products.isEmpty()) {
-			new ControlTextCentered(this, y, "Natural Products").setColour(this.getColour());
+			new ControlTextCentered(this, y, "Natural Products").setColor(this.getColor());
 			y += 12;
 			for (final Map.Entry<ItemStack, Float> entry : products.entrySet()) {
 				if (!productList.add(entry.getKey())) {
@@ -64,7 +64,7 @@ public class AnalystPageProducts extends AnalystPageProduce
 		}
 		products = genome.getPrimary().getSpecialtyChances();
 		if (!products.isEmpty()) {
-			new ControlTextCentered(this, y, "Specialty Products").setColour(this.getColour());
+			new ControlTextCentered(this, y, "Specialty Products").setColor(this.getColor());
 			y += 12;
 			for (final Map.Entry<ItemStack, Float> entry : products.entrySet()) {
 				refinedProducts.addAll(this.getAllProducts(entry.getKey()));
@@ -73,7 +73,7 @@ public class AnalystPageProducts extends AnalystPageProduce
 			}
 			y += 12;
 		}
-		new ControlTextCentered(this, y, "Refined Products").setColour(this.getColour());
+		new ControlTextCentered(this, y, "Refined Products").setColor(this.getColor());
 		y += 12;
 		Collection<ItemStack> level2Products = new UniqueItemStackSet();
 		for (final ItemStack stack : refinedProducts) {
@@ -175,7 +175,7 @@ public class AnalystPageProducts extends AnalystPageProduce
 		};
 		item.setTooltip();
 		final ControlText textWidget = new ControlTextCentered(this, y + 4, "");
-		textWidget.setColour(this.getColour());
+		textWidget.setColor(this.getColor());
 		CraftGUIUtil.moveWidget(textWidget, new IPoint(12.0f, 0.0f));
 		item.setItemStack(key);
 		final float time = (int) (PluginApiculture.ticksPerBeeWorkCycle * 100.0 / (speed * value));

@@ -6,7 +6,7 @@ package binnie.botany.craftgui;
 
 import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.CraftGUI;
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.ITooltip;
 import binnie.botany.api.IFlowerColour;
@@ -19,7 +19,7 @@ public class ControlColourDisplay extends Control implements IControlValue<IFlow
 
 	public ControlColourDisplay(final IWidget parent, final float x, final float y) {
 		super(parent, x, y, 16.0f, 16.0f);
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(WidgetAttribute.MouseOver);
 	}
 
 	@Override

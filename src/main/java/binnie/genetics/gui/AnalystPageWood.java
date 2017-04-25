@@ -30,10 +30,10 @@ public class AnalystPageWood extends AnalystPageProduce
 {
 	public AnalystPageWood(final IWidget parent, final IArea area, final ITree ind) {
 		super(parent, area);
-		this.setColour(6697728);
+		this.setColor(6697728);
 		final ITreeGenome genome = ind.getGenome();
 		int y = 4;
-		new ControlTextCentered(this, y, "§nWood").setColour(this.getColour());
+		new ControlTextCentered(this, y, "§nWood").setColor(this.getColor());
 		y += 12;
 		if (((IAlleleBoolean) ind.getGenome().getActiveAllele(EnumTreeChromosome.FIREPROOF)).getValue()) {
 			new ControlIconDisplay(this, (this.w() - 16.0f) / 2.0f, y, ModuleItem.iconNoFire.getIcon()).addTooltip("Fireproof");
@@ -54,7 +54,7 @@ public class AnalystPageWood extends AnalystPageProduce
 		// products.add(stack);
 		// }
 		if (products.size() > 0) {
-			new ControlTextCentered(this, y, "Logs").setColour(this.getColour());
+			new ControlTextCentered(this, y, "Logs").setColor(this.getColor());
 			y += 10;
 			final int w = products.size() * 18 - 2;
 			final int i = 0;
@@ -76,7 +76,7 @@ public class AnalystPageWood extends AnalystPageProduce
 			y += 8;
 		}
 		if (products.size() == 0) {
-			new ControlTextCentered(this, y, "This tree has no \nfruits or nuts").setColour(this.getColour());
+			new ControlTextCentered(this, y, "This tree has no \nfruits or nuts").setColor(this.getColor());
 			y += 28;
 		}
 		this.setSize(new IPoint(this.w(), y + 8));

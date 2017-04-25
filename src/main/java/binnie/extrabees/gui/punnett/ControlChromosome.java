@@ -6,7 +6,7 @@ package binnie.extrabees.gui.punnett;
 
 import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.CraftGUI;
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.ITooltip;
 import forestry.api.genetics.IChromosomeType;
@@ -20,7 +20,7 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 	protected ControlChromosome(final IWidget parent, final float x, final float y, final IChromosomeType type) {
 		super(parent, x, y, 16.0f, 16.0f);
 		this.setValue(type);
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(WidgetAttribute.MouseOver);
 	}
 
 	@Override

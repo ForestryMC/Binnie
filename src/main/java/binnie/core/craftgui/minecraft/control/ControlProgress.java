@@ -15,7 +15,7 @@ public class ControlProgress extends ControlProgressBase
 	private Texture progressBar;
 	private Position direction;
 
-	public ControlProgress(final IWidget parent, final int x, final int y, final Texture progressBlank, final Texture progressBar, final Position dir) {
+	public ControlProgress(IWidget parent, int x, int y, Texture progressBlank, Texture progressBar, Position dir) {
 		super(parent, x, y, (progressBlank == null) ? 0.0f : progressBlank.w(), (progressBlank == null) ? 0.0f : progressBlank.h());
 		this.progressBlank = progressBlank;
 		this.progressBar = progressBar;

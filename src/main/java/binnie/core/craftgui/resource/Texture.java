@@ -11,21 +11,21 @@ import binnie.core.resource.BinnieResource;
 
 public class Texture
 {
-	public static final Texture NULL;
+	public static Texture NULL;
 	IArea area;
 	IBorder padding;
 	IBorder border;
 	BinnieResource filename;
 
-	public Texture(final IArea area, final BinnieResource filename) {
+	public Texture(IArea area, BinnieResource filename) {
 		this(area, IBorder.ZERO, IBorder.ZERO, filename);
 	}
 
-	public Texture(final IArea area, final IBorder padding, final BinnieResource filename) {
+	public Texture(IArea area, IBorder padding, BinnieResource filename) {
 		this(area, padding, IBorder.ZERO, filename);
 	}
 
-	public Texture(final IArea area, final IBorder padding, final IBorder border, final BinnieResource filename) {
+	public Texture(IArea area, IBorder padding, IBorder border, BinnieResource filename) {
 		this.padding = IBorder.ZERO;
 		this.border = IBorder.ZERO;
 		this.area = new IArea(area);
@@ -70,12 +70,12 @@ public class Texture
 		return getArea().y();
 	}
 
-	public Texture crop(final Position anchor, final float dist) {
+	public Texture crop(Position anchor, float dist) {
 		return crop(new IBorder(anchor.opposite(), dist));
 	}
 
-	public Texture crop(final IBorder crop) {
-		final Texture copy = new Texture(area, padding, border, filename);
+	public Texture crop(IBorder crop) {
+		Texture copy = new Texture(area, padding, border, filename);
 		if (crop.b() > 0.0f) {
 			copy.border.b(0.0f);
 			copy.padding.b(copy.padding.b() - Math.min(crop.b(), copy.padding.b()));

@@ -12,11 +12,11 @@ import binnie.core.resource.IBinnieTexture;
 
 public class PaddedTexture extends Texture
 {
-	public PaddedTexture(final int u, final int v, final int w, final int h, final int offset, final IBinnieTexture textureFile, final int leftPadding, final int rightPadding, final int topPadding, final int bottomPadding) {
+	public PaddedTexture(int u, int v, int w, int h, int offset, IBinnieTexture textureFile, int leftPadding, int rightPadding, int topPadding, int bottomPadding) {
 		this(u, v, w, h, offset, textureFile.getTexture(), leftPadding, rightPadding, topPadding, bottomPadding);
 	}
 
-	public PaddedTexture(final int u, final int v, final int w, final int h, final int offset, final BinnieResource textureFile, final int leftPadding, final int rightPadding, final int topPadding, final int bottomPadding) {
+	public PaddedTexture(int u, int v, int w, int h, int offset, BinnieResource textureFile, int leftPadding, int rightPadding, int topPadding, int bottomPadding) {
 		super(new IArea(u, v, w, h), new IBorder(topPadding, rightPadding, bottomPadding, leftPadding), new IBorder(offset), textureFile);
 	}
 }

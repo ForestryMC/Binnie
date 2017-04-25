@@ -19,17 +19,17 @@ class ControlMutationItem extends ControlOption<IMutation>
 	private ControlMutationSymbol addSymbol;
 	private ControlMutationSymbol arrowSymbol;
 
-	public ControlMutationItem(final ControlList<IMutation> controlList, final IMutation option, final IAlleleSpecies species, final int y) {
+	public ControlMutationItem(ControlList<IMutation> controlList, IMutation option, IAlleleSpecies species, int y) {
 		super(controlList, option, y);
 		itemWidget1 = new ControlDatabaseIndividualDisplay(this, 4.0f, 4.0f);
 		itemWidget2 = new ControlDatabaseIndividualDisplay(this, 44.0f, 4.0f);
 		itemWidget3 = new ControlDatabaseIndividualDisplay(this, 104.0f, 4.0f);
 		addSymbol = new ControlMutationSymbol(this, 24, 4, 0);
 		arrowSymbol = new ControlMutationSymbol(this, 64, 4, 1);
-		final boolean isNEI = ((WindowAbstractDatabase) getSuperParent()).isNEI();
-		final BreedingSystem system = ((WindowAbstractDatabase) getSuperParent()).getBreedingSystem();
+		boolean isNEI = ((WindowAbstractDatabase) getSuperParent()).isNEI();
+		BreedingSystem system = ((WindowAbstractDatabase) getSuperParent()).getBreedingSystem();
 		if (getValue() != null) {
-			final boolean isMutationDiscovered = system.isMutationDiscovered(getValue(), Window.get(this).getWorld(), Window.get(this).getUsername());
+			boolean isMutationDiscovered = system.isMutationDiscovered(getValue(), Window.get(this).getWorld(), Window.get(this).getUsername());
 			IAlleleSpecies allele = null;
 			EnumDiscoveryState state = null;
 			allele = getValue().getAllele0();

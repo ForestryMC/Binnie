@@ -15,7 +15,7 @@ public class PageBreeder extends ControlPage<DatabaseTab>
 {
 	private GameProfile player;
 
-	public PageBreeder(final IWidget parent, final GameProfile player, final DatabaseTab tab) {
+	public PageBreeder(IWidget parent, GameProfile player, DatabaseTab tab) {
 		super(parent, 0.0f, 0.0f, parent.getSize().x(), parent.getSize().y(), tab);
 		this.player = player;
 		onPageRefresh();
@@ -25,8 +25,8 @@ public class PageBreeder extends ControlPage<DatabaseTab>
 		while (getWidgets().size() > 0) {
 			deleteChild(getWidgets().get(0));
 		}
-		final BreedingSystem system = ((WindowAbstractDatabase) Window.get(this)).getBreedingSystem();
-		final String descriptor = system.getDescriptor();
+		BreedingSystem system = ((WindowAbstractDatabase) Window.get(this)).getBreedingSystem();
+		String descriptor = system.getDescriptor();
 		new ControlTextCentered(this, 8.0f, "§n" + system.getDescriptor() + " Profile§r");
 		new ControlTextCentered(this, 75.0f, "" + system.discoveredSpeciesCount + "/" + system.totalSpeciesCount + " Species");
 		new ControlBreedingProgress(this, 20, 87, 102, 14, system, system.discoveredSpeciesPercentage);

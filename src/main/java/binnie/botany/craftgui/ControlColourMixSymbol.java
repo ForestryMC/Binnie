@@ -7,7 +7,7 @@ package binnie.botany.craftgui;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.core.craftgui.resource.minecraft.CraftGUITextureSheet;
 import binnie.core.craftgui.Tooltip;
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.CraftGUI;
@@ -38,12 +38,12 @@ public class ControlColourMixSymbol extends Control implements ITooltip
 		super(parent, x, y, 16 + type * 16, 16.0f);
 		this.value = null;
 		this.type = type;
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(WidgetAttribute.MouseOver);
 	}
 
 	public void setValue(final IColourMix value) {
 		this.value = value;
-		this.setColour(16777215);
+		this.setColor(16777215);
 	}
 
 	@Override

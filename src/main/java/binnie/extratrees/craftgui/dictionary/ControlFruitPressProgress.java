@@ -8,7 +8,7 @@ import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.extratrees.core.ExtraTreeTexture;
 import net.minecraft.nbt.NBTTagCompound;
 import binnie.core.craftgui.events.EventMouse;
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraft.item.ItemStack;
@@ -55,7 +55,7 @@ public class ControlFruitPressProgress extends ControlProgressBase
 
 	protected ControlFruitPressProgress(final IWidget parent, final float x, final float y) {
 		super(parent, x, y, 37.0f, 69.0f);
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(WidgetAttribute.MouseOver);
 		this.addSelfEventHandler(new EventMouse.Down.Handler() {
 			@Override
 			public void onEvent(final EventMouse.Down event) {

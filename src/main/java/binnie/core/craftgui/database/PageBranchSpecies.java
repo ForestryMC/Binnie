@@ -18,15 +18,15 @@ public class PageBranchSpecies extends PageBranch
 	private ControlSpeciesBox pageBranchSpecies_speciesList;
 
 	@Mod.EventHandler
-	public void onHandleEvent(final EventValueChanged<IAlleleSpecies> event) {
+	public void onHandleEvent(EventValueChanged<IAlleleSpecies> event) {
 	}
 
-	public PageBranchSpecies(final IWidget parent, final DatabaseTab tab) {
+	public PageBranchSpecies(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
 		pageBranchSpecies_title = new ControlTextCentered(this, 8.0f, "Species");
 		addEventHandler(new EventValueChanged.Handler() {
 			@Override
-			public void onEvent(final EventValueChanged event) {
+			public void onEvent(EventValueChanged event) {
 				if (event.isOrigin(pageBranchSpecies_speciesList)) {
 					((WindowAbstractDatabase) getSuperParent()).gotoSpecies((IAlleleSpecies) event.getValue());
 				}
@@ -36,7 +36,7 @@ public class PageBranchSpecies extends PageBranch
 	}
 
 	@Override
-	public void onValueChanged(final IClassification branch) {
+	public void onValueChanged(IClassification branch) {
 		pageBranchSpecies_speciesList.setBranch(branch);
 	}
 }

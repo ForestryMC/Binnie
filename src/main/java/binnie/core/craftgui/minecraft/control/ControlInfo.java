@@ -4,7 +4,7 @@
 
 package binnie.core.craftgui.minecraft.control;
 
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -16,9 +16,9 @@ public class ControlInfo extends Control implements ITooltip
 {
 	private String info;
 
-	public ControlInfo(final IWidget parent, final float x, final float y, final String info) {
+	public ControlInfo(IWidget parent, float x, float y, String info) {
 		super(parent, x, y, 16.0f, 16.0f);
-		addAttribute(Attribute.MouseOver);
+		addAttribute(WidgetAttribute.MouseOver);
 		this.info = info;
 	}
 
@@ -28,7 +28,7 @@ public class ControlInfo extends Control implements ITooltip
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
+	public void getTooltip(Tooltip tooltip) {
 		tooltip.setType(Tooltip.Type.Information);
 		tooltip.add("Info");
 		tooltip.add(info);

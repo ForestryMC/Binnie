@@ -8,7 +8,7 @@ import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.extratrees.core.ExtraTreeTexture;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.FluidStack;
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import net.minecraft.item.ItemStack;
 import binnie.core.util.ItemStackSet;
 import org.lwjgl.opengl.GL11;
@@ -75,7 +75,7 @@ public class ControlBreweryProgress extends ControlProgressBase
 
 	protected ControlBreweryProgress(final IWidget parent, final float x, final float y) {
 		super(parent, x, y, 34.0f, 39.0f);
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(WidgetAttribute.MouseOver);
 	}
 
 	public void renderFluid(final FluidStack fluid, final IPoint pos) {

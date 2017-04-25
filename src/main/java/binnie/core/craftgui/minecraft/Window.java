@@ -7,7 +7,7 @@ package binnie.core.craftgui.minecraft;
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.ITooltipHelp;
@@ -63,10 +63,10 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 	private IInventory entityInventory;
 	private Side side;
 
-	public void getTooltip(final Tooltip tooltip) {
-		final Deque<IWidget> queue = calculateMousedOverWidgets();
+	public void getTooltip(Tooltip tooltip) {
+		Deque<IWidget> queue = calculateMousedOverWidgets();
 		while (!queue.isEmpty()) {
-			final IWidget widget = queue.removeFirst();
+			IWidget widget = queue.removeFirst();
 			if (widget.isEnabled() && widget.isVisible()) {
 				if (!widget.calculateIsMouseOver()) {
 					continue;
@@ -77,7 +77,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 						return;
 					}
 				}
-				if (widget.hasAttribute(Attribute.BlockTooltip)) {
+				if (widget.hasAttribute(WidgetAttribute.BlockTooltip)) {
 					return;
 				}
 				continue;
@@ -85,10 +85,10 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		}
 	}
 
-	public void getHelpTooltip(final MinecraftTooltip tooltip) {
-		final Deque<IWidget> queue = calculateMousedOverWidgets();
+	public void getHelpTooltip(MinecraftTooltip tooltip) {
+		Deque<IWidget> queue = calculateMousedOverWidgets();
 		while (!queue.isEmpty()) {
-			final IWidget widget = queue.removeFirst();
+			IWidget widget = queue.removeFirst();
 			if (widget.isEnabled() && widget.isVisible()) {
 				if (!widget.calculateIsMouseOver()) {
 					continue;
@@ -99,7 +99,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 						return;
 					}
 				}
-				if (widget.hasAttribute(Attribute.BlockTooltip)) {
+				if (widget.hasAttribute(WidgetAttribute.BlockTooltip)) {
 					return;
 				}
 				continue;
@@ -111,7 +111,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 
 	protected abstract String getName();
 
-	public BinnieResource getBackgroundTextureFile(final int i) {
+	public BinnieResource getBackgroundTextureFile(int i) {
 		return Binnie.Resource.getPNG(getMod(), ResourceType.GUI, getName() + ((i == 1) ? "" : i));
 	}
 
@@ -126,7 +126,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		return null;
 	}
 
-	public Window(final float width, final float height, final EntityPlayer player, final IInventory inventory, final Side side) {
+	public Window(float width, float height, EntityPlayer player, IInventory inventory, Side side) {
 		titleButtonLeft = 8.0f;
 		titleButtonRight = 8.0f;
 		bgText1 = null;
@@ -142,7 +142,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		}
 		setSize(new IPoint(width, height));
 		gui = new GuiCraftGUI(this);
-		for (final EnumHighlighting h : EnumHighlighting.values()) {
+		for (EnumHighlighting h : EnumHighlighting.values()) {
 			ControlSlot.highlighting.put(h, new ArrayList<Integer>());
 		}
 		(CraftGUI.Render = new Renderer(gui)).stylesheet(StyleSheetManager.getDefault());
@@ -155,7 +155,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		}
 		addSelfEventHandler(new EventWidget.ChangeSize.Handler() {
 			@Override
-			public void onEvent(final EventWidget.ChangeSize event) {
+			public void onEvent(EventWidget.ChangeSize event) {
 				if (isClient() && getGui() != null) {
 					getGui().resize(getSize());
 					if (title != null) {
@@ -166,24 +166,24 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		});
 	}
 
-	public void setTitle(final String title) {
-		(this.title = new ControlTextCentered(this, 12.0f, title)).setColour(4210752);
+	public void setTitle(String title) {
+		(this.title = new ControlTextCentered(this, 12.0f, title)).setColor(4210752);
 	}
 
 	@SideOnly(Side.CLIENT)
-	public final GuiCraftGUI getGui() {
+	public GuiCraftGUI getGui() {
 		return gui;
 	}
 
-	public final ContainerCraftGUI getContainer() {
+	public ContainerCraftGUI getContainer() {
 		return container;
 	}
 
-	public final WindowInventory getWindowInventory() {
+	public WindowInventory getWindowInventory() {
 		return windowInventory;
 	}
 
-	public final void initGui() {
+	public void initGui() {
 		if (hasBeenInitialised) {
 			return;
 		}
@@ -213,7 +213,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		if (getBackground2() != null) {
 			CraftGUI.Render.texture(getBackground2(), new IPoint(256.0f, 0.0f));
 		}
-		CraftGUI.Render.colour(getColour());
+		CraftGUI.Render.colour(getColor());
 		CraftGUI.Render.texture(CraftGUITexture.Window, getArea());
 	}
 
@@ -242,7 +242,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		return entityInventory;
 	}
 
-	public void setInventories(final EntityPlayer player2, final IInventory inventory) {
+	public void setInventories(EntityPlayer player2, IInventory inventory) {
 		player = player2;
 		entityInventory = inventory;
 	}
@@ -250,7 +250,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 	public void onClose() {
 	}
 
-	public void setHeldItemStack(final ItemStack stack) {
+	public void setHeldItemStack(ItemStack stack) {
 		if (player != null) {
 			player.inventory.setItemStack(stack);
 		}
@@ -274,26 +274,26 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 	public void onInventoryUpdate() {
 	}
 
-	public void sendClientAction(final String name, final NBTTagCompound action) {
+	public void sendClientAction(String name, NBTTagCompound action) {
 		action.setString("type", name);
-		final MessageCraftGUI packet = new MessageCraftGUI(action);
+		MessageCraftGUI packet = new MessageCraftGUI(action);
 		BinnieCore.proxy.sendToServer(packet);
 	}
 
 	@Override
-	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound nbt) {
+	public void recieveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt) {
 		if (side == Side.CLIENT && name.equals("username")) {
-			final float w = w();
-			final float titleButtonRight = this.titleButtonRight + 16.0f;
+			float w = w();
+			float titleButtonRight = this.titleButtonRight + 16.0f;
 			this.titleButtonRight = titleButtonRight;
-			final ControlUser controlUser = new ControlUser(this, w - titleButtonRight, 8.0f, nbt.getString("username"));
+			ControlUser controlUser = new ControlUser(this, w - titleButtonRight, 8.0f, nbt.getString("username"));
 			this.titleButtonRight += 6.0f;
 		}
 		if (side == Side.CLIENT && name.equals("power-system")) {
-			final float w2 = w();
-			final float titleButtonRight2 = titleButtonRight + 16.0f;
+			float w2 = w();
+			float titleButtonRight2 = titleButtonRight + 16.0f;
 			titleButtonRight = titleButtonRight2;
-			final ControlPowerSystem controlPowerSystem = new ControlPowerSystem(this, w2 - titleButtonRight2, 8.0f, PowerSystem.get(nbt.getByte("system")));
+			ControlPowerSystem controlPowerSystem = new ControlPowerSystem(this, w2 - titleButtonRight2, 8.0f, PowerSystem.get(nbt.getByte("system")));
 			titleButtonRight += 6.0f;
 		}
 	}
@@ -309,7 +309,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		return bgText2;
 	}
 
-	public static <T extends Window> T get(final IWidget widget) {
+	public static <T extends Window> T get(IWidget widget) {
 		return (T) widget.getSuperParent();
 	}
 }

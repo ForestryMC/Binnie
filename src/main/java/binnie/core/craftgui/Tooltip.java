@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui;
 
 import net.minecraft.item.ItemStack;
@@ -11,29 +7,47 @@ import net.minecraftforge.fluids.FluidStack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tooltip
-{
-	List<String> tooltip;
-	ITooltipType type;
+public class Tooltip {
 	public int maxWidth;
 
+	protected List<String> tooltip;
+	protected ITooltipType type;
+
 	public Tooltip() {
-		tooltip = new ArrayList<String>();
+		tooltip = new ArrayList<>();
 		type = Type.Standard;
 		maxWidth = 256;
 	}
 
-	public void add(final String string) {
+	public void add(String string) {
 		tooltip.add(string);
 	}
 
-	public String getLine(final int index) {
-		final String string = getList().get(index);
+	public void add(ItemStack item, String string) {
+		NBTTagCompound nbt = new NBTTagCompound();
+		item.writeToNBT(nbt);
+		nbt.setByte("nbt-type", (byte) 105);
+		add("~~~" + nbt.toString() + "~~~" + string);
+	}
+
+	public void add(FluidStack item, String string) {
+		NBTTagCompound nbt = new NBTTagCompound();
+		item.writeToNBT(nbt);
+		nbt.setByte("nbt-type", (byte) 102);
+		add("~~~" + nbt.toString() + "~~~" + string);
+	}
+
+	public boolean exists() {
+		return tooltip.size() > 0;
+	}
+
+	public String getLine(int index) {
+		String string = getList().get(index);
 		return string;
 	}
 
-	public void add(final List list) {
-		for (final Object obj : list) {
+	public void add(List list) {
+		for (Object obj : list) {
 			tooltip.add((String) obj);
 		}
 	}
@@ -42,15 +56,11 @@ public class Tooltip
 		return tooltip;
 	}
 
-	public boolean exists() {
-		return tooltip.size() > 0;
-	}
-
-	public void setType(final ITooltipType type) {
+	public void setType(ITooltipType type) {
 		this.type = type;
 	}
 
-	public void setMaxWidth(final int w) {
+	public void setMaxWidth(int w) {
 		maxWidth = w;
 	}
 
@@ -58,22 +68,7 @@ public class Tooltip
 		return type;
 	}
 
-	public void add(final ItemStack item, final String string) {
-		final NBTTagCompound nbt = new NBTTagCompound();
-		item.writeToNBT(nbt);
-		nbt.setByte("nbt-type", (byte) 105);
-		add("~~~" + nbt.toString() + "~~~" + string);
-	}
-
-	public void add(final FluidStack item, final String string) {
-		final NBTTagCompound nbt = new NBTTagCompound();
-		item.writeToNBT(nbt);
-		nbt.setByte("nbt-type", (byte) 102);
-		add("~~~" + nbt.toString() + "~~~" + string);
-	}
-
-	public enum Type implements ITooltipType
-	{
+	public enum Type implements ITooltipType {
 		Standard,
 		Help,
 		Information,
@@ -81,7 +76,6 @@ public class Tooltip
 		Power
 	}
 
-	public interface ITooltipType
-	{
+	public interface ITooltipType {
 	}
 }

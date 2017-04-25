@@ -15,12 +15,12 @@ public class Panel extends Control
 {
 	IPanelType type;
 
-	public Panel(final IWidget parent, final float x, final float y, final float width, final float height, final IPanelType type) {
+	public Panel(IWidget parent, float x, float y, float width, float height, IPanelType type) {
 		super(parent, x, y, width, height);
 		this.type = type;
 	}
 
-	public Panel(final IWidget parent, final IArea area, final IPanelType type) {
+	public Panel(IWidget parent, IArea area, IPanelType type) {
 		this(parent, area.x(), area.y(), area.w(), area.h(), type);
 	}
 
@@ -30,7 +30,7 @@ public class Panel extends Control
 
 	@Override
 	public void onRenderBackground() {
-		final IPanelType panelType = getType();
+		IPanelType panelType = getType();
 		if (panelType instanceof MinecraftGUI.PanelType) {
 			switch ((MinecraftGUI.PanelType) panelType) {
 			case Black: {

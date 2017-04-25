@@ -36,7 +36,7 @@ public class WindowWoodworker extends Window
 	@Override
 	public void initialiseClient() {
 		this.setTitle(Machine.getMachine(this.getInventory()).getPackage().getDisplayName());
-		new ControlText(this, new IArea(190.0f, 36.0f, 114.0f, 10.0f), BinnieCore.proxy.localise("gui.design"), TextJustification.TopCenter).setColour(4473924);
+		new ControlText(this, new IArea(190.0f, 36.0f, 114.0f, 10.0f), BinnieCore.proxy.localise("gui.design"), TextJustification.TopCenter).setColor(4473924);
 		new Panel(this, 188.0f, 48.0f, 118.0f, 126.0f, MinecraftGUI.PanelType.Gray);
 		this.textEdit = new ControlTextEdit(this, 188.0f, 178.0f, 118.0f, 12.0f);
 		final ControlScrollableContent scroll = new ControlScrollableContent(this, 190.0f, 50.0f, 114.0f, 122.0f, 12.0f);

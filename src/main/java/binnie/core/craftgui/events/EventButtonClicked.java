@@ -8,7 +8,7 @@ import binnie.core.craftgui.IWidget;
 
 public class EventButtonClicked extends Event
 {
-	public EventButtonClicked(final IWidget origin) {
+	public EventButtonClicked(IWidget origin) {
 		super(origin);
 	}
 

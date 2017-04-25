@@ -47,7 +47,7 @@ public class ContainerCraftGUI extends Container
 	private ErrorState error;
 	private int mousedOverSlotNumber;
 
-	public ContainerCraftGUI(final Window window) {
+	public ContainerCraftGUI(Window window) {
 		syncedNBT = new HashMap<String, NBTTagCompound>();
 		sentNBT = new HashMap<String, NBTTagCompound>();
 		syncedTanks = new HashMap<Integer, TankInfo>();
@@ -57,14 +57,14 @@ public class ContainerCraftGUI extends Container
 		error = null;
 		mousedOverSlotNumber = -1;
 		this.window = window;
-		final IMachine machine = Machine.getMachine(window.getInventory());
+		IMachine machine = Machine.getMachine(window.getInventory());
 		if (getSide() == Side.SERVER) {
 			inventoryItemStacks = new ListMap();
 			inventorySlots = new ListMap();
 			if (machine != null) {
-				final GameProfile user = machine.getOwner();
+				GameProfile user = machine.getOwner();
 				if (user != null) {
-					final NBTTagCompound nbt = new NBTTagCompound();
+					NBTTagCompound nbt = new NBTTagCompound();
 					nbt.setString("username", user.getName());
 					sendNBTToClient("username", nbt);
 				}
@@ -73,7 +73,7 @@ public class ContainerCraftGUI extends Container
 	}
 
 	@Override
-	protected Slot addSlotToContainer(final Slot slot) {
+	protected Slot addSlotToContainer(Slot slot) {
 		return super.addSlotToContainer(slot);
 	}
 
@@ -82,7 +82,7 @@ public class ContainerCraftGUI extends Container
 	}
 
 	@Override
-	public Slot getSlot(final int par1) {
+	public Slot getSlot(int par1) {
 		if (par1 < 0 || par1 >= inventorySlots.size()) {
 			return null;
 		}
@@ -90,14 +90,14 @@ public class ContainerCraftGUI extends Container
 	}
 
 	@Override
-	public void putStackInSlot(final int par1, final ItemStack par2ItemStack) {
+	public void putStackInSlot(int par1, ItemStack par2ItemStack) {
 		if (getSlot(par1) != null) {
 			getSlot(par1).putStack(par2ItemStack);
 		}
 	}
 
 	@Override
-	public void putStacksInSlots(final ItemStack[] par1ArrayOfItemStack) {
+	public void putStacksInSlots(ItemStack[] par1ArrayOfItemStack) {
 		for (int i = 0; i < par1ArrayOfItemStack.length; ++i) {
 			if (getSlot(i) != null) {
 				getSlot(i).putStack(par1ArrayOfItemStack[i]);
@@ -106,9 +106,9 @@ public class ContainerCraftGUI extends Container
 	}
 
 	@Override
-	public void onContainerClosed(final EntityPlayer par1EntityPlayer) {
+	public void onContainerClosed(EntityPlayer par1EntityPlayer) {
 		super.onContainerClosed(par1EntityPlayer);
-		final WindowInventory inventory = window.getWindowInventory();
+		WindowInventory inventory = window.getWindowInventory();
 		for (int i = 0; i < inventory.getSizeInventory(); ++i) {
 			if (inventory.dispenseOnClose(i)) {
 				ItemStack stack = inventory.getStackInSlot(i);
@@ -123,56 +123,56 @@ public class ContainerCraftGUI extends Container
 	}
 
 	@Override
-	public ItemStack slotClick(final int slotNum, final int mouseButton, final int modifier, final EntityPlayer player) {
-		final Slot slot = getSlot(slotNum);
+	public ItemStack slotClick(int slotNum, int mouseButton, int modifier, EntityPlayer player) {
+		Slot slot = getSlot(slotNum);
 		if (slot instanceof CustomSlot && ((CustomSlot) slot).handleClick()) {
 			((CustomSlot) slot).onSlotClick(this, mouseButton, modifier, player);
 			return player.inventory.getItemStack();
 		}
-		final ItemStack stack = super.slotClick(slotNum, mouseButton, modifier, player);
+		ItemStack stack = super.slotClick(slotNum, mouseButton, modifier, player);
 		return stack;
 	}
 
-	public void sendNBTToClient(final String key, final NBTTagCompound nbt) {
+	public void sendNBTToClient(String key, NBTTagCompound nbt) {
 		syncedNBT.put(key, nbt);
 	}
 
 	@Override
-	public boolean canInteractWith(final EntityPlayer var1) {
+	public boolean canInteractWith(EntityPlayer var1) {
 		return true;
 	}
 
 	@Override
-	public final ItemStack transferStackInSlot(final EntityPlayer player, final int slotID) {
+	public ItemStack transferStackInSlot(EntityPlayer player, int slotID) {
 		return shiftClick(player, slotID);
 	}
 
-	private ItemStack shiftClick(final EntityPlayer player, final int slotnumber) {
-		final TransferRequest request = getShiftClickRequest(player, slotnumber);
+	private ItemStack shiftClick(EntityPlayer player, int slotnumber) {
+		TransferRequest request = getShiftClickRequest(player, slotnumber);
 		if (request == null) {
 			return null;
 		}
-		final ItemStack itemstack = request.transfer(true);
-		final Slot shiftClickedSlot = (Slot) inventorySlots.get(slotnumber);
+		ItemStack itemstack = request.transfer(true);
+		Slot shiftClickedSlot = (Slot) inventorySlots.get(slotnumber);
 		shiftClickedSlot.putStack(itemstack);
 		shiftClickedSlot.onSlotChanged();
 		return null;
 	}
 
-	private TransferRequest getShiftClickRequest(final EntityPlayer player, final int slotnumber) {
+	private TransferRequest getShiftClickRequest(EntityPlayer player, int slotnumber) {
 		if (slotnumber < 0) {
 			return null;
 		}
-		final Slot shiftClickedSlot = (Slot) inventorySlots.get(slotnumber);
+		Slot shiftClickedSlot = (Slot) inventorySlots.get(slotnumber);
 		ItemStack itemstack = null;
 		if (shiftClickedSlot.getHasStack()) {
 			itemstack = shiftClickedSlot.getStack().copy();
 		}
-		final IInventory playerInventory = player.inventory;
-		final IInventory containerInventory = window.getInventory();
-		final IInventory windowInventory = window.getWindowInventory();
-		final IInventory fromPlayer = (containerInventory == null) ? windowInventory : containerInventory;
-		final int[] target = new int[36];
+		IInventory playerInventory = player.inventory;
+		IInventory containerInventory = window.getInventory();
+		IInventory windowInventory = window.getWindowInventory();
+		IInventory fromPlayer = (containerInventory == null) ? windowInventory : containerInventory;
+		int[] target = new int[36];
 		for (int i = 0; i < 36; ++i) {
 			target[i] = i;
 		}
@@ -189,7 +189,7 @@ public class ContainerCraftGUI extends Container
 		return request;
 	}
 
-	public final ItemStack tankClick(final EntityPlayer player, final int slotID) {
+	public ItemStack tankClick(EntityPlayer player, int slotID) {
 		if (player.inventory.getItemStack() == null) {
 			return null;
 		}
@@ -202,15 +202,15 @@ public class ContainerCraftGUI extends Container
 		return heldItem;
 	}
 
-	public boolean handleNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound action) {
+	public boolean handleNBT(Side side, EntityPlayer player, String name, NBTTagCompound action) {
 		if (side == Side.SERVER) {
 			if (name.equals("tank-click")) {
 				tankClick(player, action.getByte("id"));
 			}
 			if (name.equals("slot-reg")) {
-				final int type = action.getByte("t");
-				final int index = action.getShort("i");
-				final int slotNumber = action.getShort("n");
+				int type = action.getByte("t");
+				int index = action.getShort("i");
+				int slotNumber = action.getShort("n");
 				getOrCreateSlot(InventoryType.values()[type % 4], index, slotNumber);
 			}
 		}
@@ -238,13 +238,13 @@ public class ContainerCraftGUI extends Container
 	@Override
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
-		final ITankMachine tanks = Machine.getInterface(ITankMachine.class, window.getInventory());
-		final IPoweredMachine powered = Machine.getInterface(IPoweredMachine.class, window.getInventory());
-		final IErrorStateSource error = Machine.getInterface(IErrorStateSource.class, window.getInventory());
-		final IProcess process = Machine.getInterface(IProcess.class, window.getInventory());
+		ITankMachine tanks = Machine.getInterface(ITankMachine.class, window.getInventory());
+		IPoweredMachine powered = Machine.getInterface(IPoweredMachine.class, window.getInventory());
+		IErrorStateSource error = Machine.getInterface(IErrorStateSource.class, window.getInventory());
+		IProcess process = Machine.getInterface(IProcess.class, window.getInventory());
 		if (tanks != null && window.isServer()) {
 			for (int i = 0; i < tanks.getTankInfos().length; ++i) {
-				final TankInfo tank = tanks.getTankInfos()[i];
+				TankInfo tank = tanks.getTankInfos()[i];
 				if (!getTankInfo(i).equals(tank)) {
 					syncedNBT.put("tank-update-" + i, createTankNBT(i, tank));
 					syncedTanks.put(i, tank);
@@ -260,22 +260,22 @@ public class ContainerCraftGUI extends Container
 		if (error != null && window.isServer()) {
 			syncedNBT.put("error-update", createErrorNBT(error));
 		}
-		final INetwork.SendGuiNBT machineSync = Machine.getInterface(INetwork.SendGuiNBT.class, window.getInventory());
+		INetwork.SendGuiNBT machineSync = Machine.getInterface(INetwork.SendGuiNBT.class, window.getInventory());
 		if (machineSync != null) {
 			machineSync.sendGuiNBT(syncedNBT);
 		}
-		final Map<String, NBTTagCompound> sentThisTime = new HashMap<String, NBTTagCompound>();
-		for (final Map.Entry<String, NBTTagCompound> nbt : syncedNBT.entrySet()) {
+		Map<String, NBTTagCompound> sentThisTime = new HashMap<String, NBTTagCompound>();
+		for (Map.Entry<String, NBTTagCompound> nbt : syncedNBT.entrySet()) {
 			nbt.getValue().setString("type", nbt.getKey());
 			boolean shouldSend = true;
-			final NBTTagCompound lastSent = sentNBT.get(nbt.getKey());
+			NBTTagCompound lastSent = sentNBT.get(nbt.getKey());
 			if (lastSent != null) {
 				shouldSend = !lastSent.equals(nbt.getValue());
 			}
 			if (shouldSend) {
 				for (int j = 0; j < crafters.size(); ++j) {
 					if (crafters.get(j) instanceof EntityPlayerMP) {
-						final EntityPlayerMP player = (EntityPlayerMP) crafters.get(j);
+						EntityPlayerMP player = (EntityPlayerMP) crafters.get(j);
 						BinnieCore.proxy.sendToPlayer(new MessageContainerUpdate(nbt.getValue()), player);
 					}
 				}
@@ -286,8 +286,8 @@ public class ContainerCraftGUI extends Container
 		syncedNBT.clear();
 	}
 
-	private NBTTagCompound createErrorNBT(final IErrorStateSource error) {
-		final NBTTagCompound nbt = new NBTTagCompound();
+	private NBTTagCompound createErrorNBT(IErrorStateSource error) {
+		NBTTagCompound nbt = new NBTTagCompound();
 		ErrorState state = null;
 		if (error.canWork() != null) {
 			nbt.setByte("type", (byte) 0);
@@ -303,37 +303,37 @@ public class ContainerCraftGUI extends Container
 		return nbt;
 	}
 
-	public NBTTagCompound createPowerNBT(final PowerInfo powerInfo) {
-		final NBTTagCompound nbt = new NBTTagCompound();
+	public NBTTagCompound createPowerNBT(PowerInfo powerInfo) {
+		NBTTagCompound nbt = new NBTTagCompound();
 		powerInfo.writeToNBT(nbt);
 		return nbt;
 	}
 
-	public NBTTagCompound createProcessNBT(final ProcessInfo powerInfo) {
-		final NBTTagCompound nbt = new NBTTagCompound();
+	public NBTTagCompound createProcessNBT(ProcessInfo powerInfo) {
+		NBTTagCompound nbt = new NBTTagCompound();
 		powerInfo.writeToNBT(nbt);
 		return nbt;
 	}
 
-	public NBTTagCompound createTankNBT(final int tank, final TankInfo tankInfo) {
-		final NBTTagCompound nbt = new NBTTagCompound();
+	public NBTTagCompound createTankNBT(int tank, TankInfo tankInfo) {
+		NBTTagCompound nbt = new NBTTagCompound();
 		tankInfo.writeToNBT(nbt);
 		nbt.setByte("tank", (byte) tank);
 		return nbt;
 	}
 
-	public void onTankUpdate(final NBTTagCompound nbt) {
-		final int tankID = nbt.getByte("tank");
-		final TankInfo tank = new TankInfo();
+	public void onTankUpdate(NBTTagCompound nbt) {
+		int tankID = nbt.getByte("tank");
+		TankInfo tank = new TankInfo();
 		tank.readFromNBT(nbt);
 		syncedTanks.put(tankID, tank);
 	}
 
-	public void onProcessUpdate(final NBTTagCompound nbt) {
+	public void onProcessUpdate(NBTTagCompound nbt) {
 		(syncedProcess = new ProcessInfo()).readFromNBT(nbt);
 	}
 
-	public void onPowerUpdate(final NBTTagCompound nbt) {
+	public void onPowerUpdate(NBTTagCompound nbt) {
 		(syncedPower = new PowerInfo()).readFromNBT(nbt);
 	}
 
@@ -345,11 +345,11 @@ public class ContainerCraftGUI extends Container
 		return syncedProcess;
 	}
 
-	public TankInfo getTankInfo(final int tank) {
+	public TankInfo getTankInfo(int tank) {
 		return syncedTanks.containsKey(tank) ? syncedTanks.get(tank) : new TankInfo();
 	}
 
-	public void onErrorUpdate(final NBTTagCompound nbt) {
+	public void onErrorUpdate(NBTTagCompound nbt) {
 		errorType = nbt.getByte("type");
 		if (nbt.hasKey("name")) {
 			(error = new ErrorState("", "")).readFromNBT(nbt);
@@ -368,8 +368,8 @@ public class ContainerCraftGUI extends Container
 	}
 
 	public CustomSlot[] getCustomSlots() {
-		final List<CustomSlot> slots = new ArrayList<CustomSlot>();
-		for (final Object object : inventorySlots) {
+		List<CustomSlot> slots = new ArrayList<CustomSlot>();
+		for (Object object : inventorySlots) {
 			if (object instanceof CustomSlot) {
 				slots.add((CustomSlot) object);
 			}
@@ -377,32 +377,32 @@ public class ContainerCraftGUI extends Container
 		return slots.toArray(new CustomSlot[0]);
 	}
 
-	public void setMouseOverSlot(final Slot slot) {
+	public void setMouseOverSlot(Slot slot) {
 		if (slot.slotNumber != mousedOverSlotNumber) {
 			mousedOverSlotNumber = slot.slotNumber;
 			ControlSlot.highlighting.get(EnumHighlighting.ShiftClick).clear();
-			final NBTTagCompound nbt = new NBTTagCompound();
+			NBTTagCompound nbt = new NBTTagCompound();
 			nbt.setShort("slot", (short) slot.slotNumber);
 			window.sendClientAction("mouse-over-slot", nbt);
 		}
 	}
 
-	private void onMouseOverSlot(final EntityPlayer player, final NBTTagCompound data) {
-		final int slotnumber = data.getShort("slot");
-		final TransferRequest request = getShiftClickRequest(player, slotnumber);
+	private void onMouseOverSlot(EntityPlayer player, NBTTagCompound data) {
+		int slotnumber = data.getShort("slot");
+		TransferRequest request = getShiftClickRequest(player, slotnumber);
 		if (request == null) {
 			return;
 		}
 		request.transfer(false);
-		final NBTTagCompound nbt = new NBTTagCompound();
-		final List<Integer> slots = new ArrayList<Integer>();
-		for (final TransferRequest.TransferSlot tslot : request.getInsertedSlots()) {
-			final Slot slot = getSlot(tslot.inventory, tslot.id);
+		NBTTagCompound nbt = new NBTTagCompound();
+		List<Integer> slots = new ArrayList<Integer>();
+		for (TransferRequest.TransferSlot tslot : request.getInsertedSlots()) {
+			Slot slot = getSlot(tslot.inventory, tslot.id);
 			if (slot != null) {
 				slots.add(slot.slotNumber);
 			}
 		}
-		final int[] array = new int[slots.size()];
+		int[] array = new int[slots.size()];
 		for (int i = 0; i < slots.size(); ++i) {
 			array[i] = slots.get(i);
 		}
@@ -411,16 +411,16 @@ public class ContainerCraftGUI extends Container
 		syncedNBT.put("shift-click-info", nbt);
 	}
 
-	private void onRecieveShiftClickHighlights(final EntityPlayer player, final NBTTagCompound data) {
+	private void onRecieveShiftClickHighlights(EntityPlayer player, NBTTagCompound data) {
 		ControlSlot.highlighting.get(EnumHighlighting.ShiftClick).clear();
-		for (final int slotnumber : data.getIntArray("slots")) {
+		for (int slotnumber : data.getIntArray("slots")) {
 			ControlSlot.highlighting.get(EnumHighlighting.ShiftClick).add(slotnumber);
 		}
 	}
 
-	private CustomSlot getSlot(final IInventory inventory, final int id) {
-		for (final Object o : inventorySlots) {
-			final CustomSlot slot = (CustomSlot) o;
+	private CustomSlot getSlot(IInventory inventory, int id) {
+		for (Object o : inventorySlots) {
+			CustomSlot slot = (CustomSlot) o;
 			if (slot.inventory == inventory && slot.getSlotIndex() == id) {
 				return slot;
 			}
@@ -428,26 +428,26 @@ public class ContainerCraftGUI extends Container
 		return null;
 	}
 
-	public void recieveNBT(final Side side, final EntityPlayer player, final NBTTagCompound action) {
-		final String name = action.getString("type");
+	public void recieveNBT(Side side, EntityPlayer player, NBTTagCompound action) {
+		String name = action.getString("type");
 		if (handleNBT(side, player, name, action)) {
 			return;
 		}
 		window.recieveGuiNBT(getSide(), player, name, action);
-		final INetwork.RecieveGuiNBT machine = Machine.getInterface(INetwork.RecieveGuiNBT.class, window.getInventory());
+		INetwork.RecieveGuiNBT machine = Machine.getInterface(INetwork.RecieveGuiNBT.class, window.getInventory());
 		if (machine != null) {
 			machine.recieveGuiNBT(getSide(), player, name, action);
 		}
 	}
 
-	public Slot getOrCreateSlot(final InventoryType type, final int index) {
-		final IInventory inventory = getInventory(type);
+	public Slot getOrCreateSlot(InventoryType type, int index) {
+		IInventory inventory = getInventory(type);
 		Slot slot = getSlot(inventory, index);
 		if (slot == null) {
 			slot = new CustomSlot(inventory, index);
 			addSlotToContainer(slot);
 		}
-		final NBTTagCompound nbt = new NBTTagCompound();
+		NBTTagCompound nbt = new NBTTagCompound();
 		nbt.setByte("t", (byte) type.ordinal());
 		nbt.setShort("i", (short) index);
 		nbt.setShort("n", (short) slot.slotNumber);
@@ -455,7 +455,7 @@ public class ContainerCraftGUI extends Container
 		return slot;
 	}
 
-	protected IInventory getInventory(final InventoryType type) {
+	protected IInventory getInventory(InventoryType type) {
 		if (type == InventoryType.Machine) {
 			return window.getInventory();
 		}
@@ -468,12 +468,12 @@ public class ContainerCraftGUI extends Container
 		return null;
 	}
 
-	private Slot getOrCreateSlot(final InventoryType type, final int index, final int slotNumber) {
-		final IInventory inventory = getInventory(type);
+	private Slot getOrCreateSlot(InventoryType type, int index, int slotNumber) {
+		IInventory inventory = getInventory(type);
 		if (inventorySlots.get(slotNumber) != null) {
 			return null;
 		}
-		final Slot slot = new CustomSlot(inventory, index);
+		Slot slot = new CustomSlot(inventory, index);
 		slot.slotNumber = slotNumber;
 		inventorySlots.add(slotNumber, slot);
 		inventoryItemStacks.add(slotNumber, null);

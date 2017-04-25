@@ -10,7 +10,7 @@ public class EventValueChanged<T> extends Event
 {
 	public T value;
 
-	public EventValueChanged(final IWidget origin, final T value) {
+	public EventValueChanged(IWidget origin, T value) {
 		super(origin);
 		this.value = value;
 	}

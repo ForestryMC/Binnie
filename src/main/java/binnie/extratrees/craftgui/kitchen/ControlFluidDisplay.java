@@ -12,7 +12,7 @@ import binnie.core.craftgui.CraftGUI;
 import org.lwjgl.opengl.GL11;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import net.minecraftforge.fluids.FluidStack;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.controls.core.Control;
@@ -24,7 +24,7 @@ public class ControlFluidDisplay extends Control implements ITooltip
 
 	public void setTooltip() {
 		this.hastooltip = true;
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(WidgetAttribute.MouseOver);
 	}
 
 	public ControlFluidDisplay(final IWidget parent, final float f, final float y) {

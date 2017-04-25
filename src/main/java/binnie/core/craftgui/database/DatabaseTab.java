@@ -15,7 +15,7 @@ public class DatabaseTab implements ITooltipHelp
 	private String unloc;
 	private int colour;
 
-	public DatabaseTab(final AbstractMod mod, final String unloc, final int colour) {
+	public DatabaseTab(AbstractMod mod, String unloc, int colour) {
 		this.mod = mod;
 		this.unloc = unloc;
 		this.colour = colour;
@@ -27,7 +27,7 @@ public class DatabaseTab implements ITooltipHelp
 	}
 
 	@Override
-	public void getHelpTooltip(final Tooltip tooltip) {
+	public void getHelpTooltip(Tooltip tooltip) {
 		tooltip.add(Binnie.Language.localiseOrBlank(mod, "gui.database.tab." + unloc + ".help"));
 	}
 }

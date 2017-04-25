@@ -14,7 +14,7 @@ class ParsedTextureSheet implements IBinnieTexture
 	private String modid;
 	private String path;
 
-	public ParsedTextureSheet(final String name, final String modid, final String path) {
+	public ParsedTextureSheet(String name, String modid, String path) {
 		this.name = name;
 		this.modid = modid;
 		this.path = path;

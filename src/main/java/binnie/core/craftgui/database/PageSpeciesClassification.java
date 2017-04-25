@@ -18,30 +18,30 @@ public class PageSpeciesClassification extends PageSpecies
 	private Map<IClassification.EnumClassLevel, ControlText> levels;
 	private ControlText genus;
 
-	public PageSpeciesClassification(final IWidget parent, final DatabaseTab tab) {
+	public PageSpeciesClassification(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
 		levels = new LinkedHashMap<IClassification.EnumClassLevel, ControlText>();
 		int y = 16;
-		for (final IClassification.EnumClassLevel level : IClassification.EnumClassLevel.values()) {
-			final ControlText text = new ControlTextCentered(this, y, "");
-			text.setColour(level.getColour());
+		for (IClassification.EnumClassLevel level : IClassification.EnumClassLevel.values()) {
+			ControlText text = new ControlTextCentered(this, y, "");
+			text.setColor(level.getColour());
 			levels.put(level, text);
 			y += 12;
 		}
-		(genus = new ControlTextCentered(this, y, "")).setColour(16759415);
+		(genus = new ControlTextCentered(this, y, "")).setColor(16759415);
 	}
 
 	@Override
-	public void onValueChanged(final IAlleleSpecies species) {
+	public void onValueChanged(IAlleleSpecies species) {
 		if (species != null) {
-			for (final ControlText text : levels.values()) {
+			for (ControlText text : levels.values()) {
 				text.setValue("- - -");
 			}
 			genus.setValue(species.getBinomial());
 			for (IClassification classification = species.getBranch(); classification != null; classification = classification.getParent()) {
-				final IClassification.EnumClassLevel level = classification.getLevel();
+				IClassification.EnumClassLevel level = classification.getLevel();
 				String text2 = "";
-				final int n = level.ordinal();
+				int n = level.ordinal();
 				text2 += classification.getScientific();
 				levels.get(level).setValue(text2);
 			}

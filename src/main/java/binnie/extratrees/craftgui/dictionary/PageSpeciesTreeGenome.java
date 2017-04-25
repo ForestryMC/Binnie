@@ -99,9 +99,9 @@ public class PageSpeciesTreeGenome extends PageSpecies
 		}
 		if (leaf != null) {
 			new ControlText(contents, new IArea(0.0f, y, w2, th2), ExtraTrees.proxy.localise("gui.database.leaves") + " : ", TextJustification.MiddleRight);
-			new ControlBlockIconDisplay(contents, w2, y, leaf).setColour(treeSpecies.getLeafColour(false));
+			new ControlBlockIconDisplay(contents, w2, y, leaf).setColor(treeSpecies.getLeafColour(false));
 			if (fruit != null && !treeSpecies.getUID().equals("forestry.treeOak")) {
-				new ControlBlockIconDisplay(contents, w2, y, fruit).setColour(fruitColour);
+				new ControlBlockIconDisplay(contents, w2, y, fruit).setColor(fruitColour);
 			}
 			y += th2;
 		}

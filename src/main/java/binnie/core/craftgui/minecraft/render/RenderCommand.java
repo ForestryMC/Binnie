@@ -11,9 +11,9 @@ public abstract class RenderCommand
 {
 	IWidget widget;
 
-	public RenderCommand(final IWidget widget) {
+	public RenderCommand(IWidget widget) {
 		this.widget = widget;
 	}
 
-	public abstract void render(final GuiCraftGUI p0);
+	public abstract void render(GuiCraftGUI p0);
 }

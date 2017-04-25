@@ -6,36 +6,36 @@ package binnie.core.craftgui.geometry;
 
 public class IBorder
 {
-	public static final IBorder ZERO;
+	public static IBorder ZERO;
 	float t;
 	float b;
 	float l;
 	float r;
 
-	public IBorder(final float pad) {
+	public IBorder(float pad) {
 		this(pad, pad, pad, pad);
 	}
 
-	public IBorder(final float tb, final float rl) {
+	public IBorder(float tb, float rl) {
 		this(tb, rl, tb, rl);
 	}
 
-	public IBorder(final float t, final float rl, final float b) {
+	public IBorder(float t, float rl, float b) {
 		this(t, rl, b, rl);
 	}
 
-	public IBorder(final float t, final float r, final float b, final float l) {
+	public IBorder(float t, float r, float b, float l) {
 		this.t = t;
 		this.b = b;
 		this.l = l;
 		this.r = r;
 	}
 
-	public IBorder(final Position edge, final float n) {
+	public IBorder(Position edge, float n) {
 		this((edge == Position.Top) ? n : 0.0f, (edge == Position.Right) ? n : 0.0f, (edge == Position.Bottom) ? n : 0.0f, (edge == Position.Left) ? n : 0.0f);
 	}
 
-	public IBorder(final IBorder padding) {
+	public IBorder(IBorder padding) {
 		this(padding.t(), padding.r(), padding.b(), padding.l());
 	}
 
@@ -55,19 +55,19 @@ public class IBorder
 		return r;
 	}
 
-	public float t(final float n) {
+	public float t(float n) {
 		return t = n;
 	}
 
-	public float b(final float n) {
+	public float b(float n) {
 		return b = n;
 	}
 
-	public float l(final float n) {
+	public float l(float n) {
 		return l = n;
 	}
 
-	public float r(final float n) {
+	public float r(float n) {
 		return r = n;
 	}
 
@@ -95,7 +95,7 @@ public class IBorder
 		return new IPoint(r(), b());
 	}
 
-	public IBorder add(final IBorder o) {
+	public IBorder add(IBorder o) {
 		return new IBorder(t() + o.t(), r() + o.r(), b() + o.b(), l() + o.l());
 	}
 

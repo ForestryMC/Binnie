@@ -10,7 +10,7 @@ public class Event
 {
 	IWidget origin;
 
-	public Event(final IWidget origin) {
+	public Event(IWidget origin) {
 		this.origin = origin;
 	}
 
@@ -18,7 +18,7 @@ public class Event
 		return origin;
 	}
 
-	public boolean isOrigin(final IWidget widget) {
+	public boolean isOrigin(IWidget widget) {
 		return origin == widget;
 	}
 }

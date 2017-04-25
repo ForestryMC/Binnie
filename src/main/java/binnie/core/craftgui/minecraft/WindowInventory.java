@@ -21,7 +21,7 @@ public class WindowInventory implements IInventory
 	private Map<Integer, SlotValidator> validators;
 	private List<Integer> disabledAutoDispenses;
 
-	public WindowInventory(final Window window) {
+	public WindowInventory(Window window) {
 		inventory = new HashMap<Integer, ItemStack>();
 		validators = new HashMap<Integer, SlotValidator>();
 		disabledAutoDispenses = new ArrayList<Integer>();
@@ -34,7 +34,7 @@ public class WindowInventory implements IInventory
 			return 0;
 		}
 		int max = 0;
-		for (final int i : inventory.keySet()) {
+		for (int i : inventory.keySet()) {
 			if (i > max) {
 				max = i;
 			}
@@ -43,7 +43,7 @@ public class WindowInventory implements IInventory
 	}
 
 	@Override
-	public ItemStack getStackInSlot(final int var1) {
+	public ItemStack getStackInSlot(int var1) {
 		if (inventory.containsKey(var1)) {
 			return inventory.get(var1);
 		}
@@ -51,15 +51,15 @@ public class WindowInventory implements IInventory
 	}
 
 	@Override
-	public ItemStack decrStackSize(final int index, int amount) {
+	public ItemStack decrStackSize(int index, int amount) {
 		if (inventory.containsKey(index)) {
-			final ItemStack item = inventory.get(index);
-			final ItemStack output = item.copy();
-			final int available = item.stackSize;
+			ItemStack item = inventory.get(index);
+			ItemStack output = item.copy();
+			int available = item.stackSize;
 			if (amount > available) {
 				amount = available;
 			}
-			final ItemStack itemStack = item;
+			ItemStack itemStack = item;
 			itemStack.stackSize -= amount;
 			output.stackSize = amount;
 			if (item.stackSize == 0) {
@@ -71,12 +71,12 @@ public class WindowInventory implements IInventory
 	}
 
 	@Override
-	public ItemStack getStackInSlotOnClosing(final int var1) {
+	public ItemStack getStackInSlotOnClosing(int var1) {
 		return null;
 	}
 
 	@Override
-	public void setInventorySlotContents(final int var1, final ItemStack var2) {
+	public void setInventorySlotContents(int var1, ItemStack var2) {
 		inventory.put(var1, var2);
 		markDirty();
 	}
@@ -97,7 +97,7 @@ public class WindowInventory implements IInventory
 	}
 
 	@Override
-	public boolean isUseableByPlayer(final EntityPlayer var1) {
+	public boolean isUseableByPlayer(EntityPlayer var1) {
 		return true;
 	}
 
@@ -115,27 +115,27 @@ public class WindowInventory implements IInventory
 	}
 
 	@Override
-	public boolean isItemValidForSlot(final int i, final ItemStack itemstack) {
+	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return !validators.containsKey(i) || validators.get(i).isValid(itemstack);
 	}
 
-	public void createSlot(final int slot) {
+	public void createSlot(int slot) {
 		inventory.put(slot, null);
 	}
 
-	public void setValidator(final int slot, final SlotValidator validator) {
+	public void setValidator(int slot, SlotValidator validator) {
 		validators.put(slot, validator);
 	}
 
-	public void disableAutoDispense(final int i) {
+	public void disableAutoDispense(int i) {
 		disabledAutoDispenses.add(i);
 	}
 
-	public boolean dispenseOnClose(final int i) {
+	public boolean dispenseOnClose(int i) {
 		return !disabledAutoDispenses.contains(i);
 	}
 
-	public SlotValidator getValidator(final int i) {
+	public SlotValidator getValidator(int i) {
 		return validators.get(i);
 	}
 }

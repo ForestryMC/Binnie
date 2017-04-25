@@ -9,27 +9,27 @@ public class IArea
 	private IPoint pos;
 	private IPoint size;
 
-	public IArea(final IArea area) {
+	public IArea(IArea area) {
 		this(area.pos().x(), area.pos().y(), area.size().x(), area.size().y());
 	}
 
-	public IArea(final IPoint pos, final IPoint size) {
+	public IArea(IPoint pos, IPoint size) {
 		this(pos.x(), pos.y(), size.x(), size.y());
 	}
 
-	public IArea(final float xywh) {
+	public IArea(float xywh) {
 		this(xywh, xywh, xywh, xywh);
 	}
 
-	public IArea(final float xy, final float wh) {
+	public IArea(float xy, float wh) {
 		this(xy, xy, wh, wh);
 	}
 
-	public IArea(final float x, final float y, final float wh) {
+	public IArea(float x, float y, float wh) {
 		this(x, y, wh, wh);
 	}
 
-	public IArea(final float x, final float y, final float w, final float h) {
+	public IArea(float x, float y, float w, float h) {
 		setPosition(new IPoint(x, y));
 		setSize(new IPoint(w, h));
 	}
@@ -42,7 +42,7 @@ public class IArea
 		return pos;
 	}
 
-	public void setPosition(final IPoint position) {
+	public void setPosition(IPoint position) {
 		pos = position.copy();
 	}
 
@@ -54,11 +54,11 @@ public class IArea
 		return size;
 	}
 
-	public void setSize(final IPoint size) {
+	public void setSize(IPoint size) {
 		this.size = size.copy();
 	}
 
-	public boolean contains(final IPoint position) {
+	public boolean contains(IPoint position) {
 		return position.x() >= pos().x() && position.y() >= pos.y() && position.x() <= pos().x() + size().x() && position.y() <= pos().y() + size().y();
 	}
 
@@ -78,35 +78,35 @@ public class IArea
 		return size().y();
 	}
 
-	public float x(final float n) {
+	public float x(float n) {
 		return pos.x(n);
 	}
 
-	public float y(final float n) {
+	public float y(float n) {
 		return pos.y(n);
 	}
 
-	public float w(final float n) {
+	public float w(float n) {
 		return size.x(n);
 	}
 
-	public float h(final float n) {
+	public float h(float n) {
 		return size.y(n);
 	}
 
-	public IArea inset(final IBorder border) {
+	public IArea inset(IBorder border) {
 		return new IArea(x() + border.l(), y() + border.t(), w() - border.l() - border.r(), h() - border.t() - border.b());
 	}
 
-	public IArea outset(final int outset) {
+	public IArea outset(int outset) {
 		return outset(new IBorder(outset));
 	}
 
-	public IArea outset(final IBorder border) {
+	public IArea outset(IBorder border) {
 		return new IArea(x() - border.l(), y() - border.t(), w() + border.l() + border.r(), h() + border.t() + border.b());
 	}
 
-	public IArea inset(final int inset) {
+	public IArea inset(int inset) {
 		return inset(new IBorder(inset));
 	}
 
@@ -115,7 +115,7 @@ public class IArea
 		return w() + "x" + h() + "@" + x() + "," + y();
 	}
 
-	public IArea shift(final float dx, final float f) {
+	public IArea shift(float dx, float f) {
 		return new IArea(x() + dx, y() + f, w(), h());
 	}
 }

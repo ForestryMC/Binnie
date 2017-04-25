@@ -4,7 +4,7 @@
 
 package binnie.core.craftgui.minecraft.control;
 
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -28,19 +28,19 @@ public class ControlEnergyBar extends Control implements ITooltip
 	public static boolean isError;
 	private Position direction;
 
-	public ControlEnergyBar(final IWidget parent, final int x, final int y, final int width, final int height, final Position direction) {
+	public ControlEnergyBar(IWidget parent, int x, int y, int width, int height, Position direction) {
 		super(parent, x, y, width, height);
 		this.direction = direction;
-		addAttribute(Attribute.MouseOver);
+		addAttribute(WidgetAttribute.MouseOver);
 	}
 
 	public IPoweredMachine getClientPower() {
-		final IInventory inventory = Window.get(this).getInventory();
-		final TileEntityMachine machine = (inventory instanceof TileEntityMachine) ? (TileEntityMachine) inventory : null;
+		IInventory inventory = Window.get(this).getInventory();
+		TileEntityMachine machine = (inventory instanceof TileEntityMachine) ? (TileEntityMachine) inventory : null;
 		if (machine == null) {
 			return null;
 		}
-		final IPoweredMachine clientPower = machine.getMachine().getInterface(IPoweredMachine.class);
+		IPoweredMachine clientPower = machine.getMachine().getInterface(IPoweredMachine.class);
 		return clientPower;
 	}
 
@@ -61,17 +61,17 @@ public class ControlEnergyBar extends Control implements ITooltip
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
+	public void getTooltip(Tooltip tooltip) {
 		tooltip.add((int) getPercentage() + "% charged");
 		tooltip.add(getStoredEnergy() + "/" + getMaxEnergy() + " RF");
 	}
 
 	@Override
-	public void getHelpTooltip(final Tooltip tooltip) {
+	public void getHelpTooltip(Tooltip tooltip) {
 		tooltip.add("Energy Bar");
 		tooltip.add("Current: " + getStoredEnergy() + " RF (" + (int) getPercentage() + "%)");
 		tooltip.add("Capacity: " + getMaxEnergy() + " RF");
-		final IProcess process = Machine.getInterface(IProcess.class, Window.get(this).getInventory());
+		IProcess process = Machine.getInterface(IProcess.class, Window.get(this).getInventory());
 		if (process != null) {
 			tooltip.add("Usage: " + (int) process.getEnergyPerTick() + " RF");
 		}
@@ -80,29 +80,29 @@ public class ControlEnergyBar extends Control implements ITooltip
 	@Override
 	public void onRenderBackground() {
 		CraftGUI.Render.texture(CraftGUITexture.EnergyBarBack, getArea());
-		final float percentage = getPercentage() / 100.0f;
+		float percentage = getPercentage() / 100.0f;
 		CraftGUI.Render.colour(getColourFromPercentage(percentage));
-		final IArea area = getArea();
+		IArea area = getArea();
 		switch (direction) {
 		case Top:
 		case Bottom: {
-			final float height = area.size().y() * percentage;
+			float height = area.size().y() * percentage;
 			area.setSize(new IPoint(area.size().x(), height));
 			break;
 		}
 		case Left:
 		case Right: {
-			final float width = area.size().x() * percentage;
+			float width = area.size().x() * percentage;
 			area.setSize(new IPoint(width, area.size().y()));
 			break;
 		}
 		}
 		if (isMouseOver() && Window.get(this).getGui().isHelpMode()) {
-			final int c = -1442840576 + MinecraftTooltip.getOutline(Tooltip.Type.Help);
+			int c = -1442840576 + MinecraftTooltip.getOutline(Tooltip.Type.Help);
 			CraftGUI.Render.gradientRect(getArea().inset(1), c, c);
 		}
 		else if (ControlEnergyBar.isError) {
-			final int c = -1442840576 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error);
+			int c = -1442840576 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error);
 			CraftGUI.Render.gradientRect(getArea().inset(1), c, c);
 		}
 		CraftGUI.Render.texture(CraftGUITexture.EnergyBarGlow, area);
@@ -113,25 +113,25 @@ public class ControlEnergyBar extends Control implements ITooltip
 	@Override
 	public void onRenderForeground() {
 		if (isMouseOver() && Window.get(this).getGui().isHelpMode()) {
-			final IArea area = getArea();
+			IArea area = getArea();
 			CraftGUI.Render.colour(MinecraftTooltip.getOutline(Tooltip.Type.Help));
 			CraftGUI.Render.texture(CraftGUITexture.Outline, area.outset(1));
 		}
 		else if (ControlEnergyBar.isError) {
-			final IArea area = getArea();
+			IArea area = getArea();
 			CraftGUI.Render.colour(MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error));
 			CraftGUI.Render.texture(CraftGUITexture.Outline, area.outset(1));
 		}
 	}
 
-	public int getColourFromPercentage(final float percentage) {
+	public int getColourFromPercentage(float percentage) {
 		int colour = 16777215;
 		if (percentage > 0.5) {
-			final int r = (int) ((1.0 - 2.0 * (percentage - 0.5)) * 255.0);
+			int r = (int) ((1.0 - 2.0 * (percentage - 0.5)) * 255.0);
 			colour = (r << 16) + 65280;
 		}
 		else {
-			final int g = (int) (255.0f * (2.0f * percentage));
+			int g = (int) (255.0f * (2.0f * percentage));
 			colour = 16711680 + (g << 8);
 		}
 		return colour;

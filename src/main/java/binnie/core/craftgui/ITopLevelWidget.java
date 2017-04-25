@@ -1,14 +1,9 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui;
 
 import binnie.core.craftgui.geometry.IPoint;
 
-public interface ITopLevelWidget extends IWidget
-{
-	void setMousePosition(final int p0, final int p1);
+public interface ITopLevelWidget extends IWidget {
+	void setMousePosition(int x, int y);
 
 	IPoint getAbsoluteMousePosition();
 
@@ -18,15 +13,15 @@ public interface ITopLevelWidget extends IWidget
 
 	IWidget getDraggedWidget();
 
-	boolean isFocused(final IWidget p0);
+	boolean isFocused(IWidget widget);
 
-	boolean isMouseOver(final IWidget p0);
+	boolean isMouseOver(IWidget widget);
 
-	boolean isDragged(final IWidget p0);
+	boolean isDragged(IWidget widget);
 
 	void updateTopLevel();
 
-	void widgetDeleted(final IWidget p0);
+	void widgetDeleted(IWidget widget);
 
 	IPoint getDragDistance();
 }

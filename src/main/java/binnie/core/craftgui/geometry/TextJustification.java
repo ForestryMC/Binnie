@@ -19,7 +19,7 @@ public enum TextJustification
 	float xOffset;
 	float yOffset;
 
-	TextJustification(final float xOffset, final float yOffset) {
+	TextJustification(float xOffset, float yOffset) {
 		this.xOffset = xOffset;
 		this.yOffset = yOffset;
 	}

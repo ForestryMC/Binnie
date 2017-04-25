@@ -36,17 +36,17 @@ public class ControlSlot extends ControlSlotBase
 	public static boolean shiftClickActive;
 	public Slot slot;
 
-	public ControlSlot(final IWidget parent, final float x, final float y) {
+	public ControlSlot(IWidget parent, float x, float y) {
 		super(parent, x, y);
 		slot = null;
 		addSelfEventHandler(new EventMouse.Down.Handler() {
 			@Override
-			public void onEvent(final EventMouse.Down event) {
+			public void onEvent(EventMouse.Down event) {
 				if (slot != null) {
-					final PlayerControllerMP playerController = ((Window) getSuperParent()).getGui().getMinecraft().playerController;
-					final int windowId = ((Window) getSuperParent()).getContainer().windowId;
-					final int slotNumber = slot.slotNumber;
-					final int button = event.getButton();
+					PlayerControllerMP playerController = ((Window) getSuperParent()).getGui().getMinecraft().playerController;
+					int windowId = ((Window) getSuperParent()).getContainer().windowId;
+					int slotNumber = slot.slotNumber;
+					int button = event.getButton();
 					Window.get(getWidget()).getGui();
 					playerController.windowClick(windowId, slotNumber, button, GuiScreen.isShiftKeyDown() ? 1 : 0, ((Window) getSuperParent()).getGui().getMinecraft().thePlayer);
 				}
@@ -54,7 +54,7 @@ public class ControlSlot extends ControlSlotBase
 		});
 	}
 
-	public ControlSlot(final IWidget parent, final int x, final int y, final Slot slot) {
+	public ControlSlot(IWidget parent, int x, int y, Slot slot) {
 		super(parent, x, y);
 		this.slot = null;
 		this.slot = slot;
@@ -66,15 +66,15 @@ public class ControlSlot extends ControlSlotBase
 		if (slot == null) {
 			return;
 		}
-		final InventorySlot islot = getInventorySlot();
+		InventorySlot islot = getInventorySlot();
 		if (islot != null && islot.getValidator() != null) {
-			final IIcon icon = islot.getValidator().getIcon(!islot.getInputSides().isEmpty());
+			IIcon icon = islot.getValidator().getIcon(!islot.getInputSides().isEmpty());
 			if (icon != null) {
 				CraftGUI.Render.iconItem(new IPoint(1.0f, 1.0f), icon);
 			}
 		}
 		boolean highlighted = false;
-		for (final Map.Entry<EnumHighlighting, List<Integer>> highlight : ControlSlot.highlighting.entrySet()) {
+		for (Map.Entry<EnumHighlighting, List<Integer>> highlight : ControlSlot.highlighting.entrySet()) {
 			if (highlight.getKey() == EnumHighlighting.ShiftClick && !ControlSlot.shiftClickActive) {
 				continue;
 			}
@@ -82,7 +82,7 @@ public class ControlSlot extends ControlSlotBase
 				continue;
 			}
 			highlighted = true;
-			final int c = -1442840576 + Math.min(highlight.getKey().getColour(), 16777215);
+			int c = -1442840576 + Math.min(highlight.getKey().getColour(), 16777215);
 			CraftGUI.Render.gradientRect(new IArea(1.0f, 1.0f, 16.0f, 16.0f), c, c);
 		}
 		if (!highlighted && getSuperParent().getMousedOverWidget() == this) {
@@ -101,7 +101,7 @@ public class ControlSlot extends ControlSlotBase
 			return;
 		}
 		boolean highlighted = false;
-		for (final Map.Entry<EnumHighlighting, List<Integer>> highlight : ControlSlot.highlighting.entrySet()) {
+		for (Map.Entry<EnumHighlighting, List<Integer>> highlight : ControlSlot.highlighting.entrySet()) {
 			if (highlight.getKey() == EnumHighlighting.ShiftClick && !ControlSlot.shiftClickActive) {
 				continue;
 			}
@@ -109,7 +109,7 @@ public class ControlSlot extends ControlSlotBase
 				continue;
 			}
 			highlighted = true;
-			final int c = highlight.getKey().getColour();
+			int c = highlight.getKey().getColour();
 			IArea area = getArea();
 			if (getParent() instanceof ControlSlotArray || getParent() instanceof ControlPlayerInventory) {
 				area = getParent().getArea();
@@ -131,7 +131,7 @@ public class ControlSlot extends ControlSlotBase
 			ControlSlot.shiftClickActive = true;
 		}
 		if (Window.get(this).getGui().isHelpMode() && isMouseOver()) {
-			for (final ControlSlot slot2 : getControlSlots()) {
+			for (ControlSlot slot2 : getControlSlots()) {
 				if (slot2.slot != null) {
 					ControlSlot.highlighting.get(EnumHighlighting.Help).add(slot2.slot.slotNumber);
 				}
@@ -140,9 +140,9 @@ public class ControlSlot extends ControlSlotBase
 	}
 
 	private List<ControlSlot> getControlSlots() {
-		final List<ControlSlot> slots = new ArrayList<ControlSlot>();
+		List<ControlSlot> slots = new ArrayList<ControlSlot>();
 		if (getParent() instanceof ControlSlotArray || getParent() instanceof ControlPlayerInventory) {
-			for (final IWidget child : getParent().getWidgets()) {
+			for (IWidget child : getParent().getWidgets()) {
 				slots.add((ControlSlot) child);
 			}
 		}
@@ -160,11 +160,11 @@ public class ControlSlot extends ControlSlotBase
 		return null;
 	}
 
-	public ControlSlot assign(final int index) {
+	public ControlSlot assign(int index) {
 		return assign(InventoryType.Machine, index);
 	}
 
-	public ControlSlot assign(final InventoryType inventory, final int index) {
+	public ControlSlot assign(InventoryType inventory, int index) {
 		if (slot != null) {
 			return this;
 		}
@@ -173,11 +173,11 @@ public class ControlSlot extends ControlSlotBase
 	}
 
 	@Override
-	public void getHelpTooltip(final Tooltip tooltip) {
+	public void getHelpTooltip(Tooltip tooltip) {
 		if (slot == null) {
 			return;
 		}
-		final InventorySlot slot = getInventorySlot();
+		InventorySlot slot = getInventorySlot();
 		if (getInventorySlot() != null) {
 			tooltip.add(slot.getName());
 			tooltip.add("Insert Side: " + MachineSide.asString(slot.getInputSides()));
@@ -188,7 +188,7 @@ public class ControlSlot extends ControlSlotBase
 			tooltip.add("Accepts: " + ((slot.getValidator() == null) ? "Any Item" : slot.getValidator().getTooltip()));
 		}
 		else if (this.slot.inventory instanceof WindowInventory) {
-			final SlotValidator s = ((WindowInventory) this.slot.inventory).getValidator(this.slot.getSlotIndex());
+			SlotValidator s = ((WindowInventory) this.slot.inventory).getValidator(this.slot.getSlotIndex());
 			tooltip.add("Accepts: " + ((s == null) ? "Any Item" : s.getTooltip()));
 		}
 		else if (this.slot.inventory instanceof InventoryPlayer) {
@@ -203,7 +203,7 @@ public class ControlSlot extends ControlSlotBase
 	static {
 		ControlSlot.highlighting = new HashMap<EnumHighlighting, List<Integer>>();
 		ControlSlot.shiftClickActive = false;
-		for (final EnumHighlighting h : EnumHighlighting.values()) {
+		for (EnumHighlighting h : EnumHighlighting.values()) {
 			ControlSlot.highlighting.put(h, new ArrayList<Integer>());
 		}
 	}

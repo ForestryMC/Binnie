@@ -2,7 +2,7 @@ package binnie.core.machines.storage;
 
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlCheckbox;
@@ -247,7 +247,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 
 		tabIcon = new ControlItemDisplay(tabPropertyPanel, 58.0f, y2 - 4);
 		tabIcon.setItemStack(new ItemStack(Items.paper));
-		tabIcon.addAttribute(Attribute.MouseOver);
+		tabIcon.addAttribute(WidgetAttribute.MouseOver);
 		tabIcon.addSelfEventHandler(new EventMouse.Down.Handler() {
 			@Override
 			public void onEvent(EventMouse.Down event) {

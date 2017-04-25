@@ -18,7 +18,7 @@ public class AnalystPageDescription extends ControlAnalystPage
 {
 	public AnalystPageDescription(final IWidget parent, final IArea area, final IIndividual ind) {
 		super(parent, area);
-		this.setColour(3355443);
+		this.setColor(3355443);
 		int y = 4;
 		final IAlleleSpecies species = ind.getGenome().getPrimary();
 		final String branchBinomial = (species.getBranch() != null) ? species.getBranch().getScientific() : "<Unknown>";
@@ -49,20 +49,20 @@ public class AnalystPageDescription extends ControlAnalystPage
 		if (authority.contains("MysteriousAges")) {
 			authority = "§5§l" + authority;
 		}
-		new ControlTextCentered(this, y, "§nDescription").setColour(this.getColour());
+		new ControlTextCentered(this, y, "§nDescription").setColor(this.getColor());
 		y += 16;
-		new ControlTextCentered(this, y, species.getName() + "§r").setColour(this.getColour());
+		new ControlTextCentered(this, y, species.getName() + "§r").setColor(this.getColor());
 		y += 10;
-		new ControlTextCentered(this, y, "§o" + branchBinomial + " " + species.getBinomial() + "§r").setColour(this.getColour());
+		new ControlTextCentered(this, y, "§o" + branchBinomial + " " + species.getBinomial() + "§r").setColor(this.getColor());
 		y += 20;
-		new ControlTextCentered(this, y, "Discovered by §l" + authority + "§r").setColour(this.getColour());
+		new ControlTextCentered(this, y, "Discovered by §l" + authority + "§r").setColor(this.getColor());
 		y += (int) (3.0f + CraftGUI.Render.textHeight("Discovered by §l" + authority + "§r", this.w()));
-		new ControlTextCentered(this, y, "Genetic Complexity: " + species.getComplexity()).setColour(this.getColour());
+		new ControlTextCentered(this, y, "Genetic Complexity: " + species.getComplexity()).setColor(this.getColor());
 		y += 26;
 		final ControlText descText = new ControlText(this, new IArea(8.0f, y, this.w() - 16.0f, 0.0f), descBody + "§r", TextJustification.TopCenter);
 		final IWidget signatureText = new ControlText(this, new IArea(8.0f, y, this.w() - 16.0f, 0.0f), descSig + "§r", TextJustification.BottomRight);
-		descText.setColour(this.getColour());
-		signatureText.setColour(this.getColour());
+		descText.setColor(this.getColor());
+		signatureText.setColor(this.getColor());
 		final float descHeight = CraftGUI.Render.textHeight(descText.getValue(), descText.getSize().x());
 		signatureText.setPosition(new IPoint(signatureText.pos().x(), descText.getPosition().y() + descHeight + 10.0f));
 		this.setSize(new IPoint(this.w(), 20.0f + signatureText.y()));

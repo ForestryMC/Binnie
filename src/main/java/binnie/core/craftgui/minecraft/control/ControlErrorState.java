@@ -4,7 +4,7 @@
 
 package binnie.core.craftgui.minecraft.control;
 
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -41,7 +41,7 @@ public class ControlErrorState extends Control implements ITooltip
 	}
 
 	@Override
-	public final void onUpdateClient() {
+	public void onUpdateClient() {
 		errorState = getError();
 		type = Window.get(this).getContainer().getErrorType();
 		ControlSlot.highlighting.get(EnumHighlighting.Error).clear();
@@ -53,9 +53,9 @@ public class ControlErrorState extends Control implements ITooltip
 		}
 		ControlEnergyBar.isError = errorState.isPowerError();
 		if (errorState.isItemError()) {
-			for (final int slot : errorState.getData()) {
+			for (int slot : errorState.getData()) {
 				int id = -1;
-				for (final CustomSlot cslot : Window.get(this).getContainer().getCustomSlots()) {
+				for (CustomSlot cslot : Window.get(this).getContainer().getCustomSlots()) {
 					if (!(cslot.inventory instanceof InventoryPlayer) && cslot.getSlotIndex() == slot) {
 						id = cslot.slotNumber;
 					}
@@ -71,21 +71,21 @@ public class ControlErrorState extends Control implements ITooltip
 			}
 		}
 		if (errorState.isTankError()) {
-			for (final int slot : errorState.getData()) {
+			for (int slot : errorState.getData()) {
 				ControlLiquidTank.tankError.add(slot);
 			}
 		}
 	}
 
-	public ControlErrorState(final IWidget parent, final float x, final float y) {
+	public ControlErrorState(IWidget parent, float x, float y) {
 		super(parent, x, y, 16.0f, 16.0f);
 		type = 0;
-		addAttribute(Attribute.MouseOver);
+		addAttribute(WidgetAttribute.MouseOver);
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltipOrig) {
-		final MinecraftTooltip tooltip = (MinecraftTooltip) tooltipOrig;
+	public void getTooltip(Tooltip tooltipOrig) {
+		MinecraftTooltip tooltip = (MinecraftTooltip) tooltipOrig;
 		if (errorState != null) {
 			if (type == 0) {
 				tooltip.setType(MinecraftTooltip.Type.Error);

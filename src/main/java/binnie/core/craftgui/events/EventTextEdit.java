@@ -8,7 +8,7 @@ import binnie.core.craftgui.IWidget;
 
 public class EventTextEdit extends EventValueChanged<String>
 {
-	public EventTextEdit(final IWidget origin, final String text) {
+	public EventTextEdit(IWidget origin, String text) {
 		super(origin, text);
 	}
 

@@ -14,7 +14,7 @@ import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.craftgui.CraftGUI;
 import net.minecraft.world.biome.BiomeGenBase;
 import binnie.core.craftgui.Tooltip;
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import java.util.ArrayList;
 import binnie.core.craftgui.IWidget;
 import java.util.List;
@@ -28,11 +28,11 @@ public class ControlBiomes extends Control implements ITooltip
 	public ControlBiomes(final IWidget parent, final int x, final int y, final int width, final int height) {
 		super(parent, x, y, width * 16, height * 16);
 		this.tolerated = new ArrayList<Integer>();
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(WidgetAttribute.MouseOver);
 	}
 
 	@Override
-	public void getTooltip(final Tooltip list) {
+	public void getTooltip(final Tooltip tooltip) {
 		if (this.tolerated.isEmpty()) {
 			return;
 		}
@@ -40,7 +40,7 @@ public class ControlBiomes extends Control implements ITooltip
 		final int y = (int) (this.getRelativeMousePosition().y() / 16.0f);
 		final int i = x + y * 8;
 		if (i < this.tolerated.size()) {
-			list.add(BiomeGenBase.getBiome(this.tolerated.get(i)).biomeName);
+			tooltip.add(BiomeGenBase.getBiome(this.tolerated.get(i)).biomeName);
 		}
 	}
 

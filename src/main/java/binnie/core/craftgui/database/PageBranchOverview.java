@@ -20,7 +20,7 @@ public class PageBranchOverview extends PageBranch
 	private ControlText pageBranchOverview_branchAuthority;
 	private List<ControlText> pageBranchOverview_branchDescription;
 
-	public PageBranchOverview(final IWidget parent, final DatabaseTab tab) {
+	public PageBranchOverview(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
 		pageBranchOverview_branchDescription = new ArrayList<ControlText>();
 		pageBranchOverview_branchName = new ControlTextCentered(this, 8.0f, "");
@@ -29,11 +29,11 @@ public class PageBranchOverview extends PageBranch
 	}
 
 	@Override
-	public void onValueChanged(final IClassification branch) {
+	public void onValueChanged(IClassification branch) {
 		pageBranchOverview_branchName.setValue("§n" + branch.getName() + " Branch§r");
 		pageBranchOverview_branchScientific.setValue("§oApidae " + branch.getScientific() + "§r");
 		pageBranchOverview_branchAuthority.setValue("Discovered by §l" + branch.getMemberSpecies()[0].getAuthority() + "§r");
-		for (final IWidget widget : pageBranchOverview_branchDescription) {
+		for (IWidget widget : pageBranchOverview_branchDescription) {
 			deleteChild(widget);
 		}
 		pageBranchOverview_branchDescription.clear();
@@ -42,8 +42,8 @@ public class PageBranchOverview extends PageBranch
 			desc = "No Description Provided.";
 		}
 		String line = "";
-		final List<String> descLines = new ArrayList<String>();
-		for (final String str : desc.split(" ")) {
+		List<String> descLines = new ArrayList<String>();
+		for (String str : desc.split(" ")) {
 			if (CraftGUI.Render.textWidth(line + " " + str) > 134) {
 				descLines.add("§o" + line + "§r");
 				line = "";
@@ -52,7 +52,7 @@ public class PageBranchOverview extends PageBranch
 		}
 		descLines.add(line);
 		int i = 0;
-		for (final String dLine : descLines) {
+		for (String dLine : descLines) {
 			pageBranchOverview_branchDescription.add(new ControlTextCentered(this, 84 + 12 * i++, dLine));
 		}
 	}

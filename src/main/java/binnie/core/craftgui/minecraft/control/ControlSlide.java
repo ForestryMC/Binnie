@@ -4,7 +4,7 @@
 
 package binnie.core.craftgui.minecraft.control;
 
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.Control;
@@ -25,15 +25,15 @@ public class ControlSlide extends Control
 	private Position anchor;
 	private String label;
 
-	public ControlSlide(final IWidget parent, final float x, final float y, final float w, final float h, final Position anchor2) {
+	public ControlSlide(IWidget parent, float x, float y, float w, float h, Position anchor2) {
 		super(parent, x, y, w, h);
 		slideActive = true;
 		label = null;
-		addAttribute(Attribute.MouseOver);
-		addAttribute(Attribute.BlockTooltip);
+		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.BlockTooltip);
 		expanded = new IArea(getPosition(), getSize());
 		anchor = anchor2.opposite();
-		final float border = (anchor.x() != 0) ? (expanded.w() - 6.0f) : (expanded.h() - 6.0f);
+		float border = (anchor.x() != 0) ? (expanded.w() - 6.0f) : (expanded.h() - 6.0f);
 		shrunk = expanded.inset(new IBorder(anchor, border));
 		slideActive = false;
 	}
@@ -42,18 +42,18 @@ public class ControlSlide extends Control
 	public void onRenderBackground() {
 		super.onRenderBackground();
 		if (label != null) {
-			final float lw = CraftGUI.Render.textWidth(label) + 16;
-			final float lh = CraftGUI.Render.textHeight() + 16;
-			final boolean hor = anchor.x() != 0;
-			final IArea ar = isSlideActive() ? expanded : shrunk;
+			float lw = CraftGUI.Render.textWidth(label) + 16;
+			float lh = CraftGUI.Render.textHeight() + 16;
+			boolean hor = anchor.x() != 0;
+			IArea ar = isSlideActive() ? expanded : shrunk;
 			IArea tabArea = new IArea(hor ? (-lh / 2.0f) : (-lw / 2.0f), hor ? (-lw / 2.0f) : (-lh / 2.0f), hor ? lh : lw, hor ? lw : lh);
-			final IPoint shift = new IPoint(ar.w() * (1 - anchor.x()) / 2.0f, ar.h() * (1 - anchor.y()) / 2.0f);
+			IPoint shift = new IPoint(ar.w() * (1 - anchor.x()) / 2.0f, ar.h() * (1 - anchor.y()) / 2.0f);
 			tabArea = tabArea.shift(shift.x() - (-3.0f + lh / 2.0f) * anchor.x(), shift.y() - (-3.0f + lh / 2.0f) * anchor.y());
 			Texture texture = CraftGUI.Render.getTexture(isSlideActive() ? CraftGUITexture.Tab : CraftGUITexture.TabDisabled).crop(anchor.opposite(), 8.0f);
 			CraftGUI.Render.texture(texture, tabArea);
 			texture = CraftGUI.Render.getTexture(CraftGUITexture.TabOutline).crop(anchor.opposite(), 8.0f);
 			CraftGUI.Render.texture(texture, tabArea.inset(2));
-			final IArea labelArea = new IArea(-lw / 2.0f, 0.0f, lw, lh);
+			IArea labelArea = new IArea(-lw / 2.0f, 0.0f, lw, lh);
 			GL11.glPushMatrix();
 			GL11.glTranslatef(shift.x() + anchor.x() * 2.0f, shift.y() + anchor.y() * 2.0f, 0.0f);
 			if (anchor.x() != 0) {
@@ -66,7 +66,7 @@ public class ControlSlide extends Control
 			GL11.glPopMatrix();
 		}
 		CraftGUI.Render.texture(CraftGUITexture.Window, getArea());
-		final Object slideTexture = (anchor == Position.Bottom) ? CraftGUITexture.SlideDown : ((anchor == Position.Top) ? CraftGUITexture.SlideUp : ((anchor == Position.Left) ? CraftGUITexture.SlideLeft : CraftGUITexture.SlideRight));
+		Object slideTexture = (anchor == Position.Bottom) ? CraftGUITexture.SlideDown : ((anchor == Position.Top) ? CraftGUITexture.SlideUp : ((anchor == Position.Left) ? CraftGUITexture.SlideLeft : CraftGUITexture.SlideRight));
 		CraftGUI.Render.texture(slideTexture, new IPoint((anchor.x() + 1.0f) * w() / 2.0f - 8.0f, (anchor.y() + 1.0f) * h() / 2.0f - 8.0f));
 	}
 
@@ -76,30 +76,30 @@ public class ControlSlide extends Control
 
 	@Override
 	public void onUpdateClient() {
-		final boolean mouseOver = isMouseOverWidget(getRelativeMousePosition());
+		boolean mouseOver = isMouseOverWidget(getRelativeMousePosition());
 		if (mouseOver != slideActive) {
 			setSlide(mouseOver);
 		}
 	}
 
 	@Override
-	public boolean isMouseOverWidget(final IPoint relativeMouse) {
+	public boolean isMouseOverWidget(IPoint relativeMouse) {
 		return getArea().outset(isSlideActive() ? 16 : 8).outset(new IBorder(anchor.opposite(), 16.0f)).contains(relativeMouse);
 	}
 
 	@Override
-	public boolean isChildVisible(final IWidget child) {
+	public boolean isChildVisible(IWidget child) {
 		return slideActive;
 	}
 
-	public void setSlide(final boolean b) {
+	public void setSlide(boolean b) {
 		slideActive = b;
-		final IArea area = isSlideActive() ? expanded : shrunk;
+		IArea area = isSlideActive() ? expanded : shrunk;
 		setSize(area.size());
 		setPosition(area.pos());
 	}
 
-	public void setLabel(final String l) {
+	public void setLabel(String l) {
 		label = l;
 	}
 }

@@ -8,5 +8,5 @@ import binnie.core.craftgui.ITooltip;
 
 public interface IMinecraftTooltip extends ITooltip
 {
-	void getTooltip(final MinecraftTooltip p0);
+	void getTooltip(MinecraftTooltip p0);
 }

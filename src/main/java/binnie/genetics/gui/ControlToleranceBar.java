@@ -11,7 +11,7 @@ import binnie.core.craftgui.geometry.IBorder;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.Tooltip;
 import forestry.api.core.EnumTemperature;
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.IWidget;
 import java.util.EnumSet;
 import binnie.core.craftgui.ITooltip;
@@ -25,7 +25,7 @@ public abstract class ControlToleranceBar<T extends Enum<T>> extends Control imp
 
 	public ControlToleranceBar(final IWidget parent, final float x, final float y, final float width, final float height, final Class<T> clss) {
 		super(parent, x, y, width, height);
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(WidgetAttribute.MouseOver);
 		this.enumClass = clss;
 		this.tolerated = EnumSet.noneOf(this.enumClass);
 		this.fullSet = EnumSet.allOf(this.enumClass);
@@ -35,12 +35,12 @@ public abstract class ControlToleranceBar<T extends Enum<T>> extends Control imp
 	}
 
 	@Override
-	public void getTooltip(final Tooltip list) {
+	public void getTooltip(final Tooltip tooltip) {
 		final int types = this.fullSet.size();
 		final int type = (int) ((int) this.getRelativeMousePosition().x() / (this.getSize().x() / types));
 		for (final T tol : this.fullSet) {
 			if (tol.ordinal() - ((this.enumClass == EnumTemperature.class) ? 1 : 0) == type) {
-				list.add((this.tolerated.contains(tol) ? "" : "§8") + this.getName(tol));
+				tooltip.add((this.tolerated.contains(tol) ? "" : "§8") + this.getName(tol));
 			}
 		}
 	}

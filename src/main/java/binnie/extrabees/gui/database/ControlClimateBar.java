@@ -14,7 +14,7 @@ import binnie.core.craftgui.CraftGUI;
 import forestry.api.core.EnumTemperature;
 import forestry.api.core.EnumHumidity;
 import binnie.core.craftgui.Tooltip;
-import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.WidgetAttribute;
 import java.util.ArrayList;
 import binnie.core.craftgui.IWidget;
 import java.util.List;
@@ -34,7 +34,7 @@ public class ControlClimateBar extends Control implements ITooltip
 		this.tolerated = new ArrayList<Integer>();
 		this.tempColours = new int[] { 65531, 7912447, 5242672, 16776960, 16753152, 16711680 };
 		this.humidColours = new int[] { 16770979, 1769216, 3177727 };
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(WidgetAttribute.MouseOver);
 	}
 
 	public ControlClimateBar(final IWidget parent, final int x, final int y, final int width, final int height, final boolean humidity) {
@@ -43,12 +43,12 @@ public class ControlClimateBar extends Control implements ITooltip
 		this.tolerated = new ArrayList<Integer>();
 		this.tempColours = new int[] { 65531, 7912447, 5242672, 16776960, 16753152, 16711680 };
 		this.humidColours = new int[] { 16770979, 1769216, 3177727 };
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(WidgetAttribute.MouseOver);
 		this.isHumidity = true;
 	}
 
 	@Override
-	public void getTooltip(final Tooltip list) {
+	public void getTooltip(final Tooltip tooltip) {
 		if (this.tolerated.isEmpty()) {
 			return;
 		}
@@ -59,10 +59,10 @@ public class ControlClimateBar extends Control implements ITooltip
 		}
 		if (type < types) {
 			if (this.isHumidity) {
-				list.add(EnumHumidity.values()[type].name);
+				tooltip.add(EnumHumidity.values()[type].name);
 			}
 			else {
-				list.add(EnumTemperature.values()[type + 1].name);
+				tooltip.add(EnumTemperature.values()[type + 1].name);
 			}
 		}
 	}

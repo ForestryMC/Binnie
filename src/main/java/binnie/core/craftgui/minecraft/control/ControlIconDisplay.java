@@ -14,7 +14,7 @@ public class ControlIconDisplay extends Control
 {
 	private IIcon icon;
 
-	public ControlIconDisplay(final IWidget parent, final float x, final float y, final IIcon icon) {
+	public ControlIconDisplay(IWidget parent, float x, float y, IIcon icon) {
 		super(parent, x, y, 16.0f, 16.0f);
 		this.icon = null;
 		this.icon = icon;

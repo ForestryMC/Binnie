@@ -65,15 +65,15 @@ public class ControlPunnett extends Control
 				for (final IAllele allele3 : alleles) {
 					text = text + allele3.getName() + ": " + 25.0f / alleles.size() + "%\n";
 				}
-				new ControlText(this, new IArea(x * ControlPunnett.boxWidth, ControlPunnett.boxHeight * y, ControlPunnett.boxWidth, ControlPunnett.boxHeight), text, TextJustification.TopCenter).setColour(11184810);
+				new ControlText(this, new IArea(x * ControlPunnett.boxWidth, ControlPunnett.boxHeight * y, ControlPunnett.boxWidth, ControlPunnett.boxHeight), text, TextJustification.TopCenter).setColor(11184810);
 				++y;
 			}
 			++x;
 		}
-		new ControlText(this, new IArea(ControlPunnett.boxWidth, 0.0f, ControlPunnett.boxWidth, ControlPunnett.boxHeight), "\n" + primary1.getName(), TextJustification.TopCenter).setColour(11184810);
-		new ControlText(this, new IArea(ControlPunnett.boxWidth * 2, 0.0f, ControlPunnett.boxWidth, ControlPunnett.boxHeight), "\n" + secondary1.getName(), TextJustification.TopCenter).setColour(11184810);
-		new ControlText(this, new IArea(0.0f, ControlPunnett.boxHeight, ControlPunnett.boxWidth, ControlPunnett.boxHeight), primary2.getName(), TextJustification.TopCenter).setColour(11184810);
-		new ControlText(this, new IArea(0.0f, ControlPunnett.boxHeight * 2, ControlPunnett.boxWidth, ControlPunnett.boxHeight), primary2.getName(), TextJustification.TopCenter).setColour(11184810);
+		new ControlText(this, new IArea(ControlPunnett.boxWidth, 0.0f, ControlPunnett.boxWidth, ControlPunnett.boxHeight), "\n" + primary1.getName(), TextJustification.TopCenter).setColor(11184810);
+		new ControlText(this, new IArea(ControlPunnett.boxWidth * 2, 0.0f, ControlPunnett.boxWidth, ControlPunnett.boxHeight), "\n" + secondary1.getName(), TextJustification.TopCenter).setColor(11184810);
+		new ControlText(this, new IArea(0.0f, ControlPunnett.boxHeight, ControlPunnett.boxWidth, ControlPunnett.boxHeight), primary2.getName(), TextJustification.TopCenter).setColor(11184810);
+		new ControlText(this, new IArea(0.0f, ControlPunnett.boxHeight * 2, ControlPunnett.boxWidth, ControlPunnett.boxHeight), primary2.getName(), TextJustification.TopCenter).setColor(11184810);
 	}
 
 	static {

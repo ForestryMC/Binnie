@@ -17,7 +17,7 @@ public enum CraftGUITextureSheet implements IBinnieTexture
 
 	String name;
 
-	CraftGUITextureSheet(final String name) {
+	CraftGUITextureSheet(String name) {
 		this.name = name;
 	}
 

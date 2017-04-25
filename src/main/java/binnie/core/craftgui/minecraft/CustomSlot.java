@@ -15,16 +15,16 @@ import net.minecraft.item.ItemStack;
 public class CustomSlot extends Slot
 {
 	@Override
-	public boolean isItemValid(final ItemStack par1ItemStack) {
+	public boolean isItemValid(ItemStack par1ItemStack) {
 		return inventory.isItemValidForSlot(getSlotIndex(), par1ItemStack);
 	}
 
-	public CustomSlot(final IInventory inventory, final int index) {
+	public CustomSlot(IInventory inventory, int index) {
 		super(inventory, index, 0, 0);
 	}
 
 	public InventorySlot getInventorySlot() {
-		final IInventorySlots slots = Machine.getInterface(IInventorySlots.class, inventory);
+		IInventorySlots slots = Machine.getInterface(IInventorySlots.class, inventory);
 		if (slots != null) {
 			return slots.getSlot(getSlotIndex());
 		}
@@ -32,11 +32,11 @@ public class CustomSlot extends Slot
 	}
 
 	public boolean handleClick() {
-		final InventorySlot slot = getInventorySlot();
+		InventorySlot slot = getInventorySlot();
 		return slot != null && slot.isRecipe();
 	}
 
-	public void onSlotClick(final ContainerCraftGUI container, final int mouseButton, final int modifier, final EntityPlayer player) {
+	public void onSlotClick(ContainerCraftGUI container, int mouseButton, int modifier, EntityPlayer player) {
 		ItemStack stack = player.inventory.getItemStack();
 		if (stack == null || mouseButton == 2) {
 			putStack(null);
