@@ -1,11 +1,7 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.database;
 
-import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.controls.listbox.ControlList;
 import binnie.core.craftgui.controls.listbox.ControlTextOption;
 import binnie.core.craftgui.geometry.CraftGUIUtil;
@@ -13,8 +9,7 @@ import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import net.minecraft.item.ItemStack;
 
-public class ControlItemStackOption extends ControlTextOption<ItemStack>
-{
+public class ControlItemStackOption extends ControlTextOption<ItemStack> {
 	private ControlItemDisplay controlBee;
 
 	public ControlItemStackOption(ControlList<ItemStack> controlList, ItemStack option, int y) {

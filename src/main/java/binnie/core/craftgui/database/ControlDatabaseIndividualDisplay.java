@@ -1,15 +1,11 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.database;
 
 import binnie.Binnie;
-import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.events.EventMouse;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.minecraft.Window;
@@ -21,10 +17,10 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.util.IIcon;
 
-public class ControlDatabaseIndividualDisplay extends ControlItemDisplay implements ITooltip
-{
+public class ControlDatabaseIndividualDisplay extends ControlItemDisplay implements ITooltip {
+	protected EnumDiscoveryState discovered;
+
 	private IAlleleSpecies species;
-	EnumDiscoveryState discovered;
 
 	public void setSpecies(IAlleleSpecies species) {
 		setSpecies(species, EnumDiscoveryState.Show);
@@ -71,20 +67,20 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 		if (species == null) {
 			return;
 		}
+
 		BreedingSystem system = Binnie.Genetics.getSystem(species.getRoot());
 		switch (discovered) {
-		case Show: {
-			super.onRenderForeground();
-			return;
-		}
-		case Discovered: {
-			icon = system.getDiscoveredIcon();
-			break;
-		}
-		case Undiscovered: {
-			icon = system.getUndiscoveredIcon();
-			break;
-		}
+			case Show:
+				super.onRenderForeground();
+				return;
+
+			case Discovered:
+				icon = system.getDiscoveredIcon();
+				break;
+
+			case Undiscovered:
+				icon = system.getUndiscoveredIcon();
+				break;
 		}
 		if (icon != null) {
 			CraftGUI.Render.iconItem(IPoint.ZERO, icon);
@@ -93,21 +89,22 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 
 	@Override
 	public void getTooltip(Tooltip tooltip) {
-		if (species != null) {
-			switch (discovered) {
-			case Show: {
+		if (species == null) {
+			return;
+		}
+
+		switch (discovered) {
+			case Show:
 				tooltip.add(species.getName());
 				break;
-			}
-			case Discovered: {
+
+			case Discovered:
 				tooltip.add("Discovered Species");
 				break;
-			}
-			case Undiscovered: {
+
+			case Undiscovered:
 				tooltip.add("Undiscovered Species");
 				break;
-			}
-			}
 		}
 	}
 }

@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.database;
 
 import binnie.core.craftgui.IWidget;
@@ -31,23 +27,26 @@ public class ControlSpeciesBox extends ControlListBox<IAlleleSpecies>
 	}
 
 	public void setBranch(IClassification branch) {
-		if (branch != this.branch) {
-			this.branch = branch;
-			List<IAlleleSpecies> speciesList2 = new ArrayList<IAlleleSpecies>();
-			movePercentage(-100.0f);
-			setOptions(speciesList2);
-			EntityPlayer player = Window.get(this).getPlayer();
-			GameProfile playerName = Window.get(this).getUsername();
-			WindowAbstractDatabase db = Window.get(this);
-			Collection<IAlleleSpecies> speciesList3 = db.isNEI ? db.getBreedingSystem().getAllSpecies() : db.getBreedingSystem().getDiscoveredSpecies(db.getWorld(), playerName);
-			if (branch != null) {
-				for (IAlleleSpecies species : branch.getMemberSpecies()) {
-					if (speciesList3.contains(species)) {
-						speciesList2.add(species);
-					}
+		if (branch == this.branch) {
+			return;
+		}
+
+		this.branch = branch;
+		List<IAlleleSpecies> speciesList2 = new ArrayList<>();
+		movePercentage(-100.0f);
+		setOptions(speciesList2);
+
+		EntityPlayer player = Window.get(this).getPlayer();
+		GameProfile playerName = Window.get(this).getUsername();
+		WindowAbstractDatabase db = Window.get(this);
+		Collection<IAlleleSpecies> speciesList3 = db.isNEI ? db.getBreedingSystem().getAllSpecies() : db.getBreedingSystem().getDiscoveredSpecies(db.getWorld(), playerName);
+		if (branch != null) {
+			for (IAlleleSpecies species : branch.getMemberSpecies()) {
+				if (speciesList3.contains(species)) {
+					speciesList2.add(species);
 				}
 			}
-			setOptions(speciesList2);
 		}
+		setOptions(speciesList2);
 	}
 }

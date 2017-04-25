@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.database;
 
 import binnie.core.craftgui.CraftGUI;
@@ -13,8 +9,7 @@ import forestry.api.genetics.IClassification;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PageBranchOverview extends PageBranch
-{
+public class PageBranchOverview extends PageBranch {
 	private ControlText pageBranchOverview_branchName;
 	private ControlText pageBranchOverview_branchScientific;
 	private ControlText pageBranchOverview_branchAuthority;
@@ -22,7 +17,7 @@ public class PageBranchOverview extends PageBranch
 
 	public PageBranchOverview(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
-		pageBranchOverview_branchDescription = new ArrayList<ControlText>();
+		pageBranchOverview_branchDescription = new ArrayList<>();
 		pageBranchOverview_branchName = new ControlTextCentered(this, 8.0f, "");
 		pageBranchOverview_branchScientific = new ControlTextCentered(this, 32.0f, "");
 		pageBranchOverview_branchAuthority = new ControlTextCentered(this, 44.0f, "");
@@ -36,11 +31,13 @@ public class PageBranchOverview extends PageBranch
 		for (IWidget widget : pageBranchOverview_branchDescription) {
 			deleteChild(widget);
 		}
+
 		pageBranchOverview_branchDescription.clear();
 		String desc = branch.getDescription();
 		if (desc == null || desc == "") {
 			desc = "No Description Provided.";
 		}
+
 		String line = "";
 		List<String> descLines = new ArrayList<String>();
 		for (String str : desc.split(" ")) {
@@ -50,6 +47,7 @@ public class PageBranchOverview extends PageBranch
 			}
 			line = line + " " + str;
 		}
+
 		descLines.add(line);
 		int i = 0;
 		for (String dLine : descLines) {

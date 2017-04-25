@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.database;
 
 import binnie.Binnie;
@@ -9,8 +5,7 @@ import binnie.core.AbstractMod;
 import binnie.core.craftgui.ITooltipHelp;
 import binnie.core.craftgui.Tooltip;
 
-public class DatabaseTab implements ITooltipHelp
-{
+public class DatabaseTab implements ITooltipHelp {
 	private AbstractMod mod;
 	private String unloc;
 	private int colour;

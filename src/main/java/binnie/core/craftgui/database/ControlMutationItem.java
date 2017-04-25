@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.database;
 
 import binnie.core.craftgui.controls.listbox.ControlList;
@@ -11,8 +7,7 @@ import binnie.core.genetics.BreedingSystem;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IMutation;
 
-class ControlMutationItem extends ControlOption<IMutation>
-{
+class ControlMutationItem extends ControlOption<IMutation> {
 	private ControlDatabaseIndividualDisplay itemWidget1;
 	private ControlDatabaseIndividualDisplay itemWidget2;
 	private ControlDatabaseIndividualDisplay itemWidget3;
@@ -28,10 +23,11 @@ class ControlMutationItem extends ControlOption<IMutation>
 		arrowSymbol = new ControlMutationSymbol(this, 64, 4, 1);
 		boolean isNEI = ((WindowAbstractDatabase) getSuperParent()).isNEI();
 		BreedingSystem system = ((WindowAbstractDatabase) getSuperParent()).getBreedingSystem();
+
 		if (getValue() != null) {
 			boolean isMutationDiscovered = system.isMutationDiscovered(getValue(), Window.get(this).getWorld(), Window.get(this).getUsername());
-			IAlleleSpecies allele = null;
-			EnumDiscoveryState state = null;
+			IAlleleSpecies allele;
+			EnumDiscoveryState state;
 			allele = getValue().getAllele0();
 			state = ((isNEI || isMutationDiscovered) ? EnumDiscoveryState.Show : ((species == allele) ? EnumDiscoveryState.Show : EnumDiscoveryState.Undetermined));
 			itemWidget1.setSpecies(allele, state);

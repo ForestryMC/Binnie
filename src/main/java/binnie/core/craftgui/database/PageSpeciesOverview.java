@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.database;
 
 import binnie.core.craftgui.CraftGUI;
@@ -13,8 +9,7 @@ import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.geometry.TextJustification;
 import forestry.api.genetics.IAlleleSpecies;
 
-public class PageSpeciesOverview extends PageSpecies
-{
+public class PageSpeciesOverview extends PageSpecies {
 	private ControlText controlName;
 	private ControlText controlScientific;
 	private ControlText controlAuthority;
@@ -49,10 +44,10 @@ public class PageSpeciesOverview extends PageSpecies
 		String desc = species.getDescription();
 		String descBody = "§o";
 		String descSig = "";
+
 		if (desc == null || desc == "") {
 			descBody += "No Description Provided.";
-		}
-		else {
+		} else {
 			String[] descStrings = desc.split("\\|");
 			descBody += descStrings[0];
 			for (int i = 1; i < descStrings.length - 1; ++i) {
@@ -62,6 +57,7 @@ public class PageSpeciesOverview extends PageSpecies
 				descSig += descStrings[descStrings.length - 1];
 			}
 		}
+
 		controlDescription.setValue(descBody + "§r");
 		controlSignature.setValue(descSig + "§r");
 		float descHeight = CraftGUI.Render.textHeight(controlDescription.getValue(), controlDescription.getSize().x());

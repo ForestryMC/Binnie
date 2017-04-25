@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.database;
 
 import binnie.core.craftgui.IWidget;
@@ -11,8 +7,7 @@ import binnie.core.craftgui.minecraft.Window;
 import binnie.core.genetics.BreedingSystem;
 import com.mojang.authlib.GameProfile;
 
-public class PageBreeder extends ControlPage<DatabaseTab>
-{
+public class PageBreeder extends ControlPage<DatabaseTab> {
 	private GameProfile player;
 
 	public PageBreeder(IWidget parent, GameProfile player, DatabaseTab tab) {
@@ -25,6 +20,7 @@ public class PageBreeder extends ControlPage<DatabaseTab>
 		while (getWidgets().size() > 0) {
 			deleteChild(getWidgets().get(0));
 		}
+
 		BreedingSystem system = ((WindowAbstractDatabase) Window.get(this)).getBreedingSystem();
 		String descriptor = system.getDescriptor();
 		new ControlTextCentered(this, 8.0f, "§n" + system.getDescriptor() + " Profile§r");
@@ -32,6 +28,7 @@ public class PageBreeder extends ControlPage<DatabaseTab>
 		new ControlBreedingProgress(this, 20, 87, 102, 14, system, system.discoveredSpeciesPercentage);
 		new ControlTextCentered(this, 115.0f, "" + system.discoveredBranchCount + "/" + system.totalBranchCount + " Branches");
 		new ControlBreedingProgress(this, 20, 127, 102, 14, system, system.discoveredBranchPercentage);
+
 		if (system.discoveredSecretCount > 0) {
 			new ControlTextCentered(this, 155.0f, "" + system.discoveredSecretCount + "/" + system.totalSecretCount + " Secret Species");
 		}

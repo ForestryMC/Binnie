@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.database;
 
 import binnie.core.craftgui.IWidget;
@@ -13,15 +9,14 @@ import forestry.api.genetics.IMutation;
 
 import java.util.List;
 
-class ControlMutationBox extends ControlListBox<IMutation>
-{
+class ControlMutationBox extends ControlListBox<IMutation> {
 	private int index;
 	private Type type;
 	private IAlleleSpecies species;
 
 	@Override
 	public IWidget createOption(IMutation value, int y) {
-		return new ControlMutationItem(this.getContent(), value, species, y);
+		return new ControlMutationItem(getContent(), value, species, y);
 	}
 
 	public ControlMutationBox(IWidget parent, int x, int y, int width, int height, Type type) {
@@ -37,30 +32,30 @@ class ControlMutationBox extends ControlListBox<IMutation>
 			movePercentage(-100.0f);
 			BreedingSystem system = ((WindowAbstractDatabase) getSuperParent()).getBreedingSystem();
 			List<IMutation> discovered = system.getDiscoveredMutations(Window.get(this).getWorld(), Window.get(this).getUsername());
-			if (species != null) {
-				if (type == Type.Resultant) {
-					setOptions(system.getResultantMutations(species));
-				}
-				else {
-					List<IMutation> mutations = system.getFurtherMutations(species);
-					int i = 0;
-					while (i < mutations.size()) {
-						IMutation mutation = mutations.get(i);
-						if (!discovered.contains(mutations) && !((IAlleleSpecies) mutation.getTemplate()[0]).isCounted()) {
-							mutations.remove(i);
-						}
-						else {
-							++i;
-						}
+
+			if (species == null) {
+				return;
+			}
+
+			if (type == Type.Resultant) {
+				setOptions(system.getResultantMutations(species));
+			} else {
+				List<IMutation> mutations = system.getFurtherMutations(species);
+				int i = 0;
+				while (i < mutations.size()) {
+					IMutation mutation = mutations.get(i);
+					if (!discovered.contains(mutations) && !((IAlleleSpecies) mutation.getTemplate()[0]).isCounted()) {
+						mutations.remove(i);
+					} else {
+						++i;
 					}
-					setOptions(mutations);
 				}
+				setOptions(mutations);
 			}
 		}
 	}
 
-	enum Type
-	{
+	enum Type {
 		Resultant,
 		Further
 	}

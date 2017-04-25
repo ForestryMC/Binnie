@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.database;
 
 import binnie.core.craftgui.IWidget;
@@ -12,13 +8,13 @@ import cpw.mods.fml.common.Mod;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IClassification;
 
-public class PageBranchSpecies extends PageBranch
-{
+public class PageBranchSpecies extends PageBranch {
 	private ControlText pageBranchSpecies_title;
 	private ControlSpeciesBox pageBranchSpecies_speciesList;
 
 	@Mod.EventHandler
 	public void onHandleEvent(EventValueChanged<IAlleleSpecies> event) {
+		// ignored
 	}
 
 	public PageBranchSpecies(IWidget parent, DatabaseTab tab) {

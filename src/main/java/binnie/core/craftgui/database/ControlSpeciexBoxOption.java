@@ -1,19 +1,14 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.database;
 
-import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.controls.listbox.ControlList;
 import binnie.core.craftgui.controls.listbox.ControlTextOption;
 import binnie.core.craftgui.geometry.CraftGUIUtil;
 import binnie.core.craftgui.geometry.IPoint;
 import forestry.api.genetics.IAlleleSpecies;
 
-class ControlSpeciexBoxOption extends ControlTextOption<IAlleleSpecies>
-{
+class ControlSpeciexBoxOption extends ControlTextOption<IAlleleSpecies> {
 	private ControlDatabaseIndividualDisplay controlBee;
 
 	public ControlSpeciexBoxOption(ControlList<IAlleleSpecies> controlList, IAlleleSpecies option, int y) {
@@ -23,10 +18,12 @@ class ControlSpeciexBoxOption extends ControlTextOption<IAlleleSpecies>
 		if (controlBee.discovered == EnumDiscoveryState.Discovered) {
 			controlBee.discovered = EnumDiscoveryState.Show;
 		}
+
 		textWidget.setValue((controlBee.discovered == EnumDiscoveryState.Show) ? option.getName() : "Undiscovered");
 		if (controlBee.discovered == EnumDiscoveryState.Show) {
 			addAttribute(WidgetAttribute.MouseOver);
 		}
+
 		CraftGUIUtil.moveWidget(textWidget, new IPoint(22.0f, 0.0f));
 		textWidget.setSize(textWidget.getSize().sub(new IPoint(24.0f, 0.0f)));
 		int th = (int) CraftGUI.Render.textHeight(textWidget.getValue(), textWidget.getSize().x());

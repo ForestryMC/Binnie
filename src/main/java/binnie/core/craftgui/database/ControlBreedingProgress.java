@@ -1,6 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
 
 package binnie.core.craftgui.database;
 
@@ -15,9 +12,8 @@ import binnie.core.craftgui.resource.minecraft.CraftGUITextureSheet;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.core.genetics.BreedingSystem;
 
-class ControlBreedingProgress extends Control
-{
-	private static Texture Progress;
+class ControlBreedingProgress extends Control {
+	private static Texture Progress = new StandardTexture(80, 22, 4, 4, CraftGUITextureSheet.Controls2);
 	private float percentage;
 	private int colour;
 
@@ -34,9 +30,5 @@ class ControlBreedingProgress extends Control
 		area.setSize(new IPoint(area.size().x() * percentage, area.size().y()));
 		CraftGUI.Render.colour(colour);
 		CraftGUI.Render.texture(ControlBreedingProgress.Progress, area);
-	}
-
-	static {
-		ControlBreedingProgress.Progress = new StandardTexture(80, 22, 4, 4, CraftGUITextureSheet.Controls2);
 	}
 }
