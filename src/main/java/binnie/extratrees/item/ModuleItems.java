@@ -117,8 +117,20 @@ public class ModuleItems implements IInitializable
 		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ExtraTreeItems.Yeast.get(8), new Object[] { " m ", "mbm", 'b', Items.bread, 'm', Blocks.brown_mushroom }));
 		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ExtraTreeItems.LagerYeast.get(8), new Object[] { "mbm", " m ", 'b', Items.bread, 'm', Blocks.brown_mushroom }));
 		GameRegistry.addRecipe(ExtraTreeItems.GrainWheat.get(5), new Object[] { " s ", "sss", " s ", 's', Items.wheat_seeds });
-		GameRegistry.addRecipe(ExtraTreeItems.GrainBarley.get(3), new Object[] { " s ", "s  ", " s ", 's', ExtraTreeItems.GrainWheat.get(1) });
-		GameRegistry.addRecipe(ExtraTreeItems.GrainCorn.get(3), new Object[] { " s ", "  s", " s ", 's', ExtraTreeItems.GrainWheat.get(1) });
+		GameRegistry.addRecipe(new ShapedOreRecipe(
+			ExtraTreeItems.GrainBarley.get(3), new Object[] {
+				false,
+				" s ", "s  ", " s ",
+				's', ExtraTreeItems.GrainWheat.get(1)
+			}
+		));
+		GameRegistry.addRecipe(new ShapedOreRecipe(
+			ExtraTreeItems.GrainCorn.get(3), new Object[] {
+				false,
+				" s ", "  s", " s ",
+				's', ExtraTreeItems.GrainWheat.get(1)
+			}
+		));
 		GameRegistry.addRecipe(ExtraTreeItems.GrainRye.get(3), new Object[] { "   ", "s s", " s ", 's', ExtraTreeItems.GrainWheat.get(1) });
 		GameRegistry.addRecipe(ExtraTreeItems.Hops.get(3), new Object[] { " s ", "sps", " s ", 's', Items.wheat_seeds, 'p', Items.apple });
 		GameRegistry.addRecipe(ExtraTreeItems.ProvenGear.get(1), new Object[] { " s ", "s s", " s ", 's', Mods.Forestry.stack("oakStick") });
