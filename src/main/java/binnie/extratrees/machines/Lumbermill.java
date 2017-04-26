@@ -21,7 +21,7 @@ import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.core.machines.Machine;
 import binnie.extratrees.core.ExtraTreeTexture;
-import binnie.craftgui.minecraft.IMachineInformation;
+import binnie.core.craftgui.minecraft.IMachineInformation;
 import java.util.HashMap;
 import java.util.List;
 import net.minecraftforge.oredict.ShapelessOreRecipe;

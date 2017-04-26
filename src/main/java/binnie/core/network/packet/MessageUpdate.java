@@ -74,6 +74,6 @@ public class MessageUpdate extends MessageCoordinates {
 
 	// TODO unused method?
 	public TileEntity getTarget(World world) {
-		return world.getTileEntity(this.posX, this.posY, this.posZ);
+		return world.getTileEntity(posX, posY, posZ);
 	}
 }

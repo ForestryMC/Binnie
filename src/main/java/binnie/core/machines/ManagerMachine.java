@@ -33,7 +33,7 @@ public class ManagerMachine extends ManagerBase {
 	}
 
 	public MachineGroup getGroup(String name) {
-		return this.machineGroups.get(name);
+		return machineGroups.get(name);
 	}
 
 	public MachinePackage getPackage(String group, String name) {
@@ -52,14 +52,14 @@ public class ManagerMachine extends ManagerBase {
 		}
 
 		interfaces.remove(INBTTagable.class);
-		this.componentInterfaceMap.put(component, interfaces.toArray(new Class[0]));
+		componentInterfaceMap.put(component, interfaces.toArray(new Class[0]));
 		int networkID = nextNetworkID++;
-		this.networkIDToComponent.put(networkID, component);
-		this.componentToNetworkID.put(component, networkID);
+		networkIDToComponent.put(networkID, component);
+		componentToNetworkID.put(component, networkID);
 	}
 
 	public int getNetworkID(Class<?> component) {
-		return this.componentToNetworkID.get(component);
+		return componentToNetworkID.get(component);
 	}
 
 	public Class<?> getComponentClass(int networkID) {

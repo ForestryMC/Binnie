@@ -12,9 +12,9 @@ import java.util.Map;
 import java.util.ArrayList;
 import binnie.core.BinnieCore;
 import binnie.Binnie;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.IWidget;
 import forestry.api.apiculture.IAlleleBeeSpecies;
-import binnie.craftgui.controls.listbox.ControlListBox;
+import binnie.core.craftgui.controls.listbox.ControlListBox;
 
 public class ControlProductsBox extends ControlListBox<ControlProductsBox.Product>
 {

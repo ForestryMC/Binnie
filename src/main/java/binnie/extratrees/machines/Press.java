@@ -17,7 +17,7 @@ import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.core.machines.Machine;
 import binnie.extratrees.core.ExtraTreeTexture;
-import binnie.craftgui.minecraft.IMachineInformation;
+import binnie.core.craftgui.minecraft.IMachineInformation;
 import java.util.HashMap;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraft.item.ItemStack;

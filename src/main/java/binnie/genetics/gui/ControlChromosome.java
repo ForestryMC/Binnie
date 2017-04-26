@@ -4,21 +4,21 @@
 
 package binnie.genetics.gui;
 
-import binnie.craftgui.core.geometry.IPoint;
-import binnie.craftgui.core.CraftGUI;
+import binnie.core.craftgui.geometry.IPoint;
+import binnie.core.craftgui.CraftGUI;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
 import binnie.botany.api.EnumFlowerChromosome;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.apiculture.EnumBeeChromosome;
 import binnie.Binnie;
-import binnie.craftgui.resource.minecraft.StandardTexture;
+import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.core.texture.BinnieCoreTexture;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.IWidget;
 import forestry.api.genetics.ISpeciesRoot;
-import binnie.craftgui.resource.Texture;
+import binnie.core.craftgui.resource.Texture;
 import forestry.api.genetics.IChromosomeType;
-import binnie.craftgui.controls.core.IControlValue;
-import binnie.craftgui.controls.core.Control;
+import binnie.core.craftgui.controls.core.IControlValue;
+import binnie.core.craftgui.controls.core.Control;
 
 public class ControlChromosome extends Control implements IControlValue<IChromosomeType>
 {

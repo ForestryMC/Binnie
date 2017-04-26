@@ -9,7 +9,7 @@ import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.machines.ExtraTreeMachine;
 import binnie.core.machines.Machine;
 import binnie.extratrees.core.ExtraTreeTexture;
-import binnie.craftgui.minecraft.IMachineInformation;
+import binnie.core.craftgui.minecraft.IMachineInformation;
 
 public class BottleRack
 {

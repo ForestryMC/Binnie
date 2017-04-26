@@ -133,7 +133,7 @@ public class TreeBreedingSystem extends BreedingSystem {
 			// this.discoveredWoods.add(wood);
 			// }
 			discoveredFruits.addAll(Arrays.asList(genome.getFruitProvider().getProducts()));
-			for (ItemStack wood2 : this.discoveredWoods) {
+			for (ItemStack wood2 : discoveredWoods) {
 			}
 		}
 	}
@@ -141,15 +141,15 @@ public class TreeBreedingSystem extends BreedingSystem {
 	@Override
 	public void calculateArrays() {
 		super.calculateArrays();
-		for (IAlleleSpecies species : this.allActiveSpecies) {
+		for (IAlleleSpecies species : allActiveSpecies) {
 			IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
-			ITreeGenome genome = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(tSpecies.getUID()));
+			ITreeGenome genome = (ITreeGenome) getSpeciesRoot().templateAsGenome(getSpeciesRoot().getTemplate(tSpecies.getUID()));
 
 			FakeWorld world = FakeWorld.instance;
 			genome.getPrimary().getGenerator().setLogBlock(genome, world, 0, 0, 0, ForgeDirection.UP);
 			ItemStack wood = world.getWooLog();
 			if (wood != null) {
-				this.allWoods.add(wood);
+				allWoods.add(wood);
 			}
 
 			// TODO ???
@@ -167,7 +167,7 @@ public class TreeBreedingSystem extends BreedingSystem {
 		List<IAlleleSpecies> found = new ArrayList<>();
 		for (IAlleleSpecies species : set) {
 			IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
-			ITreeGenome genome = (ITreeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(tSpecies.getUID()));
+			ITreeGenome genome = (ITreeGenome) getSpeciesRoot().templateAsGenome(getSpeciesRoot().getTemplate(tSpecies.getUID()));
 			for (ItemStack fruit2 : genome.getFruitProvider().getProducts()) {
 				if (fruit2.isItemEqual(fruit)) {
 					found.add(species);

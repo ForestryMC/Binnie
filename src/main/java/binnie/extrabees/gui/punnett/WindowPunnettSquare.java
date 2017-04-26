@@ -4,20 +4,20 @@
 
 package binnie.extrabees.gui.punnett;
 
-import binnie.craftgui.resource.minecraft.StandardTexture;
-import binnie.craftgui.resource.minecraft.PaddedTexture;
+import binnie.core.craftgui.resource.minecraft.StandardTexture;
+import binnie.core.craftgui.resource.minecraft.PaddedTexture;
 import binnie.extrabees.core.ExtraBeeTexture;
-import binnie.craftgui.resource.minecraft.CraftGUITexture;
-import binnie.craftgui.resource.StyleSheet;
-import binnie.craftgui.core.CraftGUI;
+import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
+import binnie.core.craftgui.resource.StyleSheet;
+import binnie.core.craftgui.CraftGUI;
 import binnie.extrabees.ExtraBees;
 import binnie.core.AbstractMod;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.entity.player.EntityPlayer;
 import forestry.api.genetics.ISpeciesRoot;
-import binnie.craftgui.minecraft.control.ControlSlot;
-import binnie.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.control.ControlSlot;
+import binnie.core.craftgui.minecraft.Window;
 
 public class WindowPunnettSquare extends Window
 {

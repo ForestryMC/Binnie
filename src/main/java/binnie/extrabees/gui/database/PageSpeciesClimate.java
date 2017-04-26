@@ -6,10 +6,10 @@ package binnie.extrabees.gui.database;
 
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.genetics.IAlleleSpecies;
-import binnie.craftgui.controls.ControlTextCentered;
-import binnie.craftgui.mod.database.DatabaseTab;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.mod.database.PageSpecies;
+import binnie.core.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.database.DatabaseTab;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.database.PageSpecies;
 
 public class PageSpeciesClimate extends PageSpecies
 {

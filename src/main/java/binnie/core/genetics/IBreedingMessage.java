@@ -75,12 +75,12 @@ interface IBreedingMessage {
 
 		@Override
 		public String getBody() {
-			return this.classification.getScientific();
+			return classification.getScientific();
 		}
 
 		@Override
 		public ItemStack getIcon() {
-			return this.stack;
+			return stack;
 		}
 	}
 

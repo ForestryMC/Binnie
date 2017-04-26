@@ -1,6 +1,6 @@
 package binnie.core.machines.storage;
 
-import binnie.craftgui.minecraft.EnumColor;
+import binnie.core.craftgui.minecraft.EnumColor;
 import forestry.api.core.INBTTagable;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -29,7 +29,7 @@ class CompartmentTab implements INBTTagable {
 
 	@Override
 	public void writeToNBT(NBTTagCompound nbt) {
-		nbt.setString("name", this.name);
+		nbt.setString("name", name);
 		NBTTagCompound n = new NBTTagCompound();
 		icon.writeToNBT(n);
 		nbt.setTag("icon", n);

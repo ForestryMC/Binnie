@@ -27,7 +27,7 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 
 	public BinnieProxy() {
 		super(BinnieCore.instance);
-		this.uniqueTextureUID = 1200;
+		uniqueTextureUID = 1200;
 	}
 
 	@Override

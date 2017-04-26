@@ -64,7 +64,7 @@ public class ManagerGenetics extends ManagerBase {
 
 	@Override
 	public void postInit() {
-		this.refreshData();
+		refreshData();
 	}
 
 	// TODO unused method?
@@ -147,7 +147,7 @@ public class ManagerGenetics extends ManagerBase {
 
 	@SubscribeEvent
 	public void onWorldLoad(WorldEvent.Load event) {
-		this.refreshData();
+		refreshData();
 	}
 
 	private void refreshData() {
@@ -158,7 +158,7 @@ public class ManagerGenetics extends ManagerBase {
 	}
 
 	private void loadAlleles() {
-		this.invalidChromosomeTypes.clear();
+		invalidChromosomeTypes.clear();
 		for (ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
 			BreedingSystem system = getSystem(root);
 			Map<IChromosomeType, List<IAllele>> chromosomeMap = new LinkedHashMap<>();

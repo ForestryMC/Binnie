@@ -4,16 +4,16 @@
 
 package binnie.genetics.gui;
 
-import binnie.craftgui.core.Tooltip;
+import binnie.core.craftgui.Tooltip;
 import net.minecraft.util.IIcon;
-import binnie.craftgui.core.geometry.IPoint;
-import binnie.craftgui.core.CraftGUI;
+import binnie.core.craftgui.geometry.IPoint;
+import binnie.core.craftgui.CraftGUI;
 import forestry.core.render.TextureManager;
 import net.minecraftforge.common.BiomeDictionary;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.IWidget;
 import net.minecraft.world.biome.BiomeGenBase;
-import binnie.craftgui.core.ITooltip;
-import binnie.craftgui.controls.core.Control;
+import binnie.core.craftgui.ITooltip;
+import binnie.core.craftgui.controls.core.Control;
 
 public class ControlBiome extends Control implements ITooltip
 {

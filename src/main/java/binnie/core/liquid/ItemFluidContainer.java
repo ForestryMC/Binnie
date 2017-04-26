@@ -79,7 +79,7 @@ public class ItemFluidContainer extends ItemFood {
 			if (!liquid.canPlaceIn(container) || !liquid.showInCreative(container)) {
 				continue;
 			}
-			itemList.add(this.getContainer(liquid));
+			itemList.add(getContainer(liquid));
 		}
 	}
 
@@ -99,7 +99,7 @@ public class ItemFluidContainer extends ItemFood {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack item, int pass) {
-		FluidStack fluid = this.getLiquid(item);
+		FluidStack fluid = getLiquid(item);
 		if (fluid == null) {
 			return 16777215;
 		}
@@ -128,7 +128,7 @@ public class ItemFluidContainer extends ItemFood {
 			return;
 		}
 
-		FluidStack fluid = this.getLiquid(stack);
+		FluidStack fluid = getLiquid(stack);
 		IDrinkLiquid liquid = DrinkManager.getLiquid(fluid);
 		if (liquid != null) {
 			AlcoholEffect.makeDrunk(player, liquid.getABV() * fluid.amount);
@@ -148,7 +148,7 @@ public class ItemFluidContainer extends ItemFood {
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
 		if (isDrinkable(stack)) {
-			player.setItemInUse(stack, this.getMaxItemUseDuration(stack));
+			player.setItemInUse(stack, getMaxItemUseDuration(stack));
 		}
 		return stack;
 	}
@@ -164,7 +164,7 @@ public class ItemFluidContainer extends ItemFood {
 	}
 
 	private boolean isDrinkable(ItemStack stack) {
-		FluidStack fluid = this.getLiquid(stack);
+		FluidStack fluid = getLiquid(stack);
 		IDrinkLiquid liquid = DrinkManager.getLiquid(fluid);
 		return liquid != null && liquid.isConsumable();
 	}

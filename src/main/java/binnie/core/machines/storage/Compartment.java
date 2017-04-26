@@ -36,7 +36,7 @@ enum Compartment implements IMachineType {
 	}
 
 	public ItemStack get(int i) {
-		return new ItemStack(BinnieCore.packageCompartment.getBlock(), i, this.ordinal());
+		return new ItemStack(BinnieCore.packageCompartment.getBlock(), i, ordinal());
 	}
 
 	public abstract static class PackageCompartment extends MachinePackage {
@@ -58,7 +58,7 @@ enum Compartment implements IMachineType {
 
 		@Override
 		public void renderMachine(Machine machine, double x, double y, double z, float partialTick, RenderBlocks renderer) {
-			MachineRendererCompartment.instance.renderMachine(machine, 0xffffff, this.renderTexture, x, y, z, partialTick);
+			MachineRendererCompartment.instance.renderMachine(machine, 0xffffff, renderTexture, x, y, z, partialTick);
 		}
 	}
 }

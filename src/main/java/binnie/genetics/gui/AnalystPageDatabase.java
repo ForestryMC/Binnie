@@ -4,28 +4,27 @@
 
 package binnie.genetics.gui;
 
-import binnie.craftgui.core.geometry.IPoint;
-import binnie.craftgui.events.EventMouse;
+import binnie.core.craftgui.geometry.IPoint;
+import binnie.core.craftgui.events.EventMouse;
 import forestry.api.genetics.IIndividual;
-import binnie.craftgui.controls.scroll.ControlScrollBar;
-import binnie.craftgui.core.geometry.TextJustification;
-import binnie.craftgui.controls.core.Control;
-import binnie.craftgui.controls.listbox.ControlListBox;
-import forestry.api.genetics.IChromosomeType;
+import binnie.core.craftgui.controls.scroll.ControlScrollBar;
+import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.controls.core.Control;
+import binnie.core.craftgui.controls.listbox.ControlListBox;
 import forestry.api.arboriculture.EnumTreeChromosome;
-import binnie.craftgui.window.Panel;
-import binnie.craftgui.minecraft.MinecraftGUI;
-import binnie.craftgui.resource.minecraft.CraftGUITexture;
-import binnie.craftgui.core.CraftGUI;
+import binnie.core.craftgui.window.Panel;
+import binnie.core.craftgui.minecraft.MinecraftGUI;
+import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
+import binnie.core.craftgui.CraftGUI;
 import java.util.Collection;
 import forestry.api.genetics.IAlleleSpecies;
 import java.util.ArrayList;
-import binnie.craftgui.controls.ControlTextEdit;
-import binnie.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.controls.ControlTextEdit;
+import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.genetics.BreedingSystem;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.controls.scroll.ControlScrollableContent;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.scroll.ControlScrollableContent;
 
 public class AnalystPageDatabase extends ControlAnalystPage
 {
@@ -46,9 +45,9 @@ public class AnalystPageDatabase extends ControlAnalystPage
 			brightness = 1.0f;
 		}
 		final int newColour = (int) (cr * brightness) * 65536 + (int) (cg * brightness) * 256 + (int) (cb * brightness);
-		this.setColour(newColour);
+		this.setColor(newColour);
 		int y = 4;
-		new ControlTextCentered(this, y, "§nRegistry").setColour(this.getColour());
+		new ControlTextCentered(this, y, "§nRegistry").setColor(this.getColor());
 		y += 16;
 		new ControlTextEdit(this, 20.0f, y, this.w() - 40.0f, 16.0f) {
 			@Override
@@ -73,13 +72,13 @@ public class AnalystPageDatabase extends ControlAnalystPage
 			public void onRenderBackground() {
 				CraftGUI.Render.colour(5592405);
 				CraftGUI.Render.texture(CraftGUITexture.TabSolid, this.getArea().inset(1));
-				CraftGUI.Render.colour(AnalystPageDatabase.this.getColour());
+				CraftGUI.Render.colour(AnalystPageDatabase.this.getColor());
 				CraftGUI.Render.texture(CraftGUITexture.TabOutline, this.getArea());
 				super.renderTextField();
 			}
 		};
 		y += 22;
-		new Panel(this, 3.0f, y - 1, this.w() - 6.0f, this.h() - y - 8.0f + 2.0f, MinecraftGUI.PanelType.TabOutline).setColour(this.getColour());
+		new Panel(this, 3.0f, y - 1, this.w() - 6.0f, this.h() - y - 8.0f + 2.0f, MinecraftGUI.PanelType.TabOutline).setColor(this.getColor());
 		final boolean textView = false;
 		final Collection<IAlleleSpecies> options = this.getSpecies(system);
 		for (final IAlleleSpecies species : options) {
@@ -119,8 +118,8 @@ public class AnalystPageDatabase extends ControlAnalystPage
 				if (!this.isEnabled()) {
 					return;
 				}
-				CraftGUI.Render.gradientRect(this.getArea(), 1140850688 + AnalystPageDatabase.this.getColour(), 1140850688 + AnalystPageDatabase.this.getColour());
-				CraftGUI.Render.solid(this.getRenderArea(), AnalystPageDatabase.this.getColour());
+				CraftGUI.Render.gradientRect(this.getArea(), 1140850688 + AnalystPageDatabase.this.getColor(), 1140850688 + AnalystPageDatabase.this.getColor());
+				CraftGUI.Render.solid(this.getRenderArea(), AnalystPageDatabase.this.getColor());
 			}
 		};
 	}
@@ -153,7 +152,7 @@ public class AnalystPageDatabase extends ControlAnalystPage
 							if (window.getIndividual() != null && window.getIndividual().getGenome().getPrimary() == species) {
 								CraftGUI.Render.colour(15658734);
 								CraftGUI.Render.texture(CraftGUITexture.TabSolid, this.getArea().outset(1));
-								CraftGUI.Render.colour(AnalystPageDatabase.this.getColour());
+								CraftGUI.Render.colour(AnalystPageDatabase.this.getColor());
 								CraftGUI.Render.texture(CraftGUITexture.TabOutline, this.getArea().outset(1));
 							}
 							else if (this.calculateIsMouseOver()) {

@@ -96,7 +96,7 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 
 	@Override
 	public boolean isHellish() {
-		return this.getBiomeId() == BiomeGenBase.hell.biomeID;
+		return getBiomeId() == BiomeGenBase.hell.biomeID;
 	}
 
 	@Override

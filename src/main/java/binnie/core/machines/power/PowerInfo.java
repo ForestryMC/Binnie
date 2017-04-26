@@ -8,8 +8,8 @@ public class PowerInfo implements INBTTagable {
 	private float maxEnergy;
 
 	public PowerInfo(IPoweredMachine machine, float currentInput) {
-		this.currentEnergy = (float) machine.getInterface().getEnergy(PowerSystem.RF);
-		this.maxEnergy = (float) machine.getInterface().getCapacity(PowerSystem.RF);
+		currentEnergy = (float) machine.getInterface().getEnergy(PowerSystem.RF);
+		maxEnergy = (float) machine.getInterface().getCapacity(PowerSystem.RF);
 	}
 
 	public PowerInfo() {

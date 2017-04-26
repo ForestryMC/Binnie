@@ -9,18 +9,18 @@ import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.genetics.IChromosomeType;
 import binnie.Binnie;
 import forestry.api.genetics.AlleleManager;
-import binnie.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.controls.ControlTextCentered;
 import forestry.api.genetics.IIndividual;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.IWidget;
 
 public class AnalystPageKaryogram extends ControlAnalystPage
 {
 	public AnalystPageKaryogram(final IWidget parent, final IArea area, final IIndividual ind) {
 		super(parent, area);
-		this.setColour(10040319);
+		this.setColor(10040319);
 		int y = 4;
-		new ControlTextCentered(this, y, "§nKaryogram").setColour(this.getColour());
+		new ControlTextCentered(this, y, "§nKaryogram").setColor(this.getColor());
 		y += 16;
 		y += 8;
 		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(ind.getClass());

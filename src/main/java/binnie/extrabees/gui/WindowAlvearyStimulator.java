@@ -7,16 +7,16 @@ package binnie.extrabees.gui;
 import binnie.extrabees.ExtraBees;
 import binnie.core.AbstractMod;
 import binnie.extrabees.apiary.machine.AlvearyStimulator;
-import binnie.craftgui.minecraft.control.ControlSlot;
-import binnie.craftgui.core.geometry.Position;
-import binnie.craftgui.minecraft.control.ControlEnergyBar;
+import binnie.core.craftgui.minecraft.control.ControlSlot;
+import binnie.core.craftgui.geometry.Position;
+import binnie.core.craftgui.minecraft.control.ControlEnergyBar;
 import binnie.core.machines.TileEntityMachine;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.entity.player.EntityPlayer;
-import binnie.craftgui.minecraft.control.ControlPlayerInventory;
+import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
 import binnie.core.machines.Machine;
-import binnie.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.Window;
 
 public class WindowAlvearyStimulator extends Window
 {

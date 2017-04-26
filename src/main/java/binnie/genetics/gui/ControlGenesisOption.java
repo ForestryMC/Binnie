@@ -4,12 +4,12 @@
 
 package binnie.genetics.gui;
 
-import binnie.craftgui.core.geometry.TextJustification;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.CraftGUI;
-import binnie.craftgui.controls.listbox.ControlList;
+import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.controls.listbox.ControlList;
 import binnie.core.genetics.Gene;
-import binnie.craftgui.controls.listbox.ControlOption;
+import binnie.core.craftgui.controls.listbox.ControlOption;
 
 public class ControlGenesisOption extends ControlOption<Gene>
 {
@@ -28,9 +28,9 @@ public class ControlGenesisOption extends ControlOption<Gene>
 	@Override
 	public void onRenderBackground() {
 		super.onRenderBackground();
-		CraftGUI.Render.text(new IArea(0.0f, 0.0f, 70.0f, 22.0f), TextJustification.MiddleCenter, this.getChromosomeName(), this.getColour());
-		CraftGUI.Render.text(new IArea(75.0f, 0.0f, 80.0f, 22.0f), TextJustification.MiddleCenter, this.getAlleleName(), this.getColour());
-		CraftGUI.Render.solid(new IArea(70.0f, 2.0f, 1.0f, 16.0f), -16777216 + this.getColour());
+		CraftGUI.Render.text(new IArea(0.0f, 0.0f, 70.0f, 22.0f), TextJustification.MiddleCenter, this.getChromosomeName(), this.getColor());
+		CraftGUI.Render.text(new IArea(75.0f, 0.0f, 80.0f, 22.0f), TextJustification.MiddleCenter, this.getAlleleName(), this.getColor());
+		CraftGUI.Render.solid(new IArea(70.0f, 2.0f, 1.0f, 16.0f), -16777216 + this.getColor());
 
 	}
 }

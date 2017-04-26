@@ -23,7 +23,7 @@ import binnie.core.machines.component.ComponentRecipe;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.core.machines.Machine;
-import binnie.craftgui.minecraft.IMachineInformation;
+import binnie.core.craftgui.minecraft.IMachineInformation;
 
 public abstract class Designer
 {

@@ -2,44 +2,44 @@ package binnie.core.machines.storage;
 
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
+import binnie.core.craftgui.WidgetAttribute;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.ControlCheckbox;
+import binnie.core.craftgui.controls.ControlText;
+import binnie.core.craftgui.controls.ControlTextEdit;
+import binnie.core.craftgui.controls.button.ControlButton;
+import binnie.core.craftgui.controls.core.Control;
+import binnie.core.craftgui.controls.page.ControlPage;
+import binnie.core.craftgui.controls.page.ControlPages;
+import binnie.core.craftgui.controls.scroll.ControlScrollableContent;
+import binnie.core.craftgui.controls.tab.ControlTab;
+import binnie.core.craftgui.controls.tab.ControlTabBar;
+import binnie.core.craftgui.events.EventHandler;
+import binnie.core.craftgui.events.EventMouse;
+import binnie.core.craftgui.events.EventTextEdit;
+import binnie.core.craftgui.events.EventValueChanged;
+import binnie.core.craftgui.geometry.CraftGUIUtil;
+import binnie.core.craftgui.geometry.IBorder;
+import binnie.core.craftgui.geometry.IPoint;
+import binnie.core.craftgui.geometry.Position;
+import binnie.core.craftgui.minecraft.Dialog;
+import binnie.core.craftgui.minecraft.EnumColor;
+import binnie.core.craftgui.minecraft.IWindowAffectsShiftClick;
+import binnie.core.craftgui.minecraft.MinecraftGUI;
+import binnie.core.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
+import binnie.core.craftgui.minecraft.control.ControlSlide;
+import binnie.core.craftgui.minecraft.control.ControlSlot;
+import binnie.core.craftgui.minecraft.control.ControlSlotArray;
+import binnie.core.craftgui.minecraft.control.ControlTabIcon;
+import binnie.core.craftgui.resource.Texture;
+import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
+import binnie.core.craftgui.window.Panel;
 import binnie.core.machines.Machine;
 import binnie.core.machines.transfer.TransferRequest;
-import binnie.craftgui.controls.ControlCheckbox;
-import binnie.craftgui.controls.ControlText;
-import binnie.craftgui.controls.ControlTextEdit;
-import binnie.craftgui.controls.button.ControlButton;
-import binnie.craftgui.controls.core.Control;
-import binnie.craftgui.controls.page.ControlPage;
-import binnie.craftgui.controls.page.ControlPages;
-import binnie.craftgui.controls.scroll.ControlScrollableContent;
-import binnie.craftgui.controls.tab.ControlTab;
-import binnie.craftgui.controls.tab.ControlTabBar;
-import binnie.craftgui.core.Attribute;
-import binnie.craftgui.core.CraftGUI;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.geometry.CraftGUIUtil;
-import binnie.craftgui.core.geometry.IBorder;
-import binnie.craftgui.core.geometry.IPoint;
-import binnie.craftgui.core.geometry.Position;
-import binnie.craftgui.events.EventHandler;
-import binnie.craftgui.events.EventMouse;
-import binnie.craftgui.events.EventTextEdit;
-import binnie.craftgui.events.EventValueChanged;
-import binnie.craftgui.genetics.machine.WindowMachine;
-import binnie.craftgui.minecraft.Dialog;
-import binnie.craftgui.minecraft.EnumColor;
-import binnie.craftgui.minecraft.IWindowAffectsShiftClick;
-import binnie.craftgui.minecraft.MinecraftGUI;
-import binnie.craftgui.minecraft.Window;
-import binnie.craftgui.minecraft.control.ControlItemDisplay;
-import binnie.craftgui.minecraft.control.ControlPlayerInventory;
-import binnie.craftgui.minecraft.control.ControlSlide;
-import binnie.craftgui.minecraft.control.ControlSlot;
-import binnie.craftgui.minecraft.control.ControlSlotArray;
-import binnie.craftgui.minecraft.control.ControlTabIcon;
-import binnie.craftgui.resource.Texture;
-import binnie.craftgui.resource.minecraft.CraftGUITexture;
-import binnie.craftgui.window.Panel;
+import binnie.genetics.craftgui.WindowMachine;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -73,13 +73,13 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 
 	public WindowCompartment(EntityPlayer player, IInventory inventory, Side side) {
 		super(320, 226, player, inventory, side);
-		this.panels = new HashMap<>();
-		this.currentTab = 0;
+		panels = new HashMap<>();
+		currentTab = 0;
 	}
 
 	@Override
 	public void initialiseClient() {
-		this.setTitle(Machine.getMachine(getInventory()).getPackage().getDisplayName());
+		setTitle(Machine.getMachine(getInventory()).getPackage().getDisplayName());
 		int x = 16;
 		int y = 32;
 		ComponentCompartmentInventory inv = Machine.getMachine(getInventory()).getInterface(ComponentCompartmentInventory.class);
@@ -110,17 +110,17 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				return new ControlTabIcon<Integer>(this, x, y, w, h, value) {
 					@Override
 					public ItemStack getItemStack() {
-						return WindowCompartment.this.getTab(value).getIcon();
+						return getTab(value).getIcon();
 					}
 
 					@Override
 					public String getName() {
-						return WindowCompartment.this.getTab(value).getName();
+						return getTab(value).getName();
 					}
 
 					@Override
 					public int getOutlineColour() {
-						return WindowCompartment.this.getTab(value).getColor().getColour();
+						return getTab(value).getColor().getColour();
 					}
 
 					@Override
@@ -142,7 +142,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				int i = ((Integer) event.getValue()).intValue();
 				nbt.setByte("i", (byte) i);
 				Window.get(tab).sendClientAction("tab-change", nbt);
-				WindowCompartment.this.currentTab = i;
+				currentTab = i;
 			}
 		}.setOrigin(EventHandler.Origin.DirectChild, tab));
 		x += 24;
@@ -159,12 +159,12 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				@Override
 				public void onRenderForeground() {
 					Texture iTexture = CraftGUI.Render.getTexture(CraftGUITexture.TabOutline);
-					CraftGUI.Render.colour(WindowCompartment.this.getTab(WindowCompartment.this.panels.get(this)).getColor().getColour());
+					CraftGUI.Render.colour(getTab(panels.get(this)).getColor().getColour());
 					CraftGUI.Render.texture(iTexture, getArea().inset(3));
 				}
 			};
 
-			this.panels.put(panel, p2);
+			panels.put(panel, p2);
 			int[] slotsIDs = new int[inv.getPageSize()];
 			for (int k = 0; k < inv.getPageSize(); ++k) {
 				slotsIDs[k] = i++;
@@ -179,17 +179,17 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 					return new ControlTabIcon<Integer>(this, x, y, w, h, value) {
 						@Override
 						public ItemStack getItemStack() {
-							return WindowCompartment.this.getTab(value).getIcon();
+							return getTab(value).getIcon();
 						}
 
 						@Override
 						public String getName() {
-							return WindowCompartment.this.getTab(value).getName();
+							return getTab(value).getName();
 						}
 
 						@Override
 						public int getOutlineColour() {
-							return WindowCompartment.this.getTab(value).getColor().getColour();
+							return getTab(value).getColor().getColour();
 						}
 
 						@Override
@@ -209,15 +209,15 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 					int i = ((Integer) event.getValue()).intValue();
 					nbt.setByte("i", (byte) i);
 					Window.get(tab).sendClientAction("tab-change", nbt);
-					WindowCompartment.this.currentTab = i;
+					currentTab = i;
 				}
 			}.setOrigin(EventHandler.Origin.DirectChild, tab2));
 			CraftGUIUtil.linkWidgets(tab2, compartmentPages);
 			x += 24;
 		}
 		x += 16;
-		this.setSize(new IPoint(Math.max(32 + compartmentWidth, 252), this.h()));
-		controlCompartment.setPosition(new IPoint((this.w() - controlCompartment.w()) / 2.0f, controlCompartment.y()));
+		setSize(new IPoint(Math.max(32 + compartmentWidth, 252), h()));
+		controlCompartment.setPosition(new IPoint((w() - controlCompartment.w()) / 2.0f, controlCompartment.y()));
 		ControlPlayerInventory invent = new ControlPlayerInventory(this, true);
 		ControlSlide slide = new ControlSlide(this, 0.0f, 134.0f, 136.0f, 92.0f, Position.Left);
 		slide.setLabel("Tab Properties");
@@ -235,32 +235,32 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		tabName.addSelfEventHandler(new EventTextEdit.Handler() {
 			@Override
 			public void onEvent(EventTextEdit event) {
-				CompartmentTab tab = WindowCompartment.this.getCurrentTab();
+				CompartmentTab tab = getCurrentTab();
 				tab.setName(event.getValue());
 				NBTTagCompound nbt = new NBTTagCompound();
 				tab.writeToNBT(nbt);
-				WindowCompartment.this.sendClientAction("comp-change-tab", nbt);
+				sendClientAction("comp-change-tab", nbt);
 			}
-		}.setOrigin(EventHandler.Origin.Self, this.tabName));
+		}.setOrigin(EventHandler.Origin.Self, tabName));
 		y2 += 20;
 		new ControlText(tabPropertyPanel, new IPoint(4.0f, y2), "Tab Icon: ");
 
 		tabIcon = new ControlItemDisplay(tabPropertyPanel, 58.0f, y2 - 4);
 		tabIcon.setItemStack(new ItemStack(Items.paper));
-		tabIcon.addAttribute(Attribute.MouseOver);
+		tabIcon.addAttribute(WidgetAttribute.MouseOver);
 		tabIcon.addSelfEventHandler(new EventMouse.Down.Handler() {
 			@Override
 			public void onEvent(EventMouse.Down event) {
-				if (WindowCompartment.this.getHeldItemStack() == null) {
+				if (getHeldItemStack() == null) {
 					return;
 				}
-				CompartmentTab tab = WindowCompartment.this.getCurrentTab();
-				ItemStack stack = WindowCompartment.this.getHeldItemStack().copy();
+				CompartmentTab tab = getCurrentTab();
+				ItemStack stack = getHeldItemStack().copy();
 				stack.stackSize = 1;
 				tab.setIcon(stack);
 				NBTTagCompound nbt = new NBTTagCompound();
 				tab.writeToNBT(nbt);
-				WindowCompartment.this.sendClientAction("comp-change-tab", nbt);
+				sendClientAction("comp-change-tab", nbt);
 			}
 		});
 
@@ -276,11 +276,11 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			color.addSelfEventHandler(new EventMouse.Down.Handler() {
 				@Override
 				public void onEvent(EventMouse.Down event) {
-					CompartmentTab tab = WindowCompartment.this.getCurrentTab();
+					CompartmentTab tab = getCurrentTab();
 					tab.setColor(color.getValue());
 					NBTTagCompound nbt = new NBTTagCompound();
 					tab.writeToNBT(nbt);
-					WindowCompartment.this.sendClientAction("comp-change-tab", nbt);
+					sendClientAction("comp-change-tab", nbt);
 				}
 			});
 			color.addHelp("Colour Selector");
@@ -290,7 +290,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		ControlButton searchButton = new ControlButton(controlCompartment, compartmentWidth - 24 - 64 - 8, compartmentPageHeight, 64.0f, 16.0f, "Search") {
 			@Override
 			protected void onMouseClick(EventMouse.Down event) {
-				WindowCompartment.this.createSearchDialog();
+				createSearchDialog();
 			}
 
 			@Override
@@ -322,7 +322,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 					@Override
 					public void onRenderBackground() {
 						CraftGUI.Render.colour(11184810);
-						CraftGUI.Render.texture(CraftGUITexture.Outline, this.getArea().inset(new IBorder(0.0f, 6.0f, 0.0f, 0.0f)));
+						CraftGUI.Render.texture(CraftGUITexture.Outline, getArea().inset(new IBorder(0.0f, 6.0f, 0.0f, 0.0f)));
 					}
 				};
 				slotGrid = new Control(scroll, 1.0f, 1.0f, 108.0f, 18.0f);
@@ -363,7 +363,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 
 			private void updateSearch() {
 				Map<Integer, String> slotIds = new HashMap<>();
-				IInventory inv = WindowCompartment.this.getInventory();
+				IInventory inv = getInventory();
 				for (int i = 0; i < inv.getSizeInventory(); ++i) {
 					ItemStack stack = inv.getStackInSlot(i);
 					if (stack == null) {
@@ -379,7 +379,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 					}
 				}
 
-				if (this.sortByName) {
+				if (sortByName) {
 					List<Entry<Integer, String>> list = new LinkedList(slotIds.entrySet());
 					Collections.sort(list, new Comparator<Entry<Integer, String>>() {
 						@Override

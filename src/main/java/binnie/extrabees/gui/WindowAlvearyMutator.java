@@ -6,20 +6,20 @@ package binnie.extrabees.gui;
 
 import binnie.extrabees.ExtraBees;
 import binnie.core.AbstractMod;
-import binnie.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import net.minecraft.item.ItemStack;
 import binnie.extrabees.apiary.machine.AlvearyMutator;
-import binnie.craftgui.controls.ControlText;
-import binnie.craftgui.core.geometry.TextJustification;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.minecraft.control.ControlSlot;
+import binnie.core.craftgui.controls.ControlText;
+import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.core.machines.TileEntityMachine;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.entity.player.EntityPlayer;
-import binnie.craftgui.minecraft.control.ControlPlayerInventory;
+import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
 import binnie.core.machines.Machine;
-import binnie.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.Window;
 
 public class WindowAlvearyMutator extends Window
 {
@@ -44,7 +44,7 @@ public class WindowAlvearyMutator extends Window
 		this.playerInventory = new ControlPlayerInventory(this);
 		final ControlSlot slot = new ControlSlot(this, 79.0f, 30.0f);
 		slot.assign(0);
-		new ControlText(this, new IArea(0.0f, 52.0f, this.w(), 16.0f), "Possible Mutagens:", TextJustification.MiddleCenter).setColour(5592405);
+		new ControlText(this, new IArea(0.0f, 52.0f, this.w(), 16.0f), "Possible Mutagens:", TextJustification.MiddleCenter).setColor(5592405);
 		final int size = AlvearyMutator.getMutagens().size();
 		final int w = size * 18;
 		if (size > 0) {

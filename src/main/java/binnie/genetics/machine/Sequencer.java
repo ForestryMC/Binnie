@@ -33,7 +33,7 @@ import binnie.core.machines.Machine;
 import binnie.genetics.Genetics;
 import binnie.Binnie;
 import binnie.genetics.core.GeneticsTexture;
-import binnie.craftgui.minecraft.IMachineInformation;
+import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.resource.BinnieIcon;
 
 public class Sequencer

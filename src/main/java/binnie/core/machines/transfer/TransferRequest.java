@@ -103,7 +103,7 @@ public class TransferRequest {
 			return null;
 		}
 
-		if (this.transferLiquids && this.destination instanceof ITankMachine) {
+		if (transferLiquids && destination instanceof ITankMachine) {
 			for (int tankID : targetTanks) {
 				item = transferToTank(item, origin, (ITankMachine) destination, tankID, doAdd);
 				if (item != null) {

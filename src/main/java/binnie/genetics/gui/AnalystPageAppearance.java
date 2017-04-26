@@ -6,24 +6,24 @@ package binnie.genetics.gui;
 
 import forestry.api.genetics.IAlleleSpecies;
 import binnie.botany.api.EnumFlowerStage;
-import binnie.craftgui.core.geometry.IPoint;
-import binnie.craftgui.core.CraftGUI;
+import binnie.core.craftgui.geometry.IPoint;
+import binnie.core.craftgui.CraftGUI;
 import org.lwjgl.opengl.GL11;
-import binnie.craftgui.minecraft.control.ControlIconDisplay;
-import binnie.craftgui.botany.ControlColourDisplay;
-import binnie.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.minecraft.control.ControlIconDisplay;
+import binnie.botany.craftgui.ControlColourDisplay;
+import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.botany.api.IFlower;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.IWidget;
 
 public class AnalystPageAppearance extends ControlAnalystPage
 {
 	public AnalystPageAppearance(final IWidget parent, final IArea area, final IFlower ind) {
 		super(parent, area);
-		this.setColour(3355443);
+		this.setColor(3355443);
 		int y = 4;
 		final IAlleleSpecies species = ind.getGenome().getPrimary();
-		new ControlTextCentered(this, y, "§nAppearance").setColour(this.getColour());
+		new ControlTextCentered(this, y, "§nAppearance").setColor(this.getColor());
 		y += 12;
 		final ControlColourDisplay a = new ControlColourDisplay(this, this.w() / 2.0f - 28.0f, y);
 		a.setValue(ind.getGenome().getPrimaryColor());

@@ -9,7 +9,7 @@ public class PowerInterface implements INBTTagable {
 
 	public PowerInterface(int capacity) {
 		this.capacity = capacity * 100;
-		this.energy = 0;
+		energy = 0;
 	}
 
 	public int getCapacity() {
@@ -21,7 +21,7 @@ public class PowerInterface implements INBTTagable {
 	}
 
 	public int addEnergy(int amount, boolean shouldDo) {
-		int added = Math.min(this.getEnergySpace(), amount);
+		int added = Math.min(getEnergySpace(), amount);
 		if (shouldDo) {
 			energy += added;
 		}

@@ -4,25 +4,25 @@
 
 package binnie.genetics.core;
 
-import binnie.craftgui.genetics.machine.WindowSplicer;
-import binnie.craftgui.genetics.machine.WindowAcclimatiser;
-import binnie.craftgui.genetics.machine.WindowIncubator;
-import binnie.craftgui.genetics.machine.WindowAnalyser;
-import binnie.craftgui.genetics.machine.WindowInoculator;
-import binnie.craftgui.genetics.machine.WindowPolymeriser;
-import binnie.craftgui.genetics.machine.WindowSequencer;
-import binnie.craftgui.genetics.machine.WindowIsolator;
-import binnie.craftgui.genetics.machine.WindowGenepool;
+import binnie.genetics.craftgui.WindowSplicer;
+import binnie.genetics.craftgui.WindowAcclimatiser;
+import binnie.genetics.craftgui.WindowIncubator;
+import binnie.genetics.craftgui.WindowAnalyser;
+import binnie.genetics.craftgui.WindowInoculator;
+import binnie.genetics.craftgui.WindowPolymeriser;
+import binnie.genetics.craftgui.WindowSequencer;
+import binnie.genetics.craftgui.WindowIsolator;
+import binnie.genetics.craftgui.WindowGenepool;
 import net.minecraft.tileentity.TileEntity;
-import binnie.craftgui.genetics.machine.WindowGeneBankNEI;
-import binnie.craftgui.genetics.machine.WindowGeneBank;
+import binnie.genetics.craftgui.WindowGeneBankNEI;
+import binnie.genetics.craftgui.WindowGeneBank;
 import net.minecraft.world.World;
 import java.lang.reflect.Constructor;
 import binnie.genetics.gui.WindowAnalyst;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.entity.player.EntityPlayer;
-import binnie.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.Window;
 import binnie.core.gui.IBinnieGUID;
 
 public enum GeneticsGUI implements IBinnieGUID

@@ -2,7 +2,7 @@ package binnie.core.gui;
 
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
-import binnie.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.Window;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,7 +17,7 @@ public class BinnieGUIHandler implements IGuiHandler {
 
 	@Override
 	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
-		Window window = this.getWindow(id, player, world, x, y, z, Side.SERVER);
+		Window window = getWindow(id, player, world, x, y, z, Side.SERVER);
 		if (window == null) {
 			return null;
 		}

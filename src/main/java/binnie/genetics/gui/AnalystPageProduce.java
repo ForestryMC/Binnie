@@ -4,8 +4,8 @@
 
 package binnie.genetics.gui;
 
-import binnie.craftgui.minecraft.control.ControlItemDisplay;
-import binnie.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.core.craftgui.controls.ControlTextCentered;
 import net.minecraft.init.Items;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import binnie.extratrees.machines.Distillery;
@@ -25,8 +25,8 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import binnie.core.util.UniqueItemStackSet;
 import java.util.Collection;
 import net.minecraft.item.ItemStack;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.IWidget;
 
 public abstract class AnalystPageProduce extends ControlAnalystPage
 {
@@ -218,7 +218,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage
 	}
 
 	protected int getRefined(final String string, int y, final Collection<ItemStack> products) {
-		new ControlTextCentered(this, y, string).setColour(this.getColour());
+		new ControlTextCentered(this, y, string).setColor(this.getColor());
 		y += 10;
 		final int maxBiomePerLine = (int) ((this.w() + 2.0f - 16.0f) / 18.0f);
 		final float biomeListX = (this.w() - (Math.min(maxBiomePerLine, products.size()) * 18 - 2)) / 2.0f;

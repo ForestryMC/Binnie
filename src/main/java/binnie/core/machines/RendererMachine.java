@@ -27,7 +27,7 @@ public class RendererMachine extends TileEntitySpecialRenderer implements ISimpl
 
 	public void renderInvBlock(RenderBlocks renderblocks, Block block, int i, int j) {
 		TileEntity entity = block.createTileEntity(null, i);
-		this.renderTileEntity((TileEntityMachine) entity, 0.0, -0.1, 0.0, 0.0625f, renderblocks);
+		renderTileEntity((TileEntityMachine) entity, 0.0, -0.1, 0.0, 0.0625f, renderblocks);
 	}
 
 	@Override

@@ -25,7 +25,7 @@ public class ManagerLiquid extends ManagerBase {
 
 	public void createLiquids(IFluidType[] liquids, int startID) {
 		for (IFluidType liquid : liquids) {
-			BinnieFluid fluid = this.createLiquid(liquid, startID++);
+			BinnieFluid fluid = createLiquid(liquid, startID++);
 			if (fluid == null) {
 				throw new RuntimeException("Liquid registered incorrectly - " + liquid.getIdentifier());
 			}

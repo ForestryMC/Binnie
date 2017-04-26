@@ -5,9 +5,9 @@
 package binnie.botany.core;
 
 import net.minecraft.tileentity.TileEntity;
-import binnie.craftgui.botany.WindowBotanistDatabase;
+import binnie.botany.craftgui.WindowBotanistDatabase;
 import net.minecraft.inventory.IInventory;
-import binnie.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.Window;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.world.World;
 import net.minecraft.entity.player.EntityPlayer;

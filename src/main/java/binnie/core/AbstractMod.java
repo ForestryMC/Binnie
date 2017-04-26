@@ -25,8 +25,8 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 	protected List<IInitializable> modules;
 
 	public AbstractMod() {
-		this.fields = new LinkedHashSet<>();
-		this.modules = new ArrayList<>();
+		fields = new LinkedHashSet<>();
+		modules = new ArrayList<>();
 		BinnieCore.registerMod(this);
 		MinecraftForge.EVENT_BUS.register(this);
 	}
@@ -84,7 +84,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 		for (IInitializable module : modules) {
 			Collections.addAll(fields, module.getClass().getFields());
 		}
-		for (Field field4 : this.fields) {
+		for (Field field4 : fields) {
 			try {
 				FieldParser.preInitParse(field4, this);
 			} catch (Exception e) {
@@ -100,14 +100,14 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 		}
 		getProxy().init();
 
-		wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(this.getChannel());
+		wrapper = NetworkRegistry.INSTANCE.newSimpleChannel(getChannel());
 		wrapper.registerMessage(getPacketHandler(), MessageBinnie.class, 1, Side.CLIENT);
 		wrapper.registerMessage(getPacketHandler(), MessageBinnie.class, 1, Side.SERVER);
-		for (IInitializable module : this.modules) {
+		for (IInitializable module : modules) {
 			module.init();
 		}
 
-		for (Field field : this.fields) {
+		for (Field field : fields) {
 			try {
 				FieldParser.initParse(field, this);
 			} catch (Exception e) {
@@ -123,11 +123,11 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 		}
 
 		getProxy().postInit();
-		for (IInitializable module : this.modules) {
+		for (IInitializable module : modules) {
 			module.postInit();
 		}
 
-		for (Field field : this.fields) {
+		for (Field field : fields) {
 			try {
 				FieldParser.postInitParse(field, this);
 			} catch (Exception e) {

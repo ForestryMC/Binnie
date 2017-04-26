@@ -122,6 +122,6 @@ public abstract class BaseSlot<T> implements INBTTagable, IValidator<T> {
 	public abstract String getName();
 
 	public Validator<T> getValidator() {
-		return this.validator;
+		return validator;
 	}
 }

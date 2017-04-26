@@ -9,21 +9,21 @@ import forestry.api.lepidopterology.IButterfly;
 import binnie.botany.api.IFlower;
 import forestry.api.apiculture.IBee;
 import forestry.api.arboriculture.ITree;
-import binnie.craftgui.controls.ControlTextCentered;
-import binnie.craftgui.events.EventKey;
-import binnie.craftgui.minecraft.control.ControlPlayerInventory;
-import binnie.craftgui.core.geometry.Position;
-import binnie.craftgui.controls.scroll.ControlScrollBar;
-import binnie.craftgui.minecraft.MinecraftGUI;
-import binnie.craftgui.minecraft.InventoryType;
-import binnie.craftgui.minecraft.control.ControlSlot;
-import binnie.craftgui.core.geometry.IPoint;
-import binnie.craftgui.resource.minecraft.CraftGUITexture;
-import binnie.craftgui.core.CraftGUI;
-import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.events.EventMouse;
-import binnie.craftgui.core.Attribute;
-import binnie.craftgui.core.Widget;
+import binnie.core.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.events.EventKey;
+import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
+import binnie.core.craftgui.geometry.Position;
+import binnie.core.craftgui.controls.scroll.ControlScrollBar;
+import binnie.core.craftgui.minecraft.MinecraftGUI;
+import binnie.core.craftgui.minecraft.InventoryType;
+import binnie.core.craftgui.minecraft.control.ControlSlot;
+import binnie.core.craftgui.geometry.IPoint;
+import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.events.EventMouse;
+import binnie.core.craftgui.WidgetAttribute;
+import binnie.core.craftgui.Widget;
 import forestry.api.genetics.IBreedingTracker;
 import binnie.Binnie;
 import binnie.genetics.machine.ModuleMachine;
@@ -39,14 +39,14 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.entity.player.EntityPlayer;
 import binnie.core.genetics.BreedingSystem;
 import forestry.api.genetics.IIndividual;
-import binnie.craftgui.minecraft.control.ControlSlide;
-import binnie.craftgui.core.geometry.IArea;
+import binnie.core.craftgui.minecraft.control.ControlSlide;
+import binnie.core.craftgui.geometry.IArea;
 import java.util.List;
-import binnie.craftgui.window.Panel;
-import binnie.craftgui.controls.core.Control;
-import binnie.craftgui.controls.scroll.ControlScrollableContent;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.minecraft.Window;
+import binnie.core.craftgui.window.Panel;
+import binnie.core.craftgui.controls.core.Control;
+import binnie.core.craftgui.controls.scroll.ControlScrollableContent;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.minecraft.Window;
 
 public class WindowAnalyst extends Window
 {
@@ -129,7 +129,7 @@ public class WindowAnalyst extends Window
 				new Control(this, x, y, 20.0f, 20.0f) {
 					@Override
 					public void initialise() {
-						this.addAttribute(Attribute.MouseOver);
+						this.addAttribute(WidgetAttribute.MouseOver);
 						this.addSelfEventHandler(new EventMouse.Down.Handler() {
 							@Override
 							public void onEvent(final EventMouse.Down event) {
@@ -175,7 +175,7 @@ public class WindowAnalyst extends Window
 
 			@Override
 			public void initialise() {
-				this.setColour(4473924);
+				this.setColor(4473924);
 				final float sectionWidth = (this.w() - 8.0f - 4.0f) / 2.0f;
 				WindowAnalyst.this.leftPage = new ControlScrollableContent<IWidget>(this, 3.0f, 3.0f, sectionWidth + 2.0f, this.h() - 8.0f + 2.0f, 0.0f) {
 					@Override
@@ -183,7 +183,7 @@ public class WindowAnalyst extends Window
 						if (this.getContent() == null) {
 							return;
 						}
-						CraftGUI.Render.colour(this.getContent().getColour());
+						CraftGUI.Render.colour(this.getContent().getColor());
 						CraftGUI.Render.texture(CraftGUITexture.TabOutline, this.getArea());
 					}
 				};
@@ -196,8 +196,8 @@ public class WindowAnalyst extends Window
 						if (WindowAnalyst.this.leftPage.getContent() == null) {
 							return;
 						}
-						CraftGUI.Render.gradientRect(this.getArea(), 1140850688 + WindowAnalyst.this.leftPage.getContent().getColour(), 1140850688 + WindowAnalyst.this.leftPage.getContent().getColour());
-						CraftGUI.Render.solid(this.getRenderArea(), WindowAnalyst.this.leftPage.getContent().getColour());
+						CraftGUI.Render.gradientRect(this.getArea(), 1140850688 + WindowAnalyst.this.leftPage.getContent().getColor(), 1140850688 + WindowAnalyst.this.leftPage.getContent().getColor());
+						CraftGUI.Render.solid(this.getRenderArea(), WindowAnalyst.this.leftPage.getContent().getColor());
 					}
 				};
 				WindowAnalyst.this.rightPage = new ControlScrollableContent<IWidget>(this, 3.0f + sectionWidth + 4.0f, 3.0f, sectionWidth + 2.0f, this.h() - 8.0f + 2.0f, 0.0f) {
@@ -206,7 +206,7 @@ public class WindowAnalyst extends Window
 						if (this.getContent() == null) {
 							return;
 						}
-						CraftGUI.Render.colour(this.getContent().getColour());
+						CraftGUI.Render.colour(this.getContent().getColor());
 						CraftGUI.Render.texture(CraftGUITexture.TabOutline, this.getArea());
 					}
 				};
@@ -219,8 +219,8 @@ public class WindowAnalyst extends Window
 						if (WindowAnalyst.this.rightPage.getContent() == null) {
 							return;
 						}
-						CraftGUI.Render.gradientRect(this.getArea(), 1140850688 + WindowAnalyst.this.rightPage.getContent().getColour(), 1140850688 + WindowAnalyst.this.rightPage.getContent().getColour());
-						CraftGUI.Render.solid(this.getRenderArea(), WindowAnalyst.this.rightPage.getContent().getColour());
+						CraftGUI.Render.gradientRect(this.getArea(), 1140850688 + WindowAnalyst.this.rightPage.getContent().getColor(), 1140850688 + WindowAnalyst.this.rightPage.getContent().getColor());
+						CraftGUI.Render.solid(this.getRenderArea(), WindowAnalyst.this.rightPage.getContent().getColor());
 					}
 				};
 				WindowAnalyst.this.analystPageSize = new IArea(1.0f, 1.0f, sectionWidth, this.h() - 8.0f);
@@ -246,7 +246,7 @@ public class WindowAnalyst extends Window
 			this.analystNone = new Control(this.analystPanel, 0.0f, 0.0f, this.analystPanel.w(), this.analystPanel.h()) {
 				@Override
 				public void initialise() {
-					new ControlTextCentered(this, 20.0f, "Add a bee, tree, flower or butterfly to the top left slot. DNA Dye is required if it has not been analysed yet. This dye can also convert vanilla items to breedable individuals.").setColour(4473924);
+					new ControlTextCentered(this, 20.0f, "Add a bee, tree, flower or butterfly to the top left slot. DNA Dye is required if it has not been analysed yet. This dye can also convert vanilla items to breedable individuals.").setColor(4473924);
 					new ControlPlayerInventory(this);
 				}
 			};
@@ -352,7 +352,7 @@ public class WindowAnalyst extends Window
 				@Override
 				protected void initialise() {
 					super.initialise();
-					this.addAttribute(Attribute.MouseOver);
+					this.addAttribute(WidgetAttribute.MouseOver);
 					this.value = page;
 					this.addSelfEventHandler(new EventMouse.Down.Handler() {
 						@Override
@@ -383,9 +383,9 @@ public class WindowAnalyst extends Window
 				@Override
 				public void onRenderBackground() {
 					final boolean active = this.value == WindowAnalyst.this.leftPage.getContent() || this.value == WindowAnalyst.this.rightPage.getContent();
-					CraftGUI.Render.colour((active ? -16777216 : 1140850688) + this.value.getColour());
+					CraftGUI.Render.colour((active ? -16777216 : 1140850688) + this.value.getColor());
 					CraftGUI.Render.texture(CraftGUITexture.TabSolid, this.getArea().inset(1));
-					CraftGUI.Render.colour(this.value.getColour());
+					CraftGUI.Render.colour(this.value.getColor());
 					CraftGUI.Render.texture(CraftGUITexture.TabOutline, this.getArea().inset(1));
 					super.onRenderBackground();
 				}

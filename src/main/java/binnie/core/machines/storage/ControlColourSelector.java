@@ -1,13 +1,13 @@
 package binnie.core.machines.storage;
 
-import binnie.craftgui.controls.core.Control;
-import binnie.craftgui.controls.core.IControlValue;
-import binnie.craftgui.core.Attribute;
-import binnie.craftgui.core.CraftGUI;
-import binnie.craftgui.core.ITooltip;
-import binnie.craftgui.core.IWidget;
-import binnie.craftgui.core.Tooltip;
-import binnie.craftgui.minecraft.EnumColor;
+import binnie.core.craftgui.WidgetAttribute;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.ITooltip;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.controls.core.Control;
+import binnie.core.craftgui.controls.core.IControlValue;
+import binnie.core.craftgui.minecraft.EnumColor;
 
 class ControlColourSelector extends Control implements ITooltip, IControlValue<EnumColor> {
 	private EnumColor value;
@@ -15,7 +15,7 @@ class ControlColourSelector extends Control implements ITooltip, IControlValue<E
 	public ControlColourSelector(IWidget parent, float x, float y, float w, float h, EnumColor value) {
 		super(parent, x, y, w, h);
 		setValue(value);
-		addAttribute(Attribute.MouseOver);
+		addAttribute(WidgetAttribute.MouseOver);
 	}
 
 	@Override
@@ -31,7 +31,7 @@ class ControlColourSelector extends Control implements ITooltip, IControlValue<E
 	@Override
 	public void setValue(EnumColor value) {
 		this.value = value;
-		setColour(value.getColour());
+		setColor(value.getColour());
 	}
 
 	@Override

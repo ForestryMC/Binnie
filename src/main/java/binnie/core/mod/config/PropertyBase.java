@@ -23,7 +23,7 @@ abstract class PropertyBase<ValueType, AnnotationType extends Annotation> {
 		this.field = field;
 		this.file = file;
 		this.configProperty = configProperty;
-		this.annotatedProperty = annotedProperty;
+		annotatedProperty = annotedProperty;
 		defaultValue = getDefaultValue(field);
 		property = getProperty();
 

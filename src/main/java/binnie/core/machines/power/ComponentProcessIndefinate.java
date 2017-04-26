@@ -32,17 +32,17 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 	}
 
 	protected IPoweredMachine getPower() {
-		return this.getMachine().getInterface(IPoweredMachine.class);
+		return getMachine().getInterface(IPoweredMachine.class);
 	}
 
 	@Override
 	public float getEnergyPerTick() {
-		return this.energyPerTick;
+		return energyPerTick;
 	}
 
 	@Override
 	public void onUpdate() {
-		float energyAvailable = (float) this.getPower().getInterface().useEnergy(PowerSystem.RF, this.getEnergyPerTick(), false);
+		float energyAvailable = (float) getPower().getInterface().useEnergy(PowerSystem.RF, getEnergyPerTick(), false);
 		if (canWork() == null) {
 			if (!isInProgress() && canProgress() == null) {
 				onStartTask();
@@ -56,7 +56,7 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 		if (actionPauseProcess > 0.0f) {
 			actionPauseProcess--;
 		}
-		if (this.actionCancelTask > 0.0f) {
+		if (actionCancelTask > 0.0f) {
 			actionCancelTask--;
 		}
 

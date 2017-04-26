@@ -35,7 +35,7 @@ import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.core.machines.Machine;
 import binnie.genetics.core.GeneticsTexture;
-import binnie.craftgui.minecraft.IMachineInformation;
+import binnie.core.craftgui.minecraft.IMachineInformation;
 
 public class Polymeriser
 {

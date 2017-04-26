@@ -4,21 +4,20 @@
 
 package binnie.genetics.gui;
 
-import binnie.craftgui.core.geometry.TextJustification;
-import binnie.craftgui.core.Attribute;
-import binnie.craftgui.minecraft.EnumColor;
+import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.WidgetAttribute;
+import binnie.core.craftgui.minecraft.EnumColor;
 import java.util.Collection;
 import java.util.List;
 import forestry.api.genetics.IAllele;
 import binnie.genetics.item.ModuleItem;
-import binnie.craftgui.core.geometry.IPoint;
-import binnie.craftgui.core.CraftGUI;
+import binnie.core.craftgui.geometry.IPoint;
+import binnie.core.craftgui.CraftGUI;
 import forestry.api.genetics.IAlleleSpecies;
 import binnie.core.genetics.BreedingSystem;
-import binnie.craftgui.controls.core.Control;
+import binnie.core.craftgui.controls.core.Control;
 import forestry.api.genetics.IMutation;
-import binnie.craftgui.minecraft.control.ControlItemDisplay;
-import net.minecraft.block.Block;
+import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import net.minecraft.init.Blocks;
 import binnie.core.Mods;
 import binnie.core.genetics.ForestryAllele;
@@ -26,20 +25,20 @@ import net.minecraft.item.ItemStack;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.genetics.ExtraBeesSpecies;
 import forestry.api.apiculture.IBee;
-import binnie.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.Window;
 import binnie.Binnie;
-import binnie.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.controls.ControlTextCentered;
 import forestry.api.genetics.IIndividual;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.IWidget;
 
 public class AnalystPageMutations extends ControlAnalystPage
 {
 	public AnalystPageMutations(final IWidget parent, final IArea area, final IIndividual ind, final boolean isMaster) {
 		super(parent, area);
-		this.setColour(3355392);
+		this.setColor(3355392);
 		int y = 4;
-		new ControlTextCentered(this, y, "§nMutations").setColour(this.getColour());
+		new ControlTextCentered(this, y, "§nMutations").setColor(this.getColor());
 		y += 18;
 		final BreedingSystem system = Binnie.Genetics.getSystem(ind.getGenome().getSpeciesRoot());
 		final List<IMutation> discovered = system.getDiscoveredMutations(Window.get(this).getWorld(), Window.get(this).getUsername());
@@ -82,19 +81,19 @@ public class AnalystPageMutations extends ControlAnalystPage
 				hive = new ItemStack(Blocks.chest);
 			}
 			if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Valiant.getAllele()) {
-				new ControlTextCentered(this, y, "Natural Habitat").setColour(this.getColour());
+				new ControlTextCentered(this, y, "Natural Habitat").setColor(this.getColor());
 				y += 10;
-				new ControlTextCentered(this, y, "§oFound in any Hive").setColour(this.getColour());
+				new ControlTextCentered(this, y, "§oFound in any Hive").setColor(this.getColor());
 				y += 22;
 			}
 			else if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Monastic.getAllele()) {
-				new ControlTextCentered(this, y, "Natural Habitat").setColour(this.getColour());
+				new ControlTextCentered(this, y, "Natural Habitat").setColor(this.getColor());
 				y += 10;
-				new ControlTextCentered(this, y, "§oBought from Villagers").setColour(this.getColour());
+				new ControlTextCentered(this, y, "§oBought from Villagers").setColor(this.getColor());
 				y += 22;
 			}
 			else if (hive != null) {
-				new ControlTextCentered(this, y, "Natural Habitat").setColour(this.getColour());
+				new ControlTextCentered(this, y, "Natural Habitat").setColor(this.getColor());
 				y += 10;
 				final ControlItemDisplay display = new ControlItemDisplay(this, (this.w() - 16.0f) / 2.0f, y);
 				if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Steadfast.getAllele()) {
@@ -113,7 +112,7 @@ public class AnalystPageMutations extends ControlAnalystPage
 			if (resultant.size() == 1) {
 				ox = (this.w() - 44.0f) / 2.0f;
 			}
-			new ControlTextCentered(this, y, "Resultant Mutations").setColour(this.getColour());
+			new ControlTextCentered(this, y, "Resultant Mutations").setColor(this.getColor());
 			y += 10;
 			for (final IMutation mutation : resultant) {
 				final float specificChance = this.getSpecificChance(ind, mutation, system);
@@ -171,7 +170,7 @@ public class AnalystPageMutations extends ControlAnalystPage
 			if (further.size() == 1) {
 				ox = (this.w() - 44.0f) / 2.0f;
 			}
-			new ControlTextCentered(this, y, "Further Mutations").setColour(this.getColour());
+			new ControlTextCentered(this, y, "Further Mutations").setColor(this.getColor());
 			y += 10;
 			for (final IMutation mutation : further) {
 				final IAllele speciesComb = mutation.getPartner(speciesCurrent);
@@ -265,7 +264,7 @@ public class AnalystPageMutations extends ControlAnalystPage
 	{
 		public ControlUnknownMutation(final IWidget parent, final float x, final float y, final float w, final float h) {
 			super(parent, x, y, w, h);
-			this.addAttribute(Attribute.MouseOver);
+			this.addAttribute(WidgetAttribute.MouseOver);
 			this.addTooltip("Unknown Mutation");
 		}
 

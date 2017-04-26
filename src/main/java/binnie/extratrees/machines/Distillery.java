@@ -15,7 +15,7 @@ import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
-import binnie.craftgui.minecraft.IMachineInformation;
+import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.core.ExtraTreesGUID;
 import cpw.mods.fml.relauncher.Side;

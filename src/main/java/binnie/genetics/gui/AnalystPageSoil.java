@@ -9,42 +9,41 @@ import java.util.List;
 import forestry.api.genetics.EnumTolerance;
 import java.util.EnumSet;
 import java.util.ArrayList;
-import binnie.craftgui.minecraft.control.ControlItemDisplay;
-import net.minecraft.block.Block;
+import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import net.minecraft.item.ItemStack;
 import binnie.botany.gardening.BlockSoil;
 import binnie.botany.Botany;
 import binnie.botany.api.EnumAcidity;
 import binnie.core.genetics.Tolerance;
 import binnie.botany.api.EnumMoisture;
-import binnie.craftgui.controls.ControlText;
-import binnie.craftgui.core.geometry.TextJustification;
-import binnie.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.controls.ControlText;
+import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.botany.api.IFlower;
-import binnie.craftgui.core.geometry.IArea;
-import binnie.craftgui.core.IWidget;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.IWidget;
 
 public class AnalystPageSoil extends ControlAnalystPage
 {
 	public AnalystPageSoil(final IWidget parent, final IArea area, final IFlower flower) {
 		super(parent, area);
-		this.setColour(6697728);
+		this.setColor(6697728);
 		final EnumMoisture moisture = flower.getGenome().getPrimary().getMoisture();
 		final EnumTolerance moistureTol = flower.getGenome().getToleranceMoisture();
 		final EnumAcidity pH = flower.getGenome().getPrimary().getPH();
 		final EnumTolerance pHTol = flower.getGenome().getTolerancePH();
 		int y = 4;
-		new ControlTextCentered(this, y, "§nSoil").setColour(this.getColour());
+		new ControlTextCentered(this, y, "§nSoil").setColor(this.getColor());
 		y += 16;
-		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), "Moisture Tolerance", TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), "Moisture Tolerance", TextJustification.MiddleCenter).setColor(this.getColor());
 		y += 12;
 		this.createMoisture(this, (this.w() - 100.0f) / 2.0f, y, 100.0f, 10.0f, moisture, moistureTol);
 		y += 16;
-		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), "pH Tolerance", TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), "pH Tolerance", TextJustification.MiddleCenter).setColor(this.getColor());
 		y += 12;
 		this.createAcidity(this, (this.w() - 100.0f) / 2.0f, y, 100.0f, 10.0f, pH, pHTol);
 		y += 16;
-		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), "Recommended Soil", TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), "Recommended Soil", TextJustification.MiddleCenter).setColor(this.getColor());
 		y += 12;
 		EnumMoisture recomMoisture = EnumMoisture.Normal;
 		final boolean canTolNormal = Tolerance.canTolerate(moisture, EnumMoisture.Normal, moistureTol);
@@ -91,7 +90,7 @@ public class AnalystPageSoil extends ControlAnalystPage
 		recomSoil.setItemStack(stack);
 		recomSoil.setTooltip();
 		y += 32;
-		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), "Other Soils", TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), "Other Soils", TextJustification.MiddleCenter).setColor(this.getColor());
 		y += 12;
 		final List<ItemStack> stacks = new ArrayList<ItemStack>();
 		for (final EnumAcidity a : EnumSet.range(EnumAcidity.Acid, EnumAcidity.Alkaline)) {

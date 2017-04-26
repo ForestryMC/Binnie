@@ -16,7 +16,7 @@ public class MessageBase {
 
 	public MessageBase(MessageBinnie message) {
 		try {
-			this.readData(message.data);
+			readData(message.data);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
