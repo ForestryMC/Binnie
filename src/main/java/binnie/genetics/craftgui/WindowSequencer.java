@@ -28,6 +28,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.entity.player.EntityPlayer;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.resource.Texture;
+import net.minecraft.util.EnumChatFormatting;
 
 public class WindowSequencer extends WindowMachine
 {
@@ -46,7 +47,7 @@ public class WindowSequencer extends WindowMachine
 	@Override
 	public void recieveGuiNBT(final Side side, final EntityPlayer player, final String name, final NBTTagCompound nbt) {
 		if (side == Side.CLIENT && name.equals("username")) {
-			this.slotText.setValue("§8Genes will be sequenced by " + nbt.getString("username"));
+			this.slotText.setValue(EnumChatFormatting.DARK_GRAY + "Genes will be sequenced by " + nbt.getString("username"));
 		}
 		super.recieveGuiNBT(side, player, name, nbt);
 	}
@@ -61,7 +62,7 @@ public class WindowSequencer extends WindowMachine
 		slotTarget.assign(5);
 		x = 34;
 		y = 92;
-		this.slotText = new ControlText(this, new IArea(0.0f, y, this.w(), 12.0f), "§8Userless. Will not save sequences", TextJustification.MiddleCenter);
+		this.slotText = new ControlText(this, new IArea(0.0f, y, this.w(), 12.0f), EnumChatFormatting.DARK_GRAY + "Userless. Will not save sequences", TextJustification.MiddleCenter);
 		y += 20;
 		final ControlSlot slotDye = new ControlSlot(this, x, y);
 		slotDye.assign(0);

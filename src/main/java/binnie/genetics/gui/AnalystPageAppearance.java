@@ -8,6 +8,7 @@ import forestry.api.genetics.IAlleleSpecies;
 import binnie.botany.api.EnumFlowerStage;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.CraftGUI;
+import net.minecraft.util.EnumChatFormatting;
 import org.lwjgl.opengl.GL11;
 import binnie.core.craftgui.minecraft.control.ControlIconDisplay;
 import binnie.botany.craftgui.ControlColourDisplay;
@@ -23,7 +24,7 @@ public class AnalystPageAppearance extends ControlAnalystPage
 		this.setColor(3355443);
 		int y = 4;
 		final IAlleleSpecies species = ind.getGenome().getPrimary();
-		new ControlTextCentered(this, y, "§nAppearance").setColor(this.getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Appearance").setColor(this.getColor());
 		y += 12;
 		final ControlColourDisplay a = new ControlColourDisplay(this, this.w() / 2.0f - 28.0f, y);
 		a.setValue(ind.getGenome().getPrimaryColor());

@@ -4,26 +4,25 @@
 
 package binnie.botany.genetics;
 
-import binnie.botany.api.IFlowerColour;
-import forestry.api.genetics.IGenome;
-import binnie.botany.api.IFlowerMutation;
-import binnie.botany.api.IColourMix;
-import forestry.api.arboriculture.EnumTreeChromosome;
-import net.minecraft.world.World;
-import forestry.api.genetics.IAllele;
-import forestry.core.genetics.Chromosome;
-import forestry.api.genetics.IChromosome;
-import java.util.Random;
-import net.minecraft.nbt.NBTBase;
-import binnie.botany.core.BotanyCore;
-import forestry.api.genetics.IChromosomeType;
 import binnie.botany.api.EnumFlowerChromosome;
-import java.util.List;
 import binnie.botany.api.IAlleleFlowerSpecies;
-import net.minecraft.nbt.NBTTagCompound;
-import binnie.botany.api.IFlowerGenome;
+import binnie.botany.api.IColourMix;
 import binnie.botany.api.IFlower;
+import binnie.botany.api.IFlowerColour;
+import binnie.botany.api.IFlowerGenome;
+import binnie.botany.api.IFlowerMutation;
+import binnie.botany.core.BotanyCore;
+import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IChromosome;
+import forestry.core.genetics.Chromosome;
 import forestry.core.genetics.Individual;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
+
+import java.util.List;
+import java.util.Random;
 
 public class Flower extends Individual implements IFlower
 {
@@ -66,17 +65,19 @@ public class Flower extends Individual implements IFlower
 	}
 
 	@Override
-	public void addTooltip(final List<String> list) {
-		final IAlleleFlowerSpecies primary = this.genome.getPrimary();
-		final IAlleleFlowerSpecies secondary = this.genome.getSecondary();
-		if (!this.isPureBred(EnumFlowerChromosome.SPECIES)) {
-			list.add("§9" + primary.getName() + "-" + secondary.getName() + " Hybrid");
+	public void addTooltip(List<String> list) {
+		IAlleleFlowerSpecies primary = genome.getPrimary();
+		IAlleleFlowerSpecies secondary = genome.getSecondary();
+		if (!isPureBred(EnumFlowerChromosome.SPECIES)) {
+			list.add(EnumChatFormatting.BLUE + primary.getName() + "-" + secondary.getName() + " Hybrid");
 		}
-		list.add("§6Age: " + this.getAge());
-		list.add("§6T: " + this.getGenome().getPrimary().getTemperature() + " / " + this.getGenome().getToleranceTemperature());
-		list.add("§6M: " + this.getGenome().getPrimary().getMoisture() + " / " + this.getGenome().getToleranceMoisture());
-		list.add("§6pH: " + this.getGenome().getPrimary().getHumidity() + " / " + this.getGenome().getTolerancePH());
-		list.add("§6Fert: " + this.getGenome().getFertility() + "x");
+
+		// TODO remove hardcode strings and localize
+		list.add(EnumChatFormatting.GRAY + "Age: " + getAge());
+		list.add(EnumChatFormatting.GREEN + "T: " + primary.getTemperature() + " / " + genome.getToleranceTemperature());
+		list.add(EnumChatFormatting.GREEN + "M: " + primary.getMoisture() + " / " + genome.getToleranceMoisture());
+		list.add(EnumChatFormatting.GREEN + "pH: " + primary.getHumidity() + " / " + genome.getTolerancePH());
+		list.add(EnumChatFormatting.GRAY + "Fert: " + genome.getFertility() + "x");
 	}
 
 	@Override

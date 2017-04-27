@@ -4,41 +4,43 @@
 
 package binnie.genetics.craftgui;
 
-import binnie.genetics.Genetics;
-import binnie.core.AbstractMod;
-import binnie.core.craftgui.geometry.IPoint;
-import binnie.core.craftgui.controls.ControlText;
-import java.util.Arrays;
-import forestry.api.genetics.IAllele;
-import java.util.List;
-import forestry.api.genetics.IChromosomeType;
-import java.util.Map;
-import binnie.core.craftgui.Tooltip;
-import binnie.core.craftgui.minecraft.control.ControlTabIcon;
-import binnie.core.craftgui.controls.tab.ControlTab;
-import binnie.core.craftgui.controls.tab.ControlTabBar;
-import binnie.core.craftgui.geometry.Position;
 import binnie.Binnie;
-import binnie.core.craftgui.events.EventTextEdit;
+import binnie.core.AbstractMod;
+import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextEdit;
 import binnie.core.craftgui.controls.scroll.ControlScrollableContent;
-import binnie.core.craftgui.minecraft.MinecraftGUI;
-import binnie.core.craftgui.window.Panel;
-import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
+import binnie.core.craftgui.controls.tab.ControlTab;
+import binnie.core.craftgui.controls.tab.ControlTabBar;
 import binnie.core.craftgui.events.EventHandler;
-import binnie.core.genetics.BreedingSystem;
+import binnie.core.craftgui.events.EventTextEdit;
 import binnie.core.craftgui.events.EventValueChanged;
-import binnie.genetics.genetics.GeneTracker;
+import binnie.core.craftgui.geometry.IPoint;
+import binnie.core.craftgui.geometry.Position;
+import binnie.core.craftgui.minecraft.MinecraftGUI;
 import binnie.core.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
+import binnie.core.craftgui.minecraft.control.ControlTabIcon;
+import binnie.core.craftgui.window.Panel;
+import binnie.core.genetics.BreedingSystem;
+import binnie.core.genetics.Gene;
+import binnie.genetics.Genetics;
+import binnie.genetics.genetics.Engineering;
+import binnie.genetics.genetics.GeneTracker;
+import cpw.mods.fml.relauncher.Side;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IChromosomeType;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.entity.player.EntityPlayerMP;
-import binnie.genetics.genetics.Engineering;
-import binnie.core.genetics.Gene;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.entity.player.EntityPlayer;
-import cpw.mods.fml.relauncher.Side;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 public class WindowGeneBank extends WindowMachine
 {
@@ -157,8 +159,8 @@ public class WindowGeneBank extends WindowMachine
 				}
 			}
 		}
-		new ControlText(panelProject, new IPoint(4.0f, 4.0f), "§nFull Genome Project");
-		new ControlText(panelProject, new IPoint(4.0f, 18.0f), "§oSequenced §r" + seqGenes + "/" + totalGenes + " §oGenes");
+		new ControlText(panelProject, new IPoint(4.0f, 4.0f), EnumChatFormatting.UNDERLINE + "Full Genome Project");
+		new ControlText(panelProject, new IPoint(4.0f, 18.0f), EnumChatFormatting.ITALIC.toString() + EnumChatFormatting.YELLOW + "quenced " + EnumChatFormatting.RESET + seqGenes + "/" + totalGenes + " " + EnumChatFormatting.ITALIC + "Genes");
 	}
 
 	@Override

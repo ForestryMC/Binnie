@@ -12,6 +12,7 @@ import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.CraftGUI;
 import forestry.api.genetics.IChromosomeType;
+import net.minecraft.util.EnumChatFormatting;
 import org.lwjgl.opengl.GL11;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.Binnie;
@@ -30,7 +31,7 @@ public class AnalystPageGenome extends ControlAnalystPage
 		this.active = active;
 		this.setColor(26265);
 		int y = 4;
-		new ControlTextCentered(this, y, "§n" + this.getTitle()).setColor(this.getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + this.getTitle()).setColor(this.getColor());
 		y += 16;
 		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(ind.getClass());
 		final BreedingSystem system = Binnie.Genetics.getSystem(root);

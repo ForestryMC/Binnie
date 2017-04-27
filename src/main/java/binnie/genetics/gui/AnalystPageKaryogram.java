@@ -13,6 +13,7 @@ import binnie.core.craftgui.controls.ControlTextCentered;
 import forestry.api.genetics.IIndividual;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.IWidget;
+import net.minecraft.util.EnumChatFormatting;
 
 public class AnalystPageKaryogram extends ControlAnalystPage
 {
@@ -20,7 +21,7 @@ public class AnalystPageKaryogram extends ControlAnalystPage
 		super(parent, area);
 		this.setColor(10040319);
 		int y = 4;
-		new ControlTextCentered(this, y, "§nKaryogram").setColor(this.getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Karyogram").setColor(this.getColor());
 		y += 16;
 		y += 8;
 		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(ind.getClass());

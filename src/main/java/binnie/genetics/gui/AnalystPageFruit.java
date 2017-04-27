@@ -4,24 +4,26 @@
 
 package binnie.genetics.gui;
 
-import java.lang.reflect.Field;
-import forestry.api.arboriculture.ITreeGenome;
+import binnie.Binnie;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
-import net.minecraft.init.Items;
-import forestry.api.arboriculture.IAlleleFruit;
-import forestry.api.genetics.IFruitFamily;
-import forestry.api.genetics.IAllele;
-import java.util.Collection;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
-import net.minecraft.item.ItemStack;
-import forestry.arboriculture.FruitProviderPod;
 import binnie.core.util.UniqueItemStackSet;
 import forestry.api.arboriculture.EnumTreeChromosome;
-import binnie.Binnie;
-import binnie.core.craftgui.controls.ControlTextCentered;
+import forestry.api.arboriculture.IAlleleFruit;
 import forestry.api.arboriculture.ITree;
-import binnie.core.craftgui.geometry.IArea;
-import binnie.core.craftgui.IWidget;
+import forestry.api.arboriculture.ITreeGenome;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IFruitFamily;
+import forestry.arboriculture.FruitProviderPod;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+
+import java.lang.reflect.Field;
+import java.util.Collection;
 
 public class AnalystPageFruit extends AnalystPageProduce
 {
@@ -30,9 +32,9 @@ public class AnalystPageFruit extends AnalystPageProduce
 		this.setColor(13382400);
 		final ITreeGenome genome = ind.getGenome();
 		int y = 4;
-		new ControlTextCentered(this, y, "§nFruit").setColor(this.getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Fruit").setColor(this.getColor());
 		y += 12;
-		new ControlTextCentered(this, y, "§oYield: " + Binnie.Genetics.treeBreedingSystem.getAlleleName(EnumTreeChromosome.YIELD, ind.getGenome().getActiveAllele(EnumTreeChromosome.YIELD))).setColor(this.getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + "Yield: " + Binnie.Genetics.treeBreedingSystem.getAlleleName(EnumTreeChromosome.YIELD, ind.getGenome().getActiveAllele(EnumTreeChromosome.YIELD))).setColor(this.getColor());
 		y += 20;
 		final Collection<ItemStack> products = new UniqueItemStackSet();
 		final Collection<ItemStack> specialties = new UniqueItemStackSet();
@@ -128,7 +130,7 @@ public class AnalystPageFruit extends AnalystPageProduce
 					}
 				}
 			}
-			y = this.getRefined("§o" + fam.getName(), y, stacks);
+			y = this.getRefined(EnumChatFormatting.ITALIC + fam.getName(), y, stacks);
 			y += 2;
 		}
 		this.setSize(new IPoint(this.w(), y + 8));

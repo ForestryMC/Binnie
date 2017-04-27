@@ -4,16 +4,15 @@
 
 package binnie.botany.farm;
 
-import net.minecraft.item.ItemStack;
-
-import forestry.api.circuits.ChipsetManager;
-import forestry.api.farming.FarmDirection;
-import forestry.api.farming.IFarmHousing;
-import forestry.api.farming.IFarmLogic;
 import binnie.Binnie;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
 import binnie.core.circuits.BinnieCircuit;
+import forestry.api.circuits.ChipsetManager;
+import forestry.api.farming.FarmDirection;
+import forestry.api.farming.IFarmHousing;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
 
 public class CircuitGarden extends BinnieCircuit
 {
@@ -35,31 +34,31 @@ public class CircuitGarden extends BinnieCircuit
 		this.icon = icon;
 		String info = "";
 		if (moisture == EnumMoisture.Dry) {
-			info += "§eDry§f";
+			info += EnumChatFormatting.YELLOW + "Dry" + EnumChatFormatting.RESET;
 		}
 		if (moisture == EnumMoisture.Damp) {
-			info += "§9Damp§f";
+			info += EnumChatFormatting.YELLOW + "Damp" + EnumChatFormatting.RESET;
 		}
 		if (this.acidity == EnumAcidity.Acid) {
 			if (info.length() > 0) {
 				info += ", ";
 			}
-			info += "§cAcidic§f";
+			info += EnumChatFormatting.RED + "Acidic" + EnumChatFormatting.RESET;
 		}
 		if (this.acidity == EnumAcidity.Neutral) {
 			if (info.length() > 0) {
 				info += ", ";
 			}
-			info += "§aNeutral§f";
+			info += EnumChatFormatting.GREEN + "Neutral" + EnumChatFormatting.RESET;
 		}
 		if (this.acidity == EnumAcidity.Alkaline) {
 			if (info.length() > 0) {
 				info += ", ";
 			}
-			info += "§bAlkaline§f";
+			info += EnumChatFormatting.AQUA + "Alkaline" + EnumChatFormatting.RESET;
 		}
 		if (info.length() > 0) {
-			info = " (" + info + "§f)";
+			info = " (" + info + EnumChatFormatting.RESET + ")";
 		}
 		this.addTooltipString("Flowers" + info);
 	}

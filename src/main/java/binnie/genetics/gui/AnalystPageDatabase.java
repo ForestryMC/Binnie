@@ -4,27 +4,29 @@
 
 package binnie.genetics.gui;
 
-import binnie.core.craftgui.geometry.IPoint;
-import binnie.core.craftgui.events.EventMouse;
-import forestry.api.genetics.IIndividual;
-import binnie.core.craftgui.controls.scroll.ControlScrollBar;
-import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.controls.ControlTextEdit;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.controls.listbox.ControlListBox;
-import forestry.api.arboriculture.EnumTreeChromosome;
-import binnie.core.craftgui.window.Panel;
+import binnie.core.craftgui.controls.scroll.ControlScrollBar;
+import binnie.core.craftgui.controls.scroll.ControlScrollableContent;
+import binnie.core.craftgui.events.EventMouse;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.geometry.IPoint;
+import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.minecraft.MinecraftGUI;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
-import binnie.core.craftgui.CraftGUI;
-import java.util.Collection;
-import forestry.api.genetics.IAlleleSpecies;
-import java.util.ArrayList;
-import binnie.core.craftgui.controls.ControlTextEdit;
-import binnie.core.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.window.Panel;
 import binnie.core.genetics.BreedingSystem;
-import binnie.core.craftgui.geometry.IArea;
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.controls.scroll.ControlScrollableContent;
+import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IIndividual;
+import net.minecraft.util.EnumChatFormatting;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class AnalystPageDatabase extends ControlAnalystPage
 {
@@ -47,7 +49,7 @@ public class AnalystPageDatabase extends ControlAnalystPage
 		final int newColour = (int) (cr * brightness) * 65536 + (int) (cg * brightness) * 256 + (int) (cb * brightness);
 		this.setColor(newColour);
 		int y = 4;
-		new ControlTextCentered(this, y, "§nRegistry").setColor(this.getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Registry").setColor(this.getColor());
 		y += 16;
 		new ControlTextEdit(this, 20.0f, y, this.w() - 40.0f, 16.0f) {
 			@Override

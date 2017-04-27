@@ -1,5 +1,7 @@
 package binnie.core.machines.inventory;
 
+import net.minecraft.util.EnumChatFormatting;
+
 enum AccessDirection {
 	Both,
 	In,
@@ -59,15 +61,15 @@ enum AccessDirection {
 	public String getTextColour() {
 		switch (this) {
 			case Both:
-				return "§a";
+				return EnumChatFormatting.GREEN.toString();
 
 			case In:
-				return "§e";
+				return EnumChatFormatting.YELLOW.toString();
 
 			case Neither:
-				return "§c";
+				return EnumChatFormatting.RED.toString();
 		}
-		return "§b";
+		return EnumChatFormatting.AQUA.toString();
 	}
 
 	public int getShadeColour() {

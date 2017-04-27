@@ -116,7 +116,11 @@ public class ModuleItems implements IInitializable
 		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(new ItemStack(ExtraTrees.itemHammer, 1, 0), new Object[] { "wiw", " s ", " s ", 'w', "plankWood", 'i', Items.iron_ingot, 's', Items.stick }));
 		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ExtraTreeItems.Yeast.get(8), new Object[] { " m ", "mbm", 'b', Items.bread, 'm', Blocks.brown_mushroom }));
 		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(ExtraTreeItems.LagerYeast.get(8), new Object[] { "mbm", " m ", 'b', Items.bread, 'm', Blocks.brown_mushroom }));
-		GameRegistry.addRecipe(ExtraTreeItems.GrainWheat.get(5), new Object[] { " s ", "sss", " s ", 's', Items.wheat_seeds });
+		GameRegistry.addRecipe(
+			ExtraTreeItems.GrainWheat.get(5),
+			" s ", "sss", " s ",
+			's', Items.wheat_seeds
+		);
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 			ExtraTreeItems.GrainBarley.get(3), new Object[] {
 				false,

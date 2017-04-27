@@ -9,6 +9,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import binnie.botany.Botany;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
@@ -37,12 +38,31 @@ public class ItemSoilMeter extends Item
 			final EnumSoilType type = soil.getType(world, x, y, z);
 			final EnumMoisture moisture = soil.getMoisture(world, x, y, z);
 			final EnumAcidity pH = soil.getPH(world, x, y, z);
+
+			// TODO remove hardcode strings ans localize
+			EnumChatFormatting[] colors = new EnumChatFormatting[] {
+				EnumChatFormatting.DARK_GRAY,
+				EnumChatFormatting.GOLD,
+				EnumChatFormatting.LIGHT_PURPLE,
+			};
 			String info = "Type: ";
-			info = info + "§" + (new char[] { '8', '6', 'd' })[type.ordinal()] + Binnie.Language.localise(type) + "§f";
+			info += colors[type.ordinal()] + Binnie.Language.localise(type) + EnumChatFormatting.RESET;
+
+			colors = new EnumChatFormatting[] {
+				EnumChatFormatting.YELLOW,
+				EnumChatFormatting.GRAY,
+				EnumChatFormatting.BLUE,
+			};
 			info += ", Moisture: ";
-			info = info + "§" + (new char[] { 'e', '7', '9' })[moisture.ordinal()] + Binnie.Language.localise(moisture) + "§f";
+			info += colors[moisture.ordinal()] + Binnie.Language.localise(moisture) + EnumChatFormatting.RESET;
+
+			colors = new EnumChatFormatting[] {
+				EnumChatFormatting.RED,
+				EnumChatFormatting.GREEN,
+				EnumChatFormatting.AQUA,
+			};
 			info += ", pH: ";
-			info = info + "§" + (new char[] { 'c', 'a', 'b' })[pH.ordinal()] + Binnie.Language.localise(pH) + "§f";
+			info += colors[pH.ordinal()] + Binnie.Language.localise(pH) + EnumChatFormatting.RESET;
 			final IChatComponent chat = new ChatComponentText(info);
 			player.addChatMessage(chat);
 		}

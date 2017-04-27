@@ -4,31 +4,33 @@
 
 package binnie.genetics.gui;
 
-import binnie.core.craftgui.controls.ControlText;
-import forestry.plugins.PluginApiculture;
-import binnie.core.craftgui.geometry.CraftGUIUtil;
-import net.minecraft.nbt.NBTTagCompound;
+import binnie.Binnie;
+import binnie.core.BinnieCore;
+import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.Tooltip;
-import forestry.api.apiculture.IBeeGenome;
+import binnie.core.craftgui.controls.ControlText;
+import binnie.core.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.geometry.CraftGUIUtil;
+import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
-import binnie.extratrees.craftgui.kitchen.ControlFluidDisplay;
-import net.minecraft.init.Items;
-import net.minecraftforge.fluids.FluidContainerRegistry;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.core.util.UniqueItemStackSet;
+import binnie.extratrees.craftgui.kitchen.ControlFluidDisplay;
+import forestry.api.apiculture.EnumBeeChromosome;
+import forestry.api.apiculture.IBee;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.plugins.PluginApiculture;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
+
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Map;
-import net.minecraft.item.ItemStack;
 import java.util.HashMap;
-import binnie.core.util.UniqueItemStackSet;
-import forestry.api.apiculture.EnumBeeChromosome;
-import binnie.core.craftgui.controls.ControlTextCentered;
-import binnie.core.BinnieCore;
-import binnie.Binnie;
-import forestry.api.apiculture.IBee;
-import binnie.core.craftgui.geometry.IArea;
-import binnie.core.craftgui.IWidget;
+import java.util.Map;
 
 public class AnalystPageProducts extends AnalystPageProduce
 {
@@ -39,9 +41,9 @@ public class AnalystPageProducts extends AnalystPageProduce
 		final float speed = genome.getSpeed();
 		final float modeSpeed = Binnie.Genetics.getBeeRoot().getBeekeepingMode(BinnieCore.proxy.getWorld()).getBeeModifier().getProductionModifier(genome, 1.0f);
 		int y = 4;
-		new ControlTextCentered(this, y, "§nProduce").setColor(this.getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Produce").setColor(this.getColor());
 		y += 12;
-		new ControlTextCentered(this, y, "§oRate: " + Binnie.Genetics.beeBreedingSystem.getAlleleName(EnumBeeChromosome.SPEED, ind.getGenome().getActiveAllele(EnumBeeChromosome.SPEED))).setColor(this.getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + "Rate: " + Binnie.Genetics.beeBreedingSystem.getAlleleName(EnumBeeChromosome.SPEED, ind.getGenome().getActiveAllele(EnumBeeChromosome.SPEED))).setColor(this.getColor());
 		y += 20;
 		final Collection<ItemStack> refinedProducts = new UniqueItemStackSet();
 		final Collection<ItemStack> productList = new UniqueItemStackSet();

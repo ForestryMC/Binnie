@@ -4,27 +4,24 @@
 
 package binnie.genetics.gui;
 
-import forestry.api.arboriculture.ITreeGenome;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
-
-import java.util.Collection;
-
-import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
-
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.common.util.ForgeDirection;
-
-import binnie.core.util.UniqueItemStackSet;
 import binnie.core.craftgui.minecraft.control.ControlIconDisplay;
+import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.core.util.UniqueItemStackSet;
+import binnie.extratrees.FakeWorld;
 import binnie.genetics.item.ModuleItem;
 import forestry.api.arboriculture.EnumTreeChromosome;
-import forestry.api.genetics.IAlleleBoolean;
-import binnie.core.craftgui.controls.ControlTextCentered;
 import forestry.api.arboriculture.ITree;
-import binnie.core.craftgui.geometry.IArea;
-import binnie.core.craftgui.IWidget;
-import binnie.extratrees.FakeWorld;
+import forestry.api.arboriculture.ITreeGenome;
+import forestry.api.genetics.IAlleleBoolean;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.Collection;
 
 public class AnalystPageWood extends AnalystPageProduce
 {
@@ -33,7 +30,7 @@ public class AnalystPageWood extends AnalystPageProduce
 		this.setColor(6697728);
 		final ITreeGenome genome = ind.getGenome();
 		int y = 4;
-		new ControlTextCentered(this, y, "§nWood").setColor(this.getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Wood").setColor(this.getColor());
 		y += 12;
 		if (((IAlleleBoolean) ind.getGenome().getActiveAllele(EnumTreeChromosome.FIREPROOF)).getValue()) {
 			new ControlIconDisplay(this, (this.w() - 16.0f) / 2.0f, y, ModuleItem.iconNoFire.getIcon()).addTooltip("Fireproof");

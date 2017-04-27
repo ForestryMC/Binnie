@@ -12,6 +12,7 @@ import binnie.core.craftgui.controls.ControlTextCentered;
 import forestry.api.genetics.IIndividual;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.IWidget;
+import net.minecraft.util.EnumChatFormatting;
 
 public class AnalystPageGrowth extends ControlAnalystPage
 {
@@ -20,25 +21,25 @@ public class AnalystPageGrowth extends ControlAnalystPage
 		this.setColor(3355443);
 		int y = 4;
 		final IAlleleSpecies species = ind.getGenome().getPrimary();
-		new ControlTextCentered(this, y, "§nGrowth").setColor(this.getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Growth").setColor(this.getColor());
 		y += 12;
 		if (ind instanceof ITree) {
 			final ITree tree = (ITree) ind;
 			final int mat = tree.getGenome().getMaturationTime();
 			new ControlTextCentered(this, y, "Saplings mature in").setColor(this.getColor());
 			y += 12;
-			new ControlTextCentered(this, y, "§l" + this.getTimeString(1373.3999f * mat)).setColor(this.getColor());
+			new ControlTextCentered(this, y, EnumChatFormatting.BOLD + this.getTimeString(1373.3999f * mat)).setColor(this.getColor());
 			y += 22;
-			new ControlTextCentered(this, y, "§oHeight: " + Binnie.Genetics.treeBreedingSystem.getAlleleName(EnumTreeChromosome.HEIGHT, ind.getGenome().getActiveAllele(EnumTreeChromosome.HEIGHT))).setColor(this.getColor());
+			new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + "Height: " + Binnie.Genetics.treeBreedingSystem.getAlleleName(EnumTreeChromosome.HEIGHT, ind.getGenome().getActiveAllele(EnumTreeChromosome.HEIGHT))).setColor(this.getColor());
 			y += 12;
-			new ControlTextCentered(this, y, "§oGirth: " + Binnie.Genetics.treeBreedingSystem.getAlleleName(EnumTreeChromosome.GIRTH, ind.getGenome().getActiveAllele(EnumTreeChromosome.GIRTH))).setColor(this.getColor());
+			new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + "Girth: " + Binnie.Genetics.treeBreedingSystem.getAlleleName(EnumTreeChromosome.GIRTH, ind.getGenome().getActiveAllele(EnumTreeChromosome.GIRTH))).setColor(this.getColor());
 			y += 20;
 			new ControlTextCentered(this, y, "Growth Conditions").setColor(this.getColor());
 			y += 12;
-			new ControlTextCentered(this, y, "§o" + tree.getGenome().getGrowthProvider().getDescription()).setColor(this.getColor());
+			new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + tree.getGenome().getGrowthProvider().getDescription()).setColor(this.getColor());
 			y += 12;
 			for (final String s : tree.getGenome().getGrowthProvider().getInfo()) {
-				new ControlTextCentered(this, y, "§o" + s).setColor(this.getColor());
+				new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + s).setColor(this.getColor());
 				y += 12;
 			}
 		}

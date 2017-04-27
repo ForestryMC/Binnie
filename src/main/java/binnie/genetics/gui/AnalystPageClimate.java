@@ -4,28 +4,30 @@
 
 package binnie.genetics.gui;
 
-import java.util.List;
-import binnie.core.craftgui.geometry.IPoint;
-import forestry.api.core.EnumHumidity;
-import binnie.core.genetics.Tolerance;
-import forestry.api.core.EnumTemperature;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraft.world.biome.BiomeGenBase;
-import java.util.ArrayList;
-import binnie.core.craftgui.controls.ControlText;
-import binnie.core.craftgui.geometry.TextJustification;
-import binnie.core.craftgui.controls.ControlTextCentered;
-import forestry.api.lepidopterology.EnumButterflyChromosome;
-import forestry.api.lepidopterology.IButterfly;
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.IFlower;
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.genetics.IAlleleTolerance;
-import forestry.api.apiculture.IBee;
-import forestry.api.genetics.EnumTolerance;
-import forestry.api.genetics.IIndividual;
-import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.ControlText;
+import binnie.core.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.geometry.IPoint;
+import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.genetics.Tolerance;
+import forestry.api.apiculture.EnumBeeChromosome;
+import forestry.api.apiculture.IBee;
+import forestry.api.core.EnumHumidity;
+import forestry.api.core.EnumTemperature;
+import forestry.api.genetics.EnumTolerance;
+import forestry.api.genetics.IAlleleTolerance;
+import forestry.api.genetics.IIndividual;
+import forestry.api.lepidopterology.EnumButterflyChromosome;
+import forestry.api.lepidopterology.IButterfly;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.BiomeDictionary;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AnalystPageClimate extends ControlAnalystPage
 {
@@ -49,7 +51,7 @@ public class AnalystPageClimate extends ControlAnalystPage
 			humidTol = ((IAlleleTolerance) ind.getGenome().getActiveAllele(EnumButterflyChromosome.HUMIDITY_TOLERANCE)).getValue();
 		}
 		int y = 4;
-		new ControlTextCentered(this, y, "§nClimate").setColor(this.getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Climate").setColor(this.getColor());
 		y += 16;
 		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), "Temp. Tolerance", TextJustification.MiddleCenter).setColor(this.getColor());
 		y += 12;

@@ -4,16 +4,18 @@
 
 package binnie.botany.gardening;
 
-import net.minecraft.block.Block;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
-import java.util.List;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import binnie.botany.api.EnumSoilType;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+
+import java.util.List;
 
 public class ItemSoil extends ItemBlock
 {
@@ -28,22 +30,22 @@ public class ItemSoil extends ItemBlock
 		final EnumAcidity acidity = EnumAcidity.values()[stack.getItemDamage() / 3];
 		String info = "";
 		if (moisture == EnumMoisture.Dry) {
-			info += "§eDry§f";
+			info += EnumChatFormatting.YELLOW + "Dry" + EnumChatFormatting.RESET;
 		}
 		if (moisture == EnumMoisture.Damp) {
-			info += "§9Damp§f";
+			info += EnumChatFormatting.YELLOW + "Damp" + EnumChatFormatting.RESET;
 		}
 		if (acidity == EnumAcidity.Acid) {
 			if (info.length() > 0) {
 				info += ", ";
 			}
-			info += "§cAcidic§f";
+			info += EnumChatFormatting.RED + "Acidic" + EnumChatFormatting.RESET;
 		}
 		if (acidity == EnumAcidity.Alkaline) {
 			if (info.length() > 0) {
 				info += ", ";
 			}
-			info += "§bAlkaline§f";
+			info += EnumChatFormatting.AQUA + "Alkaline" + EnumChatFormatting.RESET;
 		}
 		if (info.length() > 0) {
 			p_77624_3_.add(info);

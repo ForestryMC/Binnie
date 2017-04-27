@@ -6,6 +6,7 @@ import binnie.core.craftgui.controls.page.ControlPage;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.genetics.BreedingSystem;
 import com.mojang.authlib.GameProfile;
+import net.minecraft.util.EnumChatFormatting;
 
 public class PageBreeder extends ControlPage<DatabaseTab> {
 	private GameProfile player;
@@ -23,7 +24,7 @@ public class PageBreeder extends ControlPage<DatabaseTab> {
 
 		BreedingSystem system = ((WindowAbstractDatabase) Window.get(this)).getBreedingSystem();
 		String descriptor = system.getDescriptor();
-		new ControlTextCentered(this, 8.0f, "§n" + system.getDescriptor() + " Profile§r");
+		new ControlTextCentered(this, 8.0f, EnumChatFormatting.UNDERLINE + system.getDescriptor() + " Profile" + EnumChatFormatting.RESET);
 		new ControlTextCentered(this, 75.0f, "" + system.discoveredSpeciesCount + "/" + system.totalSpeciesCount + " Species");
 		new ControlBreedingProgress(this, 20, 87, 102, 14, system, system.discoveredSpeciesPercentage);
 		new ControlTextCentered(this, 115.0f, "" + system.discoveredBranchCount + "/" + system.totalBranchCount + " Branches");
@@ -33,6 +34,6 @@ public class PageBreeder extends ControlPage<DatabaseTab> {
 			new ControlTextCentered(this, 155.0f, "" + system.discoveredSecretCount + "/" + system.totalSecretCount + " Secret Species");
 		}
 		new ControlTextCentered(this, 32.0f, player.getName());
-		new ControlTextCentered(this, 44.0f, "§o" + system.getEpitome() + "§r");
+		new ControlTextCentered(this, 44.0f, EnumChatFormatting.ITALIC + system.getEpitome() + EnumChatFormatting.RESET);
 	}
 }

@@ -4,19 +4,20 @@
 
 package binnie.genetics.genetics;
 
-import forestry.api.genetics.ISpeciesRoot;
-import net.minecraft.nbt.NBTBase;
-import net.minecraft.nbt.NBTTagList;
-import binnie.core.genetics.Gene;
-import net.minecraft.nbt.NBTTagCompound;
 import binnie.Binnie;
-import binnie.core.genetics.BreedingSystem;
 import binnie.core.BinnieCore;
-import java.util.ArrayList;
-import net.minecraft.item.ItemStack;
+import binnie.core.genetics.BreedingSystem;
+import binnie.core.genetics.Gene;
 import binnie.genetics.api.IGene;
-import java.util.List;
 import forestry.api.core.INBTTagable;
+import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.EnumChatFormatting;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GeneArrayItem implements INBTTagable, IGeneItem
 {
@@ -52,7 +53,7 @@ public class GeneArrayItem implements INBTTagable, IGeneItem
 		final List<Object> totalList = new ArrayList<Object>();
 		for (final IGene gene : this.genes) {
 			final String chromosomeName = this.getBreedingSystem().getChromosomeName(gene.getChromosome());
-			totalList.add("§6" + chromosomeName + "§7: " + gene.getName());
+			totalList.add(EnumChatFormatting.GOLD + chromosomeName + EnumChatFormatting.GRAY + ": " + gene.getName());
 		}
 		if (totalList.size() < 4 || BinnieCore.proxy.isShiftDown()) {
 			list.addAll(totalList);

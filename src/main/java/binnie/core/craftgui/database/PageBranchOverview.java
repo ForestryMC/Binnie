@@ -5,6 +5,7 @@ import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import forestry.api.genetics.IClassification;
+import net.minecraft.util.EnumChatFormatting;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +26,9 @@ public class PageBranchOverview extends PageBranch {
 
 	@Override
 	public void onValueChanged(IClassification branch) {
-		pageBranchOverview_branchName.setValue("§n" + branch.getName() + " Branch§r");
-		pageBranchOverview_branchScientific.setValue("§oApidae " + branch.getScientific() + "§r");
-		pageBranchOverview_branchAuthority.setValue("Discovered by §l" + branch.getMemberSpecies()[0].getAuthority() + "§r");
+		pageBranchOverview_branchName.setValue(EnumChatFormatting.UNDERLINE + branch.getName() + " Branch" + EnumChatFormatting.RESET);
+		pageBranchOverview_branchScientific.setValue(EnumChatFormatting.ITALIC + "Apidae " + branch.getScientific() + EnumChatFormatting.RESET);
+		pageBranchOverview_branchAuthority.setValue("Discovered by " + EnumChatFormatting.BOLD + branch.getMemberSpecies()[0].getAuthority() + EnumChatFormatting.RESET);
 		for (IWidget widget : pageBranchOverview_branchDescription) {
 			deleteChild(widget);
 		}
@@ -42,7 +43,7 @@ public class PageBranchOverview extends PageBranch {
 		List<String> descLines = new ArrayList<String>();
 		for (String str : desc.split(" ")) {
 			if (CraftGUI.Render.textWidth(line + " " + str) > 134) {
-				descLines.add("§o" + line + "§r");
+				descLines.add(EnumChatFormatting.ITALIC + line + EnumChatFormatting.RESET);
 				line = "";
 			}
 			line = line + " " + str;

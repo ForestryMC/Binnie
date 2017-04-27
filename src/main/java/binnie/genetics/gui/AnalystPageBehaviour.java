@@ -19,6 +19,7 @@ import binnie.core.craftgui.controls.ControlTextCentered;
 import forestry.api.genetics.IIndividual;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.IWidget;
+import net.minecraft.util.EnumChatFormatting;
 
 public class AnalystPageBehaviour extends ControlAnalystPage
 {
@@ -26,7 +27,7 @@ public class AnalystPageBehaviour extends ControlAnalystPage
 		super(parent, area);
 		this.setColor(6684723);
 		int y = 4;
-		new ControlTextCentered(this, y, "§nBehaviour").setColor(this.getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Behaviour").setColor(this.getColor());
 		y += 12;
 		if (ind instanceof IBee) {
 			final IBee bee = (IBee) ind;
@@ -34,7 +35,7 @@ public class AnalystPageBehaviour extends ControlAnalystPage
 			final int fertility = bee.getGenome().getFlowering();
 			new ControlTextCentered(this, y, "Pollinates nearby\n" + bee.getGenome().getFlowerProvider().getDescription()).setColor(this.getColor());
 			y += 20;
-			new ControlTextCentered(this, y, "§oEvery " + this.getTimeString(PluginApiculture.ticksPerBeeWorkCycle * 100.0f / fertility)).setColor(this.getColor());
+			new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + "Every " + this.getTimeString(PluginApiculture.ticksPerBeeWorkCycle * 100.0f / fertility)).setColor(this.getColor());
 			y += 22;
 			final IAlleleBeeEffect effect = bee.getGenome().getEffect();
 			final int[] t = bee.getGenome().getTerritory();
@@ -43,19 +44,19 @@ public class AnalystPageBehaviour extends ControlAnalystPage
 				final String loc = effectDesc.equals("") ? ("Effect: " + effect.getName()) : effectDesc;
 				new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 0.0f), loc, TextJustification.TopCenter).setColor(this.getColor());
 				y += (int) (CraftGUI.Render.textHeight(loc, this.w() - 8.0f) + 1.0f);
-				new ControlTextCentered(this, y, "§oWithin " + (int) (t[0] / 2.0f) + " blocks").setColor(this.getColor());
+				new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + "Within " + (int) (t[0] / 2.0f) + " blocks").setColor(this.getColor());
 				y += 22;
 			}
-			new ControlTextCentered(this, y, "Territory: §o" + t[0] + "x" + t[1] + "x" + t[2]).setColor(this.getColor());
+			new ControlTextCentered(this, y, "Territory: " + EnumChatFormatting.ITALIC + t[0] + "x" + t[1] + "x" + t[2]).setColor(this.getColor());
 			y += 22;
 		}
 		if (ind instanceof IButterfly) {
 			final IButterfly bee2 = (IButterfly) ind;
-			new ControlTextCentered(this, y, "§oMetabolism: " + Binnie.Genetics.mothBreedingSystem.getAlleleName(EnumButterflyChromosome.METABOLISM, ind.getGenome().getActiveAllele(EnumButterflyChromosome.METABOLISM))).setColor(this.getColor());
+			new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + "Metabolism: " + Binnie.Genetics.mothBreedingSystem.getAlleleName(EnumButterflyChromosome.METABOLISM, ind.getGenome().getActiveAllele(EnumButterflyChromosome.METABOLISM))).setColor(this.getColor());
 			y += 20;
 			new ControlTextCentered(this, y, "Pollinates nearby\n" + bee2.getGenome().getFlowerProvider().getDescription()).setColor(this.getColor());
 			y += 20;
-			new ControlTextCentered(this, y, "§oEvery " + this.getTimeString(1500.0f)).setColor(this.getColor());
+			new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + "Every " + this.getTimeString(1500.0f)).setColor(this.getColor());
 			y += 22;
 			final IAlleleButterflyEffect effect2 = bee2.getGenome().getEffect();
 			if (!effect2.getUID().contains("None")) {

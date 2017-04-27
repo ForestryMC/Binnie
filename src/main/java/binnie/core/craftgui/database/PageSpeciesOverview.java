@@ -8,6 +8,7 @@ import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.geometry.TextJustification;
 import forestry.api.genetics.IAlleleSpecies;
+import net.minecraft.util.EnumChatFormatting;
 
 public class PageSpeciesOverview extends PageSpecies {
 	private ControlText controlName;
@@ -37,12 +38,12 @@ public class PageSpeciesOverview extends PageSpecies {
 		controlInd2.setSpecies(species, EnumDiscoveryState.Show);
 		String branchBinomial = (species.getBranch() != null) ? species.getBranch().getScientific() : "<Unknown>";
 		String branchName = (species.getBranch() != null) ? species.getBranch().getName() : "Unknown";
-		controlName.setValue("§n" + species.getName() + "§r");
-		controlScientific.setValue("§o" + branchBinomial + " " + species.getBinomial() + "§r");
-		controlAuthority.setValue("Discovered by §l" + species.getAuthority() + "§r");
+		controlName.setValue(EnumChatFormatting.UNDERLINE + species.getName() + EnumChatFormatting.RESET);
+		controlScientific.setValue(EnumChatFormatting.ITALIC + branchBinomial + " " + species.getBinomial() + EnumChatFormatting.RESET);
+		controlAuthority.setValue("Discovered by " + EnumChatFormatting.BOLD + species.getAuthority() + EnumChatFormatting.RESET);
 		controlComplexity.setValue("Complexity: " + species.getComplexity());
 		String desc = species.getDescription();
-		String descBody = "§o";
+		String descBody = EnumChatFormatting.ITALIC.toString();
 		String descSig = "";
 
 		if (desc == null || desc == "") {
@@ -58,8 +59,8 @@ public class PageSpeciesOverview extends PageSpecies {
 			}
 		}
 
-		controlDescription.setValue(descBody + "§r");
-		controlSignature.setValue(descSig + "§r");
+		controlDescription.setValue(descBody + EnumChatFormatting.RESET);
+		controlSignature.setValue(descSig + EnumChatFormatting.RESET);
 		float descHeight = CraftGUI.Render.textHeight(controlDescription.getValue(), controlDescription.getSize().x());
 		controlSignature.setPosition(new IPoint(controlSignature.pos().x(), controlDescription.getPosition().y() + descHeight + 10.0f));
 	}
