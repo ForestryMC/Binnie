@@ -27,7 +27,7 @@ public class AnalystPageDescription extends ControlAnalystPage
 		final String desc = species.getDescription();
 		String descBody = EnumChatFormatting.ITALIC.toString();
 		String descSig = "";
-		if (desc == null || desc.equals("") || desc.contains("for.description")) {
+		if (desc == null || desc.isEmpty() || desc.contains("for.description")) {
 			descBody += "";
 		}
 		else {

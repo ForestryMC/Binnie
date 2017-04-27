@@ -34,7 +34,7 @@ public enum EnumColor {
 	}
 
 	public String getCode() {
-		return String.valueOf(code);
+		return "\u00a7" + code;
 	}
 
 	@Override
