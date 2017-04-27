@@ -1,70 +1,66 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.genetics;
+
+import com.mojang.authlib.GameProfile;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.mojang.authlib.GameProfile;
 
-public class GeneProject
-{
-	int id;
-	String name;
-	GameProfile leader;
-	List<GameProfile> members;
+public class GeneProject {
+	protected int id;
+	protected String name;
+	protected GameProfile leader;
+	protected List<GameProfile> members;
 
-	public GeneProject(final int id, final String name, final GameProfile leader) {
+	public GeneProject(int id, String name, GameProfile leader) {
 		this.id = 0;
 		this.leader = null;
-		this.members = new ArrayList<GameProfile>();
-		this.setID(id);
-		this.setName(name);
-		this.setLeader(leader);
+		members = new ArrayList<>();
+		setID(id);
+		setName(name);
+		setLeader(leader);
 	}
 
 	public int getID() {
-		return this.id;
+		return id;
 	}
 
-	public void setID(final int id) {
+	public void setID(int id) {
 		this.id = id;
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
-	public void setName(final String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
 	public GameProfile getLeader() {
-		return this.leader;
+		return leader;
 	}
 
-	public void setLeader(final GameProfile leader) {
-		this.addPlayer(this.leader = leader);
+	public void setLeader(GameProfile leader) {
+		addPlayer(this.leader = leader);
 	}
 
 	public boolean isEmpty() {
-		return this.members.isEmpty();
+		return members.isEmpty();
 	}
 
-	public void addPlayer(final GameProfile player) {
-		if (!this.members.contains(player)) {
-			this.members.add(player);
+	public void addPlayer(GameProfile player) {
+		if (!members.contains(player)) {
+			members.add(player);
 		}
-		if (this.leader == null) {
-			this.leader = player;
+		if (leader == null) {
+			leader = player;
 		}
 	}
 
-	public void removePlayer(final GameProfile player) {
-		if (player == this.leader) {
+	public void removePlayer(GameProfile player) {
+		if (player == leader) {
 			throw new RuntimeException("Can't remove leader of a Gene Project");
 		}
-		this.members.remove(player);
+		members.remove(player);
 	}
 }

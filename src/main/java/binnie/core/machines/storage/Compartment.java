@@ -53,10 +53,6 @@ enum Compartment implements IMachineType {
 		}
 
 		@Override
-		public void register() {
-		}
-
-		@Override
 		public void renderMachine(Machine machine, double x, double y, double z, float partialTick, RenderBlocks renderer) {
 			MachineRendererCompartment.instance.renderMachine(machine, 0xffffff, renderTexture, x, y, z, partialTick);
 		}

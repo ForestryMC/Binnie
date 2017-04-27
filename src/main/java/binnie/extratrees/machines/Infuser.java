@@ -86,10 +86,6 @@ public class Infuser
 		public TileEntity createTileEntity() {
 			return new TileEntityMachine(this);
 		}
-
-		@Override
-		public void register() {
-		}
 	}
 
 	public static class ComponentInfuserLogic extends ComponentProcessSetCost implements IProcess

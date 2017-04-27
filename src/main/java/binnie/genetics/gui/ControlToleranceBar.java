@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.gui;
 
 import binnie.core.craftgui.CraftGUI;
@@ -19,62 +15,61 @@ import net.minecraft.util.EnumChatFormatting;
 
 import java.util.EnumSet;
 
-public abstract class ControlToleranceBar<T extends Enum<T>> extends Control implements ITooltip
-{
-	private Class<T> enumClass;
+public abstract class ControlToleranceBar<T extends Enum<T>> extends Control implements ITooltip {
 	EnumSet<T> tolerated;
 	EnumSet<T> fullSet;
+	private Class<T> enumClass;
 
-	public ControlToleranceBar(final IWidget parent, final float x, final float y, final float width, final float height, final Class<T> clss) {
+	public ControlToleranceBar(IWidget parent, float x, float y, float width, float height, Class<T> clss) {
 		super(parent, x, y, width, height);
-		this.addAttribute(WidgetAttribute.MouseOver);
-		this.enumClass = clss;
-		this.tolerated = EnumSet.noneOf(this.enumClass);
-		this.fullSet = EnumSet.allOf(this.enumClass);
-		if (this.enumClass == EnumTemperature.class) {
-			this.fullSet.remove(EnumTemperature.NONE);
+		addAttribute(WidgetAttribute.MouseOver);
+		enumClass = clss;
+		tolerated = EnumSet.noneOf(enumClass);
+		fullSet = EnumSet.allOf(enumClass);
+		if (enumClass == EnumTemperature.class) {
+			fullSet.remove(EnumTemperature.NONE);
 		}
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
-		final int types = this.fullSet.size();
-		final int type = (int) ((int) this.getRelativeMousePosition().x() / (this.getSize().x() / types));
-		for (final T tol : this.fullSet) {
-			if (tol.ordinal() - ((this.enumClass == EnumTemperature.class) ? 1 : 0) == type) {
-				tooltip.add((this.tolerated.contains(tol) ? "" : EnumChatFormatting.DARK_GRAY) + this.getName(tol));
+	public void getTooltip(Tooltip tooltip) {
+		int types = fullSet.size();
+		int type = (int) ((int) getRelativeMousePosition().x() / (getSize().x() / types));
+		for (T tol : fullSet) {
+			if (tol.ordinal() - ((enumClass == EnumTemperature.class) ? 1 : 0) == type) {
+				tooltip.add((tolerated.contains(tol) ? "" : EnumChatFormatting.DARK_GRAY) + getName(tol));
 			}
 		}
 	}
 
-	protected abstract String getName(final T p0);
+	protected abstract String getName(T p0);
 
-	protected abstract int getColour(final T p0);
+	protected abstract int getColour(T p0);
 
 	@Override
 	public void onRenderBackground() {
-		CraftGUI.Render.gradientRect(this.getArea(), -1431655766, -1431655766);
-		final float w = this.getArea().w() / this.fullSet.size();
+		CraftGUI.Render.gradientRect(getArea(), -1431655766, -1431655766);
+		float w = getArea().w() / fullSet.size();
 		int t = 0;
-		for (final T value : this.fullSet) {
-			final int col = (this.tolerated.contains(value) ? -16777216 : 855638016) + this.getColour(value);
-			final IBorder inset = new IBorder(this.tolerated.contains(value) ? 1.0f : 3.0f);
-			CraftGUI.Render.gradientRect(new IArea(w * t, 0.0f, w, this.h()).inset(inset), col, col);
+		for (T value : fullSet) {
+			int col = (tolerated.contains(value) ? -16777216 : 855638016) + getColour(value);
+			IBorder inset = new IBorder(tolerated.contains(value) ? 1.0f : 3.0f);
+			CraftGUI.Render.gradientRect(new IArea(w * t, 0.0f, w, h()).inset(inset), col, col);
 			++t;
 		}
 	}
 
-	public void setValues(final T value, final EnumTolerance enumTol) {
-		this.tolerated.clear();
-		final Tolerance tol = Tolerance.get(enumTol);
-		for (final T full : this.fullSet) {
+	public void setValues(T value, EnumTolerance enumTol) {
+		tolerated.clear();
+		Tolerance tol = Tolerance.get(enumTol);
+		for (T full : fullSet) {
 			if (full.ordinal() > value.ordinal() + tol.getBounds()[1]) {
 				continue;
 			}
 			if (full.ordinal() < value.ordinal() + tol.getBounds()[0]) {
 				continue;
 			}
-			this.tolerated.add(full);
+			tolerated.add(full);
 		}
 	}
 }

@@ -1,38 +1,34 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.machine;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.client.Minecraft;
 import binnie.core.BinnieCore;
-import org.lwjgl.opengl.GL11;
-import binnie.core.resource.BinnieResource;
 import binnie.core.machines.Machine;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.world.World;
-import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.entity.item.EntityItem;
+import binnie.core.resource.BinnieResource;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
-public class MachineRendererLab
-{
-	public static MachineRendererLab instance;
-	private final EntityItem dummyEntityItem;
-	private final EntityItem[] itemSides;
-	private final RenderItem customRenderItem;
+public class MachineRendererLab {
+	public static MachineRendererLab instance = new MachineRendererLab();
+
+	private EntityItem dummyEntityItem;
+	private EntityItem[] itemSides;
+	private RenderItem customRenderItem;
 	private long lastTick;
 	private ModelMachine model;
 
 	public MachineRendererLab() {
-		this.dummyEntityItem = new EntityItem((World) null);
-		this.itemSides = new EntityItem[] { new EntityItem((World) null), new EntityItem((World) null), new EntityItem((World) null), new EntityItem((World) null) };
-		this.model = new ModelMachine();
-		(this.customRenderItem = new RenderItem() {
+		dummyEntityItem = new EntityItem(null);
+		itemSides = new EntityItem[]{new EntityItem(null), new EntityItem(null), new EntityItem(null), new EntityItem(null)};
+		model = new ModelMachine();
+		(customRenderItem = new RenderItem() {
 			@Override
 			public boolean shouldBob() {
 				return false;
@@ -45,42 +41,46 @@ public class MachineRendererLab
 		}).setRenderManager(RenderManager.instance);
 	}
 
-	public void renderMachine(final Machine machine, final int colour, final BinnieResource texture, final double x, final double y, final double z, final float var8) {
+	public void renderMachine(Machine machine, int colour, BinnieResource texture, double x, double y, double z, float var8) {
 		GL11.glPushMatrix();
 		int i1 = 0;
-		final int ix = machine.getTileEntity().xCoord;
-		final int iy = machine.getTileEntity().yCoord;
-		final int iz = machine.getTileEntity().zCoord;
+		int ix = machine.getTileEntity().xCoord;
+		int iy = machine.getTileEntity().yCoord;
+		int iz = machine.getTileEntity().zCoord;
 		if (machine.getTileEntity() != null) {
 			i1 = ix * iy * iz + ix * iy - ix * iz + iy * iz - ix + iy - iz;
 		}
-		final float phase = (float) Math.max(0.0, Math.sin((System.currentTimeMillis() + i1) * 0.003));
+
+		float phase = (float) Math.max(0.0, Math.sin((System.currentTimeMillis() + i1) * 0.003));
 		GL11.glTranslated(x + 0.5, y + 1.5, z + 0.5);
 		GL11.glRotatef(180.0f, 0.0f, 0.0f, 1.0f);
 		BinnieCore.proxy.bindTexture(texture);
 		GL11.glPushMatrix();
-		this.model.render((float) x, (float) y, (float) z, 0.0625f, 0.0625f, 0.0625f);
+		model.render((float) x, (float) y, (float) z, 0.0625f, 0.0625f, 0.0625f);
 		GL11.glPopMatrix();
-		final World world = machine.getWorld();
-		final LaboratoryMachine.ComponentGUIHolder holder = Machine.getInterface(LaboratoryMachine.ComponentGUIHolder.class, machine);
-		Label_0591: {
+		World world = machine.getWorld();
+		LaboratoryMachine.ComponentGUIHolder holder = Machine.getInterface(LaboratoryMachine.ComponentGUIHolder.class, machine);
+
+		// TODO remove label
+		Label_0591:
+		{
 			if (world != null && holder != null && holder.getStack() != null) {
 				BinnieCore.proxy.getMinecraftInstance();
 				if (Minecraft.isFancyGraphicsEnabled()) {
-					final ItemStack stack = holder.getStack();
-					this.dummyEntityItem.worldObj = world;
-					this.dummyEntityItem.setEntityItemStack(stack);
-					if (world.getTotalWorldTime() != this.lastTick) {
-						this.lastTick = world.getTotalWorldTime();
-						this.dummyEntityItem.onUpdate();
+					ItemStack stack = holder.getStack();
+					dummyEntityItem.worldObj = world;
+					dummyEntityItem.setEntityItemStack(stack);
+					if (world.getTotalWorldTime() != lastTick) {
+						lastTick = world.getTotalWorldTime();
+						dummyEntityItem.onUpdate();
 					}
-					this.dummyEntityItem.age = 0;
-					this.dummyEntityItem.hoverStart = 0.0f;
+					dummyEntityItem.age = 0;
+					dummyEntityItem.hoverStart = 0.0f;
 					GL11.glPushMatrix();
-					final EntityPlayer player = BinnieCore.proxy.getPlayer();
-					final double dx = ix + 0.5 - player.lastTickPosX;
-					final double dz = iz + 0.5 - player.lastTickPosZ;
-					final double t = Math.atan2(dz, dx) * 180.0 / 3.1415;
+					EntityPlayer player = BinnieCore.proxy.getPlayer();
+					double dx = ix + 0.5 - player.lastTickPosX;
+					double dz = iz + 0.5 - player.lastTickPosZ;
+					double t = Math.atan2(dz, dx) * 180.0 / 3.1415;
 					GL11.glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
 					GL11.glTranslatef(0.0f, 0.0f, -0.55f);
 					GL11.glRotatef(90.0f + (float) (-t), 0.0f, 0.0f, 1.0f);
@@ -88,10 +88,10 @@ public class MachineRendererLab
 					GL11.glScalef(1.2f, 1.2f, 1.2f);
 					GL11.glRotatef(45.0f, 1.0f, 0.0f, 0.0f);
 					GL11.glTranslatef(0.0f, 0.1f, 0.1f);
-					this.customRenderItem.doRender(this.dummyEntityItem, 0.0, 0.0, 0.0, 0.0f, 0.0f);
+					customRenderItem.doRender(dummyEntityItem, 0.0, 0.0, 0.0, 0.0f, 0.0f);
 					GL11.glPopMatrix();
 					int rot = 0;
-					for (final EntityItem item : this.itemSides) {
+					for (EntityItem item : itemSides) {
 						GL11.glPushMatrix();
 						item.worldObj = world;
 						item.setEntityItemStack(stack);
@@ -101,22 +101,19 @@ public class MachineRendererLab
 						GL11.glRotatef(180.0f, 1.0f, 0.0f, 0.0f);
 						GL11.glTranslated(0.0, -1.13, 0.4);
 						GL11.glScalef(0.8f, 0.8f, 0.8f);
-						this.customRenderItem.doRender(item, 0.0, 0.0, 0.0, 0.0f, 0.0f);
+						customRenderItem.doRender(item, 0.0, 0.0, 0.0, 0.0f, 0.0f);
 						rot += 90;
 						GL11.glPopMatrix();
 					}
 					break Label_0591;
 				}
 			}
-			this.dummyEntityItem.setEntityItemStack((ItemStack) null);
-			for (final EntityItem item2 : this.itemSides) {
-				item2.setEntityItemStack((ItemStack) null);
+
+			dummyEntityItem.setEntityItemStack(null);
+			for (EntityItem item2 : itemSides) {
+				item2.setEntityItemStack(null);
 			}
 		}
 		GL11.glPopMatrix();
-	}
-
-	static {
-		MachineRendererLab.instance = new MachineRendererLab();
 	}
 }

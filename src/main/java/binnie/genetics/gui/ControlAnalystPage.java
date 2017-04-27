@@ -1,19 +1,15 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.gui;
 
-import java.text.DecimalFormat;
-import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.Control;
+import binnie.core.craftgui.geometry.IArea;
 
-public abstract class ControlAnalystPage extends Control
-{
-	public ControlAnalystPage(final IWidget parent, final IArea area) {
+import java.text.DecimalFormat;
+
+public abstract class ControlAnalystPage extends Control {
+	public ControlAnalystPage(IWidget parent, IArea area) {
 		super(parent, area);
-		this.hide();
+		hide();
 	}
 
 	@Override
@@ -22,11 +18,11 @@ public abstract class ControlAnalystPage extends Control
 
 	public abstract String getTitle();
 
-	protected String getTimeString(final float time) {
-		final float seconds = time / 20.0f;
-		final float minutes = seconds / 60.0f;
-		final float hours = minutes / 60.0f;
-		final DecimalFormat df = new DecimalFormat("#.0");
+	protected String getTimeString(float time) {
+		float seconds = time / 20.0f;
+		float minutes = seconds / 60.0f;
+		float hours = minutes / 60.0f;
+		DecimalFormat df = new DecimalFormat("#.0");
 		if (hours > 1.0f) {
 			return df.format(hours) + " hours";
 		}

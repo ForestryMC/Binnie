@@ -1,39 +1,34 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.genetics;
 
-import net.minecraft.nbt.NBTTagCompound;
 import binnie.genetics.api.IGene;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
-public class SequencerItem extends GeneItem
-{
+public class SequencerItem extends GeneItem {
 	public int sequenced;
 	public boolean analysed;
 
-	public SequencerItem(final ItemStack stack) {
+	public SequencerItem(ItemStack stack) {
 		super(stack);
 	}
 
-	public SequencerItem(final IGene gene) {
+	public SequencerItem(IGene gene) {
 		super(gene);
-		this.sequenced = 0;
-		this.analysed = false;
+		sequenced = 0;
+		analysed = false;
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbt) {
+	public void readFromNBT(NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.sequenced = nbt.getByte("seq");
-		this.analysed = nbt.getBoolean("ana");
+		sequenced = nbt.getByte("seq");
+		analysed = nbt.getBoolean("ana");
 	}
 
 	@Override
-	public void writeToNBT(final NBTTagCompound nbt) {
+	public void writeToNBT(NBTTagCompound nbt) {
 		super.writeToNBT(nbt);
-		nbt.setByte("seq", (byte) this.sequenced);
-		nbt.setBoolean("ana", this.analysed);
+		nbt.setByte("seq", (byte) sequenced);
+		nbt.setBoolean("ana", analysed);
 	}
 }

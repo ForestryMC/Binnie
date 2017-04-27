@@ -1,76 +1,71 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.item;
 
-import binnie.core.liquid.FluidContainer;
 import binnie.Binnie;
-import net.minecraftforge.fluids.FluidStack;
+import binnie.core.liquid.FluidContainer;
+import binnie.core.liquid.IFluidType;
 import binnie.genetics.Genetics;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
-import binnie.core.liquid.IFluidType;
+import net.minecraftforge.fluids.FluidStack;
 
-public enum GeneticLiquid implements IFluidType
-{
+public enum GeneticLiquid implements IFluidType {
 	GrowthMedium("Growth Medium", "growthMedium", 15460533),
 	Bacteria("Bacteria", "bacteria", 14203521),
 	BacteriaPoly("Polymerising Bacteria", "bacteriaPoly", 11443396),
 	RawDNA("Raw DNA", "dna.raw", 15089129),
 	BacteriaVector("Bacteria Vector", "bacteriaVector", 15960958);
 
-	String name;
-	String ident;
-	IIcon icon;
-	int colour;
-	float transparency;
+	protected String name;
+	protected String ident;
+	protected IIcon icon;
+	protected int colour;
+	protected float transparency;
 
-	private GeneticLiquid(final String name, final String ident, final int colour) {
+	GeneticLiquid(String name, String ident, int colour) {
 		this.name = name;
 		this.ident = ident;
 		this.colour = colour;
-		this.transparency = 1.0f;
+		transparency = 1.0f;
 	}
 
 	@Override
 	public String toString() {
-		return this.name;
+		return name;
 	}
 
 	@Override
 	public IIcon getIcon() {
-		return this.icon;
+		return icon;
 	}
 
 	@Override
-	public void registerIcon(final IIconRegister register) {
-		this.icon = Genetics.proxy.getIcon(register, "liquids/" + this.ident);
+	public void registerIcon(IIconRegister register) {
+		icon = Genetics.proxy.getIcon(register, "liquids/" + ident);
 	}
 
 	@Override
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	@Override
 	public String getIdentifier() {
-		return "binnie." + this.ident;
+		return "binnie." + ident;
 	}
 
 	@Override
 	public int getColour() {
-		return 16777215;
+		return 0xffffff;
 	}
 
 	@Override
 	public int getContainerColour() {
-		return this.colour;
+		return colour;
 	}
 
 	@Override
-	public FluidStack get(final int amount) {
-		return Binnie.Liquid.getLiquidStack(this.getIdentifier(), amount);
+	public FluidStack get(int amount) {
+		return Binnie.Liquid.getLiquidStack(getIdentifier(), amount);
 	}
 
 	@Override
@@ -79,12 +74,12 @@ public enum GeneticLiquid implements IFluidType
 	}
 
 	@Override
-	public boolean canPlaceIn(final FluidContainer container) {
+	public boolean canPlaceIn(FluidContainer container) {
 		return this == GeneticLiquid.GrowthMedium || container == FluidContainer.Cylinder;
 	}
 
 	@Override
-	public boolean showInCreative(final FluidContainer container) {
+	public boolean showInCreative(FluidContainer container) {
 		return container == FluidContainer.Cylinder;
 	}
 }

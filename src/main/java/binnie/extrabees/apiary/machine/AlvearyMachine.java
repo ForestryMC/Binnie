@@ -64,10 +64,6 @@ public enum AlvearyMachine implements IMachineType
 		}
 
 		@Override
-		public void register() {
-		}
-
-		@Override
 		public void renderMachine(final Machine machine, final double x, final double y, final double z, final float partialTick, final RenderBlocks renderer) {
 			MachineRendererBlock.instance.renderMachine(this.machineTexture, x, y, z, partialTick);
 		}

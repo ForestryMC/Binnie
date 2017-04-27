@@ -1,25 +1,20 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.gui;
 
-import binnie.core.craftgui.controls.ControlTextCentered;
-import forestry.api.lepidopterology.IButterfly;
-import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.geometry.IArea;
+import forestry.api.lepidopterology.IButterfly;
 import net.minecraft.util.EnumChatFormatting;
 
-public class AnalystPageSpecimen extends ControlAnalystPage
-{
-	public AnalystPageSpecimen(final IWidget parent, final IArea area, final IButterfly ind) {
+public class AnalystPageSpecimen extends ControlAnalystPage {
+	public AnalystPageSpecimen(IWidget parent, IArea area, IButterfly ind) {
 		super(parent, area);
-		this.setColor(3355443);
+		setColor(3355443);
 		int y = 4;
-		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Specimen").setColor(this.getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Specimen").setColor(getColor());
 		y += 12;
-		final float w = (this.w() - 16.0f) * ind.getSize();
-		new ControlIndividualDisplay(this, (this.w() - w) / 2.0f, y + (this.w() - w) / 2.0f, w, ind);
+		float w = (w() - 16.0f) * ind.getSize();
+		new ControlIndividualDisplay(this, (w() - w) / 2.0f, y + (w() - w) / 2.0f, w, ind);
 	}
 
 	@Override

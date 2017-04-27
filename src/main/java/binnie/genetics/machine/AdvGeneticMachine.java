@@ -1,29 +1,23 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.machine;
 
+import binnie.core.machines.IMachineType;
+import binnie.core.machines.MachinePackage;
 import binnie.core.resource.IBinnieTexture;
-import net.minecraft.block.Block;
 import binnie.genetics.Genetics;
 import net.minecraft.item.ItemStack;
-import binnie.core.machines.MachinePackage;
-import binnie.core.machines.IMachineType;
 
-public enum AdvGeneticMachine implements IMachineType
-{
+public enum AdvGeneticMachine implements IMachineType {
 	Splicer(Splicer.PackageSplicer.class);
 
-	Class<? extends MachinePackage> clss;
+	protected Class<? extends MachinePackage> cls;
 
-	private AdvGeneticMachine(final Class<? extends MachinePackage> clss) {
-		this.clss = clss;
+	AdvGeneticMachine(Class<? extends MachinePackage> cls) {
+		this.cls = cls;
 	}
 
 	@Override
 	public Class<? extends MachinePackage> getPackageClass() {
-		return this.clss;
+		return cls;
 	}
 
 	@Override
@@ -31,14 +25,13 @@ public enum AdvGeneticMachine implements IMachineType
 		return true;
 	}
 
-	public ItemStack get(final int i) {
-		return new ItemStack(Genetics.packageAdvGenetic.getBlock(), i, this.ordinal());
+	public ItemStack get(int i) {
+		return new ItemStack(Genetics.packageAdvGenetic.getBlock(), i, ordinal());
 	}
 
-	public abstract static class PackageAdvGeneticBase extends GeneticMachine.PackageGeneticBase
-	{
-		protected PackageAdvGeneticBase(final String uid, final IBinnieTexture renderTexture, final int flashColour, final boolean powered) {
-			super(uid, renderTexture, flashColour, powered);
+	public abstract static class PackageAdvGeneticBase extends GeneticMachine.PackageGeneticBase {
+		protected PackageAdvGeneticBase(String uid, IBinnieTexture renderTexture, int flashColor, boolean powered) {
+			super(uid, renderTexture, flashColor, powered);
 		}
 	}
 }

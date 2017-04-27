@@ -1,18 +1,13 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.core;
 
-import binnie.genetics.Genetics;
 import binnie.Binnie;
-import binnie.core.resource.BinnieResource;
 import binnie.core.resource.BinnieIcon;
-import binnie.core.resource.ResourceType;
+import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
+import binnie.core.resource.ResourceType;
+import binnie.genetics.Genetics;
 
-public enum GeneticsTexture implements IBinnieTexture
-{
+public enum GeneticsTexture implements IBinnieTexture {
 	GeneticMachine(ResourceType.Tile, "GeneticMachine"),
 	Genepool(ResourceType.Tile, "Genepool"),
 	Incubator(ResourceType.Tile, "Incubator"),
@@ -29,21 +24,18 @@ public enum GeneticsTexture implements IBinnieTexture
 	Acclimatiser(ResourceType.Tile, "Acclimatiser"),
 	Splicer(ResourceType.Tile, "Splicer");
 
-	String texture;
-	ResourceType type;
-	public static BinnieIcon dnaIcon;
+	public static BinnieIcon dnaIcon = Binnie.Resource.getItemIcon(Genetics.instance, "dna");
 
-	private GeneticsTexture(final ResourceType base, final String texture) {
+	protected String texture;
+	protected ResourceType type;
+
+	GeneticsTexture(ResourceType base, String texture) {
 		this.texture = texture;
-		this.type = base;
+		type = base;
 	}
 
 	@Override
 	public BinnieResource getTexture() {
-		return Binnie.Resource.getPNG(Genetics.instance, this.type, this.texture);
-	}
-
-	static {
-		GeneticsTexture.dnaIcon = Binnie.Resource.getItemIcon(Genetics.instance, "dna");
+		return Binnie.Resource.getPNG(Genetics.instance, type, texture);
 	}
 }

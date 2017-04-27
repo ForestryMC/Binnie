@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.gui;
 
 import binnie.core.craftgui.CraftGUI;
@@ -28,121 +24,116 @@ import net.minecraft.util.EnumChatFormatting;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class AnalystPageDatabase extends ControlAnalystPage
-{
+public class AnalystPageDatabase extends ControlAnalystPage {
 	ControlScrollableContent scroll;
 	boolean isMaster;
 
-	public AnalystPageDatabase(final IWidget parent, final IArea area, final BreedingSystem system, final boolean isMaster) {
+	public AnalystPageDatabase(IWidget parent, IArea area, BreedingSystem system, boolean isMaster) {
 		super(parent, area);
-		this.scroll = null;
+		scroll = null;
 		this.isMaster = isMaster;
-		final int cOfSystem = system.getColour();
-		final int cr = (0xFF0000 & cOfSystem) >> 16;
-		final int cg = (0xFF00 & cOfSystem) >> 8;
-		final int cb = 0xFF & cOfSystem;
+		int cOfSystem = system.getColour();
+		int cr = (0xFF0000 & cOfSystem) >> 16;
+		int cg = (0xFF00 & cOfSystem) >> 8;
+		int cb = 0xFF & cOfSystem;
 		float brightness = 0.1f * cb / 255.0f + 0.35f * cr / 255.0f + 0.55f * cg / 255.0f;
 		brightness = 0.3f / brightness;
 		if (brightness > 1.0f) {
 			brightness = 1.0f;
 		}
-		final int newColour = (int) (cr * brightness) * 65536 + (int) (cg * brightness) * 256 + (int) (cb * brightness);
-		this.setColor(newColour);
+		int newColour = (int) (cr * brightness) * 65536 + (int) (cg * brightness) * 256 + (int) (cb * brightness);
+		setColor(newColour);
 		int y = 4;
-		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Registry").setColor(this.getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Registry").setColor(getColor());
 		y += 16;
-		new ControlTextEdit(this, 20.0f, y, this.w() - 40.0f, 16.0f) {
+		new ControlTextEdit(this, 20.0f, y, w() - 40.0f, 16.0f) {
 			@Override
-			public void onTextEdit(final String value) {
-				final Collection<IAlleleSpecies> options = new ArrayList<IAlleleSpecies>();
-				AnalystPageDatabase.this.getSpecies(system);
-				for (final IAlleleSpecies species : AnalystPageDatabase.this.getSpecies(system)) {
-					if (value != null) {
-						if (value != "") {
-							if (!species.getName().toLowerCase().contains(value.toLowerCase())) {
-								continue;
-							}
-						}
+			public void onTextEdit(String value) {
+				Collection<IAlleleSpecies> options = new ArrayList<>();
+				getSpecies(system);
+				for (IAlleleSpecies species : getSpecies(system)) {
+					if (value != null && value.isEmpty() && !species.getName().toLowerCase().contains(value.toLowerCase())) {
+						continue;
 					}
 					options.add(species);
 				}
-				AnalystPageDatabase.this.scroll.deleteAllChildren();
-				AnalystPageDatabase.this.scroll.setScrollableContent(AnalystPageDatabase.this.getItemScrollList(system, options));
+				scroll.deleteAllChildren();
+				scroll.setScrollableContent(getItemScrollList(system, options));
 			}
 
 			@Override
 			public void onRenderBackground() {
 				CraftGUI.Render.colour(5592405);
-				CraftGUI.Render.texture(CraftGUITexture.TabSolid, this.getArea().inset(1));
+				CraftGUI.Render.texture(CraftGUITexture.TabSolid, getArea().inset(1));
 				CraftGUI.Render.colour(AnalystPageDatabase.this.getColor());
-				CraftGUI.Render.texture(CraftGUITexture.TabOutline, this.getArea());
+				CraftGUI.Render.texture(CraftGUITexture.TabOutline, getArea());
 				super.renderTextField();
 			}
 		};
 		y += 22;
-		new Panel(this, 3.0f, y - 1, this.w() - 6.0f, this.h() - y - 8.0f + 2.0f, MinecraftGUI.PanelType.TabOutline).setColor(this.getColor());
-		final boolean textView = false;
-		final Collection<IAlleleSpecies> options = this.getSpecies(system);
-		for (final IAlleleSpecies species : options) {
-			final String height = system.getAlleleName(EnumTreeChromosome.HEIGHT, system.getIndividual(species.getUID()).getGenome().getActiveAllele(EnumTreeChromosome.HEIGHT));
-			final String fertility = system.getAlleleName(EnumTreeChromosome.FERTILITY, system.getIndividual(species.getUID()).getGenome().getActiveAllele(EnumTreeChromosome.FERTILITY));
-			final String yield = system.getAlleleName(EnumTreeChromosome.YIELD, system.getIndividual(species.getUID()).getGenome().getActiveAllele(EnumTreeChromosome.YIELD));
-			final String sappiness = system.getAlleleName(EnumTreeChromosome.SAPPINESS, system.getIndividual(species.getUID()).getGenome().getActiveAllele(EnumTreeChromosome.SAPPINESS));
-			final String maturation = system.getAlleleName(EnumTreeChromosome.MATURATION, system.getIndividual(species.getUID()).getGenome().getActiveAllele(EnumTreeChromosome.MATURATION));
+		new Panel(this, 3.0f, y - 1, w() - 6.0f, h() - y - 8.0f + 2.0f, MinecraftGUI.PanelType.TabOutline).setColor(getColor());
+		boolean textView = false;
+		Collection<IAlleleSpecies> options = getSpecies(system);
+		for (IAlleleSpecies species : options) {
+			String height = system.getAlleleName(EnumTreeChromosome.HEIGHT, system.getIndividual(species.getUID()).getGenome().getActiveAllele(EnumTreeChromosome.HEIGHT));
+			String fertility = system.getAlleleName(EnumTreeChromosome.FERTILITY, system.getIndividual(species.getUID()).getGenome().getActiveAllele(EnumTreeChromosome.FERTILITY));
+			String yield = system.getAlleleName(EnumTreeChromosome.YIELD, system.getIndividual(species.getUID()).getGenome().getActiveAllele(EnumTreeChromosome.YIELD));
+			String sappiness = system.getAlleleName(EnumTreeChromosome.SAPPINESS, system.getIndividual(species.getUID()).getGenome().getActiveAllele(EnumTreeChromosome.SAPPINESS));
+			String maturation = system.getAlleleName(EnumTreeChromosome.MATURATION, system.getIndividual(species.getUID()).getGenome().getActiveAllele(EnumTreeChromosome.MATURATION));
 		}
+
 		if (textView) {
-			this.scroll = new ControlListBox<IAlleleSpecies>(this, 4.0f, y, this.w() - 8.0f, this.h() - y - 8.0f - 20.0f, 0.0f) {
+			scroll = new ControlListBox<IAlleleSpecies>(this, 4.0f, y, w() - 8.0f, h() - y - 8.0f - 20.0f, 0.0f) {
 				@Override
 				public void initialise() {
 					super.initialise();
-					this.setOptions(options);
+					setOptions(options);
 				}
 
 				@Override
-				public IWidget createOption(final IAlleleSpecies v, final int y) {
-					return new Control(this.getContent(), 0.0f, y, this.w(), 12.0f) {
+				public IWidget createOption(IAlleleSpecies v, int y) {
+					return new Control(getContent(), 0.0f, y, w(), 12.0f) {
 						IAlleleSpecies value = v;
 
 						@Override
 						public void onRenderBackground() {
-							CraftGUI.Render.text(this.getArea(), TextJustification.MiddleCenter, this.value.getName(), 16777215);
+							CraftGUI.Render.text(getArea(), TextJustification.MiddleCenter, value.getName(), 16777215);
 						}
 					};
 				}
 			};
+		} else {
+			(scroll = new ControlScrollableContent(this, 4.0f, y, w() - 8.0f, h() - y - 8.0f, 0.0f)).setScrollableContent(getItemScrollList(system, options));
 		}
-		else {
-			(this.scroll = new ControlScrollableContent(this, 4.0f, y, this.w() - 8.0f, this.h() - y - 8.0f, 0.0f)).setScrollableContent(this.getItemScrollList(system, options));
-		}
-		new ControlScrollBar(this, this.scroll.x() + this.scroll.w() - 6.0f, this.scroll.y() + 3.0f, 3.0f, this.scroll.h() - 6.0f, this.scroll) {
+		new ControlScrollBar(this, scroll.x() + scroll.w() - 6.0f, scroll.y() + 3.0f, 3.0f, scroll.h() - 6.0f, scroll) {
 			@Override
 			public void onRenderBackground() {
-				if (!this.isEnabled()) {
+				if (!isEnabled()) {
 					return;
 				}
-				CraftGUI.Render.gradientRect(this.getArea(), 1140850688 + AnalystPageDatabase.this.getColor(), 1140850688 + AnalystPageDatabase.this.getColor());
-				CraftGUI.Render.solid(this.getRenderArea(), AnalystPageDatabase.this.getColor());
+				CraftGUI.Render.gradientRect(getArea(), 1140850688 + AnalystPageDatabase.this.getColor(), 1140850688 + AnalystPageDatabase.this.getColor());
+				CraftGUI.Render.solid(getRenderArea(), AnalystPageDatabase.this.getColor());
 			}
 		};
 	}
 
-	private IWidget getItemScrollList(final BreedingSystem system, final Collection<IAlleleSpecies> options) {
-		return new Control(this.scroll, 0.0f, 0.0f, this.scroll.w(), this.scroll.h()) {
+	private IWidget getItemScrollList(BreedingSystem system, Collection<IAlleleSpecies> options) {
+		return new Control(scroll, 0.0f, 0.0f, scroll.w(), scroll.h()) {
 			@Override
 			public void initialise() {
-				final int maxBiomePerLine = (int) ((this.w() - 4.0f + 2.0f) / 18.0f);
-				final float biomeListX = -6.0f + (this.w() - (maxBiomePerLine * 18 - 2)) / 2.0f;
+				int maxBiomePerLine = (int) ((w() - 4.0f + 2.0f) / 18.0f);
+				float biomeListX = -6.0f + (w() - (maxBiomePerLine * 18 - 2)) / 2.0f;
 				int dx = 0;
 				int dy = 0;
-				for (final IAlleleSpecies species : options) {
-					final IIndividual ind = system.getSpeciesRoot().templateAsIndividual(system.getSpeciesRoot().getTemplate(species.getUID()));
+				for (IAlleleSpecies species : options) {
+					IIndividual ind = system.getSpeciesRoot().templateAsIndividual(system.getSpeciesRoot().getTemplate(species.getUID()));
 					new ControlIndividualDisplay(this, biomeListX + dx, 2 + dy, ind) {
 						@Override
 						public void initialise() {
-							this.addSelfEventHandler(new EventMouse.Down.Handler() {
+							addSelfEventHandler(new EventMouse.Down.Handler() {
 								@Override
-								public void onEvent(final EventMouse.Down event) {
-									final WindowAnalyst window = (WindowAnalyst) AnalystPageDatabase.this.getSuperParent();
+								public void onEvent(EventMouse.Down event) {
+									WindowAnalyst window = (WindowAnalyst) AnalystPageDatabase.this.getSuperParent();
 									window.setIndividual(ind);
 								}
 							});
@@ -150,16 +141,15 @@ public class AnalystPageDatabase extends ControlAnalystPage
 
 						@Override
 						public void onRenderBackground() {
-							final WindowAnalyst window = (WindowAnalyst) AnalystPageDatabase.this.getSuperParent();
+							WindowAnalyst window = (WindowAnalyst) AnalystPageDatabase.this.getSuperParent();
 							if (window.getIndividual() != null && window.getIndividual().getGenome().getPrimary() == species) {
 								CraftGUI.Render.colour(15658734);
-								CraftGUI.Render.texture(CraftGUITexture.TabSolid, this.getArea().outset(1));
+								CraftGUI.Render.texture(CraftGUITexture.TabSolid, getArea().outset(1));
 								CraftGUI.Render.colour(AnalystPageDatabase.this.getColor());
-								CraftGUI.Render.texture(CraftGUITexture.TabOutline, this.getArea().outset(1));
-							}
-							else if (this.calculateIsMouseOver()) {
+								CraftGUI.Render.texture(CraftGUITexture.TabOutline, getArea().outset(1));
+							} else if (calculateIsMouseOver()) {
 								CraftGUI.Render.colour(15658734);
-								CraftGUI.Render.texture(CraftGUITexture.TabSolid, this.getArea().outset(1));
+								CraftGUI.Render.texture(CraftGUITexture.TabSolid, getArea().outset(1));
 							}
 							super.onRenderBackground();
 						}
@@ -170,7 +160,7 @@ public class AnalystPageDatabase extends ControlAnalystPage
 						dy += 18;
 					}
 				}
-				this.setSize(new IPoint(this.w(), 4 + dy + 18));
+				setSize(new IPoint(w(), 4 + dy + 18));
 			}
 		};
 	}
@@ -180,9 +170,9 @@ public class AnalystPageDatabase extends ControlAnalystPage
 		return "Registry";
 	}
 
-	private Collection<IAlleleSpecies> getSpecies(final BreedingSystem system) {
-		final Collection<IAlleleSpecies> species = new ArrayList<IAlleleSpecies>();
-		species.addAll(this.isMaster ? system.getAllSpecies() : system.getDiscoveredSpecies(this.getWindow().getWorld(), this.getWindow().getPlayer().getGameProfile()));
+	private Collection<IAlleleSpecies> getSpecies(BreedingSystem system) {
+		Collection<IAlleleSpecies> species = new ArrayList<>();
+		species.addAll(isMaster ? system.getAllSpecies() : system.getDiscoveredSpecies(getWindow().getWorld(), getWindow().getPlayer().getGameProfile()));
 		return species;
 	}
 }

@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.gui;
 
 import binnie.Binnie;
@@ -34,19 +30,18 @@ import net.minecraft.util.EnumChatFormatting;
 import java.util.Collection;
 import java.util.List;
 
-public class AnalystPageMutations extends ControlAnalystPage
-{
-	public AnalystPageMutations(final IWidget parent, final IArea area, final IIndividual ind, final boolean isMaster) {
+public class AnalystPageMutations extends ControlAnalystPage {
+	public AnalystPageMutations(IWidget parent, IArea area, IIndividual ind, boolean isMaster) {
 		super(parent, area);
-		this.setColor(3355392);
+		setColor(3355392);
 		int y = 4;
-		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Mutations").setColor(this.getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Mutations").setColor(getColor());
 		y += 18;
-		final BreedingSystem system = Binnie.Genetics.getSystem(ind.getGenome().getSpeciesRoot());
-		final List<IMutation> discovered = system.getDiscoveredMutations(Window.get(this).getWorld(), Window.get(this).getUsername());
-		final IAlleleSpecies speciesCurrent = ind.getGenome().getPrimary();
-		final Collection<IMutation> resultant = system.getResultantMutations(speciesCurrent);
-		final Collection<IMutation> further = system.getFurtherMutations(speciesCurrent);
+		BreedingSystem system = Binnie.Genetics.getSystem(ind.getGenome().getSpeciesRoot());
+		List<IMutation> discovered = system.getDiscoveredMutations(Window.get(this).getWorld(), Window.get(this).getUsername());
+		IAlleleSpecies speciesCurrent = ind.getGenome().getPrimary();
+		Collection<IMutation> resultant = system.getResultantMutations(speciesCurrent);
+		Collection<IMutation> further = system.getFurtherMutations(speciesCurrent);
 		if (ind instanceof IBee) {
 			ItemStack hive = null;
 			if (ind.getGenome().getPrimary() == ExtraBeesSpecies.WATER) {
@@ -83,59 +78,55 @@ public class AnalystPageMutations extends ControlAnalystPage
 				hive = new ItemStack(Blocks.chest);
 			}
 			if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Valiant.getAllele()) {
-				new ControlTextCentered(this, y, "Natural Habitat").setColor(this.getColor());
+				new ControlTextCentered(this, y, "Natural Habitat").setColor(getColor());
 				y += 10;
-				new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + "Found in any Hive").setColor(this.getColor());
+				new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + "Found in any Hive").setColor(getColor());
 				y += 22;
-			}
-			else if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Monastic.getAllele()) {
-				new ControlTextCentered(this, y, "Natural Habitat").setColor(this.getColor());
+			} else if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Monastic.getAllele()) {
+				new ControlTextCentered(this, y, "Natural Habitat").setColor(getColor());
 				y += 10;
-				new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + "Bought from Villagers").setColor(this.getColor());
+				new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + "Bought from Villagers").setColor(getColor());
 				y += 22;
-			}
-			else if (hive != null) {
-				new ControlTextCentered(this, y, "Natural Habitat").setColor(this.getColor());
+			} else if (hive != null) {
+				new ControlTextCentered(this, y, "Natural Habitat").setColor(getColor());
 				y += 10;
-				final ControlItemDisplay display = new ControlItemDisplay(this, (this.w() - 16.0f) / 2.0f, y);
+				ControlItemDisplay display = new ControlItemDisplay(this, (w() - 16.0f) / 2.0f, y);
 				if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Steadfast.getAllele()) {
 					display.addTooltip("Dungeon Chests");
-				}
-				else {
+				} else {
 					display.setTooltip();
 				}
 				display.setItemStack(hive);
 				y += 24;
 			}
 		}
-		float ox = (this.w() - 88.0f - 8.0f) / 2.0f;
+		float ox = (w() - 88.0f - 8.0f) / 2.0f;
 		float dx = 0.0f;
 		if (!resultant.isEmpty()) {
 			if (resultant.size() == 1) {
-				ox = (this.w() - 44.0f) / 2.0f;
+				ox = (w() - 44.0f) / 2.0f;
 			}
-			new ControlTextCentered(this, y, "Resultant Mutations").setColor(this.getColor());
+			new ControlTextCentered(this, y, "Resultant Mutations").setColor(getColor());
 			y += 10;
-			for (final IMutation mutation : resultant) {
-				final float specificChance = this.getSpecificChance(ind, mutation, system);
-				if (!isMaster && !this.isKnown(system, mutation)) {
+			for (IMutation mutation : resultant) {
+				float specificChance = getSpecificChance(ind, mutation, system);
+				if (!isMaster && !isKnown(system, mutation)) {
 					new ControlUnknownMutation(this, ox + dx, y, 44.0f, 16.0f);
-				}
-				else {
+				} else {
 					new Control(this, ox + dx, y, 44.0f, 16.0f) {
 						@Override
 						public void initialise() {
-							final IAlleleSpecies species0 = mutation.getAllele0();
-							final IAlleleSpecies species2 = mutation.getAllele1();
-							final String comb = species0.getName() + " + " + species2.getName();
-							this.addTooltip(comb);
-							String chance = AnalystPageMutations.this.getMutationColour(mutation.getBaseChance()).getCode() + (int) mutation.getBaseChance() + "% Chance";
+							IAlleleSpecies species0 = mutation.getAllele0();
+							IAlleleSpecies species2 = mutation.getAllele1();
+							String comb = species0.getName() + " + " + species2.getName();
+							addTooltip(comb);
+							String chance = getMutationColour(mutation.getBaseChance()).getCode() + (int) mutation.getBaseChance() + "% Chance";
 							if (specificChance != mutation.getBaseChance()) {
-								chance = chance + AnalystPageMutations.this.getMutationColour(specificChance).getCode() + " (" + (int) specificChance + "% currently)";
+								chance = chance + getMutationColour(specificChance).getCode() + " (" + (int) specificChance + "% currently)";
 							}
-							this.addTooltip(chance);
-							for (final String s : mutation.getSpecialConditions()) {
-								this.addTooltip(s);
+							addTooltip(chance);
+							for (String s : mutation.getSpecialConditions()) {
+								addTooltip(s);
 							}
 						}
 
@@ -144,13 +135,12 @@ public class AnalystPageMutations extends ControlAnalystPage
 							CraftGUI.Render.item(new IPoint(0.0f, 0.0f), system.getDefaultMember(mutation.getAllele0().getUID()));
 							CraftGUI.Render.item(new IPoint(28.0f, 0.0f), system.getDefaultMember(mutation.getAllele1().getUID()));
 							if (specificChance != mutation.getBaseChance()) {
-								CraftGUI.Render.colour(AnalystPageMutations.this.getMutationColour(mutation.getBaseChance()).getColour());
+								CraftGUI.Render.colour(getMutationColour(mutation.getBaseChance()).getColour());
 								CraftGUI.Render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconAdd0.getIcon());
-								CraftGUI.Render.colour(AnalystPageMutations.this.getMutationColour(specificChance).getColour());
+								CraftGUI.Render.colour(getMutationColour(specificChance).getColour());
 								CraftGUI.Render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconAdd1.getIcon());
-							}
-							else {
-								CraftGUI.Render.colour(AnalystPageMutations.this.getMutationColour(mutation.getBaseChance()).getColour());
+							} else {
+								CraftGUI.Render.colour(getMutationColour(mutation.getBaseChance()).getColour());
 								CraftGUI.Render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconAdd.getIcon());
 							}
 						}
@@ -166,36 +156,35 @@ public class AnalystPageMutations extends ControlAnalystPage
 			}
 			y += 10;
 		}
-		ox = (this.w() - 88.0f - 8.0f) / 2.0f;
+		ox = (w() - 88.0f - 8.0f) / 2.0f;
 		dx = 0.0f;
 		if (!further.isEmpty()) {
 			if (further.size() == 1) {
-				ox = (this.w() - 44.0f) / 2.0f;
+				ox = (w() - 44.0f) / 2.0f;
 			}
-			new ControlTextCentered(this, y, "Further Mutations").setColor(this.getColor());
+			new ControlTextCentered(this, y, "Further Mutations").setColor(getColor());
 			y += 10;
-			for (final IMutation mutation : further) {
-				final IAllele speciesComb = mutation.getPartner(speciesCurrent);
-				final float specificChance2 = this.getSpecificChance(ind, mutation, system);
-				if (!isMaster && !this.isKnown(system, mutation)) {
+			for (IMutation mutation : further) {
+				IAllele speciesComb = mutation.getPartner(speciesCurrent);
+				float specificChance2 = getSpecificChance(ind, mutation, system);
+				if (!isMaster && !isKnown(system, mutation)) {
 					new ControlUnknownMutation(this, ox + dx, y, 44.0f, 16.0f);
-				}
-				else {
+				} else {
 					new Control(this, ox + dx, y, 44.0f, 16.0f) {
 						@Override
 						public void initialise() {
-							final IAlleleSpecies species0 = (IAlleleSpecies) speciesComb;
-							final IAlleleSpecies species2 = (IAlleleSpecies) mutation.getTemplate()[0];
-							this.addTooltip(species2.getName());
-							final String comb = speciesCurrent.getName() + " + " + species0.getName();
-							this.addTooltip(comb);
-							String chance = AnalystPageMutations.this.getMutationColour(mutation.getBaseChance()).getCode() + (int) mutation.getBaseChance() + "% Chance";
+							IAlleleSpecies species0 = (IAlleleSpecies) speciesComb;
+							IAlleleSpecies species2 = (IAlleleSpecies) mutation.getTemplate()[0];
+							addTooltip(species2.getName());
+							String comb = speciesCurrent.getName() + " + " + species0.getName();
+							addTooltip(comb);
+							String chance = getMutationColour(mutation.getBaseChance()).getCode() + (int) mutation.getBaseChance() + "% Chance";
 							if (specificChance2 != mutation.getBaseChance()) {
-								chance = chance + AnalystPageMutations.this.getMutationColour(specificChance2).getCode() + " (" + (int) specificChance2 + "% currently)";
+								chance = chance + getMutationColour(specificChance2).getCode() + " (" + (int) specificChance2 + "% currently)";
 							}
-							this.addTooltip(chance);
-							for (final String s : mutation.getSpecialConditions()) {
-								this.addTooltip(s);
+							addTooltip(chance);
+							for (String s : mutation.getSpecialConditions()) {
+								addTooltip(s);
 							}
 						}
 
@@ -203,15 +192,14 @@ public class AnalystPageMutations extends ControlAnalystPage
 						public void onRenderBackground() {
 							CraftGUI.Render.item(new IPoint(0.0f, 0.0f), system.getDefaultMember(speciesComb.getUID()));
 							CraftGUI.Render.item(new IPoint(28.0f, 0.0f), system.getDefaultMember(mutation.getTemplate()[0].getUID()));
-							CraftGUI.Render.colour(AnalystPageMutations.this.getMutationColour(mutation.getBaseChance()).getColour());
+							CraftGUI.Render.colour(getMutationColour(mutation.getBaseChance()).getColour());
 							if (specificChance2 != mutation.getBaseChance()) {
-								CraftGUI.Render.colour(AnalystPageMutations.this.getMutationColour(mutation.getBaseChance()).getColour());
+								CraftGUI.Render.colour(getMutationColour(mutation.getBaseChance()).getColour());
 								CraftGUI.Render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconArrow0.getIcon());
-								CraftGUI.Render.colour(AnalystPageMutations.this.getMutationColour(specificChance2).getColour());
+								CraftGUI.Render.colour(getMutationColour(specificChance2).getColour());
 								CraftGUI.Render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconArrow1.getIcon());
-							}
-							else {
-								CraftGUI.Render.colour(AnalystPageMutations.this.getMutationColour(mutation.getBaseChance()).getColour());
+							} else {
+								CraftGUI.Render.colour(getMutationColour(mutation.getBaseChance()).getColour());
 								CraftGUI.Render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconArrow.getIcon());
 							}
 						}
@@ -227,15 +215,15 @@ public class AnalystPageMutations extends ControlAnalystPage
 			}
 		}
 		y += 8;
-		this.setSize(new IPoint(this.w(), y));
+		setSize(new IPoint(w(), y));
 	}
 
-	private boolean isKnown(final BreedingSystem system, final IMutation mutation) {
-		return system.getDiscoveredMutations(this.getWindow().getWorld(), this.getWindow().getPlayer().getGameProfile()).contains(mutation);
+	private boolean isKnown(BreedingSystem system, IMutation mutation) {
+		return system.getDiscoveredMutations(getWindow().getWorld(), getWindow().getPlayer().getGameProfile()).contains(mutation);
 	}
 
-	private float getSpecificChance(final IIndividual ind, final IMutation mutation, final BreedingSystem system) {
-		return system.getChance(mutation, this.getWindow().getPlayer(), mutation.getAllele0(), mutation.getAllele1());
+	private float getSpecificChance(IIndividual ind, IMutation mutation, BreedingSystem system) {
+		return system.getChance(mutation, getWindow().getPlayer(), mutation.getAllele0(), mutation.getAllele1());
 	}
 
 	@Override
@@ -243,7 +231,7 @@ public class AnalystPageMutations extends ControlAnalystPage
 		return "Mutations";
 	}
 
-	protected EnumColor getMutationColour(final float percent) {
+	protected EnumColor getMutationColour(float percent) {
 		if (percent >= 20.0f) {
 			return EnumColor.DarkGreen;
 		}
@@ -262,17 +250,16 @@ public class AnalystPageMutations extends ControlAnalystPage
 		return EnumColor.DarkRed;
 	}
 
-	static class ControlUnknownMutation extends Control
-	{
-		public ControlUnknownMutation(final IWidget parent, final float x, final float y, final float w, final float h) {
+	static class ControlUnknownMutation extends Control {
+		public ControlUnknownMutation(IWidget parent, float x, float y, float w, float h) {
 			super(parent, x, y, w, h);
-			this.addAttribute(WidgetAttribute.MouseOver);
-			this.addTooltip("Unknown Mutation");
+			addAttribute(WidgetAttribute.MouseOver);
+			addTooltip("Unknown Mutation");
 		}
 
 		@Override
 		public void onRenderBackground() {
-			CraftGUI.Render.text(this.getArea(), TextJustification.MiddleCenter, "UNKNOWN", 11184810);
+			CraftGUI.Render.text(getArea(), TextJustification.MiddleCenter, "UNKNOWN", 11184810);
 		}
 	}
 }

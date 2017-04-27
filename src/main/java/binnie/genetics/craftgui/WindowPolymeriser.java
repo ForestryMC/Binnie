@@ -1,49 +1,47 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.craftgui;
 
-import binnie.core.craftgui.resource.minecraft.StandardTexture;
-import binnie.genetics.core.GeneticsTexture;
-import binnie.genetics.Genetics;
 import binnie.core.AbstractMod;
-import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
-import binnie.core.craftgui.minecraft.control.ControlErrorState;
-import binnie.core.craftgui.minecraft.control.ControlSlotCharge;
-import binnie.core.craftgui.minecraft.control.ControlEnergyBar;
-import binnie.core.craftgui.minecraft.control.ControlLiquidTank;
-import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.core.craftgui.geometry.Position;
-import binnie.core.craftgui.minecraft.control.ControlMachineProgress;
 import binnie.core.craftgui.minecraft.GUIIcon;
-import binnie.core.craftgui.minecraft.control.ControlIconDisplay;
-import binnie.genetics.machine.Polymeriser;
-import binnie.core.craftgui.minecraft.control.ControlSlotArray;
 import binnie.core.craftgui.minecraft.Window;
-import cpw.mods.fml.relauncher.Side;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.entity.player.EntityPlayer;
+import binnie.core.craftgui.minecraft.control.ControlEnergyBar;
+import binnie.core.craftgui.minecraft.control.ControlErrorState;
+import binnie.core.craftgui.minecraft.control.ControlIconDisplay;
+import binnie.core.craftgui.minecraft.control.ControlLiquidTank;
+import binnie.core.craftgui.minecraft.control.ControlMachineProgress;
+import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
+import binnie.core.craftgui.minecraft.control.ControlSlot;
+import binnie.core.craftgui.minecraft.control.ControlSlotArray;
+import binnie.core.craftgui.minecraft.control.ControlSlotCharge;
 import binnie.core.craftgui.resource.Texture;
+import binnie.core.craftgui.resource.minecraft.StandardTexture;
+import binnie.genetics.Genetics;
+import binnie.genetics.core.GeneticsTexture;
+import binnie.genetics.machine.Polymeriser;
+import cpw.mods.fml.relauncher.Side;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 
-public class WindowPolymeriser extends WindowMachine
-{
-	static Texture ProgressBase;
-	static Texture Progress;
+public class WindowPolymeriser extends WindowMachine {
+	protected static Texture ProgressBase = new StandardTexture(76, 170, 160, 79, GeneticsTexture.GUIProcess.getTexture());
+	protected static Texture Progress = new StandardTexture(76, 91, 160, 79, GeneticsTexture.GUIProcess.getTexture());
 
-	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
-		return new WindowPolymeriser(player, inventory, side);
+	static {
 	}
 
-	public WindowPolymeriser(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowPolymeriser(EntityPlayer player, IInventory inventory, Side side) {
 		super(278, 212, player, inventory, side);
+	}
+
+	public static Window create(EntityPlayer player, IInventory inventory, Side side) {
+		return new WindowPolymeriser(player, inventory, side);
 	}
 
 	@Override
 	public void initialiseClient() {
 		super.initialiseClient();
 		int x = 16;
-		final int y = 38;
+		int y = 38;
 		new ControlSlotArray(this, x, y, 1, 4).create(Polymeriser.slotSerumReserve);
 		new ControlIconDisplay(this, x + 18, y + 1, GUIIcon.ArrowRight.getIcon());
 		x += 34;
@@ -57,7 +55,7 @@ public class WindowPolymeriser extends WindowMachine
 		new ControlSlotCharge(this, x + 30 + 20, y + 18 + 8, 1).setColor(16766976);
 		x += 138;
 		new ControlSlotArray(this, x, y + 9, 2, 2).create(Polymeriser.slotSerumFinished);
-		final ControlErrorState errorState = new ControlErrorState(this, 244.0f, 97.0f);
+		ControlErrorState errorState = new ControlErrorState(this, 244.0f, 97.0f);
 		new ControlPlayerInventory(this);
 	}
 
@@ -74,10 +72,5 @@ public class WindowPolymeriser extends WindowMachine
 	@Override
 	protected String getName() {
 		return "Polymeriser";
-	}
-
-	static {
-		WindowPolymeriser.ProgressBase = new StandardTexture(76, 170, 160, 79, GeneticsTexture.GUIProcess.getTexture());
-		WindowPolymeriser.Progress = new StandardTexture(76, 91, 160, 79, GeneticsTexture.GUIProcess.getTexture());
 	}
 }

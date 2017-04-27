@@ -26,8 +26,6 @@ public abstract class MachinePackage {
 
 	public abstract TileEntity createTileEntity();
 
-	public abstract void register();
-
 	public String getDisplayName() {
 		return Binnie.Language.localise(group.getMod(), "machine." + group.getShortUID() + "." + getUID());
 	}

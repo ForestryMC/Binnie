@@ -1,18 +1,14 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.item;
 
-import java.util.List;
+import binnie.core.item.IItemMisc;
 import binnie.genetics.Genetics;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import binnie.core.item.IItemMisc;
 
-public enum GeneticsItems implements IItemMisc
-{
+import java.util.List;
+
+public enum GeneticsItems implements IItemMisc {
 	LaboratoryCasing("Reinforced Casing", "casingIron"),
 	DNADye("DNA Dye", "dnaDye"),
 	FluorescentDye("Fluorescent Dye", "dyeFluor"),
@@ -26,37 +22,40 @@ public enum GeneticsItems implements IItemMisc
 	IntegratedCPU("Integrated CPU", "integratedCPU"),
 	IntegratedCasing("Integrated Casing", "casingCircuit");
 
-	IIcon icon;
-	String name;
-	String iconPath;
+	protected IIcon icon;
+	protected String name;
+	protected String iconPath;
 
-	private GeneticsItems(final String name, final String iconPath) {
+	GeneticsItems(String name, String iconPath) {
 		this.name = name;
 		this.iconPath = iconPath;
 	}
 
 	@Override
-	public IIcon getIcon(final ItemStack itemStack) {
-		return this.icon;
+	public IIcon getIcon(ItemStack itemStack) {
+		return icon;
 	}
 
 	@Override
-	public void registerIcons(final IIconRegister register) {
-		this.icon = Genetics.proxy.getIcon(register, this.iconPath);
+	public void registerIcons(IIconRegister register) {
+		icon = Genetics.proxy.getIcon(register, iconPath);
 	}
 
 	@Override
-	public void addInformation(final List data) {
+	public void addInformation(List data) {
 	}
 
 	@Override
-	public String getName(final ItemStack itemStack) {
-		return this.name;
+	public String getName(ItemStack itemStack) {
+		return name;
 	}
 
 	@Override
-	public ItemStack get(final int count) {
-		return (Genetics.itemGenetics == null) ? null : new ItemStack(Genetics.itemGenetics, count, this.ordinal());
+	public ItemStack get(int count) {
+		if (Genetics.itemGenetics == null) {
+			return null;
+		}
+		return new ItemStack(Genetics.itemGenetics, count, ordinal());
 	}
 
 	@Override

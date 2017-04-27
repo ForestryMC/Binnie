@@ -1,40 +1,45 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics;
 
+import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
-import binnie.core.network.BinniePacketHandler;
-import binnie.core.proxy.IProxyCore;
-import binnie.genetics.core.GeneticsPacket;
-import binnie.core.network.IPacketID;
-import binnie.genetics.core.GeneticsGUI;
 import binnie.core.gui.IBinnieGUID;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import binnie.genetics.machine.ModuleMachine;
-import binnie.genetics.item.ModuleItem;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import binnie.core.machines.MachineGroup;
+import binnie.core.network.BinniePacketHandler;
+import binnie.core.network.IPacketID;
+import binnie.core.proxy.IProxyCore;
+import binnie.genetics.core.GeneticsGUI;
+import binnie.genetics.core.GeneticsPacket;
 import binnie.genetics.item.ItemAnalyst;
 import binnie.genetics.item.ItemDatabase;
-import binnie.core.machines.MachineGroup;
-import net.minecraft.item.Item;
-import cpw.mods.fml.common.SidedProxy;
-import binnie.genetics.proxy.Proxy;
 import binnie.genetics.item.ItemSerumArray;
+import binnie.genetics.item.ModuleItem;
+import binnie.genetics.machine.ModuleMachine;
+import binnie.genetics.proxy.Proxy;
 import cpw.mods.fml.common.Mod;
-import binnie.core.AbstractMod;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraft.item.Item;
 
-@Mod(modid = "Genetics", name = "Genetics", useMetadata = true, dependencies = "after:BinnieCore")
-public class Genetics extends AbstractMod
-{
-	public static ItemSerumArray itemSerumArray;
+@Mod(
+	modid = "Genetics",
+	name = "Genetics",
+	useMetadata = true,
+	dependencies = "after:BinnieCore"
+)
+public class Genetics extends AbstractMod {
 	@Mod.Instance("Genetics")
 	public static Genetics instance;
-	@SidedProxy(clientSide = "binnie.genetics.proxy.ProxyClient", serverSide = "binnie.genetics.proxy.ProxyServer")
+
+	@SidedProxy(
+		clientSide = "binnie.genetics.proxy.ProxyClient",
+		serverSide = "binnie.genetics.proxy.ProxyServer"
+	)
 	public static Proxy proxy;
-	public static String channel;
+
+	public static ItemSerumArray itemSerumArray = null;
+	public static String channel = "GEN";
 	public static Item itemGenetics;
 	public static Item itemSerum;
 	public static Item itemSequencer;
@@ -46,25 +51,25 @@ public class Genetics extends AbstractMod
 	public static Item registry;
 	public static Item masterRegistry;
 
-	@Mod.EventHandler
-	public void preInit(final FMLPreInitializationEvent evt) {
-		this.addModule(new ModuleItem());
-		this.addModule(new ModuleMachine());
-		this.preInit();
-	}
-
-	@Mod.EventHandler
-	public void init(final FMLInitializationEvent evt) {
-		this.init();
-	}
-
-	@Mod.EventHandler
-	public void postInit(final FMLPostInitializationEvent evt) {
-		this.postInit();
-	}
-
 	public Genetics() {
 		Genetics.instance = this;
+	}
+
+	@Mod.EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		addModule(new ModuleItem());
+		addModule(new ModuleMachine());
+		preInit();
+	}
+
+	@Mod.EventHandler
+	public void init(FMLInitializationEvent event) {
+		init();
+	}
+
+	@Mod.EventHandler
+	public void postInit(FMLPostInitializationEvent event) {
+		postInit();
 	}
 
 	@Override
@@ -102,13 +107,7 @@ public class Genetics extends AbstractMod
 		return BinnieCore.isGeneticsActive();
 	}
 
-	static {
-		Genetics.itemSerumArray = null;
-		Genetics.channel = "GEN";
-	}
-
-	public static class PacketHandler extends BinniePacketHandler
-	{
+	public static class PacketHandler extends BinniePacketHandler {
 		public PacketHandler() {
 			super(Genetics.instance);
 		}
