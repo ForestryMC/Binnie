@@ -4,18 +4,20 @@
 
 package binnie.genetics.gui;
 
-import binnie.core.genetics.Tolerance;
-import forestry.api.genetics.EnumTolerance;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.ITooltip;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.WidgetAttribute;
+import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IBorder;
-import binnie.core.craftgui.CraftGUI;
-import binnie.core.craftgui.Tooltip;
+import binnie.core.genetics.Tolerance;
 import forestry.api.core.EnumTemperature;
-import binnie.core.craftgui.WidgetAttribute;
-import binnie.core.craftgui.IWidget;
+import forestry.api.genetics.EnumTolerance;
+import net.minecraft.util.EnumChatFormatting;
+
 import java.util.EnumSet;
-import binnie.core.craftgui.ITooltip;
-import binnie.core.craftgui.controls.core.Control;
 
 public abstract class ControlToleranceBar<T extends Enum<T>> extends Control implements ITooltip
 {
@@ -40,7 +42,7 @@ public abstract class ControlToleranceBar<T extends Enum<T>> extends Control imp
 		final int type = (int) ((int) this.getRelativeMousePosition().x() / (this.getSize().x() / types));
 		for (final T tol : this.fullSet) {
 			if (tol.ordinal() - ((this.enumClass == EnumTemperature.class) ? 1 : 0) == type) {
-				tooltip.add((this.tolerated.contains(tol) ? "" : "§8") + this.getName(tol));
+				tooltip.add((this.tolerated.contains(tol) ? "" : EnumChatFormatting.DARK_GRAY) + this.getName(tol));
 			}
 		}
 	}

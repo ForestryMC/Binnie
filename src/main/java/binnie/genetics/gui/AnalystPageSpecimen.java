@@ -8,6 +8,7 @@ import binnie.core.craftgui.controls.ControlTextCentered;
 import forestry.api.lepidopterology.IButterfly;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.IWidget;
+import net.minecraft.util.EnumChatFormatting;
 
 public class AnalystPageSpecimen extends ControlAnalystPage
 {
@@ -15,7 +16,7 @@ public class AnalystPageSpecimen extends ControlAnalystPage
 		super(parent, area);
 		this.setColor(3355443);
 		int y = 4;
-		new ControlTextCentered(this, y, "§nSpecimen").setColor(this.getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Specimen").setColor(this.getColor());
 		y += 12;
 		final float w = (this.w() - 16.0f) * ind.getSize();
 		new ControlIndividualDisplay(this, (this.w() - w) / 2.0f, y + (this.w() - w) / 2.0f, w, ind);

@@ -22,6 +22,7 @@ import binnie.core.craftgui.database.DatabaseTab;
 import binnie.core.craftgui.IWidget;
 import net.minecraft.item.ItemStack;
 import binnie.core.craftgui.database.PageAbstract;
+import net.minecraft.util.EnumChatFormatting;
 
 public class PagePlanksOverview extends PageAbstract<ItemStack>
 {
@@ -60,7 +61,7 @@ public class PagePlanksOverview extends PageAbstract<ItemStack>
 		if (type != null) {
 			desc = type.getDescription();
 		}
-		String descBody = "§o";
+		String descBody = EnumChatFormatting.ITALIC.toString();
 		String descSig = "";
 		if (desc == null || desc.length() == 0) {
 			descBody += BinnieCore.proxy.localise("gui.database.nodescription");
@@ -75,8 +76,8 @@ public class PagePlanksOverview extends PageAbstract<ItemStack>
 				descSig += descStrings[descStrings.length - 1];
 			}
 		}
-		controlDescription.setValue(descBody + "§r");
-		controlSignature.setValue(descSig + "§r");
+		controlDescription.setValue(descBody + EnumChatFormatting.RESET);
+		controlSignature.setValue(descSig + EnumChatFormatting.RESET);
 		final float descHeight = CraftGUI.Render.textHeight(controlDescription.getValue(), controlDescription.getSize().x());
 		controlSignature.setPosition(new IPoint(controlSignature.pos().x(), controlDescription.getPosition().y() + descHeight + 10.0f));
 	}

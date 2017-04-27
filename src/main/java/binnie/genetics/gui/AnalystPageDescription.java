@@ -4,15 +4,16 @@
 
 package binnie.genetics.gui;
 
-import forestry.api.genetics.IAlleleSpecies;
-import binnie.core.craftgui.geometry.IPoint;
-import binnie.core.craftgui.controls.ControlText;
-import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.CraftGUI;
-import binnie.core.craftgui.controls.ControlTextCentered;
-import forestry.api.genetics.IIndividual;
-import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.ControlText;
+import binnie.core.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.geometry.IPoint;
+import binnie.core.craftgui.geometry.TextJustification;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IIndividual;
+import net.minecraft.util.EnumChatFormatting;
 
 public class AnalystPageDescription extends ControlAnalystPage
 {
@@ -24,16 +25,16 @@ public class AnalystPageDescription extends ControlAnalystPage
 		final String branchBinomial = (species.getBranch() != null) ? species.getBranch().getScientific() : "<Unknown>";
 		final String branchName = (species.getBranch() != null) ? species.getBranch().getName() : "Unknown";
 		final String desc = species.getDescription();
-		String descBody = "§o";
+		String descBody = EnumChatFormatting.ITALIC.toString();
 		String descSig = "";
-		if (desc == null || desc == "" || desc.contains("for.description")) {
+		if (desc == null || desc.equals("") || desc.contains("for.description")) {
 			descBody += "";
 		}
 		else {
 			final String[] descStrings = desc.split("\\|");
 			descBody += descStrings[0];
 			for (int i = 1; i < descStrings.length - 1; ++i) {
-				descBody = descBody + " " + descStrings[i];
+				descBody += " " + descStrings[i];
 			}
 			if (descStrings.length > 1) {
 				descSig += descStrings[descStrings.length - 1];
@@ -41,26 +42,26 @@ public class AnalystPageDescription extends ControlAnalystPage
 		}
 		String authority = species.getAuthority();
 		if (authority.contains("Binnie")) {
-			authority = "§1§l" + authority;
+			authority = EnumChatFormatting.DARK_BLUE.toString() + EnumChatFormatting.BOLD + authority;
 		}
 		if (authority.contains("Sengir")) {
-			authority = "§2§l" + authority;
+			authority = EnumChatFormatting.DARK_GREEN.toString() + EnumChatFormatting.BOLD  + authority;
 		}
 		if (authority.contains("MysteriousAges")) {
-			authority = "§5§l" + authority;
+			authority = EnumChatFormatting.DARK_PURPLE.toString() + EnumChatFormatting.BOLD  + authority;
 		}
-		new ControlTextCentered(this, y, "§nDescription").setColor(this.getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Description").setColor(this.getColor());
 		y += 16;
-		new ControlTextCentered(this, y, species.getName() + "§r").setColor(this.getColor());
+		new ControlTextCentered(this, y, species.getName() + EnumChatFormatting.RESET).setColor(this.getColor());
 		y += 10;
-		new ControlTextCentered(this, y, "§o" + branchBinomial + " " + species.getBinomial() + "§r").setColor(this.getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + branchBinomial + " " + species.getBinomial() + EnumChatFormatting.RESET).setColor(this.getColor());
 		y += 20;
-		new ControlTextCentered(this, y, "Discovered by §l" + authority + "§r").setColor(this.getColor());
-		y += (int) (3.0f + CraftGUI.Render.textHeight("Discovered by §l" + authority + "§r", this.w()));
+		new ControlTextCentered(this, y, "Discovered by " + EnumChatFormatting.BOLD + authority + EnumChatFormatting.RESET).setColor(this.getColor());
+		y += (int) (3.0f + CraftGUI.Render.textHeight("Discovered by " + EnumChatFormatting.BOLD + authority + EnumChatFormatting.RESET, this.w()));
 		new ControlTextCentered(this, y, "Genetic Complexity: " + species.getComplexity()).setColor(this.getColor());
 		y += 26;
-		final ControlText descText = new ControlText(this, new IArea(8.0f, y, this.w() - 16.0f, 0.0f), descBody + "§r", TextJustification.TopCenter);
-		final IWidget signatureText = new ControlText(this, new IArea(8.0f, y, this.w() - 16.0f, 0.0f), descSig + "§r", TextJustification.BottomRight);
+		final ControlText descText = new ControlText(this, new IArea(8.0f, y, this.w() - 16.0f, 0.0f), descBody + EnumChatFormatting.RESET, TextJustification.TopCenter);
+		final IWidget signatureText = new ControlText(this, new IArea(8.0f, y, this.w() - 16.0f, 0.0f), descSig + EnumChatFormatting.RESET, TextJustification.BottomRight);
 		descText.setColor(this.getColor());
 		signatureText.setColor(this.getColor());
 		final float descHeight = CraftGUI.Render.textHeight(descText.getValue(), descText.getSize().x());

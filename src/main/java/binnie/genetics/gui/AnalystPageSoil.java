@@ -5,23 +5,25 @@
 package binnie.genetics.gui;
 
 import binnie.Binnie;
-import java.util.List;
-import forestry.api.genetics.EnumTolerance;
-import java.util.EnumSet;
-import java.util.ArrayList;
-import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
-import net.minecraft.item.ItemStack;
-import binnie.botany.gardening.BlockSoil;
 import binnie.botany.Botany;
 import binnie.botany.api.EnumAcidity;
-import binnie.core.genetics.Tolerance;
 import binnie.botany.api.EnumMoisture;
-import binnie.core.craftgui.controls.ControlText;
-import binnie.core.craftgui.geometry.TextJustification;
-import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.botany.api.IFlower;
-import binnie.core.craftgui.geometry.IArea;
+import binnie.botany.gardening.BlockSoil;
 import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.ControlText;
+import binnie.core.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.core.genetics.Tolerance;
+import forestry.api.genetics.EnumTolerance;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
 
 public class AnalystPageSoil extends ControlAnalystPage
 {
@@ -33,7 +35,7 @@ public class AnalystPageSoil extends ControlAnalystPage
 		final EnumAcidity pH = flower.getGenome().getPrimary().getPH();
 		final EnumTolerance pHTol = flower.getGenome().getTolerancePH();
 		int y = 4;
-		new ControlTextCentered(this, y, "§nSoil").setColor(this.getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Soil").setColor(this.getColor());
 		y += 16;
 		new ControlText(this, new IArea(4.0f, y, this.w() - 8.0f, 14.0f), "Moisture Tolerance", TextJustification.MiddleCenter).setColor(this.getColor());
 		y += 12;

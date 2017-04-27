@@ -4,17 +4,19 @@
 
 package binnie.genetics.craftgui;
 
-import net.minecraft.item.ItemStack;
-import java.util.Random;
-import binnie.core.machines.Machine;
-import binnie.core.craftgui.minecraft.Window;
-import binnie.core.craftgui.geometry.TextJustification;
-import binnie.core.craftgui.geometry.IArea;
-import binnie.core.craftgui.window.Panel;
-import binnie.core.craftgui.minecraft.MinecraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.minecraft.MinecraftGUI;
+import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlProgressBase;
+import binnie.core.craftgui.window.Panel;
+import binnie.core.machines.Machine;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+
+import java.util.Random;
 
 public class ControlSequencerProgress extends ControlProgressBase
 {
@@ -37,16 +39,23 @@ public class ControlSequencerProgress extends ControlProgressBase
 			final Random rand = new Random(stack.getDisplayName().length());
 			String text = "";
 			final String[] codes = { "A", "T", "G", "C" };
-			final String[] colors = { "a", "d", "b", "c" };
+			EnumChatFormatting[] colors = {
+				EnumChatFormatting.GREEN,
+				EnumChatFormatting.LIGHT_PURPLE,
+				EnumChatFormatting.AQUA,
+				EnumChatFormatting.RED
+			};
+
 			for (int i = 0; i < 65; ++i) {
 				final int k = rand.nextInt(4);
 				final String code = codes[k];
 				if (rand.nextFloat() < this.progress) {
-					final String col = "§" + colors[k];
-					text = text + "§r" + col + "§l" + code;
+					String col = colors[k].toString();
+					text = text + EnumChatFormatting.RESET + col + EnumChatFormatting.BOLD + code;
 				}
 				else {
-					text = text + "§r§7§k§l" + code;
+					text = text + EnumChatFormatting.RESET + EnumChatFormatting.GRAY
+						+ EnumChatFormatting.OBFUSCATED + EnumChatFormatting.BOLD + code;
 				}
 			}
 			this.textControl.setValue(text);

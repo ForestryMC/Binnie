@@ -4,37 +4,37 @@
 
 package binnie.botany.flower;
 
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.block.Block;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.entity.Entity;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.init.Blocks;
-import binnie.botany.Botany;
-import forestry.api.genetics.IPollinatable;
 import binnie.Binnie;
-import binnie.botany.api.EnumFlowerStage;
-import net.minecraft.world.World;
-import binnie.botany.api.IFlowerType;
-import binnie.botany.genetics.EnumFlowerType;
-import net.minecraft.util.IIcon;
-import forestry.core.config.Config;
-import net.minecraft.creativetab.CreativeTabs;
-import binnie.botany.api.EnumFlowerChromosome;
-import binnie.botany.core.BotanyCore;
-import binnie.botany.api.IAlleleFlowerSpecies;
-import binnie.botany.genetics.Flower;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import binnie.core.BinnieCore;
-import binnie.botany.api.IFlower;
-import java.util.List;
-import net.minecraft.entity.player.EntityPlayer;
-import forestry.api.genetics.IIndividual;
-import net.minecraft.item.ItemStack;
+import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
+import binnie.botany.api.EnumFlowerChromosome;
+import binnie.botany.api.EnumFlowerStage;
+import binnie.botany.api.IAlleleFlowerSpecies;
+import binnie.botany.api.IFlower;
+import binnie.botany.api.IFlowerType;
+import binnie.botany.core.BotanyCore;
+import binnie.botany.genetics.EnumFlowerType;
+import binnie.botany.genetics.Flower;
+import binnie.core.BinnieCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IPollinatable;
+import forestry.core.config.Config;
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+
+import java.util.List;
 
 public abstract class ItemBotany extends Item
 {
@@ -84,13 +84,15 @@ public abstract class ItemBotany extends Item
 			list.add("This item is bugged. Destroy it!");
 			return;
 		}
-		list.add("§e" + individual.getGenome().getPrimaryColor().getName() + ((individual.getGenome().getPrimaryColor() == individual.getGenome().getSecondaryColor()) ? "" : (" and " + individual.getGenome().getSecondaryColor().getName())) + ", " + individual.getGenome().getStemColor().getName() + " Stem");
+
+		list.add(EnumChatFormatting.YELLOW + individual.getGenome().getPrimaryColor().getName() + ((individual.getGenome().getPrimaryColor() == individual.getGenome().getSecondaryColor()) ? "" : (" and " + individual.getGenome().getSecondaryColor().getName())) + ", " + individual.getGenome().getStemColor().getName() + " Stem");
 		if (individual.isAnalyzed()) {
 			if (BinnieCore.proxy.isShiftDown()) {
 				individual.addTooltip(list);
 			}
 			else {
-				list.add("§o<Hold shift for details>");
+				// TODO remove hardcode strings and localize
+				list.add(EnumChatFormatting.GRAY + "<Hold shift for details>");
 			}
 		}
 		else {

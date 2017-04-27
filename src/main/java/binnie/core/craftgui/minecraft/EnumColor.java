@@ -1,11 +1,7 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.minecraft;
 
-public enum EnumColor
-{
+// TODO replace to EnumChatFormatting?
+public enum EnumColor {
 	Black("Black", 0, '0'),
 	DarkBlue("Dark Blue", 170, '1'),
 	DarkGreen("Dark Green", 43520, '2'),
@@ -23,9 +19,9 @@ public enum EnumColor
 	Yellow("Yellow", 16777045, 'e'),
 	White("White", 16777215, 'f');
 
-	int colour;
-	String name;
-	char code;
+	protected int colour;
+	protected String name;
+	protected char code;
 
 	EnumColor(String name, int colour, char code) {
 		this.name = name;
@@ -38,7 +34,7 @@ public enum EnumColor
 	}
 
 	public String getCode() {
-		return "§" + code;
+		return String.valueOf(code);
 	}
 
 	@Override

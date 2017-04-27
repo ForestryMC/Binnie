@@ -4,33 +4,35 @@
 
 package binnie.genetics.gui;
 
-import binnie.core.craftgui.geometry.TextJustification;
-import binnie.core.craftgui.WidgetAttribute;
-import binnie.core.craftgui.minecraft.EnumColor;
-import java.util.Collection;
-import java.util.List;
-import forestry.api.genetics.IAllele;
-import binnie.genetics.item.ModuleItem;
-import binnie.core.craftgui.geometry.IPoint;
-import binnie.core.craftgui.CraftGUI;
-import forestry.api.genetics.IAlleleSpecies;
-import binnie.core.genetics.BreedingSystem;
-import binnie.core.craftgui.controls.core.Control;
-import forestry.api.genetics.IMutation;
-import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
-import net.minecraft.init.Blocks;
+import binnie.Binnie;
 import binnie.core.Mods;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.WidgetAttribute;
+import binnie.core.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.controls.core.Control;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.geometry.IPoint;
+import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.minecraft.EnumColor;
+import binnie.core.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.ForestryAllele;
-import net.minecraft.item.ItemStack;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.genetics.ExtraBeesSpecies;
+import binnie.genetics.item.ModuleItem;
 import forestry.api.apiculture.IBee;
-import binnie.core.craftgui.minecraft.Window;
-import binnie.Binnie;
-import binnie.core.craftgui.controls.ControlTextCentered;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
-import binnie.core.craftgui.geometry.IArea;
-import binnie.core.craftgui.IWidget;
+import forestry.api.genetics.IMutation;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+
+import java.util.Collection;
+import java.util.List;
 
 public class AnalystPageMutations extends ControlAnalystPage
 {
@@ -38,7 +40,7 @@ public class AnalystPageMutations extends ControlAnalystPage
 		super(parent, area);
 		this.setColor(3355392);
 		int y = 4;
-		new ControlTextCentered(this, y, "§nMutations").setColor(this.getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Mutations").setColor(this.getColor());
 		y += 18;
 		final BreedingSystem system = Binnie.Genetics.getSystem(ind.getGenome().getSpeciesRoot());
 		final List<IMutation> discovered = system.getDiscoveredMutations(Window.get(this).getWorld(), Window.get(this).getUsername());
@@ -83,13 +85,13 @@ public class AnalystPageMutations extends ControlAnalystPage
 			if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Valiant.getAllele()) {
 				new ControlTextCentered(this, y, "Natural Habitat").setColor(this.getColor());
 				y += 10;
-				new ControlTextCentered(this, y, "§oFound in any Hive").setColor(this.getColor());
+				new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + "Found in any Hive").setColor(this.getColor());
 				y += 22;
 			}
 			else if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Monastic.getAllele()) {
 				new ControlTextCentered(this, y, "Natural Habitat").setColor(this.getColor());
 				y += 10;
-				new ControlTextCentered(this, y, "§oBought from Villagers").setColor(this.getColor());
+				new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + "Bought from Villagers").setColor(this.getColor());
 				y += 22;
 			}
 			else if (hive != null) {
