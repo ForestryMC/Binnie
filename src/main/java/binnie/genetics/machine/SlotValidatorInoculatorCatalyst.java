@@ -1,16 +1,12 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.machine;
 
-import net.minecraft.item.ItemStack;
 import binnie.core.machines.inventory.Validator;
+import net.minecraft.item.ItemStack;
 
-public class SlotValidatorInoculatorCatalyst extends Validator<ItemStack>
-{
+// TODO unused class?
+public class SlotValidatorInoculatorCatalyst extends Validator<ItemStack> {
 	@Override
-	public boolean isValid(final ItemStack itemStack) {
+	public boolean isValid(ItemStack itemStack) {
 		return false;
 	}
 

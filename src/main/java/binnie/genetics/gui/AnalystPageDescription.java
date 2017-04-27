@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.gui;
 
 import binnie.core.craftgui.CraftGUI;
@@ -15,23 +11,21 @@ import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
 import net.minecraft.util.EnumChatFormatting;
 
-public class AnalystPageDescription extends ControlAnalystPage
-{
-	public AnalystPageDescription(final IWidget parent, final IArea area, final IIndividual ind) {
+public class AnalystPageDescription extends ControlAnalystPage {
+	public AnalystPageDescription(IWidget parent, IArea area, IIndividual ind) {
 		super(parent, area);
-		this.setColor(3355443);
+		setColor(3355443);
 		int y = 4;
-		final IAlleleSpecies species = ind.getGenome().getPrimary();
-		final String branchBinomial = (species.getBranch() != null) ? species.getBranch().getScientific() : "<Unknown>";
-		final String branchName = (species.getBranch() != null) ? species.getBranch().getName() : "Unknown";
-		final String desc = species.getDescription();
+		IAlleleSpecies species = ind.getGenome().getPrimary();
+		String branchBinomial = (species.getBranch() != null) ? species.getBranch().getScientific() : "<Unknown>";
+		String branchName = (species.getBranch() != null) ? species.getBranch().getName() : "Unknown";
+		String desc = species.getDescription();
 		String descBody = EnumChatFormatting.ITALIC.toString();
 		String descSig = "";
 		if (desc == null || desc.isEmpty() || desc.contains("for.description")) {
 			descBody += "";
-		}
-		else {
-			final String[] descStrings = desc.split("\\|");
+		} else {
+			String[] descStrings = desc.split("\\|");
 			descBody += descStrings[0];
 			for (int i = 1; i < descStrings.length - 1; ++i) {
 				descBody += " " + descStrings[i];
@@ -45,28 +39,28 @@ public class AnalystPageDescription extends ControlAnalystPage
 			authority = EnumChatFormatting.DARK_BLUE.toString() + EnumChatFormatting.BOLD + authority;
 		}
 		if (authority.contains("Sengir")) {
-			authority = EnumChatFormatting.DARK_GREEN.toString() + EnumChatFormatting.BOLD  + authority;
+			authority = EnumChatFormatting.DARK_GREEN.toString() + EnumChatFormatting.BOLD + authority;
 		}
 		if (authority.contains("MysteriousAges")) {
-			authority = EnumChatFormatting.DARK_PURPLE.toString() + EnumChatFormatting.BOLD  + authority;
+			authority = EnumChatFormatting.DARK_PURPLE.toString() + EnumChatFormatting.BOLD + authority;
 		}
-		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Description").setColor(this.getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Description").setColor(getColor());
 		y += 16;
-		new ControlTextCentered(this, y, species.getName() + EnumChatFormatting.RESET).setColor(this.getColor());
+		new ControlTextCentered(this, y, species.getName() + EnumChatFormatting.RESET).setColor(getColor());
 		y += 10;
-		new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + branchBinomial + " " + species.getBinomial() + EnumChatFormatting.RESET).setColor(this.getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + branchBinomial + " " + species.getBinomial() + EnumChatFormatting.RESET).setColor(getColor());
 		y += 20;
-		new ControlTextCentered(this, y, "Discovered by " + EnumChatFormatting.BOLD + authority + EnumChatFormatting.RESET).setColor(this.getColor());
-		y += (int) (3.0f + CraftGUI.Render.textHeight("Discovered by " + EnumChatFormatting.BOLD + authority + EnumChatFormatting.RESET, this.w()));
-		new ControlTextCentered(this, y, "Genetic Complexity: " + species.getComplexity()).setColor(this.getColor());
+		new ControlTextCentered(this, y, "Discovered by " + EnumChatFormatting.BOLD + authority + EnumChatFormatting.RESET).setColor(getColor());
+		y += (int) (3.0f + CraftGUI.Render.textHeight("Discovered by " + EnumChatFormatting.BOLD + authority + EnumChatFormatting.RESET, w()));
+		new ControlTextCentered(this, y, "Genetic Complexity: " + species.getComplexity()).setColor(getColor());
 		y += 26;
-		final ControlText descText = new ControlText(this, new IArea(8.0f, y, this.w() - 16.0f, 0.0f), descBody + EnumChatFormatting.RESET, TextJustification.TopCenter);
-		final IWidget signatureText = new ControlText(this, new IArea(8.0f, y, this.w() - 16.0f, 0.0f), descSig + EnumChatFormatting.RESET, TextJustification.BottomRight);
-		descText.setColor(this.getColor());
-		signatureText.setColor(this.getColor());
-		final float descHeight = CraftGUI.Render.textHeight(descText.getValue(), descText.getSize().x());
+		ControlText descText = new ControlText(this, new IArea(8.0f, y, w() - 16.0f, 0.0f), descBody + EnumChatFormatting.RESET, TextJustification.TopCenter);
+		IWidget signatureText = new ControlText(this, new IArea(8.0f, y, w() - 16.0f, 0.0f), descSig + EnumChatFormatting.RESET, TextJustification.BottomRight);
+		descText.setColor(getColor());
+		signatureText.setColor(getColor());
+		float descHeight = CraftGUI.Render.textHeight(descText.getValue(), descText.getSize().x());
 		signatureText.setPosition(new IPoint(signatureText.pos().x(), descText.getPosition().y() + descHeight + 10.0f));
-		this.setSize(new IPoint(this.w(), 20.0f + signatureText.y()));
+		setSize(new IPoint(w(), 20.0f + signatureText.y()));
 	}
 
 	@Override

@@ -1,24 +1,20 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.craftgui;
 
-import binnie.genetics.Genetics;
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.minecraft.Window;
+import binnie.genetics.Genetics;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 
-public class WindowGenomeAssembler extends WindowMachine
-{
-	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
-		return new WindowGenomeAssembler(player, inventory, side);
+// TODO unused class?
+public class WindowGenomeAssembler extends WindowMachine {
+	public WindowGenomeAssembler(EntityPlayer player, IInventory inventory, Side side) {
+		super(320, 240, player, inventory, side);
 	}
 
-	public WindowGenomeAssembler(final EntityPlayer player, final IInventory inventory, final Side side) {
-		super(320, 240, player, inventory, side);
+	public static Window create(EntityPlayer player, IInventory inventory, Side side) {
+		return new WindowGenomeAssembler(player, inventory, side);
 	}
 
 	@Override

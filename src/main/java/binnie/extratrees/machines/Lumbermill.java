@@ -150,10 +150,6 @@ public class Lumbermill
 		public TileEntity createTileEntity() {
 			return new TileEntityMachine(this);
 		}
-
-		@Override
-		public void register() {
-		}
 	}
 
 	public static class ComponentLumbermillLogic extends ComponentProcessSetCost implements IProcess

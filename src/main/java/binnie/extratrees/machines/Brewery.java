@@ -182,10 +182,6 @@ public class Brewery
 		public TileEntity createTileEntity() {
 			return new TileEntityMachine(this);
 		}
-
-		@Override
-		public void register() {
-		}
 	}
 
 	public static class BreweryCrafting implements INBTTagable

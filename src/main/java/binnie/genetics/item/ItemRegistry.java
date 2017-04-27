@@ -1,42 +1,37 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.item;
 
-import binnie.genetics.core.GeneticsGUI;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
-import net.minecraft.item.ItemStack;
 import binnie.genetics.CreativeTabGenetics;
+import binnie.genetics.Genetics;
+import binnie.genetics.core.GeneticsGUI;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import binnie.genetics.Genetics;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
-public class ItemRegistry extends Item
-{
+public class ItemRegistry extends Item {
+	public ItemRegistry() {
+		setCreativeTab(CreativeTabGenetics.instance);
+		setUnlocalizedName("registry");
+		setMaxStackSize(1);
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(final IIconRegister register) {
-		this.itemIcon = Genetics.proxy.getIcon(register, "registry");
-	}
-
-	public ItemRegistry() {
-		this.setCreativeTab(CreativeTabGenetics.instance);
-		this.setUnlocalizedName("registry");
-		this.setMaxStackSize(1);
+	public void registerIcons(IIconRegister register) {
+		itemIcon = Genetics.proxy.getIcon(register, "registry");
 	}
 
 	@Override
-	public ItemStack onItemRightClick(final ItemStack itemstack, final World world, final EntityPlayer player) {
+	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player) {
 		Genetics.proxy.openGui(GeneticsGUI.Registry, player, (int) player.posX, (int) player.posY, (int) player.posZ);
 		return itemstack;
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack i) {
+	public String getItemStackDisplayName(ItemStack i) {
 		return "Registry";
 	}
 }

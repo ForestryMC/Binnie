@@ -1,23 +1,19 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.genetics;
 
 import binnie.genetics.api.IGene;
-import net.minecraft.item.ItemStack;
-import java.util.List;
 import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.item.ItemStack;
 
-public interface IGeneItem
-{
+import java.util.List;
+
+public interface IGeneItem {
 	ISpeciesRoot getSpeciesRoot();
 
-	void getInfo(final List p0);
+	void getInfo(List tooltip);
 
-	int getColour(final int p0);
+	int getColour(int color);
 
-	void writeToItem(final ItemStack p0);
+	void writeToItem(ItemStack stack);
 
-	void addGene(final IGene p0);
+	void addGene(IGene gene);
 }

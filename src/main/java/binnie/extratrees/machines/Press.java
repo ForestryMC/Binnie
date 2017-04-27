@@ -87,10 +87,6 @@ public class Press
 		public TileEntity createTileEntity() {
 			return new TileEntityMachine(this);
 		}
-
-		@Override
-		public void register() {
-		}
 	}
 
 	public static class ComponentFruitPressLogic extends ComponentProcessSetCost implements IProcess

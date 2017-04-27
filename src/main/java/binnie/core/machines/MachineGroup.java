@@ -43,9 +43,6 @@ public class MachineGroup {
 		Binnie.Machine.registerMachineGroup(this);
 		block = new BlockMachine(this, blockName);
 		GameRegistry.registerBlock(block, ItemMachine.class, blockName);
-		for (MachinePackage pack2 : getPackages()) {
-			pack2.register();
-		}
 	}
 
 	private void addPackage(MachinePackage pack) {

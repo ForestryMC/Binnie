@@ -1,50 +1,45 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.craftgui;
 
-import binnie.core.craftgui.resource.minecraft.StandardTexture;
-import binnie.genetics.core.GeneticsTexture;
-import binnie.genetics.Genetics;
 import binnie.core.AbstractMod;
-import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
-import binnie.core.craftgui.geometry.TextJustification;
-import binnie.core.craftgui.minecraft.control.ControlErrorState;
-import binnie.core.craftgui.minecraft.control.ControlEnergyBar;
-import binnie.core.craftgui.geometry.Position;
-import binnie.core.craftgui.minecraft.control.ControlMachineProgress;
 import binnie.core.craftgui.geometry.CraftGUIUtil;
-import binnie.core.craftgui.minecraft.control.ControlSlot;
-import binnie.core.craftgui.minecraft.control.ControlIconDisplay;
+import binnie.core.craftgui.geometry.Position;
+import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.minecraft.GUIIcon;
-import binnie.genetics.machine.Inoculator;
-import binnie.core.craftgui.minecraft.control.ControlSlotArray;
-import binnie.core.craftgui.minecraft.control.ControlLiquidTank;
 import binnie.core.craftgui.minecraft.Window;
-import cpw.mods.fml.relauncher.Side;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.entity.player.EntityPlayer;
+import binnie.core.craftgui.minecraft.control.ControlEnergyBar;
+import binnie.core.craftgui.minecraft.control.ControlErrorState;
+import binnie.core.craftgui.minecraft.control.ControlIconDisplay;
+import binnie.core.craftgui.minecraft.control.ControlLiquidTank;
+import binnie.core.craftgui.minecraft.control.ControlMachineProgress;
+import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
+import binnie.core.craftgui.minecraft.control.ControlSlot;
+import binnie.core.craftgui.minecraft.control.ControlSlotArray;
 import binnie.core.craftgui.resource.Texture;
+import binnie.core.craftgui.resource.minecraft.StandardTexture;
+import binnie.genetics.Genetics;
+import binnie.genetics.core.GeneticsTexture;
+import binnie.genetics.machine.Inoculator;
+import cpw.mods.fml.relauncher.Side;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 
-public class WindowInoculator extends WindowMachine
-{
-	static Texture ProgressBase;
-	static Texture Progress;
+public class WindowInoculator extends WindowMachine {
+	static Texture ProgressBase = new StandardTexture(0, 72, 142, 72, GeneticsTexture.GUIProcess2.getTexture());
+	static Texture Progress = new StandardTexture(0, 0, 142, 72, GeneticsTexture.GUIProcess2.getTexture());
 
-	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
-		return new WindowInoculator(player, inventory, side);
+	public WindowInoculator(EntityPlayer player, IInventory inventory, Side side) {
+		super(266, 240, player, inventory, side);
 	}
 
-	public WindowInoculator(final EntityPlayer player, final IInventory inventory, final Side side) {
-		super(266, 240, player, inventory, side);
+	public static Window create(EntityPlayer player, IInventory inventory, Side side) {
+		return new WindowInoculator(player, inventory, side);
 	}
 
 	@Override
 	public void initialiseClient() {
-		this.setTitle("Inoculator");
+		setTitle("Inoculator");
 		int x = 16;
-		final int y = 32;
+		int y = 32;
 		new ControlLiquidTank(this, x, y + 18 + 16).setTankID(0);
 		CraftGUIUtil.horizontalGrid(x, y, new ControlSlotArray(this, 0, 0, 2, 1).create(Inoculator.slotSerumReserve), new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowRight.getIcon()), new ControlSlot(this, 0.0f, 0.0f).assign(0), new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowRight.getIcon()), new ControlSlotArray(this, 0, 0, 2, 1).create(Inoculator.slotSerumExpended));
 		x += 18;
@@ -71,10 +66,5 @@ public class WindowInoculator extends WindowMachine
 	@Override
 	protected String getName() {
 		return "Inoculator";
-	}
-
-	static {
-		WindowInoculator.ProgressBase = new StandardTexture(0, 72, 142, 72, GeneticsTexture.GUIProcess2.getTexture());
-		WindowInoculator.Progress = new StandardTexture(0, 0, 142, 72, GeneticsTexture.GUIProcess2.getTexture());
 	}
 }

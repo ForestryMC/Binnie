@@ -1,24 +1,18 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics;
 
-import net.minecraft.item.Item;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import binnie.extrabees.ExtraBees;
 import binnie.genetics.item.GeneticsItems;
-import net.minecraft.item.ItemStack;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
-public class CreativeTabGenetics extends CreativeTabs
-{
+public class CreativeTabGenetics extends CreativeTabs {
 	public static CreativeTabs instance;
 
-	@Override
-	public ItemStack getIconItemStack() {
-		return GeneticsItems.EmptySerum.get(1);
+	static {
+		CreativeTabGenetics.instance = new CreativeTabGenetics();
 	}
 
 	public CreativeTabGenetics() {
@@ -26,8 +20,13 @@ public class CreativeTabGenetics extends CreativeTabs
 	}
 
 	@Override
+	public ItemStack getIconItemStack() {
+		return GeneticsItems.EmptySerum.get(1);
+	}
+
+	@Override
 	public String getTranslatedTabLabel() {
-		return this.getTabLabel();
+		return getTabLabel();
 	}
 
 	@Override
@@ -40,9 +39,5 @@ public class CreativeTabGenetics extends CreativeTabs
 	@SideOnly(Side.CLIENT)
 	public Item getTabIconItem() {
 		return null;
-	}
-
-	static {
-		CreativeTabGenetics.instance = new CreativeTabGenetics();
 	}
 }

@@ -1,77 +1,75 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.genetics;
 
-import forestry.api.genetics.IAlleleInteger;
-import forestry.api.genetics.IAlleleFloat;
-import forestry.api.genetics.ISpeciesRoot;
-import java.util.Comparator;
-import java.util.TreeSet;
-import java.util.ArrayList;
-import forestry.api.genetics.IIndividual;
-import java.util.HashMap;
-import forestry.api.genetics.IAllele;
-import java.util.List;
-import forestry.api.genetics.IChromosomeType;
-import java.util.Map;
 import binnie.core.genetics.BreedingSystem;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleFloat;
+import forestry.api.genetics.IAlleleInteger;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.ISpeciesRoot;
 
-public class GeneticEngineeringSystem
-{
-	BreedingSystem breedingSystem;
-	public Map<IChromosomeType, List<IAllele>> chromosomeMap;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeSet;
+
+// TODO unused class?
+public class GeneticEngineeringSystem {
 	static List<IAllele> speciesList;
+	public Map<IChromosomeType, List<IAllele>> chromosomeMap;
+	BreedingSystem breedingSystem;
 
-	public GeneticEngineeringSystem(final BreedingSystem system) {
-		this.chromosomeMap = new HashMap<IChromosomeType, List<IAllele>>();
-		this.breedingSystem = system;
-		for (final IIndividual indiv : this.breedingSystem.getSpeciesRoot().getIndividualTemplates()) {
-			for (final IChromosomeType chromosome : this.breedingSystem.getSpeciesRoot().getKaryotype()) {
-				if (!this.chromosomeMap.containsKey(chromosome)) {
-					this.chromosomeMap.put(chromosome, new ArrayList<IAllele>());
+	public GeneticEngineeringSystem(BreedingSystem system) {
+		chromosomeMap = new HashMap<>();
+		breedingSystem = system;
+		for (IIndividual indiv : breedingSystem.getSpeciesRoot().getIndividualTemplates()) {
+			for (IChromosomeType chromosome : breedingSystem.getSpeciesRoot().getKaryotype()) {
+				if (!chromosomeMap.containsKey(chromosome)) {
+					chromosomeMap.put(chromosome, new ArrayList<>());
 				}
 				try {
-					final IAllele a1 = indiv.getGenome().getActiveAllele(chromosome);
-					final IAllele a2 = indiv.getGenome().getInactiveAllele(chromosome);
+					IAllele a1 = indiv.getGenome().getActiveAllele(chromosome);
+					IAllele a2 = indiv.getGenome().getInactiveAllele(chromosome);
 					if (a1 != null) {
-						this.chromosomeMap.get(chromosome).add(a1);
+						chromosomeMap.get(chromosome).add(a1);
 					}
 					if (a2 != null) {
-						this.chromosomeMap.get(chromosome).add(a2);
+						chromosomeMap.get(chromosome).add(a2);
 					}
 				} catch (Exception ex) {
+					// ignored
 				}
 			}
 		}
-		for (final IChromosomeType chromosome2 : this.breedingSystem.getSpeciesRoot().getKaryotype()) {
-			final List<IAllele> alleles = this.getAlleles(chromosome2);
-			final TreeSet<IAllele> set = new TreeSet<IAllele>(new ComparatorAllele());
+
+		for (IChromosomeType chromosome2 : breedingSystem.getSpeciesRoot().getKaryotype()) {
+			List<IAllele> alleles = getAlleles(chromosome2);
+			TreeSet<IAllele> set = new TreeSet<IAllele>(new ComparatorAllele());
 			set.addAll(alleles);
-			final List<IAllele> list = new ArrayList<IAllele>();
+			List<IAllele> list = new ArrayList<IAllele>();
 			list.addAll(set);
-			this.chromosomeMap.put(chromosome2, list);
+			chromosomeMap.put(chromosome2, list);
 		}
 	}
 
-	public List<IAllele> getAlleles(final IChromosomeType chromosome) {
-		return this.chromosomeMap.get(chromosome);
+	public List<IAllele> getAlleles(IChromosomeType chromosome) {
+		return chromosomeMap.get(chromosome);
 	}
 
 	public ISpeciesRoot getSpeciesRoot() {
-		return this.breedingSystem.getSpeciesRoot();
+		return breedingSystem.getSpeciesRoot();
 	}
 
-	class ComparatorAllele implements Comparator<IAllele>
-	{
+	class ComparatorAllele implements Comparator<IAllele> {
 		@Override
-		public int compare(final IAllele o1, final IAllele o2) {
+		public int compare(IAllele o1, IAllele o2) {
 			if (o1 instanceof IAlleleFloat && o2 instanceof IAlleleFloat) {
-				return Float.valueOf(((IAlleleFloat) o1).getValue()).compareTo(Float.valueOf(((IAlleleFloat) o2).getValue()));
+				return Float.valueOf(((IAlleleFloat) o1).getValue()).compareTo(((IAlleleFloat) o2).getValue());
 			}
 			if (o1 instanceof IAlleleInteger && o2 instanceof IAlleleInteger) {
-				return Integer.valueOf(((IAlleleInteger) o1).getValue()).compareTo(Integer.valueOf(((IAlleleInteger) o2).getValue()));
+				return Integer.valueOf(((IAlleleInteger) o1).getValue()).compareTo(((IAlleleInteger) o2).getValue());
 			}
 			return o1.getUID().compareTo(o2.getUID());
 		}

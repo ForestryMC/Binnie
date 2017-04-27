@@ -1,44 +1,39 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.craftgui;
 
-import binnie.extrabees.core.ExtraBeeTexture;
-import binnie.genetics.Genetics;
 import binnie.core.AbstractMod;
+import binnie.core.craftgui.geometry.Position;
+import binnie.core.craftgui.minecraft.GUIIcon;
+import binnie.core.craftgui.minecraft.MinecraftGUI;
+import binnie.core.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.control.ControlEnergyBar;
+import binnie.core.craftgui.minecraft.control.ControlErrorState;
+import binnie.core.craftgui.minecraft.control.ControlIconDisplay;
 import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
 import binnie.core.craftgui.minecraft.control.ControlProgress;
-import binnie.core.craftgui.minecraft.MinecraftGUI;
-import binnie.core.craftgui.window.Panel;
-import binnie.core.craftgui.minecraft.GUIIcon;
-import binnie.core.craftgui.minecraft.control.ControlIconDisplay;
-import binnie.core.craftgui.minecraft.control.ControlErrorState;
-import binnie.core.craftgui.geometry.Position;
-import binnie.core.craftgui.minecraft.control.ControlEnergyBar;
-import binnie.core.craftgui.minecraft.control.ControlSlotCharge;
 import binnie.core.craftgui.minecraft.control.ControlSlot;
-import binnie.genetics.machine.Analyser;
 import binnie.core.craftgui.minecraft.control.ControlSlotArray;
-import binnie.core.craftgui.resource.minecraft.StandardTexture;
-import binnie.genetics.core.GeneticsTexture;
-import binnie.core.craftgui.minecraft.Window;
-import cpw.mods.fml.relauncher.Side;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.entity.player.EntityPlayer;
+import binnie.core.craftgui.minecraft.control.ControlSlotCharge;
 import binnie.core.craftgui.resource.Texture;
+import binnie.core.craftgui.resource.minecraft.StandardTexture;
+import binnie.core.craftgui.window.Panel;
+import binnie.extrabees.core.ExtraBeeTexture;
+import binnie.genetics.Genetics;
+import binnie.genetics.core.GeneticsTexture;
+import binnie.genetics.machine.Analyser;
+import cpw.mods.fml.relauncher.Side;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
 
-public class WindowAnalyser extends WindowMachine
-{
-	static Texture ProgressBase;
-	static Texture Progress;
+public class WindowAnalyser extends WindowMachine {
+	protected static Texture ProgressBase = new StandardTexture(0, 218, 142, 17, ExtraBeeTexture.GUIProgress.getTexture());
+	protected static Texture Progress = new StandardTexture(0, 201, 142, 17, ExtraBeeTexture.GUIProgress.getTexture());
 
-	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
-		return new WindowAnalyser(player, inventory, side);
+	public WindowAnalyser(EntityPlayer player, IInventory inventory, Side side) {
+		super(220, 210, player, inventory, side);
 	}
 
-	public WindowAnalyser(final EntityPlayer player, final IInventory inventory, final Side side) {
-		super(220, 210, player, inventory, side);
+	public static Window create(EntityPlayer player, IInventory inventory, Side side) {
+		return new WindowAnalyser(player, inventory, side);
 	}
 
 	@Override
@@ -46,7 +41,7 @@ public class WindowAnalyser extends WindowMachine
 		WindowAnalyser.ProgressBase = new StandardTexture(0, 51, 66, 40, GeneticsTexture.GUIProcess.getTexture());
 		WindowAnalyser.Progress = new StandardTexture(66, 51, 66, 40, GeneticsTexture.GUIProcess.getTexture());
 		int x = 16;
-		final int y = 32;
+		int y = 32;
 		new ControlSlotArray(this, x, y, 2, 3).create(Analyser.slotReserve);
 		x += 28;
 		new ControlSlot(this, x, y + 54 + 8).assign(13);
@@ -63,7 +58,7 @@ public class WindowAnalyser extends WindowMachine
 		x += 96;
 		new ControlSlotArray(this, x, y, 2, 3).create(Analyser.slotFinished);
 		x += 52;
-		this.setTitle("Analyser");
+		setTitle("Analyser");
 		new ControlPlayerInventory(this);
 	}
 
@@ -80,10 +75,5 @@ public class WindowAnalyser extends WindowMachine
 	@Override
 	protected String getName() {
 		return "Analyser";
-	}
-
-	static {
-		WindowAnalyser.ProgressBase = new StandardTexture(0, 218, 142, 17, ExtraBeeTexture.GUIProgress.getTexture());
-		WindowAnalyser.Progress = new StandardTexture(0, 201, 142, 17, ExtraBeeTexture.GUIProgress.getTexture());
 	}
 }

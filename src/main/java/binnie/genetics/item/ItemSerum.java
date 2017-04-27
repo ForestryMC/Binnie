@@ -1,60 +1,65 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.item;
 
-import binnie.genetics.Genetics;
-import binnie.genetics.genetics.IGeneItem;
-import binnie.genetics.api.IGene;
-import binnie.genetics.genetics.GeneItem;
-import binnie.core.genetics.Gene;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IChromosomeType;
-import java.util.Map;
 import binnie.Binnie;
-import forestry.api.genetics.ISpeciesRoot;
-import forestry.api.genetics.AlleleManager;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
+import binnie.core.genetics.Gene;
+import binnie.genetics.Genetics;
+import binnie.genetics.api.IGene;
+import binnie.genetics.api.IItemSerum;
+import binnie.genetics.genetics.GeneItem;
+import binnie.genetics.genetics.IGeneItem;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import java.util.List;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import binnie.genetics.api.IItemSerum;
 
-public class ItemSerum extends ItemGene implements IItemSerum
-{
+import java.util.List;
+import java.util.Map;
+
+public class ItemSerum extends ItemGene implements IItemSerum {
 	public ItemSerum() {
 		super("serum");
-		this.setMaxDamage(16);
+		setMaxDamage(16);
+	}
+
+	public static ItemStack create(IGene gene) {
+		ItemStack item = new ItemStack(Genetics.itemSerum);
+		item.setItemDamage(item.getMaxDamage());
+		GeneItem seq = new GeneItem(gene);
+		seq.writeToItem(item);
+		return item;
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation(final ItemStack itemstack, final EntityPlayer entityPlayer, final List list, final boolean par4) {
+	public void addInformation(ItemStack itemstack, EntityPlayer entityPlayer, List list, boolean par4) {
 		super.addInformation(itemstack, entityPlayer, list, par4);
 	}
 
 	@Override
-	public int getCharges(final ItemStack stack) {
+	public int getCharges(ItemStack stack) {
 		return stack.getItem().getMaxDamage() - stack.getItemDamage();
 	}
 
 	@Override
-	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List itemList) {
-		for (final ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
-			final Map<IChromosomeType, List<IAllele>> chromosomeMap = Binnie.Genetics.getChromosomeMap(root);
-			for (final Map.Entry<IChromosomeType, List<IAllele>> entry : chromosomeMap.entrySet()) {
-				final IChromosomeType chromosome = entry.getKey();
-				for (final IAllele allele : entry.getValue()) {
-					final Gene gene = Gene.create(allele, chromosome, root);
+	public void getSubItems(Item par1, CreativeTabs tab, List itemList) {
+		for (ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
+			Map<IChromosomeType, List<IAllele>> chromosomeMap = Binnie.Genetics.getChromosomeMap(root);
+			for (Map.Entry<IChromosomeType, List<IAllele>> entry : chromosomeMap.entrySet()) {
+				IChromosomeType chromosome = entry.getKey();
+				for (IAllele allele : entry.getValue()) {
+					Gene gene = Gene.create(allele, chromosome, root);
 					if (gene == null) {
 						continue;
 					}
-					final IGeneItem item = new GeneItem(gene);
-					final ItemStack stack = new ItemStack(this);
+
+					IGeneItem item = new GeneItem(gene);
+					ItemStack stack = new ItemStack(this);
 					item.writeToItem(stack);
 					itemList.add(stack);
 				}
@@ -63,44 +68,36 @@ public class ItemSerum extends ItemGene implements IItemSerum
 	}
 
 	@Override
-	public IGene[] getGenes(final ItemStack stack) {
-		return new IGene[] { this.getGeneItem(stack).getGene() };
+	public IGene[] getGenes(ItemStack stack) {
+		return new IGene[]{getGeneItem(stack).getGene()};
 	}
 
 	@Override
-	public ISpeciesRoot getSpeciesRoot(final ItemStack stack) {
-		return this.getGeneItem(stack).getSpeciesRoot();
+	public ISpeciesRoot getSpeciesRoot(ItemStack stack) {
+		return getGeneItem(stack).getSpeciesRoot();
 	}
 
 	@Override
-	public IGene getGene(final ItemStack stack, final int chromosome) {
-		return this.getGeneItem(stack).getGene();
+	public IGene getGene(ItemStack stack, int chromosome) {
+		return getGeneItem(stack).getGene();
 	}
 
 	@Override
-	public GeneItem getGeneItem(final ItemStack stack) {
+	public GeneItem getGeneItem(ItemStack stack) {
 		return new GeneItem(stack);
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack itemstack) {
-		final IGeneItem gene = this.getGeneItem(itemstack);
+	public String getItemStackDisplayName(ItemStack stack) {
+		IGeneItem gene = getGeneItem(stack);
 		return Binnie.Genetics.getSystem(gene.getSpeciesRoot()).getDescriptor() + " Serum";
 	}
 
 	@Override
-	public ItemStack addGene(final ItemStack stack, final IGene gene) {
-		final IGeneItem geneI = this.getGeneItem(stack);
-		geneI.addGene(gene);
-		geneI.writeToItem(stack);
+	public ItemStack addGene(ItemStack stack, IGene gene) {
+		IGeneItem geneItem = getGeneItem(stack);
+		geneItem.addGene(gene);
+		geneItem.writeToItem(stack);
 		return stack;
-	}
-
-	public static ItemStack create(final IGene gene) {
-		final ItemStack item = new ItemStack(Genetics.itemSerum);
-		item.setItemDamage(item.getMaxDamage());
-		final GeneItem seq = new GeneItem(gene);
-		seq.writeToItem(item);
-		return item;
 	}
 }

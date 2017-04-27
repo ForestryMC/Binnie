@@ -62,10 +62,6 @@ public enum KitchenMachine implements IMachineType
 		}
 
 		@Override
-		public void register() {
-		}
-
-		@Override
 		public void renderMachine(final Machine machine, final double x, final double y, final double z, final float partialTick, final RenderBlocks renderer) {
 			MachineRendererKitchen.instance.renderMachine(machine, this.textureName, x, y, z, partialTick, renderer);
 		}

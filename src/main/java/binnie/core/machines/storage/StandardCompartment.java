@@ -22,10 +22,6 @@ class StandardCompartment {
 		public TileEntity createTileEntity() {
 			return new TileEntityMachine(this);
 		}
-
-		@Override
-		public void register() {
-		}
 	}
 
 	public static class PackageCompartmentCopper extends Compartment.PackageCompartment {
@@ -42,11 +38,6 @@ class StandardCompartment {
 		@Override
 		public TileEntity createTileEntity() {
 			return new TileEntityMachine(this);
-		}
-
-		@Override
-		public void register() {
-			// ignored
 		}
 	}
 
@@ -65,11 +56,6 @@ class StandardCompartment {
 		public TileEntity createTileEntity() {
 			return new TileEntityMachine(this);
 		}
-
-		@Override
-		public void register() {
-			// ignored
-		}
 	}
 
 	public static class PackageCompartmentIron extends Compartment.PackageCompartment {
@@ -86,11 +72,6 @@ class StandardCompartment {
 		@Override
 		public TileEntity createTileEntity() {
 			return new TileEntityMachine(this);
-		}
-
-		@Override
-		public void register() {
-			// ignored
 		}
 	}
 
@@ -109,11 +90,6 @@ class StandardCompartment {
 		public TileEntity createTileEntity() {
 			return new TileEntityMachine(this);
 		}
-
-		@Override
-		public void register() {
-			// ignored
-		}
 	}
 
 	public static class PackageCompartmentDiamond extends Compartment.PackageCompartment {
@@ -130,11 +106,6 @@ class StandardCompartment {
 		@Override
 		public TileEntity createTileEntity() {
 			return new TileEntityMachine(this);
-		}
-
-		@Override
-		public void register() {
-			// ignored
 		}
 	}
 }

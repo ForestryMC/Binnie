@@ -1,32 +1,28 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.core;
 
-import binnie.genetics.craftgui.WindowSplicer;
-import binnie.genetics.craftgui.WindowAcclimatiser;
-import binnie.genetics.craftgui.WindowIncubator;
-import binnie.genetics.craftgui.WindowAnalyser;
-import binnie.genetics.craftgui.WindowInoculator;
-import binnie.genetics.craftgui.WindowPolymeriser;
-import binnie.genetics.craftgui.WindowSequencer;
-import binnie.genetics.craftgui.WindowIsolator;
-import binnie.genetics.craftgui.WindowGenepool;
-import net.minecraft.tileentity.TileEntity;
-import binnie.genetics.craftgui.WindowGeneBankNEI;
-import binnie.genetics.craftgui.WindowGeneBank;
-import net.minecraft.world.World;
-import java.lang.reflect.Constructor;
-import binnie.genetics.gui.WindowAnalyst;
-import cpw.mods.fml.relauncher.Side;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.entity.player.EntityPlayer;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.gui.IBinnieGUID;
+import binnie.genetics.craftgui.WindowAcclimatiser;
+import binnie.genetics.craftgui.WindowAnalyser;
+import binnie.genetics.craftgui.WindowGeneBank;
+import binnie.genetics.craftgui.WindowGeneBankNEI;
+import binnie.genetics.craftgui.WindowGenepool;
+import binnie.genetics.craftgui.WindowIncubator;
+import binnie.genetics.craftgui.WindowInoculator;
+import binnie.genetics.craftgui.WindowIsolator;
+import binnie.genetics.craftgui.WindowPolymeriser;
+import binnie.genetics.craftgui.WindowSequencer;
+import binnie.genetics.craftgui.WindowSplicer;
+import binnie.genetics.gui.WindowAnalyst;
+import cpw.mods.fml.relauncher.Side;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
-public enum GeneticsGUI implements IBinnieGUID
-{
+import java.lang.reflect.Constructor;
+
+public enum GeneticsGUI implements IBinnieGUID {
 	Genepool(WindowGenepool.class),
 	Isolator(WindowIsolator.class),
 	Sequencer(WindowSequencer.class),
@@ -43,51 +39,47 @@ public enum GeneticsGUI implements IBinnieGUID
 	Registry,
 	MasterRegistry;
 
-	Class<? extends Window> windowClass;
+	protected Class<? extends Window> windowClass;
 
-	private GeneticsGUI()
-	{
+	GeneticsGUI() {
+		// ignored
 	}
 
-	private GeneticsGUI(final Class window) {
-		this.windowClass = window;
+	GeneticsGUI(Class window) {
+		windowClass = window;
 	}
 
-	public Window getWindow(final EntityPlayer player, final IInventory object, final Side side) throws Exception {
+	public Window getWindow(EntityPlayer player, IInventory object, Side side) throws Exception {
 		switch (this) {
-		case Analyst: {
-			return new WindowAnalyst(player, null, side, false, false);
+			case Analyst:
+				return new WindowAnalyst(player, null, side, false, false);
+
+			case MasterRegistry:
+				return new WindowAnalyst(player, null, side, true, true);
+
+			case Registry:
+				return new WindowAnalyst(player, null, side, true, false);
 		}
-		case MasterRegistry: {
-			return new WindowAnalyst(player, null, side, true, true);
-		}
-		case Registry: {
-			return new WindowAnalyst(player, null, side, true, false);
-		}
-		default: {
-			final Constructor constr = this.windowClass.getConstructor(EntityPlayer.class, IInventory.class, Side.class);
-			return (Window) constr.newInstance(player, object, side);
-		}
-		}
+		Constructor constr = windowClass.getConstructor(EntityPlayer.class, IInventory.class, Side.class);
+		return (Window) constr.newInstance(player, object, side);
 	}
 
 	@Override
-	public Window getWindow(final EntityPlayer player, final World world, final int x, final int y, final int z, final Side side) {
+	public Window getWindow(EntityPlayer player, World world, int x, int y, int z, Side side) {
 		Window window = null;
-		final TileEntity tileEntity = world.getTileEntity(x, y, z);
+		TileEntity tileEntity = world.getTileEntity(x, y, z);
 		IInventory object = null;
 		if (tileEntity instanceof IInventory) {
 			object = (IInventory) tileEntity;
 		}
+
 		try {
 			if (this == GeneticsGUI.Database || this == GeneticsGUI.GeneBank) {
 				window = WindowGeneBank.create(player, object, side);
-			}
-			else if (this == GeneticsGUI.DatabaseNEI) {
+			} else if (this == GeneticsGUI.DatabaseNEI) {
 				window = WindowGeneBankNEI.create(player, object, side);
-			}
-			else {
-				window = this.getWindow(player, object, side);
+			} else {
+				window = getWindow(player, object, side);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

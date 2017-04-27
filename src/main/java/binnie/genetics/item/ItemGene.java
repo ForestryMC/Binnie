@@ -1,30 +1,34 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.genetics.item;
 
-import net.minecraft.creativetab.CreativeTabs;
-import java.util.List;
-import net.minecraft.entity.player.EntityPlayer;
-import binnie.genetics.genetics.IGeneItem;
-import net.minecraft.item.ItemStack;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import binnie.genetics.genetics.IGeneItem;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.util.IIcon;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 
-public abstract class ItemGene extends Item
-{
-	IIcon[] icons;
+import java.util.List;
+
+public abstract class ItemGene extends Item {
+	protected IIcon[] icons;
+
+	public ItemGene(String unlocName) {
+		icons = new IIcon[4];
+		setMaxStackSize(1);
+		setMaxDamage(16);
+		setUnlocalizedName(unlocName);
+		setCreativeTab(CreativeTabGenetics.instance);
+	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public IIcon getIconFromDamageForRenderPass(final int damage, final int pass) {
-		return this.icons[pass];
+	public IIcon getIconFromDamageForRenderPass(int damage, int pass) {
+		return icons[pass];
 	}
 
 	@Override
@@ -39,59 +43,54 @@ public abstract class ItemGene extends Item
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(final IIconRegister register) {
-		this.icons[0] = Genetics.proxy.getIcon(register, "machines/serum.glass");
-		this.icons[1] = Genetics.proxy.getIcon(register, "machines/serum.cap");
-		this.icons[2] = Genetics.proxy.getIcon(register, "machines/serum.edges");
-		this.icons[3] = Genetics.proxy.getIcon(register, "machines/serum.dna");
+	public void registerIcons(IIconRegister register) {
+		icons[0] = Genetics.proxy.getIcon(register, "machines/serum.glass");
+		icons[1] = Genetics.proxy.getIcon(register, "machines/serum.cap");
+		icons[2] = Genetics.proxy.getIcon(register, "machines/serum.edges");
+		icons[3] = Genetics.proxy.getIcon(register, "machines/serum.dna");
 	}
 
 	@Override
-	public int getRenderPasses(final int metadata) {
+	public int getRenderPasses(int metadata) {
 		return 4;
 	}
 
-	public ItemGene(final String unlocName) {
-		this.icons = new IIcon[4];
-		this.setMaxStackSize(1);
-		this.setMaxDamage(16);
-		this.setUnlocalizedName(unlocName);
-		this.setCreativeTab(CreativeTabGenetics.instance);
-	}
-
 	@Override
-	public int getColorFromItemStack(final ItemStack itemstack, final int j) {
-		final IGeneItem gene = this.getGeneItem(itemstack);
+	public int getColorFromItemStack(ItemStack itemstack, int j) {
+		IGeneItem gene = getGeneItem(itemstack);
 		return gene.getColour(j);
 	}
 
-	public int getCharges(final ItemStack stack) {
-		return (stack == null) ? 0 : (stack.getItem().getMaxDamage() - stack.getItemDamage());
+	public int getCharges(ItemStack stack) {
+		if (stack == null) {
+			return 0;
+		}
+		return stack.getItem().getMaxDamage() - stack.getItemDamage();
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(final ItemStack itemstack, final EntityPlayer entityPlayer, final List list, final boolean par4) {
+	public void addInformation(ItemStack itemstack, EntityPlayer entityPlayer, List list, boolean par4) {
 		super.addInformation(itemstack, entityPlayer, list, par4);
-		final int damage = this.getMaxDamage() - itemstack.getItemDamage();
+		int damage = getMaxDamage() - itemstack.getItemDamage();
 		if (damage == 0) {
 			list.add("Empty");
-		}
-		else if (damage == 1) {
+		} else if (damage == 1) {
 			list.add("1 Charge");
-		}
-		else {
+		} else {
 			list.add(damage + " Charges");
 		}
-		final IGeneItem gene = this.getGeneItem(itemstack);
+
+		IGeneItem gene = getGeneItem(itemstack);
 		gene.getInfo(list);
 	}
 
 	@Override
-	public abstract String getItemStackDisplayName(final ItemStack p0);
+	public abstract String getItemStackDisplayName(ItemStack stack);
 
 	@Override
-	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List itemList) {
+	public void getSubItems(Item item, CreativeTabs tab, List itemList) {
+		// ignored
 	}
 
 	@Override
@@ -99,5 +98,5 @@ public abstract class ItemGene extends Item
 		return true;
 	}
 
-	public abstract IGeneItem getGeneItem(final ItemStack p0);
+	public abstract IGeneItem getGeneItem(ItemStack stack);
 }
