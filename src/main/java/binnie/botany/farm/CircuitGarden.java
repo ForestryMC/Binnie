@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.farm;
 
 import binnie.Binnie;
@@ -14,8 +10,7 @@ import forestry.api.farming.IFarmHousing;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
-public class CircuitGarden extends BinnieCircuit
-{
+public class CircuitGarden extends BinnieCircuit {
 	private Class<? extends FarmLogic> logicClass;
 	private boolean isManual;
 	private boolean isFertilised;
@@ -23,44 +18,48 @@ public class CircuitGarden extends BinnieCircuit
 	private EnumMoisture moisture;
 	private EnumAcidity acidity;
 
-	public CircuitGarden(final EnumMoisture moisture, final EnumAcidity ph, final boolean manual, final boolean fertilised, final ItemStack recipe, final ItemStack icon) {
+	public CircuitGarden(EnumMoisture moisture, EnumAcidity ph, boolean manual, boolean fertilised, ItemStack recipe, ItemStack icon) {
 		super("garden." + moisture.getID() + ((ph != null) ? ("." + ph.getID()) : "") + (manual ? ".manual" : "") + (fertilised ? ".fert" : ""), 4, manual ? ChipsetManager.circuitRegistry.getLayout("forestry.farms.manual") : ChipsetManager.circuitRegistry.getLayout("forestry.farms.managed"), recipe);
-		this.isManual = false;
-		this.isFertilised = false;
-		this.isManual = manual;
-		this.isFertilised = fertilised;
 		this.moisture = moisture;
-		this.acidity = ph;
 		this.icon = icon;
+		isManual = manual;
+		isFertilised = fertilised;
+		acidity = ph;
 		String info = "";
+
 		if (moisture == EnumMoisture.Dry) {
 			info += EnumChatFormatting.YELLOW + "Dry" + EnumChatFormatting.RESET;
 		}
+
 		if (moisture == EnumMoisture.Damp) {
 			info += EnumChatFormatting.YELLOW + "Damp" + EnumChatFormatting.RESET;
 		}
-		if (this.acidity == EnumAcidity.Acid) {
+
+		if (acidity == EnumAcidity.Acid) {
 			if (info.length() > 0) {
 				info += ", ";
 			}
 			info += EnumChatFormatting.RED + "Acidic" + EnumChatFormatting.RESET;
 		}
-		if (this.acidity == EnumAcidity.Neutral) {
+
+		if (acidity == EnumAcidity.Neutral) {
 			if (info.length() > 0) {
 				info += ", ";
 			}
 			info += EnumChatFormatting.GREEN + "Neutral" + EnumChatFormatting.RESET;
 		}
-		if (this.acidity == EnumAcidity.Alkaline) {
+
+		if (acidity == EnumAcidity.Alkaline) {
 			if (info.length() > 0) {
 				info += ", ";
 			}
 			info += EnumChatFormatting.AQUA + "Alkaline" + EnumChatFormatting.RESET;
 		}
+
 		if (info.length() > 0) {
 			info = " (" + info + EnumChatFormatting.RESET + ")";
 		}
-		this.addTooltipString("Flowers" + info);
+		addTooltipString("Flowers" + info);
 	}
 
 	@Override
@@ -70,22 +69,22 @@ public class CircuitGarden extends BinnieCircuit
 
 	@Override
 	public void onInsertion(int slot, Object tile) {
-		if (!this.isCircuitable(tile)) {
+		if (!isCircuitable(tile)) {
 			return;
 		}
-		final GardenLogic logic = new GardenLogic((IFarmHousing) tile);
-		logic.setData(this.moisture, this.acidity, this.isManual, this.isFertilised, this.icon, Binnie.Language.localise(this.getName()));
+		GardenLogic logic = new GardenLogic((IFarmHousing) tile);
+		logic.setData(moisture, acidity, isManual, isFertilised, icon, Binnie.Language.localise(getName()));
 		((IFarmHousing) tile).setFarmLogic(FarmDirection.values()[slot], logic);
 	}
 
 	@Override
 	public void onLoad(int slot, Object tile) {
-		this.onInsertion(slot, tile);
+		onInsertion(slot, tile);
 	}
 
 	@Override
 	public void onRemoval(int slot, Object tile) {
-		if (!this.isCircuitable(tile)) {
+		if (!isCircuitable(tile)) {
 			return;
 		}
 		((IFarmHousing) tile).resetFarmLogic(FarmDirection.values()[slot]);

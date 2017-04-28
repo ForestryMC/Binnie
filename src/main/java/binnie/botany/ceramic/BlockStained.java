@@ -1,7 +1,3 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.ceramic;
 
 import binnie.botany.Botany;
@@ -21,7 +17,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Facing;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
@@ -32,16 +27,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class BlockStained extends Block implements IBlockMetadata
-{
+public class BlockStained extends Block implements IBlockMetadata {
 	public BlockStained() {
 		super(Material.glass);
-		this.setCreativeTab(CreativeTabBotany.instance);
-		this.setBlockName("stained");
+		setCreativeTab(CreativeTabBotany.instance);
+		setBlockName("stained");
 	}
 
 	@Override
-	public int quantityDropped(final Random p_149745_1_) {
+	public int quantityDropped(Random rand) {
 		return 0;
 	}
 
@@ -63,136 +57,140 @@ public class BlockStained extends Block implements IBlockMetadata
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(final IBlockAccess p_149646_1_, final int p_149646_2_, final int p_149646_3_, final int p_149646_4_, final int p_149646_5_) {
-		final Block block2 = p_149646_1_.getBlock(p_149646_2_ - Facing.offsetsXForSide[p_149646_5_], p_149646_3_ - Facing.offsetsYForSide[p_149646_5_], p_149646_4_ - Facing.offsetsZForSide[p_149646_5_]);
-		final Block block3 = p_149646_1_.getBlock(p_149646_2_, p_149646_3_, p_149646_4_);
-		return block3 != this && block3 != ExtraTrees.blockStained && super.shouldSideBeRendered(p_149646_1_, p_149646_2_, p_149646_3_, p_149646_4_, p_149646_5_);
+	public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
+//		Block block2 = world.getBlock(x - Facing.offsetsXForSide[side], y - Facing.offsetsYForSide[side], z - Facing.offsetsZForSide[side]);
+		Block block3 = world.getBlock(x, y, z);
+		return block3 != this
+			&& block3 != ExtraTrees.blockStained
+			&& super.shouldSideBeRendered(world, x, y, z, side);
 	}
 
 	@Override
-	public ArrayList<ItemStack> getDrops(final World world, final int x, final int y, final int z, final int blockMeta, final int fortune) {
+	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int blockMeta, int fortune) {
 		return BlockMetadata.getBlockDropped(this, world, x, y, z, blockMeta);
 	}
 
+	// TODO remove deprecated
 	@Override
-	public boolean removedByPlayer(final World world, final EntityPlayer player, final int x, final int y, final int z) {
+	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z) {
 		return BlockMetadata.breakBlock(this, player, world, x, y, z);
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(final World var1, final int i) {
+	public TileEntity createNewTileEntity(World var1, int i) {
 		return new TileEntityMetadata();
 	}
 
 	@Override
-	public boolean hasTileEntity(final int meta) {
+	public boolean hasTileEntity(int meta) {
 		return true;
 	}
 
 	@Override
-	public boolean onBlockEventReceived(final World par1World, final int par2, final int par3, final int par4, final int par5, final int par6) {
-		super.onBlockEventReceived(par1World, par2, par3, par4, par5, par6);
-		final TileEntity tileentity = par1World.getTileEntity(par2, par3, par4);
-		return tileentity != null && tileentity.receiveClientEvent(par5, par6);
+	public boolean onBlockEventReceived(World world, int x, int y, int z, int eventId, int eventType) {
+		super.onBlockEventReceived(world, x, y, z, eventId, eventType);
+		TileEntity tileentity = world.getTileEntity(x, y, z);
+		return tileentity != null && tileentity.receiveClientEvent(eventId, eventType);
 	}
 
 	@Override
-	public int getPlacedMeta(final ItemStack itemStack, final World world, final int x, final int y, final int z, final ForgeDirection direction) {
+	public int getPlacedMeta(ItemStack itemStack, World world, int x, int y, int z, ForgeDirection direction) {
 		return TileEntityMetadata.getItemDamage(itemStack);
 	}
 
 	@Override
-	public int getDroppedMeta(final int blockMeta, final int tileMeta) {
+	public int getDroppedMeta(int blockMeta, int tileMeta) {
 		return tileMeta;
 	}
 
 	@Override
-	public String getBlockName(final ItemStack itemStack) {
-		final int meta = TileEntityMetadata.getItemDamage(itemStack);
+	public String getBlockName(ItemStack itemStack) {
+		int meta = TileEntityMetadata.getItemDamage(itemStack);
 		return EnumFlowerColor.get(meta).getName() + " Pigmented Glass";
 	}
 
 	@Override
-	public void getBlockTooltip(final ItemStack itemStack, final List tooltip) {
+	public void getBlockTooltip(ItemStack itemStack, List tooltip) {
+		// ignored
 	}
 
 	@Override
-	public void dropAsStack(final World world, final int x, final int y, final int z, final ItemStack itemStack) {
-		this.dropBlockAsItem(world, x, y, z, itemStack);
+	public void dropAsStack(World world, int x, int y, int z, ItemStack stack) {
+		dropBlockAsItem(world, x, y, z, stack);
 	}
 
 	@Override
-	public void getSubBlocks(final Item par1, final CreativeTabs par2CreativeTabs, final List itemList) {
-		for (final EnumFlowerColor c : EnumFlowerColor.values()) {
+	public void getSubBlocks(Item item, CreativeTabs tab, List itemList) {
+		for (EnumFlowerColor c : EnumFlowerColor.values()) {
 			itemList.add(TileEntityMetadata.getItemStack(this, c.ordinal()));
 		}
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(final IBlockAccess world, final int x, final int y, final int z, final int side) {
-		final TileEntityMetadata tile = TileEntityMetadata.getTile(world, x, y, z);
+	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
+		TileEntityMetadata tile = TileEntityMetadata.getTile(world, x, y, z);
 		if (tile != null) {
-			return this.getIcon(side, tile.getTileMetadata());
+			return getIcon(side, tile.getTileMetadata());
 		}
 		return super.getIcon(world, x, y, z, side);
 	}
 
 	@Override
-	public IIcon getIcon(final int side, final int meta) {
-		return this.blockIcon;
+	public IIcon getIcon(int side, int meta) {
+		return blockIcon;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(final IIconRegister register) {
-		this.blockIcon = Botany.proxy.getIcon(register, "stained");
+	public void registerBlockIcons(IIconRegister register) {
+		blockIcon = Botany.proxy.getIcon(register, "stained");
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int colorMultiplier(final IBlockAccess world, final int x, final int y, final int z) {
-		final TileEntityMetadata tile = TileEntityMetadata.getTile(world, x, y, z);
+	public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
+		TileEntityMetadata tile = TileEntityMetadata.getTile(world, x, y, z);
 		if (tile != null) {
-			return this.getRenderColor(tile.getTileMetadata());
+			return getRenderColor(tile.getTileMetadata());
 		}
 		return 16777215;
 	}
 
 	@Override
-	public void breakBlock(final World par1World, final int par2, final int par3, final int par4, final Block par5, final int par6) {
-		super.breakBlock(par1World, par2, par3, par4, par5, par6);
-		par1World.removeTileEntity(par2, par3, par4);
+	public void breakBlock(World world, int x, int y, int z, Block block, int side) {
+		super.breakBlock(world, x, y, z, block, side);
+		world.removeTileEntity(x, y, z);
 	}
 
 	@Override
-	public boolean isWood(final IBlockAccess world, final int x, final int y, final int z) {
+	public boolean isWood(IBlockAccess world, int x, int y, int z) {
 		return true;
 	}
 
 	@Override
-	public int getFlammability(final IBlockAccess world, final int x, final int y, final int z, final ForgeDirection face) {
+	public int getFlammability(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
 		return 20;
 	}
 
 	@Override
-	public boolean isFlammable(final IBlockAccess world, final int x, final int y, final int z, final ForgeDirection face) {
+	public boolean isFlammable(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
 		return true;
 	}
 
 	@Override
-	public int getFireSpreadSpeed(final IBlockAccess world, final int x, final int y, final int z, final ForgeDirection face) {
+	public int getFireSpreadSpeed(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
 		return 5;
 	}
 
 	@Override
-	public ItemStack getPickBlock(final MovingObjectPosition target, final World world, final int x, final int y, final int z) {
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
 		return BlockMetadata.getPickBlock(world, x, y, z);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int getRenderColor(final int meta) {
+	public int getRenderColor(int meta) {
 		return EnumFlowerColor.get(meta).getColor(false);
 	}
 }

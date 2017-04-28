@@ -1,54 +1,50 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.network;
 
-import binnie.botany.genetics.EnumFlowerType;
-import binnie.botany.genetics.EnumFlowerColor;
-import java.io.IOException;
-import io.netty.buffer.ByteBuf;
-import binnie.core.network.packet.MessageBinnie;
 import binnie.botany.flower.TileEntityFlower;
+import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.genetics.EnumFlowerType;
+import binnie.core.network.packet.MessageBinnie;
 import binnie.core.network.packet.MessageCoordinates;
+import io.netty.buffer.ByteBuf;
 
-public class MessageFlowerUpdate extends MessageCoordinates
-{
+import java.io.IOException;
+
+public class MessageFlowerUpdate extends MessageCoordinates {
 	public TileEntityFlower.RenderInfo render;
 
-	public MessageFlowerUpdate(final int posX, final int posY, final int posZ, final TileEntityFlower.RenderInfo render) {
+	public MessageFlowerUpdate(int posX, int posY, int posZ, TileEntityFlower.RenderInfo render) {
 		super(PacketID.FlowerUpdate.ordinal(), posX, posY, posZ);
 		this.render = render;
 	}
 
-	public MessageFlowerUpdate(final MessageBinnie message) {
+	public MessageFlowerUpdate(MessageBinnie message) {
 		super(message);
 	}
 
 	@Override
-	public void writeData(final ByteBuf data) throws IOException {
+	public void writeData(ByteBuf data) throws IOException {
 		super.writeData(data);
-		data.writeByte(this.render.primary.getID());
-		data.writeByte(this.render.secondary.getID());
-		data.writeByte(this.render.stem.getID());
-		data.writeByte(this.render.type.ordinal());
-		data.writeByte(this.render.age);
-		data.writeByte(this.render.section);
-		data.writeBoolean(this.render.wilted);
-		data.writeBoolean(this.render.flowered);
+		data.writeByte(render.primary.getID());
+		data.writeByte(render.secondary.getID());
+		data.writeByte(render.stem.getID());
+		data.writeByte(render.type.ordinal());
+		data.writeByte(render.age);
+		data.writeByte(render.section);
+		data.writeBoolean(render.wilted);
+		data.writeBoolean(render.flowered);
 	}
 
 	@Override
-	public void readData(final ByteBuf data) throws IOException {
+	public void readData(ByteBuf data) throws IOException {
 		super.readData(data);
-		this.render = new TileEntityFlower.RenderInfo();
-		this.render.primary = EnumFlowerColor.values()[data.readByte()];
-		this.render.secondary = EnumFlowerColor.values()[data.readByte()];
-		this.render.stem = EnumFlowerColor.values()[data.readByte()];
-		this.render.type = EnumFlowerType.values()[data.readByte()];
-		this.render.age = data.readByte();
-		this.render.section = data.readByte();
-		this.render.wilted = data.readBoolean();
-		this.render.flowered = data.readBoolean();
+		render = new TileEntityFlower.RenderInfo();
+		render.primary = EnumFlowerColor.values()[data.readByte()];
+		render.secondary = EnumFlowerColor.values()[data.readByte()];
+		render.stem = EnumFlowerColor.values()[data.readByte()];
+		render.type = EnumFlowerType.values()[data.readByte()];
+		render.age = data.readByte();
+		render.section = data.readByte();
+		render.wilted = data.readBoolean();
+		render.flowered = data.readBoolean();
 	}
 }

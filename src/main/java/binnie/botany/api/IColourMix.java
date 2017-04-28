@@ -1,18 +1,13 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.api;
 
-public interface IColourMix
-{
-	IFlowerColour getColour1();
+public interface IColourMix {
+	IFlowerColor getColor1();
 
-	IFlowerColour getColour2();
+	IFlowerColor getColor2();
 
-	boolean isMutation(final IFlowerColour p0, final IFlowerColour p1);
+	boolean isMutation(IFlowerColor color1, IFlowerColor color2);
 
 	int getChance();
 
-	IFlowerColour getResult();
+	IFlowerColor getResult();
 }

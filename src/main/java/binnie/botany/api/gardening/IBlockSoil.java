@@ -1,29 +1,24 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.api.gardening;
 
-import binnie.botany.api.EnumSoilType;
-import binnie.botany.api.EnumMoisture;
 import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumMoisture;
+import binnie.botany.api.EnumSoilType;
 import net.minecraft.world.World;
 
-public interface IBlockSoil
-{
-	EnumAcidity getPH(final World p0, final int p1, final int p2, final int p3);
+public interface IBlockSoil {
+	EnumAcidity getPH(World world, int x, int y, int z);
 
-	EnumMoisture getMoisture(final World p0, final int p1, final int p2, final int p3);
+	EnumMoisture getMoisture(World world, int x, int y, int z);
 
-	EnumSoilType getType(final World p0, final int p1, final int p2, final int p3);
+	EnumSoilType getType(World world, int x, int y, int z);
 
-	boolean fertilise(final World p0, final int p1, final int p2, final int p3, final EnumSoilType p4);
+	boolean fertilise(World world, int x, int y, int z, EnumSoilType maxLevel);
 
-	boolean degrade(final World p0, final int p1, final int p2, final int p3, final EnumSoilType p4);
+	boolean degrade(World world, int x, int y, int z, EnumSoilType minLevel);
 
-	boolean setPH(final World p0, final int p1, final int p2, final int p3, final EnumAcidity p4);
+	boolean setPH(World world, int x, int y, int z, EnumAcidity pH);
 
-	boolean setMoisture(final World p0, final int p1, final int p2, final int p3, final EnumMoisture p4);
+	boolean setMoisture(World world, int x, int y, int z, EnumMoisture p4);
 
-	boolean resistsWeeds(final World p0, final int p1, final int p2, final int p3);
+	boolean resistsWeeds(World world, int x, int y, int z);
 }
