@@ -1,16 +1,11 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.genetics;
 
 import binnie.botany.Botany;
+import binnie.botany.api.IFlowerColor;
 import binnie.botany.core.BotanyCore;
 import forestry.api.genetics.IAlleleInteger;
-import binnie.botany.api.IFlowerColour;
 
-public enum EnumFlowerColor implements IFlowerColour
-{
+public enum EnumFlowerColor implements IFlowerColor {
 	Aquamarine("aquamarine", 8388564),
 	Black("black", 2631720),
 	Blue("blue", 255),
@@ -97,39 +92,24 @@ public enum EnumFlowerColor implements IFlowerColour
 	AlleleColor allele;
 	String ident;
 
-	private EnumFlowerColor(final String ident, final int c) {
+	EnumFlowerColor(String ident, int c) {
 		this(c);
 	}
 
-	private EnumFlowerColor(final int c) {
-		this.color = c;
-		this.allele = new AlleleColor(this, "botany.color" + this.name(), this.toString(), this.color);
-		int r = this.color >> 16 & 0xFF;
-		int g = this.color >> 8 & 0xFF;
-		int b = this.color & 0xFF;
+	EnumFlowerColor(int c) {
+		color = c;
+		allele = new AlleleColor(this, "botany.color" + name(), toString(), color);
+		int r = color >> 16 & 0xFF;
+		int g = color >> 8 & 0xFF;
+		int b = color & 0xFF;
 		r = (int) (0.45 * (r + 214));
 		g = (int) (0.45 * (r + 174));
 		b = (int) (0.45 * (r + 131));
-		this.colorDis = (r << 16) + (g << 8) + b;
+		colorDis = (r << 16) + (g << 8) + b;
 	}
 
-	@Override
-	public int getColor(final boolean dis) {
-		return dis ? this.colorDis : this.color;
-	}
-
-	@Override
-	public IAlleleInteger getAllele() {
-		return this.allele;
-	}
-
-	@Override
-	public int getID() {
-		return this.ordinal();
-	}
-
-	public static void addMix(final EnumFlowerColor start1, final EnumFlowerColor start2, final EnumFlowerColor result, final int chance) {
-		BotanyCore.getFlowerRoot().registerColourMix(new ColourMix(start1, start2, result, chance));
+	public static void addMix(EnumFlowerColor start1, EnumFlowerColor start2, EnumFlowerColor result, int chance) {
+		BotanyCore.getFlowerRoot().registerColourMix(new ColorMix(start1, start2, result, chance));
 	}
 
 	public static void setupMutations() {
@@ -2950,16 +2930,31 @@ public enum EnumFlowerColor implements IFlowerColour
 		addMix(EnumFlowerColor.YellowGreen, EnumFlowerColor.Yellow, EnumFlowerColor.Khaki, 110);
 	}
 
-	@Override
-	public String getName() {
-		return Botany.proxy.localise("colour." + this.name().toLowerCase());
-	}
-
-	public static EnumFlowerColor get(final int i) {
+	public static EnumFlowerColor get(int i) {
 		return values()[Math.max(0, i) % values().length];
 	}
 
+	@Override
+	public int getColor(boolean dis) {
+		return dis ? colorDis : color;
+	}
+
+	@Override
+	public IAlleleInteger getAllele() {
+		return allele;
+	}
+
+	@Override
+	public int getID() {
+		return ordinal();
+	}
+
+	@Override
+	public String getName() {
+		return Botany.proxy.localise("colour." + name().toLowerCase());
+	}
+
 	public String getHTMLName() {
-		return this.name();
+		return name();
 	}
 }

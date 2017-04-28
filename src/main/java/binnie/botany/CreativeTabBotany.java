@@ -1,33 +1,27 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany;
 
-import net.minecraft.item.Item;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
-public class CreativeTabBotany extends CreativeTabs
-{
-	public static CreativeTabs instance;
-
-	@Override
-	public ItemStack getIconItemStack() {
-		return new ItemStack(Blocks.red_flower, 1, 5);
-	}
+public class CreativeTabBotany extends CreativeTabs {
+	public static CreativeTabs instance = new CreativeTabBotany();
 
 	public CreativeTabBotany() {
 		super("Botany");
 	}
 
 	@Override
+	public ItemStack getIconItemStack() {
+		return new ItemStack(Blocks.red_flower, 1, 5);
+	}
+
+	@Override
 	public String getTranslatedTabLabel() {
-		return this.getTabLabel();
+		return getTabLabel();
 	}
 
 	@Override
@@ -40,9 +34,5 @@ public class CreativeTabBotany extends CreativeTabs
 	@SideOnly(Side.CLIENT)
 	public Item getTabIconItem() {
 		return Item.getItemFromBlock(Blocks.yellow_flower);
-	}
-
-	static {
-		CreativeTabBotany.instance = new CreativeTabBotany();
 	}
 }

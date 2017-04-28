@@ -1,18 +1,13 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.api;
 
 import net.minecraft.util.IIcon;
 
-public interface IFlowerType
-{
-	IIcon getStem(final EnumFlowerStage p0, final boolean p1, final int p2);
+public interface IFlowerType {
+	IIcon getStem(EnumFlowerStage stage, boolean flowered, int section);
 
-	IIcon getPetalIcon(final EnumFlowerStage p0, final boolean p1, final int p2);
+	IIcon getPetalIcon(EnumFlowerStage stage, boolean flowered, int section);
 
-	IIcon getVariantIcon(final EnumFlowerStage p0, final boolean p1, final int p2);
+	IIcon getVariantIcon(EnumFlowerStage stage, boolean flowered, int section);
 
 	int getID();
 

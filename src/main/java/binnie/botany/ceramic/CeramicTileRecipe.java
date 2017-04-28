@@ -1,43 +1,39 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.ceramic;
 
-import java.util.List;
-import java.util.ArrayList;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 import binnie.botany.Botany;
-import net.minecraft.world.World;
 import net.minecraft.inventory.InventoryCrafting;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.world.World;
 
-public class CeramicTileRecipe implements IRecipe
-{
-	ItemStack cached;
+import java.util.ArrayList;
+import java.util.List;
+
+public class CeramicTileRecipe implements IRecipe {
+	protected ItemStack cached;
 
 	@Override
-	public boolean matches(final InventoryCrafting inv, final World world) {
-		this.cached = this.getCraftingResult(inv);
-		return this.cached != null;
+	public boolean matches(InventoryCrafting crafting, World world) {
+		cached = getCraftingResult(crafting);
+		return cached != null;
 	}
 
 	@Override
-	public ItemStack getCraftingResult(final InventoryCrafting inv) {
-		final Item ceramicBlock = Item.getItemFromBlock(Botany.ceramic);
-		final Item ceramicTile = Item.getItemFromBlock(Botany.ceramicTile);
-		final Item ceramicBrick = Item.getItemFromBlock(Botany.ceramicBrick);
-		final Item mortar = Botany.misc;
-		final List<ItemStack> stacks = new ArrayList<ItemStack>();
+	public ItemStack getCraftingResult(InventoryCrafting inv) {
+		Item ceramicBlock = Item.getItemFromBlock(Botany.ceramic);
+		Item ceramicTile = Item.getItemFromBlock(Botany.ceramicTile);
+		Item ceramicBrick = Item.getItemFromBlock(Botany.ceramicBrick);
+		Item mortar = Botany.misc;
+		List<ItemStack> stacks = new ArrayList<>();
 		int ix = -1;
 		int iy = -1;
+
 		for (int i = 0; i < inv.getSizeInventory(); ++i) {
-			final ItemStack stack = inv.getStackInSlot(i);
+			ItemStack stack = inv.getStackInSlot(i);
 			if (stack != null) {
-				final int x = i / 3;
-				final int y = i % 3;
+				int x = i / 3;
+				int y = i % 3;
 				if (ix == -1) {
 					ix = x;
 					iy = y;
@@ -45,14 +41,17 @@ public class CeramicTileRecipe implements IRecipe
 				if (x - ix >= 2 || y - iy >= 2 || y < iy || x < ix) {
 					return null;
 				}
-				if (stack.getItem() != ceramicBlock && stack.getItem() != ceramicTile && stack.getItem() != ceramicBrick && stack.getItem() != mortar) {
+				
+				Item item = stack.getItem();
+				if (item != ceramicBlock && item != ceramicTile && item != ceramicBrick && item != mortar) {
 					return null;
 				}
 				stacks.add(stack);
 			}
 		}
-		for (final BlockCeramicBrick.TileType type : BlockCeramicBrick.TileType.values()) {
-			final ItemStack stack2 = type.getRecipe(stacks);
+
+		for (BlockCeramicBrick.TileType type : BlockCeramicBrick.TileType.values()) {
+			ItemStack stack2 = type.getRecipe(stacks);
 			if (stack2 != null) {
 				return stack2;
 			}
@@ -67,6 +66,6 @@ public class CeramicTileRecipe implements IRecipe
 
 	@Override
 	public ItemStack getRecipeOutput() {
-		return this.cached;
+		return cached;
 	}
 }

@@ -1,48 +1,44 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.api;
 
-import java.util.Collection;
 import com.mojang.authlib.GameProfile;
-import net.minecraft.world.World;
 import forestry.api.genetics.IAllele;
-import net.minecraft.item.ItemStack;
 import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
-public interface IFlowerRoot extends ISpeciesRoot
-{
-	@Override
-	IFlower getMember(final ItemStack p0);
+import java.util.Collection;
 
+public interface IFlowerRoot extends ISpeciesRoot {
 	@Override
-	IFlower templateAsIndividual(final IAllele[] p0);
-
-	@Override
-	IFlower templateAsIndividual(final IAllele[] p0, final IAllele[] p1);
+	IFlower getMember(ItemStack stack);
 
 	@Override
-	IFlowerGenome templateAsGenome(final IAllele[] p0);
+	IFlower templateAsIndividual(IAllele[] template);
 
 	@Override
-	IFlowerGenome templateAsGenome(final IAllele[] p0, final IAllele[] p1);
+	IFlower templateAsIndividual(IAllele[] templateActive, IAllele[] templateInactive);
 
 	@Override
-	IBotanistTracker getBreedingTracker(final World p0, final GameProfile p1);
+	IFlowerGenome templateAsGenome(IAllele[] template);
 
 	@Override
-	Collection<IFlowerMutation> getMutations(final boolean p0);
+	IFlowerGenome templateAsGenome(IAllele[] templateActive, IAllele[] templateInactive);
 
-	EnumFlowerStage getStageType(final ItemStack p0);
+	@Override
+	IBotanistTracker getBreedingTracker(World world, GameProfile player);
 
-	IFlower getFlower(final World p0, final IFlowerGenome p1);
+	@Override
+	Collection<IFlowerMutation> getMutations(boolean shuffle);
 
-	void addConversion(final ItemStack p0, final IAllele[] p1);
+	EnumFlowerStage getStageType(ItemStack stack);
 
-	IFlower getConversion(final ItemStack p0);
+	IFlower getFlower(World world, IFlowerGenome genome);
 
-	Collection<IColourMix> getColourMixes(final boolean p0);
+	void addConversion(ItemStack stack, IAllele[] template);
 
-	void registerColourMix(final IColourMix p0);
+	IFlower getConversion(ItemStack stack);
+
+	Collection<IColourMix> getColourMixes(boolean shuffle);
+
+	void registerColourMix(IColourMix colorMix);
 }

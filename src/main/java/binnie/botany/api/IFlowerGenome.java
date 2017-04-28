@@ -1,26 +1,21 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.api;
 
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IGenome;
 
-public interface IFlowerGenome extends IGenome
-{
+public interface IFlowerGenome extends IGenome {
 	@Override
 	IAlleleFlowerSpecies getPrimary();
 
 	@Override
 	IAlleleFlowerSpecies getSecondary();
 
-	IFlowerColour getPrimaryColor();
+	IFlowerColor getPrimaryColor();
 
-	IFlowerColour getSecondaryColor();
+	IFlowerColor getSecondaryColor();
 
-	IFlowerColour getStemColor();
+	IFlowerColor getStemColor();
 
 	int getFertility();
 
@@ -38,9 +33,9 @@ public interface IFlowerGenome extends IGenome
 
 	float getSappiness();
 
-	boolean canTolerate(final EnumAcidity p0);
+	boolean canTolerate(EnumAcidity pH);
 
-	boolean canTolerate(final EnumMoisture p0);
+	boolean canTolerate(EnumMoisture moisture);
 
-	boolean canTolerate(final EnumTemperature p0);
+	boolean canTolerate(EnumTemperature temp);
 }

@@ -1,51 +1,47 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.items;
 
 import binnie.botany.Botany;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import java.util.List;
-import net.minecraft.creativetab.CreativeTabs;
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.genetics.EnumFlowerColor;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import binnie.botany.genetics.EnumFlowerColor;
-import net.minecraft.item.ItemStack;
-import binnie.botany.CreativeTabBotany;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
-public class ItemPigment extends Item
-{
+import java.util.List;
+
+public class ItemPigment extends Item {
 	public ItemPigment() {
-		this.setUnlocalizedName("pigment");
-		this.setHasSubtypes(true);
-		this.setCreativeTab(CreativeTabBotany.instance);
+		setUnlocalizedName("pigment");
+		setHasSubtypes(true);
+		setCreativeTab(CreativeTabBotany.instance);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int getColorFromItemStack(final ItemStack stack, final int p_82790_2_) {
-		final int damage = stack.getItemDamage();
+	public int getColorFromItemStack(ItemStack stack, int index) {
+		int damage = stack.getItemDamage();
 		return EnumFlowerColor.get(damage).getColor(false);
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack stack) {
+	public String getItemStackDisplayName(ItemStack stack) {
 		return EnumFlowerColor.get(stack.getItemDamage()).getName() + " Pigment";
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(final Item p_150895_1_, final CreativeTabs p_150895_2_, final List list) {
-		for (final EnumFlowerColor c : EnumFlowerColor.values()) {
+	public void getSubItems(Item item, CreativeTabs tab, List list) {
+		for (EnumFlowerColor c : EnumFlowerColor.values()) {
 			list.add(new ItemStack(this, 1, c.ordinal()));
 		}
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(final IIconRegister register) {
-		this.itemIcon = Botany.proxy.getIcon(register, "pigment");
+	public void registerIcons(IIconRegister register) {
+		itemIcon = Botany.proxy.getIcon(register, "pigment");
 	}
 }

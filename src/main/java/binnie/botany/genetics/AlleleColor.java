@@ -1,20 +1,15 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.genetics;
 
 import forestry.api.genetics.IAlleleInteger;
 
-public class AlleleColor implements IAlleleInteger
-{
-	String uid;
-	boolean dominant;
-	String name;
-	int value;
-	EnumFlowerColor color;
+public class AlleleColor implements IAlleleInteger {
+	protected String uid;
+	protected boolean dominant;
+	protected String name;
+	protected int value;
+	protected EnumFlowerColor color;
 
-	public AlleleColor(final EnumFlowerColor color, final String uid, final String name, final int value) {
+	public AlleleColor(EnumFlowerColor color, String uid, String name, int value) {
 		this.color = color;
 		this.uid = uid;
 		this.name = name;
@@ -23,7 +18,7 @@ public class AlleleColor implements IAlleleInteger
 
 	@Override
 	public String getUID() {
-		return this.uid;
+		return uid;
 	}
 
 	@Override
@@ -33,20 +28,20 @@ public class AlleleColor implements IAlleleInteger
 
 	@Override
 	public String getName() {
-		return this.color.getName();
+		return color.getName();
 	}
 
 	@Override
 	public int getValue() {
-		return this.value;
+		return value;
 	}
 
 	public EnumFlowerColor getColor() {
-		return this.color;
+		return color;
 	}
 
 	@Override
 	public String getUnlocalizedName() {
-		return this.getUID();
+		return getUID();
 	}
 }

@@ -1,17 +1,12 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.genetics;
 
-import forestry.api.genetics.AlleleManager;
 import binnie.botany.api.EnumFlowerChromosome;
+import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 
-public class FlowerTemplates
-{
+public class FlowerTemplates {
 	public static IAllele[] getDefaultTemplate() {
-		final IAllele[] alleles = new IAllele[EnumFlowerChromosome.values().length];
+		IAllele[] alleles = new IAllele[EnumFlowerChromosome.values().length];
 		alleles[EnumFlowerChromosome.SPECIES.ordinal()] = FlowerSpecies.Poppy;
 		alleles[EnumFlowerChromosome.PRIMARY.ordinal()] = EnumFlowerColor.Red.getAllele();
 		alleles[EnumFlowerChromosome.SECONDARY.ordinal()] = EnumFlowerColor.Red.getAllele();

@@ -1,38 +1,33 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.api;
 
-import net.minecraft.world.World;
 import forestry.api.genetics.IIndividual;
+import net.minecraft.world.World;
 
-public interface IFlower extends IIndividual
-{
+public interface IFlower extends IIndividual {
 	@Override
 	IFlowerGenome getGenome();
 
 	IFlowerGenome getMate();
 
-	void mate(final IFlower p0);
+	void mate(IFlower other);
 
 	int getAge();
 
+	void setAge(int age);
+
 	void age();
 
-	void setAge(final int p0);
-
-	IFlower getOffspring(final World p0);
+	IFlower getOffspring(World world);
 
 	int getMaxAge();
 
 	boolean isWilted();
 
-	void setWilted(final boolean p0);
+	void setWilted(boolean value);
 
 	boolean hasFlowered();
 
-	void setFlowered(final boolean p0);
+	void setFlowered(boolean value);
 
 	void removeMate();
 }

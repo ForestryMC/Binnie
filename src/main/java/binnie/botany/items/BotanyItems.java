@@ -1,19 +1,14 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.items;
 
-import net.minecraft.item.Item;
-import java.util.List;
 import binnie.botany.Botany;
+import binnie.core.item.IItemMisc;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import binnie.core.item.IItemMisc;
 
-public enum BotanyItems implements IItemMisc
-{
+import java.util.List;
+
+public enum BotanyItems implements IItemMisc {
 	AshPowder("Ash Powder", "powderAsh"),
 	PulpPowder("Wood Pulp Powder", "powderPulp"),
 	MulchPowder("Mulch Powder", "powderMulch"),
@@ -23,37 +18,38 @@ public enum BotanyItems implements IItemMisc
 	Mortar("Mortar", "mortar"),
 	Weedkiller("Weedkiller", "weedkiller");
 
-	IIcon icon;
-	String name;
-	String iconPath;
+	protected IIcon icon;
+	protected String name;
+	protected String iconPath;
 
-	private BotanyItems(final String name, final String iconPath) {
+	BotanyItems(String name, String iconPath) {
 		this.name = name;
 		this.iconPath = iconPath;
 	}
 
 	@Override
-	public IIcon getIcon(final ItemStack itemStack) {
-		return this.icon;
+	public IIcon getIcon(ItemStack itemStack) {
+		return icon;
 	}
 
 	@Override
-	public void registerIcons(final IIconRegister register) {
-		this.icon = Botany.proxy.getIcon(register, this.iconPath);
+	public void registerIcons(IIconRegister register) {
+		icon = Botany.proxy.getIcon(register, iconPath);
 	}
 
 	@Override
-	public void addInformation(final List data) {
+	public void addInformation(List data) {
+		// ignored
 	}
 
 	@Override
-	public String getName(final ItemStack itemStack) {
-		return this.name;
+	public String getName(ItemStack itemStack) {
+		return name;
 	}
 
 	@Override
-	public ItemStack get(final int count) {
-		return new ItemStack(Botany.misc, count, this.ordinal());
+	public ItemStack get(int count) {
+		return new ItemStack(Botany.misc, count, ordinal());
 	}
 
 	@Override

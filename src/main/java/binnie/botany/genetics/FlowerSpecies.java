@@ -1,40 +1,33 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.genetics;
 
-import forestry.api.genetics.IIndividual;
+import binnie.Binnie;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumFlowerChromosome;
+import binnie.botany.api.EnumMoisture;
+import binnie.botany.api.IAlleleFlowerSpecies;
+import binnie.botany.api.IFlowerType;
+import binnie.botany.core.BotanyCore;
+import binnie.core.genetics.ForestryAllele;
 import com.mojang.authlib.GameProfile;
-import net.minecraft.world.World;
-import forestry.api.genetics.ISpeciesRoot;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.core.IIconProvider;
-import binnie.Binnie;
 import forestry.api.core.EnumHumidity;
-import binnie.botany.api.EnumFlowerChromosome;
-import java.util.ArrayList;
-import forestry.api.genetics.IMutation;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.AlleleManager;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
-import net.minecraft.init.Blocks;
-import binnie.botany.core.BotanyCore;
-import forestry.api.genetics.IClassification;
-import forestry.api.genetics.IAllele;
-import java.util.List;
-import forestry.api.genetics.EnumTolerance;
-import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.EnumAcidity;
 import forestry.api.core.EnumTemperature;
-import binnie.botany.api.IFlowerType;
-import binnie.core.genetics.ForestryAllele;
-import binnie.botany.api.IAlleleFlowerSpecies;
+import forestry.api.core.IIconProvider;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.EnumTolerance;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IClassification;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
-public enum FlowerSpecies implements IAlleleFlowerSpecies
-{
+import java.util.ArrayList;
+import java.util.List;
+
+public enum FlowerSpecies implements IAlleleFlowerSpecies {
 	Dandelion("Dandelion", "taraxacum", "officinale", EnumFlowerType.Dandelion, EnumFlowerColor.Yellow),
 	Poppy("Poppy", "papaver", "rhoeas", EnumFlowerType.Poppy, EnumFlowerColor.Red),
 	Orchid("Orchid", "vanda", "coerulea", EnumFlowerType.Orchid, EnumFlowerColor.DeepSkyBlue),
@@ -83,24 +76,45 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies
 	Delphinium("Delphinium", "delphinium", "staphisagria", EnumFlowerType.Delphinium, EnumFlowerColor.DarkSlateBlue),
 	Hollyhock("Hollyhock", "Alcea", "rosea", EnumFlowerType.Hollyhock, EnumFlowerColor.Black, EnumFlowerColor.Gold);
 
-	EnumFlowerColor stemColor;
-	ForestryAllele.Fertility fert;
-	ForestryAllele.Lifespan life;
-	ForestryAllele.Sappiness sap;
-	IFlowerType type;
-	String name;
-	String binomial;
-	String branchName;
-	EnumFlowerColor primaryColor;
-	EnumFlowerColor secondaryColor;
-	EnumTemperature temperature;
-	EnumAcidity pH;
-	EnumMoisture moisture;
-	EnumTolerance tempTolerance;
-	EnumTolerance pHTolerance;
-	EnumTolerance moistureTolerance;
-	List<IAllele[]> variantTemplates;
-	IClassification branch;
+	protected EnumFlowerColor stemColor;
+	protected ForestryAllele.Fertility fert;
+	protected ForestryAllele.Lifespan life;
+	protected ForestryAllele.Sappiness sap;
+	protected IFlowerType type;
+	protected String name;
+	protected String binomial;
+	protected String branchName;
+	protected EnumFlowerColor primaryColor;
+	protected EnumFlowerColor secondaryColor;
+	protected EnumTemperature temperature;
+	protected EnumAcidity pH;
+	protected EnumMoisture moisture;
+	protected EnumTolerance tempTolerance;
+	protected EnumTolerance pHTolerance;
+	protected EnumTolerance moistureTolerance;
+	protected List<IAllele[]> variantTemplates;
+	protected IClassification branch;
+
+	FlowerSpecies(String name, String branch, String binomial, IFlowerType type, EnumFlowerColor colour) {
+		this(name, branch, binomial, type, colour, colour);
+	}
+
+	FlowerSpecies(String name, String branch, String binomial, IFlowerType type, EnumFlowerColor primaryColor, EnumFlowerColor secondaryColor) {
+		stemColor = EnumFlowerColor.Green;
+		temperature = EnumTemperature.NORMAL;
+		pH = EnumAcidity.Neutral;
+		moisture = EnumMoisture.Normal;
+		tempTolerance = EnumTolerance.BOTH_1;
+		pHTolerance = EnumTolerance.NONE;
+		moistureTolerance = EnumTolerance.NONE;
+		variantTemplates = new ArrayList<>();
+		this.name = name;
+		this.binomial = binomial;
+		branchName = branch;
+		this.type = type;
+		this.primaryColor = primaryColor;
+		this.secondaryColor = secondaryColor;
+	}
 
 	public static void setupVariants() {
 		FlowerSpecies.Dandelion.setTraits(ForestryAllele.Fertility.High, ForestryAllele.Lifespan.Shortened, ForestryAllele.Sappiness.Lower);
@@ -343,86 +357,71 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies
 		BotanyCore.getFlowerRoot().addConversion(new ItemStack(Blocks.red_flower, 1, 6), FlowerSpecies.Tulip.AddVariant(EnumFlowerColor.White));
 		BotanyCore.getFlowerRoot().addConversion(new ItemStack(Blocks.red_flower, 1, 4), FlowerSpecies.Tulip.AddVariant(EnumFlowerColor.Crimson));
 		BotanyCore.getFlowerRoot().addConversion(new ItemStack(Blocks.red_flower, 1, 5), FlowerSpecies.Tulip.AddVariant(EnumFlowerColor.DarkOrange));
-		for (final FlowerSpecies species : values()) {
-			final String scientific = species.branchName.substring(0, 1).toUpperCase() + species.branchName.substring(1).toLowerCase();
-			final String uid = "flowers." + species.branchName.toLowerCase();
+
+		for (FlowerSpecies species : values()) {
+			String scientific = species.branchName.substring(0, 1).toUpperCase() + species.branchName.substring(1).toLowerCase();
+			String uid = "flowers." + species.branchName.toLowerCase();
 			IClassification branch = AlleleManager.alleleRegistry.getClassification("genus." + uid);
 			if (branch == null) {
 				branch = AlleleManager.alleleRegistry.createAndRegisterClassification(IClassification.EnumClassLevel.GENUS, uid, scientific);
 			}
-			(species.branch = branch).addMemberSpecies(species);
+
+			species.branch = branch;
+			branch.addMemberSpecies(species);
 		}
 	}
 
-	private void setStemColor(final EnumFlowerColor green) {
-		this.stemColor = green;
+	public static void init() {
 	}
 
-	private void setTraits(final ForestryAllele.Fertility high, final ForestryAllele.Lifespan shortened, final ForestryAllele.Sappiness lower) {
-		this.fert = high;
-		this.life = shortened;
-		this.sap = lower;
+	private void setStemColor(EnumFlowerColor green) {
+		stemColor = green;
 	}
 
-	private void setMutation(final FlowerSpecies dandelion2, final FlowerSpecies tulip2, final int i) {
-		BotanyCore.getFlowerRoot().registerMutation(new FlowerMutation(dandelion2, tulip2, this.getTemplate(), i));
+	private void setTraits(ForestryAllele.Fertility high, ForestryAllele.Lifespan shortened, ForestryAllele.Sappiness lower) {
+		fert = high;
+		life = shortened;
+		sap = lower;
 	}
 
-	private FlowerSpecies(final String name, final String branch, final String binomial, final IFlowerType type, final EnumFlowerColor colour) {
-		this(name, branch, binomial, type, colour, colour);
+	private void setMutation(FlowerSpecies dandelion2, FlowerSpecies tulip2, int i) {
+		BotanyCore.getFlowerRoot().registerMutation(new FlowerMutation(dandelion2, tulip2, getTemplate(), i));
 	}
 
-	private FlowerSpecies(final String name, final String branch, final String binomial, final IFlowerType type, final EnumFlowerColor primaryColor, final EnumFlowerColor secondaryColor) {
-		this.stemColor = EnumFlowerColor.Green;
-		this.temperature = EnumTemperature.NORMAL;
-		this.pH = EnumAcidity.Neutral;
-		this.moisture = EnumMoisture.Normal;
-		this.tempTolerance = EnumTolerance.BOTH_1;
-		this.pHTolerance = EnumTolerance.NONE;
-		this.moistureTolerance = EnumTolerance.NONE;
-		this.variantTemplates = new ArrayList<IAllele[]>();
-		this.name = name;
-		this.binomial = binomial;
-		this.branchName = branch;
-		this.type = type;
-		this.primaryColor = primaryColor;
-		this.secondaryColor = secondaryColor;
-	}
-
-	private IAllele[] AddVariant(final EnumFlowerColor a, final EnumFlowerColor b) {
-		final IAllele[] template = this.getTemplate();
+	private IAllele[] AddVariant(EnumFlowerColor a, EnumFlowerColor b) {
+		IAllele[] template = getTemplate();
 		template[EnumFlowerChromosome.PRIMARY.ordinal()] = a.getAllele();
 		template[EnumFlowerChromosome.SECONDARY.ordinal()] = b.getAllele();
-		this.variantTemplates.add(template);
+		variantTemplates.add(template);
 		return template;
 	}
 
-	private void setTemperature(final EnumTemperature temperature, final EnumTolerance tolerance) {
+	private void setTemperature(EnumTemperature temperature, EnumTolerance tolerance) {
 		this.temperature = temperature;
-		this.tempTolerance = tolerance;
+		tempTolerance = tolerance;
 	}
 
-	private void setPH(final EnumAcidity temperature, final EnumTolerance tolerance) {
-		this.pH = temperature;
-		this.pHTolerance = tolerance;
+	private void setPH(EnumAcidity temperature, EnumTolerance tolerance) {
+		pH = temperature;
+		pHTolerance = tolerance;
 	}
 
-	private void setMoisture(final EnumMoisture temperature, final EnumTolerance tolerance) {
-		this.moisture = temperature;
-		this.moistureTolerance = tolerance;
+	private void setMoisture(EnumMoisture temperature, EnumTolerance tolerance) {
+		moisture = temperature;
+		moistureTolerance = tolerance;
 	}
 
-	private IAllele[] AddVariant(final EnumFlowerColor a) {
-		return this.AddVariant(a, a);
+	private IAllele[] AddVariant(EnumFlowerColor a) {
+		return AddVariant(a, a);
 	}
 
 	public List<IAllele[]> getVariants() {
-		return this.variantTemplates;
+		return variantTemplates;
 	}
 
 	@Override
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	@Override
@@ -432,22 +431,22 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies
 
 	@Override
 	public EnumTemperature getTemperature() {
-		return this.temperature;
+		return temperature;
 	}
 
 	@Override
 	public EnumHumidity getHumidity() {
-		return EnumHumidity.values()[this.getMoisture().ordinal()];
+		return EnumHumidity.values()[getMoisture().ordinal()];
 	}
 
 	@Override
 	public EnumAcidity getPH() {
-		return this.pH;
+		return pH;
 	}
 
 	@Override
 	public EnumMoisture getMoisture() {
-		return this.moisture;
+		return moisture;
 	}
 
 	@Override
@@ -467,7 +466,7 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies
 
 	@Override
 	public String getBinomial() {
-		return this.binomial;
+		return binomial;
 	}
 
 	@Override
@@ -475,18 +474,18 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies
 		return "Binnie";
 	}
 
-	public void setBranch(final IClassification branch) {
+	@Override
+	public IClassification getBranch() {
+		return branch;
+	}
+
+	public void setBranch(IClassification branch) {
 		this.branch = branch;
 	}
 
 	@Override
-	public IClassification getBranch() {
-		return this.branch;
-	}
-
-	@Override
 	public String getUID() {
-		return "botany.flowers.species." + this.toString().toLowerCase();
+		return "botany.flowers.species." + toString().toLowerCase();
 	}
 
 	@Override
@@ -495,17 +494,17 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies
 	}
 
 	public IAllele[] getTemplate() {
-		final IAllele[] template = FlowerTemplates.getDefaultTemplate();
+		IAllele[] template = FlowerTemplates.getDefaultTemplate();
 		template[0] = this;
-		template[EnumFlowerChromosome.PRIMARY.ordinal()] = this.primaryColor.getAllele();
-		template[EnumFlowerChromosome.SECONDARY.ordinal()] = this.secondaryColor.getAllele();
-		template[EnumFlowerChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Binnie.Genetics.getToleranceAllele(this.tempTolerance);
-		template[EnumFlowerChromosome.PH_TOLERANCE.ordinal()] = Binnie.Genetics.getToleranceAllele(this.pHTolerance);
-		template[EnumFlowerChromosome.HUMIDITY_TOLERANCE.ordinal()] = Binnie.Genetics.getToleranceAllele(this.moistureTolerance);
-		template[EnumFlowerChromosome.FERTILITY.ordinal()] = this.fert.getAllele();
-		template[EnumFlowerChromosome.LIFESPAN.ordinal()] = this.life.getAllele();
-		template[EnumFlowerChromosome.SAPPINESS.ordinal()] = this.sap.getAllele();
-		template[EnumFlowerChromosome.STEM.ordinal()] = this.stemColor.getAllele();
+		template[EnumFlowerChromosome.PRIMARY.ordinal()] = primaryColor.getAllele();
+		template[EnumFlowerChromosome.SECONDARY.ordinal()] = secondaryColor.getAllele();
+		template[EnumFlowerChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Binnie.Genetics.getToleranceAllele(tempTolerance);
+		template[EnumFlowerChromosome.PH_TOLERANCE.ordinal()] = Binnie.Genetics.getToleranceAllele(pHTolerance);
+		template[EnumFlowerChromosome.HUMIDITY_TOLERANCE.ordinal()] = Binnie.Genetics.getToleranceAllele(moistureTolerance);
+		template[EnumFlowerChromosome.FERTILITY.ordinal()] = fert.getAllele();
+		template[EnumFlowerChromosome.LIFESPAN.ordinal()] = life.getAllele();
+		template[EnumFlowerChromosome.SAPPINESS.ordinal()] = sap.getAllele();
+		template[EnumFlowerChromosome.STEM.ordinal()] = stemColor.getAllele();
 		return template;
 	}
 
@@ -521,7 +520,7 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies
 	}
 
 	@Override
-	public int getIconColour(final int renderPass) {
+	public int getIconColour(int renderPass) {
 		return 0;
 	}
 
@@ -531,25 +530,22 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies
 	}
 
 	@Override
-	public float getResearchSuitability(final ItemStack itemstack) {
+	public float getResearchSuitability(ItemStack itemstack) {
 		return 0.0f;
 	}
 
 	@Override
-	public ItemStack[] getResearchBounty(final World world, final GameProfile researcher, final IIndividual individual, final int bountyLevel) {
+	public ItemStack[] getResearchBounty(World world, GameProfile researcher, IIndividual individual, int bountyLevel) {
 		return null;
-	}
-
-	public static void init() {
 	}
 
 	@Override
 	public IFlowerType getType() {
-		return this.type;
+		return type;
 	}
 
 	@Override
 	public String getUnlocalizedName() {
-		return this.getUID();
+		return getUID();
 	}
 }

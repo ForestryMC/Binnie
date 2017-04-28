@@ -2,7 +2,7 @@ package binnie.genetics.gui;
 
 import binnie.botany.api.EnumFlowerStage;
 import binnie.botany.api.IFlower;
-import binnie.botany.craftgui.ControlColourDisplay;
+import binnie.botany.craftgui.ControlColorDisplay;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextCentered;
@@ -21,13 +21,13 @@ public class AnalystPageAppearance extends ControlAnalystPage {
 		IAlleleSpecies species = ind.getGenome().getPrimary();
 		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Appearance").setColor(getColor());
 		y += 12;
-		ControlColourDisplay a = new ControlColourDisplay(this, w() / 2.0f - 28.0f, y);
+		ControlColorDisplay a = new ControlColorDisplay(this, w() / 2.0f - 28.0f, y);
 		a.setValue(ind.getGenome().getPrimaryColor());
 		a.addTooltip("Primary Petal Colour");
-		ControlColourDisplay b = new ControlColourDisplay(this, w() / 2.0f - 8.0f, y);
+		ControlColorDisplay b = new ControlColorDisplay(this, w() / 2.0f - 8.0f, y);
 		b.setValue(ind.getGenome().getSecondaryColor());
 		b.addTooltip("Secondary Petal Colour");
-		ControlColourDisplay c = new ControlColourDisplay(this, w() / 2.0f + 12.0f, y);
+		ControlColorDisplay c = new ControlColorDisplay(this, w() / 2.0f + 12.0f, y);
 		c.setValue(ind.getGenome().getStemColor());
 		c.addTooltip("Stem Colour");
 		y += 26;

@@ -1,14 +1,10 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.genetics;
 
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.IAlleleFlowerSpecies;
 import binnie.botany.api.IColourMix;
 import binnie.botany.api.IFlower;
-import binnie.botany.api.IFlowerColour;
+import binnie.botany.api.IFlowerColor;
 import binnie.botany.api.IFlowerGenome;
 import binnie.botany.api.IFlowerMutation;
 import binnie.botany.core.BotanyCore;
@@ -24,41 +20,36 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Random;
 
-public class Flower extends Individual implements IFlower
-{
+public class Flower extends Individual implements IFlower {
 	public IFlowerGenome genome;
 	public IFlowerGenome mate;
-	int age;
-	boolean wilting;
-	boolean flowered;
 
-	public Flower(final NBTTagCompound nbttagcompound) {
-		this.age = 0;
-		this.wilting = false;
-		this.readFromNBT(nbttagcompound);
+	protected int age;
+	protected boolean wilting;
+	protected boolean flowered;
+
+	public Flower(NBTTagCompound nbttagcompound) {
+		age = 0;
+		wilting = false;
+		readFromNBT(nbttagcompound);
 	}
 
-	public Flower(final IFlowerGenome genome, final int age) {
+	public Flower(IFlowerGenome genome, int age) {
 		this.age = 0;
-		this.wilting = false;
+		wilting = false;
 		this.genome = genome;
 		this.age = age;
-		if (age > 0) {
-			this.flowered = true;
-		}
-		else {
-			this.flowered = false;
-		}
+		flowered = age > 0;
 	}
 
 	@Override
 	public String getDisplayName() {
-		final IAlleleFlowerSpecies species = this.getGenome().getPrimary();
+		IAlleleFlowerSpecies species = getGenome().getPrimary();
 		String name = "";
 		if (species != null) {
 			name += species.getName();
 		}
-		if (this.age == 0) {
+		if (age == 0) {
 			name += "";
 		}
 		return name;
@@ -82,41 +73,44 @@ public class Flower extends Individual implements IFlower
 
 	@Override
 	public String getIdent() {
-		return this.getGenome().getPrimary().getUID();
+		return getGenome().getPrimary().getUID();
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbttagcompound) {
+	public void readFromNBT(NBTTagCompound nbttagcompound) {
 		super.readFromNBT(nbttagcompound);
 		if (nbttagcompound == null) {
-			this.genome = BotanyCore.getFlowerRoot().templateAsGenome(BotanyCore.getFlowerRoot().getDefaultTemplate());
+			genome = BotanyCore.getFlowerRoot().templateAsGenome(BotanyCore.getFlowerRoot().getDefaultTemplate());
 			return;
 		}
-		this.age = nbttagcompound.getInteger("Age");
-		this.wilting = nbttagcompound.getBoolean("Wilt");
-		this.flowered = nbttagcompound.getBoolean("Flowered");
+
+		age = nbttagcompound.getInteger("Age");
+		wilting = nbttagcompound.getBoolean("Wilt");
+		flowered = nbttagcompound.getBoolean("Flowered");
 		if (nbttagcompound.hasKey("Genome")) {
-			this.genome = new FlowerGenome(nbttagcompound.getCompoundTag("Genome"));
+			genome = new FlowerGenome(nbttagcompound.getCompoundTag("Genome"));
 		}
 		if (nbttagcompound.hasKey("Mate")) {
-			this.mate = new FlowerGenome(nbttagcompound.getCompoundTag("Mate"));
+			mate = new FlowerGenome(nbttagcompound.getCompoundTag("Mate"));
 		}
 	}
 
 	@Override
-	public void writeToNBT(final NBTTagCompound nbttagcompound) {
+	public void writeToNBT(NBTTagCompound nbttagcompound) {
 		super.writeToNBT(nbttagcompound);
-		nbttagcompound.setInteger("Age", this.age);
-		nbttagcompound.setBoolean("Wilt", this.wilting);
-		nbttagcompound.setBoolean("Flowered", this.flowered);
-		if (this.genome != null) {
-			final NBTTagCompound NBTmachine = new NBTTagCompound();
-			this.genome.writeToNBT(NBTmachine);
+		nbttagcompound.setInteger("Age", age);
+		nbttagcompound.setBoolean("Wilt", wilting);
+		nbttagcompound.setBoolean("Flowered", flowered);
+
+		if (genome != null) {
+			NBTTagCompound NBTmachine = new NBTTagCompound();
+			genome.writeToNBT(NBTmachine);
 			nbttagcompound.setTag("Genome", NBTmachine);
 		}
-		if (this.mate != null) {
-			final NBTTagCompound NBTmachine = new NBTTagCompound();
-			this.mate.writeToNBT(NBTmachine);
+
+		if (mate != null) {
+			NBTTagCompound NBTmachine = new NBTTagCompound();
+			mate.writeToNBT(NBTmachine);
 			nbttagcompound.setTag("Mate", NBTmachine);
 		}
 	}
@@ -127,24 +121,24 @@ public class Flower extends Individual implements IFlower
 
 	@Override
 	public IFlowerGenome getGenome() {
-		return this.genome;
+		return genome;
 	}
 
-	private IChromosome inheritChromosome(final Random rand, final IChromosome parent1, final IChromosome parent2) {
+	private IChromosome inheritChromosome(Random rand, IChromosome parent1, IChromosome parent2) {
 		IAllele choice1;
 		if (rand.nextBoolean()) {
 			choice1 = parent1.getPrimaryAllele();
-		}
-		else {
+		} else {
 			choice1 = parent1.getSecondaryAllele();
 		}
+
 		IAllele choice2;
 		if (rand.nextBoolean()) {
 			choice2 = parent2.getPrimaryAllele();
-		}
-		else {
+		} else {
 			choice2 = parent2.getSecondaryAllele();
 		}
+
 		if (rand.nextBoolean()) {
 			return new Chromosome(choice1, choice2);
 		}
@@ -152,76 +146,74 @@ public class Flower extends Individual implements IFlower
 	}
 
 	@Override
-	public void mate(final IFlower other) {
-		this.mate = new FlowerGenome(other.getGenome().getChromosomes());
+	public void mate(IFlower other) {
+		mate = new FlowerGenome(other.getGenome().getChromosomes());
 	}
 
 	@Override
 	public IFlowerGenome getMate() {
-		return this.mate;
+		return mate;
 	}
 
 	@Override
 	public IFlower copy() {
-		final NBTTagCompound nbttagcompound = new NBTTagCompound();
-		this.writeToNBT(nbttagcompound);
+		NBTTagCompound nbttagcompound = new NBTTagCompound();
+		writeToNBT(nbttagcompound);
 		return new Flower(nbttagcompound);
 	}
 
 	@Override
 	public int getAge() {
-		return this.age;
+		return age;
+	}
+
+	@Override
+	public void setAge(int age) {
+		this.age = age;
 	}
 
 	@Override
 	public void age() {
-		if (this.age < 15) {
-			++this.age;
+		if (age < 15) {
+			age++;
 		}
 	}
 
 	@Override
-	public void setAge(final int i) {
-		this.age = i;
-	}
-
-	@Override
 	public int getMaxAge() {
-		return this.getGenome().getLifespan();
+		return getGenome().getLifespan();
 	}
 
 	@Override
 	public boolean isWilted() {
-		return this.wilting;
+		return wilting;
 	}
 
 	@Override
-	public void setWilted(final boolean wilted) {
-		this.wilting = wilted;
+	public void setWilted(boolean value) {
+		wilting = value;
 	}
 
 	@Override
 	public boolean hasFlowered() {
-		return this.flowered;
+		return flowered;
 	}
 
 	@Override
-	public void setFlowered(final boolean flowered) {
-		this.flowered = flowered;
+	public void setFlowered(boolean value) {
+		flowered = value;
 	}
 
 	@Override
 	public void removeMate() {
-		this.mate = null;
+		mate = null;
 	}
 
 	@Override
-	public IFlower getOffspring(final World world) {
-		final IChromosome[] chromosomes = new IChromosome[this.genome.getChromosomes().length];
-		IChromosome[] parent1 = this.genome.getChromosomes();
-		IChromosome[] parent2 = this.mate.getChromosomes();
-		parent1 = this.mutateSpecies(world, this.genome, this.mate);
-		parent2 = this.mutateSpecies(world, this.mate, this.genome);
+	public IFlower getOffspring(World world) {
+		IChromosome[] chromosomes = new IChromosome[genome.getChromosomes().length];
+		IChromosome[] parent1 = mutateSpecies(world, genome, mate);
+		IChromosome[] parent2 = mutateSpecies(world, mate, genome);
 		for (int i = 0; i < parent1.length; ++i) {
 			if (parent1[i] != null && parent2[i] != null) {
 				chromosomes[i] = Chromosome.inheritChromosome(world.rand, parent1[i], parent2[i]);
@@ -230,59 +222,64 @@ public class Flower extends Individual implements IFlower
 		return new Flower(new FlowerGenome(chromosomes), 0);
 	}
 
-	private IChromosome[] mutateSpecies(final World world, final IFlowerGenome genomeOne, final IFlowerGenome genomeTwo) {
+	private IChromosome[] mutateSpecies(World world, IFlowerGenome genomeOne, IFlowerGenome genomeTwo) {
 		IChromosome[] parent1 = genomeOne.getChromosomes();
-		final IChromosome[] parent2 = genomeTwo.getChromosomes();
+		IChromosome[] parent2 = genomeTwo.getChromosomes();
 		IAllele allele0;
 		IAllele allele2;
 		IFlowerGenome genome0;
 		IFlowerGenome genome2;
+
 		if (world.rand.nextBoolean()) {
 			allele0 = parent1[EnumTreeChromosome.SPECIES.ordinal()].getPrimaryAllele();
 			allele2 = parent2[EnumTreeChromosome.SPECIES.ordinal()].getSecondaryAllele();
 			genome0 = genomeOne;
 			genome2 = genomeTwo;
-		}
-		else {
+		} else {
 			allele0 = parent2[EnumTreeChromosome.SPECIES.ordinal()].getPrimaryAllele();
 			allele2 = parent1[EnumTreeChromosome.SPECIES.ordinal()].getSecondaryAllele();
 			genome0 = genomeTwo;
 			genome2 = genomeOne;
 		}
-		IFlowerColour colour1 = genome0.getPrimaryColor();
-		IFlowerColour colour2 = genome2.getPrimaryColor();
+
+		IFlowerColor colour1 = genome0.getPrimaryColor();
+		IFlowerColor colour2 = genome2.getPrimaryColor();
 		if (colour1 != colour2) {
-			for (final IColourMix mutation : BotanyCore.getFlowerRoot().getColourMixes(true)) {
+			for (IColourMix mutation : BotanyCore.getFlowerRoot().getColourMixes(true)) {
 				if (mutation.isMutation(colour1, colour2) && world.rand.nextFloat() * 100.0f < mutation.getChance()) {
 					parent1[EnumFlowerChromosome.PRIMARY.ordinal()] = new Chromosome(mutation.getResult().getAllele());
 				}
 			}
 		}
+
 		colour1 = genome0.getSecondaryColor();
 		colour2 = genome2.getSecondaryColor();
 		if (colour1 != colour2) {
-			for (final IColourMix mutation : BotanyCore.getFlowerRoot().getColourMixes(true)) {
+			for (IColourMix mutation : BotanyCore.getFlowerRoot().getColourMixes(true)) {
 				if (mutation.isMutation(colour1, colour2) && world.rand.nextFloat() * 100.0f < mutation.getChance()) {
 					parent1[EnumFlowerChromosome.SECONDARY.ordinal()] = new Chromosome(mutation.getResult().getAllele());
 				}
 			}
 		}
+
 		colour1 = genome0.getStemColor();
 		colour2 = genome2.getStemColor();
 		if (colour1 != colour2) {
-			for (final IColourMix mutation : BotanyCore.getFlowerRoot().getColourMixes(true)) {
+			for (IColourMix mutation : BotanyCore.getFlowerRoot().getColourMixes(true)) {
 				if (mutation.isMutation(colour1, colour2) && world.rand.nextFloat() * 100.0f < mutation.getChance()) {
 					parent1[EnumFlowerChromosome.STEM.ordinal()] = new Chromosome(mutation.getResult().getAllele());
 				}
 			}
 		}
+
 		IChromosome[] template = null;
-		for (final IFlowerMutation mutation2 : BotanyCore.getFlowerRoot().getMutations(true)) {
-			final float chance = mutation2.getChance(allele0, allele2, genome0, genome2);
+		for (IFlowerMutation mutation2 : BotanyCore.getFlowerRoot().getMutations(true)) {
+			float chance = mutation2.getChance(allele0, allele2, genome0, genome2);
 			if (chance > 0.0f && world.rand.nextFloat() * 100.0f < chance && template == null) {
 				template = BotanyCore.getFlowerRoot().templateAsChromosomes(mutation2.getTemplate());
 			}
 		}
+
 		if (template != null) {
 			parent1 = template;
 		}

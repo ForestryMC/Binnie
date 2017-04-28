@@ -1,13 +1,8 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.flower;
 
 import binnie.botany.api.EnumFlowerStage;
 
-public class ItemSeed extends ItemBotany
-{
+public class ItemSeed extends ItemBotany {
 	public ItemSeed() {
 		super("seed");
 	}

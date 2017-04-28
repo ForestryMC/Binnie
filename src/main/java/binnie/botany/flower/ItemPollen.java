@@ -1,13 +1,8 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.flower;
 
 import binnie.botany.api.EnumFlowerStage;
 
-public class ItemPollen extends ItemBotany
-{
+public class ItemPollen extends ItemBotany {
 	public ItemPollen() {
 		super("pollen");
 	}

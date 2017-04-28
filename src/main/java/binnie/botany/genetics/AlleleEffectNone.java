@@ -1,23 +1,18 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.botany.genetics;
 
-import net.minecraft.world.World;
+import binnie.botany.api.IAlleleFlowerEffect;
 import binnie.botany.api.IFlowerGenome;
 import forestry.api.genetics.IEffectData;
-import binnie.botany.api.IAlleleFlowerEffect;
+import net.minecraft.world.World;
 
-public class AlleleEffectNone implements IAlleleFlowerEffect
-{
+public class AlleleEffectNone implements IAlleleFlowerEffect {
 	@Override
 	public boolean isCombinable() {
 		return true;
 	}
 
 	@Override
-	public IEffectData validateStorage(final IEffectData storedData) {
+	public IEffectData validateStorage(IEffectData storedData) {
 		return storedData;
 	}
 
@@ -37,12 +32,12 @@ public class AlleleEffectNone implements IAlleleFlowerEffect
 	}
 
 	@Override
-	public IEffectData doEffect(final IFlowerGenome genome, final IEffectData storedData, final World world, final int x, final int y, final int z) {
+	public IEffectData doEffect(IFlowerGenome genome, IEffectData storedData, World world, int x, int y, int z) {
 		return storedData;
 	}
 
 	@Override
 	public String getUnlocalizedName() {
-		return this.getUID();
+		return getUID();
 	}
 }
