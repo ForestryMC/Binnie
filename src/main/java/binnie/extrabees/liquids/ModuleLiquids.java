@@ -1,15 +1,10 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extrabees.liquids;
 
-import binnie.core.liquid.ItemFluidContainer;
 import binnie.Binnie;
 import binnie.core.IInitializable;
+import binnie.core.liquid.ItemFluidContainer;
 
-public class ModuleLiquids implements IInitializable
-{
+public class ModuleLiquids implements IInitializable {
 	@Override
 	public void preInit() {
 		Binnie.Liquid.createLiquids(ExtraBeeLiquid.values(), ItemFluidContainer.LiquidExtraBee);
@@ -17,9 +12,11 @@ public class ModuleLiquids implements IInitializable
 
 	@Override
 	public void init() {
+		// ignored
 	}
 
 	@Override
 	public void postInit() {
+		// ignored
 	}
 }

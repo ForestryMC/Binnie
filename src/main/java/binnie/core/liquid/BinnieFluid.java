@@ -21,7 +21,7 @@ class BinnieFluid extends Fluid {
 
 	@Override
 	public int getColor() {
-		return fluidType.getColour();
+		return fluidType.getColor();
 	}
 
 	public IFluidType getType() {

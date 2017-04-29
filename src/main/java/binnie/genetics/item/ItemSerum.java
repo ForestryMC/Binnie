@@ -37,8 +37,8 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation(ItemStack itemstack, EntityPlayer entityPlayer, List list, boolean par4) {
-		super.addInformation(itemstack, entityPlayer, list, par4);
+	public void addInformation(ItemStack itemstack, EntityPlayer player, List tooltip, boolean advanced) {
+		super.addInformation(itemstack, player, tooltip, advanced);
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 	}
 
 	@Override
-	public void getSubItems(Item par1, CreativeTabs tab, List itemList) {
+	public void getSubItems(Item item, CreativeTabs tab, List list) {
 		for (ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
 			Map<IChromosomeType, List<IAllele>> chromosomeMap = Binnie.Genetics.getChromosomeMap(root);
 			for (Map.Entry<IChromosomeType, List<IAllele>> entry : chromosomeMap.entrySet()) {
@@ -58,10 +58,10 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 						continue;
 					}
 
-					IGeneItem item = new GeneItem(gene);
+					IGeneItem geneItem = new GeneItem(gene);
 					ItemStack stack = new ItemStack(this);
-					item.writeToItem(stack);
-					itemList.add(stack);
+					geneItem.writeToItem(stack);
+					list.add(stack);
 				}
 			}
 		}

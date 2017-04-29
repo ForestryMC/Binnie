@@ -1,44 +1,36 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extrabees.apiary;
 
+import binnie.core.machines.TileEntityMachine;
+import binnie.extrabees.apiary.machine.AlvearyMachine;
+import com.mojang.authlib.GameProfile;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.IBeeListener;
+import forestry.api.apiculture.IBeeModifier;
 import forestry.api.genetics.IIndividual;
 import forestry.api.multiblock.IAlvearyComponent;
 import forestry.api.multiblock.IMultiblockComponent;
 import forestry.api.multiblock.IMultiblockController;
 import forestry.api.multiblock.IMultiblockLogicAlveary;
 import forestry.api.multiblock.MultiblockManager;
-import forestry.api.apiculture.IBeeGenome;
-import java.util.LinkedList;
-import binnie.extrabees.apiary.machine.AlvearyMachine;
-
 import net.minecraft.nbt.NBTTagCompound;
-
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChunkCoordinates;
+
+import java.util.LinkedList;
 import java.util.List;
 
-import com.mojang.authlib.GameProfile;
-
-import forestry.api.apiculture.IBeeListener;
-import forestry.api.apiculture.IBeeModifier;
-import binnie.core.machines.TileEntityMachine;
-
-public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyComponent.Active, IAlvearyComponent.BeeModifier, IAlvearyComponent.BeeListener, IBeeListener, IBeeModifier
-{
-	IMultiblockLogicAlveary structureLogic;
-	ChunkCoordinates min;
-	ChunkCoordinates max;
+public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyComponent.Active, IAlvearyComponent.BeeModifier, IAlvearyComponent.BeeListener, IBeeListener, IBeeModifier {
+	protected IMultiblockLogicAlveary structureLogic;
+	protected ChunkCoordinates min;
+	protected ChunkCoordinates max;
 
 	public TileExtraBeeAlveary() {
-		this.structureLogic = MultiblockManager.logicFactory.createAlvearyLogic();
+		structureLogic = MultiblockManager.logicFactory.createAlvearyLogic();
 	}
 
-	public TileExtraBeeAlveary(final AlvearyMachine.AlvearyPackage alvearyPackage) {
+	public TileExtraBeeAlveary(AlvearyMachine.AlvearyPackage alvearyPackage) {
 		super(alvearyPackage);
-		this.structureLogic = MultiblockManager.logicFactory.createAlvearyLogic();
+		structureLogic = MultiblockManager.logicFactory.createAlvearyLogic();
 	}
 
 	@Override
@@ -57,7 +49,7 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
 			for (int x = min.posX; x <= max.posX; ++x) {
 				for (int z = min.posZ; z <= max.posZ; ++z) {
 					for (int y = min.posY; y <= max.posY; ++y) {
-						TileEntity tile = this.getWorldObj().getTileEntity(x, y, z);
+						TileEntity tile = getWorldObj().getTileEntity(x, y, z);
 						if (tile instanceof IMultiblockComponent) {
 							tiles.add(tile);
 						}
@@ -76,8 +68,8 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
 
 	@Override
 	public void onMachineBroken() {
-		this.min = null;
-		this.max = null;
+		min = null;
+		max = null;
 
 	}
 
@@ -122,70 +114,89 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
 
 	@Override
 	public IBeeModifier getBeeModifier() {
-		return this.getMachine().getInterface(IBeeModifier.class);
+		return getMachine().getInterface(IBeeModifier.class);
 	}
 
 	@Override
 	public IBeeListener getBeeListener() {
-		return this.getMachine().getInterface(IBeeListener.class);
+		return getMachine().getInterface(IBeeListener.class);
 	}
 
 	@Override
-	public float getTerritoryModifier(final IBeeGenome genome, final float currentModifier) {
-		return (this.getBeeModifier() == null) ? 1.0f : this.getBeeModifier().getTerritoryModifier(genome, currentModifier);
+	public float getTerritoryModifier(IBeeGenome genome, float currentModifier) {
+		if (getBeeModifier() == null) {
+			return 1.0f;
+		}
+		return getBeeModifier().getTerritoryModifier(genome, currentModifier);
 	}
 
 	@Override
-	public float getMutationModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
-		return (this.getBeeModifier() == null) ? 1.0f : this.getBeeModifier().getMutationModifier(genome, mate, currentModifier);
+	public float getMutationModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
+		if (getBeeModifier() == null) {
+			return 1.0f;
+		}
+		return getBeeModifier().getMutationModifier(genome, mate, currentModifier);
 	}
 
 	@Override
-	public float getLifespanModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
-		return (this.getBeeModifier() == null) ? 1.0f : this.getBeeModifier().getLifespanModifier(genome, mate, currentModifier);
+	public float getLifespanModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
+		if (getBeeModifier() == null) {
+			return 1.0f;
+		}
+		return getBeeModifier().getLifespanModifier(genome, mate, currentModifier);
 	}
 
 	@Override
-	public float getProductionModifier(final IBeeGenome genome, final float currentModifier) {
-		return (this.getBeeModifier() == null) ? 1.0f : this.getBeeModifier().getProductionModifier(genome, currentModifier);
+	public float getProductionModifier(IBeeGenome genome, float currentModifier) {
+		if (getBeeModifier() == null) {
+			return 1.0f;
+		}
+		return getBeeModifier().getProductionModifier(genome, currentModifier);
 	}
 
 	@Override
-	public float getFloweringModifier(final IBeeGenome genome, final float currentModifier) {
-		return (this.getBeeModifier() == null) ? 1.0f : this.getBeeModifier().getFloweringModifier(genome, currentModifier);
+	public float getFloweringModifier(IBeeGenome genome, float currentModifier) {
+		if (getBeeModifier() == null) {
+			return 1.0f;
+		}
+		return getBeeModifier().getFloweringModifier(genome, currentModifier);
 	}
 
 	@Override
 	public boolean isSealed() {
-		return this.getBeeModifier() != null && this.getBeeModifier().isSealed();
+		return getBeeModifier() != null
+			&& getBeeModifier().isSealed();
 	}
 
 	@Override
 	public boolean isSelfLighted() {
-		return this.getBeeModifier() != null && this.getBeeModifier().isSelfLighted();
+		return getBeeModifier() != null
+			&& getBeeModifier().isSelfLighted();
 	}
 
 	@Override
 	public boolean isSunlightSimulated() {
-		return this.getBeeModifier() != null && this.getBeeModifier().isSunlightSimulated();
+		return getBeeModifier() != null
+			&& getBeeModifier().isSunlightSimulated();
 	}
 
 	@Override
 	public boolean isHellish() {
-		return this.getBeeModifier() != null && this.getBeeModifier().isHellish();
+		return getBeeModifier() != null
+			&& getBeeModifier().isHellish();
 	}
 
 	@Override
 	public void wearOutEquipment(int amount) {
-		if (this.getBeeListener() != null) {
-			this.getBeeListener().wearOutEquipment(amount);
+		if (getBeeListener() != null) {
+			getBeeListener().wearOutEquipment(amount);
 		}
 	}
 
 	@Override
 	public void onQueenDeath() {
-		if (this.getBeeListener() != null) {
-			this.getBeeListener().onQueenDeath();
+		if (getBeeListener() != null) {
+			getBeeListener().onQueenDeath();
 		}
 	}
 
@@ -216,6 +227,7 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
 		}
 	}
 
+	// TODO why its commented?
 	// boolean init;
 	// //IStructureLogic structureLogic;
 	// private boolean isMaster;
@@ -234,7 +246,7 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
 	// if (!this.isIntegratedIntoStructure() || this.isMaster()) {
 	// // this.validateStructure();
 	// }
-	// // final IMultiblockComponent master = this.getCentralTE();
+	// // IMultiblockComponent master = this.getCentralTE();
 	// // if (master == null) {
 	// // return;
 	// // }
@@ -251,7 +263,7 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
 	// }
 	//
 	// @Override
-	// public void readFromNBT(final NBTTagCompound nbttagcompound) {
+	// public void readFromNBT(NBTTagCompound nbttagcompound) {
 	// super.readFromNBT(nbttagcompound);
 	// this.isMaster = nbttagcompound.getBoolean("IsMaster");
 	// this.masterX = nbttagcompound.getInteger("MasterX");
@@ -266,7 +278,7 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
 	// }
 	//
 	// @Override
-	// public void writeToNBT(final NBTTagCompound nbttagcompound) {
+	// public void writeToNBT(NBTTagCompound nbttagcompound) {
 	// super.writeToNBT(nbttagcompound);
 	// nbttagcompound.setBoolean("IsMaster", this.isMaster);
 	// nbttagcompound.setInteger("MasterX", this.masterX);
@@ -287,7 +299,7 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
 	// Binnie.Genetics.getBeeRoot().createAlvearyStructureLogic((IAlvearyComponent)this);
 	// }
 	//
-	// public TileExtraBeeAlveary(final AlvearyMachine.AlvearyPackage
+	// public TileExtraBeeAlveary(AlvearyMachine.AlvearyPackage
 	// alvearyPackage) {
 	// super(alvearyPackage);
 	// this.init = false;
@@ -316,12 +328,12 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
 	// // if (this.isMaster()) {
 	// // return (IMultiblockComponent)this;
 	// // }
-	// // final TileEntity tile = this.worldObj.getTileEntity(this.masterX,
+	// // TileEntity tile = this.worldObj.getTileEntity(this.masterX,
 	// this.masterY, this.masterZ);
 	// // if (!(tile instanceof IMultiblockComponent)) {
 	// // return null;
 	// // }
-	// // final IMultiblockComponent master =
+	// // IMultiblockComponent master =
 	// (IMultiblockComponent)this.worldObj.getTileEntity(this.masterX,
 	// this.masterY, this.masterZ);
 	// // if (master.isMaster()) {
@@ -335,14 +347,14 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
 	// // this.updateAlvearyBlocks();
 	// // }
 	//
-	// private boolean isSameTile(final TileEntity tile) {
+	// private boolean isSameTile(TileEntity tile) {
 	// return tile.xCoord == this.xCoord && tile.yCoord == this.yCoord &&
 	// tile.zCoord == this.zCoord;
 	// }
 	//
-	// // public void setCentralTE(final TileEntity tile) {
+	// // public void setCentralTE(TileEntity tile) {
 	// // if (tile == null || tile == this || this.isSameTile(tile)) {
-	// // final boolean b = false;
+	// // boolean b = false;
 	// // this.masterZ = (b ? 1 : 0);
 	// // this.masterX = (b ? 1 : 0);
 	// // this.masterY = -99;
@@ -375,18 +387,18 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
 	// return this.isMaster || this.masterY >= 0;
 	// }
 	//
-	// public void registerBeeModifier(final IBeeModifier modifier) {
+	// public void registerBeeModifier(IBeeModifier modifier) {
 	// }
 	//
-	// public void removeBeeModifier(final IBeeModifier modifier) {
+	// public void removeBeeModifier(IBeeModifier modifier) {
 	// }
 	//
-	// public void addTemperatureChange(final float change, final float
-	// boundaryDown, final float boundaryUp) {
+	// public void addTemperatureChange(float change, float
+	// boundaryDown, float boundaryUp) {
 	// }
 	//
-	// public void addHumidityChange(final float change, final float
-	// boundaryDown, final float boundaryUp) {
+	// public void addHumidityChange(float change, float
+	// boundaryDown, float boundaryUp) {
 	// }
 	//
 	// public boolean hasFunction() {
@@ -401,31 +413,31 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
 	// return this.getMachine().getInterface(IBeeListener.class);
 	// }
 	//
-	// public float getTerritoryModifier(final IBeeGenome genome, final float
+	// public float getTerritoryModifier(IBeeGenome genome, float
 	// currentModifier) {
 	// return (this.getBeeModifier() == null) ? 1.0f :
 	// this.getBeeModifier().getTerritoryModifier(genome, currentModifier);
 	// }
 	//
-	// public float getMutationModifier(final IBeeGenome genome, final
-	// IBeeGenome mate, final float currentModifier) {
+	// public float getMutationModifier(IBeeGenome genome, final
+	// IBeeGenome mate, float currentModifier) {
 	// return (this.getBeeModifier() == null) ? 1.0f :
 	// this.getBeeModifier().getMutationModifier(genome, mate, currentModifier);
 	// }
 	//
-	// public float getLifespanModifier(final IBeeGenome genome, final
-	// IBeeGenome mate, final float currentModifier) {
+	// public float getLifespanModifier(IBeeGenome genome, final
+	// IBeeGenome mate, float currentModifier) {
 	// return (this.getBeeModifier() == null) ? 1.0f :
 	// this.getBeeModifier().getLifespanModifier(genome, mate, currentModifier);
 	// }
 	//
-	// public float getProductionModifier(final IBeeGenome genome, final float
+	// public float getProductionModifier(IBeeGenome genome, float
 	// currentModifier) {
 	// return (this.getBeeModifier() == null) ? 1.0f :
 	// this.getBeeModifier().getProductionModifier(genome, currentModifier);
 	// }
 	//
-	// public float getFloweringModifier(final IBeeGenome genome, final float
+	// public float getFloweringModifier(IBeeGenome genome, float
 	// currentModifier) {
 	// return (this.getBeeModifier() == null) ? 1.0f :
 	// this.getBeeModifier().getFloweringModifier(genome, currentModifier);
@@ -450,46 +462,46 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
 	// this.getBeeModifier().isHellish();
 	// }
 	//
-	// public void registerBeeListener(final IBeeListener event) {
+	// public void registerBeeListener(IBeeListener event) {
 	// }
 	//
-	// public void removeBeeListener(final IBeeListener event) {
+	// public void removeBeeListener(IBeeListener event) {
 	// }
 	//
-	// // public void onQueenChange(final ItemStack queen) {
+	// // public void onQueenChange(ItemStack queen) {
 	// // if (this.getBeeListener() != null) {
 	// // this.getBeeListener().onQueenChange(queen);
 	// // }
 	// // }
 	// //
-	// public void wearOutEquipment(final int amount) {
+	// public void wearOutEquipment(int amount) {
 	// if (this.getBeeListener() != null) {
 	// this.getBeeListener().wearOutEquipment(amount);
 	// }
 	// }
 	//
-	// // public void onQueenDeath(final IBee queen) {
+	// // public void onQueenDeath(IBee queen) {
 	// // if (this.getBeeListener() != null) {
 	// // this.getBeeListener().onQueenDeath(queen);
 	// // }
 	// // }
 	// //
-	// // public void onPostQueenDeath(final IBee queen) {
+	// // public void onPostQueenDeath(IBee queen) {
 	// // if (this.getBeeListener() != null) {
 	// // this.getBeeListener().onPostQueenDeath(queen);
 	// // }
 	// // }
 	//
-	// public boolean onPollenRetrieved(final IBee queen, final IIndividual
-	// pollen, final boolean isHandled) {
+	// public boolean onPollenRetrieved(IBee queen, IIndividual
+	// pollen, boolean isHandled) {
 	// return false;
 	// }
 	//
-	// public boolean onEggLaid(final IBee queen) {
+	// public boolean onEggLaid(IBee queen) {
 	// return false;
 	// }
 	//
-	// public float getGeneticDecay(final IBeeGenome genome, final float
+	// public float getGeneticDecay(IBeeGenome genome, float
 	// currentModifier) {
 	// return 1.0f;
 	// }
@@ -507,15 +519,15 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
 	// // private void updateAlvearyBlocks() {
 	// // this.tiles.clear();
 	// // if (this.getCentralTE() != null) {
-	// // final IMultiblockComponent struct = this.getCentralTE();
+	// // IMultiblockComponent struct = this.getCentralTE();
 	// // if (!struct.isIntegratedIntoStructure()) {
 	// // return;
 	// // }
-	// // final TileEntity central = (TileEntity)struct;
+	// // TileEntity central = (TileEntity)struct;
 	// // for (int x = -2; x <= 2; ++x) {
 	// // for (int z = -2; z <= 2; ++z) {
 	// // for (int y = -2; y <= 2; ++y) {
-	// // final TileEntity tile = this.getWorldObj().getTileEntity(this.xCoord +
+	// // TileEntity tile = this.getWorldObj().getTileEntity(this.xCoord +
 	// x, this.yCoord + y, this.zCoord + z);
 	// // if (tile != null && tile instanceof IMultiblockComponent &&
 	// ((IMultiblockComponent)tile).getMultiblockLogic().getCentralTE() ==

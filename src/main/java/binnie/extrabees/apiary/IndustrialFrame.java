@@ -1,17 +1,12 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extrabees.apiary;
 
 import forestry.api.apiculture.IBeeGenome;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Item;
 import forestry.api.apiculture.IBeeModifier;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
-public enum IndustrialFrame implements IBeeModifier
-{
+public enum IndustrialFrame implements IBeeModifier {
 	Empty("Empty", 5, 0),
 	Light("Glowstone Lighting", 2, 4),
 	Rain("Rain Shielding", 2, 4),
@@ -28,102 +23,6 @@ public enum IndustrialFrame implements IBeeModifier
 	Emerald("Eon Simulator", 7, 20),
 	NetherStar("Immortality Gate", 12, 50),
 	Poison("Mortality Inhibitor", 8, 18);
-
-	String name;
-	float territoryMod;
-	float mutationMod;
-	float lifespanMod;
-	float productionMod;
-	float floweringMod;
-	boolean lighted;
-	boolean sunlight;
-	boolean rain;
-	int wearMod;
-	int power;
-
-	private IndustrialFrame(final String name, final int wear, final int power) {
-		this.territoryMod = 1.0f;
-		this.mutationMod = 1.0f;
-		this.lifespanMod = 1.0f;
-		this.productionMod = 1.0f;
-		this.floweringMod = 1.0f;
-		this.lighted = false;
-		this.sunlight = false;
-		this.rain = false;
-		this.name = name;
-		this.wearMod = wear;
-		this.power = power;
-	}
-
-	public static ItemStack getItemStack(final Item item, final IndustrialFrame frame) {
-		final ItemStack stack = new ItemStack(item);
-		final NBTTagCompound nbt = new NBTTagCompound();
-		nbt.setInteger("frame", frame.ordinal());
-		stack.setTagCompound(nbt);
-		return stack;
-	}
-
-	@Override
-	public float getTerritoryModifier(final IBeeGenome genome, final float currentModifier) {
-		return this.territoryMod;
-	}
-
-	@Override
-	public float getMutationModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
-		return this.mutationMod;
-	}
-
-	@Override
-	public float getLifespanModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
-		return this.lifespanMod;
-	}
-
-	@Override
-	public float getProductionModifier(final IBeeGenome genome, final float currentModifier) {
-		return this.productionMod;
-	}
-
-	@Override
-	public float getFloweringModifier(final IBeeGenome genome, final float currentModifier) {
-		return this.floweringMod;
-	}
-
-	@Override
-	public boolean isSealed() {
-		return this.rain;
-	}
-
-	@Override
-	public boolean isSelfLighted() {
-		return this.lighted;
-	}
-
-	@Override
-	public boolean isSunlightSimulated() {
-		return this.sunlight;
-	}
-
-	@Override
-	public boolean isHellish() {
-		return false;
-	}
-
-	public Object getName() {
-		return this.name;
-	}
-
-	public int getWearModifier() {
-		return this.wearMod;
-	}
-
-	public int getPowerUsage() {
-		return this.power;
-	}
-
-	@Override
-	public float getGeneticDecay(final IBeeGenome genome, final float currentModifier) {
-		return 1.0f;
-	}
 
 	static {
 		IndustrialFrame.Light.lighted = true;
@@ -142,5 +41,103 @@ public enum IndustrialFrame implements IBeeModifier
 		IndustrialFrame.Emerald.lifespanMod = 2.0f;
 		IndustrialFrame.NetherStar.lifespanMod = 20.0f;
 		IndustrialFrame.Poison.lifespanMod = 0.5f;
+	}
+
+	protected String name;
+	protected float territoryMod;
+	protected float mutationMod;
+	protected float lifespanMod;
+	protected float productionMod;
+	protected float floweringMod;
+	protected boolean lighted;
+	protected boolean sunlight;
+	protected boolean rain;
+	protected int wearMod;
+	protected int power;
+
+	IndustrialFrame(String name, int wear, int power) {
+		this.name = name;
+		this.power = power;
+		territoryMod = 1.0f;
+		mutationMod = 1.0f;
+		lifespanMod = 1.0f;
+		productionMod = 1.0f;
+		floweringMod = 1.0f;
+		lighted = false;
+		sunlight = false;
+		rain = false;
+		wearMod = wear;
+	}
+
+	public static ItemStack getItemStack(Item item, IndustrialFrame frame) {
+		ItemStack stack = new ItemStack(item);
+		NBTTagCompound nbt = new NBTTagCompound();
+		nbt.setInteger("frame", frame.ordinal());
+		stack.setTagCompound(nbt);
+		return stack;
+	}
+
+	@Override
+	public float getTerritoryModifier(IBeeGenome genome, float currentModifier) {
+		return territoryMod;
+	}
+
+	@Override
+	public float getMutationModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
+		return mutationMod;
+	}
+
+	@Override
+	public float getLifespanModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
+		return lifespanMod;
+	}
+
+	@Override
+	public float getProductionModifier(IBeeGenome genome, float currentModifier) {
+		return productionMod;
+	}
+
+	@Override
+	public float getFloweringModifier(IBeeGenome genome, float currentModifier) {
+		return floweringMod;
+	}
+
+	@Override
+	public boolean isSealed() {
+		return rain;
+	}
+
+	@Override
+	public boolean isSelfLighted() {
+		return lighted;
+	}
+
+	@Override
+	public boolean isSunlightSimulated() {
+		return sunlight;
+	}
+
+	@Override
+	public boolean isHellish() {
+		return false;
+	}
+
+	public Object getName() {
+		return name;
+	}
+
+	// TODO unused method?
+	public int getWearModifier() {
+		return wearMod;
+	}
+
+	// TODO unused method?
+	public int getPowerUsage() {
+		return power;
+	}
+
+	@Override
+	public float getGeneticDecay(IBeeGenome genome, float currentModifier) {
+		return 1.0f;
 	}
 }

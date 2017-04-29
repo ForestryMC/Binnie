@@ -1,46 +1,41 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extrabees.apiary;
 
-import forestry.api.genetics.IIndividual;
-import forestry.api.apiculture.IBee;
-import net.minecraft.item.ItemStack;
-import forestry.api.apiculture.IBeeGenome;
 import binnie.core.machines.Machine;
+import binnie.core.machines.MachineComponent;
+import forestry.api.apiculture.IBee;
+import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
-import binnie.core.machines.MachineComponent;
+import forestry.api.genetics.IIndividual;
+import net.minecraft.item.ItemStack;
 
-public class ComponentBeeModifier extends MachineComponent implements IBeeModifier, IBeeListener
-{
-	public ComponentBeeModifier(final Machine machine) {
+public class ComponentBeeModifier extends MachineComponent implements IBeeModifier, IBeeListener {
+	public ComponentBeeModifier(Machine machine) {
 		super(machine);
 	}
 
 	@Override
-	public float getTerritoryModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getTerritoryModifier(IBeeGenome genome, float currentModifier) {
 		return 1.0f;
 	}
 
 	@Override
-	public float getMutationModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
+	public float getMutationModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
 		return 1.0f;
 	}
 
 	@Override
-	public float getLifespanModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
+	public float getLifespanModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
 		return 1.0f;
 	}
 
 	@Override
-	public float getProductionModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getProductionModifier(IBeeGenome genome, float currentModifier) {
 		return 1.0f;
 	}
 
 	@Override
-	public float getFloweringModifier(final IBeeGenome genome, final float currentModifier) {
+	public float getFloweringModifier(IBeeGenome genome, float currentModifier) {
 		return 1.0f;
 	}
 
@@ -64,22 +59,28 @@ public class ComponentBeeModifier extends MachineComponent implements IBeeModifi
 		return false;
 	}
 
-	public void onQueenChange(final ItemStack queen) {
+	// TODO unused method?
+	public void onQueenChange(ItemStack queen) {
+		// ignored
 	}
 
 	@Override
-	public void wearOutEquipment(final int amount) {
+	public void wearOutEquipment(int amount) {
+		// ignored
 	}
 
-	public void onPostQueenDeath(final IBee queen) {
+	// TODO unused method?
+	public void onPostQueenDeath(IBee queen) {
+		// ignored
 	}
 
-	public boolean onEggLaid(final IBee queen) {
+	// TODO unused method?
+	public boolean onEggLaid(IBee queen) {
 		return false;
 	}
 
 	@Override
-	public float getGeneticDecay(final IBeeGenome genome, final float currentModifier) {
+	public float getGeneticDecay(IBeeGenome genome, float currentModifier) {
 		return 1.0f;
 	}
 
@@ -90,6 +91,6 @@ public class ComponentBeeModifier extends MachineComponent implements IBeeModifi
 
 	@Override
 	public void onQueenDeath() {
-
+		// ignored
 	}
 }

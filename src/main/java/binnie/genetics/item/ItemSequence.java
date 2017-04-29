@@ -43,8 +43,8 @@ public class ItemSequence extends Item implements IItemAnalysable, IItemChargabl
 	}
 
 	@Override
-	public String getItemStackDisplayName(ItemStack itemstack) {
-		GeneItem gene = new GeneItem(itemstack);
+	public String getItemStackDisplayName(ItemStack stack) {
+		GeneItem gene = new GeneItem(stack);
 		if (gene.isCorrupted()) {
 			return "Corrupted Sequence";
 		}
@@ -53,27 +53,27 @@ public class ItemSequence extends Item implements IItemAnalysable, IItemChargabl
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack itemstack, EntityPlayer entityPlayer, List list, boolean par4) {
-		super.addInformation(itemstack, entityPlayer, list, par4);
-		list.add(Genetics.proxy.localise("item.sequence." + (5 - itemstack.getItemDamage() % 6)));
-		SequencerItem gene = new SequencerItem(itemstack);
+	public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
+		super.addInformation(stack, player, tooltip, advanced);
+		tooltip.add(Genetics.proxy.localise("item.sequence." + (5 - stack.getItemDamage() % 6)));
+		SequencerItem gene = new SequencerItem(stack);
 		if (gene.isCorrupted()) {
 			return;
 		}
 
 		if (gene.analysed) {
-			gene.getInfo(list);
+			gene.getInfo(tooltip);
 		} else {
-			list.add("<Unknown>");
+			tooltip.add("<Unknown>");
 		}
 
 		int seq = gene.sequenced;
 		if (seq == 0) {
-			list.add("Unsequenced");
+			tooltip.add("Unsequenced");
 		} else if (seq < 100) {
-			list.add("Partially Sequenced (" + seq + "%)");
+			tooltip.add("Partially Sequenced (" + seq + "%)");
 		} else {
-			list.add("Fully Sequenced");
+			tooltip.add("Fully Sequenced");
 		}
 	}
 
@@ -84,9 +84,9 @@ public class ItemSequence extends Item implements IItemAnalysable, IItemChargabl
 	}
 
 	@Override
-	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List itemList) {
+	public void getSubItems(Item item, CreativeTabs tab, List list) {
 		IAlleleBeeSpecies species = (IAlleleBeeSpecies) AlleleManager.alleleRegistry.getAllele("forestry.speciesMeadows");
-		itemList.add(create(new Gene(species, EnumBeeChromosome.SPECIES, Binnie.Genetics.getBeeRoot()), false));
+		list.add(create(new Gene(species, EnumBeeChromosome.SPECIES, Binnie.Genetics.getBeeRoot()), false));
 	}
 
 	@Override

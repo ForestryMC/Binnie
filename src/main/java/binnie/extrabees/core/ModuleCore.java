@@ -1,16 +1,11 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extrabees.core;
 
-import binnie.extrabees.ExtraBees;
-import forestry.api.core.Tabs;
 import binnie.Binnie;
 import binnie.core.IInitializable;
+import binnie.extrabees.ExtraBees;
+import forestry.api.core.Tabs;
 
-public class ModuleCore implements IInitializable
-{
+public class ModuleCore implements IInitializable {
 	@Override
 	public void preInit() {
 		ExtraBees.itemMisc = Binnie.Item.registerMiscItems(ExtraBeeItems.values(), Tabs.tabApiculture);

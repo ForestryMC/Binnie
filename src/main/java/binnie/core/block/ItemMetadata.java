@@ -53,8 +53,8 @@ public class ItemMetadata extends ItemBlock {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack itemStack, EntityPlayer player, List par3List, boolean par4) {
-		((IBlockMetadata) field_150939_a).getBlockTooltip(itemStack, par3List);
+	public void addInformation(ItemStack itemStack, EntityPlayer player, List tooltip, boolean advanced) {
+		((IBlockMetadata) field_150939_a).getBlockTooltip(itemStack, tooltip);
 	}
 
 	@Override

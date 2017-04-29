@@ -1,42 +1,38 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extrabees.products;
 
-import java.util.List;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
 import binnie.core.item.IItemEnum;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
-public class ItemProduct extends Item
-{
-	IItemEnum[] types;
+import java.util.List;
 
-	public ItemProduct(final IItemEnum[] types) {
-		this.setMaxStackSize(64);
-		this.setMaxDamage(0);
-		this.setHasSubtypes(true);
+public class ItemProduct extends Item {
+	protected IItemEnum[] types;
+
+	public ItemProduct(IItemEnum[] types) {
+		setMaxStackSize(64);
+		setMaxDamage(0);
+		setHasSubtypes(true);
 		this.types = types;
 	}
 
-	public IItemEnum get(final ItemStack stack) {
-		final int i = stack.getItemDamage();
-		if (i >= 0 && i < this.types.length) {
-			return this.types[i];
+	public IItemEnum get(ItemStack stack) {
+		int i = stack.getItemDamage();
+		if (i >= 0 && i < types.length) {
+			return types[i];
 		}
-		return this.types[0];
+		return types[0];
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack itemstack) {
-		return this.get(itemstack).getName(itemstack);
+	public String getItemStackDisplayName(ItemStack itemstack) {
+		return get(itemstack).getName(itemstack);
 	}
 
 	@Override
-	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List itemList) {
-		for (final IItemEnum type : this.types) {
+	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List itemList) {
+		for (IItemEnum type : types) {
 			if (type.isActive()) {
 				itemList.add(new ItemStack(this, 1, type.ordinal()));
 			}

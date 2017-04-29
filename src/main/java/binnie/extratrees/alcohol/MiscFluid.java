@@ -72,7 +72,7 @@ public enum MiscFluid implements IFluidType, ICocktailLiquid
 	}
 
 	@Override
-	public int getColour() {
+	public int getColor() {
 		return this.colour;
 	}
 
@@ -93,7 +93,7 @@ public enum MiscFluid implements IFluidType, ICocktailLiquid
 
 	@Override
 	public int getContainerColour() {
-		return this.getColour();
+		return this.getColor();
 	}
 
 	@Override

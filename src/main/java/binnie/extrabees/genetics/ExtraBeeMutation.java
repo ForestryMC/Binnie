@@ -1,47 +1,62 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extrabees.genetics;
 
-import forestry.api.genetics.IAlleleSpecies;
+import binnie.Binnie;
+import binnie.core.genetics.ForestryAllele;
+import forestry.api.apiculture.BeeManager;
+import forestry.api.apiculture.IAlleleBeeSpecies;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.IBeeHousing;
+import forestry.api.apiculture.IBeeMutation;
 import forestry.api.apiculture.IBeeRoot;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IGenome;
+import net.minecraft.world.World;
+import net.minecraftforge.common.BiomeDictionary;
 
 import java.util.ArrayList;
 import java.util.Collection;
-
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.World;
-
-import forestry.api.genetics.IGenome;
-import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeHousing;
-
-import forestry.api.genetics.IMutation;
-import binnie.Binnie;
-
-import net.minecraftforge.common.BiomeDictionary;
-
-import binnie.core.genetics.ForestryAllele;
-import forestry.api.genetics.IAllele;
-import forestry.api.apiculture.IAlleleBeeSpecies;
-
+import java.util.Collections;
 import java.util.List;
 
-import forestry.api.apiculture.IBeeMutation;
-
-public class ExtraBeeMutation implements IBeeMutation
-{
+public class ExtraBeeMutation implements IBeeMutation {
 	public static List<IBeeMutation> mutations;
-	MutationRequirement req;
-	IAlleleBeeSpecies species0;
-	IAlleleBeeSpecies species1;
-	IAllele[] template;
-	int chance;
+
+	static {
+		ExtraBeeMutation.mutations = new ArrayList<>();
+	}
+
+	protected MutationRequirement req;
+	protected IAlleleBeeSpecies species0;
+	protected IAlleleBeeSpecies species1;
+	protected IAllele[] template;
+	protected int chance;
+
+	public ExtraBeeMutation(IAlleleBeeSpecies allele0, IAlleleBeeSpecies allele1, ExtraBeesSpecies mutation, int chance) {
+		this(allele0, allele1, mutation.getTemplate(), chance, null);
+	}
+
+	public ExtraBeeMutation(IAlleleBeeSpecies allele0, IAlleleBeeSpecies allele1, ExtraBeesSpecies mutation, int chance, MutationRequirement req) {
+		this(allele0, allele1, mutation.getTemplate(), chance, req);
+	}
+
+	public ExtraBeeMutation(IAlleleBeeSpecies allele0, IAlleleBeeSpecies allele1, IAllele[] mutation, int chance) {
+		this(allele0, allele1, mutation, chance, null);
+	}
+
+	public ExtraBeeMutation(IAlleleBeeSpecies allele0, IAlleleBeeSpecies allele1, IAllele[] mutation, int chance, MutationRequirement req) {
+		this.chance = 80;
+		this.chance = chance;
+		this.req = req;
+		species0 = allele0;
+		species1 = allele1;
+		template = mutation;
+		if (species0 != null && species1 != null && template != null) {
+			ExtraBeeMutation.mutations.add(this);
+		}
+	}
 
 	public static void doInit() {
-		final IAlleleBeeSpecies[] vanilla = new IAlleleBeeSpecies[0];
 		new ExtraBeeMutation(ForestryAllele.BeeSpecies.Meadows.getAllele(), ForestryAllele.BeeSpecies.Frugal.getAllele(), ExtraBeesSpecies.ARID, 10);
 		new ExtraBeeMutation(ForestryAllele.BeeSpecies.Forest.getAllele(), ForestryAllele.BeeSpecies.Frugal.getAllele(), ExtraBeesSpecies.ARID, 10);
 		new ExtraBeeMutation(ExtraBeesSpecies.ARID, ForestryAllele.BeeSpecies.Common.getAllele(), ExtraBeesSpecies.BARREN, 8);
@@ -194,66 +209,39 @@ public class ExtraBeeMutation implements IBeeMutation
 		new ExtraBeeMutation(ExtraBeesSpecies.UNUSUAL, ForestryAllele.BeeSpecies.Hermitic.getAllele(), ExtraBeesSpecies.SPATIAL, 5);
 		new ExtraBeeMutation(ExtraBeesSpecies.SPATIAL, ForestryAllele.BeeSpecies.Spectral.getAllele(), ExtraBeesSpecies.QUANTUM, 5);
 		new ExtraBeeMutation(ForestryAllele.BeeSpecies.Noble.getAllele(), ForestryAllele.BeeSpecies.Monastic.getAllele(), ExtraBeesSpecies.MYSTICAL, 5);
-		for (final IBeeMutation mutation : ExtraBeeMutation.mutations) {
+		for (IBeeMutation mutation : ExtraBeeMutation.mutations) {
 			Binnie.Genetics.getBeeRoot().registerMutation(mutation);
-		}
-	}
-
-	public ExtraBeeMutation(final IAlleleBeeSpecies allele0, final IAlleleBeeSpecies allele1, final ExtraBeesSpecies mutation, final int chance) {
-		this(allele0, allele1, mutation.getTemplate(), chance, null);
-	}
-
-	public ExtraBeeMutation(final IAlleleBeeSpecies allele0, final IAlleleBeeSpecies allele1, final ExtraBeesSpecies mutation, final int chance, final MutationRequirement req) {
-		this(allele0, allele1, mutation.getTemplate(), chance, req);
-	}
-
-	public ExtraBeeMutation(final IAlleleBeeSpecies allele0, final IAlleleBeeSpecies allele1, final IAllele[] mutation, final int chance) {
-		this(allele0, allele1, mutation, chance, null);
-	}
-
-	public ExtraBeeMutation(final IAlleleBeeSpecies allele0, final IAlleleBeeSpecies allele1, final IAllele[] mutation, final int chance, final MutationRequirement req) {
-		this.species0 = null;
-		this.species1 = null;
-		this.template = new IAllele[0];
-		this.chance = 80;
-		this.chance = chance;
-		this.req = req;
-		this.species0 = allele0;
-		this.species1 = allele1;
-		this.template = mutation;
-		if (this.species0 != null && this.species1 != null && this.template != null) {
-			ExtraBeeMutation.mutations.add(this);
 		}
 	}
 
 	@Override
 	public IAlleleSpecies getAllele0() {
-		return this.species0;
+		return species0;
 	}
 
 	@Override
 	public IAlleleSpecies getAllele1() {
-		return this.species1;
+		return species1;
 	}
 
 	@Override
 	public IAllele[] getTemplate() {
-		return this.template;
+		return template;
 	}
 
 	@Override
 	public float getBaseChance() {
-		return this.chance;
+		return chance;
 	}
 
 	@Override
-	public boolean isPartner(final IAllele allele) {
-		return allele.getUID().equals(this.species0.getUID()) || allele.getUID().equals(this.species1.getUID());
+	public boolean isPartner(IAllele allele) {
+		return allele.getUID().equals(species0.getUID()) || allele.getUID().equals(species1.getUID());
 	}
 
 	@Override
-	public IAllele getPartner(final IAllele allele) {
-		return allele.getUID().equals(this.species0.getUID()) ? this.species1 : this.species0;
+	public IAllele getPartner(IAllele allele) {
+		return allele.getUID().equals(species0.getUID()) ? species1 : species0;
 	}
 
 	@Override
@@ -262,23 +250,22 @@ public class ExtraBeeMutation implements IBeeMutation
 	}
 
 	@Override
-	public float getChance(final IBeeHousing housing, final IAlleleBeeSpecies allele0, final IAlleleBeeSpecies allele1, final IBeeGenome genome0, final IBeeGenome genome1) {
-		if (this.species0 == null || this.species1 == null || allele0 == null || allele1 == null) {
+	public float getChance(IBeeHousing housing, IAlleleBeeSpecies allele0, IAlleleBeeSpecies allele1, IBeeGenome genome0, IBeeGenome genome1) {
+		if (species0 == null || species1 == null || allele0 == null || allele1 == null) {
 			return 0.0f;
 		}
 
-		final World world = housing.getWorld();
-		final BiomeGenBase biome = housing.getBiome();
-		if (this.req != null && !this.req.fufilled(housing, allele0, allele1, genome0, genome1)) {
+		World world = housing.getWorld();
+		if (req != null && !req.fufilled(housing, allele0, allele1, genome0, genome1)) {
 			return 0.0f;
 		}
 
-		final int processedChance = Math.round(this.chance * BeeManager.beeRoot.createBeeHousingModifier(housing).getMutationModifier(genome0, genome1, 1.0f)
+		int processedChance = Math.round(chance * BeeManager.beeRoot.createBeeHousingModifier(housing).getMutationModifier(genome0, genome1, 1.0f)
 				* Binnie.Genetics.getBeeRoot().getBeekeepingMode(world).getBeeModifier().getMutationModifier(genome0, genome1, 1.0f));
-		if (this.species0.getUID().equals(allele0.getUID()) && this.species1.getUID().equals(allele1.getUID())) {
+		if (species0.getUID().equals(allele0.getUID()) && species1.getUID().equals(allele1.getUID())) {
 			return processedChance;
 		}
-		if (this.species1.getUID().equals(allele0.getUID()) && this.species0.getUID().equals(allele1.getUID())) {
+		if (species1.getUID().equals(allele0.getUID()) && species0.getUID().equals(allele1.getUID())) {
 			return processedChance;
 		}
 		return 0.0f;
@@ -286,11 +273,9 @@ public class ExtraBeeMutation implements IBeeMutation
 
 	@Override
 	public Collection<String> getSpecialConditions() {
-		final List<String> conditions = new ArrayList<String>();
-		if (this.req != null) {
-			for (final String s : this.req.tooltip()) {
-				conditions.add(s);
-			}
+		List<String> conditions = new ArrayList<>();
+		if (req != null) {
+			Collections.addAll(conditions, req.tooltip());
 		}
 		return conditions;
 	}
@@ -300,52 +285,46 @@ public class ExtraBeeMutation implements IBeeMutation
 		return Binnie.Genetics.getBeeRoot();
 	}
 
-	static {
-		ExtraBeeMutation.mutations = new ArrayList<IBeeMutation>();
-	}
-
-	abstract static class MutationRequirement
-	{
+	abstract static class MutationRequirement {
 		public abstract String[] tooltip();
 
-		public abstract boolean fufilled(final IBeeHousing p0, final IAllele p1, final IAllele p2, final IGenome p3, final IGenome p4);
+		public abstract boolean fufilled(IBeeHousing housing, IAllele allele0, IAllele allele1, IGenome genome0, IGenome genome1);
 	}
 
-	static class RequirementBiomeType extends MutationRequirement
-	{
-		BiomeDictionary.Type type;
+	static class RequirementBiomeType extends MutationRequirement {
+		protected BiomeDictionary.Type type;
 
-		public RequirementBiomeType(final BiomeDictionary.Type type) {
+		public RequirementBiomeType(BiomeDictionary.Type type) {
 			this.type = type;
 		}
 
 		@Override
 		public String[] tooltip() {
-			return new String[] { "Is restricted to " + this.type + "-like biomes." };
+			return new String[]{"Is restricted to " + type + "-like biomes."};
 		}
 
 		@Override
-		public boolean fufilled(final IBeeHousing housing, final IAllele allele0, final IAllele allele1, final IGenome genome0, final IGenome genome1) {
-			return BiomeDictionary.isBiomeOfType(housing.getBiome(), this.type);
+		public boolean fufilled(IBeeHousing housing, IAllele allele0, IAllele allele1, IGenome genome0, IGenome genome1) {
+			return BiomeDictionary.isBiomeOfType(housing.getBiome(), type);
 		}
 	}
 
-	static class RequirementPerson extends MutationRequirement
-	{
-		String name;
+	static class RequirementPerson extends MutationRequirement {
+		protected String name;
 
-		public RequirementPerson(final String name) {
+		public RequirementPerson(String name) {
 			this.name = name;
 		}
 
 		@Override
 		public String[] tooltip() {
-			return new String[] { "Can only be bred by " + this.name };
+			return new String[]{"Can only be bred by " + name};
 		}
 
 		@Override
-		public boolean fufilled(final IBeeHousing housing, final IAllele allele0, final IAllele allele1, final IGenome genome0, final IGenome genome1) {
-			return housing.getOwner().getName() != null && housing.getOwner().getName().equals(this.name);
+		public boolean fufilled(IBeeHousing housing, IAllele allele0, IAllele allele1, IGenome genome0, IGenome genome1) {
+			return housing.getOwner().getName() != null
+				&& housing.getOwner().getName().equals(name);
 		}
 	}
 }

@@ -52,7 +52,7 @@ public enum ExtraTreeLiquid implements ILiquidType
 	}
 
 	@Override
-	public int getColour() {
+	public int getColor() {
 		return 16777215;
 	}
 

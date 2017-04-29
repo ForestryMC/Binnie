@@ -39,8 +39,8 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation(ItemStack itemstack, EntityPlayer entityPlayer, List list, boolean par4) {
-		super.addInformation(itemstack, entityPlayer, list, par4);
+	public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
+		super.addInformation(stack, player, tooltip, advanced);
 	}
 
 	@Override
@@ -69,14 +69,14 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 	}
 
 	@Override
-	public void getSubItems(Item par1, CreativeTabs tab, List itemList) {
+	public void getSubItems(Item item, CreativeTabs tab, List list) {
 		for (ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
 			for (IIndividual template : root.getIndividualTemplates()) {
 				if (template.getGenome().getPrimary().isSecret()) {
 					continue;
 				}
 
-				IGeneItem item = new GeneArrayItem();
+				IGeneItem geneItem = new GeneArrayItem();
 				for (IChromosomeType type : root.getKaryotype()) {
 					IChromosome c = template.getGenome().getChromosomes()[type.ordinal()];
 					if (c == null) {
@@ -85,13 +85,13 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 
 					IAllele active = c.getActiveAllele();
 					if (active != null) {
-						item.addGene(new Gene(active, type, root));
+						geneItem.addGene(new Gene(active, type, root));
 					}
 				}
 
 				ItemStack array = new ItemStack(this);
-				item.writeToItem(array);
-				itemList.add(array);
+				geneItem.writeToItem(array);
+				list.add(array);
 			}
 		}
 	}
