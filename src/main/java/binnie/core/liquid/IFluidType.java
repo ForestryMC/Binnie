@@ -15,7 +15,7 @@ public interface IFluidType {
 
 	FluidStack get(int amount);
 
-	int getColour();
+	int getColor();
 
 	int getContainerColour();
 

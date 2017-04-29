@@ -1,19 +1,14 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extrabees.products;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import binnie.core.IInitializable;
 import binnie.core.Mods;
+import binnie.extrabees.ExtraBees;
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraft.init.Items;
-import binnie.extrabees.ExtraBees;
-import binnie.core.IInitializable;
 
-public class ModuleProducts implements IInitializable
-{
+public class ModuleProducts implements IInitializable {
 	@Override
 	public void preInit() {
 		ExtraBees.honeyCrystal = new ItemHoneyCrystal();
@@ -33,14 +28,19 @@ public class ModuleProducts implements IInitializable
 
 	@Override
 	public void postInit() {
-		GameRegistry.addRecipe(new ItemStack(ExtraBees.honeyCrystalEmpty), new Object[] { "#@#", "@#@", "#@#", '@', Mods.Forestry.stack("honeyDrop"), '#', EnumHoneyDrop.ENERGY.get(1) });
-		for (final EnumHoneyComb info : EnumHoneyComb.values()) {
+		GameRegistry.addRecipe(
+			new ItemStack(ExtraBees.honeyCrystalEmpty),
+			"#@#", "@#@", "#@#",
+			'@', Mods.Forestry.stack("honeyDrop"),
+			'#', EnumHoneyDrop.ENERGY.get(1)
+		);
+		for (EnumHoneyComb info : EnumHoneyComb.values()) {
 			info.addRecipe();
 		}
-		for (final EnumHoneyDrop info2 : EnumHoneyDrop.values()) {
+		for (EnumHoneyDrop info2 : EnumHoneyDrop.values()) {
 			info2.addRecipe();
 		}
-		for (final EnumPropolis info3 : EnumPropolis.values()) {
+		for (EnumPropolis info3 : EnumPropolis.values()) {
 			info3.addRecipe();
 		}
 	}

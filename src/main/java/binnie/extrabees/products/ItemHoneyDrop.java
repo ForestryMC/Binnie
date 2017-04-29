@@ -1,21 +1,22 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extrabees.products;
 
 import binnie.core.BinnieCore;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.ItemStack;
-import forestry.api.core.Tabs;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-public class ItemHoneyDrop extends ItemProduct
-{
-	IIcon icon1;
-	IIcon icon2;
+public class ItemHoneyDrop extends ItemProduct {
+	protected IIcon icon1;
+	protected IIcon icon2;
+
+	public ItemHoneyDrop() {
+		super(EnumHoneyDrop.values());
+		setCreativeTab(Tabs.tabApiculture);
+		setUnlocalizedName("honeyDrop");
+	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -23,34 +24,27 @@ public class ItemHoneyDrop extends ItemProduct
 		return true;
 	}
 
-	public ItemHoneyDrop() {
-		super(EnumHoneyDrop.values());
-		this.setCreativeTab(Tabs.tabApiculture);
-		this.setUnlocalizedName("honeyDrop");
-	}
-
 	@Override
-	public int getColorFromItemStack(final ItemStack itemStack, final int j) {
-		final int i = itemStack.getItemDamage();
+	public int getColorFromItemStack(ItemStack itemStack, int j) {
 		if (j == 0) {
-			return EnumHoneyDrop.get(itemStack).colour[0];
+			return EnumHoneyDrop.get(itemStack).color[0];
 		}
-		return EnumHoneyDrop.get(itemStack).colour[1];
+		return EnumHoneyDrop.get(itemStack).color[1];
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public IIcon getIconFromDamageForRenderPass(final int i, final int j) {
+	public IIcon getIconFromDamageForRenderPass(int i, int j) {
 		if (j > 0) {
-			return this.icon1;
+			return icon1;
 		}
-		return this.icon2;
+		return icon2;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(final IIconRegister register) {
-		this.icon1 = BinnieCore.proxy.getIcon(register, "forestry", "honeyDrop.0");
-		this.icon2 = BinnieCore.proxy.getIcon(register, "forestry", "honeyDrop.1");
+	public void registerIcons(IIconRegister register) {
+		icon1 = BinnieCore.proxy.getIcon(register, "forestry", "honeyDrop.0");
+		icon2 = BinnieCore.proxy.getIcon(register, "forestry", "honeyDrop.1");
 	}
 }

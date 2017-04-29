@@ -25,9 +25,9 @@ public class ItemMasterRegistry extends Item {
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player) {
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
 		Genetics.proxy.openGui(GeneticsGUI.MasterRegistry, player, (int) player.posX, (int) player.posY, (int) player.posZ);
-		return itemstack;
+		return stack;
 	}
 
 	@Override

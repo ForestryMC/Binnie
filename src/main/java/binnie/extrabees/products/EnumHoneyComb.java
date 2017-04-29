@@ -1,19 +1,15 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extrabees.products;
 
-import net.minecraftforge.oredict.OreDictionary;
+import binnie.core.item.IItemEnum;
 import binnie.extrabees.ExtraBees;
 import forestry.api.recipes.RecipeManagers;
-import java.util.LinkedHashMap;
 import net.minecraft.item.ItemStack;
-import java.util.Map;
-import binnie.core.item.IItemEnum;
+import net.minecraftforge.oredict.OreDictionary;
 
-public enum EnumHoneyComb implements IItemEnum
-{
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+public enum EnumHoneyComb implements IItemEnum {
 	BARREN(7564356, 12762791),
 	ROTTEN(4084257, 11652233),
 	BONE(12895407, 14606017),
@@ -101,79 +97,79 @@ public enum EnumHoneyComb implements IItemEnum
 	CYANITE(2564173, 34541),
 	BLUTONIUM(2564173, 1769702);
 
-	int[] colour;
 	public Map<ItemStack, Float> products;
-	boolean active;
 	public boolean deprecated;
 
-	private EnumHoneyComb() {
-		this(16777215, 16777215);
-		this.active = false;
-		this.deprecated = true;
+	protected int[] color;
+	protected boolean active;
+
+	EnumHoneyComb() {
+		this(0xffffff, 0xffffff);
+		active = false;
+		deprecated = true;
 	}
 
-	private EnumHoneyComb(final int colour, final int colour2) {
-		this.colour = new int[0];
-		this.products = new LinkedHashMap<ItemStack, Float>();
-		this.active = true;
-		this.deprecated = false;
-		this.colour = new int[] { colour, colour2 };
+	EnumHoneyComb(int color, int color2) {
+		this.color = new int[]{color, color2};
+		products = new LinkedHashMap<>();
+		active = true;
+		deprecated = false;
 	}
 
-	public void addRecipe() {
-		RecipeManagers.centrifugeManager.addRecipe(20, this.get(1), this.products);
-	}
-
-	@Override
-	public boolean isActive() {
-		return this.active;
-	}
-
-	public static EnumHoneyComb get(final ItemStack itemStack) {
-		final int i = itemStack.getItemDamage();
+	public static EnumHoneyComb get(ItemStack itemStack) {
+		int i = itemStack.getItemDamage();
 		if (i >= 0 && i < values().length) {
 			return values()[i];
 		}
 		return values()[0];
 	}
 
-	@Override
-	public ItemStack get(final int count) {
-		return new ItemStack(ExtraBees.comb, count, this.ordinal());
+	public void addRecipe() {
+		RecipeManagers.centrifugeManager.addRecipe(20, get(1), products);
 	}
 
 	@Override
-	public String getName(final ItemStack itemStack) {
-		return ExtraBees.proxy.localise("item.comb." + this.name().toLowerCase());
+	public boolean isActive() {
+		return active;
 	}
 
-	public boolean addProduct(final ItemStack item, final Float chance) {
+	@Override
+	public ItemStack get(int count) {
+		return new ItemStack(ExtraBees.comb, count, ordinal());
+	}
+
+	@Override
+	public String getName(ItemStack itemStack) {
+		return ExtraBees.proxy.localise("item.comb." + name().toLowerCase());
+	}
+
+	public boolean addProduct(ItemStack item, Float chance) {
 		if (item == null) {
 			return false;
 		}
-		this.products.put(item.copy(), chance);
+		products.put(item.copy(), chance);
 		return true;
 	}
 
-	public void tryAddProduct(final ItemStack item, final Float chance) {
-		this.active = this.addProduct(item, chance);
+	public void tryAddProduct(ItemStack item, Float chance) {
+		active = addProduct(item, chance);
 	}
 
-	public void tryAddProduct(final String oreDict, final Float chance) {
+	// TODO unused method?
+	public void tryAddProduct(String oreDict, Float chance) {
 		if (!OreDictionary.getOres(oreDict).isEmpty()) {
-			this.tryAddProduct(OreDictionary.getOres(oreDict).get(0), chance);
-		}
-		else {
-			this.active = false;
+			tryAddProduct(OreDictionary.getOres(oreDict).get(0), chance);
+		} else {
+			active = false;
 		}
 	}
 
-	public void tryAddProduct(final IItemEnum type, final Float chance) {
-		this.tryAddProduct(type.get(1), chance);
-		this.active = (this.active && type.isActive());
+	public void tryAddProduct(IItemEnum type, Float chance) {
+		tryAddProduct(type.get(1), chance);
+		active = (active && type.isActive());
 	}
 
-	public void copyProducts(final EnumHoneyComb comb) {
-		this.products.putAll(comb.products);
+	public void copyProducts(EnumHoneyComb comb) {
+		products.putAll(comb.products);
 	}
 }

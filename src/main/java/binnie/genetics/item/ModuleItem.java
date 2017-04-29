@@ -71,7 +71,12 @@ public class ModuleItem implements IInitializable {
 
 	@Override
 	public void postInit() {
-		GameRegistry.addShapelessRecipe(GeneticsItems.DNADye.get(8), Items.glowstone_dust, new ItemStack(Items.dye, 1, 5));
+		GameRegistry.addShapelessRecipe(
+			GeneticsItems.DNADye.get(8),
+			Items.glowstone_dust,
+			new ItemStack(Items.dye, 1, 5)
+		);
+
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 			GeneticsItems.LaboratoryCasing.get(1),
 			new Object[]{
@@ -80,6 +85,7 @@ public class ModuleItem implements IInitializable {
 				'Y', Mods.Forestry.item("sturdyMachine")
 			}
 		));
+
 		GameRegistry.addRecipe(new ShapelessOreRecipe(
 			GeneticsItems.DNADye.get(2),
 			new Object[]{
@@ -88,6 +94,7 @@ public class ModuleItem implements IInitializable {
 				"dyePink"
 			}
 		));
+
 		GameRegistry.addRecipe(new ShapelessOreRecipe(
 			GeneticsItems.FluorescentDye.get(2),
 			new Object[]{
@@ -96,6 +103,7 @@ public class ModuleItem implements IInitializable {
 				"dustGlowstone"
 			}
 		));
+
 		GameRegistry.addRecipe(new ShapelessOreRecipe(
 			GeneticsItems.GrowthMedium.get(2),
 			new Object[]{
@@ -103,6 +111,7 @@ public class ModuleItem implements IInitializable {
 				Items.sugar
 			}
 		));
+
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 			GeneticsItems.EmptySequencer.get(1),
 			new Object[]{
@@ -112,6 +121,7 @@ public class ModuleItem implements IInitializable {
 				'p', Items.paper
 			}
 		));
+
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 			GeneticsItems.EmptySerum.get(1),
 			new Object[]{
@@ -120,6 +130,7 @@ public class ModuleItem implements IInitializable {
 				'G', Blocks.glass_pane
 			}
 		));
+
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 			GeneticsItems.EmptyGenome.get(1),
 			new Object[]{
@@ -127,6 +138,7 @@ public class ModuleItem implements IInitializable {
 				's', GeneticsItems.EmptySerum.get(1)
 			}
 		));
+
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 			GeneticsItems.Cylinder.get(8),
 			new Object[]{
@@ -134,6 +146,7 @@ public class ModuleItem implements IInitializable {
 				'g', Blocks.glass_pane
 			}
 		));
+
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 			GeneticsItems.IntegratedCircuit.get(1),
 			new Object[]{
@@ -143,6 +156,7 @@ public class ModuleItem implements IInitializable {
 				'g', "dustGlowstone"
 			}
 		));
+
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 			GeneticsItems.IntegratedCircuit.get(1),
 			new Object[]{
@@ -160,6 +174,7 @@ public class ModuleItem implements IInitializable {
 				'd', GeneticsItems.LaboratoryCasing.get(1)
 			}
 		));
+
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 			GeneticsItems.IntegratedCPU.get(1),
 			new Object[]{
@@ -168,6 +183,7 @@ public class ModuleItem implements IInitializable {
 				'd', Items.diamond
 			}
 		));
+
 		RecipeManagers.carpenterManager.addRecipe(
 			100,
 			Binnie.Liquid.getLiquidStack("water", 2000),
@@ -181,6 +197,7 @@ public class ModuleItem implements IInitializable {
 			'D', Items.ender_eye,
 			'E', Blocks.obsidian
 		);
+
 		GameRegistry.addSmelting(Genetics.itemSequencer, GeneticsItems.EmptySequencer.get(1), 0.0f);
 		GameRegistry.addSmelting(Genetics.itemSerum, GeneticsItems.EmptySerum.get(1), 0.0f);
 		GameRegistry.addSmelting(Genetics.itemSerumArray, GeneticsItems.EmptyGenome.get(1), 0.0f);

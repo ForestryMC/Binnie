@@ -18,13 +18,13 @@ public enum GeneticLiquid implements IFluidType {
 	protected String name;
 	protected String ident;
 	protected IIcon icon;
-	protected int colour;
+	protected int color;
 	protected float transparency;
 
-	GeneticLiquid(String name, String ident, int colour) {
+	GeneticLiquid(String name, String ident, int color) {
 		this.name = name;
 		this.ident = ident;
-		this.colour = colour;
+		this.color = color;
 		transparency = 1.0f;
 	}
 
@@ -54,13 +54,13 @@ public enum GeneticLiquid implements IFluidType {
 	}
 
 	@Override
-	public int getColour() {
+	public int getColor() {
 		return 0xffffff;
 	}
 
 	@Override
 	public int getContainerColour() {
-		return colour;
+		return color;
 	}
 
 	@Override
@@ -75,7 +75,8 @@ public enum GeneticLiquid implements IFluidType {
 
 	@Override
 	public boolean canPlaceIn(FluidContainer container) {
-		return this == GeneticLiquid.GrowthMedium || container == FluidContainer.Cylinder;
+		return this == GeneticLiquid.GrowthMedium
+			|| container == FluidContainer.Cylinder;
 	}
 
 	@Override

@@ -70,19 +70,19 @@ public abstract class ItemGene extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack itemstack, EntityPlayer entityPlayer, List list, boolean par4) {
-		super.addInformation(itemstack, entityPlayer, list, par4);
+	public void addInformation(ItemStack itemstack, EntityPlayer player, List tooltip, boolean advanced) {
+		super.addInformation(itemstack, player, tooltip, advanced);
 		int damage = getMaxDamage() - itemstack.getItemDamage();
 		if (damage == 0) {
-			list.add("Empty");
+			tooltip.add("Empty");
 		} else if (damage == 1) {
-			list.add("1 Charge");
+			tooltip.add("1 Charge");
 		} else {
-			list.add(damage + " Charges");
+			tooltip.add(damage + " Charges");
 		}
 
 		IGeneItem gene = getGeneItem(itemstack);
-		gene.getInfo(list);
+		gene.getInfo(tooltip);
 	}
 
 	@Override

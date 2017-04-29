@@ -1,51 +1,46 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extrabees.products;
 
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.item.ItemStack;
-import forestry.api.core.Tabs;
+import binnie.extrabees.ExtraBees;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import binnie.extrabees.ExtraBees;
+import forestry.api.core.Tabs;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
-public class ItemHoneyCrystal extends Item
-{
+public class ItemHoneyCrystal extends Item {
 	private int maxCharge;
 	private int transferLimit;
 	private int tier;
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(final IIconRegister register) {
-		this.itemIcon = ExtraBees.proxy.getIcon(register, "honeyCrystal");
-	}
-
 	public ItemHoneyCrystal() {
-		this.maxCharge = 8000;
-		this.transferLimit = 500;
-		this.tier = 1;
-		this.setMaxDamage(27);
-		this.setMaxStackSize(1);
-		this.setCreativeTab(Tabs.tabApiculture);
-		this.setUnlocalizedName("honeyCrystal");
+		maxCharge = 8000;
+		transferLimit = 500;
+		tier = 1;
+		setMaxDamage(27);
+		setMaxStackSize(1);
+		setCreativeTab(Tabs.tabApiculture);
+		setUnlocalizedName("honeyCrystal");
 	}
 
-	@Override
-	public String getItemStackDisplayName(final ItemStack i) {
-		return ExtraBees.proxy.localise("item.honeycrystal");
-	}
-
-	public static NBTTagCompound getOrCreateNbtData(final ItemStack itemStack) {
+	public static NBTTagCompound getOrCreateNbtData(ItemStack itemStack) {
 		NBTTagCompound ret = itemStack.getTagCompound();
 		if (ret == null) {
 			ret = new NBTTagCompound();
 			itemStack.setTagCompound(ret);
 		}
 		return ret;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IIconRegister register) {
+		itemIcon = ExtraBees.proxy.getIcon(register, "honeyCrystal");
+	}
+
+	@Override
+	public String getItemStackDisplayName(ItemStack i) {
+		return ExtraBees.proxy.localise("item.honeycrystal");
 	}
 }

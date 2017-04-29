@@ -1,64 +1,62 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extrabees.worldgen;
 
-import forestry.api.genetics.IIndividual;
-import forestry.api.apiculture.EnumBeeType;
-import net.minecraft.world.World;
 import binnie.Binnie;
+import forestry.api.apiculture.EnumBeeType;
 import forestry.api.apiculture.IAlleleBeeSpecies;
-import net.minecraft.item.ItemStack;
-import java.util.ArrayList;
-import forestry.api.genetics.IAllele;
+import forestry.api.apiculture.IBeeRoot;
 import forestry.api.apiculture.IHiveDrop;
+import forestry.api.genetics.IAllele;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
-public class HiveDrop implements IHiveDrop
-{
+import java.util.ArrayList;
+
+public class HiveDrop implements IHiveDrop {
 	private IAllele[] template;
 	private ArrayList<ItemStack> additional;
 	private int chance;
 
-	public HiveDrop(final IAlleleBeeSpecies species, final int chance) {
+	public HiveDrop(IAlleleBeeSpecies species, int chance) {
 		this(Binnie.Genetics.getBeeRoot().getTemplate(species.getUID()), new ItemStack[0], chance);
 	}
 
-	public HiveDrop(IAllele[] template, final ItemStack[] bonus, final int chance) {
-		this.additional = new ArrayList<ItemStack>();
+	public HiveDrop(IAllele[] template, ItemStack[] bonus, int chance) {
+		additional = new ArrayList<>();
 		if (template == null) {
 			template = Binnie.Genetics.getBeeRoot().getDefaultTemplate();
 		}
 		this.template = template;
 		this.chance = chance;
-		for (final ItemStack stack : bonus) {
-			this.additional.add(stack);
+		for (ItemStack stack : bonus) {
+			additional.add(stack);
 		}
 	}
 
 	@Override
-	public ItemStack getPrincess(final World world, final int x, final int y, final int z, final int fortune) {
-		return Binnie.Genetics.getBeeRoot().getMemberStack(Binnie.Genetics.getBeeRoot().getBee(world, Binnie.Genetics.getBeeRoot().templateAsGenome(this.template)), EnumBeeType.PRINCESS.ordinal());
+	public ItemStack getPrincess(World world, int x, int y, int z, int fortune) {
+		IBeeRoot beeRoot = Binnie.Genetics.getBeeRoot();
+		return beeRoot.getMemberStack(beeRoot.getBee(world, beeRoot.templateAsGenome(template)), EnumBeeType.PRINCESS.ordinal());
 	}
 
 	@Override
-	public ArrayList<ItemStack> getDrones(final World world, final int x, final int y, final int z, final int fortune) {
-		final ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
-		ret.add(Binnie.Genetics.getBeeRoot().getMemberStack(Binnie.Genetics.getBeeRoot().templateAsIndividual(this.template), EnumBeeType.DRONE.ordinal()));
+	public ArrayList<ItemStack> getDrones(World world, int x, int y, int z, int fortune) {
+		ArrayList<ItemStack> ret = new ArrayList<>();
+		IBeeRoot beeRoot = Binnie.Genetics.getBeeRoot();
+		ret.add(beeRoot.getMemberStack(beeRoot.templateAsIndividual(template), EnumBeeType.DRONE.ordinal()));
 		return ret;
 	}
 
 	@Override
-	public ArrayList<ItemStack> getAdditional(final World world, final int x, final int y, final int z, final int fortune) {
-		final ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
-		for (final ItemStack stack : this.additional) {
+	public ArrayList<ItemStack> getAdditional(World world, int x, int y, int z, int fortune) {
+		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+		for (ItemStack stack : additional) {
 			ret.add(stack.copy());
 		}
 		return ret;
 	}
 
 	@Override
-	public int getChance(final World world, final int x, final int y, final int z) {
-		return this.chance;
+	public int getChance(World world, int x, int y, int z) {
+		return chance;
 	}
 }

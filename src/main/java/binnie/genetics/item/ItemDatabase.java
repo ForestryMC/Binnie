@@ -33,35 +33,37 @@ public class ItemDatabase extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public IIcon getIconFromDamage(int par1) {
-		return (par1 == 0) ? itemIcon : iconMaster;
+	public IIcon getIconFromDamage(int damage) {
+		return (damage == 0) ? itemIcon : iconMaster;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-		super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
+	public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
+		super.addInformation(stack, player, tooltip, advanced);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
-		super.getSubItems(par1, par2CreativeTabs, par3List);
-		par3List.add(new ItemStack(par1, 1, 1));
+	public void getSubItems(Item item, CreativeTabs tab, List list) {
+		super.getSubItems(item, tab, list);
+		list.add(new ItemStack(item, 1, 1));
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player) {
-		if (itemstack.getItemDamage() == 0) {
+	public ItemStack onItemRightClick(ItemStack itemststackck, World world, EntityPlayer player) {
+		if (itemststackck.getItemDamage() == 0) {
 			Genetics.proxy.openGui(GeneticsGUI.Database, player, (int) player.posX, (int) player.posY, (int) player.posZ);
 		} else {
 			Genetics.proxy.openGui(GeneticsGUI.DatabaseNEI, player, (int) player.posX, (int) player.posY, (int) player.posZ);
 		}
-		return itemstack;
+		return itemststackck;
 	}
 
 	@Override
-	public String getItemStackDisplayName(ItemStack i) {
-		return (i.getItemDamage() == 0) ? "Gene Database" : "Master Gene Database";
+	public String getItemStackDisplayName(ItemStack stack) {
+		return (stack.getItemDamage() == 0) ?
+			"Gene Database" :
+			"Master Gene Database";
 	}
 }

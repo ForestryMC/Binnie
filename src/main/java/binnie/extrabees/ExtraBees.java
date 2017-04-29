@@ -1,53 +1,48 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extrabees;
 
+import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
+import binnie.core.gui.IBinnieGUID;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
+import binnie.extrabees.apiary.ModuleApiary;
 import binnie.extrabees.config.ConfigurationMachines;
 import binnie.extrabees.config.ConfigurationMain;
 import binnie.extrabees.core.ExtraBeeGUID;
-import binnie.core.gui.IBinnieGUID;
-
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-
-import binnie.extrabees.apiary.ModuleApiary;
-import binnie.extrabees.liquids.ModuleLiquids;
-import binnie.extrabees.worldgen.ModuleGeneration;
-import binnie.extrabees.genetics.ModuleGenetics;
-import binnie.extrabees.products.ModuleProducts;
 import binnie.extrabees.core.ModuleCore;
-
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import net.minecraft.item.Item;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.Block;
-
-import cpw.mods.fml.common.SidedProxy;
-
+import binnie.extrabees.genetics.ModuleGenetics;
+import binnie.extrabees.liquids.ModuleLiquids;
+import binnie.extrabees.products.ModuleProducts;
 import binnie.extrabees.proxy.ExtraBeesProxy;
-
+import binnie.extrabees.worldgen.ModuleGeneration;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
 
-import binnie.core.AbstractMod;
-
-@Mod(modid = "ExtraBees", name = "Extra Bees", useMetadata = true, dependencies = "after:BinnieCore")
-public class ExtraBees extends AbstractMod
-{
+@Mod(
+	modid = "ExtraBees",
+	name = "Extra Bees",
+	useMetadata = true,
+	dependencies = "after:BinnieCore"
+)
+public class ExtraBees extends AbstractMod {
 	@Mod.Instance("ExtraBees")
 	public static ExtraBees instance;
-	@SidedProxy(clientSide = "binnie.extrabees.proxy.ExtraBeesProxyClient", serverSide = "binnie.extrabees.proxy.ExtraBeesProxyServer")
+
+	@SidedProxy(
+		clientSide = "binnie.extrabees.proxy.ExtraBeesProxyClient",
+		serverSide = "binnie.extrabees.proxy.ExtraBeesProxyServer"
+	)
 	public static ExtraBeesProxy proxy;
+
 	public static Block hive;
 	public static Material materialBeehive;
 	public static Block ectoplasm;
-	public static Block apiaristMachine;
-	public static Block geneticMachine;
-	public static Block advGeneticMachine;
 	public static Item comb;
 	public static Item propolis;
 	public static Item honeyDrop;
@@ -56,29 +51,29 @@ public class ExtraBees extends AbstractMod
 	public static Item dictionary;
 	public static Item itemMisc;
 
-	@Mod.EventHandler
-	public void preInit(final FMLPreInitializationEvent evt) {
-		this.addModule(new ModuleCore());
-		this.addModule(new ModuleProducts());
-		this.addModule(new ModuleGenetics());
-		this.addModule(new ModuleGeneration());
-		this.addModule(new ModuleLiquids());
-		this.addModule(new ModuleApiary());
-		this.preInit();
-	}
-
-	@Mod.EventHandler
-	public void init(final FMLInitializationEvent evt) {
-		this.init();
-	}
-
-	@Mod.EventHandler
-	public void postInit(final FMLPostInitializationEvent evt) {
-		this.postInit();
-	}
-
 	public ExtraBees() {
 		ExtraBees.instance = this;
+	}
+
+	@Mod.EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		addModule(new ModuleCore());
+		addModule(new ModuleProducts());
+		addModule(new ModuleGenetics());
+		addModule(new ModuleGeneration());
+		addModule(new ModuleLiquids());
+		addModule(new ModuleApiary());
+		preInit();
+	}
+
+	@Mod.EventHandler
+	public void init(FMLInitializationEvent event) {
+		init();
+	}
+
+	@Mod.EventHandler
+	public void postInit(FMLPostInitializationEvent event) {
+		postInit();
 	}
 
 	@Override
@@ -88,7 +83,7 @@ public class ExtraBees extends AbstractMod
 
 	@Override
 	public Class<?>[] getConfigs() {
-		return new Class[] { ConfigurationMain.class, ConfigurationMachines.class };
+		return new Class[]{ConfigurationMain.class, ConfigurationMachines.class};
 	}
 
 	@Override
@@ -116,8 +111,7 @@ public class ExtraBees extends AbstractMod
 		return BinnieCore.isExtraBeesActive();
 	}
 
-	public static class PacketHandler extends BinniePacketHandler
-	{
+	public static class PacketHandler extends BinniePacketHandler {
 		public PacketHandler() {
 			super(ExtraBees.instance);
 		}

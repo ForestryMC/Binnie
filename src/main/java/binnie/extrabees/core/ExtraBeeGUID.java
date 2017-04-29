@@ -1,24 +1,19 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extrabees.core;
 
-import net.minecraft.tileentity.TileEntity;
-import binnie.extrabees.gui.WindowAlvearyHatchery;
-import binnie.extrabees.gui.WindowAlvearyStimulator;
-import binnie.extrabees.gui.WindowAlvearyFrame;
-import binnie.extrabees.gui.WindowAlvearyMutator;
-import binnie.extrabees.gui.database.WindowApiaristDatabase;
-import net.minecraft.inventory.IInventory;
 import binnie.core.craftgui.minecraft.Window;
-import cpw.mods.fml.relauncher.Side;
-import net.minecraft.world.World;
-import net.minecraft.entity.player.EntityPlayer;
 import binnie.core.gui.IBinnieGUID;
+import binnie.extrabees.gui.WindowAlvearyFrame;
+import binnie.extrabees.gui.WindowAlvearyHatchery;
+import binnie.extrabees.gui.WindowAlvearyMutator;
+import binnie.extrabees.gui.WindowAlvearyStimulator;
+import binnie.extrabees.gui.database.WindowApiaristDatabase;
+import cpw.mods.fml.relauncher.Side;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
-public enum ExtraBeeGUID implements IBinnieGUID
-{
+public enum ExtraBeeGUID implements IBinnieGUID {
 	Database,
 	DatabaseNEI,
 	AlvearyMutator,
@@ -28,35 +23,35 @@ public enum ExtraBeeGUID implements IBinnieGUID
 	AlvearyHatchery;
 
 	@Override
-	public Window getWindow(final EntityPlayer player, final World world, final int x, final int y, final int z, final Side side) {
+	public Window getWindow(EntityPlayer player, World world, int x, int y, int z, Side side) {
 		Window window = null;
-		final TileEntity tileEntity = world.getTileEntity(x, y, z);
+		TileEntity tileEntity = world.getTileEntity(x, y, z);
 		IInventory object = null;
 		if (tileEntity instanceof IInventory) {
 			object = (IInventory) tileEntity;
 		}
+
 		switch (this) {
-		case Database:
-		case DatabaseNEI: {
-			window = WindowApiaristDatabase.create(player, side, this != ExtraBeeGUID.Database);
-			break;
-		}
-		case AlvearyMutator: {
-			window = WindowAlvearyMutator.create(player, object, side);
-			break;
-		}
-		case AlvearyFrame: {
-			window = WindowAlvearyFrame.create(player, object, side);
-			break;
-		}
-		case AlvearyStimulator: {
-			window = WindowAlvearyStimulator.create(player, object, side);
-			break;
-		}
-		case AlvearyHatchery: {
-			window = WindowAlvearyHatchery.create(player, object, side);
-			break;
-		}
+			case Database:
+			case DatabaseNEI:
+				window = WindowApiaristDatabase.create(player, side, this != ExtraBeeGUID.Database);
+				break;
+
+			case AlvearyMutator:
+				window = WindowAlvearyMutator.create(player, object, side);
+				break;
+
+			case AlvearyFrame:
+				window = WindowAlvearyFrame.create(player, object, side);
+				break;
+
+			case AlvearyStimulator:
+				window = WindowAlvearyStimulator.create(player, object, side);
+				break;
+
+			case AlvearyHatchery:
+				window = WindowAlvearyHatchery.create(player, object, side);
+				break;
 		}
 		return window;
 	}
