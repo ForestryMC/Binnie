@@ -10,7 +10,7 @@ public interface ICocktailIngredient
 
 	String getIdentifier();
 
-	int getColour();
+	int getColor();
 
 	int getTransparency();
 
