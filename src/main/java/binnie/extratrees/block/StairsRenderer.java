@@ -1,22 +1,17 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.block;
 
 import binnie.extratrees.ExtraTrees;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
 import org.lwjgl.opengl.GL11;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.block.Block;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
-public class StairsRenderer implements ISimpleBlockRenderingHandler
-{
+public class StairsRenderer implements ISimpleBlockRenderingHandler {
 	@Override
-	public void renderInventoryBlock(final Block par1Block, final int metadata, final int modelID, final RenderBlocks renderer) {
-		final Tessellator var4 = Tessellator.instance;
+	public void renderInventoryBlock(Block par1Block, int metadata, int modelID, RenderBlocks renderer) {
+		Tessellator var4 = Tessellator.instance;
 		for (int var5 = 0; var5 < 2; ++var5) {
 			if (var5 == 0) {
 				renderer.setRenderBounds(0.0, 0.0, 0.0, 1.0, 1.0, 0.5);
@@ -24,6 +19,7 @@ public class StairsRenderer implements ISimpleBlockRenderingHandler
 			if (var5 == 1) {
 				renderer.setRenderBounds(0.0, 0.0, 0.5, 1.0, 0.5, 1.0);
 			}
+
 			GL11.glTranslatef(-0.5f, -0.5f, -0.5f);
 			var4.startDrawingQuads();
 			var4.setNormal(0.0f, -1.0f, 0.0f);
@@ -54,23 +50,23 @@ public class StairsRenderer implements ISimpleBlockRenderingHandler
 	}
 
 	@Override
-	public boolean renderWorldBlock(final IBlockAccess world, final int par2, final int par3, final int par4, final Block block, final int modelId, final RenderBlocks renderer) {
-		final BlockETStairs blockStairs = (BlockETStairs) block;
-		blockStairs.func_150147_e(renderer.blockAccess, par2, par3, par4);
+	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+		BlockETStairs blockStairs = (BlockETStairs) block;
+		blockStairs.func_150147_e(renderer.blockAccess, x, y, z);
 		renderer.setRenderBoundsFromBlock(blockStairs);
-		renderer.renderStandardBlock(blockStairs, par2, par3, par4);
-		final boolean var5 = blockStairs.func_150145_f(renderer.blockAccess, par2, par3, par4);
+		renderer.renderStandardBlock(blockStairs, x, y, z);
+		boolean var5 = blockStairs.func_150145_f(renderer.blockAccess, x, y, z);
 		renderer.setRenderBoundsFromBlock(blockStairs);
-		renderer.renderStandardBlock(blockStairs, par2, par3, par4);
-		if (var5 && blockStairs.func_150144_g(renderer.blockAccess, par2, par3, par4)) {
+		renderer.renderStandardBlock(blockStairs, x, y, z);
+		if (var5 && blockStairs.func_150144_g(renderer.blockAccess, x, y, z)) {
 			renderer.setRenderBoundsFromBlock(blockStairs);
-			renderer.renderStandardBlock(blockStairs, par2, par3, par4);
+			renderer.renderStandardBlock(blockStairs, x, y, z);
 		}
 		return true;
 	}
 
 	@Override
-	public boolean shouldRender3DInInventory(final int i) {
+	public boolean shouldRender3DInInventory(int i) {
 		return true;
 	}
 

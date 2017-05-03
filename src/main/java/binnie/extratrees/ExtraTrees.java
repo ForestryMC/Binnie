@@ -1,45 +1,50 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees;
 
-import binnie.extrabees.ExtraBees;
+import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
+import binnie.core.gui.IBinnieGUID;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
-import binnie.extratrees.config.ConfigurationMain;
-import binnie.extratrees.core.ExtraTreesGUID;
-import binnie.core.gui.IBinnieGUID;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import binnie.extratrees.core.ModuleCore;
-import binnie.extratrees.machines.ModuleMachine;
-import binnie.extratrees.carpentry.ModuleCarpentry;
-import binnie.extratrees.genetics.ModuleGenetics;
+import binnie.extrabees.ExtraBees;
 import binnie.extratrees.alcohol.ModuleAlcohol;
-import binnie.extratrees.item.ModuleItems;
+import binnie.extratrees.alcohol.drink.ItemDrink;
 import binnie.extratrees.block.ModuleBlocks;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import binnie.extratrees.carpentry.BlockStainedDesign;
 import binnie.extratrees.block.decor.BlockHedge;
 import binnie.extratrees.block.decor.BlockMultiFence;
-import binnie.extratrees.alcohol.drink.ItemDrink;
 import binnie.extratrees.carpentry.BlockCarpentry;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import cpw.mods.fml.common.SidedProxy;
+import binnie.extratrees.carpentry.BlockStainedDesign;
+import binnie.extratrees.carpentry.ModuleCarpentry;
+import binnie.extratrees.config.ConfigurationMain;
+import binnie.extratrees.core.ExtraTreesGUID;
+import binnie.extratrees.core.ModuleCore;
+import binnie.extratrees.genetics.ModuleGenetics;
+import binnie.extratrees.item.ModuleItems;
+import binnie.extratrees.machines.ModuleMachine;
 import binnie.extratrees.proxy.Proxy;
 import cpw.mods.fml.common.Mod;
-import binnie.core.AbstractMod;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 
-@Mod(modid = "ExtraTrees", name = "Extra Trees", useMetadata = true, dependencies = "after:BinnieCore")
-public class ExtraTrees extends AbstractMod
-{
+@Mod(
+	modid = "ExtraTrees",
+	name = "Extra Trees",
+	useMetadata = true,
+	dependencies = "after:BinnieCore"
+)
+public class ExtraTrees extends AbstractMod {
 	@Mod.Instance("ExtraTrees")
 	public static ExtraTrees instance;
-	@SidedProxy(clientSide = "binnie.extratrees.proxy.ProxyClient", serverSide = "binnie.extratrees.proxy.ProxyServer")
+
+	@SidedProxy(
+		clientSide = "binnie.extratrees.proxy.ProxyClient",
+		serverSide = "binnie.extratrees.proxy.ProxyServer"
+	)
 	public static Proxy proxy;
+
 	public static Item itemDictionary;
 	public static Item itemDictionaryLepi;
 	public static Item itemMisc;
@@ -70,30 +75,30 @@ public class ExtraTrees extends AbstractMod
 	public static int fenceID;
 	public static int stairsID;
 
-	@Mod.EventHandler
-	public void preInit(final FMLPreInitializationEvent evt) {
-		this.addModule(new ModuleBlocks());
-		this.addModule(new ModuleItems());
-		this.addModule(new ModuleAlcohol());
-		this.addModule(new ModuleGenetics());
-		this.addModule(new ModuleCarpentry());
-		this.addModule(new ModuleMachine());
-		this.addModule(new ModuleCore());
-		this.preInit();
-	}
-
-	@Mod.EventHandler
-	public void init(final FMLInitializationEvent evt) {
-		this.init();
-	}
-
-	@Mod.EventHandler
-	public void postInit(final FMLPostInitializationEvent evt) {
-		this.postInit();
-	}
-
 	public ExtraTrees() {
 		ExtraTrees.instance = this;
+	}
+
+	@Mod.EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
+		addModule(new ModuleBlocks());
+		addModule(new ModuleItems());
+		addModule(new ModuleAlcohol());
+		addModule(new ModuleGenetics());
+		addModule(new ModuleCarpentry());
+		addModule(new ModuleMachine());
+		addModule(new ModuleCore());
+		preInit();
+	}
+
+	@Mod.EventHandler
+	public void init(FMLInitializationEvent event) {
+		init();
+	}
+
+	@Mod.EventHandler
+	public void postInit(FMLPostInitializationEvent event) {
+		postInit();
 	}
 
 	@Override
@@ -103,7 +108,7 @@ public class ExtraTrees extends AbstractMod
 
 	@Override
 	public Class[] getConfigs() {
-		return new Class[] { ConfigurationMain.class };
+		return new Class[]{ConfigurationMain.class};
 	}
 
 	@Override
@@ -131,8 +136,7 @@ public class ExtraTrees extends AbstractMod
 		return BinnieCore.isExtraTreesActive();
 	}
 
-	public static class PacketHandler extends BinniePacketHandler
-	{
+	public static class PacketHandler extends BinniePacketHandler {
 		public PacketHandler() {
 			super(ExtraBees.instance);
 		}

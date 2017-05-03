@@ -1,44 +1,54 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.block.decor;
 
-import net.minecraft.world.ColorizerFoliage;
-import net.minecraft.item.ItemStack;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import forestry.api.core.ForestryAPI;
-import net.minecraft.util.IIcon;
+import binnie.extratrees.block.ModuleBlocks;
 import binnie.extratrees.genetics.ExtraTreeSpecies;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.init.Blocks;
-import binnie.extratrees.block.ModuleBlocks;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.entity.Entity;
-import java.util.List;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.world.World;
+import forestry.api.core.ForestryAPI;
 import forestry.api.core.Tabs;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.ColorizerFoliage;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 
-public class BlockHedge extends Block implements IBlockFence
-{
+import java.util.List;
+
+public class BlockHedge extends Block implements IBlockFence {
 	public BlockHedge() {
 		super(Material.leaves);
-		this.setCreativeTab(Tabs.tabArboriculture);
-		this.setBlockName("hedge");
+		setCreativeTab(Tabs.tabArboriculture);
+		setBlockName("hedge");
+	}
+
+	public static boolean func_149825_a(Block block) {
+		return BlockFence.canConnect(block);
+	}
+
+	public static int getColor(int meta) {
+		ExtraTreeSpecies.LeafType type = ExtraTreeSpecies.LeafType.values()[meta % 6];
+		if (type == ExtraTreeSpecies.LeafType.Conifer) {
+			return ColorizerFoliage.getFoliageColorPine();
+		}
+		double d0 = 0.5;
+		double d2 = 1.0;
+		return ColorizerFoliage.getFoliageColor(d0, d2);
 	}
 
 	@Override
-	public void addCollisionBoxesToList(final World world, final int x, final int y, final int z, final AxisAlignedBB aabb, final List list, final Entity p_149743_7_) {
-		final boolean connectNegZ = this.canConnectFenceTo(world, x, y, z - 1);
-		final boolean connectPosZ = this.canConnectFenceTo(world, x, y, z + 1);
-		final boolean connectNegX = this.canConnectFenceTo(world, x - 1, y, z);
-		final boolean connectPosX = this.canConnectFenceTo(world, x + 1, y, z);
+	public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB aabb, List list, Entity entity) {
+		boolean connectNegZ = canConnectFenceTo(world, x, y, z - 1);
+		boolean connectPosZ = canConnectFenceTo(world, x, y, z + 1);
+		boolean connectNegX = canConnectFenceTo(world, x - 1, y, z);
+		boolean connectPosX = canConnectFenceTo(world, x + 1, y, z);
 		float f = 0.25f;
 		float f2 = 0.75f;
 		float f3 = 0.25f;
@@ -50,9 +60,10 @@ public class BlockHedge extends Block implements IBlockFence
 			f4 = 1.0f;
 		}
 		if (connectNegZ || connectPosZ) {
-			this.setBlockBounds(f, 0.0f, f3, f2, 1.5f, f4);
-			super.addCollisionBoxesToList(world, x, y, z, aabb, list, p_149743_7_);
+			setBlockBounds(f, 0.0f, f3, f2, 1.5f, f4);
+			super.addCollisionBoxesToList(world, x, y, z, aabb, list, entity);
 		}
+
 		f3 = 0.25f;
 		f4 = 0.75f;
 		if (connectNegX) {
@@ -62,8 +73,8 @@ public class BlockHedge extends Block implements IBlockFence
 			f2 = 1.0f;
 		}
 		if (connectNegX || connectPosX || (!connectNegZ && !connectPosZ)) {
-			this.setBlockBounds(f, 0.0f, f3, f2, 1.5f, f4);
-			super.addCollisionBoxesToList(world, x, y, z, aabb, list, p_149743_7_);
+			setBlockBounds(f, 0.0f, f3, f2, 1.5f, f4);
+			super.addCollisionBoxesToList(world, x, y, z, aabb, list, entity);
 		}
 		if (connectNegZ) {
 			f3 = 0.0f;
@@ -71,15 +82,15 @@ public class BlockHedge extends Block implements IBlockFence
 		if (connectPosZ) {
 			f4 = 1.0f;
 		}
-		this.setBlockBounds(f, 0.0f, f3, f2, 1.0f, f4);
+		setBlockBounds(f, 0.0f, f3, f2, 1.0f, f4);
 	}
 
 	@Override
-	public void setBlockBoundsBasedOnState(final IBlockAccess world, final int x, final int y, final int z) {
-		final boolean connectNegZ = this.canConnectFenceTo(world, x, y, z - 1);
-		final boolean connectPosZ = this.canConnectFenceTo(world, x, y, z + 1);
-		final boolean connectNegX = this.canConnectFenceTo(world, x - 1, y, z);
-		final boolean connectPosX = this.canConnectFenceTo(world, x + 1, y, z);
+	public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
+		boolean connectNegZ = canConnectFenceTo(world, x, y, z - 1);
+		boolean connectPosZ = canConnectFenceTo(world, x, y, z + 1);
+		boolean connectNegX = canConnectFenceTo(world, x - 1, y, z);
+		boolean connectPosX = canConnectFenceTo(world, x + 1, y, z);
 		float f = 0.25f;
 		float f2 = 0.75f;
 		float f3 = 0.25f;
@@ -96,7 +107,7 @@ public class BlockHedge extends Block implements IBlockFence
 		if (connectPosX) {
 			f2 = 1.0f;
 		}
-		this.setBlockBounds(f, 0.0f, f3, f2, 1.0f, f4);
+		setBlockBounds(f, 0.0f, f3, f2, 1.0f, f4);
 	}
 
 	@Override
@@ -110,7 +121,7 @@ public class BlockHedge extends Block implements IBlockFence
 	}
 
 	@Override
-	public boolean getBlocksMovement(final IBlockAccess p_149655_1_, final int p_149655_2_, final int p_149655_3_, final int p_149655_4_) {
+	public boolean getBlocksMovement(IBlockAccess world, int x, int y, int z) {
 		return false;
 	}
 
@@ -119,44 +130,45 @@ public class BlockHedge extends Block implements IBlockFence
 		return ModuleBlocks.hedgeRenderID;
 	}
 
-	public boolean canConnectFenceTo(final IBlockAccess p_149826_1_, final int p_149826_2_, final int p_149826_3_, final int p_149826_4_) {
-		final Block block = p_149826_1_.getBlock(p_149826_2_, p_149826_3_, p_149826_4_);
-		return block == this || block == Blocks.fence_gate || func_149825_a(block) || block.isLeaves(p_149826_1_, p_149826_2_, p_149826_3_, p_149826_4_) || (block.getMaterial().isOpaque() && block.renderAsNormalBlock() && block.getMaterial() != Material.gourd);
-	}
-
-	public static boolean func_149825_a(final Block p_149825_0_) {
-		return BlockFence.canConnect(p_149825_0_);
+	public boolean canConnectFenceTo(IBlockAccess world, int x, int y, int z) {
+		Block block = world.getBlock(x, y, z);
+		return block == this
+			|| block == Blocks.fence_gate
+			|| func_149825_a(block)
+			|| block.isLeaves(world, x, y, z)
+			|| (block.getMaterial().isOpaque() && block.renderAsNormalBlock() && block.getMaterial() != Material.gourd);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(final IBlockAccess p_149646_1_, final int p_149646_2_, final int p_149646_3_, final int p_149646_4_, final int p_149646_5_) {
+	public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
 		return true;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerBlockIcons(final IIconRegister p_149651_1_) {
+	public void registerBlockIcons(IIconRegister register) {
+		// ignored
 	}
 
-	private ExtraTreeSpecies.LeafType getType(final int meta) {
+	private ExtraTreeSpecies.LeafType getType(int meta) {
 		return ExtraTreeSpecies.LeafType.values()[meta % 8];
 	}
 
-	private boolean isFull(final int meta) {
+	private boolean isFull(int meta) {
 		return meta / 8 > 0;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(final int p_149691_1_, final int meta) {
-		final ExtraTreeSpecies.LeafType type = this.getType(meta);
-		return ForestryAPI.textureManager.getIcon(this.isFull(meta) ? type.plainUID : type.fancyUID);
+	public IIcon getIcon(int side, int meta) {
+		ExtraTreeSpecies.LeafType type = getType(meta);
+		return ForestryAPI.textureManager.getIcon(isFull(meta) ? type.plainUID : type.fancyUID);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(final Item item, final CreativeTabs tab, final List list) {
+	public void getSubBlocks(Item item, CreativeTabs tab, List list) {
 		for (int i = 0; i < 6; ++i) {
 			for (int f = 0; f < 2; ++f) {
 				list.add(new ItemStack(item, 1, i + f * 8));
@@ -166,17 +178,7 @@ public class BlockHedge extends Block implements IBlockFence
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int colorMultiplier(final IBlockAccess world, final int x, final int y, final int z) {
+	public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
 		return getColor(world.getBlockMetadata(x, y, z));
-	}
-
-	public static int getColor(final int meta) {
-		final ExtraTreeSpecies.LeafType type = ExtraTreeSpecies.LeafType.values()[meta % 6];
-		if (type == ExtraTreeSpecies.LeafType.Conifer) {
-			return ColorizerFoliage.getFoliageColorPine();
-		}
-		final double d0 = 0.5;
-		final double d2 = 1.0;
-		return ColorizerFoliage.getFoliageColor(d0, d2);
 	}
 }

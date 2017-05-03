@@ -1,19 +1,15 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.minecraft;
 
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
-import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.ITooltipHelp;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.TopLevelWidget;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.events.EventWidget;

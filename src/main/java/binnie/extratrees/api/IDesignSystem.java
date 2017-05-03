@@ -1,30 +1,25 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.api;
 
-import net.minecraft.item.ItemStack;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-public interface IDesignSystem
-{
-	IIcon getPrimaryIcon(final IPattern p0);
+public interface IDesignSystem {
+	IIcon getPrimaryIcon(IPattern pattern);
 
-	IIcon getSecondaryIcon(final IPattern p0);
+	IIcon getSecondaryIcon(IPattern pattern);
 
-	void registerIcons(final IIconRegister p0);
+	void registerIcons(IIconRegister register);
 
 	IDesignMaterial getDefaultMaterial();
 
-	IDesignMaterial getMaterial(final int p0);
+	IDesignMaterial getMaterial(int id);
 
-	int getMaterialIndex(final IDesignMaterial p0);
+	int getMaterialIndex(IDesignMaterial wood);
 
 	IDesignMaterial getDefaultMaterial2();
 
 	ItemStack getAdhesive();
 
-	IDesignMaterial getMaterial(final ItemStack p0);
+	IDesignMaterial getMaterial(ItemStack stack);
 }

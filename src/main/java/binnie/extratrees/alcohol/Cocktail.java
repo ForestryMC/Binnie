@@ -1,93 +1,46 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.alcohol;
 
-import binnie.extratrees.alcohol.drink.DrinkManager;
 import binnie.extratrees.alcohol.drink.DrinkLiquid;
+import binnie.extratrees.alcohol.drink.DrinkManager;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public enum Cocktail
-{
-	Bellini("Bellini", Glassware.Flute, 15974764),
-	BlackRussian("Black Russian", Glassware.OldFashioned, 3347992),
-	BloodyMary("Bloody Mary", Glassware.Highball, 12660480),
-	Cosmopolitan("Cosmopolitan", Glassware.Cocktail, 14811136),
-	CubaLibre("Cuba Libre", Glassware.Highball, 9044996),
-	FrenchConnection("French Connection", Glassware.OldFashioned, 16166183),
-	GodFather("God Father", Glassware.OldFashioned, 13134109),
-	GodMother("God Mother", Glassware.OldFashioned, 14644737),
-	Grasshopper("Grasshopper", Glassware.Cocktail, 4441194),
-	French75("French 75", Glassware.Flute, 15521949),
-	HarveyWallbanger("Harvey Wallbanger", Glassware.Highball, 16371968),
-	HemingwaySpecial("Hemingway Special", Glassware.Cocktail, 15201205),
-	HorsesNeck("Horse's Neck", Glassware.OldFashioned, 16692480),
-	IrishCoffee("Irish Coffee", Glassware.Wine, 4460034),
-	Kir("Kir", Glassware.Wine, 16004638),
-	Bramble("Bramble", Glassware.OldFashioned, 12804974),
-	B52("B-52", Glassware.Shot, 12934656),
-	DarkNStormy("Dark 'N' Stormy", Glassware.Highball, 12215848),
-	DirtyMartini("Dirty Martini", Glassware.Cocktail, 14332499),
-	ExpressoMartini("Expresso Martini", Glassware.Cocktail, 6498346),
-	FrenchMartini("French Martini", Glassware.Cocktail, 12660045),
-	Kamikaze("Kamikaze", Glassware.Cocktail, 14801069),
-	LemonDropMartini("Lemon Drop Martini", Glassware.Cocktail, 16375437),
-	PiscoSour("Pisco Sour", Glassware.OldFashioned, 15394463),
-	RussianSpringPunch("Russian Spring Punch", Glassware.Highball, 11805740),
-	SpritzVeneziano("Spritz Veneziano", Glassware.OldFashioned, 15355648),
-	TommysMargarita("Tommy's Margartita", Glassware.Cocktail, 14867592),
-	Vesper("Vesper", Glassware.Cocktail, 15658732),
-	SexOnTheBeach("Sex on the Beach", Glassware.Highball, 16677426);
+public enum Cocktail {
+	Bellini("Bellini", Glassware.Flute, 0xf3c16c),
+	BlackRussian("Black Russian", Glassware.OldFashioned, 0x331618),
+	BloodyMary("Bloody Mary", Glassware.Highball, 0xc12f00),
+	Cosmopolitan("Cosmopolitan", Glassware.Cocktail, 0xe20000),
+	CubaLibre("Cuba Libre", Glassware.Highball, 0x8a0404),
+	FrenchConnection("French Connection", Glassware.OldFashioned, 0xf6ad27),
+	GodFather("God Father", Glassware.OldFashioned, 0xc8691d),
+	GodMother("God Mother", Glassware.OldFashioned, 0xdf7601),
+	Grasshopper("Grasshopper", Glassware.Cocktail, 0x43c46a),
+	French75("French 75", Glassware.Flute, 0xecd89d),
+	HarveyWallbanger("Harvey Wallbanger", Glassware.Highball, 0xf9d100),
+	HemingwaySpecial("Hemingway Special", Glassware.Cocktail, 0xe7f3b5),
+	HorsesNeck("Horse's Neck", Glassware.OldFashioned, 0xfeb500),
+	IrishCoffee("Irish Coffee", Glassware.Wine, 0x440e02),
+	Kir("Kir", Glassware.Wine, 0xf4361e),
+	Bramble("Bramble", Glassware.OldFashioned, 0xc3636e),
+	B52("B-52", Glassware.Shot, 0xc55e00),
+	DarkNStormy("Dark 'N' Stormy", Glassware.Highball, 0xba6628),
+	DirtyMartini("Dirty Martini", Glassware.Cocktail, 0xdab253),
+	ExpressoMartini("Expresso Martini", Glassware.Cocktail, 0x63282a),
+	FrenchMartini("French Martini", Glassware.Cocktail, 0xc12d4d),
+	Kamikaze("Kamikaze", Glassware.Cocktail, 0xe1d8ad),
+	LemonDropMartini("Lemon Drop Martini", Glassware.Cocktail, 0xf9de8d),
+	PiscoSour("Pisco Sour", Glassware.OldFashioned, 0xeae69f),
+	RussianSpringPunch("Russian Spring Punch", Glassware.Highball, 0xb4242c),
+	SpritzVeneziano("Spritz Veneziano", Glassware.OldFashioned, 0xea4f00),
+	TommysMargarita("Tommy's Margartita", Glassware.Cocktail, 0xe2dc88),
+	Vesper("Vesper", Glassware.Cocktail, 0xeeeeec),
+	SexOnTheBeach("Sex on the Beach", Glassware.Highball, 0xfe7a32);
 
-	static final Map<String, ICocktailIngredient> cocktailIngredients;
-	public String name;
-	public Glassware glassware;
-	public int colour;
-	public Map<ICocktailIngredient, Integer> ingredients;
-
-	private Cocktail(final String name, final Glassware glassware, final int colour) {
-		this.ingredients = new HashMap<ICocktailIngredient, Integer>();
-		this.name = name;
-		this.glassware = glassware;
-		this.colour = colour;
-	}
-
-	private void add(final ICocktailIngredient ingredient, final int ratio) {
-		this.ingredients.put(ingredient, ratio);
-	}
-
-	public static Cocktail get(final Map<ICocktailIngredient, Integer> ingredients) {
-		for (final Cocktail cocktail : values()) {
-			boolean is = true;
-			for (final Map.Entry<ICocktailIngredient, Integer> entry : ingredients.entrySet()) {
-				if (cocktail.ingredients.get(entry.getKey()) != entry.getValue()) {
-					is = false;
-				}
-			}
-			if (is) {
-				return cocktail;
-			}
-		}
-		return null;
-	}
-
-	public static void registerIngredient(final ICocktailIngredient ingredient) {
-		Cocktail.cocktailIngredients.put(ingredient.getIdentifier().toLowerCase(), ingredient);
-		DrinkManager.registerDrinkLiquid(ingredient.getIdentifier().toLowerCase(), new DrinkLiquid(ingredient.getName(), ingredient.getColor(), ingredient.getTransparency(), ingredient.getABV()));
-	}
-
-	public static ICocktailIngredient getIngredient(final String name2) {
-		return Cocktail.cocktailIngredients.get(name2.toLowerCase());
-	}
-
-	public static boolean isIngredient(final String name) {
-		return name != null && Cocktail.cocktailIngredients.containsKey(name.toLowerCase());
-	}
+	static Map<String, ICocktailIngredient> cocktailIngredients;
 
 	static {
-		cocktailIngredients = new HashMap<String, ICocktailIngredient>();
+		cocktailIngredients = new HashMap<>();
 		Cocktail.Bellini.add(Alcohol.SparklingWine, 2);
 		Cocktail.Bellini.add(Juice.Peach, 1);
 		Cocktail.BlackRussian.add(Spirit.Vodka, 5);
@@ -171,5 +124,49 @@ public enum Cocktail
 		Cocktail.SexOnTheBeach.add(Liqueur.Peach, 1);
 		Cocktail.SexOnTheBeach.add(Juice.Orange, 2);
 		Cocktail.SexOnTheBeach.add(Juice.Cranberry, 2);
+	}
+
+	public String name;
+	public Glassware glassware;
+	public int colour;
+	public Map<ICocktailIngredient, Integer> ingredients;
+
+	Cocktail(String name, Glassware glassware, int colour) {
+		ingredients = new HashMap<>();
+		this.name = name;
+		this.glassware = glassware;
+		this.colour = colour;
+	}
+
+	public static Cocktail get(Map<ICocktailIngredient, Integer> ingredients) {
+		for (Cocktail cocktail : values()) {
+			boolean is = true;
+			for (Map.Entry<ICocktailIngredient, Integer> entry : ingredients.entrySet()) {
+				if (cocktail.ingredients.get(entry.getKey()) != entry.getValue()) {
+					is = false;
+				}
+			}
+			if (is) {
+				return cocktail;
+			}
+		}
+		return null;
+	}
+
+	public static void registerIngredient(ICocktailIngredient ingredient) {
+		Cocktail.cocktailIngredients.put(ingredient.getIdentifier().toLowerCase(), ingredient);
+		DrinkManager.registerDrinkLiquid(ingredient.getIdentifier().toLowerCase(), new DrinkLiquid(ingredient.getName(), ingredient.getColor(), ingredient.getTransparency(), ingredient.getABV()));
+	}
+
+	public static ICocktailIngredient getIngredient(String name2) {
+		return Cocktail.cocktailIngredients.get(name2.toLowerCase());
+	}
+
+	public static boolean isIngredient(String name) {
+		return name != null && Cocktail.cocktailIngredients.containsKey(name.toLowerCase());
+	}
+
+	private void add(ICocktailIngredient ingredient, int ratio) {
+		ingredients.put(ingredient, ratio);
 	}
 }

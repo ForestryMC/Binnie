@@ -48,7 +48,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Mod(modid = "BinnieCore", name = "Binnie Core", useMetadata = true)
-public final class BinnieCore extends AbstractMod {
+public class BinnieCore extends AbstractMod {
 	@Mod.Instance("BinnieCore")
 	public static BinnieCore instance;
 	@SidedProxy(clientSide = "binnie.core.proxy.BinnieProxyClient", serverSide = "binnie.core.proxy.BinnieProxyServer")

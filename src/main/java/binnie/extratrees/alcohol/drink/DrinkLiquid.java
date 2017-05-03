@@ -1,21 +1,17 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.alcohol.drink;
 
 import binnie.Binnie;
 import net.minecraftforge.fluids.FluidStack;
 
-public class DrinkLiquid implements IDrinkLiquid
-{
-	String name;
-	int colour;
-	float transparency;
-	float abv;
+public class DrinkLiquid implements IDrinkLiquid {
 	public String ident;
 
-	public DrinkLiquid(final String name, final int colour, final float transparency, final float abv) {
+	protected String name;
+	protected int colour;
+	protected float transparency;
+	protected float abv;
+
+	public DrinkLiquid(String name, int colour, float transparency, float abv) {
 		this.name = name;
 		this.colour = colour;
 		this.transparency = transparency;
@@ -29,36 +25,36 @@ public class DrinkLiquid implements IDrinkLiquid
 
 	@Override
 	public int getColour() {
-		return this.colour;
+		return colour;
 	}
 
 	@Override
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	@Override
 	public float getTransparency() {
-		return this.transparency;
+		return transparency;
 	}
 
 	@Override
 	public String getIdentifier() {
-		return this.ident;
+		return ident;
 	}
 
 	@Override
-	public void setIdent(final String lowerCase) {
-		this.ident = lowerCase;
+	public void setIdent(String lowerCase) {
+		ident = lowerCase;
 	}
 
 	@Override
 	public float getABV() {
-		return this.abv;
+		return abv;
 	}
 
 	@Override
-	public FluidStack get(final int amount) {
-		return Binnie.Liquid.getLiquidStack(this.ident, amount);
+	public FluidStack get(int amount) {
+		return Binnie.Liquid.getLiquidStack(ident, amount);
 	}
 }

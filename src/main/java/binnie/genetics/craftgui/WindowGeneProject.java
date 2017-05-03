@@ -9,7 +9,7 @@ import net.minecraft.inventory.IInventory;
 
 // TODO unused class?
 public class WindowGeneProject extends Window {
-	public WindowGeneProject(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowGeneProject(EntityPlayer player, IInventory inventory, Side side) {
 		super(100.0f, 100.0f, player, inventory, side);
 	}
 

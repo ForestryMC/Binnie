@@ -1,18 +1,14 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.item;
 
-import java.util.List;
+import binnie.core.item.IItemMisc;
 import binnie.extratrees.ExtraTrees;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import binnie.core.item.IItemMisc;
 
-public enum ExtraTreeItems implements IItemMisc
-{
+import java.util.List;
+
+public enum ExtraTreeItems implements IItemMisc {
 	CarpentryHammer("Fake Hammer", "carpentryHammer"),
 	Sawdust("Sawdust", "sawdust"),
 	Bark("Bark", "bark"),
@@ -28,32 +24,33 @@ public enum ExtraTreeItems implements IItemMisc
 	GrainRoasted("Roasted Grain", "grainRoasted"),
 	GlassFitting("Glass Fittings", "glassFitting");
 
-	String name;
-	String iconPath;
-	IIcon icon;
+	protected String name;
+	protected String iconPath;
+	protected IIcon icon;
 
-	private ExtraTreeItems(final String name, final String iconPath) {
+	ExtraTreeItems(String name, String iconPath) {
 		this.name = name;
 		this.iconPath = iconPath;
 	}
 
 	@Override
-	public IIcon getIcon(final ItemStack itemStack) {
-		return this.icon;
+	public IIcon getIcon(ItemStack itemStack) {
+		return icon;
 	}
 
 	@Override
-	public void registerIcons(final IIconRegister register) {
-		this.icon = ExtraTrees.proxy.getIcon(register, this.iconPath);
+	public void registerIcons(IIconRegister register) {
+		icon = ExtraTrees.proxy.getIcon(register, iconPath);
 	}
 
 	@Override
-	public void addInformation(final List data) {
+	public void addInformation(List tooltip) {
+		// ignored
 	}
 
 	@Override
-	public String getName(final ItemStack itemStack) {
-		return this.name;
+	public String getName(ItemStack itemStack) {
+		return name;
 	}
 
 	@Override
@@ -62,7 +59,7 @@ public enum ExtraTreeItems implements IItemMisc
 	}
 
 	@Override
-	public ItemStack get(final int count) {
-		return new ItemStack(ExtraTrees.itemMisc, count, this.ordinal());
+	public ItemStack get(int count) {
+		return new ItemStack(ExtraTrees.itemMisc, count, ordinal());
 	}
 }

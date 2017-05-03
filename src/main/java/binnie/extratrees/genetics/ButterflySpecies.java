@@ -1,37 +1,33 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.genetics;
 
-import net.minecraftforge.common.BiomeDictionary;
-import java.util.EnumSet;
-import forestry.api.lepidopterology.EnumFlutterType;
-import forestry.api.genetics.IIndividual;
-import com.mojang.authlib.GameProfile;
-import net.minecraft.world.World;
-import forestry.api.genetics.AlleleManager;
+import binnie.Binnie;
 import binnie.core.Mods;
-import net.minecraft.init.Items;
-import forestry.api.lepidopterology.IButterflyRoot;
-import forestry.api.genetics.IAllele;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.core.IIconProvider;
-import forestry.api.core.EnumHumidity;
-import forestry.api.core.EnumTemperature;
+import binnie.core.resource.BinnieResource;
 import binnie.core.resource.ResourceType;
 import binnie.extratrees.ExtraTrees;
-import binnie.Binnie;
-import java.util.HashMap;
-import net.minecraft.item.ItemStack;
-import java.util.Map;
+import com.mojang.authlib.GameProfile;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.EnumHumidity;
+import forestry.api.core.EnumTemperature;
+import forestry.api.core.IIconProvider;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IClassification;
-import binnie.core.resource.BinnieResource;
+import forestry.api.genetics.IIndividual;
+import forestry.api.lepidopterology.EnumFlutterType;
 import forestry.api.lepidopterology.IAlleleButterflySpecies;
+import forestry.api.lepidopterology.IButterflyRoot;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import net.minecraftforge.common.BiomeDictionary;
 
-public enum ButterflySpecies implements IAlleleButterflySpecies
-{
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
+
+public enum ButterflySpecies implements IAlleleButterflySpecies {
 	WhiteAdmiral("White Admiral", "Limenitis camilla", 16448250),
 	PurpleEmperor("Purple Emperor", "Apatura iris", 4338374),
 	RedAdmiral("Red Admiral", "Vanessa atalanta", 15101764),
@@ -55,28 +51,30 @@ public enum ButterflySpecies implements IAlleleButterflySpecies
 	Monarch("Monarch", "Danaus plexippus", 16757254),
 	MarbledWhite("Marbled White", "Melanargia galathea", 15527148);
 
-	String name;
-	String branchName;
-	String scientific;
-	BinnieResource texture;
 	public IClassification branch;
-	int colour;
+
+	protected String name;
+	protected String branchName;
+	protected String scientific;
+	protected BinnieResource texture;
+	protected int color;
+
 	private Map<ItemStack, Float> butterflyLoot;
 	private Map<ItemStack, Float> caterpillarLoot;
 
-	private ButterflySpecies(final String name, final String scientific, final int colour) {
-		this.butterflyLoot = new HashMap<ItemStack, Float>();
-		this.caterpillarLoot = new HashMap<ItemStack, Float>();
+	ButterflySpecies(String name, String scientific, int color) {
 		this.name = name;
-		this.branchName = scientific.split(" ")[0].toLowerCase();
 		this.scientific = scientific.split(" ")[1];
-		this.texture = Binnie.Resource.getPNG(ExtraTrees.instance, ResourceType.Entity, this.toString());
-		this.colour = colour;
+		this.color = color;
+		butterflyLoot = new HashMap<>();
+		caterpillarLoot = new HashMap<>();
+		branchName = scientific.split(" ")[0].toLowerCase();
+		texture = Binnie.Resource.getPNG(ExtraTrees.instance, ResourceType.Entity, toString());
 	}
 
 	@Override
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	@Override
@@ -111,7 +109,7 @@ public enum ButterflySpecies implements IAlleleButterflySpecies
 
 	@Override
 	public String getBinomial() {
-		return this.scientific;
+		return scientific;
 	}
 
 	@Override
@@ -121,7 +119,7 @@ public enum ButterflySpecies implements IAlleleButterflySpecies
 
 	@Override
 	public IClassification getBranch() {
-		return this.branch;
+		return branch;
 	}
 
 	@Override
@@ -132,7 +130,7 @@ public enum ButterflySpecies implements IAlleleButterflySpecies
 
 	@Override
 	public String getUID() {
-		return "extrabutterflies.species." + this.toString().toLowerCase();
+		return "extrabutterflies.species." + toString().toLowerCase();
 	}
 
 	@Override
@@ -142,11 +140,11 @@ public enum ButterflySpecies implements IAlleleButterflySpecies
 
 	@Override
 	public String getEntityTexture() {
-		return this.texture.getResourceLocation().toString();
+		return texture.getResourceLocation().toString();
 	}
 
 	public IAllele[] getTemplate() {
-		final IAllele[] def = this.getRoot().getDefaultTemplate().clone();
+		IAllele[] def = getRoot().getDefaultTemplate().clone();
 		def[0] = this;
 		return def;
 	}
@@ -167,18 +165,18 @@ public enum ButterflySpecies implements IAlleleButterflySpecies
 	}
 
 	@Override
-	public int getIconColour(final int renderPass) {
-		return (renderPass > 0) ? 16777215 : this.colour;
+	public int getIconColour(int renderPass) {
+		return (renderPass > 0) ? 16777215 : color;
 	}
 
 	@Override
 	public Map<ItemStack, Float> getButterflyLoot() {
-		return new HashMap<ItemStack, Float>();
+		return new HashMap<>();
 	}
 
 	@Override
 	public Map<ItemStack, Float> getCaterpillarLoot() {
-		return new HashMap<ItemStack, Float>();
+		return new HashMap<>();
 	}
 
 	@Override
@@ -187,23 +185,26 @@ public enum ButterflySpecies implements IAlleleButterflySpecies
 	}
 
 	@Override
-	public float getResearchSuitability(final ItemStack itemstack) {
+	public float getResearchSuitability(ItemStack itemstack) {
 		if (itemstack == null) {
 			return 0.0f;
 		}
 		if (itemstack.getItem() == Items.glass_bottle) {
 			return 0.9f;
 		}
-		for (final ItemStack stack : this.butterflyLoot.keySet()) {
+
+		for (ItemStack stack : butterflyLoot.keySet()) {
 			if (stack.isItemEqual(itemstack)) {
 				return 1.0f;
 			}
 		}
-		for (final ItemStack stack : this.caterpillarLoot.keySet()) {
+
+		for (ItemStack stack : caterpillarLoot.keySet()) {
 			if (stack.isItemEqual(itemstack)) {
 				return 1.0f;
 			}
 		}
+
 		if (itemstack.getItem() == Mods.Forestry.item("honeyDrop")) {
 			return 0.5f;
 		}
@@ -216,7 +217,8 @@ public enum ButterflySpecies implements IAlleleButterflySpecies
 		if (AlleleManager.alleleRegistry.isIndividual(itemstack)) {
 			return 1.0f;
 		}
-		for (final Map.Entry<ItemStack, Float> entry : this.getRoot().getResearchCatalysts().entrySet()) {
+
+		for (Map.Entry<ItemStack, Float> entry : getRoot().getResearchCatalysts().entrySet()) {
 			if (entry.getKey().isItemEqual(itemstack)) {
 				return entry.getValue();
 			}
@@ -225,8 +227,8 @@ public enum ButterflySpecies implements IAlleleButterflySpecies
 	}
 
 	@Override
-	public ItemStack[] getResearchBounty(final World world, final GameProfile researcher, final IIndividual individual, final int bountyLevel) {
-		return new ItemStack[] { this.getRoot().getMemberStack(individual.copy(), EnumFlutterType.SERUM.ordinal()) };
+	public ItemStack[] getResearchBounty(World world, GameProfile researcher, IIndividual individual, int bountyLevel) {
+		return new ItemStack[]{getRoot().getMemberStack(individual.copy(), EnumFlutterType.SERUM.ordinal())};
 	}
 
 	@Override
@@ -246,6 +248,6 @@ public enum ButterflySpecies implements IAlleleButterflySpecies
 
 	@Override
 	public String getUnlocalizedName() {
-		return this.getUID();
+		return getUID();
 	}
 }

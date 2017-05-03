@@ -1,11 +1,11 @@
 package binnie.core.craftgui.controls.core;
 
-import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.ITooltipHelp;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.Widget;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.minecraft.Window;

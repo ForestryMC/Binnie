@@ -1,29 +1,24 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.machines;
 
-import net.minecraft.client.renderer.RenderBlocks;
-import binnie.core.machines.TileEntityMachine;
-import net.minecraft.tileentity.TileEntity;
-import binnie.core.resource.ResourceType;
 import binnie.Binnie;
-import binnie.core.resource.BinnieResource;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
-import binnie.core.machines.Machine;
-import binnie.extratrees.core.ExtraTreesGUID;
-import binnie.core.machines.component.IInteraction;
-import binnie.core.machines.MachineComponent;
-import binnie.extratrees.ExtraTrees;
-import net.minecraft.item.ItemStack;
 import binnie.core.BinnieCore;
-import binnie.core.machines.MachinePackage;
 import binnie.core.machines.IMachineType;
+import binnie.core.machines.Machine;
+import binnie.core.machines.MachineComponent;
+import binnie.core.machines.MachinePackage;
+import binnie.core.machines.TileEntityMachine;
+import binnie.core.machines.component.IInteraction;
+import binnie.core.resource.BinnieResource;
+import binnie.core.resource.ResourceType;
+import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.core.ExtraTreesGUID;
+import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
-public enum ExtraTreeMachine implements IMachineType
-{
+public enum ExtraTreeMachine implements IMachineType {
 	Lumbermill(Lumbermill.PackageLumbermill.class),
 	Woodworker(Designer.PackageWoodworker.class),
 	Panelworker(Designer.PackagePanelworker.class),
@@ -34,15 +29,15 @@ public enum ExtraTreeMachine implements IMachineType
 	Glassworker(Designer.PackageGlassworker.class),
 	Tileworker(Designer.PackageTileworker.class);
 
-	Class<? extends MachinePackage> clss;
+	protected Class<? extends MachinePackage> cls;
 
-	private ExtraTreeMachine(final Class<? extends MachinePackage> clss) {
-		this.clss = clss;
+	ExtraTreeMachine(Class<? extends MachinePackage> cls) {
+		this.cls = cls;
 	}
 
 	@Override
 	public Class<? extends MachinePackage> getPackageClass() {
-		return this.clss;
+		return cls;
 	}
 
 	@Override
@@ -53,35 +48,33 @@ public enum ExtraTreeMachine implements IMachineType
 		return this != ExtraTreeMachine.Nursery;
 	}
 
-	public ItemStack get(final int i) {
-		return new ItemStack(ExtraTrees.blockMachine, i, this.ordinal());
+	public ItemStack get(int i) {
+		return new ItemStack(ExtraTrees.blockMachine, i, ordinal());
 	}
 
-	public static class ComponentExtraTreeGUI extends MachineComponent implements IInteraction.RightClick
-	{
-		ExtraTreesGUID id;
+	public static class ComponentExtraTreeGUI extends MachineComponent implements IInteraction.RightClick {
+		protected ExtraTreesGUID id;
 
-		public ComponentExtraTreeGUI(final Machine machine, final ExtraTreesGUID id) {
+		public ComponentExtraTreeGUI(Machine machine, ExtraTreesGUID id) {
 			super(machine);
 			this.id = id;
 		}
 
 		@Override
-		public void onRightClick(final World world, final EntityPlayer player, final int x, final int y, final int z) {
-			ExtraTrees.proxy.openGui(this.id, player, x, y, z);
+		public void onRightClick(World world, EntityPlayer player, int x, int y, int z) {
+			ExtraTrees.proxy.openGui(id, player, x, y, z);
 		}
 	}
 
-	public abstract static class PackageExtraTreeMachine extends MachinePackage
-	{
-		BinnieResource textureName;
+	public abstract static class PackageExtraTreeMachine extends MachinePackage {
+		protected BinnieResource textureName;
 
-		protected PackageExtraTreeMachine(final String uid, final String textureName, final boolean powered) {
+		protected PackageExtraTreeMachine(String uid, String textureName, boolean powered) {
 			super(uid, powered);
 			this.textureName = Binnie.Resource.getFile(ExtraTrees.instance, ResourceType.Tile, textureName);
 		}
 
-		protected PackageExtraTreeMachine(final String uid, final BinnieResource textureName, final boolean powered) {
+		protected PackageExtraTreeMachine(String uid, BinnieResource textureName, boolean powered) {
 			super(uid, powered);
 			this.textureName = textureName;
 		}
@@ -92,8 +85,8 @@ public enum ExtraTreeMachine implements IMachineType
 		}
 
 		@Override
-		public void renderMachine(final Machine machine, final double x, final double y, final double z, final float partialTick, final RenderBlocks renderer) {
-			MachineRendererForestry.renderMachine(this.textureName.getShortPath(), x, y, z, partialTick);
+		public void renderMachine(Machine machine, double x, double y, double z, float partialTick, RenderBlocks renderer) {
+			MachineRendererForestry.renderMachine(textureName.getShortPath(), x, y, z, partialTick);
 		}
 	}
 }

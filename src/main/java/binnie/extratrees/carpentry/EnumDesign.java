@@ -1,18 +1,14 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.carpentry;
 
 import binnie.extratrees.api.CarpentryManager;
-import java.util.ArrayList;
-import java.util.List;
+import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignCategory;
 import binnie.extratrees.api.ILayout;
-import binnie.extratrees.api.IDesign;
 
-public enum EnumDesign implements IDesign
-{
+import java.util.ArrayList;
+import java.util.List;
+
+public enum EnumDesign implements IDesign {
 	Blank("Blank"),
 	Octagon("Octagon"),
 	Diamond("Diamond"),
@@ -114,209 +110,6 @@ public enum EnumDesign implements IDesign
 	ThickBarredEnd("Thick Barred End"),
 	OverlappedBarred("Overlapped Barred"),
 	OverlappedSplitBarred("Overlapped Split Barred");
-
-	String name;
-	ILayout topPattern;
-	ILayout bottomPattern;
-	ILayout northPattern;
-	ILayout southPattern;
-	ILayout eastPattern;
-	ILayout westPattern;
-
-	void setEdgePatterns(final ILayout north, final ILayout east, final ILayout south, final ILayout west) {
-		this.setNorthPattern(north);
-		this.setEastPattern(east);
-		this.setSouthPattern(south);
-		this.setWestPattern(west);
-	}
-
-	void setEdgePatterns(final ILayout face) {
-		this.setEdgePatterns(face, face, face, face);
-	}
-
-	void setupStriped(final ILayout vert) {
-		this.setTopPattern(vert);
-		this.setEdgePatterns(vert.invert(), EnumPattern.Blank.layout(true), vert, EnumPattern.Blank.layout());
-	}
-
-	void setChequered(final ILayout cheq) {
-		this.setAllPatterns(cheq);
-		this.setNorthPattern(cheq.invert());
-		this.setSouthPattern(cheq.invert());
-		this.setBottomPattern(cheq.invert());
-	}
-
-	void setStripedChequered(final ILayout cheq, final ILayout stripe) {
-		this.setAllPatterns(cheq);
-		this.setNorthPattern(stripe.invert());
-		this.setSouthPattern(stripe.invert());
-		this.setEastPattern(stripe);
-		this.setWestPattern(stripe);
-	}
-
-	void setCornered(final ILayout corner, final ILayout edge) {
-		this.setTopPattern(corner);
-		this.setNorthPattern(EnumPattern.Blank.layout());
-		this.setEastPattern(edge.flipHorizontal());
-		this.setSouthPattern(edge);
-		this.setWestPattern(EnumPattern.Blank.layout());
-	}
-
-	void setEdged(final ILayout edge) {
-		this.setAllPatterns(edge);
-		this.setWestPattern(EnumPattern.Blank.layout());
-		this.setEastPattern(EnumPattern.Blank.layout(true));
-		this.northPattern = this.northPattern.flipHorizontal();
-	}
-
-	void setBarred(final ILayout bar) {
-		this.setAllPatterns(bar);
-		this.setEastPattern(EnumPattern.Blank.layout(true));
-		this.setWestPattern(EnumPattern.Blank.layout(true));
-	}
-
-	void setDiagonal(final ILayout diagonal, final ILayout edged) {
-		this.setAllPatterns(edged);
-		this.setTopPattern(diagonal);
-		this.northPattern = this.northPattern.flipHorizontal();
-		this.southPattern = this.southPattern.flipHorizontal();
-	}
-
-	void setSaltire(final ILayout saltire, final ILayout bar) {
-		this.setTopPattern(saltire);
-		this.setEdgePatterns(bar.invert());
-	}
-
-	void setCross(final ILayout saltire, final ILayout bar) {
-		this.setTopPattern(saltire);
-		this.setEdgePatterns(bar);
-	}
-
-	void setTSection(final ILayout tsection, final ILayout bar) {
-		this.setTopPattern(tsection);
-		this.setEdgePatterns(bar);
-		this.setWestPattern(EnumPattern.Blank.layout(true));
-	}
-
-	void setBarredCorner(final ILayout corner, final ILayout bar) {
-		this.setTSection(corner, bar);
-		this.setNorthPattern(EnumPattern.Blank.layout(true));
-	}
-
-	void setStripedCorner(final ILayout corner, final ILayout striped) {
-		this.setCornered(corner, striped);
-	}
-
-	void setLetterPattern(final ILayout letter) {
-		this.setAllPatterns(EnumPattern.Blank.layout(true));
-		this.setTopPattern(letter);
-		this.setBottomPattern(EnumPattern.Blank.layout(true));
-	}
-
-	void setBarredEndPattern(final ILayout end, final ILayout bar) {
-		this.setAllPatterns(EnumPattern.Blank.layout(true));
-		this.setTopPattern(end);
-		this.setWestPattern(bar);
-	}
-
-	void setDiagonalCorner(final ILayout diagonal, final ILayout bar, final ILayout edged) {
-		this.setAllPatterns(EnumPattern.Blank.layout(true));
-		this.setTopPattern(diagonal);
-		this.setWestPattern(bar.invert());
-		this.setNorthPattern(edged.flipHorizontal());
-		this.setSouthPattern(edged);
-	}
-
-	void setDiagonalTSection(final ILayout diagonal, final ILayout bar, final ILayout edged) {
-		this.setAllPatterns(EnumPattern.Blank.layout(true));
-		this.setTopPattern(diagonal);
-		this.setWestPattern(bar.invert());
-		this.setNorthPattern(bar.invert());
-		this.setEastPattern(edged.flipHorizontal());
-		this.setSouthPattern(edged);
-	}
-
-	private EnumDesign(final String name) {
-		this.topPattern = Layout.get(EnumPattern.Blank, false);
-		this.bottomPattern = Layout.get(EnumPattern.Blank, false);
-		this.northPattern = Layout.get(EnumPattern.Blank, false);
-		this.eastPattern = Layout.get(EnumPattern.Blank, false);
-		this.southPattern = Layout.get(EnumPattern.Blank, false);
-		this.westPattern = Layout.get(EnumPattern.Blank, false);
-		this.name = name;
-	}
-
-	private void setAllPatterns(final ILayout layout) {
-		this.setTopPattern(layout);
-		this.setBottomPattern(layout);
-		this.setNorthPattern(layout);
-		this.setEastPattern(layout);
-		this.setSouthPattern(layout);
-		this.setWestPattern(layout);
-	}
-
-	@Override
-	public String getName() {
-		return this.name;
-	}
-
-	@Override
-	public ILayout getTopPattern() {
-		return this.topPattern;
-	}
-
-	public void setTopPattern(final ILayout layout) {
-		this.setBottomPattern(this.topPattern = layout);
-	}
-
-	@Override
-	public ILayout getBottomPattern() {
-		return this.bottomPattern;
-	}
-
-	public void setBottomPattern(final ILayout layout) {
-		this.bottomPattern = layout;
-	}
-
-	@Override
-	public ILayout getNorthPattern() {
-		return this.northPattern;
-	}
-
-	public void setNorthPattern(final ILayout layout) {
-		this.northPattern = layout;
-	}
-
-	@Override
-	public ILayout getSouthPattern() {
-		return this.southPattern;
-	}
-
-	public void setSouthPattern(final ILayout layout) {
-		this.southPattern = layout;
-	}
-
-	@Override
-	public ILayout getEastPattern() {
-		return this.eastPattern;
-	}
-
-	public void setEastPattern(final ILayout layout) {
-		this.eastPattern = layout;
-	}
-
-	@Override
-	public ILayout getWestPattern() {
-		return this.westPattern;
-	}
-
-	public void setWestPattern(final ILayout layout) {
-		this.westPattern = layout;
-	}
-
-	public void setName(final String name) {
-		this.name = name;
-	}
 
 	static {
 		Category.Design.addDesign(EnumDesign.Blank);
@@ -480,8 +273,210 @@ public enum EnumDesign implements IDesign
 		EnumDesign.OverlappedBarred.setTopPattern(EnumPattern.OverlappedBarred.layout());
 	}
 
-	enum Category implements IDesignCategory
-	{
+	protected String name;
+	protected ILayout topPattern;
+	protected ILayout bottomPattern;
+	protected ILayout northPattern;
+	protected ILayout southPattern;
+	protected ILayout eastPattern;
+	protected ILayout westPattern;
+
+	EnumDesign(String name) {
+		this.name = name;
+		topPattern = Layout.get(EnumPattern.Blank, false);
+		bottomPattern = Layout.get(EnumPattern.Blank, false);
+		northPattern = Layout.get(EnumPattern.Blank, false);
+		eastPattern = Layout.get(EnumPattern.Blank, false);
+		southPattern = Layout.get(EnumPattern.Blank, false);
+		westPattern = Layout.get(EnumPattern.Blank, false);
+	}
+
+	void setEdgePatterns(ILayout north, ILayout east, ILayout south, ILayout west) {
+		setNorthPattern(north);
+		setEastPattern(east);
+		setSouthPattern(south);
+		setWestPattern(west);
+	}
+
+	void setEdgePatterns(ILayout face) {
+		setEdgePatterns(face, face, face, face);
+	}
+
+	void setupStriped(ILayout vert) {
+		setTopPattern(vert);
+		setEdgePatterns(vert.invert(), EnumPattern.Blank.layout(true), vert, EnumPattern.Blank.layout());
+	}
+
+	void setChequered(ILayout cheq) {
+		setAllPatterns(cheq);
+		setNorthPattern(cheq.invert());
+		setSouthPattern(cheq.invert());
+		setBottomPattern(cheq.invert());
+	}
+
+	void setStripedChequered(ILayout cheq, ILayout stripe) {
+		setAllPatterns(cheq);
+		setNorthPattern(stripe.invert());
+		setSouthPattern(stripe.invert());
+		setEastPattern(stripe);
+		setWestPattern(stripe);
+	}
+
+	void setCornered(ILayout corner, ILayout edge) {
+		setTopPattern(corner);
+		setNorthPattern(EnumPattern.Blank.layout());
+		setEastPattern(edge.flipHorizontal());
+		setSouthPattern(edge);
+		setWestPattern(EnumPattern.Blank.layout());
+	}
+
+	void setEdged(ILayout edge) {
+		setAllPatterns(edge);
+		setWestPattern(EnumPattern.Blank.layout());
+		setEastPattern(EnumPattern.Blank.layout(true));
+		northPattern = northPattern.flipHorizontal();
+	}
+
+	void setBarred(ILayout bar) {
+		setAllPatterns(bar);
+		setEastPattern(EnumPattern.Blank.layout(true));
+		setWestPattern(EnumPattern.Blank.layout(true));
+	}
+
+	void setDiagonal(ILayout diagonal, ILayout edged) {
+		setAllPatterns(edged);
+		setTopPattern(diagonal);
+		northPattern = northPattern.flipHorizontal();
+		southPattern = southPattern.flipHorizontal();
+	}
+
+	void setSaltire(ILayout saltire, ILayout bar) {
+		setTopPattern(saltire);
+		setEdgePatterns(bar.invert());
+	}
+
+	void setCross(ILayout saltire, ILayout bar) {
+		setTopPattern(saltire);
+		setEdgePatterns(bar);
+	}
+
+	void setTSection(ILayout tsection, ILayout bar) {
+		setTopPattern(tsection);
+		setEdgePatterns(bar);
+		setWestPattern(EnumPattern.Blank.layout(true));
+	}
+
+	void setBarredCorner(ILayout corner, ILayout bar) {
+		setTSection(corner, bar);
+		setNorthPattern(EnumPattern.Blank.layout(true));
+	}
+
+	void setStripedCorner(ILayout corner, ILayout striped) {
+		setCornered(corner, striped);
+	}
+
+	void setLetterPattern(ILayout letter) {
+		setAllPatterns(EnumPattern.Blank.layout(true));
+		setTopPattern(letter);
+		setBottomPattern(EnumPattern.Blank.layout(true));
+	}
+
+	void setBarredEndPattern(ILayout end, ILayout bar) {
+		setAllPatterns(EnumPattern.Blank.layout(true));
+		setTopPattern(end);
+		setWestPattern(bar);
+	}
+
+	void setDiagonalCorner(ILayout diagonal, ILayout bar, ILayout edged) {
+		setAllPatterns(EnumPattern.Blank.layout(true));
+		setTopPattern(diagonal);
+		setWestPattern(bar.invert());
+		setNorthPattern(edged.flipHorizontal());
+		setSouthPattern(edged);
+	}
+
+	void setDiagonalTSection(ILayout diagonal, ILayout bar, ILayout edged) {
+		setAllPatterns(EnumPattern.Blank.layout(true));
+		setTopPattern(diagonal);
+		setWestPattern(bar.invert());
+		setNorthPattern(bar.invert());
+		setEastPattern(edged.flipHorizontal());
+		setSouthPattern(edged);
+	}
+
+	private void setAllPatterns(ILayout layout) {
+		setTopPattern(layout);
+		setBottomPattern(layout);
+		setNorthPattern(layout);
+		setEastPattern(layout);
+		setSouthPattern(layout);
+		setWestPattern(layout);
+	}
+
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public ILayout getTopPattern() {
+		return topPattern;
+	}
+
+	public void setTopPattern(ILayout layout) {
+		setBottomPattern(topPattern = layout);
+	}
+
+	@Override
+	public ILayout getBottomPattern() {
+		return bottomPattern;
+	}
+
+	public void setBottomPattern(ILayout layout) {
+		bottomPattern = layout;
+	}
+
+	@Override
+	public ILayout getNorthPattern() {
+		return northPattern;
+	}
+
+	public void setNorthPattern(ILayout layout) {
+		northPattern = layout;
+	}
+
+	@Override
+	public ILayout getSouthPattern() {
+		return southPattern;
+	}
+
+	public void setSouthPattern(ILayout layout) {
+		southPattern = layout;
+	}
+
+	@Override
+	public ILayout getEastPattern() {
+		return eastPattern;
+	}
+
+	public void setEastPattern(ILayout layout) {
+		eastPattern = layout;
+	}
+
+	@Override
+	public ILayout getWestPattern() {
+		return westPattern;
+	}
+
+	public void setWestPattern(ILayout layout) {
+		westPattern = layout;
+	}
+
+	enum Category implements IDesignCategory {
 		Design("Designs & Emblems"),
 		Stripes("Squares & Stripes"),
 		Edges("Edges"),
@@ -489,33 +484,33 @@ public enum EnumDesign implements IDesign
 		Letters("Letters"),
 		Diagonal("Diagonals");
 
-		String name;
-		List<IDesign> designs;
+		protected String name;
+		protected List<IDesign> designs;
 
-		private Category(final String name) {
-			this.designs = new ArrayList<IDesign>();
+		Category(String name) {
 			this.name = name;
+			designs = new ArrayList<>();
 			CarpentryManager.carpentryInterface.registerDesignCategory(this);
 		}
 
 		@Override
 		public String getName() {
-			return this.name;
+			return name;
 		}
 
 		@Override
 		public List<IDesign> getDesigns() {
-			return this.designs;
+			return designs;
 		}
 
 		@Override
-		public void addDesign(final IDesign design) {
-			this.designs.add(design);
+		public void addDesign(IDesign design) {
+			designs.add(design);
 		}
 
 		@Override
 		public String getId() {
-			return this.toString().toLowerCase();
+			return toString().toLowerCase();
 		}
 	}
 }

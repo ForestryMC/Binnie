@@ -1,20 +1,15 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.genetics;
 
-import binnie.extratrees.ExtraTrees;
 import binnie.Binnie;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import binnie.core.resource.BinnieIcon;
+import binnie.extratrees.ExtraTrees;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.util.IIcon;
-import binnie.core.resource.BinnieIcon;
 import forestry.api.core.IIconProvider;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.IIcon;
 
-public enum FruitSprite implements IIconProvider
-{
+public enum FruitSprite implements IIconProvider {
 	Tiny,
 	Small,
 	Average,
@@ -22,16 +17,16 @@ public enum FruitSprite implements IIconProvider
 	Larger,
 	Pear;
 
-	BinnieIcon icon;
+	protected BinnieIcon icon;
 
 	public short getIndex() {
-		return (short) (this.ordinal() + 4200);
+		return (short) (ordinal() + 4200);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(final short texUID) {
-		final int index = texUID - 4200;
+	public IIcon getIcon(short texUID) {
+		int index = texUID - 4200;
 		if (index >= 0 && index < values().length) {
 			return values()[index].icon.getIcon();
 		}
@@ -40,7 +35,7 @@ public enum FruitSprite implements IIconProvider
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(final IIconRegister register) {
-		this.icon = Binnie.Resource.getBlockIcon(ExtraTrees.instance, "fruit/" + this.toString().toLowerCase());
+	public void registerIcons(IIconRegister register) {
+		icon = Binnie.Resource.getBlockIcon(ExtraTrees.instance, "fruit/" + toString().toLowerCase());
 	}
 }

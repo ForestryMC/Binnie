@@ -1,12 +1,8 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.core.craftgui.minecraft;
 
-import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.events.EventHandler;
 import binnie.core.craftgui.events.EventMouse;

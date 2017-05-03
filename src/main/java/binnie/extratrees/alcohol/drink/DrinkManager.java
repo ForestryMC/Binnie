@@ -1,36 +1,31 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.alcohol.drink;
 
-import java.util.HashMap;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+
+import java.util.HashMap;
 import java.util.Map;
 
-public class DrinkManager
-{
-	static Map<String, IDrinkLiquid> drinkLiquids;
+public class DrinkManager {
+	protected static Map<String, IDrinkLiquid> drinkLiquids = new HashMap<>();
 
-	public static IDrinkLiquid getLiquid(final String id) {
+	public static IDrinkLiquid getLiquid(String id) {
 		return DrinkManager.drinkLiquids.get(id.toLowerCase());
 	}
 
-	public static void registerDrinkLiquid(final String id, final IDrinkLiquid liquid) {
+	public static void registerDrinkLiquid(String id, IDrinkLiquid liquid) {
 		liquid.setIdent(id.toLowerCase());
 		DrinkManager.drinkLiquids.put(id.toLowerCase(), liquid);
 	}
 
-	public static IDrinkLiquid getLiquid(final Fluid fluid) {
+	public static IDrinkLiquid getLiquid(Fluid fluid) {
 		return getLiquid(fluid.getName());
 	}
 
-	public static IDrinkLiquid getLiquid(final FluidStack fluid) {
-		return (fluid != null) ? getLiquid(fluid.getFluid()) : null;
-	}
-
-	static {
-		DrinkManager.drinkLiquids = new HashMap<String, IDrinkLiquid>();
+	public static IDrinkLiquid getLiquid(FluidStack fluid) {
+		if (fluid == null) {
+			return null;
+		}
+		return getLiquid(fluid.getFluid());
 	}
 }

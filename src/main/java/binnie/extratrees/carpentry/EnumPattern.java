@@ -1,17 +1,12 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.carpentry;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.util.IIcon;
 import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.ILayout;
 import binnie.extratrees.api.IPattern;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.IIcon;
 
-public enum EnumPattern implements IPattern
-{
+public enum EnumPattern implements IPattern {
 	Blank,
 	Octagon,
 	Diamond,
@@ -226,122 +221,6 @@ public enum EnumPattern implements IPattern
 	OverlappedBarred,
 	OverlappedBarred2;
 
-	ILayout leftRotation;
-	ILayout horizontalFlip;
-
-	private EnumPattern() {
-		this.leftRotation = Layout.get(this, false);
-		this.horizontalFlip = Layout.get(this, false);
-	}
-
-	static void setupStripedPattern(final EnumPattern vert, final EnumPattern hori) {
-		vert.setLeftRotation(hori, true);
-		hori.setLeftRotation(vert, false);
-		vert.setHorizontalFlip(vert, true);
-	}
-
-	static void setupChequeredPattern(final EnumPattern cheq) {
-		cheq.setLeftRotation(cheq, true);
-		cheq.setHorizontalFlip(cheq, true);
-	}
-
-	static void setupCornerPattern(final EnumPattern tl, final EnumPattern tr, final EnumPattern br, final EnumPattern bl) {
-		tl.setLeftRotation(bl, false);
-		tr.setLeftRotation(tl, false);
-		br.setLeftRotation(tr, false);
-		bl.setLeftRotation(br, false);
-		tl.setHorizontalFlip(tr, false);
-		bl.setHorizontalFlip(br, false);
-	}
-
-	static void setupInvert2Rot(final EnumPattern a, final EnumPattern b) {
-		a.setLeftRotation(b, true);
-		b.setLeftRotation(a, false);
-		a.setHorizontalFlip(b, false);
-	}
-
-	static void set2Rotation(final EnumPattern a, final EnumPattern b) {
-		a.setLeftRotation(b, false);
-		b.setLeftRotation(a, false);
-		a.setHorizontalFlip(b, false);
-	}
-
-	static void setupBarredPattern(final EnumPattern vert, final EnumPattern hori) {
-		vert.setLeftRotation(hori, false);
-		hori.setLeftRotation(vert, false);
-	}
-
-	static void setupEdgedPattern(final EnumPattern l, final EnumPattern t, final EnumPattern r, final EnumPattern b) {
-		l.setLeftRotation(b, false);
-		t.setLeftRotation(l, false);
-		r.setLeftRotation(t, false);
-		b.setLeftRotation(r, false);
-		l.setHorizontalFlip(r, false);
-	}
-
-	static void setupDiagonalPattern(final EnumPattern a, final EnumPattern b) {
-		a.setLeftRotation(b, false);
-		b.setLeftRotation(a, false);
-		a.setHorizontalFlip(b, false);
-	}
-
-	static void setupBarredPattern(final EnumPattern l, final EnumPattern t, final EnumPattern r, final EnumPattern b) {
-		l.setLeftRotation(b, false);
-		t.setLeftRotation(l, false);
-		r.setLeftRotation(t, false);
-		b.setLeftRotation(r, false);
-		l.setHorizontalFlip(r, false);
-	}
-
-	static void setupTSectionPattern(final EnumPattern l, final EnumPattern t, final EnumPattern r, final EnumPattern b) {
-		setupEdgedPattern(l, t, r, b);
-	}
-
-	@Override
-	public IIcon getPrimaryIcon(final IDesignSystem system) {
-		return system.getPrimaryIcon(this);
-	}
-
-	private static void setupRotation(final EnumPattern t, final EnumPattern r, final EnumPattern b, final EnumPattern l) {
-		setupEdgedPattern(l, t, r, b);
-	}
-
-	private void setHorizontalFlip(final EnumPattern pattern, final boolean inverted) {
-		this.horizontalFlip = Layout.get(pattern, inverted);
-		pattern.horizontalFlip = Layout.get(this, inverted);
-	}
-
-	@Override
-	public IIcon getSecondaryIcon(final IDesignSystem system) {
-		return system.getSecondaryIcon(this);
-	}
-
-	@Override
-	public ILayout getRotation() {
-		return this.leftRotation;
-	}
-
-	@Override
-	public ILayout getHorizontalFlip() {
-		return this.horizontalFlip;
-	}
-
-	protected void setLeftRotation(final EnumPattern pattern, final boolean inverted) {
-		this.leftRotation = Layout.get(pattern, inverted);
-	}
-
-	@Override
-	public void registerIcons(final IIconRegister register) {
-	}
-
-	public ILayout layout() {
-		return this.layout(false);
-	}
-
-	public ILayout layout(final boolean invert) {
-		return Layout.get(this, invert);
-	}
-
 	static {
 		setupStripedPattern(EnumPattern.ThinStriped, EnumPattern.ThinStriped2);
 		setupStripedPattern(EnumPattern.Striped, EnumPattern.Striped2);
@@ -403,5 +282,121 @@ public enum EnumPattern implements IPattern
 		EnumPattern.OverlappedBarred2.setLeftRotation(EnumPattern.OverlappedBarred, false);
 		EnumPattern.OverlappedSplitBarred.setLeftRotation(EnumPattern.OverlappedSplitBarred2, false);
 		EnumPattern.OverlappedSplitBarred2.setLeftRotation(EnumPattern.OverlappedSplitBarred, false);
+	}
+
+	protected ILayout leftRotation;
+	protected ILayout horizontalFlip;
+
+	EnumPattern() {
+		leftRotation = Layout.get(this, false);
+		horizontalFlip = Layout.get(this, false);
+	}
+
+	static void setupStripedPattern(EnumPattern vert, EnumPattern hori) {
+		vert.setLeftRotation(hori, true);
+		hori.setLeftRotation(vert, false);
+		vert.setHorizontalFlip(vert, true);
+	}
+
+	static void setupChequeredPattern(EnumPattern cheq) {
+		cheq.setLeftRotation(cheq, true);
+		cheq.setHorizontalFlip(cheq, true);
+	}
+
+	static void setupCornerPattern(EnumPattern tl, EnumPattern tr, EnumPattern br, EnumPattern bl) {
+		tl.setLeftRotation(bl, false);
+		tr.setLeftRotation(tl, false);
+		br.setLeftRotation(tr, false);
+		bl.setLeftRotation(br, false);
+		tl.setHorizontalFlip(tr, false);
+		bl.setHorizontalFlip(br, false);
+	}
+
+	static void setupInvert2Rot(EnumPattern a, EnumPattern b) {
+		a.setLeftRotation(b, true);
+		b.setLeftRotation(a, false);
+		a.setHorizontalFlip(b, false);
+	}
+
+	static void set2Rotation(EnumPattern a, EnumPattern b) {
+		a.setLeftRotation(b, false);
+		b.setLeftRotation(a, false);
+		a.setHorizontalFlip(b, false);
+	}
+
+	static void setupBarredPattern(EnumPattern vert, EnumPattern hori) {
+		vert.setLeftRotation(hori, false);
+		hori.setLeftRotation(vert, false);
+	}
+
+	static void setupEdgedPattern(EnumPattern l, EnumPattern t, EnumPattern r, EnumPattern b) {
+		l.setLeftRotation(b, false);
+		t.setLeftRotation(l, false);
+		r.setLeftRotation(t, false);
+		b.setLeftRotation(r, false);
+		l.setHorizontalFlip(r, false);
+	}
+
+	static void setupDiagonalPattern(EnumPattern a, EnumPattern b) {
+		a.setLeftRotation(b, false);
+		b.setLeftRotation(a, false);
+		a.setHorizontalFlip(b, false);
+	}
+
+	static void setupBarredPattern(EnumPattern l, EnumPattern t, EnumPattern r, EnumPattern b) {
+		l.setLeftRotation(b, false);
+		t.setLeftRotation(l, false);
+		r.setLeftRotation(t, false);
+		b.setLeftRotation(r, false);
+		l.setHorizontalFlip(r, false);
+	}
+
+	static void setupTSectionPattern(EnumPattern l, EnumPattern t, EnumPattern r, EnumPattern b) {
+		setupEdgedPattern(l, t, r, b);
+	}
+
+	private static void setupRotation(EnumPattern t, EnumPattern r, EnumPattern b, EnumPattern l) {
+		setupEdgedPattern(l, t, r, b);
+	}
+
+	@Override
+	public IIcon getPrimaryIcon(IDesignSystem system) {
+		return system.getPrimaryIcon(this);
+	}
+
+	private void setHorizontalFlip(EnumPattern pattern, boolean inverted) {
+		horizontalFlip = Layout.get(pattern, inverted);
+		pattern.horizontalFlip = Layout.get(this, inverted);
+	}
+
+	@Override
+	public IIcon getSecondaryIcon(IDesignSystem system) {
+		return system.getSecondaryIcon(this);
+	}
+
+	@Override
+	public ILayout getRotation() {
+		return leftRotation;
+	}
+
+	@Override
+	public ILayout getHorizontalFlip() {
+		return horizontalFlip;
+	}
+
+	protected void setLeftRotation(EnumPattern pattern, boolean inverted) {
+		leftRotation = Layout.get(pattern, inverted);
+	}
+
+	@Override
+	public void registerIcons(IIconRegister register) {
+	}
+
+	public ILayout layout() {
+		return layout(false);
+	}
+
+	public ILayout layout(boolean invert) {
+		return Layout.get(this, invert);
 	}
 }

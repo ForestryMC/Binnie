@@ -1,11 +1,6 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.alcohol;
 
-public interface ICocktailIngredient
-{
+public interface ICocktailIngredient {
 	String getName();
 
 	String getIdentifier();
@@ -14,7 +9,7 @@ public interface ICocktailIngredient
 
 	int getTransparency();
 
-	String getTooltip(final int p0);
+	String getTooltip(int ratio);
 
 	float getABV();
 }

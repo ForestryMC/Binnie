@@ -1,13 +1,8 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.api;
 
 import net.minecraft.util.IIcon;
 
-public interface ILayout
-{
+public interface ILayout {
 	IPattern getPattern();
 
 	boolean isInverted();
@@ -22,7 +17,7 @@ public interface ILayout
 
 	ILayout invert();
 
-	IIcon getPrimaryIcon(final IDesignSystem p0);
+	IIcon getPrimaryIcon(IDesignSystem system);
 
-	IIcon getSecondaryIcon(final IDesignSystem p0);
+	IIcon getSecondaryIcon(IDesignSystem system);
 }

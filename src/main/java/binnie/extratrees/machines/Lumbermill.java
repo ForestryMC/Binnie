@@ -1,55 +1,52 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.machines;
 
-import net.minecraftforge.oredict.OreDictionary;
-import binnie.core.machines.inventory.SlotValidator;
-import binnie.extratrees.item.ExtraTreeItems;
-import binnie.extratrees.ExtraTrees;
+import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.item.ItemMisc;
+import binnie.core.machines.Machine;
+import binnie.core.machines.TileEntityMachine;
+import binnie.core.machines.inventory.ComponentInventorySlots;
+import binnie.core.machines.inventory.ComponentTankContainer;
+import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.machines.inventory.TankValidator;
+import binnie.core.machines.power.ComponentPowerReceptor;
+import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
-import binnie.core.machines.power.ComponentProcessSetCost;
-import binnie.core.machines.TileEntityMachine;
-import net.minecraft.tileentity.TileEntity;
-import binnie.core.machines.power.ComponentPowerReceptor;
-import binnie.core.machines.inventory.TankValidator;
-import binnie.core.machines.inventory.ComponentTankContainer;
-import binnie.core.machines.inventory.ComponentInventorySlots;
-import binnie.extratrees.core.ExtraTreesGUID;
-import binnie.core.machines.Machine;
-import binnie.extratrees.core.ExtraTreeTexture;
-import binnie.core.craftgui.minecraft.IMachineInformation;
-import java.util.HashMap;
-import java.util.List;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
-import net.minecraft.item.crafting.ShapedRecipes;
-import net.minecraft.item.crafting.ShapelessRecipes;
-import net.minecraft.item.crafting.CraftingManager;
-import java.util.ArrayList;
-import java.util.Collection;
+import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.IPlankType;
 import binnie.extratrees.block.WoodManager;
+import binnie.extratrees.core.ExtraTreeTexture;
+import binnie.extratrees.core.ExtraTreesGUID;
+import binnie.extratrees.item.ExtraTreeItems;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.ShapedRecipes;
+import net.minecraft.item.crafting.ShapelessRecipes;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class Lumbermill
-{
-	public static int slotWood;
-	public static int slotPlanks;
-	public static int slotBark;
-	public static int slotSawdust;
-	public static int tankWater;
-	static Map<ItemStack, ItemStack> recipes;
+public class Lumbermill {
+	public static int slotWood = 0;
+	public static int slotPlanks = 1;
+	public static int slotBark = 2;
+	public static int slotSawdust = 3;
+	public static int tankWater = 0;
+	static Map<ItemStack, ItemStack> recipes = new HashMap<>();
 
-	public static ItemStack getPlankProduct(final ItemStack item) {
+	public static ItemStack getPlankProduct(ItemStack item) {
 		ItemStack stack = null;
 		if (Lumbermill.recipes.isEmpty()) {
 			calculateLumbermillProducts();
 		}
-		for (final Map.Entry<ItemStack, ItemStack> entry : Lumbermill.recipes.entrySet()) {
+
+		for (Map.Entry<ItemStack, ItemStack> entry : Lumbermill.recipes.entrySet()) {
 			if (entry.getKey().isItemEqual(item)) {
 				stack = entry.getValue().copy();
 				break;
@@ -60,48 +57,47 @@ public class Lumbermill
 	}
 
 	private static void calculateLumbermillProducts() {
-		for (final IPlankType type : WoodManager.getAllPlankTypes()) {
-			for (final ItemStack wood : getRecipeResult(type.getStack())) {
+		for (IPlankType type : WoodManager.getAllPlankTypes()) {
+			for (ItemStack wood : getRecipeResult(type.getStack())) {
 				Lumbermill.recipes.put(wood, type.getStack());
 			}
 		}
 	}
 
-	private static Collection<ItemStack> getRecipeResult(final ItemStack output) {
-		final List<ItemStack> list = new ArrayList<ItemStack>();
-		for (final Object recipeO : CraftingManager.getInstance().getRecipeList()) {
+	private static Collection<ItemStack> getRecipeResult(ItemStack output) {
+		List<ItemStack> list = new ArrayList<ItemStack>();
+		for (Object recipeO : CraftingManager.getInstance().getRecipeList()) {
 			if (recipeO instanceof ShapelessRecipes) {
-				final ShapelessRecipes recipe = (ShapelessRecipes) recipeO;
-				if (recipe.recipeItems.size() != 1) {
+				ShapelessRecipes recipe = (ShapelessRecipes) recipeO;
+				if (recipe.recipeItems.size() != 1 || !(recipe.recipeItems.get(0) instanceof ItemStack)) {
 					continue;
 				}
-				if (!(recipe.recipeItems.get(0) instanceof ItemStack)) {
-					continue;
-				}
-				final ItemStack input = (ItemStack) recipe.recipeItems.get(0);
+
+				ItemStack input = (ItemStack) recipe.recipeItems.get(0);
 				if (recipe.getRecipeOutput() != null && recipe.getRecipeOutput().isItemEqual(output)) {
 					list.add(input);
 				}
 			}
+
 			if (recipeO instanceof ShapedRecipes) {
-				final ShapedRecipes recipe2 = (ShapedRecipes) recipeO;
+				ShapedRecipes recipe2 = (ShapedRecipes) recipeO;
 				if (recipe2.recipeItems.length != 1) {
 					continue;
 				}
-				final ItemStack input = recipe2.recipeItems[0];
+
+				ItemStack input = recipe2.recipeItems[0];
 				if (recipe2.getRecipeOutput() != null && recipe2.getRecipeOutput().isItemEqual(output)) {
 					list.add(input);
 				}
 			}
+
 			if (recipeO instanceof ShapelessOreRecipe) {
-				final ShapelessOreRecipe recipe3 = (ShapelessOreRecipe) recipeO;
-				if (recipe3.getInput().size() != 1) {
+				ShapelessOreRecipe recipe3 = (ShapelessOreRecipe) recipeO;
+				if (recipe3.getInput().size() != 1 || !(recipe3.getInput().get(0) instanceof ItemStack)) {
 					continue;
 				}
-				if (!(recipe3.getInput().get(0) instanceof ItemStack)) {
-					continue;
-				}
-				final ItemStack input = (ItemStack) recipe3.getInput().get(0);
+
+				ItemStack input = (ItemStack) recipe3.getInput().get(0);
 				if (recipe3.getRecipeOutput() == null || !recipe3.getRecipeOutput().isItemEqual(output)) {
 					continue;
 				}
@@ -111,25 +107,15 @@ public class Lumbermill
 		return list;
 	}
 
-	static {
-		Lumbermill.slotWood = 0;
-		Lumbermill.slotPlanks = 1;
-		Lumbermill.slotBark = 2;
-		Lumbermill.slotSawdust = 3;
-		Lumbermill.tankWater = 0;
-		Lumbermill.recipes = new HashMap<ItemStack, ItemStack>();
-	}
-
-	public static class PackageLumbermill extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation
-	{
+	public static class PackageLumbermill extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
 		public PackageLumbermill() {
 			super("lumbermill", ExtraTreeTexture.lumbermillTexture, true);
 		}
 
 		@Override
-		public void createMachine(final Machine machine) {
+		public void createMachine(Machine machine) {
 			new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.Lumbermill);
-			final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
+			ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 			inventory.addSlot(Lumbermill.slotWood, "input");
 			inventory.getSlot(Lumbermill.slotWood).setValidator(new SlotValidatorLog());
 			inventory.getSlot(Lumbermill.slotWood).forbidExtraction();
@@ -139,7 +125,7 @@ public class Lumbermill
 			inventory.getSlot(Lumbermill.slotPlanks).setReadOnly();
 			inventory.getSlot(Lumbermill.slotBark).setReadOnly();
 			inventory.getSlot(Lumbermill.slotSawdust).setReadOnly();
-			final ComponentTankContainer tanks = new ComponentTankContainer(machine);
+			ComponentTankContainer tanks = new ComponentTankContainer(machine);
 			tanks.addTank(Lumbermill.tankWater, "input", 10000);
 			tanks.getTankSlot(Lumbermill.tankWater).setValidator(new TankValidator.Basic("water"));
 			new ComponentPowerReceptor(machine);
@@ -152,22 +138,22 @@ public class Lumbermill
 		}
 	}
 
-	public static class ComponentLumbermillLogic extends ComponentProcessSetCost implements IProcess
-	{
-		public ComponentLumbermillLogic(final Machine machine) {
+	public static class ComponentLumbermillLogic extends ComponentProcessSetCost implements IProcess {
+		public ComponentLumbermillLogic(Machine machine) {
 			super(machine, 900, 30);
 		}
 
 		@Override
 		public ErrorState canWork() {
-			if (this.getUtil().isSlotEmpty(Lumbermill.slotWood)) {
+			if (getUtil().isSlotEmpty(Lumbermill.slotWood)) {
 				return new ErrorState.NoItem("No Wood", Lumbermill.slotWood);
 			}
-			final ItemStack result = Lumbermill.getPlankProduct(this.getUtil().getStack(Lumbermill.slotWood));
-			if (!this.getUtil().isSlotEmpty(Lumbermill.slotPlanks) && result != null) {
-				final ItemStack currentPlank = this.getUtil().getStack(Lumbermill.slotPlanks);
+
+			ItemStack result = Lumbermill.getPlankProduct(getUtil().getStack(Lumbermill.slotWood));
+			if (!getUtil().isSlotEmpty(Lumbermill.slotPlanks) && result != null) {
+				ItemStack currentPlank = getUtil().getStack(Lumbermill.slotPlanks);
 				if (!result.isItemEqual(currentPlank) || result.stackSize + currentPlank.stackSize > currentPlank.getMaxStackSize()) {
-					return new ErrorState.NoSpace("No room for new planks", new int[] { Lumbermill.slotPlanks });
+					return new ErrorState.NoSpace("No room for new planks", new int[]{Lumbermill.slotPlanks});
 				}
 			}
 			return super.canWork();
@@ -175,7 +161,7 @@ public class Lumbermill
 
 		@Override
 		public ErrorState canProgress() {
-			if (!this.getUtil().liquidInTank(Lumbermill.tankWater, 5)) {
+			if (!getUtil().liquidInTank(Lumbermill.tankWater, 5)) {
 				return new ErrorState.InsufficientLiquid("Not Enough Water", Lumbermill.tankWater);
 			}
 			return super.canProgress();
@@ -183,31 +169,31 @@ public class Lumbermill
 
 		@Override
 		protected void onFinishTask() {
-			final ItemStack result = Lumbermill.getPlankProduct(this.getUtil().getStack(Lumbermill.slotWood));
+			ItemStack result = Lumbermill.getPlankProduct(getUtil().getStack(Lumbermill.slotWood));
 			if (result == null) {
 				return;
 			}
-			this.getUtil().addStack(Lumbermill.slotPlanks, result);
-			this.getUtil().addStack(Lumbermill.slotSawdust, ((ItemMisc) ExtraTrees.itemMisc).getStack(ExtraTreeItems.Sawdust, 1));
-			this.getUtil().addStack(Lumbermill.slotBark, ((ItemMisc) ExtraTrees.itemMisc).getStack(ExtraTreeItems.Bark, 1));
-			this.getUtil().decreaseStack(Lumbermill.slotWood, 1);
+
+			getUtil().addStack(Lumbermill.slotPlanks, result);
+			getUtil().addStack(Lumbermill.slotSawdust, ((ItemMisc) ExtraTrees.itemMisc).getStack(ExtraTreeItems.Sawdust, 1));
+			getUtil().addStack(Lumbermill.slotBark, ((ItemMisc) ExtraTrees.itemMisc).getStack(ExtraTreeItems.Bark, 1));
+			getUtil().decreaseStack(Lumbermill.slotWood, 1);
 		}
 
 		@Override
 		protected void onTickTask() {
-			this.getUtil().drainTank(Lumbermill.tankWater, 10);
+			getUtil().drainTank(Lumbermill.tankWater, 10);
 		}
 	}
 
-	public static class SlotValidatorLog extends SlotValidator
-	{
+	public static class SlotValidatorLog extends SlotValidator {
 		public SlotValidatorLog() {
 			super(SlotValidator.IconBlock);
 		}
 
 		@Override
-		public boolean isValid(final ItemStack itemStack) {
-			final String name = OreDictionary.getOreName(OreDictionary.getOreID(itemStack));
+		public boolean isValid(ItemStack itemStack) {
+			String name = OreDictionary.getOreName(OreDictionary.getOreID(itemStack));
 			return name.contains("logWood") && Lumbermill.getPlankProduct(itemStack) != null;
 		}
 

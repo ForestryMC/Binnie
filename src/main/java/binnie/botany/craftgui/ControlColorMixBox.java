@@ -15,7 +15,7 @@ public class ControlColorMixBox extends ControlListBox<IColourMix> {
 
 	@Override
 	public IWidget createOption(IColourMix value, int y) {
-		return new ControlColorMixItem(this.getContent(), value, y);
+		return new ControlColorMixItem(getContent(), value, y);
 	}
 
 	enum Type {
