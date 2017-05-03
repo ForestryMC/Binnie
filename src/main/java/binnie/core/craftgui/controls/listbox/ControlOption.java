@@ -1,7 +1,7 @@
 package binnie.core.craftgui.controls.listbox;
 
-import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.controls.core.IControlValue;
 import binnie.core.craftgui.events.EventMouse;

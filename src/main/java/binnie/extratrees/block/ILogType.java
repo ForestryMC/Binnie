@@ -1,40 +1,27 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.block;
-
-import net.minecraft.init.Blocks;
-import net.minecraft.client.renderer.texture.IIconRegister;
 
 import binnie.core.block.TileEntityMetadata;
 import binnie.extratrees.ExtraTrees;
-
+import binnie.extratrees.api.IDesignMaterial;
 import cpw.mods.fml.common.registry.GameRegistry;
-
-import net.minecraftforge.common.util.ForgeDirection;
-
 import forestry.api.arboriculture.EnumWoodType;
 import forestry.api.arboriculture.TreeManager;
 import forestry.arboriculture.worldgen.BlockTypeLog;
-
-import net.minecraft.util.IIcon;
-
-import binnie.extratrees.api.IDesignMaterial;
-
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
 
-public interface ILogType
-{
-	void placeBlock(final World p0, final int p1, final int p2, final int p3);
+public interface ILogType {
+	void placeBlock(World p0, int p1, int p2, int p3);
 
 	ItemStack getItemStack();
 
 	int getColour();
 
-	public enum ExtraTreeLog implements ILogType
-	{
+	enum ExtraTreeLog implements ILogType {
 		Apple("Apple", 8092283, PlankType.ExtraTreePlanks.Apple),
 		Fig("Fig", 8418135, PlankType.ExtraTreePlanks.Fig),
 		Butternut("Butternut", 12037536, PlankType.ExtraTreePlanks.Butternut),
@@ -76,75 +63,74 @@ public interface ILogType
 		Cinnamon("Cinnamon", 8804412, PlankType.VanillaPlanks.JUNGLE),
 		PinkIvory("Pink Ivory", 8349012, PlankType.ExtraTreePlanks.PinkIvory);
 
-		String name;
-		int color;
-		IDesignMaterial plank;
-		IIcon trunk;
-		IIcon bark;
+		protected String name;
+		protected int color;
+		protected IDesignMaterial plank;
+		protected IIcon trunk;
+		protected IIcon bark;
 
-		private ExtraTreeLog(final String name, final int color) {
-			this.plank = null;
+		ExtraTreeLog(String name, int color) {
+			plank = null;
 			this.name = name;
 			this.color = color;
 		}
 
-		private ExtraTreeLog(final String name, final int color, final IDesignMaterial plank) {
+		ExtraTreeLog(String name, int color, IDesignMaterial plank) {
 			this.plank = null;
 			this.name = name;
 			this.color = color;
 			this.plank = plank;
 		}
 
-		public String getName() {
-			return this.name;
-		}
-
-		public void addRecipe() {
-			if (this.plank == null) {
-				return;
-			}
-			final ItemStack log = this.getItemStack();
-			final ItemStack result = this.plank.getStack();
-			result.stackSize = 4;
-			GameRegistry.addShapelessRecipe(result, new Object[] { log });
-		}
-
-		@Override
-		public void placeBlock(final World world, final int x, final int y, final int z) {
-			world.setBlock(x, y, z, ExtraTrees.blockLog, 0, 2);
-			if (world.getTileEntity(x, y, z) != null) {
-				((TileEntityMetadata) world.getTileEntity(x, y, z)).setTileMetadata(this.ordinal(), false);
-			}
-		}
-
-		public IIcon getTrunk() {
-			return this.trunk;
-		}
-
-		public IIcon getBark() {
-			return this.bark;
-		}
-
-		public static void registerIcons(final IIconRegister register) {
-			for (final ExtraTreeLog log : values()) {
+		public static void registerIcons(IIconRegister register) {
+			for (ExtraTreeLog log : values()) {
 				log.trunk = ExtraTrees.proxy.getIcon(register, "logs/" + log.toString().toLowerCase() + "Trunk");
 				log.bark = ExtraTrees.proxy.getIcon(register, "logs/" + log.toString().toLowerCase() + "Bark");
 			}
 		}
 
+		public String getName() {
+			return name;
+		}
+
+		public void addRecipe() {
+			if (plank == null) {
+				return;
+			}
+			ItemStack log = getItemStack();
+			ItemStack result = plank.getStack();
+			result.stackSize = 4;
+			GameRegistry.addShapelessRecipe(result, log);
+		}
+
+		@Override
+		public void placeBlock(World world, int x, int y, int z) {
+			world.setBlock(x, y, z, ExtraTrees.blockLog, 0, 2);
+			if (world.getTileEntity(x, y, z) != null) {
+				((TileEntityMetadata) world.getTileEntity(x, y, z)).setTileMetadata(ordinal(), false);
+			}
+		}
+
+		public IIcon getTrunk() {
+			return trunk;
+		}
+
+		public IIcon getBark() {
+			return bark;
+		}
+
 		@Override
 		public ItemStack getItemStack() {
-			return TileEntityMetadata.getItemStack(ExtraTrees.blockLog, this.ordinal()).copy();
+			return TileEntityMetadata.getItemStack(ExtraTrees.blockLog, ordinal()).copy();
 		}
 
 		@Override
 		public int getColour() {
-			return this.color;
+			return color;
 		}
 	}
 
-	public enum ForestryLog implements ILogType
-	{
+	enum ForestryLog implements ILogType {
 		LARCH(1, 0, 6376529),
 		TEAK(1, 1, 3486249),
 		ACACIA(1, 2, 7565906),
@@ -170,19 +156,19 @@ public interface ILogType
 		MAPLE(6, 2, 9078657),
 		CITRUS(6, 3, 5983033);
 
-		int block;
-		int metadata;
-		int colour;
+		protected int block;
+		protected int metadata;
+		protected int colour;
 
-		private ForestryLog(final int blockOffset, final int meta, final int colour) {
-			this.block = blockOffset;
-			this.metadata = meta;
+		ForestryLog(int blockOffset, int meta, int colour) {
+			block = blockOffset;
+			metadata = meta;
 			this.colour = colour;
 		}
 
 		@Override
-		public void placeBlock(final World world, final int x, final int y, final int z) {
-			BlockTypeLog logBlock = new BlockTypeLog(TreeManager.woodItemAccess.getLog(EnumWoodType.valueOf(this.name().toUpperCase()), false));
+		public void placeBlock(World world, int x, int y, int z) {
+			BlockTypeLog logBlock = new BlockTypeLog(TreeManager.woodItemAccess.getLog(EnumWoodType.valueOf(name().toUpperCase()), false));
 			logBlock.setDirection(ForgeDirection.UP);
 			logBlock.setBlock(world, x, y, z);
 
@@ -190,43 +176,42 @@ public interface ILogType
 
 		@Override
 		public ItemStack getItemStack() {
-			return TreeManager.woodItemAccess.getLog(EnumWoodType.valueOf(this.name().toUpperCase()), false);
+			return TreeManager.woodItemAccess.getLog(EnumWoodType.valueOf(name().toUpperCase()), false);
 			// return new ItemStack(Mods.Forestry.item("logs"), 1,
 			// this.metadata);
 		}
 
 		@Override
 		public int getColour() {
-			return this.colour;
+			return colour;
 		}
 	}
 
-	public enum VanillaLog implements ILogType
-	{
+	enum VanillaLog implements ILogType {
 		Oak(6376752),
 		Spruce(2759179),
 		Birch(6376752),
 		Jungle(5456154);
 
-		int colour;
+		protected int colour;
 
-		private VanillaLog(final int colour) {
+		VanillaLog(int colour) {
 			this.colour = colour;
 		}
 
 		@Override
-		public void placeBlock(final World world, final int x, final int y, final int z) {
-			world.setBlock(x, y, z, Blocks.log, this.ordinal(), 2);
+		public void placeBlock(World world, int x, int y, int z) {
+			world.setBlock(x, y, z, Blocks.log, ordinal(), 2);
 		}
 
 		@Override
 		public ItemStack getItemStack() {
-			return new ItemStack(Blocks.log, 1, this.ordinal());
+			return new ItemStack(Blocks.log, 1, ordinal());
 		}
 
 		@Override
 		public int getColour() {
-			return this.colour;
+			return colour;
 		}
 	}
 }

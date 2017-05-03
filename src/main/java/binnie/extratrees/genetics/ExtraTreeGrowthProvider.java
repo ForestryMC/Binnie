@@ -1,20 +1,16 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.genetics;
 
 import forestry.api.arboriculture.EnumGrowthConditions;
-import net.minecraft.world.World;
-import forestry.api.arboriculture.ITreeGenome;
-import forestry.api.arboriculture.IGrowthProvider;
 import forestry.api.arboriculture.IAlleleGrowth;
+import forestry.api.arboriculture.IGrowthProvider;
+import forestry.api.arboriculture.ITreeGenome;
+import net.minecraft.world.World;
 
-public class ExtraTreeGrowthProvider implements IAlleleGrowth, IGrowthProvider
-{
+// TODO unused class?
+public class ExtraTreeGrowthProvider implements IAlleleGrowth, IGrowthProvider {
 	@Override
 	public String getUID() {
-		return "extratrees.fruit." + this.toString().toLowerCase();
+		return "extratrees.fruit." + toString().toLowerCase();
 	}
 
 	@Override
@@ -28,12 +24,12 @@ public class ExtraTreeGrowthProvider implements IAlleleGrowth, IGrowthProvider
 	}
 
 	@Override
-	public boolean canGrow(final ITreeGenome genome, final World world, final int xPos, final int yPos, final int zPos, final int expectedGirth, final int expectedHeight) {
+	public boolean canGrow(ITreeGenome genome, World world, int xPos, int yPos, int zPos, int expectedGirth, int expectedHeight) {
 		return false;
 	}
 
 	@Override
-	public EnumGrowthConditions getGrowthConditions(final ITreeGenome genome, final World world, final int xPos, final int yPos, final int zPos) {
+	public EnumGrowthConditions getGrowthConditions(ITreeGenome genome, World world, int xPos, int yPos, int zPos) {
 		return null;
 	}
 
@@ -49,11 +45,11 @@ public class ExtraTreeGrowthProvider implements IAlleleGrowth, IGrowthProvider
 
 	@Override
 	public String getName() {
-		return this.getProvider().getDescription();
+		return getProvider().getDescription();
 	}
 
 	@Override
 	public String getUnlocalizedName() {
-		return this.getUID();
+		return getUID();
 	}
 }

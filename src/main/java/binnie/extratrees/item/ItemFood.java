@@ -1,100 +1,96 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.item;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.util.IIcon;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
+import binnie.core.item.IItemMisc;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import java.util.List;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import forestry.api.core.Tabs;
-import binnie.core.item.IItemMisc;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 
-public class ItemFood extends net.minecraft.item.ItemFood
-{
-	IItemMisc[] items;
+import java.util.List;
+
+public class ItemFood extends net.minecraft.item.ItemFood {
+	protected IItemMisc[] items;
 
 	public ItemFood() {
 		super(0, 0.0f, false);
-		this.setUnlocalizedName("food");
-		this.setCreativeTab(Tabs.tabArboriculture);
-		this.setHasSubtypes(true);
-		this.items = Food.values();
+		setUnlocalizedName("food");
+		setCreativeTab(Tabs.tabArboriculture);
+		setHasSubtypes(true);
+		items = Food.values();
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(final Item par1, final CreativeTabs par2CreativeTabs, final List par3List) {
-		for (final IItemMisc item : this.items) {
-			if (item.isActive()) {
-				par3List.add(this.getStack(item, 1));
+	public void getSubItems(Item item, CreativeTabs tab, List list) {
+		for (IItemMisc itemMisc : items) {
+			if (itemMisc.isActive()) {
+				list.add(getStack(itemMisc, 1));
 			}
 		}
 	}
 
-	private IItemMisc getItem(final int damage) {
-		return (damage >= this.items.length) ? this.items[0] : this.items[damage];
+	private IItemMisc getItem(int damage) {
+		return (damage >= items.length) ? items[0] : items[damage];
 	}
 
-	public ItemStack getStack(final IItemMisc type, final int size) {
+	public ItemStack getStack(IItemMisc type, int size) {
 		return new ItemStack(this, size, type.ordinal());
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(final ItemStack par1ItemStack, final EntityPlayer par2EntityPlayer, final List par3List, final boolean par4) {
-		super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
-		final IItemMisc item = this.getItem(par1ItemStack.getItemDamage());
+	public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
+		super.addInformation(stack, player, tooltip, advanced);
+		IItemMisc item = getItem(stack.getItemDamage());
 		if (item != null) {
-			item.addInformation(par3List);
+			item.addInformation(tooltip);
 		}
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack stack) {
-		final IItemMisc item = this.getItem(stack.getItemDamage());
+	public String getItemStackDisplayName(ItemStack stack) {
+		IItemMisc item = getItem(stack.getItemDamage());
 		return (item != null) ? item.getName(stack) : "null";
 	}
 
 	@Override
-	public IIcon getIcon(final ItemStack stack, final int pass) {
-		final IItemMisc item = this.getItem(stack.getItemDamage());
+	public IIcon getIcon(ItemStack stack, int pass) {
+		IItemMisc item = getItem(stack.getItemDamage());
 		return (item != null) ? item.getIcon(stack) : null;
 	}
 
 	@Override
-	public IIcon getIconFromDamage(final int damage) {
-		final IItemMisc item = this.getItem(damage);
+	public IIcon getIconFromDamage(int damage) {
+		IItemMisc item = getItem(damage);
 		return (item != null) ? item.getIcon(null) : null;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(final IIconRegister register) {
-		for (final IItemMisc item : this.items) {
+	public void registerIcons(IIconRegister register) {
+		for (IItemMisc item : items) {
 			if (item.isActive()) {
 				item.registerIcons(register);
 			}
 		}
 	}
 
-	private Food getFood(final ItemStack par1ItemStack) {
-		return Food.values()[par1ItemStack.getItemDamage()];
+	private Food getFood(ItemStack stack) {
+		return Food.values()[stack.getItemDamage()];
 	}
 
 	@Override
-	public int func_150905_g(final ItemStack p_150905_1_) {
-		return this.getFood(p_150905_1_).getHealth();
+	public int func_150905_g(ItemStack stack) {
+		return getFood(stack).getHealth();
 	}
 
 	@Override
-	public float func_150906_h(final ItemStack p_150906_1_) {
+	public float func_150906_h(ItemStack stack) {
 		return 3.0f;
 	}
 }

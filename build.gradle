@@ -17,12 +17,12 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.7.10-2.0.15"
+version = "2.0.15"
 if (System.getenv("BUILD_NUMBER") != null) {
     version = version + "-" + System.getenv("BUILD_NUMBER")
 }
 group = "binnie" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "binnie-mods"
+archivesBaseName = "binnie-mods-1.7.10"
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 

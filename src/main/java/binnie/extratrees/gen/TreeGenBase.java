@@ -1,17 +1,14 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.gen;
 
-import java.util.Random;
-import net.minecraft.world.World;
-import forestry.api.world.ITreeGenData;
 import forestry.api.arboriculture.ITree;
+import forestry.api.world.ITreeGenData;
+import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-public class TreeGenBase extends WorldGenerator
-{
+import java.util.Random;
+
+// TODO unused class?
+public class TreeGenBase extends WorldGenerator {
 	protected ITree tree;
 	protected ITreeGenData treeGen;
 	protected World world;
@@ -27,30 +24,31 @@ public class TreeGenBase extends WorldGenerator
 	protected int minPodHeight;
 
 	public TreeGenBase() {
-		this.minHeight = 4;
-		this.maxHeight = 80;
-		this.spawnPods = false;
-		this.minPodHeight = 3;
+		minHeight = 4;
+		maxHeight = 80;
+		spawnPods = false;
+		minPodHeight = 3;
 	}
 
-	protected final int randBetween(final int a, final int b) {
-		return a + this.rand.nextInt(b - a);
+	protected int randBetween(int a, int b) {
+		return a + rand.nextInt(b - a);
 	}
 
-	protected final float randBetween(final float a, final float b) {
-		return a + this.rand.nextFloat() * (b - a);
+	protected float randBetween(float a, float b) {
+		return a + rand.nextFloat() * (b - a);
 	}
 
 	@Override
-	public boolean generate(final World world, final Random random, final int x, final int y, final int z) {
+	public boolean generate(World world, Random random, int x, int y, int z) {
 		this.world = world;
-		this.startX = x;
-		this.startY = y;
-		this.startZ = z;
-		this.girth = this.tree.getGirth(world, x, y, z);
-		this.height = (int) (this.randBetween(this.getHeight()[0], this.getHeight()[1]) * this.tree.getGenome().getHeight());
-		if (this.tree.canGrow(world, x, y, z, this.girth, this.height)) {
-			this.generate();
+		startX = x;
+		startY = y;
+		startZ = z;
+		girth = tree.getGirth(world, x, y, z);
+		height = (int) (randBetween(getHeight()[0], getHeight()[1]) * tree.getGenome().getHeight());
+
+		if (tree.canGrow(world, x, y, z, girth, height)) {
+			generate();
 			return true;
 		}
 		return false;
@@ -60,16 +58,15 @@ public class TreeGenBase extends WorldGenerator
 	}
 
 	protected int[] getHeight() {
-		return new int[] { 5, 2 };
+		return new int[]{5, 2};
 	}
 
-	private static class Vector
-	{
+	private static class Vector {
 		int x;
 		int y;
 		int z;
 
-		public Vector(final int x, final int y, final int z) {
+		public Vector(int x, int y, int z) {
 			this.x = x;
 			this.y = y;
 			this.z = z;

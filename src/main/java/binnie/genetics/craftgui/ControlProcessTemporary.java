@@ -8,7 +8,7 @@ import binnie.core.craftgui.minecraft.control.ControlMachineProgress;
 
 // TODO unused class?
 public class ControlProcessTemporary extends ControlMachineProgress {
-	public ControlProcessTemporary(final IWidget parent, final int x, final int y, final int width, final int height) {
+	public ControlProcessTemporary(IWidget parent, int x, int y, int width, int height) {
 		super(parent, x, y, null, null, null);
 		setSize(new IPoint(width, height));
 	}
@@ -16,7 +16,7 @@ public class ControlProcessTemporary extends ControlMachineProgress {
 	@Override
 	public void onRenderBackground() {
 		CraftGUI.Render.solid(getArea(), -4868683);
-		final float w = getSize().y() * progress / 100.0f;
+		float w = getSize().y() * progress / 100.0f;
 		CraftGUI.Render.solid(new IArea(getArea().x(), getArea().y(), w, getArea().h()), -65536);
 	}
 }

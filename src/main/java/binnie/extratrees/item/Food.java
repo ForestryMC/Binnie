@@ -1,25 +1,21 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.item;
 
-import java.util.Collection;
-import net.minecraftforge.oredict.OreDictionary;
-import binnie.core.Mods;
 import binnie.Binnie;
-import forestry.api.recipes.RecipeManagers;
-import binnie.extratrees.alcohol.Juice;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import binnie.extratrees.ExtraTrees;
-import net.minecraft.item.ItemStack;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.util.IIcon;
+import binnie.core.Mods;
 import binnie.core.item.IItemMisc;
+import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.alcohol.Juice;
+import forestry.api.recipes.RecipeManagers;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.oredict.OreDictionary;
 
-public enum Food implements IItemMisc
-{
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+public enum Food implements IItemMisc {
 	Crabapple(2),
 	Orange(4),
 	Kumquat(2),
@@ -81,66 +77,17 @@ public enum Food implements IItemMisc
 	Starfruit(2),
 	Candlenut(0);
 
-	IIcon icon;
-	int hunger;
+	protected IIcon icon;
+	protected int hunger;
 	private List<String> ores;
 
-	private Food() {
+	Food() {
 		this(0);
 	}
 
-	private Food(final int hunger) {
-		this.ores = new ArrayList<String>();
+	Food(int hunger) {
+		ores = new ArrayList<>();
 		this.hunger = hunger;
-	}
-
-	public boolean isEdible() {
-		return this.hunger > 0;
-	}
-
-	public int getHealth() {
-		return this.hunger;
-	}
-
-	@Override
-	public boolean isActive() {
-		return true;
-	}
-
-	@Override
-	public String getName(final ItemStack itemStack) {
-		return ExtraTrees.proxy.localise("item.food." + this.name().toLowerCase());
-	}
-
-	@Override
-	public ItemStack get(final int count) {
-		return new ItemStack(ExtraTrees.itemFood, count, this.ordinal());
-	}
-
-	@Override
-	public IIcon getIcon(final ItemStack itemStack) {
-		return this.icon;
-	}
-
-	@Override
-	public void registerIcons(final IIconRegister register) {
-		this.icon = ExtraTrees.proxy.getIcon(register, "food/" + this.toString());
-	}
-
-	@Override
-	public void addInformation(final List data) {
-	}
-
-	public void addJuice(final Juice juice, final int time, final int amount, final int mulch) {
-		RecipeManagers.squeezerManager.addRecipe(time, new ItemStack[] { this.get(1) }, Binnie.Liquid.getLiquidStack("juice", amount), Mods.Forestry.stack("mulch"), mulch);
-	}
-
-	public void addJuice(final int time, final int amount, final int mulch) {
-		RecipeManagers.squeezerManager.addRecipe(time, new ItemStack[] { this.get(1) }, Binnie.Liquid.getLiquidStack("juice", amount), Mods.Forestry.stack("mulch"), mulch);
-	}
-
-	public void addOil(final int time, final int amount, final int mulch) {
-		RecipeManagers.squeezerManager.addRecipe(time, new ItemStack[] { this.get(1) }, Binnie.Liquid.getLiquidStack("seedoil", amount), Mods.Forestry.stack("mulch"), mulch);
 	}
 
 	public static void registerOreDictionary() {
@@ -186,13 +133,82 @@ public enum Food implements IItemMisc
 		Food.Clove.ore("Clove");
 	}
 
-	private Food ore(final String string) {
-		OreDictionary.registerOre("crop" + string, this.get(1));
-		this.ores.add("crop" + string);
+	public boolean isEdible() {
+		return hunger > 0;
+	}
+
+	public int getHealth() {
+		return hunger;
+	}
+
+	@Override
+	public boolean isActive() {
+		return true;
+	}
+
+	@Override
+	public String getName(ItemStack itemStack) {
+		return ExtraTrees.proxy.localise("item.food." + name().toLowerCase());
+	}
+
+	@Override
+	public ItemStack get(int count) {
+		return new ItemStack(ExtraTrees.itemFood, count, ordinal());
+	}
+
+	@Override
+	public IIcon getIcon(ItemStack itemStack) {
+		return icon;
+	}
+
+	@Override
+	public void registerIcons(IIconRegister register) {
+		icon = ExtraTrees.proxy.getIcon(register, "food/" + toString());
+	}
+
+	@Override
+	public void addInformation(List tooltip) {
+		// ignored
+	}
+
+	// TODO unused method?
+	public void addJuice(Juice juice, int time, int amount, int mulch) {
+		RecipeManagers.squeezerManager.addRecipe(
+			time,
+			new ItemStack[]{get(1)},
+			Binnie.Liquid.getLiquidStack("juice", amount),
+			Mods.Forestry.stack("mulch"),
+			mulch
+		);
+	}
+
+	public void addJuice(int time, int amount, int mulch) {
+		RecipeManagers.squeezerManager.addRecipe(
+			time,
+			new ItemStack[]{get(1)},
+			Binnie.Liquid.getLiquidStack("juice", amount),
+			Mods.Forestry.stack("mulch"),
+			mulch
+		);
+	}
+
+	public void addOil(int time, int amount, int mulch) {
+		RecipeManagers.squeezerManager.addRecipe(
+			time,
+			new ItemStack[]{get(1)},
+			Binnie.Liquid.getLiquidStack("seedoil", amount),
+			Mods.Forestry.stack("mulch"),
+			mulch
+		);
+	}
+
+	private Food ore(String string) {
+		OreDictionary.registerOre("crop" + string, get(1));
+		ores.add("crop" + string);
 		return this;
 	}
 
 	public Collection<String> getOres() {
-		return this.ores;
+		return ores;
 	}
 }

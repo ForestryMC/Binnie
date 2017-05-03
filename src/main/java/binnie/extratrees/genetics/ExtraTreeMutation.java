@@ -1,42 +1,52 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.genetics;
 
+import binnie.Binnie;
+import forestry.api.arboriculture.IAlleleTreeSpecies;
 import forestry.api.arboriculture.ITreeGenome;
+import forestry.api.arboriculture.ITreeMutation;
 import forestry.api.arboriculture.ITreeRoot;
-
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Collection;
-
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 
-import net.minecraft.world.World;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
-import forestry.api.genetics.IMutation;
-import binnie.Binnie;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.arboriculture.IAlleleTreeSpecies;
-import forestry.api.genetics.IAllele;
-import forestry.api.arboriculture.ITreeMutation;
+public class ExtraTreeMutation implements ITreeMutation {
+	protected int chance;
+	protected boolean isSecret;
+	protected IAlleleTreeSpecies allele0;
+	protected IAlleleTreeSpecies allele1;
+	protected IAllele[] template;
 
-public class ExtraTreeMutation implements ITreeMutation
-{
-	int chance;
-	boolean isSecret;
-	IAlleleTreeSpecies allele0;
-	IAlleleTreeSpecies allele1;
-	IAllele[] template;
 	private float minTemperature;
 	private float maxTemperature;
 	private float minRainfall;
 	private float maxRainfall;
 	private float height;
 
+	public ExtraTreeMutation(IAllele allele0, IAllele allele1, IAllele result, int chance) {
+		this(allele0, allele1, Binnie.Genetics.getTreeRoot().getTemplate(result.getUID()), chance);
+	}
+
+	public ExtraTreeMutation(IAllele allele0, IAllele allele1, IAllele[] template, int chance) {
+		isSecret = false;
+		minTemperature = 0.0f;
+		maxTemperature = 2.0f;
+		minRainfall = 0.0f;
+		maxRainfall = 2.0f;
+		height = -1.0f;
+		this.allele0 = (IAlleleTreeSpecies) allele0;
+		this.allele1 = (IAlleleTreeSpecies) allele1;
+		this.template = template;
+		this.chance = chance;
+		Binnie.Genetics.getTreeRoot().registerMutation(this);
+	}
+
 	public static void init() {
-		final IAlleleTreeSpecies lemon = (IAlleleTreeSpecies) getVanilla("Lemon");
+		IAlleleTreeSpecies lemon = (IAlleleTreeSpecies) getVanilla("Lemon");
 		new ExtraTreeMutation(getVanilla("Cherry"), lemon, ExtraTreeSpecies.KeyLime, 10);
 		new ExtraTreeMutation(ExtraTreeSpecies.KeyLime, lemon, ExtraTreeSpecies.FingerLime, 10);
 		new ExtraTreeMutation(getVanilla("Cherry"), lemon, ExtraTreeSpecies.Pomelo, 10);
@@ -136,50 +146,32 @@ public class ExtraTreeMutation implements ITreeMutation
 		new ExtraTreeMutation(ExtraTreeSpecies.Hazel, ExtraTreeSpecies.Alder, ExtraTreeSpecies.DwarfHazel, 10);
 	}
 
-	public static IAllele getVanilla(final String uid) {
-		final IAllele allele = AlleleManager.alleleRegistry.getAllele("forestry.tree" + uid);
+	public static IAllele getVanilla(String uid) {
+		IAllele allele = AlleleManager.alleleRegistry.getAllele("forestry.tree" + uid);
 		if (allele == null) {
 			throw new RuntimeException("No forestry species with id " + uid);
 		}
 		return allele;
 	}
 
-	public ExtraTreeMutation(final IAllele allele0, final IAllele allele1, final IAllele result, final int chance) {
-		this(allele0, allele1, Binnie.Genetics.getTreeRoot().getTemplate(result.getUID()), chance);
-	}
-
-	public ExtraTreeMutation(final IAllele allele0, final IAllele allele1, final IAllele[] template, final int chance) {
-		this.isSecret = false;
-		this.minTemperature = 0.0f;
-		this.maxTemperature = 2.0f;
-		this.minRainfall = 0.0f;
-		this.maxRainfall = 2.0f;
-		this.height = -1.0f;
-		this.allele0 = (IAlleleTreeSpecies) allele0;
-		this.allele1 = (IAlleleTreeSpecies) allele1;
-		this.template = template;
-		this.chance = chance;
-		Binnie.Genetics.getTreeRoot().registerMutation(this);
-	}
-
 	public ExtraTreeMutation setIsSecret() {
-		this.isSecret = true;
+		isSecret = true;
 		return this;
 	}
 
-	public ExtraTreeMutation setTemperature(final float minTemperature, final float maxTemperature) {
+	public ExtraTreeMutation setTemperature(float minTemperature, float maxTemperature) {
 		this.minTemperature = minTemperature;
 		this.maxTemperature = maxTemperature;
 		return this;
 	}
 
-	public ExtraTreeMutation setRainfall(final float minRainfall, final float maxRainfall) {
+	public ExtraTreeMutation setRainfall(float minRainfall, float maxRainfall) {
 		this.minRainfall = minRainfall;
 		this.maxRainfall = maxRainfall;
 		return this;
 	}
 
-	public ExtraTreeMutation setTemperatureRainfall(final float minTemperature, final float maxTemperature, final float minRainfall, final float maxRainfall) {
+	public ExtraTreeMutation setTemperatureRainfall(float minTemperature, float maxTemperature, float minRainfall, float maxRainfall) {
 		this.minTemperature = minTemperature;
 		this.maxTemperature = maxTemperature;
 		this.minRainfall = minRainfall;
@@ -187,60 +179,60 @@ public class ExtraTreeMutation implements ITreeMutation
 		return this;
 	}
 
-	public ExtraTreeMutation setHeight(final int minHeight) {
-		this.height = minHeight;
+	public ExtraTreeMutation setHeight(int minHeight) {
+		height = minHeight;
 		return this;
 	}
 
 	@Override
 	public IAlleleTreeSpecies getAllele0() {
-		return this.allele0;
+		return allele0;
 	}
 
 	@Override
 	public IAlleleTreeSpecies getAllele1() {
-		return this.allele1;
+		return allele1;
 	}
 
 	@Override
 	public float getBaseChance() {
-		return this.chance;
+		return chance;
 	}
 
 	@Override
 	public IAllele[] getTemplate() {
-		return this.template;
+		return template;
 	}
 
 	@Override
-	public boolean isPartner(final IAllele allele) {
-		return this.allele0.getUID().equals(allele.getUID()) || this.allele1.getUID().equals(allele.getUID());
+	public boolean isPartner(IAllele allele) {
+		return allele0.getUID().equals(allele.getUID()) || allele1.getUID().equals(allele.getUID());
 	}
 
 	@Override
-	public IAllele getPartner(final IAllele allele) {
-		if (this.allele0.getUID().equals(allele.getUID())) {
-			return this.allele1;
+	public IAllele getPartner(IAllele allele) {
+		if (allele0.getUID().equals(allele.getUID())) {
+			return allele1;
 		}
-		return this.allele0;
+		return allele0;
 	}
 
 	@Override
 	public boolean isSecret() {
-		return this.isSecret;
+		return isSecret;
 	}
 
 	@Override
-	public float getChance(final World world, final int x, final int y, final int z, final IAlleleTreeSpecies allele0, final IAlleleTreeSpecies allele1, final ITreeGenome genome0, final ITreeGenome genome1) {
-		final int processedChance = this.chance;
-		final BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(x, z);
-		if (biome.temperature < this.minTemperature || biome.temperature > this.maxTemperature) {
+	public float getChance(World world, int x, int y, int z, IAlleleTreeSpecies allele0, IAlleleTreeSpecies allele1, ITreeGenome genome0, ITreeGenome genome1) {
+		int processedChance = chance;
+		BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(x, z);
+		if (biome.temperature < minTemperature || biome.temperature > maxTemperature) {
 			return 0.0f;
 		}
-		if (biome.rainfall < this.minRainfall || biome.rainfall > this.maxRainfall) {
+		if (biome.rainfall < minRainfall || biome.rainfall > maxRainfall) {
 			return 0.0f;
 		}
-		if (this.height > 0.0f && y < this.height) {
+		if (height > 0.0f && y < height) {
 			return 0.0f;
 		}
 		if (this.allele0.getUID().equals(allele0.getUID()) && this.allele1.getUID().equals(allele1.getUID())) {
@@ -254,9 +246,9 @@ public class ExtraTreeMutation implements ITreeMutation
 
 	@Override
 	public Collection<String> getSpecialConditions() {
-		final List<String> conditions = new ArrayList<String>();
-		if (this.height > 0.0f) {
-			conditions.add("Minimum height from bedrock of " + this.height);
+		List<String> conditions = new ArrayList<String>();
+		if (height > 0.0f) {
+			conditions.add("Minimum height from bedrock of " + height);
 		}
 		return conditions;
 	}

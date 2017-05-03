@@ -1,57 +1,51 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.kitchen;
 
-import net.minecraft.client.renderer.RenderBlocks;
-import binnie.core.machines.Machine;
-import binnie.core.machines.TileEntityMachine;
-import net.minecraft.tileentity.TileEntity;
-import binnie.core.resource.ResourceType;
 import binnie.Binnie;
-import binnie.core.resource.BinnieResource;
-import binnie.extratrees.ExtraTrees;
-import net.minecraft.item.ItemStack;
-import binnie.core.machines.MachinePackage;
 import binnie.core.machines.IMachineType;
+import binnie.core.machines.Machine;
+import binnie.core.machines.MachinePackage;
+import binnie.core.machines.TileEntityMachine;
+import binnie.core.resource.BinnieResource;
+import binnie.core.resource.ResourceType;
+import binnie.extratrees.ExtraTrees;
+import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 
-public enum KitchenMachine implements IMachineType
-{
-	Worktop((Class<? extends MachinePackage>) null),
-	Cupboard((Class<? extends MachinePackage>) null),
+public enum KitchenMachine implements IMachineType {
+	Worktop(null),
+	Cupboard(null),
 	BottleRack(BottleRack.PackageBottleRack.class);
 
-	Class<? extends MachinePackage> clss;
+	protected Class<? extends MachinePackage> cls;
 
-	private KitchenMachine(final Class<? extends MachinePackage> clss) {
-		this.clss = clss;
+	KitchenMachine(Class<? extends MachinePackage> cls) {
+		this.cls = cls;
 	}
 
 	@Override
 	public Class<? extends MachinePackage> getPackageClass() {
-		return this.clss;
+		return cls;
 	}
 
 	@Override
 	public boolean isActive() {
-		return this.clss != null;
+		return cls != null;
 	}
 
-	public ItemStack get(final int i) {
-		return new ItemStack(ExtraTrees.blockKitchen, i, this.ordinal());
+	public ItemStack get(int i) {
+		return new ItemStack(ExtraTrees.blockKitchen, i, ordinal());
 	}
 
-	public abstract static class PackageKitchenMachine extends MachinePackage
-	{
-		BinnieResource textureName;
+	public abstract static class PackageKitchenMachine extends MachinePackage {
+		protected BinnieResource textureName;
 
-		protected PackageKitchenMachine(final String uid, final String textureName) {
+		protected PackageKitchenMachine(String uid, String textureName) {
 			super(uid, false);
 			this.textureName = Binnie.Resource.getFile(ExtraTrees.instance, ResourceType.Tile, textureName);
 		}
 
-		protected PackageKitchenMachine(final String uid, final BinnieResource textureName) {
+		protected PackageKitchenMachine(String uid, BinnieResource textureName) {
 			super(uid, false);
 			this.textureName = textureName;
 		}
@@ -62,8 +56,8 @@ public enum KitchenMachine implements IMachineType
 		}
 
 		@Override
-		public void renderMachine(final Machine machine, final double x, final double y, final double z, final float partialTick, final RenderBlocks renderer) {
-			MachineRendererKitchen.instance.renderMachine(machine, this.textureName, x, y, z, partialTick, renderer);
+		public void renderMachine(Machine machine, double x, double y, double z, float partialTick, RenderBlocks renderer) {
+			MachineRendererKitchen.instance.renderMachine(machine, textureName, x, y, z, partialTick, renderer);
 		}
 	}
 }

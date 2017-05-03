@@ -1,23 +1,23 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.block.decor;
 
-import java.util.ArrayList;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import net.minecraft.inventory.InventoryCrafting;
-import java.util.List;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.world.World;
 
-public class NBTShapedRecipes implements IRecipe
-{
-	static List<NBTShapedRecipe> recipes;
+import java.util.ArrayList;
+import java.util.List;
+
+public class NBTShapedRecipes implements IRecipe {
+	static List<NBTShapedRecipe> recipes = new ArrayList<>();
+
+	public static void addRecipe(NBTShapedRecipe nbtShapedRecipe) {
+		NBTShapedRecipes.recipes.add(nbtShapedRecipe);
+	}
 
 	@Override
-	public boolean matches(final InventoryCrafting inventory, final World world) {
-		for (final NBTShapedRecipe recipe : NBTShapedRecipes.recipes) {
+	public boolean matches(InventoryCrafting inventory, World world) {
+		for (NBTShapedRecipe recipe : NBTShapedRecipes.recipes) {
 			if (recipe.matches(inventory, world)) {
 				return true;
 			}
@@ -26,8 +26,8 @@ public class NBTShapedRecipes implements IRecipe
 	}
 
 	@Override
-	public ItemStack getCraftingResult(final InventoryCrafting inventory) {
-		for (final NBTShapedRecipe recipe : NBTShapedRecipes.recipes) {
+	public ItemStack getCraftingResult(InventoryCrafting inventory) {
+		for (NBTShapedRecipe recipe : NBTShapedRecipes.recipes) {
 			if (recipe.matches(inventory, null)) {
 				return recipe.getCraftingResult(inventory);
 			}
@@ -43,13 +43,5 @@ public class NBTShapedRecipes implements IRecipe
 	@Override
 	public ItemStack getRecipeOutput() {
 		return null;
-	}
-
-	public static void addRecipe(final NBTShapedRecipe nbtShapedRecipe) {
-		NBTShapedRecipes.recipes.add(nbtShapedRecipe);
-	}
-
-	static {
-		NBTShapedRecipes.recipes = new ArrayList<NBTShapedRecipe>();
 	}
 }

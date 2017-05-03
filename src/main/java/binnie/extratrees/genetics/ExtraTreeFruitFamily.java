@@ -1,21 +1,16 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.genetics;
 
 import forestry.api.genetics.IFruitFamily;
 
-public enum ExtraTreeFruitFamily implements IFruitFamily
-{
+public enum ExtraTreeFruitFamily implements IFruitFamily {
 	Berry("Berries", "berry", "berri"),
 	Citrus("Citrus", "citrus", "citrus");
 
-	String name;
-	String uid;
-	String scientific;
+	protected String name;
+	protected String uid;
+	protected String scientific;
 
-	private ExtraTreeFruitFamily(final String name, final String uid, final String scientific) {
+	ExtraTreeFruitFamily(String name, String uid, String scientific) {
 		this.name = name;
 		this.uid = uid;
 		this.scientific = scientific;
@@ -23,21 +18,21 @@ public enum ExtraTreeFruitFamily implements IFruitFamily
 
 	@Override
 	public String getUID() {
-		return "binnie.family." + this.uid;
+		return "binnie.family." + uid;
 	}
 
 	@Override
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	@Override
 	public String getScientific() {
-		return this.scientific;
+		return scientific;
 	}
 
 	@Override
 	public String getDescription() {
-		return this.name;
+		return name;
 	}
 }

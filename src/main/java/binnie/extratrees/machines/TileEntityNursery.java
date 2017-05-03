@@ -1,58 +1,47 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.machines;
+
+import binnie.core.machines.TileEntityMachine;
+import forestry.api.core.EnumHumidity;
+import forestry.api.core.EnumTemperature;
+import forestry.api.core.IErrorState;
+import forestry.api.genetics.IIndividual;
+import forestry.api.lepidopterology.IButterfly;
+import forestry.api.lepidopterology.IButterflyNursery;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import forestry.api.core.IErrorState;
-
-import net.minecraft.util.ChunkCoordinates;
-import net.minecraft.world.biome.BiomeGenBase;
-
-import forestry.api.genetics.IIndividual;
-import forestry.api.lepidopterology.IButterfly;
-
-import net.minecraft.item.ItemStack;
-
-import forestry.api.core.EnumHumidity;
-import forestry.api.core.EnumTemperature;
-
-import net.minecraft.world.World;
-
-import forestry.api.lepidopterology.IButterflyNursery;
-import binnie.core.machines.TileEntityMachine;
-
-public class TileEntityNursery extends TileEntityMachine implements IButterflyNursery
-{
-	public TileEntityNursery(final Nursery.PackageNursery pack) {
+public class TileEntityNursery extends TileEntityMachine implements IButterflyNursery {
+	public TileEntityNursery(Nursery.PackageNursery pack) {
 		super(pack);
 	}
 
 	IButterflyNursery getNursery() {
-		return this.getMachine().getInterface(IButterflyNursery.class);
+		return getMachine().getInterface(IButterflyNursery.class);
 	}
 
 	boolean hasNursery() {
-		return this.getNursery() != null;
+		return getNursery() != null;
 	}
 
 	public World getWorld() {
-		return this.worldObj;
+		return worldObj;
 	}
 
 	public int getXCoord() {
-		return this.xCoord;
+		return xCoord;
 	}
 
 	public int getYCoord() {
-		return this.yCoord;
+		return yCoord;
 	}
 
 	public int getZCoord() {
-		return this.zCoord;
+		return zCoord;
 	}
 
 	public EnumTemperature getTemperature() {
@@ -63,13 +52,20 @@ public class TileEntityNursery extends TileEntityMachine implements IButterflyNu
 		return null;
 	}
 
-	public boolean addProduct(final ItemStack product, final boolean all) {
+	public boolean addProduct(ItemStack product, boolean all) {
 		return false;
 	}
 
 	@Override
 	public IButterfly getCaterpillar() {
-		return this.hasNursery() ? this.getNursery().getCaterpillar() : null;
+		return hasNursery() ? getNursery().getCaterpillar() : null;
+	}
+
+	@Override
+	public void setCaterpillar(IButterfly butterfly) {
+		if (hasNursery()) {
+			getNursery().setCaterpillar(butterfly);
+		}
 	}
 
 	@Override
@@ -78,41 +74,34 @@ public class TileEntityNursery extends TileEntityMachine implements IButterflyNu
 	}
 
 	@Override
-	public void setCaterpillar(final IButterfly butterfly) {
-		if (this.hasNursery()) {
-			this.getNursery().setCaterpillar(butterfly);
-		}
-	}
-
-	@Override
-	public boolean canNurse(final IButterfly butterfly) {
-		return this.getCaterpillar() == null;
+	public boolean canNurse(IButterfly butterfly) {
+		return getCaterpillar() == null;
 	}
 
 	public BiomeGenBase getBiome() {
-		return this.getWorld().getBiomeGenForCoords(this.xCoord, this.zCoord);
+		return getWorld().getBiomeGenForCoords(xCoord, zCoord);
 	}
 
-	public void setErrorState(final IErrorState state) {
+	public void setErrorState(IErrorState state) {
 	}
 
 	public IErrorState getErrorState() {
 		return null;
 	}
 
-	public boolean setErrorCondition(final boolean condition, final IErrorState errorState) {
+	public void setErrorState(int state) {
+	}
+
+	public boolean setErrorCondition(boolean condition, IErrorState errorState) {
 		return false;
 	}
 
 	public Set<IErrorState> getErrorStates() {
-		return new HashSet<IErrorState>();
+		return new HashSet<>();
 	}
 
 	public int getBiomeId() {
 		return 0;
-	}
-
-	public void setErrorState(final int state) {
 	}
 
 	public int getErrorOrdinal() {

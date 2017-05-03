@@ -1,8 +1,8 @@
 package binnie.core.craftgui.controls.button;
 
-import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.events.EventButtonClicked;

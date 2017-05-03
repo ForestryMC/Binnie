@@ -17,7 +17,7 @@ public interface IFluidType {
 
 	int getColor();
 
-	int getContainerColour();
+	int getContainerColor();
 
 	int getTransparency();
 

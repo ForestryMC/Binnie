@@ -1,82 +1,77 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.carpentry;
 
-import net.minecraft.util.IIcon;
 import binnie.extratrees.api.IDesignSystem;
-import binnie.extratrees.api.IPattern;
 import binnie.extratrees.api.ILayout;
+import binnie.extratrees.api.IPattern;
+import net.minecraft.util.IIcon;
 
-public class Layout implements ILayout
-{
-	IPattern pattern;
-	boolean inverted;
+public class Layout implements ILayout {
+	protected IPattern pattern;
+	protected boolean inverted;
 
-	@Override
-	public IPattern getPattern() {
-		return this.pattern;
-	}
-
-	@Override
-	public boolean isInverted() {
-		return this.inverted;
-	}
-
-	private Layout(final IPattern pattern, final boolean inverted) {
+	private Layout(IPattern pattern, boolean inverted) {
 		this.pattern = pattern;
 		this.inverted = inverted;
 	}
 
-	private Layout(final IPattern pattern) {
+	private Layout(IPattern pattern) {
 		this(pattern, false);
 	}
 
-	ILayout newLayout(final ILayout newLayout) {
-		return new Layout(newLayout.getPattern(), this.inverted ^ newLayout.isInverted());
+	public static ILayout get(IPattern pattern, boolean inverted) {
+		return new Layout(pattern, inverted);
+	}
+
+	public static ILayout get(IPattern pattern) {
+		return new Layout(pattern, false);
+	}
+
+	@Override
+	public IPattern getPattern() {
+		return pattern;
+	}
+
+	@Override
+	public boolean isInverted() {
+		return inverted;
+	}
+
+	ILayout newLayout(ILayout newLayout) {
+		return new Layout(newLayout.getPattern(), inverted ^ newLayout.isInverted());
 	}
 
 	@Override
 	public ILayout rotateRight() {
-		return this.rotateLeft().rotateLeft().rotateLeft();
+		return rotateLeft().rotateLeft().rotateLeft();
 	}
 
 	@Override
 	public ILayout rotateLeft() {
-		return this.newLayout(this.pattern.getRotation());
+		return newLayout(pattern.getRotation());
 	}
 
 	@Override
 	public ILayout flipHorizontal() {
-		return this.newLayout(this.pattern.getHorizontalFlip());
+		return newLayout(pattern.getHorizontalFlip());
 	}
 
 	@Override
 	public ILayout flipVertical() {
-		return this.newLayout(this.pattern.getHorizontalFlip().rotateLeft().rotateLeft());
+		return newLayout(pattern.getHorizontalFlip().rotateLeft().rotateLeft());
 	}
 
 	@Override
-	public IIcon getPrimaryIcon(final IDesignSystem system) {
-		return this.inverted ? this.pattern.getSecondaryIcon(system) : this.pattern.getPrimaryIcon(system);
+	public IIcon getPrimaryIcon(IDesignSystem system) {
+		return inverted ? pattern.getSecondaryIcon(system) : pattern.getPrimaryIcon(system);
 	}
 
 	@Override
-	public IIcon getSecondaryIcon(final IDesignSystem system) {
-		return this.inverted ? this.pattern.getPrimaryIcon(system) : this.pattern.getSecondaryIcon(system);
+	public IIcon getSecondaryIcon(IDesignSystem system) {
+		return inverted ? pattern.getPrimaryIcon(system) : pattern.getSecondaryIcon(system);
 	}
 
 	@Override
 	public ILayout invert() {
-		return new Layout(this.pattern, !this.inverted);
-	}
-
-	public static ILayout get(final IPattern pattern, final boolean inverted) {
-		return new Layout(pattern, inverted);
-	}
-
-	public static ILayout get(final IPattern pattern) {
-		return new Layout(pattern, false);
+		return new Layout(pattern, !inverted);
 	}
 }

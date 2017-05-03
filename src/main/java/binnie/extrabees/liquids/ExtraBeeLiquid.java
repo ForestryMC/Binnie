@@ -74,7 +74,7 @@ public enum ExtraBeeLiquid implements ILiquidType {
 	}
 
 	@Override
-	public int getContainerColour() {
+	public int getContainerColor() {
 		return colour;
 	}
 }

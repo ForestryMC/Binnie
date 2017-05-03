@@ -5,8 +5,6 @@ import binnie.core.craftgui.minecraft.Window;
 import binnie.core.gui.IBinnieGUID;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public enum BotanyGUI implements IBinnieGUID {

@@ -1,24 +1,19 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.block;
 
-import net.minecraft.util.IIcon;
 import net.minecraft.block.Block;
-import org.lwjgl.opengl.GL11;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.item.ItemStack;
 import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 import net.minecraftforge.client.IItemRenderer;
+import org.lwjgl.opengl.GL11;
 
-public class GateItemRenderer implements IItemRenderer
-{
-	private void renderStairBlock(final RenderBlocks renderBlocks, final ItemStack item, final float f, final float g, final float h) {
-		final Tessellator tessellator = Tessellator.instance;
-		final Block block = ((ItemBlock) item.getItem()).field_150939_a;
-		final IIcon textureIndex = WoodManager.getPlankType(item.getItemDamage()).getIcon();
+public class GateItemRenderer implements IItemRenderer {
+	private void renderStairBlock(RenderBlocks renderBlocks, ItemStack item, float f, float g, float h) {
+		Tessellator tessellator = Tessellator.instance;
+		Block block = ((ItemBlock) item.getItem()).field_150939_a;
+		IIcon textureIndex = WoodManager.getPlankType(item.getItemDamage()).getIcon();
 		for (int k = 0; k < 3; ++k) {
 			float f2 = 0.0625f;
 			if (k == 0) {
@@ -61,43 +56,36 @@ public class GateItemRenderer implements IItemRenderer
 	}
 
 	@Override
-	public boolean handleRenderType(final ItemStack item, final IItemRenderer.ItemRenderType type) {
+	public boolean handleRenderType(ItemStack item, IItemRenderer.ItemRenderType type) {
 		switch (type) {
-		case ENTITY: {
-			return true;
+			case ENTITY:
+			case EQUIPPED:
+			case INVENTORY:
+				return true;
 		}
-		case EQUIPPED: {
-			return true;
-		}
-		case INVENTORY: {
-			return true;
-		}
-		default: {
-			return false;
-		}
-		}
+		return false;
 	}
 
 	@Override
-	public boolean shouldUseRenderHelper(final IItemRenderer.ItemRenderType type, final ItemStack item, final IItemRenderer.ItemRendererHelper helper) {
+	public boolean shouldUseRenderHelper(IItemRenderer.ItemRenderType type, ItemStack item, IItemRenderer.ItemRendererHelper helper) {
 		return true;
 	}
 
 	@Override
-	public void renderItem(final IItemRenderer.ItemRenderType type, final ItemStack item, final Object... data) {
+	public void renderItem(IItemRenderer.ItemRenderType type, ItemStack item, Object... data) {
 		switch (type) {
-		case ENTITY: {
-			this.renderStairBlock((RenderBlocks) data[0], item, -0.5f, -0.5f, -0.5f);
-			break;
-		}
-		case EQUIPPED: {
-			this.renderStairBlock((RenderBlocks) data[0], item, 0.0f, 0.0f, 0.0f);
-			break;
-		}
-		case INVENTORY: {
-			this.renderStairBlock((RenderBlocks) data[0], item, -0.5f, -0.5f, -0.5f);
-			break;
-		}
+			case ENTITY:
+				renderStairBlock((RenderBlocks) data[0], item, -0.5f, -0.5f, -0.5f);
+				break;
+
+			case EQUIPPED:
+				renderStairBlock((RenderBlocks) data[0], item, 0.0f, 0.0f, 0.0f);
+				break;
+
+			case INVENTORY:
+				renderStairBlock((RenderBlocks) data[0], item, -0.5f, -0.5f, -0.5f);
+				break;
+
 		}
 	}
 }

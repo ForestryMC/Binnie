@@ -59,7 +59,7 @@ public enum GeneticLiquid implements IFluidType {
 	}
 
 	@Override
-	public int getContainerColour() {
+	public int getContainerColor() {
 		return color;
 	}
 

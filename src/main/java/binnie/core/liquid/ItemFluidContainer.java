@@ -104,7 +104,7 @@ public class ItemFluidContainer extends ItemFood {
 			return 16777215;
 		}
 		if (pass == 0 && fluid.getFluid() instanceof BinnieFluid) {
-			return ((BinnieFluid) fluid.getFluid()).fluidType.getContainerColour();
+			return ((BinnieFluid) fluid.getFluid()).fluidType.getContainerColor();
 		}
 		return super.getColorFromItemStack(item, pass);
 	}

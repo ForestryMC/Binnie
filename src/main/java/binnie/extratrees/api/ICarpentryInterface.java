@@ -1,34 +1,30 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.api;
 
-import java.util.List;
-import java.util.Collection;
 import net.minecraft.item.ItemStack;
 
-public interface ICarpentryInterface
-{
-	boolean registerCarpentryWood(final int p0, final IDesignMaterial p1);
+import java.util.Collection;
+import java.util.List;
 
-	int getCarpentryWoodIndex(final IDesignMaterial p0);
+public interface ICarpentryInterface {
+	boolean registerCarpentryWood(int index, IDesignMaterial wood);
 
-	IDesignMaterial getWoodMaterial(final int p0);
+	int getCarpentryWoodIndex(IDesignMaterial wood);
 
-	boolean registerDesign(final int p0, final IDesign p1);
+	IDesignMaterial getWoodMaterial(int index);
 
-	int getDesignIndex(final IDesign p0);
+	boolean registerDesign(int index, IDesign wood);
 
-	IDesign getDesign(final int p0);
+	int getDesignIndex(IDesign wood);
 
-	ILayout getLayout(final IPattern p0, final boolean p1);
+	IDesign getDesign(int p0);
 
-	IDesignMaterial getWoodMaterial(final ItemStack p0);
+	ILayout getLayout(IPattern pattern, boolean inverted);
 
-	boolean registerDesignCategory(final IDesignCategory p0);
+	IDesignMaterial getWoodMaterial(ItemStack stack);
 
-	IDesignCategory getDesignCategory(final String p0);
+	boolean registerDesignCategory(IDesignCategory category);
+
+	IDesignCategory getDesignCategory(String id);
 
 	Collection<IDesignCategory> getAllDesignCategories();
 

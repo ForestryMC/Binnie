@@ -1,137 +1,140 @@
-// 
-// Decompiled by Procyon v0.5.30
-// 
-
 package binnie.extratrees.genetics;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockLog;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.Direction;
-
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.arboriculture.EnumTreeChromosome;
-
-import java.util.List;
-import java.util.Map;
-import java.util.ArrayList;
-
-import net.minecraft.world.World;
-import net.minecraft.world.IBlockAccess;
-
-import forestry.api.arboriculture.ITreeGenome;
-import binnie.extratrees.ExtraTrees;
-
-import forestry.api.arboriculture.IAlleleTreeSpecies;
-import forestry.api.genetics.IAlleleSpecies;
 import binnie.Binnie;
-
-import java.lang.reflect.Field;
-
-import forestry.arboriculture.FruitProviderNone;
-import forestry.arboriculture.genetics.alleles.AlleleTreeSpecies;
+import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.block.FruitPod;
 import binnie.extratrees.config.ConfigurationMain;
 import binnie.extratrees.item.Food;
-
-import net.minecraft.init.Items;
-
-import forestry.api.genetics.AlleleManager;
-
-import net.minecraft.item.ItemStack;
-
-import java.util.HashMap;
-
-import binnie.extratrees.block.FruitPod;
-import forestry.api.genetics.IFruitFamily;
-import forestry.api.arboriculture.IFruitProvider;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.IAlleleFruit;
+import forestry.api.arboriculture.IAlleleTreeSpecies;
+import forestry.api.arboriculture.IFruitProvider;
+import forestry.api.arboriculture.ITreeGenome;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IFruitFamily;
+import forestry.arboriculture.FruitProviderNone;
+import forestry.arboriculture.genetics.alleles.AlleleTreeSpecies;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockLog;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.Direction;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 
-public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider
-{
-	Blackthorn(10, 7180062, 14561129, FruitSprite.Small),
-	CherryPlum(10, 7180062, 15211595, FruitSprite.Small),
-	Peach(10, 7180062, 16424995, FruitSprite.Average),
-	Nectarine(10, 7180062, 16405795, FruitSprite.Average),
-	Apricot(10, 7180062, 16437027, FruitSprite.Average),
-	Almond(10, 7180062, 9364342, FruitSprite.Small),
-	WildCherry(10, 7180062, 16711680, FruitSprite.Tiny),
-	SourCherry(10, 7180062, 10225963, FruitSprite.Tiny),
-	BlackCherry(10, 7180062, 4852249, FruitSprite.Tiny),
-	Orange(10, 3665987, 16749578, FruitSprite.Average),
-	Manderin(10, 3665987, 16749578, FruitSprite.Average),
-	Tangerine(10, 3665987, 16749578, FruitSprite.Average),
-	Satsuma(10, 3665987, 16749578, FruitSprite.Average),
-	KeyLime(10, 3665987, 10223428, FruitSprite.Small),
-	Lime(10, 3665987, 10223428, FruitSprite.Average),
-	FingerLime(10, 3665987, 11156280, FruitSprite.Small),
-	Pomelo(10, 3665987, 6083402, FruitSprite.Larger),
-	Grapefruit(10, 3665987, 16749578, FruitSprite.Large),
-	Kumquat(10, 3665987, 16749578, FruitSprite.Small),
-	Citron(10, 3665987, 16772192, FruitSprite.Large),
-	BuddhaHand(10, 3665987, 16772192, FruitSprite.Large),
-	Apple(10, 7915859, 16193046, FruitSprite.Average),
-	Crabapple(10, 7915859, 16760140, FruitSprite.Average),
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
+	Blackthorn(10, 0x6d8f1e, 0xde2f69, FruitSprite.Small),
+	CherryPlum(10, 0x6d8f1e, 0xe81c4b, FruitSprite.Small),
+	Peach(10, 0x6d8f1e, 0xfaa023, FruitSprite.Average),
+	Nectarine(10, 0x6d8f1e, 0xfa5523, FruitSprite.Average),
+	Apricot(10, 0x6d8f1e, 0xfacf23, FruitSprite.Average),
+	Almond(10, 0x6d8f1e, 0x8ee376, FruitSprite.Small),
+	WildCherry(10, 0x6d8f1e, 0xff0000, FruitSprite.Tiny),
+	SourCherry(10, 0x6d8f1e, 0x9c092b, FruitSprite.Tiny),
+	BlackCherry(10, 0x6d8f1e, 0x4a0a19, FruitSprite.Tiny),
+	Orange(10, 0x37f043, 0xff940a, FruitSprite.Average),
+	Manderin(10, 0x37f043, 0xff940a, FruitSprite.Average),
+	Tangerine(10, 0x37f043, 0xff940a, FruitSprite.Average),
+	Satsuma(10, 0x37f043, 0xff940a, FruitSprite.Average),
+	KeyLime(10, 0x37f043, 0x9bff44, FruitSprite.Small),
+	Lime(10, 0x37f043, 0x9bff44, FruitSprite.Average),
+	FingerLime(10, 0x37f043, 0xaa3b38, FruitSprite.Small),
+	Pomelo(10, 0x37f043, 0x5cd34a, FruitSprite.Larger),
+	Grapefruit(10, 0x37f043, 0xff940a, FruitSprite.Large),
+	Kumquat(10, 0x37f043, 0xff940a, FruitSprite.Small),
+	Citron(10, 0x37f043, 0xffec60, FruitSprite.Large),
+	BuddhaHand(10, 0x37f043, 0xffec60, FruitSprite.Large),
+	Apple(10, 0x78c953, 0xf71616, FruitSprite.Average),
+	Crabapple(10, 0x78c953, 0xffbd4c, FruitSprite.Average),
 	Banana("Banana", FruitPod.Banana),
 	RedBanana("Red Banana", FruitPod.RedBanana),
 	Plantain("Platain", FruitPod.Plantain),
-	Hazelnut(7, 8223006, 14463606, FruitSprite.Small),
-	Butternut(7, 11712336, 16102498, FruitSprite.Small),
-	Beechnut(8, 14401148, 6241845, FruitSprite.Tiny),
-	Pecan(8, 10660940, 15781769, FruitSprite.Small),
-	BrazilNut(10, 5875561, 9852208, FruitSprite.Large),
-	Fig(9, 14201186, 7094086, FruitSprite.Small),
-	Acorn(6, 7516710, 11364893, FruitSprite.Tiny),
-	Elderberry(9, 7444317, 5331779, FruitSprite.Tiny),
-	Olive(9, 8887861, 6444842, FruitSprite.Small),
-	GingkoNut(7, 9213787, 15063725, FruitSprite.Tiny),
-	Coffee(8, 7433501, 16273254, FruitSprite.Tiny),
-	Pear(10, 10456913, 10474833, FruitSprite.Pear),
-	OsangeOsange(10, 9934674, 10665767, FruitSprite.Larger),
-	Clove(9, 6847532, 11224133, FruitSprite.Tiny),
+	Hazelnut(7, 0x7d791e, 0xdcb276, FruitSprite.Small),
+	Butternut(7, 0xb2b750, 0xf5b462, FruitSprite.Small),
+	Beechnut(8, 0xdbbe7c, 0x5f3e35, FruitSprite.Tiny),
+	Pecan(8, 0xa2ac4c, 0xf0cf89, FruitSprite.Small),
+	BrazilNut(10, 0x59a769, 0x965530, FruitSprite.Large),
+	Fig(9, 0xd8b162, 0x6c3f46, FruitSprite.Small),
+	Acorn(6, 0x72b226, 0xad6a1d, FruitSprite.Tiny),
+	Elderberry(9, 0x71975d, 0x515b43, FruitSprite.Tiny),
+	Olive(9, 0x879e35, 0x62572a, FruitSprite.Small),
+	GingkoNut(7, 0x8c975b, 0xe5daad, FruitSprite.Tiny),
+	Coffee(8, 0x716d1d, 0xf84f66, FruitSprite.Tiny),
+	Pear(10, 0x9f8f51, 0x9fd551, FruitSprite.Pear),
+	OsangeOsange(10, 0x979752, 0xa2bf27, FruitSprite.Larger),
+	Clove(9, 0x687c2c, 0xab4445, FruitSprite.Tiny),
 	Coconut("Coconut", FruitPod.Coconut),
-	Cashew(8, 12879132, 15289111, FruitSprite.Average),
-	Avacado(10, 10272370, 2170640, FruitSprite.Pear),
-	Nutmeg(9, 14861101, 11305813, FruitSprite.Tiny),
-	Allspice(9, 15180922, 7423542, FruitSprite.Tiny),
-	Chilli(10, 7430757, 15145010, FruitSprite.Small),
-	StarAnise(8, 8733742, 13917189, FruitSprite.Tiny),
-	Mango(10, 6654997, 15902262, FruitSprite.Average),
-	Starfruit(10, 9814541, 15061550, FruitSprite.Average),
-	Candlenut(8, 8235123, 14600882, FruitSprite.Small),
+	Cashew(8, 0xc4851c, 0xe94b17, FruitSprite.Average),
+	Avacado(10, 0x9cbe72, 0x211f10, FruitSprite.Pear),
+	Nutmeg(9, 0xe2c32d, 0xac8355, FruitSprite.Tiny),
+	Allspice(9, 0xe7a47a, 0x714636, FruitSprite.Tiny),
+	Chilli(10, 0x716265, 0xe71832, FruitSprite.Small),
+	StarAnise(8, 0x85442e, 0xd45c05, FruitSprite.Tiny),
+	Mango(10, 0x658c15, 0xf2a636, FruitSprite.Average),
+	Starfruit(10, 0x95c20d, 0xe5d22e, FruitSprite.Average),
+	Candlenut(8, 0x7da873, 0xdecab2, FruitSprite.Small),
 	Papayimar("Papayimar", FruitPod.Papayimar),
-	Blackcurrant(8, 9407571, 4935251, FruitSprite.Tiny),
-	Redcurrant(8, 13008910, 15080974, FruitSprite.Tiny),
-	Blackberry(8, 9399665, 4801393, FruitSprite.Tiny),
-	Raspberry(8, 15520197, 14510449, FruitSprite.Tiny),
-	Blueberry(8, 10203799, 6329278, FruitSprite.Tiny),
-	Cranberry(8, 12232496, 14555696, FruitSprite.Tiny),
-	Juniper(8, 10194034, 6316914, FruitSprite.Tiny),
-	Gooseberry(8, 12164944, 12177232, FruitSprite.Tiny),
-	GoldenRaspberry(8, 12496955, 15970363, FruitSprite.Tiny);
+	Blackcurrant(8, 0x8f8c53, 0x4b4e53, FruitSprite.Tiny),
+	Redcurrant(8, 0xc6800e, 0xe61e0e, FruitSprite.Tiny),
+	Blackberry(8, 0x8f6d71, 0x494371, FruitSprite.Tiny),
+	Raspberry(8, 0xecd1c5, 0xdd6971, FruitSprite.Tiny),
+	Blueberry(8, 0x9bb297, 0x6093be, FruitSprite.Tiny),
+	Cranberry(8, 0xbaa730, 0xde1a30, FruitSprite.Tiny),
+	Juniper(8, 0x9b8c72, 0x606372, FruitSprite.Tiny),
+	Gooseberry(8, 0xb99f50, 0xb9cf50, FruitSprite.Tiny),
+	GoldenRaspberry(8, 0xbeb03b, 0xf3b03b, FruitSprite.Tiny);
 
-	IFruitFamily family;
-	boolean isRipening;
-	int diffR;
-	int diffG;
-	int diffB;
-	FruitPod pod;
-	int ripeningPeriod;
-	int colourUnripe;
-	int colour;
-	FruitSprite index;
-	HashMap<ItemStack, Float> products;
+	protected IFruitFamily family;
+	protected boolean isRipening;
+	protected int diffR;
+	protected int diffG;
+	protected int diffB;
+	protected FruitPod pod;
+	protected int ripeningPeriod;
+	protected int colourUnripe;
+	protected int colour;
+	protected FruitSprite index;
+	protected HashMap<ItemStack, Float> products;
+
+	ExtraTreeFruitGene(int time, int unripe, int colour, FruitSprite index) {
+		isRipening = false;
+		diffB = 0;
+		pod = null;
+		ripeningPeriod = 0;
+		products = new HashMap<>();
+		this.colour = colour;
+		this.index = index;
+		setRipening(time, unripe);
+	}
+
+	ExtraTreeFruitGene(String name, FruitPod pod) {
+		isRipening = false;
+		diffB = 0;
+		this.pod = null;
+		ripeningPeriod = 0;
+		products = new HashMap<ItemStack, Float>();
+		this.pod = pod;
+		ripeningPeriod = 2;
+	}
 
 	public static void init() {
-		final IFruitFamily familyPrune = AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes");
-		final IFruitFamily familyPome = AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes");
-		final IFruitFamily familyJungle = AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle");
-		final IFruitFamily familyNuts = AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts");
-		final IFruitFamily familyBerry = ExtraTreeFruitFamily.Berry;
-		final IFruitFamily familyCitrus = ExtraTreeFruitFamily.Citrus;
+		IFruitFamily familyPrune = AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes");
+		IFruitFamily familyPome = AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes");
+		IFruitFamily familyJungle = AlleleManager.alleleRegistry.getFruitFamily("forestry.jungle");
+		IFruitFamily familyNuts = AlleleManager.alleleRegistry.getFruitFamily("forestry.nuts");
+		IFruitFamily familyBerry = ExtraTreeFruitFamily.Berry;
+		IFruitFamily familyCitrus = ExtraTreeFruitFamily.Citrus;
 		AlleleManager.alleleRegistry.registerFruitFamily(familyBerry);
 		AlleleManager.alleleRegistry.registerFruitFamily(familyCitrus);
 		ExtraTreeFruitGene.Apple.addProduct(new ItemStack(Items.apple), 1.0f);
@@ -252,12 +255,13 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider
 		ExtraTreeFruitGene.Starfruit.setFamily(familyJungle);
 		ExtraTreeFruitGene.Candlenut.addProduct(Food.Candlenut.get(1), 1.0f);
 		ExtraTreeFruitGene.Candlenut.setFamily(familyJungle);
+
 		if (ConfigurationMain.alterLemon) {
 			try {
-				final IAlleleFruit lemon = (IAlleleFruit) AlleleManager.alleleRegistry.getAllele("forestry.fruitLemon");
-				final FruitProviderNone prov = (FruitProviderNone) lemon.getProvider();
-				final Field f = FruitProviderNone.class.getDeclaredField("family");
-				final Field modifiersField = Field.class.getDeclaredField("modifiers");
+				IAlleleFruit lemon = (IAlleleFruit) AlleleManager.alleleRegistry.getAllele("forestry.fruitLemon");
+				FruitProviderNone prov = (FruitProviderNone) lemon.getProvider();
+				Field f = FruitProviderNone.class.getDeclaredField("family");
+				Field modifiersField = Field.class.getDeclaredField("modifiers");
 				f.setAccessible(true);
 				modifiersField.setAccessible(true);
 				modifiersField.setInt(f, f.getModifiers() & 0xFFFFFFEF);
@@ -266,54 +270,49 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider
 				e.printStackTrace();
 			}
 		}
-		for (final IAlleleSpecies tree : Binnie.Genetics.treeBreedingSystem.getAllSpecies()) {
+
+		for (IAlleleSpecies tree : Binnie.Genetics.treeBreedingSystem.getAllSpecies()) {
 			if (tree instanceof AlleleTreeSpecies && ((IAlleleTreeSpecies) tree).getSuitableFruit().contains(familyPrune)) {
 				((AlleleTreeSpecies) tree).addFruitFamily(familyCitrus);
 			}
 		}
 	}
 
-	private void setFamily(final IFruitFamily family) {
-		this.family = family;
+	public static int getDirectionalMetadata(World world, int x, int y, int z) {
+		for (int i = 0; i < 4; ++i) {
+			if (isValidPot(world, x, y, z, i)) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
-	private ExtraTreeFruitGene(final int time, final int unripe, final int colour, final FruitSprite index) {
-		this.isRipening = false;
-		this.diffB = 0;
-		this.pod = null;
-		this.ripeningPeriod = 0;
-		this.products = new HashMap<ItemStack, Float>();
-		this.colour = colour;
-		this.index = index;
-		this.setRipening(time, unripe);
+	public static boolean isValidPot(World world, int x, int y, int z, int notchDirection) {
+		x += Direction.offsetX[notchDirection];
+		z += Direction.offsetZ[notchDirection];
+		Block block = world.getBlock(x, y, z);
+		if (block == Blocks.log || block == Blocks.log2) {
+			return BlockLog.func_150165_c(world.getBlockMetadata(x, y, z)) == 3;
+		}
+		return block != null && block.isWood(world, x, y, z);
 	}
 
-	private ExtraTreeFruitGene(final String name, final FruitPod pod) {
-		this.isRipening = false;
-		this.diffB = 0;
-		this.pod = null;
-		this.ripeningPeriod = 0;
-		this.products = new HashMap<ItemStack, Float>();
-		this.pod = pod;
-		this.ripeningPeriod = 2;
+	public void setRipening(int time, int unripe) {
+		ripeningPeriod = time;
+		colourUnripe = unripe;
+		isRipening = true;
+		diffR = (colour >> 16 & 0xFF) - (unripe >> 16 & 0xFF);
+		diffG = (colour >> 8 & 0xFF) - (unripe >> 8 & 0xFF);
+		diffB = (colour & 0xFF) - (unripe & 0xFF);
 	}
 
-	public void setRipening(final int time, final int unripe) {
-		this.ripeningPeriod = time;
-		this.colourUnripe = unripe;
-		this.isRipening = true;
-		this.diffR = (this.colour >> 16 & 0xFF) - (unripe >> 16 & 0xFF);
-		this.diffG = (this.colour >> 8 & 0xFF) - (unripe >> 8 & 0xFF);
-		this.diffB = (this.colour & 0xFF) - (unripe & 0xFF);
-	}
-
-	public void addProduct(final ItemStack product, final float chance) {
-		this.products.put(product, chance);
+	public void addProduct(ItemStack product, float chance) {
+		products.put(product, chance);
 	}
 
 	@Override
 	public String getUID() {
-		return "extratrees.fruit." + this.toString().toLowerCase();
+		return "extratrees.fruit." + toString().toLowerCase();
 	}
 
 	@Override
@@ -328,7 +327,7 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider
 
 	@Override
 	public ItemStack[] getProducts() {
-		return this.products.keySet().toArray(new ItemStack[0]);
+		return products.keySet().toArray(new ItemStack[0]);
 	}
 
 	@Override
@@ -338,43 +337,48 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider
 
 	@Override
 	public String getDescription() {
-		return ExtraTrees.proxy.localise("item.food." + this.name().toLowerCase());
+		return ExtraTrees.proxy.localise("item.food." + name().toLowerCase());
 	}
 
 	@Override
 	public IFruitFamily getFamily() {
-		return this.family;
+		return family;
+	}
+
+	private void setFamily(IFruitFamily family) {
+		this.family = family;
 	}
 
 	@Override
-	public int getColour(final ITreeGenome genome, final IBlockAccess world, final int x, final int y, final int z, final int ripeningTime) {
-		if (!this.isRipening) {
-			return this.colour;
+	public int getColour(ITreeGenome genome, IBlockAccess world, int x, int y, int z, int ripeningTime) {
+		if (!isRipening) {
+			return colour;
 		}
-		final float stage = this.getRipeningStage(ripeningTime);
-		final int r = (this.colourUnripe >> 16 & 0xFF) + (int) (this.diffR * stage);
-		final int g = (this.colourUnripe >> 8 & 0xFF) + (int) (this.diffG * stage);
-		final int b = (this.colourUnripe & 0xFF) + (int) (this.diffB * stage);
+
+		float stage = getRipeningStage(ripeningTime);
+		int r = (colourUnripe >> 16 & 0xFF) + (int) (diffR * stage);
+		int g = (colourUnripe >> 8 & 0xFF) + (int) (diffG * stage);
+		int b = (colourUnripe & 0xFF) + (int) (diffB * stage);
 		return (r & 0xFF) << 16 | (g & 0xFF) << 8 | (b & 0xFF);
 	}
 
 	@Override
-	public boolean markAsFruitLeaf(final ITreeGenome genome, final World world, final int x, final int y, final int z) {
-		return this.pod == null;
+	public boolean markAsFruitLeaf(ITreeGenome genome, World world, int x, int y, int z) {
+		return pod == null;
 	}
 
 	@Override
 	public int getRipeningPeriod() {
-		return this.ripeningPeriod;
+		return ripeningPeriod;
 	}
 
 	@Override
-	public ItemStack[] getFruits(final ITreeGenome genome, final World world, final int x, final int y, final int z, final int ripeningTime) {
-		if (this.pod != null) {
+	public ItemStack[] getFruits(ITreeGenome genome, World world, int x, int y, int z, int ripeningTime) {
+		if (pod != null) {
 			if (ripeningTime >= 2) {
-				final List<ItemStack> product = new ArrayList<ItemStack>();
-				for (final Map.Entry<ItemStack, Float> entry : this.products.entrySet()) {
-					final ItemStack single = entry.getKey().copy();
+				List<ItemStack> product = new ArrayList<ItemStack>();
+				for (Map.Entry<ItemStack, Float> entry : products.entrySet()) {
+					ItemStack single = entry.getKey().copy();
 					single.stackSize = 1;
 					for (int i = 0; i < entry.getKey().stackSize; ++i) {
 						if (world.rand.nextFloat() <= entry.getValue()) {
@@ -386,72 +390,55 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider
 			}
 			return new ItemStack[0];
 		}
-		else {
-			final ArrayList<ItemStack> product2 = new ArrayList<ItemStack>();
-			final float stage = this.getRipeningStage(ripeningTime);
-			if (stage < 0.5f) {
-				return new ItemStack[0];
-			}
-			final float modeYieldMod = 1.0f;
-			for (final Map.Entry<ItemStack, Float> entry2 : this.products.entrySet()) {
-				if (world.rand.nextFloat() <= genome.getYield() * modeYieldMod * entry2.getValue() * 5.0f * stage) {
-					product2.add(entry2.getKey().copy());
-				}
-			}
-			return product2.toArray(new ItemStack[0]);
+
+		ArrayList<ItemStack> product2 = new ArrayList<ItemStack>();
+		float stage = getRipeningStage(ripeningTime);
+		if (stage < 0.5f) {
+			return new ItemStack[0];
 		}
+
+		float modeYieldMod = 1.0f;
+		for (Map.Entry<ItemStack, Float> entry2 : products.entrySet()) {
+			if (world.rand.nextFloat() <= genome.getYield() * modeYieldMod * entry2.getValue() * 5.0f * stage) {
+				product2.add(entry2.getKey().copy());
+			}
+		}
+		return product2.toArray(new ItemStack[0]);
 	}
 
-	private float getRipeningStage(final int ripeningTime) {
-		if (ripeningTime >= this.ripeningPeriod) {
+	private float getRipeningStage(int ripeningTime) {
+		if (ripeningTime >= ripeningPeriod) {
 			return 1.0f;
 		}
-		return ripeningTime / this.ripeningPeriod;
+		return ripeningTime / ripeningPeriod;
 	}
 
 	@Override
 	public boolean requiresFruitBlocks() {
-		return this.pod != null;
+		return pod != null;
 	}
 
 	@Override
-	public boolean trySpawnFruitBlock(final ITreeGenome genome, final World world, final int x, final int y, final int z) {
-		return this.pod != null && world.rand.nextFloat() <= genome.getSappiness() && Binnie.Genetics.getTreeRoot().setFruitBlock(world, (IAlleleFruit) genome.getActiveAllele(EnumTreeChromosome.FRUITS), genome.getSappiness(), this.pod.getTextures(), x, y, z);
+	public boolean trySpawnFruitBlock(ITreeGenome genome, World world, int x, int y, int z) {
+		return pod != null
+			&& world.rand.nextFloat() <= genome.getSappiness()
+			&& Binnie.Genetics.getTreeRoot().setFruitBlock(world, (IAlleleFruit) genome.getActiveAllele(EnumTreeChromosome.FRUITS), genome.getSappiness(), pod.getTextures(), x, y, z);
 	}
 
-	public boolean setFruitBlock(final World world, final IAlleleFruit allele, final float sappiness, final int x, final int y, final int z) {
+	public boolean setFruitBlock(World world, IAlleleFruit allele, float sappiness, int x, int y, int z) {
 		return true;
 	}
 
-	public static int getDirectionalMetadata(final World world, final int x, final int y, final int z) {
-		for (int i = 0; i < 4; ++i) {
-			if (isValidPot(world, x, y, z, i)) {
-				return i;
-			}
-		}
-		return -1;
-	}
-
-	public static boolean isValidPot(final World world, int x, final int y, int z, final int notchDirection) {
-		x += Direction.offsetX[notchDirection];
-		z += Direction.offsetZ[notchDirection];
-		final Block block = world.getBlock(x, y, z);
-		if (block == Blocks.log || block == Blocks.log2) {
-			return BlockLog.func_150165_c(world.getBlockMetadata(x, y, z)) == 3;
-		}
-		return block != null && block.isWood(world, x, y, z);
-	}
-
 	@Override
-	public short getIconIndex(final ITreeGenome genome, final IBlockAccess world, final int x, final int y, final int z, final int ripeningTime, final boolean fancy) {
-		return this.index.getIndex();
+	public short getIconIndex(ITreeGenome genome, IBlockAccess world, int x, int y, int z, int ripeningTime, boolean fancy) {
+		return index.getIndex();
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(final IIconRegister register) {
-		if (this.ordinal() == 0) {
-			for (final FruitSprite sprite : FruitSprite.values()) {
+	public void registerIcons(IIconRegister register) {
+		if (ordinal() == 0) {
+			for (FruitSprite sprite : FruitSprite.values()) {
 				sprite.registerIcons(register);
 			}
 		}
@@ -459,14 +446,15 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider
 
 	@Override
 	public String getName() {
-		return this.getDescription();
+		return getDescription();
 	}
 
 	public String getNameOfFruit() {
 		if (this == ExtraTreeFruitGene.Apple) {
 			return "Apple";
 		}
-		for (final ItemStack stack : this.products.keySet()) {
+
+		for (ItemStack stack : products.keySet()) {
 			if (stack.getItem() == ExtraTrees.itemFood) {
 				return Food.values()[stack.getItemDamage()].toString();
 			}
@@ -476,6 +464,6 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider
 
 	@Override
 	public String getUnlocalizedName() {
-		return this.getUID();
+		return getUID();
 	}
 }

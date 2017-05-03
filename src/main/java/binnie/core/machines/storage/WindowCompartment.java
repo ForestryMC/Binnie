@@ -2,9 +2,9 @@ package binnie.core.machines.storage;
 
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
-import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.controls.ControlCheckbox;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextEdit;

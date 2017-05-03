@@ -150,7 +150,7 @@ public class Inoculator {
 
 			transfer.addStorage(9, Inoculator.slotFinished, new ComponentInventoryTransfer.Condition() {
 				@Override
-				public boolean fufilled(final ItemStack stack) {
+				public boolean fufilled(ItemStack stack) {
 					return stack != null
 						&& transfer.getMachine().getMachineUtil().getStack(0) != null
 						&& transfer.getMachine().getInterface(ComponentInoculatorLogic.class).isValidSerum() != null;
