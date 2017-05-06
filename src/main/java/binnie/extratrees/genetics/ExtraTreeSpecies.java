@@ -985,7 +985,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 
 		ExtraTreeSpecies.Coconut
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Smaller)
+			.setHeight(ForestryAllele.TreeHeight.Larger)
 			.setFertility(ForestryAllele.Saplings.Low)
 			.setYield(ForestryAllele.Yield.Average)
 			.setMaturation(ForestryAllele.Maturation.Fast);
