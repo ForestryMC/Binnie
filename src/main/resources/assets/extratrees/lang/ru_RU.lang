@@ -1,0 +1,491 @@
+##################################################
+## Machines
+
+extratrees.machine.kitchen.bar=§6Бар
+extratrees.machine.kitchen.bottleRack=§6Стойка для бутылок
+
+extratrees.machine.machine.brewery=§6Пивоварня
+extratrees.machine.machine.brewery.info=§6Пивоварня использует дрожжи (Yeast), соки (Juice) и зёрна (Grain), для производства разнообразных видов вина и пива.
+extratrees.machine.machine.distillery=§6Винокурня
+extratrees.machine.machine.distillery.info=§6Винокурня посредством двойной, тройной перегонки спирта производит коньяки, ликеры и другие спиртные напитки.
+extratrees.machine.machine.press=§6Фруктовый пресс
+extratrees.machine.machine.press.info=§6Фруктовый пресс выжимает из фруктов различные фруктовые соки. Требуется энергия, но может также работать вручную, по правой кнопке мыши.
+extratrees.machine.machine.lumbermill=§6Лесопилка
+extratrees.machine.machine.lumbermill.info=§6Лесопилка разрезает бревна на доски с повышенной скоростью, а также производит побочные продукты - опилки (sawdust) и кору (bark). Требуется энергия и вода.
+extratrees.machine.machine.nursery=§6Питомник
+extratrees.machine.machine.woodworker=§6Столяр
+extratrees.machine.machine.woodworker.info=§6Столяр создает резные деревянные блоки из двух различных пород дерева. Требуется Полироль (Wood Polish).
+extratrees.machine.machine.panelworker=§6Панельщик
+extratrees.machine.machine.panelworker.info=§6Панельщик создает резные деревянные панели из двух различных пород дерева. Требуется Полироль (Wood Polish). Не требует энергии.
+extratrees.machine.machine.glassworker=§6Стекольщик
+extratrees.machine.machine.glassworker.info=§6Стекольщик создает узорчатое витражное стекло из двух цветных стёкол (Pigmented Glass). Требуется Стеклянная Фурнитура (Glass Fittings). Не требует энергии.
+extratrees.machine.machine.tileworker=§6Плиточник
+extratrees.machine.machine.tileworker.info=§6Плиточник создает узорчатые керамические блоки из двух керамических блоков (Ceramic Block) разных цветов. Требуется Строительный Раствор (Mortar). Не требует энергии. | Обычным крафтом 2х2 (3 блока + Стоительный Раствор) из блоков создаются плитки (Ceramic Tile). По схеме 2x2 из разных керамических плиток можно создавать узорчатые керамические плитки всевозможных сочетаний. Большие керамические кирпичи (Large Ceramic Bricks) создаются крафтом 2х2 из трёх разных плиток. Керамические кирпичи (Ceramic Bricks) создаются крафтом 2х2 из керамических кирпичей. Подробнее http://binnie.mods.wiki/wiki/Ceramic_Tile
+
+
+#ДОСКИ мода EXTRATREES
+extratrees.block.planks.fir=§6Пихты
+extratrees.block.planks.cedar=§6Кедра
+extratrees.block.planks.hemlock=§6Тсуги
+extratrees.block.planks.cypress=§6Кипариса
+extratrees.block.planks.fig=§6Инжира
+extratrees.block.planks.beech=§6Бука
+extratrees.block.planks.alder=§6Ольхи
+extratrees.block.planks.hazel=§6Лещины
+extratrees.block.planks.hornbeam=§6Граба
+extratrees.block.planks.box=§6Самшита вечнозелёного
+extratrees.block.planks.butternut=§6Ореха серого
+extratrees.block.planks.hickory=§6Гикори
+extratrees.block.planks.whitebeam=§6Рябины круглолистной
+extratrees.block.planks.elm=§6Вяза
+extratrees.block.planks.apple=§6Яблони
+extratrees.block.planks.yew=§6Тиса
+extratrees.block.planks.pear=§6Груши
+extratrees.block.planks.hawthorn=§6Боярышника
+extratrees.block.planks.rowan=§6Рябины
+extratrees.block.planks.elder=§6Бузины
+extratrees.block.planks.maclura=§6Маклюры яблоконосной
+extratrees.block.planks.syzgium=§6Сизигиума
+extratrees.block.planks.brazilwood=§6Цезальпинии ежовой
+extratrees.block.planks.logwood=§6Кампешевого дерева
+extratrees.block.planks.iroko=§6Ироко
+extratrees.block.planks.locust=§6Робинии ложноакациевой
+extratrees.block.planks.eucalyptus=§6Эвкалипта
+extratrees.block.planks.purpleheart=§6Амаранта
+extratrees.block.planks.ash=§6Ясеня
+extratrees.block.planks.holly=§6Остролиста
+extratrees.block.planks.olive=§6Оливы
+extratrees.block.planks.sweetgum=§6Ликвидамбара смолоносного
+extratrees.block.planks.rosewood=§6Розового дерева
+extratrees.block.planks.gingko=§6Гинкго двулопастного
+extratrees.block.planks.pinkivory=§6Умнини
+
+#ДОСКИ "ВАНИЛЬНОГО" minecraft
+extratrees.block.planks.vanilla.oak=§6Дуба
+extratrees.block.planks.vanilla.spruce=§6Ели
+extratrees.block.planks.vanilla.birch=§6Берёзы
+extratrees.block.planks.vanilla.jungle=§6Тропического дерева
+extratrees.block.planks.vanilla.darkoak=§6Тёмного дуба
+extratrees.block.planks.vanilla.acacia=§6Акации
+
+#ДОСКИ мода FORESTRY
+extratrees.block.planks.forestry.larch=§6Лиственницы
+extratrees.block.planks.forestry.teak=§6Тикового дерева
+extratrees.block.planks.forestry.acacia=§6Пустынной акации
+extratrees.block.planks.forestry.lime=§6Липы
+extratrees.block.planks.forestry.chestnut=§6Каштана
+extratrees.block.planks.forestry.wenge=§6Венге
+extratrees.block.planks.forestry.baobab=§6Баобаба
+extratrees.block.planks.forestry.sequoia=§6Секвойи
+extratrees.block.planks.forestry.kapok=§6Хлопкового дерева
+extratrees.block.planks.forestry.ebony=§6Эбенового дерева
+extratrees.block.planks.forestry.mahogany=§6Красного дерева
+extratrees.block.planks.forestry.balsa=§6Бальсы
+extratrees.block.planks.forestry.willow=§6Ивы
+extratrees.block.planks.forestry.walnut=§6Ореха грецкого
+extratrees.block.planks.forestry.greenheart=§6Зелёного Сердца
+extratrees.block.planks.forestry.cherry=§6Вишни
+extratrees.block.planks.forestry.mahoe=§6Гибискуса Синего
+extratrees.block.planks.forestry.poplar=§6Тополя
+extratrees.block.planks.forestry.palm=§6Пальмы
+extratrees.block.planks.forestry.papaya=§6Папайи
+extratrees.block.planks.forestry.pine=§6Сосны
+extratrees.block.planks.forestry.plum=§6Сливы
+extratrees.block.planks.forestry.maple=§6Клёна
+extratrees.block.planks.forestry.citrus=§6Цитруса
+extratrees.block.planks.forestry.giganteum=§6Гигантской секвойи
+extratrees.block.planks.forestry.ipe=§6Ипе (бразильский орех)
+extratrees.block.planks.forestry.padauk=§6Птерокарпуса
+extratrees.block.planks.forestry.cocobolo=§6Кокоболо
+extratrees.block.planks.forestry.zebrawood=§6Зебрано
+
+# ДОСКИ мода ExtrabiomesXL
+extratrees.block.planks.ebxl.redwood=§6Секвойи (ExtrabiomesXL)
+extratrees.block.planks.ebxl.fir=§6Шотландской пихты
+extratrees.block.planks.ebxl.acacia=§6Превосходной акации
+
+
+
+extratrees.block.planks.fir.desc=§6Хорошая, крепкая хвойная древесина.|Лесоруб
+extratrees.block.planks.cedar.desc=§6Красная древесина с оттенком хвойных пород.|Лесоруб
+extratrees.block.planks.hemlock.desc=§6Древесина тсуги придаёт зелёный оттенок хвойной древесине.|Лесоруб
+extratrees.block.planks.cypress.desc=§6Хвойная древесина с жёлтым оттенком.|Лесоруб
+extratrees.block.planks.fig.desc=§6Как правило, не пригодна для строительства, но, тем не менее, полезна для поделок.|Лесоруб
+extratrees.block.planks.beech.desc=§6Несколько лёгкое дерево, среднее по качеству.|Лесоруб
+extratrees.block.planks.alder.desc=§6Темнее лиственных пород, не имеет изысканных свойств.|Лесоруб
+extratrees.block.planks.hazel.desc=§6Прекрасное светлое дерево, похоже на цвет березы.|Лесоруб
+extratrees.block.planks.hornbeam.desc=§6В общем, среднее древесина, без многих интересных свойств.|Лесоруб
+extratrees.block.planks.box.desc=§6Произрастает только в светлых лесах, но встречается очень редко только в виде коротких кустов.|Лесоруб
+extratrees.block.planks.butternut.desc=§6Сливочного оттенка, хотя дерево более известно своими орехами.|Лесоруб
+extratrees.block.planks.hickory.desc=§6Не особо примечательная лиственная порода.|Лесоруб
+extratrees.block.planks.whitebeam.desc=§6Рябина круглолистная несмотря на своё прозвище "Белый луч"(англ) имеет довольно приглушенный цвет.|Лесоруб
+extratrees.block.planks.elm.desc=§6Довольно яркое персиковое дерево.|Лесоруб
+extratrees.block.planks.apple.desc=§6Очень темная древесина, что делает яблоню очень полезной для культивации новых сортов.|Лесоруб
+extratrees.block.planks.yew.desc=§6Хвойное дерево довольно привлекательных оттенков.|Лесоруб
+extratrees.block.planks.pear.desc=§6В отличие от яблони, древесина груши не особо уникальна.|Лесоруб
+extratrees.block.planks.hawthorn.desc=§6Средняя хвойная порода.|Лесоруб
+extratrees.block.planks.rowan.desc=§6Древесина бБолее приглушенного цвета с красивым контрастом между досками.|Лесоруб
+extratrees.block.planks.elder.desc=§6Средняя древесина без особых отличий.|Лесоруб
+extratrees.block.planks.maclura.desc=§6Весьма богатый оранжевый оттенок делает древесину Маклюры яблоконосной очень желанной.|Лесоруб
+extratrees.block.planks.syzgium.desc=§6Из-за розового оттенка Сизигум является уникальным дереврм.|Лесоруб
+extratrees.block.planks.brazilwood.desc=§6Цезальпиния ежовая известна своей глубо-тёмной фиолетовой древесиной.|Лесоруб
+extratrees.block.planks.logwood.desc=§6Кампешевое дерево является одним из ближайших аналогов красного дерева.|Лесоруб
+extratrees.block.planks.iroko.desc=§6Эта привлекательная темная древесина годится для красивой притолки.|Лесоруб
+extratrees.block.planks.locust.desc=§6Робиния ложноакациевая (англ. "Саранча") совершенно не связана с нашествием саранчи.|Лесоруб
+extratrees.block.planks.eucalyptus.desc=§6Розоватое дерево, чаще превращается в древесную массу.|Лесоруб
+extratrees.block.planks.purpleheart.desc=§6Амарант (англ. "Пурпурное Сердце") так назван благодаря глубоко-фиолетовому оттенку.|Лесоруб
+extratrees.block.planks.ash.desc=§6Должен поймать их всех!|Ash Ketchum
+extratrees.block.planks.holly.desc=§6Белейшее дерево доступно, но необходимо избегать его заостренных листьев, чтобы добраться до него.|Лесоруб
+extratrees.block.planks.olive.desc=§6Древесина, как и плоды оливы имеют привлекательный зелёный цвет.|Лесоруб
+extratrees.block.planks.sweetgum.desc=§6Ещё одна средняя древесина, но имеет определенные особенности.|Лесоруб
+extratrees.block.planks.rosewood.desc=§6Используется для шахматных фигур, из-за сильных оттенков дерева.|Лесоруб
+extratrees.block.planks.gingko.desc=§6Подобно Самшиту, древесина Гингко очень бледна.|Лесоруб
+extratrees.block.planks.pinkivory.desc=§6Что я могу сказать, она очень розовая.|Лесоруб
+
+extratrees.block.planks.vanilla.oak.desc=§6Велик дуб, а от малого топора падает.
+extratrees.block.planks.vanilla.spruce.desc=§6Ель - не сосна. Шумит неспроста.
+extratrees.block.planks.vanilla.birch.desc=§6Бела берёста – да дёготь чёрен. 
+extratrees.block.planks.vanilla.jungle.desc=§6
+extratrees.block.planks.vanilla.darkoak.desc=§6
+extratrees.block.planks.vanilla.acacia.desc=§6
+
+extratrees.block.planks.forestry.larch.desc=§6
+extratrees.block.planks.forestry.teak.desc=§6
+extratrees.block.planks.forestry.acacia.desc=§6
+extratrees.block.planks.forestry.lime.desc=§6
+extratrees.block.planks.forestry.chestnut.desc=§6
+extratrees.block.planks.forestry.wenge.desc=§6
+extratrees.block.planks.forestry.baobab.desc=§6
+extratrees.block.planks.forestry.sequoia.desc=§6
+extratrees.block.planks.forestry.kapok.desc=§6
+extratrees.block.planks.forestry.ebony.desc=§6
+extratrees.block.planks.forestry.mahogany.desc=§6
+extratrees.block.planks.forestry.balsa.desc=§6
+extratrees.block.planks.forestry.willow.desc=§6
+extratrees.block.planks.forestry.walnut.desc=§6
+extratrees.block.planks.forestry.greenheart.desc=§6
+extratrees.block.planks.forestry.cherry.desc=§6
+extratrees.block.planks.forestry.mahoe.desc=§6
+extratrees.block.planks.forestry.poplar.desc=§6
+extratrees.block.planks.forestry.palm.desc=§6
+extratrees.block.planks.forestry.papaya.desc=§6
+extratrees.block.planks.forestry.pine.desc=§6
+extratrees.block.planks.forestry.plum.desc=§6
+extratrees.block.planks.forestry.maple.desc=§6
+extratrees.block.planks.forestry.citrus.desc=§6
+
+< %1$s is name of wood used for door >
+extratrees.block.door.name=%1$s §6Двери
+
+< %1$s is name of wood used for door, %2$s is type of door >
+extratrees.block.door.name.adv=%2$s %1$s §6Двери
+extratrees.block.door.type.standard=§6
+extratrees.block.door.type.solid=§6Solid
+extratrees.block.door.type.double=§6Split
+extratrees.block.door.type.full=§6Full
+
+< %1$s is name of the wood>
+extratrees.block.woodslab.name2=§6Составной деревянный забор %1$s
+extratrees.block.plank.name=§6Доски из %1$s
+extratrees.block.log.name=§6Древесина %1$s
+extratrees.block.woodslab.name=§6Плита из %1$s
+extratrees.block.woodstairs.name=§6Ступени из %1$s
+extratrees.block.woodfence.name=§6Забор из %1$s
+extratrees.block.woodgate.name=§6Калитка из %1$s
+
+< %1$s is the adjective for the fence type, %2$s is the name of the wood >
+extratrees.block.multifence.name=§6%2$s %1$s Gate
+< %3$s is the name of the second wood >
+extratrees.block.multifence.name2=§6%2$s %1$s & $2$s Gate
+
+< %1$s is name of the design >
+extratrees.block.woodentile.name=§6Деревянный блок, дизайн %1$s
+extratrees.block.woodenpanel.name=§6Деревянная панель, дизайн %1$s
+extratrees.block.stainedglass.name=§6Витражное стекло, дизайн %1$s
+
+extratrees.block.ceramicBrick.name=§6%1$s Керамические кирпичи
+
+# ВИДЫ ДЕРЕВЬЕВ
+extratrees.species.orchardapple.name=§6Яблоня садовая
+extratrees.species.sweetcrabapple.name=§6Яблоня венечная
+extratrees.species.floweringcrabapple.name=§6Яблоня замечательная
+extratrees.species.prairiecrabapple.name=§6Яблоня айовская
+extratrees.species.blackthorn.name=§6Терновник
+extratrees.species.cherryplum.name=§6Алыча
+extratrees.species.peach.name=§6Персик
+extratrees.species.nectarine.name=§6Нектарин
+extratrees.species.apricot.name=§6Абрикос
+extratrees.species.almond.name=§6Миндаль
+extratrees.species.wildcherry.name=§6Вишня дикая
+extratrees.species.sourcherry.name=§6Вишня кислая
+extratrees.species.blackcherry.name=§6Черёмуха поздняя
+extratrees.species.orange.name=§6Апельсин
+extratrees.species.manderin.name=§6Мандарин
+extratrees.species.satsuma.name=§6Мандарин уншиу
+extratrees.species.tangerine.name=§6Танжерин
+extratrees.species.lime.name=§6Лайм
+extratrees.species.keylime.name=§6Лайм дикий
+extratrees.species.fingerlime.name=§6Лайм пальчиковый
+extratrees.species.pomelo.name=§6Помело
+extratrees.species.grapefruit.name=§6Грейпфрут
+extratrees.species.kumquat.name=§6Кумкват
+extratrees.species.citron.name=§6Цитрон
+extratrees.species.buddhahand.name=§6Цитрон пальчатый
+extratrees.species.banana.name=§6Банан
+extratrees.species.redbanana.name=§6Красный банан
+extratrees.species.plantain.name=§6Плантан
+extratrees.species.butternut.name=§6Орех серый
+extratrees.species.rowan.name=§6Рябина обыкновенная
+extratrees.species.hemlock.name=§6Тсуга западная
+extratrees.species.ash.name=§6Ясень обыкновенный
+extratrees.species.alder.name=§6Ольха чёрная
+extratrees.species.alder.desc=§6Обычное дерево в местах с повышенной влажностью и на болотах.|Arborist Manual
+extratrees.species.beech.name=§6Бук европейский
+extratrees.species.beech.desc=§6Красивое дерево с маленькими несъедобными орехами, используется в производстве растительного масла.|Arborist Manual
+extratrees.species.copperbeech.name=§6Бук медный
+extratrees.species.copperbeech.desc=§6Красивые фиолетовые и коричневые листья делают это дерево фаворитом садоводов.|Arborist Manual
+extratrees.species.aspen.name=§6Осина
+extratrees.species.yew.name=§6Тис ягодный
+extratrees.species.cypress.name=§6Кипарисовик Лавсона
+extratrees.species.douglasfir.name=§6Пихта Дугласа
+extratrees.species.hazel.name=§6Лещина обыкновенная
+extratrees.species.sycamore.name=§6Сикомор
+extratrees.species.whitebeam.name=§6Рябина круглолистная
+extratrees.species.hawthorn.name=§6Боярышник однопестичный
+extratrees.species.pecan.name=§6Пекан обыкновенный
+extratrees.species.elm.name=§6Вяз обыкновенный
+extratrees.species.elder.name=§6Бузина
+extratrees.species.holly.name=§6Остролист обыкновенный
+extratrees.species.hornbeam.name=§6Граб обыкновенный
+extratrees.species.sallow.name=§6Ива козья
+extratrees.species.acornoak.name=§6Дуб черешчатый
+extratrees.species.fir.name=§6Пихта белая
+extratrees.species.cedar.name=§6Кедр
+extratrees.species.olive.name=§6Олива
+extratrees.species.redmaple.name=§6Клён красный
+extratrees.species.balsamfir.name=§6Пихта бальзамическая
+extratrees.species.loblollypine.name=§6Сосна Лоблолли
+extratrees.species.sweetgum.name=§6Ликвидамбар смолоносный
+extratrees.species.locust.name=§6Робиния ложноакациевая
+extratrees.species.pear.name=§6Груша садовая
+extratrees.species.osangeosange.name=§6Маклюра оранжевая
+extratrees.species.oldfustic.name=§6Маклюра красильная
+extratrees.species.brazilwood.name=§6Цезальпиния ежовая
+extratrees.species.logwood.name=§6Кампешевое дерево
+extratrees.species.rosewood.name=§6Розовое дерево
+extratrees.species.purpleheart.name=§6Амарант
+extratrees.species.iroko.name=§6Ироко
+extratrees.species.gingko.name=§6Гинкго двулопастный
+extratrees.species.brazilnut.name=§6Бразильский орех
+extratrees.species.rosegum.name=§6Эвкалипт гигантский
+extratrees.species.swampgum.name=§6Эвкалипт болотный
+extratrees.species.box.name=§6Самшит вечнозелёный
+extratrees.species.clove.name=§6Гвоздичное дерево
+extratrees.species.coffee.name=§6Кофейное дерево
+extratrees.species.monkeypuzzle.name=§6Араукария чилийская
+extratrees.species.rainbowgum.name=§6Эвкалипт радужный
+extratrees.species.pinkivory.name=§6Умнини (розовая кость)
+extratrees.species.blackcurrant.name=§6Смородина чёрная
+extratrees.species.redcurrant.name=§6Смородина красная
+extratrees.species.blackberry.name=§6Ежевика
+extratrees.species.raspberry.name=§6Малина
+extratrees.species.blueberry.name=§6Голубика
+extratrees.species.cranberry.name=§6Клюква
+extratrees.species.juniper.name=§6Можжевельник
+extratrees.species.gooseberry.name=§6Крыжовник
+extratrees.species.goldenraspberry.name=§6Малина золотая
+extratrees.species.cinnamon.name=§6Коричник цейлонский
+extratrees.species.coconut.name=§6Кокосовая пальма
+extratrees.species.cashew.name=§6Кешью
+extratrees.species.avacado.name=§6Авокадо
+extratrees.species.nutmeg.name=§6Мускатный орех
+extratrees.species.allspice.name=§6Перец душистый
+extratrees.species.chilli.name=§6Перец красный
+extratrees.species.staranise.name=§6Анис звёздчатый
+extratrees.species.mango.name=§6Манго
+extratrees.species.starfruit.name=§6Карамбола
+extratrees.species.candlenut.name=§6Лумбанг (свечное дерево)
+extratrees.species.dwarfhazel.name=§6Лещина карликовая
+
+
+# ПРОДУКТЫ САДОВОДСТВА
+extratrees.item.food.osangeosange=§6Плод маклюра
+extratrees.item.food.apple=§6Яблоко
+extratrees.item.food.crabapple=§6Яблоко-дичка
+extratrees.item.food.orange=§6Апельсин
+extratrees.item.food.kumquat=§6Кумкват
+extratrees.item.food.lime=§6Лайм
+extratrees.item.food.wildcherry=§6Вишня дикая
+extratrees.item.food.sourcherry=§6Вишня кислая
+extratrees.item.food.blackcherry=§6Черёмуха поздняя
+extratrees.item.food.blackthorn=§6Тёрен
+extratrees.item.food.cherryplum=§6Алыча
+extratrees.item.food.almond=§6Миндаль
+extratrees.item.food.apricot=§6Абрикос
+extratrees.item.food.grapefruit=§6Грейпфрут
+extratrees.item.food.peach=§6Персик
+
+extratrees.item.food.satsuma=§6Мандарин уншиу
+extratrees.item.food.buddhahand=§6Цитрон пальчатый
+extratrees.item.food.citron=§6Цитрон
+extratrees.item.food.fingerlime=§6Лайм пальчиковый
+extratrees.item.food.keylime=§6Лайм дикий
+
+extratrees.item.food.manderin=§6Мандарин
+extratrees.item.food.nectarine=§6Нектарин
+
+extratrees.item.food.pomelo=§6Помело
+extratrees.item.food.tangerine=§6Танжерин
+extratrees.item.food.pear=§6Груша
+extratrees.item.food.sandpear=§6Груша грушелистная
+
+extratrees.item.food.hazelnut=§6Фундук
+extratrees.item.food.butternut=§6Орех серый
+extratrees.item.food.beechnut=§6Буковый орешек
+extratrees.item.food.pecan=§6Пекан обыкновенный
+
+extratrees.item.food.banana=§6Банан
+extratrees.item.food.redbanana=§6Банан красный
+extratrees.item.food.plantain=§6Плантан
+
+extratrees.item.food.brazilnut=§6Бразильский орех
+
+extratrees.item.food.fig=§6Инжир
+extratrees.item.food.acorn=§6Жёлудь
+extratrees.item.food.elderberry=§6Бузина
+extratrees.item.food.olive=§6Олива
+extratrees.item.food.gingkonut=§6Семена Гинкго
+extratrees.item.food.coffee=§6Кофейные зёрна
+extratrees.item.food.osangeorange=§6Плод маклюра
+extratrees.item.food.clove=§6Гвоздика (пряность)
+
+extratrees.item.food.papayimar=§6Папайя
+
+extratrees.item.food.blackcurrant=§6Смородина чёрная
+extratrees.item.food.redcurrant=§6Смородина красная
+extratrees.item.food.blackberry=§6Ежевика
+extratrees.item.food.raspberry=§6Малина
+extratrees.item.food.blueberry=§6Голубика
+extratrees.item.food.cranberry=§6Клюква
+extratrees.item.food.juniper=§6Семяна Можжевельника
+extratrees.item.food.gooseberry=§6Крыжовник
+extratrees.item.food.goldenraspberry=§6Малина золотая
+
+extratrees.item.food.coconut=§6Кокос
+extratrees.item.food.cashew=§6Кешью
+extratrees.item.food.avacado=§6Авокадо
+extratrees.item.food.nutmeg=§6Мускатный орех
+extratrees.item.food.allspice=§6Перец душистый
+extratrees.item.food.chilli=§6Перец красный
+extratrees.item.food.staranise=§6Анис звёздчатый
+extratrees.item.food.mango=§6Манго
+extratrees.item.food.starfruit=§6Карамбола
+extratrees.item.food.candlenut=§6Лумбанг
+
+
+# Изделия из стекла
+extratrees.item.glassware.beermug=§6Пивная кружка
+extratrees.item.glassware.pint=§6Стеклянная пинта
+extratrees.item.glassware.snifter=§6Стеклянный бокал
+extratrees.item.glassware.cocktail=§6Стакан для коктейля
+extratrees.item.glassware.cordial=§6Стакан "Кордиал"
+extratrees.item.glassware.collins=§6Стакан "Коллинз"
+extratrees.item.glassware.highball=§6Стакан "Хайбол"
+extratrees.item.glassware.hurricane=§6Стакан "Хуррикэйн"
+extratrees.item.glassware.margarita=§6Бокал "Маргарита"
+extratrees.item.glassware.oldfashioned=§6Узорчатый стакан
+extratrees.item.glassware.wine=§6Бокал
+extratrees.item.glassware.shot=§6Стопка
+extratrees.item.glassware.sherry=§6Стакан "Херес"
+extratrees.item.glassware.coupe=§6Стеклянный кубок
+
+# Наименования напитков
+< %1$s is name of fluid >
+extratrees.item.glassware.beermug.usage=§6Кружка %1$s
+extratrees.item.glassware.pint.usage=§6Стакан %1$s
+extratrees.item.glassware.snifter.usage=§6Стакан %1$s
+extratrees.item.glassware.cocktail.usage=§6Стакан %1$s
+extratrees.item.glassware.cordial.usage=§6Стакан %1$s
+extratrees.item.glassware.collins.usage=§6Стакан %1$s
+extratrees.item.glassware.highball.usage=§6Стакан %1$s
+extratrees.item.glassware.hurricane.usage=§6Стакан %1$s
+extratrees.item.glassware.margarita.usage=§6Стакан %1$s
+extratrees.item.glassware.oldfashioned.usage=§6Стакан %1$s
+extratrees.item.glassware.wine.usage=§6Стакан %1$s
+extratrees.item.glassware.shot.usage=§6%1$s Shot
+extratrees.item.glassware.sherry.usage=§6Стакан %1$s
+extratrees.item.glassware.coupe.usage=§6Стакан %1$s
+
+extratrees.fluid.alcohol.apple=§6сидр
+extratrees.fluid.alcohol.apricot=§6абрикосовое вино
+extratrees.fluid.alcohol.banana=§6банановое вино
+extratrees.fluid.alcohol.cherry=§6вишнёвое вино
+extratrees.fluid.alcohol.elderberry=§6бузины вино
+extratrees.fluid.alcohol.peach=§6персиковый сидр
+extratrees.fluid.alcohol.pear=§6грушевый сидр
+extratrees.fluid.alcohol.plum=§6сливовое вино
+extratrees.fluid.alcohol.carrot=§6морковное вино
+extratrees.fluid.alcohol.whitewine=§6белое вино
+extratrees.fluid.alcohol.redwine=§6красное вино
+extratrees.fluid.alcohol.sparklingwine=§6игристое вино
+extratrees.fluid.alcohol.agave=§6агавы вино
+extratrees.fluid.alcohol.potato=§6потатовое вино
+extratrees.fluid.alcohol.citrus=§6цитрусовое вино
+extratrees.fluid.alcohol.cranberry=§6клюквенное вино
+extratrees.fluid.alcohol.pineapple=§6ананасовое вино
+extratrees.fluid.alcohol.tomato=§6томатное вино
+extratrees.fluid.alcohol.fruit=§6фруктовое вино
+extratrees.fluid.alcohol.ale=§6эль
+extratrees.fluid.alcohol.lager=§6пиво "Лагер"
+extratrees.fluid.alcohol.wheatbeer=§6пшеничное пиво
+extratrees.fluid.alcohol.ryebeer=§6ржаное пиво
+extratrees.fluid.alcohol.cornbeer=§6кукурузное пиво
+extratrees.fluid.alcohol.stout=§6пиво "Стаут"
+extratrees.fluid.alcohol.barley=§6ячмённый виски
+extratrees.fluid.alcohol.wheat=§6пшеничный виски
+extratrees.fluid.alcohol.rye=§6ржаной виски
+extratrees.fluid.alcohol.corn=§6кукурузный виски
+
+
+
+extratrees.gui.database.planks.use=§6Можно создать:
+
+extratrees.gui.database.mode.fruit=§6Плод
+extratrees.gui.database.mode.wood=§6Древесина
+extratrees.gui.database.mode.planks=§6Доски
+
+extratrees.gui.database.tab.species.overview=§6Обзор
+extratrees.gui.database.tab.species.genome=§6Генотип
+extratrees.gui.database.tab.species.classification=§6Классификация
+extratrees.gui.database.tab.species.resultant=§6Произведённые мутации
+extratrees.gui.database.tab.species.further=§6Дальнейшие возможные мутации
+
+extratrees.gui.database.tab.branches.overview=§6Обзор
+extratrees.gui.database.tab.branches.species=§6Виды
+
+extratrees.gui.database.tab.breeder.breeder=§6Селекция
+
+
+extratrees.gui.database.tab.fruit.natural=§6Естественные деревья
+extratrees.gui.database.tab.fruit.natura.help=§6список деревьев, на которых растёт этот плод
+extratrees.gui.database.tab.fruit.potential=§6Потенциальные деревья
+extratrees.gui.database.tab.fruit.potential.help=§6список деревьев, на которых может вырасти этот плод, если у них будет необходимый ген
+extratrees.gui.database.tab.wood.natural=§6Естественные деревья
+extratrees.gui.database.tab.wood.natural.help=§6список деревьев, которые дают эту древесину
+extratrees.gui.database.tab.planks.overview=§6Обзор
+extratrees.gui.database.tab.planks.overview.help=§6Описание и возможные варианты применения
+extratrees.gui.database.tab.planks.natural=§6Естественные деревья
+extratrees.gui.database.tab.planks.natural.help=§6Список деревьев, которые производят брёвна, дающие эти доски
+
+
+extratrees.gui.database.tab.butterfly.species.overview=§6Обзор
+extratrees.gui.database.tab.butterfly.species.classification=§6Классификация
+extratrees.gui.database.tab.butterfly.species.specimen=§6Образец
+extratrees.gui.database.tab.butterfly.species.resultant=§6Произведённые мутации
+extratrees.gui.database.tab.butterfly.species.further=§6Дальнейшие возможные мутации
+extratrees.gui.database.tab.butterfly.branches.overview=§6Обзор
+extratrees.gui.database.tab.butterfly.branches.species=§6Виды
+extratrees.gui.database.tab.butterfly.breeder=§6Селекция
+
+extratrees.gui.database.log=§6древесина
+extratrees.gui.database.leaves=§6листья
