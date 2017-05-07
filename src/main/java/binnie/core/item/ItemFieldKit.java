@@ -1,11 +1,11 @@
 package binnie.core.item;
 
+import binnie.botany.CreativeTabBotany;
 import binnie.core.BinnieCore;
 import binnie.core.gui.BinnieCoreGUI;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -22,7 +22,7 @@ public class ItemFieldKit extends Item {
 
 	public ItemFieldKit() {
 		setUnlocalizedName("fieldKit");
-		setCreativeTab(CreativeTabs.tabTools);
+		setCreativeTab(CreativeTabBotany.instance);
 		setMaxStackSize(1);
 		setMaxDamage(64);
 	}
