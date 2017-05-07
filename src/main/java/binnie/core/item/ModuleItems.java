@@ -9,6 +9,7 @@ import binnie.core.IInitializable;
 import binnie.core.network.packet.MessageNBT;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -45,10 +46,12 @@ public class ModuleItems implements IInitializable {
 		if (!BinnieCore.isBotanyActive() || event.action != PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
 			return;
 		}
-		if (event.entityPlayer != null
-			&& event.entityPlayer.getHeldItem() != null
-			&& event.entityPlayer.getHeldItem().getItem() == BinnieCore.fieldKit
-			&& event.entityPlayer.isSneaking()) {
+
+		EntityPlayer player = event.entityPlayer;
+		if (player != null
+			&& player.getHeldItem() != null
+			&& player.getHeldItem().getItem() == BinnieCore.fieldKit
+			&& player.isSneaking()) {
 			TileEntity tile = event.world.getTileEntity(event.x, event.y, event.z);
 			if (!(tile instanceof TileEntityFlower)) {
 				return;
@@ -68,7 +71,7 @@ public class ModuleItems implements IInitializable {
 			info.setShort("Colour2", (short) flower.getGenome().getSecondaryColor().getID());
 			info.setBoolean("Wilting", flower.isWilted());
 			info.setBoolean("Flowered", flower.hasFlowered());
-			Botany.proxy.sendToPlayer(new MessageNBT(PacketID.Encylopedia.ordinal(), info), event.entityPlayer);
+			Botany.proxy.sendToPlayer(new MessageNBT(PacketID.FieldKit.ordinal(), info), event.entityPlayer);
 			event.entityPlayer.getHeldItem().damageItem(1, event.entityPlayer);
 		}
 	}
