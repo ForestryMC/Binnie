@@ -194,13 +194,13 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 		String typeName = getDoorType(meta).getName();
 		String woodName = WoodManager.getPlankType(meta & 0xFF).getName();
 		if (typeName.equals("")) {
-			return Binnie.Language.localise(ExtraTrees.instance, "block.door.name", woodName);
+			return Binnie.I18N.localise(ExtraTrees.instance, "block.door.name", woodName);
 		}
-		return Binnie.Language.localise(ExtraTrees.instance, "block.door.name.adv", woodName, typeName);
+		return Binnie.I18N.localise(ExtraTrees.instance, "block.door.name.adv", woodName, typeName);
 	}
 
 	@Override
-	public void getBlockTooltip(ItemStack itemStack, List tooltip) {
+	public void addBlockTooltip(ItemStack itemStack, List tooltip) {
 		// ignored
 	}
 

@@ -7,11 +7,11 @@ import binnie.core.craftgui.database.WindowAbstractDatabase;
 import binnie.core.genetics.BreedingSystem;
 
 public class ControlColorMixItem extends ControlOption<IColourMix> {
-	ControlColorDisplay itemWidget1;
-	ControlColorDisplay itemWidget2;
-	ControlColorDisplay itemWidget3;
-	ControlColourMixSymbol addSymbol;
-	ControlColourMixSymbol arrowSymbol;
+	protected ControlColorDisplay itemWidget1;
+	protected ControlColorDisplay itemWidget2;
+	protected ControlColorDisplay itemWidget3;
+	protected ControlColourMixSymbol addSymbol;
+	protected ControlColourMixSymbol arrowSymbol;
 
 	public ControlColorMixItem(ControlList<IColourMix> controlList, IColourMix option, int y) {
 		super(controlList, option, y);

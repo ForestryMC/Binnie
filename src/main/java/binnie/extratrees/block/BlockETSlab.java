@@ -82,11 +82,11 @@ public class BlockETSlab extends BlockWoodSlab implements IBlockMetadata {
 	@Override
 	public String getBlockName(ItemStack itemStack) {
 		int meta = TileEntityMetadata.getItemDamage(itemStack);
-		return Binnie.Language.localise(ExtraTrees.instance, "block.woodslab.name", PlankType.ExtraTreePlanks.values()[meta].getName());
+		return Binnie.I18N.localise(ExtraTrees.instance, "block.woodslab.name", PlankType.ExtraTreePlanks.values()[meta].getName());
 	}
 
 	@Override
-	public void getBlockTooltip(ItemStack itemStack, List tooltip) {
+	public void addBlockTooltip(ItemStack itemStack, List tooltip) {
 	}
 
 	@Override

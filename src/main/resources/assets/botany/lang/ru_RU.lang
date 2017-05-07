@@ -1,5 +1,18 @@
 botany.tab.botany=Botany
 
+botany.pigmentedGlass=Крашеное стекло
+botany.ceramicBlock=Керамический блок
+botany.ceramicTile=Керамическая плитка
+botany.ceramicBricks=Керамический кирпич
+botany.strippedCeramicBricks=Полосатый керамический кирпич
+botany.largeCeramicBricks=Длинный керамический кирпич
+botany.splitCeramicTile=Разделенная керамическая плитка
+botany.chequeredCeramicTile=Шахматная керамическая плитка
+botany.mixedCeramicTile=Обрамленная керамическая плитка
+botany.verticalCeramicBricks=Вертикальный керамический кирпич
+botany.verticalStripedCeramicBricks=Вертикальная полосатая керамическая плитка
+botany.largeVerticalCeramicBricks=Длинный вертикальный керамический кирпич
+
 botany.ph.acid=Кислотный
 botany.ph.neutral=Нейтральный
 botany.ph.alkaline=Щелочной
@@ -12,12 +25,15 @@ botany.soil.soil=Почва
 botany.soil.loam=Суглинок
 botany.soil.flowerbed=Цветник
 
+botany.item.pigment.name=Краситель
+botany.item.clay.name=Глиняный порошок
 item.trowelWood.name=Деревянный совок
 item.trowelStone.name=Каменный совок
 item.trowelIron.name=Железный совок
 item.trowelGold.name=Золотой совок
 item.trowelDiamond.name=Алмазный совок
 
+botany.colour.double=%s - %s
 botany.colour.aquamarine=Аквамарин (цвет морской волны)
 botany.colour.black=Чёрный
 botany.colour.blue=Глубоко-синий
@@ -148,7 +164,23 @@ for.binnie.circuit.garden.damp.acid=Garden (влажный, кислый)
 for.binnie.circuit.garden.damp.neutral=Garden (влажный, средний)
 for.binnie.circuit.garden.damp.alkaline=Garden (влажный, щелочной)
 
+botany.tube.name=изолирующая лампа
+botany.tube.cooper=Медная
+botany.tube.tin=Оловяная
+botany.tube.bronze=Бронзовая
+botany.tube.iron=Железная
+botany.tube.insulate.clay=Глина
+botany.tube.insulate.cobblestone=Булыжник
+botany.tube.insulate.sand=Песок
+botany.tube.insulate.hardenedClay=Твердая глина
+botany.tube.insulate.smoothStone=Гладкий камень
+botany.tube.insulate.sandstone=Песчаник
 
+botany.gui.controls.colorMixSymbol.chance=Текущий шанс - %f%
+botany.gui.controls.pageSpeciesFurtherTitle=Результат
+botany.gui.controls.pageColorFurtherTitle=Дополнительные смеси
+
+botany.gui.database.name=База данных цветов
 botany.gui.database.tab.species.overview=Обзор
 botany.gui.database.tab.species.genome=Генотип
 botany.gui.database.tab.species.classification=Классификация

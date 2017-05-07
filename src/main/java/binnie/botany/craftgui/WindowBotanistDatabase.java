@@ -23,11 +23,10 @@ import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class WindowBotanistDatabase extends WindowAbstractDatabase {
-	protected ControlListBox<EnumFlowerColor> selectionBoxColors;
-
 	public WindowBotanistDatabase(EntityPlayer player, Side side, boolean nei) {
 		super(player, side, nei, Binnie.Genetics.flowerBreedingSystem, 130.0f);
 	}
@@ -45,22 +44,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 		new PageSpeciesMutations(getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "species.further", 0));
 		new PageBranchOverview(getInfoPages(Mode.Branches), new DatabaseTab(Botany.instance, "branches.overview", 0));
 		new PageBranchSpecies(getInfoPages(Mode.Branches), new DatabaseTab(Botany.instance, "branches.species", 0));
-		createMode(FlowerMode.Colour, new ModeWidgets(FlowerMode.Colour, this) {
-			@Override
-			public void createListBox(IArea area) {
-				listBox = new ControlListBox<IFlowerColor>(modePage, area.x(), area.y(), area.w(), area.h(), 12.0f) {
-					@Override
-					public IWidget createOption(IFlowerColor value, int y) {
-						return new ControlColorOption(getContent(), value, y);
-					}
-				};
-				List<IFlowerColor> colors = new ArrayList<IFlowerColor>();
-				for (IFlowerColor c : EnumFlowerColor.values()) {
-					colors.add(c);
-				}
-				listBox.setOptions(colors);
-			}
-		});
+		createMode(FlowerMode.Colour, new ColorModeWidget());
 		new PageColorMixResultant(getInfoPages(FlowerMode.Colour), new DatabaseTab(Botany.instance, "colour.resultant", 0));
 		new PageColourMix(getInfoPages(FlowerMode.Colour), new DatabaseTab(Botany.instance, "colour.further", 0));
 		new PageBreeder(getInfoPages(Mode.Breeder), getUsername(), new DatabaseTab(Botany.instance, "breeder", 0));
@@ -73,7 +57,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 
 	@Override
 	protected String getName() {
-		return "FlowerDatabase";
+		return Binnie.I18N.localise(Botany.instance, "gui.database.name");
 	}
 
 	enum FlowerMode implements IDatabaseMode {
@@ -82,6 +66,25 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 		@Override
 		public String getName() {
 			return Botany.proxy.localise("gui.database.mode." + name().toLowerCase());
+		}
+	}
+
+	private class ColorModeWidget extends ModeWidgets {
+		public ColorModeWidget() {
+			super(FlowerMode.Colour, WindowBotanistDatabase.this);
+		}
+
+		@Override
+		public void createListBox(IArea area) {
+			listBox = new ControlListBox<IFlowerColor>(modePage, area.x(), area.y(), area.w(), area.h(), 12.0f) {
+				@Override
+				public IWidget createOption(IFlowerColor value, int y) {
+					return new ControlColorOption(getContent(), value, y);
+				}
+			};
+			List<IFlowerColor> colors = new ArrayList<>();
+			Collections.addAll(colors, EnumFlowerColor.values());
+			listBox.setOptions(colors);
 		}
 	}
 }

@@ -1,5 +1,7 @@
 package binnie.botany.craftgui;
 
+import binnie.Binnie;
+import binnie.botany.Botany;
 import binnie.botany.api.IColourMix;
 import binnie.botany.api.IFlowerColor;
 import binnie.botany.core.BotanyCore;
@@ -13,13 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PageColourMix extends PageAbstract<IFlowerColor> {
-	ControlText pageSpeciesFurther_Title;
-	ControlColorMixBox pageSpeciesFurther_List;
+	ControlText pageSpeciesFurtherTitle;
+	ControlColorMixBox pageSpeciesFurtherList;
 
 	public PageColourMix(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
-		pageSpeciesFurther_Title = new ControlTextCentered(this, 8.0f, "Further Mixes");
-		pageSpeciesFurther_List = new ControlColorMixBox(this, 4, 20, 136, 152, ControlColorMixBox.Type.Further);
+		pageSpeciesFurtherTitle = new ControlTextCentered(this, 8.0f, Binnie.I18N.localise(Botany.instance, "gui.controls.pageColorFurtherTitle"));
+		pageSpeciesFurtherList = new ControlColorMixBox(this, 4, 20, 136, 152, ControlColorMixBox.Type.Further);
 	}
 
 	@Override
@@ -30,6 +32,6 @@ public class PageColourMix extends PageAbstract<IFlowerColor> {
 				mixes.add(mix);
 			}
 		}
-		pageSpeciesFurther_List.setOptions(mixes);
+		pageSpeciesFurtherList.setOptions(mixes);
 	}
 }

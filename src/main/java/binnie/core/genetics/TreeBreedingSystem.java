@@ -88,23 +88,23 @@ public class TreeBreedingSystem extends BreedingSystem {
 		if (chromosome == EnumTreeChromosome.PLANT) {
 			EnumSet<EnumPlantType> types = ((IAllelePlantType) allele).getPlantTypes();
 			return types.isEmpty() ?
-					Binnie.Language.localise(BinnieCore.instance, "allele.none") :
+					Binnie.I18N.localise(BinnieCore.instance, "allele.none") :
 					types.iterator().next().toString();
 		}
 
 		if (chromosome == EnumTreeChromosome.FRUITS && allele.getUID().contains(".")) {
 			IFruitProvider provider = ((IAlleleFruit) allele).getProvider();
 			return (provider.getProducts().length == 0) ?
-					Binnie.Language.localise(BinnieCore.instance, "allele.none") :
+					Binnie.I18N.localise(BinnieCore.instance, "allele.none") :
 					provider.getProducts()[0].getDisplayName();
 		}
 
 		if (chromosome == EnumTreeChromosome.GROWTH) {
 			if (allele.getUID().contains("Tropical")) {
-				return Binnie.Language.localise(BinnieCore.instance, "allele.growth.tropical");
+				return Binnie.I18N.localise(BinnieCore.instance, "allele.growth.tropical");
 			}
 			if (allele.getUID().contains("Lightlevel")) {
-				return Binnie.Language.localise(BinnieCore.instance, "allele.growth.lightlevel");
+				return Binnie.I18N.localise(BinnieCore.instance, "allele.growth.lightlevel");
 			}
 		}
 		return super.getAlleleName(chromosome, allele);

@@ -14,7 +14,7 @@ import java.util.List;
 
 public final class Binnie {
 	public static List<ManagerBase> Managers = new ArrayList<>();
-	public static ManagerLanguage Language = new ManagerLanguage();
+	public static ManagerLanguage I18N = new ManagerLanguage();
 	public static ManagerGenetics Genetics = new ManagerGenetics();
 	public static ManagerConfig Configuration = new ManagerConfig();
 	public static ManagerLiquid Liquid = new ManagerLiquid();
