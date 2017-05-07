@@ -17,18 +17,7 @@ public class WorldGenPalm {
 				width = 1.55f;
 			}
 
-			float f = 0.0f;
-			float h = leafSpawn;
-			leafSpawn = h - 1.0f;
-			generateCylinder(new Vector(f, h, 0.0f), width - 1.0f, 1, leaf, false);
-			float f2 = 0.0f;
-			float h2 = leafSpawn;
-			leafSpawn = h2 - 1.0f;
-			generateCylinder(new Vector(f2, h2, 0.0f), width, 1, leaf, false);
-			float f3 = 0.0f;
-			float h3 = leafSpawn;
-			leafSpawn = h3 - 1.0f;
-			generateCylinder(new Vector(f3, h3, 0.0f), width - 0.6f, 1, leaf, false);
+			generateCylinder(new Vector(0, leafSpawn, 0.0f), width - 0.6f, 1, leaf, false);
 		}
 
 		@Override
