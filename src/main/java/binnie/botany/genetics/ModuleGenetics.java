@@ -20,8 +20,6 @@ import forestry.api.recipes.RecipeManagers;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class ModuleGenetics implements IInitializable {
 	static AlleleEffectNone alleleEffectNone;
@@ -42,8 +40,6 @@ public class ModuleGenetics implements IInitializable {
 		GameRegistry.registerBlock(Botany.flower, "flower");
 		BinnieCore.proxy.registerTileEntity(TileEntityFlower.class, "botany.tile.flower", null);
 		Botany.database = new ItemDictionary();
-		Botany.encyclopedia = new ItemEncyclopedia(false);
-		Botany.encyclopediaIron = new ItemEncyclopedia(true);
 	}
 
 	@Override
@@ -65,37 +61,6 @@ public class ModuleGenetics implements IInitializable {
 
 	@Override
 	public void postInit() {
-		GameRegistry.addRecipe(new ShapedOreRecipe(
-			new ItemStack(Botany.encyclopedia),
-			new Object[]{
-				"fff", "fbf", "fff",
-				'f', new ItemStack(Blocks.red_flower, 1, 32767),
-				'b', Items.book
-			}
-		));
-		GameRegistry.addRecipe(new ShapedOreRecipe(
-			new ItemStack(Botany.encyclopedia),
-			new Object[]{
-				"fff", "fbf", "fff",
-				'f', new ItemStack(Blocks.yellow_flower, 1, 32767),
-				'b', Items.book
-			}
-		));
-		GameRegistry.addRecipe(new ShapedOreRecipe(
-			new ItemStack(Botany.encyclopedia),
-			new Object[]{
-				"fff", "fbf", "fff",
-				'f', new ItemStack(Botany.flower, 1, 32767),
-				'b', Items.book
-			}
-		));
-		GameRegistry.addRecipe(new ShapelessOreRecipe(
-			new ItemStack(Botany.encyclopediaIron),
-			new Object[]{
-				new ItemStack(Botany.encyclopedia),
-				"ingotIron"
-			}
-		));
 		FlowerManager.flowerRegistry.registerAcceptableFlower(Botany.flower, "flowersVanilla");
 		RecipeManagers.carpenterManager.addRecipe(
 			100,

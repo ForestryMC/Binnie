@@ -22,7 +22,6 @@ import binnie.botany.gardening.ItemSoilMeter;
 import binnie.botany.gardening.ItemTrowel;
 import binnie.botany.gardening.ModuleGardening;
 import binnie.botany.genetics.ItemDictionary;
-import binnie.botany.genetics.ItemEncyclopedia;
 import binnie.botany.genetics.ModuleGenetics;
 import binnie.botany.items.ItemClay;
 import binnie.botany.items.ItemPigment;
@@ -88,8 +87,6 @@ public class Botany extends AbstractMod {
 	public static ItemInsulatedTube insulatedTube;
 	public static ItemSoilMeter soilMeter;
 	public static ItemMisc misc;
-	public static ItemEncyclopedia encyclopedia;
-	public static ItemEncyclopedia encyclopediaIron;
 	public static ItemFlower flowerItem;
 	public static ItemPigment pigment;
 	public static ItemClay clay;
