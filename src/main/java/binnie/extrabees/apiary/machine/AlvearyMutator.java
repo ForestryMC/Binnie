@@ -21,14 +21,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AlvearyMutator {
-	public static int slotMutator;
+	public static int slotMutator = 0;
 
-	protected static Map<ItemStack, Float> mutations;
-
-	static {
-		AlvearyMutator.slotMutator = 0;
-		AlvearyMutator.mutations = new HashMap<>();
-	}
+	protected static Map<ItemStack, Float> mutations = new HashMap<>();
 
 	public static boolean isMutationItem(ItemStack item) {
 		return getMutationMult(item) > 0.0f;
@@ -44,7 +39,7 @@ public class AlvearyMutator {
 				return AlvearyMutator.mutations.get(comp);
 			}
 		}
-		return 1.0f;
+		return 0.0f;
 	}
 
 	public static void addMutationItem(ItemStack item, float chance) {
