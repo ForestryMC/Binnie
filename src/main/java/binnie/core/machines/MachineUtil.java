@@ -59,8 +59,8 @@ public class MachineUtil {
 		setStack(slot, null);
 	}
 
-	public ItemStack decreaseStack(int slotWood, int amount) {
-		return getInventory().decrStackSize(slotWood, amount);
+	public ItemStack decreaseStack(int slot, int amount) {
+		return getInventory().decrStackSize(slot, amount);
 	}
 
 	public void setStack(int slot, ItemStack stack) {

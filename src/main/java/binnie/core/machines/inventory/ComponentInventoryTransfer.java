@@ -11,6 +11,7 @@ import java.util.List;
 
 public class ComponentInventoryTransfer extends MachineComponent {
 	private List<Transfer> transfers = new ArrayList<>();
+	private ITransferRestockListener transferListener;
 
 	public ComponentInventoryTransfer(IMachine machine) {
 		super(machine);
@@ -41,6 +42,10 @@ public class ComponentInventoryTransfer extends MachineComponent {
 
 	public void addStorage(int source, int[] destination, Condition condition) {
 		transfers.add(new Storage(getMachine(), source, destination).setCondition(condition));
+	}
+
+	public void setTransferListener(ITransferRestockListener transferListener) {
+		this.transferListener = transferListener;
 	}
 
 	public abstract class Transfer {
@@ -92,17 +97,22 @@ public class ComponentInventoryTransfer extends MachineComponent {
 
 		@Override
 		protected void doTransfer(IInventory inv) {
-			if (inv.getStackInSlot(destination) == null) {
-				for (int i : buffer) {
-					if (inv.getStackInSlot(i) == null) {
-						continue;
-					}
+			if (inv.getStackInSlot(destination) != null) {
+				return;
+			}
 
-					ItemStack newStack = inv.decrStackSize(i, limit);
-					if (newStack != null) {
-						inv.setInventorySlotContents(destination, newStack);
-						return;
+			for (int slot : buffer) {
+				if (inv.getStackInSlot(slot) == null) {
+					continue;
+				}
+
+				ItemStack newStack = inv.decrStackSize(slot, limit);
+				if (newStack != null) {
+					inv.setInventorySlotContents(destination, newStack);
+					if (transferListener != null) {
+						transferListener.onRestock(destination);
 					}
+					return;
 				}
 			}
 		}
@@ -140,5 +150,9 @@ public class ComponentInventoryTransfer extends MachineComponent {
 		public Transfer transfer;
 
 		public abstract boolean fufilled(ItemStack p0);
+	}
+	
+	public interface ITransferRestockListener {
+		void onRestock(int target);
 	}
 }
