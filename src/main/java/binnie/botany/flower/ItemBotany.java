@@ -68,13 +68,13 @@ public abstract class ItemBotany extends Item {
 	}
 
 	@Override
-	public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean flag) {
+	public void addInformation(ItemStack itemstack, EntityPlayer player, List tooltip, boolean flag) {
 		if (!itemstack.hasTagCompound()) {
 			return;
 		}
 		IFlower individual = (IFlower) getIndividual(itemstack);
 		if (individual == null) {
-			list.add("This item is bugged. Destroy it!");
+			tooltip.add(Binnie.I18N.localise(Botany.instance, "item.tooltip.bugged"));
 			return;
 		}
 
@@ -82,17 +82,16 @@ public abstract class ItemBotany extends Item {
 		IFlowerColor primaryColor = genome.getPrimaryColor();
 		IFlowerColor secondColor = genome.getSecondaryColor();
 		IFlowerColor stemColor = genome.getStemColor();
-		list.add(EnumChatFormatting.YELLOW + primaryColor.getName() + ((primaryColor == secondColor) ? "" : (" and " + secondColor.getName())) + ", " + stemColor.getName() + " Stem");
+		tooltip.add(EnumChatFormatting.YELLOW + primaryColor.getName() + ((primaryColor == secondColor) ? "" : (" and " + secondColor.getName())) + ", " + stemColor.getName() + " Stem");
 
 		if (individual.isAnalyzed()) {
 			if (BinnieCore.proxy.isShiftDown()) {
-				individual.addTooltip(list);
+				individual.addTooltip(tooltip);
 			} else {
-				// TODO remove hardcode strings and localize
-				list.add(EnumChatFormatting.GRAY + "<Hold shift for details>");
+				tooltip.add(EnumChatFormatting.GRAY + Binnie.I18N.localise(Botany.instance, "item.tooltip.holdMore"));
 			}
 		} else {
-			list.add("<Unknown>");
+			tooltip.add(Binnie.I18N.localise(Botany.instance, "item.tooltip.unknownGenome"));
 		}
 	}
 
@@ -116,12 +115,18 @@ public abstract class ItemBotany extends Item {
 	@Override
 	public String getItemStackDisplayName(ItemStack itemstack) {
 		if (!itemstack.hasTagCompound()) {
-			return "Unknown";
+			return Binnie.I18N.localise(Botany.instance, "item.tooltip.unknown");
 		}
+
 		IIndividual individual = getIndividual(itemstack);
-		return (individual != null && individual.getGenome() != null) ?
-			(individual.getDisplayName() + getTag()) :
-			"Corrupted Flower";
+		if (individual != null && individual.getGenome() != null) {
+			String tag = getTag();
+			if (tag == null || tag.isEmpty()) {
+				return individual.getDisplayName();
+			}
+			return Binnie.I18N.localise(Botany.instance, "item.botany.name", individual.getDisplayName(), tag);
+		}
+		return Binnie.I18N.localise(Botany.instance, "item.flowerCorrupted.name");
 	}
 
 	@Override
@@ -195,7 +200,7 @@ public abstract class ItemBotany extends Item {
 			}
 			pollinatable.mateWith(flower);
 			if (!player.capabilities.isCreativeMode) {
-				--itemstack.stackSize;
+				itemstack.stackSize--;
 			}
 			return true;
 		}

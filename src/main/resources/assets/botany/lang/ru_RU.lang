@@ -25,8 +25,16 @@ botany.soil.soil=Почва
 botany.soil.loam=Суглинок
 botany.soil.flowerbed=Цветник
 
+botany.item.tooltip.holdMore=<Зажмите SHIFT для подробностей>
+botany.item.tooltip.bugged=Предмет содержит ошибки. Уничтожь его!
+botany.item.tooltip.unknownGenome=<Неизвестный геном>
+botany.item.tooltip.unknown=Неизвестно
+
 botany.item.pigment.name=Краситель
 botany.item.clay.name=Глиняный порошок
+botany.item.botany.name=%2$s %1$s
+botany.item.pollen.tag.name=Пыльца
+botany.item.flowerCorrupted.name=Поврежденный цветок
 item.trowelWood.name=Деревянный совок
 item.trowelStone.name=Каменный совок
 item.trowelIron.name=Железный совок

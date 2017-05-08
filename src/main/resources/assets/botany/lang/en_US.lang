@@ -25,8 +25,16 @@ botany.soil.soil=Soil
 botany.soil.loam=Loam
 botany.soil.flowerbed=Flowerbed
 
+botany.item.tooltip.holdMore=<Hold shift for details>
+botany.item.tooltip.bugged=This item is bugged. Destroy it!
+botany.item.tooltip.unknownGenome=<Unknown>
+botany.item.tooltip.unknown=Unknown
+
 botany.item.pigment.name=Pigment
 botany.item.clay.name=Clay
+botany.item.botany.name=%1$s %2$s
+botany.item.pollen.tag.name=Pollen
+botany.item.flowerCorrupted.name=Corrupted Flower
 item.trowelWood.name=Wooden Trowel
 item.trowelStone.name=Stone Trowel
 item.trowelIron.name=Iron Trowel
