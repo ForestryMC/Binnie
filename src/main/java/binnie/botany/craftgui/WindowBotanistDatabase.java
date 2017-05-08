@@ -87,4 +87,23 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 			listBox.setOptions(colors);
 		}
 	}
+
+	private class ColorModeWidget extends ModeWidgets {
+		public ColorModeWidget() {
+			super(FlowerMode.Colour, WindowBotanistDatabase.this);
+		}
+
+		@Override
+		public void createListBox(IArea area) {
+			listBox = new ControlListBox<IFlowerColor>(modePage, area.x(), area.y(), area.w(), area.h(), 12.0f) {
+				@Override
+				public IWidget createOption(IFlowerColor value, int y) {
+					return new ControlColorOption(getContent(), value, y);
+				}
+			};
+			List<IFlowerColor> colors = new ArrayList<>();
+			Collections.addAll(colors, EnumFlowerColor.values());
+			listBox.setOptions(colors);
+		}
+	}
 }
