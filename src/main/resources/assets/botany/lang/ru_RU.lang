@@ -183,7 +183,17 @@ botany.gui.controls.pageColorFurtherTitle=Дополнительные смес�
 botany.gui.database.name=База данных цветов
 botany.gui.database.tab.colour=Цвет
 botany.gui.database.tab.species.overview=Обзор
-botany.gui.database.tab.species.genome=Генотип
+
+botany.gui.database.tab.genome=Генотип
+botany.gui.database.tab.genome.temp=Темп. :
+botany.gui.database.tab.genome.moist=Влажн. :
+botany.gui.database.tab.genome.ph=pH. :
+botany.gui.database.tab.genome.fertility=Плодовитость :
+botany.gui.database.tab.genome.lifespan=Жизнь :
+botany.gui.database.tab.genome.lifespan.value=%s дней
+botany.gui.database.tab.genome.nectar=Нектар :
+botany.gui.database.tab.genome.varieties=Сорта :
+
 botany.gui.database.tab.species.classification=Классификация
 botany.gui.database.tab.species.resultant=Произведённые мутации
 botany.gui.database.tab.species.further=Дальнейшие возможные мутации

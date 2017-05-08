@@ -184,7 +184,7 @@ botany.gui.controls.pageColorFurtherTitle=次代突变
 botany.gui.database.name=花卉数据库
 
 botany.gui.database.tab.species.overview=概述
-botany.gui.database.tab.species.genome=基因組
+botany.gui.database.tab.genome=基因組
 botany.gui.database.tab.species.classification=科学分类
 botany.gui.database.tab.species.resultant=导向突变
 botany.gui.database.tab.species.further=次代突变

@@ -183,7 +183,17 @@ botany.gui.controls.pageColorFurtherTitle=Further Mixes
 botany.gui.database.name=FlowerDatabase
 botany.gui.database.tab.colour=Colour
 botany.gui.database.tab.species.overview=Overview
-botany.gui.database.tab.species.genome=Genome
+
+botany.gui.database.tab.genome=Genome
+botany.gui.database.tab.genome.temp=Temp. :
+botany.gui.database.tab.genome.moist=Moist. :
+botany.gui.database.tab.genome.ph=pH. :
+botany.gui.database.tab.genome.fertility=Fertility :
+botany.gui.database.tab.genome.lifespan=Lifespan :
+botany.gui.database.tab.genome.lifespan.value=%.2f days
+botany.gui.database.tab.genome.nectar=Nectar :
+botany.gui.database.tab.genome.varieties=Varieties :
+
 botany.gui.database.tab.species.classification=Classification
 botany.gui.database.tab.species.resultant=Resultant Mutations
 botany.gui.database.tab.species.further=Further Mutations

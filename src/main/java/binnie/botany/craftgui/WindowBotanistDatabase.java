@@ -38,7 +38,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 	@Override
 	protected void addTabs() {
 		new PageSpeciesOverview(getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "species.overview", 0));
-		new PageSpeciesFlowerGenome(getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "species.genome", 0));
+		new PageSpeciesFlowerGenome(getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "genome", 0));
 		new PageSpeciesClassification(getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "species.classification", 0));
 		new PageSpeciesResultant(getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "species.resultant", 0));
 		new PageSpeciesMutations(getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "species.further", 0));
@@ -66,25 +66,6 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 		@Override
 		public String getName() {
 			return Botany.proxy.localise("gui.database.tab." + name().toLowerCase());
-		}
-	}
-
-	private class ColorModeWidget extends ModeWidgets {
-		public ColorModeWidget() {
-			super(FlowerMode.Colour, WindowBotanistDatabase.this);
-		}
-
-		@Override
-		public void createListBox(IArea area) {
-			listBox = new ControlListBox<IFlowerColor>(modePage, area.x(), area.y(), area.w(), area.h(), 12.0f) {
-				@Override
-				public IWidget createOption(IFlowerColor value, int y) {
-					return new ControlColorOption(getContent(), value, y);
-				}
-			};
-			List<IFlowerColor> colors = new ArrayList<>();
-			Collections.addAll(colors, EnumFlowerColor.values());
-			listBox.setOptions(colors);
 		}
 	}
 
