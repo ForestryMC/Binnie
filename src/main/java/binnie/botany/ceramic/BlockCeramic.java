@@ -41,9 +41,8 @@ public class BlockCeramic extends Block implements IBlockMetadata {
 		return BlockMetadata.getBlockDropped(this, world, x, y, z, blockMeta);
 	}
 
-	// TODO replace deprecated
 	@Override
-	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z) {
+	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
 		return BlockMetadata.breakBlock(this, player, world, x, y, z);
 	}
 

@@ -1,5 +1,7 @@
 package binnie.botany.flower;
 
+import binnie.Binnie;
+import binnie.botany.Botany;
 import binnie.botany.api.EnumFlowerStage;
 
 public class ItemPollen extends ItemBotany {
@@ -14,6 +16,6 @@ public class ItemPollen extends ItemBotany {
 
 	@Override
 	public String getTag() {
-		return " Pollen";
+		return Binnie.I18N.localise(Botany.instance, "item.pollen.tag.name");
 	}
 }

@@ -25,8 +25,17 @@ botany.soil.soil=Soil
 botany.soil.loam=Loam
 botany.soil.flowerbed=Flowerbed
 
+botany.item.tooltip.holdMore=<Hold shift for details>
+botany.item.tooltip.bugged=This item is bugged. Destroy it!
+botany.item.tooltip.unknownGenome=<Unknown>
+botany.item.tooltip.unknown=Unknown
+
 botany.item.pigment.name=Pigment
 botany.item.clay.name=Clay
+botany.item.botany.name=%1$s %2$s
+botany.item.pollen.tag.name=Pollen
+botany.item.germling.tag.name=Germling
+botany.item.flowerCorrupted.name=Corrupted Flower
 item.trowelWood.name=Wooden Trowel
 item.trowelStone.name=Stone Trowel
 item.trowelIron.name=Iron Trowel
@@ -176,13 +185,24 @@ botany.tube.insulate.hardenedClay=Hardened Clay
 botany.tube.insulate.smoothStone=Smooth Stone
 botany.tube.insulate.sandstone=Sandstone
 
-botany.gui.controls.colorMixSymbol.chance=Current Chance - %f%
+botany.gui.controls.colorMixSymbol.chance=Current Chance - %f%%
 botany.gui.controls.pageSpeciesFurtherTitle=Resultant Mixes
 botany.gui.controls.pageColorFurtherTitle=Further Mixes
 
 botany.gui.database.name=FlowerDatabase
+botany.gui.database.tab.colour=Colour
 botany.gui.database.tab.species.overview=Overview
-botany.gui.database.tab.species.genome=Genome
+
+botany.gui.database.tab.genome=Genome
+botany.gui.database.tab.genome.temp=Temp. :
+botany.gui.database.tab.genome.moist=Moist. :
+botany.gui.database.tab.genome.ph=pH. :
+botany.gui.database.tab.genome.fertility=Fertility :
+botany.gui.database.tab.genome.lifespan=Lifespan :
+botany.gui.database.tab.genome.lifespan.value=%s days
+botany.gui.database.tab.genome.nectar=Nectar :
+botany.gui.database.tab.genome.varieties=Varieties :
+
 botany.gui.database.tab.species.classification=Classification
 botany.gui.database.tab.species.resultant=Resultant Mutations
 botany.gui.database.tab.species.further=Further Mutations
