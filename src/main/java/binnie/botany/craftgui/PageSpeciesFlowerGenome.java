@@ -27,13 +27,6 @@ public class PageSpeciesFlowerGenome extends PageSpecies {
 		super(parent, tab);
 	}
 
-	public static String tolerated(boolean t) {
-		if (t) {
-			return "Tolerated";
-		}
-		return "Not Tolerated";
-	}
-
 	@Override
 	public void onValueChanged(IAlleleSpecies species) {
 		deleteAllChildren();
@@ -41,42 +34,51 @@ public class PageSpeciesFlowerGenome extends PageSpecies {
 		if (template == null) {
 			return;
 		}
+
 		IFlower tree = Binnie.Genetics.getFlowerRoot().templateAsIndividual(template);
 		if (tree == null) {
 			return;
 		}
+
 		IFlowerGenome genome = tree.getGenome();
 		IAlleleFlowerSpecies treeSpecies = genome.getPrimary();
 		int w = 144;
 		int h = 176;
+		// TODO localise
 		new ControlText(this, new IArea(0.0f, 4.0f, w, 16.0f), "Genome", TextJustification.MiddleCenter);
 		ControlScrollableContent scrollable = new ControlScrollableContent(this, 4.0f, 20.0f, w - 8, h - 8 - 16, 12.0f);
 		Control contents = new Control(scrollable, 0.0f, 0.0f, w - 8 - 12, h - 8 - 16);
+
 		int tw = w - 8 - 12;
 		int w2 = 55;
 		int w3 = tw - 50;
 		int y = 0;
 		int th = 14;
-		int th2 = 18;
 		new ControlText(contents, new IArea(0.0f, y, w2, th), "Temp. : ", TextJustification.MiddleRight);
 		new ControlText(contents, new IArea(w2, y, w3, th), treeSpecies.getTemperature().getName(), TextJustification.MiddleLeft);
 		y += th;
+
 		new ControlText(contents, new IArea(0.0f, y, w2, th), "Moist. : ", TextJustification.MiddleRight);
-		new ControlText(contents, new IArea(w2, y, w3, th), Binnie.Language.localise(treeSpecies.getMoisture()), TextJustification.MiddleLeft);
+		new ControlText(contents, new IArea(w2, y, w3, th), Binnie.I18N.localise(treeSpecies.getMoisture()), TextJustification.MiddleLeft);
 		y += th;
+
 		new ControlText(contents, new IArea(0.0f, y, w2, th), "pH. : ", TextJustification.MiddleRight);
-		new ControlText(contents, new IArea(w2, y, w3, th), Binnie.Language.localise(treeSpecies.getPH()), TextJustification.MiddleLeft);
+		new ControlText(contents, new IArea(w2, y, w3, th), Binnie.I18N.localise(treeSpecies.getPH()), TextJustification.MiddleLeft);
 		y += th;
+
 		new ControlText(contents, new IArea(0.0f, y, w2, th), "Fertility : ", TextJustification.MiddleRight);
 		new ControlText(contents, new IArea(w2, y, w3, th), genome.getFertility() + "x", TextJustification.MiddleLeft);
 		y += th;
+
 		float lifespan = genome.getLifespan() * 68.27f / genome.getAgeChance() / 24000.0f;
 		new ControlText(contents, new IArea(0.0f, y, w2, th), "Lifespan : ", TextJustification.MiddleRight);
 		new ControlText(contents, new IArea(w2, y, w3, th), "" + String.format("%.2f", lifespan) + " days", TextJustification.MiddleLeft);
 		y += th;
+
 		new ControlText(contents, new IArea(0.0f, y, w2, th), "Nectar : ", TextJustification.MiddleRight);
 		new ControlText(contents, new IArea(w2, y, w3, th), genome.getActiveAllele(EnumFlowerChromosome.SAPPINESS).getName(), TextJustification.MiddleLeft);
 		y += th;
+
 		int x = w2;
 		int tot = 0;
 		for (IIndividual vid : BotanyCore.getFlowerRoot().getIndividualTemplates()) {
@@ -88,10 +90,11 @@ public class PageSpeciesFlowerGenome extends PageSpecies {
 				ItemStack stack = BotanyCore.getFlowerRoot().getMemberStack(vid, EnumFlowerStage.FLOWER.ordinal());
 				ControlItemDisplay display = new ControlItemDisplay(contents, x, y);
 				display.setItemStack(stack);
-				++tot;
+				tot++;
 				x += 18;
 			}
 		}
+
 		int numOfLines = 1 + (tot - 1) / 3;
 		new ControlText(contents, new IArea(0.0f, y - (numOfLines - 1) * 18, w2, 4 + 18 * numOfLines), "Varieties : ", TextJustification.MiddleRight);
 		y += th;

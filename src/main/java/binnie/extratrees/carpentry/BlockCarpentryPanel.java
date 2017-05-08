@@ -85,7 +85,7 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 	@Override
 	public String getBlockName(ItemStack stack) {
 		DesignBlock block = ModuleCarpentry.getDesignBlock(getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
-		return Binnie.Language.localise(ExtraTrees.instance, "block.woodenpanel.name", block.getDesign().getName());
+		return Binnie.I18N.localise(ExtraTrees.instance, "block.woodenpanel.name", block.getDesign().getName());
 	}
 
 	@Override

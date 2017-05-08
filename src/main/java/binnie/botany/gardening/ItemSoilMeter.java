@@ -48,7 +48,7 @@ public class ItemSoilMeter extends Item {
 				EnumChatFormatting.LIGHT_PURPLE,
 			};
 			String info = "Type: ";
-			info += colors[type.ordinal()] + Binnie.Language.localise(type) + EnumChatFormatting.RESET;
+			info += colors[type.ordinal()] + Binnie.I18N.localise(type) + EnumChatFormatting.RESET;
 
 			colors = new EnumChatFormatting[]{
 				EnumChatFormatting.YELLOW,
@@ -56,7 +56,7 @@ public class ItemSoilMeter extends Item {
 				EnumChatFormatting.BLUE,
 			};
 			info += ", Moisture: ";
-			info += colors[moisture.ordinal()] + Binnie.Language.localise(moisture) + EnumChatFormatting.RESET;
+			info += colors[moisture.ordinal()] + Binnie.I18N.localise(moisture) + EnumChatFormatting.RESET;
 
 			colors = new EnumChatFormatting[]{
 				EnumChatFormatting.RED,
@@ -64,7 +64,7 @@ public class ItemSoilMeter extends Item {
 				EnumChatFormatting.AQUA,
 			};
 			info += ", pH: ";
-			info += colors[pH.ordinal()] + Binnie.Language.localise(pH) + EnumChatFormatting.RESET;
+			info += colors[pH.ordinal()] + Binnie.I18N.localise(pH) + EnumChatFormatting.RESET;
 			IChatComponent chat = new ChatComponentText(info);
 			player.addChatMessage(chat);
 		}

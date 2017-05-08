@@ -1,5 +1,7 @@
 package binnie.botany.craftgui;
 
+import binnie.Binnie;
+import binnie.botany.Botany;
 import binnie.botany.api.IColourMix;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
@@ -13,16 +15,11 @@ import binnie.core.craftgui.resource.minecraft.CraftGUITextureSheet;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
 
 public class ControlColourMixSymbol extends Control implements ITooltip {
-	static Texture MutationPlus;
-	static Texture MutationArrow;
+	protected static Texture MutationPlus = new StandardTexture(2, 94, 16, 16, CraftGUITextureSheet.Controls2);
+	protected static Texture MutationArrow = new StandardTexture(20, 94, 32, 16, CraftGUITextureSheet.Controls2);
 
-	static {
-		ControlColourMixSymbol.MutationPlus = new StandardTexture(2, 94, 16, 16, CraftGUITextureSheet.Controls2);
-		ControlColourMixSymbol.MutationArrow = new StandardTexture(20, 94, 32, 16, CraftGUITextureSheet.Controls2);
-	}
-
-	IColourMix value;
-	int type;
+	protected IColourMix value;
+	protected int type;
 
 	protected ControlColourMixSymbol(IWidget parent, int x, int y, int type) {
 		super(parent, x, y, 16 + type * 16, 16.0f);
@@ -43,14 +40,14 @@ public class ControlColourMixSymbol extends Control implements ITooltip {
 
 	public void setValue(IColourMix value) {
 		this.value = value;
-		setColor(16777215);
+		setColor(0xffffff);
 	}
 
 	@Override
 	public void getTooltip(Tooltip tooltip) {
 		if (type == 1) {
 			float chance = value.getChance();
-			tooltip.add("Current Chance - " + chance + "%");
+			tooltip.add(Binnie.I18N.localise(Botany.instance, "gui.controls.colorMixSymbol.chance", chance));
 		}
 	}
 }

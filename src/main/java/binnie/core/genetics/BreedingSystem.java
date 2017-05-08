@@ -421,11 +421,11 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 	public String getAlleleName(IChromosomeType chromosome, IAllele allele) {
 		if (allele instanceof IAlleleBoolean) {
 			return ((IAlleleBoolean) allele).getValue() ?
-				Binnie.Language.localise(BinnieCore.instance, "allele.true") :
-				Binnie.Language.localise(BinnieCore.instance, "allele.false");
+				Binnie.I18N.localise(BinnieCore.instance, "allele.true") :
+				Binnie.I18N.localise(BinnieCore.instance, "allele.false");
 		}
 		if (allele.getName() == "for.gui.maximum") {
-			return Binnie.Language.localise(BinnieCore.instance, "allele.fertility.maximum");
+			return Binnie.I18N.localise(BinnieCore.instance, "allele.fertility.maximum");
 		}
 		return allele.getName();
 	}

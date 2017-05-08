@@ -356,5 +356,4 @@ public class GardenLogic extends FarmLogic {
 		icon = icon2;
 		name = name2;
 	}
-
 }

@@ -1,15 +1,12 @@
 package binnie.botany.ceramic;
 
+import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.botany.items.BotanyItems;
 import binnie.core.BinnieCore;
-import binnie.core.block.BlockMetadata;
-import binnie.core.block.IBlockMetadata;
-import binnie.core.block.IMultipassBlock;
-import binnie.core.block.MultipassBlockRenderer;
-import binnie.core.block.TileEntityMetadata;
+import binnie.core.block.*;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -20,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
@@ -86,8 +84,9 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
 	}
 
 	@Override
-	public void getBlockTooltip(ItemStack itemStack, List tooltip) {
-		// ignored
+	public void addBlockTooltip(ItemStack itemStack, List tooltip) {
+		int meta = TileEntityMetadata.getItemDamage(itemStack);
+		getType(meta).addTooltip(tooltip);
 	}
 
 	@Override
@@ -96,7 +95,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
 	}
 
 	@Override
-	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List itemList) {
+	public void getSubBlocks(Item item, CreativeTabs tab, List itemList) {
 		for (EnumFlowerColor c : EnumFlowerColor.values()) {
 			BlockType type = new BlockType(c, c, TileType.Tile);
 			itemList.add(TileEntityMetadata.getItemStack(this, type.ordinal()));
@@ -145,7 +144,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
 		if (tile != null) {
 			return getRenderColor(tile.getTileMetadata());
 		}
-		return 16777215;
+		return 0xffffff;
 	}
 
 	@Override
@@ -188,16 +187,16 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
 	}
 
 	public enum TileType {
-		Tile("tile", "Ceramic Tile"),
-		Brick("brick", "Ceramic Bricks"),
-		StripeBrick("brickstripe", "Striped Ceramic Bricks"),
-		LargeBrick("bricklarge", "Large Ceramic Bricks"),
-		Split("split", "Split Ceramic Tile"),
-		Chequered("cheque", "Chequered Ceramic Tile"),
-		Mixed("mixed", "Mixed Ceramic Tile"),
-		VerticalBrick("verticalbrick", "Vertical Ceramic Bricks"),
-		VerticalStripeBrick("verticalbrickstripe", "Vertical Striped Ceramic Bricks"),
-		VerticalLargeBrick("verticalbricklarge", "Large Vertical Ceramic Bricks");
+		Tile("tile", "ceramicTile"),
+		Brick("brick", "ceramicBricks"),
+		StripeBrick("brickstripe", "strippedCeramicBricks"),
+		LargeBrick("bricklarge", "largeCeramicBricks"),
+		Split("split", "splitCeramicTile"),
+		Chequered("cheque", "chequeredCeramicTile"),
+		Mixed("mixed", "mixedCeramicTile"),
+		VerticalBrick("verticalbrick", "verticalCeramicBricks"),
+		VerticalStripeBrick("verticalbrickstripe", "verticalStripedCeramicBricks"),
+		VerticalLargeBrick("verticalbricklarge", "largeVerticalCeramicBricks");
 
 		protected String id;
 		protected String name;
@@ -419,8 +418,8 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
 
 		private ItemStack getBrickRecipe(List<ItemStack> stacks) {
 			if (stacks.size() == 1) {
-				ItemStack stack5 = stacks.get(0);
-				BlockType type = new BlockType(stack5);
+				ItemStack stack = stacks.get(0);
+				BlockType type = new BlockType(stack);
 				if (type.type == TileType.VerticalBrick) {
 					type.type = this;
 					return type.getStack(1);
@@ -439,18 +438,18 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
 
 			int[] colors = {-1, -1};
 			for (int index2 = 0; index2 < stacks.size(); ++index2) {
-				ItemStack stack4 = stacks.get(index2);
-				if (stack4.getItem() != Item.getItemFromBlock(Botany.ceramicBrick)) {
+				ItemStack stack = stacks.get(index2);
+				if (stack.getItem() != Item.getItemFromBlock(Botany.ceramicBrick)) {
 					return null;
 				}
 
-				BlockType type4 = new BlockType(stack4);
-				if (type4.type != TileType.LargeBrick) {
+				BlockType type = new BlockType(stack);
+				if (type.type != TileType.LargeBrick) {
 					return null;
 				}
 
-				int color5 = type4.color1.ordinal();
-				int color6 = type4.color2.ordinal();
+				int color5 = type.color1.ordinal();
+				int color6 = type.color2.ordinal();
 				int alt2 = (index2 != 0 && index2 != 3) ? 1 : 0;
 				if (this == TileType.StripeBrick) {
 					alt2 = 0;
@@ -528,11 +527,15 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
 		}
 
 		public String getName() {
+			return Binnie.I18N.localise(Botany.instance, type.name);
+		}
+
+		public void addTooltip(List tooltip) {
 			String name = color1.getName();
 			if (type.canDouble() && color2 != color1) {
-				name = name + " & " + color2.getName();
+				name = Binnie.I18N.localise(Botany.instance, "colour.double", name, color2.getName());
 			}
-			return name + " " + type.name;
+			tooltip.add(EnumChatFormatting.GRAY + name);
 		}
 
 		public int ordinal() {

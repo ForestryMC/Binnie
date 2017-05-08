@@ -106,11 +106,11 @@ public class BlockETStairs extends BlockStairs implements IBlockMetadata {
 	@Override
 	public String getBlockName(ItemStack itemStack) {
 		int meta = TileEntityMetadata.getItemDamage(itemStack);
-		return Binnie.Language.localise(ExtraTrees.instance, "block.woodstairs.name", WoodManager.getPlankType(meta + 32).getName());
+		return Binnie.I18N.localise(ExtraTrees.instance, "block.woodstairs.name", WoodManager.getPlankType(meta + 32).getName());
 	}
 
 	@Override
-	public void getBlockTooltip(ItemStack itemStack, List tooltip) {
+	public void addBlockTooltip(ItemStack itemStack, List tooltip) {
 	}
 
 	@Override

@@ -9,8 +9,8 @@ import binnie.core.craftgui.geometry.CraftGUIUtil;
 import binnie.core.craftgui.geometry.IPoint;
 
 public class ControlColorOption extends ControlTextOption<IFlowerColor> {
-	ControlColorDisplay controlBee;
-	IPoint boxPosition;
+	protected ControlColorDisplay controlBee;
+	protected IPoint boxPosition;
 
 	public ControlColorOption(ControlList<IFlowerColor> controlList, IFlowerColor option, int y) {
 		super(controlList, option, option.getName(), y);

@@ -27,7 +27,7 @@ public abstract class MachinePackage {
 	public abstract TileEntity createTileEntity();
 
 	public String getDisplayName() {
-		return Binnie.Language.localise(group.getMod(), "machine." + group.getShortUID() + "." + getUID());
+		return Binnie.I18N.localise(group.getMod(), "machine." + group.getShortUID() + "." + getUID());
 	}
 
 	public Integer getMetadata() {
@@ -57,6 +57,6 @@ public abstract class MachinePackage {
 	}
 
 	public String getInformation() {
-		return Binnie.Language.localise(group.getMod(), "machine." + group.getShortUID() + "." + getUID() + ".info");
+		return Binnie.I18N.localise(group.getMod(), "machine." + group.getShortUID() + "." + getUID() + ".info");
 	}
 }

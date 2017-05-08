@@ -54,11 +54,11 @@ public class BlockSoil extends Block implements IBlockSoil {
 	}
 
 	public static String getPH(ItemStack stack) {
-		return Binnie.Language.localise(EnumAcidity.values()[stack.getItemDamage() / 3]);
+		return Binnie.I18N.localise(EnumAcidity.values()[stack.getItemDamage() / 3]);
 	}
 
 	public static String getMoisture(ItemStack stack) {
-		return Binnie.Language.localise(EnumMoisture.values()[stack.getItemDamage() % 3]);
+		return Binnie.I18N.localise(EnumMoisture.values()[stack.getItemDamage() % 3]);
 	}
 
 	@Override

@@ -194,8 +194,8 @@ public class WindowFieldKit extends Window {
 				List<String> infos = new ArrayList<>();
 
 				int i = 0;
-				for (String pref = root.getUID() + ".fieldkit." + type.getName().toLowerCase() + "."; Binnie.Language.canLocalise(pref + i); ++i) {
-					infos.add(Binnie.Language.localise(pref + i));
+				for (String pref = root.getUID() + ".fieldkit." + type.getName().toLowerCase() + "."; Binnie.I18N.canLocalise(pref + i); ++i) {
+					infos.add(Binnie.I18N.localise(pref + i));
 				}
 
 				String text = Binnie.Genetics.getSystem(root).getAlleleName(type, allele);

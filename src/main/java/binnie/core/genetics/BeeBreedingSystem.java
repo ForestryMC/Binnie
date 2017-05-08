@@ -56,16 +56,16 @@ class BeeBreedingSystem extends BreedingSystem {
 	public String getAlleleName(IChromosomeType chromosome, IAllele allele) {
 		if (chromosome == EnumBeeChromosome.FERTILITY) {
 			if (allele.getUID().contains("Low")) {
-				return Binnie.Language.localise(BinnieCore.instance, "allele.fertility.low");
+				return Binnie.I18N.localise(BinnieCore.instance, "allele.fertility.low");
 			}
 			if (allele.getUID().contains("Normal")) {
-				return Binnie.Language.localise(BinnieCore.instance, "allele.fertility.normal");
+				return Binnie.I18N.localise(BinnieCore.instance, "allele.fertility.normal");
 			}
 			if (allele.getUID().contains("High")) {
-				return Binnie.Language.localise(BinnieCore.instance, "allele.fertility.high");
+				return Binnie.I18N.localise(BinnieCore.instance, "allele.fertility.high");
 			}
 			if (allele.getUID().contains("Maximum")) {
-				return Binnie.Language.localise(BinnieCore.instance, "allele.fertility.maximum");
+				return Binnie.I18N.localise(BinnieCore.instance, "allele.fertility.maximum");
 			}
 		}
 		return super.getAlleleName(chromosome, allele);

@@ -41,7 +41,7 @@ public enum Glassware {
 		if (liquid == null) {
 			return ExtraTrees.proxy.localise("item.glassware." + name().toLowerCase());
 		}
-		return Binnie.Language.localise(ExtraTrees.instance, "item.glassware." + name().toLowerCase() + ".usage", liquid);
+		return Binnie.I18N.localise(ExtraTrees.instance, "item.glassware." + name().toLowerCase() + ".usage", liquid);
 	}
 
 	public int getCapacity() {

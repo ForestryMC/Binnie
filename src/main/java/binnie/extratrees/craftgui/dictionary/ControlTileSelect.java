@@ -144,7 +144,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 
 		@Override
 		public void getTooltip(Tooltip tooltip) {
-			tooltip.add(Binnie.Language.localise(BinnieCore.instance, "gui.designer.pattern", getValue().getName()));
+			tooltip.add(Binnie.I18N.localise(BinnieCore.instance, "gui.designer.pattern", getValue().getName()));
 		}
 
 		@Override

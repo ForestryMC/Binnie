@@ -3,11 +3,7 @@ package binnie.botany.flower;
 import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
-import binnie.botany.api.EnumFlowerChromosome;
-import binnie.botany.api.EnumFlowerStage;
-import binnie.botany.api.IAlleleFlowerSpecies;
-import binnie.botany.api.IFlower;
-import binnie.botany.api.IFlowerType;
+import binnie.botany.api.*;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.genetics.EnumFlowerType;
 import binnie.botany.genetics.Flower;
@@ -59,14 +55,13 @@ public abstract class ItemBotany extends Item {
 		return true;
 	}
 
-	// TODO remove deprecated
 	@Override
-	public boolean hasEffect(ItemStack itemstack) {
-		if (!itemstack.hasTagCompound()) {
+	public boolean hasEffect(ItemStack stack, int pass) {
+		if (!stack.hasTagCompound()) {
 			return false;
 		}
 
-		IIndividual individual = getIndividual(itemstack);
+		IIndividual individual = getIndividual(stack);
 		return individual != null
 			&& individual.getGenome() != null
 			&& individual.hasEffect();
@@ -83,7 +78,12 @@ public abstract class ItemBotany extends Item {
 			return;
 		}
 
-		list.add(EnumChatFormatting.YELLOW + individual.getGenome().getPrimaryColor().getName() + ((individual.getGenome().getPrimaryColor() == individual.getGenome().getSecondaryColor()) ? "" : (" and " + individual.getGenome().getSecondaryColor().getName())) + ", " + individual.getGenome().getStemColor().getName() + " Stem");
+		IFlowerGenome genome = individual.getGenome();
+		IFlowerColor primaryColor = genome.getPrimaryColor();
+		IFlowerColor secondColor = genome.getSecondaryColor();
+		IFlowerColor stemColor = genome.getStemColor();
+		list.add(EnumChatFormatting.YELLOW + primaryColor.getName() + ((primaryColor == secondColor) ? "" : (" and " + secondColor.getName())) + ", " + stemColor.getName() + " Stem");
+
 		if (individual.isAnalyzed()) {
 			if (BinnieCore.proxy.isShiftDown()) {
 				individual.addTooltip(list);

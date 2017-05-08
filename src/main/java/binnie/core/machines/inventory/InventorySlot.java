@@ -92,7 +92,7 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 
 	@Override
 	public String getName() {
-		return Binnie.Language.localise(BinnieCore.instance, "gui.slot." + unlocName);
+		return Binnie.I18N.localise(BinnieCore.instance, "gui.slot." + unlocName);
 	}
 
 	public enum Type {
