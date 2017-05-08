@@ -269,14 +269,14 @@ public abstract class ItemBotany extends Item {
 	}
 
 	public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata) {
-		Block field_150939_a = Botany.flower;
-		if (!world.setBlock(x, y, z, field_150939_a, metadata, 3)) {
+		Block block = Botany.flower;
+		if (!world.setBlock(x, y, z, block, metadata, 3)) {
 			return false;
 		}
 
-		if (world.getBlock(x, y, z) == field_150939_a) {
-			field_150939_a.onBlockPlacedBy(world, x, y, z, player, stack);
-			field_150939_a.onPostBlockPlaced(world, x, y, z, metadata);
+		if (world.getBlock(x, y, z) == block) {
+			block.onBlockPlacedBy(world, x, y, z, player, stack);
+			block.onPostBlockPlaced(world, x, y, z, metadata);
 		}
 		return true;
 	}

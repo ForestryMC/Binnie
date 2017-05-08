@@ -34,6 +34,7 @@ botany.item.pigment.name=Pigment
 botany.item.clay.name=Clay
 botany.item.botany.name=%1$s %2$s
 botany.item.pollen.tag.name=Pollen
+botany.item.germling.tag.name=Germling
 botany.item.flowerCorrupted.name=Corrupted Flower
 item.trowelWood.name=Wooden Trowel
 item.trowelStone.name=Stone Trowel

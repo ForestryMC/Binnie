@@ -34,6 +34,7 @@ botany.item.pigment.name=Краситель
 botany.item.clay.name=Глиняный порошок
 botany.item.botany.name=%2$s %1$s
 botany.item.pollen.tag.name=Пыльца
+botany.item.germling.tag.name=Росток
 botany.item.flowerCorrupted.name=Поврежденный цветок
 item.trowelWood.name=Деревянный совок
 item.trowelStone.name=Каменный совок
