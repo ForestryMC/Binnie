@@ -26,7 +26,7 @@ public class AlvearyMutator {
 	protected static Map<ItemStack, Float> mutations = new HashMap<>();
 
 	public static boolean isMutationItem(ItemStack item) {
-		return getMutationMult(item) > 0.0f;
+		return getMutationMult(item) > 1.0f;
 	}
 
 	public static float getMutationMult(ItemStack item) {
@@ -39,7 +39,7 @@ public class AlvearyMutator {
 				return AlvearyMutator.mutations.get(comp);
 			}
 		}
-		return 0.0f;
+		return 1.0f;
 	}
 
 	public static void addMutationItem(ItemStack item, float chance) {
