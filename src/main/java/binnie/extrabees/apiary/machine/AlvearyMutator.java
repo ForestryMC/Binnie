@@ -21,17 +21,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AlvearyMutator {
-	public static int slotMutator;
+	public static int slotMutator = 0;
 
-	protected static Map<ItemStack, Float> mutations;
-
-	static {
-		AlvearyMutator.slotMutator = 0;
-		AlvearyMutator.mutations = new HashMap<>();
-	}
+	protected static Map<ItemStack, Float> mutations = new HashMap<>();
 
 	public static boolean isMutationItem(ItemStack item) {
-		return getMutationMult(item) > 0.0f;
+		return getMutationMult(item) > 1.0f;
 	}
 
 	public static float getMutationMult(ItemStack item) {

@@ -53,7 +53,6 @@ public class ControlSlot extends ControlSlotBase {
 
 	public ControlSlot(IWidget parent, int x, int y, Slot slot) {
 		super(parent, x, y);
-		this.slot = null;
 		this.slot = slot;
 	}
 
