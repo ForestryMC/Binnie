@@ -190,7 +190,7 @@ botany.gui.database.tab.genome.moist=Moist. :
 botany.gui.database.tab.genome.ph=pH. :
 botany.gui.database.tab.genome.fertility=Fertility :
 botany.gui.database.tab.genome.lifespan=Lifespan :
-botany.gui.database.tab.genome.lifespan.value=%.2f days
+botany.gui.database.tab.genome.lifespan.value=%s days
 botany.gui.database.tab.genome.nectar=Nectar :
 botany.gui.database.tab.genome.varieties=Varieties :
 
