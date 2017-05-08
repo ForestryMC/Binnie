@@ -176,11 +176,12 @@ botany.tube.insulate.hardenedClay=Твердая глина
 botany.tube.insulate.smoothStone=Гладкий камень
 botany.tube.insulate.sandstone=Песчаник
 
-botany.gui.controls.colorMixSymbol.chance=Текущий шанс - %f%
+botany.gui.controls.colorMixSymbol.chance=Текущий шанс - %f%%
 botany.gui.controls.pageSpeciesFurtherTitle=Результат
 botany.gui.controls.pageColorFurtherTitle=Дополнительные смеси
 
 botany.gui.database.name=База данных цветов
+botany.gui.database.tab.colour=Цвет
 botany.gui.database.tab.species.overview=Обзор
 botany.gui.database.tab.species.genome=Генотип
 botany.gui.database.tab.species.classification=Классификация

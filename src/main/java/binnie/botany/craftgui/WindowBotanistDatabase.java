@@ -65,7 +65,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 
 		@Override
 		public String getName() {
-			return Botany.proxy.localise("gui.database.mode." + name().toLowerCase());
+			return Botany.proxy.localise("gui.database.tab." + name().toLowerCase());
 		}
 	}
 

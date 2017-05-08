@@ -176,11 +176,12 @@ botany.tube.insulate.hardenedClay=Hardened Clay
 botany.tube.insulate.smoothStone=Smooth Stone
 botany.tube.insulate.sandstone=Sandstone
 
-botany.gui.controls.colorMixSymbol.chance=Current Chance - %f%
+botany.gui.controls.colorMixSymbol.chance=Current Chance - %f%%
 botany.gui.controls.pageSpeciesFurtherTitle=Resultant Mixes
 botany.gui.controls.pageColorFurtherTitle=Further Mixes
 
 botany.gui.database.name=FlowerDatabase
+botany.gui.database.tab.colour=Colour
 botany.gui.database.tab.species.overview=Overview
 botany.gui.database.tab.species.genome=Genome
 botany.gui.database.tab.species.classification=Classification

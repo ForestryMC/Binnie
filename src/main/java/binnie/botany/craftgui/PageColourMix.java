@@ -26,7 +26,7 @@ public class PageColourMix extends PageAbstract<IFlowerColor> {
 
 	@Override
 	public void onValueChanged(IFlowerColor colour) {
-		List<IColourMix> mixes = new ArrayList<IColourMix>();
+		List<IColourMix> mixes = new ArrayList<>();
 		for (IColourMix mix : BotanyCore.getFlowerRoot().getColourMixes(false)) {
 			if (mix.getColor1() == colour || mix.getColor2() == colour) {
 				mixes.add(mix);
