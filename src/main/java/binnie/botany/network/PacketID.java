@@ -17,13 +17,13 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 
 public enum PacketID implements IPacketID {
-	Encylopedia,
+	FieldKit,
 	FlowerUpdate;
 
 	@Override
 	public void onMessage(MessageBinnie message, MessageContext context) {
-		if (this == PacketID.Encylopedia && context.side == Side.CLIENT) {
-			onEnciclopediaPacket(message);
+		if (this == PacketID.FieldKit && context.side == Side.CLIENT) {
+			onFieldKitPacket(message);
 		} else if (this == PacketID.FlowerUpdate) {
 			onFlowerUpdatePacket(message);
 		}
@@ -37,7 +37,7 @@ public enum PacketID implements IPacketID {
 		}
 	}
 
-	private void onEnciclopediaPacket(MessageBinnie message) {
+	private void onFieldKitPacket(MessageBinnie message) {
 		MessageNBT packet = new MessageNBT(message);
 		NBTTagCompound data = packet.getTagCompound();
 		EntityPlayer player = BinnieCore.proxy.getPlayer();
