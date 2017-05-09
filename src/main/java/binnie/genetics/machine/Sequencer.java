@@ -34,10 +34,11 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class Sequencer {
-	public static int[] slotReserve = new int[]{1, 2, 3, 4};
-	public static int slotDyeIndex = 0;
-	public static int slotTargetIndex = 5;
-	public static int slotDoneIndex = 6;
+	public static final int[] SLOT_RESERVE = new int[]{1, 2, 3, 4};
+	public static final int SLOT_DYE_INDEX = 0;
+	public static final int SLOT_TARGET_INDEX = 5;
+	public static final int SLOT_DONE_INDEX = 6;
+
 	public static BinnieIcon fxSeqA;
 	public static BinnieIcon fxSeqG;
 	public static BinnieIcon fxSeqT;
@@ -59,28 +60,28 @@ public class Sequencer {
 			new ComponentGeneticGUI(machine, GeneticsGUI.Sequencer);
 			ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 
-			InventorySlot slotDye = inventory.addSlot(slotDyeIndex, "dye");
+			InventorySlot slotDye = inventory.addSlot(SLOT_DYE_INDEX, "dye");
 			slotDye.setValidator(new SlotValidator.Item(GeneticsItems.FluorescentDye.get(1), ModuleMachine.IconDye));
 			slotDye.forbidExtraction();
 
-			inventory.addSlotArray(slotReserve, "input");
-			for (InventorySlot slot : inventory.getSlots(slotReserve)) {
+			inventory.addSlotArray(SLOT_RESERVE, "input");
+			for (InventorySlot slot : inventory.getSlots(SLOT_RESERVE)) {
 				slot.setValidator(new SlotValidatorUnsequenced());
 				slot.forbidExtraction();
 			}
 
-			InventorySlot slotTarget = inventory.addSlot(slotTargetIndex, "process");
+			InventorySlot slotTarget = inventory.addSlot(SLOT_TARGET_INDEX, "process");
 			slotTarget.setValidator(new SlotValidatorUnsequenced());
 			slotTarget.setReadOnly();
 			slotTarget.forbidInteraction();
 
-			InventorySlot slotDone = inventory.addSlot(slotDoneIndex, "output");
+			InventorySlot slotDone = inventory.addSlot(SLOT_DONE_INDEX, "output");
 			slotDone.setReadOnly();
 
 			ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
-			transfer.addRestock(slotReserve, slotTargetIndex, 1);
+			transfer.addRestock(SLOT_RESERVE, SLOT_TARGET_INDEX, 1);
 
-			new ComponentChargedSlots(machine).addCharge(slotDyeIndex);
+			new ComponentChargedSlots(machine).addCharge(SLOT_DYE_INDEX);
 			new ComponentPowerReceptor(machine, 10000);
 			logic = new ComponentSequencerLogic(machine);
 			new ComponentSequencerFX(machine);
@@ -100,7 +101,7 @@ public class Sequencer {
 		}
 
 		public float getSequenceStrength() {
-			ItemStack stack = getUtil().getStack(slotTargetIndex);
+			ItemStack stack = getUtil().getStack(SLOT_TARGET_INDEX);
 			if (stack == null) {
 				return 1.0f;
 			}
@@ -121,8 +122,8 @@ public class Sequencer {
 
 		@Override
 		public ErrorState canWork() {
-			if (getUtil().isSlotEmpty(slotTargetIndex)) {
-				return new ErrorState.NoItem("No DNA sequence", slotTargetIndex);
+			if (getUtil().isSlotEmpty(SLOT_TARGET_INDEX)) {
+				return new ErrorState.NoItem("No DNA sequence", SLOT_TARGET_INDEX);
 			}
 			return super.canWork();
 		}
@@ -132,13 +133,13 @@ public class Sequencer {
 			if (getMachine().getOwner() == null) {
 				return new ErrorState("No Owner", "Replace this block to claim this machine");
 			}
-			if (getUtil().getSlotCharge(slotDyeIndex) == 0.0f) {
-				return new ErrorState.NoItem("Insufficient Dye", slotDyeIndex);
+			if (getUtil().getSlotCharge(SLOT_DYE_INDEX) == 0.0f) {
+				return new ErrorState.NoItem("Insufficient Dye", SLOT_DYE_INDEX);
 			}
 
-			ItemStack stack = getUtil().getStack(slotDoneIndex);
+			ItemStack stack = getUtil().getStack(SLOT_DONE_INDEX);
 			if (stack != null && stack.stackSize >= 64) {
-				return new ErrorState.NoSpace("No space for empty sequences", new int[]{slotDoneIndex});
+				return new ErrorState.NoSpace("No space for empty sequences", new int[]{SLOT_DONE_INDEX});
 			}
 			return super.canProgress();
 		}
@@ -151,7 +152,7 @@ public class Sequencer {
 		@Override
 		protected void onStartTask() {
 			super.onStartTask();
-			ItemStack item = getUtil().getStack(slotTargetIndex);
+			ItemStack item = getUtil().getStack(SLOT_TARGET_INDEX);
 			SequencerItem seqItem = new SequencerItem(item);
 			int seq = seqItem.sequenced;
 			if (seq != 0) {
@@ -163,26 +164,26 @@ public class Sequencer {
 		protected void onFinishTask() {
 			super.onFinishTask();
 			updateSequence();
-			SequencerItem seqItem = new SequencerItem(getUtil().getStack(slotTargetIndex));
+			SequencerItem seqItem = new SequencerItem(getUtil().getStack(SLOT_TARGET_INDEX));
 			GeneTracker.getTracker(getMachine().getWorld(), getMachine().getOwner()).registerGene(seqItem.getGene());
-			getUtil().decreaseStack(slotTargetIndex, 1);
+			getUtil().decreaseStack(SLOT_TARGET_INDEX, 1);
 
-			if (getUtil().getStack(slotDoneIndex) == null) {
-				getUtil().setStack(slotDoneIndex, GeneticsItems.EmptySequencer.get(1));
+			if (getUtil().getStack(SLOT_DONE_INDEX) == null) {
+				getUtil().setStack(SLOT_DONE_INDEX, GeneticsItems.EmptySequencer.get(1));
 			} else {
-				getUtil().decreaseStack(slotDoneIndex, -1);
+				getUtil().decreaseStack(SLOT_DONE_INDEX, -1);
 			}
 		}
 
 		@Override
 		protected void onTickTask() {
 			updateSequence();
-			getUtil().useCharge(slotDyeIndex, 0.4f * getProgressPerTick() / 100.0f);
+			getUtil().useCharge(SLOT_DYE_INDEX, 0.4f * getProgressPerTick() / 100.0f);
 		}
 
 		private void updateSequence() {
 			int prog = (int) getProgress();
-			ItemStack item = getUtil().getStack(slotTargetIndex);
+			ItemStack item = getUtil().getStack(SLOT_TARGET_INDEX);
 			SequencerItem seqItem = new SequencerItem(item);
 			int seq = seqItem.sequenced;
 			if (prog != seq) {

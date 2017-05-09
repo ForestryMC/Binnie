@@ -53,7 +53,7 @@ public class WindowSequencer extends WindowMachine {
 		setTitle("Sequencer");
 		int x = 16;
 		int y = 32;
-		CraftGUIUtil.horizontalGrid(x, y, TextJustification.MiddleCenter, 2.0f, new ControlSlotArray(this, 0, 0, 2, 2).create(Sequencer.slotReserve), new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowRight.getIcon()), new ControlSequencerProgress(this, 0, 0), new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowRight.getIcon()), new ControlSlot(this, 0.0f, 0.0f).assign(6));
+		CraftGUIUtil.horizontalGrid(x, y, TextJustification.MiddleCenter, 2.0f, new ControlSlotArray(this, 0, 0, 2, 2).create(Sequencer.SLOT_RESERVE), new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowRight.getIcon()), new ControlSequencerProgress(this, 0, 0), new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowRight.getIcon()), new ControlSlot(this, 0.0f, 0.0f).assign(6));
 		ControlSlot slotTarget = new ControlSlot(this, x + 96, y + 16);
 		slotTarget.assign(5);
 		x = 34;
