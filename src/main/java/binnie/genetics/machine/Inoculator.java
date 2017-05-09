@@ -38,7 +38,6 @@ import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -50,20 +49,14 @@ import org.lwjgl.opengl.GL11;
 import java.util.Random;
 
 public class Inoculator {
-	public static int slotSerumVial = 0;
-	public static int[] slotSerumReserve;
-	public static int[] slotSerumExpended;
-	public static int[] slotReserve;
-	public static int slotTarget = 9;
-	public static int[] slotFinished;
-	public static int tankVector = 0;
-
-	static {
-		slotSerumReserve = new int[]{1, 2};
-		slotSerumExpended = new int[]{3, 4};
-		slotReserve = new int[]{5, 6, 7, 8};
-		slotFinished = new int[]{10, 11, 12, 13};
-	}
+	public static final int SLOT_SERUM_VIAL = 0;
+	public static final int[] SLOT_SERUM_RESERVE = new int[]{1, 2};
+	public static final int[] SLOT_SERUM_EXPENDED = new int[]{3, 4};
+	public static final int[] SLOT_RESERVE = new int[]{5, 6, 7, 8};
+	public static final int SLOT_TARGET = 9;
+	public static final int[] SLOT_FINISHED = new int[]{10, 11, 12, 13};
+	public static final int TANK_VECTOR = 0;
+	public static final int TANK_CAPACITY = 1000;
 
 	public static void setGene(IGene gene, ItemStack target, int chromoN) {
 		int chromosomeID = gene.getChromosome().ordinal();
@@ -86,16 +79,17 @@ public class Inoculator {
 
 	public static class PackageInoculator extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 		public PackageInoculator() {
-			super("inoculator", GeneticsTexture.Inoculator, 14819893, true);
+			super("inoculator", GeneticsTexture.Inoculator, 0xe22235, true);
 		}
 
 		@Override
 		public void createMachine(Machine machine) {
 			new ComponentGeneticGUI(machine, GeneticsGUI.Inoculator);
 			ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-			inventory.addSlot(0, "serum.active");
-			inventory.getSlot(0).forbidInteraction();
-			inventory.getSlot(0).setReadOnly();
+			InventorySlot slotSerumVial = inventory.addSlot(SLOT_SERUM_VIAL, "serum.active");
+			slotSerumVial.forbidInteraction();
+			slotSerumVial.setReadOnly();
+
 			SlotValidator serumValid = new SlotValidator(ModuleMachine.IconSerum) {
 				@Override
 				public boolean isValid(ItemStack itemStack) {
@@ -108,51 +102,52 @@ public class Inoculator {
 				}
 			};
 
-			inventory.getSlot(0).setValidator(serumValid);
-			inventory.addSlotArray(Inoculator.slotSerumReserve, "serum.input");
-			for (InventorySlot slot : inventory.getSlots(Inoculator.slotSerumReserve)) {
+			slotSerumVial.setValidator(serumValid);
+
+			inventory.addSlotArray(SLOT_SERUM_RESERVE, "serum.input");
+			for (InventorySlot slot : inventory.getSlots(SLOT_SERUM_RESERVE)) {
 				slot.setValidator(serumValid);
 				slot.forbidExtraction();
 			}
 
-			inventory.addSlotArray(Inoculator.slotSerumExpended, "serum.output");
-			for (InventorySlot slot : inventory.getSlots(Inoculator.slotSerumExpended)) {
+			inventory.addSlotArray(SLOT_SERUM_EXPENDED, "serum.output");
+			for (InventorySlot slot : inventory.getSlots(SLOT_SERUM_EXPENDED)) {
 				slot.setValidator(serumValid);
 				slot.setReadOnly();
 			}
 
-			inventory.addSlotArray(Inoculator.slotReserve, "input");
-			for (InventorySlot slot : inventory.getSlots(Inoculator.slotReserve)) {
+			inventory.addSlotArray(SLOT_RESERVE, "input");
+			for (InventorySlot slot : inventory.getSlots(SLOT_RESERVE)) {
 				slot.forbidExtraction();
 				slot.setValidator(new ValidatorIndividualInoculate());
 			}
 
-			inventory.addSlot(9, "process");
-			inventory.getSlot(9).setValidator(new ValidatorIndividualInoculate());
-			inventory.getSlot(9).setReadOnly();
-			inventory.getSlot(9).forbidInteraction();
-			inventory.addSlotArray(Inoculator.slotFinished, "output");
-			for (InventorySlot slot : inventory.getSlots(Inoculator.slotFinished)) {
+			inventory.addSlot(SLOT_TARGET, "process");
+			inventory.getSlot(SLOT_TARGET).setValidator(new ValidatorIndividualInoculate());
+			inventory.getSlot(SLOT_TARGET).setReadOnly();
+			inventory.getSlot(SLOT_TARGET).forbidInteraction();
+			inventory.addSlotArray(SLOT_FINISHED, "output");
+			for (InventorySlot slot : inventory.getSlots(SLOT_FINISHED)) {
 				slot.setReadOnly();
 				slot.forbidInsertion();
 				slot.setValidator(new ValidatorIndividualInoculate());
 			}
 
 			ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
-			transfer.addRestock(Inoculator.slotReserve, 9, 1);
-			transfer.addRestock(Inoculator.slotSerumReserve, 0);
-			transfer.addStorage(0, Inoculator.slotSerumExpended, new ComponentInventoryTransfer.Condition() {
+			transfer.addRestock(SLOT_RESERVE, SLOT_TARGET, 1);
+			transfer.addRestock(SLOT_SERUM_RESERVE, SLOT_SERUM_VIAL);
+			transfer.addStorage(0, SLOT_SERUM_EXPENDED, new ComponentInventoryTransfer.Condition() {
 				@Override
 				public boolean fufilled(ItemStack stack) {
 					return Engineering.getCharges(stack) == 0;
 				}
 			});
 
-			transfer.addStorage(9, Inoculator.slotFinished, new ComponentInventoryTransfer.Condition() {
+			transfer.addStorage(9, SLOT_FINISHED, new ComponentInventoryTransfer.Condition() {
 				@Override
 				public boolean fufilled(ItemStack stack) {
 					return stack != null
-						&& transfer.getMachine().getMachineUtil().getStack(0) != null
+						&& transfer.getMachine().getMachineUtil().getStack(SLOT_SERUM_VIAL) != null
 						&& transfer.getMachine().getInterface(ComponentInoculatorLogic.class).isValidSerum() != null;
 				}
 			});
@@ -160,17 +155,19 @@ public class Inoculator {
 			new ComponentPowerReceptor(machine, 15000);
 			new ComponentInoculatorLogic(machine);
 			new ComponentInoculatorFX(machine);
-			new ComponentTankContainer(machine).addTank(0, "input", 1000).setValidator(new Validator<FluidStack>() {
-				@Override
-				public boolean isValid(FluidStack object) {
-					return GeneticLiquid.BacteriaVector.get(1).isFluidEqual(object);
-				}
-
-				@Override
-				public String getTooltip() {
-					return GeneticLiquid.BacteriaVector.getName();
-				}
-			});
+			new ComponentTankContainer(machine)
+				.addTank(TANK_VECTOR, "input", TANK_CAPACITY)
+				.setValidator(new Validator<FluidStack>() {
+					@Override
+					public boolean isValid(FluidStack object) {
+						return GeneticLiquid.BacteriaVector.get(1).isFluidEqual(object);
+					}
+	
+					@Override
+					public String getTooltip() {
+						return GeneticLiquid.BacteriaVector.getName();
+					}
+				});
 		}
 
 		@Override
@@ -198,7 +195,7 @@ public class Inoculator {
 		}
 
 		private int getNumberOfGenes() {
-			ItemStack serum = getUtil().getStack(0);
+			ItemStack serum = getUtil().getStack(SLOT_SERUM_VIAL);
 			if (serum == null) {
 				return 1;
 			}
@@ -213,25 +210,32 @@ public class Inoculator {
 
 		@Override
 		public ErrorState canWork() {
-			if (getUtil().isSlotEmpty(9)) {
-				return new ErrorState.NoItem("No Individual to Inoculate", 9);
+			if (getUtil().isSlotEmpty(SLOT_TARGET)) {
+				return new ErrorState.NoItem("No Individual to Inoculate", SLOT_TARGET);
 			}
-			if (getUtil().isSlotEmpty(0)) {
-				return new ErrorState.NoItem("No Serum", 0);
+			if (getUtil().isSlotEmpty(SLOT_SERUM_VIAL)) {
+				return new ErrorState.NoItem("No Serum", SLOT_SERUM_VIAL);
 			}
+			System.out.println("EMPTY = " + getUtil().isTankEmpty(TANK_VECTOR));
+			if (getUtil().isTankEmpty(TANK_VECTOR)) {
+				return new ErrorState.InsufficientLiquid("Not enough liquid", TANK_VECTOR);
+			}
+
 			ErrorState state = isValidSerum();
 			if (state != null) {
 				return state;
 			}
-			if (getUtil().getStack(0) != null && Engineering.getCharges(getUtil().getStack(0)) == 0) {
+			
+			ItemStack stack = getUtil().getStack(SLOT_SERUM_VIAL);
+			if (stack != null && Engineering.getCharges(stack) == 0) {
 				return new ErrorState("Empty Serum", "Serum is empty");
 			}
 			return super.canWork();
 		}
 
 		public ErrorState isValidSerum() {
-			ItemStack serum = getUtil().getStack(0);
-			ItemStack target = getUtil().getStack(9);
+			ItemStack serum = getUtil().getStack(SLOT_SERUM_VIAL);
+			ItemStack target = getUtil().getStack(SLOT_TARGET);
 			IGene[] genes = Engineering.getGenes(serum);
 			if (genes.length == 0) {
 				return new ErrorState("Invalid Serum", "Serum does not hold any genes");
@@ -268,8 +272,8 @@ public class Inoculator {
 		@Override
 		protected void onFinishTask() {
 			super.onFinishTask();
-			ItemStack serum = getUtil().getStack(0);
-			ItemStack target = getUtil().getStack(9);
+			ItemStack serum = getUtil().getStack(SLOT_SERUM_VIAL);
+			ItemStack target = getUtil().getStack(SLOT_TARGET);
 			IIndividual ind = AlleleManager.alleleRegistry.getIndividual(target);
 			if (!ind.isAnalyzed()) {
 				ind.analyze();
@@ -280,8 +284,8 @@ public class Inoculator {
 
 			IGene[] genes = ((IItemSerum) serum.getItem()).getGenes(serum);
 			for (IGene gene : genes) {
-				Inoculator.setGene(gene, target, 0);
-				Inoculator.setGene(gene, target, 1);
+				setGene(gene, target, 0);
+				setGene(gene, target, 1);
 			}
 			getUtil().damageItem(0, 1);
 		}
@@ -296,7 +300,11 @@ public class Inoculator {
 		}
 	}
 
-	public static class ComponentInoculatorFX extends MachineComponent implements IRender.RandomDisplayTick, IRender.DisplayTick, IRender.Render, INetwork.TilePacketSync {
+	public static class ComponentInoculatorFX extends MachineComponent implements
+		IRender.RandomDisplayTick,
+		IRender.DisplayTick,
+		IRender.Render,
+		INetwork.TilePacketSync {
 		private EntityItem dummyEntityItem;
 
 		public ComponentInoculatorFX(IMachine machine) {
@@ -360,7 +368,6 @@ public class Inoculator {
 		@SideOnly(Side.CLIENT)
 		@Override
 		public void renderInWorld(RenderItem renderItem, double x, double y, double z) {
-			// TODO fix duplicate code
 			if (!getUtil().getProcess().isInProgress()) {
 				return;
 			}
@@ -375,10 +382,6 @@ public class Inoculator {
 				return;
 			}
 
-			EntityPlayer player = BinnieCore.proxy.getPlayer();
-			double dx = x + 0.5 - player.lastTickPosX;
-			double dz = z + 0.5 - player.lastTickPosZ;
-			double t = Math.atan2(dz, dx) * 180.0 / 3.1415;
 			GL11.glPushMatrix();
 			GL11.glRotatef(180.0f, 0.0f, 0.0f, 1.0f);
 			GL11.glTranslatef(0.0f, -0.25f, 0.0f);
@@ -389,7 +392,7 @@ public class Inoculator {
 		@Override
 		public void syncToNBT(NBTTagCompound nbt) {
 			NBTTagCompound item = new NBTTagCompound();
-			ItemStack stack = getUtil().getStack(9);
+			ItemStack stack = getUtil().getStack(SLOT_TARGET);
 			if (stack != null) {
 				stack.writeToNBT(item);
 				nbt.setTag("item", item);
@@ -399,9 +402,9 @@ public class Inoculator {
 		@Override
 		public void syncFromNBT(NBTTagCompound nbt) {
 			if (nbt.hasKey("item")) {
-				getUtil().setStack(9, ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("item")));
+				getUtil().setStack(SLOT_TARGET, ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("item")));
 			} else {
-				getUtil().setStack(9, null);
+				getUtil().setStack(SLOT_TARGET, null);
 			}
 		}
 
