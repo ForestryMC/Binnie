@@ -61,12 +61,6 @@ NEI.overrideName(<Genetics:masterRegistry:0>,"Картотека мастера"
 # Analyst
 NEI.overrideName(<Genetics:analyst:0>,"Аналитик");
 <Genetics:analyst:0>.addTooltip(format.darkGreen("Analyst"));
-# Florist's Encyclopaedia
-NEI.overrideName(<Botany:encylopedia:0>,"Энциклопедия цветков");
-<Botany:encylopedia:0>.addTooltip(format.darkGreen("Florist's Encyclopaedia"));
-# Reinforced Florist's Encyclopaedia
-NEI.overrideName(<Botany:encylopediaIron:0>,"Большая Энциклопедия цветков");
-<Botany:encylopediaIron:0>.addTooltip(format.darkGreen("Reinforced Florist's Encyclopaedia"));
 
 
 
