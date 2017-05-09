@@ -1,6 +1,5 @@
 package binnie.botany.gardening;
 
-import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.EnumAcidity;
@@ -51,14 +50,6 @@ public class BlockSoil extends Block implements IBlockSoil {
 
 	public static int getMeta(EnumAcidity acid, EnumMoisture moisture) {
 		return acid.ordinal() * 3 + moisture.ordinal();
-	}
-
-	public static String getPH(ItemStack stack) {
-		return Binnie.I18N.localise(EnumAcidity.values()[stack.getItemDamage() / 3]);
-	}
-
-	public static String getMoisture(ItemStack stack) {
-		return Binnie.I18N.localise(EnumMoisture.values()[stack.getItemDamage() % 3]);
 	}
 
 	@Override
@@ -115,10 +106,10 @@ public class BlockSoil extends Block implements IBlockSoil {
 		EnumAcidity acidity = EnumAcidity.values()[meta / 3];
 		EnumMoisture desiredMoisture = Gardening.getNaturalMoisture(world, x, y, z);
 		if (desiredMoisture.ordinal() > moisture.ordinal()) {
-			moisture = ((moisture == EnumMoisture.Dry) ? EnumMoisture.Normal : EnumMoisture.Damp);
+			moisture = ((moisture == EnumMoisture.DRY) ? EnumMoisture.NORMAL : EnumMoisture.DAMP);
 		}
 		if (desiredMoisture.ordinal() < moisture.ordinal()) {
-			moisture = ((moisture == EnumMoisture.Damp) ? EnumMoisture.Normal : EnumMoisture.Dry);
+			moisture = ((moisture == EnumMoisture.DAMP) ? EnumMoisture.NORMAL : EnumMoisture.DRY);
 		}
 		int meta2 = getMeta(acidity, moisture);
 		if (meta != meta2) {

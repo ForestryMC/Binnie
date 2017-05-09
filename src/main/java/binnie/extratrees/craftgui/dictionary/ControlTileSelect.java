@@ -1,6 +1,5 @@
 package binnie.extratrees.craftgui.dictionary;
 
-import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
@@ -16,6 +15,7 @@ import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.machines.TileEntityMachine;
+import binnie.core.util.I18N;
 import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignCategory;
@@ -144,7 +144,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 
 		@Override
 		public void getTooltip(Tooltip tooltip) {
-			tooltip.add(Binnie.I18N.localise(BinnieCore.instance, "gui.designer.pattern", getValue().getName()));
+			tooltip.add(I18N.localise(BinnieCore.instance, "gui.designer.pattern", getValue().getName()));
 		}
 
 		@Override

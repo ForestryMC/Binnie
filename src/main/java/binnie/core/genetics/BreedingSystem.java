@@ -3,6 +3,7 @@ package binnie.core.genetics;
 import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.resource.BinnieIcon;
+import binnie.core.util.I18N;
 import binnie.extrabees.genetics.ExtraBeeMutation;
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -421,11 +422,11 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 	public String getAlleleName(IChromosomeType chromosome, IAllele allele) {
 		if (allele instanceof IAlleleBoolean) {
 			return ((IAlleleBoolean) allele).getValue() ?
-				Binnie.I18N.localise(BinnieCore.instance, "allele.true") :
-				Binnie.I18N.localise(BinnieCore.instance, "allele.false");
+				I18N.localise(BinnieCore.instance, "allele.true") :
+				I18N.localise(BinnieCore.instance, "allele.false");
 		}
-		if (allele.getName() == "for.gui.maximum") {
-			return Binnie.I18N.localise(BinnieCore.instance, "allele.fertility.maximum");
+		if (allele.getName().equals("for.gui.maximum")) {
+			return I18N.localise(BinnieCore.instance, "allele.fertility.maximum");
 		}
 		return allele.getName();
 	}

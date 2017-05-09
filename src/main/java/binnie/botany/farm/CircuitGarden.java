@@ -1,10 +1,10 @@
 package binnie.botany.farm;
 
-import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
 import binnie.core.circuits.BinnieCircuit;
+import binnie.core.util.I18N;
 import forestry.api.circuits.ChipsetManager;
 import forestry.api.farming.FarmDirection;
 import forestry.api.farming.IFarmHousing;
@@ -27,42 +27,42 @@ public class CircuitGarden extends BinnieCircuit {
 		acidity = ph;
 		String info = "";
 
-		if (moisture == EnumMoisture.Dry) {
+		if (moisture == EnumMoisture.DRY) {
 			info += EnumChatFormatting.YELLOW
-				+ Binnie.I18N.localise(Botany.instance, "moisture.dry")
+				+ I18N.localise(Botany.instance, "moisture.dry")
 				+ EnumChatFormatting.RESET;
 		}
 
-		if (moisture == EnumMoisture.Damp) {
+		if (moisture == EnumMoisture.DAMP) {
 			info += EnumChatFormatting.YELLOW
-				+ Binnie.I18N.localise(Botany.instance, "moisture.damp")
+				+ I18N.localise(Botany.instance, "moisture.damp")
 				+ EnumChatFormatting.RESET;
 		}
 
-		if (acidity == EnumAcidity.Acid) {
+		if (acidity == EnumAcidity.ACID) {
 			if (info.length() > 0) {
 				info += ", ";
 			}
 			info += EnumChatFormatting.RED
-				+ Binnie.I18N.localise(Botany.instance, "ph.acid")
+				+ I18N.localise(Botany.instance, "ph.acid")
 				+ EnumChatFormatting.RESET;
 		}
 
-		if (acidity == EnumAcidity.Neutral) {
+		if (acidity == EnumAcidity.NEUTRAL) {
 			if (info.length() > 0) {
 				info += ", ";
 			}
 			info += EnumChatFormatting.GREEN
-				+ Binnie.I18N.localise(Botany.instance, "ph.neutral")
+				+ I18N.localise(Botany.instance, "ph.neutral")
 				+ EnumChatFormatting.RESET;
 		}
 
-		if (acidity == EnumAcidity.Alkaline) {
+		if (acidity == EnumAcidity.ALKALINE) {
 			if (info.length() > 0) {
 				info += ", ";
 			}
 			info += EnumChatFormatting.AQUA
-				+ Binnie.I18N.localise(Botany.instance, "ph.alkaline")
+				+ I18N.localise(Botany.instance, "ph.alkaline")
 				+ EnumChatFormatting.RESET;
 		}
 
@@ -84,7 +84,7 @@ public class CircuitGarden extends BinnieCircuit {
 		}
 
 		GardenLogic logic = new GardenLogic((IFarmHousing) tile);
-		logic.setData(moisture, acidity, isManual, isFertilised, icon, Binnie.I18N.localise(getName()));
+		logic.setData(moisture, acidity, isManual, isFertilised, icon, I18N.localise(getName()));
 		((IFarmHousing) tile).setFarmLogic(FarmDirection.values()[slot], logic);
 	}
 

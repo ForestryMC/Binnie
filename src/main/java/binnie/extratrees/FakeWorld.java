@@ -115,15 +115,11 @@ public class FakeWorld extends World {
 		/**
 		 * Creating objects without calling constructors.
 		 */
-		public static <T> T create(Class<T> clazz,
-		                           Class<? super T> parent) {
+		public static <T> T create(Class<T> clazz, Class<? super T> parent) {
 			try {
-				ReflectionFactory rf =
-						ReflectionFactory.getReflectionFactory();
+				ReflectionFactory rf = ReflectionFactory.getReflectionFactory();
 				Constructor objDef = parent.getDeclaredConstructor();
-				Constructor intConstr = rf.newConstructorForSerialization(
-						clazz, objDef
-				);
+				Constructor intConstr = rf.newConstructorForSerialization(clazz, objDef);
 				return clazz.cast(intConstr.newInstance());
 			} catch (RuntimeException e) {
 				throw e;

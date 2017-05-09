@@ -1,7 +1,7 @@
 package binnie.core.circuits;
 
-import binnie.Binnie;
 import binnie.core.AbstractMod;
+import binnie.core.util.I18N;
 import forestry.api.circuits.ChipsetManager;
 import forestry.api.circuits.CircuitSocketType;
 import forestry.api.circuits.ICircuitLayout;
@@ -24,12 +24,12 @@ public class BinnieCircuitLayout implements ICircuitLayout {
 
 	@Override
 	public String getName() {
-		return Binnie.I18N.localise(mod, "circuit.layout." + uid.toLowerCase());
+		return I18N.localise(mod, "circuit.layout." + uid.toLowerCase());
 	}
 
 	@Override
 	public String getUsage() {
-		return Binnie.I18N.localise(mod, "circuit.layout." + uid.toLowerCase() + ".usage");
+		return I18N.localise(mod, "circuit.layout." + uid.toLowerCase() + ".usage");
 	}
 
 	@Override

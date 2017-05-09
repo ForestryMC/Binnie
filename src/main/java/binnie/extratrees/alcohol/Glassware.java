@@ -1,6 +1,6 @@
 package binnie.extratrees.alcohol;
 
-import binnie.Binnie;
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
@@ -41,7 +41,7 @@ public enum Glassware {
 		if (liquid == null) {
 			return ExtraTrees.proxy.localise("item.glassware." + name().toLowerCase());
 		}
-		return Binnie.I18N.localise(ExtraTrees.instance, "item.glassware." + name().toLowerCase() + ".usage", liquid);
+		return I18N.localise(ExtraTrees.instance, "item.glassware." + name().toLowerCase() + ".usage", liquid);
 	}
 
 	public int getCapacity() {

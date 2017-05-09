@@ -1,6 +1,5 @@
 package binnie.botany.gardening;
 
-import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.EnumAcidity;
@@ -41,14 +40,14 @@ public class ItemSoilMeter extends Item {
 			EnumMoisture moisture = soil.getMoisture(world, x, y, z);
 			EnumAcidity pH = soil.getPH(world, x, y, z);
 
-			// TODO remove hardcode strings ans localize
+			// TODO remove hardcoded strings ans localize
 			EnumChatFormatting[] colors = new EnumChatFormatting[]{
 				EnumChatFormatting.DARK_GRAY,
 				EnumChatFormatting.GOLD,
 				EnumChatFormatting.LIGHT_PURPLE,
 			};
 			String info = "Type: ";
-			info += colors[type.ordinal()] + Binnie.I18N.localise(type) + EnumChatFormatting.RESET;
+			info += colors[type.ordinal()] + type.getLocalisedName() + EnumChatFormatting.RESET;
 
 			colors = new EnumChatFormatting[]{
 				EnumChatFormatting.YELLOW,
@@ -56,7 +55,7 @@ public class ItemSoilMeter extends Item {
 				EnumChatFormatting.BLUE,
 			};
 			info += ", Moisture: ";
-			info += colors[moisture.ordinal()] + Binnie.I18N.localise(moisture) + EnumChatFormatting.RESET;
+			info += colors[moisture.ordinal()] + moisture.getLocalisedName() + EnumChatFormatting.RESET;
 
 			colors = new EnumChatFormatting[]{
 				EnumChatFormatting.RED,
@@ -64,7 +63,7 @@ public class ItemSoilMeter extends Item {
 				EnumChatFormatting.AQUA,
 			};
 			info += ", pH: ";
-			info += colors[pH.ordinal()] + Binnie.I18N.localise(pH) + EnumChatFormatting.RESET;
+			info += colors[pH.ordinal()] + pH.getLocalisedName() + EnumChatFormatting.RESET;
 			IChatComponent chat = new ChatComponentText(info);
 			player.addChatMessage(chat);
 		}

@@ -8,9 +8,10 @@ import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.controls.core.IControlValue;
+import binnie.core.craftgui.geometry.IArea;
 
 public class ControlColorDisplay extends Control implements IControlValue<IFlowerColor>, ITooltip {
-	IFlowerColor value;
+	private IFlowerColor value;
 
 	public ControlColorDisplay(IWidget parent, float x, float y) {
 		super(parent, x, y, 16.0f, 16.0f);
@@ -29,8 +30,9 @@ public class ControlColorDisplay extends Control implements IControlValue<IFlowe
 
 	@Override
 	public void onRenderBackground() {
-		CraftGUI.Render.solid(getArea(), -1);
-		CraftGUI.Render.solid(getArea().inset(1), 0xff000000 + getValue().getColor(false));
+		IArea area = getArea();
+		CraftGUI.Render.solid(area, -1);
+		CraftGUI.Render.solid(area.inset(1), 0xff000000 + getValue().getColor(false));
 	}
 
 	@Override

@@ -70,17 +70,17 @@ public class Gardening {
 		}
 
 		if (bias <= -1.0f) {
-			return EnumMoisture.Dry;
+			return EnumMoisture.DRY;
 		}
-		return (bias >= 1.0f) ? EnumMoisture.Damp : EnumMoisture.Normal;
+		return (bias >= 1.0f) ? EnumMoisture.DAMP : EnumMoisture.NORMAL;
 	}
 
 	public static EnumAcidity getNaturalPH(World world, int x, int y, int z) {
 		float bias = getBiomePH(world.getBiomeGenForCoords(x, z), y);
 		if (bias <= -1.0f) {
-			return EnumAcidity.Acid;
+			return EnumAcidity.ACID;
 		}
-		return (bias >= 1.0f) ? EnumAcidity.Alkaline : EnumAcidity.Neutral;
+		return (bias >= 1.0f) ? EnumAcidity.ALKALINE : EnumAcidity.NEUTRAL;
 	}
 
 	public static float getBiomeMoisture(BiomeGenBase biome, int H) {

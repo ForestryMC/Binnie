@@ -1,8 +1,8 @@
 package binnie.extratrees.carpentry;
 
-import binnie.Binnie;
 import binnie.core.block.BlockMetadata;
 import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -85,7 +85,7 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 	@Override
 	public String getBlockName(ItemStack stack) {
 		DesignBlock block = ModuleCarpentry.getDesignBlock(getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
-		return Binnie.I18N.localise(ExtraTrees.instance, "block.woodenpanel.name", block.getDesign().getName());
+		return I18N.localise(ExtraTrees.instance, "block.woodenpanel.name", block.getDesign().getName());
 	}
 
 	@Override

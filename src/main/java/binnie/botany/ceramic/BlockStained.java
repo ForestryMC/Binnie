@@ -1,12 +1,12 @@
 package binnie.botany.ceramic;
 
-import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.block.BlockMetadata;
 import binnie.core.block.IBlockMetadata;
 import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -106,7 +106,7 @@ public class BlockStained extends Block implements IBlockMetadata {
 
 	@Override
 	public String getBlockName(ItemStack itemStack) {
-		return Binnie.I18N.localise(Botany.instance, "pigmentedGlass");
+		return I18N.localise(Botany.instance, "pigmentedGlass");
 	}
 
 	@Override

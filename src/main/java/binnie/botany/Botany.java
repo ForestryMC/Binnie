@@ -211,7 +211,7 @@ public class Botany extends AbstractMod {
 					}
 				}
 
-				if (Gardening.isAcidFertiliser(event.entityPlayer.getHeldItem()) && soil.getPH(event.world, event.x, y, event.z) != EnumAcidity.Acid) {
+				if (Gardening.isAcidFertiliser(event.entityPlayer.getHeldItem()) && soil.getPH(event.world, event.x, y, event.z) != EnumAcidity.ACID) {
 					EnumAcidity pH = soil.getPH(event.world, event.x, y, event.z);
 					int next = Math.max(pH.ordinal() - Gardening.getFertiliserStrength(event.entityPlayer.getHeldItem()), 0);
 					if (soil.setPH(event.world, event.x, y, event.z, EnumAcidity.values()[next]) && !event.entityPlayer.capabilities.isCreativeMode) {
@@ -221,7 +221,7 @@ public class Botany extends AbstractMod {
 					}
 				}
 
-				if (Gardening.isAlkalineFertiliser(event.entityPlayer.getHeldItem()) && soil.getPH(event.world, event.x, y, event.z) != EnumAcidity.Alkaline) {
+				if (Gardening.isAlkalineFertiliser(event.entityPlayer.getHeldItem()) && soil.getPH(event.world, event.x, y, event.z) != EnumAcidity.ALKALINE) {
 					EnumAcidity pH = soil.getPH(event.world, event.x, y, event.z);
 					int next = Math.min(pH.ordinal() + Gardening.getFertiliserStrength(event.entityPlayer.getHeldItem()), 2);
 					if (soil.setPH(event.world, event.x, y, event.z, EnumAcidity.values()[next]) && !event.entityPlayer.capabilities.isCreativeMode) {

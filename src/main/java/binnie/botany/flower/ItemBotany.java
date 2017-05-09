@@ -3,11 +3,18 @@ package binnie.botany.flower;
 import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
-import binnie.botany.api.*;
+import binnie.botany.api.EnumFlowerChromosome;
+import binnie.botany.api.EnumFlowerStage;
+import binnie.botany.api.IAlleleFlowerSpecies;
+import binnie.botany.api.IFlower;
+import binnie.botany.api.IFlowerColor;
+import binnie.botany.api.IFlowerGenome;
+import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.genetics.EnumFlowerType;
 import binnie.botany.genetics.Flower;
 import binnie.core.BinnieCore;
+import binnie.core.util.I18N;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.genetics.IIndividual;
@@ -74,7 +81,7 @@ public abstract class ItemBotany extends Item {
 		}
 		IFlower individual = (IFlower) getIndividual(itemstack);
 		if (individual == null) {
-			tooltip.add(Binnie.I18N.localise(Botany.instance, "item.tooltip.bugged"));
+			tooltip.add(I18N.localise(Botany.instance, "item.tooltip.bugged"));
 			return;
 		}
 
@@ -88,10 +95,10 @@ public abstract class ItemBotany extends Item {
 			if (BinnieCore.proxy.isShiftDown()) {
 				individual.addTooltip(tooltip);
 			} else {
-				tooltip.add(EnumChatFormatting.GRAY + Binnie.I18N.localise(Botany.instance, "item.tooltip.holdMore"));
+				tooltip.add(EnumChatFormatting.GRAY + I18N.localise(Botany.instance, "item.tooltip.holdMore"));
 			}
 		} else {
-			tooltip.add(Binnie.I18N.localise(Botany.instance, "item.tooltip.unknownGenome"));
+			tooltip.add(I18N.localise(Botany.instance, "item.tooltip.unknownGenome"));
 		}
 	}
 
@@ -115,7 +122,7 @@ public abstract class ItemBotany extends Item {
 	@Override
 	public String getItemStackDisplayName(ItemStack itemstack) {
 		if (!itemstack.hasTagCompound()) {
-			return Binnie.I18N.localise(Botany.instance, "item.tooltip.unknown");
+			return I18N.localise(Botany.instance, "item.tooltip.unknown");
 		}
 
 		IIndividual individual = getIndividual(itemstack);
@@ -124,9 +131,9 @@ public abstract class ItemBotany extends Item {
 			if (tag == null || tag.isEmpty()) {
 				return individual.getDisplayName();
 			}
-			return Binnie.I18N.localise(Botany.instance, "item.botany.name", individual.getDisplayName(), tag);
+			return I18N.localise(Botany.instance, "item.botany.name", individual.getDisplayName(), tag);
 		}
-		return Binnie.I18N.localise(Botany.instance, "item.flowerCorrupted.name");
+		return I18N.localise(Botany.instance, "item.flowerCorrupted.name");
 	}
 
 	@Override

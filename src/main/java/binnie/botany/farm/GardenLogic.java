@@ -174,7 +174,7 @@ public class GardenLogic extends FarmLogic {
 					isEnclosed = false;
 				}
 
-				isEnclosed = (isEnclosed || moisture != EnumMoisture.Damp);
+				isEnclosed = (isEnclosed || moisture != EnumMoisture.DAMP);
 				if (isEnclosed) {
 					return trySetWater(position);
 				}
@@ -185,15 +185,15 @@ public class GardenLogic extends FarmLogic {
 
 	private ItemStack getAvailableLoam() {
 		EnumMoisture[] moistures;
-		if (moisture == EnumMoisture.Damp) {
-			moistures = new EnumMoisture[]{EnumMoisture.Damp, EnumMoisture.Normal, EnumMoisture.Dry};
-		} else if (moisture == EnumMoisture.Dry) {
-			moistures = new EnumMoisture[]{EnumMoisture.Dry, EnumMoisture.Damp, EnumMoisture.Dry};
+		if (moisture == EnumMoisture.DAMP) {
+			moistures = new EnumMoisture[]{EnumMoisture.DAMP, EnumMoisture.NORMAL, EnumMoisture.DRY};
+		} else if (moisture == EnumMoisture.DRY) {
+			moistures = new EnumMoisture[]{EnumMoisture.DRY, EnumMoisture.DAMP, EnumMoisture.DRY};
 		} else {
-			moistures = new EnumMoisture[]{EnumMoisture.Dry, EnumMoisture.Normal, EnumMoisture.Damp};
+			moistures = new EnumMoisture[]{EnumMoisture.DRY, EnumMoisture.NORMAL, EnumMoisture.DAMP};
 		}
 
-		EnumAcidity[] acidities = {EnumAcidity.Neutral, EnumAcidity.Acid, EnumAcidity.Alkaline};
+		EnumAcidity[] acidities = {EnumAcidity.NEUTRAL, EnumAcidity.ACID, EnumAcidity.ALKALINE};
 		for (EnumMoisture moist : moistures) {
 			for (EnumAcidity acid : acidities) {
 				for (Block type : new Block[]{Botany.flowerbed, Botany.loam, Botany.soil}) {
@@ -230,7 +230,7 @@ public class GardenLogic extends FarmLogic {
 
 	private boolean trySetWater(Vect position) {
 		FluidStack water = Binnie.Liquid.getLiquidStack("water", 1000);
-		if (moisture == EnumMoisture.Damp) {
+		if (moisture == EnumMoisture.DAMP) {
 			if (!housing.hasLiquid(water)) {
 				return false;
 			}
@@ -240,7 +240,7 @@ public class GardenLogic extends FarmLogic {
 			return true;
 		}
 
-		if (moisture != EnumMoisture.Dry) {
+		if (moisture != EnumMoisture.DRY) {
 			return trySetSoil(position);
 		}
 
