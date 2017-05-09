@@ -19,7 +19,7 @@ import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.extrabees.core.ExtraBeeTexture;
 import binnie.genetics.Genetics;
-import binnie.genetics.machine.Sequencer;
+import binnie.genetics.machine.sequencer.Sequencer;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

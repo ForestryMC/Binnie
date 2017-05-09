@@ -16,7 +16,7 @@ import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
-import binnie.genetics.machine.Inoculator;
+import binnie.genetics.machine.inoculator.Inoculator;
 import binnie.genetics.machine.Splicer;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
