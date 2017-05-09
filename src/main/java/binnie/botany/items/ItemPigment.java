@@ -1,5 +1,6 @@
 package binnie.botany.items;
 
+import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.genetics.EnumFlowerColor;
@@ -7,8 +8,10 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
 
 import java.util.List;
 
@@ -20,6 +23,12 @@ public class ItemPigment extends Item {
 	}
 
 	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
+		super.addInformation(stack, player, tooltip, advanced);
+		tooltip.add(EnumChatFormatting.GRAY + EnumFlowerColor.get(stack.getItemDamage()).getName());
+	}
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack stack, int index) {
 		int damage = stack.getItemDamage();
@@ -28,7 +37,7 @@ public class ItemPigment extends Item {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		return EnumFlowerColor.get(stack.getItemDamage()).getName() + " Pigment";
+		return Binnie.I18N.localise(Botany.instance, "item.pigment.name");
 	}
 
 	@Override

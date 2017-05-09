@@ -1,5 +1,6 @@
 package binnie.botany.ceramic;
 
+import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.genetics.EnumFlowerColor;
@@ -16,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
@@ -39,9 +41,8 @@ public class BlockCeramic extends Block implements IBlockMetadata {
 		return BlockMetadata.getBlockDropped(this, world, x, y, z, blockMeta);
 	}
 
-	// TODO replace deprecated
 	@Override
-	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z) {
+	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
 		return BlockMetadata.breakBlock(this, player, world, x, y, z);
 	}
 
@@ -74,13 +75,13 @@ public class BlockCeramic extends Block implements IBlockMetadata {
 
 	@Override
 	public String getBlockName(ItemStack itemStack) {
-		int meta = TileEntityMetadata.getItemDamage(itemStack);
-		return EnumFlowerColor.get(meta).getName() + " Ceramic Block";
+		return Binnie.I18N.localise(Botany.instance, "ceramicBlock");
 	}
 
 	@Override
-	public void getBlockTooltip(ItemStack itemStack, List tooltip) {
-		// ignored
+	public void addBlockTooltip(ItemStack stack, List tooltip) {
+		int meta = TileEntityMetadata.getItemDamage(stack);
+		tooltip.add(EnumChatFormatting.GRAY + EnumFlowerColor.get(meta).getName());
 	}
 
 	@Override
@@ -89,7 +90,7 @@ public class BlockCeramic extends Block implements IBlockMetadata {
 	}
 
 	@Override
-	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List itemList) {
+	public void getSubBlocks(Item item, CreativeTabs tabs, List itemList) {
 		for (EnumFlowerColor c : EnumFlowerColor.values()) {
 			itemList.add(TileEntityMetadata.getItemStack(this, c.ordinal()));
 		}
@@ -127,14 +128,13 @@ public class BlockCeramic extends Block implements IBlockMetadata {
 	}
 
 	@Override
-	public void breakBlock(World par1World, int par2, int par3, int par4, Block par5, int par6) {
-		super.breakBlock(par1World, par2, par3, par4, par5, par6);
-		par1World.removeTileEntity(par2, par3, par4);
+	public void breakBlock(World world, int x, int y, int z, Block block, int side) {
+		super.breakBlock(world, x, y, z, block, side);
+		world.removeTileEntity(x, y, z);
 	}
 
-	// TODO remove deprecated
 	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
 		return BlockMetadata.getPickBlock(world, x, y, z);
 	}
 

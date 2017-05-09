@@ -129,11 +129,11 @@ public class BlockETLog extends BlockLog implements IBlockMetadata {
 	@Override
 	public String getBlockName(ItemStack itemStack) {
 		int meta = TileEntityMetadata.getItemDamage(itemStack);
-		return Binnie.Language.localise(ExtraTrees.instance, "block.log.name", ILogType.ExtraTreeLog.values()[meta].getName());
+		return Binnie.I18N.localise(ExtraTrees.instance, "block.log.name", ILogType.ExtraTreeLog.values()[meta].getName());
 	}
 
 	@Override
-	public void getBlockTooltip(ItemStack itemStack, List tooltip) {
+	public void addBlockTooltip(ItemStack itemStack, List tooltip) {
 	}
 
 	@Override

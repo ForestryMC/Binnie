@@ -1,0 +1,301 @@
+binniecore.mod.name=Binnie Core
+
+binniecore.rootBees.descriptor=Пчеловодство
+binniecore.rootTrees.descriptor=Лесоводство
+binniecore.rootButterflies.descriptor=Бабочковедение
+binniecore.rootFlowers.descriptor=Садоводство
+
+binniecore.rootBees.shortName=Пчёлы
+binniecore.rootTrees.shortName=Деревья
+binniecore.rootButterflies.shortName=Бабочки & Мотыльки
+binniecore.rootFlowers.shortName=Цветы
+
+binniecore.rootBees.epitome.0=Пчеловод-дилетант
+binniecore.rootBees.epitome.1=Пчеловод-любитель
+binniecore.rootBees.epitome.2=Пчеловод-ученик
+binniecore.rootBees.epitome.3=Пчеловод-профессионал
+binniecore.rootBees.epitome.4=Пчеловод-мастер
+binniecore.rootBees.epitome.5=Королевский пчеловод
+binniecore.rootBees.epitome.6=Непревзойдённый пчеловод
+
+binniecore.rootTrees.epitome.0=Лесовод-дилетант
+binniecore.rootTrees.epitome.1=Лесовод-любитель
+binniecore.rootTrees.epitome.2=Лесовод-ученик
+binniecore.rootTrees.epitome.3=Лесовод-профессионал
+binniecore.rootTrees.epitome.4=Лесовод-мастер
+binniecore.rootTrees.epitome.5=Королевский лесовод
+binniecore.rootTrees.epitome.6=Непревзойдённый лесовод
+
+binniecore.rootButterflies.epitome.0=Бабочковед-дилетант
+binniecore.rootButterflies.epitome.1=Бабочковед-любитель
+binniecore.rootButterflies.epitome.2=Бабочковед-ученик
+binniecore.rootButterflies.epitome.3=Бабочковед-профессионал
+binniecore.rootButterflies.epitome.4=Бабочковед-мастер
+binniecore.rootButterflies.epitome.5=Королевский бабочковед
+binniecore.rootButterflies.epitome.6=Непревзойдённый бабочковед
+
+binniecore.rootFlowers.epitome.0=Садовод-дилетант
+binniecore.rootFlowers.epitome.1=Садовод-любитель
+binniecore.rootFlowers.epitome.2=Садовод-ученик
+binniecore.rootFlowers.epitome.3=Садовод-профессионал
+binniecore.rootFlowers.epitome.4=Садовод-мастер
+binniecore.rootFlowers.epitome.5=Королевский садовод
+binniecore.rootFlowers.epitome.6=Непревзойдённый садовод
+
+binniecore.rootBees.chromosome.species=Вид
+binniecore.rootBees.chromosome.speed=Скорость производства
+binniecore.rootBees.chromosome.lifespan=Срок жизни
+binniecore.rootBees.chromosome.fertility=Плодовитость
+binniecore.rootBees.chromosome.temperature=Температура
+binniecore.rootBees.chromosome.temperature_tolerance=Допустимая температура
+binniecore.rootBees.chromosome.nocturnal=Ночная
+binniecore.rootBees.chromosome.humidity=Влажность
+binniecore.rootBees.chromosome.humidity_tolerance=Допустимая влажность
+binniecore.rootBees.chromosome.tolerant_flyer=Работа в дождь
+binniecore.rootBees.chromosome.cave_dwelling=Работа в пещерах
+binniecore.rootBees.chromosome.flower_provider=Опыляемые цветки
+binniecore.rootBees.chromosome.flowering=Скорость опыления
+binniecore.rootBees.chromosome.territory=Рабочая зона
+binniecore.rootBees.chromosome.effect=Эффект
+
+binniecore.rootBees.chromosome.species.short=Вид
+binniecore.rootBees.chromosome.speed.short=Скорость производства
+binniecore.rootBees.chromosome.lifespan.short=Срок жизни
+binniecore.rootBees.chromosome.fertility.short=Плодовитость
+binniecore.rootBees.chromosome.temperature_tolerance.short=Допустимая температура
+binniecore.rootBees.chromosome.nocturnal.short=Ночная
+binniecore.rootBees.chromosome.humidity.short=Влажность
+binniecore.rootBees.chromosome.humidity_tolerance.short=Допустимая влажность
+binniecore.rootBees.chromosome.tolerant_flyer.short=Работа в дождь
+binniecore.rootBees.chromosome.cave_dwelling.short=Работа в пещерах
+binniecore.rootBees.chromosome.flower_provider.short=Опыляемые цветки
+binniecore.rootBees.chromosome.flowering.short=Скорость опыления
+binniecore.rootBees.chromosome.territory.short=Рабочая зона
+binniecore.rootBees.chromosome.effect.short=Эффект
+
+binniecore.rootTrees.chromosome.species=Вид
+binniecore.rootTrees.chromosome.growth=Условие роста
+binniecore.rootTrees.chromosome.height=Высота
+binniecore.rootTrees.chromosome.fertility=Плодовитость
+binniecore.rootTrees.chromosome.fruits=Плоды
+binniecore.rootTrees.chromosome.yield=Урожай
+binniecore.rootTrees.chromosome.plant=Биом
+binniecore.rootTrees.chromosome.sappiness=Жизнеспособность
+binniecore.rootTrees.chromosome.territory=Местность
+binniecore.rootTrees.chromosome.effect=Эффект
+binniecore.rootTrees.chromosome.maturation=Созревание
+binniecore.rootTrees.chromosome.girth=Область посадки
+binniecore.rootTrees.chromosome.fireproof=Огнестойкость
+
+binniecore.rootTrees.chromosome.species.short=Вид
+binniecore.rootTrees.chromosome.growth.short=Условие роста
+binniecore.rootTrees.chromosome.height.short=Высота
+binniecore.rootTrees.chromosome.fertility.short=Плодовитость
+binniecore.rootTrees.chromosome.fruits.short=Плоды
+binniecore.rootTrees.chromosome.yield.short=Урожай
+binniecore.rootTrees.chromosome.plant.short=Биом
+binniecore.rootTrees.chromosome.sappiness.short=Жизнеспособность
+binniecore.rootTrees.chromosome.territory.short=Местность
+binniecore.rootTrees.chromosome.effect.short=Эффект
+binniecore.rootTrees.chromosome.maturation.short=Созревание
+binniecore.rootTrees.chromosome.girth.short=Область посадки
+binniecore.rootTrees.chromosome.fireproof.short=Огнестойкость
+
+binniecore.rootButterflies.chromosome.species=Вид
+binniecore.rootButterflies.chromosome.size=Размер
+binniecore.rootButterflies.chromosome.speed=Скорость
+binniecore.rootButterflies.chromosome.lifespan=Срок жизни
+binniecore.rootButterflies.chromosome.metabolism=Метаболизм
+binniecore.rootButterflies.chromosome.fertility=Плодовитость
+binniecore.rootButterflies.chromosome.temperature_tolerance=Допустимая температура
+binniecore.rootButterflies.chromosome.humidity_tolerance=Допустимая влажность
+binniecore.rootButterflies.chromosome.nocturnal=Ночная
+binniecore.rootButterflies.chromosome.tolerant_flyer=Работа в дождь
+binniecore.rootButterflies.chromosome.fire_resist=Огнестойкость
+binniecore.rootButterflies.chromosome.flower_provider=Опыляемые цветы
+binniecore.rootButterflies.chromosome.effect=Эффект
+binniecore.rootButterflies.chromosome.territory=Рабочая зона
+
+binniecore.rootButterflies.chromosome.species.short=Вид
+binniecore.rootButterflies.chromosome.size.short=Размер
+binniecore.rootButterflies.chromosome.speed.short=Скорость
+binniecore.rootButterflies.chromosome.lifespan.short=Срок жизни
+binniecore.rootButterflies.chromosome.metabolism.short=Метаболизм
+binniecore.rootButterflies.chromosome.fertility.short=Плодовитость
+binniecore.rootButterflies.chromosome.temperature_tolerance.short=Допустимая температура
+binniecore.rootButterflies.chromosome.humidity_tolerance.short=Допустимая влажность
+binniecore.rootButterflies.chromosome.nocturnal.short=Ночная
+binniecore.rootButterflies.chromosome.tolerant_flyer.short=Работа в дождь
+binniecore.rootButterflies.chromosome.fire_resist.short=Огнестойкость
+binniecore.rootButterflies.chromosome.flower_provider.short=Опыляемые цветы
+binniecore.rootButterflies.chromosome.effect.short=Эффект
+binniecore.rootButterflies.chromosome.territory.short=Рабочая зона
+
+binniecore.rootFlowers.chromosome.species=Вид
+binniecore.rootFlowers.chromosome.primary=Основная расцветка
+binniecore.rootFlowers.chromosome.secondary=Дополнительная расцветка
+binniecore.rootFlowers.chromosome.fertility=Плодовитость
+binniecore.rootFlowers.chromosome.territory=Рабочая зона
+binniecore.rootFlowers.chromosome.effect=Эффект
+binniecore.rootFlowers.chromosome.lifespan=Срок жизни
+binniecore.rootFlowers.chromosome.temperature_tolerance=Допустимая температура
+binniecore.rootFlowers.chromosome.humidity_tolerance=Допустимая влажность
+binniecore.rootFlowers.chromosome.ph_tolerance=Допустимая кислотность(pH)
+binniecore.rootFlowers.chromosome.sappiness=Нектар
+binniecore.rootFlowers.chromosome.stem=Расцветка ствола
+
+binniecore.rootFlowers.chromosome.species.short=Вид
+binniecore.rootFlowers.chromosome.primary.short=Основная расцвтка
+binniecore.rootFlowers.chromosome.secondary.short=Дополнительная расцветка
+binniecore.rootFlowers.chromosome.fertility.short=Плодовитость
+binniecore.rootFlowers.chromosome.territory.short=Рабочая зона
+binniecore.rootFlowers.chromosome.effect.short=Эффект
+binniecore.rootFlowers.chromosome.lifespan.short=Срок жизни
+binniecore.rootFlowers.chromosome.temperature_tolerance.short=Допустимая температура
+binniecore.rootFlowers.chromosome.humidity_tolerance.short=Допустимая влажность
+binniecore.rootFlowers.chromosome.ph_tolerance.short=Допустимая кислотность(pH)
+binniecore.rootFlowers.chromosome.sappiness.short=Нектар
+binniecore.rootFlowers.chromosome.stem.short=Расцветка ствола
+
+binniecore.allele.fertility.low=Низкая
+binniecore.allele.fertility.normal=Средняя
+binniecore.allele.fertility.high=Высокая
+binniecore.allele.fertility.maximum=Наивысшая
+
+binniecore.allele.true=Да
+binniecore.allele.false=Нет
+
+binniecore.allele.metabolism.highest=Высочайший
+binniecore.allele.metabolism.higher=Высокий
+binniecore.allele.metabolism.high=Повышенный
+binniecore.allele.metabolism.average=Средний
+binniecore.allele.metabolism.slow=Пониженный
+binniecore.allele.metabolism.slower=Низкий
+binniecore.allele.metabolism.slowest=Нижайший
+
+
+binniecore.allele.none=Нет
+
+binniecore.allele.growth.tropical=в тропиках
+binniecore.allele.growth.lightlevel=на свету
+
+
+binniecore.beemodifier.territory=Рабочая зона
+binniecore.beemodifier.mutation=Мутация
+binniecore.beemodifier.lifespan=Время жизни
+binniecore.beemodifier.production=Продукция
+binniecore.beemodifier.flowering=Цветы
+binniecore.beemodifier.geneticdecay=Склонность к вырождению
+
+binniecore.gui.breedingmessage.species=Видов обнаружено
+binniecore.gui.breedingmessage.branch=Семейств обнаружено
+binniecore.gui.breedingmessage.epithet=Родов обнаружено
+
+binniecore.item.container.capsule=Капсула
+binniecore.item.container.refractory=Капсула
+binniecore.item.container.can=Банка
+binniecore.item.container.bucket=Ведро
+binniecore.item.container.glass=Бутыль
+binniecore.item.container.cylinder=Баллон
+
+binniecore.machine.storage.compartment=Сундук
+binniecore.machine.storage.compartmentIron=Железный сундук
+binniecore.machine.storage.compartmentDiamond=Алмазный сундук
+binniecore.machine.storage.compartmentCopper=Медный сундук
+binniecore.machine.storage.compartmentBronze=Бронзовый сундук
+binniecore.machine.storage.compartmentGold=Золотой сундук
+
+< %1$s is the name of the pattern >
+binniecore.gui.designer.pattern=%1$s Pattern
+
+binniecore.gui.database.nodescription=Нет описания
+
+binniecore.gui.database.mode.species=Виды
+binniecore.gui.database.mode.branches=Семейства
+binniecore.gui.database.mode.breeder=Селекция
+
+binniecore.gui.temperature.short=Темп.
+binniecore.gui.humidity.short=Влаж.
+
+binniecore.gui.tolerated=устойчив
+binniecore.gui.nottolerated=неустойчив
+
+binniecore.gui.design=Дизайн
+
+
+
+< Descriptions used for effects in the registry >
+binniecore.allele.extrabees.effect.acid.desc=Растворяет камень и землю
+binniecore.allele.forestry.effectAggressive.desc=Атакует игрока
+binniecore.allele.forestry.effectBeatific.desc=Медленно восстанавливает здоровье игроков
+binniecore.allele.forestry.effectCreeper.desc=Взрывается яростно при приближении
+binniecore.allele.extrabees.effect.spawn_creeper.desc=Спаун криперов
+binniecore.allele.extrabees.effect.blindness.desc=Ослепляет игрока
+binniecore.allele.forestry.effectDrunkard.desc=Опьянение игрока
+binniecore.allele.extrabees.effect.ectoplasm.desc=Создаёт эктоплазмическую паутину
+binniecore.allele.forestry.effectMisanthrope.desc=Агрессивно защищает улей
+binniecore.allele.forestry.effectExploration.desc=Медленно повышает опыт игрока
+binniecore.allele.forestry.effectFertile.desc=Стимулирует близлежащие блоки
+binniecore.allele.extrabees.effect.fireworks.desc=Спонтанно стреляет фейерверк в небо
+binniecore.allele.forestry.effectIgnition.desc=Спонтанные пожары
+binniecore.allele.forestry.effectGlacial.desc=Медленно замораживает воду
+binniecore.allele.extrabees.effect.gravity.desc=Притягивает существ к улью
+binniecore.allele.extrabees.effect.bonemealsapling.desc=Питает саженцы костной мукой
+binniecore.allele.forestry.effectHeroic.desc=Защищает свой улей от мобов
+binniecore.allele.extrabees.effect.hunger.desc=Нагоняет голод на игроков
+binniecore.allele.extrabees.effect.lightning.desc=Притягивает молнию
+binniecore.allele.extrabees.effect.meteor.desc=Падение метеоритов
+binniecore.allele.extrabees.effect.bonemealmushroom.desc=Питает грибы костной мукой
+binniecore.allele.forestry.effectMycophilic.desc=Распространяет грибы и мицелий
+binniecore.allele.forestry.effectNone.desc=Нет видимых эффектов
+binniecore.allele.forestry.effectMiasmic.desc=Отравляет игроков
+binniecore.allele.extrabees.effect.power.desc=Производит немного энергии для механизмов
+binniecore.allele.forestry.effectRadioactive.desc=Разрушает близлежащие блоки
+binniecore.allele.forestry.effectReanimation.desc=Реанимирует нездоровых мобов
+binniecore.allele.forestry.effectRepulsion.desc=Естественно призывает мобов, чтобы избежать его
+binniecore.allele.forestry.effectResurrection.desc=Воскрешает погибших мобов
+binniecore.allele.extrabees.effect.bonemealfruit.desc=Питает фруктовые деревья костной мукой
+binniecore.allele.extrabees.effect.spawn_skeleton.desc=Спаун скелетов
+binniecore.allele.extrabees.effect.slow.desc=Замедляет игроков
+binniecore.allele.forestry.effectSnowing.desc=Вызывает снегопад
+binniecore.allele.extrabees.effect.teleport.desc=Спонтанно телепортирует существ
+binniecore.allele.extrabees.effect.radioactive.desc=Облучает приближающихся игроков
+binniecore.allele.extrabees.effect.water.desc=Заполняет машины с водой
+binniecore.allele.extrabees.effect.wither.desc=Иссушает существ
+binniecore.allele.extrabees.effect.spawn_zombie.desc=Спаун зомби
+binniecore.allele.forestry.effectFestiveEaster.desc=Ничего не делает
+
+
+
+< Names for slots when using help tooltip >
+binniecore.gui.slot.slot=Слот
+binniecore.gui.slot.input=Приёмный слот
+binniecore.gui.slot.process=Рабочий слот
+binniecore.gui.slot.output=Выдающий слот
+binniecore.gui.slot.frame=Слот для рамки
+binniecore.gui.slot.mutator=Слот для мутагена
+binniecore.gui.slot.hatchery=Слот для личинок
+binniecore.gui.slot.circuit=Слот для платы
+binniecore.gui.slot.grain=Слот для зерна
+binniecore.gui.slot.inventory=Слот инвентаря
+binniecore.gui.slot.caterpillar=Слот для гусеницы
+binniecore.gui.slot.polish=Слот для Полироли
+binniecore.gui.slot.wood=Слот для древесины
+binniecore.gui.slot.acclimatiser=Слот для акклиматизаторов
+binniecore.gui.slot.analyse=Слот для анализа
+binniecore.gui.slot.dye=Слот для красителя
+binniecore.gui.slot.incubator=Слот инкубатора
+binniecore.gui.slot.compartment=Отсек
+binniecore.gui.slot.ingredient=Слот для составных частей
+binniecore.gui.slot.byproduct=Слот для побочных продуктов
+binniecore.gui.slot.enzyme=Слот для Энзима
+binniecore.gui.slot.sequencervial=Слот для сыворотки
+binniecore.gui.slot.catalyst=Слот для катализатора
+binniecore.gui.slot.serum.input=Приёмный слот для сыворотки
+binniecore.gui.slot.serum.output=Выдающий слот для сыворотки
+binniecore.gui.slot.serum.active=Активный слот для сыворотки
+binniecore.gui.slot.yeast=Слот для дрожжей
+
+binniecore.gui.tank.input=Приёмный резервуар
+binniecore.gui.tank.process=Рабочий резервуар
+binniecore.gui.tank.output=Выдающий резервуар

@@ -99,20 +99,22 @@ public class BlockFlower extends BlockContainer {
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
 		TileEntity tile = world.getTileEntity(x, y, z);
-		if (tile instanceof TileEntityFlower) {
-			TileEntityFlower f = (TileEntityFlower) tile;
-			EnumFlowerStage stage = (f.getAge() == 0) ? EnumFlowerStage.SEED : EnumFlowerStage.FLOWER;
-			IFlowerType flower = f.getType();
-			int section = f.getRenderSection();
-			boolean flowered = f.isFlowered();
-			if (RendererBotany.pass == 0) {
-				return flower.getStem(stage, flowered, section);
-			}
-			return (RendererBotany.pass == 1) ?
-				flower.getPetalIcon(stage, flowered, section) :
-				flower.getVariantIcon(stage, flowered, section);
+		if (!(tile instanceof TileEntityFlower)) {
+			return super.getIcon(world, x, y, z, side);
 		}
-		return super.getIcon(world, x, y, z, side);
+
+		TileEntityFlower f = (TileEntityFlower) tile;
+		EnumFlowerStage stage = (f.getAge() == 0) ? EnumFlowerStage.SEED : EnumFlowerStage.FLOWER;
+		IFlowerType flower = f.getType();
+		int section = f.getRenderSection();
+		boolean flowered = f.isFlowered();
+		if (RendererBotany.pass == 0) {
+			return flower.getStem(stage, flowered, section);
+		}
+
+		return (RendererBotany.pass == 1) ?
+			flower.getPetalIcon(stage, flowered, section) :
+			flower.getVariantIcon(stage, flowered, section);
 	}
 
 	@Override
@@ -133,7 +135,8 @@ public class BlockFlower extends BlockContainer {
 
 	@Override
 	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
-		return super.canPlaceBlockAt(world, x, y, z) && canBlockStay(world, x, y, z);
+		return super.canPlaceBlockAt(world, x, y, z)
+			&& canBlockStay(world, x, y, z);
 	}
 
 	protected boolean canPlaceBlockOn(Block block) {
@@ -153,7 +156,11 @@ public class BlockFlower extends BlockContainer {
 		}
 
 		TileEntityFlower flower = (TileEntityFlower) tile;
-		if (flower.getSection() == 0 && flower.getFlower() != null && flower.getFlower().getAge() > 0 && flower.getFlower().getGenome().getPrimary().getType().getSections() > 1 && world.getBlock(x, y + 1, z) != Botany.flower) {
+		if (flower.getSection() == 0
+			&& flower.getFlower() != null
+			&& flower.getFlower().getAge() > 0
+			&& flower.getFlower().getGenome().getPrimary().getType().getSections() > 1
+			&& world.getBlock(x, y + 1, z) != Botany.flower) {
 			dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
 			world.setBlockToAir(x, y, z);
 		}
@@ -199,9 +206,8 @@ public class BlockFlower extends BlockContainer {
 		return drops;
 	}
 
-	// TODO remove deprecated
 	@Override
-	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z) {
+	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
 		List<ItemStack> drops = getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
 		boolean hasBeenBroken = world.setBlockToAir(x, y, z);
 		if (hasBeenBroken && BinnieCore.proxy.isSimulating(world) && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {

@@ -173,18 +173,19 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 	Candlenut("aleurites", "moluccana", 0x8aa36c, 0x8aa36c, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.Candlenut, WorldGenLazy.Tree.class),
 	DwarfHazel("Corylus", "americana", 0x9bb552, 0x9be152, ILogType.ExtraTreeLog.Hazel, ExtraTreeFruitGene.Hazelnut, WorldGenShrub.Shrub.class);
 
-	ArrayList<IFruitFamily> families;
-	int girth;
-	Class<? extends WorldGenerator> gen;
-	IAlleleFruit fruit;
-	IAllele[] template;
-	int color;
-	String binomial;
-	String uid;
-	ILogType wood;
-	String branchName;
-	IClassification branch;
-	int colorPollineted;
+	protected ArrayList<IFruitFamily> families;
+	protected int girth;
+	protected Class<? extends WorldGenerator> gen;
+	protected IAlleleFruit fruit;
+	protected IAllele[] template;
+	protected int color;
+	protected String binomial;
+	protected String uid;
+	protected ILogType wood;
+	protected String branchName;
+	protected IClassification branch;
+	protected int colorPollineted;
+
 	private LeafType leafType;
 	private SaplingType saplingType;
 
@@ -985,7 +986,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 
 		ExtraTreeSpecies.Coconut
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Smaller)
+			.setHeight(ForestryAllele.TreeHeight.Larger)
 			.setFertility(ForestryAllele.Saplings.Low)
 			.setYield(ForestryAllele.Yield.Average)
 			.setMaturation(ForestryAllele.Maturation.Fast);
@@ -1248,7 +1249,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 	public WorldGenerator getGenerator(ITreeGenData tree) {
 		if (gen != null) {
 			try {
-				return gen.getConstructor(ITree.class).newInstance(tree);
+				return gen.getConstructor(ITreeGenData.class).newInstance(tree);
 			} catch (Exception ex) {
 				// ignored
 			}

@@ -9,8 +9,9 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
 
 public class PigmentRecipe implements IRecipe {
+	protected ItemStack cached;
+
 	private ItemStack unknown;
-	ItemStack cached;
 
 	public PigmentRecipe() {
 		unknown = null;

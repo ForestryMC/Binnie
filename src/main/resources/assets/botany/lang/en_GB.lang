@@ -1,5 +1,18 @@
 botany.tab.botany=Botany
 
+botany.pigmentedGlass=Pigmented Glass
+botany.ceramicBlock=Ceramic Block
+botany.ceramicTile=Ceramic Tile
+botany.ceramicBricks=Ceramic Bricks
+botany.strippedCeramicBricks=Striped Ceramic Bricks
+botany.largeCeramicBricks=Large Ceramic Bricks
+botany.splitCeramicTile=Split Ceramic Tile
+botany.chequeredCeramicTile=Chequered Ceramic Tile
+botany.mixedCeramicTile=Mixed Ceramic Tile
+botany.verticalCeramicBricks=Vertical Ceramic Bricks
+botany.verticalStripedCeramicBricks=Vertical Striped Ceramic Bricks
+botany.largeVerticalCeramicBricks=Large Vertical Ceramic Bricks
+
 botany.ph.acid=Acidic
 botany.ph.neutral=Neutral
 botany.ph.alkaline=Alkaline
@@ -12,12 +25,24 @@ botany.soil.soil=Soil
 botany.soil.loam=Loam
 botany.soil.flowerbed=Flowerbed
 
+botany.item.tooltip.holdMore=<Hold shift for details>
+botany.item.tooltip.bugged=This item is bugged. Destroy it!
+botany.item.tooltip.unknownGenome=<Unknown>
+botany.item.tooltip.unknown=Unknown
+
+botany.item.pigment.name=Pigment
+botany.item.clay.name=Clay
+botany.item.botany.name=%1$s %2$s
+botany.item.pollen.tag.name=Pollen
+botany.item.germling.tag.name=Germling
+botany.item.flowerCorrupted.name=Corrupted Flower
 item.trowelWood.name=Wooden Trowel
 item.trowelStone.name=Stone Trowel
 item.trowelIron.name=Iron Trowel
 item.trowelGold.name=Gold Trowel
 item.trowelDiamond.name=Diamond Trowel
 
+botany.colour.double=%s & %s
 botany.colour.aquamarine=Aquamarine
 botany.colour.black=Black
 botany.colour.blue=Deep Blue
@@ -148,9 +173,36 @@ for.binnie.circuit.garden.damp.acid=Garden (Damp, Acidic)
 for.binnie.circuit.garden.damp.neutral=Garden (Damp, Neutral)
 for.binnie.circuit.garden.damp.alkaline=Garden (Damp, Alkaline)
 
+botany.tube.name=Insulated Tube
+botany.tube.cooper=Cooper
+botany.tube.tin=Tin
+botany.tube.bronze=Bronze
+botany.tube.iron=Iron
+botany.tube.insulate.clay=Clay
+botany.tube.insulate.cobblestone=Cobblestone
+botany.tube.insulate.sand=Sand
+botany.tube.insulate.hardenedClay=Hardened Clay
+botany.tube.insulate.smoothStone=Smooth Stone
+botany.tube.insulate.sandstone=Sandstone
 
+botany.gui.controls.colorMixSymbol.chance=Current Chance - %f%%
+botany.gui.controls.pageSpeciesFurtherTitle=Resultant Mixes
+botany.gui.controls.pageColorFurtherTitle=Further Mixes
+
+botany.gui.database.name=FlowerDatabase
+botany.gui.database.tab.colour=Colour
 botany.gui.database.tab.species.overview=Overview
-botany.gui.database.tab.species.genome=Genome
+
+botany.gui.database.tab.genome=Genome
+botany.gui.database.tab.genome.temp=Temp. :
+botany.gui.database.tab.genome.moist=Moist. :
+botany.gui.database.tab.genome.ph=pH. :
+botany.gui.database.tab.genome.fertility=Fertility :
+botany.gui.database.tab.genome.lifespan=Lifespan :
+botany.gui.database.tab.genome.lifespan.value=%s days
+botany.gui.database.tab.genome.nectar=Nectar :
+botany.gui.database.tab.genome.varieties=Varieties :
+
 botany.gui.database.tab.species.classification=Classification
 botany.gui.database.tab.species.resultant=Resultant Mutations
 botany.gui.database.tab.species.further=Further Mutations

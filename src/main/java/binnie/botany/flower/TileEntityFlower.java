@@ -216,15 +216,15 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 			flower.setWilted(false);
 		}
 
-		float CHANCE_DISPERSAL = 0.8f;
-		CHANCE_DISPERSAL += 0.2f * flower.getGenome().getFertility();
-		CHANCE_DISPERSAL *= 1.0f + soil.ordinal() * 0.5f;
-		float CHANCE_POLLINATE = 1.0f;
-		CHANCE_POLLINATE += 0.25f * flower.getGenome().getFertility();
-		CHANCE_POLLINATE *= 1.0f + soil.ordinal() * 0.5f;
-		float CHANCE_SELFPOLLINATE = 0.2f * CHANCE_POLLINATE;
+		float chanceDispersal = 0.8f;
+		chanceDispersal += 0.2f * flower.getGenome().getFertility();
+		chanceDispersal *= 1.0f + soil.ordinal() * 0.5f;
+		float chancePollinate = 1.0f;
+		chancePollinate += 0.25f * flower.getGenome().getFertility();
+		chancePollinate *= 1.0f + soil.ordinal() * 0.5f;
+		float chanceSelfPollinate = 0.2f * chancePollinate;
 
-		if (worldObj.rand.nextFloat() < CHANCE_DISPERSAL && flower.hasFlowered() && !flower.isWilted()) {
+		if (worldObj.rand.nextFloat() < chanceDispersal && flower.hasFlowered() && !flower.isWilted()) {
 			IFlowerGenome mate = flower.getMate();
 			if (mate != null) {
 				boolean dispersed = false;
@@ -250,7 +250,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 			}
 		}
 
-		if (worldObj.rand.nextFloat() < CHANCE_POLLINATE && flower.hasFlowered() && !flower.isWilted()) {
+		if (worldObj.rand.nextFloat() < chancePollinate && flower.hasFlowered() && !flower.isWilted()) {
 			for (int a2 = 0; a2 < 4; ++a2) {
 				int dx3 = 0;
 				int dz2 = 0;
@@ -266,7 +266,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 			}
 		}
 
-		if (worldObj.rand.nextFloat() < CHANCE_SELFPOLLINATE && flower.hasFlowered() && flower.getMate() == null) {
+		if (worldObj.rand.nextFloat() < chanceSelfPollinate && flower.hasFlowered() && flower.getMate() == null) {
 			mateWith(getFlower());
 		}
 		spawnButterflies();
@@ -635,5 +635,4 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 			return super.equals(obj);
 		}
 	}
-
 }

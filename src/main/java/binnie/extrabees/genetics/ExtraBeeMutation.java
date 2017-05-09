@@ -20,17 +20,14 @@ import java.util.Collections;
 import java.util.List;
 
 public class ExtraBeeMutation implements IBeeMutation {
-	public static List<IBeeMutation> mutations;
+	public static List<IBeeMutation> mutations = new ArrayList<>();
 
-	static {
-		ExtraBeeMutation.mutations = new ArrayList<>();
-	}
-
-	protected MutationRequirement req;
-	protected IAlleleBeeSpecies species0;
-	protected IAlleleBeeSpecies species1;
 	protected IAllele[] template;
 	protected int chance;
+
+	private MutationRequirement req;
+	private IAlleleBeeSpecies species0;
+	private IAlleleBeeSpecies species1;
 
 	public ExtraBeeMutation(IAlleleBeeSpecies allele0, IAlleleBeeSpecies allele1, ExtraBeesSpecies mutation, int chance) {
 		this(allele0, allele1, mutation.getTemplate(), chance, null);
@@ -45,12 +42,12 @@ public class ExtraBeeMutation implements IBeeMutation {
 	}
 
 	public ExtraBeeMutation(IAlleleBeeSpecies allele0, IAlleleBeeSpecies allele1, IAllele[] mutation, int chance, MutationRequirement req) {
-		this.chance = 80;
 		this.chance = chance;
 		this.req = req;
 		species0 = allele0;
 		species1 = allele1;
 		template = mutation;
+
 		if (species0 != null && species1 != null && template != null) {
 			ExtraBeeMutation.mutations.add(this);
 		}
@@ -209,6 +206,7 @@ public class ExtraBeeMutation implements IBeeMutation {
 		new ExtraBeeMutation(ExtraBeesSpecies.UNUSUAL, ForestryAllele.BeeSpecies.Hermitic.getAllele(), ExtraBeesSpecies.SPATIAL, 5);
 		new ExtraBeeMutation(ExtraBeesSpecies.SPATIAL, ForestryAllele.BeeSpecies.Spectral.getAllele(), ExtraBeesSpecies.QUANTUM, 5);
 		new ExtraBeeMutation(ForestryAllele.BeeSpecies.Noble.getAllele(), ForestryAllele.BeeSpecies.Monastic.getAllele(), ExtraBeesSpecies.MYSTICAL, 5);
+
 		for (IBeeMutation mutation : ExtraBeeMutation.mutations) {
 			Binnie.Genetics.getBeeRoot().registerMutation(mutation);
 		}
@@ -236,7 +234,9 @@ public class ExtraBeeMutation implements IBeeMutation {
 
 	@Override
 	public boolean isPartner(IAllele allele) {
-		return allele.getUID().equals(species0.getUID()) || allele.getUID().equals(species1.getUID());
+		String uid = allele.getUID();
+		return uid.equals(species0.getUID())
+			|| uid.equals(species1.getUID());
 	}
 
 	@Override

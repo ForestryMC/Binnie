@@ -62,12 +62,10 @@ public class Vect {
 		if (this == obj) {
 			return true;
 		}
-		if (obj == null) {
+		if (obj == null || getClass() != obj.getClass()) {
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
+
 		Vect other = (Vect) obj;
 		return x == other.x
 			&& y == other.y

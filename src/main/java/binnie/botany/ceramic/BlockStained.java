@@ -1,5 +1,6 @@
 package binnie.botany.ceramic;
 
+import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.genetics.EnumFlowerColor;
@@ -17,6 +18,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
@@ -59,9 +61,9 @@ public class BlockStained extends Block implements IBlockMetadata {
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int side) {
 //		Block block2 = world.getBlock(x - Facing.offsetsXForSide[side], y - Facing.offsetsYForSide[side], z - Facing.offsetsZForSide[side]);
-		Block block3 = world.getBlock(x, y, z);
-		return block3 != this
-			&& block3 != ExtraTrees.blockStained
+		Block block = world.getBlock(x, y, z);
+		return block != this
+			&& block != ExtraTrees.blockStained
 			&& super.shouldSideBeRendered(world, x, y, z, side);
 	}
 
@@ -70,9 +72,8 @@ public class BlockStained extends Block implements IBlockMetadata {
 		return BlockMetadata.getBlockDropped(this, world, x, y, z, blockMeta);
 	}
 
-	// TODO remove deprecated
 	@Override
-	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z) {
+	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
 		return BlockMetadata.breakBlock(this, player, world, x, y, z);
 	}
 
@@ -105,13 +106,13 @@ public class BlockStained extends Block implements IBlockMetadata {
 
 	@Override
 	public String getBlockName(ItemStack itemStack) {
-		int meta = TileEntityMetadata.getItemDamage(itemStack);
-		return EnumFlowerColor.get(meta).getName() + " Pigmented Glass";
+		return Binnie.I18N.localise(Botany.instance, "pigmentedGlass");
 	}
 
 	@Override
-	public void getBlockTooltip(ItemStack itemStack, List tooltip) {
-		// ignored
+	public void addBlockTooltip(ItemStack itemStack, List tooltip) {
+		int meta = TileEntityMetadata.getItemDamage(itemStack);
+		tooltip.add(EnumChatFormatting.GRAY + EnumFlowerColor.get(meta).getName());
 	}
 
 	@Override
@@ -154,7 +155,7 @@ public class BlockStained extends Block implements IBlockMetadata {
 		if (tile != null) {
 			return getRenderColor(tile.getTileMetadata());
 		}
-		return 16777215;
+		return 0xffffff;
 	}
 
 	@Override
@@ -184,7 +185,7 @@ public class BlockStained extends Block implements IBlockMetadata {
 	}
 
 	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
 		return BlockMetadata.getPickBlock(world, x, y, z);
 	}
 

@@ -107,7 +107,7 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		new ControlToleranceBar<EnumMoisture>(parent, x, y, w, h, EnumMoisture.class) {
 			@Override
 			protected String getName(EnumMoisture value) {
-				return Binnie.Language.localise(value);
+				return Binnie.I18N.localise(value);
 			}
 
 			@Override
@@ -121,7 +121,7 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		new ControlToleranceBar<EnumAcidity>(parent, x, y, w, h, EnumAcidity.class) {
 			@Override
 			protected String getName(EnumAcidity value) {
-				return Binnie.Language.localise(value);
+				return Binnie.I18N.localise(value);
 			}
 
 			@Override

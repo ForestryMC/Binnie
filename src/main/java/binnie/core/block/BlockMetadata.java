@@ -61,7 +61,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	}
 
 	@Override
-	public void getBlockTooltip(ItemStack itemStack, List tooltip) {
+	public void addBlockTooltip(ItemStack itemStack, List tooltip) {
 		// ignored
 	}
 

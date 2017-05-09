@@ -35,7 +35,7 @@ interface IBreedingMessage {
 
 		@Override
 		public String getTitle() {
-			return Binnie.Language.localise(BinnieCore.instance, "gui.breedingmessage.species");
+			return Binnie.I18N.localise(BinnieCore.instance, "gui.breedingmessage.species");
 		}
 
 		@Override
@@ -70,7 +70,7 @@ interface IBreedingMessage {
 
 		@Override
 		public String getTitle() {
-			return Binnie.Language.localise(BinnieCore.instance, "gui.breedingmessage.branch");
+			return Binnie.I18N.localise(BinnieCore.instance, "gui.breedingmessage.branch");
 		}
 
 		@Override
@@ -95,7 +95,7 @@ interface IBreedingMessage {
 
 		@Override
 		public String getTitle() {
-			return Binnie.Language.localise(BinnieCore.instance, "gui.breedingmessage.epithet");
+			return Binnie.I18N.localise(BinnieCore.instance, "gui.breedingmessage.epithet");
 		}
 
 		@Override
