@@ -1,7 +1,7 @@
 package binnie.core.genetics;
 
-import binnie.Binnie;
 import binnie.core.BinnieCore;
+import binnie.core.util.I18N;
 
 public enum EnumBeeModifier {
 	Territory,
@@ -12,6 +12,6 @@ public enum EnumBeeModifier {
 	GeneticDecay;
 
 	public String getName() {
-		return Binnie.I18N.localise(BinnieCore.instance, "beemodifier." + name().toLowerCase());
+		return I18N.localise(BinnieCore.instance, "beemodifier." + name().toLowerCase());
 	}
 }

@@ -1,6 +1,5 @@
 package binnie.botany.craftgui;
 
-import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.api.IColourMix;
 import binnie.core.craftgui.CraftGUI;
@@ -13,6 +12,7 @@ import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.CraftGUITextureSheet;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
+import binnie.core.util.I18N;
 
 public class ControlColourMixSymbol extends Control implements ITooltip {
 	protected static Texture MutationPlus = new StandardTexture(2, 94, 16, 16, CraftGUITextureSheet.Controls2);
@@ -47,7 +47,7 @@ public class ControlColourMixSymbol extends Control implements ITooltip {
 	public void getTooltip(Tooltip tooltip) {
 		if (type == 1) {
 			float chance = value.getChance();
-			tooltip.add(Binnie.I18N.localise(Botany.instance, "gui.controls.colorMixSymbol.chance", chance));
+			tooltip.add(I18N.localise(Botany.instance, "gui.controls.colorMixSymbol.chance", chance));
 		}
 	}
 }

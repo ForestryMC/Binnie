@@ -10,7 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class CeramicColor implements IDesignMaterial {
-	static Map<EnumFlowerColor, CeramicColor> map;
+	private static Map<EnumFlowerColor, CeramicColor> map;
 
 	static {
 		CeramicColor.map = new LinkedHashMap<>();

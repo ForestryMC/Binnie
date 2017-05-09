@@ -1,7 +1,7 @@
 package binnie.core.machines.inventory;
 
-import binnie.Binnie;
 import binnie.core.BinnieCore;
+import binnie.core.util.I18N;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -92,7 +92,7 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 
 	@Override
 	public String getName() {
-		return Binnie.I18N.localise(BinnieCore.instance, "gui.slot." + unlocName);
+		return I18N.localise(BinnieCore.instance, "gui.slot." + unlocName);
 	}
 
 	public enum Type {

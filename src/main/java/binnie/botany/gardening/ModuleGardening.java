@@ -39,15 +39,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ModuleGardening implements IInitializable {
-	public static HashMap<ItemStack, Integer> queuedAcidFertilisers;
-	public static HashMap<ItemStack, Integer> queuedAlkalineFertilisers;
-	public static HashMap<ItemStack, Integer> queuedNutrientFertilisers;
-
-	static {
-		ModuleGardening.queuedAcidFertilisers = new HashMap<>();
-		ModuleGardening.queuedAlkalineFertilisers = new HashMap<>();
-		ModuleGardening.queuedNutrientFertilisers = new HashMap<>();
-	}
+	public static HashMap<ItemStack, Integer> queuedAcidFertilisers = new HashMap<>();
+	public static HashMap<ItemStack, Integer> queuedAlkalineFertilisers = new HashMap<>();
+	public static HashMap<ItemStack, Integer> queuedNutrientFertilisers = new HashMap<>();
 
 	@Override
 	public void preInit() {
@@ -112,15 +106,15 @@ public class ModuleGardening implements IInitializable {
 		for (boolean manual : new boolean[]{true, false}) {
 			for (boolean fertilised : new boolean[]{true, false}) {
 				for (EnumMoisture moist : EnumMoisture.values()) {
-					ItemStack icon = (moist == EnumMoisture.Dry) ? yellow : ((moist == EnumMoisture.Normal) ? red : blue);
+					ItemStack icon = (moist == EnumMoisture.DRY) ? yellow : ((moist == EnumMoisture.NORMAL) ? red : blue);
 					int insulate = 2 - moist.ordinal();
 					if (fertilised) {
 						insulate += 3;
 					}
 					new CircuitGarden(moist, null, manual, fertilised, new ItemStack(Botany.insulatedTube, 1, 0 + 128 * insulate), icon);
-					new CircuitGarden(moist, EnumAcidity.Acid, manual, fertilised, new ItemStack(Botany.insulatedTube, 1, 1 + 128 * insulate), icon);
-					new CircuitGarden(moist, EnumAcidity.Neutral, manual, fertilised, new ItemStack(Botany.insulatedTube, 1, 2 + 128 * insulate), icon);
-					new CircuitGarden(moist, EnumAcidity.Alkaline, manual, fertilised, new ItemStack(Botany.insulatedTube, 1, 3 + 128 * insulate), icon);
+					new CircuitGarden(moist, EnumAcidity.ACID, manual, fertilised, new ItemStack(Botany.insulatedTube, 1, 1 + 128 * insulate), icon);
+					new CircuitGarden(moist, EnumAcidity.NEUTRAL, manual, fertilised, new ItemStack(Botany.insulatedTube, 1, 2 + 128 * insulate), icon);
+					new CircuitGarden(moist, EnumAcidity.ALKALINE, manual, fertilised, new ItemStack(Botany.insulatedTube, 1, 3 + 128 * insulate), icon);
 				}
 			}
 		}

@@ -32,21 +32,21 @@ public class ItemSoil extends ItemBlock {
 		EnumAcidity acidity = EnumAcidity.values()[stack.getItemDamage() / 3];
 		String info = "";
 
-		if (moisture == EnumMoisture.Dry) {
+		if (moisture == EnumMoisture.DRY) {
 			info += EnumChatFormatting.YELLOW + "Dry" + EnumChatFormatting.RESET;
 		}
-		if (moisture == EnumMoisture.Damp) {
+		if (moisture == EnumMoisture.DAMP) {
 			info += EnumChatFormatting.YELLOW + "Damp" + EnumChatFormatting.RESET;
 		}
 
-		if (acidity == EnumAcidity.Acid) {
+		if (acidity == EnumAcidity.ACID) {
 			if (info.length() > 0) {
 				info += ", ";
 			}
 			info += EnumChatFormatting.RED + "Acidic" + EnumChatFormatting.RESET;
 		}
 
-		if (acidity == EnumAcidity.Alkaline) {
+		if (acidity == EnumAcidity.ALKALINE) {
 			if (info.length() > 0) {
 				info += ", ";
 			}

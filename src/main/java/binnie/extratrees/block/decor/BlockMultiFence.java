@@ -1,8 +1,8 @@
 package binnie.extratrees.block.decor;
 
-import binnie.Binnie;
 import binnie.core.block.IBlockMetadata;
 import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.IPlankType;
 import binnie.extratrees.block.PlankType;
@@ -40,6 +40,6 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata {
 		IPlankType type2 = getDescription(meta).getSecondaryPlankType();
 		boolean twoTypes = type1 != type2;
 		FenceType type3 = getDescription(meta).getFenceType();
-		return Binnie.I18N.localise(ExtraTrees.instance, "block.woodslab.name" + (twoTypes ? "2" : ""), type3.getPrefix(), type1.getName(), type2.getName());
+		return I18N.localise(ExtraTrees.instance, "block.woodslab.name" + (twoTypes ? "2" : ""), type3.getPrefix(), type1.getName(), type2.getName());
 	}
 }

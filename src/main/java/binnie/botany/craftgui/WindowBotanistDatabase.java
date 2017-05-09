@@ -19,6 +19,7 @@ import binnie.core.craftgui.database.PageSpeciesResultant;
 import binnie.core.craftgui.database.WindowAbstractDatabase;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.minecraft.Window;
+import binnie.core.util.I18N;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -57,7 +58,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 
 	@Override
 	protected String getName() {
-		return Binnie.I18N.localise(Botany.instance, "gui.database.name");
+		return I18N.localise(Botany.instance, "gui.database.name");
 	}
 
 	enum FlowerMode implements IDatabaseMode {

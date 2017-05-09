@@ -1,12 +1,16 @@
 package binnie.botany.ceramic;
 
-import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.botany.items.BotanyItems;
 import binnie.core.BinnieCore;
-import binnie.core.block.*;
+import binnie.core.block.BlockMetadata;
+import binnie.core.block.IBlockMetadata;
+import binnie.core.block.IMultipassBlock;
+import binnie.core.block.MultipassBlockRenderer;
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -527,19 +531,19 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
 		}
 
 		public String getName() {
-			return Binnie.I18N.localise(Botany.instance, type.name);
+			return I18N.localise(Botany.instance, type.name);
 		}
 
 		public void addTooltip(List tooltip) {
 			String name = color1.getName();
 			if (type.canDouble() && color2 != color1) {
-				name = Binnie.I18N.localise(Botany.instance, "colour.double", name, color2.getName());
+				name = I18N.localise(Botany.instance, "colour.double", name, color2.getName());
 			}
 			tooltip.add(EnumChatFormatting.GRAY + name);
 		}
 
 		public int ordinal() {
-			return color1.ordinal() + color2.ordinal() * 256 + type.ordinal() * 256 * 256;
+			return color1.ordinal() + color2.ordinal() * 256 + type.ordinal() * 65536;
 		}
 
 		public IIcon getIcon(int layer) {

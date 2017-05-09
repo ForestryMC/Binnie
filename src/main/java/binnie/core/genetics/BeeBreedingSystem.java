@@ -2,6 +2,7 @@ package binnie.core.genetics;
 
 import binnie.Binnie;
 import binnie.core.BinnieCore;
+import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.EnumBeeType;
@@ -56,16 +57,16 @@ class BeeBreedingSystem extends BreedingSystem {
 	public String getAlleleName(IChromosomeType chromosome, IAllele allele) {
 		if (chromosome == EnumBeeChromosome.FERTILITY) {
 			if (allele.getUID().contains("Low")) {
-				return Binnie.I18N.localise(BinnieCore.instance, "allele.fertility.low");
+				return I18N.localise(BinnieCore.instance, "allele.fertility.low");
 			}
 			if (allele.getUID().contains("Normal")) {
-				return Binnie.I18N.localise(BinnieCore.instance, "allele.fertility.normal");
+				return I18N.localise(BinnieCore.instance, "allele.fertility.normal");
 			}
 			if (allele.getUID().contains("High")) {
-				return Binnie.I18N.localise(BinnieCore.instance, "allele.fertility.high");
+				return I18N.localise(BinnieCore.instance, "allele.fertility.high");
 			}
 			if (allele.getUID().contains("Maximum")) {
-				return Binnie.I18N.localise(BinnieCore.instance, "allele.fertility.maximum");
+				return I18N.localise(BinnieCore.instance, "allele.fertility.maximum");
 			}
 		}
 		return super.getAlleleName(chromosome, allele);

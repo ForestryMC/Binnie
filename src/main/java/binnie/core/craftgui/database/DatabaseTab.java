@@ -1,9 +1,9 @@
 package binnie.core.craftgui.database;
 
-import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.ITooltipHelp;
 import binnie.core.craftgui.Tooltip;
+import binnie.core.util.I18N;
 
 public class DatabaseTab implements ITooltipHelp {
 	private AbstractMod mod;
@@ -18,11 +18,11 @@ public class DatabaseTab implements ITooltipHelp {
 
 	@Override
 	public String toString() {
-		return Binnie.I18N.localise(mod, "gui.database.tab." + unloc);
+		return I18N.localise(mod, "gui.database.tab." + unloc);
 	}
 
 	@Override
 	public void getHelpTooltip(Tooltip tooltip) {
-		tooltip.add(Binnie.I18N.localiseOrBlank(mod, "gui.database.tab." + unloc + ".help"));
+		tooltip.add(I18N.localiseOrBlank(mod, "gui.database.tab." + unloc + ".help"));
 	}
 }

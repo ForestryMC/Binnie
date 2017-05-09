@@ -20,6 +20,7 @@ import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.craftgui.resource.minecraft.PaddedTexture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.util.I18N;
 import binnie.extrabees.core.ExtraBeeTexture;
 import binnie.extrabees.gui.punnett.ExtraBeeGUITexture;
 import binnie.genetics.gui.ControlChromosome;
@@ -194,8 +195,8 @@ public class WindowFieldKit extends Window {
 				List<String> infos = new ArrayList<>();
 
 				int i = 0;
-				for (String pref = root.getUID() + ".fieldkit." + type.getName().toLowerCase() + "."; Binnie.I18N.canLocalise(pref + i); ++i) {
-					infos.add(Binnie.I18N.localise(pref + i));
+				for (String pref = root.getUID() + ".fieldkit." + type.getName().toLowerCase() + "."; I18N.canLocalise(pref + i); ++i) {
+					infos.add(I18N.localise(pref + i));
 				}
 
 				String text = Binnie.Genetics.getSystem(root).getAlleleName(type, allele);

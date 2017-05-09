@@ -207,34 +207,6 @@ NEI.overrideName(<ExtraTrees:hammer:0>,"Плотницкий молоток");
 # Pink Ivory
 <ExtraTrees:log>.onlyWithTag({meta:39}).addShiftTooltip(format.lightPurple("Умнини"));
 
-# MULTI_ITEMS
-
-# Clay
-<Botany:clay:*>.addTooltip(format.lightPurple("глина"));
-
-# Pollen
-<Botany:pollen:*>.addTooltip(format.lightPurple("пыльца"));
-
-# Pigment
-<Botany:pigment:*>.addTooltip(format.lightPurple("краситель"));
-
-# Germling
-<Botany:seed:*>.addTooltip(format.lightPurple("росток"));
-
-# Ceramic Pattern
-<Botany:ceramicPattern:*>.addTooltip(format.lightPurple("Керамический шаблон"));
-
-# Ceramic Brick
-<Botany:ceramicBrick:*>.addTooltip(format.lightPurple("Керамический кирпич"));
-
-# Pigmented Glass
-<Botany:stained:*>.addTooltip(format.lightPurple("Окрашенное стекло"));
-
-#  Ceramic Block
-<Botany:ceramic:*>.addTooltip(format.lightPurple("Глиняный блок"));
-
-
-
 # MACHINES KOMPONENTS GENETICS
 
 

@@ -1,6 +1,5 @@
 package binnie.genetics.gui;
 
-import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
@@ -24,7 +23,7 @@ import java.util.List;
 public class AnalystPageSoil extends ControlAnalystPage {
 	public AnalystPageSoil(IWidget parent, IArea area, IFlower flower) {
 		super(parent, area);
-		setColor(6697728);
+		setColor(0x663300);
 		EnumMoisture moisture = flower.getGenome().getPrimary().getMoisture();
 		EnumTolerance moistureTol = flower.getGenome().getToleranceMoisture();
 		EnumAcidity pH = flower.getGenome().getPrimary().getPH();
@@ -42,40 +41,40 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		y += 16;
 		new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 14.0f), "Recommended Soil", TextJustification.MiddleCenter).setColor(getColor());
 		y += 12;
-		EnumMoisture recomMoisture = EnumMoisture.Normal;
-		boolean canTolNormal = Tolerance.canTolerate(moisture, EnumMoisture.Normal, moistureTol);
-		boolean canTolDamp = Tolerance.canTolerate(moisture, EnumMoisture.Damp, moistureTol);
-		boolean canTolDry = Tolerance.canTolerate(moisture, EnumMoisture.Dry, moistureTol);
+		EnumMoisture recomMoisture = EnumMoisture.NORMAL;
+		boolean canTolNormal = Tolerance.canTolerate(moisture, EnumMoisture.NORMAL, moistureTol);
+		boolean canTolDamp = Tolerance.canTolerate(moisture, EnumMoisture.DAMP, moistureTol);
+		boolean canTolDry = Tolerance.canTolerate(moisture, EnumMoisture.DRY, moistureTol);
 		if (canTolNormal) {
 			if (canTolDamp && !canTolDry) {
-				recomMoisture = EnumMoisture.Damp;
+				recomMoisture = EnumMoisture.DAMP;
 			} else if (canTolDry && !canTolDamp) {
-				recomMoisture = EnumMoisture.Dry;
+				recomMoisture = EnumMoisture.DRY;
 			}
 		} else {
 			if (canTolDamp) {
-				recomMoisture = EnumMoisture.Damp;
+				recomMoisture = EnumMoisture.DAMP;
 			}
 			if (canTolDry) {
-				recomMoisture = EnumMoisture.Dry;
+				recomMoisture = EnumMoisture.DRY;
 			}
 		}
-		EnumAcidity recomPH = EnumAcidity.Neutral;
-		boolean canTolNeutral = Tolerance.canTolerate(pH, EnumAcidity.Neutral, pHTol);
-		boolean canTolAcid = Tolerance.canTolerate(pH, EnumAcidity.Acid, pHTol);
-		boolean canTolAlkaline = Tolerance.canTolerate(pH, EnumAcidity.Alkaline, pHTol);
+		EnumAcidity recomPH = EnumAcidity.NEUTRAL;
+		boolean canTolNeutral = Tolerance.canTolerate(pH, EnumAcidity.NEUTRAL, pHTol);
+		boolean canTolAcid = Tolerance.canTolerate(pH, EnumAcidity.ACID, pHTol);
+		boolean canTolAlkaline = Tolerance.canTolerate(pH, EnumAcidity.ALKALINE, pHTol);
 		if (canTolNeutral) {
 			if (canTolAcid && !canTolAlkaline) {
-				recomPH = EnumAcidity.Acid;
+				recomPH = EnumAcidity.ACID;
 			} else if (canTolAlkaline && !canTolAcid) {
-				recomPH = EnumAcidity.Alkaline;
+				recomPH = EnumAcidity.ALKALINE;
 			}
 		} else {
 			if (canTolAcid) {
-				recomPH = EnumAcidity.Acid;
+				recomPH = EnumAcidity.ACID;
 			}
 			if (canTolAlkaline) {
-				recomPH = EnumAcidity.Alkaline;
+				recomPH = EnumAcidity.ALKALINE;
 			}
 		}
 		ItemStack stack = new ItemStack(Botany.soil, 1, BlockSoil.getMeta(recomPH, recomMoisture));
@@ -86,8 +85,8 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 14.0f), "Other Soils", TextJustification.MiddleCenter).setColor(getColor());
 		y += 12;
 		List<ItemStack> stacks = new ArrayList<ItemStack>();
-		for (EnumAcidity a : EnumSet.range(EnumAcidity.Acid, EnumAcidity.Alkaline)) {
-			for (EnumMoisture b : EnumSet.range(EnumMoisture.Dry, EnumMoisture.Damp)) {
+		for (EnumAcidity a : EnumSet.range(EnumAcidity.ACID, EnumAcidity.ALKALINE)) {
+			for (EnumMoisture b : EnumSet.range(EnumMoisture.DRY, EnumMoisture.DAMP)) {
 				if (Tolerance.canTolerate(pH, a, pHTol) && Tolerance.canTolerate(moisture, b, moistureTol) && (a != recomPH || b != recomMoisture)) {
 					stacks.add(new ItemStack(Botany.soil, 1, BlockSoil.getMeta(a, b)));
 				}
@@ -107,7 +106,7 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		new ControlToleranceBar<EnumMoisture>(parent, x, y, w, h, EnumMoisture.class) {
 			@Override
 			protected String getName(EnumMoisture value) {
-				return Binnie.I18N.localise(value);
+				return value.getLocalisedName();
 			}
 
 			@Override
@@ -121,12 +120,12 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		new ControlToleranceBar<EnumAcidity>(parent, x, y, w, h, EnumAcidity.class) {
 			@Override
 			protected String getName(EnumAcidity value) {
-				return Binnie.I18N.localise(value);
+				return value.getLocalisedName();
 			}
 
 			@Override
 			protected int getColour(EnumAcidity value) {
-				return (new int[]{16711782, 65280, 26367})[value.ordinal()];
+				return (new int[]{0xff0066, 0x00ff00, 0x0066ff})[value.ordinal()];
 			}
 		}.setValues(value, tol);
 	}

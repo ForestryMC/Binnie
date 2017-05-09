@@ -1,10 +1,10 @@
 package binnie.botany.ceramic;
 
-import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.carpentry.BlockDesign;
 import binnie.extratrees.carpentry.DesignBlock;
@@ -31,7 +31,7 @@ public class BlockCeramicPatterned extends BlockDesign {
 
 	@Override
 	public String getBlockName(DesignBlock design) {
-		return Binnie.I18N.localise(Botany.instance, "ceramicBlock");
+		return I18N.localise(Botany.instance, "ceramicBlock");
 	}
 
 	@Override

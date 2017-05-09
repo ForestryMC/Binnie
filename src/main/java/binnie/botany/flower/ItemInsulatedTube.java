@@ -1,8 +1,8 @@
 package binnie.botany.flower;
 
-import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
+import binnie.core.util.I18N;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -71,7 +71,7 @@ public class ItemInsulatedTube extends Item {
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		return Material.get(stack.getItemDamage()).getName() + " "
-			+ Binnie.I18N.localise(Botany.instance, "tube.name");
+			+ I18N.localise(Botany.instance, "tube.name");
 	}
 
 	@Override
@@ -112,7 +112,7 @@ public class ItemInsulatedTube extends Item {
 		}
 
 		public String getName() {
-			return Binnie.I18N.localise(Botany.instance, name);
+			return I18N.localise(Botany.instance, name);
 		}
 	}
 
@@ -141,7 +141,7 @@ public class ItemInsulatedTube extends Item {
 		}
 
 		public String getName() {
-			return Binnie.I18N.localise(Botany.instance, name);
+			return I18N.localise(Botany.instance, name);
 		}
 
 		public ItemStack getStack() {

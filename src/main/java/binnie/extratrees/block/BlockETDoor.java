@@ -1,9 +1,9 @@
 package binnie.extratrees.block;
 
-import binnie.Binnie;
 import binnie.core.block.BlockMetadata;
 import binnie.core.block.IBlockMetadata;
 import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -194,9 +194,9 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 		String typeName = getDoorType(meta).getName();
 		String woodName = WoodManager.getPlankType(meta & 0xFF).getName();
 		if (typeName.equals("")) {
-			return Binnie.I18N.localise(ExtraTrees.instance, "block.door.name", woodName);
+			return I18N.localise(ExtraTrees.instance, "block.door.name", woodName);
 		}
-		return Binnie.I18N.localise(ExtraTrees.instance, "block.door.name.adv", woodName, typeName);
+		return I18N.localise(ExtraTrees.instance, "block.door.name.adv", woodName, typeName);
 	}
 
 	@Override

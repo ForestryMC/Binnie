@@ -1,9 +1,9 @@
 package binnie.botany.items;
 
-import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.genetics.EnumFlowerColor;
+import binnie.core.util.I18N;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -37,7 +37,7 @@ public class ItemClay extends Item {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		return Binnie.I18N.localise(Botany.instance, "item.clay.name");
+		return I18N.localise(Botany.instance, "item.clay.name");
 	}
 
 	@Override

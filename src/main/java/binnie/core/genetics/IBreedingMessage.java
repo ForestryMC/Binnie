@@ -1,7 +1,7 @@
 package binnie.core.genetics;
 
-import binnie.Binnie;
 import binnie.core.BinnieCore;
+import binnie.core.util.I18N;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IClassification;
@@ -35,7 +35,7 @@ interface IBreedingMessage {
 
 		@Override
 		public String getTitle() {
-			return Binnie.I18N.localise(BinnieCore.instance, "gui.breedingmessage.species");
+			return I18N.localise(BinnieCore.instance, "gui.breedingmessage.species");
 		}
 
 		@Override
@@ -70,7 +70,7 @@ interface IBreedingMessage {
 
 		@Override
 		public String getTitle() {
-			return Binnie.I18N.localise(BinnieCore.instance, "gui.breedingmessage.branch");
+			return I18N.localise(BinnieCore.instance, "gui.breedingmessage.branch");
 		}
 
 		@Override
@@ -95,7 +95,7 @@ interface IBreedingMessage {
 
 		@Override
 		public String getTitle() {
-			return Binnie.I18N.localise(BinnieCore.instance, "gui.breedingmessage.epithet");
+			return I18N.localise(BinnieCore.instance, "gui.breedingmessage.epithet");
 		}
 
 		@Override

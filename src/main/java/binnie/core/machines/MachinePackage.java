@@ -1,6 +1,6 @@
 package binnie.core.machines;
 
-import binnie.Binnie;
+import binnie.core.util.I18N;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.tileentity.TileEntity;
 
@@ -27,7 +27,7 @@ public abstract class MachinePackage {
 	public abstract TileEntity createTileEntity();
 
 	public String getDisplayName() {
-		return Binnie.I18N.localise(group.getMod(), "machine." + group.getShortUID() + "." + getUID());
+		return I18N.localise(group.getMod(), "machine." + group.getShortUID() + "." + getUID());
 	}
 
 	public Integer getMetadata() {
@@ -57,6 +57,6 @@ public abstract class MachinePackage {
 	}
 
 	public String getInformation() {
-		return Binnie.I18N.localise(group.getMod(), "machine." + group.getShortUID() + "." + getUID() + ".info");
+		return I18N.localise(group.getMod(), "machine." + group.getShortUID() + "." + getUID() + ".info");
 	}
 }
