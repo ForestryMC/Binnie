@@ -17,11 +17,11 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ModuleMachine implements IInitializable {
 	public static ValidatorIcon IconDye;
-	static ValidatorIcon IconSequencer;
-	static ValidatorIcon IconSerum;
-	static ValidatorIcon IconEnzyme;
-	static ValidatorIcon IconBacteria;
-	static ValidatorIcon IconNugget;
+	public static ValidatorIcon IconSequencer;
+	public static ValidatorIcon IconSerum;
+	public static ValidatorIcon IconEnzyme;
+	public static ValidatorIcon IconBacteria;
+	public static ValidatorIcon IconNugget;
 
 	@Override
 	public void preInit() {
