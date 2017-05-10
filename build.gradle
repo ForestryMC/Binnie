@@ -13,8 +13,8 @@ buildscript {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'idea'
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
 version = version_major + '.' + version_minor + '.' + version_patch + '.' + getBuildNumber()
 group= "binnie" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
