@@ -180,7 +180,7 @@ public abstract class ItemBotany extends Item {
 	public IIcon getIcon(ItemStack itemstack, int renderPass) {
 		IFlower flower = BotanyCore.speciesRoot.getMember(itemstack);
 		if (flower == null || flower.getGenome() == null || flower.getGenome().getPrimary() == null) {
-			return EnumFlowerType.Allium.getBlank();
+			return EnumFlowerType.ALLIUM.getBlank();
 		}
 
 		IFlowerType type = flower.getGenome().getPrimary().getType();

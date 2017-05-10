@@ -32,12 +32,12 @@ public class CeramicDesignSystem implements IDesignSystem {
 
 	@Override
 	public IDesignMaterial getDefaultMaterial() {
-		return CeramicColor.get(EnumFlowerColor.White);
+		return CeramicColor.get(EnumFlowerColor.WHITE);
 	}
 
 	@Override
 	public IDesignMaterial getDefaultMaterial2() {
-		return CeramicColor.get(EnumFlowerColor.Black);
+		return CeramicColor.get(EnumFlowerColor.BLACK);
 	}
 
 	@Override

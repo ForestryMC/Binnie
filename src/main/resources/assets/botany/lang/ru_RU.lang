@@ -36,6 +36,9 @@ botany.item.botany.name=%2$s %1$s
 botany.item.pollen.tag.name=Пыльца
 botany.item.germling.tag.name=Росток
 botany.item.flowerCorrupted.name=Поврежденный цветок
+botany.item.botanistDatabase.0.name=База данных ботаника
+botany.item.botanistDatabase.1.name=База данных мастера-ботаника
+
 item.trowelWood.name=Деревянный совок
 item.trowelStone.name=Каменный совок
 item.trowelIron.name=Железный совок

@@ -203,7 +203,7 @@ public class ModuleGardening implements IInitializable {
 			new Object[]{"dustSulphur"}
 		));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(
-			new ItemStack(Botany.pigment, 2, EnumFlowerColor.Black.ordinal()),
+			new ItemStack(Botany.pigment, 2, EnumFlowerColor.BLACK.ordinal()),
 			new Object[]{
 				"pigment",
 				"pigment",

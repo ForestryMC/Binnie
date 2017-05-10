@@ -19,6 +19,7 @@ import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.I18N;
+import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
@@ -58,8 +59,7 @@ public class PageSpeciesFlowerGenome extends PageSpecies {
 		int th = 14;
 		int valueX = w2 + 4;
 		new ControlText(contents, new IArea(0.0f, y, w2, th),  I18N.localise(Botany.instance, "gui.database.tab.genome.temp"), TextJustification.MiddleRight);
-		// TODO localized temperature
-		new ControlText(contents, new IArea(valueX, y, w3, th), treeSpecies.getTemperature().getName(), TextJustification.MiddleLeft);
+		new ControlText(contents, new IArea(valueX, y, w3, th), AlleleManager.climateHelper.toDisplay(treeSpecies.getTemperature()), TextJustification.MiddleLeft);
 		y += th;
 
 		new ControlText(contents, new IArea(0.0f, y, w2, th), I18N.localise(Botany.instance, "gui.database.tab.genome.moist"), TextJustification.MiddleRight);

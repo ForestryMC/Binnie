@@ -107,13 +107,13 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
 
 		for (TileType type2 : TileType.values()) {
 			if (type2.canDouble()) {
-				itemList.add(new BlockType(EnumFlowerColor.Brown, EnumFlowerColor.Gold, type2).getStack(1));
+				itemList.add(new BlockType(EnumFlowerColor.BROWN, EnumFlowerColor.GOLD, type2).getStack(1));
 			}
 		}
 
-		itemList.add(new BlockType(EnumFlowerColor.Gold, EnumFlowerColor.Gold, TileType.Split).getStack(1));
-		itemList.add(new BlockType(EnumFlowerColor.Brown, EnumFlowerColor.Brown, TileType.Chequered).getStack(1));
-		itemList.add(new BlockType(EnumFlowerColor.Gold, EnumFlowerColor.Brown, TileType.LargeBrick).getStack(1));
+		itemList.add(new BlockType(EnumFlowerColor.GOLD, EnumFlowerColor.GOLD, TileType.Split).getStack(1));
+		itemList.add(new BlockType(EnumFlowerColor.BROWN, EnumFlowerColor.BROWN, TileType.Chequered).getStack(1));
+		itemList.add(new BlockType(EnumFlowerColor.GOLD, EnumFlowerColor.BROWN, TileType.LargeBrick).getStack(1));
 	}
 
 	@Override

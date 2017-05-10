@@ -36,6 +36,9 @@ botany.item.botany.name=%1$s %2$s
 botany.item.pollen.tag.name=Pollen
 botany.item.germling.tag.name=Germling
 botany.item.flowerCorrupted.name=Corrupted Flower
+botany.item.botanistDatabase.0.name=Botanist Database
+botany.item.botanistDatabase.1.name=Master Botanist Database
+
 item.trowelWood.name=Wooden Trowel
 item.trowelStone.name=Stone Trowel
 item.trowelIron.name=Iron Trowel

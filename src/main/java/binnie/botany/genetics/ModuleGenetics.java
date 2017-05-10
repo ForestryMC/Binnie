@@ -22,11 +22,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class ModuleGenetics implements IInitializable {
-	static AlleleEffectNone alleleEffectNone;
-
-	static {
-		ModuleGenetics.alleleEffectNone = new AlleleEffectNone();
-	}
+	static AlleleEffectNone alleleEffectNone = new AlleleEffectNone();
 
 	@Override
 	public void preInit() {
@@ -47,6 +43,7 @@ public class ModuleGenetics implements IInitializable {
 		for (EnumFlowerColor color : EnumFlowerColor.values()) {
 			AlleleManager.alleleRegistry.registerAllele(color.getAllele());
 		}
+
 		FlowerSpecies.setupVariants();
 		for (FlowerSpecies species : FlowerSpecies.values()) {
 			AlleleManager.alleleRegistry.registerAllele(species);
@@ -55,6 +52,7 @@ public class ModuleGenetics implements IInitializable {
 				BotanyCore.getFlowerRoot().registerTemplate(variant);
 			}
 		}
+
 		RendererBotany.renderID = RenderingRegistry.getNextAvailableRenderId();
 		BinnieCore.proxy.registerBlockRenderer(new RendererBotany());
 	}
