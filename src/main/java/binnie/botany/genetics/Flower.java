@@ -1,5 +1,6 @@
 package binnie.botany.genetics;
 
+import binnie.botany.Botany;
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.IAlleleFlowerSpecies;
 import binnie.botany.api.IColourMix;
@@ -8,7 +9,9 @@ import binnie.botany.api.IFlowerColor;
 import binnie.botany.api.IFlowerGenome;
 import binnie.botany.api.IFlowerMutation;
 import binnie.botany.core.BotanyCore;
+import binnie.core.util.I18N;
 import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosome;
 import forestry.core.genetics.Chromosome;
@@ -18,7 +21,6 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 
 import java.util.List;
-import java.util.Random;
 
 public class Flower extends Individual implements IFlower {
 	public IFlowerGenome genome;
@@ -36,9 +38,9 @@ public class Flower extends Individual implements IFlower {
 
 	public Flower(IFlowerGenome genome, int age) {
 		this.age = 0;
-		wilting = false;
 		this.genome = genome;
 		this.age = age;
+		wilting = false;
 		flowered = age > 0;
 	}
 
@@ -49,9 +51,6 @@ public class Flower extends Individual implements IFlower {
 		if (species != null) {
 			name += species.getName();
 		}
-		if (age == 0) {
-			name += "";
-		}
 		return name;
 	}
 
@@ -60,15 +59,15 @@ public class Flower extends Individual implements IFlower {
 		IAlleleFlowerSpecies primary = genome.getPrimary();
 		IAlleleFlowerSpecies secondary = genome.getSecondary();
 		if (!isPureBred(EnumFlowerChromosome.SPECIES)) {
-			list.add(EnumChatFormatting.BLUE + primary.getName() + "-" + secondary.getName() + " Hybrid");
+			list.add(EnumChatFormatting.BLUE + I18N.localise(Botany.instance, "item.tooltip.hybrid", primary.getName(), secondary.getName()));
 		}
 
-		// TODO remove hardcode strings and localize
-		list.add(EnumChatFormatting.GRAY + "Age: " + getAge());
-		list.add(EnumChatFormatting.GREEN + "T: " + primary.getTemperature() + " / " + genome.getToleranceTemperature());
-		list.add(EnumChatFormatting.GREEN + "M: " + primary.getMoisture() + " / " + genome.getToleranceMoisture());
-		list.add(EnumChatFormatting.GREEN + "pH: " + primary.getHumidity() + " / " + genome.getTolerancePH());
-		list.add(EnumChatFormatting.GRAY + "Fert: " + genome.getFertility() + "x");
+		// TODO localize enum strings
+		list.add(EnumChatFormatting.GRAY + I18N.localise(Botany.instance, "item.tooltip.age", getAge()));
+		list.add(EnumChatFormatting.GREEN + I18N.localise(Botany.instance, "item.tooltip.temperature", AlleleManager.climateHelper.toDisplay(primary.getTemperature()), genome.getToleranceTemperature()));
+		list.add(EnumChatFormatting.GREEN + I18N.localise(Botany.instance, "item.tooltip.moisture", primary.getMoisture().getLocalisedName(), genome.getToleranceMoisture()));
+		list.add(EnumChatFormatting.GREEN + I18N.localise(Botany.instance, "item.tooltip.pH", AlleleManager.climateHelper.toDisplay(primary.getHumidity()), genome.getTolerancePH()));
+		list.add(EnumChatFormatting.GRAY + I18N.localise(Botany.instance, "item.tooltip.fertility", genome.getFertility()));
 	}
 
 	@Override
@@ -122,27 +121,6 @@ public class Flower extends Individual implements IFlower {
 	@Override
 	public IFlowerGenome getGenome() {
 		return genome;
-	}
-
-	private IChromosome inheritChromosome(Random rand, IChromosome parent1, IChromosome parent2) {
-		IAllele choice1;
-		if (rand.nextBoolean()) {
-			choice1 = parent1.getPrimaryAllele();
-		} else {
-			choice1 = parent1.getSecondaryAllele();
-		}
-
-		IAllele choice2;
-		if (rand.nextBoolean()) {
-			choice2 = parent2.getPrimaryAllele();
-		} else {
-			choice2 = parent2.getSecondaryAllele();
-		}
-
-		if (rand.nextBoolean()) {
-			return new Chromosome(choice1, choice2);
-		}
-		return new Chromosome(choice2, choice1);
 	}
 
 	@Override

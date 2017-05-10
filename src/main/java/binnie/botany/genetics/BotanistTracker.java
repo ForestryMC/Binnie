@@ -14,6 +14,7 @@ public class BotanistTracker extends BreedingTracker implements IBotanistTracker
 
 	@Override
 	public void registerPickup(IIndividual individual) {
+		// ignored
 	}
 
 	@Override

@@ -1046,36 +1046,36 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies, IIconProvider {
 	public void setEffect(String uid) {
 		IAllele allele = AlleleManager.alleleRegistry.getAllele(uid);
 		if (allele instanceof IAlleleBeeEffect) {
-			template[EnumBeeChromosome.EFFECT.ordinal()] = AlleleManager.alleleRegistry.getAllele(uid);
+			template[EnumBeeChromosome.EFFECT.ordinal()] = allele;
 		}
 	}
 
-	private void setFertility(ForestryAllele.Fertility fert) {
-		template[EnumBeeChromosome.FERTILITY.ordinal()] = fert.getAllele();
+	private void setFertility(ForestryAllele.Fertility fertility) {
+		template[EnumBeeChromosome.FERTILITY.ordinal()] = fertility.getAllele();
 	}
 
-	private void setLifespan(ForestryAllele.Lifespan fert) {
-		template[EnumBeeChromosome.LIFESPAN.ordinal()] = fert.getAllele();
+	private void setLifespan(ForestryAllele.Lifespan lifespan) {
+		template[EnumBeeChromosome.LIFESPAN.ordinal()] = lifespan.getAllele();
 	}
 
-	private void setSpeed(ForestryAllele.Speed fert) {
-		template[EnumBeeChromosome.SPEED.ordinal()] = fert.getAllele();
+	private void setSpeed(ForestryAllele.Speed speed) {
+		template[EnumBeeChromosome.SPEED.ordinal()] = speed.getAllele();
 	}
 
-	private void setTerritory(ForestryAllele.Territory fert) {
-		template[EnumBeeChromosome.TERRITORY.ordinal()] = fert.getAllele();
+	private void setTerritory(ForestryAllele.Territory territory) {
+		template[EnumBeeChromosome.TERRITORY.ordinal()] = territory.getAllele();
 	}
 
-	private void setFlowering(ForestryAllele.Flowering fert) {
-		template[EnumBeeChromosome.FLOWERING.ordinal()] = fert.getAllele();
+	private void setFlowering(ForestryAllele.Flowering flowering) {
+		template[EnumBeeChromosome.FLOWERING.ordinal()] = flowering.getAllele();
 	}
 
-	private void setHumidityTolerance(Tolerance fert) {
-		template[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = fert.getAllele();
+	private void setHumidityTolerance(Tolerance humidityTolerance) {
+		template[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = humidityTolerance.getAllele();
 	}
 
-	private void setTemperatureTolerance(Tolerance both1) {
-		template[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = both1.getAllele();
+	private void setTemperatureTolerance(Tolerance temperatureTolerance) {
+		template[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = temperatureTolerance.getAllele();
 	}
 
 	@Override
