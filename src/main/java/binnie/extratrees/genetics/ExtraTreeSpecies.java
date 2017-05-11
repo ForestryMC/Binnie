@@ -2,31 +2,32 @@ package binnie.extratrees.genetics;
 
 import binnie.Binnie;
 import binnie.core.Mods;
-import binnie.core.genetics.ForestryAllele;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.ILogType;
-import binnie.extratrees.gen.WorldGenAlder;
-import binnie.extratrees.gen.WorldGenApple;
-import binnie.extratrees.gen.WorldGenAsh;
-import binnie.extratrees.gen.WorldGenBanana;
-import binnie.extratrees.gen.WorldGenBeech;
-import binnie.extratrees.gen.WorldGenConifer;
-import binnie.extratrees.gen.WorldGenDefault;
-import binnie.extratrees.gen.WorldGenEucalyptus;
-import binnie.extratrees.gen.WorldGenFir;
-import binnie.extratrees.gen.WorldGenHolly;
-import binnie.extratrees.gen.WorldGenJungle;
-import binnie.extratrees.gen.WorldGenLazy;
-import binnie.extratrees.gen.WorldGenMaple;
-import binnie.extratrees.gen.WorldGenPalm;
-import binnie.extratrees.gen.WorldGenPoplar;
-import binnie.extratrees.gen.WorldGenShrub;
-import binnie.extratrees.gen.WorldGenSorbus;
-import binnie.extratrees.gen.WorldGenTree;
-import binnie.extratrees.gen.WorldGenTree2;
-import binnie.extratrees.gen.WorldGenTree3;
-import binnie.extratrees.gen.WorldGenTropical;
-import binnie.extratrees.gen.WorldGenWalnut;
+import binnie.extratrees.worldgen.DefaultTreeGenerator;
+import binnie.extratrees.worldgen.WorldGenAlder;
+import binnie.extratrees.worldgen.WorldGenApple;
+import binnie.extratrees.worldgen.WorldGenAsh;
+import binnie.extratrees.worldgen.WorldGenBanana;
+import binnie.extratrees.worldgen.WorldGenBeech;
+import binnie.extratrees.worldgen.WorldGenConifer;
+import binnie.extratrees.worldgen.WorldGenDefault;
+import binnie.extratrees.worldgen.WorldGenEucalyptus;
+import binnie.extratrees.worldgen.WorldGenFir;
+import binnie.extratrees.worldgen.WorldGenHolly;
+import binnie.extratrees.worldgen.WorldGenJungle;
+import binnie.extratrees.worldgen.WorldGenLazy;
+import binnie.extratrees.worldgen.WorldGenMaple;
+import binnie.extratrees.worldgen.WorldGenPalm;
+import binnie.extratrees.worldgen.WorldGenPoplar;
+import binnie.extratrees.worldgen.WorldGenShrub;
+import binnie.extratrees.worldgen.WorldGenSorbus;
+import binnie.extratrees.worldgen.WorldGenTree;
+import binnie.extratrees.worldgen.WorldGenTree2;
+import binnie.extratrees.worldgen.WorldGenTree3;
+import binnie.extratrees.worldgen.WorldGenTropical;
+import binnie.extratrees.worldgen.WorldGenWalnut;
+import binnie.genetics.genetics.AlleleHelper;
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -39,7 +40,6 @@ import forestry.api.arboriculture.IAlleleTreeSpecies;
 import forestry.api.arboriculture.IGermlingIconProvider;
 import forestry.api.arboriculture.ITree;
 import forestry.api.arboriculture.ITreeGenerator;
-import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.core.EnumHumidity;
@@ -52,21 +52,16 @@ import forestry.api.genetics.IFruitFamily;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IMutation;
 import forestry.api.world.ITreeGenData;
-import forestry.arboriculture.blocks.BlockForestryLeaves;
-import forestry.arboriculture.genetics.Tree;
 import forestry.arboriculture.render.TextureLeaves;
-import forestry.arboriculture.tiles.TileLeaves;
-import forestry.core.config.Constants;
+import forestry.core.genetics.alleles.EnumAllele;
 import forestry.core.render.TextureManager;
 import forestry.plugins.PluginArboriculture;
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.util.ForgeDirection;
 
 import java.awt.*;
 import java.lang.reflect.Method;
@@ -173,6 +168,8 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 	Candlenut("aleurites", "moluccana", 0x8aa36c, 0x8aa36c, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.Candlenut, WorldGenLazy.Tree.class),
 	DwarfHazel("Corylus", "americana", 0x9bb552, 0x9be152, ILogType.ExtraTreeLog.Hazel, ExtraTreeFruitGene.Hazelnut, WorldGenShrub.Shrub.class);
 
+	public ILogType wood;
+
 	protected ArrayList<IFruitFamily> families;
 	protected int girth;
 	protected Class<? extends WorldGenerator> gen;
@@ -181,7 +178,6 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 	protected int color;
 	protected String binomial;
 	protected String uid;
-	protected ILogType wood;
 	protected String branchName;
 	protected IClassification branch;
 	protected int colorPollineted;
@@ -195,8 +191,8 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 		this.fruit = fruit;
 		this.gen = ((gen == null) ? WorldGenTree.class : gen);
 		this.binomial = binomial;
-		leafType = LeafType.Normal;
-		saplingType = SaplingType.Default;
+		leafType = LeafType.NORMAL;
+		saplingType = SaplingType.DEFAULT;
 		families = new ArrayList<>();
 		girth = 1;
 		colorPollineted = new Color(color).brighter().getRGB();
@@ -205,129 +201,49 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 	}
 
 	public static void init() {
-		String bookArborist = "Arborist Manual";
 		for (ExtraTreeSpecies species : values()) {
 			species.preInit();
 		}
 
-		ExtraTreeSpecies.OrchardApple.finished();
-		ExtraTreeSpecies.SweetCrabapple.finished();
-		ExtraTreeSpecies.FloweringCrabapple.finished();
-		ExtraTreeSpecies.PrairieCrabapple.finished();
-		ExtraTreeSpecies[] pruneSpecies = new ExtraTreeSpecies[]{ExtraTreeSpecies.Blackthorn, ExtraTreeSpecies.CherryPlum, ExtraTreeSpecies.Almond, ExtraTreeSpecies.Apricot, ExtraTreeSpecies.Peach, ExtraTreeSpecies.Nectarine, ExtraTreeSpecies.WildCherry, ExtraTreeSpecies.SourCherry, ExtraTreeSpecies.BlackCherry};
+		ExtraTreeSpecies[] pruneSpecies = new ExtraTreeSpecies[]{
+			ExtraTreeSpecies.Blackthorn,
+			ExtraTreeSpecies.CherryPlum,
+			ExtraTreeSpecies.Almond,
+			ExtraTreeSpecies.Apricot,
+			ExtraTreeSpecies.Peach,
+			ExtraTreeSpecies.Nectarine,
+			ExtraTreeSpecies.WildCherry,
+			ExtraTreeSpecies.SourCherry,
+			ExtraTreeSpecies.BlackCherry
+		};
 		for (ExtraTreeSpecies species2 : pruneSpecies) {
 			IAlleleTreeSpecies citrus = (IAlleleTreeSpecies) AlleleManager.alleleRegistry.getAllele("forestry.treePlum");
-			species2.setWorldGen(citrus.getGenerator().getWorldGenerator(TreeManager.treeRoot.templateAsIndividual(citrus.getRoot().getDefaultTemplate())).getClass());
-			species2.saplingType = SaplingType.Fruit;
-			species2.finished();
+			species2
+				.setWorldGen(citrus.getGenerator().getWorldGenerator(TreeManager.treeRoot.templateAsIndividual(citrus.getRoot().getDefaultTemplate())).getClass())
+				.setSaplingType(SaplingType.FRUIT);
 		}
 
-		ExtraTreeSpecies[] citrusSpecies = new ExtraTreeSpecies[]{ExtraTreeSpecies.Orange, ExtraTreeSpecies.Manderin, ExtraTreeSpecies.Satsuma, ExtraTreeSpecies.Tangerine, ExtraTreeSpecies.Lime, ExtraTreeSpecies.KeyLime, ExtraTreeSpecies.FingerLime, ExtraTreeSpecies.Pomelo, ExtraTreeSpecies.Grapefruit, ExtraTreeSpecies.Kumquat, ExtraTreeSpecies.Citron, ExtraTreeSpecies.BuddhaHand};
+		ExtraTreeSpecies[] citrusSpecies = new ExtraTreeSpecies[]{
+			ExtraTreeSpecies.Orange,
+			ExtraTreeSpecies.Manderin,
+			ExtraTreeSpecies.Satsuma,
+			ExtraTreeSpecies.Tangerine,
+			ExtraTreeSpecies.Lime,
+			ExtraTreeSpecies.KeyLime,
+			ExtraTreeSpecies.FingerLime,
+			ExtraTreeSpecies.Pomelo,
+			ExtraTreeSpecies.Grapefruit,
+			ExtraTreeSpecies.Kumquat,
+			ExtraTreeSpecies.Citron,
+			ExtraTreeSpecies.BuddhaHand
+		};
 		for (ExtraTreeSpecies species3 : citrusSpecies) {
-			species3.setLeafType(LeafType.Jungle);
-			species3.saplingType = SaplingType.Fruit;
 			IAlleleTreeSpecies citrus2 = (IAlleleTreeSpecies) AlleleManager.alleleRegistry.getAllele("forestry.treeLemon");
-			species3.setWorldGen(citrus2.getGenerator().getWorldGenerator(TreeManager.treeRoot.templateAsIndividual(citrus2.getRoot().getDefaultTemplate())).getClass());
-			species3.finished();
+			species3
+				.setWorldGen(citrus2.getGenerator().getWorldGenerator(TreeManager.treeRoot.templateAsIndividual(citrus2.getRoot().getDefaultTemplate())).getClass())
+				.setLeafType(LeafType.JUNGLE)
+				.setSaplingType(SaplingType.FRUIT);
 		}
-
-		ExtraTreeSpecies.Banana.setLeafType(LeafType.Palm);
-		ExtraTreeSpecies.RedBanana.setLeafType(LeafType.Palm);
-		ExtraTreeSpecies.Plantain.setLeafType(LeafType.Palm);
-		ExtraTreeSpecies.Banana.finished();
-		ExtraTreeSpecies.RedBanana.finished();
-		ExtraTreeSpecies.Plantain.finished();
-		ExtraTreeSpecies.Hemlock.setLeafType(LeafType.Conifer);
-		ExtraTreeSpecies.Butternut.finished();
-		ExtraTreeSpecies.Butternut.setGirth(2);
-		ExtraTreeSpecies.Rowan.finished();
-		ExtraTreeSpecies.Hemlock.finished();
-		ExtraTreeSpecies.Hemlock.setGirth(2);
-		ExtraTreeSpecies.Ash.finished();
-		ExtraTreeSpecies.Alder.finished();
-		ExtraTreeSpecies.Beech.finished();
-		ExtraTreeSpecies.CopperBeech.finished();
-		ExtraTreeSpecies.Aspen.finished();
-		ExtraTreeSpecies.Yew.setLeafType(LeafType.Conifer);
-		ExtraTreeSpecies.Cypress.setLeafType(LeafType.Conifer);
-		ExtraTreeSpecies.DouglasFir.setLeafType(LeafType.Conifer);
-		ExtraTreeSpecies.Yew.finished();
-		ExtraTreeSpecies.Cypress.finished();
-		ExtraTreeSpecies.Cypress.saplingType = SaplingType.Poplar;
-		ExtraTreeSpecies.DouglasFir.finished();
-		ExtraTreeSpecies.DouglasFir.setGirth(2);
-		ExtraTreeSpecies.Hazel.finished();
-		ExtraTreeSpecies.DwarfHazel.finished();
-		ExtraTreeSpecies.DwarfHazel.saplingType = SaplingType.Shrub;
-		ExtraTreeSpecies.Sycamore.finished();
-		ExtraTreeSpecies.Whitebeam.finished();
-		ExtraTreeSpecies.Hawthorn.finished();
-		ExtraTreeSpecies.Pecan.finished();
-		ExtraTreeSpecies.Fir.setLeafType(LeafType.Conifer);
-		ExtraTreeSpecies.Cedar.setLeafType(LeafType.Conifer);
-		ExtraTreeSpecies.Sallow.setLeafType(LeafType.Willow);
-		ExtraTreeSpecies.Elm.finished();
-		ExtraTreeSpecies.Elder.finished();
-		ExtraTreeSpecies.Holly.finished();
-		ExtraTreeSpecies.Hornbeam.finished();
-		ExtraTreeSpecies.Sallow.finished();
-		ExtraTreeSpecies.AcornOak.finished();
-		ExtraTreeSpecies.AcornOak.setGirth(2);
-		ExtraTreeSpecies.Fir.finished();
-		ExtraTreeSpecies.Cedar.finished();
-		ExtraTreeSpecies.Cedar.setGirth(2);
-		ExtraTreeSpecies.RedMaple.setLeafType(LeafType.Maple);
-		ExtraTreeSpecies.BalsamFir.setLeafType(LeafType.Conifer);
-		ExtraTreeSpecies.LoblollyPine.setLeafType(LeafType.Conifer);
-		ExtraTreeSpecies.Olive.finished();
-		ExtraTreeSpecies.RedMaple.finished();
-		ExtraTreeSpecies.BalsamFir.finished();
-		ExtraTreeSpecies.LoblollyPine.finished();
-		ExtraTreeSpecies.Sweetgum.finished();
-		ExtraTreeSpecies.Locust.finished();
-		ExtraTreeSpecies.Pear.finished();
-		ExtraTreeSpecies.OsangeOsange.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.OldFustic.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Brazilwood.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Logwood.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Rosewood.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Purpleheart.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.OsangeOsange.finished();
-		ExtraTreeSpecies.OldFustic.finished();
-		ExtraTreeSpecies.Brazilwood.finished();
-		ExtraTreeSpecies.Logwood.finished();
-		ExtraTreeSpecies.Rosewood.finished();
-		ExtraTreeSpecies.Purpleheart.finished();
-		ExtraTreeSpecies.Gingko.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Brazilnut.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.RoseGum.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.SwampGum.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Coffee.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.MonkeyPuzzle.setLeafType(LeafType.Conifer);
-		ExtraTreeSpecies.RainbowGum.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Iroko.finished();
-		ExtraTreeSpecies.Gingko.finished();
-		ExtraTreeSpecies.Brazilnut.finished();
-		ExtraTreeSpecies.RoseGum.finished();
-		ExtraTreeSpecies.SwampGum.finished();
-		ExtraTreeSpecies.SwampGum.setGirth(2);
-		ExtraTreeSpecies.Box.finished();
-		ExtraTreeSpecies.Clove.finished();
-		ExtraTreeSpecies.Coffee.finished();
-		ExtraTreeSpecies.MonkeyPuzzle.finished();
-		ExtraTreeSpecies.MonkeyPuzzle.setGirth(2);
-		ExtraTreeSpecies.RainbowGum.finished();
-		ExtraTreeSpecies.PinkIvory.finished();
-		ExtraTreeSpecies.Juniper.setLeafType(LeafType.Conifer);
-		ExtraTreeSpecies.Blackcurrant.saplingType = SaplingType.Shrub;
-		ExtraTreeSpecies.Redcurrant.saplingType = SaplingType.Shrub;
-		ExtraTreeSpecies.Blackberry.saplingType = SaplingType.Shrub;
-		ExtraTreeSpecies.Raspberry.saplingType = SaplingType.Shrub;
-		ExtraTreeSpecies.Blueberry.saplingType = SaplingType.Shrub;
-		ExtraTreeSpecies.Cranberry.saplingType = SaplingType.Shrub;
-		ExtraTreeSpecies.Juniper.saplingType = SaplingType.Shrub;
-		ExtraTreeSpecies.Gooseberry.saplingType = SaplingType.Shrub;
-		ExtraTreeSpecies.GoldenRaspberry.saplingType = SaplingType.Shrub;
 
 		citrusSpecies = values();
 		for (ExtraTreeSpecies species3 : citrusSpecies) {
@@ -337,19 +253,9 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 			if (branch == null) {
 				branch = AlleleManager.alleleRegistry.createAndRegisterClassification(IClassification.EnumClassLevel.GENUS, uid, scientific);
 			}
-			(species3.branch = branch).addMemberSpecies(species3);
+			species3.branch = branch;
+			branch.addMemberSpecies(species3);
 		}
-
-		ExtraTreeSpecies.Cinnamon.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Coconut.setLeafType(LeafType.Palm);
-		ExtraTreeSpecies.Cashew.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Avacado.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Nutmeg.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Allspice.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Chilli.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.StarAnise.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Mango.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Starfruit.setLeafType(LeafType.Jungle);
 
 		IFruitFamily familyPrune = AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes");
 		IFruitFamily familyPome = AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes");
@@ -362,727 +268,782 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setYield(ForestryAllele.Yield.Higher)
-			.setSappiness(ForestryAllele.Sappiness.Low)
-			.setMaturation(ForestryAllele.Maturation.Faster);
+			.setYield(EnumAllele.Yield.HIGHER)
+			.setSappiness(EnumAllele.Sappiness.LOW)
+			.setMaturation(EnumAllele.Maturation.FASTER);
 
 		ExtraTreeSpecies.SweetCrabapple
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setYield(ForestryAllele.Yield.High)
-			.setSappiness(ForestryAllele.Sappiness.Average)
-			.setMaturation(ForestryAllele.Maturation.Fast);
+			.setYield(EnumAllele.Yield.HIGH)
+			.setSappiness(EnumAllele.Sappiness.AVERAGE)
+			.setMaturation(EnumAllele.Maturation.FAST);
 
 		ExtraTreeSpecies.FloweringCrabapple
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setFertility(ForestryAllele.Saplings.Average)
-			.setYield(ForestryAllele.Yield.Average)
-			.setSappiness(ForestryAllele.Sappiness.Low)
-			.setMaturation(ForestryAllele.Maturation.Fast);
+			.setFertility(EnumAllele.Saplings.AVERAGE)
+			.setYield(EnumAllele.Yield.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.LOW)
+			.setMaturation(EnumAllele.Maturation.FAST);
 
 		ExtraTreeSpecies.PrairieCrabapple
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setYield(ForestryAllele.Yield.Average)
-			.setSappiness(ForestryAllele.Sappiness.Average);
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setYield(EnumAllele.Yield.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.AVERAGE);
 
 		ExtraTreeSpecies.Blackthorn
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setYield(ForestryAllele.Yield.Low)
-			.setSappiness(ForestryAllele.Sappiness.Average)
-			.setMaturation(ForestryAllele.Maturation.Fast);
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setYield(EnumAllele.Yield.LOW)
+			.setSappiness(EnumAllele.Sappiness.AVERAGE)
+			.setMaturation(EnumAllele.Maturation.FAST);
 
 		ExtraTreeSpecies.CherryPlum
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setYield(ForestryAllele.Yield.Lower)
-			.setSappiness(ForestryAllele.Sappiness.Average)
-			.setMaturation(ForestryAllele.Maturation.Fast);
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setYield(EnumAllele.Yield.LOWER)
+			.setSappiness(EnumAllele.Sappiness.AVERAGE)
+			.setMaturation(EnumAllele.Maturation.FAST);
 
 		ExtraTreeSpecies.Peach
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setYield(ForestryAllele.Yield.Average)
-			.setSappiness(ForestryAllele.Sappiness.Average);
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setYield(EnumAllele.Yield.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.AVERAGE);
 
 		ExtraTreeSpecies.Nectarine
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setYield(ForestryAllele.Yield.Average)
-			.setSappiness(ForestryAllele.Sappiness.Average);
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setYield(EnumAllele.Yield.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.AVERAGE);
 
 		ExtraTreeSpecies.Apricot
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setYield(ForestryAllele.Yield.Low)
-			.setSappiness(ForestryAllele.Sappiness.Average);
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setYield(EnumAllele.Yield.LOW)
+			.setSappiness(EnumAllele.Sappiness.AVERAGE);
 
 		ExtraTreeSpecies.Almond
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setYield(ForestryAllele.Yield.Lower)
-			.setSappiness(ForestryAllele.Sappiness.Lower)
-			.setMaturation(ForestryAllele.Maturation.Fast);
+			.setYield(EnumAllele.Yield.LOWER)
+			.setSappiness(EnumAllele.Sappiness.LOWER)
+			.setMaturation(EnumAllele.Maturation.FAST);
 
 		ExtraTreeSpecies.WildCherry
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setYield(ForestryAllele.Yield.Lower)
-			.setSappiness(ForestryAllele.Sappiness.Low)
-			.setMaturation(ForestryAllele.Maturation.Fast);
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setYield(EnumAllele.Yield.LOWER)
+			.setSappiness(EnumAllele.Sappiness.LOW)
+			.setMaturation(EnumAllele.Maturation.FAST);
 
 		ExtraTreeSpecies.SourCherry
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setYield(ForestryAllele.Yield.Lower)
-			.setSappiness(ForestryAllele.Sappiness.Low);
+			.setYield(EnumAllele.Yield.LOWER)
+			.setSappiness(EnumAllele.Sappiness.LOW);
 
 		ExtraTreeSpecies.BlackCherry
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setFertility(ForestryAllele.Saplings.Lowest)
-			.setYield(ForestryAllele.Yield.Average)
-			.setSappiness(ForestryAllele.Sappiness.Lower)
-			.setMaturation(ForestryAllele.Maturation.Fast);
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setFertility(EnumAllele.Saplings.LOWEST)
+			.setYield(EnumAllele.Yield.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.LOWER)
+			.setMaturation(EnumAllele.Maturation.FAST);
 
 		ExtraTreeSpecies.Orange
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setYield(ForestryAllele.Yield.Average)
-			.setSappiness(ForestryAllele.Sappiness.Average)
-			.setMaturation(ForestryAllele.Maturation.Fast);
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setYield(EnumAllele.Yield.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.AVERAGE)
+			.setMaturation(EnumAllele.Maturation.FAST);
 
 		ExtraTreeSpecies.Manderin
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setYield(ForestryAllele.Yield.High)
-			.setSappiness(ForestryAllele.Sappiness.Low);
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setYield(EnumAllele.Yield.HIGH)
+			.setSappiness(EnumAllele.Sappiness.LOW);
 
 		ExtraTreeSpecies.Satsuma
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setYield(ForestryAllele.Yield.Low)
-			.setSappiness(ForestryAllele.Sappiness.Low)
-			.setMaturation(ForestryAllele.Maturation.Fast);
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setYield(EnumAllele.Yield.LOW)
+			.setSappiness(EnumAllele.Sappiness.LOW)
+			.setMaturation(EnumAllele.Maturation.FAST);
 
 		ExtraTreeSpecies.Tangerine
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setYield(ForestryAllele.Yield.Average)
-			.setSappiness(ForestryAllele.Sappiness.Average)
-			.setMaturation(ForestryAllele.Maturation.Faster);
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setYield(EnumAllele.Yield.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.AVERAGE)
+			.setMaturation(EnumAllele.Maturation.FASTER);
 
 		ExtraTreeSpecies.Lime
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setYield(ForestryAllele.Yield.Average)
-			.setSappiness(ForestryAllele.Sappiness.Low);
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setYield(EnumAllele.Yield.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.LOW);
 
 		ExtraTreeSpecies.KeyLime
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setFertility(ForestryAllele.Saplings.Lowest)
-			.setYield(ForestryAllele.Yield.Average)
-			.setSappiness(ForestryAllele.Sappiness.Low)
-			.setMaturation(ForestryAllele.Maturation.Fast);
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setFertility(EnumAllele.Saplings.LOWEST)
+			.setYield(EnumAllele.Yield.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.LOW)
+			.setMaturation(EnumAllele.Maturation.FAST);
 
 		ExtraTreeSpecies.FingerLime
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setYield(ForestryAllele.Yield.High)
-			.setSappiness(ForestryAllele.Sappiness.Low)
-			.setMaturation(ForestryAllele.Maturation.Fast);
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setYield(EnumAllele.Yield.HIGH)
+			.setSappiness(EnumAllele.Sappiness.LOW)
+			.setMaturation(EnumAllele.Maturation.FAST);
 
 		ExtraTreeSpecies.Pomelo
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setYield(ForestryAllele.Yield.Average)
-			.setSappiness(ForestryAllele.Sappiness.Lower);
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setYield(EnumAllele.Yield.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.LOWER);
 
 		ExtraTreeSpecies.Grapefruit
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setYield(ForestryAllele.Yield.Average)
-			.setSappiness(ForestryAllele.Sappiness.Low)
-			.setMaturation(ForestryAllele.Maturation.Fast);
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setYield(EnumAllele.Yield.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.LOW)
+			.setMaturation(EnumAllele.Maturation.FAST);
 
 		ExtraTreeSpecies.Kumquat
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setYield(ForestryAllele.Yield.High)
-			.setSappiness(ForestryAllele.Sappiness.Low);
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setYield(EnumAllele.Yield.HIGH)
+			.setSappiness(EnumAllele.Sappiness.LOW);
 
 		ExtraTreeSpecies.Citron
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setYield(ForestryAllele.Yield.High)
-			.setSappiness(ForestryAllele.Sappiness.Average);
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setYield(EnumAllele.Yield.HIGH)
+			.setSappiness(EnumAllele.Sappiness.AVERAGE);
 
 		ExtraTreeSpecies.BuddhaHand
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setYield(ForestryAllele.Yield.Average)
-			.setSappiness(ForestryAllele.Sappiness.Low);
+			.setYield(EnumAllele.Yield.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.LOW);
 
 		ExtraTreeSpecies.Banana
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
-			.setYield(ForestryAllele.Yield.Low)
-			.setSappiness(ForestryAllele.Sappiness.Low)
-			.setMaturation(ForestryAllele.Maturation.Fast);
+			.setLeafType(LeafType.PALM)
+			.setYield(EnumAllele.Yield.LOW)
+			.setSappiness(EnumAllele.Sappiness.LOW)
+			.setMaturation(EnumAllele.Maturation.FAST);
 
 		ExtraTreeSpecies.RedBanana
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setYield(ForestryAllele.Yield.Lower)
-			.setSappiness(ForestryAllele.Sappiness.Lower);
+			.setLeafType(LeafType.PALM)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setYield(EnumAllele.Yield.LOWER)
+			.setSappiness(EnumAllele.Sappiness.LOWER);
 
 		ExtraTreeSpecies.Plantain
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Average)
-			.setYield(ForestryAllele.Yield.Lower);
+			.setLeafType(LeafType.PALM)
+			.setHeight(EnumAllele.Height.AVERAGE)
+			.setYield(EnumAllele.Yield.LOWER);
 
 		ExtraTreeSpecies.Butternut
+			.setGirth(2)
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Smaller)
-			.setYield(ForestryAllele.Yield.Low);
+			.setHeight(EnumAllele.Height.SMALLER)
+			.setYield(EnumAllele.Yield.LOW);
 
 		ExtraTreeSpecies.Rowan
 			.addFamily(familyNuts)
 			.addFamily(familyBerry)
-			.setHeight(ForestryAllele.TreeHeight.Larger)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setSappiness(ForestryAllele.Sappiness.Lower);
+			.setHeight(EnumAllele.Height.LARGER)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setSappiness(EnumAllele.Sappiness.LOWER);
 
 		ExtraTreeSpecies.Ash
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyCitrus)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setSappiness(ForestryAllele.Sappiness.Lower);
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setSappiness(EnumAllele.Sappiness.LOWER);
 
 		ExtraTreeSpecies.Alder
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
-			.setHeight(ForestryAllele.TreeHeight.Average)
-			.setSappiness(ForestryAllele.Sappiness.Lower);
+			.setHeight(EnumAllele.Height.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.LOWER);
 
 		ExtraTreeSpecies.Beech
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
-			.setHeight(ForestryAllele.TreeHeight.Average)
-			.setYield(ForestryAllele.Yield.Lower);
+			.setHeight(EnumAllele.Height.AVERAGE)
+			.setYield(EnumAllele.Yield.LOWER);
 
 		ExtraTreeSpecies.CopperBeech
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
-			.setMaturation(ForestryAllele.Maturation.Slow);
+			.setMaturation(EnumAllele.Maturation.SLOW);
 
 		ExtraTreeSpecies.Aspen
 			.addFamily(familyPome)
 			.addFamily(familyNuts)
-			.setFertility(ForestryAllele.Saplings.Average)
-			.setSappiness(ForestryAllele.Sappiness.Lower);
+			.setFertility(EnumAllele.Saplings.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.LOWER);
 
 		ExtraTreeSpecies.Hazel
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
-			.setHeight(ForestryAllele.TreeHeight.Average)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setYield(ForestryAllele.Yield.Low)
-			.setSappiness(ForestryAllele.Sappiness.Lower);
+			.setHeight(EnumAllele.Height.AVERAGE)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setYield(EnumAllele.Yield.LOW)
+			.setSappiness(EnumAllele.Sappiness.LOWER);
 
 		ExtraTreeSpecies.Sycamore
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyCitrus)
-			.setFertility(ForestryAllele.Saplings.Lowest)
-			.setSappiness(ForestryAllele.Sappiness.Lower);
+			.setFertility(EnumAllele.Saplings.LOWEST)
+			.setSappiness(EnumAllele.Sappiness.LOWER);
 
 		ExtraTreeSpecies.Whitebeam
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
-			.setHeight(ForestryAllele.TreeHeight.Smaller);
+			.setHeight(EnumAllele.Height.SMALLER);
 
 		ExtraTreeSpecies.Hawthorn
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
-			.setHeight(ForestryAllele.TreeHeight.Average);
+			.setHeight(EnumAllele.Height.AVERAGE);
 
 		ExtraTreeSpecies.Pecan
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Large)
-			.setSappiness(ForestryAllele.Sappiness.Lower)
-			.setMaturation(ForestryAllele.Maturation.Slow);
+			.setHeight(EnumAllele.Height.LARGE)
+			.setSappiness(EnumAllele.Sappiness.LOWER)
+			.setMaturation(EnumAllele.Maturation.SLOW);
 
 		ExtraTreeSpecies.Elm
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
-			.setHeight(ForestryAllele.TreeHeight.Smaller)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setSappiness(ForestryAllele.Sappiness.Average);
+			.setHeight(EnumAllele.Height.SMALLER)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setSappiness(EnumAllele.Sappiness.AVERAGE);
 
 		ExtraTreeSpecies.Elder
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyCitrus)
 			.addFamily(familyBerry)
-			.setHeight(ForestryAllele.TreeHeight.Smaller)
-			.setSappiness(ForestryAllele.Sappiness.Low);
+			.setHeight(EnumAllele.Height.SMALLER)
+			.setSappiness(EnumAllele.Sappiness.LOW);
 
 		ExtraTreeSpecies.Holly
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Average)
-			.setSappiness(ForestryAllele.Sappiness.Low);
+			.setHeight(EnumAllele.Height.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.LOW);
 
 		ExtraTreeSpecies.Hornbeam
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
-			.setHeight(ForestryAllele.TreeHeight.Smaller)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setYield(ForestryAllele.Yield.Lower)
-			.setMaturation(ForestryAllele.Maturation.Slow);
+			.setHeight(EnumAllele.Height.SMALLER)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setYield(EnumAllele.Yield.LOWER)
+			.setMaturation(EnumAllele.Maturation.SLOW);
 
 		ExtraTreeSpecies.Sallow
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Large)
-			.setFertility(ForestryAllele.Saplings.Low);
+			.setLeafType(LeafType.WILLOW)
+			.setHeight(EnumAllele.Height.LARGE)
+			.setFertility(EnumAllele.Saplings.LOW);
 
 		ExtraTreeSpecies.AcornOak
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
-			.setHeight(ForestryAllele.TreeHeight.Large)
-			.setYield(ForestryAllele.Yield.Low)
-			.setSappiness(ForestryAllele.Sappiness.Lower);
+			.setHeight(EnumAllele.Height.LARGE)
+			.setYield(EnumAllele.Yield.LOW)
+			.setSappiness(EnumAllele.Sappiness.LOWER)
+			.setGirth(2);
 
 		ExtraTreeSpecies.Fir
-			.setHeight(ForestryAllele.TreeHeight.Large)
-			.setSappiness(ForestryAllele.Sappiness.Lower)
-			.setMaturation(ForestryAllele.Maturation.Slow);
+			.setLeafType(LeafType.CONIFER)
+			.setHeight(EnumAllele.Height.LARGE)
+			.setSappiness(EnumAllele.Sappiness.LOWER)
+			.setMaturation(EnumAllele.Maturation.SLOW);
 
 		ExtraTreeSpecies.Olive
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyCitrus)
-			.setYield(ForestryAllele.Yield.Average);
+			.setYield(EnumAllele.Yield.AVERAGE);
 
 		ExtraTreeSpecies.Cedar
-			.setHeight(ForestryAllele.TreeHeight.Smaller)
-			.setSappiness(ForestryAllele.Sappiness.Lower)
-			.setMaturation(ForestryAllele.Maturation.Slower);
+			.setLeafType(LeafType.CONIFER)
+			.setHeight(EnumAllele.Height.SMALLER)
+			.setSappiness(EnumAllele.Sappiness.LOWER)
+			.setMaturation(EnumAllele.Maturation.SLOWER)
+			.setGirth(2);
 
 		ExtraTreeSpecies.RedMaple
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setFertility(ForestryAllele.Saplings.Average)
-			.setSappiness(ForestryAllele.Sappiness.High);
+			.setLeafType(LeafType.MAPLE)
+			.setFertility(EnumAllele.Saplings.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.HIGH);
 
 		ExtraTreeSpecies.BalsamFir
-			.setHeight(ForestryAllele.TreeHeight.Average)
-			.setSappiness(ForestryAllele.Sappiness.Lower)
-			.setMaturation(ForestryAllele.Maturation.Slow);
+			.setLeafType(LeafType.CONIFER)
+			.setHeight(EnumAllele.Height.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.LOWER)
+			.setMaturation(EnumAllele.Maturation.SLOW);
 
 		ExtraTreeSpecies.LoblollyPine
-			.setHeight(ForestryAllele.TreeHeight.Smaller)
-			.setSappiness(ForestryAllele.Sappiness.Lower)
-			.setMaturation(ForestryAllele.Maturation.Slow);
+			.setLeafType(LeafType.CONIFER)
+			.setHeight(EnumAllele.Height.SMALLER)
+			.setSappiness(EnumAllele.Sappiness.LOWER)
+			.setMaturation(EnumAllele.Maturation.SLOW);
 
 		ExtraTreeSpecies.Sweetgum
 			.addFamily(familyNuts)
-			.setHeight(ForestryAllele.TreeHeight.Average)
-			.setFertility(ForestryAllele.Saplings.High)
-			.setYield(ForestryAllele.Yield.Low)
-			.setSappiness(ForestryAllele.Sappiness.Average);
+			.setHeight(EnumAllele.Height.AVERAGE)
+			.setFertility(EnumAllele.Saplings.HIGH)
+			.setYield(EnumAllele.Yield.LOW)
+			.setSappiness(EnumAllele.Sappiness.AVERAGE);
 
 		ExtraTreeSpecies.Locust
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Smallest);
+			.setHeight(EnumAllele.Height.SMALLEST);
 
 		ExtraTreeSpecies.Pear
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Smaller)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setYield(ForestryAllele.Yield.High)
-			.setSappiness(ForestryAllele.Sappiness.Lower)
-			.setMaturation(ForestryAllele.Maturation.Fast);
+			.setHeight(EnumAllele.Height.SMALLER)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setYield(EnumAllele.Yield.HIGH)
+			.setSappiness(EnumAllele.Sappiness.LOWER)
+			.setMaturation(EnumAllele.Maturation.FAST);
 
 		ExtraTreeSpecies.OsangeOsange
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
 			.addFamily(familyJungle)
-			.setYield(ForestryAllele.Yield.Lower);
+			.setLeafType(LeafType.JUNGLE)
+			.setYield(EnumAllele.Yield.LOWER);
 
 		ExtraTreeSpecies.OldFustic
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Smaller)
-			.setSappiness(ForestryAllele.Sappiness.Lower);
+			.setLeafType(LeafType.JUNGLE)
+			.setHeight(EnumAllele.Height.SMALLER)
+			.setSappiness(EnumAllele.Sappiness.LOWER);
 
 		ExtraTreeSpecies.Brazilwood
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Smaller)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setYield(ForestryAllele.Yield.Lower)
-			.setSappiness(ForestryAllele.Sappiness.Lower);
+			.setLeafType(LeafType.JUNGLE)
+			.setHeight(EnumAllele.Height.SMALLER)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setYield(EnumAllele.Yield.LOWER)
+			.setSappiness(EnumAllele.Sappiness.LOWER);
 
 		ExtraTreeSpecies.Logwood
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Average)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setSappiness(ForestryAllele.Sappiness.Lower);
+			.setLeafType(LeafType.JUNGLE)
+			.setHeight(EnumAllele.Height.AVERAGE)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setSappiness(EnumAllele.Sappiness.LOWER);
 
 		ExtraTreeSpecies.Rosewood
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Average)
-			.setSappiness(ForestryAllele.Sappiness.Lower);
+			.setLeafType(LeafType.JUNGLE)
+			.setHeight(EnumAllele.Height.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.LOWER);
 
 		ExtraTreeSpecies.Purpleheart
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Large)
-			.setSappiness(ForestryAllele.Sappiness.Lower);
+			.setLeafType(LeafType.JUNGLE)
+			.setHeight(EnumAllele.Height.LARGE)
+			.setSappiness(EnumAllele.Sappiness.LOWER);
 
 		ExtraTreeSpecies.Iroko
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Average)
-			.setFertility(ForestryAllele.Saplings.Low);
+			.setHeight(EnumAllele.Height.AVERAGE)
+			.setFertility(EnumAllele.Saplings.LOW);
 
 		ExtraTreeSpecies.Gingko
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Large)
-			.setYield(ForestryAllele.Yield.Lower)
-			.setSappiness(ForestryAllele.Sappiness.Low);
+			.setLeafType(LeafType.JUNGLE)
+			.setHeight(EnumAllele.Height.LARGE)
+			.setYield(EnumAllele.Yield.LOWER)
+			.setSappiness(EnumAllele.Sappiness.LOW);
 
 		ExtraTreeSpecies.Brazilnut
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Larger)
-			.setYield(ForestryAllele.Yield.Low)
-			.setSappiness(ForestryAllele.Sappiness.Low);
+			.setLeafType(LeafType.JUNGLE)
+			.setHeight(EnumAllele.Height.LARGER)
+			.setYield(EnumAllele.Yield.LOW)
+			.setSappiness(EnumAllele.Sappiness.LOW);
 
 		ExtraTreeSpecies.RoseGum
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Largest)
-			.setFertility(ForestryAllele.Saplings.Lowest)
-			.setYield(ForestryAllele.Yield.Lower)
-			.setSappiness(ForestryAllele.Sappiness.Low)
-			.setMaturation(ForestryAllele.Maturation.Slowest);
+			.setLeafType(LeafType.JUNGLE)
+			.setHeight(EnumAllele.Height.LARGEST)
+			.setFertility(EnumAllele.Saplings.LOWEST)
+			.setYield(EnumAllele.Yield.LOWER)
+			.setSappiness(EnumAllele.Sappiness.LOW)
+			.setMaturation(EnumAllele.Maturation.SLOWEST);
 
 		ExtraTreeSpecies.SwampGum
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setFertility(ForestryAllele.Saplings.Lowest)
-			.setMaturation(ForestryAllele.Maturation.Slower);
+			.setLeafType(LeafType.JUNGLE)
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setFertility(EnumAllele.Saplings.LOWEST)
+			.setMaturation(EnumAllele.Maturation.SLOWER)
+			.setGirth(2);
 
 		ExtraTreeSpecies.Box
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyCitrus)
-			.setHeight(ForestryAllele.TreeHeight.Smaller)
-			.setMaturation(ForestryAllele.Maturation.Faster);
+			.setHeight(EnumAllele.Height.SMALLER)
+			.setMaturation(EnumAllele.Maturation.FASTER);
 
 		ExtraTreeSpecies.Clove
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Smaller)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setYield(ForestryAllele.Yield.High)
-			.setSappiness(ForestryAllele.Sappiness.Lower)
-			.setMaturation(ForestryAllele.Maturation.Fast);
+			.setHeight(EnumAllele.Height.SMALLER)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setYield(EnumAllele.Yield.HIGH)
+			.setSappiness(EnumAllele.Sappiness.LOWER)
+			.setMaturation(EnumAllele.Maturation.FAST);
 
 		ExtraTreeSpecies.Coffee
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Large)
-			.setYield(ForestryAllele.Yield.Average)
-			.setMaturation(ForestryAllele.Maturation.Fast);
+			.setLeafType(LeafType.JUNGLE)
+			.setHeight(EnumAllele.Height.LARGE)
+			.setYield(EnumAllele.Yield.AVERAGE)
+			.setMaturation(EnumAllele.Maturation.FAST);
 
 		ExtraTreeSpecies.MonkeyPuzzle
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Average)
-			.setYield(ForestryAllele.Yield.Lower)
-			.setSappiness(ForestryAllele.Sappiness.Low);
+			.setLeafType(LeafType.CONIFER)
+			.setHeight(EnumAllele.Height.AVERAGE)
+			.setYield(EnumAllele.Yield.LOWER)
+			.setSappiness(EnumAllele.Sappiness.LOW)
+			.setGirth(2);
 
 		ExtraTreeSpecies.RainbowGum
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setYield(ForestryAllele.Yield.Lower);
+			.setLeafType(LeafType.JUNGLE)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setYield(EnumAllele.Yield.LOWER);
 
 		ExtraTreeSpecies.PinkIvory
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Smallest);
+			.setHeight(EnumAllele.Height.SMALLEST);
 
 		ExtraTreeSpecies.Blackcurrant
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyBerry)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setYield(ForestryAllele.Yield.Average)
-			.setSappiness(ForestryAllele.Sappiness.Lower)
-			.setMaturation(ForestryAllele.Maturation.Faster);
+			.setSaplingType(SaplingType.SHRUB)
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setYield(EnumAllele.Yield.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.LOWER)
+			.setMaturation(EnumAllele.Maturation.FASTER);
 
 		ExtraTreeSpecies.Redcurrant
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyBerry)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setFertility(ForestryAllele.Saplings.Average)
-			.setYield(ForestryAllele.Yield.Average)
-			.setSappiness(ForestryAllele.Sappiness.Low)
-			.setMaturation(ForestryAllele.Maturation.Faster);
+			.setSaplingType(SaplingType.SHRUB)
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setFertility(EnumAllele.Saplings.AVERAGE)
+			.setYield(EnumAllele.Yield.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.LOW)
+			.setMaturation(EnumAllele.Maturation.FASTER);
 
 		ExtraTreeSpecies.Blackberry
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyBerry)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setYield(ForestryAllele.Yield.High)
-			.setSappiness(ForestryAllele.Sappiness.Lower)
-			.setMaturation(ForestryAllele.Maturation.Faster);
+			.setSaplingType(SaplingType.SHRUB)
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setYield(EnumAllele.Yield.HIGH)
+			.setSappiness(EnumAllele.Sappiness.LOWER)
+			.setMaturation(EnumAllele.Maturation.FASTER);
 
 		ExtraTreeSpecies.Raspberry
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyBerry)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setYield(ForestryAllele.Yield.Average)
-			.setSappiness(ForestryAllele.Sappiness.Lower)
-			.setMaturation(ForestryAllele.Maturation.Faster);
+			.setSaplingType(SaplingType.SHRUB)
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setYield(EnumAllele.Yield.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.LOWER)
+			.setMaturation(EnumAllele.Maturation.FASTER);
 
 		ExtraTreeSpecies.Blueberry
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyBerry)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setFertility(ForestryAllele.Saplings.Average)
-			.setYield(ForestryAllele.Yield.Average)
-			.setSappiness(ForestryAllele.Sappiness.Low)
-			.setMaturation(ForestryAllele.Maturation.Faster);
+			.setSaplingType(SaplingType.SHRUB)
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setFertility(EnumAllele.Saplings.AVERAGE)
+			.setYield(EnumAllele.Yield.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.LOW)
+			.setMaturation(EnumAllele.Maturation.FASTER);
 
 		ExtraTreeSpecies.Cranberry
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyBerry)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setFertility(ForestryAllele.Saplings.Average)
-			.setYield(ForestryAllele.Yield.High)
-			.setSappiness(ForestryAllele.Sappiness.Low)
-			.setMaturation(ForestryAllele.Maturation.Faster);
+			.setSaplingType(SaplingType.SHRUB)
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setFertility(EnumAllele.Saplings.AVERAGE)
+			.setYield(EnumAllele.Yield.HIGH)
+			.setSappiness(EnumAllele.Sappiness.LOW)
+			.setMaturation(EnumAllele.Maturation.FASTER);
 
 		ExtraTreeSpecies.Juniper
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyBerry)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setYield(ForestryAllele.Yield.Low)
-			.setSappiness(ForestryAllele.Sappiness.Low)
-			.setMaturation(ForestryAllele.Maturation.Faster);
+			.setLeafType(LeafType.CONIFER)
+			.setSaplingType(SaplingType.SHRUB)
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setYield(EnumAllele.Yield.LOW)
+			.setSappiness(EnumAllele.Sappiness.LOW)
+			.setMaturation(EnumAllele.Maturation.FASTER);
 
 		ExtraTreeSpecies.Gooseberry
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyBerry)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setFertility(ForestryAllele.Saplings.High)
-			.setYield(ForestryAllele.Yield.High)
-			.setMaturation(ForestryAllele.Maturation.Faster);
+			.setSaplingType(SaplingType.SHRUB)
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setFertility(EnumAllele.Saplings.HIGH)
+			.setYield(EnumAllele.Yield.HIGH)
+			.setMaturation(EnumAllele.Maturation.FASTER);
 
 		ExtraTreeSpecies.GoldenRaspberry
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyBerry)
-			.setHeight(ForestryAllele.TreeHeight.Smaller)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setYield(ForestryAllele.Yield.Average)
-			.setSappiness(ForestryAllele.Sappiness.Lower)
-			.setMaturation(ForestryAllele.Maturation.Fastest);
+			.setSaplingType(SaplingType.SHRUB)
+			.setHeight(EnumAllele.Height.SMALLER)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setYield(EnumAllele.Yield.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.LOWER)
+			.setMaturation(EnumAllele.Maturation.FASTEST);
 
 		ExtraTreeSpecies.Cinnamon
 			.addFamily(familyNuts)
+			.setLeafType(LeafType.JUNGLE)
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Average)
-			.setYield(ForestryAllele.Yield.Lower)
-			.setMaturation(ForestryAllele.Maturation.Fast);
+			.setHeight(EnumAllele.Height.AVERAGE)
+			.setYield(EnumAllele.Yield.LOWER)
+			.setMaturation(EnumAllele.Maturation.FAST);
 
 		ExtraTreeSpecies.Coconut
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Larger)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setYield(ForestryAllele.Yield.Average)
-			.setMaturation(ForestryAllele.Maturation.Fast);
+			.setLeafType(LeafType.PALM)
+			.setHeight(EnumAllele.Height.LARGER)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setYield(EnumAllele.Yield.AVERAGE)
+			.setMaturation(EnumAllele.Maturation.FAST);
 
 		ExtraTreeSpecies.Cashew
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
-			.setYield(ForestryAllele.Yield.Low);
+			.setLeafType(LeafType.JUNGLE)
+			.setYield(EnumAllele.Yield.LOW);
 
 		ExtraTreeSpecies.Avacado
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setYield(ForestryAllele.Yield.Average);
+			.setLeafType(LeafType.JUNGLE)
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setYield(EnumAllele.Yield.AVERAGE);
 
 		ExtraTreeSpecies.Nutmeg
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Smaller)
-			.setYield(ForestryAllele.Yield.High)
-			.setSappiness(ForestryAllele.Sappiness.Low);
+			.setLeafType(LeafType.JUNGLE)
+			.setHeight(EnumAllele.Height.SMALLER)
+			.setYield(EnumAllele.Yield.HIGH)
+			.setSappiness(EnumAllele.Sappiness.LOW);
 
 		ExtraTreeSpecies.Allspice
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setYield(ForestryAllele.Yield.High);
+			.setLeafType(LeafType.JUNGLE)
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setYield(EnumAllele.Yield.HIGH);
 
 		ExtraTreeSpecies.Chilli
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Smaller)
-			.setYield(ForestryAllele.Yield.Higher)
-			.setSappiness(ForestryAllele.Sappiness.Lower)
-			.setMaturation(ForestryAllele.Maturation.Fast);
+			.setLeafType(LeafType.JUNGLE)
+			.setHeight(EnumAllele.Height.SMALLER)
+			.setYield(EnumAllele.Yield.HIGHER)
+			.setSappiness(EnumAllele.Sappiness.LOWER)
+			.setMaturation(EnumAllele.Maturation.FAST);
 
 		ExtraTreeSpecies.StarAnise
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Average)
-			.setYield(ForestryAllele.Yield.High);
+			.setLeafType(LeafType.JUNGLE)
+			.setHeight(EnumAllele.Height.AVERAGE)
+			.setYield(EnumAllele.Yield.HIGH);
 
 		ExtraTreeSpecies.Mango
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Smaller)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setYield(ForestryAllele.Yield.Average)
-			.setSappiness(ForestryAllele.Sappiness.Lower)
-			.setMaturation(ForestryAllele.Maturation.Fast);
+			.setLeafType(LeafType.JUNGLE)
+			.setHeight(EnumAllele.Height.SMALLER)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setYield(EnumAllele.Yield.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.LOWER)
+			.setMaturation(EnumAllele.Maturation.FAST);
 
 		ExtraTreeSpecies.Starfruit
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
 			.addFamily(familyJungle)
-			.setYield(ForestryAllele.Yield.Average)
-			.setMaturation(ForestryAllele.Maturation.Fast);
+			.setLeafType(LeafType.JUNGLE)
+			.setYield(EnumAllele.Yield.AVERAGE)
+			.setMaturation(EnumAllele.Maturation.FAST);
 
 		ExtraTreeSpecies.Candlenut
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
-			.setHeight(ForestryAllele.TreeHeight.Smallest)
-			.setFertility(ForestryAllele.Saplings.Lowest)
-			.setYield(ForestryAllele.Yield.Low)
-			.setSappiness(ForestryAllele.Sappiness.Low);
+			.setHeight(EnumAllele.Height.SMALLEST)
+			.setFertility(EnumAllele.Saplings.LOWEST)
+			.setYield(EnumAllele.Yield.LOW)
+			.setSappiness(EnumAllele.Sappiness.LOW);
 
 		ExtraTreeSpecies.DwarfHazel
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
-			.setFertility(ForestryAllele.Saplings.Average)
-			.setSappiness(ForestryAllele.Sappiness.Lower)
-			.setMaturation(ForestryAllele.Maturation.Faster);
+			.setSaplingType(SaplingType.SHRUB)
+			.setFertility(EnumAllele.Saplings.AVERAGE)
+			.setSappiness(EnumAllele.Sappiness.LOWER)
+			.setMaturation(EnumAllele.Maturation.FASTER);
 
 		ExtraTreeSpecies.Yew
-			.setHeight(ForestryAllele.TreeHeight.Large)
-			.setSappiness(ForestryAllele.Sappiness.Lower);
+			.setLeafType(LeafType.CONIFER)
+			.setHeight(EnumAllele.Height.LARGE)
+			.setSappiness(EnumAllele.Sappiness.LOWER);
 
 		ExtraTreeSpecies.Cypress
-			.setHeight(ForestryAllele.TreeHeight.Larger)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setSappiness(ForestryAllele.Sappiness.Lower)
-			.setMaturation(ForestryAllele.Maturation.Slow);
+			.setLeafType(LeafType.CONIFER)
+			.setSaplingType(SaplingType.POPLAR)
+			.setHeight(EnumAllele.Height.LARGER)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setSappiness(EnumAllele.Sappiness.LOWER)
+			.setMaturation(EnumAllele.Maturation.SLOW);
 
 		ExtraTreeSpecies.DouglasFir
-			.setHeight(ForestryAllele.TreeHeight.Smaller)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setMaturation(ForestryAllele.Maturation.Slower);
+			.setLeafType(LeafType.CONIFER)
+			.setHeight(EnumAllele.Height.SMALLER)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setMaturation(EnumAllele.Maturation.SLOWER)
+			.setGirth(2);
 
 		ExtraTreeSpecies.Hemlock
-			.setHeight(ForestryAllele.TreeHeight.Average)
-			.setFertility(ForestryAllele.Saplings.Low)
-			.setMaturation(ForestryAllele.Maturation.Slower);
+			.setLeafType(LeafType.CONIFER)
+			.setGirth(2)
+			.setHeight(EnumAllele.Height.AVERAGE)
+			.setFertility(EnumAllele.Saplings.LOW)
+			.setMaturation(EnumAllele.Maturation.SLOWER);
 	}
 
 	// TODO unused method?
@@ -1103,12 +1064,14 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 		return this;
 	}
 
-	private void setWorldGen(Class<? extends WorldGenerator> gen) {
+	private ExtraTreeSpecies setWorldGen(Class<? extends WorldGenerator> gen) {
 		this.gen = gen;
+		return this;
 	}
 
-	private void setGirth(int i) {
-		template[EnumTreeChromosome.GIRTH.ordinal()] = AlleleManager.alleleRegistry.getAllele("forestry.i" + i + "d");
+	private ExtraTreeSpecies setGirth(int girth) {
+		template[EnumTreeChromosome.GIRTH.ordinal()] = AlleleHelper.getAllele(girth);
+		return this;
 	}
 
 	public void preInit() {
@@ -1118,7 +1081,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 			template[EnumTreeChromosome.FRUITS.ordinal()] = fruit;
 		}
 
-		template[EnumTreeChromosome.GIRTH.ordinal()] = AlleleManager.alleleRegistry.getAllele("forestry.i" + girth + "d");
+		template[EnumTreeChromosome.GIRTH.ordinal()] = AlleleHelper.getAllele(girth);
 		IClassification clas = AlleleManager.alleleRegistry.getClassification("trees." + branch);
 		if (clas != null) {
 			clas.addMemberSpecies(this);
@@ -1193,57 +1156,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 
 	@Override
 	public ITreeGenerator getGenerator() {
-		return new ITreeGenerator() {
-
-			@Override
-			public void setLogBlock(ITreeGenome arg0, World arg1, int arg2, int arg3, int arg4, ForgeDirection arg5) {
-				if (wood != null)
-					wood.placeBlock(arg1, arg2, arg3, arg4);
-			}
-
-			@Override
-			public void setLeaves(ITreeGenome genome, World world, GameProfile owner, int x, int y, int z, boolean decorative) {
-				boolean placed = world.setBlock(x, y, z, PluginArboriculture.blocks.leaves, 0, Constants.FLAG_BLOCK_SYNCH_AND_UPDATE);
-				if (!placed) {
-					return;
-				}
-
-				Block block = world.getBlock(x, y, z);
-				if (PluginArboriculture.blocks.leaves != block) {
-					world.setBlockToAir(x, y, z);
-					return;
-				}
-
-				TileLeaves tileLeaves = BlockForestryLeaves.getLeafTile(world, x, y, z);
-				if (tileLeaves == null) {
-					world.setBlockToAir(x, y, z);
-					return;
-				}
-
-				tileLeaves.setOwner(owner);
-				if (decorative) {
-					tileLeaves.setDecorative();
-				}
-
-				tileLeaves.setTree(new Tree(genome));
-				world.markBlockForUpdate(x, y, z);
-			}
-
-			@Override
-			public void setLogBlock(World world, int x, int y, int z, ForgeDirection direction) {
-				wood.placeBlock(world, x, y, z);
-			}
-
-			@Override
-			public void setLeaves(World world, GameProfile player, int x, int y, int z, boolean arg5) {
-
-			}
-
-			@Override
-			public WorldGenerator getWorldGenerator(ITreeGenData tree) {
-				return getGenerator(tree);
-			}
-		};
+		return new DefaultTreeGenerator(this);
 	}
 
 	public WorldGenerator getGenerator(ITreeGenData tree) {
@@ -1257,17 +1170,23 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 		return new WorldGenDefault(tree);
 	}
 
-	void setLeafType(LeafType type) {
+	protected ExtraTreeSpecies setLeafType(LeafType type) {
 		leafType = type;
-		if (leafType == LeafType.Conifer) {
-			saplingType = SaplingType.Conifer;
+		if (leafType == LeafType.CONIFER) {
+			saplingType = SaplingType.CONIFER;
 		}
-		if (leafType == LeafType.Jungle) {
-			saplingType = SaplingType.Jungle;
+		if (leafType == LeafType.JUNGLE) {
+			saplingType = SaplingType.JUNGLE;
 		}
-		if (leafType == LeafType.Palm) {
-			saplingType = SaplingType.Palm;
+		if (leafType == LeafType.PALM) {
+			saplingType = SaplingType.PALM;
 		}
+		return this;
+	}
+
+	protected ExtraTreeSpecies setSaplingType(SaplingType saplingType) {
+		this.saplingType = saplingType;
+		return this;
 	}
 
 	public IAllele[] getTemplate() {
@@ -1283,68 +1202,48 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 		return wood;
 	}
 
-	public ExtraTreeSpecies setHeight(ForestryAllele.TreeHeight height) {
-		IAllele allele = height.getAllele();
+	public ExtraTreeSpecies setHeight(EnumAllele.Height height) {
+		IAllele allele = AlleleHelper.getAllele(height);
 		if (allele != null) {
 			template[EnumTreeChromosome.HEIGHT.ordinal()] = allele;
 		}
 		return this;
 	}
 
-	public ExtraTreeSpecies setSappiness(ForestryAllele.Sappiness height) {
-		IAllele allele = height.getAllele();
+	public ExtraTreeSpecies setSappiness(EnumAllele.Sappiness sappiness) {
+		IAllele allele = AlleleHelper.getAllele(sappiness);
 		if (allele != null) {
 			template[EnumTreeChromosome.SAPPINESS.ordinal()] = allele;
 		}
 		return this;
 	}
 
-	public ExtraTreeSpecies setMaturation(ForestryAllele.Maturation height) {
-		IAllele allele = height.getAllele();
+	public ExtraTreeSpecies setMaturation(EnumAllele.Maturation maturation) {
+		IAllele allele = AlleleHelper.getAllele(maturation);
 		if (allele != null) {
 			template[EnumTreeChromosome.MATURATION.ordinal()] = allele;
 		}
 		return this;
 	}
 
-	public ExtraTreeSpecies setYield(ForestryAllele.Yield height) {
-		IAllele allele = height.getAllele();
+	public ExtraTreeSpecies setYield(EnumAllele.Yield yield) {
+		IAllele allele = AlleleHelper.getAllele(yield);
 		if (allele != null) {
 			template[EnumTreeChromosome.YIELD.ordinal()] = allele;
 		}
 		return this;
 	}
 
-	public ExtraTreeSpecies setFertility(ForestryAllele.Saplings height) {
-		IAllele allele = height.getAllele();
+	public ExtraTreeSpecies setFertility(EnumAllele.Saplings saplings) {
+		IAllele allele = AlleleHelper.getAllele(saplings);
 		if (allele != null) {
 			template[EnumTreeChromosome.FERTILITY.ordinal()] = allele;
 		}
 		return this;
 	}
 
-	public void setGrowthConditions(ForestryAllele.Growth growth) {
-		IAllele allele = growth.getAllele();
-		if (allele != null) {
-			template[EnumTreeChromosome.GROWTH.ordinal()] = allele;
-		}
-	}
-
-	public void finished() {
-	}
-
 	public int getLeafColour(ITree tree) {
 		return color;
-	}
-
-	public short getLeafIconIndex(ITree tree, boolean fancy) {
-		if (!fancy) {
-			return leafType.plainUID;
-		}
-		if (tree.getMate() != null) {
-			return leafType.changedUID;
-		}
-		return leafType.fancyUID;
 	}
 
 	@Override
@@ -1358,8 +1257,9 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 		if (type == EnumGermlingType.POLLEN) {
 			return PluginArboriculture.items.pollenFertile.getIcon(PluginArboriculture.items.pollenFertile.getItemStack(), renderPass);
 		}
-
-		return (renderPass == 0) ? saplingType.icon[1] : saplingType.icon[0];
+		return (renderPass == 0)
+			? saplingType.icon[1]
+			: saplingType.icon[0];
 	}
 
 	@Override
@@ -1375,7 +1275,8 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 	@Override
 	public void registerIcons(IIconRegister register) {
 		for (SaplingType type : SaplingType.values()) {
-			(type.icon = new IIcon[2])[0] = ExtraTrees.proxy.getIcon(register, "saplings/" + type.toString().toLowerCase() + ".trunk");
+			type.icon = new IIcon[2];
+			type.icon[0] = ExtraTrees.proxy.getIcon(register, "saplings/" + type.toString().toLowerCase() + ".trunk");
 			type.icon[1] = ExtraTrees.proxy.getIcon(register, "saplings/" + type.toString().toLowerCase() + ".leaves");
 		}
 	}
@@ -1479,6 +1380,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 					highest = otherAdvance;
 				}
 			}
+
 			if (!exclude.contains(mutation.getAllele1())) {
 				int otherAdvance = getGeneticAdvancement(mutation.getAllele1(), exclude);
 				if (otherAdvance <= highest) {
@@ -1488,13 +1390,6 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 			}
 		}
 		return own + ((highest < 0) ? 0 : highest);
-	}
-
-	public ItemStack[] getLogStacks() {
-		if (wood == null) {
-			return new ItemStack[0];
-		}
-		return new ItemStack[]{wood.getItemStack()};
 	}
 
 	@Override
@@ -1511,11 +1406,15 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 	@Override
 	public IIcon getLeafIcon(boolean pollinated, boolean fancy) {
 		try {
-			if (pollinated)
-				return TextureLeaves.get(EnumLeafType.valueOf(leafType.descript.toUpperCase())).getPollinated();
-			if (fancy)
-				return TextureLeaves.get(EnumLeafType.valueOf(leafType.descript.toUpperCase())).getFancy();
-			return TextureLeaves.get(EnumLeafType.valueOf(leafType.descript.toUpperCase())).getPlain();
+			EnumLeafType leaf = EnumLeafType.valueOf(leafType.description.toUpperCase());
+			TextureLeaves texture = TextureLeaves.get(leaf);
+			if (pollinated) {
+				return texture.getPollinated();
+			}
+			if (fancy) {
+				return texture.getFancy();
+			}
+			return texture.getPlain();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1526,38 +1425,5 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 	@Override
 	public IIcon getIcon(EnumGermlingType type, int renderPass) {
 		return getGermlingIcon(type, renderPass);
-	}
-
-	public enum LeafType {
-		Normal((short) 10, (short) 11, (short) 12, "Deciduous"),
-		Conifer((short) 15, (short) 16, (short) 17, "Conifers"),
-		Jungle((short) 20, (short) 21, (short) 22, "Jungle"),
-		Willow((short) 25, (short) 26, (short) 27, "Willow"),
-		Maple((short) 30, (short) 31, (short) 32, "Maple"),
-		Palm((short) 35, (short) 36, (short) 37, "Palm");
-
-		public short fancyUID;
-		public short plainUID;
-		public short changedUID;
-		public String descript;
-
-		LeafType(short fancyUID, short plainUID, short changedUID, String descript) {
-			this.fancyUID = fancyUID;
-			this.plainUID = plainUID;
-			this.changedUID = changedUID;
-			this.descript = descript;
-		}
-	}
-
-	public enum SaplingType {
-		Default,
-		Jungle,
-		Conifer,
-		Fruit,
-		Poplar,
-		Palm,
-		Shrub;
-
-		protected IIcon[] icon;
 	}
 }

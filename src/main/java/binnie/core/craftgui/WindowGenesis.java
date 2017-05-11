@@ -80,7 +80,7 @@ public class WindowGenesis extends Window {
 
 					@Override
 					public int getOutlineColour() {
-						return value.getColour();
+						return value.getColor();
 					}
 
 					@Override

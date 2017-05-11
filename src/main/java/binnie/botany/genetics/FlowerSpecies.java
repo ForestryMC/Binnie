@@ -1,13 +1,15 @@
 package binnie.botany.genetics;
 
-import binnie.Binnie;
+import binnie.botany.Botany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.EnumMoisture;
 import binnie.botany.api.IAlleleFlowerSpecies;
+import binnie.botany.api.IFlowerRoot;
 import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
-import binnie.core.genetics.ForestryAllele;
+import binnie.core.util.I18N;
+import binnie.genetics.genetics.AlleleHelper;
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -20,6 +22,7 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IClassification;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
+import forestry.core.genetics.alleles.EnumAllele;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -28,58 +31,58 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum FlowerSpecies implements IAlleleFlowerSpecies {
-	Dandelion("Dandelion", "taraxacum", "officinale", EnumFlowerType.Dandelion, EnumFlowerColor.Yellow),
-	Poppy("Poppy", "papaver", "rhoeas", EnumFlowerType.Poppy, EnumFlowerColor.Red),
-	Orchid("Orchid", "vanda", "coerulea", EnumFlowerType.Orchid, EnumFlowerColor.DeepSkyBlue),
-	Allium("Allium", "allium", "giganteum", EnumFlowerType.Allium, EnumFlowerColor.MediumPurple),
-	Bluet("Bluet", "houstonia", "caerulea", EnumFlowerType.Bluet, EnumFlowerColor.Lavender, EnumFlowerColor.Khaki),
-	Tulip("Tulip", "tulipa", "agenensis", EnumFlowerType.Tulip, EnumFlowerColor.Violet),
-	Daisy("Daisy", "leucanthemum", "vulgare", EnumFlowerType.Daisy, EnumFlowerColor.White, EnumFlowerColor.Yellow),
-	Cornflower("Cornflower", "centaurea", "cyanus", EnumFlowerType.Cornflower, EnumFlowerColor.SkyBlue),
-	Pansy("Pansy", "viola", "tricolor", EnumFlowerType.Pansy, EnumFlowerColor.Pink, EnumFlowerColor.Purple),
-	Iris("Iris", "iris", "germanica", EnumFlowerType.Iris, EnumFlowerColor.LightGray, EnumFlowerColor.Purple),
-	Lavender("Lavender", "Lavandula", "angustifolia", EnumFlowerType.Lavender, EnumFlowerColor.MediumOrchid),
-	Viola("Viola", "viola", "odorata", EnumFlowerType.Viola, EnumFlowerColor.MediumPurple, EnumFlowerColor.SlateBlue),
-	Daffodil("Daffodil", "narcissus", "pseudonarcissus", EnumFlowerType.Daffodil, EnumFlowerColor.Yellow, EnumFlowerColor.Gold),
-	Dahlia("Dahlia", "dahlia", "variabilis", EnumFlowerType.Dahlia, EnumFlowerColor.HotPink, EnumFlowerColor.DeepPink),
-	Peony("Peony", "paeonia", "suffruticosa", EnumFlowerType.Peony, EnumFlowerColor.Thistle),
-	Rose("Rose", "rosa", "rubiginosa", EnumFlowerType.Rose, EnumFlowerColor.Red),
-	Lilac("Lilac", "syringa", "vulgaris", EnumFlowerType.Lilac, EnumFlowerColor.Plum),
-	Hydrangea("Hydrangea", "hydrangea", "macrophylla", EnumFlowerType.Hydrangea, EnumFlowerColor.DeepSkyBlue),
-	Foxglove("Foxglove", "digitalis", "purpurea", EnumFlowerType.Foxglove, EnumFlowerColor.HotPink),
-	Zinnia("Zinnia", "zinnia", "elegans", EnumFlowerType.Zinnia, EnumFlowerColor.MediumVioletRed, EnumFlowerColor.Yellow),
-	Chrysanthemum("Chrysanthemum", "chrysanthemum", "\u00ef?? grandiflorum", EnumFlowerType.Mums, EnumFlowerColor.Violet),
-	Marigold("Marigold", "calendula", "officinalis", EnumFlowerType.Marigold, EnumFlowerColor.Gold, EnumFlowerColor.DarkOrange),
-	Geranium("Geranium", "geranium", "maderense", EnumFlowerType.Geranium, EnumFlowerColor.DeepPink),
-	Azalea("Azalea", "rhododendrons", "aurigeranum", EnumFlowerType.Azalea, EnumFlowerColor.HotPink),
-	Primrose("Primrose", "primula", "vulgaris", EnumFlowerType.Primrose, EnumFlowerColor.Red, EnumFlowerColor.Gold),
-	Aster("Aster", "aster", "amellus", EnumFlowerType.Aster, EnumFlowerColor.MediumPurple, EnumFlowerColor.Goldenrod),
-	Carnation("Carnation", "dianthus", "caryophyllus", EnumFlowerType.Carnation, EnumFlowerColor.Crimson, EnumFlowerColor.White),
-	Lily("Lily", "lilium", "auratum", EnumFlowerType.Lily, EnumFlowerColor.Pink, EnumFlowerColor.Gold),
-	Yarrow("Yarrow", "achillea", "millefolium", EnumFlowerType.Yarrow, EnumFlowerColor.Yellow),
-	Petunia("Petunia", "petunia", "\u00ef?? atkinsiana", EnumFlowerType.Petunia, EnumFlowerColor.MediumVioletRed, EnumFlowerColor.Thistle),
-	Agapanthus("Agapanthus", "agapanthus", "praecox", EnumFlowerType.Agapanthus, EnumFlowerColor.DeepSkyBlue),
-	Fuchsia("Fuchsia", "fuchsia", "magellanica", EnumFlowerType.Fuchsia, EnumFlowerColor.DeepPink, EnumFlowerColor.MediumOrchid),
-	Dianthus("Dianthus", "dianthus", "barbatus", EnumFlowerType.Dianthus, EnumFlowerColor.Crimson, EnumFlowerColor.HotPink),
-	Forget("Forget-me-nots", "myosotis", "arvensis", EnumFlowerType.Forget, EnumFlowerColor.LightSteelBlue),
-	Anemone("Anemone", "anemone", "coronaria", EnumFlowerType.Anemone, EnumFlowerColor.Red, EnumFlowerColor.MistyRose),
-	Aquilegia("Aquilegia", "aquilegia", "vulgaris", EnumFlowerType.Aquilegia, EnumFlowerColor.SlateBlue, EnumFlowerColor.Thistle),
-	Edelweiss("Edelweiss", "leontopodium", "alpinum", EnumFlowerType.Edelweiss, EnumFlowerColor.White, EnumFlowerColor.Khaki),
-	Scabious("Scabious", "scabiosa", "columbaria", EnumFlowerType.Scabious, EnumFlowerColor.RoyalBlue),
-	Coneflower("Coneflower", "echinacea", "purpurea", EnumFlowerType.Coneflower, EnumFlowerColor.Violet, EnumFlowerColor.DarkOrange),
-	Gaillardia("Gaillardia", "gaillardia", "aristata", EnumFlowerType.Gaillardia, EnumFlowerColor.DarkOrange, EnumFlowerColor.Yellow),
-	Auricula("Auricula", "primula", "auricula", EnumFlowerType.Auricula, EnumFlowerColor.Red, EnumFlowerColor.Yellow),
-	Camellia("Camellia", "camellia", "japonica", EnumFlowerType.Camellia, EnumFlowerColor.Crimson),
-	Goldenrod("Goldenrod", "solidago", "canadensis", EnumFlowerType.Goldenrod, EnumFlowerColor.Gold),
-	Althea("Althea", "althaea", "officinalis", EnumFlowerType.Althea, EnumFlowerColor.Thistle, EnumFlowerColor.MediumOrchid),
-	Penstemon("Penstemon", "penstemon", "digitalis", EnumFlowerType.Penstemon, EnumFlowerColor.MediumOrchid, EnumFlowerColor.Thistle),
-	Delphinium("Delphinium", "delphinium", "staphisagria", EnumFlowerType.Delphinium, EnumFlowerColor.DarkSlateBlue),
-	Hollyhock("Hollyhock", "Alcea", "rosea", EnumFlowerType.Hollyhock, EnumFlowerColor.Black, EnumFlowerColor.Gold);
+	DANDELION("dandelion", "taraxacum", "officinale", EnumFlowerType.DANDELION, EnumFlowerColor.YELLOW),
+	POPPY("poppy", "papaver", "rhoeas", EnumFlowerType.POPPY, EnumFlowerColor.RED),
+	ORCHID("orchid", "vanda", "coerulea", EnumFlowerType.ORCHID, EnumFlowerColor.DEEP_SKY_BLUE),
+	ALLIUM("allium", "allium", "giganteum", EnumFlowerType.ALLIUM, EnumFlowerColor.MEDIUM_PURPLE),
+	BLUET("bluet", "houstonia", "caerulea", EnumFlowerType.BLUET, EnumFlowerColor.LAVENDER, EnumFlowerColor.KHAKI),
+	TULIP("tulip", "tulipa", "agenensis", EnumFlowerType.TULIP, EnumFlowerColor.VIOLET),
+	DAISY("daisy", "leucanthemum", "vulgare", EnumFlowerType.DAISY, EnumFlowerColor.WHITE, EnumFlowerColor.YELLOW),
+	CORNFLOWER("cornflower", "centaurea", "cyanus", EnumFlowerType.CORNFLOWER, EnumFlowerColor.SKY_BLUE),
+	PANSY("pansy", "viola", "tricolor", EnumFlowerType.PANSY, EnumFlowerColor.PINK, EnumFlowerColor.PURPLE),
+	IRIS("iris", "iris", "germanica", EnumFlowerType.IRIS, EnumFlowerColor.LIGHT_GRAY, EnumFlowerColor.PURPLE),
+	LAVENDER("lavender", "Lavandula", "angustifolia", EnumFlowerType.LAVENDER, EnumFlowerColor.MEDIUM_ORCHID),
+	VIOLA("viola", "viola", "odorata", EnumFlowerType.VIOLA, EnumFlowerColor.MEDIUM_PURPLE, EnumFlowerColor.SLATE_BLUE),
+	DAFFODIL("daffodil", "narcissus", "pseudonarcissus", EnumFlowerType.DAFFODIL, EnumFlowerColor.YELLOW, EnumFlowerColor.GOLD),
+	DAHLIA("dahlia", "dahlia", "variabilis", EnumFlowerType.DAHLIA, EnumFlowerColor.HOT_PINK, EnumFlowerColor.DEEP_PINK),
+	PEONY("peony", "paeonia", "suffruticosa", EnumFlowerType.PEONY, EnumFlowerColor.THISTLE),
+	ROSE("rose", "rosa", "rubiginosa", EnumFlowerType.ROSE, EnumFlowerColor.RED),
+	LILAC("lilac", "syringa", "vulgaris", EnumFlowerType.LILAC, EnumFlowerColor.PLUM),
+	HYDRANGEA("hydrangea", "hydrangea", "macrophylla", EnumFlowerType.HYDRANGEA, EnumFlowerColor.DEEP_SKY_BLUE),
+	FOXGLOVE("foxglove", "digitalis", "purpurea", EnumFlowerType.FOXGLOVE, EnumFlowerColor.HOT_PINK),
+	ZINNIA("zinnia", "zinnia", "elegans", EnumFlowerType.ZINNIA, EnumFlowerColor.MEDIUM_VIOLET_RED, EnumFlowerColor.YELLOW),
+	CHRYSANTHEMUM("chrysanthemum", "chrysanthemum", "\u00ef?? grandiflorum", EnumFlowerType.MUMS, EnumFlowerColor.VIOLET),
+	MARIGOLD("marigold", "calendula", "officinalis", EnumFlowerType.MARIGOLD, EnumFlowerColor.GOLD, EnumFlowerColor.DARK_ORANGE),
+	GERANIUM("geranium", "geranium", "maderense", EnumFlowerType.GERANIUM, EnumFlowerColor.DEEP_PINK),
+	AZALEA("azalea", "rhododendrons", "aurigeranum", EnumFlowerType.AZALEA, EnumFlowerColor.HOT_PINK),
+	PRIMROSE("primrose", "primula", "vulgaris", EnumFlowerType.PRIMROSE, EnumFlowerColor.RED, EnumFlowerColor.GOLD),
+	ASTER("aster", "aster", "amellus", EnumFlowerType.ASTER, EnumFlowerColor.MEDIUM_PURPLE, EnumFlowerColor.GOLDENROD),
+	CARNATION("carnation", "dianthus", "caryophyllus", EnumFlowerType.CARNATION, EnumFlowerColor.CRIMSON, EnumFlowerColor.WHITE),
+	LILY("lily", "lilium", "auratum", EnumFlowerType.LILY, EnumFlowerColor.PINK, EnumFlowerColor.GOLD),
+	YARROW("yarrow", "achillea", "millefolium", EnumFlowerType.YARROW, EnumFlowerColor.YELLOW),
+	PETUNIA("petunia", "petunia", "\u00ef?? atkinsiana", EnumFlowerType.PETUNIA, EnumFlowerColor.MEDIUM_VIOLET_RED, EnumFlowerColor.THISTLE),
+	AGAPANTHUS("agapanthus", "agapanthus", "praecox", EnumFlowerType.AGAPANTHUS, EnumFlowerColor.DEEP_SKY_BLUE),
+	FUCHSIA("fuchsia", "fuchsia", "magellanica", EnumFlowerType.FUCHSIA, EnumFlowerColor.DEEP_PINK, EnumFlowerColor.MEDIUM_ORCHID),
+	DIANTHUS("dianthus", "dianthus", "barbatus", EnumFlowerType.DIANTHUS, EnumFlowerColor.CRIMSON, EnumFlowerColor.HOT_PINK),
+	FORGET("forget-me-nots", "myosotis", "arvensis", EnumFlowerType.FORGET, EnumFlowerColor.LIGHT_STEEL_BLUE),
+	ANEMONE("anemone", "anemone", "coronaria", EnumFlowerType.ANEMONE, EnumFlowerColor.RED, EnumFlowerColor.MISTY_ROSE),
+	AQUILEGIA("aquilegia", "aquilegia", "vulgaris", EnumFlowerType.AQUILEGIA, EnumFlowerColor.SLATE_BLUE, EnumFlowerColor.THISTLE),
+	EDELWEISS("edelweiss", "leontopodium", "alpinum", EnumFlowerType.EDELWEISS, EnumFlowerColor.WHITE, EnumFlowerColor.KHAKI),
+	SCABIOUS("scabious", "scabiosa", "columbaria", EnumFlowerType.SCABIOUS, EnumFlowerColor.ROYAL_BLUE),
+	CONEFLOWER("coneflower", "echinacea", "purpurea", EnumFlowerType.CONEFLOWER, EnumFlowerColor.VIOLET, EnumFlowerColor.DARK_ORANGE),
+	GAILLARDIA("gaillardia", "gaillardia", "aristata", EnumFlowerType.GAILLARDIA, EnumFlowerColor.DARK_ORANGE, EnumFlowerColor.YELLOW),
+	AURICULA("auricula", "primula", "auricula", EnumFlowerType.AURICULA, EnumFlowerColor.RED, EnumFlowerColor.YELLOW),
+	CAMELLIA("camellia", "camellia", "japonica", EnumFlowerType.CAMELLIA, EnumFlowerColor.CRIMSON),
+	GOLDENROD("goldenrod", "solidago", "canadensis", EnumFlowerType.GOLDENROD, EnumFlowerColor.GOLD),
+	ALTHEA("althea", "althaea", "officinalis", EnumFlowerType.ALTHEA, EnumFlowerColor.THISTLE, EnumFlowerColor.MEDIUM_ORCHID),
+	PENSTEMON("penstemon", "penstemon", "digitalis", EnumFlowerType.PENSTEMON, EnumFlowerColor.MEDIUM_ORCHID, EnumFlowerColor.THISTLE),
+	DELPHINIUM("delphinium", "delphinium", "staphisagria", EnumFlowerType.DELPHINIUM, EnumFlowerColor.DARK_SLATE_BLUE),
+	HOLLYHOCK("hollyhock", "Alcea", "rosea", EnumFlowerType.HOLLYHOCK, EnumFlowerColor.BLACK, EnumFlowerColor.GOLD);
 
 	protected EnumFlowerColor stemColor;
-	protected ForestryAllele.Fertility fert;
-	protected ForestryAllele.Lifespan life;
-	protected ForestryAllele.Sappiness sap;
+	protected EnumAllele.Fertility fert;
+	protected EnumAllele.Lifespan life;
+	protected EnumAllele.Sappiness sap;
 	protected IFlowerType type;
 	protected String name;
 	protected String binomial;
@@ -100,7 +103,12 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies {
 	}
 
 	FlowerSpecies(String name, String branch, String binomial, IFlowerType type, EnumFlowerColor primaryColor, EnumFlowerColor secondaryColor) {
-		stemColor = EnumFlowerColor.Green;
+		this.name = name;
+		this.binomial = binomial;
+		this.type = type;
+		this.primaryColor = primaryColor;
+		this.secondaryColor = secondaryColor;
+		stemColor = EnumFlowerColor.GREEN;
 		temperature = EnumTemperature.NORMAL;
 		pH = EnumAcidity.NEUTRAL;
 		moisture = EnumMoisture.NORMAL;
@@ -108,255 +116,344 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies {
 		pHTolerance = EnumTolerance.NONE;
 		moistureTolerance = EnumTolerance.NONE;
 		variantTemplates = new ArrayList<>();
-		this.name = name;
-		this.binomial = binomial;
 		branchName = branch;
-		this.type = type;
-		this.primaryColor = primaryColor;
-		this.secondaryColor = secondaryColor;
 	}
 
 	public static void setupVariants() {
-		FlowerSpecies.Dandelion.setTraits(ForestryAllele.Fertility.High, ForestryAllele.Lifespan.Shortened, ForestryAllele.Sappiness.Lower);
-		FlowerSpecies.Poppy.setTraits(ForestryAllele.Fertility.High, ForestryAllele.Lifespan.Shorter, ForestryAllele.Sappiness.Average);
-		FlowerSpecies.Orchid.setTraits(ForestryAllele.Fertility.Normal, ForestryAllele.Lifespan.Long, ForestryAllele.Sappiness.Low);
-		FlowerSpecies.Allium.setTraits(ForestryAllele.Fertility.Normal, ForestryAllele.Lifespan.Normal, ForestryAllele.Sappiness.Low);
-		FlowerSpecies.Bluet.setTraits(ForestryAllele.Fertility.Low, ForestryAllele.Lifespan.Normal, ForestryAllele.Sappiness.Lower);
-		FlowerSpecies.Tulip.setTraits(ForestryAllele.Fertility.Normal, ForestryAllele.Lifespan.Long, ForestryAllele.Sappiness.Average);
-		FlowerSpecies.Daisy.setTraits(ForestryAllele.Fertility.Normal, ForestryAllele.Lifespan.Normal, ForestryAllele.Sappiness.Low);
-		FlowerSpecies.Cornflower.setTraits(ForestryAllele.Fertility.High, ForestryAllele.Lifespan.Shorter, ForestryAllele.Sappiness.Low);
-		FlowerSpecies.Pansy.setTraits(ForestryAllele.Fertility.Normal, ForestryAllele.Lifespan.Shortened, ForestryAllele.Sappiness.Average);
-		FlowerSpecies.Iris.setTraits(ForestryAllele.Fertility.High, ForestryAllele.Lifespan.Normal, ForestryAllele.Sappiness.Average);
-		FlowerSpecies.Lavender.setTraits(ForestryAllele.Fertility.High, ForestryAllele.Lifespan.Normal, ForestryAllele.Sappiness.Low);
-		FlowerSpecies.Viola.setTraits(ForestryAllele.Fertility.Normal, ForestryAllele.Lifespan.Shortened, ForestryAllele.Sappiness.Average);
-		FlowerSpecies.Daffodil.setTraits(ForestryAllele.Fertility.High, ForestryAllele.Lifespan.Elongated, ForestryAllele.Sappiness.Average);
-		FlowerSpecies.Aster.setTraits(ForestryAllele.Fertility.Normal, ForestryAllele.Lifespan.Normal, ForestryAllele.Sappiness.Higher);
-		FlowerSpecies.Lilac.setTraits(ForestryAllele.Fertility.Low, ForestryAllele.Lifespan.Longer, ForestryAllele.Sappiness.Average);
-		FlowerSpecies.Rose.setTraits(ForestryAllele.Fertility.Low, ForestryAllele.Lifespan.Longer, ForestryAllele.Sappiness.High);
-		FlowerSpecies.Peony.setTraits(ForestryAllele.Fertility.Low, ForestryAllele.Lifespan.Long, ForestryAllele.Sappiness.Average);
-		FlowerSpecies.Marigold.setTraits(ForestryAllele.Fertility.High, ForestryAllele.Lifespan.Shorter, ForestryAllele.Sappiness.Average);
-		FlowerSpecies.Hydrangea.setTraits(ForestryAllele.Fertility.Low, ForestryAllele.Lifespan.Longer, ForestryAllele.Sappiness.High);
-		FlowerSpecies.Foxglove.setTraits(ForestryAllele.Fertility.Low, ForestryAllele.Lifespan.Shortened, ForestryAllele.Sappiness.Low);
-		FlowerSpecies.Dahlia.setTraits(ForestryAllele.Fertility.Normal, ForestryAllele.Lifespan.Normal, ForestryAllele.Sappiness.Average);
-		FlowerSpecies.Chrysanthemum.setTraits(ForestryAllele.Fertility.High, ForestryAllele.Lifespan.Long, ForestryAllele.Sappiness.High);
-		FlowerSpecies.Carnation.setTraits(ForestryAllele.Fertility.Normal, ForestryAllele.Lifespan.Normal, ForestryAllele.Sappiness.High);
-		FlowerSpecies.Zinnia.setTraits(ForestryAllele.Fertility.Normal, ForestryAllele.Lifespan.Shorter, ForestryAllele.Sappiness.Average);
-		FlowerSpecies.Primrose.setTraits(ForestryAllele.Fertility.Normal, ForestryAllele.Lifespan.Long, ForestryAllele.Sappiness.Average);
-		FlowerSpecies.Azalea.setTraits(ForestryAllele.Fertility.Normal, ForestryAllele.Lifespan.Normal, ForestryAllele.Sappiness.Average);
-		FlowerSpecies.Geranium.setTraits(ForestryAllele.Fertility.Low, ForestryAllele.Lifespan.Long, ForestryAllele.Sappiness.Low);
-		FlowerSpecies.Lily.setTraits(ForestryAllele.Fertility.Low, ForestryAllele.Lifespan.Long, ForestryAllele.Sappiness.Low);
-		FlowerSpecies.Yarrow.setTraits(ForestryAllele.Fertility.High, ForestryAllele.Lifespan.Normal, ForestryAllele.Sappiness.Low);
-		FlowerSpecies.Petunia.setTraits(ForestryAllele.Fertility.Normal, ForestryAllele.Lifespan.Shorter, ForestryAllele.Sappiness.Average);
-		FlowerSpecies.Agapanthus.setTraits(ForestryAllele.Fertility.Normal, ForestryAllele.Lifespan.Normal, ForestryAllele.Sappiness.Low);
-		FlowerSpecies.Fuchsia.setTraits(ForestryAllele.Fertility.Normal, ForestryAllele.Lifespan.Shortened, ForestryAllele.Sappiness.Average);
-		FlowerSpecies.Dianthus.setTraits(ForestryAllele.Fertility.Normal, ForestryAllele.Lifespan.Short, ForestryAllele.Sappiness.High);
-		FlowerSpecies.Forget.setTraits(ForestryAllele.Fertility.Normal, ForestryAllele.Lifespan.Short, ForestryAllele.Sappiness.Lower);
-		FlowerSpecies.Anemone.setTraits(ForestryAllele.Fertility.High, ForestryAllele.Lifespan.Normal, ForestryAllele.Sappiness.Low);
-		FlowerSpecies.Aquilegia.setTraits(ForestryAllele.Fertility.Normal, ForestryAllele.Lifespan.Normal, ForestryAllele.Sappiness.Average);
-		FlowerSpecies.Edelweiss.setTraits(ForestryAllele.Fertility.Low, ForestryAllele.Lifespan.Normal, ForestryAllele.Sappiness.Lowest);
-		FlowerSpecies.Scabious.setTraits(ForestryAllele.Fertility.Normal, ForestryAllele.Lifespan.Shortened, ForestryAllele.Sappiness.Low);
-		FlowerSpecies.Coneflower.setTraits(ForestryAllele.Fertility.Normal, ForestryAllele.Lifespan.Normal, ForestryAllele.Sappiness.Higher);
-		FlowerSpecies.Gaillardia.setTraits(ForestryAllele.Fertility.High, ForestryAllele.Lifespan.Long, ForestryAllele.Sappiness.Higher);
-		FlowerSpecies.Auricula.setTraits(ForestryAllele.Fertility.Normal, ForestryAllele.Lifespan.Elongated, ForestryAllele.Sappiness.High);
-		FlowerSpecies.Camellia.setTraits(ForestryAllele.Fertility.Normal, ForestryAllele.Lifespan.Normal, ForestryAllele.Sappiness.High);
-		FlowerSpecies.Goldenrod.setTraits(ForestryAllele.Fertility.High, ForestryAllele.Lifespan.Normal, ForestryAllele.Sappiness.Higher);
-		FlowerSpecies.Althea.setTraits(ForestryAllele.Fertility.Low, ForestryAllele.Lifespan.Elongated, ForestryAllele.Sappiness.High);
-		FlowerSpecies.Penstemon.setTraits(ForestryAllele.Fertility.Low, ForestryAllele.Lifespan.Long, ForestryAllele.Sappiness.Low);
-		FlowerSpecies.Delphinium.setTraits(ForestryAllele.Fertility.Low, ForestryAllele.Lifespan.Longer, ForestryAllele.Sappiness.Low);
-		FlowerSpecies.Hollyhock.setTraits(ForestryAllele.Fertility.Low, ForestryAllele.Lifespan.Long, ForestryAllele.Sappiness.High);
-		FlowerSpecies.Dandelion.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1);
-		FlowerSpecies.Dandelion.setMoisture(EnumMoisture.NORMAL, EnumTolerance.BOTH_1);
-		FlowerSpecies.Poppy.setPH(EnumAcidity.NEUTRAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Poppy.setMoisture(EnumMoisture.NORMAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Poppy.setTemperature(EnumTemperature.WARM, EnumTolerance.BOTH_2);
-		FlowerSpecies.Orchid.setPH(EnumAcidity.ACID, EnumTolerance.NONE);
-		FlowerSpecies.Orchid.setMoisture(EnumMoisture.NORMAL, EnumTolerance.BOTH_1);
-		FlowerSpecies.Allium.setPH(EnumAcidity.ALKALINE, EnumTolerance.DOWN_1);
-		FlowerSpecies.Allium.setMoisture(EnumMoisture.NORMAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Bluet.setPH(EnumAcidity.NEUTRAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Bluet.setMoisture(EnumMoisture.DAMP, EnumTolerance.NONE);
-		FlowerSpecies.Tulip.setMoisture(EnumMoisture.NORMAL, EnumTolerance.BOTH_1);
-		FlowerSpecies.Daisy.setPH(EnumAcidity.NEUTRAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Daisy.setMoisture(EnumMoisture.NORMAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Daisy.setTemperature(EnumTemperature.WARM, EnumTolerance.BOTH_2);
-		FlowerSpecies.Cornflower.setMutation(FlowerSpecies.Dandelion, FlowerSpecies.Tulip, 10);
-		FlowerSpecies.Cornflower.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1);
-		FlowerSpecies.Pansy.setMutation(FlowerSpecies.Tulip, FlowerSpecies.Viola, 5);
-		FlowerSpecies.Pansy.setPH(EnumAcidity.ACID, EnumTolerance.NONE);
-		FlowerSpecies.Pansy.setTemperature(EnumTemperature.WARM, EnumTolerance.DOWN_1);
-		FlowerSpecies.Iris.setMutation(FlowerSpecies.Orchid, FlowerSpecies.Viola, 10);
-		FlowerSpecies.Iris.setPH(EnumAcidity.ACID, EnumTolerance.NONE);
-		FlowerSpecies.Iris.setTemperature(EnumTemperature.WARM, EnumTolerance.DOWN_1);
-		FlowerSpecies.Lavender.setMutation(FlowerSpecies.Allium, FlowerSpecies.Viola, 10);
-		FlowerSpecies.Lavender.setPH(EnumAcidity.NEUTRAL, EnumTolerance.UP_1);
-		FlowerSpecies.Lavender.setMoisture(EnumMoisture.NORMAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Lavender.setTemperature(EnumTemperature.WARM, EnumTolerance.DOWN_1);
-		FlowerSpecies.Viola.setMutation(FlowerSpecies.Orchid, FlowerSpecies.Poppy, 15);
-		FlowerSpecies.Viola.setPH(EnumAcidity.ACID, EnumTolerance.NONE);
-		FlowerSpecies.Viola.setMoisture(EnumMoisture.NORMAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Daffodil.setMutation(FlowerSpecies.Dandelion, FlowerSpecies.Poppy, 10);
-		FlowerSpecies.Daffodil.setPH(EnumAcidity.NEUTRAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Aster.setMutation(FlowerSpecies.Daisy, FlowerSpecies.Tulip, 10);
-		FlowerSpecies.Aster.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1);
-		FlowerSpecies.Lilac.setPH(EnumAcidity.ALKALINE, EnumTolerance.DOWN_1);
-		FlowerSpecies.Rose.setPH(EnumAcidity.ACID, EnumTolerance.UP_1);
-		FlowerSpecies.Peony.setPH(EnumAcidity.ALKALINE, EnumTolerance.DOWN_1);
-		FlowerSpecies.Peony.setMoisture(EnumMoisture.NORMAL, EnumTolerance.UP_1);
-		FlowerSpecies.Marigold.setMutation(FlowerSpecies.Daisy, FlowerSpecies.Dandelion, 10);
-		FlowerSpecies.Marigold.setPH(EnumAcidity.NEUTRAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Marigold.setMoisture(EnumMoisture.NORMAL, EnumTolerance.UP_1);
-		FlowerSpecies.Marigold.setTemperature(EnumTemperature.WARM, EnumTolerance.BOTH_2);
-		FlowerSpecies.Hydrangea.setMutation(FlowerSpecies.Peony, FlowerSpecies.Bluet, 10);
-		FlowerSpecies.Hydrangea.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1);
-		FlowerSpecies.Hydrangea.setMoisture(EnumMoisture.DAMP, EnumTolerance.NONE);
-		FlowerSpecies.Foxglove.setMutation(FlowerSpecies.Lilac, FlowerSpecies.Zinnia, 5);
-		FlowerSpecies.Foxglove.setPH(EnumAcidity.NEUTRAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Foxglove.setMoisture(EnumMoisture.NORMAL, EnumTolerance.UP_1);
-		FlowerSpecies.Dahlia.setMutation(FlowerSpecies.Daisy, FlowerSpecies.Allium, 15);
-		FlowerSpecies.Dahlia.setPH(EnumAcidity.NEUTRAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Dahlia.setMoisture(EnumMoisture.NORMAL, EnumTolerance.UP_1);
-		FlowerSpecies.Dahlia.setTemperature(EnumTemperature.NORMAL, EnumTolerance.BOTH_2);
-		FlowerSpecies.Chrysanthemum.setMutation(FlowerSpecies.Geranium, FlowerSpecies.Rose, 10);
-		FlowerSpecies.Chrysanthemum.setPH(EnumAcidity.NEUTRAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Chrysanthemum.setMoisture(EnumMoisture.NORMAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Carnation.setMutation(FlowerSpecies.Dianthus, FlowerSpecies.Rose, 5);
-		FlowerSpecies.Carnation.setPH(EnumAcidity.ALKALINE, EnumTolerance.DOWN_1);
-		FlowerSpecies.Zinnia.setMutation(FlowerSpecies.Dahlia, FlowerSpecies.Marigold, 5);
-		FlowerSpecies.Zinnia.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1);
-		FlowerSpecies.Zinnia.setMoisture(EnumMoisture.NORMAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Zinnia.setTemperature(EnumTemperature.NORMAL, EnumTolerance.BOTH_2);
-		FlowerSpecies.Primrose.setMutation(FlowerSpecies.Chrysanthemum, FlowerSpecies.Auricula, 5);
-		FlowerSpecies.Primrose.setPH(EnumAcidity.ACID, EnumTolerance.UP_1);
-		FlowerSpecies.Primrose.setMoisture(EnumMoisture.NORMAL, EnumTolerance.UP_1);
-		FlowerSpecies.Azalea.setMutation(FlowerSpecies.Orchid, FlowerSpecies.Geranium, 5);
-		FlowerSpecies.Azalea.setPH(EnumAcidity.ACID, EnumTolerance.NONE);
-		FlowerSpecies.Geranium.setMutation(FlowerSpecies.Tulip, FlowerSpecies.Orchid, 15);
-		FlowerSpecies.Geranium.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1);
-		FlowerSpecies.Geranium.setTemperature(EnumTemperature.WARM, EnumTolerance.BOTH_1);
-		FlowerSpecies.Lily.setMutation(FlowerSpecies.Tulip, FlowerSpecies.Chrysanthemum, 5);
-		FlowerSpecies.Lily.setPH(EnumAcidity.NEUTRAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Lily.setTemperature(EnumTemperature.WARM, EnumTolerance.BOTH_1);
-		FlowerSpecies.Yarrow.setMutation(FlowerSpecies.Dandelion, FlowerSpecies.Orchid, 10);
-		FlowerSpecies.Yarrow.setPH(EnumAcidity.ACID, EnumTolerance.UP_1);
-		FlowerSpecies.Yarrow.setMoisture(EnumMoisture.NORMAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Petunia.setMutation(FlowerSpecies.Tulip, FlowerSpecies.Dahlia, 5);
-		FlowerSpecies.Petunia.setPH(EnumAcidity.NEUTRAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Petunia.setMoisture(EnumMoisture.NORMAL, EnumTolerance.UP_1);
-		FlowerSpecies.Petunia.setTemperature(EnumTemperature.WARM, EnumTolerance.UP_1);
-		FlowerSpecies.Agapanthus.setMutation(FlowerSpecies.Allium, FlowerSpecies.Geranium, 5);
-		FlowerSpecies.Agapanthus.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1);
-		FlowerSpecies.Agapanthus.setMoisture(EnumMoisture.NORMAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Agapanthus.setTemperature(EnumTemperature.WARM, EnumTolerance.BOTH_1);
-		FlowerSpecies.Fuchsia.setMutation(FlowerSpecies.Foxglove, FlowerSpecies.Dahlia, 5);
-		FlowerSpecies.Fuchsia.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1);
-		FlowerSpecies.Fuchsia.setMoisture(EnumMoisture.NORMAL, EnumTolerance.UP_1);
-		FlowerSpecies.Fuchsia.setTemperature(EnumTemperature.WARM, EnumTolerance.BOTH_1);
-		FlowerSpecies.Dianthus.setMutation(FlowerSpecies.Tulip, FlowerSpecies.Poppy, 15);
-		FlowerSpecies.Dianthus.setPH(EnumAcidity.ALKALINE, EnumTolerance.DOWN_1);
-		FlowerSpecies.Dianthus.setMoisture(EnumMoisture.NORMAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Dianthus.setTemperature(EnumTemperature.NORMAL, EnumTolerance.BOTH_2);
-		FlowerSpecies.Forget.setMutation(FlowerSpecies.Orchid, FlowerSpecies.Bluet, 10);
-		FlowerSpecies.Forget.setPH(EnumAcidity.ACID, EnumTolerance.NONE);
-		FlowerSpecies.Forget.setMoisture(EnumMoisture.NORMAL, EnumTolerance.UP_1);
-		FlowerSpecies.Forget.setTemperature(EnumTemperature.NORMAL, EnumTolerance.UP_1);
-		FlowerSpecies.Anemone.setMutation(FlowerSpecies.Aquilegia, FlowerSpecies.Rose, 5);
-		FlowerSpecies.Anemone.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1);
-		FlowerSpecies.Anemone.setMoisture(EnumMoisture.NORMAL, EnumTolerance.UP_1);
-		FlowerSpecies.Aquilegia.setMutation(FlowerSpecies.Iris, FlowerSpecies.Poppy, 5);
-		FlowerSpecies.Aquilegia.setMoisture(EnumMoisture.NORMAL, EnumTolerance.UP_1);
-		FlowerSpecies.Edelweiss.setMutation(FlowerSpecies.Peony, FlowerSpecies.Bluet, 5);
-		FlowerSpecies.Edelweiss.setPH(EnumAcidity.ALKALINE, EnumTolerance.DOWN_1);
-		FlowerSpecies.Edelweiss.setMoisture(EnumMoisture.NORMAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Edelweiss.setTemperature(EnumTemperature.NORMAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Scabious.setMutation(FlowerSpecies.Allium, FlowerSpecies.Cornflower, 5);
-		FlowerSpecies.Scabious.setPH(EnumAcidity.NEUTRAL, EnumTolerance.UP_1);
-		FlowerSpecies.Scabious.setTemperature(EnumTemperature.NORMAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Coneflower.setMutation(FlowerSpecies.Tulip, FlowerSpecies.Cornflower, 5);
-		FlowerSpecies.Coneflower.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1);
-		FlowerSpecies.Gaillardia.setMutation(FlowerSpecies.Dandelion, FlowerSpecies.Marigold, 5);
-		FlowerSpecies.Gaillardia.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1);
-		FlowerSpecies.Gaillardia.setMoisture(EnumMoisture.DAMP, EnumTolerance.DOWN_1);
-		FlowerSpecies.Gaillardia.setTemperature(EnumTemperature.NORMAL, EnumTolerance.BOTH_2);
-		FlowerSpecies.Auricula.setMutation(FlowerSpecies.Poppy, FlowerSpecies.Geranium, 10);
-		FlowerSpecies.Auricula.setPH(EnumAcidity.ACID, EnumTolerance.UP_1);
-		FlowerSpecies.Auricula.setMoisture(EnumMoisture.NORMAL, EnumTolerance.UP_1);
-		FlowerSpecies.Camellia.setMutation(FlowerSpecies.Hydrangea, FlowerSpecies.Rose, 5);
-		FlowerSpecies.Camellia.setPH(EnumAcidity.ACID, EnumTolerance.NONE);
-		FlowerSpecies.Camellia.setMoisture(EnumMoisture.DAMP, EnumTolerance.NONE);
-		FlowerSpecies.Camellia.setTemperature(EnumTemperature.WARM, EnumTolerance.UP_1);
-		FlowerSpecies.Goldenrod.setMutation(FlowerSpecies.Lilac, FlowerSpecies.Marigold, 10);
-		FlowerSpecies.Goldenrod.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1);
-		FlowerSpecies.Althea.setMutation(FlowerSpecies.Hydrangea, FlowerSpecies.Iris, 5);
-		FlowerSpecies.Althea.setPH(EnumAcidity.NEUTRAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Althea.setTemperature(EnumTemperature.WARM, EnumTolerance.BOTH_1);
-		FlowerSpecies.Penstemon.setMutation(FlowerSpecies.Peony, FlowerSpecies.Lilac, 5);
-		FlowerSpecies.Penstemon.setMoisture(EnumMoisture.DRY, EnumTolerance.UP_1);
-		FlowerSpecies.Penstemon.setTemperature(EnumTemperature.WARM, EnumTolerance.UP_1);
-		FlowerSpecies.Delphinium.setMutation(FlowerSpecies.Lilac, FlowerSpecies.Bluet, 5);
-		FlowerSpecies.Delphinium.setMoisture(EnumMoisture.DAMP, EnumTolerance.DOWN_1);
-		FlowerSpecies.Delphinium.setTemperature(EnumTemperature.NORMAL, EnumTolerance.DOWN_1);
-		FlowerSpecies.Hollyhock.setMutation(FlowerSpecies.Delphinium, FlowerSpecies.Lavender, 5);
-		FlowerSpecies.Hollyhock.setPH(EnumAcidity.NEUTRAL, EnumTolerance.UP_1);
-		FlowerSpecies.Dandelion.setStemColor(EnumFlowerColor.Green);
-		FlowerSpecies.Poppy.setStemColor(EnumFlowerColor.Green);
-		FlowerSpecies.Orchid.setStemColor(EnumFlowerColor.Green);
-		FlowerSpecies.Allium.setStemColor(EnumFlowerColor.Green);
-		FlowerSpecies.Bluet.setStemColor(EnumFlowerColor.OliveDrab);
-		FlowerSpecies.Tulip.setStemColor(EnumFlowerColor.OliveDrab);
-		FlowerSpecies.Daisy.setStemColor(EnumFlowerColor.OliveDrab);
-		FlowerSpecies.Cornflower.setStemColor(EnumFlowerColor.OliveDrab);
-		FlowerSpecies.Pansy.setStemColor(EnumFlowerColor.SeaGreen);
-		FlowerSpecies.Iris.setStemColor(EnumFlowerColor.SeaGreen);
-		FlowerSpecies.Lavender.setStemColor(EnumFlowerColor.Green);
-		FlowerSpecies.Viola.setStemColor(EnumFlowerColor.OliveDrab);
-		FlowerSpecies.Daffodil.setStemColor(EnumFlowerColor.Green);
-		FlowerSpecies.Dahlia.setStemColor(EnumFlowerColor.OliveDrab);
-		FlowerSpecies.Peony.setStemColor(EnumFlowerColor.DarkGreen);
-		FlowerSpecies.Rose.setStemColor(EnumFlowerColor.Green);
-		FlowerSpecies.Lilac.setStemColor(EnumFlowerColor.OliveDrab);
-		FlowerSpecies.Hydrangea.setStemColor(EnumFlowerColor.DarkGreen);
-		FlowerSpecies.Foxglove.setStemColor(EnumFlowerColor.DarkGreen);
-		FlowerSpecies.Zinnia.setStemColor(EnumFlowerColor.MediumSeaGreen);
-		FlowerSpecies.Chrysanthemum.setStemColor(EnumFlowerColor.MediumSeaGreen);
-		FlowerSpecies.Marigold.setStemColor(EnumFlowerColor.Green);
-		FlowerSpecies.Geranium.setStemColor(EnumFlowerColor.MediumSeaGreen);
-		FlowerSpecies.Azalea.setStemColor(EnumFlowerColor.Green);
-		FlowerSpecies.Primrose.setStemColor(EnumFlowerColor.Green);
-		FlowerSpecies.Aster.setStemColor(EnumFlowerColor.Green);
-		FlowerSpecies.Carnation.setStemColor(EnumFlowerColor.SeaGreen);
-		FlowerSpecies.Lily.setStemColor(EnumFlowerColor.Green);
-		FlowerSpecies.Yarrow.setStemColor(EnumFlowerColor.DarkOliveGreen);
-		FlowerSpecies.Petunia.setStemColor(EnumFlowerColor.Green);
-		FlowerSpecies.Agapanthus.setStemColor(EnumFlowerColor.DarkOliveGreen);
-		FlowerSpecies.Fuchsia.setStemColor(EnumFlowerColor.SeaGreen);
-		FlowerSpecies.Dianthus.setStemColor(EnumFlowerColor.OliveDrab);
-		FlowerSpecies.Forget.setStemColor(EnumFlowerColor.Green);
-		FlowerSpecies.Anemone.setStemColor(EnumFlowerColor.DarkOliveGreen);
-		FlowerSpecies.Aquilegia.setStemColor(EnumFlowerColor.MediumSeaGreen);
-		FlowerSpecies.Edelweiss.setStemColor(EnumFlowerColor.DarkOliveGreen);
-		FlowerSpecies.Scabious.setStemColor(EnumFlowerColor.OliveDrab);
-		FlowerSpecies.Coneflower.setStemColor(EnumFlowerColor.DarkOliveGreen);
-		FlowerSpecies.Gaillardia.setStemColor(EnumFlowerColor.OliveDrab);
-		FlowerSpecies.Auricula.setStemColor(EnumFlowerColor.DarkOliveGreen);
-		FlowerSpecies.Camellia.setStemColor(EnumFlowerColor.DarkOliveGreen);
-		FlowerSpecies.Goldenrod.setStemColor(EnumFlowerColor.MediumSeaGreen);
-		FlowerSpecies.Althea.setStemColor(EnumFlowerColor.DarkGreen);
-		FlowerSpecies.Penstemon.setStemColor(EnumFlowerColor.OliveDrab);
-		FlowerSpecies.Delphinium.setStemColor(EnumFlowerColor.DarkSeaGreen);
-		FlowerSpecies.Hollyhock.setStemColor(EnumFlowerColor.Green);
-		BotanyCore.getFlowerRoot().addConversion(new ItemStack(Blocks.yellow_flower, 1, 0), FlowerSpecies.Dandelion.getTemplate());
-		BotanyCore.getFlowerRoot().addConversion(new ItemStack(Blocks.red_flower, 1, 0), FlowerSpecies.Poppy.getTemplate());
-		BotanyCore.getFlowerRoot().addConversion(new ItemStack(Blocks.red_flower, 1, 1), FlowerSpecies.Orchid.getTemplate());
-		BotanyCore.getFlowerRoot().addConversion(new ItemStack(Blocks.red_flower, 1, 2), FlowerSpecies.Allium.getTemplate());
-		BotanyCore.getFlowerRoot().addConversion(new ItemStack(Blocks.red_flower, 1, 3), FlowerSpecies.Bluet.getTemplate());
-		BotanyCore.getFlowerRoot().addConversion(new ItemStack(Blocks.red_flower, 1, 7), FlowerSpecies.Tulip.getTemplate());
-		BotanyCore.getFlowerRoot().addConversion(new ItemStack(Blocks.red_flower, 1, 8), FlowerSpecies.Daisy.getTemplate());
-		BotanyCore.getFlowerRoot().addConversion(new ItemStack(Blocks.double_plant, 1, 1), FlowerSpecies.Lilac.getTemplate());
-		BotanyCore.getFlowerRoot().addConversion(new ItemStack(Blocks.double_plant, 1, 4), FlowerSpecies.Rose.getTemplate());
-		BotanyCore.getFlowerRoot().addConversion(new ItemStack(Blocks.double_plant, 1, 5), FlowerSpecies.Peony.getTemplate());
-		BotanyCore.getFlowerRoot().addConversion(new ItemStack(Blocks.red_flower, 1, 6), FlowerSpecies.Tulip.AddVariant(EnumFlowerColor.White));
-		BotanyCore.getFlowerRoot().addConversion(new ItemStack(Blocks.red_flower, 1, 4), FlowerSpecies.Tulip.AddVariant(EnumFlowerColor.Crimson));
-		BotanyCore.getFlowerRoot().addConversion(new ItemStack(Blocks.red_flower, 1, 5), FlowerSpecies.Tulip.AddVariant(EnumFlowerColor.DarkOrange));
+		FlowerSpecies.DANDELION
+			.setTraits(EnumAllele.Fertility.HIGH, EnumAllele.Lifespan.SHORTENED, EnumAllele.Sappiness.LOWER)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.BOTH_1)
+			.setStemColor(EnumFlowerColor.GREEN);
+
+		FlowerSpecies.POPPY
+			.setTraits(EnumAllele.Fertility.HIGH, EnumAllele.Lifespan.SHORTER, EnumAllele.Sappiness.AVERAGE)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.DOWN_1)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.DOWN_1)
+			.setTemperature(EnumTemperature.WARM, EnumTolerance.BOTH_2)
+			.setStemColor(EnumFlowerColor.GREEN);
+
+		FlowerSpecies.ORCHID
+			.setTraits(EnumAllele.Fertility.NORMAL, EnumAllele.Lifespan.LONG, EnumAllele.Sappiness.LOW)
+			.setPH(EnumAcidity.ACID, EnumTolerance.NONE)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.BOTH_1)
+			.setStemColor(EnumFlowerColor.GREEN);
+
+		FlowerSpecies.ALLIUM
+			.setTraits(EnumAllele.Fertility.NORMAL, EnumAllele.Lifespan.NORMAL, EnumAllele.Sappiness.LOW)
+			.setPH(EnumAcidity.ALKALINE, EnumTolerance.DOWN_1)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.DOWN_1);
+
+		FlowerSpecies.BLUET
+			.setTraits(EnumAllele.Fertility.LOW, EnumAllele.Lifespan.NORMAL, EnumAllele.Sappiness.LOWER)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.DOWN_1)
+			.setMoisture(EnumMoisture.DAMP, EnumTolerance.NONE)
+			.setStemColor(EnumFlowerColor.OLIVE_DRAB);
+
+		FlowerSpecies.TULIP
+			.setTraits(EnumAllele.Fertility.NORMAL, EnumAllele.Lifespan.LONG, EnumAllele.Sappiness.AVERAGE)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.BOTH_1)
+			.setStemColor(EnumFlowerColor.OLIVE_DRAB);
+
+		FlowerSpecies.DAISY
+			.setTraits(EnumAllele.Fertility.NORMAL, EnumAllele.Lifespan.NORMAL, EnumAllele.Sappiness.LOW)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.DOWN_1)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.DOWN_1)
+			.setTemperature(EnumTemperature.WARM, EnumTolerance.BOTH_2)
+			.setStemColor(EnumFlowerColor.OLIVE_DRAB);
+
+		FlowerSpecies.CORNFLOWER
+			.setTraits(EnumAllele.Fertility.HIGH, EnumAllele.Lifespan.SHORTER, EnumAllele.Sappiness.LOW)
+			.setMutation(FlowerSpecies.DANDELION, FlowerSpecies.TULIP, 10)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1)
+			.setStemColor(EnumFlowerColor.OLIVE_DRAB);
+
+		FlowerSpecies.PANSY
+			.setTraits(EnumAllele.Fertility.NORMAL, EnumAllele.Lifespan.SHORTENED, EnumAllele.Sappiness.AVERAGE)
+			.setMutation(FlowerSpecies.TULIP, FlowerSpecies.VIOLA, 5)
+			.setPH(EnumAcidity.ACID, EnumTolerance.NONE)
+			.setTemperature(EnumTemperature.WARM, EnumTolerance.DOWN_1)
+			.setStemColor(EnumFlowerColor.SEA_GREEN);
+
+		FlowerSpecies.IRIS
+			.setTraits(EnumAllele.Fertility.HIGH, EnumAllele.Lifespan.NORMAL, EnumAllele.Sappiness.AVERAGE)
+			.setMutation(FlowerSpecies.ORCHID, FlowerSpecies.VIOLA, 10)
+			.setPH(EnumAcidity.ACID, EnumTolerance.NONE)
+			.setTemperature(EnumTemperature.WARM, EnumTolerance.DOWN_1)
+			.setStemColor(EnumFlowerColor.SEA_GREEN);
+
+		FlowerSpecies.LAVENDER
+			.setTraits(EnumAllele.Fertility.HIGH, EnumAllele.Lifespan.NORMAL, EnumAllele.Sappiness.LOW)
+			.setMutation(FlowerSpecies.ALLIUM, FlowerSpecies.VIOLA, 10)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.UP_1)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.DOWN_1)
+			.setTemperature(EnumTemperature.WARM, EnumTolerance.DOWN_1)
+			.setStemColor(EnumFlowerColor.GREEN);
+
+		FlowerSpecies.VIOLA
+			.setTraits(EnumAllele.Fertility.NORMAL, EnumAllele.Lifespan.SHORTENED, EnumAllele.Sappiness.AVERAGE)
+			.setMutation(FlowerSpecies.ORCHID, FlowerSpecies.POPPY, 15)
+			.setPH(EnumAcidity.ACID, EnumTolerance.NONE)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.DOWN_1)
+			.setStemColor(EnumFlowerColor.OLIVE_DRAB);
+
+		FlowerSpecies.DAFFODIL
+			.setTraits(EnumAllele.Fertility.HIGH, EnumAllele.Lifespan.ELONGATED, EnumAllele.Sappiness.AVERAGE)
+			.setMutation(FlowerSpecies.DANDELION, FlowerSpecies.POPPY, 10)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.DOWN_1)
+			.setStemColor(EnumFlowerColor.GREEN);
+
+		FlowerSpecies.ASTER
+			.setTraits(EnumAllele.Fertility.NORMAL, EnumAllele.Lifespan.NORMAL, EnumAllele.Sappiness.HIGHER)
+			.setMutation(FlowerSpecies.DAISY, FlowerSpecies.TULIP, 10)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1)
+			.setStemColor(EnumFlowerColor.GREEN);
+
+		FlowerSpecies.LILAC
+			.setTraits(EnumAllele.Fertility.LOW, EnumAllele.Lifespan.LONGER, EnumAllele.Sappiness.AVERAGE)
+			.setPH(EnumAcidity.ALKALINE, EnumTolerance.DOWN_1)
+			.setStemColor(EnumFlowerColor.OLIVE_DRAB);
+
+		FlowerSpecies.ROSE
+			.setTraits(EnumAllele.Fertility.LOW, EnumAllele.Lifespan.LONGER, EnumAllele.Sappiness.HIGH)
+			.setPH(EnumAcidity.ACID, EnumTolerance.UP_1)
+			.setStemColor(EnumFlowerColor.GREEN);
+
+		FlowerSpecies.PEONY
+			.setTraits(EnumAllele.Fertility.LOW, EnumAllele.Lifespan.LONG, EnumAllele.Sappiness.AVERAGE)
+			.setPH(EnumAcidity.ALKALINE, EnumTolerance.DOWN_1)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.UP_1)
+			.setStemColor(EnumFlowerColor.DARK_GREEN);
+
+		FlowerSpecies.MARIGOLD
+			.setTraits(EnumAllele.Fertility.HIGH, EnumAllele.Lifespan.SHORTER, EnumAllele.Sappiness.AVERAGE)
+			.setMutation(FlowerSpecies.DAISY, FlowerSpecies.DANDELION, 10)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.DOWN_1)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.UP_1)
+			.setTemperature(EnumTemperature.WARM, EnumTolerance.BOTH_2)
+			.setStemColor(EnumFlowerColor.GREEN);
+
+		FlowerSpecies.HYDRANGEA
+			.setTraits(EnumAllele.Fertility.LOW, EnumAllele.Lifespan.LONGER, EnumAllele.Sappiness.HIGH)
+			.setMutation(FlowerSpecies.PEONY, FlowerSpecies.BLUET, 10)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1)
+			.setMoisture(EnumMoisture.DAMP, EnumTolerance.NONE)
+			.setStemColor(EnumFlowerColor.DARK_GREEN);
+
+		FlowerSpecies.FOXGLOVE
+			.setTraits(EnumAllele.Fertility.LOW, EnumAllele.Lifespan.SHORTENED, EnumAllele.Sappiness.LOW)
+			.setMutation(FlowerSpecies.LILAC, FlowerSpecies.ZINNIA, 5)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.DOWN_1)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.UP_1)
+			.setStemColor(EnumFlowerColor.DARK_GREEN);
+
+		FlowerSpecies.DAHLIA
+			.setTraits(EnumAllele.Fertility.NORMAL, EnumAllele.Lifespan.NORMAL, EnumAllele.Sappiness.AVERAGE)
+			.setMutation(FlowerSpecies.DAISY, FlowerSpecies.ALLIUM, 15)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.DOWN_1)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.UP_1)
+			.setTemperature(EnumTemperature.NORMAL, EnumTolerance.BOTH_2)
+			.setStemColor(EnumFlowerColor.OLIVE_DRAB);
+
+		FlowerSpecies.CHRYSANTHEMUM
+			.setTraits(EnumAllele.Fertility.HIGH, EnumAllele.Lifespan.LONG, EnumAllele.Sappiness.HIGH)
+			.setMutation(FlowerSpecies.GERANIUM, FlowerSpecies.ROSE, 10)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.DOWN_1)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.DOWN_1)
+			.setStemColor(EnumFlowerColor.MEDIUM_SEA_GREEN);
+
+		FlowerSpecies.CARNATION
+			.setTraits(EnumAllele.Fertility.NORMAL, EnumAllele.Lifespan.NORMAL, EnumAllele.Sappiness.HIGH)
+			.setMutation(FlowerSpecies.DIANTHUS, FlowerSpecies.ROSE, 5)
+			.setPH(EnumAcidity.ALKALINE, EnumTolerance.DOWN_1)
+			.setStemColor(EnumFlowerColor.SEA_GREEN);
+
+		FlowerSpecies.ZINNIA
+			.setTraits(EnumAllele.Fertility.NORMAL, EnumAllele.Lifespan.SHORTER, EnumAllele.Sappiness.AVERAGE)
+			.setMutation(FlowerSpecies.DAHLIA, FlowerSpecies.MARIGOLD, 5)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.DOWN_1)
+			.setTemperature(EnumTemperature.NORMAL, EnumTolerance.BOTH_2)
+			.setStemColor(EnumFlowerColor.MEDIUM_SEA_GREEN);
+
+		FlowerSpecies.PRIMROSE
+			.setTraits(EnumAllele.Fertility.NORMAL, EnumAllele.Lifespan.LONG, EnumAllele.Sappiness.AVERAGE)
+			.setMutation(FlowerSpecies.CHRYSANTHEMUM, FlowerSpecies.AURICULA, 5)
+			.setPH(EnumAcidity.ACID, EnumTolerance.UP_1)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.UP_1)
+			.setStemColor(EnumFlowerColor.GREEN);
+
+		FlowerSpecies.AZALEA
+			.setTraits(EnumAllele.Fertility.NORMAL, EnumAllele.Lifespan.NORMAL, EnumAllele.Sappiness.AVERAGE)
+			.setMutation(FlowerSpecies.ORCHID, FlowerSpecies.GERANIUM, 5)
+			.setPH(EnumAcidity.ACID, EnumTolerance.NONE)
+			.setStemColor(EnumFlowerColor.GREEN);
+
+		FlowerSpecies.GERANIUM
+			.setTraits(EnumAllele.Fertility.LOW, EnumAllele.Lifespan.LONG, EnumAllele.Sappiness.LOW)
+			.setMutation(FlowerSpecies.TULIP, FlowerSpecies.ORCHID, 15)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1)
+			.setTemperature(EnumTemperature.WARM, EnumTolerance.BOTH_1)
+			.setStemColor(EnumFlowerColor.MEDIUM_SEA_GREEN);
+
+		FlowerSpecies.LILY
+			.setTraits(EnumAllele.Fertility.LOW, EnumAllele.Lifespan.LONG, EnumAllele.Sappiness.LOW)
+			.setMutation(FlowerSpecies.TULIP, FlowerSpecies.CHRYSANTHEMUM, 5)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.DOWN_1)
+			.setTemperature(EnumTemperature.WARM, EnumTolerance.BOTH_1)
+			.setStemColor(EnumFlowerColor.GREEN);
+
+		FlowerSpecies.YARROW
+			.setTraits(EnumAllele.Fertility.HIGH, EnumAllele.Lifespan.NORMAL, EnumAllele.Sappiness.LOW)
+			.setMutation(FlowerSpecies.DANDELION, FlowerSpecies.ORCHID, 10)
+			.setPH(EnumAcidity.ACID, EnumTolerance.UP_1)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.DOWN_1)
+			.setStemColor(EnumFlowerColor.DARK_OLIVE_GREEN);
+
+		FlowerSpecies.PETUNIA
+			.setTraits(EnumAllele.Fertility.NORMAL, EnumAllele.Lifespan.SHORTER, EnumAllele.Sappiness.AVERAGE)
+			.setMutation(FlowerSpecies.TULIP, FlowerSpecies.DAHLIA, 5)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.DOWN_1)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.UP_1)
+			.setTemperature(EnumTemperature.WARM, EnumTolerance.UP_1)
+			.setStemColor(EnumFlowerColor.GREEN);
+
+		FlowerSpecies.AGAPANTHUS
+			.setTraits(EnumAllele.Fertility.NORMAL, EnumAllele.Lifespan.NORMAL, EnumAllele.Sappiness.LOW)
+			.setMutation(FlowerSpecies.ALLIUM, FlowerSpecies.GERANIUM, 5)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.DOWN_1)
+			.setTemperature(EnumTemperature.WARM, EnumTolerance.BOTH_1)
+			.setStemColor(EnumFlowerColor.DARK_OLIVE_GREEN);
+
+		FlowerSpecies.FUCHSIA
+			.setTraits(EnumAllele.Fertility.NORMAL, EnumAllele.Lifespan.SHORTENED, EnumAllele.Sappiness.AVERAGE)
+			.setMutation(FlowerSpecies.FOXGLOVE, FlowerSpecies.DAHLIA, 5)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.UP_1)
+			.setTemperature(EnumTemperature.WARM, EnumTolerance.BOTH_1)
+			.setStemColor(EnumFlowerColor.SEA_GREEN);
+
+		FlowerSpecies.DIANTHUS
+			.setTraits(EnumAllele.Fertility.NORMAL, EnumAllele.Lifespan.SHORT, EnumAllele.Sappiness.HIGH)
+			.setMutation(FlowerSpecies.TULIP, FlowerSpecies.POPPY, 15)
+			.setPH(EnumAcidity.ALKALINE, EnumTolerance.DOWN_1)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.DOWN_1)
+			.setTemperature(EnumTemperature.NORMAL, EnumTolerance.BOTH_2)
+			.setStemColor(EnumFlowerColor.OLIVE_DRAB);
+
+		FlowerSpecies.FORGET
+			.setTraits(EnumAllele.Fertility.NORMAL, EnumAllele.Lifespan.SHORT, EnumAllele.Sappiness.LOWER)
+			.setMutation(FlowerSpecies.ORCHID, FlowerSpecies.BLUET, 10)
+			.setPH(EnumAcidity.ACID, EnumTolerance.NONE)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.UP_1)
+			.setTemperature(EnumTemperature.NORMAL, EnumTolerance.UP_1)
+			.setStemColor(EnumFlowerColor.GREEN);
+
+		FlowerSpecies.ANEMONE
+			.setTraits(EnumAllele.Fertility.HIGH, EnumAllele.Lifespan.NORMAL, EnumAllele.Sappiness.LOW)
+			.setMutation(FlowerSpecies.AQUILEGIA, FlowerSpecies.ROSE, 5)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.UP_1)
+			.setStemColor(EnumFlowerColor.DARK_OLIVE_GREEN);
+
+		FlowerSpecies.AQUILEGIA
+			.setTraits(EnumAllele.Fertility.NORMAL, EnumAllele.Lifespan.NORMAL, EnumAllele.Sappiness.AVERAGE)
+			.setMutation(FlowerSpecies.IRIS, FlowerSpecies.POPPY, 5)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.UP_1)
+			.setStemColor(EnumFlowerColor.MEDIUM_SEA_GREEN);
+
+		FlowerSpecies.EDELWEISS
+			.setTraits(EnumAllele.Fertility.LOW, EnumAllele.Lifespan.NORMAL, EnumAllele.Sappiness.LOWEST)
+			.setMutation(FlowerSpecies.PEONY, FlowerSpecies.BLUET, 5)
+			.setPH(EnumAcidity.ALKALINE, EnumTolerance.DOWN_1)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.DOWN_1)
+			.setTemperature(EnumTemperature.NORMAL, EnumTolerance.DOWN_1)
+			.setStemColor(EnumFlowerColor.DARK_OLIVE_GREEN);
+
+		FlowerSpecies.SCABIOUS
+			.setTraits(EnumAllele.Fertility.NORMAL, EnumAllele.Lifespan.SHORTENED, EnumAllele.Sappiness.LOW)
+			.setMutation(FlowerSpecies.ALLIUM, FlowerSpecies.CORNFLOWER, 5)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.UP_1)
+			.setTemperature(EnumTemperature.NORMAL, EnumTolerance.DOWN_1)
+			.setStemColor(EnumFlowerColor.OLIVE_DRAB);
+
+		FlowerSpecies.CONEFLOWER
+			.setTraits(EnumAllele.Fertility.NORMAL, EnumAllele.Lifespan.NORMAL, EnumAllele.Sappiness.HIGHER)
+			.setMutation(FlowerSpecies.TULIP, FlowerSpecies.CORNFLOWER, 5)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1)
+			.setStemColor(EnumFlowerColor.DARK_OLIVE_GREEN);
+
+		FlowerSpecies.GAILLARDIA
+			.setTraits(EnumAllele.Fertility.HIGH, EnumAllele.Lifespan.LONG, EnumAllele.Sappiness.HIGHER)
+			.setMutation(FlowerSpecies.DANDELION, FlowerSpecies.MARIGOLD, 5)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1)
+			.setMoisture(EnumMoisture.DAMP, EnumTolerance.DOWN_1)
+			.setTemperature(EnumTemperature.NORMAL, EnumTolerance.BOTH_2)
+			.setStemColor(EnumFlowerColor.OLIVE_DRAB);
+
+		FlowerSpecies.AURICULA
+			.setTraits(EnumAllele.Fertility.NORMAL, EnumAllele.Lifespan.ELONGATED, EnumAllele.Sappiness.HIGH)
+			.setMutation(FlowerSpecies.POPPY, FlowerSpecies.GERANIUM, 10)
+			.setPH(EnumAcidity.ACID, EnumTolerance.UP_1)
+			.setMoisture(EnumMoisture.NORMAL, EnumTolerance.UP_1)
+			.setStemColor(EnumFlowerColor.DARK_OLIVE_GREEN);
+
+		FlowerSpecies.CAMELLIA
+			.setTraits(EnumAllele.Fertility.NORMAL, EnumAllele.Lifespan.NORMAL, EnumAllele.Sappiness.HIGH)
+			.setMutation(FlowerSpecies.HYDRANGEA, FlowerSpecies.ROSE, 5)
+			.setPH(EnumAcidity.ACID, EnumTolerance.NONE)
+			.setMoisture(EnumMoisture.DAMP, EnumTolerance.NONE)
+			.setTemperature(EnumTemperature.WARM, EnumTolerance.UP_1)
+			.setStemColor(EnumFlowerColor.DARK_OLIVE_GREEN);
+
+		FlowerSpecies.GOLDENROD
+			.setTraits(EnumAllele.Fertility.HIGH, EnumAllele.Lifespan.NORMAL, EnumAllele.Sappiness.HIGHER)
+			.setMutation(FlowerSpecies.LILAC, FlowerSpecies.MARIGOLD, 10)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.BOTH_1)
+			.setStemColor(EnumFlowerColor.MEDIUM_SEA_GREEN);
+
+		FlowerSpecies.ALTHEA
+			.setTraits(EnumAllele.Fertility.LOW, EnumAllele.Lifespan.ELONGATED, EnumAllele.Sappiness.HIGH)
+			.setMutation(FlowerSpecies.HYDRANGEA, FlowerSpecies.IRIS, 5)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.DOWN_1)
+			.setTemperature(EnumTemperature.WARM, EnumTolerance.BOTH_1)
+			.setStemColor(EnumFlowerColor.DARK_GREEN);
+
+		FlowerSpecies.PENSTEMON
+			.setTraits(EnumAllele.Fertility.LOW, EnumAllele.Lifespan.LONG, EnumAllele.Sappiness.LOW)
+			.setMutation(FlowerSpecies.PEONY, FlowerSpecies.LILAC, 5)
+			.setMoisture(EnumMoisture.DRY, EnumTolerance.UP_1)
+			.setTemperature(EnumTemperature.WARM, EnumTolerance.UP_1)
+			.setStemColor(EnumFlowerColor.OLIVE_DRAB);
+
+		FlowerSpecies.DELPHINIUM
+			.setTraits(EnumAllele.Fertility.LOW, EnumAllele.Lifespan.LONGER, EnumAllele.Sappiness.LOW)
+			.setMutation(FlowerSpecies.LILAC, FlowerSpecies.BLUET, 5)
+			.setMoisture(EnumMoisture.DAMP, EnumTolerance.DOWN_1)
+			.setTemperature(EnumTemperature.NORMAL, EnumTolerance.DOWN_1)
+			.setStemColor(EnumFlowerColor.DARK_SEA_GREEN);
+
+		FlowerSpecies.HOLLYHOCK
+			.setTraits(EnumAllele.Fertility.LOW, EnumAllele.Lifespan.LONG, EnumAllele.Sappiness.HIGH)
+			.setMutation(FlowerSpecies.DELPHINIUM, FlowerSpecies.LAVENDER, 5)
+			.setPH(EnumAcidity.NEUTRAL, EnumTolerance.UP_1)
+			.setStemColor(EnumFlowerColor.GREEN);
+
+		IFlowerRoot flowerRoot = BotanyCore.getFlowerRoot();
+		flowerRoot.addConversion(new ItemStack(Blocks.yellow_flower, 1, 0), FlowerSpecies.DANDELION.getTemplate());
+		flowerRoot.addConversion(new ItemStack(Blocks.red_flower, 1, 0), FlowerSpecies.POPPY.getTemplate());
+		flowerRoot.addConversion(new ItemStack(Blocks.red_flower, 1, 1), FlowerSpecies.ORCHID.getTemplate());
+		flowerRoot.addConversion(new ItemStack(Blocks.red_flower, 1, 2), FlowerSpecies.ALLIUM.getTemplate());
+		flowerRoot.addConversion(new ItemStack(Blocks.red_flower, 1, 3), FlowerSpecies.BLUET.getTemplate());
+		flowerRoot.addConversion(new ItemStack(Blocks.red_flower, 1, 7), FlowerSpecies.TULIP.getTemplate());
+		flowerRoot.addConversion(new ItemStack(Blocks.red_flower, 1, 8), FlowerSpecies.DAISY.getTemplate());
+		flowerRoot.addConversion(new ItemStack(Blocks.double_plant, 1, 1), FlowerSpecies.LILAC.getTemplate());
+		flowerRoot.addConversion(new ItemStack(Blocks.double_plant, 1, 4), FlowerSpecies.ROSE.getTemplate());
+		flowerRoot.addConversion(new ItemStack(Blocks.double_plant, 1, 5), FlowerSpecies.PEONY.getTemplate());
+		flowerRoot.addConversion(new ItemStack(Blocks.red_flower, 1, 6), FlowerSpecies.TULIP.addVariant(EnumFlowerColor.WHITE));
+		flowerRoot.addConversion(new ItemStack(Blocks.red_flower, 1, 4), FlowerSpecies.TULIP.addVariant(EnumFlowerColor.CRIMSON));
+		flowerRoot.addConversion(new ItemStack(Blocks.red_flower, 1, 5), FlowerSpecies.TULIP.addVariant(EnumFlowerColor.DARK_ORANGE));
 
 		for (FlowerSpecies species : values()) {
 			String scientific = species.branchName.substring(0, 1).toUpperCase() + species.branchName.substring(1).toLowerCase();
@@ -371,24 +468,24 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies {
 		}
 	}
 
-	public static void init() {
-	}
-
-	private void setStemColor(EnumFlowerColor green) {
+	private FlowerSpecies setStemColor(EnumFlowerColor green) {
 		stemColor = green;
+		return this;
 	}
 
-	private void setTraits(ForestryAllele.Fertility high, ForestryAllele.Lifespan shortened, ForestryAllele.Sappiness lower) {
-		fert = high;
+	private FlowerSpecies setTraits(EnumAllele.Fertility fertility, EnumAllele.Lifespan shortened, EnumAllele.Sappiness lower) {
+		fert = fertility;
 		life = shortened;
 		sap = lower;
+		return this;
 	}
 
-	private void setMutation(FlowerSpecies dandelion2, FlowerSpecies tulip2, int i) {
-		BotanyCore.getFlowerRoot().registerMutation(new FlowerMutation(dandelion2, tulip2, getTemplate(), i));
+	private FlowerSpecies setMutation(FlowerSpecies dandelion2, FlowerSpecies tulip2, int chance) {
+		BotanyCore.getFlowerRoot().registerMutation(new FlowerMutation(dandelion2, tulip2, getTemplate(), chance));
+		return this;
 	}
 
-	private IAllele[] AddVariant(EnumFlowerColor a, EnumFlowerColor b) {
+	private IAllele[] addVariant(EnumFlowerColor a, EnumFlowerColor b) {
 		IAllele[] template = getTemplate();
 		template[EnumFlowerChromosome.PRIMARY.ordinal()] = a.getAllele();
 		template[EnumFlowerChromosome.SECONDARY.ordinal()] = b.getAllele();
@@ -396,23 +493,26 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies {
 		return template;
 	}
 
-	private void setTemperature(EnumTemperature temperature, EnumTolerance tolerance) {
+	private FlowerSpecies setTemperature(EnumTemperature temperature, EnumTolerance tolerance) {
 		this.temperature = temperature;
 		tempTolerance = tolerance;
+		return this;
 	}
 
-	private void setPH(EnumAcidity temperature, EnumTolerance tolerance) {
+	private FlowerSpecies setPH(EnumAcidity temperature, EnumTolerance tolerance) {
 		pH = temperature;
 		pHTolerance = tolerance;
+		return this;
 	}
 
-	private void setMoisture(EnumMoisture temperature, EnumTolerance tolerance) {
+	private FlowerSpecies setMoisture(EnumMoisture temperature, EnumTolerance tolerance) {
 		moisture = temperature;
 		moistureTolerance = tolerance;
+		return this;
 	}
 
-	private IAllele[] AddVariant(EnumFlowerColor a) {
-		return AddVariant(a, a);
+	private IAllele[] addVariant(EnumFlowerColor a) {
+		return addVariant(a, a);
 	}
 
 	public List<IAllele[]> getVariants() {
@@ -421,7 +521,7 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies {
 
 	@Override
 	public String getName() {
-		return name;
+		return I18N.localise(Botany.instance, "flower." + name);
 	}
 
 	@Override
@@ -494,17 +594,18 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies {
 	}
 
 	public IAllele[] getTemplate() {
+		forestry.core.genetics.alleles.AlleleHelper alleleHelper = forestry.core.genetics.alleles.AlleleHelper.instance;
 		IAllele[] template = FlowerTemplates.getDefaultTemplate();
 		template[0] = this;
-		template[EnumFlowerChromosome.PRIMARY.ordinal()] = primaryColor.getAllele();
-		template[EnumFlowerChromosome.SECONDARY.ordinal()] = secondaryColor.getAllele();
-		template[EnumFlowerChromosome.TEMPERATURE_TOLERANCE.ordinal()] = Binnie.Genetics.getToleranceAllele(tempTolerance);
-		template[EnumFlowerChromosome.PH_TOLERANCE.ordinal()] = Binnie.Genetics.getToleranceAllele(pHTolerance);
-		template[EnumFlowerChromosome.HUMIDITY_TOLERANCE.ordinal()] = Binnie.Genetics.getToleranceAllele(moistureTolerance);
-		template[EnumFlowerChromosome.FERTILITY.ordinal()] = fert.getAllele();
-		template[EnumFlowerChromosome.LIFESPAN.ordinal()] = life.getAllele();
-		template[EnumFlowerChromosome.SAPPINESS.ordinal()] = sap.getAllele();
-		template[EnumFlowerChromosome.STEM.ordinal()] = stemColor.getAllele();
+		alleleHelper.set(template, EnumFlowerChromosome.PRIMARY, AlleleHelper.getAllele(primaryColor));
+		alleleHelper.set(template, EnumFlowerChromosome.SECONDARY, AlleleHelper.getAllele(secondaryColor));
+		alleleHelper.set(template, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, AlleleHelper.getAllele(tempTolerance));
+		alleleHelper.set(template, EnumFlowerChromosome.PH_TOLERANCE, AlleleHelper.getAllele(pHTolerance));
+		alleleHelper.set(template, EnumFlowerChromosome.HUMIDITY_TOLERANCE, AlleleHelper.getAllele(moistureTolerance));
+		alleleHelper.set(template, EnumFlowerChromosome.FERTILITY, AlleleHelper.getAllele(fert));
+		alleleHelper.set(template, EnumFlowerChromosome.LIFESPAN, AlleleHelper.getAllele(life));
+		alleleHelper.set(template, EnumFlowerChromosome.SAPPINESS, AlleleHelper.getAllele(sap));
+		alleleHelper.set(template, EnumFlowerChromosome.STEM, AlleleHelper.getAllele(stemColor));
 		return template;
 	}
 

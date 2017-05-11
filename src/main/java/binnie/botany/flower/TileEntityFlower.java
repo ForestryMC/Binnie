@@ -559,25 +559,25 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 
 	public int getPrimaryColor() {
 		return (renderInfo == null) ?
-			EnumFlowerColor.Red.getColor(false) :
+			EnumFlowerColor.RED.getColor(false) :
 			renderInfo.primary.getColor(isWilted());
 	}
 
 	public int getSecondaryColor() {
 		return (renderInfo == null) ?
-			EnumFlowerColor.Red.getColor(false) :
+			EnumFlowerColor.RED.getColor(false) :
 			renderInfo.secondary.getColor(isWilted());
 	}
 
 	public int getStemColour() {
 		return (renderInfo == null) ?
-			EnumFlowerColor.Green.getColor(false) :
+			EnumFlowerColor.GREEN.getColor(false) :
 			renderInfo.stem.getColor(isWilted());
 	}
 
 	public IFlowerType getType() {
 		return (renderInfo == null) ?
-			EnumFlowerType.Poppy :
+			EnumFlowerType.POPPY :
 			renderInfo.type;
 	}
 

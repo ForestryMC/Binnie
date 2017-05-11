@@ -7,6 +7,8 @@ import binnie.botany.api.EnumMoisture;
 import binnie.botany.api.EnumSoilType;
 import binnie.botany.api.gardening.IBlockSoil;
 import binnie.core.BinnieCore;
+import binnie.core.util.I18N;
+import binnie.genetics.genetics.AlleleHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -47,7 +49,7 @@ public class ItemSoilMeter extends Item {
 				EnumChatFormatting.LIGHT_PURPLE,
 			};
 			String info = "Type: ";
-			info += colors[type.ordinal()] + type.getLocalisedName() + EnumChatFormatting.RESET;
+			info += colors[type.ordinal()] + AlleleHelper.toDisplay(type) + EnumChatFormatting.RESET;
 
 			colors = new EnumChatFormatting[]{
 				EnumChatFormatting.YELLOW,
@@ -55,7 +57,7 @@ public class ItemSoilMeter extends Item {
 				EnumChatFormatting.BLUE,
 			};
 			info += ", Moisture: ";
-			info += colors[moisture.ordinal()] + moisture.getLocalisedName() + EnumChatFormatting.RESET;
+			info += colors[moisture.ordinal()] + AlleleHelper.toDisplay(moisture) + EnumChatFormatting.RESET;
 
 			colors = new EnumChatFormatting[]{
 				EnumChatFormatting.RED,
@@ -63,7 +65,7 @@ public class ItemSoilMeter extends Item {
 				EnumChatFormatting.AQUA,
 			};
 			info += ", pH: ";
-			info += colors[pH.ordinal()] + pH.getLocalisedName() + EnumChatFormatting.RESET;
+			info += colors[pH.ordinal()] + AlleleHelper.toDisplay(pH) + EnumChatFormatting.RESET;
 			IChatComponent chat = new ChatComponentText(info);
 			player.addChatMessage(chat);
 		}
@@ -77,7 +79,7 @@ public class ItemSoilMeter extends Item {
 	}
 
 	@Override
-	public String getItemStackDisplayName(ItemStack i) {
-		return "Soil Meter";
+	public String getItemStackDisplayName(ItemStack stack) {
+		return I18N.localise(Botany.instance, "item.soilMeter.name");
 	}
 }

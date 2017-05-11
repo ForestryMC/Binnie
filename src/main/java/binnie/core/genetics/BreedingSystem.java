@@ -417,7 +417,7 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 		return null;
 	}
 
-	public abstract int getColour();
+	public abstract int getColor();
 
 	public String getAlleleName(IChromosomeType chromosome, IAllele allele) {
 		if (allele instanceof IAlleleBoolean) {

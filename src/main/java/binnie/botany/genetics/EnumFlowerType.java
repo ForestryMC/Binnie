@@ -7,53 +7,53 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 
 public enum EnumFlowerType implements IFlowerType {
-	Dandelion,
-	Poppy,
-	Orchid,
-	Allium,
-	Bluet,
-	Tulip,
-	Daisy,
-	Cornflower,
-	Pansy,
-	Iris,
-	Lavender(2),
-	Viola,
-	Daffodil,
-	Dahlia,
-	Peony(2),
-	Rose(2),
-	Lilac(2),
-	Hydrangea(2),
-	Foxglove(2),
-	Zinnia,
-	Mums,
-	Marigold,
-	Geranium,
-	Azalea,
-	Primrose,
-	Aster,
-	Carnation,
-	Lily,
-	Yarrow,
-	Petunia,
-	Agapanthus,
-	Fuchsia,
-	Dianthus,
-	Forget,
-	Anemone,
-	Aquilegia,
-	Edelweiss,
-	Scabious,
-	Coneflower,
-	Gaillardia,
-	Auricula,
-	Camellia(2),
-	Goldenrod(2),
-	Althea(2),
-	Penstemon(2),
-	Delphinium(2),
-	Hollyhock(2);
+	DANDELION,
+	POPPY,
+	ORCHID,
+	ALLIUM,
+	BLUET,
+	TULIP,
+	DAISY,
+	CORNFLOWER,
+	PANSY,
+	IRIS,
+	LAVENDER(2),
+	VIOLA,
+	DAFFODIL,
+	DAHLIA,
+	PEONY(2),
+	ROSE(2),
+	LILAC(2),
+	HYDRANGEA(2),
+	FOXGLOVE(2),
+	ZINNIA,
+	MUMS,
+	MARIGOLD,
+	GERANIUM,
+	AZALEA,
+	PRIMROSE,
+	ASTER,
+	CARNATION,
+	LILY,
+	YARROW,
+	PETUNIA,
+	AGAPANTHUS,
+	FUCHSIA,
+	DIANTHUS,
+	FORGET,
+	ANEMONE,
+	AQUILEGIA,
+	EDELWEISS,
+	SCABIOUS,
+	CONEFLOWER,
+	GAILLARDIA,
+	AURICULA,
+	CAMELLIA(2),
+	GOLDENROD(2),
+	ALTHEA(2),
+	PENSTEMON(2),
+	DELPHINIUM(2),
+	HOLLYHOCK(2);
 
 	protected int sections;
 	protected IIcon[] stem;
@@ -107,7 +107,13 @@ public enum EnumFlowerType implements IFlowerType {
 
 	@Override
 	public IIcon getVariantIcon(EnumFlowerStage stage, boolean flowered, int section) {
-		return (stage == EnumFlowerStage.SEED) ? seedVariant : ((stage == EnumFlowerStage.POLLEN) ? pollenVariant : (flowered ? variant[section % sections] : blank));
+		if (stage == EnumFlowerStage.SEED) {
+			return seedVariant;
+		}
+		if (stage == EnumFlowerStage.POLLEN) {
+			return pollenVariant;
+		}
+		return flowered ? variant[section % sections] : blank;
 	}
 
 	public void registerIcons(IIconRegister register) {

@@ -1,9 +1,6 @@
-package binnie.extratrees.gen;
+package binnie.extratrees.worldgen;
 
 import binnie.extratrees.genetics.ExtraTreeSpecies;
-import binnie.extratrees.worldgen.BlockType;
-import binnie.extratrees.worldgen.BlockTypeLeaf;
-import binnie.extratrees.worldgen.BlockTypeLog;
 import forestry.api.world.ITreeGenData;
 
 public class WorldGenDefault extends WorldGenTree {

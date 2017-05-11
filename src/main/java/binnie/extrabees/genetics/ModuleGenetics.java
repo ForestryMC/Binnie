@@ -69,6 +69,18 @@ public class ModuleGenetics implements IInitializable {
 				++ebSpeciesCount;
 			}
 		}*/
-		RecipeManagers.carpenterManager.addRecipe(100, Binnie.Liquid.getLiquidStack("water", 2000), null, new ItemStack(ExtraBees.dictionary), "X#X", "YEY", "RDR", '#', Blocks.glass_pane, 'X', Items.gold_ingot, 'Y', "ingotTin", 'R', Items.redstone, 'D', Items.diamond, 'E', Items.emerald);
+		RecipeManagers.carpenterManager.addRecipe(
+			100,
+			Binnie.Liquid.getLiquidStack("water", 2000),
+			null,
+			new ItemStack(ExtraBees.dictionary),
+			"X#X", "YEY", "RDR",
+			'#', Blocks.glass_pane,
+			'X', Items.gold_ingot,
+			'Y', "ingotTin",
+			'R', Items.redstone,
+			'D', Items.diamond,
+			'E', Items.emerald
+		);
 	}
 }

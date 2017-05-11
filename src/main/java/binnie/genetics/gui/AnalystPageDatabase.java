@@ -32,7 +32,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 		super(parent, area);
 		scroll = null;
 		this.isMaster = isMaster;
-		int cOfSystem = system.getColour();
+		int cOfSystem = system.getColor();
 		int cr = (0xFF0000 & cOfSystem) >> 16;
 		int cg = (0xFF00 & cOfSystem) >> 8;
 		int cb = 0xFF & cOfSystem;

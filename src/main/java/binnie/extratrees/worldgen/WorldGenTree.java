@@ -1,4 +1,4 @@
-package binnie.extratrees.gen;
+package binnie.extratrees.worldgen;
 
 import binnie.extratrees.genetics.ExtraTreeSpecies;
 import binnie.extratrees.worldgen.BlockType;

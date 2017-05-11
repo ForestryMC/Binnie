@@ -110,10 +110,6 @@ public class ManagerGenetics extends ManagerBase {
 		return null;
 	}
 
-	public IAllele getToleranceAllele(EnumTolerance tol) {
-		return AlleleManager.alleleRegistry.getAllele(Tolerance.values()[tol.ordinal()].getUID());
-	}
-
 	public int[] getTolerance(EnumTolerance tol) {
 		return Tolerance.values()[tol.ordinal()].getBounds();
 	}

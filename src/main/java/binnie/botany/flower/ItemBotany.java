@@ -3,9 +3,7 @@ package binnie.botany.flower;
 import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
-import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.EnumFlowerStage;
-import binnie.botany.api.IAlleleFlowerSpecies;
 import binnie.botany.api.IFlower;
 import binnie.botany.api.IFlowerColor;
 import binnie.botany.api.IFlowerGenome;
@@ -89,7 +87,12 @@ public abstract class ItemBotany extends Item {
 		IFlowerColor primaryColor = genome.getPrimaryColor();
 		IFlowerColor secondColor = genome.getSecondaryColor();
 		IFlowerColor stemColor = genome.getStemColor();
-		tooltip.add(EnumChatFormatting.YELLOW + primaryColor.getName() + ((primaryColor == secondColor) ? "" : (" and " + secondColor.getName())) + ", " + stemColor.getName() + " Stem");
+
+		if (primaryColor == secondColor) {
+			tooltip.add(EnumChatFormatting.YELLOW + I18N.localise(Botany.instance, "item.tooltip.flowerColor1", primaryColor.getName(), stemColor.getName()));
+		} else {
+			tooltip.add(EnumChatFormatting.YELLOW + I18N.localise(Botany.instance, "item.tooltip.flowerColor2", primaryColor.getName(), secondColor.getName(), stemColor.getName()));
+		}
 
 		if (individual.isAnalyzed()) {
 			if (BinnieCore.proxy.isShiftDown()) {
@@ -109,14 +112,6 @@ public abstract class ItemBotany extends Item {
 
 	protected IIndividual getIndividual(ItemStack itemstack) {
 		return new Flower(itemstack.getTagCompound());
-	}
-
-	private IAlleleFlowerSpecies getPrimarySpecies(ItemStack itemstack) {
-		IFlower tree = BotanyCore.speciesRoot.getMember(itemstack);
-		if (tree == null) {
-			return (IAlleleFlowerSpecies) BotanyCore.speciesRoot.getDefaultTemplate()[EnumFlowerChromosome.SPECIES.ordinal()];
-		}
-		return tree.getGenome().getPrimary();
 	}
 
 	@Override
@@ -180,7 +175,7 @@ public abstract class ItemBotany extends Item {
 	public IIcon getIcon(ItemStack itemstack, int renderPass) {
 		IFlower flower = BotanyCore.speciesRoot.getMember(itemstack);
 		if (flower == null || flower.getGenome() == null || flower.getGenome().getPrimary() == null) {
-			return EnumFlowerType.Allium.getBlank();
+			return EnumFlowerType.ALLIUM.getBlank();
 		}
 
 		IFlowerType type = flower.getGenome().getPrimary().getType();

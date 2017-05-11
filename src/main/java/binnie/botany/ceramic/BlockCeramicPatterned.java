@@ -26,7 +26,7 @@ public class BlockCeramicPatterned extends BlockDesign {
 
 	@Override
 	public ItemStack getCreativeStack(IDesign design) {
-		return ModuleCarpentry.getItemStack(this, CeramicColor.get(EnumFlowerColor.White), CeramicColor.get(EnumFlowerColor.Black), design);
+		return ModuleCarpentry.getItemStack(this, CeramicColor.get(EnumFlowerColor.WHITE), CeramicColor.get(EnumFlowerColor.BLACK), design);
 	}
 
 	@Override

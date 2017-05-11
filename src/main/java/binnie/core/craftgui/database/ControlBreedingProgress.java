@@ -20,7 +20,7 @@ class ControlBreedingProgress extends Control {
 	public ControlBreedingProgress(IWidget parent, int x, int y, int width, int height, BreedingSystem system, float percentage) {
 		super(parent, x, y, width, height);
 		this.percentage = percentage;
-		colour = system.getColour();
+		colour = system.getColor();
 	}
 
 	@Override

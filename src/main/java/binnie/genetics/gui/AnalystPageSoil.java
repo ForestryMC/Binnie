@@ -12,6 +12,7 @@ import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.genetics.Tolerance;
+import binnie.genetics.genetics.AlleleHelper;
 import forestry.api.genetics.EnumTolerance;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
@@ -52,11 +53,10 @@ public class AnalystPageSoil extends ControlAnalystPage {
 				recomMoisture = EnumMoisture.DRY;
 			}
 		} else {
-			if (canTolDamp) {
-				recomMoisture = EnumMoisture.DAMP;
-			}
 			if (canTolDry) {
 				recomMoisture = EnumMoisture.DRY;
+			} else if (canTolDamp) {
+				recomMoisture = EnumMoisture.DAMP;
 			}
 		}
 		EnumAcidity recomPH = EnumAcidity.NEUTRAL;
@@ -84,7 +84,7 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		y += 32;
 		new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 14.0f), "Other Soils", TextJustification.MiddleCenter).setColor(getColor());
 		y += 12;
-		List<ItemStack> stacks = new ArrayList<ItemStack>();
+		List<ItemStack> stacks = new ArrayList<>();
 		for (EnumAcidity a : EnumSet.range(EnumAcidity.ACID, EnumAcidity.ALKALINE)) {
 			for (EnumMoisture b : EnumSet.range(EnumMoisture.DRY, EnumMoisture.DAMP)) {
 				if (Tolerance.canTolerate(pH, a, pHTol) && Tolerance.canTolerate(moisture, b, moistureTol) && (a != recomPH || b != recomMoisture)) {
@@ -106,12 +106,12 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		new ControlToleranceBar<EnumMoisture>(parent, x, y, w, h, EnumMoisture.class) {
 			@Override
 			protected String getName(EnumMoisture value) {
-				return value.getLocalisedName();
+				return AlleleHelper.toDisplay(value);
 			}
 
 			@Override
 			protected int getColour(EnumMoisture value) {
-				return (new int[]{13434828, 6737151, 3368703})[value.ordinal()];
+				return (new int[]{0xccffcc, 0x66ccff, 0x3366ff})[value.ordinal()];
 			}
 		}.setValues(value, tol);
 	}
@@ -120,7 +120,7 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		new ControlToleranceBar<EnumAcidity>(parent, x, y, w, h, EnumAcidity.class) {
 			@Override
 			protected String getName(EnumAcidity value) {
-				return value.getLocalisedName();
+				return AlleleHelper.toDisplay(value);
 			}
 
 			@Override

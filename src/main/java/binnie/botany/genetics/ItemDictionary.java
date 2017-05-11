@@ -3,6 +3,7 @@ package binnie.botany.genetics;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.core.BotanyGUI;
+import binnie.core.util.I18N;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -52,18 +53,15 @@ public class ItemDictionary extends Item {
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		if (stack.getItemDamage() == 0) {
-			Botany.proxy.openGui(BotanyGUI.Database, player, (int) player.posX, (int) player.posY, (int) player.posZ);
-		} else {
-			Botany.proxy.openGui(BotanyGUI.DatabaseNEI, player, (int) player.posX, (int) player.posY, (int) player.posZ);
-		}
+		BotanyGUI guiId = (stack.getItemDamage() == 0) ? BotanyGUI.Database : BotanyGUI.DatabaseNEI;
+		Botany.proxy.openGui(guiId, player, (int) player.posX, (int) player.posY, (int) player.posZ);
 		return stack;
 	}
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		return (stack.getItemDamage() == 0) ?
-			"Botanist Database" :
-			"Master Botanist Database";
+		return (stack.getItemDamage() == 0)
+			? I18N.localise(Botany.instance, "item.botanistDatabase.0.name")
+			: I18N.localise(Botany.instance, "item.botanistDatabase.1.name");
 	}
 }

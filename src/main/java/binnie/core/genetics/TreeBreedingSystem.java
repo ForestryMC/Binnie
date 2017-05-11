@@ -7,6 +7,7 @@ import binnie.core.util.UniqueItemStackSet;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.FakeWorld;
 import binnie.extratrees.machines.Lumbermill;
+import binnie.genetics.genetics.AlleleHelper;
 import com.mojang.authlib.GameProfile;
 import forestry.api.arboriculture.EnumGermlingType;
 import forestry.api.arboriculture.EnumTreeChromosome;
@@ -29,6 +30,7 @@ import forestry.api.genetics.IFruitFamily;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IMutation;
 import forestry.api.genetics.ISpeciesRoot;
+import forestry.core.genetics.alleles.EnumAllele;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -71,7 +73,7 @@ public class TreeBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public int getColour() {
+	public int getColor() {
 		return 53006;
 	}
 
@@ -269,8 +271,8 @@ public class TreeBreedingSystem extends BreedingSystem {
 	public void addExtraAlleles(IChromosomeType chromosome, TreeSet<IAllele> alleles) {
 		switch ((EnumTreeChromosome) chromosome) {
 			case FERTILITY:
-				for (ForestryAllele.Saplings a : ForestryAllele.Saplings.values()) {
-					alleles.add(a.getAllele());
+				for (EnumAllele.Saplings saplings : EnumAllele.Saplings.values()) {
+					alleles.add(AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(saplings)));
 				}
 				break;
 
@@ -281,38 +283,38 @@ public class TreeBreedingSystem extends BreedingSystem {
 				break;
 
 			case HEIGHT:
-				for (ForestryAllele.TreeHeight a3 : ForestryAllele.TreeHeight.values()) {
-					alleles.add(a3.getAllele());
+				for (EnumAllele.Height height : EnumAllele.Height.values()) {
+					alleles.add(AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(height)));
 				}
 				break;
 
 			case MATURATION:
-				for (ForestryAllele.Maturation a4 : ForestryAllele.Maturation.values()) {
-					alleles.add(a4.getAllele());
+				for (EnumAllele.Maturation maturation : EnumAllele.Maturation.values()) {
+					alleles.add(AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(maturation)));
 				}
 				break;
 
 			case SAPPINESS:
-				for (ForestryAllele.Sappiness a5 : ForestryAllele.Sappiness.values()) {
-					alleles.add(a5.getAllele());
+				for (EnumAllele.Sappiness sappiness : EnumAllele.Sappiness.values()) {
+					alleles.add(AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(sappiness)));
 				}
 				break;
 
 			case TERRITORY:
-				for (ForestryAllele.Territory a6 : ForestryAllele.Territory.values()) {
-					alleles.add(a6.getAllele());
+				for (EnumAllele.Territory territory : EnumAllele.Territory.values()) {
+					alleles.add(AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(territory)));
 				}
 				break;
 
 			case YIELD:
-				for (ForestryAllele.Yield a7 : ForestryAllele.Yield.values()) {
-					alleles.add(a7.getAllele());
+				for (EnumAllele.Yield yield : EnumAllele.Yield.values()) {
+					alleles.add(AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(yield)));
 				}
 				break;
 
 			case FIREPROOF:
-				for (ForestryAllele.Bool a8 : ForestryAllele.Bool.values()) {
-					alleles.add(a8.getAllele());
+				for (ForestryAllele.Bool bool : ForestryAllele.Bool.values()) {
+					alleles.add(bool.getAllele());
 				}
 				break;
 		}
