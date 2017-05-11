@@ -1,6 +1,5 @@
 package binnie.botany.genetics;
 
-import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumFlowerChromosome;
@@ -20,7 +19,6 @@ import forestry.api.core.IIconProvider;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleRegistry;
 import forestry.api.genetics.IClassification;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
@@ -597,18 +595,17 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies {
 
 	public IAllele[] getTemplate() {
 		forestry.core.genetics.alleles.AlleleHelper alleleHelper = forestry.core.genetics.alleles.AlleleHelper.instance;
-		IAlleleRegistry alleleRegistry = AlleleManager.alleleRegistry;
 		IAllele[] template = FlowerTemplates.getDefaultTemplate();
 		template[0] = this;
-		alleleHelper.set(template, EnumFlowerChromosome.PRIMARY, primaryColor.getAllele());
-		alleleHelper.set(template, EnumFlowerChromosome.SECONDARY, secondaryColor.getAllele());
-		alleleHelper.set(template, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, Binnie.Genetics.getToleranceAllele(tempTolerance));
-		alleleHelper.set(template, EnumFlowerChromosome.PH_TOLERANCE, Binnie.Genetics.getToleranceAllele(pHTolerance));
-		alleleHelper.set(template, EnumFlowerChromosome.HUMIDITY_TOLERANCE, Binnie.Genetics.getToleranceAllele(moistureTolerance));
-		alleleHelper.set(template, EnumFlowerChromosome.FERTILITY, alleleRegistry.getAllele(AlleleHelper.getUid(fert)));
-		alleleHelper.set(template, EnumFlowerChromosome.LIFESPAN, alleleRegistry.getAllele(AlleleHelper.getUid(life)));
-		alleleHelper.set(template, EnumFlowerChromosome.SAPPINESS, alleleRegistry.getAllele(AlleleHelper.getUid(sap)));
-		alleleHelper.set(template, EnumFlowerChromosome.STEM, stemColor.getAllele());
+		alleleHelper.set(template, EnumFlowerChromosome.PRIMARY, AlleleHelper.getAllele(primaryColor));
+		alleleHelper.set(template, EnumFlowerChromosome.SECONDARY, AlleleHelper.getAllele(secondaryColor));
+		alleleHelper.set(template, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, AlleleHelper.getAllele(tempTolerance));
+		alleleHelper.set(template, EnumFlowerChromosome.PH_TOLERANCE, AlleleHelper.getAllele(pHTolerance));
+		alleleHelper.set(template, EnumFlowerChromosome.HUMIDITY_TOLERANCE, AlleleHelper.getAllele(moistureTolerance));
+		alleleHelper.set(template, EnumFlowerChromosome.FERTILITY, AlleleHelper.getAllele(fert));
+		alleleHelper.set(template, EnumFlowerChromosome.LIFESPAN, AlleleHelper.getAllele(life));
+		alleleHelper.set(template, EnumFlowerChromosome.SAPPINESS, AlleleHelper.getAllele(sap));
+		alleleHelper.set(template, EnumFlowerChromosome.STEM, AlleleHelper.getAllele(stemColor));
 		return template;
 	}
 

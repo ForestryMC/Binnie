@@ -4,28 +4,29 @@ import binnie.Binnie;
 import binnie.core.Mods;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.ILogType;
-import binnie.extratrees.gen.WorldGenAlder;
-import binnie.extratrees.gen.WorldGenApple;
-import binnie.extratrees.gen.WorldGenAsh;
-import binnie.extratrees.gen.WorldGenBanana;
-import binnie.extratrees.gen.WorldGenBeech;
-import binnie.extratrees.gen.WorldGenConifer;
-import binnie.extratrees.gen.WorldGenDefault;
-import binnie.extratrees.gen.WorldGenEucalyptus;
-import binnie.extratrees.gen.WorldGenFir;
-import binnie.extratrees.gen.WorldGenHolly;
-import binnie.extratrees.gen.WorldGenJungle;
-import binnie.extratrees.gen.WorldGenLazy;
-import binnie.extratrees.gen.WorldGenMaple;
-import binnie.extratrees.gen.WorldGenPalm;
-import binnie.extratrees.gen.WorldGenPoplar;
-import binnie.extratrees.gen.WorldGenShrub;
-import binnie.extratrees.gen.WorldGenSorbus;
-import binnie.extratrees.gen.WorldGenTree;
-import binnie.extratrees.gen.WorldGenTree2;
-import binnie.extratrees.gen.WorldGenTree3;
-import binnie.extratrees.gen.WorldGenTropical;
-import binnie.extratrees.gen.WorldGenWalnut;
+import binnie.extratrees.worldgen.DefaultTreeGenerator;
+import binnie.extratrees.worldgen.WorldGenAlder;
+import binnie.extratrees.worldgen.WorldGenApple;
+import binnie.extratrees.worldgen.WorldGenAsh;
+import binnie.extratrees.worldgen.WorldGenBanana;
+import binnie.extratrees.worldgen.WorldGenBeech;
+import binnie.extratrees.worldgen.WorldGenConifer;
+import binnie.extratrees.worldgen.WorldGenDefault;
+import binnie.extratrees.worldgen.WorldGenEucalyptus;
+import binnie.extratrees.worldgen.WorldGenFir;
+import binnie.extratrees.worldgen.WorldGenHolly;
+import binnie.extratrees.worldgen.WorldGenJungle;
+import binnie.extratrees.worldgen.WorldGenLazy;
+import binnie.extratrees.worldgen.WorldGenMaple;
+import binnie.extratrees.worldgen.WorldGenPalm;
+import binnie.extratrees.worldgen.WorldGenPoplar;
+import binnie.extratrees.worldgen.WorldGenShrub;
+import binnie.extratrees.worldgen.WorldGenSorbus;
+import binnie.extratrees.worldgen.WorldGenTree;
+import binnie.extratrees.worldgen.WorldGenTree2;
+import binnie.extratrees.worldgen.WorldGenTree3;
+import binnie.extratrees.worldgen.WorldGenTropical;
+import binnie.extratrees.worldgen.WorldGenWalnut;
 import binnie.genetics.genetics.AlleleHelper;
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
@@ -39,7 +40,6 @@ import forestry.api.arboriculture.IAlleleTreeSpecies;
 import forestry.api.arboriculture.IGermlingIconProvider;
 import forestry.api.arboriculture.ITree;
 import forestry.api.arboriculture.ITreeGenerator;
-import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.core.EnumHumidity;
@@ -52,22 +52,16 @@ import forestry.api.genetics.IFruitFamily;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IMutation;
 import forestry.api.world.ITreeGenData;
-import forestry.arboriculture.blocks.BlockForestryLeaves;
-import forestry.arboriculture.genetics.Tree;
 import forestry.arboriculture.render.TextureLeaves;
-import forestry.arboriculture.tiles.TileLeaves;
-import forestry.core.config.Constants;
 import forestry.core.genetics.alleles.EnumAllele;
 import forestry.core.render.TextureManager;
 import forestry.plugins.PluginArboriculture;
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.util.ForgeDirection;
 
 import java.awt.*;
 import java.lang.reflect.Method;
@@ -174,6 +168,8 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 	Candlenut("aleurites", "moluccana", 0x8aa36c, 0x8aa36c, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.Candlenut, WorldGenLazy.Tree.class),
 	DwarfHazel("Corylus", "americana", 0x9bb552, 0x9be152, ILogType.ExtraTreeLog.Hazel, ExtraTreeFruitGene.Hazelnut, WorldGenShrub.Shrub.class);
 
+	public ILogType wood;
+
 	protected ArrayList<IFruitFamily> families;
 	protected int girth;
 	protected Class<? extends WorldGenerator> gen;
@@ -182,7 +178,6 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 	protected int color;
 	protected String binomial;
 	protected String uid;
-	protected ILogType wood;
 	protected String branchName;
 	protected IClassification branch;
 	protected int colorPollineted;
@@ -196,8 +191,8 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 		this.fruit = fruit;
 		this.gen = ((gen == null) ? WorldGenTree.class : gen);
 		this.binomial = binomial;
-		leafType = LeafType.Normal;
-		saplingType = SaplingType.Default;
+		leafType = LeafType.NORMAL;
+		saplingType = SaplingType.DEFAULT;
 		families = new ArrayList<>();
 		girth = 1;
 		colorPollineted = new Color(color).brighter().getRGB();
@@ -206,129 +201,49 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 	}
 
 	public static void init() {
-		String bookArborist = "Arborist Manual";
 		for (ExtraTreeSpecies species : values()) {
 			species.preInit();
 		}
 
-		ExtraTreeSpecies.OrchardApple.finished();
-		ExtraTreeSpecies.SweetCrabapple.finished();
-		ExtraTreeSpecies.FloweringCrabapple.finished();
-		ExtraTreeSpecies.PrairieCrabapple.finished();
-		ExtraTreeSpecies[] pruneSpecies = new ExtraTreeSpecies[]{ExtraTreeSpecies.Blackthorn, ExtraTreeSpecies.CherryPlum, ExtraTreeSpecies.Almond, ExtraTreeSpecies.Apricot, ExtraTreeSpecies.Peach, ExtraTreeSpecies.Nectarine, ExtraTreeSpecies.WildCherry, ExtraTreeSpecies.SourCherry, ExtraTreeSpecies.BlackCherry};
+		ExtraTreeSpecies[] pruneSpecies = new ExtraTreeSpecies[]{
+			ExtraTreeSpecies.Blackthorn,
+			ExtraTreeSpecies.CherryPlum,
+			ExtraTreeSpecies.Almond,
+			ExtraTreeSpecies.Apricot,
+			ExtraTreeSpecies.Peach,
+			ExtraTreeSpecies.Nectarine,
+			ExtraTreeSpecies.WildCherry,
+			ExtraTreeSpecies.SourCherry,
+			ExtraTreeSpecies.BlackCherry
+		};
 		for (ExtraTreeSpecies species2 : pruneSpecies) {
 			IAlleleTreeSpecies citrus = (IAlleleTreeSpecies) AlleleManager.alleleRegistry.getAllele("forestry.treePlum");
-			species2.setWorldGen(citrus.getGenerator().getWorldGenerator(TreeManager.treeRoot.templateAsIndividual(citrus.getRoot().getDefaultTemplate())).getClass());
-			species2.saplingType = SaplingType.Fruit;
-			species2.finished();
+			species2
+				.setWorldGen(citrus.getGenerator().getWorldGenerator(TreeManager.treeRoot.templateAsIndividual(citrus.getRoot().getDefaultTemplate())).getClass())
+				.setSaplingType(SaplingType.FRUIT);
 		}
 
-		ExtraTreeSpecies[] citrusSpecies = new ExtraTreeSpecies[]{ExtraTreeSpecies.Orange, ExtraTreeSpecies.Manderin, ExtraTreeSpecies.Satsuma, ExtraTreeSpecies.Tangerine, ExtraTreeSpecies.Lime, ExtraTreeSpecies.KeyLime, ExtraTreeSpecies.FingerLime, ExtraTreeSpecies.Pomelo, ExtraTreeSpecies.Grapefruit, ExtraTreeSpecies.Kumquat, ExtraTreeSpecies.Citron, ExtraTreeSpecies.BuddhaHand};
+		ExtraTreeSpecies[] citrusSpecies = new ExtraTreeSpecies[]{
+			ExtraTreeSpecies.Orange,
+			ExtraTreeSpecies.Manderin,
+			ExtraTreeSpecies.Satsuma,
+			ExtraTreeSpecies.Tangerine,
+			ExtraTreeSpecies.Lime,
+			ExtraTreeSpecies.KeyLime,
+			ExtraTreeSpecies.FingerLime,
+			ExtraTreeSpecies.Pomelo,
+			ExtraTreeSpecies.Grapefruit,
+			ExtraTreeSpecies.Kumquat,
+			ExtraTreeSpecies.Citron,
+			ExtraTreeSpecies.BuddhaHand
+		};
 		for (ExtraTreeSpecies species3 : citrusSpecies) {
-			species3.setLeafType(LeafType.Jungle);
-			species3.saplingType = SaplingType.Fruit;
 			IAlleleTreeSpecies citrus2 = (IAlleleTreeSpecies) AlleleManager.alleleRegistry.getAllele("forestry.treeLemon");
-			species3.setWorldGen(citrus2.getGenerator().getWorldGenerator(TreeManager.treeRoot.templateAsIndividual(citrus2.getRoot().getDefaultTemplate())).getClass());
-			species3.finished();
+			species3
+				.setWorldGen(citrus2.getGenerator().getWorldGenerator(TreeManager.treeRoot.templateAsIndividual(citrus2.getRoot().getDefaultTemplate())).getClass())
+				.setLeafType(LeafType.JUNGLE)
+				.setSaplingType(SaplingType.FRUIT);
 		}
-
-		ExtraTreeSpecies.Banana.setLeafType(LeafType.Palm);
-		ExtraTreeSpecies.RedBanana.setLeafType(LeafType.Palm);
-		ExtraTreeSpecies.Plantain.setLeafType(LeafType.Palm);
-		ExtraTreeSpecies.Banana.finished();
-		ExtraTreeSpecies.RedBanana.finished();
-		ExtraTreeSpecies.Plantain.finished();
-		ExtraTreeSpecies.Hemlock.setLeafType(LeafType.Conifer);
-		ExtraTreeSpecies.Butternut.finished();
-		ExtraTreeSpecies.Butternut.setGirth(2);
-		ExtraTreeSpecies.Rowan.finished();
-		ExtraTreeSpecies.Hemlock.finished();
-		ExtraTreeSpecies.Hemlock.setGirth(2);
-		ExtraTreeSpecies.Ash.finished();
-		ExtraTreeSpecies.Alder.finished();
-		ExtraTreeSpecies.Beech.finished();
-		ExtraTreeSpecies.CopperBeech.finished();
-		ExtraTreeSpecies.Aspen.finished();
-		ExtraTreeSpecies.Yew.setLeafType(LeafType.Conifer);
-		ExtraTreeSpecies.Cypress.setLeafType(LeafType.Conifer);
-		ExtraTreeSpecies.DouglasFir.setLeafType(LeafType.Conifer);
-		ExtraTreeSpecies.Yew.finished();
-		ExtraTreeSpecies.Cypress.finished();
-		ExtraTreeSpecies.Cypress.saplingType = SaplingType.Poplar;
-		ExtraTreeSpecies.DouglasFir.finished();
-		ExtraTreeSpecies.DouglasFir.setGirth(2);
-		ExtraTreeSpecies.Hazel.finished();
-		ExtraTreeSpecies.DwarfHazel.finished();
-		ExtraTreeSpecies.DwarfHazel.saplingType = SaplingType.Shrub;
-		ExtraTreeSpecies.Sycamore.finished();
-		ExtraTreeSpecies.Whitebeam.finished();
-		ExtraTreeSpecies.Hawthorn.finished();
-		ExtraTreeSpecies.Pecan.finished();
-		ExtraTreeSpecies.Fir.setLeafType(LeafType.Conifer);
-		ExtraTreeSpecies.Cedar.setLeafType(LeafType.Conifer);
-		ExtraTreeSpecies.Sallow.setLeafType(LeafType.Willow);
-		ExtraTreeSpecies.Elm.finished();
-		ExtraTreeSpecies.Elder.finished();
-		ExtraTreeSpecies.Holly.finished();
-		ExtraTreeSpecies.Hornbeam.finished();
-		ExtraTreeSpecies.Sallow.finished();
-		ExtraTreeSpecies.AcornOak.finished();
-		ExtraTreeSpecies.AcornOak.setGirth(2);
-		ExtraTreeSpecies.Fir.finished();
-		ExtraTreeSpecies.Cedar.finished();
-		ExtraTreeSpecies.Cedar.setGirth(2);
-		ExtraTreeSpecies.RedMaple.setLeafType(LeafType.Maple);
-		ExtraTreeSpecies.BalsamFir.setLeafType(LeafType.Conifer);
-		ExtraTreeSpecies.LoblollyPine.setLeafType(LeafType.Conifer);
-		ExtraTreeSpecies.Olive.finished();
-		ExtraTreeSpecies.RedMaple.finished();
-		ExtraTreeSpecies.BalsamFir.finished();
-		ExtraTreeSpecies.LoblollyPine.finished();
-		ExtraTreeSpecies.Sweetgum.finished();
-		ExtraTreeSpecies.Locust.finished();
-		ExtraTreeSpecies.Pear.finished();
-		ExtraTreeSpecies.OsangeOsange.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.OldFustic.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Brazilwood.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Logwood.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Rosewood.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Purpleheart.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.OsangeOsange.finished();
-		ExtraTreeSpecies.OldFustic.finished();
-		ExtraTreeSpecies.Brazilwood.finished();
-		ExtraTreeSpecies.Logwood.finished();
-		ExtraTreeSpecies.Rosewood.finished();
-		ExtraTreeSpecies.Purpleheart.finished();
-		ExtraTreeSpecies.Gingko.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Brazilnut.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.RoseGum.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.SwampGum.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Coffee.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.MonkeyPuzzle.setLeafType(LeafType.Conifer);
-		ExtraTreeSpecies.RainbowGum.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Iroko.finished();
-		ExtraTreeSpecies.Gingko.finished();
-		ExtraTreeSpecies.Brazilnut.finished();
-		ExtraTreeSpecies.RoseGum.finished();
-		ExtraTreeSpecies.SwampGum.finished();
-		ExtraTreeSpecies.SwampGum.setGirth(2);
-		ExtraTreeSpecies.Box.finished();
-		ExtraTreeSpecies.Clove.finished();
-		ExtraTreeSpecies.Coffee.finished();
-		ExtraTreeSpecies.MonkeyPuzzle.finished();
-		ExtraTreeSpecies.MonkeyPuzzle.setGirth(2);
-		ExtraTreeSpecies.RainbowGum.finished();
-		ExtraTreeSpecies.PinkIvory.finished();
-		ExtraTreeSpecies.Juniper.setLeafType(LeafType.Conifer);
-		ExtraTreeSpecies.Blackcurrant.saplingType = SaplingType.Shrub;
-		ExtraTreeSpecies.Redcurrant.saplingType = SaplingType.Shrub;
-		ExtraTreeSpecies.Blackberry.saplingType = SaplingType.Shrub;
-		ExtraTreeSpecies.Raspberry.saplingType = SaplingType.Shrub;
-		ExtraTreeSpecies.Blueberry.saplingType = SaplingType.Shrub;
-		ExtraTreeSpecies.Cranberry.saplingType = SaplingType.Shrub;
-		ExtraTreeSpecies.Juniper.saplingType = SaplingType.Shrub;
-		ExtraTreeSpecies.Gooseberry.saplingType = SaplingType.Shrub;
-		ExtraTreeSpecies.GoldenRaspberry.saplingType = SaplingType.Shrub;
 
 		citrusSpecies = values();
 		for (ExtraTreeSpecies species3 : citrusSpecies) {
@@ -338,19 +253,9 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 			if (branch == null) {
 				branch = AlleleManager.alleleRegistry.createAndRegisterClassification(IClassification.EnumClassLevel.GENUS, uid, scientific);
 			}
-			(species3.branch = branch).addMemberSpecies(species3);
+			species3.branch = branch;
+			branch.addMemberSpecies(species3);
 		}
-
-		ExtraTreeSpecies.Cinnamon.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Coconut.setLeafType(LeafType.Palm);
-		ExtraTreeSpecies.Cashew.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Avacado.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Nutmeg.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Allspice.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Chilli.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.StarAnise.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Mango.setLeafType(LeafType.Jungle);
-		ExtraTreeSpecies.Starfruit.setLeafType(LeafType.Jungle);
 
 		IFruitFamily familyPrune = AlleleManager.alleleRegistry.getFruitFamily("forestry.prunes");
 		IFruitFamily familyPome = AlleleManager.alleleRegistry.getFruitFamily("forestry.pomes");
@@ -580,6 +485,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 		ExtraTreeSpecies.Banana
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.PALM)
 			.setYield(EnumAllele.Yield.LOW)
 			.setSappiness(EnumAllele.Sappiness.LOW)
 			.setMaturation(EnumAllele.Maturation.FAST);
@@ -587,6 +493,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 		ExtraTreeSpecies.RedBanana
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.PALM)
 			.setFertility(EnumAllele.Saplings.LOW)
 			.setYield(EnumAllele.Yield.LOWER)
 			.setSappiness(EnumAllele.Sappiness.LOWER);
@@ -594,10 +501,12 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 		ExtraTreeSpecies.Plantain
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.PALM)
 			.setHeight(EnumAllele.Height.AVERAGE)
 			.setYield(EnumAllele.Yield.LOWER);
 
 		ExtraTreeSpecies.Butternut
+			.setGirth(2)
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
@@ -712,6 +621,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
+			.setLeafType(LeafType.WILLOW)
 			.setHeight(EnumAllele.Height.LARGE)
 			.setFertility(EnumAllele.Saplings.LOW);
 
@@ -721,9 +631,11 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 			.addFamily(familyNuts)
 			.setHeight(EnumAllele.Height.LARGE)
 			.setYield(EnumAllele.Yield.LOW)
-			.setSappiness(EnumAllele.Sappiness.LOWER);
+			.setSappiness(EnumAllele.Sappiness.LOWER)
+			.setGirth(2);
 
 		ExtraTreeSpecies.Fir
+			.setLeafType(LeafType.CONIFER)
 			.setHeight(EnumAllele.Height.LARGE)
 			.setSappiness(EnumAllele.Sappiness.LOWER)
 			.setMaturation(EnumAllele.Maturation.SLOW);
@@ -735,23 +647,28 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 			.setYield(EnumAllele.Yield.AVERAGE);
 
 		ExtraTreeSpecies.Cedar
+			.setLeafType(LeafType.CONIFER)
 			.setHeight(EnumAllele.Height.SMALLER)
 			.setSappiness(EnumAllele.Sappiness.LOWER)
-			.setMaturation(EnumAllele.Maturation.SLOWER);
+			.setMaturation(EnumAllele.Maturation.SLOWER)
+			.setGirth(2);
 
 		ExtraTreeSpecies.RedMaple
 			.addFamily(familyPome)
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
+			.setLeafType(LeafType.MAPLE)
 			.setFertility(EnumAllele.Saplings.AVERAGE)
 			.setSappiness(EnumAllele.Sappiness.HIGH);
 
 		ExtraTreeSpecies.BalsamFir
+			.setLeafType(LeafType.CONIFER)
 			.setHeight(EnumAllele.Height.AVERAGE)
 			.setSappiness(EnumAllele.Sappiness.LOWER)
 			.setMaturation(EnumAllele.Maturation.SLOW);
 
 		ExtraTreeSpecies.LoblollyPine
+			.setLeafType(LeafType.CONIFER)
 			.setHeight(EnumAllele.Height.SMALLER)
 			.setSappiness(EnumAllele.Sappiness.LOWER)
 			.setMaturation(EnumAllele.Maturation.SLOW);
@@ -784,15 +701,18 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.JUNGLE)
 			.setYield(EnumAllele.Yield.LOWER);
 
 		ExtraTreeSpecies.OldFustic
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.JUNGLE)
 			.setHeight(EnumAllele.Height.SMALLER)
 			.setSappiness(EnumAllele.Sappiness.LOWER);
 
 		ExtraTreeSpecies.Brazilwood
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.JUNGLE)
 			.setHeight(EnumAllele.Height.SMALLER)
 			.setFertility(EnumAllele.Saplings.LOW)
 			.setYield(EnumAllele.Yield.LOWER)
@@ -800,17 +720,20 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 
 		ExtraTreeSpecies.Logwood
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.JUNGLE)
 			.setHeight(EnumAllele.Height.AVERAGE)
 			.setFertility(EnumAllele.Saplings.LOW)
 			.setSappiness(EnumAllele.Sappiness.LOWER);
 
 		ExtraTreeSpecies.Rosewood
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.JUNGLE)
 			.setHeight(EnumAllele.Height.AVERAGE)
 			.setSappiness(EnumAllele.Sappiness.LOWER);
 
 		ExtraTreeSpecies.Purpleheart
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.JUNGLE)
 			.setHeight(EnumAllele.Height.LARGE)
 			.setSappiness(EnumAllele.Sappiness.LOWER);
 
@@ -823,6 +746,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 		ExtraTreeSpecies.Gingko
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.JUNGLE)
 			.setHeight(EnumAllele.Height.LARGE)
 			.setYield(EnumAllele.Yield.LOWER)
 			.setSappiness(EnumAllele.Sappiness.LOW);
@@ -830,12 +754,14 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 		ExtraTreeSpecies.Brazilnut
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.JUNGLE)
 			.setHeight(EnumAllele.Height.LARGER)
 			.setYield(EnumAllele.Yield.LOW)
 			.setSappiness(EnumAllele.Sappiness.LOW);
 
 		ExtraTreeSpecies.RoseGum
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.JUNGLE)
 			.setHeight(EnumAllele.Height.LARGEST)
 			.setFertility(EnumAllele.Saplings.LOWEST)
 			.setYield(EnumAllele.Yield.LOWER)
@@ -844,9 +770,11 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 
 		ExtraTreeSpecies.SwampGum
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.JUNGLE)
 			.setHeight(EnumAllele.Height.SMALLEST)
 			.setFertility(EnumAllele.Saplings.LOWEST)
-			.setMaturation(EnumAllele.Maturation.SLOWER);
+			.setMaturation(EnumAllele.Maturation.SLOWER)
+			.setGirth(2);
 
 		ExtraTreeSpecies.Box
 			.addFamily(familyPome)
@@ -868,6 +796,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 		ExtraTreeSpecies.Coffee
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.JUNGLE)
 			.setHeight(EnumAllele.Height.LARGE)
 			.setYield(EnumAllele.Yield.AVERAGE)
 			.setMaturation(EnumAllele.Maturation.FAST);
@@ -875,13 +804,16 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 		ExtraTreeSpecies.MonkeyPuzzle
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.CONIFER)
 			.setHeight(EnumAllele.Height.AVERAGE)
 			.setYield(EnumAllele.Yield.LOWER)
-			.setSappiness(EnumAllele.Sappiness.LOW);
+			.setSappiness(EnumAllele.Sappiness.LOW)
+			.setGirth(2);
 
 		ExtraTreeSpecies.RainbowGum
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.JUNGLE)
 			.setFertility(EnumAllele.Saplings.LOW)
 			.setYield(EnumAllele.Yield.LOWER);
 
@@ -894,6 +826,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyBerry)
+			.setSaplingType(SaplingType.SHRUB)
 			.setHeight(EnumAllele.Height.SMALLEST)
 			.setFertility(EnumAllele.Saplings.LOW)
 			.setYield(EnumAllele.Yield.AVERAGE)
@@ -904,6 +837,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyBerry)
+			.setSaplingType(SaplingType.SHRUB)
 			.setHeight(EnumAllele.Height.SMALLEST)
 			.setFertility(EnumAllele.Saplings.AVERAGE)
 			.setYield(EnumAllele.Yield.AVERAGE)
@@ -914,6 +848,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyBerry)
+			.setSaplingType(SaplingType.SHRUB)
 			.setHeight(EnumAllele.Height.SMALLEST)
 			.setYield(EnumAllele.Yield.HIGH)
 			.setSappiness(EnumAllele.Sappiness.LOWER)
@@ -923,6 +858,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyBerry)
+			.setSaplingType(SaplingType.SHRUB)
 			.setHeight(EnumAllele.Height.SMALLEST)
 			.setFertility(EnumAllele.Saplings.LOW)
 			.setYield(EnumAllele.Yield.AVERAGE)
@@ -933,6 +869,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyBerry)
+			.setSaplingType(SaplingType.SHRUB)
 			.setHeight(EnumAllele.Height.SMALLEST)
 			.setFertility(EnumAllele.Saplings.AVERAGE)
 			.setYield(EnumAllele.Yield.AVERAGE)
@@ -943,6 +880,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyBerry)
+			.setSaplingType(SaplingType.SHRUB)
 			.setHeight(EnumAllele.Height.SMALLEST)
 			.setFertility(EnumAllele.Saplings.AVERAGE)
 			.setYield(EnumAllele.Yield.HIGH)
@@ -953,6 +891,8 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyBerry)
+			.setLeafType(LeafType.CONIFER)
+			.setSaplingType(SaplingType.SHRUB)
 			.setHeight(EnumAllele.Height.SMALLEST)
 			.setFertility(EnumAllele.Saplings.LOW)
 			.setYield(EnumAllele.Yield.LOW)
@@ -963,6 +903,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyBerry)
+			.setSaplingType(SaplingType.SHRUB)
 			.setHeight(EnumAllele.Height.SMALLEST)
 			.setFertility(EnumAllele.Saplings.HIGH)
 			.setYield(EnumAllele.Yield.HIGH)
@@ -972,6 +913,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
 			.addFamily(familyBerry)
+			.setSaplingType(SaplingType.SHRUB)
 			.setHeight(EnumAllele.Height.SMALLER)
 			.setFertility(EnumAllele.Saplings.LOW)
 			.setYield(EnumAllele.Yield.AVERAGE)
@@ -980,6 +922,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 
 		ExtraTreeSpecies.Cinnamon
 			.addFamily(familyNuts)
+			.setLeafType(LeafType.JUNGLE)
 			.addFamily(familyJungle)
 			.setHeight(EnumAllele.Height.AVERAGE)
 			.setYield(EnumAllele.Yield.LOWER)
@@ -987,6 +930,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 
 		ExtraTreeSpecies.Coconut
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.PALM)
 			.setHeight(EnumAllele.Height.LARGER)
 			.setFertility(EnumAllele.Saplings.LOW)
 			.setYield(EnumAllele.Yield.AVERAGE)
@@ -995,18 +939,21 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 		ExtraTreeSpecies.Cashew
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.JUNGLE)
 			.setYield(EnumAllele.Yield.LOW);
 
 		ExtraTreeSpecies.Avacado
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.JUNGLE)
 			.setHeight(EnumAllele.Height.SMALLEST)
 			.setYield(EnumAllele.Yield.AVERAGE);
 
 		ExtraTreeSpecies.Nutmeg
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.JUNGLE)
 			.setHeight(EnumAllele.Height.SMALLER)
 			.setYield(EnumAllele.Yield.HIGH)
 			.setSappiness(EnumAllele.Sappiness.LOW);
@@ -1014,6 +961,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 		ExtraTreeSpecies.Allspice
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.JUNGLE)
 			.setHeight(EnumAllele.Height.SMALLEST)
 			.setFertility(EnumAllele.Saplings.LOW)
 			.setYield(EnumAllele.Yield.HIGH);
@@ -1021,6 +969,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 		ExtraTreeSpecies.Chilli
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.JUNGLE)
 			.setHeight(EnumAllele.Height.SMALLER)
 			.setYield(EnumAllele.Yield.HIGHER)
 			.setSappiness(EnumAllele.Sappiness.LOWER)
@@ -1029,6 +978,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 		ExtraTreeSpecies.StarAnise
 			.addFamily(familyNuts)
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.JUNGLE)
 			.setHeight(EnumAllele.Height.AVERAGE)
 			.setYield(EnumAllele.Yield.HIGH);
 
@@ -1037,6 +987,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.JUNGLE)
 			.setHeight(EnumAllele.Height.SMALLER)
 			.setFertility(EnumAllele.Saplings.LOW)
 			.setYield(EnumAllele.Yield.AVERAGE)
@@ -1047,6 +998,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 			.addFamily(familyPrune)
 			.addFamily(familyCitrus)
 			.addFamily(familyJungle)
+			.setLeafType(LeafType.JUNGLE)
 			.setYield(EnumAllele.Yield.AVERAGE)
 			.setMaturation(EnumAllele.Maturation.FAST);
 
@@ -1061,26 +1013,34 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 		ExtraTreeSpecies.DwarfHazel
 			.addFamily(familyPrune)
 			.addFamily(familyNuts)
+			.setSaplingType(SaplingType.SHRUB)
 			.setFertility(EnumAllele.Saplings.AVERAGE)
 			.setSappiness(EnumAllele.Sappiness.LOWER)
 			.setMaturation(EnumAllele.Maturation.FASTER);
 
 		ExtraTreeSpecies.Yew
+			.setLeafType(LeafType.CONIFER)
 			.setHeight(EnumAllele.Height.LARGE)
 			.setSappiness(EnumAllele.Sappiness.LOWER);
 
 		ExtraTreeSpecies.Cypress
+			.setLeafType(LeafType.CONIFER)
+			.setSaplingType(SaplingType.POPLAR)
 			.setHeight(EnumAllele.Height.LARGER)
 			.setFertility(EnumAllele.Saplings.LOW)
 			.setSappiness(EnumAllele.Sappiness.LOWER)
 			.setMaturation(EnumAllele.Maturation.SLOW);
 
 		ExtraTreeSpecies.DouglasFir
+			.setLeafType(LeafType.CONIFER)
 			.setHeight(EnumAllele.Height.SMALLER)
 			.setFertility(EnumAllele.Saplings.LOW)
-			.setMaturation(EnumAllele.Maturation.SLOWER);
+			.setMaturation(EnumAllele.Maturation.SLOWER)
+			.setGirth(2);
 
 		ExtraTreeSpecies.Hemlock
+			.setLeafType(LeafType.CONIFER)
+			.setGirth(2)
 			.setHeight(EnumAllele.Height.AVERAGE)
 			.setFertility(EnumAllele.Saplings.LOW)
 			.setMaturation(EnumAllele.Maturation.SLOWER);
@@ -1104,12 +1064,14 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 		return this;
 	}
 
-	private void setWorldGen(Class<? extends WorldGenerator> gen) {
+	private ExtraTreeSpecies setWorldGen(Class<? extends WorldGenerator> gen) {
 		this.gen = gen;
+		return this;
 	}
 
-	private void setGirth(int i) {
-		template[EnumTreeChromosome.GIRTH.ordinal()] = AlleleManager.alleleRegistry.getAllele("forestry.i" + i + "d");
+	private ExtraTreeSpecies setGirth(int girth) {
+		template[EnumTreeChromosome.GIRTH.ordinal()] = AlleleHelper.getAllele(girth);
+		return this;
 	}
 
 	public void preInit() {
@@ -1119,7 +1081,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 			template[EnumTreeChromosome.FRUITS.ordinal()] = fruit;
 		}
 
-		template[EnumTreeChromosome.GIRTH.ordinal()] = AlleleManager.alleleRegistry.getAllele("forestry.i" + girth + "d");
+		template[EnumTreeChromosome.GIRTH.ordinal()] = AlleleHelper.getAllele(girth);
 		IClassification clas = AlleleManager.alleleRegistry.getClassification("trees." + branch);
 		if (clas != null) {
 			clas.addMemberSpecies(this);
@@ -1194,57 +1156,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 
 	@Override
 	public ITreeGenerator getGenerator() {
-		return new ITreeGenerator() {
-
-			@Override
-			public void setLogBlock(ITreeGenome arg0, World arg1, int arg2, int arg3, int arg4, ForgeDirection arg5) {
-				if (wood != null)
-					wood.placeBlock(arg1, arg2, arg3, arg4);
-			}
-
-			@Override
-			public void setLeaves(ITreeGenome genome, World world, GameProfile owner, int x, int y, int z, boolean decorative) {
-				boolean placed = world.setBlock(x, y, z, PluginArboriculture.blocks.leaves, 0, Constants.FLAG_BLOCK_SYNCH_AND_UPDATE);
-				if (!placed) {
-					return;
-				}
-
-				Block block = world.getBlock(x, y, z);
-				if (PluginArboriculture.blocks.leaves != block) {
-					world.setBlockToAir(x, y, z);
-					return;
-				}
-
-				TileLeaves tileLeaves = BlockForestryLeaves.getLeafTile(world, x, y, z);
-				if (tileLeaves == null) {
-					world.setBlockToAir(x, y, z);
-					return;
-				}
-
-				tileLeaves.setOwner(owner);
-				if (decorative) {
-					tileLeaves.setDecorative();
-				}
-
-				tileLeaves.setTree(new Tree(genome));
-				world.markBlockForUpdate(x, y, z);
-			}
-
-			@Override
-			public void setLogBlock(World world, int x, int y, int z, ForgeDirection direction) {
-				wood.placeBlock(world, x, y, z);
-			}
-
-			@Override
-			public void setLeaves(World world, GameProfile player, int x, int y, int z, boolean arg5) {
-
-			}
-
-			@Override
-			public WorldGenerator getWorldGenerator(ITreeGenData tree) {
-				return getGenerator(tree);
-			}
-		};
+		return new DefaultTreeGenerator(this);
 	}
 
 	public WorldGenerator getGenerator(ITreeGenData tree) {
@@ -1260,15 +1172,20 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 
 	protected ExtraTreeSpecies setLeafType(LeafType type) {
 		leafType = type;
-		if (leafType == LeafType.Conifer) {
-			saplingType = SaplingType.Conifer;
+		if (leafType == LeafType.CONIFER) {
+			saplingType = SaplingType.CONIFER;
 		}
-		if (leafType == LeafType.Jungle) {
-			saplingType = SaplingType.Jungle;
+		if (leafType == LeafType.JUNGLE) {
+			saplingType = SaplingType.JUNGLE;
 		}
-		if (leafType == LeafType.Palm) {
-			saplingType = SaplingType.Palm;
+		if (leafType == LeafType.PALM) {
+			saplingType = SaplingType.PALM;
 		}
+		return this;
+	}
+
+	protected ExtraTreeSpecies setSaplingType(SaplingType saplingType) {
+		this.saplingType = saplingType;
 		return this;
 	}
 
@@ -1286,7 +1203,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 	}
 
 	public ExtraTreeSpecies setHeight(EnumAllele.Height height) {
-		IAllele allele = AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(height));
+		IAllele allele = AlleleHelper.getAllele(height);
 		if (allele != null) {
 			template[EnumTreeChromosome.HEIGHT.ordinal()] = allele;
 		}
@@ -1294,7 +1211,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 	}
 
 	public ExtraTreeSpecies setSappiness(EnumAllele.Sappiness sappiness) {
-		IAllele allele = AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(sappiness));
+		IAllele allele = AlleleHelper.getAllele(sappiness);
 		if (allele != null) {
 			template[EnumTreeChromosome.SAPPINESS.ordinal()] = allele;
 		}
@@ -1302,7 +1219,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 	}
 
 	public ExtraTreeSpecies setMaturation(EnumAllele.Maturation maturation) {
-		IAllele allele = AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(maturation));
+		IAllele allele = AlleleHelper.getAllele(maturation);
 		if (allele != null) {
 			template[EnumTreeChromosome.MATURATION.ordinal()] = allele;
 		}
@@ -1310,7 +1227,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 	}
 
 	public ExtraTreeSpecies setYield(EnumAllele.Yield yield) {
-		IAllele allele = AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(yield));
+		IAllele allele = AlleleHelper.getAllele(yield);
 		if (allele != null) {
 			template[EnumTreeChromosome.YIELD.ordinal()] = allele;
 		}
@@ -1318,14 +1235,11 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 	}
 
 	public ExtraTreeSpecies setFertility(EnumAllele.Saplings saplings) {
-		IAllele allele = AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(saplings));
+		IAllele allele = AlleleHelper.getAllele(saplings);
 		if (allele != null) {
 			template[EnumTreeChromosome.FERTILITY.ordinal()] = allele;
 		}
 		return this;
-	}
-
-	public void finished() {
 	}
 
 	public int getLeafColour(ITree tree) {
@@ -1466,6 +1380,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 					highest = otherAdvance;
 				}
 			}
+
 			if (!exclude.contains(mutation.getAllele1())) {
 				int otherAdvance = getGeneticAdvancement(mutation.getAllele1(), exclude);
 				if (otherAdvance <= highest) {
@@ -1475,13 +1390,6 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 			}
 		}
 		return own + ((highest < 0) ? 0 : highest);
-	}
-
-	public ItemStack[] getLogStacks() {
-		if (wood == null) {
-			return new ItemStack[0];
-		}
-		return new ItemStack[]{wood.getItemStack()};
 	}
 
 	@Override
@@ -1498,11 +1406,15 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 	@Override
 	public IIcon getLeafIcon(boolean pollinated, boolean fancy) {
 		try {
-			if (pollinated)
-				return TextureLeaves.get(EnumLeafType.valueOf(leafType.descript.toUpperCase())).getPollinated();
-			if (fancy)
-				return TextureLeaves.get(EnumLeafType.valueOf(leafType.descript.toUpperCase())).getFancy();
-			return TextureLeaves.get(EnumLeafType.valueOf(leafType.descript.toUpperCase())).getPlain();
+			EnumLeafType leaf = EnumLeafType.valueOf(leafType.description.toUpperCase());
+			TextureLeaves texture = TextureLeaves.get(leaf);
+			if (pollinated) {
+				return texture.getPollinated();
+			}
+			if (fancy) {
+				return texture.getFancy();
+			}
+			return texture.getPlain();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1513,38 +1425,5 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 	@Override
 	public IIcon getIcon(EnumGermlingType type, int renderPass) {
 		return getGermlingIcon(type, renderPass);
-	}
-
-	public enum LeafType {
-		Normal((short) 10, (short) 11, (short) 12, "Deciduous"),
-		Conifer((short) 15, (short) 16, (short) 17, "Conifers"),
-		Jungle((short) 20, (short) 21, (short) 22, "Jungle"),
-		Willow((short) 25, (short) 26, (short) 27, "Willow"),
-		Maple((short) 30, (short) 31, (short) 32, "Maple"),
-		Palm((short) 35, (short) 36, (short) 37, "Palm");
-
-		public short fancyUID;
-		public short plainUID;
-		public short changedUID;
-		public String descript;
-
-		LeafType(short fancyUID, short plainUID, short changedUID, String descript) {
-			this.fancyUID = fancyUID;
-			this.plainUID = plainUID;
-			this.changedUID = changedUID;
-			this.descript = descript;
-		}
-	}
-
-	public enum SaplingType {
-		Default,
-		Jungle,
-		Conifer,
-		Fruit,
-		Poplar,
-		Palm,
-		Shrub;
-
-		protected IIcon[] icon;
 	}
 }

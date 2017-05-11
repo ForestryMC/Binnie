@@ -1,4 +1,4 @@
-package binnie.extratrees.gen;
+package binnie.extratrees.worldgen;
 
 import forestry.api.arboriculture.ITree;
 import forestry.api.world.ITreeGenData;

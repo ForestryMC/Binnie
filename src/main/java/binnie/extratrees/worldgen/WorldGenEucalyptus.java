@@ -1,7 +1,6 @@
-package binnie.extratrees.gen;
+package binnie.extratrees.worldgen;
 
 import binnie.extratrees.block.ILogType;
-import binnie.extratrees.worldgen.BlockTypeLog;
 import forestry.api.arboriculture.ITree;
 import forestry.api.world.ITreeGenData;
 

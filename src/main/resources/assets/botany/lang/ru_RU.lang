@@ -184,6 +184,8 @@ botany.colour.white=Белый
 botany.colour.yellow=Жёлтый
 botany.colour.yellowgreen=Жёлто-зелёный
 
+botany.effect.none=Нет
+
 for.binnie.circuit.garden.dry.manual.fert=Fert. Garden (сухой)
 for.binnie.circuit.garden.dry.acid.manual.fert=Fert. Garden (сухой, кислый)
 for.binnie.circuit.garden.dry.neutral.manual.fert=Fert. Garden (сухой, средний)

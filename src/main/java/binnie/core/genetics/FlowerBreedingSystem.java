@@ -115,8 +115,8 @@ class FlowerBreedingSystem extends BreedingSystem {
 			case PRIMARY:
 			case SECONDARY:
 			case STEM:
-				for (EnumFlowerColor a4 : EnumFlowerColor.values()) {
-					alleles.add(a4.getAllele());
+				for (EnumFlowerColor color : EnumFlowerColor.values()) {
+					alleles.add(color.getAllele());
 				}
 				break;
 

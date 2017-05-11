@@ -4,17 +4,86 @@ import binnie.botany.Botany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
 import binnie.botany.api.EnumSoilType;
+import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.util.I18N;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.EnumTolerance;
+import forestry.api.genetics.IAllele;
 import forestry.core.genetics.alleles.EnumAllele;
 import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.Locale;
 
 public class AlleleHelper {
+	public static IAllele getAllele(EnumTemperature temperature) {
+		return AlleleManager.alleleRegistry.getAllele(getUid(temperature));
+	}
+
+	public static IAllele getAllele(EnumHumidity humidity) {
+		return AlleleManager.alleleRegistry.getAllele(getUid(humidity));
+	}
+
+	public static IAllele getAllele(EnumTolerance tolerance) {
+		return AlleleManager.alleleRegistry.getAllele(getUid(tolerance));
+	}
+
+	public static IAllele getAllele(EnumAllele.Fertility fertility) {
+		return AlleleManager.alleleRegistry.getAllele(getUid(fertility));
+	}
+
+	public static IAllele getAllele(EnumAllele.Territory territory) {
+		return AlleleManager.alleleRegistry.getAllele(getUid(territory));
+	}
+
+	public static IAllele getAllele(EnumAllele.Lifespan lifespan) {
+		return AlleleManager.alleleRegistry.getAllele(getUid(lifespan));
+	}
+
+	public static IAllele getAllele(EnumAllele.Sappiness sappiness) {
+		return AlleleManager.alleleRegistry.getAllele(getUid(sappiness));
+	}
+
+	public static IAllele getAllele(EnumAllele.Speed speed) {
+		return AlleleManager.alleleRegistry.getAllele(getUid(speed));
+	}
+
+	public static IAllele getAllele(EnumAllele.Flowering flowering) {
+		return AlleleManager.alleleRegistry.getAllele(getUid(flowering));
+	}
+
+	public static IAllele getAllele(EnumAllele.Height height) {
+		return AlleleManager.alleleRegistry.getAllele(getUid(height));
+	}
+
+	public static IAllele getAllele(EnumAllele.Maturation maturation) {
+		return AlleleManager.alleleRegistry.getAllele(getUid(maturation));
+	}
+
+	public static IAllele getAllele(EnumAllele.Yield yield) {
+		return AlleleManager.alleleRegistry.getAllele(getUid(yield));
+	}
+
+	public static IAllele getAllele(EnumAllele.Saplings saplings) {
+		return AlleleManager.alleleRegistry.getAllele(getUid(saplings));
+	}
+
+	public static IAllele getAllele(EnumFlowerColor color) {
+		return color.getAllele();
+	}
+
+	public static IAllele getAllele(int number) {
+		return AlleleManager.alleleRegistry.getAllele("forestry.i" + number + "d");
+	}
+
+	public static IAllele getAllele(boolean bool) {
+		if (bool) {
+			return AlleleManager.alleleRegistry.getAllele("forestry.boolTrue");
+		}
+		return AlleleManager.alleleRegistry.getAllele("forestry.boolFalse");
+	}
+
 	public static String toDisplay(EnumTemperature temperature) {
 		return AlleleManager.climateHelper.toDisplay(temperature);
 	}
@@ -34,7 +103,7 @@ public class AlleleHelper {
 	public static String toDisplay(EnumSoilType soilType) {
 		return I18N.localise(Botany.instance, "soil." + soilType.getID());
 	}
-	
+
 	public static String toDisplay(EnumTolerance tolerance) {
 		return toAlleleDisplay("tolerance", tolerance.name());
 	}
@@ -49,6 +118,14 @@ public class AlleleHelper {
 
 	public static String getUid(EnumAllele.Sappiness sappiness) {
 		return getUid("sappiness", sappiness.name());
+	}
+
+	private static String getUid(EnumTemperature temperature) {
+		return getUid("temperature", temperature.name());
+	}
+
+	private static String getUid(EnumHumidity humidity) {
+		return getUid("humidity", humidity.name());
 	}
 
 	public static String getUid(EnumAllele.Saplings saplings) {
@@ -106,15 +183,15 @@ public class AlleleHelper {
 		return getUid(key, valueName, true);
 	}
 
-	protected static String getUid(String key, String valueName, boolean needCapitalize) {
+	private static String getUid(String key, String valueName, boolean needCapitalize) {
 		if (needCapitalize) {
 			valueName = WordUtils.capitalize(valueName.toLowerCase(Locale.ENGLISH));
 		}
 		valueName = valueName.replace("_", "");
 		return "forestry." + key + valueName;
 	}
-	
-	protected static String toAlleleDisplay(String key, String valueName) {
+
+	private static String toAlleleDisplay(String key, String valueName) {
 		String name = valueName.toLowerCase().replace("_", "");
 		return I18N.localise("forestry.allele." + key + "." + name);
 	}

@@ -3,11 +3,11 @@ package binnie.botany.genetics;
 import forestry.api.genetics.IAlleleInteger;
 
 public class AlleleColor implements IAlleleInteger {
-	protected String uid;
-	protected boolean dominant;
-	protected String name;
-	protected int value;
-	protected EnumFlowerColor color;
+	private String uid;
+	private String name;
+	private int value;
+	private EnumFlowerColor color;
+	private boolean dominant = true;
 
 	public AlleleColor(EnumFlowerColor color, String uid, String name, int value) {
 		this.color = color;
@@ -23,7 +23,7 @@ public class AlleleColor implements IAlleleInteger {
 
 	@Override
 	public boolean isDominant() {
-		return true;
+		return dominant;
 	}
 
 	@Override

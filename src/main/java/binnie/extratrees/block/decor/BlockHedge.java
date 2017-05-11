@@ -1,7 +1,7 @@
 package binnie.extratrees.block.decor;
 
 import binnie.extratrees.block.ModuleBlocks;
-import binnie.extratrees.genetics.ExtraTreeSpecies;
+import binnie.extratrees.genetics.LeafType;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.ForestryAPI;
@@ -34,8 +34,8 @@ public class BlockHedge extends Block implements IBlockFence {
 	}
 
 	public static int getColor(int meta) {
-		ExtraTreeSpecies.LeafType type = ExtraTreeSpecies.LeafType.values()[meta % 6];
-		if (type == ExtraTreeSpecies.LeafType.Conifer) {
+		LeafType type = LeafType.values()[meta % 6];
+		if (type == LeafType.CONIFER) {
 			return ColorizerFoliage.getFoliageColorPine();
 		}
 		double d0 = 0.5;
@@ -151,8 +151,8 @@ public class BlockHedge extends Block implements IBlockFence {
 		// ignored
 	}
 
-	private ExtraTreeSpecies.LeafType getType(int meta) {
-		return ExtraTreeSpecies.LeafType.values()[meta % 8];
+	private LeafType getType(int meta) {
+		return LeafType.values()[meta % 8];
 	}
 
 	private boolean isFull(int meta) {
@@ -162,7 +162,7 @@ public class BlockHedge extends Block implements IBlockFence {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
-		ExtraTreeSpecies.LeafType type = getType(meta);
+		LeafType type = getType(meta);
 		return ForestryAPI.textureManager.getIcon(isFull(meta) ? type.plainUID : type.fancyUID);
 	}
 

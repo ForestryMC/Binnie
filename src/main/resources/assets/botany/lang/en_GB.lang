@@ -184,6 +184,8 @@ botany.colour.white=White
 botany.colour.yellow=Yellow
 botany.colour.yellowgreen=Yellow-Green
 
+botany.effect.none=None
+
 for.binnie.circuit.garden.dry.manual.fert=Fert. Garden (Dry)
 for.binnie.circuit.garden.dry.acid.manual.fert=Fert. Garden (Dry, Acidic)
 for.binnie.circuit.garden.dry.neutral.manual.fert=Fert. Garden (Dry, Neutral)

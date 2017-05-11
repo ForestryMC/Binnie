@@ -153,7 +153,7 @@ binniecore.rootFlowers.chromosome.effect.short=Эффект
 binniecore.rootFlowers.chromosome.lifespan.short=Срок жизни
 binniecore.rootFlowers.chromosome.temperature_tolerance.short=Допустимая температура
 binniecore.rootFlowers.chromosome.humidity_tolerance.short=Допустимая влажность
-binniecore.rootFlowers.chromosome.ph_tolerance.short=Допустимая кислотность(pH)
+binniecore.rootFlowers.chromosome.ph_tolerance.short=Допустимая кислотность (pH)
 binniecore.rootFlowers.chromosome.sappiness.short=Нектар
 binniecore.rootFlowers.chromosome.stem.short=Расцветка ствола
 
