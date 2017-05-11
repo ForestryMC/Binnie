@@ -12,7 +12,6 @@ import forestry.api.apiculture.IApiaristTracker;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeMutation;
 import forestry.api.apiculture.IBeeRoot;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IBreedingTracker;
@@ -96,38 +95,38 @@ class BeeBreedingSystem extends BreedingSystem {
 		switch ((EnumBeeChromosome) chromosome) {
 			case FERTILITY:
 				for (EnumAllele.Fertility fertility : EnumAllele.Fertility.values()) {
-					alleles.add(AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(fertility)));
+					alleles.add(AlleleHelper.getAllele(fertility));
 				}
 				break;
 
 			case FLOWERING:
 				for (EnumAllele.Flowering flowering : EnumAllele.Flowering.values()) {
-					alleles.add(AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(flowering)));
+					alleles.add(AlleleHelper.getAllele(flowering));
 				}
 				break;
 
 			case HUMIDITY_TOLERANCE:
 			case TEMPERATURE_TOLERANCE:
 				for (EnumTolerance tolerance : EnumTolerance.values()) {
-					alleles.add(AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(tolerance)));
+					alleles.add(AlleleHelper.getAllele(tolerance));
 				}
 				break;
 
 			case LIFESPAN:
 				for (EnumAllele.Lifespan lifespan : EnumAllele.Lifespan.values()) {
-					alleles.add(AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(lifespan)));
+					alleles.add(AlleleHelper.getAllele(lifespan));
 				}
 				break;
 
 			case SPEED:
 				for (EnumAllele.Speed speed : EnumAllele.Speed.values()) {
-					alleles.add(AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(speed)));
+					alleles.add(AlleleHelper.getAllele(speed));
 				}
 				break;
 
 			case TERRITORY:
-				for (ForestryAllele.Territory a6 : ForestryAllele.Territory.values()) {
-					alleles.add(a6.getAllele());
+				for (EnumAllele.Territory territory : EnumAllele.Territory.values()) {
+					alleles.add(AlleleHelper.getAllele(territory));
 				}
 				break;
 
