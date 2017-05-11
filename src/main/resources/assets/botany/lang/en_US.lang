@@ -38,6 +38,7 @@ botany.item.tooltip.fertility=Fertility: %dx
 botany.item.tooltip.flowerColor1=%1$s, %2$s Stem
 botany.item.tooltip.flowerColor2=%1$s and %2$s, %3$s Stem
 
+botany.item.soilMeter.name=Soil Meter
 botany.item.pigment.name=Pigment
 botany.item.clay.name=Clay
 botany.item.botany.name=%1$s %2$s

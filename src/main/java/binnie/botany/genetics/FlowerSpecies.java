@@ -10,6 +10,7 @@ import binnie.botany.api.IFlowerRoot;
 import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
 import binnie.core.util.I18N;
+import binnie.genetics.genetics.AlleleHelper;
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -23,12 +24,10 @@ import forestry.api.genetics.IAlleleRegistry;
 import forestry.api.genetics.IClassification;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
-import forestry.core.genetics.alleles.AlleleHelper;
 import forestry.core.genetics.alleles.EnumAllele;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -597,7 +596,7 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies {
 	}
 
 	public IAllele[] getTemplate() {
-		AlleleHelper alleleHelper = AlleleHelper.instance;
+		forestry.core.genetics.alleles.AlleleHelper alleleHelper = forestry.core.genetics.alleles.AlleleHelper.instance;
 		IAlleleRegistry alleleRegistry = AlleleManager.alleleRegistry;
 		IAllele[] template = FlowerTemplates.getDefaultTemplate();
 		template[0] = this;
@@ -606,9 +605,9 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies {
 		alleleHelper.set(template, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, Binnie.Genetics.getToleranceAllele(tempTolerance));
 		alleleHelper.set(template, EnumFlowerChromosome.PH_TOLERANCE, Binnie.Genetics.getToleranceAllele(pHTolerance));
 		alleleHelper.set(template, EnumFlowerChromosome.HUMIDITY_TOLERANCE, Binnie.Genetics.getToleranceAllele(moistureTolerance));
-		alleleHelper.set(template, EnumFlowerChromosome.FERTILITY, alleleRegistry.getAllele("forestry.fertility" + WordUtils.capitalize(fert.toString().toLowerCase())));
-		alleleHelper.set(template, EnumFlowerChromosome.LIFESPAN, alleleRegistry.getAllele("forestry.lifespan" + WordUtils.capitalize(life.toString().toLowerCase())));
-		alleleHelper.set(template, EnumFlowerChromosome.SAPPINESS, alleleRegistry.getAllele("forestry.sappiness" + WordUtils.capitalize(sap.toString().toLowerCase())));
+		alleleHelper.set(template, EnumFlowerChromosome.FERTILITY, alleleRegistry.getAllele(AlleleHelper.getUid(fert)));
+		alleleHelper.set(template, EnumFlowerChromosome.LIFESPAN, alleleRegistry.getAllele(AlleleHelper.getUid(life)));
+		alleleHelper.set(template, EnumFlowerChromosome.SAPPINESS, alleleRegistry.getAllele(AlleleHelper.getUid(sap)));
 		alleleHelper.set(template, EnumFlowerChromosome.STEM, stemColor.getAllele());
 		return template;
 	}
