@@ -4,12 +4,12 @@ import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
 import binnie.core.genetics.ForestryAllele;
+import binnie.core.genetics.Tolerance;
 import binnie.core.item.IItemEnum;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.genetics.effect.ExtraBeesEffect;
 import binnie.extrabees.products.EnumHoneyComb;
 import binnie.extrabees.products.ItemHoneyComb;
-import binnie.genetics.genetics.AlleleHelper;
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -24,14 +24,12 @@ import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.core.IIconProvider;
 import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleFlowers;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IClassification;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IMutation;
-import forestry.core.genetics.alleles.EnumAllele;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -257,11 +255,11 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies, IIconProvider {
 		ExtraBeesSpecies.ARID.addProduct(EnumHoneyComb.BARREN, 0.30f);
 		ExtraBeesSpecies.ARID.setHumidity(EnumHumidity.ARID);
 		ExtraBeesSpecies.ARID.setFlowerProvider(ExtraBeesFlowers.DEAD.getUID());
-		ExtraBeesSpecies.ARID.setTemperatureTolerance(EnumTolerance.UP_1);
+		ExtraBeesSpecies.ARID.setTemperatureTolerance(Tolerance.Up1);
 		ExtraBeesSpecies.ARID.setSecondaryColor(aridBody);
 
 		ExtraBeesSpecies.BARREN.importTemplate(ExtraBeesSpecies.ARID);
-		ExtraBeesSpecies.BARREN.setFertility(EnumAllele.Fertility.LOW);
+		ExtraBeesSpecies.BARREN.setFertility(ForestryAllele.Fertility.Low);
 		ExtraBeesSpecies.BARREN.addProduct(EnumHoneyComb.BARREN, 0.30f);
 
 		ExtraBeesSpecies.DESOLATE.addProduct(EnumHoneyComb.BARREN, 0.30f);
@@ -304,11 +302,11 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies, IIconProvider {
 		ExtraBeesSpecies.ROCK.setAllDay();
 		ExtraBeesSpecies.ROCK.setCaveDwelling();
 		ExtraBeesSpecies.ROCK.setTolerantFlyer();
-		ExtraBeesSpecies.ROCK.setTemperatureTolerance(EnumTolerance.BOTH_1);
-		ExtraBeesSpecies.ROCK.setHumidityTolerance(EnumTolerance.BOTH_1);
+		ExtraBeesSpecies.ROCK.setTemperatureTolerance(Tolerance.Both1);
+		ExtraBeesSpecies.ROCK.setHumidityTolerance(Tolerance.Both1);
 		ExtraBeesSpecies.ROCK.setFlowerProvider(ExtraBeesFlowers.ROCK.getUID());
-		ExtraBeesSpecies.ROCK.setFertility(EnumAllele.Fertility.LOW);
-		ExtraBeesSpecies.ROCK.setLifespan(EnumAllele.Lifespan.SHORT);
+		ExtraBeesSpecies.ROCK.setFertility(ForestryAllele.Fertility.Low);
+		ExtraBeesSpecies.ROCK.setLifespan(ForestryAllele.Lifespan.Short);
 		ExtraBeesSpecies.ROCK.setSecondaryColor(rockBody);
 
 		ExtraBeesSpecies.STONE.addProduct(EnumHoneyComb.STONE, 0.30f);
@@ -318,8 +316,8 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies, IIconProvider {
 
 		ExtraBeesSpecies.GRANITE.addProduct(EnumHoneyComb.STONE, 0.30f);
 		ExtraBeesSpecies.GRANITE.importTemplate(ExtraBeesSpecies.STONE);
-		ExtraBeesSpecies.GRANITE.setTemperatureTolerance(EnumTolerance.BOTH_2);
-		ExtraBeesSpecies.GRANITE.setHumidityTolerance(EnumTolerance.BOTH_2);
+		ExtraBeesSpecies.GRANITE.setTemperatureTolerance(Tolerance.Both2);
+		ExtraBeesSpecies.GRANITE.setHumidityTolerance(Tolerance.Both2);
 		ExtraBeesSpecies.GRANITE.setSecondaryColor(rockBody);
 
 		ExtraBeesSpecies.MINERAL.addProduct(EnumHoneyComb.STONE, 0.30f);
@@ -413,8 +411,8 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies, IIconProvider {
 		ExtraBeesSpecies.UNSTABLE.importTemplate(ExtraBeesSpecies.MINERAL);
 		ExtraBeesSpecies.UNSTABLE.addProduct(EnumHoneyComb.BARREN, 0.20f);
 		ExtraBeesSpecies.UNSTABLE.setEffect(ExtraBeesEffect.RADIOACTIVE.getUID());
-		ExtraBeesSpecies.UNSTABLE.setFertility(EnumAllele.Fertility.LOW);
-		ExtraBeesSpecies.UNSTABLE.setLifespan(EnumAllele.Lifespan.SHORTEST);
+		ExtraBeesSpecies.UNSTABLE.setFertility(ForestryAllele.Fertility.Low);
+		ExtraBeesSpecies.UNSTABLE.setLifespan(ForestryAllele.Lifespan.Shortest);
 		ExtraBeesSpecies.UNSTABLE.recessive();
 
 		ExtraBeesSpecies.NUCLEAR.importTemplate(ExtraBeesSpecies.UNSTABLE);
@@ -429,25 +427,25 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies, IIconProvider {
 
 		ExtraBeesSpecies.ANCIENT.importTemplate(ForestryAllele.BeeSpecies.Noble);
 		ExtraBeesSpecies.ANCIENT.addProduct(EnumHoneyComb.OLD, 0.30f);
-		ExtraBeesSpecies.ANCIENT.setLifespan(EnumAllele.Lifespan.ELONGATED);
+		ExtraBeesSpecies.ANCIENT.setLifespan(ForestryAllele.Lifespan.Elongated);
 
 		ExtraBeesSpecies.PRIMEVAL.importTemplate(ExtraBeesSpecies.ANCIENT);
 		ExtraBeesSpecies.PRIMEVAL.addProduct(EnumHoneyComb.OLD, 0.30f);
-		ExtraBeesSpecies.PRIMEVAL.setLifespan(EnumAllele.Lifespan.LONG);
+		ExtraBeesSpecies.PRIMEVAL.setLifespan(ForestryAllele.Lifespan.Long);
 
 		ExtraBeesSpecies.PREHISTORIC.importTemplate(ExtraBeesSpecies.ANCIENT);
 		ExtraBeesSpecies.PREHISTORIC.addProduct(EnumHoneyComb.OLD, 0.30f);
-		ExtraBeesSpecies.PREHISTORIC.setLifespan(EnumAllele.Lifespan.LONGER);
-		ExtraBeesSpecies.PREHISTORIC.setFertility(EnumAllele.Fertility.LOW);
+		ExtraBeesSpecies.PREHISTORIC.setLifespan(ForestryAllele.Lifespan.Longer);
+		ExtraBeesSpecies.PREHISTORIC.setFertility(ForestryAllele.Fertility.Low);
 		ExtraBeesSpecies.PREHISTORIC.recessive();
 
 		ExtraBeesSpecies.RELIC.importTemplate(ExtraBeesSpecies.ANCIENT);
 		ExtraBeesSpecies.RELIC.addProduct(EnumHoneyComb.OLD, 0.30f);
 		ExtraBeesSpecies.RELIC.setHasEffect(true);
-		ExtraBeesSpecies.RELIC.setLifespan(EnumAllele.Lifespan.LONGEST);
+		ExtraBeesSpecies.RELIC.setLifespan(ForestryAllele.Lifespan.Longest);
 
 		ExtraBeesSpecies.COAL.importTemplate(ExtraBeesSpecies.ANCIENT);
-		ExtraBeesSpecies.COAL.setLifespan(EnumAllele.Lifespan.NORMAL);
+		ExtraBeesSpecies.COAL.setLifespan(ForestryAllele.Lifespan.Normal);
 		ExtraBeesSpecies.COAL.addProduct(EnumHoneyComb.OLD, 0.20f);
 		ExtraBeesSpecies.COAL.addSpecialty(EnumHoneyComb.COAL, 0.08f);
 
@@ -482,9 +480,9 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies, IIconProvider {
 		ExtraBeesSpecies.WATER.addProduct(EnumHoneyComb.WATER, 0.30f);
 		ExtraBeesSpecies.WATER.setIsSecret(false);
 		ExtraBeesSpecies.WATER.setTolerantFlyer();
-		ExtraBeesSpecies.WATER.setHumidityTolerance(EnumTolerance.BOTH_1);
+		ExtraBeesSpecies.WATER.setHumidityTolerance(Tolerance.Both1);
 		ExtraBeesSpecies.WATER.setFlowerProvider(ExtraBeesFlowers.WATER.getUID());
-		ExtraBeesSpecies.WATER.setFlowering(EnumAllele.Flowering.SLOW);
+		ExtraBeesSpecies.WATER.setFlowering(ForestryAllele.Flowering.Slow);
 		ExtraBeesSpecies.WATER.setEffect(ExtraBeesEffect.WATER.getUID());
 		ExtraBeesSpecies.WATER.setHumidity(EnumHumidity.DAMP);
 
@@ -504,15 +502,15 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies, IIconProvider {
 
 		ExtraBeesSpecies.GROWING.importTemplate(ForestryAllele.BeeSpecies.Forest);
 		ExtraBeesSpecies.GROWING.addProduct(ItemHoneyComb.VanillaComb.HONEY.get(), 0.35f);
-		ExtraBeesSpecies.GROWING.setFlowering(EnumAllele.Flowering.AVERAGE);
+		ExtraBeesSpecies.GROWING.setFlowering(ForestryAllele.Flowering.Average);
 		ExtraBeesSpecies.GROWING.setFlowerProvider(ExtraBeesFlowers.LEAVES.getUID());
 
 		ExtraBeesSpecies.THRIVING.importTemplate(ExtraBeesSpecies.GROWING);
 		ExtraBeesSpecies.THRIVING.addProduct(ItemHoneyComb.VanillaComb.HONEY.get(), 0.35f);
-		ExtraBeesSpecies.THRIVING.setFlowering(EnumAllele.Flowering.FAST);
+		ExtraBeesSpecies.THRIVING.setFlowering(ForestryAllele.Flowering.Fast);
 
 		ExtraBeesSpecies.BLOOMING.importTemplate(ExtraBeesSpecies.THRIVING);
-		ExtraBeesSpecies.BLOOMING.setFlowering(EnumAllele.Flowering.FASTEST);
+		ExtraBeesSpecies.BLOOMING.setFlowering(ForestryAllele.Flowering.Fastest);
 		ExtraBeesSpecies.BLOOMING.addProduct(ItemHoneyComb.VanillaComb.HONEY.get(), 0.35f);
 		ExtraBeesSpecies.BLOOMING.setFlowerProvider(ExtraBeesFlowers.SAPLING.getUID());
 		ExtraBeesSpecies.BLOOMING.setEffect(ExtraBeesEffect.BONEMEAL_SAPLING.getUID());
@@ -601,13 +599,13 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies, IIconProvider {
 
 		ExtraBeesSpecies.INFECTIOUS.importTemplate(ExtraBeesSpecies.MALICIOUS);
 		ExtraBeesSpecies.INFECTIOUS.addProduct(ItemHoneyComb.VanillaComb.SILKY.get(), 0.25f);
-		ExtraBeesSpecies.INFECTIOUS.setFlowering(EnumAllele.Flowering.SLOW);
+		ExtraBeesSpecies.INFECTIOUS.setFlowering(ForestryAllele.Flowering.Slow);
 		ExtraBeesSpecies.INFECTIOUS.setSecondaryColor(0x069764);
 
 		ExtraBeesSpecies.VIRULENT.importTemplate(ExtraBeesSpecies.INFECTIOUS);
 		ExtraBeesSpecies.VIRULENT.addProduct(ItemHoneyComb.VanillaComb.SILKY.get(), 0.25f);
 		ExtraBeesSpecies.VIRULENT.addSpecialty(EnumHoneyComb.VENOMOUS, 0.12f);
-		ExtraBeesSpecies.VIRULENT.setFlowering(EnumAllele.Flowering.AVERAGE);
+		ExtraBeesSpecies.VIRULENT.setFlowering(ForestryAllele.Flowering.Average);
 		ExtraBeesSpecies.VIRULENT.recessive();
 		ExtraBeesSpecies.VIRULENT.setHasEffect(true);
 		ExtraBeesSpecies.VIRULENT.setSecondaryColor(0x069764);
@@ -617,18 +615,18 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies, IIconProvider {
 		ExtraBeesSpecies.VISCOUS.addProduct(ItemHoneyComb.VanillaComb.SILKY.get(), 0.25f);
 		ExtraBeesSpecies.VISCOUS.setSecondaryColor(0x069764);
 		ExtraBeesSpecies.VISCOUS.setHumidity(EnumHumidity.DAMP);
-		ExtraBeesSpecies.VISCOUS.setSpeed(EnumAllele.Speed.SLOW);
+		ExtraBeesSpecies.VISCOUS.setSpeed(ForestryAllele.Speed.Slow);
 		ExtraBeesSpecies.VISCOUS.setTemperature(EnumTemperature.WARM);
 
 		ExtraBeesSpecies.GLUTINOUS.importTemplate(ExtraBeesSpecies.VISCOUS);
 		ExtraBeesSpecies.GLUTINOUS.addProduct(ItemHoneyComb.VanillaComb.SILKY.get(), 0.25f);
-		ExtraBeesSpecies.GLUTINOUS.setSpeed(EnumAllele.Speed.NORMAL);
+		ExtraBeesSpecies.GLUTINOUS.setSpeed(ForestryAllele.Speed.Norm);
 		ExtraBeesSpecies.GLUTINOUS.setSecondaryColor(0x069764);
 
 		ExtraBeesSpecies.STICKY.importTemplate(ExtraBeesSpecies.GLUTINOUS);
 		ExtraBeesSpecies.STICKY.addProduct(ItemHoneyComb.VanillaComb.SILKY.get(), 0.25f);
 		ExtraBeesSpecies.STICKY.addSpecialty(EnumHoneyComb.SLIME, 0.12f);
-		ExtraBeesSpecies.STICKY.setSpeed(EnumAllele.Speed.FAST);
+		ExtraBeesSpecies.STICKY.setSpeed(ForestryAllele.Speed.Fast);
 		ExtraBeesSpecies.STICKY.setHasEffect(true);
 		ExtraBeesSpecies.STICKY.setSecondaryColor(0x069764);
 
@@ -636,7 +634,7 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies, IIconProvider {
 		ExtraBeesSpecies.CORROSIVE.setHumidity(EnumHumidity.DAMP);
 		ExtraBeesSpecies.CORROSIVE.setTemperature(EnumTemperature.WARM);
 		ExtraBeesSpecies.CORROSIVE.setEffect(ExtraBeesEffect.ACID.getUID());
-		ExtraBeesSpecies.CORROSIVE.setFlowering(EnumAllele.Flowering.AVERAGE);
+		ExtraBeesSpecies.CORROSIVE.setFlowering(ForestryAllele.Flowering.Average);
 		ExtraBeesSpecies.CORROSIVE.addProduct(ItemHoneyComb.VanillaComb.SILKY.get(), 20f);
 		ExtraBeesSpecies.CORROSIVE.recessive();
 		ExtraBeesSpecies.CORROSIVE.setSecondaryColor(0x069764);
@@ -709,9 +707,9 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies, IIconProvider {
 		ExtraBeesSpecies.HAZARDOUS.addProduct(EnumHoneyComb.SALTPETER, 0.12f);
 
 		ExtraBeesSpecies.JADED.importTemplate(ForestryAllele.BeeSpecies.Imperial);
-		ExtraBeesSpecies.JADED.setFertility(EnumAllele.Fertility.MAXIMUM);
-		ExtraBeesSpecies.JADED.setFlowering(EnumAllele.Flowering.MAXIMUM);
-		ExtraBeesSpecies.JADED.setTerritory(EnumAllele.Territory.LARGEST);
+		ExtraBeesSpecies.JADED.setFertility(ForestryAllele.Fertility.Maximum);
+		ExtraBeesSpecies.JADED.setFlowering(ForestryAllele.Flowering.Maximum);
+		ExtraBeesSpecies.JADED.setTerritory(ForestryAllele.Territory.Largest);
 		ExtraBeesSpecies.JADED.addProduct(ItemHoneyComb.VanillaComb.HONEY.get(), 0.30f);
 		ExtraBeesSpecies.JADED.addSpecialty(Mods.Forestry.stack("pollen"), 0.20f);
 		ExtraBeesSpecies.JADED.setHasEffect(true);
@@ -741,8 +739,8 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies, IIconProvider {
 		ExtraBeesSpecies.YELLORIUM.addProduct(EnumHoneyComb.BARREN, 0.20f);
 		ExtraBeesSpecies.YELLORIUM.addSpecialty(EnumHoneyComb.YELLORIUM, 0.02f);
 		ExtraBeesSpecies.YELLORIUM.setEffect(ExtraBeesEffect.RADIOACTIVE.getUID());
-		ExtraBeesSpecies.YELLORIUM.setFertility(EnumAllele.Fertility.LOW);
-		ExtraBeesSpecies.YELLORIUM.setLifespan(EnumAllele.Lifespan.SHORTEST);
+		ExtraBeesSpecies.YELLORIUM.setFertility(ForestryAllele.Fertility.Low);
+		ExtraBeesSpecies.YELLORIUM.setLifespan(ForestryAllele.Lifespan.Shortest);
 
 		ExtraBeesSpecies.CYANITE.importTemplate(ExtraBeesSpecies.YELLORIUM);
 		ExtraBeesSpecies.CYANITE.addProduct(EnumHoneyComb.BARREN, 0.20f);
@@ -1052,32 +1050,32 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies, IIconProvider {
 		}
 	}
 
-	private void setFertility(EnumAllele.Fertility fertility) {
-		template[EnumBeeChromosome.FERTILITY.ordinal()] = AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(fertility));
+	private void setFertility(ForestryAllele.Fertility fertility) {
+		template[EnumBeeChromosome.FERTILITY.ordinal()] = fertility.getAllele();
 	}
 
-	private void setLifespan(EnumAllele.Lifespan lifespan) {
-		template[EnumBeeChromosome.LIFESPAN.ordinal()] = AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(lifespan));
+	private void setLifespan(ForestryAllele.Lifespan lifespan) {
+		template[EnumBeeChromosome.LIFESPAN.ordinal()] = lifespan.getAllele();
 	}
 
-	private void setSpeed(EnumAllele.Speed speed) {
-		template[EnumBeeChromosome.SPEED.ordinal()] = AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(speed));
+	private void setSpeed(ForestryAllele.Speed speed) {
+		template[EnumBeeChromosome.SPEED.ordinal()] = speed.getAllele();
 	}
 
-	private void setTerritory(EnumAllele.Territory territory) {
-		template[EnumBeeChromosome.TERRITORY.ordinal()] = AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(territory));
+	private void setTerritory(ForestryAllele.Territory territory) {
+		template[EnumBeeChromosome.TERRITORY.ordinal()] = territory.getAllele();
 	}
 
-	private void setFlowering(EnumAllele.Flowering flowering) {
-		template[EnumBeeChromosome.FLOWERING.ordinal()] = AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(flowering));
+	private void setFlowering(ForestryAllele.Flowering flowering) {
+		template[EnumBeeChromosome.FLOWERING.ordinal()] = flowering.getAllele();
 	}
 
-	private void setHumidityTolerance(EnumTolerance humidityTolerance) {
-		template[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(humidityTolerance));
+	private void setHumidityTolerance(Tolerance humidityTolerance) {
+		template[EnumBeeChromosome.HUMIDITY_TOLERANCE.ordinal()] = humidityTolerance.getAllele();
 	}
 
-	private void setTemperatureTolerance(EnumTolerance temperatureTolerance) {
-		template[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(temperatureTolerance));
+	private void setTemperatureTolerance(Tolerance temperatureTolerance) {
+		template[EnumBeeChromosome.TEMPERATURE_TOLERANCE.ordinal()] = temperatureTolerance.getAllele();
 	}
 
 	@Override
