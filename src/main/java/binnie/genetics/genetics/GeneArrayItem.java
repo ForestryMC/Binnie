@@ -38,7 +38,7 @@ public class GeneArrayItem implements INBTTagable, IGeneItem {
 	@Override
 	public int getColour(int color) {
 		if (color == 2) {
-			return getBreedingSystem().getColour();
+			return getBreedingSystem().getColor();
 		}
 		return 0xffffff;
 	}

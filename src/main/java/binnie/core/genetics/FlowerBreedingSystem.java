@@ -10,12 +10,16 @@ import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.BinnieCore;
 import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
+import binnie.genetics.genetics.AlleleHelper;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IMutation;
 import forestry.api.genetics.ISpeciesRoot;
+import forestry.core.genetics.alleles.EnumAllele;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
@@ -38,7 +42,7 @@ class FlowerBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public int getColour() {
+	public int getColor() {
 		return 0xde3737;
 	}
 
@@ -79,9 +83,9 @@ class FlowerBreedingSystem extends BreedingSystem {
 	@Override
 	public int[] getActiveTypes() {
 		return new int[]{
-				EnumFlowerStage.FLOWER.ordinal(),
-				EnumFlowerStage.POLLEN.ordinal(),
-				EnumFlowerStage.SEED.ordinal()
+			EnumFlowerStage.FLOWER.ordinal(),
+			EnumFlowerStage.POLLEN.ordinal(),
+			EnumFlowerStage.SEED.ordinal()
 		};
 	}
 
@@ -89,22 +93,22 @@ class FlowerBreedingSystem extends BreedingSystem {
 	public void addExtraAlleles(IChromosomeType chromosome, TreeSet<IAllele> alleles) {
 		switch ((EnumFlowerChromosome) chromosome) {
 			case FERTILITY:
-				for (ForestryAllele.Fertility a : ForestryAllele.Fertility.values()) {
-					alleles.add(a.getAllele());
+				for (EnumAllele.Fertility fertility : EnumAllele.Fertility.values()) {
+					alleles.add(AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(fertility)));
 				}
 				break;
 
 			case LIFESPAN:
-				for (ForestryAllele.Lifespan a2 : ForestryAllele.Lifespan.values()) {
-					alleles.add(a2.getAllele());
+				for (EnumAllele.Lifespan lifespan : EnumAllele.Lifespan.values()) {
+					alleles.add(AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(lifespan)));
 				}
 				break;
 
 			case HUMIDITY_TOLERANCE:
 			case PH_TOLERANCE:
 			case TEMPERATURE_TOLERANCE:
-				for (Tolerance a3 : Tolerance.values()) {
-					alleles.add(a3.getAllele());
+				for (EnumTolerance a3 : EnumTolerance.values()) {
+					alleles.add(AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(a3)));
 				}
 				break;
 
@@ -117,14 +121,14 @@ class FlowerBreedingSystem extends BreedingSystem {
 				break;
 
 			case SAPPINESS:
-				for (ForestryAllele.Sappiness a5 : ForestryAllele.Sappiness.values()) {
-					alleles.add(a5.getAllele());
+				for (EnumAllele.Sappiness sappiness : EnumAllele.Sappiness.values()) {
+					alleles.add(AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(sappiness)));
 				}
 				break;
 
 			case TERRITORY:
-				for (ForestryAllele.Territory a6 : ForestryAllele.Territory.values()) {
-					alleles.add(a6.getAllele());
+				for (EnumAllele.Territory territory : EnumAllele.Territory.values()) {
+					alleles.add(AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(territory)));
 				}
 				break;
 		}

@@ -110,6 +110,7 @@ public class AlleleHelper {
 		if (needCapitalize) {
 			valueName = WordUtils.capitalize(valueName.toLowerCase(Locale.ENGLISH));
 		}
+		valueName = valueName.replace("_", "");
 		return "forestry." + key + valueName;
 	}
 	

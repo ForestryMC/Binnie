@@ -4,6 +4,7 @@ import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
+import binnie.genetics.genetics.AlleleHelper;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.EnumBeeType;
 import forestry.api.apiculture.IAlleleBeeSpecies;
@@ -11,11 +12,14 @@ import forestry.api.apiculture.IApiaristTracker;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeMutation;
 import forestry.api.apiculture.IBeeRoot;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IMutation;
 import forestry.api.genetics.ISpeciesRoot;
+import forestry.core.genetics.alleles.EnumAllele;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
@@ -44,7 +48,7 @@ class BeeBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public int getColour() {
+	public int getColor() {
 		return 0xffd900;
 	}
 
@@ -91,33 +95,33 @@ class BeeBreedingSystem extends BreedingSystem {
 	public void addExtraAlleles(IChromosomeType chromosome, TreeSet<IAllele> alleles) {
 		switch ((EnumBeeChromosome) chromosome) {
 			case FERTILITY:
-				for (ForestryAllele.Fertility a : ForestryAllele.Fertility.values()) {
-					alleles.add(a.getAllele());
+				for (EnumAllele.Fertility fertility : EnumAllele.Fertility.values()) {
+					alleles.add(AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(fertility)));
 				}
 				break;
 
 			case FLOWERING:
-				for (ForestryAllele.Flowering a2 : ForestryAllele.Flowering.values()) {
-					alleles.add(a2.getAllele());
+				for (EnumAllele.Flowering flowering : EnumAllele.Flowering.values()) {
+					alleles.add(AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(flowering)));
 				}
 				break;
 
 			case HUMIDITY_TOLERANCE:
 			case TEMPERATURE_TOLERANCE:
-				for (Tolerance a3 : Tolerance.values()) {
-					alleles.add(a3.getAllele());
+				for (EnumTolerance tolerance : EnumTolerance.values()) {
+					alleles.add(AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(tolerance)));
 				}
 				break;
 
 			case LIFESPAN:
-				for (ForestryAllele.Lifespan a4 : ForestryAllele.Lifespan.values()) {
-					alleles.add(a4.getAllele());
+				for (EnumAllele.Lifespan lifespan : EnumAllele.Lifespan.values()) {
+					alleles.add(AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(lifespan)));
 				}
 				break;
 
 			case SPEED:
-				for (ForestryAllele.Speed a5 : ForestryAllele.Speed.values()) {
-					alleles.add(a5.getAllele());
+				for (EnumAllele.Speed speed : EnumAllele.Speed.values()) {
+					alleles.add(AlleleManager.alleleRegistry.getAllele(AlleleHelper.getUid(speed)));
 				}
 				break;
 
@@ -130,8 +134,8 @@ class BeeBreedingSystem extends BreedingSystem {
 			case NOCTURNAL:
 			case CAVE_DWELLING:
 			case TOLERANT_FLYER:
-				for (ForestryAllele.Bool a7 : ForestryAllele.Bool.values()) {
-					alleles.add(a7.getAllele());
+				for (ForestryAllele.Bool bool : ForestryAllele.Bool.values()) {
+					alleles.add(bool.getAllele());
 				}
 				break;
 		}

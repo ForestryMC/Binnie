@@ -36,7 +36,7 @@ class MothBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public int getColour() {
+	public int getColor() {
 		return 0x00f2f2;
 	}
 

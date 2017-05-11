@@ -142,11 +142,11 @@ public class WindowAnalyst extends Window {
 
 					@Override
 					public void onRenderBackground() {
-						CraftGUI.Render.colour(syst.getColour());
+						CraftGUI.Render.colour(syst.getColor());
 						int outset = (getSystem() == syst) ? 1 : 0;
 						CraftGUI.Render.texture(CraftGUITexture.TabOutline, getArea().outset(outset));
 						if (getSystem() == syst) {
-							CraftGUI.Render.colour(1140850688 + syst.getColour());
+							CraftGUI.Render.colour(1140850688 + syst.getColor());
 							CraftGUI.Render.texture(CraftGUITexture.TabSolid, getArea().outset(outset));
 						}
 						CraftGUI.Render.item(new IPoint(2.0f, 2.0f), syst.getItemStackRepresentative());
