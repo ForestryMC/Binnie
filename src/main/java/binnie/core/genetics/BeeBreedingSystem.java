@@ -2,20 +2,8 @@ package binnie.core.genetics;
 
 import binnie.Binnie;
 import binnie.core.BinnieCore;
-import binnie.extrabees.ExtraBees;
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.apiculture.EnumBeeType;
-import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.apiculture.IApiaristTracker;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeMutation;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IBreedingTracker;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IMutation;
-import forestry.api.genetics.ISpeciesRoot;
-import forestry.api.genetics.ISpeciesType;
+import forestry.api.apiculture.*;
+import forestry.api.genetics.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
@@ -23,9 +11,10 @@ import javax.annotation.Nullable;
 import java.util.TreeSet;
 
 class BeeBreedingSystem extends BreedingSystem {
+
 	public BeeBreedingSystem() {
-		this.iconUndiscovered = Binnie.RESOURCE.getItemSprite(ExtraBees.instance, "icon/undiscovered_bee");
-		this.iconDiscovered = Binnie.RESOURCE.getItemSprite(ExtraBees.instance, "icon/discovered_bee");
+		this.iconUndiscovered = Binnie.RESOURCE.getUndiscoveredBeeSprite();
+		this.iconDiscovered = Binnie.RESOURCE.getDiscoveredBeeSprite();
 	}
 
 	@Override

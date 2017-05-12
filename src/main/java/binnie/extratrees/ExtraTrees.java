@@ -7,7 +7,6 @@ import binnie.core.gui.IBinnieGUID;
 import binnie.core.models.DoublePassBakedModel;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
-import binnie.extrabees.ExtraBees;
 import binnie.extratrees.alcohol.ModuleAlcohol;
 import binnie.extratrees.block.IPlankType;
 import binnie.extratrees.block.ModuleBlocks;
@@ -25,7 +24,6 @@ import binnie.extratrees.kitchen.ModuleKitchen;
 import binnie.extratrees.machines.ModuleMachine;
 import binnie.extratrees.proxy.Proxy;
 import com.google.common.base.Preconditions;
-
 import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.genetics.AlleleSpeciesRegisterEvent;
 import forestry.api.lepidopterology.IButterflyRoot;
@@ -46,7 +44,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -190,7 +187,7 @@ public class ExtraTrees extends AbstractMod {
 
 	public static class PacketHandler extends BinniePacketHandler {
 		public PacketHandler() {
-			super(ExtraBees.instance);
+			super(ExtraTrees.instance);
 		}
 	}
 

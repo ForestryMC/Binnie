@@ -1,10 +1,10 @@
 package binnie.botany.core;
 
 import binnie.Binnie;
+import binnie.botany.Botany;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
-import binnie.extrabees.ExtraBees;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -28,7 +28,7 @@ public enum BotanyTexture implements IBinnieTexture {
 	@SideOnly(Side.CLIENT)
 	public BinnieResource getTexture() {
 		if (resource == null) {
-			resource = Binnie.RESOURCE.getPNG(ExtraBees.instance, this.type, this.texture);
+			resource = Binnie.RESOURCE.getPNG(Botany.instance, this.type, this.texture);
 		}
 		return resource;
 	}
