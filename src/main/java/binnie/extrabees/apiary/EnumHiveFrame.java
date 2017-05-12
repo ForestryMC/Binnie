@@ -1,15 +1,11 @@
 package binnie.extrabees.apiary;
 
-import binnie.core.Mods;
-import binnie.core.genetics.BeeModifierLogic;
-import binnie.core.genetics.EnumBeeBooleanModifier;
-import binnie.core.genetics.EnumBeeModifier;
 import binnie.extrabees.ExtraBees;
-import forestry.api.apiculture.IBee;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeHousing;
-import forestry.api.apiculture.IBeeModifier;
-import forestry.api.apiculture.IHiveFrame;
+import binnie.extrabees.utils.BeeModifierLogic;
+import binnie.extrabees.utils.EnumBeeBooleanModifier;
+import binnie.extrabees.utils.EnumBeeModifier;
+import forestry.api.apiculture.*;
+import forestry.apiculture.PluginApiculture;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -42,10 +38,11 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 		EnumHiveFrame.Clay.logic.setModifier(EnumBeeModifier.Mutation, 0.5f, 0.2f);
 		EnumHiveFrame.Clay.logic.setModifier(EnumBeeModifier.Production, 0.75f, 0.2f);
 		EnumHiveFrame.Debug.logic.setModifier(EnumBeeModifier.Lifespan, 1.0E-4f, 1.0E-4f);
-		GameRegistry.addRecipe(new ItemStack(EnumHiveFrame.Cocoa.item), " c ", "cFc", " c ", 'F', Mods.Forestry.stack("frame_impregnated"), 'c', new ItemStack(Items.DYE, 1, 3));
-		GameRegistry.addShapelessRecipe(new ItemStack(EnumHiveFrame.Cage.item), Mods.Forestry.stack("frame_impregnated"), Blocks.IRON_BARS);
-		GameRegistry.addShapelessRecipe(new ItemStack(EnumHiveFrame.Soul.item), Mods.Forestry.stack("frame_impregnated"), Blocks.SOUL_SAND);
-		GameRegistry.addRecipe(new ItemStack(EnumHiveFrame.Clay.item), " c ", "cFc", " c ", 'F', Mods.Forestry.stack("frame_impregnated"), 'c', Items.CLAY_BALL);
+		ItemStack impregnatedFrame = PluginApiculture.getItems().frameImpregnated.getItemStack();
+		GameRegistry.addRecipe(new ItemStack(EnumHiveFrame.Cocoa.item), " c ", "cFc", " c ", 'F', impregnatedFrame, 'c', new ItemStack(Items.DYE, 1, 3));
+		GameRegistry.addShapelessRecipe(new ItemStack(EnumHiveFrame.Cage.item), impregnatedFrame, Blocks.IRON_BARS);
+		GameRegistry.addShapelessRecipe(new ItemStack(EnumHiveFrame.Soul.item), impregnatedFrame, Blocks.SOUL_SAND);
+		GameRegistry.addRecipe(new ItemStack(EnumHiveFrame.Clay.item), " c ", "cFc", " c ", 'F', impregnatedFrame, 'c', Items.CLAY_BALL);
 	}
 
 	private final Item item;

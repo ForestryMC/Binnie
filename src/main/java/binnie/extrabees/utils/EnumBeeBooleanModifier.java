@@ -1,4 +1,4 @@
-package binnie.core.genetics;
+package binnie.extrabees.utils;
 
 public enum EnumBeeBooleanModifier {
 	Sealed,

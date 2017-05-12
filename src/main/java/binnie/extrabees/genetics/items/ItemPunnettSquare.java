@@ -12,11 +12,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
 public class ItemPunnettSquare extends Item {
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerIcons(final IIconRegister register) {
-//		this.itemIcon = ExtraBees.proxy.getIcon(register, "");
-//	}
 
 	public ItemPunnettSquare() {
 		this.setCreativeTab(CreativeTabs.TOOLS);
@@ -36,4 +31,5 @@ public class ItemPunnettSquare extends Item {
 		ItemStack itemStack = playerIn.getHeldItem(handIn);
 		return new ActionResult<>(EnumActionResult.PASS, itemStack);
 	}
+
 }

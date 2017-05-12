@@ -8,6 +8,7 @@ import net.minecraft.nbt.NBTTagList;
 import java.util.ArrayList;
 
 public class FireworkCreator {
+
 	public enum Shape {
 		Ball,
 		LargeBall,
@@ -17,10 +18,6 @@ public class FireworkCreator {
 	}
 
 	public static class Firework {
-		boolean flicker;
-		boolean trail;
-		ArrayList<Integer> colors;
-		byte shape;
 
 		public Firework() {
 			this.flicker = false;
@@ -28,6 +25,11 @@ public class FireworkCreator {
 			this.colors = new ArrayList<>();
 			this.shape = 0;
 		}
+
+		boolean flicker;
+		boolean trail;
+		ArrayList<Integer> colors;
+		byte shape;
 
 		public void setFlicker() {
 			this.flicker = true;
@@ -77,5 +79,7 @@ public class FireworkCreator {
 			item.setTagCompound(var15);
 			return item;
 		}
+
 	}
+
 }

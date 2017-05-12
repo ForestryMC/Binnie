@@ -4,6 +4,7 @@ import binnie.extrabees.ExtraBees;
 import net.minecraft.item.ItemStack;
 
 public class ItemHoneyCrystalEmpty extends ItemHoneyCrystal {
+
 	public ItemHoneyCrystalEmpty(String name) {
 		super(name);
 		this.setMaxDamage(0);
@@ -11,14 +12,9 @@ public class ItemHoneyCrystalEmpty extends ItemHoneyCrystal {
 		this.setUnlocalizedName("honey_crystal_empty");
 	}
 
-//	@SideOnly(Side.CLIENT)
-//	@Override
-//	public void registerIcons(final IIconRegister register) {
-//		this.itemIcon = ExtraBees.proxy.getIcon(register, "honeyCrystalEmpty");
-//	}
-
 	@Override
 	public String getItemStackDisplayName(final ItemStack i) {
 		return ExtraBees.proxy.localise("item.honeycrystal.empty");
 	}
+
 }

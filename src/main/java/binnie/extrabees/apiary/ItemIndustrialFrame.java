@@ -13,11 +13,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemIndustrialFrame extends Item {
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public boolean requiresMultipleRenderPasses() {
-//		return true;
-//	}
 
 	@Override
 	@SideOnly(Side.CLIENT)

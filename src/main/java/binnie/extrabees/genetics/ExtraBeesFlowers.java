@@ -1,17 +1,9 @@
 package binnie.extrabees.genetics;
 
-import binnie.core.Mods;
 import binnie.extrabees.ExtraBees;
+import binnie.extrabees.utils.Utils;
 import forestry.api.apiculture.FlowerManager;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleFlowers;
-import forestry.api.genetics.ICheckPollinatable;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IFlowerProvider;
-import forestry.api.genetics.IFruitBearer;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -152,7 +144,7 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 				return block.getClass().getName().toLowerCase().contains("sapling");
 			}
 			case Mystical: {
-				return block == Mods.Botania.block("flower");
+				return block == Utils.getBotaniaBlock("flower");
 			}
 			default: {
 				return false;
@@ -225,9 +217,9 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 				final int z2 = pos.getZ() - tZ + world.rand.nextInt(1 + 2 * tZ);
 				final BlockPos pos2 = new BlockPos(x2, y2, z2);
 				final Block block = world.getBlockState(pos2).getBlock();
-				if (block == Mods.Botania.block("flower")) {
+				if (block == Utils.getBotaniaBlock("flower")) {
 					final int meta = world.getBlockState(pos2).getBlock().getMetaFromState(world.getBlockState(pos2));
-					final Item item = Mods.Botania.item("petal");
+					final Item item = Utils.getBotaniaItem("petal");
 					if (item != null) {
 						prods.add(new ItemStack(item, 1, meta));
 					}

@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import javax.annotation.Nullable;
 
 public enum IndustrialFrame implements IBeeModifier {
+
 	Empty("Empty", 5, 0),
 	Light("Glowstone Lighting", 2, 4),
 	Rain("Rain Shielding", 2, 4),
@@ -140,4 +141,5 @@ public enum IndustrialFrame implements IBeeModifier {
 		IndustrialFrame.NetherStar.lifespanMod = 20.0f;
 		IndustrialFrame.Poison.lifespanMod = 0.5f;
 	}
+
 }

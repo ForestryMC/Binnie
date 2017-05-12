@@ -1,0 +1,73 @@
+package binnie.extrabees.utils;
+
+import forestry.api.apiculture.BeeManager;
+import forestry.api.apiculture.IBeeRoot;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+
+import javax.annotation.Nullable;
+
+/**
+ * Created by Elec332 on 12-5-2017.
+ */
+public class Utils {
+
+	public static IBeeRoot getBeeRoot() {
+		return BeeManager.beeRoot;
+	}
+
+	@Nullable
+	public static Item getIC2Item(String name){
+		return getModItem("ic2", name);
+	}
+
+	@Nullable
+	public static Item getBotaniaItem(String name){
+		return getModItem("botania", name);
+	}
+
+	@Nullable
+	public static Block getBotaniaBlock(String name){
+		ResourceLocation key = new ResourceLocation("botania", name);
+		return ForgeRegistries.BLOCKS.containsKey(key) ? ForgeRegistries.BLOCKS.getValue(key) : null;
+	}
+
+	private static Item getModItem(String mod, String name){
+		ResourceLocation key = new ResourceLocation(mod, name);
+		return ForgeRegistries.ITEMS.containsKey(key) ? ForgeRegistries.ITEMS.getValue(key) : null;
+	}
+
+	@Nullable
+	public static <T extends TileEntity> T getTile(IBlockAccess world, BlockPos pos, Class<T> tileClass) {
+		TileEntity tileEntity = world.getTileEntity(pos);
+		if (tileClass.isInstance(tileEntity)) {
+			return tileClass.cast(tileEntity);
+		} else {
+			return null;
+		}
+	}
+
+	@Nullable
+	public static <T> T getCapability(World world, BlockPos pos, Capability<T> capability, EnumFacing facing) {
+		TileEntity tileEntity = world.getTileEntity(pos);
+		if (tileEntity != null && tileEntity.hasCapability(capability, facing)) {
+			return tileEntity.getCapability(capability, facing);
+		}
+		return null;
+	}
+
+	public static FluidStack getFluidFromName(String name, int amount){
+		return FluidRegistry.getFluidStack(name.toLowerCase(), amount);
+	}
+
+}

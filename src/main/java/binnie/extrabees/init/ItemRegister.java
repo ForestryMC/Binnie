@@ -1,16 +1,20 @@
-package binnie.extrabees.products;
+package binnie.extrabees.init;
 
-import binnie.core.IInitializable;
-import binnie.core.Mods;
 import binnie.extrabees.ExtraBees;
+import binnie.extrabees.products.*;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class ModuleProducts implements IInitializable {
-	@Override
-	public void preInit() {
+/**
+ * Created by Elec332 on 12-5-2017.
+ */
+public final class ItemRegister {
+
+	public static void preInitItems(){
+		registerProducts();
+	}
+
+	private static void registerProducts(){
 		ExtraBees.honeyCrystal = new ItemHoneyCrystal("honey_crystal");
 		ExtraBees.honeyCrystalEmpty = new ItemHoneyCrystalEmpty("honey_crystal_empty");
 		ExtraBees.honeyDrop = new ItemHoneyDrop();
@@ -35,22 +39,4 @@ public class ModuleProducts implements IInitializable {
 		OreDictionary.registerOre("gemDiamond", Items.DIAMOND);
 	}
 
-	@Override
-	public void init() {
-		ItemHoneyComb.addSubtypes();
-	}
-
-	@Override
-	public void postInit() {
-		GameRegistry.addRecipe(new ItemStack(ExtraBees.honeyCrystalEmpty), "#@#", "@#@", "#@#", '@', Mods.Forestry.stack("honey_drop"), '#', EnumHoneyDrop.ENERGY.get(1));
-		for (final EnumHoneyComb info : EnumHoneyComb.values()) {
-			info.addRecipe();
-		}
-		for (final EnumHoneyDrop info2 : EnumHoneyDrop.values()) {
-			info2.addRecipe();
-		}
-		for (final EnumPropolis info3 : EnumPropolis.values()) {
-			info3.addRecipe();
-		}
-	}
 }

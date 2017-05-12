@@ -11,6 +11,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 public enum ExtraBeesBranch implements IClassification {
+
 	BARREN("Vacapis"),
 	HOSTILE("Infenapis"),
 	ROCKY("Monapis"),
@@ -39,7 +40,7 @@ public enum ExtraBeesBranch implements IClassification {
 	TERTIARY("Tertiapis"),
 	FTB("Eftebeapis"),
 	QUANTUM("Quantapis"),
-	BOTANIA("Botaniapis");
+	BOTANIA("Botaniapis"); //TODO There is 1 bee in here, that produces the petal of the flowers around, move to MagicBEes?
 
 	private String uid;
 	private String scientific;
@@ -303,4 +304,5 @@ public enum ExtraBeesBranch implements IClassification {
 	public void setParent(final IClassification parent) {
 		this.parent = parent;
 	}
+
 }

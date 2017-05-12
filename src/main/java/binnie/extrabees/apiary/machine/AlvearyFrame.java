@@ -1,6 +1,5 @@
 package binnie.extrabees.apiary.machine;
 
-import binnie.Binnie;
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
@@ -10,12 +9,8 @@ import binnie.extrabees.apiary.ComponentExtraBeeGUI;
 import binnie.extrabees.apiary.TileExtraBeeAlveary;
 import binnie.extrabees.core.ExtraBeeGUID;
 import binnie.extrabees.core.ExtraBeeTexture;
-import forestry.api.apiculture.IBee;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeListener;
-import forestry.api.apiculture.IBeeModifier;
-import forestry.api.apiculture.IBeeRoot;
-import forestry.api.apiculture.IHiveFrame;
+import binnie.extrabees.utils.Utils;
+import forestry.api.apiculture.*;
 import forestry.api.multiblock.IAlvearyController;
 import forestry.api.multiblock.IMultiblockLogicAlveary;
 import net.minecraft.item.ItemStack;
@@ -66,7 +61,7 @@ public class AlvearyFrame {
 			IHiveFrame hiveFrame = this.getHiveFrame();
 			if (hiveFrame != null) {
 				final World world = this.getMachine().getTileEntity().getWorld();
-				IBeeRoot beeRoot = Binnie.GENETICS.getBeeRoot();
+				IBeeRoot beeRoot = Utils.getBeeRoot();
 				IMultiblockLogicAlveary multiblockLogic = ((TileExtraBeeAlveary) this.getMachine().getTileEntity()).getMultiblockLogic();
 				IAlvearyController alvearyController = multiblockLogic.getController();
 				ItemStack queenStack = alvearyController.getBeeInventory().getQueen();

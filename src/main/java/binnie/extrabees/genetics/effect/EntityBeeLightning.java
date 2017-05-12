@@ -11,10 +11,8 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class EntityBeeLightning extends EntityLightningBolt {
-	int lightningState;
-	int boltLivingTime;
 
-	@SuppressWarnings("unused")
+
 	public EntityBeeLightning(final World world) {
 		super(world, 0, 0, 0, true);
 	}
@@ -24,6 +22,9 @@ public class EntityBeeLightning extends EntityLightningBolt {
 		this.lightningState = 2;
 		this.boltLivingTime = this.rand.nextInt(3) + 1;
 	}
+
+	private int lightningState;
+	private int boltLivingTime;
 
 	@Override
 	public void onUpdate() {
@@ -59,4 +60,5 @@ public class EntityBeeLightning extends EntityLightningBolt {
 			}
 		}
 	}
+
 }

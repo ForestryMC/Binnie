@@ -1,6 +1,5 @@
 package binnie.extrabees.apiary.machine;
 
-import binnie.Binnie;
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
@@ -12,11 +11,8 @@ import binnie.extrabees.apiary.ComponentExtraBeeGUI;
 import binnie.extrabees.apiary.TileExtraBeeAlveary;
 import binnie.extrabees.core.ExtraBeeGUID;
 import binnie.extrabees.core.ExtraBeeTexture;
-import forestry.api.apiculture.EnumBeeType;
-import forestry.api.apiculture.IBee;
-import forestry.api.apiculture.IBeeHousing;
-import forestry.api.apiculture.IBeeListener;
-import forestry.api.apiculture.IBeeModifier;
+import binnie.extrabees.utils.Utils;
+import forestry.api.apiculture.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
@@ -48,7 +44,8 @@ public class AlvearyHatchery {
 
 		@Override
 		public boolean isValid(final ItemStack itemStack) {
-			return Binnie.GENETICS.getBeeRoot().isMember(itemStack) && Binnie.GENETICS.getBeeRoot().getType(itemStack) == EnumBeeType.LARVAE;
+			IBeeRoot beeRoot = Utils.getBeeRoot();
+			return beeRoot.isMember(itemStack) && beeRoot.getType(itemStack) == EnumBeeType.LARVAE;
 		}
 
 		@Override
@@ -70,9 +67,10 @@ public class AlvearyHatchery {
 					final IBeeHousing house = ((TileExtraBeeAlveary) tile).getMultiblockLogic().getController();
 					if (house != null && !house.getErrorLogic().hasErrors()) {
 						final ItemStack queenStack = house.getBeeInventory().getQueen();
-						final IBee queen = (queenStack.isEmpty()) ? null : Binnie.GENETICS.getBeeRoot().getMember(queenStack);
+						IBeeRoot beeRoot = Utils.getBeeRoot();
+						final IBee queen = (queenStack.isEmpty()) ? null : beeRoot.getMember(queenStack);
 						if (queen != null) {
-							final ItemStack larvae = Binnie.GENETICS.getBeeRoot().getMemberStack(Binnie.GENETICS.getBeeRoot().getBee(queen.getGenome()), EnumBeeType.LARVAE);
+							final ItemStack larvae = beeRoot.getMemberStack(beeRoot.getBee(queen.getGenome()), EnumBeeType.LARVAE);
 							new TransferRequest(larvae, this.getInventory()).transfer(true);
 						}
 					}

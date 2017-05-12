@@ -1,15 +1,20 @@
 package binnie.extrabees.products;
 
-import binnie.core.item.IItemEnum;
 import binnie.extrabees.ExtraBees;
+import binnie.extrabees.utils.IEBEnumItem;
+import com.google.common.base.Objects;
 import forestry.api.recipes.RecipeManagers;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
+import javax.annotation.Nullable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public enum EnumHoneyComb implements IItemEnum {
+public enum EnumHoneyComb implements IEBEnumItem {
+
 	BARREN(7564356, 12762791),
 	ROTTEN(4084257, 11652233),
 	BONE(12895407, 14606017),
@@ -97,11 +102,6 @@ public enum EnumHoneyComb implements IItemEnum {
 	CYANITE(2564173, 34541),
 	BLUTONIUM(2564173, 1769702);
 
-	int[] colour;
-	public Map<ItemStack, Float> products;
-	boolean active;
-	public boolean deprecated;
-
 	EnumHoneyComb() {
 		this(16777215, 16777215);
 		this.active = false;
@@ -115,6 +115,11 @@ public enum EnumHoneyComb implements IItemEnum {
 		this.deprecated = false;
 		this.colour = new int[]{colour, colour2};
 	}
+
+	int[] colour;
+	public Map<ItemStack, Float> products;
+	boolean active;
+	public boolean deprecated;
 
 	public void addRecipe() {
 		RecipeManagers.centrifugeManager.addRecipe(20, this.get(1), this.products);
@@ -143,6 +148,10 @@ public enum EnumHoneyComb implements IItemEnum {
 		return ExtraBees.proxy.localise("item.comb." + this.name().toLowerCase());
 	}
 
+	public boolean addProduct(@Nullable Item item, final Float chance){
+		return addProduct(new ItemStack(Objects.firstNonNull(item, Item.getItemFromBlock(Blocks.AIR))), chance);
+	}
+
 	public boolean addProduct(final ItemStack item, final Float chance) {
 		if (item.isEmpty()) {
 			return false;
@@ -155,6 +164,10 @@ public enum EnumHoneyComb implements IItemEnum {
 		this.active = this.addProduct(item, chance);
 	}
 
+	public void tryAddProduct(@Nullable final Item item, final Float chance) {
+		this.active = this.addProduct(item, chance);
+	}
+
 	public void tryAddProduct(final String oreDict, final Float chance) {
 		if (!OreDictionary.getOres(oreDict).isEmpty()) {
 			this.tryAddProduct(OreDictionary.getOres(oreDict).get(0), chance);
@@ -163,7 +176,7 @@ public enum EnumHoneyComb implements IItemEnum {
 		}
 	}
 
-	public void tryAddProduct(final IItemEnum type, final Float chance) {
+	public void tryAddProduct(final IEBEnumItem type, final Float chance) {
 		this.tryAddProduct(type.get(1), chance);
 		this.active = (this.active && type.isActive());
 	}
@@ -171,4 +184,5 @@ public enum EnumHoneyComb implements IItemEnum {
 	public void copyProducts(final EnumHoneyComb comb) {
 		this.products.putAll(comb.products);
 	}
+
 }

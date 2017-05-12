@@ -1,9 +1,11 @@
 package binnie.extrabees.products;
 
-import binnie.core.Mods;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.core.ExtraBeeItems;
+import binnie.extrabees.utils.Utils;
 import forestry.api.core.Tabs;
+import forestry.apiculture.PluginApiculture;
+import forestry.core.PluginCore;
 import forestry.core.items.IColoredItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -22,8 +24,8 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 	}
 
 	public static void addSubtypes() {
-		final ItemStack beeswax = Mods.Forestry.stack("beeswax");
-		final ItemStack honeyDrop = Mods.Forestry.stack("honey_drop");
+		final ItemStack beeswax = PluginCore.getItems().beeswax.getItemStack();
+		final ItemStack honeyDrop = PluginApiculture.getItems().honeyDrop.getItemStack();
 		OreDictionary.registerOre("ingotIron", Items.IRON_INGOT);
 		OreDictionary.registerOre("ingotGold", Items.GOLD_INGOT);
 		OreDictionary.registerOre("gemDiamond", Items.DIAMOND);
@@ -69,8 +71,8 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 		EnumHoneyComb.REDSTONE.addProduct(new ItemStack(Items.REDSTONE, 1, 0), 1.00f);
 		EnumHoneyComb.REDSTONE.addProduct(honeyDrop, 0.50f);
 		EnumHoneyComb.RESIN.addProduct(beeswax, 1.00f);
-		EnumHoneyComb.RESIN.tryAddProduct(Mods.IC2.stack("itemHarz"), 1.00f);
-		EnumHoneyComb.RESIN.tryAddProduct(Mods.IC2.stack("itemHarz"), 0.50f);
+		EnumHoneyComb.RESIN.tryAddProduct(Utils.getIC2Item("itemHarz"), 1.00f);
+		EnumHoneyComb.RESIN.tryAddProduct(Utils.getIC2Item("itemHarz"), 0.50f);
 		EnumHoneyComb.IC2ENERGY.addProduct(beeswax, 0.80f);
 		EnumHoneyComb.IC2ENERGY.addProduct(new ItemStack(Items.REDSTONE, 1, 0), 0.75f);
 		EnumHoneyComb.IC2ENERGY.tryAddProduct(EnumHoneyDrop.ENERGY, 1.00f);
@@ -112,7 +114,7 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 		EnumHoneyComb.BLAZE.addProduct(new ItemStack(Items.BLAZE_POWDER, 1, 0), 1.00f);
 		EnumHoneyComb.COFFEE.addProduct(beeswax, 0.90f);
 		EnumHoneyComb.COFFEE.addProduct(honeyDrop, 0.75f);
-		EnumHoneyComb.COFFEE.tryAddProduct(Mods.IC2.stack("itemCofeePowder"), 0.75f);
+		EnumHoneyComb.COFFEE.tryAddProduct(Utils.getIC2Item("itemCofeePowder"), 0.75f);
 		EnumHoneyComb.GLACIAL.tryAddProduct(EnumHoneyDrop.ICE, 0.80f);
 		EnumHoneyComb.GLACIAL.addProduct(honeyDrop, 0.75f);
 		EnumHoneyComb.SHADOW.addProduct(honeyDrop, 0.50f);
@@ -148,7 +150,7 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 		EnumHoneyComb.SALTPETER.addProduct(honeyDrop, 0.25f);
 		EnumHoneyComb.SALTPETER.tryAddProduct(getOreDictionary("dustSaltpeter"), 1.00f);
 		EnumHoneyComb.COMPOST.addProduct(honeyDrop, 0.25f);
-		EnumHoneyComb.COMPOST.tryAddProduct(Mods.Forestry.stack("fertilizer_bio"), 1.00f);
+		EnumHoneyComb.COMPOST.tryAddProduct(PluginCore.getItems().fertilizerBio.getItemStack(), 1.00f);
 		EnumHoneyComb.SAWDUST.addProduct(honeyDrop, 0.25f);
 		if (!OreDictionary.getOres("dustSawdust").isEmpty()) {
 			EnumHoneyComb.SAWDUST.tryAddProduct(OreDictionary.getOres("dustSawdust").get(0), 1.00f);
@@ -255,7 +257,9 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 		QUARTZ;
 
 		public ItemStack get() {
-			return Mods.Forestry.stack("bee_combs", 1, this.ordinal());
+			return new ItemStack(PluginApiculture.getItems().beeComb, 1, this.ordinal());
 		}
+
 	}
+
 }

@@ -16,6 +16,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public enum ExtraBeeItems implements IItemMiscProvider {
+
 	ScentedGear("Scented Gear", "scented_gear"),
 	DiamondShard("Diamond Fragment", "diamond_shard"),
 	EmeraldShard("Emerald Fragment", "emerald_shard"),
@@ -46,6 +47,13 @@ public enum ExtraBeeItems implements IItemMiscProvider {
 	YelloriumDust("Yellorium Grains", "yellorium_dust"),
 	BlutoniumDust("Blutonium Grains", "blutonium_dust"),
 	CyaniteDust("Cyanite Grains", "cyanite_dust");
+
+	ExtraBeeItems(String name, String modelPath) {
+		this.metalString = null;
+		this.gemString = null;
+		this.name = name;
+		this.modelPath = modelPath;
+	}
 
 	String name;
 	String modelPath;
@@ -110,13 +118,6 @@ public enum ExtraBeeItems implements IItemMiscProvider {
 		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack("for.honey", 500), ItemStack.EMPTY, ExtraBeeItems.ScentedGear.get(1), " j ", "bgb", " p ", 'j', Mods.Forestry.item("royal_jelly"), 'b', Mods.Forestry.item("beeswax"), 'p', Mods.Forestry.item("pollen"), 'g', gear);
 	}
 
-	ExtraBeeItems(String name, String modelPath) {
-		this.metalString = null;
-		this.gemString = null;
-		this.name = name;
-		this.modelPath = modelPath;
-	}
-
 	private void setGem(final String string) {
 		this.gemString = string;
 	}
@@ -132,17 +133,6 @@ public enum ExtraBeeItems implements IItemMiscProvider {
 		}
 		return this.gemString == null || !OreDictionary.getOres("gem" + this.gemString).isEmpty();
 	}
-
-//	@Override
-//	public IIcon getIcon(final ItemStack stack) {
-//		return this.icon;
-//	}
-//
-//	@SideOnly(Side.CLIENT)
-//	@Override
-//	public void registerIcons(final IIconRegister register) {
-//		this.icon = ExtraBees.proxy.getIcon(register, "misc/" + this.iconPath);
-//	}
 
 	@Override
 	public void addInformation(final List<String> tooltip) {
@@ -184,4 +174,5 @@ public enum ExtraBeeItems implements IItemMiscProvider {
 		ExtraBeeItems.RubyShard.setGem("Ruby");
 		ExtraBeeItems.SapphireShard.setGem("Sapphire");
 	}
+
 }

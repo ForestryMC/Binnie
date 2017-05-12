@@ -2,15 +2,7 @@ package binnie.extrabees.gui.database;
 
 import binnie.Binnie;
 import binnie.core.AbstractMod;
-import binnie.core.craftgui.database.DatabaseTab;
-import binnie.core.craftgui.database.PageBranchOverview;
-import binnie.core.craftgui.database.PageBranchSpecies;
-import binnie.core.craftgui.database.PageBreeder;
-import binnie.core.craftgui.database.PageSpeciesClassification;
-import binnie.core.craftgui.database.PageSpeciesMutations;
-import binnie.core.craftgui.database.PageSpeciesOverview;
-import binnie.core.craftgui.database.PageSpeciesResultant;
-import binnie.core.craftgui.database.WindowAbstractDatabase;
+import binnie.core.craftgui.database.*;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.extrabees.ExtraBees;
 import net.minecraft.entity.player.EntityPlayer;

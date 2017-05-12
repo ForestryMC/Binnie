@@ -1,14 +1,9 @@
 package binnie.extrabees.genetics.effect;
 
-import binnie.Binnie;
-import binnie.core.util.TileUtil;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.genetics.ExtraBeesFlowers;
-import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.IAlleleBeeEffect;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeHousing;
-import forestry.api.apiculture.IBeekeepingLogic;
+import binnie.extrabees.utils.Utils;
+import forestry.api.apiculture.*;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IEffectData;
 import forestry.core.render.ParticleRender;
@@ -38,6 +33,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -422,9 +419,9 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 				if (world.rand.nextInt(120) > 1) {
 					return storedData;
 				}
-				IFluidHandler fluidHandler = TileUtil.getCapability(world, pos, CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, EnumFacing.UP);
+				IFluidHandler fluidHandler = Utils.getCapability(world, pos, CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, EnumFacing.UP);
 				if (fluidHandler != null) {
-					fluidHandler.fill(Binnie.LIQUID.getFluidStack("water", 100), true);
+					fluidHandler.fill(new FluidStack(FluidRegistry.WATER, 100), true);
 					break;
 				}
 				break;

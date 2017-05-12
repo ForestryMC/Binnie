@@ -128,4 +128,5 @@ public class BinnieModProxy implements IBinnieModProxy {
 	public String localiseOrBlank(final String string) {
 		return Binnie.LANGUAGE.localiseOrBlank(this.getMod(), string);
 	}
+
 }

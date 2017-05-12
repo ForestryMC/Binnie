@@ -17,7 +17,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModuleGenetics implements IInitializable {
+
 	@Override
+	@SuppressWarnings("all")
 	public void preInit() {
 		ExtraBeesBranch.setSpeciesBranches();
 		for (final ExtraBeesSpecies species : ExtraBeesSpecies.values()) {
@@ -39,14 +41,14 @@ public class ModuleGenetics implements IInitializable {
 
 	@Override
 	public void postInit() {
-		int ebSpeciesCount = 0;
+		/*int ebSpeciesCount = 0; TODO: Find out what this was for
 		int ebTotalSpeciesCount = 0;
 		for (final ExtraBeesSpecies species : ExtraBeesSpecies.values()) {
 			++ebTotalSpeciesCount;
 			if (!AlleleManager.alleleRegistry.isBlacklisted(species.getUID())) {
 				++ebSpeciesCount;
 			}
-		}
+		}*/
 		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack("water", 2000), ItemStack.EMPTY, new ItemStack(ExtraBees.dictionary), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotTin", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
 	}
 
@@ -54,17 +56,4 @@ public class ModuleGenetics implements IInitializable {
 		return Binnie.GENETICS.getBeeRoot().templateAsGenome(Binnie.GENETICS.getBeeRoot().getTemplate(allele0));
 	}
 
-//	public static ItemStack getBeeIcon(final IAlleleBeeSpecies species) {
-//		if (species == null) {
-//			return null;
-//		}
-//		final IAllele[] template = Binnie.Genetics.getBeeRoot().getTemplate(species.getUID());
-//		if (template == null) {
-//			return null;
-//		}
-//		final IBeeGenome genome = Binnie.Genetics.getBeeRoot().templateAsGenome(template);
-//		final IBee bee = Binnie.Genetics.getBeeRoot().getBee(BinnieCore.proxy.getWorld(), genome);
-//		final ItemStack item = Binnie.Genetics.getBeeRoot().getMemberStack(bee, EnumBeeType.PRINCESS);
-//		return item;
-//	}
 }

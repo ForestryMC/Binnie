@@ -1,14 +1,15 @@
 package binnie.extrabees.products;
 
-import binnie.Binnie;
-import binnie.core.item.IItemEnum;
 import binnie.extrabees.ExtraBees;
+import binnie.extrabees.utils.IEBEnumItem;
+import binnie.extrabees.utils.Utils;
 import forestry.api.recipes.RecipeManagers;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-public enum EnumHoneyDrop implements IItemEnum {
+public enum EnumHoneyDrop implements IEBEnumItem {
+
 	ENERGY(10242418, 14905713, ""),
 	ACID(4961601, 4841020, "acid"),
 	POISON(13698745, 16712674, "poison"),
@@ -39,14 +40,6 @@ public enum EnumHoneyDrop implements IItemEnum {
 	MAGENTA(15040472, 16711884, "for.honey"),
 	LIGHTGRAY(10066329, 13224393, "for.honey");
 
-	private int[] colour;
-	private String liquidName;
-	private ItemStack remnant;
-
-	public void addRemnant(final ItemStack stack) {
-		this.remnant = stack;
-	}
-
 	EnumHoneyDrop() {
 		this(16777215, 16777215, "");
 	}
@@ -57,8 +50,16 @@ public enum EnumHoneyDrop implements IItemEnum {
 		this.liquidName = liquid;
 	}
 
+	private int[] colour;
+	private String liquidName;
+	private ItemStack remnant;
+
+	public void addRemnant(final ItemStack stack) {
+		this.remnant = stack;
+	}
+
 	public void addRecipe() {
-		final FluidStack liquid = Binnie.LIQUID.getFluidStack(this.getLiquidName(), 200);
+		final FluidStack liquid = Utils.getFluidFromName(this.getLiquidName(), 200);
 		if (liquid != null) {
 			RecipeManagers.squeezerManager.addRecipe(10, this.get(1), liquid, this.getRemnant(), 100);
 		}
@@ -98,4 +99,5 @@ public enum EnumHoneyDrop implements IItemEnum {
 	public ItemStack getRemnant() {
 		return remnant;
 	}
+
 }

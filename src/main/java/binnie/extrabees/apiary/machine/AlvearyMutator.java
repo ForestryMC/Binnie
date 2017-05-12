@@ -13,13 +13,18 @@ import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import org.apache.commons.lang3.tuple.Pair;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import static org.apache.commons.lang3.ObjectUtils.firstNonNull;
 
 public class AlvearyMutator {
 	public static int slotMutator = 0;
@@ -39,6 +44,10 @@ public class AlvearyMutator {
 			}
 		}
 		return 1.0f;
+	}
+
+	public static void addMutationItem(@Nullable Item item, float chance){
+		addMutationItem(new ItemStack(firstNonNull(item, Item.getItemFromBlock(Blocks.AIR))), chance);
 	}
 
 	public static void addMutationItem(final ItemStack item, final float chance) {

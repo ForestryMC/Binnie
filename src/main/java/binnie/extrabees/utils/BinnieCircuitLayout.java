@@ -1,4 +1,4 @@
-package binnie.core.circuits;
+package binnie.extrabees.utils;
 
 import binnie.Binnie;
 import binnie.core.AbstractMod;

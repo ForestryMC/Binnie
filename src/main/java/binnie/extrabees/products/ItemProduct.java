@@ -1,6 +1,6 @@
 package binnie.extrabees.products;
 
-import binnie.core.item.IItemEnum;
+import binnie.extrabees.utils.IEBEnumItem;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import net.minecraft.creativetab.CreativeTabs;
@@ -11,16 +11,17 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemProduct extends Item implements IItemModelRegister {
-	IItemEnum[] types;
 
-	public ItemProduct(final IItemEnum[] types) {
+	public ItemProduct(final IEBEnumItem[] types) {
 		this.setMaxStackSize(64);
 		this.setMaxDamage(0);
 		this.setHasSubtypes(true);
 		this.types = types;
 	}
 
-	public IItemEnum get(final ItemStack stack) {
+	private IEBEnumItem[] types;
+
+	public IEBEnumItem get(final ItemStack stack) {
 		final int i = stack.getItemDamage();
 		if (i >= 0 && i < this.types.length) {
 			return this.types[i];
@@ -35,7 +36,7 @@ public class ItemProduct extends Item implements IItemModelRegister {
 
 	@Override
 	public void getSubItems(final Item itemIn, final CreativeTabs tab, final NonNullList<ItemStack> subItems) {
-		for (final IItemEnum type : this.types) {
+		for (final IEBEnumItem type : this.types) {
 			if (type.isActive()) {
 				subItems.add(new ItemStack(this, 1, type.ordinal()));
 			}
@@ -44,9 +45,11 @@ public class ItemProduct extends Item implements IItemModelRegister {
 
 	@Override
 	@SideOnly(Side.CLIENT)
+	@SuppressWarnings("all")
 	public void registerModel(Item item, IModelManager manager) {
-		for (IItemEnum type : types) {
+		for (IEBEnumItem type : types) {
 			manager.registerItemModel(item, type.ordinal(), getRegistryName().getResourcePath());
 		}
 	}
+
 }

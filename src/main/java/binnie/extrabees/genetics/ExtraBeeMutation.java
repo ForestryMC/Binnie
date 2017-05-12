@@ -16,6 +16,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.BiomeDictionary;
 
 public class ExtraBeeMutation {
+
 	public static void doInit() {
 		registerMutation(ForestryAllele.BeeSpecies.Meadows.getAllele(), ForestryAllele.BeeSpecies.Frugal.getAllele(), ExtraBeesSpecies.ARID, 10);
 		registerMutation(ForestryAllele.BeeSpecies.Forest.getAllele(), ForestryAllele.BeeSpecies.Frugal.getAllele(), ExtraBeesSpecies.ARID, 10);
@@ -183,12 +184,13 @@ public class ExtraBeeMutation {
 	}
 
 	static class ConditionPerson implements IMutationCondition {
-		String name;
 
 		public ConditionPerson(final String name) {
 			this.name = name;
 		}
-		
+
+		String name;
+
 		@Override
 		public String getDescription() {
 			return "Can only be bred by " + this.name;
@@ -205,5 +207,7 @@ public class ExtraBeeMutation {
 			}
 			return 0;
 		}
+
 	}
+
 }

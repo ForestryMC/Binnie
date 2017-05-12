@@ -1,13 +1,13 @@
 package binnie.extrabees.products;
 
-import binnie.Binnie;
-import binnie.core.item.IItemEnum;
 import binnie.extrabees.ExtraBees;
+import binnie.extrabees.utils.IEBEnumItem;
+import binnie.extrabees.utils.Utils;
 import forestry.api.recipes.RecipeManagers;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-public enum EnumPropolis implements IItemEnum {
+public enum EnumPropolis implements IEBEnumItem {
 	WATER(2405321, 12762791, "Water"),
 	OIL(1519411, 12762791, "oil"),
 	FUEL(10718482, 12762791, "fuel"),
@@ -18,10 +18,6 @@ public enum EnumPropolis implements IItemEnum {
 	CREOSOTE(8877313, 12428819, "creosote"),
 	GLACIAL,
 	PEAT;
-
-	int[] colour;
-	String liquidName;
-	boolean active;
 
 	EnumPropolis() {
 		this(16777215, 16777215, "");
@@ -35,8 +31,12 @@ public enum EnumPropolis implements IItemEnum {
 		this.liquidName = liquid;
 	}
 
+	int[] colour;
+	String liquidName;
+	boolean active;
+
 	public void addRecipe() {
-		final FluidStack liquid = Binnie.LIQUID.getFluidStack(this.liquidName, 500);
+		final FluidStack liquid = Utils.getFluidFromName(this.liquidName, 500);
 		if (liquid != null) {
 			RecipeManagers.squeezerManager.addRecipe(20, this.get(1), liquid, ItemStack.EMPTY, 0);
 		}
@@ -44,7 +44,7 @@ public enum EnumPropolis implements IItemEnum {
 
 	@Override
 	public boolean isActive() {
-		return this.active && Binnie.LIQUID.getFluidStack(this.liquidName, 100) != null;
+		return this.active && Utils.getFluidFromName(this.liquidName, 100) != null;
 	}
 
 	public static EnumPropolis get(final ItemStack itemStack) {
@@ -64,4 +64,5 @@ public enum EnumPropolis implements IItemEnum {
 	public String getName(final ItemStack stack) {
 		return ExtraBees.proxy.localise("item.propolis." + this.name().toLowerCase());
 	}
+
 }

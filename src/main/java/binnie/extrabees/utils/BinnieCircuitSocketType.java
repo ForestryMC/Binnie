@@ -1,4 +1,4 @@
-package binnie.core.circuits;
+package binnie.extrabees.utils;
 
 import forestry.api.circuits.ICircuitSocketType;
 

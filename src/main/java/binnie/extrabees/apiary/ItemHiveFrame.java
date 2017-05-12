@@ -1,10 +1,6 @@
 package binnie.extrabees.apiary;
 
-import forestry.api.apiculture.IBee;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeHousing;
-import forestry.api.apiculture.IBeeModifier;
-import forestry.api.apiculture.IHiveFrame;
+import forestry.api.apiculture.*;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
@@ -36,6 +32,7 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 
 	@Override
 	@SideOnly(Side.CLIENT)
+	@SuppressWarnings("all")
 	public void registerModel(Item item, IModelManager manager) {
 		manager.registerItemModel(item, 0, "frames/" + getRegistryName().getResourcePath());
 	}

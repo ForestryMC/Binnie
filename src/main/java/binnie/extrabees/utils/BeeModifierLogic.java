@@ -1,4 +1,4 @@
-package binnie.core.genetics;
+package binnie.extrabees.utils;
 
 import forestry.core.utils.Translator;
 import net.minecraft.entity.player.EntityPlayer;

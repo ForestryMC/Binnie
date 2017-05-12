@@ -12,8 +12,10 @@ import binnie.extrabees.config.ConfigurationMain;
 import binnie.extrabees.core.ExtraBeeGUID;
 import binnie.extrabees.core.ModuleCore;
 import binnie.extrabees.genetics.ModuleGenetics;
+import binnie.extrabees.init.ItemRegister;
+import binnie.extrabees.init.RecipeRegister;
 import binnie.extrabees.liquids.ModuleLiquids;
-import binnie.extrabees.products.ModuleProducts;
+import binnie.extrabees.products.ItemHoneyComb;
 import binnie.extrabees.proxy.ExtraBeesProxy;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -52,22 +54,24 @@ public class ExtraBees extends AbstractMod {
 	@Mod.EventHandler
 	public void preInit(final FMLPreInitializationEvent evt) {
 		this.preInit();
+		ItemRegister.preInitItems();
 	}
 
 	@Mod.EventHandler
 	public void init(final FMLInitializationEvent evt) {
 		this.init();
+		ItemHoneyComb.addSubtypes();
 	}
 
 	@Mod.EventHandler
 	public void postInit(final FMLPostInitializationEvent evt) {
 		this.postInit();
+		RecipeRegister.postInitRecipes();
 	}
 
 	@Override
 	protected void registerModules() {
 		this.addModule(new ModuleCore());
-		this.addModule(new ModuleProducts());
 		this.addModule(new ModuleGenetics());
 		//this.addModule(new ModuleGeneration());
 		this.addModule(new ModuleLiquids());

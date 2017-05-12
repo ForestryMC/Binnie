@@ -8,11 +8,6 @@ import net.minecraft.item.Item;
 import java.util.Random;
 
 public class BlockEctoplasm extends BlockWeb {
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerBlockIcons(final IIconRegister register) {
-//		this.blockIcon = ExtraBees.proxy.getIcon(register, "ectoplasm");
-//	}
 
 	public BlockEctoplasm() {
 		this.setLightOpacity(1);
@@ -34,4 +29,5 @@ public class BlockEctoplasm extends BlockWeb {
 	public String getUnlocalizedName() {
 		return "extrabees.block.ectoplasm";
 	}
+
 }

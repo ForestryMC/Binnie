@@ -19,6 +19,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public class ItemDictionary extends Item implements IItemModelRegister {
+
 	public ItemDictionary() {
 		this.setCreativeTab(Tabs.tabApiculture);
 		this.setUnlocalizedName("dictionary");
@@ -64,8 +65,10 @@ public class ItemDictionary extends Item implements IItemModelRegister {
 
 	@Override
 	@SideOnly(Side.CLIENT)
+	@SuppressWarnings("all")
 	public void registerModel(Item item, IModelManager manager) {
 		manager.registerItemModel(item, 0, getRegistryName().getResourcePath());
 		manager.registerItemModel(item, 1, getRegistryName().getResourcePath() + "_master");
 	}
+
 }

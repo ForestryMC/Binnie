@@ -1,34 +1,22 @@
 package binnie.extrabees.genetics;
 
-import binnie.Binnie;
-import binnie.core.Mods;
 import binnie.core.genetics.ForestryAllele;
 import binnie.core.genetics.Tolerance;
-import binnie.core.item.IItemEnum;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.core.BeeModelProvider;
 import binnie.extrabees.genetics.effect.ExtraBeesEffect;
 import binnie.extrabees.products.EnumHoneyComb;
 import binnie.extrabees.products.ItemHoneyComb;
+import binnie.extrabees.utils.IEBEnumItem;
+import binnie.extrabees.utils.Utils;
 import com.google.common.base.Preconditions;
 import com.mojang.authlib.GameProfile;
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.apiculture.EnumBeeType;
-import forestry.api.apiculture.IAlleleBeeEffect;
-import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeHousing;
-import forestry.api.apiculture.IBeeRoot;
+import forestry.api.apiculture.*;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.core.IModelManager;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleFlowers;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IClassification;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.IMutation;
+import forestry.api.genetics.*;
+import forestry.apiculture.PluginApiculture;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -39,6 +27,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -295,7 +284,7 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 	}
 
 	public void registerTemplate() {
-		Binnie.GENETICS.getBeeRoot().registerTemplate(this.getTemplate());
+		Utils.getBeeRoot().registerTemplate(this.getTemplate());
 		if (this.state != State.Active) {
 			AlleleManager.alleleRegistry.blacklistAllele(this.getUID());
 		}
@@ -310,7 +299,7 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 		}
 	}
 
-	public void addProduct(final IItemEnum product, final Float chance) {
+	public void addProduct(final IEBEnumItem product, final Float chance) {
 		if (product.isActive()) {
 			this.addProduct(product.get(1), chance);
 		} else {
@@ -328,7 +317,7 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 		}
 	}
 
-	private void addSpecialty(final IItemEnum product, final Float chance) {
+	private void addSpecialty(final IEBEnumItem product, final Float chance) {
 		if (product.isActive()) {
 			this.addSpecialty(product.get(1), chance);
 		} else {
@@ -346,8 +335,7 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 	}
 
 	public static IAllele[] getDefaultTemplate() {
-		IBeeRoot beeRoot = Binnie.GENETICS.getBeeRoot();
-		return beeRoot.getDefaultTemplate();
+		return Utils.getBeeRoot().getDefaultTemplate();
 	}
 
 	public IAllele[] getTemplate() {
@@ -856,7 +844,7 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 		ExtraBeesSpecies.JADED.setFlowering(ForestryAllele.Flowering.Maximum);
 		ExtraBeesSpecies.JADED.setTerritory(ForestryAllele.Territory.Largest);
 		ExtraBeesSpecies.JADED.addProduct(ItemHoneyComb.VanillaComb.HONEY.get(), 0.30f);
-		ExtraBeesSpecies.JADED.addSpecialty(Mods.Forestry.stack("pollen"), 0.20f);
+		ExtraBeesSpecies.JADED.addSpecialty(new ItemStack(PluginApiculture.getItems().pollenCluster), 0.20f);
 		ExtraBeesSpecies.JADED.setHasEffect();
 		ExtraBeesSpecies.JADED.setSecondaryColor(14453483);
 		ExtraBeesSpecies.JADED.addSpecialty(EnumHoneyComb.PURPLE, 0.15f);
@@ -988,7 +976,7 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 
 	@Override
 	public IBeeRoot getRoot() {
-		return Binnie.GENETICS.getBeeRoot();
+		return Utils.getBeeRoot();
 	}
 
 	@Override
@@ -1080,13 +1068,13 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 		if (itemstack.getItem() == Items.GLASS_BOTTLE) {
 			return 0.9f;
 		}
-		if (itemstack.getItem() == Mods.Forestry.item("honey_drop")) {
+		if (itemstack.getItem() == PluginApiculture.getItems().honeyDrop) {
 			return 0.5f;
 		}
-		if (itemstack.getItem() == Mods.Forestry.item("honeydew")) {
+		if (itemstack.getItem() == PluginApiculture.getItems().honeydew) {
 			return 0.7f;
 		}
-		if (itemstack.getItem() == Mods.Forestry.item("bee_comb")) {
+		if (itemstack.getItem() == PluginApiculture.getItems().beeComb) {
 			return 0.4f;
 		}
 		if (AlleleManager.alleleRegistry.isIndividual(itemstack)) {
@@ -1129,10 +1117,6 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 		return bounty;
 	}
 
-//	@Override
-//	public String getEntityTexture() {
-//		return "/gfx/forestry/entities/bees/honeyBee.png";
-//	}
 
 	@Override
 	public int getComplexity() {
@@ -1195,7 +1179,8 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void registerModels(Item item, IModelManager manager) {
+	public void registerModels(Item item, @Nonnull IModelManager manager) {
 		BeeModelProvider.instance.registerModels(item, manager);
 	}
+
 }
