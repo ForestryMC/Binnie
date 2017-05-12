@@ -6,6 +6,7 @@ import forestry.api.apiculture.IHiveDrop;
 import forestry.api.core.Tabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -14,6 +15,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -36,14 +38,33 @@ public class BlockExtraBeeHive extends Block {
 	}
 
 	@Override
-	public void getSubBlocks(final Item itemIn, final CreativeTabs tab, final NonNullList<ItemStack> itemList) {
+	public void getSubBlocks(@Nonnull final Item itemIn, final CreativeTabs tab, final NonNullList<ItemStack> itemList) {
 		for (int i = 0; i < EnumHiveType.values().length; ++i) {
 			itemList.add(new ItemStack(this, 1, i));
 		}
 	}
 
 	@Override
-	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(hiveType).ordinal();
+	}
+
+	@Override
+	@Nonnull
+	@SuppressWarnings("deprecation")
+	public IBlockState getStateFromMeta(int meta) {
+		return getDefaultState().withProperty(hiveType, EnumHiveType.values()[meta]);
+	}
+
+	@Override
+	@Nonnull
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, hiveType);
+	}
+
+	@Override
+	@Nonnull
+	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, @Nonnull IBlockState state, int fortune) {
 		final ArrayList<ItemStack> ret = new ArrayList<>();
 		final List<IHiveDrop> dropList = state.getValue(hiveType).drops;
 		Collections.shuffle(dropList);

@@ -9,6 +9,7 @@ import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.craftgui.resource.minecraft.PaddedTexture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.extrabees.ExtraBees;
+import binnie.extrabees.client.GuiHack;
 import binnie.extrabees.core.ExtraBeeTexture;
 import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,7 +37,7 @@ public class WindowPunnettSquare extends Window {
 
 	@Override
 	public AbstractMod getMod() {
-		return ExtraBees.instance;
+		return GuiHack.INSTANCE;
 	}
 
 	@Override

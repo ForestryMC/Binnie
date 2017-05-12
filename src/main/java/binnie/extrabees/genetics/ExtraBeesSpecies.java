@@ -219,7 +219,7 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 
 	@Override
 	public String getDescription() {
-		return ExtraBees.proxy.localiseOrBlank("species." + this.name().toLowerCase() + ".desc");
+		return ExtraBees.proxy.localise("species." + this.name().toLowerCase() + ".desc");
 	}
 
 	@Override

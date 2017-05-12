@@ -40,7 +40,7 @@ public enum ExtraBeeTexture implements IBinnieTexture {
 	@SideOnly(Side.CLIENT)
 	public BinnieResource getTexture() {
 		if (resource == null) {
-			resource = Binnie.RESOURCE.getPNG(ExtraBees.instance, this.type, this.texture);
+			resource = Binnie.RESOURCE.getPNG("extrabees", this.type, this.texture);
 		}
 		return resource;
 	}

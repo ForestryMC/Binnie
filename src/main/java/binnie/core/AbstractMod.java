@@ -59,6 +59,10 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 
 	protected abstract Class<? extends BinniePacketHandler> getPacketHandler();
 
+	public Object getMod(){
+		return this;
+	}
+
 	@Override
 	public void preInit() {
 		getProxy().setMod(this);

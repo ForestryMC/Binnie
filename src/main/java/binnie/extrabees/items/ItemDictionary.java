@@ -1,6 +1,7 @@
 package binnie.extrabees.items;
 
 import binnie.extrabees.ExtraBees;
+import binnie.extrabees.client.GuiHack;
 import binnie.extrabees.core.ExtraBeeGUID;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
@@ -53,7 +54,7 @@ public class ItemDictionary extends Item implements IItemModelRegister {
 		} else {
 			id = ExtraBeeGUID.DatabaseNEI;
 		}
-		ExtraBees.proxy.openGui(id, playerIn, playerIn.getPosition());
+		GuiHack.INSTANCE.openGui(id, playerIn, playerIn.getPosition());
 
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}

@@ -7,6 +7,7 @@ import binnie.extrabees.ExtraBees;
 import binnie.extrabees.apiary.machine.AlvearyMachine;
 import binnie.extrabees.apiary.machine.AlvearyMutator;
 import binnie.extrabees.apiary.machine.AlvearyStimulator;
+import binnie.extrabees.client.GuiHack;
 import binnie.extrabees.items.types.EnumHiveFrame;
 import binnie.extrabees.utils.BinnieCircuitLayout;
 import binnie.extrabees.utils.BinnieCircuitSocketType;
@@ -31,7 +32,7 @@ public class ModuleApiary implements IInitializable {
 
 	@Override
 	public void preInit() {
-		final MachineGroup machineGroup = new MachineGroup(ExtraBees.instance, "alveay", "alveary", AlvearyMachine.values());
+		final MachineGroup machineGroup = new MachineGroup(GuiHack.INSTANCE, "alveay", "alveary", AlvearyMachine.values());
 		machineGroup.setCreativeTab(Tabs.tabApiculture);
 		GameRegistry.registerTileEntity(TileExtraBeeAlveary.class, "extrabees.tile.alveary");
 		ModuleApiary.blockComponent = machineGroup.getBlock();
@@ -72,6 +73,6 @@ public class ModuleApiary implements IInitializable {
 	@Override
 	public void init() {
 		this.stimulatorLayout = new BinnieCircuitLayout("Stimulator", BinnieCircuitSocketType.STIMULATOR);
-		ModuleApiary.spriteMutator = new ValidatorSprite(ExtraBees.instance, "validator/mutator.0", "validator/mutator.1");
+		ModuleApiary.spriteMutator = new ValidatorSprite(GuiHack.INSTANCE, "validator/mutator.0", "validator/mutator.1");
 	}
 }

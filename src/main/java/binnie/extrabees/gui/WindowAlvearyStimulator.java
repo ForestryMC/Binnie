@@ -8,6 +8,7 @@ import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
 import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.apiary.machine.AlvearyStimulator;
+import binnie.extrabees.client.GuiHack;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
@@ -37,7 +38,7 @@ public class WindowAlvearyStimulator extends Window {
 
 	@Override
 	public AbstractMod getMod() {
-		return ExtraBees.instance;
+		return GuiHack.INSTANCE;
 	}
 
 	@Override

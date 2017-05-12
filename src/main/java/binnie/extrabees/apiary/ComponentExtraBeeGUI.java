@@ -4,6 +4,7 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.MachineComponent;
 import binnie.core.machines.component.IInteraction;
 import binnie.extrabees.ExtraBees;
+import binnie.extrabees.client.GuiHack;
 import binnie.extrabees.core.ExtraBeeGUID;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
@@ -19,6 +20,6 @@ public class ComponentExtraBeeGUI extends MachineComponent implements IInteracti
 
 	@Override
 	public void onRightClick(final World world, final EntityPlayer player, final BlockPos pos) {
-		ExtraBees.proxy.openGui(this.id, player, pos);
+		GuiHack.INSTANCE.openGui(this.id, player, pos);
 	}
 }

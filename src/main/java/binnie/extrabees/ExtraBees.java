@@ -1,14 +1,8 @@
 package binnie.extrabees;
 
 import binnie.Constants;
-import binnie.core.AbstractMod;
-import binnie.core.BinnieCore;
-import binnie.core.gui.IBinnieGUID;
-import binnie.core.network.BinniePacketHandler;
-import binnie.core.proxy.IProxyCore;
-import binnie.extrabees.apiary.ModuleApiary;
-import binnie.extrabees.core.ExtraBeeGUID;
-import binnie.extrabees.core.ModuleCore;
+import binnie.core.gui.BinnieGUIHandler;
+import binnie.extrabees.client.GuiHack;
 import binnie.extrabees.genetics.ExtraBeeMutation;
 import binnie.extrabees.genetics.ExtraBeesBranch;
 import binnie.extrabees.genetics.ExtraBeesFlowers;
@@ -18,7 +12,7 @@ import binnie.extrabees.init.BlockRegister;
 import binnie.extrabees.init.ItemRegister;
 import binnie.extrabees.init.RecipeRegister;
 import binnie.extrabees.items.ItemHoneyComb;
-import binnie.extrabees.proxy.ExtraBeesProxy;
+import binnie.extrabees.proxy.ExtraBeesCommonProxy;
 import binnie.extrabees.utils.MaterialBeehive;
 import binnie.extrabees.utils.config.ConfigHandler;
 import binnie.extrabees.utils.config.ConfigurationMain;
@@ -32,23 +26,22 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(modid = ExtraBees.MODID, name = "Binnie's Extra Bees", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
-public class ExtraBees extends AbstractMod {
+public class ExtraBees {
 
 	public static final String MODID = "extrabees";
 
-	@SuppressWarnings("NullableProblems")
 	@Mod.Instance(MODID)
 	public static ExtraBees instance;
 
-	@SuppressWarnings("NullableProblems")
-	@SidedProxy(clientSide = "binnie.extrabees.proxy.ExtraBeesProxyClient", serverSide = "binnie.extrabees.proxy.ExtraBeesProxyServer")
-	public static ExtraBeesProxy proxy;
+	@SidedProxy(clientSide = "binnie.extrabees.proxy.ExtraBeesClientProxy", serverSide = "binnie.extrabees.proxy.ExtraBeesCommonProxy")
+	public static ExtraBeesCommonProxy proxy;
 	public static ConfigHandler configHandler;
-	public static SimpleNetworkWrapper networkHandler;
+	public static NetworkHandler networkHandler;
 
 	public static Block hive;
 	public static Material materialBeehive;
@@ -63,9 +56,11 @@ public class ExtraBees extends AbstractMod {
 
 	@Mod.EventHandler
 	public void preInit(final FMLPreInitializationEvent event) {
-		this.preInit();
+		GuiHack.INSTANCE.preInit();
+
+		networkHandler = new NetworkHandler(MODID);
 		materialBeehive = new MaterialBeehive();
-		configHandler = new ConfigHandler(event.getModConfigurationDirectory());
+		configHandler = new ConfigHandler(event.getSuggestedConfigurationFile());
 		configHandler.addConfigurable(new ConfigurationMain());
 		BlockRegister.preInitBlocks();
 		ItemRegister.preInitItems();
@@ -79,7 +74,9 @@ public class ExtraBees extends AbstractMod {
 
 	@Mod.EventHandler
 	public void init(final FMLInitializationEvent evt) {
-		this.init();
+		GuiHack.INSTANCE.init();
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new BinnieGUIHandler(GuiHack.INSTANCE));
+
 		configHandler.reload(true);
 		ItemHoneyComb.addSubtypes();
 		GameRegistry.registerWorldGenerator(new ExtraBeesWorldGenerator(), 0);
@@ -91,56 +88,20 @@ public class ExtraBees extends AbstractMod {
 
 	@Mod.EventHandler
 	public void postInit(final FMLPostInitializationEvent evt) {
-		this.postInit();
+		GuiHack.INSTANCE.postInit();
+
 		BlockRegister.postInitBlocks();
 		RecipeRegister.postInitRecipes();
 	}
 
-	@Override
-	protected void registerModules() {
-		this.addModule(new ModuleCore());
-		this.addModule(new ModuleApiary());
-	}
+	private static class NetworkHandler {
 
-	@Override
-	public IBinnieGUID[] getGUIDs() {
-		return ExtraBeeGUID.values();
-	}
-
-	@Override
-	public Class<?>[] getConfigs() {
-		return new Class[0];
-	}
-
-	@Override
-	public IProxyCore getProxy() {
-		return ExtraBees.proxy;
-	}
-
-	@Override
-	public String getChannel() {
-		return "EB";
-	}
-
-	@Override
-	public String getModID() {
-		return MODID;
-	}
-
-	@Override
-	protected Class<? extends BinniePacketHandler> getPacketHandler() {
-		return PacketHandler.class;
-	}
-
-	@Override
-	public boolean isActive() {
-		return BinnieCore.isExtraBeesActive();
-	}
-
-	public static class PacketHandler extends BinniePacketHandler {
-		public PacketHandler() {
-			super(ExtraBees.instance);
+		private NetworkHandler(String channel){
+			this.networkWrapper = new SimpleNetworkWrapper(channel);
 		}
+
+		private final SimpleNetworkWrapper networkWrapper;
+
 	}
 
 }

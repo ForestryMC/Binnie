@@ -64,7 +64,7 @@ public enum ExtraBeesBranch implements IClassification {
 
 	@Override
 	public String getDescription() {
-		return ExtraBees.proxy.localiseOrBlank("branch." + this.toString().toLowerCase() + ".desc");
+		return ExtraBees.proxy.localise("branch." + this.toString().toLowerCase() + ".desc");
 	}
 
 	ExtraBeesBranch(final String scientific) {
