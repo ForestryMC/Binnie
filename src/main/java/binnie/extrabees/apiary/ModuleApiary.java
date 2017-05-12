@@ -7,6 +7,7 @@ import binnie.extrabees.ExtraBees;
 import binnie.extrabees.apiary.machine.AlvearyMachine;
 import binnie.extrabees.apiary.machine.AlvearyMutator;
 import binnie.extrabees.apiary.machine.AlvearyStimulator;
+import binnie.extrabees.items.types.EnumHiveFrame;
 import binnie.extrabees.utils.BinnieCircuitLayout;
 import binnie.extrabees.utils.BinnieCircuitSocketType;
 import binnie.extrabees.utils.Utils;

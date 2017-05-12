@@ -1,4 +1,4 @@
-package binnie.extrabees.apiary;
+package binnie.extrabees.items.types;
 
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeModifier;

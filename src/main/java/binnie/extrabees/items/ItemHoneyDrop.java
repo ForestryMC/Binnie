@@ -1,5 +1,6 @@
-package binnie.extrabees.products;
+package binnie.extrabees.items;
 
+import binnie.extrabees.items.types.EnumHoneyDrop;
 import forestry.api.core.Tabs;
 import forestry.core.items.IColoredItem;
 import net.minecraft.item.ItemStack;

@@ -1,5 +1,6 @@
-package binnie.extrabees.apiary;
+package binnie.extrabees.items;
 
+import binnie.extrabees.items.types.EnumHiveFrame;
 import forestry.api.apiculture.*;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;

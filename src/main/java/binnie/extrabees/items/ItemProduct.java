@@ -1,6 +1,6 @@
-package binnie.extrabees.products;
+package binnie.extrabees.items;
 
-import binnie.extrabees.utils.IEBEnumItem;
+import binnie.extrabees.items.types.IEBEnumItem;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import net.minecraft.creativetab.CreativeTabs;

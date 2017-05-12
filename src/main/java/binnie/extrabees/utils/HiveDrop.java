@@ -1,6 +1,5 @@
-package binnie.extrabees.worldgen;
+package binnie.extrabees.utils;
 
-import binnie.Binnie;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IHiveDrop;
@@ -11,12 +10,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
 public class HiveDrop implements IHiveDrop {
-	private IAllele[] template;
-	private NonNullList<ItemStack> extra;
-	private int chance;
 
 	public HiveDrop(final IAlleleBeeSpecies species, final int chance) {
-		this(Binnie.GENETICS.getBeeRoot().getTemplate(species), NonNullList.create(), chance);
+		this(Utils.getBeeRoot().getTemplate(species), NonNullList.create(), chance);
 	}
 
 	public HiveDrop(IAllele[] template, final NonNullList<ItemStack> extra, final int chance) {
@@ -24,6 +20,10 @@ public class HiveDrop implements IHiveDrop {
 		this.template = template;
 		this.chance = chance;
 	}
+
+	private IAllele[] template;
+	private NonNullList<ItemStack> extra;
+	private int chance;
 
 	@Override
 	public NonNullList<ItemStack> getExtraItems(IBlockAccess world, BlockPos pos, int fortune) {
@@ -46,7 +46,7 @@ public class HiveDrop implements IHiveDrop {
 
 	@Override
 	public IBee getBeeType(IBlockAccess world, BlockPos pos) {
-		return Binnie.GENETICS.getBeeRoot().getBee(Binnie.GENETICS.getBeeRoot().templateAsGenome(this.template));
+		return Utils.getBeeRoot().getBee(Utils.getBeeRoot().templateAsGenome(this.template));
 	}
 
 }

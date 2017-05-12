@@ -14,6 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ExtraBeesProxyClient extends ExtraBeesProxy {
+
 	public static ModelManager modelManager = new ModelManager(Constants.EXTRA_BEES_MOD_ID);
 
 	@Override

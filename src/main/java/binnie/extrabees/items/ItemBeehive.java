@@ -1,5 +1,6 @@
-package binnie.extrabees.worldgen;
+package binnie.extrabees.items;
 
+import binnie.extrabees.blocks.type.EnumHiveType;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -8,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
 public class ItemBeehive extends ItemBlock {
+
 	public ItemBeehive(final Block block) {
 		super(block);
 		this.setMaxDamage(0);
@@ -31,4 +33,5 @@ public class ItemBeehive extends ItemBlock {
 	public String getItemStackDisplayName(final ItemStack itemStack) {
 		return EnumHiveType.values()[itemStack.getItemDamage()].toString() + " Hive";
 	}
+
 }

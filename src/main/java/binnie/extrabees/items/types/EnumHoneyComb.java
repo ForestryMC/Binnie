@@ -1,7 +1,6 @@
-package binnie.extrabees.products;
+package binnie.extrabees.items.types;
 
 import binnie.extrabees.ExtraBees;
-import binnie.extrabees.utils.IEBEnumItem;
 import com.google.common.base.Objects;
 import forestry.api.recipes.RecipeManagers;
 import net.minecraft.init.Blocks;
@@ -116,9 +115,9 @@ public enum EnumHoneyComb implements IEBEnumItem {
 		this.colour = new int[]{colour, colour2};
 	}
 
-	int[] colour;
+	public int[] colour;
 	public Map<ItemStack, Float> products;
-	boolean active;
+	public boolean active;
 	public boolean deprecated;
 
 	public void addRecipe() {

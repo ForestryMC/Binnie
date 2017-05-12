@@ -1,6 +1,7 @@
-package binnie.extrabees.worldgen;
+package binnie.extrabees.blocks;
 
 import binnie.extrabees.ExtraBees;
+import binnie.extrabees.blocks.type.EnumHiveType;
 import forestry.api.apiculture.IHiveDrop;
 import forestry.api.core.Tabs;
 import net.minecraft.block.Block;
@@ -18,8 +19,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class BlockExtraBeeHive extends Block {
-	//	IIcon[][] icons;
-	public static final PropertyEnum<EnumHiveType> hiveType = PropertyEnum.create("hive_type", EnumHiveType.class);
 
 	public BlockExtraBeeHive() {
 		super(ExtraBees.materialBeehive);
@@ -29,6 +28,8 @@ public class BlockExtraBeeHive extends Block {
 		this.setRegistryName("hive");
 		this.setCreativeTab(Tabs.tabApiculture);
 	}
+
+	public static final PropertyEnum<EnumHiveType> hiveType = PropertyEnum.create("hive_type", EnumHiveType.class);
 
 	public String getUnlocalizedName(final ItemStack itemStack) {
 		return "extrabees.block.hive." + itemStack.getItemDamage();
@@ -40,28 +41,6 @@ public class BlockExtraBeeHive extends Block {
 			itemList.add(new ItemStack(this, 1, i));
 		}
 	}
-
-//	@Override
-//	public IIcon getIcon(final int side, final int metadata) {
-//		if (metadata >= EnumHiveType.values().length) {
-//			return null;
-//		}
-//		if (side < 2) {
-//			return this.icons[metadata][1];
-//		}
-//		return this.icons[metadata][0];
-//	}
-//
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerBlockIcons(final IIconRegister register) {
-//		this.icons = new IIcon[EnumHiveType.values().length][2];
-//		for (final EnumHiveType hive : EnumHiveType.values()) {
-//			this.icons[hive.ordinal()][0] = ExtraBees.proxy.getIcon(register, "hive/" + hive.toString().toLowerCase() + ".0");
-//			this.icons[hive.ordinal()][1] = ExtraBees.proxy.getIcon(register, "hive/" + hive.toString().toLowerCase() + ".1");
-//		}
-//	}
-
 
 	@Override
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {

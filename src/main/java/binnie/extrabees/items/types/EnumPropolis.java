@@ -1,7 +1,6 @@
-package binnie.extrabees.products;
+package binnie.extrabees.items.types;
 
 import binnie.extrabees.ExtraBees;
-import binnie.extrabees.utils.IEBEnumItem;
 import binnie.extrabees.utils.Utils;
 import forestry.api.recipes.RecipeManagers;
 import net.minecraft.item.ItemStack;
@@ -31,9 +30,9 @@ public enum EnumPropolis implements IEBEnumItem {
 		this.liquidName = liquid;
 	}
 
-	int[] colour;
-	String liquidName;
-	boolean active;
+	public int[] colour;
+	public String liquidName;
+	public boolean active;
 
 	public void addRecipe() {
 		final FluidStack liquid = Utils.getFluidFromName(this.liquidName, 500);

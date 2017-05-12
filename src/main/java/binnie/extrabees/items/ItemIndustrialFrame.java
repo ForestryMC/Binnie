@@ -1,5 +1,6 @@
-package binnie.extrabees.apiary;
+package binnie.extrabees.items;
 
+import binnie.extrabees.items.types.IndustrialFrame;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

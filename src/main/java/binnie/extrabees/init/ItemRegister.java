@@ -1,8 +1,11 @@
 package binnie.extrabees.init;
 
 import binnie.extrabees.ExtraBees;
-import binnie.extrabees.products.*;
+import binnie.extrabees.items.*;
+import binnie.extrabees.items.types.EnumHoneyComb;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemBlock;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 /**
@@ -12,6 +15,13 @@ public final class ItemRegister {
 
 	public static void preInitItems(){
 		registerProducts();
+		registerMisc();
+	}
+
+	@SuppressWarnings("all")
+	private static void registerMisc(){
+		ExtraBees.proxy.registerItem(ExtraBees.dictionary = new ItemDictionary());
+		GameRegistry.register(new ItemBlock(ExtraBees.ectoplasm).setRegistryName(ExtraBees.ectoplasm.getRegistryName()));
 	}
 
 	private static void registerProducts(){

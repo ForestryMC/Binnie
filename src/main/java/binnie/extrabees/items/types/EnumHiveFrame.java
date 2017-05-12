@@ -1,6 +1,7 @@
-package binnie.extrabees.apiary;
+package binnie.extrabees.items.types;
 
 import binnie.extrabees.ExtraBees;
+import binnie.extrabees.items.ItemHiveFrame;
 import binnie.extrabees.utils.BeeModifierLogic;
 import binnie.extrabees.utils.EnumBeeBooleanModifier;
 import binnie.extrabees.utils.EnumBeeModifier;
@@ -19,6 +20,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
+
 	Cocoa,
 	Cage,
 	Soul(80),
@@ -45,10 +47,6 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 		GameRegistry.addRecipe(new ItemStack(EnumHiveFrame.Clay.item), " c ", "cFc", " c ", 'F', impregnatedFrame, 'c', Items.CLAY_BALL);
 	}
 
-	private final Item item;
-	private final int maxDamage;
-	private final BeeModifierLogic logic;
-
 	EnumHiveFrame() {
 		this(240);
 	}
@@ -58,6 +56,10 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 		this.logic = new BeeModifierLogic();
 		this.item = new ItemHiveFrame(this).setRegistryName("hive_frame." + name().toLowerCase());
 	}
+
+	private final Item item;
+	private final int maxDamage;
+	private final BeeModifierLogic logic;
 
 	public int getIconIndex() {
 		return 55 + this.ordinal();
@@ -143,4 +145,5 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
 		this.logic.addInformation(stack, playerIn, tooltip, advanced);
 	}
+
 }

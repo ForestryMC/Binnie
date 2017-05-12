@@ -1,4 +1,4 @@
-package binnie.extrabees.products;
+package binnie.extrabees.items;
 
 import binnie.extrabees.ExtraBees;
 import net.minecraft.item.ItemStack;

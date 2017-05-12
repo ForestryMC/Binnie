@@ -1,4 +1,4 @@
-package binnie.extrabees.genetics.items;
+package binnie.extrabees.items;
 
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.core.ExtraBeeGUID;

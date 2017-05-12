@@ -1,4 +1,4 @@
-package binnie.extrabees.utils;
+package binnie.extrabees.items.types;
 
 import net.minecraft.item.ItemStack;
 

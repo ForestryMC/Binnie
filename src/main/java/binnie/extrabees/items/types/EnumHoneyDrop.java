@@ -1,7 +1,6 @@
-package binnie.extrabees.products;
+package binnie.extrabees.items.types;
 
 import binnie.extrabees.ExtraBees;
-import binnie.extrabees.utils.IEBEnumItem;
 import binnie.extrabees.utils.Utils;
 import forestry.api.recipes.RecipeManagers;
 import net.minecraft.item.ItemStack;

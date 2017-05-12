@@ -1,6 +1,6 @@
 package binnie.core.item;
 
-import binnie.extrabees.utils.IEBEnumItem;
+import binnie.extrabees.items.types.IEBEnumItem;
 
 import java.util.List;
 
