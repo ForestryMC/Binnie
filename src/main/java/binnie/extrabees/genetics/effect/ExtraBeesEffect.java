@@ -519,6 +519,13 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	}
 
 	public static class Birthday {
+
+		private Birthday(final int month, final int date, final String name) {
+			this.month = month;
+			this.date = date + 1;
+			this.name = name;
+		}
+
 		private final int month;
 		private final int date;
 		private final String name;
@@ -531,10 +538,5 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 			return this.name;
 		}
 
-		private Birthday(final int month, final int date, final String name) {
-			this.month = month;
-			this.date = date + 1;
-			this.name = name;
-		}
 	}
 }

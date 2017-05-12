@@ -1,7 +1,7 @@
 package binnie.extrabees.proxy;
 
-import binnie.Constants;
 import binnie.core.models.ModelManager;
+import binnie.extrabees.ExtraBees;
 import binnie.extrabees.genetics.ExtraBeesSpecies;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeType;
@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class ExtraBeesProxyClient extends ExtraBeesProxy {
 
-	public static ModelManager modelManager = new ModelManager(Constants.EXTRA_BEES_MOD_ID);
+	public static ModelManager modelManager = new ModelManager(ExtraBees.MODID);
 
 	@Override
 	public void registerBeeModel(ExtraBeesSpecies type) {

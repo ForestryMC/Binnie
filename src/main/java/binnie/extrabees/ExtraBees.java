@@ -18,7 +18,6 @@ import binnie.extrabees.init.BlockRegister;
 import binnie.extrabees.init.ItemRegister;
 import binnie.extrabees.init.RecipeRegister;
 import binnie.extrabees.items.ItemHoneyComb;
-import binnie.extrabees.liquids.ModuleLiquids;
 import binnie.extrabees.proxy.ExtraBeesProxy;
 import binnie.extrabees.utils.MaterialBeehive;
 import binnie.extrabees.utils.config.ConfigHandler;
@@ -33,19 +32,23 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-@Mod(modid = Constants.EXTRA_BEES_MOD_ID, name = "Binnie's Extra Bees", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
+@Mod(modid = ExtraBees.MODID, name = "Binnie's Extra Bees", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class ExtraBees extends AbstractMod {
 
+	public static final String MODID = "extrabees";
+
 	@SuppressWarnings("NullableProblems")
-	@Mod.Instance(Constants.EXTRA_BEES_MOD_ID)
+	@Mod.Instance(MODID)
 	public static ExtraBees instance;
 
 	@SuppressWarnings("NullableProblems")
 	@SidedProxy(clientSide = "binnie.extrabees.proxy.ExtraBeesProxyClient", serverSide = "binnie.extrabees.proxy.ExtraBeesProxyServer")
 	public static ExtraBeesProxy proxy;
 	public static ConfigHandler configHandler;
+	public static SimpleNetworkWrapper networkHandler;
 
 	public static Block hive;
 	public static Material materialBeehive;
@@ -96,7 +99,6 @@ public class ExtraBees extends AbstractMod {
 	@Override
 	protected void registerModules() {
 		this.addModule(new ModuleCore());
-		this.addModule(new ModuleLiquids());
 		this.addModule(new ModuleApiary());
 	}
 
@@ -122,7 +124,7 @@ public class ExtraBees extends AbstractMod {
 
 	@Override
 	public String getModID() {
-		return Constants.EXTRA_BEES_MOD_ID;
+		return MODID;
 	}
 
 	@Override
