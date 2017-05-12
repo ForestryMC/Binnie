@@ -73,35 +73,6 @@ public class ForestryAllele {
 		}
 	}
 
-	public enum Sappiness {
-		Lowest,
-		Lower,
-		Low,
-		Average,
-		High,
-		Higher,
-		Highest;
-
-		public IAllele getAllele() {
-			return AlleleManager.alleleRegistry.getAllele("forestry.sappiness" + toString());
-		}
-	}
-
-	public enum TreeHeight {
-		Smallest,
-		Smaller,
-		Small,
-		Average,
-		Large,
-		Larger,
-		Largest,
-		Gigantic;
-
-		public IAllele getAllele() {
-			return AlleleManager.alleleRegistry.getAllele("forestry.height" + ((this == TreeHeight.Average) ? "Max10" : toString()));
-		}
-	}
-
 	public enum Size {
 		Smallest,
 		Smaller,
@@ -116,58 +87,6 @@ public class ForestryAllele {
 		}
 	}
 
-	public enum Saplings {
-		Lowest,
-		Lower,
-		Low,
-		Average,
-		High,
-		Higher,
-		Highest;
-
-		public IAllele getAllele() {
-			String s = toString();
-			if (this == Saplings.Average) {
-				s = "Default";
-			}
-			if (this == Saplings.High) {
-				s = "Double";
-			}
-			if (this == Saplings.Higher) {
-				s = "Triple";
-			}
-			return AlleleManager.alleleRegistry.getAllele("forestry.saplings" + s);
-		}
-	}
-
-	public enum Yield {
-		Lowest,
-		Lower,
-		Low,
-		Average,
-		High,
-		Higher,
-		Highest;
-
-		public IAllele getAllele() {
-			return AlleleManager.alleleRegistry.getAllele("forestry.yield" + ((this == Yield.Average) ? "Default" : toString()));
-		}
-	}
-
-	public enum Maturation {
-		Slowest,
-		Slower,
-		Slow,
-		Average,
-		Fast,
-		Faster,
-		Fastest;
-
-		public IAllele getAllele() {
-			return AlleleManager.alleleRegistry.getAllele("forestry.maturation" + toString());
-		}
-	}
-
 	public enum Bool {
 		True,
 		False;
@@ -178,14 +97,6 @@ public class ForestryAllele {
 
 		public static IAllele get(boolean bool) {
 			return (bool ? Bool.True : Bool.False).getAllele();
-		}
-	}
-
-	public enum Growth {
-		Tropical;
-
-		public IAllele getAllele() {
-			return AlleleManager.alleleRegistry.getAllele("forestry.growth" + toString());
 		}
 	}
 

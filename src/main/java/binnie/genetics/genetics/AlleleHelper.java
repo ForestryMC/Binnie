@@ -16,7 +16,7 @@ import org.apache.commons.lang3.text.WordUtils;
 
 import java.util.Locale;
 
-public class AlleleHelper {
+public class AlleleHelper extends forestry.core.genetics.alleles.AlleleHelper {
 	public static IAllele getAllele(EnumTemperature temperature) {
 		return AlleleManager.alleleRegistry.getAllele(getUid(temperature));
 	}

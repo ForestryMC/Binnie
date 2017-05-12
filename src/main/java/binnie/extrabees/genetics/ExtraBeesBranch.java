@@ -92,7 +92,6 @@ public enum ExtraBeesBranch implements IClassification {
 			ExtraBeesSpecies.HAZARDOUS.setBranch(austereBranch);
 		}
 
-		ExtraBeesBranch.FARMING.addMemberSpecies(ExtraBeesSpecies.ALCOHOL);
 		ExtraBeesBranch.FARMING.addMemberSpecies(ExtraBeesSpecies.MILK);
 		ExtraBeesBranch.FARMING.addMemberSpecies(ExtraBeesSpecies.COFFEE);
 		ExtraBeesBranch.FARMING.addMemberSpecies(ExtraBeesSpecies.CITRUS);
