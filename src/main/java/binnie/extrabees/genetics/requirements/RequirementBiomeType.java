@@ -1,13 +1,11 @@
 package binnie.extrabees.genetics.requirements;
 
-
-import binnie.extrabees.genetics.ExtraBeeMutation;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IGenome;
 import net.minecraftforge.common.BiomeDictionary;
 
-public class RequirementBiomeType extends ExtraBeeMutation.MutationRequirement {
+public class RequirementBiomeType extends MutationRequirement {
 	protected BiomeDictionary.Type type;
 
 	public RequirementBiomeType(BiomeDictionary.Type type) {

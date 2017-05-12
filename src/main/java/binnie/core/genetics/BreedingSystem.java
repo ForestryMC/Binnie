@@ -4,7 +4,6 @@ import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.resource.BinnieIcon;
 import binnie.core.util.I18N;
-import binnie.extrabees.genetics.ExtraBeeMutation;
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import forestry.api.core.ForestryEvent;
@@ -145,12 +144,15 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 				allBranches.add(branch);
 			}
 		}
+
 		if (getSpeciesRoot().getMutations(false) != null) {
 			Set<IMutation> mutations = new LinkedHashSet<>();
 			mutations.addAll(getSpeciesRoot().getMutations(false));
 			if (this == Binnie.Genetics.beeBreedingSystem) {
-				mutations.addAll(ExtraBeeMutation.mutations);
+				// TODO !!! check for needed !!!
+//				mutations.addAll(ExtraBeeMutation.mutations);
 			}
+
 			for (IMutation mutation : mutations) {
 				allMutations.add(mutation);
 				Set<IAlleleSpecies> participatingSpecies = new LinkedHashSet<>();

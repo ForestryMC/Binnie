@@ -1,12 +1,13 @@
 package binnie.extrabees.genetics;
 
+import binnie.extrabees.genetics.effect.ExtraBeesEffect;
+import binnie.genetics.genetics.AlleleHelper;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IClassification;
 import forestry.apiculture.genetics.alleles.AlleleEffect;
 import forestry.core.genetics.IBranchDefinition;
-import forestry.core.genetics.alleles.AlleleHelper;
 import forestry.core.genetics.alleles.EnumAllele;
 
 import java.util.Arrays;
@@ -17,7 +18,19 @@ public enum ExtraBeeBranchDefinition implements IBranchDefinition {
 		
 	},
 	HOSTILE("Infenapis"),
-	ROCKY("Monapis"),
+	ROCKY("Monapis") {
+		@Override
+		protected void setBranchProperties(IAllele[] template) {
+			AlleleHelper.instance.set(template, EnumBeeChromosome.NOCTURNAL, true);
+			AlleleHelper.instance.set(template, EnumBeeChromosome.CAVE_DWELLING, true);
+			AlleleHelper.instance.set(template, EnumBeeChromosome.TOLERANT_FLYER, true);
+			AlleleHelper.instance.set(template, EnumBeeChromosome.FERTILITY, EnumAllele.Fertility.LOW);
+			AlleleHelper.instance.set(template, EnumBeeChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.BOTH_1);
+			AlleleHelper.instance.set(template, EnumBeeChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.BOTH_1);
+			AlleleHelper.instance.set(template, EnumBeeChromosome.LIFESPAN, EnumAllele.Lifespan.SHORT);
+			AlleleHelper.instance.set(template, EnumBeeChromosome.FLOWER_PROVIDER, AlleleHelper.getAllele(ExtraBeesFlowers.ROCK.getUID()));
+		}
+	},
 	METALLIC("Lamminapis"),
 	METALLIC2("Metalapis"),
 	ALLOY("Allapis"),
@@ -35,7 +48,14 @@ public enum ExtraBeeBranchDefinition implements IBranchDefinition {
 	VIRULENT("Virapis"),
 	VISCOUS("Viscapis"),
 	CAUSTIC("Morbapis"),
-	ENERGETIC("Incitapis"),
+	ENERGETIC("Incitapis") {
+		@Override
+		protected void setBranchProperties(IAllele[] template) {
+			AlleleHelper.instance.set(template, EnumBeeChromosome.CAVE_DWELLING, true);
+			AlleleHelper.instance.set(template, EnumBeeChromosome.FLOWER_PROVIDER, AlleleHelper.getAllele(ExtraBeesFlowers.REDSTONE.getUID()));
+			AlleleHelper.instance.set(template, EnumBeeChromosome.EFFECT, AlleleHelper.getAllele(ExtraBeesEffect.LIGHTNING.getUID()));
+		}
+	},
 	FARMING("Agriapis"),
 	SHADOW("Pullapis"),
 	PRIMARY("Primapis"),

@@ -1,7 +1,5 @@
 package binnie.core.genetics;
 
-import binnie.Binnie;
-import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 
@@ -114,49 +112,6 @@ public class ForestryAllele {
 
 		public IAllele getAllele() {
 			return AlleleManager.alleleRegistry.getAllele("forestry.i" + (ordinal() + 1) + "d");
-		}
-	}
-
-	public enum BeeSpecies {
-		Modest,
-		Noble,
-		Forest,
-		Rural,
-		Marshy,
-		Sinister,
-		Tropical,
-		Wintry,
-		Merry,
-		Austere,
-		Imperial,
-		Ended,
-		Meadows,
-		Common,
-		Frugal,
-		Unweary,
-		Diligent,
-		Majestic,
-		Cultivated,
-		Industrious,
-		Valiant,
-		Secluded,
-		Hermitic,
-		Spectral,
-		Exotic,
-		Fiendish,
-		Monastic,
-		Steadfast,
-		Miry,
-		Farmerly,
-		Boggy,
-		Demonic;
-
-		public IAlleleBeeSpecies getAllele() {
-			return (IAlleleBeeSpecies) AlleleManager.alleleRegistry.getAllele("forestry.species" + toString());
-		}
-
-		public IAllele[] getTemplate() {
-			return Binnie.Genetics.getBeeRoot().getTemplate(getAllele().getUID());
 		}
 	}
 }
