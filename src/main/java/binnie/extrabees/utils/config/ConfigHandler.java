@@ -36,10 +36,4 @@ public class ConfigHandler {
 	private final Configuration config;
 	private final Set<IConfigurable> configurables;
 
-	public interface IConfigurable {
-
-		public void configure(Configuration config);
-
-	}
-
 }

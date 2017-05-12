@@ -1,7 +1,9 @@
 package binnie.extrabees.utils;
 
 import forestry.api.apiculture.BeeManager;
+import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBeeRoot;
+import forestry.apiculture.genetics.BeeDefinition;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
@@ -24,6 +26,10 @@ public class Utils {
 
 	public static IBeeRoot getBeeRoot() {
 		return BeeManager.beeRoot;
+	}
+
+	public static IAlleleBeeSpecies getSpecies(BeeDefinition species){
+		return species.getGenome().getPrimary();
 	}
 
 	@Nullable

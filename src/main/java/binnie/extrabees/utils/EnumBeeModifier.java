@@ -1,7 +1,6 @@
 package binnie.extrabees.utils;
 
-import binnie.Binnie;
-import binnie.core.BinnieCore;
+import net.minecraft.util.text.translation.I18n;
 
 public enum EnumBeeModifier {
 	Territory,
@@ -12,6 +11,7 @@ public enum EnumBeeModifier {
 	GeneticDecay;
 
 	public String getName() {
-		return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "beemodifier." + this.name().toLowerCase());
+		return I18n.translateToLocal("beemodifier." + this.name().toLowerCase());
 	}
+
 }

@@ -1,22 +1,20 @@
 package binnie.extrabees.utils;
 
-import binnie.Binnie;
-import binnie.core.AbstractMod;
 import forestry.api.circuits.ChipsetManager;
 import forestry.api.circuits.ICircuitLayout;
 import forestry.api.circuits.ICircuitSocketType;
+import net.minecraft.util.text.translation.I18n;
 
 public class BinnieCircuitLayout implements ICircuitLayout {
-	private final String uid;
-	private final AbstractMod mod;
-	private final ICircuitSocketType socketType;
 
-	public BinnieCircuitLayout(final AbstractMod mod, final String uid, final ICircuitSocketType socketType) {
+	public BinnieCircuitLayout(final String uid, final ICircuitSocketType socketType) {
 		this.uid = uid;
-		this.mod = mod;
 		this.socketType = socketType;
 		ChipsetManager.circuitRegistry.registerLayout(this);
 	}
+
+	private final String uid;
+	private final ICircuitSocketType socketType;
 
 	@Override
 	public String getUID() {
@@ -25,16 +23,17 @@ public class BinnieCircuitLayout implements ICircuitLayout {
 
 	@Override
 	public String getName() {
-		return Binnie.LANGUAGE.localise(this.mod, "circuit.layout." + this.uid.toLowerCase());
+		return I18n.translateToLocal("circuit.layout." + this.uid.toLowerCase());
 	}
 
 	@Override
 	public String getUsage() {
-		return Binnie.LANGUAGE.localise(this.mod, "circuit.layout." + this.uid.toLowerCase() + ".usage");
+		return I18n.translateToLocal("circuit.layout." + this.uid.toLowerCase() + ".usage");
 	}
 
 	@Override
 	public ICircuitSocketType getSocketType() {
 		return this.socketType;
 	}
+
 }

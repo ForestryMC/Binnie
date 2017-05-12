@@ -71,7 +71,7 @@ public class ModuleApiary implements IInitializable {
 
 	@Override
 	public void init() {
-		this.stimulatorLayout = new BinnieCircuitLayout(ExtraBees.instance, "Stimulator", BinnieCircuitSocketType.STIMULATOR);
+		this.stimulatorLayout = new BinnieCircuitLayout("Stimulator", BinnieCircuitSocketType.STIMULATOR);
 		ModuleApiary.spriteMutator = new ValidatorSprite(ExtraBees.instance, "validator/mutator.0", "validator/mutator.1");
 	}
 }

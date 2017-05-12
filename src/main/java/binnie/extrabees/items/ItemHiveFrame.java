@@ -16,12 +16,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IItemModelRegister {
-	private final EnumHiveFrame frame;
-
-	@Override
-	public String getItemStackDisplayName(final ItemStack itemStack) {
-		return this.frame.getName();
-	}
 
 	public ItemHiveFrame(final EnumHiveFrame frame) {
 		this.frame = frame;
@@ -29,6 +23,13 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 		this.setCreativeTab(Tabs.tabApiculture);
 		this.setMaxStackSize(1);
 		this.setUnlocalizedName("hive_frame");
+	}
+
+	private final EnumHiveFrame frame;
+
+	@Override
+	public String getItemStackDisplayName(final ItemStack itemStack) {
+		return this.frame.getName();
 	}
 
 	@Override
@@ -111,4 +112,5 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 	public IBeeModifier getBeeModifier() {
 		return this;
 	}
+
 }

@@ -5,7 +5,7 @@ import net.minecraftforge.common.config.Configuration;
 /**
  * Created by Elec332 on 12-5-2017.
  */
-public class ConfigurationMain implements ConfigHandler.IConfigurable {
+public class ConfigurationMain implements IConfigurable {
 
 	public static boolean canQuarryMineHives = true;
 

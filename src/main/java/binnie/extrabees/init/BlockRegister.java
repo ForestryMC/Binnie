@@ -1,14 +1,16 @@
 package binnie.extrabees.init;
 
-import binnie.core.genetics.ForestryAllele;
 import binnie.extrabees.ExtraBees;
+import binnie.extrabees.blocks.BlockEctoplasm;
 import binnie.extrabees.blocks.BlockExtraBeeHive;
 import binnie.extrabees.blocks.type.EnumHiveType;
 import binnie.extrabees.genetics.ExtraBeesSpecies;
-import binnie.extrabees.genetics.effect.BlockEctoplasm;
 import binnie.extrabees.items.ItemBeehive;
 import binnie.extrabees.utils.HiveDrop;
+import binnie.extrabees.utils.Utils;
 import binnie.extrabees.utils.config.ConfigurationMain;
+import forestry.api.apiculture.IAlleleBeeSpecies;
+import forestry.apiculture.genetics.BeeDefinition;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 /**
@@ -35,12 +37,13 @@ public final class BlockRegister {
 	}
 
 	private static void registerHiveDrops(){
+		IAlleleBeeSpecies valiantSpecies = Utils.getSpecies(BeeDefinition.VALIANT);
 		EnumHiveType.Water.drops.add(new HiveDrop(ExtraBeesSpecies.WATER, 80));
-		EnumHiveType.Water.drops.add(new HiveDrop(ForestryAllele.BeeSpecies.Valiant.getAllele(), 3));
+		EnumHiveType.Water.drops.add(new HiveDrop(valiantSpecies, 3));
 		EnumHiveType.Rock.drops.add(new HiveDrop(ExtraBeesSpecies.ROCK, 80));
-		EnumHiveType.Rock.drops.add(new HiveDrop(ForestryAllele.BeeSpecies.Valiant.getAllele(), 3));
+		EnumHiveType.Rock.drops.add(new HiveDrop(valiantSpecies, 3));
 		EnumHiveType.Nether.drops.add(new HiveDrop(ExtraBeesSpecies.BASALT, 80));
-		EnumHiveType.Nether.drops.add(new HiveDrop(ForestryAllele.BeeSpecies.Valiant.getAllele(), 3));
+		EnumHiveType.Nether.drops.add(new HiveDrop(valiantSpecies, 3));
 		ExtraBees.hive.setHarvestLevel("scoop", 0, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHive.hiveType, EnumHiveType.Water));
 		ExtraBees.hive.setHarvestLevel("scoop", 0, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHive.hiveType, EnumHiveType.Rock));
 		ExtraBees.hive.setHarvestLevel("scoop", 0, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHive.hiveType, EnumHiveType.Nether));

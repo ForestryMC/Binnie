@@ -59,4 +59,5 @@ public class ItemIndustrialFrame extends Item {
 		}
 		return IndustrialFrame.values()[tagCompound.getInteger("frame")];
 	}
+
 }

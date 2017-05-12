@@ -1,4 +1,4 @@
-package binnie.extrabees.genetics.effect;
+package binnie.extrabees.blocks;
 
 import net.minecraft.block.BlockWeb;
 import net.minecraft.block.state.IBlockState;

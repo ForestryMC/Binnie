@@ -3,6 +3,7 @@ package binnie.extrabees.utils;
 import forestry.api.circuits.ICircuitSocketType;
 
 public enum BinnieCircuitSocketType implements ICircuitSocketType {
+
 	STIMULATOR("binnie.extrabees.stimulator");
 
 	private final String uid;
@@ -20,4 +21,5 @@ public enum BinnieCircuitSocketType implements ICircuitSocketType {
 	public boolean equals(ICircuitSocketType socketType) {
 		return uid.equals(socketType.getUid());
 	}
+
 }
