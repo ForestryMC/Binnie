@@ -1,10 +1,9 @@
-package binnie.extrabees.gui.database;
+package binnie.extrabees.client.gui.database;
 
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.database.*;
 import binnie.core.craftgui.minecraft.Window;
-import binnie.extrabees.ExtraBees;
 import binnie.extrabees.client.GuiHack;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;

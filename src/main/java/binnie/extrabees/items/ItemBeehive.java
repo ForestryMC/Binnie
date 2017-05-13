@@ -8,10 +8,14 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
+import javax.annotation.Nonnull;
+
 public class ItemBeehive extends ItemBlock {
 
-	public ItemBeehive(final Block block) {
+	@SuppressWarnings("all")
+	public ItemBeehive(@Nonnull final Block block) {
 		super(block);
+		setRegistryName(block.getRegistryName());
 		this.setMaxDamage(0);
 		this.setHasSubtypes(true);
 		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);

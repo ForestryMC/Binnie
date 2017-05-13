@@ -1,12 +1,5 @@
 package binnie.extratrees.block.wood;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
 import binnie.Constants;
 import binnie.extratrees.block.EnumShrubLog;
 import forestry.api.arboriculture.IWoodType;
@@ -37,6 +30,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegister, IItemModelRegister {
 

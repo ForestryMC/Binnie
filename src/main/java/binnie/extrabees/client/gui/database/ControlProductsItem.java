@@ -1,4 +1,4 @@
-package binnie.extrabees.gui.database;
+package binnie.extrabees.client.gui.database;
 
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextCentered;

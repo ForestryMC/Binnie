@@ -5,7 +5,6 @@ import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.Border;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.resource.IBinnieTexture;
-
 import com.google.common.base.Charsets;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;

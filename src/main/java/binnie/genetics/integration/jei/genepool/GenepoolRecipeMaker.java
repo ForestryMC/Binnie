@@ -1,10 +1,6 @@
 package binnie.genetics.integration.jei.genepool;
 
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
-import forestry.api.genetics.ISpeciesType;
+import forestry.api.genetics.*;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 

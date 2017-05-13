@@ -3,7 +3,6 @@ package binnie.core.craftgui.database;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.listbox.ControlListBox;
 import binnie.core.craftgui.minecraft.Window;
-
 import com.mojang.authlib.GameProfile;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IClassification;

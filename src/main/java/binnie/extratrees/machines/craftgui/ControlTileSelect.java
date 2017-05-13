@@ -2,11 +2,7 @@ package binnie.extratrees.machines.craftgui;
 
 import binnie.Binnie;
 import binnie.core.BinnieCore;
-import binnie.core.craftgui.Attribute;
-import binnie.core.craftgui.CraftGUI;
-import binnie.core.craftgui.ITooltip;
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.*;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.controls.core.IControlValue;
@@ -27,11 +23,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class ControlTileSelect extends Control implements IControlValue<IDesign>, IControlScrollable {
 	IDesign value;

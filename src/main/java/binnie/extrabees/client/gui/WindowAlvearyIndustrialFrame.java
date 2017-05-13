@@ -1,34 +1,26 @@
-package binnie.extrabees.gui;
+package binnie.extrabees.client.gui;
 
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
 import binnie.core.craftgui.minecraft.control.ControlSlot;
-import binnie.extrabees.ExtraBees;
 import binnie.extrabees.client.GuiHack;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
 
-import javax.annotation.Nullable;
-
-public class WindowAlvearyFrame extends Window {
-
-	public WindowAlvearyFrame(final EntityPlayer player, final IInventory inventory, final Side side) {
+public class WindowAlvearyIndustrialFrame extends Window {
+	public WindowAlvearyIndustrialFrame(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(176, 144, player, inventory, side);
 	}
 
-	@Nullable
-	public static Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
-		if (inventory == null) {
-			return null;
-		}
-		return new WindowAlvearyFrame(player, inventory, side);
+	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
+		return new WindowAlvearyIndustrialFrame(player, inventory, side);
 	}
 
 	@Override
 	public void initialiseClient() {
-		this.setTitle("Frame Housing");
+		this.setTitle("Industrial Frame Housing");
 		ControlPlayerInventory playerInventory = new ControlPlayerInventory(this);
 		new ControlSlot.Builder(this, 79, 30).assign(0);
 	}
@@ -40,6 +32,6 @@ public class WindowAlvearyFrame extends Window {
 
 	@Override
 	public String getBackgroundTextureName() {
-		return "AlvearyFrame";
+		return "AlvearyIndustrialFrame";
 	}
 }

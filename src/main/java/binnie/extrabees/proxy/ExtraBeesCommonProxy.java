@@ -12,7 +12,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class ExtraBeesCommonProxy {
 
 	public void registerBeeModel(ExtraBeesSpecies type) {
-
 	}
 
 	public Block registerBlock(Block block){
@@ -29,7 +28,6 @@ public class ExtraBeesCommonProxy {
 	}
 
 	public void registerModel(Item item, int meta) {
-
 	}
 
 }

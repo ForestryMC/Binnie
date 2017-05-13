@@ -4,7 +4,6 @@ import binnie.Constants;
 import binnie.core.craftgui.resource.minecraft.CraftGUIResourceManager;
 import binnie.core.models.ModelManager;
 import binnie.core.resource.BinnieResource;
-
 import com.google.common.base.Throwables;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;

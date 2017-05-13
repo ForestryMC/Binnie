@@ -3,12 +3,7 @@ package binnie.genetics.machine.acclimatiser;
 import binnie.core.genetics.Gene;
 import binnie.core.genetics.Tolerance;
 import binnie.genetics.machine.inoculator.Inoculator;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAlleleTolerance;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IGenome;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.*;
 import net.minecraft.item.ItemStack;
 
 import java.util.Random;

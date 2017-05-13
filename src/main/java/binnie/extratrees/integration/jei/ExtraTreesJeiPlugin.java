@@ -15,12 +15,7 @@ import binnie.extratrees.integration.jei.lumbermill.LumbermillRecipeCategory;
 import binnie.extratrees.integration.jei.lumbermill.LumbermillRecipeMaker;
 import binnie.extratrees.integration.jei.multifence.MultiFenceRecipeRegistryPlugin;
 import binnie.extratrees.machines.ExtraTreeMachine;
-import mezz.jei.api.BlankModPlugin;
-import mezz.jei.api.IGuiHelper;
-import mezz.jei.api.IJeiHelpers;
-import mezz.jei.api.IModRegistry;
-import mezz.jei.api.ISubtypeRegistry;
-import mezz.jei.api.JEIPlugin;
+import mezz.jei.api.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 

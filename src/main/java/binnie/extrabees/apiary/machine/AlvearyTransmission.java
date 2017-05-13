@@ -6,7 +6,7 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.extrabees.apiary.ComponentBeeModifier;
 import binnie.extrabees.apiary.TileExtraBeeAlveary;
-import binnie.extrabees.core.ExtraBeeTexture;
+import binnie.extrabees.client.ExtraBeeTexture;
 import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
 import net.minecraft.tileentity.TileEntity;

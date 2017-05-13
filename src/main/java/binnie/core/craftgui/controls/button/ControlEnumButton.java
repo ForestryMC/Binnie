@@ -4,7 +4,6 @@ import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.IControlValue;
 import binnie.core.craftgui.events.EventMouse;
 import binnie.core.craftgui.events.EventValueChanged;
-
 import com.google.common.base.Preconditions;
 
 import java.util.ArrayList;

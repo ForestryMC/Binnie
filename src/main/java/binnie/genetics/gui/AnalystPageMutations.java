@@ -15,9 +15,8 @@ import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.craftgui.renderer.RenderUtil;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.ForestryAllele;
+import binnie.core.integration.extrabees.ExtraBeesIntegration;
 import binnie.core.resource.BinnieSprite;
-import binnie.extrabees.ExtraBees;
-import binnie.extrabees.genetics.ExtraBeesSpecies;
 import binnie.genetics.Genetics;
 import binnie.genetics.item.ModuleItems;
 import forestry.api.apiculture.IBee;
@@ -48,14 +47,16 @@ public class AnalystPageMutations extends ControlAnalystPage {
 		final Collection<IMutation> further = system.getFurtherMutations(speciesCurrent);
 		if (ind instanceof IBee) {
 			ItemStack hive = null;
-			if (ind.getGenome().getPrimary() == ExtraBeesSpecies.WATER) {
-				hive = new ItemStack(ExtraBees.hive, 1, 0);
-			}
-			if (ind.getGenome().getPrimary() == ExtraBeesSpecies.ROCK) {
-				hive = new ItemStack(ExtraBees.hive, 1, 1);
-			}
-			if (ind.getGenome().getPrimary() == ExtraBeesSpecies.BASALT) {
-				hive = new ItemStack(ExtraBees.hive, 1, 2);
+			if (ExtraBeesIntegration.isLoaded()) {
+				if (ind.getGenome().getPrimary() == ExtraBeesIntegration.water) {
+					hive = new ItemStack(ExtraBeesIntegration.hive, 1, 0);
+				}
+				if (ind.getGenome().getPrimary() == ExtraBeesIntegration.rock) {
+					hive = new ItemStack(ExtraBeesIntegration.hive, 1, 1);
+				}
+				if (ind.getGenome().getPrimary() == ExtraBeesIntegration.basalt) {
+					hive = new ItemStack(ExtraBeesIntegration.hive, 1, 2);
+				}
 			}
 			if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Forest.getAllele()) {
 				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 1);

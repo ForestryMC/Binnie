@@ -27,12 +27,7 @@ import binnie.genetics.machine.GeneticMachine;
 import binnie.genetics.machine.LaboratoryMachine;
 import binnie.genetics.machine.incubator.Incubator;
 import forestry.api.genetics.ISpeciesRoot;
-import mezz.jei.api.BlankModPlugin;
-import mezz.jei.api.IGuiHelper;
-import mezz.jei.api.IJeiHelpers;
-import mezz.jei.api.IModRegistry;
-import mezz.jei.api.ISubtypeRegistry;
-import mezz.jei.api.JEIPlugin;
+import mezz.jei.api.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 

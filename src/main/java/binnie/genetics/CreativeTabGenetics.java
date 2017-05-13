@@ -1,6 +1,5 @@
 package binnie.genetics;
 
-import binnie.extrabees.ExtraBees;
 import binnie.genetics.item.GeneticsItems;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -23,7 +22,7 @@ public class CreativeTabGenetics extends CreativeTabs {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getTabLabel() {
-		return ExtraBees.proxy.localise("tab.genetics");
+		return Genetics.proxy.localise("tab.genetics");
 	}
 
 	@Override

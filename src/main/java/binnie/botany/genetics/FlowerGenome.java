@@ -1,22 +1,10 @@
 package binnie.botany.genetics;
 
 import binnie.Binnie;
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumFlowerChromosome;
-import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.FlowerManager;
-import binnie.botany.api.IAlleleFlowerSpecies;
-import binnie.botany.api.IFlowerGenome;
-import binnie.botany.api.IFlowerType;
+import binnie.botany.api.*;
 import binnie.botany.core.BotanyCore;
 import forestry.api.core.EnumTemperature;
-import forestry.api.genetics.EnumTolerance;
-import forestry.api.genetics.IAlleleFloat;
-import forestry.api.genetics.IAlleleInteger;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IAlleleTolerance;
-import forestry.api.genetics.IChromosome;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.*;
 import forestry.core.genetics.Genome;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

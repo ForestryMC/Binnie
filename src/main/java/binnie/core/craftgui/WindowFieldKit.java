@@ -18,14 +18,10 @@ import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.core.craftgui.resource.StyleSheetPunnett;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.core.machines.inventory.SlotValidator;
-import binnie.extrabees.core.ExtraBeeTexture;
+import binnie.extrabees.client.ExtraBeeTexture;
 import binnie.genetics.gui.ControlChromosome;
 import binnie.genetics.machine.analyser.Analyser;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
@@ -36,11 +32,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class WindowFieldKit extends Window {
 	private int glassOffsetX;

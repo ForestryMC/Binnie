@@ -1,8 +1,7 @@
 package binnie.extrabees.items;
 
-import binnie.extrabees.ExtraBees;
 import binnie.extrabees.client.GuiHack;
-import binnie.extrabees.core.ExtraBeeGUID;
+import binnie.extrabees.client.ExtraBeeGUID;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

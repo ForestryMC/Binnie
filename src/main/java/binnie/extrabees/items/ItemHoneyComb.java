@@ -1,10 +1,10 @@
 package binnie.extrabees.items;
 
 import binnie.extrabees.ExtraBees;
-import binnie.extrabees.core.ExtraBeeItems;
 import binnie.extrabees.items.types.EnumHoneyComb;
 import binnie.extrabees.items.types.EnumHoneyDrop;
 import binnie.extrabees.items.types.EnumPropolis;
+import binnie.extrabees.items.types.ExtraBeeItems;
 import binnie.extrabees.utils.Utils;
 import forestry.api.core.Tabs;
 import forestry.apiculture.PluginApiculture;

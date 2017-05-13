@@ -7,11 +7,7 @@ import net.minecraftforge.common.config.Configuration;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ManagerConfig extends ManagerBase {
 	private Map<Class<?>, Configuration> configurations;

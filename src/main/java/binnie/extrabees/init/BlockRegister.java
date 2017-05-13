@@ -31,9 +31,10 @@ public final class BlockRegister {
 		GameRegistry.register(ExtraBees.ectoplasm = new BlockEctoplasm());
 	}
 
+	@SuppressWarnings("all")
 	private static void registerHives(){
 		GameRegistry.register(ExtraBees.hive = new BlockExtraBeeHive());
-		GameRegistry.register(new ItemBeehive(ExtraBees.hive).setRegistryName("hive"));
+		GameRegistry.register(new ItemBeehive(ExtraBees.hive));
 	}
 
 	private static void registerHiveDrops(){

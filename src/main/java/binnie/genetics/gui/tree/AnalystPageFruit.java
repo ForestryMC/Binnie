@@ -9,7 +9,6 @@ import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.UniqueItemStackSet;
 import binnie.genetics.Genetics;
 import binnie.genetics.gui.AnalystPageProduce;
-
 import com.google.common.base.Throwables;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.IAlleleFruit;

@@ -4,7 +4,6 @@ import binnie.core.BinnieCore;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.geometry.TextJustification;
-
 import com.google.common.base.Preconditions;
 import forestry.api.core.ForestryAPI;
 import net.minecraft.client.Minecraft;

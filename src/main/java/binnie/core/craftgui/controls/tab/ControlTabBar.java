@@ -6,7 +6,6 @@ import binnie.core.craftgui.controls.core.IControlValue;
 import binnie.core.craftgui.events.EventHandler;
 import binnie.core.craftgui.events.EventValueChanged;
 import binnie.core.craftgui.geometry.Position;
-
 import com.google.common.collect.Iterables;
 
 import java.util.Collection;

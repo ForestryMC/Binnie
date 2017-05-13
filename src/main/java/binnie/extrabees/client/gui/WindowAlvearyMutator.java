@@ -1,4 +1,4 @@
-package binnie.extrabees.gui;
+package binnie.extrabees.client.gui;
 
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.controls.ControlText;
@@ -8,7 +8,6 @@ import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
 import binnie.core.craftgui.minecraft.control.ControlSlot;
-import binnie.extrabees.ExtraBees;
 import binnie.extrabees.apiary.machine.AlvearyMutator;
 import binnie.extrabees.client.GuiHack;
 import net.minecraft.entity.player.EntityPlayer;

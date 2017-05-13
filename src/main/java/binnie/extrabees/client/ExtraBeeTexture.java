@@ -1,10 +1,9 @@
-package binnie.extrabees.core;
+package binnie.extrabees.client;
 
 import binnie.Binnie;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
-import binnie.extrabees.ExtraBees;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

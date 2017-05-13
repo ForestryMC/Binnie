@@ -7,13 +7,12 @@ import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.apiary.ModuleApiary;
-import binnie.extrabees.core.ExtraBeeGUID;
-import binnie.extrabees.core.ModuleCore;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 import javax.annotation.Nonnull;
 
@@ -64,7 +63,7 @@ public class GuiHack extends AbstractMod {
 
 			@Override
 			public void init() {
-
+				NetworkRegistry.INSTANCE.registerGuiHandler(ExtraBees.instance, new binnie.core.gui.BinnieGUIHandler(GuiHack.INSTANCE));
 			}
 
 			@Override
@@ -83,7 +82,6 @@ public class GuiHack extends AbstractMod {
 
 	@Override
 	protected void registerModules() {
-		addModule(new ModuleCore());
 		addModule(new ModuleApiary());
 	}
 

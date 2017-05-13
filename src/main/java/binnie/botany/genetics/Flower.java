@@ -1,12 +1,6 @@
 package binnie.botany.genetics;
 
-import binnie.botany.api.EnumFlowerChromosome;
-import binnie.botany.api.IAlleleFlowerSpecies;
-import binnie.botany.api.IColourMix;
-import binnie.botany.api.IFlower;
-import binnie.botany.api.IFlowerColour;
-import binnie.botany.api.IFlowerGenome;
-import binnie.botany.api.IFlowerMutation;
+import binnie.botany.api.*;
 import binnie.botany.core.BotanyCore;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.genetics.IAllele;

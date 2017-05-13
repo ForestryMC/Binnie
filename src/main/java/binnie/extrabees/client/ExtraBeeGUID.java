@@ -1,12 +1,12 @@
-package binnie.extrabees.core;
+package binnie.extrabees.client;
 
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.gui.IBinnieGUID;
-import binnie.extrabees.gui.WindowAlvearyFrame;
-import binnie.extrabees.gui.WindowAlvearyHatchery;
-import binnie.extrabees.gui.WindowAlvearyMutator;
-import binnie.extrabees.gui.WindowAlvearyStimulator;
-import binnie.extrabees.gui.database.WindowApiaristDatabase;
+import binnie.extrabees.client.gui.WindowAlvearyFrame;
+import binnie.extrabees.client.gui.WindowAlvearyHatchery;
+import binnie.extrabees.client.gui.WindowAlvearyMutator;
+import binnie.extrabees.client.gui.WindowAlvearyStimulator;
+import binnie.extrabees.client.gui.database.WindowApiaristDatabase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;

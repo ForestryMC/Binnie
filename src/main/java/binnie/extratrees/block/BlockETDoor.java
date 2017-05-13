@@ -1,7 +1,5 @@
 package binnie.extratrees.block;
 
-import java.util.List;
-
 import binnie.Binnie;
 import binnie.core.block.BlockMetadata;
 import binnie.core.block.IBlockMetadata;
@@ -26,6 +24,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public class BlockETDoor extends BlockDoor implements IBlockMetadata, ITileEntityProvider {
 //	private IIcon getFlippedIcon(final boolean upper, final boolean flip, final int tileMeta) {

@@ -6,7 +6,6 @@ import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.controls.page.ControlPage;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.genetics.BreedingSystem;
-
 import com.mojang.authlib.GameProfile;
 import net.minecraft.util.text.TextFormatting;
 

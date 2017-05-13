@@ -1,4 +1,4 @@
-package binnie.extrabees.core;
+package binnie.extrabees.client;
 
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeType;

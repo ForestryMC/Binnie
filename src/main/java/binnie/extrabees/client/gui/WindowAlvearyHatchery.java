@@ -1,4 +1,4 @@
-package binnie.extrabees.gui;
+package binnie.extrabees.client.gui;
 
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.minecraft.Window;

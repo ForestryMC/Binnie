@@ -1,13 +1,9 @@
-package binnie.extrabees.gui;
+package binnie.extrabees.client.gui;
 
 import binnie.core.AbstractMod;
-import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.minecraft.Window;
-import binnie.core.craftgui.minecraft.control.ControlEnergyBar;
 import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
 import binnie.core.craftgui.minecraft.control.ControlSlot;
-import binnie.extrabees.ExtraBees;
-import binnie.extrabees.apiary.machine.AlvearyStimulator;
 import binnie.extrabees.client.GuiHack;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -15,8 +11,9 @@ import net.minecraftforge.fml.relauncher.Side;
 
 import javax.annotation.Nullable;
 
-public class WindowAlvearyStimulator extends Window {
-	public WindowAlvearyStimulator(final EntityPlayer player, final IInventory inventory, final Side side) {
+public class WindowAlvearyFrame extends Window {
+
+	public WindowAlvearyFrame(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(176, 144, player, inventory, side);
 	}
 
@@ -25,15 +22,14 @@ public class WindowAlvearyStimulator extends Window {
 		if (inventory == null) {
 			return null;
 		}
-		return new WindowAlvearyStimulator(player, inventory, side);
+		return new WindowAlvearyFrame(player, inventory, side);
 	}
 
 	@Override
 	public void initialiseClient() {
-		this.setTitle("Stimulator");
-		new ControlEnergyBar(this, 75, 29, 60, 16, Position.LEFT);
-		new ControlSlot.Builder(this, 41, 28).assign(AlvearyStimulator.slotCircuit);
-		new ControlPlayerInventory(this);
+		this.setTitle("Frame Housing");
+		ControlPlayerInventory playerInventory = new ControlPlayerInventory(this);
+		new ControlSlot.Builder(this, 79, 30).assign(0);
 	}
 
 	@Override
@@ -43,6 +39,6 @@ public class WindowAlvearyStimulator extends Window {
 
 	@Override
 	public String getBackgroundTextureName() {
-		return "AlvearyStimulator";
+		return "AlvearyFrame";
 	}
 }

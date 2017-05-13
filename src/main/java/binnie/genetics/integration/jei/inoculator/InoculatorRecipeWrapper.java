@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.time.DurationFormatUtils;
 
 import javax.annotation.Nullable;
-import java.awt.Color;
+import java.awt.*;
 import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Map;

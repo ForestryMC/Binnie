@@ -1,4 +1,4 @@
-package binnie.extrabees.gui.punnett;
+package binnie.extrabees.client.gui.punnett;
 
 import binnie.core.craftgui.*;
 import binnie.core.craftgui.controls.core.Control;

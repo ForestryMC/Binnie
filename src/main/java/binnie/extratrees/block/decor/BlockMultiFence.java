@@ -1,9 +1,5 @@
 package binnie.extratrees.block.decor;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
 import binnie.core.block.BlockMetadata;
 import binnie.core.block.IBlockMetadata;
 import binnie.core.block.TileEntityMetadata;
@@ -53,6 +49,9 @@ import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class BlockMultiFence extends BlockFence implements IBlockMetadata, IStateMapperRegister, IItemModelRegister, IBlockFence {
 	public BlockMultiFence() {

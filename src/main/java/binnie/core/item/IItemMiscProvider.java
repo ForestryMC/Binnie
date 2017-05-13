@@ -1,10 +1,8 @@
 package binnie.core.item;
 
-import binnie.extrabees.items.types.IEBEnumItem;
-
 import java.util.List;
 
-public interface IItemMiscProvider extends IEBEnumItem {
+public interface IItemMiscProvider extends IItemEnum {
 
 	void addInformation(List<String> tooltip);
 

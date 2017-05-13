@@ -3,6 +3,8 @@ package binnie.extrabees.init;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.items.*;
 import binnie.extrabees.items.types.EnumHoneyComb;
+import binnie.extrabees.items.types.ExtraBeeItems;
+import forestry.api.core.Tabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -16,12 +18,14 @@ public final class ItemRegister {
 	public static void preInitItems(){
 		registerProducts();
 		registerMisc();
+		registerOreDict();
 	}
 
 	@SuppressWarnings("all")
 	private static void registerMisc(){
 		ExtraBees.proxy.registerItem(ExtraBees.dictionary = new ItemDictionary());
 		GameRegistry.register(new ItemBlock(ExtraBees.ectoplasm).setRegistryName(ExtraBees.ectoplasm.getRegistryName()));
+		ExtraBees.itemMisc = ExtraBees.proxy.registerItem(new ItemMiscProduct(Tabs.tabApiculture, ExtraBeeItems.values()));
 	}
 
 	private static void registerProducts(){
@@ -39,14 +43,26 @@ public final class ItemRegister {
 		ExtraBees.proxy.registerModel(ExtraBees.honeyCrystal, 0);
 		ExtraBees.proxy.registerModel(ExtraBees.honeyCrystalEmpty, 0);
 		for (EnumHoneyComb c : EnumHoneyComb.values()) {
-			if (c.isActive())
+			if (c.isActive()) {
 				ExtraBees.proxy.registerModel(ExtraBees.comb, c.ordinal());
+			}
 		}
+	}
 
-
+	private static void registerOreDict(){
 		OreDictionary.registerOre("ingotIron", Items.IRON_INGOT);
 		OreDictionary.registerOre("ingotGold", Items.GOLD_INGOT);
 		OreDictionary.registerOre("gemDiamond", Items.DIAMOND);
+
+		OreDictionary.registerOre("dyeRed", ExtraBeeItems.RedDye.get(1));
+		OreDictionary.registerOre("dyeYellow", ExtraBeeItems.YellowDye.get(1));
+		OreDictionary.registerOre("dyeBlue", ExtraBeeItems.BlueDye.get(1));
+		OreDictionary.registerOre("dyeGreen", ExtraBeeItems.GreenDye.get(1));
+		OreDictionary.registerOre("dyeBlack", ExtraBeeItems.BlackDye.get(1));
+		OreDictionary.registerOre("dyeWhite", ExtraBeeItems.WhiteDye.get(1));
+		OreDictionary.registerOre("dyeBrown", ExtraBeeItems.BrownDye.get(1));
+
+		OreDictionary.registerOre("gearWood", ExtraBeeItems.ScentedGear.get(1));
 	}
 
 }

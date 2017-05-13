@@ -1,8 +1,7 @@
 package binnie.extrabees.items;
 
-import binnie.extrabees.ExtraBees;
 import binnie.extrabees.client.GuiHack;
-import binnie.extrabees.core.ExtraBeeGUID;
+import binnie.extrabees.client.ExtraBeeGUID;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;

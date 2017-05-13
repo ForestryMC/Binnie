@@ -1,11 +1,5 @@
 package binnie.extratrees.integration.jei.multifence;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map.Entry;
-
-import javax.annotation.Nullable;
-
 import binnie.extratrees.block.IPlankType;
 import binnie.extratrees.block.WoodManager;
 import binnie.extratrees.block.decor.FenceDescription;
@@ -14,6 +8,11 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import mezz.jei.api.recipe.wrapper.IShapedCraftingRecipeWrapper;
 import net.minecraft.item.ItemStack;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map.Entry;
 
 public class MultiFenceRecipeEmbeddedWrapper extends BlankRecipeWrapper implements IShapedCraftingRecipeWrapper {
 

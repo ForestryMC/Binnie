@@ -1,7 +1,5 @@
 package binnie.extrabees;
 
-import binnie.Constants;
-import binnie.core.gui.BinnieGUIHandler;
 import binnie.extrabees.client.GuiHack;
 import binnie.extrabees.genetics.ExtraBeeMutation;
 import binnie.extrabees.genetics.ExtraBeesBranch;
@@ -26,11 +24,10 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-@Mod(modid = ExtraBees.MODID, name = "Binnie's Extra Bees", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
+@Mod(modid = ExtraBees.MODID, name = "Binnie's Extra Bees", useMetadata = true)
 public class ExtraBees {
 
 	public static final String MODID = "extrabees";
@@ -75,7 +72,6 @@ public class ExtraBees {
 	@Mod.EventHandler
 	public void init(final FMLInitializationEvent evt) {
 		GuiHack.INSTANCE.init();
-		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new BinnieGUIHandler(GuiHack.INSTANCE));
 
 		configHandler.reload(true);
 		ItemHoneyComb.addSubtypes();

@@ -7,6 +7,7 @@ import binnie.core.craftgui.minecraft.ModuleCraftGUI;
 import binnie.core.gui.BinnieCoreGUI;
 import binnie.core.gui.BinnieGUIHandler;
 import binnie.core.gui.IBinnieGUID;
+import binnie.core.integration.extrabees.ExtraBeesIntegration;
 import binnie.core.item.ItemFieldKit;
 import binnie.core.item.ItemGenesis;
 import binnie.core.item.ModuleItems;
@@ -23,7 +24,6 @@ import binnie.core.network.IPacketID;
 import binnie.core.proxy.BinnieProxy;
 import binnie.core.proxy.IBinnieProxy;
 import binnie.core.triggers.ModuleTrigger;
-
 import com.google.common.base.Preconditions;
 import forestry.api.core.ForestryEvent;
 import forestry.plugins.PluginManager;
@@ -150,6 +150,9 @@ public final class BinnieCore extends AbstractMod {
 		if (Loader.isModLoaded("BuildCraft|Silicon")) {
 			this.addModule(new ModuleTrigger());
 		}
+		if (ExtraBeesIntegration.isLoaded()){
+			this.addModule(new ExtraBeesIntegration());
+		}
 	}
 
 	@Override
@@ -256,7 +259,7 @@ public final class BinnieCore extends AbstractMod {
 	}
 
 	public static boolean isExtraBeesActive() {
-		return ConfigurationMods.extraBees && isApicultureActive();
+		return ExtraBeesIntegration.isLoaded() && isApicultureActive();
 	}
 
 	public static boolean isExtraTreesActive() {

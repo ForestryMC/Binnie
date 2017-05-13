@@ -21,7 +21,6 @@ import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlHelp;
 import binnie.core.craftgui.window.Panel;
 import binnie.core.genetics.BreedingSystem;
-
 import com.mojang.authlib.GameProfile;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IBreedingTracker;

@@ -1,21 +1,18 @@
 package binnie.genetics.item;
 
-import javax.annotation.Nullable;
-
-import com.google.common.base.Preconditions;
-
 import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
+import binnie.core.integration.extrabees.ExtraBeesIntegration;
 import binnie.core.item.ItemMisc;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.resource.BinnieSprite;
-import binnie.extrabees.ExtraBees;
 import binnie.extratrees.ExtraTrees;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
+import com.google.common.base.Preconditions;
 import forestry.api.recipes.RecipeManagers;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -24,6 +21,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+
+import javax.annotation.Nullable;
 
 public class ModuleItems implements IInitializable {
 	public static BinnieSprite iconNight;
@@ -169,7 +168,7 @@ public class ModuleItems implements IInitializable {
 				" d ",
 				'c', GeneticsItems.IntegratedCircuit.get(itemGenetics, 1), 'a', Mods.Forestry.item("portable_alyzer"), 'd', new ItemStack(Items.DIAMOND));
 
-		Item[] databases = {ExtraBees.dictionary, ExtraTrees.items().itemDictionary, ExtraTrees.items().itemDictionaryLepi, Botany.database};
+		Item[] databases = {ExtraBeesIntegration.dictionary, ExtraTrees.items().itemDictionary, ExtraTrees.items().itemDictionaryLepi, Botany.database};
 		if (BinnieCore.isBotanyActive() && BinnieCore.isExtraBeesActive() && BinnieCore.isExtraTreesActive()) {
 			for (Item databaseA : databases) {
 				for (Item databaseB : databases) {

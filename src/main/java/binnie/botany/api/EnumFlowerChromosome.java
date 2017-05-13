@@ -1,13 +1,6 @@
 package binnie.botany.api;
 
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleArea;
-import forestry.api.genetics.IAlleleFloat;
-import forestry.api.genetics.IAlleleInteger;
-import forestry.api.genetics.IAlleleTolerance;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.*;
 
 import java.util.Locale;
 

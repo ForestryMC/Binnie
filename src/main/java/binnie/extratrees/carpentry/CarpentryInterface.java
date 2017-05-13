@@ -1,20 +1,10 @@
 package binnie.extratrees.carpentry;
 
-import binnie.extratrees.api.ICarpentryInterface;
-import binnie.extratrees.api.IDesign;
-import binnie.extratrees.api.IDesignCategory;
-import binnie.extratrees.api.IDesignMaterial;
-import binnie.extratrees.api.ILayout;
-import binnie.extratrees.api.IPattern;
+import binnie.extratrees.api.*;
 import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CarpentryInterface implements ICarpentryInterface {
 	static Map<Integer, IDesignMaterial> woodMap = new LinkedHashMap<>();

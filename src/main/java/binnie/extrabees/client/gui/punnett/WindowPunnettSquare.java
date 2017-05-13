@@ -1,4 +1,4 @@
-package binnie.extrabees.gui.punnett;
+package binnie.extrabees.client.gui.punnett;
 
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.CraftGUI;
@@ -8,9 +8,8 @@ import binnie.core.craftgui.resource.StyleSheet;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.craftgui.resource.minecraft.PaddedTexture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
-import binnie.extrabees.ExtraBees;
 import binnie.extrabees.client.GuiHack;
-import binnie.extrabees.core.ExtraBeeTexture;
+import binnie.extrabees.client.ExtraBeeTexture;
 import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

@@ -3,8 +3,8 @@ package binnie.core.craftgui.resource;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.craftgui.resource.minecraft.PaddedTexture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
-import binnie.extrabees.core.ExtraBeeTexture;
-import binnie.extrabees.gui.punnett.ExtraBeeGUITexture;
+import binnie.extrabees.client.ExtraBeeTexture;
+import binnie.extrabees.client.gui.punnett.ExtraBeeGUITexture;
 
 public class StyleSheetPunnett extends StyleSheet {
 	public StyleSheetPunnett() {

@@ -19,7 +19,7 @@ public class ItemProduct extends Item implements IItemModelRegister {
 		this.types = types;
 	}
 
-	private IEBEnumItem[] types;
+	protected IEBEnumItem[] types;
 
 	public IEBEnumItem get(final ItemStack stack) {
 		final int i = stack.getItemDamage();

@@ -1,8 +1,8 @@
 package binnie.core.craftgui.events;
 
-import javax.annotation.Nullable;
-
 import binnie.core.craftgui.IWidget;
+
+import javax.annotation.Nullable;
 
 public class EventValueChanged<T> extends Event {
 	@Nullable

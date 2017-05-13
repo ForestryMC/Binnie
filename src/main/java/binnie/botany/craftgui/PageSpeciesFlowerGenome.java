@@ -1,11 +1,7 @@
 package binnie.botany.craftgui;
 
 import binnie.Binnie;
-import binnie.botany.api.EnumFlowerChromosome;
-import binnie.botany.api.EnumFlowerStage;
-import binnie.botany.api.IAlleleFlowerSpecies;
-import binnie.botany.api.IFlower;
-import binnie.botany.api.IFlowerGenome;
+import binnie.botany.api.*;
 import binnie.botany.core.BotanyCore;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;

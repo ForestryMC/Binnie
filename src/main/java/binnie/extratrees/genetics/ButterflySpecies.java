@@ -4,21 +4,15 @@ import binnie.Constants;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IClassification;
-import forestry.api.lepidopterology.ButterflyManager;
-import forestry.api.lepidopterology.EnumButterflyChromosome;
-import forestry.api.lepidopterology.EnumFlutterType;
-import forestry.api.lepidopterology.IAlleleButterflySpecies;
-import forestry.api.lepidopterology.IAlleleButterflySpeciesBuilder;
-import forestry.api.lepidopterology.IButterfly;
-import forestry.api.lepidopterology.IButterflyGenome;
-import forestry.api.lepidopterology.IButterflyMutationBuilder;
+import forestry.api.lepidopterology.*;
 import forestry.core.genetics.alleles.AlleleHelper;
 import forestry.lepidopterology.genetics.Butterfly;
 import forestry.lepidopterology.genetics.ButterflyDefinition;
 import forestry.lepidopterology.genetics.IButterflyDefinition;
 import forestry.lepidopterology.genetics.MothDefinition;
 import net.minecraft.item.ItemStack;
-import java.awt.Color;
+
+import java.awt.*;
 import java.util.Arrays;
 
 public enum ButterflySpecies implements IButterflyDefinition {

@@ -1,10 +1,10 @@
 package binnie.extratrees.block.decor;
 
+import binnie.extratrees.ExtraTrees;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import binnie.extratrees.ExtraTrees;
 
 public class FenceType {
 	public static List<FenceType> VALUES;

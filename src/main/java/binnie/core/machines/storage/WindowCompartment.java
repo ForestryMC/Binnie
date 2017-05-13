@@ -23,17 +23,8 @@ import binnie.core.craftgui.geometry.Border;
 import binnie.core.craftgui.geometry.CraftGUIUtil;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.geometry.Position;
-import binnie.core.craftgui.minecraft.Dialog;
-import binnie.core.craftgui.minecraft.EnumColor;
-import binnie.core.craftgui.minecraft.IWindowAffectsShiftClick;
-import binnie.core.craftgui.minecraft.MinecraftGUI;
-import binnie.core.craftgui.minecraft.Window;
-import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
-import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
-import binnie.core.craftgui.minecraft.control.ControlSlide;
-import binnie.core.craftgui.minecraft.control.ControlSlot;
-import binnie.core.craftgui.minecraft.control.ControlSlotArray;
-import binnie.core.craftgui.minecraft.control.ControlTabIcon;
+import binnie.core.craftgui.minecraft.*;
+import binnie.core.craftgui.minecraft.control.*;
 import binnie.core.craftgui.renderer.RenderUtil;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
@@ -52,12 +43,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 public class WindowCompartment extends WindowMachine implements IWindowAffectsShiftClick {

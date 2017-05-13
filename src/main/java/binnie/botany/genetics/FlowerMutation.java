@@ -1,10 +1,6 @@
 package binnie.botany.genetics;
 
-import binnie.botany.api.IAlleleFlowerSpecies;
-import binnie.botany.api.IFlowerGenome;
-import binnie.botany.api.IFlowerMutation;
-import binnie.botany.api.IFlowerMutationBuilder;
-import binnie.botany.api.IFlowerRoot;
+import binnie.botany.api.*;
 import binnie.botany.core.BotanyCore;
 import forestry.api.core.ForestryAPI;
 import forestry.api.genetics.IAllele;

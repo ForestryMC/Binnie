@@ -10,7 +10,6 @@ import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.core.texture.BinnieCoreTexture;
-
 import com.google.common.base.Preconditions;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.arboriculture.EnumTreeChromosome;

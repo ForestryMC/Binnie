@@ -1,7 +1,7 @@
 package binnie.extrabees.genetics;
 
 import binnie.extrabees.ExtraBees;
-import binnie.extrabees.core.BeeModelProvider;
+import binnie.extrabees.client.BeeModelProvider;
 import binnie.extrabees.genetics.effect.ExtraBeesEffect;
 import binnie.extrabees.items.ItemHoneyComb;
 import binnie.extrabees.items.types.EnumHoneyComb;
