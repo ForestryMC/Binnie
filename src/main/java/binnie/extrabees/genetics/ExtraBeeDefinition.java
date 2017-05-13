@@ -44,6 +44,11 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 		}
 
 		@Override
+		protected void setAlleles(IAllele[] template) {
+			AlleleHelper.instance.set(template, EnumBeeChromosome.FERTILITY, EnumAllele.Fertility.NORMAL);
+		}
+
+		@Override
 		protected void registerMutations() {
 			registerMutation(BeeDefinition.MEADOWS, BeeDefinition.FRUGAL, 10);
 			registerMutation(BeeDefinition.FOREST, BeeDefinition.FRUGAL, 10);
@@ -56,11 +61,6 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 				.addProduct(EnumHoneyComb.BARREN.get(1), 0.30f)
 				.setTemperature(EnumTemperature.HOT)
 				.setHumidity(EnumHumidity.ARID);
-		}
-
-		@Override
-		protected void setAlleles(IAllele[] template) {
-			AlleleHelper.instance.set(template, EnumBeeChromosome.FERTILITY, EnumAllele.Fertility.LOW);
 		}
 
 		@Override
@@ -81,9 +81,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 		@Override
 		protected void setAlleles(IAllele[] template) {
 			AlleleHelper.instance.set(template, EnumBeeChromosome.NOCTURNAL, true);
-			AlleleHelper.instance.set(template, EnumBeeChromosome.FERTILITY, EnumAllele.Fertility.LOW);
 			AlleleHelper.instance.set(template, EnumBeeChromosome.EFFECT, AlleleHelper.getAllele(ExtraBeesEffect.HUNGER.getUID()));
-			/*ExtraBeeDefinition.DESOLATE.importTemplate(ExtraBeeDefinition.BARREN)*/
 		}
 
 		@Override
@@ -99,11 +97,6 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 				.addSpecialty(EnumHoneyComb.COMPOST.get(1), 0.08f)
 				.setTemperature(EnumTemperature.HOT)
 				.setHumidity(EnumHumidity.ARID);
-		}
-
-		@Override
-		protected void setAlleles(IAllele[] template) {
-			/*ExtraBeeDefinition.DECOMPOSING.importTemplate(ExtraBeeDefinition.BARREN)*/
 		}
 
 		@Override
@@ -124,7 +117,6 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 		@Override
 		protected void setAlleles(IAllele[] template) {
 			AlleleHelper.instance.set(template, EnumBeeChromosome.FLOWER_PROVIDER, AlleleHelper.getAllele(ExtraBeesFlowers.WOOD.getUID()));
-			/*ExtraBeeDefinition.GNAWING.importTemplate(ExtraBeeDefinition.BARREN)*/
 		}
 
 		@Override

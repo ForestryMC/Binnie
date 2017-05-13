@@ -24,6 +24,7 @@ public enum ExtraBeeBranchDefinition implements IBranchDefinition {
 			AlleleHelper.instance.set(template, EnumBeeChromosome.LIFESPAN, EnumAllele.Lifespan.SHORT);
 			AlleleHelper.instance.set(template, EnumBeeChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.UP_1);
 			AlleleHelper.instance.set(template, EnumBeeChromosome.FLOWER_PROVIDER, AlleleHelper.getAllele(ExtraBeesFlowers.DEAD.getUID()));
+			AlleleHelper.instance.set(template, EnumBeeChromosome.FERTILITY, EnumAllele.Fertility.LOW);
 		}
 	},
 	HOSTILE("Infenapis"),
