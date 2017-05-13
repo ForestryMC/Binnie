@@ -126,21 +126,19 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 	},
 
 	/* HOSTILE BRANCH */
-	ROTTEN(ExtraBeeBranchDefinition.HOSTILE, "caries", true, new Color(0xbfe0b6), new Color(0xffffff)) {
+	ROTTEN(ExtraBeeBranchDefinition.HOSTILE, "caries", true, new Color(0xbfe0b6), new Color(0xcbe374)) {
 		@Override
 		protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
 			beeSpecies
 				.addProduct(EnumHoneyComb.BARREN.get(1), 0.30f)
-				.addSpecialty(EnumHoneyComb.ROTTEN.get(1), 0.10f);
+				.addSpecialty(EnumHoneyComb.ROTTEN.get(1), 0.10f)
+				.setTemperature(EnumTemperature.HOT)
+				.setHumidity(EnumHumidity.ARID);
 		}
 
 		@Override
 		protected void setAlleles(IAllele[] template) {
-			AlleleHelper.instance.set(template, EnumBeeChromosome.NOCTURNAL, true);
-			AlleleHelper.instance.set(template, EnumBeeChromosome.CAVE_DWELLING, true);
-			AlleleHelper.instance.set(template, EnumBeeChromosome.TOLERANT_FLYER, true);
 			AlleleHelper.instance.set(template, EnumBeeChromosome.EFFECT, AlleleHelper.getAllele(ExtraBeesEffect.SPAWN_ZOMBIE.getUID()));
-			/*ExtraBeeDefinition.ROTTEN.importTemplate(ExtraBeeDefinition.DESOLATE)*/
 		}
 
 		@Override
@@ -148,18 +146,19 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 			registerMutation(BeeDefinition.MEADOWS, DESOLATE, 15);
 		}
 	},
-	BONE(ExtraBeeBranchDefinition.HOSTILE, "os", true, new Color(0xe9ede8), new Color(0xffffff)) {
+	BONE(ExtraBeeBranchDefinition.HOSTILE, "os", true, new Color(0xe9ede8), new Color(0xcbe374)) {
 		@Override
 		protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
 			beeSpecies
 				.addProduct(EnumHoneyComb.BARREN.get(1), 0.30f)
-				.addSpecialty(EnumHoneyComb.BONE.get(1), 0.10f);
+				.addSpecialty(EnumHoneyComb.BONE.get(1), 0.10f)
+				.setTemperature(EnumTemperature.HOT)
+				.setHumidity(EnumHumidity.ARID);
 		}
 
 		@Override
 		protected void setAlleles(IAllele[] template) {
 			AlleleHelper.instance.set(template, EnumBeeChromosome.EFFECT, AlleleHelper.getAllele(ExtraBeesEffect.SPAWN_SKELETON.getUID()));
-			/*ExtraBeeDefinition.BONE.importTemplate(ExtraBeeDefinition.ROTTEN);*/
 		}
 
 		@Override
@@ -167,19 +166,19 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 			registerMutation(BeeDefinition.FOREST, DESOLATE, 15);
 		}
 	},
-	CREEPER(ExtraBeeBranchDefinition.HOSTILE, "erepo", true, new Color(0x2ce615), new Color(0xffffff)) {
+	CREEPER(ExtraBeeBranchDefinition.HOSTILE, "erepo", true, new Color(0x2ce615), new Color(0xcbe374)) {
 		@Override
 		protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
 			beeSpecies
 				.addProduct(EnumHoneyComb.BARREN.get(1), 0.30f)
-				.addSpecialty(ItemHoneyComb.VanillaComb.POWDERY.get(), 0.08f);
+				.addSpecialty(ItemHoneyComb.VanillaComb.POWDERY.get(), 0.08f)
+				.setTemperature(EnumTemperature.HOT)
+				.setHumidity(EnumHumidity.ARID);
 		}
 
 		@Override
 		protected void setAlleles(IAllele[] template) {
-			AlleleHelper.instance.set(template, EnumBeeChromosome.NOCTURNAL, true);
 			AlleleHelper.instance.set(template, EnumBeeChromosome.EFFECT, AlleleHelper.getAllele(ExtraBeesEffect.SPAWN_CREEPER.getUID()));
-			/*ExtraBeeDefinition.CREEPER.importTemplate(ExtraBeeDefinition.ROTTEN)*/
 		}
 
 		@Override

@@ -27,7 +27,20 @@ public enum ExtraBeeBranchDefinition implements IBranchDefinition {
 			AlleleHelper.instance.set(template, EnumBeeChromosome.FERTILITY, EnumAllele.Fertility.LOW);
 		}
 	},
-	HOSTILE("Infenapis"),
+	HOSTILE("Infenapis") {
+		@Override
+		protected void setBranchProperties(IAllele[] template) {
+			AlleleHelper.instance.set(template, EnumBeeChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
+			AlleleHelper.instance.set(template, EnumBeeChromosome.NOCTURNAL, true);
+			AlleleHelper.instance.set(template, EnumBeeChromosome.CAVE_DWELLING, true);
+			AlleleHelper.instance.set(template, EnumBeeChromosome.TOLERANT_FLYER, true);
+			AlleleHelper.instance.set(template, EnumBeeChromosome.SPEED, EnumAllele.Speed.SLOWER);
+			AlleleHelper.instance.set(template, EnumBeeChromosome.LIFESPAN, EnumAllele.Lifespan.SHORT);
+			AlleleHelper.instance.set(template, EnumBeeChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.UP_1);
+			AlleleHelper.instance.set(template, EnumBeeChromosome.FLOWER_PROVIDER, AlleleHelper.getAllele(ExtraBeesFlowers.DEAD.getUID()));
+			AlleleHelper.instance.set(template, EnumBeeChromosome.FERTILITY, EnumAllele.Fertility.LOW);
+		}
+	},
 	ROCKY("Monapis") {
 		@Override
 		protected void setBranchProperties(IAllele[] template) {
