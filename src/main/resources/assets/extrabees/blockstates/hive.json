@@ -1,0 +1,36 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_column"
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}],
+    "type":{
+      "marble": {
+        "textures":{
+          "end": "extrabees:blocks/hive/marble.1",
+          "side": "extrabees:blocks/hive/marble.0"
+        }
+      },
+      "nether": {
+        "textures":{
+          "end": "extrabees:blocks/hive/nether.1",
+          "side": "extrabees:blocks/hive/nether.0"
+        }
+      },
+      "rock": {
+        "textures":{
+          "end": "extrabees:blocks/hive/rock.1",
+          "side": "extrabees:blocks/hive/rock.0"
+        }
+      },
+      "water": {
+        "textures":{
+          "end": "extrabees:blocks/hive/water.1",
+          "side": "extrabees:blocks/hive/water.0"
+        }
+      }
+    }
+  }
+}

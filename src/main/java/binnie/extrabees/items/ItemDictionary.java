@@ -5,6 +5,7 @@ import binnie.extrabees.client.ExtraBeeGUID;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -13,9 +14,11 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
 import java.util.List;
 
 public class ItemDictionary extends Item implements IItemModelRegister {
@@ -59,7 +62,8 @@ public class ItemDictionary extends Item implements IItemModelRegister {
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack i) {
+	@Nonnull
+	public String getItemStackDisplayName(@Nonnull ItemStack i) {
 		return (i.getItemDamage() == 0) ? "Apiarist Database" : "Master Apiarist Database";
 	}
 
@@ -67,8 +71,8 @@ public class ItemDictionary extends Item implements IItemModelRegister {
 	@SideOnly(Side.CLIENT)
 	@SuppressWarnings("all")
 	public void registerModel(Item item, IModelManager manager) {
-		manager.registerItemModel(item, 0, getRegistryName().getResourcePath());
-		manager.registerItemModel(item, 1, getRegistryName().getResourcePath() + "_master");
+		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(item, 1, new ModelResourceLocation(getRegistryName().toString() + "_master", "inventory"));
 	}
 
 }

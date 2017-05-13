@@ -1,6 +1,8 @@
 package binnie.extrabees.init;
 
 import binnie.extrabees.ExtraBees;
+import binnie.extrabees.alveary.BlockAlveary;
+import binnie.extrabees.alveary.TileEntityExtraBeesAlvearyPart;
 import binnie.extrabees.blocks.BlockEctoplasm;
 import binnie.extrabees.blocks.BlockExtraBeeHive;
 import binnie.extrabees.blocks.type.EnumHiveType;
@@ -21,6 +23,8 @@ public final class BlockRegister {
 	public static void preInitBlocks(){
 		registerHives();
 		registerMisc();
+		//ExtraBees.alveary = ExtraBees.proxy.registerBlock(new BlockAlveary());
+		GameRegistry.registerTileEntity(TileEntityExtraBeesAlvearyPart.class, "TileEntityExtraBeesAlvearyPart");
 	}
 
 	public static void postInitBlocks(){
@@ -34,7 +38,6 @@ public final class BlockRegister {
 	@SuppressWarnings("all")
 	private static void registerHives(){
 		GameRegistry.register(ExtraBees.hive = new BlockExtraBeeHive());
-		GameRegistry.register(new ItemBeehive(ExtraBees.hive));
 	}
 
 	private static void registerHiveDrops(){

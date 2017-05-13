@@ -1,13 +1,16 @@
 package binnie.extrabees.init;
 
 import binnie.extrabees.ExtraBees;
-import binnie.extrabees.items.types.EnumHoneyComb;
-import binnie.extrabees.items.types.EnumHoneyDrop;
-import binnie.extrabees.items.types.EnumPropolis;
-import binnie.extrabees.items.types.ExtraBeeItems;
+import binnie.extrabees.apiary.machine.AlvearyMachine;
+import binnie.extrabees.circuit.AlvearySimulatorCircuitType;
+import binnie.extrabees.items.types.*;
+import binnie.extrabees.circuit.BinnieCircuitLayout;
+import binnie.extrabees.circuit.BinnieCircuitSocketType;
 import binnie.extrabees.utils.Utils;
+import forestry.api.circuits.ICircuitLayout;
 import forestry.api.recipes.RecipeManagers;
 import forestry.apiculture.PluginApiculture;
+import forestry.apiculture.blocks.BlockAlvearyType;
 import forestry.core.PluginCore;
 import forestry.core.fluids.Fluids;
 import net.minecraft.init.Blocks;
@@ -16,6 +19,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 
 /**
  * Created by Elec332 on 12-5-2017.
@@ -33,8 +37,28 @@ public final class RecipeRegister {
 		for (final EnumPropolis info3 : EnumPropolis.values()) {
 			info3.addRecipe();
 		}
+		EnumHiveFrame.init();
 		addForestryRecipes();
 		addMiscItemRecipes();
+		addAlvearyRecipes();
+	}
+
+	private static void addAlvearyRecipes(){
+		ItemStack alveary = PluginApiculture.getBlocks().getAlvearyBlock(BlockAlvearyType.PLAIN);
+		Item thermionicTubes = PluginCore.getItems().tubes;
+		Item chipsets = PluginCore.getItems().circuitboards;
+
+		GameRegistry.addRecipe(AlvearyMachine.Mutator.get(1), "g g", " a ", "t t", 'g', Items.GOLD_INGOT, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 5));
+		GameRegistry.addRecipe(AlvearyMachine.Frame.get(1), "iii", "tat", " t ", 'i', Items.IRON_INGOT, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 4));
+		GameRegistry.addRecipe(AlvearyMachine.RainShield.get(1), " b ", "bab", "t t", 'b', Items.BRICK, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 4));
+		GameRegistry.addRecipe(AlvearyMachine.Lighting.get(1), "iii", "iai", " t ", 'i', Items.GLOWSTONE_DUST, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 4));
+		GameRegistry.addRecipe(AlvearyMachine.Stimulator.get(1), "kik", "iai", " t ", 'i', Items.GOLD_NUGGET, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 4), 'k', new ItemStack(chipsets, 1, 2));
+		GameRegistry.addRecipe(AlvearyMachine.Hatchery.get(1), "i i", " a ", "iti", 'i', Blocks.GLASS_PANE, 'a', alveary, 't', new ItemStack(thermionicTubes, 1, 5));
+		GameRegistry.addRecipe(new ShapedOreRecipe(AlvearyMachine.Transmission.get(1), " t ", "tat", " t ", 'a', alveary, 't', "gearTin"));
+		ICircuitLayout stimulatorLayout = new BinnieCircuitLayout("Stimulator", BinnieCircuitSocketType.STIMULATOR);
+		for (final AlvearySimulatorCircuitType type : AlvearySimulatorCircuitType.values()) {
+			type.createCircuit(stimulatorLayout);
+		}
 	}
 
 	private static void addForestryRecipes(){

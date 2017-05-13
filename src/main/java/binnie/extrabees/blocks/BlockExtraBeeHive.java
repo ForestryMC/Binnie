@@ -31,7 +31,7 @@ public class BlockExtraBeeHive extends Block {
 		this.setCreativeTab(Tabs.tabApiculture);
 	}
 
-	public static final PropertyEnum<EnumHiveType> hiveType = PropertyEnum.create("hive_type", EnumHiveType.class);
+	public static final PropertyEnum<EnumHiveType> hiveType = PropertyEnum.create("type", EnumHiveType.class);
 
 	public String getUnlocalizedName(final ItemStack itemStack) {
 		return "extrabees.block.hive." + itemStack.getItemDamage();

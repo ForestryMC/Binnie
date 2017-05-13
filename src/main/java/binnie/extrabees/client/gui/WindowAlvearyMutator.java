@@ -10,6 +10,7 @@ import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
 import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.extrabees.apiary.machine.AlvearyMutator;
 import binnie.extrabees.client.GuiHack;
+import binnie.extrabees.utils.AlvearyMutationHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -40,12 +41,12 @@ public class WindowAlvearyMutator extends Window {
 		new ControlPlayerInventory(this);
 		new ControlSlot.Builder(this, 79, 30).assign(0);
 		new ControlText(this, new Area(0, 52, this.width(), 16), "Possible Mutagens:", TextJustification.MiddleCenter).setColour(5592405);
-		final int size = AlvearyMutator.getMutagens().size();
+		final int size = AlvearyMutationHandler.getMutagens().size();
 		final int w = size * 18;
 		NumberFormat numberFormat = NumberFormat.getNumberInstance(MinecraftForgeClient.getLocale());
 		if (size > 0) {
 			int x = (this.width() - w) / 2;
-			for (final Pair<ItemStack, Float> mutagen : AlvearyMutator.getMutagens()) {
+			for (final Pair<ItemStack, Float> mutagen : AlvearyMutationHandler.getMutagens()) {
 				final ControlItemDisplay display = new ControlItemDisplay(this, x, 66);
 				display.setItemStack(mutagen.getKey());
 				display.hastooltip = true;

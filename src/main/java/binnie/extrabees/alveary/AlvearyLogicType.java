@@ -1,0 +1,78 @@
+package binnie.extrabees.alveary;
+
+import net.minecraft.util.IStringSerializable;
+
+import javax.annotation.Nonnull;
+
+/**
+ * Created by Elec332 on 13-5-2017.
+ */
+public enum AlvearyLogicType implements IStringSerializable {
+
+	FRAME {
+
+		@Override
+		public AbstractAlvearyLogic createLogic(TileEntityExtraBeesAlvearyPart tile) {
+			return new AlvearyLogicFrameHousing(tile);
+		}
+
+	},
+	HATCHERY {
+
+		@Override
+		public AbstractAlvearyLogic createLogic(TileEntityExtraBeesAlvearyPart tile) {
+			return new AlvearyLogicHatchery();
+		}
+
+	},
+	LIGHTING {
+
+		@Override
+		public AbstractAlvearyLogic createLogic(TileEntityExtraBeesAlvearyPart tile) {
+			return new AlvearyLogicLighting();
+		}
+
+	},
+	MUTATOR {
+
+		@Override
+		public AbstractAlvearyLogic createLogic(TileEntityExtraBeesAlvearyPart tile) {
+			return new AlvearyLogicMutator();
+		}
+
+	},
+	RAINSHIELD {
+
+		@Override
+		public AbstractAlvearyLogic createLogic(TileEntityExtraBeesAlvearyPart tile) {
+			return new AlvearyLogicRainShield();
+		}
+
+	},
+	STIMULATOR {
+
+		@Override
+		public AbstractAlvearyLogic createLogic(TileEntityExtraBeesAlvearyPart tile) {
+			return new AlvearyLogicStimulator();
+		}
+
+	},
+	TRANSMISSION {
+
+		@Override
+		public AbstractAlvearyLogic createLogic(TileEntityExtraBeesAlvearyPart tile) {
+			return new AlvearyLogicTransmitter();
+		}
+
+	};
+
+	public abstract AbstractAlvearyLogic createLogic(TileEntityExtraBeesAlvearyPart tile);
+
+	@Nonnull
+	public String getName(){
+		return toString().toLowerCase();
+	}
+
+	public static AlvearyLogicType[] VALUES = values();
+
+}

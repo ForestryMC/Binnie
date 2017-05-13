@@ -1,4 +1,4 @@
-package binnie.extrabees.utils;
+package binnie.extrabees.circuit;
 
 import forestry.api.circuits.ChipsetManager;
 import forestry.api.circuits.ICircuitLayout;

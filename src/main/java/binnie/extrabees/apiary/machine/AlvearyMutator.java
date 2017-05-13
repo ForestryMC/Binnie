@@ -9,6 +9,7 @@ import binnie.extrabees.apiary.ComponentExtraBeeGUI;
 import binnie.extrabees.apiary.ModuleApiary;
 import binnie.extrabees.client.ExtraBeeGUID;
 import binnie.extrabees.client.ExtraBeeTexture;
+import binnie.extrabees.utils.AlvearyMutationHandler;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeListener;
@@ -28,39 +29,6 @@ import static org.apache.commons.lang3.ObjectUtils.firstNonNull;
 
 public class AlvearyMutator {
 	public static int slotMutator = 0;
-	private static final List<Pair<ItemStack, Float>> MUTATIONS = new ArrayList<>();
-
-	public static boolean isMutationItem(final ItemStack item) {
-		return getMutationMult(item) > 0.0f;
-	}
-
-	public static float getMutationMult(final ItemStack item) {
-		if (!item.isEmpty()) {
-			for (final Pair<ItemStack, Float> comp : AlvearyMutator.MUTATIONS) {
-				ItemStack key = comp.getKey();
-				if (item.isItemEqual(key) && ItemStack.areItemStackTagsEqual(item, key)) {
-					return comp.getValue();
-				}
-			}
-		}
-		return 1.0f;
-	}
-
-	public static void addMutationItem(@Nullable Item item, float chance){
-		addMutationItem(new ItemStack(firstNonNull(item, Item.getItemFromBlock(Blocks.AIR))), chance);
-	}
-
-	public static void addMutationItem(final ItemStack item, final float chance) {
-		if (item.isEmpty()) {
-			return;
-		}
-		AlvearyMutator.MUTATIONS.add(Pair.of(item, chance));
-		AlvearyMutator.MUTATIONS.sort(Comparator.comparing(Pair::getValue));
-	}
-
-	public static List<Pair<ItemStack, Float>> getMutagens() {
-		return Collections.unmodifiableList(AlvearyMutator.MUTATIONS);
-	}
 
 	public static class PackageAlvearyMutator extends AlvearyMachine.AlvearyPackage implements IMachineInformation {
 		public PackageAlvearyMutator() {
@@ -83,7 +51,7 @@ public class AlvearyMutator {
 
 		@Override
 		public boolean isValid(final ItemStack itemStack) {
-			return AlvearyMutator.isMutationItem(itemStack);
+			return AlvearyMutationHandler.isMutationItem(itemStack);
 		}
 
 		@Override
@@ -100,7 +68,7 @@ public class AlvearyMutator {
 		@Override
 		public float getMutationModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
 			ItemStack mutator = this.getUtil().getStack(AlvearyMutator.slotMutator);
-			final float mult = AlvearyMutator.getMutationMult(mutator);
+			final float mult = AlvearyMutationHandler.getMutationMult(mutator);
 			return Math.min(mult * currentModifier, 15f);
 		}
 

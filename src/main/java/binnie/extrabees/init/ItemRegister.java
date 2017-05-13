@@ -1,12 +1,18 @@
 package binnie.extrabees.init;
 
 import binnie.extrabees.ExtraBees;
+import binnie.extrabees.alveary.AlvearyLogicType;
+import binnie.extrabees.alveary.BlockAlveary;
+import binnie.extrabees.blocks.type.EnumHiveType;
 import binnie.extrabees.items.*;
+import binnie.extrabees.items.types.EnumHiveFrame;
 import binnie.extrabees.items.types.EnumHoneyComb;
 import binnie.extrabees.items.types.ExtraBeeItems;
 import forestry.api.core.Tabs;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -23,9 +29,37 @@ public final class ItemRegister {
 
 	@SuppressWarnings("all")
 	private static void registerMisc(){
+		Item i = /*GameRegistry.register(new ItemBlock(ExtraBees.alveary){
+
+			@Override
+			public int getMetadata(int damage) {
+				return damage;
+			}
+
+			@Override
+			public String getUnlocalizedName(ItemStack stack) {
+				return ((BlockAlveary) block).getUnlocalizedName(stack.getMetadata());
+			}
+
+			@Override
+			public boolean getHasSubtypes() {
+				return true;
+			}
+
+		}.setRegistryName(ExtraBees.alveary.getRegistryName()));
+		for (int j = 0; j < AlvearyLogicType.VALUES.length; j++) {
+			ExtraBees.proxy.registerModel(i, j);
+		}*/
+		i = GameRegistry.register(new ItemBeehive(ExtraBees.hive));
+		for (int j = 0; j < EnumHiveType.values().length; j++) {
+			ExtraBees.proxy.registerModel(i, j);
+		}
 		ExtraBees.proxy.registerItem(ExtraBees.dictionary = new ItemDictionary());
-		GameRegistry.register(new ItemBlock(ExtraBees.ectoplasm).setRegistryName(ExtraBees.ectoplasm.getRegistryName()));
+		ExtraBees.proxy.registerModel(GameRegistry.register(new ItemBlock(ExtraBees.ectoplasm).setRegistryName(ExtraBees.ectoplasm.getRegistryName())), 0);
 		ExtraBees.itemMisc = ExtraBees.proxy.registerItem(new ItemMiscProduct(Tabs.tabApiculture, ExtraBeeItems.values()));
+		for (final EnumHiveFrame frame : EnumHiveFrame.values()) {
+			ExtraBees.proxy.registerItem(frame.getItem());
+		}
 	}
 
 	private static void registerProducts(){

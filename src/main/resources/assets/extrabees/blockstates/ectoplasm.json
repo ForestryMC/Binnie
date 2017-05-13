@@ -1,0 +1,15 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_column"
+  },
+  "variants": {
+    "normal": [{
+      "textures":{
+        "end": "extrabees:blocks/ectoplasm",
+        "side": "extrabees:blocks/ectoplasm"
+      }
+    }],
+    "inventory": [{}]
+  }
+}
