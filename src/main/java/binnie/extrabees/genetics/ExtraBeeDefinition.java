@@ -2,7 +2,6 @@ package binnie.extrabees.genetics;
 
 import binnie.core.Mods;
 import binnie.extrabees.genetics.effect.ExtraBeesEffect;
-import binnie.extrabees.genetics.requirements.RequirementPerson;
 import binnie.extrabees.products.EnumHoneyComb;
 import binnie.extrabees.products.ItemHoneyComb;
 import binnie.genetics.genetics.AlleleHelper;
@@ -13,7 +12,6 @@ import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IAlleleBeeSpeciesCustom;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeMutationCustom;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.IAllele;
@@ -480,7 +478,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 	},
 
 	/* NUCLEAR BRANCH */
-	UNSTABLE(ExtraBeeBranchDefinition.NUCLEAR, "levis", false, new Color(0x3e8c34), new Color(0xffffff)) {
+	UNSTABLE(ExtraBeeBranchDefinition.NUCLEAR, "levis", false, new Color(0x3e8c34), new Color(0x999999)) {
 		@Override
 		protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
 			beeSpecies.addProduct(EnumHoneyComb.BARREN.get(1), 0.20f);
@@ -491,7 +489,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 			registerMutation(PREHISTORIC, MINERAL, 5);
 		}
 	},
-	NUCLEAR(ExtraBeeBranchDefinition.NUCLEAR, "nucleus", false, new Color(0x41cc2f), new Color(0xffffff)) {
+	NUCLEAR(ExtraBeeBranchDefinition.NUCLEAR, "nucleus", false, new Color(0x41cc2f), new Color(0x999999)) {
 		@Override
 		protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
 			beeSpecies.addProduct(EnumHoneyComb.BARREN.get(1), 0.20f);
@@ -507,7 +505,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 			registerMutation(UNSTABLE, LEAD, 5);
 		}
 	},
-	RADIOACTIVE(ExtraBeeBranchDefinition.NUCLEAR, "fervens", false, new Color(0x1eff00), new Color(0xffffff)) {
+	RADIOACTIVE(ExtraBeeBranchDefinition.NUCLEAR, "fervens", false, new Color(0x1eff00), new Color(0x999999)) {
 		@Override
 		protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
 			beeSpecies
@@ -522,7 +520,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 			registerMutation(NUCLEAR, SILVER, 5);
 		}
 	},
-	YELLORIUM(ExtraBeeBranchDefinition.NUCLEAR, "yellori", true, new Color(0xd5ed00), new Color(0xffffff)) {
+	YELLORIUM(ExtraBeeBranchDefinition.NUCLEAR, "yellori", true, new Color(0xd5ed00), new Color(0x999999)) {
 		@Override
 		protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
 			beeSpecies
@@ -542,7 +540,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 			registerMutation(BeeDefinition.FRUGAL, NUCLEAR, 5);
 		}
 	},
-	CYANITE(ExtraBeeBranchDefinition.NUCLEAR, "cyanita", true, new Color(0x0086ed), new Color(0xffffff)) {
+	CYANITE(ExtraBeeBranchDefinition.NUCLEAR, "cyanita", true, new Color(0x0086ed), new Color(0x999999)) {
 		@Override
 		protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
 			beeSpecies
@@ -562,7 +560,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 			registerMutation(NUCLEAR, YELLORIUM, 5);
 		}
 	},
-	BLUTONIUM(ExtraBeeBranchDefinition.NUCLEAR, "caruthus", true, new Color(0x1b00e6), new Color(0xffffff)) {
+	BLUTONIUM(ExtraBeeBranchDefinition.NUCLEAR, "caruthus", true, new Color(0x1b00e6), new Color(0x999999)) {
 		@Override
 		protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
 			beeSpecies
@@ -1651,8 +1649,8 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
 		@Override
 		protected void registerMutations() {
-			registerMutation(BeeDefinition.ENDED, RELIC, 2)
-				.addMutationCondition(new RequirementPerson("jadedcat"));
+			registerMutation(BeeDefinition.ENDED, RELIC, 100)
+				.restrictPerson("jadedcat");
 		}
 	},
 
@@ -1852,28 +1850,34 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 		BeeManager.beeRoot.registerTemplate(template);
 	}
 
-	protected final IBeeMutationCustom registerMutation(ExtraBeeDefinition parent1, ExtraBeeDefinition parent2, int chance) {
+	protected final ExtraBeeMutation registerMutation(ExtraBeeDefinition parent1, ExtraBeeDefinition parent2, int chance) {
 		return registerMutation(parent1.species, parent2.species, chance);
 	}
 
-	protected final IBeeMutationCustom registerMutation(BeeDefinition parent1, ExtraBeeDefinition parent2, int chance) {
+	protected final ExtraBeeMutation registerMutation(BeeDefinition parent1, ExtraBeeDefinition parent2, int chance) {
 		return registerMutation(parent1.getGenome().getPrimary(), parent2.species, chance);
 	}
 
-	protected final IBeeMutationCustom registerMutation(BeeDefinition parent1, BeeDefinition parent2, int chance) {
+	protected final ExtraBeeMutation registerMutation(BeeDefinition parent1, BeeDefinition parent2, int chance) {
 		return registerMutation(parent1.getGenome().getPrimary(), parent2.getGenome().getPrimary(), chance);
 	}
 
-	protected final IBeeMutationCustom registerMutation(IAlleleBeeSpecies parent1, IAlleleBeeSpecies parent2, int chance) {
-		return BeeManager.beeMutationFactory.createMutation(parent1, parent2, getTemplate(), chance);
+	protected final ExtraBeeMutation registerMutation(IAlleleBeeSpecies parent1, IAlleleBeeSpecies parent2, int chance) {
+		ExtraBeeMutation mutation = new ExtraBeeMutation(parent1, parent2, getTemplate(), chance);
+		BeeManager.beeRoot.registerMutation(mutation);
+		return mutation;
 	}
 
-	private static IBeeMutationCustom registerMutation(ExtraBeeDefinition parent1, ExtraBeeDefinition parent2, BeeDefinition result, int chance) {
-		return BeeManager.beeMutationFactory.createMutation(parent1.species, parent2.species, result.getTemplate(), chance);
+	private static ExtraBeeMutation registerMutation(ExtraBeeDefinition parent1, ExtraBeeDefinition parent2, BeeDefinition result, int chance) {
+		ExtraBeeMutation mutation = new ExtraBeeMutation(parent1.species, parent2.species, result.getTemplate(), chance);
+		BeeManager.beeRoot.registerMutation(mutation);
+		return mutation;
 	}
 
-	private static IBeeMutationCustom registerMutation(BeeDefinition parent1, ExtraBeeDefinition parent2, BeeDefinition result, int chance) {
-		return BeeManager.beeMutationFactory.createMutation(parent1.getGenome().getPrimary(), parent2.species, result.getTemplate(), chance);
+	private static ExtraBeeMutation registerMutation(BeeDefinition parent1, ExtraBeeDefinition parent2, BeeDefinition result, int chance) {
+		ExtraBeeMutation mutation = new ExtraBeeMutation(parent1.getGenome().getPrimary(), parent2.species, result.getTemplate(), chance);
+		BeeManager.beeRoot.registerMutation(mutation);
+		return mutation;
 	}
 
 	@Override

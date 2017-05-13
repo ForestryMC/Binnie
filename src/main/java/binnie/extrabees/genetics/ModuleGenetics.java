@@ -21,9 +21,6 @@ public class ModuleGenetics implements IInitializable {
 
 	@Override
 	public void preInit() {
-//		for (ExtraBeeDefinition species : ExtraBeeDefinition.values()) {
-//			AlleleManager.alleleRegistry.registerAllele(species.getGenome().getPrimary());
-//		}
 		ExtraBees.dictionary = new ItemDictionary();
 
 		ExtraBees.ectoplasm = new BlockEctoplasm();
@@ -35,9 +32,6 @@ public class ModuleGenetics implements IInitializable {
 		ExtraBeesEffect.doInit();
 		ExtraBeesFlowers.doInit();
 		ExtraBeeDefinition.initBees();
-//		ExtraBeeDefinition.doInit();
-//		ExtraBeeMutation.doInit();
-//		ExtraBeesBranch.doInit();
 	}
 
 	@Override
