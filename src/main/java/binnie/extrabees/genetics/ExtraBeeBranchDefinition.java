@@ -4,6 +4,7 @@ import binnie.extrabees.genetics.effect.ExtraBeesEffect;
 import binnie.genetics.genetics.AlleleHelper;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeChromosome;
+import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IClassification;
 import forestry.apiculture.genetics.alleles.AlleleEffect;
@@ -15,7 +16,15 @@ import java.util.Locale;
 
 public enum ExtraBeeBranchDefinition implements IBranchDefinition {
 	BARREN("Vacapis") {
-		
+		@Override
+		protected void setBranchProperties(IAllele[] template) {
+			AlleleHelper.instance.set(template, EnumBeeChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
+			AlleleHelper.instance.set(template, EnumBeeChromosome.NOCTURNAL, true);
+			AlleleHelper.instance.set(template, EnumBeeChromosome.SPEED, EnumAllele.Speed.SLOWER);
+			AlleleHelper.instance.set(template, EnumBeeChromosome.LIFESPAN, EnumAllele.Lifespan.SHORT);
+			AlleleHelper.instance.set(template, EnumBeeChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.UP_1);
+			AlleleHelper.instance.set(template, EnumBeeChromosome.FLOWER_PROVIDER, AlleleHelper.getAllele(ExtraBeesFlowers.DEAD.getUID()));
+		}
 	},
 	HOSTILE("Infenapis"),
 	ROCKY("Monapis") {
@@ -41,7 +50,16 @@ public enum ExtraBeeBranchDefinition implements IBranchDefinition {
 	HISTORIC("Priscapis"),
 	FOSSILIZED("Fosiapis"),
 	REFINED("Petrapis"),
-	AQUATIC("Aquapis"),
+	AQUATIC("Aquapis") {
+		@Override
+		protected void setBranchProperties(IAllele[] template) {
+			AlleleHelper.instance.set(template, EnumBeeChromosome.TOLERANT_FLYER, true);
+			AlleleHelper.instance.set(template, EnumBeeChromosome.FLOWERING, EnumAllele.Flowering.SLOWEST);
+			AlleleHelper.instance.set(template, EnumBeeChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.BOTH_1);
+			AlleleHelper.instance.set(template, EnumBeeChromosome.FLOWER_PROVIDER, AlleleHelper.getAllele(ExtraBeesFlowers.WATER.getUID()));
+			AlleleHelper.instance.set(template, EnumBeeChromosome.EFFECT, AlleleHelper.getAllele(ExtraBeesEffect.WATER.getUID()));
+		}
+	},
 	SACCHARINE("Sacchapis"),
 	CLASSICAL("Grecapis"),
 	VOLCANIC("Irrapis"),
@@ -57,7 +75,12 @@ public enum ExtraBeeBranchDefinition implements IBranchDefinition {
 		}
 	},
 	FARMING("Agriapis"),
-	SHADOW("Pullapis"),
+	SHADOW("Pullapis") {
+		@Override
+		protected void setBranchProperties(IAllele[] template) {
+			AlleleHelper.instance.set(template, EnumBeeChromosome.NOCTURNAL, true);
+		}
+	},
 	PRIMARY("Primapis"),
 	SECONDARY("Secapis"),
 	TERTIARY("Tertiapis"),
@@ -69,6 +92,10 @@ public enum ExtraBeeBranchDefinition implements IBranchDefinition {
 
 	ExtraBeeBranchDefinition(String scientific) {
 		branch = BeeManager.beeFactory.createBranch(name().toLowerCase(Locale.ENGLISH), scientific);
+		IClassification parent = AlleleManager.alleleRegistry.getClassification("family.apidae");
+		if (parent != null) {
+			parent.addMemberGroup(branch);
+		}
 	}
 
 	protected void setBranchProperties(IAllele[] template) {
