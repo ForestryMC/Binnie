@@ -119,24 +119,6 @@ extrabees.item.frame.soul=Soul Frame
 extrabees.item.frame.clay=Healing Frame
 extrabees.item.frame.debug=Nova Frame
 
-extrabees.item.serum.tooltip.nocharge=Empty
-extrabees.item.serum.tooltip.charge1=1 Charge
-extrabees.item.serum.tooltip.manycharge=%d Charges
-extrabees.item.serum.corrupted=Corrupted Serum
-extrabees.item.serum.name=%s Serum
-extrabees.item.serum.empty=Empty Serum
-
-extrabees.item.template.corrupted=Corrupted Template
-extrabees.item.template.name=%s Template
-extrabees.item.template.empty=Blank Template
-
-
-
-
-extrabees.block.apiaristMachine.name=Apiarist Machine
-extrabees.block.geneticMachine.name=Genetic Machine
-extrabees.block.advGeneticMachine.name=Advanced Genetic Machine
-
 extrabees.block.ectoplasm.name=Ectoplasm
 
 extrabees.block.hive.0=Water Hive
@@ -151,9 +133,6 @@ extrabees.block.hive.3=Marble Hive
 extrabees.liquid.acid=Acid
 extrabees.liquid.poison=Poison
 extrabees.liquid.glacial=Liquid Nitrogen
-extrabees.liquid.dna=Liquid DNA
-
-
 
 
 ##################################################
@@ -192,82 +171,6 @@ for.binnie.circuit.stimulator.nether=Molten Stimulus
 for.binnie.circuit.stimulator.mutation=Mutagenic Stimulus
 for.binnie.circuit.stimulator.inhibitor=Inhibiting Stimulus
 for.binnie.circuit.stimulator.territory=Agitating Stimulus
-
-extrabees.genetics.quality.awful=Awful
-extrabees.genetics.quality.poor=Poor
-extrabees.genetics.quality.average=Average
-extrabees.genetics.quality.good=Good
-extrabees.genetics.quality.excellent=Excellent
-
-extrabees.genetics.quality.tooltip=%s Quality
-
-extrabees.genetics.allele.shortest=Shortest
-extrabees.genetics.allele.shorter=Shorter
-extrabees.genetics.allele.short=Short
-extrabees.genetics.allele.shortened=Shortened
-extrabees.genetics.allele.normal=Normal
-extrabees.genetics.allele.elongated=Elongated
-extrabees.genetics.allele.long=Long
-extrabees.genetics.allele.longer=Longer
-extrabees.genetics.allele.longest=Longest
-
-extrabees.genetics.allele.slowest=Slowest
-extrabees.genetics.allele.slower=Slower
-extrabees.genetics.allele.slow=Slow
-extrabees.genetics.allele.norm=Normal
-extrabees.genetics.allele.fast=Fast
-extrabees.genetics.allele.faster=Faster
-extrabees.genetics.allele.fastest=Fastest
-
-extrabees.genetics.allele.low=Low
-extrabees.genetics.allele.high=High
-extrabees.genetics.allele.maximum=Maximum
-
-extrabees.genetics.allele.average=Average
-
-extrabees.genetics.allele.default=Default
-extrabees.genetics.allele.large=Large
-extrabees.genetics.allele.larger=Larger
-extrabees.genetics.allele.largest=Largest
-
-extrabees.genetics.allele.none=None
-extrabees.genetics.allele.both1=Both 1
-extrabees.genetics.allele.both2=Both 2
-extrabees.genetics.allele.both3=Both 3
-extrabees.genetics.allele.both4=Both 4
-extrabees.genetics.allele.both5=Both 5
-extrabees.genetics.allele.up1=Up 1
-extrabees.genetics.allele.up2=Up 2
-extrabees.genetics.allele.up3=Up 3
-extrabees.genetics.allele.up4=Up 4
-extrabees.genetics.allele.up5=Up 5
-extrabees.genetics.allele.down1=Down 1
-extrabees.genetics.allele.down2=Down 2
-extrabees.genetics.allele.down3=Down 3
-extrabees.genetics.allele.down4=Down 4
-extrabees.genetics.allele.down5=Down 5
-
-extrabees.genetics.allele.noeffect=Effect Cancellation
-extrabees.genetics.allele.noflower=Non-pollination
-
-extrabees.genetics.allele.lifespan=%s Lifespan
-extrabees.genetics.allele.production=%s Production
-extrabees.genetics.allele.fertility=%s Fertility
-extrabees.genetics.allele.flowering=%s Flowering
-extrabees.genetics.allele.territory=%s Territory
-extrabees.genetics.allele.tolerance=%s %s Tol.
-extrabees.genetics.allele.species=%s Species
-extrabees.genetics.allele.effect=%s Effect
-extrabees.genetics.allele.flower=%s Pollination
-extrabees.genetics.allele.humidity=Humid.
-extrabees.genetics.allele.temperature=Temp.
-extrabees.genetics.allele.nocturnal=Nocturnal
-extrabees.genetics.allele.caveDwelling=Cave Dwelling
-extrabees.genetics.allele.tolerantFlyer=Rainfall
-
-extrabees.genetics.corrupted=Corrupted
-
-
 
 extrabees.branch.barren.name=Barren
 extrabees.branch.barren.desc=Although initially these bees are considerably useless due to their meagre combs, they can lead onto greater things.
@@ -495,17 +398,3 @@ extrabees.effect.bonemealsapling.name=Growth
 extrabees.effect.bonemealfruit.name=Ripening
 extrabees.effect.bonemealmushroom.name=Mushroom
 extrabees.effect.power.name=Power
-
-
-
-
-extrabees.gui.database.tab.species.overview=Overview
-extrabees.gui.database.tab.species.classification=Classification
-extrabees.gui.database.tab.species.genome=Genome
-extrabees.gui.database.tab.species.products=Products
-extrabees.gui.database.tab.species.climate=Climate
-extrabees.gui.database.tab.species.resultant=Resultant Mutations
-extrabees.gui.database.tab.species.further=Further Mutations
-extrabees.gui.database.tab.branches.overview=Overview
-extrabees.gui.database.tab.branches.species=Species
-extrabees.gui.database.tab.breeder=Breeder

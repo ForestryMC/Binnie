@@ -1,4 +1,4 @@
-package binnie.extrabees.client.gui.punnett;
+package binnie.genetics.gui.punnett;
 
 public enum ExtraBeeGUITexture {
 	Chromosome,

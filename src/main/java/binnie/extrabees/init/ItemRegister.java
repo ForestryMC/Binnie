@@ -29,7 +29,7 @@ public final class ItemRegister {
 
 	@SuppressWarnings("all")
 	private static void registerMisc(){
-		Item i = /*GameRegistry.register(new ItemBlock(ExtraBees.alveary){
+		Item /*i; = GameRegistry.register(new ItemBlock(ExtraBees.alveary){
 
 			@Override
 			public int getMetadata(int damage) {
@@ -54,7 +54,6 @@ public final class ItemRegister {
 		for (int j = 0; j < EnumHiveType.values().length; j++) {
 			ExtraBees.proxy.registerModel(i, j);
 		}
-		ExtraBees.proxy.registerItem(ExtraBees.dictionary = new ItemDictionary());
 		ExtraBees.proxy.registerModel(GameRegistry.register(new ItemBlock(ExtraBees.ectoplasm).setRegistryName(ExtraBees.ectoplasm.getRegistryName())), 0);
 		ExtraBees.itemMisc = ExtraBees.proxy.registerItem(new ItemMiscProduct(Tabs.tabApiculture, ExtraBeeItems.values()));
 		for (final EnumHiveFrame frame : EnumHiveFrame.values()) {

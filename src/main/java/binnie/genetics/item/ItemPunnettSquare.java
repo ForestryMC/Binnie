@@ -1,7 +1,7 @@
-package binnie.extrabees.items;
+package binnie.genetics.item;
 
-import binnie.extrabees.client.GuiHack;
-import binnie.extrabees.client.ExtraBeeGUID;
+import binnie.genetics.Genetics;
+import binnie.genetics.core.GeneticsGUI;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -16,6 +16,7 @@ public class ItemPunnettSquare extends Item {
 	public ItemPunnettSquare() {
 		this.setCreativeTab(CreativeTabs.TOOLS);
 		this.setMaxStackSize(1);
+		setRegistryName("punnett_square");
 	}
 
 	@Override
@@ -26,7 +27,7 @@ public class ItemPunnettSquare extends Item {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		if (handIn == EnumHand.MAIN_HAND) {
-			GuiHack.INSTANCE.openGui(ExtraBeeGUID.PunnettSquare, playerIn, playerIn.getPosition());
+			Genetics.proxy.openGui(GeneticsGUI.PunnettSquare, playerIn, playerIn.getPosition());
 		}
 		ItemStack itemStack = playerIn.getHeldItem(handIn);
 		return new ActionResult<>(EnumActionResult.PASS, itemStack);

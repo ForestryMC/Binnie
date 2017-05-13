@@ -7,12 +7,20 @@ import binnie.core.gui.IBinnieGUID;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
 import binnie.core.proxy.IProxyCore;
+import binnie.genetics.item.ItemBeeDictionary;
+import binnie.extrabees.utils.Utils;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsPacket;
+import binnie.genetics.item.ItemPunnettSquare;
 import binnie.genetics.item.ModuleItems;
 import binnie.genetics.machine.ModuleMachine;
 import binnie.genetics.proxy.Proxy;
 import com.google.common.base.Preconditions;
+import forestry.api.recipes.RecipeManagers;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -36,14 +44,19 @@ public class Genetics extends AbstractMod {
 	@Nullable
 	private static ModuleMachine machine;
 
+	private static Item dictionaryBees;
+
 	@Mod.EventHandler
 	public void preInit(final FMLPreInitializationEvent evt) {
+		proxy.registerItem(dictionaryBees = new ItemBeeDictionary());
+		proxy.registerItem(new ItemPunnettSquare());
 		this.preInit();
 	}
 
 	@Mod.EventHandler
 	public void init(final FMLInitializationEvent evt) {
 		this.init();
+		RecipeManagers.carpenterManager.addRecipe(100, Utils.getFluidFromName("water", 2000), ItemStack.EMPTY, new ItemStack(dictionaryBees), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotTin", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
 	}
 
 	@Mod.EventHandler

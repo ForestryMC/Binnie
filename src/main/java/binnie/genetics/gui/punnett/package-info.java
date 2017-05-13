@@ -1,7 +1,7 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 @FieldsAreNonnullByDefault
-package binnie.extrabees.client.gui.punnett;
+package binnie.genetics.gui.punnett;
 
 import binnie.core.util.FieldsAreNonnullByDefault;
 import mcp.MethodsReturnNonnullByDefault;

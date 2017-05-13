@@ -6,7 +6,6 @@ import binnie.extrabees.client.gui.WindowAlvearyFrame;
 import binnie.extrabees.client.gui.WindowAlvearyHatchery;
 import binnie.extrabees.client.gui.WindowAlvearyMutator;
 import binnie.extrabees.client.gui.WindowAlvearyStimulator;
-import binnie.extrabees.client.gui.database.WindowApiaristDatabase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
@@ -17,12 +16,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import javax.annotation.Nullable;
 
 public enum ExtraBeeGUID implements IBinnieGUID {
-	Database,
-	DatabaseNEI,
 	AlvearyMutator,
 	AlvearyFrame,
 	AlvearyStimulator,
-	PunnettSquare,
 	AlvearyHatchery;
 
 	@Override
@@ -35,11 +31,6 @@ public enum ExtraBeeGUID implements IBinnieGUID {
 			object = (IInventory) tileEntity;
 		}
 		switch (this) {
-			case Database:
-			case DatabaseNEI: {
-				window = WindowApiaristDatabase.create(player, side, this != ExtraBeeGUID.Database);
-				break;
-			}
 			case AlvearyMutator: {
 				window = WindowAlvearyMutator.create(player, object, side);
 				break;

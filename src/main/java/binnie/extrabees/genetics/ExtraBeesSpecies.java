@@ -214,12 +214,12 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 
 	@Override
 	public String getName() {
-		return ExtraBees.proxy.localise("species." + this.name().toLowerCase() + ".name");
+		return ExtraBees.proxy.localise(getUnlocalizedName());
 	}
 
 	@Override
 	public String getDescription() {
-		return ExtraBees.proxy.localise("species." + this.name().toLowerCase() + ".desc");
+		return ExtraBees.proxy.localise(getUID() + ".desc");
 	}
 
 	@Override
@@ -1148,7 +1148,7 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 
 	@Override
 	public String getUnlocalizedName() {
-		return this.getUID();
+		return this.getUID() + ".name";
 	}
 
 	@Override

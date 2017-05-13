@@ -31,7 +31,7 @@ public class ExtraBeesIntegration implements IInitializable {
 		rock = getExtraBeesSpecies("rock");
 		basalt = getExtraBeesSpecies("basalt");
 		hive = Preconditions.checkNotNull(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("extrabees", "hive")));
-		dictionary = Preconditions.checkNotNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation("extrabees", "dictionary")));
+		dictionary = Preconditions.checkNotNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation("genetics", "dictionary")));
 	}
 
 	@Override

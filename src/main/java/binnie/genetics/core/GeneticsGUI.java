@@ -2,7 +2,9 @@ package binnie.genetics.core;
 
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.gui.IBinnieGUID;
+import binnie.genetics.gui.bee.database.WindowApiaristDatabase;
 import binnie.genetics.gui.WindowAnalyst;
+import binnie.genetics.gui.punnett.WindowPunnettSquare;
 import binnie.genetics.machine.acclimatiser.WindowAcclimatiser;
 import binnie.genetics.machine.analyser.WindowAnalyser;
 import binnie.genetics.machine.craftgui.WindowGeneBank;
@@ -38,7 +40,10 @@ public enum GeneticsGUI implements IBinnieGUID {
 	Splicer(WindowSplicer::new),
 	Analyst(WindowAnalyst.create(false, false)),
 	Registry(WindowAnalyst.create(true, false)),
-	MasterRegistry(WindowAnalyst.create(true, true));
+	MasterRegistry(WindowAnalyst.create(true, true)),
+	BeeDatabase((player, inventory, side) -> WindowApiaristDatabase.create(player, side, false)),
+	BeeDatabaseNEI((player, inventory, side) -> WindowApiaristDatabase.create(player, side, true)),
+	PunnettSquare(WindowPunnettSquare::create);
 
 	private final WindowFactory windowFactory;
 

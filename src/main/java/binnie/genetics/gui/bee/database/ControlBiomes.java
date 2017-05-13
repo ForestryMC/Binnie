@@ -1,4 +1,4 @@
-package binnie.extrabees.client.gui.database;
+package binnie.genetics.gui.bee.database;
 
 import binnie.Binnie;
 import binnie.core.craftgui.*;

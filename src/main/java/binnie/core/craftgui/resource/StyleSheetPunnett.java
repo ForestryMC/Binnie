@@ -4,7 +4,7 @@ import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.craftgui.resource.minecraft.PaddedTexture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.extrabees.client.ExtraBeeTexture;
-import binnie.extrabees.client.gui.punnett.ExtraBeeGUITexture;
+import binnie.genetics.gui.punnett.ExtraBeeGUITexture;
 
 public class StyleSheetPunnett extends StyleSheet {
 	public StyleSheetPunnett() {
