@@ -1,10 +1,11 @@
 package binnie.extrabees.genetics.requirements;
 
-import forestry.api.apiculture.IBeeHousing;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IGenome;
+import forestry.api.genetics.IMutationCondition;
+import net.minecraft.world.World;
 
-public class RequirementPerson extends MutationRequirement {
+public class RequirementPerson implements IMutationCondition {
 	protected String name;
 
 	public RequirementPerson(String name) {
@@ -12,13 +13,16 @@ public class RequirementPerson extends MutationRequirement {
 	}
 
 	@Override
-	public String[] tooltip() {
-		return new String[]{"Can only be bred by " + name};
+	public float getChance(World world, int x, int y, int z, IAllele allele0, IAllele allele1, IGenome genome0, IGenome genome1) {
+		String ownerName = housing.getOwner().getName();
+		if (ownerName != null && ownerName.equals(name)) {
+			return 1.0f;
+		}
+		return 0.0f;
 	}
 
 	@Override
-	public boolean fufilled(IBeeHousing housing, IAllele allele0, IAllele allele1, IGenome genome0, IGenome genome1) {
-		String ownerName = housing.getOwner().getName();
-		return ownerName != null && ownerName.equals(name);
+	public String getDescription() {
+		return "Can only be bred by " + name;
 	}
 }

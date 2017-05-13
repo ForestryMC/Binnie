@@ -2,6 +2,7 @@ package binnie.extrabees.genetics;
 
 import binnie.core.Mods;
 import binnie.extrabees.genetics.effect.ExtraBeesEffect;
+import binnie.extrabees.genetics.requirements.RequirementPerson;
 import binnie.extrabees.products.EnumHoneyComb;
 import binnie.extrabees.products.ItemHoneyComb;
 import binnie.genetics.genetics.AlleleHelper;
@@ -1650,8 +1651,8 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
 		@Override
 		protected void registerMutations() {
-//			registerMutation(BeeDefinition.ENDED, RELIC, 2);
-//			registerMutation(BeeDefinition.ENDED, ExtraBeeDefinition.RELIC, ExtraBeeDefinition.JADED, 2, new ExtraBeeMutation.RequirementPerson("jadedcat"));
+			registerMutation(BeeDefinition.ENDED, RELIC, 2)
+				.addMutationCondition(new RequirementPerson("jadedcat"));
 		}
 	},
 
