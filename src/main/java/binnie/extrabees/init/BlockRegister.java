@@ -23,7 +23,7 @@ public final class BlockRegister {
 	public static void preInitBlocks(){
 		registerHives();
 		registerMisc();
-		//ExtraBees.alveary = ExtraBees.proxy.registerBlock(new BlockAlveary());
+		ExtraBees.alveary = ExtraBees.proxy.registerBlock(new BlockAlveary());
 		GameRegistry.registerTileEntity(TileEntityExtraBeesAlvearyPart.class, "TileEntityExtraBeesAlvearyPart");
 	}
 

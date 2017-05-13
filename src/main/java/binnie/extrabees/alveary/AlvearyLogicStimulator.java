@@ -1,11 +1,18 @@
 package binnie.extrabees.alveary;
 
 import binnie.extrabees.circuit.StimulatorCircuit;
+import binnie.extrabees.client.gui2.AbstractAlvearyContainer;
+import binnie.extrabees.client.gui2.ContainerStimulator;
+import binnie.extrabees.client.gui2.GuiContainerAlvearyPart;
+import binnie.extrabees.client.gui2.GuiContainerStimulator;
+import com.google.common.collect.Lists;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeModifier;
 import forestry.api.circuits.ChipsetManager;
 import forestry.api.circuits.ICircuit;
 import forestry.api.circuits.ICircuitBoard;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.energy.EnergyStorage;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.IItemHandlerModifiable;
@@ -25,7 +32,7 @@ public class AlvearyLogicStimulator extends AbstractAlvearyLogic {
 		this.powerUsage = 0;
 		this.powered = false;
 		this.modifiers = new StimulatorCircuit[0];
-		this.energyStorage = new EnergyStorage(2000);
+		this.energyStorage = new EnergyStorage(10000);
 		this.inv = new ItemStackHandler(1);
 	}
 
@@ -34,6 +41,11 @@ public class AlvearyLogicStimulator extends AbstractAlvearyLogic {
 	private StimulatorCircuit[] modifiers;
 	private final IEnergyStorage energyStorage;
 	private final IItemHandlerModifiable inv;
+	private final List<ContainerStimulator> containers = Lists.newArrayList();
+
+	public IItemHandlerModifiable getInventory() {
+		return inv;
+	}
 
 	@Override
 	public void updateServer(TileEntityExtraBeesAlvearyPart tile) {
@@ -43,6 +55,17 @@ public class AlvearyLogicStimulator extends AbstractAlvearyLogic {
 			this.powerUsage += beeMod.getPowerUsage();
 		}
 		this.powered = energyStorage.extractEnergy(powerUsage, true) >= powerUsage;
+		for (ContainerStimulator c : containers){
+			c.checkPower();
+		}
+	}
+
+	public void onContainerOpened(ContainerStimulator container){
+		containers.add(container);
+	}
+
+	public void onGuiClosed(ContainerStimulator container){
+		containers.remove(container);
 	}
 
 	@Nullable
@@ -200,6 +223,23 @@ public class AlvearyLogicStimulator extends AbstractAlvearyLogic {
 	@Override
 	public IEnergyStorage getEnergyStorage() {
 		return energyStorage;
+	}
+
+	@Nullable
+	@Override
+	public GuiContainer getGui(@Nonnull EntityPlayer player, int data) {
+		return new GuiContainerStimulator(getContainer(player, data));
+	}
+
+	@Nullable
+	@Override
+	public ContainerStimulator getContainer(@Nonnull EntityPlayer player, int data) {
+		return new ContainerStimulator(player, this);
+	}
+
+	@Override
+	public boolean hasGui() {
+		return true;
 	}
 
 }

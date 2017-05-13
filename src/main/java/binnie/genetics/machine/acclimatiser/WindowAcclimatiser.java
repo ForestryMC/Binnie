@@ -5,7 +5,7 @@ import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.minecraft.control.*;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
-import binnie.extrabees.client.ExtraBeeTexture;
+import binnie.core.ExtraBeeTexture;
 import binnie.genetics.Genetics;
 import binnie.genetics.machine.craftgui.WindowMachine;
 import net.minecraft.entity.player.EntityPlayer;

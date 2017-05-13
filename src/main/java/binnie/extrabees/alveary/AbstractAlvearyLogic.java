@@ -1,5 +1,6 @@
 package binnie.extrabees.alveary;
 
+import binnie.extrabees.client.gui2.AbstractAlvearyContainer;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
@@ -102,11 +103,9 @@ public abstract class AbstractAlvearyLogic implements IBeeModifier, IBeeListener
 	}
 
 	@Nullable
-	public Container getContainer(@Nonnull EntityPlayer player, int data) {
+	public AbstractAlvearyContainer getContainer(@Nonnull EntityPlayer player, int data) {
 		return null;
 	}
-
-
 
 	@Override
 	public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
@@ -121,6 +120,10 @@ public abstract class AbstractAlvearyLogic implements IBeeModifier, IBeeListener
 
 	public IEnergyStorage getEnergyStorage(){
 		return null;
+	}
+
+	public boolean hasGui(){
+		return false;
 	}
 
 }

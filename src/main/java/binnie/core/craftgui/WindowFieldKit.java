@@ -18,7 +18,7 @@ import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.core.craftgui.resource.StyleSheetPunnett;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.core.machines.inventory.SlotValidator;
-import binnie.extrabees.client.ExtraBeeTexture;
+import binnie.core.ExtraBeeTexture;
 import binnie.genetics.gui.ControlChromosome;
 import binnie.genetics.machine.analyser.Analyser;
 import forestry.api.genetics.*;

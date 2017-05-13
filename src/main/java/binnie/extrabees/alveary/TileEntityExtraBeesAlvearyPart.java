@@ -53,6 +53,10 @@ public class TileEntityExtraBeesAlvearyPart extends MultiblockTileEntityForestry
 	private AlvearyLogicType type;
 	private AbstractAlvearyLogic alvearyLogic;
 
+	public boolean hasGui(){
+		return alvearyLogic.hasGui();
+	}
+
 	@Nonnull
 	public AbstractAlvearyLogic getAlvearyLogic() {
 		return alvearyLogic;

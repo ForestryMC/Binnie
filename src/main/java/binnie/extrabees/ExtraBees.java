@@ -1,7 +1,6 @@
 package binnie.extrabees;
 
 import binnie.extrabees.alveary.TileEntityExtraBeesAlvearyPart;
-import binnie.extrabees.client.GuiHack;
 import binnie.extrabees.genetics.ExtraBeeMutation;
 import binnie.extrabees.genetics.ExtraBeesBranch;
 import binnie.extrabees.genetics.ExtraBeesFlowers;
@@ -67,7 +66,6 @@ public class ExtraBees {
 	@Mod.EventHandler
 	@SuppressWarnings("all")
 	public void preInit(final FMLPreInitializationEvent event) {
-		GuiHack.INSTANCE.preInit();
 
 		materialBeehive = new MaterialBeehive();
 		configHandler = new ConfigHandler(event.getSuggestedConfigurationFile());
@@ -92,8 +90,6 @@ public class ExtraBees {
 
 	@Mod.EventHandler
 	public void init(final FMLInitializationEvent evt) {
-		GuiHack.INSTANCE.init();
-
 		configHandler.reload(true);
 		ItemHoneyComb.addSubtypes();
 		GameRegistry.registerWorldGenerator(new ExtraBeesWorldGenerator(), 0);
@@ -105,8 +101,6 @@ public class ExtraBees {
 
 	@Mod.EventHandler
 	public void postInit(final FMLPostInitializationEvent evt) {
-		GuiHack.INSTANCE.postInit();
-
 		BlockRegister.postInitBlocks();
 		RecipeRegister.postInitRecipes();
 		//Register mutations

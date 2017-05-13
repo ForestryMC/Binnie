@@ -1,4 +1,4 @@
-package binnie.extrabees.client;
+package binnie.core;
 
 import binnie.Binnie;
 import binnie.core.resource.BinnieResource;

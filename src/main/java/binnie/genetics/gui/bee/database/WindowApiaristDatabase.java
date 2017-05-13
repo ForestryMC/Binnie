@@ -4,7 +4,7 @@ import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.database.*;
 import binnie.core.craftgui.minecraft.Window;
-import binnie.extrabees.client.GuiHack;
+import binnie.genetics.Genetics;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -13,16 +13,16 @@ public class WindowApiaristDatabase extends WindowAbstractDatabase {
 	@Override
 	@SideOnly(Side.CLIENT)
 	protected void addTabs() {
-		new PageSpeciesOverview(this.getInfoPages(Mode.SPECIES), new DatabaseTab(GuiHack.INSTANCE, "species.overview", 0));
-		new PageSpeciesClassification(this.getInfoPages(Mode.SPECIES), new DatabaseTab(GuiHack.INSTANCE, "species.classification", 0));
-		new PageSpeciesGenome(this.getInfoPages(Mode.SPECIES), new DatabaseTab(GuiHack.INSTANCE, "species.genome", 0));
-		new PageSpeciesProducts(this.getInfoPages(Mode.SPECIES), new DatabaseTab(GuiHack.INSTANCE, "species.products", 0));
-		new PageSpeciesClimate(this.getInfoPages(Mode.SPECIES), new DatabaseTab(GuiHack.INSTANCE, "species.climate", 0));
-		new PageSpeciesResultant(this.getInfoPages(Mode.SPECIES), new DatabaseTab(GuiHack.INSTANCE, "species.resultant", 0));
-		new PageSpeciesMutations(this.getInfoPages(Mode.SPECIES), new DatabaseTab(GuiHack.INSTANCE, "species.further", 0));
-		new PageBranchOverview(this.getInfoPages(Mode.BRANCHES), new DatabaseTab(GuiHack.INSTANCE, "branches.overview", 0));
-		new PageBranchSpecies(this.getInfoPages(Mode.BRANCHES), new DatabaseTab(GuiHack.INSTANCE, "branches.species", 0));
-		new PageBreeder(this.getInfoPages(Mode.BREEDER), this.getUsername(), new DatabaseTab(GuiHack.INSTANCE, "breeder", 0));
+		new PageSpeciesOverview(this.getInfoPages(Mode.SPECIES), new DatabaseTab(Genetics.instance, "species.overview", 0));
+		new PageSpeciesClassification(this.getInfoPages(Mode.SPECIES), new DatabaseTab(Genetics.instance, "species.classification", 0));
+		new PageSpeciesGenome(this.getInfoPages(Mode.SPECIES), new DatabaseTab(Genetics.instance, "species.genome", 0));
+		new PageSpeciesProducts(this.getInfoPages(Mode.SPECIES), new DatabaseTab(Genetics.instance, "species.products", 0));
+		new PageSpeciesClimate(this.getInfoPages(Mode.SPECIES), new DatabaseTab(Genetics.instance, "species.climate", 0));
+		new PageSpeciesResultant(this.getInfoPages(Mode.SPECIES), new DatabaseTab(Genetics.instance, "species.resultant", 0));
+		new PageSpeciesMutations(this.getInfoPages(Mode.SPECIES), new DatabaseTab(Genetics.instance, "species.further", 0));
+		new PageBranchOverview(this.getInfoPages(Mode.BRANCHES), new DatabaseTab(Genetics.instance, "branches.overview", 0));
+		new PageBranchSpecies(this.getInfoPages(Mode.BRANCHES), new DatabaseTab(Genetics.instance, "branches.species", 0));
+		new PageBreeder(this.getInfoPages(Mode.BREEDER), this.getUsername(), new DatabaseTab(Genetics.instance, "breeder", 0));
 	}
 
 	public WindowApiaristDatabase(final EntityPlayer player, final Side side, final boolean nei) {
@@ -35,7 +35,7 @@ public class WindowApiaristDatabase extends WindowAbstractDatabase {
 
 	@Override
 	public AbstractMod getMod() {
-		return GuiHack.INSTANCE;
+		return Genetics.instance;
 	}
 
 	@Override
