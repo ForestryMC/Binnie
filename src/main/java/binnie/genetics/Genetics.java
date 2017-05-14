@@ -1,5 +1,6 @@
 package binnie.genetics;
 
+import binnie.Binnie;
 import binnie.Constants;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
@@ -8,7 +9,6 @@ import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
 import binnie.core.proxy.IProxyCore;
 import binnie.genetics.item.ItemBeeDictionary;
-import binnie.extrabees.utils.Utils;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsPacket;
 import binnie.genetics.item.ItemPunnettSquare;
@@ -56,7 +56,7 @@ public class Genetics extends AbstractMod {
 	@Mod.EventHandler
 	public void init(final FMLInitializationEvent evt) {
 		this.init();
-		RecipeManagers.carpenterManager.addRecipe(100, Utils.getFluidFromName("water", 2000), ItemStack.EMPTY, new ItemStack(dictionaryBees), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotTin", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
+		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack("water", 2000), ItemStack.EMPTY, new ItemStack(dictionaryBees), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotTin", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
 	}
 
 	@Mod.EventHandler
