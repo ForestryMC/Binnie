@@ -1,8 +1,8 @@
 package binnie.extrabees.alveary;
 
-import binnie.extrabees.client.gui2.AbstractAlvearyContainer;
-import binnie.extrabees.client.gui2.ContainerFrameHousing;
-import binnie.extrabees.client.gui2.GuiContainerAlvearyPart;
+import binnie.extrabees.client.gui.AbstractAlvearyContainer;
+import binnie.extrabees.client.gui.ContainerFrameHousing;
+import binnie.extrabees.client.gui.GuiContainerAlvearyPart;
 import binnie.extrabees.utils.Utils;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
@@ -28,7 +28,18 @@ public class AlvearyLogicFrameHousing extends AbstractAlvearyLogic {
 
 	public AlvearyLogicFrameHousing(TileEntityExtraBeesAlvearyPart tile){
 		this.tile = tile;
-		inv = new ItemStackHandler(1);
+		inv = new ItemStackHandler(1){
+
+			@Nonnull
+			@Override
+			public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+				if (!(stack.getItem() instanceof IHiveFrame)){
+					return stack;
+				}
+				return super.insertItem(slot, stack, simulate);
+			}
+
+		};
 	}
 
 	private TileEntityExtraBeesAlvearyPart tile;

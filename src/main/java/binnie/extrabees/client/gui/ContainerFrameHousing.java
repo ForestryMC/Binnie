@@ -1,7 +1,7 @@
-package binnie.extrabees.client.gui2;
+package binnie.extrabees.client.gui;
 
 import binnie.extrabees.alveary.AlvearyLogicFrameHousing;
-import binnie.extrabees.alveary.AlvearyLogicType;
+import binnie.extrabees.alveary.EnumAlvearyLogicType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.items.SlotItemHandler;
 
@@ -11,7 +11,7 @@ import net.minecraftforge.items.SlotItemHandler;
 public class ContainerFrameHousing extends AbstractAlvearyContainer {
 
 	public ContainerFrameHousing(EntityPlayer player, AlvearyLogicFrameHousing logic) {
-		super(player, logic.getInventory(), AlvearyLogicType.FRAME, DEFAULT_DIMENSION);
+		super(player, logic.getInventory(), EnumAlvearyLogicType.FRAME, DEFAULT_DIMENSION);
 	}
 
 	@Override

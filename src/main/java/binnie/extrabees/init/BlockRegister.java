@@ -7,7 +7,6 @@ import binnie.extrabees.blocks.BlockEctoplasm;
 import binnie.extrabees.blocks.BlockExtraBeeHive;
 import binnie.extrabees.blocks.type.EnumHiveType;
 import binnie.extrabees.genetics.ExtraBeesSpecies;
-import binnie.extrabees.items.ItemBeehive;
 import binnie.extrabees.utils.HiveDrop;
 import binnie.extrabees.utils.Utils;
 import binnie.extrabees.utils.config.ConfigurationMain;

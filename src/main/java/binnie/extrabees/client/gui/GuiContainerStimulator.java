@@ -1,4 +1,4 @@
-package binnie.extrabees.client.gui2;
+package binnie.extrabees.client.gui;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;

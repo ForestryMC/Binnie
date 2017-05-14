@@ -1,4 +1,4 @@
-package binnie.extrabees.client.gui2;
+package binnie.extrabees.client.gui;
 
 import binnie.extrabees.utils.AlvearyMutationHandler;
 import net.minecraft.client.Minecraft;

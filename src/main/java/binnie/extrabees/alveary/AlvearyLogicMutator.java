@@ -1,9 +1,8 @@
 package binnie.extrabees.alveary;
 
-import binnie.extrabees.client.gui2.AbstractAlvearyContainer;
-import binnie.extrabees.client.gui2.ContainerMutator;
-import binnie.extrabees.client.gui2.GuiContainerAlvearyPart;
-import binnie.extrabees.client.gui2.GuiContainerMutator;
+import binnie.extrabees.client.gui.AbstractAlvearyContainer;
+import binnie.extrabees.client.gui.ContainerMutator;
+import binnie.extrabees.client.gui.GuiContainerMutator;
 import binnie.extrabees.utils.AlvearyMutationHandler;
 import forestry.api.apiculture.IBeeGenome;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -23,7 +22,18 @@ import javax.annotation.Nullable;
 public class AlvearyLogicMutator extends AbstractAlvearyLogic {
 
 	public AlvearyLogicMutator(){
-		this.inv = new ItemStackHandler(1);
+		this.inv = new ItemStackHandler(1){
+
+			@Nonnull
+			@Override
+			public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+				if (!AlvearyMutationHandler.isMutationItem(stack)){
+					return stack;
+				}
+				return super.insertItem(slot, stack, simulate);
+			}
+
+		};
 	}
 
 	private final IItemHandlerModifiable inv;

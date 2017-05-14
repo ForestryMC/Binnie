@@ -1,14 +1,13 @@
-package binnie.extrabees.client.gui2;
+package binnie.extrabees.client.gui;
 
 import binnie.extrabees.ExtraBees;
-import binnie.extrabees.alveary.AlvearyLogicType;
+import binnie.extrabees.alveary.EnumAlvearyLogicType;
 import binnie.extrabees.utils.ExtraBeesResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.items.IItemHandlerModifiable;
-import org.apache.commons.lang3.text.WordUtils;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
@@ -18,7 +17,7 @@ import java.awt.*;
  */
 public abstract class AbstractAlvearyContainer extends Container {
 
-	public AbstractAlvearyContainer(EntityPlayer player, IItemHandlerModifiable inv, AlvearyLogicType type, Dimension dimension){
+	public AbstractAlvearyContainer(EntityPlayer player, IItemHandlerModifiable inv, EnumAlvearyLogicType type, Dimension dimension){
 		this.player = player;
 		this.inv = inv;
 		this.dimension = dimension;

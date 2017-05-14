@@ -1,21 +1,18 @@
 package binnie.extrabees.proxy;
 
 import binnie.extrabees.ExtraBees;
-import binnie.extrabees.alveary.AlvearyLogicType;
-import binnie.extrabees.blocks.type.EnumHiveType;
 import binnie.extrabees.utils.ExtraBeesResourceLocation;
 import com.google.common.collect.ImmutableList;
 import forestry.core.models.BlankModel;
 import forestry.core.models.ModelManager;
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.*;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ItemOverrideList;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.IRegistry;
 import net.minecraft.world.World;

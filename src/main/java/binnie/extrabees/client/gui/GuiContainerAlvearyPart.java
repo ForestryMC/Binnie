@@ -1,6 +1,5 @@
-package binnie.extrabees.client.gui2;
+package binnie.extrabees.client.gui;
 
-import binnie.extrabees.utils.ExtraBeesResourceLocation;
 import com.google.common.collect.Lists;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;

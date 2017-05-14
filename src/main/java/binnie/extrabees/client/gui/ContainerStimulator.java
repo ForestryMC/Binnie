@@ -1,14 +1,11 @@
-package binnie.extrabees.client.gui2;
+package binnie.extrabees.client.gui;
 
 import binnie.extrabees.alveary.AlvearyLogicStimulator;
-import binnie.extrabees.alveary.AlvearyLogicType;
+import binnie.extrabees.alveary.EnumAlvearyLogicType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.SlotItemHandler;
-
-import java.awt.*;
-import java.awt.event.ContainerListener;
 
 /**
  * Created by Elec332 on 13-5-2017.
@@ -16,7 +13,7 @@ import java.awt.event.ContainerListener;
 public class ContainerStimulator extends AbstractAlvearyContainer {
 
 	public ContainerStimulator(EntityPlayer player, AlvearyLogicStimulator logic) {
-		super(player, logic.getInventory(), AlvearyLogicType.STIMULATOR, DEFAULT_DIMENSION);
+		super(player, logic.getInventory(), EnumAlvearyLogicType.STIMULATOR, DEFAULT_DIMENSION);
 		this.storage = logic.getEnergyStorage();
 		this.logic = logic;
 		this.maxPower = storage.getMaxEnergyStored();

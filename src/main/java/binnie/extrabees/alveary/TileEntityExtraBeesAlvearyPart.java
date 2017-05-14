@@ -34,7 +34,7 @@ public class TileEntityExtraBeesAlvearyPart extends MultiblockTileEntityForestry
 		this(null);
 	}
 
-	protected TileEntityExtraBeesAlvearyPart(AlvearyLogicType type) {
+	protected TileEntityExtraBeesAlvearyPart(EnumAlvearyLogicType type) {
 		super(new MultiblockLogicAlveary());
 		if (type != null) {
 			this.type = type;
@@ -50,7 +50,7 @@ public class TileEntityExtraBeesAlvearyPart extends MultiblockTileEntityForestry
 	}
 
 	private String unlocalizedTitle;
-	private AlvearyLogicType type;
+	private EnumAlvearyLogicType type;
 	private AbstractAlvearyLogic alvearyLogic;
 
 	public boolean hasGui(){
@@ -64,7 +64,7 @@ public class TileEntityExtraBeesAlvearyPart extends MultiblockTileEntityForestry
 
 	@Override
 	public void readFromNBT(NBTTagCompound data) {
-		type = AlvearyLogicType.VALUES[data.getByte("avType")];
+		type = EnumAlvearyLogicType.VALUES[data.getByte("avType")];
 		initFromType();
 		super.readFromNBT(data);
 	}

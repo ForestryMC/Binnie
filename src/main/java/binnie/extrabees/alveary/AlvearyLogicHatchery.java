@@ -1,8 +1,8 @@
 package binnie.extrabees.alveary;
 
-import binnie.extrabees.client.gui2.AbstractAlvearyContainer;
-import binnie.extrabees.client.gui2.ContainerHatchery;
-import binnie.extrabees.client.gui2.GuiContainerAlvearyPart;
+import binnie.extrabees.client.gui.AbstractAlvearyContainer;
+import binnie.extrabees.client.gui.ContainerHatchery;
+import binnie.extrabees.client.gui.GuiContainerAlvearyPart;
 import binnie.extrabees.utils.Utils;
 import forestry.api.apiculture.EnumBeeType;
 import forestry.api.apiculture.IBee;
@@ -25,7 +25,18 @@ import javax.annotation.Nullable;
 public class AlvearyLogicHatchery extends AbstractAlvearyLogic {
 
 	public AlvearyLogicHatchery(){
-		inv = new ItemStackHandler(5);
+		inv = new ItemStackHandler(5){
+
+			@Nonnull
+			@Override
+			public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+				if (!stack.isEmpty() && Utils.getBeeRoot().getType(stack) != EnumBeeType.LARVAE){
+					return stack;
+				}
+				return super.insertItem(slot, stack, simulate);
+			}
+
+		};
 	}
 
 	private final IItemHandlerModifiable inv;

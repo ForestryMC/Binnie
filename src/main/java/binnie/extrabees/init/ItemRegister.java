@@ -1,8 +1,8 @@
 package binnie.extrabees.init;
 
 import binnie.extrabees.ExtraBees;
-import binnie.extrabees.alveary.AlvearyLogicType;
 import binnie.extrabees.alveary.BlockAlveary;
+import binnie.extrabees.alveary.EnumAlvearyLogicType;
 import binnie.extrabees.blocks.type.EnumHiveType;
 import binnie.extrabees.items.*;
 import binnie.extrabees.items.types.EnumHiveFrame;
@@ -47,7 +47,7 @@ public final class ItemRegister {
 			}
 
 		}.setRegistryName(ExtraBees.alveary.getRegistryName()));
-		for (int j = 0; j < AlvearyLogicType.VALUES.length; j++) {
+		for (int j = 0; j < EnumAlvearyLogicType.VALUES.length; j++) {
 			ExtraBees.proxy.registerModel(i, j);
 		}
 		i = GameRegistry.register(new ItemBeehive(ExtraBees.hive));

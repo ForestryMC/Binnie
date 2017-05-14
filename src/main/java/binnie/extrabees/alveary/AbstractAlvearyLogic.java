@@ -1,13 +1,12 @@
 package binnie.extrabees.alveary;
 
-import binnie.extrabees.client.gui2.AbstractAlvearyContainer;
+import binnie.extrabees.client.gui.AbstractAlvearyContainer;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
 import forestry.api.genetics.IIndividual;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;

@@ -21,7 +21,7 @@ public class AlvearyMutationHandler {
 	private static final List<Pair<ItemStack, Float>> MUTATIONS = new ArrayList<>();
 
 	public static boolean isMutationItem(final ItemStack item) {
-		return getMutationMult(item) > 0.0f;
+		return getMutationMult(item) > 1.0f;
 	}
 
 	public static float getMutationMult(final ItemStack item) {

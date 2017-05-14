@@ -7,7 +7,7 @@ import javax.annotation.Nonnull;
 /**
  * Created by Elec332 on 13-5-2017.
  */
-public enum AlvearyLogicType implements IStringSerializable {
+public enum EnumAlvearyLogicType implements IStringSerializable {
 
 	FRAME {
 
@@ -73,6 +73,6 @@ public enum AlvearyLogicType implements IStringSerializable {
 		return toString().toLowerCase();
 	}
 
-	public static AlvearyLogicType[] VALUES = values();
+	public static EnumAlvearyLogicType[] VALUES = values();
 
 }

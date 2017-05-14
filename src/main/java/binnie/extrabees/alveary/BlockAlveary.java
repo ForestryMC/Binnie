@@ -33,7 +33,7 @@ public class BlockAlveary extends Block implements ITileEntityProvider {
 		setRegistryName("alveary");
 	}
 
-	private static final PropertyEnum<AlvearyLogicType> TYPE = PropertyEnum.create("type", AlvearyLogicType.class);
+	private static final PropertyEnum<EnumAlvearyLogicType> TYPE = PropertyEnum.create("type", EnumAlvearyLogicType.class);
 
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
@@ -50,14 +50,14 @@ public class BlockAlveary extends Block implements ITileEntityProvider {
 		return new TileEntityExtraBeesAlvearyPart(getType(meta));
 	}
 
-	private AlvearyLogicType getType(int meta){
+	private EnumAlvearyLogicType getType(int meta){
 		IBlockState state = getStateFromMeta(meta);
 		return state.getValue(TYPE);
 	}
 
 	@Override
 	public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list) {
-		for (int i = 0; i < AlvearyLogicType.VALUES.length; i++) {
+		for (int i = 0; i < EnumAlvearyLogicType.VALUES.length; i++) {
 			list.add(new ItemStack(itemIn, 1, i));
 		}
 	}
@@ -87,8 +87,8 @@ public class BlockAlveary extends Block implements ITileEntityProvider {
 	@Override
 	@Nonnull
 	public IBlockState getStateFromMeta(int meta) {
-		meta = meta >= 0 && meta < AlvearyLogicType.VALUES.length ? meta : 0;
-		return getDefaultState().withProperty(TYPE, AlvearyLogicType.VALUES[meta]);
+		meta = meta >= 0 && meta < EnumAlvearyLogicType.VALUES.length ? meta : 0;
+		return getDefaultState().withProperty(TYPE, EnumAlvearyLogicType.VALUES[meta]);
 	}
 
 }

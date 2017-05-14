@@ -1,10 +1,8 @@
 package binnie.extrabees.alveary;
 
 import binnie.extrabees.circuit.StimulatorCircuit;
-import binnie.extrabees.client.gui2.AbstractAlvearyContainer;
-import binnie.extrabees.client.gui2.ContainerStimulator;
-import binnie.extrabees.client.gui2.GuiContainerAlvearyPart;
-import binnie.extrabees.client.gui2.GuiContainerStimulator;
+import binnie.extrabees.client.gui.ContainerStimulator;
+import binnie.extrabees.client.gui.GuiContainerStimulator;
 import com.google.common.collect.Lists;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeModifier;
@@ -13,6 +11,7 @@ import forestry.api.circuits.ICircuit;
 import forestry.api.circuits.ICircuitBoard;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.energy.EnergyStorage;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.IItemHandlerModifiable;
@@ -33,7 +32,18 @@ public class AlvearyLogicStimulator extends AbstractAlvearyLogic {
 		this.powered = false;
 		this.modifiers = new StimulatorCircuit[0];
 		this.energyStorage = new EnergyStorage(10000);
-		this.inv = new ItemStackHandler(1);
+		this.inv = new ItemStackHandler(1){
+
+			@Nonnull
+			@Override
+			public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+				if (!ChipsetManager.circuitRegistry.isChipset(stack)){
+					return stack;
+				}
+				return super.insertItem(slot, stack, simulate);
+			}
+
+		};
 	}
 
 	private int powerUsage;
