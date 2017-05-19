@@ -4,6 +4,7 @@ import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.resource.BinnieIcon;
 import binnie.core.util.I18N;
+import binnie.extrabees.genetics.ExtraBeeMutation;
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import forestry.api.core.ForestryEvent;
@@ -148,9 +149,9 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 		if (getSpeciesRoot().getMutations(false) != null) {
 			Set<IMutation> mutations = new LinkedHashSet<>();
 			mutations.addAll(getSpeciesRoot().getMutations(false));
+			// TODO Why is this necessary?
 			if (this == Binnie.Genetics.beeBreedingSystem) {
-				// TODO !!! check for needed !!!
-//				mutations.addAll(ExtraBeeMutation.mutations);
+				mutations.addAll(ExtraBeeMutation.mutations);
 			}
 
 			for (IMutation mutation : mutations) {
