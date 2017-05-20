@@ -24,7 +24,7 @@ public class ControlProductsItem extends ControlOption<ControlProductsBox.Produc
 		}
 
 		item.setItemStack(value.item);
-		float time = (int) (55000.0 / value.chance);
+		float time = (int) (550.0 / value.chance);
 		float seconds = time / 20.0f;
 		float minutes = seconds / 60.0f;
 		float hours = minutes / 60.0f;

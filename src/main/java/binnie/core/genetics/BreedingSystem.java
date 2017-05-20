@@ -145,12 +145,15 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 				allBranches.add(branch);
 			}
 		}
+
 		if (getSpeciesRoot().getMutations(false) != null) {
 			Set<IMutation> mutations = new LinkedHashSet<>();
 			mutations.addAll(getSpeciesRoot().getMutations(false));
+			// TODO Why is this necessary?
 			if (this == Binnie.Genetics.beeBreedingSystem) {
 				mutations.addAll(ExtraBeeMutation.mutations);
 			}
+
 			for (IMutation mutation : mutations) {
 				allMutations.add(mutation);
 				Set<IAlleleSpecies> participatingSpecies = new LinkedHashSet<>();
@@ -179,25 +182,11 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 		return AlleleManager.alleleRegistry.isBlacklisted(allele.getUID());
 	}
 
-	public List<IMutation> getResultantMutations(IAlleleSpecies species, boolean includeInactive) {
-		if (resultantMutations.isEmpty()) {
-			calculateArrays();
-		}
-		return includeInactive ? allResultantMutations.get(species) : resultantMutations.get(species);
-	}
-
 	public List<IMutation> getResultantMutations(IAlleleSpecies species) {
 		if (resultantMutations.isEmpty()) {
 			calculateArrays();
 		}
 		return resultantMutations.get(species);
-	}
-
-	public List<IMutation> getFurtherMutations(IAlleleSpecies species, boolean includeInactive) {
-		if (furtherMutations.isEmpty()) {
-			calculateArrays();
-		}
-		return includeInactive ? allFurtherMutations.get(species) : furtherMutations.get(species);
 	}
 
 	public List<IMutation> getFurtherMutations(IAlleleSpecies species) {
@@ -298,26 +287,6 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 		return speciesList;
 	}
 
-	public List<IMutation> getDiscoveredMutations(IBreedingTracker tracker) {
-		List<IMutation> speciesList = new ArrayList<>();
-		for (IMutation species : getAllMutations()) {
-			if (isMutationDiscovered(species, tracker)) {
-				speciesList.add(species);
-			}
-		}
-		return speciesList;
-	}
-
-	public int getDiscoveredBranchMembers(IClassification branch, IBreedingTracker tracker) {
-		int discoveredSpecies = 0;
-		for (IAlleleSpecies species : branch.getMemberSpecies()) {
-			if (isSpeciesDiscovered(species, tracker)) {
-				discoveredSpecies++;
-			}
-		}
-		return discoveredSpecies;
-	}
-
 	public IIcon getUndiscoveredIcon() {
 		return iconUndiscovered.getIcon();
 	}
@@ -345,7 +314,6 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 		discoveredSpeciesCount = 0;
 		totalSecretCount = 0;
 		discoveredSecretCount = 0;
-		Collection<IAlleleSpecies> discoveredSpecies = getDiscoveredSpecies(tracker);
 		Collection<IAlleleSpecies> allSpecies = getAllSpecies();
 
 		for (IAlleleSpecies species : allSpecies) {
@@ -388,7 +356,6 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 
 		discoveredSpeciesPercentage = discoveredSpeciesCount / totalSpeciesCount;
 		discoveredBranchPercentage = discoveredBranchCount / totalBranchCount;
-		String epithet = getEpitome();
 		onSyncBreedingTracker(tracker);
 	}
 

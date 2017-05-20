@@ -16,7 +16,6 @@ import java.util.Map;
 public class ControlProductsBox extends ControlListBox<ControlProductsBox.Product> {
 	protected IAlleleBeeSpecies species;
 
-	private int index;
 	private Type type;
 
 	public ControlProductsBox(IWidget parent, int x, int y, int width, int height, Type type) {

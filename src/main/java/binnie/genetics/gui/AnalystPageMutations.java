@@ -14,15 +14,15 @@ import binnie.core.craftgui.minecraft.EnumColor;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.genetics.BreedingSystem;
-import binnie.core.genetics.ForestryAllele;
 import binnie.extrabees.ExtraBees;
-import binnie.extrabees.genetics.ExtraBeesSpecies;
+import binnie.extrabees.genetics.ExtraBeeDefinition;
 import binnie.genetics.item.ModuleItem;
 import forestry.api.apiculture.IBee;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IMutation;
+import forestry.apiculture.genetics.BeeDefinition;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
@@ -44,45 +44,45 @@ public class AnalystPageMutations extends ControlAnalystPage {
 		Collection<IMutation> further = system.getFurtherMutations(speciesCurrent);
 		if (ind instanceof IBee) {
 			ItemStack hive = null;
-			if (ind.getGenome().getPrimary() == ExtraBeesSpecies.WATER) {
+			if (ind.getGenome().getPrimary() == ExtraBeeDefinition.WATER) {
 				hive = new ItemStack(ExtraBees.hive, 1, 0);
 			}
-			if (ind.getGenome().getPrimary() == ExtraBeesSpecies.ROCK) {
+			if (ind.getGenome().getPrimary() == ExtraBeeDefinition.ROCK) {
 				hive = new ItemStack(ExtraBees.hive, 1, 1);
 			}
-			if (ind.getGenome().getPrimary() == ExtraBeesSpecies.BASALT) {
+			if (ind.getGenome().getPrimary() == ExtraBeeDefinition.BASALT) {
 				hive = new ItemStack(ExtraBees.hive, 1, 2);
 			}
-			if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Forest.getAllele()) {
+			if (ind.getGenome().getPrimary() == BeeDefinition.FOREST.getGenome().getPrimary()) {
 				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 1);
 			}
-			if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Meadows.getAllele()) {
+			if (ind.getGenome().getPrimary() == BeeDefinition.MEADOWS.getGenome().getPrimary()) {
 				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 2);
 			}
-			if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Modest.getAllele()) {
+			if (ind.getGenome().getPrimary() == BeeDefinition.MODEST.getGenome().getPrimary()) {
 				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 3);
 			}
-			if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Tropical.getAllele()) {
+			if (ind.getGenome().getPrimary() == BeeDefinition.TROPICAL.getGenome().getPrimary()) {
 				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 4);
 			}
-			if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Ended.getAllele()) {
+			if (ind.getGenome().getPrimary() == BeeDefinition.ENDED.getGenome().getPrimary()) {
 				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 5);
 			}
-			if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Wintry.getAllele()) {
+			if (ind.getGenome().getPrimary() == BeeDefinition.WINTRY.getGenome().getPrimary()) {
 				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 6);
 			}
-			if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Marshy.getAllele()) {
+			if (ind.getGenome().getPrimary() == BeeDefinition.MARSHY.getGenome().getPrimary()) {
 				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 7);
 			}
-			if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Steadfast.getAllele()) {
+			if (ind.getGenome().getPrimary() == BeeDefinition.STEADFAST.getGenome().getPrimary()) {
 				hive = new ItemStack(Blocks.chest);
 			}
-			if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Valiant.getAllele()) {
+			if (ind.getGenome().getPrimary() == BeeDefinition.VALIANT.getGenome().getPrimary()) {
 				new ControlTextCentered(this, y, "Natural Habitat").setColor(getColor());
 				y += 10;
 				new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + "Found in any Hive").setColor(getColor());
 				y += 22;
-			} else if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Monastic.getAllele()) {
+			} else if (ind.getGenome().getPrimary() == BeeDefinition.MONASTIC.getGenome().getPrimary()) {
 				new ControlTextCentered(this, y, "Natural Habitat").setColor(getColor());
 				y += 10;
 				new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + "Bought from Villagers").setColor(getColor());
@@ -91,7 +91,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 				new ControlTextCentered(this, y, "Natural Habitat").setColor(getColor());
 				y += 10;
 				ControlItemDisplay display = new ControlItemDisplay(this, (w() - 16.0f) / 2.0f, y);
-				if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Steadfast.getAllele()) {
+				if (ind.getGenome().getPrimary() == BeeDefinition.STEADFAST.getGenome().getPrimary()) {
 					display.addTooltip("Dungeon Chests");
 				} else {
 					display.setTooltip();

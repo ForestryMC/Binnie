@@ -62,7 +62,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	BONEMEAL_SAPLING,
 	BONEMEAL_FRUIT,
 	BONEMEAL_MUSHROOM,
-	Power;
+	POWER;
 
 	protected static List<Birthday> birthdays;
 
@@ -302,7 +302,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 				onBonemealMushroomEffect(world, x, y, z);
 				break;
 
-			case Power:
+			case POWER:
 				onPowerEffect(world, x, y, z);
 				break;
 		}
