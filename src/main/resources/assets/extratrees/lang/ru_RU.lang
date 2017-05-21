@@ -175,14 +175,14 @@ extratrees.block.planks.forestry.maple.desc=
 extratrees.block.planks.forestry.citrus.desc=
 
 < %1$s is name of wood used for door >
-extratrees.block.door.name=%1$s Двери
+extratrees.block.door.name=Дверь из %1$s
 
 < %1$s is name of wood used for door, %2$s is type of door >
-extratrees.block.door.name.adv=%2$s %1$s Двери
-extratrees.block.door.type.standard=
+extratrees.block.door.name.adv=%2$s дверь из %1$s 
+extratrees.block.door.type.standard=Обычная
 extratrees.block.door.type.solid=Solid
-extratrees.block.door.type.double=Split
-extratrees.block.door.type.full=Full
+extratrees.block.door.type.double=Разделенная
+extratrees.block.door.type.full=Плотная
 
 < %1$s is name of the wood>
 extratrees.block.woodslab.name2=Составной деревянный забор %1$s

@@ -59,6 +59,14 @@ botany.item.flowerCorrupted.name=Поврежденный цветок
 botany.item.botanistDatabase.0.name=База данных ботаника
 botany.item.botanistDatabase.1.name=База данных мастера-ботаника
 botany.item.fieldKit.name=Полевая лаборатория
+botany.item.powderAsh.name=Измельченная зола
+botany.item.powderPulp.name=Измельченная древесная масса
+botany.item.powderMulch.name=Измельченная мульча
+botany.item.powderSulphur.name=Измельченная сера
+botany.item.powderFertiliser.name=Измельченное удобрение
+botany.item.powderCompost.name=Измельченный компост
+botany.item.mortar.name=Известковый раствор
+botany.item.weedkiller.name=Средство от сорняков
 
 item.trowelWood.name=Деревянный совок
 item.trowelStone.name=Каменный совок

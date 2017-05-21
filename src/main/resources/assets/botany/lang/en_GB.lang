@@ -59,6 +59,14 @@ botany.item.flowerCorrupted.name=Corrupted Flower
 botany.item.botanistDatabase.0.name=Botanist Database
 botany.item.botanistDatabase.1.name=Master Botanist Database
 botany.item.fieldKit.name=Field Kit
+botany.item.powderAsh.name=Ash Powder
+botany.item.powderPulp.name=Pulp Powder
+botany.item.powderMulch.name=Mulch Powder
+botany.item.powderSulphur.name=Sulphur Powder
+botany.item.powderFertiliser.name=Fertiliser Powder
+botany.item.powderCompost.name=Compost Powder
+botany.item.mortar.name=Mortar
+botany.item.weedkiller.name=Weedkiller
 
 item.trowelWood.name=Wooden Trowel
 item.trowelStone.name=Stone Trowel

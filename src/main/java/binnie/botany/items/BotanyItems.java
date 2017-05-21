@@ -2,6 +2,7 @@ package binnie.botany.items;
 
 import binnie.botany.Botany;
 import binnie.core.item.IItemMisc;
+import binnie.core.util.I18N;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -9,22 +10,22 @@ import net.minecraft.util.IIcon;
 import java.util.List;
 
 public enum BotanyItems implements IItemMisc {
-	AshPowder("Ash Powder", "powderAsh"),
-	PulpPowder("Wood Pulp Powder", "powderPulp"),
-	MulchPowder("Mulch Powder", "powderMulch"),
-	SulphurPowder("Sulphur Powder", "powderSulphur"),
-	FertiliserPowder("Fertiliser Powder", "powderFertiliser"),
-	CompostPowder("Compost Powder", "powderCompost"),
-	Mortar("Mortar", "mortar"),
-	Weedkiller("Weedkiller", "weedkiller");
+	AshPowder("powderAsh"),
+	PulpPowder("powderPulp"),
+	MulchPowder("powderMulch"),
+	SulphurPowder("powderSulphur"),
+	FertiliserPowder("powderFertiliser"),
+	CompostPowder("powderCompost"),
+	Mortar("mortar"),
+	Weedkiller("weedkiller");
 
 	protected IIcon icon;
 	protected String name;
 	protected String iconPath;
 
-	BotanyItems(String name, String iconPath) {
+	BotanyItems(String name) {
 		this.name = name;
-		this.iconPath = iconPath;
+		this.iconPath = name;
 	}
 
 	@Override
@@ -44,7 +45,7 @@ public enum BotanyItems implements IItemMisc {
 
 	@Override
 	public String getName(ItemStack itemStack) {
-		return name;
+		return I18N.localise(Botany.instance, "item." + name + ".name");
 	}
 
 	@Override

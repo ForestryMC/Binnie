@@ -28,12 +28,6 @@ NEI.overrideName(<ExtraBees:dictionary:0>,"База данных пчелово�
 # Master Apiarist Database
 NEI.overrideName(<ExtraBees:dictionary:1>,"База данных пчеловода-мастера");
 <ExtraBees:dictionary:1>.addTooltip(format.darkGreen("Master Apiarist Database"));
-# Botanist Database
-NEI.overrideName(<Botany:database:0>,"База данных садовника");
-<Botany:database:0>.addTooltip(format.darkGreen("Botanist Database"));
-# Master Botanist Database
-NEI.overrideName(<Botany:database:1>,"База данных садовника-мастера");
-<Botany:database:1>.addTooltip(format.darkGreen("Master Botanist Database"));
 # Arborist Database
 NEI.overrideName(<ExtraTrees:database:0>,"База данных лесовода");
 <ExtraTrees:database:0>.addTooltip(format.darkGreen("Arborist Database"));
@@ -72,130 +66,6 @@ NEI.overrideName(<ExtraTrees:durableHammer:0>,"Плотницкий молото
 NEI.overrideName(<ExtraTrees:hammer:0>,"Плотницкий молоток");
 <ExtraTrees:hammer:0>.addTooltip(format.darkGreen("Carpentry Hammer"));
 
-
-
-
-# LOGS
-
-# Apple
-<ExtraTrees:log>.onlyWithTag({meta:0}).addShiftTooltip(format.lightPurple("Яблоня"));
-
-# Fig
-<ExtraTrees:log>.onlyWithTag({meta:1}).addShiftTooltip(format.lightPurple("Инжир"));
-
-# Butternut
-<ExtraTrees:log>.onlyWithTag({meta:2}).addShiftTooltip(format.lightPurple("Орех серый"));
-
-# Cherry
-<ExtraTrees:log>.onlyWithTag({meta:3}).addShiftTooltip(format.lightPurple("Вишня"));
-
-# Whitebeam
-<ExtraTrees:log>.onlyWithTag({meta:4}).addShiftTooltip(format.lightPurple("Рябина круглолис"));
-
-# Rowan
-<ExtraTrees:log>.onlyWithTag({meta:5}).addShiftTooltip(format.lightPurple("Рябина"));
-
-# Hemlock
-<ExtraTrees:log>.onlyWithTag({meta:6}).addShiftTooltip(format.lightPurple("Тсуга"));
-
-# Ash
-<ExtraTrees:log>.onlyWithTag({meta:7}).addShiftTooltip(format.lightPurple("Ясень"));
-
-#  Alder
-<ExtraTrees:log>.onlyWithTag({meta:8}).addShiftTooltip(format.lightPurple("Ольха"));
-
-# Beech
-<ExtraTrees:log>.onlyWithTag({meta:9}).addShiftTooltip(format.lightPurple("Бук"));
-
-# Hawthorn
-<ExtraTrees:log>.onlyWithTag({meta:10}).addShiftTooltip(format.lightPurple("Боярышник"));
-
-# Banana
-<ExtraTrees:log>.onlyWithTag({meta:11}).addShiftTooltip(format.lightPurple("Банан"));
-
-# Yew
-<ExtraTrees:log>.onlyWithTag({meta:12}).addShiftTooltip(format.lightPurple("Тис"));
-
-# Cypress
-<ExtraTrees:log>.onlyWithTag({meta:13}).addShiftTooltip(format.lightPurple("Кипарис"));
-
-# Fir
-<ExtraTrees:log>.onlyWithTag({meta:14}).addShiftTooltip(format.lightPurple("Пихта"));
-
-# Hazel
-<ExtraTrees:log>.onlyWithTag({meta:15}).addShiftTooltip(format.lightPurple("Лещина"));
-
-# Hickory
-<ExtraTrees:log>.onlyWithTag({meta:16}).addShiftTooltip(format.lightPurple("Гикори"));
-
-# Elm
-<ExtraTrees:log>.onlyWithTag({meta:17}).addShiftTooltip(format.lightPurple("Вяз"));
-
-# Elder
-<ExtraTrees:log>.onlyWithTag({meta:18}).addShiftTooltip(format.lightPurple("Бузина"));
-
-# Holly
-<ExtraTrees:log>.onlyWithTag({meta:19}).addShiftTooltip(format.lightPurple("Остролист"));
-
-# Hornbeam
-<ExtraTrees:log>.onlyWithTag({meta:20}).addShiftTooltip(format.lightPurple("Граб"));
-
-# Cedar
-<ExtraTrees:log>.onlyWithTag({meta:21}).addShiftTooltip(format.lightPurple("Кедр"));
-
-# Olive
-<ExtraTrees:log>.onlyWithTag({meta:22}).addShiftTooltip(format.lightPurple("Олива"));
-
-# Sweetgum
-<ExtraTrees:log>.onlyWithTag({meta:23}).addShiftTooltip(format.lightPurple("Ликвидамбар смол"));
-
-# Locust
-<ExtraTrees:log>.onlyWithTag({meta:24}).addShiftTooltip(format.lightPurple("Робиния ложноака"));
-
-# Pear
-<ExtraTrees:log>.onlyWithTag({meta:25}).addShiftTooltip(format.lightPurple("Груша"));
-
-# Maclura
-<ExtraTrees:log>.onlyWithTag({meta:26}).addShiftTooltip(format.lightPurple("Маклюра яблоконосная"));
-
-# Brazilwood
-<ExtraTrees:log>.onlyWithTag({meta:27}).addShiftTooltip(format.lightPurple("Цезальпиния ежовая"));
-
-#  Logwood
-<ExtraTrees:log>.onlyWithTag({meta:28}).addShiftTooltip(format.lightPurple("Кампешевое дерево"));
-
-# Rosewood
-<ExtraTrees:log>.onlyWithTag({meta:29}).addShiftTooltip(format.lightPurple("Розовое дерево"));
-
-# Purpleheart
-<ExtraTrees:log>.onlyWithTag({meta:30}).addShiftTooltip(format.lightPurple("Амарант"));
-
-# Iroko
-<ExtraTrees:log>.onlyWithTag({meta:31}).addShiftTooltip(format.lightPurple("Ироко"));
-
-# Gingko
-<ExtraTrees:log>.onlyWithTag({meta:32}).addShiftTooltip(format.lightPurple("Гинкго двуло́пастный"));
-
-# Eucalyptus
-<ExtraTrees:log>.onlyWithTag({meta:33}).addShiftTooltip(format.lightPurple("Эвкалипт гигантский"));
-
-# Eucalyptus
-<ExtraTrees:log>.onlyWithTag({meta:34}).addShiftTooltip(format.lightPurple("Эвкалипт болотный"));
-
-# Box
-<ExtraTrees:log>.onlyWithTag({meta:35}).addShiftTooltip(format.lightPurple("Самшит вечнозелёный"));
-
-# Syzgium
-<ExtraTrees:log>.onlyWithTag({meta:36}).addShiftTooltip(format.lightPurple("Сизигиум"));
-
-# Eucalyptus
-<ExtraTrees:log>.onlyWithTag({meta:37}).addShiftTooltip(format.lightPurple("Эвкалипт радужный"));
-
-# Cinnamon
-<ExtraTrees:log>.onlyWithTag({meta:38}).addShiftTooltip(format.lightPurple("Коричник цейлонский"));
-
-# Pink Ivory
-<ExtraTrees:log>.onlyWithTag({meta:39}).addShiftTooltip(format.lightPurple("Умнини"));
 
 # MACHINES KOMPONENTS GENETICS
 
@@ -331,62 +201,6 @@ NEI.overrideName(<ExtraTrees:misc:12>,"Зёрна жареные");
 NEI.overrideName(<ExtraTrees:misc:13>,"Стеклянные фиттинги (детали)");
 <ExtraTrees:misc:13>.addTooltip(format.darkGreen("Glass Fittings"));
 
-
-
-# SOIL
-
-# Soil
-NEI.overrideName(<Botany:soilNoWeed:*>,"Почва");
-<Botany:soilNoWeed:*>.addTooltip(format.darkGreen("Soil"));
-# Soil
-NEI.overrideName(<Botany:soil:*>,"Почва");
-<Botany:soil:*>.addTooltip(format.darkGreen("Soil"));
-# Loam
-NEI.overrideName(<Botany:loamNoWeed:*>,"Суглинок");
-<Botany:loamNoWeed:*>.addTooltip(format.darkGreen("Loam"));
-# Loam
-NEI.overrideName(<Botany:loam:*>,"Суглинок");
-<Botany:loam:*>.addTooltip(format.darkGreen("Loam"));
-# Flowerbed
-NEI.overrideName(<Botany:flowerbedNoWeed:*>,"Клумба");
-<Botany:flowerbedNoWeed:*>.addTooltip(format.darkGreen("Flowerbed"));
-# Flowerbed
-NEI.overrideName(<Botany:flowerbed:*>,"Клумба");
-<Botany:flowerbed:*>.addTooltip(format.darkGreen("Flowerbed"));
-
-
-# POWDER
-
-# Ash Powder
-NEI.overrideName(<Botany:misc:0>,"Измельчённая зола");
-<Botany:misc:0>.addTooltip(format.darkGreen("Ash Powder"));
-
-# Wood Pulp Powder
-NEI.overrideName(<Botany:misc:1>,"Измельчённая древесная масса");
-<Botany:misc:1>.addTooltip(format.darkGreen("Wood Pulp Powder"));
-
-# Mulch Powder
-NEI.overrideName(<Botany:misc:2>,"Измельчённая мульча");
-<Botany:misc:2>.addTooltip(format.darkGreen("Mulch Powder"));
-
-# Sulphur Powder
-NEI.overrideName(<Botany:misc:3>,"Измельчённая сера");
-<Botany:misc:3>.addTooltip(format.darkGreen("Sulphur Powder"));
-
-# Fertiliser Powder
-NEI.overrideName(<Botany:misc:4>,"Измельчённое удобрение");
-<Botany:misc:4>.addTooltip(format.darkGreen("Fertiliser Powder"));
-
-# Compost Powder
-NEI.overrideName(<Botany:misc:5>,"Измельчённый компост");
-<Botany:misc:5>.addTooltip(format.darkGreen("Compost Powder"));
-
-
-
-
-# Mortar
-NEI.overrideName(<Botany:misc:6>,"Известковый раствор");
-<Botany:misc:6>.addTooltip(format.darkGreen("Mortar"));
 
 # Clay Dust
 NEI.overrideName(<ExtraBees:misc:26>,"Глиняная пыль");
