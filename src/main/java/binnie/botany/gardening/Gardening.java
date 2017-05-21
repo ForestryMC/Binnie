@@ -34,11 +34,8 @@ public class Gardening {
 	}
 
 	public static boolean isSoil(Item item) {
-		return item instanceof ItemBlock && isSoil(((ItemBlock) item).field_150939_a);
-	}
-
-	public static boolean isSoil(ItemStack item) {
-		return isSoil(item.getItem());
+		return item instanceof ItemBlock
+			&& isSoil(((ItemBlock) item).field_150939_a);
 	}
 
 	public static EnumMoisture getNaturalMoisture(World world, int x, int y, int z) {

@@ -1,8 +1,10 @@
 package binnie.botany.gardening;
 
+import binnie.botany.Botany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
 import binnie.botany.api.EnumSoilType;
+import binnie.core.util.I18N;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -12,9 +14,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
 import java.util.List;
+import java.util.Locale;
 
 public class ItemSoil extends ItemBlock {
-	EnumSoilType type;
+	protected EnumSoilType type;
+
 	private boolean noWeed;
 
 	public ItemSoil(Block block) {
@@ -33,24 +37,32 @@ public class ItemSoil extends ItemBlock {
 		String info = "";
 
 		if (moisture == EnumMoisture.DRY) {
-			info += EnumChatFormatting.YELLOW + "Dry" + EnumChatFormatting.RESET;
+			info += EnumChatFormatting.YELLOW
+				+ I18N.localise(Botany.instance, "moisture.dry")
+				+ EnumChatFormatting.RESET;
 		}
 		if (moisture == EnumMoisture.DAMP) {
-			info += EnumChatFormatting.YELLOW + "Damp" + EnumChatFormatting.RESET;
+			info += EnumChatFormatting.YELLOW
+				+ I18N.localise(Botany.instance, "moisture.damp")
+				+ EnumChatFormatting.RESET;
 		}
 
 		if (acidity == EnumAcidity.ACID) {
 			if (info.length() > 0) {
 				info += ", ";
 			}
-			info += EnumChatFormatting.RED + "Acidic" + EnumChatFormatting.RESET;
+			info += EnumChatFormatting.YELLOW
+				+ I18N.localise(Botany.instance, "ph.acid")
+				+ EnumChatFormatting.RESET;
 		}
 
 		if (acidity == EnumAcidity.ALKALINE) {
 			if (info.length() > 0) {
 				info += ", ";
 			}
-			info += EnumChatFormatting.AQUA + "Alkaline" + EnumChatFormatting.RESET;
+			info += EnumChatFormatting.YELLOW
+				+ I18N.localise(Botany.instance, "ph.alkaline")
+				+ EnumChatFormatting.RESET;
 		}
 
 		if (info.length() > 0) {
@@ -58,13 +70,14 @@ public class ItemSoil extends ItemBlock {
 		}
 
 		if (noWeed) {
-			tooltip.add("Weedkiller");
+			tooltip.add(I18N.localise(Botany.instance, "soil.weedkiller"));
 		}
 	}
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		return type.name().substring(0, 1) + type.name().toLowerCase().substring(1);
+		String soilName = type.name().toLowerCase(Locale.ENGLISH);
+		return I18N.localise(Botany.instance, "soil." + soilName);
 	}
 
 	@Override

@@ -7,7 +7,7 @@ import binnie.core.craftgui.minecraft.ModuleCraftGUI;
 import binnie.core.gui.BinnieCoreGUI;
 import binnie.core.gui.BinnieGUIHandler;
 import binnie.core.gui.IBinnieGUID;
-import binnie.core.item.ItemFieldKit;
+import binnie.botany.items.ItemFieldKit;
 import binnie.core.item.ItemGenesis;
 import binnie.core.item.ModuleItems;
 import binnie.core.liquid.FluidContainer;

@@ -24,10 +24,6 @@ public class ItemInsulatedTube extends Item {
 		setCreativeTab(CreativeTabBotany.instance);
 	}
 
-	public static String getInsulate(ItemStack stack) {
-		return Insulate.get(stack.getItemDamage()).getName();
-	}
-
 	public static ItemStack getInsulateStack(ItemStack stack) {
 		return Insulate.get(stack.getItemDamage()).getStack();
 	}

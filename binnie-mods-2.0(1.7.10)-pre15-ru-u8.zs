@@ -64,10 +64,6 @@ NEI.overrideName(<Genetics:analyst:0>,"Аналитик");
 
 
 
-# Field Kit
-NEI.overrideName(<BinnieCore:fieldKit:0>,"Полевая лаборатория");
-<BinnieCore:fieldKit:0>.addTooltip(format.darkGreen("Field Kit"));
-
 # Master Carpentry Hammer
 NEI.overrideName(<ExtraTrees:durableHammer:0>,"Плотницкий молоток мастера");
 <ExtraTrees:durableHammer:0>.addTooltip(format.darkGreen("Master Carpentry Hammer"));
@@ -392,10 +388,6 @@ NEI.overrideName(<Botany:misc:5>,"Измельчённый компост");
 NEI.overrideName(<Botany:misc:6>,"Известковый раствор");
 <Botany:misc:6>.addTooltip(format.darkGreen("Mortar"));
 
-# Weedkiller
-NEI.overrideName(<Botany:misc:7>,"Средство от сорняков");
-<Botany:misc:7>.addTooltip(format.darkGreen("Weedkiller"));
-
 # Clay Dust
 NEI.overrideName(<ExtraBees:misc:26>,"Глиняная пыль");
 <ExtraBees:misc:26>.addTooltip(format.darkGreen("Clay Dust"));
@@ -515,29 +507,6 @@ NEI.overrideName(<ExtraBees:misc:28>,"Блутониевые зёрна");
 # Yellorium Grains
 NEI.overrideName(<ExtraBees:misc:27>,"Йеллориумовые зёрна");
 <ExtraBees:misc:27>.addTooltip(format.darkGreen("Yellorium Grains"));
-
-
-# WEEDS
-
-# Weeds
-NEI.overrideName(<Botany:plant:0>,"Сорняки");
-<Botany:plant:0>.addTooltip(format.darkGreen("Weeds"));
-
-# Long Weeds
-NEI.overrideName(<Botany:plant:1>,"Большие Сорняки");
-<Botany:plant:1>.addTooltip(format.darkGreen("Long Weeds"));
-
-# Very Long Weeds
-NEI.overrideName(<Botany:plant:2>,"Огромные Сорняки");
-<Botany:plant:2>.addTooltip(format.darkGreen("Very Long Weeds"));
-
-# Dead Flower
-NEI.overrideName(<Botany:plant:3>,"Мёртвый цветок");
-<Botany:plant:3>.addTooltip(format.darkGreen("Dead Flower"));
-
-# Decaying Flower
-NEI.overrideName(<Botany:plant:4>,"Ослабленный цветок");
-<Botany:plant:4>.addTooltip(format.darkGreen("Decaying Flower"));
 
 
 

@@ -46,9 +46,9 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 
 	protected BinnieIcon iconUndiscovered;
 	protected BinnieIcon iconDiscovered;
+	protected List<IAlleleSpecies> allActiveSpecies = new ArrayList<>();
 
 	private List<IClassification> allBranches = new ArrayList<>();
-	private List<IAlleleSpecies> allActiveSpecies = new ArrayList<>();
 	private List<IMutation> allMutations = new ArrayList<>();
 	private Map<IAlleleSpecies, List<IMutation>> resultantMutations = new HashMap<>();
 	private Map<IAlleleSpecies, List<IMutation>> furtherMutations = new HashMap<>();

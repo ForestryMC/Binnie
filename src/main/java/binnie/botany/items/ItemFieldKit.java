@@ -1,8 +1,10 @@
-package binnie.core.item;
+package binnie.botany.items;
 
+import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.core.BinnieCore;
 import binnie.core.gui.BinnieCoreGUI;
+import binnie.core.util.I18N;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -30,10 +32,10 @@ public class ItemFieldKit extends Item {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister register) {
-		fieldKit0 = BinnieCore.proxy.getIcon(register, "fieldKit");
-		fieldKit1 = BinnieCore.proxy.getIcon(register, "fieldKit1");
-		fieldKit2 = BinnieCore.proxy.getIcon(register, "fieldKit2");
-		fieldKit3 = BinnieCore.proxy.getIcon(register, "fieldKit3");
+		fieldKit0 = Botany.proxy.getIcon(register, "fieldKit");
+		fieldKit1 = Botany.proxy.getIcon(register, "fieldKit1");
+		fieldKit2 = Botany.proxy.getIcon(register, "fieldKit2");
+		fieldKit3 = Botany.proxy.getIcon(register, "fieldKit3");
 		itemIcon = fieldKit0;
 	}
 
@@ -65,15 +67,19 @@ public class ItemFieldKit extends Item {
 	public void addInformation(ItemStack itemStack, EntityPlayer player, List tooltip, boolean advanced) {
 		int i = getMaxDamage() - itemStack.getItemDamage();
 		if (i == 0) {
-			tooltip.add("No paper");
+			tooltip.add(I18N.localise(Botany.instance, "item.fieldKit.tooltip.noPaper"));
 		} else {
-			tooltip.add("" + i + " sheet" + ((i > 1) ? "s" : "") + " of paper");
+			if (i > 1) {
+				tooltip.add(I18N.localise(Botany.instance, "item.fieldKit.tooltip.sheetsOfPaper", i));
+			} else {
+				tooltip.add(I18N.localise(Botany.instance, "item.fieldKit.tooltip.sheetOfPaper", i));
+			}
 		}
 		super.addInformation(itemStack, player, tooltip, advanced);
 	}
 
 	@Override
-	public String getItemStackDisplayName(ItemStack p_77653_1_) {
-		return "Field Kit";
+	public String getItemStackDisplayName(ItemStack stack) {
+		return I18N.localise(Botany.instance, "item.fieldKit.name");
 	}
 }
