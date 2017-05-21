@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum EnumHiveType {
-	Water,
-	Rock,
-	Nether,
-	Marble;
+	WATER,
+	ROCK,
+	NETHER,
+	MARBLE;
 
 	public List<IHiveDrop> drops;
 

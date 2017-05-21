@@ -4,6 +4,7 @@ import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.EnumSoilType;
 import binnie.botany.api.gardening.IBlockSoil;
+import binnie.core.util.I18N;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -126,11 +127,11 @@ public class BlockPlant extends BlockBush {
 	}
 
 	public enum Type {
-		Weeds("Weeds"),
-		WeedsLong("Long Weeds"),
-		WeedsVeryLong("Very Long Weeds"),
-		DeadFlower("Dead Flower"),
-		DecayingFlower("Decaying Flower");
+		Weeds("weeds"),
+		WeedsLong("longWeeds"),
+		WeedsVeryLong("veryLongWeeds"),
+		DeadFlower("deadFlower"),
+		DecayingFlower("decayingFlower");
 
 		public IIcon icon;
 
@@ -149,7 +150,7 @@ public class BlockPlant extends BlockBush {
 		}
 
 		public String getName() {
-			return name;
+			return I18N.localise(Botany.instance, "plant." + name);
 		}
 	}
 }

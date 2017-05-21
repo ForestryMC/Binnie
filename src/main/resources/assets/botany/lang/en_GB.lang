@@ -21,9 +21,16 @@ botany.moisture.dry=Dry
 botany.moisture.normal=Normal
 botany.moisture.damp=Damp
 
+botany.plant.weeds=Weeds
+botany.plant.longWeeds=Long Weeds
+botany.plant.veryLongWeeds=Very Long Weeds
+botany.plant.deadFlower=Dead Flower
+botany.plant.decayingFlower=Decaying Flower
+
 botany.soil.soil=Soil
 botany.soil.loam=Loam
 botany.soil.flowerbed=Flowerbed
+botany.soil.weedkiller=Weedkiller
 
 botany.item.tooltip.holdMore=<Hold shift for details>
 botany.item.tooltip.bugged=This item is bugged. Destroy it!
@@ -38,6 +45,10 @@ botany.item.tooltip.fertility=Fertility: %dx
 botany.item.tooltip.flowerColor1=%1$s, %2$s Stem
 botany.item.tooltip.flowerColor2=%1$s and %2$s, %3$s Stem
 
+botany.item.fieldKit.tooltip.noPaper=No paper
+botany.item.fieldKit.tooltip.sheetsOfPaper=%d sheets of paper
+botany.item.fieldKit.tooltip.sheetOfPaper=%d sheet of paper
+
 botany.item.soilMeter.name=Soil Meter
 botany.item.pigment.name=Pigment
 botany.item.clay.name=Clay
@@ -47,6 +58,15 @@ botany.item.germling.tag.name=Germling
 botany.item.flowerCorrupted.name=Corrupted Flower
 botany.item.botanistDatabase.0.name=Botanist Database
 botany.item.botanistDatabase.1.name=Master Botanist Database
+botany.item.fieldKit.name=Field Kit
+botany.item.powderAsh.name=Ash Powder
+botany.item.powderPulp.name=Pulp Powder
+botany.item.powderMulch.name=Mulch Powder
+botany.item.powderSulphur.name=Sulphur Powder
+botany.item.powderFertiliser.name=Fertiliser Powder
+botany.item.powderCompost.name=Compost Powder
+botany.item.mortar.name=Mortar
+botany.item.weedkiller.name=Weedkiller
 
 item.trowelWood.name=Wooden Trowel
 item.trowelStone.name=Stone Trowel

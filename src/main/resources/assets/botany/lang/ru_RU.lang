@@ -21,9 +21,16 @@ botany.moisture.dry=Сухой
 botany.moisture.normal=Обычный
 botany.moisture.damp=Влажный
 
+botany.plant.weeds=Маленький сорняк
+botany.plant.longWeeds=Сорняк
+botany.plant.veryLongWeeds=Высокий сорняк
+botany.plant.deadFlower=Засохший цветок
+botany.plant.decayingFlower=Увядающий цветок
+
 botany.soil.soil=Почва
 botany.soil.loam=Суглинок
 botany.soil.flowerbed=Цветник
+botany.soil.weedkiller=Средство от сорняков
 
 botany.item.tooltip.holdMore=<Зажмите SHIFT для подробностей>
 botany.item.tooltip.bugged=Предмет содержит ошибки. Уничтожь его!
@@ -38,7 +45,11 @@ botany.item.tooltip.fertility=Плодовитость: %dx
 botany.item.tooltip.flowerColor1=%1$s, %2$s стебель
 botany.item.tooltip.flowerColor2=%1$s и %2$s, %3$s стебель
 
-botany.item.soilMeter.name=Измеритель почвы
+botany.item.fieldKit.tooltip.noPaper=Отсутствует бумага
+botany.item.fieldKit.tooltip.sheetsOfPaper=%d бумаги
+botany.item.fieldKit.tooltip.sheetOfPaper=%d бумага
+
+botany.item.soilMeter.name=Почвомер
 botany.item.pigment.name=Краситель
 botany.item.clay.name=Глиняный порошок
 botany.item.botany.name=%2$s %1$s
@@ -47,6 +58,15 @@ botany.item.germling.tag.name=Росток цветка
 botany.item.flowerCorrupted.name=Поврежденный цветок
 botany.item.botanistDatabase.0.name=База данных ботаника
 botany.item.botanistDatabase.1.name=База данных мастера-ботаника
+botany.item.fieldKit.name=Полевая лаборатория
+botany.item.powderAsh.name=Измельченная зола
+botany.item.powderPulp.name=Измельченная древесная масса
+botany.item.powderMulch.name=Измельченная мульча
+botany.item.powderSulphur.name=Измельченная сера
+botany.item.powderFertiliser.name=Измельченное удобрение
+botany.item.powderCompost.name=Измельченный компост
+botany.item.mortar.name=Известковый раствор
+botany.item.weedkiller.name=Средство от сорняков
 
 item.trowelWood.name=Деревянный совок
 item.trowelStone.name=Каменный совок

@@ -39,14 +39,14 @@ public class ModuleGeneration implements IWorldGenerator, IInitializable {
 
 	@Override
 	public void postInit() {
-		EnumHiveType.Water.drops.add(new HiveDrop(ExtraBeeDefinition.WATER.getGenome().getPrimary(), 80));
-		EnumHiveType.Water.drops.add(new HiveDrop(BeeDefinition.VALIANT.getGenome().getPrimary(), 3));
+		EnumHiveType.WATER.drops.add(new HiveDrop(ExtraBeeDefinition.WATER.getGenome().getPrimary(), 80));
+		EnumHiveType.WATER.drops.add(new HiveDrop(BeeDefinition.VALIANT.getGenome().getPrimary(), 3));
 
-		EnumHiveType.Rock.drops.add(new HiveDrop(ExtraBeeDefinition.ROCK.getGenome().getPrimary(), 80));
-		EnumHiveType.Rock.drops.add(new HiveDrop(BeeDefinition.VALIANT.getGenome().getPrimary(), 3));
+		EnumHiveType.ROCK.drops.add(new HiveDrop(ExtraBeeDefinition.ROCK.getGenome().getPrimary(), 80));
+		EnumHiveType.ROCK.drops.add(new HiveDrop(BeeDefinition.VALIANT.getGenome().getPrimary(), 3));
 
-		EnumHiveType.Nether.drops.add(new HiveDrop(ExtraBeeDefinition.BASALT.getGenome().getPrimary(), 80));
-		EnumHiveType.Nether.drops.add(new HiveDrop(BeeDefinition.VALIANT.getGenome().getPrimary(), 3));
+		EnumHiveType.NETHER.drops.add(new HiveDrop(ExtraBeeDefinition.BASALT.getGenome().getPrimary(), 80));
+		EnumHiveType.NETHER.drops.add(new HiveDrop(BeeDefinition.VALIANT.getGenome().getPrimary(), 3));
 
 		ExtraBees.hive.setHarvestLevel("scoop", 0, 0);
 		ExtraBees.hive.setHarvestLevel("scoop", 0, 1);

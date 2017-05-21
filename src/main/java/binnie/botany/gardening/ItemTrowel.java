@@ -30,8 +30,8 @@ public class ItemTrowel extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IIconRegister p_94581_1_) {
-		itemIcon = Botany.proxy.getIcon(p_94581_1_, "tools/" + locName);
+	public void registerIcons(IIconRegister register) {
+		itemIcon = Botany.proxy.getIcon(register, "tools/" + locName);
 	}
 
 	@Override
@@ -63,9 +63,5 @@ public class ItemTrowel extends Item {
 	@SideOnly(Side.CLIENT)
 	public boolean isFull3D() {
 		return true;
-	}
-
-	public String getToolMaterialName() {
-		return theToolMaterial.toString();
 	}
 }

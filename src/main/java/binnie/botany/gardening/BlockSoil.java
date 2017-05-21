@@ -111,6 +111,7 @@ public class BlockSoil extends Block implements IBlockSoil {
 		if (desiredMoisture.ordinal() < moisture.ordinal()) {
 			moisture = ((moisture == EnumMoisture.DAMP) ? EnumMoisture.NORMAL : EnumMoisture.DRY);
 		}
+
 		int meta2 = getMeta(acidity, moisture);
 		if (meta != meta2) {
 			world.setBlockMetadataWithNotify(x, y, z, meta2, 2);

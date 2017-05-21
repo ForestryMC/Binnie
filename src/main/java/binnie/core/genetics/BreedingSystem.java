@@ -35,16 +35,6 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public abstract class BreedingSystem implements IItemStackRepresentative {
-	protected BinnieIcon iconUndiscovered;
-	protected BinnieIcon iconDiscovered;
-	private List<IClassification> allBranches = new ArrayList<>();
-	List<IAlleleSpecies> allActiveSpecies = new ArrayList<>();
-	private List<IAlleleSpecies> allSpecies = new ArrayList<>();
-	private List<IMutation> allMutations = new ArrayList<>();
-	private Map<IAlleleSpecies, List<IMutation>> resultantMutations = new HashMap<>();
-	private Map<IAlleleSpecies, List<IMutation>> furtherMutations = new HashMap<>();
-	private Map<IAlleleSpecies, List<IMutation>> allResultantMutations = new HashMap<>();
-	private Map<IAlleleSpecies, List<IMutation>> allFurtherMutations = new HashMap<>();
 	public float discoveredSpeciesPercentage;
 	public int totalSpeciesCount;
 	public int discoveredSpeciesCount;
@@ -53,9 +43,15 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 	public float discoveredBranchPercentage;
 	public int totalBranchCount;
 	public int discoveredBranchCount;
-	private int totalSecretBranchCount;
-	private int discoveredSecretBranchCount;
-	String currentEpithet;
+
+	protected BinnieIcon iconUndiscovered;
+	protected BinnieIcon iconDiscovered;
+	protected List<IAlleleSpecies> allActiveSpecies = new ArrayList<>();
+
+	private List<IClassification> allBranches = new ArrayList<>();
+	private List<IMutation> allMutations = new ArrayList<>();
+	private Map<IAlleleSpecies, List<IMutation>> resultantMutations = new HashMap<>();
+	private Map<IAlleleSpecies, List<IMutation>> furtherMutations = new HashMap<>();
 
 	public BreedingSystem() {
 		Binnie.Genetics.registerBreedingSystem(this);
@@ -109,17 +105,12 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 		Collection<IAllele> allAlleles = AlleleManager.alleleRegistry.getRegisteredAlleles().values();
 		resultantMutations = new HashMap<>();
 		furtherMutations = new HashMap<>();
-		allResultantMutations = new HashMap<>();
-		allFurtherMutations = new HashMap<>();
 		allActiveSpecies = new ArrayList<>();
-		allSpecies = new ArrayList<>();
+
 		for (IAllele species : allAlleles) {
 			if (getSpeciesRoot().getTemplate(species.getUID()) != null) {
 				resultantMutations.put((IAlleleSpecies) species, new ArrayList<>());
 				furtherMutations.put((IAlleleSpecies) species, new ArrayList<>());
-				allResultantMutations.put((IAlleleSpecies) species, new ArrayList<>());
-				allFurtherMutations.put((IAlleleSpecies) species, new ArrayList<>());
-				allSpecies.add((IAlleleSpecies) species);
 
 				if (isBlacklisted(species) || species.getUID().contains("speciesBotAlfheim")) {
 					continue;
@@ -165,13 +156,11 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 				}
 
 				for (IAlleleSpecies species3 : participatingSpecies) {
-					allFurtherMutations.get(species3).add(mutation);
 					if (allActiveSpecies.contains(species3)) {
 						furtherMutations.get(species3).add(mutation);
 					}
 				}
 				if (resultantMutations.containsKey(mutation.getTemplate()[0])) {
-					allResultantMutations.get(mutation.getTemplate()[0]).add(mutation);
 					resultantMutations.get(mutation.getTemplate()[0]).add(mutation);
 				}
 			}
@@ -345,12 +334,6 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 					continue;
 				}
 				discoveredBranchCount++;
-			} else {
-				totalSecretBranchCount++;
-				if (!discoveredBranches.contains(branch)) {
-					continue;
-				}
-				discoveredSecretBranchCount++;
 			}
 		}
 

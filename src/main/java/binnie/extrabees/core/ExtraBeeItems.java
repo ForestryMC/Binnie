@@ -3,6 +3,7 @@ package binnie.extrabees.core;
 import binnie.Binnie;
 import binnie.core.Mods;
 import binnie.core.item.IItemMisc;
+import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -19,36 +20,36 @@ import net.minecraftforge.oredict.OreDictionary;
 import java.util.List;
 
 public enum ExtraBeeItems implements IItemMisc {
-	ScentedGear("Scented Gear", "scentedGear"),
-	DiamondShard("Diamond Fragment", "diamondShard"),
-	EmeraldShard("Emerald Fragment", "emeraldShard"),
-	RubyShard("Ruby Fragment", "rubyShard"),
-	SapphireShard("Sapphire Fragment", "sapphireShard"),
-	LapisShard("Lapis Fragment", "lapisShard"),
-	IronDust("Iron Grains", "ironDust"),
-	GoldDust("Gold Grains", "goldDust"),
-	SilverDust("Silver Grains", "silverDust"),
-	PlatinumDust("Platinum Grains", "platinumDust"),
-	CopperDust("Copper Grains", "copperDust"),
-	TinDust("Tin Grains", "tinDust"),
-	NickelDust("Nickel Grains", "nickelDust"),
-	LeadDust("Lead Grains", "leadDust"),
-	ZincDust("Zinc Grains", "zincDust"),
-	TitaniumDust("Titanium Grains", "titaniumDust"),
-	TungstenDust("Tungsten Grains", "tungstenDust"),
-	UraniumDust("Radioactive Fragments", "radioactiveDust"),
-	CoalDust("Coal Grains", "coalDust"),
-	RedDye("Red Dye", "dyeRed"),
-	YellowDye("Yellow Dye", "dyeYellow"),
-	BlueDye("Blue Dye", "dyeBlue"),
-	GreenDye("Green Dye", "dyeGreen"),
-	WhiteDye("White Dye", "dyeWhite"),
-	BlackDye("Black Dye", "dyeBlack"),
-	BrownDye("Brown Dye", "dyeBrown"),
-	ClayDust("Clay Dust", "clayDust"),
-	YelloriumDust("Yellorium Grains", "yelloriumDust"),
-	BlutoniumDust("Blutonium Grains", "blutoniumDust"),
-	CyaniteDust("Cyanite Grains", "cyaniteDust");
+	ScentedGear("scentedGear"),
+	DiamondShard("diamondShard"),
+	EmeraldShard("emeraldShard"),
+	RubyShard("rubyShard"),
+	SapphireShard("sapphireShard"),
+	LapisShard("lapisShard"),
+	IronDust("ironDust"),
+	GoldDust("goldDust"),
+	SilverDust("silverDust"),
+	PlatinumDust("platinumDust"),
+	CopperDust("copperDust"),
+	TinDust("tinDust"),
+	NickelDust("nickelDust"),
+	LeadDust("leadDust"),
+	ZincDust("zincDust"),
+	TitaniumDust("titaniumDust"),
+	TungstenDust("tungstenDust"),
+	UraniumDust("radioactiveDust"),
+	CoalDust("coalDust"),
+	RedDye("dyeRed"),
+	YellowDye("dyeYellow"),
+	BlueDye("dyeBlue"),
+	GreenDye("dyeGreen"),
+	WhiteDye("dyeWhite"),
+	BlackDye("dyeBlack"),
+	BrownDye("dyeBrown"),
+	ClayDust("clayDust"),
+	YelloriumDust("yelloriumDust"),
+	BlutoniumDust("blutoniumDust"),
+	CyaniteDust("cyaniteDust");
 
 	static {
 		ExtraBeeItems.TinDust.setMetal("Tin");
@@ -78,9 +79,9 @@ public enum ExtraBeeItems implements IItemMisc {
 	protected String metalString;
 	protected String gemString;
 
-	ExtraBeeItems(String name, String iconPath) {
+	ExtraBeeItems(String name) {
 		this.name = name;
-		this.iconPath = iconPath;
+		this.iconPath = name;
 		metalString = null;
 		gemString = null;
 	}
@@ -186,13 +187,13 @@ public enum ExtraBeeItems implements IItemMisc {
 	}
 
 	@Override
-	public void addInformation(List data) {
+	public void addInformation(List tooltip) {
 		// ignored
 	}
 
 	@Override
 	public String getName(ItemStack itemStack) {
-		return name;
+		return I18N.localise(ExtraBees.instance, "item." + name);
 	}
 
 	@Override

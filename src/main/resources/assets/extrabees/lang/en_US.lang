@@ -130,13 +130,40 @@ extrabees.item.template.corrupted=Corrupted Template
 extrabees.item.template.name=%s Template
 extrabees.item.template.empty=Blank Template
 
-
-
+extrabees.item.scentedGear=Scented Gear
+extrabees.item.diamondShard=Diamond Fragment
+extrabees.item.emeraldShard=Emerald Fragment
+extrabees.item.rubyShard=Ruby Fragment
+extrabees.item.sapphireShard=Sapphire Fragment
+extrabees.item.lapisShard=Lapis Fragment
+extrabees.item.ironDust=Iron Grains
+extrabees.item.goldDust=Gold Grains
+extrabees.item.silverDust=Silver Grains
+extrabees.item.platinumDust=Platinum Grains
+extrabees.item.copperDust=Copper Grains
+extrabees.item.tinDust=Tin Grains
+extrabees.item.nickelDust=Nickel Grains
+extrabees.item.leadDust=Lead Grains
+extrabees.item.zincDust=Zinc Grains
+extrabees.item.titaniumDust=Titanium Grains
+extrabees.item.tungstenDust=Tungsten Grains
+extrabees.item.radioactiveDust=Radioactive Fragments
+extrabees.item.coalDust=Coal Grains
+extrabees.item.dyeRed=Red Dye
+extrabees.item.dyeYellow=Yellow Dye
+extrabees.item.dyeBlue=Blue Dye
+extrabees.item.dyeGreen=Green Dye
+extrabees.item.dyeWhite=White Dye
+extrabees.item.dyeBlack=Black Dye
+extrabees.item.dyeBrown=Brown Dye
+extrabees.item.clayDust=Clay Dust
+extrabees.item.yelloriumDust=Yellorium Grains
+extrabees.item.blutoniumDust=Blutonium Grains
+extrabees.item.cyaniteDust=Cyanite Grains
 
 extrabees.block.apiaristMachine.name=Apiarist Machine
 extrabees.block.geneticMachine.name=Genetic Machine
 extrabees.block.advGeneticMachine.name=Advanced Genetic Machine
-
 extrabees.block.ectoplasm.name=Ectoplasm
 
 extrabees.block.hive.0=Water Hive

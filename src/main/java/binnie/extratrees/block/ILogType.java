@@ -1,6 +1,7 @@
 package binnie.extratrees.block;
 
 import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.IDesignMaterial;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -14,6 +15,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import java.util.Locale;
+
 public interface ILogType {
 	void placeBlock(World p0, int p1, int p2, int p3);
 
@@ -22,46 +25,46 @@ public interface ILogType {
 	int getColour();
 
 	enum ExtraTreeLog implements ILogType {
-		Apple("Apple", 8092283, PlankType.ExtraTreePlanks.Apple),
-		Fig("Fig", 8418135, PlankType.ExtraTreePlanks.Fig),
-		Butternut("Butternut", 12037536, PlankType.ExtraTreePlanks.Butternut),
-		Cherry("Cherry", 7432272, PlankType.ForestryPlanks.CHERRY),
-		Whitebeam("Whitebeam", 7891565, PlankType.ExtraTreePlanks.Whitebeam),
-		Rowan("Rowan", 11972763, PlankType.ExtraTreePlanks.Rowan),
-		Hemlock("Hemlock", 11379611, PlankType.ExtraTreePlanks.Hemlock),
-		Ash("Ash", 9013634, PlankType.ExtraTreePlanks.Ash),
-		Alder("Alder", 13025464, PlankType.ExtraTreePlanks.Alder),
-		Beech("Beech", 11702654, PlankType.ExtraTreePlanks.Beech),
-		Hawthorn("Hawthorn", 6248261, PlankType.ExtraTreePlanks.Hawthorn),
-		Banana("Banana", 8753743),
-		Yew("Yew", 13745089, PlankType.ExtraTreePlanks.Yew),
-		Cypress("Cypress", 10126467, PlankType.ExtraTreePlanks.Cypress),
-		Fir("Fir", 8553346, PlankType.ExtraTreePlanks.Fir),
-		Hazel("Hazel", 11180143, PlankType.ExtraTreePlanks.Hazel),
-		Hickory("Hickory", 4076848, PlankType.ExtraTreePlanks.Hickory),
-		Elm("Elm", 8684422, PlankType.ExtraTreePlanks.Elm),
-		Elder("Elder", 14202996, PlankType.ExtraTreePlanks.Elder),
-		Holly("Holly", 11905669, PlankType.ExtraTreePlanks.Holly),
-		Hornbeam("Hornbeam", 10719862, PlankType.ExtraTreePlanks.Hornbeam),
-		Cedar("Cedar", 11368015, PlankType.ExtraTreePlanks.Cedar),
-		Olive("Olive", 8089706, PlankType.ExtraTreePlanks.Olive),
-		Sweetgum("Sweetgum", 10592668, PlankType.ExtraTreePlanks.Sweetgum),
-		Locust("Locust", 11381948, PlankType.ExtraTreePlanks.Locust),
-		Pear("Pear", 11048825, PlankType.ExtraTreePlanks.Pear),
-		Maclura("Maclura", 9131828, PlankType.ExtraTreePlanks.Maclura),
-		Brazilwood("Brazilwood", 10387560, PlankType.ExtraTreePlanks.Brazilwood),
-		Logwood("Logwood", 16376530, PlankType.ExtraTreePlanks.Logwood),
-		Rosewood("Rosewood", 10061414, PlankType.ExtraTreePlanks.Rosewood),
-		Purpleheart("Purpleheart", 9671330, PlankType.ExtraTreePlanks.Purpleheart),
-		Iroko("Iroko", 6315099, PlankType.ExtraTreePlanks.Iroko),
-		Gingko("Gingko", 11382428, PlankType.ExtraTreePlanks.Gingko),
-		Eucalyptus("Eucalyptus", 15392474, PlankType.ExtraTreePlanks.Eucalyptus),
-		Eucalyptus2("Eucalyptus", 8814181, PlankType.ExtraTreePlanks.Eucalyptus),
-		Box("Box", 11235159, PlankType.ExtraTreePlanks.Box),
-		Syzgium("Syzgium", 11235159, PlankType.ExtraTreePlanks.Syzgium),
-		Eucalyptus3("Eucalyptus", 7123007, PlankType.ExtraTreePlanks.Eucalyptus),
-		Cinnamon("Cinnamon", 8804412, PlankType.VanillaPlanks.JUNGLE),
-		PinkIvory("Pink Ivory", 8349012, PlankType.ExtraTreePlanks.PinkIvory);
+		Apple("Apple", 0x7b7a7b, PlankType.ExtraTreePlanks.Apple),
+		Fig("Fig", 0x807357, PlankType.ExtraTreePlanks.Fig),
+		Butternut("Butternut", 0xb7ada0, PlankType.ExtraTreePlanks.Butternut),
+		Cherry("Cherry", 0x716850, PlankType.ForestryPlanks.CHERRY),
+		Whitebeam("Whitebeam", 0x786a6d, PlankType.ExtraTreePlanks.Whitebeam),
+		Rowan("Rowan", 0xb6b09b, PlankType.ExtraTreePlanks.Rowan),
+		Hemlock("Hemlock", 0xada39b, PlankType.ExtraTreePlanks.Hemlock),
+		Ash("Ash", 0x898982, PlankType.ExtraTreePlanks.Ash),
+		Alder("Alder", 0xc6c0b8, PlankType.ExtraTreePlanks.Alder),
+		Beech("Beech", 0xb2917e, PlankType.ExtraTreePlanks.Beech),
+		Hawthorn("Hawthorn", 0x5f5745, PlankType.ExtraTreePlanks.Hawthorn),
+		Banana("Banana", 0x85924f),
+		Yew("Yew", 0xd1bbc1, PlankType.ExtraTreePlanks.Yew),
+		Cypress("Cypress", 0x9a8483, PlankType.ExtraTreePlanks.Cypress),
+		Fir("Fir", 0x828382, PlankType.ExtraTreePlanks.Fir),
+		Hazel("Hazel", 0xaa986f, PlankType.ExtraTreePlanks.Hazel),
+		Hickory("Hickory", 0x3e3530, PlankType.ExtraTreePlanks.Hickory),
+		Elm("Elm", 0x848386, PlankType.ExtraTreePlanks.Elm),
+		Elder("Elder", 0xd8b874, PlankType.ExtraTreePlanks.Elder),
+		Holly("Holly", 0xb5aa85, PlankType.ExtraTreePlanks.Holly),
+		Hornbeam("Hornbeam", 0xa39276, PlankType.ExtraTreePlanks.Hornbeam),
+		Cedar("Cedar", 0xad764f, PlankType.ExtraTreePlanks.Cedar),
+		Olive("Olive", 0x7b706a, PlankType.ExtraTreePlanks.Olive),
+		Sweetgum("Sweetgum", 0xa1a19c, PlankType.ExtraTreePlanks.Sweetgum),
+		Locust("Locust", 0xadacbc, PlankType.ExtraTreePlanks.Locust),
+		Pear("Pear", 0xa89779, PlankType.ExtraTreePlanks.Pear),
+		Maclura("Maclura", 0x8b5734, PlankType.ExtraTreePlanks.Maclura),
+		Brazilwood("Brazilwood", 0x9e8068, PlankType.ExtraTreePlanks.Brazilwood),
+		Logwood("Logwood", 0xf9e2d2, PlankType.ExtraTreePlanks.Logwood),
+		Rosewood("Rosewood", 0x998666, PlankType.ExtraTreePlanks.Rosewood),
+		Purpleheart("Purpleheart", 0x9392a2, PlankType.ExtraTreePlanks.Purpleheart),
+		Iroko("Iroko", 0x605c5b, PlankType.ExtraTreePlanks.Iroko),
+		Gingko("Gingko", 0xadae9c, PlankType.ExtraTreePlanks.Gingko),
+		Eucalyptus("Eucalyptus", 0xeadeda, PlankType.ExtraTreePlanks.Eucalyptus),
+		Eucalyptus2("Eucalyptus", 0x867e65, PlankType.ExtraTreePlanks.Eucalyptus),
+		Box("Box", 0xab6f57, PlankType.ExtraTreePlanks.Box),
+		Syzgium("Syzgium", 0xab6f57, PlankType.ExtraTreePlanks.Syzgium),
+		Eucalyptus3("Eucalyptus", 0x6cb03f, PlankType.ExtraTreePlanks.Eucalyptus),
+		Cinnamon("Cinnamon", 0x86583c, PlankType.VanillaPlanks.JUNGLE),
+		PinkIvory("Pink Ivory", 0x7f6554, PlankType.ExtraTreePlanks.PinkIvory);
 
 		protected String name;
 		protected int color;
@@ -70,13 +73,12 @@ public interface ILogType {
 		protected IIcon bark;
 
 		ExtraTreeLog(String name, int color) {
-			plank = null;
 			this.name = name;
 			this.color = color;
+			plank = null;
 		}
 
 		ExtraTreeLog(String name, int color, IDesignMaterial plank) {
-			this.plank = null;
 			this.name = name;
 			this.color = color;
 			this.plank = plank;
@@ -90,13 +92,14 @@ public interface ILogType {
 		}
 
 		public String getName() {
-			return name;
+			return I18N.localise(ExtraTrees.instance, "block.planks." + name.toLowerCase(Locale.ENGLISH));
 		}
 
 		public void addRecipe() {
 			if (plank == null) {
 				return;
 			}
+
 			ItemStack log = getItemStack();
 			ItemStack result = plank.getStack();
 			result.stackSize = 4;
@@ -177,8 +180,6 @@ public interface ILogType {
 		@Override
 		public ItemStack getItemStack() {
 			return TreeManager.woodItemAccess.getLog(EnumWoodType.valueOf(name().toUpperCase()), false);
-			// return new ItemStack(Mods.Forestry.item("logs"), 1,
-			// this.metadata);
 		}
 
 		@Override

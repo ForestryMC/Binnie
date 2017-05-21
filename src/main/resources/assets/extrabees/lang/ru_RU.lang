@@ -117,7 +117,7 @@ extrabees.item.frame.cocoa=Шоколадная рамка
 extrabees.item.frame.cage=Сдерживающая рамка
 extrabees.item.frame.soul=Душевная рамка
 extrabees.item.frame.clay=Исцеляющая рамка
-extrabees.item.frame.debug=Новая рамка
+extrabees.item.frame.debug=Рамка Нова
 
 extrabees.item.serum.tooltip.nocharge=пусто
 extrabees.item.serum.tooltip.charge1=1 заряд
@@ -130,8 +130,36 @@ extrabees.item.template.corrupted=повреждённый шаблон
 extrabees.item.template.name=%s шаблон
 extrabees.item.template.empty=пустой шаблон
 
-
-
+extrabees.item.scentedGear=Ароматная шестерня
+extrabees.item.diamondShard=Алмазный осколок
+extrabees.item.emeraldShard=Изумрудный осколок
+extrabees.item.rubyShard=Рубиновый осколок
+extrabees.item.sapphireShard=Сапфировый осколок
+extrabees.item.lapisShard=Лазуритовый осколок
+extrabees.item.ironDust=Железные гранулы
+extrabees.item.goldDust=Золотые гранулы
+extrabees.item.silverDust=Серебряные гранулы
+extrabees.item.platinumDust=Платиновые гранулы
+extrabees.item.copperDust=Медные гранулы
+extrabees.item.tinDust=Оловяные гранулы
+extrabees.item.nickelDust=Никелевые гранулы
+extrabees.item.leadDust=Свинцовые гранулы
+extrabees.item.zincDust=Цинковые гранулы
+extrabees.item.titaniumDust=Титановые гранулы
+extrabees.item.tungstenDust=Вольфрамовые гранулы
+extrabees.item.radioactiveDust=Радиоактивные осколки
+extrabees.item.coalDust=Угольная пыль
+extrabees.item.dyeRed=Красный краситель
+extrabees.item.dyeYellow=Желтый краситель
+extrabees.item.dyeBlue=Синий краситель
+extrabees.item.dyeGreen=Зеленый краситель
+extrabees.item.dyeWhite=Белый краситель
+extrabees.item.dyeBlack=Чёрный краситель
+extrabees.item.dyeBrown=Коричневый краситель
+extrabees.item.clayDust=Глиняная пыль
+extrabees.item.yelloriumDust=Йеллориумовые гранулы
+extrabees.item.blutoniumDust=Блутониевые гранулы
+extrabees.item.cyaniteDust=Цианитовые гранулы
 
 extrabees.block.apiaristMachine.name=Базовый механизм пчеловода
 extrabees.block.geneticMachine.name=Генетическая машина
