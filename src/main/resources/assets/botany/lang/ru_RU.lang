@@ -49,7 +49,7 @@ botany.item.fieldKit.tooltip.noPaper=Отсутствует бумага
 botany.item.fieldKit.tooltip.sheetsOfPaper=%d бумаги
 botany.item.fieldKit.tooltip.sheetOfPaper=%d бумага
 
-botany.item.soilMeter.name=Измеритель почвы
+botany.item.soilMeter.name=Почвомер
 botany.item.pigment.name=Краситель
 botany.item.clay.name=Глиняный порошок
 botany.item.botany.name=%2$s %1$s
