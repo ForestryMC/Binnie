@@ -11,10 +11,10 @@ public class ItemProduct extends Item {
 	protected IItemEnum[] types;
 
 	public ItemProduct(IItemEnum[] types) {
+		this.types = types;
 		setMaxStackSize(64);
 		setMaxDamage(0);
 		setHasSubtypes(true);
-		this.types = types;
 	}
 
 	public IItemEnum get(ItemStack stack) {
@@ -26,15 +26,15 @@ public class ItemProduct extends Item {
 	}
 
 	@Override
-	public String getItemStackDisplayName(ItemStack itemstack) {
-		return get(itemstack).getName(itemstack);
+	public String getItemStackDisplayName(ItemStack stack) {
+		return get(stack).getName(stack);
 	}
 
 	@Override
-	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List itemList) {
+	public void getSubItems(Item item, CreativeTabs tab, List list) {
 		for (IItemEnum type : types) {
 			if (type.isActive()) {
-				itemList.add(new ItemStack(this, 1, type.ordinal()));
+				list.add(new ItemStack(this, 1, type.ordinal()));
 			}
 		}
 	}

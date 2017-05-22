@@ -4,116 +4,112 @@ import binnie.core.item.IItemEnum;
 import binnie.extrabees.ExtraBees;
 import forestry.api.recipes.RecipeManagers;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 
+import java.awt.Color;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public enum EnumHoneyComb implements IItemEnum {
-	BARREN(7564356, 12762791),
-	ROTTEN(4084257, 11652233),
-	BONE(12895407, 14606017),
-	OIL(394760, 2894646),
-	COAL(10392696, 3682590),
-	FUEL(10252096, 16761856),
-	WATER(2568911, 7973065),
-	MILK(14145991, 16777215),
-	FRUIT(8202548, 14372706),
-	SEED(3428147, 7457902),
-	ALCOHOL(4293921, 14604622),
-	STONE(9211025, 13027020),
-	REDSTONE(16422550, 15077392),
-	RESIN(16762703, 13208064),
-	IC2ENERGY(15332623, 2143177),
-	IRON(3552564, 11038808),
-	GOLD(3552564, 15125515),
-	COPPER(3552564, 13722376),
-	TIN(3552564, 12431805),
-	SILVER(3552564, 14408667),
-	BRONZE,
-	URANIUM(2031360, 4303667),
-	CLAY(7034426, 11583702),
-	OLD(4535060, 11769444),
-	FUNGAL(7234891, 2856003),
-	CREOSOTE(10256652, 12429911),
-	LATEX(5854529, 11051653),
-	ACIDIC(3441987, 1374014),
-	VENOMOUS(8198269, 16724991),
-	SLIME(3884860, 8442245),
-	BLAZE(16738816, 16763904),
-	COFFEE(5519389, 11763531),
-	GLACIAL(5146503, 13366002),
-	MINT,
-	CITRUS,
-	PEAT,
-	SHADOW(0, 3545141),
-	LEAD(3552564, 10125468),
-	BRASS,
-	ELECTRUM,
-	ZINC(3552564, 15592447),
-	TITANIUM(3552564, 11578083),
-	TUNGSTEN(3552564, 1249812),
-	STEEL,
-	IRIDIUM,
-	PLATINUM(3552564, 10125468),
-	LAPIS(3552564, 4009179),
-	SODALITE,
-	PYRITE,
-	BAUXITE,
-	CINNABAR,
-	SPHALERITE,
-	EMERALD(3552564, 1900291),
-	RUBY(3552564, 14024704),
-	SAPPHIRE(3552564, 673791),
-	OLIVINE,
-	DIAMOND(3552564, 8371706),
-	RED(13388876, 16711680),
-	YELLOW(15066419, 16768256),
-	BLUE(10072818, 8959),
-	GREEN(6717235, 39168),
-	BLACK(1644825, 5723991),
-	WHITE(14079702, 16777215),
-	BROWN(8349260, 6042895),
-	ORANGE(15905331, 16751872),
-	CYAN(5020082, 65509),
-	PURPLE(11691749, 11403519),
-	GRAY(5000268, 12237498),
-	LIGHTBLUE(10072818, 40447),
-	PINK(15905484, 16744671),
-	LIMEGREEN(8375321, 65288),
-	MAGENTA(15040472, 16711884),
-	LIGHTGRAY(10066329, 13224393),
-	NICKEL(3552564, 16768764),
-	INVAR,
-	GLOWSTONE(10919006, 14730249),
-	SALTPETER(10919006, 14730249),
-	PULP,
-	MULCH,
-	COMPOST(4338440, 7036475),
-	SAWDUST(12561009, 15913854),
-	CERTUS(13029631, 3755363),
-	ENDERPEARL(3446662, 206368),
-	YELLORIUM(2564173, 14019840),
-	CYANITE(2564173, 34541),
-	BLUTONIUM(2564173, 1769702);
+	BARREN(new Color(0x736c44), new Color(0xc2bea7)),
+	ROTTEN(new Color(0x3e5221), new Color(0xb1cc89)),
+	BONE(new Color(0xc4c4af), new Color(0xdedec1)),
+	OIL(new Color(0x060608), new Color(0x2c2b36)),
+	COAL(new Color(0x9e9478), new Color(0x38311e)),
+	FUEL(new Color(0x9c6f40), new Color(0xffc400)),
+	WATER(new Color(0x2732cf), new Color(0x79a8c9)),
+	MILK(new Color(0xd7d9c7), new Color(0xffffff)),
+	FRUIT(new Color(0x7d2934), new Color(0xdb4f62)),
+	SEED(new Color(0x344f33), new Color(0x71cc6e)),
+	ALCOHOL(new Color(0x418521), new Color(0xded94e)),
+	STONE(new Color(0x8c8c91), new Color(0xc6c6cc)),
+	REDSTONE(new Color(0xfa9696), new Color(0xe61010)),
+	RESIN(new Color(0xffc74f), new Color(0xc98a00)),
+	IC2ENERGY(new Color(0xe9f50f), new Color(0x20b3c9)),
+	IRON(new Color(0x363534), new Color(0xa87058)),
+	GOLD(new Color(0x363534), new Color(0xe6cc0b)),
+	COPPER(new Color(0x363534), new Color(0xd16308)),
+	TIN(new Color(0x363534), new Color(0xbdb1bd)),
+	SILVER(new Color(0x363534), new Color(0xdbdbdb)),
+//	BRONZE,
+	URANIUM(new Color(0x1eff00), new Color(0x41ab33)),
+	CLAY(new Color(0x6b563a), new Color(0xb0c0d6)),
+	OLD(new Color(0x453314), new Color(0xb39664)),
+	FUNGAL(new Color(0x6e654b), new Color(0x2b9443)),
+	CREOSOTE(new Color(0x9c810c), new Color(0xbdaa57)),
+	LATEX(new Color(0x595541), new Color(0xa8a285)),
+	ACIDIC(new Color(0x348543), new Color(0x14f73e)),
+	VENOMOUS(new Color(0x7d187d), new Color(0xff33ff)),
+	SLIME(new Color(0x3b473c), new Color(0x80d185)),
+	BLAZE(new Color(0xff6a00), new Color(0xffcc00)),
+	COFFEE(new Color(0x54381d), new Color(0xb37f4b)),
+	GLACIAL(new Color(0x4e8787), new Color(0xcbf2f2)),
+//	MINT,
+//	CITRUS,
+//	PEAT,
+	SHADOW(new Color(0x000000), new Color(0x361835)),
+	LEAD(new Color(0x363534), new Color(0x9a809c)),
+//	BRASS,
+//	ELECTRUM,
+	ZINC(new Color(0x363534), new Color(0xedebff)),
+	TITANIUM(new Color(0x363534), new Color(0xb0aae3)),
+	TUNGSTEN(new Color(0x363534), new Color(0x131214)),
+//	STEEL,
+//	IRIDIUM,
+	PLATINUM(new Color(0x363534), new Color(0x9a809c)),
+	LAPIS(new Color(0x363534), new Color(0x3d2cdb)),
+//	SODALITE,
+//	PYRITE,
+//	BAUXITE,
+//	CINNABAR,
+//	SPHALERITE,
+	EMERALD(new Color(0x363534), new Color(0x1cff03)),
+	RUBY(new Color(0x363534), new Color(0xd60000)),
+	SAPPHIRE(new Color(0x363534), new Color(0xa47ff)),
+//	OLIVINE,
+	DIAMOND(new Color(0x363534), new Color(0x7fbdfa)),
+	RED(new Color(0xcc4c4c), new Color(0xff0000)),
+	YELLOW(new Color(0xe5e533), new Color(0xffdd00)),
+	BLUE(new Color(0x99b2f2), new Color(0x0022ff)),
+	GREEN(new Color(0x667f33), new Color(0x009900)),
+	BLACK(new Color(0x191919), new Color(0x575757)),
+	WHITE(new Color(0xd6d6d6), new Color(0xffffff)),
+	BROWN(new Color(0x7f664c), new Color(0x5c350f)),
+	ORANGE(new Color(0xf2b233), new Color(0xff9d00)),
+	CYAN(new Color(0x4c99b2), new Color(0x00ffe5)),
+	PURPLE(new Color(0xb266e5), new Color(0xae00ff)),
+	GRAY(new Color(0x4c4c4c), new Color(0xbababa)),
+	LIGHTBLUE(new Color(0x99b2f2), new Color(0x009dff)),
+	PINK(new Color(0xf2b2cc), new Color(0xff80df)),
+	LIMEGREEN(new Color(0x7fcc19), new Color(0x00ff08)),
+	MAGENTA(new Color(0xe57fd8), new Color(0xff00cc)),
+	LIGHTGRAY(new Color(0x999999), new Color(0xc9c9c9)),
+	NICKEL(new Color(0x363534), new Color(0xffdefc)),
+//	INVAR,
+	GLOWSTONE(new Color(0xa69c5e), new Color(0xe0c409)),
+	SALTPETER(new Color(0xa69c5e), new Color(0xe0c409)),
+	//PULP,
+	//MULCH,
+	COMPOST(new Color(0x423308), new Color(0x6b5e3b)),
+	SAWDUST(new Color(0xbfaa71), new Color(0xf2d37e)),
+	CERTUS(new Color(0xc6d0ff), new Color(0x394d63)),
+	ENDERPEARL(new Color(0x349786), new Color(0x32620)),
+	YELLORIUM(new Color(0x27204d), new Color(14019840)),
+	CYANITE(new Color(0x27204d), new Color(0x86ed)),
+	BLUTONIUM(new Color(0x27204d), new Color(0x1b00e6));
 
 	public Map<ItemStack, Float> products;
-	public boolean deprecated;
+	public final int primaryColor;
+	public final int secondaryColor;
+	public final String name;
 
-	protected int[] color;
 	protected boolean active;
 
-	EnumHoneyComb() {
-		this(0xffffff, 0xffffff);
-		active = false;
-		deprecated = true;
-	}
-
-	EnumHoneyComb(int color, int color2) {
-		this.color = new int[]{color, color2};
+	EnumHoneyComb(Color primaryColor, Color secondaryColor) {
+		this.primaryColor = primaryColor.getRGB();
+		this.secondaryColor = secondaryColor.getRGB();
+		name = toString().toLowerCase(Locale.ENGLISH);
 		products = new LinkedHashMap<>();
-		active = true;
-		deprecated = false;
 	}
 
 	public static EnumHoneyComb get(ItemStack itemStack) {
@@ -139,8 +135,8 @@ public enum EnumHoneyComb implements IItemEnum {
 	}
 
 	@Override
-	public String getName(ItemStack itemStack) {
-		return ExtraBees.proxy.localise("item.comb." + name().toLowerCase());
+	public String getName(ItemStack stack) {
+		return ExtraBees.proxy.localise("item.comb." + name);
 	}
 
 	public boolean addProduct(ItemStack item, Float chance) {
@@ -155,18 +151,9 @@ public enum EnumHoneyComb implements IItemEnum {
 		active = addProduct(item, chance);
 	}
 
-	// TODO unused method?
-	public void tryAddProduct(String oreDict, Float chance) {
-		if (!OreDictionary.getOres(oreDict).isEmpty()) {
-			tryAddProduct(OreDictionary.getOres(oreDict).get(0), chance);
-		} else {
-			active = false;
-		}
-	}
-
 	public void tryAddProduct(IItemEnum type, Float chance) {
 		tryAddProduct(type.get(1), chance);
-		active = (active && type.isActive());
+		active = active && type.isActive();
 	}
 
 	public void copyProducts(EnumHoneyComb comb) {

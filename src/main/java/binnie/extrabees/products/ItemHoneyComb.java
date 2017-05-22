@@ -291,14 +291,15 @@ public class ItemHoneyComb extends ItemProduct {
 	}
 
 	@Override
-	public int getColorFromItemStack(ItemStack itemStack, int j) {
-		if (EnumHoneyComb.get(itemStack) == null) {
+	public int getColorFromItemStack(ItemStack stack, int indexColor) {
+		EnumHoneyComb comb = EnumHoneyComb.get(stack);
+		if (comb == null) {
 			return 0xffffff;
 		}
-		if (j == 0) {
-			return EnumHoneyComb.get(itemStack).color[0];
+		if (indexColor == 0) {
+			return comb.primaryColor;
 		}
-		return EnumHoneyComb.get(itemStack).color[1];
+		return comb.secondaryColor;
 	}
 
 	@Override
