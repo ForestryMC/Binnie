@@ -164,6 +164,7 @@ binniecore.allele.fertility.maximum=Наивысшая
 
 binniecore.allele.true=Да
 binniecore.allele.false=Нет
+binniecore.allele.none=Нет
 
 binniecore.allele.metabolism.highest=Высочайший
 binniecore.allele.metabolism.higher=Высокий
@@ -173,12 +174,8 @@ binniecore.allele.metabolism.slow=Пониженный
 binniecore.allele.metabolism.slower=Низкий
 binniecore.allele.metabolism.slowest=Нижайший
 
-
-binniecore.allele.none=Нет
-
 binniecore.allele.growth.tropical=в тропиках
 binniecore.allele.growth.lightlevel=на свету
-
 
 binniecore.beemodifier.territory=Рабочая зона
 binniecore.beemodifier.mutation=Мутация
@@ -198,6 +195,14 @@ binniecore.item.container.bucket=Ведро
 binniecore.item.container.glass=Бутыль
 binniecore.item.container.cylinder=Баллон
 
+binniecore.machine.error.noItem=Нет предметов
+binniecore.machine.error.invalidItem=Неподходяий предмет
+binniecore.machine.error.noSpace=Нет места
+binniecore.machine.error.insufficientPower.title=Недостаточно мощности
+binniecore.machine.error.insufficientPower.desc=Не хватает мощности для работы
+binniecore.machine.error.tankFull=Бак полон
+binniecore.machine.error.insufficientLiquid=Недостаточно жидкости
+
 binniecore.machine.storage.compartment=Сундук
 binniecore.machine.storage.compartmentIron=Железный сундук
 binniecore.machine.storage.compartmentDiamond=Алмазный сундук
@@ -209,7 +214,6 @@ binniecore.machine.storage.compartmentGold=Золотой сундук
 binniecore.gui.designer.pattern=%1$s Pattern
 
 binniecore.gui.database.nodescription=Нет описания
-
 binniecore.gui.database.mode.species=Виды
 binniecore.gui.database.mode.branches=Семейства
 binniecore.gui.database.mode.breeder=Селекция
@@ -221,7 +225,11 @@ binniecore.gui.tolerated=устойчив
 binniecore.gui.nottolerated=неустойчив
 
 binniecore.gui.design=Дизайн
-
+binniecore.gui.tooltip.info=Информация
+binniecore.gui.tooltip.help=Помощь
+binniecore.gui.tooltip.help.0=Для показа всплывающих подсказок,
+binniecore.gui.tooltip.help.1=зажмите клавишу TAB и
+binniecore.gui.tooltip.help.2=наведите курсор на элемент интерфейса.
 
 
 < Descriptions used for effects in the registry >

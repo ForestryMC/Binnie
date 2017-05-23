@@ -75,7 +75,6 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 				if (widget.hasAttribute(WidgetAttribute.BlockTooltip)) {
 					return;
 				}
-				continue;
 			}
 		}
 	}
@@ -97,7 +96,6 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 				if (widget.hasAttribute(WidgetAttribute.BlockTooltip)) {
 					return;
 				}
-				continue;
 			}
 		}
 	}
@@ -122,32 +120,36 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 	}
 
 	public Window(float width, float height, EntityPlayer player, IInventory inventory, Side side) {
+		this.side = side;
 		titleButtonLeft = 8.0f;
 		titleButtonRight = 8.0f;
 		bgText1 = null;
 		bgText2 = null;
 		hasBeenInitialised = false;
-		this.side = Side.CLIENT;
-		this.side = side;
 		setInventories(player, inventory);
 		container = new ContainerCraftGUI(this);
 		windowInventory = new WindowInventory(this);
 		if (side == Side.SERVER) {
 			return;
 		}
+
 		setSize(new IPoint(width, height));
 		gui = new GuiCraftGUI(this);
 		for (EnumHighlighting h : EnumHighlighting.values()) {
 			ControlSlot.highlighting.put(h, new ArrayList<>());
 		}
-		(CraftGUI.Render = new Renderer(gui)).stylesheet(StyleSheetManager.getDefault());
+
+		CraftGUI.Render = new Renderer(gui);
+		CraftGUI.Render.stylesheet(StyleSheetManager.getDefault());
 		titleButtonLeft = -14.0f;
+
 		if (showHelpButton()) {
 			new ControlHelp(this, titleButtonLeft += 22.0f, 8.0f);
 		}
 		if (showInfoButton() != null) {
 			new ControlInfo(this, titleButtonLeft += 22.0f, 8.0f, showInfoButton());
 		}
+
 		addSelfEventHandler(new EventWidget.ChangeSize.Handler() {
 			@Override
 			public void onEvent(EventWidget.ChangeSize event) {
@@ -270,9 +272,6 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		return BinnieCore.proxy.getWorld();
 	}
 
-	public void onInventoryUpdate() {
-	}
-
 	public void sendClientAction(String name, NBTTagCompound action) {
 		action.setString("type", name);
 		MessageCraftGUI packet = new MessageCraftGUI(action);
@@ -298,6 +297,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 	}
 
 	public void onWindowInventoryChanged() {
+		// ignored
 	}
 
 	public Texture getBackground1() {

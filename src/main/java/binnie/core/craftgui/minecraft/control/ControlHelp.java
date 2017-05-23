@@ -1,5 +1,6 @@
 package binnie.core.craftgui.minecraft.control;
 
+import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -7,6 +8,7 @@ import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
+import binnie.core.util.I18N;
 
 public class ControlHelp extends Control implements ITooltip {
 	public ControlHelp(IWidget parent, float x, float y) {
@@ -22,10 +24,10 @@ public class ControlHelp extends Control implements ITooltip {
 	@Override
 	public void getTooltip(Tooltip tooltip) {
 		tooltip.setType(Tooltip.Type.Help);
-		tooltip.add("Help");
-		tooltip.add("To activate help tooltips,");
-		tooltip.add("hold down the tab key and");
-		tooltip.add("mouse over controls.");
+		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.help"));
+		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.help.0"));
+		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.help.1"));
+		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.help.2"));
 	}
 
 	@Override

@@ -163,6 +163,7 @@ binniecore.allele.fertility.maximum=Maximum
 
 binniecore.allele.true=Yes
 binniecore.allele.false=No
+binniecore.allele.none=None
 
 binniecore.allele.metabolism.highest=Highest
 binniecore.allele.metabolism.higher=Higher
@@ -172,12 +173,8 @@ binniecore.allele.metabolism.slow=Slow
 binniecore.allele.metabolism.slower=Slower
 binniecore.allele.metabolism.slowest=Slowest
 
-
-binniecore.allele.none=None
-
 binniecore.allele.growth.tropical=Tropical
 binniecore.allele.growth.lightlevel=Light Level
-
 
 binniecore.beemodifier.territory=Territory
 binniecore.beemodifier.mutation=Mutation
@@ -197,6 +194,14 @@ binniecore.item.container.bucket=Bucket
 binniecore.item.container.glass=Bottle
 binniecore.item.container.cylinder=Cylinder
 
+binniecore.machine.error.noItem=No Item
+binniecore.machine.error.invalidItem=Invalid Item
+binniecore.machine.error.noSpace=No Space
+binniecore.machine.error.insufficientPower.title=Insufficient Power
+binniecore.machine.error.insufficientPower.desc=Not enough power to operate
+binniecore.machine.error.tankFull=Tank Full
+binniecore.machine.error.insufficientLiquid=Insufficient Liquid
+
 binniecore.machine.storage.compartment=Compartment
 binniecore.machine.storage.compartmentIron=Iron Compartment
 binniecore.machine.storage.compartmentDiamond=Diamond Compartment
@@ -207,8 +212,7 @@ binniecore.machine.storage.compartmentGold=Gold Compartment
 < %1$s is the name of the pattern >
 binniecore.gui.designer.pattern=%1$s Pattern
 
-binniecore.gui.database.nodescription=No Description Provided.
-
+binniecore.gui.database.nodescription=No Description Provided.Hel
 binniecore.gui.database.mode.species=Species
 binniecore.gui.database.mode.branches=Branches
 binniecore.gui.database.mode.breeder=Breeder
@@ -220,7 +224,11 @@ binniecore.gui.tolerated=Tolerated
 binniecore.gui.nottolerated=Not Tolerated
 
 binniecore.gui.design=Design
-
+binniecore.gui.tooltip.info=Info
+binniecore.gui.tooltip.help=Help
+binniecore.gui.tooltip.help.0=To activate help tooltips,
+binniecore.gui.tooltip.help.1=hold down the tab key and
+binniecore.gui.tooltip.help.2=mouse over controls.
 
 
 < Descriptions used for effects in the database >
