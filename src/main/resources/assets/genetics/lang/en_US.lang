@@ -26,6 +26,9 @@ genetics.machine.labMachine.incubator=Incubator
 genetics.machine.labMachine.incubator.info=The Incubator combines liquids and items and allows them to sit at an ideal temperature to encourage bacterial growth. 
 
 genetics.machine.labMachine.acclimatiser=Acclimatiser
+genetics.machine.acclimatiser.error.noIndividual=No Individual to Acclimatise
+genetics.machine.acclimatiser.error.noAcclimatizingItems=No Acclimatising Items
+genetics.machine.acclimatiser.error.invalidAcclimatizingItems=Cannot Acclimatise this individual with these items
 
 genetics.machine.advMachine.splicer=Splicer
 genetics.machine.advMachine.splicer.info=The Splicer is an incredibly powerful machine that is used to insert genes into individuals. This process is fast, but requires monumental amounts of power.

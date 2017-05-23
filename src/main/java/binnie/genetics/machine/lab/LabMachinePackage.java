@@ -1,11 +1,14 @@
-package binnie.genetics.machine;
+package binnie.genetics.machine.lab;
 
 import binnie.core.machines.Machine;
 import binnie.genetics.core.GeneticsTexture;
+import binnie.genetics.machine.ComponentGUIHolder;
+import binnie.genetics.machine.MachineRendererLab;
+import binnie.genetics.machine.PackageGeneticBase;
 import net.minecraft.client.renderer.RenderBlocks;
 
-public class PackageLabMachine extends PackageGeneticBase {
-	public PackageLabMachine() {
+public class LabMachinePackage extends PackageGeneticBase {
+	public LabMachinePackage() {
 		super("labMachine", GeneticsTexture.LabMachine, 0xffffff, false);
 	}
 

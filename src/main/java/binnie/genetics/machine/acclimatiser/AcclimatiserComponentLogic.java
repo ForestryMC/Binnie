@@ -3,6 +3,8 @@ package binnie.genetics.machine.acclimatiser;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.power.ComponentProcessIndefinate;
 import binnie.core.machines.power.ErrorState;
+import binnie.core.util.I18N;
+import binnie.genetics.Genetics;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
@@ -16,10 +18,16 @@ public class AcclimatiserComponentLogic extends ComponentProcessIndefinate {
 	@Override
 	public ErrorState canWork() {
 		if (getUtil().getStack(Acclimatiser.SLOT_TARGET) == null) {
-			return new ErrorState.NoItem("No Individual to Acclimatise", Acclimatiser.SLOT_TARGET);
+			return new ErrorState.NoItem(
+				I18N.localise(Genetics.instance, "machine.acclimatiser.error.noIndividual"),
+				Acclimatiser.SLOT_TARGET
+			);
 		}
 		if (getUtil().getNonNullStacks(Acclimatiser.SLOT_ACCLIMATISER).isEmpty()) {
-			return new ErrorState.NoItem("No Acclimatising Items", Acclimatiser.SLOT_ACCLIMATISER);
+			return new ErrorState.NoItem(
+				I18N.localise(Genetics.instance, "machine.acclimatiser.error.noAcclimatizingItems"),
+				Acclimatiser.SLOT_ACCLIMATISER
+			);
 		}
 		return super.canWork();
 	}
@@ -27,7 +35,10 @@ public class AcclimatiserComponentLogic extends ComponentProcessIndefinate {
 	@Override
 	public ErrorState canProgress() {
 		if (!Acclimatiser.canAcclimatise(getUtil().getStack(Acclimatiser.SLOT_TARGET), getUtil().getNonNullStacks(Acclimatiser.SLOT_ACCLIMATISER))) {
-			return new ErrorState.InvalidItem("Cannot Acclimatise this individual with these items", Acclimatiser.SLOT_TARGET);
+			return new ErrorState.InvalidItem(
+				I18N.localise(Genetics.instance, "machine.acclimatiser.error.invalidAcclimatizingItems"),
+				Acclimatiser.SLOT_TARGET
+			);
 		}
 		return super.canProgress();
 	}
