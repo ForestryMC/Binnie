@@ -1,34 +1,34 @@
 ##################################################
 ## Machines
 
-genetics.machine.machine.isolator=Генетический Изолятор
+genetics.machine.machine.isolator=Изолятор
 genetics.machine.machine.isolator.info=Изолятор извлекает случайный ген от пчелы, дерева или другого организма и копирует его в пустой пузырек сыворотки (empty sequence vial). Требуется Этанол для растворения и Фермент для извлечения ДНК. Полученная сыворотка с геном затем может быть усилена в Полимеризаторе и исследована в Секвенсоре.
 
-genetics.machine.machine.sequencer=Генетический Секвенсор
+genetics.machine.machine.sequencer=Секвенсор
 genetics.machine.machine.sequencer.info=Секвенсор предназначен для анализа новых генов, извлечённых из организмов. Секвенсор принимает неисследованную сыворотку и определяет, какие гены присутствуют в ней. В результате ген попадает в общую генетическую базу данных. Процесс занимает много времени и требует использования Флюорофора (жёлтый+оранжевый+светопыль)
 
-genetics.machine.machine.polymeriser=Генетический Полимеризатор
+genetics.machine.machine.polymeriser=Полимеризатор
 genetics.machine.machine.polymeriser.info=Полимеризатор усиливает (концентрирует) сыворотку с геном с помощью Сырой ДНК и Полимеризованной Бактерии. Эта операция обязательна перед использованием сыворотки в Инокуляторе или Секвенсоре и Сплайсере. Процесс может быть ускорен с помощью золотых самородков.
 
-genetics.machine.machine.inoculator=Генетический Инокулятор
+genetics.machine.machine.inoculator=Инокулятор
 genetics.machine.machine.inoculator.info=Инокулятор использует сыворотку для прививки новых генов. Процесс продолжителен и требует Бактерию Вектор, но на 100% успешен.
 
-genetics.machine.labMachine.genepool=Генетический Экстрактор ДНК
+genetics.machine.labMachine.genepool=Экстрактор ДНК
 genetics.machine.labMachine.genepool.info=Растворяет организмы с помощью Этанола и Фермента в Жидкую ДНК, которая нужна для работы некоторых генетических машин. Вся генетическая информация теряется и организм-источник ДНК разрушается.
-
 
 genetics.machine.labMachine.labMachine=Лабораторная тумба
 
-genetics.machine.labMachine.analyser=Генетический Анализатор
+genetics.machine.labMachine.analyser=Анализатор
 genetics.machine.labMachine.analyser.info=Анализатор принимает организмы или сыворотку и анализирует их гены. Процесс требует Краситель для ДНК. Краситель для ДНК сделан из фиолетового красителя и светящейся пыли.
 
-genetics.machine.labMachine.incubator=Генетический Инкубатор
+genetics.machine.labMachine.incubator=Инкубатор
 genetics.machine.labMachine.incubator.info=В инкубаторе производятся большинство жидкостей и веществ мода "Генетика" по разным рецептам из жидких и твёрдых веществ. Рецепты: 1. Вода + Питательная Среда = Жидкая Питательная Среда; 2. Жидкая Питательная Среда + Пшеница = Бактерия; 3. Бактерия + Сахар = Фермент; 4. Бактерия + Костная Мука = Полимеризованная Бактерия; 5. Бактерия + Огненный Порошок = Бактерия Вектор. Также в инкубаторе можно из зародыша (личинки, гусеницы, пыльцы) вырастить взрослых особей (пчёлы, бабочки, деревья). Жидкая Питательная Среда + зародыш = взрослая особь.
 
-genetics.machine.labMachine.acclimatiser=Генетический акклиматизатор
+genetics.machine.labMachine.acclimatiser=Акклиматизатор
+genetics.machine.acclimatiser.acclimatizingItems=Катализаторы
 genetics.machine.acclimatiser.error.noIndividual=Нет образцов для акклиматизации
-genetics.machine.acclimatiser.error.noAcclimatizingItems=Отсутствуют акклиматизирующие предметы
-genetics.machine.acclimatiser.error.invalidAcclimatizingItems=Невозможно акклиматизировать образец с этими предметами
+genetics.machine.acclimatiser.error.noAcclimatizingItems=Отсутствуют катализаторы
+genetics.machine.acclimatiser.error.invalidAcclimatizingItems=Невозможно акклиматизировать образец с этими катализаторами
 
 genetics.machine.labMachine.acclimatiser.info=Акклиматизатор изменяет гены, отвечающие за акклиматизацию. Диапазоны сухо-влажно и горячо-холодно могут быть расширены до максимальных. Требует катализаторы. Осушение - песок, увлажнение - вода, потепление - лава или огненный порошок, похолодание - лёд или снежок. Кислотность почвы - мульча или зола.
 
