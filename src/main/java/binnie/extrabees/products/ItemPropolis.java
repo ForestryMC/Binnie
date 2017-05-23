@@ -17,9 +17,9 @@ public class ItemPropolis extends ItemProduct {
 	@Override
 	public int getColorFromItemStack(ItemStack itemStack, int j) {
 		if (j == 0) {
-			return EnumPropolis.get(itemStack).colour[0];
+			return EnumPropolis.get(itemStack).primaryColor;
 		}
-		return EnumPropolis.get(itemStack).colour[1];
+		return EnumPropolis.get(itemStack).secondaryColor;
 	}
 
 	@Override

@@ -18,11 +18,6 @@ public class BinnieResource {
 		this.path = path;
 	}
 
-	// TODO unused method?
-	public String getFullPath() {
-		return "/assets/" + mod + "/textures/" + type.toString() + "/" + path;
-	}
-
 	public ResourceLocation getResourceLocation() {
 		return new ResourceLocation(mod, "textures/" + type.toString() + "/" + path);
 	}

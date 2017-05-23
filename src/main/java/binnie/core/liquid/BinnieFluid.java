@@ -1,6 +1,7 @@
 package binnie.core.liquid;
 
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 
 class BinnieFluid extends Fluid {
 	protected IFluidType fluidType;
@@ -8,8 +9,7 @@ class BinnieFluid extends Fluid {
 	private String name;
 
 	@Override
-	// TODO fix deprecated usage
-	public String getLocalizedName() {
+	public String getLocalizedName(FluidStack stack) {
 		return name;
 	}
 

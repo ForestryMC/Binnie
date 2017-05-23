@@ -71,11 +71,6 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 		);
 	}
 
-	// TODO unused method?
-	public int getIconIndex() {
-		return 55 + ordinal();
-	}
-
 	public void setMaxDamage(int damage) {
 		maxDamage = damage;
 	}

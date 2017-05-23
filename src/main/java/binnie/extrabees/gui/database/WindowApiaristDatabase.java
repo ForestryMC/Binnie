@@ -48,31 +48,4 @@ public class WindowApiaristDatabase extends WindowAbstractDatabase {
 	public String getName() {
 		return "Database";
 	}
-
-	// TODO unused class?
-	enum SpeciesTab {
-		Overview(0xff),
-		Genome(0xffff00),
-		Productivity(0xffff),
-		Climate(0xff0000),
-		ResultantMutations(0xff00ff),
-		FurtherMutations(0xff00);
-
-		public int colour;
-
-		SpeciesTab(int colour) {
-			this.colour = colour;
-		}
-	}
-
-	enum BranchesTab {
-		Overview(255),
-		Species(16711680);
-
-		public int colour;
-
-		BranchesTab(int colour) {
-			this.colour = colour;
-		}
-	}
 }

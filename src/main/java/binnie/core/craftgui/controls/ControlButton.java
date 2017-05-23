@@ -1,4 +1,4 @@
-package binnie.core.craftgui.controls.button;
+package binnie.core.craftgui.controls;
 
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;

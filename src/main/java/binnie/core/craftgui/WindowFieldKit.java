@@ -22,7 +22,7 @@ import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
 import binnie.extrabees.core.ExtraBeeTexture;
-import binnie.extrabees.gui.punnett.ExtraBeeGUITexture;
+import binnie.extrabees.gui.ExtraBeeGUITexture;
 import binnie.genetics.gui.ControlChromosome;
 import binnie.genetics.machine.Analyser;
 import cpw.mods.fml.relauncher.Side;

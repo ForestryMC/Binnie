@@ -31,17 +31,4 @@ public abstract class EventKey extends Event {
 			}
 		}
 	}
-
-	// TODO unused class?
-	public static class Up extends EventKey {
-		public Up(IWidget origin, char character, int key) {
-			super(origin, character, key);
-		}
-
-		public abstract static class Handler extends EventHandler<Up> {
-			public Handler() {
-				super(Up.class);
-			}
-		}
-	}
 }

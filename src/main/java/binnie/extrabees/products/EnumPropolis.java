@@ -7,32 +7,28 @@ import forestry.api.recipes.RecipeManagers;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
+import java.awt.Color;
+
 public enum EnumPropolis implements IItemEnum {
-	WATER(0x24b3c9, 0xc2bea7, "Water"),
-	OIL(0x172f33, 0xc2bea7, "oil"),
-	FUEL(0xa38d12, 0xc2bea7, "fuel"),
-	MILK,
-	FRUIT,
-	SEED,
-	ALCOHOL,
-	CREOSOTE(0x877501, 0xbda613, "creosote"),
-	GLACIAL,
-	PEAT;
+	WATER(new Color(0x24b3c9), new Color(0xc2bea7), "Water"),
+	OIL(new Color(0x172f33), new Color(0xc2bea7), "oil"),
+	FUEL(new Color(0xa38d12), new Color(0xc2bea7), "fuel"),
+//	MILK,
+//	FRUIT,
+//	SEED,
+//	ALCOHOL,
+	CREOSOTE(new Color(0x877501), new Color(0xbda613), "creosote");
+//	GLACIAL,
+//	PEAT
 
-	int[] colour;
-	String liquidName;
-	boolean active;
+	public final int secondaryColor;
+	public final int primaryColor;
+	public final String liquidName;
 
-	EnumPropolis() {
-		this(0xffffff, 0xffffff, "");
-		active = false;
-	}
-
-	EnumPropolis(int colour, int colour2, String liquid) {
-		this.colour = new int[0];
-		active = true;
-		this.colour = new int[]{colour, colour2};
-		liquidName = liquid;
+	EnumPropolis(Color primaryColor, Color secondaryColor, String liquidName) {
+		this.primaryColor = primaryColor.getRGB();
+		this.secondaryColor = secondaryColor.getRGB();
+		this.liquidName = liquidName;
 	}
 
 	public static EnumPropolis get(ItemStack itemStack) {
@@ -52,7 +48,7 @@ public enum EnumPropolis implements IItemEnum {
 
 	@Override
 	public boolean isActive() {
-		return active && Binnie.Liquid.getLiquidStack(liquidName, 100) != null;
+		return Binnie.Liquid.getLiquidStack(liquidName, 100) != null;
 	}
 
 	@Override

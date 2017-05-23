@@ -108,6 +108,6 @@ public class ItemETDoor extends ItemMetadata {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack stack, int meta) {
-		return WoodManager.getPlankType((stack == null) ? 0 : (stack.getItemDamage() & 0xFF)).getColour();
+		return WoodManager.getPlankType((stack == null) ? 0 : (stack.getItemDamage() & 0xFF)).getColor();
 	}
 }

@@ -8,7 +8,7 @@ import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.controls.ControlCheckbox;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextEdit;
-import binnie.core.craftgui.controls.button.ControlButton;
+import binnie.core.craftgui.controls.ControlButton;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.controls.page.ControlPage;
 import binnie.core.craftgui.controls.page.ControlPages;

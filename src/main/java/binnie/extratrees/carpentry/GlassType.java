@@ -72,7 +72,7 @@ public class GlassType implements IDesignMaterial {
 	}
 
 	@Override
-	public int getColour() {
+	public int getColor() {
 		return colour;
 	}
 

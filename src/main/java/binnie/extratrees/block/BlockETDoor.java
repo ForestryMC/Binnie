@@ -114,11 +114,11 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 		int i1 = getFullMetadata(blockAccess, x, y, z);
 		if ((i1 & 0x8) != 0) {
 			int meta = TileEntityMetadata.getTileMetadata(blockAccess, x, y - 1, z);
-			return WoodManager.getPlankType(meta & 0xFF).getColour();
+			return WoodManager.getPlankType(meta & 0xFF).getColor();
 		}
 
 		int meta = TileEntityMetadata.getTileMetadata(blockAccess, x, y, z);
-		return WoodManager.getPlankType(meta & 0xFF).getColour();
+		return WoodManager.getPlankType(meta & 0xFF).getColor();
 	}
 
 	public int getFullMetadata(IBlockAccess blockAccess, int x, int y, int pzr4) {
@@ -156,8 +156,7 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 	}
 
 	@Override
-	// TODO fix deprecated code
-	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z) {
+	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
 		return BlockMetadata.breakBlock(this, player, world, x, y, z);
 	}
 
