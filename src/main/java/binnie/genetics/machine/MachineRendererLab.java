@@ -53,7 +53,7 @@ public class MachineRendererLab {
 		model.render((float) x, (float) y, (float) z, 0.0625f, 0.0625f, 0.0625f);
 		GL11.glPopMatrix();
 		World world = machine.getWorld();
-		LaboratoryMachine.ComponentGUIHolder holder = Machine.getInterface(LaboratoryMachine.ComponentGUIHolder.class, machine);
+		ComponentGUIHolder holder = Machine.getInterface(ComponentGUIHolder.class, machine);
 
 		// TODO remove label
 		Label_0591:
@@ -85,6 +85,7 @@ public class MachineRendererLab {
 					customRenderItem.doRender(dummyEntityItem, 0.0, 0.0, 0.0, 0.0f, 0.0f);
 					GL11.glPopMatrix();
 					int rot = 0;
+
 					for (EntityItem item : itemSides) {
 						GL11.glPushMatrix();
 						item.worldObj = world;

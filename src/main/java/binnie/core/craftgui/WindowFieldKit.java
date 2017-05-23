@@ -24,7 +24,7 @@ import binnie.core.util.I18N;
 import binnie.extrabees.core.ExtraBeeTexture;
 import binnie.extrabees.gui.ExtraBeeGUITexture;
 import binnie.genetics.gui.ControlChromosome;
-import binnie.genetics.machine.Analyser;
+import binnie.genetics.machine.analyser.Analyser;
 import cpw.mods.fml.relauncher.Side;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;

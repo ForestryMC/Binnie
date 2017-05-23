@@ -1,4 +1,4 @@
-package binnie.genetics.machine.inoculator;
+package binnie.genetics.machine.splicer;
 
 import binnie.core.BinnieCore;
 import binnie.core.machines.IMachine;
@@ -17,14 +17,14 @@ import org.lwjgl.opengl.GL11;
 
 import java.util.Random;
 
-public class ComponentInoculatorFX extends MachineComponent implements
+public class SplicerComponentFX extends MachineComponent implements
 	IRender.RandomDisplayTick,
 	IRender.DisplayTick,
 	IRender.Render,
 	INetwork.TilePacketSync {
 	private EntityItem dummyEntityItem;
 
-	public ComponentInoculatorFX(IMachine machine) {
+	public SplicerComponentFX(IMachine machine) {
 		super(machine);
 		dummyEntityItem = new EntityItem(null);
 	}
@@ -32,54 +32,49 @@ public class ComponentInoculatorFX extends MachineComponent implements
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void onRandomDisplayTick(World world, int x, int y, int z, Random rand) {
-		// ignored
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void onDisplayTick(World world, int x, int y, int z, Random rand) {
 		int tick = (int) (world.getTotalWorldTime() % 3L);
-		if (tick == 0 && getUtil().getProcess().isInProgress()) {
-			BinnieCore.proxy.getMinecraftInstance().effectRenderer.addEffect(new EntityFX(world, x + 0.5, y + 0.92, z + 0.5, 0.0, 0.0, 0.0) {
-				double axisX = posX;
-				double axisZ = posZ;
-				double angle = (int) (worldObj.getTotalWorldTime() % 4L) * 0.5 * 3.1415;
-
-				{
-					axisX = 0.0;
-					axisZ = 0.0;
-					angle = 0.0;
-					motionX = 0.0;
-					motionZ = 0.0;
-					motionY = 0.007 + rand.nextDouble() * 0.002;
-					particleMaxAge = 240;
-					particleGravity = 0.0f;
-					noClip = true;
-					setRBGColorF(0.8f, 0.0f, 1.0f);
-				}
-
-				@Override
-				public void onUpdate() {
-					super.onUpdate();
-					double speed = 5.0E-4;
-					if (particleAge > 60) {
-						speed += (particleAge - 60) / 4000.0f;
-					}
-					angle += speed;
-					double dist = 0.27;
-					setPosition(axisX + dist * Math.sin(angle), posY, axisZ + dist * Math.cos(angle));
-					setAlphaF((float) Math.cos(1.57 * particleAge / particleMaxAge));
-					if (particleAge > 40) {
-						setRBGColorF(particleRed + (1.0f - particleRed) / 10.0f, particleGreen + (0.0f - particleGreen) / 10.0f, particleBlue + (0.0f - particleBlue) / 10.0f);
-					}
-				}
-
-				@Override
-				public int getFXLayer() {
-					return 0;
-				}
-			});
+		if (tick != 0 || !getUtil().getProcess().isInProgress()) {
+			return;
 		}
+
+		BinnieCore.proxy.getMinecraftInstance().effectRenderer.addEffect(new EntityFX(world, x + 0.5, y + 1.5, z + 0.5, 0.0, 0.0, 0.0) {
+			double axisX = posX;
+			double axisZ = posZ;
+			double angle = (int) (worldObj.getTotalWorldTime() % 4L) * 0.5 * 3.1415;
+
+			{
+				axisX = 0.0;
+				axisZ = 0.0;
+				angle = 0.0;
+				motionX = 0.0;
+				motionZ = 0.0;
+				motionY = (rand.nextDouble() - 0.5) * 0.02;
+				particleMaxAge = 240;
+				particleGravity = 0.0f;
+				noClip = true;
+				setRBGColorF(0.3f + rand.nextFloat() * 0.5f, 0.3f + rand.nextFloat() * 0.5f, 0.0f);
+			}
+
+			@Override
+			public void onUpdate() {
+				super.onUpdate();
+				double speed = 0.04;
+				angle -= speed;
+				double dist = 0.25 + 0.2 * Math.sin(particleAge / 50.0f);
+				setPosition(axisX + dist * Math.sin(angle), posY, axisZ + dist * Math.cos(angle));
+				setAlphaF((float) Math.cos(1.57 * particleAge / particleMaxAge));
+			}
+
+			@Override
+			public int getFXLayer() {
+				return 0;
+			}
+		});
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -89,7 +84,7 @@ public class ComponentInoculatorFX extends MachineComponent implements
 			return;
 		}
 
-		ItemStack stack = getUtil().getStack(9);
+		ItemStack stack = getUtil().getStack(Splicer.SLOT_TARGET);
 		dummyEntityItem.worldObj = getMachine().getWorld();
 		dummyEntityItem.setEntityItemStack(stack);
 		EntityItem dummyEntityItem = this.dummyEntityItem;
@@ -109,7 +104,7 @@ public class ComponentInoculatorFX extends MachineComponent implements
 	@Override
 	public void syncToNBT(NBTTagCompound nbt) {
 		NBTTagCompound item = new NBTTagCompound();
-		ItemStack stack = getUtil().getStack(Inoculator.SLOT_TARGET);
+		ItemStack stack = getUtil().getStack(Splicer.SLOT_TARGET);
 		if (stack != null) {
 			stack.writeToNBT(item);
 			nbt.setTag("item", item);
@@ -119,9 +114,9 @@ public class ComponentInoculatorFX extends MachineComponent implements
 	@Override
 	public void syncFromNBT(NBTTagCompound nbt) {
 		if (nbt.hasKey("item")) {
-			getUtil().setStack(Inoculator.SLOT_TARGET, ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("item")));
+			getUtil().setStack(Splicer.SLOT_TARGET, ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("item")));
 		} else {
-			getUtil().setStack(Inoculator.SLOT_TARGET, null);
+			getUtil().setStack(Splicer.SLOT_TARGET, null);
 		}
 	}
 

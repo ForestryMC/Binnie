@@ -19,7 +19,7 @@ import binnie.core.craftgui.window.Panel;
 import binnie.extrabees.core.ExtraBeeTexture;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
-import binnie.genetics.machine.Analyser;
+import binnie.genetics.machine.analyser.Analyser;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -42,7 +42,7 @@ public class WindowAnalyser extends WindowMachine {
 		WindowAnalyser.Progress = new StandardTexture(66, 51, 66, 40, GeneticsTexture.GUIProcess.getTexture());
 		int x = 16;
 		int y = 32;
-		new ControlSlotArray(this, x, y, 2, 3).create(Analyser.slotReserve);
+		new ControlSlotArray(this, x, y, 2, 3).create(Analyser.SLOT_RESERVE);
 		x += 28;
 		new ControlSlot(this, x, y + 54 + 8).assign(13);
 		new ControlSlotCharge(this, x + 20, y + 54 + 8, 13).setColor(10040319);
@@ -56,7 +56,7 @@ public class WindowAnalyser extends WindowMachine {
 		new ControlSlot(this, x + 38 - 9, y + 25 - 9).assign(6);
 		new ControlIconDisplay(this, x + 76 + 2, y + 18, GUIIcon.ArrowRight.getIcon());
 		x += 96;
-		new ControlSlotArray(this, x, y, 2, 3).create(Analyser.slotFinished);
+		new ControlSlotArray(this, x, y, 2, 3).create(Analyser.SLOT_FINISHED);
 		x += 52;
 		setTitle("Analyser");
 		new ControlPlayerInventory(this);

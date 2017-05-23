@@ -1,4 +1,4 @@
-package binnie.genetics.machine.inoculator;
+package binnie.genetics.machine.splicer;
 
 import binnie.Binnie;
 import binnie.core.machines.inventory.SlotValidator;
@@ -6,8 +6,8 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.item.ItemStack;
 
-public class ValidatorIndividualInoculate extends SlotValidator {
-	public ValidatorIndividualInoculate() {
+public class IndividualInoculateValidator extends SlotValidator {
+	public IndividualInoculateValidator() {
 		super(null);
 	}
 
@@ -19,6 +19,6 @@ public class ValidatorIndividualInoculate extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return "Inoculable Individual";
+		return "Splicable Individual";
 	}
 }

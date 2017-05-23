@@ -6,8 +6,8 @@ import binnie.genetics.genetics.SequencerItem;
 import binnie.genetics.machine.ModuleMachine;
 import net.minecraft.item.ItemStack;
 
-public class SlotValidatorUnsequenced extends SlotValidator {
-	public SlotValidatorUnsequenced() {
+public class UnsequencedSlotValidator extends SlotValidator {
+	public UnsequencedSlotValidator() {
 		super(ModuleMachine.IconSequencer);
 	}
 

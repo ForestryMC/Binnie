@@ -17,7 +17,7 @@ import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.extrabees.core.ExtraBeeTexture;
 import binnie.genetics.Genetics;
-import binnie.genetics.machine.Genepool;
+import binnie.genetics.machine.genepool.Genepool;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -41,7 +41,7 @@ public class WindowGenepool extends WindowMachine {
 		int y = 32;
 		new ControlLiquidTank(this, x, y).setTankID(1);
 		x += 26;
-		new ControlSlotArray(this, x, y + 3, 2, 3).create(Genepool.slotReserve);
+		new ControlSlotArray(this, x, y + 3, 2, 3).create(Genepool.SLOT_RESERVE);
 		x += 38;
 		new ControlIconDisplay(this, x, y + 3 + 18 + 1, GUIIcon.ArrowRight.getIcon());
 		x += 18;

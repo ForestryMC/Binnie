@@ -8,6 +8,8 @@ import binnie.core.machines.inventory.ValidatorIcon;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
 import binnie.genetics.item.GeneticsItems;
+import binnie.genetics.machine.acclimatiser.Acclimatiser;
+import binnie.genetics.machine.incubator.Incubator;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;

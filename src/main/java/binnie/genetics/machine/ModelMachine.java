@@ -4,13 +4,13 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 
 public class ModelMachine extends ModelBase {
-	ModelRenderer base;
-	ModelRenderer body;
-	ModelRenderer arm1;
-	ModelRenderer arm2;
-	ModelRenderer arm3;
-	ModelRenderer arm4;
-	ModelRenderer top;
+	private ModelRenderer base;
+	private ModelRenderer body;
+	private ModelRenderer arm1;
+	private ModelRenderer arm2;
+	private ModelRenderer arm3;
+	private ModelRenderer arm4;
+	private ModelRenderer top;
 
 	public ModelMachine() {
 		textureWidth = 64;

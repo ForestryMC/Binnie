@@ -10,8 +10,8 @@ import binnie.genetics.genetics.SequencerItem;
 import binnie.genetics.item.GeneticsItems;
 import net.minecraft.item.ItemStack;
 
-public class ComponentSequencerLogic extends ComponentProcess implements IProcess, ComponentInventoryTransfer.ITransferRestockListener {
-	public ComponentSequencerLogic(Machine machine) {
+public class SequencerComponentLogic extends ComponentProcess implements IProcess, ComponentInventoryTransfer.ITransferRestockListener {
+	public SequencerComponentLogic(Machine machine) {
 		super(machine);
 	}
 

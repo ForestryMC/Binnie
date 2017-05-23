@@ -1,4 +1,4 @@
-package binnie.genetics.machine.inoculator;
+package binnie.genetics.machine.splicer;
 
 import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentProcessSetCost;
@@ -15,65 +15,104 @@ import forestry.api.genetics.IIndividual;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class ComponentInoculatorLogic extends ComponentProcessSetCost implements IProcess {
-	private float bacteriaDrain;
+public class SplicerComponentLogic extends ComponentProcessSetCost implements IProcess {
+	public int nOfGenes;
 
-	public ComponentInoculatorLogic(Machine machine) {
-		super(machine, 600000, 12000);
-		bacteriaDrain = 0.0f;
+	public SplicerComponentLogic(Machine machine) {
+		super(machine, 12000000, 1200);
+		nOfGenes = 0;
 	}
 
 	@Override
 	public int getProcessLength() {
-		return super.getProcessLength() * getNumberOfGenes();
+		float n = getNumberOfGenes();
+		if (n > 1.0f) {
+			n = 1.0f + (n - 1.0f) * 0.5f;
+		}
+		// Fix for / by 0
+		int temp = (int) (super.getProcessLength() * n);
+		return temp != 0 ? temp : 1;
 	}
 
 	@Override
 	public int getProcessEnergy() {
-		return super.getProcessEnergy() * getNumberOfGenes();
+		float n = getNumberOfGenes();
+		if (n > 1.0f) {
+			n = 1.0f + (n - 1.0f) * 0.5f;
+		}
+		return (int) (super.getProcessEnergy() * n);
 	}
 
-	private int getNumberOfGenes() {
-		ItemStack serum = getUtil().getStack(Inoculator.SLOT_SERUM_VIAL);
+	@Override
+	public void onInventoryUpdate() {
+		super.onInventoryUpdate();
+		nOfGenes = getGenesToUse();
+	}
+
+	protected int getGenesToUse() {
+		ItemStack serum = getUtil().getStack(Splicer.SLOT_SERUM_VIAL);
+		ItemStack target = getUtil().getStack(Splicer.SLOT_TARGET);
+		if (serum == null || target == null) {
+			return 1;
+		}
+
+		IIndividual ind = AlleleManager.alleleRegistry.getIndividual(target);
+		IGene[] genes = ((IItemSerum) serum.getItem()).getGenes(serum);
+		if (ind.getGenome().getSpeciesRoot() != ((IItemSerum) serum.getItem()).getSpeciesRoot(serum)) {
+			return 1;
+		}
+
+		int i = 0;
+		for (IGene gene : genes) {
+			if (ind.getGenome().getActiveAllele(gene.getChromosome()) != gene.getAllele() || ind.getGenome().getInactiveAllele(gene.getChromosome()) != gene.getAllele()) {
+				i++;
+			}
+		}
+		return (i < 1) ? 1 : i;
+	}
+
+	private int getFullNumberOfGenes() {
+		ItemStack serum = getUtil().getStack(Splicer.SLOT_SERUM_VIAL);
 		if (serum == null) {
 			return 1;
 		}
 		return Engineering.getGenes(serum).length;
 	}
 
+	private int getNumberOfGenes() {
+		return nOfGenes;
+	}
+
 	@Override
 	public String getTooltip() {
 		int n = getNumberOfGenes();
-		return "Inoculating with " + n + " gene" + ((n > 1) ? "s" : "");
+		int f = getFullNumberOfGenes();
+		return "Splicing in " + n + ((f > 1) ? ("/" + f) : "") + " gene" + ((n > 1) ? "s" : "");
 	}
 
 	@Override
 	public ErrorState canWork() {
-		if (getUtil().isSlotEmpty(Inoculator.SLOT_TARGET)) {
-			return new ErrorState.NoItem("No Individual to Inoculate", Inoculator.SLOT_TARGET);
+		if (getUtil().isSlotEmpty(Splicer.SLOT_TARGET)) {
+			return new ErrorState.NoItem("No Individual to Splice", Splicer.SLOT_TARGET);
 		}
-		if (getUtil().isSlotEmpty(Inoculator.SLOT_SERUM_VIAL)) {
-			return new ErrorState.NoItem("No Serum", Inoculator.SLOT_SERUM_VIAL);
-		}
-		if (getUtil().isTankEmpty(Inoculator.TANK_VECTOR)) {
-			return new ErrorState.InsufficientLiquid("Not enough liquid", Inoculator.TANK_VECTOR);
+		if (getUtil().isSlotEmpty(Splicer.SLOT_SERUM_VIAL)) {
+			return new ErrorState.NoItem("No Serum", Splicer.SLOT_SERUM_VIAL);
 		}
 
 		ErrorState state = isValidSerum();
 		if (state != null) {
 			return state;
 		}
-		
-		ItemStack stack = getUtil().getStack(Inoculator.SLOT_SERUM_VIAL);
-		if (stack != null && Engineering.getCharges(stack) == 0) {
+
+		if (getUtil().getStack(0) != null && Engineering.getCharges(getUtil().getStack(Splicer.SLOT_SERUM_VIAL)) == 0) {
 			return new ErrorState("Empty Serum", "Serum is empty");
 		}
 		return super.canWork();
 	}
 
 	public ErrorState isValidSerum() {
-		ItemStack serum = getUtil().getStack(Inoculator.SLOT_SERUM_VIAL);
-		ItemStack target = getUtil().getStack(Inoculator.SLOT_TARGET);
+		ItemStack serum = getUtil().getStack(Splicer.SLOT_SERUM_VIAL);
+		ItemStack target = getUtil().getStack(Splicer.SLOT_TARGET);
 		IGene[] genes = Engineering.getGenes(serum);
 		if (genes.length == 0) {
 			return new ErrorState("Invalid Serum", "Serum does not hold any genes");
@@ -110,8 +149,8 @@ public class ComponentInoculatorLogic extends ComponentProcessSetCost implements
 	@Override
 	protected void onFinishTask() {
 		super.onFinishTask();
-		ItemStack serum = getUtil().getStack(Inoculator.SLOT_SERUM_VIAL);
-		ItemStack target = getUtil().getStack(Inoculator.SLOT_TARGET);
+		ItemStack serum = getUtil().getStack(Splicer.SLOT_SERUM_VIAL);
+		ItemStack target = getUtil().getStack(Splicer.SLOT_TARGET);
 		IIndividual ind = AlleleManager.alleleRegistry.getIndividual(target);
 		if (!ind.isAnalyzed()) {
 			ind.analyze();
@@ -122,18 +161,14 @@ public class ComponentInoculatorLogic extends ComponentProcessSetCost implements
 
 		IGene[] genes = ((IItemSerum) serum.getItem()).getGenes(serum);
 		for (IGene gene : genes) {
-			Inoculator.setGene(gene, target, 0);
-			Inoculator.setGene(gene, target, 1);
+			Splicer.setGene(gene, target, 0);
+			Splicer.setGene(gene, target, 1);
 		}
-		getUtil().damageItem(0, 1);
+		getUtil().damageItem(Splicer.SLOT_SERUM_VIAL, 1);
 	}
 
 	@Override
 	protected void onTickTask() {
-		bacteriaDrain += 15.0f * getProgressPerTick() / 100.0f;
-		if (bacteriaDrain >= 1.0f) {
-			getUtil().drainTank(0, 1);
-			bacteriaDrain--;
-		}
+		// ignored
 	}
 }

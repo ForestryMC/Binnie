@@ -12,8 +12,8 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class ComponentSequencerFX extends MachineComponent implements IRender.RandomDisplayTick, IRender.DisplayTick {
-	public ComponentSequencerFX(IMachine machine) {
+public class SequencerComponentFX extends MachineComponent implements IRender.RandomDisplayTick, IRender.DisplayTick {
+	public SequencerComponentFX(IMachine machine) {
 		super(machine);
 	}
 
@@ -62,39 +62,41 @@ public class ComponentSequencerFX extends MachineComponent implements IRender.Ra
 	@Override
 	public void onDisplayTick(World world, int x, int y, int z, Random rand) {
 		int ticks = (int) (world.getTotalWorldTime() % 16L);
-		if (ticks == 0 && getUtil().getProcess().isInProgress()) {
-			BinnieCore.proxy.getMinecraftInstance().effectRenderer.addEffect(new EntityFX(world, x + 0.5, y + 1, z + 0.5, 0.0, 0.0, 0.0) {
-				{
-					motionX = 0.0;
-					motionZ = 0.0;
-					motionY = 0.012;
-					particleMaxAge = 50;
-					particleGravity = 0.0f;
-					noClip = true;
-					particleScale = 2.0f;
-
-					setParticleIcon((new BinnieIcon[]{
-						Sequencer.fxSeqA,
-						Sequencer.fxSeqG,
-						Sequencer.fxSeqC, 
-						Sequencer.fxSeqT
-					})[rand.nextInt(4)].getIcon());
-				}
-
-				@Override
-				public void onUpdate() {
-					super.onUpdate();
-					motionY = 0.012;
-					if (particleAge > 40) {
-						setAlphaF((50 - particleAge) / 10.0f);
-					}
-				}
-
-				@Override
-				public int getFXLayer() {
-					return 1;
-				}
-			});
+		if (ticks != 0 || !getUtil().getProcess().isInProgress()) {
+			return;
 		}
+
+		BinnieCore.proxy.getMinecraftInstance().effectRenderer.addEffect(new EntityFX(world, x + 0.5, y + 1, z + 0.5, 0.0, 0.0, 0.0) {
+			{
+				motionX = 0.0;
+				motionZ = 0.0;
+				motionY = 0.012;
+				particleMaxAge = 50;
+				particleGravity = 0.0f;
+				noClip = true;
+				particleScale = 2.0f;
+
+				setParticleIcon((new BinnieIcon[]{
+					Sequencer.fxSeqA,
+					Sequencer.fxSeqG,
+					Sequencer.fxSeqC, 
+					Sequencer.fxSeqT
+				})[rand.nextInt(4)].getIcon());
+			}
+
+			@Override
+			public void onUpdate() {
+				super.onUpdate();
+				motionY = 0.012;
+				if (particleAge > 40) {
+					setAlphaF((50 - particleAge) / 10.0f);
+				}
+			}
+
+			@Override
+			public int getFXLayer() {
+				return 1;
+			}
+		});
 	}
 }

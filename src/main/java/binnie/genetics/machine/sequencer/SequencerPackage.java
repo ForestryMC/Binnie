@@ -15,14 +15,14 @@ import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.ComponentGeneticGUI;
-import binnie.genetics.machine.GeneticMachine;
 import binnie.genetics.machine.ModuleMachine;
+import binnie.genetics.machine.PackageGeneticBase;
 import net.minecraft.tileentity.TileEntity;
 
-public class PackageSequencer extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
-	private ComponentSequencerLogic logic;
+public class SequencerPackage extends PackageGeneticBase implements IMachineInformation {
+	private SequencerComponentLogic logic;
 
-	public PackageSequencer() {
+	public SequencerPackage() {
 		super("sequencer", GeneticsTexture.Sequencer, 0xb7ff32, true);
 		Sequencer.fxSeqA = Binnie.Resource.getBlockIcon(Genetics.instance, "fx/sequencer.a");
 		Sequencer.fxSeqG = Binnie.Resource.getBlockIcon(Genetics.instance, "fx/sequencer.g");
@@ -41,12 +41,12 @@ public class PackageSequencer extends GeneticMachine.PackageGeneticBase implemen
 
 		inventory.addSlotArray(Sequencer.SLOT_RESERVE, "input");
 		for (InventorySlot slot : inventory.getSlots(Sequencer.SLOT_RESERVE)) {
-			slot.setValidator(new SlotValidatorUnsequenced());
+			slot.setValidator(new UnsequencedSlotValidator());
 			slot.forbidExtraction();
 		}
 
 		InventorySlot slotTarget = inventory.addSlot(Sequencer.SLOT_TARGET_INDEX, "process");
-		slotTarget.setValidator(new SlotValidatorUnsequenced());
+		slotTarget.setValidator(new UnsequencedSlotValidator());
 		slotTarget.setReadOnly();
 		slotTarget.forbidInteraction();
 
@@ -58,9 +58,9 @@ public class PackageSequencer extends GeneticMachine.PackageGeneticBase implemen
 
 		new ComponentChargedSlots(machine).addCharge(Sequencer.SLOT_DYE_INDEX);
 		new ComponentPowerReceptor(machine, 10000);
-		new ComponentSequencerFX(machine);
+		new SequencerComponentFX(machine);
 
-		logic = new ComponentSequencerLogic(machine);
+		logic = new SequencerComponentLogic(machine);
 		transfer.setTransferListener(logic);
 	}
 
