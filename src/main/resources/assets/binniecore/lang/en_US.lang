@@ -230,6 +230,17 @@ binniecore.gui.tooltip.help=Help
 binniecore.gui.tooltip.help.0=To activate help tooltips,
 binniecore.gui.tooltip.help.1=hold down the tab key and
 binniecore.gui.tooltip.help.2=mouse over controls.
+binniecore.gui.tooltip.powerSupply=Power Supply
+binniecore.gui.tooltip.poweredBy=Powered by %s
+binniecore.gui.tooltip.tank.full=%d%% full
+binniecore.gui.tooltip.tank.amount=%d mB
+binniecore.gui.tooltip.tank.empty=Empty
+binniecore.gui.tooltip.tank.capacity=Capacity: %d mB
+binniecore.gui.tooltip.tank.insertSide=Insert Side:  %s
+binniecore.gui.tooltip.tank.extractSide=Extract Side: %s
+binniecore.gui.tooltip.tank.outputOnlyTank=Output Only Tank
+binniecore.gui.tooltip.tank.acceptsAny=Accepts: Any Item
+binniecore.gui.tooltip.tank.accepts=Accepts: %s
 
 
 < Descriptions used for effects in the registry >

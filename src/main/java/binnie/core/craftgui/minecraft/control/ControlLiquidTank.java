@@ -18,6 +18,7 @@ import binnie.core.machines.inventory.MachineSide;
 import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.power.ITankMachine;
 import binnie.core.machines.power.TankInfo;
+import binnie.core.util.I18N;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
@@ -89,7 +90,6 @@ public class ControlLiquidTank extends Control implements ITooltip {
 		if (isTankValid()) {
 			float height = horizontal ? 16.0f : 58.0f;
 			int squaled = (int) (height * (getTank().getAmount() / getTank().getCapacity()));
-			int yPos = (int) height + 1;
 			Fluid fluid = getTank().liquid.getFluid();
 			int hex = fluid.getColor(getTank().liquid);
 			int r = (hex & 0xFF0000) >> 16;
@@ -144,25 +144,32 @@ public class ControlLiquidTank extends Control implements ITooltip {
 
 		TankSlot slot = getTankSlot();
 		tooltip.add(slot.getName());
-		tooltip.add("Capacity: " + getTankCapacity() + " mB");
-		tooltip.add("Insert Side: " + MachineSide.asString(slot.getInputSides()));
-		tooltip.add("Extract Side: " + MachineSide.asString(slot.getOutputSides()));
+		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.tank.capacity", getTankCapacity()));
+		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.tank.insertSide", MachineSide.asString(slot.getInputSides())));
+		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.tank.extractSide", MachineSide.asString(slot.getOutputSides())));
+
 		if (slot.isReadOnly()) {
-			tooltip.add("Output Only Tank");
+			tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.tank.outputOnlyTank"));
 		}
-		tooltip.add("Accepts: " + ((slot.getValidator() == null) ? "Any Item" : slot.getValidator().getTooltip()));
+		
+		if (slot.getValidator() == null) {
+			tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.tank.acceptsAny"));
+		} else {
+			tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.tank.accepts", slot.getValidator().getTooltip()));
+		}
 	}
 
 	@Override
 	public void getTooltip(Tooltip tooltip) {
-		if (isTankValid()) {
-			int percentage = (int) (100.0 * getTank().getAmount() / getTankCapacity());
-			tooltip.add(getTank().getName());
-			tooltip.add(percentage + "% full");
-			tooltip.add((int) getTank().getAmount() + " mB");
+		if (!isTankValid()) {
+			tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.tank.empty"));
 			return;
 		}
-		tooltip.add("Empty");
+
+		int percentage = (int) (100.0 * getTank().getAmount() / getTankCapacity());
+		tooltip.add(getTank().getName());
+		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.tank.full", percentage));
+		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.tank.amount", (int) getTank().getAmount()));
 	}
 
 	private TankSlot getTankSlot() {
