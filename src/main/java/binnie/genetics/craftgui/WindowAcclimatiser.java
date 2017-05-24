@@ -10,21 +10,17 @@ import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.core.craftgui.minecraft.control.ControlSlotArray;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
+import binnie.core.util.I18N;
 import binnie.extrabees.core.ExtraBeeTexture;
 import binnie.genetics.Genetics;
-import binnie.genetics.machine.Acclimatiser;
+import binnie.genetics.machine.acclimatiser.Acclimatiser;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 
 public class WindowAcclimatiser extends WindowMachine {
-	public static int[] slotReserve = new int[]{0, 1, 2, 3};
-	public static int slotTarget = 4;
-	public static int[] slotAcclimatiser = new int[]{5, 6, 7};
-	public static int[] slotDone = new int[]{8, 9, 10, 11};
-
-	protected static Texture ProgressBase = new StandardTexture(64, 0, 130, 21, ExtraBeeTexture.GUIProgress.getTexture());
-	protected static Texture Progress = new StandardTexture(64, 21, 130, 21, ExtraBeeTexture.GUIProgress.getTexture());
+	protected static Texture progressBase = new StandardTexture(64, 0, 130, 21, ExtraBeeTexture.GUIProgress.getTexture());
+	protected static Texture progress = new StandardTexture(64, 21, 130, 21, ExtraBeeTexture.GUIProgress.getTexture());
 
 	public WindowAcclimatiser(EntityPlayer player, IInventory inventory, Side side) {
 		super(280, 198, player, inventory, side);
@@ -36,15 +32,15 @@ public class WindowAcclimatiser extends WindowMachine {
 
 	@Override
 	public void initialiseClient() {
-		setTitle("Acclimatiser");
-		int x = 16;
+		setTitle(I18N.localise(Genetics.instance, "machine.labMachine.acclimatiser"));
+		int x = 59;
 		int y = 32;
-		new ControlSlotArray(this, x, y, 2, 2).create(Acclimatiser.slotReserve);
+		new ControlSlotArray(this, x, y, 2, 2).create(Acclimatiser.SLOT_RESERVE);
 		x += 54;
 		new ControlSlot(this, x + 18, y).assign(4);
-		new ControlSlotArray(this, x, y + 18 + 18, 3, 1).create(Acclimatiser.slotAcclimatiser);
+		new ControlSlotArray(this, x, y + 18 + 18, 3, 1).create(Acclimatiser.SLOT_ACCLIMATISER);
 		x += 72;
-		new ControlSlotArray(this, x, y, 2, 2).create(Acclimatiser.slotDone);
+		new ControlSlotArray(this, x, y, 2, 2).create(Acclimatiser.SLOT_DONE);
 		new ControlEnergyBar(this, 21, 115, 16, 60, Position.Bottom);
 		new ControlErrorState(this, 181.0f, 83.0f);
 		new ControlPlayerInventory(this);
@@ -52,7 +48,7 @@ public class WindowAcclimatiser extends WindowMachine {
 
 	@Override
 	public String getTitle() {
-		return "Acclimatiser";
+		return I18N.localise(Genetics.instance, "machine.labMachine.acclimatiser");
 	}
 
 	@Override
@@ -62,6 +58,6 @@ public class WindowAcclimatiser extends WindowMachine {
 
 	@Override
 	protected String getName() {
-		return "Acclimatiser";
+		return I18N.localise(Genetics.instance, "machine.labMachine.acclimatiser");
 	}
 }

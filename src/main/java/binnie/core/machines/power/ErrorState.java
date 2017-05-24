@@ -1,5 +1,7 @@
 package binnie.core.machines.power;
 
+import binnie.core.BinnieCore;
+import binnie.core.util.I18N;
 import forestry.api.core.INBTTagable;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -47,10 +49,6 @@ public class ErrorState implements INBTTagable {
 
 	public boolean isProgress() {
 		return progress;
-	}
-
-	public void setIsProgress() {
-		progress = true;
 	}
 
 	@Override
@@ -109,13 +107,13 @@ public class ErrorState implements INBTTagable {
 		}
 
 		public NoItem(String desc, int[] slots) {
-			super("No Item", desc, slots);
+			super(I18N.localise(BinnieCore.instance, "machine.error.noItem"), desc, slots);
 		}
 	}
 
 	public static class InvalidItem extends Item {
 		public InvalidItem(String desc, int slot) {
-			this("Invalid Item", desc, slot);
+			this(I18N.localise(BinnieCore.instance, "machine.error.invalidItem"), desc, slot);
 		}
 
 		public InvalidItem(String name, String desc, int slot) {
@@ -125,31 +123,28 @@ public class ErrorState implements INBTTagable {
 
 	public static class NoSpace extends Item {
 		public NoSpace(String desc, int[] slots) {
-			super("No Space", desc, slots);
+			super(I18N.localise(BinnieCore.instance, "machine.error.noSpace"), desc, slots);
 		}
 	}
 
 	public static class InsufficientPower extends ErrorState {
 		public InsufficientPower() {
-			super("Insufficient Power", "Not enough power to operate");
+			super(
+				I18N.localise(BinnieCore.instance, "machine.error.insufficientPower.title"),
+				I18N.localise(BinnieCore.instance, "machine.error.insufficientPower.desc")
+			);
 		}
 	}
 
 	public static class TankSpace extends Tank {
 		public TankSpace(String desc, int tank) {
-			super("Tank Full", desc, new int[]{tank});
+			super(I18N.localise(BinnieCore.instance, "machine.error.tankFull"), desc, new int[]{tank});
 		}
 	}
 
 	public static class InsufficientLiquid extends Tank {
 		public InsufficientLiquid(String desc, int tank) {
-			super("Insufficient Liquid", desc, new int[]{tank});
-		}
-	}
-
-	public static class InvalidRecipe extends Item {
-		public InvalidRecipe(String string, int[] slots) {
-			super("Invalid Recipe", string, slots);
+			super(I18N.localise(BinnieCore.instance, "machine.error.insufficientLiquid"), desc, new int[]{tank});
 		}
 	}
 }

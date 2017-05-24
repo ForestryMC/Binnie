@@ -44,8 +44,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.Deque;
 
-public abstract class Window extends TopLevelWidget implements INetwork.RecieveGuiNBT
-{
+public abstract class Window extends TopLevelWidget implements INetwork.RecieveGuiNBT {
 	private GuiCraftGUI gui;
 	private ContainerCraftGUI container;
 	private WindowInventory windowInventory;
@@ -76,7 +75,6 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 				if (widget.hasAttribute(WidgetAttribute.BlockTooltip)) {
 					return;
 				}
-				continue;
 			}
 		}
 	}
@@ -98,7 +96,6 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 				if (widget.hasAttribute(WidgetAttribute.BlockTooltip)) {
 					return;
 				}
-				continue;
 			}
 		}
 	}
@@ -123,32 +120,36 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 	}
 
 	public Window(float width, float height, EntityPlayer player, IInventory inventory, Side side) {
+		this.side = side;
 		titleButtonLeft = 8.0f;
 		titleButtonRight = 8.0f;
 		bgText1 = null;
 		bgText2 = null;
 		hasBeenInitialised = false;
-		this.side = Side.CLIENT;
-		this.side = side;
 		setInventories(player, inventory);
 		container = new ContainerCraftGUI(this);
 		windowInventory = new WindowInventory(this);
 		if (side == Side.SERVER) {
 			return;
 		}
+
 		setSize(new IPoint(width, height));
 		gui = new GuiCraftGUI(this);
 		for (EnumHighlighting h : EnumHighlighting.values()) {
-			ControlSlot.highlighting.put(h, new ArrayList<Integer>());
+			ControlSlot.highlighting.put(h, new ArrayList<>());
 		}
-		(CraftGUI.Render = new Renderer(gui)).stylesheet(StyleSheetManager.getDefault());
+
+		CraftGUI.Render = new Renderer(gui);
+		CraftGUI.Render.stylesheet(StyleSheetManager.getDefault());
 		titleButtonLeft = -14.0f;
+
 		if (showHelpButton()) {
 			new ControlHelp(this, titleButtonLeft += 22.0f, 8.0f);
 		}
 		if (showInfoButton() != null) {
 			new ControlInfo(this, titleButtonLeft += 22.0f, 8.0f, showInfoButton());
 		}
+
 		addSelfEventHandler(new EventWidget.ChangeSize.Handler() {
 			@Override
 			public void onEvent(EventWidget.ChangeSize event) {
@@ -163,7 +164,8 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 	}
 
 	public void setTitle(String title) {
-		(this.title = new ControlTextCentered(this, 12.0f, title)).setColor(4210752);
+		this.title = new ControlTextCentered(this, 12.0f, title);
+		this.title.setColor(0x404040);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -183,10 +185,12 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		if (hasBeenInitialised) {
 			return;
 		}
+
 		bgText1 = new StandardTexture(0, 0, 256, 256, getBackgroundTextureFile(1));
 		if (getSize().x() > 256.0f) {
 			bgText2 = new StandardTexture(0, 0, 256, 256, getBackgroundTextureFile(2));
 		}
+
 		if (!BinnieCore.proxy.checkTexture(bgText1.getTexture())) {
 			bgText1 = null;
 			bgText2 = null;
@@ -198,11 +202,12 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 	public abstract void initialiseClient();
 
 	public void initialiseServer() {
+		// ignored
 	}
 
 	@Override
 	public void onRenderBackground() {
-		CraftGUI.Render.colour(16777215);
+		CraftGUI.Render.colour(0xffffff);
 		if (getBackground1() != null) {
 			CraftGUI.Render.texture(getBackground1(), IPoint.ZERO);
 		}
@@ -267,9 +272,6 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		return BinnieCore.proxy.getWorld();
 	}
 
-	public void onInventoryUpdate() {
-	}
-
 	public void sendClientAction(String name, NBTTagCompound action) {
 		action.setString("type", name);
 		MessageCraftGUI packet = new MessageCraftGUI(action);
@@ -282,19 +284,20 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 			float w = w();
 			float titleButtonRight = this.titleButtonRight + 16.0f;
 			this.titleButtonRight = titleButtonRight;
-			ControlUser controlUser = new ControlUser(this, w - titleButtonRight, 8.0f, nbt.getString("username"));
+			new ControlUser(this, w - titleButtonRight, 8.0f, nbt.getString("username"));
 			this.titleButtonRight += 6.0f;
 		}
 		if (side == Side.CLIENT && name.equals("power-system")) {
 			float w2 = w();
 			float titleButtonRight2 = titleButtonRight + 16.0f;
 			titleButtonRight = titleButtonRight2;
-			ControlPowerSystem controlPowerSystem = new ControlPowerSystem(this, w2 - titleButtonRight2, 8.0f, PowerSystem.get(nbt.getByte("system")));
+			new ControlPowerSystem(this, w2 - titleButtonRight2, 8.0f, PowerSystem.get(nbt.getByte("system")));
 			titleButtonRight += 6.0f;
 		}
 	}
 
 	public void onWindowInventoryChanged() {
+		// ignored
 	}
 
 	public Texture getBackground1() {

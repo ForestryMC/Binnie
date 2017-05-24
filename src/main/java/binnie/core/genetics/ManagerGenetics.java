@@ -20,7 +20,6 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.lepidopterology.IButterflyRoot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import net.minecraftforge.event.world.WorldEvent;
 
 import java.util.ArrayList;
@@ -65,11 +64,6 @@ public class ManagerGenetics extends ManagerBase {
 	@Override
 	public void postInit() {
 		refreshData();
-	}
-
-	// TODO unused method?
-	public boolean isSpeciesDiscovered(IAlleleSpecies species, World world, boolean nei) {
-		return true;
 	}
 
 	public ITreeRoot getTreeRoot() {

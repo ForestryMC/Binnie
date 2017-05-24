@@ -29,7 +29,7 @@ import binnie.core.genetics.BreedingSystem;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.genetics.Genetics;
 import binnie.genetics.item.GeneticsItems;
-import binnie.genetics.machine.Analyser;
+import binnie.genetics.machine.analyser.Analyser;
 import binnie.genetics.machine.ModuleMachine;
 import cpw.mods.fml.relauncher.Side;
 import forestry.api.apiculture.IBee;

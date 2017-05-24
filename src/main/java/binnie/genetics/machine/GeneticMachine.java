@@ -1,23 +1,19 @@
 package binnie.genetics.machine;
 
 import binnie.core.machines.IMachineType;
-import binnie.core.machines.Machine;
 import binnie.core.machines.MachinePackage;
-import binnie.core.machines.TileEntityMachine;
-import binnie.core.resource.BinnieResource;
-import binnie.core.resource.IBinnieTexture;
 import binnie.genetics.Genetics;
-import binnie.genetics.machine.inoculator.PackageInoculator;
-import binnie.genetics.machine.sequencer.PackageSequencer;
-import net.minecraft.client.renderer.RenderBlocks;
+import binnie.genetics.machine.inoculator.InoculatorPackage;
+import binnie.genetics.machine.isolator.IsolatorPackage;
+import binnie.genetics.machine.polymeriser.PolymeriserPackage;
+import binnie.genetics.machine.sequencer.SequencerPackage;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 
 public enum GeneticMachine implements IMachineType {
-	Isolator(Isolator.PackageIsolator.class),
-	Sequencer(PackageSequencer.class),
-	Polymeriser(Polymeriser.PackagePolymeriser.class),
-	Inoculator(PackageInoculator.class);
+	Isolator(IsolatorPackage.class),
+	Sequencer(SequencerPackage.class),
+	Polymeriser(PolymeriserPackage.class),
+	Inoculator(InoculatorPackage.class);
 
 	protected Class<? extends MachinePackage> clss;
 
@@ -37,26 +33,5 @@ public enum GeneticMachine implements IMachineType {
 
 	public ItemStack get(int i) {
 		return new ItemStack(Genetics.packageGenetic.getBlock(), i, ordinal());
-	}
-
-	public abstract static class PackageGeneticBase extends MachinePackage {
-		protected BinnieResource renderTexture;
-		protected int colour;
-
-		protected PackageGeneticBase(String uid, IBinnieTexture renderTexture, int flashColor, boolean powered) {
-			super(uid, powered);
-			this.renderTexture = renderTexture.getTexture();
-			colour = flashColor;
-		}
-
-		@Override
-		public TileEntity createTileEntity() {
-			return new TileEntityMachine(this);
-		}
-
-		@Override
-		public void renderMachine(Machine machine, double x, double y, double z, float partialTick, RenderBlocks renderer) {
-			MachineRendererGenetics.instance.renderMachine(machine, colour, renderTexture, x, y, z, partialTick);
-		}
 	}
 }

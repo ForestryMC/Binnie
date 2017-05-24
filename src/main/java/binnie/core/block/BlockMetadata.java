@@ -27,8 +27,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	}
 
 	@Override
-	// TODO fix deprecated usage
-	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z) {
+	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
 		return breakBlock(this, player, world, x, y, z);
 	}
 
@@ -121,8 +120,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	}
 
 	@Override
-	// TODO fix deprecated usage
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
 		return getPickBlock(world, x, y, z);
 	}
 }

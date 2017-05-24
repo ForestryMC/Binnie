@@ -10,18 +10,20 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.FluidStack;
 
+import java.awt.Color;
+
 public enum ExtraBeeLiquid implements ILiquidType {
-	ACID("acid", 0xafeb19),
-	POISON("poison", 0xeb14eb),
-	GLACIAL("liquidnitrogen", 0x96c8c8);
+	ACID("acid", new Color(0xafeb19)),
+	POISON("poison", new Color(0xeb14eb)),
+	GLACIAL("liquidnitrogen", new Color(0x96c8c8));
 
 	protected String ident;
 	protected IIcon icon;
-	protected int colour;
+	protected int color;
 
-	ExtraBeeLiquid(String ident, int colour) {
+	ExtraBeeLiquid(String ident, Color color) {
 		this.ident = ident;
-		this.colour = colour;
+		this.color = color.getRGB();
 	}
 
 	@Override
@@ -75,6 +77,6 @@ public enum ExtraBeeLiquid implements ILiquidType {
 
 	@Override
 	public int getContainerColor() {
-		return colour;
+		return color;
 	}
 }

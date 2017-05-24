@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 public class ComponentGeneticGUI extends MachineComponent implements IInteraction.RightClick {
-	GeneticsGUI id;
+	public GeneticsGUI id;
 
 	public ComponentGeneticGUI(Machine machine, GeneticsGUI id) {
 		super(machine);

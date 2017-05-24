@@ -27,9 +27,9 @@ public class ItemHoneyDrop extends ItemProduct {
 	@Override
 	public int getColorFromItemStack(ItemStack itemStack, int j) {
 		if (j == 0) {
-			return EnumHoneyDrop.get(itemStack).color[0];
+			return EnumHoneyDrop.get(itemStack).primaryColor;
 		}
-		return EnumHoneyDrop.get(itemStack).color[1];
+		return EnumHoneyDrop.get(itemStack).secondaryColor;
 	}
 
 	@Override

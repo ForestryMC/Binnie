@@ -16,7 +16,6 @@ genetics.machine.machine.inoculator.info=The Inoculator uses serums to add genes
 genetics.machine.labMachine.genepool=Genepool
 genetics.machine.labMachine.genepool.info=The Genepool uses enzymes and ethanol to break down living things into DNA. All genetic information is lost and the source of the DNA is destroyed.
 
-
 genetics.machine.labMachine.labMachine=Lab Stand
 
 genetics.machine.labMachine.analyser=Analyser
@@ -26,6 +25,10 @@ genetics.machine.labMachine.incubator=Incubator
 genetics.machine.labMachine.incubator.info=The Incubator combines liquids and items and allows them to sit at an ideal temperature to encourage bacterial growth. 
 
 genetics.machine.labMachine.acclimatiser=Acclimatiser
+genetics.machine.acclimatiser.acclimatizingItems=Acclimatising Items
+genetics.machine.acclimatiser.error.noIndividual=No Individual to Acclimatize
+genetics.machine.acclimatiser.error.noAcclimatizingItems=No Acclimatizing Items
+genetics.machine.acclimatiser.error.invalidAcclimatizingItems=Cannot Acclimatize this individual with these items
 
 genetics.machine.advMachine.splicer=Splicer
 genetics.machine.advMachine.splicer.info=The Splicer is an incredibly powerful machine to insert genes into individuals. It is fast, but needs insane amounts of power.

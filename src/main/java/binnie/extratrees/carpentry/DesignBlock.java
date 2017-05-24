@@ -64,61 +64,11 @@ public class DesignBlock {
 	}
 
 	public int getPrimaryColour() {
-		return getPrimaryMaterial().getColour();
+		return getPrimaryMaterial().getColor();
 	}
 
 	public int getSecondaryColour() {
-		return getSecondaryMaterial().getColour();
-	}
-
-	// TODO unused method?
-	ForgeDirection getRotation(ForgeDirection dir, ModuleCarpentry.Axis axis) {
-		if (axis == ModuleCarpentry.Axis.Y) {
-			switch (dir) {
-				case EAST:
-					return ForgeDirection.NORTH;
-
-				case NORTH:
-					return ForgeDirection.WEST;
-
-				case SOUTH:
-					return ForgeDirection.EAST;
-
-				case WEST:
-					return ForgeDirection.SOUTH;
-			}
-			return dir;
-		} else if (axis == ModuleCarpentry.Axis.X) {
-			switch (dir) {
-				case EAST:
-					return ForgeDirection.UP;
-
-				case UP:
-					return ForgeDirection.WEST;
-
-				case WEST:
-					return ForgeDirection.DOWN;
-
-				case DOWN:
-					return ForgeDirection.EAST;
-			}
-			return dir;
-		} else {
-			switch (dir) {
-				case SOUTH:
-					return ForgeDirection.UP;
-
-				case UP:
-					return ForgeDirection.NORTH;
-
-				case NORTH:
-					return ForgeDirection.DOWN;
-
-				case DOWN:
-					return ForgeDirection.SOUTH;
-			}
-			return dir;
-		}
+		return getSecondaryMaterial().getColor();
 	}
 
 	public ILayout getLayout(ForgeDirection dir) {

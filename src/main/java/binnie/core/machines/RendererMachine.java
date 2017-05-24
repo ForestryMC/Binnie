@@ -9,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-// TODO unused class?
+// Hmm. It's used class
 public class RendererMachine extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler {
 	RenderBlocks blockRenderer;
 

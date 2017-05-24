@@ -7,5 +7,5 @@ public interface IDesignMaterial {
 
 	String getName();
 
-	int getColour();
+	int getColor();
 }

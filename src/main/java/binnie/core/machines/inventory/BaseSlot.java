@@ -72,15 +72,6 @@ public abstract class BaseSlot<T> implements INBTTagable, IValidator<T> {
 		forbidExtraction();
 	}
 
-	// TODO unusing method?
-	public void setInputSides(EnumSet<ForgeDirection> sides) {
-		for (ForgeDirection side : EnumSet.complementOf(sides)) {
-			if (side != ForgeDirection.UNKNOWN) {
-				access.setInsert(side, false);
-			}
-		}
-	}
-
 	public void setOutputSides(EnumSet<ForgeDirection> sides) {
 		for (ForgeDirection side : EnumSet.complementOf(sides)) {
 			if (side != ForgeDirection.UNKNOWN) {

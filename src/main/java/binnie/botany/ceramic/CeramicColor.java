@@ -40,7 +40,7 @@ public class CeramicColor implements IDesignMaterial {
 	}
 
 	@Override
-	public int getColour() {
+	public int getColor() {
 		return color.getColor(false);
 	}
 }

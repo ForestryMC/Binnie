@@ -16,7 +16,7 @@ import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
-import binnie.genetics.machine.Incubator;
+import binnie.genetics.machine.incubator.Incubator;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -40,7 +40,7 @@ public class WindowIncubator extends WindowMachine {
 		int y = 32;
 		new ControlLiquidTank(this, x, y).setTankID(0);
 		x += 26;
-		new ControlSlotArray(this, x, y + 3, 1, 3).create(Incubator.slotQueue);
+		new ControlSlotArray(this, x, y + 3, 1, 3).create(Incubator.SLOT_QUEUE);
 		x += 20;
 		new ControlIconDisplay(this, x, y + 3 + 10, GUIIcon.ArrowRight.getIcon());
 		x += 18;
@@ -49,7 +49,7 @@ public class WindowIncubator extends WindowMachine {
 		x += 40;
 		new ControlIconDisplay(this, x, y + 3 + 10, GUIIcon.ArrowRight.getIcon());
 		x += 18;
-		new ControlSlotArray(this, x, y + 3, 1, 3).create(Incubator.slotOutput);
+		new ControlSlotArray(this, x, y + 3, 1, 3).create(Incubator.SLOT_OUTPUT);
 		x += 26;
 		new ControlLiquidTank(this, x, y).setTankID(1);
 		x += 34;

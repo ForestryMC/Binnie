@@ -80,8 +80,8 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
 	@Override
 	public void onRenderBackground() {
 		if (isMouseOver() && canFill(Window.get(this).getHeldItemStack())) {
-			CraftGUI.Render.solid(getArea(), -1);
-			CraftGUI.Render.solid(getArea().inset(1), -12303292);
+			CraftGUI.Render.solid(getArea(), 0xffffffff);
+			CraftGUI.Render.solid(getArea().inset(1), 0xff444444);
 		}
 
 		CraftGUI.Render.colour(-1);

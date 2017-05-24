@@ -4,7 +4,6 @@ import binnie.core.BinnieCore;
 import binnie.core.machines.component.IInteraction;
 import binnie.core.machines.component.IRender;
 import binnie.core.machines.network.INetwork;
-import binnie.core.machines.power.ITankMachine;
 import binnie.core.network.BinnieCorePacketID;
 import binnie.core.network.INetworkedEntity;
 import binnie.core.network.packet.MessageTileNBT;
@@ -114,13 +113,6 @@ public class Machine implements INetworkedEntity, INBTTagable, INetwork.TilePack
 		return tile;
 	}
 
-	public void sendPacket() {
-		if (!BinnieCore.proxy.isSimulating(getTileEntity().getWorldObj())) {
-			return;
-		}
-		BinnieCore.proxy.sendNetworkEntityPacket((INetworkedEntity) getTileEntity());
-	}
-
 	public Side getSide() {
 		return BinnieCore.proxy.isSimulating(getTileEntity().getWorldObj()) ? Side.SERVER : Side.CLIENT;
 	}
@@ -176,10 +168,6 @@ public class Machine implements INetworkedEntity, INBTTagable, INetwork.TilePack
 
 	public IInventory getInventory() {
 		return getInterface(IInventory.class);
-	}
-
-	public ITankMachine getTankContainer() {
-		return getInterface(ITankMachine.class);
 	}
 
 	@Override

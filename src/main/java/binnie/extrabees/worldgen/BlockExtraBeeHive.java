@@ -63,7 +63,7 @@ public class BlockExtraBeeHive extends Block {
 
 	@Override
 	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
-		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+		ArrayList<ItemStack> ret = new ArrayList<>();
 		List<IHiveDrop> dropList = EnumHiveType.values()[metadata].drops;
 		Collections.shuffle(dropList);
 		int tries = 0;
