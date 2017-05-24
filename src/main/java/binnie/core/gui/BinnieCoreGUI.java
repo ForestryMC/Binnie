@@ -1,6 +1,6 @@
 package binnie.core.gui;
 
-import binnie.botany.craftgui.WindowFieldKit;
+import binnie.core.craftgui.WindowFieldKit;
 import binnie.core.craftgui.WindowGenesis;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.machines.storage.WindowCompartment;
