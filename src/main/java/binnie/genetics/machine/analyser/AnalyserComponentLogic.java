@@ -4,34 +4,47 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
+import binnie.core.util.I18N;
+import binnie.genetics.Genetics;
 import net.minecraft.item.ItemStack;
 
 public class AnalyserComponentLogic extends ComponentProcessSetCost implements IProcess {
-	private static final float DYE_PER_TICK = 0.002f;
-
 	public AnalyserComponentLogic(Machine machine) {
-		super(machine, 9000, 300);
+		super(machine, Analyser.RF_COST, Analyser.TIME_PERIOD);
 	}
 
 	@Override
 	public ErrorState canWork() {
 		if (getUtil().isSlotEmpty(Analyser.SLOT_TARGET)) {
-			return new ErrorState.NoItem("No item to analyse", Analyser.SLOT_TARGET);
+			return new ErrorState.NoItem(
+				I18N.localise(Genetics.instance, "machine.analyser.error.noItem"),
+				Analyser.SLOT_TARGET
+			);
 		}
 
 		boolean analysed = Analyser.isAnalysed(getUtil().getStack(Analyser.SLOT_TARGET));
-		if (analysed) {
-			return new ErrorState.InvalidItem("Already Analysed", "Item has already been analysed", Analyser.SLOT_TARGET);
+		if (!analysed) {
+			return super.canWork();
 		}
-		return super.canWork();
+
+		return new ErrorState.InvalidItem(
+			I18N.localise(Genetics.instance, "machine.analyser.error.alreadyAnalysed.title"),
+			I18N.localise(Genetics.instance, "machine.analyser.error.alreadyAnalysed"),
+			Analyser.SLOT_TARGET
+		);
 	}
 
 	@Override
 	public ErrorState canProgress() {
-		if (getUtil().getSlotCharge(Analyser.SLOT_DYE) == 0.0f) {
-			return new ErrorState.Item("Insufficient Dye", "Not enough DNA dye to analyse", new int[]{Analyser.SLOT_DYE});
+		if (getUtil().getSlotCharge(Analyser.SLOT_DYE) != 0.0f) {
+			return super.canProgress();
 		}
-		return super.canProgress();
+
+		return new ErrorState.Item(
+			I18N.localise(Genetics.instance, "machine.analyser.error.insufficientDye.title"),
+			I18N.localise(Genetics.instance, "machine.analyser.error.insufficientDye"),
+			new int[]{Analyser.SLOT_DYE}
+		);
 	}
 
 	@Override
@@ -44,6 +57,6 @@ public class AnalyserComponentLogic extends ComponentProcessSetCost implements I
 
 	@Override
 	protected void onTickTask() {
-		getUtil().useCharge(Analyser.SLOT_DYE, DYE_PER_TICK);
+		getUtil().useCharge(Analyser.SLOT_DYE, Analyser.DYE_PER_TICK);
 	}
 }

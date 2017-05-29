@@ -25,6 +25,7 @@ public class Acclimatiser {
 	public static final int[] SLOT_ACCLIMATISER = new int[]{5, 6, 7};
 	public static final int[] SLOT_DONE = new int[]{8, 9, 10, 11};
 	public static final int SLOT_TARGET = 4;
+	public static final float ENERGY_PER_TICK = 2.0f;
 
 	protected static Map<ItemStack, Float> temperatureItems = new HashMap<>();
 	protected static Map<ItemStack, Float> humidityItems = new HashMap<>();

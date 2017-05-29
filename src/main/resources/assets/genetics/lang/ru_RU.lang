@@ -1,6 +1,3 @@
-##################################################
-## Machines
-
 genetics.machine.machine.isolator=Изолятор
 genetics.machine.machine.isolator.info=Изолятор извлекает случайный ген от пчелы, дерева или другого организма и копирует его в пустой пузырек сыворотки (empty sequence vial). Требуется Этанол для растворения и Фермент для извлечения ДНК. Полученная сыворотка с геном затем может быть усилена в Полимеризаторе и исследована в Секвенсоре.
 
@@ -20,23 +17,27 @@ genetics.machine.labMachine.labMachine=Лабораторная тумба
 
 genetics.machine.labMachine.analyser=Анализатор
 genetics.machine.labMachine.analyser.info=Анализатор принимает организмы или сыворотку и анализирует их гены. Процесс требует Краситель для ДНК. Краситель для ДНК сделан из фиолетового красителя и светящейся пыли.
+genetics.machine.analyser.dnaDye=ДНК краситель
+genetics.machine.analyser.error.alreadyAnalysed.title=Уже анализировано
+genetics.machine.analyser.error.alreadyAnalysed=Образец уже был анализирован ранее
+genetics.machine.analyser.error.insufficientDye.title=Недостаточно красителя
+genetics.machine.analyser.error.insufficientDye=Не хватает ДНК красителя для анализа
+genetics.machine.analyser.error.noItem=Нет образца для анализа
 
 genetics.machine.labMachine.incubator=Инкубатор
 genetics.machine.labMachine.incubator.info=В инкубаторе производятся большинство жидкостей и веществ мода "Генетика" по разным рецептам из жидких и твёрдых веществ. Рецепты: 1. Вода + Питательная Среда = Жидкая Питательная Среда; 2. Жидкая Питательная Среда + Пшеница = Бактерия; 3. Бактерия + Сахар = Фермент; 4. Бактерия + Костная Мука = Полимеризованная Бактерия; 5. Бактерия + Огненный Порошок = Бактерия Вектор. Также в инкубаторе можно из зародыша (личинки, гусеницы, пыльцы) вырастить взрослых особей (пчёлы, бабочки, деревья). Жидкая Питательная Среда + зародыш = взрослая особь.
 
 genetics.machine.labMachine.acclimatiser=Акклиматизатор
+genetics.machine.labMachine.acclimatiser.info=Акклиматизатор изменяет гены, отвечающие за акклиматизацию. Диапазоны сухо-влажно и горячо-холодно могут быть расширены до максимальных. Требует катализаторы. Осушение - песок, увлажнение - вода, потепление - лава или огненный порошок, похолодание - лёд или снежок. Кислотность почвы - мульча или зола.
 genetics.machine.acclimatiser.acclimatizingItems=Катализаторы
 genetics.machine.acclimatiser.error.noIndividual=Нет образцов для акклиматизации
 genetics.machine.acclimatiser.error.noAcclimatizingItems=Отсутствуют катализаторы
 genetics.machine.acclimatiser.error.invalidAcclimatizingItems=Невозможно акклиматизировать образец с этими катализаторами
 
-genetics.machine.labMachine.acclimatiser.info=Акклиматизатор изменяет гены, отвечающие за акклиматизацию. Диапазоны сухо-влажно и горячо-холодно могут быть расширены до максимальных. Требует катализаторы. Осушение - песок, увлажнение - вода, потепление - лава или огненный порошок, похолодание - лёд или снежок. Кислотность почвы - мульча или зола.
-
 genetics.machine.advMachine.splicer=Сплайсер
 genetics.machine.advMachine.splicer.info=Сплайсер аналогичен инокулятору, но гораздо быстрее и требует огромную мощность.
 
 genetics.item.sequence=Сыворотка ДНК
-
 genetics.item.sequence.0=Очень слабо
 genetics.item.sequence.1=Слабо
 genetics.item.sequence.2=Слабовато

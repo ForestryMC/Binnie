@@ -1,6 +1,3 @@
-##################################################
-## Machines
-
 genetics.machine.machine.isolator=Isolator
 genetics.machine.machine.isolator.info=The Isolator takes a random allele from a bee, tree or other individual and copies it into an empty sequence vial. This requires the use of ethanol as a solvent and an enzyme to cut up the DNA. The unsequenced serums can then be amplified in a Polymeriser and sequenced in a Sequencer.
 
@@ -18,13 +15,20 @@ genetics.machine.labMachine.genepool.info=The Genepool uses enzymes and ethanol 
 
 genetics.machine.labMachine.labMachine=Lab Stand
 
-genetics.machine.labMachine.analyser=Analyser
-genetics.machine.labMachine.analyser.info=The Analyser takes breedable individuals and DNA sequencers and analyses them to determine the genes present. This requires DNA Dye, created from purple dye and glowstone
+genetics.machine.labMachine.analyser=Analyzer
+genetics.machine.labMachine.analyser.info=The Analyzer takes breedable individuals and DNA sequencers and analyzes them to determine the genes present. This requires DNA Dye, created from purple dye and glowstone
+genetics.machine.analyser.dnaDye=DNA Dye
+genetics.machine.analyser.error.alreadyAnalysed.title=Already Analyzed
+genetics.machine.analyser.error.alreadyAnalysed=Item has already been analyzed
+genetics.machine.analyser.error.insufficientDye.title=Insufficient Dye
+genetics.machine.analyser.error.insufficientDye=Not enough DNA dye to analyze
+genetics.machine.analyser.error.noItem=No item to analyze
 
 genetics.machine.labMachine.incubator=Incubator
 genetics.machine.labMachine.incubator.info=The Incubator combines liquids and items and allows them to sit at an ideal temperature to encourage bacterial growth. 
 
 genetics.machine.labMachine.acclimatiser=Acclimatiser
+genetics.machine.labMachine.acclimatiser.info=
 genetics.machine.acclimatiser.acclimatizingItems=Acclimatizing Items
 genetics.machine.acclimatiser.error.noIndividual=No Individual to Acclimatise
 genetics.machine.acclimatiser.error.noAcclimatizingItems=No Acclimatising Items
@@ -33,11 +37,7 @@ genetics.machine.acclimatiser.error.invalidAcclimatizingItems=Cannot Acclimatise
 genetics.machine.advMachine.splicer=Splicer
 genetics.machine.advMachine.splicer.info=The Splicer is an incredibly powerful machine that is used to insert genes into individuals. This process is fast, but requires monumental amounts of power.
 
-
-
-
 genetics.item.sequence=DNA Sequence
-
 genetics.item.sequence.0=Very Faint
 genetics.item.sequence.1=Faint
 genetics.item.sequence.2=Weak

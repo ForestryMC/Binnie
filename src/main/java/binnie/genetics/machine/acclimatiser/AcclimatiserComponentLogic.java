@@ -12,7 +12,7 @@ import java.util.List;
 
 public class AcclimatiserComponentLogic extends ComponentProcessIndefinate {
 	public AcclimatiserComponentLogic(IMachine machine) {
-		super(machine, 2.0f);
+		super(machine, Acclimatiser.ENERGY_PER_TICK);
 	}
 
 	@Override

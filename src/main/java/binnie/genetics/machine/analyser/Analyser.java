@@ -13,6 +13,9 @@ public class Analyser {
 	public static final int[] SLOT_FINISHED = new int[]{7, 8, 9, 10, 11, 12};
 	public static final int SLOT_TARGET = 6;
 	public static final int SLOT_DYE = 13;
+	public static final int RF_COST = 9000;
+	public static final int TIME_PERIOD = 300;
+	public static final float DYE_PER_TICK = 0.002f;
 
 	public static boolean isAnalysable(ItemStack stack) {
 		IIndividual ind = AlleleManager.alleleRegistry.getIndividual(stack);
