@@ -36,13 +36,13 @@ public class ControlTabBar<T> extends Control implements IControlValue<T> {
 
 		float length = values.size();
 		int tabDimension = (int) (getSize().y() / length);
-		if (position == Position.Top || position == Position.Bottom) {
+		if (position == Position.TOP || position == Position.BOTTOM) {
 			tabDimension = (int) (getSize().x() / length);
 		}
 
 		int j = 0;
 		for (T value : values) {
-			if (position == Position.Top || position == Position.Bottom) {
+			if (position == Position.TOP || position == Position.BOTTOM) {
 				createTab(j * tabDimension, 0.0f, tabDimension, getSize().y(), value);
 			} else {
 				createTab(0.0f, j * tabDimension, getSize().x(), tabDimension, value);

@@ -43,8 +43,8 @@ public class WindowInoculator extends WindowMachine {
 		new ControlLiquidTank(this, x, y + 18 + 16).setTankID(0);
 		CraftGUIUtil.horizontalGrid(x, y, new ControlSlotArray(this, 0, 0, 2, 1).create(Inoculator.SLOT_SERUM_RESERVE), new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowRight.getIcon()), new ControlSlot(this, 0.0f, 0.0f).assign(0), new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowRight.getIcon()), new ControlSlotArray(this, 0, 0, 2, 1).create(Inoculator.SLOT_SERUM_EXPENDED));
 		x += 18;
-		new ControlMachineProgress(this, x, y + 24, WindowInoculator.ProgressBase, WindowInoculator.Progress, Position.Left);
-		new ControlEnergyBar(this, 91, 118, 60, 16, Position.Left);
+		new ControlMachineProgress(this, x, y + 24, WindowInoculator.ProgressBase, WindowInoculator.Progress, Position.LEFT);
+		new ControlEnergyBar(this, 91, 118, 60, 16, Position.LEFT);
 		new ControlErrorState(this, 161.0f, 118.0f);
 		x += 142;
 		CraftGUIUtil.verticalGrid(x, y, TextJustification.MiddleLeft, 8.0f, new ControlSlotArray(this, x, y, 4, 1).create(Inoculator.SLOT_RESERVE), new ControlSlot(this, x, y + 18 + 8).assign(9), new ControlSlotArray(this, x, y + 18 + 8 + 18 + 8, 4, 1).create(Inoculator.SLOT_FINISHED));

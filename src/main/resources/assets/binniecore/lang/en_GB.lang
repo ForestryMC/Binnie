@@ -229,8 +229,16 @@ binniecore.gui.tooltip.help=Help
 binniecore.gui.tooltip.help.0=To activate help tooltips,
 binniecore.gui.tooltip.help.1=hold down the tab key and
 binniecore.gui.tooltip.help.2=mouse over controls.
+
 binniecore.gui.tooltip.powerSupply=Power Supply
 binniecore.gui.tooltip.poweredBy=Powered by %s
+binniecore.gui.tooltip.powerBar=Power Bar
+binniecore.gui.tooltip.currentPower=Current: %.2f RF (%d%%)
+binniecore.gui.tooltip.capacityPower=Capacity: %.2f RF
+binniecore.gui.tooltip.usagePower=Usage: %.2f RF
+binniecore.gui.tooltip.chargedPower=%d%% charged
+binniecore.gui.tooltip.powerInfo=%.2f/%.2f RF
+
 binniecore.gui.tooltip.tank.full=%d%% full
 binniecore.gui.tooltip.tank.amount=%d mB
 binniecore.gui.tooltip.tank.empty=Empty

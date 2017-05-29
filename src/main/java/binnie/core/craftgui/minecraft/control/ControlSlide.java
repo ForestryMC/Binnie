@@ -61,7 +61,7 @@ public class ControlSlide extends Control {
 			GL11.glPopMatrix();
 		}
 		CraftGUI.Render.texture(CraftGUITexture.Window, getArea());
-		Object slideTexture = (anchor == Position.Bottom) ? CraftGUITexture.SlideDown : ((anchor == Position.Top) ? CraftGUITexture.SlideUp : ((anchor == Position.Left) ? CraftGUITexture.SlideLeft : CraftGUITexture.SlideRight));
+		Object slideTexture = (anchor == Position.BOTTOM) ? CraftGUITexture.SlideDown : ((anchor == Position.TOP) ? CraftGUITexture.SlideUp : ((anchor == Position.LEFT) ? CraftGUITexture.SlideLeft : CraftGUITexture.SlideRight));
 		CraftGUI.Render.texture(slideTexture, new IPoint((anchor.x() + 1.0f) * w() / 2.0f - 8.0f, (anchor.y() + 1.0f) * h() / 2.0f - 8.0f));
 	}
 

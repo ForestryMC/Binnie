@@ -1,5 +1,6 @@
 package binnie.core.craftgui.minecraft.control;
 
+import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -16,6 +17,7 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.power.IPoweredMachine;
 import binnie.core.machines.power.IProcess;
+import binnie.core.util.I18N;
 import net.minecraft.inventory.IInventory;
 import org.lwjgl.opengl.GL11;
 
@@ -36,6 +38,7 @@ public class ControlEnergyBar extends Control implements ITooltip {
 		if (machine == null) {
 			return null;
 		}
+
 		IPoweredMachine clientPower = machine.getMachine().getInterface(IPoweredMachine.class);
 		return clientPower;
 	}
@@ -49,27 +52,34 @@ public class ControlEnergyBar extends Control implements ITooltip {
 	}
 
 	private float getStoredEnergy() {
-		return Window.get(this).getContainer().getPowerInfo().getStoredEnergy();
+		return Window.get(this)
+			.getContainer()
+			.getPowerInfo()
+			.getStoredEnergy();
 	}
 
 	private float getMaxEnergy() {
-		return Window.get(this).getContainer().getPowerInfo().getMaxEnergy();
+		return Window.get(this)
+			.getContainer()
+			.getPowerInfo()
+			.getMaxEnergy();
 	}
 
 	@Override
 	public void getTooltip(Tooltip tooltip) {
-		tooltip.add((int) getPercentage() + "% charged");
-		tooltip.add(getStoredEnergy() + "/" + getMaxEnergy() + " RF");
+		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.chargedPower", (int) getPercentage()));
+		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.powerInfo", getStoredEnergy(), getMaxEnergy()));
 	}
 
 	@Override
 	public void getHelpTooltip(Tooltip tooltip) {
-		tooltip.add("Energy Bar");
-		tooltip.add("Current: " + getStoredEnergy() + " RF (" + (int) getPercentage() + "%)");
-		tooltip.add("Capacity: " + getMaxEnergy() + " RF");
+		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.powerBar"));
+		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.currentPower", getStoredEnergy(), (int) getPercentage()));
+		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.capacityPower", getMaxEnergy()));
+
 		IProcess process = Machine.getInterface(IProcess.class, Window.get(this).getInventory());
 		if (process != null) {
-			tooltip.add("Usage: " + (int) process.getEnergyPerTick() + " RF");
+			tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.usagePower", (int) process.getEnergyPerTick()));
 		}
 	}
 
@@ -81,14 +91,14 @@ public class ControlEnergyBar extends Control implements ITooltip {
 		IArea area = getArea();
 
 		switch (direction) {
-			case Top:
-			case Bottom:
+			case TOP:
+			case BOTTOM:
 				float height = area.size().y() * percentage;
 				area.setSize(new IPoint(area.size().x(), height));
 				break;
 
-			case Left:
-			case Right:
+			case LEFT:
+			case RIGHT:
 				float width = area.size().x() * percentage;
 				area.setSize(new IPoint(width, area.size().y()));
 				break;

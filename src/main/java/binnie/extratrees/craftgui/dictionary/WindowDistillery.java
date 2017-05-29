@@ -43,7 +43,7 @@ public class WindowDistillery extends Window {
 		x += 64;
 		new ControlLiquidTank(this, x, 35).setTankID(Distillery.tankOutput);
 		x += 34;
-		new ControlEnergyBar(this, x, 36, 60, 16, Position.Left);
+		new ControlEnergyBar(this, x, 36, 60, 16, Position.LEFT);
 		new ControlPlayerInventory(this);
 		new ControlErrorState(this, x + 21, 62.0f);
 	}

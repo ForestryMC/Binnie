@@ -39,7 +39,7 @@ public class Genetics extends AbstractMod {
 	public static Proxy proxy;
 
 	public static ItemSerumArray itemSerumArray = null;
-	public static String channel = "GEN";
+	public static final String CHANNEL = "GEN";
 	public static Item itemGenetics;
 	public static Item itemSerum;
 	public static Item itemSequencer;
@@ -84,7 +84,7 @@ public class Genetics extends AbstractMod {
 
 	@Override
 	public String getChannel() {
-		return "GEN";
+		return CHANNEL;
 	}
 
 	@Override

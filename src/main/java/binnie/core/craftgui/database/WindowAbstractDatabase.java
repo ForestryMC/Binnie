@@ -164,7 +164,7 @@ public abstract class WindowAbstractDatabase extends Window {
 		});
 
 		addTabs();
-		ControlTabBar<IDatabaseMode> tab = new ControlTabBar<IDatabaseMode>(this, 176.0f + selectionBoxWidth, 24.0f, 22.0f, 176.0f, Position.Right) {
+		ControlTabBar<IDatabaseMode> tab = new ControlTabBar<IDatabaseMode>(this, 176.0f + selectionBoxWidth, 24.0f, 22.0f, 176.0f, Position.RIGHT) {
 			@Override
 			public ControlTab<IDatabaseMode> createTab(float x, float y, float w, float h, IDatabaseMode value) {
 				return new ControlTab<IDatabaseMode>(this, x, y, w, h, value) {
@@ -180,7 +180,7 @@ public abstract class WindowAbstractDatabase extends Window {
 		CraftGUIUtil.linkWidgets(tab, modePages);
 		changeMode(Mode.Species);
 		for (IDatabaseMode mode : modes.keySet()) {
-			modes.get(mode).infoTabs = new ControlTabBar(modes.get(mode).modePage, 8.0f, 24.0f, 16.0f, 176.0f, Position.Left);
+			modes.get(mode).infoTabs = new ControlTabBar(modes.get(mode).modePage, 8.0f, 24.0f, 16.0f, 176.0f, Position.LEFT);
 			modes.get(mode).infoTabs.setValues(modes.get(mode).infoPages.getValues());
 			CraftGUIUtil.linkWidgets(modes.get(mode).infoTabs, modes.get(mode).infoPages);
 		}

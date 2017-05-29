@@ -1,6 +1,6 @@
 package binnie.genetics.item;
 
-import binnie.genetics.CreativeTabGenetics;
+import binnie.genetics.GeneticsCreativeTab;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsGUI;
 import cpw.mods.fml.relauncher.Side;
@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 
 public class ItemMasterRegistry extends Item {
 	public ItemMasterRegistry() {
-		setCreativeTab(CreativeTabGenetics.instance);
+		setCreativeTab(GeneticsCreativeTab.instance);
 		setUnlocalizedName("masterRegistry");
 		setMaxStackSize(1);
 	}

@@ -1,12 +1,13 @@
 package binnie.genetics.machine.genepool;
 
 import binnie.core.machines.inventory.TankValidator;
+import binnie.core.util.I18N;
 import net.minecraftforge.fluids.FluidStack;
 
-class EthanolTankValidator extends TankValidator {
+public class EthanolTankValidator extends TankValidator {
 	@Override
 	public String getTooltip() {
-		return "Ethanol";
+		return I18N.localise("fluid.bioethanol");
 	}
 
 	@Override

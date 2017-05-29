@@ -5,7 +5,7 @@ import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.machines.MachineGroup;
 import binnie.core.machines.inventory.ValidatorIcon;
-import binnie.genetics.CreativeTabGenetics;
+import binnie.genetics.GeneticsCreativeTab;
 import binnie.genetics.Genetics;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.acclimatiser.Acclimatiser;
@@ -28,13 +28,13 @@ public class ModuleMachine implements IInitializable {
 	@Override
 	public void preInit() {
 		Genetics.packageGenetic = new MachineGroup(Genetics.instance, "machine", "machine", GeneticMachine.values());
-		Genetics.packageGenetic.setCreativeTab(CreativeTabGenetics.instance);
+		Genetics.packageGenetic.setCreativeTab(GeneticsCreativeTab.instance);
 
 		Genetics.packageLabMachine = new MachineGroup(Genetics.instance, "labMachine", "labMachine", LaboratoryMachine.values());
-		Genetics.packageLabMachine.setCreativeTab(CreativeTabGenetics.instance);
+		Genetics.packageLabMachine.setCreativeTab(GeneticsCreativeTab.instance);
 
 		Genetics.packageAdvGenetic = new MachineGroup(Genetics.instance, "advMachine", "advMachine", AdvGeneticMachine.values());
-		Genetics.packageAdvGenetic.setCreativeTab(CreativeTabGenetics.instance);
+		Genetics.packageAdvGenetic.setCreativeTab(GeneticsCreativeTab.instance);
 	}
 
 	@Override

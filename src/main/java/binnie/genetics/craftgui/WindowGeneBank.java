@@ -113,7 +113,7 @@ public class WindowGeneBank extends WindowMachine {
 		}.setOrigin(EventHandler.Origin.Self, edit));
 		scroll.setScrollableContent(genes = new ControlGeneScroll(scroll, 1.0f, 1.0f, geneBoxWidth, 116.0f));
 		genes.setGenes(Binnie.Genetics.beeBreedingSystem);
-		ControlTabBar<BreedingSystem> tabBar = new ControlTabBar<BreedingSystem>(this, boxX, 32.0f, 24.0f, 120.0f, Position.Left) {
+		ControlTabBar<BreedingSystem> tabBar = new ControlTabBar<BreedingSystem>(this, boxX, 32.0f, 24.0f, 120.0f, Position.LEFT) {
 			@Override
 			public ControlTab<BreedingSystem> createTab(float x, float y, float w, float h, BreedingSystem value) {
 				return new ControlTabIcon<BreedingSystem>(this, x, y, w, h, value) {
@@ -142,7 +142,7 @@ public class WindowGeneBank extends WindowMachine {
 		tabBar.setValues(Binnie.Genetics.getActiveSystems());
 		tabBar.setValue(Binnie.Genetics.beeBreedingSystem);
 		boxX -= 8;
-		ControlTabBar<String> infoTabs = new ControlTabBar<String>(this, boxX + 8, 160.0f, 16.0f, 50.0f, Position.Left);
+		ControlTabBar<String> infoTabs = new ControlTabBar<String>(this, boxX + 8, 160.0f, 16.0f, 50.0f, Position.LEFT);
 		infoTabs.setValues(Arrays.asList("Stats", "Ranking"));
 		infoTabs.setValue("Info");
 		Panel panelProject = new Panel(this, boxX + 24, 160.0f, geneBoxWidth + 20, 50.0f, MinecraftGUI.PanelType.Black);

@@ -15,6 +15,7 @@ import binnie.core.craftgui.minecraft.control.ControlSlotArray;
 import binnie.core.craftgui.minecraft.control.ControlSlotCharge;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
+import binnie.core.util.I18N;
 import binnie.extrabees.core.ExtraBeeTexture;
 import binnie.genetics.Genetics;
 import binnie.genetics.machine.genepool.Genepool;
@@ -36,7 +37,7 @@ public class WindowGenepool extends WindowMachine {
 
 	@Override
 	public void initialiseClient() {
-		setTitle("Genepool");
+		setTitle(getTitle());
 		int x = 16;
 		int y = 32;
 		new ControlLiquidTank(this, x, y).setTankID(1);
@@ -47,19 +48,19 @@ public class WindowGenepool extends WindowMachine {
 		x += 18;
 		new ControlSlot(this, x, y + 3 + 18).assign(0);
 		x += 18;
-		new ControlMachineProgress(this, x, y + 19, WindowGenepool.ProgressBase, WindowGenepool.Progress, Position.Left);
+		new ControlMachineProgress(this, x, y + 19, WindowGenepool.ProgressBase, WindowGenepool.Progress, Position.LEFT);
 		x += 130;
-		new ControlLiquidTank(this, x, y).setTankID(0);
-		new ControlEnergyBar(this, 21, 115, 16, 60, Position.Bottom);
-		new ControlSlot(this, 121.0f, 82.0f).assign(7);
-		new ControlSlotCharge(this, 143, 82, 7).setColor(15722671);
+		new ControlLiquidTank(this, x, y).setTankID(Genepool.TANK_DNA);
+		new ControlEnergyBar(this, 21, 115, 16, 60, Position.BOTTOM);
+		new ControlSlot(this, 121.0f, 82.0f).assign(Genepool.SLOT_ENZYME);
+		new ControlSlotCharge(this, 143, 82, 7).setColor(0xefe8af);
 		new ControlErrorState(this, 181.0f, 83.0f);
 		new ControlPlayerInventory(this);
 	}
 
 	@Override
 	public String getTitle() {
-		return "Genepool";
+		return I18N.localise(Genetics.instance, "machine.labMachine.genepool");
 	}
 
 	@Override
@@ -69,6 +70,6 @@ public class WindowGenepool extends WindowMachine {
 
 	@Override
 	protected String getName() {
-		return "Genepool";
+		return getTitle();
 	}
 }

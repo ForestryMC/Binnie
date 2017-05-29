@@ -6,27 +6,28 @@ import binnie.core.machines.inventory.IChargedSlots;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
+import binnie.core.util.I18N;
+import binnie.genetics.Genetics;
 import binnie.genetics.item.GeneticLiquid;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.item.ItemStack;
 
 public class GenepoolComponentLogic extends ComponentProcessSetCost implements IProcess {
-	float enzymePerProcess;
-	float ethanolPerProcess;
 	private float ethanolDrain;
 
 	public GenepoolComponentLogic(Machine machine) {
-		super(machine, 8000, 400);
-		enzymePerProcess = 0.25f;
-		ethanolPerProcess = 50.0f;
+		super(machine, Genepool.RF_COST, Genepool.TIME_PERIOD);
 		ethanolDrain = 0.0f;
 	}
 
 	@Override
 	public ErrorState canWork() {
 		if (getUtil().isSlotEmpty(0)) {
-			return new ErrorState.NoItem("No Individual", Genepool.SLOT_BEE);
+			return new ErrorState.NoItem(
+				I18N.localise(Genetics.instance, "machine.genepool.error.noIndividual"),
+				Genepool.SLOT_BEE
+			);
 		}
 		return super.canWork();
 	}
@@ -34,13 +35,22 @@ public class GenepoolComponentLogic extends ComponentProcessSetCost implements I
 	@Override
 	public ErrorState canProgress() {
 		if (!getUtil().spaceInTank(Genepool.TANK_DNA, getDNAAmount(getUtil().getStack(Genepool.TANK_DNA)))) {
-			return new ErrorState.NoSpace("Not enough room in Tank", new int[]{Genepool.TANK_DNA});
+			return new ErrorState.NoSpace(
+				I18N.localise(Genetics.instance, "machine.genepool.error.noRoom"),
+				Genepool.TANK_DNA
+			);
 		}
 		if (!getUtil().liquidInTank(1, 1)) {
-			return new ErrorState.InsufficientLiquid("Not enough Ethanol", Genepool.TANK_ETHANOL);
+			return new ErrorState.InsufficientLiquid(
+				I18N.localise(Genetics.instance, "machine.genepool.error.noEthanol"),
+				Genepool.TANK_ETHANOL
+			);
 		}
 		if (getUtil().getSlotCharge(Genepool.SLOT_ENZYME) == 0.0f) {
-			return new ErrorState.NoItem("Insufficient Enzyme", Genepool.SLOT_ENZYME);
+			return new ErrorState.NoItem(
+				I18N.localise(Genetics.instance, "machine.genepool.error.insufficientEnzyme"),
+				Genepool.SLOT_ENZYME
+			);
 		}
 		return super.canProgress();
 	}
@@ -60,6 +70,7 @@ public class GenepoolComponentLogic extends ComponentProcessSetCost implements I
 			|| Binnie.Genetics.getBeeRoot().isDrone(stack)) {
 			return 10;
 		}
+
 		if (Binnie.Genetics.getBeeRoot().isMated(stack)) {
 			return 50;
 		}
@@ -73,6 +84,8 @@ public class GenepoolComponentLogic extends ComponentProcessSetCost implements I
 			getUtil().drainTank(Genepool.TANK_ETHANOL, 1);
 			ethanolDrain--;
 		}
-		getMachine().getInterface(IChargedSlots.class).alterCharge(Genepool.SLOT_ENZYME, -enzymePerProcess * getProgressPerTick() / 100.0f);
+
+		getMachine().getInterface(IChargedSlots.class)
+			.alterCharge(Genepool.SLOT_ENZYME, -Genepool.ENZYME_PER_PROCESS * getProgressPerTick() / 100.0f);
 	}
 }

@@ -21,7 +21,7 @@ public class ControlSlotCharge extends Control {
 	@Override
 	public void onRenderBackground() {
 		CraftGUI.Render.texture(CraftGUITexture.PanelBlack, getArea());
-		CraftGUI.Render.texturePercentage(CraftGUI.Render.getTexture(CraftGUITexture.SlotCharge), getArea().inset(1), Position.Bottom, getCharge());
+		CraftGUI.Render.texturePercentage(CraftGUI.Render.getTexture(CraftGUITexture.SlotCharge), getArea().inset(1), Position.BOTTOM, getCharge());
 	}
 
 	public ControlSlotCharge(IWidget parent, int x, int y, int slot) {

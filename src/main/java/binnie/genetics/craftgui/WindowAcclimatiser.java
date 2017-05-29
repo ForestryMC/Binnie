@@ -32,16 +32,16 @@ public class WindowAcclimatiser extends WindowMachine {
 
 	@Override
 	public void initialiseClient() {
-		setTitle(I18N.localise(Genetics.instance, "machine.labMachine.acclimatiser"));
+		setTitle(getTitle());
 		int x = 59;
 		int y = 32;
 		new ControlSlotArray(this, x, y, 2, 2).create(Acclimatiser.SLOT_RESERVE);
 		x += 54;
-		new ControlSlot(this, x + 18, y).assign(4);
+		new ControlSlot(this, x + 18, y).assign(Acclimatiser.SLOT_TARGET);
 		new ControlSlotArray(this, x, y + 18 + 18, 3, 1).create(Acclimatiser.SLOT_ACCLIMATISER);
 		x += 72;
 		new ControlSlotArray(this, x, y, 2, 2).create(Acclimatiser.SLOT_DONE);
-		new ControlEnergyBar(this, 21, 115, 16, 60, Position.Bottom);
+		new ControlEnergyBar(this, 21, 115, 16, 60, Position.BOTTOM);
 		new ControlErrorState(this, 181.0f, 83.0f);
 		new ControlPlayerInventory(this);
 	}
@@ -58,6 +58,6 @@ public class WindowAcclimatiser extends WindowMachine {
 
 	@Override
 	protected String getName() {
-		return I18N.localise(Genetics.instance, "machine.labMachine.acclimatiser");
+		return getTitle();
 	}
 }

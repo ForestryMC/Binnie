@@ -42,7 +42,7 @@ public class WindowSplicer extends WindowMachine {
 		CraftGUIUtil.horizontalGrid(x, 62.0f, new ControlSlotArray(this, 0, 0, 2, 1).create(Splicer.SLOT_SERUM_RESERVE), new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowRight.getIcon()), new ControlSlot(this, 0.0f, 0.0f).assign(0));
 		new ControlSlotArray(this, x + 12, 84, 2, 1).create(Splicer.SLOT_SERUM_EXPENDED);
 		new ControlIconDisplay(this, x + 12 + 36 + 4, 86.0f, GUIIcon.ArrowUpLeft.getIcon());
-		new ControlEnergyBar(this, 196, 64, 60, 16, Position.Left);
+		new ControlEnergyBar(this, 196, 64, 60, 16, Position.LEFT);
 		new ControlErrorState(this, 218.0f, 86.0f);
 		CraftGUIUtil.verticalGrid((w() - 72.0f) / 2.0f, 32.0f, TextJustification.MiddleCenter, 4.0f, new ControlSlotArray(this, 0, 0, 4, 1).create(Inoculator.SLOT_RESERVE), new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowDown.getIcon()), new ControlSlot(this, 0.0f, 0.0f).assign(9), new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowDown.getIcon()), new ControlSlotArray(this, 0, 0, 4, 1).create(Inoculator.SLOT_FINISHED));
 		new ControlPlayerInventory(this);

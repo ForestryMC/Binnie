@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.Random;
 
-class ToleranceSystem {
+public class ToleranceSystem {
 	public String uid;
 	public IChromosomeType chromosomeOrdinal;
 	public ToleranceType type;
@@ -30,7 +30,8 @@ class ToleranceSystem {
 		IAlleleTolerance tolAllele = (IAlleleTolerance) genome.getActiveAllele(chromosomeOrdinal);
 		Tolerance tol = Tolerance.get(tolAllele.getValue());
 		float effect = type.getEffect(acclim);
-		return (effect > 0.0f && tol.getBounds()[1] < 5) || (effect < 0.0f && tol.getBounds()[0] > -5);
+		return (effect > 0.0f && tol.getBounds()[1] < 5)
+			|| (effect < 0.0f && tol.getBounds()[0] > -5);
 	}
 
 	public ItemStack alter(ItemStack stack, ItemStack acc) {

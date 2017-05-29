@@ -5,7 +5,7 @@ import binnie.genetics.api.IItemSerum;
 import binnie.genetics.machine.ModuleMachine;
 import net.minecraft.item.ItemStack;
 
-class SerumSlotValidator extends SlotValidator {
+public class SerumSlotValidator extends SlotValidator {
 	public SerumSlotValidator() {
 		super(ModuleMachine.IconSerum);
 	}

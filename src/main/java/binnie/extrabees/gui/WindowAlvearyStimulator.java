@@ -33,7 +33,7 @@ public class WindowAlvearyStimulator extends Window {
 	@Override
 	public void initialiseClient() {
 		setTitle("Stimulator");
-		new ControlEnergyBar(this, 75, 29, 60, 16, Position.Left);
+		new ControlEnergyBar(this, 75, 29, 60, 16, Position.LEFT);
 		ControlSlot slot = new ControlSlot(this, 41.0f, 28.0f);
 		slot.assign(AlvearyStimulator.slotCircuit);
 		playerInventory = new ControlPlayerInventory(this);
