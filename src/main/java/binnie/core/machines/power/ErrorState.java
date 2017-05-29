@@ -122,6 +122,10 @@ public class ErrorState implements INBTTagable {
 	}
 
 	public static class NoSpace extends Item {
+		public NoSpace(String desc, int slot) {
+			super(I18N.localise(BinnieCore.instance, "machine.error.noSpace"), desc, new int[]{slot});
+		}
+
 		public NoSpace(String desc, int[] slots) {
 			super(I18N.localise(BinnieCore.instance, "machine.error.noSpace"), desc, slots);
 		}

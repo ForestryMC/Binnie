@@ -1,6 +1,6 @@
 package binnie.genetics.item;
 
-import binnie.genetics.CreativeTabGenetics;
+import binnie.genetics.GeneticsCreativeTab;
 import binnie.genetics.Genetics;
 import binnie.genetics.genetics.IGeneItem;
 import cpw.mods.fml.relauncher.Side;
@@ -22,7 +22,7 @@ public abstract class ItemGene extends Item {
 		setMaxStackSize(1);
 		setMaxDamage(16);
 		setUnlocalizedName(unlocName);
-		setCreativeTab(CreativeTabGenetics.instance);
+		setCreativeTab(GeneticsCreativeTab.instance);
 	}
 
 	@Override

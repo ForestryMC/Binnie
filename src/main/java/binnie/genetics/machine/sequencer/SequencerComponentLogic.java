@@ -54,7 +54,7 @@ public class SequencerComponentLogic extends ComponentProcess implements IProces
 
 		ItemStack stack = getUtil().getStack(Sequencer.SLOT_DONE_INDEX);
 		if (stack != null && stack.stackSize >= 64) {
-			return new ErrorState.NoSpace("No space for empty sequences", new int[]{Sequencer.SLOT_DONE_INDEX});
+			return new ErrorState.NoSpace("No space for empty sequences", Sequencer.SLOT_DONE_INDEX);
 		}
 		return super.canProgress();
 	}

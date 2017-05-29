@@ -12,12 +12,17 @@ genetics.machine.machine.inoculator.info=Инокулятор используе
 
 genetics.machine.labMachine.genepool=Экстрактор ДНК
 genetics.machine.labMachine.genepool.info=Растворяет организмы с помощью Этанола и Фермента в Жидкую ДНК, которая нужна для работы некоторых генетических машин. Вся генетическая информация теряется и организм-источник ДНК разрушается.
+genetics.machine.genepool.error.noIndividual=Нет образца
+genetics.machine.genepool.error.noRoom=Нет свободного места в баке
+genetics.machine.genepool.error.noEthanol=Не хватает этанола
+genetics.machine.genepool.error.insufficientEnzyme=Недостаточно Энзима
 
 genetics.machine.labMachine.labMachine=Лабораторная тумба
 
 genetics.machine.labMachine.analyser=Анализатор
 genetics.machine.labMachine.analyser.info=Анализатор принимает организмы или сыворотку и анализирует их гены. Процесс требует Краситель для ДНК. Краситель для ДНК сделан из фиолетового красителя и светящейся пыли.
 genetics.machine.analyser.dnaDye=ДНК краситель
+genetics.machine.analyser.unanalysedItem=Неанализированный образец
 genetics.machine.analyser.error.alreadyAnalysed.title=Уже анализировано
 genetics.machine.analyser.error.alreadyAnalysed=Образец уже был анализирован ранее
 genetics.machine.analyser.error.insufficientDye.title=Недостаточно красителя

@@ -1,6 +1,6 @@
 package binnie.genetics.item;
 
-import binnie.genetics.CreativeTabGenetics;
+import binnie.genetics.GeneticsCreativeTab;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsGUI;
 import cpw.mods.fml.relauncher.Side;
@@ -19,7 +19,7 @@ public class ItemDatabase extends Item {
 	protected IIcon iconMaster;
 
 	public ItemDatabase() {
-		setCreativeTab(CreativeTabGenetics.instance);
+		setCreativeTab(GeneticsCreativeTab.instance);
 		setUnlocalizedName("database");
 		setMaxStackSize(1);
 	}

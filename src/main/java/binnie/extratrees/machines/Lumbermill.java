@@ -153,7 +153,7 @@ public class Lumbermill {
 			if (!getUtil().isSlotEmpty(Lumbermill.slotPlanks) && result != null) {
 				ItemStack currentPlank = getUtil().getStack(Lumbermill.slotPlanks);
 				if (!result.isItemEqual(currentPlank) || result.stackSize + currentPlank.stackSize > currentPlank.getMaxStackSize()) {
-					return new ErrorState.NoSpace("No room for new planks", new int[]{Lumbermill.slotPlanks});
+					return new ErrorState.NoSpace("No room for new planks", Lumbermill.slotPlanks);
 				}
 			}
 			return super.canWork();

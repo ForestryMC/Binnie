@@ -230,8 +230,16 @@ binniecore.gui.tooltip.help=Помощь
 binniecore.gui.tooltip.help.0=Для показа всплывающих подсказок
 binniecore.gui.tooltip.help.1=зажмите клавишу TAB и
 binniecore.gui.tooltip.help.2=наведите курсор на элемент интерфейса.
+
 binniecore.gui.tooltip.powerSupply=Источник питания
 binniecore.gui.tooltip.poweredBy=Запитавший: %s
+binniecore.gui.tooltip.powerBar=Батарея
+binniecore.gui.tooltip.currentPower=Заполнено: %.2f RF (%d%%)
+binniecore.gui.tooltip.capacityPower=Объем: %.2f RF
+binniecore.gui.tooltip.usagePower=Используется: %.2f RF
+binniecore.gui.tooltip.chargedPower=%d%% заряжено
+binniecore.gui.tooltip.powerInfo=%.2f/%.2f RF
+
 binniecore.gui.tooltip.tank.full=Заполнено %d%%
 binniecore.gui.tooltip.tank.amount=%d mB
 binniecore.gui.tooltip.tank.empty=Пусто

@@ -8,14 +8,14 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class CreativeTabGenetics extends CreativeTabs {
+public class GeneticsCreativeTab extends CreativeTabs {
 	public static CreativeTabs instance;
 
 	static {
-		CreativeTabGenetics.instance = new CreativeTabGenetics();
+		GeneticsCreativeTab.instance = new GeneticsCreativeTab();
 	}
 
-	public CreativeTabGenetics() {
+	public GeneticsCreativeTab() {
 		super("Genetics");
 	}
 

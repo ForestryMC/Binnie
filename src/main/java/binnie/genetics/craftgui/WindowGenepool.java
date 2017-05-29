@@ -15,6 +15,7 @@ import binnie.core.craftgui.minecraft.control.ControlSlotArray;
 import binnie.core.craftgui.minecraft.control.ControlSlotCharge;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
+import binnie.core.util.I18N;
 import binnie.extrabees.core.ExtraBeeTexture;
 import binnie.genetics.Genetics;
 import binnie.genetics.machine.genepool.Genepool;
@@ -36,7 +37,7 @@ public class WindowGenepool extends WindowMachine {
 
 	@Override
 	public void initialiseClient() {
-		setTitle("Genepool");
+		setTitle(I18N.localise(Genetics.instance, "machine.labMachine.genepool"));
 		int x = 16;
 		int y = 32;
 		new ControlLiquidTank(this, x, y).setTankID(1);
@@ -59,7 +60,7 @@ public class WindowGenepool extends WindowMachine {
 
 	@Override
 	public String getTitle() {
-		return "Genepool";
+		return I18N.localise(Genetics.instance, "machine.labMachine.genepool");
 	}
 
 	@Override
@@ -69,6 +70,6 @@ public class WindowGenepool extends WindowMachine {
 
 	@Override
 	protected String getName() {
-		return "Genepool";
+		return I18N.localise(Genetics.instance, "machine.labMachine.genepool");
 	}
 }

@@ -12,12 +12,17 @@ genetics.machine.machine.inoculator.info=The Inoculator uses serums to add genes
 
 genetics.machine.labMachine.genepool=Genepool
 genetics.machine.labMachine.genepool.info=The Genepool uses enzymes and ethanol to break down living things into DNA. During this process, all genetic information is lost and the source of the DNA is destroyed.
+genetics.machine.genepool.error.noIndividual=No Individual
+genetics.machine.genepool.error.noRoom=Not enough room in Tank
+genetics.machine.genepool.error.noEthanol=Not enough Ethanol
+genetics.machine.genepool.error.insufficientEnzyme=Insufficient Enzyme
 
 genetics.machine.labMachine.labMachine=Lab Stand
 
 genetics.machine.labMachine.analyser=Analyzer
 genetics.machine.labMachine.analyser.info=The Analyzer takes breedable individuals and DNA sequencers and analyzes them to determine the genes present. This requires DNA Dye, created from purple dye and glowstone
 genetics.machine.analyser.dnaDye=DNA Dye
+genetics.machine.analyser.unanalysedItem=Unanalyzed Item
 genetics.machine.analyser.error.alreadyAnalysed.title=Already Analyzed
 genetics.machine.analyser.error.alreadyAnalysed=Item has already been analyzed
 genetics.machine.analyser.error.insufficientDye.title=Insufficient Dye

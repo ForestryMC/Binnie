@@ -3,7 +3,7 @@ package binnie.genetics.machine.isolator;
 import binnie.core.machines.inventory.TankValidator;
 import net.minecraftforge.fluids.FluidStack;
 
-class EthanolTankValidator extends TankValidator {
+public class EthanolTankValidator extends TankValidator {
 	@Override
 	public String getTooltip() {
 		return "Ethanol";

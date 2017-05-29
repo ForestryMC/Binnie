@@ -9,7 +9,7 @@ import binnie.core.liquid.ItemFluidContainer;
 import binnie.core.resource.BinnieIcon;
 import binnie.extrabees.ExtraBees;
 import binnie.extratrees.ExtraTrees;
-import binnie.genetics.CreativeTabGenetics;
+import binnie.genetics.GeneticsCreativeTab;
 import binnie.genetics.Genetics;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.recipes.RecipeManagers;
@@ -42,7 +42,7 @@ public class ModuleItem implements IInitializable {
 		Genetics.itemSerum = new ItemSerum();
 		Genetics.itemSerumArray = new ItemSerumArray();
 		Genetics.itemSequencer = new ItemSequence();
-		Genetics.itemGenetics = Binnie.Item.registerMiscItems(GeneticsItems.values(), CreativeTabGenetics.instance);
+		Genetics.itemGenetics = Binnie.Item.registerMiscItems(GeneticsItems.values(), GeneticsCreativeTab.instance);
 		Genetics.database = new ItemDatabase();
 		Genetics.analyst = new ItemAnalyst();
 		Genetics.registry = new ItemRegistry();

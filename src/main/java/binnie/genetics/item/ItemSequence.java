@@ -2,7 +2,7 @@ package binnie.genetics.item;
 
 import binnie.Binnie;
 import binnie.core.genetics.Gene;
-import binnie.genetics.CreativeTabGenetics;
+import binnie.genetics.GeneticsCreativeTab;
 import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemAnalysable;
@@ -27,7 +27,7 @@ public class ItemSequence extends Item implements IItemAnalysable, IItemChargabl
 		setMaxStackSize(1);
 		setMaxDamage(5);
 		setUnlocalizedName("sequence");
-		setCreativeTab(CreativeTabGenetics.instance);
+		setCreativeTab(GeneticsCreativeTab.instance);
 	}
 
 	public static ItemStack create(IGene gene) {
