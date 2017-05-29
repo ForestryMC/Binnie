@@ -42,7 +42,7 @@ public class WindowPress extends Window {
 		setTitle(Machine.getMachine(getInventory()).getPackage().getDisplayName());
 		new ControlSlot(this, 24.0f, 52.0f).assign(Press.slotFruit);
 		new ControlLiquidTank(this, 99, 32).setTankID(Press.tankWater);
-		new ControlEnergyBar(this, 154, 32, 16, 60, Position.Bottom);
+		new ControlEnergyBar(this, 154, 32, 16, 60, Position.BOTTOM);
 		new ControlPlayerInventory(this);
 		new ControlErrorState(this, 128.0f, 54.0f);
 		new ControlFruitPressProgress(this, 62.0f, 24.0f);

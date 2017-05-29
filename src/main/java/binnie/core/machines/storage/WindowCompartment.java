@@ -104,7 +104,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		int compartmentHeight = compartmentPageHeight;
 
 		Control controlCompartment = new Control(this, x, y, compartmentWidth, compartmentHeight);
-		ControlTabBar<Integer> tab = new ControlTabBar<Integer>(controlCompartment, 0.0f, 0.0f, 24.0f, compartmentPageHeight, Position.Left) {
+		ControlTabBar<Integer> tab = new ControlTabBar<Integer>(controlCompartment, 0.0f, 0.0f, 24.0f, compartmentPageHeight, Position.LEFT) {
 			@Override
 			public ControlTab<Integer> createTab(float x, float y, float w, float h, Integer value) {
 				return new ControlTabIcon<Integer>(this, x, y, w, h, value) {
@@ -173,7 +173,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		}
 		x += compartmentPageWidth;
 		if (tabs2.length > 0) {
-			ControlTabBar<Integer> tab2 = new ControlTabBar<Integer>(controlCompartment, 24 + compartmentPageWidth, 0.0f, 24.0f, compartmentPageHeight, Position.Right) {
+			ControlTabBar<Integer> tab2 = new ControlTabBar<Integer>(controlCompartment, 24 + compartmentPageWidth, 0.0f, 24.0f, compartmentPageHeight, Position.RIGHT) {
 				@Override
 				public ControlTab<Integer> createTab(float x, float y, float w, float h, Integer value) {
 					return new ControlTabIcon<Integer>(this, x, y, w, h, value) {
@@ -219,7 +219,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		setSize(new IPoint(Math.max(32 + compartmentWidth, 252), h()));
 		controlCompartment.setPosition(new IPoint((w() - controlCompartment.w()) / 2.0f, controlCompartment.y()));
 		ControlPlayerInventory invent = new ControlPlayerInventory(this, true);
-		ControlSlide slide = new ControlSlide(this, 0.0f, 134.0f, 136.0f, 92.0f, Position.Left);
+		ControlSlide slide = new ControlSlide(this, 0.0f, 134.0f, 136.0f, 92.0f, Position.LEFT);
 		slide.setLabel("Tab Properties");
 		slide.setSlide(false);
 		slide.addHelp("Tab Properties");
@@ -296,7 +296,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			@Override
 			public void onRenderBackground() {
 				Object texture = isMouseOver() ? CraftGUITexture.TabHighlighted : CraftGUITexture.Tab;
-				CraftGUI.Render.texture(CraftGUI.Render.getTexture(texture).crop(Position.Bottom, 8.0f), getArea());
+				CraftGUI.Render.texture(CraftGUI.Render.getTexture(texture).crop(Position.BOTTOM, 8.0f), getArea());
 			}
 		};
 		searchButton.addHelp("Search Button");

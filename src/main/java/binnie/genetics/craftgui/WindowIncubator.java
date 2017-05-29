@@ -44,7 +44,7 @@ public class WindowIncubator extends WindowMachine {
 		x += 20;
 		new ControlIconDisplay(this, x, y + 3 + 10, GUIIcon.ArrowRight.getIcon());
 		x += 18;
-		new ControlMachineProgress(this, x, y + 6, WindowIncubator.ProgressBase, WindowIncubator.Progress, Position.Left);
+		new ControlMachineProgress(this, x, y + 6, WindowIncubator.ProgressBase, WindowIncubator.Progress, Position.LEFT);
 		new ControlSlot(this, x + 11, y + 3 + 10).assign(3);
 		x += 40;
 		new ControlIconDisplay(this, x, y + 3 + 10, GUIIcon.ArrowRight.getIcon());
@@ -53,7 +53,7 @@ public class WindowIncubator extends WindowMachine {
 		x += 26;
 		new ControlLiquidTank(this, x, y).setTankID(1);
 		x += 34;
-		new ControlEnergyBar(this, x, y + 3, 16, 54, Position.Bottom);
+		new ControlEnergyBar(this, x, y + 3, 16, 54, Position.BOTTOM);
 		new ControlErrorState(this, 91.0f, 82.0f);
 		new ControlPlayerInventory(this);
 	}

@@ -190,28 +190,28 @@ public class Renderer {
 	}
 
 	public void texturePercentage(Texture texture, IArea area, Position direction, float percentage) {
-		float dist = (direction == Position.Top || direction == Position.Bottom) ? (percentage * texture.h()) : (percentage * texture.w());
-		float dim = (direction == Position.Top || direction == Position.Bottom) ? texture.h() : texture.w();
+		float dist = (direction == Position.TOP || direction == Position.BOTTOM) ? (percentage * texture.h()) : (percentage * texture.w());
+		float dim = (direction == Position.TOP || direction == Position.BOTTOM) ? texture.h() : texture.w();
 		float x = area.pos().x();
 		float y = area.pos().y();
 		float w = area.size().x();
 		float h = area.size().y();
 
 		switch (direction) {
-			case Top:
+			case TOP:
 				h *= percentage;
 				break;
 
-			case Right:
+			case RIGHT:
 				x += (1.0f - percentage) * w;
 				w *= percentage;
 				break;
 
-			case Left:
+			case LEFT:
 				w *= percentage;
 				break;
 
-			case Bottom:
+			case BOTTOM:
 				y += h - (int) (percentage * h);
 				h *= percentage;
 				break;

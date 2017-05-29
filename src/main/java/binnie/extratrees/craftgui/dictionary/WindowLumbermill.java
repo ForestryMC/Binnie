@@ -43,7 +43,7 @@ public class WindowLumbermill extends Window {
 		new ControlSlot(this, 172.0f, 58.0f).assign(Lumbermill.slotSawdust);
 		new ControlLumbermillProgress(this, 70.0f, 43.0f);
 		new ControlLiquidTank(this, 16, 32);
-		new ControlEnergyBar(this, 8, 112, 16, 60, Position.Bottom);
+		new ControlEnergyBar(this, 8, 112, 16, 60, Position.BOTTOM);
 		new ControlPlayerInventory(this);
 		new ControlErrorState(this, 95.0f, 73.0f);
 	}
