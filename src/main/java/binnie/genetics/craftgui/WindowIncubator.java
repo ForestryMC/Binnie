@@ -46,7 +46,7 @@ public class WindowIncubator extends WindowMachine {
 		new ControlIconDisplay(this, x, y + 3 + 10, GUIIcon.ArrowRight.getIcon());
 		x += 18;
 		new ControlMachineProgress(this, x, y + 6, WindowIncubator.progressBase, WindowIncubator.progress, Position.LEFT);
-		new ControlSlot(this, x + 11, y + 3 + 10).assign(Incubator.SLOT_INCUBATOR);
+		new ControlSlot(this, x + 10, y + 3 + 10).assign(Incubator.SLOT_INCUBATOR);
 		x += 40;
 		new ControlIconDisplay(this, x, y + 3 + 10, GUIIcon.ArrowRight.getIcon());
 		x += 18;

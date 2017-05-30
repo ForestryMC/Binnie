@@ -1,5 +1,10 @@
 genetics.machine.machine.isolator=Isolator
 genetics.machine.machine.isolator.info=The Isolator takes a random allele from a bee, tree or other individual and copies it into an empty sequence vial. This requires the use of ethanol as a solvent and an enzyme to cut up the DNA. The unsequenced serums can then be amplified in a Polymeriser and sequenced in a Sequencer.
+genetics.machine.isolator.error.noIndividual=No individual to isolate
+genetics.machine.isolator.error.noRoom=No room for DNA sequences
+genetics.machine.isolator.error.noVials=No empty sequencer vials
+genetics.machine.isolator.error.noLiquid=Insufficient ethanol
+genetics.machine.isolator.error.noEnzyme=No enzyme
 
 genetics.machine.machine.sequencer=Sequencer
 genetics.machine.machine.sequencer.info=The Sequencer takes unsequenced serums and determines which allele is present in them. This requires the use of fluorescent dye and has a long computational time.

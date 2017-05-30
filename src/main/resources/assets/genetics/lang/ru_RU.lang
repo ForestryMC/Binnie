@@ -1,5 +1,10 @@
 genetics.machine.machine.isolator=Изолятор
 genetics.machine.machine.isolator.info=Изолятор извлекает случайный ген от пчелы, дерева или другого организма и копирует его в пустой пузырек сыворотки (empty sequence vial). Требуется Этанол для растворения и Фермент для извлечения ДНК. Полученная сыворотка с геном затем может быть усилена в Полимеризаторе и исследована в Секвенсоре.
+genetics.machine.isolator.error.noIndividual=Нет образцов для изоляции
+genetics.machine.isolator.error.noRoom=Нет места для ДНК секвенции
+genetics.machine.isolator.error.noVials=Нет пустых флаконов
+genetics.machine.isolator.error.noLiquid=Недостаточно этанола
+genetics.machine.isolator.error.noEnzyme=Нет энзима
 
 genetics.machine.machine.sequencer=Секвенсор
 genetics.machine.machine.sequencer.info=Секвенсор предназначен для анализа новых генов, извлечённых из организмов. Секвенсор принимает неисследованную сыворотку и определяет, какие гены присутствуют в ней. В результате ген попадает в общую генетическую базу данных. Процесс занимает много времени и требует использования Флюорофора (жёлтый+оранжевый+светопыль)
