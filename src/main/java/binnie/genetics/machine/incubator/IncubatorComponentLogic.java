@@ -5,6 +5,8 @@ import binnie.core.machines.power.ComponentProcessIndefinate;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import binnie.core.machines.transfer.TransferRequest;
+import binnie.core.util.I18N;
+import binnie.genetics.Genetics;
 import binnie.genetics.api.IIncubatorRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
@@ -17,7 +19,7 @@ public class IncubatorComponentLogic extends ComponentProcessIndefinate implemen
 	private boolean roomForOutput;
 
 	public IncubatorComponentLogic(Machine machine) {
-		super(machine, 2.0f);
+		super(machine, Incubator.ENERGY_PER_TICK);
 		recipe = null;
 		rand = new Random();
 		roomForOutput = true;
@@ -25,20 +27,29 @@ public class IncubatorComponentLogic extends ComponentProcessIndefinate implemen
 
 	@Override
 	public ErrorState canWork() {
-		if (recipe == null) {
-			return new ErrorState("No Recipe", "There is no valid recipe");
+		if (recipe != null) {
+			return super.canWork();
 		}
-		return super.canWork();
+		return new ErrorState(
+			I18N.localise(Genetics.instance, "machine.incubator.error.noRecipe.title"),
+			I18N.localise(Genetics.instance, "machine.incubator.error.noRecipe")
+		);
 	}
 
 	@Override
 	public ErrorState canProgress() {
 		if (recipe != null) {
 			if (!recipe.isInputLiquidSufficient(getUtil().getFluid(Incubator.TANK_INPUT))) {
-				return new ErrorState.InsufficientLiquid("Not enough incubation liquid", Incubator.TANK_INPUT);
+				return new ErrorState.InsufficientLiquid(
+					I18N.localise(Genetics.instance, "machine.incubator.error.noLiquid"),
+					Incubator.TANK_INPUT
+				);
 			}
 			if (!roomForOutput) {
-				return new ErrorState.TankSpace("No room for output", Incubator.TANK_OUTPUT);
+				return new ErrorState.TankSpace(
+					I18N.localise(Genetics.instance, "machine.incubator.error.noRoom"),
+					Incubator.TANK_OUTPUT
+				);
 			}
 		}
 		return super.canProgress();

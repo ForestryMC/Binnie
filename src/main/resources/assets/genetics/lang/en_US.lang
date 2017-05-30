@@ -31,6 +31,10 @@ genetics.machine.analyser.error.noItem=No item to analyze
 
 genetics.machine.labMachine.incubator=Incubator
 genetics.machine.labMachine.incubator.info=The Incubator combines liquids and items and allows them to sit at an ideal temperature to encourage bacterial growth. 
+genetics.machine.incubator.error.noRecipe.title=No Recipe
+genetics.machine.incubator.error.noRecipe=There is no valid recipe
+genetics.machine.incubator.error.noLiquid=Not enough incubation liquid
+genetics.machine.incubator.error.noRoom=No room for output
 
 genetics.machine.labMachine.acclimatiser=Acclimatiser
 genetics.machine.labMachine.acclimatiser.info=

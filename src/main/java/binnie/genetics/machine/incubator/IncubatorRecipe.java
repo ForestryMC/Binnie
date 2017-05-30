@@ -75,23 +75,21 @@ public abstract class IncubatorRecipe implements IIncubatorRecipe {
 	@Override
 	public boolean roomForOutput(MachineUtil machine) {
 		if (output != null && !machine.isTankEmpty(Incubator.TANK_OUTPUT)) {
-			if (!machine.getFluid(Incubator.TANK_OUTPUT).isFluidEqual(output)) {
-				return false;
-			}
-			if (!machine.spaceInTank(Incubator.TANK_OUTPUT, output.amount)) {
+			if (!machine.getFluid(Incubator.TANK_OUTPUT).isFluidEqual(output) ||
+				!machine.spaceInTank(Incubator.TANK_OUTPUT, output.amount)) {
 				return false;
 			}
 		}
 
 		ItemStack outputStack = getOutputStack(machine);
-		if (outputStack != null) {
-			ItemStack output = outputStack.copy();
-			TransferRequest product = new TransferRequest(output, machine.getInventory())
-				.setTargetSlots(Incubator.SLOT_OUTPUT)
-				.ignoreValidation();
-			ItemStack leftover = product.transfer(false);
-			return leftover == null;
+		if (outputStack == null) {
+			return true;
 		}
-		return true;
+
+		ItemStack output = outputStack.copy();
+		TransferRequest product = new TransferRequest(output, machine.getInventory())
+			.setTargetSlots(Incubator.SLOT_OUTPUT)
+			.ignoreValidation();
+		return product.transfer(false) == null;
 	}
 }
