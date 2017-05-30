@@ -1,24 +1,37 @@
 package binnie.core.machines.inventory;
 
+import binnie.core.BinnieCore;
+import binnie.core.util.I18N;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.Collection;
 import java.util.EnumSet;
 
 public class MachineSide {
-	private static EnumSet<ForgeDirection> All = EnumSet.of(ForgeDirection.UP, ForgeDirection.DOWN, ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST);
-	public static EnumSet<ForgeDirection> TopAndBottom = EnumSet.of(ForgeDirection.UP, ForgeDirection.DOWN);
-	public static EnumSet<ForgeDirection> None = EnumSet.noneOf(ForgeDirection.class);
-	public static EnumSet<ForgeDirection> Top = EnumSet.of(ForgeDirection.UP);
-	public static EnumSet<ForgeDirection> Bottom = EnumSet.of(ForgeDirection.DOWN);
-	public static EnumSet<ForgeDirection> Sides = EnumSet.of(ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST);
+	public static final EnumSet<ForgeDirection> TOP_AND_BOTTOM = EnumSet.of(ForgeDirection.UP, ForgeDirection.DOWN);
+	public static final EnumSet<ForgeDirection> NONE = EnumSet.noneOf(ForgeDirection.class);
+	public static final EnumSet<ForgeDirection> SIDES = EnumSet.of(
+		ForgeDirection.NORTH,
+		ForgeDirection.SOUTH,
+		ForgeDirection.EAST,
+		ForgeDirection.WEST
+	);
+
+	private static final EnumSet<ForgeDirection> ALL = EnumSet.of(
+		ForgeDirection.UP,
+		ForgeDirection.DOWN,
+		ForgeDirection.NORTH,
+		ForgeDirection.SOUTH,
+		ForgeDirection.EAST,
+		ForgeDirection.WEST
+	);
 
 	public static String asString(Collection<ForgeDirection> sides) {
-		if (sides.containsAll(MachineSide.All)) {
-			return "Any";
+		if (sides.containsAll(MachineSide.ALL)) {
+			return I18N.localise(BinnieCore.instance, "gui.side.any");
 		}
 		if (sides.isEmpty()) {
-			return "None";
+			return I18N.localise(BinnieCore.instance, "gui.side.none");
 		}
 
 		String text = "";
@@ -26,48 +39,48 @@ public class MachineSide {
 			if (sides.size() > 0) {
 				text += ", ";
 			}
-			text += "Up";
+			text += I18N.localise(BinnieCore.instance, "gui.side.up");
 		}
 
 		if (sides.contains(ForgeDirection.DOWN)) {
 			if (sides.size() > 0) {
 				text += ", ";
 			}
-			text += "Down";
+			text += I18N.localise(BinnieCore.instance, "gui.side.down");
 		}
 
-		if (sides.containsAll(MachineSide.Sides)) {
+		if (sides.containsAll(MachineSide.SIDES)) {
 			if (sides.size() > 0) {
 				text += ", ";
 			}
-			text += "Sides";
+			text += I18N.localise(BinnieCore.instance, "gui.side.sides");
 		} else {
 			if (sides.contains(ForgeDirection.NORTH)) {
 				if (sides.size() > 0) {
 					text += ", ";
 				}
-				text += "North";
+				text += I18N.localise(BinnieCore.instance, "gui.side.north");
 			}
 
 			if (sides.contains(ForgeDirection.EAST)) {
 				if (sides.size() > 0) {
 					text += ", ";
 				}
-				text += "East";
+				text += I18N.localise(BinnieCore.instance, "gui.side.east");
 			}
 
 			if (sides.contains(ForgeDirection.SOUTH)) {
 				if (sides.size() > 0) {
 					text += ", ";
 				}
-				text += "South";
+				text += I18N.localise(BinnieCore.instance, "gui.side.south");
 			}
 
 			if (sides.contains(ForgeDirection.WEST)) {
 				if (sides.size() > 0) {
 					text += ", ";
 				}
-				text += "West";
+				text += I18N.localise(BinnieCore.instance, "gui.side.west");
 			}
 		}
 		return text;

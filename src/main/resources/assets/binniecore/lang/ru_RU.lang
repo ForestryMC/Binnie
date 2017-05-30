@@ -226,6 +226,7 @@ binniecore.gui.nottolerated=неустойчив
 
 binniecore.gui.design=Дизайн
 binniecore.gui.tooltip.info=Информация
+binniecore.gui.tooltip.owner=Владелец
 binniecore.gui.tooltip.help=Помощь
 binniecore.gui.tooltip.help.0=Для показа всплывающих подсказок
 binniecore.gui.tooltip.help.1=зажмите клавишу TAB и
@@ -292,9 +293,6 @@ binniecore.allele.extrabees.effect.wither.desc=Иссушает существ
 binniecore.allele.extrabees.effect.spawn_zombie.desc=Спаун зомби
 binniecore.allele.forestry.effectFestiveEaster.desc=Ничего не делает
 
-
-
-< Names for slots when using help tooltip >
 binniecore.gui.slot.slot=Слот
 binniecore.gui.slot.input=Приёмный слот
 binniecore.gui.slot.process=Рабочий слот
@@ -322,7 +320,24 @@ binniecore.gui.slot.serum.input=Приёмный слот для сыворот�
 binniecore.gui.slot.serum.output=Выдающий слот для сыворотки
 binniecore.gui.slot.serum.active=Активный слот для сыворотки
 binniecore.gui.slot.yeast=Слот для дрожжей
+binniecore.gui.slot.breedableIndividual=Образец
+binniecore.gui.slot.pickupOnly=Автоматическое помещение в слот
+binniecore.gui.slot.playerInventory=Инвентарь игрока
+binniecore.gui.slot.anyItem=Любой предмет
+binniecore.gui.slot.accepts=Принимается: %s
 
-binniecore.gui.tank.input=Приёмный резервуар
+binniecore.gui.tank.input=Приёмочный резервуар
 binniecore.gui.tank.process=Рабочий резервуар
 binniecore.gui.tank.output=Выдающий резервуар
+
+binniecore.gui.side.any=любое направление
+binniecore.gui.side.none=никакая
+binniecore.gui.side.up=верх
+binniecore.gui.side.down=низ
+binniecore.gui.side.sides=любая сторона
+binniecore.gui.side.north=север
+binniecore.gui.side.east=восток
+binniecore.gui.side.west=запад
+binniecore.gui.side.south=юг
+binniecore.gui.side.insertSide=Принимающая сторона: %s
+binniecore.gui.side.extractSide=Выдающая сторона: %s

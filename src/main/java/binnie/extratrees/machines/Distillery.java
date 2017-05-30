@@ -81,11 +81,11 @@ public class Distillery {
 			ComponentTankContainer tanks = new ComponentTankContainer(machine);
 			tanks.addTank(Distillery.tankInput, "input", 5000);
 			tanks.getTankSlot(Distillery.tankInput).setValidator(new TankValidatorDistilleryInput());
-			tanks.getTankSlot(Distillery.tankInput).setOutputSides(MachineSide.TopAndBottom);
+			tanks.getTankSlot(Distillery.tankInput).setOutputSides(MachineSide.TOP_AND_BOTTOM);
 			tanks.addTank(Distillery.tankOutput, "output", 5000);
 			tanks.getTankSlot(Distillery.tankOutput).setValidator(new TankValidatorDistilleryOutput());
 			tanks.getTankSlot(Distillery.tankOutput).setReadOnly();
-			tanks.getTankSlot(Distillery.tankOutput).setOutputSides(MachineSide.Sides);
+			tanks.getTankSlot(Distillery.tankOutput).setOutputSides(MachineSide.SIDES);
 			new ComponentPowerReceptor(machine);
 			new ComponentDistilleryLogic(machine);
 		}

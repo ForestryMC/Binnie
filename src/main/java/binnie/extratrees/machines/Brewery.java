@@ -174,11 +174,11 @@ public class Brewery {
 			ComponentTankContainer tanks = new ComponentTankContainer(machine);
 			tanks.addTank(Brewery.tankInput, "input", 5000);
 			tanks.getTankSlot(Brewery.tankInput).setValidator(new TankValidatorFermentInput());
-			tanks.getTankSlot(Brewery.tankInput).setOutputSides(MachineSide.TopAndBottom);
+			tanks.getTankSlot(Brewery.tankInput).setOutputSides(MachineSide.TOP_AND_BOTTOM);
 			tanks.addTank(Brewery.tankOutput, "output", 5000);
 			tanks.getTankSlot(Brewery.tankOutput).setValidator(new TankValidatorFermentOutput());
 			tanks.getTankSlot(Brewery.tankOutput).forbidInsertion();
-			tanks.getTankSlot(Brewery.tankOutput).setOutputSides(MachineSide.Sides);
+			tanks.getTankSlot(Brewery.tankOutput).setOutputSides(MachineSide.SIDES);
 
 			new ComponentPowerReceptor(machine);
 			new ComponentBreweryLogic(machine);
