@@ -9,6 +9,20 @@ genetics.machine.machine.polymeriser.info=Полимеризатор усили�
 
 genetics.machine.machine.inoculator=Инокулятор
 genetics.machine.machine.inoculator.info=Инокулятор использует сыворотку для прививки новых генов. Процесс продолжителен и требует Бактерию Вектор, но на 100% успешен.
+genetics.machine.inoculator.error.noIndividual=Нет образцов для инокуляции
+genetics.machine.inoculator.error.noSerum=Нет сыворотки
+genetics.machine.inoculator.error.noLiquid=Не хватает жидкости
+genetics.machine.inoculator.error.emptySerum.title=Пустая сыворотка
+genetics.machine.inoculator.error.emptySerum=Пустая сыворотка
+genetics.machine.inoculator.error.invalidSerum.title=Некорректная сыворотка
+genetics.machine.inoculator.error.invalidSerum.0=Сыворотка не содержит генов
+genetics.machine.inoculator.error.invalidSerum.1=Сыворотка не подходит для этого образца
+genetics.machine.inoculator.error.defunctSerum.title=Недействующая сыворотка
+genetics.machine.inoculator.error.defunctSerum=Образец уже обладает этим геном
+genetics.machine.inoculator.inoculatingWithGene=Инокуляция с одним gene
+genetics.machine.inoculator.inoculatingWithGenes=Инокуляция с %d генами
+genetics.machine.inoculator.inoculableIndividual=Образец для инокуляции
+genetics.machine.inoculator.serums=Сывороточные флаконы и массивы
 
 genetics.machine.labMachine.genepool=Экстрактор ДНК
 genetics.machine.labMachine.genepool.info=Растворяет организмы с помощью Этанола и Фермента в Жидкую ДНК, которая нужна для работы некоторых генетических машин. Вся генетическая информация теряется и организм-источник ДНК разрушается.

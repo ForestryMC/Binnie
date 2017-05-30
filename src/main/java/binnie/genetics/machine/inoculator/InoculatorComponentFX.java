@@ -89,7 +89,7 @@ public class InoculatorComponentFX extends MachineComponent implements
 			return;
 		}
 
-		ItemStack stack = getUtil().getStack(9);
+		ItemStack stack = getUtil().getStack(Inoculator.SLOT_TARGET);
 		dummyEntityItem.worldObj = getMachine().getWorld();
 		dummyEntityItem.setEntityItemStack(stack);
 		EntityItem dummyEntityItem = this.dummyEntityItem;

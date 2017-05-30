@@ -195,7 +195,7 @@ public class BlockFlower extends BlockContainer {
 
 	@Override
 	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int blockMeta, int fortune) {
-		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		ArrayList<ItemStack> drops = new ArrayList<>();
 		TileEntity tile = world.getTileEntity(x, y, z);
 		if (tile instanceof TileEntityFlower && ((TileEntityFlower) tile).getSection() == 0) {
 			ItemStack flower = ((TileEntityFlower) tile).getItemStack();

@@ -4,7 +4,6 @@ import forestry.api.genetics.IAlleleInteger;
 
 public class AlleleColor implements IAlleleInteger {
 	private String uid;
-	private String name;
 	private int value;
 	private EnumFlowerColor color;
 	private boolean dominant = true;
@@ -12,7 +11,6 @@ public class AlleleColor implements IAlleleInteger {
 	public AlleleColor(EnumFlowerColor color, String uid, String name, int value) {
 		this.color = color;
 		this.uid = uid;
-		this.name = name;
 		this.value = value;
 	}
 

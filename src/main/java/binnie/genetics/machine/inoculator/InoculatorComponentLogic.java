@@ -4,6 +4,8 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
+import binnie.core.util.I18N;
+import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.genetics.Engineering;
@@ -16,11 +18,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class InoculatorComponentLogic extends ComponentProcessSetCost implements IProcess {
-	private float bacteriaDrain;
+	private float bacteriaDrain = 0.0f;
 
 	public InoculatorComponentLogic(Machine machine) {
-		super(machine, 600000, 12000);
-		bacteriaDrain = 0.0f;
+		super(machine, Inoculator.RF_COST, Inoculator.TIME_PERIOD);
 	}
 
 	@Override
@@ -44,19 +45,31 @@ public class InoculatorComponentLogic extends ComponentProcessSetCost implements
 	@Override
 	public String getTooltip() {
 		int n = getNumberOfGenes();
-		return "Inoculating with " + n + " gene" + ((n > 1) ? "s" : "");
+		if (n > 1) {
+			return I18N.localise(Genetics.instance, "machine.inoculator.inoculatingWithGenes", n);
+		}
+		return I18N.localise(Genetics.instance, "machine.inoculator.inoculatingWithGene");
 	}
 
 	@Override
 	public ErrorState canWork() {
 		if (getUtil().isSlotEmpty(Inoculator.SLOT_TARGET)) {
-			return new ErrorState.NoItem("No Individual to Inoculate", Inoculator.SLOT_TARGET);
+			return new ErrorState.NoItem(
+				I18N.localise(Genetics.instance, "machine.inoculator.error.noIndividual"),
+				Inoculator.SLOT_TARGET
+			);
 		}
 		if (getUtil().isSlotEmpty(Inoculator.SLOT_SERUM_VIAL)) {
-			return new ErrorState.NoItem("No Serum", Inoculator.SLOT_SERUM_VIAL);
+			return new ErrorState.NoItem(
+				I18N.localise(Genetics.instance, "machine.inoculator.error.noSerum"),
+				Inoculator.SLOT_SERUM_VIAL
+			);
 		}
 		if (getUtil().isTankEmpty(Inoculator.TANK_VECTOR)) {
-			return new ErrorState.InsufficientLiquid("Not enough liquid", Inoculator.TANK_VECTOR);
+			return new ErrorState.InsufficientLiquid(
+				I18N.localise(Genetics.instance, "machine.inoculator.error.noLiquid"),
+				Inoculator.TANK_VECTOR
+			);
 		}
 
 		ErrorState state = isValidSerum();
@@ -66,7 +79,10 @@ public class InoculatorComponentLogic extends ComponentProcessSetCost implements
 		
 		ItemStack stack = getUtil().getStack(Inoculator.SLOT_SERUM_VIAL);
 		if (stack != null && Engineering.getCharges(stack) == 0) {
-			return new ErrorState("Empty Serum", "Serum is empty");
+			return new ErrorState(
+				I18N.localise(Genetics.instance, "machine.inoculator.error.emptySerum.title"),
+				I18N.localise(Genetics.instance, "machine.inoculator.error.emptySerum")
+			);
 		}
 		return super.canWork();
 	}
@@ -76,30 +92,40 @@ public class InoculatorComponentLogic extends ComponentProcessSetCost implements
 		ItemStack target = getUtil().getStack(Inoculator.SLOT_TARGET);
 		IGene[] genes = Engineering.getGenes(serum);
 		if (genes.length == 0) {
-			return new ErrorState("Invalid Serum", "Serum does not hold any genes");
+			return new ErrorState(
+				I18N.localise(Genetics.instance, "machine.inoculator.error.invalidSerum.title"),
+				I18N.localise(Genetics.instance, "machine.inoculator.error.invalidSerum.0")
+			);
 		}
 		if (!genes[0].getSpeciesRoot().isMember(target)) {
-			return new ErrorState("Invalid Serum", "Mismatch of Serum Type and Target");
+			return new ErrorState(
+				I18N.localise(Genetics.instance, "machine.inoculator.error.invalidSerum.title"),
+				I18N.localise(Genetics.instance, "machine.inoculator.error.invalidSerum.1")
+			);
 		}
 
 		IIndividual individual = genes[0].getSpeciesRoot().getMember(target);
 		boolean hasAll = true;
 		for (IGene gene : genes) {
-			if (hasAll) {
-				IGenome genome = individual.getGenome();
-				IChromosomeType chromosome = gene.getChromosome();
-				String geneAlleleUID = gene.getAllele().getUID();
-				IAllele a = genome.getActiveAllele(chromosome);
-				IAllele b = genome.getInactiveAllele(chromosome);
-				hasAll = a.getUID().equals(geneAlleleUID)
-					&& b.getUID().equals(geneAlleleUID);
+			if (!hasAll) {
+				continue;
 			}
+
+			IGenome genome = individual.getGenome();
+			IChromosomeType chromosome = gene.getChromosome();
+			String geneAlleleUID = gene.getAllele().getUID();
+			IAllele a = genome.getActiveAllele(chromosome);
+			IAllele b = genome.getInactiveAllele(chromosome);
+			hasAll = a.getUID().equals(geneAlleleUID) && b.getUID().equals(geneAlleleUID);
 		}
 
-		if (hasAll) {
-			return new ErrorState("Defunct Serum", "Individual already possesses this allele");
+		if (!hasAll) {
+			return null;
 		}
-		return null;
+		return new ErrorState(
+			I18N.localise(Genetics.instance, "machine.inoculator.error.defunctSerum.title"),
+			I18N.localise(Genetics.instance, "machine.inoculator.error.defunctSerum")
+		);
 	}
 
 	@Override
@@ -132,7 +158,7 @@ public class InoculatorComponentLogic extends ComponentProcessSetCost implements
 	protected void onTickTask() {
 		bacteriaDrain += 15.0f * getProgressPerTick() / 100.0f;
 		if (bacteriaDrain >= 1.0f) {
-			getUtil().drainTank(0, 1);
+			getUtil().drainTank(Inoculator.TANK_VECTOR, 1);
 			bacteriaDrain--;
 		}
 	}

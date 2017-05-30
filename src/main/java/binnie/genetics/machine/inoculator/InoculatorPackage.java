@@ -65,7 +65,7 @@ public class InoculatorPackage extends PackageGeneticBase implements IMachineInf
 		ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
 		transfer.addRestock(Inoculator.SLOT_RESERVE, Inoculator.SLOT_TARGET, 1);
 		transfer.addRestock(Inoculator.SLOT_SERUM_RESERVE, Inoculator.SLOT_SERUM_VIAL);
-		transfer.addStorage(0, Inoculator.SLOT_SERUM_EXPENDED, new ComponentInventoryTransfer.Condition() {
+		transfer.addStorage(Inoculator.SLOT_SERUM_VIAL, Inoculator.SLOT_SERUM_EXPENDED, new ComponentInventoryTransfer.Condition() {
 			@Override
 			public boolean fufilled(ItemStack stack) {
 				return Engineering.getCharges(stack) == 0;
@@ -81,7 +81,7 @@ public class InoculatorPackage extends PackageGeneticBase implements IMachineInf
 			}
 		});
 
-		new ComponentPowerReceptor(machine, 15000);
+		new ComponentPowerReceptor(machine, Inoculator.POWER_STORAGE);
 		new InoculatorComponentLogic(machine);
 		new InoculatorComponentFX(machine);
 		new ComponentTankContainer(machine)

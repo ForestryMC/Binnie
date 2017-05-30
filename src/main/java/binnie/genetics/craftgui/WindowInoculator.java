@@ -16,6 +16,7 @@ import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.core.craftgui.minecraft.control.ControlSlotArray;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
+import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.inoculator.Inoculator;
@@ -37,7 +38,7 @@ public class WindowInoculator extends WindowMachine {
 
 	@Override
 	public void initialiseClient() {
-		setTitle("Inoculator");
+		setTitle(getTitle());
 		int x = 16;
 		int y = 32;
 		new ControlLiquidTank(this, x, y + 18 + 16).setTankID(0);
@@ -55,7 +56,7 @@ public class WindowInoculator extends WindowMachine {
 
 	@Override
 	public String getTitle() {
-		return "Inoculator";
+		return I18N.localise(Genetics.instance, "machine.machine.inoculator");
 	}
 
 	@Override
@@ -65,6 +66,6 @@ public class WindowInoculator extends WindowMachine {
 
 	@Override
 	protected String getName() {
-		return "Inoculator";
+		return getTitle();
 	}
 }
