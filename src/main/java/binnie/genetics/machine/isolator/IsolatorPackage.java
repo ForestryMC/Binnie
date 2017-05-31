@@ -57,7 +57,7 @@ public class IsolatorPackage extends PackageGeneticBase implements IMachineInfor
 		}
 
 		ComponentTankContainer tanks = new ComponentTankContainer(machine);
-		tanks.addTank(Isolator.TANK_ETHANOL, "input", 1000);
+		tanks.addTank(Isolator.TANK_ETHANOL, "input", Isolator.ETHANOL_CAPACITY);
 		tanks.getTankSlot(Isolator.TANK_ETHANOL).setValidator(new EthanolTankValidator());
 
 		ComponentChargedSlots chargedSlots = new ComponentChargedSlots(machine);
@@ -66,7 +66,7 @@ public class IsolatorPackage extends PackageGeneticBase implements IMachineInfor
 		ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
 		transfer.addRestock(Isolator.SLOT_RESERVE, Isolator.SLOT_TARGET, 1);
 		transfer.addStorage(Isolator.SLOT_RESULT, Isolator.SLOT_FINISHED);
-		new ComponentPowerReceptor(machine, 20000);
+		new ComponentPowerReceptor(machine, Isolator.POWER_CAPACITY);
 		new IsolatorComponentLogic(machine);
 		new IsolatorComponentFX(machine);
 	}

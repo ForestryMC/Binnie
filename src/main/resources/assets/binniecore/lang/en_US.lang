@@ -226,6 +226,7 @@ binniecore.gui.nottolerated=Not Tolerated
 
 binniecore.gui.design=Design
 binniecore.gui.tooltip.info=Info
+binniecore.gui.tooltip.owner=Owner
 binniecore.gui.tooltip.help=Help
 binniecore.gui.tooltip.help.0=To activate help tooltips,
 binniecore.gui.tooltip.help.1=hold down the tab key and
@@ -292,9 +293,6 @@ binniecore.allele.extrabees.effect.wither.desc=Withers anyone who approaches
 binniecore.allele.extrabees.effect.spawn_zombie.desc=Randomly spawns zombies
 binniecore.allele.forestry.effectFestiveEaster.desc=Does nothing
 
-
-
-< Names for slots when using help tooltip >
 binniecore.gui.slot.slot=Slot
 binniecore.gui.slot.input=Input Slot
 binniecore.gui.slot.process=Process Slot
@@ -322,7 +320,24 @@ binniecore.gui.slot.serum.input=Serum Input Slot
 binniecore.gui.slot.serum.output=Serum Output Slot
 binniecore.gui.slot.serum.active=Active Serum Slot
 binniecore.gui.slot.yeast=Yeast Slot
+binniecore.gui.slot.breedableIndividual=Breedable Individual
+binniecore.gui.slot.pickupOnly=Pickup Only Slot
+binniecore.gui.slot.playerInventory=Player Inventory
+binniecore.gui.slot.anyItem=Any Item
+binniecore.gui.slot.accepts=Accepts: %s
 
 binniecore.gui.tank.input=Input Tank
 binniecore.gui.tank.process=Process Tank
 binniecore.gui.tank.output=Output Tank
+
+binniecore.gui.side.any=Any
+binniecore.gui.side.none=None
+binniecore.gui.side.up=Up
+binniecore.gui.side.down=Down
+binniecore.gui.side.sides=Sides
+binniecore.gui.side.north=North
+binniecore.gui.side.east=East
+binniecore.gui.side.west=West
+binniecore.gui.side.south=South
+binniecore.gui.side.insertSide=Insert Side: %s
+binniecore.gui.side.extractSide=Extract Side: %s

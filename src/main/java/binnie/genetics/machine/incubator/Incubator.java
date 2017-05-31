@@ -20,7 +20,11 @@ public class Incubator {
 	public static final int SLOT_INCUBATOR = 3;
 	public static final int TANK_INPUT = 0;
 	public static final int TANK_OUTPUT = 1;
+	public static final float ENERGY_PER_TICK = 2.0f;
 	public static final List<IIncubatorRecipe> RECIPES = new ArrayList<>();
+	public static final int POWER_CAPACITY = 2000;
+	public static final int INPUT_TANK_CAPACITY = 2000;
+	public static final int OUTPU_TANK_CAPACITY = 2000;
 
 	public static void addRecipes() {
 		Incubator.RECIPES.add(new IncubatorRecipe(Binnie.Liquid.getLiquidStack("water", 25), GeneticLiquid.GrowthMedium.get(25), 0.2f) {

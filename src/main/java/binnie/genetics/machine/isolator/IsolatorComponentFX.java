@@ -22,6 +22,7 @@ public class IsolatorComponentFX extends MachineComponent implements IRender.Ran
 		if (!getUtil().getProcess().isInProgress()) {
 			return;
 		}
+
 		BinnieCore.proxy.getMinecraftInstance().effectRenderer.addEffect(new EntityFX(world, x + 0.4 + 0.2 * rand.nextDouble(), y + 1.6, z + 0.4 + rand.nextDouble() * 0.2, 0.0, 0.0, 0.0) {
 			double angle = 0.0;
 

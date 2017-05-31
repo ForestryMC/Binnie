@@ -1,5 +1,10 @@
 genetics.machine.machine.isolator=Isolator
 genetics.machine.machine.isolator.info=The Isolator takes a random allele from a bee, tree or other individual and copies it into an empty sequence vial. This requires the use of ethanol as a solvent and an enzyme to cut up the DNA. The unsequenced serums can then be amplified in a Polymeriser and sequenced in a Sequencer.
+genetics.machine.isolator.error.noIndividual=No individual to isolate
+genetics.machine.isolator.error.noRoom=No room for DNA sequences
+genetics.machine.isolator.error.noVials=No empty sequencer vials
+genetics.machine.isolator.error.noLiquid=Insufficient ethanol
+genetics.machine.isolator.error.noEnzyme=No enzyme
 
 genetics.machine.machine.sequencer=Sequencer
 genetics.machine.machine.sequencer.info=The Sequencer takes unsequenced serums and determines which allele is present in them. This process is slow and requires the use of fluorescent dye.
@@ -9,6 +14,20 @@ genetics.machine.machine.polymeriser.info=The Polymeriser fills empty serums wit
 
 genetics.machine.machine.inoculator=Inoculator
 genetics.machine.machine.inoculator.info=The Inoculator uses serums to add genes to breedable individuals. This process is very slow and requires a Bacteria Vector, but is always successful.  
+genetics.machine.inoculator.error.noIndividual=No Individual to Inoculate
+genetics.machine.inoculator.error.noSerum=No Serum
+genetics.machine.inoculator.error.noLiquid=Not enough liquid
+genetics.machine.inoculator.error.emptySerum.title=Empty Serum
+genetics.machine.inoculator.error.emptySerum=Serum is empty
+genetics.machine.inoculator.error.invalidSerum.title=Invalid Serum
+genetics.machine.inoculator.error.invalidSerum.0=Serum does not hold any genes
+genetics.machine.inoculator.error.invalidSerum.1=Mismatch of Serum Type and Target
+genetics.machine.inoculator.error.defunctSerum.title=Defunct Serum
+genetics.machine.inoculator.error.defunctSerum=Individual already possesses this allele
+genetics.machine.inoculator.inoculatingWithGene=Inoculating with 1 gene
+genetics.machine.inoculator.inoculatingWithGenes=Inoculating with %d genes
+genetics.machine.inoculator.inoculableIndividual=Inoculable Individual
+genetics.machine.inoculator.serums=Serum Vials & Arrays
 
 genetics.machine.labMachine.genepool=Genepool
 genetics.machine.labMachine.genepool.info=The Genepool uses enzymes and ethanol to break down living things into DNA. During this process, all genetic information is lost and the source of the DNA is destroyed.
@@ -31,6 +50,10 @@ genetics.machine.analyser.error.noItem=No item to analyze
 
 genetics.machine.labMachine.incubator=Incubator
 genetics.machine.labMachine.incubator.info=The Incubator combines liquids and items and allows them to sit at an ideal temperature to encourage bacterial growth. 
+genetics.machine.incubator.error.noRecipe.title=No Recipe
+genetics.machine.incubator.error.noRecipe=There is no valid recipe
+genetics.machine.incubator.error.noLiquid=Not enough incubation liquid
+genetics.machine.incubator.error.noRoom=No room for output
 
 genetics.machine.labMachine.acclimatiser=Acclimatiser
 genetics.machine.labMachine.acclimatiser.info=

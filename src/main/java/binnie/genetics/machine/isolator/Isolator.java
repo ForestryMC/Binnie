@@ -8,4 +8,8 @@ public class Isolator {
 	public static final int SLOT_TARGET = 5;
 	public static final int SLOT_RESULT = 6;
 	public static final int TANK_ETHANOL = 0;
+	public static final int RF_COST = 192000;
+	public static final int TIME_PERIOD = 4800;
+	public static final int POWER_CAPACITY = 20000;
+	public static final int ETHANOL_CAPACITY = 1000;
 }

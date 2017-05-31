@@ -1,5 +1,6 @@
 package binnie.core.craftgui.minecraft.control;
 
+import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.Tooltip;
@@ -14,6 +15,7 @@ import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.inventory.MachineSide;
 import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.util.I18N;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -142,7 +144,7 @@ public class ControlSlot extends ControlSlotBase {
 	}
 
 	private List<ControlSlot> getControlSlots() {
-		List<ControlSlot> slots = new ArrayList<ControlSlot>();
+		List<ControlSlot> slots = new ArrayList<>();
 		if (getParent() instanceof ControlSlotArray || getParent() instanceof ControlPlayerInventory) {
 			for (IWidget child : getParent().getWidgets()) {
 				slots.add((ControlSlot) child);
@@ -166,11 +168,9 @@ public class ControlSlot extends ControlSlotBase {
 	}
 
 	public ControlSlot assign(InventoryType inventory, int index) {
-		if (slot != null) {
-			return this;
+		if (slot == null) {
+			slot = ((Window) getSuperParent()).getContainer().getOrCreateSlot(inventory, index);
 		}
-
-		slot = ((Window) getSuperParent()).getContainer().getOrCreateSlot(inventory, index);
 		return this;
 	}
 
@@ -183,22 +183,34 @@ public class ControlSlot extends ControlSlotBase {
 		InventorySlot slot = getInventorySlot();
 		if (getInventorySlot() != null) {
 			tooltip.add(slot.getName());
-			tooltip.add("Insert Side: " + MachineSide.asString(slot.getInputSides()));
-			tooltip.add("Extract Side: " + MachineSide.asString(slot.getOutputSides()));
+			tooltip.add(I18N.localise(BinnieCore.instance, "gui.side.insertSide", MachineSide.asString(slot.getInputSides())));
+			tooltip.add(I18N.localise(BinnieCore.instance, "gui.side.extractSide", MachineSide.asString(slot.getOutputSides())));
+
 			if (slot.isReadOnly()) {
-				tooltip.add("Pickup Only Slot");
+				tooltip.add(I18N.localise(BinnieCore.instance, "gui.slot.pickupOnly"));
 			}
-			tooltip.add("Accepts: " + ((slot.getValidator() == null) ? "Any Item" : slot.getValidator().getTooltip()));
+			
+			if (slot.getValidator() == null) {
+				tooltip.add(I18N.localise(BinnieCore.instance, "gui.slot.accepts", I18N.localise(BinnieCore.instance, "gui.slot.anyItem")));
+			} else {
+				tooltip.add(I18N.localise(BinnieCore.instance, "gui.slot.accepts", slot.getValidator().getTooltip()));
+			}
 		} else if (this.slot.inventory instanceof WindowInventory) {
 			SlotValidator s = ((WindowInventory) this.slot.inventory).getValidator(this.slot.getSlotIndex());
-			tooltip.add("Accepts: " + ((s == null) ? "Any Item" : s.getTooltip()));
+			if (s == null) {
+				tooltip.add(I18N.localise(BinnieCore.instance, "gui.slot.accepts", I18N.localise(BinnieCore.instance, "gui.slot.anyItem")));
+			} else {
+				tooltip.add(I18N.localise(BinnieCore.instance, "gui.slot.accepts", s.getTooltip()));
+			}
 		} else if (this.slot.inventory instanceof InventoryPlayer) {
-			tooltip.add("Player Inventory");
+			tooltip.add(I18N.localise(BinnieCore.instance, "gui.slot.playerInventory"));
 		}
 	}
 
 	public InventorySlot getInventorySlot() {
-		return (slot instanceof CustomSlot) ? ((CustomSlot) slot).getInventorySlot() : null;
+		return (slot instanceof CustomSlot)
+			? ((CustomSlot) slot).getInventorySlot()
+			: null;
 	}
 
 	static {

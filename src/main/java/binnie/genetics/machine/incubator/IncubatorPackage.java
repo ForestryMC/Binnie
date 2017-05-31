@@ -37,10 +37,10 @@ public class IncubatorPackage extends PackageGeneticBase implements IMachineInfo
 			slot.setReadOnly();
 		}
 
-		new ComponentPowerReceptor(machine, 2000);
+		new ComponentPowerReceptor(machine, Incubator.POWER_CAPACITY);
 		ComponentTankContainer tanks = new ComponentTankContainer(machine);
-		tanks.addTank(Incubator.TANK_INPUT, "input", 2000).forbidExtraction();
-		tanks.addTank(Incubator.TANK_OUTPUT, "output", 2000).setReadOnly();
+		tanks.addTank(Incubator.TANK_INPUT, "input", Incubator.INPUT_TANK_CAPACITY).forbidExtraction();
+		tanks.addTank(Incubator.TANK_OUTPUT, "output", Incubator.OUTPU_TANK_CAPACITY).setReadOnly();
 		new IncubatorComponentLogic(machine);
 	}
 

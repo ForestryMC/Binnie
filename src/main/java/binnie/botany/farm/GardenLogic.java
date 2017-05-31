@@ -46,7 +46,8 @@ public class GardenLogic extends FarmLogic {
 	public GardenLogic(IFarmHousing housing) {
 		super(housing);
 		produce = new ArrayList<>();
-		(farmables = new ArrayList<>()).add(new FarmableFlower());
+		farmables = new ArrayList<>();
+		farmables.add(new FarmableFlower());
 		farmables.add(new FarmableVanillaFlower());
 	}
 
@@ -81,7 +82,7 @@ public class GardenLogic extends FarmLogic {
 	public boolean cultivate(int x, int y, int z, FarmDirection direction, int extent) {
 		world = housing.getWorld();
 		return maintainSoil(x, y, z, direction, extent)
-			|| (!isManual && maintainWater(x, y, z, direction, extent))
+			|| !isManual && maintainWater(x, y, z, direction, extent)
 			|| maintainCrops(x, y + 1, z, direction, extent);
 	}
 
@@ -135,6 +136,7 @@ public class GardenLogic extends FarmLogic {
 						if (i % 2 == 0) {
 							return trySetSoil(position);
 						}
+
 						FarmDirection cclock = FarmDirection.EAST;
 						if (direction == FarmDirection.EAST) {
 							cclock = FarmDirection.SOUTH;
@@ -143,6 +145,7 @@ public class GardenLogic extends FarmLogic {
 						} else if (direction == FarmDirection.WEST) {
 							cclock = FarmDirection.SOUTH;
 						}
+
 						Vect previous = translateWithOffset(position.x, position.y, position.z, cclock, 1);
 						ItemStack soil2 = getAsItemStack(previous);
 						if (!Gardening.isSoil(soil2.getItem())) {
@@ -186,14 +189,31 @@ public class GardenLogic extends FarmLogic {
 	private ItemStack getAvailableLoam() {
 		EnumMoisture[] moistures;
 		if (moisture == EnumMoisture.DAMP) {
-			moistures = new EnumMoisture[]{EnumMoisture.DAMP, EnumMoisture.NORMAL, EnumMoisture.DRY};
+			moistures = new EnumMoisture[]{
+				EnumMoisture.DAMP,
+				EnumMoisture.NORMAL,
+				EnumMoisture.DRY
+			};
 		} else if (moisture == EnumMoisture.DRY) {
-			moistures = new EnumMoisture[]{EnumMoisture.DRY, EnumMoisture.DAMP, EnumMoisture.DRY};
+			moistures = new EnumMoisture[]{
+				EnumMoisture.DRY,
+				EnumMoisture.DAMP,
+				EnumMoisture.DRY
+			};
 		} else {
-			moistures = new EnumMoisture[]{EnumMoisture.DRY, EnumMoisture.NORMAL, EnumMoisture.DAMP};
+			moistures = new EnumMoisture[]{
+				EnumMoisture.DRY,
+				EnumMoisture.NORMAL,
+				EnumMoisture.DAMP
+			};
 		}
 
-		EnumAcidity[] acidities = {EnumAcidity.NEUTRAL, EnumAcidity.ACID, EnumAcidity.ALKALINE};
+		EnumAcidity[] acidities = {
+			EnumAcidity.NEUTRAL,
+			EnumAcidity.ACID,
+			EnumAcidity.ALKALINE
+		};
+
 		for (EnumMoisture moist : moistures) {
 			for (EnumAcidity acid : acidities) {
 				for (Block type : new Block[]{Botany.flowerbed, Botany.loam, Botany.soil}) {
@@ -205,6 +225,7 @@ public class GardenLogic extends FarmLogic {
 				}
 			}
 		}
+
 		if (housing.getFarmInventory().hasResources(new ItemStack[]{new ItemStack(Blocks.dirt)})) {
 			return new ItemStack(Blocks.dirt);
 		}
@@ -217,15 +238,17 @@ public class GardenLogic extends FarmLogic {
 
 	private boolean trySetSoil(Vect position, ItemStack loam) {
 		ItemStack copy = loam;
-		if (loam != null) {
-			if (loam.getItem() == Item.getItemFromBlock(Blocks.dirt)) {
-				loam = new ItemStack(Botany.soil, 0, 4);
-			}
-			setBlock(position, ((ItemBlock) loam.getItem()).field_150939_a, loam.getItemDamage());
-			housing.getFarmInventory().removeResources(new ItemStack[]{copy});
-			return true;
+		if (loam == null) {
+			return false;
 		}
-		return false;
+
+		if (loam.getItem() == Item.getItemFromBlock(Blocks.dirt)) {
+			loam = new ItemStack(Botany.soil, 0, 4);
+		}
+
+		setBlock(position, ((ItemBlock) loam.getItem()).field_150939_a, loam.getItemDamage());
+		housing.getFarmInventory().removeResources(new ItemStack[]{copy});
+		return true;
 	}
 
 	private boolean trySetWater(Vect position) {
