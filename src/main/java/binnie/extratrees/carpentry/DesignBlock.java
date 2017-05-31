@@ -1,6 +1,10 @@
 package binnie.extratrees.carpentry;
 
-import binnie.extratrees.api.*;
+import binnie.extratrees.api.IDesign;
+import binnie.extratrees.api.IDesignMaterial;
+import binnie.extratrees.api.IDesignSystem;
+import binnie.extratrees.api.ILayout;
+import binnie.extratrees.api.IToolHammer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

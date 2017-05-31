@@ -1,7 +1,11 @@
 package binnie.botany.gardening;
 
 import binnie.botany.Botany;
-import binnie.botany.api.*;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumMoisture;
+import binnie.botany.api.EnumSoilType;
+import binnie.botany.api.IBlockSoil;
+import binnie.botany.api.IFlower;
 import binnie.botany.flower.TileEntityFlower;
 import binnie.botany.items.BotanyItems;
 import binnie.core.BinnieCore;

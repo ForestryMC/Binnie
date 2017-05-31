@@ -2,8 +2,8 @@ package binnie.genetics.core;
 
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.gui.IBinnieGUID;
-import binnie.genetics.gui.bee.database.WindowApiaristDatabase;
 import binnie.genetics.gui.WindowAnalyst;
+import binnie.genetics.gui.bee.database.WindowApiaristDatabase;
 import binnie.genetics.gui.punnett.WindowPunnettSquare;
 import binnie.genetics.machine.acclimatiser.WindowAcclimatiser;
 import binnie.genetics.machine.analyser.WindowAnalyser;

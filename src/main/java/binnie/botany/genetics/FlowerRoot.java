@@ -1,9 +1,23 @@
 package binnie.botany.genetics;
 
 import binnie.botany.Botany;
-import binnie.botany.api.*;
+import binnie.botany.api.EnumFlowerChromosome;
+import binnie.botany.api.EnumFlowerStage;
+import binnie.botany.api.IAlleleFlowerSpecies;
+import binnie.botany.api.IBotanistTracker;
+import binnie.botany.api.IColourMix;
+import binnie.botany.api.IFlower;
+import binnie.botany.api.IFlowerGenome;
+import binnie.botany.api.IFlowerMutation;
+import binnie.botany.api.IFlowerRoot;
 import com.mojang.authlib.GameProfile;
-import forestry.api.genetics.*;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlyzerPlugin;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IMutation;
+import forestry.api.genetics.ISpeciesType;
 import forestry.core.genetics.SpeciesRoot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,7 +25,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	public static int flowerSpeciesCount = -1;

@@ -1,7 +1,11 @@
 package binnie.extratrees.machines;
 
 import binnie.core.BinnieCore;
-import binnie.core.machines.*;
+import binnie.core.machines.IMachineType;
+import binnie.core.machines.Machine;
+import binnie.core.machines.MachineComponent;
+import binnie.core.machines.MachinePackage;
+import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.component.IInteraction;
 import binnie.core.resource.IBinnieTexture;
 import binnie.extratrees.ExtraTrees;

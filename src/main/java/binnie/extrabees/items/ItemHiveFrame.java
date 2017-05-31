@@ -2,7 +2,11 @@ package binnie.extrabees.items;
 
 import binnie.extrabees.items.types.EnumHiveFrame;
 import binnie.extrabees.utils.ExtraBeesResourceLocation;
-import forestry.api.apiculture.*;
+import forestry.api.apiculture.IBee;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.IBeeHousing;
+import forestry.api.apiculture.IBeeModifier;
+import forestry.api.apiculture.IHiveFrame;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;

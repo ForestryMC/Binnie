@@ -1,6 +1,10 @@
 package binnie.genetics.machine;
 
-import binnie.core.machines.*;
+import binnie.core.machines.IMachine;
+import binnie.core.machines.IMachineType;
+import binnie.core.machines.Machine;
+import binnie.core.machines.MachineComponent;
+import binnie.core.machines.MachinePackage;
 import binnie.core.machines.component.IInteraction;
 import binnie.core.machines.network.INetwork;
 import binnie.genetics.Genetics;

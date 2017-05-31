@@ -8,7 +8,12 @@ import binnie.extratrees.config.ConfigurationMain;
 import binnie.extratrees.item.Food;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Throwables;
-import forestry.api.arboriculture.*;
+import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.arboriculture.IAlleleFruit;
+import forestry.api.arboriculture.IAlleleTreeSpecies;
+import forestry.api.arboriculture.IFruitProvider;
+import forestry.api.arboriculture.ITreeGenome;
+import forestry.api.arboriculture.TreeManager;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IFruitFamily;
@@ -27,7 +32,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 
 public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IFruitProvider {

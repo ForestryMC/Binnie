@@ -1,11 +1,15 @@
 package binnie.genetics.machine.acclimatiser;
 
 import binnie.core.AbstractMod;
+import binnie.core.ExtraBeeTexture;
 import binnie.core.craftgui.geometry.Position;
-import binnie.core.craftgui.minecraft.control.*;
+import binnie.core.craftgui.minecraft.control.ControlEnergyBar;
+import binnie.core.craftgui.minecraft.control.ControlErrorState;
+import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
+import binnie.core.craftgui.minecraft.control.ControlSlot;
+import binnie.core.craftgui.minecraft.control.ControlSlotArray;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
-import binnie.core.ExtraBeeTexture;
 import binnie.genetics.Genetics;
 import binnie.genetics.machine.craftgui.WindowMachine;
 import net.minecraft.entity.player.EntityPlayer;

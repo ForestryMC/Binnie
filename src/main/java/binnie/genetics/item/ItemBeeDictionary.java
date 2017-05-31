@@ -1,6 +1,5 @@
 package binnie.genetics.item;
 
-import binnie.botany.Botany;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsGUI;
 import forestry.api.core.IItemModelRegister;

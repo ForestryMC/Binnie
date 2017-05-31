@@ -7,7 +7,12 @@ import binnie.core.craftgui.geometry.Point;
 import org.lwjgl.input.Mouse;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Deque;
+import java.util.List;
+import java.util.ListIterator;
 
 public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 	@Nullable
