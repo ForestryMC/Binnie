@@ -6,12 +6,12 @@ import java.util.Collection;
 import java.util.EnumSet;
 
 public class MachineSide {
-	private static EnumSet<EnumFacing> All = EnumSet.of(EnumFacing.UP, EnumFacing.DOWN, EnumFacing.NORTH, EnumFacing.SOUTH, EnumFacing.EAST, EnumFacing.WEST);
 	public static EnumSet<EnumFacing> TopAndBottom = EnumSet.of(EnumFacing.UP, EnumFacing.DOWN);
 	public static EnumSet<EnumFacing> None = EnumSet.noneOf(EnumFacing.class);
 	public static EnumSet<EnumFacing> Top = EnumSet.of(EnumFacing.UP);
 	public static EnumSet<EnumFacing> Bottom = EnumSet.of(EnumFacing.DOWN);
 	public static EnumSet<EnumFacing> Sides = EnumSet.of(EnumFacing.NORTH, EnumFacing.SOUTH, EnumFacing.EAST, EnumFacing.WEST);
+	private static EnumSet<EnumFacing> All = EnumSet.of(EnumFacing.UP, EnumFacing.DOWN, EnumFacing.NORTH, EnumFacing.SOUTH, EnumFacing.EAST, EnumFacing.WEST);
 
 	public static String asString(final Collection<EnumFacing> sides) {
 		if (sides.containsAll(MachineSide.All)) {
@@ -66,5 +66,4 @@ public class MachineSide {
 		}
 		return text;
 	}
-
 }

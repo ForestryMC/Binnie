@@ -25,9 +25,9 @@ public class BreweryCrafting implements INbtWritable {
 		FluidStack inputFluid = FluidStack.loadFluidStackFromNBT(nbt.getCompoundTag("fluid"));
 		ItemStack ingredient = new ItemStack(nbt.getCompoundTag("ingr"));
 		ItemStack[] inputGrains = new ItemStack[]{
-				new ItemStack(nbt.getCompoundTag("in1")),
-				new ItemStack(nbt.getCompoundTag("in2")),
-				new ItemStack(nbt.getCompoundTag("in3"))
+			new ItemStack(nbt.getCompoundTag("in1")),
+			new ItemStack(nbt.getCompoundTag("in2")),
+			new ItemStack(nbt.getCompoundTag("in3"))
 		};
 		ItemStack yeast = new ItemStack(nbt.getCompoundTag("yeast"));
 		return new BreweryCrafting(inputFluid, ingredient, inputGrains, yeast);

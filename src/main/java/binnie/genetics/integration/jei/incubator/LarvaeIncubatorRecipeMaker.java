@@ -35,5 +35,4 @@ public class LarvaeIncubatorRecipeMaker {
 
 		return recipes;
 	}
-
 }

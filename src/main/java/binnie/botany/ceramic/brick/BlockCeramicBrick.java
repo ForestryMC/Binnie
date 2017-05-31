@@ -122,24 +122,16 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 		ResourceLocation resourceLocation = new ResourceLocation(Constants.BOTANY_MOD_ID, "ceramicBrick");
 		ModelLoader.setCustomStateMapper(this, new DefaultStateMapper(resourceLocation));
 		ModelManager.registerCustomBlockModel(new BlockModelEntry(
-				new ModelResourceLocation(resourceLocation, "normal"),
-				new ModelResourceLocation(resourceLocation, "inventory"),
-				new ModelMutlipass<>(BlockCeramicBrick.class), this));
+			new ModelResourceLocation(resourceLocation, "normal"),
+			new ModelResourceLocation(resourceLocation, "inventory"),
+			new ModelMutlipass<>(BlockCeramicBrick.class), this
+		));
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
 		manager.registerItemModel(item, new CeramicBrickMeshDefinition());
-	}
-
-	private class CeramicBrickMeshDefinition implements ItemMeshDefinition {
-
-		@Override
-		public ModelResourceLocation getModelLocation(ItemStack stack) {
-			return new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":ceramicBrick", "inventory");
-		}
-
 	}
 
 	@Override
@@ -247,6 +239,14 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 			for (int i = 0; i < 3; ++i) {
 				type.sprites[i] = textureMap.registerSprite(new ResourceLocation(Constants.BOTANY_MOD_ID + ":blocks/ceramic." + type.id + "." + i));
 			}
+		}
+	}
+
+	private class CeramicBrickMeshDefinition implements ItemMeshDefinition {
+
+		@Override
+		public ModelResourceLocation getModelLocation(ItemStack stack) {
+			return new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":ceramicBrick", "inventory");
 		}
 	}
 }

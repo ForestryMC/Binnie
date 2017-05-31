@@ -13,13 +13,13 @@ import java.util.Map;
 
 public class BeeModifierLogic {
 
+	private Map<EnumBeeModifier, Float[]> modifiers;
+	private List<EnumBeeBooleanModifier> booleanModifiers;
+
 	public BeeModifierLogic() {
 		this.modifiers = new HashMap<>();
 		this.booleanModifiers = new ArrayList<>();
 	}
-
-	private Map<EnumBeeModifier, Float[]> modifiers;
-	private List<EnumBeeBooleanModifier> booleanModifiers;
 
 	public float getModifier(final EnumBeeModifier modifier, final float currentModifier) {
 		if (!this.modifiers.containsKey(modifier)) {
@@ -71,5 +71,4 @@ public class BeeModifierLogic {
 			tooltip.add(modifierName + ": " + valueString);
 		}
 	}
-
 }

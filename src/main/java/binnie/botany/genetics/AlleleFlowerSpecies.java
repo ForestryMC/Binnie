@@ -25,14 +25,14 @@ public class AlleleFlowerSpecies extends AlleleSpecies implements IAlleleFlowerS
 	private EnumMoisture moisture = EnumMoisture.Normal;
 
 	public AlleleFlowerSpecies(
-			String uid,
-			String unlocalizedName,
-			String authority,
-			String unlocalizedDescription,
-			boolean isDominant,
-			IClassification branch,
-			String binomial,
-			IFlowerType flowerType) {
+		String uid,
+		String unlocalizedName,
+		String authority,
+		String unlocalizedDescription,
+		boolean isDominant,
+		IClassification branch,
+		String binomial,
+		IFlowerType flowerType) {
 		super(uid, unlocalizedName, authority, unlocalizedDescription, isDominant, branch, binomial);
 		this.flowerType = flowerType;
 	}
@@ -101,5 +101,4 @@ public class AlleleFlowerSpecies extends AlleleSpecies implements IAlleleFlowerS
 	public int compareTo(IAlleleFlowerSpecies o) {
 		return 0;
 	}
-
 }

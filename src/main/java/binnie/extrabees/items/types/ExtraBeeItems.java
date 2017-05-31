@@ -40,11 +40,26 @@ public enum ExtraBeeItems implements IEBItemMiscProvider {
 	BlutoniumDust("Blutonium Grains", "blutonium_dust"),
 	CyaniteDust("Cyanite Grains", "cyanite_dust");
 
-	ExtraBeeItems(String name, String modelPath) {
-		this.metalString = null;
-		this.gemString = null;
-		this.name = name;
-		this.modelPath = modelPath;
+	static {
+		ExtraBeeItems.TinDust.setMetal("Tin");
+		ExtraBeeItems.ZincDust.setMetal("Zinc");
+		ExtraBeeItems.CopperDust.setMetal("Copper");
+		ExtraBeeItems.IronDust.setMetal("Iron");
+		ExtraBeeItems.NickelDust.setMetal("Nickel");
+		ExtraBeeItems.LeadDust.setMetal("Lead");
+		ExtraBeeItems.SilverDust.setMetal("Silver");
+		ExtraBeeItems.GoldDust.setMetal("Gold");
+		ExtraBeeItems.PlatinumDust.setMetal("Platinum");
+		ExtraBeeItems.TungstenDust.setMetal("Tungsten");
+		ExtraBeeItems.TitaniumDust.setMetal("Titanium");
+		ExtraBeeItems.CoalDust.setMetal("Coal");
+		ExtraBeeItems.YelloriumDust.setMetal("Yellorium");
+		ExtraBeeItems.BlutoniumDust.setMetal("Blutonium");
+		ExtraBeeItems.CyaniteDust.setMetal("Cyanite");
+		ExtraBeeItems.DiamondShard.setGem("Diamond");
+		ExtraBeeItems.EmeraldShard.setGem("Emerald");
+		ExtraBeeItems.RubyShard.setGem("Ruby");
+		ExtraBeeItems.SapphireShard.setGem("Sapphire");
 	}
 
 	public final String name;
@@ -53,6 +68,13 @@ public enum ExtraBeeItems implements IEBItemMiscProvider {
 	public String metalString;
 	@Nullable
 	public String gemString;
+
+	ExtraBeeItems(String name, String modelPath) {
+		this.metalString = null;
+		this.gemString = null;
+		this.name = name;
+		this.modelPath = modelPath;
+	}
 
 	private void setGem(final String string) {
 		this.gemString = string;
@@ -87,28 +109,6 @@ public enum ExtraBeeItems implements IEBItemMiscProvider {
 	@Override
 	public String getModelPath() {
 		return modelPath;
-	}
-
-	static {
-		ExtraBeeItems.TinDust.setMetal("Tin");
-		ExtraBeeItems.ZincDust.setMetal("Zinc");
-		ExtraBeeItems.CopperDust.setMetal("Copper");
-		ExtraBeeItems.IronDust.setMetal("Iron");
-		ExtraBeeItems.NickelDust.setMetal("Nickel");
-		ExtraBeeItems.LeadDust.setMetal("Lead");
-		ExtraBeeItems.SilverDust.setMetal("Silver");
-		ExtraBeeItems.GoldDust.setMetal("Gold");
-		ExtraBeeItems.PlatinumDust.setMetal("Platinum");
-		ExtraBeeItems.TungstenDust.setMetal("Tungsten");
-		ExtraBeeItems.TitaniumDust.setMetal("Titanium");
-		ExtraBeeItems.CoalDust.setMetal("Coal");
-		ExtraBeeItems.YelloriumDust.setMetal("Yellorium");
-		ExtraBeeItems.BlutoniumDust.setMetal("Blutonium");
-		ExtraBeeItems.CyaniteDust.setMetal("Cyanite");
-		ExtraBeeItems.DiamondShard.setGem("Diamond");
-		ExtraBeeItems.EmeraldShard.setGem("Emerald");
-		ExtraBeeItems.RubyShard.setGem("Ruby");
-		ExtraBeeItems.SapphireShard.setGem("Sapphire");
 	}
 
 }

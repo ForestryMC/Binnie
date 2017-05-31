@@ -20,5 +20,4 @@ public class ItemStainedGlass extends ItemMetadata implements IColoredItem {
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
 		return EnumFlowerColor.get(TileEntityMetadata.getItemDamage(stack)).getColor(false);
 	}
-
 }

@@ -74,5 +74,4 @@ public class WindowIsolator extends WindowMachine {
 	protected String getBackgroundTextureName() {
 		return "isolator";
 	}
-
 }

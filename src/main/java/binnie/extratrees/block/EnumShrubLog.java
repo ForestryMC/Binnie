@@ -38,7 +38,7 @@ public enum EnumShrubLog implements IWoodType {
 		}
 		return 0.15F;
 	}
-	
+
 	@Override
 	public String getPlankTexture() {
 		return "blocks/planks_oak";

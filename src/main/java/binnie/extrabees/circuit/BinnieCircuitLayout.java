@@ -7,14 +7,14 @@ import net.minecraft.util.text.translation.I18n;
 
 public class BinnieCircuitLayout implements ICircuitLayout {
 
+	private final String uid;
+	private final ICircuitSocketType socketType;
+
 	public BinnieCircuitLayout(final String uid, final ICircuitSocketType socketType) {
 		this.uid = uid;
 		this.socketType = socketType;
 		ChipsetManager.circuitRegistry.registerLayout(this);
 	}
-
-	private final String uid;
-	private final ICircuitSocketType socketType;
 
 	@Override
 	public String getUID() {
@@ -35,5 +35,4 @@ public class BinnieCircuitLayout implements ICircuitLayout {
 	public ICircuitSocketType getSocketType() {
 		return this.socketType;
 	}
-
 }

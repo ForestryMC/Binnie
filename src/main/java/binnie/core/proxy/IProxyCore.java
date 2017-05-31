@@ -19,6 +19,4 @@ public interface IProxyCore extends IInitializable {
 	void registerModels();
 
 	void registerItemAndBlockColors();
-
-
 }

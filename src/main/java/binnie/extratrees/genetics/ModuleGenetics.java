@@ -18,29 +18,28 @@ public class ModuleGenetics implements IInitializable {
 		this.classifications = new ArrayList<>();
 	}
 
+	@SubscribeEvent
+	public static void onRegisterAllele(AlleleRegisterEvent<IAlleleFruit> event) {
+		if (event.getAlleleClass() == IAlleleFruit.class) {
+			AlleleETFruit.preInit();
+		}
+	}
+
 	@Override
 	public void preInit() {
 	}
-
 
 	@Override
 	public void init() {
 		AlleleETFruit.init();
 		ETTreeDefinition.initTrees();
 		ExtraTreeMutation.init();
-		if(BinnieCore.isLepidopteryActive()){
+		if (BinnieCore.isLepidopteryActive()) {
 			ButterflySpecies.initButterflies();
 		}
 	}
 
 	@Override
 	public void postInit() {
-	}
-	
-	@SubscribeEvent
-	public static void onRegisterAllele(AlleleRegisterEvent<IAlleleFruit> event){
-		if(event.getAlleleClass() == IAlleleFruit.class){
-			AlleleETFruit.preInit();
-		}
 	}
 }

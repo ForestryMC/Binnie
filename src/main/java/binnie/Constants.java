@@ -13,5 +13,4 @@ public final class Constants {
 	public static final String LIQUID_CREOSOTE = "Creosote Oil";
 	public static final String LIQUID_BIO_ETHANOL = "bioethanol";
 	public static final String LIQUID_FOR_HONEY = "for.honey";
-
 }

@@ -33,13 +33,13 @@ public class ControlButton extends Control {
 		}.setOrigin(EventHandler.Origin.Self, this));
 	}
 
-	protected void onMouseClick(final EventMouse.Down event) {
-	}
-
 	public ControlButton(final IWidget parent, final int x, final int y, final int width, final int height, final String text) {
 		this(parent, x, y, width, height);
 		this.text = text;
 		this.textWidget = new ControlText(this, this.getArea(), text, TextJustification.MiddleCenter);
+	}
+
+	protected void onMouseClick(final EventMouse.Down event) {
 	}
 
 	@Override

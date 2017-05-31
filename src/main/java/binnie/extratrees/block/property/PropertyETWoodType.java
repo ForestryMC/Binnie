@@ -10,6 +10,10 @@ import java.util.Collection;
 
 public class PropertyETWoodType extends PropertyWoodType<EnumETLog> {
 
+	protected PropertyETWoodType(String name, Class<EnumETLog> valueClass, Collection<EnumETLog> allowedValues) {
+		super(name, valueClass, allowedValues);
+	}
+
 	public static PropertyETWoodType[] create(String name, int variantsPerBlock) {
 		return create(name, variantsPerBlock, false);
 	}
@@ -29,9 +33,5 @@ public class PropertyETWoodType extends PropertyWoodType<EnumETLog> {
 			variants[variantNumber] = new PropertyETWoodType(name, EnumETLog.class, allowedValues);
 		}
 		return variants;
-	}
-
-	protected PropertyETWoodType(String name, Class<EnumETLog> valueClass, Collection<EnumETLog> allowedValues) {
-		super(name, valueClass, allowedValues);
 	}
 }

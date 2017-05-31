@@ -90,6 +90,49 @@ public enum Food implements IItemMiscProvider {
 		this.hunger = hunger;
 	}
 
+	public static void registerOreDictionary() {
+		Food.CRABAPPLE.ore("Apple").ore("Crabapple");
+		Food.ORANGE.ore("Orange");
+		Food.KUMQUAT.ore("Kumquat");
+		Food.LIME.ore("Lime");
+		Food.WILD_CHERRY.ore("Cherry").ore("WildCherry");
+		Food.SOUR_CHERRY.ore("Cherry").ore("SourCherry");
+		Food.BLACK_CHERRY.ore("Cherry").ore("BlackCherry");
+		Food.Blackthorn.ore("Blackthorn");
+		Food.CHERRY_PLUM.ore("Plum").ore("CherryPlum");
+		Food.ALMOND.ore("Almond");
+		Food.APRICOT.ore("Apricot");
+		Food.GRAPEFRUIT.ore("Grapefruit");
+		Food.PEACH.ore("Peach");
+		Food.SATSUMA.ore("Satsuma").ore("Orange");
+		Food.BUDDHA_HAND.ore("BuddhaHand").ore("Citron");
+		Food.CITRON.ore("Citron");
+		Food.FINGER_LIME.ore("Lime").ore("FingerLime");
+		Food.KEY_LIME.ore("KeyLime").ore("Lime");
+		Food.MANDERIN.ore("Orange").ore("Manderin");
+		Food.NECTARINE.ore("Peach").ore("Nectarine");
+		Food.POMELO.ore("Pomelo");
+		Food.TANGERINE.ore("Tangerine").ore("Orange");
+		Food.PEAR.ore("Pear");
+		Food.SAND_PEAR.ore("SandPear");
+		Food.HAZELNUT.ore("Hazelnut");
+		Food.BUTTERNUT.ore("Butternut").ore("Walnut");
+		Food.BEECHNUT.ore("Beechnut");
+		Food.PECAN.ore("Pecan");
+		Food.BANANA.ore("Banana");
+		Food.RED_BANANA.ore("RedBanana").ore("Banana");
+		Food.PLANTAIN.ore("Plantain");
+		Food.BRAZIL_NUT.ore("BrazilNut");
+		Food.FIG.ore("Fig");
+		Food.ACORN.ore("Acorn");
+		Food.ELDERBERRY.ore("Elderberry");
+		Food.OLIVE.ore("Olive");
+		Food.GINGKO_NUT.ore("GingkoNut");
+		Food.COFFEE.ore("Coffee");
+		Food.OSANGE_ORANGE.ore("OsangeOrange");
+		Food.CLOVE.ore("Clove");
+	}
+
 	public boolean isEdible() {
 		return this.hunger > 0;
 	}
@@ -132,49 +175,6 @@ public enum Food implements IItemMiscProvider {
 
 	public void addOil(final int time, final int amount, final int mulch) {
 		RecipeManagers.squeezerManager.addRecipe(time, this.get(1), Fluids.SEED_OIL.getFluid(amount), Mods.Forestry.stack("mulch"), mulch);
-	}
-
-	public static void registerOreDictionary() {
-		Food.CRABAPPLE.ore("Apple").ore("Crabapple");
-		Food.ORANGE.ore("Orange");
-		Food.KUMQUAT.ore("Kumquat");
-		Food.LIME.ore("Lime");
-		Food.WILD_CHERRY.ore("Cherry").ore("WildCherry");
-		Food.SOUR_CHERRY.ore("Cherry").ore("SourCherry");
-		Food.BLACK_CHERRY.ore("Cherry").ore("BlackCherry");
-		Food.Blackthorn.ore("Blackthorn");
-		Food.CHERRY_PLUM.ore("Plum").ore("CherryPlum");
-		Food.ALMOND.ore("Almond");
-		Food.APRICOT.ore("Apricot");
-		Food.GRAPEFRUIT.ore("Grapefruit");
-		Food.PEACH.ore("Peach");
-		Food.SATSUMA.ore("Satsuma").ore("Orange");
-		Food.BUDDHA_HAND.ore("BuddhaHand").ore("Citron");
-		Food.CITRON.ore("Citron");
-		Food.FINGER_LIME.ore("Lime").ore("FingerLime");
-		Food.KEY_LIME.ore("KeyLime").ore("Lime");
-		Food.MANDERIN.ore("Orange").ore("Manderin");
-		Food.NECTARINE.ore("Peach").ore("Nectarine");
-		Food.POMELO.ore("Pomelo");
-		Food.TANGERINE.ore("Tangerine").ore("Orange");
-		Food.PEAR.ore("Pear");
-		Food.SAND_PEAR.ore("SandPear");
-		Food.HAZELNUT.ore("Hazelnut");
-		Food.BUTTERNUT.ore("Butternut").ore("Walnut");
-		Food.BEECHNUT.ore("Beechnut");
-		Food.PECAN.ore("Pecan");
-		Food.BANANA.ore("Banana");
-		Food.RED_BANANA.ore("RedBanana").ore("Banana");
-		Food.PLANTAIN.ore("Plantain");
-		Food.BRAZIL_NUT.ore("BrazilNut");
-		Food.FIG.ore("Fig");
-		Food.ACORN.ore("Acorn");
-		Food.ELDERBERRY.ore("Elderberry");
-		Food.OLIVE.ore("Olive");
-		Food.GINGKO_NUT.ore("GingkoNut");
-		Food.COFFEE.ore("Coffee");
-		Food.OSANGE_ORANGE.ore("OsangeOrange");
-		Food.CLOVE.ore("Clove");
 	}
 
 	private Food ore(final String string) {

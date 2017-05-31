@@ -5,8 +5,8 @@ import net.minecraft.util.ResourceLocation;
 
 public class BinnieResource {
 	String mod;
-	private ResourceType type;
 	String path;
+	private ResourceType type;
 
 	public BinnieResource(final AbstractMod mod, final ResourceType type, final String path) {
 		this(mod.getModID(), type, path);
@@ -18,9 +18,9 @@ public class BinnieResource {
 		this.path = path;
 	}
 
-//	public String getFullPath() {
-//		return "/assets/" + this.mod + "/textures/" + this.type.toString() + "/" + this.path;
-//	}
+	//	public String getFullPath() {
+	//		return "/assets/" + this.mod + "/textures/" + this.type.toString() + "/" + this.path;
+	//	}
 
 	public ResourceLocation getResourceLocation() {
 		return this.path.endsWith(".png") ? new ResourceLocation(this.mod, "textures/" + this.type.toString() + "/" + this.path) : new ResourceLocation(this.mod, this.type.toString() + "/" + this.path);

@@ -40,9 +40,9 @@ import java.util.TreeSet;
 public class TreeBreedingSystem extends BreedingSystem {
 	public UniqueItemStackSet allFruits;
 	public UniqueItemStackSet allWoods;
+	public UniqueItemStackSet discoveredPlanks;
 	private UniqueItemStackSet discoveredFruits;
 	private UniqueItemStackSet discoveredWoods;
-	public UniqueItemStackSet discoveredPlanks;
 
 	public TreeBreedingSystem() {
 		this.allFruits = new UniqueItemStackSet();
@@ -225,11 +225,11 @@ public class TreeBreedingSystem extends BreedingSystem {
 	@Override
 	@Nullable
 	public IIndividual getConversion(final ItemStack stack) {
-//		for (final Map.Entry<ItemStack, IIndividual> entry : TreeManager.treeRoot.getIndividualTemplates()) {
-//			if (ItemStack.areItemStacksEqual(stack, entry.getKey())) {
-//				return entry.getValue();
-//			}
-//		}
+		//		for (final Map.Entry<ItemStack, IIndividual> entry : TreeManager.treeRoot.getIndividualTemplates()) {
+		//			if (ItemStack.areItemStacksEqual(stack, entry.getKey())) {
+		//				return entry.getValue();
+		//			}
+		//		}
 		return TreeManager.treeRoot.getMember(stack);
 	}
 

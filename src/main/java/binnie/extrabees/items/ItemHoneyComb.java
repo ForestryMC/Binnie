@@ -264,5 +264,4 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 		}
 
 	}
-
 }

@@ -34,6 +34,26 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 		setHasSubtypes(true);
 	}
 
+	private static Multimap<ICircuitLayout, ICircuit> getCircuits(ItemStack itemStack) {
+		Multimap<ICircuitLayout, ICircuit> circuits = ArrayListMultimap.create();
+		Collection<ICircuitLayout> allLayouts = ChipsetManager.circuitRegistry.getRegisteredLayouts().values();
+		for (ICircuitLayout circuitLayout : allLayouts) {
+			ICircuit circuit = SolderManager.getCircuit(circuitLayout, itemStack);
+			if (circuit != null) {
+				circuits.put(circuitLayout, circuit);
+			}
+		}
+		return circuits;
+	}
+
+	public static String getInsulate(ItemStack stack) {
+		return Insulate.get(stack.getItemDamage()).getName();
+	}
+
+	public static ItemStack getInsulateStack(ItemStack stack) {
+		return Insulate.get(stack.getItemDamage()).getStack();
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems) {
@@ -86,30 +106,10 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 		}
 	}
 
-	private static Multimap<ICircuitLayout, ICircuit> getCircuits(ItemStack itemStack) {
-		Multimap<ICircuitLayout, ICircuit> circuits = ArrayListMultimap.create();
-		Collection<ICircuitLayout> allLayouts = ChipsetManager.circuitRegistry.getRegisteredLayouts().values();
-		for (ICircuitLayout circuitLayout : allLayouts) {
-			ICircuit circuit = SolderManager.getCircuit(circuitLayout, itemStack);
-			if (circuit != null) {
-				circuits.put(circuitLayout, circuit);
-			}
-		}
-		return circuits;
-	}
-
 	@Override
 	public String getItemStackDisplayName(ItemStack itemStack) {
 		int meta = itemStack.getMetadata();
 		return Material.get(meta).getName() + " " + Insulate.get(meta).getName() + " " + super.getItemStackDisplayName(itemStack);
-	}
-
-	public static String getInsulate(ItemStack stack) {
-		return Insulate.get(stack.getItemDamage()).getName();
-	}
-
-	public static ItemStack getInsulateStack(ItemStack stack) {
-		return Insulate.get(stack.getItemDamage()).getStack();
 	}
 
 	enum Material {
@@ -121,14 +121,6 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 		int color;
 		String name;
 
-		public int getColor() {
-			return this.color;
-		}
-
-		public String getName() {
-			return this.name;
-		}
-
 		Material(final int color, final String name) {
 			this.color = color;
 			this.name = name;
@@ -136,6 +128,14 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 
 		public static Material get(final int i) {
 			return values()[i % values().length];
+		}
+
+		public int getColor() {
+			return this.color;
+		}
+
+		public String getName() {
+			return this.name;
 		}
 	}
 
@@ -150,14 +150,6 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 		int color;
 		String name;
 
-		public int getColor() {
-			return this.color;
-		}
-
-		public String getName() {
-			return this.name;
-		}
-
 		Insulate(final int color, final String name) {
 			this.color = color;
 			this.name = name;
@@ -165,6 +157,14 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 
 		public static Insulate get(final int i) {
 			return values()[i / 128 % values().length];
+		}
+
+		public int getColor() {
+			return this.color;
+		}
+
+		public String getName() {
+			return this.name;
 		}
 
 		public ItemStack getStack() {

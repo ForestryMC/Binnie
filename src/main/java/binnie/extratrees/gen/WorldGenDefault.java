@@ -35,5 +35,4 @@ public class WorldGenDefault extends WorldGenTree {
 	public BlockType getWood() {
 		return new BlockTypeLog(this.treeGen);
 	}
-
 }

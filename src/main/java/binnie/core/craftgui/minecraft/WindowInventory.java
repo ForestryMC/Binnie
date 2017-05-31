@@ -78,7 +78,6 @@ public class WindowInventory implements IInventory {
 		this.markDirty();
 	}
 
-
 	@Override
 	public int getInventoryStackLimit() {
 		return 64;

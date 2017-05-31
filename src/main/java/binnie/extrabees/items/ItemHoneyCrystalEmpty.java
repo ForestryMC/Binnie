@@ -16,5 +16,4 @@ public class ItemHoneyCrystalEmpty extends ItemHoneyCrystal {
 	public String getItemStackDisplayName(final ItemStack i) {
 		return ExtraBees.proxy.localise("item.honeycrystal.empty");
 	}
-
 }

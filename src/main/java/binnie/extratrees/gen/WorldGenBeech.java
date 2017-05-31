@@ -14,7 +14,7 @@ public class WorldGenBeech {
 		public CommonBeech(ITreeGenData tree) {
 			super(tree, 5, 3);
 		}
-		
+
 		@Override
 		protected void generateLeaves(World world, Random rand, TreeBlockTypeLeaf leaf, List<BlockPos> branchEnds, BlockPos startPos) {
 			float leafSpawn = this.height + 1;
@@ -27,7 +27,6 @@ public class WorldGenBeech {
 			}
 			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 1.5F, 1, WorldGenHelper.EnumReplaceMode.AIR);
 		}
-
 	}
 
 	public static class CopperBeech extends CommonBeech {

@@ -63,7 +63,6 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		this.matureTime = 0;
 	}
 
-
 	@Override
 	public NBTTagCompound getUpdateTag() {
 		updateRender(true);
@@ -432,47 +431,47 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 	}
 
 	public void spawnButterflies() {
-//		if (!BinnieCore.isLepidopteryActive()) {
-//			return;
-//		}
-//		final int x = this.xCoord;
-//		final int y = this.yCoord;
-//		final int z = this.zCoord;
-//		final World world = this.worldObj;
-//		if (this.getCaterpillar() != null) {
-//			return;
-//		}
-//		if (world.rand.nextFloat() >= this.getFlower().getGenome().getSappiness()) {
-//			return;
-//		}
-//		if (this.worldObj.rand.nextFloat() >= 0.2f) {
-//			return;
-//		}
-//		final IButterfly spawn = Binnie.Genetics.getButterflyRoot().getIndividualTemplates().get(this.worldObj.rand.nextInt(Binnie.Genetics.getButterflyRoot().getIndividualTemplates().size()));
-//		if (this.worldObj.rand.nextFloat() >= spawn.getGenome().getPrimary().getRarity() * 0.5f) {
-//			return;
-//		}
-//		if (this.worldObj.countEntities(EntityButterfly.class) > 100) {
-//			return;
-//		}
-//		if (!spawn.canSpawn(this.worldObj, x, y, z)) {
-//			return;
-//		}
-//		if (world.isAirBlock(x, y + 1, z)) {
-//			this.attemptButterflySpawn(world, spawn, x, y + 1, z);
-//		}
-//		else if (world.isAirBlock(x - 1, y, z)) {
-//			this.attemptButterflySpawn(world, spawn, x - 1, y, z);
-//		}
-//		else if (world.isAirBlock(x + 1, y, z)) {
-//			this.attemptButterflySpawn(world, spawn, x + 1, y, z);
-//		}
-//		else if (world.isAirBlock(x, y, z - 1)) {
-//			this.attemptButterflySpawn(world, spawn, x, y, z - 1);
-//		}
-//		else if (world.isAirBlock(x, y, z + 1)) {
-//			this.attemptButterflySpawn(world, spawn, x, y, z + 1);
-//		}
+		//		if (!BinnieCore.isLepidopteryActive()) {
+		//			return;
+		//		}
+		//		final int x = this.xCoord;
+		//		final int y = this.yCoord;
+		//		final int z = this.zCoord;
+		//		final World world = this.worldObj;
+		//		if (this.getCaterpillar() != null) {
+		//			return;
+		//		}
+		//		if (world.rand.nextFloat() >= this.getFlower().getGenome().getSappiness()) {
+		//			return;
+		//		}
+		//		if (this.worldObj.rand.nextFloat() >= 0.2f) {
+		//			return;
+		//		}
+		//		final IButterfly spawn = Binnie.Genetics.getButterflyRoot().getIndividualTemplates().get(this.worldObj.rand.nextInt(Binnie.Genetics.getButterflyRoot().getIndividualTemplates().size()));
+		//		if (this.worldObj.rand.nextFloat() >= spawn.getGenome().getPrimary().getRarity() * 0.5f) {
+		//			return;
+		//		}
+		//		if (this.worldObj.countEntities(EntityButterfly.class) > 100) {
+		//			return;
+		//		}
+		//		if (!spawn.canSpawn(this.worldObj, x, y, z)) {
+		//			return;
+		//		}
+		//		if (world.isAirBlock(x, y + 1, z)) {
+		//			this.attemptButterflySpawn(world, spawn, x, y + 1, z);
+		//		}
+		//		else if (world.isAirBlock(x - 1, y, z)) {
+		//			this.attemptButterflySpawn(world, spawn, x - 1, y, z);
+		//		}
+		//		else if (world.isAirBlock(x + 1, y, z)) {
+		//			this.attemptButterflySpawn(world, spawn, x + 1, y, z);
+		//		}
+		//		else if (world.isAirBlock(x, y, z - 1)) {
+		//			this.attemptButterflySpawn(world, spawn, x, y, z - 1);
+		//		}
+		//		else if (world.isAirBlock(x, y, z + 1)) {
+		//			this.attemptButterflySpawn(world, spawn, x, y, z + 1);
+		//		}
 	}
 
 	private void attemptButterflySpawn(final World world, final IButterfly butterfly, final double x, final double y, final double z) {
@@ -484,7 +483,6 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 	public GameProfile getOwnerName() {
 		return this.getOwner();
 	}
-
 
 	@Override
 	public EnumTemperature getTemperature() {
@@ -514,14 +512,14 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 	}
 
 	@Override
-	public IIndividual getNanny() {
-		return this.getFlower();
-	}
-
-	@Override
 	public void setCaterpillar(@Nullable final IButterfly butterfly) {
 		this.caterpillar = butterfly;
 		this.matureTime = 0;
+	}
+
+	@Override
+	public IIndividual getNanny() {
+		return this.getFlower();
 	}
 
 	@Override
@@ -603,12 +601,12 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		return this.getWorld().getBiome(getPos());
 	}
 
-	public void setErrorState(final IErrorState state) {
-	}
-
 	@Nullable
 	public IErrorState getErrorState() {
 		return null;
+	}
+
+	public void setErrorState(final IErrorState state) {
 	}
 
 	public boolean setErrorCondition(final boolean condition, final IErrorState errorState) {
@@ -617,6 +615,21 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 
 	public Set<IErrorState> getErrorStates() {
 		return new HashSet<>();
+	}
+
+	@Override
+	public BlockPos getCoordinates() {
+		return getPos();
+	}
+
+	@Override
+	public boolean isPollinated() {
+		return isBreeding();
+	}
+
+	@Override
+	public World getWorldObj() {
+		return world;
 	}
 
 	public static class RenderInfo {
@@ -628,15 +641,6 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		public boolean wilted;
 		public boolean flowered;
 		public byte section;
-
-		@Override
-		public boolean equals(final Object obj) {
-			if (obj instanceof RenderInfo) {
-				final RenderInfo o = (RenderInfo) obj;
-				return o.age == this.age && o.wilted == this.wilted && o.flowered == this.flowered && o.primary == this.primary && o.secondary == this.secondary && o.stem == this.stem && o.type == this.type;
-			}
-			return super.equals(obj);
-		}
 
 		public RenderInfo() {
 		}
@@ -651,22 +655,14 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 			this.flowered = flower.hasFlowered();
 			this.type = flower.getGenome().getType();
 		}
+
+		@Override
+		public boolean equals(final Object obj) {
+			if (obj instanceof RenderInfo) {
+				final RenderInfo o = (RenderInfo) obj;
+				return o.age == this.age && o.wilted == this.wilted && o.flowered == this.flowered && o.primary == this.primary && o.secondary == this.secondary && o.stem == this.stem && o.type == this.type;
+			}
+			return super.equals(obj);
+		}
 	}
-
-	@Override
-	public BlockPos getCoordinates() {
-		return getPos();
-	}
-
-	@Override
-	public boolean isPollinated() {
-		return isBreeding();
-	}
-
-
-	@Override
-	public World getWorldObj() {
-		return world;
-	}
-
 }

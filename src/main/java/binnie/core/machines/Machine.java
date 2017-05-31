@@ -50,6 +50,32 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 		this.machinePackage = pack;
 	}
 
+	@Nullable
+	public static IMachine getMachine(@Nullable final Object inventory) {
+		if (inventory instanceof IMachine) {
+			return (IMachine) inventory;
+		}
+		if (inventory instanceof TileEntityMachine) {
+			return ((TileEntityMachine) inventory).getMachine();
+		}
+		if (inventory instanceof MachineComponent) {
+			return ((MachineComponent) inventory).getMachine();
+		}
+		return null;
+	}
+
+	@Nullable
+	public static <T> T getInterface(final Class<T> interfac, @Nullable final Object inventory) {
+		final IMachine machine = getMachine(inventory);
+		if (machine != null) {
+			return machine.getInterface(interfac);
+		}
+		if (interfac.isInstance(inventory)) {
+			return interfac.cast(inventory);
+		}
+		return null;
+	}
+
 	@Override
 	public void addComponent(final MachineComponent component) {
 		Preconditions.checkNotNull(component, "Can't have a null machine component!");
@@ -214,32 +240,6 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	@Override
 	public MachinePackage getPackage() {
 		return this.machinePackage;
-	}
-
-	@Nullable
-	public static IMachine getMachine(@Nullable final Object inventory) {
-		if (inventory instanceof IMachine) {
-			return (IMachine) inventory;
-		}
-		if (inventory instanceof TileEntityMachine) {
-			return ((TileEntityMachine) inventory).getMachine();
-		}
-		if (inventory instanceof MachineComponent) {
-			return ((MachineComponent) inventory).getMachine();
-		}
-		return null;
-	}
-
-	@Nullable
-	public static <T> T getInterface(final Class<T> interfac, @Nullable final Object inventory) {
-		final IMachine machine = getMachine(inventory);
-		if (machine != null) {
-			return machine.getInterface(interfac);
-		}
-		if (interfac.isInstance(inventory)) {
-			return interfac.cast(inventory);
-		}
-		return null;
 	}
 
 	@Override

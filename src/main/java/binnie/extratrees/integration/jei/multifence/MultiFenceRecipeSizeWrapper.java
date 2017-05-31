@@ -21,16 +21,15 @@ public class MultiFenceRecipeSizeWrapper extends BlankRecipeWrapper {
 	private IPlankType plankTypeSecond;
 	private MultiFenceRecipePattern pattern;
 	private String[] recipePattern;
-	
-	
+
 	public MultiFenceRecipeSizeWrapper(MultiFenceRecipePattern pattern) {
 		this(pattern, null, null);
 	}
-	
+
 	public MultiFenceRecipeSizeWrapper(MultiFenceRecipePattern pattern, @Nullable IPlankType plankType) {
 		this(pattern, plankType, null);
 	}
-	
+
 	public MultiFenceRecipeSizeWrapper(MultiFenceRecipePattern pattern, @Nullable IPlankType plankType, @Nullable IPlankType plankTypeSecond) {
 		this.pattern = pattern;
 		String recipePattern = pattern.getPattern();
@@ -41,60 +40,60 @@ public class MultiFenceRecipeSizeWrapper extends BlankRecipeWrapper {
 		this.plankType = plankType;
 		this.plankTypeSecond = plankTypeSecond;
 	}
-	
+
 	@Override
 	public void getIngredients(IIngredients ingredients) {
 		int typeCount = pattern.getTypeCount();
 		List<List<ItemStack>> types = NonNullList.create();
-		if(this.plankType != null){
+		if (this.plankType != null) {
 			types.add(Collections.singletonList(plankType.getStack(false)));
-		}else{
+		} else {
 			List<ItemStack> planks = new ArrayList<>(WoodManager.getAllPlankStacks().values());
 			Collections.shuffle(planks);
 			types.add(planks);
 		}
-		if(typeCount > 1){
-			if(plankTypeSecond != null){
+		if (typeCount > 1) {
+			if (plankTypeSecond != null) {
 				types.add(Collections.singletonList(plankTypeSecond.getStack(false)));
-			}else{
+			} else {
 				List<ItemStack> planks;
-				if(plankType != null){
+				if (plankType != null) {
 					planks = new ArrayList<>(WoodManager.getAllPlankStacks(plankType));
-				}else{
+				} else {
 					planks = new ArrayList<>(WoodManager.getAllPlankStacks().values());
 				}
 				Collections.shuffle(planks);
 				types.add(planks);
 			}
-		}else{
+		} else {
 			types.add(types.get(0));
 		}
 		List<List<ItemStack>> itemInputs = NonNullList.withSize(9, NonNullList.create());
-		for(int p = 0;p < 3;p++){
+		for (int p = 0; p < 3; p++) {
 			String recipePattern = this.recipePattern[p];
-			for(int index = 0;index < 3;index++){
+			for (int index = 0; index < 3; index++) {
 				char c = recipePattern.charAt(index);
-				if(c == '0'){
+				if (c == '0') {
 					itemInputs.set(p * 3 + index, types.get(0));
-				}else if(c == '1'){
+				} else if (c == '1') {
 					itemInputs.set(p * 3 + index, types.get(1));
-				}else{
+				} else {
 					itemInputs.set(p * 3 + index, NonNullList.withSize(1, ItemStack.EMPTY));
 				}
 			}
 		}
 		List<List<ItemStack>> itemOutputs = new ArrayList<>();
-		int size = typeCount > 1 || plankType == null  ? types.get(1).size() : 1;
+		int size = typeCount > 1 || plankType == null ? types.get(1).size() : 1;
 		List<ItemStack> outputs = new ArrayList<>();
 		itemOutputs.add(outputs);
-		for(int i = 0;i < size;i++){
+		for (int i = 0; i < size; i++) {
 			IPlankType plankType = this.plankType;
-			if(plankType == null){
+			if (plankType == null) {
 				ItemStack item = types.get(0).get(i);
 				plankType = WoodManager.getPlankType(item);
 			}
 			IPlankType plankTypeSecond = this.plankTypeSecond;
-			if(plankTypeSecond == null){
+			if (plankTypeSecond == null) {
 				ItemStack itemSecond = types.get(1).get(i);
 				plankTypeSecond = WoodManager.getPlankType(itemSecond);
 			}
@@ -103,5 +102,4 @@ public class MultiFenceRecipeSizeWrapper extends BlankRecipeWrapper {
 		ingredients.setOutputLists(ItemStack.class, itemOutputs);
 		ingredients.setInputLists(ItemStack.class, itemInputs);
 	}
-
 }

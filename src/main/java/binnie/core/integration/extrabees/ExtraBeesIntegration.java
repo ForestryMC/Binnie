@@ -10,15 +10,20 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-/**
- * Created by Elec332 on 13-5-2017.
- */
 public class ExtraBeesIntegration implements IInitializable {
 
 	private static final boolean loaded;
 	public static IAlleleBeeSpecies water, rock, basalt;
 	public static Block hive;
 	public static Item dictionary;
+
+	static {
+		loaded = Loader.isModLoaded("extrabees");
+	}
+
+	public static boolean isLoaded() {
+		return loaded;
+	}
 
 	@Override
 	public void preInit() {
@@ -39,16 +44,7 @@ public class ExtraBeesIntegration implements IInitializable {
 
 	}
 
-	private IAlleleBeeSpecies getExtraBeesSpecies(String species){
-		return Preconditions.checkNotNull((IAlleleBeeSpecies) AlleleManager.alleleRegistry.getAllele("extrabees.species."+species));
+	private IAlleleBeeSpecies getExtraBeesSpecies(String species) {
+		return Preconditions.checkNotNull((IAlleleBeeSpecies) AlleleManager.alleleRegistry.getAllele("extrabees.species." + species));
 	}
-
-	public static boolean isLoaded(){
-		return loaded;
-	}
-
-	static {
-		loaded = Loader.isModLoaded("extrabees");
-	}
-
 }

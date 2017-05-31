@@ -32,7 +32,7 @@ public class ItemHammer extends Item implements IToolHammer, IItemModelRegister 
 
 	@Override
 	public String getItemStackDisplayName(ItemStack itemStack) {
-		return ExtraTrees.proxy.localise(isDurableHammer ? "item.hammer.master.name" : "item.hammer.name"); 
+		return ExtraTrees.proxy.localise(isDurableHammer ? "item.hammer.master.name" : "item.hammer.name");
 	}
 
 	@Override

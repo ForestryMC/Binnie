@@ -24,8 +24,8 @@ public enum PacketID implements IPacketID {
 			onUseFieldKit(packet.getTagCompound());
 		}
 	}
-	
-	public void onUseFieldKit(NBTTagCompound data){
+
+	public void onUseFieldKit(NBTTagCompound data) {
 		EntityPlayer player = BinnieCore.getBinnieProxy().getPlayer();
 		String info = "";
 		if (data == null || data.hasNoTags()) {

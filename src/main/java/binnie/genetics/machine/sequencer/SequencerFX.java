@@ -79,9 +79,11 @@ public class SequencerFX extends MachineComponent implements IRender.RandomDispl
 	@SideOnly(Side.CLIENT)
 	private static class SequencerParticle extends Particle {
 		private static final BinnieSprite[] SPRITES;
-		static{
-			SPRITES = new BinnieSprite[] { Sequencer.fxSeqA, Sequencer.fxSeqG, Sequencer.fxSeqC, Sequencer.fxSeqT};
+
+		static {
+			SPRITES = new BinnieSprite[]{Sequencer.fxSeqA, Sequencer.fxSeqG, Sequencer.fxSeqC, Sequencer.fxSeqT};
 		}
+
 		double axisX;
 		double axisZ;
 		double angle;

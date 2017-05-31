@@ -62,8 +62,9 @@ public class ManagerLiquid extends ManagerBase {
 		GameRegistry.addShapelessRecipe(FluidContainerType.GLASS.get(1), Items.GLASS_BOTTLE);
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.GLASS_BOTTLE), FluidContainerType.GLASS.get(1));
 		GameRegistry.addRecipe(new ShapedOreRecipe(FluidContainerType.GLASS.get(3),
-				" b ", "g g", " g ",
-				'g', OreDictUtil.BLOCK_GLASS, 'b', OreDictUtil.SLAB_WOOD));
+			" b ", "g g", " g ",
+			'g', OreDictUtil.BLOCK_GLASS, 'b', OreDictUtil.SLAB_WOOD
+		));
 	}
 
 	public IFluidType getFluidType(final String liquid) {

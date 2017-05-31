@@ -73,9 +73,8 @@ public class PlankType {
 		Banana(0);
 
 		public static final ExtraTreePlanks[] VALUES = values();
-
-		private EnumETLog woodType;
 		private final int color;
+		private EnumETLog woodType;
 		@SideOnly(Side.CLIENT)
 		private TextureAtlasSprite sprite;
 
@@ -122,13 +121,13 @@ public class PlankType {
 			Banana.setWoodType(EnumETLog.Banana);
 		}
 
-		public void setWoodType(EnumETLog woodType) {
-			this.woodType = woodType;
-		}
-
 		@Override
 		public EnumETLog getWoodType() {
 			return woodType;
+		}
+
+		public void setWoodType(EnumETLog woodType) {
+			this.woodType = woodType;
 		}
 
 		@Override
@@ -160,13 +159,13 @@ public class PlankType {
 		public ItemStack getStack() {
 			return getStack(true);
 		}
-		
+
 		@SideOnly(Side.CLIENT)
 		@Override
 		public TextureAtlasSprite getSprite() {
 			return sprite;
 		}
-		
+
 		@SideOnly(Side.CLIENT)
 		@Override
 		public void registerSprites(TextureMap map) {
@@ -211,13 +210,13 @@ public class PlankType {
 		public String getPlankTextureName() {
 			return "minecraft:blocks/planks_" + name().toLowerCase();
 		}
-		
+
 		@SideOnly(Side.CLIENT)
 		@Override
 		public TextureAtlasSprite getSprite() {
 			return sprite;
 		}
-		
+
 		@SideOnly(Side.CLIENT)
 		@Override
 		public void registerSprites(TextureMap map) {
@@ -244,15 +243,15 @@ public class PlankType {
 			return TreeManager.woodAccess.getStack(woodType, WoodBlockKind.PLANKS, fireproof);
 		}
 
-//		@Override
-//		public IIcon getIcon() {
-//			if (this.getStack() != null) {
-//				final int meta = this.getStack().getItemDamage();
-//				final Block block = Blocks.planks;
-//				return block.getIcon(2, meta);
-//			}
-//			return null;
-//		}
+		//		@Override
+		//		public IIcon getIcon() {
+		//			if (this.getStack() != null) {
+		//				final int meta = this.getStack().getItemDamage();
+		//				final Block block = Blocks.planks;
+		//				return block.getIcon(2, meta);
+		//			}
+		//			return null;
+		//		}
 	}
 
 	public enum ForestryPlanks implements IPlankType, IFenceProvider {
@@ -310,13 +309,13 @@ public class PlankType {
 		public String getDescription() {
 			return ExtraTrees.proxy.localise("block.planks.forestry." + this.toString().toLowerCase() + ".desc");
 		}
-		
+
 		@SideOnly(Side.CLIENT)
 		@Override
 		public TextureAtlasSprite getSprite() {
 			return sprite;
 		}
-		
+
 		@SideOnly(Side.CLIENT)
 		@Override
 		public void registerSprites(TextureMap map) {
@@ -343,15 +342,15 @@ public class PlankType {
 			return getStack(true);
 		}
 
-//		@Override
-//		public IIcon getIcon() {
-//			if (this.getStack() != null) {
-//				final int meta = this.getStack().getItemDamage();
-//				final Block block = ((ItemBlock) this.getStack().getItem()).field_150939_a;
-//				return block.getIcon(2, meta);
-//			}
-//			return null;
-//		}
+		//		@Override
+		//		public IIcon getIcon() {
+		//			if (this.getStack() != null) {
+		//				final int meta = this.getStack().getItemDamage();
+		//				final Block block = ((ItemBlock) this.getStack().getItem()).field_150939_a;
+		//				return block.getIcon(2, meta);
+		//			}
+		//			return null;
+		//		}
 
 		@Override
 		public ItemStack getFence() {

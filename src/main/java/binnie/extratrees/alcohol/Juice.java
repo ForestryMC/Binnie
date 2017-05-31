@@ -28,16 +28,12 @@ public enum Juice implements IFluidType, ICocktailLiquid {
 	WhiteGrape("White Grape Juice", "juice.white.grape", 16507769, 0.6, "WhiteGrape"),
 	RedGrape("Red Grape Juice", "juice.red.grape", 9775412, 0.6, "RedGrape");
 
+	public String squeezing;
 	String name;
 	String ident;
-	public String squeezing;
 	//IIcon icon;
 	int colour;
 	float transparency;
-
-	private void addSqueezing(final String oreDict) {
-		this.squeezing = oreDict;
-	}
 
 	Juice(final String name, final String ident, final int colour, final double transparency, final String squeezing) {
 		this.name = name;
@@ -45,6 +41,10 @@ public enum Juice implements IFluidType, ICocktailLiquid {
 		this.colour = colour;
 		this.transparency = (float) transparency;
 		this.addSqueezing("crop" + squeezing);
+	}
+
+	private void addSqueezing(final String oreDict) {
+		this.squeezing = oreDict;
 	}
 
 	@Override
@@ -61,7 +61,6 @@ public enum Juice implements IFluidType, ICocktailLiquid {
 	public boolean showInCreative(final FluidContainerType container) {
 		return container == FluidContainerType.GLASS;
 	}
-
 
 	@Override
 	public ResourceLocation getFlowing() {

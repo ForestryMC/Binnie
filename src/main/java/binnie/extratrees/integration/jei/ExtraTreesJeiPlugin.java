@@ -15,7 +15,12 @@ import binnie.extratrees.integration.jei.lumbermill.LumbermillRecipeCategory;
 import binnie.extratrees.integration.jei.lumbermill.LumbermillRecipeMaker;
 import binnie.extratrees.integration.jei.multifence.MultiFenceRecipeRegistryPlugin;
 import binnie.extratrees.machines.ExtraTreeMachine;
-import mezz.jei.api.*;
+import mezz.jei.api.BlankModPlugin;
+import mezz.jei.api.IGuiHelper;
+import mezz.jei.api.IJeiHelpers;
+import mezz.jei.api.IModRegistry;
+import mezz.jei.api.ISubtypeRegistry;
+import mezz.jei.api.JEIPlugin;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -27,9 +32,9 @@ public class ExtraTreesJeiPlugin extends BlankModPlugin {
 
 	@Override
 	public void registerItemSubtypes(ISubtypeRegistry subtypeRegistry) {
-		subtypeRegistry.registerSubtypeInterpreter(Item.getItemFromBlock(ExtraTrees.blocks().blockMultiFence), (ItemStack itemStack)->{
+		subtypeRegistry.registerSubtypeInterpreter(Item.getItemFromBlock(ExtraTrees.blocks().blockMultiFence), (ItemStack itemStack) -> {
 			FenceDescription desc = WoodManager.getFenceDescription(itemStack);
-			if(desc != null){
+			if (desc != null) {
 				FenceType type = WoodManager.getFenceType(itemStack);
 				return type + ":" + desc.getPlankType().getName().toLowerCase() + ":" + desc.getSecondaryPlankType().getName().toLowerCase();
 			}
@@ -44,10 +49,10 @@ public class ExtraTreesJeiPlugin extends BlankModPlugin {
 		ExtraTreesJeiPlugin.drawables = Drawables.getDrawables(guiHelper);
 
 		registry.addRecipeCategories(
-				new LumbermillRecipeCategory(),
-				new FruitPressRecipeCategory(),
-				new BreweryRecipeCategory(),
-				new DistilleryRecipeCategory()
+			new LumbermillRecipeCategory(),
+			new FruitPressRecipeCategory(),
+			new BreweryRecipeCategory(),
+			new DistilleryRecipeCategory()
 		);
 
 		registry.addRecipeCategoryCraftingItem(ExtraTreeMachine.Lumbermill.get(1), RecipeUids.LUMBERMILL);
@@ -59,7 +64,7 @@ public class ExtraTreesJeiPlugin extends BlankModPlugin {
 		registry.addRecipes(FruitPressRecipeMaker.create(), RecipeUids.FRUIT_PRESS);
 		registry.addRecipes(BreweryRecipeMaker.create(), RecipeUids.BREWING);
 		registry.addRecipes(DistilleryRecipeMaker.create(), RecipeUids.DISTILLING);
-		
+
 		registry.addRecipeRegistryPlugin(new MultiFenceRecipeRegistryPlugin());
 	}
 }

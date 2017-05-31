@@ -272,5 +272,4 @@ public class WindowFieldKit extends Window {
 			this.getWindowInventory().decrStackSize(1, 1);
 		}
 	}
-
 }

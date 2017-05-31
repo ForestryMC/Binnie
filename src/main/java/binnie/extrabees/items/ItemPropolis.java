@@ -21,5 +21,4 @@ public class ItemPropolis extends ItemProduct implements IColoredItem {
 		}
 		return EnumPropolis.get(itemStack).colour[1];
 	}
-
 }

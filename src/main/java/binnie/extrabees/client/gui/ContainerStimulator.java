@@ -7,24 +7,21 @@ import net.minecraft.inventory.IContainerListener;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.SlotItemHandler;
 
-/**
- * Created by Elec332 on 13-5-2017.
- */
 public class ContainerStimulator extends AbstractAlvearyContainer {
+
+	private final AlvearyLogicStimulator logic;
+	private final IEnergyStorage storage;
+	protected int power, maxPower;
 
 	public ContainerStimulator(EntityPlayer player, AlvearyLogicStimulator logic) {
 		super(player, logic.getInventory(), EnumAlvearyLogicType.STIMULATOR, DEFAULT_DIMENSION);
 		this.storage = logic.getEnergyStorage();
 		this.logic = logic;
 		this.maxPower = storage.getMaxEnergyStored();
-		if (!player.world.isRemote){
+		if (!player.world.isRemote) {
 			logic.onContainerOpened(this);
 		}
 	}
-
-	private final AlvearyLogicStimulator logic;
-	private final IEnergyStorage storage;
-	protected int power, maxPower;
 
 	@Override
 	protected void setupContainer() {
@@ -34,9 +31,9 @@ public class ContainerStimulator extends AbstractAlvearyContainer {
 		addSlotToContainer(new SlotItemHandler(inv, 0, 44, 37));
 	}
 
-	public void checkPower(){
-		if (power != storage.getEnergyStored()){
-			for (IContainerListener listener : listeners){
+	public void checkPower() {
+		if (power != storage.getEnergyStored()) {
+			for (IContainerListener listener : listeners) {
 				listener.sendProgressBarUpdate(this, 9, power = storage.getEnergyStored());
 			}
 		}
@@ -50,9 +47,8 @@ public class ContainerStimulator extends AbstractAlvearyContainer {
 
 	@Override
 	public void updateProgressBar(int id, int data) {
-		if (id == 9){
+		if (id == 9) {
 			power = data;
 		}
 	}
-
 }

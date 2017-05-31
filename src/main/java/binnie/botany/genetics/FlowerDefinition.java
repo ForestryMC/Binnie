@@ -142,7 +142,6 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.BOTH_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.OliveDrab);
-
 		}
 
 		@Override
@@ -246,7 +245,6 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		protected void registerMutations() {
 			registerMutation(Allium, Viola, 10);
 		}
-
 	},
 	Viola("Viola", "viola", "odorata", EnumFlowerType.Viola, EnumFlowerColor.MediumPurple, EnumFlowerColor.SlateBlue) {
 		@Override
@@ -265,7 +263,6 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		protected void registerMutations() {
 			registerMutation(Orchid, Poppy, 15);
 		}
-
 	},
 	Daffodil("Daffodil", "narcissus", "pseudonarcissus", EnumFlowerType.Daffodil, EnumFlowerColor.Yellow, EnumFlowerColor.Gold) {
 		@Override
@@ -528,7 +525,6 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		protected void registerMutations() {
 			registerMutation(Daisy, Tulip, 10);
 		}
-
 	},
 	Carnation("Carnation", "dianthus", "caryophyllus", EnumFlowerType.Carnation, EnumFlowerColor.Crimson, EnumFlowerColor.White) {
 		@Override
@@ -942,6 +938,8 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		}
 	};
 
+	public static FlowerDefinition[] VALUES = values();
+	private final IAlleleFlowerSpecies species;
 	IFlowerType<EnumFlowerType> type;
 	String name;
 	String binomial;
@@ -950,28 +948,6 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	@Nullable
 	IClassification branch;
 	EnumFlowerColor primaryColor, secondaryColor;
-
-	private static void setupVariants() {
-		IFlowerRoot flowerRood = BotanyCore.getFlowerRoot();
-		flowerRood.addConversion(new ItemStack(Blocks.YELLOW_FLOWER, 1, 0), Dandelion.getTemplate());
-		flowerRood.addConversion(new ItemStack(Blocks.RED_FLOWER, 1, 0), Poppy.getTemplate());
-		flowerRood.addConversion(new ItemStack(Blocks.RED_FLOWER, 1, 1), Orchid.getTemplate());
-		flowerRood.addConversion(new ItemStack(Blocks.RED_FLOWER, 1, 2), Allium.getTemplate());
-		flowerRood.addConversion(new ItemStack(Blocks.RED_FLOWER, 1, 3), Bluet.getTemplate());
-		flowerRood.addConversion(new ItemStack(Blocks.RED_FLOWER, 1, 7), Tulip.getTemplate());
-		flowerRood.addConversion(new ItemStack(Blocks.RED_FLOWER, 1, 8), Daisy.getTemplate());
-		flowerRood.addConversion(new ItemStack(Blocks.DOUBLE_PLANT, 1, 1), Lilac.getTemplate());
-		flowerRood.addConversion(new ItemStack(Blocks.DOUBLE_PLANT, 1, 4), Rose.getTemplate());
-		flowerRood.addConversion(new ItemStack(Blocks.DOUBLE_PLANT, 1, 5), Peony.getTemplate());
-		flowerRood.addConversion(new ItemStack(Blocks.RED_FLOWER, 1, 6), Tulip.addVariant(EnumFlowerColor.White));
-		flowerRood.addConversion(new ItemStack(Blocks.RED_FLOWER, 1, 4), Tulip.addVariant(EnumFlowerColor.Crimson));
-		flowerRood.addConversion(new ItemStack(Blocks.RED_FLOWER, 1, 5), Tulip.addVariant(EnumFlowerColor.DarkOrange));
-	}
-
-	public static FlowerDefinition[] VALUES = values();
-
-	private final IAlleleFlowerSpecies species;
-
 	private IAllele[] template;
 	private IFlowerGenome genome;
 
@@ -1008,6 +984,52 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		}
 	}
 
+	private static void setupVariants() {
+		IFlowerRoot flowerRood = BotanyCore.getFlowerRoot();
+		flowerRood.addConversion(new ItemStack(Blocks.YELLOW_FLOWER, 1, 0), Dandelion.getTemplate());
+		flowerRood.addConversion(new ItemStack(Blocks.RED_FLOWER, 1, 0), Poppy.getTemplate());
+		flowerRood.addConversion(new ItemStack(Blocks.RED_FLOWER, 1, 1), Orchid.getTemplate());
+		flowerRood.addConversion(new ItemStack(Blocks.RED_FLOWER, 1, 2), Allium.getTemplate());
+		flowerRood.addConversion(new ItemStack(Blocks.RED_FLOWER, 1, 3), Bluet.getTemplate());
+		flowerRood.addConversion(new ItemStack(Blocks.RED_FLOWER, 1, 7), Tulip.getTemplate());
+		flowerRood.addConversion(new ItemStack(Blocks.RED_FLOWER, 1, 8), Daisy.getTemplate());
+		flowerRood.addConversion(new ItemStack(Blocks.DOUBLE_PLANT, 1, 1), Lilac.getTemplate());
+		flowerRood.addConversion(new ItemStack(Blocks.DOUBLE_PLANT, 1, 4), Rose.getTemplate());
+		flowerRood.addConversion(new ItemStack(Blocks.DOUBLE_PLANT, 1, 5), Peony.getTemplate());
+		flowerRood.addConversion(new ItemStack(Blocks.RED_FLOWER, 1, 6), Tulip.addVariant(EnumFlowerColor.White));
+		flowerRood.addConversion(new ItemStack(Blocks.RED_FLOWER, 1, 4), Tulip.addVariant(EnumFlowerColor.Crimson));
+		flowerRood.addConversion(new ItemStack(Blocks.RED_FLOWER, 1, 5), Tulip.addVariant(EnumFlowerColor.DarkOrange));
+	}
+
+	public static void preInitFlowers() {
+		MinecraftForge.EVENT_BUS.post(new AlleleSpeciesRegisterEvent(FlowerManager.flowerRoot, IAlleleFlowerSpecies.class));
+		for (FlowerDefinition def : values()) {
+			@SuppressWarnings("unchecked")
+			IFlowerType<EnumFlowerType> type = def.species.getType();
+			if (EnumFlowerType.highestSection < type.getSections()) {
+				EnumFlowerType.highestSection = type.getSections();
+			}
+		}
+	}
+
+	public static void initFlowers() {
+		for (FlowerDefinition flower : values()) {
+			flower.init();
+		}
+		setupVariants();
+		for (FlowerDefinition flower : values()) {
+			flower.registerMutations();
+		}
+	}
+
+	private static void markAllelesAsValid(IChromosomeType existingType, IChromosomeType newType) {
+		IAlleleRegistry alleleRegistry = AlleleManager.alleleRegistry;
+		Collection<IAllele> alleles = alleleRegistry.getRegisteredAlleles(existingType);
+		for (IAllele allele : alleles) {
+			alleleRegistry.addValidAlleleTypes(allele, newType);
+		}
+	}
+
 	protected abstract void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies);
 
 	protected abstract void setAlleles(IAllele[] alleles);
@@ -1030,10 +1052,6 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		return this.variantTemplates;
 	}
 
-	public void setBranch(final IClassification branch) {
-		this.branch = branch;
-	}
-
 	public IClassification getBranch() {
 		if (branch == null) {
 			final String scientific = branchName.substring(0, 1).toUpperCase() + branchName.substring(1).toLowerCase();
@@ -1045,6 +1063,10 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			this.branch = branch;
 		}
 		return this.branch;
+	}
+
+	public void setBranch(final IClassification branch) {
+		this.branch = branch;
 	}
 
 	@Override
@@ -1072,27 +1094,6 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		return BotanyCore.getFlowerRoot().getMemberStack(flower, flowerStage);
 	}
 
-	public static void preInitFlowers() {
-		MinecraftForge.EVENT_BUS.post(new AlleleSpeciesRegisterEvent(FlowerManager.flowerRoot, IAlleleFlowerSpecies.class));
-		for (FlowerDefinition def : values()) {
-			@SuppressWarnings("unchecked")
-			IFlowerType<EnumFlowerType> type = def.species.getType();
-			if (EnumFlowerType.highestSection < type.getSections()) {
-				EnumFlowerType.highestSection = type.getSections();
-			}
-		}
-	}
-
-	public static void initFlowers() {
-		for (FlowerDefinition flower : values()) {
-			flower.init();
-		}
-		setupVariants();
-		for (FlowerDefinition flower : values()) {
-			flower.registerMutations();
-		}
-	}
-
 	private void init() {
 		markAllelesAsValid(EnumBeeChromosome.FERTILITY, EnumFlowerChromosome.FERTILITY);
 		markAllelesAsValid(EnumBeeChromosome.TERRITORY, EnumFlowerChromosome.TERRITORY);
@@ -1114,14 +1115,6 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		BotanyCore.getFlowerRoot().registerTemplate(template);
 		for (IAllele[] template : variantTemplates) {
 			BotanyCore.getFlowerRoot().registerTemplate(template);
-		}
-	}
-
-	private static void markAllelesAsValid(IChromosomeType existingType, IChromosomeType newType) {
-		IAlleleRegistry alleleRegistry = AlleleManager.alleleRegistry;
-		Collection<IAllele> alleles = alleleRegistry.getRegisteredAlleles(existingType);
-		for (IAllele allele : alleles) {
-			alleleRegistry.addValidAlleleTypes(allele, newType);
 		}
 	}
 

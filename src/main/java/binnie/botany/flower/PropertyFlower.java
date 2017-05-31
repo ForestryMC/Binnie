@@ -48,5 +48,4 @@ public class PropertyFlower<I extends IFlowerType<I>> extends PropertyHelper<I> 
 		}
 		return Optional.absent();
 	}
-
 }

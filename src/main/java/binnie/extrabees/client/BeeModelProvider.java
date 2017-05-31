@@ -17,7 +17,6 @@ import java.util.Locale;
 public class BeeModelProvider implements IBeeModelProvider {
 	public static final BeeModelProvider instance = new BeeModelProvider();
 
-
 	@SideOnly(Side.CLIENT)
 	private static ModelResourceLocation[] models = new ModelResourceLocation[EnumBeeType.values().length];
 
@@ -39,7 +38,6 @@ public class BeeModelProvider implements IBeeModelProvider {
 	public ModelResourceLocation getModel(EnumBeeType type) {
 		return models[type.ordinal()];
 	}
-
 
 	public ModelResourceLocation getModelLocation(String modID, String identifier) {
 		return new ModelResourceLocation(modID + ":" + identifier, "inventory");

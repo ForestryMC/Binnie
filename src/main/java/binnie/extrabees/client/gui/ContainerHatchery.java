@@ -5,9 +5,6 @@ import binnie.extrabees.alveary.EnumAlvearyLogicType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.items.SlotItemHandler;
 
-/**
- * Created by Elec332 on 13-5-2017.
- */
 public class ContainerHatchery extends AbstractAlvearyContainer {
 
 	public ContainerHatchery(EntityPlayer player, AlvearyLogicHatchery logic) {
@@ -22,5 +19,4 @@ public class ContainerHatchery extends AbstractAlvearyContainer {
 			addSlotToContainer(new SlotItemHandler(inv, i, 44 + i * 18, 37));
 		}
 	}
-
 }

@@ -44,46 +44,69 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 	public static final PropertyBool EAST = PropertyBool.create("east");
 	public static final PropertyBool SOUTH = PropertyBool.create("south");
 	public static final PropertyBool WEST = PropertyBool.create("west");
-	protected static final AxisAlignedBB[] BOUNDING_BOXES = new AxisAlignedBB[] {
-			new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D),
-			new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 1.0D),
-			new AxisAlignedBB(0.0D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D),
-			new AxisAlignedBB(0.0D, 0.0D, 0.375D, 0.625D, 1.0D, 1.0D),
-			new AxisAlignedBB(0.375D, 0.0D, 0.0D, 0.625D, 1.0D, 0.625D),
-			new AxisAlignedBB(0.375D, 0.0D, 0.0D, 0.625D, 1.0D, 1.0D),
-			new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.625D, 1.0D, 0.625D),
-			new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.625D, 1.0D, 1.0D),
-			new AxisAlignedBB(0.375D, 0.0D, 0.375D, 1.0D, 1.0D, 0.625D),
-			new AxisAlignedBB(0.375D, 0.0D, 0.375D, 1.0D, 1.0D, 1.0D),
-			new AxisAlignedBB(0.0D, 0.0D, 0.375D, 1.0D, 1.0D, 0.625D),
-			new AxisAlignedBB(0.0D, 0.0D, 0.375D, 1.0D, 1.0D, 1.0D),
-			new AxisAlignedBB(0.375D, 0.0D, 0.0D, 1.0D, 1.0D, 0.625D),
-			new AxisAlignedBB(0.375D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D),
-			new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.625D),
-			new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D) };
 	public static final AxisAlignedBB PILLAR_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1D, 0.625D);
 	public static final AxisAlignedBB SOUTH_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.625D, 0.625D, 1D, 1.0D);
 	public static final AxisAlignedBB WEST_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.375D, 0.375D, 1D, 0.625D);
 	public static final AxisAlignedBB NORTH_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.0D, 0.625D, 1D, 0.375D);
 	public static final AxisAlignedBB EAST_AABB = new AxisAlignedBB(0.625D, 0.0D, 0.375D, 1.0D, 1D, 0.625D);
+	protected static final AxisAlignedBB[] BOUNDING_BOXES = new AxisAlignedBB[]{
+		new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D),
+		new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 1.0D),
+		new AxisAlignedBB(0.0D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D),
+		new AxisAlignedBB(0.0D, 0.0D, 0.375D, 0.625D, 1.0D, 1.0D),
+		new AxisAlignedBB(0.375D, 0.0D, 0.0D, 0.625D, 1.0D, 0.625D),
+		new AxisAlignedBB(0.375D, 0.0D, 0.0D, 0.625D, 1.0D, 1.0D),
+		new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.625D, 1.0D, 0.625D),
+		new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.625D, 1.0D, 1.0D),
+		new AxisAlignedBB(0.375D, 0.0D, 0.375D, 1.0D, 1.0D, 0.625D),
+		new AxisAlignedBB(0.375D, 0.0D, 0.375D, 1.0D, 1.0D, 1.0D),
+		new AxisAlignedBB(0.0D, 0.0D, 0.375D, 1.0D, 1.0D, 0.625D),
+		new AxisAlignedBB(0.0D, 0.0D, 0.375D, 1.0D, 1.0D, 1.0D),
+		new AxisAlignedBB(0.375D, 0.0D, 0.0D, 1.0D, 1.0D, 0.625D),
+		new AxisAlignedBB(0.375D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D),
+		new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.625D),
+		new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D)
+	};
 
 	public BlockShrubLog() {
 		super(Material.WOOD);
 		this.setDefaultState(this.blockState.getBaseState()
-				.withProperty(NORTH, false)
-				.withProperty(EAST, false)
-				.withProperty(SOUTH, false)
-				.withProperty(WEST, false)
-				.withProperty(FIREPROOF, false));
+			.withProperty(NORTH, false)
+			.withProperty(EAST, false)
+			.withProperty(SOUTH, false)
+			.withProperty(WEST, false)
+			.withProperty(FIREPROOF, false));
 		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, "shrub_log"));
 		setUnlocalizedName("shrub_log");
 		setSoundType(SoundType.WOOD);
 		setHardness(EnumShrubLog.INSTANCE.getHardness());
 	}
 
+	private static int getBoundingBoxIdx(IBlockState state) {
+		int i = 0;
+
+		if (state.getValue(NORTH)) {
+			i |= 1 << EnumFacing.NORTH.getHorizontalIndex();
+		}
+
+		if (state.getValue(EAST)) {
+			i |= 1 << EnumFacing.EAST.getHorizontalIndex();
+		}
+
+		if (state.getValue(SOUTH)) {
+			i |= 1 << EnumFacing.SOUTH.getHorizontalIndex();
+		}
+
+		if (state.getValue(WEST)) {
+			i |= 1 << EnumFacing.WEST.getHorizontalIndex();
+		}
+
+		return i;
+	}
+
 	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox,
-			List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_) {
+	                                  List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_) {
 		if (!p_185477_7_) {
 			state = state.getActualState(worldIn, pos);
 		}
@@ -111,28 +134,6 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		state = this.getActualState(state, source, pos);
 		return BOUNDING_BOXES[getBoundingBoxIdx(state)];
-	}
-
-	private static int getBoundingBoxIdx(IBlockState state) {
-		int i = 0;
-
-		if (state.getValue(NORTH)) {
-			i |= 1 << EnumFacing.NORTH.getHorizontalIndex();
-		}
-
-		if (state.getValue(EAST)) {
-			i |= 1 << EnumFacing.EAST.getHorizontalIndex();
-		}
-
-		if (state.getValue(SOUTH)) {
-			i |= 1 << EnumFacing.SOUTH.getHorizontalIndex();
-		}
-
-		if (state.getValue(WEST)) {
-			i |= 1 << EnumFacing.WEST.getHorizontalIndex();
-		}
-
-		return i;
 	}
 
 	@Override
@@ -171,7 +172,7 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos,
-			EnumFacing side) {
+	                                    EnumFacing side) {
 		return true;
 	}
 
@@ -179,7 +180,7 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 	public int getMetaFromState(IBlockState state) {
 		return state.getValue(FIREPROOF) ? 1 : 0;
 	}
-	
+
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		return getDefaultState().withProperty(FIREPROOF, meta == 1);
@@ -188,9 +189,9 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
 		return state.withProperty(NORTH, canFenceConnectTo(worldIn, pos, EnumFacing.NORTH))
-				.withProperty(EAST, canFenceConnectTo(worldIn, pos, EnumFacing.EAST))
-				.withProperty(SOUTH, canFenceConnectTo(worldIn, pos, EnumFacing.SOUTH))
-				.withProperty(WEST, canFenceConnectTo(worldIn, pos, EnumFacing.WEST));
+			.withProperty(EAST, canFenceConnectTo(worldIn, pos, EnumFacing.EAST))
+			.withProperty(SOUTH, canFenceConnectTo(worldIn, pos, EnumFacing.SOUTH))
+			.withProperty(WEST, canFenceConnectTo(worldIn, pos, EnumFacing.WEST));
 	}
 
 	private boolean canFenceConnectTo(IBlockAccess world, BlockPos pos, EnumFacing facing) {
@@ -201,70 +202,70 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 
 	@Override
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-		Random rand = world instanceof World ? ((World)world).rand : RANDOM;
+		Random rand = world instanceof World ? ((World) world).rand : RANDOM;
 		List<ItemStack> ret = new java.util.ArrayList<>();
 		float chance = 0.75F;
 		int amount = 2;
-		while(chance >= rand.nextFloat()){
-			chance-=0.25;
+		while (chance >= rand.nextFloat()) {
+			chance -= 0.25;
 			amount++;
 		}
 		ret.add(new ItemStack(Items.STICK, amount));
 		return ret;
 	}
-	
+
 	@Override
 	public boolean isWood(IBlockAccess world, BlockPos pos) {
 		return true;
 	}
-	
-    @Override 
-    public boolean canSustainLeaves(IBlockState state, IBlockAccess world, BlockPos pos){
-    	return true;
-    }
-    
-    @Override
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state){
-        int i = 4;
-        int j = 5;
 
-        if (worldIn.isAreaLoaded(pos.add(-5, -5, -5), pos.add(5, 5, 5))) {
-            for (BlockPos blockpos : BlockPos.getAllInBox(pos.add(-4, -4, -4), pos.add(4, 4, 4))) {
-                IBlockState iblockstate = worldIn.getBlockState(blockpos);
+	@Override
+	public boolean canSustainLeaves(IBlockState state, IBlockAccess world, BlockPos pos) {
+		return true;
+	}
 
-                if (iblockstate.getBlock().isLeaves(iblockstate, worldIn, blockpos)) {
-                    iblockstate.getBlock().beginLeavesDecay(iblockstate, worldIn, blockpos);
-                }
-            }
-        }
-    }
-	
+	@Override
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+		int i = 4;
+		int j = 5;
+
+		if (worldIn.isAreaLoaded(pos.add(-5, -5, -5), pos.add(5, 5, 5))) {
+			for (BlockPos blockpos : BlockPos.getAllInBox(pos.add(-4, -4, -4), pos.add(4, 4, 4))) {
+				IBlockState iblockstate = worldIn.getBlockState(blockpos);
+
+				if (iblockstate.getBlock().isLeaves(iblockstate, worldIn, blockpos)) {
+					iblockstate.getBlock().beginLeavesDecay(iblockstate, worldIn, blockpos);
+				}
+			}
+		}
+	}
+
 	@Override
 	public IBlockState withRotation(IBlockState state, Rotation rot) {
 		switch (rot) {
-		case CLOCKWISE_180:
-			return state.withProperty(NORTH, state.getValue(SOUTH)).withProperty(EAST, state.getValue(WEST))
+			case CLOCKWISE_180:
+				return state.withProperty(NORTH, state.getValue(SOUTH)).withProperty(EAST, state.getValue(WEST))
 					.withProperty(SOUTH, state.getValue(NORTH)).withProperty(WEST, state.getValue(EAST));
-		case COUNTERCLOCKWISE_90:
-			return state.withProperty(NORTH, state.getValue(EAST)).withProperty(EAST, state.getValue(SOUTH))
+			case COUNTERCLOCKWISE_90:
+				return state.withProperty(NORTH, state.getValue(EAST)).withProperty(EAST, state.getValue(SOUTH))
 					.withProperty(SOUTH, state.getValue(WEST)).withProperty(WEST, state.getValue(NORTH));
-		case CLOCKWISE_90:
-			return state.withProperty(NORTH, state.getValue(WEST)).withProperty(EAST, state.getValue(NORTH))
+			case CLOCKWISE_90:
+				return state.withProperty(NORTH, state.getValue(WEST)).withProperty(EAST, state.getValue(NORTH))
 					.withProperty(SOUTH, state.getValue(EAST)).withProperty(WEST, state.getValue(SOUTH));
-		default:
-			return state;
+			default:
+				return state;
 		}
 	}
 
 	@Override
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
 		switch (mirrorIn) {
-		case LEFT_RIGHT:
-			return state.withProperty(NORTH, state.getValue(SOUTH)).withProperty(SOUTH, state.getValue(NORTH));
-		case FRONT_BACK:
-			return state.withProperty(EAST, state.getValue(WEST)).withProperty(WEST, state.getValue(EAST));
-		default:
-			return super.withMirror(state, mirrorIn);
+			case LEFT_RIGHT:
+				return state.withProperty(NORTH, state.getValue(SOUTH)).withProperty(SOUTH, state.getValue(NORTH));
+			case FRONT_BACK:
+				return state.withProperty(EAST, state.getValue(WEST)).withProperty(WEST, state.getValue(EAST));
+			default:
+				return super.withMirror(state, mirrorIn);
 		}
 	}
 
@@ -277,13 +278,13 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 	public WoodBlockKind getBlockKind() {
 		return WoodBlockKind.LOG;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerStateMapper() {
 		ModelLoader.setCustomStateMapper(this, new StateMap.Builder().ignore(FIREPROOF).build());
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
@@ -306,5 +307,4 @@ public class BlockShrubLog extends Block implements IWoodTyped, IStateMapperRegi
 	public Collection<? extends IWoodType> getWoodTypes() {
 		return Collections.singletonList(EnumShrubLog.INSTANCE);
 	}
-
 }

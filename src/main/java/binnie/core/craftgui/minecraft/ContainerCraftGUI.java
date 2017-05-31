@@ -40,6 +40,7 @@ import java.util.Objects;
 import java.util.Set;
 
 public class ContainerCraftGUI extends Container {
+	private final Set<EntityPlayer> crafters = Sets.newConcurrentHashSet();
 	private Window window;
 	private Map<String, NBTTagCompound> syncedNBT;
 	private Map<String, NBTTagCompound> sentNBT;
@@ -50,7 +51,6 @@ public class ContainerCraftGUI extends Container {
 	@Nullable
 	private ErrorState error;
 	private int mousedOverSlotNumber;
-	private final Set<EntityPlayer> crafters = Sets.newConcurrentHashSet();
 
 	public ContainerCraftGUI(final Window window) {
 		this.syncedNBT = new HashMap<>();
@@ -259,7 +259,7 @@ public class ContainerCraftGUI extends Container {
 			if (shouldSend) {
 				//TODO INVENTORY
 				this.crafters.stream().filter(Objects::nonNull).forEach(entityPlayer ->
-						BinnieCore.getBinnieProxy().sendToPlayer(new MessageContainerUpdate(nbt.getValue()), entityPlayer));
+					BinnieCore.getBinnieProxy().sendToPlayer(new MessageContainerUpdate(nbt.getValue()), entityPlayer));
 				sentThisTime.put(nbt.getKey(), nbt.getValue());
 			}
 		}

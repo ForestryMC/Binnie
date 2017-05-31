@@ -68,5 +68,4 @@ public class WindowGenepool extends WindowMachine {
 	protected String getBackgroundTextureName() {
 		return "genepool";
 	}
-
 }

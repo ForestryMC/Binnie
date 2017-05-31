@@ -21,7 +21,7 @@ public class ModuleGenetics implements IInitializable {
 
 	@Override
 	public void preInit() {
-		/* INIT API*/
+	    /* INIT API*/
 		binnie.botany.api.FlowerManager.flowerFactory = new FlowerFactory();
 		AlleleManager.alleleRegistry.registerSpeciesRoot(BotanyCore.getFlowerRoot());
 		AlleleManager.alleleRegistry.registerAllele(ModuleGenetics.alleleEffectNone);
@@ -52,15 +52,15 @@ public class ModuleGenetics implements IInitializable {
 	public void postInit() {
 		FlowerManager.flowerRegistry.registerAcceptableFlower(Botany.flower, "flowersVanilla");
 		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack("water", 2000), ItemStack.EMPTY, new ItemStack(Botany.database),
-				"X#X",
-				"YEY",
-				"RDR",
-				'#', Blocks.GLASS_PANE,
-				'X', Items.GOLD_INGOT,
-				'Y', Items.GOLD_NUGGET,
-				'R', Items.REDSTONE,
-				'D', Items.DIAMOND,
-				'E', Items.EMERALD);
+			"X#X",
+			"YEY",
+			"RDR",
+			'#', Blocks.GLASS_PANE,
+			'X', Items.GOLD_INGOT,
+			'Y', Items.GOLD_NUGGET,
+			'R', Items.REDSTONE,
+			'D', Items.DIAMOND,
+			'E', Items.EMERALD
+		);
 	}
-
 }

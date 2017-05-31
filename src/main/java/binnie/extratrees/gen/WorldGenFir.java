@@ -52,7 +52,6 @@ public class WorldGenFir {
 			this.height = this.determineHeight(7, 3);
 			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
-
 	}
 
 	public static class SilverFir extends WorldGenTree {

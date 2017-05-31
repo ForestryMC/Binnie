@@ -70,8 +70,8 @@ public class ItemMothDatabase extends Item implements IItemModelRegister {
 	public String getItemStackDisplayName(ItemStack itemStack) {
 		return ExtraTrees.proxy.localise(isMaster(itemStack) ? "item.database.lepi.master.name" : "item.database.lepi.name");
 	}
-	
-	protected boolean isMaster(ItemStack itemStack){
+
+	protected boolean isMaster(ItemStack itemStack) {
 		return itemStack.getMetadata() > 0;
 	}
 }

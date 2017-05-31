@@ -13,6 +13,17 @@ import java.util.Map;
 
 public class GlassType implements IDesignMaterial {
 	static Map<Integer, GlassType> types;
+
+	static {
+		GlassType.types = new LinkedHashMap<>();
+		for (final StandardColor c : StandardColor.values()) {
+			GlassType.types.put(c.ordinal(), new GlassType(c.ordinal(), c.name, c.colour));
+		}
+		for (final EnumFlowerColor c2 : EnumFlowerColor.values()) {
+			GlassType.types.put(128 + c2.ordinal(), new GlassType(128 + c2.ordinal(), c2.getColourName(), c2.getColor(false)));
+		}
+	}
+
 	String name;
 	int colour;
 	int id;
@@ -21,29 +32,6 @@ public class GlassType implements IDesignMaterial {
 		this.id = id;
 		this.name = name;
 		this.colour = colour;
-	}
-
-	@Override
-	public ItemStack getStack() {
-		if (this.id < 128) {
-			return new ItemStack(Blocks.STAINED_GLASS, 1, this.id);
-		}
-		return TileEntityMetadata.getItemStack(Botany.stained, this.id - 128);
-	}
-
-	@Override
-	public ItemStack getStack(boolean fireproof) {
-		return getStack();
-	}
-
-	@Override
-	public String getName() {
-		return this.name;
-	}
-
-	@Override
-	public int getColour() {
-		return this.colour;
 	}
 
 	public static int getIndex(final IDesignMaterial id) {
@@ -69,14 +57,27 @@ public class GlassType implements IDesignMaterial {
 		return null;
 	}
 
-	static {
-		GlassType.types = new LinkedHashMap<>();
-		for (final StandardColor c : StandardColor.values()) {
-			GlassType.types.put(c.ordinal(), new GlassType(c.ordinal(), c.name, c.colour));
+	@Override
+	public ItemStack getStack() {
+		if (this.id < 128) {
+			return new ItemStack(Blocks.STAINED_GLASS, 1, this.id);
 		}
-		for (final EnumFlowerColor c2 : EnumFlowerColor.values()) {
-			GlassType.types.put(128 + c2.ordinal(), new GlassType(128 + c2.ordinal(), c2.getColourName(), c2.getColor(false)));
-		}
+		return TileEntityMetadata.getItemStack(Botany.stained, this.id - 128);
+	}
+
+	@Override
+	public ItemStack getStack(boolean fireproof) {
+		return getStack();
+	}
+
+	@Override
+	public String getName() {
+		return this.name;
+	}
+
+	@Override
+	public int getColour() {
+		return this.colour;
 	}
 
 	private enum StandardColor {

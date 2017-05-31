@@ -50,7 +50,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 public class ModuleBlocks implements IInitializable {
 	// public static int hedgeRenderID;
 
@@ -76,6 +75,20 @@ public class ModuleBlocks implements IInitializable {
 	public BlockShrubLog shrubLog;
 	//????
 	public Block blockBranch;
+
+	private static void addRecipeAtPosition(int position, IRecipe recipe) {
+		CraftingManager manager = CraftingManager.getInstance();
+		manager.getRecipeList().add(position, recipe);
+	}
+
+	private static void registerOreDictWildcard(String oreDictName, Block block) {
+		OreDictionary.registerOre(oreDictName, new ItemStack(block, 1, OreDictionary.WILDCARD_VALUE));
+	}
+
+	public static ItemStack getDecorativeLeaves(String speciesUid) {
+		ItemStack itemStack = ExtraTrees.blocks().speciesToLeavesDecorative.get(speciesUid);
+		return itemStack.copy();
+	}
 
 	@Override
 	public void preInit() {
@@ -242,7 +255,7 @@ public class ModuleBlocks implements IInitializable {
 				speciesToLeavesDecorative.put(speciesUid, new ItemStack(leaves, 1, meta));
 			}
 		}
-		
+
 		shrubLog = new BlockShrubLog();
 		ExtraTrees.proxy.registerBlock(shrubLog, new ItemBlockETWood(shrubLog));
 		woodAccess.register(EnumShrubLog.INSTANCE, WoodBlockKind.LOG, false, shrubLog.getStateFromMeta(0), new ItemStack(shrubLog, 1, 0));
@@ -251,9 +264,9 @@ public class ModuleBlocks implements IInitializable {
 
 	@Override
 	public void init() {
-//		ExtraTrees.doorRenderId = RenderingRegistry.getNextAvailableRenderId();
-//		RenderingRegistry.registerBlockHandler(new DoorBlockRenderer());
-//		RenderingRegistry.registerBlockHandler(new HedgeRenderer());
+		//		ExtraTrees.doorRenderId = RenderingRegistry.getNextAvailableRenderId();
+		//		RenderingRegistry.registerBlockHandler(new DoorBlockRenderer());
+		//		RenderingRegistry.registerBlockHandler(new HedgeRenderer());
 		RecipeSorter.register("extratrees:multifence", MultiFenceRecipeSize.class, RecipeSorter.Category.SHAPED, "");
 		RecipeSorter.register("extratrees:multifence2", MultiFenceRecipeEmbedded.class, RecipeSorter.Category.SHAPED, "");
 		RecipeSorter.register("extratrees:multifence3", MultiFenceRecipeSolid.class, RecipeSorter.Category.SHAPED, "");
@@ -270,10 +283,11 @@ public class ModuleBlocks implements IInitializable {
 
 				stairs.setCount(4);
 				RecipeUtil.addPriorityRecipe(stairs.copy(),
-						"#  ",
-						"## ",
-						"###",
-						'#', planks.copy());
+					"#  ",
+					"## ",
+					"###",
+					'#', planks.copy()
+				);
 
 				slabs.setCount(6);
 				RecipeUtil.addPriorityRecipe(slabs.copy(), "###", '#', planks.copy());
@@ -312,19 +326,5 @@ public class ModuleBlocks implements IInitializable {
 
 	public void addSqueezer(final IWoodType log, final ILiquidType liquid, final int amount) {
 		this.addSqueezer(log, liquid, amount, 0.5f);
-	}
-
-	private static void addRecipeAtPosition(int position, IRecipe recipe) {
-		CraftingManager manager = CraftingManager.getInstance();
-		manager.getRecipeList().add(position, recipe);
-	}
-
-	private static void registerOreDictWildcard(String oreDictName, Block block) {
-		OreDictionary.registerOre(oreDictName, new ItemStack(block, 1, OreDictionary.WILDCARD_VALUE));
-	}
-
-	public static ItemStack getDecorativeLeaves(String speciesUid) {
-		ItemStack itemStack = ExtraTrees.blocks().speciesToLeavesDecorative.get(speciesUid);
-		return itemStack.copy();
 	}
 }

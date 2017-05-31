@@ -6,7 +6,6 @@ import net.minecraft.item.ItemStack;
 
 import javax.annotation.Nullable;
 
-
 public enum Glassware {
 	BeerMug(480, 10, 14),
 	Pint(600, 6, 20),
@@ -24,11 +23,17 @@ public enum Glassware {
 	Sherry(60, 17, 7),
 	Coupe(180, 19, 8);
 
-	private int capacity;
 	float contentBottom;
 	float contentHeight;
-//	public IIcon glass;
-//	public IIcon contents;
+	private int capacity;
+	//	public IIcon glass;
+	//	public IIcon contents;
+
+	Glassware(final int capacity, final int contentBottom, final int contentHeight) {
+		this.capacity = capacity;
+		this.contentBottom = contentBottom / 32.0f;
+		this.contentHeight = contentHeight / 32.0f;
+	}
 
 	public String getName(@Nullable final String liquid) {
 		if (liquid == null) {
@@ -41,16 +46,10 @@ public enum Glassware {
 		return this.capacity;
 	}
 
-	Glassware(final int capacity, final int contentBottom, final int contentHeight) {
-		this.capacity = capacity;
-		this.contentBottom = contentBottom / 32.0f;
-		this.contentHeight = contentHeight / 32.0f;
-	}
-
-//	public void registerIcons(final IIconRegister par1IconRegister) {
-//		this.glass = ExtraTrees.proxy.getIcon(par1IconRegister, "glassware/" + this.toString().toLowerCase() + ".glass");
-//		this.contents = ExtraTrees.proxy.getIcon(par1IconRegister, "glassware/" + this.toString().toLowerCase() + ".contents");
-//	}
+	//	public void registerIcons(final IIconRegister par1IconRegister) {
+	//		this.glass = ExtraTrees.proxy.getIcon(par1IconRegister, "glassware/" + this.toString().toLowerCase() + ".glass");
+	//		this.contents = ExtraTrees.proxy.getIcon(par1IconRegister, "glassware/" + this.toString().toLowerCase() + ".contents");
+	//	}
 
 	public ItemStack get(final int i) {
 		return ExtraTrees.alcohol().drink.getStack(this, null);

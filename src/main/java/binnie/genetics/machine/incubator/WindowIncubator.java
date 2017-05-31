@@ -69,5 +69,4 @@ public class WindowIncubator extends WindowMachine {
 	protected String getBackgroundTextureName() {
 		return "incubator";
 	}
-
 }

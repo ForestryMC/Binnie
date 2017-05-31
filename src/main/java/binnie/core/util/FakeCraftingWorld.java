@@ -29,17 +29,17 @@ public class FakeCraftingWorld extends World {
 	@Nullable
 	private static FakeCraftingWorld INSTANCE;
 
+	private FakeCraftingWorld() {
+		super(saveHandler, worldInfo, worldProvider, new Profiler(), true);
+		this.provider.setWorld(this);
+		this.mapStorage = new FakeMapStorage();
+	}
+
 	public static FakeCraftingWorld getInstance() {
 		if (INSTANCE == null) {
 			INSTANCE = new FakeCraftingWorld();
 		}
 		return INSTANCE;
-	}
-
-	private FakeCraftingWorld() {
-		super(saveHandler, worldInfo, worldProvider, new Profiler(), true);
-		this.provider.setWorld(this);
-		this.mapStorage = new FakeMapStorage();
 	}
 
 	@Override

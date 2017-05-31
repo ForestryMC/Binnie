@@ -12,13 +12,13 @@ import net.minecraft.item.ItemStack;
 import javax.annotation.Nullable;
 
 public class CustomSlot extends Slot {
+	public CustomSlot(final IInventory inventory, final int index) {
+		super(inventory, index, 0, 0);
+	}
+
 	@Override
 	public boolean isItemValid(final ItemStack stack) {
 		return !stack.isEmpty() && this.inventory.isItemValidForSlot(this.getSlotIndex(), stack);
-	}
-
-	public CustomSlot(final IInventory inventory, final int index) {
-		super(inventory, index, 0, 0);
 	}
 
 	@Nullable

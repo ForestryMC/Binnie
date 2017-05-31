@@ -32,6 +32,26 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 		setRegistryName("soil_meter");
 	}
 
+	public static String getPH(ItemStack stack, boolean withColor, boolean byNeutralNone) {
+		EnumAcidity ph = EnumAcidity.values()[stack.getItemDamage() / 3];
+		if (byNeutralNone) {
+			if (ph == EnumAcidity.Neutral) {
+				return "";
+			}
+		}
+		return TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.ph") + ": " + ph.getTranslated(withColor);
+	}
+
+	public static String getMoisture(ItemStack stack, boolean withColor, boolean byNormalNone) {
+		EnumMoisture moisure = EnumMoisture.values()[stack.getItemDamage() % 3];
+		if (byNormalNone) {
+			if (moisure == EnumMoisture.Normal) {
+				return "";
+			}
+		}
+		return TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.moisture") + ": " + moisure.getTranslated(withColor);
+	}
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
@@ -61,26 +81,6 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 			player.sendStatusMessage(chat, false);
 		}
 		return EnumActionResult.SUCCESS;
-	}
-
-	public static String getPH(ItemStack stack, boolean withColor, boolean byNeutralNone) {
-		EnumAcidity ph = EnumAcidity.values()[stack.getItemDamage() / 3];
-		if (byNeutralNone) {
-			if (ph == EnumAcidity.Neutral) {
-				return "";
-			}
-		}
-		return TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.ph") + ": " + ph.getTranslated(withColor);
-	}
-
-	public static String getMoisture(ItemStack stack, boolean withColor, boolean byNormalNone) {
-		EnumMoisture moisure = EnumMoisture.values()[stack.getItemDamage() % 3];
-		if (byNormalNone) {
-			if (moisure == EnumMoisture.Normal) {
-				return "";
-			}
-		}
-		return TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.moisture") + ": " + moisure.getTranslated(withColor);
 	}
 
 	@Override

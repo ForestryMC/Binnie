@@ -58,10 +58,10 @@ public enum LaboratoryMachine implements IMachineType {
 			new ComponentGUIHolder(machine);
 		}
 
-//		@Override
-//		public void renderMachine(final Machine machine, final double x, final double y, final double z, final float var8, final RenderBlocks renderer) {
-//			MachineRendererLab.instance.renderMachine(machine, this.colour, this.renderTexture, x, y, z, var8);
-//		}
+		//		@Override
+		//		public void renderMachine(final Machine machine, final double x, final double y, final double z, final float var8, final RenderBlocks renderer) {
+		//			MachineRendererLab.instance.renderMachine(machine, this.colour, this.renderTexture, x, y, z, var8);
+		//		}
 	}
 
 	public static class ComponentGUIHolder extends MachineComponent implements INetwork.TilePacketSync, IInteraction.RightClick {
@@ -125,54 +125,54 @@ public enum LaboratoryMachine implements IMachineType {
 		public void onRightClick(World p0, EntityPlayer p1, BlockPos pos) {
 
 		}
-//		@Override
-//		public void onRightClick(final World world, final EntityPlayer player, final int x, final int y, final int z) {
-//			if (BinnieCore.proxy.isSimulating(world) && player.getHeldItem() != null) {
-//				if (!this.stack.isEmpty() && player.getHeldItem().getItem() instanceof IToolWrench) {
-//					final float f = 0.7f;
-//					final double d0 = world.rand.nextFloat() * f + (1.0f - f) * 0.5;
-//					final double d2 = world.rand.nextFloat() * f + (1.0f - f) * 0.5;
-//					final double d3 = world.rand.nextFloat() * f + (1.0f - f) * 0.5;
-//					final EntityItem entityitem = new EntityItem(world, x + d0, y + d2, z + d3, this.stack);
-//					entityitem.delayBeforeCanPickup = 10;
-//					world.spawnEntity(entityitem);
-//					this.stack = null;
-//					((IToolWrench) player.getHeldItem().getItem()).wrenchUsed(player, x, y, z);
-//					this.getUtil().refreshBlock();
-//					return;
-//				}
-//				final List<Item> validSelections = new ArrayList<Item>();
-//				if (BinnieCore.isBotanyActive()) {
-//					validSelections.add(Botany.database);
-//				}
-//				if (BinnieCore.isExtraBeesActive()) {
-//					validSelections.add(ExtraBees.dictionary);
-//				}
-//				if (BinnieCore.isExtraTreesActive()) {
-//					validSelections.add(ExtraTrees.itemDictionary);
-//				}
-//				if (BinnieCore.isLepidopteryActive()) {
-//					validSelections.add(ExtraTrees.itemDictionaryLepi);
-//				}
-//				validSelections.add(Genetics.database);
-//				validSelections.add(Genetics.analyst);
-//				validSelections.add(Genetics.registry);
-//				validSelections.add(Genetics.masterRegistry);
-//				validSelections.add(BinnieCore.genesis);
-//				if (this.stack.isEmpty() && validSelections.contains(player.getHeldItem().getItem())) {
-//					this.stack = player.getHeldItem().copy();
-//					final ItemStack heldItem = player.getHeldItem();
-//					heldItem.shrink(1);
-//					world.markBlockForUpdate(x, y, z);
-//					return;
-//				}
-//				if (!this.stack.isEmpty() && player.getHeldItem().getItem() instanceof IToolWrench) {
-//					this.stack.getItem().onItemRightClick(this.stack, world, player);
-//				}
-//			}
-//			if (!this.stack.isEmpty()) {
-//				this.stack.getItem().onItemRightClick(this.stack, world, player);
-//			}
-//		}
+		//		@Override
+		//		public void onRightClick(final World world, final EntityPlayer player, final int x, final int y, final int z) {
+		//			if (BinnieCore.proxy.isSimulating(world) && player.getHeldItem() != null) {
+		//				if (!this.stack.isEmpty() && player.getHeldItem().getItem() instanceof IToolWrench) {
+		//					final float f = 0.7f;
+		//					final double d0 = world.rand.nextFloat() * f + (1.0f - f) * 0.5;
+		//					final double d2 = world.rand.nextFloat() * f + (1.0f - f) * 0.5;
+		//					final double d3 = world.rand.nextFloat() * f + (1.0f - f) * 0.5;
+		//					final EntityItem entityitem = new EntityItem(world, x + d0, y + d2, z + d3, this.stack);
+		//					entityitem.delayBeforeCanPickup = 10;
+		//					world.spawnEntity(entityitem);
+		//					this.stack = null;
+		//					((IToolWrench) player.getHeldItem().getItem()).wrenchUsed(player, x, y, z);
+		//					this.getUtil().refreshBlock();
+		//					return;
+		//				}
+		//				final List<Item> validSelections = new ArrayList<Item>();
+		//				if (BinnieCore.isBotanyActive()) {
+		//					validSelections.add(Botany.database);
+		//				}
+		//				if (BinnieCore.isExtraBeesActive()) {
+		//					validSelections.add(ExtraBees.dictionary);
+		//				}
+		//				if (BinnieCore.isExtraTreesActive()) {
+		//					validSelections.add(ExtraTrees.itemDictionary);
+		//				}
+		//				if (BinnieCore.isLepidopteryActive()) {
+		//					validSelections.add(ExtraTrees.itemDictionaryLepi);
+		//				}
+		//				validSelections.add(Genetics.database);
+		//				validSelections.add(Genetics.analyst);
+		//				validSelections.add(Genetics.registry);
+		//				validSelections.add(Genetics.masterRegistry);
+		//				validSelections.add(BinnieCore.genesis);
+		//				if (this.stack.isEmpty() && validSelections.contains(player.getHeldItem().getItem())) {
+		//					this.stack = player.getHeldItem().copy();
+		//					final ItemStack heldItem = player.getHeldItem();
+		//					heldItem.shrink(1);
+		//					world.markBlockForUpdate(x, y, z);
+		//					return;
+		//				}
+		//				if (!this.stack.isEmpty() && player.getHeldItem().getItem() instanceof IToolWrench) {
+		//					this.stack.getItem().onItemRightClick(this.stack, world, player);
+		//				}
+		//			}
+		//			if (!this.stack.isEmpty()) {
+		//				this.stack.getItem().onItemRightClick(this.stack, world, player);
+		//			}
+		//		}
 	}
 }

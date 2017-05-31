@@ -35,8 +35,8 @@ import java.util.List;
 import java.util.Random;
 
 class BlockMachine extends BlockContainer implements IBlockMachine {
-	private MachineGroup group;
 	public static final PropertyInteger MACHINE_TYPE = PropertyInteger.create("machine_type", 0, 15);
+	private MachineGroup group;
 
 	public BlockMachine(MachineGroup group, String blockName) {
 		super(Material.IRON);

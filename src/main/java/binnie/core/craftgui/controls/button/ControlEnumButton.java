@@ -41,15 +41,15 @@ public class ControlEnumButton<T> extends ControlButton implements IControlValue
 	}
 
 	@Override
+	public T getValue() {
+		return this.currentSelection;
+	}
+
+	@Override
 	public void setValue(final T selection) {
 		if (this.currentSelection != selection) {
 			this.currentSelection = selection;
 			this.callEvent(new EventValueChanged<Object>(this, this.getValue()));
 		}
-	}
-
-	@Override
-	public T getValue() {
-		return this.currentSelection;
 	}
 }

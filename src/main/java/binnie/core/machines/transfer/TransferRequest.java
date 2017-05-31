@@ -98,116 +98,6 @@ public class TransferRequest {
 		return returnItem;
 	}
 
-	private void setItemToTransfer(final ItemStack itemToTransfer) {
-		this.itemToTransfer = itemToTransfer;
-	}
-
-	private void setReturnItem(final ItemStack returnItem) {
-		this.returnItem = returnItem;
-	}
-
-	public TransferRequest setOrigin(@Nullable final IInventory origin) {
-		this.origin = origin;
-		return this;
-	}
-
-	private void setDestination(final IInventory destination) {
-		this.destination = destination;
-	}
-
-	public TransferRequest setTargetSlots(final int[] targetSlots) {
-		this.targetSlots = targetSlots;
-		return this;
-	}
-
-	public TransferRequest setTargetTanks(final int[] targetTanks) {
-		this.targetTanks = targetTanks;
-		return this;
-	}
-
-	public TransferRequest ignoreValidation() {
-		this.ignoreReadOnly = true;
-		return this;
-	}
-
-	public ItemStack getReturnItem() {
-		return this.returnItem;
-	}
-
-	public ItemStack transfer(final boolean doAdd) {
-		ItemStack item = this.returnItem;
-		if (item.isEmpty() || this.destination == null) {
-			return ItemStack.EMPTY;
-		}
-		if (this.transferLiquids && this.destination instanceof ITankMachine) {
-			if(origin == null){
-				return ItemStack.EMPTY;
-			}
-			ItemStack itemIn = item.copy();
-			for (final int tankID : this.targetTanks) {
-				item = transferToTank(item, this.origin, (ITankMachine) this.destination, tankID, doAdd);
-				if (item.isEmpty() || !ItemStack.areItemStacksEqual(item, itemIn)) {
-					break;
-				}
-
-				item = transferFromTank(item, this.origin, (ITankMachine) this.destination, tankID, doAdd);
-				if (item.isEmpty() || !ItemStack.areItemStacksEqual(item, itemIn)) {
-					break;
-				}
-			}
-		}
-		if (!item.isEmpty()) {
-			for (final int slot : this.targetSlots) {
-				if (this.destination.isItemValidForSlot(slot, item) || this.ignoreReadOnly) {
-					if (this.destination instanceof IInventorySlots) {
-						InventorySlot inventorySlot = ((IInventorySlots) this.destination).getSlot(slot);
-						if (inventorySlot != null && inventorySlot.isRecipe()) {
-							continue;
-						}
-					}
-					ItemStack stackInSlot = this.destination.getStackInSlot(slot);
-					if (!stackInSlot.isEmpty()) {
-						if (item.isStackable()) {
-							final ItemStack merged = stackInSlot.copy();
-							final NonNullList<ItemStack> newStacks = mergeStacks(item.copy(), merged.copy());
-							item = newStacks.get(0);
-							if (!areItemsEqual(merged, newStacks.get(1))) {
-								this.insertedSlots.add(new TransferSlot(slot, this.destination));
-							}
-							if (doAdd) {
-								this.destination.setInventorySlotContents(slot, newStacks.get(1));
-							}
-							if (item.isEmpty()) {
-								return ItemStack.EMPTY;
-							}
-						}
-					}
-				}
-			}
-		}
-		if (!item.isEmpty()) {
-			for (final int slot : this.targetSlots) {
-				if (this.destination.isItemValidForSlot(slot, item) || this.ignoreReadOnly) {
-					if (this.destination instanceof IInventorySlots) {
-						InventorySlot inventorySlot = ((IInventorySlots) this.destination).getSlot(slot);
-						if (inventorySlot != null && inventorySlot.isRecipe()) {
-							continue;
-						}
-					}
-					if (this.destination.getStackInSlot(slot).isEmpty()) {
-						this.insertedSlots.add(new TransferSlot(slot, this.destination));
-						if (doAdd) {
-							this.destination.setInventorySlotContents(slot, item.copy());
-						}
-						return ItemStack.EMPTY;
-					}
-				}
-			}
-		}
-		this.setReturnItem(item);
-		return this.getReturnItem();
-	}
-
 	private static boolean areItemsEqual(final ItemStack merged, final ItemStack itemstack) {
 		return ItemStack.areItemStackTagsEqual(itemstack, merged) && itemstack.isItemEqual(merged);
 	}
@@ -308,6 +198,93 @@ public class TransferRequest {
 		return itemStack;
 	}
 
+	public TransferRequest ignoreValidation() {
+		this.ignoreReadOnly = true;
+		return this;
+	}
+
+	public ItemStack getReturnItem() {
+		return this.returnItem;
+	}
+
+	private void setReturnItem(final ItemStack returnItem) {
+		this.returnItem = returnItem;
+	}
+
+	public ItemStack transfer(final boolean doAdd) {
+		ItemStack item = this.returnItem;
+		if (item.isEmpty() || this.destination == null) {
+			return ItemStack.EMPTY;
+		}
+		if (this.transferLiquids && this.destination instanceof ITankMachine) {
+			if (origin == null) {
+				return ItemStack.EMPTY;
+			}
+			ItemStack itemIn = item.copy();
+			for (final int tankID : this.targetTanks) {
+				item = transferToTank(item, this.origin, (ITankMachine) this.destination, tankID, doAdd);
+				if (item.isEmpty() || !ItemStack.areItemStacksEqual(item, itemIn)) {
+					break;
+				}
+
+				item = transferFromTank(item, this.origin, (ITankMachine) this.destination, tankID, doAdd);
+				if (item.isEmpty() || !ItemStack.areItemStacksEqual(item, itemIn)) {
+					break;
+				}
+			}
+		}
+		if (!item.isEmpty()) {
+			for (final int slot : this.targetSlots) {
+				if (this.destination.isItemValidForSlot(slot, item) || this.ignoreReadOnly) {
+					if (this.destination instanceof IInventorySlots) {
+						InventorySlot inventorySlot = ((IInventorySlots) this.destination).getSlot(slot);
+						if (inventorySlot != null && inventorySlot.isRecipe()) {
+							continue;
+						}
+					}
+					ItemStack stackInSlot = this.destination.getStackInSlot(slot);
+					if (!stackInSlot.isEmpty()) {
+						if (item.isStackable()) {
+							final ItemStack merged = stackInSlot.copy();
+							final NonNullList<ItemStack> newStacks = mergeStacks(item.copy(), merged.copy());
+							item = newStacks.get(0);
+							if (!areItemsEqual(merged, newStacks.get(1))) {
+								this.insertedSlots.add(new TransferSlot(slot, this.destination));
+							}
+							if (doAdd) {
+								this.destination.setInventorySlotContents(slot, newStacks.get(1));
+							}
+							if (item.isEmpty()) {
+								return ItemStack.EMPTY;
+							}
+						}
+					}
+				}
+			}
+		}
+		if (!item.isEmpty()) {
+			for (final int slot : this.targetSlots) {
+				if (this.destination.isItemValidForSlot(slot, item) || this.ignoreReadOnly) {
+					if (this.destination instanceof IInventorySlots) {
+						InventorySlot inventorySlot = ((IInventorySlots) this.destination).getSlot(slot);
+						if (inventorySlot != null && inventorySlot.isRecipe()) {
+							continue;
+						}
+					}
+					if (this.destination.getStackInSlot(slot).isEmpty()) {
+						this.insertedSlots.add(new TransferSlot(slot, this.destination));
+						if (doAdd) {
+							this.destination.setInventorySlotContents(slot, item.copy());
+						}
+						return ItemStack.EMPTY;
+					}
+				}
+			}
+		}
+		this.setReturnItem(item);
+		return this.getReturnItem();
+	}
+
 	public List<TransferSlot> getInsertedSlots() {
 		return this.insertedSlots;
 	}
@@ -321,21 +298,44 @@ public class TransferRequest {
 		return this.origin;
 	}
 
+	public TransferRequest setOrigin(@Nullable final IInventory origin) {
+		this.origin = origin;
+		return this;
+	}
+
 	@Nullable
 	public IInventory getDestination() {
 		return this.destination;
+	}
+
+	private void setDestination(final IInventory destination) {
+		this.destination = destination;
 	}
 
 	public ItemStack getItemToTransfer() {
 		return this.itemToTransfer;
 	}
 
+	private void setItemToTransfer(final ItemStack itemToTransfer) {
+		this.itemToTransfer = itemToTransfer;
+	}
+
 	public int[] getTargetSlots() {
 		return this.targetSlots;
 	}
 
+	public TransferRequest setTargetSlots(final int[] targetSlots) {
+		this.targetSlots = targetSlots;
+		return this;
+	}
+
 	public int[] getTargetTanks() {
 		return this.targetTanks;
+	}
+
+	public TransferRequest setTargetTanks(final int[] targetTanks) {
+		this.targetTanks = targetTanks;
+		return this;
 	}
 
 	public static class TransferSlot {

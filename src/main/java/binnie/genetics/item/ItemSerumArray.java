@@ -30,6 +30,14 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 		this.setMaxDamage(16);
 	}
 
+	public static ItemStack create(final IGene gene) {
+		final ItemStack item = new ItemStack(Genetics.items().itemSerumArray);
+		item.setItemDamage(item.getMaxDamage());
+		final GeneArrayItem seq = new GeneArrayItem(gene);
+		seq.writeToItem(item);
+		return item;
+	}
+
 	@Override
 	public int getCharges(final ItemStack itemStack) {
 		return itemStack.getMaxDamage() - itemStack.getItemDamage();
@@ -118,13 +126,5 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 		geneItem.addGene(gene);
 		geneItem.writeToItem(stack);
 		return stack;
-	}
-
-	public static ItemStack create(final IGene gene) {
-		final ItemStack item = new ItemStack(Genetics.items().itemSerumArray);
-		item.setItemDamage(item.getMaxDamage());
-		final GeneArrayItem seq = new GeneArrayItem(gene);
-		seq.writeToItem(item);
-		return item;
 	}
 }

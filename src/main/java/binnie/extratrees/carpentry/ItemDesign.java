@@ -22,5 +22,4 @@ public class ItemDesign extends ItemMetadata implements IColoredItem {
 		}
 		return block.getPrimaryColour();
 	}
-
 }

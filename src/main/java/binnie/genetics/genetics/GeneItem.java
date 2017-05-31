@@ -19,6 +19,10 @@ import java.util.List;
 public class GeneItem implements INbtWritable, IGeneItem {
 	private IGene gene;
 
+	public GeneItem(final IGene gene) {
+		this.gene = gene;
+	}
+
 	@Nullable
 	public static GeneItem create(final ItemStack stack) {
 		NBTTagCompound tagCompound = stack.getTagCompound();
@@ -28,10 +32,6 @@ public class GeneItem implements INbtWritable, IGeneItem {
 			return new GeneItem(gene);
 		}
 		return null;
-	}
-
-	public GeneItem(final IGene gene) {
-		this.gene = gene;
 	}
 
 	@Override

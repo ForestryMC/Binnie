@@ -2,7 +2,7 @@ package binnie.extratrees.village;
 
 public class ComponentVillageGrove //extends StructureVillagePieces.Village
 {
-	/*public ComponentVillageGrove() {
+    /*public ComponentVillageGrove() {
 	}
 
     public ComponentVillageGrove(StructureVillagePieces.Start start, int type, Random rand, StructureBoundingBox boundingBox, EnumFacing facing) {

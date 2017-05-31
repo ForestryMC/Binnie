@@ -73,6 +73,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 	public void registerStateMapper() {
 		ModelLoader.setCustomStateMapper(this, new StateMapperFlower());
 	}
+
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack heldItem = player.getHeldItemMainhand();
@@ -304,5 +305,4 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		}
 		return hasBeenBroken;
 	}
-
 }

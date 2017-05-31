@@ -31,7 +31,6 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 		super(player);
 		beeModifier.add(this);
 		beeInventory = new InventoryBeeHousing(12);
-
 	}
 
 	@Override
@@ -58,11 +57,11 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 		return ItemStack.EMPTY;
 	}
 
-	public ItemStack getDrone() {
-		return ItemStack.EMPTY;
+	public void setQueen(final ItemStack itemstack) {
 	}
 
-	public void setQueen(final ItemStack itemstack) {
+	public ItemStack getDrone() {
+		return ItemStack.EMPTY;
 	}
 
 	public void setDrone(final ItemStack itemstack) {
@@ -181,5 +180,4 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 	public GameProfile getOwner() {
 		return getOwnerName();
 	}
-
 }

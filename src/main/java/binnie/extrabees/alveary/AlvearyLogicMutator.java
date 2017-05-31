@@ -16,27 +16,23 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-/**
- * Created by Elec332 on 13-5-2017.
- */
 public class AlvearyLogicMutator extends AbstractAlvearyLogic {
 
-	public AlvearyLogicMutator(){
-		this.inv = new ItemStackHandler(1){
+	private final IItemHandlerModifiable inv;
+
+	public AlvearyLogicMutator() {
+		this.inv = new ItemStackHandler(1) {
 
 			@Nonnull
 			@Override
 			public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-				if (!AlvearyMutationHandler.isMutationItem(stack)){
+				if (!AlvearyMutationHandler.isMutationItem(stack)) {
 					return stack;
 				}
 				return super.insertItem(slot, stack, simulate);
 			}
-
 		};
 	}
-
-	private final IItemHandlerModifiable inv;
 
 	public IItemHandlerModifiable getInventory() {
 		return inv;
@@ -71,5 +67,4 @@ public class AlvearyLogicMutator extends AbstractAlvearyLogic {
 	public boolean hasGui() {
 		return true;
 	}
-
 }

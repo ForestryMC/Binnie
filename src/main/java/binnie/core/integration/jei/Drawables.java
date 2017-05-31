@@ -9,19 +9,10 @@ import net.minecraft.util.ResourceLocation;
 import javax.annotation.Nullable;
 
 public class Drawables {
-	@Nullable
-	private static Drawables INSTANCE;
-
-	public static Drawables getDrawables(IGuiHelper guiHelper) {
-		if (INSTANCE == null) {
-			INSTANCE = new Drawables(guiHelper);
-		}
-		return INSTANCE;
-	}
-
 	public static final ResourceLocation guiTank = new ResourceLocation("binniecore:textures/gui/craftgui-slots.png");
 	public static final ResourceLocation guiArrow = new ResourceLocation("binniecore:textures/gui/craftgui-panels.png");
-
+	@Nullable
+	private static Drawables INSTANCE;
 	private final IGuiHelper guiHelper;
 	private final IDrawable tank;
 	private final IDrawable tankOverlay;
@@ -36,6 +27,13 @@ public class Drawables {
 		this.arrow = guiHelper.createDrawable(guiArrow, 191, 79, 14, 10);
 		this.arrowWhite = guiHelper.createDrawable(guiArrow, 207, 79, 14, 10);
 		this.arrowAnimated = createArrowAnimated(60);
+	}
+
+	public static Drawables getDrawables(IGuiHelper guiHelper) {
+		if (INSTANCE == null) {
+			INSTANCE = new Drawables(guiHelper);
+		}
+		return INSTANCE;
 	}
 
 	public IDrawable getTank() {

@@ -25,6 +25,7 @@ import java.util.Map;
 
 public class WoodManager {
 	public static Map<IPlankType, ItemStack> PLANKS;
+
 	public static String getDisplayName(IWoodTyped wood, IWoodType woodType) {
 		WoodBlockKind blockKind = wood.getBlockKind();
 
@@ -138,18 +139,18 @@ public class WoodManager {
 		Collections.addAll(list, PlankType.VanillaPlanks.values());
 		return list;
 	}
-	
-	public static Map<IPlankType, ItemStack> getAllPlankStacks(){
-		if(PLANKS == null){
+
+	public static Map<IPlankType, ItemStack> getAllPlankStacks() {
+		if (PLANKS == null) {
 			PLANKS = new HashMap<>();
-			for(IPlankType type : getAllPlankTypes()){
+			for (IPlankType type : getAllPlankTypes()) {
 				PLANKS.put(type, type.getStack(false));
 			}
 		}
 		return PLANKS;
 	}
-	
-	public static Collection<ItemStack> getAllPlankStacks(IPlankType type){
+
+	public static Collection<ItemStack> getAllPlankStacks(IPlankType type) {
 		Map<IPlankType, ItemStack> planks = new HashMap<>(getAllPlankStacks());
 		planks.remove(type);
 		return planks.values();

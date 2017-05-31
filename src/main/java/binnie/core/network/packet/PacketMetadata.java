@@ -31,5 +31,4 @@ public class PacketMetadata extends SPacketUpdateTileEntity {
 	public int getMetadata() {
 		return metadata;
 	}
-
 }

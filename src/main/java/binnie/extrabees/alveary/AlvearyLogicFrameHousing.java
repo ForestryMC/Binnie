@@ -21,29 +21,25 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-/**
- * Created by Elec332 on 13-5-2017.
- */
 public class AlvearyLogicFrameHousing extends AbstractAlvearyLogic {
 
-	public AlvearyLogicFrameHousing(TileEntityExtraBeesAlvearyPart tile){
+	private final IItemHandlerModifiable inv;
+	private TileEntityExtraBeesAlvearyPart tile;
+
+	public AlvearyLogicFrameHousing(TileEntityExtraBeesAlvearyPart tile) {
 		this.tile = tile;
-		inv = new ItemStackHandler(1){
+		inv = new ItemStackHandler(1) {
 
 			@Nonnull
 			@Override
 			public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-				if (!(stack.getItem() instanceof IHiveFrame)){
+				if (!(stack.getItem() instanceof IHiveFrame)) {
 					return stack;
 				}
 				return super.insertItem(slot, stack, simulate);
 			}
-
 		};
 	}
-
-	private TileEntityExtraBeesAlvearyPart tile;
-	private final IItemHandlerModifiable inv;
 
 	public IItemHandlerModifiable getInventory() {
 		return inv;
@@ -118,5 +114,4 @@ public class AlvearyLogicFrameHousing extends AbstractAlvearyLogic {
 	public boolean hasGui() {
 		return true;
 	}
-
 }

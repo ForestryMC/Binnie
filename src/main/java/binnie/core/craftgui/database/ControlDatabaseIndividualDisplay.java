@@ -23,9 +23,27 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 
 public class ControlDatabaseIndividualDisplay extends ControlItemDisplay implements ITooltip {
+	EnumDiscoveryState discovered;
 	@Nullable
 	private IAlleleSpecies species;
-	EnumDiscoveryState discovered;
+
+	public ControlDatabaseIndividualDisplay(final IWidget parent, final int x, final int y) {
+		this(parent, x, y, 16);
+	}
+
+	public ControlDatabaseIndividualDisplay(final IWidget parent, final int x, final int y, final int size) {
+		super(parent, x, y, size);
+		this.species = null;
+		this.discovered = EnumDiscoveryState.Show;
+		this.addSelfEventHandler(new EventMouse.Down.Handler() {
+			@Override
+			public void onEvent(final EventMouse.Down event) {
+				if (event.getButton() == 0 && ControlDatabaseIndividualDisplay.this.species != null && EnumDiscoveryState.Show == ControlDatabaseIndividualDisplay.this.discovered) {
+					((WindowAbstractDatabase) ControlDatabaseIndividualDisplay.this.getTopParent()).gotoSpeciesDelayed(ControlDatabaseIndividualDisplay.this.species);
+				}
+			}
+		});
+	}
 
 	public void setSpecies(final IAlleleSpecies species) {
 		this.setSpecies(species, EnumDiscoveryState.Show);
@@ -47,24 +65,6 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 		}
 		this.discovered = state;
 		this.addAttribute(Attribute.MouseOver);
-	}
-
-	public ControlDatabaseIndividualDisplay(final IWidget parent, final int x, final int y) {
-		this(parent, x, y, 16);
-	}
-
-	public ControlDatabaseIndividualDisplay(final IWidget parent, final int x, final int y, final int size) {
-		super(parent, x, y, size);
-		this.species = null;
-		this.discovered = EnumDiscoveryState.Show;
-		this.addSelfEventHandler(new EventMouse.Down.Handler() {
-			@Override
-			public void onEvent(final EventMouse.Down event) {
-				if (event.getButton() == 0 && ControlDatabaseIndividualDisplay.this.species != null && EnumDiscoveryState.Show == ControlDatabaseIndividualDisplay.this.discovered) {
-					((WindowAbstractDatabase) ControlDatabaseIndividualDisplay.this.getTopParent()).gotoSpeciesDelayed(ControlDatabaseIndividualDisplay.this.species);
-				}
-			}
-		});
 	}
 
 	@Override

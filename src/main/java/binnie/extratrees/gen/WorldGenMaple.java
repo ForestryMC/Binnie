@@ -53,6 +53,5 @@ public class WorldGenMaple {
 			this.height = this.determineHeight(5, 2);
 			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
-
 	}
 }

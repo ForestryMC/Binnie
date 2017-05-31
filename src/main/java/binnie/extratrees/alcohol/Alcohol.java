@@ -42,20 +42,34 @@ public enum Alcohol implements IFluidType, ICocktailLiquid {
 	Rye("mash.rye", 10836007, 0.9, 0.05),
 	Corn("mash.corn", 13411364, 0.9, 0.05);
 
+	static {
+		Alcohol.Apple.setFementation(Juice.Apple);
+		Alcohol.Apricot.setFementation(Juice.Apricot);
+		Alcohol.Banana.setFementation(Juice.Banana);
+		Alcohol.Cherry.setFementation(Juice.Cherry);
+		Alcohol.Elderberry.setFementation(Juice.Elderberry);
+		Alcohol.Peach.setFementation(Juice.Peach);
+		Alcohol.Pear.setFementation(Juice.Pear);
+		Alcohol.Plum.setFementation(Juice.Plum);
+		Alcohol.Carrot.setFementation(Juice.Carrot);
+		Alcohol.WhiteWine.setFementation(Juice.WhiteGrape);
+		Alcohol.RedWine.setFementation(Juice.RedGrape);
+		Alcohol.Citrus.setFementation(Juice.Lemon);
+		Alcohol.Citrus.setFementation(Juice.Lime);
+		Alcohol.Citrus.setFementation(Juice.Orange);
+		Alcohol.Citrus.setFementation(Juice.Grapefruit);
+		Alcohol.Tomato.setFementation(Juice.Tomato);
+		Alcohol.Cranberry.setFementation(Juice.Cranberry);
+		Alcohol.Pineapple.setFementation(Juice.Pineapple);
+		Alcohol.Potato.setFementation("cropPotato");
+	}
+
 	List<String> fermentationLiquid;
 	String fermentationSolid;
 	String ident;
 	int colour;
 	float transparency;
 	float abv;
-
-	private void setFementation(final Juice juice) {
-		this.fermentationLiquid.add(juice.getIdentifier());
-	}
-
-	private void setFementation(final String oreDict) {
-		this.fermentationSolid = oreDict;
-	}
 
 	Alcohol(final String ident, final int colour, final double transparency, final double abv) {
 		this.fermentationLiquid = new ArrayList<>();
@@ -64,6 +78,14 @@ public enum Alcohol implements IFluidType, ICocktailLiquid {
 		this.colour = colour;
 		this.transparency = (float) transparency;
 		this.abv = (float) abv;
+	}
+
+	private void setFementation(final Juice juice) {
+		this.fermentationLiquid.add(juice.getIdentifier());
+	}
+
+	private void setFementation(final String oreDict) {
+		this.fermentationSolid = oreDict;
 	}
 
 	@Override
@@ -129,27 +151,5 @@ public enum Alcohol implements IFluidType, ICocktailLiquid {
 	@Override
 	public float getABV() {
 		return this.abv;
-	}
-
-	static {
-		Alcohol.Apple.setFementation(Juice.Apple);
-		Alcohol.Apricot.setFementation(Juice.Apricot);
-		Alcohol.Banana.setFementation(Juice.Banana);
-		Alcohol.Cherry.setFementation(Juice.Cherry);
-		Alcohol.Elderberry.setFementation(Juice.Elderberry);
-		Alcohol.Peach.setFementation(Juice.Peach);
-		Alcohol.Pear.setFementation(Juice.Pear);
-		Alcohol.Plum.setFementation(Juice.Plum);
-		Alcohol.Carrot.setFementation(Juice.Carrot);
-		Alcohol.WhiteWine.setFementation(Juice.WhiteGrape);
-		Alcohol.RedWine.setFementation(Juice.RedGrape);
-		Alcohol.Citrus.setFementation(Juice.Lemon);
-		Alcohol.Citrus.setFementation(Juice.Lime);
-		Alcohol.Citrus.setFementation(Juice.Orange);
-		Alcohol.Citrus.setFementation(Juice.Grapefruit);
-		Alcohol.Tomato.setFementation(Juice.Tomato);
-		Alcohol.Cranberry.setFementation(Juice.Cranberry);
-		Alcohol.Pineapple.setFementation(Juice.Pineapple);
-		Alcohol.Potato.setFementation("cropPotato");
 	}
 }

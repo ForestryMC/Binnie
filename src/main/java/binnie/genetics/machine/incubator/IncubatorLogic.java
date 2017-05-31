@@ -26,6 +26,10 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 		this.roomForOutput = true;
 	}
 
+	private static boolean isStackValid(ItemStack stack, IIncubatorRecipe recipe) {
+		return ItemStack.areItemsEqual(recipe.getInputStack(), stack);
+	}
+
 	@Override
 	public ErrorState canWork() {
 		if (this.recipe == null) {
@@ -69,10 +73,6 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 			}
 		}
 		return null;
-	}
-
-	private static boolean isStackValid(ItemStack stack, IIncubatorRecipe recipe) {
-		return ItemStack.areItemsEqual(recipe.getInputStack(), stack);
 	}
 
 	@Override

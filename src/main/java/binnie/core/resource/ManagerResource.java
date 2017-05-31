@@ -48,12 +48,12 @@ public class ManagerResource {
 	}
 
 	//Todo: move asset to binnie core assets
-	public BinnieSprite getUndiscoveredBeeSprite(){
+	public BinnieSprite getUndiscoveredBeeSprite() {
 		return getItemSprite("extrabees", "icon/undiscovered_bee");
 	}
 
 	//Todo: move asset to binnie core assets
-	public BinnieSprite getDiscoveredBeeSprite(){
+	public BinnieSprite getDiscoveredBeeSprite() {
 		return getItemSprite("extrabees", "icon/discovered_bee");
 	}
 
@@ -64,6 +64,4 @@ public class ManagerResource {
 		}
 		BinnieCore.getBinnieProxy().reloadSprites();
 	}
-
-
 }

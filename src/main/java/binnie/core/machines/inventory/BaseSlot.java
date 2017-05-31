@@ -10,12 +10,12 @@ import java.util.Collection;
 import java.util.EnumSet;
 
 public abstract class BaseSlot<T> implements INbtWritable, INbtReadable, IValidator<T> {
-	private SidedAccess access;
+	protected String unlocName;
 	@Nullable
 	Validator<T> validator;
+	private SidedAccess access;
 	private boolean readOnly;
 	private int index;
-	protected String unlocName;
 
 	public BaseSlot(final int index, final String unlocName) {
 		this.access = new SidedAccess();
@@ -40,11 +40,6 @@ public abstract class BaseSlot<T> implements INbtWritable, INbtReadable, IValida
 	public abstract T getContent();
 
 	public abstract void setContent(final T content);
-
-	public BaseSlot<T> setValidator(final Validator<T> val) {
-		this.validator = val;
-		return this;
-	}
 
 	public boolean isEmpty() {
 		return this.getContent() == null;
@@ -75,22 +70,6 @@ public abstract class BaseSlot<T> implements INbtWritable, INbtReadable, IValida
 		this.forbidExtraction();
 	}
 
-	public void setInputSides(final EnumSet<EnumFacing> sides) {
-		for (final EnumFacing side : EnumSet.complementOf(sides)) {
-			//if (side != ForgeDirection.UNKNOWN) {
-			this.access.setInsert(side, false);
-			//}
-		}
-	}
-
-	public void setOutputSides(final EnumSet<EnumFacing> sides) {
-		for (final EnumFacing side : EnumSet.complementOf(sides)) {
-			//if (side != ForgeDirection.UNKNOWN) {
-			this.access.setExtract(side, false);
-			//}
-		}
-	}
-
 	public void forbidExtraction() {
 		this.access.setExtract(false);
 		this.access.forbidExtractChange();
@@ -113,8 +92,24 @@ public abstract class BaseSlot<T> implements INbtWritable, INbtReadable, IValida
 		return this.access.getInsertionSides();
 	}
 
+	public void setInputSides(final EnumSet<EnumFacing> sides) {
+		for (final EnumFacing side : EnumSet.complementOf(sides)) {
+			//if (side != ForgeDirection.UNKNOWN) {
+			this.access.setInsert(side, false);
+			//}
+		}
+	}
+
 	public Collection<EnumFacing> getOutputSides() {
 		return this.access.getExtractionSides();
+	}
+
+	public void setOutputSides(final EnumSet<EnumFacing> sides) {
+		for (final EnumFacing side : EnumSet.complementOf(sides)) {
+			//if (side != ForgeDirection.UNKNOWN) {
+			this.access.setExtract(side, false);
+			//}
+		}
 	}
 
 	public void setUnlocalisedName(final String name) {
@@ -126,5 +121,10 @@ public abstract class BaseSlot<T> implements INbtWritable, INbtReadable, IValida
 	@Nullable
 	public Validator<T> getValidator() {
 		return this.validator;
+	}
+
+	public BaseSlot<T> setValidator(final Validator<T> val) {
+		this.validator = val;
+		return this;
 	}
 }

@@ -27,6 +27,13 @@ public class PageSpeciesFlowerGenome extends PageSpecies {
 		super(parent, tab);
 	}
 
+	public static String tolerated(final boolean t) {
+		if (t) {
+			return "Tolerated";
+		}
+		return "Not Tolerated";
+	}
+
 	@Override
 	public void onValueChanged(final IAlleleSpecies species) {
 		this.deleteAllChildren();
@@ -90,12 +97,5 @@ public class PageSpeciesFlowerGenome extends PageSpecies {
 		y += th;
 		contents.setSize(new Point(contents.size().x(), y));
 		scrollable.setScrollableContent(contents);
-	}
-
-	public static String tolerated(final boolean t) {
-		if (t) {
-			return "Tolerated";
-		}
-		return "Not Tolerated";
 	}
 }

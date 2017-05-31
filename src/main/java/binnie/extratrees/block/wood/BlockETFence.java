@@ -13,6 +13,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BlockETFence extends BlockForestryFence<EnumETLog> implements IWoodTyped, IItemModelRegister, IStateMapperRegister {
+	private BlockETFence(boolean fireproof, int blockNumber) {
+		super(fireproof, blockNumber);
+		String name = "fences.";
+		if (fireproof) {
+			name += "fireproof.";
+		}
+		name += blockNumber;
+		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
+		setUnlocalizedName(name);
+	}
+
 	public static List<BlockETFence> create(boolean fireproof) {
 		List<BlockETFence> blocks = new ArrayList<>();
 
@@ -28,17 +39,6 @@ public abstract class BlockETFence extends BlockForestryFence<EnumETLog> impleme
 			blocks.add(block);
 		}
 		return blocks;
-	}
-
-	private BlockETFence(boolean fireproof, int blockNumber) {
-		super(fireproof, blockNumber);
-		String name = "fences.";
-		if (fireproof) {
-			name += "fireproof.";
-		}
-		name += blockNumber;
-		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
-		setUnlocalizedName(name);
 	}
 
 	@Override

@@ -18,6 +18,26 @@ public class ControlProgressBase extends Control {
 		this.addAttribute(Attribute.MouseOver);
 	}
 
+	public static String convertTime(final int time) {
+		int seconds = (int) (time / 20.0f);
+		int minutes = 0;
+		while (seconds >= 60) {
+			++minutes;
+			seconds -= 60;
+		}
+		String ts = "";
+		if (minutes > 0) {
+			ts = ts + minutes + " minute" + ((minutes == 1) ? "" : "s");
+		}
+		if (seconds > 0) {
+			if (ts.length() > 0) {
+				ts += " ";
+			}
+			ts = ts + seconds + " second" + ((seconds == 1) ? "" : "s");
+		}
+		return ts;
+	}
+
 	public void setProgress(final float progress) {
 		this.progress = progress;
 		if (this.progress < 0.0f) {
@@ -60,25 +80,5 @@ public class ControlProgressBase extends Control {
 				tooltip.add("Energy Cost: " + process.getEnergyPerTick() * 10.0f + " RF / tick");
 			}
 		}
-	}
-
-	public static String convertTime(final int time) {
-		int seconds = (int) (time / 20.0f);
-		int minutes = 0;
-		while (seconds >= 60) {
-			++minutes;
-			seconds -= 60;
-		}
-		String ts = "";
-		if (minutes > 0) {
-			ts = ts + minutes + " minute" + ((minutes == 1) ? "" : "s");
-		}
-		if (seconds > 0) {
-			if (ts.length() > 0) {
-				ts += " ";
-			}
-			ts = ts + seconds + " second" + ((seconds == 1) ? "" : "s");
-		}
-		return ts;
 	}
 }

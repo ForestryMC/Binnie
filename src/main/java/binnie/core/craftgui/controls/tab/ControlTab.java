@@ -20,8 +20,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlTab<T> extends Control implements ITooltip, IControlValue<T> {
-	private ControlTabBar<T> tabBar;
 	protected T value;
+	private ControlTabBar<T> tabBar;
 
 	public ControlTab(final ControlTabBar<T> parent, final int x, final int y, final int w, final int h, final T value) {
 		super(parent, x, y, w, h);

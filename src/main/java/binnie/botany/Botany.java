@@ -56,22 +56,20 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod(modid = Constants.BOTANY_MOD_ID, name = "Binnie's Botany", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class Botany extends AbstractMod {
+	public static final float AGE_CHANCE = 0.2f;
 
 	@SuppressWarnings("NullableProblems")
 	@Mod.Instance(Constants.BOTANY_MOD_ID)
 	public static Botany instance;
-
 	@SuppressWarnings("NullableProblems")
 	@SidedProxy(clientSide = "binnie.botany.proxy.ProxyClient", serverSide = "binnie.botany.proxy.ProxyServer")
 	public static Proxy proxy;
-
 	/* MODULE GENETIC */
 	public static BlockFlower flower;
 	public static ItemBotany flowerItem;
 	public static ItemBotany seed;
 	public static ItemBotany pollen;
 	public static ItemDictionary database;
-
 	/* MODULE GARDENING */
 	public static BlockPlant plant;
 	public static ItemTrowel trowelWood;
@@ -94,8 +92,6 @@ public class Botany extends AbstractMod {
 	public static BlockCeramicPatterned ceramicTile;
 	public static BlockStainedGlass stained;
 	public static BlockCeramicBrick ceramicBrick;
-
-	public static final float AGE_CHANCE = 0.2f;
 
 	@Mod.EventHandler
 	public void preInit(final FMLPreInitializationEvent evt) {
@@ -323,5 +319,4 @@ public class Botany extends AbstractMod {
 			super(Botany.instance);
 		}
 	}
-
 }

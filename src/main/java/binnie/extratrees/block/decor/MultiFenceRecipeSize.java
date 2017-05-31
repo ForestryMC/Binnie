@@ -15,10 +15,10 @@ import java.util.List;
 
 public class MultiFenceRecipeSize implements IRecipe {
 	private ItemStack cached = ItemStack.EMPTY;
-	
+
 	public MultiFenceRecipeSize() {
 	}
-	
+
 	@Override
 	public boolean matches(final InventoryCrafting inv, final World world) {
 		StringBuilder recipePattern = new StringBuilder();
@@ -27,9 +27,9 @@ public class MultiFenceRecipeSize implements IRecipe {
 			ItemStack stack = inv.getStackInSlot(i);
 			boolean isEmpty = stack.isEmpty();
 			IPlankType type;
-			if(isEmpty){
+			if (isEmpty) {
 				type = null;
-			}else{
+			} else {
 				type = WoodManager.getPlankType(stack);
 			}
 			if (!isEmpty && type == null) {
@@ -50,8 +50,8 @@ public class MultiFenceRecipeSize implements IRecipe {
 		if (types.isEmpty()) {
 			return false;
 		}
-		for(MultiFenceRecipePattern pattern : MultiFenceRecipePattern.VALUES){
-			if(pattern.matches(recipePattern.toString())){
+		for (MultiFenceRecipePattern pattern : MultiFenceRecipePattern.VALUES) {
+			if (pattern.matches(recipePattern.toString())) {
 				cached = pattern.createFence(types.get(0), types.get(pattern.getTypeCount() - 1));
 				return true;
 			}

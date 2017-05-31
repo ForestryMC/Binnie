@@ -21,46 +21,46 @@ public class MultiFenceRecipeEmbeddedWrapper extends BlankRecipeWrapper implemen
 	private IPlankType plankType;
 	@Nullable
 	private IPlankType plankTypeSecondary;
-	
+
 	public MultiFenceRecipeEmbeddedWrapper(FenceType fenceType) {
 		this.fenceType = fenceType;
 	}
-	
+
 	public MultiFenceRecipeEmbeddedWrapper(IPlankType plankType, FenceType fenceType) {
 		this.plankType = plankType;
 		this.fenceType = fenceType;
 	}
-	
+
 	public MultiFenceRecipeEmbeddedWrapper(FenceDescription fenceDesc) {
 		this.plankType = fenceDesc.getPlankType();
 		this.plankTypeSecondary = fenceDesc.getSecondaryPlankType();
 		this.fenceType = fenceDesc.getFenceType();
 	}
-	
+
 	@Override
 	public void getIngredients(IIngredients ingredients) {
 		List<ItemStack> fences = new ArrayList<>();
 		List<ItemStack> planks = new ArrayList<>();
 		List<ItemStack> outputFences = new ArrayList<>();
-		if(plankType != null){
-			if(plankTypeSecondary == null){
-				for(Entry<IPlankType, ItemStack> secondary : WoodManager.getAllPlankStacks().entrySet()){
+		if (plankType != null) {
+			if (plankTypeSecondary == null) {
+				for (Entry<IPlankType, ItemStack> secondary : WoodManager.getAllPlankStacks().entrySet()) {
 					IPlankType plankTypeSecondary = secondary.getKey();
-					if(plankType != plankTypeSecondary){
+					if (plankType != plankTypeSecondary) {
 						planks.add(plankType.getStack(false));
 						fences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.size, fenceType.solid, false), 1));
 						outputFences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.size, fenceType.solid, true), 2));
 					}
 				}
-			}else{
+			} else {
 				planks.add(plankType.getStack(false));
 				fences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.size, fenceType.solid, false), 1));
 				outputFences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.size, fenceType.solid, true), 2));
 			}
-		}else{
-			for(IPlankType plankTypeSecondary : WoodManager.getAllPlankTypes()){
-				for(IPlankType plankType : WoodManager.getAllPlankTypes()){
-					if(plankType != plankTypeSecondary){
+		} else {
+			for (IPlankType plankTypeSecondary : WoodManager.getAllPlankTypes()) {
+				for (IPlankType plankType : WoodManager.getAllPlankTypes()) {
+					if (plankType != plankTypeSecondary) {
 						planks.add(plankType.getStack(false));
 						fences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.size, fenceType.solid, false), 1));
 						outputFences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.size, fenceType.solid, true), 2));
@@ -77,7 +77,7 @@ public class MultiFenceRecipeEmbeddedWrapper extends BlankRecipeWrapper implemen
 		ingredients.setOutputLists(ItemStack.class, itemOutputs);
 		ingredients.setInputLists(ItemStack.class, itemInputs);
 	}
-	
+
 	@Override
 	public int getWidth() {
 		return 3;
@@ -87,5 +87,4 @@ public class MultiFenceRecipeEmbeddedWrapper extends BlankRecipeWrapper implemen
 	public int getHeight() {
 		return 1;
 	}
-
 }

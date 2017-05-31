@@ -17,9 +17,9 @@ import java.util.Map;
 import java.util.TreeSet;
 
 public class GeneticEngineeringSystem {
-	BreedingSystem breedingSystem;
-	public Map<IChromosomeType, List<IAllele>> chromosomeMap;
 	static List<IAllele> speciesList;
+	public Map<IChromosomeType, List<IAllele>> chromosomeMap;
+	BreedingSystem breedingSystem;
 
 	public GeneticEngineeringSystem(final BreedingSystem system) {
 		this.chromosomeMap = new HashMap<>();

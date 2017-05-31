@@ -20,6 +20,13 @@ public class ControlColourMixSymbol extends Control implements ITooltip {
 	IColourMix value;
 	int type;
 
+	protected ControlColourMixSymbol(final IWidget parent, final int x, final int y, final int type, final IColourMix value) {
+		super(parent, x, y, 16 + type * 16, 16);
+		this.value = value;
+		this.type = type;
+		this.addAttribute(Attribute.MouseOver);
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
@@ -29,13 +36,6 @@ public class ControlColourMixSymbol extends Control implements ITooltip {
 		} else {
 			CraftGUI.render.texture(ControlColourMixSymbol.MutationArrow, Point.ZERO);
 		}
-	}
-
-	protected ControlColourMixSymbol(final IWidget parent, final int x, final int y, final int type, final IColourMix value) {
-		super(parent, x, y, 16 + type * 16, 16);
-		this.value = value;
-		this.type = type;
-		this.addAttribute(Attribute.MouseOver);
 	}
 
 	public void setValue(final IColourMix value) {
@@ -50,5 +50,4 @@ public class ControlColourMixSymbol extends Control implements ITooltip {
 			tooltip.add("Current Chance - " + chance + "%");
 		}
 	}
-
 }

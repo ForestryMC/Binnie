@@ -47,10 +47,6 @@ public enum GeneticsGUI implements IBinnieGUID {
 
 	private final WindowFactory windowFactory;
 
-	public interface WindowFactory {
-		Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side);
-	}
-
 	GeneticsGUI(final WindowFactory windowFactory) {
 		this.windowFactory = windowFactory;
 	}
@@ -68,5 +64,9 @@ public enum GeneticsGUI implements IBinnieGUID {
 		}
 
 		return getWindow(player, object, side);
+	}
+
+	public interface WindowFactory {
+		Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side);
 	}
 }

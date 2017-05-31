@@ -22,22 +22,22 @@ public class CeramicBrickPair {
 		this.ordinal = colorFirst.ordinal() + colorSecond.ordinal() * 256 + type.ordinal() * 256 * 256;
 	}
 
-	public boolean isTwoColors() {
-		return this.type.canDouble() && this.colorSecond != this.colorFirst;
-	}
-
 	public CeramicBrickPair(ItemStack stack) {
 		this(TileEntityMetadata.getItemDamage(stack));
-	}
-
-	public ItemStack getStack(int i) {
-		return new ItemStack(Botany.ceramicBrick, i, this.ordinal());
 	}
 
 	public CeramicBrickPair(int id) {
 		this.colorFirst = EnumFlowerColor.get(id & 0xFF);
 		this.colorSecond = EnumFlowerColor.get(id >> 8 & 0xFF);
 		this.type = CeramicBrickType.get(id >> 16 & 0xFF);
+	}
+
+	public boolean isTwoColors() {
+		return this.type.canDouble() && this.colorSecond != this.colorFirst;
+	}
+
+	public ItemStack getStack(int i) {
+		return new ItemStack(Botany.ceramicBrick, i, this.ordinal());
 	}
 
 	public String getName() {
@@ -58,7 +58,7 @@ public class CeramicBrickPair {
 		Preconditions.checkState(sprites != null, "Sprites have not been registered.");
 		return sprites[pass];
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Integer.hashCode(ordinal());
@@ -71,5 +71,4 @@ public class CeramicBrickPair {
 		}
 		return ((CeramicBrickPair) obj).ordinal() == ordinal();
 	}
-
 }

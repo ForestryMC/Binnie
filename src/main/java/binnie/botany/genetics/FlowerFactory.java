@@ -24,5 +24,4 @@ public class FlowerFactory implements IFlowerFactory {
 		FlowerManager.flowerRoot.registerMutation(mutation);
 		return mutation;
 	}
-
 }

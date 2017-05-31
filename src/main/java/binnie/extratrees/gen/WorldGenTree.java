@@ -31,6 +31,18 @@ public class WorldGenTree extends WorldGenerator {
 	BlockType air;
 	float bushiness;
 
+	public WorldGenTree(ITreeGenData tree) {
+		this.minHeight = 3;
+		this.maxHeight = 80;
+		this.spawnPods = false;
+		this.minPodHeight = 3;
+		this.vine = new BlockType(Blocks.VINE, 0);
+		this.air = new BlockTypeVoid();
+		this.bushiness = 0.0f;
+		this.spawnPods = tree.allowsFruitBlocks();
+		this.treeGen = tree;
+	}
+
 	protected int randBetween(final int a, final int b) {
 		return a + this.rand.nextInt(b - a);
 	}
@@ -77,18 +89,6 @@ public class WorldGenTree extends WorldGenerator {
 
 	public BlockType getWood() {
 		return new BlockTypeLog(treeGen);
-	}
-
-	public WorldGenTree(ITreeGenData tree) {
-		this.minHeight = 3;
-		this.maxHeight = 80;
-		this.spawnPods = false;
-		this.minPodHeight = 3;
-		this.vine = new BlockType(Blocks.VINE, 0);
-		this.air = new BlockTypeVoid();
-		this.bushiness = 0.0f;
-		this.spawnPods = tree.allowsFruitBlocks();
-		this.treeGen = tree;
 	}
 
 	@Override

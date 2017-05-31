@@ -78,7 +78,6 @@ public class WorldGenSpruce {
 			this.height = this.determineHeight(5, 3);
 			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
-
 	}
 
 	public static class WhiteSpruce extends WorldGenTree {
@@ -147,6 +146,5 @@ public class WorldGenSpruce {
 			this.height = this.determineHeight(6, 2);
 			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
-
 	}
 }

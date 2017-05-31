@@ -11,6 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BlockETLog extends BlockForestryLog<EnumETLog> {
+	private BlockETLog(boolean fireproof, int blockNumber) {
+		super(fireproof, blockNumber);
+		String name = "logs.";
+		if (fireproof) {
+			name += "fireproof.";
+		}
+		name += blockNumber;
+		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
+		setUnlocalizedName(name);
+	}
+
 	public static List<BlockETLog> create(boolean fireproof) {
 		List<BlockETLog> blocks = new ArrayList<>();
 		PropertyETWoodType[] variants = PropertyETWoodType.create("variant", VARIANTS_PER_BLOCK, true);
@@ -27,22 +38,10 @@ public abstract class BlockETLog extends BlockForestryLog<EnumETLog> {
 		return blocks;
 	}
 
-	private BlockETLog(boolean fireproof, int blockNumber) {
-		super(fireproof, blockNumber);
-		String name = "logs.";
-		if (fireproof) {
-			name += "fireproof.";
-		}
-		name += blockNumber;
-		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
-		setUnlocalizedName(name);
-	}
-
 	@Override
 	public EnumETLog getWoodType(int meta) {
 		int variantCount = getVariant().getAllowedValues().size();
 		int variantMeta = (meta % variantCount) + getBlockNumber() * VARIANTS_PER_BLOCK;
 		return EnumETLog.byMetadata(variantMeta);
 	}
-
 }

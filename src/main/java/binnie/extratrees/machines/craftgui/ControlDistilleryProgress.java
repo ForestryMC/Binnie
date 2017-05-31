@@ -26,6 +26,28 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 	public static final Texture LIQUID_FLOW = new StandardTexture(101, 0, 38, 66, ExtraTreeTexture.Gui);
 	public static final Texture OUTPUT = new StandardTexture(68, 66, 17, 7, ExtraTreeTexture.Gui);
 
+	protected ControlDistilleryProgress(final IWidget parent, final int x, final int y) {
+		super(parent, x, y, 58, 66);
+		this.addSelfEventHandler(new EventMouse.Down.Handler() {
+			@Override
+			public void onEvent(final EventMouse.Down event) {
+				int distillationLevel = -1;
+				if (new Area(45, 8, 19, 11).contains(ControlDistilleryProgress.this.getRelativeMousePosition())) {
+					distillationLevel = 0;
+				} else if (new Area(45, 23, 19, 11).contains(ControlDistilleryProgress.this.getRelativeMousePosition())) {
+					distillationLevel = 1;
+				} else if (new Area(45, 38, 19, 11).contains(ControlDistilleryProgress.this.getRelativeMousePosition())) {
+					distillationLevel = 2;
+				}
+				if (distillationLevel >= 0) {
+					final NBTTagCompound nbt = new NBTTagCompound();
+					nbt.setByte("i", (byte) distillationLevel);
+					Window.get(ControlDistilleryProgress.this.getWidget()).sendClientAction("still-level", nbt);
+				}
+			}
+		});
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
@@ -54,27 +76,4 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 			CraftGUI.render.texture(DISTILLERY_OVERLAY, Point.ZERO);
 		}
 	}
-
-	protected ControlDistilleryProgress(final IWidget parent, final int x, final int y) {
-		super(parent, x, y, 58, 66);
-		this.addSelfEventHandler(new EventMouse.Down.Handler() {
-			@Override
-			public void onEvent(final EventMouse.Down event) {
-				int distillationLevel = -1;
-				if (new Area(45, 8, 19, 11).contains(ControlDistilleryProgress.this.getRelativeMousePosition())) {
-					distillationLevel = 0;
-				} else if (new Area(45, 23, 19, 11).contains(ControlDistilleryProgress.this.getRelativeMousePosition())) {
-					distillationLevel = 1;
-				} else if (new Area(45, 38, 19, 11).contains(ControlDistilleryProgress.this.getRelativeMousePosition())) {
-					distillationLevel = 2;
-				}
-				if (distillationLevel >= 0) {
-					final NBTTagCompound nbt = new NBTTagCompound();
-					nbt.setByte("i", (byte) distillationLevel);
-					Window.get(ControlDistilleryProgress.this.getWidget()).sendClientAction("still-level", nbt);
-				}
-			}
-		});
-	}
-
 }

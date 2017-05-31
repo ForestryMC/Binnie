@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.time.DurationFormatUtils;
 
 import javax.annotation.Nullable;
-import java.awt.*;
+import java.awt.Color;
 import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Map;
@@ -42,8 +42,8 @@ public class InoculatorRecipeWrapper extends BlankRecipeWrapper {
 	@Override
 	public void getIngredients(IIngredients ingredients) {
 		ingredients.setInputs(ItemStack.class, Arrays.asList(
-				inputSerum,
-				wildcardTarget
+			inputSerum,
+			wildcardTarget
 		));
 
 		ingredients.setOutput(ItemStack.class, wildcardTarget);
@@ -107,5 +107,4 @@ public class InoculatorRecipeWrapper extends BlankRecipeWrapper {
 	public ItemStack getWildcardTarget() {
 		return wildcardTarget;
 	}
-
 }

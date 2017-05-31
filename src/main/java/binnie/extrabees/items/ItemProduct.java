@@ -14,14 +14,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemProduct extends Item implements IItemModelRegister {
 
+	protected IEBEnumItem[] types;
+
 	public ItemProduct(final IEBEnumItem[] types) {
 		this.setMaxStackSize(64);
 		this.setMaxDamage(0);
 		this.setHasSubtypes(true);
 		this.types = types;
 	}
-
-	protected IEBEnumItem[] types;
 
 	public IEBEnumItem get(final ItemStack stack) {
 		final int i = stack.getItemDamage();
@@ -53,5 +53,4 @@ public class ItemProduct extends Item implements IItemModelRegister {
 			ModelLoader.setCustomModelResourceLocation(item, type.ordinal(), new ModelResourceLocation(getRegistryName(), "inventory"));
 		}
 	}
-
 }

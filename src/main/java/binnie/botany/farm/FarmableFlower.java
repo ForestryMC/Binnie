@@ -44,6 +44,4 @@ public class FarmableFlower implements IFarmable {
 		Gardening.plant(world, pos, flower, player.getGameProfile());
 		return true;
 	}
-
-
 }

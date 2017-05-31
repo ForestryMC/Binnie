@@ -48,14 +48,15 @@ import java.util.ArrayList;
 import java.util.Deque;
 
 public abstract class Window extends TopLevelWidget implements INetwork.ReceiveGuiNBT {
+	private final Side side;
+	protected int titleButtonLeft;
+	protected int titleButtonRight;
 	@Nullable // client side only
 	private GuiCraftGUI gui;
 	private ContainerCraftGUI container;
 	private WindowInventory windowInventory;
 	@Nullable
 	private ControlText title;
-	protected int titleButtonLeft;
-	protected int titleButtonRight;
 	@Nullable
 	private StandardTexture bgText1;
 	@Nullable
@@ -64,7 +65,6 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 	private EntityPlayer player;
 	@Nullable
 	private IInventory entityInventory;
-	private final Side side;
 
 	public Window(final int width, final int height, final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
 		this.titleButtonLeft = 8;
@@ -105,6 +105,10 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 				}
 			});
 		}
+	}
+
+	public static <T extends Window> T get(final IWidget widget) {
+		return (T) widget.getTopParent();
 	}
 
 	public void getTooltip(final Tooltip tooltip) {
@@ -245,16 +249,16 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 		return this.player.inventory.getItemStack();
 	}
 
+	public void setHeldItemStack(final ItemStack stack) {
+		this.player.inventory.setItemStack(stack);
+	}
+
 	@Nullable
 	public IInventory getInventory() {
 		return this.entityInventory;
 	}
 
 	public void onClose() {
-	}
-
-	public void setHeldItemStack(final ItemStack stack) {
-		this.player.inventory.setItemStack(stack);
 	}
 
 	public boolean isServer() {
@@ -312,9 +316,5 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 	@Nullable
 	public Texture getBackground2() {
 		return this.bgText2;
-	}
-
-	public static <T extends Window> T get(final IWidget widget) {
-		return (T) widget.getTopParent();
 	}
 }

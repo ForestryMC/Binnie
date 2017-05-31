@@ -33,6 +33,18 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 		this.setCreativeTab(CreativeTabGenetics.instance);
 	}
 
+	public static ItemStack create(final IGene gene) {
+		return create(gene, false);
+	}
+
+	public static ItemStack create(final IGene gene, final boolean sequenced) {
+		final ItemStack item = new ItemStack(Genetics.items().itemSequencer);
+		item.setItemDamage(sequenced ? 0 : item.getMaxDamage());
+		final SequencerItem seq = new SequencerItem(gene);
+		seq.writeToItem(item);
+		return item;
+	}
+
 	@Override
 	public String getItemStackDisplayName(ItemStack itemstack) {
 		GeneItem gene = GeneItem.create(itemstack);
@@ -91,18 +103,6 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 	@Override
 	public float getAnalyseTimeMult(final ItemStack stack) {
 		return 1.0f;
-	}
-
-	public static ItemStack create(final IGene gene) {
-		return create(gene, false);
-	}
-
-	public static ItemStack create(final IGene gene, final boolean sequenced) {
-		final ItemStack item = new ItemStack(Genetics.items().itemSequencer);
-		item.setItemDamage(sequenced ? 0 : item.getMaxDamage());
-		final SequencerItem seq = new SequencerItem(gene);
-		seq.writeToItem(item);
-		return item;
 	}
 
 	@Override

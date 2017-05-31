@@ -68,7 +68,6 @@ public enum ExtraTreeMachine implements IMachineType {
 		public void onRightClick(World p0, EntityPlayer p1, BlockPos pos) {
 			ExtraTrees.proxy.openGui(this.id, p1, pos);
 		}
-
 	}
 
 	public abstract static class PackageExtraTreeMachine extends MachinePackage {

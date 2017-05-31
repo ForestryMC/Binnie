@@ -38,7 +38,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-
 public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IFruitProvider {
 	public static final AlleleETFruit Blackthorn = new AlleleETFruit("Blackthorn", 10, 7180062, 14561129, FruitSprite.SMALL);
 	public static final AlleleETFruit CherryPlum = new AlleleETFruit("CherryPlum", 10, 7180062, 15211595, FruitSprite.SMALL);
@@ -100,7 +99,8 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 	public static final AlleleETFruit Juniper = new AlleleETFruit("Juniper", 8, 10194034, 6316914, FruitSprite.TINY);
 	public static final AlleleETFruit Gooseberry = new AlleleETFruit("Gooseberry", 8, 12164944, 12177232, FruitSprite.TINY);
 	public static final AlleleETFruit GoldenRaspberry = new AlleleETFruit("GoldenRaspberry", 8, 12496955, 15970363, FruitSprite.TINY);
-
+	@Nullable
+	private static LinkedList<AlleleETFruit> list;
 	@Nullable
 	private IFruitFamily family;
 	private boolean isRipening;
@@ -114,8 +114,27 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 	private FruitSprite sprite;
 	private Map<ItemStack, Float> products;
 
-	@Nullable
-	private static LinkedList<AlleleETFruit> list;
+	private AlleleETFruit(String name, int time, int unripe, int colour, FruitSprite sprite) {
+		super(Constants.EXTRA_TREES_MOD_ID, "fruit", name, true);
+		this.isRipening = false;
+		this.diffB = 0;
+		this.pod = null;
+		this.ripeningPeriod = 0;
+		this.products = new HashMap<>();
+		this.colour = colour;
+		this.sprite = sprite;
+		this.setRipening(time, unripe);
+	}
+
+	private AlleleETFruit(String name, FruitPod pod) {
+		super(Constants.EXTRA_TREES_MOD_ID, "fruit", name, true);
+		this.isRipening = false;
+		this.diffB = 0;
+		this.sprite = null;
+		this.products = new HashMap<>();
+		this.pod = pod;
+		this.ripeningPeriod = 2;
+	}
 
 	public static List<AlleleETFruit> values() {
 		if (list == null) {
@@ -133,8 +152,8 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 
 		return list;
 	}
-	
-	public static void preInit(){
+
+	public static void preInit() {
 		for (final AlleleETFruit fruit : AlleleETFruit.values()) {
 			AlleleManager.alleleRegistry.registerAllele(fruit, EnumTreeChromosome.FRUITS);
 		}
@@ -288,28 +307,6 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 		}
 	}
 
-	private AlleleETFruit(String name, int time, int unripe, int colour, FruitSprite sprite) {
-		super(Constants.EXTRA_TREES_MOD_ID, "fruit", name, true);
-		this.isRipening = false;
-		this.diffB = 0;
-		this.pod = null;
-		this.ripeningPeriod = 0;
-		this.products = new HashMap<>();
-		this.colour = colour;
-		this.sprite = sprite;
-		this.setRipening(time, unripe);
-	}
-
-	private AlleleETFruit(String name, FruitPod pod) {
-		super(Constants.EXTRA_TREES_MOD_ID, "fruit", name, true);
-		this.isRipening = false;
-		this.diffB = 0;
-		this.sprite = null;
-		this.products = new HashMap<>();
-		this.pod = pod;
-		this.ripeningPeriod = 2;
-	}
-
 	public void setRipening(int time, int unripe) {
 		this.ripeningPeriod = time;
 		this.colourUnripe = unripe;
@@ -321,10 +318,6 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 
 	public void addProduct(ItemStack product, float chance) {
 		this.products.put(product, chance);
-	}
-
-	private void setFamily(IFruitFamily family) {
-		this.family = family;
 	}
 
 	@Override
@@ -370,8 +363,8 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 	@Override
 	public boolean trySpawnFruitBlock(ITreeGenome genome, World world, Random rand, BlockPos pos) {
 		return this.pod != null &&
-				world.rand.nextFloat() <= genome.getSappiness() &&
-				TreeManager.treeRoot.setFruitBlock(world, genome, this, genome.getSappiness(), pos);
+			world.rand.nextFloat() <= genome.getSappiness() &&
+			TreeManager.treeRoot.setFruitBlock(world, genome, this, genome.getSappiness(), pos);
 	}
 
 	@Override
@@ -439,7 +432,6 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 		return (r & 0xFF) << 16 | (g & 0xFF) << 8 | (b & 0xFF);
 	}
 
-
 	@Override
 	public String getDescription() {
 		return ExtraTrees.proxy.localise("item.food." + this.getClass().getTypeName().toLowerCase());
@@ -449,6 +441,10 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 	public IFruitFamily getFamily() {
 		Preconditions.checkState(this.family != null, "Family has not been set.");
 		return this.family;
+	}
+
+	private void setFamily(IFruitFamily family) {
+		this.family = family;
 	}
 
 	@Override

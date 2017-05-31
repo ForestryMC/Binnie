@@ -1,6 +1,11 @@
 package binnie.core.craftgui.controls.core;
 
-import binnie.core.craftgui.*;
+import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.ITooltip;
+import binnie.core.craftgui.ITooltipHelp;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.Widget;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.minecraft.Window;
@@ -12,9 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Control extends Widget implements ITooltipHelp, ITooltip {
+	public int extraLevel;
 	List<String> helpStrings;
 	List<String> tooltipStrings;
-	public int extraLevel;
 
 	public Control(final IWidget parent, final int x, final int y, final int w, final int h) {
 		super(parent);

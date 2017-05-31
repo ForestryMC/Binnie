@@ -22,6 +22,8 @@ import java.util.List;
 
 public class BlockExtraBeeHive extends Block {
 
+	public static final PropertyEnum<EnumHiveType> hiveType = PropertyEnum.create("type", EnumHiveType.class);
+
 	public BlockExtraBeeHive() {
 		super(ExtraBees.materialBeehive);
 		this.setLightLevel(0.2f);
@@ -30,8 +32,6 @@ public class BlockExtraBeeHive extends Block {
 		this.setRegistryName("hive");
 		this.setCreativeTab(Tabs.tabApiculture);
 	}
-
-	public static final PropertyEnum<EnumHiveType> hiveType = PropertyEnum.create("type", EnumHiveType.class);
 
 	public String getUnlocalizedName(final ItemStack itemStack) {
 		return "extrabees.block.hive." + itemStack.getItemDamage();
@@ -70,28 +70,27 @@ public class BlockExtraBeeHive extends Block {
 		Collections.shuffle(dropList);
 		int tries = 0;
 		//TODO HIVE DROP
-//		for (boolean hasPrincess = false; tries <= 10 && !hasPrincess; hasPrincess = true) {
-//			++tries;
-//			for (final IHiveDrop drop : dropList) {
-//				if (world.rand.nextInt(100) < drop.getChance(world, x, y, z)) {
-//					ret.add(drop.getPrincess(world, x, y, z, fortune));
-//					break;
-//				}
-//			}
-//		}
-//		for (final IHiveDrop drop : dropList) {
-//			if (world.rand.nextInt(100) < drop.getChance(world, x, y, z)) {
-//				ret.addAll(drop.getDrones(world, x, y, z, fortune));
-//				break;
-//			}
-//		}
-//		for (final IHiveDrop drop : dropList) {
-//			if (world.rand.nextInt(100) < drop.getChance(world, x, y, z)) {
-//				ret.addAll(drop.getAdditional(world, x, y, z, fortune));
-//				break;
-//			}
-//		}
+		//		for (boolean hasPrincess = false; tries <= 10 && !hasPrincess; hasPrincess = true) {
+		//			++tries;
+		//			for (final IHiveDrop drop : dropList) {
+		//				if (world.rand.nextInt(100) < drop.getChance(world, x, y, z)) {
+		//					ret.add(drop.getPrincess(world, x, y, z, fortune));
+		//					break;
+		//				}
+		//			}
+		//		}
+		//		for (final IHiveDrop drop : dropList) {
+		//			if (world.rand.nextInt(100) < drop.getChance(world, x, y, z)) {
+		//				ret.addAll(drop.getDrones(world, x, y, z, fortune));
+		//				break;
+		//			}
+		//		}
+		//		for (final IHiveDrop drop : dropList) {
+		//			if (world.rand.nextInt(100) < drop.getChance(world, x, y, z)) {
+		//				ret.addAll(drop.getAdditional(world, x, y, z, fortune));
+		//				break;
+		//			}
+		//		}
 		return ret;
 	}
-
 }

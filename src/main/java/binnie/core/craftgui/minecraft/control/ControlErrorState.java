@@ -1,6 +1,10 @@
 package binnie.core.craftgui.minecraft.control;
 
-import binnie.core.craftgui.*;
+import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.ITooltip;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.minecraft.CustomSlot;
@@ -18,6 +22,12 @@ public class ControlErrorState extends Control implements ITooltip {
 	@Nullable
 	private ErrorState errorState;
 	private int type;
+
+	public ControlErrorState(final IWidget parent, final int x, final int y) {
+		super(parent, x, y, 16, 16);
+		this.type = 0;
+		this.addAttribute(Attribute.MouseOver);
+	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -71,12 +81,6 @@ public class ControlErrorState extends Control implements ITooltip {
 				ControlLiquidTank.tankError.add(slot);
 			}
 		}
-	}
-
-	public ControlErrorState(final IWidget parent, final int x, final int y) {
-		super(parent, x, y, 16, 16);
-		this.type = 0;
-		this.addAttribute(Attribute.MouseOver);
 	}
 
 	@Override

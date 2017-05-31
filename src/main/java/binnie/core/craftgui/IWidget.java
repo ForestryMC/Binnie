@@ -24,15 +24,15 @@ public interface IWidget {
 
 	Point getPosition();
 
-	Point pos();
-
 	void setPosition(final Point p0);
+
+	Point pos();
 
 	Point getSize();
 
-	Point size();
-
 	void setSize(final Point p0);
+
+	Point size();
 
 	Point getOriginalPosition();
 
@@ -42,19 +42,19 @@ public interface IWidget {
 
 	Point getOffset();
 
+	void setOffset(final Point p0);
+
 	Area getArea();
 
 	Area area();
-
-	void setOffset(final Point p0);
 
 	Point getMousePosition();
 
 	Point getRelativeMousePosition();
 
-	void setColour(final int p0);
-
 	int getColour();
+
+	void setColour(final int p0);
 
 	@SideOnly(Side.CLIENT)
 	void render(int guiWidth, int guiHeight);

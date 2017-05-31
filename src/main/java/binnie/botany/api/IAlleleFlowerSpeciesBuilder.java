@@ -10,5 +10,4 @@ public interface IAlleleFlowerSpeciesBuilder extends IAlleleSpeciesBuilder {
 	IAlleleFlowerSpeciesBuilder setPH(EnumAcidity acidity);
 
 	IAlleleFlowerSpeciesBuilder setMoisture(EnumMoisture moisture);
-
 }

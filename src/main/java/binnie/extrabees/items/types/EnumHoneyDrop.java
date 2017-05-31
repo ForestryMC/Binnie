@@ -39,6 +39,10 @@ public enum EnumHoneyDrop implements IEBEnumItem {
 	MAGENTA(15040472, 16711884, "for.honey"),
 	LIGHTGRAY(10066329, 13224393, "for.honey");
 
+	private int[] colour;
+	private String liquidName;
+	private ItemStack remnant;
+
 	EnumHoneyDrop() {
 		this(16777215, 16777215, "");
 	}
@@ -49,9 +53,13 @@ public enum EnumHoneyDrop implements IEBEnumItem {
 		this.liquidName = liquid;
 	}
 
-	private int[] colour;
-	private String liquidName;
-	private ItemStack remnant;
+	public static EnumHoneyDrop get(final ItemStack itemStack) {
+		final int i = itemStack.getItemDamage();
+		if (i >= 0 && i < values().length) {
+			return values()[i];
+		}
+		return values()[0];
+	}
 
 	public void addRemnant(final ItemStack stack) {
 		this.remnant = stack;
@@ -67,14 +75,6 @@ public enum EnumHoneyDrop implements IEBEnumItem {
 	@Override
 	public boolean isActive() {
 		return !this.remnant.isEmpty() && FluidRegistry.isFluidRegistered(this.getLiquidName());
-	}
-
-	public static EnumHoneyDrop get(final ItemStack itemStack) {
-		final int i = itemStack.getItemDamage();
-		if (i >= 0 && i < values().length) {
-			return values()[i];
-		}
-		return values()[0];
 	}
 
 	@Override

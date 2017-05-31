@@ -14,16 +14,16 @@ public enum PowerSystem {
 		this.conversion = conversion;
 	}
 
+	public static PowerSystem get(final int i) {
+		return values()[i % values().length];
+	}
+
 	public double convertTo(final int value) {
 		return value / this.conversion;
 	}
 
 	public int convertFrom(final double value) {
 		return (int) (value * this.conversion);
-	}
-
-	public static PowerSystem get(final int i) {
-		return values()[i % values().length];
 	}
 
 	public String getUnitName() {

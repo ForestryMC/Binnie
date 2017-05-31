@@ -16,9 +16,9 @@ import net.minecraft.item.ItemStack;
 import java.util.Random;
 
 public class ControlSequencerProgress extends ControlProgressBase {
-	ControlText textControl;
 	static final String[] CODES = {"A", "T", "G", "C"};
 	static final String[] COLORS = {"a", "d", "b", "c"};
+	ControlText textControl;
 
 	public ControlSequencerProgress(final IWidget parent, final int x, final int y) {
 		super(parent, x, y, 100, 52);

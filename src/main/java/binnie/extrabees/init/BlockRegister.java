@@ -14,32 +14,29 @@ import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.apiculture.genetics.BeeDefinition;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-/**
- * Created by Elec332 on 12-5-2017.
- */
 public final class BlockRegister {
 
-	public static void preInitBlocks(){
+	public static void preInitBlocks() {
 		registerHives();
 		registerMisc();
 		ExtraBees.alveary = ExtraBees.proxy.registerBlock(new BlockAlveary());
 		GameRegistry.registerTileEntity(TileEntityExtraBeesAlvearyPart.class, "TileEntityExtraBeesAlvearyPart");
 	}
 
-	public static void postInitBlocks(){
+	public static void postInitBlocks() {
 		registerHiveDrops();
 	}
 
-	private static void registerMisc(){
+	private static void registerMisc() {
 		GameRegistry.register(ExtraBees.ectoplasm = new BlockEctoplasm());
 	}
 
 	@SuppressWarnings("all")
-	private static void registerHives(){
+	private static void registerHives() {
 		GameRegistry.register(ExtraBees.hive = new BlockExtraBeeHive());
 	}
 
-	private static void registerHiveDrops(){
+	private static void registerHiveDrops() {
 		IAlleleBeeSpecies valiantSpecies = Utils.getSpecies(BeeDefinition.VALIANT);
 		EnumHiveType.Water.drops.add(new HiveDrop(ExtraBeesSpecies.WATER, 80));
 		EnumHiveType.Water.drops.add(new HiveDrop(valiantSpecies, 3));
@@ -55,5 +52,4 @@ public final class BlockRegister {
 			//BuildCraftAPI.softBlocks.add(ExtraBees.hive);
 		}
 	}
-
 }

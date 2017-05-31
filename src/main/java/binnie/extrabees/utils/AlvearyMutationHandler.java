@@ -13,9 +13,6 @@ import java.util.List;
 
 import static org.apache.commons.lang3.ObjectUtils.firstNonNull;
 
-/**
- * Created by Elec332 on 13-5-2017.
- */
 public class AlvearyMutationHandler {
 
 	private static final List<Pair<ItemStack, Float>> MUTATIONS = new ArrayList<>();
@@ -36,7 +33,7 @@ public class AlvearyMutationHandler {
 		return 1.0f;
 	}
 
-	public static void addMutationItem(@Nullable Item item, float chance){
+	public static void addMutationItem(@Nullable Item item, float chance) {
 		addMutationItem(new ItemStack(firstNonNull(item, Item.getItemFromBlock(Blocks.AIR))), chance);
 	}
 
@@ -51,5 +48,4 @@ public class AlvearyMutationHandler {
 	public static List<Pair<ItemStack, Float>> getMutagens() {
 		return Collections.unmodifiableList(MUTATIONS);
 	}
-
 }

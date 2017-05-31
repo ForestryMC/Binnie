@@ -42,17 +42,17 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 		return (inv == null || inv == this) ? DefaultPower.INSTANCE : inv;
 	}
 
-//	@Override
-//	public ItemStack getStackInSlotOnClosing(final int var1) {
-//		return this.getInventory().getStackInSlotOnClosing(var1);
-//	}
+	//	@Override
+	//	public ItemStack getStackInSlotOnClosing(final int var1) {
+	//		return this.getInventory().getStackInSlotOnClosing(var1);
+	//	}
 
 	@Override
 	public boolean isUsableByPlayer(final EntityPlayer entityplayer) {
 		return !this.isInvalid() &&
-				this.getWorld().getTileEntity(getPos()) == this &&
-				entityplayer.getDistanceSqToCenter(getPos()) <= 64.0 &&
-				this.getInventory().isUsableByPlayer(entityplayer);
+			this.getWorld().getTileEntity(getPos()) == this &&
+			entityplayer.getDistanceSqToCenter(getPos()) <= 64.0 &&
+			this.getInventory().isUsableByPlayer(entityplayer);
 	}
 
 	@Override
@@ -121,29 +121,29 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 		return this.getTankContainer().getTanks();
 	}
 
-//	@Override
-//	@Optional.Method(modid = "IC2")
-//	public double getDemandedEnergy() {
-//		return this.getPower().getDemandedEnergy();
-//	}
-//
-//	@Override
-//	@Optional.Method(modid = "IC2")
-//	public int getSinkTier() {
-//		return this.getPower().getSinkTier();
-//	}
-//
-//	@Override
-//	@Optional.Method(modid = "IC2")
-//	public double injectEnergy(final ForgeDirection directionFrom, final double amount, final double voltage) {
-//		return this.getPower().injectEnergy(directionFrom, amount, voltage);
-//	}
-//
-//	@Override
-//	@Optional.Method(modid = "IC2")
-//	public boolean acceptsEnergyFrom(final TileEntity emitter, final ForgeDirection direction) {
-//		return this.getPower().acceptsEnergyFrom(emitter, direction);
-//	}
+	//	@Override
+	//	@Optional.Method(modid = "IC2")
+	//	public double getDemandedEnergy() {
+	//		return this.getPower().getDemandedEnergy();
+	//	}
+	//
+	//	@Override
+	//	@Optional.Method(modid = "IC2")
+	//	public int getSinkTier() {
+	//		return this.getPower().getSinkTier();
+	//	}
+	//
+	//	@Override
+	//	@Optional.Method(modid = "IC2")
+	//	public double injectEnergy(final ForgeDirection directionFrom, final double amount, final double voltage) {
+	//		return this.getPower().injectEnergy(directionFrom, amount, voltage);
+	//	}
+	//
+	//	@Override
+	//	@Optional.Method(modid = "IC2")
+	//	public boolean acceptsEnergyFrom(final TileEntity emitter, final ForgeDirection direction) {
+	//		return this.getPower().acceptsEnergyFrom(emitter, direction);
+	//	}
 
 	@Override
 	public int receiveEnergy(int maxReceive, boolean simulate) {
@@ -208,5 +208,4 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 	public IFluidHandler getHandler(@Nullable EnumFacing from) {
 		return getTankContainer().getHandler(from);
 	}
-
 }

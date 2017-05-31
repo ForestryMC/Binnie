@@ -15,5 +15,4 @@ public class MaterialBeehive extends Material {
 	public boolean isOpaque() {
 		return true;
 	}
-
 }

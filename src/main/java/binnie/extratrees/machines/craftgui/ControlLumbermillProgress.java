@@ -22,10 +22,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 
 public class ControlLumbermillProgress extends ControlProgressBase {
-	float oldProgress;
-	float animation;
 	static Texture Saw = new StandardTexture(0, 0, 6, 32, ExtraTreeTexture.Gui);
 	static Texture Saw2 = new StandardTexture(2, 0, 4, 32, ExtraTreeTexture.Gui);
+	float oldProgress;
+	float animation;
+
+	protected ControlLumbermillProgress(final IWidget parent, final int x, final int y) {
+		super(parent, x, y, 66, 18);
+		this.oldProgress = 0;
+		this.animation = 0;
+		new Panel(this, 0, 0, 66, 18, MinecraftGUI.PanelType.Black);
+	}
 
 	@Override
 	public void onUpdateClient() {
@@ -82,12 +89,4 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 		GL11.glDisable(GL11.GL_SCISSOR_TEST);
 		CraftGUI.render.texture(ControlLumbermillProgress.Saw2, new Point(sawX + 2, -8 + Math.round(6 * (float) Math.sin(this.animation))));
 	}
-
-	protected ControlLumbermillProgress(final IWidget parent, final int x, final int y) {
-		super(parent, x, y, 66, 18);
-		this.oldProgress = 0;
-		this.animation = 0;
-		new Panel(this, 0, 0, 66, 18, MinecraftGUI.PanelType.Black);
-	}
-
 }

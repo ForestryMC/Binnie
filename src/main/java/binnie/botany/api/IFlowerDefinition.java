@@ -12,5 +12,4 @@ public interface IFlowerDefinition extends IGeneticDefinition {
 	IFlower getIndividual();
 
 	ItemStack getMemberStack(EnumFlowerStage flowerStage);
-
 }

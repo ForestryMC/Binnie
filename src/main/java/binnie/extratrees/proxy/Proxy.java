@@ -8,5 +8,4 @@ public class Proxy extends BinnieModProxy implements IExtraTreeProxy {
 	public void setCustomStateMapper(String name, Block block) {
 
 	}
-
 }

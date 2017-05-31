@@ -9,6 +9,13 @@ public class ColourMix implements IColourMix {
 	IFlowerColour result;
 	int chance;
 
+	public ColourMix(final IFlowerColour colour1, final IFlowerColour colour2, final IFlowerColour result, final int chance) {
+		this.colour1 = colour1;
+		this.colour2 = colour2;
+		this.result = result;
+		this.chance = chance;
+	}
+
 	@Override
 	public IFlowerColour getColourFirst() {
 		return this.colour1;
@@ -32,12 +39,5 @@ public class ColourMix implements IColourMix {
 	@Override
 	public IFlowerColour getResult() {
 		return this.result;
-	}
-
-	public ColourMix(final IFlowerColour colour1, final IFlowerColour colour2, final IFlowerColour result, final int chance) {
-		this.colour1 = colour1;
-		this.colour2 = colour2;
-		this.result = result;
-		this.chance = chance;
 	}
 }

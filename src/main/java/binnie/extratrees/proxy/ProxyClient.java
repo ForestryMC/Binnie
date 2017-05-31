@@ -23,6 +23,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ProxyClient extends Proxy implements IExtraTreeProxy {
 	public static ModelManager modelManager = new ModelManager(Constants.EXTRA_TREES_MOD_ID);
 
+	public static ModelManager getModelManager() {
+		return modelManager;
+	}
+
 	@Override
 	public void init() {
 		//ForestryAPI.textureManager.registerIconProvider(FruitSprite.Average);
@@ -45,10 +49,6 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 	@Override
 	public void setCustomStateMapper(String name, Block block) {
 		ModelLoader.setCustomStateMapper(block, new CustomMapper(name));
-	}
-
-	public static ModelManager getModelManager() {
-		return modelManager;
 	}
 
 	@Override
@@ -112,5 +112,4 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 			return index.blockModelLocation;
 		}
 	}
-
 }

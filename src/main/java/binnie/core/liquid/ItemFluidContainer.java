@@ -193,7 +193,5 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 			}
 			return location;
 		}
-
 	}
-
 }

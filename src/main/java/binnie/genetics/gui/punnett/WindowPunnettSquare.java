@@ -23,21 +23,21 @@ import javax.annotation.Nullable;
 
 public class WindowPunnettSquare extends Window {
 
-	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
-		return new WindowPunnettSquare(player, inventory, side);
-	}
-
-	public WindowPunnettSquare(final EntityPlayer player, final IInventory inventory, final Side side) {
-		super(245, 205, player, inventory, side);
-		this.root = null;
-	}
-
 	private static final IBinnieTexture texture = new GuiTexture();
 	ControlSlot bee1;
 	ControlSlot bee2;
 	ControlPunnett punnett;
 	@Nullable
 	ISpeciesRoot root;
+
+	public WindowPunnettSquare(final EntityPlayer player, final IInventory inventory, final Side side) {
+		super(245, 205, player, inventory, side);
+		this.root = null;
+	}
+
+	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
+		return new WindowPunnettSquare(player, inventory, side);
+	}
 
 	@Override
 	public AbstractMod getMod() {
@@ -78,7 +78,5 @@ public class WindowPunnettSquare extends Window {
 			}
 			return resource;
 		}
-
 	}
-
 }

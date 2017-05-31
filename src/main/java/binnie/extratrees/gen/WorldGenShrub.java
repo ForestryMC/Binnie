@@ -18,23 +18,23 @@ import java.util.Random;
 import java.util.Set;
 
 public class WorldGenShrub {
-	public static class Shrub extends WorldGenArboriculture {	
+	public static class Shrub extends WorldGenArboriculture {
 		private static final int minHeight = 1;
 		private static final int maxHeight = 10;
 
 		protected int girth;
 		protected int height;
-		
+
 		public Shrub(ITreeGenData tree) {
 			super(tree);
 		}
-		
+
 		@Override
 		public Set<BlockPos> generateTrunk(World world, Random rand, TreeBlockTypeLog wood, BlockPos startPos) {
 			WorldGenHelper.generateTreeTrunk(world, rand, wood, startPos, height, girth, 0, 0, null, 0);
 			return Collections.emptySet();
 		}
-		
+
 		@Override
 		protected void generateLeaves(World world, Random rand, TreeBlockTypeLeaf leaf, List<BlockPos> branchEnds, BlockPos startPos) {
 			float leafSpawn = this.height;
@@ -46,7 +46,7 @@ public class WorldGenShrub {
 				i++;
 			}
 		}
-		
+
 		@Override
 		protected void generateExtras(World world, Random rand, BlockPos startPos) {
 		}

@@ -27,5 +27,4 @@ public class MachineRendererBlock {
 
 		GlStateManager.popMatrix();
 	}
-
 }

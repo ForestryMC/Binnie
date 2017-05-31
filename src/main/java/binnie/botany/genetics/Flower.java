@@ -159,15 +159,15 @@ public class Flower extends Individual implements IFlower {
 	}
 
 	@Override
+	public void setAge(final int i) {
+		this.age = i;
+	}
+
+	@Override
 	public void age() {
 		if (this.age < 15) {
 			++this.age;
 		}
-	}
-
-	@Override
-	public void setAge(final int i) {
-		this.age = i;
 	}
 
 	@Override

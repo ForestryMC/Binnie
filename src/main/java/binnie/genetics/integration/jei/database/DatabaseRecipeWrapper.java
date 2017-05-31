@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -42,8 +42,8 @@ public class DatabaseRecipeWrapper extends BlankRecipeWrapper {
 	@Override
 	public void getIngredients(IIngredients ingredients) {
 		ingredients.setInputs(ItemStack.class, Arrays.asList(
-				input,
-				new ItemStack(Genetics.items().database)
+			input,
+			new ItemStack(Genetics.items().database)
 		));
 
 		ingredients.setOutputLists(ItemStack.class, Collections.singletonList(outputs));

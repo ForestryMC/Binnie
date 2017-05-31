@@ -26,14 +26,31 @@ public enum Liqueur implements IFluidType, ICocktailLiquid {
 	Blackberry("Blackberry", 6837581, 0.5, 0.2),
 	Raspberry("Raspberry", 10158848, 0.5, 0.2);
 
+	static {
+		Liqueur.Almond.addFlavour("cropAlmond");
+		Liqueur.Orange.addFlavour("cropOrange");
+		Liqueur.Banana.addFlavour("cropBanana");
+		Liqueur.Chocolate.addFlavour("cropCocoa");
+		Liqueur.Mint.addFlavour("cropMint");
+		Liqueur.Hazelnut.addFlavour("cropHazelnut");
+		Liqueur.Cinnamon.addFlavour("cropCinnamon");
+		Liqueur.Coffee.addFlavour("cropCoffee");
+		Liqueur.Melon.addFlavour("cropMelon");
+		Liqueur.Anise.addFlavour("cropAnise");
+		Liqueur.Peach.addFlavour("cropPeach");
+		Liqueur.Lemon.addFlavour("cropLemon");
+		Liqueur.Herbal.addFlavour("cropHerbal");
+		Liqueur.Cherry.addFlavour("cropCherry");
+		Liqueur.Blackcurrant.addFlavour("cropBlackcurrant");
+		Liqueur.Blackberry.addFlavour("cropBlackberry");
+		Liqueur.Raspberry.addFlavour("cropRaspberry");
+	}
+
 	String name;
 	String ident;
 	int colour;
 	float transparency;
 	float abv;
-
-	private void addFlavour(final String oreDict) {
-	}
 
 	Liqueur(final String name, final int colour, final double transparency, final double abv) {
 		this(name + " Liqueur", "liqueur." + name.toLowerCase(), colour, transparency, abv);
@@ -45,6 +62,9 @@ public enum Liqueur implements IFluidType, ICocktailLiquid {
 		this.colour = colour;
 		this.transparency = (float) transparency;
 		this.abv = (float) abv;
+	}
+
+	private void addFlavour(final String oreDict) {
 	}
 
 	@Override
@@ -110,25 +130,5 @@ public enum Liqueur implements IFluidType, ICocktailLiquid {
 	@Override
 	public float getABV() {
 		return this.abv;
-	}
-
-	static {
-		Liqueur.Almond.addFlavour("cropAlmond");
-		Liqueur.Orange.addFlavour("cropOrange");
-		Liqueur.Banana.addFlavour("cropBanana");
-		Liqueur.Chocolate.addFlavour("cropCocoa");
-		Liqueur.Mint.addFlavour("cropMint");
-		Liqueur.Hazelnut.addFlavour("cropHazelnut");
-		Liqueur.Cinnamon.addFlavour("cropCinnamon");
-		Liqueur.Coffee.addFlavour("cropCoffee");
-		Liqueur.Melon.addFlavour("cropMelon");
-		Liqueur.Anise.addFlavour("cropAnise");
-		Liqueur.Peach.addFlavour("cropPeach");
-		Liqueur.Lemon.addFlavour("cropLemon");
-		Liqueur.Herbal.addFlavour("cropHerbal");
-		Liqueur.Cherry.addFlavour("cropCherry");
-		Liqueur.Blackcurrant.addFlavour("cropBlackcurrant");
-		Liqueur.Blackberry.addFlavour("cropBlackberry");
-		Liqueur.Raspberry.addFlavour("cropRaspberry");
 	}
 }

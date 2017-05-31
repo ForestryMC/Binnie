@@ -34,6 +34,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class GardenLogic extends FarmLogic {
+	List<IFarmable> farmables;
 	private EnumMoisture moisture;
 	@Nullable
 	private EnumAcidity acidity;
@@ -41,7 +42,6 @@ public class GardenLogic extends FarmLogic {
 	private String name;
 	private NonNullList<ItemStack> produce;
 	private ItemStack icon;
-	List<IFarmable> farmables;
 
 	public GardenLogic(EnumMoisture moisture2, @Nullable EnumAcidity acidity2, boolean isManual, boolean isFertilised, ItemStack icon2, String name2) {
 		this.produce = NonNullList.create();
@@ -68,10 +68,10 @@ public class GardenLogic extends FarmLogic {
 	@Override
 	public boolean isAcceptedResource(final ItemStack itemstack) {
 		return Gardening.isSoil(itemstack.getItem()) ||
-				itemstack.getItem() == Item.getItemFromBlock(Blocks.SAND) ||
-				itemstack.getItem() == Item.getItemFromBlock(Blocks.DIRT) ||
-				Gardening.isAcidFertiliser(itemstack) ||
-				Gardening.isAlkalineFertiliser(itemstack);
+			itemstack.getItem() == Item.getItemFromBlock(Blocks.SAND) ||
+			itemstack.getItem() == Item.getItemFromBlock(Blocks.DIRT) ||
+			Gardening.isAcidFertiliser(itemstack) ||
+			Gardening.isAlkalineFertiliser(itemstack);
 	}
 
 	@Override
@@ -84,8 +84,8 @@ public class GardenLogic extends FarmLogic {
 	@Override
 	public boolean cultivate(World world, IFarmHousing farmHousing, BlockPos pos, FarmDirection direction, int extent) {
 		return this.maintainSoil(world, pos, direction, extent, farmHousing) ||
-				(!this.isManual && this.maintainWater(world, pos, direction, extent, farmHousing)) ||
-				this.maintainCrops(world, pos.up(), direction, extent, farmHousing);
+			(!this.isManual && this.maintainWater(world, pos, direction, extent, farmHousing)) ||
+			this.maintainCrops(world, pos.up(), direction, extent, farmHousing);
 	}
 
 	private boolean isWaste(final ItemStack stack) {
@@ -350,5 +350,4 @@ public class GardenLogic extends FarmLogic {
 		}
 		return ItemStack.EMPTY;
 	}
-
 }

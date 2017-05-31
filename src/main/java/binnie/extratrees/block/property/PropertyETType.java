@@ -8,6 +8,10 @@ import net.minecraft.block.properties.PropertyEnum;
 import java.util.Collection;
 
 public class PropertyETType extends PropertyEnum<ETTreeDefinition> {
+	protected PropertyETType(String name, Class<ETTreeDefinition> valueClass, Collection<ETTreeDefinition> allowedValues) {
+		super(name, valueClass, allowedValues);
+	}
+
 	public static int getBlockCount(int variantsPerBlock) {
 		return (int) Math.ceil((float) ETTreeDefinition.VALUES.length / variantsPerBlock);
 	}
@@ -17,10 +21,4 @@ public class PropertyETType extends PropertyEnum<ETTreeDefinition> {
 		Collection<ETTreeDefinition> allowedValues = Collections2.filter(Lists.newArrayList(ETTreeDefinition.class.getEnumConstants()), filter);
 		return new PropertyETType(name, ETTreeDefinition.class, allowedValues);
 	}
-
-	protected PropertyETType(String name, Class<ETTreeDefinition> valueClass, Collection<ETTreeDefinition> allowedValues) {
-		super(name, valueClass, allowedValues);
-	}
-
-
 }

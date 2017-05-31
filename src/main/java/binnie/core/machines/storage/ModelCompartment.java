@@ -115,25 +115,25 @@ class ModelCompartment extends ModelBase {
 
 	@Override
 	public void render(final Entity entity, final float f, final float f1, final float f2, final float f3, final float f4, final float f5) {
-//		super.render(entity, f, f1, f2, f3, f4, f5);
-//		this.setRotationAngles(f, f1, f2, f3, f4, f5);
-//		this.Column1.render(f5);
-//		this.Column4.render(f5);
-//		this.Column2.render(f5);
-//		this.Column3.render(f5);
-//		this.Lid_1.render(f5);
-//		this.Body_1.render(f5);
-//		this.Lock_1.render(f5);
-//		this.Lid_2.render(f5);
-//		this.Body_2.render(f5);
-//		this.Lock_2.render(f5);
-//		this.Body.render(f5);
-//		this.Lid_3.render(f5);
-//		this.Body_3.render(f5);
-//		this.Lock_3.render(f5);
-//		this.Lid_4.render(f5);
-//		this.Body_4.render(f5);
-//		this.Lock_4.render(f5);
+		//		super.render(entity, f, f1, f2, f3, f4, f5);
+		//		this.setRotationAngles(f, f1, f2, f3, f4, f5);
+		//		this.Column1.render(f5);
+		//		this.Column4.render(f5);
+		//		this.Column2.render(f5);
+		//		this.Column3.render(f5);
+		//		this.Lid_1.render(f5);
+		//		this.Body_1.render(f5);
+		//		this.Lock_1.render(f5);
+		//		this.Lid_2.render(f5);
+		//		this.Body_2.render(f5);
+		//		this.Lock_2.render(f5);
+		//		this.Body.render(f5);
+		//		this.Lid_3.render(f5);
+		//		this.Body_3.render(f5);
+		//		this.Lock_3.render(f5);
+		//		this.Lid_4.render(f5);
+		//		this.Body_4.render(f5);
+		//		this.Lock_4.render(f5);
 	}
 
 	private void setRotation(final ModelRenderer model, final float x, final float y, final float z) {

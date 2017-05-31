@@ -1,6 +1,5 @@
 package binnie.extrabees.worldgen;
 
-
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.blocks.BlockExtraBeeHive;
 import binnie.extrabees.blocks.type.EnumHiveType;
@@ -26,5 +25,4 @@ public class WorldGenHiveRock extends WorldGenerator {
 		}
 		return true;
 	}
-
 }

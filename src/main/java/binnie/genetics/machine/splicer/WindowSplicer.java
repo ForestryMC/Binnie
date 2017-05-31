@@ -37,9 +37,9 @@ public class WindowSplicer extends WindowMachine {
 		int x = 16;
 		new ControlSplicerProgress(this, 84, 32, this.width() - 172, 102);
 		CraftGUIUtil.horizontalGrid(x, 62,
-				new ControlSlotArray.Builder(this, 0, 0, 2, 1).create(Splicer.SLOT_SERUM_RESERVE),
-				new ControlIconDisplay(this, 0, 0, GUIIcon.ARROW_RIGHT.getIcon().getResourceLocation()),
-				new ControlSlot.Builder(this, 0, 0).assign(0)
+			new ControlSlotArray.Builder(this, 0, 0, 2, 1).create(Splicer.SLOT_SERUM_RESERVE),
+			new ControlIconDisplay(this, 0, 0, GUIIcon.ARROW_RIGHT.getIcon().getResourceLocation()),
+			new ControlSlot.Builder(this, 0, 0).assign(0)
 		);
 		new ControlSlotArray.Builder(this, x + 12, 84, 2, 1).create(Splicer.SLOT_SERUM_EXPENDED);
 		new ControlIconDisplay(this, x + 12 + 36 + 4, 86, GUIIcon.ARROW_UP_LEFT.getIcon().getResourceLocation());
@@ -47,11 +47,11 @@ public class WindowSplicer extends WindowMachine {
 		new ControlErrorState(this, 218, 86);
 		x += 142;
 		CraftGUIUtil.verticalGrid((this.width() - 72) / 2, 32, TextJustification.MiddleCenter, 4,
-				new ControlSlotArray.Builder(this, 0, 0, 4, 1).create(Inoculator.SLOT_RESERVE),
-				new ControlIconDisplay(this, 0, 0, GUIIcon.ARROW_DOWN.getIcon().getResourceLocation()),
-				new ControlSlot.Builder(this, 0, 0).assign(9),
-				new ControlIconDisplay(this, 0, 0, GUIIcon.ARROW_DOWN.getIcon().getResourceLocation()),
-				new ControlSlotArray.Builder(this, 0, 0, 4, 1).create(Inoculator.SLOT_FINISHED)
+			new ControlSlotArray.Builder(this, 0, 0, 4, 1).create(Inoculator.SLOT_RESERVE),
+			new ControlIconDisplay(this, 0, 0, GUIIcon.ARROW_DOWN.getIcon().getResourceLocation()),
+			new ControlSlot.Builder(this, 0, 0).assign(9),
+			new ControlIconDisplay(this, 0, 0, GUIIcon.ARROW_DOWN.getIcon().getResourceLocation()),
+			new ControlSlotArray.Builder(this, 0, 0, 4, 1).create(Inoculator.SLOT_FINISHED)
 		);
 		new ControlPlayerInventory(this);
 	}
@@ -70,5 +70,4 @@ public class WindowSplicer extends WindowMachine {
 	protected String getBackgroundTextureName() {
 		return "inoculator";
 	}
-
 }

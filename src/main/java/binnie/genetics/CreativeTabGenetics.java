@@ -30,5 +30,4 @@ public class CreativeTabGenetics extends CreativeTabs {
 	public ItemStack getTabIconItem() {
 		return GeneticsItems.EMPTY_SERUM.get(1);
 	}
-
 }

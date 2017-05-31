@@ -11,11 +11,11 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
 public class ItemMasterRegistry extends ItemCore {
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public void registerIcons(final IIconRegister register) {
-//		this.itemIcon = Genetics.proxy.getIcon(register, "masterRegistry");
-//	}
+	//	@Override
+	//	@SideOnly(Side.CLIENT)
+	//	public void registerIcons(final IIconRegister register) {
+	//		this.itemIcon = Genetics.proxy.getIcon(register, "masterRegistry");
+	//	}
 
 	public ItemMasterRegistry() {
 		super("master_registry");

@@ -42,30 +42,10 @@ public enum ExtraBeesBranch implements IClassification {
 	QUANTUM("Quantapis"),
 	BOTANIA("Botaniapis"); //TODO There is 1 bee in here, that produces the petal of the flowers around, move to MagicBEes?
 
+	IClassification parent;
 	private String uid;
 	private String scientific;
 	private Set<IAlleleBeeSpecies> speciesSet;
-	IClassification parent;
-
-	@Override
-	public String getUID() {
-		return "extrabees.genus." + this.uid;
-	}
-
-	@Override
-	public String getName() {
-		return ExtraBees.proxy.localise("branch." + this.toString().toLowerCase() + ".name");
-	}
-
-	@Override
-	public String getScientific() {
-		return this.scientific;
-	}
-
-	@Override
-	public String getDescription() {
-		return ExtraBees.proxy.localise("branch." + this.toString().toLowerCase() + ".desc");
-	}
 
 	ExtraBeesBranch(final String scientific) {
 		this.uid = "";
@@ -73,17 +53,6 @@ public enum ExtraBeesBranch implements IClassification {
 		this.speciesSet = new LinkedHashSet<>();
 		this.scientific = scientific;
 		this.uid = this.toString().toLowerCase();
-	}
-
-	public void register() {
-		if (!this.speciesSet.isEmpty()) {
-			AlleleManager.alleleRegistry.registerClassification(this);
-			final IClassification parent = AlleleManager.alleleRegistry.getClassification("family.apidae");
-			if (parent != null) {
-				parent.addMemberGroup(this);
-				this.setParent(parent);
-			}
-		}
 	}
 
 	public static void setSpeciesBranches() {
@@ -265,6 +234,37 @@ public enum ExtraBeesBranch implements IClassification {
 		ExtraBeesBranch.QUANTUM.register();
 		ExtraBeesBranch.BOTANIA.addMemberSpecies(ExtraBeesSpecies.MYSTICAL);
 		ExtraBeesBranch.BOTANIA.register();
+	}
+
+	@Override
+	public String getUID() {
+		return "extrabees.genus." + this.uid;
+	}
+
+	@Override
+	public String getName() {
+		return ExtraBees.proxy.localise("branch." + this.toString().toLowerCase() + ".name");
+	}
+
+	@Override
+	public String getScientific() {
+		return this.scientific;
+	}
+
+	@Override
+	public String getDescription() {
+		return ExtraBees.proxy.localise("branch." + this.toString().toLowerCase() + ".desc");
+	}
+
+	public void register() {
+		if (!this.speciesSet.isEmpty()) {
+			AlleleManager.alleleRegistry.registerClassification(this);
+			final IClassification parent = AlleleManager.alleleRegistry.getClassification("family.apidae");
+			if (parent != null) {
+				parent.addMemberGroup(this);
+				this.setParent(parent);
+			}
+		}
 	}
 
 	@Override

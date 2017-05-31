@@ -23,6 +23,42 @@ public class TileEntityMetadata extends TileEntity {
 		this.droppedBlock = false;
 	}
 
+	@Nullable
+	public static TileEntityMetadata getTile(final IBlockAccess world, final BlockPos pos) {
+		final TileEntity tile = world.getTileEntity(pos);
+		if (!(tile instanceof TileEntityMetadata)) {
+			return null;
+		}
+		return (TileEntityMetadata) tile;
+	}
+
+	public static ItemStack getItemStack(final Block block, final int damage) {
+		final Item item = Item.getItemFromBlock(block);
+		Preconditions.checkNotNull(item, "Could not get item for block %s", block);
+		final ItemStack itemStack = new ItemStack(item, 1, 0);
+		setItemDamage(itemStack, damage);
+		return itemStack;
+	}
+
+	public static void setItemDamage(final ItemStack item, final int i) {
+		item.setItemDamage((i < 16387) ? i : 16387);
+		final NBTTagCompound tag = new NBTTagCompound();
+		tag.setInteger("meta", i);
+		item.setTagCompound(tag);
+	}
+
+	public static int getItemDamage(final ItemStack item) {
+		if (item.hasTagCompound() && item.getTagCompound().hasKey("meta")) {
+			return item.getTagCompound().getInteger("meta");
+		}
+		return item.getItemDamage();
+	}
+
+	public static int getTileMetadata(final IBlockAccess world, final BlockPos pos) {
+		final TileEntityMetadata tile = getTile(world, pos);
+		return (tile == null) ? 0 : tile.getTileMetadata();
+	}
+
 	@Override
 	public boolean receiveClientEvent(final int id, final int type) {
 		if (id == 42) {
@@ -76,42 +112,6 @@ public class TileEntityMetadata extends TileEntity {
 	@Override
 	public SPacketUpdateTileEntity getUpdatePacket() {
 		return new PacketMetadata(pos, meta, getUpdateTag());
-	}
-
-	@Nullable
-	public static TileEntityMetadata getTile(final IBlockAccess world, final BlockPos pos) {
-		final TileEntity tile = world.getTileEntity(pos);
-		if (!(tile instanceof TileEntityMetadata)) {
-			return null;
-		}
-		return (TileEntityMetadata) tile;
-	}
-
-	public static ItemStack getItemStack(final Block block, final int damage) {
-		final Item item = Item.getItemFromBlock(block);
-		Preconditions.checkNotNull(item, "Could not get item for block %s", block);
-		final ItemStack itemStack = new ItemStack(item, 1, 0);
-		setItemDamage(itemStack, damage);
-		return itemStack;
-	}
-
-	public static void setItemDamage(final ItemStack item, final int i) {
-		item.setItemDamage((i < 16387) ? i : 16387);
-		final NBTTagCompound tag = new NBTTagCompound();
-		tag.setInteger("meta", i);
-		item.setTagCompound(tag);
-	}
-
-	public static int getItemDamage(final ItemStack item) {
-		if (item.hasTagCompound() && item.getTagCompound().hasKey("meta")) {
-			return item.getTagCompound().getInteger("meta");
-		}
-		return item.getItemDamage();
-	}
-
-	public static int getTileMetadata(final IBlockAccess world, final BlockPos pos) {
-		final TileEntityMetadata tile = getTile(world, pos);
-		return (tile == null) ? 0 : tile.getTileMetadata();
 	}
 
 	public boolean hasDroppedBlock() {

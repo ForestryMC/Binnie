@@ -84,7 +84,7 @@ public class ModelETDecorativeLeaves extends ModelBlockCached<BlockETDecorativeL
 		}
 		BlockETDecorativeLeaves bBlock = blockClass.cast(block);
 
-//		baker.setRenderBounds(Block.FULL_BLOCK_AABB);
+		//		baker.setRenderBounds(Block.FULL_BLOCK_AABB);
 		bakeBlock(bBlock, key, baker, false);
 
 		blockModel = baker.bakeModel(false);

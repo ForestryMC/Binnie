@@ -74,5 +74,4 @@ public class ItemBeeDictionary extends Item implements IItemModelRegister {
 		ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
 		ModelLoader.setCustomModelResourceLocation(this, 1, new ModelResourceLocation(getRegistryName().toString() + "_master", "inventory"));
 	}
-
 }

@@ -9,13 +9,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class CreativeTabBotany extends CreativeTabs {
 	public static CreativeTabs instance = new CreativeTabBotany();
 
+	public CreativeTabBotany() {
+		super("Botany");
+	}
+
 	@Override
 	public ItemStack getIconItemStack() {
 		return new ItemStack(Blocks.RED_FLOWER, 1, 5);
-	}
-
-	public CreativeTabBotany() {
-		super("Botany");
 	}
 
 	@Override
@@ -35,5 +35,4 @@ public class CreativeTabBotany extends CreativeTabs {
 	public ItemStack getTabIconItem() {
 		return new ItemStack(Blocks.YELLOW_FLOWER);
 	}
-
 }

@@ -7,5 +7,4 @@ public interface IItemMiscProvider extends IItemEnum {
 	void addInformation(List<String> tooltip);
 
 	String getModelPath();
-
 }

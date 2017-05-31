@@ -29,5 +29,4 @@ public class BlockEctoplasm extends BlockWeb {
 	public String getUnlocalizedName() {
 		return "extrabees.block.ectoplasm";
 	}
-
 }

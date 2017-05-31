@@ -32,5 +32,4 @@ public class ItemPunnettSquare extends Item {
 		ItemStack itemStack = playerIn.getHeldItem(handIn);
 		return new ActionResult<>(EnumActionResult.PASS, itemStack);
 	}
-
 }

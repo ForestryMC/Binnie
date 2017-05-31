@@ -33,6 +33,14 @@ public class GuiCraftGUI extends GuiContainer {
 	private Window window;
 	private ItemStack draggedItem;
 
+	public GuiCraftGUI(final Window window) {
+		super(window.getContainer());
+		this.mousePos = Point.ZERO;
+		this.window = window;
+		this.draggedItem = ItemStack.EMPTY;
+		this.resize(window.getSize());
+	}
+
 	@Override
 	public void updateScreen() {
 		this.window.updateClient();
@@ -40,14 +48,6 @@ public class GuiCraftGUI extends GuiContainer {
 
 	public Minecraft getMinecraft() {
 		return this.mc;
-	}
-
-	public GuiCraftGUI(final Window window) {
-		super(window.getContainer());
-		this.mousePos = Point.ZERO;
-		this.window = window;
-		this.draggedItem = ItemStack.EMPTY;
-		this.resize(window.getSize());
 	}
 
 	@Override
@@ -234,7 +234,6 @@ public class GuiCraftGUI extends GuiContainer {
 		this.window.callEvent(new EventKey.Down(origin, c, key));
 	}
 
-
 	@Override
 	protected void mouseClickMove(int mouseX, int mouseY, int clickedMouseButton, long timeSinceLastClick) {
 		//super.mouseClickMove(mouseX, mouseY, clickedMouseButton, timeSinceLastClick);
@@ -257,7 +256,6 @@ public class GuiCraftGUI extends GuiContainer {
 			this.window.callEvent(new EventMouse.Up(origin, x, y, button));
 		}
 	}
-
 
 	@Override
 	public void handleMouseInput() throws IOException {
@@ -289,5 +287,4 @@ public class GuiCraftGUI extends GuiContainer {
 		this.guiTop = (this.height - this.ySize) / 2;
 		this.window.setPosition(new Point(this.guiLeft, this.guiTop));
 	}
-
 }

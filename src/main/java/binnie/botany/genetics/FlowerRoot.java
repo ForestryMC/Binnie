@@ -33,12 +33,12 @@ import java.util.Map;
 import java.util.Random;
 
 public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
-	public static int flowerSpeciesCount = -1;
 	static final String UID = "rootFlowers";
+	public static int flowerSpeciesCount = -1;
 	public static ArrayList<IFlower> flowerTemplates = new ArrayList<>();
 	private static ArrayList<IFlowerMutation> flowerMutations = new ArrayList<>();
-	Map<ItemStack, IFlower> conversions;
 	private static ArrayList<IColourMix> colourMixes = new ArrayList<>();
+	Map<ItemStack, IFlower> conversions;
 
 	public FlowerRoot() {
 		this.conversions = new HashMap<>();
@@ -246,7 +246,6 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 		return EnumFlowerChromosome.SPECIES;
 	}
 
-
 	@Override
 	public void addConversion(final ItemStack itemstack, final IAllele[] template) {
 		final IFlower flower = this.getFlower(this.templateAsGenome(template));
@@ -276,5 +275,4 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 		}
 		return FlowerRoot.colourMixes;
 	}
-
 }

@@ -15,7 +15,36 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.BiomeDictionary;
 
-import static forestry.apiculture.genetics.BeeDefinition.*;
+import static forestry.apiculture.genetics.BeeDefinition.AUSTERE;
+import static forestry.apiculture.genetics.BeeDefinition.BOGGY;
+import static forestry.apiculture.genetics.BeeDefinition.COMMON;
+import static forestry.apiculture.genetics.BeeDefinition.CULTIVATED;
+import static forestry.apiculture.genetics.BeeDefinition.DEMONIC;
+import static forestry.apiculture.genetics.BeeDefinition.DILIGENT;
+import static forestry.apiculture.genetics.BeeDefinition.ENDED;
+import static forestry.apiculture.genetics.BeeDefinition.EXOTIC;
+import static forestry.apiculture.genetics.BeeDefinition.FARMERLY;
+import static forestry.apiculture.genetics.BeeDefinition.FIENDISH;
+import static forestry.apiculture.genetics.BeeDefinition.FOREST;
+import static forestry.apiculture.genetics.BeeDefinition.FRUGAL;
+import static forestry.apiculture.genetics.BeeDefinition.HERMITIC;
+import static forestry.apiculture.genetics.BeeDefinition.IMPERIAL;
+import static forestry.apiculture.genetics.BeeDefinition.INDUSTRIOUS;
+import static forestry.apiculture.genetics.BeeDefinition.MAJESTIC;
+import static forestry.apiculture.genetics.BeeDefinition.MARSHY;
+import static forestry.apiculture.genetics.BeeDefinition.MEADOWS;
+import static forestry.apiculture.genetics.BeeDefinition.MIRY;
+import static forestry.apiculture.genetics.BeeDefinition.MODEST;
+import static forestry.apiculture.genetics.BeeDefinition.MONASTIC;
+import static forestry.apiculture.genetics.BeeDefinition.NOBLE;
+import static forestry.apiculture.genetics.BeeDefinition.RURAL;
+import static forestry.apiculture.genetics.BeeDefinition.SECLUDED;
+import static forestry.apiculture.genetics.BeeDefinition.SINISTER;
+import static forestry.apiculture.genetics.BeeDefinition.SPECTRAL;
+import static forestry.apiculture.genetics.BeeDefinition.TROPICAL;
+import static forestry.apiculture.genetics.BeeDefinition.UNWEARY;
+import static forestry.apiculture.genetics.BeeDefinition.VALIANT;
+import static forestry.apiculture.genetics.BeeDefinition.WINTRY;
 
 public class ExtraBeeMutation {
 
@@ -199,29 +228,27 @@ public class ExtraBeeMutation {
 
 	static class ConditionPerson implements IMutationCondition {
 
+		String name;
+
 		public ConditionPerson(final String name) {
 			this.name = name;
 		}
-
-		String name;
 
 		@Override
 		public String getDescription() {
 			return "Can only be bred by " + this.name;
 		}
-		
+
 		@Override
 		public float getChance(World world, BlockPos pos, IAllele allele0, IAllele allele1, IGenome genome0, IGenome genome1, IClimateProvider climate) {
 			TileEntity tileEnity = world.getTileEntity(pos);
-			if(tileEnity instanceof IBeeHousing){
+			if (tileEnity instanceof IBeeHousing) {
 				IBeeHousing housing = (IBeeHousing) tileEnity;
-				if(housing.getOwner() != null && housing.getOwner().getName() != null && housing.getOwner().getName().equals(this.name)){
+				if (housing.getOwner() != null && housing.getOwner().getName() != null && housing.getOwner().getName().equals(this.name)) {
 					return 1;
 				}
 			}
 			return 0;
 		}
-
 	}
-
 }

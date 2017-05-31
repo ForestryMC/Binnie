@@ -41,6 +41,19 @@ import java.util.List;
 
 public abstract class BlockETDecorativeLeaves extends Block implements IItemModelRegister, IColoredBlock, IShearable {
 	private static final int VARIANTS_PER_BLOCK = 16;
+	private final int blockNumber;
+
+	public BlockETDecorativeLeaves(int blockNumber) {
+		super(Material.LEAVES);
+		this.blockNumber = blockNumber;
+		this.setCreativeTab(Tabs.tabArboriculture);
+		this.setHardness(0.2F);
+		this.setLightOpacity(1);
+		this.setSoundType(SoundType.PLANT);
+		String name = "leaves.decorative." + blockNumber;
+		setUnlocalizedName(name);
+		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
+	}
 
 	public static List<BlockETDecorativeLeaves> create() {
 		List<BlockETDecorativeLeaves> blocks = new ArrayList<>();
@@ -56,20 +69,6 @@ public abstract class BlockETDecorativeLeaves extends Block implements IItemMode
 			blocks.add(block);
 		}
 		return blocks;
-	}
-
-	private final int blockNumber;
-
-	public BlockETDecorativeLeaves(int blockNumber) {
-		super(Material.LEAVES);
-		this.blockNumber = blockNumber;
-		this.setCreativeTab(Tabs.tabArboriculture);
-		this.setHardness(0.2F);
-		this.setLightOpacity(1);
-		this.setSoundType(SoundType.PLANT);
-		String name = "leaves.decorative." + blockNumber;
-		setUnlocalizedName(name);
-		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
 	}
 
 	public int getBlockNumber() {
@@ -160,7 +159,7 @@ public abstract class BlockETDecorativeLeaves extends Block implements IItemMode
 	 */
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		/*
+	    /*
 		  Gets the metadata of the item this Block can drop. This method is called when the block gets destroyed. It returns
 		  the metadata of the dropped item based on the old metadata of the block.
 		 */
@@ -168,8 +167,8 @@ public abstract class BlockETDecorativeLeaves extends Block implements IItemMode
 	}
 
 	/**
-	 * Gets the metadata of the item this Block can drop. This method is called when the block gets destroyed. It returns
-	 * the metadata of the dropped item based on the old metadata of the block.
+	 * Gets the metadata of the item this Block can drop. This method is called when the block gets destroyed. It
+	 * returns the metadata of the dropped item based on the old metadata of the block.
 	 */
 	@Override
 	public int damageDropped(IBlockState state) {

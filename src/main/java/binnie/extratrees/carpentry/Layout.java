@@ -11,6 +11,23 @@ public class Layout implements ILayout {
 	IPattern pattern;
 	boolean inverted;
 
+	private Layout(final IPattern pattern, final boolean inverted) {
+		this.pattern = pattern;
+		this.inverted = inverted;
+	}
+
+	private Layout(final IPattern pattern) {
+		this(pattern, false);
+	}
+
+	public static ILayout get(final IPattern pattern, final boolean inverted) {
+		return new Layout(pattern, inverted);
+	}
+
+	public static ILayout get(final IPattern pattern) {
+		return new Layout(pattern, false);
+	}
+
 	@Override
 	public IPattern getPattern() {
 		return this.pattern;
@@ -19,15 +36,6 @@ public class Layout implements ILayout {
 	@Override
 	public boolean isInverted() {
 		return this.inverted;
-	}
-
-	private Layout(final IPattern pattern, final boolean inverted) {
-		this.pattern = pattern;
-		this.inverted = inverted;
-	}
-
-	private Layout(final IPattern pattern) {
-		this(pattern, false);
 	}
 
 	ILayout newLayout(final ILayout newLayout) {
@@ -69,13 +77,5 @@ public class Layout implements ILayout {
 	@Override
 	public ILayout invert() {
 		return new Layout(this.pattern, !this.inverted);
-	}
-
-	public static ILayout get(final IPattern pattern, final boolean inverted) {
-		return new Layout(pattern, inverted);
-	}
-
-	public static ILayout get(final IPattern pattern) {
-		return new Layout(pattern, false);
 	}
 }

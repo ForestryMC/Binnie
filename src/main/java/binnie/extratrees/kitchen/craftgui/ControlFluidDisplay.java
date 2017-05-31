@@ -24,11 +24,6 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 	private FluidStack fluidStack;
 	private boolean hastooltip;
 
-	public void setTooltip() {
-		this.hastooltip = true;
-		this.addAttribute(Attribute.MouseOver);
-	}
-
 	public ControlFluidDisplay(final IWidget parent, final int x, final int y) {
 		this(parent, x, y, 16);
 	}
@@ -45,6 +40,11 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 		super(parent, x, y, size, size);
 		this.fluidStack = null;
 		this.hastooltip = false;
+	}
+
+	public void setTooltip() {
+		this.hastooltip = true;
+		this.addAttribute(Attribute.MouseOver);
 	}
 
 	@Override

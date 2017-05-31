@@ -44,10 +44,6 @@ public abstract class ComponentProcess extends ComponentProcessIndefinate implem
 		this.progressAmount += f;
 	}
 
-	public void setProgress(final float f) {
-		this.progressAmount = f;
-	}
-
 	@Override
 	protected void progressTick() {
 		super.progressTick();
@@ -62,6 +58,10 @@ public abstract class ComponentProcess extends ComponentProcessIndefinate implem
 	@Override
 	public float getProgress() {
 		return this.progressAmount;
+	}
+
+	public void setProgress(final float f) {
+		this.progressAmount = f;
 	}
 
 	protected void onFinishTask() {

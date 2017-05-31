@@ -41,7 +41,7 @@ public class RenderUtil {
 		Minecraft minecraft = Minecraft.getMinecraft();
 		net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
 		FontRenderer font = getFontRenderer(minecraft, itemStack);
-		
+
 		if (rotating) {
 			GlStateManager.pushMatrix();
 			final float phase = Minecraft.getSystemTime() / 20;
@@ -164,7 +164,7 @@ public class RenderUtil {
 			drawTexture(pos.x(), pos.y(), icon, 0, 0, 0);
 		}
 	}
-	
+
 	public static void drawGuiSprite(final Point pos, @Nullable final TextureAtlasSprite icon) {
 		if (icon != null) {
 			BinnieCore.getBinnieProxy().bindTexture(ForestryAPI.textureManager.getGuiTextureMap());

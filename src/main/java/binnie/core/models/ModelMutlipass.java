@@ -34,7 +34,7 @@ public class ModelMutlipass<B extends Block & IMultipassBlock<K>, K> extends Mod
 	protected K getWorldKey(IBlockState state) {
 		return ((B) state.getBlock()).getWorldKey(state);
 	}
-	
+
 	@Override
 	protected IBakedModel bakeModel(IBlockState state, K key, B block) {
 		if (key == null) {
@@ -47,7 +47,7 @@ public class ModelMutlipass<B extends Block & IMultipassBlock<K>, K> extends Mod
 			IBlockAccess world = stateExtended.getValue(UnlistedBlockAccess.BLOCKACCESS);
 			BlockPos pos = stateExtended.getValue(UnlistedBlockPos.POS);
 			baker.setModelBounds(state.getBoundingBox(world, pos));
-		}else{
+		} else {
 			baker.setModelBounds(block.getItemBoundingBox());
 		}
 
@@ -91,5 +91,4 @@ public class ModelMutlipass<B extends Block & IMultipassBlock<K>, K> extends Mod
 
 		return itemModel = baker.bakeModel(true);
 	}
-
 }

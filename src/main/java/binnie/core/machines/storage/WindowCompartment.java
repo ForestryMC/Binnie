@@ -62,20 +62,20 @@ import java.util.Map.Entry;
 
 public class WindowCompartment extends WindowMachine implements IWindowAffectsShiftClick {
 	private final Map<Panel, Integer> panels;
+	boolean dueUpdate;
 	private ControlTextEdit tabName;
 	private ControlItemDisplay tabIcon;
 	private ControlColourSelector tabColour;
-	boolean dueUpdate;
 	private int currentTab;
-
-	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
-		return new WindowCompartment(player, inventory, side);
-	}
 
 	public WindowCompartment(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
 		super(320, 226, player, inventory, side);
 		this.panels = new HashMap<>();
 		this.currentTab = 0;
+	}
+
+	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
+		return new WindowCompartment(player, inventory, side);
 	}
 
 	@Override

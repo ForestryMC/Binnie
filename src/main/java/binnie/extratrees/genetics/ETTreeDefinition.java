@@ -70,7 +70,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import org.apache.commons.lang3.StringUtils;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.Arrays;
 import java.util.Locale;
 
@@ -2017,8 +2017,9 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		}
 	};
 
+	private static final String unlocalizedName = "extratrees.species.%s.name";
+	private static final String unlocalizedDesc = "extratrees.species.%s.desc";
 	public static ETTreeDefinition[] VALUES = values();
-
 	private String branchName;
 	private String binomial;
 	private Color leafColor;
@@ -2033,8 +2034,6 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 	private IAlleleTreeSpecies species;
 	private ITreeGenome genome;
 	private AlleleTemplate template;
-	private static final String unlocalizedName = "extratrees.species.%s.name";
-	private static final String unlocalizedDesc = "extratrees.species.%s.desc";
 
 	ETTreeDefinition(String branch, String binomial, EnumLeafType leafType, Color leafColor, Color leafPollinatedColor, EnumSaplingType saplingType, IWoodType woodType, Color woodColor) {
 		this.binomial = binomial;
@@ -2047,8 +2046,6 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		this.woodProvider = new WoodProvider(woodType);
 		this.woodColor = woodColor;
 		this.branchName = branch;
-
-
 	}
 
 	public static void initTrees() {
@@ -2066,6 +2063,13 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		}
 	}
 
+	public static ETTreeDefinition byMetadata(int meta) {
+		if (meta < 0 || meta >= VALUES.length) {
+			meta = 0;
+		}
+		return VALUES[meta];
+	}
+
 	public void preInit() {
 		final String scientific = StringUtils.capitalize(branchName);
 		final String uid = "trees." + branchName;
@@ -2074,7 +2078,8 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			branch = AlleleManager.alleleRegistry.createAndRegisterClassification(IClassification.EnumClassLevel.GENUS, uid, scientific);
 		}
 		IAlleleTreeSpeciesBuilder speciesBuilder = TreeManager.treeFactory.createSpecies(getUID(), String.format(unlocalizedName, getUID()), getAuthority(), String.format(unlocalizedDesc, getUID()), isDominant(),
-				branch, getBinomial(), Constants.EXTRA_TREES_MOD_ID, leafSpriteProvider, saplingType.getGermlingModelProvider(leafColor, woodColor), woodProvider, this, new ETLeafProvider());
+			branch, getBinomial(), Constants.EXTRA_TREES_MOD_ID, leafSpriteProvider, saplingType.getGermlingModelProvider(leafColor, woodColor), woodProvider, this, new ETLeafProvider()
+		);
 		setSpeciesProperties(speciesBuilder);
 		species = speciesBuilder.build();
 		branch.addMemberSpecies(species);
@@ -2158,13 +2163,6 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		return ordinal();
 	}
 
-	public static ETTreeDefinition byMetadata(int meta) {
-		if (meta < 0 || meta >= VALUES.length) {
-			meta = 0;
-		}
-		return VALUES[meta];
-	}
-
 	@Override
 	public String getName() {
 		return name().toLowerCase(Locale.ENGLISH);
@@ -2177,7 +2175,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		IBlockState logBlock = TreeManager.woodAccess.getBlock(woodType, WoodBlockKind.LOG, fireproof);
 
 		BlockLog.EnumAxis axis = BlockLog.EnumAxis.fromFacingAxis(facing.getAxis());
-		if(logBlock.getBlock() instanceof BlockLog){
+		if (logBlock.getBlock() instanceof BlockLog) {
 			logBlock = logBlock.withProperty(BlockLog.LOG_AXIS, axis);
 		}
 		return world.setBlockState(pos, logBlock);

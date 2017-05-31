@@ -73,5 +73,4 @@ public class WindowAnalyser extends WindowMachine {
 	protected String getBackgroundTextureName() {
 		return "analyser";
 	}
-
 }

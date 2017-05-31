@@ -15,6 +15,22 @@ import java.util.List;
 
 public class ItemIndustrialFrame extends Item {
 
+	public ItemIndustrialFrame() {
+		this.setCreativeTab(CreativeTabs.MISC);
+		this.setMaxDamage(400);
+		this.setMaxStackSize(1);
+		this.setUnlocalizedName("industrialFrame");
+	}
+
+	@Nullable
+	public static IndustrialFrame getFrame(final ItemStack stack) {
+		NBTTagCompound tagCompound = stack.getTagCompound();
+		if (tagCompound == null || !tagCompound.hasKey("frame")) {
+			return null;
+		}
+		return IndustrialFrame.values()[tagCompound.getInteger("frame")];
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(final Item itemIn, final CreativeTabs tab, final NonNullList<ItemStack> subItems) {
@@ -43,21 +59,4 @@ public class ItemIndustrialFrame extends Item {
 	public String getItemStackDisplayName(final ItemStack itemStack) {
 		return "Industrial Frame";
 	}
-
-	public ItemIndustrialFrame() {
-		this.setCreativeTab(CreativeTabs.MISC);
-		this.setMaxDamage(400);
-		this.setMaxStackSize(1);
-		this.setUnlocalizedName("industrialFrame");
-	}
-
-	@Nullable
-	public static IndustrialFrame getFrame(final ItemStack stack) {
-		NBTTagCompound tagCompound = stack.getTagCompound();
-		if (tagCompound == null || !tagCompound.hasKey("frame")) {
-			return null;
-		}
-		return IndustrialFrame.values()[tagCompound.getInteger("frame")];
-	}
-
 }

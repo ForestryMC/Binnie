@@ -20,6 +20,21 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 		this.bacteriaDrain = 0.0f;
 	}
 
+	public static float getDNAPerProcess(ItemStack serum) {
+		return getNumberOfGenes(serum) * 50;
+	}
+
+	public static float getBacteriaPerProcess(ItemStack serum) {
+		return 0.2f * getDNAPerProcess(serum);
+	}
+
+	private static int getNumberOfGenes(ItemStack serum) {
+		if (serum.isEmpty()) {
+			return 1;
+		}
+		return Engineering.getGenes(serum).length;
+	}
+
 	private float getCatalyst() {
 		return (this.getUtil().getSlotCharge(Polymeriser.SLOT_GOLD) > 0.0f) ? 0.2f : 1.0f;
 	}
@@ -34,14 +49,6 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 	public int getProcessEnergy() {
 		final ItemStack serum = this.getUtil().getStack(Polymeriser.SLOT_SERUM);
 		return (int) (super.getProcessEnergy() * getNumberOfGenes(serum) * this.getCatalyst());
-	}
-
-	public static float getDNAPerProcess(ItemStack serum) {
-		return getNumberOfGenes(serum) * 50;
-	}
-
-	public static float getBacteriaPerProcess(ItemStack serum) {
-		return 0.2f * getDNAPerProcess(serum);
 	}
 
 	@Override
@@ -60,13 +67,6 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 			this.getUtil().drainTank(Polymeriser.TANK_BACTERIA, 1);
 			--this.bacteriaDrain;
 		}
-	}
-
-	private static int getNumberOfGenes(ItemStack serum) {
-		if (serum.isEmpty()) {
-			return 1;
-		}
-		return Engineering.getGenes(serum).length;
 	}
 
 	@Override

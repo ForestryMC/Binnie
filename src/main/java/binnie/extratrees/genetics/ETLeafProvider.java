@@ -29,5 +29,4 @@ public class ETLeafProvider implements ILeafProvider {
 		}
 		return ModuleBlocks.getDecorativeLeaves(species.getUID());
 	}
-
 }

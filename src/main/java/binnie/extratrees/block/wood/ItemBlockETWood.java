@@ -21,5 +21,4 @@ public class ItemBlockETWood<V extends Block & IWoodTyped> extends ItemBlockWood
 		IWoodType woodType = wood.getWoodType(meta);
 		return WoodManager.getDisplayName(wood, woodType);
 	}
-
 }

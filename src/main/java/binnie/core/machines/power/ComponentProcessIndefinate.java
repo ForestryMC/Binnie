@@ -9,12 +9,21 @@ import net.minecraft.nbt.NBTTagCompound;
 import javax.annotation.Nullable;
 
 public abstract class ComponentProcessIndefinate extends MachineComponent implements IProcess, INetwork.TilePacketSync {
+	int clientEnergyPerSecond;
+	int clientInProgress;
 	private float energyPerTick;
 	private boolean inProgress;
 	private float actionPauseProcess;
 	private float actionCancelTask;
-	int clientEnergyPerSecond;
-	int clientInProgress;
+
+	public ComponentProcessIndefinate(final IMachine machine, final float energyPerTick) {
+		super(machine);
+		this.energyPerTick = 0.1f;
+		this.actionPauseProcess = 0.0f;
+		this.actionCancelTask = 0.0f;
+		this.clientEnergyPerSecond = 0;
+		this.energyPerTick = energyPerTick;
+	}
 
 	@Override
 	public void syncFromNBT(final NBTTagCompound nbt) {
@@ -24,15 +33,6 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 	@Override
 	public void syncToNBT(final NBTTagCompound nbt) {
 		nbt.setBoolean("progress", this.inProgress);
-	}
-
-	public ComponentProcessIndefinate(final IMachine machine, final float energyPerTick) {
-		super(machine);
-		this.energyPerTick = 0.1f;
-		this.actionPauseProcess = 0.0f;
-		this.actionCancelTask = 0.0f;
-		this.clientEnergyPerSecond = 0;
-		this.energyPerTick = energyPerTick;
 	}
 
 	protected final IPoweredMachine getPower() {

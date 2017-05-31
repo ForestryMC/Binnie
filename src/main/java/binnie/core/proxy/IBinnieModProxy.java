@@ -16,5 +16,5 @@ public interface IBinnieModProxy extends IProxyCore {
 
 	String localise(final String string);
 
-//	IIcon getIcon(final IIconRegister p0, final String p1);
+	//	IIcon getIcon(final IIconRegister p0, final String p1);
 }

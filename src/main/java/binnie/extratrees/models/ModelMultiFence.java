@@ -26,38 +26,7 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 	public static final float POST_WIDGTH = 0.25F;
 	public static final float POST_HEIGHT = 1F;
 	public static final float SCALE = 0.0625f;
-	
-	public static class Key{
-		private int meta;
-		private FenceType type;
-		boolean west;
-		boolean east; 
-		boolean north; 
-		boolean south;
-		public Key(int meta, boolean west, boolean east, boolean north, boolean south) {
-			this.meta = meta;
-			this.type = WoodManager.getFenceType(meta);
-			this.west = west;
-			this.east = east;
-			this.south = south;
-			this.north = north;
-		}
-		
-		@Override
-		public int hashCode() {
-			return Integer.hashCode(meta) + Boolean.hashCode(east)+ Boolean.hashCode(west)+ Boolean.hashCode(south)+ Boolean.hashCode(north);
-		}
-		
-		@Override
-		public boolean equals(Object obj) {
-			if(!(obj instanceof Key)){
-				return false;
-			}
-			Key key = (Key) obj;
-			return key.meta == meta && west == key.west && south == key.south &&north == key.north && east == key.east;
-		}
-	}
-	
+
 	public ModelMultiFence() {
 		super(BlockMultiFence.class);
 	}
@@ -73,9 +42,9 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 		IBlockAccess world = stateExtended.getValue(UnlistedBlockAccess.BLOCKACCESS);
 		BlockPos pos = stateExtended.getValue(UnlistedBlockPos.POS);
 		int meta = TileEntityMetadata.getTileMetadata(world, pos);
-		return new Key(meta, state.getValue(BlockFence.WEST),state.getValue(BlockFence.EAST),state.getValue(BlockFence.NORTH),state.getValue(BlockFence.SOUTH));
+		return new Key(meta, state.getValue(BlockFence.WEST), state.getValue(BlockFence.EAST), state.getValue(BlockFence.NORTH), state.getValue(BlockFence.SOUTH));
 	}
-	
+
 	@Override
 	protected IBakedModel bakeModel(IBlockState state, Key key, BlockMultiFence block) {
 		if (key == null) {
@@ -110,18 +79,17 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 		return itemModel = baker.bakeModel(true);
 	}
 
-
 	@Override
 	protected void bakeBlock(BlockMultiFence block, Key key, IModelBaker baker, boolean inventory) {
 		AABBModelBaker modelBaker = (AABBModelBaker) baker;
-		if(inventory){
+		if (inventory) {
 			bakeItemModel(block, modelBaker, key);
-		}else{
+		} else {
 			bakeBlockModel(block, modelBaker, key);
 		}
 	}
-	
-	private void bakeItemModel(BlockMultiFence block, AABBModelBaker modelBaker, Key key){
+
+	private void bakeItemModel(BlockMultiFence block, AABBModelBaker modelBaker, Key key) {
 		int meta = key.meta;
 		FenceType type = key.type;
 		for (int i = 0; i < 5; ++i) {
@@ -178,12 +146,10 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 					if (type.size != 1 && !type.solid) {
 						minY = bottomBarMinY + 2.0f * s;
 						maxY = topBarMaxY - 2.0f * s;
-					}
-					else if (type.size == 1 && type.solid) {
+					} else if (type.size == 1 && type.solid) {
 						minY = bottomBarMinY + 2.0f * s;
 						maxY = topBarMaxY - 2.0f * s;
-					}
-					else {
+					} else {
 						minY = 0.5f - 2.0f * s;
 						maxY = 0.5f + 2.0f * s;
 					}
@@ -196,8 +162,7 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 						maxY += s;
 					}
 					modelBaker.setModelBounds(new AxisAlignedBB(minX, minY, minZ, maxX, maxY, maxZ));
-				}
-				else {
+				} else {
 					if (type.size != 1 || type.solid) {
 						continue;
 					}
@@ -208,16 +173,16 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 			modelBaker.addBlockModel(null, block.getSprite(meta, secondary), 0);
 		}
 	}
-	
-	private void bakeBlockModel(BlockMultiFence block, AABBModelBaker modelBaker, Key key){
+
+	private void bakeBlockModel(BlockMultiFence block, AABBModelBaker modelBaker, Key key) {
 		float minPostPos = 0.5f - POST_WIDGTH / 2.0f;
 		float maxPostPos = 0.5f + POST_WIDGTH / 2.0f;
 		int meta = key.meta;
 		FenceType fenceType = key.type;
-		
+
 		modelBaker.setModelBounds(new AxisAlignedBB(minPostPos, 0.0, minPostPos, maxPostPos, POST_HEIGHT, maxPostPos));
 		modelBaker.addBlockModel(null, block.getSprite(meta, false), 0);
-		
+
 		boolean connectNegX = key.west;
 		boolean connectPosX = key.east;
 		boolean connectNegZ = key.north;
@@ -244,8 +209,7 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 			renderBottom = false;
 			if (fenceType.size == 0) {
 				barMinY = 6.0f * SCALE;
-			}
-			else {
+			} else {
 				barMinY = SCALE;
 			}
 		}
@@ -295,12 +259,10 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 			if (fenceType.size == 1 && !fenceType.solid) {
 				minY = 6.0f * SCALE;
 				maxY = 10.0f * SCALE;
-			}
-			else if (fenceType.size == 0 && fenceType.solid) {
+			} else if (fenceType.size == 0 && fenceType.solid) {
 				minY -= 4.0f * SCALE;
 				maxY -= 4.0f * SCALE;
-			}
-			else if (fenceType.size == 2 && fenceType.solid) {
+			} else if (fenceType.size == 2 && fenceType.solid) {
 				minY += 4.0f * SCALE;
 				maxY += 4.0f * SCALE;
 			}
@@ -315,5 +277,36 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 		}
 		modelBaker.setParticleSprite(block.getSprite(meta, false));
 	}
-	
+
+	public static class Key {
+		boolean west;
+		boolean east;
+		boolean north;
+		boolean south;
+		private int meta;
+		private FenceType type;
+
+		public Key(int meta, boolean west, boolean east, boolean north, boolean south) {
+			this.meta = meta;
+			this.type = WoodManager.getFenceType(meta);
+			this.west = west;
+			this.east = east;
+			this.south = south;
+			this.north = north;
+		}
+
+		@Override
+		public int hashCode() {
+			return Integer.hashCode(meta) + Boolean.hashCode(east) + Boolean.hashCode(west) + Boolean.hashCode(south) + Boolean.hashCode(north);
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (!(obj instanceof Key)) {
+				return false;
+			}
+			Key key = (Key) obj;
+			return key.meta == meta && west == key.west && south == key.south && north == key.north && east == key.east;
+		}
+	}
 }

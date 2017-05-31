@@ -2,7 +2,7 @@ package binnie.extratrees.block.decor;
 
 public class FenceRenderer //implements ISimpleBlockRenderingHandler
 {
-	/*public static int layer;
+    /*public static int layer;
 
 	@Override
 	public void renderInventoryBlock(final Block block, final int metadata, final int modelID, final RenderBlocks renderer) {

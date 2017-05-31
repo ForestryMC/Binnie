@@ -15,24 +15,6 @@ import java.util.List;
 import java.util.Map;
 
 public class ComponentApiaristIndexerInventory extends ComponentIndexerInventory<ComponentApiaristIndexerInventory.Mode> implements IInventory {
-	private static class SpeciesList {
-		public List<Integer> drones;
-		public List<Integer> queens;
-		public List<Integer> princesses;
-		public List<ItemStack> bees;
-
-		SpeciesList() {
-			this.drones = new ArrayList<>();
-			this.queens = new ArrayList<>();
-			this.princesses = new ArrayList<>();
-			this.bees = new ArrayList<>();
-		}
-
-		public void add(final ItemStack stack) {
-			this.bees.add(stack);
-		}
-	}
-
 	public ComponentApiaristIndexerInventory(final Machine machine) {
 		super(machine);
 	}
@@ -138,7 +120,6 @@ public class ComponentApiaristIndexerInventory extends ComponentIndexerInventory
 
 	}
 
-
 	@Override
 	public boolean isEmpty() {
 		return this.sortedInventory.isEmpty();
@@ -183,5 +164,23 @@ public class ComponentApiaristIndexerInventory extends ComponentIndexerInventory
 		None,
 		Species,
 		Type;
+	}
+
+	private static class SpeciesList {
+		public List<Integer> drones;
+		public List<Integer> queens;
+		public List<Integer> princesses;
+		public List<ItemStack> bees;
+
+		SpeciesList() {
+			this.drones = new ArrayList<>();
+			this.queens = new ArrayList<>();
+			this.princesses = new ArrayList<>();
+			this.bees = new ArrayList<>();
+		}
+
+		public void add(final ItemStack stack) {
+			this.bees.add(stack);
+		}
 	}
 }

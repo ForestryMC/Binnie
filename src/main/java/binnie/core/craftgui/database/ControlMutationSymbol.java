@@ -24,6 +24,13 @@ class ControlMutationSymbol extends Control implements ITooltip {
 	private boolean discovered;
 	private int type;
 
+	protected ControlMutationSymbol(final IWidget parent, final int x, final int y, final int type) {
+		super(parent, x, y, 16 + type * 16, 16);
+		this.value = null;
+		this.type = type;
+		this.addAttribute(Attribute.MouseOver);
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
@@ -33,13 +40,6 @@ class ControlMutationSymbol extends Control implements ITooltip {
 		} else {
 			CraftGUI.render.texture(ControlMutationSymbol.MutationArrow, Point.ZERO);
 		}
-	}
-
-	protected ControlMutationSymbol(final IWidget parent, final int x, final int y, final int type) {
-		super(parent, x, y, 16 + type * 16, 16);
-		this.value = null;
-		this.type = type;
-		this.addAttribute(Attribute.MouseOver);
 	}
 
 	public void setValue(final IMutation value) {

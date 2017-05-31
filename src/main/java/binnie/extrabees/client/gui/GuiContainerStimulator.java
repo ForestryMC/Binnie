@@ -3,17 +3,14 @@ package binnie.extrabees.client.gui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 
-/**
- * Created by Elec332 on 13-5-2017.
- */
 public class GuiContainerStimulator extends GuiContainerAlvearyPart {
+
+	private ContainerStimulator container;
 
 	public GuiContainerStimulator(ContainerStimulator container) {
 		super(container);
 		this.container = container;
 	}
-
-	private ContainerStimulator container;
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
@@ -27,5 +24,4 @@ public class GuiContainerStimulator extends GuiContainerAlvearyPart {
 		drawTexturedModalRect(i + 71, j + 38, 0, 185, (int) bar, 14);
 		drawTexturedModalRect(i + 71, j + 38, 0, 165, 70, 14);
 	}
-
 }

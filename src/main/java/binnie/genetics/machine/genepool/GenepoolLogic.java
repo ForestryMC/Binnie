@@ -14,6 +14,12 @@ import net.minecraft.item.ItemStack;
 
 public class GenepoolLogic extends ComponentProcessSetCost implements IProcess {
 	public static final float ENZYME_PER_PROCESS = 0.25f;
+	private float ethanolDrain;
+
+	public GenepoolLogic(final Machine machine) {
+		super(machine, 8000, 400);
+		this.ethanolDrain = 0.0f;
+	}
 
 	public static int getDNAAmount(final ItemStack stack) {
 		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
@@ -29,13 +35,6 @@ public class GenepoolLogic extends ComponentProcessSetCost implements IProcess {
 		}
 
 		return 10;
-	}
-
-	private float ethanolDrain;
-
-	public GenepoolLogic(final Machine machine) {
-		super(machine, 8000, 400);
-		this.ethanolDrain = 0.0f;
 	}
 
 	@Override

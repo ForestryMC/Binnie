@@ -22,36 +22,32 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Elec332 on 13-5-2017.
- */
 public class AlvearyLogicStimulator extends AbstractAlvearyLogic {
+
+	private final IEnergyStorage energyStorage;
+	private final IItemHandlerModifiable inv;
+	private final List<ContainerStimulator> containers = Lists.newArrayList();
+	private int powerUsage;
+	private boolean powered;
+	private StimulatorCircuit[] modifiers;
 
 	public AlvearyLogicStimulator() {
 		this.powerUsage = 0;
 		this.powered = false;
 		this.modifiers = new StimulatorCircuit[0];
 		this.energyStorage = new EnergyStorage(10000);
-		this.inv = new ItemStackHandler(1){
+		this.inv = new ItemStackHandler(1) {
 
 			@Nonnull
 			@Override
 			public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-				if (!ChipsetManager.circuitRegistry.isChipset(stack)){
+				if (!ChipsetManager.circuitRegistry.isChipset(stack)) {
 					return stack;
 				}
 				return super.insertItem(slot, stack, simulate);
 			}
-
 		};
 	}
-
-	private int powerUsage;
-	private boolean powered;
-	private StimulatorCircuit[] modifiers;
-	private final IEnergyStorage energyStorage;
-	private final IItemHandlerModifiable inv;
-	private final List<ContainerStimulator> containers = Lists.newArrayList();
 
 	public IItemHandlerModifiable getInventory() {
 		return inv;
@@ -65,16 +61,16 @@ public class AlvearyLogicStimulator extends AbstractAlvearyLogic {
 			this.powerUsage += beeMod.getPowerUsage();
 		}
 		this.powered = energyStorage.extractEnergy(powerUsage, true) >= powerUsage;
-		for (ContainerStimulator c : containers){
+		for (ContainerStimulator c : containers) {
 			c.checkPower();
 		}
 	}
 
-	public void onContainerOpened(ContainerStimulator container){
+	public void onContainerOpened(ContainerStimulator container) {
 		containers.add(container);
 	}
 
-	public void onGuiClosed(ContainerStimulator container){
+	public void onGuiClosed(ContainerStimulator container) {
 		containers.remove(container);
 	}
 
@@ -251,5 +247,4 @@ public class AlvearyLogicStimulator extends AbstractAlvearyLogic {
 	public boolean hasGui() {
 		return true;
 	}
-
 }

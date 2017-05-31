@@ -14,7 +14,7 @@ public class WorldGenAsh {
 		public CommonAsh(ITreeGenData tree) {
 			super(tree, 5, 2);
 		}
-		
+
 		@Override
 		protected void generateLeaves(World world, Random rand, TreeBlockTypeLeaf leaf, List<BlockPos> branchEnds, BlockPos startPos) {
 			float leafSpawn = this.height + 1;
@@ -25,6 +25,5 @@ public class WorldGenAsh {
 			}
 			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 0.25F, 1, WorldGenHelper.EnumReplaceMode.AIR);
 		}
-
 	}
 }

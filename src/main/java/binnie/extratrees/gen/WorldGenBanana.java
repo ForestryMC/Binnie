@@ -13,7 +13,7 @@ public class WorldGenBanana extends forestry.arboriculture.worldgen.WorldGenTree
 	public WorldGenBanana(ITreeGenData tree) {
 		super(tree, 6, 1);
 	}
-	
+
 	@Override
 	protected void generateLeaves(World world, Random rand, TreeBlockTypeLeaf leaf, List<BlockPos> branchEnds, BlockPos startPos) {
 		int leafSpawn = this.height + 1;
@@ -21,5 +21,4 @@ public class WorldGenBanana extends forestry.arboriculture.worldgen.WorldGenTree
 		WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 1.5F, 1, WorldGenHelper.EnumReplaceMode.AIR);
 		WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 1, 1, WorldGenHelper.EnumReplaceMode.AIR);
 	}
-
 }

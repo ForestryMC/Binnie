@@ -12,6 +12,13 @@ public abstract class EventMouse extends Event {
 		int y;
 		int button;
 
+		public Button(final IWidget currentMousedOverWidget, final int x, final int y, final int button) {
+			super(currentMousedOverWidget);
+			this.x = x;
+			this.y = y;
+			this.button = button;
+		}
+
 		public int getX() {
 			return this.x;
 		}
@@ -22,13 +29,6 @@ public abstract class EventMouse extends Event {
 
 		public int getButton() {
 			return this.button;
-		}
-
-		public Button(final IWidget currentMousedOverWidget, final int x, final int y, final int button) {
-			super(currentMousedOverWidget);
-			this.x = x;
-			this.y = y;
-			this.button = button;
 		}
 	}
 
@@ -60,18 +60,18 @@ public abstract class EventMouse extends Event {
 		float dx;
 		float dy;
 
+		public Move(final IWidget origin, final float dx, final float dy) {
+			super(origin);
+			this.dx = dx;
+			this.dy = dy;
+		}
+
 		public float getDx() {
 			return this.dx;
 		}
 
 		public float getDy() {
 			return this.dy;
-		}
-
-		public Move(final IWidget origin, final float dx, final float dy) {
-			super(origin);
-			this.dx = dx;
-			this.dy = dy;
 		}
 
 		public abstract static class Handler extends EventHandler<Move> {

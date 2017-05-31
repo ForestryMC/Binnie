@@ -19,7 +19,7 @@ import forestry.lepidopterology.genetics.IButterflyDefinition;
 import forestry.lepidopterology.genetics.MothDefinition;
 import net.minecraft.item.ItemStack;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.Arrays;
 
 public enum ButterflySpecies implements IButterflyDefinition {
@@ -47,12 +47,12 @@ public enum ButterflySpecies implements IButterflyDefinition {
 	Marbled_White("Marbled White", "Melanargia galathea", 15527148);
 
 	public static final ButterflySpecies[] VALUES = values();
-	
+
 	private final IAlleleButterflySpecies species;
 	private final IClassification branch;
 	private IAllele[] template;
 	private IButterflyGenome genome;
-	
+
 	ButterflySpecies(String name, String scientific, int colour) {
 		String branchName = scientific.split(" ")[0].toLowerCase();
 		String binomial = scientific.split(" ")[1];
@@ -83,6 +83,10 @@ public enum ButterflySpecies implements IButterflyDefinition {
 		for (ButterflySpecies butterfly : VALUES) {
 			butterfly.registerMutations();
 		}
+	}
+
+	public static void preInit() {
+
 	}
 
 	private void init() {
@@ -157,9 +161,5 @@ public enum ButterflySpecies implements IButterflyDefinition {
 
 	public IAlleleButterflySpecies getSpecies() {
 		return species;
-	}
-
-	public static void preInit() {
-		
 	}
 }

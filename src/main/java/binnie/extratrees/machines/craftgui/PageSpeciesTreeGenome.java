@@ -14,7 +14,12 @@ import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.genetics.BreedingSystem;
 import binnie.extratrees.ExtraTrees;
-import forestry.api.arboriculture.*;
+import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.arboriculture.IAlleleTreeSpecies;
+import forestry.api.arboriculture.IFruitProvider;
+import forestry.api.arboriculture.ILeafSpriteProvider;
+import forestry.api.arboriculture.ITree;
+import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleSpecies;
 import net.minecraft.client.Minecraft;
@@ -33,6 +38,13 @@ import java.util.Map;
 public class PageSpeciesTreeGenome extends PageSpecies {
 	public PageSpeciesTreeGenome(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);
+	}
+
+	public static String tolerated(final boolean t) {
+		if (t) {
+			return BinnieCore.getBinnieProxy().localise("gui.tolerated");
+		}
+		return BinnieCore.getBinnieProxy().localise("gui.nottolerated");
 	}
 
 	@Override
@@ -77,11 +89,11 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 			ex.printStackTrace();
 		}
 		if (leaf != null) {
-		new ControlText(contents, new Area(0, y, w2, th2), ExtraTrees.proxy.localise("gui.database.leaves") + " : ", TextJustification.MiddleRight);
-		new ControlBlockIconDisplay(contents, w2, y, leaf).setColour(leafColour);
-		if (fruit != null && !treeSpecies.getUID().equals("forestry.treeOak")) {
-		 new ControlBlockIconDisplay(contents, w2, y, fruit).setColour(fruitColour);
-		}
+			new ControlText(contents, new Area(0, y, w2, th2), ExtraTrees.proxy.localise("gui.database.leaves") + " : ", TextJustification.MiddleRight);
+			new ControlBlockIconDisplay(contents, w2, y, leaf).setColour(leafColour);
+			if (fruit != null && !treeSpecies.getUID().equals("forestry.treeOak")) {
+				new ControlBlockIconDisplay(contents, w2, y, fruit).setColour(fruitColour);
+			}
 			y += th2;
 		}
 		Map<ItemStack, Float> products = fruitProvider.getProducts();
@@ -124,12 +136,5 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 		y += th;
 		contents.setSize(new Point(contents.size().x(), y));
 		scrollable.setScrollableContent(contents);
-	}
-
-	public static String tolerated(final boolean t) {
-		if (t) {
-			return BinnieCore.getBinnieProxy().localise("gui.tolerated");
-		}
-		return BinnieCore.getBinnieProxy().localise("gui.nottolerated");
 	}
 }

@@ -34,7 +34,6 @@ public class WorldGenJungle {
 			this.height = this.determineHeight(4, 2);
 			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
-
 	}
 
 	public static class Logwood extends WorldGenTree {
@@ -72,7 +71,6 @@ public class WorldGenJungle {
 			this.height = this.determineHeight(4, 2);
 			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
-
 	}
 
 	public static class Rosewood extends WorldGenTree {
@@ -114,7 +112,6 @@ public class WorldGenJungle {
 			this.height = this.determineHeight(6, 2);
 			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
-
 	}
 
 	public static class Purpleheart extends WorldGenTree {
@@ -154,7 +151,6 @@ public class WorldGenJungle {
 			this.height = this.determineHeight(7, 2);
 			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
-
 	}
 
 	public static class OsangeOsange extends WorldGenTree {
@@ -192,7 +188,6 @@ public class WorldGenJungle {
 			this.height = this.determineHeight(5, 1);
 			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
-
 	}
 
 	public static class OldFustic extends WorldGenTree {
@@ -230,7 +225,6 @@ public class WorldGenJungle {
 			this.height = this.determineHeight(5, 2);
 			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
-
 	}
 
 	public static class Coffee extends WorldGenTree {
@@ -268,7 +262,6 @@ public class WorldGenJungle {
 			this.height = this.determineHeight(3, 1);
 			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
-
 	}
 
 	public static class BrazilNut extends WorldGenTree {
@@ -310,7 +303,6 @@ public class WorldGenJungle {
 			this.height = this.determineHeight(7, 1);
 			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
-
 	}
 
 	public static class Shrub15 extends WorldGenTree {
@@ -344,6 +336,5 @@ public class WorldGenJungle {
 			this.height = this.determineHeight(4, 1);
 			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
-
 	}
 }

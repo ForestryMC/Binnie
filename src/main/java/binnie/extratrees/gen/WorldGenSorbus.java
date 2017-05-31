@@ -22,7 +22,6 @@ public class WorldGenSorbus {
 			}
 			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 0.7f * width, 1, this.leaf, false);
 		}
-
 	}
 
 	public static class Rowan extends WorldGenTree {
@@ -42,7 +41,6 @@ public class WorldGenSorbus {
 			}
 			this.generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 0.7f * width, 1, this.leaf, false);
 		}
-
 	}
 
 	public static class ServiceTree extends WorldGenTree {

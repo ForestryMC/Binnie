@@ -59,7 +59,7 @@ public class ExtraTrees extends AbstractMod {
 	@SuppressWarnings("NullableProblems")
 	@SidedProxy(clientSide = "binnie.extratrees.proxy.ProxyClient", serverSide = "binnie.extratrees.proxy.ProxyServer")
 	public static Proxy proxy;
-	
+
 	@Nullable
 	private static ModuleBlocks blocks;
 	@Nullable
@@ -72,9 +72,39 @@ public class ExtraTrees extends AbstractMod {
 	private static ModuleMachine machine;
 	@Nullable
 	private static ModuleKitchen kitchen;
-	
+
 	public ExtraTrees() {
 		MinecraftForge.EVENT_BUS.register(ModuleGenetics.class);
+	}
+
+	public static ModuleItems items() {
+		Preconditions.checkState(items != null);
+		return items;
+	}
+
+	public static ModuleBlocks blocks() {
+		Preconditions.checkState(blocks != null);
+		return blocks;
+	}
+
+	public static ModuleAlcohol alcohol() {
+		Preconditions.checkState(alcohol != null);
+		return alcohol;
+	}
+
+	public static ModuleCarpentry carpentry() {
+		Preconditions.checkState(carpentry != null);
+		return carpentry;
+	}
+
+	public static ModuleMachine machine() {
+		Preconditions.checkState(machine != null);
+		return machine;
+	}
+
+	public static ModuleKitchen getKitchen() {
+		Preconditions.checkState(kitchen != null);
+		return kitchen;
 	}
 
 	@Mod.EventHandler
@@ -95,37 +125,6 @@ public class ExtraTrees extends AbstractMod {
 	@Mod.EventHandler
 	public void postInit(final FMLPostInitializationEvent evt) {
 		this.postInit();
-	}
-
-	public static ModuleItems items() {
-		Preconditions.checkState(items != null);
-		return items;
-	}
-
-	public static ModuleBlocks blocks() {
-		Preconditions.checkState(blocks != null);
-		return blocks;
-	}
-
-	public static ModuleAlcohol alcohol() {
-		Preconditions.checkState(alcohol != null);
-		return alcohol;
-	}
-
-
-	public static ModuleCarpentry carpentry() {
-		Preconditions.checkState(carpentry != null);
-		return carpentry;
-	}
-
-	public static ModuleMachine machine() {
-		Preconditions.checkState(machine != null);
-		return machine;
-	}
-
-	public static ModuleKitchen getKitchen() {
-		Preconditions.checkState(kitchen != null);
-		return kitchen;
 	}
 
 	@Override
@@ -164,13 +163,13 @@ public class ExtraTrees extends AbstractMod {
 	public String getModID() {
 		return Constants.EXTRA_TREES_MOD_ID;
 	}
-	
+
 	@SubscribeEvent
 	public void speciesRegister(AlleleSpeciesRegisterEvent event) {
 		if (event.getRoot() instanceof ITreeRoot) {
 			ETTreeDefinition.preInitTrees();
 			PlankType.ExtraTreePlanks.initWoodTypes();
-		}else if(event.getRoot() instanceof IButterflyRoot && BinnieCore.isLepidopteryActive()) {
+		} else if (event.getRoot() instanceof IButterflyRoot && BinnieCore.isLepidopteryActive()) {
 			ButterflySpecies.preInit();
 		}
 	}
@@ -185,19 +184,13 @@ public class ExtraTrees extends AbstractMod {
 		return BinnieCore.isExtraTreesActive();
 	}
 
-	public static class PacketHandler extends BinniePacketHandler {
-		public PacketHandler() {
-			super(ExtraTrees.instance);
-		}
-	}
-
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void onBakedEvent(ModelBakeEvent e) {
 		//Find all ExtraTrees saplings
 		List<ModelResourceLocation> models = e.getModelRegistry().getKeys().stream()
-				.filter(mrl -> mrl.getResourceDomain().startsWith(Constants.EXTRA_TREES_MOD_ID))
-				.filter(mrl -> mrl.getResourcePath().startsWith("germlings")).collect(Collectors.toList());
+			.filter(mrl -> mrl.getResourceDomain().startsWith(Constants.EXTRA_TREES_MOD_ID))
+			.filter(mrl -> mrl.getResourcePath().startsWith("germlings")).collect(Collectors.toList());
 		//Replace model
 		Map<String, ETTreeDefinition> map = Arrays.stream(ETTreeDefinition.values()).collect(Collectors.toMap(o -> o.name().toLowerCase(), o -> o));
 		models.forEach(model -> {
@@ -207,9 +200,8 @@ public class ExtraTrees extends AbstractMod {
 			int secondaryColor = treeSpecies.getWoodColor().getRGB();
 			e.getModelRegistry().putObject(model, new DoublePassBakedModel(e.getModelRegistry().getObject(model), primaryColor, secondaryColor));
 		});
-
 	}
-	
+
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void registerSprites(TextureStitchEvent.Pre event) {
@@ -217,15 +209,20 @@ public class ExtraTrees extends AbstractMod {
 			sprite.registerSprites();
 		}
 		TextureMap map = Minecraft.getMinecraft().getTextureMapBlocks();
-		for(IPlankType type : PlankType.ExtraTreePlanks.VALUES){
+		for (IPlankType type : PlankType.ExtraTreePlanks.VALUES) {
 			type.registerSprites(map);
 		}
-		for(IPlankType type : PlankType.ForestryPlanks.values()){
+		for (IPlankType type : PlankType.ForestryPlanks.values()) {
 			type.registerSprites(map);
 		}
-		for(IPlankType type : PlankType.VanillaPlanks.values()){
+		for (IPlankType type : PlankType.VanillaPlanks.values()) {
 			type.registerSprites(map);
 		}
 	}
 
+	public static class PacketHandler extends BinniePacketHandler {
+		public PacketHandler() {
+			super(ExtraTrees.instance);
+		}
+	}
 }

@@ -2,7 +2,11 @@ package binnie.extratrees.machines.craftgui;
 
 import binnie.Binnie;
 import binnie.core.BinnieCore;
-import binnie.core.craftgui.*;
+import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.ITooltip;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.controls.core.IControlValue;
@@ -23,7 +27,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class ControlTileSelect extends Control implements IControlValue<IDesign>, IControlScrollable {
 	IDesign value;
@@ -42,6 +50,10 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 	}
 
 	@Override
+	public void setPercentageIndex(final float index) {
+	}
+
+	@Override
 	public float getPercentageShown() {
 		return 0.0f;
 	}
@@ -49,6 +61,11 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 	@Override
 	public IDesign getValue() {
 		return this.value;
+	}
+
+	@Override
+	public void setValue(final IDesign value) {
+		this.value = value;
 	}
 
 	@Override
@@ -102,15 +119,6 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 	}
 
 	@Override
-	public void setPercentageIndex(final float index) {
-	}
-
-	@Override
-	public void setValue(final IDesign value) {
-		this.value = value;
-	}
-
-	@Override
 	public float getMovementRange() {
 		return 0.0f;
 	}
@@ -149,6 +157,11 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 		}
 
 		@Override
+		public void setValue(final IDesign value) {
+			this.value = value;
+		}
+
+		@Override
 		@SideOnly(Side.CLIENT)
 		public void onRenderBackground(int guiWidth, int guiHeight) {
 			CraftGUI.render.texture(CraftGUITexture.Slot, Point.ZERO);
@@ -166,11 +179,6 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 					RenderUtil.drawGradientRect(this.getArea().inset(1), -1433892728, -1433892728);
 				}
 			}
-		}
-
-		@Override
-		public void setValue(final IDesign value) {
-			this.value = value;
 		}
 	}
 }

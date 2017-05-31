@@ -29,18 +29,17 @@ public class WorldGenHiveNether extends WorldGenerator {
 	}
 
 	public boolean embedInWall(final World world, final Block blockID, final BlockPos pos) {
-		if (world.getBlockState(pos).getBlock() != blockID){
+		if (world.getBlockState(pos).getBlock() != blockID) {
 			return false;
 		}
-		for (EnumFacing facing : EnumFacing.VALUES){
-			if (facing.getAxis() == EnumFacing.Axis.Y && world.getBlockState(pos.up()).getBlock() != blockID){
+		for (EnumFacing facing : EnumFacing.VALUES) {
+			if (facing.getAxis() == EnumFacing.Axis.Y && world.getBlockState(pos.up()).getBlock() != blockID) {
 				return false;
 			}
-			if (world.isAirBlock(pos.offset(facing))){
+			if (world.isAirBlock(pos.offset(facing))) {
 				return true;
 			}
 		}
 		return false;
 	}
-
 }

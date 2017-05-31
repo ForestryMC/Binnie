@@ -34,5 +34,4 @@ public class StateMapperFlower extends StateMapperBase {
 
 		return new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":flower", getPropertyString(properties));
 	}
-
 }

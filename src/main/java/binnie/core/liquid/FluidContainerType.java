@@ -20,12 +20,12 @@ public enum FluidContainerType {
 	@Nullable
 	private ItemFluidContainer item;
 
-	public int getMaxStackSize() {
-		return 16;
-	}
-
 	public static FluidContainerType[] getBinnieContainers() {
 		return new FluidContainerType[]{GLASS, CYLINDER};
+	}
+
+	public int getMaxStackSize() {
+		return 16;
 	}
 
 	public String getName() {

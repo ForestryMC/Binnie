@@ -17,7 +17,8 @@ import net.minecraft.item.ItemStack;
 public enum DesignerType {
 	Woodworker("woodworker", ExtraTreeTexture.Carpenter),
 	Panelworker("panelworker", ExtraTreeTexture.Paneler),
-	GlassWorker("glassworker", ExtraTreeTexture.Paneler), // TODO why is this the Paneler texture?
+	GlassWorker("glassworker", ExtraTreeTexture.Paneler),
+	// TODO why is this the Paneler texture?
 	Tileworker("tileworker", ExtraTreeTexture.Tileworker);
 
 	public String name;

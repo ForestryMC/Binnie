@@ -72,7 +72,7 @@ public final class Area {
 	public int height() {
 		return this.size().y();
 	}
-	
+
 	public void setXPos(final int xPos) {
 		this.pos = new Point(xPos, this.pos.y());
 	}

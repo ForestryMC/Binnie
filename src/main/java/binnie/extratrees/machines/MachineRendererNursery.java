@@ -29,5 +29,4 @@ public class MachineRendererNursery {
 		//this.casinoMachine.renderAll();
 		GlStateManager.popMatrix();
 	}
-
 }

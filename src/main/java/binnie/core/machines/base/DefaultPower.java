@@ -12,29 +12,29 @@ class DefaultPower implements IPoweredMachine {
 		return new PowerInfo(this, 0.0f);
 	}
 
-//	@Override
-//	@Optional.Method(modid = "IC2")
-//	public double getDemandedEnergy() {
-//		return 0.0;
-//	}
-//
-//	@Override
-//	@Optional.Method(modid = "IC2")
-//	public int getSinkTier() {
-//		return 0;
-//	}
+	//	@Override
+	//	@Optional.Method(modid = "IC2")
+	//	public double getDemandedEnergy() {
+	//		return 0.0;
+	//	}
+	//
+	//	@Override
+	//	@Optional.Method(modid = "IC2")
+	//	public int getSinkTier() {
+	//		return 0;
+	//	}
 
-//	@Override
-//	@Optional.Method(modid = "IC2")
-//	public double injectEnergy(final EnumFacing directionFrom, final double amount, final double voltage) {
-//		return 0.0;
-//	}
-//
-//	@Override
-//	@Optional.Method(modid = "IC2")
-//	public boolean acceptsEnergyFrom(final TileEntity emitter, final EnumFacing direction) {
-//		return false;
-//	}
+	//	@Override
+	//	@Optional.Method(modid = "IC2")
+	//	public double injectEnergy(final EnumFacing directionFrom, final double amount, final double voltage) {
+	//		return 0.0;
+	//	}
+	//
+	//	@Override
+	//	@Optional.Method(modid = "IC2")
+	//	public boolean acceptsEnergyFrom(final TileEntity emitter, final EnumFacing direction) {
+	//		return false;
+	//	}
 
 	@Override
 	public PowerInterface getInterface() {
@@ -70,5 +70,4 @@ class DefaultPower implements IPoweredMachine {
 	public boolean canReceive() {
 		return false;
 	}
-
 }
