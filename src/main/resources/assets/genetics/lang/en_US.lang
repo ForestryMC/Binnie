@@ -1,6 +1,19 @@
 fluid.polymerisingBacteria=Polymerising Bacteria
 fluid.rawDNA=Raw DNA
 
+genetics.item.casingIron.name=Reinforced Casing
+genetics.item.dnaDye.name=DNA Dye
+genetics.item.dyeFluor.name=Fluorescent Dye
+genetics.item.enzyme.name=Enzyme
+genetics.item.growthMedium.name=Growth Medium
+genetics.item.sequencerEmpty.name=Blank Sequence
+genetics.item.serumEmpty.name=Empty Serum Vial
+genetics.item.genomeEmpty.name=Empty Serum Array
+genetics.item.cylinderEmpty.name=Glass Cylinder
+genetics.item.integratedCircuit.name=Integrated Circuit Board
+genetics.item.integratedCPU.name=Integrated CPU
+genetics.item.casingCircuit.name=Integrated Casing
+
 genetics.machine.machine.isolator=Isolator
 genetics.machine.machine.isolator.info=The Isolator takes a random allele from a bee, tree or other individual and copies it into an empty sequence vial. This requires the use of ethanol as a solvent and an enzyme to cut up the DNA. The unsequenced serums can then be amplified in a Polymeriser and sequenced in a Sequencer.
 genetics.machine.isolator.error.noIndividual=No individual to isolate

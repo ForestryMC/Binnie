@@ -46,7 +46,7 @@ public class WindowSequencer extends WindowMachine {
 		if (side == Side.CLIENT && name.equals("username")) {
 			slotText.setValue(
 				EnumChatFormatting.DARK_GRAY
-					+ I18N.localise(Genetics.instance, "machine.sequencer.gui.sequencedBy", nbt.getString("username"))
+					+ I18N.localise(Genetics.instance, "machine.sequencer.gui.sequensedBy", nbt.getString("username"))
 			);
 		}
 		super.recieveGuiNBT(side, player, name, nbt);
