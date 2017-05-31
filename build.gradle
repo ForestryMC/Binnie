@@ -16,9 +16,12 @@ apply plugin: 'idea'
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
-version = version_major + '.' + version_minor + '.' + version_patch + '.' + getBuildNumber()
-group= "binnie" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "binnie"
+version = version_major + '.' + version_minor + '.' + version_patch
+if (System.getenv("BUILD_NUMBER") != null) {
+    version = version + "-" + System.getenv("BUILD_NUMBER")
+}
+group = "binnie" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "binnie-mods-1.11.2"
 
 minecraft {
     version = mcversion + "-" + forgeversion
@@ -57,9 +60,9 @@ processResources
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-                
-        // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'version': project.version, 
+                'mcversion': project.minecraft.version,
+                'modid': archivesBaseName
     }
         
     // copy everything else, thats not the mcmod.info
@@ -73,10 +76,6 @@ allprojects {
     tasks.withType(Javadoc) {
         options.addStringOption('Xdoclint:none', '-quiet')
     }
-}
-
-def getBuildNumber() {
-    return "$System.env.BUILD_NUMBER" != "null" ? "$System.env.BUILD_NUMBER" : "0"
 }
 
 uploadArchives {
