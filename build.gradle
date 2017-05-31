@@ -62,7 +62,7 @@ processResources
         include 'mcmod.info'
         expand 'version': project.version, 
                 'mcversion': project.minecraft.version,
-                'modid': archivesBaseName
+                'modid': "BinnieMods"
     }
         
     // copy everything else, thats not the mcmod.info
