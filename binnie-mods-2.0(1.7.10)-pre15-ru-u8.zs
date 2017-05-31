@@ -67,21 +67,6 @@ NEI.overrideName(<ExtraTrees:hammer:0>,"Плотницкий молоток");
 <ExtraTrees:hammer:0>.addTooltip(format.darkGreen("Carpentry Hammer"));
 
 
-# MACHINES KOMPONENTS GENETICS
-# DNA Sequence
-<Genetics:sequence:*>.addTooltip(format.lightPurple("Последовательность ДНК"));
-
-# Serum
-<Genetics:serum:*>.addTooltip(format.lightPurple("Сыворотка"));
-
-# Serum Array
-<Genetics:serumArray:*>.addTooltip(format.lightPurple("Массив с сывороткой"));
-
-# Soil Meter
-NEI.overrideName(<Botany:soilMeter:*>,"Почвомер");
-<Botany:soilMeter:*>.addTooltip(format.darkGreen("Soil Meter"));
-
-
 # EXTRA TREES MISC
 
 # Sawdust

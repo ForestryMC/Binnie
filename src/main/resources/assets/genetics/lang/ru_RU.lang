@@ -94,6 +94,21 @@ genetics.machine.acclimatiser.error.invalidAcclimatizingItems=Невозможн
 
 genetics.machine.advMachine.splicer=Сплайсер
 genetics.machine.advMachine.splicer.info=Сплайсер аналогичен инокулятору, но гораздо быстрее и требует огромную мощность.
+genetics.machine.splicer.error.noIndividual=No Individual to Splice
+genetics.machine.splicer.error.noSerum=Нет сыворотки
+genetics.machine.splicer.error.emptySerum.title=Нет сыворотки
+genetics.machine.splicer.error.emptySerum=Пустая сыворотка
+genetics.machine.splicer.error.invalidSerum.title=Некорректная сыворотка
+genetics.machine.splicer.error.invalidSerum.0=Сыворотка не содержит каких-либо генов
+genetics.machine.splicer.error.invalidSerum.1=Потерян тип сыворотки
+genetics.machine.splicer.error.defunctSerum.title=Недействующая сыворотка
+genetics.machine.splicer.error.defunctSerum=Образец уже имеет необходимые гены
+genetics.machine.splicer.splicableIndividual=Образец
+genetics.machine.splicer.serums=Сывороточные флаконы или массивы
+genetics.machine.splicer.splicingIn.0=Соединения в %d/%d генах
+genetics.machine.splicer.splicingIn.1=Соединения в %d/%d гене
+genetics.machine.splicer.splicingIn.2=Соединения в %d генах
+genetics.machine.splicer.splicingIn.3=Соединения в %d гене
 
 genetics.item.sequence=Сыворотка ДНК
 genetics.item.sequence.0=Очень слабо

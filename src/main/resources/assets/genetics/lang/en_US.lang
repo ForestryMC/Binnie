@@ -94,6 +94,21 @@ genetics.machine.acclimatiser.error.invalidAcclimatizingItems=Cannot Acclimatise
 
 genetics.machine.advMachine.splicer=Splicer
 genetics.machine.advMachine.splicer.info=The Splicer is an incredibly powerful machine that is used to insert genes into individuals. This process is fast, but requires monumental amounts of power.
+genetics.machine.splicer.error.noIndividual=No Individual to Splice
+genetics.machine.splicer.error.noSerum=No Serum
+genetics.machine.splicer.error.emptySerum.title=Empty Serum
+genetics.machine.splicer.error.emptySerum=Serum is empty
+genetics.machine.splicer.error.invalidSerum.title=Invalid Serum
+genetics.machine.splicer.error.invalidSerum.0=Serum does not hold any genes
+genetics.machine.splicer.error.invalidSerum.1=Mismatch of Serum Type and Target
+genetics.machine.splicer.error.defunctSerum.title=Defunct Serum
+genetics.machine.splicer.error.defunctSerum=Individual already possesses this allele
+genetics.machine.splicer.splicableIndividual=Splicable Individual
+genetics.machine.splicer.serums=Serum Vials & Arrays
+genetics.machine.splicer.splicingIn.0=Splicing in %d/%d genes
+genetics.machine.splicer.splicingIn.1=Splicing in %d/%d gene
+genetics.machine.splicer.splicingIn.2=Splicing in %d genes
+genetics.machine.splicer.splicingIn.3=Splicing in %d gene
 
 genetics.item.sequence=DNA Sequence
 genetics.item.sequence.0=Very Faint
