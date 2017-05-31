@@ -1,6 +1,3 @@
-##################################################
-## Machines
-
 genetics.machine.machine.isolator=基因分离器
 genetics.machine.machine.isolator.info=基因分离器将会从蜜蜂,树苗或者其它的独立个体中随机提取基因片段,并复制到一个空的序列瓶中.这需要乙醇作为溶剂,还需要酶来切断DNA.未序列化的血清可以在序列分析器中序列化,并在基因同化器中重新装填.
 
@@ -16,7 +13,6 @@ genetics.machine.machine.inoculator.info=基因注射器使用特定血清向可
 genetics.machine.labMachine.genepool=基因池
 genetics.machine.labMachine.genepool.info=基因液体池使用酶和乙醇来破坏活体组织并将其转化为DNA液体.所有遗传信息都会丢失,DNA来源也会被破坏.
 
-
 genetics.machine.labMachine.labMachine=实验台
 
 genetics.machine.labMachine.analyser=分析仪
@@ -30,11 +26,7 @@ genetics.machine.labMachine.acclimatiser=气候改造器
 genetics.machine.advMachine.splicer=Splicer
 genetics.machine.advMachine.splicer.info=Splicer是一台异常强大的机器,可将基因直接植入个体之中.虽然工作迅速,但它却是个电老虎.
 
-
-
-
 genetics.item.sequence=DNA序列
-
 genetics.item.sequence.0=极弱
 genetics.item.sequence.1=弱
 genetics.item.sequence.2=略弱

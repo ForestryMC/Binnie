@@ -38,7 +38,7 @@ public class WindowInoculator extends WindowMachine {
 
 	@Override
 	public void initialiseClient() {
-		setTitle(getTitle());
+		super.initialiseClient();
 		int x = 16;
 		int y = 32;
 		new ControlLiquidTank(this, x, y + 18 + 16).setTankID(0);

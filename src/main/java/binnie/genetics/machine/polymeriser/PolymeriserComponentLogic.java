@@ -4,23 +4,23 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
+import binnie.core.util.I18N;
+import binnie.genetics.Genetics;
 import binnie.genetics.genetics.Engineering;
 import net.minecraft.item.ItemStack;
 
 public class PolymeriserComponentLogic extends ComponentProcessSetCost implements IProcess {
 	private static float chargePerProcess = 0.4f;
 
-	private float dnaDrain;
-	private float bacteriaDrain;
+	private float dnaDrain = 0.0f;
+	private float bacteriaDrain = 0.0f;
 
 	public PolymeriserComponentLogic(Machine machine) {
-		super(machine, 96000, 2400);
-		dnaDrain = 0.0f;
-		bacteriaDrain = 0.0f;
+		super(machine, Polymeriser.RF_COST, Polymeriser.TIME_PERIOD);
 	}
 
 	private float getCatalyst() {
-		return (getUtil().getSlotCharge(1) > 0.0f) ? 0.2f : 1.0f;
+		return (getUtil().getSlotCharge(Polymeriser.SLOT_GOLD) > 0.0f) ? 0.2f : 1.0f;
 	}
 
 	@Override
@@ -66,16 +66,25 @@ public class PolymeriserComponentLogic extends ComponentProcessSetCost implement
 	@Override
 	public String getTooltip() {
 		int n = getNumberOfGenes();
-		return "Replicating " + n + " genes" + ((n > 1) ? "s" : "");
+		if (n > 1) {
+			return I18N.localise(Genetics.instance, "machine.polymeriser.replicatingWithGenes", n);
+		}
+		return I18N.localise(Genetics.instance, "machine.polymeriser.replicatingWithGene");
 	}
 
 	@Override
 	public ErrorState canWork() {
 		if (getUtil().isSlotEmpty(Polymeriser.SLOT_SERUM)) {
-			return new ErrorState.NoItem("No item to replicate", Polymeriser.SLOT_SERUM);
+			return new ErrorState.NoItem(
+				I18N.localise(Genetics.instance, "machine.polymeriser.error.noItem"),
+				Polymeriser.SLOT_SERUM
+			);
 		}
 		if (!getUtil().getStack(Polymeriser.SLOT_SERUM).isItemDamaged()) {
-			return new ErrorState.InvalidItem("Item filled", Polymeriser.SLOT_SERUM);
+			return new ErrorState.InvalidItem(
+				I18N.localise(Genetics.instance, "machine.polymeriser.error.itemFilled"),
+				Polymeriser.SLOT_SERUM
+			);
 		}
 		return super.canWork();
 	}
@@ -83,10 +92,16 @@ public class PolymeriserComponentLogic extends ComponentProcessSetCost implement
 	@Override
 	public ErrorState canProgress() {
 		if (getUtil().getFluid(Polymeriser.TANK_BACTERIA) == null) {
-			return new ErrorState.InsufficientLiquid("Insufficient Bacteria", Polymeriser.TANK_BACTERIA);
+			return new ErrorState.InsufficientLiquid(
+				I18N.localise(Genetics.instance, "machine.polymeriser.error.noLiquid"),
+				Polymeriser.TANK_BACTERIA
+			);
 		}
 		if (getUtil().getFluid(Polymeriser.TANK_DNA) == null) {
-			return new ErrorState.InsufficientLiquid("Insufficient DNA", Polymeriser.TANK_DNA);
+			return new ErrorState.InsufficientLiquid(
+				I18N.localise(Genetics.instance, "machine.polymeriser.error.noDNA"),
+				Polymeriser.TANK_DNA
+			);
 		}
 		return super.canProgress();
 	}

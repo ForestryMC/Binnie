@@ -32,7 +32,7 @@ public class WindowAcclimatiser extends WindowMachine {
 
 	@Override
 	public void initialiseClient() {
-		setTitle(getTitle());
+		super.initialiseClient();
 		int x = 59;
 		int y = 32;
 		new ControlSlotArray(this, x, y, 2, 2).create(Acclimatiser.SLOT_RESERVE);

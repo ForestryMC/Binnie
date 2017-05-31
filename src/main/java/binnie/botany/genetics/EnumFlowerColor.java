@@ -97,8 +97,8 @@ public enum EnumFlowerColor implements IFlowerColor {
 	EnumFlowerColor(String name, int color) {
 		this.name = name;
 		this.color = color;
-		allele = new AlleleColor(this, "botany.color" + name(), toString(), this.color);
-		int r = this.color >> 16 & 0xFF;
+		allele = new AlleleColor(this, "botany.color" + name(), color);
+		int r = color >> 16 & 0xFF;
 		r = (int) (0.45 * (r + 214));
 		int g = (int) (0.45 * (r + 174));
 		int b =  (int) (0.45 * (r + 131));

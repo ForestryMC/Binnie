@@ -9,18 +9,15 @@ import binnie.core.machines.inventory.ComponentInventoryTransfer;
 import binnie.core.machines.inventory.ComponentTankContainer;
 import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.inventory.SlotValidator;
-import binnie.core.machines.inventory.Validator;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsTexture;
-import binnie.genetics.item.GeneticLiquid;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.ModuleMachine;
 import binnie.genetics.machine.PackageGeneticBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.fluids.FluidStack;
 
 public class PolymeriserPackage extends PackageGeneticBase implements IMachineInformation {
 	public PolymeriserPackage() {
@@ -59,34 +56,14 @@ public class PolymeriserPackage extends PackageGeneticBase implements IMachineIn
 		});
 
 		ComponentTankContainer tank = new ComponentTankContainer(machine);
-		tank.addTank(Polymeriser.TANK_BACTERIA, "input", 1000);
-		tank.getTankSlot(Polymeriser.TANK_BACTERIA).setValidator(new Validator<FluidStack>() {
-			@Override
-			public boolean isValid(FluidStack itemStack) {
-				return GeneticLiquid.BacteriaPoly.get(1).isFluidEqual(itemStack);
-			}
+		tank.addTank(Polymeriser.TANK_BACTERIA, "input", Polymeriser.BACTERIA_TANK_CAPACITY);
+		tank.getTankSlot(Polymeriser.TANK_BACTERIA).setValidator(new PolymerisingBacteriaValidator());
 
-			@Override
-			public String getTooltip() {
-				return "Polymerising Bacteria";
-			}
-		});
-
-		tank.addTank(Polymeriser.TANK_DNA, "input", 1000);
-		tank.getTankSlot(Polymeriser.TANK_DNA).setValidator(new Validator<FluidStack>() {
-			@Override
-			public boolean isValid(FluidStack itemStack) {
-				return GeneticLiquid.RawDNA.get(1).isFluidEqual(itemStack);
-			}
-
-			@Override
-			public String getTooltip() {
-				return "Raw DNA";
-			}
-		});
+		tank.addTank(Polymeriser.TANK_DNA, "input", Polymeriser.DNA_TANK_CAPACITY);
+		tank.getTankSlot(Polymeriser.TANK_DNA).setValidator(new DnaValidator());
 
 		new ComponentChargedSlots(machine).addCharge(Polymeriser.SLOT_GOLD);
-		new ComponentPowerReceptor(machine, 8000);
+		new ComponentPowerReceptor(machine, Polymeriser.POWER_CAPACITY);
 		new PolymeriserComponentLogic(machine);
 		new PolymeriserComponentFX(machine);
 	}

@@ -20,8 +20,6 @@ import binnie.genetics.machine.PackageGeneticBase;
 import net.minecraft.tileentity.TileEntity;
 
 public class SequencerPackage extends PackageGeneticBase implements IMachineInformation {
-	private SequencerComponentLogic logic;
-
 	public SequencerPackage() {
 		super("sequencer", GeneticsTexture.Sequencer, 0xb7ff32, true);
 		Sequencer.fxSeqA = Binnie.Resource.getBlockIcon(Genetics.instance, "fx/sequencer.a");
@@ -57,10 +55,10 @@ public class SequencerPackage extends PackageGeneticBase implements IMachineInfo
 		transfer.addRestock(Sequencer.SLOT_RESERVE, Sequencer.SLOT_TARGET_INDEX, 1);
 
 		new ComponentChargedSlots(machine).addCharge(Sequencer.SLOT_DYE_INDEX);
-		new ComponentPowerReceptor(machine, 10000);
+		new ComponentPowerReceptor(machine, Sequencer.POWER_CAPACITY);
 		new SequencerComponentFX(machine);
 
-		logic = new SequencerComponentLogic(machine);
+		SequencerComponentLogic logic = new SequencerComponentLogic(machine);
 		transfer.setTransferListener(logic);
 	}
 

@@ -15,6 +15,7 @@ import binnie.core.craftgui.minecraft.control.ControlSlotArray;
 import binnie.core.craftgui.minecraft.control.ControlSlotCharge;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
+import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.polymeriser.Polymeriser;
@@ -23,11 +24,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 
 public class WindowPolymeriser extends WindowMachine {
-	protected static Texture ProgressBase = new StandardTexture(76, 170, 160, 79, GeneticsTexture.GUIProcess.getTexture());
-	protected static Texture Progress = new StandardTexture(76, 91, 160, 79, GeneticsTexture.GUIProcess.getTexture());
-
-	static {
-	}
+	protected static Texture progressBase = new StandardTexture(76, 170, 160, 79, GeneticsTexture.GUIProcess.getTexture());
+	protected static Texture progress = new StandardTexture(76, 91, 160, 79, GeneticsTexture.GUIProcess.getTexture());
 
 	public WindowPolymeriser(EntityPlayer player, IInventory inventory, Side side) {
 		super(278, 212, player, inventory, side);
@@ -45,23 +43,23 @@ public class WindowPolymeriser extends WindowMachine {
 		new ControlSlotArray(this, x, y, 1, 4).create(Polymeriser.SLOT_SERUM_RESERVE);
 		new ControlIconDisplay(this, x + 18, y + 1, GUIIcon.ArrowRight.getIcon());
 		x += 34;
-		new ControlMachineProgress(this, x + 18, y - 6, WindowPolymeriser.ProgressBase, WindowPolymeriser.Progress, Position.LEFT);
+		new ControlMachineProgress(this, x + 18, y - 6, progressBase, progress, Position.LEFT);
 		new ControlSlot(this, x, y).assign(0);
 		new ControlLiquidTank(this, x, y + 18 + 16, true).setTankID(0);
 		new ControlLiquidTank(this, x, y + 18 + 16 + 18 + 8, true).setTankID(1);
 		new ControlEnergyBar(this, x + 120, 96, 64, 16, Position.LEFT);
 		x += 40;
 		new ControlSlot(this, x + 30, y + 18 + 8).assign(1);
-		new ControlSlotCharge(this, x + 30 + 20, y + 18 + 8, 1).setColor(16766976);
+		new ControlSlotCharge(this, x + 30 + 20, y + 18 + 8, 1).setColor(0xffd800);
 		x += 138;
 		new ControlSlotArray(this, x, y + 9, 2, 2).create(Polymeriser.SLOT_SERUM_FINISHED);
-		ControlErrorState errorState = new ControlErrorState(this, 244.0f, 97.0f);
+		new ControlErrorState(this, 244.0f, 97.0f);
 		new ControlPlayerInventory(this);
 	}
 
 	@Override
 	public String getTitle() {
-		return "Polymeriser";
+		return I18N.localise(Genetics.instance, "machine.machine.polymeriser");
 	}
 
 	@Override
@@ -71,6 +69,6 @@ public class WindowPolymeriser extends WindowMachine {
 
 	@Override
 	protected String getName() {
-		return "Polymeriser";
+		return getTitle();
 	}
 }
