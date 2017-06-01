@@ -25,8 +25,8 @@ archivesBaseName = "binnie-mods-1.11.2"
 
 minecraft {
     version = mcversion + "-" + forgeversion
-	mappings = mcp_mappings
-	runDir = "run"
+    mappings = mcp_mappings
+    runDir = "run"
 }
 
 repositories {
@@ -46,13 +46,12 @@ repositories {
 
 dependencies {
     deobfCompile "net.sengir.forestry:forestry_${mcversion}:${forestry_version}"
-	deobfCompile "mezz.jei:jei_${mcversion}:${jei_version}:api"
-	runtime "mezz.jei:jei_${mcversion}:${jei_version}"
+    deobfCompile "mezz.jei:jei_${mcversion}:${jei_version}:api"
+    runtime "mezz.jei:jei_${mcversion}:${jei_version}"
     deobfCompile name: 'jeibees', version: jeibees_version, ext: 'jar', classifier: "dev"
 }
 
-processResources
-{
+processResources {
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
@@ -60,11 +59,11 @@ processResources
     // replace stuff in mcmod.info, nothing else
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-        expand 'version': project.version, 
+        expand 'version': project.version,
                 'mcversion': project.minecraft.version,
-                'modid': "BinnieMods"
+                'modid': "binniemods"
     }
-        
+
     // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
@@ -82,7 +81,7 @@ uploadArchives {
     repositories {
         if (project.hasProperty('mavenDir')) {
             mavenDeployer {
-                repository(url: "file://"+mavenDir)
+                repository(url: "file://" + mavenDir)
             }
         } else {
             println 'Archives upload disabled, mavenDir in gradle.properties is missing.'
