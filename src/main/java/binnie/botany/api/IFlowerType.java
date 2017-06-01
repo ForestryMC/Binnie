@@ -7,7 +7,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public interface IFlowerType<I extends IFlowerType<I>> extends Comparable<I> {
-
 	@SideOnly(Side.CLIENT)
 	void registerModels(Item item, IModelManager manager, EnumFlowerStage type);
 

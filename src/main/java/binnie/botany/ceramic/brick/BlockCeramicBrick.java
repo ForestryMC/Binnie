@@ -58,8 +58,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicBrickPair>, IColoredBlock, ISpriteRegister, IStateMapperRegister, IItemModelRegister {
-
-	public static final PropertyEnum<CeramicBrickType> TYPE = PropertyEnum.create("type", CeramicBrickType.class);
+	private static final PropertyEnum<CeramicBrickType> TYPE = PropertyEnum.create("type", CeramicBrickType.class);
 
 	public BlockCeramicBrick() {
 		super(Material.ROCK);
@@ -243,7 +242,6 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 	}
 
 	private class CeramicBrickMeshDefinition implements ItemMeshDefinition {
-
 		@Override
 		public ModelResourceLocation getModelLocation(ItemStack stack) {
 			return new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":ceramicBrick", "inventory");

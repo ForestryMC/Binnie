@@ -160,21 +160,20 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 		}
 	}
 
-
-	//	@Override
-	//	public boolean growFlower(final World world, final IIndividual individual, final BlockPos pos) {
-	//		switch (this) {
-	//		case WATER: {
-	//			return world.isAirBlock(x, y, z) && world.getBlock(x, y - 1, z) == Blocks.water && world.setBlock(x, y, z, Blocks.waterlily, 0, 2);
-	//		}
-	//		case SUGAR: {
-	//			return world.getBlock(x, y - 1, z) == Blocks.reeds && world.isAirBlock(x, y, z) && world.setBlock(x, y, z, Blocks.reeds, 0, 0);
-	//		}
-	//		default: {
-	//			return false;
-	//		}
-	//		}
-	//	}
+	/*@Override
+	public boolean growFlower(final World world, final IIndividual individual, final BlockPos pos) {
+		switch (this) {
+		case WATER: {
+			return world.isAirBlock(x, y, z) && world.getBlock(x, y - 1, z) == Blocks.water && world.setBlock(x, y, z, Blocks.waterlily, 0, 2);
+		}
+		case SUGAR: {
+			return world.getBlock(x, y - 1, z) == Blocks.reeds && world.isAirBlock(x, y, z) && world.setBlock(x, y, z, Blocks.reeds, 0, 0);
+		}
+		default: {
+			return false;
+		}
+		}
+	}*/
 
 	@Override
 	public String getName() {
@@ -191,10 +190,10 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 		return this.getUID();
 	}
 
-	//	@Override
-	//	public Set<IFlower> getFlowers() {
-	//		return new HashSet<IFlower>();
-	//	}
+	/*@Override
+	public Set<IFlower> getFlowers() {
+		return new HashSet<IFlower>();
+	}*/
 
 	@Override
 	public Class<? extends IAllele> getAlleleClass() {

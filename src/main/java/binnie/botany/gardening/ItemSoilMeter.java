@@ -24,7 +24,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemSoilMeter extends Item implements IItemModelRegister {
-
 	public ItemSoilMeter() {
 		this.setCreativeTab(CreativeTabBotany.instance);
 		this.setUnlocalizedName("soil_meter");
@@ -35,7 +34,7 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 	public static String getPH(ItemStack stack, boolean withColor, boolean byNeutralNone) {
 		EnumAcidity ph = EnumAcidity.values()[stack.getItemDamage() / 3];
 		if (byNeutralNone) {
-			if (ph == EnumAcidity.Neutral) {
+			if (ph == EnumAcidity.NEUTRAL) {
 				return "";
 			}
 		}
@@ -45,7 +44,7 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 	public static String getMoisture(ItemStack stack, boolean withColor, boolean byNormalNone) {
 		EnumMoisture moisure = EnumMoisture.values()[stack.getItemDamage() % 3];
 		if (byNormalNone) {
-			if (moisure == EnumMoisture.Normal) {
+			if (moisure == EnumMoisture.NORMAL) {
 				return "";
 			}
 		}

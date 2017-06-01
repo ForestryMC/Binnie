@@ -47,7 +47,6 @@ import java.util.List;
 import java.util.Random;
 
 public class BlockFlower extends BlockContainer implements IColoredBlock, IStateMapperRegister {
-
 	public static final AxisAlignedBB FLOWER_BLOCK_AABB = new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 0.6D, 0.7D);
 	/* PROPERTYS */
 	public static final PropertyFlower FLOWER = new PropertyFlower("flower", IFlowerType.class);
@@ -185,7 +184,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 				}
 			}
 		}
-		return 16777215;
+		return 0xffffff;
 	}
 
 	@Override

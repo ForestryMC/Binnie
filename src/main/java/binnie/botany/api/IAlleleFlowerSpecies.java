@@ -9,7 +9,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public interface IAlleleFlowerSpecies extends IAlleleSpecies, IAlleleProperty<IAlleleFlowerSpecies> {
-
 	IFlowerType getType();
 
 	EnumAcidity getPH();

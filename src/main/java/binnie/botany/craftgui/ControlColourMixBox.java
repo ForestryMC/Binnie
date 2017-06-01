@@ -20,6 +20,6 @@ public class ControlColourMixBox extends ControlListBox<IColourMix> {
 
 	enum Type {
 		Resultant,
-		Further;
+		Further,
 	}
 }

@@ -14,7 +14,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class FlowerMutation extends Mutation implements IFlowerMutation, IFlowerMutationBuilder {
-
 	public FlowerMutation(final IAlleleFlowerSpecies allele0, final IAlleleFlowerSpecies allele1, final IAllele[] template, final int chance) {
 		super(allele0, allele1, template, chance);
 	}

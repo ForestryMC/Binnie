@@ -76,10 +76,10 @@ public class TileEntityMachine extends TileEntityMachineBase implements INetwork
 		}
 	}
 	//TODO NETWORK UPDATE
-	//	@Override
-	//	public final Packet getDescriptionPacket() {
-	//		return (this.getMachine() != null) ? this.getMachine().getDescriptionPacket() : null;
-	//	}
+	/*@Override
+	public final Packet getDescriptionPacket() {
+		return (this.getMachine() != null) ? this.getMachine().getDescriptionPacket() : null;
+	}*/
 
 	@Override
 	public void invalidate() {

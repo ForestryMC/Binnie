@@ -21,7 +21,7 @@ public class ModuleGenetics implements IInitializable {
 
 	@Override
 	public void preInit() {
-	    /* INIT API*/
+		/* INIT API*/
 		binnie.botany.api.FlowerManager.flowerFactory = new FlowerFactory();
 		AlleleManager.alleleRegistry.registerSpeciesRoot(BotanyCore.getFlowerRoot());
 		AlleleManager.alleleRegistry.registerAllele(ModuleGenetics.alleleEffectNone);

@@ -103,10 +103,10 @@ public class BinnieModProxy implements IBinnieModProxy {
 	}
 
 
-	//	@Override
-	//	public IIcon getIcon(final IIconRegister register, final String string) {
-	//		return BinnieCore.proxy.getIcon(register, this.mod.getModID(), string);
-	//	}
+	/*@Override
+	public IIcon getIcon(final IIconRegister register, final String string) {
+		return BinnieCore.proxy.getIcon(register, this.mod.getModID(), string);
+	}*/
 
 	@Override
 	public void preInit() {

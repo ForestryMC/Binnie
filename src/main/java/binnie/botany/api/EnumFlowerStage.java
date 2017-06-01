@@ -19,7 +19,9 @@ public enum EnumFlowerStage implements ISpeciesType {
 	}
 
 	public static EnumFlowerStage getStage(int age) {
-		return age == 0 ? EnumFlowerStage.SEED : EnumFlowerStage.FLOWER;
+		return age == 0
+			? EnumFlowerStage.SEED
+			: EnumFlowerStage.FLOWER;
 	}
 
 	public String getName() {

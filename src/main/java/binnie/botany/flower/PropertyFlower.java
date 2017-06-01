@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class PropertyFlower<I extends IFlowerType<I>> extends PropertyHelper<I> {
-
 	public PropertyFlower(String name, Class<I> flowerTypeClass) {
 		super(name, flowerTypeClass);
 	}

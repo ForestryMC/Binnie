@@ -11,7 +11,6 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IClassification;
 
 public class FlowerFactory implements IFlowerFactory {
-
 	@Override
 	public IAlleleFlowerSpeciesBuilder createSpecies(String uid, String unlocalizedName, String authority, String unlocalizedDescription, boolean isDominant, IClassification branch, String binomial, IFlowerType flowerType) {
 		FlowerSpriteManager.initSprites(flowerType);

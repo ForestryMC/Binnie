@@ -71,12 +71,12 @@ public class Gardening {
 				}
 			}
 		}
-		return (bias <= -1.0f) ? EnumMoisture.Dry : ((bias >= 1.0f) ? EnumMoisture.Damp : EnumMoisture.Normal);
+		return (bias <= -1.0f) ? EnumMoisture.DRY : ((bias >= 1.0f) ? EnumMoisture.DAMP : EnumMoisture.NORMAL);
 	}
 
 	public static EnumAcidity getNaturalPH(World world, BlockPos pos) {
 		final float bias = getBiomePH(world, pos);
-		return (bias <= -1.0f) ? EnumAcidity.Acid : ((bias >= 1.0f) ? EnumAcidity.Alkaline : EnumAcidity.Neutral);
+		return (bias <= -1.0f) ? EnumAcidity.ACID : ((bias >= 1.0f) ? EnumAcidity.ALKALINE : EnumAcidity.NEUTRAL);
 	}
 
 	public static float getBiomeMoisture(World world, BlockPos pos) {

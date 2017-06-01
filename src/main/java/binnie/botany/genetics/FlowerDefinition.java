@@ -79,7 +79,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	Orchid("Orchid", "vanda", "coerulea", EnumFlowerType.Orchid, EnumFlowerColor.DeepSkyBlue) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
-			flowerSpecies.setPH(EnumAcidity.Acid);
+			flowerSpecies.setPH(EnumAcidity.ACID);
 		}
 
 		@Override
@@ -97,7 +97,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	Allium("Allium", "allium", "giganteum", EnumFlowerType.Allium, EnumFlowerColor.MediumPurple) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
-			flowerSpecies.setPH(EnumAcidity.Alkaline);
+			flowerSpecies.setPH(EnumAcidity.ALKALINE);
 		}
 
 		@Override
@@ -115,7 +115,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	Bluet("Bluet", "houstonia", "caerulea", EnumFlowerType.Bluet, EnumFlowerColor.Lavender, EnumFlowerColor.Khaki) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
-			flowerSpecies.setMoisture(EnumMoisture.Damp);
+			flowerSpecies.setMoisture(EnumMoisture.DAMP);
 		}
 
 		@Override
@@ -191,7 +191,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	Pansy("Pansy", "viola", "tricolor", EnumFlowerType.Pansy, EnumFlowerColor.Pink, EnumFlowerColor.Purple) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
-			flowerSpecies.setPH(EnumAcidity.Acid);
+			flowerSpecies.setPH(EnumAcidity.ACID);
 			flowerSpecies.setTemperature(EnumTemperature.WARM);
 		}
 
@@ -210,7 +210,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	Iris("Iris", "iris", "germanica", EnumFlowerType.Iris, EnumFlowerColor.LightGray, EnumFlowerColor.Purple) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
-			flowerSpecies.setPH(EnumAcidity.Acid);
+			flowerSpecies.setPH(EnumAcidity.ACID);
 			flowerSpecies.setTemperature(EnumTemperature.WARM);
 		}
 
@@ -249,7 +249,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	Viola("Viola", "viola", "odorata", EnumFlowerType.Viola, EnumFlowerColor.MediumPurple, EnumFlowerColor.SlateBlue) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
-			flowerSpecies.setPH(EnumAcidity.Acid);
+			flowerSpecies.setPH(EnumAcidity.ACID);
 		}
 
 		@Override
@@ -302,7 +302,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	Peony("Peony", "paeonia", "suffruticosa", EnumFlowerType.Peony, EnumFlowerColor.Thistle) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
-			flowerSpecies.setPH(EnumAcidity.Alkaline);
+			flowerSpecies.setPH(EnumAcidity.ALKALINE);
 		}
 
 		@Override
@@ -322,7 +322,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	Rose("Rose", "rosa", "rubiginosa", EnumFlowerType.Rose, EnumFlowerColor.Red) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
-			flowerSpecies.setPH(EnumAcidity.Acid);
+			flowerSpecies.setPH(EnumAcidity.ACID);
 		}
 
 		@Override
@@ -341,7 +341,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	Lilac("Lilac", "syringa", "vulgaris", EnumFlowerType.Lilac, EnumFlowerColor.Plum) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
-			flowerSpecies.setPH(EnumAcidity.Alkaline);
+			flowerSpecies.setPH(EnumAcidity.ALKALINE);
 		}
 
 		@Override
@@ -359,7 +359,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	Hydrangea("Hydrangea", "hydrangea", "macrophylla", EnumFlowerType.Hydrangea, EnumFlowerColor.DeepSkyBlue) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
-			flowerSpecies.setMoisture(EnumMoisture.Damp);
+			flowerSpecies.setMoisture(EnumMoisture.DAMP);
 		}
 
 		@Override
@@ -480,7 +480,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	Azalea("Azalea", "rhododendrons", "aurigeranum", EnumFlowerType.Azalea, EnumFlowerColor.HotPink) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
-			flowerSpecies.setPH(EnumAcidity.Acid);
+			flowerSpecies.setPH(EnumAcidity.ACID);
 		}
 
 		@Override
@@ -495,7 +495,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	Primrose("Primrose", "primula", "vulgaris", EnumFlowerType.Primrose, EnumFlowerColor.Red, EnumFlowerColor.Gold) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
-			flowerSpecies.setPH(EnumAcidity.Acid);
+			flowerSpecies.setPH(EnumAcidity.ACID);
 		}
 
 		@Override
@@ -529,7 +529,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	Carnation("Carnation", "dianthus", "caryophyllus", EnumFlowerType.Carnation, EnumFlowerColor.Crimson, EnumFlowerColor.White) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
-			flowerSpecies.setPH(EnumAcidity.Alkaline);
+			flowerSpecies.setPH(EnumAcidity.ALKALINE);
 		}
 
 		@Override
@@ -567,7 +567,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	Yarrow("Yarrow", "achillea", "millefolium", EnumFlowerType.Yarrow, EnumFlowerColor.Yellow) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
-			flowerSpecies.setPH(EnumAcidity.Acid);
+			flowerSpecies.setPH(EnumAcidity.ACID);
 		}
 
 		@Override
@@ -646,7 +646,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	Dianthus("Dianthus", "dianthus", "barbatus", EnumFlowerType.Dianthus, EnumFlowerColor.Crimson, EnumFlowerColor.HotPink) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
-			flowerSpecies.setPH(EnumAcidity.Alkaline);
+			flowerSpecies.setPH(EnumAcidity.ALKALINE);
 		}
 
 		@Override
@@ -667,7 +667,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	Forget("Forget-me-nots", "myosotis", "arvensis", EnumFlowerType.Forget, EnumFlowerColor.LightSteelBlue) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
-			flowerSpecies.setPH(EnumAcidity.Acid);
+			flowerSpecies.setPH(EnumAcidity.ACID);
 		}
 
 		@Override
@@ -721,7 +721,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	Edelweiss("Edelweiss", "leontopodium", "alpinum", EnumFlowerType.Edelweiss, EnumFlowerColor.White, EnumFlowerColor.Khaki) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
-			flowerSpecies.setPH(EnumAcidity.Alkaline);
+			flowerSpecies.setPH(EnumAcidity.ALKALINE);
 		}
 
 		@Override
@@ -778,7 +778,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	Gaillardia("Gaillardia", "gaillardia", "aristata", EnumFlowerType.Gaillardia, EnumFlowerColor.DarkOrange, EnumFlowerColor.Yellow) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
-			flowerSpecies.setMoisture(EnumMoisture.Damp);
+			flowerSpecies.setMoisture(EnumMoisture.DAMP);
 		}
 
 		@Override
@@ -800,7 +800,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	Auricula("Auricula", "primula", "auricula", EnumFlowerType.Auricula, EnumFlowerColor.Red, EnumFlowerColor.Yellow) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
-			flowerSpecies.setPH(EnumAcidity.Acid);
+			flowerSpecies.setPH(EnumAcidity.ACID);
 		}
 
 		@Override
@@ -820,8 +820,8 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	Camellia("Camellia", "camellia", "japonica", EnumFlowerType.Camellia, EnumFlowerColor.Crimson) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
-			flowerSpecies.setPH(EnumAcidity.Acid);
-			flowerSpecies.setMoisture(EnumMoisture.Damp);
+			flowerSpecies.setPH(EnumAcidity.ACID);
+			flowerSpecies.setMoisture(EnumMoisture.DAMP);
 			flowerSpecies.setTemperature(EnumTemperature.WARM);
 		}
 
@@ -879,7 +879,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	Penstemon("Penstemon", "penstemon", "digitalis", EnumFlowerType.Penstemon, EnumFlowerColor.MediumOrchid, EnumFlowerColor.Thistle) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
-			flowerSpecies.setMoisture(EnumMoisture.Dry);
+			flowerSpecies.setMoisture(EnumMoisture.DRY);
 			flowerSpecies.setTemperature(EnumTemperature.WARM);
 		}
 
@@ -901,7 +901,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	Delphinium("Delphinium", "delphinium", "staphisagria", EnumFlowerType.Delphinium, EnumFlowerColor.DarkSlateBlue) {
 		@Override
 		protected void setSpeciesProperties(IAlleleFlowerSpeciesBuilder flowerSpecies) {
-			flowerSpecies.setMoisture(EnumMoisture.Damp);
+			flowerSpecies.setMoisture(EnumMoisture.DAMP);
 		}
 
 		@Override

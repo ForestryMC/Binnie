@@ -28,10 +28,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public class BlockETDoor extends BlockDoor implements IBlockMetadata, ITileEntityProvider {
-	//	private IIcon getFlippedIcon(final boolean upper, final boolean flip, final int tileMeta) {
-	//		final DoorType type = getDoorType(tileMeta);
-	//		return upper ? (flip ? type.iconDoorUpperFlip : type.iconDoorUpper) : (flip ? type.iconDoorLowerFlip : type.iconDoorLower);
-	//	}
+	/*private IIcon getFlippedIcon(final boolean upper, final boolean flip, final int tileMeta) {
+		final DoorType type = getDoorType(tileMeta);
+		return upper ? (flip ? type.iconDoorUpperFlip : type.iconDoorUpper) : (flip ? type.iconDoorLowerFlip : type.iconDoorLower);
+	}*/
 
 	protected BlockETDoor() {
 		super(Material.WOOD);
@@ -49,143 +49,143 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata, ITileEntit
 		return DoorType.Standard;
 	}
 
-	//	@Override
-	//	public IIcon getIcon(final int side, final int meta) {
-	//		return DoorType.Standard.iconDoorLower;
-	//	}
-	//
-	//	@Override
-	//	@SideOnly(Side.CLIENT)
-	//	public IIcon getIcon(final IBlockAccess par1IBlockAccess, final int par2, final int par3, final int par4, final int par5) {
-	//		if (par5 != 1 && par5 != 0) {
-	//			final int i1 = this.getFullMetadata(par1IBlockAccess, par2, par3, par4);
-	//			final int j1 = i1 & 0x3;
-	//			final boolean flag = (i1 & 0x4) != 0x0;
-	//			boolean flag2 = false;
-	//			final boolean flag3 = (i1 & 0x8) != 0x0;
-	//			if (flag) {
-	//				if (j1 == 0 && par5 == 2) {
-	//					flag2 = !flag2;
-	//				}
-	//				else if (j1 == 1 && par5 == 5) {
-	//					flag2 = !flag2;
-	//				}
-	//				else if (j1 == 2 && par5 == 3) {
-	//					flag2 = !flag2;
-	//				}
-	//				else if (j1 == 3 && par5 == 4) {
-	//					flag2 = !flag2;
-	//				}
-	//			}
-	//			else {
-	//				if (j1 == 0 && par5 == 5) {
-	//					flag2 = !flag2;
-	//				}
-	//				else if (j1 == 1 && par5 == 3) {
-	//					flag2 = !flag2;
-	//				}
-	//				else if (j1 == 2 && par5 == 4) {
-	//					flag2 = !flag2;
-	//				}
-	//				else if (j1 == 3 && par5 == 2) {
-	//					flag2 = !flag2;
-	//				}
-	//				if ((i1 & 0x10) != 0x0) {
-	//					flag2 = !flag2;
-	//				}
-	//			}
-	//			int tileMeta = 0;
-	//			if (flag3) {
-	//				tileMeta = TileEntityMetadata.getTileMetadata(par1IBlockAccess, par2, par3 - 1, par4);
-	//			}
-	//			else {
-	//				tileMeta = TileEntityMetadata.getTileMetadata(par1IBlockAccess, par2, par3, par4);
-	//			}
-	//			return this.getFlippedIcon(flag3, flag2, tileMeta);
-	//		}
-	//		return DoorType.Standard.iconDoorLower;
-	//	}
+	/*@Override
+	public IIcon getIcon(final int side, final int meta) {
+		return DoorType.Standard.iconDoorLower;
+	}
 
-	//	@Override
-	//	@SideOnly(Side.CLIENT)
-	//	public void registerBlockIcons(final IIconRegister register) {
-	//		for (final DoorType type : DoorType.values()) {
-	//			type.iconDoorLower = ExtraTrees.proxy.getIcon(register, "door." + type.id + ".lower");
-	//			type.iconDoorUpper = ExtraTrees.proxy.getIcon(register, "door." + type.id + ".upper");
-	//			type.iconDoorLowerFlip = new IconFlipped(type.iconDoorLower, true, false);
-	//			type.iconDoorUpperFlip = new IconFlipped(type.iconDoorUpper, true, false);
-	//		}
-	//	}
-	//
-	//	@Override
-	//	public int getRenderType() {
-	//		return ExtraTrees.doorRenderId;
-	//	}
-	//
-	//	@Override
-	//	@SideOnly(Side.CLIENT)
-	//	public int colorMultiplier(final IBlockAccess par1IBlockAccess, final int par2, final int par3, final int par4) {
-	//		final int par5 = 2;
-	//		final int i1 = this.getFullMetadata(par1IBlockAccess, par2, par3, par4);
-	//		final int j1 = i1 & 0x3;
-	//		final boolean flag = (i1 & 0x4) != 0x0;
-	//		boolean flag2 = false;
-	//		final boolean flag3 = (i1 & 0x8) != 0x0;
-	//		if (flag) {
-	//			if (j1 == 0 && par5 == 2) {
-	//				flag2 = !flag2;
-	//			}
-	//			else if (j1 == 1 && par5 == 5) {
-	//				flag2 = !flag2;
-	//			}
-	//			else if (j1 == 2 && par5 == 3) {
-	//				flag2 = !flag2;
-	//			}
-	//			else if (j1 == 3 && par5 == 4) {
-	//				flag2 = !flag2;
-	//			}
-	//		}
-	//		else {
-	//			if (j1 == 0 && par5 == 5) {
-	//				flag2 = !flag2;
-	//			}
-	//			else if (j1 == 1 && par5 == 3) {
-	//				flag2 = !flag2;
-	//			}
-	//			else if (j1 == 2 && par5 == 4) {
-	//				flag2 = !flag2;
-	//			}
-	//			else if (j1 == 3 && par5 == 2) {
-	//				flag2 = !flag2;
-	//			}
-	//			if ((i1 & 0x10) != 0x0) {
-	//				flag2 = !flag2;
-	//			}
-	//		}
-	//		if (flag3) {
-	//			final int meta = TileEntityMetadata.getTileMetadata(par1IBlockAccess, par2, par3 - 1, par4);
-	//			return WoodManager.getPlankType(meta & 0xFF).getColour();
-	//		}
-	//		final int meta = TileEntityMetadata.getTileMetadata(par1IBlockAccess, par2, par3, par4);
-	//		return WoodManager.getPlankType(meta & 0xFF).getColour();
-	//	}
+	@Override
+	@SideOnly(Side.CLIENT)
+	public IIcon getIcon(final IBlockAccess par1IBlockAccess, final int par2, final int par3, final int par4, final int par5) {
+		if (par5 != 1 && par5 != 0) {
+			final int i1 = this.getFullMetadata(par1IBlockAccess, par2, par3, par4);
+			final int j1 = i1 & 0x3;
+			final boolean flag = (i1 & 0x4) != 0x0;
+			boolean flag2 = false;
+			final boolean flag3 = (i1 & 0x8) != 0x0;
+			if (flag) {
+				if (j1 == 0 && par5 == 2) {
+					flag2 = !flag2;
+				}
+				else if (j1 == 1 && par5 == 5) {
+					flag2 = !flag2;
+				}
+				else if (j1 == 2 && par5 == 3) {
+					flag2 = !flag2;
+				}
+				else if (j1 == 3 && par5 == 4) {
+					flag2 = !flag2;
+				}
+			}
+			else {
+				if (j1 == 0 && par5 == 5) {
+					flag2 = !flag2;
+				}
+				else if (j1 == 1 && par5 == 3) {
+					flag2 = !flag2;
+				}
+				else if (j1 == 2 && par5 == 4) {
+					flag2 = !flag2;
+				}
+				else if (j1 == 3 && par5 == 2) {
+					flag2 = !flag2;
+				}
+				if ((i1 & 0x10) != 0x0) {
+					flag2 = !flag2;
+				}
+			}
+			int tileMeta = 0;
+			if (flag3) {
+				tileMeta = TileEntityMetadata.getTileMetadata(par1IBlockAccess, par2, par3 - 1, par4);
+			}
+			else {
+				tileMeta = TileEntityMetadata.getTileMetadata(par1IBlockAccess, par2, par3, par4);
+			}
+			return this.getFlippedIcon(flag3, flag2, tileMeta);
+		}
+		return DoorType.Standard.iconDoorLower;
+	}*/
 
-	//	public int getFullMetadata(final IBlockAccess par1IBlockAccess, final int par2, final int par3, final int par4) {
-	//		final int l = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
-	//		final boolean flag = (l & 0x8) != 0x0;
-	//		int i1;
-	//		int j1;
-	//		if (flag) {
-	//			i1 = par1IBlockAccess.getBlockMetadata(par2, par3 - 1, par4);
-	//			j1 = l;
-	//		}
-	//		else {
-	//			i1 = l;
-	//			j1 = par1IBlockAccess.getBlockMetadata(par2, par3 + 1, par4);
-	//		}
-	//		final boolean flag2 = (j1 & 0x1) != 0x0;
-	//		return (i1 & 0x7) | (flag ? 8 : 0) | (flag2 ? 16 : 0);
-	//	}
+	/*@Override
+	@SideOnly(Side.CLIENT)
+	public void registerBlockIcons(final IIconRegister register) {
+		for (final DoorType type : DoorType.values()) {
+			type.iconDoorLower = ExtraTrees.proxy.getIcon(register, "door." + type.id + ".lower");
+			type.iconDoorUpper = ExtraTrees.proxy.getIcon(register, "door." + type.id + ".upper");
+			type.iconDoorLowerFlip = new IconFlipped(type.iconDoorLower, true, false);
+			type.iconDoorUpperFlip = new IconFlipped(type.iconDoorUpper, true, false);
+		}
+	}
+
+	@Override
+	public int getRenderType() {
+		return ExtraTrees.doorRenderId;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int colorMultiplier(final IBlockAccess par1IBlockAccess, final int par2, final int par3, final int par4) {
+		final int par5 = 2;
+		final int i1 = this.getFullMetadata(par1IBlockAccess, par2, par3, par4);
+		final int j1 = i1 & 0x3;
+		final boolean flag = (i1 & 0x4) != 0x0;
+		boolean flag2 = false;
+		final boolean flag3 = (i1 & 0x8) != 0x0;
+		if (flag) {
+			if (j1 == 0 && par5 == 2) {
+				flag2 = !flag2;
+			}
+			else if (j1 == 1 && par5 == 5) {
+				flag2 = !flag2;
+			}
+			else if (j1 == 2 && par5 == 3) {
+				flag2 = !flag2;
+			}
+			else if (j1 == 3 && par5 == 4) {
+				flag2 = !flag2;
+			}
+		}
+		else {
+			if (j1 == 0 && par5 == 5) {
+				flag2 = !flag2;
+			}
+			else if (j1 == 1 && par5 == 3) {
+				flag2 = !flag2;
+			}
+			else if (j1 == 2 && par5 == 4) {
+				flag2 = !flag2;
+			}
+			else if (j1 == 3 && par5 == 2) {
+				flag2 = !flag2;
+			}
+			if ((i1 & 0x10) != 0x0) {
+				flag2 = !flag2;
+			}
+		}
+		if (flag3) {
+			final int meta = TileEntityMetadata.getTileMetadata(par1IBlockAccess, par2, par3 - 1, par4);
+			return WoodManager.getPlankType(meta & 0xFF).getColour();
+		}
+		final int meta = TileEntityMetadata.getTileMetadata(par1IBlockAccess, par2, par3, par4);
+		return WoodManager.getPlankType(meta & 0xFF).getColour();
+	}*/
+
+	/*public int getFullMetadata(final IBlockAccess par1IBlockAccess, final int par2, final int par3, final int par4) {
+		final int l = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
+		final boolean flag = (l & 0x8) != 0x0;
+		int i1;
+		int j1;
+		if (flag) {
+			i1 = par1IBlockAccess.getBlockMetadata(par2, par3 - 1, par4);
+			j1 = l;
+		}
+		else {
+			i1 = l;
+			j1 = par1IBlockAccess.getBlockMetadata(par2, par3 + 1, par4);
+		}
+		final boolean flag2 = (j1 & 0x1) != 0x0;
+		return (i1 & 0x7) | (flag ? 8 : 0) | (flag2 ? 16 : 0);
+	}*/
 
 	@SideOnly(Side.CLIENT)
 	@Override

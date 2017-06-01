@@ -26,8 +26,8 @@ public enum Glassware {
 	float contentBottom;
 	float contentHeight;
 	private int capacity;
-	//	public IIcon glass;
-	//	public IIcon contents;
+	//public IIcon glass;
+	//public IIcon contents;
 
 	Glassware(final int capacity, final int contentBottom, final int contentHeight) {
 		this.capacity = capacity;
@@ -46,10 +46,10 @@ public enum Glassware {
 		return this.capacity;
 	}
 
-	//	public void registerIcons(final IIconRegister par1IconRegister) {
-	//		this.glass = ExtraTrees.proxy.getIcon(par1IconRegister, "glassware/" + this.toString().toLowerCase() + ".glass");
-	//		this.contents = ExtraTrees.proxy.getIcon(par1IconRegister, "glassware/" + this.toString().toLowerCase() + ".contents");
-	//	}
+	/*public void registerIcons(final IIconRegister par1IconRegister) {
+		this.glass = ExtraTrees.proxy.getIcon(par1IconRegister, "glassware/" + this.toString().toLowerCase() + ".glass");
+		this.contents = ExtraTrees.proxy.getIcon(par1IconRegister, "glassware/" + this.toString().toLowerCase() + ".contents");
+	}*/
 
 	public ItemStack get(final int i) {
 		return ExtraTrees.alcohol().drink.getStack(this, null);

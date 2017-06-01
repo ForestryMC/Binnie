@@ -158,24 +158,30 @@ public class Botany extends AbstractMod {
 	@SubscribeEvent
 	public void onShearFlower(final PlayerInteractEvent.RightClickBlock event) {
 		EntityPlayer player = event.getEntityPlayer();
-		if (player != null) {
-			ItemStack heldItem = player.getHeldItemMainhand();
-			if (!heldItem.isEmpty()) {
-				TileEntity tile = event.getWorld().getTileEntity(event.getPos());
-				if (tile instanceof TileEntityFlower) {
-					TileEntityFlower flower = (TileEntityFlower) tile;
-					if (heldItem.getItem() == Items.SHEARS) {
-						flower.onShear();
-						heldItem.damageItem(1, player);
-					} else if (heldItem.getItem() == Botany.pollen) {
-						IFlower pollen = BotanyCore.getFlowerRoot().getMember(heldItem);
-						if (pollen != null && flower.canMateWith(pollen)) {
-							flower.mateWith(pollen);
-							if (!player.capabilities.isCreativeMode) {
-								heldItem.shrink(1);
-							}
-						}
-					}
+		if (player == null) {
+			return;
+		}
+
+		ItemStack heldItem = player.getHeldItemMainhand();
+		if (heldItem.isEmpty()) {
+			return;
+		}
+
+		TileEntity tile = event.getWorld().getTileEntity(event.getPos());
+		if (!(tile instanceof TileEntityFlower)) {
+			return;
+		}
+
+		TileEntityFlower flower = (TileEntityFlower) tile;
+		if (heldItem.getItem() == Items.SHEARS) {
+			flower.onShear();
+			heldItem.damageItem(1, player);
+		} else if (heldItem.getItem() == Botany.pollen) {
+			IFlower pollen = BotanyCore.getFlowerRoot().getMember(heldItem);
+			if (pollen != null && flower.canMateWith(pollen)) {
+				flower.mateWith(pollen);
+				if (!player.capabilities.isCreativeMode) {
+					heldItem.shrink(1);
 				}
 			}
 		}
@@ -187,48 +193,59 @@ public class Botany extends AbstractMod {
 		if (world == null) {
 			return;
 		}
+
 		BlockPos pos = event.getPos();
 		EntityPlayer player = event.getEntityPlayer();
-		if (player != null) {
-			ItemStack heldItem = player.getHeldItemMainhand();
-			if (!heldItem.isEmpty()) {
-				Block block = world.getBlockState(event.getPos()).getBlock();
-				if (!Gardening.isSoil(block)) {
-					pos = pos.down();
-					block = world.getBlockState(pos).getBlock();
-				}
-				if (Gardening.isSoil(block)) {
-					IBlockSoil soil = (IBlockSoil) block;
-					int fertiliserStrength = Gardening.getFertiliserStrength(heldItem);
-					if (Gardening.isNutrientFertiliser(heldItem) && soil.getType(world, pos) != EnumSoilType.FLOWERBED) {
-						EnumSoilType type = soil.getType(world, pos);
-						int next = Math.min(type.ordinal() + fertiliserStrength, 2);
-						if (soil.fertilise(world, pos, EnumSoilType.values()[next]) && !player.capabilities.isCreativeMode) {
-							heldItem.shrink(1);
-							return;
-						}
-					}
-					if (Gardening.isAcidFertiliser(heldItem) && soil.getPH(world, pos) != EnumAcidity.Acid) {
-						EnumAcidity pH = soil.getPH(world, pos);
-						int next = Math.max(pH.ordinal() - fertiliserStrength, 0);
-						if (soil.setPH(world, pos, EnumAcidity.values()[next]) && !player.capabilities.isCreativeMode) {
-							heldItem.shrink(1);
-							return;
-						}
-					}
-					if (Gardening.isAlkalineFertiliser(heldItem) && soil.getPH(world, pos) != EnumAcidity.Alkaline) {
-						EnumAcidity pH = soil.getPH(world, pos);
-						int next = Math.min(pH.ordinal() + fertiliserStrength, 2);
-						if (soil.setPH(world, pos, EnumAcidity.values()[next]) && !player.capabilities.isCreativeMode) {
-							heldItem.shrink(1);
-							return;
-						}
-					}
-					if (Gardening.isWeedkiller(heldItem) && Gardening.addWeedKiller(world, pos) && !player.capabilities.isCreativeMode) {
-						heldItem.shrink(1);
-					}
-				}
+		if (player == null) {
+			return;
+		}
+
+		ItemStack heldItem = player.getHeldItemMainhand();
+		if (heldItem.isEmpty()) {
+			return;
+		}
+
+		Block block = world.getBlockState(event.getPos()).getBlock();
+		if (!Gardening.isSoil(block)) {
+			pos = pos.down();
+			block = world.getBlockState(pos).getBlock();
+		}
+
+		if (!Gardening.isSoil(block)) {
+			return;
+		}
+
+		IBlockSoil soil = (IBlockSoil) block;
+		int fertiliserStrength = Gardening.getFertiliserStrength(heldItem);
+		if (Gardening.isNutrientFertiliser(heldItem) && soil.getType(world, pos) != EnumSoilType.FLOWERBED) {
+			EnumSoilType type = soil.getType(world, pos);
+			int next = Math.min(type.ordinal() + fertiliserStrength, 2);
+			if (soil.fertilise(world, pos, EnumSoilType.values()[next]) && !player.capabilities.isCreativeMode) {
+				heldItem.shrink(1);
+				return;
 			}
+		}
+
+		if (Gardening.isAcidFertiliser(heldItem) && soil.getPH(world, pos) != EnumAcidity.ACID) {
+			EnumAcidity pH = soil.getPH(world, pos);
+			int next = Math.max(pH.ordinal() - fertiliserStrength, 0);
+			if (soil.setPH(world, pos, EnumAcidity.values()[next]) && !player.capabilities.isCreativeMode) {
+				heldItem.shrink(1);
+				return;
+			}
+		}
+
+		if (Gardening.isAlkalineFertiliser(heldItem) && soil.getPH(world, pos) != EnumAcidity.ALKALINE) {
+			EnumAcidity pH = soil.getPH(world, pos);
+			int next = Math.min(pH.ordinal() + fertiliserStrength, 2);
+			if (soil.setPH(world, pos, EnumAcidity.values()[next]) && !player.capabilities.isCreativeMode) {
+				heldItem.shrink(1);
+				return;
+			}
+		}
+
+		if (Gardening.isWeedkiller(heldItem) && Gardening.addWeedKiller(world, pos) && !player.capabilities.isCreativeMode) {
+			heldItem.shrink(1);
 		}
 	}
 

@@ -70,27 +70,27 @@ public class BlockExtraBeeHive extends Block {
 		Collections.shuffle(dropList);
 		int tries = 0;
 		//TODO HIVE DROP
-		//		for (boolean hasPrincess = false; tries <= 10 && !hasPrincess; hasPrincess = true) {
-		//			++tries;
-		//			for (final IHiveDrop drop : dropList) {
-		//				if (world.rand.nextInt(100) < drop.getChance(world, x, y, z)) {
-		//					ret.add(drop.getPrincess(world, x, y, z, fortune));
-		//					break;
-		//				}
-		//			}
-		//		}
-		//		for (final IHiveDrop drop : dropList) {
-		//			if (world.rand.nextInt(100) < drop.getChance(world, x, y, z)) {
-		//				ret.addAll(drop.getDrones(world, x, y, z, fortune));
-		//				break;
-		//			}
-		//		}
-		//		for (final IHiveDrop drop : dropList) {
-		//			if (world.rand.nextInt(100) < drop.getChance(world, x, y, z)) {
-		//				ret.addAll(drop.getAdditional(world, x, y, z, fortune));
-		//				break;
-		//			}
-		//		}
+		/*for (boolean hasPrincess = false; tries <= 10 && !hasPrincess; hasPrincess = true) {
+			++tries;
+			for (final IHiveDrop drop : dropList) {
+				if (world.rand.nextInt(100) < drop.getChance(world, x, y, z)) {
+					ret.add(drop.getPrincess(world, x, y, z, fortune));
+					break;
+				}
+			}
+		}
+		for (final IHiveDrop drop : dropList) {
+			if (world.rand.nextInt(100) < drop.getChance(world, x, y, z)) {
+				ret.addAll(drop.getDrones(world, x, y, z, fortune));
+				break;
+			}
+		}
+		for (final IHiveDrop drop : dropList) {
+			if (world.rand.nextInt(100) < drop.getChance(world, x, y, z)) {
+				ret.addAll(drop.getAdditional(world, x, y, z, fortune));
+				break;
+			}
+		}*/
 		return ret;
 	}
 }

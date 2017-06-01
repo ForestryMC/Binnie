@@ -19,10 +19,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class AlleleFlowerSpecies extends AlleleSpecies implements IAlleleFlowerSpecies, IAlleleFlowerSpeciesBuilder {
-
 	private final IFlowerType flowerType;
-	private EnumAcidity acidity = EnumAcidity.Neutral;
-	private EnumMoisture moisture = EnumMoisture.Normal;
+	private EnumAcidity acidity = EnumAcidity.NEUTRAL;
+	private EnumMoisture moisture = EnumMoisture.NORMAL;
 
 	public AlleleFlowerSpecies(
 		String uid,

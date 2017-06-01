@@ -34,7 +34,6 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
-
 	public static final PropertyEnum<EnumMoisture> MOISTURE = PropertyEnum.create("moisture", EnumMoisture.class);
 	public static final PropertyEnum<EnumAcidity> ACIDITY = PropertyEnum.create("acidity", EnumAcidity.class);
 	public static final AxisAlignedBB SOIL_BLOCK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.9375D, 1.0D);
@@ -61,7 +60,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 	public static String getPH(ItemStack stack, boolean withColor, boolean byNeutralNone) {
 		EnumAcidity ph = EnumAcidity.values()[stack.getItemDamage() / 3];
 		if (byNeutralNone) {
-			if (ph == EnumAcidity.Neutral) {
+			if (ph == EnumAcidity.NEUTRAL) {
 				return "";
 			}
 		}
@@ -71,7 +70,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 	public static String getMoisture(ItemStack stack, boolean withColor, boolean byNormalNone) {
 		EnumMoisture moisure = EnumMoisture.values()[stack.getItemDamage() % 3];
 		if (byNormalNone) {
-			if (moisure == EnumMoisture.Normal) {
+			if (moisure == EnumMoisture.NORMAL) {
 				return "";
 			}
 		}
@@ -144,10 +143,10 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 		for (EnumAcidity acidity : EnumAcidity.values()) {
 			for (EnumMoisture moisture : EnumMoisture.values()) {
 				String modelName = "";
-				if (acidity != EnumAcidity.Neutral) {
+				if (acidity != EnumAcidity.NEUTRAL) {
 					modelName += acidity.getName();
 				}
-				if (moisture != EnumMoisture.Normal) {
+				if (moisture != EnumMoisture.NORMAL) {
 					if (!modelName.isEmpty()) {
 						modelName += "_";
 					}
@@ -200,10 +199,10 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 		EnumAcidity acidity = EnumAcidity.values()[meta / 3];
 		EnumMoisture desiredMoisture = Gardening.getNaturalMoisture(world, pos);
 		if (desiredMoisture.ordinal() > moisture.ordinal()) {
-			moisture = ((moisture == EnumMoisture.Dry) ? EnumMoisture.Normal : EnumMoisture.Damp);
+			moisture = ((moisture == EnumMoisture.DRY) ? EnumMoisture.NORMAL : EnumMoisture.DAMP);
 		}
 		if (desiredMoisture.ordinal() < moisture.ordinal()) {
-			moisture = ((moisture == EnumMoisture.Damp) ? EnumMoisture.Normal : EnumMoisture.Dry);
+			moisture = ((moisture == EnumMoisture.DAMP) ? EnumMoisture.NORMAL : EnumMoisture.DRY);
 		}
 		int meta2 = getMeta(acidity, moisture);
 		if (meta != meta2) {

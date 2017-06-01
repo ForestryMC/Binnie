@@ -64,9 +64,9 @@ class VirtualHousing implements IHousing {
 		return this.player.world.getBiome(getCoordinates());
 	}
 
-	// public EnumErrorCode getErrorState() {
-	// return null;
-	// }
+	/*public EnumErrorCode getErrorState() {
+		return null;
+	}*/
 
 	public void setErrorState(final IErrorState state) {
 	}

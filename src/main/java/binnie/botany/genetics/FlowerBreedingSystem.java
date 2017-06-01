@@ -23,7 +23,6 @@ import net.minecraft.item.ItemStack;
 import java.util.TreeSet;
 
 public class FlowerBreedingSystem extends BreedingSystem {
-
 	public FlowerBreedingSystem() {
 		this.iconUndiscovered = Binnie.RESOURCE.getUndiscoveredBeeSprite();
 		this.iconDiscovered = Binnie.RESOURCE.getDiscoveredBeeSprite();

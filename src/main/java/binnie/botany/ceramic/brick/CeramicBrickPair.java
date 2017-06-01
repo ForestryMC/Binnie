@@ -66,9 +66,7 @@ public class CeramicBrickPair {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (!(obj instanceof CeramicBrickPair)) {
-			return false;
-		}
-		return ((CeramicBrickPair) obj).ordinal() == ordinal();
+		return obj instanceof CeramicBrickPair
+			&& ((CeramicBrickPair) obj).ordinal() == ordinal();
 	}
 }

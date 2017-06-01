@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FlowerSpriteManager {
-
 	private static final Map<IFlowerType, FlowerSprites> flowerSprites = new HashMap<>();
 
 	public static void initSprites(IFlowerType type) {

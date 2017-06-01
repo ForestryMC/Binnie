@@ -174,7 +174,7 @@ public class GardenLogic extends FarmLogic {
 					} else if (world.isAirBlock(position.north())) {
 						isEnclosed = false;
 					}
-					isEnclosed = (isEnclosed || this.moisture != EnumMoisture.Damp);
+					isEnclosed = (isEnclosed || this.moisture != EnumMoisture.DAMP);
 					if (isEnclosed) {
 						return this.trySetWater(world, position, housing);
 					}
@@ -186,14 +186,14 @@ public class GardenLogic extends FarmLogic {
 
 	private ItemStack getAvailableLoam(IFarmHousing housing) {
 		EnumMoisture[] moistures;
-		if (this.moisture == EnumMoisture.Damp) {
-			moistures = new EnumMoisture[]{EnumMoisture.Damp, EnumMoisture.Normal, EnumMoisture.Dry};
-		} else if (this.moisture == EnumMoisture.Dry) {
-			moistures = new EnumMoisture[]{EnumMoisture.Dry, EnumMoisture.Damp, EnumMoisture.Dry};
+		if (this.moisture == EnumMoisture.DAMP) {
+			moistures = new EnumMoisture[]{EnumMoisture.DAMP, EnumMoisture.NORMAL, EnumMoisture.DRY};
+		} else if (this.moisture == EnumMoisture.DRY) {
+			moistures = new EnumMoisture[]{EnumMoisture.DRY, EnumMoisture.DAMP, EnumMoisture.DRY};
 		} else {
-			moistures = new EnumMoisture[]{EnumMoisture.Dry, EnumMoisture.Normal, EnumMoisture.Damp};
+			moistures = new EnumMoisture[]{EnumMoisture.DRY, EnumMoisture.NORMAL, EnumMoisture.DAMP};
 		}
-		final EnumAcidity[] acidities = {EnumAcidity.Neutral, EnumAcidity.Acid, EnumAcidity.Alkaline};
+		final EnumAcidity[] acidities = {EnumAcidity.NEUTRAL, EnumAcidity.ACID, EnumAcidity.ALKALINE};
 		for (final EnumMoisture moist : moistures) {
 			for (final EnumAcidity acid : acidities) {
 				for (final Block type : new Block[]{Botany.flowerbed, Botany.loam, Botany.soil}) {
@@ -237,7 +237,7 @@ public class GardenLogic extends FarmLogic {
 
 	private boolean trySetWater(World world, BlockPos position, IFarmHousing housing) {
 		final FluidStack water = Binnie.LIQUID.getFluidStack("water", 1000);
-		if (this.moisture == EnumMoisture.Damp) {
+		if (this.moisture == EnumMoisture.DAMP) {
 			if (water == null || !housing.hasLiquid(water)) {
 				return false;
 			}
@@ -245,7 +245,7 @@ public class GardenLogic extends FarmLogic {
 			housing.removeLiquid(water);
 			return true;
 		} else {
-			if (this.moisture != EnumMoisture.Dry) {
+			if (this.moisture != EnumMoisture.DRY) {
 				return trySetSoil(world, position, housing);
 			}
 			final ItemStack sand = new ItemStack(Blocks.SAND, 1);

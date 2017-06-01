@@ -103,11 +103,9 @@ public class TreeBreedingSystem extends BreedingSystem {
 				this.discoveredWoods.add(wood);
 			}
 
-			// for (final ItemStack wood :
-			// tSpecies.getRoot().templateAsIndividual(getSpeciesRoot().getTemplate(tSpecies.getUID())).getProduceList())
-			// {
-			// this.discoveredWoods.add(wood);
-			// }
+			/*for (final ItemStack wood : tSpecies.getRoot().templateAsIndividual(getSpeciesRoot().getTemplate(tSpecies.getUID())).getProduceList()) {
+				this.discoveredWoods.add(wood);
+			}*/
 			this.discoveredFruits.addAll(genome.getFruitProvider().getProducts().keySet());
 			for (ItemStack wood2 : this.discoveredWoods) {
 			}
@@ -127,11 +125,9 @@ public class TreeBreedingSystem extends BreedingSystem {
 				this.allWoods.add(wood);
 			}
 
-			// for (final ItemStack wood :
-			// tSpecies.getRoot().templateAsIndividual(getSpeciesRoot().getTemplate(tSpecies.getUID())).getProduceList())
-			// {
-			// this.allWoods.add(wood);
-			// }
+			/*for (final ItemStack wood : tSpecies.getRoot().templateAsIndividual(getSpeciesRoot().getTemplate(tSpecies.getUID())).getProduceList()) {
+				this.allWoods.add(wood);
+			}*/
 			this.allFruits.addAll(genome.getFruitProvider().getProducts().keySet());
 		}
 	}
@@ -225,11 +221,11 @@ public class TreeBreedingSystem extends BreedingSystem {
 	@Override
 	@Nullable
 	public IIndividual getConversion(final ItemStack stack) {
-		//		for (final Map.Entry<ItemStack, IIndividual> entry : TreeManager.treeRoot.getIndividualTemplates()) {
-		//			if (ItemStack.areItemStacksEqual(stack, entry.getKey())) {
-		//				return entry.getValue();
-		//			}
-		//		}
+		/*for (final Map.Entry<ItemStack, IIndividual> entry : TreeManager.treeRoot.getIndividualTemplates()) {
+			if (ItemStack.areItemStacksEqual(stack, entry.getKey())) {
+				return entry.getValue();
+			}
+		}*/
 		return TreeManager.treeRoot.getMember(stack);
 	}
 

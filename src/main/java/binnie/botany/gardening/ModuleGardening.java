@@ -85,17 +85,17 @@ public class ModuleGardening implements IInitializable {
 		Botany.ceramic = new BlockCeramic();
 		Botany.proxy.registerBlock(Botany.ceramic, new ItemCeramic(Botany.ceramic));
 		BinnieCore.getBinnieProxy().registerTileEntity(TileCeramic.class, "botany.tile.ceramic");
-		//		BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(Botany.ceramic), new ItemMetadataRenderer());
+//		BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(Botany.ceramic), new ItemMetadataRenderer());
 		Botany.stained = new BlockStainedGlass();
 		Botany.proxy.registerBlock(Botany.stained, new ItemStainedGlass(Botany.stained));
-		//		BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(Botany.stained), new ItemMetadataRenderer());
+//		BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(Botany.stained), new ItemMetadataRenderer());
 		Botany.ceramicTile = new BlockCeramicPatterned();
 		Botany.proxy.registerBlock(Botany.ceramicTile, new ItemDesign(Botany.ceramicTile));
 		Botany.ceramicBrick = new BlockCeramicBrick();
 		Botany.proxy.registerBlock(Botany.ceramicBrick, new ItemCeramicBrick(Botany.ceramicBrick));
 		BinnieCore.getBinnieProxy().registerTileEntity(TileCeramicBrick.class, "botany.tile.ceramicBrick");
-		//		BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(Botany.ceramicTile), new MultipassItemRenderer());
-		//		BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(Botany.ceramicBrick), new MultipassItemRenderer());
+//		BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(Botany.ceramicTile), new MultipassItemRenderer());
+//		BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(Botany.ceramicBrick), new MultipassItemRenderer());
 	}
 
 	@Override
@@ -110,9 +110,9 @@ public class ModuleGardening implements IInitializable {
 			for (boolean fertilised : new boolean[]{true, false}) {
 				for (EnumMoisture moist : EnumMoisture.values()) {
 					ItemStack icon;
-					if (moist == EnumMoisture.Dry) {
+					if (moist == EnumMoisture.DRY) {
 						icon = yellow;
-					} else if (moist == EnumMoisture.Normal) {
+					} else if (moist == EnumMoisture.NORMAL) {
 						icon = red;
 					} else {
 						icon = blue;
@@ -122,9 +122,9 @@ public class ModuleGardening implements IInitializable {
 						insulate += 3;
 					}
 					new CircuitGarden(moist, null, manual, fertilised, new ItemStack(Botany.insulatedTube, 1, 0 + 128 * insulate), icon);
-					new CircuitGarden(moist, EnumAcidity.Acid, manual, fertilised, new ItemStack(Botany.insulatedTube, 1, 1 + 128 * insulate), icon);
-					new CircuitGarden(moist, EnumAcidity.Neutral, manual, fertilised, new ItemStack(Botany.insulatedTube, 1, 2 + 128 * insulate), icon);
-					new CircuitGarden(moist, EnumAcidity.Alkaline, manual, fertilised, new ItemStack(Botany.insulatedTube, 1, 3 + 128 * insulate), icon);
+					new CircuitGarden(moist, EnumAcidity.ACID, manual, fertilised, new ItemStack(Botany.insulatedTube, 1, 1 + 128 * insulate), icon);
+					new CircuitGarden(moist, EnumAcidity.NEUTRAL, manual, fertilised, new ItemStack(Botany.insulatedTube, 1, 2 + 128 * insulate), icon);
+					new CircuitGarden(moist, EnumAcidity.ALKALINE, manual, fertilised, new ItemStack(Botany.insulatedTube, 1, 3 + 128 * insulate), icon);
 				}
 			}
 		}

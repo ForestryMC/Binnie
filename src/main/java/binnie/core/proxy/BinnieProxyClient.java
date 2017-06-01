@@ -105,10 +105,10 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 		return !world.isRemote;
 	}
 
-	//	@Override
-	//	public void registerCustomItemRenderer(final Item item, final IItemRenderer itemRenderer) {
-	//		MinecraftForgeClient.registerItemRenderer(item, itemRenderer);
-	//	}
+	/*@Override
+	public void registerCustomItemRenderer(final Item item, final IItemRenderer itemRenderer) {
+		MinecraftForgeClient.registerItemRenderer(item, itemRenderer);
+	}*/
 
 	@Override
 	public World getWorld() {
@@ -168,10 +168,10 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 		throw new IllegalArgumentException("Could not create object for class name " + renderer);
 	}
 
-	//	@Override
-	//	public IIcon getIcon(final IIconRegister register, final String mod, final String name) {
-	//		return register.registerIcon(mod + ":" + name);
-	//	}
+	/*@Override
+	public IIcon getIcon(final IIconRegister register, final String mod, final String name) {
+		return register.registerIcon(mod + ":" + name);
+	}*/
 
 	@Override
 	public TextureAtlasSprite getTextureAtlasSprite(ResourceLocation location) {
@@ -183,11 +183,11 @@ public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy
 		return Minecraft.getMinecraft().player;
 	}
 
-	//	public void handlePreTextureRefresh(final IIconRegister register, final int type) {
-	//		if (type == 0) {
-	//			Binnie.Liquid.reloadIcons(register);
-	//		}
-	//	}
+	/*public void handlePreTextureRefresh(final IIconRegister register, final int type) {
+		if (type == 0) {
+			Binnie.Liquid.reloadIcons(register);
+		}
+	}*/
 
 	@Override
 	public void preInit() {

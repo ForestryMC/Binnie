@@ -45,7 +45,7 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 	}
 
 	@Override
-	public int quantityDropped(final Random p_149745_1_) {
+	public int quantityDropped(final Random rand) {
 		return 0;
 	}
 

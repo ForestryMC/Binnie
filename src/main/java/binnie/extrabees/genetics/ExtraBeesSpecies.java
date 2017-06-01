@@ -942,49 +942,49 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 		return true;
 	}
 
-	//	@Override
-	//	public int getIconColour(final int renderPass) {
-	//		return (renderPass == 0) ? this.primaryColor : ((renderPass == 1) ? this.secondaryColor : 16777215);
-	//	}
-	//
-	//	@Override
-	//	public IIconProvider getIconProvider() {
-	//		return this;
-	//	}
-	//
-	//	@Override
-	//	public IIcon getIcon(final short texUID) {
-	//		return null;
-	//	}
-	//
-	//	@Override
-	//	@SideOnly(Side.CLIENT)
-	//	public void registerIcons(final IIconRegister register) {
-	//		String iconType = "default";
-	//		String mod = "forestry";
-	//		if (this == ExtraBeesSpecies.JADED) {
-	//			iconType = "jaded";
-	//			mod = "extrabees";
-	//		}
-	//		this.icons = new IIcon[EnumBeeType.values().length][3];
-	//		final IIcon body1 = BinnieCore.proxy.getIcon(register, mod, "bees/" + iconType + "/body1");
-	//		for (int i = 0; i < EnumBeeType.values().length; ++i) {
-	//			if (EnumBeeType.values()[i] != EnumBeeType.NONE) {
-	//				this.icons[i][0] = BinnieCore.proxy.getIcon(register, mod, "bees/" + iconType + "/" + EnumBeeType.values()[i].toString().toLowerCase(Locale.ENGLISH) + ".outline");
-	//				this.icons[i][1] = ((EnumBeeType.values()[i] != EnumBeeType.LARVAE) ? body1 : BinnieCore.proxy.getIcon(register, mod, "bees/" + iconType + "/" + EnumBeeType.values()[i].toString().toLowerCase(Locale.ENGLISH) + ".body"));
-	//				this.icons[i][2] = BinnieCore.proxy.getIcon(register, mod, "bees/" + iconType + "/" + EnumBeeType.values()[i].toString().toLowerCase(Locale.ENGLISH) + ".body2");
-	//			}
-	//		}
-	//	}
-	//
-	//	@Override
-	//	@SideOnly(Side.CLIENT)
-	//	public IIcon getIcon(final EnumBeeType type, final int renderPass) {
-	//		if (this.icons == null) {
-	//			return ExtraBeesSpecies.ARID.getIcon(type, renderPass);
-	//		}
-	//		return this.icons[type.ordinal()][renderPass];
-	//	}
+	/*@Override
+	public int getIconColour(final int renderPass) {
+		return (renderPass == 0) ? this.primaryColor : ((renderPass == 1) ? this.secondaryColor : 16777215);
+	}
+
+	@Override
+	public IIconProvider getIconProvider() {
+		return this;
+	}
+
+	@Override
+	public IIcon getIcon(final short texUID) {
+		return null;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(final IIconRegister register) {
+		String iconType = "default";
+		String mod = "forestry";
+		if (this == ExtraBeesSpecies.JADED) {
+			iconType = "jaded";
+			mod = "extrabees";
+		}
+		this.icons = new IIcon[EnumBeeType.values().length][3];
+		final IIcon body1 = BinnieCore.proxy.getIcon(register, mod, "bees/" + iconType + "/body1");
+		for (int i = 0; i < EnumBeeType.values().length; ++i) {
+			if (EnumBeeType.values()[i] != EnumBeeType.NONE) {
+				this.icons[i][0] = BinnieCore.proxy.getIcon(register, mod, "bees/" + iconType + "/" + EnumBeeType.values()[i].toString().toLowerCase(Locale.ENGLISH) + ".outline");
+				this.icons[i][1] = ((EnumBeeType.values()[i] != EnumBeeType.LARVAE) ? body1 : BinnieCore.proxy.getIcon(register, mod, "bees/" + iconType + "/" + EnumBeeType.values()[i].toString().toLowerCase(Locale.ENGLISH) + ".body"));
+				this.icons[i][2] = BinnieCore.proxy.getIcon(register, mod, "bees/" + iconType + "/" + EnumBeeType.values()[i].toString().toLowerCase(Locale.ENGLISH) + ".body2");
+			}
+		}
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public IIcon getIcon(final EnumBeeType type, final int renderPass) {
+		if (this.icons == null) {
+			return ExtraBeesSpecies.ARID.getIcon(type, renderPass);
+		}
+		return this.icons[type.ordinal()][renderPass];
+	}*/
 
 	@Override
 	public IBeeRoot getRoot() {
@@ -1191,7 +1191,6 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 	public enum State {
 		Active,
 		Inactive,
-		Deprecated;
+		Deprecated,
 	}
-
 }

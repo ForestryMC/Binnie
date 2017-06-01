@@ -14,7 +14,6 @@ import forestry.core.utils.Translator;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -26,7 +25,6 @@ import java.util.Collection;
 import java.util.List;
 
 public class ItemInsulatedTube extends ItemCore implements IColoredItem {
-
 	public ItemInsulatedTube() {
 		super("insulated_tube");
 		setUnlocalizedName("insulated_tube");
@@ -47,18 +45,18 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 	}
 
 	public static String getInsulate(ItemStack stack) {
-		return Insulate.get(stack.getItemDamage()).getName();
+		return EnumTubeInsulate.get(stack.getItemDamage()).getName();
 	}
 
 	public static ItemStack getInsulateStack(ItemStack stack) {
-		return Insulate.get(stack.getItemDamage()).getStack();
+		return EnumTubeInsulate.get(stack.getItemDamage()).getStack();
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems) {
-		for (Material mat : Material.values()) {
-			for (Insulate ins : Insulate.values()) {
+		for (EnumTubeMaterial mat : EnumTubeMaterial.values()) {
+			for (EnumTubeInsulate ins : EnumTubeInsulate.values()) {
 				subItems.add(new ItemStack(this, 1, mat.ordinal() + ins.ordinal() * 128));
 			}
 		}
@@ -67,8 +65,8 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
-		for (Material mat : Material.values()) {
-			for (Insulate ins : Insulate.values()) {
+		for (EnumTubeMaterial mat : EnumTubeMaterial.values()) {
+			for (EnumTubeInsulate ins : EnumTubeInsulate.values()) {
 				manager.registerItemModel(item, mat.ordinal() + ins.ordinal() * 128);
 			}
 		}
@@ -77,11 +75,11 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 	@Override
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
 		if (tintIndex == 0) {
-			return 16777215;
+			return 0xffffff;
 		} else if (tintIndex == 1) {
-			return Material.get(stack.getItemDamage()).getColor();
+			return EnumTubeMaterial.get(stack.getItemDamage()).getColor();
 		}
-		return Insulate.get(stack.getItemDamage()).getColor();
+		return EnumTubeInsulate.get(stack.getItemDamage()).getColor();
 	}
 
 	@Override
@@ -109,88 +107,6 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 	@Override
 	public String getItemStackDisplayName(ItemStack itemStack) {
 		int meta = itemStack.getMetadata();
-		return Material.get(meta).getName() + " " + Insulate.get(meta).getName() + " " + super.getItemStackDisplayName(itemStack);
-	}
-
-	enum Material {
-		Copper(14923662, "Copper"),
-		Tin(14806772, "Tin"),
-		Bronze(14533238, "Bronze"),
-		Iron(14211288, "Iron");
-
-		int color;
-		String name;
-
-		Material(final int color, final String name) {
-			this.color = color;
-			this.name = name;
-		}
-
-		public static Material get(final int i) {
-			return values()[i % values().length];
-		}
-
-		public int getColor() {
-			return this.color;
-		}
-
-		public String getName() {
-			return this.name;
-		}
-	}
-
-	enum Insulate {
-		Clay(10595020, "Clay"),
-		Cobble(8092539, "Cobblestone"),
-		Sand(15723189, "Sand"),
-		HardenedClay(9657411, "Hardened Clay"),
-		Stone(7171437, "Smooth Stone"),
-		Sandstone(12695945, "Sandstone");
-
-		int color;
-		String name;
-
-		Insulate(final int color, final String name) {
-			this.color = color;
-			this.name = name;
-		}
-
-		public static Insulate get(final int i) {
-			return values()[i / 128 % values().length];
-		}
-
-		public int getColor() {
-			return this.color;
-		}
-
-		public String getName() {
-			return this.name;
-		}
-
-		public ItemStack getStack() {
-			switch (this) {
-				case Clay: {
-					return new ItemStack(Blocks.CLAY);
-				}
-				case Cobble: {
-					return new ItemStack(Blocks.COBBLESTONE);
-				}
-				case HardenedClay: {
-					return new ItemStack(Blocks.HARDENED_CLAY);
-				}
-				case Sand: {
-					return new ItemStack(Blocks.SAND);
-				}
-				case Sandstone: {
-					return new ItemStack(Blocks.SANDSTONE);
-				}
-				case Stone: {
-					return new ItemStack(Blocks.STONE);
-				}
-				default: {
-					throw new IllegalStateException("Unknown insulated tube type: " + this);
-				}
-			}
-		}
+		return EnumTubeMaterial.get(meta).getName() + " " + EnumTubeInsulate.get(meta).getName() + " " + super.getItemStackDisplayName(itemStack);
 	}
 }
