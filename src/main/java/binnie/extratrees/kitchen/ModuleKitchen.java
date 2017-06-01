@@ -11,10 +11,10 @@ public class ModuleKitchen implements IInitializable {
 	@Override
 	public void preInit() {
 		// TODO implement kitchen
-		//		final MachineGroup machineGroup = new MachineGroup(ExtraTrees.instance, "kitchen", "kitchen", KitchenMachine.values());
-		//		machineGroup.setCreativeTab(Tabs.tabArboriculture);
-		//		machineGroup.customRenderer = false;
-		//		blockKitchen = machineGroup.getBlock();
+		/*final MachineGroup machineGroup = new MachineGroup(ExtraTrees.instance, "kitchen", "kitchen", KitchenMachine.values());
+		machineGroup.setCreativeTab(Tabs.tabArboriculture);
+		machineGroup.customRenderer = false;
+		blockKitchen = machineGroup.getBlock();*/
 	}
 
 	@Override

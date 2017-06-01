@@ -16,7 +16,7 @@ public enum GeneticLiquid implements IFluidType {
 
 	String name;
 	String ident;
-	//	IIcon icon;
+	//IIcon icon;
 	int colour;
 	float transparency;
 

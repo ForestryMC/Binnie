@@ -26,9 +26,9 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 		this.previousPower = 0.0f;
 		this.inputs = new LinkedList<>();
 		this.container = new PowerInterface(storage);
-		//		if (!this.registeredToIC2EnergyNet) {
-		//			this.addToEnergyNet();
-		//		}
+		/*if (!this.registeredToIC2EnergyNet) {
+			this.addToEnergyNet();
+		}*/
 	}
 
 	@Override

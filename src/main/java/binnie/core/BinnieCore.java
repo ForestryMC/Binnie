@@ -259,9 +259,9 @@ public final class BinnieCore extends AbstractMod {
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void handleTextureRemap(final TextureStitchEvent.Pre event) {
-		//		if (event.map.getTextureType() == 0) {
-		//			Binnie.Liquid.reloadIcons(event.map);
-		//		}
+		/*if (event.map.getTextureType() == 0) {
+			Binnie.Liquid.reloadIcons(event.map);
+		}*/
 		Binnie.RESOURCE.registerSprites();
 	}
 

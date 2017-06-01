@@ -19,7 +19,7 @@ public enum MiscFluid implements IFluidType, ICocktailLiquid {
 
 	String name;
 	String ident;
-	//	IIcon icon;
+	//IIcon icon;
 	int colour;
 	float transparency;
 

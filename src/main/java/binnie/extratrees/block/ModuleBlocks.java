@@ -51,7 +51,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ModuleBlocks implements IInitializable {
-	// public static int hedgeRenderID;
+	//public static int hedgeRenderID;
 
 	public List<BlockETLog> logs;
 	public List<BlockETLog> logsFireproof;

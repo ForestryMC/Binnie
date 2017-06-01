@@ -11,11 +11,11 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
 public class ItemAnalyst extends ItemCore {
-	//	@Override
-	//	@SideOnly(Side.CLIENT)
-	//	public void registerIcons(final IIconRegister register) {
-	//		this.itemIcon = Genetics.proxy.getIcon(register, "analyst");
-	//	}
+	/*@Override
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(final IIconRegister register) {
+		this.itemIcon = Genetics.proxy.getIcon(register, "analyst");
+	}*/
 
 	public ItemAnalyst() {
 		super("analyst");

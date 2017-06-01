@@ -37,7 +37,7 @@ import java.util.List;
 import java.util.Map;
 
 public class WindowGeneBank extends WindowMachine {
-	//	public static IIcon[] iconsDNA;
+	//public static IIcon[] iconsDNA;
 	public boolean isNei;
 	ControlGeneScroll genes;
 
