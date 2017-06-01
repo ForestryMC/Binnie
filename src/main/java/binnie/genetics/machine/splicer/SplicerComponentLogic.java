@@ -4,6 +4,8 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
+import binnie.core.util.I18N;
+import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.genetics.Engineering;
@@ -19,7 +21,7 @@ public class SplicerComponentLogic extends ComponentProcessSetCost implements IP
 	public int nOfGenes;
 
 	public SplicerComponentLogic(Machine machine) {
-		super(machine, 12000000, 1200);
+		super(machine, Splicer.RF_COST, Splicer.TIME_PERIOD);
 		nOfGenes = 0;
 	}
 
@@ -64,7 +66,8 @@ public class SplicerComponentLogic extends ComponentProcessSetCost implements IP
 
 		int i = 0;
 		for (IGene gene : genes) {
-			if (ind.getGenome().getActiveAllele(gene.getChromosome()) != gene.getAllele() || ind.getGenome().getInactiveAllele(gene.getChromosome()) != gene.getAllele()) {
+			if (ind.getGenome().getActiveAllele(gene.getChromosome()) != gene.getAllele() ||
+				ind.getGenome().getInactiveAllele(gene.getChromosome()) != gene.getAllele()) {
 				i++;
 			}
 		}
@@ -87,16 +90,32 @@ public class SplicerComponentLogic extends ComponentProcessSetCost implements IP
 	public String getTooltip() {
 		int n = getNumberOfGenes();
 		int f = getFullNumberOfGenes();
-		return "Splicing in " + n + ((f > 1) ? ("/" + f) : "") + " gene" + ((n > 1) ? "s" : "");
+		if (f > 1) {
+			if (n > 1) {
+				return I18N.localise(Genetics.instance, "machine.splicer.splicingIn.0", n, f);
+			}
+			return I18N.localise(Genetics.instance, "machine.splicer.splicingIn.1", n, f);
+		}
+
+		if (n > 1) {
+			return I18N.localise(Genetics.instance, "machine.splicer.splicingIn.2", n);
+		}
+		return I18N.localise(Genetics.instance, "machine.splicer.splicingIn.3", n);
 	}
 
 	@Override
 	public ErrorState canWork() {
 		if (getUtil().isSlotEmpty(Splicer.SLOT_TARGET)) {
-			return new ErrorState.NoItem("No Individual to Splice", Splicer.SLOT_TARGET);
+			return new ErrorState.NoItem(
+				I18N.localise(Genetics.instance, "machine.splicer.error.noIndividual"),
+				Splicer.SLOT_TARGET
+			);
 		}
 		if (getUtil().isSlotEmpty(Splicer.SLOT_SERUM_VIAL)) {
-			return new ErrorState.NoItem("No Serum", Splicer.SLOT_SERUM_VIAL);
+			return new ErrorState.NoItem(
+				I18N.localise(Genetics.instance, "machine.splicer.error.noSerum"),
+				Splicer.SLOT_SERUM_VIAL
+			);
 		}
 
 		ErrorState state = isValidSerum();
@@ -105,7 +124,10 @@ public class SplicerComponentLogic extends ComponentProcessSetCost implements IP
 		}
 
 		if (getUtil().getStack(0) != null && Engineering.getCharges(getUtil().getStack(Splicer.SLOT_SERUM_VIAL)) == 0) {
-			return new ErrorState("Empty Serum", "Serum is empty");
+			return new ErrorState(
+				I18N.localise(Genetics.instance, "machine.splicer.error.emptySerum.title"),
+				I18N.localise(Genetics.instance, "machine.splicer.error.emptySerum")
+			);
 		}
 		return super.canWork();
 	}
@@ -115,10 +137,16 @@ public class SplicerComponentLogic extends ComponentProcessSetCost implements IP
 		ItemStack target = getUtil().getStack(Splicer.SLOT_TARGET);
 		IGene[] genes = Engineering.getGenes(serum);
 		if (genes.length == 0) {
-			return new ErrorState("Invalid Serum", "Serum does not hold any genes");
+			return new ErrorState(
+				I18N.localise(Genetics.instance, "machine.splicer.error.invalidSerum.title"),
+				I18N.localise(Genetics.instance, "machine.splicer.error.invalidSerum.0")
+			);
 		}
 		if (!genes[0].getSpeciesRoot().isMember(target)) {
-			return new ErrorState("Invalid Serum", "Mismatch of Serum Type and Target");
+			return new ErrorState(
+				I18N.localise(Genetics.instance, "machine.splicer.error.invalidSerum.title"),
+				I18N.localise(Genetics.instance, "machine.splicer.error.invalidSerum.1")
+			);
 		}
 
 		IIndividual individual = genes[0].getSpeciesRoot().getMember(target);
@@ -136,7 +164,10 @@ public class SplicerComponentLogic extends ComponentProcessSetCost implements IP
 		}
 
 		if (hasAll) {
-			return new ErrorState("Defunct Serum", "Individual already possesses this allele");
+			return new ErrorState(
+				I18N.localise(Genetics.instance, "machine.splicer.error.defunctSerum.title"),
+				I18N.localise(Genetics.instance, "machine.splicer.error.defunctSerum")
+			);
 		}
 		return null;
 	}

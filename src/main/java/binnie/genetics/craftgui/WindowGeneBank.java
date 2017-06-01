@@ -32,14 +32,12 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IIcon;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 public class WindowGeneBank extends WindowMachine {
-	public static IIcon[] iconsDNA;
 	public boolean isNei;
 
 	protected ControlGeneScroll genes;

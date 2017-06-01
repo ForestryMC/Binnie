@@ -80,7 +80,7 @@ public class SplicerPackage extends AdvGeneticMachine.PackageAdvGeneticBase impl
 			}
 		});
 
-		new ComponentPowerReceptor(machine, 20000);
+		new ComponentPowerReceptor(machine, Splicer.POWER_CAPACITY);
 		new SplicerComponentLogic(machine);
 		new SplicerComponentFX(machine);
 	}

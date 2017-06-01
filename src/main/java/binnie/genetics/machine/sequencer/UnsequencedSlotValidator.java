@@ -1,6 +1,7 @@
 package binnie.genetics.machine.sequencer;
 
 import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.genetics.SequencerItem;
 import binnie.genetics.machine.ModuleMachine;
@@ -22,6 +23,6 @@ public class UnsequencedSlotValidator extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return "Unsequenced DNA";
+		return I18N.localise(Genetics.instance, "machine.sequencer.unsequencedDNA");
 	}
 }

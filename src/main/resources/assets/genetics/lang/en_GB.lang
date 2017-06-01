@@ -1,3 +1,19 @@
+fluid.polymerisingBacteria=Polymerising Bacteria
+fluid.rawDNA=Raw DNA
+
+genetics.item.casingIron.name=Reinforced Casing
+genetics.item.dnaDye.name=DNA Dye
+genetics.item.dyeFluor.name=Fluorescent Dye
+genetics.item.enzyme.name=Enzyme
+genetics.item.growthMedium.name=Growth Medium
+genetics.item.sequencerEmpty.name=Blank Sequence
+genetics.item.serumEmpty.name=Empty Serum Vial
+genetics.item.genomeEmpty.name=Empty Serum Array
+genetics.item.cylinderEmpty.name=Glass Cylinder
+genetics.item.integratedCircuit.name=Integrated Circuit Board
+genetics.item.integratedCPU.name=Integrated CPU
+genetics.item.casingCircuit.name=Integrated Casing
+
 genetics.machine.machine.isolator=Isolator
 genetics.machine.machine.isolator.info=The Isolator takes a random allele from a bee, tree or other individual and copies it into an empty sequence vial. This requires the use of ethanol as a solvent and an enzyme to cut up the DNA. The unsequenced serums can then be amplified in a Polymeriser and sequenced in a Sequencer.
 genetics.machine.isolator.error.noIndividual=No individual to isolate
@@ -8,9 +24,23 @@ genetics.machine.isolator.error.noEnzyme=No enzyme
 
 genetics.machine.machine.sequencer=Sequencer
 genetics.machine.machine.sequencer.info=The Sequencer takes unsequenced serums and determines which allele is present in them. This requires the use of fluorescent dye and has a long computational time.
+genetics.machine.sequencer.unsequencedDNA=Unsequenced DNA
+genetics.machine.sequencer.error.noSequence=No DNA sequence
+genetics.machine.sequencer.error.noOwner.title=No Owner
+genetics.machine.sequencer.error.noOwner=Replace this block to claim this machine
+genetics.machine.sequencer.error.noSpace=No space for empty sequences
+genetics.machine.sequencer.gui.sequensedBy=Genes will be sequenced by %s
+genetics.machine.sequencer.gui.willNotSave=Userless. Will not save sequences
 
 genetics.machine.machine.polymeriser=Polymeriser
 genetics.machine.machine.polymeriser.info=The Polymeriser takes serums and refills them using Raw DNA and replicating bacteria. This can be accelerated using gold nuggets. 
+genetics.machine.polymeriser.error.noItem=No item to replicate
+genetics.machine.polymeriser.error.itemFilled=Item Filled
+genetics.machine.polymeriser.error.noLiquid=Insufficient Bacteria
+genetics.machine.polymeriser.error.noDNA=Insufficient DNA
+genetics.machine.polymeriser.replicatingWithGene=Replicating with 1 gene
+genetics.machine.polymeriser.replicatingWithGenes=Replicating with %d genes
+genetics.machine.polymeriser.unfilledSerum=Unfilled Serum
 
 genetics.machine.machine.inoculator=Inoculator
 genetics.machine.machine.inoculator.info=The Inoculator uses serums to add genes to breedable individuals. This process takes a very long time and requires a Bacteria Vector, but is 100% successful. 
@@ -64,6 +94,21 @@ genetics.machine.acclimatiser.error.invalidAcclimatizingItems=Cannot Acclimatize
 
 genetics.machine.advMachine.splicer=Splicer
 genetics.machine.advMachine.splicer.info=The Splicer is an incredibly powerful machine to insert genes into individuals. It is fast, but needs insane amounts of power.
+genetics.machine.splicer.error.noIndividual=No Individual to Splice
+genetics.machine.splicer.error.noSerum=No Serum
+genetics.machine.splicer.error.emptySerum.title=Empty Serum
+genetics.machine.splicer.error.emptySerum=Serum is empty
+genetics.machine.splicer.error.invalidSerum.title=Invalid Serum
+genetics.machine.splicer.error.invalidSerum.0=Serum does not hold any genes
+genetics.machine.splicer.error.invalidSerum.1=Mismatch of Serum Type and Target
+genetics.machine.splicer.error.defunctSerum.title=Defunct Serum
+genetics.machine.splicer.error.defunctSerum=Individual already possesses this allele
+genetics.machine.splicer.splicableIndividual=Splicable Individual
+genetics.machine.splicer.serums=Serum Vials & Arrays
+genetics.machine.splicer.splicingIn.0=Splicing in %d/%d genes
+genetics.machine.splicer.splicingIn.1=Splicing in %d/%d gene
+genetics.machine.splicer.splicingIn.2=Splicing in %d genes
+genetics.machine.splicer.splicingIn.3=Splicing in %d gene
 
 genetics.item.sequence=DNA Sequence
 genetics.item.sequence.0=Very Faint

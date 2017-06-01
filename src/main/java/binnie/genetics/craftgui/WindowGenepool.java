@@ -37,7 +37,7 @@ public class WindowGenepool extends WindowMachine {
 
 	@Override
 	public void initialiseClient() {
-		setTitle(getTitle());
+		super.initialiseClient();
 		int x = 16;
 		int y = 32;
 		new ControlLiquidTank(this, x, y).setTankID(1);

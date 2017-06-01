@@ -39,7 +39,7 @@ public class WindowAnalyser extends WindowMachine {
 
 	@Override
 	public void initialiseClient() {
-		setTitle(getTitle());
+		super.initialiseClient();
 		WindowAnalyser.progressBase = new StandardTexture(0, 51, 66, 40, GeneticsTexture.GUIProcess.getTexture());
 		WindowAnalyser.progress = new StandardTexture(66, 51, 66, 40, GeneticsTexture.GUIProcess.getTexture());
 		int x = 16;

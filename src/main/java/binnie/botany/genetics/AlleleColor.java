@@ -8,7 +8,7 @@ public class AlleleColor implements IAlleleInteger {
 	private EnumFlowerColor color;
 	private boolean dominant = true;
 
-	public AlleleColor(EnumFlowerColor color, String uid, String name, int value) {
+	public AlleleColor(EnumFlowerColor color, String uid, int value) {
 		this.color = color;
 		this.uid = uid;
 		this.value = value;

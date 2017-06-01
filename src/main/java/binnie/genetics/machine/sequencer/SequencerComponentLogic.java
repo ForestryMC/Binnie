@@ -5,6 +5,8 @@ import binnie.core.machines.inventory.ComponentInventoryTransfer;
 import binnie.core.machines.power.ComponentProcess;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
+import binnie.core.util.I18N;
+import binnie.genetics.Genetics;
 import binnie.genetics.genetics.GeneTracker;
 import binnie.genetics.genetics.SequencerItem;
 import binnie.genetics.item.GeneticsItems;
@@ -38,7 +40,10 @@ public class SequencerComponentLogic extends ComponentProcess implements IProces
 	@Override
 	public ErrorState canWork() {
 		if (getUtil().isSlotEmpty(Sequencer.SLOT_TARGET_INDEX)) {
-			return new ErrorState.NoItem("No DNA sequence", Sequencer.SLOT_TARGET_INDEX);
+			return new ErrorState.NoItem(
+				I18N.localise(Genetics.instance, "machine.sequencer.error.noSequence"),
+				Sequencer.SLOT_TARGET_INDEX
+			);
 		}
 		return super.canWork();
 	}
@@ -46,15 +51,24 @@ public class SequencerComponentLogic extends ComponentProcess implements IProces
 	@Override
 	public ErrorState canProgress() {
 		if (getMachine().getOwner() == null) {
-			return new ErrorState("No Owner", "Replace this block to claim this machine");
+			return new ErrorState(
+				I18N.localise(Genetics.instance, "machine.sequencer.error.noOwner.title"),
+				I18N.localise(Genetics.instance, "machine.sequencer.error.noOwner")
+			);
 		}
 		if (getUtil().getSlotCharge(Sequencer.SLOT_DYE_INDEX) == 0.0f) {
-			return new ErrorState.NoItem("Insufficient Dye", Sequencer.SLOT_DYE_INDEX);
+			return new ErrorState.NoItem(
+				"Insufficient Dye",
+				Sequencer.SLOT_DYE_INDEX
+			);
 		}
 
 		ItemStack stack = getUtil().getStack(Sequencer.SLOT_DONE_INDEX);
 		if (stack != null && stack.stackSize >= 64) {
-			return new ErrorState.NoSpace("No space for empty sequences", Sequencer.SLOT_DONE_INDEX);
+			return new ErrorState.NoSpace(
+				I18N.localise(Genetics.instance, "machine.sequencer.error.noSpace"),
+				Sequencer.SLOT_DONE_INDEX
+			);
 		}
 		return super.canProgress();
 	}
