@@ -8,7 +8,12 @@ import forestry.core.models.baker.ModelBakerModel;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.*;
+import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.block.model.BlockFaceUV;
+import net.minecraft.client.renderer.block.model.BlockPartFace;
+import net.minecraft.client.renderer.block.model.FaceBakery;
+import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ModelRotation;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -27,27 +32,24 @@ import java.util.List;
 //AABB = AxisAlignedBoundingBox
 @SideOnly(Side.CLIENT)
 public class AABBModelBaker implements IModelBaker {
+	protected final FaceBakery faceBakery = new FaceBakery();
 	private final List<BoundModelBakerFace> faces = new ArrayList<>();
 	private final List<Pair<IBlockState, IBakedModel>> bakedModels = new ArrayList<>();
 	protected AxisAlignedBB modelBounds;
-
 	protected ModelBakerModel currentModel = new ModelBakerModel(ModelManager.getInstance().getDefaultBlockState());
-
-	protected final FaceBakery faceBakery = new FaceBakery();
+	protected int colorIndex = -1;
 
 	public AABBModelBaker() {
 		this(Block.FULL_BLOCK_AABB);
 	}
-	
+
 	public AABBModelBaker(AxisAlignedBB modelBounds) {
 		this.modelBounds = modelBounds;
 	}
-	
+
 	public void setModelBounds(AxisAlignedBB modelBounds) {
 		this.modelBounds = modelBounds;
 	}
-
-	protected int colorIndex = -1;
 
 	@Override
 	public void setColorIndex(int colorIndex) {
@@ -85,7 +87,6 @@ public class AABBModelBaker implements IModelBaker {
 				addFace(facing, sprites[facing.ordinal()]);
 			}
 		}
-
 	}
 
 	@Override
@@ -105,46 +106,46 @@ public class AABBModelBaker implements IModelBaker {
 		float minV;
 		float maxU;
 		float maxV;
-		switch(face){
-			case SOUTH:{
-				minU= from.x;
+		switch (face) {
+			case SOUTH: {
+				minU = from.x;
 				minV = from.y;
-				maxU= to.x;
+				maxU = to.x;
 				maxV = to.y;
 				break;
 			}
-			case NORTH:{
-				minU= from.x;
+			case NORTH: {
+				minU = from.x;
 				minV = from.y;
-				maxU= to.x;
+				maxU = to.x;
 				maxV = to.y;
 				break;
 			}
-			case WEST:{
-				minU= from.z;
+			case WEST: {
+				minU = from.z;
 				minV = from.y;
-				maxU= to.z;
+				maxU = to.z;
 				maxV = to.y;
 				break;
 			}
-			case EAST:{
-				minU= from.z;
+			case EAST: {
+				minU = from.z;
 				minV = from.y;
-				maxU= to.z;
+				maxU = to.z;
 				maxV = to.y;
 				break;
 			}
-			case UP:{
-				minU= from.x;
+			case UP: {
+				minU = from.x;
 				minV = from.z;
-				maxU= to.x;
+				maxU = to.x;
 				maxV = to.z;
 				break;
 			}
-			case DOWN:{
-				minU= from.x;
+			case DOWN: {
+				minU = from.x;
 				minV = from.z;
-				maxU= to.x;
+				maxU = to.x;
 				maxV = to.z;
 				break;
 			}
@@ -156,24 +157,24 @@ public class AABBModelBaker implements IModelBaker {
 				break;
 			}
 		}
-        if (minU < 0 || maxU > 16) {
-            minU = 0;
-            maxU = 16;
-        }
-        if (minV < 0 || maxV > 16) {
-            minV = 0;
-            maxV = 16;
-        }
+		if (minU < 0 || maxU > 16) {
+			minU = 0;
+			maxU = 16;
+		}
+		if (minV < 0 || maxV > 16) {
+			minV = 0;
+			maxV = 16;
+		}
 		minU = 16 - minU;
 		minV = 16 - minV;
 		maxU = 16 - maxU;
 		maxV = 16 - maxV;
-		return new float[]{ 
-				minU,
-				minV,
+		return new float[]{
+			minU,
+			minV,
 
-				maxU,
-				maxV
+			maxU,
+			maxV
 		};
 	}
 
@@ -184,18 +185,6 @@ public class AABBModelBaker implements IModelBaker {
 		}
 
 		faces.add(new BoundModelBakerFace(facing, colorIndex, sprite, modelBounds));
-	}
-	
-	private static class BoundModelBakerFace extends ModelBakerFace{
-
-		protected final AxisAlignedBB modelBounds;
-		
-		public BoundModelBakerFace(EnumFacing face, int colorIndex, TextureAtlasSprite sprite, AxisAlignedBB modelBounds) {
-			super(face, colorIndex, sprite);
-			
-			this.modelBounds = modelBounds;
-		}
-		
 	}
 
 	@Override
@@ -239,4 +228,14 @@ public class AABBModelBaker implements IModelBaker {
 		currentModel.setParticleSprite(particleSprite);
 	}
 
+	private static class BoundModelBakerFace extends ModelBakerFace {
+
+		protected final AxisAlignedBB modelBounds;
+
+		public BoundModelBakerFace(EnumFacing face, int colorIndex, TextureAtlasSprite sprite, AxisAlignedBB modelBounds) {
+			super(face, colorIndex, sprite);
+
+			this.modelBounds = modelBounds;
+		}
+	}
 }

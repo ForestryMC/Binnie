@@ -3,7 +3,7 @@ package binnie.core.texture;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.swing.*;
+import javax.swing.Icon;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,5 +13,4 @@ public class TextureManager {
 
 	public static void init() {
 	}
-
 }

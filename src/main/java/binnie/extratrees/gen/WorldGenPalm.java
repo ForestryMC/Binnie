@@ -14,7 +14,7 @@ public class WorldGenPalm {
 		public Coconut(ITreeGenData tree) {
 			super(tree, 6, 1);
 		}
-		
+
 		@Override
 		protected void generateLeaves(World world, Random rand, TreeBlockTypeLeaf leaf, List<BlockPos> branchEnds, BlockPos startPos) {
 			float leafSpawn = this.height + 1;
@@ -22,6 +22,5 @@ public class WorldGenPalm {
 			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + 0.5F, 1, WorldGenHelper.EnumReplaceMode.AIR);
 			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth - 0.6F, 1, WorldGenHelper.EnumReplaceMode.AIR);
 		}
-
 	}
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 public class DesignerManager {
 	public static DesignerManager instance = new DesignerManager();
-	
+
 	List<IDesignSystem> systems;
 
 	public DesignerManager() {
@@ -26,5 +26,4 @@ public class DesignerManager {
 	public void addDesignSystem(final DesignSystem system) {
 		this.systems.add(system);
 	}
-
 }

@@ -21,5 +21,4 @@ public class ItemWeed extends ItemBlock {
 	public int getMetadata(int damage) {
 		return damage;
 	}
-
 }

@@ -37,6 +37,14 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 		this.setSoundType(SoundType.PLANT);
 	}
 
+	public static boolean isWeed(final IBlockAccess world, final BlockPos pos) {
+		if (!(world.getBlockState(pos).getBlock() instanceof BlockPlant)) {
+			return false;
+		}
+		final Type type = world.getBlockState(pos).getValue(PLANT_TYPE);
+		return type == Type.Weeds || type == Type.WeedsLong || type == Type.WeedsVeryLong;
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
@@ -129,14 +137,6 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 		return true;
 	}
 
-	public static boolean isWeed(final IBlockAccess world, final BlockPos pos) {
-		if (!(world.getBlockState(pos).getBlock() instanceof BlockPlant)) {
-			return false;
-		}
-		final Type type = world.getBlockState(pos).getValue(PLANT_TYPE);
-		return type == Type.Weeds || type == Type.WeedsLong || type == Type.WeedsVeryLong;
-	}
-
 	@Override
 	public EnumOffsetType getOffsetType() {
 		return EnumOffsetType.XZ;
@@ -155,12 +155,12 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 			this.name = name;
 		}
 
-		public ItemStack get() {
-			return new ItemStack(Botany.plant, 1, this.ordinal());
-		}
-
 		public static Type get(final int id) {
 			return values()[id % values().length];
+		}
+
+		public ItemStack get() {
+			return new ItemStack(Botany.plant, 1, this.ordinal());
 		}
 
 		@Override

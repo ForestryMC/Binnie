@@ -17,5 +17,4 @@ public class DefaultStateMapper extends StateMapperBase {
 	protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
 		return new ModelResourceLocation(resourceLocation, "normal");
 	}
-
 }

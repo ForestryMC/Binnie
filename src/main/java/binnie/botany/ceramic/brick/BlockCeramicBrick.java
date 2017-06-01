@@ -10,7 +10,11 @@ import binnie.core.models.DefaultStateMapper;
 import binnie.core.models.ModelManager;
 import binnie.core.models.ModelMutlipass;
 import binnie.core.util.TileUtil;
-import forestry.api.core.*;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import forestry.api.core.ISpriteRegister;
+import forestry.api.core.IStateMapperRegister;
+import forestry.api.core.ITextureManager;
 import forestry.core.blocks.IColoredBlock;
 import forestry.core.blocks.properties.UnlistedBlockAccess;
 import forestry.core.blocks.properties.UnlistedBlockPos;
@@ -32,7 +36,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
@@ -50,8 +58,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicBrickPair>, IColoredBlock, ISpriteRegister, IStateMapperRegister, IItemModelRegister {
-
-	public static final PropertyEnum<CeramicBrickType> TYPE = PropertyEnum.create("type", CeramicBrickType.class);
+	private static final PropertyEnum<CeramicBrickType> TYPE = PropertyEnum.create("type", CeramicBrickType.class);
 
 	public BlockCeramicBrick() {
 		super(Material.ROCK);
@@ -114,24 +121,16 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 		ResourceLocation resourceLocation = new ResourceLocation(Constants.BOTANY_MOD_ID, "ceramicBrick");
 		ModelLoader.setCustomStateMapper(this, new DefaultStateMapper(resourceLocation));
 		ModelManager.registerCustomBlockModel(new BlockModelEntry(
-				new ModelResourceLocation(resourceLocation, "normal"),
-				new ModelResourceLocation(resourceLocation, "inventory"),
-				new ModelMutlipass<>(BlockCeramicBrick.class), this));
+			new ModelResourceLocation(resourceLocation, "normal"),
+			new ModelResourceLocation(resourceLocation, "inventory"),
+			new ModelMutlipass<>(BlockCeramicBrick.class), this
+		));
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
 		manager.registerItemModel(item, new CeramicBrickMeshDefinition());
-	}
-
-	private class CeramicBrickMeshDefinition implements ItemMeshDefinition {
-
-		@Override
-		public ModelResourceLocation getModelLocation(ItemStack stack) {
-			return new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":ceramicBrick", "inventory");
-		}
-
 	}
 
 	@Override
@@ -239,6 +238,13 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 			for (int i = 0; i < 3; ++i) {
 				type.sprites[i] = textureMap.registerSprite(new ResourceLocation(Constants.BOTANY_MOD_ID + ":blocks/ceramic." + type.id + "." + i));
 			}
+		}
+	}
+
+	private class CeramicBrickMeshDefinition implements ItemMeshDefinition {
+		@Override
+		public ModelResourceLocation getModelLocation(ItemStack stack) {
+			return new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":ceramicBrick", "inventory");
 		}
 	}
 }

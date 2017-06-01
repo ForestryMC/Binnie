@@ -15,7 +15,11 @@ import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fluids.capability.templates.FluidHandlerConcatenate;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ComponentTankContainer extends MachineComponent implements ITankMachine {
 	private Map<Integer, TankSlot> tanks;

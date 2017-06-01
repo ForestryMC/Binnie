@@ -17,11 +17,11 @@ import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class DoublePassBakedModel implements IBakedModel {
+	private static final int c = DefaultVertexFormats.ITEM.getColorOffset() / 4;
+	private static final int v = DefaultVertexFormats.ITEM.getNextOffset() / 4;
 	private IBakedModel mainModel;
 	private int primaryColor = 0xFF000000;
 	private int secondaryColor = 0xFF000000;
-	private static final int c = DefaultVertexFormats.ITEM.getColorOffset() / 4;
-	private static final int v = DefaultVertexFormats.ITEM.getNextOffset() / 4;
 
 	/**
 	 * It colorizes the quads according to tintindex, which is defined in the json file.

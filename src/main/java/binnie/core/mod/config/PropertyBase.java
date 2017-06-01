@@ -12,8 +12,8 @@ abstract class PropertyBase<ValueType, AnnotationType extends Annotation> {
 	Configuration file;
 	Property property;
 	ValueType defaultValue;
-	private ConfigProperty configProperty;
 	AnnotationType annotatedProperty;
+	private ConfigProperty configProperty;
 	private List<String> comments;
 	private Field field;
 

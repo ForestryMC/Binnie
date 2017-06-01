@@ -8,9 +8,9 @@ import binnie.core.gui.IBinnieGUID;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
 import binnie.core.proxy.IProxyCore;
-import binnie.genetics.item.ItemBeeDictionary;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsPacket;
+import binnie.genetics.item.ItemBeeDictionary;
 import binnie.genetics.item.ItemPunnettSquare;
 import binnie.genetics.item.ModuleItems;
 import binnie.genetics.machine.ModuleMachine;
@@ -32,19 +32,27 @@ import javax.annotation.Nullable;
 @Mod(modid = Constants.GENETICS_MOD_ID, name = "Binnie's Genetics", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class Genetics extends AbstractMod {
 
+	public static final String CHANNEL = "GEN";
 	@Mod.Instance(Constants.GENETICS_MOD_ID)
 	public static Genetics instance;
-
 	@SidedProxy(clientSide = "binnie.genetics.proxy.ProxyClient", serverSide = "binnie.genetics.proxy.ProxyServer")
 	public static Proxy proxy;
-
-	public static final String CHANNEL = "GEN";
 	@Nullable
 	private static ModuleItems items;
 	@Nullable
 	private static ModuleMachine machine;
 
 	private static Item dictionaryBees;
+
+	public static ModuleItems items() {
+		Preconditions.checkState(items != null);
+		return items;
+	}
+
+	public static ModuleMachine machine() {
+		Preconditions.checkState(machine != null);
+		return machine;
+	}
 
 	@Mod.EventHandler
 	public void preInit(final FMLPreInitializationEvent evt) {
@@ -62,16 +70,6 @@ public class Genetics extends AbstractMod {
 	@Mod.EventHandler
 	public void postInit(final FMLPostInitializationEvent evt) {
 		this.postInit();
-	}
-
-	public static ModuleItems items() {
-		Preconditions.checkState(items != null);
-		return items;
-	}
-	
-	public static ModuleMachine machine() {
-		Preconditions.checkState(machine != null);
-		return machine;
 	}
 
 	@Override
@@ -120,5 +118,4 @@ public class Genetics extends AbstractMod {
 			super(Genetics.instance);
 		}
 	}
-
 }

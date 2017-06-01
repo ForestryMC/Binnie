@@ -15,9 +15,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-/**
- * Created by Elec332 on 13-5-2017.
- */
 public class ItemMiscProduct extends ItemProduct {
 
 	public ItemMiscProduct(CreativeTabs tab, IEBItemMiscProvider[] types) {
@@ -41,5 +38,4 @@ public class ItemMiscProduct extends ItemProduct {
 			ModelLoader.setCustomModelResourceLocation(item, type.ordinal(), new ModelResourceLocation(new ExtraBeesResourceLocation("misc/" + ((IEBItemMiscProvider) type).getModelPath()), "inventory"));
 		}
 	}
-
 }

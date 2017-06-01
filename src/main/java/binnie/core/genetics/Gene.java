@@ -14,16 +14,6 @@ public class Gene implements IGene {
 	private IChromosomeType chromosome;
 	private ISpeciesRoot root;
 
-	@Override
-	public ISpeciesRoot getSpeciesRoot() {
-		return this.root;
-	}
-
-	@Override
-	public String toString() {
-		return this.getAlleleName();
-	}
-
 	public Gene(final IAllele allele, final IChromosomeType chromosome, final ISpeciesRoot root) {
 		this.allele = allele;
 		this.chromosome = chromosome;
@@ -39,6 +29,24 @@ public class Gene implements IGene {
 		final int chromoID = nbt.getByte("chromo");
 		Preconditions.checkArgument(chromoID >= 0 && chromoID < this.root.getKaryotype().length, "Invalid chromosomeId: %s", chromoID);
 		this.chromosome = this.root.getKaryotype()[chromoID];
+	}
+
+	public static Gene create(final NBTTagCompound nbt) {
+		return new Gene(nbt);
+	}
+
+	public static Gene create(final IAllele allele, final IChromosomeType chromosome, final ISpeciesRoot root) {
+		return new Gene(allele, chromosome, root);
+	}
+
+	@Override
+	public ISpeciesRoot getSpeciesRoot() {
+		return this.root;
+	}
+
+	@Override
+	public String toString() {
+		return this.getAlleleName();
 	}
 
 	@Override
@@ -59,14 +67,6 @@ public class Gene implements IGene {
 		nbt.setString("root", this.root.getUID());
 		nbt.setByte("chromo", (byte) this.chromosome.ordinal());
 		return nbt;
-	}
-
-	public static Gene create(final NBTTagCompound nbt) {
-		return new Gene(nbt);
-	}
-
-	public static Gene create(final IAllele allele, final IChromosomeType chromosome, final ISpeciesRoot root) {
-		return new Gene(allele, chromosome, root);
 	}
 
 	@Override

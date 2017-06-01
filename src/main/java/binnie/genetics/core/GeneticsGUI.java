@@ -2,8 +2,8 @@ package binnie.genetics.core;
 
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.gui.IBinnieGUID;
-import binnie.genetics.gui.bee.database.WindowApiaristDatabase;
 import binnie.genetics.gui.WindowAnalyst;
+import binnie.genetics.gui.bee.database.WindowApiaristDatabase;
 import binnie.genetics.gui.punnett.WindowPunnettSquare;
 import binnie.genetics.machine.acclimatiser.WindowAcclimatiser;
 import binnie.genetics.machine.analyser.WindowAnalyser;
@@ -47,10 +47,6 @@ public enum GeneticsGUI implements IBinnieGUID {
 
 	private final WindowFactory windowFactory;
 
-	public interface WindowFactory {
-		Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side);
-	}
-
 	GeneticsGUI(final WindowFactory windowFactory) {
 		this.windowFactory = windowFactory;
 	}
@@ -68,5 +64,9 @@ public enum GeneticsGUI implements IBinnieGUID {
 		}
 
 		return getWindow(player, object, side);
+	}
+
+	public interface WindowFactory {
+		Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side);
 	}
 }

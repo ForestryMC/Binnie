@@ -31,8 +31,8 @@ public class PolymeriserRecipeWrapper extends BlankRecipeWrapper {
 		int dnaAmount = (int) (PolymeriserLogic.getDNAPerProcess(input) * processCount);
 		int bacteriaAmount = (int) (PolymeriserLogic.getBacteriaPerProcess(input) * processCount);
 		ingredients.setInputs(FluidStack.class, Arrays.asList(
-				GeneticLiquid.RawDNA.get(dnaAmount),
-				GeneticLiquid.BacteriaPoly.get(bacteriaAmount)
+			GeneticLiquid.RawDNA.get(dnaAmount),
+			GeneticLiquid.BacteriaPoly.get(bacteriaAmount)
 		));
 
 		ItemStack output = input.copy();

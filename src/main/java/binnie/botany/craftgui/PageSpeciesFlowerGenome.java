@@ -1,7 +1,11 @@
 package binnie.botany.craftgui;
 
 import binnie.Binnie;
-import binnie.botany.api.*;
+import binnie.botany.api.EnumFlowerChromosome;
+import binnie.botany.api.EnumFlowerStage;
+import binnie.botany.api.IAlleleFlowerSpecies;
+import binnie.botany.api.IFlower;
+import binnie.botany.api.IFlowerGenome;
 import binnie.botany.core.BotanyCore;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
@@ -21,6 +25,13 @@ import net.minecraft.item.ItemStack;
 public class PageSpeciesFlowerGenome extends PageSpecies {
 	public PageSpeciesFlowerGenome(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);
+	}
+
+	public static String tolerated(final boolean t) {
+		if (t) {
+			return "Tolerated";
+		}
+		return "Not Tolerated";
 	}
 
 	@Override
@@ -86,12 +97,5 @@ public class PageSpeciesFlowerGenome extends PageSpecies {
 		y += th;
 		contents.setSize(new Point(contents.size().x(), y));
 		scrollable.setScrollableContent(contents);
-	}
-
-	public static String tolerated(final boolean t) {
-		if (t) {
-			return "Tolerated";
-		}
-		return "Not Tolerated";
 	}
 }

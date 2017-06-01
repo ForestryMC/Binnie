@@ -101,6 +101,11 @@ public enum EnumHoneyComb implements IEBEnumItem {
 	CYANITE(2564173, 34541),
 	BLUTONIUM(2564173, 1769702);
 
+	public int[] colour;
+	public Map<ItemStack, Float> products;
+	public boolean active;
+	public boolean deprecated;
+
 	EnumHoneyComb() {
 		this(16777215, 16777215);
 		this.active = false;
@@ -115,10 +120,13 @@ public enum EnumHoneyComb implements IEBEnumItem {
 		this.colour = new int[]{colour, colour2};
 	}
 
-	public int[] colour;
-	public Map<ItemStack, Float> products;
-	public boolean active;
-	public boolean deprecated;
+	public static EnumHoneyComb get(final ItemStack itemStack) {
+		final int i = itemStack.getItemDamage();
+		if (i >= 0 && i < values().length) {
+			return values()[i];
+		}
+		return values()[0];
+	}
 
 	public void addRecipe() {
 		RecipeManagers.centrifugeManager.addRecipe(20, this.get(1), this.products);
@@ -127,14 +135,6 @@ public enum EnumHoneyComb implements IEBEnumItem {
 	@Override
 	public boolean isActive() {
 		return this.active;
-	}
-
-	public static EnumHoneyComb get(final ItemStack itemStack) {
-		final int i = itemStack.getItemDamage();
-		if (i >= 0 && i < values().length) {
-			return values()[i];
-		}
-		return values()[0];
 	}
 
 	@Override
@@ -147,7 +147,7 @@ public enum EnumHoneyComb implements IEBEnumItem {
 		return ExtraBees.proxy.localise("item.comb." + this.name().toLowerCase());
 	}
 
-	public boolean addProduct(@Nullable Item item, final Float chance){
+	public boolean addProduct(@Nullable Item item, final Float chance) {
 		return addProduct(new ItemStack(Objects.firstNonNull(item, Item.getItemFromBlock(Blocks.AIR))), chance);
 	}
 

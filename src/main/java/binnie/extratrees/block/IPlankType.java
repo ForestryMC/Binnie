@@ -13,10 +13,10 @@ public interface IPlankType extends IDesignMaterial {
 	String getDescription();
 
 	IWoodType getWoodType();
-	
+
 	@SideOnly(Side.CLIENT)
 	TextureAtlasSprite getSprite();
-	
+
 	@SideOnly(Side.CLIENT)
 	void registerSprites(TextureMap map);
 }

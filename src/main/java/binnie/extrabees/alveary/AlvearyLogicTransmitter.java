@@ -11,29 +11,26 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-/**
- * Created by Elec332 on 13-5-2017.
- */
 public class AlvearyLogicTransmitter extends AbstractAlvearyLogic implements IEnergyStorage {
-
-	public AlvearyLogicTransmitter(){
-		internalStorage = new EnergyStorage(2000);
-	}
 
 	private IEnergyStorage internalStorage;
 
+	public AlvearyLogicTransmitter() {
+		internalStorage = new EnergyStorage(2000);
+	}
+
 	@Override
 	public void updateServer(TileEntityExtraBeesAlvearyPart tile) {
-		if (internalStorage.getEnergyStored() < 2){
+		if (internalStorage.getEnergyStored() < 2) {
 			return;
 		}
 		List<IEnergyStorage> esL = Lists.newArrayList();
-		for (TileEntityExtraBeesAlvearyPart part : tile.getExtraBeesParts()){
-			if (part.getAlvearyLogic().getEnergyStorage() != null){
+		for (TileEntityExtraBeesAlvearyPart part : tile.getExtraBeesParts()) {
+			if (part.getAlvearyLogic().getEnergyStorage() != null) {
 				esL.add(part.getAlvearyLogic().getEnergyStorage());
 			}
 		}
-		if (esL.isEmpty()){
+		if (esL.isEmpty()) {
 			return;
 		}
 		int div = esL.size();
@@ -95,5 +92,4 @@ public class AlvearyLogicTransmitter extends AbstractAlvearyLogic implements IEn
 	public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
 		return capability == CapabilityEnergy.ENERGY ? (T) this : null;
 	}
-
 }

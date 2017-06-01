@@ -13,10 +13,11 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-/**
- * Created by Elec332 on 13-5-2017.
- */
 public class StimulatorCircuit implements ICircuit, IBeeModifier {
+
+	private final AlvearySimulatorCircuitType type;
+	private final String uid;
+	private final List<String> tooltip;
 
 	public StimulatorCircuit(final AlvearySimulatorCircuitType type, final ICircuitLayout layout) {
 		uid = "binnie.circuit.stimulator." + type.toString().toLowerCase();
@@ -27,15 +28,11 @@ public class StimulatorCircuit implements ICircuit, IBeeModifier {
 		tooltip = Lists.newArrayList();
 	}
 
-	private final AlvearySimulatorCircuitType type;
-	private final String uid;
-	private final List<String> tooltip;
-
 	public int getPowerUsage() {
 		return this.type.power;
 	}
 
-	public void addTooltip(String tt){
+	public void addTooltip(String tt) {
 		this.tooltip.add(tt);
 	}
 
@@ -103,7 +100,7 @@ public class StimulatorCircuit implements ICircuit, IBeeModifier {
 
 	@Override
 	public boolean isCircuitable(@Nonnull Object tile) {
-		System.out.println("isCircuitable: "+tile);
+		System.out.println("isCircuitable: " + tile);
 		return false;
 	}
 
@@ -131,5 +128,4 @@ public class StimulatorCircuit implements ICircuit, IBeeModifier {
 	public void addTooltip(@Nonnull List<String> list) {
 		list.addAll(tooltip);
 	}
-
 }

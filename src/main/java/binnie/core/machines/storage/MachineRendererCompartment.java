@@ -34,5 +34,4 @@ class MachineRendererCompartment {
 
 		GlStateManager.popMatrix();
 	}
-
 }

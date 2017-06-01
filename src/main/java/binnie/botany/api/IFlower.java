@@ -17,9 +17,9 @@ public interface IFlower extends IIndividual {
 
 	int getAge();
 
-	void age();
-
 	void setAge(final int age);
+
+	void age();
 
 	IFlower getOffspring(final World world, final BlockPos pos);
 

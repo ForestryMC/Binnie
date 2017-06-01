@@ -24,6 +24,15 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 		this.setLightOpacity(0);
 	}
 
+	public static boolean isValidPanelPlacement(IBlockAccess world, BlockPos pos, @Nullable EnumFacing facing) {
+		if (facing == null) {
+			return false;
+		}
+		pos = pos.offset(facing);
+		IBlockState state = world.getBlockState(pos);
+		return state.isSideSolid(world, pos, facing.getOpposite());
+	}
+
 	@Override
 	public void getSubBlocks(final Item itemIn, final CreativeTabs tab, final NonNullList<ItemStack> itemList) {
 	}
@@ -80,15 +89,6 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 		return ModuleCarpentry.getCarpentryPanel(this.getDesignSystem(), TileEntityMetadata.getTileMetadata(world, pos));
 	}
 
-	public static boolean isValidPanelPlacement(IBlockAccess world, BlockPos pos, @Nullable EnumFacing facing) {
-		if (facing == null) {
-			return false;
-		}
-		pos = pos.offset(facing);
-		IBlockState state = world.getBlockState(pos);
-		return state.isSideSolid(world, pos, facing.getOpposite());
-	}
-
 	@Override
 	public int getPlacedMeta(ItemStack item, World world, BlockPos pos, EnumFacing clickedBlock) {
 		final DesignBlock block = ModuleCarpentry.getCarpentryPanel(this.getDesignSystem(), TileEntityMetadata.getItemDamage(item));
@@ -128,5 +128,4 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 			world.setBlockToAir(pos);
 		}
 	}
-
 }

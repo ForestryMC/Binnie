@@ -3,7 +3,15 @@ package binnie.extrabees.genetics;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.utils.Utils;
 import forestry.api.apiculture.FlowerManager;
-import forestry.api.genetics.*;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleFlowers;
+import forestry.api.genetics.ICheckPollinatable;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IFlowerProvider;
+import forestry.api.genetics.IFruitBearer;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -36,6 +44,12 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 		this.dominant = true;
 	}
 
+	public static void doInit() {
+		for (final ExtraBeesFlowers effect : values()) {
+			effect.register();
+		}
+	}
+
 	@Override
 	public String getUID() {
 		return "extrabees.flower." + this.toString().toLowerCase();
@@ -64,12 +78,6 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 		}
 
 		AlleleManager.alleleRegistry.registerAllele(this, this);
-	}
-
-	public static void doInit() {
-		for (final ExtraBeesFlowers effect : values()) {
-			effect.register();
-		}
 	}
 
 	public List<Block> getAcceptableBlocks() {
@@ -152,21 +160,20 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 		}
 	}
 
-
-//	@Override
-//	public boolean growFlower(final World world, final IIndividual individual, final BlockPos pos) {
-//		switch (this) {
-//		case WATER: {
-//			return world.isAirBlock(x, y, z) && world.getBlock(x, y - 1, z) == Blocks.water && world.setBlock(x, y, z, Blocks.waterlily, 0, 2);
-//		}
-//		case SUGAR: {
-//			return world.getBlock(x, y - 1, z) == Blocks.reeds && world.isAirBlock(x, y, z) && world.setBlock(x, y, z, Blocks.reeds, 0, 0);
-//		}
-//		default: {
-//			return false;
-//		}
-//		}
-//	}
+	/*@Override
+	public boolean growFlower(final World world, final IIndividual individual, final BlockPos pos) {
+		switch (this) {
+		case WATER: {
+			return world.isAirBlock(x, y, z) && world.getBlock(x, y - 1, z) == Blocks.water && world.setBlock(x, y, z, Blocks.waterlily, 0, 2);
+		}
+		case SUGAR: {
+			return world.getBlock(x, y - 1, z) == Blocks.reeds && world.isAirBlock(x, y, z) && world.setBlock(x, y, z, Blocks.reeds, 0, 0);
+		}
+		default: {
+			return false;
+		}
+		}
+	}*/
 
 	@Override
 	public String getName() {
@@ -183,10 +190,10 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 		return this.getUID();
 	}
 
-//	@Override
-//	public Set<IFlower> getFlowers() {
-//		return new HashSet<IFlower>();
-//	}
+	/*@Override
+	public Set<IFlower> getFlowers() {
+		return new HashSet<IFlower>();
+	}*/
 
 	@Override
 	public Class<? extends IAllele> getAlleleClass() {

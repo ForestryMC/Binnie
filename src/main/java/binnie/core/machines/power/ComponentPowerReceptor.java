@@ -10,10 +10,10 @@ import java.util.LinkedList;
 
 @Optional.Interface(iface = "binnie.core.machines.component.IBuildcraft.TriggerProvider", modid = "BuildCraft|Silicon")
 public class ComponentPowerReceptor extends MachineComponent implements IPoweredMachine/*, IBuildcraft.TriggerProvider*/, IInteraction.ChunkUnload, IInteraction.Invalidation {
-	private boolean registeredToIC2EnergyNet;
+	static final int inputAverageTicks = 20;
 	float previousPower;
 	LinkedList<Float> inputs;
-	static final int inputAverageTicks = 20;
+	private boolean registeredToIC2EnergyNet;
 	private PowerInterface container;
 
 	public ComponentPowerReceptor(final IMachine machine) {
@@ -26,18 +26,18 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 		this.previousPower = 0.0f;
 		this.inputs = new LinkedList<>();
 		this.container = new PowerInterface(storage);
-//		if (!this.registeredToIC2EnergyNet) {
-//			this.addToEnergyNet();
-//		}
+		/*if (!this.registeredToIC2EnergyNet) {
+			this.addToEnergyNet();
+		}*/
 	}
 
 	@Override
 	public void readFromNBT(final NBTTagCompound nbttagcompound) {
 		super.readFromNBT(nbttagcompound);
 		this.container.readFromNBT(nbttagcompound);
-//		if (!this.registeredToIC2EnergyNet) {
-//			this.addToEnergyNet();
-//		}
+		/*if (!this.registeredToIC2EnergyNet) {
+			this.addToEnergyNet();
+		}*/
 	}
 
 	@Override
@@ -47,52 +47,52 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 		return nbttagcompound;
 	}
 
-//	@Override
-//	public void onUpdate() {
-//		if (!this.registeredToIC2EnergyNet && !this.getMachine().getTileEntity().isInvalid()) {
-//			this.addToEnergyNet();
-//		}
-//	}
+	/*@Override
+	public void onUpdate() {
+		if (!this.registeredToIC2EnergyNet && !this.getMachine().getTileEntity().isInvalid()) {
+			this.addToEnergyNet();
+		}
+	}*/
 
 	@Override
 	public PowerInfo getPowerInfo() {
 		return new PowerInfo(this, 0.0f);
 	}
 
-//	@Optional.Method(modid = "BuildCraft|Silicon")
-//	@Override
-//	public final void getTriggers(final List<TriggerData> triggers) {
-////		triggers.add(TriggerPower.powerNone(this));
-////		triggers.add(TriggerPower.powerLow(this));
-////		triggers.add(TriggerPower.powerMedium(this));
-////		triggers.add(TriggerPower.powerHigh(this));
-////		triggers.add(TriggerPower.powerFull(this));
-//	}
+	/*@Optional.Method(modid = "BuildCraft|Silicon")
+	@Override
+	public final void getTriggers(final List<TriggerData> triggers) {
+		//triggers.add(TriggerPower.powerNone(this));
+		//triggers.add(TriggerPower.powerLow(this));
+		//triggers.add(TriggerPower.powerMedium(this));
+		//triggers.add(TriggerPower.powerHigh(this));
+		//triggers.add(TriggerPower.powerFull(this));
+	}
 
-//	@Override
-//	@Optional.Method(modid = "IC2")
-//	public double getDemandedEnergy() {
-//		return this.container.getEnergySpace(PowerSystem.EU);
-//	}
-//
-//	@Override
-//	@Optional.Method(modid = "IC2")
-//	public int getSinkTier() {
-//		return 1;
-//	}
-//
-//	@Override
-//	@Optional.Method(modid = "IC2")
-//	public double injectEnergy(final EnumFacing directionFrom, final double amount, final double voltage) {
-//		this.container.addEnergy(PowerSystem.EU, amount, true);
-//		return 0.0;
-//	}
-//
-//	@Override
-//	@Optional.Method(modid = "IC2")
-//	public boolean acceptsEnergyFrom(final TileEntity emitter, final EnumFacing direction) {
-//		return this.acceptsPowerSystem(PowerSystem.EU);
-//	}
+	@Override
+	@Optional.Method(modid = "IC2")
+	public double getDemandedEnergy() {
+		return this.container.getEnergySpace(PowerSystem.EU);
+	}
+
+	@Override
+	@Optional.Method(modid = "IC2")
+	public int getSinkTier() {
+		return 1;
+	}
+
+	@Override
+	@Optional.Method(modid = "IC2")
+	public double injectEnergy(final EnumFacing directionFrom, final double amount, final double voltage) {
+		this.container.addEnergy(PowerSystem.EU, amount, true);
+		return 0.0;
+	}
+
+	@Override
+	@Optional.Method(modid = "IC2")
+	public boolean acceptsEnergyFrom(final TileEntity emitter, final EnumFacing direction) {
+		return this.acceptsPowerSystem(PowerSystem.EU);
+	}*/
 
 	@Override
 	public int receiveEnergy(final int maxReceive, final boolean simulate) {
@@ -143,33 +143,33 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 		//this.removeFromEnergyNet();
 	}
 
-//	private void addToEnergyNet() {
-//		if (this.getMachine().getWorld() == null) {
-//			return;
-//		}
-//		if (Mods.IC2.active()) {
-//			this.do_addToEnergyNet();
-//		}
-//	}
-//
-//	private void removeFromEnergyNet() {
-//		if (this.getMachine().getWorld() == null) {
-//			return;
-//		}
-//		if (Mods.IC2.active()) {
-//			this.do_removeFromEnergyNet();
-//		}
-//	}
+	/*private void addToEnergyNet() {
+		if (this.getMachine().getWorld() == null) {
+			return;
+		}
+		if (Mods.IC2.active()) {
+			this.do_addToEnergyNet();
+		}
+	}
 
-//	@Optional.Method(modid = "IC2")
-//	private void do_addToEnergyNet() {
-//		MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent((IEnergyTile) this.getMachine().getTileEntity()));
-//		this.registeredToIC2EnergyNet = true;
-//	}
-//
-//	@Optional.Method(modid = "IC2")
-//	private void do_removeFromEnergyNet() {
-//		MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent((IEnergyTile) this.getMachine().getTileEntity()));
-//		this.registeredToIC2EnergyNet = false;
-//	}
+	private void removeFromEnergyNet() {
+		if (this.getMachine().getWorld() == null) {
+			return;
+		}
+		if (Mods.IC2.active()) {
+			this.do_removeFromEnergyNet();
+		}
+	}
+
+	@Optional.Method(modid = "IC2")
+	private void do_addToEnergyNet() {
+		MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent((IEnergyTile) this.getMachine().getTileEntity()));
+		this.registeredToIC2EnergyNet = true;
+	}
+
+	@Optional.Method(modid = "IC2")
+	private void do_removeFromEnergyNet() {
+		MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent((IEnergyTile) this.getMachine().getTileEntity()));
+		this.registeredToIC2EnergyNet = false;
+	}*/
 }

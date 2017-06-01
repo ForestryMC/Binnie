@@ -4,7 +4,6 @@ import forestry.core.genetics.IGeneticDefinition;
 import net.minecraft.item.ItemStack;
 
 public interface IFlowerDefinition extends IGeneticDefinition {
-
 	@Override
 	IFlowerGenome getGenome();
 
@@ -12,5 +11,4 @@ public interface IFlowerDefinition extends IGeneticDefinition {
 	IFlower getIndividual();
 
 	ItemStack getMemberStack(EnumFlowerStage flowerStage);
-
 }

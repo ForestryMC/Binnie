@@ -3,12 +3,23 @@ package binnie.core.craftgui.minecraft;
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
-import binnie.core.craftgui.*;
+import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.ITooltip;
+import binnie.core.craftgui.ITooltipHelp;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.TopLevelWidget;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.events.EventWidget;
 import binnie.core.craftgui.geometry.Point;
-import binnie.core.craftgui.minecraft.control.*;
+import binnie.core.craftgui.minecraft.control.ControlHelp;
+import binnie.core.craftgui.minecraft.control.ControlInfo;
+import binnie.core.craftgui.minecraft.control.ControlPowerSystem;
+import binnie.core.craftgui.minecraft.control.ControlSlot;
+import binnie.core.craftgui.minecraft.control.ControlUser;
+import binnie.core.craftgui.minecraft.control.EnumHighlighting;
 import binnie.core.craftgui.renderer.RenderUtil;
 import binnie.core.craftgui.resource.StyleSheetManager;
 import binnie.core.craftgui.resource.Texture;
@@ -37,14 +48,15 @@ import java.util.ArrayList;
 import java.util.Deque;
 
 public abstract class Window extends TopLevelWidget implements INetwork.ReceiveGuiNBT {
+	private final Side side;
+	protected int titleButtonLeft;
+	protected int titleButtonRight;
 	@Nullable // client side only
 	private GuiCraftGUI gui;
 	private ContainerCraftGUI container;
 	private WindowInventory windowInventory;
 	@Nullable
 	private ControlText title;
-	protected int titleButtonLeft;
-	protected int titleButtonRight;
 	@Nullable
 	private StandardTexture bgText1;
 	@Nullable
@@ -53,7 +65,6 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 	private EntityPlayer player;
 	@Nullable
 	private IInventory entityInventory;
-	private final Side side;
 
 	public Window(final int width, final int height, final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
 		this.titleButtonLeft = 8;
@@ -94,6 +105,10 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 				}
 			});
 		}
+	}
+
+	public static <T extends Window> T get(final IWidget widget) {
+		return (T) widget.getTopParent();
 	}
 
 	public void getTooltip(final Tooltip tooltip) {
@@ -234,16 +249,16 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 		return this.player.inventory.getItemStack();
 	}
 
+	public void setHeldItemStack(final ItemStack stack) {
+		this.player.inventory.setItemStack(stack);
+	}
+
 	@Nullable
 	public IInventory getInventory() {
 		return this.entityInventory;
 	}
 
 	public void onClose() {
-	}
-
-	public void setHeldItemStack(final ItemStack stack) {
-		this.player.inventory.setItemStack(stack);
 	}
 
 	public boolean isServer() {
@@ -301,9 +316,5 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 	@Nullable
 	public Texture getBackground2() {
 		return this.bgText2;
-	}
-
-	public static <T extends Window> T get(final IWidget widget) {
-		return (T) widget.getTopParent();
 	}
 }

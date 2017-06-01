@@ -19,27 +19,23 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-/**
- * Created by Elec332 on 13-5-2017.
- */
 public class AlvearyLogicHatchery extends AbstractAlvearyLogic {
 
-	public AlvearyLogicHatchery(){
-		inv = new ItemStackHandler(5){
+	private final IItemHandlerModifiable inv;
+
+	public AlvearyLogicHatchery() {
+		inv = new ItemStackHandler(5) {
 
 			@Nonnull
 			@Override
 			public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
-				if (!stack.isEmpty() && Utils.getBeeRoot().getType(stack) != EnumBeeType.LARVAE){
+				if (!stack.isEmpty() && Utils.getBeeRoot().getType(stack) != EnumBeeType.LARVAE) {
 					return stack;
 				}
 				return super.insertItem(slot, stack, simulate);
 			}
-
 		};
 	}
-
-	private final IItemHandlerModifiable inv;
 
 	public IItemHandlerModifiable getInventory() {
 		return inv;
@@ -56,7 +52,7 @@ public class AlvearyLogicHatchery extends AbstractAlvearyLogic {
 				if (queen != null) {
 					ItemStack larvae = beeRoot.getMemberStack(beeRoot.getBee(queen.getGenome()), EnumBeeType.LARVAE);
 					for (int i = 0; i < 5; i++) {
-						if (inv.insertItem(i, larvae, false).isEmpty()){
+						if (inv.insertItem(i, larvae, false).isEmpty()) {
 							return;
 						}
 					}
@@ -82,5 +78,4 @@ public class AlvearyLogicHatchery extends AbstractAlvearyLogic {
 	public boolean hasGui() {
 		return true;
 	}
-
 }

@@ -73,5 +73,4 @@ public class TileCeramicBrick extends TileEntity {
 			colorSecond = EnumFlowerColor.VALUES[compound.getInteger("Second")];
 		}
 	}
-
 }

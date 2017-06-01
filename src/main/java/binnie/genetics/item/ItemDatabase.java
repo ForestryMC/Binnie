@@ -50,7 +50,7 @@ public class ItemDatabase extends ItemCore {
 		}
 
 		Genetics.proxy.openGui(id, player, player.getPosition());
-		
+
 		return new ActionResult(EnumActionResult.PASS, itemStack);
 	}
 
@@ -58,8 +58,8 @@ public class ItemDatabase extends ItemCore {
 	public String getItemStackDisplayName(ItemStack itemStack) {
 		return Genetics.proxy.localise(isMaster(itemStack) ? "item.database.master.name" : "item.database.name");
 	}
-	
-	protected boolean isMaster(ItemStack itemStack){
+
+	protected boolean isMaster(ItemStack itemStack) {
 		return itemStack.getItemDamage() > 0;
 	}
 }

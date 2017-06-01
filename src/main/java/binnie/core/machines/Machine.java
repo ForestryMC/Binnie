@@ -1,6 +1,5 @@
 package binnie.core.machines;
 
-
 import binnie.core.BinnieCore;
 import binnie.core.machines.component.IInteraction;
 import binnie.core.machines.component.IRender;
@@ -26,7 +25,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, INetwork.TilePacketSync, IMachine, INetwork.GuiNBT {
 	private MachinePackage machinePackage;
@@ -45,6 +48,32 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 		this.tile = tile;
 		pack.createMachine(this);
 		this.machinePackage = pack;
+	}
+
+	@Nullable
+	public static IMachine getMachine(@Nullable final Object inventory) {
+		if (inventory instanceof IMachine) {
+			return (IMachine) inventory;
+		}
+		if (inventory instanceof TileEntityMachine) {
+			return ((TileEntityMachine) inventory).getMachine();
+		}
+		if (inventory instanceof MachineComponent) {
+			return ((MachineComponent) inventory).getMachine();
+		}
+		return null;
+	}
+
+	@Nullable
+	public static <T> T getInterface(final Class<T> interfac, @Nullable final Object inventory) {
+		final IMachine machine = getMachine(inventory);
+		if (machine != null) {
+			return machine.getInterface(interfac);
+		}
+		if (interfac.isInstance(inventory)) {
+			return interfac.cast(inventory);
+		}
+		return null;
 	}
 
 	@Override
@@ -211,32 +240,6 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	@Override
 	public MachinePackage getPackage() {
 		return this.machinePackage;
-	}
-
-	@Nullable
-	public static IMachine getMachine(@Nullable final Object inventory) {
-		if (inventory instanceof IMachine) {
-			return (IMachine) inventory;
-		}
-		if (inventory instanceof TileEntityMachine) {
-			return ((TileEntityMachine) inventory).getMachine();
-		}
-		if (inventory instanceof MachineComponent) {
-			return ((MachineComponent) inventory).getMachine();
-		}
-		return null;
-	}
-
-	@Nullable
-	public static <T> T getInterface(final Class<T> interfac, @Nullable final Object inventory) {
-		final IMachine machine = getMachine(inventory);
-		if (machine != null) {
-			return machine.getInterface(interfac);
-		}
-		if (interfac.isInstance(inventory)) {
-			return interfac.cast(inventory);
-		}
-		return null;
 	}
 
 	@Override

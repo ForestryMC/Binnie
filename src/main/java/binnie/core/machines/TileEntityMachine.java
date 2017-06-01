@@ -10,14 +10,6 @@ import net.minecraft.nbt.NBTTagCompound;
 public class TileEntityMachine extends TileEntityMachineBase implements INetworkedEntity {
 	private Machine machine;
 
-	@Override
-	public void update() {
-		super.update();
-		if (this.machine != null) {
-			this.machine.onUpdate();
-		}
-	}
-
 	public TileEntityMachine(final MachinePackage pack) {
 		this.setMachine(pack);
 	}
@@ -25,9 +17,11 @@ public class TileEntityMachine extends TileEntityMachineBase implements INetwork
 	public TileEntityMachine() {
 	}
 
-	public void setMachine(final MachinePackage pack) {
-		if (pack != null) {
-			this.machine = new Machine(pack, this);
+	@Override
+	public void update() {
+		super.update();
+		if (this.machine != null) {
+			this.machine.onUpdate();
 		}
 	}
 
@@ -70,16 +64,22 @@ public class TileEntityMachine extends TileEntityMachineBase implements INetwork
 		return this.machine;
 	}
 
+	public void setMachine(final MachinePackage pack) {
+		if (pack != null) {
+			this.machine = new Machine(pack, this);
+		}
+	}
+
 	public void onBlockDestroy() {
 		if (this.getMachine() != null) {
 			this.getMachine().onBlockDestroy();
 		}
 	}
-//TODO NETWORK UPDATE
-//	@Override
-//	public final Packet getDescriptionPacket() {
-//		return (this.getMachine() != null) ? this.getMachine().getDescriptionPacket() : null;
-//	}
+	//TODO NETWORK UPDATE
+	/*@Override
+	public final Packet getDescriptionPacket() {
+		return (this.getMachine() != null) ? this.getMachine().getDescriptionPacket() : null;
+	}*/
 
 	@Override
 	public void invalidate() {

@@ -162,12 +162,12 @@ public class ForestryAllele {
 		True,
 		False;
 
-		public IAllele getAllele() {
-			return AlleleManager.alleleRegistry.getAllele("forestry.bool" + this.toString());
-		}
-
 		public static IAllele get(final boolean bool) {
 			return (bool ? Bool.True : Bool.False).getAllele();
+		}
+
+		public IAllele getAllele() {
+			return AlleleManager.alleleRegistry.getAllele("forestry.bool" + this.toString());
 		}
 	}
 

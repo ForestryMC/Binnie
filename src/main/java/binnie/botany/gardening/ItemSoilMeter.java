@@ -24,12 +24,31 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemSoilMeter extends Item implements IItemModelRegister {
-
 	public ItemSoilMeter() {
 		this.setCreativeTab(CreativeTabBotany.instance);
 		this.setUnlocalizedName("soil_meter");
 		this.setMaxStackSize(1);
 		setRegistryName("soil_meter");
+	}
+
+	public static String getPH(ItemStack stack, boolean withColor, boolean byNeutralNone) {
+		EnumAcidity ph = EnumAcidity.values()[stack.getItemDamage() / 3];
+		if (byNeutralNone) {
+			if (ph == EnumAcidity.NEUTRAL) {
+				return "";
+			}
+		}
+		return TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.ph") + ": " + ph.getTranslated(withColor);
+	}
+
+	public static String getMoisture(ItemStack stack, boolean withColor, boolean byNormalNone) {
+		EnumMoisture moisure = EnumMoisture.values()[stack.getItemDamage() % 3];
+		if (byNormalNone) {
+			if (moisure == EnumMoisture.NORMAL) {
+				return "";
+			}
+		}
+		return TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.moisture") + ": " + moisure.getTranslated(withColor);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -61,26 +80,6 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 			player.sendStatusMessage(chat, false);
 		}
 		return EnumActionResult.SUCCESS;
-	}
-
-	public static String getPH(ItemStack stack, boolean withColor, boolean byNeutralNone) {
-		EnumAcidity ph = EnumAcidity.values()[stack.getItemDamage() / 3];
-		if (byNeutralNone) {
-			if (ph == EnumAcidity.Neutral) {
-				return "";
-			}
-		}
-		return TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.ph") + ": " + ph.getTranslated(withColor);
-	}
-
-	public static String getMoisture(ItemStack stack, boolean withColor, boolean byNormalNone) {
-		EnumMoisture moisure = EnumMoisture.values()[stack.getItemDamage() % 3];
-		if (byNormalNone) {
-			if (moisure == EnumMoisture.Normal) {
-				return "";
-			}
-		}
-		return TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.moisture") + ": " + moisure.getTranslated(withColor);
 	}
 
 	@Override

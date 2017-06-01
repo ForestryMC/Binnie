@@ -28,6 +28,14 @@ public enum Tolerance {
 		this.bounds = new int[]{a, b};
 	}
 
+	public static Tolerance get(final EnumTolerance tol) {
+		return values()[tol.ordinal()];
+	}
+
+	public static <T extends Enum<T>> boolean canTolerate(final T base, final T test, final EnumTolerance tol) {
+		return get(tol).canTolerate(base, test);
+	}
+
 	public String getUID() {
 		return "forestry.tolerance" + this.toString();
 	}
@@ -36,19 +44,11 @@ public enum Tolerance {
 		return this.bounds;
 	}
 
-	public static Tolerance get(final EnumTolerance tol) {
-		return values()[tol.ordinal()];
-	}
-
 	public IAllele getAllele() {
 		return AlleleManager.alleleRegistry.getAllele(this.getUID());
 	}
 
 	public <T extends Enum<T>> boolean canTolerate(final T base, final T test) {
 		return test.ordinal() <= base.ordinal() + this.bounds[1] && test.ordinal() >= base.ordinal() + this.bounds[0];
-	}
-
-	public static <T extends Enum<T>> boolean canTolerate(final T base, final T test, final EnumTolerance tol) {
-		return get(tol).canTolerate(base, test);
 	}
 }

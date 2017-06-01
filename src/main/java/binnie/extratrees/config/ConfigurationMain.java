@@ -9,5 +9,4 @@ public class ConfigurationMain {
 	@ConfigProperty(key = "lemon.citrus.family", comment = {"Uses reflection to convert the Forestry lemon tree to the Citrus family."})
 	@PropBoolean
 	public static boolean alterLemon = true;
-
 }

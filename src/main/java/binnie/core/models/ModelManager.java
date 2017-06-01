@@ -3,7 +3,11 @@ package binnie.core.models;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import forestry.api.core.*;
+import forestry.api.core.ForestryAPI;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import forestry.api.core.ISpriteRegister;
+import forestry.api.core.IStateMapperRegister;
 import forestry.core.blocks.IColoredBlock;
 import forestry.core.items.IColoredItem;
 import forestry.core.models.BlockModelEntry;
@@ -43,21 +47,64 @@ import java.util.Map;
 @SideOnly(Side.CLIENT)
 public class ModelManager implements IModelManager {
 
-	private final String modID;
-
 	private final static List<BlockModelEntry> customBlockModels = new ArrayList<>();
 	private final static List<ModelEntry> customModels = new ArrayList<>();
-
+	private final static List<ISpriteRegister> spriteRegister = new ArrayList<>();
+	public static IModelState defaultFenceState;
+	private final String modID;
 	private final List<IItemModelRegister> itemModelRegisters = new ArrayList<>();
 	private final List<IStateMapperRegister> stateMapperRegisters = new ArrayList<>();
 	private final List<IColoredBlock> blockColorList = new ArrayList<>();
 	private final List<IColoredItem> itemColorList = new ArrayList<>();
-	private final static List<ISpriteRegister> spriteRegister = new ArrayList<>();
-
-	public static IModelState defaultFenceState;
 
 	public ModelManager(String modID) {
 		this.modID = modID;
+	}
+
+	public static IModelState getDefaultFenceState() {
+		return defaultFenceState;
+	}
+
+	@SideOnly(Side.CLIENT)
+	public static void reloadSprites() {
+		for (ISpriteRegister spriteRegister : spriteRegister) {
+			if (spriteRegister != null) {
+				spriteRegister.registerSprites(ForestryAPI.textureManager);
+			}
+		}
+	}
+
+	public static void registerCustomModels(ModelBakeEvent event) {
+		IRegistry<ModelResourceLocation, IBakedModel> registry = event.getModelRegistry();
+		for (final BlockModelEntry entry : customBlockModels) {
+			registry.putObject(entry.blockModelLocation, entry.model);
+			if (entry.itemModelLocation != null) {
+				registry.putObject(entry.itemModelLocation, entry.model);
+			}
+		}
+
+		for (final ModelEntry entry : customModels) {
+			registry.putObject(entry.modelLocation, entry.model);
+		}
+		IModelState defaultBlockState = ModelUtil.loadModelState(new ResourceLocation("minecraft:models/block/block"));
+		IModelState defaultFenceState = ModelUtil.loadModelState(new ResourceLocation("minecraft:models/block/fence_inventory"));
+		ModelManager.defaultFenceState = mergeStates(defaultBlockState, defaultFenceState);
+	}
+
+	private static IModelState mergeStates(IModelState state, IModelState secondaryState) {
+		Map<TransformType, TRSRTransformation> tMap = Maps.newHashMap();
+		TRSRTransformation guiTransformation = secondaryState.apply(Optional.of(TransformType.GUI)).get();
+		tMap.putAll(IPerspectiveAwareModel.MapWrapper.getTransforms(state));
+		tMap.put(TransformType.GUI, guiTransformation);
+		return new SimpleModelState(ImmutableMap.copyOf(tMap));
+	}
+
+	public static void registerCustomBlockModel(BlockModelEntry index) {
+		customBlockModels.add(index);
+	}
+
+	public static void registerCustomModel(ModelEntry index) {
+		customModels.add(index);
 	}
 
 	@Override
@@ -96,10 +143,6 @@ public class ModelManager implements IModelManager {
 		return new ModelResourceLocation(new ResourceLocation(modID, identifier), "inventory");
 	}
 
-	public static IModelState getDefaultFenceState() {
-		return defaultFenceState;
-	}
-	
 	@SideOnly(Side.CLIENT)
 	public void registerBlockClient(Block block) {
 		if (block instanceof IItemModelRegister) {
@@ -146,15 +189,6 @@ public class ModelManager implements IModelManager {
 
 		for (IStateMapperRegister stateMapperRegister : stateMapperRegisters) {
 			stateMapperRegister.registerStateMapper();
-		}
-	}
-
-	@SideOnly(Side.CLIENT)
-	public static void reloadSprites() {
-		for (ISpriteRegister spriteRegister : spriteRegister) {
-			if (spriteRegister != null) {
-				spriteRegister.registerSprites(ForestryAPI.textureManager);
-			}
 		}
 	}
 
@@ -212,38 +246,4 @@ public class ModelManager implements IModelManager {
 			return 0xffffff;
 		}
 	}
-
-	public static void registerCustomModels(ModelBakeEvent event) {
-		IRegistry<ModelResourceLocation, IBakedModel> registry = event.getModelRegistry();
-		for (final BlockModelEntry entry : customBlockModels) {
-			registry.putObject(entry.blockModelLocation, entry.model);
-			if (entry.itemModelLocation != null) {
-				registry.putObject(entry.itemModelLocation, entry.model);
-			}
-		}
-
-		for (final ModelEntry entry : customModels) {
-			registry.putObject(entry.modelLocation, entry.model);
-		}
-		IModelState defaultBlockState = ModelUtil.loadModelState(new ResourceLocation("minecraft:models/block/block"));
-		IModelState defaultFenceState = ModelUtil.loadModelState(new ResourceLocation("minecraft:models/block/fence_inventory"));
-		ModelManager.defaultFenceState = mergeStates(defaultBlockState, defaultFenceState);
-	}
-	
-	private static IModelState mergeStates(IModelState state, IModelState secondaryState){
-        Map<TransformType, TRSRTransformation> tMap = Maps.newHashMap();
-        TRSRTransformation guiTransformation = secondaryState.apply(Optional.of(TransformType.GUI)).get();
-        tMap.putAll(IPerspectiveAwareModel.MapWrapper.getTransforms(state));
-        tMap.put(TransformType.GUI, guiTransformation);
-        return new SimpleModelState(ImmutableMap.copyOf(tMap));
-	}
-
-	public static void registerCustomBlockModel(BlockModelEntry index) {
-		customBlockModels.add(index);
-	}
-
-	public static void registerCustomModel(ModelEntry index) {
-		customModels.add(index);
-	}
-
 }

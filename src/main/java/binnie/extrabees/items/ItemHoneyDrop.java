@@ -5,7 +5,6 @@ import forestry.api.core.Tabs;
 import forestry.core.items.IColoredItem;
 import net.minecraft.item.ItemStack;
 
-
 public class ItemHoneyDrop extends ItemProduct implements IColoredItem {
 
 	public ItemHoneyDrop() {
@@ -13,7 +12,6 @@ public class ItemHoneyDrop extends ItemProduct implements IColoredItem {
 		this.setCreativeTab(Tabs.tabApiculture);
 		this.setUnlocalizedName("honey_drop");
 		setRegistryName("honey_drop");
-
 	}
 
 	@Override
@@ -23,5 +21,4 @@ public class ItemHoneyDrop extends ItemProduct implements IColoredItem {
 		}
 		return EnumHoneyDrop.get(itemStack).getColour()[1];
 	}
-
 }

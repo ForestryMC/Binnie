@@ -29,6 +29,24 @@ public class ExtraTreeMutation implements ITreeMutation {
 	private float maxRainfall;
 	private float height;
 
+	public ExtraTreeMutation(final IAlleleSpecies allele0, final IAlleleSpecies allele1, final IAlleleSpecies result, final int chance) {
+		this(allele0, allele1, Binnie.GENETICS.getTreeRoot().getTemplate(result), chance);
+	}
+
+	public ExtraTreeMutation(final IAllele allele0, final IAllele allele1, final IAllele[] template, final int chance) {
+		this.isSecret = false;
+		this.minTemperature = 0.0f;
+		this.maxTemperature = 2.0f;
+		this.minRainfall = 0.0f;
+		this.maxRainfall = 2.0f;
+		this.height = -1.0f;
+		this.allele0 = (IAlleleTreeSpecies) allele0;
+		this.allele1 = (IAlleleTreeSpecies) allele1;
+		this.template = template;
+		this.chance = chance;
+		Binnie.GENETICS.getTreeRoot().registerMutation(this);
+	}
+
 	public static void init() {
 		final IAlleleTreeSpecies lemon = (IAlleleTreeSpecies) getVanilla("Lemon");
 		new ExtraTreeMutation(getVanilla("Cherry"), lemon, ETTreeDefinition.KeyLime.getSpecies(), 10);
@@ -138,24 +156,6 @@ public class ExtraTreeMutation implements ITreeMutation {
 		return (IAlleleSpecies) allele;
 	}
 
-	public ExtraTreeMutation(final IAlleleSpecies allele0, final IAlleleSpecies allele1, final IAlleleSpecies result, final int chance) {
-		this(allele0, allele1, Binnie.GENETICS.getTreeRoot().getTemplate(result), chance);
-	}
-
-	public ExtraTreeMutation(final IAllele allele0, final IAllele allele1, final IAllele[] template, final int chance) {
-		this.isSecret = false;
-		this.minTemperature = 0.0f;
-		this.maxTemperature = 2.0f;
-		this.minRainfall = 0.0f;
-		this.maxRainfall = 2.0f;
-		this.height = -1.0f;
-		this.allele0 = (IAlleleTreeSpecies) allele0;
-		this.allele1 = (IAlleleTreeSpecies) allele1;
-		this.template = template;
-		this.chance = chance;
-		Binnie.GENETICS.getTreeRoot().registerMutation(this);
-	}
-
 	public ExtraTreeMutation setIsSecret() {
 		this.isSecret = true;
 		return this;
@@ -259,6 +259,4 @@ public class ExtraTreeMutation implements ITreeMutation {
 		}
 		return 0.0f;
 	}
-
-
 }

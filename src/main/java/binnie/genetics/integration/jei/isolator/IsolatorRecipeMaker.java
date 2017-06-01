@@ -2,7 +2,12 @@ package binnie.genetics.integration.jei.isolator;
 
 import binnie.core.genetics.Gene;
 import binnie.genetics.item.ItemSequence;
-import forestry.api.genetics.*;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.ISpeciesType;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 

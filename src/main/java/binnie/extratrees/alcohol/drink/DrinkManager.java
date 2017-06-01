@@ -28,5 +28,4 @@ public class DrinkManager {
 	public static IDrinkLiquid getLiquid(final FluidStack fluid) {
 		return getLiquid(fluid.getFluid());
 	}
-
 }

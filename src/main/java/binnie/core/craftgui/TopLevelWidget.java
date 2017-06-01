@@ -7,16 +7,21 @@ import binnie.core.craftgui.geometry.Point;
 import org.lwjgl.input.Mouse;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Deque;
+import java.util.List;
+import java.util.ListIterator;
 
 public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
+	protected Point mousePosition;
 	@Nullable
 	IWidget mousedOverWidget;
 	@Nullable
 	IWidget draggedWidget;
 	@Nullable
 	IWidget focusedWidget;
-	protected Point mousePosition;
 	Point dragStart;
 
 	public TopLevelWidget() {
@@ -47,6 +52,25 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 		});
 	}
 
+	public void setDraggedWidget(@Nullable final IWidget widget, final int button) {
+		if (this.draggedWidget == widget) {
+			return;
+		}
+		if (this.draggedWidget != null) {
+			this.callEvent(new EventWidget.EndDrag(this.draggedWidget));
+		}
+		this.draggedWidget = widget;
+		if (this.draggedWidget != null) {
+			this.callEvent(new EventWidget.StartDrag(this.draggedWidget, button));
+		}
+	}
+
+	@Override
+	@Nullable
+	public IWidget getMousedOverWidget() {
+		return this.mousedOverWidget;
+	}
+
 	public void setMousedOverWidget(@Nullable final IWidget widget) {
 		if (this.mousedOverWidget == widget) {
 			return;
@@ -60,21 +84,20 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 		}
 	}
 
+	@Override
+	@Nullable
+	public IWidget getDraggedWidget() {
+		return this.draggedWidget;
+	}
+
 	public void setDraggedWidget(@Nullable final IWidget widget) {
 		this.setDraggedWidget(widget, -1);
 	}
 
-	public void setDraggedWidget(@Nullable final IWidget widget, final int button) {
-		if (this.draggedWidget == widget) {
-			return;
-		}
-		if (this.draggedWidget != null) {
-			this.callEvent(new EventWidget.EndDrag(this.draggedWidget));
-		}
-		this.draggedWidget = widget;
-		if (this.draggedWidget != null) {
-			this.callEvent(new EventWidget.StartDrag(this.draggedWidget, button));
-		}
+	@Override
+	@Nullable
+	public IWidget getFocusedWidget() {
+		return this.focusedWidget;
 	}
 
 	public void setFocusedWidget(@Nullable final IWidget widget) {
@@ -92,24 +115,6 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 		if (this.focusedWidget != null) {
 			this.callEvent(new EventWidget.GainFocus(this.focusedWidget));
 		}
-	}
-
-	@Override
-	@Nullable
-	public IWidget getMousedOverWidget() {
-		return this.mousedOverWidget;
-	}
-
-	@Override
-	@Nullable
-	public IWidget getDraggedWidget() {
-		return this.draggedWidget;
-	}
-
-	@Override
-	@Nullable
-	public IWidget getFocusedWidget() {
-		return this.focusedWidget;
 	}
 
 	@Override

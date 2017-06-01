@@ -19,36 +19,33 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import javax.annotation.Nullable;
 
-/**
- * Created by Elec332 on 12-5-2017.
- */
 public class Utils {
 
 	public static IBeeRoot getBeeRoot() {
 		return BeeManager.beeRoot;
 	}
 
-	public static IAlleleBeeSpecies getSpecies(BeeDefinition species){
+	public static IAlleleBeeSpecies getSpecies(BeeDefinition species) {
 		return species.getGenome().getPrimary();
 	}
 
 	@Nullable
-	public static Item getIC2Item(String name){
+	public static Item getIC2Item(String name) {
 		return getModItem("ic2", name);
 	}
 
 	@Nullable
-	public static Item getBotaniaItem(String name){
+	public static Item getBotaniaItem(String name) {
 		return getModItem("botania", name);
 	}
 
 	@Nullable
-	public static Block getBotaniaBlock(String name){
+	public static Block getBotaniaBlock(String name) {
 		ResourceLocation key = new ResourceLocation("botania", name);
 		return ForgeRegistries.BLOCKS.containsKey(key) ? ForgeRegistries.BLOCKS.getValue(key) : null;
 	}
 
-	private static Item getModItem(String mod, String name){
+	private static Item getModItem(String mod, String name) {
 		ResourceLocation key = new ResourceLocation(mod, name);
 		return ForgeRegistries.ITEMS.containsKey(key) ? ForgeRegistries.ITEMS.getValue(key) : null;
 	}
@@ -72,8 +69,7 @@ public class Utils {
 		return null;
 	}
 
-	public static FluidStack getFluidFromName(String name, int amount){
+	public static FluidStack getFluidFromName(String name, int amount) {
 		return FluidRegistry.getFluidStack(name.toLowerCase(), amount);
 	}
-
 }

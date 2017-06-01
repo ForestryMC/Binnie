@@ -42,7 +42,7 @@ public abstract class ItemGene extends ItemCore implements IColoredItem {
 			gene.getInfo(list);
 		}
 	}
-	
+
 	public int getCharges(final ItemStack stack) {
 		return stack.getMaxDamage() - stack.getItemDamage();
 	}
@@ -53,10 +53,10 @@ public abstract class ItemGene extends ItemCore implements IColoredItem {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public abstract void getSubItems(Item item, final CreativeTabs tab, final NonNullList<ItemStack> subItems);
-	
+
 	@Nullable
 	public abstract IGeneItem getGeneItem(ItemStack itemStack);
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
@@ -66,7 +66,7 @@ public abstract class ItemGene extends ItemCore implements IColoredItem {
 		}
 		return 16777215;
 	}
-	
+
 	@Override
 	public boolean getShareTag() {
 		return true;

@@ -20,13 +20,13 @@ public class VirtualMothHousing extends VirtualHousing implements IButterflyNurs
 	}
 
 	@Override
-	@Nullable
-	public IIndividual getNanny() {
-		return null;
+	public void setCaterpillar(@Nullable final IButterfly butterfly) {
 	}
 
 	@Override
-	public void setCaterpillar(@Nullable final IButterfly butterfly) {
+	@Nullable
+	public IIndividual getNanny() {
+		return null;
 	}
 
 	@Override

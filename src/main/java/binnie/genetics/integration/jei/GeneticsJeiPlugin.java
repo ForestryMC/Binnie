@@ -27,7 +27,12 @@ import binnie.genetics.machine.GeneticMachine;
 import binnie.genetics.machine.LaboratoryMachine;
 import binnie.genetics.machine.incubator.Incubator;
 import forestry.api.genetics.ISpeciesRoot;
-import mezz.jei.api.*;
+import mezz.jei.api.BlankModPlugin;
+import mezz.jei.api.IGuiHelper;
+import mezz.jei.api.IJeiHelpers;
+import mezz.jei.api.IModRegistry;
+import mezz.jei.api.ISubtypeRegistry;
+import mezz.jei.api.JEIPlugin;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -58,15 +63,15 @@ public class GeneticsJeiPlugin extends BlankModPlugin {
 		GeneticsJeiPlugin.drawables = Drawables.getDrawables(guiHelper);
 
 		registry.addRecipeCategories(
-				new IncubatorRecipeCategory(),
-				new LarvaeIncubatorRecipeCategory(),
-				new IsolatorRecipeCategory(),
-				new PolymeriserRecipeCategory(),
-				new SequencerRecipeCategory(),
-				new InoculatorRecipeCategory(),
-				new SplicerRecipeCategory(),
-				new GenepoolRecipeCategory(),
-				new DatabaseRecipeCategory()
+			new IncubatorRecipeCategory(),
+			new LarvaeIncubatorRecipeCategory(),
+			new IsolatorRecipeCategory(),
+			new PolymeriserRecipeCategory(),
+			new SequencerRecipeCategory(),
+			new InoculatorRecipeCategory(),
+			new SplicerRecipeCategory(),
+			new GenepoolRecipeCategory(),
+			new DatabaseRecipeCategory()
 		);
 
 		registry.addRecipeCategoryCraftingItem(LaboratoryMachine.Incubator.get(1), RecipeUids.INCUBATOR, RecipeUids.INCUBATOR_LARVAE);

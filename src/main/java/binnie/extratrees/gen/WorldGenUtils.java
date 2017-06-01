@@ -11,5 +11,4 @@ public class WorldGenUtils {
 	public static float randBetween(Random rand, float a, float b) {
 		return a + rand.nextFloat() * (b - a);
 	}
-	
 }

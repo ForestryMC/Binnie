@@ -50,10 +50,10 @@ public class Engineering {
 		if (item instanceof IItemSerum) {
 			((IItemSerum) item).addGene(stack, gene);
 		}
-		if(item == Genetics.items().getItemGenetics()){
+		if (item == Genetics.items().getItemGenetics()) {
 			if (metadata == GeneticsItems.EMPTY_SERUM.ordinal()) {
 				return ItemSerum.create(gene);
-			}else if (metadata == GeneticsItems.EMPTY_GENOME.ordinal()) {
+			} else if (metadata == GeneticsItems.EMPTY_GENOME.ordinal()) {
 				return ItemSerumArray.create(gene);
 			}
 		}

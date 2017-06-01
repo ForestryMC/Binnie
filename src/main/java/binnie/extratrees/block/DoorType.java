@@ -9,11 +9,11 @@ public enum DoorType {
 	Full("full");
 
 	String id;
-//	IIcon iconDoorLower;
-//	IIcon iconDoorUpper;
-//	IIcon iconDoorLowerFlip;
-//	IIcon iconDoorUpperFlip;
-//	IIcon iconItem;
+	//IIcon iconDoorLower;
+	//IIcon iconDoorUpper;
+	//IIcon iconDoorLowerFlip;
+	//IIcon iconDoorUpperFlip;
+	//IIcon iconItem;
 
 	DoorType(final String iconName) {
 		this.id = iconName;

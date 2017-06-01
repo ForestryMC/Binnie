@@ -4,7 +4,14 @@ import binnie.Constants;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IClassification;
-import forestry.api.lepidopterology.*;
+import forestry.api.lepidopterology.ButterflyManager;
+import forestry.api.lepidopterology.EnumButterflyChromosome;
+import forestry.api.lepidopterology.EnumFlutterType;
+import forestry.api.lepidopterology.IAlleleButterflySpecies;
+import forestry.api.lepidopterology.IAlleleButterflySpeciesBuilder;
+import forestry.api.lepidopterology.IButterfly;
+import forestry.api.lepidopterology.IButterflyGenome;
+import forestry.api.lepidopterology.IButterflyMutationBuilder;
 import forestry.core.genetics.alleles.AlleleHelper;
 import forestry.lepidopterology.genetics.Butterfly;
 import forestry.lepidopterology.genetics.ButterflyDefinition;
@@ -12,7 +19,7 @@ import forestry.lepidopterology.genetics.IButterflyDefinition;
 import forestry.lepidopterology.genetics.MothDefinition;
 import net.minecraft.item.ItemStack;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.Arrays;
 
 public enum ButterflySpecies implements IButterflyDefinition {
@@ -40,12 +47,12 @@ public enum ButterflySpecies implements IButterflyDefinition {
 	Marbled_White("Marbled White", "Melanargia galathea", 15527148);
 
 	public static final ButterflySpecies[] VALUES = values();
-	
+
 	private final IAlleleButterflySpecies species;
 	private final IClassification branch;
 	private IAllele[] template;
 	private IButterflyGenome genome;
-	
+
 	ButterflySpecies(String name, String scientific, int colour) {
 		String branchName = scientific.split(" ")[0].toLowerCase();
 		String binomial = scientific.split(" ")[1];
@@ -76,6 +83,10 @@ public enum ButterflySpecies implements IButterflyDefinition {
 		for (ButterflySpecies butterfly : VALUES) {
 			butterfly.registerMutations();
 		}
+	}
+
+	public static void preInit() {
+
 	}
 
 	private void init() {
@@ -150,9 +161,5 @@ public enum ButterflySpecies implements IButterflyDefinition {
 
 	public IAlleleButterflySpecies getSpecies() {
 		return species;
-	}
-
-	public static void preInit() {
-		
 	}
 }

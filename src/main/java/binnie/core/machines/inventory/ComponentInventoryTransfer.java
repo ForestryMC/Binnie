@@ -51,10 +51,17 @@ public class ComponentInventoryTransfer extends MachineComponent {
 		this.transfers.add(transfer);
 	}
 
+	public abstract static class Condition {
+		@Nullable
+		public Transfer transfer;
+
+		public abstract boolean fulfilled(final ItemStack p0);
+	}
+
 	public abstract class Transfer {
+		protected final IMachine machine;
 		@Nullable
 		protected Condition condition;
-		protected final IMachine machine;
 
 		private Transfer(final IMachine machine) {
 			this.machine = machine;
@@ -140,12 +147,5 @@ public class ComponentInventoryTransfer extends MachineComponent {
 			final ItemStack stack = inv.getStackInSlot(this.source);
 			return !stack.isEmpty() && (this.condition == null || this.condition.fulfilled(stack));
 		}
-	}
-
-	public abstract static class Condition {
-		@Nullable
-		public Transfer transfer;
-
-		public abstract boolean fulfilled(final ItemStack p0);
 	}
 }

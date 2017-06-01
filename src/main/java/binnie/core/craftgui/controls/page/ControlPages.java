@@ -13,14 +13,14 @@ import java.util.List;
 public class ControlPages<T> extends Control implements IControlValues<T>, IControlValue<T> {
 	T value;
 
-	@Override
-	public boolean isChildVisible(final IWidget child) {
-		return child != null && this.value == ((IControlValue) child).getValue();
-	}
-
 	public ControlPages(final IWidget parent, final int x, final int y, final int w, final int h) {
 		super(parent, x, y, w, h);
 		this.value = null;
+	}
+
+	@Override
+	public boolean isChildVisible(final IWidget child) {
+		return child != null && this.value == ((IControlValue) child).getValue();
 	}
 
 	@Override

@@ -158,7 +158,7 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata, IStat
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		return BlockMetadata.getPickBlock(world, pos);
 	}
-	
+
 	@Override
 	protected BlockStateContainer createBlockState() {
 		return new ExtendedBlockState(this, new IProperty[]{NORTH, EAST, WEST, SOUTH}, new IUnlistedProperty[]{UnlistedBlockPos.POS, UnlistedBlockAccess.BLOCKACCESS});
@@ -176,18 +176,17 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata, IStat
 			itemList.add(WoodManager.getFence(PlankType.VanillaPlanks.SPRUCE, PlankType.VanillaPlanks.BIRCH, type, 1));
 		}
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Nullable
-	public TextureAtlasSprite getSprite(int meta, boolean secondary){
+	public TextureAtlasSprite getSprite(int meta, boolean secondary) {
 		FenceDescription desc = getDescription(meta);
-		if(desc != null){
+		if (desc != null) {
 			IPlankType type = secondary ? desc.getSecondaryPlankType() : desc.getPlankType();
 			return type.getSprite();
 		}
 		return null;
 	}
-
 
 	@Override
 	public String getDisplayName(ItemStack itemStack) {
@@ -210,9 +209,10 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata, IStat
 		ResourceLocation registryName = getRegistryName();
 		ModelLoader.setCustomStateMapper(this, new DefaultStateMapper(registryName));
 		ModelManager.registerCustomBlockModel(new BlockModelEntry(
-				new ModelResourceLocation(registryName, "normal"),
-				new ModelResourceLocation(registryName, "inventory"),
-				new ModelMultiFence(), this));
+			new ModelResourceLocation(registryName, "normal"),
+			new ModelResourceLocation(registryName, "inventory"),
+			new ModelMultiFence(), this
+		));
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -227,6 +227,5 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata, IStat
 		public ModelResourceLocation getModelLocation(ItemStack stack) {
 			return new ModelResourceLocation(getRegistryName(), "inventory");
 		}
-
 	}
 }

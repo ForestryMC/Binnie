@@ -20,6 +20,8 @@ import javax.annotation.Nullable;
 
 @SideOnly(Side.CLIENT)
 public class TextureRenderer {
+	private IStyleSheet styleSheet;
+
 	private static void renderTexturePadded(final Area area, final Area texture, final Border padding) {
 		int borderLeft = padding.l();
 		int borderRight = padding.r();
@@ -86,8 +88,6 @@ public class TextureRenderer {
 		}
 	}
 
-	private IStyleSheet styleSheet;
-
 	public void setStyleSheet(IStyleSheet styleSheet) {
 		this.styleSheet = styleSheet;
 	}
@@ -102,7 +102,6 @@ public class TextureRenderer {
 			final Area cropZone = widget.getCroppedZone();
 			GL11.glEnable(GL11.GL_SCISSOR_TEST);
 			this.limitArea(new Area(pos.add(cropZone.pos()), cropZone.size()), guiWidth, guiHeight);
-
 		}
 		GlStateManager.disableDepth();
 	}

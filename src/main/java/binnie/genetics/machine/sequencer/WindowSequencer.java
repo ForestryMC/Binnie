@@ -1,16 +1,22 @@
 package binnie.genetics.machine.sequencer;
 
 import binnie.core.AbstractMod;
+import binnie.core.ExtraBeeTexture;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.CraftGUIUtil;
 import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.minecraft.GUIIcon;
-import binnie.core.craftgui.minecraft.control.*;
+import binnie.core.craftgui.minecraft.control.ControlEnergyBar;
+import binnie.core.craftgui.minecraft.control.ControlErrorState;
+import binnie.core.craftgui.minecraft.control.ControlIconDisplay;
+import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
+import binnie.core.craftgui.minecraft.control.ControlSlot;
+import binnie.core.craftgui.minecraft.control.ControlSlotArray;
+import binnie.core.craftgui.minecraft.control.ControlSlotCharge;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
-import binnie.core.ExtraBeeTexture;
 import binnie.genetics.Genetics;
 import binnie.genetics.machine.craftgui.WindowMachine;
 import net.minecraft.entity.player.EntityPlayer;
@@ -45,11 +51,11 @@ public class WindowSequencer extends WindowMachine {
 		int x = 16;
 		int y = 32;
 		CraftGUIUtil.horizontalGrid(x, y, TextJustification.MiddleCenter, 2,
-				new ControlSlotArray.Builder(this, 0, 0, 2, 2).create(Sequencer.SLOT_RESERVE),
-				new ControlIconDisplay(this, 0, 0, GUIIcon.ARROW_RIGHT.getIcon().getResourceLocation()),
-				new ControlSequencerProgress(this, 0, 0),
-				new ControlIconDisplay(this, 0, 0, GUIIcon.ARROW_RIGHT.getIcon().getResourceLocation()),
-				new ControlSlot.Builder(this, 0, 0).assign(6)
+			new ControlSlotArray.Builder(this, 0, 0, 2, 2).create(Sequencer.SLOT_RESERVE),
+			new ControlIconDisplay(this, 0, 0, GUIIcon.ARROW_RIGHT.getIcon().getResourceLocation()),
+			new ControlSequencerProgress(this, 0, 0),
+			new ControlIconDisplay(this, 0, 0, GUIIcon.ARROW_RIGHT.getIcon().getResourceLocation()),
+			new ControlSlot.Builder(this, 0, 0).assign(6)
 		);
 		final ControlSlot slotTarget = new ControlSlot.Builder(this, x + 96, y + 16).assign(5);
 		x = 34;
@@ -80,5 +86,4 @@ public class WindowSequencer extends WindowMachine {
 	protected String getBackgroundTextureName() {
 		return "sequencer";
 	}
-
 }

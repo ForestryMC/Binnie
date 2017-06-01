@@ -2,7 +2,7 @@ package binnie.extratrees.village;
 
 public class VillageHandlerExtraTrees //implements VillagerRegistry.IVillageCreationHandler
 {
-	/*public static void registerVillageComponents() {
+    /*public static void registerVillageComponents() {
 		MapGenStructureIO.registerStructureComponent(ComponentVillageGrove.class, "ExtraTrees:Grove");
 	}
 

@@ -14,14 +14,14 @@ public class WorldGenConifer {
 		public WesternHemlock(ITreeGenData tree) {
 			super(tree, 7, 3);
 		}
-		
+
 		@Override
 		protected void generateLeaves(World world, Random rand, TreeBlockTypeLeaf leaf, List<BlockPos> branchEnds, BlockPos startPos) {
 			float leafSpawn = this.height + girth * 4;
 			float bottom = WorldGenUtils.randBetween(rand, 2, 3);
 			final float coneHeight = leafSpawn - bottom;
 			float width = (girth * height / 3);
-			if(width > 9){
+			if (width > 9) {
 				width = 9;
 			}
 			while (leafSpawn > bottom) {
@@ -32,7 +32,6 @@ public class WorldGenConifer {
 			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + width * 0.7F, 1, WorldGenHelper.EnumReplaceMode.AIR);
 			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, girth + width * 0.4F, 1, WorldGenHelper.EnumReplaceMode.AIR);
 		}
-
 	}
 
 	public static class Cypress extends WorldGenTree {
@@ -74,7 +73,6 @@ public class WorldGenConifer {
 			this.height = this.determineHeight(6, 2);
 			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
-
 	}
 
 	public static class Yew extends WorldGenTree {
@@ -112,7 +110,6 @@ public class WorldGenConifer {
 			this.height = this.determineHeight(5, 2);
 			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
-
 	}
 
 	public static class Cedar extends WorldGenTree {
@@ -178,7 +175,6 @@ public class WorldGenConifer {
 			this.height = this.determineHeight(6, 2);
 			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
-
 	}
 
 	public static class LoblollyPine extends WorldGenTree {
@@ -216,7 +212,6 @@ public class WorldGenConifer {
 			this.height = this.determineHeight(6, 2);
 			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
-
 	}
 
 	public static class MonkeyPuzzle extends WorldGenTree {
@@ -264,6 +259,5 @@ public class WorldGenConifer {
 			this.height = this.determineHeight(9, 2);
 			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
-
 	}
 }

@@ -9,7 +9,12 @@ import binnie.genetics.api.IItemSerum;
 import binnie.genetics.genetics.GeneArrayItem;
 import binnie.genetics.genetics.IGeneItem;
 import com.google.common.base.Preconditions;
-import forestry.api.genetics.*;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IChromosome;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -23,6 +28,14 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 	public ItemSerumArray() {
 		super("serum_array");
 		this.setMaxDamage(16);
+	}
+
+	public static ItemStack create(final IGene gene) {
+		final ItemStack item = new ItemStack(Genetics.items().itemSerumArray);
+		item.setItemDamage(item.getMaxDamage());
+		final GeneArrayItem seq = new GeneArrayItem(gene);
+		seq.writeToItem(item);
+		return item;
 	}
 
 	@Override
@@ -113,13 +126,5 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 		geneItem.addGene(gene);
 		geneItem.writeToItem(stack);
 		return stack;
-	}
-
-	public static ItemStack create(final IGene gene) {
-		final ItemStack item = new ItemStack(Genetics.items().itemSerumArray);
-		item.setItemDamage(item.getMaxDamage());
-		final GeneArrayItem seq = new GeneArrayItem(gene);
-		seq.writeToItem(item);
-		return item;
 	}
 }

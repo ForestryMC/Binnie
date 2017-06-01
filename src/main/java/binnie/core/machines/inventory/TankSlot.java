@@ -50,5 +50,4 @@ public class TankSlot extends BaseSlot<FluidStack> {
 	public String getName() {
 		return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "gui.slot." + this.unlocName);
 	}
-
 }

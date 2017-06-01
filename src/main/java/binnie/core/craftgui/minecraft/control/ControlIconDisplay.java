@@ -19,17 +19,17 @@ public class ControlIconDisplay extends Control {
 		super(parent, x, y, 16, 16);
 		this.sprite = null;
 	}
-	
+
 	public ControlIconDisplay(final IWidget parent, final int x, final int y, final ResourceLocation icon) {
 		super(parent, x, y, 16, 16);
 		this.sprite = BinnieCore.getBinnieProxy().getTextureAtlasSprite(icon);
 	}
-	
+
 	public ControlIconDisplay(final IWidget parent, final int x, final int y, BinnieSprite sprite) {
 		super(parent, x, y, 16, 16);
 		this.sprite = sprite.getSprite();
 	}
-	
+
 	public ControlIconDisplay(final IWidget parent, final int x, final int y, TextureAtlasSprite sprite) {
 		super(parent, x, y, 16, 16);
 		this.sprite = sprite;

@@ -35,7 +35,6 @@ public class TileEntityNursery extends TileEntityMachine implements IButterflyNu
 		return this.world;
 	}
 
-
 	@Override
 	public EnumTemperature getTemperature() {
 		return EnumTemperature.NORMAL;
@@ -58,17 +57,17 @@ public class TileEntityNursery extends TileEntityMachine implements IButterflyNu
 	}
 
 	@Override
-	@Nullable
-	public IIndividual getNanny() {
-		return null;
-	}
-
-	@Override
 	public void setCaterpillar(@Nullable final IButterfly butterfly) {
 		IButterflyNursery nursery = this.getNursery();
 		if (nursery != null) {
 			nursery.setCaterpillar(butterfly);
 		}
+	}
+
+	@Override
+	@Nullable
+	public IIndividual getNanny() {
+		return null;
 	}
 
 	@Override
@@ -89,6 +88,9 @@ public class TileEntityNursery extends TileEntityMachine implements IButterflyNu
 		return null;
 	}
 
+	public void setErrorState(final int state) {
+	}
+
 	public boolean setErrorCondition(final boolean condition, final IErrorState errorState) {
 		return false;
 	}
@@ -99,9 +101,6 @@ public class TileEntityNursery extends TileEntityMachine implements IButterflyNu
 
 	public int getBiomeId() {
 		return 0;
-	}
-
-	public void setErrorState(final int state) {
 	}
 
 	public int getErrorOrdinal() {

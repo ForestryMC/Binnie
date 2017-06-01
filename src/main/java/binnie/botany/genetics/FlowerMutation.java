@@ -1,6 +1,10 @@
 package binnie.botany.genetics;
 
-import binnie.botany.api.*;
+import binnie.botany.api.IAlleleFlowerSpecies;
+import binnie.botany.api.IFlowerGenome;
+import binnie.botany.api.IFlowerMutation;
+import binnie.botany.api.IFlowerMutationBuilder;
+import binnie.botany.api.IFlowerRoot;
 import binnie.botany.core.BotanyCore;
 import forestry.api.core.ForestryAPI;
 import forestry.api.genetics.IAllele;
@@ -10,7 +14,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class FlowerMutation extends Mutation implements IFlowerMutation, IFlowerMutationBuilder {
-
 	public FlowerMutation(final IAlleleFlowerSpecies allele0, final IAlleleFlowerSpecies allele1, final IAllele[] template, final int chance) {
 		super(allele0, allele1, template, chance);
 	}

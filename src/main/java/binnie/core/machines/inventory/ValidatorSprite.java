@@ -9,6 +9,9 @@ import java.util.List;
 
 public class ValidatorSprite {
 
+	private List<BinnieSprite> spritesInput;
+	private List<BinnieSprite> spritesOutput;
+
 	public ValidatorSprite(final AbstractMod mod, final String pathInput, final String pathOutput) {
 		this.spritesInput = new ArrayList<>();
 		this.spritesOutput = new ArrayList<>();
@@ -16,11 +19,7 @@ public class ValidatorSprite {
 		this.spritesOutput.add(Binnie.RESOURCE.getItemSprite(mod, pathOutput));
 	}
 
-	private List<BinnieSprite> spritesInput;
-	private List<BinnieSprite> spritesOutput;
-
 	public BinnieSprite getSprite(final boolean input) {
 		return input ? this.spritesInput.get(0) : this.spritesOutput.get(0);
 	}
-
 }

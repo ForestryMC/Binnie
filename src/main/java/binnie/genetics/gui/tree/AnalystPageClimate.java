@@ -67,9 +67,9 @@ public class AnalystPageClimate extends ControlAnalystPage {
 		final List<Biome> biomes = new ArrayList<>();
 		for (final Biome biome : Biome.EXPLORATION_BIOMES_LIST) { //TODO check
 			if (biome != null &&
-					biome != Biomes.FROZEN_OCEAN &&
-					Tolerance.canTolerate(temp, EnumTemperature.getFromBiome(biome), tempTol) &&
-					Tolerance.canTolerate(humid, EnumHumidity.getFromValue(biome.getRainfall()), humidTol)) {
+				biome != Biomes.FROZEN_OCEAN &&
+				Tolerance.canTolerate(temp, EnumTemperature.getFromBiome(biome), tempTol) &&
+				Tolerance.canTolerate(humid, EnumHumidity.getFromValue(biome.getRainfall()), humidTol)) {
 				boolean match = false;
 				for (final Biome eBiome : biomes) {
 					if (biome.getBiomeName().contains(eBiome.getBiomeName()) && EnumHumidity.getFromValue(eBiome.getRainfall()) == EnumHumidity.getFromValue(biome.getRainfall()) && EnumTemperature.getFromBiome(eBiome) == EnumTemperature.getFromBiome(biome)) {

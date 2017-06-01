@@ -3,7 +3,12 @@ package binnie.botany.flower;
 import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
-import binnie.botany.api.*;
+import binnie.botany.api.EnumFlowerChromosome;
+import binnie.botany.api.EnumFlowerStage;
+import binnie.botany.api.IAlleleFlowerSpecies;
+import binnie.botany.api.IFlower;
+import binnie.botany.api.IFlowerGenome;
+import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.genetics.Flower;
 import com.google.common.base.Preconditions;
@@ -26,7 +31,11 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
@@ -37,7 +46,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemBotany extends Item implements IColoredItem, IItemModelRegister {
-
 	private EnumFlowerStage type;
 	private String tag;
 
@@ -170,19 +178,6 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 		manager.registerItemModel(item, new BotanyMeshDefinition());
 	}
 
-	@SideOnly(Side.CLIENT)
-	private class BotanyMeshDefinition implements ItemMeshDefinition {
-		@Override
-		public ModelResourceLocation getModelLocation(ItemStack stack) {
-			IFlower flower = BotanyCore.getFlowerRoot().getMember(stack);
-			Preconditions.checkNotNull(flower);
-			IAlleleFlowerSpecies flowerSpecies = flower.getGenome().getPrimary();
-			IFlowerType flowerType = flowerSpecies.getType();
-			return flowerSpecies.getFlowerModel(type, flower.hasFlowered());
-		}
-
-	}
-
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack stack = player.getHeldItem(hand);
@@ -238,5 +233,17 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 		}
 
 		return true;
+	}
+
+	@SideOnly(Side.CLIENT)
+	private class BotanyMeshDefinition implements ItemMeshDefinition {
+		@Override
+		public ModelResourceLocation getModelLocation(ItemStack stack) {
+			IFlower flower = BotanyCore.getFlowerRoot().getMember(stack);
+			Preconditions.checkNotNull(flower);
+			IAlleleFlowerSpecies flowerSpecies = flower.getGenome().getPrimary();
+			IFlowerType flowerType = flowerSpecies.getType();
+			return flowerSpecies.getFlowerModel(type, flower.hasFlowered());
+		}
 	}
 }

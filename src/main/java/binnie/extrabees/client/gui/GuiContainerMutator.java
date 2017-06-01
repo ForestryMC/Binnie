@@ -5,20 +5,17 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import org.apache.commons.lang3.tuple.Pair;
 
-import java.awt.*;
+import java.awt.Color;
 
-/**
- * Created by Elec332 on 13-5-2017.
- */
 public class GuiContainerMutator extends GuiContainerAlvearyPart {
+
+	private String mutagens;
+	private int titleS = -1;
 
 	public GuiContainerMutator(AbstractAlvearyContainer container) {
 		super(container);
 		mutagens = "Possible Mutagens:";
 	}
-
-	private String mutagens;
-	private int titleS = -1;
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
@@ -26,7 +23,7 @@ public class GuiContainerMutator extends GuiContainerAlvearyPart {
 		int i = (this.width - this.xSize) / 2;
 		int j = (this.height - this.ySize) / 2;
 		int mid = i + (xSize / 2);
-		if (titleS == -1){
+		if (titleS == -1) {
 			titleS = mid - (font.getStringWidth(mutagens) / 2);
 		}
 		font.drawString(mutagens, titleS, j + 50, Color.DARK_GRAY.getRGB());
@@ -39,5 +36,4 @@ public class GuiContainerMutator extends GuiContainerAlvearyPart {
 			q++;
 		}
 	}
-
 }

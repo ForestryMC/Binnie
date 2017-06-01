@@ -21,6 +21,14 @@ public class WindowDistillery extends Window {
 		super(224, 192, player, inventory, side);
 	}
 
+	@Nullable
+	public static Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
+		if (inventory == null) {
+			return null;
+		}
+		return new WindowDistillery(player, inventory, side);
+	}
+
 	@Override
 	protected AbstractMod getMod() {
 		return ExtraTrees.instance;
@@ -44,13 +52,5 @@ public class WindowDistillery extends Window {
 		new ControlEnergyBar(this, x, 36, 60, 16, Position.LEFT);
 		new ControlPlayerInventory(this);
 		new ControlErrorState(this, x + 21, 62);
-	}
-
-	@Nullable
-	public static Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
-		if (inventory == null) {
-			return null;
-		}
-		return new WindowDistillery(player, inventory, side);
 	}
 }

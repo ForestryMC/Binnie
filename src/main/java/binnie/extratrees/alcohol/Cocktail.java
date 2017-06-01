@@ -40,52 +40,6 @@ public enum Cocktail {
 	SexOnTheBeach("Sex on the Beach", Glassware.Highball, 16677426);
 
 	static final Map<String, ICocktailIngredient> cocktailIngredients = new HashMap<>();
-	public String name;
-	public Glassware glassware;
-	public int colour;
-	public Map<ICocktailIngredient, Integer> ingredients;
-
-	Cocktail(final String name, final Glassware glassware, final int colour) {
-		this.ingredients = new HashMap<>();
-		this.name = name;
-		this.glassware = glassware;
-		this.colour = colour;
-	}
-
-	private void add(final ICocktailIngredient ingredient, final int ratio) {
-		this.ingredients.put(ingredient, ratio);
-	}
-
-	@Nullable
-	public static Cocktail get(final Map<ICocktailIngredient, Integer> ingredients) {
-		for (final Cocktail cocktail : values()) {
-			boolean is = true;
-			for (final Map.Entry<ICocktailIngredient, Integer> entry : ingredients.entrySet()) {
-				if (!Objects.equals(cocktail.ingredients.get(entry.getKey()), entry.getValue())) {
-					is = false;
-				}
-			}
-			if (is) {
-				return cocktail;
-			}
-		}
-		return null;
-	}
-
-	public static void registerIngredient(final ICocktailIngredient ingredient) {
-		String id = ingredient.getIdentifier().toLowerCase();
-		Cocktail.cocktailIngredients.put(id, ingredient);
-		DrinkLiquid liquid = new DrinkLiquid(ingredient.getDisplayName(), ingredient.getColour(), ingredient.getTransparency(), ingredient.getABV(), id);
-		DrinkManager.registerDrinkLiquid(liquid);
-	}
-
-	public static ICocktailIngredient getIngredient(final String name2) {
-		return Cocktail.cocktailIngredients.get(name2.toLowerCase());
-	}
-
-	public static boolean isIngredient(final String name) {
-		return Cocktail.cocktailIngredients.containsKey(name.toLowerCase());
-	}
 
 	static {
 		Cocktail.Bellini.add(Alcohol.SparklingWine, 2);
@@ -171,5 +125,52 @@ public enum Cocktail {
 		Cocktail.SexOnTheBeach.add(Liqueur.Peach, 1);
 		Cocktail.SexOnTheBeach.add(Juice.Orange, 2);
 		Cocktail.SexOnTheBeach.add(Juice.Cranberry, 2);
+	}
+
+	public String name;
+	public Glassware glassware;
+	public int colour;
+	public Map<ICocktailIngredient, Integer> ingredients;
+
+	Cocktail(final String name, final Glassware glassware, final int colour) {
+		this.ingredients = new HashMap<>();
+		this.name = name;
+		this.glassware = glassware;
+		this.colour = colour;
+	}
+
+	@Nullable
+	public static Cocktail get(final Map<ICocktailIngredient, Integer> ingredients) {
+		for (final Cocktail cocktail : values()) {
+			boolean is = true;
+			for (final Map.Entry<ICocktailIngredient, Integer> entry : ingredients.entrySet()) {
+				if (!Objects.equals(cocktail.ingredients.get(entry.getKey()), entry.getValue())) {
+					is = false;
+				}
+			}
+			if (is) {
+				return cocktail;
+			}
+		}
+		return null;
+	}
+
+	public static void registerIngredient(final ICocktailIngredient ingredient) {
+		String id = ingredient.getIdentifier().toLowerCase();
+		Cocktail.cocktailIngredients.put(id, ingredient);
+		DrinkLiquid liquid = new DrinkLiquid(ingredient.getDisplayName(), ingredient.getColour(), ingredient.getTransparency(), ingredient.getABV(), id);
+		DrinkManager.registerDrinkLiquid(liquid);
+	}
+
+	public static ICocktailIngredient getIngredient(final String name2) {
+		return Cocktail.cocktailIngredients.get(name2.toLowerCase());
+	}
+
+	public static boolean isIngredient(final String name) {
+		return Cocktail.cocktailIngredients.containsKey(name.toLowerCase());
+	}
+
+	private void add(final ICocktailIngredient ingredient, final int ratio) {
+		this.ingredients.put(ingredient, ratio);
 	}
 }

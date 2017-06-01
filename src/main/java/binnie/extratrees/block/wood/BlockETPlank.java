@@ -12,6 +12,17 @@ import java.util.List;
 public abstract class BlockETPlank extends BlockForestryPlanks<EnumETLog> {
 	public static final String BLOCK_NAME = "plank";
 
+	private BlockETPlank(boolean fireproof, int blockNumber) {
+		super(fireproof, blockNumber);
+		String name = "planks.";
+		if (fireproof) {
+			name += "fireproof.";
+		}
+		name += blockNumber;
+		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
+		setUnlocalizedName(name);
+	}
+
 	public static List<BlockETPlank> create(boolean fireproof) {
 		List<BlockETPlank> blocks = new ArrayList<>();
 		PropertyETWoodType[] variants = PropertyETWoodType.create("variant", VARIANTS_PER_BLOCK, false);
@@ -26,17 +37,6 @@ public abstract class BlockETPlank extends BlockForestryPlanks<EnumETLog> {
 			blocks.add(block);
 		}
 		return blocks;
-	}
-
-	private BlockETPlank(boolean fireproof, int blockNumber) {
-		super(fireproof, blockNumber);
-		String name = "planks.";
-		if (fireproof) {
-			name += "fireproof.";
-		}
-		name += blockNumber;
-		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
-		setUnlocalizedName(name);
 	}
 
 	@Override

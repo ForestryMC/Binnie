@@ -44,24 +44,6 @@ public class ItemFieldKit extends ItemCore {
 		ModelBakery.registerItemVariants(item, fieldKit, fieldKit1, fieldKit2, fieldKit3);
 	}
 
-	@SideOnly(Side.CLIENT)
-	private class FieldKitMeshDefinition implements ItemMeshDefinition {
-		@Override
-		public ModelResourceLocation getModelLocation(ItemStack stack) {
-			final int damage = stack.getItemDamage();
-			if (damage < 24) {
-				return fieldKit3;
-			}
-			if (damage < 48) {
-				return fieldKit2;
-			}
-			if (damage < 64) {
-				return fieldKit1;
-			}
-			return fieldKit;
-		}
-	}
-
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		if (!playerIn.isSneaking() && handIn == EnumHand.MAIN_HAND) {
@@ -85,5 +67,23 @@ public class ItemFieldKit extends ItemCore {
 	@Override
 	public String getItemStackDisplayName(final ItemStack p_77653_1_) {
 		return "Field Kit";
+	}
+
+	@SideOnly(Side.CLIENT)
+	private class FieldKitMeshDefinition implements ItemMeshDefinition {
+		@Override
+		public ModelResourceLocation getModelLocation(ItemStack stack) {
+			final int damage = stack.getItemDamage();
+			if (damage < 24) {
+				return fieldKit3;
+			}
+			if (damage < 48) {
+				return fieldKit2;
+			}
+			if (damage < 64) {
+				return fieldKit1;
+			}
+			return fieldKit;
+		}
 	}
 }

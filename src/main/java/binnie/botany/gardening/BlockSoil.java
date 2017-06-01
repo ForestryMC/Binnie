@@ -34,13 +34,11 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
-
-	private final boolean weedKilled;
-	private final EnumSoilType type;
-
 	public static final PropertyEnum<EnumMoisture> MOISTURE = PropertyEnum.create("moisture", EnumMoisture.class);
 	public static final PropertyEnum<EnumAcidity> ACIDITY = PropertyEnum.create("acidity", EnumAcidity.class);
 	public static final AxisAlignedBB SOIL_BLOCK_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.9375D, 1.0D);
+	private final boolean weedKilled;
+	private final EnumSoilType type;
 
 	public BlockSoil(EnumSoilType type, String blockName, boolean weedKilled) {
 		super(Material.GROUND);
@@ -53,6 +51,30 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 		this.setHardness(0.5f);
 		this.setSoundType(SoundType.GROUND);
 		this.type = type;
+	}
+
+	public static int getMeta(final EnumAcidity acid, final EnumMoisture moisture) {
+		return acid.ordinal() * 3 + moisture.ordinal();
+	}
+
+	public static String getPH(ItemStack stack, boolean withColor, boolean byNeutralNone) {
+		EnumAcidity ph = EnumAcidity.values()[stack.getItemDamage() / 3];
+		if (byNeutralNone) {
+			if (ph == EnumAcidity.NEUTRAL) {
+				return "";
+			}
+		}
+		return TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.ph") + ": " + ph.getTranslated(withColor);
+	}
+
+	public static String getMoisture(ItemStack stack, boolean withColor, boolean byNormalNone) {
+		EnumMoisture moisure = EnumMoisture.values()[stack.getItemDamage() % 3];
+		if (byNormalNone) {
+			if (moisure == EnumMoisture.NORMAL) {
+				return "";
+			}
+		}
+		return TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.moisture") + ": " + moisure.getTranslated(withColor);
 	}
 
 	@Override
@@ -121,10 +143,10 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 		for (EnumAcidity acidity : EnumAcidity.values()) {
 			for (EnumMoisture moisture : EnumMoisture.values()) {
 				String modelName = "";
-				if (acidity != EnumAcidity.Neutral) {
+				if (acidity != EnumAcidity.NEUTRAL) {
 					modelName += acidity.getName();
 				}
-				if (moisture != EnumMoisture.Normal) {
+				if (moisture != EnumMoisture.NORMAL) {
 					if (!modelName.isEmpty()) {
 						modelName += "_";
 					}
@@ -142,7 +164,6 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 				manager.registerItemModel(item, moisture.ordinal() + acidity.ordinal() * 3, identifier);
 			}
 		}
-
 	}
 
 	@Override
@@ -178,10 +199,10 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 		EnumAcidity acidity = EnumAcidity.values()[meta / 3];
 		EnumMoisture desiredMoisture = Gardening.getNaturalMoisture(world, pos);
 		if (desiredMoisture.ordinal() > moisture.ordinal()) {
-			moisture = ((moisture == EnumMoisture.Dry) ? EnumMoisture.Normal : EnumMoisture.Damp);
+			moisture = ((moisture == EnumMoisture.DRY) ? EnumMoisture.NORMAL : EnumMoisture.DAMP);
 		}
 		if (desiredMoisture.ordinal() < moisture.ordinal()) {
-			moisture = ((moisture == EnumMoisture.Damp) ? EnumMoisture.Normal : EnumMoisture.Dry);
+			moisture = ((moisture == EnumMoisture.DAMP) ? EnumMoisture.NORMAL : EnumMoisture.DRY);
 		}
 		int meta2 = getMeta(acidity, moisture);
 		if (meta != meta2) {
@@ -248,36 +269,12 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 		return world.setBlockState(pos, world.getBlockState(pos).withProperty(MOISTURE, moisture));
 	}
 
-	public static int getMeta(final EnumAcidity acid, final EnumMoisture moisture) {
-		return acid.ordinal() * 3 + moisture.ordinal();
-	}
-
 	@Override
 	public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor) {
 		super.onNeighborChange(world, pos, neighbor);
 		if (world.isSideSolid(pos.up(), EnumFacing.DOWN, false)) {
 			((World) world).setBlockState(pos, Blocks.DIRT.getDefaultState(), 2);
 		}
-	}
-
-	public static String getPH(ItemStack stack, boolean withColor, boolean byNeutralNone) {
-		EnumAcidity ph = EnumAcidity.values()[stack.getItemDamage() / 3];
-		if (byNeutralNone) {
-			if (ph == EnumAcidity.Neutral) {
-				return "";
-			}
-		}
-		return TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.ph") + ": " + ph.getTranslated(withColor);
-	}
-
-	public static String getMoisture(ItemStack stack, boolean withColor, boolean byNormalNone) {
-		EnumMoisture moisure = EnumMoisture.values()[stack.getItemDamage() % 3];
-		if (byNormalNone) {
-			if (moisure == EnumMoisture.Normal) {
-				return "";
-			}
-		}
-		return TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.moisture") + ": " + moisure.getTranslated(withColor);
 	}
 
 	@Override

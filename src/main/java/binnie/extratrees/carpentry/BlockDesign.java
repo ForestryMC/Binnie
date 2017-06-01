@@ -11,7 +11,11 @@ import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.IToolHammer;
-import forestry.api.core.*;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import forestry.api.core.ISpriteRegister;
+import forestry.api.core.IStateMapperRegister;
+import forestry.api.core.ITextureManager;
 import forestry.core.blocks.IColoredBlock;
 import forestry.core.blocks.properties.UnlistedBlockAccess;
 import forestry.core.blocks.properties.UnlistedBlockPos;
@@ -27,7 +31,11 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -44,8 +52,17 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public abstract class BlockDesign extends BlockMetadata implements IMultipassBlock<Integer>, IColoredBlock, ISpriteRegister, IItemModelRegister, IStateMapperRegister {
-	IDesignSystem designSystem;
 	public static final EnumFacing[] RENDER_DIRECTIONS = new EnumFacing[]{EnumFacing.DOWN, EnumFacing.UP, EnumFacing.EAST, EnumFacing.WEST, EnumFacing.NORTH, EnumFacing.SOUTH};
+	IDesignSystem designSystem;
+
+	public BlockDesign(final IDesignSystem system, final Material material) {
+		super(material);
+		this.designSystem = system;
+	}
+
+	public static int getMetadata(final int plank1, final int plank2, final int design) {
+		return plank1 + (plank2 << 9) + (design << 18);
+	}
 
 	@SubscribeEvent
 	public void onClick(final PlayerInteractEvent.RightClickBlock event) {
@@ -73,11 +90,6 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 			final int meta = block.getBlockMetadata(blockC.getDesignSystem());
 			tile.setTileMetadata(meta, true);
 		}
-	}
-
-	public BlockDesign(final IDesignSystem system, final Material material) {
-		super(material);
-		this.designSystem = system;
 	}
 
 	public abstract ItemStack getCreativeStack(final IDesign p0);
@@ -147,10 +159,6 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 		return TileEntityMetadata.getItemStack(this, getMetadata(plank1, plank2, design));
 	}
 
-	public static int getMetadata(final int plank1, final int plank2, final int design) {
-		return plank1 + (plank2 << 9) + (design << 18);
-	}
-
 	@Override
 	public int getDroppedMeta(IBlockState state, int tileMetadata) {
 		final DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), tileMetadata);
@@ -169,24 +177,16 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 		ResourceLocation registryName = getRegistryName();
 		ModelLoader.setCustomStateMapper(this, new DefaultStateMapper(registryName));
 		ModelManager.registerCustomBlockModel(new BlockModelEntry(
-				new ModelResourceLocation(registryName, "normal"),
-				new ModelResourceLocation(registryName, "inventory"),
-				new ModelMutlipass<>(BlockDesign.class), this));
+			new ModelResourceLocation(registryName, "normal"),
+			new ModelResourceLocation(registryName, "inventory"),
+			new ModelMutlipass<>(BlockDesign.class), this
+		));
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
 		manager.registerItemModel(item, new DesignMeshDefinition());
-	}
-
-	private class DesignMeshDefinition implements ItemMeshDefinition {
-
-		@Override
-		public ModelResourceLocation getModelLocation(ItemStack stack) {
-			return new ModelResourceLocation(getRegistryName(), "inventory");
-		}
-
 	}
 
 	@Override
@@ -243,4 +243,11 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 		}
 	}
 
+	private class DesignMeshDefinition implements ItemMeshDefinition {
+
+		@Override
+		public ModelResourceLocation getModelLocation(ItemStack stack) {
+			return new ModelResourceLocation(getRegistryName(), "inventory");
+		}
+	}
 }

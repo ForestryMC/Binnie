@@ -16,17 +16,17 @@ import java.util.List;
 public class Widget implements IWidget {
 	@Nullable
 	private final IWidget parent;
-	private List<IWidget> subWidgets;
-	private List<IWidgetAttribute> attributes;
-	private Point position;
-	private Point size;
-	private Point offset;
 	@Nullable
 	Area cropArea;
 	@Nullable
 	IWidget cropWidget;
 	boolean cropped;
 	int colour;
+	private List<IWidget> subWidgets;
+	private List<IWidgetAttribute> attributes;
+	private Point position;
+	private Point size;
+	private Point offset;
 	private Collection<EventHandler<? extends Event>> globalEventHandlers;
 	private boolean enabled;
 	private boolean visible;
@@ -139,6 +139,14 @@ public class Widget implements IWidget {
 	}
 
 	@Override
+	public final void setPosition(final Point vector) {
+		if (!vector.equals(this.position)) {
+			this.position = new Point(vector);
+			this.callEvent(new EventWidget.ChangePosition(this));
+		}
+	}
+
+	@Override
 	public final Area getArea() {
 		return new Area(Point.ZERO, this.size());
 	}
@@ -179,24 +187,16 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public final Point getOffset() {
-		return this.offset;
-	}
-
-	@Override
-	public final void setPosition(final Point vector) {
-		if (!vector.equals(this.position)) {
-			this.position = new Point(vector);
-			this.callEvent(new EventWidget.ChangePosition(this));
-		}
-	}
-
-	@Override
 	public final void setSize(final Point vector) {
 		if (!vector.equals(this.size)) {
 			this.size = new Point(vector);
 			this.callEvent(new EventWidget.ChangeSize(this));
 		}
+	}
+
+	@Override
+	public final Point getOffset() {
+		return this.offset;
 	}
 
 	@Override
@@ -208,16 +208,16 @@ public class Widget implements IWidget {
 	}
 
 	@Override
+	public final int getColour() {
+		return this.colour;
+	}
+
+	@Override
 	public final void setColour(final int colour) {
 		if (this.colour != colour) {
 			this.colour = colour;
 			this.callEvent(new EventWidget.ChangeColour(this));
 		}
-	}
-
-	@Override
-	public final int getColour() {
-		return this.colour;
 	}
 
 	@Override

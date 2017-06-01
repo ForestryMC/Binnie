@@ -36,6 +36,5 @@ public class WorldGenLazy {
 			this.height = this.determineHeight(4, 1);
 			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
-
 	}
 }

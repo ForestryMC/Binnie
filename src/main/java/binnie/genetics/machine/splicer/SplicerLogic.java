@@ -20,6 +20,12 @@ import javax.annotation.Nullable;
 public class SplicerLogic extends ComponentProcess implements IProcess {
 	public static int PROCESS_ENERGY = 12000000;
 	public static int PROCESS_LENGTH = 1200;
+	private int nOfGenes;
+
+	public SplicerLogic(final Machine machine) {
+		super(machine);
+		this.nOfGenes = 0;
+	}
 
 	public static int getProcessLength(int numberOfGenes) {
 		float n = numberOfGenes;
@@ -39,11 +45,22 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 		return (int) (PROCESS_ENERGY * n);
 	}
 
-	private int nOfGenes;
-
-	public SplicerLogic(final Machine machine) {
-		super(machine);
-		this.nOfGenes = 0;
+	public static int getGenesToUse(ItemStack serum, ItemStack target) {
+		if (serum.isEmpty() || target.isEmpty()) {
+			return 1;
+		}
+		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(target);
+		final IGene[] genes = ((IItemSerum) serum.getItem()).getGenes(serum);
+		if (ind.getGenome().getSpeciesRoot() != ((IItemSerum) serum.getItem()).getSpeciesRoot(serum)) {
+			return 1;
+		}
+		int i = 0;
+		for (final IGene gene : genes) {
+			if (ind.getGenome().getActiveAllele(gene.getChromosome()) != gene.getAllele() || ind.getGenome().getInactiveAllele(gene.getChromosome()) != gene.getAllele()) {
+				++i;
+			}
+		}
+		return (i < 1) ? 1 : i;
 	}
 
 	@Override
@@ -64,24 +81,6 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 		final ItemStack serum = this.getUtil().getStack(0);
 		final ItemStack target = this.getUtil().getStack(9);
 		this.nOfGenes = getGenesToUse(serum, target);
-	}
-
-	public static int getGenesToUse(ItemStack serum, ItemStack target) {
-		if (serum.isEmpty() || target.isEmpty()) {
-			return 1;
-		}
-		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(target);
-		final IGene[] genes = ((IItemSerum) serum.getItem()).getGenes(serum);
-		if (ind.getGenome().getSpeciesRoot() != ((IItemSerum) serum.getItem()).getSpeciesRoot(serum)) {
-			return 1;
-		}
-		int i = 0;
-		for (final IGene gene : genes) {
-			if (ind.getGenome().getActiveAllele(gene.getChromosome()) != gene.getAllele() || ind.getGenome().getInactiveAllele(gene.getChromosome()) != gene.getAllele()) {
-				++i;
-			}
-		}
-		return (i < 1) ? 1 : i;
 	}
 
 	private int getFullNumberOfGenes() {

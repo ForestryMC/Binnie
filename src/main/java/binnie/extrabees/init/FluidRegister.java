@@ -4,30 +4,26 @@ import binnie.extrabees.utils.ExtraBeesResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 
-/**
- * Created by Elec332 on 12-5-2017.
- */
 public final class FluidRegister {
 
 	//Fluids seem unused,
 	//TODO: find out what they were used for
 	public static Fluid acid, poison, liquid_nitrogen;
 
-	public static void preInitFluids(){
+	public static void preInitFluids() {
 		acid = createFluid("acid");
 		poison = createFluid("poison");
 		liquid_nitrogen = createFluid("liquidnitrogen");
 	}
 
-	private static Fluid createFluid(String name){
+	private static Fluid createFluid(String name) {
 		name = name.toLowerCase();
-		Fluid ret = new Fluid(name, new ExtraBeesResourceLocation("blocks/liquids/" + name), new ExtraBeesResourceLocation("blocks/liquids/" + name)){
+		Fluid ret = new Fluid(name, new ExtraBeesResourceLocation("blocks/liquids/" + name), new ExtraBeesResourceLocation("blocks/liquids/" + name)) {
 
 			@Override
 			public int getColor() {
 				return 16777215;
 			}
-
 		};
 		FluidRegistry.registerFluid(ret);
 		return ret;
@@ -97,6 +93,4 @@ public enum ExtraBeeLiquid implements ILiquidType {
 		return this.colour;
 	}
 }*/
-
-
 }

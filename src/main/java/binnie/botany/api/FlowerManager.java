@@ -1,7 +1,6 @@
 package binnie.botany.api;
 
 public class FlowerManager {
-
 	/**
 	 * Convenient access to AlleleManager.alleleRegistry.getSpeciesRoot("rootFlowers")
 	 */
@@ -11,5 +10,4 @@ public class FlowerManager {
 	 * Used to create new flowers.
 	 */
 	public static IFlowerFactory flowerFactory;
-
 }

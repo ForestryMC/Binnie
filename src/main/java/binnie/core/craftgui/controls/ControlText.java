@@ -35,12 +35,12 @@ public class ControlText extends Control implements IControlValue<String> {
 	}
 
 	@Override
-	public void setValue(final String text) {
-		this.text = text;
+	public String getValue() {
+		return this.text;
 	}
 
 	@Override
-	public String getValue() {
-		return this.text;
+	public void setValue(final String text) {
+		this.text = text;
 	}
 }

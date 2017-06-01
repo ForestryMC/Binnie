@@ -18,9 +18,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.EnumSet;
 
 public abstract class ControlToleranceBar<T extends Enum<T>> extends Control implements ITooltip {
-	private Class<T> enumClass;
 	EnumSet<T> tolerated;
 	EnumSet<T> fullSet;
+	private Class<T> enumClass;
 
 	public ControlToleranceBar(final IWidget parent, final int x, final int y, final int width, final int height, final Class<T> clss) {
 		super(parent, x, y, width, height);

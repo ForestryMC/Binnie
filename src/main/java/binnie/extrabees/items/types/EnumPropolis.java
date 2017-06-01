@@ -18,6 +18,10 @@ public enum EnumPropolis implements IEBEnumItem {
 	GLACIAL,
 	PEAT;
 
+	public int[] colour;
+	public String liquidName;
+	public boolean active;
+
 	EnumPropolis() {
 		this(16777215, 16777215, "");
 		this.active = false;
@@ -30,9 +34,13 @@ public enum EnumPropolis implements IEBEnumItem {
 		this.liquidName = liquid;
 	}
 
-	public int[] colour;
-	public String liquidName;
-	public boolean active;
+	public static EnumPropolis get(final ItemStack itemStack) {
+		final int i = itemStack.getItemDamage();
+		if (i >= 0 && i < values().length) {
+			return values()[i];
+		}
+		return values()[0];
+	}
 
 	public void addRecipe() {
 		final FluidStack liquid = Utils.getFluidFromName(this.liquidName, 500);
@@ -44,14 +52,6 @@ public enum EnumPropolis implements IEBEnumItem {
 	@Override
 	public boolean isActive() {
 		return this.active && Utils.getFluidFromName(this.liquidName, 100) != null;
-	}
-
-	public static EnumPropolis get(final ItemStack itemStack) {
-		final int i = itemStack.getItemDamage();
-		if (i >= 0 && i < values().length) {
-			return values()[i];
-		}
-		return values()[0];
 	}
 
 	@Override

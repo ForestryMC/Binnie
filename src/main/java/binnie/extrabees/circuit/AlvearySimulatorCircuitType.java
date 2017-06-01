@@ -10,9 +10,6 @@ import forestry.api.circuits.ICircuitLayout;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-/**
- * Created by Elec332 on 13-5-2017.
- */
 public enum AlvearySimulatorCircuitType implements IBeeModifier {
 
 	LowVoltage(3, 10),
@@ -24,6 +21,22 @@ public enum AlvearySimulatorCircuitType implements IBeeModifier {
 	Mutation(4, 15),
 	Inhibitor(1, 10),
 	Territory(2, 10);
+
+	static {
+		LowVoltage.logic.setModifier(EnumBeeModifier.Production, 1.5f, 5.0f);
+		HighVoltage.logic.setModifier(EnumBeeModifier.Production, 2.5f, 10.0f);
+		Plant.logic.setModifier(EnumBeeModifier.Flowering, 1.5f, 5.0f);
+		Death.logic.setModifier(EnumBeeModifier.Lifespan, 0.8f, 0.2f);
+		Life.logic.setModifier(EnumBeeModifier.Lifespan, 1.5f, 5.0f);
+		Nether.logic.setModifier(EnumBeeBooleanModifier.Hellish);
+		Mutation.logic.setModifier(EnumBeeModifier.Mutation, 1.5f, 5.0f);
+		Inhibitor.logic.setModifier(EnumBeeModifier.Territory, 0.4f, 0.1f);
+		Inhibitor.logic.setModifier(EnumBeeModifier.Production, 0.9f, 0.5f);
+		Territory.logic.setModifier(EnumBeeModifier.Territory, 1.5f, 5.0f);
+		for (final AlvearySimulatorCircuitType type : values()) {
+			type.logic.setModifier(EnumBeeModifier.GeneticDecay, 1.5f, 10.0f);
+		}
+	}
 
 	public int recipe;
 	public int power;
@@ -99,21 +112,5 @@ public enum AlvearySimulatorCircuitType implements IBeeModifier {
 	@Override
 	public boolean isHellish() {
 		return this.logic.getModifier(EnumBeeBooleanModifier.Hellish);
-	}
-
-	static {
-		LowVoltage.logic.setModifier(EnumBeeModifier.Production, 1.5f, 5.0f);
-		HighVoltage.logic.setModifier(EnumBeeModifier.Production, 2.5f, 10.0f);
-		Plant.logic.setModifier(EnumBeeModifier.Flowering, 1.5f, 5.0f);
-		Death.logic.setModifier(EnumBeeModifier.Lifespan, 0.8f, 0.2f);
-		Life.logic.setModifier(EnumBeeModifier.Lifespan, 1.5f, 5.0f);
-		Nether.logic.setModifier(EnumBeeBooleanModifier.Hellish);
-		Mutation.logic.setModifier(EnumBeeModifier.Mutation, 1.5f, 5.0f);
-		Inhibitor.logic.setModifier(EnumBeeModifier.Territory, 0.4f, 0.1f);
-		Inhibitor.logic.setModifier(EnumBeeModifier.Production, 0.9f, 0.5f);
-		Territory.logic.setModifier(EnumBeeModifier.Territory, 1.5f, 5.0f);
-		for (final AlvearySimulatorCircuitType type : values()) {
-			type.logic.setModifier(EnumBeeModifier.GeneticDecay, 1.5f, 10.0f);
-		}
 	}
 }

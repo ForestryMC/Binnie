@@ -98,5 +98,4 @@ public class Border {
 	public String toString() {
 		return this.t() + "-" + this.r() + "-" + this.b() + "-" + this.l();
 	}
-
 }

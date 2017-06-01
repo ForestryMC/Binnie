@@ -11,6 +11,10 @@ import net.minecraft.world.IBlockAccess;
 
 public class HiveDrop implements IHiveDrop {
 
+	private IAllele[] template;
+	private NonNullList<ItemStack> extra;
+	private int chance;
+
 	public HiveDrop(final IAlleleBeeSpecies species, final int chance) {
 		this(Utils.getBeeRoot().getTemplate(species), NonNullList.create(), chance);
 	}
@@ -20,10 +24,6 @@ public class HiveDrop implements IHiveDrop {
 		this.template = template;
 		this.chance = chance;
 	}
-
-	private IAllele[] template;
-	private NonNullList<ItemStack> extra;
-	private int chance;
 
 	@Override
 	public NonNullList<ItemStack> getExtraItems(IBlockAccess world, BlockPos pos, int fortune) {
@@ -48,5 +48,4 @@ public class HiveDrop implements IHiveDrop {
 	public IBee getBeeType(IBlockAccess world, BlockPos pos) {
 		return Utils.getBeeRoot().getBee(Utils.getBeeRoot().templateAsGenome(this.template));
 	}
-
 }

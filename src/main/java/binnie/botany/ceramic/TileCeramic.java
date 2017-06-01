@@ -9,12 +9,12 @@ import net.minecraft.tileentity.TileEntity;
 public class TileCeramic extends TileEntity {
 	protected EnumFlowerColor color = EnumFlowerColor.Black;
 
-	public void setColor(EnumFlowerColor color) {
-		this.color = color;
-	}
-
 	public EnumFlowerColor getColor() {
 		return color;
+	}
+
+	public void setColor(EnumFlowerColor color) {
+		this.color = color;
 	}
 
 	@Override
@@ -39,7 +39,5 @@ public class TileCeramic extends TileEntity {
 			ID = color.getID();
 		}
 		return new ItemStack(Botany.ceramic, amount, ID);
-
 	}
-
 }

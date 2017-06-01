@@ -1,7 +1,11 @@
 package binnie.botany.craftgui;
 
 import binnie.botany.api.IColourMix;
-import binnie.core.craftgui.*;
+import binnie.core.craftgui.Attribute;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.ITooltip;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.resource.Texture;
@@ -16,6 +20,13 @@ public class ControlColourMixSymbol extends Control implements ITooltip {
 	IColourMix value;
 	int type;
 
+	protected ControlColourMixSymbol(final IWidget parent, final int x, final int y, final int type, final IColourMix value) {
+		super(parent, x, y, 16 + type * 16, 16);
+		this.value = value;
+		this.type = type;
+		this.addAttribute(Attribute.MouseOver);
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
@@ -27,16 +38,9 @@ public class ControlColourMixSymbol extends Control implements ITooltip {
 		}
 	}
 
-	protected ControlColourMixSymbol(final IWidget parent, final int x, final int y, final int type, final IColourMix value) {
-		super(parent, x, y, 16 + type * 16, 16);
-		this.value = value;
-		this.type = type;
-		this.addAttribute(Attribute.MouseOver);
-	}
-
 	public void setValue(final IColourMix value) {
 		this.value = value;
-		this.setColour(16777215);
+		this.setColour(0xffffff);
 	}
 
 	@Override
@@ -46,5 +50,4 @@ public class ControlColourMixSymbol extends Control implements ITooltip {
 			tooltip.add("Current Chance - " + chance + "%");
 		}
 	}
-
 }

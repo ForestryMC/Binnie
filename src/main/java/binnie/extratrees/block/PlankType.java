@@ -3,7 +3,11 @@ package binnie.extratrees.block;
 import binnie.Constants;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
-import forestry.api.arboriculture.*;
+import forestry.api.arboriculture.EnumForestryWoodType;
+import forestry.api.arboriculture.EnumVanillaWoodType;
+import forestry.api.arboriculture.IWoodType;
+import forestry.api.arboriculture.TreeManager;
+import forestry.api.arboriculture.WoodBlockKind;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemStack;
@@ -69,9 +73,8 @@ public class PlankType {
 		Banana(0);
 
 		public static final ExtraTreePlanks[] VALUES = values();
-
-		private EnumETLog woodType;
 		private final int color;
+		private EnumETLog woodType;
 		@SideOnly(Side.CLIENT)
 		private TextureAtlasSprite sprite;
 
@@ -118,13 +121,13 @@ public class PlankType {
 			Banana.setWoodType(EnumETLog.Banana);
 		}
 
-		public void setWoodType(EnumETLog woodType) {
-			this.woodType = woodType;
-		}
-
 		@Override
 		public EnumETLog getWoodType() {
 			return woodType;
+		}
+
+		public void setWoodType(EnumETLog woodType) {
+			this.woodType = woodType;
 		}
 
 		@Override
@@ -156,13 +159,13 @@ public class PlankType {
 		public ItemStack getStack() {
 			return getStack(true);
 		}
-		
+
 		@SideOnly(Side.CLIENT)
 		@Override
 		public TextureAtlasSprite getSprite() {
 			return sprite;
 		}
-		
+
 		@SideOnly(Side.CLIENT)
 		@Override
 		public void registerSprites(TextureMap map) {
@@ -207,13 +210,13 @@ public class PlankType {
 		public String getPlankTextureName() {
 			return "minecraft:blocks/planks_" + name().toLowerCase();
 		}
-		
+
 		@SideOnly(Side.CLIENT)
 		@Override
 		public TextureAtlasSprite getSprite() {
 			return sprite;
 		}
-		
+
 		@SideOnly(Side.CLIENT)
 		@Override
 		public void registerSprites(TextureMap map) {
@@ -240,15 +243,15 @@ public class PlankType {
 			return TreeManager.woodAccess.getStack(woodType, WoodBlockKind.PLANKS, fireproof);
 		}
 
-//		@Override
-//		public IIcon getIcon() {
-//			if (this.getStack() != null) {
-//				final int meta = this.getStack().getItemDamage();
-//				final Block block = Blocks.planks;
-//				return block.getIcon(2, meta);
-//			}
-//			return null;
-//		}
+		/*@Override
+		public IIcon getIcon() {
+			if (this.getStack() != null) {
+				final int meta = this.getStack().getItemDamage();
+				final Block block = Blocks.planks;
+				return block.getIcon(2, meta);
+			}
+			return null;
+		}*/
 	}
 
 	public enum ForestryPlanks implements IPlankType, IFenceProvider {
@@ -306,13 +309,13 @@ public class PlankType {
 		public String getDescription() {
 			return ExtraTrees.proxy.localise("block.planks.forestry." + this.toString().toLowerCase() + ".desc");
 		}
-		
+
 		@SideOnly(Side.CLIENT)
 		@Override
 		public TextureAtlasSprite getSprite() {
 			return sprite;
 		}
-		
+
 		@SideOnly(Side.CLIENT)
 		@Override
 		public void registerSprites(TextureMap map) {
@@ -339,15 +342,15 @@ public class PlankType {
 			return getStack(true);
 		}
 
-//		@Override
-//		public IIcon getIcon() {
-//			if (this.getStack() != null) {
-//				final int meta = this.getStack().getItemDamage();
-//				final Block block = ((ItemBlock) this.getStack().getItem()).field_150939_a;
-//				return block.getIcon(2, meta);
-//			}
-//			return null;
-//		}
+		/*@Override
+		public IIcon getIcon() {
+			if (this.getStack() != null) {
+				final int meta = this.getStack().getItemDamage();
+				final Block block = ((ItemBlock) this.getStack().getItem()).field_150939_a;
+				return block.getIcon(2, meta);
+			}
+			return null;
+		}*/
 
 		@Override
 		public ItemStack getFence() {
@@ -410,14 +413,14 @@ public class PlankType {
 			}
 		}
 
-//		@Override
-//		public IIcon getIcon() {
-//			if (this.getStack() != null) {
-//				final int meta = this.getStack().getItemDamage();
-//				final Block block = ((ItemBlock) this.getStack().getItem()).field_150939_a;
-//				return block.getIcon(2, meta);
-//			}
-//			return null;
-//		}
+		@Override
+		public IIcon getIcon() {
+			if (this.getStack() != null) {
+				final int meta = this.getStack().getItemDamage();
+				final Block block = ((ItemBlock) this.getStack().getItem()).field_150939_a;
+				return block.getIcon(2, meta);
+			}
+			return null;
+		}
 	}*/
 }

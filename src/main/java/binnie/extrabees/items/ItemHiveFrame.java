@@ -2,7 +2,11 @@ package binnie.extrabees.items;
 
 import binnie.extrabees.items.types.EnumHiveFrame;
 import binnie.extrabees.utils.ExtraBeesResourceLocation;
-import forestry.api.apiculture.*;
+import forestry.api.apiculture.IBee;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.IBeeHousing;
+import forestry.api.apiculture.IBeeModifier;
+import forestry.api.apiculture.IHiveFrame;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
@@ -20,6 +24,8 @@ import java.util.List;
 
 public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IItemModelRegister {
 
+	private final EnumHiveFrame frame;
+
 	public ItemHiveFrame(final EnumHiveFrame frame) {
 		this.frame = frame;
 		this.setMaxDamage(frame.getMaxDamage());
@@ -27,8 +33,6 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 		this.setMaxStackSize(1);
 		this.setUnlocalizedName("hive_frame");
 	}
-
-	private final EnumHiveFrame frame;
 
 	@Override
 	public String getItemStackDisplayName(final ItemStack itemStack) {
@@ -115,5 +119,4 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IIt
 	public IBeeModifier getBeeModifier() {
 		return this;
 	}
-
 }

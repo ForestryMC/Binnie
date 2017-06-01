@@ -9,9 +9,6 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 
 import java.util.Random;
 
-/**
- * Created by Elec332 on 12-5-2017.
- */
 public class ExtraBeesWorldGenerator implements IWorldGenerator {
 
 	@Override
@@ -36,7 +33,5 @@ public class ExtraBeesWorldGenerator implements IWorldGenerator {
 			final int randPosZ = chunkZ + rand.nextInt(16);
 			new WorldGenHiveNether().generate(world, rand, new BlockPos(randPosX, randPosY, randPosZ));
 		}
-
 	}
-
 }

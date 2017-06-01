@@ -11,6 +11,35 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
+	private List<ControlSlot> slots = new ArrayList<>();
+
+	private ControlSlotArray(final IWidget parent, final int x, final int y, final int columns, final int rows) {
+		super(parent, x, y, columns * 18, rows * 18);
+		this.slots = new ArrayList<>();
+	}
+
+	public void setItemStacks(final ItemStack[] array) {
+		int i = 0;
+		for (final ItemStack item : array) {
+			if (i >= this.slots.size()) {
+				return;
+			}
+			ControlSlot controlSlot = this.slots.get(i);
+			Slot slot = controlSlot.slot;
+			slot.putStack(item);
+			++i;
+		}
+	}
+
+	public ControlSlot getControlSlot(final int i) {
+		return this.slots.get(i);
+	}
+
+	@Override
+	public Iterator<ControlSlot> iterator() {
+		return this.slots.iterator();
+	}
+
 	public static class Builder {
 		private final IWidget parent;
 		private final int x;
@@ -43,34 +72,5 @@ public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
 
 			return controlSlots;
 		}
-	}
-
-	private List<ControlSlot> slots = new ArrayList<>();
-
-	private ControlSlotArray(final IWidget parent, final int x, final int y, final int columns, final int rows) {
-		super(parent, x, y, columns * 18, rows * 18);
-		this.slots = new ArrayList<>();
-	}
-
-	public void setItemStacks(final ItemStack[] array) {
-		int i = 0;
-		for (final ItemStack item : array) {
-			if (i >= this.slots.size()) {
-				return;
-			}
-			ControlSlot controlSlot = this.slots.get(i);
-			Slot slot = controlSlot.slot;
-			slot.putStack(item);
-			++i;
-		}
-	}
-
-	public ControlSlot getControlSlot(final int i) {
-		return this.slots.get(i);
-	}
-
-	@Override
-	public Iterator<ControlSlot> iterator() {
-		return this.slots.iterator();
 	}
 }

@@ -1,10 +1,13 @@
 package binnie.extratrees.integration.jei.lumbermill;
 
-
 import binnie.extratrees.integration.jei.ExtraTreesJeiPlugin;
 import binnie.extratrees.integration.jei.RecipeUids;
 import binnie.extratrees.machines.lumbermill.LumbermillMachine;
-import mezz.jei.api.gui.*;
+import mezz.jei.api.gui.IDrawable;
+import mezz.jei.api.gui.IDrawableAnimated;
+import mezz.jei.api.gui.IGuiFluidStackGroup;
+import mezz.jei.api.gui.IGuiItemStackGroup;
+import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
 import net.minecraft.client.Minecraft;

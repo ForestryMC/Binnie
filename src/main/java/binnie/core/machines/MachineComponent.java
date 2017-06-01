@@ -15,12 +15,12 @@ public class MachineComponent implements INbtReadable, INbtWritable {
 		machine.addComponent(this);
 	}
 
-	public void setMachine(final IMachine machine) {
-		this.machine = machine;
-	}
-
 	public IMachine getMachine() {
 		return this.machine;
+	}
+
+	public void setMachine(final IMachine machine) {
+		this.machine = machine;
 	}
 
 	@Override

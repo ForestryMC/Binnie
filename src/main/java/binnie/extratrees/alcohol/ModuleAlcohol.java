@@ -99,17 +99,17 @@ public class ModuleAlcohol implements IInitializable {
 		}
 
 		BreweryRecipes.addRecipes(
-				new BrewedGrainRecipe(Alcohol.Ale, BreweryRecipes.GRAIN_BARLEY, BreweryRecipes.HOPS),
-				new BrewedGrainRecipe(Alcohol.Lager, BreweryRecipes.GRAIN_BARLEY, BreweryRecipes.HOPS, ExtraTreeItems.LagerYeast.get(1)),
-				new BrewedGrainRecipe(Alcohol.Stout, BreweryRecipes.GRAIN_ROASTED, BreweryRecipes.HOPS),
-				new BrewedGrainRecipe(Alcohol.CornBeer, BreweryRecipes.GRAIN_CORN, BreweryRecipes.HOPS),
-				new BrewedGrainRecipe(Alcohol.RyeBeer, BreweryRecipes.GRAIN_RYE, BreweryRecipes.HOPS),
-				new BrewedGrainRecipe(Alcohol.WheatBeer, BreweryRecipes.GRAIN_WHEAT, BreweryRecipes.HOPS),
+			new BrewedGrainRecipe(Alcohol.Ale, BreweryRecipes.GRAIN_BARLEY, BreweryRecipes.HOPS),
+			new BrewedGrainRecipe(Alcohol.Lager, BreweryRecipes.GRAIN_BARLEY, BreweryRecipes.HOPS, ExtraTreeItems.LagerYeast.get(1)),
+			new BrewedGrainRecipe(Alcohol.Stout, BreweryRecipes.GRAIN_ROASTED, BreweryRecipes.HOPS),
+			new BrewedGrainRecipe(Alcohol.CornBeer, BreweryRecipes.GRAIN_CORN, BreweryRecipes.HOPS),
+			new BrewedGrainRecipe(Alcohol.RyeBeer, BreweryRecipes.GRAIN_RYE, BreweryRecipes.HOPS),
+			new BrewedGrainRecipe(Alcohol.WheatBeer, BreweryRecipes.GRAIN_WHEAT, BreweryRecipes.HOPS),
 
-				new BrewedGrainRecipe(Alcohol.Barley, BreweryRecipes.GRAIN_BARLEY),
-				new BrewedGrainRecipe(Alcohol.Corn, BreweryRecipes.GRAIN_CORN),
-				new BrewedGrainRecipe(Alcohol.Rye, BreweryRecipes.GRAIN_RYE),
-				new BrewedGrainRecipe(Alcohol.Wheat, BreweryRecipes.GRAIN_WHEAT)
+			new BrewedGrainRecipe(Alcohol.Barley, BreweryRecipes.GRAIN_BARLEY),
+			new BrewedGrainRecipe(Alcohol.Corn, BreweryRecipes.GRAIN_CORN),
+			new BrewedGrainRecipe(Alcohol.Rye, BreweryRecipes.GRAIN_RYE),
+			new BrewedGrainRecipe(Alcohol.Wheat, BreweryRecipes.GRAIN_WHEAT)
 		);
 
 		this.addDistillery(Alcohol.Apple, Spirit.AppleBrandy, Spirit.AppleLiquor, Spirit.NeutralSpirit);

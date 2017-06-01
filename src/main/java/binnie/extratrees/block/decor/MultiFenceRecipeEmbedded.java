@@ -24,7 +24,7 @@ public class MultiFenceRecipeEmbedded implements IRecipe {
 				FenceType typeSecond = WoodManager.getFenceType(c);
 				if (type != null && typeSecond != null && type.equals(typeSecond)) {
 					FenceDescription fenceDescription = WoodManager.getFenceDescription(a);
-					if(fenceDescription != null){
+					if (fenceDescription != null) {
 						IPlankType descPlankType = fenceDescription.getPlankType();
 						IPlankType plankType = WoodManager.getPlankType(b);
 						if (descPlankType == plankType) {

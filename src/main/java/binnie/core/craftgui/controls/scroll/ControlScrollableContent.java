@@ -75,6 +75,11 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 	}
 
 	@Override
+	public void setPercentageIndex(final float index) {
+		this.movePercentage(index - this.percentageIndex);
+	}
+
+	@Override
 	public void movePercentage(final float percentage) {
 		if (this.controlChild == null) {
 			return;
@@ -89,11 +94,6 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 			this.percentageIndex = 0;
 		}
 		this.controlChild.setOffset(new Point(0, Math.round(-this.percentageIndex * this.getMovementRange())));
-	}
-
-	@Override
-	public void setPercentageIndex(final float index) {
-		this.movePercentage(index - this.percentageIndex);
 	}
 
 	@Override

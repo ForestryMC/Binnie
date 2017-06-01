@@ -24,8 +24,8 @@ public class Nursery {
 			return new TileEntityNursery(this);
 		}
 
-//		@Override
-//		public void renderMachine(final Machine machine, final double x, final double y, final double z, final float var8, final RenderBlocks renderer) {
-//		}
+		/*@Override
+			public void renderMachine(final Machine machine, final double x, final double y, final double z, final float var8, final RenderBlocks renderer) {
+		}*/
 	}
 }

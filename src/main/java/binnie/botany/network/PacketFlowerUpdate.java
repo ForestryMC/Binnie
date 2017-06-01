@@ -44,5 +44,4 @@ public class PacketFlowerUpdate extends SPacketUpdateTileEntity {
 		buf.writeBoolean(this.render.wilted);
 		buf.writeBoolean(this.render.flowered);
 	}
-
 }

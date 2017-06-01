@@ -15,9 +15,9 @@ public class PolymeriserRecipeMaker {
 		List<PolymeriserRecipeWrapper> recipes = new ArrayList<>();
 
 		List<ItemStack> inputs = Arrays.asList(
-				new ItemStack(Genetics.items().itemSequencer, 1, OreDictionary.WILDCARD_VALUE),
-				new ItemStack(Genetics.items().itemSerum, 1, OreDictionary.WILDCARD_VALUE),
-				new ItemStack(Genetics.items().itemSerumArray, 1, OreDictionary.WILDCARD_VALUE)
+			new ItemStack(Genetics.items().itemSequencer, 1, OreDictionary.WILDCARD_VALUE),
+			new ItemStack(Genetics.items().itemSerum, 1, OreDictionary.WILDCARD_VALUE),
+			new ItemStack(Genetics.items().itemSerumArray, 1, OreDictionary.WILDCARD_VALUE)
 		);
 
 		IStackHelper stackHelper = GeneticsJeiPlugin.jeiHelpers.getStackHelper();

@@ -4,13 +4,51 @@ import binnie.Constants;
 import binnie.core.genetics.ForestryAllele;
 import binnie.extratrees.block.EnumETLog;
 import binnie.extratrees.block.EnumShrubLog;
-import binnie.extratrees.gen.*;
+import binnie.extratrees.gen.WorldGenAlder;
+import binnie.extratrees.gen.WorldGenApple;
+import binnie.extratrees.gen.WorldGenAsh;
+import binnie.extratrees.gen.WorldGenBanana;
+import binnie.extratrees.gen.WorldGenBeech;
+import binnie.extratrees.gen.WorldGenConifer;
+import binnie.extratrees.gen.WorldGenEucalyptus;
+import binnie.extratrees.gen.WorldGenFir;
+import binnie.extratrees.gen.WorldGenHolly;
+import binnie.extratrees.gen.WorldGenJungle;
+import binnie.extratrees.gen.WorldGenLazy;
+import binnie.extratrees.gen.WorldGenMaple;
+import binnie.extratrees.gen.WorldGenPalm;
+import binnie.extratrees.gen.WorldGenPoplar;
+import binnie.extratrees.gen.WorldGenShrub;
+import binnie.extratrees.gen.WorldGenSorbus;
+import binnie.extratrees.gen.WorldGenTree;
+import binnie.extratrees.gen.WorldGenTree2;
+import binnie.extratrees.gen.WorldGenTree3;
+import binnie.extratrees.gen.WorldGenTropical;
+import binnie.extratrees.gen.WorldGenWalnut;
 import com.google.common.base.Preconditions;
 import com.mojang.authlib.GameProfile;
-import forestry.api.arboriculture.*;
+import forestry.api.arboriculture.EnumForestryWoodType;
+import forestry.api.arboriculture.EnumGermlingType;
+import forestry.api.arboriculture.EnumLeafType;
+import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.arboriculture.EnumVanillaWoodType;
+import forestry.api.arboriculture.IAlleleTreeSpecies;
+import forestry.api.arboriculture.IAlleleTreeSpeciesBuilder;
+import forestry.api.arboriculture.ILeafSpriteProvider;
+import forestry.api.arboriculture.ITree;
+import forestry.api.arboriculture.ITreeGenerator;
+import forestry.api.arboriculture.ITreeGenome;
+import forestry.api.arboriculture.IWoodProvider;
+import forestry.api.arboriculture.IWoodType;
+import forestry.api.arboriculture.TreeManager;
+import forestry.api.arboriculture.WoodBlockKind;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
-import forestry.api.genetics.*;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.EnumTolerance;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IClassification;
 import forestry.api.world.ITreeGenData;
 import forestry.arboriculture.PluginArboriculture;
 import forestry.arboriculture.genetics.ClimateGrowthProvider;
@@ -32,7 +70,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import org.apache.commons.lang3.StringUtils;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.Arrays;
 import java.util.Locale;
 
@@ -1979,8 +2017,9 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		}
 	};
 
+	private static final String unlocalizedName = "extratrees.species.%s.name";
+	private static final String unlocalizedDesc = "extratrees.species.%s.desc";
 	public static ETTreeDefinition[] VALUES = values();
-
 	private String branchName;
 	private String binomial;
 	private Color leafColor;
@@ -1995,8 +2034,6 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 	private IAlleleTreeSpecies species;
 	private ITreeGenome genome;
 	private AlleleTemplate template;
-	private static final String unlocalizedName = "extratrees.species.%s.name";
-	private static final String unlocalizedDesc = "extratrees.species.%s.desc";
 
 	ETTreeDefinition(String branch, String binomial, EnumLeafType leafType, Color leafColor, Color leafPollinatedColor, EnumSaplingType saplingType, IWoodType woodType, Color woodColor) {
 		this.binomial = binomial;
@@ -2009,8 +2046,6 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		this.woodProvider = new WoodProvider(woodType);
 		this.woodColor = woodColor;
 		this.branchName = branch;
-
-
 	}
 
 	public static void initTrees() {
@@ -2028,6 +2063,13 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		}
 	}
 
+	public static ETTreeDefinition byMetadata(int meta) {
+		if (meta < 0 || meta >= VALUES.length) {
+			meta = 0;
+		}
+		return VALUES[meta];
+	}
+
 	public void preInit() {
 		final String scientific = StringUtils.capitalize(branchName);
 		final String uid = "trees." + branchName;
@@ -2036,7 +2078,8 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			branch = AlleleManager.alleleRegistry.createAndRegisterClassification(IClassification.EnumClassLevel.GENUS, uid, scientific);
 		}
 		IAlleleTreeSpeciesBuilder speciesBuilder = TreeManager.treeFactory.createSpecies(getUID(), String.format(unlocalizedName, getUID()), getAuthority(), String.format(unlocalizedDesc, getUID()), isDominant(),
-				branch, getBinomial(), Constants.EXTRA_TREES_MOD_ID, leafSpriteProvider, saplingType.getGermlingModelProvider(leafColor, woodColor), woodProvider, this, new ETLeafProvider());
+			branch, getBinomial(), Constants.EXTRA_TREES_MOD_ID, leafSpriteProvider, saplingType.getGermlingModelProvider(leafColor, woodColor), woodProvider, this, new ETLeafProvider()
+		);
 		setSpeciesProperties(speciesBuilder);
 		species = speciesBuilder.build();
 		branch.addMemberSpecies(species);
@@ -2120,13 +2163,6 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		return ordinal();
 	}
 
-	public static ETTreeDefinition byMetadata(int meta) {
-		if (meta < 0 || meta >= VALUES.length) {
-			meta = 0;
-		}
-		return VALUES[meta];
-	}
-
 	@Override
 	public String getName() {
 		return name().toLowerCase(Locale.ENGLISH);
@@ -2139,7 +2175,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 		IBlockState logBlock = TreeManager.woodAccess.getBlock(woodType, WoodBlockKind.LOG, fireproof);
 
 		BlockLog.EnumAxis axis = BlockLog.EnumAxis.fromFacingAxis(facing.getAxis());
-		if(logBlock.getBlock() instanceof BlockLog){
+		if (logBlock.getBlock() instanceof BlockLog) {
 			logBlock = logBlock.withProperty(BlockLog.LOG_AXIS, axis);
 		}
 		return world.setBlockState(pos, logBlock);

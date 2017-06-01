@@ -15,7 +15,7 @@ public class WorldGenWalnut {
 		public BlackWalnut(ITreeGenData tree) {
 			super(tree, 9, 6);
 		}
-		
+
 		@Override
 		protected void generateLeaves(World world, Random rand, TreeBlockTypeLeaf leaf, List<BlockPos> branchEnds, BlockPos startPos) {
 			int leafSpawn = this.height + 1;
@@ -28,7 +28,7 @@ public class WorldGenWalnut {
 			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 0.2f - girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
 		}
 	}
-	
+
 	public static class Butternut extends WorldGenTree {
 		public Butternut(ITreeGenData tree) {
 			super(tree, 6, 3);

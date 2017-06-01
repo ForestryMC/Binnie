@@ -17,14 +17,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 
 public class ControlItemDisplay extends Control implements ITooltip {
-	private ItemStack itemStack;
 	public boolean hastooltip;
+	private ItemStack itemStack;
 	private boolean rotating;
-
-	public void setTooltip() {
-		this.hastooltip = true;
-		this.addAttribute(Attribute.MouseOver);
-	}
 
 	public ControlItemDisplay(final IWidget parent, final int x, final int y) {
 		this(parent, x, y, 16);
@@ -43,6 +38,11 @@ public class ControlItemDisplay extends Control implements ITooltip {
 		this.itemStack = ItemStack.EMPTY;
 		this.hastooltip = false;
 		this.rotating = false;
+	}
+
+	public void setTooltip() {
+		this.hastooltip = true;
+		this.addAttribute(Attribute.MouseOver);
 	}
 
 	@Override
@@ -70,12 +70,12 @@ public class ControlItemDisplay extends Control implements ITooltip {
 		GlStateManager.enableAlpha();
 	}
 
-	public void setItemStack(ItemStack itemStack) {
-		this.itemStack = itemStack;
-	}
-
 	public ItemStack getItemStack() {
 		return this.itemStack;
+	}
+
+	public void setItemStack(ItemStack itemStack) {
+		this.itemStack = itemStack;
 	}
 
 	@Override

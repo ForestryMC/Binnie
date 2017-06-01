@@ -10,7 +10,6 @@ public class ModuleCraftGUI implements IInitializable {
 		}
 	}
 
-
 	@Override
 	public void init() {
 	}

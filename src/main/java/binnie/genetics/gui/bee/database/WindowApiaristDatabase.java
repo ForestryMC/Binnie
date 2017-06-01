@@ -2,7 +2,15 @@ package binnie.genetics.gui.bee.database;
 
 import binnie.Binnie;
 import binnie.core.AbstractMod;
-import binnie.core.craftgui.database.*;
+import binnie.core.craftgui.database.DatabaseTab;
+import binnie.core.craftgui.database.PageBranchOverview;
+import binnie.core.craftgui.database.PageBranchSpecies;
+import binnie.core.craftgui.database.PageBreeder;
+import binnie.core.craftgui.database.PageSpeciesClassification;
+import binnie.core.craftgui.database.PageSpeciesMutations;
+import binnie.core.craftgui.database.PageSpeciesOverview;
+import binnie.core.craftgui.database.PageSpeciesResultant;
+import binnie.core.craftgui.database.WindowAbstractDatabase;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.genetics.Genetics;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +18,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowApiaristDatabase extends WindowAbstractDatabase {
+	public WindowApiaristDatabase(final EntityPlayer player, final Side side, final boolean nei) {
+		super(player, side, nei, Binnie.GENETICS.beeBreedingSystem, 110);
+	}
+
+	public static Window create(final EntityPlayer player, final Side side, final boolean nei) {
+		return new WindowApiaristDatabase(player, side, nei);
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	protected void addTabs() {
@@ -23,14 +39,6 @@ public class WindowApiaristDatabase extends WindowAbstractDatabase {
 		new PageBranchOverview(this.getInfoPages(Mode.BRANCHES), new DatabaseTab(Genetics.instance, "branches.overview", 0));
 		new PageBranchSpecies(this.getInfoPages(Mode.BRANCHES), new DatabaseTab(Genetics.instance, "branches.species", 0));
 		new PageBreeder(this.getInfoPages(Mode.BREEDER), this.getUsername(), new DatabaseTab(Genetics.instance, "breeder", 0));
-	}
-
-	public WindowApiaristDatabase(final EntityPlayer player, final Side side, final boolean nei) {
-		super(player, side, nei, Binnie.GENETICS.beeBreedingSystem, 110);
-	}
-
-	public static Window create(final EntityPlayer player, final Side side, final boolean nei) {
-		return new WindowApiaristDatabase(player, side, nei);
 	}
 
 	@Override

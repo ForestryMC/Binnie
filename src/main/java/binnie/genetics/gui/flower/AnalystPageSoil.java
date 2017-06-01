@@ -44,40 +44,40 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		y += 16;
 		new ControlText(this, new Area(4, y, this.width() - 8, 14), Genetics.proxy.localise("gui.analyst.soil.recommended"), TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
-		EnumMoisture recomMoisture = EnumMoisture.Normal;
-		final boolean canTolNormal = Tolerance.canTolerate(moisture, EnumMoisture.Normal, moistureTol);
-		final boolean canTolDamp = Tolerance.canTolerate(moisture, EnumMoisture.Damp, moistureTol);
-		final boolean canTolDry = Tolerance.canTolerate(moisture, EnumMoisture.Dry, moistureTol);
+		EnumMoisture recomMoisture = EnumMoisture.NORMAL;
+		final boolean canTolNormal = Tolerance.canTolerate(moisture, EnumMoisture.NORMAL, moistureTol);
+		final boolean canTolDamp = Tolerance.canTolerate(moisture, EnumMoisture.DAMP, moistureTol);
+		final boolean canTolDry = Tolerance.canTolerate(moisture, EnumMoisture.DRY, moistureTol);
 		if (canTolNormal) {
 			if (canTolDamp && !canTolDry) {
-				recomMoisture = EnumMoisture.Damp;
+				recomMoisture = EnumMoisture.DAMP;
 			} else if (canTolDry && !canTolDamp) {
-				recomMoisture = EnumMoisture.Dry;
+				recomMoisture = EnumMoisture.DRY;
 			}
 		} else {
 			if (canTolDamp) {
-				recomMoisture = EnumMoisture.Damp;
+				recomMoisture = EnumMoisture.DAMP;
 			}
 			if (canTolDry) {
-				recomMoisture = EnumMoisture.Dry;
+				recomMoisture = EnumMoisture.DRY;
 			}
 		}
-		EnumAcidity recomPH = EnumAcidity.Neutral;
-		final boolean canTolNeutral = Tolerance.canTolerate(pH, EnumAcidity.Neutral, pHTol);
-		final boolean canTolAcid = Tolerance.canTolerate(pH, EnumAcidity.Acid, pHTol);
-		final boolean canTolAlkaline = Tolerance.canTolerate(pH, EnumAcidity.Alkaline, pHTol);
+		EnumAcidity recomPH = EnumAcidity.NEUTRAL;
+		final boolean canTolNeutral = Tolerance.canTolerate(pH, EnumAcidity.NEUTRAL, pHTol);
+		final boolean canTolAcid = Tolerance.canTolerate(pH, EnumAcidity.ACID, pHTol);
+		final boolean canTolAlkaline = Tolerance.canTolerate(pH, EnumAcidity.ALKALINE, pHTol);
 		if (canTolNeutral) {
 			if (canTolAcid && !canTolAlkaline) {
-				recomPH = EnumAcidity.Acid;
+				recomPH = EnumAcidity.ACID;
 			} else if (canTolAlkaline && !canTolAcid) {
-				recomPH = EnumAcidity.Alkaline;
+				recomPH = EnumAcidity.ALKALINE;
 			}
 		} else {
 			if (canTolAcid) {
-				recomPH = EnumAcidity.Acid;
+				recomPH = EnumAcidity.ACID;
 			}
 			if (canTolAlkaline) {
-				recomPH = EnumAcidity.Alkaline;
+				recomPH = EnumAcidity.ALKALINE;
 			}
 		}
 		final ItemStack stack = new ItemStack(Botany.soil, 1, BlockSoil.getMeta(recomPH, recomMoisture));
@@ -88,8 +88,8 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		new ControlText(this, new Area(4, y, this.width() - 8, 14), Genetics.proxy.localise("gui.analyst.soil.other"), TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
 		final List<ItemStack> stacks = new ArrayList<>();
-		for (final EnumAcidity a : EnumSet.range(EnumAcidity.Acid, EnumAcidity.Alkaline)) {
-			for (final EnumMoisture b : EnumSet.range(EnumMoisture.Dry, EnumMoisture.Damp)) {
+		for (final EnumAcidity a : EnumSet.range(EnumAcidity.ACID, EnumAcidity.ALKALINE)) {
+			for (final EnumMoisture b : EnumSet.range(EnumMoisture.DRY, EnumMoisture.DAMP)) {
 				if (Tolerance.canTolerate(pH, a, pHTol) && Tolerance.canTolerate(moisture, b, moistureTol) && (a != recomPH || b != recomMoisture)) {
 					stacks.add(new ItemStack(Botany.soil, 1, BlockSoil.getMeta(a, b)));
 				}

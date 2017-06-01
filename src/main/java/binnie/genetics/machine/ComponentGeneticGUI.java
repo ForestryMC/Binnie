@@ -21,5 +21,4 @@ public class ComponentGeneticGUI extends MachineComponent implements IInteractio
 	public void onRightClick(World p0, EntityPlayer player, BlockPos pos) {
 		Genetics.proxy.openGui(this.id, player, pos);
 	}
-
 }

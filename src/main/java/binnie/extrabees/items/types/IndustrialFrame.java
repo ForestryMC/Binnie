@@ -27,6 +27,25 @@ public enum IndustrialFrame implements IBeeModifier {
 	NetherStar("Immortality Gate", 12, 50),
 	Poison("Mortality Inhibitor", 8, 18);
 
+	static {
+		IndustrialFrame.Light.lighted = true;
+		IndustrialFrame.Rain.rain = true;
+		IndustrialFrame.Sunlight.lighted = true;
+		IndustrialFrame.Sunlight.sunlight = true;
+		IndustrialFrame.Soul.mutationMod = 1.3f;
+		IndustrialFrame.Uranium.mutationMod = 2.0f;
+		IndustrialFrame.Cage.territoryMod = 0.4f;
+		IndustrialFrame.Freedom.territoryMod = 1.4f;
+		IndustrialFrame.Honey.productionMod = 1.4f;
+		IndustrialFrame.Jelly.productionMod = 1.8f;
+		IndustrialFrame.Leaf.floweringMod = 1.4f;
+		IndustrialFrame.Pollen.floweringMod = 2.0f;
+		IndustrialFrame.Clay.lifespanMod = 1.4f;
+		IndustrialFrame.Emerald.lifespanMod = 2.0f;
+		IndustrialFrame.NetherStar.lifespanMod = 20.0f;
+		IndustrialFrame.Poison.lifespanMod = 0.5f;
+	}
+
 	String name;
 	float territoryMod;
 	float mutationMod;
@@ -121,25 +140,6 @@ public enum IndustrialFrame implements IBeeModifier {
 	@Override
 	public float getGeneticDecay(final IBeeGenome genome, final float currentModifier) {
 		return 1.0f;
-	}
-
-	static {
-		IndustrialFrame.Light.lighted = true;
-		IndustrialFrame.Rain.rain = true;
-		IndustrialFrame.Sunlight.lighted = true;
-		IndustrialFrame.Sunlight.sunlight = true;
-		IndustrialFrame.Soul.mutationMod = 1.3f;
-		IndustrialFrame.Uranium.mutationMod = 2.0f;
-		IndustrialFrame.Cage.territoryMod = 0.4f;
-		IndustrialFrame.Freedom.territoryMod = 1.4f;
-		IndustrialFrame.Honey.productionMod = 1.4f;
-		IndustrialFrame.Jelly.productionMod = 1.8f;
-		IndustrialFrame.Leaf.floweringMod = 1.4f;
-		IndustrialFrame.Pollen.floweringMod = 2.0f;
-		IndustrialFrame.Clay.lifespanMod = 1.4f;
-		IndustrialFrame.Emerald.lifespanMod = 2.0f;
-		IndustrialFrame.NetherStar.lifespanMod = 20.0f;
-		IndustrialFrame.Poison.lifespanMod = 0.5f;
 	}
 
 }

@@ -27,14 +27,14 @@ public class BinnieModProxy implements IBinnieModProxy {
 	public BinnieModProxy() {
 	}
 
-	@Override
-	public void setMod(final AbstractMod mod) {
-		this.mod = mod;
-	}
-
 	private AbstractMod getMod() {
 		Preconditions.checkState(mod != null, "Mod has not been set");
 		return mod;
+	}
+
+	@Override
+	public void setMod(final AbstractMod mod) {
+		this.mod = mod;
 	}
 
 	@Override
@@ -103,10 +103,10 @@ public class BinnieModProxy implements IBinnieModProxy {
 	}
 
 
-//	@Override
-//	public IIcon getIcon(final IIconRegister register, final String string) {
-//		return BinnieCore.proxy.getIcon(register, this.mod.getModID(), string);
-//	}
+	/*@Override
+	public IIcon getIcon(final IIconRegister register, final String string) {
+		return BinnieCore.proxy.getIcon(register, this.mod.getModID(), string);
+	}*/
 
 	@Override
 	public void preInit() {
@@ -128,5 +128,4 @@ public class BinnieModProxy implements IBinnieModProxy {
 	public String localiseOrBlank(final String string) {
 		return Binnie.LANGUAGE.localiseOrBlank(this.getMod(), string);
 	}
-
 }

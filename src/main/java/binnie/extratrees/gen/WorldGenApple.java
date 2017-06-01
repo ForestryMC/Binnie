@@ -14,7 +14,7 @@ public class WorldGenApple {
 		public OrchardApple(ITreeGenData tree) {
 			super(tree, 3, 6);
 		}
-		
+
 		@Override
 		protected void generateLeaves(World world, Random rand, TreeBlockTypeLeaf leaf, List<BlockPos> branchEnds, BlockPos startPos) {
 			int leafSpawn = this.height;
@@ -24,14 +24,13 @@ public class WorldGenApple {
 			}
 			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 1F + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
 		}
-
 	}
 
 	public static class SweetCrabapple extends forestry.arboriculture.worldgen.WorldGenTree {
 		public SweetCrabapple(ITreeGenData tree) {
 			super(tree, 4, 4);
 		}
-		
+
 		@Override
 		protected void generateLeaves(World world, Random rand, TreeBlockTypeLeaf leaf, List<BlockPos> branchEnds, BlockPos startPos) {
 			int leafSpawn = this.height;
@@ -43,14 +42,13 @@ public class WorldGenApple {
 			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 2.5F + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
 			WorldGenHelper.generateCylinderFromTreeStartPos(world, leaf, startPos.add(0, leafSpawn--, 0), girth, 0.5F + girth, 1, WorldGenHelper.EnumReplaceMode.AIR);
 		}
-
 	}
 
 	public static class FloweringCrabapple extends forestry.arboriculture.worldgen.WorldGenTree {
 		public FloweringCrabapple(ITreeGenData tree) {
 			super(tree, 3, 6);
 		}
-		
+
 		@Override
 		protected void generateLeaves(World world, Random rand, TreeBlockTypeLeaf leaf, List<BlockPos> branchEnds, BlockPos startPos) {
 			int leafSpawn = this.height;
@@ -67,7 +65,7 @@ public class WorldGenApple {
 		public PrairieCrabapple(ITreeGenData tree) {
 			super(tree, 4, 4);
 		}
-		
+
 		@Override
 		protected void generateLeaves(World world, Random rand, TreeBlockTypeLeaf leaf, List<BlockPos> branchEnds, BlockPos startPos) {
 			int leafSpawn = this.height;

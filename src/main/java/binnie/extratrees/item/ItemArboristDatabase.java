@@ -70,8 +70,8 @@ public class ItemArboristDatabase extends Item implements IItemModelRegister {
 	public String getItemStackDisplayName(ItemStack itemStack) {
 		return ExtraTrees.proxy.localise(isMaster(itemStack) ? "item.database.arborist.master.name" : "item.database.arborist.name");
 	}
-	
-	protected boolean isMaster(ItemStack itemStack){
+
+	protected boolean isMaster(ItemStack itemStack) {
 		return itemStack.getMetadata() > 0;
 	}
 }

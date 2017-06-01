@@ -12,7 +12,7 @@ public enum FruitPod {
 
 	FruitPod() {
 	}
-	
+
 	public String getModelName() {
 		return name().toLowerCase(Locale.ENGLISH);
 	}

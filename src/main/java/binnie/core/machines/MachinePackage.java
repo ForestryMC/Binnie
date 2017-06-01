@@ -6,15 +6,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class MachinePackage {
+	boolean powered;
 	private String uid;
 	private boolean active;
-	boolean powered;
 	private int metadata;
 	private MachineGroup group;
-
-	public String getUID() {
-		return this.uid;
-	}
 
 	protected MachinePackage(final String uid, final boolean powered) {
 		this.active = true;
@@ -22,6 +18,10 @@ public abstract class MachinePackage {
 		this.metadata = -1;
 		this.uid = uid;
 		this.powered = powered;
+	}
+
+	public String getUID() {
+		return this.uid;
 	}
 
 	public abstract void createMachine(final Machine p0);

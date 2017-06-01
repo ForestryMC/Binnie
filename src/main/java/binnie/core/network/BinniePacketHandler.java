@@ -28,13 +28,13 @@ public abstract class BinniePacketHandler implements IMessageHandler<MessageBinn
 		this.setProvider(mod);
 	}
 
-	public void setProvider(final IPacketProvider provider) {
-		this.provider = provider;
-	}
-
 	private IPacketProvider getProvider() {
 		Preconditions.checkState(provider != null, "provider has not been set.");
 		return provider;
+	}
+
+	public void setProvider(final IPacketProvider provider) {
+		this.provider = provider;
 	}
 
 	@Override
@@ -51,13 +51,13 @@ public abstract class BinniePacketHandler implements IMessageHandler<MessageBinn
 	}
 
 	private static abstract class MessageProxy {
-		public abstract void onMessage(final IPacketID id, final MessageBinnie message, final MessageContext ctx);
-
 		protected static void checkThreadAndEnqueue(final IPacketID id, final MessageBinnie message, final MessageContext ctx, IThreadListener threadListener) {
 			if (!threadListener.isCallingFromMinecraftThread()) {
 				threadListener.addScheduledTask(() -> id.onMessage(message, ctx));
 			}
 		}
+
+		public abstract void onMessage(final IPacketID id, final MessageBinnie message, final MessageContext ctx);
 	}
 
 	@SuppressWarnings("unused")

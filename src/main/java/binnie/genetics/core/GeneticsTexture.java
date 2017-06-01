@@ -28,14 +28,12 @@ public enum GeneticsTexture implements IBinnieTexture {
 	Acclimatiser(ResourceType.Tile, "acclimatiser"),
 	Splicer(ResourceType.Tile, "splicer");
 
+	public static BinnieSprite dnaIcon = Binnie.RESOURCE.getItemSprite(Genetics.instance, "dna");
 	private final String texture;
 	private final ResourceType type;
-
 	@SideOnly(Side.CLIENT)
 	@Nullable
 	private BinnieResource resource;
-
-	public static BinnieSprite dnaIcon = Binnie.RESOURCE.getItemSprite(Genetics.instance, "dna");
 
 	GeneticsTexture(final ResourceType base, final String texture) {
 		this.texture = texture;

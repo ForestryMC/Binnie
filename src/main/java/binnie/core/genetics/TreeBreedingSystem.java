@@ -6,21 +6,43 @@ import binnie.core.util.UniqueItemStackSet;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.machines.lumbermill.LumbermillRecipes;
 import com.mojang.authlib.GameProfile;
-import forestry.api.arboriculture.*;
-import forestry.api.genetics.*;
+import forestry.api.arboriculture.EnumGermlingType;
+import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.arboriculture.IAlleleFruit;
+import forestry.api.arboriculture.IAlleleTreeSpecies;
+import forestry.api.arboriculture.IArboristTracker;
+import forestry.api.arboriculture.IFruitProvider;
+import forestry.api.arboriculture.ITreeGenome;
+import forestry.api.arboriculture.ITreeMutation;
+import forestry.api.arboriculture.TreeManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleInteger;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IBreedingTracker;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IFruitFamily;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IMutation;
+import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.ISpeciesType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class TreeBreedingSystem extends BreedingSystem {
 	public UniqueItemStackSet allFruits;
 	public UniqueItemStackSet allWoods;
+	public UniqueItemStackSet discoveredPlanks;
 	private UniqueItemStackSet discoveredFruits;
 	private UniqueItemStackSet discoveredWoods;
-	public UniqueItemStackSet discoveredPlanks;
 
 	public TreeBreedingSystem() {
 		this.allFruits = new UniqueItemStackSet();
@@ -81,11 +103,9 @@ public class TreeBreedingSystem extends BreedingSystem {
 				this.discoveredWoods.add(wood);
 			}
 
-			// for (final ItemStack wood :
-			// tSpecies.getRoot().templateAsIndividual(getSpeciesRoot().getTemplate(tSpecies.getUID())).getProduceList())
-			// {
-			// this.discoveredWoods.add(wood);
-			// }
+			/*for (final ItemStack wood : tSpecies.getRoot().templateAsIndividual(getSpeciesRoot().getTemplate(tSpecies.getUID())).getProduceList()) {
+				this.discoveredWoods.add(wood);
+			}*/
 			this.discoveredFruits.addAll(genome.getFruitProvider().getProducts().keySet());
 			for (ItemStack wood2 : this.discoveredWoods) {
 			}
@@ -105,11 +125,9 @@ public class TreeBreedingSystem extends BreedingSystem {
 				this.allWoods.add(wood);
 			}
 
-			// for (final ItemStack wood :
-			// tSpecies.getRoot().templateAsIndividual(getSpeciesRoot().getTemplate(tSpecies.getUID())).getProduceList())
-			// {
-			// this.allWoods.add(wood);
-			// }
+			/*for (final ItemStack wood : tSpecies.getRoot().templateAsIndividual(getSpeciesRoot().getTemplate(tSpecies.getUID())).getProduceList()) {
+				this.allWoods.add(wood);
+			}*/
 			this.allFruits.addAll(genome.getFruitProvider().getProducts().keySet());
 		}
 	}
@@ -203,11 +221,11 @@ public class TreeBreedingSystem extends BreedingSystem {
 	@Override
 	@Nullable
 	public IIndividual getConversion(final ItemStack stack) {
-//		for (final Map.Entry<ItemStack, IIndividual> entry : TreeManager.treeRoot.getIndividualTemplates()) {
-//			if (ItemStack.areItemStacksEqual(stack, entry.getKey())) {
-//				return entry.getValue();
-//			}
-//		}
+		/*for (final Map.Entry<ItemStack, IIndividual> entry : TreeManager.treeRoot.getIndividualTemplates()) {
+			if (ItemStack.areItemStacksEqual(stack, entry.getKey())) {
+				return entry.getValue();
+			}
+		}*/
 		return TreeManager.treeRoot.getMember(stack);
 	}
 

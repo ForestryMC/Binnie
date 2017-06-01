@@ -4,7 +4,13 @@ import binnie.extrabees.ExtraBees;
 import binnie.extrabees.alveary.BlockAlveary;
 import binnie.extrabees.alveary.EnumAlvearyLogicType;
 import binnie.extrabees.blocks.type.EnumHiveType;
-import binnie.extrabees.items.*;
+import binnie.extrabees.items.ItemBeehive;
+import binnie.extrabees.items.ItemHoneyComb;
+import binnie.extrabees.items.ItemHoneyCrystal;
+import binnie.extrabees.items.ItemHoneyCrystalEmpty;
+import binnie.extrabees.items.ItemHoneyDrop;
+import binnie.extrabees.items.ItemMiscProduct;
+import binnie.extrabees.items.ItemPropolis;
 import binnie.extrabees.items.types.EnumHiveFrame;
 import binnie.extrabees.items.types.EnumHoneyComb;
 import binnie.extrabees.items.types.ExtraBeeItems;
@@ -16,20 +22,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
-/**
- * Created by Elec332 on 12-5-2017.
- */
 public final class ItemRegister {
 
-	public static void preInitItems(){
+	public static void preInitItems() {
 		registerProducts();
 		registerMisc();
 		registerOreDict();
 	}
 
 	@SuppressWarnings("all")
-	private static void registerMisc(){
-		Item i = GameRegistry.register(new ItemBlock(ExtraBees.alveary){
+	private static void registerMisc() {
+		Item i = GameRegistry.register(new ItemBlock(ExtraBees.alveary) {
 
 			@Override
 			public int getMetadata(int damage) {
@@ -45,7 +48,6 @@ public final class ItemRegister {
 			public boolean getHasSubtypes() {
 				return true;
 			}
-
 		}.setRegistryName(ExtraBees.alveary.getRegistryName()));
 		for (int j = 0; j < EnumAlvearyLogicType.VALUES.length; j++) {
 			ExtraBees.proxy.registerModel(i, j);
@@ -61,7 +63,7 @@ public final class ItemRegister {
 		}
 	}
 
-	private static void registerProducts(){
+	private static void registerProducts() {
 		ExtraBees.honeyCrystal = new ItemHoneyCrystal("honey_crystal");
 		ExtraBees.honeyCrystalEmpty = new ItemHoneyCrystalEmpty("honey_crystal_empty");
 		ExtraBees.honeyDrop = new ItemHoneyDrop();
@@ -82,7 +84,7 @@ public final class ItemRegister {
 		}
 	}
 
-	private static void registerOreDict(){
+	private static void registerOreDict() {
 		OreDictionary.registerOre("ingotIron", Items.IRON_INGOT);
 		OreDictionary.registerOre("ingotGold", Items.GOLD_INGOT);
 		OreDictionary.registerOre("gemDiamond", Items.DIAMOND);
@@ -97,5 +99,4 @@ public final class ItemRegister {
 
 		OreDictionary.registerOre("gearWood", ExtraBeeItems.ScentedGear.get(1));
 	}
-
 }

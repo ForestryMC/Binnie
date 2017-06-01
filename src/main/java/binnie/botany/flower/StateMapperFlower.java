@@ -14,7 +14,6 @@ import java.util.Map;
 
 @SideOnly(Side.CLIENT)
 public class StateMapperFlower extends StateMapperBase {
-
 	@Override
 	protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
 		final Map<IProperty<?>, Comparable<?>> properties = Maps.newLinkedHashMap(state.getProperties());
@@ -34,5 +33,4 @@ public class StateMapperFlower extends StateMapperBase {
 
 		return new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":flower", getPropertyString(properties));
 	}
-
 }

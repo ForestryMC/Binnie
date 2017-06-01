@@ -34,6 +34,17 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 		this.setRegistryName("hedge");
 	}
 
+	@SideOnly(Side.CLIENT)
+	public static int getColor(int meta) {
+		EnumLeafType type = EnumLeafType.values()[meta % 6];
+		if (type == EnumLeafType.CONIFERS) {
+			return ColorizerFoliage.getFoliageColorPine();
+		}
+		final double d0 = 0.5;
+		final double d2 = 1.0;
+		return ColorizerFoliage.getFoliageColor(d0, d2);
+	}
+
 	@Override
 	public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_) {
 		final boolean connectNegZ = this.canConnectFenceTo(world, pos.north());
@@ -108,15 +119,15 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 		return false;
 	}
 
-	@Override
-	public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
-		return false;
-	}
-
 	/*@Override
 	public int getRenderType() {
 		return ModuleBlocks.hedgeRenderID;
 	}*/
+
+	@Override
+	public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
+		return false;
+	}
 
 	public boolean canConnectFenceTo(IBlockAccess world, BlockPos pos) {
 		IBlockState state = world.getBlockState(pos);
@@ -153,16 +164,16 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 		return EnumLeafType.values()[meta % 8];
 	}
 
-	private boolean isFull(final int meta) {
-		return meta / 8 > 0;
-	}
-
 	/*@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(final int p_149691_1_, final int meta) {
 		final ExtraTreeSpecies.LeafType type = this.getType(meta);
 		return ForestryAPI.textureManager.getIcon(this.isFull(meta) ? type.plainUID : type.fancyUID);
 	}*/
+
+	private boolean isFull(final int meta) {
+		return meta / 8 > 0;
+	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
@@ -178,16 +189,5 @@ public class BlockHedge extends Block implements IBlockFence, IColoredBlock {
 	@Override
 	public int colorMultiplier(IBlockState state, @Nullable IBlockAccess world, @Nullable BlockPos pos, int tintIndex) {
 		return getColor(getMetaFromState(state));
-	}
-
-	@SideOnly(Side.CLIENT)
-	public static int getColor(int meta) {
-		EnumLeafType type = EnumLeafType.values()[meta % 6];
-		if (type == EnumLeafType.CONIFERS) {
-			return ColorizerFoliage.getFoliageColorPine();
-		}
-		final double d0 = 0.5;
-		final double d2 = 1.0;
-		return ColorizerFoliage.getFoliageColor(d0, d2);
 	}
 }

@@ -7,6 +7,11 @@ import net.minecraft.item.ItemStack;
 
 public class ItemHoneyCrystal extends Item {
 
+	//TODO: Usage??
+	private int maxCharge;
+	private int transferLimit;
+	private int tier;
+
 	public ItemHoneyCrystal(String name) {
 		this.maxCharge = 8000;
 		this.transferLimit = 500;
@@ -19,14 +24,8 @@ public class ItemHoneyCrystal extends Item {
 		ExtraBees.proxy.registerModel(this, 0);
 	}
 
-	//TODO: Usage??
-	private int maxCharge;
-	private int transferLimit;
-	private int tier;
-
 	@Override
 	public String getItemStackDisplayName(final ItemStack i) {
 		return ExtraBees.proxy.localise("item.honeycrystal");
 	}
-
 }

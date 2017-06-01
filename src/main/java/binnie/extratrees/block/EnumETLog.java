@@ -61,6 +61,13 @@ public enum EnumETLog implements IWoodType {
 		this.plank = plank;
 	}
 
+	public static EnumETLog byMetadata(int meta) {
+		if (meta < 0 || meta >= VALUES.length) {
+			meta = 0;
+		}
+		return VALUES[meta];
+	}
+
 	@Override
 	public String getName() {
 		return name().toLowerCase();
@@ -146,13 +153,6 @@ public enum EnumETLog implements IWoodType {
 	@Override
 	public int getMetadata() {
 		return ordinal();
-	}
-
-	public static EnumETLog byMetadata(int meta) {
-		if (meta < 0 || meta >= VALUES.length) {
-			meta = 0;
-		}
-		return VALUES[meta];
 	}
 }
 

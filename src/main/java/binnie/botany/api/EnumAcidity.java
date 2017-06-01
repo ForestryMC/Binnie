@@ -7,9 +7,9 @@ import net.minecraft.util.text.translation.I18n;
 import javax.annotation.Nullable;
 
 public enum EnumAcidity implements IStringSerializable {
-	Acid(TextFormatting.RED),
-	Neutral(null),
-	Alkaline(TextFormatting.AQUA);
+	ACID(TextFormatting.RED),
+	NEUTRAL(null),
+	ALKALINE(TextFormatting.AQUA);
 
 	@Nullable
 	final TextFormatting color;

@@ -13,10 +13,10 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public abstract class ComponentIndexerInventory<T> extends ComponentInventory implements IInventory {
-	int indexerSize;
 	public int guiRefreshCounter;
-	List<ItemStack> indexerInventory;
 	public List<Integer> sortedInventory;
+	int indexerSize;
+	List<ItemStack> indexerInventory;
 	@Nullable
 	T sortingMode;
 	boolean needsSorting;
@@ -74,15 +74,15 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 		this.markDirty();
 	}
 
-//	@Override
-//	public ItemStack getStackInSlotOnClosing(final int var1) {
-//		return null;
-//	}
-//
-//	@Override
-//	public String getInventoryName() {
-//		return "";
-//	}
+	/*@Override
+	public ItemStack getStackInSlotOnClosing(final int var1) {
+		return null;
+	}
+
+	@Override
+	public String getInventoryName() {
+		return "";
+	}*/
 
 	@Override
 	public int getInventoryStackLimit() {
@@ -94,22 +94,22 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 		return true;
 	}
 
-//	@Override
-//	public void openInventory() {
-//	}
-//
-//	@Override
-//	public void closeInventory() {
-//	}
-
-	public void setMode(final T mode) {
-		this.sortingMode = mode;
-		this.needsSorting = true;
+	/*@Override
+	public void openInventory() {
 	}
+
+	@Override
+	public void closeInventory() {
+	}*/
 
 	@Nullable
 	public T getMode() {
 		return this.sortingMode;
+	}
+
+	public void setMode(final T mode) {
+		this.sortingMode = mode;
+		this.needsSorting = true;
 	}
 
 	@Override
@@ -139,5 +139,4 @@ public abstract class ComponentIndexerInventory<T> extends ComponentInventory im
 	}
 
 	public abstract void Sort();
-
 }

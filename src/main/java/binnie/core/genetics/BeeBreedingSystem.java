@@ -2,8 +2,19 @@ package binnie.core.genetics;
 
 import binnie.Binnie;
 import binnie.core.BinnieCore;
-import forestry.api.apiculture.*;
-import forestry.api.genetics.*;
+import forestry.api.apiculture.EnumBeeChromosome;
+import forestry.api.apiculture.EnumBeeType;
+import forestry.api.apiculture.IAlleleBeeSpecies;
+import forestry.api.apiculture.IApiaristTracker;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.IBeeMutation;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IBreedingTracker;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IMutation;
+import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.ISpeciesType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
@@ -20,12 +31,13 @@ class BeeBreedingSystem extends BreedingSystem {
 	@Override
 	public float getChance(final IMutation mutation, final EntityPlayer player, final IAlleleSpecies species1, final IAlleleSpecies species2) {
 		return ((IBeeMutation) mutation).
-				getChance(new VirtualBeeHousing(player),
-						(IAlleleBeeSpecies) species1,
-						(IAlleleBeeSpecies) species2,
-						(IBeeGenome) this.getSpeciesRoot().
-								templateAsGenome(this.getSpeciesRoot().getTemplate(species1)),
-						(IBeeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(species2)));
+			getChance(new VirtualBeeHousing(player),
+				(IAlleleBeeSpecies) species1,
+				(IAlleleBeeSpecies) species2,
+				(IBeeGenome) this.getSpeciesRoot().
+					templateAsGenome(this.getSpeciesRoot().getTemplate(species1)),
+				(IBeeGenome) this.getSpeciesRoot().templateAsGenome(this.getSpeciesRoot().getTemplate(species2))
+			);
 	}
 
 	@Override

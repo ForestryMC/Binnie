@@ -34,5 +34,4 @@ public class MachineRendererForestry {
 			throw Throwables.propagate(ex);
 		}
 	}
-
 }

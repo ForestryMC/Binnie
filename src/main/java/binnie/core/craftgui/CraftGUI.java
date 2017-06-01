@@ -7,6 +7,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class CraftGUI {
-	public static CraftGUIResourceManager resourceManager;
 	public static final TextureRenderer render = new TextureRenderer();
+	public static CraftGUIResourceManager resourceManager;
 }

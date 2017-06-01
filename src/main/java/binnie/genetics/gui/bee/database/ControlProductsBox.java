@@ -14,19 +14,19 @@ import java.util.List;
 import java.util.Map;
 
 public class ControlProductsBox extends ControlListBox<ControlProductsBox.Product> {
+	IAlleleBeeSpecies species;
 	private int index;
 	private Type type;
-	IAlleleBeeSpecies species;
-
-	@Override
-	public IWidget createOption(final Product value, final int y) {
-		return new ControlProductsItem(getContent(), value, y);
-	}
 
 	public ControlProductsBox(final IWidget parent, final int x, final int y, final int width, final int height, final Type type) {
 		super(parent, x, y, width, height, 12);
 		this.species = null;
 		this.type = type;
+	}
+
+	@Override
+	public IWidget createOption(final Product value, final int y) {
+		return new ControlProductsItem(getContent(), value, y);
 	}
 
 	public void setSpecies(final IAlleleBeeSpecies species) {

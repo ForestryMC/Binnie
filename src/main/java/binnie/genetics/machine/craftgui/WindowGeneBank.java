@@ -37,9 +37,18 @@ import java.util.List;
 import java.util.Map;
 
 public class WindowGeneBank extends WindowMachine {
-	//	public static IIcon[] iconsDNA;
+	//public static IIcon[] iconsDNA;
 	public boolean isNei;
 	ControlGeneScroll genes;
+
+	public WindowGeneBank(final EntityPlayer player, final IInventory inventory, final Side side) {
+		this(player, inventory, side, false);
+	}
+
+	public WindowGeneBank(final EntityPlayer player, final IInventory inventory, final Side side, final boolean isNEI) {
+		super(320, 224, player, inventory, side);
+		this.isNei = isNEI;
+	}
 
 	@Override
 	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
@@ -56,15 +65,6 @@ public class WindowGeneBank extends WindowMachine {
 				}
 			}
 		}
-	}
-
-	public WindowGeneBank(final EntityPlayer player, final IInventory inventory, final Side side) {
-		this(player, inventory, side, false);
-	}
-
-	public WindowGeneBank(final EntityPlayer player, final IInventory inventory, final Side side, final boolean isNEI) {
-		super(320, 224, player, inventory, side);
-		this.isNei = isNEI;
 	}
 
 	@Override

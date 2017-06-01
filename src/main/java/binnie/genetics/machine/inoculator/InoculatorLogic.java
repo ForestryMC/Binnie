@@ -23,6 +23,12 @@ public class InoculatorLogic extends ComponentProcess implements IProcess {
 	public static final int PROCESS_BASE_LENGTH = 12000;
 	public static final int PROCESS_BASE_ENERGY = 600000;
 	public static final int BACTERIA_PER_PROCESS = 15;
+	private float bacteriaDrain;
+
+	public InoculatorLogic(final Machine machine) {
+		super(machine);
+		this.bacteriaDrain = 0.0f;
+	}
 
 	public static int getProcessLength(ItemStack itemStack) {
 		return PROCESS_BASE_LENGTH * getNumberOfGenes(itemStack);
@@ -39,11 +45,24 @@ public class InoculatorLogic extends ComponentProcess implements IProcess {
 		return Engineering.getGenes(serum).length;
 	}
 
-	private float bacteriaDrain;
-
-	public InoculatorLogic(final Machine machine) {
-		super(machine);
-		this.bacteriaDrain = 0.0f;
+	public static ItemStack applySerum(ItemStack target, ItemStack serum) {
+		ItemStack applied = target.copy();
+		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(applied);
+		if (!ind.isAnalyzed()) {
+			ind.analyze();
+			final NBTTagCompound nbttagcompound = new NBTTagCompound();
+			ind.writeToNBT(nbttagcompound);
+			applied.setTagCompound(nbttagcompound);
+		}
+		final IGene[] genes = ((IItemSerum) serum.getItem()).getGenes(serum);
+		for (final IGene gene : genes) {
+			Inoculator.setGene(gene, applied, 0);
+			Inoculator.setGene(gene, applied, 1);
+		}
+		if (applied.getItemDamage() == OreDictionary.WILDCARD_VALUE) {
+			applied.setItemDamage(0);
+		}
+		return applied;
 	}
 
 	@Override
@@ -129,26 +148,6 @@ public class InoculatorLogic extends ComponentProcess implements IProcess {
 		ItemStack applied = applySerum(target, serum);
 		util.setStack(Inoculator.SLOT_TARGET, applied);
 		util.damageItem(serum, Inoculator.SLOT_SERUM_VIAL, 1);
-	}
-
-	public static ItemStack applySerum(ItemStack target, ItemStack serum) {
-		ItemStack applied = target.copy();
-		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(applied);
-		if (!ind.isAnalyzed()) {
-			ind.analyze();
-			final NBTTagCompound nbttagcompound = new NBTTagCompound();
-			ind.writeToNBT(nbttagcompound);
-			applied.setTagCompound(nbttagcompound);
-		}
-		final IGene[] genes = ((IItemSerum) serum.getItem()).getGenes(serum);
-		for (final IGene gene : genes) {
-			Inoculator.setGene(gene, applied, 0);
-			Inoculator.setGene(gene, applied, 1);
-		}
-		if (applied.getItemDamage() == OreDictionary.WILDCARD_VALUE) {
-			applied.setItemDamage(0);
-		}
-		return applied;
 	}
 
 	@Override

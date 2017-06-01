@@ -26,47 +26,6 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 		super(material);
 	}
 
-	@Override
-	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-		return getBlockDroppedAsList(this, world, pos);
-	}
-
-	@Override
-	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
-		return breakBlock(this, player, world, pos);
-	}
-
-	@Override
-	public TileEntity createNewTileEntity(final World var1, final int i) {
-		return new TileEntityMetadata();
-	}
-
-	@Override
-	public boolean hasTileEntity(IBlockState state) {
-		return true;
-	}
-
-	@Override
-	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-		return getPickBlock(world, pos);
-	}
-
-	/* IBLOCKMETADATA */
-	@Override
-	public String getDisplayName(final ItemStack itemStack) {
-		return this.getLocalizedName();
-	}
-
-	@Override
-	public int getPlacedMeta(final ItemStack item, final World world, final BlockPos pos, final EnumFacing clickedBlock) {
-		return TileEntityMetadata.getItemDamage(item);
-	}
-
-	@Override
-	public int getDroppedMeta(IBlockState state, int tileMetadata) {
-		return getMetaFromState(state);
-	}
-
 	public static ItemStack getBlockDropped(IBlockMetadata block, IBlockAccess world, BlockPos pos) {
 		TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
 		if (tile != null && !tile.hasDroppedBlock()) {
@@ -109,4 +68,44 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 		return getBlockDropped((IBlockMetadata) block, world, pos);
 	}
 
+	@Override
+	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
+		return getBlockDroppedAsList(this, world, pos);
+	}
+
+	@Override
+	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
+		return breakBlock(this, player, world, pos);
+	}
+
+	@Override
+	public TileEntity createNewTileEntity(final World var1, final int i) {
+		return new TileEntityMetadata();
+	}
+
+	@Override
+	public boolean hasTileEntity(IBlockState state) {
+		return true;
+	}
+
+	@Override
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+		return getPickBlock(world, pos);
+	}
+
+	/* IBLOCKMETADATA */
+	@Override
+	public String getDisplayName(final ItemStack itemStack) {
+		return this.getLocalizedName();
+	}
+
+	@Override
+	public int getPlacedMeta(final ItemStack item, final World world, final BlockPos pos, final EnumFacing clickedBlock) {
+		return TileEntityMetadata.getItemDamage(item);
+	}
+
+	@Override
+	public int getDroppedMeta(IBlockState state, int tileMetadata) {
+		return getMetaFromState(state);
+	}
 }

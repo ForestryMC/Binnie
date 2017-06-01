@@ -27,6 +27,23 @@ public class ControlFruitPressProgress extends ControlProgressBase {
 	private static final Texture PressTexture = new StandardTexture(6, 0, 24, 52, ExtraTreeTexture.Gui);
 	private static final Texture PressSlot = new StandardTexture(9, 52, 34, 17, ExtraTreeTexture.Gui);
 
+	protected ControlFruitPressProgress(final IWidget parent, final int x, final int y) {
+		super(parent, x, y, 37, 69);
+		this.addAttribute(Attribute.MouseOver);
+		this.addSelfEventHandler(new EventMouse.Down.Handler() {
+			@Override
+			public void onEvent(final EventMouse.Down event) {
+				if (event.getY() - event.getOrigin().getAbsolutePosition().y() > 52 + Math.round(16 * progress)) {
+					final NBTTagCompound action = new NBTTagCompound();
+					Window.get(ControlFruitPressProgress.this.getWidget()).sendClientAction("clear-fruit", action);
+				} else {
+					final NBTTagCompound action = new NBTTagCompound();
+					Window.get(ControlFruitPressProgress.this.getWidget()).sendClientAction("fruitpress-click", action);
+				}
+			}
+		});
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
@@ -52,22 +69,4 @@ public class ControlFruitPressProgress extends ControlProgressBase {
 		GlStateManager.enableBlend();
 		CraftGUI.render.texture(ControlFruitPressProgress.PressTexture, new Point(0, Math.round(16 * this.progress)));
 	}
-
-	protected ControlFruitPressProgress(final IWidget parent, final int x, final int y) {
-		super(parent, x, y, 37, 69);
-		this.addAttribute(Attribute.MouseOver);
-		this.addSelfEventHandler(new EventMouse.Down.Handler() {
-			@Override
-			public void onEvent(final EventMouse.Down event) {
-				if (event.getY() - event.getOrigin().getAbsolutePosition().y() > 52 + Math.round(16 * progress)) {
-					final NBTTagCompound action = new NBTTagCompound();
-					Window.get(ControlFruitPressProgress.this.getWidget()).sendClientAction("clear-fruit", action);
-				} else {
-					final NBTTagCompound action = new NBTTagCompound();
-					Window.get(ControlFruitPressProgress.this.getWidget()).sendClientAction("fruitpress-click", action);
-				}
-			}
-		});
-	}
-
 }

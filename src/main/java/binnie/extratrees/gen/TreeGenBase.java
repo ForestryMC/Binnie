@@ -38,7 +38,6 @@ public class TreeGenBase extends WorldGenerator {
 		return a + this.rand.nextFloat() * (b - a);
 	}
 
-
 	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position) {
 		this.world = worldIn;

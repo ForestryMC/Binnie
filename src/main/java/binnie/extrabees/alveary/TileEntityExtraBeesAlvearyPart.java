@@ -25,12 +25,16 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * Created by Elec332 on 13-5-2017.
- */
-public class TileEntityExtraBeesAlvearyPart extends MultiblockTileEntityForestry<MultiblockLogicAlveary> implements IAlvearyComponent.Active, IAlvearyComponent.BeeModifier, IAlvearyComponent.BeeListener {
+public class TileEntityExtraBeesAlvearyPart extends MultiblockTileEntityForestry<MultiblockLogicAlveary> implements
+	IAlvearyComponent.Active,
+	IAlvearyComponent.BeeModifier,
+	IAlvearyComponent.BeeListener {
 
-	public TileEntityExtraBeesAlvearyPart(){
+	private String unlocalizedTitle;
+	private EnumAlvearyLogicType type;
+	private AbstractAlvearyLogic alvearyLogic;
+
+	public TileEntityExtraBeesAlvearyPart() {
 		this(null);
 	}
 
@@ -42,18 +46,14 @@ public class TileEntityExtraBeesAlvearyPart extends MultiblockTileEntityForestry
 		}
 	}
 
-	private void initFromType(){
-		if (alvearyLogic == null){
+	private void initFromType() {
+		if (alvearyLogic == null) {
 			this.unlocalizedTitle = "tile.for.alveary." + type.getName() + ".name";
 			this.alvearyLogic = type.createLogic(this);
 		}
 	}
 
-	private String unlocalizedTitle;
-	private EnumAlvearyLogicType type;
-	private AbstractAlvearyLogic alvearyLogic;
-
-	public boolean hasGui(){
+	public boolean hasGui() {
 		return alvearyLogic.hasGui();
 	}
 
@@ -146,12 +146,11 @@ public class TileEntityExtraBeesAlvearyPart extends MultiblockTileEntityForestry
 		return alvearyLogic.hasCapability(capability, facing) ? alvearyLogic.getCapability(capability, facing) : super.getCapability(capability, facing);
 	}
 
-	public Collection<IMultiblockComponent> getConnectedComponents(){
+	public Collection<IMultiblockComponent> getConnectedComponents() {
 		return getMultiblockLogic().getController().getComponents();
 	}
 
-	public Set<TileEntityExtraBeesAlvearyPart> getExtraBeesParts(){
+	public Set<TileEntityExtraBeesAlvearyPart> getExtraBeesParts() {
 		return getConnectedComponents().stream().filter(p -> p instanceof TileEntityExtraBeesAlvearyPart).map(p -> (TileEntityExtraBeesAlvearyPart) p).collect(Collectors.toSet());
 	}
-
 }

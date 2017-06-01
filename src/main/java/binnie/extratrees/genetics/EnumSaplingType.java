@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.awt.*;
+import java.awt.Color;
 
 public enum EnumSaplingType {
 	Default,

@@ -5,11 +5,10 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
 import java.io.IOException;
 
-
 public final class MessageBinnie implements IMessage {
 	public int id;
-	private MessageBase message;
 	ByteBuf data;
+	private MessageBase message;
 
 	public MessageBinnie() {
 	}

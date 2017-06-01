@@ -27,5 +27,4 @@ public class WorldGenPrune extends WorldGenTree {
 		this.height = this.determineHeight(6, 2);
 		this.girth = this.determineGirth(this.treeGen.getGirth());
 	}
-
 }

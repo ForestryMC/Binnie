@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.Map;
 
 public class FruitPressRecipes {
-	// Map<input fruit item, Pair<input fruit, output fluid>>
+	//Map<input fruit item, Pair<input fruit, output fluid>>
 	private static Multimap<Item, Pair<ItemStack, FluidStack>> pressRecipes = ArrayListMultimap.create();
 
 	public static boolean isInput(final ItemStack itemstack) {

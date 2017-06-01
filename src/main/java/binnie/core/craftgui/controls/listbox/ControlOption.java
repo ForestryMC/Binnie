@@ -30,9 +30,9 @@ public class ControlOption<T> extends Control implements IControlValue<T> {
 
 	@Override
 	public void onUpdateClient() {
-		int colour = 10526880;
+		int colour = 0xa0a0a0;
 		if (this.isCurrentSelection()) {
-			colour = 16777215;
+			colour = 0xffffff;
 		}
 		this.setColour(colour);
 	}

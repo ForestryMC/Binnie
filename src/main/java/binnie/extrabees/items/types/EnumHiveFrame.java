@@ -5,7 +5,11 @@ import binnie.extrabees.items.ItemHiveFrame;
 import binnie.extrabees.utils.BeeModifierLogic;
 import binnie.extrabees.utils.EnumBeeBooleanModifier;
 import binnie.extrabees.utils.EnumBeeModifier;
-import forestry.api.apiculture.*;
+import forestry.api.apiculture.IBee;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.IBeeHousing;
+import forestry.api.apiculture.IBeeModifier;
+import forestry.api.apiculture.IHiveFrame;
 import forestry.apiculture.PluginApiculture;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -27,6 +31,20 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 	Clay,
 	Debug;
 
+	private final Item item;
+	private final int maxDamage;
+	private final BeeModifierLogic logic;
+
+	EnumHiveFrame() {
+		this(240);
+	}
+
+	EnumHiveFrame(int maxDamage) {
+		this.maxDamage = maxDamage;
+		this.logic = new BeeModifierLogic();
+		this.item = new ItemHiveFrame(this).setRegistryName("hive_frame." + name().toLowerCase());
+	}
+
 	public static void init() {
 		EnumHiveFrame.Cocoa.logic.setModifier(EnumBeeModifier.Lifespan, 0.75f, 0.25f);
 		EnumHiveFrame.Cocoa.logic.setModifier(EnumBeeModifier.Production, 1.5f, 5.0f);
@@ -46,20 +64,6 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 		GameRegistry.addShapelessRecipe(new ItemStack(EnumHiveFrame.Soul.item), impregnatedFrame, Blocks.SOUL_SAND);
 		GameRegistry.addRecipe(new ItemStack(EnumHiveFrame.Clay.item), " c ", "cFc", " c ", 'F', impregnatedFrame, 'c', Items.CLAY_BALL);
 	}
-
-	EnumHiveFrame() {
-		this(240);
-	}
-
-	EnumHiveFrame(int maxDamage) {
-		this.maxDamage = maxDamage;
-		this.logic = new BeeModifierLogic();
-		this.item = new ItemHiveFrame(this).setRegistryName("hive_frame." + name().toLowerCase());
-	}
-
-	private final Item item;
-	private final int maxDamage;
-	private final BeeModifierLogic logic;
 
 	public int getIconIndex() {
 		return 55 + this.ordinal();

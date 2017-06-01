@@ -12,7 +12,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 
 public interface IMultipassBlock<K> {
-
 	default AxisAlignedBB getItemBoundingBox() {
 		return Block.FULL_BLOCK_AABB;
 	}

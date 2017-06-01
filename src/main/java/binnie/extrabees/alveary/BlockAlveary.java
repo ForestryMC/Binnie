@@ -22,23 +22,20 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-/**
- * Created by Elec332 on 13-5-2017.
- */
 @SuppressWarnings("deprecation")
 public class BlockAlveary extends Block implements ITileEntityProvider {
+
+	private static final PropertyEnum<EnumAlvearyLogicType> TYPE = PropertyEnum.create("type", EnumAlvearyLogicType.class);
 
 	public BlockAlveary() {
 		super(new MaterialBeehive(false));
 		setRegistryName("alveary");
 	}
 
-	private static final PropertyEnum<EnumAlvearyLogicType> TYPE = PropertyEnum.create("type", EnumAlvearyLogicType.class);
-
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		TileEntityExtraBeesAlvearyPart tile = TileUtil.getTile(worldIn, pos, TileEntityExtraBeesAlvearyPart.class);
-		if (tile != null && tile.hasGui()){
+		if (tile != null && tile.hasGui()) {
 			GuiHandler.openGui(playerIn, tile);
 		}
 		return true;
@@ -50,7 +47,7 @@ public class BlockAlveary extends Block implements ITileEntityProvider {
 		return new TileEntityExtraBeesAlvearyPart(getType(meta));
 	}
 
-	private EnumAlvearyLogicType getType(int meta){
+	private EnumAlvearyLogicType getType(int meta) {
 		IBlockState state = getStateFromMeta(meta);
 		return state.getValue(TYPE);
 	}
@@ -76,7 +73,7 @@ public class BlockAlveary extends Block implements ITileEntityProvider {
 
 	@Nonnull
 	public String getUnlocalizedName(int meta) {
-		return "extrabees.machine.alveay."+getType(meta).getName();
+		return "extrabees.machine.alveay." + getType(meta).getName();
 	}
 
 	@Override
@@ -90,5 +87,4 @@ public class BlockAlveary extends Block implements ITileEntityProvider {
 		meta = meta >= 0 && meta < EnumAlvearyLogicType.VALUES.length ? meta : 0;
 		return getDefaultState().withProperty(TYPE, EnumAlvearyLogicType.VALUES[meta]);
 	}
-
 }

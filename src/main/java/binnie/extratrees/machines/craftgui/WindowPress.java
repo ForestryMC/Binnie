@@ -4,7 +4,11 @@ import binnie.core.AbstractMod;
 import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.minecraft.InventoryType;
 import binnie.core.craftgui.minecraft.Window;
-import binnie.core.craftgui.minecraft.control.*;
+import binnie.core.craftgui.minecraft.control.ControlEnergyBar;
+import binnie.core.craftgui.minecraft.control.ControlErrorState;
+import binnie.core.craftgui.minecraft.control.ControlLiquidTank;
+import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
+import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.core.machines.Machine;
 import binnie.core.machines.power.ErrorState;
 import binnie.extratrees.ExtraTrees;
@@ -21,6 +25,14 @@ import javax.annotation.Nullable;
 public class WindowPress extends Window {
 	public WindowPress(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(194, 192, player, inventory, side);
+	}
+
+	@Nullable
+	public static Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
+		if (inventory == null) {
+			return null;
+		}
+		return new WindowPress(player, inventory, side);
 	}
 
 	@Override
@@ -43,14 +55,6 @@ public class WindowPress extends Window {
 		new ControlErrorState(this, 128, 54);
 		new ControlFruitPressProgress(this, 62, 24);
 		((Window) this.getTopParent()).getContainer().getOrCreateSlot(InventoryType.Machine, FruitPressMachine.SLOT_CURRENT);
-	}
-
-	@Nullable
-	public static Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side) {
-		if (inventory == null) {
-			return null;
-		}
-		return new WindowPress(player, inventory, side);
 	}
 
 	@Override

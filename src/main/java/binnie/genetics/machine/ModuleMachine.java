@@ -23,7 +23,7 @@ public class ModuleMachine implements IInitializable {
 	public static ValidatorSprite spriteDye;
 	public static ValidatorSprite spriteBacteria;
 	public static ValidatorSprite spriteNugget;
-	
+
 	public static MachineGroup packageGenetic;
 	public static MachineGroup packageAdvGenetic;
 	public static MachineGroup packageLabMachine;

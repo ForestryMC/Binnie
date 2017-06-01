@@ -19,17 +19,17 @@ public class FireworkCreator {
 
 	public static class Firework {
 
+		boolean flicker;
+		boolean trail;
+		ArrayList<Integer> colors;
+		byte shape;
+
 		public Firework() {
 			this.flicker = false;
 			this.trail = false;
 			this.colors = new ArrayList<>();
 			this.shape = 0;
 		}
-
-		boolean flicker;
-		boolean trail;
-		ArrayList<Integer> colors;
-		byte shape;
 
 		public void setFlicker() {
 			this.flicker = true;
@@ -79,7 +79,5 @@ public class FireworkCreator {
 			item.setTagCompound(var15);
 			return item;
 		}
-
 	}
-
 }

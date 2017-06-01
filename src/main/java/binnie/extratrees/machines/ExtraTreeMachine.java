@@ -1,7 +1,11 @@
 package binnie.extratrees.machines;
 
 import binnie.core.BinnieCore;
-import binnie.core.machines.*;
+import binnie.core.machines.IMachineType;
+import binnie.core.machines.Machine;
+import binnie.core.machines.MachineComponent;
+import binnie.core.machines.MachinePackage;
+import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.component.IInteraction;
 import binnie.core.resource.IBinnieTexture;
 import binnie.extratrees.ExtraTrees;
@@ -64,7 +68,6 @@ public enum ExtraTreeMachine implements IMachineType {
 		public void onRightClick(World p0, EntityPlayer p1, BlockPos pos) {
 			ExtraTrees.proxy.openGui(this.id, p1, pos);
 		}
-
 	}
 
 	public abstract static class PackageExtraTreeMachine extends MachinePackage {

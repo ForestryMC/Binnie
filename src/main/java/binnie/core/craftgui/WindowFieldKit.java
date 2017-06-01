@@ -3,6 +3,7 @@ package binnie.core.craftgui;
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
+import binnie.core.ExtraBeeTexture;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.events.EventHandler;
@@ -18,10 +19,13 @@ import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.core.craftgui.resource.StyleSheetPunnett;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.core.machines.inventory.SlotValidator;
-import binnie.core.ExtraBeeTexture;
 import binnie.genetics.gui.ControlChromosome;
 import binnie.genetics.machine.analyser.Analyser;
-import forestry.api.genetics.*;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
@@ -32,7 +36,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 public class WindowFieldKit extends Window {
 	private int glassOffsetX;
@@ -264,5 +272,4 @@ public class WindowFieldKit extends Window {
 			this.getWindowInventory().decrStackSize(1, 1);
 		}
 	}
-
 }

@@ -5,11 +5,8 @@ import binnie.extrabees.alveary.EnumAlvearyLogicType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.items.SlotItemHandler;
 
-import java.awt.*;
+import java.awt.Dimension;
 
-/**
- * Created by Elec332 on 13-5-2017.
- */
 public class ContainerMutator extends AbstractAlvearyContainer {
 
 	public ContainerMutator(EntityPlayer player, AlvearyLogicMutator logic) {
@@ -21,5 +18,4 @@ public class ContainerMutator extends AbstractAlvearyContainer {
 		addPlayerInventory();
 		addSlotToContainer(new SlotItemHandler(inv, 0, 81, 29));
 	}
-
 }

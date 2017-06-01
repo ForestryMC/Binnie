@@ -1,6 +1,7 @@
 package binnie.genetics.gui;
 
 import binnie.Binnie;
+import binnie.core.ExtraBeeTexture;
 import binnie.core.craftgui.Attribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
@@ -11,7 +12,6 @@ import binnie.core.craftgui.events.EventWidget;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
-import binnie.core.ExtraBeeTexture;
 import forestry.api.genetics.IChromosomeType;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

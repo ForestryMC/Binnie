@@ -18,5 +18,4 @@ public class ItemCore extends Item implements IItemModelRegister {
 	public void registerModel(Item item, IModelManager manager) {
 		manager.registerItemModel(item, 0);
 	}
-
 }

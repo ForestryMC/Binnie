@@ -17,9 +17,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-/**
- * Created by Elec332 on 13-5-2017.
- */
 public abstract class AbstractAlvearyLogic implements IBeeModifier, IBeeListener, ICapabilityProvider {
 
 	@Override
@@ -87,11 +84,11 @@ public abstract class AbstractAlvearyLogic implements IBeeModifier, IBeeListener
 		return false;
 	}
 
-	public void updateClient(TileEntityExtraBeesAlvearyPart tile){
+	public void updateClient(TileEntityExtraBeesAlvearyPart tile) {
 
 	}
 
-	public void updateServer(TileEntityExtraBeesAlvearyPart tile){
+	public void updateServer(TileEntityExtraBeesAlvearyPart tile) {
 
 	}
 
@@ -117,12 +114,11 @@ public abstract class AbstractAlvearyLogic implements IBeeModifier, IBeeListener
 		return null;
 	}
 
-	public IEnergyStorage getEnergyStorage(){
+	public IEnergyStorage getEnergyStorage() {
 		return null;
 	}
 
-	public boolean hasGui(){
+	public boolean hasGui() {
 		return false;
 	}
-
 }

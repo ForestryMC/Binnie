@@ -1,6 +1,10 @@
 package binnie.extratrees.carpentry;
 
-import binnie.extratrees.api.*;
+import binnie.extratrees.api.IDesign;
+import binnie.extratrees.api.IDesignMaterial;
+import binnie.extratrees.api.IDesignSystem;
+import binnie.extratrees.api.ILayout;
+import binnie.extratrees.api.IToolHammer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -13,29 +17,21 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 
 public class DesignBlock {
+	private static final int[][] ROTATION_MATRIX = {
+		{0, 1, 4, 5, 3, 2, 6},
+		{0, 1, 5, 4, 2, 3, 6},
+		{5, 4, 2, 3, 0, 1, 6},
+		{4, 5, 2, 3, 1, 0, 6},
+		{2, 3, 1, 0, 4, 5, 6},
+		{3, 2, 0, 1, 4, 5, 6},
+		{0, 1, 2, 3, 4, 5, 6},
+	};
 	IDesign design;
 	IDesignMaterial primaryMaterial;
 	IDesignMaterial secondaryMaterial;
 	int rotation;
 	EnumFacing facing;
 	boolean panel;
-
-	@Override
-	public String toString() {
-		return super.toString() + " { design:" + this.design + " }, { primary:" + this.primaryMaterial + " }, { secondary:" + this.secondaryMaterial + " }, { rotation:" + this.rotation + " }, { facing:" + this.facing + " }";
-	}
-
-	public IDesign getDesign() {
-		return this.design;
-	}
-
-	public IDesignMaterial getPrimaryMaterial() {
-		return this.primaryMaterial;
-	}
-
-	public IDesignMaterial getSecondaryMaterial() {
-		return this.secondaryMaterial;
-	}
 
 	DesignBlock(final IDesignSystem system, @Nullable final IDesignMaterial primaryWood, @Nullable final IDesignMaterial secondaryWood, @Nullable final IDesign design, final int rotation, @Nullable final EnumFacing dir) {
 		this.panel = false;
@@ -64,6 +60,23 @@ public class DesignBlock {
 		} else {
 			this.facing = dir;
 		}
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + " { design:" + this.design + " }, { primary:" + this.primaryMaterial + " }, { secondary:" + this.secondaryMaterial + " }, { rotation:" + this.rotation + " }, { facing:" + this.facing + " }";
+	}
+
+	public IDesign getDesign() {
+		return this.design;
+	}
+
+	public IDesignMaterial getPrimaryMaterial() {
+		return this.primaryMaterial;
+	}
+
+	public IDesignMaterial getSecondaryMaterial() {
+		return this.secondaryMaterial;
 	}
 
 	public int getPrimaryColour() {
@@ -131,16 +144,6 @@ public class DesignBlock {
 			}
 		}
 	}
-
-	private static final int[][] ROTATION_MATRIX = {
-			{0, 1, 4, 5, 3, 2, 6},
-			{0, 1, 5, 4, 2, 3, 6},
-			{5, 4, 2, 3, 0, 1, 6},
-			{4, 5, 2, 3, 1, 0, 6},
-			{2, 3, 1, 0, 4, 5, 6},
-			{3, 2, 0, 1, 4, 5, 6},
-			{0, 1, 2, 3, 4, 5, 6},
-	};
 
 	public EnumFacing getRotation(EnumFacing facing, EnumFacing axis) {
 		return getNewFacing(ROTATION_MATRIX[axis.ordinal()][facing.ordinal()]);
@@ -342,7 +345,6 @@ public class DesignBlock {
 							break LAYOUTS;
 						}
 					}
-
 				}
 				case SOUTH: {
 					switch (facing) {
@@ -379,7 +381,6 @@ public class DesignBlock {
 							break LAYOUTS;
 						}
 					}
-
 				}
 			}
 		}
@@ -407,6 +408,10 @@ public class DesignBlock {
 		return this.facing;
 	}
 
+	public void setFacing(final EnumFacing facing) {
+		this.facing = facing;
+	}
+
 	public int getRotation() {
 		return this.rotation;
 	}
@@ -418,7 +423,8 @@ public class DesignBlock {
 				EnumFacing newFacing = this.getFacing();
 				do {
 					newFacing = getNewFacing(newFacing.ordinal() + 1);
-				} while (newFacing != this.getFacing() && !BlockCarpentryPanel.isValidPanelPlacement(world, pos, newFacing));
+				}
+				while (newFacing != this.getFacing() && !BlockCarpentryPanel.isValidPanelPlacement(world, pos, newFacing));
 				if (newFacing != this.getFacing()) {
 					hammerI.onHammerUsed(hammer, player);
 				}
@@ -446,10 +452,6 @@ public class DesignBlock {
 			return EnumFacing.VALUES[index];
 		}
 		return EnumFacing.DOWN;
-	}
-
-	public void setFacing(final EnumFacing facing) {
-		this.facing = facing;
 	}
 
 	public int getBlockMetadata(final IDesignSystem system) {

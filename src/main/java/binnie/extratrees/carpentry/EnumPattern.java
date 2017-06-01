@@ -223,6 +223,69 @@ public enum EnumPattern implements IPattern {
 	OverlappedBarred,
 	OverlappedBarred2;
 
+	static {
+		setupStripedPattern(EnumPattern.ThinStriped, EnumPattern.ThinStriped2);
+		setupStripedPattern(EnumPattern.Striped, EnumPattern.Striped2);
+		setupStripedPattern(EnumPattern.Halved, EnumPattern.Halved2);
+		setupChequeredPattern(EnumPattern.Chequered);
+		setupChequeredPattern(EnumPattern.Tiled);
+		setupCornerPattern(EnumPattern.VeryThinCorner, EnumPattern.VeryThinCorner2, EnumPattern.VeryThinCorner3, EnumPattern.VeryThinCorner4);
+		setupCornerPattern(EnumPattern.ThinCorner, EnumPattern.ThinCorner2, EnumPattern.ThinCorner3, EnumPattern.ThinCorner4);
+		setupCornerPattern(EnumPattern.Corner, EnumPattern.Corner2, EnumPattern.Corner3, EnumPattern.Corner4);
+		setupCornerPattern(EnumPattern.ThickCorner, EnumPattern.ThickCorner2, EnumPattern.ThickCorner3, EnumPattern.ThickCorner4);
+		setupCornerPattern(EnumPattern.ThinCurvedCorner, EnumPattern.ThinCurvedCorner2, EnumPattern.ThinCurvedCorner3, EnumPattern.ThinCurvedCorner4);
+		setupCornerPattern(EnumPattern.CurvedCorner, EnumPattern.CurvedCorner2, EnumPattern.CurvedCorner3, EnumPattern.CurvedCorner4);
+		setupBarredPattern(EnumPattern.BarredEnd, EnumPattern.BarredEnd2, EnumPattern.BarredEnd3, EnumPattern.BarredEnd4);
+		setupEdgedPattern(EnumPattern.ThinEdged, EnumPattern.ThinEdged2, EnumPattern.ThinEdged3, EnumPattern.ThinEdged4);
+		setupEdgedPattern(EnumPattern.Edged, EnumPattern.Edged2, EnumPattern.Edged3, EnumPattern.Edged4);
+		setupBarredPattern(EnumPattern.ThinBarred, EnumPattern.ThinBarred2);
+		setupBarredPattern(EnumPattern.Barred, EnumPattern.Barred2);
+		setupBarredPattern(EnumPattern.ThickBarred, EnumPattern.ThickBarred2);
+		setupDiagonalPattern(EnumPattern.Diagonal, EnumPattern.Diagonal2);
+		setupDiagonalPattern(EnumPattern.ThickDiagonal, EnumPattern.ThickDiagonal2);
+		setupTSectionPattern(EnumPattern.ThinTSection, EnumPattern.ThinTSection2, EnumPattern.ThinTSection3, EnumPattern.ThinTSection4);
+		setupTSectionPattern(EnumPattern.TSection, EnumPattern.TSection2, EnumPattern.TSection3, EnumPattern.TSection4);
+		setupTSectionPattern(EnumPattern.ThickTSection, EnumPattern.ThickTSection2, EnumPattern.ThickTSection3, EnumPattern.ThickTSection4);
+		setupTSectionPattern(EnumPattern.ThinCurvedTSection, EnumPattern.ThinCurvedTSection2, EnumPattern.ThinCurvedTSection3, EnumPattern.ThinCurvedTSection4);
+		setupTSectionPattern(EnumPattern.CurvedTSection, EnumPattern.CurvedTSection2, EnumPattern.CurvedTSection3, EnumPattern.CurvedTSection4);
+		setupCornerPattern(EnumPattern.ThinBarredCorner, EnumPattern.ThinBarredCorner2, EnumPattern.ThinBarredCorner3, EnumPattern.ThinBarredCorner4);
+		setupCornerPattern(EnumPattern.BarredCorner, EnumPattern.BarredCorner2, EnumPattern.BarredCorner3, EnumPattern.BarredCorner4);
+		setupCornerPattern(EnumPattern.ThickBarredCorner, EnumPattern.ThickBarredCorner2, EnumPattern.ThickBarredCorner3, EnumPattern.ThickBarredCorner4);
+		setupCornerPattern(EnumPattern.ThinCurvedBarredCorner, EnumPattern.ThinCurvedBarredCorner2, EnumPattern.ThinCurvedBarredCorner3, EnumPattern.ThinCurvedBarredCorner4);
+		setupCornerPattern(EnumPattern.BarredCurvedCorner, EnumPattern.BarredCurvedCorner2, EnumPattern.BarredCurvedCorner3, EnumPattern.BarredCurvedCorner4);
+		setupCornerPattern(EnumPattern.ThinStripedCorner, EnumPattern.ThinStripedCorner2, EnumPattern.ThinStripedCorner3, EnumPattern.ThinStripedCorner4);
+		setupCornerPattern(EnumPattern.StripedCorner, EnumPattern.StripedCorner2, EnumPattern.StripedCorner3, EnumPattern.StripedCorner4);
+		setupCornerPattern(EnumPattern.OrnateStripedCorner, EnumPattern.OrnateStripedCorner2, EnumPattern.OrnateStripedCorner3, EnumPattern.OrnateStripedCorner4);
+		setupRotation(EnumPattern.LetterA, EnumPattern.LetterA2, EnumPattern.LetterA3, EnumPattern.LetterA4);
+		setupRotation(EnumPattern.LetterB, EnumPattern.LetterB2, EnumPattern.LetterB3, EnumPattern.LetterB4);
+		setupRotation(EnumPattern.LetterF, EnumPattern.LetterF2, EnumPattern.LetterF3, EnumPattern.LetterF4);
+		setupRotation(EnumPattern.LetterS, EnumPattern.LetterS2, EnumPattern.LetterS3, EnumPattern.LetterS4);
+		setupRotation(EnumPattern.LetterT, EnumPattern.LetterT2, EnumPattern.LetterT3, EnumPattern.LetterT4);
+		setupEdgedPattern(EnumPattern.DiagonalCorner, EnumPattern.DiagonalCorner2, EnumPattern.DiagonalCorner3, EnumPattern.DiagonalCorner4);
+		setupCornerPattern(EnumPattern.DiagonalTSection, EnumPattern.DiagonalTSection2, EnumPattern.DiagonalTSection3, EnumPattern.DiagonalTSection4);
+		setupEdgedPattern(EnumPattern.DiagonalCurvedCorner, EnumPattern.DiagonalCurvedCorner2, EnumPattern.DiagonalCurvedCorner3, EnumPattern.DiagonalCurvedCorner4);
+		setupCornerPattern(EnumPattern.DiagonalCurvedTSection, EnumPattern.DiagonalCurvedTSection2, EnumPattern.DiagonalCurvedTSection3, EnumPattern.DiagonalCurvedTSection4);
+		setupBarredPattern(EnumPattern.OrnateBarred, EnumPattern.OrnateBarred2);
+		setupBarredPattern(EnumPattern.OrnateThinBarred, EnumPattern.OrnateThinBarred2);
+		setupBarredPattern(EnumPattern.SplitBarred, EnumPattern.SplitBarred2);
+		setupCornerPattern(EnumPattern.SplitBarredCorner, EnumPattern.SplitBarredCorner2, EnumPattern.SplitBarredCorner3, EnumPattern.SplitBarredCorner4);
+		setupTSectionPattern(EnumPattern.SplitBarredTSection, EnumPattern.SplitBarredTSection2, EnumPattern.SplitBarredTSection3, EnumPattern.SplitBarredTSection4);
+		setupBarredPattern(EnumPattern.SplitBarredEnd, EnumPattern.SplitBarredEnd2, EnumPattern.SplitBarredEnd3, EnumPattern.SplitBarredEnd4);
+		setupRotation(EnumPattern.Creeper, EnumPattern.Creeper2, EnumPattern.Creeper3, EnumPattern.Creeper4);
+		setupDiagonalPattern(EnumPattern.DiagonalStriped, EnumPattern.DiagonalStriped2);
+		setupDiagonalPattern(EnumPattern.ThinDiagonalStriped, EnumPattern.ThinDiagonalStriped2);
+		setupCornerPattern(EnumPattern.Diagonal1Edged, EnumPattern.Diagonal1Edged2, EnumPattern.Diagonal1Edged3, EnumPattern.Diagonal1Edged4);
+		setupCornerPattern(EnumPattern.ThickDiagonal1Edged, EnumPattern.ThickDiagonal1Edged2, EnumPattern.ThickDiagonal1Edged3, EnumPattern.ThickDiagonal1Edged4);
+		setupInvert2Rot(EnumPattern.DiagonalHalved, EnumPattern.DiagonalHalved2);
+		set2Rotation(EnumPattern.Diagonal2Edged, EnumPattern.Diagonal2Edged2);
+		setupBarredPattern(EnumPattern.ThinBarredEnd, EnumPattern.ThinBarredEnd2, EnumPattern.ThinBarredEnd3, EnumPattern.ThinBarredEnd4);
+		setupBarredPattern(EnumPattern.ThickBarredEnd, EnumPattern.ThickBarredEnd2, EnumPattern.ThickBarredEnd3, EnumPattern.ThickBarredEnd4);
+		EnumPattern.OverlappedBarred.setLeftRotation(EnumPattern.OverlappedBarred2, false);
+		EnumPattern.OverlappedBarred2.setLeftRotation(EnumPattern.OverlappedBarred, false);
+		EnumPattern.OverlappedSplitBarred.setLeftRotation(EnumPattern.OverlappedSplitBarred2, false);
+		EnumPattern.OverlappedSplitBarred2.setLeftRotation(EnumPattern.OverlappedSplitBarred, false);
+	}
+
 	ILayout leftRotation;
 	ILayout horizontalFlip;
 
@@ -294,14 +357,14 @@ public enum EnumPattern implements IPattern {
 		setupEdgedPattern(l, t, r, b);
 	}
 
+	private static void setupRotation(final EnumPattern t, final EnumPattern r, final EnumPattern b, final EnumPattern l) {
+		setupEdgedPattern(l, t, r, b);
+	}
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public TextureAtlasSprite getPrimarySprite(IDesignSystem system) {
 		return system.getPrimarySprite(this);
-	}
-
-	private static void setupRotation(final EnumPattern t, final EnumPattern r, final EnumPattern b, final EnumPattern l) {
-		setupEdgedPattern(l, t, r, b);
 	}
 
 	private void setHorizontalFlip(final EnumPattern pattern, final boolean inverted) {
@@ -339,68 +402,5 @@ public enum EnumPattern implements IPattern {
 
 	public ILayout layout(final boolean invert) {
 		return Layout.get(this, invert);
-	}
-
-	static {
-		setupStripedPattern(EnumPattern.ThinStriped, EnumPattern.ThinStriped2);
-		setupStripedPattern(EnumPattern.Striped, EnumPattern.Striped2);
-		setupStripedPattern(EnumPattern.Halved, EnumPattern.Halved2);
-		setupChequeredPattern(EnumPattern.Chequered);
-		setupChequeredPattern(EnumPattern.Tiled);
-		setupCornerPattern(EnumPattern.VeryThinCorner, EnumPattern.VeryThinCorner2, EnumPattern.VeryThinCorner3, EnumPattern.VeryThinCorner4);
-		setupCornerPattern(EnumPattern.ThinCorner, EnumPattern.ThinCorner2, EnumPattern.ThinCorner3, EnumPattern.ThinCorner4);
-		setupCornerPattern(EnumPattern.Corner, EnumPattern.Corner2, EnumPattern.Corner3, EnumPattern.Corner4);
-		setupCornerPattern(EnumPattern.ThickCorner, EnumPattern.ThickCorner2, EnumPattern.ThickCorner3, EnumPattern.ThickCorner4);
-		setupCornerPattern(EnumPattern.ThinCurvedCorner, EnumPattern.ThinCurvedCorner2, EnumPattern.ThinCurvedCorner3, EnumPattern.ThinCurvedCorner4);
-		setupCornerPattern(EnumPattern.CurvedCorner, EnumPattern.CurvedCorner2, EnumPattern.CurvedCorner3, EnumPattern.CurvedCorner4);
-		setupBarredPattern(EnumPattern.BarredEnd, EnumPattern.BarredEnd2, EnumPattern.BarredEnd3, EnumPattern.BarredEnd4);
-		setupEdgedPattern(EnumPattern.ThinEdged, EnumPattern.ThinEdged2, EnumPattern.ThinEdged3, EnumPattern.ThinEdged4);
-		setupEdgedPattern(EnumPattern.Edged, EnumPattern.Edged2, EnumPattern.Edged3, EnumPattern.Edged4);
-		setupBarredPattern(EnumPattern.ThinBarred, EnumPattern.ThinBarred2);
-		setupBarredPattern(EnumPattern.Barred, EnumPattern.Barred2);
-		setupBarredPattern(EnumPattern.ThickBarred, EnumPattern.ThickBarred2);
-		setupDiagonalPattern(EnumPattern.Diagonal, EnumPattern.Diagonal2);
-		setupDiagonalPattern(EnumPattern.ThickDiagonal, EnumPattern.ThickDiagonal2);
-		setupTSectionPattern(EnumPattern.ThinTSection, EnumPattern.ThinTSection2, EnumPattern.ThinTSection3, EnumPattern.ThinTSection4);
-		setupTSectionPattern(EnumPattern.TSection, EnumPattern.TSection2, EnumPattern.TSection3, EnumPattern.TSection4);
-		setupTSectionPattern(EnumPattern.ThickTSection, EnumPattern.ThickTSection2, EnumPattern.ThickTSection3, EnumPattern.ThickTSection4);
-		setupTSectionPattern(EnumPattern.ThinCurvedTSection, EnumPattern.ThinCurvedTSection2, EnumPattern.ThinCurvedTSection3, EnumPattern.ThinCurvedTSection4);
-		setupTSectionPattern(EnumPattern.CurvedTSection, EnumPattern.CurvedTSection2, EnumPattern.CurvedTSection3, EnumPattern.CurvedTSection4);
-		setupCornerPattern(EnumPattern.ThinBarredCorner, EnumPattern.ThinBarredCorner2, EnumPattern.ThinBarredCorner3, EnumPattern.ThinBarredCorner4);
-		setupCornerPattern(EnumPattern.BarredCorner, EnumPattern.BarredCorner2, EnumPattern.BarredCorner3, EnumPattern.BarredCorner4);
-		setupCornerPattern(EnumPattern.ThickBarredCorner, EnumPattern.ThickBarredCorner2, EnumPattern.ThickBarredCorner3, EnumPattern.ThickBarredCorner4);
-		setupCornerPattern(EnumPattern.ThinCurvedBarredCorner, EnumPattern.ThinCurvedBarredCorner2, EnumPattern.ThinCurvedBarredCorner3, EnumPattern.ThinCurvedBarredCorner4);
-		setupCornerPattern(EnumPattern.BarredCurvedCorner, EnumPattern.BarredCurvedCorner2, EnumPattern.BarredCurvedCorner3, EnumPattern.BarredCurvedCorner4);
-		setupCornerPattern(EnumPattern.ThinStripedCorner, EnumPattern.ThinStripedCorner2, EnumPattern.ThinStripedCorner3, EnumPattern.ThinStripedCorner4);
-		setupCornerPattern(EnumPattern.StripedCorner, EnumPattern.StripedCorner2, EnumPattern.StripedCorner3, EnumPattern.StripedCorner4);
-		setupCornerPattern(EnumPattern.OrnateStripedCorner, EnumPattern.OrnateStripedCorner2, EnumPattern.OrnateStripedCorner3, EnumPattern.OrnateStripedCorner4);
-		setupRotation(EnumPattern.LetterA, EnumPattern.LetterA2, EnumPattern.LetterA3, EnumPattern.LetterA4);
-		setupRotation(EnumPattern.LetterB, EnumPattern.LetterB2, EnumPattern.LetterB3, EnumPattern.LetterB4);
-		setupRotation(EnumPattern.LetterF, EnumPattern.LetterF2, EnumPattern.LetterF3, EnumPattern.LetterF4);
-		setupRotation(EnumPattern.LetterS, EnumPattern.LetterS2, EnumPattern.LetterS3, EnumPattern.LetterS4);
-		setupRotation(EnumPattern.LetterT, EnumPattern.LetterT2, EnumPattern.LetterT3, EnumPattern.LetterT4);
-		setupEdgedPattern(EnumPattern.DiagonalCorner, EnumPattern.DiagonalCorner2, EnumPattern.DiagonalCorner3, EnumPattern.DiagonalCorner4);
-		setupCornerPattern(EnumPattern.DiagonalTSection, EnumPattern.DiagonalTSection2, EnumPattern.DiagonalTSection3, EnumPattern.DiagonalTSection4);
-		setupEdgedPattern(EnumPattern.DiagonalCurvedCorner, EnumPattern.DiagonalCurvedCorner2, EnumPattern.DiagonalCurvedCorner3, EnumPattern.DiagonalCurvedCorner4);
-		setupCornerPattern(EnumPattern.DiagonalCurvedTSection, EnumPattern.DiagonalCurvedTSection2, EnumPattern.DiagonalCurvedTSection3, EnumPattern.DiagonalCurvedTSection4);
-		setupBarredPattern(EnumPattern.OrnateBarred, EnumPattern.OrnateBarred2);
-		setupBarredPattern(EnumPattern.OrnateThinBarred, EnumPattern.OrnateThinBarred2);
-		setupBarredPattern(EnumPattern.SplitBarred, EnumPattern.SplitBarred2);
-		setupCornerPattern(EnumPattern.SplitBarredCorner, EnumPattern.SplitBarredCorner2, EnumPattern.SplitBarredCorner3, EnumPattern.SplitBarredCorner4);
-		setupTSectionPattern(EnumPattern.SplitBarredTSection, EnumPattern.SplitBarredTSection2, EnumPattern.SplitBarredTSection3, EnumPattern.SplitBarredTSection4);
-		setupBarredPattern(EnumPattern.SplitBarredEnd, EnumPattern.SplitBarredEnd2, EnumPattern.SplitBarredEnd3, EnumPattern.SplitBarredEnd4);
-		setupRotation(EnumPattern.Creeper, EnumPattern.Creeper2, EnumPattern.Creeper3, EnumPattern.Creeper4);
-		setupDiagonalPattern(EnumPattern.DiagonalStriped, EnumPattern.DiagonalStriped2);
-		setupDiagonalPattern(EnumPattern.ThinDiagonalStriped, EnumPattern.ThinDiagonalStriped2);
-		setupCornerPattern(EnumPattern.Diagonal1Edged, EnumPattern.Diagonal1Edged2, EnumPattern.Diagonal1Edged3, EnumPattern.Diagonal1Edged4);
-		setupCornerPattern(EnumPattern.ThickDiagonal1Edged, EnumPattern.ThickDiagonal1Edged2, EnumPattern.ThickDiagonal1Edged3, EnumPattern.ThickDiagonal1Edged4);
-		setupInvert2Rot(EnumPattern.DiagonalHalved, EnumPattern.DiagonalHalved2);
-		set2Rotation(EnumPattern.Diagonal2Edged, EnumPattern.Diagonal2Edged2);
-		setupBarredPattern(EnumPattern.ThinBarredEnd, EnumPattern.ThinBarredEnd2, EnumPattern.ThinBarredEnd3, EnumPattern.ThinBarredEnd4);
-		setupBarredPattern(EnumPattern.ThickBarredEnd, EnumPattern.ThickBarredEnd2, EnumPattern.ThickBarredEnd3, EnumPattern.ThickBarredEnd4);
-		EnumPattern.OverlappedBarred.setLeftRotation(EnumPattern.OverlappedBarred2, false);
-		EnumPattern.OverlappedBarred2.setLeftRotation(EnumPattern.OverlappedBarred, false);
-		EnumPattern.OverlappedSplitBarred.setLeftRotation(EnumPattern.OverlappedSplitBarred2, false);
-		EnumPattern.OverlappedSplitBarred2.setLeftRotation(EnumPattern.OverlappedSplitBarred, false);
 	}
 }

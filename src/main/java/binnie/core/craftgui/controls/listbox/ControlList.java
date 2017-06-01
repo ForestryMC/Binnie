@@ -14,15 +14,15 @@ import java.util.Map;
 
 public class ControlList<T> extends Control implements IControlValue<T> {
 	ControlListBox<T> parent;
-	@Nullable
-	private T defaultValue;
-	@Nullable
-	private T value;
 	Map<T, IWidget> allOptions;
 	Map<T, IWidget> optionWidgets;
 	boolean creating;
 	@Nullable
 	IValidator<IWidget> validator;
+	@Nullable
+	private T defaultValue;
+	@Nullable
+	private T value;
 
 	protected ControlList(final ControlListBox<T> parent, final int x, final int y, final int w, final int h, @Nullable final T defaultValue) {
 		super(parent, x, y, w, h);
@@ -40,11 +40,6 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 		return this.value;
 	}
 
-	@Nullable
-	public T getDefaultValue() {
-		return defaultValue;
-	}
-
 	@Override
 	public void setValue(@Nullable final T value) {
 		if (value == this.value) {
@@ -58,14 +53,9 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 		this.parent.callEvent(new EventValueChanged<Object>(this.parent, value));
 	}
 
-	public void setOptions(final Collection<T> options) {
-		this.deleteAllChildren();
-		this.allOptions.clear();
-		for (final T option : options) {
-			final IWidget optionWidget = this.parent.createOption(option, 0);
-			this.allOptions.put(option, optionWidget);
-		}
-		this.filterOptions();
+	@Nullable
+	public T getDefaultValue() {
+		return defaultValue;
 	}
 
 	public void filterOptions() {
@@ -88,6 +78,16 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 
 	public Collection<T> getOptions() {
 		return this.optionWidgets.keySet();
+	}
+
+	public void setOptions(final Collection<T> options) {
+		this.deleteAllChildren();
+		this.allOptions.clear();
+		for (final T option : options) {
+			final IWidget optionWidget = this.parent.createOption(option, 0);
+			this.allOptions.put(option, optionWidget);
+		}
+		this.filterOptions();
 	}
 
 	public Collection<T> getAllOptions() {

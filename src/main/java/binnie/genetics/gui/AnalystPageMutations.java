@@ -226,7 +226,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 	}
 
 	@SideOnly(Side.CLIENT)
-	private void drawSprite(BinnieSprite sprite){
+	private void drawSprite(BinnieSprite sprite) {
 		RenderUtil.drawSprite(new Point(14, 0), sprite.getSprite());
 	}
 

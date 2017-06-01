@@ -18,9 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractMod implements IPacketProvider, IInitializable {
+	protected List<IInitializable> modules;
 	@Nullable
 	private SimpleNetworkWrapper wrapper;
-	protected List<IInitializable> modules;
 
 	public AbstractMod() {
 		this.modules = new ArrayList<>();
@@ -59,7 +59,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 
 	protected abstract Class<? extends BinniePacketHandler> getPacketHandler();
 
-	public Object getMod(){
+	public Object getMod() {
 		return this;
 	}
 

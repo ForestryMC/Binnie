@@ -1,6 +1,5 @@
 package binnie.core.resource;
 
-
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import com.google.common.base.Preconditions;
@@ -14,18 +13,18 @@ import javax.annotation.Nullable;
 
 public class BinnieSprite extends BinnieResource {
 
+	@Nullable
+	private TextureAtlasSprite sprite;
+
 	public BinnieSprite(final AbstractMod mod, final ResourceType type, final String path) {
 		this(mod.getModID(), type, path);
 	}
 
-	public BinnieSprite(final String modid, final ResourceType type, final String path){
+	public BinnieSprite(final String modid, final ResourceType type, final String path) {
 		super(modid, type, path);
 		this.sprite = null;
 		Binnie.RESOURCE.registerSprite(this);
 	}
-
-	@Nullable
-	private TextureAtlasSprite sprite;
 
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getSprite() {

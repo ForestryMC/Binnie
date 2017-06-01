@@ -7,9 +7,9 @@ import net.minecraft.util.text.translation.I18n;
 import javax.annotation.Nullable;
 
 public enum EnumMoisture implements IStringSerializable {
-	Dry(TextFormatting.YELLOW),
-	Normal(null),
-	Damp(TextFormatting.DARK_BLUE);
+	DRY(TextFormatting.YELLOW),
+	NORMAL(null),
+	DAMP(TextFormatting.DARK_BLUE);
 
 	@Nullable
 	final TextFormatting color;

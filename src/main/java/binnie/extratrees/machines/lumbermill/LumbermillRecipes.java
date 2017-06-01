@@ -21,7 +21,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class LumbermillRecipes {
-	// Map<input log item, Pair<input log, output planks>>
+	//Map<input log item, Pair<input log, output planks>>
 	private static Multimap<Item, Pair<ItemStack, ItemStack>> recipes = ArrayListMultimap.create();
 
 	public static ItemStack getPlankProduct(final ItemStack logStack) {

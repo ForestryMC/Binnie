@@ -1,6 +1,12 @@
 package binnie.botany.genetics;
 
-import binnie.botany.api.*;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumFlowerChromosome;
+import binnie.botany.api.EnumFlowerStage;
+import binnie.botany.api.EnumMoisture;
+import binnie.botany.api.IAlleleFlowerSpecies;
+import binnie.botany.api.IAlleleFlowerSpeciesBuilder;
+import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
 import forestry.api.core.IModelManager;
 import forestry.api.genetics.AlleleManager;
@@ -13,20 +19,19 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class AlleleFlowerSpecies extends AlleleSpecies implements IAlleleFlowerSpecies, IAlleleFlowerSpeciesBuilder {
-
 	private final IFlowerType flowerType;
-	private EnumAcidity acidity = EnumAcidity.Neutral;
-	private EnumMoisture moisture = EnumMoisture.Normal;
+	private EnumAcidity acidity = EnumAcidity.NEUTRAL;
+	private EnumMoisture moisture = EnumMoisture.NORMAL;
 
 	public AlleleFlowerSpecies(
-			String uid,
-			String unlocalizedName,
-			String authority,
-			String unlocalizedDescription,
-			boolean isDominant,
-			IClassification branch,
-			String binomial,
-			IFlowerType flowerType) {
+		String uid,
+		String unlocalizedName,
+		String authority,
+		String unlocalizedDescription,
+		boolean isDominant,
+		IClassification branch,
+		String binomial,
+		IFlowerType flowerType) {
 		super(uid, unlocalizedName, authority, unlocalizedDescription, isDominant, branch, binomial);
 		this.flowerType = flowerType;
 	}
@@ -95,5 +100,4 @@ public class AlleleFlowerSpecies extends AlleleSpecies implements IAlleleFlowerS
 	public int compareTo(IAlleleFlowerSpecies o) {
 		return 0;
 	}
-
 }

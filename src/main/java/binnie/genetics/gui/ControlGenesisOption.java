@@ -29,6 +29,5 @@ public class ControlGenesisOption extends ControlOption<Gene> {
 		RenderUtil.drawText(new Area(0, 0, 70, 22), TextJustification.MiddleCenter, this.getChromosomeName(), this.getColour());
 		RenderUtil.drawText(new Area(75, 0, 80, 22), TextJustification.MiddleCenter, this.getAlleleName(), this.getColour());
 		RenderUtil.drawSolidRect(new Area(70, 2, 1, 16), -16777216 + this.getColour());
-
 	}
 }

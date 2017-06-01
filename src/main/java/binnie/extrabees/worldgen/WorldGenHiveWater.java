@@ -27,5 +27,4 @@ public class WorldGenHiveWater extends WorldGenerator {
 		}
 		return true;
 	}
-
 }

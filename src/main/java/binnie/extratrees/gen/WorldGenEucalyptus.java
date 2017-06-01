@@ -57,7 +57,6 @@ public class WorldGenEucalyptus {
 			this.height = this.determineHeight(14, 3);
 			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
-
 	}
 
 	public static class RoseGum extends WorldGenTree {
@@ -106,7 +105,6 @@ public class WorldGenEucalyptus {
 			this.height = this.determineHeight(9, 3);
 			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
-
 	}
 
 	public static class RainbowGum extends WorldGenTree {

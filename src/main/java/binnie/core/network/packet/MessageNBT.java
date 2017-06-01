@@ -10,15 +10,6 @@ public class MessageNBT extends MessageBase {
 	@Nullable
 	NBTTagCompound nbt;
 
-	@Nullable
-	public NBTTagCompound getTagCompound() {
-		return this.nbt;
-	}
-
-	void setTagCompound(final NBTTagCompound nbt) {
-		this.nbt = nbt;
-	}
-
 	public MessageNBT(final int id) {
 		super(id);
 	}
@@ -30,6 +21,15 @@ public class MessageNBT extends MessageBase {
 
 	public MessageNBT(final MessageBinnie message) {
 		super(message);
+	}
+
+	@Nullable
+	public NBTTagCompound getTagCompound() {
+		return this.nbt;
+	}
+
+	void setTagCompound(final NBTTagCompound nbt) {
+		this.nbt = nbt;
 	}
 
 	@Override

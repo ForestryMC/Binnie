@@ -1,7 +1,13 @@
 package binnie.core.genetics;
 
 import com.mojang.authlib.GameProfile;
-import forestry.api.apiculture.*;
+import forestry.api.apiculture.IBee;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.IBeeHousing;
+import forestry.api.apiculture.IBeeHousingInventory;
+import forestry.api.apiculture.IBeeListener;
+import forestry.api.apiculture.IBeeModifier;
+import forestry.api.apiculture.IBeekeepingLogic;
 import forestry.api.core.IErrorLogic;
 import forestry.api.genetics.IIndividual;
 import forestry.apiculture.FakeBeekeepingLogic;
@@ -25,7 +31,6 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 		super(player);
 		beeModifier.add(this);
 		beeInventory = new InventoryBeeHousing(12);
-
 	}
 
 	@Override
@@ -52,11 +57,11 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 		return ItemStack.EMPTY;
 	}
 
-	public ItemStack getDrone() {
-		return ItemStack.EMPTY;
+	public void setQueen(final ItemStack itemstack) {
 	}
 
-	public void setQueen(final ItemStack itemstack) {
+	public ItemStack getDrone() {
+		return ItemStack.EMPTY;
 	}
 
 	public void setDrone(final ItemStack itemstack) {
@@ -175,5 +180,4 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 	public GameProfile getOwner() {
 		return getOwnerName();
 	}
-
 }

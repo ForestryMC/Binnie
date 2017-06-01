@@ -38,7 +38,6 @@ public class WoodProvider implements IWoodProvider {
 		TextureMap textureMap = FMLClientHandler.instance().getClient().getTextureMapBlocks();
 		trunk = textureMap.registerSprite(new ResourceLocation(type.getHeartTexture()));
 		bark = textureMap.registerSprite(new ResourceLocation(type.getBarkTexture()));
-
 	}
 
 	@Override

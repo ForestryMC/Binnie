@@ -3,7 +3,11 @@ package binnie.extrabees.genetics.effect;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.genetics.ExtraBeesFlowers;
 import binnie.extrabees.utils.Utils;
-import forestry.api.apiculture.*;
+import forestry.api.apiculture.BeeManager;
+import forestry.api.apiculture.IAlleleBeeEffect;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.IBeeHousing;
+import forestry.api.apiculture.IBeekeepingLogic;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IEffectData;
 import forestry.core.render.ParticleRender;
@@ -72,16 +76,17 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	BonemealMushroom,
 	Power;
 
-	private String fx;
-	private boolean combinable;
-	private boolean dominant;
-	private int id;
-	private String uid;
 	private static final List<Birthday> birthdays = new ArrayList<>();
 
 	static {
 		birthdays.add(new Birthday(3, 10, "Binnie"));
 	}
+
+	private String fx;
+	private boolean combinable;
+	private boolean dominant;
+	private int id;
+	private String uid;
 
 	ExtraBeesEffect() {
 		this.fx = "";
@@ -106,8 +111,18 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 		}
 	}
 
-	private void setFX(final String string) {
-		this.fx = "particles/" + string;
+	public static void doAcid(final World world, final BlockPos pos) {
+		final IBlockState blockState = world.getBlockState(pos);
+		final Block block = blockState.getBlock();
+		if (block == Blocks.COBBLESTONE || block == Blocks.STONE) {
+			world.setBlockState(pos, Blocks.GRAVEL.getDefaultState());
+		} else if (block == Blocks.DIRT | block == Blocks.GRASS) {
+			world.setBlockState(pos, Blocks.SAND.getDefaultState());
+		}
+	}
+
+	public static int wearsItems(final EntityPlayer player) {
+		return BeeManager.armorApiaristHelper.wearsItems(player, "", false);
 	}
 
 	public void register() {
@@ -161,16 +176,6 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 
 	private boolean anyPlayerInRange(final World world, final BlockPos pos, final int distance) {
 		return world.getClosestPlayer(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, distance, false) != null;
-	}
-
-	public static void doAcid(final World world, final BlockPos pos) {
-		final IBlockState blockState = world.getBlockState(pos);
-		final Block block = blockState.getBlock();
-		if (block == Blocks.COBBLESTONE || block == Blocks.STONE) {
-			world.setBlockState(pos, Blocks.GRAVEL.getDefaultState());
-		} else if (block == Blocks.DIRT | block == Blocks.GRASS) {
-			world.setBlockState(pos, Blocks.SAND.getDefaultState());
-		}
 	}
 
 	@Override
@@ -472,9 +477,9 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	protected Vec3i getModifiedArea(final IBeeGenome genome, final IBeeHousing housing) {
 		Vec3i territory = genome.getTerritory();
 		territory = new Vec3i(
-				territory.getX() * (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f) * 3.0f),
-				territory.getY() * (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f) * 3.0f),
-				territory.getZ() * (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f) * 3.0f)
+			territory.getX() * (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f) * 3.0f),
+			territory.getY() * (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f) * 3.0f),
+			territory.getZ() * (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f) * 3.0f)
 		);
 		if (territory.getX() < 1) {
 			territory = new Vec3i(1, territory.getY(), territory.getZ());
@@ -501,6 +506,10 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 		return this.fx;
 	}
 
+	private void setFX(final String string) {
+		this.fx = "particles/" + string;
+	}
+
 	public <T extends Entity> List<T> getEntities(final Class<T> eClass, final IBeeGenome genome, final IBeeHousing housing) {
 		final Vec3i area = genome.getTerritory();
 		final int[] offset = {-Math.round(area.getX() / 2), -Math.round(area.getY() / 2), -Math.round(area.getZ() / 2)};
@@ -510,10 +519,6 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 		return housing.getWorldObj().getEntitiesWithinAABB(eClass, box);
 	}
 
-	public static int wearsItems(final EntityPlayer player) {
-		return BeeManager.armorApiaristHelper.wearsItems(player, "", false);
-	}
-
 	@Override
 	public String getUnlocalizedName() {
 		return this.getUID();
@@ -521,15 +526,15 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 
 	public static class Birthday {
 
+		private final int month;
+		private final int date;
+		private final String name;
+
 		private Birthday(final int month, final int date, final String name) {
 			this.month = month;
 			this.date = date + 1;
 			this.name = name;
 		}
-
-		private final int month;
-		private final int date;
-		private final String name;
 
 		public boolean isToday() {
 			return Calendar.getInstance().get(Calendar.DATE) == this.date && Calendar.getInstance().get(Calendar.MONTH) == this.month;
@@ -538,6 +543,5 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 		public String getName() {
 			return this.name;
 		}
-
 	}
 }

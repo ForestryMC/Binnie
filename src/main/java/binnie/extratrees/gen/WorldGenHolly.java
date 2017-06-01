@@ -42,6 +42,5 @@ public class WorldGenHolly {
 			this.height = this.determineHeight(4, 2);
 			this.girth = this.determineGirth(this.treeGen.getGirth());
 		}
-
 	}
 }

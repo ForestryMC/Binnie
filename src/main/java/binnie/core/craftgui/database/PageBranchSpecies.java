@@ -15,9 +15,9 @@ public class PageBranchSpecies extends PageBranch {
 	private ControlText pageBranchSpecies_title;
 	private ControlSpeciesBox pageBranchSpecies_speciesList;
 
-//	@Mod.EventHandler
-//	public void onHandleEvent(final EventValueChanged<IAlleleSpecies> event) {
-//	}
+	/*@Mod.EventHandler
+		public void onHandleEvent(final EventValueChanged<IAlleleSpecies> event) {
+	}*/
 
 	public PageBranchSpecies(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);

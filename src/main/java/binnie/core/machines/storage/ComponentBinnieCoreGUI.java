@@ -17,7 +17,6 @@ class ComponentBinnieCoreGUI extends MachineComponent implements IInteraction.Ri
 		this.id = id;
 	}
 
-
 	@Override
 	public void onRightClick(final World world, final EntityPlayer player, final BlockPos pos) {
 		BinnieCore.getBinnieProxy().openGui(this.id, player, pos);

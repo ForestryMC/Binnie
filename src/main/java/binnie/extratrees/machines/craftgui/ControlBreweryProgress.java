@@ -26,6 +26,11 @@ public class ControlBreweryProgress extends ControlProgressBase {
 	static Texture Brewery = new StandardTexture(0, 69, 34, 39, ExtraTreeTexture.Gui);
 	static Texture BreweryOverlay = new StandardTexture(34, 69, 34, 39, ExtraTreeTexture.Gui);
 
+	protected ControlBreweryProgress(final IWidget parent, final int x, final int y) {
+		super(parent, x, y, 34, 39);
+		this.addAttribute(Attribute.MouseOver);
+	}
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
@@ -67,10 +72,4 @@ public class ControlBreweryProgress extends ControlProgressBase {
 	@Override
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 	}
-
-	protected ControlBreweryProgress(final IWidget parent, final int x, final int y) {
-		super(parent, x, y, 34, 39);
-		this.addAttribute(Attribute.MouseOver);
-	}
-
 }

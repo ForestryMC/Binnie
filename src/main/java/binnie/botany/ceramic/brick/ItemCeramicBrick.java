@@ -25,7 +25,7 @@ public class ItemCeramicBrick extends ItemBlock implements IColoredItem {
 		} else if (tintIndex == 2) {
 			return ceramic.colorSecond.getColor(false);
 		}
-		return 16777215;
+		return 0xffffff;
 	}
 
 	@Override

@@ -34,9 +34,9 @@ public class SequencerRecipeWrapper extends BlankRecipeWrapper {
 	@Override
 	public void getIngredients(IIngredients ingredients) {
 		ingredients.setInputs(ItemStack.class, Arrays.asList(
-				input,
-				GeneticsItems.FluorescentDye.get(1),
-				new ItemStack(Genetics.items().database)
+			input,
+			GeneticsItems.FluorescentDye.get(1),
+			new ItemStack(Genetics.items().database)
 		));
 
 		ingredients.setOutput(ItemStack.class, GeneticsItems.EmptySequencer.get(1));

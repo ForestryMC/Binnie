@@ -37,5 +37,4 @@ public class ItemBeehive extends ItemBlock {
 	public String getItemStackDisplayName(final ItemStack itemStack) {
 		return EnumHiveType.values()[itemStack.getItemDamage()].toString() + " Hive";
 	}
-
 }

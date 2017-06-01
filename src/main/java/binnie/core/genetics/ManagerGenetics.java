@@ -11,7 +11,16 @@ import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.IBeeRoot;
 import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.arboriculture.TreeManager;
-import forestry.api.genetics.*;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.EnumTolerance;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleFloat;
+import forestry.api.genetics.IAlleleInteger;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IGenome;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.lepidopterology.ButterflyManager;
 import forestry.api.lepidopterology.IButterflyRoot;
 import net.minecraft.item.ItemStack;
@@ -20,14 +29,20 @@ import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeSet;
 
 public class ManagerGenetics extends ManagerBase {
+	private final Map<ISpeciesRoot, BreedingSystem> BREEDING_SYSTEMS;
 	public BreedingSystem beeBreedingSystem;
 	public BreedingSystem treeBreedingSystem;
 	public BreedingSystem mothBreedingSystem;
 	public BreedingSystem flowerBreedingSystem;
-	private final Map<ISpeciesRoot, BreedingSystem> BREEDING_SYSTEMS;
 	private List<IChromosomeType> invalidChromosomeTypes;
 	private Map<ISpeciesRoot, Map<IChromosomeType, List<IAllele>>> chromosomeArray;
 

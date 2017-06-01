@@ -23,12 +23,26 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-/**
- * Created by Elec332 on 12-5-2017.
- */
 public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
 
 	private static final ModelManager modelManager = ModelManager.getInstance();
+
+	private static IBakedModel bakeModelFor(Block block) {
+		return new BlankModel() {
+
+			@Override
+			protected ItemOverrideList createOverrides() {
+				return new ItemOverrideList(ImmutableList.of()) {
+
+					@Override
+					@SuppressWarnings("deprecation")
+					public IBakedModel handleItemState(IBakedModel originalModel, ItemStack stack, @Nullable World world, @Nullable EntityLivingBase entity) {
+						return Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().getModelForState(block.getStateFromMeta(stack.getMetadata()));
+					}
+				};
+			}
+		};
+	}
 
 	@Override
 	public Block registerBlock(Block block) {
@@ -49,34 +63,14 @@ public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
 	}
 
 	@SubscribeEvent
-	public void onModelsBaked(ModelBakeEvent event){
+	public void onModelsBaked(ModelBakeEvent event) {
 		IRegistry<ModelResourceLocation, IBakedModel> registry = event.getModelRegistry();
 		registerItemBlockLink(new ExtraBeesResourceLocation("alveary"), ExtraBees.alveary, registry);
 		registerItemBlockLink(new ExtraBeesResourceLocation("ectoplasm"), ExtraBees.ectoplasm, registry);
 		registerItemBlockLink(new ExtraBeesResourceLocation("hive"), ExtraBees.hive, registry);
 	}
 
-	private void registerItemBlockLink(ResourceLocation item, Block block, IRegistry<ModelResourceLocation, IBakedModel> registry){
+	private void registerItemBlockLink(ResourceLocation item, Block block, IRegistry<ModelResourceLocation, IBakedModel> registry) {
 		registry.putObject(new ModelResourceLocation(item, "inventory"), bakeModelFor(block));
 	}
-
-	private static IBakedModel bakeModelFor(Block block){
-		return new BlankModel() {
-
-			@Override
-			protected ItemOverrideList createOverrides() {
-				return new ItemOverrideList(ImmutableList.of()){
-
-					@Override
-					@SuppressWarnings("deprecation")
-					public IBakedModel handleItemState(IBakedModel originalModel, ItemStack stack, @Nullable World world, @Nullable EntityLivingBase entity) {
-						return Minecraft.getMinecraft().getBlockRendererDispatcher().getBlockModelShapes().getModelForState(block.getStateFromMeta(stack.getMetadata()));
-					}
-
-				};
-			}
-
-		};
-	}
-
 }

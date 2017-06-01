@@ -77,12 +77,12 @@ public class ControlGeneScroll extends Control implements IControlValue<Breeding
 	}
 
 	@Override
-	public void setValue(final BreedingSystem system) {
-		this.setGenes(system);
+	public BreedingSystem getValue() {
+		return this.system;
 	}
 
 	@Override
-	public BreedingSystem getValue() {
-		return this.system;
+	public void setValue(final BreedingSystem system) {
+		this.setGenes(system);
 	}
 }

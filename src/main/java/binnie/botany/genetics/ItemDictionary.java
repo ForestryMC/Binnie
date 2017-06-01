@@ -17,7 +17,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemDictionary extends Item implements IItemModelRegister {
-
 	public ItemDictionary() {
 		this.setCreativeTab(CreativeTabBotany.instance);
 		this.setUnlocalizedName("database");

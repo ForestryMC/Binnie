@@ -6,7 +6,11 @@ import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.events.EventMouse;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.Point;
-import binnie.core.craftgui.minecraft.*;
+import binnie.core.craftgui.minecraft.CustomSlot;
+import binnie.core.craftgui.minecraft.GuiCraftGUI;
+import binnie.core.craftgui.minecraft.InventoryType;
+import binnie.core.craftgui.minecraft.Window;
+import binnie.core.craftgui.minecraft.WindowInventory;
 import binnie.core.craftgui.renderer.RenderUtil;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.machines.inventory.InventorySlot;
@@ -37,27 +41,6 @@ public class ControlSlot extends ControlSlotBase {
 	static {
 		for (final EnumHighlighting h : EnumHighlighting.values()) {
 			ControlSlot.highlighting.put(h, new ArrayList<>());
-		}
-	}
-
-	public static class Builder {
-		private final IWidget parent;
-		private final int x;
-		private final int y;
-
-		public Builder(final IWidget parent, final int x, final int y) {
-			this.parent = parent;
-			this.x = x;
-			this.y = y;
-		}
-
-		public ControlSlot assign(final int index) {
-			return assign(InventoryType.Machine, index);
-		}
-
-		public ControlSlot assign(final InventoryType inventory, final int index) {
-			Slot slot = ((Window) parent.getTopParent()).getContainer().getOrCreateSlot(inventory, index);
-			return new ControlSlot(parent, x, y, slot);
 		}
 	}
 
@@ -204,6 +187,27 @@ public class ControlSlot extends ControlSlotBase {
 			return customSlot.getInventorySlot();
 		} else {
 			return null;
+		}
+	}
+
+	public static class Builder {
+		private final IWidget parent;
+		private final int x;
+		private final int y;
+
+		public Builder(final IWidget parent, final int x, final int y) {
+			this.parent = parent;
+			this.x = x;
+			this.y = y;
+		}
+
+		public ControlSlot assign(final int index) {
+			return assign(InventoryType.Machine, index);
+		}
+
+		public ControlSlot assign(final InventoryType inventory, final int index) {
+			Slot slot = ((Window) parent.getTopParent()).getContainer().getOrCreateSlot(inventory, index);
+			return new ControlSlot(parent, x, y, slot);
 		}
 	}
 }

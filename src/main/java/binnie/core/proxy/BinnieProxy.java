@@ -47,10 +47,10 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 		return false;
 	}
 
-//	@Override
-//	public int getUniqueRenderID() {
-//		return RenderingRegistry.getNextAvailableRenderId();
-//	}
+	/*@Override
+	public int getUniqueRenderID() {
+		return RenderingRegistry.getNextAvailableRenderId();
+	}*/
 
 	@Override
 	public void openGui(final AbstractMod mod, final int id, final EntityPlayer player, final BlockPos pos) {
@@ -62,9 +62,9 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 		return true;
 	}
 
-//	@Override
-//	public void registerCustomItemRenderer(final Item item, final IItemRenderer itemRenderer) {
-//	}
+	/*@Override
+	public void registerCustomItemRenderer(final Item item, final IItemRenderer itemRenderer) {
+	}*/
 
 	public TextureAtlasSprite getTextureAtlasSprite(ResourceLocation location) {
 		throw new UnsupportedOperationException("Cannot call getTextureAtlasSprite on server side");
@@ -137,16 +137,16 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 
 	}
 
-//	@Override
-//	public IIcon getIcon(final IIconRegister register, final String mod, final String name) {
-//		return null;
-//	}
-//
-//	public void handleTextureRefresh(final IIconRegister register, final int type) {
-//	}
-//
-//	public void handlePostTextureRefresh(final IIconRegister register, final int type) {
-//	}
+	/*@Override
+	public IIcon getIcon(final IIconRegister register, final String mod, final String name) {
+		return null;
+	}
+
+	public void handleTextureRefresh(final IIconRegister register, final int type) {
+	}
+
+	public void handlePostTextureRefresh(final IIconRegister register, final int type) {
+	}*/
 
 	public short getUniqueTextureUID() {
 		final short uniqueTextureUID = this.uniqueTextureUID;

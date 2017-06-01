@@ -17,14 +17,14 @@ import java.util.List;
 public class ControlSpeciesBox extends ControlListBox<IAlleleSpecies> {
 	private IClassification branch;
 
-	@Override
-	public IWidget createOption(final IAlleleSpecies value, final int y) {
-		return new ControlSpeciesBoxOption(this.getContent(), value, y);
-	}
-
 	public ControlSpeciesBox(final IWidget parent, final int x, final int y, final int width, final int height) {
 		super(parent, x, y, width, height, 12);
 		this.branch = null;
+	}
+
+	@Override
+	public IWidget createOption(final IAlleleSpecies value, final int y) {
+		return new ControlSpeciesBoxOption(this.getContent(), value, y);
 	}
 
 	public void setBranch(final IClassification branch) {
