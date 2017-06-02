@@ -36,7 +36,7 @@ class ControlMutationSymbol extends Control implements ITooltip {
 		super(parent, x, y, 16 + type * 16, 16.0f);
 		value = null;
 		this.type = type;
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
 	}
 
 	public void setValue(IMutation value) {

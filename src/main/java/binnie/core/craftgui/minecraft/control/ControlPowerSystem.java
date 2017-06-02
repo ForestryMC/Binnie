@@ -16,7 +16,7 @@ public class ControlPowerSystem extends Control implements ITooltip {
 
 	public ControlPowerSystem(IWidget parent, float x, float y, PowerSystem system) {
 		super(parent, x, y, 16.0f, 16.0f);
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
 		this.system = system;
 	}
 
@@ -27,7 +27,7 @@ public class ControlPowerSystem extends Control implements ITooltip {
 
 	@Override
 	public void getTooltip(Tooltip tooltip) {
-		tooltip.setType(Tooltip.Type.Power);
+		tooltip.setType(Tooltip.Type.POWER);
 		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.powerSupply"));
 		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.poweredBy", system.getUnitName()));
 		tooltip.setMaxWidth(200);

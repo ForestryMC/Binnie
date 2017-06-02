@@ -22,7 +22,7 @@ public abstract class ControlToleranceBar<T extends Enum<T>> extends Control imp
 
 	public ControlToleranceBar(IWidget parent, float x, float y, float width, float height, Class<T> clss) {
 		super(parent, x, y, width, height);
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
 		enumClass = clss;
 		tolerated = EnumSet.noneOf(enumClass);
 		fullSet = EnumSet.allOf(enumClass);

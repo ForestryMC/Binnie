@@ -45,79 +45,18 @@ import java.util.ArrayList;
 import java.util.Deque;
 
 public abstract class Window extends TopLevelWidget implements INetwork.RecieveGuiNBT {
+	protected float titleButtonLeft;
+	protected float titleButtonRight;
 	private GuiCraftGUI gui;
 	private ContainerCraftGUI container;
 	private WindowInventory windowInventory;
 	private ControlText title;
-	protected float titleButtonLeft;
-	protected float titleButtonRight;
 	private StandardTexture bgText1;
 	private StandardTexture bgText2;
 	private boolean hasBeenInitialised;
 	private EntityPlayer player;
 	private IInventory entityInventory;
 	private Side side;
-
-	public void getTooltip(Tooltip tooltip) {
-		Deque<IWidget> queue = calculateMousedOverWidgets();
-		while (!queue.isEmpty()) {
-			IWidget widget = queue.removeFirst();
-			if (widget.isEnabled() && widget.isVisible()) {
-				if (!widget.calculateIsMouseOver()) {
-					continue;
-				}
-				if (widget instanceof ITooltip) {
-					((ITooltip) widget).getTooltip(tooltip);
-					if (tooltip.exists()) {
-						return;
-					}
-				}
-				if (widget.hasAttribute(WidgetAttribute.BlockTooltip)) {
-					return;
-				}
-			}
-		}
-	}
-
-	public void getHelpTooltip(MinecraftTooltip tooltip) {
-		Deque<IWidget> queue = calculateMousedOverWidgets();
-		while (!queue.isEmpty()) {
-			IWidget widget = queue.removeFirst();
-			if (widget.isEnabled() && widget.isVisible()) {
-				if (!widget.calculateIsMouseOver()) {
-					continue;
-				}
-				if (widget instanceof ITooltipHelp) {
-					((ITooltipHelp) widget).getHelpTooltip(tooltip);
-					if (tooltip.exists()) {
-						return;
-					}
-				}
-				if (widget.hasAttribute(WidgetAttribute.BlockTooltip)) {
-					return;
-				}
-			}
-		}
-	}
-
-	protected abstract AbstractMod getMod();
-
-	protected abstract String getName();
-
-	public BinnieResource getBackgroundTextureFile(int i) {
-		return Binnie.Resource.getPNG(getMod(), ResourceType.GUI, getName() + ((i == 1) ? "" : i));
-	}
-
-	public boolean showHelpButton() {
-		return Machine.getInterface(IInventoryMachine.class, getInventory()) != null;
-	}
-
-	public String showInfoButton() {
-		if (Machine.getInterface(IMachineInformation.class, getInventory()) != null) {
-			return Machine.getInterface(IMachineInformation.class, getInventory()).getInformation();
-		}
-		return null;
-	}
 
 	public Window(float width, float height, EntityPlayer player, IInventory inventory, Side side) {
 		this.side = side;
@@ -161,6 +100,71 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 				}
 			}
 		});
+	}
+
+	public static <T extends Window> T get(IWidget widget) {
+		return (T) widget.getSuperParent();
+	}
+
+	public void getTooltip(Tooltip tooltip) {
+		Deque<IWidget> queue = calculateMousedOverWidgets();
+		while (!queue.isEmpty()) {
+			IWidget widget = queue.removeFirst();
+			if (widget.isEnabled() && widget.isVisible()) {
+				if (!widget.calculateIsMouseOver()) {
+					continue;
+				}
+				if (widget instanceof ITooltip) {
+					((ITooltip) widget).getTooltip(tooltip);
+					if (tooltip.exists()) {
+						return;
+					}
+				}
+				if (widget.hasAttribute(WidgetAttribute.BLOCK_TOOLTIP)) {
+					return;
+				}
+			}
+		}
+	}
+
+	public void getHelpTooltip(MinecraftTooltip tooltip) {
+		Deque<IWidget> queue = calculateMousedOverWidgets();
+		while (!queue.isEmpty()) {
+			IWidget widget = queue.removeFirst();
+			if (widget.isEnabled() && widget.isVisible()) {
+				if (!widget.calculateIsMouseOver()) {
+					continue;
+				}
+				if (widget instanceof ITooltipHelp) {
+					((ITooltipHelp) widget).getHelpTooltip(tooltip);
+					if (tooltip.exists()) {
+						return;
+					}
+				}
+				if (widget.hasAttribute(WidgetAttribute.BLOCK_TOOLTIP)) {
+					return;
+				}
+			}
+		}
+	}
+
+	protected abstract AbstractMod getMod();
+
+	protected abstract String getName();
+
+	public BinnieResource getBackgroundTextureFile(int i) {
+		return Binnie.Resource.getPNG(getMod(), ResourceType.GUI, getName() + ((i == 1) ? "" : i));
+	}
+
+	public boolean showHelpButton() {
+		return Machine.getInterface(IInventoryMachine.class, getInventory()) != null;
+	}
+
+	public String showInfoButton() {
+		if (Machine.getInterface(IMachineInformation.class, getInventory()) != null) {
+			return Machine.getInterface(IMachineInformation.class, getInventory()).getInformation();
+		}
+		return null;
 	}
 
 	public void setTitle(String title) {
@@ -220,7 +224,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 
 	@Override
 	public void onUpdateClient() {
-		ControlSlot.highlighting.get(EnumHighlighting.Help).clear();
+		ControlSlot.highlighting.get(EnumHighlighting.HELP).clear();
 		ControlSlot.shiftClickActive = false;
 	}
 
@@ -239,6 +243,12 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 		return null;
 	}
 
+	public void setHeldItemStack(ItemStack stack) {
+		if (player != null) {
+			player.inventory.setItemStack(stack);
+		}
+	}
+
 	public IInventory getInventory() {
 		return entityInventory;
 	}
@@ -249,12 +259,6 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 	}
 
 	public void onClose() {
-	}
-
-	public void setHeldItemStack(ItemStack stack) {
-		if (player != null) {
-			player.inventory.setItemStack(stack);
-		}
 	}
 
 	public boolean isServer() {
@@ -306,9 +310,5 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 
 	public Texture getBackground2() {
 		return bgText2;
-	}
-
-	public static <T extends Window> T get(IWidget widget) {
-		return (T) widget.getSuperParent();
 	}
 }

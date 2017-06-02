@@ -43,7 +43,7 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 		}
 
 		discovered = state;
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
 	}
 
 	public ControlDatabaseIndividualDisplay(IWidget parent, float x, float y) {

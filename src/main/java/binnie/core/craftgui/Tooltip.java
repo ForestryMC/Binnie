@@ -15,7 +15,7 @@ public class Tooltip {
 
 	public Tooltip() {
 		tooltip = new ArrayList<>();
-		type = Type.Standard;
+		type = Type.STANDARD;
 		maxWidth = 256;
 	}
 
@@ -41,11 +41,6 @@ public class Tooltip {
 		return tooltip.size() > 0;
 	}
 
-	public String getLine(int index) {
-		String string = getList().get(index);
-		return string;
-	}
-
 	public void add(List list) {
 		for (Object obj : list) {
 			tooltip.add((String) obj);
@@ -69,11 +64,11 @@ public class Tooltip {
 	}
 
 	public enum Type implements ITooltipType {
-		Standard,
-		Help,
-		Information,
-		User,
-		Power
+		STANDARD,
+		HELP,
+		INFORMATION,
+		USER,
+		POWER
 	}
 
 	public interface ITooltipType {

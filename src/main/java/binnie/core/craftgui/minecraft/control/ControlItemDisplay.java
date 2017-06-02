@@ -14,14 +14,9 @@ import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
 
 public class ControlItemDisplay extends Control implements ITooltip {
-	private ItemStack itemStack;
 	public boolean hastooltip;
+	private ItemStack itemStack;
 	private boolean rotating;
-
-	public void setTooltip() {
-		hastooltip = true;
-		addAttribute(WidgetAttribute.MouseOver);
-	}
 
 	public ControlItemDisplay(IWidget parent, float x, float y) {
 		this(parent, x, y, 16.0f);
@@ -42,10 +37,16 @@ public class ControlItemDisplay extends Control implements ITooltip {
 		rotating = false;
 	}
 
+	public void setTooltip() {
+		hastooltip = true;
+		addAttribute(WidgetAttribute.MOUSE_OVER);
+	}
+
 	@Override
 	public void onRenderBackground() {
 		IPoint relativeToWindow = getAbsolutePosition().sub(getSuperParent().getPosition());
-		if (relativeToWindow.x() > Window.get(this).getSize().x() + 100.0f || relativeToWindow.y() > Window.get(this).getSize().y() + 100.0f) {
+		if (relativeToWindow.x() > Window.get(this).getSize().x() + 100.0f ||
+			relativeToWindow.y() > Window.get(this).getSize().y() + 100.0f) {
 			return;
 		}
 
@@ -66,12 +67,12 @@ public class ControlItemDisplay extends Control implements ITooltip {
 		}
 	}
 
-	public void setItemStack(ItemStack itemStack) {
-		this.itemStack = itemStack;
-	}
-
 	public ItemStack getItemStack() {
 		return itemStack;
+	}
+
+	public void setItemStack(ItemStack itemStack) {
+		this.itemStack = itemStack;
 	}
 
 	@Override

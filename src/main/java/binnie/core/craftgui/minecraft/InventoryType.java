@@ -1,7 +1,6 @@
 package binnie.core.craftgui.minecraft;
 
-public enum InventoryType
-{
+public enum InventoryType {
 	Player,
 	Machine,
 	Window,

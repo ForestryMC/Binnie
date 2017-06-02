@@ -23,7 +23,7 @@ class ControlSpeciesBoxOption extends ControlTextOption<IAlleleSpecies> {
 
 		if (controlBee.discovered == EnumDiscoveryState.SHOW) {
 			textWidget.setValue(option.getName());
-			addAttribute(WidgetAttribute.MouseOver);
+			addAttribute(WidgetAttribute.MOUSE_OVER);
 		} else {
 			textWidget.setValue(I18N.localise(BinnieCore.instance, "gui.database.discovered.undiscovered"));
 		}

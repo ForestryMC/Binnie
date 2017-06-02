@@ -38,7 +38,7 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 
 	public void setTooltip() {
 		hastooltip = true;
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
 	}
 
 	@Override

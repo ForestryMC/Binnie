@@ -61,7 +61,7 @@ public class WindowGenesis extends Window {
 	@Override
 	public void initialiseClient() {
 		new ControlPlayerInventory(this);
-		setTitle("Genesis");
+		setTitle(getName());
 		ControlTabBar<BreedingSystem> tabSystems = new ControlTabBar<BreedingSystem>(this, 8.0f, 28.0f, 23.0f, 100.0f, Position.LEFT) {
 			@Override
 			public ControlTab<BreedingSystem> createTab(float x, float y, float w, float h, BreedingSystem value) {
@@ -188,14 +188,7 @@ public class WindowGenesis extends Window {
 			ControlItemDisplay display = new ControlItemDisplay(panelPickup, 4 + i % 3 * 18, 4 + i / 3 * 18);
 			display.setItemStack(stack);
 			display.setTooltip();
-			display.addEventHandler(new EventMouse.Down.Handler() {
-				@Override
-				public void onEvent(EventMouse.Down event) {
-					NBTTagCompound nbt = new NBTTagCompound();
-					stack.writeToNBT(nbt);
-					Window.get(event.getOrigin()).sendClientAction("genesis", nbt);
-				}
-			}.setOrigin(EventHandler.Origin.Self, display));
+			display.addEventHandler(new MouseDownHandler(stack).setOrigin(EventHandler.Origin.Self, display));
 			i++;
 		}
 	}
@@ -226,6 +219,21 @@ public class WindowGenesis extends Window {
 			if (player instanceof EntityPlayerMP) {
 				((EntityPlayerMP) player).updateHeldItem();
 			}
+		}
+	}
+
+	private static class MouseDownHandler extends EventMouse.Down.Handler {
+		private final ItemStack stack;
+
+		public MouseDownHandler(ItemStack stack) {
+			this.stack = stack;
+		}
+
+		@Override
+		public void onEvent(EventMouse.Down event) {
+			NBTTagCompound nbt = new NBTTagCompound();
+			stack.writeToNBT(nbt);
+			Window.get(event.getOrigin()).sendClientAction("genesis", nbt);
 		}
 	}
 }

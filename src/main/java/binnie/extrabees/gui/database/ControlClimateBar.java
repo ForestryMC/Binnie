@@ -30,7 +30,7 @@ public class ControlClimateBar extends Control implements ITooltip {
 		tolerated = new ArrayList<>();
 		tempColours = new int[]{0x00fffb, 0x78bbff, 0x4fff30, 0xffff00, 0xffa200, 0xff0000};
 		humidColours = new int[]{0xffe7a3, 0x1aff00, 0x307cff};
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
 	}
 
 	public ControlClimateBar(IWidget parent, int x, int y, int width, int height, boolean humidity) {
@@ -38,7 +38,7 @@ public class ControlClimateBar extends Control implements ITooltip {
 		tolerated = new ArrayList<>();
 		tempColours = new int[]{0x00fffb, 0x78bbff, 0x4fff30, 0xffff00, 0xffa200, 0xff0000};
 		humidColours = new int[]{0xffe7a3, 0x1aff00, 0x307cff};
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
 		isHumidity = true;
 	}
 

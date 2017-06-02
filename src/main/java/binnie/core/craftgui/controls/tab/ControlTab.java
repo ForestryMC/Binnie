@@ -25,7 +25,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 		super(parent, x, y, w, h);
 		setValue(value);
 		tabBar = parent;
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
 		addSelfEventHandler(new EventMouse.Down.Handler() {
 			@Override
 			public void onEvent(EventMouse.Down event) {

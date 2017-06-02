@@ -16,7 +16,7 @@ public class ControlButton extends Control {
 
 	public ControlButton(IWidget parent, float x, float y, float width, float height) {
 		super(parent, x, y, width, height);
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
 		mouseHandler.setOrigin(EventHandler.Origin.Self, this);
 		addEventHandler(mouseHandler);
 	}

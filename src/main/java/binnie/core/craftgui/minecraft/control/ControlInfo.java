@@ -16,7 +16,7 @@ public class ControlInfo extends Control implements ITooltip {
 	public ControlInfo(IWidget parent, float x, float y, String info) {
 		super(parent, x, y, 16.0f, 16.0f);
 		this.info = info;
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
 	}
 
 	@Override
@@ -26,7 +26,7 @@ public class ControlInfo extends Control implements ITooltip {
 
 	@Override
 	public void getTooltip(Tooltip tooltip) {
-		tooltip.setType(Tooltip.Type.Information);
+		tooltip.setType(Tooltip.Type.INFORMATION);
 		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.info"));
 		tooltip.add(info);
 		tooltip.setMaxWidth(200);

@@ -2,8 +2,7 @@ package binnie.core.craftgui.minecraft;
 
 import binnie.core.IInitializable;
 
-public class ModuleCraftGUI implements IInitializable
-{
+public class ModuleCraftGUI implements IInitializable {
 	@Override
 	public void preInit() {
 	}

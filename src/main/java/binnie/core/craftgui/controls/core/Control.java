@@ -53,7 +53,7 @@ public class Control extends Widget implements ITooltipHelp, ITooltip {
 	}
 
 	public void addTooltip(String string) {
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
 		tooltipStrings.add(string);
 	}
 

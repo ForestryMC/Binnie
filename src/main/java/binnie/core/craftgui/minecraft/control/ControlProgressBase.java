@@ -15,7 +15,29 @@ public class ControlProgressBase extends Control {
 	public ControlProgressBase(IWidget parent, float x, float y, float w, float h) {
 		super(parent, x, y, w, h);
 		progress = 0.0f;
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
+	}
+
+	public static String convertTime(int time) {
+		int seconds = (int) (time / 20.0f);
+		int minutes = 0;
+		while (seconds >= 60) {
+			minutes++;
+			seconds -= 60;
+		}
+
+		String ts = "";
+		if (minutes > 0) {
+			ts = ts + minutes + " minute" + ((minutes == 1) ? "" : "s");
+		}
+
+		if (seconds > 0) {
+			if (ts.length() > 0) {
+				ts += " ";
+			}
+			ts = ts + seconds + " second" + ((seconds == 1) ? "" : "s");
+		}
+		return ts;
 	}
 
 	public void setProgress(float progress) {
@@ -61,27 +83,5 @@ public class ControlProgressBase extends Control {
 				tooltip.add("Energy Cost: " + process.getEnergyPerTick() * 10.0f + " RF / tick");
 			}
 		}
-	}
-
-	public static String convertTime(int time) {
-		int seconds = (int) (time / 20.0f);
-		int minutes = 0;
-		while (seconds >= 60) {
-			minutes++;
-			seconds -= 60;
-		}
-
-		String ts = "";
-		if (minutes > 0) {
-			ts = ts + minutes + " minute" + ((minutes == 1) ? "" : "s");
-		}
-
-		if (seconds > 0) {
-			if (ts.length() > 0) {
-				ts += " ";
-			}
-			ts = ts + seconds + " second" + ((seconds == 1) ? "" : "s");
-		}
-		return ts;
 	}
 }

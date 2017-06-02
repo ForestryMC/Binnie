@@ -253,7 +253,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 	static class ControlUnknownMutation extends Control {
 		public ControlUnknownMutation(IWidget parent, float x, float y, float w, float h) {
 			super(parent, x, y, w, h);
-			addAttribute(WidgetAttribute.MouseOver);
+			addAttribute(WidgetAttribute.MOUSE_OVER);
 			addTooltip("Unknown Mutation");
 		}
 

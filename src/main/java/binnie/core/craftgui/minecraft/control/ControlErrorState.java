@@ -18,6 +18,12 @@ public class ControlErrorState extends Control implements ITooltip {
 	private ErrorState errorState;
 	private int type;
 
+	public ControlErrorState(IWidget parent, float x, float y) {
+		super(parent, x, y, 16.0f, 16.0f);
+		type = 0;
+		addAttribute(WidgetAttribute.MOUSE_OVER);
+	}
+
 	@Override
 	public void onRenderBackground() {
 		Object texture = CraftGUITexture.StateWarning;
@@ -38,8 +44,8 @@ public class ControlErrorState extends Control implements ITooltip {
 	public void onUpdateClient() {
 		errorState = getError();
 		type = Window.get(this).getContainer().getErrorType();
-		ControlSlot.highlighting.get(EnumHighlighting.Error).clear();
-		ControlSlot.highlighting.get(EnumHighlighting.Warning).clear();
+		ControlSlot.highlighting.get(EnumHighlighting.ERROR).clear();
+		ControlSlot.highlighting.get(EnumHighlighting.WARNING).clear();
 		ControlLiquidTank.tankError.clear();
 		ControlEnergyBar.isError = false;
 
@@ -58,9 +64,9 @@ public class ControlErrorState extends Control implements ITooltip {
 				}
 				if (id >= 0) {
 					if (type == 0) {
-						ControlSlot.highlighting.get(EnumHighlighting.Error).add(id);
+						ControlSlot.highlighting.get(EnumHighlighting.ERROR).add(id);
 					} else {
-						ControlSlot.highlighting.get(EnumHighlighting.Warning).add(id);
+						ControlSlot.highlighting.get(EnumHighlighting.WARNING).add(id);
 					}
 				}
 			}
@@ -73,12 +79,6 @@ public class ControlErrorState extends Control implements ITooltip {
 		}
 	}
 
-	public ControlErrorState(IWidget parent, float x, float y) {
-		super(parent, x, y, 16.0f, 16.0f);
-		type = 0;
-		addAttribute(WidgetAttribute.MouseOver);
-	}
-
 	@Override
 	public void getTooltip(Tooltip tooltipOrig) {
 		MinecraftTooltip tooltip = (MinecraftTooltip) tooltipOrig;
@@ -87,18 +87,14 @@ public class ControlErrorState extends Control implements ITooltip {
 		}
 
 		if (type == 0) {
-			tooltip.setType(MinecraftTooltip.Type.Error);
+			tooltip.setType(MinecraftTooltip.Type.ERROR);
 		} else {
-			tooltip.setType(MinecraftTooltip.Type.Warning);
+			tooltip.setType(MinecraftTooltip.Type.WARNING);
 		}
 
 		tooltip.add(errorState.toString());
 		if (errorState.getTooltip().length() > 0) {
 			tooltip.add(errorState.getTooltip());
 		}
-	}
-
-	public ErrorState getErrorState() {
-		return errorState;
 	}
 }

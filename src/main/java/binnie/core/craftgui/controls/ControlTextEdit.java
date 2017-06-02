@@ -21,8 +21,8 @@ public class ControlTextEdit extends Control implements IControlValue<String> {
 		super(parent, x, y, width, height);
 		cachedValue = "";
 		field = new GuiTextField(getWindow().getGui().getFontRenderer(), 0, 0, 10, 10);
-		addAttribute(WidgetAttribute.CanFocus);
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.CAN_FOCUS);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
 		field.setEnableBackgroundDrawing(false);
 
 		addEventHandler(new EventKey.Down.Handler() {

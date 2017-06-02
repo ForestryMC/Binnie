@@ -25,7 +25,7 @@ public class ControlChromoPicker extends Control implements ITooltip {
 		Selected = new StandardTexture(160, 18, 16, 16, ExtraBeeTexture.GUIPunnett);
 		Texture = new StandardTexture(160, 34, 16, 16, ExtraBeeTexture.GUIPunnett);
 		type = chromo;
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
 		this.parent = parent;
 		addSelfEventHandler(new EventWidget.StartMouseOver.Handler() {
 			@Override

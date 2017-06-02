@@ -26,7 +26,7 @@ public class ControlBreweryProgress extends ControlProgressBase {
 
 	protected ControlBreweryProgress(IWidget parent, float x, float y) {
 		super(parent, x, y, 34.0f, 39.0f);
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
 	}
 
 	@Override

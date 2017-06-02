@@ -90,7 +90,7 @@ public class Widget implements IWidget {
 
 	@Override
 	public IWidget addWidget(IWidget widget) {
-		if (subWidgets.size() != 0 && subWidgets.get(subWidgets.size() - 1).hasAttribute(WidgetAttribute.AlwaysOnTop)) {
+		if (subWidgets.size() != 0 && subWidgets.get(subWidgets.size() - 1).hasAttribute(WidgetAttribute.ALWAYS_ON_TOP)) {
 			subWidgets.add(subWidgets.size() - 1, widget);
 		} else {
 			subWidgets.add(widget);
@@ -214,12 +214,12 @@ public class Widget implements IWidget {
 
 	@Override
 	public boolean canMouseOver() {
-		return hasAttribute(WidgetAttribute.MouseOver);
+		return hasAttribute(WidgetAttribute.MOUSE_OVER);
 	}
 
 	@Override
 	public boolean canFocus() {
-		return hasAttribute(WidgetAttribute.CanFocus);
+		return hasAttribute(WidgetAttribute.CAN_FOCUS);
 	}
 
 	@Override
@@ -276,23 +276,25 @@ public class Widget implements IWidget {
 
 	@Override
 	public void render() {
-		if (isVisible()) {
-			CraftGUI.Render.preRender(this);
-			onRender(RenderStage.PreChildren);
-
-			for (IWidget widget : getWidgets()) {
-				widget.render();
-			}
-
-			for (IWidget widget : getWidgets()) {
-				CraftGUI.Render.preRender(widget);
-				widget.onRender(RenderStage.PostSiblings);
-				CraftGUI.Render.postRender(widget);
-			}
-
-			onRender(RenderStage.PostChildren);
-			CraftGUI.Render.postRender(this);
+		if (!isVisible()) {
+			return;
 		}
+
+		CraftGUI.Render.preRender(this);
+		onRender(RenderStage.PreChildren);
+
+		for (IWidget widget : getWidgets()) {
+			widget.render();
+		}
+
+		for (IWidget widget : getWidgets()) {
+			CraftGUI.Render.preRender(widget);
+			widget.onRender(RenderStage.PostSiblings);
+			CraftGUI.Render.postRender(widget);
+		}
+
+		onRender(RenderStage.PostChildren);
+		CraftGUI.Render.postRender(this);
 	}
 
 	@Override
@@ -308,7 +310,7 @@ public class Widget implements IWidget {
 		onUpdateClient();
 		List<IWidget> deletedWidgets = new ArrayList<IWidget>();
 		for (IWidget widget : getWidgets()) {
-			if (widget.hasAttribute(WidgetAttribute.NeedsDeletion)) {
+			if (widget.hasAttribute(WidgetAttribute.NEEDS_DELETION)) {
 				deletedWidgets.add(widget);
 			} else {
 				widget.updateClient();
@@ -471,10 +473,6 @@ public class Widget implements IWidget {
 	@Override
 	public boolean contains(IPoint position) {
 		return getArea().contains(position);
-	}
-
-	public void scheduleDeletion() {
-		addAttribute(WidgetAttribute.NeedsDeletion);
 	}
 
 	@Override
