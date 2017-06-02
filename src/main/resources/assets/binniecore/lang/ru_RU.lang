@@ -231,6 +231,17 @@ binniecore.gui.database.branch.noDesc=Описание отсутствует.
 binniecore.gui.database.furtherMutations=Дальнейшие мутации
 binniecore.gui.database.resultantMutations=Результирующие мутации
 binniecore.gui.database.descriptor=%s
+binniecore.gui.database.time.minute=1 минута
+binniecore.gui.database.time.minute=%d мин.
+binniecore.gui.database.time.second=1 секунда
+binniecore.gui.database.time.seconds=%d сек.
+binniecore.gui.database.time.progress=Прогресс
+binniecore.gui.database.time.notInProgress=Не в прогрессе
+binniecore.gui.database.time.inProgress=В прогрессе
+binniecore.gui.database.time.left=Осталось времени: %s
+binniecore.gui.database.time.total=Всего времени: %s
+binniecore.gui.database.energyCost.0=Energy Cost: %d RF
+binniecore.gui.database.energyCost.1=Energy Cost: %f RF / tick
 
 binniecore.gui.temperature.short=Темп.
 binniecore.gui.humidity.short=Влаж.

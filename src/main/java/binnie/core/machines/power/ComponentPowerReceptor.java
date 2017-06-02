@@ -156,7 +156,7 @@ public class ComponentPowerReceptor extends MachineComponent implements
 		if (getMachine().getWorld() == null) {
 			return;
 		}
-		if (Mods.IC2.active()) {
+		if (Mods.ic2.active()) {
 			do_addToEnergyNet();
 		}
 	}
@@ -165,7 +165,7 @@ public class ComponentPowerReceptor extends MachineComponent implements
 		if (getMachine().getWorld() == null) {
 			return;
 		}
-		if (Mods.IC2.active()) {
+		if (Mods.ic2.active()) {
 			do_removeFromEnergyNet();
 		}
 	}

@@ -67,7 +67,6 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 	}
 
 	public String getEpitome(float discoveredPercentage) {
-		// TODO refactor
 		int i = 0;
 		if (discoveredPercentage == 1.0f) {
 			i = 6;
@@ -223,6 +222,7 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 					discovered = true;
 				}
 			}
+
 			if (discovered) {
 				branches.add(branch);
 			}
@@ -239,6 +239,7 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 					discovered = true;
 				}
 			}
+
 			if (discovered) {
 				branches.add(branch);
 			}

@@ -62,16 +62,16 @@ public enum FluidContainer {
 				return new ItemStack(Items.bucket, 1, 0);
 
 			case Can:
-				return Mods.Forestry.stack("canEmpty");
+				return Mods.forestry.stack("canEmpty");
 
 			case Capsule:
-				return Mods.Forestry.stack("waxCapsule");
+				return Mods.forestry.stack("waxCapsule");
 
 			case Glass:
 				return new ItemStack(Items.glass_bottle, 1, 0);
 
 			case Refractory:
-				return Mods.Forestry.stack("refractoryEmpty");
+				return Mods.forestry.stack("refractoryEmpty");
 
 			case Cylinder:
 				return GeneticsItems.Cylinder.get(1);

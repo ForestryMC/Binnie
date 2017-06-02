@@ -127,7 +127,7 @@ public class ModuleGardening implements IInitializable {
 			for (int insulate = 0; insulate < 6; ++insulate) {
 				ItemStack tubes = new ItemStack(Botany.insulatedTube, 2, mat + 128 * insulate);
 				ItemStack insulateStack = ItemInsulatedTube.getInsulateStack(tubes);
-				ItemStack forestryTube = new ItemStack(Mods.Forestry.item("thermionicTubes"), 1, mat);
+				ItemStack forestryTube = new ItemStack(Mods.forestry.item("thermionicTubes"), 1, mat);
 				GameRegistry.addShapelessRecipe(tubes, forestryTube, forestryTube, insulateStack);
 			}
 		}
@@ -193,11 +193,11 @@ public class ModuleGardening implements IInitializable {
 			new ItemStack(Items.wheat_seeds),
 			new ItemStack(Items.wheat_seeds)
 		);
-		GameRegistry.addShapelessRecipe(BotanyItems.AshPowder.get(4), Mods.Forestry.stack("ash"));
-		GameRegistry.addShapelessRecipe(BotanyItems.MulchPowder.get(4), Mods.Forestry.stack("mulch"));
-		GameRegistry.addShapelessRecipe(BotanyItems.CompostPowder.get(4), Mods.Forestry.stack("fertilizerBio"));
-		GameRegistry.addShapelessRecipe(BotanyItems.FertiliserPowder.get(4), Mods.Forestry.stack("fertilizerCompound"));
-		GameRegistry.addShapelessRecipe(BotanyItems.PulpPowder.get(4), Mods.Forestry.stack("woodPulp"));
+		GameRegistry.addShapelessRecipe(BotanyItems.AshPowder.get(4), Mods.forestry.stack("ash"));
+		GameRegistry.addShapelessRecipe(BotanyItems.MulchPowder.get(4), Mods.forestry.stack("mulch"));
+		GameRegistry.addShapelessRecipe(BotanyItems.CompostPowder.get(4), Mods.forestry.stack("fertilizerBio"));
+		GameRegistry.addShapelessRecipe(BotanyItems.FertiliserPowder.get(4), Mods.forestry.stack("fertilizerCompound"));
+		GameRegistry.addShapelessRecipe(BotanyItems.PulpPowder.get(4), Mods.forestry.stack("woodPulp"));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(
 			BotanyItems.SulphurPowder.get(4),
 			new Object[]{"dustSulphur"}
@@ -212,7 +212,7 @@ public class ModuleGardening implements IInitializable {
 		));
 		ModuleGardening.queuedAcidFertilisers.put(BotanyItems.SulphurPowder.get(1), 1);
 		ModuleGardening.queuedAcidFertilisers.put(BotanyItems.MulchPowder.get(1), 1);
-		ModuleGardening.queuedAcidFertilisers.put(new ItemStack(GameRegistry.findItem("Forestry", "mulch")), 2);
+		ModuleGardening.queuedAcidFertilisers.put(new ItemStack(GameRegistry.findItem("FORESTRY", "mulch")), 2);
 
 		for (ItemStack stack : OreDictionary.getOres("dustSulfur")) {
 			ModuleGardening.queuedAcidFertilisers.put(stack, 2);
@@ -220,12 +220,12 @@ public class ModuleGardening implements IInitializable {
 
 		ModuleGardening.queuedAlkalineFertilisers.put(BotanyItems.AshPowder.get(1), 1);
 		ModuleGardening.queuedAlkalineFertilisers.put(BotanyItems.PulpPowder.get(1), 1);
-		ModuleGardening.queuedAlkalineFertilisers.put(new ItemStack(GameRegistry.findItem("Forestry", "ash")), 2);
-		ModuleGardening.queuedAlkalineFertilisers.put(new ItemStack(GameRegistry.findItem("Forestry", "woodPulp")), 2);
+		ModuleGardening.queuedAlkalineFertilisers.put(new ItemStack(GameRegistry.findItem("FORESTRY", "ash")), 2);
+		ModuleGardening.queuedAlkalineFertilisers.put(new ItemStack(GameRegistry.findItem("FORESTRY", "woodPulp")), 2);
 		ModuleGardening.queuedNutrientFertilisers.put(BotanyItems.CompostPowder.get(1), 1);
 		ModuleGardening.queuedNutrientFertilisers.put(BotanyItems.FertiliserPowder.get(1), 1);
-		ModuleGardening.queuedNutrientFertilisers.put(new ItemStack(GameRegistry.findItem("Forestry", "fertilizerBio")), 2);
-		ModuleGardening.queuedNutrientFertilisers.put(new ItemStack(GameRegistry.findItem("Forestry", "fertilizerCompound")), 2);
+		ModuleGardening.queuedNutrientFertilisers.put(new ItemStack(GameRegistry.findItem("FORESTRY", "fertilizerBio")), 2);
+		ModuleGardening.queuedNutrientFertilisers.put(new ItemStack(GameRegistry.findItem("FORESTRY", "fertilizerCompound")), 2);
 
 		for (Map.Entry<ItemStack, Integer> entry : ModuleGardening.queuedAcidFertilisers.entrySet()) {
 			addAcidFertiliser(entry.getKey(), entry.getValue());

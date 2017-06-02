@@ -1,8 +1,8 @@
 package binnie.core.genetics;
 
 public enum EnumBeeBooleanModifier {
-	Sealed,
-	SelfLighted,
-	SunlightStimulated,
-	Hellish
+	SEALED,
+	SELF_LIGHTED,
+	SUNLIGHT_STIMULATED,
+	HELLISH
 }

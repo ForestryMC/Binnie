@@ -96,16 +96,13 @@ public class Gene implements INBTTagable, IGene {
 		if (!(obj instanceof Gene)) {
 			return false;
 		}
+
 		Gene g = (Gene) obj;
 		return allele == g.allele && chromosome.ordinal() == g.chromosome.ordinal() && root == g.root;
 	}
 
 	public String getAlleleName() {
 		return getSystem().getAlleleName(chromosome, allele);
-	}
-
-	public String getChromosomeName() {
-		return getSystem().getChromosomeName(chromosome);
 	}
 
 	public String getShortChromosomeName() {

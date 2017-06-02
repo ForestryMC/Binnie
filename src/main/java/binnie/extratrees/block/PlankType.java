@@ -204,7 +204,7 @@ public class PlankType {
 
 		@Override
 		public ItemStack getStack() {
-			Item stack = Mods.Forestry.item("planks");
+			Item stack = Mods.forestry.item("planks");
 			return new ItemStack(stack, 1, ordinal());
 		}
 
@@ -220,7 +220,7 @@ public class PlankType {
 
 		@Override
 		public ItemStack getFence() {
-			ItemStack fence = Mods.Forestry.stack("fences");
+			ItemStack fence = Mods.forestry.stack("fences");
 			fence.setItemDamage(ordinal());
 			return fence;
 		}

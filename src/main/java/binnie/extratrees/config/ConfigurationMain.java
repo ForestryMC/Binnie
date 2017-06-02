@@ -8,7 +8,7 @@ import binnie.core.mod.config.PropBoolean;
 public class ConfigurationMain {
 	@ConfigProperty(
 		key = "lemon.citrus.family",
-		comment = {"Uses reflection to convert the Forestry lemon tree to the Citrus family."}
+		comment = {"Uses reflection to convert the FORESTRY lemon tree to the Citrus family."}
 	)
 	@PropBoolean
 	public static boolean alterLemon = true;

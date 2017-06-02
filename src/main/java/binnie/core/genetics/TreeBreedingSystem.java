@@ -52,7 +52,6 @@ public class TreeBreedingSystem extends BreedingSystem {
 	public UniqueItemStackSet allWoods = new UniqueItemStackSet();
 	private UniqueItemStackSet discoveredFruits = new UniqueItemStackSet();
 	private UniqueItemStackSet discoveredWoods = new UniqueItemStackSet();
-	public UniqueItemStackSet discoveredPlanks = new UniqueItemStackSet();
 
 	public TreeBreedingSystem() {
 		iconUndiscovered = Binnie.Resource.getItemIcon(ExtraTrees.instance, "icon/undiscoveredTree");
@@ -74,7 +73,7 @@ public class TreeBreedingSystem extends BreedingSystem {
 
 	@Override
 	public int getColor() {
-		return 53006;
+		return 0x00cf0e;
 	}
 
 	@Override
@@ -264,7 +263,10 @@ public class TreeBreedingSystem extends BreedingSystem {
 
 	@Override
 	public int[] getActiveTypes() {
-		return new int[]{EnumGermlingType.SAPLING.ordinal(), EnumGermlingType.POLLEN.ordinal()};
+		return new int[]{
+			EnumGermlingType.SAPLING.ordinal(),
+			EnumGermlingType.POLLEN.ordinal()
+		};
 	}
 
 	@Override

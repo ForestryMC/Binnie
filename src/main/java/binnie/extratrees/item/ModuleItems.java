@@ -172,7 +172,7 @@ public class ModuleItems implements IInitializable {
 		GameRegistry.addRecipe(
 			ExtraTreeItems.ProvenGear.get(1),
 			" s ", "s s", " s ",
-			's', Mods.Forestry.stack("oakStick")
+			's', Mods.forestry.stack("oakStick")
 		);
 
 		GameRegistry.addRecipe(
@@ -234,7 +234,7 @@ public class ModuleItems implements IInitializable {
 			null,
 			((ItemMisc) ExtraTrees.itemMisc).getStack(ExtraTreeItems.WoodWax, 4),
 			"x",
-			'x', Mods.Forestry.stack("beeswax")
+			'x', Mods.forestry.stack("beeswax")
 		);
 
 		if (Binnie.Liquid.getLiquidStack("Creosote Oil", 100) != null) {
@@ -244,13 +244,13 @@ public class ModuleItems implements IInitializable {
 				null,
 				((ItemMisc) ExtraTrees.itemMisc).getStack(ExtraTreeItems.WoodWax, 1),
 				"x",
-				'x', Mods.Forestry.stack("beeswax")
+				'x', Mods.forestry.stack("beeswax")
 			);
 		}
 
 		for (FluidContainerRegistry.FluidContainerData data : FluidContainerRegistry.getRegisteredFluidContainerData()) {
 			if (data.fluid.isFluidEqual(Binnie.Liquid.getLiquidStack("water", 0)) && data.fluid.amount == 1000) {
-				CraftingManager.getInstance().addRecipe(Mods.Forestry.stack("mulch"), " b ", "bwb", " b ", 'b', ExtraTreeItems.Bark.get(1), 'w', data.filledContainer.copy());
+				CraftingManager.getInstance().addRecipe(Mods.forestry.stack("mulch"), " b ", "bwb", " b ", 'b', ExtraTreeItems.Bark.get(1), 'w', data.filledContainer.copy());
 			}
 		}
 

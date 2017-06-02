@@ -36,7 +36,7 @@ public class ModuleMachine implements IInitializable {
 				'G', Blocks.glass,
 				'g', ExtraTreeItems.ProvenGear.get(1),
 				'A', Items.iron_axe,
-				's', Mods.Forestry.stack("sturdyMachine"),
+				's', Mods.forestry.stack("sturdyMachine"),
 				'P', "gearBronze"
 			}
 		));
@@ -48,7 +48,7 @@ public class ModuleMachine implements IInitializable {
 				'i', "ingotIron",
 				'G', Blocks.glass,
 				't', "ingotTin",
-				'S', Mods.Forestry.stack("sturdyMachine"),
+				'S', Mods.forestry.stack("sturdyMachine"),
 				'P', "gearBronze"
 			}
 		));
@@ -60,7 +60,7 @@ public class ModuleMachine implements IInitializable {
 				'i', "ingotIron",
 				'G', Blocks.glass,
 				'b', "gearBronze",
-				'S', Mods.Forestry.stack("sturdyMachine"),
+				'S', Mods.forestry.stack("sturdyMachine"),
 				'P', "gearBronze"
 			}
 		));
@@ -72,7 +72,7 @@ public class ModuleMachine implements IInitializable {
 				'i', "ingotIron",
 				'G', Blocks.glass,
 				'r', "dustRedstone",
-				'S', Mods.Forestry.stack("sturdyMachine"),
+				'S', Mods.forestry.stack("sturdyMachine"),
 				'P', "gearBronze"
 			}
 		));
@@ -83,7 +83,7 @@ public class ModuleMachine implements IInitializable {
 			'G', Blocks.glass,
 			'g', ExtraTreeItems.ProvenGear.get(1),
 			'w', Blocks.planks,
-			's', Mods.Forestry.stack("impregnatedCasing")
+			's', Mods.forestry.stack("impregnatedCasing")
 		));
 
 		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(
@@ -92,7 +92,7 @@ public class ModuleMachine implements IInitializable {
 			'G', Blocks.glass,
 			'g', ExtraTreeItems.ProvenGear.get(1),
 			'w', Blocks.wooden_slab,
-			's', Mods.Forestry.stack("impregnatedCasing")
+			's', Mods.forestry.stack("impregnatedCasing")
 		));
 
 		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(
@@ -101,7 +101,7 @@ public class ModuleMachine implements IInitializable {
 			'G', Blocks.glass,
 			'g', ExtraTreeItems.ProvenGear.get(1),
 			'w', Blocks.glass,
-			's', Mods.Forestry.stack("impregnatedCasing")
+			's', Mods.forestry.stack("impregnatedCasing")
 		));
 
 		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(
@@ -110,7 +110,7 @@ public class ModuleMachine implements IInitializable {
 			'G', Blocks.glass,
 			'g', ExtraTreeItems.ProvenGear.get(1),
 			'w', Items.clay_ball,
-			's', Mods.Forestry.stack("impregnatedCasing")
+			's', Mods.forestry.stack("impregnatedCasing")
 		));
 	}
 }

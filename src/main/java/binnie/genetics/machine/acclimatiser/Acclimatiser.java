@@ -106,11 +106,11 @@ public class Acclimatiser {
 		addTemperatureItem(new ItemStack(Blocks.ice), -0.75f);
 		addHumidityItem(new ItemStack(Items.water_bucket), 0.75f);
 		addHumidityItem(new ItemStack(Blocks.sand), -0.15f);
-		addTemperatureItem(Mods.Forestry.stack("canLava"), 0.75f);
-		addTemperatureItem(Mods.Forestry.stack("refractoryLava"), 0.75f);
-		addHumidityItem(Mods.Forestry.stack("canWater"), 0.75f);
-		addHumidityItem(Mods.Forestry.stack("refractoryWater"), 0.75f);
-		addHumidityItem(Mods.Forestry.stack("waxCapsuleWater"), 0.75f);
+		addTemperatureItem(Mods.forestry.stack("canLava"), 0.75f);
+		addTemperatureItem(Mods.forestry.stack("refractoryLava"), 0.75f);
+		addHumidityItem(Mods.forestry.stack("canWater"), 0.75f);
+		addHumidityItem(Mods.forestry.stack("refractoryWater"), 0.75f);
+		addHumidityItem(Mods.forestry.stack("waxCapsuleWater"), 0.75f);
 	}
 
 	public static boolean canAcclimatise(ItemStack stack, List<ItemStack> acclimatisers) {

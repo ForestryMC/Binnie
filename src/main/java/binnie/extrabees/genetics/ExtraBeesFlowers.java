@@ -162,7 +162,7 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 				return block.getClass().getName().toLowerCase().contains("sapling");
 
 			case MYSTICAL:
-				return block == Mods.Botania.block("flower");
+				return block == Mods.botania.block("flower");
 		}
 		return false;
 	}
@@ -199,9 +199,9 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 
 				Block block = world.getBlock(x2, y2, z2);
 				if (block != null) {
-					if (block == Mods.Botania.block("flower")) {
+					if (block == Mods.botania.block("flower")) {
 						int meta = world.getBlockMetadata(x2, y2, z2);
-						Item item = Mods.Botania.item("petal");
+						Item item = Mods.botania.item("petal");
 						if (item != null) {
 							prods.add(new ItemStack(item, 1, meta));
 						}

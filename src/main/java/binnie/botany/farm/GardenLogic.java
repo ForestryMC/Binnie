@@ -340,7 +340,7 @@ public class GardenLogic extends FarmLogic {
 			try {
 				IOwnable housing2 = (IOwnable) housing;
 				GameProfile prof;
-				if (Mods.Forestry.dev()) {
+				if (Mods.forestry.dev()) {
 					prof = (GameProfile) IOwnable.class.getMethod("getOwner", new Class[0]).invoke(housing2);
 				} else {
 					prof = (GameProfile) IOwnable.class.getMethod("getOwnerProfile", new Class[0]).invoke(housing2);

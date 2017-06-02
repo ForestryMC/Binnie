@@ -29,13 +29,13 @@ public class ModuleApiary implements IInitializable {
 		BinnieCore.proxy.registerTileEntity(TileExtraBeeAlveary.class, "extrabees.tile.alveary", BinnieCore.proxy.createObject("binnie.core.machines.RendererMachine"));
 		ModuleApiary.blockComponent = machineGroup.getBlock();
 		AlvearyMutator.addMutationItem(new ItemStack(Blocks.soul_sand), 1.5f);
-		AlvearyMutator.addMutationItem(Mods.IC2.stack("UranFuel"), 4.0f);
-		AlvearyMutator.addMutationItem(Mods.IC2.stack("MOXFuel"), 10.0f);
-		AlvearyMutator.addMutationItem(Mods.IC2.stack("Plutonium"), 8.0f);
-		AlvearyMutator.addMutationItem(Mods.IC2.stack("smallPlutonium"), 5.0f);
-		AlvearyMutator.addMutationItem(Mods.IC2.stack("Uran235"), 4.0f);
-		AlvearyMutator.addMutationItem(Mods.IC2.stack("smallUran235"), 2.5f);
-		AlvearyMutator.addMutationItem(Mods.IC2.stack("Uran238"), 2.0f);
+		AlvearyMutator.addMutationItem(Mods.ic2.stack("UranFuel"), 4.0f);
+		AlvearyMutator.addMutationItem(Mods.ic2.stack("MOXFuel"), 10.0f);
+		AlvearyMutator.addMutationItem(Mods.ic2.stack("Plutonium"), 8.0f);
+		AlvearyMutator.addMutationItem(Mods.ic2.stack("smallPlutonium"), 5.0f);
+		AlvearyMutator.addMutationItem(Mods.ic2.stack("Uran235"), 4.0f);
+		AlvearyMutator.addMutationItem(Mods.ic2.stack("smallUran235"), 2.5f);
+		AlvearyMutator.addMutationItem(Mods.ic2.stack("Uran238"), 2.0f);
 		AlvearyMutator.addMutationItem(new ItemStack(Items.ender_pearl), 2.0f);
 		AlvearyMutator.addMutationItem(new ItemStack(Items.ender_eye), 4.0f);
 
@@ -51,57 +51,57 @@ public class ModuleApiary implements IInitializable {
 			AlvearyMachine.Mutator.get(1),
 			"g g", " a ", "t t",
 			'g', Items.gold_ingot,
-			'a', Mods.Forestry.block("alveary"),
+			'a', Mods.forestry.block("alveary"),
 			't',
-			new ItemStack(Mods.Forestry.item("thermionicTubes"), 1, 5)
+			new ItemStack(Mods.forestry.item("thermionicTubes"), 1, 5)
 		);
 
 		GameRegistry.addRecipe(
 			AlvearyMachine.Frame.get(1),
 			"iii", "tat", " t ",
 			'i', Items.iron_ingot,
-			'a', Mods.Forestry.block("alveary"),
-			't', new ItemStack(Mods.Forestry.item("thermionicTubes"), 1, 4)
+			'a', Mods.forestry.block("alveary"),
+			't', new ItemStack(Mods.forestry.item("thermionicTubes"), 1, 4)
 		);
 
 		GameRegistry.addRecipe(
 			AlvearyMachine.RainShield.get(1),
 			" b ", "bab", "t t",
 			'b', Items.brick,
-			'a', Mods.Forestry.block("alveary"),
-			't', new ItemStack(Mods.Forestry.item("thermionicTubes"), 1, 4)
+			'a', Mods.forestry.block("alveary"),
+			't', new ItemStack(Mods.forestry.item("thermionicTubes"), 1, 4)
 		);
 
 		GameRegistry.addRecipe(
 			AlvearyMachine.Lighting.get(1),
 			"iii", "iai", " t ",
 			'i', Items.glowstone_dust,
-			'a', Mods.Forestry.block("alveary"),
-			't', new ItemStack(Mods.Forestry.item("thermionicTubes"), 1, 4)
+			'a', Mods.forestry.block("alveary"),
+			't', new ItemStack(Mods.forestry.item("thermionicTubes"), 1, 4)
 		);
 
 		GameRegistry.addRecipe(
 			AlvearyMachine.Stimulator.get(1),
 			"kik", "iai", " t ",
 			'i', Items.gold_nugget,
-			'a', Mods.Forestry.block("alveary"),
-			't', new ItemStack(Mods.Forestry.item("thermionicTubes"), 1, 4),
-			'k', new ItemStack(Mods.Forestry.item("chipsets"), 1, 2)
+			'a', Mods.forestry.block("alveary"),
+			't', new ItemStack(Mods.forestry.item("thermionicTubes"), 1, 4),
+			'k', new ItemStack(Mods.forestry.item("chipsets"), 1, 2)
 		);
 
 		GameRegistry.addRecipe(
 			AlvearyMachine.Hatchery.get(1),
 			"i i", " a ", "iti",
 			'i', Blocks.glass_pane,
-			'a', Mods.Forestry.block("alveary"),
-			't', new ItemStack(Mods.Forestry.item("thermionicTubes"), 1, 5)
+			'a', Mods.forestry.block("alveary"),
+			't', new ItemStack(Mods.forestry.item("thermionicTubes"), 1, 5)
 		);
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 			AlvearyMachine.Transmission.get(1),
 			new Object[]{
 				" t ", "tat", " t ",
-				'a', Mods.Forestry.block("alveary"),
+				'a', Mods.forestry.block("alveary"),
 				't', "gearTin"
 			}
 		));

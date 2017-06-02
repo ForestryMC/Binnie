@@ -231,6 +231,17 @@ binniecore.gui.database.branch.noDesc=No Description Provided.
 binniecore.gui.database.furtherMutations=Further Mutations
 binniecore.gui.database.resultantMutations=Resultant Mutations
 binniecore.gui.database.descriptor=%s Profile
+binniecore.gui.database.time.minute=1 minute
+binniecore.gui.database.time.minute=%d minutes
+binniecore.gui.database.time.second=1 second
+binniecore.gui.database.time.seconds=%d seconds
+binniecore.gui.database.time.progress=Progress
+binniecore.gui.database.time.notInProgress=Not in Progress
+binniecore.gui.database.time.inProgress=In Progress
+binniecore.gui.database.time.left=Time Left: %s
+binniecore.gui.database.time.total=Total Time: %s
+binniecore.gui.database.energyCost.0=Energy Cost: %d RF
+binniecore.gui.database.energyCost.1=Energy Cost: %.2f RF / tick
 
 binniecore.gui.temperature.short=Temp.
 binniecore.gui.humidity.short=Humid.
