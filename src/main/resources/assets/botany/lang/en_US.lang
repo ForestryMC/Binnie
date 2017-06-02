@@ -124,7 +124,6 @@ botany.flower.hollyhock=Hollyhock
 
 botany.colour.double=%s & %s
 botany.colour.aquamarine=Aquamarine
-botany.colour.aquamarine=Aquamarine
 botany.colour.black=Black
 botany.colour.blue=Deep Blue
 botany.colour.brown=Red-Brown
@@ -295,4 +294,3 @@ botany.gui.database.tab.breeder=Breeder
 
 botany.gui.database.tab.colour.resultant=Resultant Mixes
 botany.gui.database.tab.colour.further=Further Mixes
-

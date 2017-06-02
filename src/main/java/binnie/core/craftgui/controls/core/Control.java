@@ -57,12 +57,6 @@ public class Control extends Widget implements ITooltipHelp, ITooltip {
 		tooltipStrings.add(string);
 	}
 
-	public void addTooltip(String[] strings) {
-		for (String string : strings) {
-			addTooltip(string);
-		}
-	}
-
 	@Override
 	public int getLevel() {
 		return extraLevel + super.getLevel();

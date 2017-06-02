@@ -6,19 +6,17 @@ import binnie.core.craftgui.minecraft.Window;
 import com.mojang.authlib.GameProfile;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IClassification;
-import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class ControlSpeciesBox extends ControlListBox<IAlleleSpecies>
-{
+public class ControlSpeciesBox extends ControlListBox<IAlleleSpecies> {
 	private IClassification branch;
 
 	@Override
 	public IWidget createOption(IAlleleSpecies value, int y) {
-		return new ControlSpeciexBoxOption(getContent(), value, y);
+		return new ControlSpeciesBoxOption(getContent(), value, y);
 	}
 
 	public ControlSpeciesBox(IWidget parent, float x, float y, float width, float height) {
@@ -36,10 +34,11 @@ public class ControlSpeciesBox extends ControlListBox<IAlleleSpecies>
 		movePercentage(-100.0f);
 		setOptions(speciesList2);
 
-		EntityPlayer player = Window.get(this).getPlayer();
 		GameProfile playerName = Window.get(this).getUsername();
 		WindowAbstractDatabase db = Window.get(this);
-		Collection<IAlleleSpecies> speciesList3 = db.isNEI ? db.getBreedingSystem().getAllSpecies() : db.getBreedingSystem().getDiscoveredSpecies(db.getWorld(), playerName);
+		Collection<IAlleleSpecies> speciesList3 = db.isNEI
+			? db.getBreedingSystem().getAllSpecies()
+			: db.getBreedingSystem().getDiscoveredSpecies(db.getWorld(), playerName);
 		if (branch != null) {
 			for (IAlleleSpecies species : branch.getMemberSpecies()) {
 				if (speciesList3.contains(species)) {

@@ -1,5 +1,6 @@
 package binnie.core.craftgui.database;
 
+import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
@@ -7,6 +8,7 @@ import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.util.I18N;
 import forestry.api.genetics.IAlleleSpecies;
 import net.minecraft.util.EnumChatFormatting;
 
@@ -34,20 +36,19 @@ public class PageSpeciesOverview extends PageSpecies {
 
 	@Override
 	public void onValueChanged(IAlleleSpecies species) {
-		controlInd1.setSpecies(species, EnumDiscoveryState.Show);
-		controlInd2.setSpecies(species, EnumDiscoveryState.Show);
+		controlInd1.setSpecies(species, EnumDiscoveryState.SHOW);
+		controlInd2.setSpecies(species, EnumDiscoveryState.SHOW);
 		String branchBinomial = (species.getBranch() != null) ? species.getBranch().getScientific() : "<Unknown>";
-		String branchName = (species.getBranch() != null) ? species.getBranch().getName() : "Unknown";
-		controlName.setValue(EnumChatFormatting.UNDERLINE + species.getName() + EnumChatFormatting.RESET);
+		controlName.setValue(EnumChatFormatting.BOLD + species.getName() + EnumChatFormatting.RESET);
 		controlScientific.setValue(EnumChatFormatting.ITALIC + branchBinomial + " " + species.getBinomial() + EnumChatFormatting.RESET);
-		controlAuthority.setValue("Discovered by " + EnumChatFormatting.BOLD + species.getAuthority() + EnumChatFormatting.RESET);
+		controlAuthority.setValue(EnumChatFormatting.BOLD + "Discovered by " + species.getAuthority() + EnumChatFormatting.RESET);
 		controlComplexity.setValue("Complexity: " + species.getComplexity());
 		String desc = species.getDescription();
 		String descBody = EnumChatFormatting.ITALIC.toString();
 		String descSig = "";
 
-		if (desc == null || desc == "") {
-			descBody += "No Description Provided.";
+		if (desc == null || desc.isEmpty()) {
+			descBody += I18N.localise(BinnieCore.instance, "gui.database.species.noDesc");
 		} else {
 			String[] descStrings = desc.split("\\|");
 			descBody += descStrings[0];

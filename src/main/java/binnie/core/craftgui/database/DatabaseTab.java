@@ -8,12 +8,10 @@ import binnie.core.util.I18N;
 public class DatabaseTab implements ITooltipHelp {
 	private AbstractMod mod;
 	private String unloc;
-	private int colour;
 
-	public DatabaseTab(AbstractMod mod, String unloc, int colour) {
+	public DatabaseTab(AbstractMod mod, String unloc) {
 		this.mod = mod;
 		this.unloc = unloc;
-		this.colour = colour;
 	}
 
 	@Override

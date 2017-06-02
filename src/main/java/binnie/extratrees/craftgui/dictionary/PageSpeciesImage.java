@@ -23,6 +23,6 @@ public class PageSpeciesImage extends PageSpecies {
 
 	@Override
 	public void onValueChanged(IAlleleSpecies species) {
-		display.setSpecies(species, EnumDiscoveryState.Show);
+		display.setSpecies(species, EnumDiscoveryState.SHOW);
 	}
 }

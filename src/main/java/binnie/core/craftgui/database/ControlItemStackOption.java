@@ -15,7 +15,10 @@ public class ControlItemStackOption extends ControlTextOption<ItemStack> {
 	public ControlItemStackOption(ControlList<ItemStack> controlList, ItemStack option, int y) {
 		super(controlList, option, option.getDisplayName(), y);
 		setSize(new IPoint(getSize().x(), 20.0f));
-		(controlBee = new ControlItemDisplay(this, 2.0f, 2.0f)).setItemStack(option);
+
+		controlBee = new ControlItemDisplay(this, 2.0f, 2.0f);
+		controlBee.setItemStack(option);
+
 		addAttribute(WidgetAttribute.MouseOver);
 		CraftGUIUtil.moveWidget(textWidget, new IPoint(22.0f, 0.0f));
 		textWidget.setSize(textWidget.getSize().sub(new IPoint(24.0f, 0.0f)));

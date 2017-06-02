@@ -37,11 +37,6 @@ public abstract class WindowAbstractDatabase extends Window {
 	protected boolean isNEI;
 
 	private float selectionBoxWidth;
-	private float infoBoxWidth = 144.0f;
-	private float infoBoxHeight = 176.0f;
-	private float infoTabWidth = 16.0f;
-	private float modeTabWidth = 22.0f;
-	private float searchBoxHeight = 16.0f;
 	private Map<IDatabaseMode, ModeWidgets> modes;
 	private BreedingSystem system;
 	private Panel panelInformation;
@@ -149,10 +144,13 @@ public abstract class WindowAbstractDatabase extends Window {
 		createMode(Mode.Branches, new ModeWidgets(Mode.Branches, this) {
 			@Override
 			public void createListBox(IArea area) {
-				EntityPlayer player = database.getPlayer();
 				GameProfile playerName = getUsername();
-				Collection<IClassification> speciesList = database.isNEI ? database.system.getAllBranches() : database.system.getDiscoveredBranches(database.getWorld(), playerName);
-				(listBox = new ControlBranchBox(modePage, area.x(), area.y(), area.w(), area.h())).setOptions(speciesList);
+				Collection<IClassification> speciesList = database.isNEI
+					? database.system.getAllBranches()
+					: database.system.getDiscoveredBranches(database.getWorld(), playerName);
+
+				listBox = new ControlBranchBox(modePage, area.x(), area.y(), area.w(), area.h());
+				listBox.setOptions(speciesList);
 			}
 		});
 
@@ -195,7 +193,7 @@ public abstract class WindowAbstractDatabase extends Window {
 	}
 
 	protected void addTabs() {
-		// ignoreds
+		// ignored
 	}
 
 	public void gotoSpecies(IAlleleSpecies value) {
@@ -237,8 +235,9 @@ public abstract class WindowAbstractDatabase extends Window {
 	public abstract static class ModeWidgets {
 		public WindowAbstractDatabase database;
 		public ControlPage<IDatabaseMode> modePage;
-		private ControlPages<DatabaseTab> infoPages;
 		public ControlListBox listBox;
+
+		private ControlPages<DatabaseTab> infoPages;
 		private ControlTabBar<DatabaseTab> infoTabs;
 
 		public ModeWidgets(IDatabaseMode mode, WindowAbstractDatabase database) {

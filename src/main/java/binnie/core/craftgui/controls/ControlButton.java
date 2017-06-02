@@ -3,7 +3,6 @@ package binnie.core.craftgui.controls;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.WidgetAttribute;
-import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.events.EventButtonClicked;
 import binnie.core.craftgui.events.EventHandler;
@@ -18,7 +17,6 @@ public class ControlButton extends Control {
 	public ControlButton(IWidget parent, float x, float y, float width, float height) {
 		super(parent, x, y, width, height);
 		addAttribute(WidgetAttribute.MouseOver);
-
 		mouseHandler.setOrigin(EventHandler.Origin.Self, this);
 		addEventHandler(mouseHandler);
 	}
