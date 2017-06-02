@@ -27,16 +27,16 @@ public class WindowApiaristDatabase extends WindowAbstractDatabase {
 
 	@Override
 	protected void addTabs() {
-		new PageSpeciesOverview(getInfoPages(Mode.Species), new DatabaseTab(ExtraBees.instance, "species.overview", 0));
-		new PageSpeciesClassification(getInfoPages(Mode.Species), new DatabaseTab(ExtraBees.instance, "species.classification", 0));
-		new PageSpeciesGenome(getInfoPages(Mode.Species), new DatabaseTab(ExtraBees.instance, "species.genome", 0));
-		new PageSpeciesProducts(getInfoPages(Mode.Species), new DatabaseTab(ExtraBees.instance, "species.products", 0));
-		new PageSpeciesClimate(getInfoPages(Mode.Species), new DatabaseTab(ExtraBees.instance, "species.climate", 0));
-		new PageSpeciesResultant(getInfoPages(Mode.Species), new DatabaseTab(ExtraBees.instance, "species.resultant", 0));
-		new PageSpeciesMutations(getInfoPages(Mode.Species), new DatabaseTab(ExtraBees.instance, "species.further", 0));
-		new PageBranchOverview(getInfoPages(Mode.Branches), new DatabaseTab(ExtraBees.instance, "branches.overview", 0));
-		new PageBranchSpecies(getInfoPages(Mode.Branches), new DatabaseTab(ExtraBees.instance, "branches.species", 0));
-		new PageBreeder(getInfoPages(Mode.Breeder), getUsername(), new DatabaseTab(ExtraBees.instance, "breeder", 0));
+		new PageSpeciesOverview(getInfoPages(Mode.Species), new DatabaseTab(ExtraBees.instance, "species.overview"));
+		new PageSpeciesClassification(getInfoPages(Mode.Species), new DatabaseTab(ExtraBees.instance, "species.classification"));
+		new PageSpeciesGenome(getInfoPages(Mode.Species), new DatabaseTab(ExtraBees.instance, "species.genome"));
+		new PageSpeciesProducts(getInfoPages(Mode.Species), new DatabaseTab(ExtraBees.instance, "species.products"));
+		new PageSpeciesClimate(getInfoPages(Mode.Species), new DatabaseTab(ExtraBees.instance, "species.climate"));
+		new PageSpeciesResultant(getInfoPages(Mode.Species), new DatabaseTab(ExtraBees.instance, "species.resultant"));
+		new PageSpeciesMutations(getInfoPages(Mode.Species), new DatabaseTab(ExtraBees.instance, "species.further"));
+		new PageBranchOverview(getInfoPages(Mode.Branches), new DatabaseTab(ExtraBees.instance, "branches.overview"));
+		new PageBranchSpecies(getInfoPages(Mode.Branches), new DatabaseTab(ExtraBees.instance, "branches.species"));
+		new PageBreeder(getInfoPages(Mode.Breeder), getUsername(), new DatabaseTab(ExtraBees.instance, "breeder"));
 	}
 
 	@Override

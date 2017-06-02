@@ -38,15 +38,15 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 
 	@Override
 	protected void addTabs() {
-		new PageSpeciesOverview(getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "species.overview", 0));
-		new PageSpeciesTreeGenome(getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "species.genome", 0));
-		new PageSpeciesClassification(getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "species.classification", 0));
-		new PageSpeciesResultant(getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "species.resultant", 0));
-		new PageSpeciesMutations(getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "species.further", 0));
-		new PageBranchOverview(getInfoPages(Mode.Branches), new DatabaseTab(ExtraTrees.instance, "branches.overview", 0));
-		new PageBranchSpecies(getInfoPages(Mode.Branches), new DatabaseTab(ExtraTrees.instance, "branches.species", 0));
-		new PageBreeder(getInfoPages(Mode.Breeder), getUsername(), new DatabaseTab(ExtraTrees.instance, "breeder", 0));
-		createMode(TreeMode.Fruit, new ModeWidgets(TreeMode.Fruit, this) {
+		new PageSpeciesOverview(getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "species.overview"));
+		new PageSpeciesTreeGenome(getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "species.genome"));
+		new PageSpeciesClassification(getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "species.classification"));
+		new PageSpeciesResultant(getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "species.resultant"));
+		new PageSpeciesMutations(getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "species.further"));
+		new PageBranchOverview(getInfoPages(Mode.Branches), new DatabaseTab(ExtraTrees.instance, "branches.overview"));
+		new PageBranchSpecies(getInfoPages(Mode.Branches), new DatabaseTab(ExtraTrees.instance, "branches.species"));
+		new PageBreeder(getInfoPages(Mode.Breeder), getUsername(), new DatabaseTab(ExtraTrees.instance, "breeder"));
+		createMode(TreeMode.FRUIT, new ModeWidgets(TreeMode.FRUIT, this) {
 			@Override
 			public void createListBox(IArea area) {
 				(listBox = new ControlListBox<ItemStack>(modePage, area.x(), area.y(), area.w(), area.h(), 12.0f) {
@@ -57,7 +57,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 				}).setOptions(((TreeBreedingSystem) getBreedingSystem()).allFruits);
 			}
 		});
-		createMode(TreeMode.Wood, new ModeWidgets(TreeMode.Wood, this) {
+		createMode(TreeMode.WOOD, new ModeWidgets(TreeMode.WOOD, this) {
 			@Override
 			public void createListBox(IArea area) {
 				(listBox = new ControlListBox<ItemStack>(modePage, area.x(), area.y(), area.w(), area.h(), 12.0f) {
@@ -68,7 +68,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 				}).setOptions(((TreeBreedingSystem) getBreedingSystem()).allWoods);
 			}
 		});
-		createMode(TreeMode.Planks, new ModeWidgets(TreeMode.Planks, this) {
+		createMode(TreeMode.PLANKS, new ModeWidgets(TreeMode.PLANKS, this) {
 			@Override
 			public void createListBox(IArea area) {
 				listBox = new ControlListBox<ItemStack>(modePage, area.x(), area.y(), area.w(), area.h(), 12.0f) {
@@ -79,11 +79,11 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 				};
 			}
 		});
-		new PageFruit(getInfoPages(TreeMode.Fruit), new DatabaseTab(ExtraTrees.instance, "fruit.natural", 0), true);
-		new PageFruit(getInfoPages(TreeMode.Fruit), new DatabaseTab(ExtraTrees.instance, "fruit.potential", 0), false);
-		new PageWood(getInfoPages(TreeMode.Wood), new DatabaseTab(ExtraTrees.instance, "wood.natural", 0));
-		new PagePlanksOverview(getInfoPages(TreeMode.Planks), new DatabaseTab(ExtraTrees.instance, "planks.overview", 0));
-		new PagePlanksTrees(getInfoPages(TreeMode.Planks), new DatabaseTab(ExtraTrees.instance, "planks.natural", 1));
+		new PageFruit(getInfoPages(TreeMode.FRUIT), new DatabaseTab(ExtraTrees.instance, "fruit.natural"), true);
+		new PageFruit(getInfoPages(TreeMode.FRUIT), new DatabaseTab(ExtraTrees.instance, "fruit.potential"), false);
+		new PageWood(getInfoPages(TreeMode.WOOD), new DatabaseTab(ExtraTrees.instance, "wood.natural"));
+		new PagePlanksOverview(getInfoPages(TreeMode.PLANKS), new DatabaseTab(ExtraTrees.instance, "planks.overview"));
+		new PagePlanksTrees(getInfoPages(TreeMode.PLANKS), new DatabaseTab(ExtraTrees.instance, "planks.natural"));
 	}
 
 	@Override
@@ -97,9 +97,9 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 	}
 
 	enum TreeMode implements IDatabaseMode {
-		Fruit,
-		Wood,
-		Planks;
+		FRUIT,
+		WOOD,
+		PLANKS;
 
 		@Override
 		public String getName() {

@@ -38,17 +38,17 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 
 	@Override
 	protected void addTabs() {
-		new PageSpeciesOverview(getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "species.overview", 0));
-		new PageSpeciesFlowerGenome(getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "genome", 0));
-		new PageSpeciesClassification(getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "species.classification", 0));
-		new PageSpeciesResultant(getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "species.resultant", 0));
-		new PageSpeciesMutations(getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "species.further", 0));
-		new PageBranchOverview(getInfoPages(Mode.Branches), new DatabaseTab(Botany.instance, "branches.overview", 0));
-		new PageBranchSpecies(getInfoPages(Mode.Branches), new DatabaseTab(Botany.instance, "branches.species", 0));
-		createMode(FlowerMode.Colour, new ColorModeWidget());
-		new PageColorMixResultant(getInfoPages(FlowerMode.Colour), new DatabaseTab(Botany.instance, "colour.resultant", 0));
-		new PageColourMix(getInfoPages(FlowerMode.Colour), new DatabaseTab(Botany.instance, "colour.further", 0));
-		new PageBreeder(getInfoPages(Mode.Breeder), getUsername(), new DatabaseTab(Botany.instance, "breeder", 0));
+		new PageSpeciesOverview(getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "species.overview"));
+		new PageSpeciesFlowerGenome(getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "genome"));
+		new PageSpeciesClassification(getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "species.classification"));
+		new PageSpeciesResultant(getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "species.resultant"));
+		new PageSpeciesMutations(getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "species.further"));
+		new PageBranchOverview(getInfoPages(Mode.Branches), new DatabaseTab(Botany.instance, "branches.overview"));
+		new PageBranchSpecies(getInfoPages(Mode.Branches), new DatabaseTab(Botany.instance, "branches.species"));
+		createMode(FlowerMode.COLOR, new ColorModeWidget());
+		new PageColorMixResultant(getInfoPages(FlowerMode.COLOR), new DatabaseTab(Botany.instance, "colour.resultant"));
+		new PageColourMix(getInfoPages(FlowerMode.COLOR), new DatabaseTab(Botany.instance, "colour.further"));
+		new PageBreeder(getInfoPages(Mode.Breeder), getUsername(), new DatabaseTab(Botany.instance, "breeder"));
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 	}
 
 	enum FlowerMode implements IDatabaseMode {
-		Colour;
+		COLOR;
 
 		@Override
 		public String getName() {
@@ -72,7 +72,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 
 	private class ColorModeWidget extends ModeWidgets {
 		public ColorModeWidget() {
-			super(FlowerMode.Colour, WindowBotanistDatabase.this);
+			super(FlowerMode.COLOR, WindowBotanistDatabase.this);
 		}
 
 		@Override
