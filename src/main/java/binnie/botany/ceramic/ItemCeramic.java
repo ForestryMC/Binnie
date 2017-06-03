@@ -21,12 +21,12 @@ public class ItemCeramic extends ItemBlock implements IColoredItem {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
-		return EnumFlowerColor.get(stack.getMetadata()).getColor(false);
+		return EnumFlowerColor.get(stack.getMetadata()).getFlowerColorAllele().getColor(false);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getItemStackDisplayName(ItemStack itemStack) {
-		return EnumFlowerColor.get(itemStack.getItemDamage()).getColourName() + " " + I18n.translateToLocal("tile.botany.ceramic.name").trim();
+		return EnumFlowerColor.get(itemStack.getItemDamage()).getFlowerColorAllele().getColourName() + " " + I18n.translateToLocal("tile.botany.ceramic.name").trim();
 	}
 }

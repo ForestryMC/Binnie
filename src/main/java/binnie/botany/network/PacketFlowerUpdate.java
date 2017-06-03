@@ -22,9 +22,9 @@ public class PacketFlowerUpdate extends SPacketUpdateTileEntity {
 	public void readPacketData(PacketBuffer buf) throws IOException {
 		super.readPacketData(buf);
 		this.render = new TileEntityFlower.RenderInfo();
-		this.render.primary = EnumFlowerColor.values()[buf.readByte()];
-		this.render.secondary = EnumFlowerColor.values()[buf.readByte()];
-		this.render.stem = EnumFlowerColor.values()[buf.readByte()];
+		this.render.primary = EnumFlowerColor.values()[buf.readByte()].getFlowerColorAllele();
+		this.render.secondary = EnumFlowerColor.values()[buf.readByte()].getFlowerColorAllele();
+		this.render.stem = EnumFlowerColor.values()[buf.readByte()].getFlowerColorAllele();
 		this.render.type = EnumFlowerType.values()[buf.readByte()];
 		this.render.age = buf.readByte();
 		this.render.section = buf.readByte();

@@ -19,7 +19,7 @@ public class TileCeramic extends TileEntity {
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		compound.setInteger("Color", color.getID());
+		compound.setInteger("Color", color.getFlowerColorAllele().getID());
 		return super.writeToNBT(compound);
 	}
 
@@ -36,7 +36,7 @@ public class TileCeramic extends TileEntity {
 	public ItemStack getStack(int amount) {
 		int ID = 0;
 		if (color != null) {
-			ID = color.getID();
+			ID = color.getFlowerColorAllele().getID();
 		}
 		return new ItemStack(Botany.ceramic, amount, ID);
 	}

@@ -4,10 +4,11 @@ import binnie.botany.Botany;
 import binnie.botany.api.IFlowerColour;
 import binnie.botany.core.BotanyCore;
 import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleInteger;
 import net.minecraft.util.IStringSerializable;
 
-public enum EnumFlowerColor implements IFlowerColour, IAlleleInteger, IStringSerializable {
+public enum EnumFlowerColor implements IStringSerializable {
 	Aquamarine("aquamarine", 8388564),
 	Black("black", 2631720),
 	Blue("blue", 255),
@@ -91,28 +92,26 @@ public enum EnumFlowerColor implements IFlowerColour, IAlleleInteger, IStringSer
 
 	public static final EnumFlowerColor[] VALUES = values();
 
-	int color;
-	int colorDis;
-	String uid;
+	private FlowerColorAllele allele;
 
 	EnumFlowerColor(final String ident, final int c) {
 		this(c);
 	}
 
-	EnumFlowerColor(final int c) {
-		this.uid = "botany.color" + this.name();
-		this.color = c;
-		int r = this.color >> 16 & 0xFF;
-		int g = this.color >> 8 & 0xFF;
-		int b = this.color & 0xFF;
+	EnumFlowerColor(final int color) {
+		int r = color >> 16 & 0xFF;
+		int g = color >> 8 & 0xFF;
+		int b = color & 0xFF;
 		r = (int) (0.45 * (r + 214));
-		g = (int) (0.45 * (r + 174));
-		b = (int) (0.45 * (r + 131));
-		this.colorDis = (r << 16) + (g << 8) + b;
+		g = (int) (0.45 * (g + 174));
+		b = (int) (0.45 * (b + 131));
+		int colorDis = (r << 16) + (g << 8) + b;
+		String uid = "botany.color" + this.name();
+		allele = new FlowerColorAllele(uid, ordinal(), color, colorDis, name().toLowerCase(), uid, true);
 	}
 
 	public static void addMix(final EnumFlowerColor start1, final EnumFlowerColor start2, final EnumFlowerColor result, final int chance) {
-		BotanyCore.getFlowerRoot().registerColourMix(new ColourMix(start1, start2, result, chance));
+		BotanyCore.getFlowerRoot().registerColourMix(new ColourMix(start1.allele, start2.allele, result.allele, chance));
 	}
 
 	public static void setupMutations() {
@@ -2935,32 +2934,12 @@ public enum EnumFlowerColor implements IFlowerColour, IAlleleInteger, IStringSer
 
 	public static void initColours() {
 		for (EnumFlowerColor color : EnumFlowerColor.values()) {
-			AlleleManager.alleleRegistry.registerAllele(color);
+			AlleleManager.alleleRegistry.registerAllele(color.allele);
 		}
 	}
 
 	public static EnumFlowerColor get(final int i) {
 		return values()[Math.max(0, i) % values().length];
-	}
-
-	@Override
-	public int getColor(final boolean dis) {
-		return dis ? this.colorDis : this.color;
-	}
-
-	@Override
-	public IAlleleInteger getAllele() {
-		return this;
-	}
-
-	@Override
-	public int getID() {
-		return this.ordinal();
-	}
-
-	@Override
-	public String getColourName() {
-		return Botany.proxy.localise("colour." + getName());
 	}
 
 	@Override
@@ -2972,23 +2951,7 @@ public enum EnumFlowerColor implements IFlowerColour, IAlleleInteger, IStringSer
 		return this.name();
 	}
 
-	@Override
-	public String getUID() {
-		return this.uid;
-	}
-
-	@Override
-	public boolean isDominant() {
-		return true;
-	}
-
-	@Override
-	public String getUnlocalizedName() {
-		return this.getUID();
-	}
-
-	@Override
-	public int getValue() {
-		return color;
+	public FlowerColorAllele getFlowerColorAllele(){
+		return allele;
 	}
 }

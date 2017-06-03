@@ -45,6 +45,6 @@ public class CeramicColor implements IDesignMaterial {
 
 	@Override
 	public int getColour() {
-		return this.color.getColor(false);
+		return this.color.getFlowerColorAllele().getColor(false);
 	}
 }

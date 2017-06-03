@@ -62,18 +62,18 @@ public class FlowerGenome extends Genome implements IFlowerGenome {
 	}
 
 	@Override
-	public EnumFlowerColor getPrimaryColor() {
-		return ((EnumFlowerColor) this.getActiveAllele(EnumFlowerChromosome.PRIMARY));
+	public FlowerColorAllele getPrimaryColor() {
+		return ((FlowerColorAllele) this.getActiveAllele(EnumFlowerChromosome.PRIMARY));
 	}
 
 	@Override
-	public EnumFlowerColor getSecondaryColor() {
-		return ((EnumFlowerColor) this.getActiveAllele(EnumFlowerChromosome.SECONDARY));
+	public FlowerColorAllele getSecondaryColor() {
+		return ((FlowerColorAllele) this.getActiveAllele(EnumFlowerChromosome.SECONDARY));
 	}
 
 	@Override
-	public EnumFlowerColor getStemColor() {
-		return ((EnumFlowerColor) this.getActiveAllele(EnumFlowerChromosome.STEM));
+	public FlowerColorAllele getStemColor() {
+		return ((FlowerColorAllele) this.getActiveAllele(EnumFlowerChromosome.STEM));
 	}
 
 	@Override

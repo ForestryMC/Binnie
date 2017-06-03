@@ -24,8 +24,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class WindowBotanistDatabase extends WindowAbstractDatabase {
 	ControlListBox<EnumFlowerColor> selectionBoxColors;
@@ -87,8 +89,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 					return new ControlColourOption(this.getContent(), value, y);
 				}
 			};
-			final List<IFlowerColour> colors = new ArrayList<>();
-			Collections.addAll(colors, EnumFlowerColor.values());
+			final List<IFlowerColour> colors = Arrays.stream(EnumFlowerColor.values()).map( c -> c.getFlowerColorAllele()).collect(Collectors.toList());
 			this.listBox.setOptions(colors);
 		}
 	}

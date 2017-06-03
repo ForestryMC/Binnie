@@ -31,12 +31,12 @@ public class ItemClay extends Item implements IColoredItem, IItemModelRegister {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
-		return EnumFlowerColor.get(stack.getMetadata()).getColor(false);
+		return EnumFlowerColor.get(stack.getMetadata()).getFlowerColorAllele().getColor(false);
 	}
 
 	@Override
 	public String getItemStackDisplayName(final ItemStack stack) {
-		return EnumFlowerColor.get(stack.getItemDamage()).getColourName() + " " + super.getItemStackDisplayName(stack);
+		return EnumFlowerColor.get(stack.getItemDamage()).getFlowerColorAllele().getColourName() + " " + super.getItemStackDisplayName(stack);
 	}
 
 	@Override

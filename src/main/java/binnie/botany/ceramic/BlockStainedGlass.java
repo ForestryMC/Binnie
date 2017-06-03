@@ -64,7 +64,7 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
 		for (EnumFlowerColor color : EnumFlowerColor.values()) {
-			manager.registerItemModel(item, color.getID());
+			manager.registerItemModel(item, color.getFlowerColorAllele().getID());
 		}
 	}
 
@@ -140,7 +140,7 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 	@Override
 	public String getDisplayName(final ItemStack itemStack) {
 		final int meta = TileEntityMetadata.getItemDamage(itemStack);
-		return EnumFlowerColor.get(meta).getColourName() + " " + Binnie.LANGUAGE.localise("tile.botany.pigmented.glass.name");
+		return EnumFlowerColor.get(meta).getFlowerColorAllele().getColourName() + " " + Binnie.LANGUAGE.localise("tile.botany.pigmented.glass.name");
 	}
 
 	@Override
@@ -180,6 +180,6 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 		if (worldIn == null || pos == null) {
 			return 0;
 		}
-		return EnumFlowerColor.get(TileEntityMetadata.getTileMetadata(worldIn, pos)).getColor(false);
+		return EnumFlowerColor.get(TileEntityMetadata.getTileMetadata(worldIn, pos)).getFlowerColorAllele().getColor(false);
 	}
 }

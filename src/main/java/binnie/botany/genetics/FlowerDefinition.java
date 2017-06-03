@@ -123,7 +123,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.FERTILITY, EnumAllele.Fertility.LOW);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.SAPPINESS, EnumAllele.Sappiness.LOWER);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.OliveDrab);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.OliveDrab.getFlowerColorAllele());
 		}
 
 		@Override
@@ -141,7 +141,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.LIFESPAN, EnumAllele.Lifespan.LONG);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.BOTH_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.OliveDrab);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.OliveDrab.getFlowerColorAllele());
 		}
 
 		@Override
@@ -161,7 +161,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.BOTH_2);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.OliveDrab);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.OliveDrab.getFlowerColorAllele());
 		}
 
 		@Override
@@ -180,7 +180,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.LIFESPAN, EnumAllele.Lifespan.SHORTER);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.SAPPINESS, EnumAllele.Sappiness.LOW);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.BOTH_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.OliveDrab);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.OliveDrab.getFlowerColorAllele());
 		}
 
 		@Override
@@ -199,7 +199,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		protected void setAlleles(IAllele[] alleles) {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.LIFESPAN, EnumAllele.Lifespan.SHORTENED);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.SeaGreen);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.SeaGreen.getFlowerColorAllele());
 		}
 
 		@Override
@@ -218,7 +218,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		protected void setAlleles(IAllele[] alleles) {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.FERTILITY, EnumAllele.Fertility.HIGH);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.SeaGreen);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.SeaGreen.getFlowerColorAllele());
 		}
 
 		@Override
@@ -256,7 +256,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		protected void setAlleles(IAllele[] alleles) {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.LIFESPAN, EnumAllele.Lifespan.SHORTENED);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.OliveDrab);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.OliveDrab.getFlowerColorAllele());
 		}
 
 		@Override
@@ -291,7 +291,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.UP_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.BOTH_2);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.OliveDrab);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.OliveDrab.getFlowerColorAllele());
 		}
 
 		@Override
@@ -311,7 +311,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.LIFESPAN, EnumAllele.Lifespan.LONG);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.UP_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkGreen);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkGreen.getFlowerColorAllele());
 		}
 
 		@Override
@@ -349,7 +349,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.FERTILITY, EnumAllele.Fertility.LOW);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.LIFESPAN, EnumAllele.Lifespan.LONGER);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.OliveDrab);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.OliveDrab.getFlowerColorAllele());
 		}
 
 		@Override
@@ -368,7 +368,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.FERTILITY, EnumAllele.Fertility.LOW);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.SAPPINESS, EnumAllele.Sappiness.HIGH);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.BOTH_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkGreen);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkGreen.getFlowerColorAllele());
 		}
 
 		@Override
@@ -388,7 +388,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.LIFESPAN, EnumAllele.Lifespan.SHORTENED);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.UP_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkGreen);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkGreen.getFlowerColorAllele());
 		}
 
 		@Override
@@ -408,7 +408,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.BOTH_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.BOTH_2);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.MediumSeaGreen);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.MediumSeaGreen.getFlowerColorAllele());
 		}
 
 		@Override
@@ -428,7 +428,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.SAPPINESS, EnumAllele.Sappiness.HIGH);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.MediumSeaGreen);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.MediumSeaGreen.getFlowerColorAllele());
 		}
 
 		@Override
@@ -469,7 +469,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.SAPPINESS, EnumAllele.Sappiness.LOW);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.BOTH_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.BOTH_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.MediumSeaGreen);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.MediumSeaGreen.getFlowerColorAllele());
 		}
 
 		@Override
@@ -536,7 +536,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		protected void setAlleles(IAllele[] alleles) {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.SAPPINESS, EnumAllele.Sappiness.HIGH);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.SeaGreen);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.SeaGreen.getFlowerColorAllele());
 		}
 
 		@Override
@@ -576,7 +576,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.SAPPINESS, EnumAllele.Sappiness.LOW);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.UP_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkOliveGreen);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkOliveGreen.getFlowerColorAllele());
 		}
 
 		@Override
@@ -615,7 +615,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.BOTH_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.BOTH_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkOliveGreen);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkOliveGreen.getFlowerColorAllele());
 		}
 
 		@Override
@@ -635,7 +635,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.BOTH_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.UP_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.BOTH_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.SeaGreen);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.SeaGreen.getFlowerColorAllele());
 		}
 
 		@Override
@@ -656,7 +656,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.BOTH_2);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.OliveDrab);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.OliveDrab.getFlowerColorAllele());
 		}
 
 		@Override
@@ -694,7 +694,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.SAPPINESS, EnumAllele.Sappiness.LOW);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.BOTH_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.UP_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkOliveGreen);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkOliveGreen.getFlowerColorAllele());
 		}
 
 		@Override
@@ -710,7 +710,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		@Override
 		protected void setAlleles(IAllele[] alleles) {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.UP_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.MediumSeaGreen);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.MediumSeaGreen.getFlowerColorAllele());
 		}
 
 		@Override
@@ -731,7 +731,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkOliveGreen);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkOliveGreen.getFlowerColorAllele());
 		}
 
 		@Override
@@ -750,7 +750,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.SAPPINESS, EnumAllele.Sappiness.LOW);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.UP_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.OliveDrab);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.OliveDrab.getFlowerColorAllele());
 		}
 
 		@Override
@@ -767,7 +767,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		protected void setAlleles(IAllele[] alleles) {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.SAPPINESS, EnumAllele.Sappiness.HIGHER);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.BOTH_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkOliveGreen);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkOliveGreen.getFlowerColorAllele());
 		}
 
 		@Override
@@ -789,7 +789,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.BOTH_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.BOTH_2);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.OliveDrab);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.OliveDrab.getFlowerColorAllele());
 		}
 
 		@Override
@@ -809,7 +809,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.SAPPINESS, EnumAllele.Sappiness.HIGH);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.UP_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.UP_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkOliveGreen);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkOliveGreen.getFlowerColorAllele());
 		}
 
 		@Override
@@ -829,7 +829,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		protected void setAlleles(IAllele[] alleles) {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.SAPPINESS, EnumAllele.Sappiness.HIGH);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.UP_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkOliveGreen);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkOliveGreen.getFlowerColorAllele());
 		}
 
 		@Override
@@ -847,7 +847,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.FERTILITY, EnumAllele.Fertility.HIGH);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.SAPPINESS, EnumAllele.Sappiness.HIGHER);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.BOTH_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.MediumSeaGreen);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.MediumSeaGreen.getFlowerColorAllele());
 		}
 
 		@Override
@@ -868,7 +868,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.SAPPINESS, EnumAllele.Sappiness.HIGH);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PH_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.BOTH_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkGreen);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkGreen.getFlowerColorAllele());
 		}
 
 		@Override
@@ -890,7 +890,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.LIFESPAN, EnumAllele.Lifespan.LONG);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.UP_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.UP_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.OliveDrab);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.OliveDrab.getFlowerColorAllele());
 		}
 
 		@Override
@@ -911,7 +911,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.LIFESPAN, EnumAllele.Lifespan.LONGER);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
 			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.DOWN_1);
-			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkSeaGreen);
+			AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.STEM, EnumFlowerColor.DarkSeaGreen.getFlowerColorAllele());
 		}
 
 		@Override
@@ -1038,8 +1038,8 @@ public enum FlowerDefinition implements IFlowerDefinition {
 
 	private IAllele[] addVariant(final EnumFlowerColor a, final EnumFlowerColor b) {
 		final IAllele[] template = this.getTemplate();
-		template[EnumFlowerChromosome.PRIMARY.ordinal()] = a.getAllele();
-		template[EnumFlowerChromosome.SECONDARY.ordinal()] = b.getAllele();
+		template[EnumFlowerChromosome.PRIMARY.ordinal()] = a.getFlowerColorAllele();
+		template[EnumFlowerChromosome.SECONDARY.ordinal()] = b.getFlowerColorAllele();
 		this.variantTemplates.add(template);
 		return template;
 	}
@@ -1106,8 +1106,8 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		template = Arrays.copyOf(FlowerTemplates.getDefaultTemplate(), EnumFlowerChromosome.values().length);
 		AlleleHelper.getInstance().set(template, EnumFlowerChromosome.SPECIES, species);
 		AlleleHelper.getInstance().set(template, EnumFlowerChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.BOTH_1);
-		AlleleHelper.getInstance().set(template, EnumFlowerChromosome.PRIMARY, primaryColor);
-		AlleleHelper.getInstance().set(template, EnumFlowerChromosome.SECONDARY, secondaryColor);
+		AlleleHelper.getInstance().set(template, EnumFlowerChromosome.PRIMARY, primaryColor.getFlowerColorAllele());
+		AlleleHelper.getInstance().set(template, EnumFlowerChromosome.SECONDARY, secondaryColor.getFlowerColorAllele());
 		setAlleles(template);
 
 		genome = BotanyCore.getFlowerRoot().templateAsGenome(template);

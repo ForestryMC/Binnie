@@ -89,7 +89,7 @@ public class BlockCeramic extends Block implements IColoredBlock, IItemModelRegi
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(final Item item, final CreativeTabs tab, final NonNullList<ItemStack> itemList) {
 		for (EnumFlowerColor c : EnumFlowerColor.values()) {
-			itemList.add(new ItemStack(item, 1, c.getID()));
+			itemList.add(new ItemStack(item, 1, c.getFlowerColorAllele().getID()));
 		}
 	}
 
@@ -108,9 +108,9 @@ public class BlockCeramic extends Block implements IColoredBlock, IItemModelRegi
 		if (world != null && pos != null) {
 			TileCeramic ceramic = TileUtil.getTile(world, pos, TileCeramic.class);
 			if (ceramic != null) {
-				return ceramic.getColor().getColor(false);
+				return ceramic.getColor().getFlowerColorAllele().getColor(false);
 			}
 		}
-		return EnumFlowerColor.get(0).getColor(false);
+		return EnumFlowerColor.get(0).getFlowerColorAllele().getColor(false);
 	}
 }
