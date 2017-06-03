@@ -36,7 +36,7 @@ public class ExtraTreesJeiPlugin extends BlankModPlugin {
 			FenceDescription desc = WoodManager.getFenceDescription(itemStack);
 			if (desc != null) {
 				FenceType type = WoodManager.getFenceType(itemStack);
-				return type + ":" + desc.getPlankType().getName().toLowerCase() + ":" + desc.getSecondaryPlankType().getName().toLowerCase();
+				return type + ":" + desc.getPlankType().getDesignMaterialName().toLowerCase() + ":" + desc.getSecondaryPlankType().getDesignMaterialName().toLowerCase();
 			}
 			return Integer.toString(itemStack.getItemDamage());
 		});

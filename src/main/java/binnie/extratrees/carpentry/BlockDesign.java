@@ -139,9 +139,9 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 	public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
 		DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
 		if (block.getPrimaryMaterial() != block.getSecondaryMaterial()) {
-			tooltip.add(block.getPrimaryMaterial().getName() + " and " + block.getSecondaryMaterial().getName());
+			tooltip.add(block.getPrimaryMaterial().getDesignMaterialName() + " and " + block.getSecondaryMaterial().getDesignMaterialName());
 		} else {
-			tooltip.add(block.getPrimaryMaterial().getName());
+			tooltip.add(block.getPrimaryMaterial().getDesignMaterialName());
 		}
 	}
 

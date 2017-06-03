@@ -39,7 +39,7 @@ public class CeramicColor implements IDesignMaterial {
 	}
 
 	@Override
-	public String getName() {
+	public String getDesignMaterialName() {
 		return this.color.getName();
 	}
 

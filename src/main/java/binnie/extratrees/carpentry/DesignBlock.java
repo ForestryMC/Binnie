@@ -469,9 +469,9 @@ public class DesignBlock {
 	public String getString() {
 		String type = "";
 		if (this.getPrimaryMaterial() != this.getSecondaryMaterial()) {
-			type = this.getPrimaryMaterial().getName() + " and " + this.getSecondaryMaterial().getName();
+			type = this.getPrimaryMaterial().getDesignMaterialName() + " and " + this.getSecondaryMaterial().getDesignMaterialName();
 		} else {
-			type = this.getPrimaryMaterial().getName();
+			type = this.getPrimaryMaterial().getDesignMaterialName();
 		}
 		return super.toString() + " " + "{" + type + " " + this.getDesign().getName() + " " + (this.panel ? "Panel" : "Tile") + ", Facing:" + this.getFacing() + ", Rotation:" + this.getRotation() + "}";
 	}

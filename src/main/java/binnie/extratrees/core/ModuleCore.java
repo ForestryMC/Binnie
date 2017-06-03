@@ -83,8 +83,8 @@ public class ModuleCore implements IInitializable {
 						if (wood2 == null) {
 							outputPlanks.println("<td></td>");
 						} else {
-							final String img = "<img alt=\"" + wood2.getName() + "\" src=\"images/planks/" + wood2.getName() + ".png\">";
-							outputPlanks.println("<td>" + img + " " + wood2.getName() + "</td>");
+							final String img = "<img alt=\"" + wood2.getDesignMaterialName() + "\" src=\"images/planks/" + wood2.getDesignMaterialName() + ".png\">";
+							outputPlanks.println("<td>" + img + " " + wood2.getDesignMaterialName() + "</td>");
 						}
 					}
 					outputPlanks.println("</tr>");

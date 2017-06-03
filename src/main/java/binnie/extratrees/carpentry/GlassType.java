@@ -71,7 +71,7 @@ public class GlassType implements IDesignMaterial {
 	}
 
 	@Override
-	public String getName() {
+	public String getDesignMaterialName() {
 		return this.name;
 	}
 

@@ -7,7 +7,7 @@ public interface IDesignMaterial {
 
 	ItemStack getStack(boolean fireproof);
 
-	String getName();
+	String getDesignMaterialName();
 
 	int getColour();
 }

@@ -231,7 +231,7 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata, ITileEntit
 	public String getDisplayName(ItemStack itemStack) {
 		final int meta = TileEntityMetadata.getItemDamage(itemStack);
 		final String typeName = getDoorType(meta).getName();
-		final String woodName = WoodManager.getPlankType(meta & 0xFF).getName();
+		final String woodName = WoodManager.getPlankType(meta & 0xFF).getDesignMaterialName();
 		if (typeName.equals("")) {
 			return Binnie.LANGUAGE.localise(ExtraTrees.instance, "block.door.name", woodName);
 		}

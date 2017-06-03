@@ -132,6 +132,11 @@ public class PlankType {
 
 		@Override
 		public String getName() {
+			return "block.planks." + this.toString().toLowerCase();
+		}
+
+		@Override
+		public String getDesignMaterialName() {
 			return ExtraTrees.proxy.localise("block.planks." + this.toString().toLowerCase());
 		}
 
@@ -197,7 +202,7 @@ public class PlankType {
 		}
 
 		@Override
-		public String getName() {
+		public String getDesignMaterialName() {
 			return ExtraTrees.proxy.localise("block.planks.vanilla." + this.toString().toLowerCase());
 		}
 
@@ -301,7 +306,7 @@ public class PlankType {
 		}
 
 		@Override
-		public String getName() {
+		public String getDesignMaterialName() {
 			return ExtraTrees.proxy.localise("block.planks.forestry." + this.toString().toLowerCase());
 		}
 

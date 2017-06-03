@@ -198,8 +198,8 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata, IStat
 		String woodGrammar = ExtraTrees.proxy.localise("block.multifence" + (twoTypes ? "2" : "") + ".grammar");
 
 		woodGrammar = woodGrammar.replaceAll("%PREFIX", fenceType.getPrefix());
-		woodGrammar = woodGrammar.replaceAll("%TYPE", typeSecond.getName());
-		woodGrammar = woodGrammar.replaceAll("%WOOD", typeFirst.getName());
+		woodGrammar = woodGrammar.replaceAll("%TYPE", typeSecond.getDesignMaterialName());
+		woodGrammar = woodGrammar.replaceAll("%WOOD", typeFirst.getDesignMaterialName());
 		return woodGrammar;
 	}
 
