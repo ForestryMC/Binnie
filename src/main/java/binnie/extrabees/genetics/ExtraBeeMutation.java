@@ -223,7 +223,7 @@ public class ExtraBeeMutation {
 		Preconditions.checkNotNull(allele0);
 		Preconditions.checkNotNull(allele1);
 		Preconditions.checkNotNull(template);
-		return BeeManager.beeMutationFactory.createMutation(allele0, allele0, template, chance);
+		return BeeManager.beeMutationFactory.createMutation(allele0, allele1, template, chance);
 	}
 
 	static class ConditionPerson implements IMutationCondition {
