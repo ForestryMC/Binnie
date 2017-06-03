@@ -54,25 +54,25 @@ public class AnalystPageMutations extends ControlAnalystPage {
 				hive = new ItemStack(ExtraBees.hive, 1, 2);
 			}
 			if (ind.getGenome().getPrimary() == BeeDefinition.FOREST.getGenome().getPrimary()) {
-				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 1);
+				hive = new ItemStack(Mods.forestry.block("beehives"), 1, 1);
 			}
 			if (ind.getGenome().getPrimary() == BeeDefinition.MEADOWS.getGenome().getPrimary()) {
-				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 2);
+				hive = new ItemStack(Mods.forestry.block("beehives"), 1, 2);
 			}
 			if (ind.getGenome().getPrimary() == BeeDefinition.MODEST.getGenome().getPrimary()) {
-				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 3);
+				hive = new ItemStack(Mods.forestry.block("beehives"), 1, 3);
 			}
 			if (ind.getGenome().getPrimary() == BeeDefinition.TROPICAL.getGenome().getPrimary()) {
-				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 4);
+				hive = new ItemStack(Mods.forestry.block("beehives"), 1, 4);
 			}
 			if (ind.getGenome().getPrimary() == BeeDefinition.ENDED.getGenome().getPrimary()) {
-				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 5);
+				hive = new ItemStack(Mods.forestry.block("beehives"), 1, 5);
 			}
 			if (ind.getGenome().getPrimary() == BeeDefinition.WINTRY.getGenome().getPrimary()) {
-				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 6);
+				hive = new ItemStack(Mods.forestry.block("beehives"), 1, 6);
 			}
 			if (ind.getGenome().getPrimary() == BeeDefinition.MARSHY.getGenome().getPrimary()) {
-				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 7);
+				hive = new ItemStack(Mods.forestry.block("beehives"), 1, 7);
 			}
 			if (ind.getGenome().getPrimary() == BeeDefinition.STEADFAST.getGenome().getPrimary()) {
 				hive = new ItemStack(Blocks.chest);
@@ -253,7 +253,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 	static class ControlUnknownMutation extends Control {
 		public ControlUnknownMutation(IWidget parent, float x, float y, float w, float h) {
 			super(parent, x, y, w, h);
-			addAttribute(WidgetAttribute.MouseOver);
+			addAttribute(WidgetAttribute.MOUSE_OVER);
 			addTooltip("Unknown Mutation");
 		}
 

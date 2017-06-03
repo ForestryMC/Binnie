@@ -22,7 +22,7 @@ public class ControlSlotFluid extends Control implements ITooltip {
 
 	public ControlSlotFluid(IWidget parent, int x, int y, int size, FluidStack fluid) {
 		super(parent, x, y, size, size);
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
 		itemDisplay = new ControlFluidDisplay(this, 1.0f, 1.0f, size - 2);
 		fluidStack = fluid;
 		addSelfEventHandler(new EventWidget.ChangeSize.Handler() {

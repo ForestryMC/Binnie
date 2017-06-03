@@ -45,21 +45,6 @@ public class ForestryAllele {
 		}
 	}
 
-	public enum Flowering {
-		Slowest,
-		Slower,
-		Slow,
-		Average,
-		Fast,
-		Faster,
-		Fastest,
-		Maximum;
-
-		public IAllele getAllele() {
-			return AlleleManager.alleleRegistry.getAllele("forestry.flowering" + toString());
-		}
-	}
-
 	public enum Territory {
 		Default,
 		Large,

@@ -22,7 +22,7 @@ public abstract class ControlSlotBase extends Control implements ITooltip {
 
 	public ControlSlotBase(IWidget parent, float x, float y, int size) {
 		super(parent, x, y, size, size);
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
 		itemDisplay = new ControlItemDisplay(this, 1.0f, 1.0f, size - 2);
 		addSelfEventHandler(new EventWidget.ChangeSize.Handler() {
 			@Override

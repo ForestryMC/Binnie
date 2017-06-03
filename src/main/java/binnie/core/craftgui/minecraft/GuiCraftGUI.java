@@ -33,11 +33,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SideOnly(Side.CLIENT)
-public class GuiCraftGUI extends GuiContainer
-{
-	IPoint mousePos;
+public class GuiCraftGUI extends GuiContainer {
 	private Window window;
 	private ItemStack draggedItem;
+
+	public GuiCraftGUI(Window window) {
+		super(window.getContainer());
+		this.window = window;
+		resize(window.getSize());
+	}
 
 	@Override
 	public void updateScreen() {
@@ -48,15 +52,9 @@ public class GuiCraftGUI extends GuiContainer
 		return mc;
 	}
 
-	public GuiCraftGUI(Window window) {
-		super(window.getContainer());
-		mousePos = new IPoint(0.0f, 0.0f);
-		this.window = window;
-		resize(window.getSize());
-	}
-
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float var1, int var2, int var3) {
+		// ignored
 	}
 
 	@Override
@@ -104,11 +102,10 @@ public class GuiCraftGUI extends GuiContainer
 		GL11.glDisable(2929);
 		MinecraftTooltip tooltip = new MinecraftTooltip();
 		if (isHelpMode()) {
-			tooltip.setType(Tooltip.Type.Help);
+			tooltip.setType(Tooltip.Type.HELP);
 			window.getHelpTooltip(tooltip);
-		}
-		else {
-			tooltip.setType(Tooltip.Type.Standard);
+		} else {
+			tooltip.setType(Tooltip.Type.STANDARD);
 			window.getTooltip(tooltip);
 		}
 		if (tooltip.exists()) {
@@ -133,8 +130,7 @@ public class GuiCraftGUI extends GuiContainer
 			if (string != null) {
 				if (!string.contains("~~~")) {
 					strings.addAll(font.listFormattedStringToWidth(string, tooltip.maxWidth));
-				}
-				else {
+				} else {
 					strings.add(string);
 				}
 			}
@@ -178,8 +174,7 @@ public class GuiCraftGUI extends GuiContainer
 			String s2 = strings.get(k3);
 			if (k3 == 0) {
 				s2 = MinecraftTooltip.getTitle(tooltip.getType()) + s2;
-			}
-			else {
+			} else {
 				s2 = MinecraftTooltip.getBody(tooltip.getType()) + s2;
 			}
 			if (s2.contains("~~~")) {
@@ -239,8 +234,7 @@ public class GuiCraftGUI extends GuiContainer
 		if (button == -1) {
 			float dx = Mouse.getEventDX() * width / (float) mc.displayWidth;
 			float dy = -(Mouse.getEventDY() * height / (float) mc.displayHeight);
-		}
-		else {
+		} else {
 			window.callEvent(new EventMouse.Up(origin, x, y, button));
 		}
 	}

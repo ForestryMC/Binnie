@@ -5,8 +5,7 @@ import binnie.core.BinnieCore;
 import binnie.core.resource.BinnieIcon;
 import net.minecraft.util.IIcon;
 
-public enum GUIIcon
-{
+public enum GUIIcon {
 	ArrowUp("arrow-up"),
 	ArrowDown("arrow-down"),
 	ArrowLeft("arrow-left"),

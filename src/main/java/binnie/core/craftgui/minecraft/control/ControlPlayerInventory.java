@@ -3,8 +3,6 @@ package binnie.core.craftgui.minecraft.control;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.minecraft.InventoryType;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,24 +61,6 @@ public class ControlPlayerInventory extends Control {
 		for (int i1 = 0; i1 < 9; ++i1) {
 			ControlSlot slot2 = slots.get(27 + i1);
 			slot2.assign(InventoryType.Player, i1);
-		}
-	}
-
-	public void addItem(ItemStack item) {
-		if (item == null) {
-			return;
-		}
-
-		for (ControlSlot slot : slots) {
-			if (!slot.slot.getHasStack()) {
-				slot.slot.putStack(item);
-			}
-		}
-	}
-
-	public void addInventory(IInventory inventory) {
-		for (int i = 0; i < inventory.getSizeInventory(); ++i) {
-			addItem(inventory.getStackInSlot(i));
 		}
 	}
 

@@ -15,7 +15,7 @@ public class ControlColorDisplay extends Control implements IControlValue<IFlowe
 
 	public ControlColorDisplay(IWidget parent, float x, float y) {
 		super(parent, x, y, 16.0f, 16.0f);
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
 	}
 
 	@Override

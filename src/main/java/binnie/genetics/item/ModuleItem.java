@@ -82,7 +82,7 @@ public class ModuleItem implements IInitializable {
 			new Object[]{
 				"iii", "iYi", "iii",
 				'i', "ingotIron",
-				'Y', Mods.Forestry.item("sturdyMachine")
+				'Y', Mods.forestry.item("sturdyMachine")
 			}
 		));
 
@@ -151,7 +151,7 @@ public class ModuleItem implements IInitializable {
 			GeneticsItems.IntegratedCircuit.get(1),
 			new Object[]{
 				"l g", " c ", "g l",
-				'c', Mods.Forestry.stack("chipsets", 1, 1),
+				'c', Mods.forestry.stack("chipsets", 1, 1),
 				'l', new ItemStack(Items.dye, 1, 4),
 				'g', "dustGlowstone"
 			}
@@ -161,7 +161,7 @@ public class ModuleItem implements IInitializable {
 			GeneticsItems.IntegratedCircuit.get(1),
 			new Object[]{
 				"g l", " c ", "l g",
-				'c', Mods.Forestry.stack("chipsets", 1, 1),
+				'c', Mods.forestry.stack("chipsets", 1, 1),
 				'l', new ItemStack(Items.dye, 1, 4),
 				'g', "dustGlowstone"
 			}
@@ -205,9 +205,9 @@ public class ModuleItem implements IInitializable {
 		// TODO refactor refactor refactor this!
 		Item[] arr$;
 		Item[] lyzers = arr$ = new Item[]{
-			Mods.Forestry.item("beealyzer"),
-			Mods.Forestry.item("treealyzer"),
-			Mods.Forestry.item("flutterlyzer")
+			Mods.forestry.item("beealyzer"),
+			Mods.forestry.item("treealyzer"),
+			Mods.forestry.item("flutterlyzer")
 		};
 		for (Item a : arr$) {
 			for (Item b : lyzers) {

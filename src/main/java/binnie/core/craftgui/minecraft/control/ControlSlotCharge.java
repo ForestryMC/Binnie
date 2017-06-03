@@ -13,6 +13,11 @@ import binnie.core.machines.inventory.IChargedSlots;
 public class ControlSlotCharge extends Control {
 	private int slot;
 
+	public ControlSlotCharge(IWidget parent, int x, int y, int slot) {
+		super(parent, x, y, 4.0f, 18.0f);
+		this.slot = slot;
+	}
+
 	float getCharge() {
 		IChargedSlots slots = Machine.getInterface(IChargedSlots.class, Window.get(this).getInventory());
 		return (slots == null) ? 0.0f : slots.getCharge(slot);
@@ -22,11 +27,6 @@ public class ControlSlotCharge extends Control {
 	public void onRenderBackground() {
 		CraftGUI.Render.texture(CraftGUITexture.PanelBlack, getArea());
 		CraftGUI.Render.texturePercentage(CraftGUI.Render.getTexture(CraftGUITexture.SlotCharge), getArea().inset(1), Position.BOTTOM, getCharge());
-	}
-
-	public ControlSlotCharge(IWidget parent, int x, int y, int slot) {
-		super(parent, x, y, 4.0f, 18.0f);
-		this.slot = slot;
 	}
 
 	@Override

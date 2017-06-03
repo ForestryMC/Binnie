@@ -13,7 +13,7 @@ import binnie.core.util.I18N;
 public class ControlHelp extends Control implements ITooltip {
 	public ControlHelp(IWidget parent, float x, float y) {
 		super(parent, x, y, 16.0f, 16.0f);
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class ControlHelp extends Control implements ITooltip {
 
 	@Override
 	public void getTooltip(Tooltip tooltip) {
-		tooltip.setType(Tooltip.Type.Help);
+		tooltip.setType(Tooltip.Type.HELP);
 		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.help"));
 		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.help.0"));
 		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.help.1"));

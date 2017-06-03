@@ -177,7 +177,7 @@ public enum Food implements IItemMisc {
 			time,
 			new ItemStack[]{get(1)},
 			Binnie.Liquid.getLiquidStack("juice", amount),
-			Mods.Forestry.stack("mulch"),
+			Mods.forestry.stack("mulch"),
 			mulch
 		);
 	}
@@ -187,7 +187,7 @@ public enum Food implements IItemMisc {
 			time,
 			new ItemStack[]{get(1)},
 			Binnie.Liquid.getLiquidStack("juice", amount),
-			Mods.Forestry.stack("mulch"),
+			Mods.forestry.stack("mulch"),
 			mulch
 		);
 	}
@@ -197,7 +197,7 @@ public enum Food implements IItemMisc {
 			time,
 			new ItemStack[]{get(1)},
 			Binnie.Liquid.getLiquidStack("seedoil", amount),
-			Mods.Forestry.stack("mulch"),
+			Mods.forestry.stack("mulch"),
 			mulch
 		);
 	}

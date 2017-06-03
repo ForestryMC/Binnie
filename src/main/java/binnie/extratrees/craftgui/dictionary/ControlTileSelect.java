@@ -126,7 +126,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 		protected ControlTile(IWidget parent, float x, float y, IDesign value) {
 			super(parent, x, y, 18.0f, 18.0f);
 			setValue(value);
-			addAttribute(WidgetAttribute.MouseOver);
+			addAttribute(WidgetAttribute.MOUSE_OVER);
 			addSelfEventHandler(new EventMouse.Down.Handler() {
 				@Override
 				public void onEvent(EventMouse.Down event) {

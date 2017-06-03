@@ -56,7 +56,6 @@ public class WindowFieldKit extends Window {
 	private float analyseProgress;
 	private boolean isAnalysing;
 	private Map<IChromosomeType, String> info;
-	private ItemStack prev;
 
 	public WindowFieldKit(EntityPlayer player, IInventory inventory, Side side) {
 		super(280.0f, 230.0f, player, inventory, side);
@@ -68,7 +67,6 @@ public class WindowFieldKit extends Window {
 		analyseProgress = 1.0f;
 		isAnalysing = false;
 		info = new HashMap<>();
-		prev = null;
 	}
 
 	@Override
@@ -111,7 +109,7 @@ public class WindowFieldKit extends Window {
 
 	@Override
 	public void initialiseClient() {
-		setTitle("Field Kit");
+		setTitle(getName());
 		CraftGUI.Render.stylesheet(new StyleSheetPunnett());
 		getWindowInventory().createSlot(0);
 		getWindowInventory().createSlot(1);
@@ -223,28 +221,30 @@ public class WindowFieldKit extends Window {
 			((EntityPlayerMP) getPlayer()).updateHeldItem();
 		}
 
-		if (isClient()) {
-			ItemStack item = getWindowInventory().getStackInSlot(0);
-			prev = item;
-			text.setValue("");
-			if (item != null && !Analyser.isAnalysed(item)) {
-				if (getWindowInventory().getStackInSlot(1) == null) {
-					text.setValue("No Paper!");
-					isAnalysing = false;
-					analyseProgress = 1.0f;
-				} else {
-					startAnalysing();
-					chromo.setRoot(null);
-				}
-			} else if (item != null) {
+		if (!isClient()) {
+			return;
+		}
+
+		ItemStack item = getWindowInventory().getStackInSlot(0);
+		text.setValue("");
+
+		if (item != null && !Analyser.isAnalysed(item)) {
+			if (getWindowInventory().getStackInSlot(1) == null) {
+				text.setValue("No Paper!");
 				isAnalysing = false;
 				analyseProgress = 1.0f;
-				refreshSpecies();
 			} else {
-				isAnalysing = false;
-				analyseProgress = 1.0f;
+				startAnalysing();
 				chromo.setRoot(null);
 			}
+		} else if (item != null) {
+			isAnalysing = false;
+			analyseProgress = 1.0f;
+			refreshSpecies();
+		} else {
+			isAnalysing = false;
+			analyseProgress = 1.0f;
+			chromo.setRoot(null);
 		}
 	}
 
@@ -270,10 +270,12 @@ public class WindowFieldKit extends Window {
 	@Override
 	public void recieveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt) {
 		super.recieveGuiNBT(side, player, name, nbt);
-		if (side == Side.SERVER && name.equals("analyse")) {
-			getWindowInventory().setInventorySlotContents(0, Analyser.analyse(getWindowInventory().getStackInSlot(0)));
-			getWindowInventory().decrStackSize(1, 1);
+		if (side != Side.SERVER || !name.equals("analyse")) {
+			return;
 		}
+
+		getWindowInventory().setInventorySlotContents(0, Analyser.analyse(getWindowInventory().getStackInSlot(0)));
+		getWindowInventory().decrStackSize(1, 1);
 	}
 
 	static class StyleSheetPunnett extends StyleSheet {

@@ -10,17 +10,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class WindowInventory implements IInventory
-{
+public class WindowInventory implements IInventory {
 	private Window window;
 	private Map<Integer, ItemStack> inventory;
 	private Map<Integer, SlotValidator> validators;
 	private List<Integer> disabledAutoDispenses;
 
 	public WindowInventory(Window window) {
-		inventory = new HashMap<Integer, ItemStack>();
-		validators = new HashMap<Integer, SlotValidator>();
-		disabledAutoDispenses = new ArrayList<Integer>();
+		inventory = new HashMap<>();
+		validators = new HashMap<>();
+		disabledAutoDispenses = new ArrayList<>();
 		this.window = window;
 	}
 
@@ -29,6 +28,7 @@ public class WindowInventory implements IInventory
 		if (inventory.size() == 0) {
 			return 0;
 		}
+
 		int max = 0;
 		for (int i : inventory.keySet()) {
 			if (i > max) {
@@ -48,22 +48,24 @@ public class WindowInventory implements IInventory
 
 	@Override
 	public ItemStack decrStackSize(int index, int amount) {
-		if (inventory.containsKey(index)) {
-			ItemStack item = inventory.get(index);
-			ItemStack output = item.copy();
-			int available = item.stackSize;
-			if (amount > available) {
-				amount = available;
-			}
-			ItemStack itemStack = item;
-			itemStack.stackSize -= amount;
-			output.stackSize = amount;
-			if (item.stackSize == 0) {
-				setInventorySlotContents(index, null);
-			}
-			return output;
+		if (!inventory.containsKey(index)) {
+			return null;
 		}
-		return null;
+
+		ItemStack item = inventory.get(index);
+		ItemStack output = item.copy();
+		int available = item.stackSize;
+		if (amount > available) {
+			amount = available;
+		}
+
+		ItemStack itemStack = item;
+		itemStack.stackSize -= amount;
+		output.stackSize = amount;
+		if (item.stackSize == 0) {
+			setInventorySlotContents(index, null);
+		}
+		return output;
 	}
 
 	@Override

@@ -1,27 +1,31 @@
 package binnie.core.craftgui.database;
 
+import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.controls.listbox.ControlList;
 import binnie.core.craftgui.controls.listbox.ControlTextOption;
 import binnie.core.craftgui.geometry.CraftGUIUtil;
 import binnie.core.craftgui.geometry.IPoint;
+import binnie.core.util.I18N;
 import forestry.api.genetics.IAlleleSpecies;
 
-class ControlSpeciexBoxOption extends ControlTextOption<IAlleleSpecies> {
+class ControlSpeciesBoxOption extends ControlTextOption<IAlleleSpecies> {
 	private ControlDatabaseIndividualDisplay controlBee;
 
-	public ControlSpeciexBoxOption(ControlList<IAlleleSpecies> controlList, IAlleleSpecies option, int y) {
+	public ControlSpeciesBoxOption(ControlList<IAlleleSpecies> controlList, IAlleleSpecies option, int y) {
 		super(controlList, option, option.getName(), y);
 		setSize(new IPoint(getSize().x(), 20.0f));
-		(controlBee = new ControlDatabaseIndividualDisplay(this, 2.0f, 2.0f)).setSpecies(getValue(), EnumDiscoveryState.Undetermined);
-		if (controlBee.discovered == EnumDiscoveryState.Discovered) {
-			controlBee.discovered = EnumDiscoveryState.Show;
+		(controlBee = new ControlDatabaseIndividualDisplay(this, 2.0f, 2.0f)).setSpecies(getValue(), EnumDiscoveryState.UNDETERMINED);
+		if (controlBee.discovered == EnumDiscoveryState.DISCOVERED) {
+			controlBee.discovered = EnumDiscoveryState.SHOW;
 		}
 
-		textWidget.setValue((controlBee.discovered == EnumDiscoveryState.Show) ? option.getName() : "Undiscovered");
-		if (controlBee.discovered == EnumDiscoveryState.Show) {
-			addAttribute(WidgetAttribute.MouseOver);
+		if (controlBee.discovered == EnumDiscoveryState.SHOW) {
+			textWidget.setValue(option.getName());
+			addAttribute(WidgetAttribute.MOUSE_OVER);
+		} else {
+			textWidget.setValue(I18N.localise(BinnieCore.instance, "gui.database.discovered.undiscovered"));
 		}
 
 		CraftGUIUtil.moveWidget(textWidget, new IPoint(22.0f, 0.0f));

@@ -61,36 +61,9 @@ public class WindowGenesis extends Window {
 	@Override
 	public void initialiseClient() {
 		new ControlPlayerInventory(this);
-		setTitle("Genesis");
-		ControlTabBar<BreedingSystem> tabSystems = new ControlTabBar<BreedingSystem>(this, 8.0f, 28.0f, 23.0f, 100.0f, Position.LEFT) {
-			@Override
-			public ControlTab<BreedingSystem> createTab(float x, float y, float w, float h, BreedingSystem value) {
-				return new ControlTabIcon<BreedingSystem>(this, x, y, w, h, value) {
-					@Override
-					public ItemStack getItemStack() {
-						int type = value.getDefaultType();
-						IIndividual ind = value.getDefaultIndividual();
-						return value.getSpeciesRoot().getMemberStack(ind, type);
-					}
+		setTitle(getName());
 
-					@Override
-					public String getName() {
-						return value.getName();
-					}
-
-					@Override
-					public int getOutlineColour() {
-						return value.getColor();
-					}
-
-					@Override
-					public boolean hasOutline() {
-						return true;
-					}
-				};
-			}
-		};
-
+		ControlTabBar<BreedingSystem> tabSystems = new BreedingSystemControlTabBar();
 		tabSystems.setValues(Binnie.Genetics.getActiveSystems());
 		root = Binnie.Genetics.getActiveSystems().iterator().next().getSpeciesRoot();
 		template = root.getDefaultTemplate();
@@ -168,7 +141,6 @@ public class WindowGenesis extends Window {
 			genes.add(new Gene(allele, type, root));
 		}
 
-		Map<IChromosomeType, List<IAllele>> map = Binnie.Genetics.getChromosomeMap(root);
 		geneList.setOptions(genes);
 		if (selection != null) {
 			geneList.setValue(new Gene(template[selection.ordinal()], selection, root));
@@ -188,14 +160,7 @@ public class WindowGenesis extends Window {
 			ControlItemDisplay display = new ControlItemDisplay(panelPickup, 4 + i % 3 * 18, 4 + i / 3 * 18);
 			display.setItemStack(stack);
 			display.setTooltip();
-			display.addEventHandler(new EventMouse.Down.Handler() {
-				@Override
-				public void onEvent(EventMouse.Down event) {
-					NBTTagCompound nbt = new NBTTagCompound();
-					stack.writeToNBT(nbt);
-					Window.get(event.getOrigin()).sendClientAction("genesis", nbt);
-				}
-			}.setOrigin(EventHandler.Origin.Self, display));
+			display.addEventHandler(new MouseDownHandler(stack).setOrigin(EventHandler.Origin.Self, display));
 			i++;
 		}
 	}
@@ -226,6 +191,54 @@ public class WindowGenesis extends Window {
 			if (player instanceof EntityPlayerMP) {
 				((EntityPlayerMP) player).updateHeldItem();
 			}
+		}
+	}
+
+	private static class MouseDownHandler extends EventMouse.Down.Handler {
+		private final ItemStack stack;
+
+		public MouseDownHandler(ItemStack stack) {
+			this.stack = stack;
+		}
+
+		@Override
+		public void onEvent(EventMouse.Down event) {
+			NBTTagCompound nbt = new NBTTagCompound();
+			stack.writeToNBT(nbt);
+			Window.get(event.getOrigin()).sendClientAction("genesis", nbt);
+		}
+	}
+
+	private class BreedingSystemControlTabBar extends ControlTabBar<BreedingSystem> {
+		public BreedingSystemControlTabBar() {
+			super(WindowGenesis.this, 8.0f, 28.0f, 23.0f, 100.0f, Position.LEFT);
+		}
+
+		@Override
+		public ControlTab<BreedingSystem> createTab(float x, float y, float w, float h, BreedingSystem value) {
+			return new ControlTabIcon<BreedingSystem>(this, x, y, w, h, value) {
+				@Override
+				public ItemStack getItemStack() {
+					int type = value.getDefaultType();
+					IIndividual ind = value.getDefaultIndividual();
+					return value.getSpeciesRoot().getMemberStack(ind, type);
+				}
+
+				@Override
+				public String getName() {
+					return value.getName();
+				}
+
+				@Override
+				public int getOutlineColour() {
+					return value.getColor();
+				}
+
+				@Override
+				public boolean hasOutline() {
+					return true;
+				}
+			};
 		}
 	}
 }

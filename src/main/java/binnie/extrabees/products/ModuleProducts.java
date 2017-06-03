@@ -31,7 +31,7 @@ public class ModuleProducts implements IInitializable {
 		GameRegistry.addRecipe(
 			new ItemStack(ExtraBees.honeyCrystalEmpty),
 			"#@#", "@#@", "#@#",
-			'@', Mods.Forestry.stack("honeyDrop"),
+			'@', Mods.forestry.stack("honeyDrop"),
 			'#', EnumHoneyDrop.ENERGY.get(1)
 		);
 		for (EnumHoneyComb info : EnumHoneyComb.values()) {

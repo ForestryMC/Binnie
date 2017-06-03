@@ -11,6 +11,6 @@ public class ControlDropDownMenu extends Panel {
 	public ControlDropDownMenu(IWidget parent, float x, float y, float width, float height) {
 		super(parent, x, y, width, 2.0f, MinecraftGUI.PanelType.Gray);
 		stayOpenOnChildClick = false;
-		addAttribute(WidgetAttribute.CanFocus);
+		addAttribute(WidgetAttribute.CAN_FOCUS);
 	}
 }

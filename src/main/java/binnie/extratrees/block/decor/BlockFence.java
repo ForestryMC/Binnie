@@ -42,7 +42,7 @@ public class BlockFence extends net.minecraft.block.BlockFence implements IBlock
 	}
 
 	public static boolean canConnect(Block block) {
-		return block == ((ItemBlock) Mods.Forestry.item("fences")).field_150939_a || block == Blocks.fence || block == Blocks.fence_gate || block == Blocks.nether_brick_fence || block instanceof IBlockFence || block == ExtraTrees.blockGate;
+		return block == ((ItemBlock) Mods.forestry.item("fences")).field_150939_a || block == Blocks.fence || block == Blocks.fence_gate || block == Blocks.nether_brick_fence || block instanceof IBlockFence || block == ExtraTrees.blockGate;
 	}
 
 	@Override

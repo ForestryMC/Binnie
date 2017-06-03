@@ -31,6 +31,13 @@ import java.util.Map;
 public class ControlSlot extends ControlSlotBase {
 	public static Map<EnumHighlighting, List<Integer>> highlighting = new HashMap<>();
 	public static boolean shiftClickActive = false;
+
+	static {
+		for (EnumHighlighting h : EnumHighlighting.values()) {
+			ControlSlot.highlighting.put(h, new ArrayList<>());
+		}
+	}
+
 	public Slot slot;
 
 	public ControlSlot(IWidget parent, float x, float y) {
@@ -75,7 +82,7 @@ public class ControlSlot extends ControlSlotBase {
 
 		boolean highlighted = false;
 		for (Map.Entry<EnumHighlighting, List<Integer>> highlight : ControlSlot.highlighting.entrySet()) {
-			if (highlight.getKey() == EnumHighlighting.ShiftClick && !ControlSlot.shiftClickActive) {
+			if (highlight.getKey() == EnumHighlighting.SHIFT_CLICK && !ControlSlot.shiftClickActive) {
 				continue;
 			}
 			if (highlighted || !highlight.getValue().contains(slot.slotNumber)) {
@@ -103,7 +110,7 @@ public class ControlSlot extends ControlSlotBase {
 
 		boolean highlighted = false;
 		for (Map.Entry<EnumHighlighting, List<Integer>> highlight : ControlSlot.highlighting.entrySet()) {
-			if (highlight.getKey() == EnumHighlighting.ShiftClick && !ControlSlot.shiftClickActive) {
+			if (highlight.getKey() == EnumHighlighting.SHIFT_CLICK && !ControlSlot.shiftClickActive) {
 				continue;
 			}
 			if (highlighted || !highlight.getValue().contains(slot.slotNumber)) {
@@ -137,7 +144,7 @@ public class ControlSlot extends ControlSlotBase {
 		if (Window.get(this).getGui().isHelpMode() && isMouseOver()) {
 			for (ControlSlot slot2 : getControlSlots()) {
 				if (slot2.slot != null) {
-					ControlSlot.highlighting.get(EnumHighlighting.Help).add(slot2.slot.slotNumber);
+					ControlSlot.highlighting.get(EnumHighlighting.HELP).add(slot2.slot.slotNumber);
 				}
 			}
 		}
@@ -189,7 +196,7 @@ public class ControlSlot extends ControlSlotBase {
 			if (slot.isReadOnly()) {
 				tooltip.add(I18N.localise(BinnieCore.instance, "gui.slot.pickupOnly"));
 			}
-			
+
 			if (slot.getValidator() == null) {
 				tooltip.add(I18N.localise(BinnieCore.instance, "gui.slot.accepts", I18N.localise(BinnieCore.instance, "gui.slot.anyItem")));
 			} else {
@@ -211,11 +218,5 @@ public class ControlSlot extends ControlSlotBase {
 		return (slot instanceof CustomSlot)
 			? ((CustomSlot) slot).getInventorySlot()
 			: null;
-	}
-
-	static {
-		for (EnumHighlighting h : EnumHighlighting.values()) {
-			ControlSlot.highlighting.put(h, new ArrayList<>());
-		}
 	}
 }

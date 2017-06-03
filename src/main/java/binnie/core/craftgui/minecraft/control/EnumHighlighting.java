@@ -4,24 +4,24 @@ import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.minecraft.MinecraftTooltip;
 
 public enum EnumHighlighting {
-	Error,
-	Warning,
-	Help,
-	ShiftClick;
+	ERROR,
+	WARNING,
+	HELP,
+	SHIFT_CLICK;
 
 	int getColour() {
 		switch (this) {
-			case Error:
-				return MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error);
+			case ERROR:
+				return MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR);
 
-			case Help:
-				return MinecraftTooltip.getOutline(Tooltip.Type.Help);
+			case HELP:
+				return MinecraftTooltip.getOutline(Tooltip.Type.HELP);
 
-			case ShiftClick:
+			case SHIFT_CLICK:
 				return 0xffff00;
 
-			case Warning:
-				return MinecraftTooltip.getOutline(MinecraftTooltip.Type.Warning);
+			case WARNING:
+				return MinecraftTooltip.getOutline(MinecraftTooltip.Type.WARNING);
 		}
 		return 0;
 	}

@@ -19,7 +19,7 @@ public class ControlUser extends Control implements ITooltip {
 		super(parent, x, y, 16.0f, 16.0f);
 		this.username = username;
 		team = "";
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class ControlUser extends Control implements ITooltip {
 
 	@Override
 	public void getTooltip(Tooltip tooltip) {
-		tooltip.setType(Tooltip.Type.User);
+		tooltip.setType(Tooltip.Type.USER);
 		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.owner"));
 
 		if (!username.isEmpty()) {

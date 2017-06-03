@@ -149,9 +149,9 @@ public enum ExtraBeeItems implements IItemMisc {
 			null,
 			ExtraBeeItems.ScentedGear.get(1),
 			" j ", "bgb", " p ",
-			'j', Mods.Forestry.item("royalJelly"),
-			'b', Mods.Forestry.item("beeswax"),
-			'p', Mods.Forestry.item("pollen"),
+			'j', Mods.forestry.item("royalJelly"),
+			'b', Mods.forestry.item("beeswax"),
+			'p', Mods.forestry.item("pollen"),
 			'g', gear
 		);
 	}

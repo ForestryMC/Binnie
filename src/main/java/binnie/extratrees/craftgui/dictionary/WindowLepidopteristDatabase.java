@@ -27,14 +27,14 @@ public class WindowLepidopteristDatabase extends WindowAbstractDatabase {
 
 	@Override
 	protected void addTabs() {
-		new PageSpeciesOverview(getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "butterfly.species.overview", 0));
-		new PageSpeciesClassification(getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "butterfly.species.classification", 0));
-		new PageSpeciesImage(getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "butterfly.species.specimen", 0));
-		new PageSpeciesResultant(getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "butterfly.species.resultant", 0));
-		new PageSpeciesMutations(getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "butterfly.species.further", 0));
-		new PageBranchOverview(getInfoPages(Mode.Branches), new DatabaseTab(ExtraTrees.instance, "butterfly.branches.overview", 0));
-		new PageBranchSpecies(getInfoPages(Mode.Branches), new DatabaseTab(ExtraTrees.instance, "butterfly.branches.species", 0));
-		new PageBreeder(getInfoPages(Mode.Breeder), getUsername(), new DatabaseTab(ExtraTrees.instance, "butterfly.breeder", 0));
+		new PageSpeciesOverview(getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "butterfly.species.overview"));
+		new PageSpeciesClassification(getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "butterfly.species.classification"));
+		new PageSpeciesImage(getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "butterfly.species.specimen"));
+		new PageSpeciesResultant(getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "butterfly.species.resultant"));
+		new PageSpeciesMutations(getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "butterfly.species.further"));
+		new PageBranchOverview(getInfoPages(Mode.Branches), new DatabaseTab(ExtraTrees.instance, "butterfly.branches.overview"));
+		new PageBranchSpecies(getInfoPages(Mode.Branches), new DatabaseTab(ExtraTrees.instance, "butterfly.branches.species"));
+		new PageBreeder(getInfoPages(Mode.Breeder), getUsername(), new DatabaseTab(ExtraTrees.instance, "butterfly.breeder"));
 	}
 
 	@Override

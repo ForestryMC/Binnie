@@ -22,7 +22,7 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
 
 	protected ControlGene(IWidget parent, float x, float y) {
 		super(parent, x, y, 16.0f, 16.0f);
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
 		addSelfEventHandler(new EventMouse.Down.Handler() {
 			@Override
 			public void onEvent(EventMouse.Down event) {

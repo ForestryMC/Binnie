@@ -24,21 +24,23 @@ class ControlMutationItem extends ControlOption<IMutation> {
 		boolean isNEI = ((WindowAbstractDatabase) getSuperParent()).isNEI();
 		BreedingSystem system = ((WindowAbstractDatabase) getSuperParent()).getBreedingSystem();
 
-		if (getValue() != null) {
-			boolean isMutationDiscovered = system.isMutationDiscovered(getValue(), Window.get(this).getWorld(), Window.get(this).getUsername());
-			IAlleleSpecies allele;
-			EnumDiscoveryState state;
-			allele = getValue().getAllele0();
-			state = ((isNEI || isMutationDiscovered) ? EnumDiscoveryState.Show : ((species == allele) ? EnumDiscoveryState.Show : EnumDiscoveryState.Undetermined));
-			itemWidget1.setSpecies(allele, state);
-			allele = getValue().getAllele1();
-			state = ((isNEI || isMutationDiscovered) ? EnumDiscoveryState.Show : ((species == allele) ? EnumDiscoveryState.Show : EnumDiscoveryState.Undetermined));
-			itemWidget2.setSpecies(allele, state);
-			allele = (IAlleleSpecies) getValue().getTemplate()[0];
-			state = ((isNEI || isMutationDiscovered) ? EnumDiscoveryState.Show : ((species == allele) ? EnumDiscoveryState.Show : EnumDiscoveryState.Undetermined));
-			itemWidget3.setSpecies(allele, state);
-			addSymbol.setValue(getValue());
-			arrowSymbol.setValue(getValue());
+		if (getValue() == null) {
+			return;
 		}
+
+		boolean isMutationDiscovered = system.isMutationDiscovered(getValue(), Window.get(this).getWorld(), Window.get(this).getUsername());
+		IAlleleSpecies allele;
+		EnumDiscoveryState state;
+		allele = getValue().getAllele0();
+		state = ((isNEI || isMutationDiscovered) ? EnumDiscoveryState.SHOW : ((species == allele) ? EnumDiscoveryState.SHOW : EnumDiscoveryState.UNDETERMINED));
+		itemWidget1.setSpecies(allele, state);
+		allele = getValue().getAllele1();
+		state = ((isNEI || isMutationDiscovered) ? EnumDiscoveryState.SHOW : ((species == allele) ? EnumDiscoveryState.SHOW : EnumDiscoveryState.UNDETERMINED));
+		itemWidget2.setSpecies(allele, state);
+		allele = (IAlleleSpecies) getValue().getTemplate()[0];
+		state = ((isNEI || isMutationDiscovered) ? EnumDiscoveryState.SHOW : ((species == allele) ? EnumDiscoveryState.SHOW : EnumDiscoveryState.UNDETERMINED));
+		itemWidget3.setSpecies(allele, state);
+		addSymbol.setValue(getValue());
+		arrowSymbol.setValue(getValue());
 	}
 }

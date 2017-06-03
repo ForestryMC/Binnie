@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 
-class ListMap<T> implements List<T>
-{
+class ListMap<T> implements List<T> {
 	private LinkedHashMap<Integer, T> map;
 
 	ListMap() {

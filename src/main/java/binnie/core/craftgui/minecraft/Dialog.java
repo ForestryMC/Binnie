@@ -9,23 +9,14 @@ import binnie.core.craftgui.events.EventMouse;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 
-public abstract class Dialog extends Control
-{
+public abstract class Dialog extends Control {
 	public Dialog(IWidget parent, float w, float h) {
 		super(parent, (parent.w() - w) / 2.0f, (parent.h() - h) / 2.0f, w, h);
-		addAttribute(WidgetAttribute.MouseOver);
-		addAttribute(WidgetAttribute.AlwaysOnTop);
-		addAttribute(WidgetAttribute.BlockTooltip);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
+		addAttribute(WidgetAttribute.ALWAYS_ON_TOP);
+		addAttribute(WidgetAttribute.BLOCK_TOOLTIP);
 		initialise();
-		addEventHandler(new EventMouse.Down.Handler() {
-			@Override
-			public void onEvent(EventMouse.Down event) {
-				if (!getArea().contains(getRelativeMousePosition())) {
-					onClose();
-					getParent().deleteChild(Dialog.this);
-				}
-			}
-		}.setOrigin(EventHandler.Origin.Any, this));
+		addEventHandler(new MouseDownHandler().setOrigin(EventHandler.Origin.Any, this));
 	}
 
 	@Override
@@ -43,5 +34,15 @@ public abstract class Dialog extends Control
 	@Override
 	public boolean isMouseOverWidget(IPoint relativeMouse) {
 		return true;
+	}
+
+	private class MouseDownHandler extends EventMouse.Down.Handler {
+		@Override
+		public void onEvent(EventMouse.Down event) {
+			if (!getArea().contains(getRelativeMousePosition())) {
+				onClose();
+				getParent().deleteChild(Dialog.this);
+			}
+		}
 	}
 }

@@ -126,7 +126,7 @@ public class WindowAnalyst extends Window {
 				new Control(this, x, y, 20.0f, 20.0f) {
 					@Override
 					public void initialise() {
-						addAttribute(WidgetAttribute.MouseOver);
+						addAttribute(WidgetAttribute.MOUSE_OVER);
 						addSelfEventHandler(new EventMouse.Down.Handler() {
 							@Override
 							public void onEvent(EventMouse.Down event) {
@@ -313,7 +313,7 @@ public class WindowAnalyst extends Window {
 				@Override
 				protected void initialise() {
 					super.initialise();
-					addAttribute(WidgetAttribute.MouseOver);
+					addAttribute(WidgetAttribute.MOUSE_OVER);
 					value = page;
 					addSelfEventHandler(new EventMouse.Down.Handler() {
 						@Override

@@ -18,7 +18,7 @@ public class ControlOption<T> extends Control implements IControlValue<T> {
 		super(controlList, 0.0f, height, controlList.getSize().x(), 20.0f);
 		value = option;
 		if (value != null) {
-			addAttribute(WidgetAttribute.MouseOver);
+			addAttribute(WidgetAttribute.MOUSE_OVER);
 		}
 		addSelfEventHandler(mouseHandler);
 	}

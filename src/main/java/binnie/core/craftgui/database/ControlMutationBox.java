@@ -10,7 +10,6 @@ import forestry.api.genetics.IMutation;
 import java.util.List;
 
 class ControlMutationBox extends ControlListBox<IMutation> {
-	private int index;
 	private Type type;
 	private IAlleleSpecies species;
 
@@ -26,37 +25,39 @@ class ControlMutationBox extends ControlListBox<IMutation> {
 	}
 
 	public void setSpecies(IAlleleSpecies species) {
-		if (species != this.species) {
-			this.species = species;
-			index = 0;
-			movePercentage(-100.0f);
-			BreedingSystem system = ((WindowAbstractDatabase) getSuperParent()).getBreedingSystem();
-			List<IMutation> discovered = system.getDiscoveredMutations(Window.get(this).getWorld(), Window.get(this).getUsername());
+		if (species == this.species) {
+			return;
+		}
 
-			if (species == null) {
-				return;
-			}
+		this.species = species;
+		movePercentage(-100.0f);
+		BreedingSystem system = ((WindowAbstractDatabase) getSuperParent()).getBreedingSystem();
+		List<IMutation> discovered = system.getDiscoveredMutations(Window.get(this).getWorld(), Window.get(this).getUsername());
 
-			if (type == Type.Resultant) {
-				setOptions(system.getResultantMutations(species));
+		if (species == null) {
+			return;
+		}
+
+		if (type == Type.RESULTANT) {
+			setOptions(system.getResultantMutations(species));
+			return;
+		}
+
+		List<IMutation> mutations = system.getFurtherMutations(species);
+		int i = 0;
+		while (i < mutations.size()) {
+			IMutation mutation = mutations.get(i);
+			if (!discovered.contains(mutations) && !((IAlleleSpecies) mutation.getTemplate()[0]).isCounted()) {
+				mutations.remove(i);
 			} else {
-				List<IMutation> mutations = system.getFurtherMutations(species);
-				int i = 0;
-				while (i < mutations.size()) {
-					IMutation mutation = mutations.get(i);
-					if (!discovered.contains(mutations) && !((IAlleleSpecies) mutation.getTemplate()[0]).isCounted()) {
-						mutations.remove(i);
-					} else {
-						++i;
-					}
-				}
-				setOptions(mutations);
+				i++;
 			}
 		}
+		setOptions(mutations);
 	}
 
 	enum Type {
-		Resultant,
-		Further
+		RESULTANT,
+		FURTHER
 	}
 }

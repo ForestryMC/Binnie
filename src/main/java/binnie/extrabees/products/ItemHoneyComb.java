@@ -25,8 +25,8 @@ public class ItemHoneyComb extends ItemProduct {
 	}
 
 	public static void addSubtypes() {
-		ItemStack beeswax = Mods.Forestry.stack("beeswax");
-		ItemStack honeyDrop = Mods.Forestry.stack("honeyDrop");
+		ItemStack beeswax = Mods.forestry.stack("beeswax");
+		ItemStack honeyDrop = Mods.forestry.stack("honeyDrop");
 		OreDictionary.registerOre("ingotIron", Items.iron_ingot);
 		OreDictionary.registerOre("ingotGold", Items.gold_ingot);
 		OreDictionary.registerOre("gemDiamond", Items.diamond);
@@ -88,8 +88,8 @@ public class ItemHoneyComb extends ItemProduct {
 		EnumHoneyComb.REDSTONE.addProduct(honeyDrop, 0.50f);
 
 		EnumHoneyComb.RESIN.addProduct(beeswax, 1.00f);
-		EnumHoneyComb.RESIN.tryAddProduct(Mods.IC2.stack("itemHarz"), 1.00f);
-		EnumHoneyComb.RESIN.tryAddProduct(Mods.IC2.stack("itemHarz"), 0.50f);
+		EnumHoneyComb.RESIN.tryAddProduct(Mods.ic2.stack("itemHarz"), 1.00f);
+		EnumHoneyComb.RESIN.tryAddProduct(Mods.ic2.stack("itemHarz"), 0.50f);
 
 		EnumHoneyComb.IC2ENERGY.addProduct(beeswax, 0.80f);
 		EnumHoneyComb.IC2ENERGY.addProduct(new ItemStack(Items.redstone, 1, 0), 0.75f);
@@ -147,7 +147,7 @@ public class ItemHoneyComb extends ItemProduct {
 
 		EnumHoneyComb.COFFEE.addProduct(beeswax, 0.90f);
 		EnumHoneyComb.COFFEE.addProduct(honeyDrop, 0.75f);
-		EnumHoneyComb.COFFEE.tryAddProduct(Mods.IC2.stack("itemCofeePowder"), 0.75f);
+		EnumHoneyComb.COFFEE.tryAddProduct(Mods.ic2.stack("itemCofeePowder"), 0.75f);
 
 		EnumHoneyComb.GLACIAL.tryAddProduct(EnumHoneyDrop.ICE, 0.80f);
 		EnumHoneyComb.GLACIAL.addProduct(honeyDrop, 0.75f);
@@ -199,7 +199,7 @@ public class ItemHoneyComb extends ItemProduct {
 		EnumHoneyComb.SALTPETER.tryAddProduct(getOreDictionary("dustSaltpeter"), 1.00f);
 
 		EnumHoneyComb.COMPOST.addProduct(honeyDrop, 0.25f);
-		EnumHoneyComb.COMPOST.tryAddProduct(Mods.Forestry.stack("fertilizerBio"), 1.00f);
+		EnumHoneyComb.COMPOST.tryAddProduct(Mods.forestry.stack("fertilizerBio"), 1.00f);
 
 		EnumHoneyComb.SAWDUST.addProduct(honeyDrop, 0.25f);
 		if (!OreDictionary.getOres("dustSawdust").isEmpty()) {
@@ -338,7 +338,7 @@ public class ItemHoneyComb extends ItemProduct {
 		QUARTZ;
 
 		public ItemStack get() {
-			return new ItemStack(Mods.Forestry.item("beeCombs"), 1, ordinal());
+			return new ItemStack(Mods.forestry.item("beeCombs"), 1, ordinal());
 		}
 	}
 }

@@ -41,7 +41,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 		super(parent, x, y, horizontal ? 60.0f : 18.0f, horizontal ? 18.0f : 60.0f);
 		tankID = 0;
 		this.horizontal = horizontal;
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
 		addSelfEventHandler(new EventMouse.Down.Handler() {
 			@Override
 			public void onEvent(EventMouse.Down event) {
@@ -74,10 +74,10 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	public void onRenderBackground() {
 		CraftGUI.Render.texture(horizontal ? CraftGUITexture.HorizontalLiquidTank : CraftGUITexture.LiquidTank, IPoint.ZERO);
 		if (isMouseOver() && Window.get(this).getGui().isHelpMode()) {
-			int c = 0xaa000000 + MinecraftTooltip.getOutline(Tooltip.Type.Help);
+			int c = 0xaa000000 + MinecraftTooltip.getOutline(Tooltip.Type.HELP);
 			CraftGUI.Render.gradientRect(getArea().inset(1), c, c);
 		} else if (ControlLiquidTank.tankError.contains(tankID)) {
-			int c = 0xaa000000 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error);
+			int c = 0xaa000000 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR);
 			CraftGUI.Render.gradientRect(getArea().inset(1), c, c);
 		} else if (getSuperParent().getMousedOverWidget() == this) {
 			if (Window.get(this).getGui().getDraggedItem() != null) {
@@ -125,13 +125,13 @@ public class ControlLiquidTank extends Control implements ITooltip {
 		CraftGUI.Render.texture(horizontal ? CraftGUITexture.HorizontalLiquidTankOverlay : CraftGUITexture.LiquidTankOverlay, IPoint.ZERO);
 		if (isMouseOver() && Window.get(this).getGui().isHelpMode()) {
 			IArea area = getArea();
-			CraftGUI.Render.colour(MinecraftTooltip.getOutline(Tooltip.Type.Help));
+			CraftGUI.Render.colour(MinecraftTooltip.getOutline(Tooltip.Type.HELP));
 			CraftGUI.Render.texture(CraftGUITexture.Outline, area.outset(1));
 		}
 
 		if (ControlLiquidTank.tankError.contains(tankID)) {
 			IArea area = getArea();
-			CraftGUI.Render.colour(MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error));
+			CraftGUI.Render.colour(MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR));
 			CraftGUI.Render.texture(CraftGUITexture.Outline, area.outset(1));
 		}
 	}
@@ -151,7 +151,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 		if (slot.isReadOnly()) {
 			tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.tank.outputOnlyTank"));
 		}
-		
+
 		if (slot.getValidator() == null) {
 			tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.tank.acceptsAny"));
 		} else {

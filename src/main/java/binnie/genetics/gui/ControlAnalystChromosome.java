@@ -28,7 +28,7 @@ public class ControlAnalystChromosome extends Control implements ITooltip {
 		super(parent, x, y, 16.0f, 22.0f);
 		Homozygous = new StandardTexture(0, 0, 16, 22, BinnieCoreTexture.GUIAnalyst);
 		Heterozygous = new StandardTexture(16, 0, 16, 22, BinnieCoreTexture.GUIAnalyst);
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
 		this.root = root;
 		chromosomeType = type;
 		this.allele0 = allele0;

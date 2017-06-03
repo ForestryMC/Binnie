@@ -67,11 +67,11 @@ public class ModuleBlocks implements IInitializable {
 			OreDictionary.registerOre("plankWood", plank2.getStack());
 		}
 
-		FMLInterModComms.sendMessage("Forestry", "add-fence-block", "ExtraTrees:fence");
-		FMLInterModComms.sendMessage("Forestry", "add-fence-block", "ExtraTrees:gate");
-		// FMLInterModComms.sendMessage("Forestry", "add-alveary-slab",
+		FMLInterModComms.sendMessage("FORESTRY", "add-fence-block", "ExtraTrees:fence");
+		FMLInterModComms.sendMessage("FORESTRY", "add-fence-block", "ExtraTrees:gate");
+		// FMLInterModComms.sendMessage("FORESTRY", "add-alveary-slab",
 		// "ExtraTrees:slab");
-		FMLInterModComms.sendMessage("Forestry", "add-fence-block", "ExtraTrees:multifence");
+		FMLInterModComms.sendMessage("FORESTRY", "add-fence-block", "ExtraTrees:multifence");
 		ModuleBlocks.hedgeRenderID = BinnieCore.proxy.getUniqueRenderID();
 	}
 
@@ -133,7 +133,7 @@ public class ModuleBlocks implements IInitializable {
 
 	public void addSqueezer(ILogType log, ILiquidType liquid, int amount, float pulpChance) {
 		FluidStack liquidStack = liquid.get(amount);
-		RecipeManagers.squeezerManager.addRecipe(10, new ItemStack[]{log.getItemStack()}, liquidStack, Mods.Forestry.stack("woodPulp"), (int) (100.0f * pulpChance));
+		RecipeManagers.squeezerManager.addRecipe(10, new ItemStack[]{log.getItemStack()}, liquidStack, Mods.forestry.stack("woodPulp"), (int) (100.0f * pulpChance));
 	}
 
 	public void addSqueezer(ILogType log, ILiquidType liquid, int amount) {

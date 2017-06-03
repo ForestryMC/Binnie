@@ -1641,7 +1641,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 		protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
 			beeSpecies
 				.addProduct(ItemHoneyComb.VanillaComb.HONEY.get(), 0.30f)
-				.addSpecialty(Mods.Forestry.stack("pollen"), 0.20f)
+				.addSpecialty(Mods.forestry.stack("pollen"), 0.20f)
 				.addSpecialty(EnumHoneyComb.PURPLE.get(1), 0.15f)
 				.setIsNotCounted()
 				.setHasEffect();

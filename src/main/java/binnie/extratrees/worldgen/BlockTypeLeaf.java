@@ -6,7 +6,7 @@ import net.minecraft.world.World;
 
 public class BlockTypeLeaf extends BlockType {
 	public BlockTypeLeaf() {
-		super(Mods.Forestry.block("leaves"), 0);
+		super(Mods.forestry.block("leaves"), 0);
 	}
 
 	@Override

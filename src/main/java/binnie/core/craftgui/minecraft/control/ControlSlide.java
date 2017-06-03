@@ -24,8 +24,8 @@ public class ControlSlide extends Control {
 		super(parent, x, y, w, h);
 		slideActive = true;
 		label = null;
-		addAttribute(WidgetAttribute.MouseOver);
-		addAttribute(WidgetAttribute.BlockTooltip);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
+		addAttribute(WidgetAttribute.BLOCK_TOOLTIP);
 		expanded = new IArea(getPosition(), getSize());
 		anchor = anchor2.opposite();
 		float border = (anchor.x() != 0) ? (expanded.w() - 6.0f) : (expanded.h() - 6.0f);

@@ -80,10 +80,6 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 		return optionWidgets.keySet();
 	}
 
-	public Collection<T> getAllOptions() {
-		return allOptions.keySet();
-	}
-
 	public int getIndexOf(T value) {
 		int index = 0;
 		for (T option : getOptions()) {

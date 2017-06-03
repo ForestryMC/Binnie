@@ -41,18 +41,18 @@ public class AlvearyStimulator {
 		Territory(2, 10);
 
 		static {
-			CircuitType.LowVoltage.logic.setModifier(EnumBeeModifier.Production, 1.5f, 5.0f);
-			CircuitType.HighVoltage.logic.setModifier(EnumBeeModifier.Production, 2.5f, 10.0f);
-			CircuitType.Plant.logic.setModifier(EnumBeeModifier.Flowering, 1.5f, 5.0f);
-			CircuitType.Death.logic.setModifier(EnumBeeModifier.Lifespan, 0.8f, 0.2f);
-			CircuitType.Life.logic.setModifier(EnumBeeModifier.Lifespan, 1.5f, 5.0f);
-			CircuitType.Nether.logic.setModifier(EnumBeeBooleanModifier.Hellish);
-			CircuitType.Mutation.logic.setModifier(EnumBeeModifier.Mutation, 1.5f, 5.0f);
-			CircuitType.Inhibitor.logic.setModifier(EnumBeeModifier.Territory, 0.4f, 0.1f);
-			CircuitType.Inhibitor.logic.setModifier(EnumBeeModifier.Production, 0.9f, 0.5f);
-			CircuitType.Territory.logic.setModifier(EnumBeeModifier.Territory, 1.5f, 5.0f);
+			CircuitType.LowVoltage.logic.setModifier(EnumBeeModifier.PRODUCTION, 1.5f, 5.0f);
+			CircuitType.HighVoltage.logic.setModifier(EnumBeeModifier.PRODUCTION, 2.5f, 10.0f);
+			CircuitType.Plant.logic.setModifier(EnumBeeModifier.FLOWERING, 1.5f, 5.0f);
+			CircuitType.Death.logic.setModifier(EnumBeeModifier.LIFESPAN, 0.8f, 0.2f);
+			CircuitType.Life.logic.setModifier(EnumBeeModifier.LIFESPAN, 1.5f, 5.0f);
+			CircuitType.Nether.logic.setModifier(EnumBeeBooleanModifier.HELLISH);
+			CircuitType.Mutation.logic.setModifier(EnumBeeModifier.MUTATION, 1.5f, 5.0f);
+			CircuitType.Inhibitor.logic.setModifier(EnumBeeModifier.TERRITORY, 0.4f, 0.1f);
+			CircuitType.Inhibitor.logic.setModifier(EnumBeeModifier.PRODUCTION, 0.9f, 0.5f);
+			CircuitType.Territory.logic.setModifier(EnumBeeModifier.TERRITORY, 1.5f, 5.0f);
 			for (CircuitType type : values()) {
-				type.logic.setModifier(EnumBeeModifier.GeneticDecay, 1.5f, 10.0f);
+				type.logic.setModifier(EnumBeeModifier.GENETIC_DECAY, 1.5f, 10.0f);
 			}
 		}
 
@@ -87,52 +87,52 @@ public class AlvearyStimulator {
 
 		@Override
 		public float getTerritoryModifier(IBeeGenome genome, float currentModifier) {
-			return logic.getModifier(EnumBeeModifier.Territory, currentModifier);
+			return logic.getModifier(EnumBeeModifier.TERRITORY, currentModifier);
 		}
 
 		@Override
 		public float getMutationModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
-			return logic.getModifier(EnumBeeModifier.Mutation, currentModifier);
+			return logic.getModifier(EnumBeeModifier.MUTATION, currentModifier);
 		}
 
 		@Override
 		public float getLifespanModifier(IBeeGenome genome, IBeeGenome mate, float currentModifier) {
-			return logic.getModifier(EnumBeeModifier.Lifespan, currentModifier);
+			return logic.getModifier(EnumBeeModifier.LIFESPAN, currentModifier);
 		}
 
 		@Override
 		public float getProductionModifier(IBeeGenome genome, float currentModifier) {
-			return logic.getModifier(EnumBeeModifier.Production, currentModifier);
+			return logic.getModifier(EnumBeeModifier.PRODUCTION, currentModifier);
 		}
 
 		@Override
 		public float getFloweringModifier(IBeeGenome genome, float currentModifier) {
-			return logic.getModifier(EnumBeeModifier.Flowering, currentModifier);
+			return logic.getModifier(EnumBeeModifier.FLOWERING, currentModifier);
 		}
 
 		@Override
 		public float getGeneticDecay(IBeeGenome genome, float currentModifier) {
-			return logic.getModifier(EnumBeeModifier.GeneticDecay, currentModifier);
+			return logic.getModifier(EnumBeeModifier.GENETIC_DECAY, currentModifier);
 		}
 
 		@Override
 		public boolean isSealed() {
-			return logic.getModifier(EnumBeeBooleanModifier.Sealed);
+			return logic.getModifier(EnumBeeBooleanModifier.SEALED);
 		}
 
 		@Override
 		public boolean isSelfLighted() {
-			return logic.getModifier(EnumBeeBooleanModifier.SelfLighted);
+			return logic.getModifier(EnumBeeBooleanModifier.SELF_LIGHTED);
 		}
 
 		@Override
 		public boolean isSunlightSimulated() {
-			return logic.getModifier(EnumBeeBooleanModifier.SunlightStimulated);
+			return logic.getModifier(EnumBeeBooleanModifier.SUNLIGHT_STIMULATED);
 		}
 
 		@Override
 		public boolean isHellish() {
-			return logic.getModifier(EnumBeeBooleanModifier.Hellish);
+			return logic.getModifier(EnumBeeBooleanModifier.HELLISH);
 		}
 	}
 
@@ -164,7 +164,7 @@ public class AlvearyStimulator {
 
 		@Override
 		public String getTooltip() {
-			return "Forestry Circuits";
+			return "FORESTRY Circuits";
 		}
 	}
 
@@ -358,7 +358,7 @@ public class AlvearyStimulator {
 		protected CircuitType type;
 
 		public StimulatorCircuit(CircuitType type, ICircuitLayout layout) {
-			super("stimulator." + type.toString().toLowerCase(), 4, layout, Mods.Forestry.item("thermionicTubes"), type.recipe);
+			super("stimulator." + type.toString().toLowerCase(), 4, layout, Mods.forestry.item("thermionicTubes"), type.recipe);
 			this.type = type;
 		}
 

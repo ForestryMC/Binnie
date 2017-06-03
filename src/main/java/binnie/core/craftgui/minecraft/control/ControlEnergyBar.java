@@ -29,7 +29,7 @@ public class ControlEnergyBar extends Control implements ITooltip {
 	public ControlEnergyBar(IWidget parent, int x, int y, int width, int height, Position direction) {
 		super(parent, x, y, width, height);
 		this.direction = direction;
-		addAttribute(WidgetAttribute.MouseOver);
+		addAttribute(WidgetAttribute.MOUSE_OVER);
 	}
 
 	public IPoweredMachine getClientPower() {
@@ -105,10 +105,10 @@ public class ControlEnergyBar extends Control implements ITooltip {
 		}
 
 		if (isMouseOver() && Window.get(this).getGui().isHelpMode()) {
-			int c = 0xaa000000 + MinecraftTooltip.getOutline(Tooltip.Type.Help);
+			int c = 0xaa000000 + MinecraftTooltip.getOutline(Tooltip.Type.HELP);
 			CraftGUI.Render.gradientRect(getArea().inset(1), c, c);
 		} else if (ControlEnergyBar.isError) {
-			int c = 0xaa000000 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error);
+			int c = 0xaa000000 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR);
 			CraftGUI.Render.gradientRect(getArea().inset(1), c, c);
 		}
 
@@ -121,11 +121,11 @@ public class ControlEnergyBar extends Control implements ITooltip {
 	public void onRenderForeground() {
 		if (isMouseOver() && Window.get(this).getGui().isHelpMode()) {
 			IArea area = getArea();
-			CraftGUI.Render.colour(MinecraftTooltip.getOutline(Tooltip.Type.Help));
+			CraftGUI.Render.colour(MinecraftTooltip.getOutline(Tooltip.Type.HELP));
 			CraftGUI.Render.texture(CraftGUITexture.Outline, area.outset(1));
 		} else if (ControlEnergyBar.isError) {
 			IArea area = getArea();
-			CraftGUI.Render.colour(MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error));
+			CraftGUI.Render.colour(MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR));
 			CraftGUI.Render.texture(CraftGUITexture.Outline, area.outset(1));
 		}
 	}

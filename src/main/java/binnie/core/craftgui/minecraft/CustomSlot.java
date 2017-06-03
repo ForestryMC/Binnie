@@ -8,15 +8,14 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class CustomSlot extends Slot
-{
+public class CustomSlot extends Slot {
+	public CustomSlot(IInventory inventory, int index) {
+		super(inventory, index, 0, 0);
+	}
+
 	@Override
 	public boolean isItemValid(ItemStack par1ItemStack) {
 		return inventory.isItemValidForSlot(getSlotIndex(), par1ItemStack);
-	}
-
-	public CustomSlot(IInventory inventory, int index) {
-		super(inventory, index, 0, 0);
 	}
 
 	public InventorySlot getInventorySlot() {
@@ -36,8 +35,7 @@ public class CustomSlot extends Slot
 		ItemStack stack = player.inventory.getItemStack();
 		if (stack == null || mouseButton == 2) {
 			putStack(null);
-		}
-		else {
+		} else {
 			stack = stack.copy();
 			stack.stackSize = 1;
 			putStack(stack);

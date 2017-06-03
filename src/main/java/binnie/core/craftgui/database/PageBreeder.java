@@ -1,10 +1,12 @@
 package binnie.core.craftgui.database;
 
+import binnie.core.BinnieCore;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.controls.page.ControlPage;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.genetics.BreedingSystem;
+import binnie.core.util.I18N;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.util.EnumChatFormatting;
 
@@ -23,16 +25,20 @@ public class PageBreeder extends ControlPage<DatabaseTab> {
 		}
 
 		BreedingSystem system = ((WindowAbstractDatabase) Window.get(this)).getBreedingSystem();
-		String descriptor = system.getDescriptor();
-		new ControlTextCentered(this, 8.0f, EnumChatFormatting.UNDERLINE + system.getDescriptor() + " Profile" + EnumChatFormatting.RESET);
-		new ControlTextCentered(this, 75.0f, "" + system.discoveredSpeciesCount + "/" + system.totalSpeciesCount + " Species");
+		new ControlTextCentered(this, 8.0f,
+			EnumChatFormatting.BOLD
+				+ I18N.localise(BinnieCore.instance, "gui.database.descriptor", system.getDescriptor())
+				+ EnumChatFormatting.RESET
+		);
+		new ControlTextCentered(this, 75.0f, I18N.localise(BinnieCore.instance, "gui.database.species.count", system.discoveredSpeciesCount, system.totalSpeciesCount));
 		new ControlBreedingProgress(this, 20, 87, 102, 14, system, system.discoveredSpeciesPercentage);
-		new ControlTextCentered(this, 115.0f, "" + system.discoveredBranchCount + "/" + system.totalBranchCount + " Branches");
+		new ControlTextCentered(this, 75.0f, I18N.localise(BinnieCore.instance, "gui.database.branches.count", system.discoveredBranchCount, system.totalBranchCount));
 		new ControlBreedingProgress(this, 20, 127, 102, 14, system, system.discoveredBranchPercentage);
 
 		if (system.discoveredSecretCount > 0) {
-			new ControlTextCentered(this, 155.0f, "" + system.discoveredSecretCount + "/" + system.totalSecretCount + " Secret Species");
+			new ControlTextCentered(this, 75.0f, I18N.localise(BinnieCore.instance, "gui.database.species.secretCount", system.discoveredSecretCount, system.totalSecretCount));
 		}
+
 		new ControlTextCentered(this, 32.0f, player.getName());
 		new ControlTextCentered(this, 44.0f, EnumChatFormatting.ITALIC + system.getEpitome() + EnumChatFormatting.RESET);
 	}

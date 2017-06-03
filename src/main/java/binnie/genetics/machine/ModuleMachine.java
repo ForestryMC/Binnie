@@ -51,7 +51,7 @@ public class ModuleMachine implements IInitializable {
 	@Override
 	public void postInit() {
 		Acclimatiser.setupRecipes();
-		Object[] standardCircuit = {Mods.Forestry.stack("chipsets", 1, 1)};
+		Object[] standardCircuit = {Mods.forestry.stack("chipsets", 1, 1)};
 		Object[] advCircuit = {GeneticsItems.IntegratedCircuit.get(1)};
 		String ironGear = OreDictionary.getOres("gearIron").isEmpty() ? "gearIron" : "ingotIron";
 		String goldGear = OreDictionary.getOres("gearGold").isEmpty() ? "gearIron" : "ingotIron";
@@ -73,11 +73,11 @@ public class ModuleMachine implements IInitializable {
 
 			Item alyzer = null;
 			if (BinnieCore.isApicultureActive()) {
-				alyzer = Mods.Forestry.item("beealyzer");
+				alyzer = Mods.forestry.item("beealyzer");
 			} else if (BinnieCore.isArboricultureActive()) {
-				alyzer = Mods.Forestry.item("treealyzer");
+				alyzer = Mods.forestry.item("treealyzer");
 			} else if (BinnieCore.isArboricultureActive()) {
-				alyzer = Mods.Forestry.item("flutterlyzer");
+				alyzer = Mods.forestry.item("flutterlyzer");
 			}
 
 			if (alyzer != null) {

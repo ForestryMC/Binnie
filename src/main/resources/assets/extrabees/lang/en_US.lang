@@ -181,8 +181,6 @@ extrabees.liquid.glacial=Liquid Nitrogen
 extrabees.liquid.dna=Liquid DNA
 
 
-
-
 ##################################################
 ## Machines
 
@@ -199,9 +197,6 @@ extrabees.machine.alveay.stimulator.info=Uses circuits and power to stimulate be
 extrabees.machine.alveay.hatchery=Hatchery
 extrabees.machine.alveay.hatchery.info=Collect larvae laid by queen bees inside the alveary.
 extrabees.machine.alveay.transmission=Alveary Transmission
-
-
-
 
 ##################################################
 ## Misc
@@ -276,7 +271,6 @@ extrabees.genetics.allele.down5=Down 5
 
 extrabees.genetics.allele.noeffect=Effect Cancellation
 extrabees.genetics.allele.noflower=Non-pollination
-
 extrabees.genetics.allele.lifespan=%s Lifespan
 extrabees.genetics.allele.production=%s Production
 extrabees.genetics.allele.fertility=%s Fertility
@@ -293,8 +287,6 @@ extrabees.genetics.allele.caveDwelling=Cave Dwelling
 extrabees.genetics.allele.tolerantFlyer=Rainfall
 
 extrabees.genetics.corrupted=Corrupted
-
-
 
 extrabees.branch.barren.name=Barren
 extrabees.branch.barren.desc=Although initially these bees are considerably useless due to their meagre combs, they can lead onto greater things.
@@ -517,9 +509,6 @@ extrabees.effect.bonemealsapling.name=Growth
 extrabees.effect.bonemealfruit.name=Ripening
 extrabees.effect.bonemealmushroom.name=Mushroom
 extrabees.effect.power.name=Power
-
-
-
 
 extrabees.gui.database.tab.species.overview=Overview
 extrabees.gui.database.tab.species.classification=Classification

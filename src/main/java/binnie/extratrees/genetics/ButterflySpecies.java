@@ -205,13 +205,13 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
 			}
 		}
 
-		if (itemstack.getItem() == Mods.Forestry.item("honeyDrop")) {
+		if (itemstack.getItem() == Mods.forestry.item("honeyDrop")) {
 			return 0.5f;
 		}
-		if (itemstack.getItem() == Mods.Forestry.item("honeydew")) {
+		if (itemstack.getItem() == Mods.forestry.item("honeydew")) {
 			return 0.7f;
 		}
-		if (itemstack.getItem() == Mods.Forestry.item("beeComb")) {
+		if (itemstack.getItem() == Mods.forestry.item("beeComb")) {
 			return 0.4f;
 		}
 		if (AlleleManager.alleleRegistry.isIndividual(itemstack)) {
