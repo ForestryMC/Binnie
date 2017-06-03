@@ -1,5 +1,41 @@
 package binnie.extratrees.block;
 
+import com.google.common.base.Preconditions;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.ResourceLocation;
+
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.RecipeSorter;
+
+import net.minecraftforge.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import forestry.api.arboriculture.EnumVanillaWoodType;
+import forestry.api.arboriculture.IWoodAccess;
+import forestry.api.arboriculture.IWoodType;
+import forestry.api.arboriculture.TreeManager;
+import forestry.api.arboriculture.WoodBlockKind;
+import forestry.api.recipes.RecipeManagers;
+import forestry.arboriculture.PluginArboriculture;
+import forestry.arboriculture.WoodAccess;
+import forestry.arboriculture.blocks.BlockForestryFenceGate;
+import forestry.arboriculture.blocks.BlockForestryStairs;
+import forestry.arboriculture.items.ItemBlockLeaves;
+import forestry.core.recipes.RecipeUtil;
+import forestry.core.utils.OreDictUtil;
+
 import binnie.Constants;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
@@ -12,6 +48,7 @@ import binnie.extratrees.block.decor.FenceType;
 import binnie.extratrees.block.decor.MultiFenceRecipeEmbedded;
 import binnie.extratrees.block.decor.MultiFenceRecipeSize;
 import binnie.extratrees.block.decor.MultiFenceRecipeSolid;
+import binnie.extratrees.block.property.PropertyETType;
 import binnie.extratrees.block.wood.BlockETFence;
 import binnie.extratrees.block.wood.BlockETLog;
 import binnie.extratrees.block.wood.BlockETPlank;
@@ -21,34 +58,6 @@ import binnie.extratrees.block.wood.ItemBlockETWood;
 import binnie.extratrees.block.wood.ItemETSlab;
 import binnie.extratrees.genetics.ETTreeDefinition;
 import binnie.extratrees.item.ExtraTreeLiquid;
-import forestry.api.arboriculture.EnumVanillaWoodType;
-import forestry.api.arboriculture.IWoodAccess;
-import forestry.api.arboriculture.IWoodType;
-import forestry.api.arboriculture.TreeManager;
-import forestry.api.arboriculture.WoodBlockKind;
-import forestry.api.recipes.RecipeManagers;
-import forestry.arboriculture.WoodAccess;
-import forestry.arboriculture.blocks.BlockForestryFenceGate;
-import forestry.arboriculture.blocks.BlockForestryStairs;
-import forestry.core.recipes.RecipeUtil;
-import forestry.core.utils.OreDictUtil;
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.common.event.FMLInterModComms;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.RecipeSorter;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class ModuleBlocks implements IInitializable {
 	//public static int hedgeRenderID;
@@ -69,6 +78,7 @@ public class ModuleBlocks implements IInitializable {
 	public List<BlockForestryFenceGate<EnumETLog>> fenceGatesFireproof;
 	public List<BlockETDecorativeLeaves> leavesDecorative;
 	public Map<String, ItemStack> speciesToLeavesDecorative;
+	public List<BlockETDefaultLeaves> leavesDefault;
 	public Block blockDoor;
 	public BlockMultiFence blockMultiFence;
 	public BlockHedge blockHedge;
@@ -241,6 +251,22 @@ public class ModuleBlocks implements IInitializable {
 			ItemStack coalOutput = new ItemStack(Items.COAL, 1, 1);
 			RecipeUtil.addSmelting(logInput, coalOutput, 0.15F);
 		}
+		
+		leavesDefault = BlockETDefaultLeaves.create();
+		Map speciesToLeavesDefault = PluginArboriculture.getBlocks().speciesToLeavesDefault;
+		for (BlockETDefaultLeaves leaves : leavesDefault) {
+			ExtraTrees.proxy.registerBlock(leaves, new ItemBlockLeaves(leaves));
+			registerOreDictWildcard(OreDictUtil.TREE_LEAVES, leaves);
+			
+			PropertyETType treeType = leaves.getVariant();
+			for (ETTreeDefinition treeDefinition : treeType.getAllowedValues()) {
+				Preconditions.checkNotNull(treeDefinition);
+				String speciesUid = treeDefinition.getUID();
+				IBlockState blockState = leaves.getDefaultState().withProperty(treeType, treeDefinition);
+				speciesToLeavesDefault.put(speciesUid, blockState);
+			}
+		}
+		
 		//ModuleBlocks.hedgeRenderID = BinnieCore.proxy.getUniqueRenderID();
 		leavesDecorative = BlockETDecorativeLeaves.create();
 		speciesToLeavesDecorative = new HashMap<>();
