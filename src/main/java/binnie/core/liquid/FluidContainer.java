@@ -36,6 +36,7 @@ public enum FluidContainer {
 		} else {
 			modName = "forestry";
 		}
+
 		bottle = BinnieCore.proxy.getIcon(register, modName, liquidName + ".bottle");
 		contents = BinnieCore.proxy.getIcon(register, modName, liquidName + ".contents");
 	}

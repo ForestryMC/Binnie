@@ -2,8 +2,6 @@ package binnie.core;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.versioning.DefaultArtifactVersion;
-import cpw.mods.fml.common.versioning.Restriction;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -12,11 +10,10 @@ public class Mods {
 	public static Mod forestry;
 	public static Mod ic2;
 	public static Mod botania;
-	private static boolean warn;
 
 	private static Item findItem(String modId, String name) {
 		Item stack = GameRegistry.findItem(modId, name);
-		if (stack == null && Mods.warn && modId.equals("FORESTRY")) {
+		if (stack == null && modId.equals("Forestry")) {
 			throw new RuntimeException("Item not found: " + modId + ":" + name);
 		}
 		return stack;
@@ -24,7 +21,7 @@ public class Mods {
 
 	private static ItemStack findItemStack(String modId, String name, int stackSize) {
 		ItemStack stack = GameRegistry.findItemStack(modId, name, stackSize);
-		if (stack == null && Mods.warn && modId.equals("FORESTRY")) {
+		if (stack == null && modId.equals("Forestry")) {
 			throw new RuntimeException("Stack not found: " + modId + ":" + name);
 		}
 		return stack;
@@ -32,24 +29,16 @@ public class Mods {
 
 	private static Block findBlock(String modId, String name) {
 		Block stack = GameRegistry.findBlock(modId, name);
-		if (stack == null && Mods.warn && modId.equals("FORESTRY")) {
+		if (stack == null && modId.equals("Forestry")) {
 			throw new RuntimeException("Block not found: " + modId + ":" + name);
 		}
 		return stack;
 	}
 
 	static {
-		Mods.forestry = new Mod("FORESTRY") {
-			@Override
-			public boolean dev() {
-				String forVersion = Loader.instance().getIndexedModList().get("FORESTRY").getVersion();
-				Restriction rest = new Restriction(new DefaultArtifactVersion("3.6"), true, null, false);
-				return rest.containsVersion(new DefaultArtifactVersion(forVersion));
-			}
-		};
+		Mods.forestry = new Mod("Forestry");
 		Mods.ic2 = new Mod("IC2");
-		Mods.botania = new Mod("BOTANIA");
-		Mods.warn = true;
+		Mods.botania = new Mod("Botania");
 	}
 
 	public static class Mod {
@@ -81,10 +70,6 @@ public class Mods {
 
 		public boolean active() {
 			return Loader.isModLoaded(id);
-		}
-
-		public boolean dev() {
-			return false;
 		}
 	}
 }

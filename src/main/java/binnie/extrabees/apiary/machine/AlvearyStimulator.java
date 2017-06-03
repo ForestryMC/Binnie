@@ -164,7 +164,7 @@ public class AlvearyStimulator {
 
 		@Override
 		public String getTooltip() {
-			return "FORESTRY Circuits";
+			return "Forestry Circuits";
 		}
 	}
 

@@ -241,7 +241,7 @@ binniecore.gui.database.time.inProgress=В прогрессе
 binniecore.gui.database.time.left=Осталось времени: %s
 binniecore.gui.database.time.total=Всего времени: %s
 binniecore.gui.database.energyCost.0=Energy Cost: %d RF
-binniecore.gui.database.energyCost.1=Energy Cost: %f RF / tick
+binniecore.gui.database.energyCost.1=Energy Cost: %.2f RF / tick
 
 binniecore.gui.temperature.short=Темп.
 binniecore.gui.humidity.short=Влаж.
