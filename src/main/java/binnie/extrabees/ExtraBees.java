@@ -1,5 +1,6 @@
 package binnie.extrabees;
 
+import binnie.Constants;
 import binnie.extrabees.alveary.TileEntityExtraBeesAlvearyPart;
 import binnie.extrabees.genetics.ExtraBeeMutation;
 import binnie.extrabees.genetics.ExtraBeesBranch;
@@ -39,7 +40,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import java.lang.reflect.Method;
 import java.util.List;
 
-@Mod(modid = ExtraBees.MODID, name = "Binnie's Extra Bees", useMetadata = true)
+@Mod(modid = ExtraBees.MODID, name = "Binnie's Extra Bees", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
 public class ExtraBees {
 
 	public static final String MODID = "extrabees";
