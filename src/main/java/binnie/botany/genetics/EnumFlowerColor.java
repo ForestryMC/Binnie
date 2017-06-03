@@ -1,11 +1,7 @@
 package binnie.botany.genetics;
 
-import binnie.botany.Botany;
-import binnie.botany.api.IFlowerColour;
 import binnie.botany.core.BotanyCore;
 import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleInteger;
 import net.minecraft.util.IStringSerializable;
 
 public enum EnumFlowerColor implements IStringSerializable {
