@@ -8,7 +8,6 @@ import binnie.botany.api.EnumSoilType;
 import binnie.botany.api.gardening.IBlockSoil;
 import binnie.botany.flower.TileEntityFlower;
 import binnie.botany.gardening.Gardening;
-import binnie.core.Mods;
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -161,26 +160,28 @@ public class GardenLogic extends FarmLogic {
 	private boolean maintainWater(int x, int y, int z, FarmDirection direction, int extent) {
 		for (int i = 0; i < extent; ++i) {
 			Vect position = translateWithOffset(x, y, z, direction, i);
-			if (isAirBlock(position) || world.getBlock(x, y, z).isReplaceable(world, position.x, position.y, position.z)) {
-				if (isWaterBlock(position)) {
-					continue;
-				}
-	
-				boolean isEnclosed = true;
-				if (world.isAirBlock(position.x + 1, position.y, position.z)) {
-					isEnclosed = false;
-				} else if (world.isAirBlock(position.x - 1, position.y, position.z)) {
-					isEnclosed = false;
-				} else if (world.isAirBlock(position.x, position.y, position.z + 1)) {
-					isEnclosed = false;
-				} else if (world.isAirBlock(position.x, position.y, position.z - 1)) {
-					isEnclosed = false;
-				}
+			if (!isAirBlock(position) && !world.getBlock(x, y, z).isReplaceable(world, position.x, position.y, position.z)) {
+				continue;
+			}
 
-				isEnclosed = (isEnclosed || moisture != EnumMoisture.DAMP);
-				if (isEnclosed) {
-					return trySetWater(position);
-				}
+			if (isWaterBlock(position)) {
+				continue;
+			}
+
+			boolean isEnclosed = true;
+			if (world.isAirBlock(position.x + 1, position.y, position.z)) {
+				isEnclosed = false;
+			} else if (world.isAirBlock(position.x - 1, position.y, position.z)) {
+				isEnclosed = false;
+			} else if (world.isAirBlock(position.x, position.y, position.z + 1)) {
+				isEnclosed = false;
+			} else if (world.isAirBlock(position.x, position.y, position.z - 1)) {
+				isEnclosed = false;
+			}
+
+			isEnclosed = (isEnclosed || moisture != EnumMoisture.DAMP);
+			if (isEnclosed) {
+				return trySetWater(position);
 			}
 		}
 		return false;
@@ -367,12 +368,12 @@ public class GardenLogic extends FarmLogic {
 		return null;
 	}
 
-	public void setData(EnumMoisture moisture2, EnumAcidity acidity2, boolean isManual, boolean isFertilised, ItemStack icon2, String name2) {
-		moisture = moisture2;
-		acidity = acidity2;
+	public void setData(EnumMoisture moisture, EnumAcidity acidity, boolean isManual, boolean fertilised, ItemStack icon, String name) {
+		this.moisture = moisture;
+		this.acidity = acidity;
 		this.isManual = isManual;
-		fertilised = isFertilised;
-		icon = icon2;
-		name = name2;
+		this.fertilised = fertilised;
+		this.icon = icon;
+		this.name = name;
 	}
 }

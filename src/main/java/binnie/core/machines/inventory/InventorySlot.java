@@ -33,6 +33,7 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 		if (itemStack == null) {
 			return null;
 		}
+
 		if (itemStack.stackSize <= amount) {
 			ItemStack returnStack = itemStack.copy();
 			itemStack = null;

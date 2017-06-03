@@ -29,10 +29,6 @@ public class ComponentInventoryTransfer extends MachineComponent {
 		transfers.add(new Storage(getMachine(), source, destination));
 	}
 
-	public void performTransfer(int source, int[] destination) {
-		new Storage(getMachine(), source, destination).transfer(getMachine().getInterface(IInventoryMachine.class));
-	}
-
 	@Override
 	public void onUpdate() {
 		for (Transfer transfer : transfers) {

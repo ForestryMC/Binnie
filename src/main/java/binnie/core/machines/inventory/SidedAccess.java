@@ -30,18 +30,6 @@ class SidedAccess {
 		return getAccess(side).canExtract();
 	}
 
-	public boolean canAccess(ForgeDirection side) {
-		return getAccess(side).canAccess();
-	}
-
-	public boolean canChangeInsert() {
-		return !insertLocked;
-	}
-
-	public boolean canChangeExtract() {
-		return !extractLocked;
-	}
-
 	public void forbidInsertChange() {
 		insertLocked = true;
 	}
@@ -68,12 +56,6 @@ class SidedAccess {
 			}
 		}
 		return dirs;
-	}
-
-	public void setInsert(ForgeDirection side, boolean b) {
-		if (getAccess(side).canInsert() != b) {
-			accesses.put(side, getAccess(side).changeInsert(b));
-		}
 	}
 
 	public void setExtract(ForgeDirection side, boolean b) {

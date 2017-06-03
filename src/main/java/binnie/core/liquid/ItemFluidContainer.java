@@ -31,8 +31,8 @@ public class ItemFluidContainer extends ItemFood {
 	public static int LiquidLiqueuer = 640;
 	public static int LiquidGenetics = 768;
 
-	private static Map<Integer, String> idToFluid = new HashMap<Integer, String>();
-	private static Map<String, Integer> fluidToID = new HashMap<String, Integer>();
+	private static Map<Integer, String> idToFluid = new HashMap<>();
+	private static Map<String, Integer> fluidToID = new HashMap<>();
 
 	public static void registerFluid(IFluidType fluid, int id) {
 		ItemFluidContainer.idToFluid.put(id, fluid.getIdentifier().toLowerCase());
@@ -61,12 +61,12 @@ public class ItemFluidContainer extends ItemFood {
 	}
 
 	@Override
-	public String getItemStackDisplayName(ItemStack itemstack) {
-		if (itemstack == null) {
+	public String getItemStackDisplayName(ItemStack stack) {
+		if (stack == null) {
 			return "???";
 		}
 
-		FluidStack fluid = getLiquid(itemstack);
+		FluidStack fluid = getLiquid(stack);
 		if (fluid == null) {
 			return "Missing Fluid";
 		}
@@ -101,7 +101,7 @@ public class ItemFluidContainer extends ItemFood {
 	public int getColorFromItemStack(ItemStack item, int pass) {
 		FluidStack fluid = getLiquid(item);
 		if (fluid == null) {
-			return 16777215;
+			return 0xffffff;
 		}
 		if (pass == 0 && fluid.getFluid() instanceof BinnieFluid) {
 			return ((BinnieFluid) fluid.getFluid()).fluidType.getContainerColor();
@@ -154,7 +154,7 @@ public class ItemFluidContainer extends ItemFood {
 	}
 
 	@Override
-	public int func_150905_g(ItemStack p_150905_1_) {
+	public int func_150905_g(ItemStack stack) {
 		return 0;
 	}
 

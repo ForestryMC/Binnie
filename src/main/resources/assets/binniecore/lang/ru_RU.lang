@@ -188,6 +188,8 @@ binniecore.gui.breedingmessage.species=Видов обнаружено
 binniecore.gui.breedingmessage.branch=Семейств обнаружено
 binniecore.gui.breedingmessage.epithet=Родов обнаружено
 
+binniecore.item.genesis.name=Генезис
+
 binniecore.item.container.capsule=Капсула
 binniecore.item.container.refractory=Капсула
 binniecore.item.container.can=Банка
@@ -213,6 +215,7 @@ binniecore.machine.storage.compartmentGold=Золотой сундук
 < %1$s is the name of the pattern >
 binniecore.gui.designer.pattern=%1$s Pattern
 
+binniecore.gui.genesis=Генезис
 binniecore.gui.database.nodescription=Нет описания
 binniecore.gui.database.mode.species=Виды
 binniecore.gui.database.mode.branches=Семейства
@@ -245,7 +248,6 @@ binniecore.gui.database.energyCost.1=Energy Cost: %.2f RF / tick
 
 binniecore.gui.temperature.short=Темп.
 binniecore.gui.humidity.short=Влаж.
-
 binniecore.gui.tolerated=устойчив
 binniecore.gui.nottolerated=неустойчив
 
@@ -275,7 +277,6 @@ binniecore.gui.tooltip.tank.extractSide=Выдающая сторона: %s
 binniecore.gui.tooltip.tank.outputOnlyTank=Отдающий бак
 binniecore.gui.tooltip.tank.acceptsAny=Принимается: любой предмет
 binniecore.gui.tooltip.tank.accepts=Принимается: %s
-
 
 < Descriptions used for effects in the registry >
 binniecore.allele.extrabees.effect.acid.desc=Растворяет камень и землю

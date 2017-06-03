@@ -8,9 +8,10 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.IFluidTank;
 
 public class TankSlot extends BaseSlot<FluidStack> {
-	public static String NameJuice = "Juice Tank";
-	public static String NameWater = "Water Tank";
-	public static String NameCupboard = "Cupboard Slot";
+	public static final String NAME_JUICE = "Juice Tank";
+	public static final String NAME_WATER = "Water Tank";
+	public static final String NAME_CUPBOARD = "Cupboard Slot";
+
 	private FluidTank tank;
 
 	public TankSlot(int index, String name, int capacity) {

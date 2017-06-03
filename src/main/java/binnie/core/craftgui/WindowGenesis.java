@@ -20,6 +20,7 @@ import binnie.core.craftgui.minecraft.control.ControlTabIcon;
 import binnie.core.craftgui.window.Panel;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
+import binnie.core.util.I18N;
 import binnie.genetics.gui.ControlGenesisOption;
 import cpw.mods.fml.relauncher.Side;
 import forestry.api.genetics.IAllele;
@@ -55,7 +56,7 @@ public class WindowGenesis extends Window {
 
 	@Override
 	protected String getName() {
-		return "Genesis";
+		return I18N.localise(BinnieCore.instance, "gui.genesis");
 	}
 
 	@Override
