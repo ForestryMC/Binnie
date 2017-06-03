@@ -67,11 +67,11 @@ public class ModuleBlocks implements IInitializable {
 			OreDictionary.registerOre("plankWood", plank2.getStack());
 		}
 
-		FMLInterModComms.sendMessage("FORESTRY", "add-fence-block", "ExtraTrees:fence");
-		FMLInterModComms.sendMessage("FORESTRY", "add-fence-block", "ExtraTrees:gate");
-		// FMLInterModComms.sendMessage("FORESTRY", "add-alveary-slab",
+		FMLInterModComms.sendMessage("Forestry", "add-fence-block", "ExtraTrees:fence");
+		FMLInterModComms.sendMessage("Forestry", "add-fence-block", "ExtraTrees:gate");
+		// FMLInterModComms.sendMessage("Forestry", "add-alveary-slab",
 		// "ExtraTrees:slab");
-		FMLInterModComms.sendMessage("FORESTRY", "add-fence-block", "ExtraTrees:multifence");
+		FMLInterModComms.sendMessage("Forestry", "add-fence-block", "ExtraTrees:multifence");
 		ModuleBlocks.hedgeRenderID = BinnieCore.proxy.getUniqueRenderID();
 	}
 

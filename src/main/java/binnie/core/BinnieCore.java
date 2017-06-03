@@ -1,13 +1,13 @@
 package binnie.core;
 
 import binnie.Binnie;
+import binnie.botany.items.ItemFieldKit;
 import binnie.core.block.MultipassBlockRenderer;
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.craftgui.minecraft.ModuleCraftGUI;
 import binnie.core.gui.BinnieCoreGUI;
 import binnie.core.gui.BinnieGUIHandler;
 import binnie.core.gui.IBinnieGUID;
-import binnie.botany.items.ItemFieldKit;
 import binnie.core.item.ItemGenesis;
 import binnie.core.item.ModuleItems;
 import binnie.core.liquid.FluidContainer;

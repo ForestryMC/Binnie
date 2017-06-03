@@ -212,7 +212,7 @@ public class ModuleGardening implements IInitializable {
 		));
 		ModuleGardening.queuedAcidFertilisers.put(BotanyItems.SulphurPowder.get(1), 1);
 		ModuleGardening.queuedAcidFertilisers.put(BotanyItems.MulchPowder.get(1), 1);
-		ModuleGardening.queuedAcidFertilisers.put(new ItemStack(GameRegistry.findItem("FORESTRY", "mulch")), 2);
+		ModuleGardening.queuedAcidFertilisers.put(new ItemStack(GameRegistry.findItem("Forestry", "mulch")), 2);
 
 		for (ItemStack stack : OreDictionary.getOres("dustSulfur")) {
 			ModuleGardening.queuedAcidFertilisers.put(stack, 2);
@@ -220,12 +220,12 @@ public class ModuleGardening implements IInitializable {
 
 		ModuleGardening.queuedAlkalineFertilisers.put(BotanyItems.AshPowder.get(1), 1);
 		ModuleGardening.queuedAlkalineFertilisers.put(BotanyItems.PulpPowder.get(1), 1);
-		ModuleGardening.queuedAlkalineFertilisers.put(new ItemStack(GameRegistry.findItem("FORESTRY", "ash")), 2);
-		ModuleGardening.queuedAlkalineFertilisers.put(new ItemStack(GameRegistry.findItem("FORESTRY", "woodPulp")), 2);
+		ModuleGardening.queuedAlkalineFertilisers.put(new ItemStack(GameRegistry.findItem("Forestry", "ash")), 2);
+		ModuleGardening.queuedAlkalineFertilisers.put(new ItemStack(GameRegistry.findItem("Forestry", "woodPulp")), 2);
 		ModuleGardening.queuedNutrientFertilisers.put(BotanyItems.CompostPowder.get(1), 1);
 		ModuleGardening.queuedNutrientFertilisers.put(BotanyItems.FertiliserPowder.get(1), 1);
-		ModuleGardening.queuedNutrientFertilisers.put(new ItemStack(GameRegistry.findItem("FORESTRY", "fertilizerBio")), 2);
-		ModuleGardening.queuedNutrientFertilisers.put(new ItemStack(GameRegistry.findItem("FORESTRY", "fertilizerCompound")), 2);
+		ModuleGardening.queuedNutrientFertilisers.put(new ItemStack(GameRegistry.findItem("Forestry", "fertilizerBio")), 2);
+		ModuleGardening.queuedNutrientFertilisers.put(new ItemStack(GameRegistry.findItem("Forestry", "fertilizerCompound")), 2);
 
 		for (Map.Entry<ItemStack, Integer> entry : ModuleGardening.queuedAcidFertilisers.entrySet()) {
 			addAcidFertiliser(entry.getKey(), entry.getValue());
