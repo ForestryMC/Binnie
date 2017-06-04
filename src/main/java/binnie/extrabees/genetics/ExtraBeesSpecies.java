@@ -199,7 +199,7 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 	private IAllele[] template;
 
 	ExtraBeesSpecies(final String binomial, final int colour) {
-		this.primaryColor = 16777215;
+		this.primaryColor = colour;
 		this.secondaryColor = 16768022;
 		this.temperature = EnumTemperature.NORMAL;
 		this.humidity = EnumHumidity.NORMAL;
