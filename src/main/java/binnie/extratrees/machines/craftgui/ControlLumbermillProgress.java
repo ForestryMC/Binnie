@@ -71,7 +71,7 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 			return;
 		}
 		Block block2 = null;
-		if (item.getItem() instanceof ItemBlock) {
+		if (result.getItem() instanceof ItemBlock) {
 			block2 = ((ItemBlock) result.getItem()).getBlock();
 		}
 		if (block2 == null) {
