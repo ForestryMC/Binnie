@@ -216,8 +216,8 @@ binniecore.machine.storage.compartmentGold=Золотой сундук
 < %1$s is the name of the pattern >
 binniecore.gui.designer.pattern=%1$s Pattern
 
-binniecore.gui.fieldKit=Полевая станция
-binniecore.gui.fieldKit.info=Полевая станция анализирует пчел, деревья, цветы и бабочек. Для работы требует бумагу
+binniecore.gui.fieldKit=Полевая лаборатория
+binniecore.gui.fieldKit.info=Полевая лаборатория анализирует пчел, деревья, цветы и бабочек. Для работы требует бумагу
 
 binniecore.gui.genesis=Генезис
 binniecore.gui.database.nodescription=Нет описания

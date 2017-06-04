@@ -5,17 +5,18 @@
 
 # Necessary modifications:
 # forestry_1.7.10
-# binnie-mods-2.0
-# NotEnoughItems-1.7.10, CodeChickenCore-1.7.10, CodeChickenLib,
+# binnie-mods-2.0.15-7,
+# NotEnoughItems-1.7.10-1.0.5.110, CodeChickenCore-1.7.10-1.0.7.46, CodeChickenLib-1.7.10-1.1.3.138,
 # CraftTweaker-1.7.10
+
+# Optional modification:
+# Waila-1.5.10
 
 # How to use:
 # Copy the necessary modifications in the folder .minecraft\mods
 # Copy this file in the folder .minecraft\scripts
 
-
 import mods.nei.NEI;
-
 
 # DATABASES
 
@@ -52,7 +53,6 @@ NEI.overrideName(<Genetics:masterRegistry:0>,"Картотека мастера"
 # Analyst
 NEI.overrideName(<Genetics:analyst:0>,"Аналитик");
 <Genetics:analyst:0>.addTooltip(format.darkGreen("Analyst"));
-
 
 # FLUIDS
 
