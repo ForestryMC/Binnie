@@ -16,6 +16,7 @@ import binnie.core.craftgui.minecraft.control.ControlSlotCharge;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.genetics.Genetics;
+import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.craftgui.WindowMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -23,8 +24,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowIsolator extends WindowMachine {
-	static Texture ProgressBase = new StandardTexture(0, 218, 142, 17, ExtraBeeTexture.GUIProgress);
-	static Texture Progress = new StandardTexture(0, 201, 142, 17, ExtraBeeTexture.GUIProgress);
+	static Texture ProgressBase = new StandardTexture(0, 218, 142, 17, GeneticsTexture.GUIProcess3);
+	static Texture Progress = new StandardTexture(0, 201, 142, 17, GeneticsTexture.GUIProcess3);
 
 	public WindowIsolator(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(330, 208, player, inventory, side);

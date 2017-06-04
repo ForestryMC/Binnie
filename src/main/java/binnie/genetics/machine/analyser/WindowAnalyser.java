@@ -25,8 +25,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowAnalyser extends WindowMachine {
-	static Texture ProgressBase = new StandardTexture(0, 218, 142, 17, ExtraBeeTexture.GUIProgress);
-	static Texture Progress = new StandardTexture(0, 201, 142, 17, ExtraBeeTexture.GUIProgress);
+	static Texture ProgressBase = new StandardTexture(0, 218, 142, 17, GeneticsTexture.GUIProcess3);
+	static Texture Progress = new StandardTexture(0, 201, 142, 17, GeneticsTexture.GUIProcess3);
 
 	public WindowAnalyser(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(220, 210, player, inventory, side);

@@ -17,6 +17,7 @@ public enum GeneticsTexture implements IBinnieTexture {
 	Incubator(ResourceType.Tile, "incubator"),
 	GUIProcess(ResourceType.GUI, "process"),
 	GUIProcess2(ResourceType.GUI, "process2"),
+	GUIProcess3(ResourceType.GUI, "process3"),
 	Isolator(ResourceType.Tile, "isolator"),
 	Sequencer(ResourceType.Tile, "sequencer"),
 	Polymeriser(ResourceType.Tile, "polymeriser"),

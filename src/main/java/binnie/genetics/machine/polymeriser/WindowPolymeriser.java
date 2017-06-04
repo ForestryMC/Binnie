@@ -23,8 +23,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowPolymeriser extends WindowMachine {
-	static Texture ProgressBase = new StandardTexture(76, 170, 160, 79, GeneticsTexture.GUIProcess);
-	static Texture Progress = new StandardTexture(76, 91, 160, 79, GeneticsTexture.GUIProcess);
+	static Texture ProgressBase = new StandardTexture(76, 170, 160, 79, GeneticsTexture.GUIProcess3);
+	static Texture Progress = new StandardTexture(76, 91, 160, 79, GeneticsTexture.GUIProcess3);
 
 	public WindowPolymeriser(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(278, 212, player, inventory, side);
