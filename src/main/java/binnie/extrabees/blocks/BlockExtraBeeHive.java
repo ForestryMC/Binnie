@@ -1,7 +1,12 @@
 package binnie.extrabees.blocks;
 
+import binnie.core.genetics.ForestryAllele;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.blocks.type.EnumHiveType;
+import binnie.extrabees.genetics.ExtraBeesSpecies;
+import forestry.api.apiculture.BeeManager;
+import forestry.api.apiculture.EnumBeeType;
+import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IHiveDrop;
 import forestry.api.core.Tabs;
 import net.minecraft.block.Block;
@@ -14,11 +19,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class BlockExtraBeeHive extends Block {
 
@@ -65,32 +73,69 @@ public class BlockExtraBeeHive extends Block {
 	@Override
 	@Nonnull
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, @Nonnull IBlockState state, int fortune) {
-		final ArrayList<ItemStack> ret = new ArrayList<>();
-		final List<IHiveDrop> dropList = state.getValue(hiveType).drops;
-		Collections.shuffle(dropList);
+		List<ItemStack> drops = new ArrayList<>();
+
+		Random random = world instanceof World ? ((World) world).rand : RANDOM;
+
+		List<IHiveDrop> hiveDrops = getDropsForHive(getMetaFromState(state));
+		Collections.shuffle(hiveDrops);
+
+		// Grab a princess
 		int tries = 0;
-		//TODO HIVE DROP
-		/*for (boolean hasPrincess = false; tries <= 10 && !hasPrincess; hasPrincess = true) {
-			++tries;
-			for (final IHiveDrop drop : dropList) {
-				if (world.rand.nextInt(100) < drop.getChance(world, x, y, z)) {
-					ret.add(drop.getPrincess(world, x, y, z, fortune));
+		boolean hasPrincess = false;
+		while (tries <= 10 && !hasPrincess) {
+			tries++;
+
+			for (IHiveDrop drop : hiveDrops) {
+				if (random.nextDouble() < drop.getChance(world, pos, fortune)) {
+					IBee bee = drop.getBeeType(world, pos);
+					if (random.nextFloat() < drop.getIgnobleChance(world, pos, fortune)) {
+						bee.setIsNatural(false);
+					}
+
+					ItemStack princess = BeeManager.beeRoot.getMemberStack(bee, EnumBeeType.PRINCESS);
+					drops.add(princess);
+					hasPrincess = true;
 					break;
 				}
 			}
 		}
-		for (final IHiveDrop drop : dropList) {
-			if (world.rand.nextInt(100) < drop.getChance(world, x, y, z)) {
-				ret.addAll(drop.getDrones(world, x, y, z, fortune));
+
+		// Grab drones
+		for (IHiveDrop drop : hiveDrops) {
+			if (random.nextDouble() < drop.getChance(world, pos, fortune)) {
+				IBee bee = drop.getBeeType(world, pos);
+				ItemStack drone = BeeManager.beeRoot.getMemberStack(bee, EnumBeeType.DRONE);
+				drops.add(drone);
 				break;
 			}
 		}
-		for (final IHiveDrop drop : dropList) {
-			if (world.rand.nextInt(100) < drop.getChance(world, x, y, z)) {
-				ret.addAll(drop.getAdditional(world, x, y, z, fortune));
+
+		// Grab anything else on offer
+		for (IHiveDrop drop : hiveDrops) {
+			if (random.nextDouble() < drop.getChance(world, pos, fortune)) {
+				drops.addAll(drop.getExtraItems(world, pos, fortune));
 				break;
 			}
-		}*/
-		return ret;
+		}
+
+		return drops;
 	}
+
+	private static List<IHiveDrop> getDropsForHive(int meta) {
+		EnumHiveType hive = getHiveNameForMeta(meta);
+		if (hive == null) {
+			return Collections.emptyList();
+		}
+		return hive.drops;
+	}
+
+	@Nullable
+	private static EnumHiveType getHiveNameForMeta(int meta) {
+		if (meta < 0 || meta >= EnumHiveType.values().length) {
+			return null;
+		}
+		return EnumHiveType.values()[meta];
+	}
+
 }
