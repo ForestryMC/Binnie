@@ -22,8 +22,6 @@ extratrees.machine.machine.glassworker.info=玻璃作坊制造带图案的染色
 extratrees.machine.machine.tileworker=瓷砖作坊
 extratrees.machine.machine.tileworker.info=瓷砖作坊制造带图案的瓷砖.
 
-        
-        
 extratrees.block.planks.fir=冷杉
 extratrees.block.planks.cedar=雪松
 extratrees.block.planks.hemlock=铁杉
@@ -100,8 +98,6 @@ extratrees.block.planks.forestry.zebrawood=斑木树
 extratrees.block.planks.ebxl.redwood=红木
 extratrees.block.planks.ebxl.fir=苏格兰冷杉
 extratrees.block.planks.ebxl.acacia=埃克希勒金合欢
-
-
 
 extratrees.block.planks.fir.desc=一种很不错的松树,木质坚硬.|伐木工
 extratrees.block.planks.cedar.desc=一种泛红的软木.|伐木工
@@ -300,8 +296,6 @@ extratrees.species.starfruit.name=杨桃
 extratrees.species.candlenut.name=石栗
 extratrees.species.dwarfhazel.name=矮榛
 
-
-
 extratrees.item.food.apple=苹果
 extratrees.item.food.crabapple=海棠果
 extratrees.item.food.orange=橙子
@@ -425,8 +419,6 @@ extratrees.fluid.alcohol.wheat=发酵小麦浆
 extratrees.fluid.alcohol.rye=发酵黑麦浆
 extratrees.fluid.alcohol.corn=发酵玉米浆
 
-
-
 extratrees.gui.database.planks.use=能制作:
 
 extratrees.gui.database.mode.fruit=果实
@@ -444,7 +436,6 @@ extratrees.gui.database.tab.branches.species=种
 
 extratrees.gui.database.tab.breeder.breeder=杂交
 
-
 extratrees.gui.database.tab.fruit.natural=可自然产出该果实的树种
 extratrees.gui.database.tab.fruit.natura.help=该表中出现的树种,皆可自然产出此种果实.
 extratrees.gui.database.tab.fruit.potential=潜在的可产出该果实的树种
@@ -455,7 +446,6 @@ extratrees.gui.database.tab.planks.overview=概述
 extratrees.gui.database.tab.planks.overview.help=描述和可能用途
 extratrees.gui.database.tab.planks.natural=可自然产出该木板的树种
 extratrees.gui.database.tab.planks.natural.help=该表中出现的树种,其原木皆可加工为此种木板.
-
 
 extratrees.gui.database.tab.butterfly.species.overview=概述
 extratrees.gui.database.tab.butterfly.species.classification=科学分类

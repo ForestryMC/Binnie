@@ -1,6 +1,7 @@
 package binnie.extratrees.item;
 
 import binnie.core.item.IItemMisc;
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
@@ -9,28 +10,28 @@ import net.minecraft.util.IIcon;
 import java.util.List;
 
 public enum ExtraTreeItems implements IItemMisc {
-	CarpentryHammer("Fake Hammer", "carpentryHammer"),
-	Sawdust("Sawdust", "sawdust"),
-	Bark("Bark", "bark"),
-	ProvenGear("Proven Gear", "provenGear"),
-	WoodWax("Wood Polish", "woodWax"),
-	Hops("Hops", "hops"),
-	Yeast("Yeast", "yeast"),
-	LagerYeast("Lager Yeast", "yeastLager"),
-	GrainWheat("Wheat Grain", "grainWheat"),
-	GrainBarley("Barley Grain", "grainBarley"),
-	GrainRye("Rye Grain", "grainRye"),
-	GrainCorn("Corn Grain", "grainCorn"),
-	GrainRoasted("Roasted Grain", "grainRoasted"),
-	GlassFitting("Glass Fittings", "glassFitting");
+	CarpentryHammer("carpentryHammer"),
+	Sawdust("sawdust"),
+	Bark("bark"),
+	ProvenGear("provenGear"),
+	WoodWax("woodWax"),
+	Hops("hops"),
+	Yeast("yeast"),
+	LagerYeast("yeastLager"),
+	GrainWheat("grainWheat"),
+	GrainBarley("grainBarley"),
+	GrainRye("grainRye"),
+	GrainCorn("grainCorn"),
+	GrainRoasted("grainRoasted"),
+	GlassFitting("glassFitting");
 
 	protected String name;
 	protected String iconPath;
 	protected IIcon icon;
 
-	ExtraTreeItems(String name, String iconPath) {
+	ExtraTreeItems(String name) {
 		this.name = name;
-		this.iconPath = iconPath;
+		this.iconPath = name;
 	}
 
 	@Override
@@ -50,7 +51,7 @@ public enum ExtraTreeItems implements IItemMisc {
 
 	@Override
 	public String getName(ItemStack itemStack) {
-		return name;
+		return I18N.localise(ExtraTrees.instance, "item." + name);
 	}
 
 	@Override

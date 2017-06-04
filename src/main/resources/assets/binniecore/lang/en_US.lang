@@ -189,6 +189,7 @@ binniecore.gui.breedingmessage.branch=Branch Discovered
 binniecore.gui.breedingmessage.epithet=Epithet Gained
 
 binniecore.item.genesis.name=Genesis
+binniecore.item.fluidContainer.missed=Missed Fluid
 
 binniecore.item.container.capsule=Capsule
 binniecore.item.container.refractory=Capsule
@@ -214,6 +215,9 @@ binniecore.machine.storage.compartmentGold=Gold Compartment
 
 < %1$s is the name of the pattern >
 binniecore.gui.designer.pattern=%1$s Pattern
+
+binniecore.gui.fieldKit=Field Kit
+binniecore.gui.fieldKit.info=The Field Kit analyses bees, trees, flowers and butterflies. All that is required is a piece of paper to jot notes
 
 binniecore.gui.genesis=Genesis
 binniecore.gui.database.nodescription=No Description Provided.
@@ -277,6 +281,10 @@ binniecore.gui.tooltip.tank.extractSide=Extract Side: %s
 binniecore.gui.tooltip.tank.outputOnlyTank=Output Only Tank
 binniecore.gui.tooltip.tank.acceptsAny=Accepts: Any Item
 binniecore.gui.tooltip.tank.accepts=Accepts: %s
+
+binniecore.gui.tooltip.individual=Individual
+binniecore.gui.tooltip.paper=Paper
+binniecore.gui.tooltip.noPaper=No Paper!
 
 < Descriptions used for effects in the registry >
 binniecore.allele.extrabees.effect.acid.desc=Dissolves stone and dirt
