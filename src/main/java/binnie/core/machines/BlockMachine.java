@@ -4,7 +4,9 @@ import binnie.core.BinnieCore;
 import binnie.core.machines.component.IRender;
 import binnie.core.util.TileUtil;
 import com.google.common.base.Preconditions;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -34,7 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-class BlockMachine extends BlockContainer implements IBlockMachine {
+class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 	public static final PropertyInteger MACHINE_TYPE = PropertyInteger.create("machine_type", 0, 15);
 	private MachineGroup group;
 
@@ -178,16 +180,9 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 	}
 
 	@Override
-	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-		return new ArrayList<>();
-	}
-
-	@Override
 	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
-		if (BinnieCore.getBinnieProxy().isSimulating(world) && this.canHarvestBlock(world, pos, player) && !player.capabilities.isCreativeMode) {
-			//final int metadata = this.getMetaFromState(state);
-			//final ItemStack stack = new ItemStack(Item.getItemFromBlock(this), 1, this.damageDropped(state));
-			this.dropBlockAsItem(world, pos, state, 0);
+		if (!player.capabilities.isCreativeMode) {
+			return super.removedByPlayer(state, world, pos, player, willHarvest);
 		}
 		return world.setBlockToAir(pos);
 	}
