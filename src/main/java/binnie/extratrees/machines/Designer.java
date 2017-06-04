@@ -190,6 +190,8 @@ public abstract class Designer {
 						((EntityPlayerMP) player).updateHeldItem();
 					}
 				}
+			} else if (name.equals("design")) {
+				setDesign(CarpentryManager.carpentryInterface.getDesign(nbt.getInteger("d")));
 			}
 		}
 
