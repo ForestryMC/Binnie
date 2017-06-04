@@ -1,5 +1,6 @@
 package binnie.extratrees.item;
 
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.IToolHammer;
 import cpw.mods.fml.relauncher.Side;
@@ -31,8 +32,8 @@ public class ItemHammer extends Item implements IToolHammer {
 	@Override
 	public String getItemStackDisplayName(ItemStack i) {
 		return isDurableHammer ?
-			"Master Carpentry Hammer" :
-			"Carpentry Hammer";
+			I18N.localise(ExtraTrees.instance, "item.masterCarpentryHammer") :
+			I18N.localise(ExtraTrees.instance, "item.carpentryHammer");
 	}
 
 	@Override

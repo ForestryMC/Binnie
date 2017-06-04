@@ -2,6 +2,7 @@ package binnie.core.item;
 
 import binnie.core.BinnieCore;
 import binnie.core.gui.BinnieCoreGUI;
+import binnie.core.util.I18N;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
@@ -32,6 +33,6 @@ public class ItemGenesis extends Item {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack itemStack) {
-		return "Genesis";
+		return I18N.localise(BinnieCore.instance, "item.genesis.name");
 	}
 }

@@ -8,7 +8,10 @@ import java.util.Collection;
 import java.util.EnumSet;
 
 public class MachineSide {
-	public static final EnumSet<ForgeDirection> TOP_AND_BOTTOM = EnumSet.of(ForgeDirection.UP, ForgeDirection.DOWN);
+	public static final EnumSet<ForgeDirection> TOP_AND_BOTTOM = EnumSet.of(
+		ForgeDirection.UP,
+		ForgeDirection.DOWN
+	);
 	public static final EnumSet<ForgeDirection> NONE = EnumSet.noneOf(ForgeDirection.class);
 	public static final EnumSet<ForgeDirection> SIDES = EnumSet.of(
 		ForgeDirection.NORTH,

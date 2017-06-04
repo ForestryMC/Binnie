@@ -50,12 +50,11 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 	}
 
 	private int fill(int tankIndex, FluidStack resource, boolean doFill) {
-		if (!tanks.containsKey(tankIndex)) {
+		if (!tanks.containsKey(tankIndex) ||
+			!isLiquidValidForTank(resource, tankIndex)) {
 			return 0;
 		}
-		if (!isLiquidValidForTank(resource, tankIndex)) {
-			return 0;
-		}
+
 		TankSlot tank = tanks.get(tankIndex);
 		int filled = tank.getTank().fill(resource, doFill);
 		if (filled > 0) {
@@ -68,6 +67,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 		if (!tanks.containsKey(tankIndex)) {
 			return null;
 		}
+
 		TankSlot tank = tanks.get(tankIndex);
 		FluidStack drained = tank.getTank().drain(maxDrain, doDrain);
 		if (drained != null) {
@@ -97,14 +97,16 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 	@Override
 	public void readFromNBT(NBTTagCompound nbttagcompound) {
 		super.readFromNBT(nbttagcompound);
-		if (nbttagcompound.hasKey("liquidTanks")) {
-			NBTTagList tanksNBT = nbttagcompound.getTagList("liquidTanks", 10);
-			for (int i = 0; i < tanksNBT.tagCount(); ++i) {
-				NBTTagCompound tankNBT = tanksNBT.getCompoundTagAt(i);
-				int index = tankNBT.getInteger("index");
-				if (tanks.containsKey(index)) {
-					tanks.get(index).readFromNBT(tankNBT);
-				}
+		if (!nbttagcompound.hasKey("liquidTanks")) {
+			return;
+		}
+
+		NBTTagList tanksNBT = nbttagcompound.getTagList("liquidTanks", 10);
+		for (int i = 0; i < tanksNBT.tagCount(); ++i) {
+			NBTTagCompound tankNBT = tanksNBT.getCompoundTagAt(i);
+			int index = tankNBT.getInteger("index");
+			if (tanks.containsKey(index)) {
+				tanks.get(index).readFromNBT(tankNBT);
 			}
 		}
 	}
@@ -130,7 +132,8 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 	@Override
 	public boolean isLiquidValidForTank(FluidStack liquid, int tank) {
 		TankSlot slot = getTankSlot(tank);
-		return slot != null && (slot.isValid(liquid) && !slot.isReadOnly());
+		return slot != null
+			&& (slot.isValid(liquid) && !slot.isReadOnly());
 	}
 
 	@Override
@@ -160,10 +163,10 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 	@Override
 	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
 		int index = getTankIndexToDrain(from, null);
-		if (tanks.containsKey(index)) {
-			return drain(index, resource.amount, doDrain);
+		if (!tanks.containsKey(index)) {
+			return null;
 		}
-		return null;
+		return drain(index, resource.amount, doDrain);
 	}
 
 	@Override

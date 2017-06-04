@@ -104,8 +104,6 @@ extratrees.block.planks.ebxl.redwood=секвойи (ExtrabiomesXL)
 extratrees.block.planks.ebxl.fir=шотландской пихты
 extratrees.block.planks.ebxl.acacia=превосходной акации
 
-
-
 extratrees.block.planks.fir.desc=Хорошая, крепкая хвойная древесина.|Лесоруб
 extratrees.block.planks.cedar.desc=Красная древесина с оттенком хвойных пород.|Лесоруб
 extratrees.block.planks.hemlock.desc=Древесина тсуги придаёт зелёный оттенок хвойной древесине.|Лесоруб
@@ -173,6 +171,9 @@ extratrees.block.planks.forestry.pine.desc=
 extratrees.block.planks.forestry.plum.desc=
 extratrees.block.planks.forestry.maple.desc=
 extratrees.block.planks.forestry.citrus.desc=
+
+extratrees.block.tooltip.twoColors=%s и %s
+extratrees.block.tooltip.twoMaterials=%s и %s
 
 < %1$s is name of wood used for door >
 extratrees.block.door.name=Дверь из %1$s
@@ -307,6 +308,21 @@ extratrees.species.starfruit.name=Карамбола
 extratrees.species.candlenut.name=Лумбанг (свечное дерево)
 extratrees.species.dwarfhazel.name=Лещина карликовая
 
+extratrees.item.carpentryHammer=Плотницкий молоток
+extratrees.item.masterCarpentryHammer=Плотницкий молоток мастера
+extratrees.item.sawdust=Опилки
+extratrees.item.bark=Кора
+extratrees.item.provenGear=Проверенная шестерня
+extratrees.item.woodWax=Полироль
+extratrees.item.hops=Хмель
+extratrees.item.yeast=Дрожжи
+extratrees.item.yeastLager=Пивоваренные дрожжи
+extratrees.item.wheat=Гранулы пшеницы
+extratrees.item.barley=Зерна ячменя
+extratrees.item.rye=Ржаное зерно
+extratrees.item.corn=Зерна кукурузы
+extratrees.item.roasted=Жареные зерна
+extratrees.item.glassware.glassFitting=Glass Fittings
 
 # ПРОДУКТЫ САДОВОДСТВА
 extratrees.item.food.osangeosange=Плод маклюра
@@ -324,32 +340,25 @@ extratrees.item.food.almond=Миндаль
 extratrees.item.food.apricot=Абрикос
 extratrees.item.food.grapefruit=Грейпфрут
 extratrees.item.food.peach=Персик
-
 extratrees.item.food.satsuma=Мандарин уншиу
 extratrees.item.food.buddhahand=Цитрон пальчатый
 extratrees.item.food.citron=Цитрон
 extratrees.item.food.fingerlime=Лайм пальчиковый
 extratrees.item.food.keylime=Лайм дикий
-
 extratrees.item.food.manderin=Мандарин
 extratrees.item.food.nectarine=Нектарин
-
 extratrees.item.food.pomelo=Помело
 extratrees.item.food.tangerine=Танжерин
 extratrees.item.food.pear=Груша
 extratrees.item.food.sandpear=Груша грушелистная
-
 extratrees.item.food.hazelnut=Фундук
 extratrees.item.food.butternut=Орех серый
 extratrees.item.food.beechnut=Буковый орешек
 extratrees.item.food.pecan=Пекан обыкновенный
-
 extratrees.item.food.banana=Банан
 extratrees.item.food.redbanana=Банан красный
 extratrees.item.food.plantain=Плантан
-
 extratrees.item.food.brazilnut=Бразильский орех
-
 extratrees.item.food.fig=Инжир
 extratrees.item.food.acorn=Жёлудь
 extratrees.item.food.elderberry=Бузина
@@ -358,9 +367,7 @@ extratrees.item.food.gingkonut=Семена Гинкго
 extratrees.item.food.coffee=Кофейные зёрна
 extratrees.item.food.osangeorange=Плод маклюра
 extratrees.item.food.clove=Гвоздика (пряность)
-
 extratrees.item.food.papayimar=Папайя
-
 extratrees.item.food.blackcurrant=Смородина чёрная
 extratrees.item.food.redcurrant=Смородина красная
 extratrees.item.food.blackberry=Ежевика
@@ -370,7 +377,6 @@ extratrees.item.food.cranberry=Клюква
 extratrees.item.food.juniper=Семяна Можжевельника
 extratrees.item.food.gooseberry=Крыжовник
 extratrees.item.food.goldenraspberry=Малина золотая
-
 extratrees.item.food.coconut=Кокос
 extratrees.item.food.cashew=Кешью
 extratrees.item.food.avacado=Авокадо
@@ -381,7 +387,6 @@ extratrees.item.food.staranise=Анис звёздчатый
 extratrees.item.food.mango=Манго
 extratrees.item.food.starfruit=Карамбола
 extratrees.item.food.candlenut=Лумбанг
-
 
 # Изделия из стекла
 extratrees.item.glassware.beermug=Пивная кружка
@@ -446,8 +451,6 @@ extratrees.fluid.alcohol.wheat=пшеничный виски
 extratrees.fluid.alcohol.rye=ржаной виски
 extratrees.fluid.alcohol.corn=кукурузный виски
 
-
-
 extratrees.gui.database.planks.use=Можно создать:
 
 extratrees.gui.database.mode.fruit=Плод
@@ -465,7 +468,6 @@ extratrees.gui.database.tab.branches.species=Виды
 
 extratrees.gui.database.tab.breeder.breeder=Селекция
 
-
 extratrees.gui.database.tab.fruit.natural=Естественные деревья
 extratrees.gui.database.tab.fruit.natura.help=список деревьев, на которых растёт этот плод
 extratrees.gui.database.tab.fruit.potential=Потенциальные деревья
@@ -476,7 +478,6 @@ extratrees.gui.database.tab.planks.overview=Обзор
 extratrees.gui.database.tab.planks.overview.help=Описание и возможные варианты применения
 extratrees.gui.database.tab.planks.natural=Естественные деревья
 extratrees.gui.database.tab.planks.natural.help=Список деревьев, которые производят брёвна, дающие эти доски
-
 
 extratrees.gui.database.tab.butterfly.species.overview=Обзор
 extratrees.gui.database.tab.butterfly.species.classification=Классификация

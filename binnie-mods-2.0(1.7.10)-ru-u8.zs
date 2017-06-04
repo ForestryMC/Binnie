@@ -20,9 +20,6 @@ import mods.nei.NEI;
 
 # DATABASES
 
-# Genesis
-NEI.overrideName(<BinnieCore:genesis>,"Генезис");
-<BinnieCore:genesis>.addTooltip(format.darkGreen("Genesis"));
 # Apiarist Database
 NEI.overrideName(<ExtraBees:dictionary:0>,"База данных пчеловода");
 <ExtraBees:dictionary:0>.addTooltip(format.darkGreen("Apiarist Database"));
@@ -56,71 +53,6 @@ NEI.overrideName(<Genetics:masterRegistry:0>,"Картотека мастера"
 # Analyst
 NEI.overrideName(<Genetics:analyst:0>,"Аналитик");
 <Genetics:analyst:0>.addTooltip(format.darkGreen("Analyst"));
-
-
-# Field Kit
-NEI.overrideName(<BinnieCore:fieldKit:0>,"Полевая лаборатория");
-<BinnieCore:fieldKit:0>.addTooltip(format.darkGreen("Field Kit"));
-
-# Master Carpentry Hammer
-NEI.overrideName(<ExtraTrees:durableHammer:0>,"Плотницкий молоток мастера");
-<ExtraTrees:durableHammer:0>.addTooltip(format.darkGreen("Master Carpentry Hammer"));
-
-# Carpentry Hammer
-NEI.overrideName(<ExtraTrees:hammer:0>,"Плотницкий молоток");
-<ExtraTrees:hammer:0>.addTooltip(format.darkGreen("Carpentry Hammer"));
-
-# EXTRA TREES MISC
-
-# Sawdust
-NEI.overrideName(<ExtraTrees:misc:1>,"Опилки");
-<ExtraTrees:misc:1>.addTooltip(format.darkGreen("Sawdust"));
-# Bark
-NEI.overrideName(<ExtraTrees:misc:2>,"Кора");
-<ExtraTrees:misc:2>.addTooltip(format.darkGreen("Bark"));
-# Proven Gear
-NEI.overrideName(<ExtraTrees:misc:3>,"Проверенная шестерня");
-<ExtraTrees:misc:3>.addTooltip(format.darkGreen("Proven Gear"));
-# Wood Polish
-NEI.overrideName(<ExtraTrees:misc:4>,"Полироль");
-<ExtraTrees:misc:4>.addTooltip(format.darkGreen("Wood Polish"));
-
-
-# Hops
-NEI.overrideName(<ExtraTrees:misc:5>,"Хмель");
-<ExtraTrees:misc:5>.addTooltip(format.darkGreen("Hops"));
-
-# Yeast
-NEI.overrideName(<ExtraTrees:misc:6>,"Дрожжи");
-<ExtraTrees:misc:6>.addTooltip(format.darkGreen("Yeast"));
-
-# Lager Yeast
-NEI.overrideName(<ExtraTrees:misc:7>,"Пивоваренные дрожжи");
-<ExtraTrees:misc:7>.addTooltip(format.darkGreen("Lager Yeast"));
-
-# Wheat Grain
-NEI.overrideName(<ExtraTrees:misc:8>,"Зёрна пшеницы");
-<ExtraTrees:misc:8>.addTooltip(format.darkGreen("Wheat Grain"));
-
-# Barley Grain
-NEI.overrideName(<ExtraTrees:misc:9>,"Зёрна ячменя");
-<ExtraTrees:misc:9>.addTooltip(format.darkGreen("Barley Grain"));
-
-# Rye Grain
-NEI.overrideName(<ExtraTrees:misc:10>,"Зёрна ржи");
-<ExtraTrees:misc:10>.addTooltip(format.darkGreen("Rye Grain"));
-
-# Corn Grain
-NEI.overrideName(<ExtraTrees:misc:11>,"Зёрна кукурузы");
-<ExtraTrees:misc:11>.addTooltip(format.darkGreen("Corn Grain"));
-
-# Roasted Grain
-NEI.overrideName(<ExtraTrees:misc:12>,"Зёрна жареные");
-<ExtraTrees:misc:12>.addTooltip(format.darkGreen("Roasted Grain"));
-
-# Glass Fittings
-NEI.overrideName(<ExtraTrees:misc:13>,"Стеклянные фиттинги (детали)");
-<ExtraTrees:misc:13>.addTooltip(format.darkGreen("Glass Fittings"));
 
 # FLUIDS
 

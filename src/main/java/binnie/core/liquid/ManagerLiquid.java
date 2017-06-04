@@ -16,11 +16,7 @@ public class ManagerLiquid extends ManagerBase {
 	Map<String, IFluidType> fluids;
 
 	public ManagerLiquid() {
-		fluids = new LinkedHashMap<String, IFluidType>();
-	}
-
-	public Collection<IFluidType> getFluidTypes() {
-		return fluids.values();
+		fluids = new LinkedHashMap<>();
 	}
 
 	public void createLiquids(IFluidType[] liquids, int startID) {
@@ -70,9 +66,5 @@ public class ManagerLiquid extends ManagerBase {
 				}
 			}
 		}
-	}
-
-	public IFluidType getFluidType(String liquid) {
-		return fluids.get(liquid.toLowerCase());
 	}
 }

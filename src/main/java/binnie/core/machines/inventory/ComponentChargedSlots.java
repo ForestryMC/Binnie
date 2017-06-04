@@ -48,10 +48,12 @@ public class ComponentChargedSlots extends MachineComponent implements INetwork.
 
 	@Override
 	public void recieveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt) {
-		if (name.equals("slot-charges")) {
-			for (int i : charges.keySet()) {
-				charges.put(i, nbt.getShort("" + i) / 100.0f);
-			}
+		if (!name.equals("slot-charges")) {
+			return;
+		}
+
+		for (int i : charges.keySet()) {
+			charges.put(i, nbt.getShort("" + i) / 100.0f);
 		}
 	}
 
@@ -66,7 +68,7 @@ public class ComponentChargedSlots extends MachineComponent implements INetwork.
 
 	@Override
 	public float getCharge(int slot) {
-		return charges.containsKey(slot) ? charges.get(slot) : 0.0f;
+		return charges.getOrDefault(slot, 0.0f);
 	}
 
 	@Override

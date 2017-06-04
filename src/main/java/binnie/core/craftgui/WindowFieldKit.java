@@ -76,7 +76,7 @@ public class WindowFieldKit extends Window {
 
 	@Override
 	protected String getName() {
-		return "Field Kit";
+		return I18N.localise(BinnieCore.instance, "gui.fieldKit");
 	}
 
 	private void setupValidators() {
@@ -89,7 +89,7 @@ public class WindowFieldKit extends Window {
 
 			@Override
 			public String getTooltip() {
-				return "Individual";
+				return I18N.localise(BinnieCore.instance, "gui.tooltip.individual");
 			}
 		});
 
@@ -101,7 +101,7 @@ public class WindowFieldKit extends Window {
 
 			@Override
 			public String getTooltip() {
-				return "Paper";
+				return I18N.localise(BinnieCore.instance, "gui.tooltip.paper");
 			}
 		});
 		getWindowInventory().disableAutoDispense(1);
@@ -119,8 +119,8 @@ public class WindowFieldKit extends Window {
 		GlassControl = new ControlImage(this, handGlass.x(), handGlass.y(), new StandardTexture(0, 160, 96, 96, ExtraBeeTexture.GUIPunnett));
 		new ControlSlot(this, handGlass.x() + 54.0f, handGlass.y() + 26.0f).assign(InventoryType.Window, 0);
 		new ControlSlot(this, 208.0f, 8.0f).assign(InventoryType.Window, 1);
-		(text = new ControlText(this, new IPoint(232.0f, 13.0f), "Paper")).setColor(2236962);
-		(text = new ControlText(this, new IArea(0.0f, 120.0f, w(), 24.0f), "", TextJustification.MiddleCenter)).setColor(2236962);
+		(text = new ControlText(this, new IPoint(232.0f, 13.0f), I18N.localise(BinnieCore.instance, "gui.tooltip.paper"))).setColor(0x222222);
+		(text = new ControlText(this, new IArea(0.0f, 120.0f, w(), 24.0f), "", TextJustification.MiddleCenter)).setColor(0x222222);
 		chromo = new ControlChromosome(this, 150.0f, 24.0f);
 
 		addEventHandler(new EventValueChanged.Handler() {
@@ -230,7 +230,7 @@ public class WindowFieldKit extends Window {
 
 		if (item != null && !Analyser.isAnalysed(item)) {
 			if (getWindowInventory().getStackInSlot(1) == null) {
-				text.setValue("No Paper!");
+				text.setValue(I18N.localise(BinnieCore.instance, "gui.tooltip.noPaper"));
 				isAnalysing = false;
 				analyseProgress = 1.0f;
 			} else {
@@ -264,7 +264,7 @@ public class WindowFieldKit extends Window {
 
 	@Override
 	public String showInfoButton() {
-		return "The Field Kit analyses bees, trees, flowers and butterflies. All that is required is a piece of paper to jot notes";
+		return I18N.localise(BinnieCore.instance, "gui.fieldKit.info");
 	}
 
 	@Override

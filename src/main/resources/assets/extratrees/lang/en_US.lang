@@ -22,8 +22,6 @@ extratrees.machine.machine.glassworker.info=The Glassworker creates patterned st
 extratrees.machine.machine.tileworker=Tileworker
 extratrees.machine.machine.tileworker.info=The Tileworker creates patterned ceramic tiles.
 
-        
-        
 extratrees.block.planks.fir=Fir
 extratrees.block.planks.cedar=Cedar
 extratrees.block.planks.hemlock=Hemlock
@@ -101,8 +99,6 @@ extratrees.block.planks.ebxl.redwood=Redwood
 extratrees.block.planks.ebxl.fir=Scottish Fir
 extratrees.block.planks.ebxl.acacia=Excel Acacia
 
-
-
 extratrees.block.planks.fir.desc=A good sturdy conifer wood.|Lumber Jack
 extratrees.block.planks.cedar.desc=A red tinged softwood.|Lumber Jack
 extratrees.block.planks.hemlock.desc=Hemlock gives a green hued conifer wood.|Lumber Jack
@@ -170,6 +166,9 @@ extratrees.block.planks.forestry.pine.desc=
 extratrees.block.planks.forestry.plum.desc=
 extratrees.block.planks.forestry.maple.desc=
 extratrees.block.planks.forestry.citrus.desc=
+
+extratrees.block.tooltip.twoColors=%s and %s
+extratrees.block.tooltip.twoMaterials=%s and %s
 
 < %1$s is name of wood used for door >
 extratrees.block.door.name=%1$s Wood Door
@@ -300,7 +299,21 @@ extratrees.species.starfruit.name=Starfruit
 extratrees.species.candlenut.name=Candlenut
 extratrees.species.dwarfhazel.name=Dwarf Hazel
 
-
+extratrees.item.carpentryHammer=Master Carpentry Hammer
+extratrees.item.masterCarpentryHammer=Carpentry Hammer
+extratrees.item.sawdust=Sawdust
+extratrees.item.bark=Bark
+extratrees.item.provenGear=Proven Gear
+extratrees.item.woodWax=Wood Polish
+extratrees.item.hops=Hops
+extratrees.item.yeast=Yeast
+extratrees.item.yeastLager=Lager Yeast
+extratrees.item.grainWheat=Wheat Grain
+extratrees.item.grainBarley=Barley Grain
+extratrees.item.grainRye=Rye Grain
+extratrees.item.grainCorn=Corn Grain
+extratrees.item.grainRoasted=Roasted Grain
+extratrees.item.glassware.glassFitting=Glass Fittings
 
 extratrees.item.food.apple=Apple
 extratrees.item.food.crabapple=Crabapple
@@ -425,8 +438,6 @@ extratrees.fluid.alcohol.wheat=Fermented Wheat Mash
 extratrees.fluid.alcohol.rye=Fermented Rye Mash
 extratrees.fluid.alcohol.corn=Fermented Corn Mash
 
-
-
 extratrees.gui.database.planks.use=Can make:
 
 extratrees.gui.database.mode.fruit=Fruit
@@ -444,7 +455,6 @@ extratrees.gui.database.tab.branches.species=Species
 
 extratrees.gui.database.tab.breeder.breeder=Breeder
 
-
 extratrees.gui.database.tab.fruit.natural=Natural Trees
 extratrees.gui.database.tab.fruit.natura.help=List of trees that naturally produce this fruit
 extratrees.gui.database.tab.fruit.potential=Potential Trees
@@ -455,7 +465,6 @@ extratrees.gui.database.tab.planks.overview=Overview
 extratrees.gui.database.tab.planks.overview.help=Description and possible uses
 extratrees.gui.database.tab.planks.natural=Natural Trees
 extratrees.gui.database.tab.planks.natural.help=List of trees that produce logs that can be crafted into this plank
-
 
 extratrees.gui.database.tab.butterfly.species.overview=Overview
 extratrees.gui.database.tab.butterfly.species.classification=Classification

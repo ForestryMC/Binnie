@@ -63,15 +63,6 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 		markDirty();
 	}
 
-	protected void transferItem(int indexFrom, int indexTo) {
-		if (inventory.containsKey(indexFrom) && inventory.containsKey(indexTo)) {
-			ItemStack newStack = inventory.get(indexFrom).getContent().copy();
-			inventory.get(indexFrom).setContent(null);
-			inventory.get(indexTo).setContent(newStack);
-		}
-		markDirty();
-	}
-
 	@Override
 	public String getInventoryName() {
 		return "";
@@ -158,7 +149,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
 	@Override
 	public InventorySlot[] getSlots(int[] indexes) {
-		List<InventorySlot> list = new ArrayList<InventorySlot>();
+		List<InventorySlot> list = new ArrayList<>();
 		for (int i : indexes) {
 			if (getSlot(i) != null) {
 				list.add(getSlot(i));
@@ -221,6 +212,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 				slots.add(slot.getIndex());
 			}
 		}
+
 		int[] ids = new int[slots.size()];
 		for (int i = 0; i < slots.size(); ++i) {
 			ids[i] = slots.get(i);
