@@ -5,17 +5,18 @@
 
 # Necessary modifications:
 # forestry_1.7.10
-# binnie-mods-2.0
-# NotEnoughItems-1.7.10, CodeChickenCore-1.7.10, CodeChickenLib,
+# binnie-mods-2.0.15-7,
+# NotEnoughItems-1.7.10-1.0.5.110, CodeChickenCore-1.7.10-1.0.7.46, CodeChickenLib-1.7.10-1.1.3.138,
 # CraftTweaker-1.7.10
+
+# Optional modification:
+# Waila-1.5.10
 
 # How to use:
 # Copy the necessary modifications in the folder .minecraft\mods
 # Copy this file in the folder .minecraft\scripts
 
-
 import mods.nei.NEI;
-
 
 # DATABASES
 
@@ -57,6 +58,9 @@ NEI.overrideName(<Genetics:analyst:0>,"Аналитик");
 <Genetics:analyst:0>.addTooltip(format.darkGreen("Analyst"));
 
 
+# Field Kit
+NEI.overrideName(<BinnieCore:fieldKit:0>,"Полевая лаборатория");
+<BinnieCore:fieldKit:0>.addTooltip(format.darkGreen("Field Kit"));
 
 # Master Carpentry Hammer
 NEI.overrideName(<ExtraTrees:durableHammer:0>,"Плотницкий молоток мастера");
@@ -65,7 +69,6 @@ NEI.overrideName(<ExtraTrees:durableHammer:0>,"Плотницкий молото
 # Carpentry Hammer
 NEI.overrideName(<ExtraTrees:hammer:0>,"Плотницкий молоток");
 <ExtraTrees:hammer:0>.addTooltip(format.darkGreen("Carpentry Hammer"));
-
 
 # EXTRA TREES MISC
 
@@ -118,7 +121,6 @@ NEI.overrideName(<ExtraTrees:misc:12>,"Зёрна жареные");
 # Glass Fittings
 NEI.overrideName(<ExtraTrees:misc:13>,"Стеклянные фиттинги (детали)");
 <ExtraTrees:misc:13>.addTooltip(format.darkGreen("Glass Fittings"));
-
 
 # FLUIDS
 
