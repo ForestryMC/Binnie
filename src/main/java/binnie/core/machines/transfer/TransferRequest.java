@@ -111,7 +111,7 @@ public class TransferRequest {
 					merged.grow(space);
 				} else if (itemstack.getCount() <= space) {
 					merged.grow(itemstack.getCount());
-					itemstack = null;
+					itemstack = ItemStack.EMPTY;
 				}
 			}
 		}
