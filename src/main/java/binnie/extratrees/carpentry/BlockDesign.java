@@ -5,6 +5,8 @@ import binnie.core.block.BlockMetadata;
 import binnie.core.block.IMultipassBlock;
 import binnie.core.block.MultipassBlockRenderer;
 import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
+import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignSystem;
@@ -133,20 +135,10 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 	public void addBlockTooltip(ItemStack stack, List tooltip) {
 		DesignBlock block = ModuleCarpentry.getDesignBlock(getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
 		if (block.getPrimaryMaterial() != block.getSecondaryMaterial()) {
-			tooltip.add(block.getPrimaryMaterial().getName() + " and " + block.getSecondaryMaterial().getName());
+			tooltip.add(I18N.localise(ExtraTrees.instance, "block.tooltip.twoColors", block.getPrimaryMaterial().getName(), block.getSecondaryMaterial().getName()));
 		} else {
 			tooltip.add(block.getPrimaryMaterial().getName());
 		}
-	}
-
-	public int primaryColor(int damage) {
-		DesignBlock block = ModuleCarpentry.getDesignBlock(getDesignSystem(), damage);
-		return block.getPrimaryColour();
-	}
-
-	public int secondaryColor(int damage) {
-		DesignBlock block = ModuleCarpentry.getDesignBlock(getDesignSystem(), damage);
-		return block.getSecondaryColour();
 	}
 
 	public ItemStack getItemStack(int plank1, int plank2, int design) {

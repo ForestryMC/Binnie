@@ -1,191 +1,188 @@
 package binnie.extratrees.carpentry;
 
-import binnie.extratrees.api.CarpentryManager;
+import binnie.botany.Botany;
+import binnie.core.util.I18N;
 import binnie.extratrees.api.IDesign;
-import binnie.extratrees.api.IDesignCategory;
 import binnie.extratrees.api.ILayout;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public enum EnumDesign implements IDesign {
-	Blank("Blank"),
-	Octagon("Octagon"),
-	Diamond("Diamond"),
-	Ringed("Ringed"),
-	Squared("Squared"),
-	Multiply("Multiply"),
-	Halved("Halved"),
-	Striped("Striped"),
-	ThinStriped("Thin Striped"),
-	Chequered("Full Chequered"),
-	Tiled("Full Tiled"),
-	ChequeredB("Chequered"),
-	TiledB("Tiled"),
-	VeryThinCorner("Very Thin Cornered"),
-	ThinCorner("Thin Cornered"),
-	Corner("Cornered"),
-	ThickCorner("Thick Cornered"),
-	Edged("Edged"),
-	ThinEdged("Thin Edged"),
-	ThinBarred("Thin Barred"),
-	Barred("Barred"),
-	ThickBarred("Thick Barred"),
-	Diagonal("Diagonal"),
-	ThickDiagonal("Thick Diagonal"),
-	ThinSaltire("Thin Saltire"),
-	Saltire("Saltire"),
-	ThickSaltire("Thick Saltire"),
-	ThinCrossed("Thin Crossed"),
-	Crossed("Crossed"),
-	ThickCrossed("Thick Crossed"),
-	ThinTSection("Thin T Section"),
-	TSection("T Section"),
-	ThickTSection("Thick T Section"),
-	ThinBarredCorner("Thin Barred Corner"),
-	BarredCorner("Barred Corner"),
-	ThickBarredCorner("Thick Barred Corner"),
-	ThinStripedCorner("Thin Striped Corner"),
-	StripedCorner("Striped Corner"),
-	Emblem1("Emblem 1"),
-	Emblem2("Emblem 2"),
-	Emblem3("Emblem 3"),
-	Emblem4("Emblem 4"),
-	Emblem5("Emblem 5"),
-	LetterA("Letter A"),
-	LetterB("Letter B"),
-	LetterC("Letter C"),
-	LetterD("Letter D"),
-	LetterE("Letter E"),
-	LetterF("Letter F"),
-	LetterG("Letter G"),
-	LetterH("Letter H"),
-	LetterI("Letter I"),
-	LetterJ("Letter J"),
-	LetterK("Letter K"),
-	LetterL("Letter L"),
-	LetterM("Letter M"),
-	LetterN("Letter N"),
-	LetterO("Letter O"),
-	LetterP("Letter P"),
-	LetterQ("Letter Q"),
-	LetterR("Letter R"),
-	LetterS("Letter S"),
-	LetterT("Letter T"),
-	LetterU("Letter U"),
-	LetterV("Letter V"),
-	LetterW("Letter W"),
-	LetterX("Letter X"),
-	LetterY("Letter Y"),
-	LetterZ("Letter Z"),
-	ThinCurvedCrossed("Thin Curved Crossed"),
-	ThinCurvedBarredCorner("Thin Curved Barred Corner"),
-	CurvedBarredCorner("Curved Barred Corner"),
-	ThinCurvedCorner("Thin Curved Corner"),
-	CurvedCorner("Curved Corner"),
-	ThinCurvedTSection("Thin Curved T Section"),
-	CurvedTSection("Curved T Section"),
-	BarredEnd("Barred End"),
-	DiagonalCorner("Diagonal Corner"),
-	DiagonalTSection("Diagonal T Section"),
-	DiagonalCurvedCorner("Diagonal Curved Corner"),
-	DiagonalCurvedTSection("Diagonal Curved T Section"),
-	OrnateBarred("Ornate Barred"),
-	SplitBarred("Split Barred"),
-	SplitBarredCorner("Split Barred Corner"),
-	SplitBarredTSection("Split Barred T Section"),
-	SplitCrossed("Split Crossed"),
-	SplitBarredEnd("Split Barred End"),
-	OrnateThinBarred("Ornate Thin Barred"),
-	Circle("Circle"),
-	Plus("Plus"),
-	Creeper("Creeper"),
-	OrnateStripedCorner("Ornate Striped Corner"),
-	Test("Testing Block"),
-	DiagonalHalved("Diagonal Halved"),
-	Diagonal1Edged("Cornered Diagonal"),
-	Diagonal2Edged("Opposite Cornered Diagonal"),
-	ThickDiagonal1Edged("Thick Cornered Diagonal"),
-	ThinBarredEnd("Thin Barred End"),
-	ThickBarredEnd("Thick Barred End"),
-	OverlappedBarred("Overlapped Barred"),
-	OverlappedSplitBarred("Overlapped Split Barred");
+	Blank("blank"),
+	Octagon("octagon"),
+	Diamond("diamond"),
+	Ringed("ringed"),
+	Squared("squared"),
+	Multiply("multiply"),
+	Halved("halved"),
+	Striped("striped"),
+	ThinStriped("thinStriped"),
+	Chequered("fullChequered"),
+	Tiled("fullTiled"),
+	ChequeredB("chequered"),
+	TiledB("tiled"),
+	VeryThinCorner("veryThinCornered"),
+	ThinCorner("thinCornered"),
+	Corner("cornered"),
+	ThickCorner("thickCornered"),
+	Edged("edged"),
+	ThinEdged("thinEdged"),
+	ThinBarred("thinBarred"),
+	Barred("barred"),
+	ThickBarred("thickBarred"),
+	Diagonal("diagonal"),
+	ThickDiagonal("thickDiagonal"),
+	ThinSaltire("thinSaltire"),
+	Saltire("saltire"),
+	ThickSaltire("thickSaltire"),
+	ThinCrossed("thinCrossed"),
+	Crossed("crossed"),
+	ThickCrossed("thickCrossed"),
+	ThinTSection("thinTSection"),
+	TSection("tSection"),
+	ThickTSection("thickTSection"),
+	ThinBarredCorner("thinBarredCorner"),
+	BarredCorner("barredCorner"),
+	ThickBarredCorner("thickBarredCorner"),
+	ThinStripedCorner("thinStripedCorner"),
+	StripedCorner("stripedCorner"),
+	Emblem1("emblem1"),
+	Emblem2("emblem2"),
+	Emblem3("emblem3"),
+	Emblem4("emblem4"),
+	Emblem5("emblem5"),
+	LetterA("letterA"),
+	LetterB("letterB"),
+	LetterC("letterC"),
+	LetterD("letterD"),
+	LetterE("letterE"),
+	LetterF("letterF"),
+	LetterG("letterG"),
+	LetterH("letterH"),
+	LetterI("letterI"),
+	LetterJ("letterJ"),
+	LetterK("letterK"),
+	LetterL("letterL"),
+	LetterM("letterM"),
+	LetterN("letterN"),
+	LetterO("letterO"),
+	LetterP("letterP"),
+	LetterQ("letterQ"),
+	LetterR("letterR"),
+	LetterS("letterS"),
+	LetterT("letterT"),
+	LetterU("letterU"),
+	LetterV("letterV"),
+	LetterW("letterW"),
+	LetterX("letterX"),
+	LetterY("letterY"),
+	LetterZ("letterZ"),
+	ThinCurvedCrossed("thinCurvedCrossed"),
+	ThinCurvedBarredCorner("thinCurvedBarredCorner"),
+	CurvedBarredCorner("curvedBarredCorner"),
+	ThinCurvedCorner("thinCurvedCorner"),
+	CurvedCorner("curvedCorner"),
+	ThinCurvedTSection("thinCurvedTSection"),
+	CurvedTSection("curvedTSection"),
+	BarredEnd("barredEnd"),
+	DiagonalCorner("diagonalCorner"),
+	DiagonalTSection("diagonalTSection"),
+	DiagonalCurvedCorner("diagonalCurvedCorner"),
+	DiagonalCurvedTSection("diagonalCurvedTSection"),
+	OrnateBarred("ornateBarred"),
+	SplitBarred("splitBarred"),
+	SplitBarredCorner("splitBarredCorner"),
+	SplitBarredTSection("splitBarredTSection"),
+	SplitCrossed("splitCrossed"),
+	SplitBarredEnd("splitBarredEnd"),
+	OrnateThinBarred("ornateThinBarred"),
+	Circle("circle"),
+	Plus("plus"),
+	Creeper("creeper"),
+	OrnateStripedCorner("ornateStripedCorner"),
+	Test("testingBlock"),
+	DiagonalHalved("diagonalHalved"),
+	Diagonal1Edged("corneredDiagonal"),
+	Diagonal2Edged("oppositeCorneredDiagonal"),
+	ThickDiagonal1Edged("thickCorneredDiagonal"),
+	ThinBarredEnd("thinBarredEnd"),
+	ThickBarredEnd("thickBarredEnd"),
+	OverlappedBarred("overlappedBarred"),
+	OverlappedSplitBarred("overlappedSplitBarred");
 
 	static {
-		Category.Design.addDesign(EnumDesign.Blank);
-		Category.Design.addDesign(EnumDesign.Octagon);
-		Category.Design.addDesign(EnumDesign.Diamond);
-		Category.Design.addDesign(EnumDesign.Ringed);
-		Category.Design.addDesign(EnumDesign.Squared);
-		Category.Design.addDesign(EnumDesign.Multiply);
-		Category.Design.addDesign(EnumDesign.Plus);
-		Category.Design.addDesign(EnumDesign.Circle);
-		Category.Design.addDesign(EnumDesign.Emblem1);
-		Category.Design.addDesign(EnumDesign.Emblem2);
-		Category.Design.addDesign(EnumDesign.Emblem3);
-		Category.Design.addDesign(EnumDesign.Emblem4);
-		Category.Design.addDesign(EnumDesign.Emblem5);
-		Category.Design.addDesign(EnumDesign.Creeper);
-		Category.Stripes.addDesign(EnumDesign.Chequered);
-		Category.Stripes.addDesign(EnumDesign.ChequeredB);
-		Category.Stripes.addDesign(EnumDesign.Tiled);
-		Category.Stripes.addDesign(EnumDesign.TiledB);
-		Category.Stripes.addDesign(EnumDesign.Striped);
-		Category.Stripes.addDesign(EnumDesign.ThinStriped);
-		Category.Stripes.addDesign(EnumDesign.ThinStripedCorner);
-		Category.Stripes.addDesign(EnumDesign.StripedCorner);
-		Category.Stripes.addDesign(EnumDesign.OrnateStripedCorner);
-		Category.Edges.addDesign(EnumDesign.Halved);
-		Category.Edges.addDesign(EnumDesign.Corner);
-		Category.Edges.addDesign(EnumDesign.ThickCorner);
-		Category.Edges.addDesign(EnumDesign.Edged);
-		Category.Edges.addDesign(EnumDesign.ThinCorner);
-		Category.Edges.addDesign(EnumDesign.ThinEdged);
-		Category.Edges.addDesign(EnumDesign.VeryThinCorner);
-		Category.Edges.addDesign(EnumDesign.ThinCurvedCorner);
-		Category.Edges.addDesign(EnumDesign.CurvedCorner);
-		Category.Barred.addDesign(EnumDesign.ThinBarred);
-		Category.Barred.addDesign(EnumDesign.ThinBarredCorner);
-		Category.Barred.addDesign(EnumDesign.ThinTSection);
-		Category.Barred.addDesign(EnumDesign.ThinCrossed);
-		Category.Barred.addDesign(EnumDesign.ThinBarredEnd);
-		Category.Barred.addDesign(EnumDesign.OrnateThinBarred);
-		Category.Barred.addDesign(EnumDesign.Barred);
-		Category.Barred.addDesign(EnumDesign.BarredCorner);
-		Category.Barred.addDesign(EnumDesign.TSection);
-		Category.Barred.addDesign(EnumDesign.Crossed);
-		Category.Barred.addDesign(EnumDesign.BarredEnd);
-		Category.Barred.addDesign(EnumDesign.OverlappedBarred);
-		Category.Barred.addDesign(EnumDesign.OrnateBarred);
-		Category.Barred.addDesign(EnumDesign.ThickBarred);
-		Category.Barred.addDesign(EnumDesign.ThickBarredCorner);
-		Category.Barred.addDesign(EnumDesign.ThickTSection);
-		Category.Barred.addDesign(EnumDesign.ThickCrossed);
-		Category.Barred.addDesign(EnumDesign.ThickBarredEnd);
-		Category.Barred.addDesign(EnumDesign.ThinCurvedBarredCorner);
-		Category.Barred.addDesign(EnumDesign.CurvedBarredCorner);
-		Category.Barred.addDesign(EnumDesign.ThinCurvedTSection);
-		Category.Barred.addDesign(EnumDesign.CurvedTSection);
-		Category.Barred.addDesign(EnumDesign.ThinCurvedCrossed);
-		Category.Barred.addDesign(EnumDesign.SplitBarred);
-		Category.Barred.addDesign(EnumDesign.SplitBarredCorner);
-		Category.Barred.addDesign(EnumDesign.SplitBarredTSection);
-		Category.Barred.addDesign(EnumDesign.SplitCrossed);
-		Category.Barred.addDesign(EnumDesign.SplitBarredEnd);
-		Category.Barred.addDesign(EnumDesign.OverlappedSplitBarred);
-		Category.Diagonal.addDesign(EnumDesign.ThinSaltire);
-		Category.Diagonal.addDesign(EnumDesign.Diagonal);
-		Category.Diagonal.addDesign(EnumDesign.DiagonalCorner);
-		Category.Diagonal.addDesign(EnumDesign.DiagonalTSection);
-		Category.Diagonal.addDesign(EnumDesign.DiagonalCurvedCorner);
-		Category.Diagonal.addDesign(EnumDesign.DiagonalCurvedTSection);
-		Category.Diagonal.addDesign(EnumDesign.Saltire);
-		Category.Diagonal.addDesign(EnumDesign.ThickDiagonal);
-		Category.Diagonal.addDesign(EnumDesign.ThickSaltire);
-		Category.Diagonal.addDesign(EnumDesign.DiagonalHalved);
-		Category.Diagonal.addDesign(EnumDesign.Diagonal1Edged);
-		Category.Diagonal.addDesign(EnumDesign.Diagonal2Edged);
-		Category.Diagonal.addDesign(EnumDesign.ThickDiagonal1Edged);
+		EnumDesignCategory.Design.addDesign(EnumDesign.Blank);
+		EnumDesignCategory.Design.addDesign(EnumDesign.Octagon);
+		EnumDesignCategory.Design.addDesign(EnumDesign.Diamond);
+		EnumDesignCategory.Design.addDesign(EnumDesign.Ringed);
+		EnumDesignCategory.Design.addDesign(EnumDesign.Squared);
+		EnumDesignCategory.Design.addDesign(EnumDesign.Multiply);
+		EnumDesignCategory.Design.addDesign(EnumDesign.Plus);
+		EnumDesignCategory.Design.addDesign(EnumDesign.Circle);
+		EnumDesignCategory.Design.addDesign(EnumDesign.Emblem1);
+		EnumDesignCategory.Design.addDesign(EnumDesign.Emblem2);
+		EnumDesignCategory.Design.addDesign(EnumDesign.Emblem3);
+		EnumDesignCategory.Design.addDesign(EnumDesign.Emblem4);
+		EnumDesignCategory.Design.addDesign(EnumDesign.Emblem5);
+		EnumDesignCategory.Design.addDesign(EnumDesign.Creeper);
+		EnumDesignCategory.Stripes.addDesign(EnumDesign.Chequered);
+		EnumDesignCategory.Stripes.addDesign(EnumDesign.ChequeredB);
+		EnumDesignCategory.Stripes.addDesign(EnumDesign.Tiled);
+		EnumDesignCategory.Stripes.addDesign(EnumDesign.TiledB);
+		EnumDesignCategory.Stripes.addDesign(EnumDesign.Striped);
+		EnumDesignCategory.Stripes.addDesign(EnumDesign.ThinStriped);
+		EnumDesignCategory.Stripes.addDesign(EnumDesign.ThinStripedCorner);
+		EnumDesignCategory.Stripes.addDesign(EnumDesign.StripedCorner);
+		EnumDesignCategory.Stripes.addDesign(EnumDesign.OrnateStripedCorner);
+		EnumDesignCategory.Edges.addDesign(EnumDesign.Halved);
+		EnumDesignCategory.Edges.addDesign(EnumDesign.Corner);
+		EnumDesignCategory.Edges.addDesign(EnumDesign.ThickCorner);
+		EnumDesignCategory.Edges.addDesign(EnumDesign.Edged);
+		EnumDesignCategory.Edges.addDesign(EnumDesign.ThinCorner);
+		EnumDesignCategory.Edges.addDesign(EnumDesign.ThinEdged);
+		EnumDesignCategory.Edges.addDesign(EnumDesign.VeryThinCorner);
+		EnumDesignCategory.Edges.addDesign(EnumDesign.ThinCurvedCorner);
+		EnumDesignCategory.Edges.addDesign(EnumDesign.CurvedCorner);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.ThinBarred);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.ThinBarredCorner);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.ThinTSection);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.ThinCrossed);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.ThinBarredEnd);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.OrnateThinBarred);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.Barred);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.BarredCorner);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.TSection);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.Crossed);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.BarredEnd);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.OverlappedBarred);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.OrnateBarred);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.ThickBarred);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.ThickBarredCorner);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.ThickTSection);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.ThickCrossed);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.ThickBarredEnd);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.ThinCurvedBarredCorner);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.CurvedBarredCorner);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.ThinCurvedTSection);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.CurvedTSection);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.ThinCurvedCrossed);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.SplitBarred);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.SplitBarredCorner);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.SplitBarredTSection);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.SplitCrossed);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.SplitBarredEnd);
+		EnumDesignCategory.Barred.addDesign(EnumDesign.OverlappedSplitBarred);
+		EnumDesignCategory.Diagonal.addDesign(EnumDesign.ThinSaltire);
+		EnumDesignCategory.Diagonal.addDesign(EnumDesign.Diagonal);
+		EnumDesignCategory.Diagonal.addDesign(EnumDesign.DiagonalCorner);
+		EnumDesignCategory.Diagonal.addDesign(EnumDesign.DiagonalTSection);
+		EnumDesignCategory.Diagonal.addDesign(EnumDesign.DiagonalCurvedCorner);
+		EnumDesignCategory.Diagonal.addDesign(EnumDesign.DiagonalCurvedTSection);
+		EnumDesignCategory.Diagonal.addDesign(EnumDesign.Saltire);
+		EnumDesignCategory.Diagonal.addDesign(EnumDesign.ThickDiagonal);
+		EnumDesignCategory.Diagonal.addDesign(EnumDesign.ThickSaltire);
+		EnumDesignCategory.Diagonal.addDesign(EnumDesign.DiagonalHalved);
+		EnumDesignCategory.Diagonal.addDesign(EnumDesign.Diagonal1Edged);
+		EnumDesignCategory.Diagonal.addDesign(EnumDesign.Diagonal2Edged);
+		EnumDesignCategory.Diagonal.addDesign(EnumDesign.ThickDiagonal1Edged);
 		EnumDesign.Octagon.setAllPatterns(EnumPattern.Octagon.layout());
 		EnumDesign.Diamond.setAllPatterns(EnumPattern.Diamond.layout());
 		EnumDesign.Ringed.setAllPatterns(EnumPattern.Ringed.layout());
@@ -415,7 +412,7 @@ public enum EnumDesign implements IDesign {
 
 	@Override
 	public String getName() {
-		return name;
+		return I18N.localise(Botany.instance, "design." + name);
 	}
 
 	public void setName(String name) {
@@ -428,7 +425,8 @@ public enum EnumDesign implements IDesign {
 	}
 
 	public void setTopPattern(ILayout layout) {
-		setBottomPattern(topPattern = layout);
+		topPattern = layout;
+		setBottomPattern(layout);
 	}
 
 	@Override
@@ -474,43 +472,5 @@ public enum EnumDesign implements IDesign {
 
 	public void setWestPattern(ILayout layout) {
 		westPattern = layout;
-	}
-
-	enum Category implements IDesignCategory {
-		Design("Designs & Emblems"),
-		Stripes("Squares & Stripes"),
-		Edges("Edges"),
-		Barred("Bars"),
-		Letters("Letters"),
-		Diagonal("Diagonals");
-
-		protected String name;
-		protected List<IDesign> designs;
-
-		Category(String name) {
-			this.name = name;
-			designs = new ArrayList<>();
-			CarpentryManager.carpentryInterface.registerDesignCategory(this);
-		}
-
-		@Override
-		public String getName() {
-			return name;
-		}
-
-		@Override
-		public List<IDesign> getDesigns() {
-			return designs;
-		}
-
-		@Override
-		public void addDesign(IDesign design) {
-			designs.add(design);
-		}
-
-		@Override
-		public String getId() {
-			return toString().toLowerCase();
-		}
 	}
 }

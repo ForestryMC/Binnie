@@ -172,6 +172,9 @@ extratrees.block.planks.forestry.plum.desc=
 extratrees.block.planks.forestry.maple.desc=
 extratrees.block.planks.forestry.citrus.desc=
 
+extratrees.block.tooltip.twoColors=%s и %s
+extratrees.block.tooltip.twoMaterials=%s и %s
+
 < %1$s is name of wood used for door >
 extratrees.block.door.name=Дверь из %1$s
 
@@ -364,9 +367,7 @@ extratrees.item.food.gingkonut=Семена Гинкго
 extratrees.item.food.coffee=Кофейные зёрна
 extratrees.item.food.osangeorange=Плод маклюра
 extratrees.item.food.clove=Гвоздика (пряность)
-
 extratrees.item.food.papayimar=Папайя
-
 extratrees.item.food.blackcurrant=Смородина чёрная
 extratrees.item.food.redcurrant=Смородина красная
 extratrees.item.food.blackberry=Ежевика
