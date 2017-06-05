@@ -167,6 +167,9 @@ extratrees.block.planks.forestry.plum.desc=
 extratrees.block.planks.forestry.maple.desc=
 extratrees.block.planks.forestry.citrus.desc=
 
+extratrees.block.tooltip.twoColors=%s and %s
+extratrees.block.tooltip.twoMaterials=%s and %s
+
 < %1$s is name of wood used for door >
 extratrees.block.door.name=%1$s木门
 
@@ -295,6 +298,22 @@ extratrees.species.mango.name=芒果
 extratrees.species.starfruit.name=杨桃
 extratrees.species.candlenut.name=石栗
 extratrees.species.dwarfhazel.name=矮榛
+
+extratrees.item.carpentryHammer=木工大师的锤子
+extratrees.item.masterCarpentryHammer=木工锤
+extratrees.item.sawdust=锯末
+extratrees.item.bark=树皮
+extratrees.item.provenGear=标定齿轮
+extratrees.item.woodWax=Wood Polish
+extratrees.item.hops=啤酒花
+extratrees.item.yeast=酵母
+extratrees.item.yeastLager=大酵母
+extratrees.item.grainWheat=小麦粉
+extratrees.item.grainBarley=大麦粉
+extratrees.item.grainRye=黑麦粉
+extratrees.item.grainCorn=玉米粉
+extratrees.item.grainRoasted=烤过的面粉
+extratrees.item.glassware.glassFitting=玻璃配件
 
 extratrees.item.food.apple=苹果
 extratrees.item.food.crabapple=海棠果

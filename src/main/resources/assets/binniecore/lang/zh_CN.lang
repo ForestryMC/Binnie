@@ -46,6 +46,7 @@ binniecore.rootBees.chromosome.species=品种
 binniecore.rootBees.chromosome.speed=效率
 binniecore.rootBees.chromosome.lifespan=寿命
 binniecore.rootBees.chromosome.fertility=生育力
+binniecore.rootBees.chromosome.temperature=温度
 binniecore.rootBees.chromosome.temperature_tolerance=温度耐受性
 binniecore.rootBees.chromosome.nocturnal=夜行性
 binniecore.rootBees.chromosome.humidity=湿度
@@ -163,6 +164,7 @@ binniecore.allele.fertility.maximum=最高
 
 binniecore.allele.true=是
 binniecore.allele.false=否
+binniecore.allele.none=无
 
 binniecore.allele.metabolism.highest=最快
 binniecore.allele.metabolism.higher=较快
@@ -172,12 +174,8 @@ binniecore.allele.metabolism.slow=慢
 binniecore.allele.metabolism.slower=较慢
 binniecore.allele.metabolism.slowest=最慢
 
-
-binniecore.allele.none=无
-
 binniecore.allele.growth.tropical=热带
 binniecore.allele.growth.lightlevel=亮度
-
 
 binniecore.beemodifier.territory=影响范围
 binniecore.beemodifier.mutation=变异
@@ -190,12 +188,23 @@ binniecore.gui.breedingmessage.species=已发现品种
 binniecore.gui.breedingmessage.branch=已发现分支
 binniecore.gui.breedingmessage.epithet=已获得称号
 
+binniecore.item.genesis.name=Genesis
+binniecore.item.fluidContainer.missed=Missed Fluid
+
 binniecore.item.container.capsule=胶囊
 binniecore.item.container.refractory=耐火胶囊
 binniecore.item.container.can=罐
 binniecore.item.container.bucket=桶
 binniecore.item.container.glass=瓶
 binniecore.item.container.cylinder=玻璃罐
+
+binniecore.machine.error.noItem=没有物品
+binniecore.machine.error.invalidItem=无效物品
+binniecore.machine.error.noSpace=没有空间
+binniecore.machine.error.insufficientPower.title=能量不足
+binniecore.machine.error.insufficientPower.desc=能量不足以维持运转
+binniecore.machine.error.tankFull=储罐已满
+binniecore.machine.error.insufficientLiquid=液体不足
 
 binniecore.machine.storage.compartment=组合箱
 binniecore.machine.storage.compartmentIron=铁质组合箱
@@ -207,28 +216,82 @@ binniecore.machine.storage.compartmentGold=金质组合箱
 < %1$s is the name of the pattern >
 binniecore.gui.designer.pattern=%1$s样板
 
-binniecore.gui.database.nodescription=未提供说明.
+binniecore.gui.fieldKit=实地考察工具包
+binniecore.gui.fieldKit.info=用于在野外分析蜜蜂、树、花和蝴蝶的工具包。记得带上纸来记笔记。
 
+binniecore.gui.genesis=Genesis
+binniecore.gui.database.nodescription=未提供说明.
 binniecore.gui.database.mode.species=种
 binniecore.gui.database.mode.branches=族
+binniecore.gui.database.mode.branches.count=%d/%d 分支
 binniecore.gui.database.mode.breeder=变异
+binniecore.gui.database.discovered.discovered=已发现品种
+binniecore.gui.database.discovered.undiscovered=未发现品种
+binniecore.gui.database.species=品种
+binniecore.gui.database.species.noDesc=没有描述。
+binniecore.gui.database.species.count=%d/%d 品种
+binniecore.gui.database.species.secretsCount=%d/%d 隐藏品种
+binniecore.gui.database.branch.name=%s 分支
+binniecore.gui.database.branch.apidae=Apidae %s
+binniecore.gui.database.branch.discoveredBy=由 %s 发现
+binniecore.gui.database.branch.noDesc=没有描述。
+binniecore.gui.database.furtherMutations=次代突变
+binniecore.gui.database.resultantMutations=导向突变
+binniecore.gui.database.descriptor=%s 档案
+binniecore.gui.database.time.minute=1 分钟
+binniecore.gui.database.time.minute=%d 分钟
+binniecore.gui.database.time.second=1 秒钟
+binniecore.gui.database.time.seconds=%d 秒钟
+binniecore.gui.database.time.progress=进度
+binniecore.gui.database.time.notInProgress=没有工作
+binniecore.gui.database.time.inProgress=正在工作
+binniecore.gui.database.time.left=剩余时间 %s
+binniecore.gui.database.time.total=总时间 %s
+binniecore.gui.database.energyCost.0=能耗：%d RF
+binniecore.gui.database.energyCost.1=能耗：%.2f RF/t
 
 binniecore.gui.temperature.short=温
 binniecore.gui.humidity.short=湿
-
 binniecore.gui.tolerated=可耐受
 binniecore.gui.nottolerated=不可耐受
 
 binniecore.gui.design=设计图案
+binniecore.gui.tooltip.info=信息
+binniecore.gui.tooltip.owner=所有者
+binniecore.gui.tooltip.help=帮助
+binniecore.gui.tooltip.help.0=要查看帮助提示，
+binniecore.gui.tooltip.help.1=请先按下 Tab 键，
+binniecore.gui.tooltip.help.2=然后将光标移动至控制界面上
 
+binniecore.gui.tooltip.powerSupply=供能
+binniecore.gui.tooltip.poweredBy=由 %s 供能
+binniecore.gui.tooltip.powerBar=能量条
+binniecore.gui.tooltip.currentPower=当前：%.2f RF (%d%%)
+binniecore.gui.tooltip.capacityPower=存量：%.2f RF
+binniecore.gui.tooltip.usagePower=消耗：%.2f RF
+binniecore.gui.tooltip.chargedPower=已充满 %d%%
+binniecore.gui.tooltip.powerInfo=%.2f/%.2f RF
 
+binniecore.gui.tooltip.tank.full=已充满 %d%%
+binniecore.gui.tooltip.tank.amount=%d mB
+binniecore.gui.tooltip.tank.empty=空
+binniecore.gui.tooltip.tank.capacity=容积：%d mB
+binniecore.gui.tooltip.tank.insertSide=输入面：%s
+binniecore.gui.tooltip.tank.extractSide=输出面：%s
+binniecore.gui.tooltip.tank.outputOnlyTank=单向输出储罐
+binniecore.gui.tooltip.tank.acceptsAny=可接受任意物品
+binniecore.gui.tooltip.tank.accepts=可接受：%s
+
+binniecore.gui.tooltip.individual=个体
+binniecore.gui.tooltip.paper=纸
+binniecore.gui.tooltip.noPaper=没有纸！
 
 < Descriptions used for effects in the registry >
 binniecore.allele.extrabees.effect.acid.desc=溶解石头和泥土
 binniecore.allele.forestry.effectAggressive.desc=进攻玩家
 binniecore.allele.forestry.effectBeatific.desc=缓慢回复玩家生命
 binniecore.allele.forestry.effectCreeper.desc=在附近引发爆炸
-binniecore.allele.extrabees.effect.spawn_creeper.desc=随机生成(苦力怕)
+binniecore.allele.extrabees.effect.spawn_creeper.desc=随机生成爬行者
 binniecore.allele.extrabees.effect.blindness.desc=令玩家失明
 binniecore.allele.forestry.effectDrunkard.desc=灌醉玩家
 binniecore.allele.extrabees.effect.ectoplasm.desc=产生外质蛛网状结构
@@ -264,15 +327,13 @@ binniecore.allele.extrabees.effect.wither.desc=令靠近的人凋零
 binniecore.allele.extrabees.effect.spawn_zombie.desc=随机生成僵尸
 binniecore.allele.forestry.effectFestiveEaster.desc=什么都不做
 
-
-
-< Names for slots when using help tooltip >
 binniecore.gui.slot.slot=格
 binniecore.gui.slot.input=输入
 binniecore.gui.slot.process=加工
 binniecore.gui.slot.output=输出
 binniecore.gui.slot.frame=框架
 binniecore.gui.slot.mutator=突变器
+binniecore.gui.slot.hatchery=孵化格
 binniecore.gui.slot.circuit=电路板
 binniecore.gui.slot.grain=谷物粉
 binniecore.gui.slot.inventory=物品格
@@ -293,7 +354,24 @@ binniecore.gui.slot.serum.input=输入血清
 binniecore.gui.slot.serum.output=输出血清
 binniecore.gui.slot.serum.active=活化血清
 binniecore.gui.slot.yeast=酵母
+binniecore.gui.slot.breedableIndividual=可杂交个体
+binniecore.gui.slot.pickupOnly=输出格
+binniecore.gui.slot.playerInventory=玩家背包
+binniecore.gui.slot.anyItem=任意物品
+binniecore.gui.slot.accepts=可接受：%s
 
 binniecore.gui.tank.input=输入罐
 binniecore.gui.tank.process=加工罐
 binniecore.gui.tank.output=输出罐
+
+binniecore.gui.side.any=任意
+binniecore.gui.side.none=无
+binniecore.gui.side.up=上
+binniecore.gui.side.down=下
+binniecore.gui.side.sides=侧面
+binniecore.gui.side.north=北
+binniecore.gui.side.east=东
+binniecore.gui.side.west=西
+binniecore.gui.side.south=南
+binniecore.gui.side.insertSide=输入面：%s
+binniecore.gui.side.extractSide=输出面：%s
