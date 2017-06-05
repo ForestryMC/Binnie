@@ -34,6 +34,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -66,6 +67,7 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 
 	@SubscribeEvent
 	public void onClick(final PlayerInteractEvent.RightClickBlock event) {
+		if(event.getHand() != EnumHand.MAIN_HAND) return;
 		final World world = event.getWorld();
 		final EntityPlayer player = event.getEntityPlayer();
 		final BlockPos pos = event.getPos();
