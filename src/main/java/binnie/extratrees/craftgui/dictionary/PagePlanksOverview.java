@@ -36,7 +36,7 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 		if (type != null) {
 			ItemStack fence = WoodManager.getFence(type, new FenceType(0), 1);
 			ItemStack gate = WoodManager.getGate(type);
-			ItemStack door = WoodManager.getDoor(type, DoorType.Standard);
+			ItemStack door = WoodManager.getDoor(type, DoorType.STANDARD);
 			if (fence != null) {
 				new ControlItemDisplay(this, x, 48.0f).setItemStack(fence);
 				x += 22;

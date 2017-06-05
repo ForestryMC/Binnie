@@ -137,7 +137,7 @@ public class DesignBlock {
 		Label_1107:
 		{
 			switch (getFacing()) {
-				case UP: {
+				case UP:
 					if (dir == ForgeDirection.DOWN || dir == ForgeDirection.UP) {
 						for (int j = 0; j < rotation; ++j) {
 							layout = layout.rotateRight();
@@ -145,8 +145,8 @@ public class DesignBlock {
 						break;
 					}
 					break;
-				}
-				case DOWN: {
+
+				case DOWN:
 					switch (dir) {
 						case UP:
 						case DOWN: {
@@ -168,8 +168,8 @@ public class DesignBlock {
 						break;
 					}
 					break;
-				}
-				case EAST: {
+
+				case EAST:
 					switch (dir) {
 						case SOUTH:
 						case UP: {
@@ -201,108 +201,102 @@ public class DesignBlock {
 						break;
 					}
 					break;
-				}
-				case WEST: {
+
+				case WEST:
 					switch (dir) {
-						case NORTH: {
+						case NORTH:
 							layout = layout.rotateRight();
 							break;
-						}
+
 						case SOUTH:
-						case UP: {
+						case UP:
 							layout = layout.rotateLeft();
 							break;
-						}
-						case DOWN: {
+
+						case DOWN:
 							layout = layout.rotateLeft().flipVertical();
 							break;
-						}
-						case EAST: {
+
+						case EAST:
 							layout = layout.flipHorizontal();
 							for (int j = 0; j < rotation; ++j) {
 								layout = layout.rotateLeft();
 							}
 							break;
-						}
-						case WEST: {
+
+						case WEST:
 							for (int j = 0; j < rotation; ++j) {
 								layout = layout.rotateRight();
 							}
 							break;
-						}
 					}
 					break;
-				}
-				case NORTH: {
+
+				case NORTH:
 					switch (dir) {
-						case WEST: {
+						case WEST:
 							layout = layout.rotateLeft();
 							break Label_1107;
-						}
-						case EAST: {
+
+						case EAST:
 							layout = layout.rotateRight();
 							break Label_1107;
-						}
-						case DOWN: {
+
+						case DOWN:
 							layout = layout.flipHorizontal();
 							break Label_1107;
-						}
-						case SOUTH: {
+
+						case SOUTH:
 							layout = layout.flipHorizontal();
 							for (int j = 0; j < rotation; ++j) {
 								layout = layout.rotateLeft();
 							}
 							break Label_1107;
-						}
-						case NORTH: {
+
+						case NORTH:
 							for (int j = 0; j < rotation; ++j) {
 								layout = layout.rotateRight();
 							}
 							break Label_1107;
-						}
-						default: {
+
+						default:
 							break Label_1107;
-						}
 					}
 
-				}
-				case SOUTH: {
+				case SOUTH:
 					switch (dir) {
-						case EAST: {
+						case EAST:
 							layout = layout.rotateLeft();
 							break Label_1107;
-						}
-						case WEST: {
+
+						case WEST:
 							layout = layout.rotateRight();
 							break Label_1107;
-						}
-						case UP: {
+
+						case UP:
 							layout = layout.rotateRight().rotateRight();
 							break Label_1107;
-						}
-						case DOWN: {
+
+						case DOWN:
 							layout = layout.flipVertical();
 							break Label_1107;
-						}
-						case NORTH: {
+
+						case NORTH:
 							layout = layout.flipHorizontal();
 							for (int j = 0; j < rotation; ++j) {
 								layout = layout.rotateLeft();
 							}
 							break Label_1107;
-						}
-						case SOUTH: {
+
+						case SOUTH:
 							for (int j = 0; j < rotation; ++j) {
 								layout = layout.rotateRight();
 							}
 							break Label_1107;
-						}
-						default: {
-							break Label_1107;
-						}
-					}
 
-				}
+						default:
+							break Label_1107;
+					}
 			}
 		}
 		return layout;
@@ -319,7 +313,9 @@ public class DesignBlock {
 	}
 
 	public IIcon getIcon(IDesignSystem system, boolean secondary, ForgeDirection dir) {
-		return secondary ? getSecondaryIcon(system, dir) : getPrimaryIcon(system, dir);
+		return secondary
+			? getSecondaryIcon(system, dir)
+			: getPrimaryIcon(system, dir);
 	}
 
 	public ForgeDirection getFacing() {
@@ -364,8 +360,7 @@ public class DesignBlock {
 
 		if (rotation > 3) {
 			rotation = 0;
-		}
-		if (rotation < 0) {
+		} else if (rotation < 0) {
 			rotation = 3;
 		}
 	}

@@ -9,6 +9,7 @@ import net.minecraft.world.IBlockAccess;
 public class BranchBlockRenderer implements ISimpleBlockRenderingHandler {
 	@Override
 	public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
+		// ignored
 	}
 
 	@Override

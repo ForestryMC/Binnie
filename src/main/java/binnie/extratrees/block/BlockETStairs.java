@@ -72,7 +72,7 @@ public class BlockETStairs extends BlockStairs implements IBlockMetadata {
 	}
 
 	@Override
-	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z) {
+	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
 		return BlockMetadata.breakBlock(this, player, world, x, y, z);
 	}
 
@@ -111,6 +111,7 @@ public class BlockETStairs extends BlockStairs implements IBlockMetadata {
 
 	@Override
 	public void addBlockTooltip(ItemStack itemStack, List tooltip) {
+		// ignored
 	}
 
 	@Override

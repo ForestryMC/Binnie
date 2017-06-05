@@ -134,6 +134,7 @@ public class BlockETLog extends BlockLog implements IBlockMetadata {
 
 	@Override
 	public void addBlockTooltip(ItemStack itemStack, List tooltip) {
+		// ignored
 	}
 
 	@Override
@@ -195,7 +196,7 @@ public class BlockETLog extends BlockLog implements IBlockMetadata {
 	}
 
 	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
 		return BlockMetadata.getPickBlock(world, x, y, z);
 	}
 }

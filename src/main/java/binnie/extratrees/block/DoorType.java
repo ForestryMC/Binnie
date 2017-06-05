@@ -4,10 +4,10 @@ import binnie.extratrees.ExtraTrees;
 import net.minecraft.util.IIcon;
 
 public enum DoorType {
-	Standard("standard"),
-	Solid("solid"),
-	Double("double"),
-	Full("full");
+	STANDARD("standard"),
+	SOLID("solid"),
+	DOUBLE("double"),
+	FULL("full");
 
 	protected String id;
 	protected IIcon iconDoorLower;
@@ -16,8 +16,8 @@ public enum DoorType {
 	protected IIcon iconDoorUpperFlip;
 	protected IIcon iconItem;
 
-	DoorType(String iconName) {
-		id = iconName;
+	DoorType(String id) {
+		this.id = id;
 	}
 
 	public String getName() {
