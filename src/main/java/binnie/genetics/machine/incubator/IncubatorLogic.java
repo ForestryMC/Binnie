@@ -9,6 +9,7 @@ import binnie.genetics.Genetics;
 import binnie.genetics.api.IIncubatorRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -27,7 +28,7 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 	}
 
 	private static boolean isStackValid(ItemStack stack, IIncubatorRecipe recipe) {
-		return ItemStack.areItemsEqual(recipe.getInputStack(), stack);
+		return OreDictionary.itemMatches(recipe.getInputStack(),stack,false);
 	}
 
 	@Override
