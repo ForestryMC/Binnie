@@ -21,6 +21,7 @@ public class MultiFenceRecipeSize implements IRecipe {
 
 	@Override
 	public boolean matches(final InventoryCrafting inv, final World world) {
+		if(inv.getSizeInventory()!=9) return false;
 		StringBuilder recipePattern = new StringBuilder();
 		List<IPlankType> types = new ArrayList<>();
 		for (int i = 0; i < inv.getSizeInventory(); ++i) {
@@ -51,7 +52,7 @@ public class MultiFenceRecipeSize implements IRecipe {
 			return false;
 		}
 		for (MultiFenceRecipePattern pattern : MultiFenceRecipePattern.VALUES) {
-			if (pattern.matches(recipePattern.toString())) {
+			if (pattern.matches(recipePattern.toString()) && types.size()>0 && pattern.getTypeCount()<=types.size()) {
 				cached = pattern.createFence(types.get(0), types.get(pattern.getTypeCount() - 1));
 				return true;
 			}
