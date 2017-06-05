@@ -1,6 +1,5 @@
 package binnie.core.block;
 
-import binnie.core.network.packet.PacketMetadata;
 import com.google.common.base.Preconditions;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -76,7 +75,10 @@ public class TileEntityMetadata extends TileEntity {
 	@Override
 	public void readFromNBT(final NBTTagCompound nbt) {
 		super.readFromNBT(nbt);
-		this.meta = nbt.getInteger("meta");
+		if(world!=null)
+			setTileMetadata(nbt.getInteger("meta"), world.isRemote);
+		else
+			this.meta = nbt.getInteger("meta");
 	}
 
 	@Override
@@ -103,15 +105,12 @@ public class TileEntityMetadata extends TileEntity {
 	@Override
 	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
 		super.onDataPacket(net, pkt);
-
-		if (pkt instanceof PacketMetadata) {
-			setTileMetadata(((PacketMetadata) pkt).getMetadata(), true);
-		}
+		readFromNBT(pkt.getNbtCompound());
 	}
 
 	@Override
 	public SPacketUpdateTileEntity getUpdatePacket() {
-		return new PacketMetadata(pos, meta, getUpdateTag());
+		return new SPacketUpdateTileEntity(pos, 0, getUpdateTag());
 	}
 
 	public boolean hasDroppedBlock() {
