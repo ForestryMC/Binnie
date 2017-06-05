@@ -24,6 +24,7 @@ import net.minecraft.util.text.TextFormatting;
 import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Map;
 
 public class AnalystPageFruit extends AnalystPageProduce {
 	public AnalystPageFruit(final IWidget parent, final Area area, final ITree ind) {
@@ -43,9 +44,9 @@ public class AnalystPageFruit extends AnalystPageProduce {
 		try {
 			if (ind.getGenome().getFruitProvider() instanceof FruitProviderPod) {
 				final FruitProviderPod pod = (FruitProviderPod) ind.getGenome().getFruitProvider();
-				final Field f = FruitProviderPod.class.getDeclaredField("drop");
+				final Field f = FruitProviderPod.class.getDeclaredField("drops");
 				f.setAccessible(true);
-				Collections.addAll(products, (ItemStack[]) f.get(pod));
+				Collections.addAll(products, ((Map<ItemStack, Float>) f.get(pod)).keySet().toArray(new ItemStack[0]));
 			}
 		} catch (Exception e) {
 			throw Throwables.propagate(e);
@@ -104,9 +105,9 @@ public class AnalystPageFruit extends AnalystPageProduce {
 								continue;
 							}
 							final FruitProviderPod pod2 = (FruitProviderPod) ((IAlleleFruit) a).getProvider();
-							final Field field = FruitProviderPod.class.getDeclaredField("drop");
+							final Field field = FruitProviderPod.class.getDeclaredField("drops");
 							field.setAccessible(true);
-							Collections.addAll(stacks, (ItemStack[]) field.get(pod2));
+							Collections.addAll(stacks, ((Map<ItemStack, Float>) field.get(pod2)).keySet().toArray(new ItemStack[0]));
 						}
 					} catch (Exception ex) {
 						throw Throwables.propagate(ex);
