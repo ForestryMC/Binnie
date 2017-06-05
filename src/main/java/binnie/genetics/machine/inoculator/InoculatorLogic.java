@@ -104,6 +104,9 @@ public class InoculatorLogic extends ComponentProcess implements IProcess {
 		if (!serum.isEmpty() && Engineering.getCharges(serum) == 0) {
 			return new ErrorState(Genetics.proxy.localise("machine.errors.empty.serum.desc"), Genetics.proxy.localise("machine.errors.empty.serum.info"));
 		}
+		if (getUtil().isTankEmpty(Inoculator.TANK_VEKTOR)) {
+			return new ErrorState.InsufficientLiquid(Genetics.proxy.localise("machine.machine.inoculator.errors.insufficient.vector"), Inoculator.TANK_VEKTOR);
+		}
 		return super.canWork();
 	}
 
