@@ -130,13 +130,40 @@ extrabees.item.template.corrupted=脏的模版
 extrabees.item.template.name=%s 模版
 extrabees.item.template.empty=空白模版
 
-
-
+extrabees.item.scentedGear=飘香齿轮
+extrabees.item.diamondShard=钻石碎片
+extrabees.item.emeraldShard=绿宝石碎片
+extrabees.item.rubyShard=红宝石碎片
+extrabees.item.sapphireShard=蓝宝石碎片
+extrabees.item.lapisShard=青金石碎片
+extrabees.item.ironDust=铁砂
+extrabees.item.goldDust=金砂
+extrabees.item.silverDust=银砂
+extrabees.item.platinumDust=铂砂
+extrabees.item.copperDust=铜砂
+extrabees.item.tinDust=锡砂
+extrabees.item.nickelDust=镍砂
+extrabees.item.leadDust=铅砂
+extrabees.item.zincDust=锌砂
+extrabees.item.titaniumDust=钛砂
+extrabees.item.tungstenDust=钨砂
+extrabees.item.radioactiveDust=放射性碎片
+extrabees.item.coalDust=煤砂
+extrabees.item.dyeRed=红色颜料
+extrabees.item.dyeYellow=黄色颜料
+extrabees.item.dyeBlue=蓝色颜料
+extrabees.item.dyeGreen=绿色颜料
+extrabees.item.dyeWhite=白色颜料
+extrabees.item.dyeBlack=黑色颜料
+extrabees.item.dyeBrown=棕色颜料
+extrabees.item.clayDust=粘土粉
+extrabees.item.yelloriumDust=黄铀砂
+extrabees.item.blutoniumDust=蓝钚砂
+extrabees.item.cyaniteDust=蓝晶砂
 
 extrabees.block.apiaristMachine.name=养蜂人机器方块
 extrabees.block.geneticMachine.name=基因机器方块
 extrabees.block.advGeneticMachine.name=高级基因机器方块
-
 extrabees.block.ectoplasm.name=胶质网
 
 extrabees.block.hive.0=水生蜂巢
@@ -154,27 +181,22 @@ extrabees.liquid.glacial=液氮
 extrabees.liquid.dna=液态DNA
 
 
-
-
 ##################################################
 ## Machines
 
 extrabees.machine.alveay.frame=框架栏
-extrabees.machine.alveay.frame.desc=通过在其中放置框架,改变蜜蜂的一些属性!
+extrabees.machine.alveay.frame.info=一个框架栏可以放一个框架，框架可以影响蜜蜂的属性。
 extrabees.machine.alveay.lighting=蜂箱日光灯
-extrabees.machine.alveay.lighting.desc=蜂箱日光灯会让蜜蜂误以为现在是白天。
+extrabees.machine.alveay.lighting.info=日光灯的存在可以让蜜蜂以为黑夜还没到。
 extrabees.machine.alveay.mutator=基因突变器
-extrabees.machine.alveay.mutator.desc=基因突变器通过一些特定物品来诱导蜜蜂的突变。
+extrabees.machine.alveay.mutator.info=突变器可利用某些物品来诱导基因突变。
 extrabees.machine.alveay.rainShield=挡雨方块
-extrabees.machine.alveay.rainShield.desc=挡雨方块可以使得蜜蜂免受下雨的影响。
+extrabees.machine.alveay.rainShield.info=这方块可为蜜蜂遮风挡雨。
 extrabees.machine.alveay.stimulator=电子增产器
-extrabees.machine.alveay.stimulator.desc=使用电路板和能量,并通过一种和框架相似的途径来为蜜蜂增产。
+extrabees.machine.alveay.stimulator.info=利用和框架类似的原理，借助电路和能量来提高蜜蜂各种产物的产量。
 extrabees.machine.alveay.hatchery=孵化间
 extrabees.machine.alveay.hatchery.info=收集蜂箱内蜂后身旁那些躺着的幼虫.
 extrabees.machine.alveay.transmission=蜂箱传送
-
-
-
 
 ##################################################
 ## Misc
@@ -249,13 +271,12 @@ extrabees.genetics.allele.down5=降5
 
 extrabees.genetics.allele.noeffect=无特效
 extrabees.genetics.allele.noflower=无特定花粉
-
 extrabees.genetics.allele.lifespan=%s 寿命周期
 extrabees.genetics.allele.production=%s 产速
 extrabees.genetics.allele.fertility=%s 生育能力
 extrabees.genetics.allele.flowering=%s 授粉速度
 extrabees.genetics.allele.territory=%s 工作范围
-extrabees.genetics.allele.tolerance=%s %s 忍受能力.
+extrabees.genetics.allele.tolerance=%s %s 忍受能力
 extrabees.genetics.allele.species=%s 种族
 extrabees.genetics.allele.effect=%s 效果
 extrabees.genetics.allele.flower=%s 花粉
@@ -266,8 +287,6 @@ extrabees.genetics.allele.caveDwelling=穴居
 extrabees.genetics.allele.tolerantFlyer=耐雨
 
 extrabees.genetics.corrupted=肮脏的
-
-
 
 extrabees.branch.barren.name=荒芜
 extrabees.branch.barren.desc=虽然一开始它们贫瘠的蜂巢使人们认为它们是无用的蜜蜂,但是它们却可以引发更大的事情.
@@ -490,9 +509,6 @@ extrabees.effect.bonemealsapling.name=生长
 extrabees.effect.bonemealfruit.name=成熟
 extrabees.effect.bonemealmushroom.name=蘑菇
 extrabees.effect.power.name=能量
-
-
-
 
 extrabees.gui.database.tab.species.overview=概述
 extrabees.gui.database.tab.species.classification=科学分类

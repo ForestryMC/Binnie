@@ -1,30 +1,114 @@
+fluid.polymerisingBacteria=Polymerising Bacteria
+fluid.rawDNA=原生 DNA
+
+genetics.item.casingIron.name=强化外壳
+genetics.item.dnaDye.name=DNA Dye
+genetics.item.dyeFluor.name=荧光染料
+genetics.item.enzyme.name=酶
+genetics.item.growthMedium.name=培养基
+genetics.item.sequencerEmpty.name=空白序列
+genetics.item.serumEmpty.name=空血清瓶
+genetics.item.genomeEmpty.name=空血清序列
+genetics.item.cylinderEmpty.name=玻璃瓶
+genetics.item.integratedCircuit.name=集成电路板
+genetics.item.integratedCPU.name=集成CPU
+genetics.item.casingCircuit.name=集成外壳
+
 genetics.machine.machine.isolator=基因分离器
-genetics.machine.machine.isolator.info=基因分离器将会从蜜蜂,树苗或者其它的独立个体中随机提取基因片段,并复制到一个空的序列瓶中.这需要乙醇作为溶剂,还需要酶来切断DNA.未序列化的血清可以在序列分析器中序列化,并在基因同化器中重新装填.
+genetics.machine.machine.isolator.info=基因分离器将会从蜜蜂、树苗或者其它的独立个体中随机提取基因片段，并复制到一个空的序列瓶中。此过程需要乙醇作为溶剂，还需要酶来切断DNA。未序列化的血清可以在序列分析器中序列化，并在基因同化器中重新装填。
+genetics.machine.isolator.error.noIndividual=没有个体样本
+genetics.machine.isolator.error.noRoom=No room for DNA sequences
+genetics.machine.isolator.error.noVials=没有空序列瓶
+genetics.machine.isolator.error.noLiquid=乙醇不足
+genetics.machine.isolator.error.noEnzyme=没有酶
 
 genetics.machine.machine.sequencer=序列分析器
-genetics.machine.machine.sequencer.info=序列分析器可以判定未序列化的血清的基因片段. 这需要很长的时间用于计算,还需要用到荧光染料.
+genetics.machine.machine.sequencer.info=序列分析器可以分析未序列化血清的基因片段。计算过程相当耗时，还需要用到荧光染料。
+genetics.machine.sequencer.unsequencedDNA=Unsequenced DNA
+genetics.machine.sequencer.error.noSequence=没有 DNA 序列
+genetics.machine.sequencer.error.noOwner.title=无人认领此设备
+genetics.machine.sequencer.error.noOwner=重新放置此设备以重新认领
+genetics.machine.sequencer.error.noSpace=没有空白序列的空间
+genetics.machine.sequencer.gui.sequensedBy=基因将序列化为 %s
+genetics.machine.sequencer.gui.willNotSave=无用序列，将直接丢弃
 
 genetics.machine.machine.polymeriser=基因同化器
-genetics.machine.machine.polymeriser.info=基因同化器将会用DNA液体和细菌来重新填充血清.该过程可用金粒加速. 
+genetics.machine.machine.polymeriser.info=基因同化器将会用DNA液体和细菌来重新填充血清。该过程可用金粒加速。
+genetics.machine.polymeriser.error.noItem=没有需要复制的物品
+genetics.machine.polymeriser.error.itemFilled=物品已填充
+genetics.machine.polymeriser.error.noLiquid=细菌不足
+genetics.machine.polymeriser.error.noDNA=DNA 液体不足
+genetics.machine.polymeriser.replicatingWithGene=正在复制 1 个基因
+genetics.machine.polymeriser.replicatingWithGenes=正在复制 %d 个基因
+genetics.machine.polymeriser.unfilledSerum=没有填充的血清瓶
 
 genetics.machine.machine.inoculator=基因注射器
-genetics.machine.machine.inoculator.info=基因注射器使用特定血清向可杂交个体中注入特定的基因.这个过程相当耗时,并且需要细菌作为催化剂,但是这是100%成功的.  
+genetics.machine.machine.inoculator.info=基因注射器可利用血清向可杂交个体中注入特定基因。这个过程相当耗时，并且需要细菌作为催化剂，但必定会成功。
+genetics.machine.inoculator.error.noIndividual=No Individual to Inoculate
+genetics.machine.inoculator.error.noSerum=没有血清
+genetics.machine.inoculator.error.noLiquid=液体不足
+genetics.machine.inoculator.error.emptySerum.title=空白血清
+genetics.machine.inoculator.error.emptySerum=血清为空
+genetics.machine.inoculator.error.invalidSerum.title=血清无效
+genetics.machine.inoculator.error.invalidSerum.0=该血清中没有任何基因
+genetics.machine.inoculator.error.invalidSerum.1=血清种类与目标不相容
+genetics.machine.inoculator.error.defunctSerum.title=性状重复
+genetics.machine.inoculator.error.defunctSerum=目标个体已拥有此种性状
+genetics.machine.inoculator.inoculatingWithGene=正在注入 1 种基因
+genetics.machine.inoculator.inoculatingWithGenes=正在注入 %d 种基因
+genetics.machine.inoculator.inoculableIndividual=可植入基因的个体
+genetics.machine.inoculator.serums=血清瓶／序列
 
 genetics.machine.labMachine.genepool=基因池
-genetics.machine.labMachine.genepool.info=基因液体池使用酶和乙醇来破坏活体组织并将其转化为DNA液体.所有遗传信息都会丢失,DNA来源也会被破坏.
+genetics.machine.labMachine.genepool.info=基因液体池使用酶和乙醇来破坏活体组织并将其转化为DNA液体。所有遗传信息都会丢失，DNA来源也会被破坏。
+genetics.machine.genepool.error.noIndividual=没有个体
+genetics.machine.genepool.error.noRoom=储罐已满
+genetics.machine.genepool.error.noEthanol=乙醇不足
+genetics.machine.genepool.error.insufficientEnzyme=酶不足
 
 genetics.machine.labMachine.labMachine=实验台
 
 genetics.machine.labMachine.analyser=分析仪
-genetics.machine.labMachine.analyser.info=分析仪将会解析可增殖的DNA序列,并确定当前的基因类型. 这需要DNA标记染料, 由紫色染料和荧石粉合成而来
+genetics.machine.labMachine.analyser.info=分析仪将会解析可增殖的DNA序列，并确定当前的基因类型。此过程需要DNA标记染料，可由紫色染料和荧石粉合成得到。
+genetics.machine.analyser.dnaDye=DNA标记染料
+genetics.machine.analyser.unanalysedItem=未经分析的物品
+genetics.machine.analyser.error.alreadyAnalysed.title=已经过分析
+genetics.machine.analyser.error.alreadyAnalysed=目标物品已经过分析
+genetics.machine.analyser.error.insufficientDye.title=染料不足
+genetics.machine.analyser.error.insufficientDye=DNA染料数量不足
+genetics.machine.analyser.error.noItem=没有物品可供分析
 
 genetics.machine.labMachine.incubator=恒温箱
-genetics.machine.labMachine.incubator.info=恒温箱的作用是使用特定液体和物品来进行恒温,确保细菌能够在理想的环境下快速增殖.
+genetics.machine.labMachine.incubator.info=恒温箱使用特定液体和物品来进行恒温，确保细菌能够在理想的环境下快速增殖。
+genetics.machine.incubator.error.noRecipe.title=没有配方
+genetics.machine.incubator.error.noRecipe=没有找到任何有效配方
+genetics.machine.incubator.error.noLiquid=培养液数量不足
+genetics.machine.incubator.error.noRoom=输出已满
 
 genetics.machine.labMachine.acclimatiser=气候改造器
+genetics.machine.labMachine.acclimatiser.info=
+genetics.machine.acclimatiser.acclimatizingItems=气候改造物品
+genetics.machine.acclimatiser.error.noIndividual=没有可供气候改造的个体
+genetics.machine.acclimatiser.error.noAcclimatizingItems=没有气候改造所需物品
+genetics.machine.acclimatiser.error.invalidAcclimatizingItems=该个体不能使用给定物品进行气候改造
 
-genetics.machine.advMachine.splicer=Splicer
-genetics.machine.advMachine.splicer.info=Splicer是一台异常强大的机器,可将基因直接植入个体之中.虽然工作迅速,但它却是个电老虎.
+genetics.machine.advMachine.splicer=基因拼接器
+genetics.machine.advMachine.splicer.info=基因拼接器是一台可将基因直接植入个体之中的强大机器。虽然工作迅速，但耗能巨大。
+genetics.machine.splicer.error.noIndividual=没有可供基因拼接的个体
+genetics.machine.splicer.error.noSerum=没有血清
+genetics.machine.splicer.error.emptySerum.title=空白血清
+genetics.machine.splicer.error.emptySerum=血清为空
+genetics.machine.splicer.error.invalidSerum.title=血清无效
+genetics.machine.splicer.error.invalidSerum.0=该血清中没有任何基因
+genetics.machine.splicer.error.invalidSerum.1=血清种类与目标不相容
+genetics.machine.splicer.error.defunctSerum.title=性状重复
+genetics.machine.splicer.error.defunctSerum=目标个体已拥有此种性状
+genetics.machine.splicer.splicableIndividual=可供拼接基因的个体
+genetics.machine.splicer.serums=血清瓶／序列
+genetics.machine.splicer.splicingIn.0=正在拼接 %d/%d 个基因
+genetics.machine.splicer.splicingIn.1=正在拼接 %d/%d 个基因
+genetics.machine.splicer.splicingIn.2=正在拼接 %d 个基因
+genetics.machine.splicer.splicingIn.3=正在拼接 %d 个基因
 
 genetics.item.sequence=DNA序列
 genetics.item.sequence.0=极弱
