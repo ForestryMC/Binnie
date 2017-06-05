@@ -4,6 +4,7 @@ import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.minecraft.EnumColor;
 import binnie.core.craftgui.minecraft.MinecraftGUI;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlProgressBase;
@@ -11,13 +12,15 @@ import binnie.core.craftgui.window.Panel;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachineUtil;
+import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
 
 import java.util.Random;
 
 public class ControlSequencerProgress extends ControlProgressBase {
 	static final String[] CODES = {"A", "T", "G", "C"};
-	static final String[] COLORS = {"a", "d", "b", "c"};
+	static final TextFormatting[] COLORS = {TextFormatting.GREEN, TextFormatting.LIGHT_PURPLE, TextFormatting.AQUA, TextFormatting.RED};
 	ControlText textControl;
 
 	public ControlSequencerProgress(final IWidget parent, final int x, final int y) {
@@ -41,10 +44,9 @@ public class ControlSequencerProgress extends ControlProgressBase {
 				int k = rand.nextInt(4);
 				String code = CODES[k];
 				if (rand.nextFloat() < this.progress) {
-					String color = "�" + COLORS[k];
-					text.append("�r").append(color).append("�l").append(code);
+					text.append(TextFormatting.RESET).append(COLORS[k]).append(TextFormatting.BOLD).append(code);
 				} else {
-					text.append("�r�7�k�l").append(code);
+					text.append(TextFormatting.RESET).append(TextFormatting.GRAY).append(TextFormatting.OBFUSCATED).append(TextFormatting.BOLD).append(code);
 				}
 			}
 			this.textControl.setValue(text.toString());
