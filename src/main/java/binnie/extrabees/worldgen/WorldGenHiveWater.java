@@ -14,11 +14,7 @@ import java.util.Random;
 public class WorldGenHiveWater extends WorldGenerator {
 
 	@Override
-	public boolean generate(final World world, final Random random, final BlockPos pos) {
-		final int i2 = pos.getX() + random.nextInt(8) - random.nextInt(8);
-		final int j2 = pos.getY() + random.nextInt(4) - random.nextInt(4);
-		final int k2 = pos.getZ() + random.nextInt(8) - random.nextInt(8);
-		final BlockPos blockPos = new BlockPos(i2, j2, k2);
+	public boolean generate(final World world, final Random random, final BlockPos blockPos) {
 		if (world.getBlockState(blockPos).getBlock() != Blocks.WATER && world.getBlockState(blockPos).getBlock() != Blocks.WATER) {
 			return false;
 		}
