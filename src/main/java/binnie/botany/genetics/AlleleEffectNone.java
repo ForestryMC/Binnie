@@ -2,7 +2,6 @@ package binnie.botany.genetics;
 
 import binnie.botany.api.IAlleleFlowerEffect;
 import binnie.botany.api.IFlowerGenome;
-import binnie.core.BinnieCore;
 import binnie.core.util.I18N;
 import forestry.api.genetics.IEffectData;
 import net.minecraft.world.World;
@@ -30,7 +29,7 @@ public class AlleleEffectNone implements IAlleleFlowerEffect {
 
 	@Override
 	public String getName() {
-		return I18N.localise(BinnieCore.instance, "allele.none");
+		return I18N.localise("botany.tube.allele.none");
 	}
 
 	@Override

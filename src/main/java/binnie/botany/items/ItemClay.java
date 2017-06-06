@@ -37,7 +37,7 @@ public class ItemClay extends Item {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		return I18N.localise(Botany.instance, "item.clay.name");
+		return I18N.localise("botany.tube.item.clay.name");
 	}
 
 	@Override

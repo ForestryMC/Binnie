@@ -61,7 +61,7 @@ public class ItemDictionary extends Item {
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		return (stack.getItemDamage() == 0)
-			? I18N.localise(Botany.instance, "item.botanistDatabase.0.name")
-			: I18N.localise(Botany.instance, "item.botanistDatabase.1.name");
+			? I18N.localise("botany.tube.item.botanistDatabase.0.name")
+			: I18N.localise("botany.tube.item.botanistDatabase.1.name");
 	}
 }

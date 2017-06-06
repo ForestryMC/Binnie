@@ -15,13 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PageColourMix extends PageAbstract<IFlowerColor> {
-	ControlText pageSpeciesFurtherTitle;
-	ControlColorMixBox pageSpeciesFurtherList;
+	ControlText title;
+	ControlColorMixBox list;
 
 	public PageColourMix(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
-		pageSpeciesFurtherTitle = new ControlTextCentered(this, 8.0f, I18N.localise(Botany.instance, "gui.controls.pageColorFurtherTitle"));
-		pageSpeciesFurtherList = new ControlColorMixBox(this, 4, 20, 136, 152, ControlColorMixBox.Type.Further);
+		title = new ControlTextCentered(this, 8.0f, I18N.localise(Botany.instance, "gui.controls.pageColorFurtherTitle"));
+		list = new ControlColorMixBox(this, 4, 20, 136, 152, ControlColorMixBox.Type.Further);
 	}
 
 	@Override
@@ -32,6 +32,6 @@ public class PageColourMix extends PageAbstract<IFlowerColor> {
 				mixes.add(mix);
 			}
 		}
-		pageSpeciesFurtherList.setOptions(mixes);
+		list.setOptions(mixes);
 	}
 }

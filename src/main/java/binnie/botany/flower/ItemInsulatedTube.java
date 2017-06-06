@@ -67,7 +67,7 @@ public class ItemInsulatedTube extends Item {
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		return Material.get(stack.getItemDamage()).getName() + " "
-			+ I18N.localise(Botany.instance, "tube.name");
+			+ I18N.localise("botany.tube.name");
 	}
 
 	@Override
@@ -86,10 +86,10 @@ public class ItemInsulatedTube extends Item {
 	}
 
 	enum Material {
-		Copper(0xe3b78e, "tube.cooper"),
-		Tin(0xe1eef4, "tube.tin"),
-		Bronze(0xddc276, "tube.bronze"),
-		Iron(0xd8d8d8, "tube.iron");
+		Copper(0xe3b78e, "cooper"),
+		Tin(0xe1eef4, "tin"),
+		Bronze(0xddc276, "bronze"),
+		Iron(0xd8d8d8, "iron");
 
 		protected int color;
 		protected String name;
@@ -108,17 +108,17 @@ public class ItemInsulatedTube extends Item {
 		}
 
 		public String getName() {
-			return I18N.localise(Botany.instance, name);
+			return I18N.localise("botany.tube." + name);
 		}
 	}
 
 	enum Insulate {
-		Clay(0xa1aacc, "tube.insulate.clay"),
-		Cobble(0x7b7b7b, "tube.insulate.cobblestone"),
-		Sand(0xefeab5, "tube.insulate.sand"),
-		HardenedClay(0x935c43, "tube.insulate.hardenedClay"),
-		Stone(0x6d6d6d, "tube.insulate.smoothStone"),
-		Sandstone(0xc1b989, "tube.insulate.sandstone");
+		Clay(0xa1aacc, "clay"),
+		Cobble(0x7b7b7b, "cobblestone"),
+		Sand(0xefeab5, "sand"),
+		HardenedClay(0x935c43, "hardenedClay"),
+		Stone(0x6d6d6d, "smoothStone"),
+		Sandstone(0xc1b989, "sandstone");
 
 		protected int color;
 		protected String name;
@@ -137,7 +137,7 @@ public class ItemInsulatedTube extends Item {
 		}
 
 		public String getName() {
-			return I18N.localise(Botany.instance, name);
+			return I18N.localise("botany.tube.insulate." + name);
 		}
 
 		public ItemStack getStack() {

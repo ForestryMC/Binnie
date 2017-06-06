@@ -1,6 +1,5 @@
 package binnie.botany.flower;
 
-import binnie.botany.Botany;
 import binnie.botany.api.EnumFlowerStage;
 import binnie.core.util.I18N;
 
@@ -16,6 +15,6 @@ public class ItemSeed extends ItemBotany {
 
 	@Override
 	public String getTag() {
-		return I18N.localise(Botany.instance, "item.germling.tag.name");
+		return I18N.localise("botany.tube.item.germling.tag.name");
 	}
 }

@@ -141,6 +141,10 @@ botany.soil.loam=Суглинок
 botany.soil.flowerbed=Цветник
 botany.soil.weedkiller=Средство от сорняков
 
+botany.soil.tooltip.type=Тип:
+botany.soil.tooltip.moisture=влажность:
+botany.soil.tooltip.pH=pH:
+
 botany.item.tooltip.holdMore=<Зажмите SHIFT для подробностей>
 botany.item.tooltip.bugged=Предмет содержит ошибки. Уничтожь его!
 botany.item.tooltip.unknownGenome=<Неизвестный геном>

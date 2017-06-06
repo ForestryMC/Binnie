@@ -37,7 +37,7 @@ public class ItemPigment extends Item {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		return I18N.localise(Botany.instance, "item.pigment.name");
+		return I18N.localise("botany.tube.item.pigment.name");
 	}
 
 	@Override

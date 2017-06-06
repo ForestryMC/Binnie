@@ -106,7 +106,7 @@ public class BlockStained extends Block implements IBlockMetadata {
 
 	@Override
 	public String getBlockName(ItemStack itemStack) {
-		return I18N.localise(Botany.instance, "pigmentedGlass");
+		return I18N.localise("botany.pigmentedGlass");
 	}
 
 	@Override
