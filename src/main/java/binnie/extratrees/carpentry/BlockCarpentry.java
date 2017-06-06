@@ -1,7 +1,6 @@
 package binnie.extratrees.carpentry;
 
 import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.block.PlankType;
 import forestry.api.core.Tabs;
@@ -26,7 +25,7 @@ public class BlockCarpentry extends BlockDesign {
 
 	@Override
 	public String getBlockName(DesignBlock design) {
-		return I18N.localise(ExtraTrees.instance, "block.woodentile.name", design.getDesign().getName());
+		return I18N.localise("extratrees.block.woodentile.name", design.getDesign().getName());
 	}
 
 }

@@ -144,32 +144,32 @@ public class ControlLiquidTank extends Control implements ITooltip {
 
 		TankSlot slot = getTankSlot();
 		tooltip.add(slot.getName());
-		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.tank.capacity", getTankCapacity()));
-		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.tank.insertSide", MachineSide.asString(slot.getInputSides())));
-		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.tank.extractSide", MachineSide.asString(slot.getOutputSides())));
+		tooltip.add(I18N.localise("binniecore.gui.tooltip.tank.capacity", getTankCapacity()));
+		tooltip.add(I18N.localise("binniecore.gui.tooltip.tank.insertSide", MachineSide.asString(slot.getInputSides())));
+		tooltip.add(I18N.localise("binniecore.gui.tooltip.tank.extractSide", MachineSide.asString(slot.getOutputSides())));
 
 		if (slot.isReadOnly()) {
-			tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.tank.outputOnlyTank"));
+			tooltip.add(I18N.localise("binniecore.gui.tooltip.tank.outputOnlyTank"));
 		}
 
 		if (slot.getValidator() == null) {
-			tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.tank.acceptsAny"));
+			tooltip.add(I18N.localise("binniecore.gui.tooltip.tank.acceptsAny"));
 		} else {
-			tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.tank.accepts", slot.getValidator().getTooltip()));
+			tooltip.add(I18N.localise("binniecore.gui.tooltip.tank.accepts", slot.getValidator().getTooltip()));
 		}
 	}
 
 	@Override
 	public void getTooltip(Tooltip tooltip) {
 		if (!isTankValid()) {
-			tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.tank.empty"));
+			tooltip.add(I18N.localise("binniecore.gui.tooltip.tank.empty"));
 			return;
 		}
 
 		int percentage = (int) (100.0 * getTank().getAmount() / getTankCapacity());
 		tooltip.add(getTank().getName());
-		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.tank.full", percentage));
-		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.tank.amount", (int) getTank().getAmount()));
+		tooltip.add(I18N.localise("binniecore.gui.tooltip.tank.full", percentage));
+		tooltip.add(I18N.localise("binniecore.gui.tooltip.tank.amount", (int) getTank().getAmount()));
 	}
 
 	private TankSlot getTankSlot() {

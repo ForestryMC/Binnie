@@ -4,7 +4,6 @@ import binnie.core.block.BlockMetadata;
 import binnie.core.block.IBlockMetadata;
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
@@ -74,7 +73,7 @@ public class BlockETPlanks extends BlockWood implements IBlockMetadata {
 	@Override
 	public String getBlockName(ItemStack itemStack) {
 		int meta = TileEntityMetadata.getItemDamage(itemStack);
-		return I18N.localise(ExtraTrees.instance, "block.plank.name", PlankType.ExtraTreePlanks.values()[meta].getName());
+		return I18N.localise("extratrees.block.plank.name", PlankType.ExtraTreePlanks.values()[meta].getName());
 	}
 
 	@Override

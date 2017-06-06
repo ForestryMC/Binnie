@@ -1,7 +1,6 @@
 package binnie.extratrees.carpentry;
 
 import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.api.IDesignSystem;
@@ -380,7 +379,7 @@ public class DesignBlock {
 	public String getString() {
 		String type;
 		if (getPrimaryMaterial() != getSecondaryMaterial()) {
-			type = I18N.localise(ExtraTrees.instance, "block.tooltip.twoMaterials", getPrimaryMaterial().getName(), getSecondaryMaterial().getName());
+			type = I18N.localise("extratrees.block.tooltip.twoMaterials", getPrimaryMaterial().getName(), getSecondaryMaterial().getName());
 		} else {
 			type = getPrimaryMaterial().getName();
 		}

@@ -1,11 +1,9 @@
 package binnie.extrabees.genetics.requirements;
 
 import binnie.core.util.I18N;
-import binnie.extrabees.ExtraBees;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IGenome;
-import net.minecraft.client.resources.I18n;
 
 public class RequirementPerson implements IMutationRequirement {
 	protected String name;
@@ -16,7 +14,7 @@ public class RequirementPerson implements IMutationRequirement {
 
 	@Override
 	public String getDescription() {
-		return I18N.localise(ExtraBees.instance, "genetics.requirements.user", name);
+		return I18N.localise("extrabees.genetics.requirements.user", name);
 	}
 
 	@Override

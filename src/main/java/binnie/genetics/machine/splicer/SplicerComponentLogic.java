@@ -5,7 +5,6 @@ import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
-import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.genetics.Engineering;
@@ -92,28 +91,28 @@ public class SplicerComponentLogic extends ComponentProcessSetCost implements IP
 		int f = getFullNumberOfGenes();
 		if (f > 1) {
 			if (n > 1) {
-				return I18N.localise(Genetics.instance, "machine.splicer.splicingIn.0", n, f);
+				return I18N.localise("genetics.machine.splicer.splicingIn.0", n, f);
 			}
-			return I18N.localise(Genetics.instance, "machine.splicer.splicingIn.1", n, f);
+			return I18N.localise("genetics.machine.splicer.splicingIn.1", n, f);
 		}
 
 		if (n > 1) {
-			return I18N.localise(Genetics.instance, "machine.splicer.splicingIn.2", n);
+			return I18N.localise("genetics.machine.splicer.splicingIn.2", n);
 		}
-		return I18N.localise(Genetics.instance, "machine.splicer.splicingIn.3", n);
+		return I18N.localise("genetics.machine.splicer.splicingIn.3", n);
 	}
 
 	@Override
 	public ErrorState canWork() {
 		if (getUtil().isSlotEmpty(Splicer.SLOT_TARGET)) {
 			return new ErrorState.NoItem(
-				I18N.localise(Genetics.instance, "machine.splicer.error.noIndividual"),
+				I18N.localise("genetics.machine.splicer.error.noIndividual"),
 				Splicer.SLOT_TARGET
 			);
 		}
 		if (getUtil().isSlotEmpty(Splicer.SLOT_SERUM_VIAL)) {
 			return new ErrorState.NoItem(
-				I18N.localise(Genetics.instance, "machine.splicer.error.noSerum"),
+				I18N.localise("genetics.machine.splicer.error.noSerum"),
 				Splicer.SLOT_SERUM_VIAL
 			);
 		}
@@ -125,8 +124,8 @@ public class SplicerComponentLogic extends ComponentProcessSetCost implements IP
 
 		if (getUtil().getStack(0) != null && Engineering.getCharges(getUtil().getStack(Splicer.SLOT_SERUM_VIAL)) == 0) {
 			return new ErrorState(
-				I18N.localise(Genetics.instance, "machine.splicer.error.emptySerum.title"),
-				I18N.localise(Genetics.instance, "machine.splicer.error.emptySerum")
+				I18N.localise("genetics.machine.splicer.error.emptySerum.title"),
+				I18N.localise("genetics.machine.splicer.error.emptySerum")
 			);
 		}
 		return super.canWork();
@@ -138,14 +137,14 @@ public class SplicerComponentLogic extends ComponentProcessSetCost implements IP
 		IGene[] genes = Engineering.getGenes(serum);
 		if (genes.length == 0) {
 			return new ErrorState(
-				I18N.localise(Genetics.instance, "machine.splicer.error.invalidSerum.title"),
-				I18N.localise(Genetics.instance, "machine.splicer.error.invalidSerum.0")
+				I18N.localise("genetics.machine.splicer.error.invalidSerum.title"),
+				I18N.localise("genetics.machine.splicer.error.invalidSerum.0")
 			);
 		}
 		if (!genes[0].getSpeciesRoot().isMember(target)) {
 			return new ErrorState(
-				I18N.localise(Genetics.instance, "machine.splicer.error.invalidSerum.title"),
-				I18N.localise(Genetics.instance, "machine.splicer.error.invalidSerum.1")
+				I18N.localise("genetics.machine.splicer.error.invalidSerum.title"),
+				I18N.localise("genetics.machine.splicer.error.invalidSerum.1")
 			);
 		}
 
@@ -165,8 +164,8 @@ public class SplicerComponentLogic extends ComponentProcessSetCost implements IP
 
 		if (hasAll) {
 			return new ErrorState(
-				I18N.localise(Genetics.instance, "machine.splicer.error.defunctSerum.title"),
-				I18N.localise(Genetics.instance, "machine.splicer.error.defunctSerum")
+				I18N.localise("genetics.machine.splicer.error.defunctSerum.title"),
+				I18N.localise("genetics.machine.splicer.error.defunctSerum")
 			);
 		}
 		return null;

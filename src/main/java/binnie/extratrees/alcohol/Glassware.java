@@ -39,9 +39,9 @@ public enum Glassware {
 
 	public String getName(String liquid) {
 		if (liquid == null) {
-			return ExtraTrees.proxy.localise("item.glassware." + name().toLowerCase());
+			return I18N.localise("extratrees.item.glassware." + name().toLowerCase());
 		}
-		return I18N.localise(ExtraTrees.instance, "item.glassware." + name().toLowerCase() + ".usage", liquid);
+		return I18N.localise("extratrees.item.glassware." + name().toLowerCase() + ".usage", liquid);
 	}
 
 	public int getCapacity() {

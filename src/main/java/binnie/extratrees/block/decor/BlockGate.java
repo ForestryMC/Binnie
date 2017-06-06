@@ -4,7 +4,6 @@ import binnie.core.block.BlockMetadata;
 import binnie.core.block.IBlockMetadata;
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.IPlankType;
 import binnie.extratrees.block.WoodManager;
 import cpw.mods.fml.relauncher.Side;
@@ -104,7 +103,7 @@ public class BlockGate extends BlockFenceGate implements IBlockMetadata {
 	@Override
 	public String getBlockName(ItemStack itemStack) {
 		int meta = TileEntityMetadata.getItemDamage(itemStack);
-		return I18N.localise(ExtraTrees.instance, "block.woodgate.name", WoodManager.getPlankType(meta).getName());
+		return I18N.localise("extratrees.block.woodgate.name", WoodManager.getPlankType(meta).getName());
 	}
 
 	@Override

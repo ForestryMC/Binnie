@@ -85,7 +85,7 @@ public class BlockETSlab extends BlockWoodSlab implements IBlockMetadata {
 	@Override
 	public String getBlockName(ItemStack itemStack) {
 		int meta = TileEntityMetadata.getItemDamage(itemStack);
-		return I18N.localise(ExtraTrees.instance, "block.woodslab.name", PlankType.ExtraTreePlanks.values()[meta].getName());
+		return I18N.localise("extratrees.block.woodslab.name", PlankType.ExtraTreePlanks.values()[meta].getName());
 	}
 
 	@Override

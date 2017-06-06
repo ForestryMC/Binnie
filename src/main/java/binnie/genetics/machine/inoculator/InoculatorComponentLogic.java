@@ -5,7 +5,6 @@ import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
-import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.genetics.Engineering;
@@ -46,28 +45,28 @@ public class InoculatorComponentLogic extends ComponentProcessSetCost implements
 	public String getTooltip() {
 		int n = getNumberOfGenes();
 		if (n > 1) {
-			return I18N.localise(Genetics.instance, "machine.inoculator.inoculatingWithGenes", n);
+			return I18N.localise("genetics.machine.inoculator.inoculatingWithGenes", n);
 		}
-		return I18N.localise(Genetics.instance, "machine.inoculator.inoculatingWithGene");
+		return I18N.localise("genetics.machine.inoculator.inoculatingWithGene");
 	}
 
 	@Override
 	public ErrorState canWork() {
 		if (getUtil().isSlotEmpty(Inoculator.SLOT_TARGET)) {
 			return new ErrorState.NoItem(
-				I18N.localise(Genetics.instance, "machine.inoculator.error.noIndividual"),
+				I18N.localise("genetics.machine.inoculator.error.noIndividual"),
 				Inoculator.SLOT_TARGET
 			);
 		}
 		if (getUtil().isSlotEmpty(Inoculator.SLOT_SERUM_VIAL)) {
 			return new ErrorState.NoItem(
-				I18N.localise(Genetics.instance, "machine.inoculator.error.noSerum"),
+				I18N.localise("genetics.machine.inoculator.error.noSerum"),
 				Inoculator.SLOT_SERUM_VIAL
 			);
 		}
 		if (getUtil().isTankEmpty(Inoculator.TANK_VECTOR)) {
 			return new ErrorState.InsufficientLiquid(
-				I18N.localise(Genetics.instance, "machine.inoculator.error.noLiquid"),
+				I18N.localise("genetics.machine.inoculator.error.noLiquid"),
 				Inoculator.TANK_VECTOR
 			);
 		}
@@ -80,8 +79,8 @@ public class InoculatorComponentLogic extends ComponentProcessSetCost implements
 		ItemStack stack = getUtil().getStack(Inoculator.SLOT_SERUM_VIAL);
 		if (stack != null && Engineering.getCharges(stack) == 0) {
 			return new ErrorState(
-				I18N.localise(Genetics.instance, "machine.inoculator.error.emptySerum.title"),
-				I18N.localise(Genetics.instance, "machine.inoculator.error.emptySerum")
+				I18N.localise("genetics.machine.inoculator.error.emptySerum.title"),
+				I18N.localise("genetics.machine.inoculator.error.emptySerum")
 			);
 		}
 		return super.canWork();
@@ -93,14 +92,14 @@ public class InoculatorComponentLogic extends ComponentProcessSetCost implements
 		IGene[] genes = Engineering.getGenes(serum);
 		if (genes.length == 0) {
 			return new ErrorState(
-				I18N.localise(Genetics.instance, "machine.inoculator.error.invalidSerum.title"),
-				I18N.localise(Genetics.instance, "machine.inoculator.error.invalidSerum.0")
+				I18N.localise("genetics.machine.inoculator.error.invalidSerum.title"),
+				I18N.localise("genetics.machine.inoculator.error.invalidSerum.0")
 			);
 		}
 		if (!genes[0].getSpeciesRoot().isMember(target)) {
 			return new ErrorState(
-				I18N.localise(Genetics.instance, "machine.inoculator.error.invalidSerum.title"),
-				I18N.localise(Genetics.instance, "machine.inoculator.error.invalidSerum.1")
+				I18N.localise("genetics.machine.inoculator.error.invalidSerum.title"),
+				I18N.localise("genetics.machine.inoculator.error.invalidSerum.1")
 			);
 		}
 
@@ -123,8 +122,8 @@ public class InoculatorComponentLogic extends ComponentProcessSetCost implements
 			return null;
 		}
 		return new ErrorState(
-			I18N.localise(Genetics.instance, "machine.inoculator.error.defunctSerum.title"),
-			I18N.localise(Genetics.instance, "machine.inoculator.error.defunctSerum")
+			I18N.localise("genetics.machine.inoculator.error.defunctSerum.title"),
+			I18N.localise("genetics.machine.inoculator.error.defunctSerum")
 		);
 	}
 

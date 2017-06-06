@@ -1,6 +1,5 @@
 package binnie.core.craftgui.minecraft.control;
 
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.WidgetAttribute;
@@ -31,9 +30,9 @@ public class ControlProgressBase extends Control {
 		String ts = "";
 		if (minutes > 0) {
 			if (minutes == 1) {
-				ts += I18N.localise(BinnieCore.instance, "gui.database.time.minute");
+				ts += I18N.localise("binniecore.gui.database.time.minute");
 			} else {
-				ts += I18N.localise(BinnieCore.instance, "gui.database.time.minutes", minutes);
+				ts += I18N.localise("binniecore.gui.database.time.minutes", minutes);
 			}
 		}
 
@@ -42,9 +41,9 @@ public class ControlProgressBase extends Control {
 				ts += " ";
 			}
 			if (seconds == 1) {
-				ts += I18N.localise(BinnieCore.instance, "gui.database.time.second");
+				ts += I18N.localise("binniecore.gui.database.time.second");
 			} else {
-				ts += I18N.localise(BinnieCore.instance, "gui.database.time.seconds", seconds);
+				ts += I18N.localise("binniecore.gui.database.time.seconds", seconds);
 			}
 		}
 		return ts;
@@ -79,22 +78,22 @@ public class ControlProgressBase extends Control {
 			return;
 		}
 
-		tooltip.add(I18N.localise(BinnieCore.instance, "gui.database.time.progress"));
+		tooltip.add(I18N.localise("binniecore.gui.database.time.progress"));
 
 		if (progress == 0.0f) {
-			tooltip.add(I18N.localise(BinnieCore.instance, "gui.database.time.notInProgress"));
+			tooltip.add(I18N.localise("binniecore.gui.database.time.notInProgress"));
 		} else if (process.getProcessTime() > 0) {
 			tooltip.add(machineProcess.getTooltip() + " (" + (int) process.getCurrentProgress() + "%)");
 		} else {
-			tooltip.add(I18N.localise(BinnieCore.instance, "gui.database.time.inProgress"));
+			tooltip.add(I18N.localise("binniecore.gui.database.time.inProgress"));
 		}
 
 		if (process.getProcessTime() > 0) {
-			tooltip.add(I18N.localise(BinnieCore.instance, "gui.database.time.left", convertTime((int) ((1.0f - progress) * process.getProcessTime()))));
-			tooltip.add(I18N.localise(BinnieCore.instance, "gui.database.time.total", convertTime(process.getProcessTime())));
-			tooltip.add(I18N.localise(BinnieCore.instance, "gui.database.energyCost.0", process.getProcessEnergy() * 10));
+			tooltip.add(I18N.localise("binniecore.gui.database.time.left", convertTime((int) ((1.0f - progress) * process.getProcessTime()))));
+			tooltip.add(I18N.localise("binniecore.gui.database.time.total", convertTime(process.getProcessTime())));
+			tooltip.add(I18N.localise("binniecore.gui.database.energyCost.0", process.getProcessEnergy() * 10));
 		} else {
-			tooltip.add(I18N.localise(BinnieCore.instance, "gui.database.energyCost.1", process.getEnergyPerTick() * 10.0f));
+			tooltip.add(I18N.localise("binniecore.gui.database.energyCost.1", process.getEnergyPerTick() * 10.0f));
 		}
 	}
 }
