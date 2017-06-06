@@ -29,10 +29,6 @@ public class FireworkCreator {
 			shape = 0;
 		}
 
-		public void setFlicker() {
-			flicker = true;
-		}
-
 		public void setTrail() {
 			trail = true;
 		}
@@ -45,7 +41,7 @@ public class FireworkCreator {
 			colors.add(color);
 		}
 
-		NBTTagCompound getNBT() {
+		public NBTTagCompound getNBT() {
 			NBTTagCompound nbt = new NBTTagCompound();
 			if (flicker) {
 				nbt.setBoolean("Flicker", true);

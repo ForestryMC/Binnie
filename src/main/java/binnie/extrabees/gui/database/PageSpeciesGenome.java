@@ -144,7 +144,6 @@ public class PageSpeciesGenome extends PageSpecies {
 		}
 
 		IBeeGenome genome = Binnie.Genetics.getBeeRoot().templateAsGenome(template);
-		IBee bee = Binnie.Genetics.getBeeRoot().getBee(BinnieCore.proxy.getWorld(), genome);
 		speedText.setValue(rateSpeed(genome.getSpeed()));
 		lifespanText.setValue(rateLifespan(genome.getLifespan()));
 		fertilityText.setValue(genome.getFertility() + " children");

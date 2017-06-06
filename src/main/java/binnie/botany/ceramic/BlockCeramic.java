@@ -75,7 +75,7 @@ public class BlockCeramic extends Block implements IBlockMetadata {
 
 	@Override
 	public String getBlockName(ItemStack itemStack) {
-		return I18N.localise(Botany.instance, "ceramicBlock");
+		return I18N.localise("botany.ceramicBlock");
 	}
 
 	@Override

@@ -9,7 +9,11 @@ public class I18N {
 	}
 
 	public static String localise(String key) {
-		return StatCollector.translateToLocal(key.toString());
+		return StatCollector.translateToLocal(key);
+	}
+
+	public static String localise(String key, Object... objs) {
+		return String.format(StatCollector.translateToLocal(key), objs);
 	}
 
 	public static String localise(AbstractMod mod, String id) {

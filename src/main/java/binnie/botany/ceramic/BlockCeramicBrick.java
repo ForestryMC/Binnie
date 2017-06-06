@@ -531,13 +531,13 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
 		}
 
 		public String getName() {
-			return I18N.localise(Botany.instance, type.name);
+			return I18N.localise("botany." + type.name);
 		}
 
 		public void addTooltip(List tooltip) {
 			String name = color1.getName();
 			if (type.canDouble() && color2 != color1) {
-				name = I18N.localise(Botany.instance, "colour.double", name, color2.getName());
+				name = I18N.localise("botany.colour.double", name, color2.getName());
 			}
 			tooltip.add(EnumChatFormatting.GRAY + name);
 		}

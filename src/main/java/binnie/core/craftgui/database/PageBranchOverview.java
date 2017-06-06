@@ -1,6 +1,5 @@
 package binnie.core.craftgui.database;
 
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
@@ -28,19 +27,20 @@ public class PageBranchOverview extends PageBranch {
 
 	@Override
 	public void onValueChanged(IClassification branch) {
+		String name = I18N.localise(branch.getName());
 		branchName.setValue(
 			EnumChatFormatting.BOLD
-				+ I18N.localise(BinnieCore.instance, "gui.database.branch.name", branch.getName())
+				+ I18N.localise("binniecore.gui.database.branch.name", name)
 				+ EnumChatFormatting.RESET
 		);
 		branchScientific.setValue(
 			EnumChatFormatting.ITALIC
-				+ I18N.localise(BinnieCore.instance, "gui.database.branch.apidae", branch.getScientific())
+				+ I18N.localise("binniecore.gui.database.branch.apidae", branch.getScientific())
 				+ EnumChatFormatting.RESET
 		);
 		branchAuthority.setValue(
 			EnumChatFormatting.BOLD
-				+ I18N.localise(BinnieCore.instance, "gui.database.branch.discoveredBy", branch.getMemberSpecies()[0].getAuthority())
+				+ I18N.localise("binniecore.gui.database.branch.discoveredBy", branch.getMemberSpecies()[0].getAuthority())
 				+ EnumChatFormatting.RESET);
 
 		for (IWidget widget : branchDescription) {
@@ -49,8 +49,8 @@ public class PageBranchOverview extends PageBranch {
 
 		branchDescription.clear();
 		String desc = branch.getDescription();
-		if (desc == null || desc.isEmpty()) {
-			desc = I18N.localise(BinnieCore.instance, "gui.database.branch.noDesc");
+		if (desc.contains("for.genus.bees.")) { // unlocalized
+			desc = I18N.localise("binniecore.gui.database.branch.noDesc");
 		}
 
 		StringBuilder line = new StringBuilder();

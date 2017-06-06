@@ -124,7 +124,7 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 		return types.size() > 1 || !types.contains(EnumPlantType.Nether);
 	}
 
-	public boolean isAcceptedFlower(World world, IIndividual individual, int x, int y, int z) {
+	public boolean isAcceptedFlower(World world, int x, int y, int z) {
 		Block block = world.getBlock(x, y, z);
 		if (block == null) {
 			return false;

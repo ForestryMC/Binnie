@@ -34,11 +34,14 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 		BreedingSystem system = Binnie.Genetics.getSystem(speciesRoot.getUID());
 		IIndividual ind = system.getSpeciesRoot().templateAsIndividual(system.getSpeciesRoot().getTemplate(species.getUID()));
 		super.setItemStack(system.getSpeciesRoot().getMemberStack(ind, system.getDefaultType()));
-		GameProfile username = Window.get(this).getUsername();
+		Window window = Window.get(this);
+		GameProfile username = window.getUsername();
 
 		if (state == EnumDiscoveryState.UNDETERMINED) {
-			state = (system.isSpeciesDiscovered(species, Window.get(this).getWorld(), username) ? EnumDiscoveryState.DISCOVERED : EnumDiscoveryState.UNDISCOVERED);
-		} else if (Window.get(this) instanceof WindowAbstractDatabase && ((WindowAbstractDatabase) Window.get(this)).isNEI) {
+			state = system.isSpeciesDiscovered(species, window.getWorld(), username)
+				? EnumDiscoveryState.DISCOVERED
+				: EnumDiscoveryState.UNDISCOVERED;
+		} else if (window instanceof WindowAbstractDatabase && ((WindowAbstractDatabase) window).isNEI) {
 			state = EnumDiscoveryState.SHOW;
 		}
 

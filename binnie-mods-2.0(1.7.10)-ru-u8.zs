@@ -20,12 +20,6 @@ import mods.nei.NEI;
 
 # DATABASES
 
-# Apiarist Database
-NEI.overrideName(<ExtraBees:dictionary:0>,"База данных пчеловода");
-<ExtraBees:dictionary:0>.addTooltip(format.darkGreen("Apiarist Database"));
-# Master Apiarist Database
-NEI.overrideName(<ExtraBees:dictionary:1>,"База данных пчеловода-мастера");
-<ExtraBees:dictionary:1>.addTooltip(format.darkGreen("Master Apiarist Database"));
 # Arborist Database
 NEI.overrideName(<ExtraTrees:database:0>,"База данных лесовода");
 <ExtraTrees:database:0>.addTooltip(format.darkGreen("Arborist Database"));

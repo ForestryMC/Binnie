@@ -1,6 +1,5 @@
 package binnie.extrabees.genetics.requirements;
 
-
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IMutationCondition;
@@ -14,7 +13,7 @@ public class DummyMutationCondition implements IMutationCondition {
 	}
 
 	@Override
-	public float getChance(World world, int i, int i1, int i2, IAllele iAllele, IAllele iAllele1, IGenome iGenome, IGenome iGenome1) {
+	public float getChance(World world, int x, int y, int z, IAllele allele0, IAllele allele1, IGenome genome0, IGenome genome1) {
 		return 1.0F;
 	}
 

@@ -1,6 +1,5 @@
 package binnie.botany.craftgui;
 
-import binnie.botany.Botany;
 import binnie.botany.api.IColourMix;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
@@ -47,7 +46,7 @@ public class ControlColourMixSymbol extends Control implements ITooltip {
 	public void getTooltip(Tooltip tooltip) {
 		if (type == 1) {
 			float chance = value.getChance();
-			tooltip.add(I18N.localise(Botany.instance, "gui.controls.colorMixSymbol.chance", chance));
+			tooltip.add(I18N.localise("botany.gui.controls.colorMixSymbol.chance", chance));
 		}
 	}
 }

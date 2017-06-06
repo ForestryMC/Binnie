@@ -1,6 +1,5 @@
 package binnie.core.craftgui.minecraft.control;
 
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -32,6 +31,7 @@ public class ControlEnergyBar extends Control implements ITooltip {
 		addAttribute(WidgetAttribute.MOUSE_OVER);
 	}
 
+	// TODO unused method?
 	public IPoweredMachine getClientPower() {
 		IInventory inventory = Window.get(this).getInventory();
 		TileEntityMachine machine = (inventory instanceof TileEntityMachine) ? (TileEntityMachine) inventory : null;
@@ -67,19 +67,19 @@ public class ControlEnergyBar extends Control implements ITooltip {
 
 	@Override
 	public void getTooltip(Tooltip tooltip) {
-		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.chargedPower", (int) getPercentage()));
-		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.powerInfo", getStoredEnergy(), getMaxEnergy()));
+		tooltip.add(I18N.localise("binniecore.gui.tooltip.chargedPower", (int) getPercentage()));
+		tooltip.add(I18N.localise("binniecore.gui.tooltip.powerInfo", getStoredEnergy(), getMaxEnergy()));
 	}
 
 	@Override
 	public void getHelpTooltip(Tooltip tooltip) {
-		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.powerBar"));
-		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.currentPower", getStoredEnergy(), (int) getPercentage()));
-		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.capacityPower", getMaxEnergy()));
+		tooltip.add(I18N.localise("binniecore.gui.tooltip.powerBar"));
+		tooltip.add(I18N.localise("binniecore.gui.tooltip.currentPower", getStoredEnergy(), (int) getPercentage()));
+		tooltip.add(I18N.localise("binniecore.gui.tooltip.capacityPower", getMaxEnergy()));
 
 		IProcess process = Machine.getInterface(IProcess.class, Window.get(this).getInventory());
 		if (process != null) {
-			tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.usagePower", (int) process.getEnergyPerTick()));
+			tooltip.add(I18N.localise("binniecore.gui.tooltip.usagePower", (int) process.getEnergyPerTick()));
 		}
 	}
 

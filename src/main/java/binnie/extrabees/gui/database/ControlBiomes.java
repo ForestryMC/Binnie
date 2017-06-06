@@ -1,7 +1,5 @@
 package binnie.extrabees.gui.database;
 
-import binnie.Binnie;
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -11,8 +9,6 @@ import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.apiculture.IBee;
-import forestry.api.apiculture.IBeeGenome;
 import net.minecraft.world.biome.BiomeGenBase;
 
 import java.util.ArrayList;
@@ -55,12 +51,5 @@ public class ControlBiomes extends Control implements ITooltip {
 
 	public void setSpecies(IAlleleBeeSpecies species) {
 		tolerated.clear();
-		if (species == null) {
-			return;
-		}
-
-		// TODO unused code?
-		IBeeGenome genome = Binnie.Genetics.getBeeRoot().templateAsGenome(Binnie.Genetics.getBeeRoot().getTemplate(species.getUID()));
-		IBee bee = Binnie.Genetics.getBeeRoot().getBee(BinnieCore.proxy.getWorld(), genome);
 	}
 }

@@ -1,6 +1,5 @@
 package binnie.botany.genetics;
 
-import binnie.botany.Botany;
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.IAlleleFlowerSpecies;
 import binnie.botany.api.IColourMix;
@@ -58,14 +57,14 @@ public class Flower extends Individual implements IFlower {
 		IAlleleFlowerSpecies primary = genome.getPrimary();
 		IAlleleFlowerSpecies secondary = genome.getSecondary();
 		if (!isPureBred(EnumFlowerChromosome.SPECIES)) {
-			list.add(EnumChatFormatting.BLUE + I18N.localise(Botany.instance, "item.tooltip.hybrid", primary.getName(), secondary.getName()));
+			list.add(EnumChatFormatting.BLUE + I18N.localise("botany.item.tooltip.hybrid", primary.getName(), secondary.getName()));
 		}
 
-		list.add(EnumChatFormatting.GRAY + I18N.localise(Botany.instance, "item.tooltip.age", getAge()));
-		list.add(EnumChatFormatting.GREEN + I18N.localise(Botany.instance, "item.tooltip.temperature", AlleleHelper.toDisplay(primary.getTemperature()), AlleleHelper.toDisplay(genome.getToleranceTemperature())));
-		list.add(EnumChatFormatting.GREEN + I18N.localise(Botany.instance, "item.tooltip.moisture", AlleleHelper.toDisplay(primary.getMoisture()), AlleleHelper.toDisplay(genome.getToleranceMoisture())));
-		list.add(EnumChatFormatting.GREEN + I18N.localise(Botany.instance, "item.tooltip.pH", AlleleHelper.toDisplay(primary.getHumidity()), AlleleHelper.toDisplay(genome.getTolerancePH())));
-		list.add(EnumChatFormatting.GRAY + I18N.localise(Botany.instance, "item.tooltip.fertility", genome.getFertility()));
+		list.add(EnumChatFormatting.GRAY + I18N.localise("botany.item.tooltip.age", getAge()));
+		list.add(EnumChatFormatting.GREEN + I18N.localise("botany.item.tooltip.temperature", AlleleHelper.toDisplay(primary.getTemperature()), AlleleHelper.toDisplay(genome.getToleranceTemperature())));
+		list.add(EnumChatFormatting.GREEN + I18N.localise("botany.item.tooltip.moisture", AlleleHelper.toDisplay(primary.getMoisture()), AlleleHelper.toDisplay(genome.getToleranceMoisture())));
+		list.add(EnumChatFormatting.GREEN + I18N.localise("botany.item.tooltip.pH", AlleleHelper.toDisplay(primary.getHumidity()), AlleleHelper.toDisplay(genome.getTolerancePH())));
+		list.add(EnumChatFormatting.GRAY + I18N.localise("botany.item.tooltip.fertility", genome.getFertility()));
 	}
 
 	@Override

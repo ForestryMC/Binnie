@@ -1,6 +1,5 @@
 package binnie.core.craftgui.database;
 
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.controls.page.ControlPage;
@@ -27,16 +26,16 @@ public class PageBreeder extends ControlPage<DatabaseTab> {
 		BreedingSystem system = ((WindowAbstractDatabase) Window.get(this)).getBreedingSystem();
 		new ControlTextCentered(this, 8.0f,
 			EnumChatFormatting.BOLD
-				+ I18N.localise(BinnieCore.instance, "gui.database.descriptor", system.getDescriptor())
+				+ I18N.localise("binniecore.gui.database.descriptor", system.getDescriptor())
 				+ EnumChatFormatting.RESET
 		);
-		new ControlTextCentered(this, 75.0f, I18N.localise(BinnieCore.instance, "gui.database.species.count", system.discoveredSpeciesCount, system.totalSpeciesCount));
+		new ControlTextCentered(this, 75.0f, I18N.localise("binniecore.gui.database.species.count", system.discoveredSpeciesCount, system.totalSpeciesCount));
 		new ControlBreedingProgress(this, 20, 87, 102, 14, system, system.discoveredSpeciesPercentage);
-		new ControlTextCentered(this, 75.0f, I18N.localise(BinnieCore.instance, "gui.database.branches.count", system.discoveredBranchCount, system.totalBranchCount));
+		new ControlTextCentered(this, 75.0f, I18N.localise("binniecore.gui.database.branch.count", system.discoveredBranchCount, system.totalBranchCount));
 		new ControlBreedingProgress(this, 20, 127, 102, 14, system, system.discoveredBranchPercentage);
 
 		if (system.discoveredSecretCount > 0) {
-			new ControlTextCentered(this, 75.0f, I18N.localise(BinnieCore.instance, "gui.database.species.secretCount", system.discoveredSecretCount, system.totalSecretCount));
+			new ControlTextCentered(this, 75.0f, I18N.localise("binniecore.gui.database.species.secretCount", system.discoveredSecretCount, system.totalSecretCount));
 		}
 
 		new ControlTextCentered(this, 32.0f, player.getName());

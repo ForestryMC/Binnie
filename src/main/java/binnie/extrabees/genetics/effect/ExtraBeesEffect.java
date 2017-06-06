@@ -67,7 +67,8 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	protected static List<Birthday> birthdays;
 
 	static {
-		(ExtraBeesEffect.birthdays = new ArrayList<>()).add(new Birthday(3, 10, "Binnie"));
+		birthdays = new ArrayList<>();
+		birthdays.add(new Birthday(3, 10, "Binnie"));
 	}
 
 	public boolean combinable;
@@ -152,7 +153,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 
 	@Override
 	public String getName() {
-		return ExtraBees.proxy.localise("effect." + name().toString().toLowerCase() + ".name");
+		return ExtraBees.proxy.localise("effect." + name().toLowerCase() + ".name");
 	}
 
 	@Override
@@ -161,33 +162,35 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	}
 
 	public void spawnMob(World world, int x, int y, int z, String name) {
-		if (anyPlayerInRange(world, x, y, z, 16)) {
-			double xOffset = x + world.rand.nextFloat();
-			double yOffset = y + world.rand.nextFloat();
-			double zOffset = z + world.rand.nextFloat();
-			world.spawnParticle("smoke", xOffset, yOffset, zOffset, 0.0, 0.0, 0.0);
-			world.spawnParticle("flame", xOffset, yOffset, zOffset, 0.0, 0.0, 0.0);
-			EntityLiving entity = (EntityLiving) EntityList.createEntityByName(name, world);
+		if (!anyPlayerInRange(world, x, y, z, 16)) {
+			return;
+		}
 
-			if (entity == null) {
-				return;
-			}
+		double xOffset = x + world.rand.nextFloat();
+		double yOffset = y + world.rand.nextFloat();
+		double zOffset = z + world.rand.nextFloat();
+		world.spawnParticle("smoke", xOffset, yOffset, zOffset, 0.0, 0.0, 0.0);
+		world.spawnParticle("flame", xOffset, yOffset, zOffset, 0.0, 0.0, 0.0);
+		EntityLiving entity = (EntityLiving) EntityList.createEntityByName(name, world);
 
-			int entityCount = world.getEntitiesWithinAABB(entity.getClass(), AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1, z + 1).expand(8.0, 4.0, 8.0)).size();
-			if (entityCount >= 6) {
-				return;
-			}
+		if (entity == null) {
+			return;
+		}
 
-			xOffset = x + (world.rand.nextDouble() - world.rand.nextDouble()) * 4.0;
-			yOffset = y + world.rand.nextInt(3) - 1;
-			zOffset = z + (world.rand.nextDouble() - world.rand.nextDouble()) * 4.0;
-			entity.setLocationAndAngles(xOffset, yOffset,  zOffset, world.rand.nextFloat() * 360.0f, 0.0f);
+		int entityCount = world.getEntitiesWithinAABB(entity.getClass(), AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1, z + 1).expand(8.0, 4.0, 8.0)).size();
+		if (entityCount >= 6) {
+			return;
+		}
 
-			if (entity.getCanSpawnHere()) {
-				world.spawnEntityInWorld(entity);
-				world.playAuxSFX(2004, x, y, z, 0);
-				entity.spawnExplosionParticle();
-			}
+		xOffset = x + (world.rand.nextDouble() - world.rand.nextDouble()) * 4.0;
+		yOffset = y + world.rand.nextInt(3) - 1;
+		zOffset = z + (world.rand.nextDouble() - world.rand.nextDouble()) * 4.0;
+		entity.setLocationAndAngles(xOffset, yOffset,  zOffset, world.rand.nextFloat() * 360.0f, 0.0f);
+
+		if (entity.getCanSpawnHere()) {
+			world.spawnEntityInWorld(entity);
+			world.playAuxSFX(2004, x, y, z, 0);
+			entity.spawnExplosionParticle();
 		}
 	}
 
@@ -521,7 +524,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 			return;
 		}
 
-		if (ExtraBeesFlowers.SAPLING.isAcceptedFlower(world, null, x, y, z)) {
+		if (ExtraBeesFlowers.SAPLING.isAcceptedFlower(world, x, y, z)) {
 			ItemDye.applyBonemeal(new ItemStack(Blocks.dirt, 1), world, x, y, z, null);
 		}
 	}
@@ -531,7 +534,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 			return;
 		}
 
-		if (ExtraBeesFlowers.FRUIT.isAcceptedFlower(world, null, x, y, z)) {
+		if (ExtraBeesFlowers.FRUIT.isAcceptedFlower(world, x, y, z)) {
 			ItemDye.applyBonemeal(new ItemStack(Blocks.dirt, 1), world, x, y, z, null);
 		}
 	}

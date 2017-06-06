@@ -67,12 +67,12 @@ public class ItemFieldKit extends Item {
 	public void addInformation(ItemStack itemStack, EntityPlayer player, List tooltip, boolean advanced) {
 		int i = getMaxDamage() - itemStack.getItemDamage();
 		if (i == 0) {
-			tooltip.add(I18N.localise(Botany.instance, "item.fieldKit.tooltip.noPaper"));
+			tooltip.add(I18N.localise("botany.item.fieldKit.tooltip.noPaper"));
 		} else {
 			if (i > 1) {
-				tooltip.add(I18N.localise(Botany.instance, "item.fieldKit.tooltip.sheetsOfPaper", i));
+				tooltip.add(I18N.localise("botany.item.fieldKit.tooltip.sheetsOfPaper", i));
 			} else {
-				tooltip.add(I18N.localise(Botany.instance, "item.fieldKit.tooltip.sheetOfPaper", i));
+				tooltip.add(I18N.localise("botany.item.fieldKit.tooltip.sheetOfPaper", i));
 			}
 		}
 		super.addInformation(itemStack, player, tooltip, advanced);
@@ -80,6 +80,6 @@ public class ItemFieldKit extends Item {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		return I18N.localise(Botany.instance, "item.fieldKit.name");
+		return I18N.localise("botany.item.fieldKit.name");
 	}
 }

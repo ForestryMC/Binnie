@@ -130,6 +130,10 @@ extrabees.item.template.corrupted=повреждённый шаблон
 extrabees.item.template.name=%s шаблон
 extrabees.item.template.empty=пустой шаблон
 
+extrabees.item.database=База данных пчеловода
+extrabees.item.masterDatabase=База данных пчеловода-мастера
+extrabees.item.database.tooltip=Флора-в-коробке
+
 extrabees.item.scentedGear=Ароматная шестерня
 extrabees.item.diamondShard=Алмазный осколок
 extrabees.item.emeraldShard=Изумрудный осколок
@@ -164,7 +168,6 @@ extrabees.item.cyaniteDust=Цианитовые гранулы
 extrabees.block.apiaristMachine.name=Базовый механизм пчеловода
 extrabees.block.geneticMachine.name=Генетическая машина
 extrabees.block.advGeneticMachine.name=Улучшенная генетическая машина
-
 extrabees.block.ectoplasm.name=Эктоплазма
 
 extrabees.block.hive.0=Водный улей
@@ -180,10 +183,6 @@ extrabees.liquid.acid=Кислота
 extrabees.liquid.poison=Яд
 extrabees.liquid.glacial=Жидкий азот
 extrabees.liquid.dna=Жидкая ДНК
-
-extrabees.acid=Кислота
-extrabees.poison=Яд
-extrabees.glacial=Жидкий азот
 
 
 ##################################################
@@ -288,7 +287,6 @@ extrabees.genetics.allele.down5=вниз 5
 
 extrabees.genetics.allele.noeffect=отмена эффекта
 extrabees.genetics.allele.noflower=неопыляющие
-
 extrabees.genetics.allele.lifespan=%s срока жизни
 extrabees.genetics.allele.production=%s продукции
 extrabees.genetics.allele.fertility=%s плодовитости
@@ -305,65 +303,42 @@ extrabees.genetics.allele.caveDwelling=пещерности
 extrabees.genetics.allele.tolerantFlyer=дождливости
 
 extrabees.genetics.corrupted=повреждено
+extrabees.genetics.requirements.user=Может быть выведено только игроком %s
 
 
 # КЛАССЫ ПЧЁЛ
 
-extrabees.branch.botania.name=Мистическая
-extrabees.branch.barren.name=Бесплодная
-extrabees.branch.barren.desc=Производят бесплодные соты, в которых продукта меньше, чем в обычных сотах. Начальная ветвь для многих других ветвей.
-extrabees.branch.hostile.name=Враждебная
-extrabees.branch.hostile.desc=Каждая пчела враждебной ветви "имеет связи" с поределенным видом мобов. Способна спавнить этих мобов возле улья. Отличный способ фармить лут от мобов. Остерегайтесь криперов, они взрывают и сами ульи.
-extrabees.branch.rocky.name=Скалистая
-extrabees.branch.rocky.desc=Начальная ветвь для огромного числа ценных пчел. Очень убогое потомство, но высокая стойкость к условиям. Добываются карьером.
-extrabees.branch.metallic.name=Ржавая
-extrabees.branch.metallic.desc=
-extrabees.branch.metallic2.name=Металлическая
-extrabees.branch.metallic2.desc=
-extrabees.branch.alloy.name=Сплавовая
-extrabees.branch.alloy.desc=
-extrabees.branch.farming.name=Сельскохозяйственная
-extrabees.branch.farming.desc=
-extrabees.branch.precious.name=Драгоценная
-extrabees.branch.precious.desc=
-extrabees.branch.mineral.name=Минеральная
-extrabees.branch.mineral.desc=
-extrabees.branch.gemstone.name=Самоцветовая
-extrabees.branch.gemstone.desc=
-extrabees.branch.nuclear.name=Ядерная
-extrabees.branch.nuclear.desc=
-extrabees.branch.historic.name=Историческая
-extrabees.branch.historic.desc=
-extrabees.branch.fossilized.name=Ископаемая
-extrabees.branch.fossilized.desc=
-extrabees.branch.refined.name=Изысканная
-extrabees.branch.refined.desc=
-extrabees.branch.aquatic.name=Водная
-extrabees.branch.aquatic.desc=
-extrabees.branch.saccharine.name=Сахарная
-extrabees.branch.saccharine.desc=
-extrabees.branch.volcanic.name=Вулканическая
-extrabees.branch.volcanic.desc=
-extrabees.branch.viscous.name=Вязкая
-extrabees.branch.viscous.desc=
-extrabees.branch.virulent.name=Заразная
-extrabees.branch.virulent.desc=
-extrabees.branch.caustic.name=Едкая
-extrabees.branch.caustic.desc=
-extrabees.branch.energetic.name=Энергетическая
-extrabees.branch.energetic.desc=
-extrabees.branch.shadow.name=Тёмная
-extrabees.branch.shadow.desc=
-extrabees.branch.primary.name=Первичная
-extrabees.branch.primary.desc=
-extrabees.branch.secondary.name=Вторичная
-extrabees.branch.secondary.desc=
-extrabees.branch.tertiary.name=Третичная
-extrabees.branch.tertiary.desc=
-extrabees.branch.ftb.name=Мерзкая
-extrabees.branch.ftb.desc=
-extrabees.branch.quantum.name=Квантовая
-extrabees.branch.quantum.desc=
+for.genus.bees.botania=Мистическая
+for.genus.bees.barren=Бесплодная
+for.genus.bees.barren.description=Производят бесплодные соты, в которых продукта меньше, чем в обычных сотах. Начальная ветвь для многих других ветвей.
+for.genus.bees.hostile=Враждебная
+for.genus.bees.hostile.description=Каждая пчела враждебной ветви "имеет связи" с поределенным видом мобов. Способна спавнить этих мобов возле улья. Отличный способ фармить лут от мобов. Остерегайтесь криперов, они взрывают и сами ульи.
+for.genus.bees.rocky=Скалистая
+for.genus.bees.rocky.description=Начальная ветвь для огромного числа ценных пчел. Очень убогое потомство, но высокая стойкость к условиям. Добываются карьером.
+for.genus.bees.metallic=Ржавая
+for.genus.bees.metallic2=Металлическая
+for.genus.bees.alloy=Сплавовая
+for.genus.bees.farming=Сельскохозяйственная
+for.genus.bees.precious=Драгоценная
+for.genus.bees.mineral=Минеральная
+for.genus.bees.gemstone=Самоцветовая
+for.genus.bees.nuclear=Ядерная
+for.genus.bees.historic=Историческая
+for.genus.bees.fossilized=Ископаемая
+for.genus.bees.refined=Изысканная
+for.genus.bees.aquatic=Водная
+for.genus.bees.saccharine=Сахарная
+for.genus.bees.volcanic=Вулканическая
+for.genus.bees.viscous=Вязкая
+for.genus.bees.virulent=Заразная
+for.genus.bees.caustic=Едкая
+for.genus.bees.energetic=Энергетическая
+for.genus.bees.shadow=Тёмная
+for.genus.bees.primary=Первичная
+for.genus.bees.secondary=Вторичная
+for.genus.bees.tertiary=Третичная
+for.genus.bees.ftb=Мерзкая
+for.genus.bees.quantum=Квантовая
 
 
 # РАСТЕНИЯ-ОПЫЛИТЕЛИ
@@ -731,6 +706,9 @@ extrabees.gui.database.tab.species.overview=Обзор
 extrabees.gui.database.tab.species.classification=Классификация
 extrabees.gui.database.tab.species.genome=Генотип
 extrabees.gui.database.tab.species.products=Продукция
+extrabees.gui.database.tab.species.products.everyHours=Каждые %s ч.
+extrabees.gui.database.tab.species.products.everyMins=Каждые %s м.
+extrabees.gui.database.tab.species.products.everySecs=Каждые %s с.
 extrabees.gui.database.tab.species.climate=Климат
 extrabees.gui.database.tab.species.resultant=Произведённые мутации
 extrabees.gui.database.tab.species.further=Дальнейшие возможные мутации
