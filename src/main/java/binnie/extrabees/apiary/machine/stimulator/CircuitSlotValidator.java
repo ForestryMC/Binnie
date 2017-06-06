@@ -2,7 +2,6 @@ package binnie.extrabees.apiary.machine.stimulator;
 
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
-import binnie.extrabees.ExtraBees;
 import forestry.api.circuits.ChipsetManager;
 import net.minecraft.item.ItemStack;
 
@@ -18,6 +17,6 @@ public class CircuitSlotValidator extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return I18N.localise(ExtraBees.instance, "machine.alveay.stimulator.tooltip");
+		return I18N.localise("extrabees.machine.alveay.stimulator.tooltip");
 	}
 }

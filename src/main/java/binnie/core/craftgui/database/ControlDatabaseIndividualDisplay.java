@@ -1,7 +1,6 @@
 package binnie.core.craftgui.database;
 
 import binnie.Binnie;
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -98,11 +97,11 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 				break;
 
 			case DISCOVERED:
-				tooltip.add(I18N.localise(BinnieCore.instance, "gui.database.discovered.discovered"));
+				tooltip.add(I18N.localise("binniecore.gui.database.discovered.discovered"));
 				break;
 
 			case UNDISCOVERED:
-				tooltip.add(I18N.localise(BinnieCore.instance, "gui.database.discovered.undiscovered"));
+				tooltip.add(I18N.localise("binniecore.gui.database.discovered.undiscovered"));
 				break;
 		}
 	}

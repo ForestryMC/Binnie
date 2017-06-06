@@ -64,7 +64,7 @@ public class WindowAnalyser extends WindowMachine {
 
 	@Override
 	public String getTitle() {
-		return I18N.localise(Genetics.instance, "machine.labMachine.analyser");
+		return I18N.localise("genetics.machine.labMachine.analyser");
 	}
 
 	@Override

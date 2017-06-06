@@ -2,7 +2,6 @@ package binnie.genetics.machine.inoculator;
 
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
-import binnie.genetics.Genetics;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.machine.ModuleMachine;
 import net.minecraft.item.ItemStack;
@@ -19,6 +18,6 @@ public class SerumSlotValidator extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return I18N.localise(Genetics.instance, "machine.inoculator.serums");
+		return I18N.localise("genetics.machine.inoculator.serums");
 	}
 }

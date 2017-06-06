@@ -1,6 +1,5 @@
 package binnie.core.machines.inventory;
 
-import binnie.core.BinnieCore;
 import binnie.core.util.I18N;
 import forestry.api.genetics.AlleleManager;
 import net.minecraft.item.ItemStack;
@@ -55,7 +54,7 @@ public abstract class SlotValidator extends Validator<ItemStack> {
 
 		@Override
 		public String getTooltip() {
-			return I18N.localise(BinnieCore.instance, "gui.slot.breedableIndividual");
+			return I18N.localise("binniecore.gui.slot.breedableIndividual");
 		}
 	}
 }

@@ -7,7 +7,6 @@ import binnie.botany.api.IBotanistTracker;
 import binnie.botany.api.IFlowerRoot;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.genetics.EnumFlowerColor;
-import binnie.core.BinnieCore;
 import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import binnie.genetics.genetics.AlleleHelper;
@@ -55,16 +54,16 @@ class FlowerBreedingSystem extends BreedingSystem {
 	public String getAlleleName(IChromosomeType chromosome, IAllele allele) {
 		if (chromosome == EnumFlowerChromosome.FERTILITY) {
 			if (allele.getUID().contains("Low")) {
-				return I18N.localise(BinnieCore.instance, "allele.fertility.low");
+				return I18N.localise("binniecore.allele.fertility.low");
 			}
 			if (allele.getUID().contains("Normal")) {
-				return I18N.localise(BinnieCore.instance, "allele.fertility.normal");
+				return I18N.localise("binniecore.allele.fertility.normal");
 			}
 			if (allele.getUID().contains("High")) {
-				return I18N.localise(BinnieCore.instance, "allele.fertility.high");
+				return I18N.localise("binniecore.allele.fertility.high");
 			}
 			if (allele.getUID().contains("Maximum")) {
-				return I18N.localise(BinnieCore.instance, "allele.fertility.maximum");
+				return I18N.localise("binniecore.allele.fertility.maximum");
 			}
 		}
 		return super.getAlleleName(chromosome, allele);

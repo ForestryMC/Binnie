@@ -1,6 +1,5 @@
 package binnie.genetics.genetics;
 
-import binnie.botany.Botany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
 import binnie.botany.api.EnumSoilType;
@@ -97,15 +96,15 @@ public class AlleleHelper extends forestry.core.genetics.alleles.AlleleHelper {
 	}
 
 	public static String toDisplay(EnumMoisture moisture) {
-		return I18N.localise(Botany.instance, "moisture." + moisture.getID());
+		return I18N.localise("botany.moisture." + moisture.getID());
 	}
 
 	public static String toDisplay(EnumAcidity acidity) {
-		return I18N.localise(Botany.instance, "ph." + acidity.getID());
+		return I18N.localise("botany.ph." + acidity.getID());
 	}
 
 	public static String toDisplay(EnumSoilType soilType) {
-		return I18N.localise(Botany.instance, "soil." + soilType.getID());
+		return I18N.localise("botany.soil." + soilType.getID());
 	}
 
 	public static String toDisplay(EnumTolerance tolerance) {

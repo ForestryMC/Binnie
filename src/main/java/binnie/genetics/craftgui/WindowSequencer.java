@@ -62,7 +62,7 @@ public class WindowSequencer extends WindowMachine {
 		slotTarget.assign(5);
 		x = 34;
 		y = 92;
-		slotText = new ControlText(this, new IArea(0.0f, y, w(), 12.0f), EnumChatFormatting.DARK_GRAY + I18N.localise(Genetics.instance, "machine.sequencer.gui.willNotSave"), TextJustification.MIDDLE_CENTER);
+		slotText = new ControlText(this, new IArea(0.0f, y, w(), 12.0f), EnumChatFormatting.DARK_GRAY + I18N.localise("genetics.machine.sequencer.gui.willNotSave"), TextJustification.MIDDLE_CENTER);
 		y += 20;
 		ControlSlot slotDye = new ControlSlot(this, x, y);
 		slotDye.assign(0);
@@ -77,7 +77,7 @@ public class WindowSequencer extends WindowMachine {
 
 	@Override
 	public String getTitle() {
-		return I18N.localise(Genetics.instance, "machine.machine.sequencer");
+		return I18N.localise("genetics.machine.machine.sequencer");
 	}
 
 	@Override

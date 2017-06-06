@@ -1,6 +1,5 @@
 package binnie.core.craftgui.minecraft.control;
 
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -24,10 +23,10 @@ public class ControlHelp extends Control implements ITooltip {
 	@Override
 	public void getTooltip(Tooltip tooltip) {
 		tooltip.setType(Tooltip.Type.HELP);
-		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.help"));
-		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.help.0"));
-		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.help.1"));
-		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.help.2"));
+		tooltip.add(I18N.localise("binniecore.gui.tooltip.help"));
+		tooltip.add(I18N.localise("binniecore.gui.tooltip.help.0"));
+		tooltip.add(I18N.localise("binniecore.gui.tooltip.help.1"));
+		tooltip.add(I18N.localise("binniecore.gui.tooltip.help.2"));
 	}
 
 	@Override

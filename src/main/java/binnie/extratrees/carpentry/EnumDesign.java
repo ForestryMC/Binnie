@@ -1,6 +1,5 @@
 package binnie.extratrees.carpentry;
 
-import binnie.botany.Botany;
 import binnie.core.util.I18N;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.ILayout;
@@ -412,7 +411,7 @@ public enum EnumDesign implements IDesign {
 
 	@Override
 	public String getName() {
-		return I18N.localise(Botany.instance, "design." + name);
+		return I18N.localise("botany.design." + name);
 	}
 
 	public void setName(String name) {

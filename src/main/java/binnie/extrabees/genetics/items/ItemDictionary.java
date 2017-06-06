@@ -43,7 +43,7 @@ public class ItemDictionary extends Item {
 	public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
 		super.addInformation(stack, player, tooltip, advanced);
 		if (stack.getItemDamage() > 0) {
-			tooltip.add(I18N.localise(ExtraBees.instance, "item.database.tooltip"));
+			tooltip.add(I18N.localise("extrabees.item.database.tooltip"));
 		}
 	}
 
@@ -67,7 +67,7 @@ public class ItemDictionary extends Item {
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		return (stack.getItemDamage() == 0)
-			? I18N.localise(ExtraBees.instance, "item.database")
-			: I18N.localise(ExtraBees.instance, "item.masterDatabase");
+			? I18N.localise("extrabees.item.database")
+			: I18N.localise("extrabees.item.masterDatabase");
 	}
 }

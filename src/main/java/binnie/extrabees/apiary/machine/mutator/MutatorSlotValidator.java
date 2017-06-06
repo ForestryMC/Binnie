@@ -18,6 +18,6 @@ public class MutatorSlotValidator extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return I18N.localise(ExtraBees.instance, "machine.alveay.mutator.tooltip");
+		return I18N.localise("extrabees.machine.alveay.mutator.tooltip");
 	}
 }

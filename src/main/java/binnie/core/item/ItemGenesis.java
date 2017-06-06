@@ -33,6 +33,6 @@ public class ItemGenesis extends Item {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack itemStack) {
-		return I18N.localise(BinnieCore.instance, "item.genesis.name");
+		return I18N.localise("binniecore.item.genesis.name");
 	}
 }

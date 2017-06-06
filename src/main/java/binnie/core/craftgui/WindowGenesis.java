@@ -56,7 +56,7 @@ public class WindowGenesis extends Window {
 
 	@Override
 	protected String getName() {
-		return I18N.localise(BinnieCore.instance, "gui.genesis");
+		return I18N.localise("binniecore.gui.genesis");
 	}
 
 	@Override

@@ -56,7 +56,7 @@ public class WindowInoculator extends WindowMachine {
 
 	@Override
 	public String getTitle() {
-		return I18N.localise(Genetics.instance, "machine.machine.inoculator");
+		return I18N.localise("genetics.machine.machine.inoculator");
 	}
 
 	@Override

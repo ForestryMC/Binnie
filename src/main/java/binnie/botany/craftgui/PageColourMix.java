@@ -1,6 +1,5 @@
 package binnie.botany.craftgui;
 
-import binnie.botany.Botany;
 import binnie.botany.api.IColourMix;
 import binnie.botany.api.IFlowerColor;
 import binnie.botany.core.BotanyCore;
@@ -20,7 +19,7 @@ public class PageColourMix extends PageAbstract<IFlowerColor> {
 
 	public PageColourMix(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
-		title = new ControlTextCentered(this, 8.0f, I18N.localise(Botany.instance, "gui.controls.pageColorFurtherTitle"));
+		title = new ControlTextCentered(this, 8.0f, I18N.localise("botany.gui.controls.pageColorFurtherTitle"));
 		list = new ControlColorMixBox(this, 4, 20, 136, 152, ControlColorMixBox.Type.Further);
 	}
 

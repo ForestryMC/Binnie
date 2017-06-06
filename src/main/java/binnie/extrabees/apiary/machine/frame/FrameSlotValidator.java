@@ -2,7 +2,6 @@ package binnie.extrabees.apiary.machine.frame;
 
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
-import binnie.extrabees.ExtraBees;
 import forestry.api.apiculture.IHiveFrame;
 import net.minecraft.item.ItemStack;
 
@@ -19,6 +18,6 @@ public class FrameSlotValidator extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return I18N.localise(ExtraBees.instance, "machine.alveay.frame.tooltip");
+		return I18N.localise("extrabees.achine.alveay.frame.tooltip");
 	}
 }

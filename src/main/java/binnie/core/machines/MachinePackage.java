@@ -27,7 +27,7 @@ public abstract class MachinePackage {
 	public abstract TileEntity createTileEntity();
 
 	public String getDisplayName() {
-		return I18N.localise(group.getMod(), "machine." + group.getShortUID() + "." + getUID());
+		return I18N.localise(group.getMod().getModID() + ".machine." + group.getShortUID() + "." + getUID());
 	}
 
 	public Integer getMetadata() {
@@ -57,6 +57,6 @@ public abstract class MachinePackage {
 	}
 
 	public String getInformation() {
-		return I18N.localise(group.getMod(), "machine." + group.getShortUID() + "." + getUID() + ".info");
+		return I18N.localise(group.getMod().getModID() + ".machine." + group.getShortUID() + "." + getUID() + ".info");
 	}
 }

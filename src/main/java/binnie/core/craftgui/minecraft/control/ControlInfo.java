@@ -1,6 +1,5 @@
 package binnie.core.craftgui.minecraft.control;
 
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -27,7 +26,7 @@ public class ControlInfo extends Control implements ITooltip {
 	@Override
 	public void getTooltip(Tooltip tooltip) {
 		tooltip.setType(Tooltip.Type.INFORMATION);
-		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.info"));
+		tooltip.add(I18N.localise("binniecore.gui.tooltip.info"));
 		tooltip.add(info);
 		tooltip.setMaxWidth(200);
 	}

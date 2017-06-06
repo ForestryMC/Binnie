@@ -92,7 +92,7 @@ public interface ILogType {
 		}
 
 		public String getName() {
-			return I18N.localise(ExtraTrees.instance, "block.planks." + name.toLowerCase(Locale.ENGLISH));
+			return I18N.localise("extratrees.block.planks." + name.toLowerCase(Locale.ENGLISH));
 		}
 
 		public void addRecipe() {

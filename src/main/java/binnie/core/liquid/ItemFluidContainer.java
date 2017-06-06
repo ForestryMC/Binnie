@@ -1,7 +1,6 @@
 package binnie.core.liquid;
 
 import binnie.Binnie;
-import binnie.core.BinnieCore;
 import binnie.core.util.I18N;
 import binnie.extratrees.alcohol.AlcoholEffect;
 import binnie.extratrees.alcohol.drink.DrinkManager;
@@ -70,7 +69,7 @@ public class ItemFluidContainer extends ItemFood {
 
 		FluidStack fluid = getLiquid(stack);
 		if (fluid == null) {
-			return I18N.localise(BinnieCore.instance, "item.fluidContainer.missed");
+			return I18N.localise("binniecore.item.fluidContainer.missed");
 		}
 		return fluid.getFluid().getLocalizedName(fluid) + " " + container.getName();
 	}

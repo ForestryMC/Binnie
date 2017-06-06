@@ -5,7 +5,6 @@ import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
-import binnie.genetics.Genetics;
 import net.minecraft.item.ItemStack;
 
 public class AnalyserComponentLogic extends ComponentProcessSetCost implements IProcess {
@@ -17,7 +16,7 @@ public class AnalyserComponentLogic extends ComponentProcessSetCost implements I
 	public ErrorState canWork() {
 		if (getUtil().isSlotEmpty(Analyser.SLOT_TARGET)) {
 			return new ErrorState.NoItem(
-				I18N.localise(Genetics.instance, "machine.analyser.error.noItem"),
+				I18N.localise("genetics.machine.analyser.error.noItem"),
 				Analyser.SLOT_TARGET
 			);
 		}
@@ -28,8 +27,8 @@ public class AnalyserComponentLogic extends ComponentProcessSetCost implements I
 		}
 
 		return new ErrorState.InvalidItem(
-			I18N.localise(Genetics.instance, "machine.analyser.error.alreadyAnalysed.title"),
-			I18N.localise(Genetics.instance, "machine.analyser.error.alreadyAnalysed"),
+			I18N.localise("genetics.machine.analyser.error.alreadyAnalysed.title"),
+			I18N.localise("genetics.machine.analyser.error.alreadyAnalysed"),
 			Analyser.SLOT_TARGET
 		);
 	}
@@ -41,8 +40,8 @@ public class AnalyserComponentLogic extends ComponentProcessSetCost implements I
 		}
 
 		return new ErrorState.Item(
-			I18N.localise(Genetics.instance, "machine.analyser.error.insufficientDye.title"),
-			I18N.localise(Genetics.instance, "machine.analyser.error.insufficientDye"),
+			I18N.localise("genetics.machine.analyser.error.insufficientDye.title"),
+			I18N.localise("genetics.machine.analyser.error.insufficientDye"),
 			new int[]{Analyser.SLOT_DYE}
 		);
 	}

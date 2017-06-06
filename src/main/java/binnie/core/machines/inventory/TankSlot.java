@@ -1,6 +1,5 @@
 package binnie.core.machines.inventory;
 
-import binnie.core.BinnieCore;
 import binnie.core.util.I18N;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
@@ -49,6 +48,6 @@ public class TankSlot extends BaseSlot<FluidStack> {
 
 	@Override
 	public String getName() {
-		return I18N.localise(BinnieCore.instance, "gui.slot." + unlocName);
+		return I18N.localise("binniecore.gui.slot." + unlocName);
 	}
 }

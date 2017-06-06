@@ -1,6 +1,5 @@
 package binnie.core.craftgui.database;
 
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
@@ -38,7 +37,10 @@ public class PageSpeciesOverview extends PageSpecies {
 	public void onValueChanged(IAlleleSpecies species) {
 		controlInd1.setSpecies(species, EnumDiscoveryState.SHOW);
 		controlInd2.setSpecies(species, EnumDiscoveryState.SHOW);
-		String branchBinomial = (species.getBranch() != null) ? species.getBranch().getScientific() : "<Unknown>";
+		String branchBinomial = (species.getBranch() != null)
+			? species.getBranch().getScientific()
+			: "<Unknown>";
+
 		controlName.setValue(EnumChatFormatting.BOLD + species.getName() + EnumChatFormatting.RESET);
 		controlScientific.setValue(EnumChatFormatting.ITALIC + branchBinomial + " " + species.getBinomial() + EnumChatFormatting.RESET);
 		controlAuthority.setValue(EnumChatFormatting.BOLD + "Discovered by " + species.getAuthority() + EnumChatFormatting.RESET);
@@ -48,7 +50,7 @@ public class PageSpeciesOverview extends PageSpecies {
 		String descSig = "";
 
 		if (desc == null || desc.isEmpty()) {
-			descBody += I18N.localise(BinnieCore.instance, "gui.database.species.noDesc");
+			descBody += I18N.localise("binniecore.gui.database.species.noDesc");
 		} else {
 			String[] descStrings = desc.split("\\|");
 			descBody += descStrings[0];
