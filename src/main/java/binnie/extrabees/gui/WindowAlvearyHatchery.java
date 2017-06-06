@@ -7,7 +7,7 @@ import binnie.core.craftgui.minecraft.control.ControlSlotArray;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
 import binnie.extrabees.ExtraBees;
-import binnie.extrabees.apiary.machine.AlvearyHatchery;
+import binnie.extrabees.apiary.machine.hatchery.AlvearyHatchery;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -33,7 +33,7 @@ public class WindowAlvearyHatchery extends Window {
 		setTitle("Hatchery");
 		playerInventory = new ControlPlayerInventory(this);
 		ControlSlotArray slot = new ControlSlotArray(this, 43, 30, 5, 1);
-		slot.create(AlvearyHatchery.slotLarvae);
+		slot.create(AlvearyHatchery.SLOT_LARVAE);
 	}
 
 	@Override

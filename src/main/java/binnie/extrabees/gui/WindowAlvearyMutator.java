@@ -11,7 +11,7 @@ import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
 import binnie.extrabees.ExtraBees;
-import binnie.extrabees.apiary.machine.AlvearyMutator;
+import binnie.extrabees.apiary.machine.mutator.AlvearyMutator;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

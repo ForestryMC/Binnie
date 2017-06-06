@@ -191,20 +191,28 @@ extrabees.glacial=Жидкий азот
 
 extrabees.machine.alveay.frame=Хранитель рамок улья
 extrabees.machine.alveay.frame.info=Хранитель рамок вмещает одну рамку улья для изменения черты пчелы.
+extrabees.machine.alveay.frame.tooltip=Рамки
+
 extrabees.machine.alveay.lighting=Осветитель улья
 extrabees.machine.alveay.lighting.info=Осветитель улья освещает улей ночью для продуктивности пчёл.
+
 extrabees.machine.alveay.mutator=Мутатор улья
 extrabees.machine.alveay.mutator.info=Мутатор использует определенные предметы для увеличения шанса мутации пчелы. Коэффициент ускорения для катализаторов: Песок душ - 1,5; Жемчуг Эндера - 2; Око Эндера - 4; Урановая руда - 10; Звезда нижнего мира - 50. Несколько мутаторов складывают коэффициенты. При кратности более 10 возможна деградация пчелы.
+extrabees.machine.alveay.mutator.tooltip=Мутагены
+
 extrabees.machine.alveay.rainShield=Навес улья
 extrabees.machine.alveay.rainShield.info=Навес защищает пчёл от дождя.
+
 extrabees.machine.alveay.stimulator=Электростимулятор улья
 extrabees.machine.alveay.stimulator.info=Использует схемы и энергию, чтобы стимулировать пчел, вместо использования рамок.
+extrabees.machine.alveay.stimulator.tooltip=Forestry платы
+
 extrabees.machine.alveay.hatchery=Инкубатор личинок улья
 extrabees.machine.alveay.hatchery.info=Инкубатор накапливает личинки принцесс внутри улья.
+extrabees.machine.alveay.hatchery.tooltip=Личинка
+
 extrabees.machine.alveay.transmission=Электротрансформатор улья
 extrabees.machine.alveay.transmission.info=Трансформатор принимает и распределяет энергию (RF или EU) для блоков, которые её требуют для работы.
-
-
 
 
 ##################################################

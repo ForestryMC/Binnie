@@ -186,17 +186,29 @@ extrabees.liquid.dna=Liquid DNA
 
 extrabees.machine.alveay.frame=Frame Housing
 extrabees.machine.alveay.frame.info=The Frame Housing holds one hive frame to alter a bee's traits.
+extrabees.machine.alveay.frame.tooltip=Hive Frames
+
 extrabees.machine.alveay.lighting=Alveary Lighting
 extrabees.machine.alveay.lighting.info=The Alveary Lighting tricks bees into thinking it is daylight at night time.
+
 extrabees.machine.alveay.mutator=Mutator
 extrabees.machine.alveay.mutator.info=The Mutator uses certain items in order to encourage bee mutation.
+extrabees.machine.alveay.mutator.tooltip=Mutagenic Agents
+
 extrabees.machine.alveay.rainShield=Rain Shield
 extrabees.machine.alveay.rainShield.info=The Rain Shield prevents bees from being affected by rainfall.
+
 extrabees.machine.alveay.stimulator=Electrical Stimulator
 extrabees.machine.alveay.stimulator.info=Uses circuits and power to stimulate bees in a way similar to frames.
+extrabees.machine.alveay.stimulator.tooltip=Forestry Circuits
+
 extrabees.machine.alveay.hatchery=Hatchery
 extrabees.machine.alveay.hatchery.info=Collect larvae laid by queen bees inside the alveary.
+extrabees.machine.alveay.hatchery.tooltip=Larvae
+
 extrabees.machine.alveay.transmission=Alveary Transmission
+extrabees.machine.alveay.transmission.info=
+
 
 ##################################################
 ## Misc

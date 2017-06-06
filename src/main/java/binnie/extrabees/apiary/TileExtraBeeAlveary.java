@@ -19,7 +19,12 @@ import net.minecraft.util.ChunkCoordinates;
 import java.util.LinkedList;
 import java.util.List;
 
-public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyComponent.Active, IAlvearyComponent.BeeModifier, IAlvearyComponent.BeeListener, IBeeListener, IBeeModifier {
+public class TileExtraBeeAlveary extends TileEntityMachine implements
+	IAlvearyComponent.Active,
+	IAlvearyComponent.BeeModifier,
+	IAlvearyComponent.BeeListener,
+	IBeeListener,
+	IBeeModifier {
 	protected IMultiblockLogicAlveary structureLogic;
 	protected ChunkCoordinates min;
 	protected ChunkCoordinates max;
@@ -44,15 +49,17 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
 	}
 
 	public List<TileEntity> getAlvearyBlocks() {
-		LinkedList<TileEntity> tiles = new LinkedList<TileEntity>();
-		if (min != null && max != null) {
-			for (int x = min.posX; x <= max.posX; ++x) {
-				for (int z = min.posZ; z <= max.posZ; ++z) {
-					for (int y = min.posY; y <= max.posY; ++y) {
-						TileEntity tile = getWorldObj().getTileEntity(x, y, z);
-						if (tile instanceof IMultiblockComponent) {
-							tiles.add(tile);
-						}
+		LinkedList<TileEntity> tiles = new LinkedList<>();
+		if (min == null || max == null) {
+			return tiles;
+		}
+
+		for (int x = min.posX; x <= max.posX; ++x) {
+			for (int z = min.posZ; z <= max.posZ; ++z) {
+				for (int y = min.posY; y <= max.posY; ++y) {
+					TileEntity tile = getWorldObj().getTileEntity(x, y, z);
+					if (tile instanceof IMultiblockComponent) {
+						tiles.add(tile);
 					}
 				}
 			}
@@ -544,5 +551,4 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
 	// return this.getMachine().getInterface(ISidedInventory.class);
 	// }
 	//
-
 }
