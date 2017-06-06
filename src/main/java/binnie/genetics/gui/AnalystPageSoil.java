@@ -32,15 +32,15 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		int y = 4;
 		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Soil").setColor(getColor());
 		y += 16;
-		new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 14.0f), "Moisture Tolerance", TextJustification.MiddleCenter).setColor(getColor());
+		new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 14.0f), "Moisture Tolerance", TextJustification.MIDDLE_CENTER).setColor(getColor());
 		y += 12;
 		createMoisture(this, (w() - 100.0f) / 2.0f, y, 100.0f, 10.0f, moisture, moistureTol);
 		y += 16;
-		new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 14.0f), "pH Tolerance", TextJustification.MiddleCenter).setColor(getColor());
+		new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 14.0f), "pH Tolerance", TextJustification.MIDDLE_CENTER).setColor(getColor());
 		y += 12;
 		createAcidity(this, (w() - 100.0f) / 2.0f, y, 100.0f, 10.0f, pH, pHTol);
 		y += 16;
-		new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 14.0f), "Recommended Soil", TextJustification.MiddleCenter).setColor(getColor());
+		new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 14.0f), "Recommended Soil", TextJustification.MIDDLE_CENTER).setColor(getColor());
 		y += 12;
 		EnumMoisture recomMoisture = EnumMoisture.NORMAL;
 		boolean canTolNormal = Tolerance.canTolerate(moisture, EnumMoisture.NORMAL, moistureTol);
@@ -82,7 +82,7 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		recomSoil.setItemStack(stack);
 		recomSoil.setTooltip();
 		y += 32;
-		new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 14.0f), "Other Soils", TextJustification.MiddleCenter).setColor(getColor());
+		new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 14.0f), "Other Soils", TextJustification.MIDDLE_CENTER).setColor(getColor());
 		y += 12;
 		List<ItemStack> stacks = new ArrayList<>();
 		for (EnumAcidity a : EnumSet.range(EnumAcidity.ACID, EnumAcidity.ALKALINE)) {

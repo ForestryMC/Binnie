@@ -26,7 +26,7 @@ public class ControlCheckbox extends Control implements IControlValue<Boolean> {
 		this.text = text;
 		value = bool;
 		if (w > 16.0f) {
-			new ControlText(this, new IArea(16.0f, 1.0f, w - 16.0f, 16.0f), text, TextJustification.MiddleCenter).setColor(4473924);
+			new ControlText(this, new IArea(16.0f, 1.0f, w - 16.0f, 16.0f), text, TextJustification.MIDDLE_CENTER).setColor(4473924);
 		}
 
 		addAttribute(WidgetAttribute.MOUSE_OVER);

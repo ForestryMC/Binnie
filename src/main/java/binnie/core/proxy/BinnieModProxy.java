@@ -4,7 +4,6 @@ import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.network.packet.MessageBase;
-import binnie.core.util.I18N;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -57,13 +56,5 @@ public class BinnieModProxy implements IBinnieModProxy {
 	@Override
 	public void postInit() {
 		// ignored
-	}
-
-	public String localise(String string) {
-		return I18N.localise(mod, string);
-	}
-
-	public String localiseOrBlank(String string) {
-		return I18N.localiseOrBlank(mod, string);
 	}
 }

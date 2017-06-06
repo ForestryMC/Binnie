@@ -3,6 +3,7 @@ package binnie.extratrees.item;
 import binnie.Binnie;
 import binnie.core.Mods;
 import binnie.core.item.IItemMisc;
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.alcohol.Juice;
 import forestry.api.recipes.RecipeManagers;
@@ -148,7 +149,7 @@ public enum Food implements IItemMisc {
 
 	@Override
 	public String getName(ItemStack itemStack) {
-		return ExtraTrees.proxy.localise("item.food." + name().toLowerCase());
+		return I18N.localise("extratrees.item.food." + name().toLowerCase());
 	}
 
 	@Override

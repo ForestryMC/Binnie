@@ -1,6 +1,6 @@
 package binnie.genetics;
 
-import binnie.extrabees.ExtraBees;
+import binnie.core.util.I18N;
 import binnie.genetics.item.GeneticsItems;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -32,7 +32,7 @@ public class GeneticsCreativeTab extends CreativeTabs {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getTabLabel() {
-		return ExtraBees.proxy.localise("tab.genetics");
+		return I18N.localise("extrabees.tab.genetics");
 	}
 
 	@Override

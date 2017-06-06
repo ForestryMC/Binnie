@@ -1,8 +1,8 @@
 package binnie.botany.genetics;
 
-import binnie.botany.Botany;
 import binnie.botany.api.IFlowerColor;
 import binnie.botany.core.BotanyCore;
+import binnie.core.util.I18N;
 import forestry.api.genetics.IAlleleInteger;
 
 import java.util.Locale;
@@ -2948,6 +2948,6 @@ public enum EnumFlowerColor implements IFlowerColor {
 
 	@Override
 	public String getName() {
-		return Botany.proxy.localise("colour." + name.toLowerCase(Locale.ENGLISH));
+		return I18N.localise("botany.colour." + name.toLowerCase(Locale.ENGLISH));
 	}
 }

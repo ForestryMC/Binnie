@@ -1,5 +1,6 @@
 package binnie.extrabees.products;
 
+import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -41,6 +42,6 @@ public class ItemHoneyCrystal extends Item {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack i) {
-		return ExtraBees.proxy.localise("item.honeycrystal");
+		return I18N.localise("extrabees.item.honeycrystal");
 	}
 }

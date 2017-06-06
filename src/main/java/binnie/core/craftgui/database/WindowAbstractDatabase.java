@@ -1,6 +1,5 @@
 package binnie.core.craftgui.database;
 
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextEdit;
 import binnie.core.craftgui.controls.listbox.ControlListBox;
@@ -21,6 +20,7 @@ import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlHelp;
 import binnie.core.craftgui.window.Panel;
 import binnie.core.genetics.BreedingSystem;
+import binnie.core.util.I18N;
 import binnie.core.util.IValidator;
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
@@ -228,7 +228,7 @@ public abstract class WindowAbstractDatabase extends Window {
 
 		@Override
 		public String getName() {
-			return BinnieCore.proxy.localise("gui.database.mode." + name().toLowerCase());
+			return I18N.localise("binniecore.gui.database.mode." + name().toLowerCase());
 		}
 	}
 
@@ -250,6 +250,6 @@ public abstract class WindowAbstractDatabase extends Window {
 			CraftGUIUtil.alignToWidget(infoPages = new ControlPages<>(modePage, 0.0f, 0.0f, 144.0f, 176.0f), database.panelInformation);
 		}
 
-		public abstract void createListBox(IArea p0);
+		public abstract void createListBox(IArea area);
 	}
 }

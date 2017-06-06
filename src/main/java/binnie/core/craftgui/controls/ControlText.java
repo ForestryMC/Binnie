@@ -13,7 +13,7 @@ public class ControlText extends Control implements IControlValue<String> {
 	private TextJustification align;
 
 	public ControlText(IWidget parent, IPoint pos, String text) {
-		this(parent, new IArea(pos, new IPoint(500.0f, 0.0f)), text, TextJustification.TopLeft);
+		this(parent, new IArea(pos, new IPoint(500.0f, 0.0f)), text, TextJustification.TOP_LEFT);
 	}
 
 	public ControlText(IWidget parent, String text, TextJustification align) {

@@ -1,6 +1,6 @@
 package binnie.extratrees.block;
 
-import binnie.extratrees.ExtraTrees;
+import binnie.core.util.I18N;
 import net.minecraft.util.IIcon;
 
 public enum DoorType {
@@ -21,6 +21,6 @@ public enum DoorType {
 	}
 
 	public String getName() {
-		return ExtraTrees.proxy.localise("block.door.type." + id);
+		return I18N.localise("extratrees.block.door.type." + id);
 	}
 }

@@ -1,6 +1,7 @@
 package binnie.extrabees.products;
 
 import binnie.core.item.IItemEnum;
+import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import forestry.api.recipes.RecipeManagers;
 import net.minecraft.item.ItemStack;
@@ -136,7 +137,7 @@ public enum EnumHoneyComb implements IItemEnum {
 
 	@Override
 	public String getName(ItemStack stack) {
-		return ExtraBees.proxy.localise("item.comb." + name);
+		return I18N.localise("extrabees.item.comb." + name);
 	}
 
 	public boolean addProduct(ItemStack item, Float chance) {

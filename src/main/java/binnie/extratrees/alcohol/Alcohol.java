@@ -3,6 +3,7 @@ package binnie.extratrees.alcohol;
 import binnie.Binnie;
 import binnie.core.liquid.FluidContainer;
 import binnie.core.liquid.IFluidType;
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
@@ -106,7 +107,7 @@ public enum Alcohol implements IFluidType, ICocktailLiquid {
 
 	@Override
 	public String getName() {
-		return ExtraTrees.proxy.localise("fluid.alcohol." + name().toLowerCase());
+		return I18N.localise("extrabees.fluid.alcohol." + name().toLowerCase());
 	}
 
 	@Override

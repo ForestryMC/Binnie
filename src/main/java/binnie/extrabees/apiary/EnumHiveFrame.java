@@ -4,7 +4,7 @@ import binnie.core.Mods;
 import binnie.core.genetics.BeeModifierLogic;
 import binnie.core.genetics.EnumBeeBooleanModifier;
 import binnie.core.genetics.EnumBeeModifier;
-import binnie.extrabees.ExtraBees;
+import binnie.core.util.I18N;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
@@ -135,7 +135,7 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 	}
 
 	public String getName() {
-		return ExtraBees.proxy.localise("item.frame." + toString().toLowerCase());
+		return I18N.localise("extrabees.item.frame." + toString().toLowerCase());
 	}
 
 	@Override

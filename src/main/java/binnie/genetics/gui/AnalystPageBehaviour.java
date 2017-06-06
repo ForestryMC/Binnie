@@ -1,13 +1,13 @@
 package binnie.genetics.gui;
 
 import binnie.Binnie;
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.util.I18N;
 import forestry.api.apiculture.IAlleleBeeEffect;
 import forestry.api.apiculture.IBee;
 import forestry.api.genetics.IIndividual;
@@ -36,9 +36,9 @@ public class AnalystPageBehaviour extends ControlAnalystPage {
 			IAlleleBeeEffect effect = bee.getGenome().getEffect();
 			int[] t = bee.getGenome().getTerritory();
 			if (!effect.getUID().contains("None")) {
-				String effectDesc = BinnieCore.proxy.localiseOrBlank("allele." + effect.getUID() + ".desc");
+				String effectDesc = I18N.localiseOrBlank("binniecore.allele." + effect.getUID() + ".desc");
 				String loc = effectDesc.equals("") ? ("Effect: " + effect.getName()) : effectDesc;
-				new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 0.0f), loc, TextJustification.TopCenter).setColor(getColor());
+				new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 0.0f), loc, TextJustification.TOP_CENTER).setColor(getColor());
 				y += (int) (CraftGUI.Render.textHeight(loc, w() - 8.0f) + 1.0f);
 				new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + "Within " + (int) (t[0] / 2.0f) + " blocks").setColor(getColor());
 				y += 22;
@@ -57,9 +57,9 @@ public class AnalystPageBehaviour extends ControlAnalystPage {
 			y += 22;
 			IAlleleButterflyEffect effect2 = bee2.getGenome().getEffect();
 			if (!effect2.getUID().contains("None")) {
-				String effectDesc2 = BinnieCore.proxy.localiseOrBlank("allele." + effect2.getUID() + ".desc");
+				String effectDesc2 = I18N.localiseOrBlank("binniecore.allele." + effect2.getUID() + ".desc");
 				String loc2 = effectDesc2.equals("") ? ("Effect: " + effect2.getName()) : effectDesc2;
-				new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 0.0f), loc2, TextJustification.TopCenter).setColor(getColor());
+				new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 0.0f), loc2, TextJustification.TOP_CENTER).setColor(getColor());
 				y += (int) (CraftGUI.Render.textHeight(loc2, w() - 8.0f) + 1.0f);
 				y += 22;
 			}

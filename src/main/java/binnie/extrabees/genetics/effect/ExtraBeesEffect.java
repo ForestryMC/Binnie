@@ -1,6 +1,7 @@
 package binnie.extrabees.genetics.effect;
 
 import binnie.Binnie;
+import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.genetics.ExtraBeesFlowers;
 import cofh.api.energy.IEnergyReceiver;
@@ -153,7 +154,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 
 	@Override
 	public String getName() {
-		return ExtraBees.proxy.localise("effect." + name().toLowerCase() + ".name");
+		return I18N.localise("extrabees.effect." + name().toLowerCase() + ".name");
 	}
 
 	@Override

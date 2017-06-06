@@ -1,7 +1,7 @@
 package binnie.extrabees.genetics;
 
 import binnie.core.Mods;
-import binnie.extrabees.ExtraBees;
+import binnie.core.util.I18N;
 import forestry.api.apiculture.FlowerManager;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
@@ -71,7 +71,7 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 
 	@Override
 	public String getDescription() {
-		return ExtraBees.proxy.localise("flowers." + name().toString().toLowerCase() + ".name");
+		return I18N.localise("extrabees.flowers." + name().toString().toLowerCase() + ".name");
 	}
 
 	public void register() {

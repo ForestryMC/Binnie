@@ -54,8 +54,8 @@ public class AnalystPageDescription extends ControlAnalystPage {
 		y += (int) (3.0f + CraftGUI.Render.textHeight("Discovered by " + EnumChatFormatting.BOLD + authority + EnumChatFormatting.RESET, w()));
 		new ControlTextCentered(this, y, "Genetic Complexity: " + species.getComplexity()).setColor(getColor());
 		y += 26;
-		ControlText descText = new ControlText(this, new IArea(8.0f, y, w() - 16.0f, 0.0f), descBody + EnumChatFormatting.RESET, TextJustification.TopCenter);
-		IWidget signatureText = new ControlText(this, new IArea(8.0f, y, w() - 16.0f, 0.0f), descSig + EnumChatFormatting.RESET, TextJustification.BottomRight);
+		ControlText descText = new ControlText(this, new IArea(8.0f, y, w() - 16.0f, 0.0f), descBody + EnumChatFormatting.RESET, TextJustification.TOP_CENTER);
+		IWidget signatureText = new ControlText(this, new IArea(8.0f, y, w() - 16.0f, 0.0f), descSig + EnumChatFormatting.RESET, TextJustification.BOTTOM_RIGHT);
 		descText.setColor(getColor());
 		signatureText.setColor(getColor());
 		float descHeight = CraftGUI.Render.textHeight(descText.getValue(), descText.getSize().x());

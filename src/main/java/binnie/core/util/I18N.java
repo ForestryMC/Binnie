@@ -20,10 +20,6 @@ public class I18N {
 		return localise(unlocalised(mod, id));
 	}
 
-	public static String localiseOrBlank(AbstractMod mod, String id) {
-		return localiseOrBlank(unlocalised(mod, id));
-	}
-
 	public static String localiseOrBlank(String key) {
 		String trans = localise(key);
 		return trans.equals(key) ? "" : trans;

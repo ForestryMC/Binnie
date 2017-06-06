@@ -30,8 +30,8 @@ public class PageSpeciesOverview extends PageSpecies {
 		controlScientific = new ControlTextCentered(this, 32.0f, "");
 		controlAuthority = new ControlTextCentered(this, 44.0f, "");
 		controlComplexity = new ControlTextCentered(this, 56.0f, "");
-		controlDescription = new ControlText(this, new IArea(8.0f, 84.0f, getSize().x() - 16.0f, 0.0f), "", TextJustification.MiddleCenter);
-		controlSignature = new ControlText(this, new IArea(8.0f, 84.0f, getSize().x() - 16.0f, 0.0f), "", TextJustification.BottomRight);
+		controlDescription = new ControlText(this, new IArea(8.0f, 84.0f, getSize().x() - 16.0f, 0.0f), "", TextJustification.MIDDLE_CENTER);
+		controlSignature = new ControlText(this, new IArea(8.0f, 84.0f, getSize().x() - 16.0f, 0.0f), "", TextJustification.BOTTOM_RIGHT);
 	}
 
 	@Override

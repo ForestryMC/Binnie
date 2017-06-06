@@ -20,7 +20,7 @@ public class ControlSequencerProgress extends ControlProgressBase {
 	public ControlSequencerProgress(IWidget parent, int x, int y) {
 		super(parent, x, y, 100.0f, 52.0f);
 		Panel panel = new Panel(this, 0.0f, 0.0f, 100.0f, 52.0f, MinecraftGUI.PanelType.Gray);
-		textControl = new ControlText(panel, new IArea(4.0f, 4.0f, 92.0f, 44.0f), "", TextJustification.MiddleCenter);
+		textControl = new ControlText(panel, new IArea(4.0f, 4.0f, 92.0f, 44.0f), "", TextJustification.MIDDLE_CENTER);
 	}
 
 	@Override

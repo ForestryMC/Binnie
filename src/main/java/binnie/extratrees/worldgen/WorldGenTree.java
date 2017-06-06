@@ -1,10 +1,6 @@
 package binnie.extratrees.worldgen;
 
 import binnie.extratrees.genetics.ExtraTreeSpecies;
-import binnie.extratrees.worldgen.BlockType;
-import binnie.extratrees.worldgen.BlockTypeLeaf;
-import binnie.extratrees.worldgen.BlockTypeLog;
-import binnie.extratrees.worldgen.BlockTypeVoid;
 import forestry.api.world.ITreeGenData;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;

@@ -126,7 +126,7 @@ public class Renderer {
 	}
 
 	public void text(IPoint pos, String text, int colour) {
-		text(new IArea(pos, new IPoint(500.0f, 500.0f)), TextJustification.TopLeft, text, colour);
+		text(new IArea(pos, new IPoint(500.0f, 500.0f)), TextJustification.TOP_LEFT, text, colour);
 	}
 
 	public void text(IArea area, TextJustification justification, String text, int colour) {

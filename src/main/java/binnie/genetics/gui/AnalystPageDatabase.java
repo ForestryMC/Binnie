@@ -97,7 +97,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 
 						@Override
 						public void onRenderBackground() {
-							CraftGUI.Render.text(getArea(), TextJustification.MiddleCenter, value.getName(), 16777215);
+							CraftGUI.Render.text(getArea(), TextJustification.MIDDLE_CENTER, value.getName(), 16777215);
 						}
 					};
 				}

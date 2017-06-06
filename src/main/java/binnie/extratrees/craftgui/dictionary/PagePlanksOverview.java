@@ -1,18 +1,15 @@
 package binnie.extratrees.craftgui.dictionary;
 
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.database.DatabaseTab;
 import binnie.core.craftgui.database.PageAbstract;
-import binnie.core.craftgui.database.WindowAbstractDatabase;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.geometry.TextJustification;
-import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
-import binnie.extratrees.ExtraTrees;
+import binnie.core.util.I18N;
 import binnie.extratrees.block.DoorType;
 import binnie.extratrees.block.IPlankType;
 import binnie.extratrees.block.WoodManager;
@@ -28,9 +25,8 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 	@Override
 	public void onValueChanged(ItemStack species) {
 		deleteAllChildren();
-		WindowAbstractDatabase database = Window.get(this);
-		new ControlText(this, new IArea(0.0f, 0.0f, size().x(), 24.0f), species.getDisplayName(), TextJustification.MiddleCenter);
-		new ControlText(this, new IArea(12.0f, 24.0f, size().x() - 24.0f, 24.0f), ExtraTrees.proxy.localise("gui.database.planks.use"), TextJustification.MiddleLeft);
+		new ControlText(this, new IArea(0.0f, 0.0f, size().x(), 24.0f), species.getDisplayName(), TextJustification.MIDDLE_CENTER);
+		new ControlText(this, new IArea(12.0f, 24.0f, size().x() - 24.0f, 24.0f), I18N.localise("extratrees.gui.database.planks.use"), TextJustification.MIDDLE_LEFT);
 		IPlankType type = WoodManager.get(species);
 		int x = 12;
 		if (type != null) {
@@ -47,12 +43,11 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 			}
 			if (door != null) {
 				new ControlItemDisplay(this, x, 48.0f).setItemStack(door);
-				x += 22;
 			}
 		}
 
-		ControlText controlDescription = new ControlText(this, new IArea(8.0f, 84.0f, getSize().x() - 16.0f, 0.0f), "", TextJustification.MiddleCenter);
-		ControlText controlSignature = new ControlText(this, new IArea(8.0f, 84.0f, getSize().x() - 16.0f, 0.0f), "", TextJustification.BottomRight);
+		ControlText controlDescription = new ControlText(this, new IArea(8.0f, 84.0f, getSize().x() - 16.0f, 0.0f), "", TextJustification.MIDDLE_CENTER);
+		ControlText controlSignature = new ControlText(this, new IArea(8.0f, 84.0f, getSize().x() - 16.0f, 0.0f), "", TextJustification.BOTTOM_RIGHT);
 		String desc = "";
 		if (type != null) {
 			desc = type.getDescription();
@@ -61,7 +56,7 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 		String descBody = EnumChatFormatting.ITALIC.toString();
 		String descSig = "";
 		if (desc == null || desc.length() == 0) {
-			descBody += BinnieCore.proxy.localise("gui.database.nodescription");
+			descBody += I18N.localise("binniecore.gui.database.nodescription");
 		} else {
 			String[] descStrings = desc.split("\\|");
 			descBody += descStrings[0];

@@ -1,6 +1,7 @@
 package binnie.extratrees.genetics;
 
 import binnie.Binnie;
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.FruitPod;
 import binnie.extratrees.config.ConfigurationMain;
@@ -337,7 +338,7 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
 
 	@Override
 	public String getDescription() {
-		return ExtraTrees.proxy.localise("item.food." + name().toLowerCase());
+		return I18N.localise("extratrees.item.food." + name().toLowerCase());
 	}
 
 	@Override
