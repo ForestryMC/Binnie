@@ -133,7 +133,7 @@ public class PageSpeciesGenome extends PageSpecies {
 
 	public static String tolerated(boolean t) {
 		if (t) {
-			return I18N.localise("extrabees.genetics.allele.tolerated");
+			return I18N.localise("extrabees.gui.database.tab.species.genome.tolerated");
 		}
 		return AlleleHelper.toDisplay(EnumTolerance.NONE);
 	}
@@ -148,31 +148,32 @@ public class PageSpeciesGenome extends PageSpecies {
 		IBeeGenome genome = Binnie.Genetics.getBeeRoot().templateAsGenome(template);
 		speedText.setValue(rateSpeed(genome.getSpeed()));
 		lifespanText.setValue(rateLifespan(genome.getLifespan()));
-		fertilityText.setValue(genome.getFertility() + " children");
+		fertilityText.setValue(I18N.localise("extrabees.gui.database.tab.species.genome.children", genome.getFertility()));
 		floweringText.setValue(rateFlowering(genome.getFlowering()));
 		int[] area = genome.getTerritory();
 		territoryText.setValue(area[0] + "x" + area[1] + "x" + area[2]);
-		String behavior = "Daytime";
 
-		if (genome.getPrimary().isNocturnal()) {
-			behavior = "Nighttime";
-		}
+		String behavior;
 		if (genome.getNocturnal()) {
-			behavior = "All Day";
+			behavior = I18N.localise("extrabees.gui.database.tab.species.genome.allDay");
+		} else if (genome.getPrimary().isNocturnal()) {
+			behavior = I18N.localise("extrabees.gui.database.tab.species.genome.nighttime");
+		} else {
+			behavior = I18N.localise("extrabees.gui.database.tab.species.genome.daytime");
 		}
-
+		
 		nocturnalText.setValue(behavior);
 		if (genome.getCaveDwelling()) {
-			caveDwellingText.setValue("Not Needed");
+			caveDwellingText.setValue(I18N.localise("extrabees.gui.database.tab.species.genome.notNeeded"));
 		} else {
-			caveDwellingText.setValue("Required");
+			caveDwellingText.setValue(I18N.localise("extrabees.gui.database.tab.species.genome.required"));
 		}
 
 		tolerantFlyerText.setValue(tolerated(genome.getTolerantFlyer()));
 		if (genome.getFlowerProvider() != null) {
 			flowerText.setValue(genome.getFlowerProvider().getDescription());
 		} else {
-			flowerText.setValue("None");
+			flowerText.setValue(AlleleHelper.toDisplay(EnumTolerance.NONE));
 		}
 		effectText.setValue(genome.getEffect().getName());
 	}

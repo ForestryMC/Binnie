@@ -238,8 +238,6 @@ extrabees.genetics.quality.good=Good
 extrabees.genetics.quality.excellent=Excellent
 extrabees.genetics.quality.tooltip=%s Quality
 
-extrabees.genetics.allele.tolerated=Tolerated
-
 extrabees.genetics.allele.noeffect=Effect Cancellation
 extrabees.genetics.allele.noflower=Non-pollination
 extrabees.genetics.allele.lifespan=%s Lifespan
@@ -497,6 +495,13 @@ extrabees.gui.database.tab.species.genome.sunlight=Sunlight:
 extrabees.gui.database.tab.species.genome.rain=Rain:
 extrabees.gui.database.tab.species.genome.flower=Flower:
 extrabees.gui.database.tab.species.genome.effect=Effect:
+extrabees.gui.database.tab.species.genome.tolerated=Tolerated
+extrabees.gui.database.tab.species.genome.daytime=Daytime
+extrabees.gui.database.tab.species.genome.nighttime=Nighttime
+extrabees.gui.database.tab.species.genome.allDay=All Day
+extrabees.gui.database.tab.species.genome.children=%d children
+extrabees.gui.database.tab.species.genome.notNeeded=Not Needed
+extrabees.gui.database.tab.species.genome.required=Required
 
 extrabees.gui.database.tab.species.products=Products
 extrabees.gui.database.tab.species.products.everyHours=Every %s hours

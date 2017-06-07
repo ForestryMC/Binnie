@@ -238,8 +238,6 @@ extrabees.genetics.quality.good=хорошо
 extrabees.genetics.quality.excellent=отлично
 extrabees.genetics.quality.tooltip=%s Качество
 
-extrabees.genetics.allele.tolerated=Терпимо
-
 extrabees.genetics.allele.noeffect=отмена эффекта
 extrabees.genetics.allele.noflower=неопыляющие
 extrabees.genetics.allele.lifespan=%s срока жизни
@@ -672,6 +670,13 @@ extrabees.gui.database.tab.species.genome.sunlight=Дневной свет:
 extrabees.gui.database.tab.species.genome.rain=Дождь:
 extrabees.gui.database.tab.species.genome.flower=Цветы:
 extrabees.gui.database.tab.species.genome.effect=Эффект:
+extrabees.gui.database.tab.species.genome.tolerated=Терпимо
+extrabees.gui.database.tab.species.genome.daytime=Дневное
+extrabees.gui.database.tab.species.genome.nighttime=Ночное
+extrabees.gui.database.tab.species.genome.allDay=Все время
+extrabees.gui.database.tab.species.genome.children=%d
+extrabees.gui.database.tab.species.genome.notNeeded=Не требуется
+extrabees.gui.database.tab.species.genome.required=Обязательно
 
 extrabees.gui.database.tab.species.products=Продукция
 extrabees.gui.database.tab.species.products.everyHours=Каждые %s ч.
