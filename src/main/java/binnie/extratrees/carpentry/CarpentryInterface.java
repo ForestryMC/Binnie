@@ -22,7 +22,8 @@ public class CarpentryInterface implements ICarpentryInterface {
 
 	@Override
 	public boolean registerCarpentryWood(int index, IDesignMaterial wood) {
-		return wood != null && CarpentryInterface.woodMap.put(index, wood) == null;
+		return wood != null
+			&& CarpentryInterface.woodMap.put(index, wood) == null;
 	}
 
 	@Override

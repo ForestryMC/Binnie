@@ -37,8 +37,8 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata {
 		int meta = TileEntityMetadata.getItemDamage(itemStack);
 		IPlankType type1 = getDescription(meta).getPlankType();
 		IPlankType type2 = getDescription(meta).getSecondaryPlankType();
-		boolean twoTypes = type1 != type2;
 		FenceType type3 = getDescription(meta).getFenceType();
+		boolean twoTypes = type1 != type2;
 		return I18N.localise("extratrees.block.woodslab.name" + (twoTypes ? "2" : ""), type3.getPrefix(), type1.getName(), type2.getName());
 	}
 }

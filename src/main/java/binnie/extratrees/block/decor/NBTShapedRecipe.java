@@ -130,6 +130,7 @@ public class NBTShapedRecipe implements IRecipe {
 	@Override
 	public ItemStack getCraftingResult(InventoryCrafting crafting) {
 		ItemStack itemstack = getRecipeOutput().copy();
+		// todo unused code?
 		if (field_92101_f) {
 			for (int i = 0; i < crafting.getSizeInventory(); ++i) {
 				ItemStack itemstack2 = crafting.getStackInSlot(i);

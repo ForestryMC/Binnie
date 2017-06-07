@@ -96,10 +96,4 @@ public class ModuleCarpentry implements IInitializable {
 			CarpentryManager.carpentryInterface.registerDesign(design.ordinal(), design);
 		}
 	}
-
-	enum Axis {
-		Y,
-		X,
-		Z
-	}
 }

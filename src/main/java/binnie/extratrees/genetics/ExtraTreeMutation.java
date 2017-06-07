@@ -154,31 +154,6 @@ public class ExtraTreeMutation implements ITreeMutation {
 		return allele;
 	}
 
-	public ExtraTreeMutation setIsSecret() {
-		isSecret = true;
-		return this;
-	}
-
-	public ExtraTreeMutation setTemperature(float minTemperature, float maxTemperature) {
-		this.minTemperature = minTemperature;
-		this.maxTemperature = maxTemperature;
-		return this;
-	}
-
-	public ExtraTreeMutation setRainfall(float minRainfall, float maxRainfall) {
-		this.minRainfall = minRainfall;
-		this.maxRainfall = maxRainfall;
-		return this;
-	}
-
-	public ExtraTreeMutation setTemperatureRainfall(float minTemperature, float maxTemperature, float minRainfall, float maxRainfall) {
-		this.minTemperature = minTemperature;
-		this.maxTemperature = maxTemperature;
-		this.minRainfall = minRainfall;
-		this.maxRainfall = maxRainfall;
-		return this;
-	}
-
 	public ExtraTreeMutation setHeight(int minHeight) {
 		height = minHeight;
 		return this;
@@ -246,7 +221,7 @@ public class ExtraTreeMutation implements ITreeMutation {
 
 	@Override
 	public Collection<String> getSpecialConditions() {
-		List<String> conditions = new ArrayList<String>();
+		List<String> conditions = new ArrayList<>();
 		if (height > 0.0f) {
 			conditions.add("Minimum height from bedrock of " + height);
 		}

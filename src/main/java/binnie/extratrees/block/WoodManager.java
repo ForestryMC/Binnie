@@ -49,7 +49,6 @@ public class WoodManager {
 				if (f != null && ItemStack.areItemStacksEqual(stack, f)) {
 					return new FenceDescription(new FenceType(0), type, type);
 				}
-				continue;
 			}
 		}
 		return null;
@@ -95,7 +94,7 @@ public class WoodManager {
 	}
 
 	public static List<IPlankType> getAllPlankTypes() {
-		List<IPlankType> list = new ArrayList<IPlankType>();
+		List<IPlankType> list = new ArrayList<>();
 		Collections.addAll(list, PlankType.ExtraTreePlanks.values());
 		Collections.addAll(list, PlankType.ForestryPlanks.values());
 		for (IPlankType type : PlankType.ExtraBiomesPlank.values()) {

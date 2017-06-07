@@ -69,8 +69,7 @@ public class ModuleBlocks implements IInitializable {
 
 		FMLInterModComms.sendMessage("Forestry", "add-fence-block", "ExtraTrees:fence");
 		FMLInterModComms.sendMessage("Forestry", "add-fence-block", "ExtraTrees:gate");
-		// FMLInterModComms.sendMessage("Forestry", "add-alveary-slab",
-		// "ExtraTrees:slab");
+		// FMLInterModComms.sendMessage("Forestry", "add-alveary-slab", "ExtraTrees:slab");
 		FMLInterModComms.sendMessage("Forestry", "add-fence-block", "ExtraTrees:multifence");
 		ModuleBlocks.hedgeRenderID = BinnieCore.proxy.getUniqueRenderID();
 	}

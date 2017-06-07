@@ -34,13 +34,6 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 		super(parent, tab);
 	}
 
-	public static String tolerated(boolean t) {
-		if (t) {
-			return I18N.localise("binniecore.gui.tolerated");
-		}
-		return I18N.localise("binniecore.gui.nottolerated");
-	}
-
 	@Override
 	public void onValueChanged(IAlleleSpecies species) {
 		deleteAllChildren();

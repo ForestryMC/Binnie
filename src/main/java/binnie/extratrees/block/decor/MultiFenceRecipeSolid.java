@@ -17,24 +17,24 @@ public class MultiFenceRecipeSolid implements IRecipe {
 			ItemStack a = inv.getStackInSlot(row * 3);
 			ItemStack b = inv.getStackInSlot(row * 3 + 1);
 			ItemStack c = inv.getStackInSlot(row * 3 + 2);
-			if (a != null && b != null) {
-				if (c != null) {
-					type = WoodManager.getFenceType(a);
-					FenceType type2 = WoodManager.getFenceType(b);
-					FenceType type3 = WoodManager.getFenceType(c);
-					if (type != null && type2 != null && type3 != null && type.equals(type2)) {
-						if (type.equals(type3)) {
-							cached = WoodManager.getFence(
-								WoodManager.getFenceDescription(a).getPlankType(),
-								WoodManager.getFenceDescription(a).getSecondaryPlankType(),
-								new FenceType(type.size, true, type.solid),
-								2
-							);
-							return true;
-						}
-					}
-				}
+			if (a == null || b == null || c == null) {
+				continue;
 			}
+
+			type = WoodManager.getFenceType(a);
+			FenceType type2 = WoodManager.getFenceType(b);
+			FenceType type3 = WoodManager.getFenceType(c);
+			if (type == null || type2 == null || type3 == null || !type.equals(type2) || !type.equals(type3)) {
+				continue;
+			}
+
+			cached = WoodManager.getFence(
+				WoodManager.getFenceDescription(a).getPlankType(),
+				WoodManager.getFenceDescription(a).getSecondaryPlankType(),
+				new FenceType(type.size, true, type.solid),
+				2
+			);
+			return true;
 		}
 		return false;
 	}

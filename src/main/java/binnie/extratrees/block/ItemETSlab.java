@@ -50,7 +50,8 @@ public class ItemETSlab extends ItemMetadata {
 			}
 			return true;
 		}
-		return func_77888_a(stack, player, world, x, y, z, meta) || super.onItemUse(stack, player, world, x, y, z, meta, hitX, hitY, hitZ);
+		return func_77888_a(stack, player, world, x, y, z, meta)
+			|| super.onItemUse(stack, player, world, x, y, z, meta, hitX, hitY, hitZ);
 	}
 
 	private boolean func_77888_a(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side) {

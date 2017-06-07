@@ -32,31 +32,25 @@ public enum DesignSystem implements IDesignSystem {
 	@Override
 	public IDesignMaterial getDefaultMaterial() {
 		switch (this) {
-			case Glass: {
+			case Glass:
 				return GlassType.get(0);
-			}
-			case Wood: {
+
+			case Wood:
 				return PlankType.ExtraTreePlanks.Fir;
-			}
-			default: {
-				return null;
-			}
 		}
+		return null;
 	}
 
 	@Override
 	public IDesignMaterial getDefaultMaterial2() {
 		switch (this) {
-			case Glass: {
+			case Glass:
 				return GlassType.get(1);
-			}
-			case Wood: {
+
+			case Wood:
 				return PlankType.ExtraTreePlanks.Whitebeam;
-			}
-			default: {
-				return null;
-			}
 		}
+		return null;
 	}
 
 	@Override

@@ -7,16 +7,16 @@ import binnie.extratrees.api.IDesignMaterial;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
+import java.awt.Color;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class GlassType implements IDesignMaterial {
-	protected static Map<Integer, GlassType> types;
+	protected static Map<Integer, GlassType> types = new LinkedHashMap<>();
 
 	static {
-		GlassType.types = new LinkedHashMap<>();
 		for (StandardColor c : StandardColor.values()) {
-			GlassType.types.put(c.ordinal(), new GlassType(c.ordinal(), c.name, c.colour));
+			GlassType.types.put(c.ordinal(), new GlassType(c.ordinal(), c.name, c.color));
 		}
 		for (EnumFlowerColor c2 : EnumFlowerColor.values()) {
 			GlassType.types.put(128 + c2.ordinal(), new GlassType(128 + c2.ordinal(), c2.getName(), c2.getColor(false)));
@@ -24,13 +24,13 @@ public class GlassType implements IDesignMaterial {
 	}
 
 	protected String name;
-	protected int colour;
+	protected int color;
 	protected int id;
 
-	private GlassType(int id, String name, int colour) {
+	private GlassType(int id, String name, int color) {
 		this.id = id;
 		this.name = name;
-		this.colour = colour;
+		this.color = color;
 	}
 
 	public static int getIndex(IDesignMaterial id) {
@@ -73,33 +73,33 @@ public class GlassType implements IDesignMaterial {
 
 	@Override
 	public int getColor() {
-		return colour;
+		return color;
 	}
 
 	private enum StandardColor {
-		White("White", 16777215),
-		Orange("Orange", 14188339),
-		Magenta("Magenta", 11685080),
-		LightBlue("Light Blue", 6724056),
-		Yellow("Yellow", 15066419),
-		Lime("Lime", 8375321),
-		Pink("Pink", 15892389),
-		Gray("Gray", 5000268),
-		LightGray("Light Gray", 10066329),
-		Cyan("Cyan", 5013401),
-		Purple("Purple", 8339378),
-		Blue("Blue", 3361970),
-		Brown("Brown", 6704179),
-		Green("Green", 6717235),
-		Red("Red", 10040115),
-		Black("Black", 1644825);
+		White("White", new Color(0xffffff)),
+		Orange("Orange", new Color(0xd87f33)),
+		Magenta("Magenta", new Color(0xb24cd8)),
+		LightBlue("Light Blue", new Color(0x6699d8)),
+		Yellow("Yellow", new Color(0xe5e533)),
+		Lime("Lime", new Color(0x7fcc19)),
+		Pink("Pink", new Color(0xf27fa5)),
+		Gray("Gray", new Color(0x4c4c4c)),
+		LightGray("Light Gray", new Color(0x999999)),
+		Cyan("Cyan", new Color(0x4c7f99)),
+		Purple("Purple", new Color(0x7f3fb2)),
+		Blue("Blue", new Color(0x334cb2)),
+		Brown("Brown", new Color(0x664c33)),
+		Green("Green", new Color(0x667f33)),
+		Red("Red", new Color(0x993333)),
+		Black("Black", new Color(0x191919));
 
 		protected String name;
-		protected int colour;
+		protected int color;
 
-		StandardColor(String name, int colour) {
+		StandardColor(String name, Color color) {
 			this.name = name;
-			this.colour = colour;
+			this.color = color.getRGB();
 		}
 	}
 }

@@ -78,7 +78,6 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 		}
 
 		IIcon icon2 = block2.getIcon(2, result.getItemDamage());
-		IPoint size = getSize();
 		IPoint pos = getAbsolutePosition();
 		CraftGUI.Render.limitArea(new IArea(pos.add(new IPoint(0.0f, 0.0f)), new IPoint(progress * 64.0f + 2.0f, 18.0f)));
 		GL11.glEnable(3089);

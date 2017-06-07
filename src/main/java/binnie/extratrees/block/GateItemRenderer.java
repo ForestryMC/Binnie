@@ -13,7 +13,6 @@ public class GateItemRenderer implements IItemRenderer {
 	private void renderStairBlock(RenderBlocks renderBlocks, ItemStack item, float f, float g, float h) {
 		Tessellator tessellator = Tessellator.instance;
 		Block block = ((ItemBlock) item.getItem()).field_150939_a;
-		IIcon textureIndex = WoodManager.getPlankType(item.getItemDamage()).getIcon();
 		for (int k = 0; k < 3; ++k) {
 			float f2 = 0.0625f;
 			if (k == 0) {

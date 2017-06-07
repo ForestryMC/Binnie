@@ -18,13 +18,9 @@ import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IFruitFamily;
 import forestry.arboriculture.FruitProviderNone;
 import forestry.arboriculture.genetics.alleles.AlleleTreeSpecies;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockLog;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Direction;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -103,18 +99,18 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
 	protected int diffB;
 	protected FruitPod pod;
 	protected int ripeningPeriod;
-	protected int colourUnripe;
-	protected int colour;
+	protected int colorUnripe;
+	protected int color;
 	protected FruitSprite index;
 	protected HashMap<ItemStack, Float> products;
 
-	ExtraTreeFruitGene(int time, int unripe, int colour, FruitSprite index) {
+	ExtraTreeFruitGene(int time, int unripe, int color, FruitSprite index) {
 		isRipening = false;
 		diffB = 0;
 		pod = null;
 		ripeningPeriod = 0;
 		products = new HashMap<>();
-		this.colour = colour;
+		this.color = color;
 		this.index = index;
 		setRipening(time, unripe);
 	}
@@ -124,7 +120,7 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
 		diffB = 0;
 		this.pod = null;
 		ripeningPeriod = 0;
-		products = new HashMap<ItemStack, Float>();
+		products = new HashMap<>();
 		this.pod = pod;
 		ripeningPeriod = 2;
 	}
@@ -279,32 +275,13 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
 		}
 	}
 
-	public static int getDirectionalMetadata(World world, int x, int y, int z) {
-		for (int i = 0; i < 4; ++i) {
-			if (isValidPot(world, x, y, z, i)) {
-				return i;
-			}
-		}
-		return -1;
-	}
-
-	public static boolean isValidPot(World world, int x, int y, int z, int notchDirection) {
-		x += Direction.offsetX[notchDirection];
-		z += Direction.offsetZ[notchDirection];
-		Block block = world.getBlock(x, y, z);
-		if (block == Blocks.log || block == Blocks.log2) {
-			return BlockLog.func_150165_c(world.getBlockMetadata(x, y, z)) == 3;
-		}
-		return block != null && block.isWood(world, x, y, z);
-	}
-
 	public void setRipening(int time, int unripe) {
 		ripeningPeriod = time;
-		colourUnripe = unripe;
+		colorUnripe = unripe;
 		isRipening = true;
-		diffR = (colour >> 16 & 0xFF) - (unripe >> 16 & 0xFF);
-		diffG = (colour >> 8 & 0xFF) - (unripe >> 8 & 0xFF);
-		diffB = (colour & 0xFF) - (unripe & 0xFF);
+		diffR = (color >> 16 & 0xFF) - (unripe >> 16 & 0xFF);
+		diffG = (color >> 8 & 0xFF) - (unripe >> 8 & 0xFF);
+		diffB = (color & 0xFF) - (unripe & 0xFF);
 	}
 
 	public void addProduct(ItemStack product, float chance) {
@@ -353,13 +330,13 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
 	@Override
 	public int getColour(ITreeGenome genome, IBlockAccess world, int x, int y, int z, int ripeningTime) {
 		if (!isRipening) {
-			return colour;
+			return color;
 		}
 
 		float stage = getRipeningStage(ripeningTime);
-		int r = (colourUnripe >> 16 & 0xFF) + (int) (diffR * stage);
-		int g = (colourUnripe >> 8 & 0xFF) + (int) (diffG * stage);
-		int b = (colourUnripe & 0xFF) + (int) (diffB * stage);
+		int r = (colorUnripe >> 16 & 0xFF) + (int) (diffR * stage);
+		int g = (colorUnripe >> 8 & 0xFF) + (int) (diffG * stage);
+		int b = (colorUnripe & 0xFF) + (int) (diffB * stage);
 		return (r & 0xFF) << 16 | (g & 0xFF) << 8 | (b & 0xFF);
 	}
 
@@ -377,7 +354,7 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
 	public ItemStack[] getFruits(ITreeGenome genome, World world, int x, int y, int z, int ripeningTime) {
 		if (pod != null) {
 			if (ripeningTime >= 2) {
-				List<ItemStack> product = new ArrayList<ItemStack>();
+				List<ItemStack> product = new ArrayList<>();
 				for (Map.Entry<ItemStack, Float> entry : products.entrySet()) {
 					ItemStack single = entry.getKey().copy();
 					single.stackSize = 1;
@@ -392,7 +369,7 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
 			return new ItemStack[0];
 		}
 
-		ArrayList<ItemStack> product2 = new ArrayList<ItemStack>();
+		ArrayList<ItemStack> product2 = new ArrayList<>();
 		float stage = getRipeningStage(ripeningTime);
 		if (stage < 0.5f) {
 			return new ItemStack[0];
@@ -424,10 +401,6 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
 		return pod != null
 			&& world.rand.nextFloat() <= genome.getSappiness()
 			&& Binnie.Genetics.getTreeRoot().setFruitBlock(world, (IAlleleFruit) genome.getActiveAllele(EnumTreeChromosome.FRUITS), genome.getSappiness(), pod.getTextures(), x, y, z);
-	}
-
-	public boolean setFruitBlock(World world, IAlleleFruit allele, float sappiness, int x, int y, int z) {
-		return true;
 	}
 
 	@Override
