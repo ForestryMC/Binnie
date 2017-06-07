@@ -48,17 +48,17 @@ public class AnalystPageClimate extends ControlAnalystPage {
 		int y = 4;
 		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Climate").setColor(getColor());
 		y += 16;
-		new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 14.0f), "Temp. Tolerance", TextJustification.MiddleCenter).setColor(getColor());
+		new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 14.0f), "Temp. Tolerance", TextJustification.MIDDLE_CENTER).setColor(getColor());
 		y += 12;
 		createTemperatureBar(this, (w() - 100.0f) / 2.0f, y, 100.0f, 10.0f, temp, tempTol);
 		y += 16;
 		if (!(ind instanceof IFlower)) {
-			new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 14.0f), "Humidity Tolerance", TextJustification.MiddleCenter).setColor(getColor());
+			new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 14.0f), "Humidity Tolerance", TextJustification.MIDDLE_CENTER).setColor(getColor());
 			y += 12;
 			createHumidity(this, (w() - 100.0f) / 2.0f, y, 100.0f, 10.0f, humid, humidTol);
 			y += 16;
 		}
-		new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 14.0f), "Biomes", TextJustification.MiddleCenter).setColor(getColor());
+		new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 14.0f), "Biomes", TextJustification.MIDDLE_CENTER).setColor(getColor());
 		y += 12;
 		List<BiomeGenBase> biomes = new ArrayList<BiomeGenBase>();
 		for (BiomeGenBase biome : BiomeGenBase.getBiomeGenArray()) {

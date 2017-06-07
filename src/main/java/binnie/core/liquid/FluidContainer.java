@@ -2,6 +2,7 @@ package binnie.core.liquid;
 
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
+import binnie.core.util.I18N;
 import binnie.genetics.item.GeneticsItems;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -50,7 +51,7 @@ public enum FluidContainer {
 	}
 
 	public String getName() {
-		return BinnieCore.proxy.localise("item.container." + name().toLowerCase());
+		return I18N.localise("binniecore.item.container." + name().toLowerCase());
 	}
 
 	public boolean isActive() {

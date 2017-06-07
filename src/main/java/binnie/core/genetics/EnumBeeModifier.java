@@ -1,6 +1,5 @@
 package binnie.core.genetics;
 
-import binnie.core.BinnieCore;
 import binnie.core.util.I18N;
 
 public enum EnumBeeModifier {
@@ -12,6 +11,6 @@ public enum EnumBeeModifier {
 	GENETIC_DECAY;
 
 	public String getName() {
-		return I18N.localise(BinnieCore.instance, "beemodifier." + name().toLowerCase());
+		return I18N.localise("binniecore.beemodifier." + name().toLowerCase());
 	}
 }

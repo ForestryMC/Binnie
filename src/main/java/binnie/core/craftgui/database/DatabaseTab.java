@@ -16,11 +16,11 @@ public class DatabaseTab implements ITooltipHelp {
 
 	@Override
 	public String toString() {
-		return I18N.localise(mod, "gui.database.tab." + unloc);
+		return I18N.localise(mod.getModID() + ".gui.database.tab." + unloc);
 	}
 
 	@Override
 	public void getHelpTooltip(Tooltip tooltip) {
-		tooltip.add(I18N.localiseOrBlank(mod, "gui.database.tab." + unloc + ".help"));
+		tooltip.add(I18N.localiseOrBlank(mod.getModID() + ".gui.database.tab." + unloc + ".help"));
 	}
 }

@@ -3,6 +3,7 @@ package binnie.extrabees.liquids;
 import binnie.Binnie;
 import binnie.core.liquid.FluidContainer;
 import binnie.core.liquid.ILiquidType;
+import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -39,7 +40,7 @@ public enum ExtraBeeLiquid implements ILiquidType {
 
 	@Override
 	public String getName() {
-		return ExtraBees.proxy.localise(toString().toLowerCase());
+		return I18N.localise("extrabees." + toString().toLowerCase());
 	}
 
 	@Override

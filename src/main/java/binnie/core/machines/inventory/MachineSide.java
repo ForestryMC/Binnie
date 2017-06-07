@@ -1,6 +1,5 @@
 package binnie.core.machines.inventory;
 
-import binnie.core.BinnieCore;
 import binnie.core.util.I18N;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -31,10 +30,10 @@ public class MachineSide {
 
 	public static String asString(Collection<ForgeDirection> sides) {
 		if (sides.containsAll(MachineSide.ALL)) {
-			return I18N.localise(BinnieCore.instance, "gui.side.any");
+			return I18N.localise("binniecore.gui.side.any");
 		}
 		if (sides.isEmpty()) {
-			return I18N.localise(BinnieCore.instance, "gui.side.none");
+			return I18N.localise("binniecore.gui.side.none");
 		}
 
 		String text = "";
@@ -42,48 +41,48 @@ public class MachineSide {
 			if (sides.size() > 0) {
 				text += ", ";
 			}
-			text += I18N.localise(BinnieCore.instance, "gui.side.up");
+			text += I18N.localise("binniecore.gui.side.up");
 		}
 
 		if (sides.contains(ForgeDirection.DOWN)) {
 			if (sides.size() > 0) {
 				text += ", ";
 			}
-			text += I18N.localise(BinnieCore.instance, "gui.side.down");
+			text += I18N.localise("binniecore.gui.side.down");
 		}
 
 		if (sides.containsAll(MachineSide.SIDES)) {
 			if (sides.size() > 0) {
 				text += ", ";
 			}
-			text += I18N.localise(BinnieCore.instance, "gui.side.sides");
+			text += I18N.localise("binniecore.gui.side.sides");
 		} else {
 			if (sides.contains(ForgeDirection.NORTH)) {
 				if (sides.size() > 0) {
 					text += ", ";
 				}
-				text += I18N.localise(BinnieCore.instance, "gui.side.north");
+				text += I18N.localise("binniecore.gui.side.north");
 			}
 
 			if (sides.contains(ForgeDirection.EAST)) {
 				if (sides.size() > 0) {
 					text += ", ";
 				}
-				text += I18N.localise(BinnieCore.instance, "gui.side.east");
+				text += I18N.localise("binniecore.gui.side.east");
 			}
 
 			if (sides.contains(ForgeDirection.SOUTH)) {
 				if (sides.size() > 0) {
 					text += ", ";
 				}
-				text += I18N.localise(BinnieCore.instance, "gui.side.south");
+				text += I18N.localise("binniecore.gui.side.south");
 			}
 
 			if (sides.contains(ForgeDirection.WEST)) {
 				if (sides.size() > 0) {
 					text += ", ";
 				}
-				text += I18N.localise(BinnieCore.instance, "gui.side.west");
+				text += I18N.localise("binniecore.gui.side.west");
 			}
 		}
 		return text;

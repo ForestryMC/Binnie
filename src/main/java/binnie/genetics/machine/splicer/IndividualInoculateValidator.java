@@ -3,7 +3,6 @@ package binnie.genetics.machine.splicer;
 import binnie.Binnie;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
-import binnie.genetics.Genetics;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.item.ItemStack;
@@ -21,6 +20,6 @@ public class IndividualInoculateValidator extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return I18N.localise(Genetics.instance, "machine.splicer.splicableIndividual");
+		return I18N.localise("genetics.machine.splicer.splicableIndividual");
 	}
 }

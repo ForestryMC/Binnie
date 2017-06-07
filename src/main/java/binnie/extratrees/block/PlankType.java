@@ -2,6 +2,7 @@ package binnie.extratrees.block;
 
 import binnie.core.Mods;
 import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
 import com.google.common.base.Optional;
@@ -75,12 +76,12 @@ public class PlankType {
 
 		@Override
 		public String getName() {
-			return ExtraTrees.proxy.localise("block.planks." + toString().toLowerCase());
+			return I18N.localise("extratrees.block.planks." + toString().toLowerCase());
 		}
 
 		@Override
 		public String getDescription() {
-			return ExtraTrees.proxy.localise("block.planks." + toString().toLowerCase() + ".desc");
+			return I18N.localise("extratrees.block.planks." + toString().toLowerCase() + ".desc");
 		}
 
 		@Override
@@ -124,12 +125,12 @@ public class PlankType {
 
 		@Override
 		public String getName() {
-			return ExtraTrees.proxy.localise("block.planks.vanilla." + toString().toLowerCase());
+			return I18N.localise("extratrees.block.planks.vanilla." + toString().toLowerCase());
 		}
 
 		@Override
 		public String getDescription() {
-			return ExtraTrees.proxy.localise("block.planks.vanilla." + toString().toLowerCase() + ".desc");
+			return I18N.localise("extratrees.block.planks.vanilla." + toString().toLowerCase() + ".desc");
 		}
 
 		@Override
@@ -189,12 +190,12 @@ public class PlankType {
 
 		@Override
 		public String getName() {
-			return ExtraTrees.proxy.localise("block.planks.forestry." + toString().toLowerCase());
+			return I18N.localise("extratrees.block.planks.forestry." + toString().toLowerCase());
 		}
 
 		@Override
 		public String getDescription() {
-			return ExtraTrees.proxy.localise("block.planks.forestry." + toString().toLowerCase() + ".desc");
+			return I18N.localise("extratrees.block.planks.forestry." + toString().toLowerCase() + ".desc");
 		}
 
 		@Override
@@ -239,12 +240,12 @@ public class PlankType {
 
 		@Override
 		public String getName() {
-			return ExtraTrees.proxy.localise("block.planks.ebxl." + toString().toLowerCase());
+			return I18N.localise("extratrees.block.planks.ebxl." + toString().toLowerCase());
 		}
 
 		@Override
 		public String getDescription() {
-			return ExtraTrees.proxy.localise("block.planks.ebxl." + toString().toLowerCase() + ".desc");
+			return I18N.localise("extratrees.block.planks.ebxl." + toString().toLowerCase() + ".desc");
 		}
 
 		@Override

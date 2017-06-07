@@ -110,10 +110,10 @@ public class ModuleBlocks implements IInitializable {
 			ItemStack planks2 = plank2.getStack();
 			ItemStack fenceNormal = WoodManager.getFence(plank2, new FenceType(0), 1);
 			ItemStack gate = WoodManager.getGate(plank2);
-			ItemStack doorStandard = WoodManager.getDoor(plank2, DoorType.Standard);
-			ItemStack doorSolid = WoodManager.getDoor(plank2, DoorType.Solid);
-			ItemStack doorSplit = WoodManager.getDoor(plank2, DoorType.Double);
-			ItemStack doorFull = WoodManager.getDoor(plank2, DoorType.Full);
+			ItemStack doorStandard = WoodManager.getDoor(plank2, DoorType.STANDARD);
+			ItemStack doorSolid = WoodManager.getDoor(plank2, DoorType.SOLID);
+			ItemStack doorSplit = WoodManager.getDoor(plank2, DoorType.DOUBLE);
+			ItemStack doorFull = WoodManager.getDoor(plank2, DoorType.FULL);
 			if (planks2 != null) {
 				if (gate == null) {
 					continue;

@@ -130,6 +130,10 @@ extrabees.item.template.corrupted=Corrupted Template
 extrabees.item.template.name=%s Template
 extrabees.item.template.empty=Blank Template
 
+extrabees.item.database=Apiarist Database
+extrabees.item.masterDatabase=Master Apiarist Database
+extrabees.item.database.tooltip=Flora-in-a-box
+
 extrabees.item.scentedGear=Scented Gear
 extrabees.item.diamondShard=Diamond Fragment
 extrabees.item.emeraldShard=Emerald Fragment
@@ -186,17 +190,29 @@ extrabees.liquid.dna=Liquid DNA
 
 extrabees.machine.alveay.frame=Frame Housing
 extrabees.machine.alveay.frame.info=The Frame Housing holds one hive frame to alter a bee's traits.
+extrabees.machine.alveay.frame.tooltip=Hive Frames
+
 extrabees.machine.alveay.lighting=Alveary Lighting
 extrabees.machine.alveay.lighting.info=The Alveary Lighting tricks bees into thinking it is daylight at night time.
+
 extrabees.machine.alveay.mutator=Mutator
 extrabees.machine.alveay.mutator.info=The Mutator uses certain items in order to encourage bee mutation.
+extrabees.machine.alveay.mutator.tooltip=Mutagenic Agents
+
 extrabees.machine.alveay.rainShield=Rain Shield
 extrabees.machine.alveay.rainShield.info=The Rain Shield prevents bees from being affected by rainfall.
+
 extrabees.machine.alveay.stimulator=Electrical Stimulator
 extrabees.machine.alveay.stimulator.info=Uses circuits and power to stimulate bees in a way similar to frames.
+extrabees.machine.alveay.stimulator.tooltip=Forestry Circuits
+
 extrabees.machine.alveay.hatchery=Hatchery
 extrabees.machine.alveay.hatchery.info=Collect larvae laid by queen bees inside the alveary.
+extrabees.machine.alveay.hatchery.tooltip=Larvae
+
 extrabees.machine.alveay.transmission=Alveary Transmission
+extrabees.machine.alveay.transmission.info=
+
 
 ##################################################
 ## Misc
@@ -220,7 +236,6 @@ extrabees.genetics.quality.poor=Poor
 extrabees.genetics.quality.average=Average
 extrabees.genetics.quality.good=Good
 extrabees.genetics.quality.excellent=Excellent
-
 extrabees.genetics.quality.tooltip=%s Quality
 
 extrabees.genetics.allele.shortest=Shortest
@@ -287,37 +302,38 @@ extrabees.genetics.allele.caveDwelling=Cave Dwelling
 extrabees.genetics.allele.tolerantFlyer=Rainfall
 
 extrabees.genetics.corrupted=Corrupted
+extrabees.genetics.requirements.user=Can only be bred by %s
 
-extrabees.branch.barren.name=Barren
-extrabees.branch.barren.desc=Although initially these bees are considerably useless due to their meagre combs, they can lead onto greater things.
-extrabees.branch.hostile.name=Hostile
-extrabees.branch.hostile.desc=Prone to summoning monsters out of the blue, these bees nonetheless make useful if distasteful products.
-extrabees.branch.rocky.name=Rocky
-extrabees.branch.rocky.desc=Found amoungst the rocks, these bees have very high tolarance to adverse conditions.
-extrabees.branch.metallic.name=Rusty
-extrabees.branch.metallic2.name=Metallic
-extrabees.branch.alloy.name=Alloyed
-extrabees.branch.farming.name=Agricultural
-extrabees.branch.precious.name=Precious
-extrabees.branch.mineral.name=Mineral
-extrabees.branch.gemstone.name=Gemstone
-extrabees.branch.nuclear.name=Nuclear
-extrabees.branch.historic.name=Historic
-extrabees.branch.fossilized.name=Fossilised
-extrabees.branch.refined.name=Refined
-extrabees.branch.aquatic.name=Aquatic
-extrabees.branch.saccharine.name=Saccharine
-extrabees.branch.volcanic.name=Volcanic
-extrabees.branch.viscous.name=Viscous
-extrabees.branch.virulent.name=Virulent
-extrabees.branch.caustic.name=Caustic
-extrabees.branch.energetic.name=Energetic
-extrabees.branch.shadow.name=Shadow
-extrabees.branch.primary.name=Primary
-extrabees.branch.secondary.name=Secondary
-extrabees.branch.tertiary.name=Tertiary
-extrabees.branch.ftb.name=Beastly
-extrabees.branch.quantum.name=Quantum
+for.genus.bees.barren=Barren
+for.genus.bees.barren.description=Although initially these bees are considerably useless due to their meagre combs, they can lead onto greater things.
+for.genus.bees.hostile=Hostile
+for.genus.bees.hostile.description=Prone to summoning monsters out of the blue, these bees nonetheless make useful if distasteful products.
+for.genus.bees.rocky=Rocky
+for.genus.bees.rocky.description=Found amoungst the rocks, these bees have very high tolarance to adverse conditions.
+for.genus.bees.metallic=Rusty
+for.genus.bees.metallic2=Metallic
+for.genus.bees.alloy=Alloyed
+for.genus.bees.farming=Agricultural
+for.genus.bees.precious=Precious
+for.genus.bees.mineral=Mineral
+for.genus.bees.gemstone=Gemstone
+for.genus.bees.nuclear=Nuclear
+for.genus.bees.historic=Historic
+for.genus.bees.fossilized=Fossilised
+for.genus.bees.refined=Refined
+for.genus.bees.aquatic=Aquatic
+for.genus.bees.saccharine=Saccharine
+for.genus.bees.volcanic=Volcanic
+for.genus.bees.viscous=Viscous
+for.genus.bees.virulent=Virulent
+for.genus.bees.caustic=Caustic
+for.genus.bees.energetic=Energetic
+for.genus.bees.shadow=Shadow
+for.genus.bees.primary=Primary
+for.genus.bees.secondary=Secondary
+for.genus.bees.tertiary=Tertiary
+for.genus.bees.ftb=Beastly
+for.genus.bees.quantum=Quantum
 
 extrabees.flowers.water.name=Lily Pads
 extrabees.flowers.sugar.name=Reeds
@@ -514,6 +530,9 @@ extrabees.gui.database.tab.species.overview=Overview
 extrabees.gui.database.tab.species.classification=Classification
 extrabees.gui.database.tab.species.genome=Genome
 extrabees.gui.database.tab.species.products=Products
+extrabees.gui.database.tab.species.products.everyHours=Every %s hours
+extrabees.gui.database.tab.species.products.everyMins=Every %s min.
+extrabees.gui.database.tab.species.products.everySecs=Every %s sec.
 extrabees.gui.database.tab.species.climate=Climate
 extrabees.gui.database.tab.species.resultant=Resultant Mutations
 extrabees.gui.database.tab.species.further=Further Mutations

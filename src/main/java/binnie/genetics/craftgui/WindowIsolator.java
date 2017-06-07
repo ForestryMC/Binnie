@@ -66,7 +66,7 @@ public class WindowIsolator extends WindowMachine {
 
 	@Override
 	public String getTitle() {
-		return I18N.localise(Genetics.instance, "machine.machine.isolator");
+		return I18N.localise("genetics.machine.machine.isolator");
 	}
 
 	@Override

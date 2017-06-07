@@ -42,13 +42,12 @@ public class ItemSoilMeter extends Item {
 			EnumMoisture moisture = soil.getMoisture(world, x, y, z);
 			EnumAcidity pH = soil.getPH(world, x, y, z);
 
-			// TODO remove hardcoded strings ans localize
 			EnumChatFormatting[] colors = new EnumChatFormatting[]{
 				EnumChatFormatting.DARK_GRAY,
 				EnumChatFormatting.GOLD,
 				EnumChatFormatting.LIGHT_PURPLE,
 			};
-			String info = "Type: ";
+			String info = I18N.localise("botany.soil.tooltip.type") + " ";
 			info += colors[type.ordinal()] + AlleleHelper.toDisplay(type) + EnumChatFormatting.RESET;
 
 			colors = new EnumChatFormatting[]{
@@ -56,7 +55,7 @@ public class ItemSoilMeter extends Item {
 				EnumChatFormatting.GRAY,
 				EnumChatFormatting.BLUE,
 			};
-			info += ", Moisture: ";
+			info += ", " + I18N.localise("botany.soil.tooltip.moisture") + " ";
 			info += colors[moisture.ordinal()] + AlleleHelper.toDisplay(moisture) + EnumChatFormatting.RESET;
 
 			colors = new EnumChatFormatting[]{
@@ -64,7 +63,7 @@ public class ItemSoilMeter extends Item {
 				EnumChatFormatting.GREEN,
 				EnumChatFormatting.AQUA,
 			};
-			info += ", pH: ";
+			info += ", " + I18N.localise("botany.soil.tooltip.pH") + " ";
 			info += colors[pH.ordinal()] + AlleleHelper.toDisplay(pH) + EnumChatFormatting.RESET;
 			IChatComponent chat = new ChatComponentText(info);
 			player.addChatMessage(chat);
@@ -80,6 +79,6 @@ public class ItemSoilMeter extends Item {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		return I18N.localise(Botany.instance, "item.soilMeter.name");
+		return I18N.localise("botany.tube.item.soilMeter.name");
 	}
 }

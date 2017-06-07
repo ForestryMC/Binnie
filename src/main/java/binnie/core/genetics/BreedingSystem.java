@@ -1,7 +1,6 @@
 package binnie.core.genetics;
 
 import binnie.Binnie;
-import binnie.core.BinnieCore;
 import binnie.core.resource.BinnieIcon;
 import binnie.core.util.I18N;
 import binnie.extrabees.genetics.ExtraBeeMutation;
@@ -59,11 +58,11 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 	}
 
 	public String getChromosomeName(IChromosomeType chromo) {
-		return BinnieCore.proxy.localise(getSpeciesRoot().getUID() + ".chromosome." + chromo.getName());
+		return I18N.localise("binniecore." + getSpeciesRoot().getUID() + ".chromosome." + chromo.getName());
 	}
 
 	public String getChromosomeShortName(IChromosomeType chromo) {
-		return BinnieCore.proxy.localise(getSpeciesRoot().getUID() + ".chromosome." + chromo.getName() + ".short");
+		return I18N.localise("binniecore." + getSpeciesRoot().getUID() + ".chromosome." + chromo.getName() + ".short");
 	}
 
 	public String getEpitome(float discoveredPercentage) {
@@ -83,7 +82,7 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 		} else if (discoveredPercentage < 1.0f) {
 			i = 5;
 		}
-		return BinnieCore.proxy.localise(getSpeciesRoot().getUID() + ".epitome." + i);
+		return I18N.localise("binniecore." + getSpeciesRoot().getUID() + ".epitome." + i);
 	}
 
 	public abstract ISpeciesRoot getSpeciesRoot();
@@ -352,7 +351,7 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 	}
 
 	public String getDescriptor() {
-		return BinnieCore.proxy.localise(getSpeciesRoot().getUID() + ".descriptor");
+		return I18N.localise("binniecore." + getSpeciesRoot().getUID() + ".descriptor");
 	}
 
 	public String getIdent() {
@@ -373,17 +372,17 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 	public String getAlleleName(IChromosomeType chromosome, IAllele allele) {
 		if (allele instanceof IAlleleBoolean) {
 			return ((IAlleleBoolean) allele).getValue() ?
-				I18N.localise(BinnieCore.instance, "allele.true") :
-				I18N.localise(BinnieCore.instance, "allele.false");
+				I18N.localise("binniecore.allele.true") :
+				I18N.localise("binniecore.allele.false");
 		}
 		if (allele.getName().equals("for.gui.maximum")) {
-			return I18N.localise(BinnieCore.instance, "allele.fertility.maximum");
+			return I18N.localise("binniecore.allele.fertility.maximum");
 		}
 		return allele.getName();
 	}
 
 	public String getName() {
-		return BinnieCore.proxy.localise(getSpeciesRoot().getUID() + ".shortName");
+		return I18N.localise("binniecore." + getSpeciesRoot().getUID() + ".shortName");
 	}
 
 	@Override

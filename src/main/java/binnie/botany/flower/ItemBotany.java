@@ -79,7 +79,7 @@ public abstract class ItemBotany extends Item {
 		}
 		IFlower individual = (IFlower) getIndividual(itemstack);
 		if (individual == null) {
-			tooltip.add(I18N.localise(Botany.instance, "item.tooltip.bugged"));
+			tooltip.add(I18N.localise("botany.item.tooltip.bugged"));
 			return;
 		}
 
@@ -89,19 +89,19 @@ public abstract class ItemBotany extends Item {
 		IFlowerColor stemColor = genome.getStemColor();
 
 		if (primaryColor == secondColor) {
-			tooltip.add(EnumChatFormatting.YELLOW + I18N.localise(Botany.instance, "item.tooltip.flowerColor1", primaryColor.getName(), stemColor.getName()));
+			tooltip.add(EnumChatFormatting.YELLOW + I18N.localise("botany.item.tooltip.flowerColor1", primaryColor.getName(), stemColor.getName()));
 		} else {
-			tooltip.add(EnumChatFormatting.YELLOW + I18N.localise(Botany.instance, "item.tooltip.flowerColor2", primaryColor.getName(), secondColor.getName(), stemColor.getName()));
+			tooltip.add(EnumChatFormatting.YELLOW + I18N.localise("botany.item.tooltip.flowerColor2", primaryColor.getName(), secondColor.getName(), stemColor.getName()));
 		}
 
 		if (individual.isAnalyzed()) {
 			if (BinnieCore.proxy.isShiftDown()) {
 				individual.addTooltip(tooltip);
 			} else {
-				tooltip.add(EnumChatFormatting.GRAY + I18N.localise(Botany.instance, "item.tooltip.holdMore"));
+				tooltip.add(EnumChatFormatting.GRAY + I18N.localise("botany.item.tooltip.holdMore"));
 			}
 		} else {
-			tooltip.add(I18N.localise(Botany.instance, "item.tooltip.unknownGenome"));
+			tooltip.add(I18N.localise("botany.item.tooltip.unknownGenome"));
 		}
 	}
 
@@ -117,7 +117,7 @@ public abstract class ItemBotany extends Item {
 	@Override
 	public String getItemStackDisplayName(ItemStack itemstack) {
 		if (!itemstack.hasTagCompound()) {
-			return I18N.localise(Botany.instance, "item.tooltip.unknown");
+			return I18N.localise("botany.item.tooltip.unknown");
 		}
 
 		IIndividual individual = getIndividual(itemstack);
@@ -126,9 +126,9 @@ public abstract class ItemBotany extends Item {
 			if (tag == null || tag.isEmpty()) {
 				return individual.getDisplayName();
 			}
-			return I18N.localise(Botany.instance, "item.botany.name", individual.getDisplayName(), tag);
+			return I18N.localise("botany.item.botany.name", individual.getDisplayName(), tag);
 		}
-		return I18N.localise(Botany.instance, "item.flowerCorrupted.name");
+		return I18N.localise("botany.item.flowerCorrupted.name");
 	}
 
 	@Override

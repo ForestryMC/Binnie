@@ -7,8 +7,8 @@ import binnie.core.circuits.BinnieCircuitLayout;
 import binnie.core.machines.MachineGroup;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.apiary.machine.AlvearyMachine;
-import binnie.extrabees.apiary.machine.AlvearyMutator;
-import binnie.extrabees.apiary.machine.AlvearyStimulator;
+import binnie.extrabees.apiary.machine.mutator.AlvearyMutator;
+import binnie.extrabees.apiary.machine.stimulator.CircuitType;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.core.Tabs;
 import net.minecraft.block.Block;
@@ -106,7 +106,7 @@ public class ModuleApiary implements IInitializable {
 			}
 		));
 
-		for (AlvearyStimulator.CircuitType type : AlvearyStimulator.CircuitType.values()) {
+		for (CircuitType type : CircuitType.values()) {
 			type.createCircuit(stimulatorLayout);
 		}
 	}

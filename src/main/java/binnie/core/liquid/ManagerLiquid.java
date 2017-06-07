@@ -8,12 +8,11 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ManagerLiquid extends ManagerBase {
-	Map<String, IFluidType> fluids;
+	public Map<String, IFluidType> fluids;
 
 	public ManagerLiquid() {
 		fluids = new LinkedHashMap<>();

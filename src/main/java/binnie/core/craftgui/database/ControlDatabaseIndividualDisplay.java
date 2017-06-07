@@ -1,7 +1,6 @@
 package binnie.core.craftgui.database;
 
 import binnie.Binnie;
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -34,11 +33,14 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 		BreedingSystem system = Binnie.Genetics.getSystem(speciesRoot.getUID());
 		IIndividual ind = system.getSpeciesRoot().templateAsIndividual(system.getSpeciesRoot().getTemplate(species.getUID()));
 		super.setItemStack(system.getSpeciesRoot().getMemberStack(ind, system.getDefaultType()));
-		GameProfile username = Window.get(this).getUsername();
+		Window window = Window.get(this);
+		GameProfile username = window.getUsername();
 
 		if (state == EnumDiscoveryState.UNDETERMINED) {
-			state = (system.isSpeciesDiscovered(species, Window.get(this).getWorld(), username) ? EnumDiscoveryState.DISCOVERED : EnumDiscoveryState.UNDISCOVERED);
-		} else if (Window.get(this) instanceof WindowAbstractDatabase && ((WindowAbstractDatabase) Window.get(this)).isNEI) {
+			state = system.isSpeciesDiscovered(species, window.getWorld(), username)
+				? EnumDiscoveryState.DISCOVERED
+				: EnumDiscoveryState.UNDISCOVERED;
+		} else if (window instanceof WindowAbstractDatabase && ((WindowAbstractDatabase) window).isNEI) {
 			state = EnumDiscoveryState.SHOW;
 		}
 
@@ -95,11 +97,11 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 				break;
 
 			case DISCOVERED:
-				tooltip.add(I18N.localise(BinnieCore.instance, "gui.database.discovered.discovered"));
+				tooltip.add(I18N.localise("binniecore.gui.database.discovered.discovered"));
 				break;
 
 			case UNDISCOVERED:
-				tooltip.add(I18N.localise(BinnieCore.instance, "gui.database.discovered.undiscovered"));
+				tooltip.add(I18N.localise("binniecore.gui.database.discovered.undiscovered"));
 				break;
 		}
 	}

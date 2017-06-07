@@ -1,6 +1,5 @@
 package binnie.botany.gardening;
 
-import binnie.botany.Botany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
 import binnie.botany.api.EnumSoilType;
@@ -38,12 +37,12 @@ public class ItemSoil extends ItemBlock {
 
 		if (moisture == EnumMoisture.DRY) {
 			info += EnumChatFormatting.YELLOW
-				+ I18N.localise(Botany.instance, "moisture.dry")
+				+ I18N.localise("botany.tube.moisture.dry")
 				+ EnumChatFormatting.RESET;
 		}
 		if (moisture == EnumMoisture.DAMP) {
 			info += EnumChatFormatting.YELLOW
-				+ I18N.localise(Botany.instance, "moisture.damp")
+				+ I18N.localise("botany.tube.moisture.damp")
 				+ EnumChatFormatting.RESET;
 		}
 
@@ -52,7 +51,7 @@ public class ItemSoil extends ItemBlock {
 				info += ", ";
 			}
 			info += EnumChatFormatting.YELLOW
-				+ I18N.localise(Botany.instance, "ph.acid")
+				+ I18N.localise("botany.tube.ph.acid")
 				+ EnumChatFormatting.RESET;
 		}
 
@@ -61,7 +60,7 @@ public class ItemSoil extends ItemBlock {
 				info += ", ";
 			}
 			info += EnumChatFormatting.YELLOW
-				+ I18N.localise(Botany.instance, "ph.alkaline")
+				+ I18N.localise("botany.tube.ph.alkaline")
 				+ EnumChatFormatting.RESET;
 		}
 
@@ -70,14 +69,14 @@ public class ItemSoil extends ItemBlock {
 		}
 
 		if (noWeed) {
-			tooltip.add(I18N.localise(Botany.instance, "soil.weedkiller"));
+			tooltip.add(I18N.localise("botany.tube.soil.weedkiller"));
 		}
 	}
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		String soilName = type.name().toLowerCase(Locale.ENGLISH);
-		return I18N.localise(Botany.instance, "soil." + soilName);
+		return I18N.localise("botany.tube.soil." + soilName);
 	}
 
 	@Override

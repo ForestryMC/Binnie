@@ -4,7 +4,6 @@ import binnie.core.block.BlockMetadata;
 import binnie.core.block.IBlockMetadata;
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
@@ -129,11 +128,12 @@ public class BlockETLog extends BlockLog implements IBlockMetadata {
 	@Override
 	public String getBlockName(ItemStack itemStack) {
 		int meta = TileEntityMetadata.getItemDamage(itemStack);
-		return I18N.localise(ExtraTrees.instance, "block.log.name", ILogType.ExtraTreeLog.values()[meta].getName());
+		return I18N.localise("extratrees.block.log.name", ILogType.ExtraTreeLog.values()[meta].getName());
 	}
 
 	@Override
 	public void addBlockTooltip(ItemStack itemStack, List tooltip) {
+		// ignored
 	}
 
 	@Override
@@ -195,7 +195,7 @@ public class BlockETLog extends BlockLog implements IBlockMetadata {
 	}
 
 	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
 		return BlockMetadata.getPickBlock(world, x, y, z);
 	}
 }

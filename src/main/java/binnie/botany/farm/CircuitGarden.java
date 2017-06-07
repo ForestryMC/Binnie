@@ -1,6 +1,5 @@
 package binnie.botany.farm;
 
-import binnie.botany.Botany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
 import binnie.core.circuits.BinnieCircuit;
@@ -29,13 +28,13 @@ public class CircuitGarden extends BinnieCircuit {
 
 		if (moisture == EnumMoisture.DRY) {
 			info += EnumChatFormatting.YELLOW
-				+ I18N.localise(Botany.instance, "moisture.dry")
+				+ I18N.localise("botany.moisture.dry")
 				+ EnumChatFormatting.RESET;
 		}
 
 		if (moisture == EnumMoisture.DAMP) {
 			info += EnumChatFormatting.YELLOW
-				+ I18N.localise(Botany.instance, "moisture.damp")
+				+ I18N.localise("botany.moisture.damp")
 				+ EnumChatFormatting.RESET;
 		}
 
@@ -44,7 +43,7 @@ public class CircuitGarden extends BinnieCircuit {
 				info += ", ";
 			}
 			info += EnumChatFormatting.RED
-				+ I18N.localise(Botany.instance, "ph.acid")
+				+ I18N.localise("botany.ph.acid")
 				+ EnumChatFormatting.RESET;
 		}
 
@@ -53,7 +52,7 @@ public class CircuitGarden extends BinnieCircuit {
 				info += ", ";
 			}
 			info += EnumChatFormatting.GREEN
-				+ I18N.localise(Botany.instance, "ph.neutral")
+				+ I18N.localise("botany.ph.neutral")
 				+ EnumChatFormatting.RESET;
 		}
 
@@ -62,7 +61,7 @@ public class CircuitGarden extends BinnieCircuit {
 				info += ", ";
 			}
 			info += EnumChatFormatting.AQUA
-				+ I18N.localise(Botany.instance, "ph.alkaline")
+				+ I18N.localise("botany.ph.alkaline")
 				+ EnumChatFormatting.RESET;
 		}
 

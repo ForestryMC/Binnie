@@ -44,11 +44,12 @@ public enum GeneticsItems implements IItemMisc {
 
 	@Override
 	public void addInformation(List data) {
+		// ignored
 	}
 
 	@Override
 	public String getName(ItemStack itemStack) {
-		return I18N.localise(Genetics.instance, "item." + name + ".name");
+		return I18N.localise("genetics.item." + name + ".name");
 	}
 
 	@Override

@@ -6,7 +6,6 @@ import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import binnie.core.machines.transfer.TransferRequest;
 import binnie.core.util.I18N;
-import binnie.genetics.Genetics;
 import binnie.genetics.api.IIncubatorRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
@@ -31,8 +30,8 @@ public class IncubatorComponentLogic extends ComponentProcessIndefinate implemen
 			return super.canWork();
 		}
 		return new ErrorState(
-			I18N.localise(Genetics.instance, "machine.incubator.error.noRecipe.title"),
-			I18N.localise(Genetics.instance, "machine.incubator.error.noRecipe")
+			I18N.localise("genetics.machine.incubator.error.noRecipe.title"),
+			I18N.localise("genetics.machine.incubator.error.noRecipe")
 		);
 	}
 
@@ -41,13 +40,13 @@ public class IncubatorComponentLogic extends ComponentProcessIndefinate implemen
 		if (recipe != null) {
 			if (!recipe.isInputLiquidSufficient(getUtil().getFluid(Incubator.TANK_INPUT))) {
 				return new ErrorState.InsufficientLiquid(
-					I18N.localise(Genetics.instance, "machine.incubator.error.noLiquid"),
+					I18N.localise("genetics.machine.incubator.error.noLiquid"),
 					Incubator.TANK_INPUT
 				);
 			}
 			if (!roomForOutput) {
 				return new ErrorState.TankSpace(
-					I18N.localise(Genetics.instance, "machine.incubator.error.noRoom"),
+					I18N.localise("genetics.machine.incubator.error.noRoom"),
 					Incubator.TANK_OUTPUT
 				);
 			}

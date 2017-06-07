@@ -1,7 +1,6 @@
 package binnie.core.genetics;
 
 import binnie.Binnie;
-import binnie.core.BinnieCore;
 import binnie.core.util.I18N;
 import binnie.core.util.UniqueItemStackSet;
 import binnie.extratrees.ExtraTrees;
@@ -90,23 +89,23 @@ public class TreeBreedingSystem extends BreedingSystem {
 		if (chromosome == EnumTreeChromosome.PLANT) {
 			EnumSet<EnumPlantType> types = ((IAllelePlantType) allele).getPlantTypes();
 			return types.isEmpty()
-				? I18N.localise(BinnieCore.instance, "allele.none")
+				? I18N.localise("binniecore.allele.none")
 				: types.iterator().next().toString();
 		}
 
 		if (chromosome == EnumTreeChromosome.FRUITS && allele.getUID().contains(".")) {
 			IFruitProvider provider = ((IAlleleFruit) allele).getProvider();
 			return (provider.getProducts().length == 0)
-				? I18N.localise(BinnieCore.instance, "allele.none")
+				? I18N.localise("binniecore.allele.none")
 				: provider.getProducts()[0].getDisplayName();
 		}
 
 		if (chromosome == EnumTreeChromosome.GROWTH) {
 			if (allele.getUID().contains("Tropical")) {
-				return I18N.localise(BinnieCore.instance, "allele.growth.tropical");
+				return I18N.localise("binniecore.allele.growth.tropical");
 			}
 			if (allele.getUID().contains("Lightlevel")) {
-				return I18N.localise(BinnieCore.instance, "allele.growth.lightlevel");
+				return I18N.localise("binniecore.allele.growth.lightlevel");
 			}
 		}
 		return super.getAlleleName(chromosome, allele);

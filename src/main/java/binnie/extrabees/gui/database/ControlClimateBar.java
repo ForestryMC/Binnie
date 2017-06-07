@@ -15,31 +15,36 @@ import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.EnumTolerance;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ControlClimateBar extends Control implements ITooltip {
 	protected boolean isHumidity;
 	protected List<Integer> tolerated;
-	protected int[] tempColours;
-	protected int[] humidColours;
+	protected Color[] tempColours = new Color[]{
+		new Color(0x00fffb),
+		new Color(0x78bbff),
+		new Color(0x4fff30),
+		new Color(0xffff00),
+		new Color(0xffa200),
+		new Color(0xff0000)
+	};
+	protected Color[] humidColours = new Color[]{
+		new Color(0xffe7a3),
+		new Color(0x1aff00),
+		new Color(0x307cff)
+	};
 
 	public ControlClimateBar(IWidget parent, int x, int y, int width, int height) {
-		super(parent, x, y, width, height);
-		isHumidity = false;
-		tolerated = new ArrayList<>();
-		tempColours = new int[]{0x00fffb, 0x78bbff, 0x4fff30, 0xffff00, 0xffa200, 0xff0000};
-		humidColours = new int[]{0xffe7a3, 0x1aff00, 0x307cff};
-		addAttribute(WidgetAttribute.MOUSE_OVER);
+		this(parent, x, y, width, height, false);
 	}
 
 	public ControlClimateBar(IWidget parent, int x, int y, int width, int height, boolean humidity) {
 		super(parent, x, y, width, height);
 		tolerated = new ArrayList<>();
-		tempColours = new int[]{0x00fffb, 0x78bbff, 0x4fff30, 0xffff00, 0xffa200, 0xff0000};
-		humidColours = new int[]{0xffe7a3, 0x1aff00, 0x307cff};
 		addAttribute(WidgetAttribute.MOUSE_OVER);
-		isHumidity = true;
+		isHumidity = humidity;
 	}
 
 	@Override
@@ -69,13 +74,13 @@ public class ControlClimateBar extends Control implements ITooltip {
 		for (int i = 0; i < types; ++i) {
 			int x = i * w;
 			if (tolerated.contains(i)) {
-				int colour;
+				Color color;
 				if (isHumidity) {
-					colour = humidColours[i];
+					color = humidColours[i];
 				} else {
-					colour = tempColours[i];
+					color = tempColours[i];
 				}
-				CraftGUI.Render.solid(new IArea(x + 1, 1.0f, w, getSize().y() - 2.0f), colour);
+				CraftGUI.Render.solid(new IArea(x + 1, 1.0f, w, getSize().y() - 2.0f), color.getRGB());
 			}
 		}
 		CraftGUI.Render.texture(CraftGUITexture.EnergyBarGlass, getArea());

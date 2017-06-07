@@ -1,5 +1,6 @@
 package binnie.botany;
 
+import binnie.core.util.I18N;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
@@ -27,7 +28,7 @@ public class CreativeTabBotany extends CreativeTabs {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getTabLabel() {
-		return Botany.proxy.localise("tab.botany");
+		return I18N.localise("botany.tab.botany");
 	}
 
 	@Override

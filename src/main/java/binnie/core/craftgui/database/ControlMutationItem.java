@@ -8,39 +8,43 @@ import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IMutation;
 
 class ControlMutationItem extends ControlOption<IMutation> {
-	private ControlDatabaseIndividualDisplay itemWidget1;
-	private ControlDatabaseIndividualDisplay itemWidget2;
-	private ControlDatabaseIndividualDisplay itemWidget3;
-	private ControlMutationSymbol addSymbol;
-	private ControlMutationSymbol arrowSymbol;
-
 	public ControlMutationItem(ControlList<IMutation> controlList, IMutation option, IAlleleSpecies species, int y) {
 		super(controlList, option, y);
-		itemWidget1 = new ControlDatabaseIndividualDisplay(this, 4.0f, 4.0f);
-		itemWidget2 = new ControlDatabaseIndividualDisplay(this, 44.0f, 4.0f);
-		itemWidget3 = new ControlDatabaseIndividualDisplay(this, 104.0f, 4.0f);
-		addSymbol = new ControlMutationSymbol(this, 24, 4, 0);
-		arrowSymbol = new ControlMutationSymbol(this, 64, 4, 1);
+		ControlDatabaseIndividualDisplay itemWidget1 = new ControlDatabaseIndividualDisplay(this, 4.0f, 4.0f);
+		ControlDatabaseIndividualDisplay itemWidget2 = new ControlDatabaseIndividualDisplay(this, 44.0f, 4.0f);
+		ControlDatabaseIndividualDisplay itemWidget3 = new ControlDatabaseIndividualDisplay(this, 104.0f, 4.0f);
+		ControlMutationSymbol addSymbol = new ControlMutationSymbol(this, 24, 4, 0);
+		ControlMutationSymbol arrowSymbol = new ControlMutationSymbol(this, 64, 4, 1);
 		boolean isNEI = ((WindowAbstractDatabase) getSuperParent()).isNEI();
 		BreedingSystem system = ((WindowAbstractDatabase) getSuperParent()).getBreedingSystem();
+		Window window = Window.get(this);
 
 		if (getValue() == null) {
 			return;
 		}
 
-		boolean isMutationDiscovered = system.isMutationDiscovered(getValue(), Window.get(this).getWorld(), Window.get(this).getUsername());
+		boolean isMutationDiscovered = system.isMutationDiscovered(getValue(), window.getWorld(), window.getUsername());
 		IAlleleSpecies allele;
 		EnumDiscoveryState state;
 		allele = getValue().getAllele0();
-		state = ((isNEI || isMutationDiscovered) ? EnumDiscoveryState.SHOW : ((species == allele) ? EnumDiscoveryState.SHOW : EnumDiscoveryState.UNDETERMINED));
+		state = getState(isNEI, isMutationDiscovered, species, allele);
 		itemWidget1.setSpecies(allele, state);
+
 		allele = getValue().getAllele1();
-		state = ((isNEI || isMutationDiscovered) ? EnumDiscoveryState.SHOW : ((species == allele) ? EnumDiscoveryState.SHOW : EnumDiscoveryState.UNDETERMINED));
+		state = getState(isNEI, isMutationDiscovered, species, allele);
 		itemWidget2.setSpecies(allele, state);
+
 		allele = (IAlleleSpecies) getValue().getTemplate()[0];
-		state = ((isNEI || isMutationDiscovered) ? EnumDiscoveryState.SHOW : ((species == allele) ? EnumDiscoveryState.SHOW : EnumDiscoveryState.UNDETERMINED));
+		state = getState(isNEI, isMutationDiscovered, species, allele);
 		itemWidget3.setSpecies(allele, state);
+
 		addSymbol.setValue(getValue());
 		arrowSymbol.setValue(getValue());
+	}
+	
+	private EnumDiscoveryState getState(boolean isNEI, boolean isMutationDiscovered, IAlleleSpecies species, IAlleleSpecies allele) {
+		return (isNEI || isMutationDiscovered || species == allele)
+			? EnumDiscoveryState.SHOW
+			: EnumDiscoveryState.UNDETERMINED;
 	}
 }

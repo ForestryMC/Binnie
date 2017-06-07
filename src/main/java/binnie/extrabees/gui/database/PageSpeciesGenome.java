@@ -1,7 +1,6 @@
 package binnie.extrabees.gui.database;
 
 import binnie.Binnie;
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextCentered;
@@ -9,7 +8,6 @@ import binnie.core.craftgui.database.DatabaseTab;
 import binnie.core.craftgui.database.PageSpecies;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.TextJustification;
-import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleSpecies;
@@ -30,28 +28,28 @@ public class PageSpeciesGenome extends PageSpecies {
 	public PageSpeciesGenome(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
 		title = new ControlTextCentered(this, 8.0f, "Genome");
-		new ControlText(this, new IArea(0.0f, 32.0f, 68.0f, 30.0f), "Speed:", TextJustification.TopRight);
-		new ControlText(this, new IArea(0.0f, 44.0f, 68.0f, 30.0f), "Lifespan:", TextJustification.TopRight);
-		new ControlText(this, new IArea(0.0f, 56.0f, 68.0f, 30.0f), "Fertility:", TextJustification.TopRight);
-		new ControlText(this, new IArea(0.0f, 68.0f, 68.0f, 30.0f), "Flowering:", TextJustification.TopRight);
-		new ControlText(this, new IArea(0.0f, 80.0f, 68.0f, 30.0f), "Territory:", TextJustification.TopRight);
-		new ControlText(this, new IArea(0.0f, 97.0f, 68.0f, 30.0f), "Behavior:", TextJustification.TopRight);
-		new ControlText(this, new IArea(0.0f, 109.0f, 68.0f, 30.0f), "Sunlight:", TextJustification.TopRight);
-		new ControlText(this, new IArea(0.0f, 121.0f, 68.0f, 30.0f), "Rain:", TextJustification.TopRight);
-		new ControlText(this, new IArea(0.0f, 138.0f, 68.0f, 30.0f), "Flower:", TextJustification.TopRight);
-		new ControlText(this, new IArea(0.0f, 155.0f, 68.0f, 30.0f), "Effect:", TextJustification.TopRight);
+		new ControlText(this, new IArea(0.0f, 32.0f, 68.0f, 30.0f), "Speed:", TextJustification.TOP_RIGHT);
+		new ControlText(this, new IArea(0.0f, 44.0f, 68.0f, 30.0f), "Lifespan:", TextJustification.TOP_RIGHT);
+		new ControlText(this, new IArea(0.0f, 56.0f, 68.0f, 30.0f), "Fertility:", TextJustification.TOP_RIGHT);
+		new ControlText(this, new IArea(0.0f, 68.0f, 68.0f, 30.0f), "Flowering:", TextJustification.TOP_RIGHT);
+		new ControlText(this, new IArea(0.0f, 80.0f, 68.0f, 30.0f), "Territory:", TextJustification.TOP_RIGHT);
+		new ControlText(this, new IArea(0.0f, 97.0f, 68.0f, 30.0f), "Behavior:", TextJustification.TOP_RIGHT);
+		new ControlText(this, new IArea(0.0f, 109.0f, 68.0f, 30.0f), "Sunlight:", TextJustification.TOP_RIGHT);
+		new ControlText(this, new IArea(0.0f, 121.0f, 68.0f, 30.0f), "Rain:", TextJustification.TOP_RIGHT);
+		new ControlText(this, new IArea(0.0f, 138.0f, 68.0f, 30.0f), "Flower:", TextJustification.TOP_RIGHT);
+		new ControlText(this, new IArea(0.0f, 155.0f, 68.0f, 30.0f), "Effect:", TextJustification.TOP_RIGHT);
 		int x = 72;
 
-		speedText = new ControlText(this, new IArea(x, 32.0f, 72.0f, 30.0f), "", TextJustification.TopLeft);
-		lifespanText = new ControlText(this, new IArea(x, 44.0f, 72.0f, 30.0f), "", TextJustification.TopLeft);
-		fertilityText = new ControlText(this, new IArea(x, 56.0f, 72.0f, 30.0f), "", TextJustification.TopLeft);
-		floweringText = new ControlText(this, new IArea(x, 68.0f, 72.0f, 30.0f), "", TextJustification.TopLeft);
-		territoryText = new ControlText(this, new IArea(x, 80.0f, 72.0f, 30.0f), "", TextJustification.TopLeft);
-		nocturnalText = new ControlText(this, new IArea(x, 97.0f, 72.0f, 30.0f), "", TextJustification.TopLeft);
-		caveDwellingText = new ControlText(this, new IArea(x, 109.0f, 72.0f, 30.0f), "", TextJustification.TopLeft);
-		tolerantFlyerText = new ControlText(this, new IArea(x, 121.0f, 72.0f, 30.0f), "", TextJustification.TopLeft);
-		flowerText = new ControlText(this, new IArea(x, 138.0f, 72.0f, 30.0f), "", TextJustification.TopLeft);
-		effectText = new ControlText(this, new IArea(x, 155.0f, 72.0f, 30.0f), "", TextJustification.TopLeft);
+		speedText = new ControlText(this, new IArea(x, 32.0f, 72.0f, 30.0f), "", TextJustification.TOP_LEFT);
+		lifespanText = new ControlText(this, new IArea(x, 44.0f, 72.0f, 30.0f), "", TextJustification.TOP_LEFT);
+		fertilityText = new ControlText(this, new IArea(x, 56.0f, 72.0f, 30.0f), "", TextJustification.TOP_LEFT);
+		floweringText = new ControlText(this, new IArea(x, 68.0f, 72.0f, 30.0f), "", TextJustification.TOP_LEFT);
+		territoryText = new ControlText(this, new IArea(x, 80.0f, 72.0f, 30.0f), "", TextJustification.TOP_LEFT);
+		nocturnalText = new ControlText(this, new IArea(x, 97.0f, 72.0f, 30.0f), "", TextJustification.TOP_LEFT);
+		caveDwellingText = new ControlText(this, new IArea(x, 109.0f, 72.0f, 30.0f), "", TextJustification.TOP_LEFT);
+		tolerantFlyerText = new ControlText(this, new IArea(x, 121.0f, 72.0f, 30.0f), "", TextJustification.TOP_LEFT);
+		flowerText = new ControlText(this, new IArea(x, 138.0f, 72.0f, 30.0f), "", TextJustification.TOP_LEFT);
+		effectText = new ControlText(this, new IArea(x, 155.0f, 72.0f, 30.0f), "", TextJustification.TOP_LEFT);
 	}
 
 	public static String rateFlowering(int flowering) {
@@ -144,7 +142,6 @@ public class PageSpeciesGenome extends PageSpecies {
 		}
 
 		IBeeGenome genome = Binnie.Genetics.getBeeRoot().templateAsGenome(template);
-		IBee bee = Binnie.Genetics.getBeeRoot().getBee(BinnieCore.proxy.getWorld(), genome);
 		speedText.setValue(rateSpeed(genome.getSpeed()));
 		lifespanText.setValue(rateLifespan(genome.getLifespan()));
 		fertilityText.setValue(genome.getFertility() + " children");

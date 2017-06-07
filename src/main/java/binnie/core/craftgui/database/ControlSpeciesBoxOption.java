@@ -1,6 +1,5 @@
 package binnie.core.craftgui.database;
 
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.controls.listbox.ControlList;
@@ -25,7 +24,7 @@ class ControlSpeciesBoxOption extends ControlTextOption<IAlleleSpecies> {
 			textWidget.setValue(option.getName());
 			addAttribute(WidgetAttribute.MOUSE_OVER);
 		} else {
-			textWidget.setValue(I18N.localise(BinnieCore.instance, "gui.database.discovered.undiscovered"));
+			textWidget.setValue(I18N.localise("binniecore.gui.database.discovered.undiscovered"));
 		}
 
 		CraftGUIUtil.moveWidget(textWidget, new IPoint(22.0f, 0.0f));

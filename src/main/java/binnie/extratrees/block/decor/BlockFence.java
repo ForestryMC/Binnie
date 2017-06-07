@@ -121,7 +121,7 @@ public class BlockFence extends net.minecraft.block.BlockFence implements IBlock
 	@Override
 	public String getBlockName(ItemStack itemStack) {
 		int meta = TileEntityMetadata.getItemDamage(itemStack);
-		return I18N.localise(ExtraTrees.instance, "block.woodfence.name", getDescription(meta).getPlankType().getName());
+		return I18N.localise("extratrees.block.woodfence.name", getDescription(meta).getPlankType().getName());
 	}
 
 	@Override

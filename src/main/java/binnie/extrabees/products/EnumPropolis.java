@@ -2,6 +2,7 @@ package binnie.extrabees.products;
 
 import binnie.Binnie;
 import binnie.core.item.IItemEnum;
+import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import forestry.api.recipes.RecipeManagers;
 import net.minecraft.item.ItemStack;
@@ -58,6 +59,6 @@ public enum EnumPropolis implements IItemEnum {
 
 	@Override
 	public String getName(ItemStack itemStack) {
-		return ExtraBees.proxy.localise("item.propolis." + name().toLowerCase());
+		return I18N.localise("extrabees.item.propolis." + name().toLowerCase());
 	}
 }

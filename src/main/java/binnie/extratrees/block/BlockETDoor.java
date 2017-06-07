@@ -40,7 +40,7 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 		if (type >= 0 && type < DoorType.values().length) {
 			return DoorType.values()[type];
 		}
-		return DoorType.Standard;
+		return DoorType.STANDARD;
 	}
 
 	private IIcon getFlippedIcon(boolean upper, boolean flip, int tileMeta) {
@@ -53,7 +53,7 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 
 	@Override
 	public IIcon getIcon(int side, int meta) {
-		return DoorType.Standard.iconDoorLower;
+		return DoorType.STANDARD.iconDoorLower;
 	}
 
 	@Override
@@ -89,7 +89,7 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 			}
 			return getFlippedIcon(flag3, flag2, tileMeta);
 		}
-		return DoorType.Standard.iconDoorLower;
+		return DoorType.STANDARD.iconDoorLower;
 	}
 
 	@Override
@@ -193,9 +193,9 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 		String typeName = getDoorType(meta).getName();
 		String woodName = WoodManager.getPlankType(meta & 0xFF).getName();
 		if (typeName.equals("")) {
-			return I18N.localise(ExtraTrees.instance, "block.door.name", woodName);
+			return I18N.localise("extratrees.block.door.name", woodName);
 		}
-		return I18N.localise(ExtraTrees.instance, "block.door.name.adv", woodName, typeName);
+		return I18N.localise("extratrees.block.door.name.adv", woodName, typeName);
 	}
 
 	@Override
@@ -211,18 +211,18 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 	@Override
 	public void getSubBlocks(Item item, CreativeTabs tab, List itemList) {
 		for (IPlankType type : PlankType.ExtraTreePlanks.values()) {
-			itemList.add(WoodManager.getDoor(type, DoorType.Standard));
+			itemList.add(WoodManager.getDoor(type, DoorType.STANDARD));
 		}
 		for (IPlankType type : PlankType.ForestryPlanks.values()) {
-			itemList.add(WoodManager.getDoor(type, DoorType.Standard));
+			itemList.add(WoodManager.getDoor(type, DoorType.STANDARD));
 		}
 		for (IPlankType type : PlankType.ExtraBiomesPlank.values()) {
 			if (type.getStack() != null) {
-				itemList.add(WoodManager.getDoor(type, DoorType.Standard));
+				itemList.add(WoodManager.getDoor(type, DoorType.STANDARD));
 			}
 		}
 		for (IPlankType type : PlankType.VanillaPlanks.values()) {
-			itemList.add(WoodManager.getDoor(type, DoorType.Standard));
+			itemList.add(WoodManager.getDoor(type, DoorType.STANDARD));
 		}
 	}
 

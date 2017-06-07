@@ -176,7 +176,7 @@ extratrees.block.planks.forestry.maple.desc=
 extratrees.block.planks.forestry.citrus.desc=
 
 extratrees.block.tooltip.twoColors=%s и %s
-extratrees.block.tooltip.twoMaterials=%s и %s
+extratrees.block.tooltip.twoMaterials=Из %s и %s
 
 < %1$s is name of wood used for door >
 extratrees.block.door.name=Дверь из %1$s

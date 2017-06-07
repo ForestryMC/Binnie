@@ -7,7 +7,6 @@ import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
-import binnie.genetics.Genetics;
 import binnie.genetics.item.ItemSequence;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
@@ -30,20 +29,20 @@ public class IsolatorComponentLogic extends ComponentProcessSetCost implements I
 	public ErrorState canWork() {
 		if (getUtil().isSlotEmpty(Isolator.SLOT_TARGET)) {
 			return new ErrorState.NoItem(
-				I18N.localise(Genetics.instance, "machine.isolator.error.noIndividual"),
+				I18N.localise("genetics.machine.isolator.error.noIndividual"),
 				Isolator.SLOT_TARGET
 			);
 		}
 		// TODO check slot id in validation
 		if (!getUtil().isSlotEmpty(Isolator.SLOT_RESULT)) {
 			return new ErrorState.NoSpace(
-				I18N.localise(Genetics.instance, "machine.isolator.error.noRoom"),
+				I18N.localise("genetics.machine.isolator.error.noRoom"),
 				Isolator.SLOT_FINISHED
 			);
 		}
 		if (getUtil().isSlotEmpty(Isolator.SLOT_SEQUENCER_VIAL)) {
 			return new ErrorState.NoItem(
-				I18N.localise(Genetics.instance, "machine.isolator.error.noVials"),
+				I18N.localise("genetics.machine.isolator.error.noVials"),
 				Isolator.SLOT_SEQUENCER_VIAL
 			);
 		}
@@ -54,13 +53,13 @@ public class IsolatorComponentLogic extends ComponentProcessSetCost implements I
 	public ErrorState canProgress() {
 		if (!getUtil().liquidInTank(Isolator.TANK_ETHANOL, (int) ethanolPerProcess)) {
 			return new ErrorState.InsufficientLiquid(
-				I18N.localise(Genetics.instance, "machine.isolator.error.noLiquid"),
+				I18N.localise("genetics.machine.isolator.error.noLiquid"),
 				Isolator.TANK_ETHANOL
 			);
 		}
 		if (getUtil().getSlotCharge(Isolator.SLOT_ENZYME) == 0.0f) {
 			return new ErrorState.NoItem(
-				I18N.localise(Genetics.instance, "machine.isolator.error.noEnzyme"),
+				I18N.localise("genetics.machine.isolator.error.noEnzyme"),
 				Isolator.SLOT_ENZYME
 			);
 		}

@@ -9,7 +9,7 @@ import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
 import binnie.extrabees.ExtraBees;
-import binnie.extrabees.apiary.machine.AlvearyStimulator;
+import binnie.extrabees.apiary.machine.stimulator.AlvearyStimulator;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -35,7 +35,7 @@ public class WindowAlvearyStimulator extends Window {
 		setTitle("Stimulator");
 		new ControlEnergyBar(this, 75, 29, 60, 16, Position.LEFT);
 		ControlSlot slot = new ControlSlot(this, 41.0f, 28.0f);
-		slot.assign(AlvearyStimulator.slotCircuit);
+		slot.assign(AlvearyStimulator.SLOT_CIRCUIT);
 		playerInventory = new ControlPlayerInventory(this);
 	}
 

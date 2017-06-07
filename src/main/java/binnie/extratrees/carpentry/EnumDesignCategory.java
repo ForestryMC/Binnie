@@ -1,6 +1,5 @@
 package binnie.extratrees.carpentry;
 
-import binnie.botany.Botany;
 import binnie.core.util.I18N;
 import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesign;
@@ -28,7 +27,7 @@ public enum EnumDesignCategory implements IDesignCategory {
 
 	@Override
 	public String getName() {
-		return I18N.localise(Botany.instance, "design.category." + name);
+		return I18N.localise("botany.design.category." + name);
 	}
 
 	@Override

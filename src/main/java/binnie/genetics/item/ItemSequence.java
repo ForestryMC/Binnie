@@ -2,8 +2,9 @@ package binnie.genetics.item;
 
 import binnie.Binnie;
 import binnie.core.genetics.Gene;
-import binnie.genetics.GeneticsCreativeTab;
+import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
+import binnie.genetics.GeneticsCreativeTab;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemAnalysable;
 import binnie.genetics.api.IItemChargable;
@@ -55,7 +56,7 @@ public class ItemSequence extends Item implements IItemAnalysable, IItemChargabl
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
 		super.addInformation(stack, player, tooltip, advanced);
-		tooltip.add(Genetics.proxy.localise("item.sequence." + (5 - stack.getItemDamage() % 6)));
+		tooltip.add(I18N.localise("genetics.item.sequence." + (5 - stack.getItemDamage() % 6)));
 		SequencerItem gene = new SequencerItem(stack);
 		if (gene.isCorrupted()) {
 			return;

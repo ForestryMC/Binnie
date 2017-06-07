@@ -122,7 +122,6 @@ botany.design.category.bars=Bars
 botany.design.category.letters=Letters
 botany.design.category.diagonals=Diagonals
 
-
 botany.ph.acid=Acidic
 botany.ph.neutral=Neutral
 botany.ph.alkaline=Alkaline
@@ -141,6 +140,10 @@ botany.soil.soil=Soil
 botany.soil.loam=Loam
 botany.soil.flowerbed=Flowerbed
 botany.soil.weedkiller=Weedkiller
+
+botany.soil.tooltip.type=Type:
+botany.soil.tooltip.moisture=Moisture:
+botany.soil.tooltip.pH=pH:
 
 botany.item.tooltip.holdMore=<Hold shift for details>
 botany.item.tooltip.bugged=This item is bugged. Destroy it!

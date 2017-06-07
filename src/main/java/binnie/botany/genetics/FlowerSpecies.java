@@ -1,6 +1,5 @@
 package binnie.botany.genetics;
 
-import binnie.botany.Botany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.EnumMoisture;
@@ -521,7 +520,7 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies {
 
 	@Override
 	public String getName() {
-		return I18N.localise(Botany.instance, "flower." + name);
+		return I18N.localise("botany.tube.flower." + name);
 	}
 
 	@Override

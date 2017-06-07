@@ -7,6 +7,7 @@ import binnie.core.craftgui.controls.listbox.ControlOption;
 import binnie.core.craftgui.geometry.CraftGUIUtil;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.core.util.I18N;
 
 import java.text.DecimalFormat;
 
@@ -31,11 +32,11 @@ public class ControlProductsItem extends ControlOption<ControlProductsBox.Produc
 		DecimalFormat df = new DecimalFormat("#.0");
 
 		if (hours > 1.0f) {
-			textWidget.setValue("Every " + df.format(hours) + " hours");
+			textWidget.setValue(I18N.localise("extrabees.gui.database.tab.species.products.everyHours", df.format(hours)));
 		} else if (minutes > 1.0f) {
-			textWidget.setValue("Every " + df.format(minutes) + " min.");
+			textWidget.setValue(I18N.localise("extrabees.gui.database.tab.species.products.everyMins", df.format(minutes)));
 		} else {
-			textWidget.setValue("Every " + df.format(seconds) + " sec.");
+			textWidget.setValue(I18N.localise("extrabees.gui.database.tab.species.products.everySecs", df.format(seconds)));
 		}
 	}
 }

@@ -2,6 +2,7 @@ package binnie.extratrees.genetics;
 
 import binnie.Binnie;
 import binnie.core.Mods;
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.ILogType;
 import binnie.extratrees.worldgen.DefaultTreeGenerator;
@@ -63,7 +64,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.EnumPlantType;
 
-import java.awt.*;
+import java.awt.Color;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -1091,12 +1092,12 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 
 	@Override
 	public String getName() {
-		return ExtraTrees.proxy.localise("species." + name().toLowerCase() + ".name");
+		return I18N.localise("extratrees.species." + name().toLowerCase() + ".name");
 	}
 
 	@Override
 	public String getDescription() {
-		return ExtraTrees.proxy.localiseOrBlank("species." + name().toLowerCase() + ".desc");
+		return I18N.localiseOrBlank("extratrees.species." + name().toLowerCase() + ".desc");
 	}
 
 	@Override

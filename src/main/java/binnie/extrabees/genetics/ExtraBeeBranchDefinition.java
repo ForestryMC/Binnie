@@ -271,6 +271,8 @@ public enum ExtraBeeBranchDefinition implements IBranchDefinition {
 		}
 	};
 
+	private static IAllele[] defaultTemplate;
+
 	private final IClassification branch;
 
 	ExtraBeeBranchDefinition(String scientific) {
@@ -296,8 +298,6 @@ public enum ExtraBeeBranchDefinition implements IBranchDefinition {
 	public final IClassification getBranch() {
 		return branch;
 	}
-
-	private static IAllele[] defaultTemplate;
 
 	private static IAllele[] getDefaultTemplate() {
 		if (defaultTemplate == null) {

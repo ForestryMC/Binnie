@@ -23,8 +23,8 @@ public class ControlGenesisOption extends ControlOption<Gene> {
 	@Override
 	public void onRenderBackground() {
 		super.onRenderBackground();
-		CraftGUI.Render.text(new IArea(0.0f, 0.0f, 70.0f, 22.0f), TextJustification.MiddleCenter, getChromosomeName(), getColor());
-		CraftGUI.Render.text(new IArea(75.0f, 0.0f, 80.0f, 22.0f), TextJustification.MiddleCenter, getAlleleName(), getColor());
+		CraftGUI.Render.text(new IArea(0.0f, 0.0f, 70.0f, 22.0f), TextJustification.MIDDLE_CENTER, getChromosomeName(), getColor());
+		CraftGUI.Render.text(new IArea(75.0f, 0.0f, 80.0f, 22.0f), TextJustification.MIDDLE_CENTER, getAlleleName(), getColor());
 		CraftGUI.Render.solid(new IArea(70.0f, 2.0f, 1.0f, 16.0f), 0xff000000 + getColor());
 
 	}

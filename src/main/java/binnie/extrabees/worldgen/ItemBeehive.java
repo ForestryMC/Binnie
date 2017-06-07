@@ -1,7 +1,6 @@
 package binnie.extrabees.worldgen;
 
 import binnie.core.util.I18N;
-import binnie.extrabees.ExtraBees;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -32,6 +31,6 @@ public class ItemBeehive extends ItemBlock {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack itemStack) {
-		return I18N.localise(ExtraBees.instance, "block.hive." + itemStack.getItemDamage());
+		return I18N.localise("extrabees.block.hive." + itemStack.getItemDamage());
 	}
 }

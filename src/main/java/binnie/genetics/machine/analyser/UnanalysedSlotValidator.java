@@ -2,7 +2,6 @@ package binnie.genetics.machine.analyser;
 
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
-import binnie.genetics.Genetics;
 import net.minecraft.item.ItemStack;
 
 public class UnanalysedSlotValidator extends SlotValidator {
@@ -18,6 +17,6 @@ public class UnanalysedSlotValidator extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return I18N.localise(Genetics.instance, "machine.analyser.unanalysedItem");
+		return I18N.localise("genetics.machine.analyser.unanalysedItem");
 	}
 }

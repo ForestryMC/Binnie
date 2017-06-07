@@ -58,7 +58,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 
 	@Override
 	protected String getName() {
-		return I18N.localise(Botany.instance, "gui.database.name");
+		return I18N.localise("botany.gui.database.name");
 	}
 
 	enum FlowerMode implements IDatabaseMode {
@@ -66,7 +66,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 
 		@Override
 		public String getName() {
-			return Botany.proxy.localise("gui.database.tab." + name().toLowerCase());
+			return I18N.localise("botany.gui.database.tab." + name().toLowerCase());
 		}
 	}
 

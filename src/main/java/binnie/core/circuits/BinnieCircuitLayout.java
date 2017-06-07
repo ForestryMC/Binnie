@@ -24,12 +24,12 @@ public class BinnieCircuitLayout implements ICircuitLayout {
 
 	@Override
 	public String getName() {
-		return I18N.localise(mod, "circuit.layout." + uid.toLowerCase());
+		return I18N.localise(mod.getModID() + ".circuit.layout." + uid.toLowerCase());
 	}
 
 	@Override
 	public String getUsage() {
-		return I18N.localise(mod, "circuit.layout." + uid.toLowerCase() + ".usage");
+		return I18N.localise(mod.getModID() + ".circuit.layout." + uid.toLowerCase() + ".usage");
 	}
 
 	@Override

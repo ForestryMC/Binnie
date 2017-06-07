@@ -51,7 +51,7 @@ public enum ExtraTreeItems implements IItemMisc {
 
 	@Override
 	public String getName(ItemStack itemStack) {
-		return I18N.localise(ExtraTrees.instance, "item." + name);
+		return I18N.localise("extratrees.item." + name);
 	}
 
 	@Override

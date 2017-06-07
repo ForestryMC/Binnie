@@ -193,7 +193,7 @@ public enum ExtraBeeItems implements IItemMisc {
 
 	@Override
 	public String getName(ItemStack itemStack) {
-		return I18N.localise(ExtraBees.instance, "item." + name);
+		return I18N.localise("extrabees.item." + name);
 	}
 
 	@Override

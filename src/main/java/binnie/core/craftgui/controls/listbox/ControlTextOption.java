@@ -11,7 +11,7 @@ public class ControlTextOption<T> extends ControlOption<T> {
 	public ControlTextOption(ControlList<T> controlList, T option, String optionName, int y) {
 		super(controlList, option, y);
 		textWidget = null;
-		textWidget = new ControlText(this, getArea(), optionName, TextJustification.MiddleCenter);
+		textWidget = new ControlText(this, getArea(), optionName, TextJustification.MIDDLE_CENTER);
 
 		mouseHandler.setOrigin(EventHandler.Origin.Self, this);
 		addEventHandler(mouseHandler);

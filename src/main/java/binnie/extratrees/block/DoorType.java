@@ -1,13 +1,13 @@
 package binnie.extratrees.block;
 
-import binnie.extratrees.ExtraTrees;
+import binnie.core.util.I18N;
 import net.minecraft.util.IIcon;
 
 public enum DoorType {
-	Standard("standard"),
-	Solid("solid"),
-	Double("double"),
-	Full("full");
+	STANDARD("standard"),
+	SOLID("solid"),
+	DOUBLE("double"),
+	FULL("full");
 
 	protected String id;
 	protected IIcon iconDoorLower;
@@ -16,11 +16,11 @@ public enum DoorType {
 	protected IIcon iconDoorUpperFlip;
 	protected IIcon iconItem;
 
-	DoorType(String iconName) {
-		id = iconName;
+	DoorType(String id) {
+		this.id = id;
 	}
 
 	public String getName() {
-		return ExtraTrees.proxy.localise("block.door.type." + id);
+		return I18N.localise("extratrees.block.door.type." + id);
 	}
 }

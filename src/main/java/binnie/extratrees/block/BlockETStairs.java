@@ -72,7 +72,7 @@ public class BlockETStairs extends BlockStairs implements IBlockMetadata {
 	}
 
 	@Override
-	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z) {
+	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
 		return BlockMetadata.breakBlock(this, player, world, x, y, z);
 	}
 
@@ -106,11 +106,12 @@ public class BlockETStairs extends BlockStairs implements IBlockMetadata {
 	@Override
 	public String getBlockName(ItemStack itemStack) {
 		int meta = TileEntityMetadata.getItemDamage(itemStack);
-		return I18N.localise(ExtraTrees.instance, "block.woodstairs.name", WoodManager.getPlankType(meta + 32).getName());
+		return I18N.localise("extratrees.block.woodstairs.name", WoodManager.getPlankType(meta + 32).getName());
 	}
 
 	@Override
 	public void addBlockTooltip(ItemStack itemStack, List tooltip) {
+		// ignored
 	}
 
 	@Override

@@ -28,7 +28,10 @@ public class BlockETSlab extends BlockWoodSlab implements IBlockMetadata {
 	public BlockETSlab(boolean isDouble) {
 		super(isDouble);
 		setCreativeTab(Tabs.tabArboriculture);
-		setHardness(2.0f).setResistance(5.0f).setStepSound(Block.soundTypeWood);
+		setHardness(2.0f);
+		setResistance(5.0f);
+		setStepSound(Block.soundTypeWood);
+
 		if (!field_150004_a) {
 			useNeighborBrightness = true;
 		}
@@ -39,7 +42,7 @@ public class BlockETSlab extends BlockWoodSlab implements IBlockMetadata {
 
 	@Override
 	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int blockMeta, int fortune) {
-		ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
+		ArrayList<ItemStack> drops = new ArrayList<>();
 		drops.addAll(BlockMetadata.getBlockDropped((IBlockMetadata) ExtraTrees.blockSlab, world, x, y, z, blockMeta));
 		if (field_150004_a) {
 			drops.addAll(BlockMetadata.getBlockDropped((IBlockMetadata) ExtraTrees.blockSlab, world, x, y, z, blockMeta));
@@ -48,7 +51,7 @@ public class BlockETSlab extends BlockWoodSlab implements IBlockMetadata {
 	}
 
 	@Override
-	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z) {
+	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
 		return BlockMetadata.breakBlock(this, player, world, x, y, z);
 	}
 
@@ -82,11 +85,12 @@ public class BlockETSlab extends BlockWoodSlab implements IBlockMetadata {
 	@Override
 	public String getBlockName(ItemStack itemStack) {
 		int meta = TileEntityMetadata.getItemDamage(itemStack);
-		return I18N.localise(ExtraTrees.instance, "block.woodslab.name", PlankType.ExtraTreePlanks.values()[meta].getName());
+		return I18N.localise("extratrees.block.woodslab.name", PlankType.ExtraTreePlanks.values()[meta].getName());
 	}
 
 	@Override
 	public void addBlockTooltip(ItemStack itemStack, List tooltip) {
+		// ignored
 	}
 
 	@Override
@@ -151,7 +155,7 @@ public class BlockETSlab extends BlockWoodSlab implements IBlockMetadata {
 	}
 
 	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
 		return BlockMetadata.getPickBlock(world, x, y, z);
 	}
 }

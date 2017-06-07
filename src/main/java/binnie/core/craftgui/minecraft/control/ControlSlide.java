@@ -57,7 +57,7 @@ public class ControlSlide extends Control {
 			if (anchor.y() > 0) {
 				GL11.glTranslatef(0.0f, -lh, 0.0f);
 			}
-			CraftGUI.Render.text(labelArea, TextJustification.MiddleCenter, label, 16777215);
+			CraftGUI.Render.text(labelArea, TextJustification.MIDDLE_CENTER, label, 16777215);
 			GL11.glPopMatrix();
 		}
 		CraftGUI.Render.texture(CraftGUITexture.Window, getArea());

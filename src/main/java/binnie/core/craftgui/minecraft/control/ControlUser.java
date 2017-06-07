@@ -1,6 +1,5 @@
 package binnie.core.craftgui.minecraft.control;
 
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -30,7 +29,7 @@ public class ControlUser extends Control implements ITooltip {
 	@Override
 	public void getTooltip(Tooltip tooltip) {
 		tooltip.setType(Tooltip.Type.USER);
-		tooltip.add(I18N.localise(BinnieCore.instance, "gui.tooltip.owner"));
+		tooltip.add(I18N.localise("binniecore.gui.tooltip.owner"));
 
 		if (!username.isEmpty()) {
 			tooltip.add(username);

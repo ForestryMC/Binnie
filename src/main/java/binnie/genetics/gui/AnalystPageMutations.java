@@ -259,7 +259,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 
 		@Override
 		public void onRenderBackground() {
-			CraftGUI.Render.text(getArea(), TextJustification.MiddleCenter, "UNKNOWN", 11184810);
+			CraftGUI.Render.text(getArea(), TextJustification.MIDDLE_CENTER, "UNKNOWN", 11184810);
 		}
 	}
 }

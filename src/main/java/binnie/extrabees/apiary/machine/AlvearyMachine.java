@@ -7,18 +7,25 @@ import binnie.core.machines.MachineRendererBlock;
 import binnie.core.resource.BinnieResource;
 import binnie.extrabees.apiary.ModuleApiary;
 import binnie.extrabees.apiary.TileExtraBeeAlveary;
+import binnie.extrabees.apiary.machine.frame.FrameAlvearyPackage;
+import binnie.extrabees.apiary.machine.hatchery.HatcheryAlvearyPackage;
+import binnie.extrabees.apiary.machine.lighting.LightingAlvearyPackage;
+import binnie.extrabees.apiary.machine.mutator.MutatorAlvearyPackage;
+import binnie.extrabees.apiary.machine.rainShield.RainShieldAlvearyPackage;
+import binnie.extrabees.apiary.machine.stimulator.StimulatorAlvearyPackage;
+import binnie.extrabees.apiary.machine.transmission.TransmissionAlvearyPackage;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
 public enum AlvearyMachine implements IMachineType {
-	Mutator(AlvearyMutator.PackageAlvearyMutator.class),
-	Frame(AlvearyFrame.PackageAlvearyFrame.class),
-	RainShield(AlvearyRainShield.PackageAlvearyRainShield.class),
-	Lighting(AlvearyLighting.PackageAlvearyLighting.class),
-	Stimulator(AlvearyStimulator.PackageAlvearyStimulator.class),
-	Hatchery(AlvearyHatchery.PackageAlvearyHatchery.class),
-	Transmission(AlvearyTransmission.PackageAlvearyTransmission.class);
+	Mutator(MutatorAlvearyPackage.class),
+	Frame(FrameAlvearyPackage.class),
+	RainShield(RainShieldAlvearyPackage.class),
+	Lighting(LightingAlvearyPackage.class),
+	Stimulator(StimulatorAlvearyPackage.class),
+	Hatchery(HatcheryAlvearyPackage.class),
+	Transmission(TransmissionAlvearyPackage.class);
 
 	protected Class<? extends MachinePackage> cls;
 

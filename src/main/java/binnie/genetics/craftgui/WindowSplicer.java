@@ -57,7 +57,7 @@ public class WindowSplicer extends WindowMachine {
 		CraftGUIUtil.verticalGrid(
 			(w() - 72.0f) / 2.0f,
 			32.0f,
-			TextJustification.MiddleCenter,
+			TextJustification.MIDDLE_CENTER,
 			4.0f,
 			new ControlSlotArray(this, 0, 0, 4, 1)
 				.create(Inoculator.SLOT_RESERVE),
@@ -72,7 +72,7 @@ public class WindowSplicer extends WindowMachine {
 
 	@Override
 	public String getTitle() {
-		return I18N.localise(Genetics.instance, "machine.advMachine.splicer");
+		return I18N.localise("genetics.machine.advMachine.splicer");
 	}
 
 	@Override

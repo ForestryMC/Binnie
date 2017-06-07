@@ -11,7 +11,7 @@ import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
 import binnie.extrabees.ExtraBees;
-import binnie.extrabees.apiary.machine.AlvearyMutator;
+import binnie.extrabees.apiary.machine.mutator.AlvearyMutator;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -39,7 +39,7 @@ public class WindowAlvearyMutator extends Window {
 		playerInventory = new ControlPlayerInventory(this);
 		ControlSlot slot = new ControlSlot(this, 79.0f, 30.0f);
 		slot.assign(0);
-		new ControlText(this, new IArea(0.0f, 52.0f, w(), 16.0f), "Possible Mutagens:", TextJustification.MiddleCenter).setColor(5592405);
+		new ControlText(this, new IArea(0.0f, 52.0f, w(), 16.0f), "Possible Mutagens:", TextJustification.MIDDLE_CENTER).setColor(5592405);
 		int size = AlvearyMutator.getMutagens().size();
 		int w = size * 18;
 

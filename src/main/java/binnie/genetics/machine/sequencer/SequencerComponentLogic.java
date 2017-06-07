@@ -6,7 +6,6 @@ import binnie.core.machines.power.ComponentProcess;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
-import binnie.genetics.Genetics;
 import binnie.genetics.genetics.GeneTracker;
 import binnie.genetics.genetics.SequencerItem;
 import binnie.genetics.item.GeneticsItems;
@@ -41,7 +40,7 @@ public class SequencerComponentLogic extends ComponentProcess implements IProces
 	public ErrorState canWork() {
 		if (getUtil().isSlotEmpty(Sequencer.SLOT_TARGET_INDEX)) {
 			return new ErrorState.NoItem(
-				I18N.localise(Genetics.instance, "machine.sequencer.error.noSequence"),
+				I18N.localise("genetics.machine.sequencer.error.noSequence"),
 				Sequencer.SLOT_TARGET_INDEX
 			);
 		}
@@ -52,8 +51,8 @@ public class SequencerComponentLogic extends ComponentProcess implements IProces
 	public ErrorState canProgress() {
 		if (getMachine().getOwner() == null) {
 			return new ErrorState(
-				I18N.localise(Genetics.instance, "machine.sequencer.error.noOwner.title"),
-				I18N.localise(Genetics.instance, "machine.sequencer.error.noOwner")
+				I18N.localise("genetics.machine.sequencer.error.noOwner.title"),
+				I18N.localise("genetics.machine.sequencer.error.noOwner")
 			);
 		}
 		if (getUtil().getSlotCharge(Sequencer.SLOT_DYE_INDEX) == 0.0f) {
@@ -66,7 +65,7 @@ public class SequencerComponentLogic extends ComponentProcess implements IProces
 		ItemStack stack = getUtil().getStack(Sequencer.SLOT_DONE_INDEX);
 		if (stack != null && stack.stackSize >= 64) {
 			return new ErrorState.NoSpace(
-				I18N.localise(Genetics.instance, "machine.sequencer.error.noSpace"),
+				I18N.localise("genetics.machine.sequencer.error.noSpace"),
 				Sequencer.SLOT_DONE_INDEX
 			);
 		}

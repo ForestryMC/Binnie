@@ -1,7 +1,7 @@
 package binnie.genetics.item;
 
-import binnie.genetics.GeneticsCreativeTab;
 import binnie.genetics.Genetics;
+import binnie.genetics.GeneticsCreativeTab;
 import binnie.genetics.core.GeneticsGUI;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;

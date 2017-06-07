@@ -32,8 +32,8 @@ public class ItemHammer extends Item implements IToolHammer {
 	@Override
 	public String getItemStackDisplayName(ItemStack i) {
 		return isDurableHammer ?
-			I18N.localise(ExtraTrees.instance, "item.masterCarpentryHammer") :
-			I18N.localise(ExtraTrees.instance, "item.carpentryHammer");
+			I18N.localise("extratrees.item.masterCarpentryHammer") :
+			I18N.localise("extratrees.item.carpentryHammer");
 	}
 
 	@Override

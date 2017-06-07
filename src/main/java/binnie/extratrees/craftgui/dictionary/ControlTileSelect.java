@@ -1,6 +1,5 @@
 package binnie.extratrees.craftgui.dictionary;
 
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -134,7 +133,8 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 					if (tile == null) {
 						return;
 					}
-					Designer.ComponentWoodworkerRecipe recipe = tile.getMachine().getComponent(Designer.ComponentWoodworkerRecipe.class);
+
+					tile.getMachine().getComponent(Designer.ComponentWoodworkerRecipe.class);
 					NBTTagCompound nbt = new NBTTagCompound();
 					nbt.setShort("d", (short) CarpentryManager.carpentryInterface.getDesignIndex(getValue()));
 					Window.get(getWidget()).sendClientAction("design", nbt);
@@ -144,7 +144,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 
 		@Override
 		public void getTooltip(Tooltip tooltip) {
-			tooltip.add(I18N.localise(BinnieCore.instance, "gui.designer.pattern", getValue().getName()));
+			tooltip.add(I18N.localise("binniecore.gui.designer.pattern", getValue().getName()));
 		}
 
 		@Override

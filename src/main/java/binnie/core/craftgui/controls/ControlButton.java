@@ -24,7 +24,7 @@ public class ControlButton extends Control {
 	public ControlButton(IWidget parent, float x, float y, float width, float height, String text) {
 		this(parent, x, y, width, height);
 		this.text = text;
-		textWidget = new ControlText(this, getArea(), text, TextJustification.MiddleCenter);
+		textWidget = new ControlText(this, getArea(), text, TextJustification.MIDDLE_CENTER);
 	}
 	
 	private EventMouse.Down.Handler mouseHandler = new EventMouse.Down.Handler() {

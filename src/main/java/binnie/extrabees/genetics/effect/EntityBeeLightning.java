@@ -13,8 +13,8 @@ public class EntityBeeLightning extends EntityLightningBolt {
 	int lightningState;
 	int boltLivingTime;
 
-	public EntityBeeLightning(World par1World, double par2, double par4, double par6) {
-		super(par1World, par2, par4, par6);
+	public EntityBeeLightning(World world, double x, double y, double z) {
+		super(world, x, y, z);
 		lightningState = 2;
 		boltLivingTime = rand.nextInt(3) + 1;
 	}

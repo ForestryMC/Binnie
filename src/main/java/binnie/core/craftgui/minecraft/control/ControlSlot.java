@@ -1,6 +1,5 @@
 package binnie.core.craftgui.minecraft.control;
 
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.Tooltip;
@@ -190,27 +189,27 @@ public class ControlSlot extends ControlSlotBase {
 		InventorySlot slot = getInventorySlot();
 		if (getInventorySlot() != null) {
 			tooltip.add(slot.getName());
-			tooltip.add(I18N.localise(BinnieCore.instance, "gui.side.insertSide", MachineSide.asString(slot.getInputSides())));
-			tooltip.add(I18N.localise(BinnieCore.instance, "gui.side.extractSide", MachineSide.asString(slot.getOutputSides())));
+			tooltip.add(I18N.localise("binniecore.gui.side.insertSide", MachineSide.asString(slot.getInputSides())));
+			tooltip.add(I18N.localise("binniecore.gui.side.extractSide", MachineSide.asString(slot.getOutputSides())));
 
 			if (slot.isReadOnly()) {
-				tooltip.add(I18N.localise(BinnieCore.instance, "gui.slot.pickupOnly"));
+				tooltip.add(I18N.localise("binniecore.gui.slot.pickupOnly"));
 			}
 
 			if (slot.getValidator() == null) {
-				tooltip.add(I18N.localise(BinnieCore.instance, "gui.slot.accepts", I18N.localise(BinnieCore.instance, "gui.slot.anyItem")));
+				tooltip.add(I18N.localise("binniecore.gui.slot.accepts", I18N.localise("binniecore.gui.slot.anyItem")));
 			} else {
-				tooltip.add(I18N.localise(BinnieCore.instance, "gui.slot.accepts", slot.getValidator().getTooltip()));
+				tooltip.add(I18N.localise("binniecore.gui.slot.accepts", slot.getValidator().getTooltip()));
 			}
 		} else if (this.slot.inventory instanceof WindowInventory) {
 			SlotValidator s = ((WindowInventory) this.slot.inventory).getValidator(this.slot.getSlotIndex());
 			if (s == null) {
-				tooltip.add(I18N.localise(BinnieCore.instance, "gui.slot.accepts", I18N.localise(BinnieCore.instance, "gui.slot.anyItem")));
+				tooltip.add(I18N.localise("binniecore.gui.slot.accepts", I18N.localise("binniecore.gui.slot.anyItem")));
 			} else {
-				tooltip.add(I18N.localise(BinnieCore.instance, "gui.slot.accepts", s.getTooltip()));
+				tooltip.add(I18N.localise("binniecore.gui.slot.accepts", s.getTooltip()));
 			}
 		} else if (this.slot.inventory instanceof InventoryPlayer) {
-			tooltip.add(I18N.localise(BinnieCore.instance, "gui.slot.playerInventory"));
+			tooltip.add(I18N.localise("binniecore.gui.slot.playerInventory"));
 		}
 	}
 

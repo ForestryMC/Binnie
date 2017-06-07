@@ -2,7 +2,6 @@ package binnie.extratrees.carpentry;
 
 import binnie.botany.Botany;
 import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.IDesign;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -59,6 +58,6 @@ public class BlockStainedDesign extends BlockDesign {
 
 	@Override
 	public String getBlockName(DesignBlock design) {
-		return I18N.localise(ExtraTrees.instance, "block.stainedglass.name", design.getDesign().getName());
+		return I18N.localise("extratrees.block.stainedglass.name", design.getDesign().getName());
 	}
 }

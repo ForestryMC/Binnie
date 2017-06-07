@@ -1,6 +1,5 @@
 package binnie.core.machines.power;
 
-import binnie.core.BinnieCore;
 import binnie.core.util.I18N;
 import forestry.api.core.INBTTagable;
 import net.minecraft.nbt.NBTTagCompound;
@@ -107,13 +106,13 @@ public class ErrorState implements INBTTagable {
 		}
 
 		public NoItem(String desc, int[] slots) {
-			super(I18N.localise(BinnieCore.instance, "machine.error.noItem"), desc, slots);
+			super(I18N.localise("binniecore.machine.error.noItem"), desc, slots);
 		}
 	}
 
 	public static class InvalidItem extends Item {
 		public InvalidItem(String desc, int slot) {
-			this(I18N.localise(BinnieCore.instance, "machine.error.invalidItem"), desc, slot);
+			this(I18N.localise("binniecore.machine.error.invalidItem"), desc, slot);
 		}
 
 		public InvalidItem(String name, String desc, int slot) {
@@ -123,32 +122,32 @@ public class ErrorState implements INBTTagable {
 
 	public static class NoSpace extends Item {
 		public NoSpace(String desc, int slot) {
-			super(I18N.localise(BinnieCore.instance, "machine.error.noSpace"), desc, new int[]{slot});
+			super(I18N.localise("binniecore.machine.error.noSpace"), desc, new int[]{slot});
 		}
 
 		public NoSpace(String desc, int[] slots) {
-			super(I18N.localise(BinnieCore.instance, "machine.error.noSpace"), desc, slots);
+			super(I18N.localise("binniecore.machine.error.noSpace"), desc, slots);
 		}
 	}
 
 	public static class InsufficientPower extends ErrorState {
 		public InsufficientPower() {
 			super(
-				I18N.localise(BinnieCore.instance, "machine.error.insufficientPower.title"),
-				I18N.localise(BinnieCore.instance, "machine.error.insufficientPower.desc")
+				I18N.localise("binniecore.machine.error.insufficientPower.title"),
+				I18N.localise("binniecore.machine.error.insufficientPower.desc")
 			);
 		}
 	}
 
 	public static class TankSpace extends Tank {
 		public TankSpace(String desc, int tank) {
-			super(I18N.localise(BinnieCore.instance, "machine.error.tankFull"), desc, new int[]{tank});
+			super(I18N.localise("binniecore.machine.error.tankFull"), desc, new int[]{tank});
 		}
 	}
 
 	public static class InsufficientLiquid extends Tank {
 		public InsufficientLiquid(String desc, int tank) {
-			super(I18N.localise(BinnieCore.instance, "machine.error.insufficientLiquid"), desc, new int[]{tank});
+			super(I18N.localise("binniecore.machine.error.insufficientLiquid"), desc, new int[]{tank});
 		}
 	}
 }
