@@ -678,9 +678,9 @@ extrabees.gui.database.tab.species.products.everyHours=Каждые %s ч.
 extrabees.gui.database.tab.species.products.everyMins=Каждые %s м.
 extrabees.gui.database.tab.species.products.everySecs=Каждые %s с.
 
-extrabees.gui.database.tab.species.specialties=Специальность
 extrabees.gui.database.tab.species.climate=Климат
 extrabees.gui.database.tab.species.biomes=Биомы
+extrabees.gui.database.tab.species.specialties=Специальность
 extrabees.gui.database.tab.species.resultant=Произведённые мутации
 extrabees.gui.database.tab.species.further=Дальнейшие возможные мутации
 
