@@ -1,4 +1,4 @@
-package binnie.extrabees.gui.database;
+package binnie.extrabees.gui.database.product;
 
 import binnie.Binnie;
 import binnie.core.BinnieCore;
@@ -12,16 +12,17 @@ import net.minecraft.item.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-public class ControlProductsBox extends ControlListBox<ControlProductsBox.Product> {
+public class ControlProductsBox extends ControlListBox<Product> {
 	protected IAlleleBeeSpecies species;
 
-	private Type type;
+	private ProductType type;
 
-	public ControlProductsBox(IWidget parent, int x, int y, int width, int height, Type type) {
+	public ControlProductsBox(IWidget parent, int x, int y, int width, int height, ProductType type) {
 		super(parent, x, y, width, height, 12.0f);
-		species = null;
 		this.type = type;
+		species = null;
 	}
 
 	@Override
@@ -44,31 +45,17 @@ public class ControlProductsBox extends ControlListBox<ControlProductsBox.Produc
 				.getProductionModifier(genome, 1.0f);
 
 			List<Product> strings = new ArrayList<>();
-			if (type == Type.Products) {
-				for (Map.Entry<ItemStack, Float> entry : species.getProductChances().entrySet()) {
-					strings.add(new Product(entry.getKey(), speed * modeSpeed * entry.getValue()));
-				}
+			Set<Map.Entry<ItemStack, Float>> chances;
+			if (type == ProductType.PRODUCTS) {
+				chances = species.getProductChances().entrySet();
 			} else {
-				for (Map.Entry<ItemStack, Float> entry : species.getSpecialtyChances().entrySet()) {
-					strings.add(new Product(entry.getKey(), speed * modeSpeed * entry.getValue()));
-				}
+				chances = species.getSpecialtyChances().entrySet();
+			}
+
+			for (Map.Entry<ItemStack, Float> entry : chances) {
+				strings.add(new Product(entry.getKey(), speed * modeSpeed * entry.getValue()));
 			}
 			setOptions(strings);
-		}
-	}
-
-	enum Type {
-		Products,
-		Specialties
-	}
-
-	class Product {
-		protected ItemStack item;
-		protected float chance;
-
-		public Product(ItemStack item, float chance) {
-			this.item = item;
-			this.chance = chance;
 		}
 	}
 }

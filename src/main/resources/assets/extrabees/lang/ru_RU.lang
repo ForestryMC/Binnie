@@ -236,54 +236,9 @@ extrabees.genetics.quality.poor=плохо
 extrabees.genetics.quality.average=средне
 extrabees.genetics.quality.good=хорошо
 extrabees.genetics.quality.excellent=отлично
-
 extrabees.genetics.quality.tooltip=%s Качество
 
-extrabees.genetics.allele.shortest=наикратчайше
-extrabees.genetics.allele.shorter=сверх коротко
-extrabees.genetics.allele.short=очень коротко
-extrabees.genetics.allele.shortened=коротко
-extrabees.genetics.allele.normal=нормально
-extrabees.genetics.allele.elongated=чуть дольше
-extrabees.genetics.allele.long=дольше
-extrabees.genetics.allele.longer=очень дольше
-extrabees.genetics.allele.longest=дольше всего
-
-extrabees.genetics.allele.slowest=наимедлительнейше
-extrabees.genetics.allele.slower=очень медленно
-extrabees.genetics.allele.slow=медленно
-extrabees.genetics.allele.norm=нормально
-extrabees.genetics.allele.fast=быстро
-extrabees.genetics.allele.faster=очень быстро
-extrabees.genetics.allele.fastest=наибыстрейше
-
-extrabees.genetics.allele.low=низко
-extrabees.genetics.allele.high=высоко
-extrabees.genetics.allele.maximum=максимум
-
-extrabees.genetics.allele.average=нормальное
-
-extrabees.genetics.allele.default=по-умолчанию
-extrabees.genetics.allele.large=большой
-extrabees.genetics.allele.larger=очень большой
-extrabees.genetics.allele.largest=огромный
-
-extrabees.genetics.allele.none=отсутствует
-extrabees.genetics.allele.both1=обе 1
-extrabees.genetics.allele.both2=обе 2
-extrabees.genetics.allele.both3=обе 3
-extrabees.genetics.allele.both4=обе 4
-extrabees.genetics.allele.both5=обе 5
-extrabees.genetics.allele.up1=вверх 1
-extrabees.genetics.allele.up2=вверх 2
-extrabees.genetics.allele.up3=вверх 3
-extrabees.genetics.allele.up4=вверх 4
-extrabees.genetics.allele.up5=вверх 5
-extrabees.genetics.allele.down1=вниз 1
-extrabees.genetics.allele.down2=вниз 2
-extrabees.genetics.allele.down3=вниз 3
-extrabees.genetics.allele.down4=вниз 4
-extrabees.genetics.allele.down5=вниз 5
+extrabees.genetics.allele.tolerated=Терпимо
 
 extrabees.genetics.allele.noeffect=отмена эффекта
 extrabees.genetics.allele.noflower=неопыляющие
@@ -702,16 +657,33 @@ extrabees.effect.bonemealfruit.name=Созревание
 extrabees.effect.bonemealmushroom.name=Большие грибы
 extrabees.effect.power.name=Сила
 
+extrabees.gui.database=База данных
 extrabees.gui.database.tab.species.overview=Обзор
 extrabees.gui.database.tab.species.classification=Классификация
+
 extrabees.gui.database.tab.species.genome=Генотип
+extrabees.gui.database.tab.species.genome.speed=Скорость:
+extrabees.gui.database.tab.species.genome.lifespan=Жизнь:
+extrabees.gui.database.tab.species.genome.fertility=Потомство:
+extrabees.gui.database.tab.species.genome.flowering=Опыление:
+extrabees.gui.database.tab.species.genome.territory=Территория:
+extrabees.gui.database.tab.species.genome.behavior=Поведение:
+extrabees.gui.database.tab.species.genome.sunlight=Дневной свет:
+extrabees.gui.database.tab.species.genome.rain=Дождь:
+extrabees.gui.database.tab.species.genome.flower=Цветы:
+extrabees.gui.database.tab.species.genome.effect=Эффект:
+
 extrabees.gui.database.tab.species.products=Продукция
 extrabees.gui.database.tab.species.products.everyHours=Каждые %s ч.
 extrabees.gui.database.tab.species.products.everyMins=Каждые %s м.
 extrabees.gui.database.tab.species.products.everySecs=Каждые %s с.
+
+extrabees.gui.database.tab.species.specialties=Специальность
 extrabees.gui.database.tab.species.climate=Климат
+extrabees.gui.database.tab.species.biomes=Биомы
 extrabees.gui.database.tab.species.resultant=Произведённые мутации
 extrabees.gui.database.tab.species.further=Дальнейшие возможные мутации
+
 extrabees.gui.database.tab.branches.overview=Обзор
 extrabees.gui.database.tab.branches.species=Виды
 extrabees.gui.database.tab.breeder=Селекция

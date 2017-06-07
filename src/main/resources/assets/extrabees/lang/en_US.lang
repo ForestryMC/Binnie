@@ -238,51 +238,7 @@ extrabees.genetics.quality.good=Good
 extrabees.genetics.quality.excellent=Excellent
 extrabees.genetics.quality.tooltip=%s Quality
 
-extrabees.genetics.allele.shortest=Shortest
-extrabees.genetics.allele.shorter=Shorter
-extrabees.genetics.allele.short=Short
-extrabees.genetics.allele.shortened=Shortened
-extrabees.genetics.allele.normal=Normal
-extrabees.genetics.allele.elongated=Elongated
-extrabees.genetics.allele.long=Long
-extrabees.genetics.allele.longer=Longer
-extrabees.genetics.allele.longest=Longest
-
-extrabees.genetics.allele.slowest=Slowest
-extrabees.genetics.allele.slower=Slower
-extrabees.genetics.allele.slow=Slow
-extrabees.genetics.allele.norm=Normal
-extrabees.genetics.allele.fast=Fast
-extrabees.genetics.allele.faster=Faster
-extrabees.genetics.allele.fastest=Fastest
-
-extrabees.genetics.allele.low=Low
-extrabees.genetics.allele.high=High
-extrabees.genetics.allele.maximum=Maximum
-
-extrabees.genetics.allele.average=Average
-
-extrabees.genetics.allele.default=Default
-extrabees.genetics.allele.large=Large
-extrabees.genetics.allele.larger=Larger
-extrabees.genetics.allele.largest=Largest
-
-extrabees.genetics.allele.none=None
-extrabees.genetics.allele.both1=Both 1
-extrabees.genetics.allele.both2=Both 2
-extrabees.genetics.allele.both3=Both 3
-extrabees.genetics.allele.both4=Both 4
-extrabees.genetics.allele.both5=Both 5
-extrabees.genetics.allele.up1=Up 1
-extrabees.genetics.allele.up2=Up 2
-extrabees.genetics.allele.up3=Up 3
-extrabees.genetics.allele.up4=Up 4
-extrabees.genetics.allele.up5=Up 5
-extrabees.genetics.allele.down1=Down 1
-extrabees.genetics.allele.down2=Down 2
-extrabees.genetics.allele.down3=Down 3
-extrabees.genetics.allele.down4=Down 4
-extrabees.genetics.allele.down5=Down 5
+extrabees.genetics.allele.tolerated=Tolerated
 
 extrabees.genetics.allele.noeffect=Effect Cancellation
 extrabees.genetics.allele.noflower=Non-pollination
@@ -526,16 +482,33 @@ extrabees.effect.bonemealfruit.name=Ripening
 extrabees.effect.bonemealmushroom.name=Mushroom
 extrabees.effect.power.name=Power
 
+extrabees.gui.database=Database
 extrabees.gui.database.tab.species.overview=Overview
 extrabees.gui.database.tab.species.classification=Classification
+
 extrabees.gui.database.tab.species.genome=Genome
+extrabees.gui.database.tab.species.genome.speed=Speed:
+extrabees.gui.database.tab.species.genome.lifespan=Lifespan:
+extrabees.gui.database.tab.species.genome.fertility=Fertility:
+extrabees.gui.database.tab.species.genome.flowering=Flowering:
+extrabees.gui.database.tab.species.genome.territory=Territory:
+extrabees.gui.database.tab.species.genome.behavior=Behavior:
+extrabees.gui.database.tab.species.genome.sunlight=Sunlight:
+extrabees.gui.database.tab.species.genome.rain=Rain:
+extrabees.gui.database.tab.species.genome.flower=Flower:
+extrabees.gui.database.tab.species.genome.effect=Effect:
+
 extrabees.gui.database.tab.species.products=Products
 extrabees.gui.database.tab.species.products.everyHours=Every %s hours
 extrabees.gui.database.tab.species.products.everyMins=Every %s min.
 extrabees.gui.database.tab.species.products.everySecs=Every %s sec.
+
 extrabees.gui.database.tab.species.climate=Climate
+extrabees.gui.database.tab.species.biomes=Biomes
+extrabees.gui.database.tab.species.specialties=Specialties
 extrabees.gui.database.tab.species.resultant=Resultant Mutations
 extrabees.gui.database.tab.species.further=Further Mutations
+
 extrabees.gui.database.tab.branches.overview=Overview
 extrabees.gui.database.tab.branches.species=Species
 extrabees.gui.database.tab.breeder=Breeder

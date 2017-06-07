@@ -1,4 +1,4 @@
-package binnie.extrabees.gui.database;
+package binnie.extrabees.gui.database.product;
 
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextCentered;
@@ -11,10 +11,10 @@ import binnie.core.util.I18N;
 
 import java.text.DecimalFormat;
 
-public class ControlProductsItem extends ControlOption<ControlProductsBox.Product> {
+public class ControlProductsItem extends ControlOption<Product> {
 	protected ControlItemDisplay item;
 
-	public ControlProductsItem(ControlList<ControlProductsBox.Product> controlList, ControlProductsBox.Product value, int y) {
+	public ControlProductsItem(ControlList<Product> controlList, Product value, int y) {
 		super(controlList, value, y);
 		(item = new ControlItemDisplay(this, 4.0f, 4.0f)).setTooltip();
 		ControlText textWidget = new ControlTextCentered(this, 2.0f, "");

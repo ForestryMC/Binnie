@@ -12,7 +12,9 @@ import binnie.core.craftgui.database.PageSpeciesOverview;
 import binnie.core.craftgui.database.PageSpeciesResultant;
 import binnie.core.craftgui.database.WindowAbstractDatabase;
 import binnie.core.craftgui.minecraft.Window;
+import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
+import binnie.extrabees.gui.database.product.PageSpeciesProducts;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -46,6 +48,6 @@ public class WindowApiaristDatabase extends WindowAbstractDatabase {
 
 	@Override
 	public String getName() {
-		return "Database";
+		return I18N.localise("extrabees.gui.database");
 	}
 }
