@@ -37,6 +37,7 @@ public class RenderUtil {
 	}
 
 	public static void drawItem(final Point pos, final ItemStack itemStack, final boolean rotating) {
+		GlStateManager.pushAttrib();
 		Preconditions.checkNotNull(itemStack);
 		Minecraft minecraft = Minecraft.getMinecraft();
 		net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
@@ -62,6 +63,7 @@ public class RenderUtil {
 
 		GlStateManager.disableBlend();
 		net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
+		GlStateManager.popAttrib();
 	}
 
 	private static FontRenderer getFontRenderer(Minecraft minecraft, ItemStack ingredient) {
