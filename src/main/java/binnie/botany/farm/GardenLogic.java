@@ -224,7 +224,7 @@ public class GardenLogic extends FarmLogic {
 		ItemStack copy = loam;
 		if (!loam.isEmpty()) {
 			if (loam.getItem() == Item.getItemFromBlock(Blocks.DIRT)) {
-				loam = new ItemStack(Botany.soil, 0, 4);
+				loam = new ItemStack(Botany.soil, 1, 4);
 			}
 			setBlock(world, position, ((ItemBlock) loam.getItem()).getBlock(), loam.getItemDamage());
 			final NonNullList<ItemStack> resources = NonNullList.create();
