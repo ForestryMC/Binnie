@@ -198,6 +198,7 @@ extrabees.machine.alveay.lighting.info=The Alveary Lighting tricks bees into thi
 extrabees.machine.alveay.mutator=Mutator
 extrabees.machine.alveay.mutator.info=The Mutator uses certain items in order to encourage bee mutation.
 extrabees.machine.alveay.mutator.tooltip=Mutagenic Agents
+extrabees.machine.alveay.mutator.mutagens=Possible Mutagens:
 
 extrabees.machine.alveay.rainShield=Rain Shield
 extrabees.machine.alveay.rainShield.info=The Rain Shield prevents bees from being affected by rainfall.
