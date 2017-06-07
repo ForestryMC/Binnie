@@ -20,6 +20,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 public enum LaboratoryMachine implements IMachineType {
 	LabMachine(PackageLabMachine.class),
 	Analyser(PackageAnalyser.class),
@@ -65,6 +67,7 @@ public enum LaboratoryMachine implements IMachineType {
 	}
 
 	public static class ComponentGUIHolder extends MachineComponent implements INetwork.TilePacketSync, IInteraction.RightClick {
+		@Nonnull
 		private ItemStack stack = ItemStack.EMPTY;
 
 		public ComponentGUIHolder(final IMachine machine) {
