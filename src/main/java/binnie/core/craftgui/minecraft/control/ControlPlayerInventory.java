@@ -44,7 +44,7 @@ public class ControlPlayerInventory extends Control {
 		this.slots = new ArrayList<>();
 		for (int row = 0; row < 6; ++row) {
 			for (int column = 0; column < 6; ++column) {
-				final ControlSlot slot = new ControlSlot.Builder(this, column * 18, row * 18).assign(InventoryType.Player, 9 + column + row * 9);
+				final ControlSlot slot = new ControlSlot.Builder(this, column * 18, row * 18).assign(InventoryType.Player,column + row * 6);
 				this.slots.add(slot);
 			}
 		}
