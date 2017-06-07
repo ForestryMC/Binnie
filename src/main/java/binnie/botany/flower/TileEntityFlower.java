@@ -64,12 +64,6 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 	}
 
 	@Override
-	public NBTTagCompound getUpdateTag() {
-		updateRender(true);
-		return super.getUpdateTag();
-	}
-
-	@Override
 	public void readFromNBT(final NBTTagCompound nbtCompound) {
 		if (nbtCompound.hasKey("Flower")) {
 			this.flower = new Flower(nbtCompound.getCompoundTag("Flower"));
@@ -87,6 +81,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 			this.matureTime = nbtCompound.getInteger("caterTime");
 			this.caterpillar = Binnie.GENETICS.getButterflyRoot().getMember(nbtCompound.getCompoundTag("cater"));
 		}
+		readRenderInfo(nbtCompound);
 		super.readFromNBT(nbtCompound);
 	}
 
@@ -107,6 +102,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 			nbtCompound.setTag("cater", subcompound);
 		}
 		nbtCompound.setByte("section", (byte) getSection());
+		writeRenderInfo(nbtCompound);
 		return super.writeToNBT(nbtCompound);
 	}
 
@@ -283,13 +279,48 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		}
 	}
 
+	private NBTTagCompound writeRenderInfo(NBTTagCompound tag){
+		if(renderInfo!=null){
+			NBTTagCompound nbtRenderInfo = new NBTTagCompound();
+			nbtRenderInfo.setByte("primary",(byte)this.renderInfo.primary.getID());
+			nbtRenderInfo.setByte("secondary",(byte)this.renderInfo.secondary.getID());
+			nbtRenderInfo.setByte("stem",(byte)this.renderInfo.stem.getID());
+			nbtRenderInfo.setByte("type",(byte)this.renderInfo.type.ordinal());
+			nbtRenderInfo.setByte("age",this.renderInfo.age);
+			nbtRenderInfo.setByte("section",this.renderInfo.section);
+			nbtRenderInfo.setBoolean("wilted",this.renderInfo.wilted);
+			nbtRenderInfo.setBoolean("flowered",this.renderInfo.flowered);
+			tag.setTag("renderinfo", nbtRenderInfo);
+		}
+		return tag;
+	}
+
+	private void readRenderInfo(NBTTagCompound tag){
+		if(tag.hasKey("renderinfo")){
+			NBTTagCompound infotag = tag.getCompoundTag("renderinfo");
+			RenderInfo info = new RenderInfo();
+			info.primary = EnumFlowerColor.values()[infotag.getByte("primary")].getFlowerColorAllele();
+			info.secondary = EnumFlowerColor.values()[infotag.getByte("secondary")].getFlowerColorAllele();
+			info.stem = EnumFlowerColor.values()[infotag.getByte("stem")].getFlowerColorAllele();
+			info.type = EnumFlowerType.values()[infotag.getByte("type")];
+			info.age = infotag.getByte("age");
+			info.section = infotag.getByte("section");
+			info.wilted = infotag.getBoolean("wilted");
+			info.flowered = infotag.getBoolean("flowered");
+			setRender(info);
+		}
+	}
+
 	@Override
 	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
 		super.onDataPacket(net, pkt);
+		readRenderInfo(pkt.getNbtCompound());
+	}
 
-		if (pkt instanceof PacketFlowerUpdate) {
-			setRender(((PacketFlowerUpdate) pkt).render);
-		}
+	@Override
+	public NBTTagCompound getUpdateTag() {
+		updateRender(true);
+		return writeRenderInfo(super.getUpdateTag());
 	}
 
 	@Override
@@ -297,7 +328,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		if (this.renderInfo == null && this.getFlower() != null && this.getFlower().getGenome() != null) {
 			this.renderInfo = new RenderInfo(this.getFlower(), this);
 		}
-		return (this.renderInfo != null) ? new PacketFlowerUpdate(pos, 0, getUpdateTag(), renderInfo) : null;
+		return (this.renderInfo != null) ? new SPacketUpdateTileEntity(pos, 0, getUpdateTag()) : null;
 	}
 
 	public void updateRender(final boolean update) {
