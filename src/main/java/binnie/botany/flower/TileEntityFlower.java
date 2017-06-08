@@ -102,7 +102,6 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 			nbtCompound.setTag("cater", subcompound);
 		}
 		nbtCompound.setByte("section", (byte) getSection());
-		writeRenderInfo(nbtCompound);
 		return super.writeToNBT(nbtCompound);
 	}
 
