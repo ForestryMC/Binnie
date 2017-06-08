@@ -39,7 +39,7 @@ public class BlockETPlanks extends BlockWood implements IBlockMetadata {
 	}
 
 	@Override
-	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z) {
+	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
 		return BlockMetadata.breakBlock(this, player, world, x, y, z);
 	}
 

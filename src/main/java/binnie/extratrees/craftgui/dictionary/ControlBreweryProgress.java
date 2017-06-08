@@ -21,8 +21,8 @@ import org.lwjgl.opengl.GL11;
 import java.util.Collections;
 
 public class ControlBreweryProgress extends ControlProgressBase {
-	protected static Texture Brewery = new StandardTexture(0, 69, 34, 39, ExtraTreeTexture.Gui);
-	protected static Texture BreweryOverlay = new StandardTexture(34, 69, 34, 39, ExtraTreeTexture.Gui);
+	protected static Texture brewery = new StandardTexture(0, 69, 34, 39, ExtraTreeTexture.Gui);
+	protected static Texture breweryOverlay = new StandardTexture(34, 69, 34, 39, ExtraTreeTexture.Gui);
 
 	protected ControlBreweryProgress(IWidget parent, float x, float y) {
 		super(parent, x, y, 34.0f, 39.0f);
@@ -31,12 +31,9 @@ public class ControlBreweryProgress extends ControlProgressBase {
 
 	@Override
 	public void onRenderBackground() {
-		CraftGUI.Render.texture(ControlBreweryProgress.Brewery, new IPoint(0.0f, 0.0f));
+		CraftGUI.Render.texture(ControlBreweryProgress.brewery, new IPoint(0.0f, 0.0f));
 		Brewery.ComponentBreweryLogic logic = Machine.getInterface(Brewery.ComponentBreweryLogic.class, Window.get(this).getInventory());
-		if (logic.currentCrafting == null) {
-			return;
-		}
-		if (logic.currentCrafting.currentInput == null) {
+		if (logic.currentCrafting == null || logic.currentCrafting.currentInput == null) {
 			return;
 		}
 
@@ -80,7 +77,6 @@ public class ControlBreweryProgress extends ControlProgressBase {
 		int r = (hex & 0xFF0000) >> 16;
 		int g = (hex & 0xFF00) >> 8;
 		int b = hex & 0xFF;
-		IIcon icon = fluid.getFluid().getIcon();
 		GL11.glColor4f(r / 255.0f, g / 255.0f, b / 255.0f, 1.0f);
 		GL11.glEnable(3042);
 		GL11.glBlendFunc(770, 771);

@@ -60,7 +60,7 @@ public class WindowWoodworker extends Window {
 			slotWood2.assign(Designer.design2Slot);
 			ControlSlot slotBeeswax = new ControlSlot(this, 42.0f, 64.0f);
 			slotBeeswax.assign(Designer.beeswaxSlot);
-			ControlRecipeSlot slotFinished = new ControlRecipeSlot(this, 112, 34);
+			new ControlRecipeSlot(this, 112, 34);
 		}
 	}
 

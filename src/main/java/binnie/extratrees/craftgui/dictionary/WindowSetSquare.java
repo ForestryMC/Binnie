@@ -29,5 +29,6 @@ public class WindowSetSquare extends Window {
 
 	@Override
 	public void initialiseClient() {
+		// ignored
 	}
 }

@@ -25,10 +25,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 public class WindowArboristDatabase extends WindowAbstractDatabase {
-	protected ControlListBox<ItemStack> selectionBoxFruit;
-	protected ControlListBox<ItemStack> selectionBoxWood;
-	protected ControlListBox<ItemStack> selectionBoxPlanks;
-
 	public WindowArboristDatabase(EntityPlayer player, Side side, boolean nei) {
 		super(player, side, nei, Binnie.Genetics.treeBreedingSystem, 120.0f);
 	}

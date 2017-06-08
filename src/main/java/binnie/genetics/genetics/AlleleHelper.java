@@ -111,6 +111,18 @@ public class AlleleHelper extends forestry.core.genetics.alleles.AlleleHelper {
 		return toAlleleDisplay("tolerance", tolerance.name());
 	}
 
+	public static String toDisplay(EnumAllele.Flowering flowering) {
+		return toAlleleDisplay("flowering", flowering.name());
+	}
+
+	public static String toDisplay(EnumAllele.Speed speed) {
+		return toAlleleDisplay("speed", speed.name());
+	}
+
+	public static String toDisplay(EnumAllele.Lifespan lifespan) {
+		return toAlleleDisplay("lifespan", lifespan.name());
+	}
+
 	public static String getUid(EnumAllele.Fertility fertility) {
 		return getUid("fertility", fertility.name());
 	}

@@ -8,3 +8,5 @@ extrabees.branch.rocky.desc=Found amongst the rocks, these bees have very high t
 extrabees.species.rotten.desc=These bees have an unusual attraction to dead, rotting meat and will store it in their combs. The smell also attracts other unsavoury types.|Apiarist Manual
 extrabees.species.red.desc=Don't let them sting you, or you may be seeing red.|Apiarist Manual
 extrabees.species.green.desc=Perhaps it is an attempt at camouflage, but these bees have begun producing dyes that match the colour of leaves and grass.|Apiarist Manual
+
+extrabees.gui.database.tab.species.genome.behavior=Behaviour:

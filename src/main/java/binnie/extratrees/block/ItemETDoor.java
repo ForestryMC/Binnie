@@ -42,9 +42,7 @@ public class ItemETDoor extends ItemMetadata {
 		boolean flag = world.getBlock(x - b0, y, z - b2) == block || world.getBlock(x - b0, y + 1, z - b2) == block;
 		boolean flag2 = world.getBlock(x + b0, y, z + b2) == block || world.getBlock(x + b0, y + 1, z + b2) == block;
 		boolean flag3 = false;
-		if (flag && !flag2) {
-			flag3 = true;
-		} else if (j1 > i1) {
+		if (flag && !flag2 || j1 > i1) {
 			flag3 = true;
 		}
 

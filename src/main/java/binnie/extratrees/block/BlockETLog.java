@@ -99,12 +99,12 @@ public class BlockETLog extends BlockLog implements IBlockMetadata {
 	}
 
 	@Override
-	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z) {
+	public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
 		return BlockMetadata.breakBlock(this, player, world, x, y, z);
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World var1, int i) {
+	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileEntityMetadata();
 	}
 

@@ -6,6 +6,7 @@ import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
 import binnie.core.craftgui.minecraft.control.ControlSlotArray;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
+import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.apiary.machine.hatchery.AlvearyHatchery;
 import cpw.mods.fml.relauncher.Side;
@@ -30,7 +31,7 @@ public class WindowAlvearyHatchery extends Window {
 
 	@Override
 	public void initialiseClient() {
-		setTitle("Hatchery");
+		setTitle(I18N.localise("extrabees.machine.alveay.hatchery"));
 		playerInventory = new ControlPlayerInventory(this);
 		ControlSlotArray slot = new ControlSlotArray(this, 43, 30, 5, 1);
 		slot.create(AlvearyHatchery.SLOT_LARVAE);

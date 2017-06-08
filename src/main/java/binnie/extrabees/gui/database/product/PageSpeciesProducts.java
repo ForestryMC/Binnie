@@ -1,25 +1,24 @@
-package binnie.extrabees.gui.database;
+package binnie.extrabees.gui.database.product;
 
 import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.database.DatabaseTab;
 import binnie.core.craftgui.database.PageSpecies;
+import binnie.core.util.I18N;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.genetics.IAlleleSpecies;
 
 public class PageSpeciesProducts extends PageSpecies {
-	protected ControlText title;
 	protected ControlProductsBox products;
-	protected ControlText title2;
 	protected ControlProductsBox specialties;
 
 	public PageSpeciesProducts(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
-		title = new ControlTextCentered(this, 8.0f, "Products");
-		products = new ControlProductsBox(this, 4, 20, 136, 48, ControlProductsBox.Type.Products);
-		title2 = new ControlTextCentered(this, 68.0f, "Specialties");
-		specialties = new ControlProductsBox(this, 4, 80, 136, 48, ControlProductsBox.Type.Specialties);
+		new ControlTextCentered(this, 8.0f, I18N.localise("extrabees.gui.database.tab.species.products"));
+		products = new ControlProductsBox(this, 4, 20, 136, 48, ProductType.PRODUCTS);
+
+		new ControlTextCentered(this, 68.0f, I18N.localise("extrabees.gui.database.tab.species.specialties"));
+		specialties = new ControlProductsBox(this, 4, 80, 136, 48, ProductType.SPECIALTIES);
 	}
 
 	@Override

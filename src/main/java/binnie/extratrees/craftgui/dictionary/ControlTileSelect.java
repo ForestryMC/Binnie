@@ -65,6 +65,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 
 	@Override
 	public void movePercentage(float percentage) {
+		// ignored
 	}
 
 	@Override
@@ -83,7 +84,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 		deleteAllChildren();
 		int cx;
 		int cy = 2;
-		Map<IDesignCategory, List<IDesign>> designs = new HashMap<IDesignCategory, List<IDesign>>();
+		Map<IDesignCategory, List<IDesign>> designs = new HashMap<>();
 		for (IDesignCategory category : CarpentryManager.carpentryInterface.getAllDesignCategories()) {
 			designs.put(category, new ArrayList<>());
 			for (IDesign tile : category.getDesigns()) {
@@ -126,20 +127,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 			super(parent, x, y, 18.0f, 18.0f);
 			setValue(value);
 			addAttribute(WidgetAttribute.MOUSE_OVER);
-			addSelfEventHandler(new EventMouse.Down.Handler() {
-				@Override
-				public void onEvent(EventMouse.Down event) {
-					TileEntityMachine tile = (TileEntityMachine) Window.get(getWidget()).getInventory();
-					if (tile == null) {
-						return;
-					}
-
-					tile.getMachine().getComponent(Designer.ComponentWoodworkerRecipe.class);
-					NBTTagCompound nbt = new NBTTagCompound();
-					nbt.setShort("d", (short) CarpentryManager.carpentryInterface.getDesignIndex(getValue()));
-					Window.get(getWidget()).sendClientAction("design", nbt);
-				}
-			});
+			addSelfEventHandler(new MouseDownHandler());
 		}
 
 		@Override
@@ -174,6 +162,21 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 				CraftGUI.Render.gradientRect(getArea().inset(1), 1157627903, 1157627903);
 			} else {
 				CraftGUI.Render.gradientRect(getArea().inset(1), -1433892728, -1433892728);
+			}
+		}
+
+		private class MouseDownHandler extends EventMouse.Down.Handler {
+			@Override
+			public void onEvent(EventMouse.Down event) {
+				TileEntityMachine tile = (TileEntityMachine) Window.get(getWidget()).getInventory();
+				if (tile == null) {
+					return;
+				}
+
+				tile.getMachine().getComponent(Designer.ComponentWoodworkerRecipe.class);
+				NBTTagCompound nbt = new NBTTagCompound();
+				nbt.setShort("d", (short) CarpentryManager.carpentryInterface.getDesignIndex(getValue()));
+				Window.get(getWidget()).sendClientAction("design", nbt);
 			}
 		}
 	}

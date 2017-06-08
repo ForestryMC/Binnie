@@ -42,7 +42,12 @@ public class BlockFence extends net.minecraft.block.BlockFence implements IBlock
 	}
 
 	public static boolean canConnect(Block block) {
-		return block == ((ItemBlock) Mods.forestry.item("fences")).field_150939_a || block == Blocks.fence || block == Blocks.fence_gate || block == Blocks.nether_brick_fence || block instanceof IBlockFence || block == ExtraTrees.blockGate;
+		return block == ((ItemBlock) Mods.forestry.item("fences")).field_150939_a
+			|| block == Blocks.fence
+			|| block == Blocks.fence_gate
+			|| block == Blocks.nether_brick_fence
+			|| block instanceof IBlockFence
+			|| block == ExtraTrees.blockGate;
 	}
 
 	@Override
@@ -176,10 +181,11 @@ public class BlockFence extends net.minecraft.block.BlockFence implements IBlock
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister register) {
+		// ignored
 	}
 
 	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
 		return BlockMetadata.getPickBlock(world, x, y, z);
 	}
 }

@@ -22,6 +22,7 @@ public class StairItemRenderer implements IItemRenderer {
 			if (i == 1) {
 				renderBlocks.setRenderBounds(0.0, 0.0, 0.5, 1.0, 0.5, 1.0);
 			}
+
 			GL11.glTranslatef(-0.5f, -0.5f, -0.5f);
 			tessellator.startDrawingQuads();
 			tessellator.setNormal(0.0f, -1.0f, 0.0f);
