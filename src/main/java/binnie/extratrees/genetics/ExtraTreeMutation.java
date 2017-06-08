@@ -1,6 +1,7 @@
 package binnie.extratrees.genetics;
 
 import binnie.Binnie;
+import binnie.core.util.I18N;
 import forestry.api.arboriculture.IAlleleTreeSpecies;
 import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.arboriculture.ITreeMutation;
@@ -223,7 +224,7 @@ public class ExtraTreeMutation implements ITreeMutation {
 	public Collection<String> getSpecialConditions() {
 		List<String> conditions = new ArrayList<>();
 		if (height > 0.0f) {
-			conditions.add("Minimum height from bedrock of " + height);
+			conditions.add(I18N.localise("extratrees.genetics.requirements.height", height));
 		}
 		return conditions;
 	}

@@ -311,6 +311,31 @@ extratrees.species.starfruit.name=Карамбола
 extratrees.species.candlenut.name=Лумбанг (свечное дерево)
 extratrees.species.dwarfhazel.name=Лещина карликовая
 
+extratrees.butterflies.species.whiteAdmiral=Белый адмирал
+extratrees.butterflies.species.purpleEmperor=Переливница ивовая
+extratrees.butterflies.species.redAdmiral=Адмирал
+extratrees.butterflies.species.paintedLady=Разукрашенная леди
+extratrees.butterflies.species.smallTortoiseshell=Крапивница
+extratrees.butterflies.species.camberwellBeauty=Траурница
+extratrees.butterflies.species.peacock=Павлин
+extratrees.butterflies.species.wall=Буроглазка мегера
+extratrees.butterflies.species.crimsonRose=Багровая роза
+extratrees.butterflies.species.kaiserIHind=Тейнопальпус императорский
+extratrees.butterflies.species.goldenBirdwing=Golden Birdwing
+extratrees.butterflies.species.marshFritillary=Marsh Fritillary
+extratrees.butterflies.species.pearlBorderedFritillary=Pearl-bordered Fritillary
+extratrees.butterflies.species.queenOfSpainFritillary=Queen of Spain Fritillary
+extratrees.butterflies.species.speckledWood=Speckled Wood
+extratrees.butterflies.species.scotchAngus=Scotch Angus
+extratrees.butterflies.species.gatekeeper=Gatekeeper
+extratrees.butterflies.species.meadowBrown=Meadow Brown
+extratrees.butterflies.species.smallHeath=Small Heath
+extratrees.butterflies.species.ringlet=Ringlet
+extratrees.butterflies.species.monarch=Monarch
+extratrees.butterflies.species.marbledWhite=Marbled White
+
+extratrees.genetics.requirements.height=Минимальная высота от бедрока должна быть %d
+
 extratrees.item.carpentryHammer=Плотницкий молоток
 extratrees.item.masterCarpentryHammer=Плотницкий молоток мастера
 extratrees.item.sawdust=Опилки
