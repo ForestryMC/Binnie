@@ -15,6 +15,7 @@ import forestry.core.genetics.Chromosome;
 import forestry.core.genetics.Individual;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -80,13 +81,13 @@ public class Flower extends Individual implements IFlower {
 		final IAlleleFlowerSpecies primary = this.genome.getPrimary();
 		final IAlleleFlowerSpecies secondary = this.genome.getSecondary();
 		if (!this.isPureBred(EnumFlowerChromosome.SPECIES)) {
-			list.add("�9" + primary.getName() + "-" + secondary.getName() + " Hybrid");
+			list.add(TextFormatting.BLUE + primary.getAlleleName() + "-" + secondary.getAlleleName() + " Hybrid");
 		}
-		list.add("�6Age: " + this.getAge());
-		list.add("�6T: " + this.getGenome().getPrimary().getTemperature() + " / " + this.getGenome().getToleranceTemperature());
-		list.add("�6M: " + this.getGenome().getPrimary().getMoisture() + " / " + this.getGenome().getToleranceMoisture());
-		list.add("�6pH: " + this.getGenome().getPrimary().getHumidity() + " / " + this.getGenome().getTolerancePH());
-		list.add("�6Fert: " + this.getGenome().getFertility() + "x");
+		list.add(TextFormatting.GOLD + "Age: " + this.getAge());
+		list.add(TextFormatting.GOLD + "T: " + this.getGenome().getPrimary().getTemperature() + " / " + this.getGenome().getToleranceTemperature());
+		list.add(TextFormatting.GOLD + "M: " + this.getGenome().getPrimary().getMoisture() + " / " + this.getGenome().getToleranceMoisture());
+		list.add(TextFormatting.GOLD + "pH: " + this.getGenome().getPrimary().getHumidity() + " / " + this.getGenome().getTolerancePH());
+		list.add(TextFormatting.GOLD + "Fert: " + this.getGenome().getFertility() + "x");
 	}
 
 	@Override
