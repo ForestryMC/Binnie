@@ -25,6 +25,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -131,7 +132,9 @@ class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 			if (tileEntity.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing)) {
 				IFluidHandler tileFluidHandler = tileEntity.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing);
 				ItemStack heldItem = playerIn.getHeldItem(hand);
-				if (FluidUtil.interactWithFluidHandler(heldItem, tileFluidHandler, playerIn).isSuccess()) {
+				FluidActionResult actionResult = FluidUtil.interactWithFluidHandler(heldItem, tileFluidHandler, playerIn);
+				if (actionResult.isSuccess()) {
+					playerIn.setHeldItem(hand, actionResult.getResult());
 					return true;
 				}
 			}
