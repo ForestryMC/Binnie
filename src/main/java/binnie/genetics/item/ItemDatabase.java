@@ -44,9 +44,9 @@ public class ItemDatabase extends ItemCore {
 		ItemStack itemStack = player.getHeldItem(hand);
 		final GeneticsGUI id;
 		if (isMaster(itemStack)) {
-			id = GeneticsGUI.Database;
-		} else {
 			id = GeneticsGUI.DatabaseNEI;
+		} else {
+			id = GeneticsGUI.Database;
 		}
 
 		Genetics.proxy.openGui(id, player, player.getPosition());
