@@ -49,7 +49,7 @@ public class PageSpeciesOverview extends PageSpecies {
 		String descBody = EnumChatFormatting.ITALIC.toString();
 		String descSig = "";
 
-		if (desc == null || desc.isEmpty()) {
+		if (desc.contains(".species.") || desc.contains("for.description.")) {
 			descBody += I18N.localise("binniecore.gui.database.species.noDesc");
 		} else {
 			String[] descStrings = desc.split("\\|");
