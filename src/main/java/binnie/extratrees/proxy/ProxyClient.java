@@ -4,6 +4,8 @@ import binnie.Constants;
 import binnie.core.models.ModelManager;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.BlockETDecorativeLeaves;
+import binnie.extratrees.block.BlockETDefaultLeaves;
+import binnie.extratrees.models.ModelDefaultETLeaves;
 import binnie.extratrees.block.wood.BlockETSlab;
 import binnie.extratrees.models.ModelETDecorativeLeaves;
 import forestry.arboriculture.PluginArboriculture;
@@ -70,6 +72,14 @@ public class ProxyClient extends Proxy implements IExtraTreeProxy {
 			ModelResourceLocation blockModelLocation = new ModelResourceLocation(resourceName);
 			ModelResourceLocation itemModeLocation = new ModelResourceLocation(resourceName, "inventory");
 			BlockModelEntry blockModelIndex = new BlockModelEntry(blockModelLocation, itemModeLocation, new ModelETDecorativeLeaves(), leaves);
+			registerBlockModel(blockModelIndex);
+		}
+
+		for (BlockETDefaultLeaves leaves : ExtraTrees.blocks().leavesDefault) {
+			String resourceName = leaves.getRegistryName().toString();
+			ModelResourceLocation blockModelLocation = new ModelResourceLocation(resourceName);
+			ModelResourceLocation itemModeLocation = new ModelResourceLocation(resourceName, "inventory");
+			BlockModelEntry blockModelIndex = new BlockModelEntry(blockModelLocation, itemModeLocation, new ModelDefaultETLeaves(), leaves);
 			registerBlockModel(blockModelIndex);
 		}
 
