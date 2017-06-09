@@ -79,8 +79,7 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 
 	@Override
 	public IAlyzerPlugin getAlyzerPlugin() {
-		// TODO write flower alyzer plugin
-		return null;
+		return FlowerAlyzerPlugin.INSTANCE;
 	}
 
 	@Override
