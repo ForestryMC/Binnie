@@ -4,6 +4,7 @@ import binnie.Binnie;
 import binnie.core.Mods;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.ResourceType;
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
@@ -23,33 +24,34 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.BiomeDictionary;
 
+import java.awt.Color;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 
 public enum ButterflySpecies implements IAlleleButterflySpecies {
-	WhiteAdmiral("White Admiral", "Limenitis camilla", 0xfafafa),
-	PurpleEmperor("Purple Emperor", "Apatura iris", 0x4232c6),
-	RedAdmiral("Red Admiral", "Vanessa atalanta", 0xe66f44),
-	PaintedLady("Painted Lady", "Vanessa cardui", 0xeda048),
-	SmallTortoiseshell("Small Tortoiseshell", "Aglais urticae", 0xea750b),
-	CamberwellBeauty("Camberwell Beauty", "Aglais antiopa", 0x95a2cc),
-	Peacock("Peacock", "Inachis io", 0xd33802),
-	Wall("Wall", "Lasiommata megera", 0xefae1e),
-	CrimsonRose("Crimson Rose", "Atrophaneura hector", 0xff627b),
-	KaiserIHind("Kaiser-i-Hind", "Teinopalpus imperialis", 0x77a040),
-	GoldenBirdwing("Golden Birdwing", "Troides aeacus", 0xf9dc1e),
-	MarshFritillary("Marsh Fritillary", "Euphydryas aurinia", 0xff8c00),
-	PearlBorderedFritillary("Pearl-bordered Fritillary", "Boloria euphrosyne", 0xff8b03),
-	QueenOfSpainFritillary("Queen of Spain Fritillary", "Issoria lathonia", 0xffd13f),
-	SpeckledWood("Speckled Wood", "Pararge aegeria", 0xf5f88d),
-	ScotchAngus("Scotch Angus", "Erebia aethiops", 0xc25423),
-	Gatekeeper("Gatekeeper", "Pyronia tithonus", 0xfac32a),
-	MeadowBrown("Meadow Brown", "Maniola jurtina", 0xe39519),
-	SmallHeath("Small Heath", "Coenonympha pamphilus", 0xffa632),
-	Ringlet("Ringlet", "Aphantopus hyperantus", 0x975d37),
-	Monarch("Monarch", "Danaus plexippus", 0xffb206),
-	MarbledWhite("Marbled White", "Melanargia galathea", 0xececec);
+	WhiteAdmiral("whiteAdmiral", "Limenitis camilla", new Color(0xfafafa)),
+	PurpleEmperor("purpleEmperor", "Apatura iris", new Color(0x4232c6)),
+	RedAdmiral("redAdmiral", "Vanessa atalanta", new Color(0xe66f44)),
+	PaintedLady("paintedLady", "Vanessa cardui", new Color(0xeda048)),
+	SmallTortoiseshell("smallTortoiseshell", "Aglais urticae", new Color(0xea750b)),
+	CamberwellBeauty("camberwellBeauty", "Aglais antiopa", new Color(0x95a2cc)),
+	Peacock("peacock", "Inachis io", new Color(0xd33802)),
+	Wall("wall", "Lasiommata megera", new Color(0xefae1e)),
+	CrimsonRose("crimsonRose", "Atrophaneura hector", new Color(0xff627b)),
+	KaiserIHind("kaiserIHind", "Teinopalpus imperialis", new Color(0x77a040)),
+	GoldenBirdwing("Golden Birdwing", "Troides aeacus", new Color(0xf9dc1e)),
+	MarshFritillary("marshFritillary", "Euphydryas aurinia",new Color(0xff8c00)),
+	PearlBorderedFritillary("pearlBorderedFritillary", "Boloria euphrosyne", new Color(0xff8b03)),
+	QueenOfSpainFritillary("queenOfSpainFritillary", "Issoria lathonia", new Color(0xffd13f)),
+	SpeckledWood("speckledWood", "Pararge aegeria", new Color(0xf5f88d)),
+	ScotchAngus("scotchAngus", "Erebia aethiops", new Color(0xc25423)),
+	Gatekeeper("gatekeeper", "Pyronia tithonus", new Color(0xfac32a)),
+	MeadowBrown("meadowBrown", "Maniola jurtina", new Color(0xe39519)),
+	SmallHeath("smallHeath", "Coenonympha pamphilus", new Color(0xffa632)),
+	Ringlet("ringlet", "Aphantopus hyperantus", new Color(0x975d37)),
+	Monarch("monarch", "Danaus plexippus", new Color(0xffb206)),
+	MarbledWhite("marbledWhite", "Melanargia galathea", new Color(0xececec));
 
 	public IClassification branch;
 
@@ -62,10 +64,10 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
 	private Map<ItemStack, Float> butterflyLoot;
 	private Map<ItemStack, Float> caterpillarLoot;
 
-	ButterflySpecies(String name, String scientific, int color) {
+	ButterflySpecies(String name, String scientific, Color color) {
 		this.name = name;
 		this.scientific = scientific.split(" ")[1];
-		this.color = color;
+		this.color = color.getRGB();
 		butterflyLoot = new HashMap<>();
 		caterpillarLoot = new HashMap<>();
 		branchName = scientific.split(" ")[0].toLowerCase();
@@ -74,7 +76,7 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
 
 	@Override
 	public String getName() {
-		return name;
+		return I18N.localise("extratrees.butterflies.species." + name);
 	}
 
 	@Override

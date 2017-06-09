@@ -301,6 +301,31 @@ extratrees.species.starfruit.name=Starfruit
 extratrees.species.candlenut.name=Candlenut
 extratrees.species.dwarfhazel.name=Dwarf Hazel
 
+extratrees.butterflies.species.whiteAdmiral=White Admiral
+extratrees.butterflies.species.purpleEmperor=Purple Emperor
+extratrees.butterflies.species.redAdmiral=Red Admiral
+extratrees.butterflies.species.paintedLady=Painted Lady
+extratrees.butterflies.species.smallTortoiseshell=Small Tortoiseshell
+extratrees.butterflies.species.camberwellBeauty=Camberwell Beauty
+extratrees.butterflies.species.peacock=Peacock
+extratrees.butterflies.species.wall=Wall
+extratrees.butterflies.species.crimsonRose=Crimson Rose
+extratrees.butterflies.species.kaiserIHind=Kaiser-i-Hind
+extratrees.butterflies.species.goldenBirdwing=Golden Birdwing
+extratrees.butterflies.species.marshFritillary=Marsh Fritillary
+extratrees.butterflies.species.pearlBorderedFritillary=Pearl-bordered Fritillary
+extratrees.butterflies.species.queenOfSpainFritillary=Queen of Spain Fritillary
+extratrees.butterflies.species.speckledWood=Speckled Wood
+extratrees.butterflies.species.scotchAngus=Scotch Angus
+extratrees.butterflies.species.gatekeeper=Gatekeeper
+extratrees.butterflies.species.meadowBrown=Meadow Brown
+extratrees.butterflies.species.smallHeath=Small Heath
+extratrees.butterflies.species.ringlet=Ringlet
+extratrees.butterflies.species.monarch=Monarch
+extratrees.butterflies.species.marbledWhite=Marbled White
+
+extratrees.genetics.requirements.height=Minimum height from bedrock of %d
+
 extratrees.item.carpentryHammer=Master Carpentry Hammer
 extratrees.item.masterCarpentryHammer=Carpentry Hammer
 extratrees.item.sawdust=Sawdust

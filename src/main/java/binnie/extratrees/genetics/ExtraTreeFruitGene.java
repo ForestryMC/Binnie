@@ -105,23 +105,21 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
 	protected HashMap<ItemStack, Float> products;
 
 	ExtraTreeFruitGene(int time, int unripe, int color, FruitSprite index) {
+		this.color = color;
+		this.index = index;
 		isRipening = false;
 		diffB = 0;
 		pod = null;
 		ripeningPeriod = 0;
 		products = new HashMap<>();
-		this.color = color;
-		this.index = index;
 		setRipening(time, unripe);
 	}
 
 	ExtraTreeFruitGene(String name, FruitPod pod) {
+		this.pod = pod;
 		isRipening = false;
 		diffB = 0;
-		this.pod = null;
-		ripeningPeriod = 0;
 		products = new HashMap<>();
-		this.pod = pod;
 		ripeningPeriod = 2;
 	}
 
