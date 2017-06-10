@@ -34,8 +34,8 @@ public class ItemDictionary extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public IIcon getIconFromDamage(int par1) {
-		return (par1 == 0) ? itemIcon : iconMaster;
+	public IIcon getIconFromDamage(int damage) {
+		return (damage == 0) ? itemIcon : iconMaster;
 	}
 
 	@Override
