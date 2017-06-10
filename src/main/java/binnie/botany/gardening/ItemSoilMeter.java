@@ -79,6 +79,6 @@ public class ItemSoilMeter extends Item {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		return I18N.localise("botany.tube.item.soilMeter.name");
+		return I18N.localise("botany.item.soilMeter.name");
 	}
 }

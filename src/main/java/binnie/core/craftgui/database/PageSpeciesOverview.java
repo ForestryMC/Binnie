@@ -39,17 +39,17 @@ public class PageSpeciesOverview extends PageSpecies {
 		controlInd2.setSpecies(species, EnumDiscoveryState.SHOW);
 		String branchBinomial = (species.getBranch() != null)
 			? species.getBranch().getScientific()
-			: "<Unknown>";
+			: I18N.localise("extratrees.genetics.unknown");
 
 		controlName.setValue(EnumChatFormatting.BOLD + species.getName() + EnumChatFormatting.RESET);
 		controlScientific.setValue(EnumChatFormatting.ITALIC + branchBinomial + " " + species.getBinomial() + EnumChatFormatting.RESET);
-		controlAuthority.setValue(EnumChatFormatting.BOLD + "Discovered by " + species.getAuthority() + EnumChatFormatting.RESET);
-		controlComplexity.setValue("Complexity: " + species.getComplexity());
+		controlAuthority.setValue(EnumChatFormatting.BOLD + I18N.localise("extratrees.genetics.discoveredBy", species.getAuthority()) + EnumChatFormatting.RESET);
+		controlComplexity.setValue(I18N.localise("extratrees.genetics.complexity", species.getComplexity()));
 		String desc = species.getDescription();
 		String descBody = EnumChatFormatting.ITALIC.toString();
 		String descSig = "";
 
-		if (desc.contains(".species.") || desc.contains("for.description.")) {
+		if (desc == null || desc.isEmpty() || desc.contains("for.description.")) {
 			descBody += I18N.localise("binniecore.gui.database.species.noDesc");
 		} else {
 			String[] descStrings = desc.split("\\|");

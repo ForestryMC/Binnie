@@ -12,6 +12,11 @@ import binnie.core.resource.BinnieResource;
 import binnie.core.resource.ResourceType;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.core.ExtraTreesGUID;
+import binnie.extratrees.machines.designer.GlassworkerPackage;
+import binnie.extratrees.machines.designer.PanelworkerPackage;
+import binnie.extratrees.machines.designer.TileworkerPackage;
+import binnie.extratrees.machines.designer.WoodworkerPackage;
+import binnie.extratrees.machines.lumbermill.LumbermillPackage;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -19,15 +24,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public enum ExtraTreeMachine implements IMachineType {
-	Lumbermill(Lumbermill.PackageLumbermill.class),
-	Woodworker(Designer.PackageWoodworker.class),
-	Panelworker(Designer.PackagePanelworker.class),
+	Lumbermill(LumbermillPackage.class),
+	Woodworker(WoodworkerPackage.class),
+	Panelworker(PanelworkerPackage.class),
 	Nursery(Nursery.PackageNursery.class),
 	Press(Press.PackagePress.class),
 	Brewery(Brewery.PackageBrewery.class),
 	Distillery(Distillery.PackageDistillery.class),
-	Glassworker(Designer.PackageGlassworker.class),
-	Tileworker(Designer.PackageTileworker.class);
+	Glassworker(GlassworkerPackage.class),
+	Tileworker(TileworkerPackage.class);
 
 	protected Class<? extends MachinePackage> cls;
 

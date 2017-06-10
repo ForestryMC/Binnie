@@ -15,6 +15,6 @@ public class ItemSeed extends ItemBotany {
 
 	@Override
 	public String getTag() {
-		return I18N.localise("botany.tube.item.germling.tag.name");
+		return I18N.localise("botany.item.germling.tag.name");
 	}
 }

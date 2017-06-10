@@ -116,11 +116,11 @@ botany.design.overlappedBarred=Overlapped Barred
 botany.design.overlappedSplitBarred=Overlapped Split Barred
 
 botany.design.category.designsEmblems=Дизайны и эмблемы
-botany.design.category.squaresStripes=Squares & Stripes
-botany.design.category.edges=Edges
-botany.design.category.bars=Bars
+botany.design.category.squaresStripes=Квадраты и полосы
+botany.design.category.edges=Окантовки
+botany.design.category.bars=Решетки
 botany.design.category.letters=Буквы
-botany.design.category.diagonals=Diagonals
+botany.design.category.diagonals=Диагонали
 
 botany.ph.acid=Кислотный
 botany.ph.neutral=Нейтральный

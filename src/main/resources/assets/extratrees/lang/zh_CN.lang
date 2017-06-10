@@ -191,7 +191,7 @@ extratrees.block.woodgate.name=%1$s栅栏门
 < %1$s is the adjective for the fence type, %2$s is the name of the wood >
 extratrees.block.multifence.name=%2$s %1$s 门
 < %3$s is the name of the second wood >
-extratrees.block.multifence.name2=%2$s %1$s & $2$s 门
+extratrees.block.multifence.name2=%2$s %1$s & $3$s 门
 
 < %1$s is name of the design >
 extratrees.block.woodentile.name=%1$s木砖

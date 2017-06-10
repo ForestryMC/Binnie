@@ -45,7 +45,7 @@ public enum BotanyItems implements IItemMisc {
 
 	@Override
 	public String getName(ItemStack itemStack) {
-		return I18N.localise("botany.tube.item." + name + ".name");
+		return I18N.localise("botany.item." + name + ".name");
 	}
 
 	@Override
