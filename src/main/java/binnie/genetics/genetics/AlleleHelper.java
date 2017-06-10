@@ -112,6 +112,9 @@ public class AlleleHelper extends forestry.core.genetics.alleles.AlleleHelper {
 	}
 
 	public static String toDisplay(EnumAllele.Flowering flowering) {
+		if (flowering == EnumAllele.Flowering.AVERAGE) {
+			return toAlleleDisplay("flowering", "normal");
+		}
 		return toAlleleDisplay("flowering", flowering.name());
 	}
 
