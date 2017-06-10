@@ -169,7 +169,7 @@ public class ControlClimateBar extends Control implements ITooltip {
 				tolerated.add(i);
 			}
 		} else {
-			for (int i = offset; i < main; i--) {
+			for (int i = offset; i > main; i--) {
 				tolerated.add(i);
 			}
 		}
