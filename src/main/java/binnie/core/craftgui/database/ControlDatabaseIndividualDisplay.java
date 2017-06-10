@@ -36,12 +36,12 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 		Window window = Window.get(this);
 		GameProfile username = window.getUsername();
 
-		if (state == EnumDiscoveryState.UNDETERMINED) {
+		if (window instanceof WindowAbstractDatabase && ((WindowAbstractDatabase) window).isNEI) {
+			state = EnumDiscoveryState.SHOW;
+		} else if (state == EnumDiscoveryState.UNDETERMINED) {
 			state = system.isSpeciesDiscovered(species, window.getWorld(), username)
 				? EnumDiscoveryState.DISCOVERED
 				: EnumDiscoveryState.UNDISCOVERED;
-		} else if (window instanceof WindowAbstractDatabase && ((WindowAbstractDatabase) window).isNEI) {
-			state = EnumDiscoveryState.SHOW;
 		}
 
 		discovered = state;
