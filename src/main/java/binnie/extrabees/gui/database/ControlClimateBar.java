@@ -11,6 +11,7 @@ import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.IBeeRoot;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.EnumTolerance;
@@ -22,7 +23,8 @@ import java.util.List;
 public class ControlClimateBar extends Control implements ITooltip {
 	protected boolean isHumidity;
 	protected List<Integer> tolerated;
-	protected Color[] tempColours = new Color[]{
+
+	private static final Color[] TEMP_COLORS = new Color[]{
 		new Color(0x00fffb),
 		new Color(0x78bbff),
 		new Color(0x4fff30),
@@ -30,7 +32,7 @@ public class ControlClimateBar extends Control implements ITooltip {
 		new Color(0xffa200),
 		new Color(0xff0000)
 	};
-	protected Color[] humidColours = new Color[]{
+	private static final Color[] HUMID_COLORS = new Color[]{
 		new Color(0xffe7a3),
 		new Color(0x1aff00),
 		new Color(0x307cff)
@@ -76,9 +78,9 @@ public class ControlClimateBar extends Control implements ITooltip {
 			if (tolerated.contains(i)) {
 				Color color;
 				if (isHumidity) {
-					color = humidColours[i];
+					color = HUMID_COLORS[i];
 				} else {
-					color = tempColours[i];
+					color = TEMP_COLORS[i];
 				}
 				CraftGUI.Render.solid(new IArea(x + 1, 1.0f, w, getSize().y() - 2.0f), color.getRGB());
 			}
@@ -94,7 +96,8 @@ public class ControlClimateBar extends Control implements ITooltip {
 
 		int main;
 		EnumTolerance tolerance;
-		IBeeGenome genome = Binnie.Genetics.getBeeRoot().templateAsGenome(Binnie.Genetics.getBeeRoot().getTemplate(species.getUID()));
+		IBeeRoot beeRoot = Binnie.Genetics.getBeeRoot();
+		IBeeGenome genome = beeRoot.templateAsGenome(beeRoot.getTemplate(species.getUID()));
 		if (!isHumidity) {
 			main = species.getTemperature().ordinal() - 1;
 			tolerance = genome.getToleranceTemp();
@@ -107,55 +110,68 @@ public class ControlClimateBar extends Control implements ITooltip {
 		switch (tolerance) {
 			case BOTH_5:
 			case UP_5:
-				tolerated.add(main + 5);
+				addTolerance(main, 5);
 				break;
 
 			case BOTH_4:
 			case UP_4:
-				tolerated.add(main + 4);
+				addTolerance(main, 4);
 				break;
 
 			case BOTH_3:
 			case UP_3:
-				tolerated.add(main + 3);
+				addTolerance(main, 3);
 				break;
 
 			case BOTH_2:
 			case UP_2:
-				tolerated.add(main + 2);
+				addTolerance(main, 2);
 				break;
 
 			case BOTH_1:
 			case UP_1:
-				tolerated.add(main + 1);
+				addTolerance(main, 1);
 				break;
 		}
 
 		switch (tolerance) {
 			case BOTH_5:
 			case DOWN_5:
-				tolerated.add(main - 5);
+				addTolerance(main, -5);
 				break;
 
 			case BOTH_4:
 			case DOWN_4:
-				tolerated.add(main - 4);
+				addTolerance(main, -4);
 				break;
 
 			case BOTH_3:
 			case DOWN_3:
-				tolerated.add(main - 3);
+				addTolerance(main, -3);
 				break;
 
 			case BOTH_2:
 			case DOWN_2:
-				tolerated.add(main - 2);
+				addTolerance(main, -2);
 				break;
 
 			case BOTH_1:
 			case DOWN_1:
-				tolerated.add(main - 1);
+				addTolerance(main, -1);
 				break;
+		}
+	}
+
+	private void addTolerance(int main, int offset) {
+		offset += main;
+		if (main > offset) {
+			for (int i = offset; i < main; i++) {
+				tolerated.add(i);
+			}
+		} else {
+			for (int i = offset; i < main; i--) {
+				tolerated.add(i);
+			}
 		}
 	}
 }
