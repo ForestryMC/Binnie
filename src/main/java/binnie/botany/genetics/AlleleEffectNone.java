@@ -29,7 +29,7 @@ public class AlleleEffectNone implements IAlleleFlowerEffect {
 
 	@Override
 	public String getName() {
-		return I18N.localise("botany.tube.allele.none");
+		return I18N.localise("botany.allele.none");
 	}
 
 	@Override

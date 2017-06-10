@@ -8,19 +8,34 @@ extratrees.machine.machine.brewery=Brewery
 extratrees.machine.machine.brewery.info=The Brewery uses yeasts, juices and grains to make many kinds of Wines and Beers.
 extratrees.machine.machine.distillery=Distillery
 extratrees.machine.machine.distillery.info=The Distillery can single, double or triple distill certain alcohols to give brandies, liquors and other spirits.
+extratrees.machine.machine.nursery=Nursery
 extratrees.machine.machine.press=Fruit Press
 extratrees.machine.machine.press.info=The Fruit Press squeezes fruit to give various fruit juices. It can be run using power or manually by right clicking.
+
 extratrees.machine.machine.lumbermill=Lumbermill
 extratrees.machine.machine.lumbermill.info=The Lumbermill converts logs into planks at an increased rate, and produces byproducts such as sawdust and bark.
-extratrees.machine.machine.nursery=Nursery
+extratrees.machine.lumbermill.logs=Logs
+extratrees.machine.lumbermill.error.noWood=No Wood
+extratrees.machine.lumbermill.error.noRoom=No room for new planks
+extratrees.machine.lumbermill.error.noWater=Not Enough Water
+
 extratrees.machine.machine.woodworker=Woodworker
 extratrees.machine.machine.woodworker.info=The Woodworker creates patterned wooden tiles from two different woods.
+extratrees.machine.woodworker.material=Wooden Plank
+
 extratrees.machine.machine.panelworker=Panelworker
 extratrees.machine.machine.panelworker.info=The Panelworker creates patterned wooden panels from two different woods.
+extratrees.machine.panelworker.material=Wooden Plank
+
 extratrees.machine.machine.glassworker=Glassworker
 extratrees.machine.machine.glassworker.info=The Glassworker creates patterned stained glass.
+extratrees.machine.glassworker.material=Glass
+
 extratrees.machine.machine.tileworker=Tileworker
 extratrees.machine.machine.tileworker.info=The Tileworker creates patterned ceramic tiles.
+extratrees.machine.tileworker.material=Ceramic Block
+
+extratrees.machine.worker.error.glueRequired=Requires Adhesive to Function
 
 extratrees.block.planks.fir=Fir
 extratrees.block.planks.cedar=Cedar
@@ -137,38 +152,6 @@ extratrees.block.planks.rosewood.desc=Used to make chess pieces, this is another
 extratrees.block.planks.gingko.desc=Similar to Boxwood, Gingko wood is very pale.|Lumber Jack
 extratrees.block.planks.pinkivory.desc=What can I say. It's very pink.|Lumber Jack
 
-extratrees.block.planks.vanilla.oak.desc=
-extratrees.block.planks.vanilla.spruce.desc=
-extratrees.block.planks.vanilla.birch.desc=
-extratrees.block.planks.vanilla.jungle.desc=
-extratrees.block.planks.vanilla.darkoak.desc=
-extratrees.block.planks.vanilla.acacia.desc=
-
-extratrees.block.planks.forestry.larch.desc=
-extratrees.block.planks.forestry.teak.desc=
-extratrees.block.planks.forestry.acacia.desc=
-extratrees.block.planks.forestry.lime.desc=
-extratrees.block.planks.forestry.chestnut.desc=
-extratrees.block.planks.forestry.wenge.desc=
-extratrees.block.planks.forestry.baobab.desc=
-extratrees.block.planks.forestry.sequoia.desc=
-extratrees.block.planks.forestry.kapok.desc=
-extratrees.block.planks.forestry.ebony.desc=
-extratrees.block.planks.forestry.mahogany.desc=
-extratrees.block.planks.forestry.balsa.desc=
-extratrees.block.planks.forestry.willow.desc=
-extratrees.block.planks.forestry.walnut.desc=
-extratrees.block.planks.forestry.greenheart.desc=
-extratrees.block.planks.forestry.cherry.desc=
-extratrees.block.planks.forestry.mahoe.desc=
-extratrees.block.planks.forestry.poplar.desc=
-extratrees.block.planks.forestry.palm.desc=
-extratrees.block.planks.forestry.papaya.desc=
-extratrees.block.planks.forestry.pine.desc=
-extratrees.block.planks.forestry.plum.desc=
-extratrees.block.planks.forestry.maple.desc=
-extratrees.block.planks.forestry.citrus.desc=
-
 extratrees.block.tooltip.twoColors=%s and %s
 extratrees.block.tooltip.twoMaterials=%s and %s
 
@@ -193,7 +176,7 @@ extratrees.block.woodgate.name=%1$s Gate
 < %1$s is the adjective for the fence type, %2$s is the name of the wood >
 extratrees.block.multifence.name=%2$s %1$s Gate
 < %3$s is the name of the second wood >
-extratrees.block.multifence.name2=%2$s %1$s & $2$s Gate
+extratrees.block.multifence.name2=%2$s %1$s & $3$s Gate
 
 < %1$s is name of the design >
 extratrees.block.woodentile.name=%1$s Wooden Tile
@@ -325,6 +308,9 @@ extratrees.butterflies.species.monarch=Monarch
 extratrees.butterflies.species.marbledWhite=Marbled White
 
 extratrees.genetics.requirements.height=Minimum height from bedrock of %d
+extratrees.genetics.unknown=<Unknown>
+extratrees.genetics.discoveredBy=Discovered by %s 
+extratrees.genetics.complexity=Complexity: %d 
 
 extratrees.item.carpentryHammer=Master Carpentry Hammer
 extratrees.item.masterCarpentryHammer=Carpentry Hammer

@@ -520,7 +520,7 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies {
 
 	@Override
 	public String getName() {
-		return I18N.localise("botany.tube.flower." + name);
+		return I18N.localise("botany.flower." + name);
 	}
 
 	@Override

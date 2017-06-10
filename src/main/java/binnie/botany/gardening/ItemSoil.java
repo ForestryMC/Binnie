@@ -37,12 +37,12 @@ public class ItemSoil extends ItemBlock {
 
 		if (moisture == EnumMoisture.DRY) {
 			info += EnumChatFormatting.YELLOW
-				+ I18N.localise("botany.tube.moisture.dry")
+				+ I18N.localise("botany.moisture.dry")
 				+ EnumChatFormatting.RESET;
 		}
 		if (moisture == EnumMoisture.DAMP) {
 			info += EnumChatFormatting.YELLOW
-				+ I18N.localise("botany.tube.moisture.damp")
+				+ I18N.localise("botany.moisture.damp")
 				+ EnumChatFormatting.RESET;
 		}
 
@@ -51,7 +51,7 @@ public class ItemSoil extends ItemBlock {
 				info += ", ";
 			}
 			info += EnumChatFormatting.YELLOW
-				+ I18N.localise("botany.tube.ph.acid")
+				+ I18N.localise("botany.ph.acid")
 				+ EnumChatFormatting.RESET;
 		}
 
@@ -60,7 +60,7 @@ public class ItemSoil extends ItemBlock {
 				info += ", ";
 			}
 			info += EnumChatFormatting.YELLOW
-				+ I18N.localise("botany.tube.ph.alkaline")
+				+ I18N.localise("botany.ph.alkaline")
 				+ EnumChatFormatting.RESET;
 		}
 
@@ -69,14 +69,14 @@ public class ItemSoil extends ItemBlock {
 		}
 
 		if (noWeed) {
-			tooltip.add(I18N.localise("botany.tube.soil.weedkiller"));
+			tooltip.add(I18N.localise("botany.soil.weedkiller"));
 		}
 	}
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		String soilName = type.name().toLowerCase(Locale.ENGLISH);
-		return I18N.localise("botany.tube.soil." + soilName);
+		return I18N.localise("botany.soil." + soilName);
 	}
 
 	@Override

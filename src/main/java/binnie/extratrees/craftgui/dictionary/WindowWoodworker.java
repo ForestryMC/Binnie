@@ -18,8 +18,9 @@ import binnie.core.craftgui.window.Panel;
 import binnie.core.machines.Machine;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.machines.Designer;
-import binnie.extratrees.machines.DesignerType;
+import binnie.extratrees.machines.designer.Designer;
+import binnie.extratrees.machines.designer.DesignerType;
+import binnie.extratrees.machines.designer.WoodworkerRecipeComponent;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -55,11 +56,11 @@ public class WindowWoodworker extends Window {
 
 		if (getInventory() != null) {
 			ControlSlot slotWood1 = new ControlSlot(this, 22.0f, 34.0f);
-			slotWood1.assign(Designer.design1Slot);
+			slotWood1.assign(Designer.DESIGN_1_SLOT);
 			ControlSlot slotWood2 = new ControlSlot(this, 62.0f, 34.0f);
-			slotWood2.assign(Designer.design2Slot);
+			slotWood2.assign(Designer.DESIGN_2_SLOT);
 			ControlSlot slotBeeswax = new ControlSlot(this, 42.0f, 64.0f);
-			slotBeeswax.assign(Designer.beeswaxSlot);
+			slotBeeswax.assign(Designer.GLUE_SLOT);
 			new ControlRecipeSlot(this, 112, 34);
 		}
 	}
@@ -75,6 +76,6 @@ public class WindowWoodworker extends Window {
 	}
 
 	public DesignerType getDesignerType() {
-		return Machine.getInterface(Designer.ComponentWoodworkerRecipe.class, getInventory()).getDesignerType();
+		return Machine.getInterface(WoodworkerRecipeComponent.class, getInventory()).getDesignerType();
 	}
 }

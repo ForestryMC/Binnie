@@ -19,7 +19,7 @@ import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignCategory;
 import binnie.extratrees.carpentry.EnumDesign;
-import binnie.extratrees.machines.Designer;
+import binnie.extratrees.machines.designer.WoodworkerRecipeComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -76,7 +76,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 			return;
 		}
 
-		Designer.ComponentWoodworkerRecipe recipe = tile.getMachine().getComponent(Designer.ComponentWoodworkerRecipe.class);
+		WoodworkerRecipeComponent recipe = tile.getMachine().getComponent(WoodworkerRecipeComponent.class);
 		setValue(recipe.getDesign());
 	}
 
@@ -159,9 +159,9 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 			}
 
 			if (Window.get(this).getMousedOverWidget() == this) {
-				CraftGUI.Render.gradientRect(getArea().inset(1), 1157627903, 1157627903);
+				CraftGUI.Render.gradientRect(getArea().inset(1), 0x44ffffff, 0x44ffffff);
 			} else {
-				CraftGUI.Render.gradientRect(getArea().inset(1), -1433892728, -1433892728);
+				CraftGUI.Render.gradientRect(getArea().inset(1), 0xaa888888, 0xaa888888);
 			}
 		}
 
@@ -173,7 +173,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 					return;
 				}
 
-				tile.getMachine().getComponent(Designer.ComponentWoodworkerRecipe.class);
+				tile.getMachine().getComponent(WoodworkerRecipeComponent.class);
 				NBTTagCompound nbt = new NBTTagCompound();
 				nbt.setShort("d", (short) CarpentryManager.carpentryInterface.getDesignIndex(getValue()));
 				Window.get(getWidget()).sendClientAction("design", nbt);

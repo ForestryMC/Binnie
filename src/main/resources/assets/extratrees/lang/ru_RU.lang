@@ -10,17 +10,32 @@ extratrees.machine.machine.distillery=Винокурня
 extratrees.machine.machine.distillery.info=Винокурня посредством двойной, тройной перегонки спирта производит коньяки, ликеры и другие спиртные напитки.
 extratrees.machine.machine.press=Фруктовый пресс
 extratrees.machine.machine.press.info=Фруктовый пресс выжимает из фруктов различные фруктовые соки. Требуется энергия, но может также работать вручную, по правой кнопке мыши.
+extratrees.machine.machine.nursery=Питомник
+
 extratrees.machine.machine.lumbermill=Лесопилка
 extratrees.machine.machine.lumbermill.info=Лесопилка разрезает бревна на доски с повышенной скоростью, а также производит побочные продукты - опилки (sawdust) и кору (bark). Требуется энергия и вода.
-extratrees.machine.machine.nursery=Питомник
+extratrees.machine.lumbermill.logs=Древесина
+extratrees.machine.lumbermill.error.noWood=Нет дерева
+extratrees.machine.lumbermill.error.noRoom=Нет места для досок
+extratrees.machine.lumbermill.error.noWater=Не хватает воды
+
 extratrees.machine.machine.woodworker=Столяр
-extratrees.machine.machine.woodworker.info=Столяр создает резные деревянные блоки из двух различных пород дерева. Требуется Полироль (Wood Polish).
+extratrees.machine.machine.woodworker.info=Столяр создает резные деревянные блоки из двух различных пород дерева. Требуется Полироль.
+extratrees.machine.woodworker.material=Доски
+
 extratrees.machine.machine.panelworker=Панельщик
-extratrees.machine.machine.panelworker.info=Панельщик создает резные деревянные панели из двух различных пород дерева. Требуется Полироль (Wood Polish). Не требует энергии.
+extratrees.machine.machine.panelworker.info=Панельщик создает резные деревянные панели из двух различных пород дерева. Требуется Полироль. Не требует энергии.
+extratrees.machine.panelworker.material=Доски
+
 extratrees.machine.machine.glassworker=Стекольщик
-extratrees.machine.machine.glassworker.info=Стекольщик создает узорчатое витражное стекло из двух цветных стёкол (Pigmented Glass). Требуется Стеклянная Фурнитура (Glass Fittings). Не требует энергии.
+extratrees.machine.machine.glassworker.info=Стекольщик создает узорчатое витражное стекло из двух цветных стекол. Требуется Стеклянные фитинги. Не требует энергии.
+extratrees.machine.glassworker.material=Стекло
+
 extratrees.machine.machine.tileworker=Плиточник
-extratrees.machine.machine.tileworker.info=Плиточник создает узорчатые керамические блоки из двух керамических блоков (Ceramic Block) разных цветов. Требуется Строительный Раствор (Mortar). Не требует энергии. | Обычным крафтом 2х2 (3 блока + Стоительный Раствор) из блоков создаются плитки (Ceramic Tile). По схеме 2x2 из разных керамических плиток можно создавать узорчатые керамические плитки всевозможных сочетаний. Большие керамические кирпичи (Large Ceramic Bricks) создаются крафтом 2х2 из трёх разных плиток. Керамические кирпичи (Ceramic Bricks) создаются крафтом 2х2 из керамических кирпичей. Подробнее http://binnie.mods.wiki/wiki/Ceramic_Tile
+extratrees.machine.machine.tileworker.info=Плиточник создает узорчатые керамические блоки из двух керамических блоков разных цветов. Требуется Строительный Раствор. Не требует энергии. | Обычным крафтом 2х2 (3 блока + Стоительный Раствор) из блоков создаются плитки. По схеме 2x2 из разных керамических плиток можно создавать узорчатые керамические плитки всевозможных сочетаний. Большие керамические кирпичи создаются крафтом 2х2 из трёх разных плиток. Керамические кирпичи создаются крафтом 2х2 из керамических кирпичей
+extratrees.machine.tileworker.material=Керамический блок
+
+extratrees.machine.worker.error.glueRequired=Требует клей для работы
 
 
 #ДОСКИ мода EXTRATREES
@@ -143,38 +158,6 @@ extratrees.block.planks.rosewood.desc=Используется для шахма
 extratrees.block.planks.gingko.desc=Подобно Самшиту, древесина Гингко очень бледна.|Лесоруб
 extratrees.block.planks.pinkivory.desc=Что я могу сказать, она очень розовая.|Лесоруб
 
-extratrees.block.planks.vanilla.oak.desc=Велик дуб, а от малого топора падает.
-extratrees.block.planks.vanilla.spruce.desc=Ель - не сосна. Шумит неспроста.
-extratrees.block.planks.vanilla.birch.desc=Бела берёста – да дёготь чёрен. 
-extratrees.block.planks.vanilla.jungle.desc=
-extratrees.block.planks.vanilla.darkoak.desc=
-extratrees.block.planks.vanilla.acacia.desc=
-
-extratrees.block.planks.forestry.larch.desc=
-extratrees.block.planks.forestry.teak.desc=
-extratrees.block.planks.forestry.acacia.desc=
-extratrees.block.planks.forestry.lime.desc=
-extratrees.block.planks.forestry.chestnut.desc=
-extratrees.block.planks.forestry.wenge.desc=
-extratrees.block.planks.forestry.baobab.desc=
-extratrees.block.planks.forestry.sequoia.desc=
-extratrees.block.planks.forestry.kapok.desc=
-extratrees.block.planks.forestry.ebony.desc=
-extratrees.block.planks.forestry.mahogany.desc=
-extratrees.block.planks.forestry.balsa.desc=
-extratrees.block.planks.forestry.willow.desc=
-extratrees.block.planks.forestry.walnut.desc=
-extratrees.block.planks.forestry.greenheart.desc=
-extratrees.block.planks.forestry.cherry.desc=
-extratrees.block.planks.forestry.mahoe.desc=
-extratrees.block.planks.forestry.poplar.desc=
-extratrees.block.planks.forestry.palm.desc=
-extratrees.block.planks.forestry.papaya.desc=
-extratrees.block.planks.forestry.pine.desc=
-extratrees.block.planks.forestry.plum.desc=
-extratrees.block.planks.forestry.maple.desc=
-extratrees.block.planks.forestry.citrus.desc=
-
 extratrees.block.tooltip.twoColors=%s и %s
 extratrees.block.tooltip.twoMaterials=Из %s и %s
 
@@ -198,15 +181,14 @@ extratrees.block.woodfence.name=Забор из %1$s
 extratrees.block.woodgate.name=Калитка из %1$s
 
 < %1$s is the adjective for the fence type, %2$s is the name of the wood >
-extratrees.block.multifence.name=%2$s %1$s Gate
+extratrees.block.multifence.name=%1$s ворота из %2$s
 < %3$s is the name of the second wood >
-extratrees.block.multifence.name2=%2$s %1$s & $2$s Gate
+extratrees.block.multifence.name2=%2$s забор из %1$s и $3$s
 
 < %1$s is name of the design >
 extratrees.block.woodentile.name=Деревянный блок, дизайн %1$s
 extratrees.block.woodenpanel.name=Деревянная панель, дизайн %1$s
 extratrees.block.stainedglass.name=Витражное стекло, дизайн %1$s
-
 extratrees.block.ceramicBrick.name=%1$s Керамические кирпичи
 
 # ВИДЫ ДЕРЕВЬЕВ
@@ -335,6 +317,9 @@ extratrees.butterflies.species.monarch=Данаида монарх
 extratrees.butterflies.species.marbledWhite=Буддлея Давида
 
 extratrees.genetics.requirements.height=Минимальная высота от бедрока должна быть %d
+extratrees.genetics.unknown=<Неизвестно>
+extratrees.genetics.discoveredBy=Изучено игроком %s 
+extratrees.genetics.complexity=Сложность: %d 
 
 extratrees.item.carpentryHammer=Плотницкий молоток
 extratrees.item.masterCarpentryHammer=Плотницкий молоток мастера

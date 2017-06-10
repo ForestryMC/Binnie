@@ -5,7 +5,7 @@ import binnie.core.util.I18N;
 import binnie.core.util.UniqueItemStackSet;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.FakeWorld;
-import binnie.extratrees.machines.Lumbermill;
+import binnie.extratrees.machines.lumbermill.Lumbermill;
 import binnie.genetics.genetics.AlleleHelper;
 import com.mojang.authlib.GameProfile;
 import forestry.api.arboriculture.EnumGermlingType;

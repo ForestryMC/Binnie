@@ -1,7 +1,8 @@
-package binnie.extratrees.machines;
+package binnie.extratrees.machines.designer;
 
 import binnie.botany.Botany;
 import binnie.botany.ceramic.CeramicDesignSystem;
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignMaterial;
@@ -13,26 +14,28 @@ import binnie.extratrees.carpentry.ModuleCarpentry;
 import binnie.extratrees.core.ExtraTreeTexture;
 import net.minecraft.item.ItemStack;
 
+import java.util.Locale;
+
 public enum DesignerType {
-	Woodworker("woodworker", ExtraTreeTexture.carpenterTexture),
-	Panelworker("panelworker", ExtraTreeTexture.panelerTexture),
-	GlassWorker("glassworker", ExtraTreeTexture.panelerTexture),
-	Tileworker("tileworker", ExtraTreeTexture.tileworkerTexture);
+	WOODWORKER(ExtraTreeTexture.carpenterTexture),
+	PANELWORKER(ExtraTreeTexture.panelerTexture),
+	GLASSWORKER(ExtraTreeTexture.panelerTexture),
+	TILEWORKER(ExtraTreeTexture.tileworkerTexture);
 
 	public String name;
 	public String texture;
 
-	DesignerType(String name, String texture) {
-		this.name = name;
+	DesignerType(String texture) {
+		this.name = name().toLowerCase(Locale.ENGLISH);
 		this.texture = texture;
 	}
 
 	public IDesignSystem getSystem() {
 		switch (this) {
-			case GlassWorker: {
+			case GLASSWORKER: {
 				return DesignSystem.Glass;
 			}
-			case Tileworker: {
+			case TILEWORKER: {
 				return CeramicDesignSystem.instance;
 			}
 			default: {
@@ -55,13 +58,13 @@ public enum DesignerType {
 
 	private BlockDesign getBlock() {
 		switch (this) {
-			case GlassWorker:
+			case GLASSWORKER:
 				return ExtraTrees.blockStained;
 
-			case Panelworker:
+			case PANELWORKER:
 				return ExtraTrees.blockPanel;
 
-			case Tileworker:
+			case TILEWORKER:
 				return Botany.ceramicTile;
 		}
 		return ExtraTrees.blockCarpentry;
@@ -73,17 +76,17 @@ public enum DesignerType {
 
 	public String getMaterialTooltip() {
 		switch (this) {
-			case GlassWorker:
-				return "Glass";
+			case GLASSWORKER:
+				return I18N.localise("extratrees.machine.glassworker.material");
 
-			case Panelworker:
-				return "Wooden Plank";
+			case PANELWORKER:
+				return I18N.localise("extratrees.machine.panelworker.material");
 
-			case Tileworker:
-				return "Ceramic Block";
+			case TILEWORKER:
+				return I18N.localise("extratrees.machine.tileworker.material");
 
-			case Woodworker:
-				return "Wooden Plank";
+			case WOODWORKER:
+				return I18N.localise("extratrees.machine.woodworker.material");
 		}
 		return "";
 	}

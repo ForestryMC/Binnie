@@ -15,6 +15,6 @@ public class ItemPollen extends ItemBotany {
 
 	@Override
 	public String getTag() {
-		return I18N.localise("botany.tube.item.pollen.tag.name");
+		return I18N.localise("botany.item.pollen.tag.name");
 	}
 }

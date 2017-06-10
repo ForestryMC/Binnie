@@ -150,7 +150,7 @@ public class BlockPlant extends BlockBush {
 		}
 
 		public String getName() {
-			return I18N.localise("botany.tube.plant." + name);
+			return I18N.localise("botany.plant." + name);
 		}
 	}
 }
