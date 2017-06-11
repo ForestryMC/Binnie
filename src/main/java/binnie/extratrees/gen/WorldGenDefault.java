@@ -1,7 +1,6 @@
 package binnie.extratrees.gen;
 
 import binnie.extratrees.worldgen.BlockType;
-import binnie.extratrees.worldgen.BlockTypeLeaf;
 import binnie.extratrees.worldgen.BlockTypeLog;
 import forestry.api.world.ITreeGenData;
 
@@ -24,11 +23,6 @@ public class WorldGenDefault extends WorldGenTree {
 	public void preGenerate() {
 		this.height = this.determineHeight(5, 2);
 		this.girth = this.determineGirth(this.treeGen.getGirth());
-	}
-
-	@Override
-	public BlockType getLeaf() {
-		return new BlockTypeLeaf();
 	}
 
 	@Override

@@ -1,15 +1,19 @@
 package binnie.extratrees.gen;
 
+import binnie.core.util.TileUtil;
 import binnie.extratrees.worldgen.BlockType;
 import binnie.extratrees.worldgen.BlockTypeLeaf;
 import binnie.extratrees.worldgen.BlockTypeLog;
 import binnie.extratrees.worldgen.BlockTypeVoid;
+import com.mojang.authlib.GameProfile;
 import forestry.api.world.ITreeGenData;
+import forestry.arboriculture.tiles.TileTreeContainer;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 public class WorldGenTree extends WorldGenerator {
@@ -84,7 +88,7 @@ public class WorldGenTree extends WorldGenerator {
 	}
 
 	public BlockType getLeaf() {
-		return new BlockTypeLeaf();
+		return leaf!=null?leaf:(leaf=new BlockTypeLeaf(null));
 	}
 
 	public BlockType getWood() {
@@ -93,7 +97,17 @@ public class WorldGenTree extends WorldGenerator {
 
 	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position) {
+		this.leaf = new BlockTypeLeaf(getOwner(worldIn, position));
 		return generate(worldIn, rand, position.getX(), position.getY(), position.getZ(), false);
+	}
+
+	@Nullable
+	private static GameProfile getOwner(World world, BlockPos pos) {
+		TileTreeContainer tile = TileUtil.getTile(world, pos, TileTreeContainer.class);
+		if (tile == null) {
+			return null;
+		}
+		return tile.getOwnerHandler().getOwner();
 	}
 
 	public final boolean generate(final World world, final Random random, final int x, final int y, final int z, final boolean force) {
