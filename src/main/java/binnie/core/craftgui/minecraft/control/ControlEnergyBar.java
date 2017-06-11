@@ -87,7 +87,7 @@ public class ControlEnergyBar extends Control implements ITooltip {
 	public void onRenderBackground() {
 		CraftGUI.Render.texture(CraftGUITexture.EnergyBarBack, getArea());
 		float percentage = getPercentage() / 100.0f;
-		CraftGUI.Render.colour(getColourFromPercentage(percentage));
+		CraftGUI.Render.color(getColourFromPercentage(percentage));
 		IArea area = getArea();
 
 		switch (direction) {
@@ -121,11 +121,11 @@ public class ControlEnergyBar extends Control implements ITooltip {
 	public void onRenderForeground() {
 		if (isMouseOver() && Window.get(this).getGui().isHelpMode()) {
 			IArea area = getArea();
-			CraftGUI.Render.colour(MinecraftTooltip.getOutline(Tooltip.Type.HELP));
+			CraftGUI.Render.color(MinecraftTooltip.getOutline(Tooltip.Type.HELP));
 			CraftGUI.Render.texture(CraftGUITexture.Outline, area.outset(1));
 		} else if (ControlEnergyBar.isError) {
 			IArea area = getArea();
-			CraftGUI.Render.colour(MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR));
+			CraftGUI.Render.color(MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR));
 			CraftGUI.Render.texture(CraftGUITexture.Outline, area.outset(1));
 		}
 	}

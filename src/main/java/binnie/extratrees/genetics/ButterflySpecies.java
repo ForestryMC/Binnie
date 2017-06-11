@@ -40,7 +40,7 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
 	Wall("wall", "Lasiommata megera", new Color(0xefae1e)),
 	CrimsonRose("crimsonRose", "Atrophaneura hector", new Color(0xff627b)),
 	KaiserIHind("kaiserIHind", "Teinopalpus imperialis", new Color(0x77a040)),
-	GoldenBirdwing("Golden Birdwing", "Troides aeacus", new Color(0xf9dc1e)),
+	GoldenBirdwing("goldenBirdwing", "Troides aeacus", new Color(0xf9dc1e)),
 	MarshFritillary("marshFritillary", "Euphydryas aurinia",new Color(0xff8c00)),
 	PearlBorderedFritillary("pearlBorderedFritillary", "Boloria euphrosyne", new Color(0xff8b03)),
 	QueenOfSpainFritillary("queenOfSpainFritillary", "Issoria lathonia", new Color(0xffd13f)),

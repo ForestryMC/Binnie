@@ -123,7 +123,7 @@ public class ControlSlot extends ControlSlotBase {
 				area = getParent().getArea();
 				area.setPosition(IPoint.ZERO.sub(getPosition()));
 			}
-			CraftGUI.Render.colour(c);
+			CraftGUI.Render.color(c);
 			CraftGUI.Render.texture(CraftGUITexture.Outline, area.outset(1));
 		}
 	}

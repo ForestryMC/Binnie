@@ -1,5 +1,6 @@
 package binnie.extratrees.item;
 
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.core.ExtraTreesGUID;
 import cpw.mods.fml.relauncher.Side;
@@ -39,10 +40,10 @@ public class ItemDictionary extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-		super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
-		if (par1ItemStack.getItemDamage() > 0) {
-			par3List.add("Sengir-in-a-can");
+	public void addInformation(ItemStack stack, EntityPlayer player, List toltip, boolean advanced) {
+		super.addInformation(stack, player, toltip, advanced);
+		if (stack.getItemDamage() > 0) {
+			toltip.add(I18N.localise("extratrees.item.database.tooltip"));
 		}
 	}
 
@@ -66,7 +67,7 @@ public class ItemDictionary extends Item {
 	@Override
 	public String getItemStackDisplayName(ItemStack i) {
 		return (i.getItemDamage() == 0) ?
-			"Arborist Database" :
-			"Master Arborist Database";
+			I18N.localise("extratrees.item.database") :
+			I18N.localise("extratrees.item.masterDatabase");
 	}
 }

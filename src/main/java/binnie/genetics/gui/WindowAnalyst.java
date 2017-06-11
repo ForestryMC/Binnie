@@ -142,11 +142,11 @@ public class WindowAnalyst extends Window {
 
 					@Override
 					public void onRenderBackground() {
-						CraftGUI.Render.colour(syst.getColor());
+						CraftGUI.Render.color(syst.getColor());
 						int outset = (getSystem() == syst) ? 1 : 0;
 						CraftGUI.Render.texture(CraftGUITexture.TabOutline, getArea().outset(outset));
 						if (getSystem() == syst) {
-							CraftGUI.Render.colour(1140850688 + syst.getColor());
+							CraftGUI.Render.color(1140850688 + syst.getColor());
 							CraftGUI.Render.texture(CraftGUITexture.TabSolid, getArea().outset(outset));
 						}
 						CraftGUI.Render.item(new IPoint(2.0f, 2.0f), syst.getItemStackRepresentative());
@@ -179,7 +179,7 @@ public class WindowAnalyst extends Window {
 						if (getContent() == null) {
 							return;
 						}
-						CraftGUI.Render.colour(getContent().getColor());
+						CraftGUI.Render.color(getContent().getColor());
 						CraftGUI.Render.texture(CraftGUITexture.TabOutline, getArea());
 					}
 				};
@@ -202,7 +202,7 @@ public class WindowAnalyst extends Window {
 						if (getContent() == null) {
 							return;
 						}
-						CraftGUI.Render.colour(getContent().getColor());
+						CraftGUI.Render.color(getContent().getColor());
 						CraftGUI.Render.texture(CraftGUITexture.TabOutline, getArea());
 					}
 				};
@@ -343,9 +343,9 @@ public class WindowAnalyst extends Window {
 				@Override
 				public void onRenderBackground() {
 					boolean active = value == leftPage.getContent() || value == rightPage.getContent();
-					CraftGUI.Render.colour((active ? 0xff000000 : 0x44000000) + value.getColor());
+					CraftGUI.Render.color((active ? 0xff000000 : 0x44000000) + value.getColor());
 					CraftGUI.Render.texture(CraftGUITexture.TabSolid, getArea().inset(1));
-					CraftGUI.Render.colour(value.getColor());
+					CraftGUI.Render.color(value.getColor());
 					CraftGUI.Render.texture(CraftGUITexture.TabOutline, getArea().inset(1));
 					super.onRenderBackground();
 				}

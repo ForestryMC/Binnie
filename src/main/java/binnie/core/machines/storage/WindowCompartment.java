@@ -159,7 +159,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				@Override
 				public void onRenderForeground() {
 					Texture iTexture = CraftGUI.Render.getTexture(CraftGUITexture.TabOutline);
-					CraftGUI.Render.colour(getTab(panels.get(this)).getColor().getColour());
+					CraftGUI.Render.color(getTab(panels.get(this)).getColor().getColour());
 					CraftGUI.Render.texture(iTexture, getArea().inset(3));
 				}
 			};
@@ -321,7 +321,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				ControlScrollableContent<IWidget> scroll = new ControlScrollableContent<IWidget>(this, 124.0f, 16.0f, 116.0f, 92.0f, 6.0f) {
 					@Override
 					public void onRenderBackground() {
-						CraftGUI.Render.colour(11184810);
+						CraftGUI.Render.color(11184810);
 						CraftGUI.Render.texture(CraftGUITexture.Outline, getArea().inset(new IBorder(0.0f, 6.0f, 0.0f, 0.0f)));
 					}
 				};

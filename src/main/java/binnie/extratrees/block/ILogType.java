@@ -15,8 +15,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import java.util.Locale;
-
 public interface ILogType {
 	void placeBlock(World p0, int p1, int p2, int p3);
 
@@ -25,46 +23,46 @@ public interface ILogType {
 	int getColour();
 
 	enum ExtraTreeLog implements ILogType {
-		Apple("Apple", 0x7b7a7b, PlankType.ExtraTreePlanks.Apple),
-		Fig("Fig", 0x807357, PlankType.ExtraTreePlanks.Fig),
-		Butternut("Butternut", 0xb7ada0, PlankType.ExtraTreePlanks.Butternut),
-		Cherry("Cherry", 0x716850, PlankType.ForestryPlanks.CHERRY),
-		Whitebeam("Whitebeam", 0x786a6d, PlankType.ExtraTreePlanks.Whitebeam),
-		Rowan("Rowan", 0xb6b09b, PlankType.ExtraTreePlanks.Rowan),
-		Hemlock("Hemlock", 0xada39b, PlankType.ExtraTreePlanks.Hemlock),
-		Ash("Ash", 0x898982, PlankType.ExtraTreePlanks.Ash),
-		Alder("Alder", 0xc6c0b8, PlankType.ExtraTreePlanks.Alder),
-		Beech("Beech", 0xb2917e, PlankType.ExtraTreePlanks.Beech),
-		Hawthorn("Hawthorn", 0x5f5745, PlankType.ExtraTreePlanks.Hawthorn),
-		Banana("Banana", 0x85924f),
-		Yew("Yew", 0xd1bbc1, PlankType.ExtraTreePlanks.Yew),
-		Cypress("Cypress", 0x9a8483, PlankType.ExtraTreePlanks.Cypress),
-		Fir("Fir", 0x828382, PlankType.ExtraTreePlanks.Fir),
-		Hazel("Hazel", 0xaa986f, PlankType.ExtraTreePlanks.Hazel),
-		Hickory("Hickory", 0x3e3530, PlankType.ExtraTreePlanks.Hickory),
-		Elm("Elm", 0x848386, PlankType.ExtraTreePlanks.Elm),
-		Elder("Elder", 0xd8b874, PlankType.ExtraTreePlanks.Elder),
-		Holly("Holly", 0xb5aa85, PlankType.ExtraTreePlanks.Holly),
-		Hornbeam("Hornbeam", 0xa39276, PlankType.ExtraTreePlanks.Hornbeam),
-		Cedar("Cedar", 0xad764f, PlankType.ExtraTreePlanks.Cedar),
-		Olive("Olive", 0x7b706a, PlankType.ExtraTreePlanks.Olive),
-		Sweetgum("Sweetgum", 0xa1a19c, PlankType.ExtraTreePlanks.Sweetgum),
-		Locust("Locust", 0xadacbc, PlankType.ExtraTreePlanks.Locust),
-		Pear("Pear", 0xa89779, PlankType.ExtraTreePlanks.Pear),
-		Maclura("Maclura", 0x8b5734, PlankType.ExtraTreePlanks.Maclura),
-		Brazilwood("Brazilwood", 0x9e8068, PlankType.ExtraTreePlanks.Brazilwood),
-		Logwood("Logwood", 0xf9e2d2, PlankType.ExtraTreePlanks.Logwood),
-		Rosewood("Rosewood", 0x998666, PlankType.ExtraTreePlanks.Rosewood),
-		Purpleheart("Purpleheart", 0x9392a2, PlankType.ExtraTreePlanks.Purpleheart),
-		Iroko("Iroko", 0x605c5b, PlankType.ExtraTreePlanks.Iroko),
-		Gingko("Gingko", 0xadae9c, PlankType.ExtraTreePlanks.Gingko),
-		Eucalyptus("Eucalyptus", 0xeadeda, PlankType.ExtraTreePlanks.Eucalyptus),
-		Eucalyptus2("Eucalyptus", 0x867e65, PlankType.ExtraTreePlanks.Eucalyptus),
-		Box("Box", 0xab6f57, PlankType.ExtraTreePlanks.Box),
-		Syzgium("Syzgium", 0xab6f57, PlankType.ExtraTreePlanks.Syzgium),
-		Eucalyptus3("Eucalyptus", 0x6cb03f, PlankType.ExtraTreePlanks.Eucalyptus),
-		Cinnamon("Cinnamon", 0x86583c, PlankType.VanillaPlanks.JUNGLE),
-		PinkIvory("Pink Ivory", 0x7f6554, PlankType.ExtraTreePlanks.PinkIvory);
+		Apple("apple", 0x7b7a7b, PlankType.ExtraTreePlanks.Apple),
+		Fig("fig", 0x807357, PlankType.ExtraTreePlanks.Fig),
+		Butternut("butternut", 0xb7ada0, PlankType.ExtraTreePlanks.Butternut),
+		Cherry("cherry", 0x716850, PlankType.ForestryPlanks.CHERRY),
+		Whitebeam("whitebeam", 0x786a6d, PlankType.ExtraTreePlanks.Whitebeam),
+		Rowan("rowan", 0xb6b09b, PlankType.ExtraTreePlanks.Rowan),
+		Hemlock("hemlock", 0xada39b, PlankType.ExtraTreePlanks.Hemlock),
+		Ash("ash", 0x898982, PlankType.ExtraTreePlanks.Ash),
+		Alder("alder", 0xc6c0b8, PlankType.ExtraTreePlanks.Alder),
+		Beech("beech", 0xb2917e, PlankType.ExtraTreePlanks.Beech),
+		Hawthorn("hawthorn", 0x5f5745, PlankType.ExtraTreePlanks.Hawthorn),
+		Banana("banana", 0x85924f),
+		Yew("yew", 0xd1bbc1, PlankType.ExtraTreePlanks.Yew),
+		Cypress("cypress", 0x9a8483, PlankType.ExtraTreePlanks.Cypress),
+		Fir("fir", 0x828382, PlankType.ExtraTreePlanks.Fir),
+		Hazel("hazel", 0xaa986f, PlankType.ExtraTreePlanks.Hazel),
+		Hickory("hickory", 0x3e3530, PlankType.ExtraTreePlanks.Hickory),
+		Elm("elm", 0x848386, PlankType.ExtraTreePlanks.Elm),
+		Elder("elder", 0xd8b874, PlankType.ExtraTreePlanks.Elder),
+		Holly("holly", 0xb5aa85, PlankType.ExtraTreePlanks.Holly),
+		Hornbeam("hornbeam", 0xa39276, PlankType.ExtraTreePlanks.Hornbeam),
+		Cedar("cedar", 0xad764f, PlankType.ExtraTreePlanks.Cedar),
+		Olive("olive", 0x7b706a, PlankType.ExtraTreePlanks.Olive),
+		Sweetgum("sweetgum", 0xa1a19c, PlankType.ExtraTreePlanks.Sweetgum),
+		Locust("locust", 0xadacbc, PlankType.ExtraTreePlanks.Locust),
+		Pear("pear", 0xa89779, PlankType.ExtraTreePlanks.Pear),
+		Maclura("maclura", 0x8b5734, PlankType.ExtraTreePlanks.Maclura),
+		Brazilwood("brazilwood", 0x9e8068, PlankType.ExtraTreePlanks.Brazilwood),
+		Logwood("logwood", 0xf9e2d2, PlankType.ExtraTreePlanks.Logwood),
+		Rosewood("rosewood", 0x998666, PlankType.ExtraTreePlanks.Rosewood),
+		Purpleheart("purpleheart", 0x9392a2, PlankType.ExtraTreePlanks.Purpleheart),
+		Iroko("iroko", 0x605c5b, PlankType.ExtraTreePlanks.Iroko),
+		Gingko("gingko", 0xadae9c, PlankType.ExtraTreePlanks.Gingko),
+		Eucalyptus("eucalyptus", 0xeadeda, PlankType.ExtraTreePlanks.Eucalyptus),
+		Eucalyptus2("eucalyptus", 0x867e65, PlankType.ExtraTreePlanks.Eucalyptus),
+		Box("box", 0xab6f57, PlankType.ExtraTreePlanks.Box),
+		Syzgium("syzgium", 0xab6f57, PlankType.ExtraTreePlanks.Syzgium),
+		Eucalyptus3("eucalyptus", 0x6cb03f, PlankType.ExtraTreePlanks.Eucalyptus),
+		Cinnamon("cinnamon", 0x86583c, PlankType.VanillaPlanks.JUNGLE),
+		PinkIvory("pinkivory", 0x7f6554, PlankType.ExtraTreePlanks.PinkIvory);
 
 		protected String name;
 		protected int color;
@@ -92,7 +90,7 @@ public interface ILogType {
 		}
 
 		public String getName() {
-			return I18N.localise("extratrees.block.planks." + name.toLowerCase(Locale.ENGLISH));
+			return I18N.localise("extratrees.block.planks." + name);
 		}
 
 		public void addRecipe() {

@@ -154,7 +154,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 
 	@Override
 	public String getName() {
-		return I18N.localise("extrabees.effect." + name().toLowerCase() + ".name");
+		return I18N.localise("extrabees.effect." + name().toLowerCase().replace("_", "") + ".name");
 	}
 
 	@Override

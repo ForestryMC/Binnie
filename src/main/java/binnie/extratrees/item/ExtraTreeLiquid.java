@@ -3,16 +3,17 @@ package binnie.extratrees.item;
 import binnie.Binnie;
 import binnie.core.liquid.FluidContainer;
 import binnie.core.liquid.ILiquidType;
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.FluidStack;
 
 public enum ExtraTreeLiquid implements ILiquidType {
-	Sap("Sap", "sap", 12481858),
-	Resin("Resin", "resin", 13199360),
-	Latex("Latex", "latex", 14212041),
-	Turpentine("Turpentine", "turpentine", 7951162);
+	Sap("sap", 0xbe7542),
+	Resin("resin", 0xc96800),
+	Latex("latex", 0xd8dbc9),
+	Turpentine("turpentine", 0x79533a);
 
 	public String name;
 
@@ -20,10 +21,9 @@ public enum ExtraTreeLiquid implements ILiquidType {
 	protected IIcon icon;
 	protected int color;
 
-	ExtraTreeLiquid(String name, String ident, int color) {
-		this.name = "";
+	ExtraTreeLiquid(String name, int color) {
 		this.name = name;
-		this.ident = ident;
+		this.ident = name;
 		this.color = color;
 	}
 
@@ -39,7 +39,7 @@ public enum ExtraTreeLiquid implements ILiquidType {
 
 	@Override
 	public String getName() {
-		return name;
+		return I18N.localise("extratrees.fluid." + name);
 	}
 
 	@Override

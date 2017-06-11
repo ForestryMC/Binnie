@@ -28,7 +28,7 @@ class ControlBreedingProgress extends Control {
 		CraftGUI.Render.texture(CraftGUITexture.PanelBlack, getArea());
 		IArea area = getArea().inset(1);
 		area.setSize(new IPoint(area.size().x() * percentage, area.size().y()));
-		CraftGUI.Render.colour(colour);
+		CraftGUI.Render.color(colour);
 		CraftGUI.Render.texture(ControlBreedingProgress.Progress, area);
 	}
 }

@@ -23,20 +23,7 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
 	protected ControlGene(IWidget parent, float x, float y) {
 		super(parent, x, y, 16.0f, 16.0f);
 		addAttribute(WidgetAttribute.MOUSE_OVER);
-		addSelfEventHandler(new EventMouse.Down.Handler() {
-			@Override
-			public void onEvent(EventMouse.Down event) {
-				if (!canFill(Window.get(getWidget()).getHeldItemStack())) {
-					return;
-				}
-
-				NBTTagCompound action = new NBTTagCompound();
-				NBTTagCompound geneNBT = new NBTTagCompound();
-				getValue().writeToNBT(geneNBT);
-				action.setTag("gene", geneNBT);
-				Window.get(getWidget()).sendClientAction("gene-select", action);
-			}
-		});
+		addSelfEventHandler(new MouseDownHandler());
 	}
 
 	@Override
@@ -84,7 +71,22 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
 			CraftGUI.Render.solid(getArea().inset(1), 0xff444444);
 		}
 
-		CraftGUI.Render.colour(-1);
+		CraftGUI.Render.color(0xffffffff);
 		CraftGUI.Render.iconItem(IPoint.ZERO, GeneticsTexture.dnaIcon.getIcon());
+	}
+
+	private class MouseDownHandler extends EventMouse.Down.Handler {
+		@Override
+		public void onEvent(EventMouse.Down event) {
+			if (!canFill(Window.get(getWidget()).getHeldItemStack())) {
+				return;
+			}
+
+			NBTTagCompound action = new NBTTagCompound();
+			NBTTagCompound geneNBT = new NBTTagCompound();
+			getValue().writeToNBT(geneNBT);
+			action.setTag("gene", geneNBT);
+			Window.get(getWidget()).sendClientAction("gene-select", action);
+		}
 	}
 }

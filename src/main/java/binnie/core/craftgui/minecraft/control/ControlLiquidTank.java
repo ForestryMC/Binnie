@@ -125,13 +125,13 @@ public class ControlLiquidTank extends Control implements ITooltip {
 		CraftGUI.Render.texture(horizontal ? CraftGUITexture.HorizontalLiquidTankOverlay : CraftGUITexture.LiquidTankOverlay, IPoint.ZERO);
 		if (isMouseOver() && Window.get(this).getGui().isHelpMode()) {
 			IArea area = getArea();
-			CraftGUI.Render.colour(MinecraftTooltip.getOutline(Tooltip.Type.HELP));
+			CraftGUI.Render.color(MinecraftTooltip.getOutline(Tooltip.Type.HELP));
 			CraftGUI.Render.texture(CraftGUITexture.Outline, area.outset(1));
 		}
 
 		if (ControlLiquidTank.tankError.contains(tankID)) {
 			IArea area = getArea();
-			CraftGUI.Render.colour(MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR));
+			CraftGUI.Render.color(MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR));
 			CraftGUI.Render.texture(CraftGUITexture.Outline, area.outset(1));
 		}
 	}

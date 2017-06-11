@@ -439,9 +439,9 @@ extrabees.species.mystical.name=神秘
 
 extrabees.effect.ectoplasm.name=胶化
 extrabees.effect.acid.name=酸液
-extrabees.effect.spawn_zombie.name=僵尸刷怪笼
-extrabees.effect.spawn_skeleton.name=骷髅刷怪笼
-extrabees.effect.spawn_creeper.name=爬行者刷怪笼
+extrabees.effect.spawnzombie.name=僵尸刷怪笼
+extrabees.effect.spawnskeleton.name=骷髅刷怪笼
+extrabees.effect.spawncreeper.name=爬行者刷怪笼
 extrabees.effect.lightning.name=雷公助我
 extrabees.effect.radioactive.name=辐射
 extrabees.effect.meteor.name=流星

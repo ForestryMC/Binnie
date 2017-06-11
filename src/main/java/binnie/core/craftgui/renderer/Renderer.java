@@ -30,7 +30,7 @@ public class Renderer {
 	public void preRender(IWidget widget) {
 		GL11.glPushMatrix();
 		GL11.glTranslatef(widget.getPosition().x(), widget.getPosition().y(), 0.0f);
-		colour(widget.getColor());
+		color(widget.getColor());
 		if (widget.isCroppedWidet()) {
 			IWidget cropRelative = (widget.getCropWidget() != null) ? widget.getCropWidget() : widget;
 			IPoint pos = cropRelative.getAbsolutePosition();
@@ -50,7 +50,7 @@ public class Renderer {
 		GL11.glPopMatrix();
 	}
 
-	public void colour(int hex) {
+	public void color(int hex) {
 		currentColour = hex;
 		int a = (hex & 0xFF000000) >> 24;
 		int r = (hex & 0xFF0000) >> 16;
@@ -78,7 +78,7 @@ public class Renderer {
 		if (texture != currentTexture && texture != null) {
 			BinnieCore.proxy.bindTexture(texture.getFilename());
 		}
-		colour(currentColour);
+		color(currentColour);
 	}
 
 	public void texture(Object texture, IPoint position) {

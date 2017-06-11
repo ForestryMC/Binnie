@@ -1,5 +1,6 @@
 package binnie.extratrees.item;
 
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.core.ExtraTreesGUID;
 import cpw.mods.fml.relauncher.Side;
@@ -42,7 +43,7 @@ public class ItemMothDatabase extends Item {
 	public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
 		super.addInformation(stack, player, tooltip, advanced);
 		if (stack.getItemDamage() > 0) {
-			tooltip.add("Binnie's Emporium of Lepidopterans");
+			tooltip.add(I18N.localise("extratrees.item.mothDatabase.tooltip"));
 		}
 	}
 
@@ -66,7 +67,7 @@ public class ItemMothDatabase extends Item {
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		return (stack.getItemDamage() == 0) ?
-			"Lepidopterist Database" :
-			"Master Lepidopterist Database";
+			I18N.localise("extratrees.item.mothDatabase") :
+			I18N.localise("extratrees.item.mothMasterDatabase");
 	}
 }

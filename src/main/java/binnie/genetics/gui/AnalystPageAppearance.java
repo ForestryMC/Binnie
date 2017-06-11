@@ -41,19 +41,19 @@ public class AnalystPageAppearance extends ControlAnalystPage {
 				float scale = w / 16.0f;
 				float dy = (sections > 1) ? 16.0f : 0.0f;
 				GL11.glScalef(scale, scale, 1.0f);
-				CraftGUI.Render.colour(ind.getGenome().getStemColor().getColor(false));
+				CraftGUI.Render.color(ind.getGenome().getStemColor().getColor(false));
 				if (sections > 1) {
 					CraftGUI.Render.iconBlock(new IPoint(0.0f, 0.0f), ind.getGenome().getType().getStem(EnumFlowerStage.FLOWER, true, 1));
 				}
 
 				CraftGUI.Render.iconBlock(new IPoint(0.0f, dy), ind.getGenome().getType().getStem(EnumFlowerStage.FLOWER, true, 0));
-				CraftGUI.Render.colour(ind.getGenome().getPrimaryColor().getColor(false));
+				CraftGUI.Render.color(ind.getGenome().getPrimaryColor().getColor(false));
 				if (sections > 1) {
 					CraftGUI.Render.iconBlock(new IPoint(0.0f, 0.0f), ind.getGenome().getType().getPetalIcon(EnumFlowerStage.FLOWER, true, 1));
 				}
 
 				CraftGUI.Render.iconBlock(new IPoint(0.0f, dy), ind.getGenome().getType().getPetalIcon(EnumFlowerStage.FLOWER, true, 0));
-				CraftGUI.Render.colour(ind.getGenome().getSecondaryColor().getColor(false));
+				CraftGUI.Render.color(ind.getGenome().getSecondaryColor().getColor(false));
 				if (sections > 1) {
 					CraftGUI.Render.iconBlock(new IPoint(0.0f, 0.0f), ind.getGenome().getType().getVariantIcon(EnumFlowerStage.FLOWER, true, 1));
 				}

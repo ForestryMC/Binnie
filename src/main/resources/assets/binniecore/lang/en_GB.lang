@@ -8,3 +8,5 @@ binniecore.allele.extrabees.effect.gravity.desc=Pulls entities towards the hive
 binniecore.allele.extrabees.effect.hunger.desc=Causes players to be hungry
 binniecore.allele.forestry.effectMycophilic.desc=Spreads mushrooms and mycelium
 binniecore.allele.forestry.effectNone.desc=No discernible effects
+
+binniecore.item.container.cylinder.binnie.bacteriapoly=Polymerised Bacteria Cylinder
