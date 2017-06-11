@@ -321,8 +321,6 @@ extratrees.genetics.unknown=<Неизвестно>
 extratrees.genetics.discoveredBy=Изучено игроком %s 
 extratrees.genetics.complexity=Сложность: %d 
 
-extratrees.item.carpentryHammer=Плотницкий молоток
-extratrees.item.masterCarpentryHammer=Плотницкий молоток мастера
 extratrees.item.sawdust=Опилки
 extratrees.item.bark=Кора
 extratrees.item.provenGear=Проверенная шестерня
@@ -330,12 +328,12 @@ extratrees.item.woodWax=Полироль
 extratrees.item.hops=Хмель
 extratrees.item.yeast=Дрожжи
 extratrees.item.yeastLager=Пивоваренные дрожжи
-extratrees.item.wheat=Гранулы пшеницы
-extratrees.item.barley=Зерна ячменя
-extratrees.item.rye=Ржаное зерно
-extratrees.item.corn=Зерна кукурузы
-extratrees.item.roasted=Жареные зерна
-extratrees.item.glassFitting=Glass Fittings
+extratrees.item.grainWheat=Гранулы пшеницы
+extratrees.item.grainBarley=Зерна ячменя
+extratrees.item.grainRye=Ржаное зерно
+extratrees.item.grainCorn=Зерна кукурузы
+extratrees.item.grainRoasted=Жареные зерна
+extratrees.item.glassFitting=Стеклянные фитинги
 
 # ПРОДУКТЫ САДОВОДСТВА
 extratrees.item.food.osangeosange=Плод маклюра

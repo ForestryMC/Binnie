@@ -198,6 +198,44 @@ binniecore.item.container.bucket=Ведро
 binniecore.item.container.glass=Бутыль
 binniecore.item.container.cylinder=Баллон
 
+binniecore.item.container.capsule.acid=Капсула растфорителя
+binniecore.item.container.capsule.poison=Капсула яда
+binniecore.item.container.capsule.liquidnitrogen=Капсула нитрогена
+binniecore.item.container.capsule.sap=Капсула живицы
+binniecore.item.container.capsule.resin=Капсула смолы
+binniecore.item.container.capsule.latex=Капсула резины
+binniecore.item.container.capsule.turpentine=Капсула скипидара
+
+binniecore.item.container.refractory.acid=Капсула растфорителя
+binniecore.item.container.refractory.poison=Капсула яда
+binniecore.item.container.refractory.liquidnitrogen=Капсула нитрогена
+binniecore.item.container.refractory.sap=Капсула живицы
+binniecore.item.container.refractory.resin=Капсула смолы
+binniecore.item.container.refractory.latex=Капсула резины
+binniecore.item.container.refractory.turpentine=Капсула скипидара
+
+binniecore.item.container.can.acid=Банка растфорителя
+binniecore.item.container.can.poison=Банка яда
+binniecore.item.container.can.liquidnitrogen=Банка нитрогена
+binniecore.item.container.can.sap=Банка живицы
+binniecore.item.container.can.resin=Банка смолы
+binniecore.item.container.can.latex=Банка резины
+binniecore.item.container.can.turpentine=Банка скипидара
+
+binniecore.item.container.bucket.acid=Ведро растворителя
+binniecore.item.container.bucket.poison=Ведро яда
+binniecore.item.container.bucket.liquidnitrogen=Ведро нитрогена
+binniecore.item.container.bucket.sap=Ведро живицы
+binniecore.item.container.bucket.resin=Ведро смолы
+binniecore.item.container.bucket.latex=Ведро резины
+binniecore.item.container.bucket.turpentine=Ведро скипидара
+
+binniecore.item.container.cylinder.binnie.growthmedium=Баллон с питательной средой
+binniecore.item.container.cylinder.binnie.bacteria=Баллон бактерии
+binniecore.item.container.cylinder.binnie.bacteriapoly=Баллон полимеризированной бактерии
+binniecore.item.container.cylinder.binnie.dna.raw=Баллон сырой ДНК
+binniecore.item.container.cylinder.binnie.bacteriavector=Баллон бактерией вектор
+
 binniecore.machine.error.noItem=Нет предметов
 binniecore.machine.error.invalidItem=Неподходяий предмет
 binniecore.machine.error.noSpace=Нет места

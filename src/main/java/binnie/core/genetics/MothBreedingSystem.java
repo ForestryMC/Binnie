@@ -58,7 +58,7 @@ class MothBreedingSystem extends BreedingSystem {
 				return I18N.localise("binniecore.allele.metabolism.high");
 			}
 			if (metabolism >= 10) {
-				return I18N.localise("binniecore.allele.metabolism.normal");
+				return I18N.localise("binniecore.allele.metabolism.average");
 			}
 			if (metabolism >= 7) {
 				return I18N.localise("binniecore.allele.metabolism.slow");

@@ -198,6 +198,44 @@ binniecore.item.container.bucket=Bucket
 binniecore.item.container.glass=Bottle
 binniecore.item.container.cylinder=Cylinder
 
+binniecore.item.container.capsule.acid=Acid Capsule
+binniecore.item.container.capsule.poison=Poison Capsule
+binniecore.item.container.capsule.liquidnitrogen=Nitrogen Capsule
+binniecore.item.container.capsule.sap=Sap Capsule
+binniecore.item.container.capsule.resin=Resin Capsule
+binniecore.item.container.capsule.latex=Latex Capsule
+binniecore.item.container.capsule.turpentine=Turpentine Capsule
+
+binniecore.item.container.refractory.acid=Acid Capsule
+binniecore.item.container.refractory.poison=Poison Capsule
+binniecore.item.container.refractory.liquidnitrogen=Nitrogen Capsule
+binniecore.item.container.refractory.sap=Sap Capsule
+binniecore.item.container.refractory.resin=Resin Capsule
+binniecore.item.container.refractory.latex=Latex Capsule
+binniecore.item.container.refractory.turpentine=Turpentine Capsule
+
+binniecore.item.container.can.acid=Acid Can
+binniecore.item.container.can.poison=Poison Can
+binniecore.item.container.can.liquidnitrogen=Nitrogen Can
+binniecore.item.container.can.sap=Sap Can
+binniecore.item.container.can.resin=Resin Can
+binniecore.item.container.can.latex=Latex Can
+binniecore.item.container.can.turpentine=Turpentine Can
+
+binniecore.item.container.bucket.acid=Acid Bukket
+binniecore.item.container.bucket.poison=Poison Bukket
+binniecore.item.container.bucket.liquidnitrogen=Nitrogen Bukket
+binniecore.item.container.bucket.sap=Sap Bukket
+binniecore.item.container.bucket.resin=Resin Bukket
+binniecore.item.container.bucket.latex=Latex Bukket
+binniecore.item.container.bucket.turpentine=Turpentine Bukket
+
+binniecore.item.container.cylinder.binnie.growthmedium=Growth Medium Cylinder
+binniecore.item.container.cylinder.binnie.bacteria=Bacteria Cylinder
+binniecore.item.container.cylinder.binnie.bacteriapoly=Polymerized Bacteria Cylinder
+binniecore.item.container.cylinder.binnie.dna.raw=Raw DNA Cylinder
+binniecore.item.container.cylinder.binnie.bacteriavector=Bacteria Vector Cylinder
+
 binniecore.machine.error.noItem=No Item
 binniecore.machine.error.invalidItem=Invalid Item
 binniecore.machine.error.noSpace=No Space

@@ -515,7 +515,6 @@ extrabees.species.tempered.desc=Необычная мутация генов а�
 extrabees.species.volcanic.name=Огнедышащая
 extrabees.species.volcanic.desc=В какой-то момент во время их эволюции, они, кажется, приобрели черты от ифритов.|Руководство пчеловода
 extrabees.species.glowstone.name=Сердитая
-extrabees.species.glowstone.desc=
 
 # Яростные голодные пчёлы (АВТОР ЕЁ УДАЛИЛ)
 extrabees.species.angry.name=Яростные голодные пчёлы
@@ -523,27 +522,18 @@ extrabees.species.angry.desc=Повышение уровня ярости выз
 
 # Заразная ветвь
 extrabees.species.malicious.name=Вредоносная
-extrabees.species.malicious.desc=
 extrabees.species.infectious.name=Заразная
-extrabees.species.infectious.desc=
 extrabees.species.virulent.name=Ядовитая
-extrabees.species.virulent.desc=
 
 # Вязкая ветвь
 extrabees.species.viscous.name=Вязкая
-extrabees.species.viscous.desc=
 extrabees.species.glutinous.name=Клейкая
-extrabees.species.glutinous.desc=
 extrabees.species.sticky.name=Липкая
-extrabees.species.sticky.desc=
 
 # Едкая ветвь
 extrabees.species.corrosive.name=Едкая
-extrabees.species.corrosive.desc=
 extrabees.species.caustic.name=Едко-щелочная
-extrabees.species.caustic.desc=
 extrabees.species.acidic.name=Едко-кислотная
-extrabees.species.acidic.desc=
 
 # Энергетическая ветвь
 extrabees.species.excited.name=Возбуждённая
@@ -555,17 +545,12 @@ extrabees.species.ecstatic.desc=После накопления чрезмерн
 
 # Зимняя ветвь
 extrabees.species.artic.name=Бесстрастная
-extrabees.species.artic.desc=
 extrabees.species.freezing.name=Самовластная
-extrabees.species.freezing.desc=
 
 # Тёмная ветвь
 extrabees.species.shadow.name=Омрачённая
-extrabees.species.shadow.desc=
 extrabees.species.darkened.name=Потемневшая
-extrabees.species.darkened.desc=
 extrabees.species.abyss.name=Глубинная
-extrabees.species.abyss.desc=
 
 # Первичная ветвь
 extrabees.species.red.name=Тёмно-бордовая
@@ -577,37 +562,24 @@ extrabees.species.blue.desc="Не унывайте, пчела. Вы ищете 
 extrabees.species.green.name=Зелёная
 extrabees.species.green.desc=Возможно, это попытка маскировки, но эти пчелы начали производить красители, которые соответствуют цвету листьев и травы.|Руководство пчеловода
 extrabees.species.black.name=Черномазая
-extrabees.species.black.desc=
 extrabees.species.white.name=Отбелённая
-extrabees.species.white.desc=
 
 # Вторичная ветвь
 extrabees.species.brown.name=Коричневая
-extrabees.species.brown.desc=
 extrabees.species.orange.name=Оранжевая
-extrabees.species.orange.desc=
 extrabees.species.cyan.name=Бирюзовая
-extrabees.species.cyan.desc=
 extrabees.species.purple.name=Фиолетовая
-extrabees.species.purple.desc=
 extrabees.species.gray.name=Серая
-extrabees.species.gray.desc=
 extrabees.species.lightblue.name=Голубая
-extrabees.species.lightblue.desc=
 extrabees.species.pink.name=Розовая
-extrabees.species.pink.desc=
 extrabees.species.limegreen.name=Лаймовая
-extrabees.species.limegreen.desc=
 
 # Третичная ветвь
 extrabees.species.magenta.name=Пурпурная
-extrabees.species.magenta.desc=
 extrabees.species.lightgray.name=Светло-серая
-extrabees.species.lightgray.desc=
 
 # Праздничная ветвь
 extrabees.species.celebratory.name=Праздничная
-extrabees.species.celebratory.desc=
 
 # Мерзкая ветвь
 extrabees.species.jaded.name=Изнурённая
@@ -615,26 +587,21 @@ extrabees.species.jaded.desc=Я разводил этих пчёл и всё, ч
 
 # Суровая ветвь
 extrabees.species.hazardous.name=Опасная
-extrabees.species.hazardous.desc=
 
 # Квантовая ветвь
 extrabees.species.quantum.name=Квантовая
-extrabees.species.quantum.desc=
 extrabees.species.spatial.name=Пространственная
-extrabees.species.spatial.desc=
 extrabees.species.unusual.name=Аномальная
-extrabees.species.unusual.desc=
 
 # Мистическая ветвь
 extrabees.species.mystical.name=Мистическая
-extrabees.species.mystical.desc=
 
 # Наименование эффектов
 extrabees.effect.ectoplasm.name=Эктоплазма
 extrabees.effect.acid.name=Кислота
-extrabees.effect.spawn_zombie.name=Зомби
-extrabees.effect.spawn_skeleton.name=Скелеты
-extrabees.effect.spawn_creeper.name=Криперы
+extrabees.effect.spawnzombie.name=Зомби
+extrabees.effect.spawnskeleton.name=Скелеты
+extrabees.effect.spawncreeper.name=Криперы
 extrabees.effect.lightning.name=Молния
 extrabees.effect.radioactive.name=Нестабильность
 extrabees.effect.meteor.name=Метеор

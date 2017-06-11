@@ -36,34 +36,6 @@ NEI.overrideName(<Genetics:masterRegistry:0>,"Картотека мастера"
 NEI.overrideName(<Genetics:analyst:0>,"Аналитик");
 <Genetics:analyst:0>.addTooltip(format.darkGreen("Analyst"));
 
-# FLUIDS
-
-NEI.overrideName(<BinnieCore:containerCan:128>,"Банка живицы");
-NEI.overrideName(<BinnieCore:containerCapsule:128>,"Капсула живицы");
-NEI.overrideName(<BinnieCore:containerBucket:128>,"Ведро живицы");
-NEI.overrideName(<BinnieCore:containerCylinder:128>,"Баллон живицы");
-
-NEI.overrideName(<BinnieCore:containerCan:129>,"Банка смолы");
-NEI.overrideName(<BinnieCore:containerCapsule:129>,"Капсула смолы");
-NEI.overrideName(<BinnieCore:containerBucket:129>,"Ведро смолы");
-NEI.overrideName(<BinnieCore:containerCylinder:129>,"Баллон смолы");
-
-NEI.overrideName(<BinnieCore:containerCan:130>,"Банка латекса");
-NEI.overrideName(<BinnieCore:containerCapsule:130>,"Капсула латекса");
-NEI.overrideName(<BinnieCore:containerBucket:130>,"Ведро латекса");
-NEI.overrideName(<BinnieCore:containerCylinder:130>,"Баллон латекса");
-
-NEI.overrideName(<BinnieCore:containerCan:131>,"Банка скипидара");
-NEI.overrideName(<BinnieCore:containerCapsule:131>,"Капсула скипидара");
-NEI.overrideName(<BinnieCore:containerBucket:131>,"Ведро скипидара");
-NEI.overrideName(<BinnieCore:containerCylinder:131>,"Баллон скипидара");
-
-NEI.overrideName(<BinnieCore:containerCylinder:768>,"Баллон Питательной среды");
-NEI.overrideName(<BinnieCore:containerCylinder:769>,"Баллон Бактерии");
-NEI.overrideName(<BinnieCore:containerCylinder:770>,"Баллон Полимеризованной Бактерии");
-NEI.overrideName(<BinnieCore:containerCylinder:771>,"Баллон Жидкой ДНК");
-NEI.overrideName(<BinnieCore:containerCylinder:772>,"Баллон Бактерии Вектор");
-
 
 # Gen.Machines energy cost tooltips
 # Isolator

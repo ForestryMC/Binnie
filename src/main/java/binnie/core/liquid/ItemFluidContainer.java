@@ -71,7 +71,7 @@ public class ItemFluidContainer extends ItemFood {
 		if (fluid == null) {
 			return I18N.localise("binniecore.item.fluidContainer.missed");
 		}
-		return fluid.getFluid().getLocalizedName(fluid) + " " + container.getName();
+		return container.getName(fluid.getFluid().getName());
 	}
 
 	@Override

@@ -457,9 +457,9 @@ extrabees.species.mystical.name=Mystical
 
 extrabees.effect.ectoplasm.name=Ectoplasm
 extrabees.effect.acid.name=Acidic
-extrabees.effect.spawn_zombie.name=Zombies
-extrabees.effect.spawn_skeleton.name=Skeletons
-extrabees.effect.spawn_creeper.name=Creepers
+extrabees.effect.spawnzombie.name=Zombies
+extrabees.effect.spawnskeleton.name=Skeletons
+extrabees.effect.spawncreeper.name=Creepers
 extrabees.effect.lightning.name=Lightning
 extrabees.effect.radioactive.name=Unstable
 extrabees.effect.meteor.name=Meteor

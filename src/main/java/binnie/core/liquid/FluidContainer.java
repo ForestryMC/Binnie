@@ -54,6 +54,10 @@ public enum FluidContainer {
 		return I18N.localise("binniecore.item.container." + name().toLowerCase());
 	}
 
+	public String getName(String fluid) {
+		return I18N.localise("binniecore.item.container." + name().toLowerCase() + "." + fluid);
+	}
+
 	public boolean isActive() {
 		return getEmpty() != null;
 	}
