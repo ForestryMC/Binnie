@@ -619,7 +619,7 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 		ExtraBeesSpecies.CORROSIVE.setTemperature(EnumTemperature.WARM);
 		ExtraBeesSpecies.CORROSIVE.setEffect(ExtraBeesEffect.ACID.getUID());
 		ExtraBeesSpecies.CORROSIVE.setFlowering(EnumAllele.Flowering.AVERAGE);
-		ExtraBeesSpecies.CORROSIVE.addProduct(ItemHoneyComb.VanillaComb.SILKY.get(), 20f);
+		ExtraBeesSpecies.CORROSIVE.addProduct(ItemHoneyComb.VanillaComb.SILKY.get(), 0.20f);
 		ExtraBeesSpecies.CORROSIVE.setRecessive();
 		ExtraBeesSpecies.CORROSIVE.setSecondaryColor(431972);
 
