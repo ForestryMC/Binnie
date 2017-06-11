@@ -13,6 +13,6 @@ class PolymerisingBacteriaValidator extends Validator<FluidStack> {
 
 	@Override
 	public String getTooltip() {
-		return I18N.localise("fluid.polymerisingBacteria");
+		return I18N.localise("fluid.bacteriaPoly");
 	}
 }

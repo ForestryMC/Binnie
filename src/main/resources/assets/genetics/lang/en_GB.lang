@@ -1,3 +1,5 @@
+fluid.bacteriaPoly=Polymerising Bacteria
+
 genetics.machine.machine.sequencer.info=The Sequencer takes unsequenced serums and determines which allele is present in them. This requires the use of fluorescent dye and has a long computational time.
 genetics.machine.machine.polymeriser.info=The Polymeriser takes serums and refills them using Raw DNA and replicating bacteria. This can be accelerated using gold nuggets. 
 genetics.machine.machine.inoculator.info=The Inoculator uses serums to add genes to breedable individuals. This process takes a very long time and requires a Bacteria Vector, but is 100% successful. 

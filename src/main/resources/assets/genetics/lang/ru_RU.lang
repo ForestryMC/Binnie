@@ -1,5 +1,8 @@
-fluid.polymerisingBacteria=Полимеризированная бактерия
 fluid.rawDNA=Сырая ДНК
+fluid.bacteria=Бактерия
+fluid.bacteriaPoly=Полимеризированная бактерия
+fluid.growthMedium=Питательная среда
+fluid.bacteriaVector=Бактерия Вектор
 
 genetics.item.casingIron.name=Укреплённый корпус
 genetics.item.dnaDye.name=Краситель ДНК
