@@ -9,11 +9,11 @@ import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.FluidStack;
 
 public enum GeneticLiquid implements IFluidType {
-	GrowthMedium("Growth Medium", "growthMedium", 15460533),
-	Bacteria("Bacteria", "bacteria", 14203521),
-	BacteriaPoly("Polymerising Bacteria", "bacteriaPoly", 11443396),
-	RawDNA("Raw DNA", "dna.raw", 15089129),
-	BacteriaVector("Bacteria Vector", "bacteriaVector", 15960958);
+	GrowthMedium("growthMedium", 0xebe8b5),
+	Bacteria("bacteria", 0xd8ba81),
+	BacteriaPoly("bacteriaPoly", 0xae9cc4),
+	RawDNA("dna.raw", 0xe63de9),
+	BacteriaVector("bacteriaVector", 0xf38b7e);
 
 	protected String name;
 	protected String ident;
@@ -21,9 +21,9 @@ public enum GeneticLiquid implements IFluidType {
 	protected int color;
 	protected float transparency;
 
-	GeneticLiquid(String name, String ident, int color) {
+	GeneticLiquid(String name, int color) {
 		this.name = name;
-		this.ident = ident;
+		this.ident = name;
 		this.color = color;
 		transparency = 1.0f;
 	}
