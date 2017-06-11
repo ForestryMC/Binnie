@@ -5,7 +5,6 @@ import binnie.core.Mods;
 import binnie.core.item.IItemMisc;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.alcohol.Juice;
 import forestry.api.recipes.RecipeManagers;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
@@ -170,17 +169,6 @@ public enum Food implements IItemMisc {
 	@Override
 	public void addInformation(List tooltip) {
 		// ignored
-	}
-
-	// TODO unused method?
-	public void addJuice(Juice juice, int time, int amount, int mulch) {
-		RecipeManagers.squeezerManager.addRecipe(
-			time,
-			new ItemStack[]{get(1)},
-			Binnie.Liquid.getLiquidStack("juice", amount),
-			Mods.forestry.stack("mulch"),
-			mulch
-		);
 	}
 
 	public void addJuice(int time, int amount, int mulch) {

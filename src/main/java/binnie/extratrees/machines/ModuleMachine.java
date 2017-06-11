@@ -1,6 +1,5 @@
 package binnie.extratrees.machines;
 
-import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.machines.MachineGroup;
@@ -19,7 +18,6 @@ public class ModuleMachine implements IInitializable {
 		MachineGroup machineGroup = new MachineGroup(ExtraTrees.instance, "machine", "machine", ExtraTreeMachine.values());
 		machineGroup.setCreativeTab(Tabs.tabArboriculture);
 		ExtraTrees.blockMachine = machineGroup.getBlock();
-		BinnieCore.proxy.registerTileEntity(TileEntityNursery.class, "binnie.tile.nursery", BinnieCore.proxy.createObject("binnie.core.machines.RendererMachine"));
 	}
 
 	@Override

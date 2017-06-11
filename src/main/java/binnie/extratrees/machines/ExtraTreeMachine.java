@@ -27,7 +27,6 @@ public enum ExtraTreeMachine implements IMachineType {
 	Lumbermill(LumbermillPackage.class),
 	Woodworker(WoodworkerPackage.class),
 	Panelworker(PanelworkerPackage.class),
-	Nursery(Nursery.PackageNursery.class),
 	Press(Press.PackagePress.class),
 	Brewery(Brewery.PackageBrewery.class),
 	Distillery(Distillery.PackageDistillery.class),
@@ -50,7 +49,7 @@ public enum ExtraTreeMachine implements IMachineType {
 		if (this == ExtraTreeMachine.Tileworker) {
 			return BinnieCore.isBotanyActive();
 		}
-		return this != ExtraTreeMachine.Nursery;
+		return true;
 	}
 
 	public ItemStack get(int i) {

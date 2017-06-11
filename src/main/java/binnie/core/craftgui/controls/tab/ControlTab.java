@@ -69,7 +69,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 			if (icon.hasOutline()) {
 				iTexture = CraftGUI.Render.getTexture(CraftGUITexture.TabOutline);
 				iTexture = iTexture.crop(position, 8.0f);
-				CraftGUI.Render.colour(icon.getOutlineColour());
+				CraftGUI.Render.color(icon.getOutlineColour());
 				CraftGUI.Render.texture(iTexture, area.inset(2));
 			}
 		}

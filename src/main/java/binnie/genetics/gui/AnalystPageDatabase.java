@@ -63,9 +63,9 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 
 			@Override
 			public void onRenderBackground() {
-				CraftGUI.Render.colour(5592405);
+				CraftGUI.Render.color(5592405);
 				CraftGUI.Render.texture(CraftGUITexture.TabSolid, getArea().inset(1));
-				CraftGUI.Render.colour(AnalystPageDatabase.this.getColor());
+				CraftGUI.Render.color(AnalystPageDatabase.this.getColor());
 				CraftGUI.Render.texture(CraftGUITexture.TabOutline, getArea());
 				super.renderTextField();
 			}
@@ -143,12 +143,12 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 						public void onRenderBackground() {
 							WindowAnalyst window = (WindowAnalyst) AnalystPageDatabase.this.getSuperParent();
 							if (window.getIndividual() != null && window.getIndividual().getGenome().getPrimary() == species) {
-								CraftGUI.Render.colour(15658734);
+								CraftGUI.Render.color(15658734);
 								CraftGUI.Render.texture(CraftGUITexture.TabSolid, getArea().outset(1));
-								CraftGUI.Render.colour(AnalystPageDatabase.this.getColor());
+								CraftGUI.Render.color(AnalystPageDatabase.this.getColor());
 								CraftGUI.Render.texture(CraftGUITexture.TabOutline, getArea().outset(1));
 							} else if (calculateIsMouseOver()) {
-								CraftGUI.Render.colour(15658734);
+								CraftGUI.Render.color(15658734);
 								CraftGUI.Render.texture(CraftGUITexture.TabSolid, getArea().outset(1));
 							}
 							super.onRenderBackground();

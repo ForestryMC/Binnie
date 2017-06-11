@@ -211,14 +211,14 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 
 	@Override
 	public void onRenderBackground() {
-		CraftGUI.Render.colour(0xffffff);
+		CraftGUI.Render.color(0xffffff);
 		if (getBackground1() != null) {
 			CraftGUI.Render.texture(getBackground1(), IPoint.ZERO);
 		}
 		if (getBackground2() != null) {
 			CraftGUI.Render.texture(getBackground2(), new IPoint(256.0f, 0.0f));
 		}
-		CraftGUI.Render.colour(getColor());
+		CraftGUI.Render.color(getColor());
 		CraftGUI.Render.texture(CraftGUITexture.Window, getArea());
 	}
 

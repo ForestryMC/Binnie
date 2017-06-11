@@ -392,7 +392,7 @@ public class GuiCraftGUI extends GuiContainer {
 		GL11.glEnable(3042);
 		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
 		RenderHelper.disableStandardItemLighting();
-		CraftGUI.Render.colour(-1);
+		CraftGUI.Render.color(-1);
 		GL11.glEnable(32826);
 		GL11.glPopMatrix();
 	}

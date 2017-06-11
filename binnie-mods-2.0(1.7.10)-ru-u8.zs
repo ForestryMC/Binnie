@@ -20,18 +20,6 @@ import mods.nei.NEI;
 
 # DATABASES
 
-# Arborist Database
-NEI.overrideName(<ExtraTrees:database:0>,"База данных лесовода");
-<ExtraTrees:database:0>.addTooltip(format.darkGreen("Arborist Database"));
-# Master Arborist Database
-NEI.overrideName(<ExtraTrees:database:1>,"База данных лесовода-мастера");
-<ExtraTrees:database:1>.addTooltip(format.darkGreen("Master Arborist Database"));
-# Lepidopterist Database
-NEI.overrideName(<ExtraTrees:databaseMoth:0>,"База данных бабочковеда");
-<ExtraTrees:databaseMoth:0>.addTooltip(format.darkGreen("Lepidopterist Database"));
-# Master Lepidopterist Database
-NEI.overrideName(<ExtraTrees:databaseMoth:1>,"База данных бабочковеда-мастера");
-<ExtraTrees:databaseMoth:1>.addTooltip(format.darkGreen("Master Lepidopterist Database"));
 # Gene Database
 NEI.overrideName(<Genetics:database:0>,"Генная база данных");
 <Genetics:database:0>.addTooltip(format.darkGreen("Gene Database"));

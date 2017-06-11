@@ -326,7 +326,7 @@ extratrees.item.grainBarley=Barley Grain
 extratrees.item.grainRye=Rye Grain
 extratrees.item.grainCorn=Corn Grain
 extratrees.item.grainRoasted=Roasted Grain
-extratrees.item.glassware.glassFitting=Glass Fittings
+extratrees.item.glassFitting=Glass Fittings
 
 extratrees.item.food.apple=Apple
 extratrees.item.food.crabapple=Crabapple
@@ -420,6 +420,19 @@ extratrees.item.glassware.wine.usage=Glass of %1$s
 extratrees.item.glassware.shot.usage=%1$s Shot
 extratrees.item.glassware.sherry.usage=Glass of %1$s
 extratrees.item.glassware.coupe.usage=Glass of %1$s
+
+extratrees.item.database=Arborist Database
+extratrees.item.masterDatabase=Master Arborist Database
+extratrees.item.database.tooltip=Sengir-in-a-can
+
+extratrees.item.mothDatabase=Lepidopterist Database
+extratrees.item.mothMasterDatabase=Master Lepidopterist Database
+extratrees.item.mothDatabase.tooltip=Binnie's Emporium of Lepidopterans
+
+extratrees.fluid.sap=Sap
+extratrees.fluid.resin=Resin
+extratrees.fluid.latex=Latex
+extratrees.fluid.turpentine=Turpentine
 
 extratrees.fluid.alcohol.apple=Cider
 extratrees.fluid.alcohol.apricot=Apricot Wine
