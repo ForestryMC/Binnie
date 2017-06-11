@@ -43,7 +43,7 @@ genetics.machine.polymeriser.error.noLiquid=Недостаточно Бакте�
 genetics.machine.polymeriser.error.noDNA=Недостаточно ДНК
 genetics.machine.polymeriser.replicatingWithGene=Репликация с одним геном
 genetics.machine.polymeriser.replicatingWithGenes=Репликация с %d генами
-genetics.machine.polymeriser.unfilledSerum=Незаполненная сыпоротка
+genetics.machine.polymeriser.unfilledSerum=Незаполненная сыворотка
 
 genetics.machine.machine.inoculator=Инокулятор
 genetics.machine.machine.inoculator.info=Инокулятор использует сыворотку для прививки новых генов. Процесс продолжителен и требует Бактерию Вектор, но на 100% успешен.
