@@ -46,8 +46,6 @@ public class ExtraBees extends AbstractMod {
 	public static Item comb;
 	public static Item propolis;
 	public static Item honeyDrop;
-	public static Item honeyCrystal;
-	public static Item honeyCrystalEmpty;
 	public static Item dictionary;
 	public static Item itemMisc;
 

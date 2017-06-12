@@ -42,8 +42,7 @@ public class AnalystPageProducts extends AnalystPageProduce {
 		y += 20;
 		Collection<ItemStack> refinedProducts = new UniqueItemStackSet();
 		Collection<ItemStack> productList = new UniqueItemStackSet();
-		Collection<ItemStack> specialtyList = new UniqueItemStackSet();
-		Map<ItemStack, Float> products = new HashMap<ItemStack, Float>();
+		Map<ItemStack, Float> products = new HashMap<>();
 		products.putAll(genome.getPrimary().getProductChances());
 		products.putAll(genome.getSecondary().getProductChances());
 		if (!products.isEmpty()) {
