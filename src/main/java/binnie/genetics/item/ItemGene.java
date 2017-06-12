@@ -1,5 +1,6 @@
 package binnie.genetics.item;
 
+import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.GeneticsCreativeTab;
 import binnie.genetics.genetics.IGeneItem;
@@ -70,18 +71,18 @@ public abstract class ItemGene extends Item {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack itemstack, EntityPlayer player, List tooltip, boolean advanced) {
-		super.addInformation(itemstack, player, tooltip, advanced);
-		int damage = getMaxDamage() - itemstack.getItemDamage();
+	public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
+		super.addInformation(stack, player, tooltip, advanced);
+		int damage = getMaxDamage() - stack.getItemDamage();
 		if (damage == 0) {
-			tooltip.add("Empty");
+			tooltip.add(I18N.localise("genetics.gene.charge.empty"));
 		} else if (damage == 1) {
-			tooltip.add("1 Charge");
+			tooltip.add(I18N.localise("genetics.gene.charge.one"));
 		} else {
-			tooltip.add(damage + " Charges");
+			tooltip.add(I18N.localise("genetics.gene.charge.many", damage));
 		}
 
-		IGeneItem gene = getGeneItem(itemstack);
+		IGeneItem gene = getGeneItem(stack);
 		gene.getInfo(tooltip);
 	}
 

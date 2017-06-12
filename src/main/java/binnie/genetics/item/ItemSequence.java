@@ -47,9 +47,9 @@ public class ItemSequence extends Item implements IItemAnalysable, IItemChargabl
 	public String getItemStackDisplayName(ItemStack stack) {
 		GeneItem gene = new GeneItem(stack);
 		if (gene.isCorrupted()) {
-			return "Corrupted Sequence";
+			return I18N.localise("genetics.sequence.corrupted");
 		}
-		return gene.getBreedingSystem().getDescriptor() + " DNA Sequence";
+		return I18N.localise("genetics.sequence.descriptor", gene.getBreedingSystem().getDescriptor());
 	}
 
 	@Override
@@ -65,16 +65,16 @@ public class ItemSequence extends Item implements IItemAnalysable, IItemChargabl
 		if (gene.analysed) {
 			gene.getInfo(tooltip);
 		} else {
-			tooltip.add("<Unknown>");
+			tooltip.add(I18N.localise("genetics.sequence.unknown"));
 		}
 
 		int seq = gene.sequenced;
 		if (seq == 0) {
-			tooltip.add("Unsequenced");
+			tooltip.add(I18N.localise("genetics.sequence.unsequenced"));
 		} else if (seq < 100) {
-			tooltip.add("Partially Sequenced (" + seq + "%)");
+			tooltip.add(I18N.localise("genetics.sequence.partially", seq));
 		} else {
-			tooltip.add("Fully Sequenced");
+			tooltip.add(I18N.localise("genetics.sequence.fully"));
 		}
 	}
 

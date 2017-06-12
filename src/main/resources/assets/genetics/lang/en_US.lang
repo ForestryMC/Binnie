@@ -16,6 +16,33 @@ genetics.item.cylinderEmpty.name=Glass Cylinder
 genetics.item.integratedCircuit.name=Integrated Circuit Board
 genetics.item.integratedCPU.name=Integrated CPU
 genetics.item.casingCircuit.name=Integrated Casing
+genetics.item.analyst.name=Analyst
+genetics.item.database.0.name=Gene Database
+genetics.item.database.1.name=Master Gene Database
+genetics.item.registry.0.name=Registry
+genetics.item.registry.1.name=Master Registry
+genetics.item.serum.name=%s Serum
+genetics.item.serumArray.name=%s Serum Array
+
+genetics.item.sequence=DNA Sequence
+genetics.item.sequence.0=Very Faint
+genetics.item.sequence.1=Faint
+genetics.item.sequence.2=Weak
+genetics.item.sequence.3=Average
+genetics.item.sequence.4=Strong
+genetics.item.sequence.5=Very Strong
+
+genetics.gene.charge.empty=Empty
+genetics.gene.charge.one=1 Charge
+genetics.gene.charge.many=%d Charges
+genetics.gene.more=%d more genes. Hold shift to display
+
+genetics.sequence.corrupted=Corrupted Sequence
+genetics.sequence.descriptor=%s DNA Sequence
+genetics.sequence.unknown=<Unknown>
+genetics.sequence.unsequenced=Unsequenced
+genetics.sequence.fully=Fully Sequenced
+genetics.sequence.partially=Partially Sequenced (%d%%)
 
 genetics.machine.machine.isolator=Isolator
 genetics.machine.machine.isolator.info=The Isolator takes a random allele from a bee, tree or other individual and copies it into an empty sequence vial. This requires the use of ethanol as a solvent and an enzyme to cut up the DNA. The unsequenced serums can then be amplified in a Polymeriser and sequenced in a Sequencer.
@@ -112,11 +139,3 @@ genetics.machine.splicer.splicingIn.0=Splicing in %d/%d genes
 genetics.machine.splicer.splicingIn.1=Splicing in %d/%d gene
 genetics.machine.splicer.splicingIn.2=Splicing in %d genes
 genetics.machine.splicer.splicingIn.3=Splicing in %d gene
-
-genetics.item.sequence=DNA Sequence
-genetics.item.sequence.0=Very Faint
-genetics.item.sequence.1=Faint
-genetics.item.sequence.2=Weak
-genetics.item.sequence.3=Average
-genetics.item.sequence.4=Strong
-genetics.item.sequence.5=Very Strong

@@ -1,5 +1,6 @@
 package binnie.genetics.item;
 
+import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.GeneticsCreativeTab;
 import binnie.genetics.core.GeneticsGUI;
@@ -51,19 +52,19 @@ public class ItemDatabase extends Item {
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack itemststackck, World world, EntityPlayer player) {
-		if (itemststackck.getItemDamage() == 0) {
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+		if (stack.getItemDamage() == 0) {
 			Genetics.proxy.openGui(GeneticsGUI.Database, player, (int) player.posX, (int) player.posY, (int) player.posZ);
 		} else {
 			Genetics.proxy.openGui(GeneticsGUI.DatabaseNEI, player, (int) player.posX, (int) player.posY, (int) player.posZ);
 		}
-		return itemststackck;
+		return stack;
 	}
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		return (stack.getItemDamage() == 0) ?
-			"Gene Database" :
-			"Master Gene Database";
+			I18N.localise("genetics.item.database.0.name") :
+			I18N.localise("genetics.item.database.1.name");
 	}
 }

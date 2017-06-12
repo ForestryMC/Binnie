@@ -4,6 +4,7 @@ import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
+import binnie.core.util.I18N;
 import binnie.genetics.api.IGene;
 import forestry.api.core.INBTTagable;
 import forestry.api.genetics.ISpeciesRoot;
@@ -45,7 +46,7 @@ public class GeneArrayItem implements INBTTagable, IGeneItem {
 
 	@Override
 	public void getInfo(List tooltip) {
-		List<Object> totalList = new ArrayList<Object>();
+		List<Object> totalList = new ArrayList<>();
 		for (IGene gene : genes) {
 			String chromosomeName = getBreedingSystem().getChromosomeName(gene.getChromosome());
 			totalList.add(EnumChatFormatting.GOLD + chromosomeName + EnumChatFormatting.GRAY + ": " + gene.getName());
@@ -56,7 +57,7 @@ public class GeneArrayItem implements INBTTagable, IGeneItem {
 		} else {
 			tooltip.add(totalList.get(0));
 			tooltip.add(totalList.get(1));
-			tooltip.add(totalList.size() - 2 + " more genes. Hold shift to display.");
+			tooltip.add(I18N.localise("genetics.gene.more", totalList.size() - 2));
 		}
 	}
 
