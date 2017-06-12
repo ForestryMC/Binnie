@@ -1,7 +1,9 @@
 package binnie.genetics.item;
 
 import binnie.Binnie;
+import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
+import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemSerum;
@@ -108,7 +110,8 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		IGeneItem gene = getGeneItem(stack);
-		return Binnie.Genetics.getSystem(gene.getSpeciesRoot()).getDescriptor() + " Serum Array";
+		BreedingSystem breedingSystem = Binnie.Genetics.getSystem(gene.getSpeciesRoot());
+		return I18N.localise("genetics.item.serumArray.name", breedingSystem.getDescriptor());
 	}
 
 	@Override

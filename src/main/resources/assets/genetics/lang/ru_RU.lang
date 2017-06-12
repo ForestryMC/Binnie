@@ -16,6 +16,33 @@ genetics.item.cylinderEmpty.name=Пустой баллон
 genetics.item.integratedCircuit.name=Интегральная печатная плата
 genetics.item.integratedCPU.name=Интегральный процессор
 genetics.item.casingCircuit.name=Интегральный корпус
+genetics.item.analyst.name=Аналитик
+genetics.item.database.0.name=Генная база данных
+genetics.item.database.1.name=Генная база данных мастера
+genetics.item.registry.0.name=Картотека
+genetics.item.registry.1.name=Картотека мастера
+genetics.item.serum.name=Сыворотка (%s)
+genetics.item.serumArray.name=Массив (%s)
+
+genetics.item.sequence=Сыворотка ДНК
+genetics.item.sequence.0=Очень слабо
+genetics.item.sequence.1=Слабо
+genetics.item.sequence.2=Слабовато
+genetics.item.sequence.3=Средне
+genetics.item.sequence.4=Сильно
+genetics.item.sequence.5=Очень сильно
+
+genetics.gene.charge.empty=Пусто
+genetics.gene.charge.one=1 заряд
+genetics.gene.charge.many=%d зарядов
+genetics.gene.more=%d генов. Зажмите SHIFT для подробностей
+
+genetics.sequence.corrupted=Разрушенная секвенция
+genetics.sequence.descriptor=Автор %s
+genetics.sequence.unknown=<Неизвестно>
+genetics.sequence.unsequenced=Не секвенцировано
+genetics.sequence.fully=Полностью секвенцировано
+genetics.sequence.partially=Частично секвенцировано (%d%%)
 
 genetics.machine.machine.isolator=Изолятор
 genetics.machine.machine.isolator.info=Изолятор извлекает случайный ген от пчелы, дерева или другого организма и копирует его в пустой пузырек сыворотки (empty sequence vial). Требуется Этанол для растворения и Фермент для извлечения ДНК. Полученная сыворотка с геном затем может быть усилена в Полимеризаторе и исследована в Секвенсоре.
@@ -112,11 +139,3 @@ genetics.machine.splicer.splicingIn.0=Соединения в %d/%d генах
 genetics.machine.splicer.splicingIn.1=Соединения в %d/%d гене
 genetics.machine.splicer.splicingIn.2=Соединения в %d генах
 genetics.machine.splicer.splicingIn.3=Соединения в %d гене
-
-genetics.item.sequence=Сыворотка ДНК
-genetics.item.sequence.0=Очень слабо
-genetics.item.sequence.1=Слабо
-genetics.item.sequence.2=Слабовато
-genetics.item.sequence.3=Средне
-genetics.item.sequence.4=Сильно
-genetics.item.sequence.5=Очень сильно

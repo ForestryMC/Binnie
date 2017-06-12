@@ -13,6 +13,14 @@ genetics.item.integratedCircuit.name=集成电路板
 genetics.item.integratedCPU.name=集成CPU
 genetics.item.casingCircuit.name=集成外壳
 
+genetics.item.sequence=DNA序列
+genetics.item.sequence.0=极弱
+genetics.item.sequence.1=弱
+genetics.item.sequence.2=略弱
+genetics.item.sequence.3=中等
+genetics.item.sequence.4=强
+genetics.item.sequence.5=极强
+
 genetics.machine.machine.isolator=基因分离器
 genetics.machine.machine.isolator.info=基因分离器将会从蜜蜂、树苗或者其它的独立个体中随机提取基因片段，并复制到一个空的序列瓶中。此过程需要乙醇作为溶剂，还需要酶来切断DNA。未序列化的血清可以在序列分析器中序列化，并在基因同化器中重新装填。
 genetics.machine.isolator.error.noIndividual=没有个体样本
@@ -108,11 +116,3 @@ genetics.machine.splicer.splicingIn.0=正在拼接 %d/%d 个基因
 genetics.machine.splicer.splicingIn.1=正在拼接 %d/%d 个基因
 genetics.machine.splicer.splicingIn.2=正在拼接 %d 个基因
 genetics.machine.splicer.splicingIn.3=正在拼接 %d 个基因
-
-genetics.item.sequence=DNA序列
-genetics.item.sequence.0=极弱
-genetics.item.sequence.1=弱
-genetics.item.sequence.2=略弱
-genetics.item.sequence.3=中等
-genetics.item.sequence.4=强
-genetics.item.sequence.5=极强

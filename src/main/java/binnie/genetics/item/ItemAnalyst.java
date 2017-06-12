@@ -1,5 +1,6 @@
 package binnie.genetics.item;
 
+import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.GeneticsCreativeTab;
 import binnie.genetics.core.GeneticsGUI;
@@ -25,13 +26,13 @@ public class ItemAnalyst extends Item {
 	}
 
 	@Override
-	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer player) {
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
 		Genetics.proxy.openGui(GeneticsGUI.Analyst, player, (int) player.posX, (int) player.posY, (int) player.posZ);
-		return itemstack;
+		return stack;
 	}
 
 	@Override
-	public String getItemStackDisplayName(ItemStack i) {
-		return "Analyst";
+	public String getItemStackDisplayName(ItemStack stack) {
+		return I18N.localise("genetics.item.analyst.name");
 	}
 }

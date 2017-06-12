@@ -397,7 +397,7 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 		return getName();
 	}
 
-	public abstract boolean isDNAManipulable(ItemStack p0);
+	public abstract boolean isDNAManipulable(ItemStack member);
 
 	public IIndividual getConversion(ItemStack stack) {
 		return null;

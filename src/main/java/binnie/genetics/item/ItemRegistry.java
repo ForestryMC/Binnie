@@ -1,5 +1,6 @@
 package binnie.genetics.item;
 
+import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.GeneticsCreativeTab;
 import binnie.genetics.core.GeneticsGUI;
@@ -32,6 +33,6 @@ public class ItemRegistry extends Item {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack i) {
-		return "Registry";
+		return I18N.localise("genetics.item.registry.0.name");
 	}
 }

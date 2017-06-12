@@ -1,7 +1,9 @@
 package binnie.genetics.item;
 
 import binnie.Binnie;
+import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
+import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemSerum;
@@ -37,8 +39,8 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation(ItemStack itemstack, EntityPlayer player, List tooltip, boolean advanced) {
-		super.addInformation(itemstack, player, tooltip, advanced);
+	public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
+		super.addInformation(stack, player, tooltip, advanced);
 	}
 
 	@Override
@@ -90,7 +92,8 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		IGeneItem gene = getGeneItem(stack);
-		return Binnie.Genetics.getSystem(gene.getSpeciesRoot()).getDescriptor() + " Serum";
+		BreedingSystem breedingSystem = Binnie.Genetics.getSystem(gene.getSpeciesRoot());
+		return I18N.localise("genetics.item.serum.name", breedingSystem.getDescriptor());
 	}
 
 	@Override
