@@ -6,8 +6,6 @@ import binnie.core.gui.IBinnieGUID;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
 import binnie.extrabees.ExtraBees;
-import binnie.extratrees.alcohol.ModuleAlcohol;
-import binnie.extratrees.alcohol.drink.ItemDrink;
 import binnie.extratrees.block.ModuleBlocks;
 import binnie.extratrees.block.decor.BlockHedge;
 import binnie.extratrees.block.decor.BlockMultiFence;
@@ -63,13 +61,9 @@ public class ExtraTrees extends AbstractMod {
 	public static Item itemDurableHammer;
 	public static Block blockGate;
 	public static Block blockDoor;
-	public static Block blockBranch;
-	public static ItemDrink drink;
 	public static BlockMultiFence blockMultiFence;
-	public static Block blockDrink;
 	public static BlockHedge blockHedge;
 	public static BlockStainedDesign blockStained;
-	public static int fruitPodRenderId;
 	public static int doorRenderId;
 	public static int branchRenderId;
 	public static int fenceID;
@@ -83,7 +77,6 @@ public class ExtraTrees extends AbstractMod {
 	public void preInit(FMLPreInitializationEvent event) {
 		addModule(new ModuleBlocks());
 		addModule(new ModuleItems());
-		addModule(new ModuleAlcohol());
 		addModule(new ModuleGenetics());
 		addModule(new ModuleCarpentry());
 		addModule(new ModuleMachine());

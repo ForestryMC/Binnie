@@ -27,9 +27,6 @@ public enum ExtraTreeMachine implements IMachineType {
 	Lumbermill(LumbermillPackage.class),
 	Woodworker(WoodworkerPackage.class),
 	Panelworker(PanelworkerPackage.class),
-	Press(Press.PackagePress.class),
-	Brewery(Brewery.PackageBrewery.class),
-	Distillery(Distillery.PackageDistillery.class),
 	Glassworker(GlassworkerPackage.class),
 	Tileworker(TileworkerPackage.class);
 

@@ -2,15 +2,11 @@ package binnie.extratrees.core;
 
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.gui.IBinnieGUID;
-import binnie.extratrees.craftgui.dictionary.WindowArboristDatabase;
-import binnie.extratrees.craftgui.dictionary.WindowBrewery;
-import binnie.extratrees.craftgui.dictionary.WindowDistillery;
-import binnie.extratrees.craftgui.dictionary.WindowLepidopteristDatabase;
-import binnie.extratrees.craftgui.dictionary.WindowLumbermill;
-import binnie.extratrees.craftgui.dictionary.WindowPress;
-import binnie.extratrees.craftgui.dictionary.WindowSetSquare;
-import binnie.extratrees.craftgui.dictionary.WindowWoodworker;
-import binnie.extratrees.craftgui.kitchen.WindowBottleRack;
+import binnie.extratrees.craftgui.WindowArboristDatabase;
+import binnie.extratrees.craftgui.WindowLepidopteristDatabase;
+import binnie.extratrees.craftgui.WindowLumbermill;
+import binnie.extratrees.craftgui.WindowSetSquare;
+import binnie.extratrees.craftgui.WindowWoodworker;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -25,10 +21,6 @@ public enum ExtraTreesGUID implements IBinnieGUID {
 	Incubator,
 	MothDatabase,
 	MothDatabaseNEI,
-	Press,
-	Brewery,
-	Distillery,
-	KitchenBottleRack,
 	Infuser,
 	SetSquare;
 
@@ -52,22 +44,6 @@ public enum ExtraTreesGUID implements IBinnieGUID {
 
 			case Lumbermill:
 				window = WindowLumbermill.create(player, object, side);
-				break;
-
-			case KitchenBottleRack:
-				window = WindowBottleRack.create(player, object, side);
-				break;
-
-			case Press:
-				window = WindowPress.create(player, object, side);
-				break;
-
-			case Brewery:
-				window = WindowBrewery.create(player, object, side);
-				break;
-
-			case Distillery:
-				window = WindowDistillery.create(player, object, side);
 				break;
 
 			case MothDatabase:

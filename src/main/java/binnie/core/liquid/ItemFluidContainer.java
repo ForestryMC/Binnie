@@ -2,15 +2,11 @@ package binnie.core.liquid;
 
 import binnie.Binnie;
 import binnie.core.util.I18N;
-import binnie.extratrees.alcohol.AlcoholEffect;
-import binnie.extratrees.alcohol.drink.DrinkManager;
-import binnie.extratrees.alcohol.drink.IDrinkLiquid;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
@@ -124,34 +120,8 @@ public class ItemFluidContainer extends ItemFood {
 	}
 
 	@Override
-	protected void onFoodEaten(ItemStack stack, World world, EntityPlayer player) {
-		if (world.isRemote) {
-			return;
-		}
-
-		FluidStack fluid = getLiquid(stack);
-		IDrinkLiquid liquid = DrinkManager.getLiquid(fluid);
-		if (liquid != null) {
-			AlcoholEffect.makeDrunk(player, liquid.getABV() * fluid.amount);
-		}
-	}
-
-	@Override
 	public int getMaxItemUseDuration(ItemStack stack) {
 		return 32;
-	}
-
-	@Override
-	public EnumAction getItemUseAction(ItemStack stack) {
-		return isDrinkable(stack) ? EnumAction.drink : EnumAction.none;
-	}
-
-	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		if (isDrinkable(stack)) {
-			player.setItemInUse(stack, getMaxItemUseDuration(stack));
-		}
-		return stack;
 	}
 
 	@Override
@@ -160,13 +130,7 @@ public class ItemFluidContainer extends ItemFood {
 	}
 
 	@Override
-	public float func_150906_h(ItemStack p_150906_1_) {
+	public float func_150906_h(ItemStack stack) {
 		return 0.0f;
-	}
-
-	private boolean isDrinkable(ItemStack stack) {
-		FluidStack fluid = getLiquid(stack);
-		IDrinkLiquid liquid = DrinkManager.getLiquid(fluid);
-		return liquid != null && liquid.isConsumable();
 	}
 }

@@ -11,7 +11,7 @@ import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.UniqueItemStackSet;
-import binnie.extratrees.craftgui.kitchen.ControlFluidDisplay;
+import binnie.extratrees.craftgui.ControlFluidDisplay;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;

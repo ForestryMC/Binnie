@@ -399,39 +399,6 @@ extratrees.item.food.mango=Манго
 extratrees.item.food.starfruit=Карамбола
 extratrees.item.food.candlenut=Лумбанг
 
-# Изделия из стекла
-extratrees.item.glassware.beermug=Пивная кружка
-extratrees.item.glassware.pint=Стеклянная пинта
-extratrees.item.glassware.snifter=Стеклянный бокал
-extratrees.item.glassware.cocktail=Стакан для коктейля
-extratrees.item.glassware.cordial=Стакан "Кордиал"
-extratrees.item.glassware.collins=Стакан "Коллинз"
-extratrees.item.glassware.highball=Стакан "Хайбол"
-extratrees.item.glassware.hurricane=Стакан "Хуррикэйн"
-extratrees.item.glassware.margarita=Бокал "Маргарита"
-extratrees.item.glassware.oldfashioned=Узорчатый стакан
-extratrees.item.glassware.wine=Бокал
-extratrees.item.glassware.shot=Стопка
-extratrees.item.glassware.sherry=Стакан "Херес"
-extratrees.item.glassware.coupe=Стеклянный кубок
-
-# Наименования напитков
-< %1$s is name of fluid >
-extratrees.item.glassware.beermug.usage=Кружка %1$s
-extratrees.item.glassware.pint.usage=Стакан %1$s
-extratrees.item.glassware.snifter.usage=Стакан %1$s
-extratrees.item.glassware.cocktail.usage=Стакан %1$s
-extratrees.item.glassware.cordial.usage=Стакан %1$s
-extratrees.item.glassware.collins.usage=Стакан %1$s
-extratrees.item.glassware.highball.usage=Стакан %1$s
-extratrees.item.glassware.hurricane.usage=Стакан %1$s
-extratrees.item.glassware.margarita.usage=Стакан %1$s
-extratrees.item.glassware.oldfashioned.usage=Стакан %1$s
-extratrees.item.glassware.wine.usage=Стакан %1$s
-extratrees.item.glassware.shot.usage=%1$s Shot
-extratrees.item.glassware.sherry.usage=Стакан %1$s
-extratrees.item.glassware.coupe.usage=Стакан %1$s
-
 extratrees.item.database=База данных лесовода
 extratrees.item.masterDatabase=База данных лесовода-мастера
 extratrees.item.database.tooltip=Sengir-в-банке
@@ -444,36 +411,6 @@ extratrees.fluid.sap=Живица
 extratrees.fluid.resin=Смола
 extratrees.fluid.latex=Резина
 extratrees.fluid.turpentine=Скипидар
-
-extratrees.fluid.alcohol.apple=сидр
-extratrees.fluid.alcohol.apricot=абрикосовое вино
-extratrees.fluid.alcohol.banana=банановое вино
-extratrees.fluid.alcohol.cherry=вишнёвое вино
-extratrees.fluid.alcohol.elderberry=бузины вино
-extratrees.fluid.alcohol.peach=персиковый сидр
-extratrees.fluid.alcohol.pear=грушевый сидр
-extratrees.fluid.alcohol.plum=сливовое вино
-extratrees.fluid.alcohol.carrot=морковное вино
-extratrees.fluid.alcohol.whitewine=белое вино
-extratrees.fluid.alcohol.redwine=красное вино
-extratrees.fluid.alcohol.sparklingwine=игристое вино
-extratrees.fluid.alcohol.agave=агавы вино
-extratrees.fluid.alcohol.potato=потатовое вино
-extratrees.fluid.alcohol.citrus=цитрусовое вино
-extratrees.fluid.alcohol.cranberry=клюквенное вино
-extratrees.fluid.alcohol.pineapple=ананасовое вино
-extratrees.fluid.alcohol.tomato=томатное вино
-extratrees.fluid.alcohol.fruit=фруктовое вино
-extratrees.fluid.alcohol.ale=эль
-extratrees.fluid.alcohol.lager=пиво "Лагер"
-extratrees.fluid.alcohol.wheatbeer=пшеничное пиво
-extratrees.fluid.alcohol.ryebeer=ржаное пиво
-extratrees.fluid.alcohol.cornbeer=кукурузное пиво
-extratrees.fluid.alcohol.stout=пиво "Стаут"
-extratrees.fluid.alcohol.barley=ячмённый виски
-extratrees.fluid.alcohol.wheat=пшеничный виски
-extratrees.fluid.alcohol.rye=ржаной виски
-extratrees.fluid.alcohol.corn=кукурузный виски
 
 extratrees.gui.database.planks.use=Можно создать:
 

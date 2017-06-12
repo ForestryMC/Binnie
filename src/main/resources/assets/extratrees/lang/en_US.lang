@@ -390,37 +390,6 @@ extratrees.item.food.mango=Mango
 extratrees.item.food.starfruit=Starfruit
 extratrees.item.food.candlenut=Candlenut
 
-extratrees.item.glassware.beermug=Beer Mug
-extratrees.item.glassware.pint=Pint Glass
-extratrees.item.glassware.snifter=Snifter Glass
-extratrees.item.glassware.cocktail=Cocktail Glass
-extratrees.item.glassware.cordial=Cordial Glass
-extratrees.item.glassware.collins=Collins Glass
-extratrees.item.glassware.highball=Highball Glass
-extratrees.item.glassware.hurricane=Hurricane Glass
-extratrees.item.glassware.margarita=Margarita Glass
-extratrees.item.glassware.oldfashioned=Old Fashioned Glass
-extratrees.item.glassware.wine=Wine Glass
-extratrees.item.glassware.shot=Shot Glass
-extratrees.item.glassware.sherry=Sherry Glass
-extratrees.item.glassware.coupe=Coupe Glass
-
-< %1$s is name of fluid >
-extratrees.item.glassware.beermug.usage=Mug of %1$s
-extratrees.item.glassware.pint.usage=Glass of %1$s
-extratrees.item.glassware.snifter.usage=Glass of %1$s
-extratrees.item.glassware.cocktail.usage=Glass of %1$s
-extratrees.item.glassware.cordial.usage=Glass of %1$s
-extratrees.item.glassware.collins.usage=Glass of %1$s
-extratrees.item.glassware.highball.usage=Glass of %1$s
-extratrees.item.glassware.hurricane.usage=Glass of %1$s
-extratrees.item.glassware.margarita.usage=Glass of %1$s
-extratrees.item.glassware.oldfashioned.usage=Glass of %1$s
-extratrees.item.glassware.wine.usage=Glass of %1$s
-extratrees.item.glassware.shot.usage=%1$s Shot
-extratrees.item.glassware.sherry.usage=Glass of %1$s
-extratrees.item.glassware.coupe.usage=Glass of %1$s
-
 extratrees.item.database=Arborist Database
 extratrees.item.masterDatabase=Master Arborist Database
 extratrees.item.database.tooltip=Sengir-in-a-can
@@ -433,36 +402,6 @@ extratrees.fluid.sap=Sap
 extratrees.fluid.resin=Resin
 extratrees.fluid.latex=Latex
 extratrees.fluid.turpentine=Turpentine
-
-extratrees.fluid.alcohol.apple=Cider
-extratrees.fluid.alcohol.apricot=Apricot Wine
-extratrees.fluid.alcohol.banana=Banana Wine
-extratrees.fluid.alcohol.cherry=Cherry Wine
-extratrees.fluid.alcohol.elderberry=Elderberry Wine
-extratrees.fluid.alcohol.peach=Peach Cider
-extratrees.fluid.alcohol.pear=Pear Cider
-extratrees.fluid.alcohol.plum=Plum Wine
-extratrees.fluid.alcohol.carrot=Carrot Wine
-extratrees.fluid.alcohol.whitewine=White Wine
-extratrees.fluid.alcohol.redwine=Red Wine
-extratrees.fluid.alcohol.sparklingwine=Sparkling Wine
-extratrees.fluid.alcohol.agave=Agave Wine
-extratrees.fluid.alcohol.potato=Fermented Potatoes
-extratrees.fluid.alcohol.citrus=Citrus Wine
-extratrees.fluid.alcohol.cranberry=Cranberry Wine
-extratrees.fluid.alcohol.pineapple=Pineapple Wine
-extratrees.fluid.alcohol.tomato=Tomato Wine
-extratrees.fluid.alcohol.fruit=Fruit Wine
-extratrees.fluid.alcohol.ale=Ale
-extratrees.fluid.alcohol.lager=Lager
-extratrees.fluid.alcohol.wheatbeer=Wheat Beer
-extratrees.fluid.alcohol.ryebeer=Rye Beer
-extratrees.fluid.alcohol.cornbeer=Corn Beer
-extratrees.fluid.alcohol.stout=Stout
-extratrees.fluid.alcohol.barley=Fermented Grain Mash
-extratrees.fluid.alcohol.wheat=Fermented Wheat Mash
-extratrees.fluid.alcohol.rye=Fermented Rye Mash
-extratrees.fluid.alcohol.corn=Fermented Corn Mash
 
 extratrees.gui.database.planks.use=Can make:
 

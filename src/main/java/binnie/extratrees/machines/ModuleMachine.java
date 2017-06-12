@@ -39,42 +39,6 @@ public class ModuleMachine implements IInitializable {
 			}
 		));
 
-		GameRegistry.addRecipe(new ShapedOreRecipe(
-			ExtraTreeMachine.Press.get(1),
-			new Object[]{
-				"iGi", "tSt", "tPt",
-				'i', "ingotIron",
-				'G', Blocks.glass,
-				't', "ingotTin",
-				'S', Mods.forestry.stack("sturdyMachine"),
-				'P', "gearBronze"
-			}
-		));
-
-		GameRegistry.addRecipe(new ShapedOreRecipe(
-			ExtraTreeMachine.Brewery.get(1),
-			new Object[]{
-				"bGb", "iSi", "bPb",
-				'i', "ingotIron",
-				'G', Blocks.glass,
-				'b', "gearBronze",
-				'S', Mods.forestry.stack("sturdyMachine"),
-				'P', "gearBronze"
-			}
-		));
-
-		GameRegistry.addRecipe(new ShapedOreRecipe(
-			ExtraTreeMachine.Distillery.get(1),
-			new Object[]{
-				"rGr", "iSi", "rPr",
-				'i', "ingotIron",
-				'G', Blocks.glass,
-				'r', "dustRedstone",
-				'S', Mods.forestry.stack("sturdyMachine"),
-				'P', "gearBronze"
-			}
-		));
-		
 		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(
 			ExtraTreeMachine.Woodworker.get(1),
 			"wGw", "GsG", "ggg",
