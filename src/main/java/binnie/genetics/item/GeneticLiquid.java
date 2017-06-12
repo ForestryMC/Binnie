@@ -3,6 +3,7 @@ package binnie.genetics.item;
 import binnie.Binnie;
 import binnie.core.liquid.FluidContainer;
 import binnie.core.liquid.IFluidType;
+import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
@@ -45,7 +46,7 @@ public enum GeneticLiquid implements IFluidType {
 
 	@Override
 	public String getName() {
-		return name;
+		return I18N.localise("fluid." + name);
 	}
 
 	@Override
