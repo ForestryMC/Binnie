@@ -222,6 +222,7 @@ public class ContainerCraftGUI extends Container {
 	@Override
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
+		if(crafters.size()<=0) return;
 		final ITankMachine tanks = Machine.getInterface(ITankMachine.class, this.window.getInventory());
 		final IPoweredMachine powered = Machine.getInterface(IPoweredMachine.class, this.window.getInventory());
 		final IErrorStateSource error = Machine.getInterface(IErrorStateSource.class, this.window.getInventory());
