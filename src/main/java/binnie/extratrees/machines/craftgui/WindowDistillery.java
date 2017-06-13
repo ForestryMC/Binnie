@@ -9,9 +9,11 @@ import binnie.core.craftgui.minecraft.control.ControlLiquidTank;
 import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
 import binnie.core.machines.Machine;
 import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.machines.distillery.DistilleryLogic;
 import binnie.extratrees.machines.distillery.DistilleryMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 
 import javax.annotation.Nullable;
@@ -52,5 +54,15 @@ public class WindowDistillery extends Window {
 		new ControlEnergyBar(this, x, 36, 60, 16, Position.LEFT);
 		new ControlPlayerInventory(this);
 		new ControlErrorState(this, x + 21, 62);
+	}
+
+	@Override
+	public void receiveGuiNBTOnServer(EntityPlayer player, String name, NBTTagCompound nbt) {
+		if("still-level".equals(name)){
+			DistilleryLogic distilleryLogic = Machine.getInterface(DistilleryLogic.class, Window.get(this).getInventory());
+			if (distilleryLogic != null) {
+				distilleryLogic.level =	nbt.getByte("i");
+			}
+		}
 	}
 }
