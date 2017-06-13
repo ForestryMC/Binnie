@@ -15,14 +15,6 @@ public enum ExtraTreeItems implements IItemMisc {
 	Bark("bark"),
 	ProvenGear("provenGear"),
 	WoodWax("woodWax"),
-	Hops("hops"),
-	Yeast("yeast"),
-	LagerYeast("yeastLager"),
-	GrainWheat("grainWheat"),
-	GrainBarley("grainBarley"),
-	GrainRye("grainRye"),
-	GrainCorn("grainCorn"),
-	GrainRoasted("grainRoasted"),
 	GlassFitting("glassFitting");
 
 	protected String name;
