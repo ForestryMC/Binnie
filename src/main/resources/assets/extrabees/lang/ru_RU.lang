@@ -179,10 +179,10 @@ extrabees.block.hive.3=Мраморный улей
 ##################################################
 ## Liquids
 
-extrabees.liquid.acid=Кислота
-extrabees.liquid.poison=Яд
-extrabees.liquid.glacial=Жидкий азот
-extrabees.liquid.dna=Жидкая ДНК
+extrabees.acid=Растворитель
+extrabees.poison=Яд
+extrabees.glacial=Нитроген
+fluid.dna.raw=Сырая ДНК
 
 
 ##################################################
