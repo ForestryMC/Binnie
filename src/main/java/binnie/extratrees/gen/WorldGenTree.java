@@ -169,10 +169,10 @@ public class WorldGenTree extends WorldGenerator {
 			for (int x2 = 0; x2 < this.girth; ++x2) {
 				for (int z = 0; z < this.girth; ++z) {
 					if (x2 <= 0 || x2 >= this.girth || z <= 0 || z >= this.girth) {
-						//this.treeGen.trySpawnFruitBlock(this.world, this.startX + x2 + 1, this.startY + y2, this.startZ + z);
-						//this.treeGen.trySpawnFruitBlock(this.world, this.startX + x2 - 1, this.startY + y2, this.startZ + z);
-						//this.treeGen.trySpawnFruitBlock(this.world, this.startX + x2, this.startY + y2, this.startZ + z + 1);
-						//this.treeGen.trySpawnFruitBlock(this.world, this.startX + x2, this.startY + y2, this.startZ + z - 1);
+						treeGen.trySpawnFruitBlock(world, world.rand, new BlockPos(startX + x2 + 1, startY + y2, startZ + z));
+						treeGen.trySpawnFruitBlock(world, world.rand, new BlockPos(startX + x2 - 1, startY + y2, startZ + z));
+						treeGen.trySpawnFruitBlock(world, world.rand, new BlockPos(startX + x2, startY + y2, startZ + z + 1));
+						treeGen.trySpawnFruitBlock(world, world.rand, new BlockPos(startX + x2, startY + y2, startZ + z - 1));
 					}
 				}
 			}
