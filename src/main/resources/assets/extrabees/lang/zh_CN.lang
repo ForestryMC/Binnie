@@ -172,10 +172,10 @@ extrabees.block.hive.3=大理石蜂巢
 ##################################################
 ## Liquids
 
-extrabees.liquid.acid=酸
-extrabees.liquid.poison=毒液
-extrabees.liquid.glacial=液氮
-extrabees.liquid.dna=液态DNA
+extrabees.acid=酸
+extrabees.poison=毒液
+extrabees.glacial=液氮
+fluid.dna.raw=液态DNA
 
 
 ##################################################

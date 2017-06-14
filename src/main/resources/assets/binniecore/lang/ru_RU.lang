@@ -198,7 +198,7 @@ binniecore.item.container.bucket=Ведро
 binniecore.item.container.glass=Бутыль
 binniecore.item.container.cylinder=Баллон
 
-binniecore.item.container.capsule.acid=Капсула растфорителя
+binniecore.item.container.capsule.acid=Капсула растворителя
 binniecore.item.container.capsule.poison=Капсула яда
 binniecore.item.container.capsule.liquidnitrogen=Капсула нитрогена
 binniecore.item.container.capsule.sap=Капсула живицы
@@ -206,7 +206,7 @@ binniecore.item.container.capsule.resin=Капсула смолы
 binniecore.item.container.capsule.latex=Капсула резины
 binniecore.item.container.capsule.turpentine=Капсула скипидара
 
-binniecore.item.container.refractory.acid=Капсула растфорителя
+binniecore.item.container.refractory.acid=Капсула растворителя
 binniecore.item.container.refractory.poison=Капсула яда
 binniecore.item.container.refractory.liquidnitrogen=Капсула нитрогена
 binniecore.item.container.refractory.sap=Капсула живицы
@@ -214,13 +214,29 @@ binniecore.item.container.refractory.resin=Капсула смолы
 binniecore.item.container.refractory.latex=Капсула резины
 binniecore.item.container.refractory.turpentine=Капсула скипидара
 
-binniecore.item.container.can.acid=Банка растфорителя
+binniecore.item.container.can.acid=Банка растворителя
 binniecore.item.container.can.poison=Банка яда
 binniecore.item.container.can.liquidnitrogen=Банка нитрогена
 binniecore.item.container.can.sap=Банка живицы
 binniecore.item.container.can.resin=Банка смолы
 binniecore.item.container.can.latex=Банка резины
 binniecore.item.container.can.turpentine=Банка скипидара
+
+binniecore.item.container.glass.acid=Пузырёк растворителя
+binniecore.item.container.glass.poison=Пузырёк яда
+binniecore.item.container.glass.liquidnitrogen=Пузырёк нитрогена
+binniecore.item.container.glass.sap=Пузырёк живицы
+binniecore.item.container.glass.resin=Пузырёк смолы
+binniecore.item.container.glass.latex=Пузырёк резины
+binniecore.item.container.glass.turpentine=Пузырёк скипидара
+
+binniecore.item.container.cylinder.acid=Баллон растворителя
+binniecore.item.container.cylinder.poison=Баллон яда
+binniecore.item.container.cylinder.liquidnitrogen=Баллон нитрогена
+binniecore.item.container.cylinder.sap=Баллон живицы
+binniecore.item.container.cylinder.resin=Баллон смолы
+binniecore.item.container.cylinder.latex=Баллон резины
+binniecore.item.container.cylinder.turpentine=Баллон скипидара
 
 binniecore.item.container.bucket.acid=Ведро растворителя
 binniecore.item.container.bucket.poison=Ведро яда
@@ -234,7 +250,7 @@ binniecore.item.container.cylinder.binnie.growthmedium=Баллон с пита�
 binniecore.item.container.cylinder.binnie.bacteria=Баллон бактерии
 binniecore.item.container.cylinder.binnie.bacteriapoly=Баллон полимеризированной бактерии
 binniecore.item.container.cylinder.binnie.dna.raw=Баллон сырой ДНК
-binniecore.item.container.cylinder.binnie.bacteriavector=Баллон бактерией вектор
+binniecore.item.container.cylinder.binnie.bacteriavector=Баллон бактерии вектор
 
 binniecore.machine.error.noItem=Нет предметов
 binniecore.machine.error.invalidItem=Неподходяий предмет

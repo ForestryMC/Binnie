@@ -176,10 +176,10 @@ extrabees.block.hive.3=Marble Hive
 ##################################################
 ## Liquids
 
-extrabees.liquid.acid=Acid
-extrabees.liquid.poison=Poison
-extrabees.liquid.glacial=Liquid Nitrogen
-extrabees.liquid.dna=Liquid DNA
+extrabees.acid=Acid
+extrabees.poison=Poison
+extrabees.glacial=Liquid Nitrogen
+fluid.dna.raw=Liquid DNA
 
 
 ##################################################
