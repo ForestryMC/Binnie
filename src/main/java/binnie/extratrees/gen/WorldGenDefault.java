@@ -1,6 +1,6 @@
 package binnie.extratrees.gen;
 
-import binnie.extratrees.worldgen.BlockType;
+import binnie.extratrees.worldgen.WorldGenBlockType;
 import binnie.extratrees.worldgen.BlockTypeLog;
 import forestry.api.world.ITreeGenData;
 
@@ -26,7 +26,7 @@ public class WorldGenDefault extends WorldGenTree {
 	}
 
 	@Override
-	public BlockType getWood() {
+	public WorldGenBlockType getWood() {
 		return new BlockTypeLog(this.treeGen);
 	}
 }

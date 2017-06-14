@@ -1,6 +1,5 @@
 package binnie.extratrees.worldgen;
 
-import binnie.core.Mods;
 import com.mojang.authlib.GameProfile;
 import forestry.api.world.ITreeGenData;
 import net.minecraft.util.math.BlockPos;
@@ -8,11 +7,10 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class BlockTypeLeaf extends BlockType {
+public class BlockTypeLeaf implements WorldGenBlockType {
 	GameProfile owner;
 
-	public BlockTypeLeaf(@Nullable  GameProfile owner) {
-		super(Mods.Forestry.block("leaves"), 0);
+	public BlockTypeLeaf(@Nullable GameProfile owner) {
 		this.owner = owner;
 	}
 

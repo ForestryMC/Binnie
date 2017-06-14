@@ -5,12 +5,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockTypeLog extends BlockType {
+public class BlockTypeLog implements WorldGenBlockType {
 	ITreeGenData treeGenData;
 
 	public BlockTypeLog(ITreeGenData treeGenData) {
-		// TODO why is block param null here?
-		super(null, 0);
 		this.treeGenData = treeGenData;
 	}
 

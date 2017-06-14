@@ -5,6 +5,7 @@ import binnie.extratrees.worldgen.BlockType;
 import binnie.extratrees.worldgen.BlockTypeLeaf;
 import binnie.extratrees.worldgen.BlockTypeLog;
 import binnie.extratrees.worldgen.BlockTypeVoid;
+import binnie.extratrees.worldgen.WorldGenBlockType;
 import com.mojang.authlib.GameProfile;
 import forestry.api.world.ITreeGenData;
 import forestry.arboriculture.tiles.TileTreeContainer;
@@ -29,10 +30,10 @@ public class WorldGenTree extends WorldGenerator {
 	protected int maxHeight;
 	protected boolean spawnPods;
 	protected int minPodHeight;
-	BlockType leaf;
-	BlockType wood;
-	BlockType vine;
-	BlockType air;
+	WorldGenBlockType leaf;
+	WorldGenBlockType wood;
+	WorldGenBlockType vine;
+	WorldGenBlockType air;
 	float bushiness;
 
 	public WorldGenTree(ITreeGenData tree) {
@@ -40,7 +41,7 @@ public class WorldGenTree extends WorldGenerator {
 		this.maxHeight = 80;
 		this.spawnPods = false;
 		this.minPodHeight = 3;
-		this.vine = new BlockType(Blocks.VINE, 0);
+		this.vine = new BlockType(Blocks.VINE.getDefaultState());
 		this.air = new BlockTypeVoid();
 		this.bushiness = 0.0f;
 		this.spawnPods = tree.allowsFruitBlocks();
@@ -87,11 +88,11 @@ public class WorldGenTree extends WorldGenerator {
 		return (determined < this.minHeight) ? this.minHeight : ((determined > this.maxHeight) ? this.maxHeight : determined);
 	}
 
-	public BlockType getLeaf() {
-		return leaf!=null?leaf:(leaf=new BlockTypeLeaf(null));
+	public WorldGenBlockType getLeaf() {
+		return leaf != null ? leaf : (leaf = new BlockTypeLeaf(null));
 	}
 
-	public BlockType getWood() {
+	public WorldGenBlockType getWood() {
 		return new BlockTypeLog(treeGen);
 	}
 
@@ -203,7 +204,7 @@ public class WorldGenTree extends WorldGenerator {
 		this.air.setBlock(this.world, this.treeGen, new BlockPos(this.startX + x, this.startY + y, this.startZ + z));
 	}
 
-	protected final void addBlock(final int x, final int y, final int z, final BlockType type, final boolean doReplace) {
+	protected final void addBlock(final int x, final int y, final int z, final WorldGenBlockType type, final boolean doReplace) {
 		if (doReplace || this.world.isAirBlock(new BlockPos(this.startX + x, this.startY + y, this.startZ + z))) {
 			type.setBlock(this.world, this.treeGen, new BlockPos(this.startX + x, this.startY + y, this.startZ + z));
 		}
@@ -221,7 +222,7 @@ public class WorldGenTree extends WorldGenerator {
 		this.addBlock(x, y, z, this.vine, false);
 	}
 
-	protected final void generateCuboid(final Vector start, final Vector area, final BlockType block, final boolean doReplace) {
+	protected final void generateCuboid(final Vector start, final Vector area, final WorldGenBlockType block, final boolean doReplace) {
 		for (int x = (int) start.x; x < (int) start.x + area.x; ++x) {
 			for (int y = (int) start.y; y < (int) start.y + area.y; ++y) {
 				for (int z = (int) start.z; z < (int) start.z + area.z; ++z) {
@@ -231,7 +232,7 @@ public class WorldGenTree extends WorldGenerator {
 		}
 	}
 
-	protected final void generateCylinder(final Vector center2, final float radius, final int height, final BlockType block, final boolean doReplace) {
+	protected final void generateCylinder(final Vector center2, final float radius, final int height, final WorldGenBlockType block, final boolean doReplace) {
 		final float centerOffset = (this.girth - 1) / 2.0f;
 		final Vector center3 = new Vector(center2.x + centerOffset, center2.y, center2.z + centerOffset);
 		final Vector start = new Vector(center3.x - radius, center3.y, center3.z - radius);
@@ -249,11 +250,11 @@ public class WorldGenTree extends WorldGenerator {
 		}
 	}
 
-	protected final void generateCircle(final Vector center, final float radius, final int width, final int height, final BlockType block, final boolean doReplace) {
+	protected final void generateCircle(final Vector center, final float radius, final int width, final int height, final WorldGenBlockType block, final boolean doReplace) {
 		this.generateCircle(center, radius, width, height, block, 1.0f, doReplace);
 	}
 
-	protected final void generateCircle(final Vector center2, final float radius, final int width, final int height, final BlockType block, final float chance, final boolean doReplace) {
+	protected final void generateCircle(final Vector center2, final float radius, final int width, final int height, final WorldGenBlockType block, final float chance, final boolean doReplace) {
 		final float centerOffset = (this.girth % 2 == 0) ? 0.5f : 0.0f;
 		final Vector center3 = new Vector(center2.x + centerOffset, center2.y, center2.z + centerOffset);
 		final Vector start = new Vector(center3.x - radius, center3.y, center3.z - radius);
@@ -272,7 +273,7 @@ public class WorldGenTree extends WorldGenerator {
 		}
 	}
 
-	protected final void generateSphere(final Vector center2, final int radius, final BlockType block, final boolean doReplace) {
+	protected final void generateSphere(final Vector center2, final int radius, final WorldGenBlockType block, final boolean doReplace) {
 		final float centerOffset = (this.girth - 1) / 2.0f;
 		final Vector center3 = new Vector(center2.x + centerOffset, center2.y, center2.z + centerOffset);
 		final Vector start = new Vector(center3.x - radius, center3.y - radius, center3.z - radius);
