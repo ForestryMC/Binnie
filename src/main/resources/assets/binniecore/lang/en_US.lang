@@ -230,6 +230,21 @@ binniecore.item.container.bucket.resin=Resin Bukket
 binniecore.item.container.bucket.latex=Latex Bukket
 binniecore.item.container.bucket.turpentine=Turpentine Bukket
 
+binniecore.item.container.glass.acid=Acid Glass
+binniecore.item.container.glass.poison=Poison Glass
+binniecore.item.container.glass.liquidnitrogen=Nitrogen Glass
+binniecore.item.container.glass.sap=Sap Glass
+binniecore.item.container.glass.resin=Resin Glass
+binniecore.item.container.glass.latex=Latex Glass
+binniecore.item.container.glass.turpentine=Turpentine Glass
+
+binniecore.item.container.cylinder.acid=Acid Cylinder
+binniecore.item.container.cylinder.poison=Poison Cylinder
+binniecore.item.container.cylinder.liquidnitrogen=Nitrogen Cylinder
+binniecore.item.container.cylinder.sap=Sap Cylinder
+binniecore.item.container.cylinder.resin=Resin Cylinder
+binniecore.item.container.cylinder.latex=Latex Cylinder
+binniecore.item.container.cylinder.turpentine=Turpentine Cylinder
 binniecore.item.container.cylinder.binnie.growthmedium=Growth Medium Cylinder
 binniecore.item.container.cylinder.binnie.bacteria=Bacteria Cylinder
 binniecore.item.container.cylinder.binnie.bacteriapoly=Polymerized Bacteria Cylinder
