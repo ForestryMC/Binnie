@@ -1,5 +1,6 @@
 package binnie.genetics.integration.jei.polymeriser;
 
+import binnie.genetics.Genetics;
 import binnie.genetics.integration.jei.GeneticsJeiPlugin;
 import binnie.genetics.integration.jei.RecipeUids;
 import binnie.genetics.machine.polymeriser.Polymeriser;
@@ -21,6 +22,11 @@ public class PolymeriserRecipeCategory extends BlankRecipeCategory<PolymeriserRe
 	@Override
 	public String getTitle() {
 		return "Polymerisation";
+	}
+
+	@Override
+	public String getModName() {
+		return Genetics.instance.getModID();
 	}
 
 	@Override

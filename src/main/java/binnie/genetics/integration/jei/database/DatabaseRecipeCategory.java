@@ -1,5 +1,6 @@
 package binnie.genetics.integration.jei.database;
 
+import binnie.genetics.Genetics;
 import binnie.genetics.integration.jei.GeneticsJeiPlugin;
 import binnie.genetics.integration.jei.RecipeUids;
 import mezz.jei.api.gui.IDrawable;
@@ -17,6 +18,11 @@ public class DatabaseRecipeCategory extends BlankRecipeCategory<DatabaseRecipeWr
 	@Override
 	public String getTitle() {
 		return "Genetic Database";
+	}
+
+	@Override
+	public String getModName() {
+		return Genetics.instance.getModID();
 	}
 
 	@Override

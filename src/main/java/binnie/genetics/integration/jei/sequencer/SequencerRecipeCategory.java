@@ -1,5 +1,6 @@
 package binnie.genetics.integration.jei.sequencer;
 
+import binnie.genetics.Genetics;
 import binnie.genetics.integration.jei.GeneticsJeiPlugin;
 import binnie.genetics.integration.jei.RecipeUids;
 import mezz.jei.api.gui.IDrawable;
@@ -17,6 +18,12 @@ public class SequencerRecipeCategory extends BlankRecipeCategory<SequencerRecipe
 	@Override
 	public String getTitle() {
 		return "Sequencing";
+	}
+
+
+	@Override
+	public String getModName() {
+		return Genetics.instance.getModID();
 	}
 
 	@Override

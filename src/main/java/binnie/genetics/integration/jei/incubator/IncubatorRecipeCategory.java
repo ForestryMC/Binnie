@@ -1,5 +1,6 @@
 package binnie.genetics.integration.jei.incubator;
 
+import binnie.genetics.Genetics;
 import binnie.genetics.integration.jei.GeneticsJeiPlugin;
 import binnie.genetics.integration.jei.RecipeUids;
 import binnie.genetics.machine.incubator.Incubator;
@@ -27,6 +28,11 @@ public class IncubatorRecipeCategory extends BlankRecipeCategory<IncubatorRecipe
 	@Override
 	public String getTitle() {
 		return "Incubation";
+	}
+
+	@Override
+	public String getModName() {
+		return Genetics.instance.getModID();
 	}
 
 	@Override

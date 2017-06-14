@@ -1,5 +1,6 @@
 package binnie.extratrees.integration.jei.brewery;
 
+import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.integration.jei.ExtraTreesJeiPlugin;
 import binnie.extratrees.integration.jei.RecipeUids;
 import binnie.extratrees.machines.brewery.BreweryMachine;
@@ -31,6 +32,11 @@ public class BreweryRecipeCategory extends BlankRecipeCategory<BreweryRecipeWrap
 	@Override
 	public String getTitle() {
 		return "Brewing";
+	}
+
+	@Override
+	public String getModName() {
+		return ExtraTrees.instance.getModID();
 	}
 
 	@Override

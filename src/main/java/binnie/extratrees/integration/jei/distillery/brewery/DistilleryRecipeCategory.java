@@ -6,6 +6,7 @@ import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
+import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.integration.jei.ExtraTreesJeiPlugin;
 import binnie.extratrees.integration.jei.RecipeUids;
@@ -39,6 +40,11 @@ public class DistilleryRecipeCategory extends BlankRecipeCategory<DistilleryReci
 	@Override
 	public String getTitle() {
 		return "Distilling";
+	}
+
+	@Override
+	public String getModName() {
+		return ExtraTrees.instance.getModID();
 	}
 
 	@Override

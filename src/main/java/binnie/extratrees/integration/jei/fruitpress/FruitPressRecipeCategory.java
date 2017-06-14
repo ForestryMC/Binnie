@@ -1,5 +1,6 @@
 package binnie.extratrees.integration.jei.fruitpress;
 
+import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.integration.jei.ExtraTreesJeiPlugin;
 import binnie.extratrees.integration.jei.RecipeUids;
 import binnie.extratrees.machines.fruitpress.FruitPressMachine;
@@ -27,6 +28,11 @@ public class FruitPressRecipeCategory extends BlankRecipeCategory<FruitPressReci
 	@Override
 	public String getTitle() {
 		return "Fruit Press";
+	}
+
+	@Override
+	public String getModName() {
+		return ExtraTrees.instance.getModID();
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package binnie.extratrees.integration.jei.lumbermill;
 
+import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.integration.jei.ExtraTreesJeiPlugin;
 import binnie.extratrees.integration.jei.RecipeUids;
 import binnie.extratrees.machines.lumbermill.LumbermillMachine;
@@ -27,6 +28,11 @@ public class LumbermillRecipeCategory extends BlankRecipeCategory<LumbermillReci
 	@Override
 	public String getTitle() {
 		return "Lumbermill";
+	}
+
+	@Override
+	public String getModName() {
+		return ExtraTrees.instance.getModID();
 	}
 
 	@Override

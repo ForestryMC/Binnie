@@ -1,5 +1,6 @@
 package binnie.genetics.integration.jei.isolator;
 
+import binnie.genetics.Genetics;
 import binnie.genetics.integration.jei.GeneticsJeiPlugin;
 import binnie.genetics.integration.jei.RecipeUids;
 import binnie.genetics.machine.isolator.Isolator;
@@ -31,6 +32,11 @@ public class IsolatorRecipeCategory extends BlankRecipeCategory<IsolatorRecipeWr
 	@Override
 	public String getTitle() {
 		return "Gene Isolation";
+	}
+
+	@Override
+	public String getModName() {
+		return Genetics.instance.getModID();
 	}
 
 	@Override

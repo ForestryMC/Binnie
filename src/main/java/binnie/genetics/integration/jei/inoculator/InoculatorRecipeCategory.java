@@ -1,6 +1,7 @@
 package binnie.genetics.integration.jei.inoculator;
 
 import binnie.core.genetics.Gene;
+import binnie.genetics.Genetics;
 import binnie.genetics.integration.jei.GeneticsJeiPlugin;
 import binnie.genetics.integration.jei.RecipeUids;
 import binnie.genetics.item.ItemSerum;
@@ -42,6 +43,11 @@ public class InoculatorRecipeCategory extends BlankRecipeCategory<InoculatorReci
 	@Override
 	public String getTitle() {
 		return "Inoculation";
+	}
+
+	@Override
+	public String getModName() {
+		return Genetics.instance.getModID();
 	}
 
 	@Override

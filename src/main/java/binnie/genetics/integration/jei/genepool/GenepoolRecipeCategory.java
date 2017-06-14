@@ -1,5 +1,6 @@
 package binnie.genetics.integration.jei.genepool;
 
+import binnie.genetics.Genetics;
 import binnie.genetics.integration.jei.GeneticsJeiPlugin;
 import binnie.genetics.integration.jei.RecipeUids;
 import binnie.genetics.machine.genepool.Genepool;
@@ -27,6 +28,11 @@ public class GenepoolRecipeCategory extends BlankRecipeCategory<GenepoolRecipeWr
 	@Override
 	public String getTitle() {
 		return "genepool";
+	}
+
+	@Override
+	public String getModName() {
+		return Genetics.instance.getModID();
 	}
 
 	@Override
