@@ -7,7 +7,6 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import binnie.extrabees.genetics.ExtraBeesSpecies;
-import binnie.extrabees.items.IItemModelProvider;
 
 public class ExtraBeesCommonProxy {
 
@@ -32,8 +31,5 @@ public class ExtraBeesCommonProxy {
 	}
 
 	public void registerModel(Item item, int meta) {
-	}
-	
-	public <P extends Item & IItemModelProvider> void registerModel(P provider) {
 	}
 }

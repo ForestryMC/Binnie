@@ -42,6 +42,7 @@ import binnie.extrabees.init.ItemRegister;
 import binnie.extrabees.init.RecipeRegister;
 import binnie.extrabees.items.ItemHoneyComb;
 import binnie.extrabees.items.ItemHoneyCrystal;
+import binnie.extrabees.items.ItemMiscProduct;
 import binnie.extrabees.proxy.ExtraBeesCommonProxy;
 import binnie.extrabees.utils.AlvearyMutationHandler;
 import binnie.extrabees.utils.MaterialBeehive;
@@ -76,7 +77,7 @@ public class ExtraBees {
 	public static Item honeyDrop;
 	public static ItemHoneyCrystal honeyCrystal;
 	public static Item dictionary;
-	public static Item itemMisc;
+	public static ItemMiscProduct itemMisc;
 
 	@Mod.EventHandler
 	@SuppressWarnings("all")

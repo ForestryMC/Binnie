@@ -5,8 +5,6 @@ import net.minecraft.item.ItemBlock;
 
 import net.minecraftforge.oredict.OreDictionary;
 
-import net.minecraftforge.fml.common.registry.GameRegistry;
-
 import forestry.api.core.Tabs;
 
 import binnie.extrabees.ExtraBees;
@@ -31,14 +29,17 @@ public final class ItemRegister {
 
 	@SuppressWarnings("all")
 	private static void registerMisc() {
-		ItemBlockAlveary itemBlockAlveary = GameRegistry.register(new ItemBlockAlveary(ExtraBees.alveary));
-		itemBlockAlveary.registerModel(itemBlockAlveary);
-		ItemBeehive itemBeehive = GameRegistry.register(new ItemBeehive(ExtraBees.hive));
-		ExtraBees.proxy.registerModel(itemBeehive);
+		ItemBlockAlveary itemAlveary = new ItemBlockAlveary(ExtraBees.alveary);
+		ItemBeehive itemBeehive = new ItemBeehive(ExtraBees.hive);
 		ItemBlock ectoplasm = new ItemBlock(ExtraBees.ectoplasm);
 		ectoplasm.setRegistryName(ExtraBees.ectoplasm.getRegistryName());
-		ExtraBees.proxy.registerModel(GameRegistry.register(ectoplasm), 0);
-		ExtraBees.itemMisc = ExtraBees.proxy.registerItem(new ItemMiscProduct(Tabs.tabApiculture, ExtraBeeItems.values()));
+		ItemMiscProduct itemMisc = ExtraBees.itemMisc = new ItemMiscProduct(Tabs.tabApiculture, ExtraBeeItems.values());
+		
+		ExtraBees.proxy.registerItem(ectoplasm);
+		ExtraBees.proxy.registerModel(ectoplasm, 0);
+		ExtraBees.proxy.registerItem(itemAlveary);
+		ExtraBees.proxy.registerItem(itemBeehive);
+		ExtraBees.proxy.registerItem(itemMisc);
 		for (final EnumHiveFrame frame : EnumHiveFrame.values()) {
 			ExtraBees.proxy.registerItem(frame.getItem());
 		}
@@ -51,13 +52,12 @@ public final class ItemRegister {
 		ExtraBees.propolis = new ItemPropolis();
 
 		ExtraBees.proxy.registerItem(ExtraBees.honeyCrystal);
-		ExtraBees.proxy.registerModel(ExtraBees.honeyCrystal);
 		ExtraBees.proxy.registerItem(ExtraBees.comb);
 		ExtraBees.proxy.registerItem(ExtraBees.honeyDrop);
 		ExtraBees.proxy.registerItem(ExtraBees.propolis);
-		for (EnumHoneyComb c : EnumHoneyComb.values()) {
-			if (c.isActive()) {
-				ExtraBees.proxy.registerModel(ExtraBees.comb, c.ordinal());
+		for (EnumHoneyComb comb : EnumHoneyComb.values()) {
+			if (comb.isActive()) {
+				ExtraBees.proxy.registerModel(ExtraBees.comb, comb.ordinal());
 			}
 		}
 	}

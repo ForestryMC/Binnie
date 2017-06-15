@@ -23,15 +23,12 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import forestry.core.models.BlankModel;
-import forestry.core.models.ModelManager;
 
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.items.IItemModelProvider;
 import binnie.extrabees.utils.ExtraBeesResourceLocation;
 
 public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
-
-	private static final ModelManager modelManager = ModelManager.getInstance();
 
 	private static IBakedModel bakeModelFor(Block block) {
 		return new BlankModel() {
@@ -49,28 +46,19 @@ public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
 			}
 		};
 	}
-
-	@Override
-	public Block registerBlock(Block block) {
-		modelManager.registerBlockClient(block);
-		return super.registerBlock(block);
-	}
-
+	
 	@Override
 	public Item registerItem(Item item) {
-		modelManager.registerItemClient(item);
+		if(item instanceof IItemModelProvider){
+			((IItemModelProvider) item).registerModel(item);
+		}
 		return super.registerItem(item);
 	}
-
+	
 	@Override
 	@SuppressWarnings("all")
 	public void registerModel(@Nonnull Item item, int meta) {
 		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), "inventory"));
-	}
-	
-	@Override
-	public <P extends Item & IItemModelProvider> void registerModel(P provider) {
-		provider.registerModel(provider);
 	}
 	
 	@SubscribeEvent
