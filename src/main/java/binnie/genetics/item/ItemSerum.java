@@ -1,5 +1,24 @@
 package binnie.genetics.item;
 
+import com.google.common.base.Preconditions;
+
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Map;
+
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.ISpeciesRoot;
+
 import binnie.Binnie;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
@@ -8,21 +27,6 @@ import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.genetics.GeneItem;
 import binnie.genetics.genetics.IGeneItem;
-import com.google.common.base.Preconditions;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.ISpeciesRoot;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nullable;
-import java.util.List;
-import java.util.Map;
 
 public class ItemSerum extends ItemGene implements IItemSerum {
 	public ItemSerum() {

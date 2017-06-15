@@ -1,5 +1,13 @@
 package binnie.extratrees.machines.craftgui;
 
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.nbt.NBTTagCompound;
+
+import net.minecraftforge.fluids.FluidStack;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.events.EventMouse;
@@ -14,11 +22,6 @@ import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.core.machines.Machine;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.machines.distillery.DistilleryLogic;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlDistilleryProgress extends ControlProgressBase {
 	public static final Texture DISTILLERY_BASE = new StandardTexture(43, 0, 58, 66, ExtraTreeTexture.Gui);

@@ -1,12 +1,12 @@
 package binnie.core.util;
 
-import net.minecraft.item.ItemStack;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
+import net.minecraft.item.ItemStack;
 
 public class ItemStackSet implements Set<ItemStack> {
 	List<ItemStack> itemStacks;

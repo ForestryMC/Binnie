@@ -1,7 +1,18 @@
 package binnie.extrabees.items;
 
-import binnie.extrabees.items.types.EnumHiveFrame;
-import binnie.extrabees.utils.ExtraBeesResourceLocation;
+import javax.annotation.Nullable;
+import java.util.List;
+
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.client.model.ModelLoader;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
@@ -11,16 +22,9 @@ import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
 import forestry.core.utils.Translator;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
-import java.util.List;
+import binnie.extrabees.items.types.EnumHiveFrame;
+import binnie.extrabees.utils.ExtraBeesResourceLocation;
 
 public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier, IItemModelRegister {
 

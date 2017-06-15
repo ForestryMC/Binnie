@@ -1,5 +1,21 @@
 package binnie.core.craftgui.minecraft.control;
 
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.nbt.NBTTagCompound;
+
+import net.minecraftforge.fluids.Fluid;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import org.lwjgl.opengl.GL11;
+
 import binnie.core.BinnieCore;
 import binnie.core.craftgui.Attribute;
 import binnie.core.craftgui.CraftGUI;
@@ -20,18 +36,6 @@ import binnie.core.machines.inventory.MachineSide;
 import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.power.ITankMachine;
 import binnie.core.machines.power.TankInfo;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.opengl.GL11;
-
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ControlLiquidTank extends Control implements ITooltip {
 	public static List<Integer> tankError = new ArrayList<>();

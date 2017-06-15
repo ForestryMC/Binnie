@@ -1,5 +1,18 @@
 package binnie.extratrees.kitchen.craftgui;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.util.ResourceLocation;
+
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+
+import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.craftgui.Attribute;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -8,16 +21,6 @@ import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.renderer.RenderUtil;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.client.FMLClientHandler;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nullable;
 
 public class ControlFluidDisplay extends Control implements ITooltip {
 	@Nullable

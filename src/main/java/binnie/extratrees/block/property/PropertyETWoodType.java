@@ -1,12 +1,14 @@
 package binnie.extratrees.block.property;
 
-import binnie.extratrees.block.EnumETLog;
-import binnie.extratrees.block.PlankType;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
-import forestry.arboriculture.blocks.PropertyWoodType;
 
 import java.util.Collection;
+
+import forestry.arboriculture.blocks.PropertyWoodType;
+
+import binnie.extratrees.block.EnumETLog;
+import binnie.extratrees.block.PlankType;
 
 public class PropertyETWoodType extends PropertyWoodType<EnumETLog> {
 

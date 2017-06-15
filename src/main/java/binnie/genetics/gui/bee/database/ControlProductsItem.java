@@ -1,5 +1,7 @@
 package binnie.genetics.gui.bee.database;
 
+import java.text.DecimalFormat;
+
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.controls.listbox.ControlList;
@@ -7,8 +9,6 @@ import binnie.core.craftgui.controls.listbox.ControlOption;
 import binnie.core.craftgui.geometry.CraftGUIUtil;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
-
-import java.text.DecimalFormat;
 
 public class ControlProductsItem extends ControlOption<ControlProductsBox.Product> {
 	ControlItemDisplay item;

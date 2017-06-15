@@ -1,5 +1,10 @@
 package binnie.core.craftgui.minecraft.control;
 
+import java.util.Objects;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.craftgui.Attribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
@@ -7,10 +12,6 @@ import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.Objects;
 
 public class ControlUser extends Control implements ITooltip {
 	String team;

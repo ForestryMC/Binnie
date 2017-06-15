@@ -1,9 +1,10 @@
 package binnie.extratrees.kitchen;
 
-import binnie.core.machines.Machine;
-import binnie.core.resource.BinnieResource;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import binnie.core.machines.Machine;
+import binnie.core.resource.BinnieResource;
 
 @SideOnly(Side.CLIENT)
 public class MachineRendererKitchen {

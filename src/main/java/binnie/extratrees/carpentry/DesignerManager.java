@@ -1,10 +1,10 @@
 package binnie.extratrees.carpentry;
 
-import binnie.extratrees.api.IDesignSystem;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import binnie.extratrees.api.IDesignSystem;
 
 public class DesignerManager {
 	public static DesignerManager instance = new DesignerManager();

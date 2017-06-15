@@ -1,12 +1,13 @@
 package binnie.core.machines.power;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.nbt.NBTTagCompound;
+
 import binnie.core.BinnieCore;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
 import binnie.core.machines.network.INetwork;
-import net.minecraft.nbt.NBTTagCompound;
-
-import javax.annotation.Nullable;
 
 public abstract class ComponentProcessIndefinate extends MachineComponent implements IProcess, INetwork.TilePacketSync {
 	int clientEnergyPerSecond;

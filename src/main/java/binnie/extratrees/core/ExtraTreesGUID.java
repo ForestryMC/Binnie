@@ -1,5 +1,13 @@
 package binnie.extratrees.core;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+import net.minecraftforge.fml.relauncher.Side;
+
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.gui.IBinnieGUID;
 import binnie.extratrees.kitchen.craftgui.WindowBottleRack;
@@ -11,12 +19,6 @@ import binnie.extratrees.machines.craftgui.WindowLumbermill;
 import binnie.extratrees.machines.craftgui.WindowPress;
 import binnie.extratrees.machines.craftgui.WindowSetSquare;
 import binnie.extratrees.machines.craftgui.WindowWoodworker;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
 
 public enum ExtraTreesGUID implements IBinnieGUID {
 	Database,

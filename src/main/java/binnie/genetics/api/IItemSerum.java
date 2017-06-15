@@ -1,8 +1,8 @@
 package binnie.genetics.api;
 
-import net.minecraft.item.ItemStack;
-
 import javax.annotation.Nullable;
+
+import net.minecraft.item.ItemStack;
 
 public interface IItemSerum extends IItemChargeable {
 	IGene[] getGenes(final ItemStack p0);

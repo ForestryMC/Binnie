@@ -1,6 +1,7 @@
 package binnie.core.machines.power;
 
 import net.minecraftforge.energy.IEnergyStorage;
+
 import net.minecraftforge.fml.common.Optional;
 
 import ic2.api.energy.tile.IEnergySink;

@@ -1,5 +1,14 @@
 package binnie.genetics.machine;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+
+import net.minecraftforge.fml.common.registry.GameRegistry;
+
 import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.machines.MachineGroup;
@@ -9,12 +18,6 @@ import binnie.genetics.Genetics;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.acclimatiser.Acclimatiser;
 import binnie.genetics.machine.incubator.Incubator;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ModuleMachine implements IInitializable {
 	public static ValidatorSprite spriteSequencer;

@@ -1,11 +1,12 @@
 package binnie.core.craftgui.minecraft.control;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.resource.Texture;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlProgress extends ControlProgressBase {
 	private Texture progressBlank;

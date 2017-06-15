@@ -1,20 +1,13 @@
 package binnie.botany.farm;
 
-import binnie.Binnie;
-import binnie.botany.Botany;
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.EnumSoilType;
-import binnie.botany.api.IBlockSoil;
-import binnie.botany.flower.TileEntityFlower;
-import binnie.botany.gardening.Gardening;
-import binnie.core.liquid.ManagerLiquid;
-import forestry.api.farming.FarmDirection;
-import forestry.api.farming.ICrop;
-import forestry.api.farming.IFarmHousing;
-import forestry.api.farming.IFarmable;
-import forestry.core.owner.IOwnedTile;
-import forestry.core.utils.BlockUtil;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Blocks;
@@ -26,15 +19,25 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
 import net.minecraftforge.fluids.FluidStack;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
+import forestry.api.farming.FarmDirection;
+import forestry.api.farming.ICrop;
+import forestry.api.farming.IFarmHousing;
+import forestry.api.farming.IFarmable;
+import forestry.core.owner.IOwnedTile;
+import forestry.core.utils.BlockUtil;
+
+import binnie.Binnie;
+import binnie.botany.Botany;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumMoisture;
+import binnie.botany.api.EnumSoilType;
+import binnie.botany.api.IBlockSoil;
+import binnie.botany.flower.TileEntityFlower;
+import binnie.botany.gardening.Gardening;
+import binnie.core.liquid.ManagerLiquid;
 
 public class GardenLogic extends FarmLogic {
 	List<IFarmable> farmables;

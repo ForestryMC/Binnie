@@ -1,10 +1,11 @@
 package binnie.core.proxy;
 
-import binnie.Constants;
-import binnie.core.craftgui.resource.minecraft.CraftGUIResourceManager;
-import binnie.core.models.ModelManager;
-import binnie.core.resource.BinnieResource;
 import com.google.common.base.Throwables;
+
+import javax.annotation.Nullable;
+import java.io.File;
+import java.io.IOException;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -18,16 +19,19 @@ import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+
 import net.minecraftforge.client.model.ModelLoader;
+
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
-import java.io.File;
-import java.io.IOException;
+import binnie.Constants;
+import binnie.core.craftgui.resource.minecraft.CraftGUIResourceManager;
+import binnie.core.models.ModelManager;
+import binnie.core.resource.BinnieResource;
 
 @SideOnly(Side.CLIENT)
 public final class BinnieProxyClient extends BinnieProxy implements IBinnieProxy {

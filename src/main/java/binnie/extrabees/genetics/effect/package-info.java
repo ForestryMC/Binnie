@@ -3,7 +3,7 @@
 @FieldsAreNonnullByDefault
 package binnie.extrabees.genetics.effect;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import binnie.extrabees.utils.FieldsAreNonnullByDefault;
 import mcp.MethodsReturnNonnullByDefault;
-
-import javax.annotation.ParametersAreNonnullByDefault;

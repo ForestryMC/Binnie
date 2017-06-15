@@ -1,5 +1,13 @@
 package binnie.extratrees.machines.craftgui;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.craftgui.controls.ControlText;
@@ -20,12 +28,6 @@ import binnie.core.machines.Machine;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.machines.Designer;
 import binnie.extratrees.machines.DesignerType;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nullable;
 
 public class WindowWoodworker extends Window {
 	ControlTextEdit textEdit;

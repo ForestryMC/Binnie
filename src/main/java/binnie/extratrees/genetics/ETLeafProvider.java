@@ -1,14 +1,16 @@
 package binnie.extratrees.genetics;
 
-import binnie.extratrees.block.ModuleBlocks;
+import javax.annotation.Nullable;
+
+import net.minecraft.item.ItemStack;
+
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.IAlleleTreeSpecies;
 import forestry.api.arboriculture.ILeafProvider;
 import forestry.api.genetics.IAllele;
 import forestry.arboriculture.genetics.TreeDefinition;
-import net.minecraft.item.ItemStack;
 
-import javax.annotation.Nullable;
+import binnie.extratrees.block.ModuleBlocks;
 
 public class ETLeafProvider implements ILeafProvider {
 	@Nullable

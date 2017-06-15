@@ -1,15 +1,18 @@
 package binnie.core.resource;
 
-import binnie.Binnie;
-import binnie.core.AbstractMod;
 import com.google.common.base.Preconditions;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
+import binnie.Binnie;
+import binnie.core.AbstractMod;
 
 public class BinnieSprite extends BinnieResource {
 

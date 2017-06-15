@@ -1,15 +1,17 @@
 package binnie.botany.gardening;
 
-import binnie.Binnie;
-import binnie.botany.api.EnumSoilType;
+import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
+import binnie.Binnie;
+import binnie.botany.api.EnumSoilType;
 
 public class ItemSoil extends ItemBlock {
 	private final EnumSoilType type;

@@ -1,5 +1,19 @@
 package binnie.botany.genetics;
 
+import java.util.TreeSet;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IBreedingTracker;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IMutation;
+import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.ISpeciesType;
+
 import binnie.Binnie;
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.EnumFlowerStage;
@@ -9,18 +23,6 @@ import binnie.core.BinnieCore;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.ForestryAllele;
 import binnie.core.genetics.Tolerance;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IBreedingTracker;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.IMutation;
-import forestry.api.genetics.ISpeciesRoot;
-import forestry.api.genetics.ISpeciesType;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-
-import java.util.TreeSet;
 
 public class FlowerBreedingSystem extends BreedingSystem {
 	public FlowerBreedingSystem() {

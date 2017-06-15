@@ -1,8 +1,10 @@
 package binnie.core.genetics;
 
-import binnie.Binnie;
-import binnie.core.BinnieCore;
-import binnie.extratrees.ExtraTrees;
+import java.util.TreeSet;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleInteger;
 import forestry.api.genetics.IAlleleSpecies;
@@ -14,10 +16,10 @@ import forestry.api.genetics.ISpeciesType;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
 import forestry.api.lepidopterology.EnumFlutterType;
 import forestry.api.lepidopterology.ILepidopteristTracker;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 
-import java.util.TreeSet;
+import binnie.Binnie;
+import binnie.core.BinnieCore;
+import binnie.extratrees.ExtraTrees;
 
 class MothBreedingSystem extends BreedingSystem {
 	public MothBreedingSystem() {

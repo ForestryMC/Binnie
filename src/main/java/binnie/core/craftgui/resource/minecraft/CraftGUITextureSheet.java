@@ -1,12 +1,13 @@
 package binnie.core.craftgui.resource.minecraft;
 
-import binnie.core.craftgui.CraftGUI;
-import binnie.core.resource.BinnieResource;
-import binnie.core.resource.IBinnieTexture;
+import javax.annotation.Nullable;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.resource.BinnieResource;
+import binnie.core.resource.IBinnieTexture;
 
 public enum CraftGUITextureSheet implements IBinnieTexture {
 	Controls2("controls"),

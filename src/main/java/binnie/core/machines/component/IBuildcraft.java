@@ -1,8 +1,8 @@
 package binnie.core.machines.component;
 
-import binnie.core.triggers.TriggerData;
-
 import java.util.List;
+
+import binnie.core.triggers.TriggerData;
 
 public interface IBuildcraft {
 	interface TriggerProvider {

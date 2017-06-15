@@ -1,11 +1,13 @@
 package binnie.genetics.proxy;
 
-import binnie.Constants;
-import binnie.core.models.ModelManager;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import binnie.Constants;
+import binnie.core.models.ModelManager;
 
 @SideOnly(Side.CLIENT)
 public class ProxyClient extends Proxy implements IGeneticsProxy {

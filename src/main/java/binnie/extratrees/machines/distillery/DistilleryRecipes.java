@@ -1,9 +1,5 @@
 package binnie.extratrees.machines.distillery;
 
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-import org.apache.commons.lang3.tuple.Pair;
-
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,6 +7,11 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.lang3.tuple.Pair;
+
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 
 public class DistilleryRecipes {
 	private static final List<Map<Fluid, Pair<FluidStack, FluidStack>>> recipes = new ArrayList<>();

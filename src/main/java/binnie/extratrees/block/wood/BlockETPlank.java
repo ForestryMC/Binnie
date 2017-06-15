@@ -1,13 +1,15 @@
 package binnie.extratrees.block.wood;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.util.ResourceLocation;
+
+import forestry.arboriculture.blocks.BlockForestryPlanks;
+
 import binnie.Constants;
 import binnie.extratrees.block.EnumETLog;
 import binnie.extratrees.block.property.PropertyETWoodType;
-import forestry.arboriculture.blocks.BlockForestryPlanks;
-import net.minecraft.util.ResourceLocation;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class BlockETPlank extends BlockForestryPlanks<EnumETLog> {
 	public static final String BLOCK_NAME = "plank";

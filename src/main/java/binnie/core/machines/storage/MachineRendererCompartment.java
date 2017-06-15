@@ -1,11 +1,13 @@
 package binnie.core.machines.storage;
 
+import net.minecraft.client.renderer.GlStateManager;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.BinnieCore;
 import binnie.core.machines.Machine;
 import binnie.core.resource.BinnieResource;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 class MachineRendererCompartment {

@@ -1,5 +1,11 @@
 package binnie.genetics.machine.polymeriser;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.minecraft.GUIIcon;
@@ -17,10 +23,6 @@ import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.craftgui.WindowMachine;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowPolymeriser extends WindowMachine {
 	static Texture ProgressBase = new StandardTexture(76, 170, 160, 79, GeneticsTexture.GUIProcess);

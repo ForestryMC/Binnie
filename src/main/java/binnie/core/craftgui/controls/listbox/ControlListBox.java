@@ -1,12 +1,12 @@
 package binnie.core.craftgui.controls.listbox;
 
+import java.util.Collection;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.IControlValue;
 import binnie.core.craftgui.controls.scroll.ControlScrollableContent;
 import binnie.core.craftgui.events.EventKey;
 import binnie.core.util.IValidator;
-
-import java.util.Collection;
 
 public class ControlListBox<T> extends ControlScrollableContent<ControlList<T>> implements IControlValue<T> {
 	public ControlListBox(final IWidget parent, final int x, final int y, final int w, final int h, final int scrollBarSize) {

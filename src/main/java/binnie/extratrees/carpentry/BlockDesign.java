@@ -1,25 +1,8 @@
 package binnie.extratrees.carpentry;
 
-import binnie.core.block.BlockMetadata;
-import binnie.core.block.IMultipassBlock;
-import binnie.core.block.TileEntityMetadata;
-import binnie.core.models.DefaultStateMapper;
-import binnie.core.models.ModelManager;
-import binnie.core.models.ModelMutlipass;
-import binnie.core.util.TileUtil;
-import binnie.extratrees.api.CarpentryManager;
-import binnie.extratrees.api.IDesign;
-import binnie.extratrees.api.IDesignSystem;
-import binnie.extratrees.api.IToolHammer;
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
-import forestry.api.core.ISpriteRegister;
-import forestry.api.core.IStateMapperRegister;
-import forestry.api.core.ITextureManager;
-import forestry.core.blocks.IColoredBlock;
-import forestry.core.blocks.properties.UnlistedBlockAccess;
-import forestry.core.blocks.properties.UnlistedBlockPos;
-import forestry.core.models.BlockModelEntry;
+import javax.annotation.Nullable;
+import java.util.List;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
@@ -40,17 +23,38 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
-import java.util.List;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import forestry.api.core.ISpriteRegister;
+import forestry.api.core.IStateMapperRegister;
+import forestry.api.core.ITextureManager;
+import forestry.core.blocks.IColoredBlock;
+import forestry.core.blocks.properties.UnlistedBlockAccess;
+import forestry.core.blocks.properties.UnlistedBlockPos;
+import forestry.core.models.BlockModelEntry;
+
+import binnie.core.block.BlockMetadata;
+import binnie.core.block.IMultipassBlock;
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.models.DefaultStateMapper;
+import binnie.core.models.ModelManager;
+import binnie.core.models.ModelMutlipass;
+import binnie.core.util.TileUtil;
+import binnie.extratrees.api.CarpentryManager;
+import binnie.extratrees.api.IDesign;
+import binnie.extratrees.api.IDesignSystem;
+import binnie.extratrees.api.IToolHammer;
 
 public abstract class BlockDesign extends BlockMetadata implements IMultipassBlock<Integer>, IColoredBlock, ISpriteRegister, IItemModelRegister, IStateMapperRegister {
 	public static final EnumFacing[] RENDER_DIRECTIONS = new EnumFacing[]{EnumFacing.DOWN, EnumFacing.UP, EnumFacing.EAST, EnumFacing.WEST, EnumFacing.NORTH, EnumFacing.SOUTH};

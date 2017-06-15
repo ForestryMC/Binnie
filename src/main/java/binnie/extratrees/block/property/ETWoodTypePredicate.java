@@ -1,10 +1,11 @@
 package binnie.extratrees.block.property;
 
-import binnie.extratrees.block.EnumETLog;
-import binnie.extratrees.block.PlankType;
 import com.google.common.base.Predicate;
 
 import javax.annotation.Nullable;
+
+import binnie.extratrees.block.EnumETLog;
+import binnie.extratrees.block.PlankType;
 
 public class ETWoodTypePredicate implements Predicate<EnumETLog> {
 	private final int minWoodTypeMeta;

@@ -1,5 +1,16 @@
 package binnie.extratrees.machines.craftgui;
 
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
+import net.minecraftforge.fluids.FluidStack;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.craftgui.Attribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
@@ -14,14 +25,6 @@ import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.machines.fruitpress.FruitPressMachine;
 import binnie.extratrees.machines.fruitpress.FruitPressRecipes;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlFruitPressProgress extends ControlProgressBase {
 	private static final Texture PressTexture = new StandardTexture(6, 0, 24, 52, ExtraTreeTexture.Gui);

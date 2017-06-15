@@ -1,32 +1,25 @@
 package binnie.extratrees.genetics;
 
-import binnie.Constants;
-import binnie.core.genetics.ForestryAllele;
-import binnie.extratrees.block.EnumETLog;
-import binnie.extratrees.block.EnumShrubLog;
-import binnie.extratrees.gen.WorldGenAlder;
-import binnie.extratrees.gen.WorldGenApple;
-import binnie.extratrees.gen.WorldGenAsh;
-import binnie.extratrees.gen.WorldGenBanana;
-import binnie.extratrees.gen.WorldGenBeech;
-import binnie.extratrees.gen.WorldGenConifer;
-import binnie.extratrees.gen.WorldGenEucalyptus;
-import binnie.extratrees.gen.WorldGenFir;
-import binnie.extratrees.gen.WorldGenHolly;
-import binnie.extratrees.gen.WorldGenJungle;
-import binnie.extratrees.gen.WorldGenLazy;
-import binnie.extratrees.gen.WorldGenMaple;
-import binnie.extratrees.gen.WorldGenPalm;
-import binnie.extratrees.gen.WorldGenPoplar;
-import binnie.extratrees.gen.WorldGenShrub;
-import binnie.extratrees.gen.WorldGenSorbus;
-import binnie.extratrees.gen.WorldGenTree;
-import binnie.extratrees.gen.WorldGenTree2;
-import binnie.extratrees.gen.WorldGenTree3;
-import binnie.extratrees.gen.WorldGenTropical;
-import binnie.extratrees.gen.WorldGenWalnut;
 import com.google.common.base.Preconditions;
+
+import java.awt.Color;
+import java.util.Arrays;
+import java.util.Locale;
+
+import org.apache.commons.lang3.StringUtils;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockLog;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
+
 import com.mojang.authlib.GameProfile;
+
 import forestry.api.arboriculture.EnumForestryWoodType;
 import forestry.api.arboriculture.EnumGermlingType;
 import forestry.api.arboriculture.EnumLeafType;
@@ -59,20 +52,32 @@ import forestry.arboriculture.worldgen.WorldGenLemon;
 import forestry.arboriculture.worldgen.WorldGenPlum;
 import forestry.core.genetics.alleles.AlleleBoolean;
 import forestry.core.tiles.TileUtil;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockLog;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
-import org.apache.commons.lang3.StringUtils;
 
-import java.awt.Color;
-import java.util.Arrays;
-import java.util.Locale;
+import binnie.Constants;
+import binnie.core.genetics.ForestryAllele;
+import binnie.extratrees.block.EnumETLog;
+import binnie.extratrees.block.EnumShrubLog;
+import binnie.extratrees.gen.WorldGenAlder;
+import binnie.extratrees.gen.WorldGenApple;
+import binnie.extratrees.gen.WorldGenAsh;
+import binnie.extratrees.gen.WorldGenBanana;
+import binnie.extratrees.gen.WorldGenBeech;
+import binnie.extratrees.gen.WorldGenConifer;
+import binnie.extratrees.gen.WorldGenEucalyptus;
+import binnie.extratrees.gen.WorldGenFir;
+import binnie.extratrees.gen.WorldGenHolly;
+import binnie.extratrees.gen.WorldGenJungle;
+import binnie.extratrees.gen.WorldGenLazy;
+import binnie.extratrees.gen.WorldGenMaple;
+import binnie.extratrees.gen.WorldGenPalm;
+import binnie.extratrees.gen.WorldGenPoplar;
+import binnie.extratrees.gen.WorldGenShrub;
+import binnie.extratrees.gen.WorldGenSorbus;
+import binnie.extratrees.gen.WorldGenTree;
+import binnie.extratrees.gen.WorldGenTree2;
+import binnie.extratrees.gen.WorldGenTree3;
+import binnie.extratrees.gen.WorldGenTropical;
+import binnie.extratrees.gen.WorldGenWalnut;
 
 public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, ITreeGenerator {
 	OrchardApple("malus", "domestica", EnumLeafType.DECIDUOUS, new Color(0x09E67E), new Color(0xFF9CF3), EnumSaplingType.Default, EnumETLog.Apple, new Color(0x7B7A7B)) {

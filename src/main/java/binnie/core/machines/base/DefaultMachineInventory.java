@@ -1,12 +1,13 @@
 package binnie.core.machines.base;
 
-import binnie.core.machines.inventory.IInventoryMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
+
+import binnie.core.machines.inventory.IInventoryMachine;
 
 class DefaultMachineInventory implements IInventoryMachine {
 	private final DefaultInventory inventory;

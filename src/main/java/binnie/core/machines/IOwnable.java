@@ -1,8 +1,8 @@
 package binnie.core.machines;
 
-import com.mojang.authlib.GameProfile;
-
 import javax.annotation.Nullable;
+
+import com.mojang.authlib.GameProfile;
 
 interface IOwnable {
 	@Nullable

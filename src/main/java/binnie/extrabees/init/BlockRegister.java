@@ -1,5 +1,10 @@
 package binnie.extrabees.init;
 
+import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import forestry.api.apiculture.IAlleleBeeSpecies;
+import forestry.apiculture.genetics.BeeDefinition;
+
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.alveary.BlockAlveary;
 import binnie.extrabees.alveary.TileEntityExtraBeesAlvearyPart;
@@ -10,9 +15,6 @@ import binnie.extrabees.genetics.ExtraBeesSpecies;
 import binnie.extrabees.utils.HiveDrop;
 import binnie.extrabees.utils.Utils;
 import binnie.extrabees.utils.config.ConfigurationMain;
-import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.apiculture.genetics.BeeDefinition;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public final class BlockRegister {
 

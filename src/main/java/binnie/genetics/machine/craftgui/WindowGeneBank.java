@@ -1,5 +1,21 @@
 package binnie.genetics.machine.craftgui;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IChromosomeType;
+
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.Tooltip;
@@ -22,19 +38,6 @@ import binnie.core.genetics.Gene;
 import binnie.genetics.Genetics;
 import binnie.genetics.genetics.Engineering;
 import binnie.genetics.genetics.GeneTracker;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IChromosomeType;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
 
 public class WindowGeneBank extends WindowMachine {
 	//public static IIcon[] iconsDNA;

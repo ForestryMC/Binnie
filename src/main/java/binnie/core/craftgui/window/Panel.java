@@ -1,13 +1,14 @@
 package binnie.core.craftgui.window;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.minecraft.MinecraftGUI;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Panel extends Control {
 	IPanelType type;

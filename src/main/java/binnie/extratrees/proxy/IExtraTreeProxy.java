@@ -1,7 +1,8 @@
 package binnie.extratrees.proxy;
 
-import binnie.core.proxy.IProxyCore;
 import net.minecraft.block.Block;
+
+import binnie.core.proxy.IProxyCore;
 
 public interface IExtraTreeProxy extends IProxyCore {
 	void setCustomStateMapper(String name, Block block);

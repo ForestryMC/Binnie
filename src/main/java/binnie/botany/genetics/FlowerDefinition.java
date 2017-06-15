@@ -1,5 +1,28 @@
 package binnie.botany.genetics;
 
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.common.MinecraftForge;
+
+import forestry.api.apiculture.EnumBeeChromosome;
+import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.core.EnumTemperature;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.AlleleSpeciesRegisterEvent;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleRegistry;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IClassification;
+import forestry.core.genetics.alleles.AlleleHelper;
+import forestry.core.genetics.alleles.EnumAllele;
+
 import binnie.Constants;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumFlowerChromosome;
@@ -15,26 +38,6 @@ import binnie.botany.api.IFlowerMutationBuilder;
 import binnie.botany.api.IFlowerRoot;
 import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.arboriculture.EnumTreeChromosome;
-import forestry.api.core.EnumTemperature;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.AlleleSpeciesRegisterEvent;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleRegistry;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IClassification;
-import forestry.core.genetics.alleles.AlleleHelper;
-import forestry.core.genetics.alleles.EnumAllele;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
-
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 
 public enum FlowerDefinition implements IFlowerDefinition {
 	Dandelion("Dandelion", "taraxacum", "officinale", EnumFlowerType.Dandelion, EnumFlowerColor.Yellow) {

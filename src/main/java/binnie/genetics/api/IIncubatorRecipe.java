@@ -1,10 +1,12 @@
 package binnie.genetics.api;
 
-import binnie.core.machines.MachineUtil;
+import javax.annotation.Nullable;
+
 import net.minecraft.item.ItemStack;
+
 import net.minecraftforge.fluids.FluidStack;
 
-import javax.annotation.Nullable;
+import binnie.core.machines.MachineUtil;
 
 public interface IIncubatorRecipe {
 	boolean isInputLiquid(@Nullable final FluidStack fluid);

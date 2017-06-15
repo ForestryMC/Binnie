@@ -1,12 +1,14 @@
 package binnie.extratrees.machines.craftgui;
 
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.renderer.RenderUtil;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlBlockIconDisplay extends Control {
 	TextureAtlasSprite icon;

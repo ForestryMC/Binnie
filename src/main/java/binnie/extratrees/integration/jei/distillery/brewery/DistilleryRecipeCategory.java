@@ -1,5 +1,10 @@
 package binnie.extratrees.integration.jei.distillery.brewery;
 
+import net.minecraft.client.Minecraft;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.Point;
@@ -18,9 +23,6 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.ITickTimer;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
-import net.minecraft.client.Minecraft;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class DistilleryRecipeCategory extends BlankRecipeCategory<DistilleryRecipeWrapper> {
 	private static final Texture DISTILLERY_BASE = new StandardTexture(43, 0, 58, 60, ExtraTreeTexture.Gui);

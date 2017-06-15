@@ -1,14 +1,18 @@
 package binnie.core.integration.extrabees;
 
-import binnie.core.IInitializable;
 import com.google.common.base.Preconditions;
-import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.genetics.AlleleManager;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+
+import forestry.api.apiculture.IAlleleBeeSpecies;
+import forestry.api.genetics.AlleleManager;
+
+import binnie.core.IInitializable;
 
 public class ExtraBeesIntegration implements IInitializable {
 

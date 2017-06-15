@@ -1,14 +1,15 @@
 package binnie.core.machines.storage;
 
-import binnie.core.machines.IMachine;
-import binnie.core.machines.inventory.ComponentInventorySlots;
-import binnie.core.machines.network.INetwork;
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
-import java.util.HashMap;
-import java.util.Map;
+import binnie.core.machines.IMachine;
+import binnie.core.machines.inventory.ComponentInventorySlots;
+import binnie.core.machines.network.INetwork;
 
 class ComponentCompartmentInventory extends ComponentInventorySlots implements INetwork.GuiNBT {
 	private int numberOfTabs;

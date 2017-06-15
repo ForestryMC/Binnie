@@ -1,9 +1,10 @@
 package binnie.extrabees.circuit;
 
+import net.minecraft.util.text.translation.I18n;
+
 import forestry.api.circuits.ChipsetManager;
 import forestry.api.circuits.ICircuitLayout;
 import forestry.api.circuits.ICircuitSocketType;
-import net.minecraft.util.text.translation.I18n;
 
 public class BinnieCircuitLayout implements ICircuitLayout {
 

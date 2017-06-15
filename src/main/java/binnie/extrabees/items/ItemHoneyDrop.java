@@ -1,9 +1,11 @@
 package binnie.extrabees.items;
 
-import binnie.extrabees.items.types.EnumHoneyDrop;
+import net.minecraft.item.ItemStack;
+
 import forestry.api.core.Tabs;
 import forestry.core.items.IColoredItem;
-import net.minecraft.item.ItemStack;
+
+import binnie.extrabees.items.types.EnumHoneyDrop;
 
 public class ItemHoneyDrop extends ItemProduct implements IColoredItem {
 

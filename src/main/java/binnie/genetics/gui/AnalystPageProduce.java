@@ -1,5 +1,24 @@
 package binnie.genetics.gui;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.item.crafting.ShapedRecipes;
+import net.minecraft.item.crafting.ShapelessRecipes;
+import net.minecraft.util.NonNullList;
+
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
+
+import forestry.api.recipes.ICentrifugeRecipe;
+import forestry.api.recipes.ISqueezerRecipe;
+import forestry.api.recipes.RecipeManagers;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.geometry.Area;
@@ -10,22 +29,6 @@ import binnie.extratrees.machines.brewery.BreweryRecipes;
 import binnie.extratrees.machines.distillery.DistilleryRecipes;
 import binnie.extratrees.machines.fruitpress.FruitPressRecipes;
 import binnie.genetics.gui.bee.AnalystPageProducts;
-import forestry.api.recipes.ICentrifugeRecipe;
-import forestry.api.recipes.ISqueezerRecipe;
-import forestry.api.recipes.RecipeManagers;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.item.crafting.ShapedRecipes;
-import net.minecraft.item.crafting.ShapelessRecipes;
-import net.minecraft.util.NonNullList;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 public abstract class AnalystPageProduce extends ControlAnalystPage {
 	public AnalystPageProduce(final IWidget parent, final Area area) {

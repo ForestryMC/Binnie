@@ -3,7 +3,7 @@
 @FieldsAreNonnullByDefault
 package binnie.genetics.machine.sequencer;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import binnie.core.util.FieldsAreNonnullByDefault;
 import mcp.MethodsReturnNonnullByDefault;
-
-import javax.annotation.ParametersAreNonnullByDefault;

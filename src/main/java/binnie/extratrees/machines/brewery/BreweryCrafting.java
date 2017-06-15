@@ -1,11 +1,13 @@
 package binnie.extratrees.machines.brewery;
 
-import forestry.api.core.INbtWritable;
+import javax.annotation.Nullable;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+
 import net.minecraftforge.fluids.FluidStack;
 
-import javax.annotation.Nullable;
+import forestry.api.core.INbtWritable;
 
 public class BreweryCrafting implements INbtWritable {
 	@Nullable

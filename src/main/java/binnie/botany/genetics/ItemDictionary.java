@@ -1,10 +1,5 @@
 package binnie.botany.genetics;
 
-import binnie.botany.Botany;
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.core.BotanyGUI;
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -13,8 +8,16 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+
+import binnie.botany.Botany;
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.core.BotanyGUI;
 
 public class ItemDictionary extends Item implements IItemModelRegister {
 	public ItemDictionary() {

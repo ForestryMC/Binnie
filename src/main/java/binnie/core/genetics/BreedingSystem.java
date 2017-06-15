@@ -1,9 +1,29 @@
 package binnie.core.genetics;
 
-import binnie.Binnie;
-import binnie.core.BinnieCore;
-import binnie.core.resource.BinnieSprite;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
+
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+
 import com.mojang.authlib.GameProfile;
+
+import net.minecraftforge.common.MinecraftForge;
+
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import forestry.api.core.ForestryEvent;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
@@ -17,25 +37,10 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IMutation;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.genetics.ISpeciesType;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Set;
-import java.util.TreeSet;
+import binnie.Binnie;
+import binnie.core.BinnieCore;
+import binnie.core.resource.BinnieSprite;
 
 public abstract class BreedingSystem implements IItemStackRepresentitive {
 	public float discoveredSpeciesPercentage;

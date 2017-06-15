@@ -1,16 +1,17 @@
 package binnie.core.machines;
 
-import binnie.Binnie;
-import binnie.core.AbstractMod;
-import binnie.core.BinnieCore;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-
 import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+
+import binnie.Binnie;
+import binnie.core.AbstractMod;
+import binnie.core.BinnieCore;
 
 public class MachineGroup {
 	public boolean customRenderer;

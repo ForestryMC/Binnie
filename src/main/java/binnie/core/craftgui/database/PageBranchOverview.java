@@ -1,18 +1,21 @@
 package binnie.core.craftgui.database;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import net.minecraft.util.text.TextFormatting;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.genetics.IClassification;
+
 import binnie.Binnie;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.renderer.RenderUtil;
-import forestry.api.genetics.IClassification;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 @SideOnly(Side.CLIENT)
 public class PageBranchOverview extends PageBranch {

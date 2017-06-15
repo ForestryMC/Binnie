@@ -1,13 +1,16 @@
 package binnie.genetics.genetics;
 
-import binnie.genetics.api.IGene;
-import forestry.api.genetics.ISpeciesRoot;
+import javax.annotation.Nullable;
+import java.util.List;
+
 import net.minecraft.item.ItemStack;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
-import java.util.List;
+import forestry.api.genetics.ISpeciesRoot;
+
+import binnie.genetics.api.IGene;
 
 public interface IGeneItem {
 	@Nullable

@@ -1,5 +1,11 @@
 package binnie.genetics.machine.polymeriser;
 
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+
+import net.minecraftforge.fluids.FluidStack;
+
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
@@ -17,10 +23,6 @@ import binnie.genetics.item.GeneticLiquid;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.GeneticMachine;
 import binnie.genetics.machine.ModuleMachine;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.fluids.FluidStack;
 
 public class PackagePolymeriser extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 

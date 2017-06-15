@@ -1,17 +1,19 @@
 package binnie.extratrees.kitchen;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachinePackage;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.resource.IBinnieTexture;
 import binnie.extratrees.ExtraTrees;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nullable;
 
 public enum KitchenMachine implements IMachineType {
 	// TODO implement

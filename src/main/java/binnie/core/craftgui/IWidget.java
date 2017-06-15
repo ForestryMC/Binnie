@@ -1,14 +1,15 @@
 package binnie.core.craftgui;
 
+import javax.annotation.Nullable;
+import java.util.List;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.craftgui.events.Event;
 import binnie.core.craftgui.events.EventHandler;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.Point;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nullable;
-import java.util.List;
 
 public interface IWidget {
 	@Nullable

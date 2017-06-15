@@ -1,7 +1,8 @@
 package binnie.genetics.machine;
 
-import binnie.core.machines.inventory.Validator;
 import net.minecraft.item.ItemStack;
+
+import binnie.core.machines.inventory.Validator;
 
 public class SlotValidatorInoculatorCatalyst extends Validator<ItemStack> {
 	@Override

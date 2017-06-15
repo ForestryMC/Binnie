@@ -1,8 +1,7 @@
 package binnie.extratrees.alcohol.drink;
 
-import binnie.extratrees.alcohol.Alcohol;
-import binnie.extratrees.alcohol.Glassware;
-import forestry.api.core.Tabs;
+import javax.annotation.Nullable;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
@@ -10,13 +9,18 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
+
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
+import forestry.api.core.Tabs;
+
+import binnie.extratrees.alcohol.Alcohol;
+import binnie.extratrees.alcohol.Glassware;
 
 public class ItemDrink extends ItemFood {
 	public ItemDrink() {

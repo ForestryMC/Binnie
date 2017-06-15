@@ -1,7 +1,8 @@
 package binnie.extratrees.alcohol.drink;
 
-import binnie.Binnie;
 import net.minecraftforge.fluids.FluidStack;
+
+import binnie.Binnie;
 
 public class DrinkLiquid implements IDrinkLiquid {
 	private final String name;

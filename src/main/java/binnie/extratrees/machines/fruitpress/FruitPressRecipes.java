@@ -2,14 +2,17 @@ package binnie.extratrees.machines.fruitpress;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
-import org.apache.commons.lang3.tuple.Pair;
 
 import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.Map;
+
+import org.apache.commons.lang3.tuple.Pair;
+
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fluids.FluidStack;
 
 public class FruitPressRecipes {
 	//Map<input fruit item, Pair<input fruit, output fluid>>

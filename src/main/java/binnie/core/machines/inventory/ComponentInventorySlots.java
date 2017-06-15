@@ -1,6 +1,11 @@
 package binnie.core.machines.inventory;
 
-import binnie.core.machines.IMachine;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -10,11 +15,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import binnie.core.machines.IMachine;
 
 public class ComponentInventorySlots extends ComponentInventory implements IInventoryMachine, IInventorySlots {
 	private Map<Integer, InventorySlot> inventory;

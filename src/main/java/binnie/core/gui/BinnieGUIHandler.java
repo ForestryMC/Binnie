@@ -1,15 +1,17 @@
 package binnie.core.gui;
 
-import binnie.core.AbstractMod;
-import binnie.core.BinnieCore;
-import binnie.core.craftgui.minecraft.Window;
+import javax.annotation.Nullable;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
+import binnie.core.AbstractMod;
+import binnie.core.BinnieCore;
+import binnie.core.craftgui.minecraft.Window;
 
 public final class BinnieGUIHandler implements IGuiHandler {
 	private AbstractMod mod;

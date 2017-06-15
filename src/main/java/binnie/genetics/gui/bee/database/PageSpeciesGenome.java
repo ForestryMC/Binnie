@@ -1,5 +1,12 @@
 package binnie.genetics.gui.bee.database;
 
+import net.minecraft.util.math.Vec3i;
+
+import forestry.api.apiculture.IBee;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleSpecies;
+
 import binnie.Binnie;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
@@ -8,11 +15,6 @@ import binnie.core.craftgui.database.DatabaseTab;
 import binnie.core.craftgui.database.PageSpecies;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.TextJustification;
-import forestry.api.apiculture.IBee;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleSpecies;
-import net.minecraft.util.math.Vec3i;
 
 public class PageSpeciesGenome extends PageSpecies {
 	ControlText pageSpeciesGenome_Title;

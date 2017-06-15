@@ -1,5 +1,11 @@
 package binnie.genetics.machine.incubator;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.minecraft.GUIIcon;
@@ -16,10 +22,6 @@ import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.craftgui.WindowMachine;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowIncubator extends WindowMachine {
 	static Texture ProgressBase = new StandardTexture(0, 91, 38, 32, GeneticsTexture.GUIProcess);

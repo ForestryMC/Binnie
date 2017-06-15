@@ -1,15 +1,8 @@
 package binnie.genetics.genetics;
 
-import binnie.core.genetics.Gene;
-import binnie.core.network.packet.MessageNBT;
-import binnie.genetics.Genetics;
-import binnie.genetics.api.IGene;
-import binnie.genetics.core.GeneticsPacket;
-import com.mojang.authlib.GameProfile;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.ISpeciesRoot;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -17,8 +10,18 @@ import net.minecraft.nbt.NBTTagString;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSavedData;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
+import com.mojang.authlib.GameProfile;
+
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.ISpeciesRoot;
+
+import binnie.core.genetics.Gene;
+import binnie.core.network.packet.MessageNBT;
+import binnie.genetics.Genetics;
+import binnie.genetics.api.IGene;
+import binnie.genetics.core.GeneticsPacket;
 
 public class GeneTracker extends WorldSavedData {
 	private ArrayList<IGene> discoveredGenes;

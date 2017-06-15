@@ -1,9 +1,10 @@
 package binnie.core.craftgui;
 
-import binnie.core.craftgui.renderer.TextureRenderer;
-import binnie.core.craftgui.resource.minecraft.CraftGUIResourceManager;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import binnie.core.craftgui.renderer.TextureRenderer;
+import binnie.core.craftgui.resource.minecraft.CraftGUIResourceManager;
 
 @SideOnly(Side.CLIENT)
 public class CraftGUI {

@@ -1,5 +1,10 @@
 package binnie.core.craftgui.controls.button;
 
+import javax.annotation.Nullable;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.craftgui.Attribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
@@ -10,10 +15,6 @@ import binnie.core.craftgui.events.EventHandler;
 import binnie.core.craftgui.events.EventMouse;
 import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nullable;
 
 public class ControlButton extends Control {
 	@Nullable

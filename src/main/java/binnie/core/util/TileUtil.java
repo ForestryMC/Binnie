@@ -1,13 +1,14 @@
 package binnie.core.util;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.capabilities.Capability;
 
-import javax.annotation.Nullable;
+import net.minecraftforge.common.capabilities.Capability;
 
 public class TileUtil {
 	@Nullable

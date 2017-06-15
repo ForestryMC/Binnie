@@ -1,14 +1,7 @@
 package binnie.botany.gardening;
 
-import binnie.Constants;
-import binnie.botany.Botany;
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.EnumSoilType;
 import com.google.common.collect.Multimap;
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -28,8 +21,19 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+
+import binnie.Constants;
+import binnie.botany.Botany;
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumMoisture;
+import binnie.botany.api.EnumSoilType;
 
 public class ItemTrowel extends Item implements IItemModelRegister {
 	protected final ToolMaterial theToolMaterial;

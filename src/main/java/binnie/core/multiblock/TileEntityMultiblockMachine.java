@@ -1,10 +1,11 @@
 package binnie.core.multiblock;
 
-import binnie.core.machines.Machine;
-import binnie.core.machines.TileEntityMachine;
+import javax.annotation.Nullable;
+
 import net.minecraft.tileentity.TileEntity;
 
-import javax.annotation.Nullable;
+import binnie.core.machines.Machine;
+import binnie.core.machines.TileEntityMachine;
 
 class TileEntityMultiblockMachine extends TileEntity {
 	private boolean inStructure;

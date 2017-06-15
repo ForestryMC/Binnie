@@ -1,11 +1,13 @@
 package binnie.extrabees.client.gui;
 
-import binnie.extrabees.alveary.AlvearyLogicMutator;
-import binnie.extrabees.alveary.EnumAlvearyLogicType;
+import java.awt.Dimension;
+
 import net.minecraft.entity.player.EntityPlayer;
+
 import net.minecraftforge.items.SlotItemHandler;
 
-import java.awt.Dimension;
+import binnie.extrabees.alveary.AlvearyLogicMutator;
+import binnie.extrabees.alveary.EnumAlvearyLogicType;
 
 public class ContainerMutator extends AbstractAlvearyContainer {
 

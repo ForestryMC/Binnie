@@ -1,5 +1,17 @@
 package binnie.core.craftgui.renderer;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.renderer.GlStateManager;
+
+import net.minecraftforge.fml.client.config.GuiUtils;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import org.lwjgl.opengl.GL11;
+
 import binnie.core.BinnieCore;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.geometry.Area;
@@ -8,15 +20,6 @@ import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.resource.IStyleSheet;
 import binnie.core.craftgui.resource.Texture;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraftforge.fml.client.config.GuiUtils;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.opengl.GL11;
-
-import javax.annotation.Nullable;
 
 @SideOnly(Side.CLIENT)
 public class TextureRenderer {

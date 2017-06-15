@@ -1,5 +1,18 @@
 package binnie.genetics.gui;
 
+import com.google.common.base.Preconditions;
+
+import javax.annotation.Nullable;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.apiculture.EnumBeeChromosome;
+import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.lepidopterology.EnumButterflyChromosome;
+
 import binnie.Binnie;
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.core.craftgui.CraftGUI;
@@ -10,16 +23,6 @@ import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.core.texture.BinnieCoreTexture;
-import com.google.common.base.Preconditions;
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.arboriculture.EnumTreeChromosome;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.ISpeciesRoot;
-import forestry.api.lepidopterology.EnumButterflyChromosome;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nullable;
 
 public class ControlChromosome extends Control implements IControlValue<IChromosomeType> {
 	Texture BeeTexture;

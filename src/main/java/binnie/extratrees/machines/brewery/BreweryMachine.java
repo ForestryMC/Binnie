@@ -1,5 +1,7 @@
 package binnie.extratrees.machines.brewery;
 
+import net.minecraft.tileentity.TileEntity;
+
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
@@ -12,7 +14,6 @@ import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.machines.ExtraTreeMachine;
-import net.minecraft.tileentity.TileEntity;
 
 public class BreweryMachine extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
 	public static final int TANK_INPUT = 0;

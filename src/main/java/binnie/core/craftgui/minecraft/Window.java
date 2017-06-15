@@ -1,5 +1,22 @@
 package binnie.core.craftgui.minecraft;
 
+import com.google.common.base.Preconditions;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Deque;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
+
+import com.mojang.authlib.GameProfile;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
@@ -33,19 +50,6 @@ import binnie.core.network.packet.MessageCraftGUI;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
-import com.google.common.base.Preconditions;
-import com.mojang.authlib.GameProfile;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Deque;
 
 public abstract class Window extends TopLevelWidget implements INetwork.ReceiveGuiNBT {
 	private final Side side;

@@ -1,13 +1,15 @@
 package binnie.extrabees.worldgen;
 
-import binnie.extrabees.utils.config.ConfigurationMain;
+import java.util.Random;
+
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+
 import net.minecraftforge.fml.common.IWorldGenerator;
 
-import java.util.Random;
+import binnie.extrabees.utils.config.ConfigurationMain;
 
 public class ExtraBeesWorldGenerator implements IWorldGenerator {
 

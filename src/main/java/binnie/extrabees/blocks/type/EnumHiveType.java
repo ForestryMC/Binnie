@@ -1,10 +1,11 @@
 package binnie.extrabees.blocks.type;
 
-import forestry.api.apiculture.IHiveDrop;
-import net.minecraft.util.IStringSerializable;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import net.minecraft.util.IStringSerializable;
+
+import forestry.api.apiculture.IHiveDrop;
 
 public enum EnumHiveType implements IStringSerializable {
 

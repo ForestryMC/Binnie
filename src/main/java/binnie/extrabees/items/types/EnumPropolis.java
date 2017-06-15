@@ -1,10 +1,13 @@
 package binnie.extrabees.items.types;
 
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fluids.FluidStack;
+
+import forestry.api.recipes.RecipeManagers;
+
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.utils.Utils;
-import forestry.api.recipes.RecipeManagers;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
 
 public enum EnumPropolis implements IEBEnumItem {
 	WATER(2405321, 12762791, "Water"),

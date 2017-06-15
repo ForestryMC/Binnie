@@ -1,5 +1,24 @@
 package binnie.genetics.gui.tree;
 
+import com.google.common.base.Throwables;
+
+import java.lang.reflect.Field;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Map;
+
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
+
+import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.arboriculture.IAlleleFruit;
+import forestry.api.arboriculture.ITree;
+import forestry.api.arboriculture.ITreeGenome;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IFruitFamily;
+import forestry.arboriculture.FruitProviderPod;
+
 import binnie.Binnie;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextCentered;
@@ -9,22 +28,6 @@ import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.UniqueItemStackSet;
 import binnie.genetics.Genetics;
 import binnie.genetics.gui.AnalystPageProduce;
-import com.google.common.base.Throwables;
-import forestry.api.arboriculture.EnumTreeChromosome;
-import forestry.api.arboriculture.IAlleleFruit;
-import forestry.api.arboriculture.ITree;
-import forestry.api.arboriculture.ITreeGenome;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IFruitFamily;
-import forestry.arboriculture.FruitProviderPod;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextFormatting;
-
-import java.lang.reflect.Field;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Map;
 
 public class AnalystPageFruit extends AnalystPageProduce {
 	public AnalystPageFruit(final IWidget parent, final Area area, final ITree ind) {

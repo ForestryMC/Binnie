@@ -1,5 +1,7 @@
 package binnie.core.util;
 
+import java.io.File;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.MinecraftException;
 import net.minecraft.world.WorldProvider;
@@ -8,8 +10,6 @@ import net.minecraft.world.gen.structure.template.TemplateManager;
 import net.minecraft.world.storage.IPlayerFileData;
 import net.minecraft.world.storage.ISaveHandler;
 import net.minecraft.world.storage.WorldInfo;
-
-import java.io.File;
 
 public class FakeSaveHandler implements ISaveHandler {
 	@Override

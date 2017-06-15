@@ -1,5 +1,8 @@
 package binnie.genetics.machine.acclimatiser;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
@@ -12,8 +15,6 @@ import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.GeneticMachine;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 
 public class PackageAcclimatiser extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageAcclimatiser() {

@@ -1,5 +1,21 @@
 package binnie.genetics.gui;
 
+import java.util.Collection;
+import java.util.List;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.apiculture.IBee;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IMutation;
+
 import binnie.Binnie;
 import binnie.core.Mods;
 import binnie.core.craftgui.Attribute;
@@ -19,19 +35,6 @@ import binnie.core.integration.extrabees.ExtraBeesIntegration;
 import binnie.core.resource.BinnieSprite;
 import binnie.genetics.Genetics;
 import binnie.genetics.item.ModuleItems;
-import forestry.api.apiculture.IBee;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.IMutation;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.Collection;
-import java.util.List;
 
 public class AnalystPageMutations extends ControlAnalystPage {
 	public AnalystPageMutations(final IWidget parent, final Area area, final IIndividual ind, final boolean isMaster) {

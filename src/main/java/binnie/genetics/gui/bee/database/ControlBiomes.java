@@ -1,5 +1,17 @@
 package binnie.genetics.gui.bee.database;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.world.biome.Biome;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.apiculture.IAlleleBeeSpecies;
+import forestry.api.apiculture.IBee;
+import forestry.api.apiculture.IBeeGenome;
+
 import binnie.Binnie;
 import binnie.core.craftgui.Attribute;
 import binnie.core.craftgui.CraftGUI;
@@ -9,15 +21,6 @@ import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
-import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.apiculture.IBee;
-import forestry.api.apiculture.IBeeGenome;
-import net.minecraft.world.biome.Biome;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ControlBiomes extends Control implements ITooltip {
 	List<Integer> tolerated;

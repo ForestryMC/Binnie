@@ -1,17 +1,19 @@
 package binnie.extratrees.block.decor;
 
-import binnie.extratrees.block.IPlankType;
-import binnie.extratrees.block.WoodManager;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
+
 import net.minecraftforge.common.ForgeHooks;
 
-import java.util.ArrayList;
-import java.util.List;
+import binnie.extratrees.block.IPlankType;
+import binnie.extratrees.block.WoodManager;
 
 public class MultiFenceRecipeSize implements IRecipe {
 	private ItemStack cached = ItemStack.EMPTY;

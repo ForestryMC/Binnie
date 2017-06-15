@@ -1,19 +1,21 @@
 package binnie.botany.ceramic.brick;
 
-import binnie.botany.Botany;
-import binnie.botany.genetics.EnumFlowerColor;
-import binnie.botany.items.BotanyItems;
-import binnie.core.block.TileEntityMetadata;
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Locale;
+
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
-import java.util.List;
-import java.util.Locale;
+import binnie.botany.Botany;
+import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.items.BotanyItems;
+import binnie.core.block.TileEntityMetadata;
 
 public enum CeramicBrickType implements IStringSerializable {
 	Tile("tile", "Ceramic Tile") {

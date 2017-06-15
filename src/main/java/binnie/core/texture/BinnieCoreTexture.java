@@ -1,14 +1,15 @@
 package binnie.core.texture;
 
+import javax.annotation.Nullable;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nullable;
 
 public enum BinnieCoreTexture implements IBinnieTexture {
 	Compartment(ResourceType.Tile, "compartment"),

@@ -1,26 +1,30 @@
 package binnie.extrabees.alveary;
 
-import binnie.extrabees.circuit.StimulatorCircuit;
-import binnie.extrabees.client.gui.ContainerStimulator;
-import binnie.extrabees.client.gui.GuiContainerStimulator;
 import com.google.common.collect.Lists;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeModifier;
-import forestry.api.circuits.ChipsetManager;
-import forestry.api.circuits.ICircuit;
-import forestry.api.circuits.ICircuitBoard;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.energy.EnergyStorage;
-import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.energy.EnergyStorage;
+import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraftforge.items.ItemStackHandler;
+
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.IBeeModifier;
+import forestry.api.circuits.ChipsetManager;
+import forestry.api.circuits.ICircuit;
+import forestry.api.circuits.ICircuitBoard;
+
+import binnie.extrabees.circuit.StimulatorCircuit;
+import binnie.extrabees.client.gui.ContainerStimulator;
+import binnie.extrabees.client.gui.GuiContainerStimulator;
 
 public class AlvearyLogicStimulator extends AbstractAlvearyLogic {
 

@@ -1,15 +1,17 @@
 package binnie.extratrees.integration.jei.lumbermill;
 
+import java.util.Arrays;
+
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.item.ExtraTreeItems;
 import binnie.extratrees.machines.lumbermill.LumbermillLogic;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-
-import java.util.Arrays;
 
 public class LumbermillRecipeWrapper extends BlankRecipeWrapper {
 	private static final FluidStack WATER = new FluidStack(FluidRegistry.WATER, LumbermillLogic.WATER_PER_TICK * LumbermillLogic.PROCESS_LENGTH);

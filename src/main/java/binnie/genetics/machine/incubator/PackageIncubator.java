@@ -1,5 +1,7 @@
 package binnie.genetics.machine.incubator;
 
+import net.minecraft.tileentity.TileEntity;
+
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
@@ -11,7 +13,6 @@ import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.GeneticMachine;
-import net.minecraft.tileentity.TileEntity;
 
 public class PackageIncubator extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageIncubator() {

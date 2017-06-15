@@ -1,15 +1,17 @@
 package binnie.extrabees.utils;
 
-import forestry.core.utils.Translator;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.core.utils.Translator;
 
 public class BeeModifierLogic {
 

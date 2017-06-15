@@ -1,20 +1,23 @@
 package binnie.genetics.item;
 
-import binnie.core.item.ItemCore;
-import binnie.genetics.CreativeTabGenetics;
-import binnie.genetics.Genetics;
-import binnie.genetics.genetics.IGeneItem;
-import forestry.core.items.IColoredItem;
+import javax.annotation.Nullable;
+import java.util.List;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
-import java.util.List;
+import forestry.core.items.IColoredItem;
+
+import binnie.core.item.ItemCore;
+import binnie.genetics.CreativeTabGenetics;
+import binnie.genetics.Genetics;
+import binnie.genetics.genetics.IGeneItem;
 
 public abstract class ItemGene extends ItemCore implements IColoredItem {
 

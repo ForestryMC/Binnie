@@ -1,12 +1,13 @@
 package binnie.core.integration.jei;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.util.ResourceLocation;
+
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
 import mezz.jei.api.gui.IDrawableStatic;
-import net.minecraft.util.ResourceLocation;
-
-import javax.annotation.Nullable;
 
 public class Drawables {
 	public static final ResourceLocation guiTank = new ResourceLocation("binniecore:textures/gui/craftgui-slots.png");

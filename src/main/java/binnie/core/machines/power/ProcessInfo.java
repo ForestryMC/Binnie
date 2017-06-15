@@ -1,8 +1,9 @@
 package binnie.core.machines.power;
 
+import net.minecraft.nbt.NBTTagCompound;
+
 import forestry.api.core.INbtReadable;
 import forestry.api.core.INbtWritable;
-import net.minecraft.nbt.NBTTagCompound;
 
 public class ProcessInfo implements INbtReadable, INbtWritable {
 	private float currentProgress;

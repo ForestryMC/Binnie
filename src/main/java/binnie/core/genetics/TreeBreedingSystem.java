@@ -1,11 +1,19 @@
 package binnie.core.genetics;
 
-import binnie.Binnie;
-import binnie.core.BinnieCore;
-import binnie.core.util.UniqueItemStackSet;
-import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.machines.lumbermill.LumbermillRecipes;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+
 import com.mojang.authlib.GameProfile;
+
 import forestry.api.arboriculture.EnumGermlingType;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.IAlleleFruit;
@@ -25,17 +33,12 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IMutation;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.genetics.ISpeciesType;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import binnie.Binnie;
+import binnie.core.BinnieCore;
+import binnie.core.util.UniqueItemStackSet;
+import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.machines.lumbermill.LumbermillRecipes;
 
 public class TreeBreedingSystem extends BreedingSystem {
 	public UniqueItemStackSet allFruits;

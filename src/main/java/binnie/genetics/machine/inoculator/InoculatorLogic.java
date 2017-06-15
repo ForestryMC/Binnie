@@ -1,5 +1,17 @@
 package binnie.genetics.machine.inoculator;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
+import net.minecraftforge.oredict.OreDictionary;
+
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IGenome;
+import forestry.api.genetics.IIndividual;
+
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachineUtil;
 import binnie.core.machines.power.ComponentProcess;
@@ -9,15 +21,6 @@ import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.genetics.Engineering;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IGenome;
-import forestry.api.genetics.IIndividual;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.oredict.OreDictionary;
-
-import javax.annotation.Nullable;
 
 public class InoculatorLogic extends ComponentProcess implements IProcess {
 	public static final int PROCESS_BASE_LENGTH = 12000;

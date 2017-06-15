@@ -1,5 +1,12 @@
 package binnie.extratrees.machines.craftgui;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+
+import net.minecraftforge.fml.relauncher.Side;
+
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.minecraft.Window;
@@ -12,11 +19,6 @@ import binnie.core.craftgui.minecraft.control.ControlSlotArray;
 import binnie.core.machines.Machine;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.machines.brewery.BreweryMachine;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraftforge.fml.relauncher.Side;
-
-import javax.annotation.Nullable;
 
 public class WindowBrewery extends Window {
 	public WindowBrewery(final EntityPlayer player, final IInventory inventory, final Side side) {

@@ -1,11 +1,13 @@
 package binnie.extratrees.carpentry;
 
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.ILayout;
 import binnie.extratrees.api.IPattern;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Layout implements ILayout {
 	IPattern pattern;

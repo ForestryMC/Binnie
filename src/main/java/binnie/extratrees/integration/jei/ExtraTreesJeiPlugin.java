@@ -1,5 +1,8 @@
 package binnie.extratrees.integration.jei;
 
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
 import binnie.core.integration.jei.Drawables;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.WoodManager;
@@ -21,8 +24,6 @@ import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.ISubtypeRegistry;
 import mezz.jei.api.JEIPlugin;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 @JEIPlugin
 public class ExtraTreesJeiPlugin extends BlankModPlugin {

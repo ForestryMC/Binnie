@@ -1,11 +1,12 @@
 package binnie.genetics.item;
 
-import binnie.core.item.IItemMiscProvider;
-import binnie.genetics.Genetics;
+import java.util.List;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import java.util.List;
+import binnie.core.item.IItemMiscProvider;
+import binnie.genetics.Genetics;
 
 public enum GeneticsItems implements IItemMiscProvider {
 	LaboratoryCasing("Reinforced Casing", "casing_iron"),

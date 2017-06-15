@@ -1,10 +1,10 @@
 package binnie.core.machines;
 
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-
 import javax.annotation.Nullable;
 import java.util.Collection;
+
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 public interface IMachine extends IOwnable {
 	void addComponent(MachineComponent component);

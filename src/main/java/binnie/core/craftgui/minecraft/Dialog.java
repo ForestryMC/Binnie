@@ -1,5 +1,8 @@
 package binnie.core.craftgui.minecraft;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.craftgui.Attribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
@@ -9,8 +12,6 @@ import binnie.core.craftgui.events.EventMouse;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.renderer.RenderUtil;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public abstract class Dialog extends Control {

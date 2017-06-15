@@ -1,5 +1,8 @@
 package binnie.core.craftgui.controls;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.craftgui.Attribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
@@ -12,8 +15,6 @@ import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlCheckbox extends Control implements IControlValue<Boolean> {
 	private boolean value;

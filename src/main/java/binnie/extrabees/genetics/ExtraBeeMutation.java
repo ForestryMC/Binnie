@@ -1,6 +1,13 @@
 package binnie.extrabees.genetics;
 
 import com.google.common.base.Preconditions;
+
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+import net.minecraftforge.common.BiomeDictionary;
+
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBeeHousing;
@@ -10,10 +17,6 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IMutationCondition;
 import forestry.apiculture.genetics.BeeDefinition;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.common.BiomeDictionary;
 
 import static forestry.apiculture.genetics.BeeDefinition.AUSTERE;
 import static forestry.apiculture.genetics.BeeDefinition.BOGGY;

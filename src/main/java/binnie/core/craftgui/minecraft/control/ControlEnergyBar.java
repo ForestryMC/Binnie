@@ -1,5 +1,13 @@
 package binnie.core.craftgui.minecraft.control;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.inventory.IInventory;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.craftgui.Attribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
@@ -17,12 +25,6 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.power.IPoweredMachine;
 import binnie.core.machines.power.IProcess;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.inventory.IInventory;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nullable;
 
 public class ControlEnergyBar extends Control implements ITooltip {
 	public static boolean isError;

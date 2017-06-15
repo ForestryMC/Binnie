@@ -1,5 +1,13 @@
 package binnie.genetics.machine.incubator;
 
+import javax.annotation.Nullable;
+import java.util.Random;
+
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
+
 import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentProcessIndefinate;
 import binnie.core.machines.power.ErrorState;
@@ -7,12 +15,6 @@ import binnie.core.machines.power.IProcess;
 import binnie.core.machines.transfer.TransferRequest;
 import binnie.genetics.Genetics;
 import binnie.genetics.api.IIncubatorRecipe;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
-
-import javax.annotation.Nullable;
-import java.util.Random;
 
 public class IncubatorLogic extends ComponentProcessIndefinate implements IProcess {
 	@Nullable

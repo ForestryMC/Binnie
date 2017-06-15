@@ -1,12 +1,14 @@
 package binnie.extratrees.machines.brewery;
 
-import binnie.extratrees.item.ExtraTreeItems;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
-
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
+
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fluids.FluidStack;
+
+import binnie.extratrees.item.ExtraTreeItems;
 
 public class BreweryRecipe implements IBreweryRecipe {
 	private final FluidStack input;

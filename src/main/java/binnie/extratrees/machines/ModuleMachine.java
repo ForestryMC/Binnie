@@ -1,5 +1,16 @@
 package binnie.extratrees.machines;
 
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.crafting.CraftingManager;
+
+import net.minecraftforge.oredict.ShapedOreRecipe;
+
+import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import forestry.api.core.Tabs;
+
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
@@ -7,13 +18,6 @@ import binnie.core.machines.MachineGroup;
 import binnie.core.machines.inventory.ValidatorSprite;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.item.ExtraTreeItems;
-import forestry.api.core.Tabs;
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ModuleMachine implements IInitializable {
 	public static ValidatorSprite spritePolish;
