@@ -31,6 +31,12 @@ public class BreweryRecipe implements IBreweryRecipe {
 		if (!this.yeast.isItemEqual(crafting.yeast)) {
 			return null;
 		}
+		if(crafting.inputGrains != null && crafting.inputGrains.length > 0){
+			return null;
+		}
+		if(!crafting.ingredient.isEmpty()){
+			return null;
+		}
 		if (this.input.isFluidEqual(crafting.inputFluid)) {
 			return this.output.copy();
 		}

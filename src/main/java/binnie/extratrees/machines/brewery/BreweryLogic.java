@@ -70,8 +70,11 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 	@Override
 	protected void onFinishTask() {
 		Preconditions.checkState(this.currentCrafting != null);
-		FluidStack output = BreweryRecipes.getOutput(this.currentCrafting);
-		if (output != null) {
+		IBreweryRecipe recipe = BreweryRecipes.getRecipe(currentCrafting);
+		if (recipe != null) {
+			FluidStack output = recipe.getOutput();
+			FluidStack input = recipe.getInput();
+			this.getUtil().drainTank(BreweryMachine.TANK_INPUT,  input.amount);
 			this.getUtil().fillTank(BreweryMachine.TANK_OUTPUT, output);
 			this.currentCrafting = null;
 		}

@@ -31,7 +31,7 @@ public class ItemStackSet implements Set<ItemStack> {
 
 	@Override
 	public boolean add(final ItemStack e) {
-		if (e != null) {
+		if (!e.isEmpty()) {
 			ItemStack existing = this.getExisting(e);
 			if (existing.isEmpty()) {
 				return this.itemStacks.add(e.copy());

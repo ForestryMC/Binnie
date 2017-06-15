@@ -12,11 +12,12 @@ import forestry.api.core.INbtWritable;
 public class BreweryCrafting implements INbtWritable {
 	@Nullable
 	public FluidStack inputFluid;
+	@Nullable
 	public ItemStack[] inputGrains;
 	public ItemStack ingredient;
 	public ItemStack yeast;
 
-	public BreweryCrafting(@Nullable final FluidStack inputFluid, final ItemStack ingredient, @Nullable final ItemStack[] inputGrains, final ItemStack yeast) {
+	public BreweryCrafting( @Nullable final FluidStack inputFluid, final ItemStack ingredient, @Nullable final ItemStack[] inputGrains, final ItemStack yeast) {
 		this.inputFluid = inputFluid;
 		this.inputGrains = ((inputGrains == null) ? new ItemStack[3] : inputGrains);
 		this.ingredient = ingredient;

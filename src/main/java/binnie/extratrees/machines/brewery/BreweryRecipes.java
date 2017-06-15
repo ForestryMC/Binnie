@@ -63,6 +63,19 @@ public class BreweryRecipes {
 		}
 		return null;
 	}
+	
+	@Nullable
+	public static IBreweryRecipe getRecipe(final BreweryCrafting crafting) {
+		if (crafting.inputFluid != null && !crafting.yeast.isEmpty()) {
+			for (final IBreweryRecipe recipe : recipes) {
+				FluidStack output = recipe.getOutput(crafting);
+				if (output != null) {
+					return recipe;
+				}
+			}
+		}
+		return null;
+	}
 
 	public static boolean isValidIngredient(final ItemStack itemstack) {
 		for (final IBreweryRecipe recipe : recipes) {

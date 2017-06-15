@@ -90,7 +90,7 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 	public void setType(final Type type) {
 		this.type = type;
 		if (type == Type.Recipe) {
-			this.setReadOnly();
+			//this.setReadOnly();
 			this.forbidInteraction();
 		}
 	}

@@ -123,7 +123,7 @@ public class MachineUtil {
 		final ItemStack[] stacks = new ItemStack[slots.length];
 		for (int i = 0; i < slots.length; ++i) {
 			ItemStack stack = this.getStack(slots[i]);
-			if (copy && !stack.isEmpty()) {
+			if (copy) {
 				stack = stack.copy();
 			}
 			stacks[i] = stack;
