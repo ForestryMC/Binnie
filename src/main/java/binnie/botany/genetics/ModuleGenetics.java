@@ -1,5 +1,13 @@
 package binnie.botany.genetics;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+
+import forestry.api.apiculture.FlowerManager;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.recipes.RecipeManagers;
+
 import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.api.EnumFlowerStage;
@@ -9,12 +17,7 @@ import binnie.botany.flower.ItemBotany;
 import binnie.botany.flower.TileEntityFlower;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
-import forestry.api.apiculture.FlowerManager;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.recipes.RecipeManagers;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
+import binnie.core.liquid.ManagerLiquid;
 
 public class ModuleGenetics implements IInitializable {
 	static AlleleEffectNone alleleEffectNone = new AlleleEffectNone();
@@ -51,7 +54,7 @@ public class ModuleGenetics implements IInitializable {
 	@Override
 	public void postInit() {
 		FlowerManager.flowerRegistry.registerAcceptableFlower(Botany.flower, "flowersVanilla");
-		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack("water", 2000), ItemStack.EMPTY, new ItemStack(Botany.database),
+		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack(ManagerLiquid.WATER, 2000), ItemStack.EMPTY, new ItemStack(Botany.database),
 			"X#X",
 			"YEY",
 			"RDR",

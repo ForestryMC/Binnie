@@ -1,5 +1,21 @@
 package binnie.genetics.item;
 
+import com.google.common.base.Preconditions;
+
+import javax.annotation.Nullable;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
+
+import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import forestry.api.recipes.RecipeManagers;
+
 import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.core.BinnieCore;
@@ -8,21 +24,11 @@ import binnie.core.Mods;
 import binnie.core.integration.extrabees.ExtraBeesIntegration;
 import binnie.core.item.ItemMisc;
 import binnie.core.liquid.FluidContainerType;
+import binnie.core.liquid.ManagerLiquid;
 import binnie.core.resource.BinnieSprite;
 import binnie.extratrees.ExtraTrees;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
-import com.google.common.base.Preconditions;
-import forestry.api.recipes.RecipeManagers;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
-
-import javax.annotation.Nullable;
 
 public class ModuleItems implements IInitializable {
 	public static BinnieSprite iconNight;
@@ -161,7 +167,7 @@ public class ModuleItems implements IInitializable {
 		));
 
 
-		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack("water", 2000), ItemStack.EMPTY,
+		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack(ManagerLiquid.WATER, 2000), ItemStack.EMPTY,
 			new ItemStack(database),
 			"X#X",
 			"YEY",
