@@ -1,5 +1,20 @@
 package binnie.botany.gardening;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.RecipeSorter;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
+
+import net.minecraftforge.fml.common.registry.GameRegistry;
+
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.EnumAcidity;
@@ -28,18 +43,6 @@ import binnie.core.Mods;
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.item.ItemMisc;
 import binnie.extratrees.carpentry.ItemDesign;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.RecipeSorter;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class ModuleGardening implements IInitializable {
 	public static final HashMap<ItemStack, Integer> queuedAcidFertilisers = new HashMap<>();

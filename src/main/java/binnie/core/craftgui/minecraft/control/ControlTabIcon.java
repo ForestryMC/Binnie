@@ -1,12 +1,14 @@
 package binnie.core.craftgui.minecraft.control;
 
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.craftgui.controls.tab.ControlTab;
 import binnie.core.craftgui.controls.tab.ControlTabBar;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.genetics.IItemStackRepresentitive;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlTabIcon<T> extends ControlTab<T> {
 	private ControlItemDisplay item;

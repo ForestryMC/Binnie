@@ -1,11 +1,9 @@
 package binnie.core.craftgui.minecraft;
 
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.Tooltip;
-import binnie.core.craftgui.events.EventKey;
-import binnie.core.craftgui.events.EventMouse;
-import binnie.core.craftgui.geometry.Point;
-import binnie.core.craftgui.renderer.RenderUtil;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -17,15 +15,20 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.nbt.NBTException;
 import net.minecraft.nbt.NBTTagCompound;
+
 import net.minecraftforge.fml.client.config.GuiUtils;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.events.EventKey;
+import binnie.core.craftgui.events.EventMouse;
+import binnie.core.craftgui.geometry.Point;
+import binnie.core.craftgui.renderer.RenderUtil;
 
 @SideOnly(Side.CLIENT)
 public class GuiCraftGUI extends GuiContainer {

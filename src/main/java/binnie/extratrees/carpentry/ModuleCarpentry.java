@@ -1,5 +1,10 @@
 package binnie.extratrees.carpentry;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+
+import net.minecraftforge.common.MinecraftForge;
+
 import binnie.core.IInitializable;
 import binnie.core.block.TileEntityMetadata;
 import binnie.extratrees.ExtraTrees;
@@ -7,9 +12,6 @@ import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.api.IDesignSystem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraftforge.common.MinecraftForge;
 
 public class ModuleCarpentry implements IInitializable {
 

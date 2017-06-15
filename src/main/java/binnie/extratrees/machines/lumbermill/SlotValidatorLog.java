@@ -1,8 +1,10 @@
 package binnie.extratrees.machines.lumbermill;
 
-import binnie.core.machines.inventory.SlotValidator;
 import net.minecraft.item.ItemStack;
+
 import net.minecraftforge.oredict.OreDictionary;
+
+import binnie.core.machines.inventory.SlotValidator;
 
 public class SlotValidatorLog extends SlotValidator {
 	private static final int logWoodId = OreDictionary.getOreID("logWood");

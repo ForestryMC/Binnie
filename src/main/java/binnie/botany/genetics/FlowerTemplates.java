@@ -1,9 +1,10 @@
 package binnie.botany.genetics;
 
-import binnie.botany.api.EnumFlowerChromosome;
 import forestry.api.genetics.IAllele;
 import forestry.core.genetics.alleles.AlleleHelper;
 import forestry.core.genetics.alleles.EnumAllele;
+
+import binnie.botany.api.EnumFlowerChromosome;
 
 public class FlowerTemplates {
 	public static IAllele[] getDefaultTemplate() {

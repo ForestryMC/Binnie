@@ -1,27 +1,30 @@
 package binnie.genetics.machine.acclimatiser;
 
-import binnie.Binnie;
-import binnie.botany.api.EnumFlowerChromosome;
-import binnie.core.BinnieCore;
-import binnie.core.genetics.Tolerance;
-import binnie.core.liquid.FluidContainerType;
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.EnumTolerance;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.ISpeciesRoot;
-import forestry.api.lepidopterology.EnumButterflyChromosome;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidRegistry;
-
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fluids.FluidRegistry;
+
+import forestry.api.apiculture.EnumBeeChromosome;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.EnumTolerance;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.lepidopterology.EnumButterflyChromosome;
+
+import binnie.Binnie;
+import binnie.botany.api.EnumFlowerChromosome;
+import binnie.core.BinnieCore;
+import binnie.core.genetics.Tolerance;
+import binnie.core.liquid.FluidContainerType;
 
 public class Acclimatiser {
 	public static final int[] SLOT_RESERVE = new int[]{0, 1, 2, 3};

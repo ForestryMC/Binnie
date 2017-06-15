@@ -1,12 +1,13 @@
 package binnie.core.craftgui.database;
 
+import net.minecraft.util.text.TextFormatting;
+
 import binnie.Binnie;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.genetics.BreedingSystem;
-import net.minecraft.util.text.TextFormatting;
 
 public class PageBreederStats extends Control {
 	String player;

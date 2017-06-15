@@ -1,10 +1,11 @@
 package binnie.core.network.packet;
 
-import binnie.core.network.BinnieCorePacketID;
-import io.netty.buffer.ByteBuf;
+import java.io.IOException;
+
 import net.minecraft.util.math.BlockPos;
 
-import java.io.IOException;
+import binnie.core.network.BinnieCorePacketID;
+import io.netty.buffer.ByteBuf;
 
 public class MessageMetadata extends MessageCoordinates {
 	public int meta;

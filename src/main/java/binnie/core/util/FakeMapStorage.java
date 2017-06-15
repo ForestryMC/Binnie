@@ -1,9 +1,9 @@
 package binnie.core.util;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.world.WorldSavedData;
 import net.minecraft.world.storage.MapStorage;
-
-import javax.annotation.Nullable;
 
 public class FakeMapStorage extends MapStorage {
 	public FakeMapStorage() {

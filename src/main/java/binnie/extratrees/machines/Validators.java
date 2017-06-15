@@ -1,8 +1,9 @@
 package binnie.extratrees.machines;
 
+import net.minecraft.item.ItemStack;
+
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.extratrees.api.IDesignMaterial;
-import net.minecraft.item.ItemStack;
 
 public class Validators {
 	public static class SlotValidatorBeeswax extends SlotValidator {

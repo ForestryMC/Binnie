@@ -1,7 +1,8 @@
 package binnie.botany.api;
 
-import forestry.core.genetics.IGeneticDefinition;
 import net.minecraft.item.ItemStack;
+
+import forestry.core.genetics.IGeneticDefinition;
 
 public interface IFlowerDefinition extends IGeneticDefinition {
 	@Override

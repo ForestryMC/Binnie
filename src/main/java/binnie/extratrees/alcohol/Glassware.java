@@ -1,10 +1,11 @@
 package binnie.extratrees.alcohol;
 
-import binnie.Binnie;
-import binnie.extratrees.ExtraTrees;
+import javax.annotation.Nullable;
+
 import net.minecraft.item.ItemStack;
 
-import javax.annotation.Nullable;
+import binnie.Binnie;
+import binnie.extratrees.ExtraTrees;
 
 public enum Glassware {
 	BeerMug(480, 10, 14),

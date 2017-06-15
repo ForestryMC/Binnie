@@ -1,5 +1,18 @@
 package binnie.genetics.gui;
 
+import net.minecraft.util.math.Vec3i;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.apiculture.IAlleleBeeEffect;
+import forestry.api.apiculture.IBee;
+import forestry.api.genetics.IIndividual;
+import forestry.api.lepidopterology.EnumButterflyChromosome;
+import forestry.api.lepidopterology.IAlleleButterflyEffect;
+import forestry.api.lepidopterology.IButterfly;
+import forestry.apiculture.PluginApiculture;
+
 import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
@@ -8,16 +21,6 @@ import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.TextJustification;
-import forestry.api.apiculture.IAlleleBeeEffect;
-import forestry.api.apiculture.IBee;
-import forestry.api.genetics.IIndividual;
-import forestry.api.lepidopterology.EnumButterflyChromosome;
-import forestry.api.lepidopterology.IAlleleButterflyEffect;
-import forestry.api.lepidopterology.IButterfly;
-import forestry.apiculture.PluginApiculture;
-import net.minecraft.util.math.Vec3i;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 //TODO:localise
 @SideOnly(Side.CLIENT)

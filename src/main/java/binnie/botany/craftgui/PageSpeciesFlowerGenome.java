@@ -1,5 +1,11 @@
 package binnie.botany.craftgui;
 
+import net.minecraft.item.ItemStack;
+
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IIndividual;
+
 import binnie.Binnie;
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.EnumFlowerStage;
@@ -17,10 +23,6 @@ import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IIndividual;
-import net.minecraft.item.ItemStack;
 
 public class PageSpeciesFlowerGenome extends PageSpecies {
 	public PageSpeciesFlowerGenome(final IWidget parent, final DatabaseTab tab) {

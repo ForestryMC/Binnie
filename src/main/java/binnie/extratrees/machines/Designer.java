@@ -1,5 +1,14 @@
 package binnie.extratrees.machines;
 
+import javax.annotation.Nullable;
+import java.util.Map;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.component.ComponentRecipe;
@@ -13,14 +22,6 @@ import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.carpentry.EnumDesign;
 import binnie.extratrees.core.ExtraTreesGUID;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-
-import javax.annotation.Nullable;
-import java.util.Map;
 
 public abstract class Designer {
 	public static int beeswaxSlot = 0;

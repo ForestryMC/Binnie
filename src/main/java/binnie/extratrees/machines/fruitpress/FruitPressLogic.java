@@ -1,10 +1,11 @@
 package binnie.extratrees.machines.fruitpress;
 
+import net.minecraftforge.fluids.FluidStack;
+
 import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
-import net.minecraftforge.fluids.FluidStack;
 
 public class FruitPressLogic extends ComponentProcessSetCost implements IProcess {
 	public static final int PROCESS_ENERGY = 1000;

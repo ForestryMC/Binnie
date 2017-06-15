@@ -3,7 +3,7 @@
 @FieldsAreNonnullByDefault
 package binnie.extratrees.kitchen;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 import binnie.core.util.FieldsAreNonnullByDefault;
 import mcp.MethodsReturnNonnullByDefault;
-
-import javax.annotation.ParametersAreNonnullByDefault;

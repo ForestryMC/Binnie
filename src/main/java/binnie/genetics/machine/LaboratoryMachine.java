@@ -1,5 +1,14 @@
 package binnie.genetics.machine;
 
+import javax.annotation.Nonnull;
+
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
 import binnie.core.machines.IMachine;
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.Machine;
@@ -13,14 +22,6 @@ import binnie.genetics.machine.acclimatiser.PackageAcclimatiser;
 import binnie.genetics.machine.analyser.PackageAnalyser;
 import binnie.genetics.machine.genepool.PackageGenepool;
 import binnie.genetics.machine.incubator.PackageIncubator;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
-import javax.annotation.Nonnull;
 
 public enum LaboratoryMachine implements IMachineType {
 	LabMachine(PackageLabMachine.class),

@@ -1,11 +1,13 @@
 package binnie.extrabees.client.gui;
 
-import binnie.extrabees.alveary.AlvearyLogicStimulator;
-import binnie.extrabees.alveary.EnumAlvearyLogicType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IContainerListener;
+
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.SlotItemHandler;
+
+import binnie.extrabees.alveary.AlvearyLogicStimulator;
+import binnie.extrabees.alveary.EnumAlvearyLogicType;
 
 public class ContainerStimulator extends AbstractAlvearyContainer {
 

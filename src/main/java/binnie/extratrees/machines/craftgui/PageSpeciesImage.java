@@ -1,5 +1,7 @@
 package binnie.extratrees.machines.craftgui;
 
+import forestry.api.genetics.IAlleleSpecies;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.database.ControlDatabaseIndividualDisplay;
@@ -8,7 +10,6 @@ import binnie.core.craftgui.database.EnumDiscoveryState;
 import binnie.core.craftgui.database.PageSpecies;
 import binnie.core.craftgui.minecraft.MinecraftGUI;
 import binnie.core.craftgui.window.Panel;
-import forestry.api.genetics.IAlleleSpecies;
 
 public class PageSpeciesImage extends PageSpecies {
 	ControlDatabaseIndividualDisplay display;

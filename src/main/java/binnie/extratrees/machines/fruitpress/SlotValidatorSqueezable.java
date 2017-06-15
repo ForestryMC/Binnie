@@ -1,7 +1,8 @@
 package binnie.extratrees.machines.fruitpress;
 
-import binnie.core.machines.inventory.SlotValidator;
 import net.minecraft.item.ItemStack;
+
+import binnie.core.machines.inventory.SlotValidator;
 
 public class SlotValidatorSqueezable extends SlotValidator {
 	public SlotValidatorSqueezable() {

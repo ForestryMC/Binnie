@@ -1,7 +1,14 @@
 package binnie.genetics.machine.sequencer;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.text.TextFormatting;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.AbstractMod;
-import binnie.core.ExtraBeeTexture;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.CraftGUIUtil;
@@ -20,12 +27,6 @@ import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.craftgui.WindowMachine;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowSequencer extends WindowMachine {
 	static Texture ProgressBase = new StandardTexture(64, 114, 98, 9, GeneticsTexture.GUIProcess3);

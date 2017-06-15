@@ -1,25 +1,29 @@
 package binnie.extratrees.proxy;
 
-import binnie.Constants;
-import binnie.core.models.ModelManager;
-import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.block.BlockETDecorativeLeaves;
-import binnie.extratrees.block.BlockETDefaultLeaves;
-import binnie.extratrees.models.ModelDefaultETLeaves;
-import binnie.extratrees.block.wood.BlockETSlab;
-import binnie.extratrees.models.ModelETDecorativeLeaves;
-import forestry.arboriculture.PluginArboriculture;
-import forestry.core.models.BlockModelEntry;
-import forestry.core.models.ModelEntry;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+
 import net.minecraftforge.client.model.ModelLoader;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.arboriculture.PluginArboriculture;
+import forestry.core.models.BlockModelEntry;
+import forestry.core.models.ModelEntry;
+
+import binnie.Constants;
+import binnie.core.models.ModelManager;
+import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.block.BlockETDecorativeLeaves;
+import binnie.extratrees.block.BlockETDefaultLeaves;
+import binnie.extratrees.block.wood.BlockETSlab;
+import binnie.extratrees.models.ModelDefaultETLeaves;
+import binnie.extratrees.models.ModelETDecorativeLeaves;
 
 @SideOnly(Side.CLIENT)
 public class ProxyClient extends Proxy implements IExtraTreeProxy {

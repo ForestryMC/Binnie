@@ -1,6 +1,9 @@
 package binnie.core.block;
 
-import binnie.core.BinnieCore;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -15,9 +18,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
+import binnie.core.BinnieCore;
 
 public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 	static int temporyMeta = -1;

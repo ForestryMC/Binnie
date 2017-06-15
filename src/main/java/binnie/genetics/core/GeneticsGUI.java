@@ -1,5 +1,15 @@
 package binnie.genetics.core;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+import net.minecraftforge.fml.relauncher.Side;
+
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.gui.IBinnieGUID;
 import binnie.genetics.gui.WindowAnalyst;
@@ -16,14 +26,6 @@ import binnie.genetics.machine.isolator.WindowIsolator;
 import binnie.genetics.machine.polymeriser.WindowPolymeriser;
 import binnie.genetics.machine.sequencer.WindowSequencer;
 import binnie.genetics.machine.splicer.WindowSplicer;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-
-import javax.annotation.Nullable;
 
 public enum GeneticsGUI implements IBinnieGUID {
 	Genepool(WindowGenepool::new),

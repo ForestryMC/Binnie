@@ -1,8 +1,9 @@
 package binnie.core.craftgui.database;
 
+import forestry.api.genetics.IClassification;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.listbox.ControlListBox;
-import forestry.api.genetics.IClassification;
 
 class ControlBranchBox extends ControlListBox<IClassification> {
 	public ControlBranchBox(final IWidget parent, final int x, final int y, final int width, final int height) {

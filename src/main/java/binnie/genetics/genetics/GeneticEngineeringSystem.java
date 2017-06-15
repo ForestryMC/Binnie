@@ -1,13 +1,6 @@
 package binnie.genetics.genetics;
 
-import binnie.core.genetics.BreedingSystem;
 import com.google.common.base.Throwables;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleFloat;
-import forestry.api.genetics.IAlleleInteger;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -15,6 +8,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
+
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleFloat;
+import forestry.api.genetics.IAlleleInteger;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.ISpeciesRoot;
+
+import binnie.core.genetics.BreedingSystem;
 
 public class GeneticEngineeringSystem {
 	static List<IAllele> speciesList;

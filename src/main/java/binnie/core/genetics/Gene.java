@@ -1,13 +1,16 @@
 package binnie.core.genetics;
 
-import binnie.Binnie;
-import binnie.genetics.api.IGene;
 import com.google.common.base.Preconditions;
+
+import net.minecraft.nbt.NBTTagCompound;
+
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
-import net.minecraft.nbt.NBTTagCompound;
+
+import binnie.Binnie;
+import binnie.genetics.api.IGene;
 
 public class Gene implements IGene {
 	private IAllele allele;

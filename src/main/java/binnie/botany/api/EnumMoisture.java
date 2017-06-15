@@ -1,10 +1,10 @@
 package binnie.botany.api;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
-
-import javax.annotation.Nullable;
 
 public enum EnumMoisture implements IStringSerializable {
 	DRY(TextFormatting.YELLOW),

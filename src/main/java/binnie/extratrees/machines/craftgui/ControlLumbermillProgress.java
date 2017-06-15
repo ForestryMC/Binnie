@@ -1,5 +1,15 @@
 package binnie.extratrees.machines.craftgui;
 
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import org.lwjgl.opengl.GL11;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.geometry.Area;
@@ -13,13 +23,6 @@ import binnie.core.craftgui.window.Panel;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.machines.lumbermill.LumbermillMachine;
 import binnie.extratrees.machines.lumbermill.LumbermillRecipes;
-import net.minecraft.block.Block;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.opengl.GL11;
 
 public class ControlLumbermillProgress extends ControlProgressBase {
 	static Texture Saw = new StandardTexture(0, 0, 6, 32, ExtraTreeTexture.Gui);

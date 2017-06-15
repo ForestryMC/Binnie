@@ -1,13 +1,15 @@
 package binnie.genetics.machine;
 
-import binnie.core.BinnieCore;
-import binnie.core.machines.Machine;
-import binnie.core.machines.component.IRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.BlockPos;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import binnie.core.BinnieCore;
+import binnie.core.machines.Machine;
+import binnie.core.machines.component.IRender;
 
 @SideOnly(Side.CLIENT)
 public class MachineRendererGenetics {

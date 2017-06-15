@@ -1,10 +1,11 @@
 package binnie.extratrees.item;
 
-import binnie.core.item.IItemMiscProvider;
-import binnie.extratrees.ExtraTrees;
+import java.util.List;
+
 import net.minecraft.item.ItemStack;
 
-import java.util.List;
+import binnie.core.item.IItemMiscProvider;
+import binnie.extratrees.ExtraTrees;
 
 public enum ExtraTreeItems implements IItemMiscProvider {
 	CarpentryHammer("Fake Hammer", "carpentry_hammer"),

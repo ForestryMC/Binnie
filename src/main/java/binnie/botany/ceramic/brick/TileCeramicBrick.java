@@ -1,11 +1,12 @@
 package binnie.botany.ceramic.brick;
 
-import binnie.botany.Botany;
-import binnie.botany.genetics.EnumFlowerColor;
-import binnie.core.block.TileEntityMetadata;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+
+import binnie.botany.Botany;
+import binnie.botany.genetics.EnumFlowerColor;
+import binnie.core.block.TileEntityMetadata;
 
 public class TileCeramicBrick extends TileEntity {
 	private EnumFlowerColor colorFirst = EnumFlowerColor.Black;

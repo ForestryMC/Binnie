@@ -1,23 +1,10 @@
 package binnie.botany.flower;
 
-import binnie.Binnie;
-import binnie.botany.Botany;
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.api.EnumFlowerChromosome;
-import binnie.botany.api.EnumFlowerStage;
-import binnie.botany.api.IAlleleFlowerSpecies;
-import binnie.botany.api.IFlower;
-import binnie.botany.api.IFlowerGenome;
-import binnie.botany.api.IFlowerType;
-import binnie.botany.core.BotanyCore;
-import binnie.botany.genetics.Flower;
 import com.google.common.base.Preconditions;
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.IPollinatable;
-import forestry.core.config.Config;
-import forestry.core.items.IColoredItem;
+
+import javax.annotation.Nullable;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -39,11 +26,28 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
-import java.util.List;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IPollinatable;
+import forestry.core.config.Config;
+import forestry.core.items.IColoredItem;
+
+import binnie.Binnie;
+import binnie.botany.Botany;
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.api.EnumFlowerChromosome;
+import binnie.botany.api.EnumFlowerStage;
+import binnie.botany.api.IAlleleFlowerSpecies;
+import binnie.botany.api.IFlower;
+import binnie.botany.api.IFlowerGenome;
+import binnie.botany.api.IFlowerType;
+import binnie.botany.core.BotanyCore;
+import binnie.botany.genetics.Flower;
 
 public class ItemBotany extends Item implements IColoredItem, IItemModelRegister {
 	private EnumFlowerStage type;

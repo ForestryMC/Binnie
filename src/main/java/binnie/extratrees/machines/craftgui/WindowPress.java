@@ -1,5 +1,14 @@
 package binnie.extratrees.machines.craftgui;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
+import net.minecraftforge.fml.relauncher.Side;
+
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.minecraft.InventoryType;
@@ -14,13 +23,6 @@ import binnie.core.machines.power.ErrorState;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.machines.fruitpress.FruitPressLogic;
 import binnie.extratrees.machines.fruitpress.FruitPressMachine;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fml.relauncher.Side;
-
-import javax.annotation.Nullable;
 
 public class WindowPress extends Window {
 	public WindowPress(final EntityPlayer player, final IInventory inventory, final Side side) {

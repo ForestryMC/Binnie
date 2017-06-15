@@ -1,5 +1,18 @@
 package binnie.genetics.gui;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Objects;
+
+import net.minecraft.util.text.TextFormatting;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IIndividual;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextCentered;
@@ -18,16 +31,6 @@ import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.craftgui.window.Panel;
 import binnie.core.genetics.BreedingSystem;
 import binnie.genetics.Genetics;
-import forestry.api.arboriculture.EnumTreeChromosome;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IIndividual;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Objects;
 
 public class AnalystPageDatabase extends ControlAnalystPage {
 	private final ControlScrollableContent scroll;

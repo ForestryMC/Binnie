@@ -1,5 +1,13 @@
 package binnie.extratrees.machines.craftgui;
 
+import java.util.stream.Collectors;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.IWidget;
@@ -21,12 +29,6 @@ import binnie.core.genetics.TreeBreedingSystem;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.block.WoodManager;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.stream.Collectors;
 
 public class WindowArboristDatabase extends WindowAbstractDatabase {
 	ControlListBox<ItemStack> selectionBoxFruit;

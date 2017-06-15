@@ -1,12 +1,14 @@
 package binnie.core.gui;
 
-import binnie.core.craftgui.minecraft.Window;
-import binnie.core.network.IOrdinaled;
+import javax.annotation.Nullable;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+
 import net.minecraftforge.fml.relauncher.Side;
 
-import javax.annotation.Nullable;
+import binnie.core.craftgui.minecraft.Window;
+import binnie.core.network.IOrdinaled;
 
 public interface IBinnieGUID extends IOrdinaled {
 	@Nullable

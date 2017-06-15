@@ -1,14 +1,15 @@
 package binnie.core.craftgui.controls.button;
 
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.controls.core.IControlValue;
-import binnie.core.craftgui.events.EventMouse;
-import binnie.core.craftgui.events.EventValueChanged;
 import com.google.common.base.Preconditions;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.core.IControlValue;
+import binnie.core.craftgui.events.EventMouse;
+import binnie.core.craftgui.events.EventValueChanged;
 
 public class ControlEnumButton<T> extends ControlButton implements IControlValue<T> {
 	public static final String eventEnumChanged = "eventEnumButtonChanged";

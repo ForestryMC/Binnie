@@ -1,8 +1,8 @@
 package binnie.extrabees.alveary;
 
-import net.minecraft.util.IStringSerializable;
-
 import javax.annotation.Nonnull;
+
+import net.minecraft.util.IStringSerializable;
 
 public enum EnumAlvearyLogicType implements IStringSerializable {
 

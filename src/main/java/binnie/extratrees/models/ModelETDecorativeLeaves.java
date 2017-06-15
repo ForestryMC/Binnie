@@ -1,14 +1,5 @@
 package binnie.extratrees.models;
 
-import binnie.extratrees.block.BlockETDecorativeLeaves;
-import binnie.extratrees.genetics.ETTreeDefinition;
-import forestry.api.arboriculture.IAlleleTreeSpecies;
-import forestry.api.arboriculture.ILeafSpriteProvider;
-import forestry.api.arboriculture.ITreeGenome;
-import forestry.api.core.IModelBaker;
-import forestry.core.models.ModelBlockCached;
-import forestry.core.models.baker.ModelBaker;
-import forestry.core.proxy.Proxies;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -17,8 +8,20 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.arboriculture.IAlleleTreeSpecies;
+import forestry.api.arboriculture.ILeafSpriteProvider;
+import forestry.api.arboriculture.ITreeGenome;
+import forestry.api.core.IModelBaker;
+import forestry.core.models.ModelBlockCached;
+import forestry.core.models.baker.ModelBaker;
+import forestry.core.proxy.Proxies;
+
+import binnie.extratrees.block.BlockETDecorativeLeaves;
+import binnie.extratrees.genetics.ETTreeDefinition;
 
 @SideOnly(Side.CLIENT)
 public class ModelETDecorativeLeaves extends ModelBlockCached<BlockETDecorativeLeaves, ETTreeDefinition> {

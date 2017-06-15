@@ -1,5 +1,19 @@
 package binnie.genetics.gui.tree;
 
+import java.util.Collection;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.arboriculture.IAlleleTreeSpecies;
+import forestry.api.arboriculture.ITree;
+import forestry.api.arboriculture.ITreeGenome;
+import forestry.api.genetics.IAlleleBoolean;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.geometry.Area;
@@ -10,17 +24,6 @@ import binnie.core.util.UniqueItemStackSet;
 import binnie.genetics.Genetics;
 import binnie.genetics.gui.AnalystPageProduce;
 import binnie.genetics.item.ModuleItems;
-import forestry.api.arboriculture.EnumTreeChromosome;
-import forestry.api.arboriculture.IAlleleTreeSpecies;
-import forestry.api.arboriculture.ITree;
-import forestry.api.arboriculture.ITreeGenome;
-import forestry.api.genetics.IAlleleBoolean;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.Collection;
 
 @SideOnly(Side.CLIENT)
 public class AnalystPageWood extends AnalystPageProduce {

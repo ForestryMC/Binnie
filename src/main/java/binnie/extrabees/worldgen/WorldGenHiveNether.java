@@ -1,8 +1,7 @@
 package binnie.extrabees.worldgen;
 
-import binnie.extrabees.ExtraBees;
-import binnie.extrabees.blocks.BlockExtraBeeHive;
-import binnie.extrabees.blocks.type.EnumHiveType;
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
@@ -10,9 +9,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
 import net.minecraftforge.common.BiomeDictionary;
 
-import java.util.Random;
+import binnie.extrabees.ExtraBees;
+import binnie.extrabees.blocks.BlockExtraBeeHive;
+import binnie.extrabees.blocks.type.EnumHiveType;
 
 public class WorldGenHiveNether extends WorldGenerator {
 

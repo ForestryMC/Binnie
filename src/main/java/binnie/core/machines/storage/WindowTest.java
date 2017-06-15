@@ -1,12 +1,14 @@
 package binnie.core.machines.storage;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+
+import net.minecraftforge.fml.relauncher.Side;
+
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.genetics.machine.craftgui.WindowMachine;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraftforge.fml.relauncher.Side;
 
 public class WindowTest extends WindowMachine {
 	public WindowTest(final EntityPlayer player, final IInventory inventory, final Side side) {

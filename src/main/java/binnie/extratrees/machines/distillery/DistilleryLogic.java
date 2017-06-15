@@ -1,17 +1,19 @@
 package binnie.extratrees.machines.distillery;
 
+import javax.annotation.Nullable;
+import java.util.Map;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
+
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+
 import binnie.core.machines.Machine;
 import binnie.core.machines.network.INetwork;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-
-import javax.annotation.Nullable;
-import java.util.Map;
 
 public class DistilleryLogic extends ComponentProcessSetCost implements IProcess, INetwork.SendGuiNBT, INetwork.ReceiveGuiNBT {
 	public static final int INPUT_FLUID_AMOUNT = Fluid.BUCKET_VOLUME;

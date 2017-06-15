@@ -1,12 +1,14 @@
 package binnie.extratrees.machines;
 
+import net.minecraft.client.renderer.GlStateManager;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.BinnieCore;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.ResourceType;
 import binnie.extratrees.ExtraTrees;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class MachineRendererNursery {
 	public static MachineRendererNursery instance = new MachineRendererNursery();

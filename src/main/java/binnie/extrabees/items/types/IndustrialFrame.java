@@ -1,12 +1,13 @@
 package binnie.extrabees.items.types;
 
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeModifier;
+import javax.annotation.Nullable;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import javax.annotation.Nullable;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.IBeeModifier;
 
 public enum IndustrialFrame implements IBeeModifier {
 

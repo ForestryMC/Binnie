@@ -1,11 +1,7 @@
 package binnie.extratrees.block;
 
-import binnie.Binnie;
-import binnie.core.block.BlockMetadata;
-import binnie.core.block.IBlockMetadata;
-import binnie.core.block.TileEntityMetadata;
-import binnie.extratrees.ExtraTrees;
-import forestry.api.core.Tabs;
+import java.util.List;
+
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -22,10 +18,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
+import forestry.api.core.Tabs;
+
+import binnie.Binnie;
+import binnie.core.block.BlockMetadata;
+import binnie.core.block.IBlockMetadata;
+import binnie.core.block.TileEntityMetadata;
+import binnie.extratrees.ExtraTrees;
 
 public class BlockETDoor extends BlockDoor implements IBlockMetadata, ITileEntityProvider {
 	/*private IIcon getFlippedIcon(final boolean upper, final boolean flip, final int tileMeta) {

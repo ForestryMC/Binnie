@@ -1,8 +1,8 @@
 package binnie.core.craftgui;
 
-import binnie.core.craftgui.geometry.Point;
-
 import javax.annotation.Nullable;
+
+import binnie.core.craftgui.geometry.Point;
 
 public interface ITopLevelWidget extends IWidget {
 	void setMousePosition(final int p0, final int p1);

@@ -1,5 +1,7 @@
 package binnie.core.util;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.profiler.Profiler;
@@ -13,8 +15,6 @@ import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.storage.ISaveHandler;
 import net.minecraft.world.storage.WorldInfo;
-
-import javax.annotation.Nullable;
 
 public class FakeCraftingWorld extends World {
 	private static final WorldSettings worldSettings = new WorldSettings(0, GameType.SURVIVAL, false, false, WorldType.DEFAULT);

@@ -1,5 +1,14 @@
 package binnie.genetics.integration.jei;
 
+import javax.annotation.Nullable;
+import java.util.Arrays;
+import java.util.List;
+
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+import forestry.api.genetics.ISpeciesRoot;
+
 import binnie.core.integration.jei.Drawables;
 import binnie.genetics.Genetics;
 import binnie.genetics.api.IIncubatorRecipe;
@@ -26,19 +35,12 @@ import binnie.genetics.machine.AdvGeneticMachine;
 import binnie.genetics.machine.GeneticMachine;
 import binnie.genetics.machine.LaboratoryMachine;
 import binnie.genetics.machine.incubator.Incubator;
-import forestry.api.genetics.ISpeciesRoot;
 import mezz.jei.api.BlankModPlugin;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.ISubtypeRegistry;
 import mezz.jei.api.JEIPlugin;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
-import javax.annotation.Nullable;
-import java.util.Arrays;
-import java.util.List;
 
 @JEIPlugin
 public class GeneticsJeiPlugin extends BlankModPlugin {

@@ -1,5 +1,14 @@
 package binnie.extratrees.machines.craftgui;
 
+import java.util.Collections;
+
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import org.lwjgl.opengl.GL11;
+
 import binnie.core.craftgui.Attribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
@@ -15,12 +24,6 @@ import binnie.core.util.ItemStackSet;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.machines.brewery.BreweryLogic;
 import binnie.extratrees.machines.brewery.BreweryRecipes;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.opengl.GL11;
-
-import java.util.Collections;
 
 public class ControlBreweryProgress extends ControlProgressBase {
 	static Texture Brewery = new StandardTexture(0, 69, 34, 39, ExtraTreeTexture.Gui);

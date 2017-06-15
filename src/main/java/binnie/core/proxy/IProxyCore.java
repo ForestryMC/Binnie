@@ -1,10 +1,11 @@
 package binnie.core.proxy;
 
-import binnie.core.AbstractMod;
-import binnie.core.IInitializable;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+
+import binnie.core.AbstractMod;
+import binnie.core.IInitializable;
 
 public interface IProxyCore extends IInitializable {
 

@@ -1,9 +1,9 @@
 package binnie.core.machines.inventory;
 
-import net.minecraft.util.EnumFacing;
-
 import java.util.Collection;
 import java.util.EnumSet;
+
+import net.minecraft.util.EnumFacing;
 
 public class MachineSide {
 	public static EnumSet<EnumFacing> TopAndBottom = EnumSet.of(EnumFacing.UP, EnumFacing.DOWN);

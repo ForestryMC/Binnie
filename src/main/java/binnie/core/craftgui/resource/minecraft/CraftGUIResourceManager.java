@@ -1,22 +1,10 @@
 package binnie.core.craftgui.resource.minecraft;
 
-import binnie.core.craftgui.CraftGUI;
-import binnie.core.craftgui.geometry.Area;
-import binnie.core.craftgui.geometry.Border;
-import binnie.core.craftgui.resource.Texture;
-import binnie.core.resource.IBinnieTexture;
 import com.google.common.base.Charsets;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
-import net.minecraft.client.resources.IResource;
-import net.minecraft.client.resources.IResourceManager;
-import net.minecraft.client.resources.IResourceManagerReloadListener;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import org.apache.commons.io.IOUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,6 +13,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.io.IOUtils;
+
+import net.minecraft.client.resources.IResource;
+import net.minecraft.client.resources.IResourceManager;
+import net.minecraft.client.resources.IResourceManagerReloadListener;
+import net.minecraft.util.ResourceLocation;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.geometry.Area;
+import binnie.core.craftgui.geometry.Border;
+import binnie.core.craftgui.resource.Texture;
+import binnie.core.resource.IBinnieTexture;
 
 @SideOnly(Side.CLIENT)
 public class CraftGUIResourceManager implements IResourceManagerReloadListener {

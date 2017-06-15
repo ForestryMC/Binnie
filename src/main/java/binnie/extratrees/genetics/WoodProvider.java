@@ -1,21 +1,24 @@
 package binnie.extratrees.genetics;
 
 import com.google.common.base.Preconditions;
-import forestry.api.arboriculture.IWoodProvider;
-import forestry.api.arboriculture.IWoodType;
-import forestry.api.arboriculture.TreeManager;
-import forestry.api.arboriculture.WoodBlockKind;
-import forestry.api.core.ITextureManager;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
+import forestry.api.arboriculture.IWoodProvider;
+import forestry.api.arboriculture.IWoodType;
+import forestry.api.arboriculture.TreeManager;
+import forestry.api.arboriculture.WoodBlockKind;
+import forestry.api.core.ITextureManager;
 
 public class WoodProvider implements IWoodProvider {
 	private IWoodType type;

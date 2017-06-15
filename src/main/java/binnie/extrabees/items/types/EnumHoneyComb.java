@@ -1,16 +1,20 @@
 package binnie.extrabees.items.types;
 
-import binnie.extrabees.ExtraBees;
 import com.google.common.base.Objects;
-import forestry.api.recipes.RecipeManagers;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nullable;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.oredict.OreDictionary;
+
+import forestry.api.recipes.RecipeManagers;
+
+import binnie.extrabees.ExtraBees;
 
 public enum EnumHoneyComb implements IEBEnumItem {
 

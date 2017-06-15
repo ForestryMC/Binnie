@@ -1,5 +1,10 @@
 package binnie.core.craftgui.database;
 
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.craftgui.Attribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.controls.listbox.ControlList;
@@ -7,9 +12,6 @@ import binnie.core.craftgui.controls.listbox.ControlTextOption;
 import binnie.core.craftgui.geometry.CraftGUIUtil;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class ControlItemStackOption extends ControlTextOption<ItemStack> {

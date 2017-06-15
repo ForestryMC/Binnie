@@ -1,25 +1,29 @@
 package binnie.extrabees.alveary;
 
-import binnie.extrabees.client.gui.AbstractAlvearyContainer;
-import binnie.extrabees.client.gui.ContainerFrameHousing;
-import binnie.extrabees.client.gui.GuiContainerAlvearyPart;
-import binnie.extrabees.utils.Utils;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraftforge.items.ItemStackHandler;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeRoot;
 import forestry.api.apiculture.IHiveFrame;
 import forestry.api.multiblock.IAlvearyController;
 import forestry.api.multiblock.IMultiblockLogicAlveary;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.ItemStackHandler;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import binnie.extrabees.client.gui.AbstractAlvearyContainer;
+import binnie.extrabees.client.gui.ContainerFrameHousing;
+import binnie.extrabees.client.gui.GuiContainerAlvearyPart;
+import binnie.extrabees.utils.Utils;
 
 public class AlvearyLogicFrameHousing extends AbstractAlvearyLogic {
 

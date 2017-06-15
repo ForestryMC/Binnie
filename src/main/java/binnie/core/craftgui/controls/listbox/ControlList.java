@@ -1,16 +1,16 @@
 package binnie.core.craftgui.controls.listbox;
 
+import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.controls.core.IControlValue;
 import binnie.core.craftgui.events.EventValueChanged;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.util.IValidator;
-
-import javax.annotation.Nullable;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class ControlList<T> extends Control implements IControlValue<T> {
 	ControlListBox<T> parent;

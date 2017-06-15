@@ -1,5 +1,12 @@
 package binnie.genetics.integration.jei.isolator;
 
+import java.awt.Color;
+
+import net.minecraft.client.Minecraft;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.genetics.Genetics;
 import binnie.genetics.integration.jei.GeneticsJeiPlugin;
 import binnie.genetics.integration.jei.RecipeUids;
@@ -11,11 +18,6 @@ import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
-import net.minecraft.client.Minecraft;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.awt.Color;
 
 public class IsolatorRecipeCategory extends BlankRecipeCategory<IsolatorRecipeWrapper> {
 	private final IDrawableAnimated arrowAnimated;

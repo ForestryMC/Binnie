@@ -1,7 +1,8 @@
 package binnie.core.resource;
 
-import binnie.core.AbstractMod;
 import net.minecraft.util.ResourceLocation;
+
+import binnie.core.AbstractMod;
 
 public class BinnieResource {
 	String mod;

@@ -1,10 +1,11 @@
 package binnie.core.models;
 
-import forestry.api.core.IModelBaker;
-import forestry.api.core.IModelBakerModel;
-import forestry.core.models.ModelManager;
-import forestry.core.models.baker.ModelBakerFace;
-import forestry.core.models.baker.ModelBakerModel;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang3.tuple.Pair;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -19,15 +20,19 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
 import net.minecraftforge.common.model.IModelState;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.apache.commons.lang3.tuple.Pair;
+
 import org.lwjgl.util.vector.Vector3f;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
+import forestry.api.core.IModelBaker;
+import forestry.api.core.IModelBakerModel;
+import forestry.core.models.ModelManager;
+import forestry.core.models.baker.ModelBakerFace;
+import forestry.core.models.baker.ModelBakerModel;
 
 //AABB = AxisAlignedBoundingBox
 @SideOnly(Side.CLIENT)

@@ -1,13 +1,16 @@
 package binnie.extratrees.block;
 
-import binnie.Constants;
+import java.util.Locale;
+
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fml.common.registry.GameRegistry;
+
 import forestry.api.arboriculture.IWoodType;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.arboriculture.WoodBlockKind;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
-import java.util.Locale;
+import binnie.Constants;
 
 public enum EnumETLog implements IWoodType {
 	Apple("Apple", PlankType.ExtraTreePlanks.Apple),

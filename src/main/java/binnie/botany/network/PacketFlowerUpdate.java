@@ -1,14 +1,15 @@
 package binnie.botany.network;
 
-import binnie.botany.flower.TileEntityFlower;
-import binnie.botany.genetics.EnumFlowerColor;
-import binnie.botany.genetics.EnumFlowerType;
+import java.io.IOException;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.math.BlockPos;
 
-import java.io.IOException;
+import binnie.botany.flower.TileEntityFlower;
+import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.genetics.EnumFlowerType;
 
 public class PacketFlowerUpdate extends SPacketUpdateTileEntity {
 	public TileEntityFlower.RenderInfo render;

@@ -1,5 +1,14 @@
 package binnie.genetics.gui.flower;
 
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
+
+import forestry.api.genetics.EnumTolerance;
+
 import binnie.botany.Botany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
@@ -15,13 +24,6 @@ import binnie.core.genetics.Tolerance;
 import binnie.genetics.Genetics;
 import binnie.genetics.gui.ControlAnalystPage;
 import binnie.genetics.gui.ControlToleranceBar;
-import forestry.api.genetics.EnumTolerance;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextFormatting;
-
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.List;
 
 public class AnalystPageSoil extends ControlAnalystPage {
 	public AnalystPageSoil(final IWidget parent, final Area area, final IFlower flower) {

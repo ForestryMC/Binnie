@@ -1,8 +1,10 @@
 package binnie.botany.genetics;
 
-import binnie.botany.core.BotanyCore;
-import forestry.api.genetics.AlleleManager;
 import net.minecraft.util.IStringSerializable;
+
+import forestry.api.genetics.AlleleManager;
+
+import binnie.botany.core.BotanyCore;
 
 public enum EnumFlowerColor implements IStringSerializable {
 	Aquamarine("aquamarine", 8388564),

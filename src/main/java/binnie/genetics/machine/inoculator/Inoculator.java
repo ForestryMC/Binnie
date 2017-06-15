@@ -1,12 +1,14 @@
 package binnie.genetics.machine.inoculator;
 
-import binnie.genetics.api.IGene;
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.apiculture.IBeeRoot;
-import forestry.api.genetics.IAllele;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+
+import forestry.api.apiculture.EnumBeeChromosome;
+import forestry.api.apiculture.IBeeRoot;
+import forestry.api.genetics.IAllele;
+
+import binnie.genetics.api.IGene;
 
 public class Inoculator {
 	public static final int SLOT_SERUM_VIAL = 0;

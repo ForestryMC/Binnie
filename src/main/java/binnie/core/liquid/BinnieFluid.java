@@ -1,9 +1,9 @@
 package binnie.core.liquid;
 
+import java.awt.Color;
+
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-
-import java.awt.Color;
 
 class BinnieFluid extends Fluid {
 	private final String name;

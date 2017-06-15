@@ -1,5 +1,19 @@
 package binnie.core.craftgui.database;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+
+import com.mojang.authlib.GameProfile;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.ISpeciesRoot;
+
 import binnie.Binnie;
 import binnie.core.craftgui.Attribute;
 import binnie.core.craftgui.ITooltip;
@@ -11,16 +25,6 @@ import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.craftgui.renderer.RenderUtil;
 import binnie.core.genetics.BreedingSystem;
-import com.mojang.authlib.GameProfile;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nullable;
 
 public class ControlDatabaseIndividualDisplay extends ControlItemDisplay implements ITooltip {
 	EnumDiscoveryState discovered;

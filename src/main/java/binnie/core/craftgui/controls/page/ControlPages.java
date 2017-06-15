@@ -1,14 +1,14 @@
 package binnie.core.craftgui.controls.page;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.controls.core.IControlValue;
 import binnie.core.craftgui.controls.core.IControlValues;
 import binnie.core.craftgui.events.EventValueChanged;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 public class ControlPages<T> extends Control implements IControlValues<T>, IControlValue<T> {
 	T value;

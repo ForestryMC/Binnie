@@ -1,12 +1,13 @@
 package binnie.core.craftgui.resource.minecraft;
 
-import binnie.core.resource.BinnieResource;
-import binnie.core.resource.IBinnieTexture;
-import binnie.core.resource.ResourceType;
+import javax.annotation.Nullable;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
+import binnie.core.resource.BinnieResource;
+import binnie.core.resource.IBinnieTexture;
+import binnie.core.resource.ResourceType;
 
 class ParsedTextureSheet implements IBinnieTexture {
 	private String name;

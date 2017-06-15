@@ -1,5 +1,14 @@
 package binnie.botany.craftgui;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import net.minecraft.entity.player.EntityPlayer;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.api.IFlowerColour;
@@ -19,15 +28,6 @@ import binnie.core.craftgui.database.PageSpeciesResultant;
 import binnie.core.craftgui.database.WindowAbstractDatabase;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.minecraft.Window;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class WindowBotanistDatabase extends WindowAbstractDatabase {
 	ControlListBox<EnumFlowerColor> selectionBoxColors;

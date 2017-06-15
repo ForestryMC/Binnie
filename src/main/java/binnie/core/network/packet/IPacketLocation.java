@@ -1,9 +1,9 @@
 package binnie.core.network.packet;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
 
 interface IPacketLocation {
 	@Nullable

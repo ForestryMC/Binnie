@@ -1,13 +1,14 @@
 package binnie.genetics.machine;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachineComponent;
 import binnie.core.machines.component.IInteraction;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsGUI;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 public class ComponentGeneticGUI extends MachineComponent implements IInteraction.RightClick {
 	GeneticsGUI id;

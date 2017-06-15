@@ -1,15 +1,17 @@
 package binnie.genetics.integration.jei.database;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.oredict.OreDictionary;
+
 import binnie.genetics.Genetics;
 import binnie.genetics.integration.jei.GeneticsJeiPlugin;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.item.ModuleItems;
 import mezz.jei.api.recipe.IStackHelper;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class DatabaseRecipeMaker {
 	public static List<DatabaseRecipeWrapper> create() {

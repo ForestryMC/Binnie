@@ -1,21 +1,25 @@
 package binnie.extrabees.items;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.oredict.OreDictionary;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.core.Tabs;
+import forestry.apiculture.PluginApiculture;
+import forestry.core.PluginCore;
+import forestry.core.items.IColoredItem;
+
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.items.types.EnumHoneyComb;
 import binnie.extrabees.items.types.EnumHoneyDrop;
 import binnie.extrabees.items.types.EnumPropolis;
 import binnie.extrabees.items.types.ExtraBeeItems;
 import binnie.extrabees.utils.Utils;
-import forestry.api.core.Tabs;
-import forestry.apiculture.PluginApiculture;
-import forestry.core.PluginCore;
-import forestry.core.items.IColoredItem;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 

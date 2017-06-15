@@ -1,14 +1,10 @@
 package binnie.botany.genetics;
 
-import binnie.Binnie;
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumFlowerChromosome;
-import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.FlowerManager;
-import binnie.botany.api.IAlleleFlowerSpecies;
-import binnie.botany.api.IFlowerGenome;
-import binnie.botany.api.IFlowerType;
-import binnie.botany.core.BotanyCore;
+import javax.annotation.Nullable;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAlleleFloat;
@@ -18,10 +14,16 @@ import forestry.api.genetics.IAlleleTolerance;
 import forestry.api.genetics.IChromosome;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.core.genetics.Genome;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
-import javax.annotation.Nullable;
+import binnie.Binnie;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumFlowerChromosome;
+import binnie.botany.api.EnumMoisture;
+import binnie.botany.api.FlowerManager;
+import binnie.botany.api.IAlleleFlowerSpecies;
+import binnie.botany.api.IFlowerGenome;
+import binnie.botany.api.IFlowerType;
+import binnie.botany.core.BotanyCore;
 
 public class FlowerGenome extends Genome implements IFlowerGenome {
 	public FlowerGenome(final NBTTagCompound nbttagcompound) {

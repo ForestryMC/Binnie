@@ -1,9 +1,11 @@
 package binnie.extrabees.client.gui;
 
+import net.minecraft.entity.player.EntityPlayer;
+
+import net.minecraftforge.items.SlotItemHandler;
+
 import binnie.extrabees.alveary.AlvearyLogicHatchery;
 import binnie.extrabees.alveary.EnumAlvearyLogicType;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerHatchery extends AbstractAlvearyContainer {
 

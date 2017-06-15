@@ -1,7 +1,19 @@
 package binnie.extrabees.genetics;
 
-import binnie.extrabees.ExtraBees;
-import binnie.extrabees.utils.Utils;
+import java.util.Collections;
+import java.util.List;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+import net.minecraftforge.common.EnumPlantType;
+
 import forestry.api.apiculture.FlowerManager;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
@@ -12,18 +24,9 @@ import forestry.api.genetics.IFlowerProvider;
 import forestry.api.genetics.IFruitBearer;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.common.EnumPlantType;
 
-import java.util.Collections;
-import java.util.List;
+import binnie.extrabees.ExtraBees;
+import binnie.extrabees.utils.Utils;
 
 public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromosomeType {
 	WATER,

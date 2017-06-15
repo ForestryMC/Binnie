@@ -1,11 +1,13 @@
 package binnie.extrabees.client.gui;
 
-import binnie.extrabees.utils.AlvearyMutationHandler;
-import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemStack;
+import java.awt.Color;
+
 import org.apache.commons.lang3.tuple.Pair;
 
-import java.awt.Color;
+import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
+
+import binnie.extrabees.utils.AlvearyMutationHandler;
 
 public class GuiContainerMutator extends GuiContainerAlvearyPart {
 

@@ -1,5 +1,10 @@
 package binnie.genetics.machine.sequencer;
 
+import java.util.Random;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.geometry.Area;
@@ -11,10 +16,6 @@ import binnie.core.craftgui.window.Panel;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachineUtil;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextFormatting;
-
-import java.util.Random;
 
 public class ControlSequencerProgress extends ControlProgressBase {
 	static final String[] CODES = {"A", "T", "G", "C"};

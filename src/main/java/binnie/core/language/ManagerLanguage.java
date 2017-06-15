@@ -1,11 +1,12 @@
 package binnie.core.language;
 
-import binnie.core.AbstractMod;
-import binnie.core.ManagerBase;
-import net.minecraft.util.text.translation.I18n;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import net.minecraft.util.text.translation.I18n;
+
+import binnie.core.AbstractMod;
+import binnie.core.ManagerBase;
 
 public class ManagerLanguage extends ManagerBase {
 	private Map<Object, String> objNames;

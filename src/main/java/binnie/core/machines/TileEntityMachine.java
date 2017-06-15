@@ -1,11 +1,12 @@
 package binnie.core.machines;
 
+import net.minecraft.nbt.NBTTagCompound;
+
 import binnie.Binnie;
 import binnie.core.machines.base.TileEntityMachineBase;
 import binnie.core.machines.component.IInteraction;
 import binnie.core.network.INetworkedEntity;
 import binnie.core.network.packet.PacketPayload;
-import net.minecraft.nbt.NBTTagCompound;
 
 public class TileEntityMachine extends TileEntityMachineBase implements INetworkedEntity {
 	private Machine machine;

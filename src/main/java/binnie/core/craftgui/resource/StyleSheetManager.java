@@ -1,8 +1,9 @@
 package binnie.core.craftgui.resource;
 
-import binnie.core.craftgui.CraftGUI;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import binnie.core.craftgui.CraftGUI;
 
 public class StyleSheetManager {
 	static IStyleSheet defaultSS = new DefaultStyleSheet();
