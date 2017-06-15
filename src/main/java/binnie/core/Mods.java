@@ -1,19 +1,20 @@
 package binnie.core;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 public class Mods {
 	public static ModNonnull Forestry = new ModNonnull("forestry");
-	public static Mod IC2 = new Mod("IC2");
-	public static Mod Botania = new Mod("Botania");
+	public static Mod IC2 = new Mod("ic2");
+	public static Mod Botania = new Mod("botania");
 
 	public static class Mod {
 		protected final String id;

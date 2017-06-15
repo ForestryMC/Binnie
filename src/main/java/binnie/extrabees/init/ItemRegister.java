@@ -1,5 +1,16 @@
 package binnie.extrabees.init;
 
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.oredict.OreDictionary;
+
+import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import forestry.api.core.Tabs;
+
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.alveary.BlockAlveary;
 import binnie.extrabees.alveary.EnumAlvearyLogicType;
@@ -7,20 +18,12 @@ import binnie.extrabees.blocks.type.EnumHiveType;
 import binnie.extrabees.items.ItemBeehive;
 import binnie.extrabees.items.ItemHoneyComb;
 import binnie.extrabees.items.ItemHoneyCrystal;
-import binnie.extrabees.items.ItemHoneyCrystalEmpty;
 import binnie.extrabees.items.ItemHoneyDrop;
 import binnie.extrabees.items.ItemMiscProduct;
 import binnie.extrabees.items.ItemPropolis;
 import binnie.extrabees.items.types.EnumHiveFrame;
 import binnie.extrabees.items.types.EnumHoneyComb;
 import binnie.extrabees.items.types.ExtraBeeItems;
-import forestry.api.core.Tabs;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
 
 public final class ItemRegister {
 
@@ -64,19 +67,15 @@ public final class ItemRegister {
 	}
 
 	private static void registerProducts() {
-		ExtraBees.honeyCrystal = new ItemHoneyCrystal("honey_crystal");
-		ExtraBees.honeyCrystalEmpty = new ItemHoneyCrystalEmpty("honey_crystal_empty");
+		ExtraBees.honeyCrystal = new ItemHoneyCrystal();
 		ExtraBees.honeyDrop = new ItemHoneyDrop();
 		ExtraBees.comb = new ItemHoneyComb();
 		ExtraBees.propolis = new ItemPropolis();
 
 		ExtraBees.proxy.registerItem(ExtraBees.honeyCrystal);
-		ExtraBees.proxy.registerItem(ExtraBees.honeyCrystalEmpty);
 		ExtraBees.proxy.registerItem(ExtraBees.comb);
 		ExtraBees.proxy.registerItem(ExtraBees.honeyDrop);
 		ExtraBees.proxy.registerItem(ExtraBees.propolis);
-		ExtraBees.proxy.registerModel(ExtraBees.honeyCrystal, 0);
-		ExtraBees.proxy.registerModel(ExtraBees.honeyCrystalEmpty, 0);
 		for (EnumHoneyComb c : EnumHoneyComb.values()) {
 			if (c.isActive()) {
 				ExtraBees.proxy.registerModel(ExtraBees.comb, c.ordinal());
