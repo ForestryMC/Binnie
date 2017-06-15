@@ -1,12 +1,18 @@
 package binnie.genetics.machine.analyser;
 
-import binnie.Binnie;
-import binnie.genetics.api.IItemAnalysable;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
+
+import com.mojang.authlib.GameProfile;
+
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IBreedingTracker;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.ISpeciesRoot;
+
+import binnie.Binnie;
+import binnie.genetics.api.IItemAnalysable;
 
 public class Analyser {
 	public static final int[] SLOT_RESERVE = new int[]{0, 1, 2, 3, 4, 5};
@@ -30,7 +36,7 @@ public class Analyser {
 		return stack.getItem() instanceof IItemAnalysable && ((IItemAnalysable) stack.getItem()).isAnalysed(stack);
 	}
 
-	public static ItemStack analyse(ItemStack stack) {
+	public static ItemStack analyse(ItemStack stack, World world, GameProfile username) {
 		if (!stack.isEmpty()) {
 			final ItemStack conv = Binnie.GENETICS.getConversionStack(stack);
 			if (!conv.isEmpty()) {
@@ -40,6 +46,8 @@ public class Analyser {
 			if (root != null) {
 				final IIndividual ind = root.getMember(stack);
 				ind.analyze();
+				IBreedingTracker breedingTracker = ind.getGenome().getSpeciesRoot().getBreedingTracker(world, username);
+				breedingTracker.registerBirth(ind);
 				final NBTTagCompound nbttagcompound = new NBTTagCompound();
 				ind.writeToNBT(nbttagcompound);
 				stack.setTagCompound(nbttagcompound);

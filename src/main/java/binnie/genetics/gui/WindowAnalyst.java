@@ -1,5 +1,24 @@
 package binnie.genetics.gui;
 
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.apiculture.IBee;
+import forestry.api.arboriculture.ITree;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IBreedingTracker;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.lepidopterology.IButterfly;
+
 import binnie.Binnie;
 import binnie.botany.api.IFlower;
 import binnie.core.AbstractMod;
@@ -42,22 +61,6 @@ import binnie.genetics.gui.tree.AnalystPageWood;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.ModuleMachine;
 import binnie.genetics.machine.analyser.Analyser;
-import forestry.api.apiculture.IBee;
-import forestry.api.arboriculture.ITree;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IBreedingTracker;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
-import forestry.api.lepidopterology.IButterfly;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class WindowAnalyst extends Window {
 	@Nullable
@@ -453,12 +456,8 @@ public class WindowAnalyst extends Window {
 		WindowInventory inv = getWindowInventory();
 		ItemStack stack = inv.getStackInSlot(0);
 		if (!stack.isEmpty() && !Analyser.isAnalysed(stack)) {
-			inv.setInventorySlotContents(0, Analyser.analyse(stack));
+			inv.setInventorySlotContents(0, Analyser.analyse(stack, this.getWorld(), this.getUsername()));
 			inv.decrStackSize(1, 1);
-		}
-		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(stack);
-		if (ind != null) {
-			ind.getGenome().getSpeciesRoot().getBreedingTracker(this.getWorld(), this.getUsername()).registerBirth(ind);
 		}
 
 		if (this.isClient()) {
