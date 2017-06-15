@@ -1,18 +1,13 @@
 package binnie.core.machines.base;
 
-import binnie.core.machines.Machine;
-import binnie.core.machines.inventory.IInventoryMachine;
-import binnie.core.machines.inventory.TankSlot;
-import binnie.core.machines.power.IPoweredMachine;
-import binnie.core.machines.power.ITankMachine;
-import binnie.core.machines.power.PowerInfo;
-import binnie.core.machines.power.PowerInterface;
-import binnie.core.machines.power.TankInfo;
+import javax.annotation.Nullable;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.fluids.FluidStack;
@@ -22,9 +17,21 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
-import javax.annotation.Nullable;
+import net.minecraftforge.fml.common.Optional;
 
-public class TileEntityMachineBase extends TileEntity implements IInventoryMachine, ITankMachine, IPoweredMachine, ITickable {
+import binnie.core.machines.Machine;
+import binnie.core.machines.inventory.IInventoryMachine;
+import binnie.core.machines.inventory.TankSlot;
+import binnie.core.machines.power.IPoweredMachine;
+import binnie.core.machines.power.ITankMachine;
+import binnie.core.machines.power.PowerInfo;
+import binnie.core.machines.power.PowerInterface;
+import binnie.core.machines.power.TankInfo;
+import ic2.api.energy.tile.IEnergyEmitter;
+import ic2.api.energy.tile.IEnergySink;
+
+@Optional.Interface(iface = "ic2.api.energy.tile.IEnergySink", modid = "ic2")
+public class TileEntityMachineBase extends TileEntity implements IInventoryMachine, ITankMachine, IPoweredMachine, ITickable, IEnergySink {
 
 	@Override
 	public IInventoryMachine getInventory() {
@@ -41,12 +48,12 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 		final IPoweredMachine inv = Machine.getInterface(IPoweredMachine.class, this);
 		return (inv == null || inv == this) ? DefaultPower.INSTANCE : inv;
 	}
-
-	/*@Override
-	public ItemStack getStackInSlotOnClosing(final int var1) {
-		return this.getInventory().getStackInSlotOnClosing(var1);
-	}*/
-
+	
+	@Override
+	public ItemStack removeStackFromSlot(int index) {
+		return this.getInventory().removeStackFromSlot(index);
+	}
+	
 	@Override
 	public boolean isUsableByPlayer(final EntityPlayer entityplayer) {
 		return !this.isInvalid() &&
@@ -121,29 +128,29 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 		return this.getTankContainer().getTanks();
 	}
 
-	/*@Override
-	@Optional.Method(modid = "IC2")
+	@Override
+	@Optional.Method(modid = "ic2")
 	public double getDemandedEnergy() {
 		return this.getPower().getDemandedEnergy();
 	}
 
 	@Override
-	@Optional.Method(modid = "IC2")
+	@Optional.Method(modid = "ic2")
 	public int getSinkTier() {
 		return this.getPower().getSinkTier();
 	}
 
 	@Override
-	@Optional.Method(modid = "IC2")
-	public double injectEnergy(final ForgeDirection directionFrom, final double amount, final double voltage) {
+	@Optional.Method(modid = "ic2")
+	public double injectEnergy(EnumFacing directionFrom, double amount, double voltage) {
 		return this.getPower().injectEnergy(directionFrom, amount, voltage);
 	}
 
 	@Override
-	@Optional.Method(modid = "IC2")
-	public boolean acceptsEnergyFrom(final TileEntity emitter, final ForgeDirection direction) {
+	@Optional.Method(modid = "ic2")
+	public boolean acceptsEnergyFrom(IEnergyEmitter emitter, EnumFacing direction) {
 		return this.getPower().acceptsEnergyFrom(emitter, direction);
-	}*/
+	}
 
 	@Override
 	public int receiveEnergy(int maxReceive, boolean simulate) {
