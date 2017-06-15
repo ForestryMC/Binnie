@@ -171,13 +171,13 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 		}
 	}
 
-	@Optional.Method(modid = "IC2")
+	@Optional.Method(modid = "ic2")
 	private void do_addToEnergyNet() {
 		MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent((IEnergyTile) this.getMachine().getTileEntity()));
 		this.registeredToIC2EnergyNet = true;
 	}
 
-	@Optional.Method(modid = "IC2")
+	@Optional.Method(modid = "ic2")
 	private void do_removeFromEnergyNet() {
 		MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent((IEnergyTile) this.getMachine().getTileEntity()));
 		this.registeredToIC2EnergyNet = false;
