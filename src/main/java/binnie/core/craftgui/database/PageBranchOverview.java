@@ -49,7 +49,7 @@ public class PageBranchOverview extends PageBranch {
 
 		branchDescription.clear();
 		String desc = branch.getDescription();
-		if (desc.contains("for.genus.bees.")) { // unlocalized
+			if (desc.matches("(\\w+\\.?)+")) { // unlocalized
 			desc = I18N.localise("binniecore.gui.database.branch.noDesc");
 		}
 

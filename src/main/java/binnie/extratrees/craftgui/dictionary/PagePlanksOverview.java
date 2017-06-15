@@ -55,7 +55,7 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 
 		String descBody = EnumChatFormatting.ITALIC.toString();
 		String descSig = "";
-		if (desc == null || desc.length() == 0) {
+		if (desc == null || desc.length() == 0 || desc.matches("(\\w+\\.?)+")) {
 			descBody += I18N.localise("binniecore.gui.database.nodescription");
 		} else {
 			String[] descStrings = desc.split("\\|");

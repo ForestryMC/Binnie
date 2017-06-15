@@ -14,15 +14,15 @@ import net.minecraft.util.EnumChatFormatting;
 public class AnalystPageDescription extends ControlAnalystPage {
 	public AnalystPageDescription(IWidget parent, IArea area, IIndividual ind) {
 		super(parent, area);
-		setColor(3355443);
+		setColor(0x333333);
 		int y = 4;
+
 		IAlleleSpecies species = ind.getGenome().getPrimary();
 		String branchBinomial = (species.getBranch() != null) ? species.getBranch().getScientific() : "<Unknown>";
-		String branchName = (species.getBranch() != null) ? species.getBranch().getName() : "Unknown";
 		String desc = species.getDescription();
 		String descBody = EnumChatFormatting.ITALIC.toString();
 		String descSig = "";
-		if (desc == null || desc.isEmpty() || desc.contains("for.description")) {
+		if (desc == null || desc.isEmpty() || desc.matches("(\\w+\\.?)+")) {
 			descBody += "";
 		} else {
 			String[] descStrings = desc.split("\\|");
@@ -34,6 +34,7 @@ public class AnalystPageDescription extends ControlAnalystPage {
 				descSig += descStrings[descStrings.length - 1];
 			}
 		}
+
 		String authority = species.getAuthority();
 		if (authority.contains("Binnie")) {
 			authority = EnumChatFormatting.DARK_BLUE.toString() + EnumChatFormatting.BOLD + authority;
@@ -44,6 +45,7 @@ public class AnalystPageDescription extends ControlAnalystPage {
 		if (authority.contains("MysteriousAges")) {
 			authority = EnumChatFormatting.DARK_PURPLE.toString() + EnumChatFormatting.BOLD + authority;
 		}
+
 		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Description").setColor(getColor());
 		y += 16;
 		new ControlTextCentered(this, y, species.getName() + EnumChatFormatting.RESET).setColor(getColor());
@@ -54,6 +56,7 @@ public class AnalystPageDescription extends ControlAnalystPage {
 		y += (int) (3.0f + CraftGUI.Render.textHeight("Discovered by " + EnumChatFormatting.BOLD + authority + EnumChatFormatting.RESET, w()));
 		new ControlTextCentered(this, y, "Genetic Complexity: " + species.getComplexity()).setColor(getColor());
 		y += 26;
+
 		ControlText descText = new ControlText(this, new IArea(8.0f, y, w() - 16.0f, 0.0f), descBody + EnumChatFormatting.RESET, TextJustification.TOP_CENTER);
 		IWidget signatureText = new ControlText(this, new IArea(8.0f, y, w() - 16.0f, 0.0f), descSig + EnumChatFormatting.RESET, TextJustification.BOTTOM_RIGHT);
 		descText.setColor(getColor());
