@@ -70,11 +70,8 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 	@Override
 	protected void onFinishTask() {
 		Preconditions.checkState(this.currentCrafting != null);
-		IBreweryRecipe recipe = BreweryRecipes.getRecipe(currentCrafting);
-		if (recipe != null) {
-			FluidStack output = recipe.getOutput();
-			FluidStack input = recipe.getInput();
-			this.getUtil().drainTank(BreweryMachine.TANK_INPUT,  input.amount);
+		FluidStack output = BreweryRecipes.getOutput(currentCrafting);
+		if (output != null) {
 			this.getUtil().fillTank(BreweryMachine.TANK_OUTPUT, output);
 			this.currentCrafting = null;
 		}
@@ -87,6 +84,7 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 			final FluidStack stack = this.getUtil().drainTank(BreweryMachine.TANK_INPUT, Fluid.BUCKET_VOLUME);
 			this.currentCrafting = this.getInputCrafting();
 			this.currentCrafting.inputFluid = stack;
+			this.getUtil().drainTank(BreweryMachine.TANK_INPUT,  stack.amount);
 			this.getUtil().removeIngredients(new int[]{0, 1, 2, 3, 4}, BreweryMachine.SLOTS_INVENTORY);
 		}
 	}
