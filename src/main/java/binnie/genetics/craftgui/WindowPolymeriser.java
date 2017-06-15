@@ -69,6 +69,6 @@ public class WindowPolymeriser extends WindowMachine {
 
 	@Override
 	protected String getName() {
-		return getTitle();
+		return "Polymeriser";
 	}
 }

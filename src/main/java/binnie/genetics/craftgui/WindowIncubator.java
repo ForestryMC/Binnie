@@ -71,6 +71,6 @@ public class WindowIncubator extends WindowMachine {
 
 	@Override
 	protected String getName() {
-		return getTitle();
+		return "Incubator";
 	}
 }

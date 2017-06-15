@@ -58,6 +58,6 @@ public class WindowAcclimatiser extends WindowMachine {
 
 	@Override
 	protected String getName() {
-		return getTitle();
+		return "Acclimatiser";
 	}
 }
