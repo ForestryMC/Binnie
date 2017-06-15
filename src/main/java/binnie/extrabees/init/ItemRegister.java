@@ -1,9 +1,7 @@
 package binnie.extrabees.init;
 
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -12,10 +10,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import forestry.api.core.Tabs;
 
 import binnie.extrabees.ExtraBees;
-import binnie.extrabees.alveary.BlockAlveary;
-import binnie.extrabees.alveary.EnumAlvearyLogicType;
-import binnie.extrabees.blocks.type.EnumHiveType;
 import binnie.extrabees.items.ItemBeehive;
+import binnie.extrabees.items.ItemBlockAlveary;
 import binnie.extrabees.items.ItemHoneyComb;
 import binnie.extrabees.items.ItemHoneyCrystal;
 import binnie.extrabees.items.ItemHoneyDrop;
@@ -35,31 +31,13 @@ public final class ItemRegister {
 
 	@SuppressWarnings("all")
 	private static void registerMisc() {
-		Item i = GameRegistry.register(new ItemBlock(ExtraBees.alveary) {
-
-			@Override
-			public int getMetadata(int damage) {
-				return damage;
-			}
-
-			@Override
-			public String getUnlocalizedName(ItemStack stack) {
-				return ((BlockAlveary) block).getUnlocalizedName(stack.getMetadata());
-			}
-
-			@Override
-			public boolean getHasSubtypes() {
-				return true;
-			}
-		}.setRegistryName(ExtraBees.alveary.getRegistryName()));
-		for (int j = 0; j < EnumAlvearyLogicType.VALUES.length; j++) {
-			ExtraBees.proxy.registerModel(i, j);
-		}
-		i = GameRegistry.register(new ItemBeehive(ExtraBees.hive));
-		for (int j = 0; j < EnumHiveType.values().length; j++) {
-			ExtraBees.proxy.registerModel(i, j);
-		}
-		ExtraBees.proxy.registerModel(GameRegistry.register(new ItemBlock(ExtraBees.ectoplasm).setRegistryName(ExtraBees.ectoplasm.getRegistryName())), 0);
+		ItemBlockAlveary itemBlockAlveary = GameRegistry.register(new ItemBlockAlveary(ExtraBees.alveary));
+		itemBlockAlveary.registerModel(itemBlockAlveary);
+		ItemBeehive itemBeehive = GameRegistry.register(new ItemBeehive(ExtraBees.hive));
+		ExtraBees.proxy.registerModel(itemBeehive);
+		ItemBlock ectoplasm = new ItemBlock(ExtraBees.ectoplasm);
+		ectoplasm.setRegistryName(ExtraBees.ectoplasm.getRegistryName());
+		ExtraBees.proxy.registerModel(GameRegistry.register(ectoplasm), 0);
 		ExtraBees.itemMisc = ExtraBees.proxy.registerItem(new ItemMiscProduct(Tabs.tabApiculture, ExtraBeeItems.values()));
 		for (final EnumHiveFrame frame : EnumHiveFrame.values()) {
 			ExtraBees.proxy.registerItem(frame.getItem());
@@ -73,6 +51,7 @@ public final class ItemRegister {
 		ExtraBees.propolis = new ItemPropolis();
 
 		ExtraBees.proxy.registerItem(ExtraBees.honeyCrystal);
+		ExtraBees.proxy.registerModel(ExtraBees.honeyCrystal);
 		ExtraBees.proxy.registerItem(ExtraBees.comb);
 		ExtraBees.proxy.registerItem(ExtraBees.honeyDrop);
 		ExtraBees.proxy.registerItem(ExtraBees.propolis);

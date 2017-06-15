@@ -21,8 +21,6 @@ import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
 
 import binnie.core.Mods;
@@ -35,7 +33,7 @@ import ic2.api.item.IItemHudInfo;
 		@Optional.Interface(modid = "ic2", iface = "ic2.api.item.IElectricItem"),
 		@Optional.Interface(modid = "ic2", iface = "ic2.api.item.IItemHudInfo")
 })
-public class ItemHoneyCrystal extends Item implements IElectricItem, IItemHudInfo, IItemModelRegister {
+public class ItemHoneyCrystal extends Item implements IElectricItem, IItemHudInfo, IItemModelProvider {
 	private int maxCharge;
 	private int transferLimit;
 	private int tier;
@@ -81,9 +79,9 @@ public class ItemHoneyCrystal extends Item implements IElectricItem, IItemHudInf
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerModel(Item item, IModelManager manager) {
+	public void registerModel(Item item) {
 		ModelLoader.registerItemVariants(item, new ModelResourceLocation("extrabees:honey_crystal_full", "inventory"), new ModelResourceLocation("extrabees:honey_crystal_empty", "inventory"), new ModelResourceLocation("extrabees:honey_crystal", "inventory"));
-		manager.registerItemModel(item, new HoneyCrystalMeshDefinition());
+		ModelLoader.setCustomMeshDefinition(item, new HoneyCrystalMeshDefinition());
 	}
 	
 	@Override

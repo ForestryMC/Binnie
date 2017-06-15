@@ -19,8 +19,13 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
+import forestry.api.apiculture.BeeManager;
+import forestry.api.apiculture.IAlleleBeeSpecies;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.AlleleSpeciesRegisterEvent;
 import forestry.core.gui.GuiIdRegistry;
 import forestry.core.gui.GuiType;
 import forestry.core.proxy.Proxies;
@@ -55,6 +60,11 @@ public class ExtraBees {
 
 	@SidedProxy(clientSide = "binnie.extrabees.proxy.ExtraBeesClientProxy", serverSide = "binnie.extrabees.proxy.ExtraBeesCommonProxy")
 	public static ExtraBeesCommonProxy proxy;
+	
+	public ExtraBees(){
+		MinecraftForge.EVENT_BUS.register(this);
+	}
+	
 	public static ConfigHandler configHandler;
 
 	public static Material materialBeehive;
@@ -76,8 +86,6 @@ public class ExtraBees {
 		configHandler.addConfigurable(new ConfigurationMain());
 		BlockRegister.preInitBlocks();
 		ItemRegister.preInitItems();
-		MinecraftForge.EVENT_BUS.register(proxy);
-		ExtraBeesBranch.setSpeciesBranches();
 		try {
 			Method m = GuiIdRegistry.class.getDeclaredMethod("registerGuiHandlers", GuiType.class, List.class);
 			m.setAccessible(true);
@@ -114,5 +122,16 @@ public class ExtraBees {
 		AlvearyMutationHandler.addMutationItem(Utils.getIC2Item("Uran238"), 2.0f);
 		AlvearyMutationHandler.addMutationItem(new ItemStack(Items.ENDER_PEARL), 2.0f);
 		AlvearyMutationHandler.addMutationItem(new ItemStack(Items.ENDER_EYE), 4.0f);
+	}
+	
+	@SubscribeEvent
+	public void onRegisterSpecies(AlleleSpeciesRegisterEvent<IAlleleBeeSpecies> event){
+		if(event.getRoot() != BeeManager.beeRoot){
+			return;
+		}
+		ExtraBeesBranch.setSpeciesBranches();
+		for (final ExtraBeesSpecies species : ExtraBeesSpecies.values()) {
+			AlleleManager.alleleRegistry.registerAllele(species);
+		}
 	}
 }

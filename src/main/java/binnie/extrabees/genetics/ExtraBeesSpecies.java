@@ -1,14 +1,27 @@
 package binnie.extrabees.genetics;
 
-import binnie.extrabees.ExtraBees;
-import binnie.extrabees.client.BeeModelProvider;
-import binnie.extrabees.genetics.effect.ExtraBeesEffect;
-import binnie.extrabees.items.ItemHoneyComb;
-import binnie.extrabees.items.types.EnumHoneyComb;
-import binnie.extrabees.items.types.IEBEnumItem;
-import binnie.extrabees.utils.Utils;
 import com.google.common.base.Preconditions;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.stats.Achievement;
+import net.minecraft.util.NonNullList;
+import net.minecraft.world.World;
+
 import com.mojang.authlib.GameProfile;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.EnumBeeType;
 import forestry.api.apiculture.IAlleleBeeEffect;
@@ -30,22 +43,14 @@ import forestry.apiculture.PluginApiculture;
 import forestry.apiculture.genetics.BeeDefinition;
 import forestry.core.genetics.alleles.AlleleHelper;
 import forestry.core.genetics.alleles.EnumAllele;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.stats.Achievement;
-import net.minecraft.util.NonNullList;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import binnie.extrabees.ExtraBees;
+import binnie.extrabees.client.BeeModelProvider;
+import binnie.extrabees.genetics.effect.ExtraBeesEffect;
+import binnie.extrabees.items.ItemHoneyComb;
+import binnie.extrabees.items.types.EnumHoneyComb;
+import binnie.extrabees.items.types.IEBEnumItem;
+import binnie.extrabees.utils.Utils;
 
 public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 	ARID("aridus", 12511316),
@@ -769,12 +774,12 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 
 	@Override
 	public String getName() {
-		return ExtraBees.proxy.localise(getUnlocalizedName());
+		return ExtraBees.proxy.localiseWithOutPrefix(getUnlocalizedName());
 	}
 
 	@Override
 	public String getDescription() {
-		return ExtraBees.proxy.localise(getUID() + ".desc");
+		return ExtraBees.proxy.localiseWithOutPrefix(getUID() + ".desc");
 	}
 
 	@Override

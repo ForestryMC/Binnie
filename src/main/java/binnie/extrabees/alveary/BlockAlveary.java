@@ -1,8 +1,8 @@
 package binnie.extrabees.alveary;
 
-import forestry.apiculture.MaterialBeehive;
-import forestry.core.gui.GuiHandler;
-import forestry.core.tiles.TileUtil;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.properties.PropertyEnum;
@@ -19,8 +19,10 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import forestry.api.core.Tabs;
+import forestry.apiculture.MaterialBeehive;
+import forestry.core.gui.GuiHandler;
+import forestry.core.tiles.TileUtil;
 
 @SuppressWarnings("deprecation")
 public class BlockAlveary extends Block implements ITileEntityProvider {
@@ -29,6 +31,7 @@ public class BlockAlveary extends Block implements ITileEntityProvider {
 
 	public BlockAlveary() {
 		super(new MaterialBeehive(false));
+		setCreativeTab(Tabs.tabApiculture);
 		setRegistryName("alveary");
 	}
 
