@@ -20,6 +20,7 @@ import binnie.core.craftgui.minecraft.control.ControlTabIcon;
 import binnie.core.craftgui.window.Panel;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
+import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.genetics.Engineering;
 import binnie.genetics.genetics.GeneTracker;
@@ -82,7 +83,7 @@ public class WindowGeneBank extends WindowMachine {
 
 	@Override
 	public void initialiseClient() {
-		setTitle("Gene Bank");
+		setTitle(getTitle());
 		addEventHandler(new EventValueChanged.Handler() {
 			@Override
 			public void onEvent(EventValueChanged event) {
@@ -131,7 +132,7 @@ public class WindowGeneBank extends WindowMachine {
 								}
 							}
 						}
-						tooltip.add("" + seqGenes + "/" + totalGenes + " Genes");
+						tooltip.add(I18N.localise("genetics.gui.geneBank.sequencedGenes.short", seqGenes, totalGenes));
 					}
 				};
 			}
@@ -140,9 +141,12 @@ public class WindowGeneBank extends WindowMachine {
 		tabBar.setValues(Binnie.Genetics.getActiveSystems());
 		tabBar.setValue(Binnie.Genetics.beeBreedingSystem);
 		boxX -= 8;
-		ControlTabBar<String> infoTabs = new ControlTabBar<String>(this, boxX + 8, 160.0f, 16.0f, 50.0f, Position.LEFT);
-		infoTabs.setValues(Arrays.asList("Stats", "Ranking"));
-		infoTabs.setValue("Info");
+		ControlTabBar<String> infoTabs = new ControlTabBar<>(this, boxX + 8, 160.0f, 16.0f, 50.0f, Position.LEFT);
+		infoTabs.setValues(Arrays.asList(
+			I18N.localise("genetics.gui.geneBank.stats"),
+			I18N.localise("genetics.gui.geneBank.ranking")
+		));
+		infoTabs.setValue(I18N.localise("genetics.gui.geneBank.info"));
 		Panel panelProject = new Panel(this, boxX + 24, 160.0f, geneBoxWidth + 20, 50.0f, MinecraftGUI.PanelType.Black);
 		int totalGenes = 0;
 		int seqGenes = 0;
@@ -161,13 +165,13 @@ public class WindowGeneBank extends WindowMachine {
 			}
 		}
 
-		new ControlText(panelProject, new IPoint(4.0f, 4.0f), EnumChatFormatting.UNDERLINE + "Full Genome Project");
-		new ControlText(panelProject, new IPoint(4.0f, 18.0f), EnumChatFormatting.ITALIC.toString() + EnumChatFormatting.YELLOW + "quenced " + EnumChatFormatting.RESET + seqGenes + "/" + totalGenes + " " + EnumChatFormatting.ITALIC + "Genes");
+		new ControlText(panelProject, new IPoint(4.0f, 4.0f), EnumChatFormatting.UNDERLINE + I18N.localise("genetics.gui.geneBank.project"));
+		new ControlText(panelProject, new IPoint(4.0f, 18.0f), EnumChatFormatting.ITALIC.toString() + EnumChatFormatting.YELLOW + I18N.localise("genetics.gui.geneBank.sequencedGenes", seqGenes, totalGenes));
 	}
 
 	@Override
 	public String getTitle() {
-		return "Gene Bank";
+		return I18N.localise("genetics.gui.geneBank");
 	}
 
 	@Override

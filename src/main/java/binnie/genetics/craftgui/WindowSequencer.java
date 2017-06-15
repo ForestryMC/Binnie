@@ -87,6 +87,6 @@ public class WindowSequencer extends WindowMachine {
 
 	@Override
 	protected String getName() {
-		return getTitle();
+		return "Sequencer";
 	}
 }

@@ -74,6 +74,6 @@ public class WindowAnalyser extends WindowMachine {
 
 	@Override
 	protected String getName() {
-		return getTitle();
+		return "Analyser";
 	}
 }

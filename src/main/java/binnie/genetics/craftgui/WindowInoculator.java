@@ -66,6 +66,6 @@ public class WindowInoculator extends WindowMachine {
 
 	@Override
 	protected String getName() {
-		return getTitle();
+		return "Inoculator";
 	}
 }

@@ -139,3 +139,11 @@ genetics.machine.splicer.splicingIn.0=Соединения в %d/%d генах
 genetics.machine.splicer.splicingIn.1=Соединения в %d/%d гене
 genetics.machine.splicer.splicingIn.2=Соединения в %d генах
 genetics.machine.splicer.splicingIn.3=Соединения в %d гене
+
+genetics.gui.geneBank=Генный банк
+genetics.gui.geneBank.info=Инфо
+genetics.gui.geneBank.stats=Статистика
+genetics.gui.geneBank.ranking=Ранжирование
+genetics.gui.geneBank.project=Полный проект генома
+genetics.gui.geneBank.sequencedGenes=Секвенцировано %d/%d генов
+genetics.gui.geneBank.sequencedGenes.short=%d/%d генов

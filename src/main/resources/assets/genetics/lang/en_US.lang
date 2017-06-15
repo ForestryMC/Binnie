@@ -139,3 +139,11 @@ genetics.machine.splicer.splicingIn.0=Splicing in %d/%d genes
 genetics.machine.splicer.splicingIn.1=Splicing in %d/%d gene
 genetics.machine.splicer.splicingIn.2=Splicing in %d genes
 genetics.machine.splicer.splicingIn.3=Splicing in %d gene
+
+genetics.gui.geneBank=Gene Bank
+genetics.gui.geneBank.info=Info
+genetics.gui.geneBank.stats=Stats
+genetics.gui.geneBank.ranking=Ranking
+genetics.gui.geneBank.project=Full Genome Project
+genetics.gui.geneBank.sequencedGenes=Sequenced %d/%d Genes
+genetics.gui.geneBank.sequencedGenes.short=%d/%d Genes
