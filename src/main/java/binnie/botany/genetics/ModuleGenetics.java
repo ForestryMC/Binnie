@@ -1,16 +1,25 @@
 package binnie.botany.genetics;
 
+import java.awt.Color;
+import java.util.function.Predicate;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import forestry.api.apiculture.FlowerManager;
+import forestry.api.core.ForestryAPI;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.recipes.RecipeManagers;
+import forestry.api.storage.BackpackManager;
+import forestry.api.storage.IBackpackInterface;
+import forestry.storage.BackpackDefinition;
 
 import binnie.Binnie;
 import binnie.botany.Botany;
+import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.EnumFlowerStage;
+import binnie.botany.api.FlowerManager;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.flower.BlockFlower;
 import binnie.botany.flower.ItemBotany;
@@ -30,7 +39,23 @@ public class ModuleGenetics implements IInitializable {
 		AlleleManager.alleleRegistry.registerAllele(ModuleGenetics.alleleEffectNone);
 		EnumFlowerColor.setupMutations();
 		FlowerDefinition.preInitFlowers();
-
+		
+		/* BACKPACK*/
+		IBackpackInterface backpackInterface = BackpackManager.backpackInterface;
+		
+		if (ForestryAPI.enabledPlugins.contains("forestry.storage")) {
+			Predicate<ItemStack> filter = BackpackManager.backpackInterface.createNaturalistBackpackFilter("rootFlowers");
+			BackpackDefinition definition = new BackpackDefinition(new Color(0xf6e83e), Color.WHITE, filter);
+			BackpackManager.backpackInterface.registerBackpackDefinition("botanist", definition);
+			Item botanistBackpack = Botany.botanistBackpack = backpackInterface.createNaturalistBackpack("botanist", FlowerManager.flowerRoot).setRegistryName("botanist_bag").setUnlocalizedName("botany.botanist_bag");
+			Botany.proxy.registerItem(botanistBackpack);
+			botanistBackpack.setCreativeTab(CreativeTabBotany.instance);
+		} else {
+			Botany.botanistBackpack = null;
+		}
+		
+		/* ITEMS */
+		
 		Botany.flower = new BlockFlower();
 		Botany.proxy.registerBlock(Botany.flower);
 		BinnieCore.getBinnieProxy().registerTileEntity(TileEntityFlower.class, "botany.tile.flower", null);
@@ -53,7 +78,7 @@ public class ModuleGenetics implements IInitializable {
 
 	@Override
 	public void postInit() {
-		FlowerManager.flowerRegistry.registerAcceptableFlower(Botany.flower, "flowersVanilla");
+		forestry.api.apiculture.FlowerManager.flowerRegistry.registerAcceptableFlower(Botany.flower, "flowersVanilla");
 		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack(ManagerLiquid.WATER, 2000), ItemStack.EMPTY, new ItemStack(Botany.database),
 			"X#X",
 			"YEY",

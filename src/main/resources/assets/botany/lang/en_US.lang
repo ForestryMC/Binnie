@@ -46,6 +46,9 @@ botany.grammar.flower.secondary=%PRIMARY and %SECONDARY, %STEM Stem
 tile.botany.ceramic.name=Ceramic Block
 tile.botany.pigmented.glass.name=Pigmented Glass
 
+item.botany.botanist_bag.name=Botanist's Backpack
+botany.jei.description.botanist_bag=Extra inventory that automatically picks up flowers.
+
 botany.colour.aquamarine=Aquamarine
 botany.colour.black=Black
 botany.colour.blue=Deep Blue

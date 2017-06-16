@@ -10,6 +10,7 @@ import binnie.core.IInitializable;
 public class ModuleCore implements IInitializable {
 	@Override
 	public void preInit() {
+		
 		for (final EnumAcidity pH : EnumAcidity.values()) {
 			Binnie.LANGUAGE.addObjectName(pH, Binnie.LANGUAGE.unlocalised(Botany.instance, "ph." + pH.getName()));
 		}

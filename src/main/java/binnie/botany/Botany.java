@@ -1,8 +1,11 @@
 package binnie.botany;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -95,6 +98,8 @@ public class Botany extends AbstractMod {
 	public static BlockCeramicPatterned ceramicTile;
 	public static BlockStainedGlass stained;
 	public static BlockCeramicBrick ceramicBrick;
+	@Nullable
+	public static Item botanistBackpack;
 
 	@Mod.EventHandler
 	public void preInit(final FMLPreInitializationEvent evt) {
