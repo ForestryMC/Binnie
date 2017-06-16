@@ -9,12 +9,15 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.BiomeDictionary;
 
 import java.util.Random;
 
-public class WorldGenHiveNether extends WorldGenerator {
+public class WorldGenHiveNether extends WorldGenHive {
+
+	public WorldGenHiveNether(int rate) {
+		super(rate);
+	}
 
 	@Override
 	public boolean generate(final World world, final Random random, final BlockPos pos) {

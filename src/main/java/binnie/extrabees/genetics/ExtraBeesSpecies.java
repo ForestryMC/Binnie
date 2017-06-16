@@ -120,10 +120,10 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 	SWAMP("paludis", 3500339),
 	BOGGY("lama", 7887913),
 	FUNGAL("boletus", 13722112),
-	MARBLE,
-	ROMAN,
-	GREEK,
-	CLASSICAL,
+	MARBLE("marbla", 14076367),
+	ROMAN("roman", 11373488),
+	GREEK("greco", 8735882),
+	CLASSICAL("classica", 8592780),
 	BASALT("aceri", 9202025),
 	TEMPERED("iratus", 9062472),
 	ANGRY,
@@ -732,6 +732,21 @@ public enum ExtraBeesSpecies implements IAlleleBeeSpecies {
 		ExtraBeesSpecies.BLUTONIUM.importTemplate(ExtraBeesSpecies.CYANITE);
 		ExtraBeesSpecies.BLUTONIUM.addProduct(EnumHoneyComb.BARREN, 0.20f);
 		ExtraBeesSpecies.BLUTONIUM.addSpecialty(EnumHoneyComb.BLUTONIUM, 0.01f);
+
+		ExtraBeesSpecies.MARBLE.addProduct(ItemHoneyComb.VanillaComb.HONEY.get(), 0.30f);
+		ExtraBeesSpecies.MARBLE.importTemplate(BeeDefinition.NOBLE);
+
+		ExtraBeesSpecies.ROMAN.addProduct(ItemHoneyComb.VanillaComb.HONEY.get(), 0.30f);
+		ExtraBeesSpecies.ROMAN.importTemplate(MARBLE);
+
+		ExtraBeesSpecies.GREEK.addProduct(ItemHoneyComb.VanillaComb.HONEY.get(), 0.30f);
+		ExtraBeesSpecies.GREEK.setRecessive();
+		ExtraBeesSpecies.GREEK.importTemplate(ROMAN);
+
+		ExtraBeesSpecies.CLASSICAL.addProduct(ItemHoneyComb.VanillaComb.HONEY.get(), 0.30f);
+		ExtraBeesSpecies.CLASSICAL.addSpecialty(PluginApiculture.getItems().royalJelly.getItemStack(), 0.25f);
+		ExtraBeesSpecies.CLASSICAL.setHasEffect();
+		ExtraBeesSpecies.CLASSICAL.importTemplate(GREEK);
 
 		ExtraBeesSpecies.MYSTICAL.importTemplate(BeeDefinition.NOBLE);
 		for (final Map.Entry<ItemStack, Float> entry : Utils.getSpecies(BeeDefinition.NOBLE).getProductChances().entrySet()) {

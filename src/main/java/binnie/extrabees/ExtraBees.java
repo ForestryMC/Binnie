@@ -93,7 +93,9 @@ public class ExtraBees {
 	public void init(final FMLInitializationEvent evt) {
 		configHandler.reload(true);
 		ItemHoneyComb.addSubtypes();
-		GameRegistry.registerWorldGenerator(new ExtraBeesWorldGenerator(), 0);
+		ExtraBeesWorldGenerator extraBeesWorldGenerator = new ExtraBeesWorldGenerator();
+		extraBeesWorldGenerator.doInit();
+		GameRegistry.registerWorldGenerator(extraBeesWorldGenerator, 0);
 		ExtraBeesEffect.doInit();
 		ExtraBeesFlowers.doInit();
 		ExtraBeesSpecies.doInit();

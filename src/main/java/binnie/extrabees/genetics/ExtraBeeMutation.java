@@ -28,6 +28,7 @@ import static forestry.apiculture.genetics.BeeDefinition.FIENDISH;
 import static forestry.apiculture.genetics.BeeDefinition.FOREST;
 import static forestry.apiculture.genetics.BeeDefinition.FRUGAL;
 import static forestry.apiculture.genetics.BeeDefinition.HERMITIC;
+import static forestry.apiculture.genetics.BeeDefinition.HEROIC;
 import static forestry.apiculture.genetics.BeeDefinition.IMPERIAL;
 import static forestry.apiculture.genetics.BeeDefinition.INDUSTRIOUS;
 import static forestry.apiculture.genetics.BeeDefinition.MAJESTIC;
@@ -201,10 +202,28 @@ public class ExtraBeeMutation {
 		registerMutation(ExtraBeesSpecies.UNUSUAL, HERMITIC, ExtraBeesSpecies.SPATIAL, 5);
 		registerMutation(ExtraBeesSpecies.SPATIAL, SPECTRAL, ExtraBeesSpecies.QUANTUM, 5);
 		registerMutation(NOBLE, MONASTIC, ExtraBeesSpecies.MYSTICAL, 5);
+
+		registerMutation(ExtraBeesSpecies.WATER, ExtraBeesSpecies.MARBLE, COMMON, 15);
+		registerMutation(ExtraBeesSpecies.ROCK, ExtraBeesSpecies.MARBLE, COMMON, 15);
+		registerMutation(ExtraBeesSpecies.MARBLE, FOREST, COMMON, 15);
+		registerMutation(ExtraBeesSpecies.MARBLE, MEADOWS, COMMON, 15);
+		registerMutation(ExtraBeesSpecies.MARBLE, MODEST, COMMON, 15);
+		registerMutation(ExtraBeesSpecies.MARBLE, TROPICAL, COMMON, 15);
+		registerMutation(ExtraBeesSpecies.MARBLE, MARSHY, COMMON, 15);
+		registerMutation(ExtraBeesSpecies.MARBLE, COMMON, CULTIVATED, 12);
+		registerMutation(ExtraBeesSpecies.MARBLE, HEROIC, ExtraBeesSpecies.ROMAN, 10);
+		registerMutation(ExtraBeesSpecies.ROMAN, ExtraBeesSpecies.MARBLE, ExtraBeesSpecies.GREEK, 8);
+		registerMutation(ExtraBeesSpecies.ROMAN, ExtraBeesSpecies.MARBLE, ExtraBeesSpecies.GREEK, 8);
+		registerMutation(ExtraBeesSpecies.GREEK, ExtraBeesSpecies.ROMAN, ExtraBeesSpecies.CLASSICAL, 8);
+
 	}
 
 	public static IBeeMutationBuilder registerMutation(BeeDefinition allele0, BeeDefinition allele1, ExtraBeesSpecies mutation, int chance) {
 		return registerMutation(allele0.getGenome().getPrimary(), allele1.getGenome().getPrimary(), mutation, chance);
+	}
+
+	public static IBeeMutationBuilder registerMutation(ExtraBeesSpecies allele0, ExtraBeesSpecies allele1, BeeDefinition mutation, int chance) {
+		return registerMutation(allele0, allele1, mutation.getTemplate(), chance);
 	}
 
 	public static IBeeMutationBuilder registerMutation(IAlleleBeeSpecies allele0, BeeDefinition allele1, BeeDefinition mutation, int chance) {

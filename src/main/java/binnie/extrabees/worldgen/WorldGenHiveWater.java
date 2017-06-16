@@ -11,7 +11,11 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
-public class WorldGenHiveWater extends WorldGenerator {
+public class WorldGenHiveWater extends WorldGenHive {
+
+	public WorldGenHiveWater(int rate) {
+		super(rate);
+	}
 
 	@Override
 	public boolean generate(final World world, final Random random, final BlockPos blockPos) {

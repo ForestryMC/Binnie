@@ -44,6 +44,9 @@ public final class BlockRegister {
 		EnumHiveType.Rock.drops.add(new HiveDrop(valiantSpecies, 3));
 		EnumHiveType.Nether.drops.add(new HiveDrop(ExtraBeesSpecies.BASALT, 80));
 		EnumHiveType.Nether.drops.add(new HiveDrop(valiantSpecies, 3));
+		EnumHiveType.Marble.drops.add(new HiveDrop(ExtraBeesSpecies.MARBLE, 80));
+		EnumHiveType.Marble.drops.add(new HiveDrop(valiantSpecies, 3));
+
 		ExtraBees.hive.setHarvestLevel("scoop", 0, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHive.hiveType, EnumHiveType.Water));
 		ExtraBees.hive.setHarvestLevel("scoop", 0, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHive.hiveType, EnumHiveType.Rock));
 		ExtraBees.hive.setHarvestLevel("scoop", 0, ExtraBees.hive.getDefaultState().withProperty(BlockExtraBeeHive.hiveType, EnumHiveType.Nether));
