@@ -57,11 +57,7 @@ public class ModuleItems implements IInitializable {
 		ExtraTrees.proxy.registerItem(itemHammer);
 		itemDurableHammer = new ItemHammer(true);
 		ExtraTrees.proxy.registerItem(itemDurableHammer);
-	}
-
-	@Override
-	public void init() {
-
+		
 		OreDictionary.registerOre("pulpWood", ExtraTreeItems.Sawdust.get(1));
 		Food.registerOreDictionary();
 		OreDictionary.registerOre("cropApple", Items.APPLE);
@@ -72,9 +68,12 @@ public class ModuleItems implements IInitializable {
 		OreDictionary.registerOre("seedCorn", ExtraTreeItems.GrainCorn.get(1));
 		OreDictionary.registerOre("seedRye", ExtraTreeItems.GrainRye.get(1));
 		OreDictionary.registerOre("seedRoasted", ExtraTreeItems.GrainRoasted.get(1));
-
+		
 		OreDictionary.registerOre("gearWood", ExtraTreeItems.ProvenGear.get(1));
+	}
 
+	@Override
+	public void init() {
 		Food.CRABAPPLE.addJuice(10, 150, 10);
 		Food.ORANGE.addJuice(10, 400, 15);
 		Food.KUMQUAT.addJuice(10, 300, 10);

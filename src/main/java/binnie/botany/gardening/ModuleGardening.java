@@ -99,11 +99,16 @@ public class ModuleGardening implements IInitializable {
 		BinnieCore.getBinnieProxy().registerTileEntity(TileCeramicBrick.class, "botany.tile.ceramicBrick");
 		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(Botany.ceramicTile), new MultipassItemRenderer());
 		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(Botany.ceramicBrick), new MultipassItemRenderer());
+		OreDictionary.registerOre("pigment", Botany.pigment);
+		OreDictionary.registerOre("toolTrowel", Botany.trowelWood);
+		OreDictionary.registerOre("toolTrowel", Botany.trowelStone);
+		OreDictionary.registerOre("toolTrowel", Botany.trowelIron);
+		OreDictionary.registerOre("toolTrowel", Botany.trowelGold);
+		OreDictionary.registerOre("toolTrowel", Botany.trowelDiamond);
 	}
 
 	@Override
 	public void init() {
-		OreDictionary.registerOre("pigment", Botany.pigment);
 		RecipeSorter.register("botany:ceramictile", CeramicTileRecipe.class, RecipeSorter.Category.SHAPED, "");
 		RecipeSorter.register("botany:pigment", PigmentRecipe.class, RecipeSorter.Category.SHAPED, "");
 		final ItemStack yellow = new ItemStack(Blocks.YELLOW_FLOWER, 1);

@@ -13,6 +13,7 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.recipes.RecipeManagers;
 import forestry.api.storage.BackpackManager;
 import forestry.api.storage.IBackpackInterface;
+import forestry.core.recipes.RecipeUtil;
 import forestry.storage.BackpackDefinition;
 
 import binnie.Binnie;
@@ -90,5 +91,14 @@ public class ModuleGenetics implements IInitializable {
 			'D', Items.DIAMOND,
 			'E', Items.EMERALD
 		);
+		RecipeUtil.addRecipe(Botany.botanistBackpack,
+				"X#X",
+				"VYZ",
+				"X#X",
+				'#', Blocks.WOOL,
+				'X', Items.STRING,
+				'V', Botany.soilMeter,
+				'Z', "toolTrowel",
+				'Y', "chestWood");
 	}
 }

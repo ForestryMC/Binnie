@@ -33,11 +33,6 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 	public static void addSubtypes() {
 		final ItemStack beeswax = PluginCore.getItems().beeswax.getItemStack();
 		final ItemStack honeyDrop = PluginApiculture.getItems().honeyDrop.getItemStack();
-		OreDictionary.registerOre("ingotIron", Items.IRON_INGOT);
-		OreDictionary.registerOre("ingotGold", Items.GOLD_INGOT);
-		OreDictionary.registerOre("gemDiamond", Items.DIAMOND);
-		OreDictionary.registerOre("gemEmerald", Items.EMERALD);
-		OreDictionary.registerOre("gemLapis", new ItemStack(Items.DYE, 1, 4));
 		EnumHoneyComb.BARREN.addProduct(beeswax, 1.00f);
 		EnumHoneyComb.BARREN.addProduct(honeyDrop, 0.50f);
 		EnumHoneyComb.ROTTEN.addProduct(beeswax, 0.20f);
