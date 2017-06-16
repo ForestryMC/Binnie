@@ -1,9 +1,7 @@
 package binnie.core.item;
 
-import binnie.Constants;
-import binnie.core.BinnieCore;
-import binnie.core.gui.BinnieCoreGUI;
-import forestry.api.core.IModelManager;
+import java.util.List;
+
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -14,10 +12,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
+import forestry.api.core.IModelManager;
+
+import binnie.Constants;
+import binnie.core.BinnieCore;
+import binnie.core.gui.BinnieCoreGUI;
 
 public class ItemFieldKit extends ItemCore {
 	private ModelResourceLocation fieldKit;

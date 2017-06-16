@@ -1,12 +1,13 @@
 package binnie.botany.farm;
 
-import forestry.api.farming.IFarmLogic;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import forestry.api.farming.IFarmLogic;
 
 public abstract class FarmLogic implements IFarmLogic {
 	boolean isManual;

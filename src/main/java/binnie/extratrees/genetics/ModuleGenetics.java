@@ -1,13 +1,15 @@
 package binnie.extratrees.genetics;
 
-import binnie.core.BinnieCore;
-import binnie.core.IInitializable;
-import forestry.api.arboriculture.IAlleleFruit;
-import forestry.api.genetics.AlleleRegisterEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import forestry.api.arboriculture.IAlleleFruit;
+import forestry.api.genetics.AlleleRegisterEvent;
+
+import binnie.core.BinnieCore;
+import binnie.core.IInitializable;
 
 public class ModuleGenetics implements IInitializable {
 	String[] branches;

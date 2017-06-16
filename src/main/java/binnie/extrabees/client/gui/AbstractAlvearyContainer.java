@@ -1,16 +1,18 @@
 package binnie.extrabees.client.gui;
 
-import binnie.extrabees.ExtraBees;
-import binnie.extrabees.alveary.EnumAlvearyLogicType;
-import binnie.extrabees.utils.ExtraBeesResourceLocation;
+import javax.annotation.Nonnull;
+import java.awt.Dimension;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.util.ResourceLocation;
+
 import net.minecraftforge.items.IItemHandlerModifiable;
 
-import javax.annotation.Nonnull;
-import java.awt.Dimension;
+import binnie.extrabees.ExtraBees;
+import binnie.extrabees.alveary.EnumAlvearyLogicType;
+import binnie.extrabees.utils.ExtraBeesResourceLocation;
 
 public abstract class AbstractAlvearyContainer extends Container {
 
@@ -27,8 +29,8 @@ public abstract class AbstractAlvearyContainer extends Container {
 		this.inv = inv;
 		this.dimension = dimension;
 		String base = "extrabees.machine.alveay." + type.getName();
-		title = ExtraBees.proxy.localise(base + ".name");
-		tooltip = ExtraBees.proxy.localise(base + ".info");
+		title = ExtraBees.proxy.localiseWithOutPrefix(base + ".name");
+		tooltip = ExtraBees.proxy.localiseWithOutPrefix(base + ".info");
 		background = new ExtraBeesResourceLocation("textures/gui/gui" + type.getName() + ".png");
 		setupContainer();
 	}

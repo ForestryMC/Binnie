@@ -1,5 +1,14 @@
 package binnie.extratrees.gen;
 
+import javax.annotation.Nullable;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
+
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
 import forestry.api.arboriculture.ITreeModifier;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.world.ITreeGenData;
@@ -8,14 +17,6 @@ import forestry.arboriculture.worldgen.TreeBlockTypeLog;
 import forestry.arboriculture.worldgen.WorldGenArboriculture;
 import forestry.core.worldgen.WorldGenHelper;
 import forestry.core.worldgen.WorldGenHelper.EnumReplaceMode;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
 
 public class WorldGenShrub {
 	public static class Shrub extends WorldGenArboriculture {

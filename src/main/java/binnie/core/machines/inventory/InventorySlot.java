@@ -1,11 +1,12 @@
 package binnie.core.machines.inventory;
 
-import binnie.Binnie;
-import binnie.core.BinnieCore;
+import javax.annotation.Nullable;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import javax.annotation.Nullable;
+import binnie.Binnie;
+import binnie.core.BinnieCore;
 
 public class InventorySlot extends BaseSlot<ItemStack> {
 	private ItemStack itemStack;
@@ -89,7 +90,7 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 	public void setType(final Type type) {
 		this.type = type;
 		if (type == Type.Recipe) {
-			this.setReadOnly();
+			//this.setReadOnly();
 			this.forbidInteraction();
 		}
 	}

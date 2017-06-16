@@ -1,9 +1,11 @@
 package binnie.extratrees.integration.jei.fruitpress;
 
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fluids.FluidStack;
+
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
 
 public class FruitPressRecipeWrapper extends BlankRecipeWrapper {
 	private final ItemStack input;

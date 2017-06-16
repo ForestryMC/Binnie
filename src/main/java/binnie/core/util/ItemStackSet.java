@@ -1,12 +1,12 @@
 package binnie.core.util;
 
-import net.minecraft.item.ItemStack;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
+import net.minecraft.item.ItemStack;
 
 public class ItemStackSet implements Set<ItemStack> {
 	List<ItemStack> itemStacks;
@@ -31,7 +31,7 @@ public class ItemStackSet implements Set<ItemStack> {
 
 	@Override
 	public boolean add(final ItemStack e) {
-		if (e != null) {
+		if (!e.isEmpty()) {
 			ItemStack existing = this.getExisting(e);
 			if (existing.isEmpty()) {
 				return this.itemStacks.add(e.copy());

@@ -1,5 +1,14 @@
 package binnie.core.craftgui.database;
 
+import java.util.Objects;
+
+import net.minecraft.util.text.TextFormatting;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.genetics.IAlleleSpecies;
+
 import binnie.Binnie;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
@@ -8,12 +17,6 @@ import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.geometry.TextJustification;
-import forestry.api.genetics.IAlleleSpecies;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.Objects;
 
 @SideOnly(Side.CLIENT)
 public class PageSpeciesOverview extends PageSpecies {

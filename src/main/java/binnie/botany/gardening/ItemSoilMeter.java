@@ -1,13 +1,5 @@
 package binnie.botany.gardening;
 
-import binnie.Binnie;
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.IBlockSoil;
-import binnie.core.BinnieCore;
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -20,8 +12,19 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+
+import binnie.Binnie;
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumMoisture;
+import binnie.botany.api.IBlockSoil;
+import binnie.core.BinnieCore;
 
 public class ItemSoilMeter extends Item implements IItemModelRegister {
 	public ItemSoilMeter() {

@@ -1,12 +1,15 @@
 package binnie.botany.ceramic;
 
-import binnie.botany.genetics.EnumFlowerColor;
-import forestry.core.items.IColoredItem;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.core.items.IColoredItem;
+
+import binnie.botany.genetics.EnumFlowerColor;
 
 public class ItemCeramic extends ItemBlock implements IColoredItem {
 	public ItemCeramic(BlockCeramic block) {

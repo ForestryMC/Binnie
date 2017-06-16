@@ -1,27 +1,47 @@
 package binnie.core.craftgui.minecraft;
 
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Sets;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.ClickType;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IContainerListener;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
+import com.mojang.authlib.GameProfile;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.BinnieCore;
 import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.core.craftgui.minecraft.control.EnumHighlighting;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.Machine;
 import binnie.core.machines.network.INetwork;
-import binnie.core.machines.power.*;
+import binnie.core.machines.power.ErrorState;
+import binnie.core.machines.power.IErrorStateSource;
+import binnie.core.machines.power.IPoweredMachine;
+import binnie.core.machines.power.IProcess;
+import binnie.core.machines.power.ITankMachine;
+import binnie.core.machines.power.PowerInfo;
+import binnie.core.machines.power.ProcessInfo;
+import binnie.core.machines.power.TankInfo;
 import binnie.core.machines.transfer.TransferRequest;
 import binnie.core.network.packet.MessageContainerUpdate;
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Sets;
-import com.mojang.authlib.GameProfile;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.inventory.*;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nullable;
-import java.util.*;
 
 public class ContainerCraftGUI extends Container {
 	private final Set<EntityPlayer> crafters = Sets.newConcurrentHashSet();
@@ -98,12 +118,13 @@ public class ContainerCraftGUI extends Container {
 	}
 
 	@Override
-	public boolean canInteractWith(final EntityPlayer var1) {
-		if (var1 instanceof EntityPlayerMP) {
-			crafters.add(var1);
+	public boolean canInteractWith(EntityPlayer entityPlayer) {
+		if (entityPlayer instanceof EntityPlayerMP) {
+			crafters.add(entityPlayer);
 			this.sentNBT.clear();
 		}
-		return true;
+		IInventory inventory = this.window.getInventory();
+		return inventory == null || inventory.isUsableByPlayer(entityPlayer);
 	}
 
 	@Override

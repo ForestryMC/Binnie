@@ -1,12 +1,13 @@
 package binnie.core.craftgui.resource;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.Border;
 import binnie.core.craftgui.geometry.Position;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Texture {
 	private final Area area;

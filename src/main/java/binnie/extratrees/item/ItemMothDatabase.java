@@ -1,10 +1,7 @@
 package binnie.extratrees.item;
 
-import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.core.ExtraTreesGUID;
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
-import forestry.api.core.Tabs;
+import java.util.List;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -15,10 +12,16 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import forestry.api.core.Tabs;
+
+import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.core.ExtraTreesGUID;
 
 public class ItemMothDatabase extends Item implements IItemModelRegister {
 

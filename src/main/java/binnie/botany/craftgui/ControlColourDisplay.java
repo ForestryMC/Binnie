@@ -1,5 +1,8 @@
 package binnie.botany.craftgui;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.botany.api.IFlowerColour;
 import binnie.core.craftgui.Attribute;
 import binnie.core.craftgui.ITooltip;
@@ -8,8 +11,6 @@ import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.controls.core.IControlValue;
 import binnie.core.craftgui.renderer.RenderUtil;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlColourDisplay extends Control implements IControlValue<IFlowerColour>, ITooltip {
 	private IFlowerColour value;

@@ -1,12 +1,11 @@
 package binnie.extrabees.alveary;
 
-import forestry.api.apiculture.IBeeListener;
-import forestry.api.apiculture.IBeeModifier;
-import forestry.api.multiblock.IAlvearyComponent;
-import forestry.api.multiblock.IMultiblockComponent;
-import forestry.api.multiblock.IMultiblockController;
-import forestry.apiculture.multiblock.MultiblockLogicAlveary;
-import forestry.core.multiblock.MultiblockTileEntityForestry;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,15 +14,19 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
 import net.minecraftforge.common.capabilities.Capability;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import java.util.Collection;
-import java.util.Set;
-import java.util.stream.Collectors;
+import forestry.api.apiculture.IBeeListener;
+import forestry.api.apiculture.IBeeModifier;
+import forestry.api.multiblock.IAlvearyComponent;
+import forestry.api.multiblock.IMultiblockComponent;
+import forestry.api.multiblock.IMultiblockController;
+import forestry.apiculture.multiblock.MultiblockLogicAlveary;
+import forestry.core.multiblock.MultiblockTileEntityForestry;
 
 public class TileEntityExtraBeesAlvearyPart extends MultiblockTileEntityForestry<MultiblockLogicAlveary> implements
 	IAlvearyComponent.Active,

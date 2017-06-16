@@ -1,5 +1,14 @@
 package binnie.extratrees.machines;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.BinnieCore;
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.Machine;
@@ -14,13 +23,6 @@ import binnie.extratrees.machines.brewery.BreweryMachine;
 import binnie.extratrees.machines.distillery.DistilleryMachine;
 import binnie.extratrees.machines.fruitpress.FruitPressMachine;
 import binnie.extratrees.machines.lumbermill.LumbermillMachine;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public enum ExtraTreeMachine implements IMachineType {
 	Lumbermill(LumbermillMachine.class),

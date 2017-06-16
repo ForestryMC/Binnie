@@ -1,12 +1,12 @@
 package binnie.extratrees.carpentry;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignCategory;
 import binnie.extratrees.api.ILayout;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public enum EnumDesign implements IDesign {
 	Blank("Blank"),

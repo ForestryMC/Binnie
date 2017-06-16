@@ -1,13 +1,15 @@
 package binnie.core.machines.inventory;
 
-import binnie.core.util.IValidator;
-import forestry.api.core.INbtReadable;
-import forestry.api.core.INbtWritable;
-import net.minecraft.util.EnumFacing;
-
 import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.EnumSet;
+
+import net.minecraft.util.EnumFacing;
+
+import forestry.api.core.INbtReadable;
+import forestry.api.core.INbtWritable;
+
+import binnie.core.util.IValidator;
 
 public abstract class BaseSlot<T> implements INbtWritable, INbtReadable, IValidator<T> {
 	protected String unlocName;

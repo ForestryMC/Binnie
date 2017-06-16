@@ -1,11 +1,11 @@
 package binnie.extrabees.genetics.effect;
 
+import java.util.ArrayList;
+
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-
-import java.util.ArrayList;
 
 public class FireworkCreator {
 

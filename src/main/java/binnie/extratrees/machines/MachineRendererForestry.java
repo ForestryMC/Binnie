@@ -1,12 +1,14 @@
 package binnie.extratrees.machines;
 
 import com.google.common.base.Throwables;
-import forestry.core.render.TankRenderInfo;
-import net.minecraft.util.EnumFacing;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
+
+import net.minecraft.util.EnumFacing;
+
+import forestry.core.render.TankRenderInfo;
 
 public class MachineRendererForestry {
 	static Map<String, Object> instances = new HashMap<>();

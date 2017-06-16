@@ -1,13 +1,15 @@
 package binnie.genetics.gui.butterfly;
 
+import net.minecraft.util.text.TextFormatting;
+
+import forestry.api.lepidopterology.IButterfly;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.geometry.Area;
 import binnie.genetics.Genetics;
 import binnie.genetics.gui.ControlAnalystPage;
 import binnie.genetics.gui.ControlIndividualDisplay;
-import forestry.api.lepidopterology.IButterfly;
-import net.minecraft.util.text.TextFormatting;
 
 public class AnalystPageSpecimen extends ControlAnalystPage {
 	public AnalystPageSpecimen(final IWidget parent, final Area area, final IButterfly ind) {

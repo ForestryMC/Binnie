@@ -1,10 +1,10 @@
 package binnie.extratrees.api;
 
-import net.minecraft.item.ItemStack;
-
 import javax.annotation.Nullable;
 import java.util.Collection;
 import java.util.List;
+
+import net.minecraft.item.ItemStack;
 
 public interface ICarpentryInterface {
 	boolean registerCarpentryWood(final int index, final IDesignMaterial material);

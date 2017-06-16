@@ -1,5 +1,22 @@
 package binnie.genetics.gui.tree;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.init.Biomes;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.biome.Biome;
+
+import forestry.api.apiculture.EnumBeeChromosome;
+import forestry.api.apiculture.IBee;
+import forestry.api.core.EnumHumidity;
+import forestry.api.core.EnumTemperature;
+import forestry.api.genetics.EnumTolerance;
+import forestry.api.genetics.IAlleleTolerance;
+import forestry.api.genetics.IIndividual;
+import forestry.api.lepidopterology.EnumButterflyChromosome;
+import forestry.api.lepidopterology.IButterfly;
+
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.IFlower;
 import binnie.core.craftgui.IWidget;
@@ -13,21 +30,6 @@ import binnie.genetics.Genetics;
 import binnie.genetics.gui.ControlAnalystPage;
 import binnie.genetics.gui.ControlBiome;
 import binnie.genetics.gui.ControlToleranceBar;
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.apiculture.IBee;
-import forestry.api.core.EnumHumidity;
-import forestry.api.core.EnumTemperature;
-import forestry.api.genetics.EnumTolerance;
-import forestry.api.genetics.IAlleleTolerance;
-import forestry.api.genetics.IIndividual;
-import forestry.api.lepidopterology.EnumButterflyChromosome;
-import forestry.api.lepidopterology.IButterfly;
-import net.minecraft.init.Biomes;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.biome.Biome;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class AnalystPageClimate extends ControlAnalystPage {
 	public AnalystPageClimate(final IWidget parent, final Area area, final IIndividual ind) {

@@ -1,7 +1,8 @@
 package binnie.core.machines.power;
 
-import binnie.core.machines.IMachine;
 import net.minecraft.nbt.NBTTagCompound;
+
+import binnie.core.machines.IMachine;
 
 public abstract class ComponentProcess extends ComponentProcessIndefinate implements IProcessTimed {
 	private float progressAmount;

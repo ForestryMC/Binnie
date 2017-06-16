@@ -1,16 +1,18 @@
 package binnie.genetics.integration.jei.sequencer;
 
-import binnie.core.genetics.Gene;
-import binnie.genetics.item.ItemSequence;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
-import net.minecraft.item.ItemStack;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import binnie.core.genetics.Gene;
+import binnie.genetics.item.ItemSequence;
 
 public class SequencerRecipeMaker {
 	public static List<SequencerRecipeWrapper> create() {

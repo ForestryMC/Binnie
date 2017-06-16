@@ -1,17 +1,18 @@
 package binnie.core.machines;
 
-import binnie.core.BinnieCore;
-import binnie.core.ManagerBase;
-import binnie.core.machines.inventory.SlotValidator;
-import binnie.core.machines.inventory.ValidatorSprite;
-import forestry.api.core.INbtReadable;
-import forestry.api.core.INbtWritable;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import forestry.api.core.INbtReadable;
+import forestry.api.core.INbtWritable;
+
+import binnie.core.BinnieCore;
+import binnie.core.ManagerBase;
+import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.machines.inventory.ValidatorSprite;
 
 public class ManagerMachine extends ManagerBase {
 	private Map<Class<?>, Class<?>[]> componentInterfaceMap;

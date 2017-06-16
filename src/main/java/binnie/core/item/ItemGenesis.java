@@ -1,14 +1,16 @@
 package binnie.core.item;
 
-import binnie.core.BinnieCore;
-import binnie.core.gui.BinnieCoreGUI;
-import forestry.api.core.Tabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
+
+import forestry.api.core.Tabs;
+
+import binnie.core.BinnieCore;
+import binnie.core.gui.BinnieCoreGUI;
 
 public class ItemGenesis extends ItemCore {
 

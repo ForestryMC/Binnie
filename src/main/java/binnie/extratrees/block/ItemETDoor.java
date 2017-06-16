@@ -1,6 +1,5 @@
 package binnie.extratrees.block;
 
-import binnie.core.block.ItemMetadata;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +9,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import binnie.core.block.ItemMetadata;
 
 public class ItemETDoor extends ItemMetadata {
 	/*@Override

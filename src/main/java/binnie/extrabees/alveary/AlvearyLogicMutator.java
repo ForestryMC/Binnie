@@ -1,20 +1,24 @@
 package binnie.extrabees.alveary;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraftforge.items.ItemStackHandler;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.apiculture.IBeeGenome;
+
 import binnie.extrabees.client.gui.AbstractAlvearyContainer;
 import binnie.extrabees.client.gui.ContainerMutator;
 import binnie.extrabees.client.gui.GuiContainerMutator;
 import binnie.extrabees.utils.AlvearyMutationHandler;
-import forestry.api.apiculture.IBeeGenome;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.ItemStackHandler;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public class AlvearyLogicMutator extends AbstractAlvearyLogic {
 

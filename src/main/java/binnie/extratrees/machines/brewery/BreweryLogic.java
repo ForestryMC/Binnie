@@ -1,19 +1,22 @@
 package binnie.extratrees.machines.brewery;
 
+import com.google.common.base.Preconditions;
+
+import javax.annotation.Nullable;
+import java.util.Map;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+
 import binnie.core.machines.Machine;
 import binnie.core.machines.network.INetwork;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
-import com.google.common.base.Preconditions;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-
-import javax.annotation.Nullable;
-import java.util.Map;
 
 public class BreweryLogic extends ComponentProcessSetCost implements IProcess, INetwork.GuiNBT {
 	@Nullable
@@ -67,7 +70,7 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 	@Override
 	protected void onFinishTask() {
 		Preconditions.checkState(this.currentCrafting != null);
-		FluidStack output = BreweryRecipes.getOutput(this.currentCrafting);
+		FluidStack output = BreweryRecipes.getOutput(currentCrafting);
 		if (output != null) {
 			this.getUtil().fillTank(BreweryMachine.TANK_OUTPUT, output);
 			this.currentCrafting = null;
@@ -81,6 +84,7 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 			final FluidStack stack = this.getUtil().drainTank(BreweryMachine.TANK_INPUT, Fluid.BUCKET_VOLUME);
 			this.currentCrafting = this.getInputCrafting();
 			this.currentCrafting.inputFluid = stack;
+			this.getUtil().drainTank(BreweryMachine.TANK_INPUT,  stack.amount);
 			this.getUtil().removeIngredients(new int[]{0, 1, 2, 3, 4}, BreweryMachine.SLOTS_INVENTORY);
 		}
 	}

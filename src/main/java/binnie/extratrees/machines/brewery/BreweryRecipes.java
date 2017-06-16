@@ -1,13 +1,14 @@
 package binnie.extratrees.machines.brewery;
 
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
-
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class BreweryRecipes {
 	public static final int GRAIN_BARLEY = OreDictionary.getOreID("seedBarley");
@@ -57,6 +58,19 @@ public class BreweryRecipes {
 				FluidStack output = recipe.getOutput(crafting);
 				if (output != null) {
 					return output;
+				}
+			}
+		}
+		return null;
+	}
+	
+	@Nullable
+	public static IBreweryRecipe getRecipe(final BreweryCrafting crafting) {
+		if (crafting.inputFluid != null && !crafting.yeast.isEmpty()) {
+			for (final IBreweryRecipe recipe : recipes) {
+				FluidStack output = recipe.getOutput(crafting);
+				if (output != null) {
+					return recipe;
 				}
 			}
 		}

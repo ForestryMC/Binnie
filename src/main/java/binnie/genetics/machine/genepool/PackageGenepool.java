@@ -1,5 +1,12 @@
 package binnie.genetics.machine.genepool;
 
+import net.minecraft.tileentity.TileEntity;
+
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+
+import forestry.core.fluids.Fluids;
+
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
@@ -18,10 +25,6 @@ import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.GeneticMachine;
 import binnie.genetics.machine.ModuleMachine;
-import forestry.core.fluids.Fluids;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
 
 public class PackageGenepool extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageGenepool() {

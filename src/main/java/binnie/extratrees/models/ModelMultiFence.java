@@ -1,15 +1,5 @@
 package binnie.extratrees.models;
 
-import binnie.core.block.TileEntityMetadata;
-import binnie.core.models.AABBModelBaker;
-import binnie.core.models.ModelManager;
-import binnie.extratrees.block.WoodManager;
-import binnie.extratrees.block.decor.BlockMultiFence;
-import binnie.extratrees.block.decor.FenceType;
-import forestry.api.core.IModelBaker;
-import forestry.core.blocks.properties.UnlistedBlockAccess;
-import forestry.core.blocks.properties.UnlistedBlockPos;
-import forestry.core.models.ModelBlockCached;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.state.IBlockState;
@@ -19,7 +9,20 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import net.minecraftforge.common.property.IExtendedBlockState;
+
+import forestry.api.core.IModelBaker;
+import forestry.core.blocks.properties.UnlistedBlockAccess;
+import forestry.core.blocks.properties.UnlistedBlockPos;
+import forestry.core.models.ModelBlockCached;
+
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.models.AABBModelBaker;
+import binnie.core.models.ModelManager;
+import binnie.extratrees.block.WoodManager;
+import binnie.extratrees.block.decor.BlockMultiFence;
+import binnie.extratrees.block.decor.FenceType;
 
 public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMultiFence.Key> {
 

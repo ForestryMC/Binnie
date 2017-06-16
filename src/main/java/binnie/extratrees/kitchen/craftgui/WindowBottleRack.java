@@ -1,15 +1,17 @@
 package binnie.extratrees.kitchen.craftgui;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+
+import net.minecraftforge.fml.relauncher.Side;
+
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
 import binnie.core.machines.Machine;
 import binnie.extratrees.ExtraTrees;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraftforge.fml.relauncher.Side;
-
-import javax.annotation.Nullable;
 
 public class WindowBottleRack extends Window {
 	public WindowBottleRack(final EntityPlayer player, final IInventory inventory, final Side side) {

@@ -1,11 +1,13 @@
 package binnie.extratrees.block.wood;
 
-import binnie.extratrees.block.WoodManager;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
+
 import forestry.api.arboriculture.IWoodType;
 import forestry.arboriculture.IWoodTyped;
 import forestry.arboriculture.items.ItemBlockWood;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
+
+import binnie.extratrees.block.WoodManager;
 
 public class ItemBlockETWood<V extends Block & IWoodTyped> extends ItemBlockWood<V> {
 

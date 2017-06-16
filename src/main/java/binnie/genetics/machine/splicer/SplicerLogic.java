@@ -1,5 +1,16 @@
 package binnie.genetics.machine.splicer;
 
+import com.google.common.base.Preconditions;
+
+import javax.annotation.Nullable;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IIndividual;
+
 import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentProcess;
 import binnie.core.machines.power.ErrorState;
@@ -8,14 +19,6 @@ import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.genetics.Engineering;
-import com.google.common.base.Preconditions;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IIndividual;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-
-import javax.annotation.Nullable;
 
 public class SplicerLogic extends ComponentProcess implements IProcess {
 	public static int PROCESS_ENERGY = 12000000;

@@ -1,6 +1,9 @@
 package binnie.extratrees.machines.lumbermill;
 
+import net.minecraft.tileentity.TileEntity;
+
 import binnie.core.craftgui.minecraft.IMachineInformation;
+import binnie.core.liquid.ManagerLiquid;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
@@ -12,7 +15,6 @@ import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.machines.ExtraTreeMachine;
-import net.minecraft.tileentity.TileEntity;
 
 public class LumbermillMachine extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
 	public static final int SLOT_LOG = 0;
@@ -41,7 +43,7 @@ public class LumbermillMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 
 		final ComponentTankContainer tanks = new ComponentTankContainer(machine);
 		TankSlot tankWater = tanks.addTank(TANK_WATER, "input", TANK_WATER_CAPACITY);
-		tankWater.setValidator(new TankValidator.Basic("water"));
+		tankWater.setValidator(new TankValidator.Basic(ManagerLiquid.WATER));
 
 		new ComponentPowerReceptor(machine);
 		new LumbermillLogic(machine);

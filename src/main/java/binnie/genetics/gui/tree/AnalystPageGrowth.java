@@ -1,16 +1,18 @@
 package binnie.genetics.gui.tree;
 
+import net.minecraft.util.text.TextFormatting;
+
+import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.arboriculture.ITree;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IIndividual;
+
 import binnie.Binnie;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.geometry.Area;
 import binnie.genetics.Genetics;
 import binnie.genetics.gui.ControlAnalystPage;
-import forestry.api.arboriculture.EnumTreeChromosome;
-import forestry.api.arboriculture.ITree;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IIndividual;
-import net.minecraft.util.text.TextFormatting;
 
 public class AnalystPageGrowth extends ControlAnalystPage {
 	public AnalystPageGrowth(final IWidget parent, final Area area, final IIndividual ind) {

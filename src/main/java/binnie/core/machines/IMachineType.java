@@ -1,8 +1,8 @@
 package binnie.core.machines;
 
-import binnie.core.network.IOrdinaled;
-
 import javax.annotation.Nullable;
+
+import binnie.core.network.IOrdinaled;
 
 public interface IMachineType extends IOrdinaled {
 	@Nullable

@@ -1,5 +1,7 @@
 package binnie.genetics.integration.jei.genepool;
 
+import net.minecraft.client.Minecraft;
+
 import binnie.genetics.Genetics;
 import binnie.genetics.integration.jei.GeneticsJeiPlugin;
 import binnie.genetics.integration.jei.RecipeUids;
@@ -11,7 +13,6 @@ import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeCategory;
-import net.minecraft.client.Minecraft;
 
 public class GenepoolRecipeCategory extends BlankRecipeCategory<GenepoolRecipeWrapper> {
 	private final IDrawableAnimated arrowAnimated;

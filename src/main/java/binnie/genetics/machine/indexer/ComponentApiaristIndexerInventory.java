@@ -1,18 +1,19 @@
 package binnie.genetics.machine.indexer;
 
-import binnie.Binnie;
-import binnie.core.machines.Machine;
-import binnie.core.machines.inventory.SetList;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import binnie.Binnie;
+import binnie.core.machines.Machine;
+import binnie.core.machines.inventory.SetList;
 
 public class ComponentApiaristIndexerInventory extends ComponentIndexerInventory<ComponentApiaristIndexerInventory.Mode> implements IInventory {
 	public ComponentApiaristIndexerInventory(final Machine machine) {

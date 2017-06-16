@@ -1,9 +1,10 @@
 package binnie.core.network.packet;
 
-import io.netty.buffer.ByteBuf;
+import java.io.IOException;
+
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 
-import java.io.IOException;
+import io.netty.buffer.ByteBuf;
 
 public final class MessageBinnie implements IMessage {
 	public int id;

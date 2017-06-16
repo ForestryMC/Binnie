@@ -1,16 +1,23 @@
 package binnie.extrabees.items;
 
-import binnie.extrabees.blocks.type.EnumHiveType;
+import javax.annotation.Nonnull;
+
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 
-import javax.annotation.Nonnull;
+import net.minecraftforge.client.model.ModelLoader;
 
-public class ItemBeehive extends ItemBlock {
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import binnie.extrabees.blocks.type.EnumHiveType;
+
+public class ItemBeehive extends ItemBlock implements IItemModelProvider {
 
 	@SuppressWarnings("all")
 	public ItemBeehive(@Nonnull final Block block) {
@@ -36,5 +43,15 @@ public class ItemBeehive extends ItemBlock {
 	@Override
 	public String getItemStackDisplayName(final ItemStack itemStack) {
 		return EnumHiveType.values()[itemStack.getItemDamage()].toString() + " Hive";
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void registerModel(Item item) {
+		int i = 0;
+		for(EnumHiveType type : EnumHiveType.values()){
+			ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation("extrabees:hive", "type=" + type.getName()));
+			i++;
+		}
 	}
 }

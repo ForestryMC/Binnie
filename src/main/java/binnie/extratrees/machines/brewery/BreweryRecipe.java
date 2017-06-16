@@ -1,12 +1,14 @@
 package binnie.extratrees.machines.brewery;
 
-import binnie.extratrees.item.ExtraTreeItems;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
-
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
+
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fluids.FluidStack;
+
+import binnie.extratrees.item.ExtraTreeItems;
 
 public class BreweryRecipe implements IBreweryRecipe {
 	private final FluidStack input;
@@ -27,6 +29,12 @@ public class BreweryRecipe implements IBreweryRecipe {
 	@Nullable
 	public FluidStack getOutput(final BreweryCrafting crafting) {
 		if (!this.yeast.isItemEqual(crafting.yeast)) {
+			return null;
+		}
+		if(crafting.inputGrains != null && crafting.inputGrains.length > 0){
+			return null;
+		}
+		if(!crafting.ingredient.isEmpty()){
 			return null;
 		}
 		if (this.input.isFluidEqual(crafting.inputFluid)) {

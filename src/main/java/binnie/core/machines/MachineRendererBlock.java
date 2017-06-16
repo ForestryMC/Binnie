@@ -1,10 +1,12 @@
 package binnie.core.machines;
 
-import binnie.core.BinnieCore;
-import binnie.core.resource.BinnieResource;
 import net.minecraft.client.renderer.GlStateManager;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import binnie.core.BinnieCore;
+import binnie.core.resource.BinnieResource;
 
 @SideOnly(Side.CLIENT)
 public class MachineRendererBlock {

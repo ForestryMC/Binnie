@@ -1,5 +1,12 @@
 package binnie.core.craftgui.minecraft.control;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.entity.player.InventoryPlayer;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.craftgui.Attribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
@@ -12,11 +19,6 @@ import binnie.core.craftgui.minecraft.MinecraftTooltip;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.machines.power.ErrorState;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nullable;
 
 public class ControlErrorState extends Control implements ITooltip {
 	@Nullable

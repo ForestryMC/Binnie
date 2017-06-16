@@ -1,6 +1,11 @@
 package binnie.extratrees.block;
 
-import binnie.extratrees.genetics.ETTreeDefinition;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import forestry.api.arboriculture.IFruitProvider;
 import forestry.api.arboriculture.ITreeGenome;
 import forestry.arboriculture.PluginArboriculture;
@@ -8,10 +13,8 @@ import forestry.arboriculture.items.ItemBlockLeaves;
 import forestry.core.items.IColoredItem;
 import forestry.core.items.ItemBlockForestry;
 import forestry.core.utils.Translator;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+
+import binnie.extratrees.genetics.ETTreeDefinition;
 
 public class ItemBlockETDecorativeLeaves extends ItemBlockForestry<BlockETDecorativeLeaves> implements IColoredItem {
 	public ItemBlockETDecorativeLeaves(Block block) {

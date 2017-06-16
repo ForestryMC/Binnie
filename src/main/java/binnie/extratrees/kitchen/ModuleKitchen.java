@@ -1,8 +1,9 @@
 package binnie.extratrees.kitchen;
 
-import binnie.core.IInitializable;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+
+import binnie.core.IInitializable;
 
 public class ModuleKitchen implements IInitializable {
 

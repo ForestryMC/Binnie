@@ -1,16 +1,19 @@
 package binnie.botany.genetics;
 
-import binnie.Constants;
-import binnie.botany.api.EnumFlowerStage;
-import binnie.botany.api.IFlowerType;
-import forestry.api.core.IModelManager;
+import java.util.Locale;
+
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.Locale;
+import forestry.api.core.IModelManager;
+
+import binnie.Constants;
+import binnie.botany.api.EnumFlowerStage;
+import binnie.botany.api.IFlowerType;
 
 public enum EnumFlowerType implements IFlowerType<EnumFlowerType> {
 	Dandelion,

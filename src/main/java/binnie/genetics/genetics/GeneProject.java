@@ -1,9 +1,9 @@
 package binnie.genetics.genetics;
 
-import com.mojang.authlib.GameProfile;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.mojang.authlib.GameProfile;
 
 public class GeneProject {
 	private int id;

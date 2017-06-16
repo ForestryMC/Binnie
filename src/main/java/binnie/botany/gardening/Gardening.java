@@ -1,18 +1,10 @@
 package binnie.botany.gardening;
 
-import binnie.botany.Botany;
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.EnumSoilType;
-import binnie.botany.api.IBlockSoil;
-import binnie.botany.api.IFlower;
-import binnie.botany.flower.TileEntityFlower;
-import binnie.botany.items.BotanyItems;
-import binnie.core.BinnieCore;
-import com.mojang.authlib.GameProfile;
-import forestry.api.climate.IClimateInfo;
-import forestry.api.core.EnumTemperature;
-import forestry.api.core.ForestryAPI;
+import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -24,10 +16,21 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
-import javax.annotation.Nullable;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import com.mojang.authlib.GameProfile;
+
+import forestry.api.climate.IClimateInfo;
+import forestry.api.core.EnumTemperature;
+import forestry.api.core.ForestryAPI;
+
+import binnie.botany.Botany;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumMoisture;
+import binnie.botany.api.EnumSoilType;
+import binnie.botany.api.IBlockSoil;
+import binnie.botany.api.IFlower;
+import binnie.botany.flower.TileEntityFlower;
+import binnie.botany.items.BotanyItems;
+import binnie.core.BinnieCore;
 
 public class Gardening {
 	public static final Map<ItemStack, Integer> fertiliserAcid = new LinkedHashMap<>();

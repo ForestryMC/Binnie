@@ -1,14 +1,15 @@
 package binnie.genetics.genetics;
 
-import com.mojang.authlib.GameProfile;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldSavedData;
-
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
+
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldSavedData;
+
+import com.mojang.authlib.GameProfile;
 
 public class GeneProjectTracker extends WorldSavedData {
 	Map<Integer, GeneProject> projects;

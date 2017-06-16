@@ -1,11 +1,13 @@
 package binnie.extratrees.alcohol;
 
+import net.minecraft.util.ResourceLocation;
+
+import net.minecraftforge.fluids.FluidStack;
+
 import binnie.Binnie;
 import binnie.Constants;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.IFluidType;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.FluidStack;
 
 public enum Spirit implements IFluidType, ICocktailLiquid {
 	NeutralSpirit("Neutral Spirit", "spirit.neutral", 16777215, 0.05, 0.8),

@@ -1,9 +1,10 @@
 package binnie.extratrees.machines;
 
+import net.minecraft.tileentity.TileEntity;
+
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.extratrees.core.ExtraTreeTexture;
-import net.minecraft.tileentity.TileEntity;
 
 public class Nursery {
 	public static int slotCaterpillar = 0;

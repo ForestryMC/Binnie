@@ -1,10 +1,11 @@
 package binnie.botany.items;
 
-import binnie.botany.Botany;
-import binnie.core.item.IItemMiscProvider;
+import java.util.List;
+
 import net.minecraft.item.ItemStack;
 
-import java.util.List;
+import binnie.botany.Botany;
+import binnie.core.item.IItemMiscProvider;
 
 public enum BotanyItems implements IItemMiscProvider {
 	AshPowder("Ash Powder", "powder_ash"),

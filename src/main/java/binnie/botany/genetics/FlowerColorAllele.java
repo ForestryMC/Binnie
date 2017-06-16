@@ -1,8 +1,9 @@
 package binnie.botany.genetics;
 
+import forestry.api.genetics.IAlleleInteger;
+
 import binnie.botany.Botany;
 import binnie.botany.api.IFlowerColour;
-import forestry.api.genetics.IAlleleInteger;
 
 /**
  * Created by Marcin on 03.06.2017.

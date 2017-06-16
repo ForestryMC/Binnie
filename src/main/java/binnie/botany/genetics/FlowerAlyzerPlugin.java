@@ -1,23 +1,30 @@
 package binnie.botany.genetics;
 
-import binnie.Binnie;
-import binnie.botany.api.*;
-import binnie.core.craftgui.geometry.Area;
-import binnie.core.craftgui.renderer.RenderUtil;
-import forestry.api.genetics.IAlleleInteger;
-import forestry.api.genetics.IAlyzerPlugin;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.renderer.RenderItem;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.genetics.IAlleleInteger;
+import forestry.api.genetics.IAlyzerPlugin;
+
+import binnie.Binnie;
+import binnie.botany.api.EnumFlowerChromosome;
+import binnie.botany.api.EnumFlowerStage;
+import binnie.botany.api.FlowerManager;
+import binnie.botany.api.IFlower;
+import binnie.core.craftgui.geometry.Area;
+import binnie.core.craftgui.renderer.RenderUtil;
 
 // TODO write flower alyzer plugin
 public class FlowerAlyzerPlugin implements IAlyzerPlugin {

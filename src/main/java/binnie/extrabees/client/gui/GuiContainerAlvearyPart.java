@@ -1,14 +1,16 @@
 package binnie.extrabees.client.gui;
 
 import com.google.common.collect.Lists;
+
+import java.awt.Color;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
+
 import net.minecraftforge.fml.client.config.GuiUtils;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.awt.Color;
 
 @SideOnly(Side.CLIENT)
 public class GuiContainerAlvearyPart extends GuiContainer {

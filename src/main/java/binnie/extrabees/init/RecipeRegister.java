@@ -1,5 +1,22 @@
 package binnie.extrabees.init;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+
+import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import forestry.api.circuits.ICircuitLayout;
+import forestry.api.recipes.RecipeManagers;
+import forestry.apiculture.PluginApiculture;
+import forestry.apiculture.blocks.BlockAlvearyType;
+import forestry.core.PluginCore;
+import forestry.core.fluids.Fluids;
+
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.alveary.EnumAlvearyLogicType;
 import binnie.extrabees.circuit.AlvearySimulatorCircuitType;
@@ -11,24 +28,11 @@ import binnie.extrabees.items.types.EnumHoneyDrop;
 import binnie.extrabees.items.types.EnumPropolis;
 import binnie.extrabees.items.types.ExtraBeeItems;
 import binnie.extrabees.utils.Utils;
-import forestry.api.circuits.ICircuitLayout;
-import forestry.api.recipes.RecipeManagers;
-import forestry.apiculture.PluginApiculture;
-import forestry.apiculture.blocks.BlockAlvearyType;
-import forestry.core.PluginCore;
-import forestry.core.fluids.Fluids;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public final class RecipeRegister {
 
 	public static void postInitRecipes() {
-		GameRegistry.addRecipe(new ItemStack(ExtraBees.honeyCrystalEmpty), "#@#", "@#@", "#@#", '@', PluginApiculture.getItems().honeyDrop, '#', EnumHoneyDrop.ENERGY.get(1));
+		GameRegistry.addRecipe(ExtraBees.honeyCrystal.getCharged(0), "#@#", "@#@", "#@#", '@', PluginApiculture.getItems().honeyDrop, '#', EnumHoneyDrop.ENERGY.get(1));
 		for (final EnumHoneyComb info : EnumHoneyComb.values()) {
 			info.addRecipe();
 		}

@@ -1,17 +1,21 @@
 package binnie.genetics.gui;
 
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.world.biome.Biome;
+
+import net.minecraftforge.common.BiomeDictionary;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.core.ForestryAPI;
+
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.renderer.RenderUtil;
-import forestry.api.core.ForestryAPI;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.world.biome.Biome;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlBiome extends Control implements ITooltip {
 	private final Biome biome;

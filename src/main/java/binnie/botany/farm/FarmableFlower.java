@@ -1,19 +1,23 @@
 package binnie.botany.farm;
 
-import binnie.botany.Botany;
-import binnie.botany.api.EnumFlowerStage;
-import binnie.botany.api.IFlower;
-import binnie.botany.core.BotanyCore;
-import binnie.botany.gardening.Gardening;
-import forestry.api.farming.ICrop;
-import forestry.api.farming.IFarmable;
+import javax.annotation.Nullable;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
+import forestry.api.farming.ICrop;
+import forestry.api.farming.IFarmable;
+
+import binnie.botany.Botany;
+import binnie.botany.api.EnumFlowerStage;
+import binnie.botany.api.IFlower;
+import binnie.botany.core.BotanyCore;
+import binnie.botany.flower.TileEntityFlower;
+import binnie.botany.gardening.Gardening;
 
 public class FarmableFlower implements IFarmable {
 	@Override
@@ -24,6 +28,20 @@ public class FarmableFlower implements IFarmable {
 	@Nullable
 	@Override
 	public ICrop getCropAt(World world, BlockPos pos, IBlockState blockState) {
+		IFlower flower = null;
+		if (world.getTileEntity(pos) instanceof TileEntityFlower) {
+			flower = ((TileEntityFlower) world.getTileEntity(pos)).getFlower();
+		}
+		// Look at TileEntityFlower::onShear logic
+		if (flower != null && flower.getAge() > 1) {
+			ItemStack mature = BotanyCore.getFlowerRoot().getMemberStack(flower, EnumFlowerStage.FLOWER);
+			ItemStack seed = BotanyCore.getFlowerRoot().getMemberStack(flower, EnumFlowerStage.SEED);
+			if (mature != null && seed != null) {
+				world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
+				return new FlowerCrop(pos, mature, seed);
+			}
+		}
+
 		return null;
 	}
 

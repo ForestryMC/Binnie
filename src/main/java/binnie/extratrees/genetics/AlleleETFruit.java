@@ -1,13 +1,27 @@
 package binnie.extratrees.genetics;
 
-import binnie.Binnie;
-import binnie.Constants;
-import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.block.FruitPod;
-import binnie.extratrees.config.ConfigurationMain;
-import binnie.extratrees.item.Food;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Throwables;
+
+import javax.annotation.Nullable;
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.IAlleleFruit;
 import forestry.api.arboriculture.IAlleleTreeSpecies;
@@ -20,23 +34,13 @@ import forestry.api.genetics.IFruitFamily;
 import forestry.arboriculture.FruitProviderNone;
 import forestry.arboriculture.genetics.alleles.AlleleTreeSpecies;
 import forestry.core.genetics.alleles.AlleleCategorized;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
-import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import binnie.Binnie;
+import binnie.Constants;
+import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.block.FruitPod;
+import binnie.extratrees.config.ConfigurationMain;
+import binnie.extratrees.item.Food;
 
 public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IFruitProvider {
 	public static final AlleleETFruit Blackthorn = new AlleleETFruit("Blackthorn", 10, 7180062, 14561129, FruitSprite.SMALL);

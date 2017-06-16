@@ -1,21 +1,24 @@
 package binnie.extratrees.gen;
 
+import javax.annotation.Nullable;
+import java.util.Random;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
+
+import com.mojang.authlib.GameProfile;
+
+import forestry.api.world.ITreeGenData;
+import forestry.arboriculture.tiles.TileTreeContainer;
+
 import binnie.core.util.TileUtil;
 import binnie.extratrees.worldgen.BlockType;
 import binnie.extratrees.worldgen.BlockTypeLeaf;
 import binnie.extratrees.worldgen.BlockTypeLog;
 import binnie.extratrees.worldgen.BlockTypeVoid;
 import binnie.extratrees.worldgen.WorldGenBlockType;
-import com.mojang.authlib.GameProfile;
-import forestry.api.world.ITreeGenData;
-import forestry.arboriculture.tiles.TileTreeContainer;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
-
-import javax.annotation.Nullable;
-import java.util.Random;
 
 public class WorldGenTree extends WorldGenerator {
 	protected ITreeGenData treeGen;

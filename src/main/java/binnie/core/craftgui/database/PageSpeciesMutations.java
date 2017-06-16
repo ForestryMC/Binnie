@@ -1,10 +1,11 @@
 package binnie.core.craftgui.database;
 
+import forestry.api.genetics.IAlleleSpecies;
+
 import binnie.Binnie;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextCentered;
-import forestry.api.genetics.IAlleleSpecies;
 
 public class PageSpeciesMutations extends PageSpecies {
 	private ControlText pageSpeciesFurther_Title;

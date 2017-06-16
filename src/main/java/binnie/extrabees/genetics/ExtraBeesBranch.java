@@ -1,14 +1,15 @@
 package binnie.extrabees.genetics;
 
-import binnie.extrabees.ExtraBees;
+import javax.annotation.Nullable;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IClassification;
 
-import javax.annotation.Nullable;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import binnie.extrabees.ExtraBees;
 
 public enum ExtraBeesBranch implements IClassification {
 

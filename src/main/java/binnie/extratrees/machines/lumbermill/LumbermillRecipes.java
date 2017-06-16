@@ -1,12 +1,13 @@
 package binnie.extratrees.machines.lumbermill;
 
-import binnie.core.util.FakeCraftingWorld;
-import binnie.core.util.OreDictionaryUtil;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
-import forestry.api.arboriculture.IWoodType;
-import forestry.api.arboriculture.TreeManager;
-import forestry.api.arboriculture.WoodBlockKind;
+
+import java.util.Collection;
+import java.util.List;
+
+import org.apache.commons.lang3.tuple.Pair;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
@@ -14,11 +15,15 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
-import net.minecraftforge.oredict.OreDictionary;
-import org.apache.commons.lang3.tuple.Pair;
 
-import java.util.Collection;
-import java.util.List;
+import net.minecraftforge.oredict.OreDictionary;
+
+import forestry.api.arboriculture.IWoodType;
+import forestry.api.arboriculture.TreeManager;
+import forestry.api.arboriculture.WoodBlockKind;
+
+import binnie.core.util.FakeCraftingWorld;
+import binnie.core.util.OreDictionaryUtil;
 
 public class LumbermillRecipes {
 	//Map<input log item, Pair<input log, output planks>>

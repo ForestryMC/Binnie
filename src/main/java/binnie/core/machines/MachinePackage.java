@@ -1,9 +1,11 @@
 package binnie.core.machines;
 
-import binnie.Binnie;
 import net.minecraft.tileentity.TileEntity;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import binnie.Binnie;
 
 public abstract class MachinePackage {
 	boolean powered;

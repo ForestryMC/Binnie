@@ -1,18 +1,21 @@
 package binnie.botany.farm;
 
-import binnie.Binnie;
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumMoisture;
-import binnie.core.circuits.BinnieCircuit;
 import com.google.common.base.Preconditions;
+
+import javax.annotation.Nullable;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
+
 import forestry.api.circuits.ChipsetManager;
 import forestry.api.circuits.ICircuitLayout;
 import forestry.api.farming.FarmDirection;
 import forestry.api.farming.IFarmHousing;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.TextFormatting;
 
-import javax.annotation.Nullable;
+import binnie.Binnie;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumMoisture;
+import binnie.core.circuits.BinnieCircuit;
 
 public class CircuitGarden extends BinnieCircuit {
 	private boolean isManual;

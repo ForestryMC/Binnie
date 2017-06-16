@@ -1,12 +1,14 @@
 package binnie.core.machines.power;
 
-import forestry.api.core.INbtReadable;
-import forestry.api.core.INbtWritable;
+import javax.annotation.Nullable;
+
 import net.minecraft.nbt.NBTTagCompound;
+
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 
-import javax.annotation.Nullable;
+import forestry.api.core.INbtReadable;
+import forestry.api.core.INbtWritable;
 
 public class TankInfo implements INbtReadable, INbtWritable {
 	@Nullable

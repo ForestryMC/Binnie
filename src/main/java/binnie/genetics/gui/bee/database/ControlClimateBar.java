@@ -1,5 +1,18 @@
 package binnie.genetics.gui.bee.database;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.apiculture.IAlleleBeeSpecies;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.core.EnumHumidity;
+import forestry.api.core.EnumTemperature;
+import forestry.api.genetics.EnumTolerance;
+import forestry.api.genetics.IAllele;
+
 import binnie.Binnie;
 import binnie.core.craftgui.Attribute;
 import binnie.core.craftgui.CraftGUI;
@@ -10,17 +23,6 @@ import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.renderer.RenderUtil;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
-import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.core.EnumHumidity;
-import forestry.api.core.EnumTemperature;
-import forestry.api.genetics.EnumTolerance;
-import forestry.api.genetics.IAllele;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ControlClimateBar extends Control implements ITooltip {
 	boolean isHumidity;

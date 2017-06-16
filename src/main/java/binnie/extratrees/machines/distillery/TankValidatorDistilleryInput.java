@@ -1,7 +1,8 @@
 package binnie.extratrees.machines.distillery;
 
-import binnie.core.machines.inventory.TankValidator;
 import net.minecraftforge.fluids.FluidStack;
+
+import binnie.core.machines.inventory.TankValidator;
 
 public class TankValidatorDistilleryInput extends TankValidator {
 	@Override

@@ -1,14 +1,16 @@
 package binnie.genetics.integration.jei.polymeriser;
 
-import binnie.genetics.Genetics;
-import binnie.genetics.integration.jei.GeneticsJeiPlugin;
-import mezz.jei.api.recipe.IStackHelper;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.oredict.OreDictionary;
+
+import binnie.genetics.Genetics;
+import binnie.genetics.integration.jei.GeneticsJeiPlugin;
+import mezz.jei.api.recipe.IStackHelper;
 
 public class PolymeriserRecipeMaker {
 	public static List<PolymeriserRecipeWrapper> create() {

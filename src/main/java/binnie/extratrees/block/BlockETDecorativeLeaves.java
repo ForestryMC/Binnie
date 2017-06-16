@@ -1,15 +1,10 @@
 package binnie.extratrees.block;
 
-import binnie.Constants;
-import binnie.extratrees.block.property.PropertyETType;
-import binnie.extratrees.genetics.ETTreeDefinition;
-import forestry.api.arboriculture.IFruitProvider;
-import forestry.api.arboriculture.ITreeGenome;
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
-import forestry.api.core.Tabs;
-import forestry.core.blocks.IColoredBlock;
-import forestry.core.proxy.Proxies;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -29,15 +24,24 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.IShearable;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import forestry.api.arboriculture.IFruitProvider;
+import forestry.api.arboriculture.ITreeGenome;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import forestry.api.core.Tabs;
+import forestry.core.blocks.IColoredBlock;
+import forestry.core.proxy.Proxies;
+
+import binnie.Constants;
+import binnie.extratrees.block.property.PropertyETType;
+import binnie.extratrees.genetics.ETTreeDefinition;
 
 public abstract class BlockETDecorativeLeaves extends Block implements IItemModelRegister, IColoredBlock, IShearable {
 	private static final int VARIANTS_PER_BLOCK = 16;

@@ -1,13 +1,14 @@
 package binnie.genetics.gui;
 
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.craftgui.controls.listbox.ControlList;
 import binnie.core.craftgui.controls.listbox.ControlOption;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.renderer.RenderUtil;
 import binnie.core.genetics.Gene;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ControlGenesisOption extends ControlOption<Gene> {
 	public ControlGenesisOption(final ControlList<Gene> parent, final Gene gene, final int y) {

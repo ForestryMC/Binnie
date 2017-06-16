@@ -1,11 +1,13 @@
 package binnie.genetics.machine.craftgui;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+
+import net.minecraftforge.fml.relauncher.Side;
+
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.genetics.Genetics;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraftforge.fml.relauncher.Side;
 
 public class WindowGeneProject extends Window {
 	public WindowGeneProject(final EntityPlayer player, final IInventory inventory, final Side side) {

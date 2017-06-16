@@ -1,11 +1,12 @@
 package binnie.core.craftgui.database;
 
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IMutation;
+
 import binnie.core.craftgui.controls.listbox.ControlList;
 import binnie.core.craftgui.controls.listbox.ControlOption;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.genetics.BreedingSystem;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IMutation;
 
 class ControlMutationItem extends ControlOption<IMutation> {
 	private ControlDatabaseIndividualDisplay itemWidget1;

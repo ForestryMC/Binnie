@@ -1,17 +1,20 @@
 package binnie.core.craftgui.database;
 
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.controls.listbox.ControlListBox;
-import binnie.core.craftgui.minecraft.Window;
-import com.mojang.authlib.GameProfile;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IClassification;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import com.mojang.authlib.GameProfile;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IClassification;
+
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.listbox.ControlListBox;
+import binnie.core.craftgui.minecraft.Window;
 
 @SideOnly(Side.CLIENT)
 public class ControlSpeciesBox extends ControlListBox<IAlleleSpecies> {

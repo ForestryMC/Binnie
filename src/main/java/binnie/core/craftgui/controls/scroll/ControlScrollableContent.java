@@ -1,13 +1,13 @@
 package binnie.core.craftgui.controls.scroll;
 
+import javax.annotation.Nullable;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.events.EventMouse;
 import binnie.core.craftgui.events.EventWidget;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.Point;
-
-import javax.annotation.Nullable;
 
 public class ControlScrollableContent<T extends IWidget> extends Control implements IControlScrollable {
 	@Nullable

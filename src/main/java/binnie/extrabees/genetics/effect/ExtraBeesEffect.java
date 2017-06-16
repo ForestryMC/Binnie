@@ -1,16 +1,9 @@
 package binnie.extrabees.genetics.effect;
 
-import binnie.extrabees.ExtraBees;
-import binnie.extrabees.genetics.ExtraBeesFlowers;
-import binnie.extrabees.utils.Utils;
-import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.IAlleleBeeEffect;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeHousing;
-import forestry.api.apiculture.IBeekeepingLogic;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IEffectData;
-import forestry.core.render.ParticleRender;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -36,18 +29,29 @@ import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
+
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import forestry.api.apiculture.BeeManager;
+import forestry.api.apiculture.IAlleleBeeEffect;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.IBeeHousing;
+import forestry.api.apiculture.IBeekeepingLogic;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IEffectData;
+import forestry.core.render.ParticleRender;
+
+import binnie.extrabees.ExtraBees;
+import binnie.extrabees.genetics.ExtraBeesFlowers;
+import binnie.extrabees.utils.Utils;
 
 public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	ECTOPLASM,

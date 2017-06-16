@@ -1,5 +1,20 @@
 package binnie.genetics.gui;
 
+import java.text.DecimalFormat;
+import java.util.Locale;
+
+import net.minecraft.util.text.TextFormatting;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.apiculture.IBee;
+import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.arboriculture.ITree;
+import forestry.api.genetics.IIndividual;
+import forestry.api.lepidopterology.IButterfly;
+import forestry.apiculture.PluginApiculture;
+
 import binnie.Binnie;
 import binnie.botany.api.IFlower;
 import binnie.core.craftgui.IWidget;
@@ -9,18 +24,6 @@ import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.minecraft.control.ControlIconDisplay;
 import binnie.genetics.Genetics;
 import binnie.genetics.item.ModuleItems;
-import forestry.api.apiculture.IBee;
-import forestry.api.arboriculture.EnumTreeChromosome;
-import forestry.api.arboriculture.ITree;
-import forestry.api.genetics.IIndividual;
-import forestry.api.lepidopterology.IButterfly;
-import forestry.apiculture.PluginApiculture;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.text.DecimalFormat;
-import java.util.Locale;
 
 //TODO:localise
 @SideOnly(Side.CLIENT)

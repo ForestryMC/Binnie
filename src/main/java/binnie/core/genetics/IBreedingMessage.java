@@ -1,13 +1,15 @@
 package binnie.core.genetics;
 
-import binnie.Binnie;
-import binnie.core.BinnieCore;
+import net.minecraft.item.ItemStack;
+
 import forestry.api.apiculture.EnumBeeType;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IClassification;
 import forestry.api.genetics.ISpeciesRoot;
-import net.minecraft.item.ItemStack;
+
+import binnie.Binnie;
+import binnie.core.BinnieCore;
 
 interface IBreedingMessage {
 	String getTitle();

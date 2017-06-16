@@ -1,14 +1,15 @@
 package binnie.core.craftgui.controls.tab;
 
+import com.google.common.collect.Iterables;
+
+import java.util.Collection;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.controls.core.IControlValue;
 import binnie.core.craftgui.events.EventHandler;
 import binnie.core.craftgui.events.EventValueChanged;
 import binnie.core.craftgui.geometry.Position;
-import com.google.common.collect.Iterables;
-
-import java.util.Collection;
 
 public class ControlTabBar<T> extends Control implements IControlValue<T> {
 	private T value;

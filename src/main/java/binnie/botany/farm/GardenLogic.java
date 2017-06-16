@@ -1,19 +1,13 @@
 package binnie.botany.farm;
 
-import binnie.Binnie;
-import binnie.botany.Botany;
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.EnumSoilType;
-import binnie.botany.api.IBlockSoil;
-import binnie.botany.flower.TileEntityFlower;
-import binnie.botany.gardening.Gardening;
-import forestry.api.farming.FarmDirection;
-import forestry.api.farming.ICrop;
-import forestry.api.farming.IFarmHousing;
-import forestry.api.farming.IFarmable;
-import forestry.core.owner.IOwnedTile;
-import forestry.core.utils.BlockUtil;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Blocks;
@@ -25,13 +19,25 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
 import net.minecraftforge.fluids.FluidStack;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import forestry.api.farming.FarmDirection;
+import forestry.api.farming.ICrop;
+import forestry.api.farming.IFarmHousing;
+import forestry.api.farming.IFarmable;
+import forestry.core.owner.IOwnedTile;
+import forestry.core.utils.BlockUtil;
+
+import binnie.Binnie;
+import binnie.botany.Botany;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumMoisture;
+import binnie.botany.api.EnumSoilType;
+import binnie.botany.api.IBlockSoil;
+import binnie.botany.flower.TileEntityFlower;
+import binnie.botany.gardening.Gardening;
+import binnie.core.liquid.ManagerLiquid;
 
 public class GardenLogic extends FarmLogic {
 	List<IFarmable> farmables;
@@ -68,10 +74,10 @@ public class GardenLogic extends FarmLogic {
 	@Override
 	public boolean isAcceptedResource(final ItemStack itemstack) {
 		return Gardening.isSoil(itemstack.getItem()) ||
-			itemstack.getItem() == Item.getItemFromBlock(Blocks.SAND) ||
-			itemstack.getItem() == Item.getItemFromBlock(Blocks.DIRT) ||
-			Gardening.isAcidFertiliser(itemstack) ||
-			Gardening.isAlkalineFertiliser(itemstack);
+				itemstack.getItem() == Item.getItemFromBlock(Blocks.SAND) ||
+				itemstack.getItem() == Item.getItemFromBlock(Blocks.DIRT) ||
+				Gardening.isAcidFertiliser(itemstack) ||
+				Gardening.isAlkalineFertiliser(itemstack);
 	}
 
 	@Override
@@ -84,8 +90,8 @@ public class GardenLogic extends FarmLogic {
 	@Override
 	public boolean cultivate(World world, IFarmHousing farmHousing, BlockPos pos, FarmDirection direction, int extent) {
 		return this.maintainSoil(world, pos, direction, extent, farmHousing) ||
-			(!this.isManual && this.maintainWater(world, pos, direction, extent, farmHousing)) ||
-			this.maintainCrops(world, pos.up(), direction, extent, farmHousing);
+				(!this.isManual && this.maintainWater(world, pos, direction, extent, farmHousing)) ||
+				this.maintainCrops(world, pos.up(), direction, extent, farmHousing);
 	}
 
 	private boolean isWaste(final ItemStack stack) {
@@ -236,7 +242,7 @@ public class GardenLogic extends FarmLogic {
 	}
 
 	private boolean trySetWater(World world, BlockPos position, IFarmHousing housing) {
-		final FluidStack water = Binnie.LIQUID.getFluidStack("water", 1000);
+		final FluidStack water = Binnie.LIQUID.getFluidStack(ManagerLiquid.WATER, 1000);
 		if (this.moisture == EnumMoisture.DAMP) {
 			if (water == null || !housing.hasLiquid(water)) {
 				return false;
@@ -276,7 +282,12 @@ public class GardenLogic extends FarmLogic {
 
 	@Override
 	public Collection<ICrop> harvest(World world, BlockPos pos, FarmDirection direction, int extent) {
-		return Collections.emptyList();
+		if (isManual) {
+			return Collections.emptyList();
+		} else {
+			return farmables.stream().map(farmable -> farmable.getCropAt(world, pos.up(), world.getBlockState(pos.up())))
+					.filter(Objects::nonNull).collect(Collectors.toList());
+		}
 	}
 
 	@Override

@@ -1,9 +1,10 @@
 package binnie.core.proxy;
 
-import binnie.core.gui.IBinnieGUID;
-import binnie.core.network.packet.MessageBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
+
+import binnie.core.gui.IBinnieGUID;
+import binnie.core.network.packet.MessageBase;
 
 public interface IBinnieModProxy extends IProxyCore {
 	void openGui(final IBinnieGUID p0, final EntityPlayer p1, final BlockPos pos);

@@ -1,19 +1,23 @@
 package binnie.extrabees.items;
 
-import binnie.extrabees.items.types.IEBEnumItem;
-import binnie.extrabees.items.types.IEBItemMiscProvider;
-import binnie.extrabees.utils.ExtraBeesResourceLocation;
-import forestry.api.core.IModelManager;
+import java.util.List;
+
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
 import net.minecraftforge.client.model.ModelLoader;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
+import forestry.api.core.IModelManager;
+
+import binnie.extrabees.items.types.IEBEnumItem;
+import binnie.extrabees.items.types.IEBItemMiscProvider;
+import binnie.extrabees.utils.ExtraBeesResourceLocation;
 
 public class ItemMiscProduct extends ItemProduct {
 

@@ -1,8 +1,9 @@
 package binnie.extrabees.init;
 
-import binnie.extrabees.utils.ExtraBeesResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+
+import binnie.extrabees.utils.ExtraBeesResourceLocation;
 
 public final class FluidRegister {
 

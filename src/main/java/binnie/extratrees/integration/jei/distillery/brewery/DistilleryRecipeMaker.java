@@ -1,11 +1,13 @@
 package binnie.extratrees.integration.jei.distillery.brewery;
 
-import binnie.extratrees.machines.distillery.DistilleryRecipes;
-import net.minecraftforge.fluids.FluidStack;
-import org.apache.commons.lang3.tuple.Pair;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang3.tuple.Pair;
+
+import net.minecraftforge.fluids.FluidStack;
+
+import binnie.extratrees.machines.distillery.DistilleryRecipes;
 
 public class DistilleryRecipeMaker {
 	public static List<DistilleryRecipeWrapper> create() {

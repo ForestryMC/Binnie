@@ -1,5 +1,10 @@
 package binnie.core.craftgui.minecraft.control;
 
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.craftgui.Attribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
@@ -12,9 +17,6 @@ import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.renderer.RenderUtil;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class ControlSlotBase extends Control implements ITooltip {
 	private ControlItemDisplay itemDisplay;

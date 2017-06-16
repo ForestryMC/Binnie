@@ -1,11 +1,13 @@
 package binnie.genetics.machine.splicer;
 
+import net.minecraft.item.ItemStack;
+
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.ISpeciesRoot;
+
 import binnie.Binnie;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.genetics.Genetics;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.ISpeciesRoot;
-import net.minecraft.item.ItemStack;
 
 public class ValidatorIndividualInoculate extends SlotValidator {
 	public ValidatorIndividualInoculate() {

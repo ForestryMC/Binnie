@@ -1,14 +1,16 @@
 package binnie.botany.ceramic;
 
-import binnie.Binnie;
-import binnie.botany.Botany;
-import binnie.botany.api.IFlower;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
+
 import net.minecraftforge.common.ForgeHooks;
+
+import binnie.Binnie;
+import binnie.botany.Botany;
+import binnie.botany.api.IFlower;
 
 public class PigmentRecipe implements IRecipe {
 	@Override

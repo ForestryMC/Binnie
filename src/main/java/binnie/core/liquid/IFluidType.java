@@ -1,6 +1,7 @@
 package binnie.core.liquid;
 
 import net.minecraft.util.ResourceLocation;
+
 import net.minecraftforge.fluids.FluidStack;
 
 public interface IFluidType {

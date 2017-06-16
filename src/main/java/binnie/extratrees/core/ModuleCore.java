@@ -1,5 +1,15 @@
 package binnie.extratrees.core;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Queue;
+
+import forestry.api.arboriculture.IAlleleTreeSpecies;
+import forestry.api.arboriculture.IWoodType;
+
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.extratrees.api.CarpentryManager;
@@ -9,15 +19,6 @@ import binnie.extratrees.block.EnumETLog;
 import binnie.extratrees.block.PlankType;
 import binnie.extratrees.genetics.AlleleETFruit;
 import binnie.extratrees.genetics.ETTreeDefinition;
-import forestry.api.arboriculture.IAlleleTreeSpecies;
-import forestry.api.arboriculture.IWoodType;
-
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class ModuleCore implements IInitializable {
 	@Override

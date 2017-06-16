@@ -1,5 +1,14 @@
 package binnie.core.craftgui.minecraft.control;
 
+import java.util.List;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.craftgui.Attribute;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -8,13 +17,6 @@ import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.renderer.RenderUtil;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.List;
 
 public class ControlItemDisplay extends Control implements ITooltip {
 	public boolean hastooltip;

@@ -1,13 +1,23 @@
 package binnie.core.genetics;
 
-import binnie.Binnie;
-import binnie.botany.api.IFlowerRoot;
-import binnie.botany.genetics.EnumFlowerColor;
-import binnie.botany.genetics.FlowerBreedingSystem;
-import binnie.botany.genetics.FlowerColorAllele;
-import binnie.core.BinnieCore;
-import binnie.core.ManagerBase;
 import com.google.common.base.Preconditions;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeSet;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+
+import net.minecraftforge.event.world.WorldEvent;
+
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.IBeeRoot;
 import forestry.api.arboriculture.ITreeRoot;
@@ -24,19 +34,13 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.lepidopterology.ButterflyManager;
 import forestry.api.lepidopterology.IButterflyRoot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import net.minecraftforge.event.world.WorldEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeSet;
+import binnie.Binnie;
+import binnie.botany.api.IFlowerRoot;
+import binnie.botany.genetics.FlowerBreedingSystem;
+import binnie.botany.genetics.FlowerColorAllele;
+import binnie.core.BinnieCore;
+import binnie.core.ManagerBase;
 
 public class ManagerGenetics extends ManagerBase {
 	private final Map<ISpeciesRoot, BreedingSystem> BREEDING_SYSTEMS;

@@ -1,16 +1,11 @@
 package binnie.botany.flower;
 
-import binnie.botany.CreativeTabBotany;
-import binnie.core.item.ItemCore;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
-import forestry.api.circuits.ChipsetManager;
-import forestry.api.circuits.ICircuit;
-import forestry.api.circuits.ICircuitLayout;
-import forestry.api.core.IModelManager;
-import forestry.core.circuits.SolderManager;
-import forestry.core.items.IColoredItem;
-import forestry.core.utils.Translator;
+
+import java.util.Collection;
+import java.util.List;
+
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,11 +13,20 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.TextFormatting;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.Collection;
-import java.util.List;
+import forestry.api.circuits.ChipsetManager;
+import forestry.api.circuits.ICircuit;
+import forestry.api.circuits.ICircuitLayout;
+import forestry.api.core.IModelManager;
+import forestry.core.circuits.SolderManager;
+import forestry.core.items.IColoredItem;
+import forestry.core.utils.Translator;
+
+import binnie.botany.CreativeTabBotany;
+import binnie.core.item.ItemCore;
 
 public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 	public ItemInsulatedTube() {

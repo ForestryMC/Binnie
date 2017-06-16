@@ -1,7 +1,8 @@
 package binnie.extratrees.block;
 
-import forestry.api.arboriculture.WoodBlockKind;
 import net.minecraft.block.properties.PropertyEnum;
+
+import forestry.api.arboriculture.WoodBlockKind;
 
 public interface IWoodKind {
 	PropertyEnum<EnumETLog> getVariant();

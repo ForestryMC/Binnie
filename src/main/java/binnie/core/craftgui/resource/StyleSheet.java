@@ -1,10 +1,10 @@
 package binnie.core.craftgui.resource;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class StyleSheet implements IStyleSheet {
 	protected Map<Object, Texture> textures;

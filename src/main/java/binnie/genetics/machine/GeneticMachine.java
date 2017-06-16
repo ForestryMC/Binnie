@@ -1,5 +1,11 @@
 package binnie.genetics.machine;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachinePackage;
@@ -10,10 +16,6 @@ import binnie.genetics.machine.inoculator.PackageInoculator;
 import binnie.genetics.machine.isolator.PackageIsolator;
 import binnie.genetics.machine.polymeriser.PackagePolymeriser;
 import binnie.genetics.machine.sequencer.PackageSequencer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public enum GeneticMachine implements IMachineType {
 	Isolator(PackageIsolator.class),

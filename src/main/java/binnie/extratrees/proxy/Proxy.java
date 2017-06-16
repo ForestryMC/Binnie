@@ -1,7 +1,8 @@
 package binnie.extratrees.proxy;
 
-import binnie.core.proxy.BinnieModProxy;
 import net.minecraft.block.Block;
+
+import binnie.core.proxy.BinnieModProxy;
 
 public class Proxy extends BinnieModProxy implements IExtraTreeProxy {
 	@Override

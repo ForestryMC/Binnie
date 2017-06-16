@@ -2,10 +2,11 @@ package binnie.extrabees.utils.config;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Sets;
-import net.minecraftforge.common.config.Configuration;
 
 import java.io.File;
 import java.util.Set;
+
+import net.minecraftforge.common.config.Configuration;
 
 public class ConfigHandler {
 

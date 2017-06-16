@@ -1,5 +1,10 @@
 package binnie.genetics.gui.bee.database;
 
+import net.minecraft.entity.player.EntityPlayer;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.database.DatabaseTab;
@@ -13,9 +18,6 @@ import binnie.core.craftgui.database.PageSpeciesResultant;
 import binnie.core.craftgui.database.WindowAbstractDatabase;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.genetics.Genetics;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WindowApiaristDatabase extends WindowAbstractDatabase {
 	public WindowApiaristDatabase(final EntityPlayer player, final Side side, final boolean nei) {

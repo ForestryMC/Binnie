@@ -1,14 +1,16 @@
 package binnie.extratrees.integration.jei.brewery;
 
-import binnie.extratrees.machines.brewery.IBreweryRecipe;
-import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.BlankRecipeWrapper;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fluids.FluidStack;
+
+import binnie.extratrees.machines.brewery.IBreweryRecipe;
+import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.BlankRecipeWrapper;
 
 public class BreweryRecipeWrapper extends BlankRecipeWrapper {
 	private final IBreweryRecipe recipe;

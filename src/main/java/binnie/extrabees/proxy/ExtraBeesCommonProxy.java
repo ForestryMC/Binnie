@@ -1,10 +1,12 @@
 package binnie.extrabees.proxy;
 
-import binnie.extrabees.genetics.ExtraBeesSpecies;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.util.text.translation.I18n;
+
 import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import binnie.extrabees.genetics.ExtraBeesSpecies;
 
 public class ExtraBeesCommonProxy {
 
@@ -21,6 +23,10 @@ public class ExtraBeesCommonProxy {
 
 	@SuppressWarnings("deprecation")
 	public String localise(String s) {
+		return I18n.translateToLocal("extrabees." + s);
+	}
+	
+	public String localiseWithOutPrefix(String s) {
 		return I18n.translateToLocal(s);
 	}
 

@@ -1,10 +1,10 @@
 package binnie.extrabees.proxy;
 
-import binnie.extrabees.ExtraBees;
-import binnie.extrabees.utils.ExtraBeesResourceLocation;
 import com.google.common.collect.ImmutableList;
-import forestry.core.models.BlankModel;
-import forestry.core.models.ModelManager;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.IBakedModel;
@@ -16,17 +16,23 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.IRegistry;
 import net.minecraft.world.World;
+
 import net.minecraftforge.client.event.ModelBakeEvent;
 import net.minecraftforge.client.model.ModelLoader;
+
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import forestry.core.models.BlankModel;
+import forestry.core.models.ModelManager;
+
+import binnie.extrabees.ExtraBees;
+import binnie.extrabees.items.IItemModelProvider;
+import binnie.extrabees.utils.ExtraBeesResourceLocation;
 
 public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
-
+	
 	private static final ModelManager modelManager = ModelManager.getInstance();
-
+	
 	private static IBakedModel bakeModelFor(Block block) {
 		return new BlankModel() {
 
@@ -43,25 +49,28 @@ public class ExtraBeesClientProxy extends ExtraBeesCommonProxy {
 			}
 		};
 	}
-
+	
+	@Override
+	public Item registerItem(Item item) {
+		modelManager.registerItemClient(item);
+		if(item instanceof IItemModelProvider){
+			((IItemModelProvider) item).registerModel(item);
+		}
+		return super.registerItem(item);
+	}
+	
 	@Override
 	public Block registerBlock(Block block) {
 		modelManager.registerBlockClient(block);
 		return super.registerBlock(block);
 	}
-
-	@Override
-	public Item registerItem(Item item) {
-		modelManager.registerItemClient(item);
-		return super.registerItem(item);
-	}
-
+	
 	@Override
 	@SuppressWarnings("all")
 	public void registerModel(@Nonnull Item item, int meta) {
 		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), "inventory"));
 	}
-
+	
 	@SubscribeEvent
 	public void onModelsBaked(ModelBakeEvent event) {
 		IRegistry<ModelResourceLocation, IBakedModel> registry = event.getModelRegistry();

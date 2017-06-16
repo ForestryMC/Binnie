@@ -1,15 +1,18 @@
 package binnie.genetics.integration.jei.incubator;
 
-import binnie.genetics.api.IIncubatorRecipe;
-import mezz.jei.api.ingredients.IIngredients;
-import mezz.jei.api.recipe.BlankRecipeWrapper;
+import java.awt.Color;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
+
 import net.minecraftforge.fluids.FluidStack;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.awt.Color;
+import binnie.genetics.api.IIncubatorRecipe;
+import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.BlankRecipeWrapper;
 
 public class IncubatorRecipeWrapper extends BlankRecipeWrapper {
 	private final IIncubatorRecipe recipe;
