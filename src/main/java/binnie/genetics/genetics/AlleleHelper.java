@@ -115,11 +115,11 @@ public class AlleleHelper extends forestry.core.genetics.alleles.AlleleHelper {
 		if (flowering == EnumAllele.Flowering.AVERAGE) {
 			return toAlleleDisplay("flowering", "normal");
 		}
-		return toAlleleDisplay("flowering", flowering.name());
+		return toAlleleDisplay(null, flowering.name());
 	}
 
 	public static String toDisplay(EnumAllele.Speed speed) {
-		return toAlleleDisplay("speed", speed.name());
+		return toAlleleDisplay(null, speed.name());
 	}
 
 	public static String toDisplay(EnumAllele.Lifespan lifespan) {
@@ -211,6 +211,9 @@ public class AlleleHelper extends forestry.core.genetics.alleles.AlleleHelper {
 
 	private static String toAlleleDisplay(String key, String valueName) {
 		String name = valueName.toLowerCase().replace("_", "");
+		if (key == null) {
+			return I18N.localise("forestry.allele." + name);
+		}
 		return I18N.localise("forestry.allele." + key + "." + name);
 	}
 }

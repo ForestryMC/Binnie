@@ -76,6 +76,6 @@ public class WindowIsolator extends WindowMachine {
 
 	@Override
 	protected String getName() {
-		return getTitle();
+		return "Isolator";
 	}
 }

@@ -82,6 +82,6 @@ public class WindowSplicer extends WindowMachine {
 
 	@Override
 	protected String getName() {
-		return getTitle();
+		return "Splicer";
 	}
 }
