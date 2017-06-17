@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -104,6 +105,23 @@ public class WoodManager {
 		}
 		return TreeManager.woodAccess.getStack(plank.getWoodType(), WoodBlockKind.FENCE_GATE, false);
 	}
+	
+	public static ItemStack getDoor(final IPlankType plank) {
+		if (plank == PlankType.VanillaPlanks.OAK) {
+			return new ItemStack(Items.OAK_DOOR);
+		}else if (plank == PlankType.VanillaPlanks.BIRCH) {
+			return new ItemStack(Items.BIRCH_DOOR);
+		}else if (plank == PlankType.VanillaPlanks.SPRUCE) {
+			return new ItemStack(Items.SPRUCE_DOOR);
+		} else if (plank == PlankType.VanillaPlanks.BIG_OAK) {
+			return new ItemStack(Items.DARK_OAK_DOOR);
+		} else if (plank == PlankType.VanillaPlanks.JUNGLE) {
+			return new ItemStack(Items.JUNGLE_DOOR);
+		} else if (plank == PlankType.VanillaPlanks.ACACIA) {
+			return new ItemStack(Items.ACACIA_DOOR);
+		}
+		return TreeManager.woodAccess.getStack(plank.getWoodType(), WoodBlockKind.DOOR, false);
+	}
 
 	public static ItemStack getFence(final IPlankType plank, final FenceType type, final int amount) {
 		return getFence(plank, plank, type, amount);
@@ -122,10 +140,6 @@ public class WoodManager {
 		final ItemStack stack = TileEntityMetadata.getItemStack(ExtraTrees.blocks().blockMultiFence, i + 65536 * getPlankTypeIndex(plank2));
 		stack.setCount(amount);
 		return stack;
-	}
-
-	public static ItemStack getDoor(final IPlankType plank, final DoorType type) {
-		return TileEntityMetadata.getItemStack(ExtraTrees.blocks().blockDoor, type.ordinal() * 256 + getPlankTypeIndex(plank));
 	}
 
 	public static List<IPlankType> getAllPlankTypes() {

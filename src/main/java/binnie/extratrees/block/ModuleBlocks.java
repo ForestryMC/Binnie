@@ -28,6 +28,7 @@ import forestry.api.arboriculture.IWoodType;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.arboriculture.WoodBlockKind;
 import forestry.api.recipes.RecipeManagers;
+import forestry.arboriculture.IWoodTyped;
 import forestry.arboriculture.PluginArboriculture;
 import forestry.arboriculture.WoodAccess;
 import forestry.arboriculture.blocks.BlockForestryFenceGate;
@@ -44,24 +45,23 @@ import binnie.core.liquid.ILiquidType;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.decor.BlockHedge;
 import binnie.extratrees.block.decor.BlockMultiFence;
-import binnie.extratrees.block.decor.FenceType;
 import binnie.extratrees.block.decor.MultiFenceRecipeEmbedded;
 import binnie.extratrees.block.decor.MultiFenceRecipeSize;
 import binnie.extratrees.block.decor.MultiFenceRecipeSolid;
 import binnie.extratrees.block.property.PropertyETType;
+import binnie.extratrees.block.wood.BlockETDoor;
 import binnie.extratrees.block.wood.BlockETFence;
 import binnie.extratrees.block.wood.BlockETLog;
 import binnie.extratrees.block.wood.BlockETPlank;
 import binnie.extratrees.block.wood.BlockETSlab;
 import binnie.extratrees.block.wood.BlockShrubLog;
 import binnie.extratrees.block.wood.ItemBlockETWood;
+import binnie.extratrees.block.wood.ItemBlockETWoodDoor;
 import binnie.extratrees.block.wood.ItemETSlab;
 import binnie.extratrees.genetics.ETTreeDefinition;
 import binnie.extratrees.item.ExtraTreeLiquid;
 
 public class ModuleBlocks implements IInitializable {
-	//public static int hedgeRenderID;
-
 	public List<BlockETLog> logs;
 	public List<BlockETLog> logsFireproof;
 	public List<BlockETPlank> planks;
@@ -76,6 +76,7 @@ public class ModuleBlocks implements IInitializable {
 	public List<BlockETFence> fencesFireproof;
 	public List<BlockForestryFenceGate<EnumETLog>> fenceGates;
 	public List<BlockForestryFenceGate<EnumETLog>> fenceGatesFireproof;
+	public List<BlockETDoor> doors;
 	public List<BlockETDecorativeLeaves> leavesDecorative;
 	public Map<String, ItemStack> speciesToLeavesDecorative;
 	public List<BlockETDefaultLeaves> leavesDefault;
@@ -207,7 +208,7 @@ public class ModuleBlocks implements IInitializable {
 			registerOreDictWildcard(OreDictUtil.FENCE_WOOD, block);
 			FMLInterModComms.sendMessage("forestry", "add-fence-block", block.getRegistryName().toString());
 		}
-
+		
 		woodAccess.registerFences(fences);
 		woodAccess.registerFences(fencesFireproof);
 
@@ -237,20 +238,19 @@ public class ModuleBlocks implements IInitializable {
 		//Forestry's API doesn't allow typed lists to be registered, but making a new one allows us to get away with it
 		woodAccess.registerFenceGates(new ArrayList<>(fenceGates));
 		woodAccess.registerFenceGates(new ArrayList<>(fenceGatesFireproof));
+		
+		doors = new ArrayList<>();
+		for (EnumETLog woodType : EnumETLog.VALUES) {
+			BlockETDoor door = new BlockETDoor(woodType);
+			ExtraTrees.proxy.registerBlock(door, new ItemBlockETWoodDoor(door));
+			registerOreDictWildcard(OreDictUtil.DOOR_WOOD, door);
+			doors.add(door);
+		}
+		
+		registerDoors(woodAccess, doors);
 
 		blockMultiFence = new BlockMultiFence();
 		ExtraTrees.proxy.registerBlock(blockMultiFence, new ItemMetadata(blockMultiFence));
-
-		blockDoor = new BlockETDoor();
-		GameRegistry.register(blockDoor);
-		GameRegistry.register(new ItemETDoor(blockDoor).setRegistryName(blockDoor.getRegistryName()));
-		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockStairs), new StairItemRenderer());
-		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockGate), new GateItemRenderer());
-		for (BlockETLog log : logs) {
-			ItemStack logInput = new ItemStack(log, 1, OreDictionary.WILDCARD_VALUE);
-			ItemStack coalOutput = new ItemStack(Items.COAL, 1, 1);
-			RecipeUtil.addSmelting(logInput, coalOutput, 0.15F);
-		}
 		
 		leavesDefault = BlockETDefaultLeaves.create();
 		Map speciesToLeavesDefault = PluginArboriculture.getBlocks().speciesToLeavesDefault;
@@ -267,7 +267,6 @@ public class ModuleBlocks implements IInitializable {
 			}
 		}
 		
-		//ModuleBlocks.hedgeRenderID = BinnieCore.proxy.getUniqueRenderID();
 		leavesDecorative = BlockETDecorativeLeaves.create();
 		speciesToLeavesDecorative = new HashMap<>();
 		for (BlockETDecorativeLeaves leaves : leavesDecorative) {
@@ -287,12 +286,26 @@ public class ModuleBlocks implements IInitializable {
 		woodAccess.register(EnumShrubLog.INSTANCE, WoodBlockKind.LOG, false, shrubLog.getStateFromMeta(0), new ItemStack(shrubLog, 1, 0));
 		woodAccess.register(EnumShrubLog.INSTANCE, WoodBlockKind.LOG, true, shrubLog.getStateFromMeta(1), new ItemStack(shrubLog, 1, 1));
 	}
-
+	
+	public void registerDoors(WoodAccess woodAccess, List<BlockETDoor> blocks) {
+		for (BlockETDoor block : blocks) {
+			registerWithoutVariants(woodAccess, block, WoodBlockKind.DOOR);
+		}
+	}
+	
+	private <T extends Block & IWoodTyped> void registerWithoutVariants(WoodAccess woodAccess, T woodTyped, WoodBlockKind woodBlockKind) {
+		boolean fireproof = woodTyped.isFireproof();
+		IBlockState blockState = woodTyped.getDefaultState();
+		IWoodType woodType = woodTyped.getWoodType(0);
+		ItemStack itemStack = new ItemStack(woodTyped);
+		if (!(woodType instanceof EnumVanillaWoodType)) {
+			PluginArboriculture.proxy.registerWoodModel(woodTyped, false);
+		}
+		woodAccess.register(woodType, woodBlockKind, fireproof, blockState, itemStack);
+	}
+	
 	@Override
 	public void init() {
-		//		ExtraTrees.doorRenderId = RenderingRegistry.getNextAvailableRenderId();
-		//		RenderingRegistry.registerBlockHandler(new DoorBlockRenderer());
-		//		RenderingRegistry.registerBlockHandler(new HedgeRenderer());
 		RecipeSorter.register("extratrees:multifence", MultiFenceRecipeSize.class, RecipeSorter.Category.SHAPED, "");
 		RecipeSorter.register("extratrees:multifence2", MultiFenceRecipeEmbedded.class, RecipeSorter.Category.SHAPED, "");
 		RecipeSorter.register("extratrees:multifence3", MultiFenceRecipeSolid.class, RecipeSorter.Category.SHAPED, "");
@@ -300,6 +313,12 @@ public class ModuleBlocks implements IInitializable {
 
 	@Override
 	public void postInit() {
+		for (BlockETLog log : logs) {
+			ItemStack logInput = new ItemStack(log, 1, OreDictionary.WILDCARD_VALUE);
+			ItemStack coalOutput = new ItemStack(Items.COAL, 1, 1);
+			RecipeUtil.addSmelting(logInput, coalOutput, 0.15F);
+		}
+		
 		IWoodAccess woodAccess = TreeManager.woodAccess;
 		for (PlankType.ExtraTreePlanks plankType : PlankType.ExtraTreePlanks.VALUES) {
 			for (boolean fireproof : new boolean[]{false, true}) {
@@ -317,30 +336,21 @@ public class ModuleBlocks implements IInitializable {
 
 				slabs.setCount(6);
 				RecipeUtil.addPriorityRecipe(slabs.copy(), "###", '#', planks.copy());
+				if(!fireproof){
+					ItemStack doors = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.DOOR, false);
+					doors.setCount(3);
+					planks.setCount(1);
+					RecipeUtil.addPriorityRecipe(doors.copy(),
+							"## ",
+							"## ",
+							"## ",
+							'#', planks.copy());
+				}
 			}
 		}
 		GameRegistry.addRecipe(new MultiFenceRecipeSize());
 		GameRegistry.addRecipe(new MultiFenceRecipeEmbedded());
 		GameRegistry.addRecipe(new MultiFenceRecipeSolid());
-		for (final IPlankType plank2 : WoodManager.getAllPlankTypes()) {
-			final ItemStack planks2 = plank2.getStack();
-			final ItemStack fenceNormal = WoodManager.getFence(plank2, new FenceType(0), 1);
-			final ItemStack gate = WoodManager.getGate(plank2);
-			final ItemStack doorStandard = WoodManager.getDoor(plank2, DoorType.Standard);
-			final ItemStack doorSolid = WoodManager.getDoor(plank2, DoorType.Solid);
-			final ItemStack doorSplit = WoodManager.getDoor(plank2, DoorType.Double);
-			final ItemStack doorFull = WoodManager.getDoor(plank2, DoorType.Full);
-			if (!planks2.isEmpty() && !gate.isEmpty()) {
-				gate.setCount(1);
-				GameRegistry.addRecipe(gate.copy(), "fpf", 'f', fenceNormal.copy(), 'p', planks2.copy());
-				fenceNormal.setCount(4);
-				GameRegistry.addRecipe(fenceNormal.copy(), "###", "# #", '#', planks2.copy());
-				GameRegistry.addRecipe(doorSolid.copy(), "###", "###", "###", '#', planks2.copy());
-				GameRegistry.addRecipe(doorStandard.copy(), "# #", "###", "###", '#', planks2.copy());
-				GameRegistry.addRecipe(doorSplit.copy(), "# #", "###", "# #", '#', planks2.copy());
-				GameRegistry.addRecipe(doorFull.copy(), "# #", "# #", "# #", '#', planks2.copy());
-			}
-		}
 		this.addSqueezer(EnumVanillaWoodType.SPRUCE, ExtraTreeLiquid.Resin, 50);
 	}
 

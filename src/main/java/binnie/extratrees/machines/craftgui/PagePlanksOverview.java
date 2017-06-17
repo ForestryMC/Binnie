@@ -18,7 +18,6 @@ import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.block.DoorType;
 import binnie.extratrees.block.IPlankType;
 import binnie.extratrees.block.WoodManager;
 import binnie.extratrees.block.decor.FenceType;
@@ -40,7 +39,7 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 		if (type != null) {
 			final ItemStack fence = WoodManager.getFence(type, new FenceType(0), 1);
 			final ItemStack gate = WoodManager.getGate(type);
-			final ItemStack door = WoodManager.getDoor(type, DoorType.Standard);
+			final ItemStack door = WoodManager.getDoor(type);
 			if (!fence.isEmpty()) {
 				new ControlItemDisplay(this, x, 48).setItemStack(fence);
 				x += 22;

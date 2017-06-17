@@ -57,7 +57,7 @@ import binnie.core.triggers.ModuleTrigger;
 	name = "Binnie Core",
 	useMetadata = true,
 	dependencies = "required-after:forge@[13.20.0.2279,);" +
-		"required-after:forestry@[5.3.3.89,);" +
+		"required-after:forestry@[5.3.4.102,);" +
 		"after:jei@[4.3.1,);"
 )
 public final class BinnieCore extends AbstractMod {
