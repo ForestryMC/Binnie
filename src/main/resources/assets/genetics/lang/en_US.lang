@@ -59,6 +59,7 @@ genetics.machine.sequencer.error.noSequence=No DNA sequence
 genetics.machine.sequencer.error.noOwner.title=No Owner
 genetics.machine.sequencer.error.noOwner=Replace this block to claim this machine
 genetics.machine.sequencer.error.noSpace=No space for empty sequences
+genetics.machine.sequencer.error.noDye=Insufficient Dye
 genetics.machine.sequencer.gui.sequensedBy=Genes will be sequenced by %s
 genetics.machine.sequencer.gui.willNotSave=Userless. Will not save sequences
 
