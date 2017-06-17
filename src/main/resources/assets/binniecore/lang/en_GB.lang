@@ -10,3 +10,8 @@ binniecore.allele.forestry.effectMycophilic.desc=Spreads mushrooms and mycelium
 binniecore.allele.forestry.effectNone.desc=No discernible effects
 
 binniecore.item.container.cylinder.binnie.bacteriapoly=Polymerised Bacteria Cylinder
+
+binniecore.machine.storage.tab.properties.desc=The label, colour and icon of the Tab can be altered here. Clicking on the icon with a held item will change it
+binniecore.machine.storage.tab.color=Colour:
+binniecore.machine.storage.tooltip.color=Colour Selector
+binniecore.machine.storage.tooltip.color.desc=Select a colour to highlight the current tab

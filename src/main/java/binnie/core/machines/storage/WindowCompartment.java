@@ -39,6 +39,7 @@ import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.craftgui.window.Panel;
 import binnie.core.machines.Machine;
 import binnie.core.machines.transfer.TransferRequest;
+import binnie.core.util.I18N;
 import binnie.genetics.craftgui.WindowMachine;
 import cpw.mods.fml.relauncher.Side;
 import net.minecraft.block.Block;
@@ -59,12 +60,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+@SuppressWarnings("Duplicates")
 public class WindowCompartment extends WindowMachine implements IWindowAffectsShiftClick {
 	private Map<Panel, Integer> panels;
 	private ControlTextEdit tabName;
 	private ControlItemDisplay tabIcon;
 	private ControlColourSelector tabColour;
-	boolean dueUpdate;
 	private int currentTab;
 
 	public static Window create(EntityPlayer player, IInventory inventory, Side side) {
@@ -101,9 +102,8 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		int compartmentPageWidth = 16 + 18 * inv.getPageSize() / 5;
 		int compartmentPageHeight = 106;
 		int compartmentWidth = compartmentPageWidth + (doubleTabbed ? 48 : 24);
-		int compartmentHeight = compartmentPageHeight;
 
-		Control controlCompartment = new Control(this, x, y, compartmentWidth, compartmentHeight);
+		Control controlCompartment = new Control(this, x, y, compartmentWidth, compartmentPageHeight);
 		ControlTabBar<Integer> tab = new ControlTabBar<Integer>(controlCompartment, 0.0f, 0.0f, 24.0f, compartmentPageHeight, Position.LEFT) {
 			@Override
 			public ControlTab<Integer> createTab(float x, float y, float w, float h, Integer value) {
@@ -119,8 +119,8 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 					}
 
 					@Override
-					public int getOutlineColour() {
-						return getTab(value).getColor().getColour();
+					public int getOutlineColor() {
+						return getTab(value).getColor().getColor();
 					}
 
 					@Override
@@ -131,7 +131,10 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			}
 		};
 
-		String[] tabHelp = {"Compartment Tab", "Tabs that divide the inventory into sections. Each one can be labelled seperately."};
+		String[] tabHelp = {
+			I18N.localise("binniecore.machine.storage.tab"),
+			I18N.localise("binniecore.machine.storage.tab.desc")
+		};
 		tab.addHelp(tabHelp);
 		tab.setValues(Arrays.asList(tabs1));
 		tab.setValue(0);
@@ -146,6 +149,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			}
 		}.setOrigin(EventHandler.Origin.DirectChild, tab));
 		x += 24;
+
 		ControlPages<Integer> compartmentPages = new ControlPages<Integer>(controlCompartment, 24.0f, 0.0f, compartmentPageWidth, compartmentPageHeight);
 		ControlPage[] page = new ControlPage[inv.getTabNumber()];
 		for (int p = 0; p < inv.getTabNumber(); ++p) {
@@ -159,7 +163,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				@Override
 				public void onRenderForeground() {
 					Texture iTexture = CraftGUI.Render.getTexture(CraftGUITexture.TabOutline);
-					CraftGUI.Render.color(getTab(panels.get(this)).getColor().getColour());
+					CraftGUI.Render.color(getTab(panels.get(this)).getColor().getColor());
 					CraftGUI.Render.texture(iTexture, getArea().inset(3));
 				}
 			};
@@ -188,8 +192,8 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 						}
 
 						@Override
-						public int getOutlineColour() {
-							return getTab(value).getColor().getColour();
+						public int getOutlineColor() {
+							return getTab(value).getColor().getColor();
 						}
 
 						@Override
@@ -215,23 +219,22 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			CraftGUIUtil.linkWidgets(tab2, compartmentPages);
 			x += 24;
 		}
-		x += 16;
+
 		setSize(new IPoint(Math.max(32 + compartmentWidth, 252), h()));
 		controlCompartment.setPosition(new IPoint((w() - controlCompartment.w()) / 2.0f, controlCompartment.y()));
-		ControlPlayerInventory invent = new ControlPlayerInventory(this, true);
+		new ControlPlayerInventory(this, true);
 		ControlSlide slide = new ControlSlide(this, 0.0f, 134.0f, 136.0f, 92.0f, Position.LEFT);
-		slide.setLabel("Tab Properties");
+		slide.setLabel(I18N.localise("binniecore.machine.storage.tab.properties"));
 		slide.setSlide(false);
-		slide.addHelp("Tab Properties");
-		slide.addHelp("The label, colour and icon of the Tab can be altered here. Clicking on the icon with a held item will change it.");
+		slide.addHelp(I18N.localise("binniecore.machine.storage.tooltip.properties"));
+		slide.addHelp(I18N.localise("binniecore.machine.storage.tooltip.properties.desc"));
 		Panel tabPropertyPanel = new Panel(slide, 16.0f, 8.0f, 112.0f, 76.0f, MinecraftGUI.PanelType.Gray);
 		int y2 = 4;
-		new ControlText(tabPropertyPanel, new IPoint(4.0f, y2), "Tab Name:");
-		Panel parent = tabPropertyPanel;
+		new ControlText(tabPropertyPanel, new IPoint(4.0f, y2), I18N.localise("binniecore.machine.storage.tab.name"));
 		float x2 = 4.0f;
 		y2 += 12;
 
-		tabName = new ControlTextEdit(parent, x2, y2, 104.0f, 12.0f);
+		tabName = new ControlTextEdit(tabPropertyPanel, x2, y2, 104.0f, 12.0f);
 		tabName.addSelfEventHandler(new EventTextEdit.Handler() {
 			@Override
 			public void onEvent(EventTextEdit event) {
@@ -243,7 +246,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			}
 		}.setOrigin(EventHandler.Origin.Self, tabName));
 		y2 += 20;
-		new ControlText(tabPropertyPanel, new IPoint(4.0f, y2), "Tab Icon: ");
+		new ControlText(tabPropertyPanel, new IPoint(4.0f, y2), I18N.localise("binniecore.machine.storage.tab.icon"));
 
 		tabIcon = new ControlItemDisplay(tabPropertyPanel, 58.0f, y2 - 4);
 		tabIcon.setItemStack(new ItemStack(Items.paper));
@@ -265,10 +268,11 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		});
 
 		tabColour = new ControlColourSelector(tabPropertyPanel, 82.0f, y2 - 4, 16.0f, 16.0f, EnumColor.White);
-		tabIcon.addHelp("Icon for Current Tab");
-		tabIcon.addHelp("Click here with an item to change");
+		tabIcon.addHelp(I18N.localise("binniecore.machine.storage.tooltip.icon"));
+		tabIcon.addHelp(I18N.localise("binniecore.machine.storage.tooltip.icon.desc"));
 		y2 += 20;
-		new ControlText(tabPropertyPanel, new IPoint(4.0f, y2), "Colour: ");
+
+		new ControlText(tabPropertyPanel, new IPoint(4.0f, y2), I18N.localise("binniecore.machine.storage.tab.color"));
 		int cw = 8;
 		Panel panelColour = new Panel(tabPropertyPanel, 40.0f, y2 - 4, cw * 8 + 2, cw * 2 + 1, MinecraftGUI.PanelType.Gray);
 		for (int cc = 0; cc < 16; ++cc) {
@@ -283,24 +287,13 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 					sendClientAction("comp-change-tab", nbt);
 				}
 			});
-			color.addHelp("Colour Selector");
-			color.addHelp("Select a colour to highlight the current tab");
+			color.addHelp(I18N.localise("binniecore.machine.storage.tooltip.color"));
+			color.addHelp(I18N.localise("binniecore.machine.storage.tooltip.color.desc"));
 		}
-		y2 += 20;
-		ControlButton searchButton = new ControlButton(controlCompartment, compartmentWidth - 24 - 64 - 8, compartmentPageHeight, 64.0f, 16.0f, "Search") {
-			@Override
-			protected void onMouseClick(EventMouse.Down event) {
-				createSearchDialog();
-			}
 
-			@Override
-			public void onRenderBackground() {
-				Object texture = isMouseOver() ? CraftGUITexture.TabHighlighted : CraftGUITexture.Tab;
-				CraftGUI.Render.texture(CraftGUI.Render.getTexture(texture).crop(Position.BOTTOM, 8.0f), getArea());
-			}
-		};
-		searchButton.addHelp("Search Button");
-		searchButton.addHelp("Clicking this will open the Search dialog. This allows you to search the inventory for specific items.");
+		ControlButton searchButton = new SearchButton(controlCompartment, compartmentWidth, compartmentPageHeight);
+		searchButton.addHelp(I18N.localise("binniecore.machine.storage.tooltip.search"));
+		searchButton.addHelp(I18N.localise("binniecore.machine.storage.tooltip.search.desc"));
 	}
 
 	public void createSearchDialog() {
@@ -337,21 +330,21 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				});
 				includeItems = true;
 				includeBlocks = true;
-				new ControlCheckbox(this, 16.0f, 40.0f, 100.0f, "Sort A-Z", sortByName) {
+				new ControlCheckbox(this, 16.0f, 40.0f, 100.0f, I18N.localise("binniecore.machine.storage.sort"), sortByName) {
 					@Override
 					protected void onValueChanged(boolean value) {
 						sortByName = value;
 						updateSearch();
 					}
 				};
-				new ControlCheckbox(this, 16.0f, 64.0f, 100.0f, "Include Items", includeItems) {
+				new ControlCheckbox(this, 16.0f, 64.0f, 100.0f, I18N.localise("binniecore.machine.storage.filterItems"), includeItems) {
 					@Override
 					protected void onValueChanged(boolean value) {
 						includeItems = value;
 						updateSearch();
 					}
 				};
-				new ControlCheckbox(this, 16.0f, 88.0f, 100.0f, "Include Blocks", includeBlocks) {
+				new ControlCheckbox(this, 16.0f, 88.0f, 100.0f, I18N.localise("binniecore.machine.storage.filterBlocks"), includeBlocks) {
 					@Override
 					protected void onValueChanged(boolean value) {
 						includeBlocks = value;
@@ -446,7 +439,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 
 	@Override
 	public String getTitle() {
-		return "Compartment";
+		return I18N.localise("binniecore.machine.storage.compartment");
 	}
 
 	@Override
@@ -474,5 +467,22 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 
 	public CompartmentTab getCurrentTab() {
 		return getTab(currentTab);
+	}
+
+	private class SearchButton extends ControlButton {
+		public SearchButton(Control controlCompartment, int compartmentWidth, int compartmentPageHeight) {
+			super(controlCompartment, compartmentWidth - 24 - 64 - 8, compartmentPageHeight, 64.0f, 16.0f, I18N.localise("binniecore.machine.storage.search"));
+		}
+
+		@Override
+		protected void onMouseClick(EventMouse.Down event) {
+			createSearchDialog();
+		}
+
+		@Override
+		public void onRenderBackground() {
+			Object texture = isMouseOver() ? CraftGUITexture.TabHighlighted : CraftGUITexture.Tab;
+			CraftGUI.Render.texture(CraftGUI.Render.getTexture(texture).crop(Position.BOTTOM, 8.0f), getArea());
+		}
 	}
 }

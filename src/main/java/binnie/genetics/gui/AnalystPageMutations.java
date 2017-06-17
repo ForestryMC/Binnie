@@ -135,12 +135,12 @@ public class AnalystPageMutations extends ControlAnalystPage {
 							CraftGUI.Render.item(new IPoint(0.0f, 0.0f), system.getDefaultMember(mutation.getAllele0().getUID()));
 							CraftGUI.Render.item(new IPoint(28.0f, 0.0f), system.getDefaultMember(mutation.getAllele1().getUID()));
 							if (specificChance != mutation.getBaseChance()) {
-								CraftGUI.Render.color(getMutationColour(mutation.getBaseChance()).getColour());
+								CraftGUI.Render.color(getMutationColour(mutation.getBaseChance()).getColor());
 								CraftGUI.Render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconAdd0.getIcon());
-								CraftGUI.Render.color(getMutationColour(specificChance).getColour());
+								CraftGUI.Render.color(getMutationColour(specificChance).getColor());
 								CraftGUI.Render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconAdd1.getIcon());
 							} else {
-								CraftGUI.Render.color(getMutationColour(mutation.getBaseChance()).getColour());
+								CraftGUI.Render.color(getMutationColour(mutation.getBaseChance()).getColor());
 								CraftGUI.Render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconAdd.getIcon());
 							}
 						}
@@ -192,14 +192,14 @@ public class AnalystPageMutations extends ControlAnalystPage {
 						public void onRenderBackground() {
 							CraftGUI.Render.item(new IPoint(0.0f, 0.0f), system.getDefaultMember(speciesComb.getUID()));
 							CraftGUI.Render.item(new IPoint(28.0f, 0.0f), system.getDefaultMember(mutation.getTemplate()[0].getUID()));
-							CraftGUI.Render.color(getMutationColour(mutation.getBaseChance()).getColour());
+							CraftGUI.Render.color(getMutationColour(mutation.getBaseChance()).getColor());
 							if (specificChance2 != mutation.getBaseChance()) {
-								CraftGUI.Render.color(getMutationColour(mutation.getBaseChance()).getColour());
+								CraftGUI.Render.color(getMutationColour(mutation.getBaseChance()).getColor());
 								CraftGUI.Render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconArrow0.getIcon());
-								CraftGUI.Render.color(getMutationColour(specificChance2).getColour());
+								CraftGUI.Render.color(getMutationColour(specificChance2).getColor());
 								CraftGUI.Render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconArrow1.getIcon());
 							} else {
-								CraftGUI.Render.color(getMutationColour(mutation.getBaseChance()).getColour());
+								CraftGUI.Render.color(getMutationColour(mutation.getBaseChance()).getColor());
 								CraftGUI.Render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconArrow.getIcon());
 							}
 						}

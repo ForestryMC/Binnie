@@ -29,7 +29,7 @@ public enum EnumColor {
 		this.code = code;
 	}
 
-	public int getColour() {
+	public int getColor() {
 		return colour;
 	}
 

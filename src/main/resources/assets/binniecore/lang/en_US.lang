@@ -265,6 +265,23 @@ binniecore.machine.storage.compartmentDiamond=Diamond Compartment
 binniecore.machine.storage.compartmentCopper=Copper Compartment
 binniecore.machine.storage.compartmentBronze=Bronze Compartment
 binniecore.machine.storage.compartmentGold=Gold Compartment
+binniecore.machine.storage.tab=Compartment Tab
+binniecore.machine.storage.tab.desc=Tabs that divide the inventory into sections. Each one can be labelled seperately
+binniecore.machine.storage.tab.properties=Tab Properties
+binniecore.machine.storage.tab.properties.desc=The label, color and icon of the Tab can be altered here. Clicking on the icon with a held item will change it
+binniecore.machine.storage.tab.name=Tab Name:
+binniecore.machine.storage.tab.icon=Tab Icon:
+binniecore.machine.storage.tooltip.icon=Icon for Current Tab
+binniecore.machine.storage.tooltip.icon.desc=Click here with an item to change
+binniecore.machine.storage.tab.color=Color:
+binniecore.machine.storage.tooltip.color=Color Selector
+binniecore.machine.storage.tooltip.color.desc=Select a color to highlight the current tab
+binniecore.machine.storage.search=Search
+binniecore.machine.storage.tooltip.search=Search Button
+binniecore.machine.storage.tooltip.search.desc=Clicking this will open the Search dialog. This allows you to search the inventory for specific items
+binniecore.machine.storage.sort=Sort A-Z
+binniecore.machine.storage.filterItems=Include Items
+binniecore.machine.storage.filterBlocks=Include Blocks
 
 < %1$s is the name of the pattern >
 binniecore.gui.designer.pattern=%1$s Pattern
@@ -315,6 +332,12 @@ binniecore.gui.tooltip.help=Help
 binniecore.gui.tooltip.help.0=To activate help tooltips,
 binniecore.gui.tooltip.help.1=hold down the tab key and
 binniecore.gui.tooltip.help.2=mouse over controls.
+
+binniecore.gui.tooltip.processing=Processing
+binniecore.gui.tooltip.task.canceled=Task Cancelled
+binniecore.gui.tooltip.task.canceled.desc=Cancelled by Buildcraft Gate
+binniecore.gui.tooltip.task.paused=Process Paused
+binniecore.gui.tooltip.task.paused.desc=Paused by Buildcraft Gate
 
 binniecore.gui.tooltip.powerSupply=Power Supply
 binniecore.gui.tooltip.poweredBy=Powered by %s

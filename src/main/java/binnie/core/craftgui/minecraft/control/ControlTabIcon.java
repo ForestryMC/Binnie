@@ -34,7 +34,7 @@ public class ControlTabIcon<T> extends ControlTab<T> {
 		return false;
 	}
 
-	public int getOutlineColour() {
+	public int getOutlineColor() {
 		return 0xffffff;
 	}
 }
