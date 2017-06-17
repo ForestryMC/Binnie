@@ -43,6 +43,7 @@ public class ContainerCraftGUI extends Container {
 	private int mousedOverSlotNumber;
 
 	public ContainerCraftGUI(Window window) {
+		this.window = window;
 		syncedNBT = new HashMap<>();
 		sentNBT = new HashMap<>();
 		syncedTanks = new HashMap<>();
@@ -51,19 +52,22 @@ public class ContainerCraftGUI extends Container {
 		errorType = 0;
 		error = null;
 		mousedOverSlotNumber = -1;
-		this.window = window;
 		IMachine machine = Machine.getMachine(window.getInventory());
-		if (getSide() == Side.SERVER) {
-			inventoryItemStacks = new ListMap();
-			inventorySlots = new ListMap();
-			if (machine != null) {
-				GameProfile user = machine.getOwner();
-				if (user != null) {
-					NBTTagCompound nbt = new NBTTagCompound();
-					nbt.setString("username", user.getName());
-					sendNBTToClient("username", nbt);
-				}
-			}
+		if (getSide() != Side.SERVER) {
+			return;
+		}
+
+		inventoryItemStacks = new ListMap();
+		inventorySlots = new ListMap();
+		if (machine == null) {
+			return;
+		}
+
+		GameProfile user = machine.getOwner();
+		if (user != null) {
+			NBTTagCompound nbt = new NBTTagCompound();
+			nbt.setString("username", user.getName());
+			sendNBTToClient("username", nbt);
 		}
 	}
 
@@ -77,17 +81,17 @@ public class ContainerCraftGUI extends Container {
 	}
 
 	@Override
-	public Slot getSlot(int par1) {
-		if (par1 < 0 || par1 >= inventorySlots.size()) {
+	public Slot getSlot(int index) {
+		if (index < 0 || index >= inventorySlots.size()) {
 			return null;
 		}
-		return (Slot) inventorySlots.get(par1);
+		return (Slot) inventorySlots.get(index);
 	}
 
 	@Override
-	public void putStackInSlot(int par1, ItemStack par2ItemStack) {
-		if (getSlot(par1) != null) {
-			getSlot(par1).putStack(par2ItemStack);
+	public void putStackInSlot(int index, ItemStack stack) {
+		if (getSlot(index) != null) {
+			getSlot(index).putStack(stack);
 		}
 	}
 
@@ -101,8 +105,8 @@ public class ContainerCraftGUI extends Container {
 	}
 
 	@Override
-	public void onContainerClosed(EntityPlayer par1EntityPlayer) {
-		super.onContainerClosed(par1EntityPlayer);
+	public void onContainerClosed(EntityPlayer player) {
+		super.onContainerClosed(player);
 		WindowInventory inventory = window.getWindowInventory();
 		for (int i = 0; i < inventory.getSizeInventory(); ++i) {
 			if (!inventory.dispenseOnClose(i)) {
@@ -114,9 +118,9 @@ public class ContainerCraftGUI extends Container {
 				continue;
 			}
 
-			stack = new TransferRequest(stack, par1EntityPlayer.inventory).transfer(true);
+			stack = new TransferRequest(stack, player.inventory).transfer(true);
 			if (stack != null) {
-				par1EntityPlayer.dropPlayerItemWithRandomChoice(stack, false);
+				player.dropPlayerItemWithRandomChoice(stack, false);
 			}
 		}
 	}
@@ -136,8 +140,13 @@ public class ContainerCraftGUI extends Container {
 	}
 
 	@Override
-	public boolean canInteractWith(EntityPlayer var1) {
-		return true;
+	public boolean canInteractWith(EntityPlayer player) {
+		if (player instanceof EntityPlayerMP) {
+			crafters.add(player);
+			sentNBT.clear();
+		}
+		IInventory inventory = window.getInventory();
+		return inventory == null || inventory.isUseableByPlayer(player);
 	}
 
 	@Override
@@ -145,25 +154,25 @@ public class ContainerCraftGUI extends Container {
 		return shiftClick(player, slotID);
 	}
 
-	private ItemStack shiftClick(EntityPlayer player, int slotnumber) {
-		TransferRequest request = getShiftClickRequest(player, slotnumber);
+	private ItemStack shiftClick(EntityPlayer player, int index) {
+		TransferRequest request = getShiftClickRequest(player, index);
 		if (request == null) {
 			return null;
 		}
 
-		ItemStack itemstack = request.transfer(true);
-		Slot shiftClickedSlot = (Slot) inventorySlots.get(slotnumber);
-		shiftClickedSlot.putStack(itemstack);
+		ItemStack stack = request.transfer(true);
+		Slot shiftClickedSlot = (Slot) inventorySlots.get(index);
+		shiftClickedSlot.putStack(stack);
 		shiftClickedSlot.onSlotChanged();
 		return null;
 	}
 
-	private TransferRequest getShiftClickRequest(EntityPlayer player, int slotnumber) {
-		if (slotnumber < 0) {
+	private TransferRequest getShiftClickRequest(EntityPlayer player, int index) {
+		if (index < 0) {
 			return null;
 		}
 
-		Slot shiftClickedSlot = (Slot) inventorySlots.get(slotnumber);
+		Slot shiftClickedSlot = (Slot) inventorySlots.get(index);
 		ItemStack itemstack = null;
 		if (shiftClickedSlot.getHasStack()) {
 			itemstack = shiftClickedSlot.getStack().copy();
