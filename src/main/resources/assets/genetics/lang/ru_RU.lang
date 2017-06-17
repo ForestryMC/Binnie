@@ -59,6 +59,7 @@ genetics.machine.sequencer.error.noSequence=Нет генов для анали�
 genetics.machine.sequencer.error.noOwner.title=Нет владельца
 genetics.machine.sequencer.error.noOwner=Замените этот блок машины
 genetics.machine.sequencer.error.noSpace=Нет места для пустых последовательностей
+genetics.machine.sequencer.error.noDye=Недостаточно краски
 genetics.machine.sequencer.gui.sequensedBy=Гены будут проанализированы игроком %s
 genetics.machine.sequencer.gui.willNotSave=Потеря владелец. Гены не будут извлечены
 

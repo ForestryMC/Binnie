@@ -57,7 +57,7 @@ public class SequencerComponentLogic extends ComponentProcess implements IProces
 		}
 		if (getUtil().getSlotCharge(Sequencer.SLOT_DYE_INDEX) == 0.0f) {
 			return new ErrorState.NoItem(
-				"Insufficient Dye",
+				I18N.localise("genetics.machine.sequencer.error.noDye"),
 				Sequencer.SLOT_DYE_INDEX
 			);
 		}
