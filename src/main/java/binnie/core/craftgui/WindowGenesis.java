@@ -231,7 +231,7 @@ public class WindowGenesis extends Window {
 				}
 
 				@Override
-				public int getOutlineColour() {
+				public int getOutlineColor() {
 					return value.getColor();
 				}
 

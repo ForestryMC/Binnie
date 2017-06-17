@@ -266,6 +266,23 @@ binniecore.machine.storage.compartmentDiamond=Алмазный сундук
 binniecore.machine.storage.compartmentCopper=Медный сундук
 binniecore.machine.storage.compartmentBronze=Бронзовый сундук
 binniecore.machine.storage.compartmentGold=Золотой сундук
+binniecore.machine.storage.tab=Вкладка
+binniecore.machine.storage.tab.desc=Вкладки делят сундук на разделы. Каждая может быть названа отдельно
+binniecore.machine.storage.tab.properties=Свойства вкладки
+binniecore.machine.storage.tab.properties.desc=Название, цвет и иконка вкладки может быть изменены здесь. Нажатие на иконку с предметом изменит ее
+binniecore.machine.storage.tab.name=Название:
+binniecore.machine.storage.tab.icon=Иконка:
+binniecore.machine.storage.tooltip.icon=Иконка для текущей вкладки
+binniecore.machine.storage.tooltip.icon.desc=Нажмите предметом для изменения иконки
+binniecore.machine.storage.tab.color=Цвет:
+binniecore.machine.storage.tooltip.color=Цвет
+binniecore.machine.storage.tooltip.color.desc=Выбор цвета для вкладки
+binniecore.machine.storage.search=Поиск
+binniecore.machine.storage.tooltip.search=Поиск
+binniecore.machine.storage.tooltip.search.desc=Открывает поисковое окно. Позволяет искать определенные предметы
+binniecore.machine.storage.sort=Сортировка А-Я
+binniecore.machine.storage.filterItems=Включая предметы
+binniecore.machine.storage.filterBlocks=Вклюячая блоки
 
 < %1$s is the name of the pattern >
 binniecore.gui.designer.pattern=Шаблон %1$s
@@ -316,6 +333,12 @@ binniecore.gui.tooltip.help=Помощь
 binniecore.gui.tooltip.help.0=Для показа всплывающих подсказок
 binniecore.gui.tooltip.help.1=зажмите клавишу TAB и
 binniecore.gui.tooltip.help.2=наведите курсор на элемент интерфейса.
+
+binniecore.gui.tooltip.processing=Прогресс
+binniecore.gui.tooltip.task.canceled=Задача отменена
+binniecore.gui.tooltip.task.canceled.desc=Отменено BuildCraft гейтом
+binniecore.gui.tooltip.task.paused=В паузе
+binniecore.gui.tooltip.task.paused.desc=Поставлено в паузу BuildCraft гейтом
 
 binniecore.gui.tooltip.powerSupply=Источник питания
 binniecore.gui.tooltip.poweredBy=Запитавший: %s

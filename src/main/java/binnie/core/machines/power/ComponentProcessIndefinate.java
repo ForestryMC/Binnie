@@ -3,6 +3,7 @@ package binnie.core.machines.power;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
 import binnie.core.machines.network.INetwork;
+import binnie.core.util.I18N;
 import net.minecraft.nbt.NBTTagCompound;
 
 public abstract class ComponentProcessIndefinate extends MachineComponent implements IProcess, INetwork.TilePacketSync {
@@ -11,7 +12,6 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 	private float actionPauseProcess;
 	private float actionCancelTask;
 	int clientEnergyPerSecond;
-	int clientInProgress;
 
 	@Override
 	public void syncFromNBT(NBTTagCompound nbt) {
@@ -42,7 +42,6 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 
 	@Override
 	public void onUpdate() {
-		float energyAvailable = (float) getPower().getInterface().useEnergy(PowerSystem.RF, getEnergyPerTick(), false);
 		if (canWork() == null) {
 			if (!isInProgress() && canProgress() == null) {
 				onStartTask();
@@ -76,13 +75,19 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 		if (actionCancelTask == 0.0f) {
 			return null;
 		}
-		return new ErrorState("Task Cancelled", "Cancelled by Buildcraft Gate");
+		return new ErrorState(
+			I18N.localise("binniecore.gui.tooltip.task.canceled"),
+			I18N.localise("binniecore.gui.tooltip.task.canceled.desc")
+		);
 	}
 
 	@Override
 	public ErrorState canProgress() {
 		if (actionPauseProcess != 0.0f) {
-			return new ErrorState("Process Paused", "Paused by Buildcraft Gate");
+			return new ErrorState(
+				I18N.localise("binniecore.gui.tooltip.task.paused"),
+				I18N.localise("binniecore.gui.tooltip.task.paused.desc")
+			);
 		}
 		if (getPower().getInterface().getEnergy(PowerSystem.RF) < getEnergyPerTick()) {
 			return new ErrorState.InsufficientPower();
@@ -111,7 +116,7 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 
 	@Override
 	public String getTooltip() {
-		return "Processing";
+		return I18N.localise("binniecore.gui.tooltip.processing");
 	}
 
 	@Override

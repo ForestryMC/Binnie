@@ -31,12 +31,12 @@ class ControlColourSelector extends Control implements ITooltip, IControlValue<E
 	@Override
 	public void setValue(EnumColor value) {
 		this.value = value;
-		setColor(value.getColour());
+		setColor(value.getColor());
 	}
 
 	@Override
 	public void onRenderBackground() {
 		super.onRenderBackground();
-		CraftGUI.Render.gradientRect(getArea(), 0xff000000 + value.getColour(), 0xff000000 + value.getColour());
+		CraftGUI.Render.gradientRect(getArea(), 0xff000000 + value.getColor(), 0xff000000 + value.getColor());
 	}
 }
