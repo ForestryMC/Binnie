@@ -46,7 +46,7 @@ public enum GeneticLiquid implements IFluidType {
 
 	@Override
 	public String getName() {
-		return I18N.localise("fluid." + name);
+		return I18N.localise("fluid.binnie." + name);
 	}
 
 	@Override

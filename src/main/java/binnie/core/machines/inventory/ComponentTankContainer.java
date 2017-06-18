@@ -133,7 +133,8 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 	public boolean isLiquidValidForTank(FluidStack liquid, int tank) {
 		TankSlot slot = getTankSlot(tank);
 		return slot != null
-			&& (slot.isValid(liquid) && !slot.isReadOnly());
+			&& slot.isValid(liquid)
+			&& !slot.isReadOnly();
 	}
 
 	@Override

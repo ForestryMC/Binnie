@@ -10,4 +10,5 @@ public class Genepool {
 	public static final int TIME_PERIOD = 400;
 	public static final float ENZYME_PER_PROCESS = 0.25f;
 	public static final float ETHANOL_PER_PROCESS = 50.0f;
+	public static final int POWER_CAPACITY = 1600;
 }
