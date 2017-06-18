@@ -21,6 +21,7 @@ import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
@@ -228,6 +229,11 @@ public class ContainerCraftGUI extends Container {
 				int index = action.getShort("i");
 				int slotNumber = action.getShort("n");
 				getOrCreateSlot(InventoryType.values()[type % 4], index, slotNumber);
+
+				for (Object crafterObject : crafters) {
+					ICrafting crafter = (ICrafting) crafterObject;
+					crafter.sendContainerAndContentsToPlayer(this, getInventory());
+				}
 			}
 		}
 
