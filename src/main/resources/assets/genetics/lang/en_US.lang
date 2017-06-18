@@ -1,8 +1,8 @@
-fluid.rawDNA=Raw DNA
-fluid.bacteria=Bacteria
-fluid.bacteriaPoly=Polymerizing Bacteria
-fluid.growthMedium=Growth Medium
-fluid.bacteriaVector=Bacteria Vector
+fluid.binnie.dna.raw=Liquid DNA
+fluid.binnie.bacteria=Bacteria
+fluid.binnie.growthMedium=Growth Medium
+fluid.binnie.bacteriaPoly=Polymerizing Bacteria
+fluid.binnie.bacteriaVector=Bacteria Vector
 
 genetics.item.casingIron.name=Reinforced Casing
 genetics.item.dnaDye.name=DNA Dye

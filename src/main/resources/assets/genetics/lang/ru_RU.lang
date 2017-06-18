@@ -1,8 +1,8 @@
-fluid.rawDNA=Сырая ДНК
-fluid.bacteria=Бактерия
-fluid.bacteriaPoly=Полимеризированная бактерия
-fluid.growthMedium=Питательная среда
-fluid.bacteriaVector=Бактерия Вектор
+fluid.binnie.dna.raw=Сырая ДНК
+fluid.binnie.bacteria=Бактерия
+fluid.binnie.bacteriaPoly=Полимеризированная бактерия
+fluid.binnie.growthMedium=Питательная среда
+fluid.binnie.bacteriaVector=Бактерия Вектор
 
 genetics.item.casingIron.name=Укреплённый корпус
 genetics.item.dnaDye.name=Краситель ДНК

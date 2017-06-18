@@ -13,6 +13,6 @@ class DnaValidator extends Validator<FluidStack> {
 
 	@Override
 	public String getTooltip() {
-		return I18N.localise("fluid.rawDNA");
+		return I18N.localise("fluid.binnie.dna.raw");
 	}
 }
