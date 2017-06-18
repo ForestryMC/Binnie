@@ -3,13 +3,19 @@ package binnie.extratrees.alcohol.drink;
 import javax.annotation.Nullable;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
+import net.minecraft.world.World;
 
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
@@ -17,12 +23,15 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
 
 import binnie.extratrees.alcohol.Alcohol;
+import binnie.extratrees.alcohol.AlcoholEffect;
 import binnie.extratrees.alcohol.Glassware;
 
-public class ItemDrink extends ItemFood {
+public class ItemDrink extends ItemFood implements IItemModelRegister {
 	public ItemDrink() {
 		super(0, 0.0f, false);
 		this.setCreativeTab(Tabs.tabArboriculture);
@@ -72,7 +81,19 @@ public class ItemDrink extends ItemFood {
 			nbt.setTag("fluid", liq);
 		}
 	}
-
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerModel(Item item, IModelManager manager) {
+		for(Glassware glassware : Glassware.values()){
+			ModelLoader.registerItemVariants(item, glassware.getLocation());
+		}
+		manager.registerItemModel(item, (ItemStack stack)->{
+			Glassware glassware = getGlassware(stack);
+			return glassware.getLocation();
+		});
+	}
+	
 	@Nullable
 	@Override
 	public ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt) {
@@ -106,41 +127,18 @@ public class ItemDrink extends ItemFood {
 		}
 		return this.getGlassware(stack).getName(liquidName);
 	}
-
-	/*@Override
-	@SideOnly(Side.CLIENT)
-	public void registerIcons(final IIconRegister par1IconRegister) {
-		for (final Glassware glassware : Glassware.values()) {
-			glassware.registerIcons(par1IconRegister);
-		}
-	}
-
+	
 	@Override
-	public IIcon getIcon(final ItemStack stack, final int pass) {
-		final Glassware glass = this.getGlassware(stack);
-		return (pass == 0) ? glass.glass : ((this.getFluid(stack) == null) ? glass.glass : glass.contents);
+	protected void onFoodEaten(ItemStack stack, World world, EntityPlayer player) {
+		super.onFoodEaten(stack, world, player);
+		AlcoholEffect.makeDrunk(player, 2.1f);
 	}
-
+	
 	@Override
-	@SideOnly(Side.CLIENT)
-	public int getColorFromItemStack(final ItemStack stack, final int pass) {
-		final FluidStack fluid = this.getFluid(stack);
-		final IDrinkLiquid drink = (fluid == null) ? null : DrinkManager.getLiquid(fluid.getFluid());
-		return (pass == 0) ? 16777215 : ((drink == null) ? 16777215 : drink.getColour());
+	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
+		return super.onItemUseFinish(stack, worldIn, entityLiving);
 	}
-
-	@Override
-	public int getRenderPasses(final int metadata) {
-		return 2;
-	}
-
-	@Override
-	public ItemStack onEaten(final ItemStack p_77654_1_, final World p_77654_2_, final EntityPlayer p_77654_3_) {
-		this.drain(p_77654_1_, 30, true);
-		AlcoholEffect.makeDrunk(p_77654_3_, 2.1f);
-		return p_77654_1_;
-	}*/
-
+	
 	@Override
 	public EnumAction getItemUseAction(final ItemStack itemStack) {
 		if (FluidUtil.getFluidContained(itemStack) != null) {
@@ -150,20 +148,14 @@ public class ItemDrink extends ItemFood {
 		}
 	}
 
-	/*@Override
-	@SideOnly(Side.CLIENT)
-	public boolean requiresMultipleRenderPasses() {
-		return true;
-	}*/
-
 	@Override
 	public int getMaxItemUseDuration(final ItemStack p_77626_1_) {
 		return 16;
 	}
-
-	/*@Override
-	public ItemStack onItemRightClick(final ItemStack p_77659_1_, final World p_77659_2_, final EntityPlayer p_77659_3_) {
-		p_77659_3_.setItemInUse(p_77659_1_, this.getMaxItemUseDuration(p_77659_1_));
-		return p_77659_1_;
-	}*/
+	
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand) {
+		player.setActiveHand(hand);
+		return super.onItemRightClick(world, player, hand);
+	}
 }

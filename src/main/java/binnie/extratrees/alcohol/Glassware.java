@@ -1,10 +1,13 @@
 package binnie.extratrees.alcohol;
 
 import javax.annotation.Nullable;
+import java.util.Locale;
 
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.ItemStack;
 
 import binnie.Binnie;
+import binnie.Constants;
 import binnie.extratrees.ExtraTrees;
 
 public enum Glassware {
@@ -27,16 +30,20 @@ public enum Glassware {
 	float contentBottom;
 	float contentHeight;
 	private int capacity;
-	//public IIcon glass;
-	//public IIcon contents;
+	private ModelResourceLocation location;
 
 	Glassware(final int capacity, final int contentBottom, final int contentHeight) {
 		this.capacity = capacity;
 		this.contentBottom = contentBottom / 32.0f;
 		this.contentHeight = contentHeight / 32.0f;
+		location = new ModelResourceLocation(Constants.EXTRA_TREES_MOD_ID + ":glassware/" + getName(),"inventory");
+	}
+	
+	public String getName() {
+		return name().toLowerCase(Locale.ENGLISH);
 	}
 
-	public String getName(@Nullable final String liquid) {
+	public String getName(@Nullable String liquid) {
 		if (liquid == null) {
 			return ExtraTrees.proxy.localise("item.glassware." + this.name().toLowerCase());
 		}
@@ -46,11 +53,10 @@ public enum Glassware {
 	public int getCapacity() {
 		return this.capacity;
 	}
-
-	/*public void registerIcons(final IIconRegister par1IconRegister) {
-		this.glass = ExtraTrees.proxy.getIcon(par1IconRegister, "glassware/" + this.toString().toLowerCase() + ".glass");
-		this.contents = ExtraTrees.proxy.getIcon(par1IconRegister, "glassware/" + this.toString().toLowerCase() + ".contents");
-	}*/
+	
+	public ModelResourceLocation getLocation() {
+		return location;
+	}
 
 	public ItemStack get(final int i) {
 		return ExtraTrees.alcohol().drink.getStack(this, null);

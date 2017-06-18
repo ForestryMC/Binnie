@@ -3,6 +3,9 @@ package binnie.extratrees.integration.jei;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
+
 import binnie.core.integration.jei.Drawables;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.WoodManager;
@@ -40,6 +43,14 @@ public class ExtraTreesJeiPlugin extends BlankModPlugin {
 				return type + ":" + desc.getPlankType().getDesignMaterialName().toLowerCase() + ":" + desc.getSecondaryPlankType().getDesignMaterialName().toLowerCase();
 			}
 			return Integer.toString(itemStack.getItemDamage());
+		});
+		subtypeRegistry.registerSubtypeInterpreter(ExtraTrees.alcohol().drink, (ItemStack itemStack) -> {
+			String glassware = ExtraTrees.alcohol().drink.getGlassware(itemStack).getName();
+			FluidStack fluidStack = FluidUtil.getFluidContained(itemStack);
+			if(fluidStack == null){
+				return glassware;
+			}
+			return glassware + ":" + fluidStack.getFluid().getName();
 		});
 	}
 

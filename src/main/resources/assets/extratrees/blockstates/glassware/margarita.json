@@ -1,0 +1,13 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "inventory": {
+            "model": "forge:forgebucket",
+            "textures": {
+                "base": "extratrees:items/glassware/margarita.glass",
+                "fluid": "extratrees:items/glassware/margarita.contents"
+            },
+            "transform": "forge:default-item"
+        }
+    }
+}
