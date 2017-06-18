@@ -1,10 +1,10 @@
 ## Binnie mods
 
+This is an official fork of mod.
 All builds can be found on [Jenkins](https://ci.bymarcin.com/job/Binnie-Mods-MC1.7.10/)
 
 ### Warning
 
-This is an unofficial fork of mod.
 Removed unused (unfinished) items and blocks: Honey Crystal, Alcohol, etc.
 
 #### Build
