@@ -11,8 +11,6 @@ import net.minecraftforge.oredict.OreDictionary;
 public class ModuleProducts implements IInitializable {
 	@Override
 	public void preInit() {
-		ExtraBees.honeyCrystal = new ItemHoneyCrystal();
-		ExtraBees.honeyCrystalEmpty = new ItemHoneyCrystalEmpty();
 		ExtraBees.honeyDrop = new ItemHoneyDrop();
 		ExtraBees.comb = new ItemHoneyComb();
 		ExtraBees.propolis = new ItemPropolis();
@@ -28,12 +26,6 @@ public class ModuleProducts implements IInitializable {
 
 	@Override
 	public void postInit() {
-		GameRegistry.addRecipe(
-			new ItemStack(ExtraBees.honeyCrystalEmpty),
-			"#@#", "@#@", "#@#",
-			'@', Mods.forestry.stack("honeyDrop"),
-			'#', EnumHoneyDrop.ENERGY.get(1)
-		);
 		for (EnumHoneyComb info : EnumHoneyComb.values()) {
 			info.addRecipe();
 		}

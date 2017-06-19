@@ -44,13 +44,7 @@ public class ModuleItems implements IInitializable {
 		OreDictionary.registerOre("pulpWood", ExtraTreeItems.Sawdust.get(1));
 		Food.registerOreDictionary();
 		OreDictionary.registerOre("cropApple", Items.apple);
-		OreDictionary.registerOre("cropHops", ExtraTreeItems.Hops.get(1));
 		OreDictionary.registerOre("seedWheat", Items.wheat_seeds);
-		OreDictionary.registerOre("seedWheat", ExtraTreeItems.GrainWheat.get(1));
-		OreDictionary.registerOre("seedBarley", ExtraTreeItems.GrainBarley.get(1));
-		OreDictionary.registerOre("seedCorn", ExtraTreeItems.GrainCorn.get(1));
-		OreDictionary.registerOre("seedRye", ExtraTreeItems.GrainRye.get(1));
-		OreDictionary.registerOre("seedRoasted", ExtraTreeItems.GrainRoasted.get(1));
 
 		Food.Crabapple.addJuice(10, 150, 10);
 		Food.Orange.addJuice(10, 400, 15);
@@ -106,7 +100,7 @@ public class ModuleItems implements IInitializable {
 
 	@Override
 	public void postInit() {
-		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(
+		GameRegistry.addRecipe(new ShapedOreRecipe(
 			new ItemStack(ExtraTrees.itemDurableHammer, 1, 0),
 			"wiw", " s ", " s ",
 			'w', Blocks.obsidian,
@@ -114,60 +108,13 @@ public class ModuleItems implements IInitializable {
 			's', Items.stick
 		));
 
-		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(
+		GameRegistry.addRecipe(new ShapedOreRecipe(
 			new ItemStack(ExtraTrees.itemHammer, 1, 0),
 			"wiw", " s ", " s ",
 			'w', "plankWood",
 			'i', Items.iron_ingot,
 			's', Items.stick
 		));
-
-		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(
-			ExtraTreeItems.Yeast.get(8),
-			" m ", "mbm",
-			'b', Items.bread,
-			'm', Blocks.brown_mushroom
-		));
-
-		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(
-			ExtraTreeItems.LagerYeast.get(8),
-			"mbm", " m ",
-			'b', Items.bread,
-			'm', Blocks.brown_mushroom
-		));
-
-		GameRegistry.addRecipe(
-			ExtraTreeItems.GrainWheat.get(5),
-			" s ", "sss", " s ",
-			's', Items.wheat_seeds
-		);
-		GameRegistry.addRecipe(new ShapedOreRecipe(
-			ExtraTreeItems.GrainBarley.get(3), new Object[]{
-				false,
-				" s ", "s  ", " s ",
-				's', ExtraTreeItems.GrainWheat.get(1)
-			}
-		));
-		GameRegistry.addRecipe(new ShapedOreRecipe(
-			ExtraTreeItems.GrainCorn.get(3), new Object[]{
-				false,
-				" s ", "  s", " s ",
-				's', ExtraTreeItems.GrainWheat.get(1)
-			}
-		));
-
-		GameRegistry.addRecipe(
-			ExtraTreeItems.GrainRye.get(3),
-			"   ", "s s", " s ",
-			's', ExtraTreeItems.GrainWheat.get(1)
-		);
-
-		GameRegistry.addRecipe(
-			ExtraTreeItems.Hops.get(3),
-			" s ", "sps", " s ",
-			's', Items.wheat_seeds,
-			'p', Items.apple
-		);
 
 		GameRegistry.addRecipe(
 			ExtraTreeItems.ProvenGear.get(1),
@@ -182,14 +129,9 @@ public class ModuleItems implements IInitializable {
 			's', Items.stick
 		);
 
-		GameRegistry.addSmelting(ExtraTreeItems.GrainWheat.get(1), ExtraTreeItems.GrainRoasted.get(1), 0.0f);
-		GameRegistry.addSmelting(ExtraTreeItems.GrainRye.get(1), ExtraTreeItems.GrainRoasted.get(1), 0.0f);
-		GameRegistry.addSmelting(ExtraTreeItems.GrainCorn.get(1), ExtraTreeItems.GrainRoasted.get(1), 0.0f);
-		GameRegistry.addSmelting(ExtraTreeItems.GrainBarley.get(1), ExtraTreeItems.GrainRoasted.get(1), 0.0f);
-
 		try {
 			Item minium = (Item) Class.forName("com.pahimar.ee3.lib.ItemIds").getField("miniumShard").get(null);
-			CraftingManager.getInstance().getRecipeList().add(new ShapelessOreRecipe(Food.Papayimar.get(1), minium, "cropPapaya"));
+			GameRegistry.addRecipe(new ShapelessOreRecipe(Food.Papayimar.get(1), minium, "cropPapaya"));
 		} catch (Exception ex) {
 			// ignored
 		}

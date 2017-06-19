@@ -6,9 +6,6 @@ import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.UniqueFluidStackSet;
 import binnie.core.util.UniqueItemStackSet;
-import binnie.extratrees.machines.Brewery;
-import binnie.extratrees.machines.Distillery;
-import binnie.extratrees.machines.Press;
 import forestry.api.recipes.RecipeManagers;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -40,7 +37,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 	}
 
 	public Collection<ItemStack> getCentrifuge(ItemStack stack) {
-		List<ItemStack> products = new ArrayList<ItemStack>();
+		List<ItemStack> products = new ArrayList<>();
 		for (Map.Entry<Object[], Object[]> recipe : RecipeManagers.centrifugeManager.getRecipes().entrySet()) {
 			boolean isRecipe = false;
 			for (Object obj : recipe.getKey()) {
@@ -124,16 +121,13 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 	}
 
 	public Collection<FluidStack> getAllFluids(ItemStack stack) {
-		List<FluidStack> products = new ArrayList<FluidStack>();
+		List<FluidStack> products = new ArrayList<>();
 		products.addAll(getSqueezerFluid(stack));
-		if (Press.getOutput(stack) != null) {
-			products.add(Press.getOutput(stack));
-		}
 		return products;
 	}
 
 	public Collection<FluidStack> getSqueezerFluid(ItemStack stack) {
-		List<FluidStack> products = new ArrayList<FluidStack>();
+		List<FluidStack> products = new ArrayList<>();
 		for (Map.Entry<Object[], Object[]> recipe : RecipeManagers.squeezerManager.getRecipes().entrySet()) {
 			boolean isRecipe = false;
 			for (Object obj : recipe.getKey()) {
@@ -154,10 +148,6 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 
 	protected Collection<? extends FluidStack> getAllProducts(FluidStack stack) {
 		Collection<FluidStack> fluids = new UniqueFluidStackSet();
-		fluids.add(Brewery.getOutput(stack));
-		fluids.add(Distillery.getOutput(stack, 0));
-		fluids.add(Distillery.getOutput(stack, 1));
-		fluids.add(Distillery.getOutput(stack, 2));
 		return fluids;
 	}
 

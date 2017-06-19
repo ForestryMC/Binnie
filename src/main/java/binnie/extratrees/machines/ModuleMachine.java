@@ -9,7 +9,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.core.Tabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.crafting.CraftingManager;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ModuleMachine implements IInitializable {
@@ -40,42 +39,6 @@ public class ModuleMachine implements IInitializable {
 		));
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(
-			ExtraTreeMachine.Press.get(1),
-			new Object[]{
-				"iGi", "tSt", "tPt",
-				'i', "ingotIron",
-				'G', Blocks.glass,
-				't', "ingotTin",
-				'S', Mods.forestry.stack("sturdyMachine"),
-				'P', "gearBronze"
-			}
-		));
-
-		GameRegistry.addRecipe(new ShapedOreRecipe(
-			ExtraTreeMachine.Brewery.get(1),
-			new Object[]{
-				"bGb", "iSi", "bPb",
-				'i', "ingotIron",
-				'G', Blocks.glass,
-				'b', "gearBronze",
-				'S', Mods.forestry.stack("sturdyMachine"),
-				'P', "gearBronze"
-			}
-		));
-
-		GameRegistry.addRecipe(new ShapedOreRecipe(
-			ExtraTreeMachine.Distillery.get(1),
-			new Object[]{
-				"rGr", "iSi", "rPr",
-				'i', "ingotIron",
-				'G', Blocks.glass,
-				'r', "dustRedstone",
-				'S', Mods.forestry.stack("sturdyMachine"),
-				'P', "gearBronze"
-			}
-		));
-		
-		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(
 			ExtraTreeMachine.Woodworker.get(1),
 			"wGw", "GsG", "ggg",
 			'G', Blocks.glass,
@@ -84,7 +47,7 @@ public class ModuleMachine implements IInitializable {
 			's', Mods.forestry.stack("impregnatedCasing")
 		));
 
-		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(
+		GameRegistry.addRecipe(new ShapedOreRecipe(
 			ExtraTreeMachine.Panelworker.get(1), 
 			"wGw", "GsG", "ggg",
 			'G', Blocks.glass,
@@ -93,7 +56,7 @@ public class ModuleMachine implements IInitializable {
 			's', Mods.forestry.stack("impregnatedCasing")
 		));
 
-		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(
+		GameRegistry.addRecipe(new ShapedOreRecipe(
 			ExtraTreeMachine.Glassworker.get(1),
 			"wGw", "GsG", "ggg",
 			'G', Blocks.glass,
@@ -102,7 +65,7 @@ public class ModuleMachine implements IInitializable {
 			's', Mods.forestry.stack("impregnatedCasing")
 		));
 
-		CraftingManager.getInstance().getRecipeList().add(new ShapedOreRecipe(
+		GameRegistry.addRecipe(new ShapedOreRecipe(
 			ExtraTreeMachine.Tileworker.get(1),
 			"wGw", "GsG", "ggg",
 			'G', Blocks.glass,

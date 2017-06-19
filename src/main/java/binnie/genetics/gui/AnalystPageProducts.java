@@ -11,7 +11,7 @@ import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.UniqueItemStackSet;
-import binnie.extratrees.craftgui.kitchen.ControlFluidDisplay;
+import binnie.extratrees.craftgui.ControlFluidDisplay;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
@@ -42,8 +42,7 @@ public class AnalystPageProducts extends AnalystPageProduce {
 		y += 20;
 		Collection<ItemStack> refinedProducts = new UniqueItemStackSet();
 		Collection<ItemStack> productList = new UniqueItemStackSet();
-		Collection<ItemStack> specialtyList = new UniqueItemStackSet();
-		Map<ItemStack, Float> products = new HashMap<ItemStack, Float>();
+		Map<ItemStack, Float> products = new HashMap<>();
 		products.putAll(genome.getPrimary().getProductChances());
 		products.putAll(genome.getSecondary().getProductChances());
 		if (!products.isEmpty()) {
