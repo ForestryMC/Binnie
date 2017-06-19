@@ -47,7 +47,7 @@ import net.minecraftforge.client.event.TextureStitchEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mod(modid = "BinnieCore", name = "Binnie Core", useMetadata = true)
+@Mod(modid = "BinnieCore", name = "Binnie Core", useMetadata = true, dependencies = "after:Forestry@[4.2,)")
 public class BinnieCore extends AbstractMod {
 	@Mod.Instance("BinnieCore")
 	public static BinnieCore instance;
