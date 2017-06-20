@@ -167,10 +167,10 @@ extrabees.block.geneticMachine.name=基因机器方块
 extrabees.block.advGeneticMachine.name=高级基因机器方块
 extrabees.block.ectoplasm.name=胶质网
 
-extrabees.block.hive.0=水生蜂窝
-extrabees.block.hive.1=岩石蜂窝
-extrabees.block.hive.2=下界蜂窝
-extrabees.block.hive.3=大理石蜂窝
+extrabees.block.hive.0=水生蜂巢
+extrabees.block.hive.1=岩石蜂巢
+extrabees.block.hive.2=下界蜂巢
+extrabees.block.hive.3=大理石蜂巢
 
 
 ##################################################
