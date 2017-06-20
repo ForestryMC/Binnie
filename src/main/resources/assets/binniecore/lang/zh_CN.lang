@@ -247,9 +247,9 @@ binniecore.item.container.cylinder.latex=乳胶玻璃罐
 binniecore.item.container.cylinder.turpentine=松节油玻璃罐
 binniecore.item.container.cylinder.binnie.growthmedium=培养基玻璃罐
 binniecore.item.container.cylinder.binnie.bacteria=细菌玻璃罐
-binniecore.item.container.cylinder.binnie.bacteriapoly=Polymerized Bacteria 玻璃罐
-binniecore.item.container.cylinder.binnie.dna.raw=DNA液体玻璃罐
-binniecore.item.container.cylinder.binnie.bacteriavector=Bacteria Vector 玻璃罐
+binniecore.item.container.cylinder.binnie.bacteriapoly=聚合菌玻璃罐
+binniecore.item.container.cylinder.binnie.dna.raw=DNA 液体玻璃罐
+binniecore.item.container.cylinder.binnie.bacteriavector=细菌质粒玻璃罐
 
 binniecore.machine.error.noItem=没有物品
 binniecore.machine.error.invalidItem=无效物品

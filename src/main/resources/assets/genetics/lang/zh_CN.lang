@@ -2,7 +2,7 @@ fluid.binnie.dna.raw=原生 DNA
 fluid.binnie.bacteria=细菌
 fluid.binnie.growthMedium=培养基
 fluid.binnie.bacteriaPoly=聚合菌
-fluid.binnie.bacteriaVector=Bacteria Vector
+fluid.binnie.bacteriaVector=细菌质粒
 
 genetics.item.casingIron.name=强化外壳
 genetics.item.dnaDye.name=DNA 标记染料
@@ -38,11 +38,11 @@ genetics.gene.charge.many=%d 次使用
 genetics.gene.more=还有 %d 种基因，按下 Shift 显示全部。
 
 genetics.sequence.corrupted=损坏的 DNA 序列
-genetics.sequence.descriptor=%s DNA序列
+genetics.sequence.descriptor=%s DNA 序列
 genetics.sequence.unknown=<未知>
-genetics.sequence.unsequenced=未序列化
-genetics.sequence.fully=完全序列化
-genetics.sequence.partially=部分序列化(%d%%)
+genetics.sequence.unsequenced=未测序
+genetics.sequence.fully=已测序
+genetics.sequence.partially=测序 %d%%
 
 genetics.machine.machine.isolator=基因分离器
 genetics.machine.machine.isolator.info=基因分离器将会从蜜蜂、树苗或者其它的独立个体中随机提取基因片段，并复制到一个空的序列瓶中。此过程需要乙醇作为溶剂，还需要酶来切断DNA。未序列化的血清可以在序列分析器中测序，并在基因同化器中重新装填。
@@ -64,7 +64,7 @@ genetics.machine.sequencer.gui.sequensedBy=该基因将由 %s 完成序列化
 genetics.machine.sequencer.gui.willNotSave=无用序列，将直接丢弃
 
 genetics.machine.machine.polymeriser=基因同化器
-genetics.machine.machine.polymeriser.info=基因同化器将会用DNA液体和细菌来重新填充血清。该过程可用金粒加速。
+genetics.machine.machine.polymeriser.info=基因同化器将会用 DNA 液体和细菌来重新填充血清。该过程可用金粒加速。
 genetics.machine.polymeriser.error.noItem=没有需要复制的物品
 genetics.machine.polymeriser.error.itemFilled=物品已填充
 genetics.machine.polymeriser.error.noLiquid=细菌不足
