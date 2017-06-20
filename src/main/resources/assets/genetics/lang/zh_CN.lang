@@ -1,7 +1,11 @@
 fluid.binnie.dna.raw=原生 DNA
+fluid.binnie.bacteria=细菌
+fluid.binnie.growthMedium=培养基
+fluid.binnie.bacteriaPoly=Polymerizing Bacteria
+fluid.binnie.bacteriaVector=Bacteria Vector
 
 genetics.item.casingIron.name=强化外壳
-genetics.item.dnaDye.name=DNA Dye
+genetics.item.dnaDye.name=DNA 标记染料
 genetics.item.dyeFluor.name=荧光染料
 genetics.item.enzyme.name=酶
 genetics.item.growthMedium.name=培养基
@@ -10,8 +14,15 @@ genetics.item.serumEmpty.name=空血清瓶
 genetics.item.genomeEmpty.name=空血清序列
 genetics.item.cylinderEmpty.name=玻璃瓶
 genetics.item.integratedCircuit.name=集成电路板
-genetics.item.integratedCPU.name=集成CPU
+genetics.item.integratedCPU.name=集成 CPU
 genetics.item.casingCircuit.name=集成外壳
+genetics.item.analyst.name=Analyst
+genetics.item.database.0.name=基因数据库
+genetics.item.database.1.name=主基因数据库
+genetics.item.registry.0.name=注册表
+genetics.item.registry.1.name=主注册表
+genetics.item.serum.name=%s 血清
+genetics.item.serumArray.name=%s 血清序列
 
 genetics.item.sequence=DNA序列
 genetics.item.sequence.0=极弱
@@ -21,22 +32,35 @@ genetics.item.sequence.3=中等
 genetics.item.sequence.4=强
 genetics.item.sequence.5=极强
 
+genetics.gene.charge.empty=空
+genetics.gene.charge.one=1 次使用
+genetics.gene.charge.many=%d 次使用
+genetics.gene.more=还有 %d 种基因，按下 Shift 显示全部。
+
+genetics.sequence.corrupted=损坏的 DNA 序列
+genetics.sequence.descriptor=%s DNA序列
+genetics.sequence.unknown=<未知>
+genetics.sequence.unsequenced=未序列化
+genetics.sequence.fully=完全序列化
+genetics.sequence.partially=部分序列化(%d%%)
+
 genetics.machine.machine.isolator=基因分离器
-genetics.machine.machine.isolator.info=基因分离器将会从蜜蜂、树苗或者其它的独立个体中随机提取基因片段，并复制到一个空的序列瓶中。此过程需要乙醇作为溶剂，还需要酶来切断DNA。未序列化的血清可以在序列分析器中序列化，并在基因同化器中重新装填。
+genetics.machine.machine.isolator.info=基因分离器将会从蜜蜂、树苗或者其它的独立个体中随机提取基因片段，并复制到一个空的序列瓶中。此过程需要乙醇作为溶剂，还需要酶来切断DNA。未序列化的血清可以在序列分析器中测序，并在基因同化器中重新装填。
 genetics.machine.isolator.error.noIndividual=没有个体样本
-genetics.machine.isolator.error.noRoom=No room for DNA sequences
-genetics.machine.isolator.error.noVials=没有空序列瓶
+genetics.machine.isolator.error.noRoom=没有空间
+genetics.machine.isolator.error.noVials=没有空血清瓶
 genetics.machine.isolator.error.noLiquid=乙醇不足
 genetics.machine.isolator.error.noEnzyme=没有酶
 
-genetics.machine.machine.sequencer=序列分析器
-genetics.machine.machine.sequencer.info=序列分析器可以分析未序列化血清的基因片段。计算过程相当耗时，还需要用到荧光染料。
-genetics.machine.sequencer.unsequencedDNA=Unsequenced DNA
+genetics.machine.machine.sequencer=测序仪
+genetics.machine.machine.sequencer.info=序列分析器可以对血清中的基因片段进行测序。需要用到荧光染料。计算过程相当耗时。
+genetics.machine.sequencer.unsequencedDNA=未序列化 DNA
 genetics.machine.sequencer.error.noSequence=没有 DNA 序列
 genetics.machine.sequencer.error.noOwner.title=无人认领此设备
 genetics.machine.sequencer.error.noOwner=重新放置此设备以重新认领
 genetics.machine.sequencer.error.noSpace=没有空白序列的空间
-genetics.machine.sequencer.gui.sequensedBy=基因将序列化为 %s
+genetics.machine.sequencer.error.noDye=染料不足
+genetics.machine.sequencer.gui.sequensedBy=该基因将由 %s 完成序列化
 genetics.machine.sequencer.gui.willNotSave=无用序列，将直接丢弃
 
 genetics.machine.machine.polymeriser=基因同化器
@@ -51,7 +75,7 @@ genetics.machine.polymeriser.unfilledSerum=没有填充的血清瓶
 
 genetics.machine.machine.inoculator=基因注射器
 genetics.machine.machine.inoculator.info=基因注射器可利用血清向可杂交个体中注入特定基因。这个过程相当耗时，并且需要细菌作为催化剂，但必定会成功。
-genetics.machine.inoculator.error.noIndividual=No Individual to Inoculate
+genetics.machine.inoculator.error.noIndividual=没有可供基因注射的个体
 genetics.machine.inoculator.error.noSerum=没有血清
 genetics.machine.inoculator.error.noLiquid=液体不足
 genetics.machine.inoculator.error.emptySerum.title=空白血清
@@ -116,3 +140,11 @@ genetics.machine.splicer.splicingIn.0=正在拼接 %d/%d 个基因
 genetics.machine.splicer.splicingIn.1=正在拼接 %d/%d 个基因
 genetics.machine.splicer.splicingIn.2=正在拼接 %d 个基因
 genetics.machine.splicer.splicingIn.3=正在拼接 %d 个基因
+
+genetics.gui.geneBank=基因库
+genetics.gui.geneBank.info=信息
+genetics.gui.geneBank.stats=状态
+genetics.gui.geneBank.ranking=评级
+genetics.gui.geneBank.project=全基因解析工程
+genetics.gui.geneBank.sequencedGenes=已测序 %d/%d 基因
+genetics.gui.geneBank.sequencedGenes.short=%d/%d 基因

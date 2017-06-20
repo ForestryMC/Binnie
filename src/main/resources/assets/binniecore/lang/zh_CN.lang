@@ -189,7 +189,7 @@ binniecore.gui.breedingmessage.branch=已发现分支
 binniecore.gui.breedingmessage.epithet=已获得称号
 
 binniecore.item.genesis.name=Genesis
-binniecore.item.fluidContainer.missed=Missed Fluid
+binniecore.item.fluidContainer.missed=丢失液体
 
 binniecore.item.container.capsule=胶囊
 binniecore.item.container.refractory=耐火胶囊
@@ -197,6 +197,59 @@ binniecore.item.container.can=罐
 binniecore.item.container.bucket=桶
 binniecore.item.container.glass=瓶
 binniecore.item.container.cylinder=玻璃罐
+
+binniecore.item.container.capsule.acid=酸液胶囊
+binniecore.item.container.capsule.poison=毒液胶囊
+binniecore.item.container.capsule.liquidnitrogen=液氮胶囊
+binniecore.item.container.capsule.sap=树液胶囊
+binniecore.item.container.capsule.resin=树脂胶囊
+binniecore.item.container.capsule.latex=乳胶胶囊
+binniecore.item.container.capsule.turpentine=松节油胶囊
+
+binniecore.item.container.refractory.acid=酸液耐火胶囊
+binniecore.item.container.refractory.poison=毒液耐火胶囊
+binniecore.item.container.refractory.liquidnitrogen=液氮耐火胶囊
+binniecore.item.container.refractory.sap=树液耐火胶囊
+binniecore.item.container.refractory.resin=树脂耐火胶囊
+binniecore.item.container.refractory.latex=乳胶耐火胶囊
+binniecore.item.container.refractory.turpentine=松节油耐火胶囊
+
+binniecore.item.container.can.acid=酸液胶囊
+binniecore.item.container.can.poison=毒液胶囊
+binniecore.item.container.can.liquidnitrogen=液氮胶囊
+binniecore.item.container.can.sap=树液胶囊
+binniecore.item.container.can.resin=树脂胶囊
+binniecore.item.container.can.latex=乳胶胶囊
+binniecore.item.container.can.turpentine=松节油胶囊
+
+binniecore.item.container.bucket.acid=酸液桶
+binniecore.item.container.bucket.poison=毒液桶
+binniecore.item.container.bucket.liquidnitrogen=液氮桶
+binniecore.item.container.bucket.sap=树液桶
+binniecore.item.container.bucket.resin=树脂桶
+binniecore.item.container.bucket.latex=乳胶桶
+binniecore.item.container.bucket.turpentine=松节油桶
+
+binniecore.item.container.glass.acid=酸液瓶
+binniecore.item.container.glass.poison=毒液瓶
+binniecore.item.container.glass.liquidnitrogen=液氮瓶
+binniecore.item.container.glass.sap=树液瓶
+binniecore.item.container.glass.resin=树脂瓶
+binniecore.item.container.glass.latex=乳胶瓶
+binniecore.item.container.glass.turpentine=松节油瓶
+
+binniecore.item.container.cylinder.acid=酸液玻璃罐
+binniecore.item.container.cylinder.poison=毒液玻璃罐
+binniecore.item.container.cylinder.liquidnitrogen=液氮玻璃罐
+binniecore.item.container.cylinder.sap=树液玻璃罐
+binniecore.item.container.cylinder.resin=树脂玻璃罐
+binniecore.item.container.cylinder.latex=乳胶玻璃罐
+binniecore.item.container.cylinder.turpentine=松节油玻璃罐
+binniecore.item.container.cylinder.binnie.growthmedium=培养基玻璃罐
+binniecore.item.container.cylinder.binnie.bacteria=细菌玻璃罐
+binniecore.item.container.cylinder.binnie.bacteriapoly=Polymerized Bacteria 玻璃罐
+binniecore.item.container.cylinder.binnie.dna.raw=DNA液体玻璃罐
+binniecore.item.container.cylinder.binnie.bacteriavector=Bacteria Vector 玻璃罐
 
 binniecore.machine.error.noItem=没有物品
 binniecore.machine.error.invalidItem=无效物品
@@ -212,6 +265,23 @@ binniecore.machine.storage.compartmentDiamond=钻石组合箱
 binniecore.machine.storage.compartmentCopper=铜质组合箱
 binniecore.machine.storage.compartmentBronze=青铜组合箱
 binniecore.machine.storage.compartmentGold=金质组合箱
+binniecore.machine.storage.tab=组合箱标签
+binniecore.machine.storage.tab.desc=标签用于将物品栏分割成若干部分。
+binniecore.machine.storage.tab.properties=标签属性
+binniecore.machine.storage.tab.properties.desc=标签及其颜色和图标均可更换。用物品点击标签可更换其图标。
+binniecore.machine.storage.tab.name=标签名：
+binniecore.machine.storage.tab.icon=标签图标：
+binniecore.machine.storage.tooltip.icon=当前标签的图标
+binniecore.machine.storage.tooltip.icon.desc=用物品点击此处以更换
+binniecore.machine.storage.tab.color=颜色：
+binniecore.machine.storage.tooltip.color=颜色选择器
+binniecore.machine.storage.tooltip.color.desc=更换高亮显示时的颜色
+binniecore.machine.storage.search=搜索
+binniecore.machine.storage.tooltip.search=搜索按钮
+binniecore.machine.storage.tooltip.search.desc=点击后打开搜索界面，可用于搜索物品栏中的指定物品。
+binniecore.machine.storage.sort=字母顺序排序
+binniecore.machine.storage.filterItems=包括物品
+binniecore.machine.storage.filterBlocks=包括方块
 
 < %1$s is the name of the pattern >
 binniecore.gui.designer.pattern=%1$s样板
@@ -220,7 +290,7 @@ binniecore.gui.fieldKit=实地考察工具包
 binniecore.gui.fieldKit.info=用于在野外分析蜜蜂、树、花和蝴蝶的工具包。记得带上纸来记笔记。
 
 binniecore.gui.genesis=Genesis
-binniecore.gui.database.nodescription=未提供说明.
+binniecore.gui.database.nodescription=未提供说明。
 binniecore.gui.database.mode.species=种
 binniecore.gui.database.mode.branches=族
 binniecore.gui.database.mode.breeder=变异
@@ -262,6 +332,12 @@ binniecore.gui.tooltip.help=帮助
 binniecore.gui.tooltip.help.0=要查看帮助提示，
 binniecore.gui.tooltip.help.1=请先按下 Tab 键，
 binniecore.gui.tooltip.help.2=然后将光标移动至控制界面上
+
+binniecore.gui.tooltip.processing=正在处理
+binniecore.gui.tooltip.task.canceled=任务取消
+binniecore.gui.tooltip.task.canceled.desc=由 Buildcraft 的门取消
+binniecore.gui.tooltip.task.paused=暂停
+binniecore.gui.tooltip.task.paused.desc=由 Buildcraft 的门暂停
 
 binniecore.gui.tooltip.powerSupply=供能
 binniecore.gui.tooltip.poweredBy=由 %s 供能
