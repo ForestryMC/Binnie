@@ -1,21 +1,8 @@
 package binnie.extratrees.alcohol;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
-
-import forestry.api.recipes.ISqueezerRecipe;
-import forestry.api.recipes.RecipeManagers;
-
 import binnie.Binnie;
 import binnie.core.IInitializable;
+import binnie.core.Mods;
 import binnie.core.liquid.IFluidType;
 import binnie.core.resource.BinnieSprite;
 import binnie.extratrees.ExtraTrees;
@@ -29,6 +16,18 @@ import binnie.extratrees.machines.brewery.BreweryRecipes;
 import binnie.extratrees.machines.distillery.DistilleryLogic;
 import binnie.extratrees.machines.distillery.DistilleryRecipes;
 import binnie.extratrees.machines.fruitpress.FruitPressRecipes;
+import forestry.api.recipes.ISqueezerRecipe;
+import forestry.api.recipes.RecipeManagers;
+import forestry.core.fluids.Fluids;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class ModuleAlcohol implements IInitializable {
 	public ItemDrink drink;
@@ -68,6 +67,13 @@ public class ModuleAlcohol implements IInitializable {
 
 	@Override
 	public void postInit() {
+		ItemStack wax = Mods.Forestry.stack("beeswax");
+		ItemStack waxCast = Mods.Forestry.stackWildcard("wax_cast");
+		for (Glassware glassware : Glassware.values()) {
+			ItemStack result = drink.getStack(glassware, null, 8);
+			Object[] recipe = glassware.getRecipePattern(wax.getItem());
+			RecipeManagers.fabricatorManager.addRecipe(waxCast, Fluids.GLASS.getFluid(glassware.getRecipeGlassCost()), result, recipe);
+		}
 		for (final Juice juice : Juice.values()) {
 			final String oreDict = juice.squeezing;
 			final List<ItemStack> ores = new ArrayList<>();
@@ -102,17 +108,17 @@ public class ModuleAlcohol implements IInitializable {
 		}
 
 		BreweryRecipes.addRecipes(
-			new BrewedGrainRecipe(Alcohol.Ale, BreweryRecipes.GRAIN_BARLEY, BreweryRecipes.HOPS),
-			new BrewedGrainRecipe(Alcohol.Lager, BreweryRecipes.GRAIN_BARLEY, BreweryRecipes.HOPS, ExtraTreeItems.LagerYeast.get(1)),
-			new BrewedGrainRecipe(Alcohol.Stout, BreweryRecipes.GRAIN_ROASTED, BreweryRecipes.HOPS),
-			new BrewedGrainRecipe(Alcohol.CornBeer, BreweryRecipes.GRAIN_CORN, BreweryRecipes.HOPS),
-			new BrewedGrainRecipe(Alcohol.RyeBeer, BreweryRecipes.GRAIN_RYE, BreweryRecipes.HOPS),
-			new BrewedGrainRecipe(Alcohol.WheatBeer, BreweryRecipes.GRAIN_WHEAT, BreweryRecipes.HOPS),
+				new BrewedGrainRecipe(Alcohol.Ale, BreweryRecipes.GRAIN_BARLEY, BreweryRecipes.HOPS),
+				new BrewedGrainRecipe(Alcohol.Lager, BreweryRecipes.GRAIN_BARLEY, BreweryRecipes.HOPS, ExtraTreeItems.LagerYeast.get(1)),
+				new BrewedGrainRecipe(Alcohol.Stout, BreweryRecipes.GRAIN_ROASTED, BreweryRecipes.HOPS),
+				new BrewedGrainRecipe(Alcohol.CornBeer, BreweryRecipes.GRAIN_CORN, BreweryRecipes.HOPS),
+				new BrewedGrainRecipe(Alcohol.RyeBeer, BreweryRecipes.GRAIN_RYE, BreweryRecipes.HOPS),
+				new BrewedGrainRecipe(Alcohol.WheatBeer, BreweryRecipes.GRAIN_WHEAT, BreweryRecipes.HOPS),
 
-			new BrewedGrainRecipe(Alcohol.Barley, BreweryRecipes.GRAIN_BARLEY),
-			new BrewedGrainRecipe(Alcohol.Corn, BreweryRecipes.GRAIN_CORN),
-			new BrewedGrainRecipe(Alcohol.Rye, BreweryRecipes.GRAIN_RYE),
-			new BrewedGrainRecipe(Alcohol.Wheat, BreweryRecipes.GRAIN_WHEAT)
+				new BrewedGrainRecipe(Alcohol.Barley, BreweryRecipes.GRAIN_BARLEY),
+				new BrewedGrainRecipe(Alcohol.Corn, BreweryRecipes.GRAIN_CORN),
+				new BrewedGrainRecipe(Alcohol.Rye, BreweryRecipes.GRAIN_RYE),
+				new BrewedGrainRecipe(Alcohol.Wheat, BreweryRecipes.GRAIN_WHEAT)
 		);
 
 		this.addDistillery(Alcohol.Apple, Spirit.AppleBrandy, Spirit.AppleLiquor, Spirit.NeutralSpirit);

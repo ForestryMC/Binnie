@@ -1,15 +1,15 @@
 package binnie.core;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.oredict.OreDictionary;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class Mods {
 	public static ModNonnull Forestry = new ModNonnull("forestry");
@@ -39,6 +39,14 @@ public class Mods {
 				throw new RuntimeException("Block not found: " + key);
 			}
 			return ForgeRegistries.BLOCKS.getValue(key);
+		}
+
+		public ItemStack stackWildcard(final String name, int amount) {
+			return stack(name, amount, OreDictionary.WILDCARD_VALUE);
+		}
+
+		public ItemStack stackWildcard(final String name) {
+			return stack(name, 1, OreDictionary.WILDCARD_VALUE);
 		}
 
 		public ItemStack stack(final String name) {
