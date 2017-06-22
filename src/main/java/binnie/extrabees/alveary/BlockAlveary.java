@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -33,6 +34,9 @@ public class BlockAlveary extends Block implements ITileEntityProvider {
 		super(new MaterialBeehive(false));
 		setCreativeTab(Tabs.tabApiculture);
 		setRegistryName("alveary");
+		setHardness(1);
+		setHarvestLevel("axe", 0);
+		setSoundType(SoundType.WOOD);
 	}
 
 	@Override
@@ -89,5 +93,10 @@ public class BlockAlveary extends Block implements ITileEntityProvider {
 	public IBlockState getStateFromMeta(int meta) {
 		meta = meta >= 0 && meta < EnumAlvearyLogicType.VALUES.length ? meta : 0;
 		return getDefaultState().withProperty(TYPE, EnumAlvearyLogicType.VALUES[meta]);
+	}
+	
+	@Override
+	public int damageDropped(IBlockState state) {
+		return getMetaFromState(state);
 	}
 }
