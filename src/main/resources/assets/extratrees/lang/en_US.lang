@@ -434,6 +434,21 @@ extratrees.item.food.mango=Mango
 extratrees.item.food.starfruit=Starfruit
 extratrees.item.food.candlenut=Candlenut
 
+extratrees.item.carpentry_hammer.name=Fake Hammer
+extratrees.item.sawdust.name=Sawdust
+extratrees.item.bark.name=Bark
+extratrees.item.proven_gear.name=Proven Gear
+extratrees.item.wood_wax.name=Wood Polish
+extratrees.item.hops.name=Hops
+extratrees.item.yeast.name=Yeast
+extratrees.item.yeast_lager.name=Lager LagerYeast
+extratrees.item.grain_wheat.name=Wheat Grain
+extratrees.item.grain_barley.name=Barley Grain
+extratrees.item.grain_rye.name=Rye Grain
+extratrees.item.grain_corn.name=Corn Grain
+extratrees.item.grain_roasted.name=Roasted Grain
+extratrees.item.glass_fitting.name=Glass Fittings
+
 extratrees.item.glassware.beermug=Beer Mug
 extratrees.item.glassware.pint=Pint Glass
 extratrees.item.glassware.snifter=Snifter Glass

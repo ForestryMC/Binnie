@@ -36,6 +36,7 @@ public class ModuleItems implements IInitializable {
 	public Item itemFood;
 	public Item itemHammer;
 	public Item itemDurableHammer;
+	public Item itemHops;
 
 	@Override
 	public void preInit() {
@@ -58,10 +59,13 @@ public class ModuleItems implements IInitializable {
 		itemDurableHammer = new ItemHammer(true);
 		ExtraTrees.proxy.registerItem(itemDurableHammer);
 		
+		itemHops = new ItemHops(ExtraTrees.blocks().hops, Blocks.FARMLAND);
+		ExtraTrees.proxy.registerItem(itemHops);
+		
 		OreDictionary.registerOre("pulpWood", ExtraTreeItems.Sawdust.get(1));
 		Food.registerOreDictionary();
 		OreDictionary.registerOre("cropApple", Items.APPLE);
-		OreDictionary.registerOre("cropHops", ExtraTreeItems.Hops.get(1));
+		OreDictionary.registerOre("cropHops", itemHops);
 		OreDictionary.registerOre("seedWheat", Items.WHEAT_SEEDS);
 		OreDictionary.registerOre("seedWheat", ExtraTreeItems.GrainWheat.get(1));
 		OreDictionary.registerOre("seedBarley", ExtraTreeItems.GrainBarley.get(1));
@@ -129,7 +133,7 @@ public class ModuleItems implements IInitializable {
 	@Override
 	public void postInit() {
 		ModuleItems items = ExtraTrees.items();
-
+		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(items.itemDurableHammer, 1, 0), "wiw", " s ", " s ", 'w', Blocks.OBSIDIAN, 'i', Items.GOLD_INGOT, 's', Items.STICK));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(items.itemHammer, 1, 0), "wiw", " s ", " s ", 'w', "plankWood", 'i', Items.IRON_INGOT, 's', Items.STICK));
 		GameRegistry.addRecipe(new ShapedOreRecipe(ExtraTreeItems.Yeast.get(8), " m ", "mbm", 'b', Items.BREAD, 'm', Blocks.BROWN_MUSHROOM));
@@ -138,7 +142,6 @@ public class ModuleItems implements IInitializable {
 		GameRegistry.addRecipe(new ShapedOreRecipe(ExtraTreeItems.GrainBarley.get(3), false, " s ", "s  ", " s ", 's', ExtraTreeItems.GrainWheat.get(1)));
 		GameRegistry.addRecipe(new ShapedOreRecipe(ExtraTreeItems.GrainCorn.get(3), false, " s ", "  s", " s ", 's', ExtraTreeItems.GrainWheat.get(1)));
 		GameRegistry.addRecipe(ExtraTreeItems.GrainRye.get(3), "   ", "s s", " s ", 's', ExtraTreeItems.GrainWheat.get(1));
-		GameRegistry.addRecipe(ExtraTreeItems.Hops.get(3), " s ", "sps", " s ", 's', Items.WHEAT_SEEDS, 'p', Items.APPLE);
 		GameRegistry.addRecipe(ExtraTreeItems.ProvenGear.get(1), " s ", "s s", " s ", 's', Mods.Forestry.stack("oak_stick"));
 		GameRegistry.addRecipe(ExtraTreeItems.GlassFitting.get(6), "s s", " i ", "s s", 'i', Items.IRON_INGOT, 's', Items.STICK);
 		GameRegistry.addSmelting(ExtraTreeItems.GrainWheat.get(1), ExtraTreeItems.GrainRoasted.get(1), 0.0f);

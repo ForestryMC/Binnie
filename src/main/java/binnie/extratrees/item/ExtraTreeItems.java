@@ -8,32 +8,29 @@ import binnie.core.item.IItemMiscProvider;
 import binnie.extratrees.ExtraTrees;
 
 public enum ExtraTreeItems implements IItemMiscProvider {
-	CarpentryHammer("Fake Hammer", "carpentry_hammer"),
-	Sawdust("Sawdust", "sawdust"),
-	Bark("Bark", "bark"),
-	ProvenGear("Proven Gear", "proven_gear"),
-	WoodWax("Wood Polish", "wood_wax"),
-	Hops("Hops", "hops"),
-	Yeast("Yeast", "yeast"),
-	LagerYeast("Lager Yeast", "yeast_lager"),
-	GrainWheat("Wheat Grain", "grain_wheat"),
-	GrainBarley("Barley Grain", "grain_barley"),
-	GrainRye("Rye Grain", "grain_rye"),
-	GrainCorn("Corn Grain", "grain_corn"),
-	GrainRoasted("Roasted Grain", "grain_roasted"),
-	GlassFitting("Glass Fittings", "glass_fitting");
-
+	CarpentryHammer("carpentry_hammer"),
+	Sawdust("sawdust"),
+	Bark("bark"),
+	ProvenGear("proven_gear"),
+	WoodWax("wood_wax"),
+	Yeast("yeast"),
+	LagerYeast("yeast_lager"),
+	GrainWheat("grain_wheat"),
+	GrainBarley("grain_barley"),
+	GrainRye("grain_rye"),
+	GrainCorn("grain_corn"),
+	GrainRoasted("grain_roasted"),
+	GlassFitting("glass_fitting");
+	
 	String name;
-	String modelPath;
 
-	ExtraTreeItems(final String name, final String modelPath) {
+	ExtraTreeItems(String name) {
 		this.name = name;
-		this.modelPath = modelPath;
 	}
 
 	@Override
 	public String getModelPath() {
-		return modelPath;
+		return name;
 	}
 
 	@Override
@@ -42,7 +39,7 @@ public enum ExtraTreeItems implements IItemMiscProvider {
 
 	@Override
 	public String getName(final ItemStack stack) {
-		return this.name;
+		return ExtraTrees.proxy.localise("item." + name + ".name");
 	}
 
 	@Override

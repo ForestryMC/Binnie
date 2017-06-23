@@ -84,8 +84,7 @@ public class ModuleBlocks implements IInitializable {
 	public BlockMultiFence blockMultiFence;
 	public BlockHedge blockHedge;
 	public BlockShrubLog shrubLog;
-	//????
-	public Block blockBranch;
+	public BlockHops hops;
 
 	private static void addRecipeAtPosition(int position, IRecipe recipe) {
 		CraftingManager manager = CraftingManager.getInstance();
@@ -285,6 +284,9 @@ public class ModuleBlocks implements IInitializable {
 		ExtraTrees.proxy.registerBlock(shrubLog, new ItemBlockETWood(shrubLog));
 		woodAccess.register(EnumShrubLog.INSTANCE, WoodBlockKind.LOG, false, shrubLog.getStateFromMeta(0), new ItemStack(shrubLog, 1, 0));
 		woodAccess.register(EnumShrubLog.INSTANCE, WoodBlockKind.LOG, true, shrubLog.getStateFromMeta(1), new ItemStack(shrubLog, 1, 1));
+		
+		hops = new BlockHops();
+		ExtraTrees.proxy.registerBlock(hops);
 	}
 	
 	public void registerDoors(WoodAccess woodAccess, List<BlockETDoor> blocks) {
