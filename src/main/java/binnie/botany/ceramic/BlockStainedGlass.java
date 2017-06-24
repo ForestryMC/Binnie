@@ -1,7 +1,6 @@
 package binnie.botany.ceramic;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -11,9 +10,12 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.StatList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -22,6 +24,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import net.minecraftforge.event.ForgeEventFactory;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -33,25 +37,24 @@ import forestry.core.blocks.IColoredBlock;
 import binnie.Binnie;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.genetics.EnumFlowerColor;
-import binnie.core.BinnieCore;
 import binnie.core.block.BlockMetadata;
 import binnie.core.block.IBlockMetadata;
 import binnie.core.block.TileEntityMetadata;
-import binnie.core.util.TileUtil;
 
 public class BlockStainedGlass extends Block implements IBlockMetadata, IColoredBlock, IItemModelRegister {
 	public BlockStainedGlass() {
 		super(Material.GLASS);
 		this.setCreativeTab(CreativeTabBotany.instance);
 		this.setRegistryName("stained");
-		setSoundType(SoundType.GLASS);
+		this.setSoundType(SoundType.GLASS);
+		this.setHardness(0.3F);
 	}
 
 	@Override
 	public int quantityDropped(final Random rand) {
 		return 0;
 	}
-
+	
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
@@ -76,42 +79,37 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
 		IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
 		Block block = iblockstate.getBlock();
-		if (blockState != iblockstate) {
+		if (block != this) {
 			return true;
 		}
-
-		if (block == this) {
-			return false;
+		return false;
+	}
+	
+	@Override
+	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack) {
+		player.addStat(StatList.getBlockStats(this));
+		player.addExhaustion(0.005F);
+		
+		if (EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, stack) > 0 && te instanceof TileEntityMetadata) {
+			java.util.List<ItemStack> items = new java.util.ArrayList<ItemStack>();
+			TileEntityMetadata tile = (TileEntityMetadata) te;
+			int damage = getDroppedMeta(state, tile.getTileMetadata());
+			ItemStack itemstack = TileEntityMetadata.getItemStack(this, damage);
+			
+			if (!itemstack.isEmpty()) {
+				items.add(itemstack);
+			}
+			
+			ForgeEventFactory.fireBlockHarvesting(items, worldIn, pos, state, 0, 1.0f, true, player);
+			for (ItemStack item : items) {
+				spawnAsEntity(worldIn, pos, item);
+			}
 		}
-
-		return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
 	}
 
 	@Override
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-		List<ItemStack> list = new ArrayList<>();
-		TileEntityMetadata tile = TileEntityMetadata.getTile(world, pos);
-		if (tile != null && !tile.hasDroppedBlock()) {
-			int meta = getDroppedMeta(state, tile.getTileMetadata());
-			list.add(TileEntityMetadata.getItemStack(this, meta));
-		}
-		return list;
-	}
-
-	@Override
-	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, @Nullable EntityPlayer player, boolean willHarvest) {
-		List<ItemStack> drops = new ArrayList<>();
-		TileCeramic ceramic = TileUtil.getTile(world, pos, TileCeramic.class);
-		if (ceramic != null) {
-			drops = Collections.singletonList(ceramic.getStack());
-		}
-		boolean hasBeenBroken = world.setBlockToAir(pos);
-		if (hasBeenBroken && BinnieCore.getBinnieProxy().isSimulating(world) && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
-			for (ItemStack drop : drops) {
-				spawnAsEntity(world, pos, drop);
-			}
-		}
-		return hasBeenBroken;
+		return Collections.emptyList();
 	}
 
 	@Override
