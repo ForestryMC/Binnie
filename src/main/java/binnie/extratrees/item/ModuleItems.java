@@ -5,6 +5,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -132,6 +133,8 @@ public class ModuleItems implements IInitializable {
 	@Override
 	public void postInit() {
 		ModuleItems items = ExtraTrees.items();
+		
+		MinecraftForge.addGrassSeed(new ItemStack(itemHops), 5);
 		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(items.itemDurableHammer, 1, 0), "wiw", " s ", " s ", 'w', Blocks.OBSIDIAN, 'i', Items.GOLD_INGOT, 's', Items.STICK));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(items.itemHammer, 1, 0), "wiw", " s ", " s ", 'w', "plankWood", 'i', Items.IRON_INGOT, 's', Items.STICK));
