@@ -2,13 +2,7 @@ package binnie.extratrees.block;
 
 import java.util.Locale;
 
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fml.common.registry.GameRegistry;
-
 import forestry.api.arboriculture.IWoodType;
-import forestry.api.arboriculture.TreeManager;
-import forestry.api.arboriculture.WoodBlockKind;
 
 import binnie.Constants;
 
@@ -95,24 +89,9 @@ public enum EnumETLog implements IWoodType {
 		return this.name;
 	}
 
-	public void addRecipe() {
-		if (this.plank == null) {
-			return;
-		}
-		ItemStack log = TreeManager.woodAccess.getStack(this, WoodBlockKind.LOG, false);
-		ItemStack result = plank.getStack(false);
-		result.setCount(4);
-		GameRegistry.addShapelessRecipe(result, log);
-
-		ItemStack logFireproof = TreeManager.woodAccess.getStack(this, WoodBlockKind.LOG, true);
-		ItemStack resultFireproof = plank.getStack(true);
-		resultFireproof.setCount(4);
-		GameRegistry.addShapelessRecipe(resultFireproof, logFireproof);
-	}
-
 	@Override
 	public float getHardness() {
-		return 5;
+		return 2.0F;
 	}
 
 	@Override

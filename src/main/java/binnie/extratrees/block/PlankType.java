@@ -73,7 +73,7 @@ public class PlankType {
 		Rosewood(7738624),
 		Gingko(16050106),
 		PinkIvory(15502496),
-		Banana(0);
+		Banana(9466691);
 
 		public static final ExtraTreePlanks[] VALUES = values();
 		private final int color;

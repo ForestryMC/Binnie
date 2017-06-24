@@ -26,7 +26,6 @@ import binnie.core.Mods;
 import binnie.core.item.ItemMisc;
 import binnie.core.liquid.ManagerLiquid;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.block.EnumETLog;
 
 public class ModuleItems implements IInitializable {
 
@@ -166,8 +165,5 @@ public class ModuleItems implements IInitializable {
 
 		FuelManager.bronzeEngineFuel.put(ExtraTreeLiquid.Sap.get(1).getFluid(), new EngineBronzeFuel(ExtraTreeLiquid.Sap.get(1).getFluid(), 20, 10000, 1));
 		FuelManager.bronzeEngineFuel.put(ExtraTreeLiquid.Resin.get(1).getFluid(), new EngineBronzeFuel(ExtraTreeLiquid.Resin.get(1).getFluid(), 30, 10000, 1));
-		for (EnumETLog log : EnumETLog.values()) {
-			log.addRecipe();
-		}
 	}
 }

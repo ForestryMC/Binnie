@@ -321,9 +321,18 @@ public class ModuleBlocks implements IInitializable {
 		
 		IWoodAccess woodAccess = TreeManager.woodAccess;
 		for(EnumETLog log : EnumETLog.VALUES){
+			ItemStack logs = woodAccess.getStack(log, WoodBlockKind.LOG, false);
+			ItemStack planks = log.getPlank().getStack();
+			ItemStack fireproofLogs = woodAccess.getStack(log, WoodBlockKind.LOG, true);
+			ItemStack fireproofPlanks = log.getPlank().getStack(true);
+			
+			planks.setCount(4);
+			GameRegistry.addShapelessRecipe(planks.copy(), logs.copy());
+			
+			fireproofPlanks.setCount(4);
+			GameRegistry.addShapelessRecipe(fireproofPlanks.copy(), fireproofLogs);
+			
 			if (ForestryAPI.enabledPlugins.containsAll(Arrays.asList(ForestryPluginUids.FACTORY, ForestryPluginUids.APICULTURE))) {
-				ItemStack logs = woodAccess.getStack(log, WoodBlockKind.LOG, false);
-				ItemStack fireproofLogs = woodAccess.getStack(log, WoodBlockKind.LOG, true);
 				
 				logs.setCount(1);
 				fireproofLogs.setCount(1);
@@ -343,7 +352,7 @@ public class ModuleBlocks implements IInitializable {
 				ItemStack fences = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.FENCE, fireproof);
 				ItemStack fenceGates = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.FENCE_GATE, fireproof);
 				ItemStack stairs = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.STAIRS, fireproof);
-
+				
 				stairs.setCount(4);
 				RecipeUtil.addPriorityRecipe(stairs.copy(),
 					"#  ",
