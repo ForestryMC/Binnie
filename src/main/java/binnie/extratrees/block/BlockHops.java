@@ -6,7 +6,6 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -61,6 +60,12 @@ public class BlockHops extends BlockCrops{
 		return false;
 	}
 	
+	@Override
+	protected int getBonemealAgeIncrease(World worldIn) {
+		return super.getBonemealAgeIncrease(worldIn) / 2;
+	}
+	
+	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return FULL_BLOCK_AABB;
 	}
@@ -74,13 +79,14 @@ public class BlockHops extends BlockCrops{
 		return super.canPlaceBlockAt(worldIn, pos) && worldIn.isAirBlock(pos.up());
 	}
 	
+	@Override
 	protected void checkAndDropBlock(World worldIn, BlockPos pos, IBlockState state) {
 		if (!this.canBlockStay(worldIn, pos, state)) {
 			boolean flag = state.getValue(HALF) == HopsHalf.UP;
 			BlockPos blockpos = flag ? pos : pos.up();
 			BlockPos blockpos1 = flag ? pos.down() : pos;
-			Block block = (Block)(flag ? this : worldIn.getBlockState(blockpos).getBlock());
-			Block block1 = (Block)(flag ? worldIn.getBlockState(blockpos1).getBlock() : this);
+			Block block = flag ? this : worldIn.getBlockState(blockpos).getBlock();
+			Block block1 = flag ? worldIn.getBlockState(blockpos1).getBlock() : this;
 			
 			if (!flag){
 				this.dropBlockAsItem(worldIn, pos, state, 0);
@@ -96,6 +102,7 @@ public class BlockHops extends BlockCrops{
 		}
 	}
 	
+	@Override
 	public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state) {
 		if (state.getValue(HALF) == HopsHalf.UP) {
 			return worldIn.getBlockState(pos.down()).getBlock() == this;
@@ -105,6 +112,7 @@ public class BlockHops extends BlockCrops{
 		}
 	}
 	
+	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
 		if (state.getValue(HALF) == HopsHalf.UP) {
 			return Items.AIR;
@@ -148,6 +156,7 @@ public class BlockHops extends BlockCrops{
 		super.onBlockHarvested(worldIn, pos, state, player);
 	}
 	
+	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
 		return new ItemStack(getCrop());
 	}
@@ -197,13 +206,14 @@ public class BlockHops extends BlockCrops{
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] {AGE, HALF});
+		return new BlockStateContainer(this, AGE, HALF);
 	}
 	
 	public IBlockState getStateFromMeta(int meta) {
 		return (meta & 8) > 0 ? this.getDefaultState().withProperty(HALF, HopsHalf.UP) : this.getDefaultState().withProperty(HALF, HopsHalf.DOWN).withProperty(getAgeProperty(), meta & 7);
 	}
 	
+	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
 		if (state.getValue(HALF) == HopsHalf.UP) {
 			IBlockState iblockstate = worldIn.getBlockState(pos.down());
@@ -216,6 +226,7 @@ public class BlockHops extends BlockCrops{
 		return state;
 	}
 	
+	@Override
 	public int getMetaFromState(IBlockState state) {
 		return state.getValue(HALF) == HopsHalf.UP ? 8 : getAge(state);
 	}
@@ -224,11 +235,13 @@ public class BlockHops extends BlockCrops{
 		UP,
 		DOWN;
 		
+		@Override
 		public String toString()
 		{
 			return this.getName();
 		}
 		
+		@Override
 		public String getName()
 		{
 			return name().toLowerCase(Locale.ENGLISH);
