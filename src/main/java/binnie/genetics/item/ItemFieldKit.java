@@ -1,10 +1,10 @@
-package binnie.botany.items;
+package binnie.genetics.item;
 
 import binnie.botany.Botany;
-import binnie.botany.CreativeTabBotany;
 import binnie.core.BinnieCore;
 import binnie.core.gui.BinnieCoreGUI;
 import binnie.core.util.I18N;
+import binnie.genetics.GeneticsCreativeTab;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -24,7 +24,7 @@ public class ItemFieldKit extends Item {
 
 	public ItemFieldKit() {
 		setUnlocalizedName("fieldKit");
-		setCreativeTab(CreativeTabBotany.instance);
+		setCreativeTab(GeneticsCreativeTab.instance);
 		setMaxStackSize(1);
 		setMaxDamage(64);
 	}
@@ -67,12 +67,12 @@ public class ItemFieldKit extends Item {
 	public void addInformation(ItemStack itemStack, EntityPlayer player, List tooltip, boolean advanced) {
 		int i = getMaxDamage() - itemStack.getItemDamage();
 		if (i == 0) {
-			tooltip.add(I18N.localise("botany.item.fieldKit.tooltip.noPaper"));
+			tooltip.add(I18N.localise("genetics.item.fieldKit.tooltip.noPaper"));
 		} else {
 			if (i > 1) {
-				tooltip.add(I18N.localise("botany.item.fieldKit.tooltip.sheetsOfPaper", i));
+				tooltip.add(I18N.localise("genetics.item.fieldKit.tooltip.sheetsOfPaper", i));
 			} else {
-				tooltip.add(I18N.localise("botany.item.fieldKit.tooltip.sheetOfPaper", i));
+				tooltip.add(I18N.localise("genetics.item.fieldKit.tooltip.sheetOfPaper", i));
 			}
 		}
 		super.addInformation(itemStack, player, tooltip, advanced);
@@ -80,6 +80,6 @@ public class ItemFieldKit extends Item {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		return I18N.localise("botany.item.fieldKit.name");
+		return I18N.localise("genetics.item.fieldKit.name");
 	}
 }

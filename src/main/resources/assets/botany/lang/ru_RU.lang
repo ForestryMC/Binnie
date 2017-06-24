@@ -158,10 +158,6 @@ botany.item.tooltip.fertility=Плодовитость: %dx
 botany.item.tooltip.flowerColor1=%1$s, %2$s стебель
 botany.item.tooltip.flowerColor2=%1$s и %2$s, %3$s стебель
 
-botany.item.fieldKit.tooltip.noPaper=Отсутствует бумага
-botany.item.fieldKit.tooltip.sheetsOfPaper=%d бумаги
-botany.item.fieldKit.tooltip.sheetOfPaper=%d бумага
-
 botany.item.soilMeter.name=Почвомер
 botany.item.pigment.name=Краситель
 botany.item.clay.name=Глиняный порошок
@@ -171,7 +167,6 @@ botany.item.germling.tag.name=Росток цветка
 botany.item.flowerCorrupted.name=Поврежденный цветок
 botany.item.database.0.name=База данных ботаника
 botany.item.database.1.name=База данных мастера-ботаника
-botany.item.fieldKit.name=Полевая лаборатория
 botany.item.powderAsh.name=Измельченная зола
 botany.item.powderPulp.name=Измельченная древесная масса
 botany.item.powderMulch.name=Измельченная мульча

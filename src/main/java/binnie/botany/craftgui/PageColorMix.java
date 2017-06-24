@@ -13,11 +13,11 @@ import binnie.core.util.I18N;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PageColourMix extends PageAbstract<IFlowerColor> {
+public class PageColorMix extends PageAbstract<IFlowerColor> {
 	ControlText title;
 	ControlColorMixBox list;
 
-	public PageColourMix(IWidget parent, DatabaseTab tab) {
+	public PageColorMix(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
 		title = new ControlTextCentered(this, 8.0f, I18N.localise("botany.gui.controls.pageColorFurtherTitle"));
 		list = new ControlColorMixBox(this, 4, 20, 136, 152, ControlColorMixBox.Type.Further);

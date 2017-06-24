@@ -1,8 +1,13 @@
 fluid.binnie.dna.raw=Сырая ДНК
 fluid.binnie.bacteria=Бактерия
-fluid.binnie.bacteriaPoly=Полимеризированная бактерия
 fluid.binnie.growthMedium=Питательная среда
+fluid.binnie.bacteriaPoly=Полимеризированная бактерия
 fluid.binnie.bacteriaVector=Бактерия Вектор
+
+genetics.item.fieldKit.name=Полевая лаборатория
+genetics.item.fieldKit.tooltip.noPaper=Отсутствует бумага
+genetics.item.fieldKit.tooltip.sheetsOfPaper=%d бумаги
+genetics.item.fieldKit.tooltip.sheetOfPaper=%d бумага
 
 genetics.item.casingIron.name=Укреплённый корпус
 genetics.item.dnaDye.name=Краситель ДНК

@@ -158,10 +158,6 @@ botany.item.tooltip.fertility=Fertility: %dx
 botany.item.tooltip.flowerColor1=花茎：%1$s、%2$s
 botany.item.tooltip.flowerColor2=花茎：%1$s、%2$s和%3$s
 
-botany.item.fieldKit.tooltip.noPaper=没有纸
-botany.item.fieldKit.tooltip.sheetsOfPaper=%d 张纸
-botany.item.fieldKit.tooltip.sheetOfPaper=%d 张纸
-
 botany.item.soilMeter.name=土壤检测计
 botany.item.pigment.name=颜料
 botany.item.clay.name=粘土
@@ -171,7 +167,6 @@ botany.item.germling.tag.name=Germling
 botany.item.flowerCorrupted.name=腐烂的花
 botany.item.database.0.name=园丁数据库
 botany.item.database.1.name=园艺大师数据库
-botany.item.fieldKit.name=实地考察工具包
 botany.item.powderAsh.name=灰烬粉
 botany.item.powderPulp.name=Pulp Powder
 botany.item.powderMulch.name=覆盖戍粉

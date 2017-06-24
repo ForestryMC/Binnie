@@ -47,7 +47,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 		new PageBranchSpecies(getInfoPages(Mode.Branches), new DatabaseTab(Botany.instance, "branches.species"));
 		createMode(FlowerMode.COLOR, new ColorModeWidget());
 		new PageColorMixResultant(getInfoPages(FlowerMode.COLOR), new DatabaseTab(Botany.instance, "colour.resultant"));
-		new PageColourMix(getInfoPages(FlowerMode.COLOR), new DatabaseTab(Botany.instance, "colour.further"));
+		new PageColorMix(getInfoPages(FlowerMode.COLOR), new DatabaseTab(Botany.instance, "colour.further"));
 		new PageBreeder(getInfoPages(Mode.Breeder), getUsername(), new DatabaseTab(Botany.instance, "breeder"));
 	}
 
