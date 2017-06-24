@@ -65,7 +65,7 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 		if (this.controlChild == null || this.controlChild.getSize().y() == 0) {
 			return 1;
 		}
-		final float shown = this.getSize().y() / this.controlChild.getSize().y();
+		float shown = (float)this.getSize().y() / (float) this.controlChild.getSize().y();
 		return Math.min(shown, 1);
 	}
 

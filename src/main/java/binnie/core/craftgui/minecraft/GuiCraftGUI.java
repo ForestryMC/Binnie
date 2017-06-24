@@ -252,7 +252,7 @@ public class GuiCraftGUI extends GuiContainer {
 	//@Override
 	protected void mouseMovedOrUp(final int x, final int y, final int button) {
 		final IWidget origin = (this.window.getMousedOverWidget() == null) ? this.window : this.window.getMousedOverWidget();
-		if (button == -1) {
+		if (button == 0) {
 			final float dx = Mouse.getEventDX() * this.width / (float) this.mc.displayWidth;
 			final float dy = -(Mouse.getEventDY() * this.height / (float) this.mc.displayHeight);
 		} else {
