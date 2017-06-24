@@ -3,6 +3,7 @@ package binnie.extratrees.block;
 import com.google.common.base.Preconditions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,8 +12,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.fluids.FluidStack;
@@ -27,6 +26,7 @@ import forestry.api.arboriculture.IWoodAccess;
 import forestry.api.arboriculture.IWoodType;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.arboriculture.WoodBlockKind;
+import forestry.api.core.ForestryAPI;
 import forestry.api.recipes.RecipeManagers;
 import forestry.arboriculture.IWoodTyped;
 import forestry.arboriculture.PluginArboriculture;
@@ -34,8 +34,10 @@ import forestry.arboriculture.WoodAccess;
 import forestry.arboriculture.blocks.BlockForestryFenceGate;
 import forestry.arboriculture.blocks.BlockForestryStairs;
 import forestry.arboriculture.items.ItemBlockLeaves;
+import forestry.core.fluids.Fluids;
 import forestry.core.recipes.RecipeUtil;
 import forestry.core.utils.OreDictUtil;
+import forestry.plugins.ForestryPluginUids;
 
 import binnie.Constants;
 import binnie.core.IInitializable;
@@ -85,12 +87,7 @@ public class ModuleBlocks implements IInitializable {
 	public BlockHedge blockHedge;
 	public BlockShrubLog shrubLog;
 	public BlockHops hops;
-
-	private static void addRecipeAtPosition(int position, IRecipe recipe) {
-		CraftingManager manager = CraftingManager.getInstance();
-		manager.getRecipeList().add(position, recipe);
-	}
-
+	
 	private static void registerOreDictWildcard(String oreDictName, Block block) {
 		OreDictionary.registerOre(oreDictName, new ItemStack(block, 1, OreDictionary.WILDCARD_VALUE));
 	}
@@ -102,10 +99,11 @@ public class ModuleBlocks implements IInitializable {
 
 	@Override
 	public void preInit() {
+		WoodAccess woodAccess = WoodAccess.getInstance();
 		PlankType.setup();
-
-		//TODO: clean up
+		
 		logs = BlockETLog.create(false);
+		logsFireproof = BlockETLog.create(true);
 		for (BlockETLog block : logs) {
 			ExtraTrees.proxy.registerBlock(block, new ItemBlockETWood<>(block));
 			registerOreDictWildcard(OreDictUtil.LOG_WOOD, block);
@@ -116,8 +114,6 @@ public class ModuleBlocks implements IInitializable {
 			ExtraTrees.proxy.registerBlock(block, new ItemBlockETWood<>(block));
 			registerOreDictWildcard(OreDictUtil.LOG_WOOD, block);
 		}
-
-		WoodAccess woodAccess = WoodAccess.getInstance();
 
 		woodAccess.registerLogs(logs);
 		woodAccess.registerLogs(logsFireproof);
@@ -240,10 +236,12 @@ public class ModuleBlocks implements IInitializable {
 		
 		doors = new ArrayList<>();
 		for (EnumETLog woodType : EnumETLog.VALUES) {
-			BlockETDoor door = new BlockETDoor(woodType);
-			ExtraTrees.proxy.registerBlock(door, new ItemBlockETWoodDoor(door));
-			registerOreDictWildcard(OreDictUtil.DOOR_WOOD, door);
-			doors.add(door);
+			if(woodType.hasProducts()) {
+				BlockETDoor door = new BlockETDoor(woodType);
+				ExtraTrees.proxy.registerBlock(door, new ItemBlockETWoodDoor(door));
+				registerOreDictWildcard(OreDictUtil.DOOR_WOOD, door);
+				doors.add(door);
+			}
 		}
 		
 		registerDoors(woodAccess, doors);
@@ -322,10 +320,28 @@ public class ModuleBlocks implements IInitializable {
 		}
 		
 		IWoodAccess woodAccess = TreeManager.woodAccess;
+		for(EnumETLog log : EnumETLog.VALUES){
+			if (ForestryAPI.enabledPlugins.containsAll(Arrays.asList(ForestryPluginUids.FACTORY, ForestryPluginUids.APICULTURE))) {
+				ItemStack logs = woodAccess.getStack(log, WoodBlockKind.LOG, false);
+				ItemStack fireproofLogs = woodAccess.getStack(log, WoodBlockKind.LOG, true);
+				
+				logs.setCount(1);
+				fireproofLogs.setCount(1);
+				RecipeManagers.fabricatorManager.addRecipe(ItemStack.EMPTY, Fluids.GLASS.getFluid(500), fireproofLogs.copy(), new Object[]{
+						" # ",
+						"#X#",
+						" # ",
+						'#', Mods.Forestry.item("refractory_wax"),
+						'X', logs.copy()});
+			}
+		}
+		
 		for (PlankType.ExtraTreePlanks plankType : PlankType.ExtraTreePlanks.VALUES) {
 			for (boolean fireproof : new boolean[]{false, true}) {
 				ItemStack planks = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.PLANKS, fireproof);
 				ItemStack slabs = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.SLAB, fireproof);
+				ItemStack fences = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.FENCE, fireproof);
+				ItemStack fenceGates = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.FENCE_GATE, fireproof);
 				ItemStack stairs = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.STAIRS, fireproof);
 
 				stairs.setCount(4);
@@ -338,6 +354,21 @@ public class ModuleBlocks implements IInitializable {
 
 				slabs.setCount(6);
 				RecipeUtil.addPriorityRecipe(slabs.copy(), "###", '#', planks.copy());
+				
+				fences.setCount(3);
+				planks.setCount(1);
+				RecipeUtil.addRecipe(fences.copy(),
+						"#X#",
+						"#X#",
+						'#', planks.copy(), 'X', "stickWood");
+				
+				fenceGates.setCount(1);
+				planks.setCount(1);
+				RecipeUtil.addRecipe(fenceGates.copy(),
+						"X#X",
+						"X#X",
+						'#', planks.copy(), 'X', "stickWood");
+				
 				if(!fireproof){
 					ItemStack doors = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.DOOR, false);
 					doors.setCount(3);
@@ -348,6 +379,19 @@ public class ModuleBlocks implements IInitializable {
 							"## ",
 							'#', planks.copy());
 				}
+			}
+			// Fabricator recipes
+			if (ForestryAPI.enabledPlugins.containsAll(Arrays.asList(ForestryPluginUids.FACTORY, ForestryPluginUids.APICULTURE))) {
+				ItemStack planks = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.PLANKS, false);
+				ItemStack fireproofPlanks = woodAccess.getStack(plankType.getWoodType(), WoodBlockKind.PLANKS, true);
+				planks.setCount(1);
+				fireproofPlanks.setCount(5);
+				RecipeManagers.fabricatorManager.addRecipe(ItemStack.EMPTY, Fluids.GLASS.getFluid(500), fireproofPlanks.copy(), new Object[]{
+						"X#X",
+						"#X#",
+						"X#X",
+						'#', Mods.Forestry.item("refractory_wax"),
+						'X', planks.copy()});
 			}
 		}
 		GameRegistry.addRecipe(new MultiFenceRecipeSize());

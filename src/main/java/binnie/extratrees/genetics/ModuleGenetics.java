@@ -6,10 +6,14 @@ import java.util.List;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import forestry.api.arboriculture.IAlleleFruit;
+import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.genetics.AlleleRegisterEvent;
+import forestry.api.genetics.AlleleSpeciesRegisterEvent;
+import forestry.api.lepidopterology.IButterflyRoot;
 
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
+import binnie.extratrees.block.PlankType;
 
 public class ModuleGenetics implements IInitializable {
 	String[] branches;
@@ -24,6 +28,16 @@ public class ModuleGenetics implements IInitializable {
 	public static void onRegisterAllele(AlleleRegisterEvent<IAlleleFruit> event) {
 		if (event.getAlleleClass() == IAlleleFruit.class) {
 			AlleleETFruit.preInit();
+		}
+	}
+	
+	@SubscribeEvent
+	public static void speciesRegister(AlleleSpeciesRegisterEvent event) {
+		if (event.getRoot() instanceof ITreeRoot) {
+			ETTreeDefinition.preInitTrees();
+			PlankType.ExtraTreePlanks.initWoodTypes();
+		} else if (event.getRoot() instanceof IButterflyRoot && BinnieCore.isLepidopteryActive()) {
+			ButterflySpecies.preInit();
 		}
 	}
 

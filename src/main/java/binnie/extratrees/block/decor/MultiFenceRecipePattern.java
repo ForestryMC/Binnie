@@ -42,6 +42,6 @@ public class MultiFenceRecipePattern {
 	}
 
 	public ItemStack createFence(IPlankType plank, IPlankType plankSecondary) {
-		return WoodManager.getFence(plank, plankSecondary, new FenceType(size, false, false), 4);
+		return WoodManager.getFence(plank, plankSecondary, new FenceType(size, false, false), 3);
 	}
 }

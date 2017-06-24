@@ -46,22 +46,28 @@ public enum EnumETLog implements IWoodType {
 	Iroko("Iroko", PlankType.ExtraTreePlanks.Iroko),
 	Gingko("Gingko", PlankType.ExtraTreePlanks.Gingko),
 	Eucalyptus("Eucalyptus", PlankType.ExtraTreePlanks.Eucalyptus),
-	Eucalyptus2("Eucalyptus", PlankType.ExtraTreePlanks.Eucalyptus),
 	Box("Box", PlankType.ExtraTreePlanks.Box),
 	Syzgium("Syzgium", PlankType.ExtraTreePlanks.Syzgium),
-	Eucalyptus3("Eucalyptus", PlankType.ExtraTreePlanks.Eucalyptus),
 	PinkIvory("Pink Ivory", PlankType.ExtraTreePlanks.PinkIvory),
-	Cherry("Cherry", PlankType.ForestryPlanks.CHERRY),
-	Cinnamon("Cinnamon", PlankType.VanillaPlanks.JUNGLE);
+	Eucalyptus2("Eucalyptus", PlankType.ExtraTreePlanks.Eucalyptus, false),
+	Eucalyptus3("Eucalyptus", PlankType.ExtraTreePlanks.Eucalyptus, false),
+	Cherry("Cherry", PlankType.ForestryPlanks.CHERRY, false),
+	Cinnamon("Cinnamon", PlankType.VanillaPlanks.JUNGLE, false);
 
 	public static final EnumETLog[] VALUES = values();
 
 	private final String name;
 	private final IPlankType plank;
-
+	private final boolean hasProducts;
+	
 	EnumETLog(final String name, final IPlankType plank) {
+		this(name, plank, true);
+	}
+
+	EnumETLog(final String name, final IPlankType plank, boolean hasProducts) {
 		this.name = name;
 		this.plank = plank;
+		this.hasProducts = hasProducts;
 	}
 
 	public static EnumETLog byMetadata(int meta) {
@@ -70,7 +76,11 @@ public enum EnumETLog implements IWoodType {
 		}
 		return VALUES[meta];
 	}
-
+	
+	public boolean hasProducts() {
+		return hasProducts;
+	}
+	
 	@Override
 	public String getName() {
 		return name().toLowerCase();

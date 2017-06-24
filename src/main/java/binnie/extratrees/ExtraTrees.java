@@ -26,10 +26,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.arboriculture.ITreeRoot;
-import forestry.api.genetics.AlleleSpeciesRegisterEvent;
-import forestry.api.lepidopterology.IButterflyRoot;
-
 import binnie.Constants;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
@@ -45,7 +41,6 @@ import binnie.extratrees.carpentry.ModuleCarpentry;
 import binnie.extratrees.config.ConfigurationMain;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.core.ModuleCore;
-import binnie.extratrees.genetics.ButterflySpecies;
 import binnie.extratrees.genetics.ETTreeDefinition;
 import binnie.extratrees.genetics.FruitSprite;
 import binnie.extratrees.genetics.ModuleGenetics;
@@ -167,16 +162,6 @@ public class ExtraTrees extends AbstractMod {
 	@Override
 	public String getModID() {
 		return Constants.EXTRA_TREES_MOD_ID;
-	}
-
-	@SubscribeEvent
-	public void speciesRegister(AlleleSpeciesRegisterEvent event) {
-		if (event.getRoot() instanceof ITreeRoot) {
-			ETTreeDefinition.preInitTrees();
-			PlankType.ExtraTreePlanks.initWoodTypes();
-		} else if (event.getRoot() instanceof IButterflyRoot && BinnieCore.isLepidopteryActive()) {
-			ButterflySpecies.preInit();
-		}
 	}
 
 	@Override

@@ -27,7 +27,8 @@ import binnie.extratrees.block.decor.FenceDescription;
 import binnie.extratrees.block.decor.FenceType;
 
 public class WoodManager {
-	public static Map<IPlankType, ItemStack> PLANKS;
+	private static List<IPlankType> PLANK_TYPES;
+	private static Map<IPlankType, ItemStack> PLANKS_STACKS;
 
 	public static String getDisplayName(IWoodTyped wood, IWoodType woodType) {
 		WoodBlockKind blockKind = wood.getBlockKind();
@@ -143,27 +144,29 @@ public class WoodManager {
 	}
 
 	public static List<IPlankType> getAllPlankTypes() {
-		List<IPlankType> list = new ArrayList<>();
-		Collections.addAll(list, PlankType.ExtraTreePlanks.values());
-		Collections.addAll(list, PlankType.ForestryPlanks.values());
-		//TODO: extrabiomes 1.10.2
-		/*for (final IPlankType type : PlankType.ExtraBiomesPlank.values()) {
-			if (type.getStack() != null) {
-				list.add(type);
-			}
-		}*/
-		Collections.addAll(list, PlankType.VanillaPlanks.values());
-		return list;
+		if(PLANK_TYPES == null){
+			PLANK_TYPES = new ArrayList<>();
+			Collections.addAll(PLANK_TYPES, PlankType.ExtraTreePlanks.VALUES);
+			Collections.addAll(PLANK_TYPES, PlankType.ForestryPlanks.values());
+			Collections.addAll(PLANK_TYPES, PlankType.VanillaPlanks.values());
+			//TODO: extrabiomes 1.10.2
+			/*for (final IPlankType type : PlankType.ExtraBiomesPlank.values()) {
+				if (type.getStack() != null) {
+					list.add(type);
+				}
+			}*/
+		}
+		return PLANK_TYPES;
 	}
 
 	public static Map<IPlankType, ItemStack> getAllPlankStacks() {
-		if (PLANKS == null) {
-			PLANKS = new HashMap<>();
+		if (PLANKS_STACKS == null) {
+			PLANKS_STACKS = new HashMap<>();
 			for (IPlankType type : getAllPlankTypes()) {
-				PLANKS.put(type, type.getStack(false));
+				PLANKS_STACKS.put(type, type.getStack(false));
 			}
 		}
-		return PLANKS;
+		return PLANKS_STACKS;
 	}
 
 	public static Collection<ItemStack> getAllPlankStacks(IPlankType type) {
