@@ -4,6 +4,7 @@ import binnie.botany.api.IFlowerColor;
 import binnie.botany.core.BotanyCore;
 import binnie.core.util.I18N;
 import forestry.api.genetics.IAlleleInteger;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Locale;
 
@@ -97,7 +98,7 @@ public enum EnumFlowerColor implements IFlowerColor {
 	EnumFlowerColor(String name, int color) {
 		this.name = name;
 		this.color = color;
-		allele = new AlleleColor(this, "botany.color" + name(), color);
+		allele = new AlleleColor(this, "botany.color" + StringUtils.capitalize(name), color);
 		int r = color >> 16 & 0xFF;
 		r = (int) (0.45 * (r + 214));
 		int g = (int) (0.45 * (r + 174));
