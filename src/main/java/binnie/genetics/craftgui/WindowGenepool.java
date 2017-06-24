@@ -24,8 +24,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 
 public class WindowGenepool extends WindowMachine {
-	static Texture ProgressBase = new StandardTexture(64, 0, 130, 21, ExtraBeeTexture.GUIProgress.getTexture());
-	static Texture Progress = new StandardTexture(64, 21, 130, 21, ExtraBeeTexture.GUIProgress.getTexture());
+	static Texture progressBase = new StandardTexture(64, 0, 130, 21, ExtraBeeTexture.GUIProgress.getTexture());
+	static Texture progress = new StandardTexture(64, 21, 130, 21, ExtraBeeTexture.GUIProgress.getTexture());
 
 	public WindowGenepool(EntityPlayer player, IInventory inventory, Side side) {
 		super(280, 198, player, inventory, side);
@@ -40,15 +40,20 @@ public class WindowGenepool extends WindowMachine {
 		super.initialiseClient();
 		int x = 16;
 		int y = 32;
-		new ControlLiquidTank(this, x, y).setTankID(1);
+		new ControlLiquidTank(this, x, y).setTankID(Genepool.TANK_ETHANOL);
+
 		x += 26;
 		new ControlSlotArray(this, x, y + 3, 2, 3).create(Genepool.SLOT_RESERVE);
+
 		x += 38;
-		new ControlIconDisplay(this, x, y + 3 + 18 + 1, GUIIcon.ArrowRight.getIcon());
+		new ControlIconDisplay(this, x, y + 22, GUIIcon.ArrowRight.getIcon());
+
 		x += 18;
-		new ControlSlot(this, x, y + 3 + 18).assign(0);
+		new ControlSlot(this, x, y + 21).assign(Genepool.SLOT_BEE);
+
 		x += 18;
-		new ControlMachineProgress(this, x, y + 19, WindowGenepool.ProgressBase, WindowGenepool.Progress, Position.LEFT);
+		new ControlMachineProgress(this, x, y + 19, progressBase, progress, Position.LEFT);
+
 		x += 130;
 		new ControlLiquidTank(this, x, y).setTankID(Genepool.TANK_DNA);
 		new ControlEnergyBar(this, 21, 115, 16, 60, Position.BOTTOM);

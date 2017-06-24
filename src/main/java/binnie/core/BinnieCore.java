@@ -1,7 +1,7 @@
 package binnie.core;
 
 import binnie.Binnie;
-import binnie.botany.items.ItemFieldKit;
+import binnie.genetics.item.ItemFieldKit;
 import binnie.core.block.MultipassBlockRenderer;
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.craftgui.minecraft.ModuleCraftGUI;

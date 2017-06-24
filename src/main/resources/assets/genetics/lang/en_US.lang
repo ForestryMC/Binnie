@@ -4,6 +4,11 @@ fluid.binnie.growthMedium=Growth Medium
 fluid.binnie.bacteriaPoly=Polymerizing Bacteria
 fluid.binnie.bacteriaVector=Bacteria Vector
 
+genetics.item.fieldKit.name=Field Kit
+genetics.item.fieldKit.tooltip.noPaper=No paper
+genetics.item.fieldKit.tooltip.sheetsOfPaper=%d sheets of paper
+genetics.item.fieldKit.tooltip.sheetOfPaper=%d sheet of paper
+
 genetics.item.casingIron.name=Reinforced Casing
 genetics.item.dnaDye.name=DNA Dye
 genetics.item.dyeFluor.name=Fluorescent Dye

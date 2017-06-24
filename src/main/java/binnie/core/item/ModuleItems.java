@@ -3,7 +3,7 @@ package binnie.core.item;
 import binnie.botany.Botany;
 import binnie.botany.api.IFlower;
 import binnie.botany.flower.TileEntityFlower;
-import binnie.botany.items.ItemFieldKit;
+import binnie.genetics.item.ItemFieldKit;
 import binnie.botany.network.PacketID;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
