@@ -88,7 +88,7 @@ public class ComponentPowerReceptor extends MachineComponent implements IPowered
 	@Override
 	@Optional.Method(modid = "ic2")
 	public int getSinkTier() {
-		return 1;
+		return 4;
 	}
 
 	@Override
