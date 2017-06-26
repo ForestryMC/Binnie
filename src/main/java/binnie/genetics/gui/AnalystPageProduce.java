@@ -58,7 +58,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 	}
 
 	public Collection<ItemStack> getSqueezer(ItemStack stack) {
-		List<ItemStack> products = new ArrayList<ItemStack>();
+		List<ItemStack> products = new ArrayList<>();
 		for (Map.Entry<Object[], Object[]> recipe : RecipeManagers.squeezerManager.getRecipes().entrySet()) {
 			boolean isRecipe = false;
 			for (Object obj : recipe.getKey()) {
@@ -79,7 +79,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 	}
 
 	public Collection<ItemStack> getCrafting(ItemStack stack) {
-		List<ItemStack> products = new ArrayList<ItemStack>();
+		List<ItemStack> products = new ArrayList<>();
 		for (Object recipeO : CraftingManager.getInstance().getRecipeList()) {
 			if (recipeO instanceof ShapelessRecipes) {
 				ShapelessRecipes recipe = (ShapelessRecipes) recipeO;

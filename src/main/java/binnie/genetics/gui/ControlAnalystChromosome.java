@@ -12,6 +12,7 @@ import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.texture.BinnieCoreTexture;
+import binnie.core.util.I18N;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
@@ -52,8 +53,8 @@ public class ControlAnalystChromosome extends Control implements ITooltip {
 		if (isHomozygous()) {
 			tooltip.add(system.getAlleleName(chromosomeType, allele0));
 		} else {
-			tooltip.add("Active: " + system.getAlleleName(chromosomeType, allele0));
-			tooltip.add("Inactive: " + system.getAlleleName(chromosomeType, allele1));
+			tooltip.add(I18N.localise("genetics.gui.analyst.chromosome.active", system.getAlleleName(chromosomeType, allele0)));
+			tooltip.add(I18N.localise("genetics.gui.analyst.chromosome.inactive", system.getAlleleName(chromosomeType, allele1)));
 		}
 	}
 }

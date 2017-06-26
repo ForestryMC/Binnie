@@ -156,6 +156,11 @@ genetics.gui.geneBank.sequencedGenes.short=%d/%d Genes
 
 genetics.gui.analyst.info=Add a bee, tree, flower or butterfly to the top left slot. DNA Dye is required if it has not been analysed yet. This dye can also convert vanilla items to breedable individuals.
 genetics.gui.analyst.registry=Registry
+genetics.gui.analyst.page.hours=%s hours.
+genetics.gui.analyst.page.minutes=%s min.
+genetics.gui.analyst.page.seconds=%s sec.
+genetics.gui.analyst.chromosome.active=Active: %s
+genetics.gui.analyst.chromosome.inactive=Inactive: %s
 
 genetics.gui.analyst.appearance=Appearance
 genetics.gui.analyst.appearance.primaryColor=Primary Petal Color
@@ -184,13 +189,17 @@ genetics.gui.analyst.genome.inactive=Inactive Genome
 genetics.gui.analyst.growth=Growth
 
 genetics.gui.analyst.karyogram=Karyogram
-
-genetics.gui.analyst.mutations=Mutations
 genetics.gui.analyst.specimen=Specimen
+genetics.gui.analyst.mutations=Mutations
 
 genetics.gui.analyst.description=Description
+genetics.gui.analyst.description.unknown=<Unknown>
+genetics.gui.analyst.description.discoveredBy=Discovered by %s
+genetics.gui.analyst.description.complexity=Genetic Complexity: %s
 
 genetics.gui.analyst.produce=Produce
+
+genetics.gui.analyst.fruit=Fruit
 
 genetics.gui.analyst.wood=Wood
 genetics.gui.analyst.wood.fireproof=Fireproof
