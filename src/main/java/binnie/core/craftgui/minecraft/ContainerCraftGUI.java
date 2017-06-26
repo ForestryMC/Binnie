@@ -143,7 +143,9 @@ public class ContainerCraftGUI extends Container {
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
 		if (player instanceof EntityPlayerMP) {
-			crafters.add(player);
+			if (!crafters.contains(player)) {
+				crafters.add(player);
+			}
 			sentNBT.clear();
 		}
 		IInventory inventory = window.getInventory();
