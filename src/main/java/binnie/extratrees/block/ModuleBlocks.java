@@ -330,7 +330,7 @@ public class ModuleBlocks implements IInitializable {
 		IWoodAccess woodAccess = TreeManager.woodAccess;
 		for(EnumETLog log : EnumETLog.VALUES){
 			ItemStack logs = woodAccess.getStack(log, WoodBlockKind.LOG, false);
-			ItemStack planks = log.getPlank().getStack();
+			ItemStack planks = log.getPlank().getStack(false);
 			ItemStack fireproofLogs = woodAccess.getStack(log, WoodBlockKind.LOG, true);
 			ItemStack fireproofPlanks = log.getPlank().getStack(true);
 			
