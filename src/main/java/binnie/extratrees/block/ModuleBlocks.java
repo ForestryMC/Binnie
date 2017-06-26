@@ -20,6 +20,7 @@ import net.minecraftforge.oredict.RecipeSorter;
 
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.VillagerRegistry;
 
 import forestry.api.arboriculture.EnumVanillaWoodType;
 import forestry.api.arboriculture.IWoodAccess;
@@ -62,6 +63,7 @@ import binnie.extratrees.block.wood.ItemBlockETWoodDoor;
 import binnie.extratrees.block.wood.ItemETSlab;
 import binnie.extratrees.genetics.ETTreeDefinition;
 import binnie.extratrees.item.ExtraTreeLiquid;
+import binnie.extratrees.worldgen.VillageCreationExtraTrees;
 
 public class ModuleBlocks implements IInitializable {
 	public List<BlockETLog> logs;
@@ -285,6 +287,8 @@ public class ModuleBlocks implements IInitializable {
 		
 		hops = new BlockHops();
 		ExtraTrees.proxy.registerBlock(hops);
+		
+		VillageCreationExtraTrees.registerVillageComponents();
 	}
 	
 	public void registerDoors(WoodAccess woodAccess, List<BlockETDoor> blocks) {
@@ -306,6 +310,10 @@ public class ModuleBlocks implements IInitializable {
 	
 	@Override
 	public void init() {
+		VillageCreationExtraTrees villageHandler = new VillageCreationExtraTrees();
+		VillagerRegistry villagerRegistry = VillagerRegistry.instance();
+		villagerRegistry.registerVillageCreationHandler(villageHandler);
+		
 		RecipeSorter.register("extratrees:multifence", MultiFenceRecipeSize.class, RecipeSorter.Category.SHAPED, "");
 		RecipeSorter.register("extratrees:multifence2", MultiFenceRecipeEmbedded.class, RecipeSorter.Category.SHAPED, "");
 		RecipeSorter.register("extratrees:multifence3", MultiFenceRecipeSolid.class, RecipeSorter.Category.SHAPED, "");
