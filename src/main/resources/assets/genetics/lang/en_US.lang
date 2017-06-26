@@ -177,6 +177,11 @@ genetics.gui.analyst.behaviour.metabolism=Metabolism: %s
 
 genetics.gui.analyst.biology=Biology
 
+genetics.gui.analyst.climate=Climate
+genetics.gui.analyst.climate.biomes=Biomes
+genetics.gui.analyst.climate.humidity=Humidity Tolerance
+genetics.gui.analyst.climate.temperature=Temp. Tolerance
+
 genetics.gui.analyst.soil=Soil
 genetics.gui.analyst.soil.moistureTolerance=Moisture Tolerance
 genetics.gui.analyst.soil.pHTolerance=pH Tolerance
@@ -190,7 +195,18 @@ genetics.gui.analyst.growth=Growth
 
 genetics.gui.analyst.karyogram=Karyogram
 genetics.gui.analyst.specimen=Specimen
+
 genetics.gui.analyst.mutations=Mutations
+genetics.gui.analyst.mutations.habitat=Natural Habitat
+genetics.gui.analyst.mutations.habitat.any=Found in any Hive
+genetics.gui.analyst.mutations.habitat.villagers=Bought from Villagers
+genetics.gui.analyst.mutations.habitat.chest=Dungeon Chests
+genetics.gui.analyst.mutations.resultantMutations=Resultant Mutations
+genetics.gui.analyst.mutations.furtherMutations=Further Mutations
+genetics.gui.analyst.mutations.chance=%d%% Chance
+genetics.gui.analyst.mutations.chance.current=(%d%% currently)
+genetics.gui.analyst.mutations.unknownMutation=Unknown Mutation
+genetics.gui.analyst.mutations.unknown=UNKNOWN
 
 genetics.gui.analyst.description=Description
 genetics.gui.analyst.description.unknown=<Unknown>
