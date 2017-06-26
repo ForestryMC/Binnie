@@ -214,6 +214,13 @@ genetics.gui.analyst.description.discoveredBy=Discovered by %s
 genetics.gui.analyst.description.complexity=Genetic Complexity: %s
 
 genetics.gui.analyst.produce=Produce
+genetics.gui.analyst.produce.rate=Rate: %s
+genetics.gui.analyst.produce.natural=Natural Products
+genetics.gui.analyst.produce.speciality=Specialty Products
+genetics.gui.analyst.produce.refined=Refined Products
+genetics.gui.analyst.produce.centrifuge=Centrifuges to give:
+genetics.gui.analyst.produce.squeezes=Squeezes to give:
+genetics.gui.analyst.produce.everyTime=Every %s
 
 genetics.gui.analyst.fruit=Fruit
 
