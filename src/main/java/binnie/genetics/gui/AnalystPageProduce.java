@@ -45,6 +45,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 					isRecipe = true;
 				}
 			}
+
 			if (isRecipe) {
 				for (Object obj : recipe.getValue()) {
 					if (obj instanceof ItemStack) {
@@ -65,6 +66,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 					isRecipe = true;
 				}
 			}
+
 			if (isRecipe) {
 				for (Object obj : recipe.getValue()) {
 					if (obj instanceof ItemStack) {
@@ -87,10 +89,12 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 						match = false;
 					}
 				}
+
 				if (match) {
 					products.add(recipe.getRecipeOutput());
 				}
 			}
+
 			if (recipeO instanceof ShapedRecipes) {
 				ShapedRecipes recipe2 = (ShapedRecipes) recipeO;
 				boolean match = true;
@@ -99,10 +103,12 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 						match = false;
 					}
 				}
+
 				if (match) {
 					products.add(recipe2.getRecipeOutput());
 				}
 			}
+
 			if (recipeO instanceof ShapelessOreRecipe) {
 				ShapelessOreRecipe recipe3 = (ShapelessOreRecipe) recipeO;
 				boolean match = true;
@@ -111,6 +117,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 						match = false;
 					}
 				}
+
 				if (!match) {
 					continue;
 				}
@@ -135,6 +142,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 					isRecipe = true;
 				}
 			}
+
 			if (isRecipe) {
 				for (Object obj : recipe.getValue()) {
 					if (obj instanceof FluidStack) {
@@ -147,8 +155,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 	}
 
 	protected Collection<? extends FluidStack> getAllProducts(FluidStack stack) {
-		Collection<FluidStack> fluids = new UniqueFluidStackSet();
-		return fluids;
+		return new UniqueFluidStackSet();
 	}
 
 	protected Collection<ItemStack> getAllProductsAndFluids(Collection<ItemStack> collection) {
@@ -156,28 +163,34 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 		for (ItemStack stack : collection) {
 			products.addAll(getAllProducts(stack));
 		}
+
 		Collection<ItemStack> products2 = new UniqueItemStackSet();
 		for (ItemStack stack2 : products) {
 			products2.addAll(getAllProducts(stack2));
 		}
+
 		Collection<ItemStack> products3 = new UniqueItemStackSet();
 		for (ItemStack stack3 : products2) {
 			products3.addAll(getAllProducts(stack3));
 		}
+
 		products.addAll(products2);
 		products.addAll(products3);
 		Collection<FluidStack> allFluids = new UniqueFluidStackSet();
 		for (ItemStack stack4 : collection) {
 			allFluids.addAll(getAllFluids(stack4));
 		}
+
 		Collection<FluidStack> fluids2 = new UniqueFluidStackSet();
 		for (FluidStack stack5 : allFluids) {
 			fluids2.addAll(getAllProducts(stack5));
 		}
+
 		Collection<FluidStack> fluids3 = new UniqueFluidStackSet();
 		for (FluidStack stack6 : fluids2) {
 			fluids3.addAll(getAllProducts(stack6));
 		}
+
 		allFluids.addAll(fluids2);
 		allFluids.addAll(fluids3);
 		for (FluidStack fluid : allFluids) {
@@ -187,10 +200,12 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 					container = data.filledContainer;
 					break;
 				}
+
 				if (data.emptyContainer.isItemEqual(new ItemStack(Items.bucket)) && data.fluid.isFluidEqual(fluid)) {
 					container = data.filledContainer;
 					break;
 				}
+
 				if (data.fluid.isFluidEqual(fluid)) {
 					container = data.filledContainer;
 					break;
@@ -215,6 +230,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 				dx = 0;
 				dy += 18;
 			}
+
 			FluidStack fluid = FluidContainerRegistry.getFluidForFilledItem(soilStack);
 			soilStack.stackSize = 1;
 			ControlItemDisplay display = new ControlItemDisplay(this, biomeListX + dx, y + dy, soilStack, fluid == null);
@@ -223,10 +239,10 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 			}
 			dx += 18;
 		}
+
 		if (dx != 0) {
 			dy += 18;
 		}
-		y += dy;
-		return y;
+		return y + dy;
 	}
 }

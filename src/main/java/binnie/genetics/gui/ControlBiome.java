@@ -24,10 +24,8 @@ public class ControlBiome extends Control implements ITooltip {
 
 	@Override
 	public void onRenderBackground() {
-		if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.MOUNTAIN)) {
-			iconCategory = "hills";
-		}
-		if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.HILLS)) {
+		if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.MOUNTAIN) ||
+			BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.HILLS)) {
 			iconCategory = "hills";
 		}
 		if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.SANDY)) {
@@ -45,7 +43,8 @@ public class ControlBiome extends Control implements ITooltip {
 		if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.JUNGLE)) {
 			iconCategory = "jungle";
 		}
-		if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.COLD) && BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.FOREST)) {
+		if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.COLD) &&
+			BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.FOREST)) {
 			iconCategory = "taiga";
 		}
 		if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.MUSHROOM)) {

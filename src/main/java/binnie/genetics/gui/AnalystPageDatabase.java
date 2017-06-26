@@ -16,6 +16,7 @@ import binnie.core.craftgui.minecraft.MinecraftGUI;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.craftgui.window.Panel;
 import binnie.core.genetics.BreedingSystem;
+import binnie.core.util.I18N;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
@@ -44,7 +45,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 		int newColour = (int) (cr * brightness) * 65536 + (int) (cg * brightness) * 256 + (int) (cb * brightness);
 		setColor(newColour);
 		int y = 4;
-		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Registry").setColor(getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 16;
 		new ControlTextEdit(this, 20.0f, y, w() - 40.0f, 16.0f) {
 			@Override
@@ -63,7 +64,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 
 			@Override
 			public void onRenderBackground() {
-				CraftGUI.Render.color(5592405);
+				CraftGUI.Render.color(0x555555);
 				CraftGUI.Render.texture(CraftGUITexture.TabSolid, getArea().inset(1));
 				CraftGUI.Render.color(AnalystPageDatabase.this.getColor());
 				CraftGUI.Render.texture(CraftGUITexture.TabOutline, getArea());
@@ -97,13 +98,14 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 
 						@Override
 						public void onRenderBackground() {
-							CraftGUI.Render.text(getArea(), TextJustification.MIDDLE_CENTER, value.getName(), 16777215);
+							CraftGUI.Render.text(getArea(), TextJustification.MIDDLE_CENTER, value.getName(), 0xffffff);
 						}
 					};
 				}
 			};
 		} else {
-			(scroll = new ControlScrollableContent(this, 4.0f, y, w() - 8.0f, h() - y - 8.0f, 0.0f)).setScrollableContent(getItemScrollList(system, options));
+			scroll = new ControlScrollableContent(this, 4.0f, y, w() - 8.0f, h() - y - 8.0f, 0.0f);
+			scroll.setScrollableContent(getItemScrollList(system, options));
 		}
 		new ControlScrollBar(this, scroll.x() + scroll.w() - 6.0f, scroll.y() + 3.0f, 3.0f, scroll.h() - 6.0f, scroll) {
 			@Override
@@ -111,7 +113,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 				if (!isEnabled()) {
 					return;
 				}
-				CraftGUI.Render.gradientRect(getArea(), 1140850688 + AnalystPageDatabase.this.getColor(), 1140850688 + AnalystPageDatabase.this.getColor());
+				CraftGUI.Render.gradientRect(getArea(), 0x44000000 + AnalystPageDatabase.this.getColor(), 0x44000000 + AnalystPageDatabase.this.getColor());
 				CraftGUI.Render.solid(getRenderArea(), AnalystPageDatabase.this.getColor());
 			}
 		};
@@ -143,12 +145,12 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 						public void onRenderBackground() {
 							WindowAnalyst window = (WindowAnalyst) AnalystPageDatabase.this.getSuperParent();
 							if (window.getIndividual() != null && window.getIndividual().getGenome().getPrimary() == species) {
-								CraftGUI.Render.color(15658734);
+								CraftGUI.Render.color(0xeeeeee);
 								CraftGUI.Render.texture(CraftGUITexture.TabSolid, getArea().outset(1));
 								CraftGUI.Render.color(AnalystPageDatabase.this.getColor());
 								CraftGUI.Render.texture(CraftGUITexture.TabOutline, getArea().outset(1));
 							} else if (calculateIsMouseOver()) {
-								CraftGUI.Render.color(15658734);
+								CraftGUI.Render.color(0xeeeeee);
 								CraftGUI.Render.texture(CraftGUITexture.TabSolid, getArea().outset(1));
 							}
 							super.onRenderBackground();
@@ -167,7 +169,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 
 	@Override
 	public String getTitle() {
-		return "Registry";
+		return I18N.localise("genetics.gui.analyst.registry");
 	}
 
 	private Collection<IAlleleSpecies> getSpecies(BreedingSystem system) {

@@ -153,3 +153,48 @@ genetics.gui.geneBank.ranking=Ranking
 genetics.gui.geneBank.project=Full Genome Project
 genetics.gui.geneBank.sequencedGenes=Sequenced %d/%d Genes
 genetics.gui.geneBank.sequencedGenes.short=%d/%d Genes
+
+genetics.gui.analyst.info=Add a bee, tree, flower or butterfly to the top left slot. DNA Dye is required if it has not been analysed yet. This dye can also convert vanilla items to breedable individuals.
+genetics.gui.analyst.registry=Registry
+
+genetics.gui.analyst.appearance=Appearance
+genetics.gui.analyst.appearance.primaryColor=Primary Petal Color
+genetics.gui.analyst.appearance.secondColor=Secondary Petal Color
+genetics.gui.analyst.appearance.stemColor=Stem Color
+
+genetics.gui.analyst.behaviour=Behaviour
+genetics.gui.analyst.behaviour.effect=Effect: %s
+genetics.gui.analyst.behaviour.pollinatesNearby=Pollinates nearby
+genetics.gui.analyst.behaviour.withinBlocks=Within %d blocks
+genetics.gui.analyst.behaviour.everyTime=Every %s
+genetics.gui.analyst.behaviour.territory=Territory: %dx%dx%d
+genetics.gui.analyst.behaviour.metabolism=Metabolism: %s
+
+genetics.gui.analyst.biology=Biology
+
+genetics.gui.analyst.soil=Soil
+genetics.gui.analyst.soil.moistureTolerance=Moisture Tolerance
+genetics.gui.analyst.soil.pHTolerance=pH Tolerance
+genetics.gui.analyst.soil.recommendedSoil=Recommended Soil
+genetics.gui.analyst.soil.otherSoils=Other Soils
+
+genetics.gui.analyst.genome.active=Active Genome
+genetics.gui.analyst.genome.inactive=Inactive Genome
+
+genetics.gui.analyst.growth=Growth
+
+genetics.gui.analyst.karyogram=Karyogram
+
+genetics.gui.analyst.mutations=Mutations
+genetics.gui.analyst.specimen=Specimen
+
+genetics.gui.analyst.description=Description
+
+genetics.gui.analyst.produce=Produce
+
+genetics.gui.analyst.wood=Wood
+genetics.gui.analyst.wood.fireproof=Fireproof
+genetics.gui.analyst.wood.flammable=Flammable
+genetics.gui.analyst.wood.logs=Logs
+genetics.gui.analyst.wood.products=Refined Products
+genetics.gui.analyst.wood.noFruits=This tree has no\nfruits or nuts

@@ -5,6 +5,7 @@ import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.genetics.BreedingSystem;
+import binnie.core.util.I18N;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IIndividual;
@@ -14,11 +15,12 @@ import net.minecraft.util.EnumChatFormatting;
 public class AnalystPageKaryogram extends ControlAnalystPage {
 	public AnalystPageKaryogram(IWidget parent, IArea area, IIndividual ind) {
 		super(parent, area);
-		setColor(10040319);
+		setColor(0x9933ff);
 		int y = 4;
-		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Karyogram").setColor(getColor());
-		y += 16;
-		y += 8;
+		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + getTitle())
+			.setColor(getColor());
+
+		y += 24;
 		ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(ind.getClass());
 		BreedingSystem system = Binnie.Genetics.getSystem(root);
 		int maxBiomePerLine = (int) ((w() + 4.0f - 16.0f) / 22.0f);
@@ -42,6 +44,6 @@ public class AnalystPageKaryogram extends ControlAnalystPage {
 
 	@Override
 	public String getTitle() {
-		return "Karyogram";
+		return I18N.localise("genetics.gui.analyst.karyogram");
 	}
 }

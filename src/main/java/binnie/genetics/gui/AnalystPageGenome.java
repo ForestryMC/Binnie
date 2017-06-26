@@ -10,6 +10,7 @@ import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.genetics.BreedingSystem;
+import binnie.core.util.I18N;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
@@ -24,7 +25,7 @@ public class AnalystPageGenome extends ControlAnalystPage {
 	public AnalystPageGenome(IWidget parent, IArea area, boolean active, IIndividual ind) {
 		super(parent, area);
 		this.active = active;
-		setColor(26265);
+		setColor(0x006699);
 		int y = 4;
 		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 16;
@@ -43,12 +44,15 @@ public class AnalystPageGenome extends ControlAnalystPage {
 				GL11.glPopMatrix();
 			}
 		};
+
 		for (IChromosomeType chromo : system.getActiveKaryotype()) {
 			IAllele allele = active ? ind.getGenome().getActiveAllele(chromo) : ind.getGenome().getInactiveAllele(chromo);
 			String alleleName = system.getAlleleName(chromo, allele);
 			float height = CraftGUI.Render.textHeight(alleleName, w() / 2.0f - 2.0f);
-			new ControlText(scaled, new IArea(0.0f, y + (height - 9.0f) / 2.0f, w() / 2.0f - 2.0f, 0.0f), system.getChromosomeShortName(chromo) + " :", TextJustification.TOP_RIGHT).setColor(getColor());
-			new ControlText(scaled, new IArea(w() / 2.0f + 2.0f, y, w() / 2.0f - 2.0f, 0.0f), alleleName, TextJustification.TOP_LEFT).setColor(getColor());
+			new ControlText(scaled, new IArea(0.0f, y + (height - 9.0f) / 2.0f, w() / 2.0f - 2.0f, 0.0f), system.getChromosomeShortName(chromo) + " :", TextJustification.TOP_RIGHT)
+				.setColor(getColor());
+			new ControlText(scaled, new IArea(w() / 2.0f + 2.0f, y, w() / 2.0f - 2.0f, 0.0f), alleleName, TextJustification.TOP_LEFT)
+				.setColor(getColor());
 			y += (int) (3.0f + height);
 		}
 		setSize(new IPoint(w(), y + 8));
@@ -56,6 +60,9 @@ public class AnalystPageGenome extends ControlAnalystPage {
 
 	@Override
 	public String getTitle() {
-		return (active ? "Active" : "Inactive") + " Genome";
+		if (active) {
+			return I18N.localise("genetics.gui.analyst.genome.active");
+		}
+		return I18N.localise("genetics.gui.analyst.genome.inactive");
 	}
 }

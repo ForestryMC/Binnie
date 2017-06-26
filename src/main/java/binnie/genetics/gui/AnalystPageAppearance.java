@@ -9,28 +9,32 @@ import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.minecraft.control.ControlIconDisplay;
-import forestry.api.genetics.IAlleleSpecies;
+import binnie.core.util.I18N;
 import net.minecraft.util.EnumChatFormatting;
 import org.lwjgl.opengl.GL11;
 
 public class AnalystPageAppearance extends ControlAnalystPage {
 	public AnalystPageAppearance(IWidget parent, IArea area, IFlower ind) {
 		super(parent, area);
-		setColor(3355443);
+		setColor(0x333333);
 		int y = 4;
-		IAlleleSpecies species = ind.getGenome().getPrimary();
-		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Appearance").setColor(getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + getTitle())
+			.setColor(getColor());
 		y += 12;
+
 		ControlColorDisplay a = new ControlColorDisplay(this, w() / 2.0f - 28.0f, y);
 		a.setValue(ind.getGenome().getPrimaryColor());
-		a.addTooltip("Primary Petal Colour");
+		a.addTooltip(I18N.localise("genetics.gui.analyst.primaryColor"));
+
 		ControlColorDisplay b = new ControlColorDisplay(this, w() / 2.0f - 8.0f, y);
 		b.setValue(ind.getGenome().getSecondaryColor());
-		b.addTooltip("Secondary Petal Colour");
+		b.addTooltip(I18N.localise("genetics.gui.analyst.secondaryColor"));
+
 		ControlColorDisplay c = new ControlColorDisplay(this, w() / 2.0f + 12.0f, y);
 		c.setValue(ind.getGenome().getStemColor());
-		c.addTooltip("Stem Colour");
+		c.addTooltip(I18N.localise("genetics.gui.analyst.stemColor"));
 		y += 26;
+
 		int sections = ind.getGenome().getType().getSections();
 		int w = (sections > 1) ? 50 : 100;
 
@@ -66,6 +70,6 @@ public class AnalystPageAppearance extends ControlAnalystPage {
 
 	@Override
 	public String getTitle() {
-		return "Appearance";
+		return I18N.localise("genetics.gui.analyst.appearance");
 	}
 }

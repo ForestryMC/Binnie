@@ -20,3 +20,7 @@ genetics.machine.acclimatiser.error.noAcclimatizingItems=No Acclimatising Items
 genetics.machine.acclimatiser.error.invalidAcclimatizingItems=Cannot Acclimatise this individual with these items
 
 genetics.machine.advMachine.splicer.info=The Splicer is an incredibly powerful machine to insert genes into individuals. It is fast, but needs insane amounts of power.
+
+genetics.gui.analyst.appearance.primaryColor=Primary Petal Colour
+genetics.gui.analyst.appearance.secondColor=Secondary Petal Colour
+genetics.gui.analyst.appearance.stemColor=Stem Colour
