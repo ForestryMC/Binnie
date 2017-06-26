@@ -161,6 +161,8 @@ genetics.gui.analyst.page.minutes=%s min.
 genetics.gui.analyst.page.seconds=%s sec.
 genetics.gui.analyst.chromosome.active=Active: %s
 genetics.gui.analyst.chromosome.inactive=Inactive: %s
+genetics.gui.analyst.karyogram=Karyogram
+genetics.gui.analyst.specimen=Specimen
 
 genetics.gui.analyst.appearance=Appearance
 genetics.gui.analyst.appearance.primaryColor=Primary Petal Color
@@ -192,9 +194,10 @@ genetics.gui.analyst.genome.active=Active Genome
 genetics.gui.analyst.genome.inactive=Inactive Genome
 
 genetics.gui.analyst.growth=Growth
-
-genetics.gui.analyst.karyogram=Karyogram
-genetics.gui.analyst.specimen=Specimen
+genetics.gui.analyst.growth.mature=Saplings mature in
+genetics.gui.analyst.growth.height=Height: %s
+genetics.gui.analyst.growth.girth=Girth: %s
+genetics.gui.analyst.growth.conditions=Growth Conditions
 
 genetics.gui.analyst.mutations=Mutations
 genetics.gui.analyst.mutations.habitat=Natural Habitat
@@ -223,6 +226,12 @@ genetics.gui.analyst.produce.squeezes=Squeezes to give:
 genetics.gui.analyst.produce.everyTime=Every %s
 
 genetics.gui.analyst.fruit=Fruit
+genetics.gui.analyst.fruit.yield=Yield: %s
+genetics.gui.analyst.fruit.natural=Natural Fruit
+genetics.gui.analyst.fruit.speciality=Speciality Fruit
+genetics.gui.analyst.fruit.refined=Refined Products
+genetics.gui.analyst.fruit.possible=Possible Fruits
+genetics.gui.analyst.fruit.none=This tree has no\nfruits or nuts
 
 genetics.gui.analyst.wood=Wood
 genetics.gui.analyst.wood.fireproof=Fireproof
