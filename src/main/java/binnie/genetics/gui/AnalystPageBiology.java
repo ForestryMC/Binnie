@@ -236,7 +236,7 @@ public class AnalystPageBiology extends ControlAnalystPage {
 		float seconds = time / 20.0f;
 		float minutes = seconds / 60.0f;
 		float days = minutes / 20.0f;
-		DecimalFormat df = new DecimalFormat("#.0");
+		DecimalFormat df = new DecimalFormat("#.#");
 		return I18N.localise("genetics.gui.analyst.biology.mcDays", df.format(days));
 	}
 
