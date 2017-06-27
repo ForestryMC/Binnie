@@ -19,30 +19,30 @@ import binnie.core.util.I18N;
 
 @SideOnly(Side.CLIENT)
 public class PageBranchOverview extends PageBranch {
-	private ControlText pageBranchOverview_branchName;
-	private ControlText pageBranchOverview_branchScientific;
-	private ControlText pageBranchOverview_branchAuthority;
-	private List<ControlText> pageBranchOverview_branchDescription;
+	private ControlText branchName;
+	private ControlText branchScientific;
+	private ControlText branchAuthority;
+	private List<ControlText> branchDescription;
 
 	public PageBranchOverview(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);
-		this.pageBranchOverview_branchDescription = new ArrayList<>();
-		this.pageBranchOverview_branchName = new ControlTextCentered(this, 8, "");
-		this.pageBranchOverview_branchScientific = new ControlTextCentered(this, 32, "");
-		this.pageBranchOverview_branchAuthority = new ControlTextCentered(this, 44, "");
+		this.branchDescription = new ArrayList<>();
+		this.branchName = new ControlTextCentered(this, 8, "");
+		this.branchScientific = new ControlTextCentered(this, 32, "");
+		this.branchAuthority = new ControlTextCentered(this, 44, "");
 	}
 
 	@Override
 	public void onValueChanged(final IClassification branch) {
-		this.pageBranchOverview_branchName.setValue(TextFormatting.UNDERLINE + branch.getName() + I18N.localise("binniecore.gui.database.branch.branch"));
-		this.pageBranchOverview_branchScientific.setValue(TextFormatting.ITALIC + I18N.localise("binniecore.gui.database.branch.apidae") + " " + branch.getScientific());
-		this.pageBranchOverview_branchAuthority.setValue(I18N.localise("binniecore.gui.database.discovered") + " " + TextFormatting.BOLD + branch.getMemberSpecies()[0].getAuthority());
-		for (final IWidget widget : this.pageBranchOverview_branchDescription) {
+		this.branchName.setValue(TextFormatting.UNDERLINE + branch.getName() + " " + I18N.localise("binniecore.gui.database.branch.branch"));
+		this.branchScientific.setValue(TextFormatting.ITALIC + I18N.localise("binniecore.gui.database.branch.apidae") + " " + branch.getScientific());
+		this.branchAuthority.setValue(I18N.localise("binniecore.gui.database.discovered") + " " + TextFormatting.BOLD + branch.getMemberSpecies()[0].getAuthority());
+		for (final IWidget widget : this.branchDescription) {
 			this.deleteChild(widget);
 		}
-		this.pageBranchOverview_branchDescription.clear();
+		this.branchDescription.clear();
 		String desc = branch.getDescription();
-		if (desc == null || Objects.equals(desc, "")) {
+		if (desc == null || Objects.equals(desc, "") || desc.contains("for.")) {
 			desc = I18N.localise("binniecore.gui.database.no.description");
 		}
 		StringBuilder line = new StringBuilder();
@@ -57,7 +57,7 @@ public class PageBranchOverview extends PageBranch {
 		descLines.add(line.toString());
 		int i = 0;
 		for (final String dLine : descLines) {
-			this.pageBranchOverview_branchDescription.add(new ControlTextCentered(this, 84 + 12 * i++, dLine));
+			this.branchDescription.add(new ControlTextCentered(this, 84 + 12 * i++, dLine));
 		}
 	}
 }

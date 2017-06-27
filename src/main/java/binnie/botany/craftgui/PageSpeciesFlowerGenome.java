@@ -23,6 +23,7 @@ import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.core.util.I18N;
 
 public class PageSpeciesFlowerGenome extends PageSpecies {
 	public PageSpeciesFlowerGenome(final IWidget parent, final DatabaseTab tab) {
@@ -39,63 +40,64 @@ public class PageSpeciesFlowerGenome extends PageSpecies {
 	@Override
 	public void onValueChanged(final IAlleleSpecies species) {
 		this.deleteAllChildren();
-		final IAllele[] template = Binnie.GENETICS.getFlowerRoot().getTemplate(species.getUID());
+		IAllele[] template = Binnie.GENETICS.getFlowerRoot().getTemplate(species.getUID());
 		if (template == null) {
 			return;
 		}
-		final IFlower tree = Binnie.GENETICS.getFlowerRoot().templateAsIndividual(template);
+		IFlower tree = Binnie.GENETICS.getFlowerRoot().templateAsIndividual(template);
 		if (tree == null) {
 			return;
 		}
-		final IFlowerGenome genome = tree.getGenome();
-		final IAlleleFlowerSpecies treeSpecies = genome.getPrimary();
-		final int w = 144;
-		final int h = 176;
-		new ControlText(this, new Area(0, 4, w, 16), "Genome", TextJustification.MiddleCenter);
-		final ControlScrollableContent scrollable = new ControlScrollableContent(this, 4, 20, w - 8, h - 8 - 16, 12);
-		final Control contents = new Control(scrollable, 0, 0, w - 8 - 12, h - 8 - 16);
-		final int tw = w - 8 - 12;
-		final int w2 = 55;
-		final int w3 = tw - 50;
+		IFlowerGenome genome = tree.getGenome();
+		IAlleleFlowerSpecies treeSpecies = genome.getPrimary();
+		int w = 144;
+		int h = 176;
+		new ControlText(this, new Area(0, 4, w, 16), I18N.localise("botany.gui.database.tab.genome"), TextJustification.MiddleCenter);
+		ControlScrollableContent scrollable = new ControlScrollableContent(this, 4, 20, w - 8, h - 8 - 16, 12);
+		Control contents = new Control(scrollable, 0, 0, w - 8 - 12, h - 8 - 16);
+		int tw = w - 8 - 12;
+		int w2 = 55;
+		int w3 = tw - 50;
 		int y = 0;
 		final int th = 14;
 		final int th2 = 18;
-		new ControlText(contents, new Area(0, y, w2, th), "Temp. : ", TextJustification.MiddleRight);
+		new ControlText(contents, new Area(0, y, w2, th), I18N.localise("botany.gui.database.tab.genome.temp"), TextJustification.MiddleRight);
 		new ControlText(contents, new Area(w2, y, w3, th), treeSpecies.getTemperature().getName(), TextJustification.MIDDLE_LEFTt);
 		y += th;
-		new ControlText(contents, new Area(0, y, w2, th), "Moist. : ", TextJustification.MiddleRight);
+		new ControlText(contents, new Area(0, y, w2, th), I18N.localise("botany.gui.database.tab.genome.moist"), TextJustification.MiddleRight);
 		new ControlText(contents, new Area(w2, y, w3, th), treeSpecies.getMoisture().getLocalisedName(false), TextJustification.MIDDLE_LEFTt);
 		y += th;
-		new ControlText(contents, new Area(0, y, w2, th), "pH. : ", TextJustification.MiddleRight);
+		new ControlText(contents, new Area(0, y, w2, th), I18N.localise("botany.gui.database.tab.genome.ph"), TextJustification.MiddleRight);
 		new ControlText(contents, new Area(w2, y, w3, th), treeSpecies.getPH().getLocalisedName(false), TextJustification.MIDDLE_LEFTt);
 		y += th;
-		new ControlText(contents, new Area(0, y, w2, th), "Fertility : ", TextJustification.MiddleRight);
+		new ControlText(contents, new Area(0, y, w2, th), I18N.localise("botany.gui.database.tab.genome.fertility"), TextJustification.MiddleRight);
 		new ControlText(contents, new Area(w2, y, w3, th), genome.getFertility() + "x", TextJustification.MIDDLE_LEFTt);
 		y += th;
-		final float lifespan = genome.getLifespan() * 68.27f / genome.getAgeChance() / 24000.0f;
-		new ControlText(contents, new Area(0, y, w2, th), "Lifespan : ", TextJustification.MiddleRight);
-		new ControlText(contents, new Area(w2, y, w3, th), "" + String.format("%.2f", lifespan) + " days", TextJustification.MIDDLE_LEFTt);
+		float lifespan = genome.getLifespan() * 68.27f / genome.getAgeChance() / 24000.0f;
+		String lifespanValue = String.format("%.2f", lifespan);
+		new ControlText(contents, new Area(0, y, w2, th), I18N.localise("botany.gui.database.tab.genome.lifespan"), TextJustification.MiddleRight);
+		new ControlText(contents, new Area(w2, y, w3, th), I18N.localise("botany.gui.database.tab.genome.lifespan.value", lifespanValue), TextJustification.MIDDLE_LEFTt);
 		y += th;
-		new ControlText(contents, new Area(0, y, w2, th), "Nectar : ", TextJustification.MiddleRight);
+		new ControlText(contents, new Area(0, y, w2, th), I18N.localise("botany.gui.database.tab.genome.nectar"), TextJustification.MiddleRight);
 		new ControlText(contents, new Area(w2, y, w3, th), genome.getActiveAllele(EnumFlowerChromosome.SAPPINESS).getName(), TextJustification.MIDDLE_LEFTt);
 		y += th;
 		int x = w2;
 		int tot = 0;
-		for (final IIndividual vid : BotanyCore.getFlowerRoot().getIndividualTemplates()) {
+		for (IIndividual vid : BotanyCore.getFlowerRoot().getIndividualTemplates()) {
 			if (vid.getGenome().getPrimary() == treeSpecies) {
 				if (tot > 0 && tot % 3 == 0) {
 					x -= 54;
 					y += 18;
 				}
-				final ItemStack stack = BotanyCore.getFlowerRoot().getMemberStack(vid, EnumFlowerStage.FLOWER);
-				final ControlItemDisplay display = new ControlItemDisplay(contents, x, y);
+				ItemStack stack = BotanyCore.getFlowerRoot().getMemberStack(vid, EnumFlowerStage.FLOWER);
+				ControlItemDisplay display = new ControlItemDisplay(contents, x, y);
 				display.setItemStack(stack);
 				++tot;
 				x += 18;
 			}
 		}
-		final int numOfLines = 1 + (tot - 1) / 3;
-		new ControlText(contents, new Area(0, y - (numOfLines - 1) * 18, w2, 4 + 18 * numOfLines), "Varieties : ", TextJustification.MiddleRight);
+		int numOfLines = 1 + (tot - 1) / 3;
+		new ControlText(contents, new Area(0, y - (numOfLines - 1) * 18, w2, 4 + 18 * numOfLines), I18N.localise("botany.gui.database.tab.genome.varieties"), TextJustification.MiddleRight);
 		y += th;
 		contents.setSize(new Point(contents.size().x(), y));
 		scrollable.setScrollableContent(contents);

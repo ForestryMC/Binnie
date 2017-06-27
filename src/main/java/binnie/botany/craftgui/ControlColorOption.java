@@ -12,14 +12,14 @@ import binnie.core.craftgui.geometry.CraftGUIUtil;
 import binnie.core.craftgui.geometry.Point;
 
 @SideOnly(Side.CLIENT)
-public class ControlColourOption extends ControlTextOption<IFlowerColour> {
-	ControlColourDisplay controlBee;
+public class ControlColorOption extends ControlTextOption<IFlowerColour> {
+	ControlColorDisplay controlBee;
 	Point boxPosition;
 
-	public ControlColourOption(final ControlList<IFlowerColour> controlList, final IFlowerColour option, final int y) {
+	public ControlColorOption(final ControlList<IFlowerColour> controlList, final IFlowerColour option, final int y) {
 		super(controlList, option, option.getColourName(), y);
 		this.setSize(new Point(this.getSize().x(), 20));
-		this.controlBee = new ControlColourDisplay(this, 2, 2, option);
+		this.controlBee = new ControlColorDisplay(this, 2, 2, option);
 		this.addAttribute(Attribute.MouseOver);
 		CraftGUIUtil.moveWidget(this.textWidget, new Point(22, 0));
 		this.textWidget.setSize(this.textWidget.getSize().sub(new Point(24, 0)));

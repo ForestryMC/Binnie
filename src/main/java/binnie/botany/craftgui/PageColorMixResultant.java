@@ -11,15 +11,16 @@ import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.database.DatabaseTab;
 import binnie.core.craftgui.database.PageAbstract;
+import binnie.core.util.I18N;
 
-public class PageColourMixResultant extends PageAbstract<IFlowerColour> {
+public class PageColorMixResultant extends PageAbstract<IFlowerColour> {
 	ControlText pageSpeciesFurther_Title;
-	ControlColourMixBox pageSpeciesFurther_List;
+	ControlColorMixBox pageSpeciesFurther_List;
 
-	public PageColourMixResultant(final IWidget parent, final DatabaseTab tab) {
+	public PageColorMixResultant(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);
-		this.pageSpeciesFurther_Title = new ControlTextCentered(this, 8, "Resultant Mixes");
-		this.pageSpeciesFurther_List = new ControlColourMixBox(this, 4, 20, 136, 152, ControlColourMixBox.Type.Resultant);
+		this.pageSpeciesFurther_Title = new ControlTextCentered(this, 8, I18N.localise("botany.gui.controls.page.species_further.title"));
+		this.pageSpeciesFurther_List = new ControlColorMixBox(this, 4, 20, 136, 152, ControlColorMixBox.Type.Resultant);
 	}
 
 	@Override
