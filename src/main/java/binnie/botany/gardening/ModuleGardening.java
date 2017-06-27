@@ -20,6 +20,7 @@ import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
 import binnie.botany.api.EnumSoilType;
+import binnie.botany.api.IGardeningManager;
 import binnie.botany.ceramic.BlockCeramic;
 import binnie.botany.ceramic.BlockCeramicPatterned;
 import binnie.botany.ceramic.BlockStainedGlass;
@@ -31,6 +32,7 @@ import binnie.botany.ceramic.TileCeramic;
 import binnie.botany.ceramic.brick.BlockCeramicBrick;
 import binnie.botany.ceramic.brick.ItemCeramicBrick;
 import binnie.botany.ceramic.brick.TileCeramicBrick;
+import binnie.botany.core.BotanyCore;
 import binnie.botany.farm.CircuitGarden;
 import binnie.botany.flower.ItemInsulatedTube;
 import binnie.botany.genetics.EnumFlowerColor;
@@ -140,6 +142,7 @@ public class ModuleGardening implements IInitializable {
 
 	@Override
 	public void postInit() {
+		IGardeningManager gardening = BotanyCore.getGardening();
 		GameRegistry.addRecipe(new CeramicTileRecipe());
 		for (int mat = 0; mat < 4; ++mat) {
 			for (int insulate = 0; insulate < 6; ++insulate) {
@@ -163,28 +166,28 @@ public class ModuleGardening implements IInitializable {
 		GameRegistry.addShapelessRecipe(BotanyItems.PulpPowder.get(4), Mods.Forestry.stack("wood_pulp"));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(BotanyItems.SulphurPowder.get(4), "dustSulphur"));
 		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(Botany.pigment, 2, EnumFlowerColor.Black.ordinal()), "pigment", "pigment", "dyeBlack"));
-		ModuleGardening.queuedAcidFertilisers.put(BotanyItems.SulphurPowder.get(1), 1);
-		ModuleGardening.queuedAcidFertilisers.put(BotanyItems.MulchPowder.get(1), 1);
-		ModuleGardening.queuedAcidFertilisers.put(Mods.Forestry.stack("mulch"), 2);
+		gardening.registerAcidFertiliser(BotanyItems.SulphurPowder.get(1), 1);
+		gardening.registerAcidFertiliser(BotanyItems.MulchPowder.get(1), 1);
+		gardening.registerAcidFertiliser(Mods.Forestry.stack("mulch"), 2);
 		for (final ItemStack stack : OreDictionary.getOres("dustSulfur")) {
-			ModuleGardening.queuedAcidFertilisers.put(stack, 2);
+			gardening.registerAcidFertiliser(stack, 2);
 		}
-		ModuleGardening.queuedAlkalineFertilisers.put(BotanyItems.AshPowder.get(1), 1);
-		ModuleGardening.queuedAlkalineFertilisers.put(BotanyItems.PulpPowder.get(1), 1);
-		ModuleGardening.queuedAlkalineFertilisers.put(Mods.Forestry.stack("ash"), 2);
-		ModuleGardening.queuedAlkalineFertilisers.put(Mods.Forestry.stack("wood_pulp"), 2);
-		ModuleGardening.queuedNutrientFertilisers.put(BotanyItems.CompostPowder.get(1), 1);
-		ModuleGardening.queuedNutrientFertilisers.put(BotanyItems.FertiliserPowder.get(1), 1);
-		ModuleGardening.queuedNutrientFertilisers.put(Mods.Forestry.stack("fertilizer_bio"), 2);
-		ModuleGardening.queuedNutrientFertilisers.put(Mods.Forestry.stack("fertilizer_compound"), 2);
+		gardening.registerAlkalineFertiliser(BotanyItems.AshPowder.get(1), 1);
+		gardening.registerAlkalineFertiliser(BotanyItems.PulpPowder.get(1), 1);
+		gardening.registerAlkalineFertiliser(Mods.Forestry.stack("ash"), 2);
+		gardening.registerAlkalineFertiliser(Mods.Forestry.stack("wood_pulp"), 2);
+		gardening.registerNutrientFertiliser(BotanyItems.CompostPowder.get(1), 1);
+		gardening.registerNutrientFertiliser(BotanyItems.FertiliserPowder.get(1), 1);
+		gardening.registerNutrientFertiliser(Mods.Forestry.stack("fertilizer_bio"), 2);
+		gardening.registerNutrientFertiliser(Mods.Forestry.stack("fertilizer_compound"), 2);
 		for (final Map.Entry<ItemStack, Integer> entry : ModuleGardening.queuedAcidFertilisers.entrySet()) {
-			this.addAcidFertiliser(entry.getKey(), entry.getValue());
+			this.addAcidFertiliserRecipe(entry.getKey(), entry.getValue());
 		}
 		for (final Map.Entry<ItemStack, Integer> entry : ModuleGardening.queuedAlkalineFertilisers.entrySet()) {
-			this.addAlkalineFertiliser(entry.getKey(), entry.getValue());
+			this.addAlkalineFertiliserRecipe(entry.getKey(), entry.getValue());
 		}
 		for (final Map.Entry<ItemStack, Integer> entry : ModuleGardening.queuedNutrientFertilisers.entrySet()) {
-			this.addNutrientFertiliser(entry.getKey(), entry.getValue());
+			this.addNutrientFertiliserRecipe(entry.getKey(), entry.getValue());
 		}
 		GameRegistry.addRecipe(BotanyItems.Mortar.get(6), " c ", "cgc", " c ", 'c', Items.CLAY_BALL, 'g', Blocks.GRAVEL);
 		for (final EnumFlowerColor c : EnumFlowerColor.values()) {
@@ -201,13 +204,12 @@ public class ModuleGardening implements IInitializable {
 
 	private ItemStack getStack(final int type, final int pH, final int moisture) {
 		if (type >= 0 && type <= 2 && pH >= 0 && pH <= 2 && moisture >= 0 && moisture <= 2) {
-			return new ItemStack(Gardening.getSoilBlock(EnumSoilType.values()[type]), 1, BlockSoil.getMeta(EnumAcidity.values()[pH], EnumMoisture.values()[moisture]));
+			return new ItemStack(BotanyCore.getGardening().getSoilBlock(EnumSoilType.values()[type]), 1, BlockSoil.getMeta(EnumAcidity.values()[pH], EnumMoisture.values()[moisture]));
 		}
 		return ItemStack.EMPTY;
 	}
 
-	private void addAcidFertiliser(final ItemStack stack, final int strengthMax) {
-		Gardening.fertiliserAcid.put(stack, strengthMax);
+	private void addAcidFertiliserRecipe(final ItemStack stack, final int strengthMax) {
 		for (int moisture = 0; moisture < 3; ++moisture) {
 			for (int pH = 0; pH < 3; ++pH) {
 				for (int type = 0; type < 3; ++type) {
@@ -231,8 +233,7 @@ public class ModuleGardening implements IInitializable {
 		}
 	}
 
-	private void addAlkalineFertiliser(final ItemStack stack, final int strengthMax) {
-		Gardening.fertiliserAlkaline.put(stack, strengthMax);
+	private void addAlkalineFertiliserRecipe(final ItemStack stack, final int strengthMax) {
 		for (int moisture = 0; moisture < 3; ++moisture) {
 			for (int pH = 0; pH < 3; ++pH) {
 				for (int type = 0; type < 3; ++type) {
@@ -256,8 +257,7 @@ public class ModuleGardening implements IInitializable {
 		}
 	}
 
-	private void addNutrientFertiliser(final ItemStack stack, final int strengthMax) {
-		Gardening.fertiliserNutrient.put(stack, strengthMax);
+	private void addNutrientFertiliserRecipe(final ItemStack stack, final int strengthMax) {
 		for (int moisture = 0; moisture < 3; ++moisture) {
 			for (int pH = 0; pH < 3; ++pH) {
 				for (int type = 0; type < 3; ++type) {

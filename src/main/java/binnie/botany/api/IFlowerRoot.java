@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import com.mojang.authlib.GameProfile;
@@ -49,4 +50,10 @@ public interface IFlowerRoot extends ISpeciesRoot {
 	Collection<IColourMix> getColourMixes(boolean p0);
 
 	void registerColourMix(IColourMix colourMix);
+	
+	boolean plant(World world, BlockPos pos, IFlower flower, GameProfile owner);
+	
+	void tryGrowSection(World world, BlockPos pos);
+	
+	void onGrowFromSeed(World world, BlockPos pos);
 }

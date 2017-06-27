@@ -34,6 +34,8 @@ import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
 import binnie.botany.api.EnumSoilType;
+import binnie.botany.api.IGardeningManager;
+import binnie.botany.core.BotanyCore;
 
 public class ItemTrowel extends Item implements IItemModelRegister {
 	protected final ToolMaterial theToolMaterial;
@@ -70,9 +72,10 @@ public class ItemTrowel extends Item implements IItemModelRegister {
 		if (worldIn.isRemote) {
 			return EnumActionResult.SUCCESS;
 		}
-		EnumMoisture moisture = Gardening.getNaturalMoisture(worldIn, pos);
-		EnumAcidity acidity = Gardening.getNaturalPH(worldIn, pos);
-		Gardening.plantSoil(worldIn, pos, EnumSoilType.SOIL, moisture, acidity);
+		IGardeningManager gardening = BotanyCore.getGardening();
+		EnumMoisture moisture = gardening.getNaturalMoisture(worldIn, pos);
+		EnumAcidity acidity = gardening.getNaturalPH(worldIn, pos);
+		gardening.plantSoil(worldIn, pos, EnumSoilType.SOIL, moisture, acidity);
 		stack.damageItem(1, player);
 		return EnumActionResult.SUCCESS;
 	}

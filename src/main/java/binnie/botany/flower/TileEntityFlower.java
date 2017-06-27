@@ -38,10 +38,11 @@ import binnie.botany.api.IAlleleFlowerSpecies;
 import binnie.botany.api.IFlower;
 import binnie.botany.api.IFlowerColour;
 import binnie.botany.api.IFlowerGenome;
+import binnie.botany.api.IFlowerRoot;
 import binnie.botany.api.IFlowerType;
+import binnie.botany.api.IGardeningManager;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.gardening.BlockPlant;
-import binnie.botany.gardening.Gardening;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.botany.genetics.EnumFlowerType;
 import binnie.botany.genetics.Flower;
@@ -165,7 +166,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 
 	public boolean isBreeding() {
 		final Block roots = this.getWorld().getBlockState(getPos().down()).getBlock();
-		return Gardening.isSoil(roots);
+		return BotanyCore.getGardening().isSoil(roots);
 	}
 
 	public void randomUpdate(final Random rand) {
@@ -194,8 +195,9 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 				}
 			}
 		}
-		final boolean canTolerate = Gardening.canTolerate(this.getFlower(), this.world, pos);
-		final EnumSoilType soil = Gardening.getSoilType(this.world, pos.down());
+		IGardeningManager gardening = BotanyCore.getGardening();
+		final boolean canTolerate = gardening.canTolerate(this.getFlower(), this.world, pos);
+		final EnumSoilType soil = gardening.getSoilType(this.world, pos.down());
 		if (rand.nextFloat() < this.getFlower().getGenome().getAgeChance()) {
 			if (this.flower.getAge() < 1) {
 				if (canTolerate && light > 6.0f) {
@@ -239,10 +241,10 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 					}
 
 					final Block b2 = world.getBlockState(pos.add(dx2, -1, dz)).getBlock();
-					if (world.isAirBlock(pos.add(dx2, 0, dz)) && Gardening.isSoil(b2)) {
+					if (world.isAirBlock(pos.add(dx2, 0, dz)) && BotanyCore.getGardening().isSoil(b2)) {
 						final IFlower offspring = this.flower.getOffspring(world, pos);
 						if (offspring != null) {
-							Gardening.plant(world, pos.add(dx2, 0, dz), offspring, this.getOwner());
+							BotanyCore.getFlowerRoot().plant(world, pos.add(dx2, 0, dz), offspring, this.getOwner());
 							this.flower.removeMate();
 							dispersed = true;
 						}
@@ -274,9 +276,10 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 	private void doFlowerAge() {
 		this.getFlower().age();
 		if (this.getFlower().getAge() == 1) {
-			Gardening.onGrowFromSeed(this.world, pos);
+			IFlowerRoot flowerRoot = BotanyCore.getFlowerRoot();
+			flowerRoot.onGrowFromSeed(this.world, pos);
 			if (this.getOwner() != null && this.getFlower() != null) {
-				BotanyCore.getFlowerRoot().getBreedingTracker(world, this.getOwner()).registerBirth(this.getFlower());
+				flowerRoot.getBreedingTracker(world, this.getOwner()).registerBirth(this.getFlower());
 			}
 		}
 	}
@@ -405,7 +408,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		if (this.getSection() != 0) {
 			return this.getRoot().checkIfDead(wasCut);
 		}
-		final EnumSoilType soil = Gardening.getSoilType(this.world, pos);
+		final EnumSoilType soil = BotanyCore.getGardening().getSoilType(this.world, pos);
 		final int maxAge = (int) (this.flower.getMaxAge() * (1.0f + soil.ordinal() * 0.25f));
 		if (this.flower.getAge() > maxAge) {
 			if (!wasCut && this.flower.getMate() != null) {
@@ -415,7 +418,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 				if (above instanceof TileEntityFlower) {
 					this.world.setBlockToAir(pos.up());
 				}
-				Gardening.plant(this.world, pos, offspring, this.getOwner());
+				BotanyCore.getFlowerRoot().plant(this.world, pos, offspring, this.getOwner());
 			} else {
 				this.kill();
 			}

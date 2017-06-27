@@ -11,6 +11,8 @@ import java.util.Random;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import com.mojang.authlib.GameProfile;
@@ -34,6 +36,7 @@ import binnie.botany.api.IFlower;
 import binnie.botany.api.IFlowerGenome;
 import binnie.botany.api.IFlowerMutation;
 import binnie.botany.api.IFlowerRoot;
+import binnie.botany.flower.TileEntityFlower;
 
 public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	static final String UID = "rootFlowers";
@@ -276,5 +279,50 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 			Collections.shuffle(FlowerRoot.colourMixes);
 		}
 		return FlowerRoot.colourMixes;
+	}
+	
+	public boolean plant(World world, BlockPos pos, IFlower flower, GameProfile owner) {
+		boolean set = world.setBlockState(pos, Botany.flower.getDefaultState());
+		if (!set) {
+			return false;
+		}
+		TileEntity tile = world.getTileEntity(pos);
+		TileEntity below = world.getTileEntity(pos.down());
+		if (tile != null && tile instanceof TileEntityFlower) {
+			TileEntityFlower tileFlower = (TileEntityFlower) tile;
+			if (below instanceof TileEntityFlower) {
+				tileFlower.setSection(((TileEntityFlower) below).getSection());
+			} else {
+				tileFlower.create(flower, owner);
+			}
+		}
+		tryGrowSection(world, pos);
+		return true;
+	}
+	
+	@Override
+	public void tryGrowSection(World world, BlockPos pos) {
+		if (world.isRemote) {
+			return;
+		}
+		TileEntity tileFlower = world.getTileEntity(pos);
+		if(tileFlower == null || !(tileFlower instanceof TileEntityFlower)){
+			return;
+		}
+		IFlower flower = ((TileEntityFlower) tileFlower).getFlower();
+		int section = ((TileEntityFlower) tileFlower).getSection();
+		if(flower == null || section >= flower.getGenome().getPrimary().getType().getSections() - 1 || flower.getAge() <= 0){
+			return;
+		}
+		world.setBlockState(pos.up(), Botany.flower.getDefaultState());
+		TileEntity flowerAbove = world.getTileEntity(pos.up());
+		if (flowerAbove != null && flowerAbove instanceof TileEntityFlower) {
+			((TileEntityFlower) flowerAbove).setSection(section + 1);
+		}
+	}
+	
+	@Override
+	public void onGrowFromSeed(World world, BlockPos pos) {
+		tryGrowSection(world, pos);
 	}
 }

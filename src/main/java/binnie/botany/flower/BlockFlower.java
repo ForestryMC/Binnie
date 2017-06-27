@@ -41,9 +41,9 @@ import forestry.core.blocks.IColoredBlock;
 import binnie.botany.Botany;
 import binnie.botany.api.IFlower;
 import binnie.botany.api.IFlowerGenome;
+import binnie.botany.api.IFlowerRoot;
 import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
-import binnie.botany.gardening.Gardening;
 import binnie.botany.genetics.EnumFlowerType;
 import binnie.botany.genetics.FlowerDefinition;
 import binnie.botany.network.PacketID;
@@ -151,10 +151,11 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 		super.onBlockPlacedBy(world, pos, state, placer, stack);
+		IFlowerRoot flowerRoot = BotanyCore.getFlowerRoot();
 		final TileEntity flower = world.getTileEntity(pos);
 		if (!BinnieCore.getBinnieProxy().isSimulating(world)) {
 			if (flower != null && flower instanceof TileEntityFlower) {
-				final IFlower f = BotanyCore.getFlowerRoot().getMember(stack);
+				final IFlower f = flowerRoot.getMember(stack);
 				if (f != null) {
 					((TileEntityFlower) flower).setRender(new TileEntityFlower.RenderInfo(f, (TileEntityFlower) flower));
 				}
@@ -170,7 +171,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 				((TileEntityFlower) flower).create(stack, owner);
 			}
 		}
-		Gardening.tryGrowSection(world, pos);
+		flowerRoot.tryGrowSection(world, pos);
 	}
 
 	@Override
@@ -207,7 +208,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 	}
 
 	protected boolean canPlaceBlockOn(final Block block) {
-		return block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.FARMLAND || Gardening.isSoil(block);
+		return block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.FARMLAND || BotanyCore.getGardening().isSoil(block);
 	}
 
 	@Override

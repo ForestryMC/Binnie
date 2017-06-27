@@ -6,8 +6,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import binnie.botany.api.IFlower;
+import binnie.botany.api.IFlowerRoot;
 import binnie.botany.core.BotanyCore;
-import binnie.botany.gardening.Gardening;
 
 public class FarmableVanillaFlower extends FarmableFlower {
 	@Override
@@ -17,7 +17,8 @@ public class FarmableVanillaFlower extends FarmableFlower {
 
 	@Override
 	public boolean plantSaplingAt(final EntityPlayer player, final ItemStack germling, final World world, final BlockPos pos) {
-		final IFlower flower = BotanyCore.getFlowerRoot().getConversion(germling);
-		return Gardening.plant(world, pos, flower, player.getGameProfile());
+		IFlowerRoot flowerRoot = BotanyCore.getFlowerRoot();
+		IFlower flower = flowerRoot.getConversion(germling);
+		return flowerRoot.plant(world, pos, flower, player.getGameProfile());
 	}
 }

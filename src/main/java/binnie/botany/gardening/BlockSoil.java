@@ -36,6 +36,7 @@ import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
 import binnie.botany.api.EnumSoilType;
 import binnie.botany.api.IBlockSoil;
+import binnie.botany.core.BotanyCore;
 
 public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 	public static final PropertyEnum<EnumMoisture> MOISTURE = PropertyEnum.create("moisture", EnumMoisture.class);
@@ -199,7 +200,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 	@Override
 	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
 		EnumMoisture moisture = state.getValue(MOISTURE);
-		EnumMoisture desiredMoisture = Gardening.getNaturalMoisture(world, pos);
+		EnumMoisture desiredMoisture = BotanyCore.getGardening().getNaturalMoisture(world, pos);
 		if (desiredMoisture.ordinal() > moisture.ordinal()) {
 			moisture = ((moisture == EnumMoisture.DRY) ? EnumMoisture.NORMAL : EnumMoisture.DAMP);
 		}
@@ -253,7 +254,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 			return false;
 		}
 		final IBlockState old = world.getBlockState(pos);
-		return world.setBlockState(pos, Gardening.getSoilBlock(maxLevel, this.weedKilled).getDefaultState().withProperty(ACIDITY, old.getValue(ACIDITY)).withProperty(MOISTURE, old.getValue(MOISTURE)), 2);
+		return world.setBlockState(pos, BotanyCore.getGardening().getSoilBlock(maxLevel, this.weedKilled).getDefaultState().withProperty(ACIDITY, old.getValue(ACIDITY)).withProperty(MOISTURE, old.getValue(MOISTURE)), 2);
 	}
 
 	@Override
@@ -263,7 +264,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 			return false;
 		}
 		final IBlockState old = world.getBlockState(pos);
-		return world.setBlockState(pos, Gardening.getSoilBlock(minLevel, this.weedKilled).getDefaultState().withProperty(ACIDITY, old.getValue(ACIDITY)).withProperty(MOISTURE, old.getValue(MOISTURE)), 2);
+		return world.setBlockState(pos, BotanyCore.getGardening().getSoilBlock(minLevel, this.weedKilled).getDefaultState().withProperty(ACIDITY, old.getValue(ACIDITY)).withProperty(MOISTURE, old.getValue(MOISTURE)), 2);
 	}
 
 	@Override

@@ -15,9 +15,9 @@ import forestry.api.farming.IFarmable;
 import binnie.botany.Botany;
 import binnie.botany.api.EnumFlowerStage;
 import binnie.botany.api.IFlower;
+import binnie.botany.api.IFlowerRoot;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.flower.TileEntityFlower;
-import binnie.botany.gardening.Gardening;
 
 public class FarmableFlower implements IFarmable {
 	@Override
@@ -34,8 +34,9 @@ public class FarmableFlower implements IFarmable {
 		}
 		// Look at TileEntityFlower::onShear logic
 		if (flower != null && flower.getAge() > 1) {
-			ItemStack mature = BotanyCore.getFlowerRoot().getMemberStack(flower, EnumFlowerStage.FLOWER);
-			ItemStack seed = BotanyCore.getFlowerRoot().getMemberStack(flower, EnumFlowerStage.SEED);
+			IFlowerRoot flowerRoot = BotanyCore.getFlowerRoot();
+			ItemStack mature = flowerRoot.getMemberStack(flower, EnumFlowerStage.FLOWER);
+			ItemStack seed = flowerRoot.getMemberStack(flower, EnumFlowerStage.SEED);
 			if (mature != null && seed != null) {
 				world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
 				return new FlowerCrop(pos, mature, seed);
@@ -58,8 +59,9 @@ public class FarmableFlower implements IFarmable {
 
 	@Override
 	public boolean plantSaplingAt(final EntityPlayer player, final ItemStack germling, final World world, final BlockPos pos) {
-		final IFlower flower = BotanyCore.getFlowerRoot().getMember(germling);
-		Gardening.plant(world, pos, flower, player.getGameProfile());
+		IFlowerRoot flowerRoot = BotanyCore.getFlowerRoot();
+		IFlower flower = flowerRoot.getMember(germling);
+		flowerRoot.plant(world, pos, flower, player.getGameProfile());
 		return true;
 	}
 }

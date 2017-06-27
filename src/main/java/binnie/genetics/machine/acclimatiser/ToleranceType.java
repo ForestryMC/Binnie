@@ -2,7 +2,8 @@ package binnie.genetics.machine.acclimatiser;
 
 import net.minecraft.item.ItemStack;
 
-import binnie.botany.gardening.Gardening;
+import binnie.botany.api.IGardeningManager;
+import binnie.botany.core.BotanyCore;
 
 public enum ToleranceType {
 	Temperature,
@@ -18,11 +19,12 @@ public enum ToleranceType {
 				return Acclimatiser.getHumidityEffect(stack);
 			}
 			case PH: {
-				if (Gardening.isAcidFertiliser(stack)) {
-					return -0.5f * Gardening.getFertiliserStrength(stack);
+				IGardeningManager gardening = BotanyCore.getGardening();
+				if (gardening.isAcidFertiliser(stack)) {
+					return -0.5f * gardening.getFertiliserStrength(stack);
 				}
-				if (Gardening.isAlkalineFertiliser(stack)) {
-					return 0.5f * Gardening.getFertiliserStrength(stack);
+				if (gardening.isAlkalineFertiliser(stack)) {
+					return 0.5f * gardening.getFertiliserStrength(stack);
 				}
 				break;
 			}

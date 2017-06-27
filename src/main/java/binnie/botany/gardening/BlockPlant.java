@@ -29,6 +29,7 @@ import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.EnumSoilType;
 import binnie.botany.api.IBlockSoil;
+import binnie.botany.core.BotanyCore;
 
 public class BlockPlant extends BlockBush implements IItemModelRegister {
 	public static final PropertyEnum<Type> PLANT_TYPE = PropertyEnum.create("plant_type", Type.class);
@@ -81,7 +82,7 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 
 	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
-		return super.canPlaceBlockAt(worldIn, pos) || Gardening.isSoil(worldIn.getBlockState(pos).getBlock());
+		return super.canPlaceBlockAt(worldIn, pos) || BotanyCore.getGardening().isSoil(worldIn.getBlockState(pos).getBlock());
 	}
 
 	@Override
@@ -122,7 +123,7 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 			}
 		}
 		Block below = world.getBlockState(pos.down()).getBlock();
-		if (Gardening.isSoil(below)) {
+		if (BotanyCore.getGardening().isSoil(below)) {
 			IBlockSoil soil = (IBlockSoil) below;
 			if(rand.nextInt(3) != 0){
 				return;

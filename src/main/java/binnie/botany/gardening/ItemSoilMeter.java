@@ -24,6 +24,8 @@ import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
 import binnie.botany.api.IBlockSoil;
+import binnie.botany.api.IGardeningManager;
+import binnie.botany.core.BotanyCore;
 import binnie.core.BinnieCore;
 
 public class ItemSoilMeter extends Item implements IItemModelRegister {
@@ -63,15 +65,16 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		Block block = worldIn.getBlockState(pos).getBlock();
-		if (!Gardening.isSoil(block)) {
+		IGardeningManager gardening = BotanyCore.getGardening();
+		if (!gardening.isSoil(block)) {
 			pos = pos.down();
 			block = worldIn.getBlockState(pos).getBlock();
 		}
-		if (!Gardening.isSoil(block)) {
+		if (!gardening.isSoil(block)) {
 			pos = pos.down();
 			block = worldIn.getBlockState(pos).getBlock();
 		}
-		if (Gardening.isSoil(block) && !BinnieCore.getBinnieProxy().isSimulating(worldIn)) {
+		if (gardening.isSoil(block) && !BinnieCore.getBinnieProxy().isSimulating(worldIn)) {
 			IBlockSoil soil = (IBlockSoil) block;
 			String info = Binnie.LANGUAGE.localise("botany.soil.type") + ": ";
 			info = info + soil.getType(worldIn, pos).getTranslated(true);

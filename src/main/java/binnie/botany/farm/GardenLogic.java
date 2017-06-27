@@ -35,8 +35,9 @@ import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
 import binnie.botany.api.EnumSoilType;
 import binnie.botany.api.IBlockSoil;
+import binnie.botany.api.IGardeningManager;
+import binnie.botany.core.BotanyCore;
 import binnie.botany.flower.TileEntityFlower;
-import binnie.botany.gardening.Gardening;
 import binnie.core.liquid.ManagerLiquid;
 
 public class GardenLogic extends FarmLogic {
@@ -73,11 +74,12 @@ public class GardenLogic extends FarmLogic {
 
 	@Override
 	public boolean isAcceptedResource(final ItemStack itemstack) {
-		return Gardening.isSoil(itemstack.getItem()) ||
+		IGardeningManager gardening = BotanyCore.getGardening();
+		return gardening.isSoil(itemstack.getItem()) ||
 				itemstack.getItem() == Item.getItemFromBlock(Blocks.SAND) ||
 				itemstack.getItem() == Item.getItemFromBlock(Blocks.DIRT) ||
-				Gardening.isAcidFertiliser(itemstack) ||
-				Gardening.isAlkalineFertiliser(itemstack);
+				gardening.isAcidFertiliser(itemstack) ||
+				gardening.isAlkalineFertiliser(itemstack);
 	}
 
 	@Override
@@ -99,9 +101,10 @@ public class GardenLogic extends FarmLogic {
 	}
 
 	private boolean maintainSoil(World world, BlockPos pos, FarmDirection direction, int extent, IFarmHousing housing) {
+		IGardeningManager gardening = BotanyCore.getGardening();
 		for (int i = 0; i < extent; ++i) {
 			BlockPos position = pos.offset(direction.getFacing(), i);
-			if (this.fertilised && Gardening.isSoil(getBlock(world, position))) {
+			if (this.fertilised && gardening.isSoil(getBlock(world, position))) {
 				IBlockSoil soil = (IBlockSoil) getBlock(world, position);
 				if (soil.fertilise(world, position, EnumSoilType.FLOWERBED)) {
 					continue;
@@ -110,7 +113,7 @@ public class GardenLogic extends FarmLogic {
 			if (getBlock(world, position.up()) == Botany.plant) {
 				world.setBlockToAir(position.up());
 			} else {
-				if (this.acidity != null && Gardening.isSoil(getBlock(world, position))) {
+				if (this.acidity != null && gardening.isSoil(getBlock(world, position))) {
 					IBlockSoil soil = (IBlockSoil) getBlock(world, position);
 					EnumAcidity pH = soil.getPH(world, position);
 					if (pH.ordinal() < this.acidity.ordinal()) {
@@ -155,7 +158,7 @@ public class GardenLogic extends FarmLogic {
 						}
 						BlockPos previous = position.offset(cclock.getFacing());
 						final ItemStack soil2 = this.getAsItemStack(world, previous);
-						if (!Gardening.isSoil(soil2.getItem())) {
+						if (!gardening.isSoil(soil2.getItem())) {
 							this.trySetSoil(world, position, housing);
 						}
 					}
@@ -306,11 +309,12 @@ public class GardenLogic extends FarmLogic {
 	}
 
 	protected boolean maintainCrops(World world, BlockPos pos, FarmDirection direction, int extent, IFarmHousing housing) {
+		IGardeningManager gardening = BotanyCore.getGardening();
 		for (int i = 0; i < extent; ++i) {
 			BlockPos position = pos.offset(direction.getFacing(), i);
 			if (this.isAirBlock(world, position) || BlockUtil.isReplaceableBlock(getBlockState(world, position), world, position)) {
 				ItemStack below = this.getAsItemStack(world, position.down());
-				if (Gardening.isSoil(below.getItem())) {
+				if (gardening.isSoil(below.getItem())) {
 					return trySetCrop(world, position, housing);
 				}
 			}
@@ -337,7 +341,7 @@ public class GardenLogic extends FarmLogic {
 	}
 
 	public ItemStack getAvailableAcid(IFarmHousing housing) {
-		for (final ItemStack stack : Gardening.getAcidFertilisers()) {
+		for (final ItemStack stack : BotanyCore.getGardening().getAcidFertilisers()) {
 			if (!stack.isEmpty()) {
 				final NonNullList<ItemStack> resources = NonNullList.create();
 				resources.add(stack);
@@ -350,7 +354,7 @@ public class GardenLogic extends FarmLogic {
 	}
 
 	public ItemStack getAvailableAlkaline(IFarmHousing housing) {
-		for (final ItemStack stack : Gardening.getAlkalineFertilisers()) {
+		for (final ItemStack stack : BotanyCore.getGardening().getAlkalineFertilisers()) {
 			if (!stack.isEmpty()) {
 				final NonNullList<ItemStack> resources = NonNullList.create();
 				resources.add(stack);

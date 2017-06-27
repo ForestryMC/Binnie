@@ -18,7 +18,6 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
@@ -29,6 +28,8 @@ import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumSoilType;
 import binnie.botany.api.IBlockSoil;
 import binnie.botany.api.IFlower;
+import binnie.botany.api.IFlowerRoot;
+import binnie.botany.api.IGardeningManager;
 import binnie.botany.ceramic.BlockCeramic;
 import binnie.botany.ceramic.BlockCeramicPatterned;
 import binnie.botany.ceramic.BlockStainedGlass;
@@ -42,7 +43,6 @@ import binnie.botany.flower.ItemInsulatedTube;
 import binnie.botany.flower.TileEntityFlower;
 import binnie.botany.gardening.BlockPlant;
 import binnie.botany.gardening.BlockSoil;
-import binnie.botany.gardening.Gardening;
 import binnie.botany.gardening.ItemSoilMeter;
 import binnie.botany.gardening.ItemTrowel;
 import binnie.botany.gardening.ModuleGardening;
@@ -212,20 +212,21 @@ public class Botany extends AbstractMod {
 		if (heldItem.isEmpty()) {
 			return;
 		}
-
+		
+		IGardeningManager gardening = BotanyCore.getGardening();
 		Block block = world.getBlockState(event.getPos()).getBlock();
-		if (!Gardening.isSoil(block)) {
+		if (!gardening.isSoil(block)) {
 			pos = pos.down();
 			block = world.getBlockState(pos).getBlock();
 		}
 
-		if (!Gardening.isSoil(block)) {
+		if (!gardening.isSoil(block)) {
 			return;
 		}
 
 		IBlockSoil soil = (IBlockSoil) block;
-		int fertiliserStrength = Gardening.getFertiliserStrength(heldItem);
-		if (Gardening.isNutrientFertiliser(heldItem) && soil.getType(world, pos) != EnumSoilType.FLOWERBED) {
+		int fertiliserStrength = gardening.getFertiliserStrength(heldItem);
+		if (gardening.isNutrientFertiliser(heldItem) && soil.getType(world, pos) != EnumSoilType.FLOWERBED) {
 			EnumSoilType type = soil.getType(world, pos);
 			int next = Math.min(type.ordinal() + fertiliserStrength, 2);
 			if (soil.fertilise(world, pos, EnumSoilType.values()[next]) && !player.capabilities.isCreativeMode) {
@@ -234,7 +235,7 @@ public class Botany extends AbstractMod {
 			}
 		}
 
-		if (Gardening.isAcidFertiliser(heldItem) && soil.getPH(world, pos) != EnumAcidity.ACID) {
+		if (gardening.isAcidFertiliser(heldItem) && soil.getPH(world, pos) != EnumAcidity.ACID) {
 			EnumAcidity pH = soil.getPH(world, pos);
 			int next = Math.max(pH.ordinal() - fertiliserStrength, 0);
 			if (soil.setPH(world, pos, EnumAcidity.values()[next]) && !player.capabilities.isCreativeMode) {
@@ -243,7 +244,7 @@ public class Botany extends AbstractMod {
 			}
 		}
 
-		if (Gardening.isAlkalineFertiliser(heldItem) && soil.getPH(world, pos) != EnumAcidity.ALKALINE) {
+		if (gardening.isAlkalineFertiliser(heldItem) && soil.getPH(world, pos) != EnumAcidity.ALKALINE) {
 			EnumAcidity pH = soil.getPH(world, pos);
 			int next = Math.min(pH.ordinal() + fertiliserStrength, 2);
 			if (soil.setPH(world, pos, EnumAcidity.values()[next]) && !player.capabilities.isCreativeMode) {
@@ -252,7 +253,7 @@ public class Botany extends AbstractMod {
 			}
 		}
 
-		if (Gardening.isWeedkiller(heldItem) && Gardening.addWeedKiller(world, pos) && !player.capabilities.isCreativeMode) {
+		if (gardening.isWeedkiller(heldItem) && gardening.addWeedKiller(world, pos) && !player.capabilities.isCreativeMode) {
 			heldItem.shrink(1);
 		}
 	}
@@ -263,14 +264,15 @@ public class Botany extends AbstractMod {
 		BlockPos pos = event.getPos();
 		Block block = world.getBlockState(pos.down()).getBlock();
 
-		if (!Gardening.isSoil(block)) {
+		if (!BotanyCore.getGardening().isSoil(block)) {
 			return;
 		}
 		EntityPlayer player = event.getPlayer();
 		ItemStack heldItem = player.getHeldItem(event.getHand());
-		IFlower flower = BotanyCore.getFlowerRoot().getConversion(heldItem);
+		IFlowerRoot flowerRoot = BotanyCore.getFlowerRoot();
+		IFlower flower = flowerRoot.getConversion(heldItem);
 		if (flower != null) {
-			Gardening.plant(world, pos, flower, player.getGameProfile());
+			flowerRoot.plant(world, pos, flower, player.getGameProfile());
 		}
 	}
 
@@ -291,8 +293,9 @@ public class Botany extends AbstractMod {
 				py = 1;
 			}
 			if (py >= 0) {
-				IFlower flower = BotanyCore.getFlowerRoot().getConversion(heldItem);
-				if (flower != null && Gardening.plant(world, pos.add(0, py, 0), flower, player.getGameProfile()) && !player.capabilities.isCreativeMode) {
+				IFlowerRoot flowerRoot = BotanyCore.getFlowerRoot();
+				IFlower flower = flowerRoot.getConversion(heldItem);
+				if (flower != null && flowerRoot.plant(world, pos.add(0, py, 0), flower, player.getGameProfile()) && !player.capabilities.isCreativeMode) {
 					heldItem.shrink(1);
 				}
 			}
@@ -303,7 +306,7 @@ public class Botany extends AbstractMod {
 	public void onBonemeal(final BonemealEvent event) {
 		BlockPos pos = event.getPos();
 		Block block = event.getBlock().getBlock();
-		if (Gardening.isSoil(block)) {
+		if (BotanyCore.getGardening().isSoil(block)) {
 			IBlockSoil soil = (IBlockSoil) block;
 			if (soil.fertilise(event.getWorld(), pos, EnumSoilType.LOAM)) {
 				event.setResult(Event.Result.ALLOW);
@@ -312,30 +315,6 @@ public class Botany extends AbstractMod {
 		TileEntity tile = event.getWorld().getTileEntity(pos);
 		if (tile instanceof TileEntityFlower && ((TileEntityFlower) tile).onBonemeal()) {
 			event.setResult(Event.Result.ALLOW);
-		}
-	}
-
-	@Mod.EventHandler
-	public void onIMC(final FMLInterModComms.IMCEvent event) {
-		for (FMLInterModComms.IMCMessage message : event.getMessages()) {
-			if (message.key.equals("add-nutrient-fertiliser-1")) {
-				ModuleGardening.queuedNutrientFertilisers.put(message.getItemStackValue(), 1);
-			}
-			if (message.key.equals("add-nutrient-fertiliser-2")) {
-				ModuleGardening.queuedNutrientFertilisers.put(message.getItemStackValue(), 2);
-			}
-			if (message.key.equals("add-acid-fertiliser-1")) {
-				ModuleGardening.queuedAcidFertilisers.put(message.getItemStackValue(), 1);
-			}
-			if (message.key.equals("add-acid-fertiliser-2")) {
-				ModuleGardening.queuedAcidFertilisers.put(message.getItemStackValue(), 2);
-			}
-			if (message.key.equals("add-alkaline-fertiliser-1")) {
-				ModuleGardening.queuedAlkalineFertilisers.put(message.getItemStackValue(), 1);
-			}
-			if (message.key.equals("add-alkaline-fertiliser-2")) {
-				ModuleGardening.queuedAlkalineFertilisers.put(message.getItemStackValue(), 1);
-			}
 		}
 	}
 

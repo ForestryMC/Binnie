@@ -10,4 +10,9 @@ public class FlowerManager {
 	 * Used to create new flowers.
 	 */
 	public static IFlowerFactory flowerFactory;
+	
+	/**
+	 * Used to manager soil.
+	 */
+	public static IGardeningManager gardening;
 }
