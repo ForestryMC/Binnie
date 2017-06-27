@@ -8,12 +8,15 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -23,12 +26,14 @@ import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeType;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IHiveDrop;
+import forestry.api.apiculture.IHiveTile;
 import forestry.api.core.Tabs;
+import forestry.apiculture.tiles.TileHive;
 
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.blocks.type.EnumHiveType;
 
-public class BlockExtraBeeHive extends Block {
+public class BlockExtraBeeHive extends Block implements ITileEntityProvider {
 
 	public static final PropertyEnum<EnumHiveType> hiveType = PropertyEnum.create("type", EnumHiveType.class);
 
@@ -63,7 +68,32 @@ public class BlockExtraBeeHive extends Block {
 	public IBlockState getStateFromMeta(int meta) {
 		return getDefaultState().withProperty(hiveType, EnumHiveType.values()[meta]);
 	}
-
+	
+	@Override
+	public void onBlockClicked(World world, BlockPos pos, EntityPlayer player) {
+		super.onBlockClicked(world, pos, player);
+		TileEntity tile = world.getTileEntity(pos);
+		if (tile instanceof IHiveTile) {
+			IHiveTile hive = (IHiveTile) tile;
+			hive.onAttack(world, pos, player);
+		}
+	}
+	
+	@Override
+	public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player) {
+		TileEntity tile = world.getTileEntity(pos);
+		if (tile instanceof IHiveTile) {
+			IHiveTile hive = (IHiveTile) tile;
+			hive.onBroken(world, pos, player, canHarvestBlock(world, pos, player));
+		}
+	}
+	
+	@Nullable
+	@Override
+	public TileEntity createNewTileEntity(World worldIn, int meta) {
+		return new TileHive();
+	}
+	
 	@Override
 	@Nonnull
 	protected BlockStateContainer createBlockState() {
