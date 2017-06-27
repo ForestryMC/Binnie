@@ -9,8 +9,8 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
-import binnie.core.BinnieCore;
 import binnie.core.Mods;
+import binnie.core.util.I18N;
 
 public enum FluidContainerType {
 	CAPSULE,
@@ -35,7 +35,7 @@ public enum FluidContainerType {
 	}
 
 	public String getDisplayName() {
-		return BinnieCore.getBinnieProxy().localise("item.container." + this.name().toLowerCase());
+		return I18N.localise("binniecore.item.container." + this.name().toLowerCase());
 	}
 
 	@Nullable

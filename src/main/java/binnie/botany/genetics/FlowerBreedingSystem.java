@@ -19,10 +19,10 @@ import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.EnumFlowerStage;
 import binnie.botany.api.IBotanistTracker;
 import binnie.botany.core.BotanyCore;
-import binnie.core.BinnieCore;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.ForestryAllele;
 import binnie.core.genetics.Tolerance;
+import binnie.core.util.I18N;
 
 public class FlowerBreedingSystem extends BreedingSystem {
 	public FlowerBreedingSystem() {
@@ -54,16 +54,16 @@ public class FlowerBreedingSystem extends BreedingSystem {
 	public String getAlleleName(final IChromosomeType chromosome, final IAllele allele) {
 		if (chromosome == EnumFlowerChromosome.FERTILITY) {
 			if (allele.getUID().contains("Low")) {
-				return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.fertility.low");
+				return I18N.localise("binniecore.allele.fertility.low");
 			}
 			if (allele.getUID().contains("Normal")) {
-				return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.fertility.normal");
+				return I18N.localise("binniecore.allele.fertility.normal");
 			}
 			if (allele.getUID().contains("High")) {
-				return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.fertility.high");
+				return I18N.localise("binniecore.allele.fertility.high");
 			}
 			if (allele.getUID().contains("Maximum")) {
-				return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.fertility.maximum");
+				return I18N.localise("binniecore.allele.fertility.maximum");
 			}
 		}
 		return super.getAlleleName(chromosome, allele);

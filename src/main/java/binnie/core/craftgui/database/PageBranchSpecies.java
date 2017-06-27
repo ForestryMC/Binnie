@@ -6,11 +6,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IClassification;
 
-import binnie.Binnie;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.events.EventValueChanged;
+import binnie.core.util.I18N;
 
 @SideOnly(Side.CLIENT)
 public class PageBranchSpecies extends PageBranch {
@@ -23,7 +23,7 @@ public class PageBranchSpecies extends PageBranch {
 
 	public PageBranchSpecies(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);
-		this.pageBranchSpecies_title = new ControlTextCentered(this, 8, Binnie.LANGUAGE.localise("binniecore.gui.database.species"));
+		this.pageBranchSpecies_title = new ControlTextCentered(this, 8, I18N.localise("binniecore.gui.database.species"));
 		this.addEventHandler(new EventValueChanged.Handler() {
 			@Override
 			public void onEvent(final EventValueChanged event) {

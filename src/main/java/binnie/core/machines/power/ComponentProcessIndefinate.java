@@ -4,10 +4,10 @@ import javax.annotation.Nullable;
 
 import net.minecraft.nbt.NBTTagCompound;
 
-import binnie.core.BinnieCore;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
 import binnie.core.machines.network.INetwork;
+import binnie.core.util.I18N;
 
 public abstract class ComponentProcessIndefinate extends MachineComponent implements IProcess, INetwork.TilePacketSync {
 	int clientEnergyPerSecond;
@@ -81,7 +81,7 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 		if (this.actionCancelTask == 0.0f) {
 			return null;
 		} else {
-			return new ErrorState(BinnieCore.getBinnieProxy().localise("machine.errors.task.cancelled.desc"), BinnieCore.getBinnieProxy().localise("machine.errors.task.cancelled.info"));
+			return new ErrorState(I18N.localise("binniecore.machine.errors.task.cancelled.desc"), I18N.localise("binniecore.machine.errors.task.cancelled.info"));
 		}
 	}
 
@@ -89,7 +89,7 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 	@Nullable
 	public ErrorState canProgress() {
 		if (this.actionPauseProcess != 0.0f) {
-			return new ErrorState(BinnieCore.getBinnieProxy().localise("machine.errors.task.process.paused.desc"), BinnieCore.getBinnieProxy().localise("machine.errors.task.process.paused.info"));
+			return new ErrorState(I18N.localise("binniecore.machine.errors.task.process.paused.desc"), I18N.localise("binniecore.machine.errors.task.process.paused.info"));
 		} else if (this.getPower().getInterface().getEnergy(PowerSystem.RF) < this.getEnergyPerTick()) {
 			return new ErrorState.InsufficientPower();
 		} else {
@@ -115,7 +115,7 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 
 	@Override
 	public String getTooltip() {
-		return BinnieCore.getBinnieProxy().localise("machine.tooltips.processing");
+		return I18N.localise("binniecore.machine.tooltips.processing");
 	}
 
 	@Override

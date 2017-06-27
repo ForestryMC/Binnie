@@ -18,7 +18,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import forestry.core.models.BlockModelEntry;
 import forestry.core.models.ModelEntry;
 
-import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.gui.IBinnieGUID;
@@ -122,14 +121,5 @@ public class BinnieModProxy implements IBinnieModProxy {
 
 	@Override
 	public void postInit() {
-	}
-
-	@Override
-	public String localise(final String string) {
-		return Binnie.LANGUAGE.localise(this.getMod(), string);
-	}
-
-	public String localiseOrBlank(final String string) {
-		return Binnie.LANGUAGE.localiseOrBlank(this.getMod(), string);
 	}
 }

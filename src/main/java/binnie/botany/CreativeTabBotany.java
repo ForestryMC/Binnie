@@ -7,6 +7,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import binnie.core.util.I18N;
+
 public class CreativeTabBotany extends CreativeTabs {
 	public static CreativeTabs instance = new CreativeTabBotany();
 
@@ -28,7 +30,7 @@ public class CreativeTabBotany extends CreativeTabs {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getTabLabel() {
-		return Botany.proxy.localise("tab.botany");
+		return I18N.localise("botany.tab.botany");
 	}
 
 	@Override

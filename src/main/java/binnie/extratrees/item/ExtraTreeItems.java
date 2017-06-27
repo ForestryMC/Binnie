@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.item.IItemMiscProvider;
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 
 public enum ExtraTreeItems implements IItemMiscProvider {
@@ -39,7 +40,7 @@ public enum ExtraTreeItems implements IItemMiscProvider {
 
 	@Override
 	public String getName(final ItemStack stack) {
-		return ExtraTrees.proxy.localise("item." + name + ".name");
+		return I18N.localise("extratrees.item." + name + ".name");
 	}
 
 	@Override

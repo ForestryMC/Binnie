@@ -10,8 +10,8 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.Binnie;
 import binnie.botany.api.EnumSoilType;
+import binnie.core.util.I18N;
 
 public class ItemSoil extends ItemBlock {
 	private final EnumSoilType type;
@@ -37,7 +37,7 @@ public class ItemSoil extends ItemBlock {
 			tooltip.add(info);
 		}
 		if (this.noWeed) {
-			tooltip.add(TextFormatting.GREEN + Binnie.LANGUAGE.localise("botany.soil.weedkiller"));
+			tooltip.add(TextFormatting.GREEN + I18N.localise("botany.soil.weedkiller"));
 		}
 	}
 

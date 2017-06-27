@@ -23,7 +23,6 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleSpecies;
 
 import binnie.Binnie;
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.core.Control;
@@ -35,7 +34,7 @@ import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.genetics.BreedingSystem;
-import binnie.extratrees.ExtraTrees;
+import binnie.core.util.I18N;
 
 @SideOnly(Side.CLIENT)
 public class PageSpeciesTreeGenome extends PageSpecies {
@@ -45,9 +44,9 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 
 	public static String tolerated(final boolean t) {
 		if (t) {
-			return BinnieCore.getBinnieProxy().localise("gui.tolerated");
+			return I18N.localise("binniecore.gui.tolerated");
 		}
-		return BinnieCore.getBinnieProxy().localise("gui.nottolerated");
+		return I18N.localise("binniecore.gui.nottolerated");
 	}
 
 	@Override
@@ -75,7 +74,7 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 		final BreedingSystem syst = Binnie.GENETICS.treeBreedingSystem;
 		new ControlText(contents, new Area(w2, y, w3, th), treeSpecies.getPlantType().toString(), TextJustification.MIDDLE_LEFTt);
 		y += th;
-		new ControlText(contents, new Area(0, y, w2, th), BinnieCore.getBinnieProxy().localise("gui.temperature.short") + " : ", TextJustification.MiddleRight);
+		new ControlText(contents, new Area(0, y, w2, th), I18N.localise("binniecore.gui.temperature.short") + " : ", TextJustification.MiddleRight);
 		new ControlText(contents, new Area(w2, y, w3, th), treeSpecies.getTemperature().getName(), TextJustification.MIDDLE_LEFTt);
 		y += th;
 		TextureMap map = Minecraft.getMinecraft().getTextureMapBlocks();
@@ -92,7 +91,7 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 			ex.printStackTrace();
 		}
 		if (leaf != null) {
-			new ControlText(contents, new Area(0, y, w2, th2), ExtraTrees.proxy.localise("gui.database.leaves") + " : ", TextJustification.MiddleRight);
+			new ControlText(contents, new Area(0, y, w2, th2), I18N.localise("extratrees.gui.database.leaves") + " : ", TextJustification.MiddleRight);
 			new ControlBlockIconDisplay(contents, w2, y, leaf).setColour(leafColour);
 			if (fruit != null && !treeSpecies.getUID().equals("forestry.treeOak")) {
 				new ControlBlockIconDisplay(contents, w2, y, fruit).setColour(fruitColour);
@@ -102,7 +101,7 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 		Map<ItemStack, Float> products = fruitProvider.getProducts();
 		ItemStack log = treeSpecies.getWoodProvider().getWoodStack();
 		if (log.isEmpty()) {
-			new ControlText(contents, new Area(0, y, w2, th2), ExtraTrees.proxy.localise("gui.database.log") + " : ", TextJustification.MiddleRight);
+			new ControlText(contents, new Area(0, y, w2, th2), I18N.localise("extratrees.gui.database.log") + " : ", TextJustification.MiddleRight);
 			final ControlItemDisplay display = new ControlItemDisplay(contents, w2, y);
 			display.setItemStack(log);
 			display.setTooltip();

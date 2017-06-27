@@ -19,7 +19,7 @@ import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.minecraft.control.ControlIconDisplay;
 import binnie.core.craftgui.renderer.RenderUtil;
-import binnie.genetics.Genetics;
+import binnie.core.util.I18N;
 import binnie.genetics.gui.ControlAnalystPage;
 
 public class AnalystPageAppearance extends ControlAnalystPage {
@@ -32,11 +32,11 @@ public class AnalystPageAppearance extends ControlAnalystPage {
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColour(this.getColour());
 		y += 12;
 		final ControlColourDisplay a = new ControlColourDisplay(this, this.width() / 2 - 28, y, genome.getPrimaryColor());
-		a.addTooltip(Genetics.proxy.localise("gui.analyst.appearance.primary"));
+		a.addTooltip(I18N.localise("genetics.gui.analyst.appearance.primary"));
 		final ControlColourDisplay b = new ControlColourDisplay(this, this.width() / 2 - 8, y, genome.getSecondaryColor());
-		b.addTooltip(Genetics.proxy.localise("gui.analyst.appearance.secondary"));
+		b.addTooltip(I18N.localise("genetics.gui.analyst.appearance.secondary"));
 		final ControlColourDisplay c = new ControlColourDisplay(this, this.width() / 2 + 12, y, genome.getStemColor());
-		c.addTooltip(Genetics.proxy.localise("gui.analyst.appearance.stem"));
+		c.addTooltip(I18N.localise("genetics.gui.analyst.appearance.stem"));
 		y += 26;
 		IFlowerType type = genome.getType();
 		final int sections = type.getSections();
@@ -71,6 +71,6 @@ public class AnalystPageAppearance extends ControlAnalystPage {
 
 	@Override
 	public String getTitle() {
-		return Genetics.proxy.localise("gui.analyst.appearance.title");
+		return I18N.localise("genetics.gui.analyst.appearance.title");
 	}
 }

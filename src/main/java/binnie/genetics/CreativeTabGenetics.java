@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import binnie.core.util.I18N;
 import binnie.genetics.item.GeneticsItems;
 
 public class CreativeTabGenetics extends CreativeTabs {
@@ -24,7 +25,7 @@ public class CreativeTabGenetics extends CreativeTabs {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getTabLabel() {
-		return Genetics.proxy.localise("tab.genetics");
+		return I18N.localise("genetics.tab.genetics");
 	}
 
 	@Override

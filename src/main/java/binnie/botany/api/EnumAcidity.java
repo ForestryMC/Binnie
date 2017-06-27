@@ -12,7 +12,7 @@ public enum EnumAcidity implements IStringSerializable {
 	ALKALINE(TextFormatting.AQUA);
 
 	@Nullable
-	final TextFormatting color;
+	TextFormatting color;
 
 	EnumAcidity(@Nullable TextFormatting color) {
 		this.color = color;
@@ -23,7 +23,11 @@ public enum EnumAcidity implements IStringSerializable {
 		return this.name().toLowerCase();
 	}
 
-	public String getTranslated(boolean withColor) {
-		return (withColor && color != null ? color : "") + I18n.translateToLocal("botany.ph." + getName());
+	public String getLocalisedName(boolean withColor) {
+		String localisedName = I18n.translateToLocal("botany.ph." + getName());
+		if(withColor && color != null){
+			localisedName +=color;
+		}
+		return localisedName;
 	}
 }

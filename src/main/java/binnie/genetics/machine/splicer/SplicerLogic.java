@@ -15,7 +15,7 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentProcess;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
-import binnie.genetics.Genetics;
+import binnie.core.util.I18N;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.genetics.Engineering;
@@ -108,12 +108,12 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 	@Override
 	public ErrorState canWork() {
 		if (this.getUtil().isSlotEmpty(Splicer.SLOT_TARGET)) {
-			return new ErrorState.NoItem(Genetics.proxy.localise("machine.advMachine.splicer.errors.no.individual.desc"), Splicer.SLOT_TARGET);
+			return new ErrorState.NoItem(I18N.localise("genetics.machine.advMachine.splicer.errors.no.individual.desc"), Splicer.SLOT_TARGET);
 		}
 
 		ItemStack serum = this.getUtil().getStack(Splicer.SLOT_SERUM_VIAL);
 		if (serum.isEmpty()) {
-			return new ErrorState.NoItem(Genetics.proxy.localise("machine.errors.no.serum.desc"), Splicer.SLOT_SERUM_VIAL);
+			return new ErrorState.NoItem(I18N.localise("genetics.machine.errors.no.serum.desc"), Splicer.SLOT_SERUM_VIAL);
 		}
 
 		final ErrorState state = this.isValidSerum();
@@ -122,7 +122,7 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 		}
 
 		if (Engineering.getCharges(serum) == 0) {
-			return new ErrorState(Genetics.proxy.localise("machine.errors.empty.serum.desc"), Genetics.proxy.localise("machine.errors.empty.serum.info"));
+			return new ErrorState(I18N.localise("genetics.machine.errors.empty.serum.desc"), I18N.localise("genetics.machine.errors.empty.serum.info"));
 		}
 		return super.canWork();
 	}
@@ -136,10 +136,10 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 		final ItemStack target = this.getUtil().getStack(Splicer.SLOT_TARGET);
 		final IGene[] genes = Engineering.getGenes(serum);
 		if (genes.length == 0) {
-			return new ErrorState(Genetics.proxy.localise("machine.errors.invalid.serum.desc"), Genetics.proxy.localise("machine.errors.invalid.serum.no.genes.info"));
+			return new ErrorState(I18N.localise("genetics.machine.errors.invalid.serum.desc"), I18N.localise("genetics.machine.errors.invalid.serum.no.genes.info"));
 		}
 		if (!genes[0].getSpeciesRoot().isMember(target)) {
-			return new ErrorState(Genetics.proxy.localise("machine.errors.invalid.serum.desc"), Genetics.proxy.localise("machine.errors.invalid.serum.mismatch.info"));
+			return new ErrorState(I18N.localise("genetics.machine.errors.invalid.serum.desc"), I18N.localise("genetics.machine.errors.invalid.serum.mismatch.info"));
 		}
 		final IIndividual individual = genes[0].getSpeciesRoot().getMember(target);
 		boolean hasAll = true;
@@ -151,7 +151,7 @@ public class SplicerLogic extends ComponentProcess implements IProcess {
 			}
 		}
 		if (hasAll) {
-			return new ErrorState(Genetics.proxy.localise("genetics.machine.errors.defunct.serum.desc"), Genetics.proxy.localise("machine.errors.defunct.serum.info"));
+			return new ErrorState(I18N.localise("genetics.genetics.machine.errors.defunct.serum.desc"), I18N.localise("genetics.machine.errors.defunct.serum.info"));
 		}
 		return null;
 	}

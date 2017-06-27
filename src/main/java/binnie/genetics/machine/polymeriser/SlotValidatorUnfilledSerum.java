@@ -3,7 +3,7 @@ package binnie.genetics.machine.polymeriser;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.inventory.SlotValidator;
-import binnie.genetics.Genetics;
+import binnie.core.util.I18N;
 import binnie.genetics.api.IItemChargeable;
 import binnie.genetics.machine.ModuleMachine;
 
@@ -19,6 +19,6 @@ public class SlotValidatorUnfilledSerum extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return Genetics.proxy.localise("machine.machine.polymeriser.tooltips.slots.unfilled");
+		return I18N.localise("genetics.machine.machine.polymeriser.tooltips.slots.unfilled");
 	}
 }

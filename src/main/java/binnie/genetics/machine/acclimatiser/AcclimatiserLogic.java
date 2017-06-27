@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.power.ComponentProcessIndefinate;
 import binnie.core.machines.power.ErrorState;
-import binnie.genetics.Genetics;
+import binnie.core.util.I18N;
 
 public class AcclimatiserLogic extends ComponentProcessIndefinate {
 	public AcclimatiserLogic(final IMachine machine) {
@@ -18,10 +18,10 @@ public class AcclimatiserLogic extends ComponentProcessIndefinate {
 	@Override
 	public ErrorState canWork() {
 		if (this.getUtil().getStack(Acclimatiser.SLOT_TARGET).isEmpty()) {
-			return new ErrorState.NoItem(Genetics.proxy.localise("machine.labMachine.acclimatiser.errors.no.individual.desc"), Acclimatiser.SLOT_TARGET);
+			return new ErrorState.NoItem(I18N.localise("genetics.machine.labMachine.acclimatiser.errors.no.individual.desc"), Acclimatiser.SLOT_TARGET);
 		}
 		if (this.getUtil().getNonEmptyStacks(Acclimatiser.SLOT_ACCLIMATISER).isEmpty()) {
-			return new ErrorState.NoItem(Genetics.proxy.localise("machine.labMachine.acclimatiser.errors.no.item.desc"), Acclimatiser.SLOT_ACCLIMATISER);
+			return new ErrorState.NoItem(I18N.localise("genetics.machine.labMachine.acclimatiser.errors.no.item.desc"), Acclimatiser.SLOT_ACCLIMATISER);
 		}
 		return super.canWork();
 	}
@@ -29,7 +29,7 @@ public class AcclimatiserLogic extends ComponentProcessIndefinate {
 	@Override
 	public ErrorState canProgress() {
 		if (!Acclimatiser.canAcclimatise(this.getUtil().getStack(Acclimatiser.SLOT_TARGET), this.getUtil().getNonEmptyStacks(Acclimatiser.SLOT_ACCLIMATISER))) {
-			return new ErrorState.InvalidItem(Genetics.proxy.localise("machine.labMachine.acclimatiser.errors.can.not.acclimatise.desc"), Acclimatiser.SLOT_TARGET);
+			return new ErrorState.InvalidItem(I18N.localise("genetics.machine.labMachine.acclimatiser.errors.can.not.acclimatise.desc"), Acclimatiser.SLOT_TARGET);
 		}
 		return super.canProgress();
 	}

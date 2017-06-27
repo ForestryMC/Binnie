@@ -12,7 +12,7 @@ import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.genetics.BreedingSystem;
-import binnie.genetics.Genetics;
+import binnie.core.util.I18N;
 
 public class AnalystPageKaryogram extends ControlAnalystPage {
 	public AnalystPageKaryogram(final IWidget parent, final Area area, final IIndividual ind) {
@@ -45,6 +45,6 @@ public class AnalystPageKaryogram extends ControlAnalystPage {
 
 	@Override
 	public String getTitle() {
-		return Genetics.proxy.localise("gui.analyst.karyogram.title");
+		return I18N.localise("genetics.gui.analyst.karyogram.title");
 	}
 }

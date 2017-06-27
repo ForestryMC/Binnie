@@ -8,7 +8,7 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentProcess;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
-import binnie.genetics.Genetics;
+import binnie.core.util.I18N;
 import binnie.genetics.genetics.GeneTracker;
 import binnie.genetics.genetics.SequencerItem;
 import binnie.genetics.item.GeneticsItems;
@@ -40,7 +40,7 @@ public class SequencerLogic extends ComponentProcess implements IProcess {
 	@Override
 	public ErrorState canWork() {
 		if (this.getUtil().isSlotEmpty(Sequencer.SLOT_TARGET)) {
-			return new ErrorState.NoItem(Genetics.proxy.localise("machine.machine.sequencer.errors.no.dna"), 5);
+			return new ErrorState.NoItem(I18N.localise("genetics.machine.machine.sequencer.errors.no.dna"), 5);
 		}
 		return super.canWork();
 	}
@@ -48,14 +48,14 @@ public class SequencerLogic extends ComponentProcess implements IProcess {
 	@Override
 	public ErrorState canProgress() {
 		if (this.getMachine().getOwner() == null) {
-			return new ErrorState(Genetics.proxy.localise("machine.errors.no.owner.desc"), Genetics.proxy.localise("machine.errors.no.owner.info"));
+			return new ErrorState(I18N.localise("genetics.machine.errors.no.owner.desc"), I18N.localise("genetics.machine.errors.no.owner.info"));
 		}
 		if (this.getUtil().getSlotCharge(Sequencer.SLOT_DYE) == 0.0f) {
-			return new ErrorState.NoItem(Genetics.proxy.localise("machine.machine.sequencer.errors.insufficient.dye"), Sequencer.SLOT_DYE);
+			return new ErrorState.NoItem(I18N.localise("genetics.machine.machine.sequencer.errors.insufficient.dye"), Sequencer.SLOT_DYE);
 		}
 		ItemStack stackDone = this.getUtil().getStack(Sequencer.SLOT_DONE);
 		if (!stackDone.isEmpty() && stackDone.getCount() >= 64) {
-			return new ErrorState.NoSpace(Genetics.proxy.localise("machine.machine.sequencer.errors.no.space"), new int[]{Sequencer.SLOT_DONE});
+			return new ErrorState.NoSpace(I18N.localise("genetics.machine.machine.sequencer.errors.no.space"), new int[]{Sequencer.SLOT_DONE});
 		}
 		return super.canProgress();
 	}

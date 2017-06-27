@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 
-import binnie.extratrees.ExtraTrees;
+import binnie.core.util.I18N;
 import binnie.extratrees.api.IToolHammer;
 
 public class ItemHammer extends Item implements IToolHammer, IItemModelRegister {
@@ -35,7 +35,7 @@ public class ItemHammer extends Item implements IToolHammer, IItemModelRegister 
 
 	@Override
 	public String getItemStackDisplayName(ItemStack itemStack) {
-		return ExtraTrees.proxy.localise(isDurableHammer ? "item.hammer.master.name" : "item.hammer.name");
+		return I18N.localise("extratrees.item.hammer." + (isDurableHammer ? "master.name" : "name"));
 	}
 
 	@Override

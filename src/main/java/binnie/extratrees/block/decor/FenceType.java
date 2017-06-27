@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import binnie.extratrees.ExtraTrees;
+import binnie.core.util.I18N;
 
 public class FenceType {
 	public static List<FenceType> VALUES;
@@ -42,21 +42,21 @@ public class FenceType {
 	public String getPrefix() {
 		String prefix = "";
 		if (size == 1) {
-			prefix += ExtraTrees.proxy.localise("multifence.low.type");
+			prefix += I18N.localise("extratrees.multifence.low.type");
 		} else if (size == 2) {
-			prefix += ExtraTrees.proxy.localise("multifence.full.type");
+			prefix += I18N.localise("extratrees.multifence.full.type");
 		}
 		if (solid) {
 			if (!prefix.isEmpty()) {
 				prefix += " ";
 			}
-			prefix += ExtraTrees.proxy.localise("multifence.solid.type");
+			prefix += I18N.localise("extratrees.multifence.solid.type");
 		}
 		if (embossed) {
 			if (!prefix.isEmpty()) {
 				prefix += " ";
 			}
-			prefix += ExtraTrees.proxy.localise("multifence.embedded.type");
+			prefix += I18N.localise("extratrees.multifence.embedded.type");
 		}
 		if (!prefix.isEmpty()) {
 			prefix += " ";

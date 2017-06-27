@@ -20,7 +20,7 @@ import forestry.api.genetics.ISpeciesRoot;
 import binnie.Binnie;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
-import binnie.genetics.Genetics;
+import binnie.core.util.I18N;
 import binnie.genetics.api.IGene;
 
 public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
@@ -69,7 +69,7 @@ public class GeneArrayItem implements INbtReadable, INbtWritable, IGeneItem {
 		} else {
 			list.add(totalList.get(0));
 			list.add(totalList.get(1));
-			list.add(totalList.size() - 2 + " " + Genetics.proxy.localise("item.gene.more.genes"));
+			list.add(totalList.size() - 2 + " " + I18N.localise("genetics.item.gene.more.genes"));
 		}
 	}
 

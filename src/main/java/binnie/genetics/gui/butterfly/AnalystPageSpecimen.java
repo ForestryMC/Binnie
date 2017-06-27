@@ -7,7 +7,7 @@ import forestry.api.lepidopterology.IButterfly;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.geometry.Area;
-import binnie.genetics.Genetics;
+import binnie.core.util.I18N;
 import binnie.genetics.gui.ControlAnalystPage;
 import binnie.genetics.gui.ControlIndividualDisplay;
 
@@ -24,6 +24,6 @@ public class AnalystPageSpecimen extends ControlAnalystPage {
 
 	@Override
 	public String getTitle() {
-		return Genetics.proxy.localise("gui.analyst.specimen.title");
+		return I18N.localise("genetics.gui.analyst.specimen.title");
 	}
 }

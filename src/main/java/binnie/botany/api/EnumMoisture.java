@@ -23,7 +23,11 @@ public enum EnumMoisture implements IStringSerializable {
 		return name().toLowerCase();
 	}
 
-	public String getTranslated(boolean withColor) {
-		return (withColor && color != null ? color : "") + I18n.translateToLocal("botany.moisture." + getName());
+	public String getLocalisedName(boolean withColor) {
+		String localisedName = I18n.translateToLocal("botany.moisture." + getName());
+		if(withColor && color != null){
+			localisedName +=color;
+		}
+		return localisedName;
 	}
 }

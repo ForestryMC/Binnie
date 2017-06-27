@@ -29,7 +29,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 
-import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.EnumAcidity;
@@ -37,6 +36,7 @@ import binnie.botany.api.EnumMoisture;
 import binnie.botany.api.EnumSoilType;
 import binnie.botany.api.IBlockSoil;
 import binnie.botany.core.BotanyCore;
+import binnie.core.util.I18N;
 
 public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 	public static final PropertyEnum<EnumMoisture> MOISTURE = PropertyEnum.create("moisture", EnumMoisture.class);
@@ -69,7 +69,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 				return "";
 			}
 		}
-		return TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.ph") + ": " + ph.getTranslated(withColor);
+		return TextFormatting.GRAY + I18N.localise("botany.ph") + ": " + ph.getLocalisedName(withColor);
 	}
 
 	public static String getMoisture(ItemStack stack, boolean withColor, boolean byNormalNone) {
@@ -79,7 +79,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 				return "";
 			}
 		}
-		return TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.moisture") + ": " + moisure.getTranslated(withColor);
+		return TextFormatting.GRAY + I18N.localise("botany.moisture") + ": " + moisure.getLocalisedName(withColor);
 	}
 
 	@Override

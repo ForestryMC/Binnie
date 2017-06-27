@@ -16,7 +16,7 @@ import forestry.api.arboriculture.TreeManager;
 import forestry.api.arboriculture.WoodBlockKind;
 
 import binnie.Constants;
-import binnie.extratrees.ExtraTrees;
+import binnie.core.util.I18N;
 import binnie.extratrees.api.CarpentryManager;
 
 public class PlankType {
@@ -140,7 +140,7 @@ public class PlankType {
 
 		@Override
 		public String getDesignMaterialName() {
-			return ExtraTrees.proxy.localise("block.planks." + this.toString().toLowerCase());
+			return I18N.localise("extratrees.block.planks." + this.toString().toLowerCase());
 		}
 
 		@Override
@@ -150,7 +150,7 @@ public class PlankType {
 
 		@Override
 		public String getDescription() {
-			return ExtraTrees.proxy.localise("block.planks." + this.toString().toLowerCase() + ".desc");
+			return I18N.localise("extratrees.block.planks." + this.toString().toLowerCase() + ".desc");
 		}
 
 		@Override
@@ -206,12 +206,12 @@ public class PlankType {
 
 		@Override
 		public String getDesignMaterialName() {
-			return ExtraTrees.proxy.localise("block.planks.vanilla." + this.toString().toLowerCase());
+			return I18N.localise("extratrees.block.planks.vanilla." + this.toString().toLowerCase());
 		}
 
 		@Override
 		public String getDescription() {
-			return ExtraTrees.proxy.localise("block.planks.vanilla." + this.toString().toLowerCase() + ".desc");
+			return I18N.localise("extratrees.block.planks.vanilla." + this.toString().toLowerCase() + ".desc");
 		}
 
 		@Override
@@ -310,12 +310,12 @@ public class PlankType {
 
 		@Override
 		public String getDesignMaterialName() {
-			return ExtraTrees.proxy.localise("block.planks.forestry." + this.toString().toLowerCase());
+			return I18N.localise("extratrees.block.planks.forestry." + this.toString().toLowerCase());
 		}
 
 		@Override
 		public String getDescription() {
-			return ExtraTrees.proxy.localise("block.planks.forestry." + this.toString().toLowerCase() + ".desc");
+			return I18N.localise("extratrees.block.planks.forestry." + this.toString().toLowerCase() + ".desc");
 		}
 
 		@SideOnly(Side.CLIENT)
@@ -381,7 +381,7 @@ public class PlankType {
 
 		@Override
 		public String getName() {
-			return ExtraTrees.proxy.localise("block.planks.ebxl." + this.toString().toLowerCase());
+			return I18N.localise("extratrees.block.planks.ebxl." + this.toString().toLowerCase());
 		}
 
 
@@ -392,7 +392,7 @@ public class PlankType {
 
 		@Override
 		public String getDescription() {
-			return ExtraTrees.proxy.localise("block.planks.ebxl." + this.toString().toLowerCase() + ".desc");
+			return I18N.localise("extratrees.block.planks.ebxl." + this.toString().toLowerCase() + ".desc");
 		}
 
 		@Override

@@ -12,10 +12,10 @@ import forestry.api.circuits.ICircuitLayout;
 import forestry.api.farming.FarmDirection;
 import forestry.api.farming.IFarmHousing;
 
-import binnie.Binnie;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
 import binnie.core.circuits.BinnieCircuit;
+import binnie.core.util.I18N;
 
 public class CircuitGarden extends BinnieCircuit {
 	private boolean isManual;
@@ -24,24 +24,24 @@ public class CircuitGarden extends BinnieCircuit {
 	public CircuitGarden(EnumMoisture moisture, @Nullable EnumAcidity ph, boolean manual, boolean fertilised, ItemStack recipe, ItemStack icon) {
 		super(getName(moisture, ph, manual, fertilised), 4, getLayout(manual), recipe);
 		this.isManual = manual;
-		this.logic = new GardenLogic(moisture, ph, this.isManual, fertilised, icon, Binnie.LANGUAGE.localise(this.getUnlocalizedName()));
+		this.logic = new GardenLogic(moisture, ph, this.isManual, fertilised, icon, I18N.localise(this.getUnlocalizedName()));
 		StringBuilder info = new StringBuilder("Flowers (")
 			.append(TextFormatting.GRAY.toString())
-			.append(Binnie.LANGUAGE.localise("botany.moisture"))
+			.append(I18N.localise("botany.moisture"))
 			.append(": ")
-			.append(moisture.getTranslated(true));
+			.append(moisture.getLocalisedName(true));
 
 		if (ph != null) {
 			info.append(TextFormatting.GRAY.toString())
 				.append(", ")
-				.append(Binnie.LANGUAGE.localise("botany.ph"))
+				.append(I18N.localise("botany.ph"))
 				.append(": ")
-				.append(ph.getTranslated(true));
+				.append(ph.getLocalisedName(true));
 		}
 		String fertilizedKey = fertilised ? "for.binnie.circuit.garden.fertilized" : "for.binnie.circuit.garden.unfertilized";
 		info.append(TextFormatting.RESET.toString())
 			.append(" ")
-			.append(Binnie.LANGUAGE.localise(fertilizedKey))
+			.append(I18N.localise(fertilizedKey))
 			.append(")");
 		this.addTooltipString(info.toString());
 	}

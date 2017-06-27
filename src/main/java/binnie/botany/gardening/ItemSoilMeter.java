@@ -19,7 +19,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 
-import binnie.Binnie;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
@@ -27,6 +26,7 @@ import binnie.botany.api.IBlockSoil;
 import binnie.botany.api.IGardeningManager;
 import binnie.botany.core.BotanyCore;
 import binnie.core.BinnieCore;
+import binnie.core.util.I18N;
 
 public class ItemSoilMeter extends Item implements IItemModelRegister {
 	public ItemSoilMeter() {
@@ -43,7 +43,7 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 				return "";
 			}
 		}
-		return TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.ph") + ": " + ph.getTranslated(withColor);
+		return TextFormatting.GRAY + I18N.localise("botany.ph") + ": " + ph.getLocalisedName(withColor);
 	}
 
 	public static String getMoisture(ItemStack stack, boolean withColor, boolean byNormalNone) {
@@ -53,7 +53,7 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 				return "";
 			}
 		}
-		return TextFormatting.GRAY + Binnie.LANGUAGE.localise("botany.moisture") + ": " + moisure.getTranslated(withColor);
+		return TextFormatting.GRAY + I18N.localise("botany.moisture") + ": " + moisure.getLocalisedName(withColor);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -76,12 +76,12 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 		}
 		if (gardening.isSoil(block) && !BinnieCore.getBinnieProxy().isSimulating(worldIn)) {
 			IBlockSoil soil = (IBlockSoil) block;
-			String info = Binnie.LANGUAGE.localise("botany.soil.type") + ": ";
+			String info = I18N.localise("botany.soil.type") + ": ";
 			info = info + soil.getType(worldIn, pos).getTranslated(true);
-			info += ", " + TextFormatting.WHITE + Binnie.LANGUAGE.localise("botany.moisture") + ": ";
-			info = info + soil.getMoisture(worldIn, pos).getTranslated(true);
-			info += ", " + TextFormatting.WHITE + Binnie.LANGUAGE.localise("botany.ph") + ": ";
-			info = info + soil.getPH(worldIn, pos).getTranslated(true);
+			info += ", " + TextFormatting.WHITE + I18N.localise("botany.moisture") + ": ";
+			info = info + soil.getMoisture(worldIn, pos).getLocalisedName(true);
+			info += ", " + TextFormatting.WHITE + I18N.localise("botany.ph") + ": ";
+			info = info + soil.getPH(worldIn, pos).getLocalisedName(true);
 			ITextComponent chat = new TextComponentString(info);
 			player.sendStatusMessage(chat, false);
 		}

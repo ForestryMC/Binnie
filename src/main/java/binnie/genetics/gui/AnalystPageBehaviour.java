@@ -14,13 +14,13 @@ import forestry.api.lepidopterology.IButterfly;
 import forestry.apiculture.PluginApiculture;
 
 import binnie.Binnie;
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.util.I18N;
 
 //TODO:localise
 @SideOnly(Side.CLIENT)
@@ -42,7 +42,7 @@ public class AnalystPageBehaviour extends ControlAnalystPage {
 			final IAlleleBeeEffect effect = bee.getGenome().getEffect();
 			final Vec3i t = bee.getGenome().getTerritory();
 			if (!effect.getUID().contains("None")) {
-				final String effectDesc = BinnieCore.getBinnieProxy().localiseOrBlank("allele." + effect.getUID() + ".desc");
+				final String effectDesc = I18N.localiseOrBlank("binniecore.allele." + effect.getUID() + ".desc");
 				final String loc = effectDesc.equals("") ? ("Effect: " + effect.getName()) : effectDesc;
 				new ControlText(this, new Area(4, y, this.width() - 8, 0), loc, TextJustification.TopCenter).setColour(this.getColour());
 				y += CraftGUI.render.textHeight(loc, this.width() - 8) + 1;
@@ -62,7 +62,7 @@ public class AnalystPageBehaviour extends ControlAnalystPage {
 			y += 22;
 			final IAlleleButterflyEffect effect2 = bee2.getGenome().getEffect();
 			if (!effect2.getUID().contains("None")) {
-				final String effectDesc2 = BinnieCore.getBinnieProxy().localiseOrBlank("allele." + effect2.getUID() + ".desc");
+				final String effectDesc2 = I18N.localiseOrBlank("binniecore.allele." + effect2.getUID() + ".desc");
 				final String loc2 = effectDesc2.equals("") ? ("Effect: " + effect2.getName()) : effectDesc2;
 				new ControlText(this, new Area(4, y, this.width() - 8, 0), loc2, TextJustification.TopCenter).setColour(this.getColour());
 				y += CraftGUI.render.textHeight(loc2, this.width() - 8) + 1;

@@ -7,7 +7,7 @@ import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.Binnie;
 import binnie.core.machines.inventory.SlotValidator;
-import binnie.genetics.Genetics;
+import binnie.core.util.I18N;
 
 public class ValidatorIndividualInoculate extends SlotValidator {
 	public ValidatorIndividualInoculate() {
@@ -22,6 +22,6 @@ public class ValidatorIndividualInoculate extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return Genetics.proxy.localise("machine.advMachine.splicer.tooltips.slots.individual");
+		return I18N.localise("genetics.machine.advMachine.splicer.tooltips.slots.individual");
 	}
 }

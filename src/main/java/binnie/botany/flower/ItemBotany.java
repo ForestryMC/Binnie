@@ -48,6 +48,7 @@ import binnie.botany.api.IFlowerGenome;
 import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.genetics.Flower;
+import binnie.core.util.I18N;
 
 public class ItemBotany extends Item implements IColoredItem, IItemModelRegister {
 	private EnumFlowerStage type;
@@ -94,7 +95,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 		}
 		IFlower individual = (IFlower) this.getIndividual(itemStack);
 		if (individual == null) {
-			list.add(TextFormatting.DARK_RED + Binnie.LANGUAGE.localise("botany.flower.destroy"));
+			list.add(TextFormatting.DARK_RED + I18N.localise("botany.flower.destroy"));
 			return;
 		}
 		IFlowerGenome genome = individual.getGenome();
@@ -104,9 +105,9 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 		String stemColor = genome.getStemColor().getColourName();
 		String colorInfo;
 		if (!primaryColor.equals(secondaryColor)) {
-			colorInfo = Binnie.LANGUAGE.localise("botany.grammar.flower.secondary");
+			colorInfo = I18N.localise("botany.grammar.flower.secondary");
 		} else {
-			colorInfo = Binnie.LANGUAGE.localise("botany.grammar.flower");
+			colorInfo = I18N.localise("botany.grammar.flower");
 		}
 		list.add(TextFormatting.YELLOW + colorInfo.replaceAll("%PRIMARY", primaryColor).replaceAll("%SECONDARY", secondaryColor).replaceAll("%STEM", stemColor));
 
@@ -114,10 +115,10 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 			if (GuiScreen.isShiftKeyDown()) {
 				individual.addTooltip(list);
 			} else {
-				list.add(TextFormatting.ITALIC + "<" + Binnie.LANGUAGE.localise("for.gui.tooltip.tmi") + ">");
+				list.add(TextFormatting.ITALIC + "<" + I18N.localise("for.gui.tooltip.tmi") + ">");
 			}
 		} else {
-			list.add("<" + Binnie.LANGUAGE.localise("for.gui.unknown") + ">");
+			list.add("<" + I18N.localise("for.gui.unknown") + ">");
 		}
 	}
 
@@ -141,13 +142,13 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 	@Override
 	public String getItemStackDisplayName(final ItemStack itemstack) {
 		if (!itemstack.hasTagCompound()) {
-			return Binnie.LANGUAGE.localise("item.botany.flower.corrupted.name");
+			return I18N.localise("item.botany.flower.corrupted.name");
 		}
 		IIndividual individual = this.getIndividual(itemstack);
 		if (individual != null) {
-			return individual.getDisplayName() + (!tag.isEmpty() ? " " + Binnie.LANGUAGE.localise("item.botany." + tag + ".name") : "");
+			return individual.getDisplayName() + (!tag.isEmpty() ? " " + I18N.localise("item.botany." + tag + ".name") : "");
 		}
-		return Binnie.LANGUAGE.localise("item.botany.flower.corrupted.name");
+		return I18N.localise("item.botany.flower.corrupted.name");
 	}
 
 	@Override

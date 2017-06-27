@@ -9,7 +9,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.genetics.IAlleleSpecies;
 
-import binnie.Binnie;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
@@ -17,6 +16,7 @@ import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.util.I18N;
 
 @SideOnly(Side.CLIENT)
 public class PageSpeciesOverview extends PageSpecies {
@@ -49,13 +49,13 @@ public class PageSpeciesOverview extends PageSpecies {
 		final String branchName = species.getBranch().getName();
 		this.controlName.setValue(TextFormatting.UNDERLINE + species.getName());
 		this.controlScientific.setValue(TextFormatting.ITALIC + branchBinomial + " " + species.getBinomial());
-		this.controlAuthority.setValue(Binnie.LANGUAGE.localise("binniecore.gui.database.discovered") + ": " + TextFormatting.BOLD + species.getAuthority());
-		this.controlComplexity.setValue(Binnie.LANGUAGE.localise("binniecore.gui.database.overview.complexity") + ": " + species.getComplexity());
+		this.controlAuthority.setValue(I18N.localise("binniecore.gui.database.discovered") + ": " + TextFormatting.BOLD + species.getAuthority());
+		this.controlComplexity.setValue(I18N.localise("binniecore.gui.database.overview.complexity") + ": " + species.getComplexity());
 		final String desc = species.getDescription();
 		StringBuilder descBody = new StringBuilder(TextFormatting.ITALIC.toString());
 		String descSig = "";
 		if (desc == null || Objects.equals(desc, "")) {
-			descBody.append(Binnie.LANGUAGE.localise("binniecore.gui.database.no.description"));
+			descBody.append(I18N.localise("binniecore.gui.database.no.description"));
 		} else {
 			final String[] descStrings = desc.split("\\|");
 			descBody.append(descStrings[0]);

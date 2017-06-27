@@ -30,7 +30,7 @@ import binnie.core.craftgui.renderer.RenderUtil;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.craftgui.window.Panel;
 import binnie.core.genetics.BreedingSystem;
-import binnie.genetics.Genetics;
+import binnie.core.util.I18N;
 
 public class AnalystPageDatabase extends ControlAnalystPage {
 	private final ControlScrollableContent scroll;
@@ -183,7 +183,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 
 	@Override
 	public String getTitle() {
-		return Genetics.proxy.localise("gui.analyst.registry.title");
+		return I18N.localise("genetics.gui.analyst.registry.title");
 	}
 
 	private Collection<IAlleleSpecies> getSpecies(final BreedingSystem system) {

@@ -24,7 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
 
 import binnie.core.Mods;
-import binnie.extrabees.ExtraBees;
+import binnie.core.util.I18N;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
 import ic2.api.item.IItemHudInfo;
@@ -55,10 +55,10 @@ public class ItemHoneyCrystal extends Item implements IElectricItem, IItemHudInf
 			double charge = ElectricItem.manager.getCharge(stack);
 			double maxCharge = ElectricItem.manager.getMaxCharge(stack);
 			if (charge <= 0.0F) {
-				return ExtraBees.proxy.localise("item.honeycrystal.empty");
+				return I18N.localise("extrabees.item.honeycrystal.empty");
 			}
 		}
-		return ExtraBees.proxy.localise("item.honeycrystal");
+		return I18N.localise("extrabees.item.honeycrystal");
 	}
 	
 	@Override
@@ -93,7 +93,7 @@ public class ItemHoneyCrystal extends Item implements IElectricItem, IItemHudInf
 				boolean transferred = false;
 				
 				for(int i = 0; i < 9; ++i) {
-					ItemStack target = (ItemStack)player.inventory.mainInventory.get(i);
+					ItemStack target = player.inventory.mainInventory.get(i);
 					if(target != null && target != stack && ElectricItem.manager.discharge(target, 1.0D / 0.0, 2147483647, true, true, true) <= 0.0D) {
 						double transfer = ElectricItem.manager.discharge(stack, 2.0D * this.transferLimit, 2147483647, true, true, true);
 						if(transfer > 0.0D) {

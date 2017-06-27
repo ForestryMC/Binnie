@@ -51,7 +51,7 @@ import binnie.core.block.IBlockMetadata;
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.models.DefaultStateMapper;
 import binnie.core.models.ModelManager;
-import binnie.extratrees.ExtraTrees;
+import binnie.core.util.I18N;
 import binnie.extratrees.block.IPlankType;
 import binnie.extratrees.block.PlankType;
 import binnie.extratrees.block.WoodManager;
@@ -199,7 +199,7 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata, IStat
 		IPlankType typeSecond = this.getDescription(meta).getSecondaryPlankType();
 		boolean twoTypes = typeFirst != typeSecond;
 		FenceType fenceType = this.getDescription(meta).getFenceType();
-		String woodGrammar = ExtraTrees.proxy.localise("block.multifence" + (twoTypes ? "2" : "") + ".grammar");
+		String woodGrammar = I18N.localise("extratrees.block.multifence" + (twoTypes ? "2" : "") + ".grammar");
 
 		woodGrammar = woodGrammar.replaceAll("%PREFIX", fenceType.getPrefix());
 		woodGrammar = woodGrammar.replaceAll("%TYPE", typeSecond.getDesignMaterialName());

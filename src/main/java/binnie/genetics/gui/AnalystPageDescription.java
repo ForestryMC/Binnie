@@ -17,7 +17,7 @@ import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.geometry.TextJustification;
-import binnie.genetics.Genetics;
+import binnie.core.util.I18N;
 
 @SideOnly(Side.CLIENT)
 public class AnalystPageDescription extends ControlAnalystPage {
@@ -59,10 +59,10 @@ public class AnalystPageDescription extends ControlAnalystPage {
 		y += 10;
 		new ControlTextCentered(this, y, TextFormatting.ITALIC + branchBinomial + " " + species.getBinomial() + TextFormatting.RESET).setColour(this.getColour());
 		y += 20;
-		String discovered = Genetics.proxy.localise("gui.analyst.desc.discovered") + " " + TextFormatting.BOLD + authority + TextFormatting.RESET;
+		String discovered = I18N.localise("genetics.gui.analyst.desc.discovered") + " " + TextFormatting.BOLD + authority + TextFormatting.RESET;
 		new ControlTextCentered(this, y, discovered).setColour(this.getColour());
 		y += (int) (3.0f + CraftGUI.render.textHeight(discovered, this.width()));
-		new ControlTextCentered(this, y, Genetics.proxy.localise("gui.analyst.desc.complexity") + ": " + species.getComplexity()).setColour(this.getColour());
+		new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.desc.complexity") + ": " + species.getComplexity()).setColour(this.getColour());
 		y += 26;
 		final ControlText descText = new ControlText(this, new Area(8, y, this.width() - 16, 0), descBody + "§r", TextJustification.TopCenter);
 		final IWidget signatureText = new ControlText(this, new Area(8, y, this.width() - 16, 0), descSig + "§r", TextJustification.BottomRight);
@@ -75,6 +75,6 @@ public class AnalystPageDescription extends ControlAnalystPage {
 
 	@Override
 	public String getTitle() {
-		return Genetics.proxy.localise("gui.analyst.desc.title");
+		return I18N.localise("genetics.gui.analyst.desc.title");
 	}
 }

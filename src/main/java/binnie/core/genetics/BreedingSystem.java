@@ -39,8 +39,8 @@ import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.genetics.ISpeciesType;
 
 import binnie.Binnie;
-import binnie.core.BinnieCore;
 import binnie.core.resource.BinnieSprite;
+import binnie.core.util.I18N;
 
 public abstract class BreedingSystem implements IItemStackRepresentitive {
 	public float discoveredSpeciesPercentage;
@@ -79,11 +79,11 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 	}
 
 	public String getChromosomeName(final IChromosomeType chromo) {
-		return BinnieCore.getBinnieProxy().localise(this.getSpeciesRoot().getUID() + ".chromosome." + chromo.getName());
+		return I18N.localise("binniecore." + this.getSpeciesRoot().getUID() + ".chromosome." + chromo.getName());
 	}
 
 	public String getChromosomeShortName(final IChromosomeType chromo) {
-		return BinnieCore.getBinnieProxy().localise(this.getSpeciesRoot().getUID() + ".chromosome." + chromo.getName() + ".short");
+		return I18N.localise("binniecore." + this.getSpeciesRoot().getUID() + ".chromosome." + chromo.getName() + ".short");
 	}
 
 	public final String getEpitome(final float discoveredPercentage) {
@@ -103,7 +103,7 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 		} else if (discoveredPercentage < 1.0f) {
 			i = 5;
 		}
-		return BinnieCore.getBinnieProxy().localise(this.getSpeciesRoot().getUID() + ".epitome." + i);
+		return I18N.localise("binniecore." + this.getSpeciesRoot().getUID() + ".epitome." + i);
 	}
 
 	public abstract ISpeciesRoot getSpeciesRoot();
@@ -409,7 +409,7 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 	}
 
 	public final String getDescriptor() {
-		return BinnieCore.getBinnieProxy().localise(this.getSpeciesRoot().getUID() + ".descriptor");
+		return I18N.localise("binniecore." + this.getSpeciesRoot().getUID() + ".descriptor");
 	}
 
 	public final String getIdent() {
@@ -430,16 +430,16 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 
 	public String getAlleleName(final IChromosomeType chromosome, final IAllele allele) {
 		if (allele instanceof IAlleleBoolean) {
-			return ((IAlleleBoolean) allele).getValue() ? Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.true") : Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.false");
+			return ((IAlleleBoolean) allele).getValue() ? I18N.localise("binniecore.allele.true") : I18N.localise("binniecore.allele.false");
 		}
 		if (Objects.equals(allele.getName(), "for.gui.maximum")) {
-			return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.fertility.maximum");
+			return I18N.localise("binniecore.allele.fertility.maximum");
 		}
 		return allele.getName();
 	}
 
 	public String getName() {
-		return BinnieCore.getBinnieProxy().localise(this.getSpeciesRoot().getUID() + ".shortName");
+		return I18N.localise("binniecore." + this.getSpeciesRoot().getUID() + ".shortName");
 	}
 
 	@Override

@@ -20,6 +20,7 @@ import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
 
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.core.ExtraTreesGUID;
 
@@ -43,7 +44,7 @@ public class ItemMothDatabase extends Item implements IItemModelRegister {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
 		if (isMaster(stack)) {
-			tooltip.add(TextFormatting.DARK_PURPLE + ExtraTrees.proxy.localise("item.database.lepi.master.tooltip"));
+			tooltip.add(TextFormatting.DARK_PURPLE + I18N.localise("extratrees.item.database.lepi.master.tooltip"));
 		}
 	}
 
@@ -71,7 +72,7 @@ public class ItemMothDatabase extends Item implements IItemModelRegister {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack itemStack) {
-		return ExtraTrees.proxy.localise(isMaster(itemStack) ? "item.database.lepi.master.name" : "item.database.lepi.name");
+		return I18N.localise("extratrees.item.database.lepi." + (isMaster(itemStack) ? "master.name" : "name"));
 	}
 
 	protected boolean isMaster(ItemStack itemStack) {

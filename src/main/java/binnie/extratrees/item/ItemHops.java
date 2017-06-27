@@ -25,7 +25,7 @@ import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.api.core.Tabs;
 
-import binnie.extratrees.ExtraTrees;
+import binnie.core.util.I18N;
 
 public class ItemHops extends Item implements net.minecraftforge.common.IPlantable, IItemModelRegister {
 	private final Block crops;
@@ -76,7 +76,7 @@ public class ItemHops extends Item implements net.minecraftforge.common.IPlantab
 	
 	@Override
 	public String getItemStackDisplayName(ItemStack itemStack) {
-		return ExtraTrees.proxy.localise("item.hops.name");
+		return I18N.localise("extratrees.item.hops.name");
 	}
 	
 	@Override

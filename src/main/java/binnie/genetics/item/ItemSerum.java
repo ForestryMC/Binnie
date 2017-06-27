@@ -22,6 +22,7 @@ import forestry.api.genetics.ISpeciesRoot;
 import binnie.Binnie;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
+import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemSerum;
@@ -102,9 +103,9 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 		GeneItem gene = this.getGeneItem(itemstack);
 		if (gene != null && gene.getSpeciesRoot() != null) {
 			BreedingSystem system = Binnie.GENETICS.getSystem(gene.getSpeciesRoot());
-			return system.getDescriptor() + " " + Genetics.proxy.localise("item.gene.serum");
+			return system.getDescriptor() + " " + I18N.localise("genetics.item.gene.serum");
 		} else {
-			return Genetics.proxy.localise("item.gene.corrupted.serum");
+			return I18N.localise("genetics.item.gene.corrupted.serum");
 		}
 	}
 

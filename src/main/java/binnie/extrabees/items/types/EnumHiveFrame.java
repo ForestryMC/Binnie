@@ -20,7 +20,7 @@ import forestry.api.apiculture.IBeeModifier;
 import forestry.api.apiculture.IHiveFrame;
 import forestry.apiculture.PluginApiculture;
 
-import binnie.extrabees.ExtraBees;
+import binnie.core.util.I18N;
 import binnie.extrabees.items.ItemHiveFrame;
 import binnie.extrabees.utils.BeeModifierLogic;
 import binnie.extrabees.utils.EnumBeeBooleanModifier;
@@ -136,7 +136,7 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 	}
 
 	public String getName() {
-		return ExtraBees.proxy.localise("item.frame." + this.toString().toLowerCase());
+		return I18N.localise("extrabees.item.frame." + this.toString().toLowerCase());
 	}
 
 	@Override

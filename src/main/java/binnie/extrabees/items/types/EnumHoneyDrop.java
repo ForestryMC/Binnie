@@ -7,6 +7,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 import forestry.api.recipes.RecipeManagers;
 
+import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.utils.Utils;
 
@@ -87,7 +88,7 @@ public enum EnumHoneyDrop implements IEBEnumItem {
 
 	@Override
 	public String getName(final ItemStack stack) {
-		return ExtraBees.proxy.localise("item.honeydrop." + this.name().toLowerCase());
+		return I18N.localise("extrabees.item.honeydrop." + this.name().toLowerCase());
 	}
 
 	public int[] getColour() {

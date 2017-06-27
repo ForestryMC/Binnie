@@ -19,6 +19,7 @@ import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.core.craftgui.minecraft.control.ControlSlotArray;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
+import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.craftgui.WindowMachine;
@@ -60,7 +61,7 @@ public class WindowSplicer extends WindowMachine {
 
 	@Override
 	public String getTitle() {
-		return Genetics.proxy.localise("machine.advMachine.splicer");
+		return I18N.localise("genetics.machine.advMachine.splicer");
 	}
 
 	@Override

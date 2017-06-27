@@ -28,9 +28,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.core.Tabs;
 
-import binnie.Binnie;
 import binnie.core.block.TileEntityMetadata;
-import binnie.extratrees.ExtraTrees;
+import binnie.core.util.I18N;
 import binnie.extratrees.api.IDesign;
 
 public class BlockStainedDesign extends BlockDesign {
@@ -100,10 +99,7 @@ public class BlockStainedDesign extends BlockDesign {
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
 		IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
 		Block block = iblockstate.getBlock();
-		if (block != this) {
-			return true;
-		}
-		return false;
+		return block != this;
 	}
 
 	@Override
@@ -113,6 +109,6 @@ public class BlockStainedDesign extends BlockDesign {
 
 	@Override
 	public String getBlockName(final DesignBlock design) {
-		return Binnie.LANGUAGE.localise(ExtraTrees.instance, "block.stainedglass.name", design.getDesign().getName());
+		return I18N.localise("extratrees.block.stainedglass.name", design.getDesign().getName());
 	}
 }

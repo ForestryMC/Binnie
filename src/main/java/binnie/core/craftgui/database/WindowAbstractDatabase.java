@@ -17,7 +17,6 @@ import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IClassification;
 
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextEdit;
 import binnie.core.craftgui.controls.listbox.ControlListBox;
@@ -38,6 +37,7 @@ import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlHelp;
 import binnie.core.craftgui.window.Panel;
 import binnie.core.genetics.BreedingSystem;
+import binnie.core.util.I18N;
 
 public abstract class WindowAbstractDatabase extends Window {
 	private final int infoBoxWidth = 144;
@@ -201,7 +201,7 @@ public abstract class WindowAbstractDatabase extends Window {
 
 		@Override
 		public String getName() {
-			return BinnieCore.getBinnieProxy().localise("gui.database.mode." + this.name().toLowerCase());
+			return I18N.localise("binniecore.gui.database.mode." + this.name().toLowerCase());
 		}
 	}
 

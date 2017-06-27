@@ -13,7 +13,7 @@ import binnie.core.machines.inventory.ComponentInventoryTransfer;
 import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.machines.power.ComponentPowerReceptor;
-import binnie.genetics.Genetics;
+import binnie.core.util.I18N;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsTexture;
@@ -42,7 +42,7 @@ public class PackageSplicer extends AdvGeneticMachine.PackageAdvGeneticBase impl
 
 			@Override
 			public String getTooltip() {
-				return Genetics.proxy.localise("machine.advMachine.splicer.tooltips.slots.serum");
+				return I18N.localise("genetics.machine.advMachine.splicer.tooltips.slots.serum");
 			}
 		};
 		slotSerumVial.setValidator(serumValid);

@@ -6,8 +6,7 @@ import net.minecraft.item.ItemStack;
 
 import forestry.api.core.Tabs;
 
-import binnie.Binnie;
-import binnie.extratrees.ExtraTrees;
+import binnie.core.util.I18N;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.block.PlankType;
 
@@ -28,6 +27,6 @@ public class BlockCarpentry extends BlockDesign {
 
 	@Override
 	public String getBlockName(final DesignBlock design) {
-		return Binnie.LANGUAGE.localise(ExtraTrees.instance, "block.woodentile.name", design.getDesign().getName());
+		return I18N.localise("extratrees.block.woodentile.name", design.getDesign().getName());
 	}
 }

@@ -13,10 +13,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import binnie.Binnie;
 import binnie.core.block.BlockMetadata;
 import binnie.core.block.TileEntityMetadata;
-import binnie.extratrees.ExtraTrees;
+import binnie.core.util.I18N;
 
 public class BlockCarpentryPanel extends BlockCarpentry {
 	public BlockCarpentryPanel() {
@@ -72,7 +71,7 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 	@Override
 	public String getDisplayName(final ItemStack itemStack) {
 		final DesignBlock block = ModuleCarpentry.getDesignBlock(this.getDesignSystem(), TileEntityMetadata.getItemDamage(itemStack));
-		return Binnie.LANGUAGE.localise(ExtraTrees.instance, "block.woodenpanel.name", block.getDesign().getName());
+		return I18N.localise("extratrees.block.woodenpanel.name", block.getDesign().getName());
 	}
 
 	@Override

@@ -37,6 +37,7 @@ import forestry.core.genetics.alleles.AlleleCategorized;
 
 import binnie.Binnie;
 import binnie.Constants;
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.FruitPod;
 import binnie.extratrees.config.ConfigurationMain;
@@ -438,7 +439,7 @@ public class AlleleETFruit extends AlleleCategorized implements IAlleleFruit, IF
 
 	@Override
 	public String getDescription() {
-		return ExtraTrees.proxy.localise("item.food." + this.getClass().getTypeName().toLowerCase());
+		return I18N.localise("extratrees.item.food." + this.getClass().getTypeName().toLowerCase());
 	}
 
 	@Override

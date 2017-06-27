@@ -21,6 +21,7 @@ import forestry.api.genetics.ISpeciesRoot;
 import binnie.Binnie;
 import binnie.core.genetics.Gene;
 import binnie.core.item.ItemCore;
+import binnie.core.util.I18N;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
@@ -53,30 +54,30 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 	public String getItemStackDisplayName(ItemStack itemstack) {
 		GeneItem gene = GeneItem.create(itemstack);
 		if (gene == null) {
-			return Genetics.proxy.localise("item.sequence.corrupted");
+			return I18N.localise("genetics.item.sequence.corrupted");
 		} else {
-			return gene.getBreedingSystem().getDescriptor() + " " + Genetics.proxy.localise("item.sequence.name");
+			return gene.getBreedingSystem().getDescriptor() + " " + I18N.localise("genetics.item.sequence.name");
 		}
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> subItems, boolean advanced) {
-		subItems.add(Genetics.proxy.localise("item.sequence." + (5 - itemStack.getItemDamage() % 6)));
+		subItems.add(I18N.localise("genetics.item.sequence." + (5 - itemStack.getItemDamage() % 6)));
 		SequencerItem gene = SequencerItem.create(itemStack);
 		if (gene != null) {
 			if (gene.analysed) {
 				gene.getInfo(subItems);
 			} else {
-				subItems.add("<" + Genetics.proxy.localise("item.sequence.unknown") + ">");
+				subItems.add("<" + I18N.localise("genetics.item.sequence.unknown") + ">");
 			}
 			int seq = gene.sequenced;
 			if (seq == 0) {
-				subItems.add(Genetics.proxy.localise("item.sequence.unsequenced"));
+				subItems.add(I18N.localise("genetics.item.sequence.unsequenced"));
 			} else if (seq < 100) {
-				subItems.add(String.format(Genetics.proxy.localise("genetics.item.sequence.partially"), seq));
+				subItems.add(I18N.localise("genetics.genetics.item.sequence.partially", seq));
 			} else {
-				subItems.add(Genetics.proxy.localise("item.sequence.sequenced"));
+				subItems.add(I18N.localise("genetics.item.sequence.sequenced"));
 			}
 		}
 	}

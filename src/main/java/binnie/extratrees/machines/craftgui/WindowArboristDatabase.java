@@ -26,6 +26,7 @@ import binnie.core.craftgui.database.WindowAbstractDatabase;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.genetics.TreeBreedingSystem;
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.block.WoodManager;
@@ -120,7 +121,7 @@ public class WindowArboristDatabase extends WindowAbstractDatabase {
 
 		@Override
 		public String getName() {
-			return ExtraTrees.proxy.localise("gui.database.mode." + this.name().toLowerCase());
+			return I18N.localise("extratrees.gui.database.mode." + this.name().toLowerCase());
 		}
 	}
 }

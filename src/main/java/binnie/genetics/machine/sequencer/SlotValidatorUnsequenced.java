@@ -3,6 +3,7 @@ package binnie.genetics.machine.sequencer;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.genetics.SequencerItem;
 import binnie.genetics.machine.ModuleMachine;
@@ -23,6 +24,6 @@ public class SlotValidatorUnsequenced extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return Genetics.proxy.localise("machine.machine.sequencer.tooltips.slots.unsequenced.dna");
+		return I18N.localise("genetics.machine.machine.sequencer.tooltips.slots.unsequenced.dna");
 	}
 }

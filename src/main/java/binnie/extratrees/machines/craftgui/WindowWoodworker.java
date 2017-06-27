@@ -9,7 +9,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.AbstractMod;
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextEdit;
 import binnie.core.craftgui.controls.scroll.ControlScrollableContent;
@@ -25,6 +24,7 @@ import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
 import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.core.craftgui.window.Panel;
 import binnie.core.machines.Machine;
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.machines.Designer;
 import binnie.extratrees.machines.DesignerType;
@@ -55,7 +55,7 @@ public class WindowWoodworker extends Window {
 	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		this.setTitle(Machine.getMachine(this.getInventory()).getPackage().getDisplayName());
-		new ControlText(this, new Area(190, 36, 114, 10), BinnieCore.getBinnieProxy().localise("gui.design"), TextJustification.TopCenter).setColour(4473924);
+		new ControlText(this, new Area(190, 36, 114, 10), I18N.localise("binniecore.gui.design"), TextJustification.TopCenter).setColour(4473924);
 		new Panel(this, 188, 48, 118, 126, MinecraftGUI.PanelType.Gray);
 		this.textEdit = new ControlTextEdit(this, 188, 178, 118, 12);
 		final ControlScrollableContent scroll = new ControlScrollableContent(this, 190, 50, 114, 122, 12);

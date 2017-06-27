@@ -14,6 +14,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import forestry.api.recipes.RecipeManagers;
 
+import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 
 public enum EnumHoneyComb implements IEBEnumItem {
@@ -148,7 +149,7 @@ public enum EnumHoneyComb implements IEBEnumItem {
 
 	@Override
 	public String getName(final ItemStack stack) {
-		return ExtraBees.proxy.localise("item.comb." + this.name().toLowerCase());
+		return I18N.localise("extrabees.item.comb." + this.name().toLowerCase());
 	}
 
 	public boolean addProduct(@Nullable Item item, final Float chance) {

@@ -22,7 +22,7 @@ import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.minecraft.control.ControlIconDisplay;
-import binnie.genetics.Genetics;
+import binnie.core.util.I18N;
 import binnie.genetics.item.ModuleItems;
 
 //TODO:localise
@@ -37,21 +37,21 @@ public class AnalystPageBiology extends ControlAnalystPage {
 		if (ind instanceof IBee) {
 			final IBee bee = (IBee) ind;
 			if (bee.getGenome().getNeverSleeps()) {
-				new ControlIconDisplay(this, (width() - 64) / 2, y, ModuleItems.iconAllDay).addTooltip(Genetics.proxy.localise("gui.analyst.biology.bee.allday"));
+				new ControlIconDisplay(this, (width() - 64) / 2, y, ModuleItems.iconAllDay).addTooltip(I18N.localise("genetics.gui.analyst.biology.bee.allday"));
 			} else if (bee.getGenome().getPrimary().isNocturnal()) {
-				new ControlIconDisplay(this, (width() - 64) / 2, y, ModuleItems.iconNight).addTooltip(Genetics.proxy.localise("gui.analyst.biology.bee.night"));
+				new ControlIconDisplay(this, (width() - 64) / 2, y, ModuleItems.iconNight).addTooltip(I18N.localise("genetics.gui.analyst.biology.bee.night"));
 			} else {
-				new ControlIconDisplay(this, (width() - 64) / 2, y, ModuleItems.iconDaytime).addTooltip(Genetics.proxy.localise("gui.analyst.biology.bee.day"));
+				new ControlIconDisplay(this, (width() - 64) / 2, y, ModuleItems.iconDaytime).addTooltip(I18N.localise("genetics.gui.analyst.biology.bee.day"));
 			}
 			if (!bee.getGenome().getToleratesRain()) {
-				new ControlIconDisplay(this, (width() - 64) / 2 + 24, y, ModuleItems.iconNoRain).addTooltip(Genetics.proxy.localise("gui.analyst.biology.bee.norain"));
+				new ControlIconDisplay(this, (width() - 64) / 2 + 24, y, ModuleItems.iconNoRain).addTooltip(I18N.localise("genetics.gui.analyst.biology.bee.norain"));
 			} else {
-				new ControlIconDisplay(this, (width() - 64) / 2 + 24, y, ModuleItems.iconRain).addTooltip(Genetics.proxy.localise("gui.analyst.biology.bee.rain"));
+				new ControlIconDisplay(this, (width() - 64) / 2 + 24, y, ModuleItems.iconRain).addTooltip(I18N.localise("genetics.gui.analyst.biology.bee.rain"));
 			}
 			if (bee.getGenome().getCaveDwelling()) {
-				new ControlIconDisplay(this, (width() - 64) / 2 + 48, y, ModuleItems.iconNoSky).addTooltip(Genetics.proxy.localise("gui.analyst.biology.bee.nosky"));
+				new ControlIconDisplay(this, (width() - 64) / 2 + 48, y, ModuleItems.iconNoSky).addTooltip(I18N.localise("genetics.gui.analyst.biology.bee.nosky"));
 			} else {
-				new ControlIconDisplay(this, (width() - 64) / 2 + 48, y, ModuleItems.iconSky).addTooltip(Genetics.proxy.localise("gui.analyst.biology.bee.sky"));
+				new ControlIconDisplay(this, (width() - 64) / 2 + 48, y, ModuleItems.iconSky).addTooltip(I18N.localise("genetics.gui.analyst.biology.bee.sky"));
 			}
 			y += 30;
 		} else if (ind instanceof IButterfly) {
@@ -166,6 +166,6 @@ public class AnalystPageBiology extends ControlAnalystPage {
 
 	@Override
 	public String getTitle() {
-		return Genetics.proxy.localise("gui.analyst.biology.title");
+		return I18N.localise("genetics.gui.analyst.biology.title");
 	}
 }

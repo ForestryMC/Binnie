@@ -17,7 +17,7 @@ import binnie.core.machines.MachineUtil;
 import binnie.core.machines.power.ComponentProcess;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
-import binnie.genetics.Genetics;
+import binnie.core.util.I18N;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.genetics.Engineering;
@@ -85,19 +85,19 @@ public class InoculatorLogic extends ComponentProcess implements IProcess {
 		ItemStack stack = this.getUtil().getStack(0);
 		int n = getNumberOfGenes(stack);
 		if (n > 1) {
-			return String.format(Genetics.proxy.localise("genetics.machine.machine.inoculator.tooltips.logic.genes"), Integer.valueOf(n).toString());
+			return String.format(I18N.localise("genetics.genetics.machine.machine.inoculator.tooltips.logic.genes"), Integer.valueOf(n).toString());
 		} else {
-			return Genetics.proxy.localise("genetics.machine.machine.inoculator.tooltips.logic.gene");
+			return I18N.localise("genetics.genetics.machine.machine.inoculator.tooltips.logic.gene");
 		}
 	}
 
 	@Override
 	public ErrorState canWork() {
 		if (this.getUtil().isSlotEmpty(Inoculator.SLOT_TARGET)) {
-			return new ErrorState.NoItem(Genetics.proxy.localise("machine.machine.inoculator.errors.no.individual.desc"), Inoculator.SLOT_TARGET);
+			return new ErrorState.NoItem(I18N.localise("genetics.machine.machine.inoculator.errors.no.individual.desc"), Inoculator.SLOT_TARGET);
 		}
 		if (this.getUtil().isSlotEmpty(Inoculator.SLOT_SERUM_VIAL)) {
-			return new ErrorState.NoItem(Genetics.proxy.localise("machine.errors.no.serum.desc"), Inoculator.SLOT_SERUM_VIAL);
+			return new ErrorState.NoItem(I18N.localise("genetics.machine.errors.no.serum.desc"), Inoculator.SLOT_SERUM_VIAL);
 		}
 		final ErrorState state = this.isValidSerum();
 		if (state != null) {
@@ -105,10 +105,10 @@ public class InoculatorLogic extends ComponentProcess implements IProcess {
 		}
 		ItemStack serum = this.getUtil().getStack(Inoculator.SLOT_SERUM_VIAL);
 		if (!serum.isEmpty() && Engineering.getCharges(serum) == 0) {
-			return new ErrorState(Genetics.proxy.localise("machine.errors.empty.serum.desc"), Genetics.proxy.localise("machine.errors.empty.serum.info"));
+			return new ErrorState(I18N.localise("genetics.machine.errors.empty.serum.desc"), I18N.localise("genetics.machine.errors.empty.serum.info"));
 		}
 		if (getUtil().isTankEmpty(Inoculator.TANK_VEKTOR)) {
-			return new ErrorState.InsufficientLiquid(Genetics.proxy.localise("machine.machine.inoculator.errors.insufficient.vector"), Inoculator.TANK_VEKTOR);
+			return new ErrorState.InsufficientLiquid(I18N.localise("genetics.machine.machine.inoculator.errors.insufficient.vector"), Inoculator.TANK_VEKTOR);
 		}
 		return super.canWork();
 	}
@@ -119,10 +119,10 @@ public class InoculatorLogic extends ComponentProcess implements IProcess {
 		final ItemStack target = this.getUtil().getStack(Inoculator.SLOT_TARGET);
 		final IGene[] genes = Engineering.getGenes(serum);
 		if (genes.length == 0) {
-			return new ErrorState(Genetics.proxy.localise("machine.errors.invalid.serum.desc"), Genetics.proxy.localise("machine.errors.invalid.serum.no.genes.info"));
+			return new ErrorState(I18N.localise("genetics.machine.errors.invalid.serum.desc"), I18N.localise("genetics.machine.errors.invalid.serum.no.genes.info"));
 		}
 		if (!genes[0].getSpeciesRoot().isMember(target)) {
-			return new ErrorState(Genetics.proxy.localise("machine.errors.invalid.serum.desc"), Genetics.proxy.localise("machine.errors.invalid.serum.mismatch.info"));
+			return new ErrorState(I18N.localise("genetics.machine.errors.invalid.serum.desc"), I18N.localise("genetics.machine.errors.invalid.serum.mismatch.info"));
 		}
 		final IIndividual individual = genes[0].getSpeciesRoot().getMember(target);
 		if (individual != null) {
@@ -135,7 +135,7 @@ public class InoculatorLogic extends ComponentProcess implements IProcess {
 				}
 			}
 		}
-		return new ErrorState(Genetics.proxy.localise("genetics.machine.errors.defunct.serum.desc"), Genetics.proxy.localise("genetics.machine.errors.defunct.serum.info"));
+		return new ErrorState(I18N.localise("genetics.genetics.machine.errors.defunct.serum.desc"), I18N.localise("genetics.genetics.machine.errors.defunct.serum.info"));
 	}
 
 	@Override

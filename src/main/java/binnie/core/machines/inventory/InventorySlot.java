@@ -5,8 +5,7 @@ import javax.annotation.Nullable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import binnie.Binnie;
-import binnie.core.BinnieCore;
+import binnie.core.util.I18N;
 
 public class InventorySlot extends BaseSlot<ItemStack> {
 	private ItemStack itemStack;
@@ -101,11 +100,11 @@ public class InventorySlot extends BaseSlot<ItemStack> {
 
 	@Override
 	public String getName() {
-		return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "gui.slot." + this.unlocName);
+		return I18N.localise("binniecore.gui.slot." + this.unlocName);
 	}
 
 	public enum Type {
 		Standard,
-		Recipe;
+		Recipe
 	}
 }

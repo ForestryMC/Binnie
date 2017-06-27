@@ -1,15 +1,15 @@
 package binnie.extratrees.alcohol;
 
-import binnie.Binnie;
-import binnie.Constants;
-import binnie.extratrees.ExtraTrees;
+import javax.annotation.Nullable;
+import java.util.Locale;
+
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Locale;
+import binnie.Constants;
+import binnie.core.util.I18N;
+import binnie.extratrees.ExtraTrees;
 
 public enum Glassware {
 	BeerMug(480, 10, 14, " # ", "   ", "   "),
@@ -52,9 +52,9 @@ public enum Glassware {
 
 	public String getName(@Nullable String liquid) {
 		if (liquid == null) {
-			return ExtraTrees.proxy.localise("item.glassware." + this.name().toLowerCase());
+			return I18N.localise("extratrees.item.glassware." + this.name().toLowerCase());
 		}
-		return Binnie.LANGUAGE.localise(ExtraTrees.instance, "item.glassware." + this.name().toLowerCase() + ".usage", liquid);
+		return I18N.localise("extratrees.item.glassware." + this.name().toLowerCase() + ".usage", liquid);
 	}
 
 	public int getCapacity() {

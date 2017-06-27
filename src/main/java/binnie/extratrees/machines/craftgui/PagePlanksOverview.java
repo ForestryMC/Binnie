@@ -5,7 +5,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
@@ -17,7 +16,7 @@ import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
-import binnie.extratrees.ExtraTrees;
+import binnie.core.util.I18N;
 import binnie.extratrees.block.IPlankType;
 import binnie.extratrees.block.WoodManager;
 import binnie.extratrees.block.decor.FenceType;
@@ -33,7 +32,7 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 		this.deleteAllChildren();
 		final WindowAbstractDatabase database = Window.get(this);
 		new ControlText(this, new Area(0, 0, this.size().x(), 24), species.getDisplayName(), TextJustification.MiddleCenter);
-		new ControlText(this, new Area(12, 24, this.size().x() - 24, 24), ExtraTrees.proxy.localise("gui.database.planks.use"), TextJustification.MIDDLE_LEFTt);
+		new ControlText(this, new Area(12, 24, this.size().x() - 24, 24), I18N.localise("extratrees.gui.database.planks.use"), TextJustification.MIDDLE_LEFTt);
 		final IPlankType type = WoodManager.getPlankType(species);
 		int x = 12;
 		if (type != null) {
@@ -62,7 +61,7 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 		StringBuilder descBody = new StringBuilder("§o");
 		String descSig = "";
 		if (desc == null || desc.length() == 0) {
-			descBody.append(BinnieCore.getBinnieProxy().localise("gui.database.nodescription"));
+			descBody.append(I18N.localise("binniecore.gui.database.nodescription"));
 		} else {
 			final String[] descStrings = desc.split("\\|");
 			descBody.append(descStrings[0]);

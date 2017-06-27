@@ -3,7 +3,7 @@ package binnie.genetics.machine.acclimatiser;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.inventory.SlotValidator;
-import binnie.genetics.Genetics;
+import binnie.core.util.I18N;
 
 public class ValidatorAcclimatiserItem extends SlotValidator {
 	public ValidatorAcclimatiserItem() {
@@ -22,6 +22,6 @@ public class ValidatorAcclimatiserItem extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return Genetics.proxy.localise("machine.labMachine.acclimatiser.tooltips.slots.acclimatising");
+		return I18N.localise("genetics.machine.labMachine.acclimatiser.tooltips.slots.acclimatising");
 	}
 }

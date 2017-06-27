@@ -6,6 +6,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 import forestry.api.recipes.RecipeManagers;
 
+import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.utils.Utils;
 
@@ -64,7 +65,7 @@ public enum EnumPropolis implements IEBEnumItem {
 
 	@Override
 	public String getName(final ItemStack stack) {
-		return ExtraBees.proxy.localise("item.propolis." + this.name().toLowerCase());
+		return I18N.localise("extrabees.item.propolis." + this.name().toLowerCase());
 	}
 
 }

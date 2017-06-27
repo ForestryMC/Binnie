@@ -25,7 +25,7 @@ import forestry.api.genetics.IFruitBearer;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 
-import binnie.extrabees.ExtraBees;
+import binnie.core.util.I18N;
 import binnie.extrabees.utils.Utils;
 
 public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromosomeType {
@@ -70,7 +70,7 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 
 	@Override
 	public String getDescription() {
-		return ExtraBees.proxy.localise("flowers." + this.name().toLowerCase() + ".name");
+		return I18N.localise("extrabees.flowers." + this.name().toLowerCase() + ".name");
 	}
 
 	public void register() {

@@ -11,7 +11,7 @@ import binnie.core.machines.inventory.IChargedSlots;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
-import binnie.genetics.Genetics;
+import binnie.core.util.I18N;
 import binnie.genetics.item.GeneticLiquid;
 
 public class GenepoolLogic extends ComponentProcessSetCost implements IProcess {
@@ -42,7 +42,7 @@ public class GenepoolLogic extends ComponentProcessSetCost implements IProcess {
 	@Override
 	public ErrorState canWork() {
 		if (this.getUtil().isSlotEmpty(Genepool.SLOT_BEE)) {
-			return new ErrorState.NoItem(Genetics.proxy.localise("machine.errors.no.individual.desc"), Genepool.SLOT_BEE);
+			return new ErrorState.NoItem(I18N.localise("genetics.machine.errors.no.individual.desc"), Genepool.SLOT_BEE);
 		}
 		return super.canWork();
 	}
@@ -51,13 +51,13 @@ public class GenepoolLogic extends ComponentProcessSetCost implements IProcess {
 	public ErrorState canProgress() {
 		ItemStack individual = this.getUtil().getStack(Genepool.SLOT_BEE);
 		if (!this.getUtil().spaceInTank(Genepool.TANK_DNA, getDNAAmount(individual))) {
-			return new ErrorState.NoSpace(Genetics.proxy.localise("machine.errors.tanks.no.room.desc"), new int[]{0});
+			return new ErrorState.NoSpace(I18N.localise("genetics.machine.errors.tanks.no.room.desc"), new int[]{0});
 		}
 		if (!this.getUtil().liquidInTank(Genepool.TANK_ETHANOL, 1)) {
-			return new ErrorState.InsufficientLiquid(Genetics.proxy.localise("machine.labMachine.genepool.errors.not.enough.ethanol.desc"), Genepool.TANK_ETHANOL);
+			return new ErrorState.InsufficientLiquid(I18N.localise("genetics.machine.labMachine.genepool.errors.not.enough.ethanol.desc"), Genepool.TANK_ETHANOL);
 		}
 		if (this.getUtil().getSlotCharge(Genepool.SLOT_ENZYME) == 0.0f) {
-			return new ErrorState.NoItem(Genetics.proxy.localise("machine.labMachine.genepool.errors.insufficient.enzyme.desc"), Genepool.SLOT_ENZYME);
+			return new ErrorState.NoItem(I18N.localise("genetics.machine.labMachine.genepool.errors.insufficient.enzyme.desc"), Genepool.SLOT_ENZYME);
 		}
 		return super.canProgress();
 	}

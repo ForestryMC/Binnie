@@ -35,7 +35,7 @@ import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.genetics.ISpeciesType;
 
 import binnie.Binnie;
-import binnie.core.BinnieCore;
+import binnie.core.util.I18N;
 import binnie.core.util.UniqueItemStackSet;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.machines.lumbermill.LumbermillRecipes;
@@ -87,7 +87,7 @@ public class TreeBreedingSystem extends BreedingSystem {
 		}
 		if (chromosome == EnumTreeChromosome.FRUITS && allele.getUID().contains(".")) {
 			final IFruitProvider provider = ((IAlleleFruit) allele).getProvider();
-			return (provider.getProducts().size() == 0) ? Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.none") : provider.getProducts().keySet().iterator().next().getDisplayName();
+			return (provider.getProducts().size() == 0) ? I18N.localise("binniecore.allele.none") : provider.getProducts().keySet().iterator().next().getDisplayName();
 		}
 		return super.getAlleleName(chromosome, allele);
 	}

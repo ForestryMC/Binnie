@@ -42,6 +42,7 @@ import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.core.craftgui.resource.StyleSheetPunnett;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.util.I18N;
 import binnie.genetics.gui.ControlChromosome;
 import binnie.genetics.machine.analyser.Analyser;
 
@@ -189,8 +190,8 @@ public class WindowFieldKit extends Window {
 				final IAllele allele = ind.getGenome().getActiveAllele(type);
 				final List<String> infos = new ArrayList<>();
 				int i = 0;
-				for (String pref = root.getUID() + ".fieldkit." + type.getName().toLowerCase() + "."; Binnie.LANGUAGE.canLocalise(pref + i); ++i) {
-					infos.add(Binnie.LANGUAGE.localise(pref + i));
+				for (String pref = root.getUID() + ".fieldkit." + type.getName().toLowerCase() + "."; I18N.canLocalise(pref + i); ++i) {
+					infos.add(I18N.localise(pref + i));
 				}
 				String text = Binnie.GENETICS.getSystem(root).getAlleleName(type, allele);
 				if (!infos.isEmpty()) {

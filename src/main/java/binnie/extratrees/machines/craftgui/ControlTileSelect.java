@@ -12,8 +12,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.Binnie;
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.Attribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
@@ -29,6 +27,7 @@ import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.renderer.RenderUtil;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.machines.TileEntityMachine;
+import binnie.core.util.I18N;
 import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignCategory;
@@ -150,7 +149,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 
 		@Override
 		public void getTooltip(final Tooltip tooltip) {
-			tooltip.add(Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "gui.designer.pattern", this.getValue().getName()));
+			tooltip.add(I18N.localise("binniecore.gui.designer.pattern", this.getValue().getName()));
 		}
 
 		@Override

@@ -26,7 +26,7 @@ import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.genetics.Tolerance;
-import binnie.genetics.Genetics;
+import binnie.core.util.I18N;
 import binnie.genetics.gui.ControlAnalystPage;
 import binnie.genetics.gui.ControlBiome;
 import binnie.genetics.gui.ControlToleranceBar;
@@ -54,17 +54,17 @@ public class AnalystPageClimate extends ControlAnalystPage {
 		int y = 4;
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColour(this.getColour());
 		y += 16;
-		new ControlText(this, new Area(4, y, this.width() - 8, 14), Genetics.proxy.localise("gui.analyst.climate.temp"), TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new Area(4, y, this.width() - 8, 14), I18N.localise("genetics.gui.analyst.climate.temp"), TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
 		this.createTemperatureBar(this, (this.width() - 100) / 2, y, 100, 10, temp, tempTol);
 		y += 16;
 		if (!(ind instanceof IFlower)) {
-			new ControlText(this, new Area(4, y, this.width() - 8, 14), Genetics.proxy.localise("gui.analyst.climate.hum"), TextJustification.MiddleCenter).setColour(this.getColour());
+			new ControlText(this, new Area(4, y, this.width() - 8, 14), I18N.localise("genetics.gui.analyst.climate.hum"), TextJustification.MiddleCenter).setColour(this.getColour());
 			y += 12;
 			this.createHumidity(this, (this.width() - 100) / 2, y, 100, 10, humid, humidTol);
 			y += 16;
 		}
-		new ControlText(this, new Area(4, y, this.width() - 8, 14), Genetics.proxy.localise("gui.analyst.climate.biomes"), TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new Area(4, y, this.width() - 8, 14), I18N.localise("genetics.gui.analyst.climate.biomes"), TextJustification.MiddleCenter).setColour(this.getColour());
 		y += 12;
 		final List<Biome> biomes = new ArrayList<>();
 		for (final Biome biome : Biome.EXPLORATION_BIOMES_LIST) { //TODO check
@@ -128,6 +128,6 @@ public class AnalystPageClimate extends ControlAnalystPage {
 
 	@Override
 	public String getTitle() {
-		return Genetics.proxy.localise("gui.analyst.climate.title");
+		return I18N.localise("genetics.gui.analyst.climate.title");
 	}
 }

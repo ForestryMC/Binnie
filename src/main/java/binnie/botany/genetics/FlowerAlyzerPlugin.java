@@ -18,13 +18,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.genetics.IAlleleInteger;
 import forestry.api.genetics.IAlyzerPlugin;
 
-import binnie.Binnie;
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.EnumFlowerStage;
 import binnie.botany.api.FlowerManager;
 import binnie.botany.api.IFlower;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.renderer.RenderUtil;
+import binnie.core.util.I18N;
 
 // TODO write flower alyzer plugin
 public class FlowerAlyzerPlugin implements IAlyzerPlugin {
@@ -73,8 +73,8 @@ public class FlowerAlyzerPlugin implements IAlyzerPlugin {
 
 	public void drawChromosom(GuiScreen gui, EnumFlowerChromosome chromosome, IFlower flower){
 		drawLine(gui, COLUMN_0, StringUtils.capitalize(chromosome.getName()), 0xEEEEEE);
-		drawLine(gui, COLUMN_1, Binnie.LANGUAGE.localise(flower.getGenome().getActiveAllele(chromosome).getUnlocalizedName()), 0xEEEEEE);
-		drawLine(gui, COLUMN_2, Binnie.LANGUAGE.localise(flower.getGenome().getInactiveAllele(chromosome).getUnlocalizedName()), 0xEEEEEE);
+		drawLine(gui, COLUMN_1, I18N.localise(flower.getGenome().getActiveAllele(chromosome).getUnlocalizedName()), 0xEEEEEE);
+		drawLine(gui, COLUMN_2, I18N.localise(flower.getGenome().getInactiveAllele(chromosome).getUnlocalizedName()), 0xEEEEEE);
 		lastTopOffset += rowSize;
 	}
 

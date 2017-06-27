@@ -21,6 +21,7 @@ import binnie.core.craftgui.minecraft.control.ControlSlotCharge;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.core.craftgui.window.Panel;
+import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.craftgui.WindowMachine;
@@ -62,7 +63,7 @@ public class WindowAnalyser extends WindowMachine {
 
 	@Override
 	public String getTitle() {
-		return Genetics.proxy.localise("machine.labMachine.analyser");
+		return I18N.localise("genetics.machine.labMachine.analyser");
 	}
 
 	@Override

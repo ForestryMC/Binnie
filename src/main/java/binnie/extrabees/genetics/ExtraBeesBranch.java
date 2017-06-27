@@ -9,7 +9,7 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IClassification;
 
-import binnie.extrabees.ExtraBees;
+import binnie.core.util.I18N;
 
 public enum ExtraBeesBranch implements IClassification {
 
@@ -244,7 +244,7 @@ public enum ExtraBeesBranch implements IClassification {
 
 	@Override
 	public String getName() {
-		return ExtraBees.proxy.localise("branch." + this.toString().toLowerCase() + ".name");
+		return I18N.localise("extrabees.branch." + this.toString().toLowerCase() + ".name");
 	}
 
 	@Override
@@ -254,7 +254,7 @@ public enum ExtraBeesBranch implements IClassification {
 
 	@Override
 	public String getDescription() {
-		return ExtraBees.proxy.localise("branch." + this.toString().toLowerCase() + ".desc");
+		return I18N.localise("extrabees.branch." + this.toString().toLowerCase() + ".desc");
 	}
 
 	public void register() {

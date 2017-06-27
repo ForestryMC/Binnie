@@ -16,6 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.core.IModelManager;
 
 import binnie.core.item.ItemCore;
+import binnie.core.util.I18N;
 import binnie.genetics.CreativeTabGenetics;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsGUI;
@@ -59,7 +60,7 @@ public class ItemDatabase extends ItemCore {
 
 	@Override
 	public String getItemStackDisplayName(ItemStack itemStack) {
-		return Genetics.proxy.localise(isMaster(itemStack) ? "item.database.master.name" : "item.database.name");
+		return I18N.localise("genetics." + (isMaster(itemStack) ? "item.database.master.name" : "item.database.name"));
 	}
 
 	protected boolean isMaster(ItemStack itemStack) {

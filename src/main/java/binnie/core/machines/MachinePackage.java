@@ -5,7 +5,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.Binnie;
+import binnie.core.util.I18N;
 
 public abstract class MachinePackage {
 	boolean powered;
@@ -36,7 +36,7 @@ public abstract class MachinePackage {
 	public abstract void renderMachine(Machine machine, double x, double y, double z, float partialTicks, int destroyStage);//, final RenderBlocks p5);
 
 	public final String getDisplayName() {
-		return Binnie.LANGUAGE.localise(this.group.getMod(), "machine." + this.group.getShortUID() + "." + this.getUID());
+		return I18N.localise(this.group.getMod().getModID() + '.' + "machine." + this.group.getShortUID() + "." + this.getUID());
 	}
 
 	public final Integer getMetadata() {
@@ -64,6 +64,6 @@ public abstract class MachinePackage {
 	}
 
 	public final String getInformation() {
-		return Binnie.LANGUAGE.localise(this.group.getMod(), "machine." + this.group.getShortUID() + "." + this.getUID() + ".info");
+		return I18N.localise(this.group.getMod().getModID() + '.' + "machine." + this.group.getShortUID() + "." + this.getUID() + ".info");
 	}
 }

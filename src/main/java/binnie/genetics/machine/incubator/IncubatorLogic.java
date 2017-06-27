@@ -13,7 +13,7 @@ import binnie.core.machines.power.ComponentProcessIndefinate;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import binnie.core.machines.transfer.TransferRequest;
-import binnie.genetics.Genetics;
+import binnie.core.util.I18N;
 import binnie.genetics.api.IIncubatorRecipe;
 
 public class IncubatorLogic extends ComponentProcessIndefinate implements IProcess {
@@ -36,7 +36,7 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 	@Override
 	public ErrorState canWork() {
 		if (this.recipe == null) {
-			return new ErrorState(Genetics.proxy.localise("machine.errors.no.recipe.desc"), Genetics.proxy.localise("machine.errors.no.recipe.info"));
+			return new ErrorState(I18N.localise("genetics.machine.errors.no.recipe.desc"), I18N.localise("genetics.machine.errors.no.recipe.info"));
 		}
 		return super.canWork();
 	}
@@ -45,10 +45,10 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 	public ErrorState canProgress() {
 		if (this.recipe != null) {
 			if (!this.recipe.isInputLiquidSufficient(this.getUtil().getFluid(Incubator.TANK_INPUT))) {
-				return new ErrorState.InsufficientLiquid(Genetics.proxy.localise("machine.labMachine.incubator.errors.no.liquid.desc"), Incubator.TANK_INPUT);
+				return new ErrorState.InsufficientLiquid(I18N.localise("genetics.machine.labMachine.incubator.errors.no.liquid.desc"), Incubator.TANK_INPUT);
 			}
 			if (!this.roomForOutput) {
-				return new ErrorState.TankSpace(Genetics.proxy.localise("machine.labMachine.incubator.errors.no.room.desc"), Incubator.TANK_OUTPUT);
+				return new ErrorState.TankSpace(I18N.localise("genetics.machine.labMachine.incubator.errors.no.room.desc"), Incubator.TANK_OUTPUT);
 			}
 		}
 		return super.canProgress();

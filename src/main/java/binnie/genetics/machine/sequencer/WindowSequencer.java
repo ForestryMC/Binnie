@@ -24,6 +24,7 @@ import binnie.core.craftgui.minecraft.control.ControlSlotArray;
 import binnie.core.craftgui.minecraft.control.ControlSlotCharge;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
+import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.craftgui.WindowMachine;
@@ -41,7 +42,7 @@ public class WindowSequencer extends WindowMachine {
 	@SideOnly(Side.CLIENT)
 	public void receiveGuiNBTOnClient(EntityPlayer player, String name, NBTTagCompound nbt) {
 		if (name.equals("username")) {
-			this.slotText.setValue(TextFormatting.DARK_GRAY + String.format(Genetics.proxy.localise("machine.machine.sequencer.texts.sequenced.by"), nbt.getString("username")));
+			this.slotText.setValue(TextFormatting.DARK_GRAY + String.format(I18N.localise("genetics.machine.machine.sequencer.texts.sequenced.by"), nbt.getString("username")));
 		}
 		super.receiveGuiNBTOnClient(player, name, nbt);
 	}
@@ -62,7 +63,7 @@ public class WindowSequencer extends WindowMachine {
 		final ControlSlot slotTarget = new ControlSlot.Builder(this, x + 96, y + 16).assign(5);
 		x = 34;
 		y = 92;
-		this.slotText = new ControlText(this, new Area(0, y, this.width(), 12), TextFormatting.DARK_GRAY + Genetics.proxy.localise("machine.machine.sequencer.texts.userless"), TextJustification.MiddleCenter);
+		this.slotText = new ControlText(this, new Area(0, y, this.width(), 12), TextFormatting.DARK_GRAY + I18N.localise("genetics.machine.machine.sequencer.texts.userless"), TextJustification.MiddleCenter);
 		y += 20;
 		final ControlSlot slotDye = new ControlSlot.Builder(this, x, y).assign(0);
 		x += 20;
@@ -76,7 +77,7 @@ public class WindowSequencer extends WindowMachine {
 
 	@Override
 	public String getTitle() {
-		return Genetics.proxy.localise("machine.machine.sequencer");
+		return I18N.localise("genetics.machine.machine.sequencer");
 	}
 
 	@Override

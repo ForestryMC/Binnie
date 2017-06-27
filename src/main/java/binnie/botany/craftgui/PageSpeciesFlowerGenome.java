@@ -64,10 +64,10 @@ public class PageSpeciesFlowerGenome extends PageSpecies {
 		new ControlText(contents, new Area(w2, y, w3, th), treeSpecies.getTemperature().getName(), TextJustification.MIDDLE_LEFTt);
 		y += th;
 		new ControlText(contents, new Area(0, y, w2, th), "Moist. : ", TextJustification.MiddleRight);
-		new ControlText(contents, new Area(w2, y, w3, th), Binnie.LANGUAGE.localise(treeSpecies.getMoisture()), TextJustification.MIDDLE_LEFTt);
+		new ControlText(contents, new Area(w2, y, w3, th), treeSpecies.getMoisture().getLocalisedName(false), TextJustification.MIDDLE_LEFTt);
 		y += th;
 		new ControlText(contents, new Area(0, y, w2, th), "pH. : ", TextJustification.MiddleRight);
-		new ControlText(contents, new Area(w2, y, w3, th), Binnie.LANGUAGE.localise(treeSpecies.getPH()), TextJustification.MIDDLE_LEFTt);
+		new ControlText(contents, new Area(w2, y, w3, th), treeSpecies.getPH().getLocalisedName(false), TextJustification.MIDDLE_LEFTt);
 		y += th;
 		new ControlText(contents, new Area(0, y, w2, th), "Fertility : ", TextJustification.MiddleRight);
 		new ControlText(contents, new Area(w2, y, w3, th), genome.getFertility() + "x", TextJustification.MIDDLE_LEFTt);

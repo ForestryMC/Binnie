@@ -8,7 +8,7 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
-import binnie.genetics.Genetics;
+import binnie.core.util.I18N;
 import binnie.genetics.genetics.Engineering;
 
 public class PolymeriserLogic extends ComponentProcessSetCost implements IProcess {
@@ -76,9 +76,9 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 		final ItemStack serum = this.getUtil().getStack(Polymeriser.SLOT_SERUM);
 		int n = getNumberOfGenes(serum);
 		if (n > 1) {
-			return String.format(Genetics.proxy.localise("genetics.machine.machine.polymeriser.tooltips.logic.genes"), Integer.valueOf(n).toString());
+			return String.format(I18N.localise("genetics.genetics.machine.machine.polymeriser.tooltips.logic.genes"), Integer.valueOf(n).toString());
 		} else {
-			return Genetics.proxy.localise("genetics.machine.machine.polymeriser.tooltips.logic.gene");
+			return I18N.localise("genetics.genetics.machine.machine.polymeriser.tooltips.logic.gene");
 		}
 	}
 
@@ -86,10 +86,10 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 	public ErrorState canWork() {
 		ItemStack serumStack = this.getUtil().getStack(Polymeriser.SLOT_SERUM);
 		if (serumStack.isEmpty()) {
-			return new ErrorState.NoItem(Genetics.proxy.localise("machine.machine.polymeriser.errors.item.no"), Polymeriser.SLOT_SERUM);
+			return new ErrorState.NoItem(I18N.localise("genetics.machine.machine.polymeriser.errors.item.no"), Polymeriser.SLOT_SERUM);
 		}
 		if (!serumStack.isItemDamaged()) {
-			return new ErrorState.InvalidItem(Genetics.proxy.localise("machine.machine.polymeriser.errors.item.filled"), Polymeriser.SLOT_SERUM);
+			return new ErrorState.InvalidItem(I18N.localise("genetics.machine.machine.polymeriser.errors.item.filled"), Polymeriser.SLOT_SERUM);
 		}
 		return super.canWork();
 	}
@@ -97,10 +97,10 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 	@Override
 	public ErrorState canProgress() {
 		if (this.getUtil().getFluid(Polymeriser.TANK_BACTERIA) == null) {
-			return new ErrorState.InsufficientLiquid(Genetics.proxy.localise("machine.machine.polymeriser.errors.insufficient.bacteria"), Polymeriser.TANK_BACTERIA);
+			return new ErrorState.InsufficientLiquid(I18N.localise("genetics.machine.machine.polymeriser.errors.insufficient.bacteria"), Polymeriser.TANK_BACTERIA);
 		}
 		if (this.getUtil().getFluid(Polymeriser.TANK_DNA) == null) {
-			return new ErrorState.InsufficientLiquid(Genetics.proxy.localise("machine.machine.polymeriser.errors.insufficient.dna"), Polymeriser.TANK_DNA);
+			return new ErrorState.InsufficientLiquid(I18N.localise("genetics.machine.machine.polymeriser.errors.insufficient.dna"), Polymeriser.TANK_DNA);
 		}
 		return super.canProgress();
 	}

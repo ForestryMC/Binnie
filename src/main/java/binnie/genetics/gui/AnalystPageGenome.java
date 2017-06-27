@@ -22,7 +22,7 @@ import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.genetics.BreedingSystem;
-import binnie.genetics.Genetics;
+import binnie.core.util.I18N;
 
 @SideOnly(Side.CLIENT)
 public class AnalystPageGenome extends ControlAnalystPage {
@@ -65,6 +65,6 @@ public class AnalystPageGenome extends ControlAnalystPage {
 
 	@Override
 	public String getTitle() {
-		return Genetics.proxy.localise("gui.analyst.genome." + (this.active ? "active" : "inactive")) + " " + Genetics.proxy.localise("gui.analyst.genome.title");
+		return I18N.localise("genetics.gui.analyst.genome." + (this.active ? "active" : "inactive")) + " " + I18N.localise("genetics.gui.analyst.genome.title");
 	}
 }

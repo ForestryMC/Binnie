@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-import binnie.Binnie;
+import binnie.core.util.I18N;
 
 public class ItemWeed extends ItemBlock {
 	public ItemWeed(Block block) {
@@ -15,7 +15,7 @@ public class ItemWeed extends ItemBlock {
 
 	@Override
 	public String getItemStackDisplayName(final ItemStack stack) {
-		return Binnie.LANGUAGE.localise("botany.plant." + BlockPlant.Type.values()[stack.getItemDamage()].getName());
+		return I18N.localise("botany.plant." + BlockPlant.Type.values()[stack.getItemDamage()].getName());
 	}
 
 	@Override

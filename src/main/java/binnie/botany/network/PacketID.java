@@ -9,13 +9,13 @@ import net.minecraftforge.fml.relauncher.Side;
 
 import forestry.api.genetics.AlleleManager;
 
-import binnie.Binnie;
 import binnie.botany.api.IAlleleFlowerSpecies;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.BinnieCore;
 import binnie.core.network.IPacketID;
 import binnie.core.network.packet.MessageBinnie;
 import binnie.core.network.packet.MessageNBT;
+import binnie.core.util.I18N;
 
 public enum PacketID implements IPacketID {
 	FIELDKIT;
@@ -32,7 +32,7 @@ public enum PacketID implements IPacketID {
 		EntityPlayer player = BinnieCore.getBinnieProxy().getPlayer();
 		String info = "";
 		if (data == null || data.hasNoTags()) {
-			info += Binnie.LANGUAGE.localise("botany.flowers.species.not.discover");
+			info += I18N.localise("botany.flowers.species.not.discover");
 		} else {
 			IAlleleFlowerSpecies primary = (IAlleleFlowerSpecies) AlleleManager.alleleRegistry.getAllele(data.getString("Species"));
 			IAlleleFlowerSpecies secondary = (IAlleleFlowerSpecies) AlleleManager.alleleRegistry.getAllele(data.getString("Species2"));
@@ -42,15 +42,15 @@ public enum PacketID implements IPacketID {
 			if (primary == null || secondary == null) {
 				return;
 			}
-			info += Binnie.LANGUAGE.localise("botany.flowers.fielkit.a");
+			info += I18N.localise("botany.flowers.fielkit.a");
 			if (age == 0.0f) {
 				info += "";
 			} else if (age < 0.25f) {
-				info += " " + Binnie.LANGUAGE.localise("botany.flowers.fielkit.young");
+				info += " " + I18N.localise("botany.flowers.fielkit.young");
 			} else if (age < 0.75f) {
-				info += " " + Binnie.LANGUAGE.localise("botany.flowers.fielkit.mature");
+				info += " " + I18N.localise("botany.flowers.fielkit.mature");
 			} else {
-				info += " " + Binnie.LANGUAGE.localise("botany.flowers.fielkit.old");
+				info += " " + I18N.localise("botany.flowers.fielkit.old");
 			}
 			if (color1 == color2) {
 				info = info + " " + color1.getName();
@@ -60,13 +60,13 @@ public enum PacketID implements IPacketID {
 			if (primary == secondary) {
 				info = info + " " + primary.getName();
 			} else {
-				info = info + " " + primary.getName() + "-" + secondary.getName() + " " + Binnie.LANGUAGE.localise("botany.flowers.species.hybrid");
+				info = info + " " + primary.getName() + "-" + secondary.getName() + " " + I18N.localise("botany.flowers.species.hybrid");
 			}
 			if (age == 0.0f) {
-				info += " " + Binnie.LANGUAGE.localise("botany.flowers.species.germling");
+				info += " " + I18N.localise("botany.flowers.species.germling");
 			}
 			if (data.getBoolean("Wilting")) {
-				info += ". " + Binnie.LANGUAGE.localise("botany.flowers.species.wilting");
+				info += ". " + I18N.localise("botany.flowers.species.wilting");
 			}
 		}
 		player.sendStatusMessage(new TextComponentString(info), false);

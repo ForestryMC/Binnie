@@ -14,6 +14,7 @@ import forestry.core.fluids.Fluids;
 
 import binnie.core.Mods;
 import binnie.core.item.IItemMiscProvider;
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.alcohol.Juice;
 
@@ -151,7 +152,7 @@ public enum Food implements IItemMiscProvider {
 
 	@Override
 	public String getName(final ItemStack stack) {
-		return ExtraTrees.proxy.localise("item.food." + this.name().toLowerCase());
+		return I18N.localise("extratrees.item.food." + this.name().toLowerCase());
 	}
 
 	@Override

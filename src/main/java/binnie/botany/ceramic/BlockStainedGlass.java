@@ -34,12 +34,12 @@ import forestry.api.core.IItemModelRegister;
 import forestry.api.core.IModelManager;
 import forestry.core.blocks.IColoredBlock;
 
-import binnie.Binnie;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.block.BlockMetadata;
 import binnie.core.block.IBlockMetadata;
 import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
 
 public class BlockStainedGlass extends Block implements IBlockMetadata, IColoredBlock, IItemModelRegister {
 	public BlockStainedGlass() {
@@ -79,10 +79,7 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
 		IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
 		Block block = iblockstate.getBlock();
-		if (block != this) {
-			return true;
-		}
-		return false;
+		return block != this;
 	}
 	
 	@Override
@@ -141,7 +138,7 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 	@Override
 	public String getDisplayName(final ItemStack itemStack) {
 		final int meta = TileEntityMetadata.getItemDamage(itemStack);
-		return EnumFlowerColor.get(meta).getFlowerColorAllele().getColourName() + " " + Binnie.LANGUAGE.localise("tile.botany.pigmented.glass.name");
+		return EnumFlowerColor.get(meta).getFlowerColorAllele().getColourName() + " " + I18N.localise("tile.botany.pigmented.glass.name");
 	}
 
 	@Override

@@ -6,8 +6,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.IFluidTank;
 
-import binnie.Binnie;
-import binnie.core.BinnieCore;
+import binnie.core.util.I18N;
 
 public class TankSlot extends BaseSlot<FluidStack> {
 	public static final String NameJuice = "Juice Tank";
@@ -50,6 +49,6 @@ public class TankSlot extends BaseSlot<FluidStack> {
 
 	@Override
 	public String getName() {
-		return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "gui.slot." + this.unlocName);
+		return I18N.localise("binniecore.gui.slot." + this.unlocName);
 	}
 }

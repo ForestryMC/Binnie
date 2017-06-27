@@ -28,6 +28,7 @@ import binnie.core.craftgui.database.PageSpeciesResultant;
 import binnie.core.craftgui.database.WindowAbstractDatabase;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.minecraft.Window;
+import binnie.core.util.I18N;
 
 public class WindowBotanistDatabase extends WindowAbstractDatabase {
 	ControlListBox<EnumFlowerColor> selectionBoxColors;
@@ -71,7 +72,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 
 		@Override
 		public String getName() {
-			return Botany.proxy.localise("gui.database.mode." + this.name().toLowerCase());
+			return I18N.localise("botany.gui.database.mode." + this.name().toLowerCase());
 		}
 	}
 

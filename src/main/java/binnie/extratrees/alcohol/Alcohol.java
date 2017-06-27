@@ -11,7 +11,7 @@ import binnie.Binnie;
 import binnie.Constants;
 import binnie.core.liquid.FluidContainerType;
 import binnie.core.liquid.IFluidType;
-import binnie.extratrees.ExtraTrees;
+import binnie.core.util.I18N;
 
 public enum Alcohol implements IFluidType, ICocktailLiquid {
 	Apple("cider.apple", 16432700, 0.3, 0.05),
@@ -107,7 +107,7 @@ public enum Alcohol implements IFluidType, ICocktailLiquid {
 
 	@Override
 	public String getDisplayName() {
-		return ExtraTrees.proxy.localise("fluid.alcohol." + this.name().toLowerCase());
+		return I18N.localise("extratrees.fluid.alcohol." + this.name().toLowerCase());
 	}
 
 	@Override

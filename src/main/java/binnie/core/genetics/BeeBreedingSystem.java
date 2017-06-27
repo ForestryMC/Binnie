@@ -21,7 +21,7 @@ import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.genetics.ISpeciesType;
 
 import binnie.Binnie;
-import binnie.core.BinnieCore;
+import binnie.core.util.I18N;
 
 class BeeBreedingSystem extends BreedingSystem {
 
@@ -61,16 +61,16 @@ class BeeBreedingSystem extends BreedingSystem {
 	public String getAlleleName(final IChromosomeType chromosome, final IAllele allele) {
 		if (chromosome == EnumBeeChromosome.FERTILITY) {
 			if (allele.getUID().contains("Low")) {
-				return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.fertility.low");
+				return I18N.localise("binniecore.allele.fertility.low");
 			}
 			if (allele.getUID().contains("Normal")) {
-				return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.fertility.normal");
+				return I18N.localise("binniecore.allele.fertility.normal");
 			}
 			if (allele.getUID().contains("High")) {
-				return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.fertility.high");
+				return I18N.localise("binniecore.allele.fertility.high");
 			}
 			if (allele.getUID().contains("Maximum")) {
-				return Binnie.LANGUAGE.localise(BinnieCore.getInstance(), "allele.fertility.maximum");
+				return I18N.localise("binniecore.allele.fertility.maximum");
 			}
 		}
 		return super.getAlleleName(chromosome, allele);

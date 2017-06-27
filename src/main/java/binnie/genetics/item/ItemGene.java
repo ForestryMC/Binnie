@@ -15,8 +15,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.core.items.IColoredItem;
 
 import binnie.core.item.ItemCore;
+import binnie.core.util.I18N;
 import binnie.genetics.CreativeTabGenetics;
-import binnie.genetics.Genetics;
 import binnie.genetics.genetics.IGeneItem;
 
 public abstract class ItemGene extends ItemCore implements IColoredItem {
@@ -34,11 +34,11 @@ public abstract class ItemGene extends ItemCore implements IColoredItem {
 	public void addInformation(final ItemStack itemstack, final EntityPlayer entityPlayer, final List<String> list, final boolean advanced) {
 		int damage = itemstack.getMaxDamage() - itemstack.getItemDamage();
 		if (damage == 0) {
-			list.add(Genetics.proxy.localise("item.gene.empty"));
+			list.add(I18N.localise("genetics.item.gene.empty"));
 		} else if (damage == 1) {
-			list.add("1 " + Genetics.proxy.localise("item.gene.charge"));
+			list.add("1 " + I18N.localise("genetics.item.gene.charge"));
 		} else {
-			list.add(damage + " " + Genetics.proxy.localise("item.gene.charges"));
+			list.add(damage + " " + I18N.localise("genetics.item.gene.charges"));
 		}
 		IGeneItem gene = this.getGeneItem(itemstack);
 		if (gene != null) {
