@@ -195,7 +195,7 @@ public class AnalystPageProducts extends AnalystPageProduce {
 		textWidget.setColor(getColor());
 		CraftGUIUtil.moveWidget(textWidget, new IPoint(12.0f, 0.0f));
 		item.setItemStack(key);
-		float time = (int) (PluginApiculture.ticksPerBeeWorkCycle * 100.0 / (speed * value));
+		float time = (int) (PluginApiculture.ticksPerBeeWorkCycle / (speed * value));
 		textWidget.setValue(I18N.localise("genetics.gui.analyst.produce.everyTime", getTimeString(time)));
 	}
 
