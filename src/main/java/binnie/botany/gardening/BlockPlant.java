@@ -40,12 +40,13 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 		this.setSoundType(SoundType.PLANT);
 	}
 
-	public static boolean isWeed(final IBlockAccess world, final BlockPos pos) {
-		if (!(world.getBlockState(pos).getBlock() instanceof BlockPlant)) {
+	public static boolean isWeed(IBlockAccess world, BlockPos pos) {
+		IBlockState blockState = world.getBlockState(pos);
+		if (!(blockState.getBlock() instanceof BlockPlant)) {
 			return false;
 		}
-		final Type type = world.getBlockState(pos).getValue(PLANT_TYPE);
-		return type == Type.Weeds || type == Type.WeedsLong || type == Type.WeedsVeryLong;
+		Type type = blockState.getValue(PLANT_TYPE);
+		return type.isWeed();
 	}
 
 	@Override
@@ -99,7 +100,7 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 	@Override
 	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
 		final Type type = state.getValue(PLANT_TYPE);
-		if (world.rand.nextInt(4) == 0) {
+		if (rand.nextInt(4) == 0) {
 			if (type == Type.Weeds) {
 				world.setBlockState(pos, state.withProperty(PLANT_TYPE, Type.WeedsLong), 2);
 			} else if (type == Type.WeedsLong) {
@@ -111,7 +112,7 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 				return;
 			}
 		}
-		if (world.rand.nextInt(6) == 0) {
+		if (rand.nextInt(6) == 0) {
 			if (type == Type.Weeds) {
 				world.setBlockToAir(pos);
 			} else if (type == Type.WeedsLong) {
@@ -120,17 +121,18 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 				world.setBlockState(pos, state.withProperty(PLANT_TYPE, Type.WeedsLong), 2);
 			}
 		}
-		final Block below = world.getBlockState(pos.down()).getBlock();
+		Block below = world.getBlockState(pos.down()).getBlock();
 		if (Gardening.isSoil(below)) {
-			final IBlockSoil soil = (IBlockSoil) below;
-			if (world.rand.nextInt(3) == 0) {
-				if (type == Type.Weeds || type == Type.WeedsLong || type == Type.WeedsVeryLong) {
-					if (!soil.degrade(world, pos.down(), EnumSoilType.LOAM)) {
-						soil.degrade(world, pos.down(), EnumSoilType.SOIL);
-					}
-				} else if (type == Type.DecayingFlower && !soil.fertilise(world, pos.down(), EnumSoilType.LOAM)) {
-					soil.fertilise(world, pos.down(), EnumSoilType.FLOWERBED);
+			IBlockSoil soil = (IBlockSoil) below;
+			if(rand.nextInt(3) != 0){
+				return;
+			}
+			if (type.isWeed()) {
+				if (!soil.degrade(world, pos.down(), EnumSoilType.LOAM)) {
+					soil.degrade(world, pos.down(), EnumSoilType.SOIL);
 				}
+			} else if (type == Type.DecayingFlower && !soil.fertilise(world, pos.down(), EnumSoilType.LOAM)) {
+				soil.fertilise(world, pos.down(), EnumSoilType.FLOWERBED);
 			}
 		}
 	}
@@ -146,19 +148,25 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 	}
 
 	public enum Type implements IStringSerializable {
-		Weeds("weeds"),
-		WeedsLong("weeds_long"),
-		WeedsVeryLong("weeds_very_long"),
+		Weeds("weeds", true),
+		WeedsLong("weeds_long", true),
+		WeedsVeryLong("weeds_very_long", true),
 		DeadFlower("dead_flower"),
 		DecayingFlower("decaying_flower");
 
 		String name;
-
-		Type(final String name) {
+		boolean isWeed;
+		
+		Type(String name) {
+			this(name, false);
+		}
+		
+		Type(String name, boolean isWeed) {
 			this.name = name;
+			this.isWeed = isWeed;
 		}
 
-		public static Type get(final int id) {
+		public static Type get(int id) {
 			return values()[id % values().length];
 		}
 
@@ -166,6 +174,10 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 			return new ItemStack(Botany.plant, 1, this.ordinal());
 		}
 
+		public boolean isWeed(){
+			return isWeed;
+		}
+		
 		@Override
 		public String getName() {
 			return name;

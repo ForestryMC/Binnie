@@ -198,9 +198,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 
 	@Override
 	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
-		int meta = getMetaFromState(state);
-		EnumMoisture moisture = EnumMoisture.values()[meta % 3];
-		EnumAcidity acidity = EnumAcidity.values()[meta / 3];
+		EnumMoisture moisture = state.getValue(MOISTURE);
 		EnumMoisture desiredMoisture = Gardening.getNaturalMoisture(world, pos);
 		if (desiredMoisture.ordinal() > moisture.ordinal()) {
 			moisture = ((moisture == EnumMoisture.DRY) ? EnumMoisture.NORMAL : EnumMoisture.DAMP);
@@ -208,12 +206,19 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 		if (desiredMoisture.ordinal() < moisture.ordinal()) {
 			moisture = ((moisture == EnumMoisture.DAMP) ? EnumMoisture.NORMAL : EnumMoisture.DRY);
 		}
-		int meta2 = getMeta(acidity, moisture);
-		if (meta != meta2) {
-			world.setBlockState(pos, getStateFromMeta(meta2), 2);
+		IBlockState blockState = state.withProperty(MOISTURE, moisture);
+		if (state != blockState) {
+			world.setBlockState(pos, blockState, 2);
 		}
-		if (!this.weedKilled && rand.nextInt(5 - getType(world, pos).ordinal()) == 0 && world.getBlockState(pos.up()).getBlock() == Blocks.AIR) {
-			world.setBlockState(pos.up(), Botany.plant.getStateFromMeta(BlockPlant.Type.Weeds.ordinal()), 2);
+		if(!weedKilled){
+			if(rand.nextInt(5 - getType(world, pos).ordinal()) != 0){
+				return;
+			}
+			pos = pos.up();
+			if(!world.isAirBlock(pos)){
+				return;
+			}
+			world.setBlockState(pos, Botany.plant.getStateFromMeta(BlockPlant.Type.Weeds.ordinal()), 2);
 		}
 	}
 
@@ -263,14 +268,14 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 
 	@Override
 	public boolean setPH(final World world, final BlockPos pos, final EnumAcidity pH) {
-		final int meta = getMeta(pH, this.getMoisture(world, pos));
-		return world.setBlockState(pos, world.getBlockState(pos).withProperty(ACIDITY, pH));
+		IBlockState blockState = world.getBlockState(pos);
+		return world.setBlockState(pos, blockState.withProperty(ACIDITY, pH));
 	}
 
 	@Override
 	public boolean setMoisture(final World world, final BlockPos pos, final EnumMoisture moisture) {
-		final int meta = getMeta(this.getPH(world, pos), moisture);
-		return world.setBlockState(pos, world.getBlockState(pos).withProperty(MOISTURE, moisture));
+		IBlockState blockState = world.getBlockState(pos);
+		return world.setBlockState(pos, blockState.withProperty(MOISTURE, moisture));
 	}
 
 	@Override
