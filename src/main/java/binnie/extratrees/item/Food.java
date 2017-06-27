@@ -151,7 +151,7 @@ public enum Food implements IItemMiscProvider {
 	}
 
 	@Override
-	public String getName(final ItemStack stack) {
+	public String getDisplayName(final ItemStack stack) {
 		return I18N.localise("extratrees.item.food." + this.name().toLowerCase());
 	}
 

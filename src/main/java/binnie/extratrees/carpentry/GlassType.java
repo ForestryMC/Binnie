@@ -21,7 +21,7 @@ public class GlassType implements IDesignMaterial {
 			GlassType.types.put(c.ordinal(), new GlassType(c.ordinal(), c.name, c.colour));
 		}
 		for (final EnumFlowerColor c2 : EnumFlowerColor.values()) {
-			GlassType.types.put(128 + c2.ordinal(), new GlassType(128 + c2.ordinal(), c2.getFlowerColorAllele().getColourName(), c2.getFlowerColorAllele().getColor(false)));
+			GlassType.types.put(128 + c2.ordinal(), new GlassType(128 + c2.ordinal(), c2.getFlowerColorAllele().getColorName(), c2.getFlowerColorAllele().getColor(false)));
 		}
 	}
 

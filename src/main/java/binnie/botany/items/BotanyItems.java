@@ -6,23 +6,22 @@ import net.minecraft.item.ItemStack;
 
 import binnie.botany.Botany;
 import binnie.core.item.IItemMiscProvider;
+import binnie.core.util.I18N;
 
 public enum BotanyItems implements IItemMiscProvider {
-	AshPowder("Ash Powder", "powder_ash"),
-	PulpPowder("Wood Pulp Powder", "powder_pulp"),
-	MulchPowder("Mulch Powder", "powder_mulch"),
-	SulphurPowder("Sulphur Powder", "powder_sulphur"),
-	FertiliserPowder("Fertiliser Powder", "powder_fertiliser"),
-	CompostPowder("Compost Powder", "powder_compost"),
-	Mortar("Mortar", "mortar"),
-	Weedkiller("Weedkiller", "weedkiller");
+	AshPowder("powder_ash"),
+	PulpPowder("powder_pulp"),
+	MulchPowder("powder_mulch"),
+	SulphurPowder("powder_sulphur"),
+	FertiliserPowder("powder_fertiliser"),
+	CompostPowder("powder_compost"),
+	Mortar("mortar"),
+	Weedkiller("weedkiller");
 
 	String name;
-	String modelPath;
 
-	BotanyItems(String name, String modelPath) {
+	BotanyItems(String name) {
 		this.name = name;
-		this.modelPath = modelPath;
 	}
 
 	@Override
@@ -30,13 +29,13 @@ public enum BotanyItems implements IItemMiscProvider {
 	}
 
 	@Override
-	public String getName(ItemStack stack) {
-		return this.name;
+	public String getDisplayName(ItemStack stack) {
+		return I18N.localise("item.botany." + name + ".name");
 	}
 
 	@Override
 	public String getModelPath() {
-		return modelPath;
+		return name;
 	}
 
 	@Override

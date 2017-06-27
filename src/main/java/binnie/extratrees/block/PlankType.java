@@ -380,7 +380,7 @@ public class PlankType {
 		}
 
 		@Override
-		public String getName() {
+		public String getDisplayName() {
 			return I18N.localise("extratrees.block.planks.ebxl." + this.toString().toLowerCase());
 		}
 

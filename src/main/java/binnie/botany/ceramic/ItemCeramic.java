@@ -30,6 +30,6 @@ public class ItemCeramic extends ItemBlock implements IColoredItem {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getItemStackDisplayName(ItemStack itemStack) {
-		return EnumFlowerColor.get(itemStack.getItemDamage()).getFlowerColorAllele().getColourName() + " " + I18n.translateToLocal("tile.botany.ceramic.name").trim();
+		return EnumFlowerColor.get(itemStack.getItemDamage()).getFlowerColorAllele().getColorName() + " " + I18n.translateToLocal("tile.botany.ceramic.name").trim();
 	}
 }

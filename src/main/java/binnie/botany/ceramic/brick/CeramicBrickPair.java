@@ -44,9 +44,9 @@ public class CeramicBrickPair {
 	}
 
 	public String getName() {
-		String name = this.colorFirst.getFlowerColorAllele().getColourName();
+		String name = this.colorFirst.getFlowerColorAllele().getColorName();
 		if (this.type.canDouble() && this.colorSecond != this.colorFirst) {
-			name = name + " & " + this.colorSecond.getFlowerColorAllele().getColourName();
+			name = name + " & " + this.colorSecond.getFlowerColorAllele().getColorName();
 		}
 		return name + " " + this.type.name;
 	}

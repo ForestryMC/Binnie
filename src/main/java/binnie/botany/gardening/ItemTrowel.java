@@ -39,23 +39,23 @@ import binnie.botany.core.BotanyCore;
 
 public class ItemTrowel extends Item implements IItemModelRegister {
 	protected final ToolMaterial theToolMaterial;
-	protected final String locName;
+	protected final String modelName;
 
-	public ItemTrowel(ToolMaterial p_i45343_1_, final String material) {
-		this.theToolMaterial = p_i45343_1_;
-		this.maxStackSize = 1;
-		this.setMaxDamage(p_i45343_1_.getMaxUses());
+	public ItemTrowel(ToolMaterial toolMaterial, String materialName) {
+		this.theToolMaterial = toolMaterial;
+		this.setMaxStackSize(1);
+		this.setMaxDamage(toolMaterial.getMaxUses());
 		this.setCreativeTab(CreativeTabBotany.instance);
-		this.setUnlocalizedName("trowel_" + material);
-		this.locName = "trowel_" + material;
-		setRegistryName("trowel_" + material);
+		this.modelName = "trowel_" + materialName;
+		this.setUnlocalizedName("botany." + modelName);
+		this.setRegistryName(modelName);
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
 		manager.registerItemModel(item, new ItemTrowelMeshDefinition());
-		ModelBakery.registerItemVariants(item, new ResourceLocation(Constants.BOTANY_MOD_ID + ":tools/" + locName));
+		ModelBakery.registerItemVariants(item, new ResourceLocation(Constants.BOTANY_MOD_ID + ":tools/" + modelName));
 	}
 
 	@Override
@@ -106,7 +106,7 @@ public class ItemTrowel extends Item implements IItemModelRegister {
 	private class ItemTrowelMeshDefinition implements ItemMeshDefinition {
 		@Override
 		public ModelResourceLocation getModelLocation(ItemStack stack) {
-			return new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":tools/" + locName, "inventory");
+			return new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":tools/" + modelName, "inventory");
 		}
 	}
 }

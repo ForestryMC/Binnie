@@ -57,7 +57,7 @@ public class ItemETFood extends ItemFood implements IItemModelRegister {
 	@Override
 	public String getItemStackDisplayName(ItemStack itemStack) {
 		IItemMiscProvider item = this.getItem(itemStack.getItemDamage());
-		return item.getName(itemStack);
+		return item.getDisplayName(itemStack);
 	}
 
 	@SideOnly(Side.CLIENT)

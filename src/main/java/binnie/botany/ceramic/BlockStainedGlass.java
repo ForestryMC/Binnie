@@ -138,7 +138,7 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 	@Override
 	public String getDisplayName(final ItemStack itemStack) {
 		final int meta = TileEntityMetadata.getItemDamage(itemStack);
-		return EnumFlowerColor.get(meta).getFlowerColorAllele().getColourName() + " " + I18N.localise("tile.botany.pigmented.glass.name");
+		return EnumFlowerColor.get(meta).getFlowerColorAllele().getColorName() + " " + I18N.localise("tile.botany.pigmented.glass.name");
 	}
 
 	@Override

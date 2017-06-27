@@ -61,6 +61,6 @@ public class ItemMisc extends ItemCore {
 	@Override
 	public String getItemStackDisplayName(final ItemStack stack) {
 		IItemMiscProvider item = this.getItem(stack.getItemDamage());
-		return item.getName(stack);
+		return item.getDisplayName(stack);
 	}
 }

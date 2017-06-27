@@ -25,23 +25,38 @@ botany.plant.decaying_flower=Decaying Flower
 item.botany.germling.name=Germling
 item.botany.pollen.name=Pollen
 item.botany.flower.corrupted.name=Corrupted Flower
-
-item.trowel_wood.name=Wooden Trowel
-item.trowel_stone.name=Stone Trowel
-item.trowel_iron.name=Iron Trowel
-item.trowel_gold.name=Gold Trowel
-item.trowel_diamond.name=Diamond Trowel
-
-item.insulated_tube.name=Insulated Electron Tube
-
+item.botany.powder_ash.name=Ash Powder
+item.botany.powder_mulch.name=Mulch Powder
+item.botany.powder_pulp.name=Wood Pulp Powder
+item.botany.powder_sulphur.name=Sulphur Powder
+item.botany.powder_fertiliser.name=Fertiliser Powder
+item.botany.powder_compost.name=Compost Powder
+item.botany.mortar.name=Mortar
+item.botany.weedkiller.name=Weedkiller
+item.botany.clay.name=%s Clay
+item.botany.trowel_wood.name=Wooden Trowel
+item.botany.trowel_stone.name=Stone Trowel
+item.botany.trowel_iron.name=Iron Trowel
+item.botany.trowel_gold.name=Gold Trowel
+item.botany.trowel_diamond.name=Diamond Trowel
+item.botany.pigment.name=%s Pigment
 item.botany.encylopedia=Florist's Encyclopaedia
 item.botany.encylopedia_reinforced=Reinforced Florist's Encyclopaedia
+item.botany.insulated_tube.name=%s %s Insulated Electron Tube
 
-item.pigment.name=Pigment
+botany.tube.insulate.clay.name=Clay
+botany.tube.insulate.cobblestone.name=Cobblestone
+botany.tube.insulate.hardened_clay.name=Hardened Clay
+botany.tube.insulate.stone.name=Smooth Stone
+botany.tube.insulate.sandstone.name=Sandstone
+botany.tube.material.copper.name=Copper
+botany.tube.material.tin.name=Tin
+botany.tube.material.iron.name=Iron
+botany.tube.material.bronze.name=Bronze
 
-botany.flower.destroy=This item is bugged. Destroy it!
-botany.grammar.flower=%PRIMARY, %STEM Stem
-botany.grammar.flower.secondary=%PRIMARY and %SECONDARY, %STEM Stem
+item.botany.flower.destroy=This item is bugged. Destroy it!
+item.botany.grammar.flower=%PRIMARY, %STEM Stem
+item.botany.grammar.flower.secondary=%PRIMARY and %SECONDARY, %STEM Stem
 
 tile.botany.ceramic.name=Ceramic Block
 tile.botany.pigmented.glass.name=Pigmented Glass

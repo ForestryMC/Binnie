@@ -14,39 +14,43 @@ import forestry.core.items.IColoredItem;
 
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.genetics.EnumFlowerColor;
+import binnie.core.util.I18N;
 
 public class ItemClay extends Item implements IColoredItem, IItemModelRegister {
 	public ItemClay() {
-		this.setUnlocalizedName("clay");
+		this.setUnlocalizedName("botany.clay");
 		this.setHasSubtypes(true);
 		this.setCreativeTab(CreativeTabBotany.instance);
-		setRegistryName("clay");
+		this.setRegistryName("clay");
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
-		for (EnumFlowerColor c : EnumFlowerColor.values()) {
-			manager.registerItemModel(item, c.ordinal());
+		for (EnumFlowerColor color : EnumFlowerColor.values()) {
+			manager.registerItemModel(item, color.ordinal());
 		}
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
-		return EnumFlowerColor.get(stack.getMetadata()).getFlowerColorAllele().getColor(false);
+		EnumFlowerColor color = EnumFlowerColor.get(stack.getItemDamage());
+		return color.getFlowerColorAllele().getColor(false);
 	}
 
 	@Override
 	public String getItemStackDisplayName(final ItemStack stack) {
-		return EnumFlowerColor.get(stack.getItemDamage()).getFlowerColorAllele().getColourName() + " " + super.getItemStackDisplayName(stack);
-	}
+		EnumFlowerColor color = EnumFlowerColor.get(stack.getItemDamage());
+		return I18N.localise("item.botany.clay.name", color.getFlowerColorAllele().getColorName());
+		//return EnumFlowerColor.get(stack.getItemDamage()).getFlowerColorAllele().getColorName() + " " + super.getItemStackDisplayName(stack);
+}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(final Item itemIn, final CreativeTabs tab, final NonNullList<ItemStack> list) {
-		for (final EnumFlowerColor c : EnumFlowerColor.values()) {
-			list.add(new ItemStack(this, 1, c.ordinal()));
+		for (EnumFlowerColor color : EnumFlowerColor.values()) {
+			list.add(new ItemStack(this, 1, color.ordinal()));
 		}
 	}
 }

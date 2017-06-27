@@ -29,9 +29,9 @@ public class TileCeramicBrick extends TileEntity {
 
 	public String getName() {
 		CeramicBrickType type = CeramicBrickType.VALUES[getBlockMetadata()];
-		String name = this.colorFirst.getFlowerColorAllele().getColourName();
+		String name = this.colorFirst.getFlowerColorAllele().getColorName();
 		if (type.canDouble() && this.colorSecond != this.colorFirst) {
-			name = name + " & " + this.colorSecond.getFlowerColorAllele().getColourName();
+			name = name + " & " + this.colorSecond.getFlowerColorAllele().getColorName();
 		}
 		return name + " " + type.name;
 	}

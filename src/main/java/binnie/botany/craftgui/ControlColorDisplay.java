@@ -41,6 +41,6 @@ public class ControlColorDisplay extends Control implements IControlValue<IFlowe
 	@Override
 	public void getTooltip(final Tooltip tooltip) {
 		super.getTooltip(tooltip);
-		tooltip.add(this.value.getColourName());
+		tooltip.add(this.value.getColorName());
 	}
 }

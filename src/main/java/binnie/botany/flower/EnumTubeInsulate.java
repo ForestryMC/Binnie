@@ -3,14 +3,18 @@ package binnie.botany.flower;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 
-enum EnumTubeInsulate {
-	Clay(0xa1aacc, "Clay"),
-	Cobble(0x7b7b7b, "Cobblestone"),
-	Sand(0xefeab5, "Sand"),
-	HardenedClay(0x935c43, "Hardened Clay"),
-	Stone(0x6d6d6d, "Smooth Stone"),
-	Sandstone(0xc1b989, "Sandstone");
+import binnie.core.util.I18N;
 
+enum EnumTubeInsulate {
+	Clay(0xa1aacc, "clay"),
+	Cobble(0x7b7b7b, "cobblestone"),
+	Sand(0xefeab5, "sand"),
+	HardenedClay(0x935c43, "hardened_clay"),
+	Stone(0x6d6d6d, "stone"),
+	Sandstone(0xc1b989, "sandstone");
+
+	public static final EnumTubeInsulate[] VALUES = values();
+	
 	int color;
 	String name;
 
@@ -19,16 +23,16 @@ enum EnumTubeInsulate {
 		this.name = name;
 	}
 
-	public static EnumTubeInsulate get(final int i) {
-		return values()[i / 128 % values().length];
+	public static EnumTubeInsulate get(int meta) {
+		return VALUES[meta / 128 % VALUES.length];
 	}
 
 	public int getColor() {
 		return this.color;
 	}
 
-	public String getName() {
-		return this.name;
+	public String getDisplayName() {
+		return I18N.localise("botany.tube.insulate." + name + ".name");
 	}
 
 	public ItemStack getStack() {

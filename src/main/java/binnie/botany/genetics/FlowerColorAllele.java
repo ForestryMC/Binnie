@@ -68,7 +68,7 @@ public class FlowerColorAllele implements IFlowerColour, IAlleleInteger {
 	}
 
 	@Override
-	public String getColourName() {
+	public String getColorName() {
 		return I18N.localise("botany.colour." + getName());
 	}
 }

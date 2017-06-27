@@ -90,24 +90,21 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(final ItemStack itemStack, final EntityPlayer player, final List<String> list, final boolean flag) {
-		if (!itemStack.hasTagCompound()) {
-			return;
-		}
 		IFlower individual = (IFlower) this.getIndividual(itemStack);
 		if (individual == null) {
-			list.add(TextFormatting.DARK_RED + I18N.localise("botany.flower.destroy"));
+			list.add(TextFormatting.DARK_RED + I18N.localise("item.botany.flower.destroy"));
 			return;
 		}
 		IFlowerGenome genome = individual.getGenome();
 		//Colors
-		String primaryColor = genome.getPrimaryColor().getColourName();
-		String secondaryColor = genome.getSecondaryColor().getColourName();
-		String stemColor = genome.getStemColor().getColourName();
+		String primaryColor = genome.getPrimaryColor().getColorName();
+		String secondaryColor = genome.getSecondaryColor().getColorName();
+		String stemColor = genome.getStemColor().getColorName();
 		String colorInfo;
 		if (!primaryColor.equals(secondaryColor)) {
-			colorInfo = I18N.localise("botany.grammar.flower.secondary");
+			colorInfo = I18N.localise("item.botany.grammar.flower.secondary");
 		} else {
-			colorInfo = I18N.localise("botany.grammar.flower");
+			colorInfo = I18N.localise("item.botany.grammar.flower");
 		}
 		list.add(TextFormatting.YELLOW + colorInfo.replaceAll("%PRIMARY", primaryColor).replaceAll("%SECONDARY", secondaryColor).replaceAll("%STEM", stemColor));
 

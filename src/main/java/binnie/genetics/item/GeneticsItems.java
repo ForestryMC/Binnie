@@ -39,7 +39,7 @@ public enum GeneticsItems implements IItemMiscProvider {
 	}
 
 	@Override
-	public String getName(final ItemStack stack) {
+	public String getDisplayName(final ItemStack stack) {
 		return this.name;
 	}
 

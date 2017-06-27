@@ -27,11 +27,12 @@ import forestry.core.utils.Translator;
 
 import binnie.botany.CreativeTabBotany;
 import binnie.core.item.ItemCore;
+import binnie.core.util.I18N;
 
 public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 	public ItemInsulatedTube() {
 		super("insulated_tube");
-		setUnlocalizedName("insulated_tube");
+		setUnlocalizedName("botany.insulated_tube");
 		setCreativeTab(CreativeTabBotany.instance);
 		setHasSubtypes(true);
 	}
@@ -49,7 +50,7 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 	}
 
 	public static String getInsulate(ItemStack stack) {
-		return EnumTubeInsulate.get(stack.getItemDamage()).getName();
+		return EnumTubeInsulate.get(stack.getItemDamage()).getDisplayName();
 	}
 
 	public static ItemStack getInsulateStack(ItemStack stack) {
@@ -111,6 +112,6 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 	@Override
 	public String getItemStackDisplayName(ItemStack itemStack) {
 		int meta = itemStack.getMetadata();
-		return EnumTubeMaterial.get(meta).getName() + " " + EnumTubeInsulate.get(meta).getName() + " " + super.getItemStackDisplayName(itemStack);
+		return I18N.localise("item.botany.insulated_tube.name", EnumTubeMaterial.get(meta).getDisplayName(), EnumTubeInsulate.get(meta).getDisplayName());
 	}
 }

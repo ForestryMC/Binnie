@@ -17,7 +17,7 @@ public class ControlColorOption extends ControlTextOption<IFlowerColour> {
 	Point boxPosition;
 
 	public ControlColorOption(final ControlList<IFlowerColour> controlList, final IFlowerColour option, final int y) {
-		super(controlList, option, option.getColourName(), y);
+		super(controlList, option, option.getColorName(), y);
 		this.setSize(new Point(this.getSize().x(), 20));
 		this.controlBee = new ControlColorDisplay(this, 2, 2, option);
 		this.addAttribute(Attribute.MouseOver);
