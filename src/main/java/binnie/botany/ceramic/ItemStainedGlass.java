@@ -20,6 +20,7 @@ public class ItemStainedGlass extends ItemMetadata implements IColoredItem {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
-		return EnumFlowerColor.get(TileEntityMetadata.getItemDamage(stack)).getFlowerColorAllele().getColor(false);
+		EnumFlowerColor color = EnumFlowerColor.get(TileEntityMetadata.getItemDamage(stack));
+		return color.getFlowerColorAllele().getColor(false);
 	}
 }

@@ -5,6 +5,7 @@ import net.minecraft.util.IStringSerializable;
 import forestry.api.genetics.AlleleManager;
 
 import binnie.botany.core.BotanyCore;
+import binnie.core.util.I18N;
 
 public enum EnumFlowerColor implements IStringSerializable {
 	Aquamarine("aquamarine", 8388564),
@@ -2940,6 +2941,10 @@ public enum EnumFlowerColor implements IStringSerializable {
 		return values()[Math.max(0, i) % values().length];
 	}
 
+	public String getDisplayName(){
+		return I18N.localise("botany.color." + getName());
+	}
+	
 	@Override
 	public String getName() {
 		return name().toLowerCase();

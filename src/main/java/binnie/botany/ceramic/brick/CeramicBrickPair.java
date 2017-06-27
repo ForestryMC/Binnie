@@ -11,6 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import binnie.botany.Botany;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
 
 public class CeramicBrickPair {
 	EnumFlowerColor colorFirst;
@@ -48,7 +49,7 @@ public class CeramicBrickPair {
 		if (this.type.canDouble() && this.colorSecond != this.colorFirst) {
 			name = name + " & " + this.colorSecond.getFlowerColorAllele().getColorName();
 		}
-		return name + " " + this.type.name;
+		return I18N.localise("botany.ceramic.type." + type.id + ".name", name);
 	}
 
 	public int ordinal() {

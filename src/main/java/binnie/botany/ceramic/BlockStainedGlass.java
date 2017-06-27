@@ -137,14 +137,14 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 
 	@Override
 	public String getDisplayName(final ItemStack itemStack) {
-		final int meta = TileEntityMetadata.getItemDamage(itemStack);
-		return EnumFlowerColor.get(meta).getFlowerColorAllele().getColorName() + " " + I18N.localise("tile.botany.pigmented.glass.name");
+		EnumFlowerColor color = EnumFlowerColor.get(TileEntityMetadata.getItemDamage(itemStack));
+		return I18N.localise("botany.pigmented.glass.name", color.getDisplayName());
 	}
 
 	@Override
 	public void getSubBlocks(final Item itemIn, final CreativeTabs tab, final NonNullList<ItemStack> itemList) {
-		for (final EnumFlowerColor c : EnumFlowerColor.values()) {
-			itemList.add(TileEntityMetadata.getItemStack(this, c.ordinal()));
+		for (EnumFlowerColor color : EnumFlowerColor.values()) {
+			itemList.add(TileEntityMetadata.getItemStack(this, color.ordinal()));
 		}
 	}
 
@@ -178,6 +178,7 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 		if (worldIn == null || pos == null) {
 			return 0;
 		}
-		return EnumFlowerColor.get(TileEntityMetadata.getTileMetadata(worldIn, pos)).getFlowerColorAllele().getColor(false);
+		EnumFlowerColor color = EnumFlowerColor.get(TileEntityMetadata.getTileMetadata(worldIn, pos));
+		return color.getFlowerColorAllele().getColor(false);
 	}
 }

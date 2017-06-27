@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.genetics.EnumFlowerColor;
+import binnie.core.util.I18N;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.carpentry.BlockDesign;
 import binnie.extratrees.carpentry.DesignBlock;
@@ -26,6 +27,6 @@ public class BlockCeramicPatterned extends BlockDesign {
 
 	@Override
 	public String getBlockName(final DesignBlock design) {
-		return design.getDesign().getName() + " Ceramic Block";
+		return I18N.localise("botany.ceramic.block.name", design.getDesign().getName());
 	}
 }

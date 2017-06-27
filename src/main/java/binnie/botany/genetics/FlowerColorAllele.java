@@ -5,9 +5,6 @@ import forestry.api.genetics.IAlleleInteger;
 import binnie.botany.api.IFlowerColour;
 import binnie.core.util.I18N;
 
-/**
- * Created by Marcin on 03.06.2017.
- */
 public class FlowerColorAllele implements IFlowerColour, IAlleleInteger {
 	private int color;
 	private String uid;
