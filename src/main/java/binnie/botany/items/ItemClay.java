@@ -43,7 +43,6 @@ public class ItemClay extends Item implements IColoredItem, IItemModelRegister {
 	public String getItemStackDisplayName(final ItemStack stack) {
 		EnumFlowerColor color = EnumFlowerColor.get(stack.getItemDamage());
 		return I18N.localise("item.botany.clay.name", color.getFlowerColorAllele().getColorName());
-		//return EnumFlowerColor.get(stack.getItemDamage()).getFlowerColorAllele().getColorName() + " " + super.getItemStackDisplayName(stack);
 }
 
 	@Override
