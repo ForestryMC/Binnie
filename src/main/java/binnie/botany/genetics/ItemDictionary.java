@@ -18,6 +18,7 @@ import forestry.api.core.IModelManager;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.core.BotanyGUI;
+import binnie.core.util.I18N;
 
 public class ItemDictionary extends Item implements IItemModelRegister {
 	public ItemDictionary() {
@@ -54,6 +55,6 @@ public class ItemDictionary extends Item implements IItemModelRegister {
 
 	@Override
 	public String getItemStackDisplayName(final ItemStack i) {
-		return (i.getItemDamage() == 0) ? "Botanist Database" : "Master Botanist Database";
+		return I18N.localise("item.botany.database." + ((i.getItemDamage() == 0) ? "name" : "master.name"));
 	}
 }
