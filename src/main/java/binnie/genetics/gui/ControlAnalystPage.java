@@ -24,7 +24,7 @@ public abstract class ControlAnalystPage extends Control {
 		float seconds = time / 20.0f;
 		float minutes = seconds / 60.0f;
 		float hours = minutes / 60.0f;
-		DecimalFormat df = new DecimalFormat("#.0");
+		DecimalFormat df = new DecimalFormat("#.#");
 		if (hours > 1.0f) {
 			return I18N.localise("genetics.gui.analyst.page.hours", df.format(hours));
 		}
