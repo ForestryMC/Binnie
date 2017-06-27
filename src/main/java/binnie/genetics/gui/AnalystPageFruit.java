@@ -6,11 +6,11 @@ import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.core.util.I18N;
 import binnie.core.util.UniqueItemStackSet;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.IAlleleFruit;
 import forestry.api.arboriculture.ITree;
-import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IFruitFamily;
 import forestry.arboriculture.FruitProviderPod;
@@ -20,40 +20,42 @@ import net.minecraft.util.EnumChatFormatting;
 
 import java.lang.reflect.Field;
 import java.util.Collection;
+import java.util.Collections;
 
 public class AnalystPageFruit extends AnalystPageProduce {
 	public AnalystPageFruit(IWidget parent, IArea area, ITree ind) {
 		super(parent, area);
 		setColor(0xcc3300);
-		ITreeGenome genome = ind.getGenome();
 		int y = 4;
-		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Fruit").setColor(getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + getTitle())
+			.setColor(getColor());
+
 		y += 12;
-		new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + "Yield: " + Binnie.Genetics.treeBreedingSystem.getAlleleName(EnumTreeChromosome.YIELD, ind.getGenome().getActiveAllele(EnumTreeChromosome.YIELD))).setColor(getColor());
+		String alleleName = Binnie.Genetics.treeBreedingSystem.getAlleleName(EnumTreeChromosome.YIELD, ind.getGenome().getActiveAllele(EnumTreeChromosome.YIELD));
+		new ControlTextCentered(this, y, EnumChatFormatting.ITALIC + I18N.localise("genetics.gui.analyst.fruit.yield", alleleName))
+			.setColor(getColor());
+
 		y += 20;
 		Collection<ItemStack> products = new UniqueItemStackSet();
 		Collection<ItemStack> specialties = new UniqueItemStackSet();
-		Collection<ItemStack> wiid = new UniqueItemStackSet();
-		for (ItemStack stack : ind.getProduceList()) {
-			products.add(stack);
-		}
-		for (ItemStack stack : ind.getSpecialtyList()) {
-			specialties.add(stack);
-		}
+		Collections.addAll(products, ind.getProduceList());
+		Collections.addAll(specialties, ind.getSpecialtyList());
+
 		try {
 			if (ind.getGenome().getFruitProvider() instanceof FruitProviderPod) {
 				FruitProviderPod pod = (FruitProviderPod) ind.getGenome().getFruitProvider();
 				Field f = FruitProviderPod.class.getDeclaredField("drop");
 				f.setAccessible(true);
-				for (ItemStack stack2 : (ItemStack[]) f.get(pod)) {
-					products.add(stack2);
-				}
+				Collections.addAll(products, (ItemStack[]) f.get(pod));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		if (products.size() > 0) {
-			new ControlTextCentered(this, y, "Natural Fruit").setColor(getColor());
+			new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.fruit.natural"))
+				.setColor(getColor());
+
 			y += 10;
 			int w = products.size() * 18 - 2;
 			int i = 0;
@@ -64,8 +66,11 @@ public class AnalystPageFruit extends AnalystPageProduce {
 			}
 			y += 26;
 		}
+
 		if (specialties.size() > 0) {
-			new ControlTextCentered(this, y, "Specialty Fruit").setColor(getColor());
+			new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.fruit.speciality"))
+				.setColor(getColor());
+
 			y += 10;
 			int w = products.size() * 18 - 2;
 			int i = 0;
@@ -76,36 +81,40 @@ public class AnalystPageFruit extends AnalystPageProduce {
 			}
 			y += 26;
 		}
+
 		Collection<ItemStack> allProducts = new UniqueItemStackSet();
 		for (ItemStack stack3 : products) {
 			allProducts.add(stack3);
 		}
+
 		for (ItemStack stack3 : specialties) {
 			allProducts.add(stack3);
 		}
+
 		Collection<ItemStack> refinedProducts = new UniqueItemStackSet();
 		refinedProducts.addAll(getAllProductsAndFluids(allProducts));
 		if (refinedProducts.size() > 0) {
-			y = getRefined("Refined Products", y, refinedProducts);
+			y = getRefined(I18N.localise("genetics.gui.analyst.fruit.refined"), y, refinedProducts);
 			y += 8;
 		}
+
 		if (products.size() == 0 && specialties.size() == 0) {
-			new ControlTextCentered(this, y, "This tree has no \nfruits or nuts").setColor(getColor());
+			new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.fruit.none"))
+				.setColor(getColor());
 			y += 28;
 		}
-		new ControlTextCentered(this, y, "Possible Fruits").setColor(getColor());
+
+		new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.fruit.possible"))
+			.setColor(getColor());
+
 		y += 12;
 		Collection<IAllele> fruitAlleles = Binnie.Genetics.getChromosomeMap(Binnie.Genetics.getTreeRoot()).get(EnumTreeChromosome.FRUITS);
 		for (IFruitFamily fam : ind.getGenome().getPrimary().getSuitableFruit()) {
 			Collection<ItemStack> stacks = new UniqueItemStackSet();
 			for (IAllele a : fruitAlleles) {
 				if (((IAlleleFruit) a).getProvider().getFamily() == fam) {
-					for (ItemStack p : ((IAlleleFruit) a).getProvider().getProducts()) {
-						stacks.add(p);
-					}
-					for (ItemStack p : ((IAlleleFruit) a).getProvider().getSpecialty()) {
-						stacks.add(p);
-					}
+					Collections.addAll(stacks, ((IAlleleFruit) a).getProvider().getProducts());
+					Collections.addAll(stacks, ((IAlleleFruit) a).getProvider().getSpecialty());
 					try {
 						if (a.getUID().contains("fruitCocoa")) {
 							stacks.add(new ItemStack(Items.dye, 1, 3));
@@ -116,22 +125,20 @@ public class AnalystPageFruit extends AnalystPageProduce {
 							FruitProviderPod pod2 = (FruitProviderPod) ((IAlleleFruit) a).getProvider();
 							Field field = FruitProviderPod.class.getDeclaredField("drop");
 							field.setAccessible(true);
-							for (ItemStack stack4 : (ItemStack[]) field.get(pod2)) {
-								stacks.add(stack4);
-							}
+							Collections.addAll(stacks, (ItemStack[]) field.get(pod2));
 						}
 					} catch (Exception ex) {
+						// ignored
 					}
 				}
 			}
-			y = getRefined(EnumChatFormatting.ITALIC + fam.getName(), y, stacks);
-			y += 2;
+			y = getRefined(EnumChatFormatting.ITALIC + fam.getName(), y, stacks) + 2;
 		}
 		setSize(new IPoint(w(), y + 8));
 	}
 
 	@Override
 	public String getTitle() {
-		return "Fruit";
+		return I18N.localise("genetics.gui.analyst.fruit");
 	}
 }

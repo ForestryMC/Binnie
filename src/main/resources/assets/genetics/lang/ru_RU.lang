@@ -153,3 +153,116 @@ genetics.gui.geneBank.ranking=Ранжирование
 genetics.gui.geneBank.project=Полный проект генома
 genetics.gui.geneBank.sequencedGenes=Секвенцировано %d/%d генов
 genetics.gui.geneBank.sequencedGenes.short=%d/%d генов
+
+genetics.gui.analyst.info=Добавьте пчелу, саженец, цветок или бабочку в верхний левый слот. ДНК-краситель требуется, если образец еще не анализирован. Краситель также может конвертировать ванильные образцы в используемые в генетике.
+genetics.gui.analyst.registry=Картотека
+genetics.gui.analyst.page.hours=%s час.
+genetics.gui.analyst.page.minutes=%s мин.
+genetics.gui.analyst.page.seconds=%s сек.
+genetics.gui.analyst.chromosome.active=Активно: %s
+genetics.gui.analyst.chromosome.inactive=Неактивно: %s
+genetics.gui.analyst.karyogram=Кариограмма
+genetics.gui.analyst.specimen=Проба
+
+genetics.gui.analyst.appearance=Внешний вид
+genetics.gui.analyst.appearance.primaryColor=Первичный цвет лепестков
+genetics.gui.analyst.appearance.secondColor=Вторичный цвет лепестков
+genetics.gui.analyst.appearance.stemColor=Цвет стебля
+
+genetics.gui.analyst.behaviour=Поведение
+genetics.gui.analyst.behaviour.effect=Эффект: %s
+genetics.gui.analyst.behaviour.pollinatesNearby=Опыление
+genetics.gui.analyst.behaviour.withinBlocks=%d блоков
+genetics.gui.analyst.behaviour.everyTime=Каждые %s
+genetics.gui.analyst.behaviour.territory=Территория: %dx%dx%d
+genetics.gui.analyst.behaviour.metabolism=Метаболизм: %s
+
+genetics.gui.analyst.biology=Биология
+genetics.gui.analyst.biology.allDay=Активны и днем, и ночью
+genetics.gui.analyst.biology.night=Активны ночью
+genetics.gui.analyst.biology.day=Активны днем
+genetics.gui.analyst.biology.notRain=Не могут работать под дождем
+genetics.gui.analyst.biology.rain=Могут работать под дождем
+genetics.gui.analyst.biology.underground=Могут работать под землей
+genetics.gui.analyst.biology.notUnderground=Не могут работать под землей
+genetics.gui.analyst.biology.flammable=Боится огня
+genetics.gui.analyst.biology.nonflammable=Огнестойкая
+genetics.gui.analyst.biology.sappiness=Созревание: %s
+genetics.gui.analyst.biology.fertility.drones=%d дронов в улье
+genetics.gui.analyst.biology.fertility.drone=1 дрон в улье
+genetics.gui.analyst.biology.fertility.moths=Оставляет %d гусениц перед смертью
+genetics.gui.analyst.biology.fertility.moth=Оставляет 1 гусеницу перед смертью
+genetics.gui.analyst.biology.fertility.leaves=1 саженец на %d блоков листвы
+genetics.gui.analyst.biology.fertility.leaf=1 саженец на 1 блок листвы
+genetics.gui.analyst.biology.caterpillarGestation=Плодовитость
+genetics.gui.analyst.biology.flightSpeed=Скорость полета
+genetics.gui.analyst.biology.blocksPerSec=%d блоков/сек
+genetics.gui.analyst.biology.mothSpawn.perLeaf=Бабочки появляются каждые\n%s на блок листвы
+genetics.gui.analyst.biology.mothSpawn=Бабочки появляются каждые\n%s
+genetics.gui.analyst.biology.plantTypes=Типы растений
+genetics.gui.analyst.biology.averageLifespan=Средняя жизнь
+genetics.gui.analyst.biology.pollination=Опыление
+genetics.gui.analyst.biology.seedDispersal=Разведение семян
+genetics.gui.analyst.biology.perLifetime=%d в жизненный цикл
+genetics.gui.analyst.biology.mcDays=%s игровых дней
+
+genetics.gui.analyst.climate=Климат
+genetics.gui.analyst.climate.biomes=Биомы
+genetics.gui.analyst.climate.humidity=Влажность
+genetics.gui.analyst.climate.temperature=Температура
+
+genetics.gui.analyst.soil=Почва
+genetics.gui.analyst.soil.moistureTolerance=Влажность
+genetics.gui.analyst.soil.pHTolerance=Кислотность pH
+genetics.gui.analyst.soil.recommendedSoil=Рекомендованная почва
+genetics.gui.analyst.soil.otherSoils=Остальные почвы
+
+genetics.gui.analyst.genome.active=Активный геном
+genetics.gui.analyst.genome.inactive=Неактивный геном
+
+genetics.gui.analyst.growth=Рост
+genetics.gui.analyst.growth.mature=Созревание саженцев в
+genetics.gui.analyst.growth.height=Высота: %s
+genetics.gui.analyst.growth.girth=Толщина: %s
+genetics.gui.analyst.growth.conditions=Условия роста
+
+genetics.gui.analyst.mutations=Мутации
+genetics.gui.analyst.mutations.habitat=Естественная среда обитания
+genetics.gui.analyst.mutations.habitat.any=Может быть найдена в любом улье
+genetics.gui.analyst.mutations.habitat.villagers=Может быть куплена у жителя
+genetics.gui.analyst.mutations.habitat.chest=Может быть найдена в сундуках
+genetics.gui.analyst.mutations.resultantMutations=Мутации для получения
+genetics.gui.analyst.mutations.furtherMutations=Дальнейшие мутации
+genetics.gui.analyst.mutations.chance=Шанс %d%%
+genetics.gui.analyst.mutations.chance.current=(текущий %d%%)
+genetics.gui.analyst.mutations.unknownMutation=Неизвестная мутация
+genetics.gui.analyst.mutations.unknown=НЕИЗВЕСТНО
+
+genetics.gui.analyst.description=Описание
+genetics.gui.analyst.description.unknown=<Неизвестно>
+genetics.gui.analyst.description.discoveredBy=Найдено %s
+genetics.gui.analyst.description.complexity=Генетическая сложность: %s
+
+genetics.gui.analyst.produce=Продукция
+genetics.gui.analyst.produce.rate=Шанс: %s
+genetics.gui.analyst.produce.natural=Естественная продукция
+genetics.gui.analyst.produce.speciality=Специальная продукция
+genetics.gui.analyst.produce.refined=Дополнительная продукция
+genetics.gui.analyst.produce.centrifuge=В центрифуге:
+genetics.gui.analyst.produce.squeezes=В соковыжимателе:
+genetics.gui.analyst.produce.everyTime=Каждые %s
+
+genetics.gui.analyst.fruit=Фрукты
+genetics.gui.analyst.fruit.yield=Количество: %s
+genetics.gui.analyst.fruit.natural=Фрукты
+genetics.gui.analyst.fruit.speciality=Специальные фрукты
+genetics.gui.analyst.fruit.refined=Дополнительные фрукты
+genetics.gui.analyst.fruit.possible=Возможные фрукты
+genetics.gui.analyst.fruit.none=Дерево не производит\nфруктов или орехов
+
+genetics.gui.analyst.wood=Дерево
+genetics.gui.analyst.wood.fireproof=Огнестойкое
+genetics.gui.analyst.wood.flammable=Боится огня
+genetics.gui.analyst.wood.logs=Древесина
+genetics.gui.analyst.wood.products=Дополнительные продукты
+genetics.gui.analyst.wood.noFruits=Дерево не производит\nфруктов или орехов

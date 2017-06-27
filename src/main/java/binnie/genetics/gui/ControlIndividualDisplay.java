@@ -28,6 +28,7 @@ public class ControlIndividualDisplay extends ControlItemDisplay implements IToo
 		if (stack == null) {
 			return;
 		}
+
 		IIndividual ind = AlleleManager.alleleRegistry.getIndividual(stack);
 		if (ind == null) {
 			return;

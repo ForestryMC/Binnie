@@ -44,15 +44,15 @@ public abstract class ControlToleranceBar<T extends Enum<T>> extends Control imp
 
 	protected abstract String getName(T p0);
 
-	protected abstract int getColour(T p0);
+	protected abstract int getColor(T p0);
 
 	@Override
 	public void onRenderBackground() {
-		CraftGUI.Render.gradientRect(getArea(), -1431655766, -1431655766);
+		CraftGUI.Render.gradientRect(getArea(), 0xaaaaaaaa, 0xaaaaaaaa);
 		float w = getArea().w() / fullSet.size();
 		int t = 0;
 		for (T value : fullSet) {
-			int col = (tolerated.contains(value) ? -16777216 : 855638016) + getColour(value);
+			int col = (tolerated.contains(value) ? 0xff000000 : 0x33000000) + getColor(value);
 			IBorder inset = new IBorder(tolerated.contains(value) ? 1.0f : 3.0f);
 			CraftGUI.Render.gradientRect(new IArea(w * t, 0.0f, w, h()).inset(inset), col, col);
 			++t;

@@ -9,6 +9,7 @@ import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.genetics.Tolerance;
+import binnie.core.util.I18N;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.IBee;
 import forestry.api.core.EnumHumidity;
@@ -28,39 +29,50 @@ import java.util.List;
 public class AnalystPageClimate extends ControlAnalystPage {
 	public AnalystPageClimate(IWidget parent, IArea area, IIndividual ind) {
 		super(parent, area);
-		setColor(26163);
+		setColor(0x006633);
 		EnumTemperature temp = ind.getGenome().getPrimary().getTemperature();
 		EnumTolerance tempTol = EnumTolerance.NONE;
 		EnumHumidity humid = ind.getGenome().getPrimary().getHumidity();
 		EnumTolerance humidTol = EnumTolerance.NONE;
+
 		if (ind instanceof IBee) {
 			tempTol = ((IAlleleTolerance) ind.getGenome().getActiveAllele(EnumBeeChromosome.TEMPERATURE_TOLERANCE)).getValue();
 			humidTol = ((IAlleleTolerance) ind.getGenome().getActiveAllele(EnumBeeChromosome.HUMIDITY_TOLERANCE)).getValue();
 		}
+
 		if (ind instanceof IFlower) {
 			tempTol = ((IAlleleTolerance) ind.getGenome().getActiveAllele(EnumFlowerChromosome.TEMPERATURE_TOLERANCE)).getValue();
 			humidTol = EnumTolerance.BOTH_5;
 		}
+
 		if (ind instanceof IButterfly) {
 			tempTol = ((IAlleleTolerance) ind.getGenome().getActiveAllele(EnumButterflyChromosome.TEMPERATURE_TOLERANCE)).getValue();
 			humidTol = ((IAlleleTolerance) ind.getGenome().getActiveAllele(EnumButterflyChromosome.HUMIDITY_TOLERANCE)).getValue();
 		}
+
 		int y = 4;
-		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + "Climate").setColor(getColor());
+		new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + getTitle())
+			.setColor(getColor());
+
 		y += 16;
-		new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 14.0f), "Temp. Tolerance", TextJustification.MIDDLE_CENTER).setColor(getColor());
+		new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 14.0f), I18N.localise("genetics.gui.analyst.climate.temperature"), TextJustification.MIDDLE_CENTER)
+			.setColor(getColor());
 		y += 12;
 		createTemperatureBar(this, (w() - 100.0f) / 2.0f, y, 100.0f, 10.0f, temp, tempTol);
 		y += 16;
+
 		if (!(ind instanceof IFlower)) {
-			new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 14.0f), "Humidity Tolerance", TextJustification.MIDDLE_CENTER).setColor(getColor());
+			new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 14.0f), I18N.localise("genetics.gui.analyst.climate.humidity"), TextJustification.MIDDLE_CENTER)
+				.setColor(getColor());
 			y += 12;
 			createHumidity(this, (w() - 100.0f) / 2.0f, y, 100.0f, 10.0f, humid, humidTol);
 			y += 16;
 		}
-		new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 14.0f), "Biomes", TextJustification.MIDDLE_CENTER).setColor(getColor());
+		new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 14.0f), I18N.localise("genetics.gui.analyst.climate.biomes"), TextJustification.MIDDLE_CENTER)
+			.setColor(getColor());
+
 		y += 12;
-		List<BiomeGenBase> biomes = new ArrayList<BiomeGenBase>();
+		List<BiomeGenBase> biomes = new ArrayList<>();
 		for (BiomeGenBase biome : BiomeGenBase.getBiomeGenArray()) {
 			if (biome == null || !BiomeDictionary.isBiomeRegistered(biome) || biome == BiomeGenBase.frozenOcean) {
 				continue;
@@ -77,6 +89,7 @@ public class AnalystPageClimate extends ControlAnalystPage {
 					match = true;
 				}
 			}
+
 			if (!match) {
 				biomes.add(biome);
 			}
@@ -105,7 +118,7 @@ public class AnalystPageClimate extends ControlAnalystPage {
 			}
 
 			@Override
-			protected int getColour(EnumTemperature value) {
+			protected int getColor(EnumTemperature value) {
 				return (new int[]{0x00fffb, 0x78bbff, 0x4fff30, 0xffff00, 0xffa200, 0xff0000})[value.ordinal() - 1];
 			}
 		}.setValues(value, tol);
@@ -119,7 +132,7 @@ public class AnalystPageClimate extends ControlAnalystPage {
 			}
 
 			@Override
-			protected int getColour(EnumHumidity value) {
+			protected int getColor(EnumHumidity value) {
 				return (new int[]{0xffe7a3, 0x1aff00, 0x307cff})[value.ordinal()];
 			}
 		}.setValues(value, tol);
@@ -127,6 +140,6 @@ public class AnalystPageClimate extends ControlAnalystPage {
 
 	@Override
 	public String getTitle() {
-		return "Climate";
+		return I18N.localise("genetics.gui.analyst.climate");
 	}
 }

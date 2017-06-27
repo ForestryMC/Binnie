@@ -27,6 +27,7 @@ import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.craftgui.window.Panel;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.ModuleMachine;
@@ -113,14 +114,21 @@ public class WindowAnalyst extends Window {
 
 	@Override
 	public void initialiseClient() {
-		setTitle(isDatabase ? (isMaster ? "Master Registry" : "Registry") : "Analyst");
-		BreedingSystem system = Binnie.Genetics.beeBreedingSystem;
-		IIndividual ind = system.getDefaultIndividual();
-		ItemStack stack = system.getSpeciesRoot().getMemberStack(ind, system.getDefaultType());
+		if (isDatabase) {
+			setTitle(I18N.localise("genetics.item.analyst.name"));
+		} else {
+			if (isMaster) {
+				setTitle(I18N.localise("genetics.item.registry.1.name"));
+			} else {
+				setTitle(I18N.localise("genetics.item.registry.0.name"));
+			}
+		}
+
 		getWindowInventory().createSlot(0);
 		baseWidget = new Widget(this);
 		int x = 16;
 		int y = 28;
+
 		if (isDatabase) {
 			for (BreedingSystem syst : Binnie.Genetics.getActiveSystems()) {
 				new Control(this, x, y, 20.0f, 20.0f) {
@@ -222,6 +230,7 @@ public class WindowAnalyst extends Window {
 				analystPageSize = new IArea(1.0f, 1.0f, sectionWidth, h() - 8.0f);
 			}
 		};
+
 		if (!isDatabase) {
 			slideUpInv = new ControlSlide(this, (getSize().x() - 244.0f) / 2.0f, getSize().y() - 80.0f + 1.0f, 244.0f, 80.0f, Position.BOTTOM);
 			new ControlPlayerInventory(slideUpInv, true);
@@ -238,11 +247,12 @@ public class WindowAnalyst extends Window {
 				}
 			}
 		});
+
 		if (!isDatabase) {
 			analystNone = new Control(analystPanel, 0.0f, 0.0f, analystPanel.w(), analystPanel.h()) {
 				@Override
 				public void initialise() {
-					new ControlTextCentered(this, 20.0f, "Add a bee, tree, flower or butterfly to the top left slot. DNA Dye is required if it has not been analysed yet. This dye can also convert vanilla items to breedable individuals.").setColor(4473924);
+					new ControlTextCentered(this, 20.0f, I18N.localise("genetics.gui.analyst.info")).setColor(0x444444);
 					new ControlPlayerInventory(this);
 				}
 			};
@@ -258,16 +268,19 @@ public class WindowAnalyst extends Window {
 			oldLeft = analystPages.indexOf(leftPage.getContent());
 			oldRight = analystPages.indexOf(rightPage.getContent());
 		}
+
 		ControlAnalystPage databasePage = null;
 		if (isDatabase && !systemChange) {
 			databasePage = ((analystPages.size() > 0) ? analystPages.get(0) : null);
 		}
+
 		analystPages.clear();
 		setPage(leftPage, null);
 		setPage(rightPage, null);
 		if (isDatabase) {
 			analystPages.add((databasePage != null) ? databasePage : new AnalystPageDatabase(analystPanel, analystPageSize, currentSystem, isMaster));
 		}
+
 		if (current != null) {
 			analystPages.add(new AnalystPageDescription(analystPanel, analystPageSize, current));
 			analystPages.add(new AnalystPageGenome(analystPanel, analystPageSize, true, current));
@@ -275,9 +288,11 @@ public class WindowAnalyst extends Window {
 				analystPages.add(new AnalystPageGenome(analystPanel, analystPageSize, false, current));
 				analystPages.add(new AnalystPageKaryogram(analystPanel, analystPageSize, current));
 			}
+
 			if (!(current instanceof ITree)) {
 				analystPages.add(new AnalystPageClimate(analystPanel, analystPageSize, current));
 			}
+
 			if (current instanceof IBee) {
 				analystPages.add(new AnalystPageProducts(analystPanel, analystPageSize, (IBee) current));
 			} else if (current instanceof ITree) {
@@ -288,6 +303,7 @@ public class WindowAnalyst extends Window {
 			} else if (current instanceof IButterfly) {
 				analystPages.add(new AnalystPageSpecimen(analystPanel, analystPageSize, (IButterfly) current));
 			}
+
 			analystPages.add(new AnalystPageBiology(analystPanel, analystPageSize, current));
 			if (current instanceof IBee || current instanceof IButterfly) {
 				analystPages.add(new AnalystPageBehaviour(analystPanel, analystPageSize, current));
@@ -298,9 +314,11 @@ public class WindowAnalyst extends Window {
 			}
 			analystPages.add(new AnalystPageMutations(analystPanel, analystPageSize, current, isMaster));
 		}
+
 		tabBar.deleteAllChildren();
 		float width = tabBar.w() / analystPages.size();
 		float x = 0.0f;
+
 		for (ControlAnalystPage page : analystPages) {
 			new ControlTooltip(tabBar, x, 0.0f, width, tabBar.h()) {
 				ControlAnalystPage value;
@@ -352,6 +370,7 @@ public class WindowAnalyst extends Window {
 			};
 			x += width;
 		}
+
 		if (analystPages.size() > 0) {
 			setPage(leftPage, analystPages.get((oldLeft >= 0) ? oldLeft : 0));
 		}
@@ -419,6 +438,7 @@ public class WindowAnalyst extends Window {
 			getWindowInventory().setInventorySlotContents(0, Analyser.analyse(getWindowInventory().getStackInSlot(0)));
 			getWindowInventory().decrStackSize(1, 1);
 		}
+
 		IIndividual ind = AlleleManager.alleleRegistry.getIndividual(getWindowInventory().getStackInSlot(0));
 		if (ind != null) {
 			ind.getGenome().getSpeciesRoot().getBreedingTracker(getWorld(), getUsername()).registerBirth(ind);
