@@ -58,6 +58,8 @@ item.botany.pigment.name=%s Pigment
 item.botany.encylopedia=Florist's Encyclopaedia
 item.botany.encylopedia_reinforced=Reinforced Florist's Encyclopaedia
 item.botany.insulated_tube.name=%s %s Insulated Electron Tube
+item.botany.database.name=Botanist Database
+item.botany.database.master.name=Master Botanist Database
 
 botany.tube.insulate.clay.name=Clay
 botany.tube.insulate.cobblestone.name=Cobblestone
@@ -208,6 +210,8 @@ for.binnie.circuit.garden.damp=Garden (Damp)
 for.binnie.circuit.garden.damp.acid=Garden (Damp, Acidic)
 for.binnie.circuit.garden.damp.neutral=Garden (Damp, Neutral)
 for.binnie.circuit.garden.damp.alkaline=Garden (Damp, Alkaline)
+for.binnie.circuit.garden.info=Flowers
+
 
 botany.gui.controls.color_mix_symbol.chance=Current Chance - %f%%
 botany.gui.controls.page.species_further.title=Resultant Mixes
