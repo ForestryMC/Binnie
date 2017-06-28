@@ -159,6 +159,8 @@ botany.color.white=White
 botany.color.yellow=Yellow
 botany.color.yellowgreen=Yellow-Green
 
+for.binnie.circuit.garden.info=Flowers (%s)
+
 for.binnie.circuit.garden.fertilized=Fertilized
 for.binnie.circuit.garden.unfertilized=Unfertilized
 
@@ -210,7 +212,6 @@ for.binnie.circuit.garden.damp=Garden (Damp)
 for.binnie.circuit.garden.damp.acid=Garden (Damp, Acidic)
 for.binnie.circuit.garden.damp.neutral=Garden (Damp, Neutral)
 for.binnie.circuit.garden.damp.alkaline=Garden (Damp, Alkaline)
-for.binnie.circuit.garden.info=Flowers
 
 
 botany.gui.controls.color_mix_symbol.chance=Current Chance - %f%%

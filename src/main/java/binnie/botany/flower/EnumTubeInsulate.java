@@ -8,7 +8,7 @@ import binnie.core.util.I18N;
 enum EnumTubeInsulate {
 	Clay(0xa1aacc, "clay"),
 	Cobble(0x7b7b7b, "cobblestone"),
-	Sand(0xefeab5, "sand"),
+	Sand(0xefeab5, "sandstone"),
 	HardenedClay(0x935c43, "hardened_clay"),
 	Stone(0x6d6d6d, "stone"),
 	Sandstone(0xc1b989, "sandstone");

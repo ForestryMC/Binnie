@@ -25,25 +25,13 @@ public class CircuitGarden extends BinnieCircuit {
 		super(getName(moisture, ph, manual, fertilised), 4, getLayout(manual), recipe);
 		this.isManual = manual;
 		this.logic = new GardenLogic(moisture, ph, this.isManual, fertilised, icon, I18N.localise(this.getUnlocalizedName()));
-		StringBuilder info = new StringBuilder("Flowers (")
-			.append(TextFormatting.GRAY.toString())
-			.append(I18N.localise("botany.moisture"))
-			.append(": ")
-			.append(moisture.getLocalisedName(true));
-
-		if (ph != null) {
-			info.append(TextFormatting.GRAY.toString())
-				.append(", ")
-				.append(I18N.localise("botany.ph"))
-				.append(": ")
-				.append(ph.getLocalisedName(true));
+		String info = I18N.localise("botany.moisture") + ": " + moisture.getLocalisedName(true);
+		if(ph != null){
+			info+= TextFormatting.GRAY + ", " + I18N.localise("botany.ph") + ": " + moisture.getLocalisedName(true);
 		}
 		String fertilizedKey = fertilised ? "for.binnie.circuit.garden.fertilized" : "for.binnie.circuit.garden.unfertilized";
-		info.append(TextFormatting.RESET.toString())
-			.append(" ")
-			.append(I18N.localise(fertilizedKey))
-			.append(")");
-		this.addTooltipString(info.toString());
+		info+= TextFormatting.GRAY + " " + I18N.localise(fertilizedKey);
+		this.addTooltipString(I18N.localise("for.binnie.circuit.garden.info", info));
 	}
 
 	private static ICircuitLayout getLayout(boolean manual) {
