@@ -1,13 +1,15 @@
 ##################################################
 ## Machines
 
-genetics.machine.errors.no.owner.desc=No Owner
-genetics.machine.errors.no.owner.info=Replace this block to claim this machine
+genetics.tab.genetics=Genetaics
+
+genetics.errors.no.owner.name=No Owner
+genetics.errors.no.owner.desc=Replace this block to claim this machine
+genetics.errors.no.individual.desc=No Individual
 genetics.machine.errors.no.serum.desc=No Serum
 genetics.machine.errors.no.enzyme.desc=No enzyme
 genetics.machine.errors.no.recipe.desc=No Recipe
 genetics.machine.errors.no.recipe.info=There is no valid recipe
-genetics.machine.errors.no.individual.desc=No Individual
 genetics.machine.errors.empty.serum.desc=Empty Serum
 genetics.machine.errors.empty.serum.info=Serum is empty
 genetics.machine.errors.invalid.serum.desc=Invalid Serum
@@ -51,30 +53,29 @@ genetics.machine.machine.inoculator.tooltips.logic.genes=Inoculating with %s gen
 
 genetics.machine.lab_machine.genepool=Genepool
 genetics.machine.lab_machine.genepool.info=The Genepool uses enzymes and ethanol to break down living things into DNA. During this process, all genetic information is lost and the source of the DNA is destroyed.
-genetics.machine.lab_machine.genepool.errors.not.enough.ethanol.desc=Not enough Ethanol
-genetics.machine.lab_machine.genepool.errors.insufficient.enzyme.desc=Insufficient Enzyme
+genetics.errors.genepool.insufficient.ethanol.desc=Not enough Ethanol
+genetics.errors.genepool.insufficient.enzyme.desc=Insufficient Enzyme
 
 genetics.machine.lab_machine.lab_machine=Lab Stand
 
 genetics.machine.lab_machine.analyser=Analyser
 genetics.machine.lab_machine.analyser.info=The Analyser takes breedable individuals and DNA sequencers and analyses them to determine the genes present. This requires DNA Dye, created from purple dye and glowstone
-genetics.machine.lab_machine.analyser.errors.insufficient.dye.desc=Insufficient Dye
-genetics.machine.lab_machine.analyser.errors.insufficient.dye.info=Not enough DNA dye to analyse
-genetics.machine.lab_machine.analyser.errors.already.analysed.desc=Already Analysed
-genetics.machine.lab_machine.analyser.errors.already.analysed.info=Item has already been analysed
-genetics.machine.lab_machine.analyser.errors.no.item.desc=No item to analyse
 genetics.machine.lab_machine.analyser.tooltips.slots.unanalysed=Unanalysed Item
+genetics.errors.analyser.insufficient.dye.name=Insufficient Dye
+genetics.errors.analyser.insufficient.dye.desc=Not enough DNA dye to analyse
+genetics.errors.analyser.already.analysed.desc=Already Analysed
+genetics.errors.analyser.already.analysed.name=Item has already been analysed
+genetics.errors.analyser.no.item.desc=No item to analyse
 
 genetics.machine.lab_machine.incubator=Incubator
 genetics.machine.lab_machine.incubator.info=The Incubator combines liquids and items and allows them to sit at an ideal temperature to encourage bacterial growth.
-genetics.machine.lab_machine.incubator.errors.no.liquid.desc=Not enough incubation liquid
-genetics.machine.lab_machine.incubator.errors.no.room.desc=No room for output
+genetics.errors.incubator.insufficient.liquid.desc=Not enough incubation liquid
 
 genetics.machine.lab_machine.acclimatiser=Acclimatiser
-genetics.machine.lab_machine.acclimatiser.errors.no.individual.desc=No Individual to Acclimatise
-genetics.machine.lab_machine.acclimatiser.errors.no.item.desc=No Acclimatising Items
-genetics.machine.lab_machine.acclimatiser.errors.can.not.acclimatise.desc=Cannot Acclimatise this individual with these items
-genetics.machine.lab_machine.acclimatiser.tooltips.slots.acclimatising=Acclimatising Items
+genetics.machine.lab_machine.acclimatiser.info=
+genetics.errors.acclimatiser.no.item.desc=No Acclimatising Items
+genetics.errors.acclimatiser.can.not.acclimatise.desc=Cannot Acclimatise this individual with these items
+genetics.errors.acclimatiser.tooltips.slots.acclimatising=Acclimatising Items
 
 genetics.machine.adv_machine.splicer=Splicer
 genetics.machine.adv_machine.splicer.info=The Splicer is an incredibly powerful machine that is used to insert genes into individuals. This process is fast, but requires monumental amounts of power.

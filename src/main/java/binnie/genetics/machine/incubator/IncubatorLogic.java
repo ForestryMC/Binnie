@@ -10,11 +10,12 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentProcessIndefinate;
+import binnie.core.machines.power.CoreErrorCode;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import binnie.core.machines.transfer.TransferRequest;
-import binnie.core.util.I18N;
 import binnie.genetics.api.IIncubatorRecipe;
+import binnie.genetics.machine.GeneticsErrorCode;
 
 public class IncubatorLogic extends ComponentProcessIndefinate implements IProcess {
 	@Nullable
@@ -36,7 +37,7 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 	@Override
 	public ErrorState canWork() {
 		if (this.recipe == null) {
-			return new ErrorState(I18N.localise("genetics.machine.errors.no.recipe.desc"), I18N.localise("genetics.machine.errors.no.recipe.info"));
+			return new ErrorState(CoreErrorCode.NO_RECIPE);
 		}
 		return super.canWork();
 	}
@@ -45,10 +46,10 @@ public class IncubatorLogic extends ComponentProcessIndefinate implements IProce
 	public ErrorState canProgress() {
 		if (this.recipe != null) {
 			if (!this.recipe.isInputLiquidSufficient(this.getUtil().getFluid(Incubator.TANK_INPUT))) {
-				return new ErrorState.InsufficientLiquid(I18N.localise("genetics.machine.labMachine.incubator.errors.no.liquid.desc"), Incubator.TANK_INPUT);
+				return new ErrorState(GeneticsErrorCode.INCUBATOR_INSUFFICIENT_LIQUID, Incubator.TANK_INPUT);
 			}
 			if (!this.roomForOutput) {
-				return new ErrorState.TankSpace(I18N.localise("genetics.machine.labMachine.incubator.errors.no.room.desc"), Incubator.TANK_OUTPUT);
+				return new ErrorState(CoreErrorCode.NO_SPACE_TANK, Incubator.TANK_OUTPUT);
 			}
 		}
 		return super.canProgress();

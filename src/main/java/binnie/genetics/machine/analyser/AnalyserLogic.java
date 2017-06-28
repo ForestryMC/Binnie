@@ -6,7 +6,7 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
-import binnie.core.util.I18N;
+import binnie.genetics.machine.GeneticsErrorCode;
 
 public class AnalyserLogic extends ComponentProcessSetCost implements IProcess {
 	private static final float DYE_PER_TICK = 0.002f;
@@ -18,11 +18,11 @@ public class AnalyserLogic extends ComponentProcessSetCost implements IProcess {
 	@Override
 	public ErrorState canWork() {
 		if (this.getUtil().isSlotEmpty(Analyser.SLOT_TARGET)) {
-			return new ErrorState.NoItem(I18N.localise("genetics.machine.labMachine.analyser.errors.no.item.desc"), Analyser.SLOT_TARGET);
+			return new ErrorState(GeneticsErrorCode.ANALYSER_NO_ITEM, Analyser.SLOT_TARGET);
 		}
 		final boolean analysed = Analyser.isAnalysed(this.getUtil().getStack(Analyser.SLOT_TARGET));
 		if (analysed) {
-			return new ErrorState.InvalidItem(I18N.localise("genetics.machine.labMachine.analyser.errors.already.analysed.desc"), I18N.localise("genetics.machine.labMachine.analyser.errors.already.analysed.info"), Analyser.SLOT_TARGET);
+			return new ErrorState(GeneticsErrorCode.ANALYSER_ALREADY_ANALYSED, Analyser.SLOT_TARGET);
 		}
 		return super.canWork();
 	}
@@ -30,10 +30,10 @@ public class AnalyserLogic extends ComponentProcessSetCost implements IProcess {
 	@Override
 	public ErrorState canProgress() {
 		if(getMachine().getOwner() == null){
-			return new ErrorState.InvalidItem(I18N.localise("genetics.genetics.machine.errors.no.owner.desc"), I18N.localise("genetics.genetics.machine.errors.no.owner.info"), Analyser.SLOT_TARGET);
+			return new ErrorState(GeneticsErrorCode.NO_OWNER, Analyser.SLOT_TARGET);
 		}
 		if (this.getUtil().getSlotCharge(Analyser.SLOT_DYE) == 0.0f) {
-			return new ErrorState.Item(I18N.localise("genetics.machine.labMachine.analyser.errors.insufficient.dye.desc"), I18N.localise("genetics.machine.labMachine.analyser.errors.insufficient.dye.info"), new int[]{13});
+			return new ErrorState(GeneticsErrorCode.ANALYSER_INSUFFICIENT_DYE, new int[]{Analyser.SLOT_DYE});
 		}
 		return super.canProgress();
 	}

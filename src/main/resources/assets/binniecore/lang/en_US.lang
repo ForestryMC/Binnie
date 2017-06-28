@@ -211,6 +211,18 @@ binniecore.machine.errors.task.cancelled.info=Cancelled by Buildcraft Gate
 binniecore.machine.errors.task.process.paused.desc=Process Paused
 binniecore.machine.errors.task.process.paused.info=Paused by Buildcraft Gate
 
+binniecore.errors.no.item.name=No Item
+binniecore.errors.invalid.item.name=Invalid Item
+binniecore.errors.no.space.name=No Space
+binniecore.errors.no.space.tank.desc=Not enough room in Tank
+binniecore.errors.insufficient.power.name=Insufficient Power
+binniecore.errors.insufficient.power.desc=Not enough power to operate
+binniecore.errors.tank.full.name=Tank Full
+binniecore.errors.insufficient.liquid.name=Insufficient Liquid
+binniecore.errors.invalid.recipe.name=Invalid Recipe
+binniecore.errors.no.recipe.name=No Recipe
+binniecore.errors.no.recipe.desc=There is no valid recipe
+
 < %1$s is the name of the pattern >
 binniecore.gui.designer.pattern=%1$s Pattern
 

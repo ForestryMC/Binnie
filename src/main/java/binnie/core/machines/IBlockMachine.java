@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 
 interface IBlockMachine {
 	@Nullable
-	MachinePackage getPackage(final int meta);
+	MachinePackage getPackage(int meta);
 
-	String getMachineName(final int meta);
+	String getMachineName(int meta);
 }

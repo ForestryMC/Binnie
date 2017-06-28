@@ -7,12 +7,14 @@ import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.Binnie;
 import binnie.core.machines.Machine;
+import binnie.core.machines.MachineUtil;
 import binnie.core.machines.inventory.IChargedSlots;
 import binnie.core.machines.power.ComponentProcessSetCost;
+import binnie.core.machines.power.CoreErrorCode;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
-import binnie.core.util.I18N;
 import binnie.genetics.item.GeneticLiquid;
+import binnie.genetics.machine.GeneticsErrorCode;
 
 public class GenepoolLogic extends ComponentProcessSetCost implements IProcess {
 	public static final float ENZYME_PER_PROCESS = 0.25f;
@@ -42,22 +44,23 @@ public class GenepoolLogic extends ComponentProcessSetCost implements IProcess {
 	@Override
 	public ErrorState canWork() {
 		if (this.getUtil().isSlotEmpty(Genepool.SLOT_BEE)) {
-			return new ErrorState.NoItem(I18N.localise("genetics.machine.errors.no.individual.desc"), Genepool.SLOT_BEE);
+			return new ErrorState(GeneticsErrorCode.NO_INDIVIDUAL, Genepool.SLOT_BEE);
 		}
 		return super.canWork();
 	}
 
 	@Override
 	public ErrorState canProgress() {
-		ItemStack individual = this.getUtil().getStack(Genepool.SLOT_BEE);
-		if (!this.getUtil().spaceInTank(Genepool.TANK_DNA, getDNAAmount(individual))) {
-			return new ErrorState.NoSpace(I18N.localise("genetics.machine.errors.tanks.no.room.desc"), new int[]{0});
+		MachineUtil util = getUtil();
+		ItemStack individual = util.getStack(Genepool.SLOT_BEE);
+		if (!util.spaceInTank(Genepool.TANK_DNA, getDNAAmount(individual))) {
+			return new ErrorState(CoreErrorCode.NO_SPACE_TANK, new int[]{Genepool.SLOT_BEE});
 		}
-		if (!this.getUtil().liquidInTank(Genepool.TANK_ETHANOL, 1)) {
-			return new ErrorState.InsufficientLiquid(I18N.localise("genetics.machine.labMachine.genepool.errors.not.enough.ethanol.desc"), Genepool.TANK_ETHANOL);
+		if (!util.liquidInTank(Genepool.TANK_ETHANOL, 1)) {
+			return new ErrorState(GeneticsErrorCode.GENEPOOL_INSUFFICIENT_ETHANOL, Genepool.TANK_ETHANOL);
 		}
-		if (this.getUtil().getSlotCharge(Genepool.SLOT_ENZYME) == 0.0f) {
-			return new ErrorState.NoItem(I18N.localise("genetics.machine.labMachine.genepool.errors.insufficient.enzyme.desc"), Genepool.SLOT_ENZYME);
+		if (util.getSlotCharge(Genepool.SLOT_ENZYME) == 0.0f) {
+			return new ErrorState(GeneticsErrorCode.GENEPOOL_INSUFFICIENT_ENZYME, Genepool.SLOT_ENZYME);
 		}
 		return super.canProgress();
 	}
@@ -65,18 +68,20 @@ public class GenepoolLogic extends ComponentProcessSetCost implements IProcess {
 	@Override
 	protected void onFinishTask() {
 		super.onFinishTask();
-		ItemStack individual = this.getUtil().getStack(Genepool.SLOT_BEE);
-		final int amount = getDNAAmount(individual);
-		this.getUtil().fillTank(Genepool.TANK_DNA, GeneticLiquid.RawDNA.get(amount));
-		this.getUtil().deleteStack(Genepool.SLOT_BEE);
+		MachineUtil util = getUtil();
+		ItemStack individual = util.getStack(Genepool.SLOT_BEE);
+		int amount = getDNAAmount(individual);
+		util.fillTank(Genepool.TANK_DNA, GeneticLiquid.RawDNA.get(amount));
+		util.deleteStack(Genepool.SLOT_BEE);
 	}
 
 	@Override
 	protected void onTickTask() {
-		ItemStack individual = this.getUtil().getStack(Genepool.SLOT_BEE);
+		MachineUtil util = getUtil();
+		ItemStack individual = util.getStack(Genepool.SLOT_BEE);
 		this.ethanolDrain += getDNAAmount(individual) * 1.2f * this.getProgressPerTick() / 100.0f;
 		if (this.ethanolDrain >= 1.0f) {
-			this.getUtil().drainTank(Genepool.TANK_ETHANOL, 1);
+			util.drainTank(Genepool.TANK_ETHANOL, 1);
 			--this.ethanolDrain;
 		}
 		IChargedSlots chargedSlots = this.getMachine().getInterface(IChargedSlots.class);

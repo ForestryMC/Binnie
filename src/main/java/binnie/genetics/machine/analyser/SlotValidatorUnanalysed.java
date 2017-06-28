@@ -17,6 +17,6 @@ public class SlotValidatorUnanalysed extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return I18N.localise("genetics.machine.labMachine.analyser.tooltips.slots.unanalysed");
+		return I18N.localise("genetics.machine.lab_machine.analyser.tooltips.slots.unanalysed");
 	}
 }

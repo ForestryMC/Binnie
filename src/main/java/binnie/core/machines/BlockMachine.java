@@ -3,6 +3,7 @@ package binnie.core.machines;
 import com.google.common.base.Preconditions;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -103,7 +104,16 @@ class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 		MachinePackage machinePackage = this.getPackage(meta);
 		return (machinePackage == null) ? "Unnamed Machine" : machinePackage.getDisplayName();
 	}
-
+	
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
+		super.addInformation(stack, player, tooltip, advanced);
+		MachinePackage machinePackage = this.getPackage(stack.getMetadata());
+		if(machinePackage != null){
+			tooltip.add(machinePackage.getInformation());
+		}
+	}
+	
 	@Override
 	public int damageDropped(IBlockState state) {
 		return state.getValue(MACHINE_TYPE);

@@ -49,7 +49,7 @@ public class WindowAcclimatiser extends WindowMachine {
 
 	@Override
 	public String getTitle() {
-		return I18N.localise("genetics.machine.labMachine.acclimatiser");
+		return I18N.localise("genetics.lab_machine.acclimatiser");
 	}
 
 	@Override

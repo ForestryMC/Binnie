@@ -59,7 +59,7 @@ public class WindowGenepool extends WindowMachine {
 
 	@Override
 	public String getTitle() {
-		return I18N.localise("genetics.machine.labMachine.genepool");
+		return I18N.localise("genetics.machine.lab_machine.genepool");
 	}
 
 	@Override
