@@ -1,7 +1,6 @@
 package binnie.core.craftgui.minecraft;
 
 import binnie.core.BinnieCore;
-import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.events.EventKey;
@@ -93,8 +92,8 @@ public class GuiCraftGUI extends GuiContainer {
 		InventoryPlayer playerInventory = mc.thePlayer.inventory;
 		draggedItem = playerInventory.getItemStack();
 		if (draggedItem != null) {
-			renderItem(new IPoint(mouseX - 8, mouseY - 8), draggedItem, 200, false);
-			renderItem(new IPoint(mouseX - 8, mouseY - 8), draggedItem, 200, false);
+			renderItem(new IPoint(mouseX - 8, mouseY - 8), draggedItem, false);
+			renderItem(new IPoint(mouseX - 8, mouseY - 8), draggedItem, false);
 		}
 		GL11.glDisable(32826); // GL_RESCALE_NORMAL_EXT
 		GL11.glPopMatrix();
@@ -371,14 +370,9 @@ public class GuiCraftGUI extends GuiContainer {
 	}
 
 	public void renderItem(IPoint pos, ItemStack item, boolean rotating) {
-		renderItem(pos, item, (int) zLevel + 3, rotating);
-	}
-
-	private void renderItem(IPoint pos, ItemStack item, int zLevel, boolean rotating) {
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0f, 240.0f);
-		GL11.glPushMatrix();
+		GL11.glPushAttrib(8256);
 		RenderHelper.enableGUIStandardItemLighting();
-		GL11.glEnable(32826); // GL_RESCALE_NORMAL_EXT
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		FontRenderer font = item.getItem().getFontRenderer(item);
 		if (font == null) {
@@ -387,23 +381,23 @@ public class GuiCraftGUI extends GuiContainer {
 
 		BinnieCore.proxy.getMinecraftInstance();
 		float phase = Minecraft.getSystemTime() / 20.0f;
-		GL11.glPushMatrix();
+		
 		if (rotating) {
+			GL11.glPushMatrix();
 			GL11.glTranslatef(8.0f, 8.0f, 0.0f);
 			GL11.glRotatef(phase, 0.0f, -0.866f, 0.5f);
 			GL11.glTranslatef(-8.0f, -8.0f, -67.1f);
 		}
 
 		GuiScreen.itemRender.renderItemAndEffectIntoGUI(font, mc.renderEngine, item, (int) pos.x(), (int) pos.y());
-		GL11.glPopMatrix();
+		if (rotating) {
+			GL11.glPopMatrix();
+		}
 		GuiScreen.itemRender.renderItemOverlayIntoGUI(font, mc.renderEngine, item, (int) pos.x(), (int) pos.y(), null);
-		GL11.glClear(256);
-		GL11.glEnable(GL11.GL_BLEND);
-		OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
+
+		GL11.glDisable(GL11.GL_BLEND);
 		RenderHelper.disableStandardItemLighting();
-		CraftGUI.render.color(0xffffffff);
-		GL11.glEnable(32826); // GL_RESCALE_NORMAL_EXT
-		GL11.glPopMatrix();
+		GL11.glPopAttrib();
 	}
 
 	public void renderIcon(IPoint pos, IIcon icon, ResourceLocation map) {
@@ -466,8 +460,8 @@ public class GuiCraftGUI extends GuiContainer {
 		float b = (color & 0xFF) / 255.0f;
 
 		Tessellator tessellator = Tessellator.instance;
-		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_BLEND);
 		OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
 		GL11.glColor4f(r, g, b, alpha);
 		tessellator.startDrawingQuads();
@@ -477,7 +471,7 @@ public class GuiCraftGUI extends GuiContainer {
 		tessellator.addVertex(x, y, 0.0);
 		tessellator.draw();
 		GL11.glColor4f(1, 1, 1, 255);
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
 	}
 }

@@ -63,7 +63,6 @@ public class Renderer {
 
 		if (a > 0 && a != 255) {
 			GL11.glColor4f(r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f);
-			GL11.glEnable(GL11.GL_BLEND);
 		} else {
 			GL11.glColor3f(r / 255.0f, g / 255.0f, b / 255.0f);
 		}
