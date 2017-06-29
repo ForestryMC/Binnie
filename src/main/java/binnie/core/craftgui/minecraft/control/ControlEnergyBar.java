@@ -85,9 +85,9 @@ public class ControlEnergyBar extends Control implements ITooltip {
 
 	@Override
 	public void onRenderBackground() {
-		CraftGUI.Render.texture(CraftGUITexture.EnergyBarBack, getArea());
+		CraftGUI.render.texture(CraftGUITexture.EnergyBarBack, getArea());
 		float percentage = getPercentage() / 100.0f;
-		CraftGUI.Render.color(getColourFromPercentage(percentage));
+		CraftGUI.render.color(getColourFromPercentage(percentage));
 		IArea area = getArea();
 
 		switch (direction) {
@@ -106,27 +106,27 @@ public class ControlEnergyBar extends Control implements ITooltip {
 
 		if (isMouseOver() && Window.get(this).getGui().isHelpMode()) {
 			int c = 0xaa000000 + MinecraftTooltip.getOutline(Tooltip.Type.HELP);
-			CraftGUI.Render.gradientRect(getArea().inset(1), c, c);
+			CraftGUI.render.gradientRect(getArea().inset(1), c, c);
 		} else if (ControlEnergyBar.isError) {
 			int c = 0xaa000000 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR);
-			CraftGUI.Render.gradientRect(getArea().inset(1), c, c);
+			CraftGUI.render.gradientRect(getArea().inset(1), c, c);
 		}
 
-		CraftGUI.Render.texture(CraftGUITexture.EnergyBarGlow, area);
+		CraftGUI.render.texture(CraftGUITexture.EnergyBarGlow, area);
 		GL11.glColor3d(1.0, 1.0, 1.0);
-		CraftGUI.Render.texture(CraftGUITexture.EnergyBarGlass, getArea());
+		CraftGUI.render.texture(CraftGUITexture.EnergyBarGlass, getArea());
 	}
 
 	@Override
 	public void onRenderForeground() {
 		if (isMouseOver() && Window.get(this).getGui().isHelpMode()) {
 			IArea area = getArea();
-			CraftGUI.Render.color(MinecraftTooltip.getOutline(Tooltip.Type.HELP));
-			CraftGUI.Render.texture(CraftGUITexture.Outline, area.outset(1));
+			CraftGUI.render.color(MinecraftTooltip.getOutline(Tooltip.Type.HELP));
+			CraftGUI.render.texture(CraftGUITexture.Outline, area.outset(1));
 		} else if (ControlEnergyBar.isError) {
 			IArea area = getArea();
-			CraftGUI.Render.color(MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR));
-			CraftGUI.Render.texture(CraftGUITexture.Outline, area.outset(1));
+			CraftGUI.render.color(MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR));
+			CraftGUI.render.texture(CraftGUITexture.Outline, area.outset(1));
 		}
 	}
 

@@ -20,7 +20,7 @@ public class ControlInfo extends Control implements ITooltip {
 
 	@Override
 	public void onRenderBackground() {
-		CraftGUI.Render.texture(CraftGUITexture.InfoButton, getArea());
+		CraftGUI.render.texture(CraftGUITexture.InfoButton, getArea());
 	}
 
 	@Override

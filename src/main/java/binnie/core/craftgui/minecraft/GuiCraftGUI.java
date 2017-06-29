@@ -77,10 +77,10 @@ public class GuiCraftGUI extends GuiContainer {
 		window.setMousePosition(mouseX - (int) window.getPosition().x(), mouseY - (int) window.getPosition().y());
 		drawDefaultBackground();
 
-		GL11.glDisable(32826);
+		GL11.glDisable(32826); // GL_RESCALE_NORMAL_EXT
 		RenderHelper.disableStandardItemLighting();
-		GL11.glDisable(2896);
-		GL11.glDisable(2929);
+		GL11.glDisable(GL11.GL_LIGHTING);
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		zLevel = 10.0f;
 		GuiScreen.itemRender.zLevel = zLevel;
 
@@ -88,7 +88,7 @@ public class GuiCraftGUI extends GuiContainer {
 
 		RenderHelper.enableGUIStandardItemLighting();
 		GL11.glPushMatrix();
-		GL11.glEnable(32826);
+		GL11.glEnable(32826); // GL_RESCALE_NORMAL_EXT
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0f, 240.0f);
 		InventoryPlayer playerInventory = mc.thePlayer.inventory;
 		draggedItem = playerInventory.getItemStack();
@@ -96,10 +96,10 @@ public class GuiCraftGUI extends GuiContainer {
 			renderItem(new IPoint(mouseX - 8, mouseY - 8), draggedItem, 200, false);
 			renderItem(new IPoint(mouseX - 8, mouseY - 8), draggedItem, 200, false);
 		}
-		GL11.glDisable(32826);
+		GL11.glDisable(32826); // GL_RESCALE_NORMAL_EXT
 		GL11.glPopMatrix();
-		GL11.glDisable(2896);
-		GL11.glDisable(2929);
+		GL11.glDisable(GL11.GL_LIGHTING);
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		MinecraftTooltip tooltip = new MinecraftTooltip();
 		if (isHelpMode()) {
 			tooltip.setType(Tooltip.Type.HELP);
@@ -108,24 +108,26 @@ public class GuiCraftGUI extends GuiContainer {
 			tooltip.setType(Tooltip.Type.STANDARD);
 			window.getTooltip(tooltip);
 		}
+
 		if (tooltip.exists()) {
 			renderTooltip(new IPoint(mouseX, mouseY), tooltip);
 		}
 		zLevel = 0.0f;
-		GL11.glEnable(2896);
-		GL11.glEnable(2929);
+		GL11.glEnable(GL11.GL_LIGHTING);
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
 	}
 
 	public void renderTooltip(IPoint mousePosition, MinecraftTooltip tooltip) {
 		int mouseX = (int) mousePosition.x();
 		int mouseY = (int) mousePosition.y();
 		FontRenderer font = getFontRenderer();
-		GL11.glDisable(32826);
+		GL11.glDisable(32826); // GL_RESCALE_NORMAL_EXT
 		RenderHelper.disableStandardItemLighting();
-		GL11.glDisable(2896);
-		GL11.glDisable(2929);
+		GL11.glDisable(GL11.GL_LIGHTING);
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
+
 		int k = 0;
-		List<String> strings = new ArrayList<String>();
+		List<String> strings = new ArrayList<>();
 		for (String string : tooltip.getList()) {
 			if (string != null) {
 				if (!string.contains("~~~")) {
@@ -135,6 +137,7 @@ public class GuiCraftGUI extends GuiContainer {
 				}
 			}
 		}
+
 		for (String s : strings) {
 			int l = font.getStringWidth(s);
 			if (s.contains("~~~")) {
@@ -144,6 +147,7 @@ public class GuiCraftGUI extends GuiContainer {
 				k = l;
 			}
 		}
+
 		int i1 = mouseX + 12;
 		int j1 = mouseY - 12;
 		int k2 = 8;
@@ -158,9 +162,10 @@ public class GuiCraftGUI extends GuiContainer {
 		}
 		zLevel = 300.0f;
 		GuiScreen.itemRender.zLevel = 300.0f;
-		int l2 = -267386864;
+		int l2 = 0xf0100010;
 		int j2;
-		int i2 = j2 = 1342177280 + MinecraftTooltip.getOutline(tooltip.getType());
+		int i2 = j2 = 0x50000000 + MinecraftTooltip.getOutline(tooltip.getType());
+
 		drawGradientRect(i1 - 3, j1 - 4, i1 + k + 3, j1 - 3, l2, l2);
 		drawGradientRect(i1 - 3, j1 + k2 + 3, i1 + k + 3, j1 + k2 + 4, l2, l2);
 		drawGradientRect(i1 - 3, j1 - 3, i1 + k + 3, j1 + k2 + 3, l2, l2);
@@ -170,6 +175,7 @@ public class GuiCraftGUI extends GuiContainer {
 		drawGradientRect(i1 + k + 2, j1 - 3 + 1, i1 + k + 3, j1 + k2 + 3 - 1, i2, j2);
 		drawGradientRect(i1 - 3, j1 - 3, i1 + k + 3, j1 - 3 + 1, i2, i2);
 		drawGradientRect(i1 - 3, j1 + k2 + 2, i1 + k + 3, j1 + k2 + 3, j2, j2);
+
 		for (int k3 = 0; k3 < strings.size(); ++k3) {
 			String s2 = strings.get(k3);
 			if (k3 == 0) {
@@ -177,6 +183,7 @@ public class GuiCraftGUI extends GuiContainer {
 			} else {
 				s2 = MinecraftTooltip.getBody(tooltip.getType()) + s2;
 			}
+
 			if (s2.contains("~~~")) {
 				String split = s2.split("~~~")[1];
 				try {
@@ -192,18 +199,20 @@ public class GuiCraftGUI extends GuiContainer {
 				}
 				s2 = "   " + s2.replaceAll("~~~(.*?)~~~", "");
 			}
+
 			font.drawStringWithShadow(s2, i1, j1, -1);
 			if (k3 == 0) {
 				j1 += 2;
 			}
 			j1 += 10;
 		}
+
 		zLevel = 0.0f;
 		GuiScreen.itemRender.zLevel = 0.0f;
-		GL11.glEnable(2896);
-		GL11.glEnable(2929);
+		GL11.glEnable(GL11.GL_LIGHTING);
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		RenderHelper.enableStandardItemLighting();
-		GL11.glEnable(32826);
+		GL11.glEnable(32826); // GL_RESCALE_NORMAL_EXT
 	}
 
 	@Override
@@ -213,10 +222,6 @@ public class GuiCraftGUI extends GuiContainer {
 			origin = window.getMousedOverWidget();
 		}
 		window.callEvent(new EventMouse.Down(origin, x, y, button));
-	}
-
-	public boolean isShiftDown() {
-		return Keyboard.isKeyDown(mc.gameSettings.keyBindSneak.getKeyCode());
 	}
 
 	@Override
@@ -231,10 +236,7 @@ public class GuiCraftGUI extends GuiContainer {
 	@Override
 	protected void mouseMovedOrUp(int x, int y, int button) {
 		IWidget origin = (window.getMousedOverWidget() == null) ? window : window.getMousedOverWidget();
-		if (button == -1) {
-			float dx = Mouse.getEventDX() * width / (float) mc.displayWidth;
-			float dy = -(Mouse.getEventDY() * height / (float) mc.displayHeight);
-		} else {
+		if (button != -1) {
 			window.callEvent(new EventMouse.Up(origin, x, y, button));
 		}
 	}
@@ -243,7 +245,6 @@ public class GuiCraftGUI extends GuiContainer {
 	public void handleMouseInput() {
 		super.handleMouseInput();
 		int dWheel = Mouse.getDWheel();
-		IWidget origin = (window.getFocusedWidget() == null) ? window : window.getFocusedWidget();
 		if (dWheel != 0) {
 			window.callEvent(new EventMouse.Wheel(window, dWheel));
 		}
@@ -254,16 +255,15 @@ public class GuiCraftGUI extends GuiContainer {
 		window.onClose();
 	}
 
-	public void renderTexturedRect(float x, float y, float u, float v, float w, float h) {
-		drawTexturedModalRect((int) x, (int) y, (int) u, (int) v, (int) w, (int) h);
-	}
-
 	public void renderTexture(IPoint position, IArea textureArea) {
-		drawTexturedModalRect((int) position.x(), (int) position.y(), (int) textureArea.pos().x(), (int) textureArea.pos().y(), (int) textureArea.size().x(), (int) textureArea.size().y());
-	}
-
-	private void renderTexturedRect(IArea area, IPoint uv) {
-		renderTexturedRect(area.pos().x(), area.pos().y(), uv.x(), uv.y(), area.size().x(), area.size().y());
+		drawTexturedModalRect(
+			(int) position.x(),
+			(int) position.y(),
+			(int) textureArea.pos().x(),
+			(int) textureArea.pos().y(),
+			(int) textureArea.size().x(),
+			(int) textureArea.size().y()
+		);
 	}
 
 	public void renderTexturePadded(IArea area, IArea texture, IBorder padding) {
@@ -279,19 +279,22 @@ public class GuiCraftGUI extends GuiContainer {
 		int textHeight = (int) texture.h();
 		int u = (int) texture.x();
 		int v = (int) texture.y();
+
 		if (borderTop + borderBottom > height) {
 			borderTop = height / 2;
 			borderBottom = height / 2;
 		}
+
 		if (borderLeft + borderRight > width) {
 			borderLeft = width / 2;
 			borderRight = width / 2;
 		}
-		IPoint origin = area.pos();
+
 		drawTexturedModalRect(posX, posY, u, v, borderLeft, borderTop);
 		drawTexturedModalRect(posX + width - borderRight, posY, u + textWidth - borderRight, v, borderRight, borderTop);
 		drawTexturedModalRect(posX, posY + height - borderBottom, u, v + textHeight - borderBottom, borderLeft, borderBottom);
 		drawTexturedModalRect(posX + width - borderRight, posY + height - borderBottom, u + textWidth - borderRight, v + textHeight - borderBottom, borderRight, borderBottom);
+
 		int texturingWidth;
 		for (int currentXPos = borderLeft; currentXPos < width - borderRight; currentXPos += texturingWidth) {
 			int distanceXRemaining = width - borderRight - currentXPos;
@@ -299,9 +302,11 @@ public class GuiCraftGUI extends GuiContainer {
 			if (texturingWidth > distanceXRemaining) {
 				texturingWidth = distanceXRemaining;
 			}
+
 			if (texturingWidth <= 0) {
 				break;
 			}
+
 			drawTexturedModalRect(posX + currentXPos, posY, u + borderLeft, v, texturingWidth, borderTop);
 			drawTexturedModalRect(posX + currentXPos, posY + height - borderBottom, u + borderLeft, v + textHeight - borderBottom, texturingWidth, borderBottom);
 			int texturingHeight;
@@ -317,6 +322,7 @@ public class GuiCraftGUI extends GuiContainer {
 				drawTexturedModalRect(posX + currentXPos, posY + currentYPos, u + borderLeft, v + borderTop, texturingWidth, texturingHeight);
 			}
 		}
+
 		int texturingHeight2;
 		for (int currentYPos2 = borderTop; currentYPos2 < height - borderBottom; currentYPos2 += texturingHeight2) {
 			int distanceYRemaining2 = height - borderBottom - currentYPos2;
@@ -324,6 +330,7 @@ public class GuiCraftGUI extends GuiContainer {
 			if (texturingHeight2 > distanceYRemaining2) {
 				texturingHeight2 = distanceYRemaining2;
 			}
+
 			if (texturingHeight2 <= 0) {
 				break;
 			}
@@ -332,33 +339,35 @@ public class GuiCraftGUI extends GuiContainer {
 		}
 	}
 
-	public void drawGradientArea(float p_73733_1_, float p_73733_2_, float p_73733_3_, float p_73733_4_, int p_73733_5_, int p_73733_6_) {
-		float f = (p_73733_5_ >> 24 & 0xFF) / 255.0f;
-		float f2 = (p_73733_5_ >> 16 & 0xFF) / 255.0f;
-		float f3 = (p_73733_5_ >> 8 & 0xFF) / 255.0f;
-		float f4 = (p_73733_5_ & 0xFF) / 255.0f;
-		float f5 = (p_73733_6_ >> 24 & 0xFF) / 255.0f;
-		float f6 = (p_73733_6_ >> 16 & 0xFF) / 255.0f;
-		float f7 = (p_73733_6_ >> 8 & 0xFF) / 255.0f;
-		float f8 = (p_73733_6_ & 0xFF) / 255.0f;
-		GL11.glDisable(3553);
-		GL11.glEnable(3042);
-		GL11.glDisable(3008);
-		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-		GL11.glShadeModel(7425);
+	public void drawGradientArea(float x, float y, float width, float height, int color1, int color2) {
+		float alpha1 = (color1 >> 24 & 0xFF) / 255.0f;
+		float r1 = (color1 >> 16 & 0xFF) / 255.0f;
+		float b1 = (color1 >> 8 & 0xFF) / 255.0f;
+		float g1 = (color1 & 0xFF) / 255.0f;
+
+		float alpha2 = (color2 >> 24 & 0xFF) / 255.0f;
+		float r2 = (color2 >> 16 & 0xFF) / 255.0f;
+		float g2 = (color2 >> 8 & 0xFF) / 255.0f;
+		float b2 = (color2 & 0xFF) / 255.0f;
+
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_ALPHA_TEST);
+		GL11.glEnable(GL11.GL_BLEND);
+		OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
+		GL11.glShadeModel(GL11.GL_SMOOTH);
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();
-		tessellator.setColorRGBA_F(f2, f3, f4, f);
-		tessellator.addVertex(p_73733_3_, p_73733_2_, zLevel);
-		tessellator.addVertex(p_73733_1_, p_73733_2_, zLevel);
-		tessellator.setColorRGBA_F(f6, f7, f8, f5);
-		tessellator.addVertex(p_73733_1_, p_73733_4_, zLevel);
-		tessellator.addVertex(p_73733_3_, p_73733_4_, zLevel);
+		tessellator.setColorRGBA_F(r1, b1, g1, alpha1);
+		tessellator.addVertex(width, y, zLevel);
+		tessellator.addVertex(x, y, zLevel);
+		tessellator.setColorRGBA_F(r2, g2, b2, alpha2);
+		tessellator.addVertex(x, height, zLevel);
+		tessellator.addVertex(width, height, zLevel);
 		tessellator.draw();
-		GL11.glShadeModel(7424);
-		GL11.glDisable(3042);
-		GL11.glEnable(3008);
-		GL11.glEnable(3553);
+		GL11.glShadeModel(GL11.GL_FLAT);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glEnable(GL11.GL_ALPHA_TEST);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
 	}
 
 	public void renderItem(IPoint pos, ItemStack item, boolean rotating) {
@@ -369,31 +378,31 @@ public class GuiCraftGUI extends GuiContainer {
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0f, 240.0f);
 		GL11.glPushMatrix();
 		RenderHelper.enableGUIStandardItemLighting();
-		GL11.glEnable(32826);
-		GL11.glEnable(2929);
+		GL11.glEnable(32826); // GL_RESCALE_NORMAL_EXT
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		FontRenderer font = item.getItem().getFontRenderer(item);
 		if (font == null) {
 			font = getFontRenderer();
 		}
-		if (item != null) {
-			BinnieCore.proxy.getMinecraftInstance();
-			float phase = Minecraft.getSystemTime() / 20.0f;
-			GL11.glPushMatrix();
-			if (rotating) {
-				GL11.glTranslatef(8.0f, 8.0f, 0.0f);
-				GL11.glRotatef(phase, 0.0f, -0.866f, 0.5f);
-				GL11.glTranslatef(-8.0f, -8.0f, -67.1f);
-			}
-			GuiScreen.itemRender.renderItemAndEffectIntoGUI(font, mc.renderEngine, item, (int) pos.x(), (int) pos.y());
-			GL11.glPopMatrix();
-			GuiScreen.itemRender.renderItemOverlayIntoGUI(font, mc.renderEngine, item, (int) pos.x(), (int) pos.y(), null);
+
+		BinnieCore.proxy.getMinecraftInstance();
+		float phase = Minecraft.getSystemTime() / 20.0f;
+		GL11.glPushMatrix();
+		if (rotating) {
+			GL11.glTranslatef(8.0f, 8.0f, 0.0f);
+			GL11.glRotatef(phase, 0.0f, -0.866f, 0.5f);
+			GL11.glTranslatef(-8.0f, -8.0f, -67.1f);
 		}
+
+		GuiScreen.itemRender.renderItemAndEffectIntoGUI(font, mc.renderEngine, item, (int) pos.x(), (int) pos.y());
+		GL11.glPopMatrix();
+		GuiScreen.itemRender.renderItemOverlayIntoGUI(font, mc.renderEngine, item, (int) pos.x(), (int) pos.y(), null);
 		GL11.glClear(256);
-		GL11.glEnable(3042);
-		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+		GL11.glEnable(GL11.GL_BLEND);
+		OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
 		RenderHelper.disableStandardItemLighting();
-		CraftGUI.Render.color(-1);
-		GL11.glEnable(32826);
+		CraftGUI.render.color(0xffffffff);
+		GL11.glEnable(32826); // GL_RESCALE_NORMAL_EXT
 		GL11.glPopMatrix();
 	}
 
@@ -401,17 +410,18 @@ public class GuiCraftGUI extends GuiContainer {
 		if (icon == null) {
 			return;
 		}
+
 		GL11.glPushMatrix();
-		GL11.glEnable(32826);
+		GL11.glEnable(32826); // GL_RESCALE_NORMAL_EXT
 		BinnieCore.proxy.bindTexture(map);
 		GuiScreen.itemRender.zLevel = zLevel;
 		GuiScreen.itemRender.renderIcon((int) pos.x(), (int) pos.y(), icon, 16, 16);
-		GL11.glEnable(32826);
+		GL11.glEnable(32826); // GL_RESCALE_NORMAL_EXT
 		GL11.glPopMatrix();
 	}
 
 	public boolean isHelpMode() {
-		return Keyboard.isKeyDown(15);
+		return Keyboard.isKeyDown(Keyboard.KEY_TAB);
 	}
 
 	public FontRenderer getFontRenderer() {
@@ -432,47 +442,42 @@ public class GuiCraftGUI extends GuiContainer {
 		float w = area.size().x();
 		float h = area.size().y();
 		y = height - (y + h);
-		float k = xSize;
 		float scaleX = width / (float) mc.displayWidth;
 		float scaleY = height / (float) mc.displayHeight;
-		x += 0.0f;
-		y += 0.0f;
-		w += 0.0f;
-		h += 0.0f;
 		GL11.glScissor((int) (x / scaleX), (int) (y / scaleY), (int) (w / scaleX), (int) (h / scaleY));
 	}
 
-	public int getZLevel() {
-		return (int) zLevel;
-	}
+	public void drawRect(float x, float y, float width, float height, int color) {
+		if (x < width) {
+			float temp = x;
+			x = width;
+			width = temp;
+		}
 
-	public void drawRect(float p_73734_0_, float p_73734_1_, float p_73734_2_, float p_73734_3_, int p_73734_4_) {
-		if (p_73734_0_ < p_73734_2_) {
-			float j1 = p_73734_0_;
-			p_73734_0_ = p_73734_2_;
-			p_73734_2_ = j1;
+		if (y < height) {
+			float temp = y;
+			y = height;
+			height = temp;
 		}
-		if (p_73734_1_ < p_73734_3_) {
-			float j1 = p_73734_1_;
-			p_73734_1_ = p_73734_3_;
-			p_73734_3_ = j1;
-		}
-		float f3 = (p_73734_4_ >> 24 & 0xFF) / 255.0f;
-		float f4 = (p_73734_4_ >> 16 & 0xFF) / 255.0f;
-		float f5 = (p_73734_4_ >> 8 & 0xFF) / 255.0f;
-		float f6 = (p_73734_4_ & 0xFF) / 255.0f;
+
+		float alpha = (color >> 24 & 0xFF) / 255.0f;
+		float r = (color >> 16 & 0xFF) / 255.0f;
+		float g = (color >> 8 & 0xFF) / 255.0f;
+		float b = (color & 0xFF) / 255.0f;
+
 		Tessellator tessellator = Tessellator.instance;
-		GL11.glEnable(3042);
-		GL11.glDisable(3553);
-		OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-		GL11.glColor4f(f4, f5, f6, f3);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
+		GL11.glColor4f(r, g, b, alpha);
 		tessellator.startDrawingQuads();
-		tessellator.addVertex(p_73734_0_, p_73734_3_, 0.0);
-		tessellator.addVertex(p_73734_2_, p_73734_3_, 0.0);
-		tessellator.addVertex(p_73734_2_, p_73734_1_, 0.0);
-		tessellator.addVertex(p_73734_0_, p_73734_1_, 0.0);
+		tessellator.addVertex(x, height, 0.0);
+		tessellator.addVertex(width, height, 0.0);
+		tessellator.addVertex(width, y, 0.0);
+		tessellator.addVertex(x, y, 0.0);
 		tessellator.draw();
-		GL11.glEnable(3553);
-		GL11.glDisable(3042);
+		GL11.glColor4f(1, 1, 1, 255);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glDisable(GL11.GL_BLEND);
 	}
 }

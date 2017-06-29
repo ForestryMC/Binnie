@@ -150,14 +150,14 @@ public class WindowAnalyst extends Window {
 
 					@Override
 					public void onRenderBackground() {
-						CraftGUI.Render.color(syst.getColor());
+						CraftGUI.render.color(syst.getColor());
 						int outset = (getSystem() == syst) ? 1 : 0;
-						CraftGUI.Render.texture(CraftGUITexture.TabOutline, getArea().outset(outset));
+						CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea().outset(outset));
 						if (getSystem() == syst) {
-							CraftGUI.Render.color(1140850688 + syst.getColor());
-							CraftGUI.Render.texture(CraftGUITexture.TabSolid, getArea().outset(outset));
+							CraftGUI.render.color(1140850688 + syst.getColor());
+							CraftGUI.render.texture(CraftGUITexture.TabSolid, getArea().outset(outset));
 						}
-						CraftGUI.Render.item(new IPoint(2.0f, 2.0f), syst.getItemStackRepresentative());
+						CraftGUI.render.item(new IPoint(2.0f, 2.0f), syst.getItemStackRepresentative());
 					}
 				};
 				x += 22;
@@ -173,7 +173,7 @@ public class WindowAnalyst extends Window {
 		analystPanel = new Panel(this, 16.0f, 54.0f, 280.0f, 164.0f, MinecraftGUI.PanelType.Outline) {
 			@Override
 			public void onRenderBackground() {
-				CraftGUI.Render.gradientRect(getArea(), 0x44ffffff, 0x66ffffff);
+				CraftGUI.render.gradientRect(getArea(), 0x44ffffff, 0x66ffffff);
 				super.onRenderBackground();
 			}
 
@@ -187,8 +187,8 @@ public class WindowAnalyst extends Window {
 						if (getContent() == null) {
 							return;
 						}
-						CraftGUI.Render.color(getContent().getColor());
-						CraftGUI.Render.texture(CraftGUITexture.TabOutline, getArea());
+						CraftGUI.render.color(getContent().getColor());
+						CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea());
 					}
 				};
 				new ControlScrollBar(this, sectionWidth + 2.0f - 3.0f, 6.0f, 3.0f, h() - 8.0f + 2.0f - 6.0f, leftPage) {
@@ -200,8 +200,8 @@ public class WindowAnalyst extends Window {
 						if (leftPage.getContent() == null) {
 							return;
 						}
-						CraftGUI.Render.gradientRect(getArea(), 1140850688 + leftPage.getContent().getColor(), 0x44000000 + leftPage.getContent().getColor());
-						CraftGUI.Render.solid(getRenderArea(), leftPage.getContent().getColor());
+						CraftGUI.render.gradientRect(getArea(), 1140850688 + leftPage.getContent().getColor(), 0x44000000 + leftPage.getContent().getColor());
+						CraftGUI.render.solid(getRenderArea(), leftPage.getContent().getColor());
 					}
 				};
 				rightPage = new ControlScrollableContent<IWidget>(this, 3.0f + sectionWidth + 4.0f, 3.0f, sectionWidth + 2.0f, h() - 8.0f + 2.0f, 0.0f) {
@@ -210,8 +210,8 @@ public class WindowAnalyst extends Window {
 						if (getContent() == null) {
 							return;
 						}
-						CraftGUI.Render.color(getContent().getColor());
-						CraftGUI.Render.texture(CraftGUITexture.TabOutline, getArea());
+						CraftGUI.render.color(getContent().getColor());
+						CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea());
 					}
 				};
 				new ControlScrollBar(this, sectionWidth + 2.0f - 3.0f + sectionWidth + 4.0f, 6.0f, 3.0f, h() - 8.0f + 2.0f - 6.0f, rightPage) {
@@ -223,8 +223,8 @@ public class WindowAnalyst extends Window {
 						if (rightPage.getContent() == null) {
 							return;
 						}
-						CraftGUI.Render.gradientRect(getArea(), 1140850688 + rightPage.getContent().getColor(), 0x44000000 + rightPage.getContent().getColor());
-						CraftGUI.Render.solid(getRenderArea(), rightPage.getContent().getColor());
+						CraftGUI.render.gradientRect(getArea(), 1140850688 + rightPage.getContent().getColor(), 0x44000000 + rightPage.getContent().getColor());
+						CraftGUI.render.solid(getRenderArea(), rightPage.getContent().getColor());
 					}
 				};
 				analystPageSize = new IArea(1.0f, 1.0f, sectionWidth, h() - 8.0f);
@@ -361,10 +361,10 @@ public class WindowAnalyst extends Window {
 				@Override
 				public void onRenderBackground() {
 					boolean active = value == leftPage.getContent() || value == rightPage.getContent();
-					CraftGUI.Render.color((active ? 0xff000000 : 0x44000000) + value.getColor());
-					CraftGUI.Render.texture(CraftGUITexture.TabSolid, getArea().inset(1));
-					CraftGUI.Render.color(value.getColor());
-					CraftGUI.Render.texture(CraftGUITexture.TabOutline, getArea().inset(1));
+					CraftGUI.render.color((active ? 0xff000000 : 0x44000000) + value.getColor());
+					CraftGUI.render.texture(CraftGUITexture.TabSolid, getArea().inset(1));
+					CraftGUI.render.color(value.getColor());
+					CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea().inset(1));
 					super.onRenderBackground();
 				}
 			};

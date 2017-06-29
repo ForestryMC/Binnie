@@ -162,9 +162,9 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			Panel panel = new Panel(thisPage, 0.0f, 0.0f, thisPage.w(), thisPage.h(), MinecraftGUI.PanelType.Black) {
 				@Override
 				public void onRenderForeground() {
-					Texture iTexture = CraftGUI.Render.getTexture(CraftGUITexture.TabOutline);
-					CraftGUI.Render.color(getTab(panels.get(this)).getColor().getColor());
-					CraftGUI.Render.texture(iTexture, getArea().inset(3));
+					Texture iTexture = CraftGUI.render.getTexture(CraftGUITexture.TabOutline);
+					CraftGUI.render.color(getTab(panels.get(this)).getColor().getColor());
+					CraftGUI.render.texture(iTexture, getArea().inset(3));
 				}
 			};
 
@@ -314,8 +314,8 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				ControlScrollableContent<IWidget> scroll = new ControlScrollableContent<IWidget>(this, 124.0f, 16.0f, 116.0f, 92.0f, 6.0f) {
 					@Override
 					public void onRenderBackground() {
-						CraftGUI.Render.color(11184810);
-						CraftGUI.Render.texture(CraftGUITexture.Outline, getArea().inset(new IBorder(0.0f, 6.0f, 0.0f, 0.0f)));
+						CraftGUI.render.color(11184810);
+						CraftGUI.render.texture(CraftGUITexture.Outline, getArea().inset(new IBorder(0.0f, 6.0f, 0.0f, 0.0f)));
 					}
 				};
 				slotGrid = new Control(scroll, 1.0f, 1.0f, 108.0f, 18.0f);
@@ -482,7 +482,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		@Override
 		public void onRenderBackground() {
 			Object texture = isMouseOver() ? CraftGUITexture.TabHighlighted : CraftGUITexture.Tab;
-			CraftGUI.Render.texture(CraftGUI.Render.getTexture(texture).crop(Position.BOTTOM, 8.0f), getArea());
+			CraftGUI.render.texture(CraftGUI.render.getTexture(texture).crop(Position.BOTTOM, 8.0f), getArea());
 		}
 	}
 }

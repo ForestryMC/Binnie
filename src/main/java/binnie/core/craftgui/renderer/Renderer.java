@@ -18,12 +18,12 @@ import java.util.List;
 
 public class Renderer {
 	protected GuiCraftGUI gui;
-	protected int currentColour;
+	protected int currentColor;
 	protected Texture currentTexture;
 	protected IStyleSheet stylesheet;
 
 	public Renderer(GuiCraftGUI gui) {
-		currentColour = 16777215;
+		currentColor = 0xffffff;
 		this.gui = gui;
 	}
 
@@ -31,37 +31,39 @@ public class Renderer {
 		GL11.glPushMatrix();
 		GL11.glTranslatef(widget.getPosition().x(), widget.getPosition().y(), 0.0f);
 		color(widget.getColor());
-		if (widget.isCroppedWidet()) {
+		if (widget.isCroppedWidget()) {
 			IWidget cropRelative = (widget.getCropWidget() != null) ? widget.getCropWidget() : widget;
 			IPoint pos = cropRelative.getAbsolutePosition();
 			IArea cropZone = widget.getCroppedZone();
-			GL11.glEnable(3089);
+			GL11.glEnable(GL11.GL_SCISSOR_TEST);
 			limitArea(new IArea(pos.add(cropZone.pos()), cropZone.size()));
 
 		}
-		GL11.glDisable(2929);
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
 	}
 
 	public void postRender(IWidget widget) {
-		if (widget.isCroppedWidet()) {
-			GL11.glDisable(3089);
+		if (widget.isCroppedWidget()) {
+			GL11.glDisable(GL11.GL_SCISSOR_TEST);
 		}
-		GL11.glEnable(2929);
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glPopMatrix();
 	}
 
 	public void color(int hex) {
-		currentColour = hex;
+		currentColor = hex;
 		int a = (hex & 0xFF000000) >> 24;
 		int r = (hex & 0xFF0000) >> 16;
 		int g = (hex & 0xFF00) >> 8;
 		int b = hex & 0xFF;
+
 		if (a < 0) {
 			a += 256;
 		}
+
 		if (a > 0 && a != 255) {
 			GL11.glColor4f(r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f);
-			GL11.glEnable(3042);
+			GL11.glEnable(GL11.GL_BLEND);
 		} else {
 			GL11.glColor3f(r / 255.0f, g / 255.0f, b / 255.0f);
 		}
@@ -78,7 +80,7 @@ public class Renderer {
 		if (texture != currentTexture && texture != null) {
 			BinnieCore.proxy.bindTexture(texture.getFilename());
 		}
-		color(currentColour);
+		color(currentColor);
 	}
 
 	public void texture(Object texture, IPoint position) {
@@ -89,6 +91,7 @@ public class Renderer {
 		if (texture == null) {
 			return;
 		}
+
 		setTexture(texture);
 		IPoint point = position.sub(new IPoint(texture.getBorder().l(), texture.getBorder().t()));
 		IArea textureArea = texture.getArea().outset(texture.getBorder());
@@ -103,6 +106,7 @@ public class Renderer {
 		if (texture == null) {
 			return;
 		}
+
 		setTexture(texture);
 		IArea textureArea = texture.getArea().outset(texture.getBorder());
 		IArea targetArea = area.outset(texture.getBorder());
@@ -146,7 +150,7 @@ public class Renderer {
 			float stringWidth = textWidth(string);
 			float posX = area.size().x() - stringWidth;
 			posX *= justification.getXOffset();
-			GL11.glDisable(2929);
+			GL11.glDisable(GL11.GL_DEPTH_TEST);
 			gui.getFontRenderer().drawString(string, (int) (pos.x() + posX), (int) posY, colour);
 			posY += textHeight();
 		}

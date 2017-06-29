@@ -66,7 +66,7 @@ public class ControlSlot extends ControlSlotBase {
 
 	@Override
 	public void onRenderBackground() {
-		CraftGUI.Render.texture(CraftGUITexture.Slot, IPoint.ZERO);
+		CraftGUI.render.texture(CraftGUITexture.Slot, IPoint.ZERO);
 		if (slot == null) {
 			return;
 		}
@@ -75,7 +75,7 @@ public class ControlSlot extends ControlSlotBase {
 		if (islot != null && islot.getValidator() != null) {
 			IIcon icon = islot.getValidator().getIcon(!islot.getInputSides().isEmpty());
 			if (icon != null) {
-				CraftGUI.Render.iconItem(new IPoint(1.0f, 1.0f), icon);
+				CraftGUI.render.iconItem(new IPoint(1.0f, 1.0f), icon);
 			}
 		}
 
@@ -90,13 +90,13 @@ public class ControlSlot extends ControlSlotBase {
 
 			highlighted = true;
 			int c = 0xaa000000 + Math.min(highlight.getKey().getColour(), 0xffffff);
-			CraftGUI.Render.gradientRect(new IArea(1.0f, 1.0f, 16.0f, 16.0f), c, c);
+			CraftGUI.render.gradientRect(new IArea(1.0f, 1.0f, 16.0f, 16.0f), c, c);
 		}
 		if (!highlighted && getSuperParent().getMousedOverWidget() == this) {
 			if (Window.get(this).getGui().getDraggedItem() != null && !slot.isItemValid(Window.get(this).getGui().getDraggedItem())) {
-				CraftGUI.Render.gradientRect(new IArea(1.0f, 1.0f, 16.0f, 16.0f), 0xaaff9999, 0xaaff9999);
+				CraftGUI.render.gradientRect(new IArea(1.0f, 1.0f, 16.0f, 16.0f), 0xaaff9999, 0xaaff9999);
 			} else {
-				CraftGUI.Render.gradientRect(new IArea(1.0f, 1.0f, 16.0f, 16.0f), 0x80ffffff, 0x80ffffff);
+				CraftGUI.render.gradientRect(new IArea(1.0f, 1.0f, 16.0f, 16.0f), 0x80ffffff, 0x80ffffff);
 			}
 		}
 	}
@@ -123,8 +123,8 @@ public class ControlSlot extends ControlSlotBase {
 				area = getParent().getArea();
 				area.setPosition(IPoint.ZERO.sub(getPosition()));
 			}
-			CraftGUI.Render.color(c);
-			CraftGUI.Render.texture(CraftGUITexture.Outline, area.outset(1));
+			CraftGUI.render.color(c);
+			CraftGUI.render.texture(CraftGUITexture.Outline, area.outset(1));
 		}
 	}
 

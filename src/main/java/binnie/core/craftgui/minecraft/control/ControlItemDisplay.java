@@ -60,10 +60,10 @@ public class ControlItemDisplay extends Control implements ITooltip {
 			GL11.glScalef(scale, scale, 1.0f);
 			BinnieCore.proxy.getMinecraftInstance();
 			float phase = Minecraft.getSystemTime() / 20.0f;
-			CraftGUI.Render.item(IPoint.ZERO, itemStack, rotating);
+			CraftGUI.render.item(IPoint.ZERO, itemStack, rotating);
 			GL11.glPopMatrix();
 		} else {
-			CraftGUI.Render.item(IPoint.ZERO, itemStack, rotating);
+			CraftGUI.render.item(IPoint.ZERO, itemStack, rotating);
 		}
 	}
 

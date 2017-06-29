@@ -81,7 +81,7 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 				break;
 		}
 		if (icon != null) {
-			CraftGUI.Render.iconItem(IPoint.ZERO, icon);
+			CraftGUI.render.iconItem(IPoint.ZERO, icon);
 		}
 	}
 

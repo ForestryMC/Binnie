@@ -20,7 +20,7 @@ public class ControlProgress extends ControlProgressBase {
 
 	@Override
 	public void onRenderBackground() {
-		CraftGUI.Render.texture(progressBlank, getArea());
-		CraftGUI.Render.texturePercentage(progressBar, getArea(), direction, progress);
+		CraftGUI.render.texture(progressBlank, getArea());
+		CraftGUI.render.texturePercentage(progressBar, getArea(), direction, progress);
 	}
 }

@@ -37,17 +37,17 @@ public class ControlSlide extends Control {
 	public void onRenderBackground() {
 		super.onRenderBackground();
 		if (label != null) {
-			float lw = CraftGUI.Render.textWidth(label) + 16;
-			float lh = CraftGUI.Render.textHeight() + 16;
+			float lw = CraftGUI.render.textWidth(label) + 16;
+			float lh = CraftGUI.render.textHeight() + 16;
 			boolean hor = anchor.x() != 0;
 			IArea ar = isSlideActive() ? expanded : shrunk;
 			IArea tabArea = new IArea(hor ? (-lh / 2.0f) : (-lw / 2.0f), hor ? (-lw / 2.0f) : (-lh / 2.0f), hor ? lh : lw, hor ? lw : lh);
 			IPoint shift = new IPoint(ar.w() * (1 - anchor.x()) / 2.0f, ar.h() * (1 - anchor.y()) / 2.0f);
 			tabArea = tabArea.shift(shift.x() - (-3.0f + lh / 2.0f) * anchor.x(), shift.y() - (-3.0f + lh / 2.0f) * anchor.y());
-			Texture texture = CraftGUI.Render.getTexture(isSlideActive() ? CraftGUITexture.Tab : CraftGUITexture.TabDisabled).crop(anchor.opposite(), 8.0f);
-			CraftGUI.Render.texture(texture, tabArea);
-			texture = CraftGUI.Render.getTexture(CraftGUITexture.TabOutline).crop(anchor.opposite(), 8.0f);
-			CraftGUI.Render.texture(texture, tabArea.inset(2));
+			Texture texture = CraftGUI.render.getTexture(isSlideActive() ? CraftGUITexture.Tab : CraftGUITexture.TabDisabled).crop(anchor.opposite(), 8.0f);
+			CraftGUI.render.texture(texture, tabArea);
+			texture = CraftGUI.render.getTexture(CraftGUITexture.TabOutline).crop(anchor.opposite(), 8.0f);
+			CraftGUI.render.texture(texture, tabArea.inset(2));
 			IArea labelArea = new IArea(-lw / 2.0f, 0.0f, lw, lh);
 			GL11.glPushMatrix();
 			GL11.glTranslatef(shift.x() + anchor.x() * 2.0f, shift.y() + anchor.y() * 2.0f, 0.0f);
@@ -57,12 +57,12 @@ public class ControlSlide extends Control {
 			if (anchor.y() > 0) {
 				GL11.glTranslatef(0.0f, -lh, 0.0f);
 			}
-			CraftGUI.Render.text(labelArea, TextJustification.MIDDLE_CENTER, label, 16777215);
+			CraftGUI.render.text(labelArea, TextJustification.MIDDLE_CENTER, label, 16777215);
 			GL11.glPopMatrix();
 		}
-		CraftGUI.Render.texture(CraftGUITexture.Window, getArea());
+		CraftGUI.render.texture(CraftGUITexture.Window, getArea());
 		Object slideTexture = (anchor == Position.BOTTOM) ? CraftGUITexture.SlideDown : ((anchor == Position.TOP) ? CraftGUITexture.SlideUp : ((anchor == Position.LEFT) ? CraftGUITexture.SlideLeft : CraftGUITexture.SlideRight));
-		CraftGUI.Render.texture(slideTexture, new IPoint((anchor.x() + 1.0f) * w() / 2.0f - 8.0f, (anchor.y() + 1.0f) * h() / 2.0f - 8.0f));
+		CraftGUI.render.texture(slideTexture, new IPoint((anchor.x() + 1.0f) * w() / 2.0f - 8.0f, (anchor.y() + 1.0f) * h() / 2.0f - 8.0f));
 	}
 
 	public boolean isSlideActive() {

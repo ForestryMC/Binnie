@@ -54,7 +54,7 @@ public class ControlButton extends Control {
 		} else if (isEnabled()) {
 			texture = CraftGUITexture.Button;
 		}
-		CraftGUI.Render.texture(texture, getArea());
+		CraftGUI.render.texture(texture, getArea());
 	}
 
 	public String getText() {

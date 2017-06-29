@@ -64,7 +64,7 @@ public class AnalystPageDescription extends ControlAnalystPage {
 		new ControlTextCentered(this, y, EnumChatFormatting.BOLD + I18N.localise("genetics.gui.analyst.description.discoveredBy", authority) + EnumChatFormatting.RESET)
 			.setColor(getColor());
 
-		y += (int) (3.0f + CraftGUI.Render.textHeight(EnumChatFormatting.BOLD +  I18N.localise("genetics.gui.analyst.description.discoveredBy", authority) + EnumChatFormatting.RESET, w()));
+		y += (int) (3.0f + CraftGUI.render.textHeight(EnumChatFormatting.BOLD +  I18N.localise("genetics.gui.analyst.description.discoveredBy", authority) + EnumChatFormatting.RESET, w()));
 		new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.description.complexity", species.getComplexity()))
 			.setColor(getColor());
 
@@ -73,7 +73,7 @@ public class AnalystPageDescription extends ControlAnalystPage {
 		IWidget signatureText = new ControlText(this, new IArea(8.0f, y, w() - 16.0f, 0.0f), descSig + EnumChatFormatting.RESET, TextJustification.BOTTOM_RIGHT);
 		descText.setColor(getColor());
 		signatureText.setColor(getColor());
-		float descHeight = CraftGUI.Render.textHeight(descText.getValue(), descText.getSize().x());
+		float descHeight = CraftGUI.render.textHeight(descText.getValue(), descText.getSize().x());
 		signatureText.setPosition(new IPoint(signatureText.pos().x(), descText.getPosition().y() + descHeight + 10.0f));
 		setSize(new IPoint(w(), 20.0f + signatureText.y()));
 	}

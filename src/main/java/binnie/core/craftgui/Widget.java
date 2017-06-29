@@ -265,7 +265,7 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public boolean isCroppedWidet() {
+	public boolean isCroppedWidget() {
 		return cropped;
 	}
 
@@ -280,7 +280,7 @@ public class Widget implements IWidget {
 			return;
 		}
 
-		CraftGUI.Render.preRender(this);
+		CraftGUI.render.preRender(this);
 		onRender(RenderStage.PreChildren);
 
 		for (IWidget widget : getWidgets()) {
@@ -288,13 +288,13 @@ public class Widget implements IWidget {
 		}
 
 		for (IWidget widget : getWidgets()) {
-			CraftGUI.Render.preRender(widget);
+			CraftGUI.render.preRender(widget);
 			widget.onRender(RenderStage.PostSiblings);
-			CraftGUI.Render.postRender(widget);
+			CraftGUI.render.postRender(widget);
 		}
 
 		onRender(RenderStage.PostChildren);
-		CraftGUI.Render.postRender(this);
+		CraftGUI.render.postRender(this);
 	}
 
 	@Override

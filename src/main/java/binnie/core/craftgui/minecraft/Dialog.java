@@ -26,9 +26,9 @@ public abstract class Dialog extends Control {
 
 	@Override
 	public void onRenderBackground() {
-		CraftGUI.Render.gradientRect(getArea().outset(400), -1442840576, -1442840576);
-		CraftGUI.Render.texture(CraftGUITexture.Window, getArea());
-		CraftGUI.Render.texture(CraftGUITexture.TabOutline, getArea().inset(4));
+		CraftGUI.render.gradientRect(getArea().outset(400), -1442840576, -1442840576);
+		CraftGUI.render.texture(CraftGUITexture.Window, getArea());
+		CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea().inset(4));
 	}
 
 	@Override

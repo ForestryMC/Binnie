@@ -138,16 +138,16 @@ public class AnalystPageMutations extends ControlAnalystPage {
 
 						@Override
 						public void onRenderBackground() {
-							CraftGUI.Render.item(new IPoint(0.0f, 0.0f), system.getDefaultMember(mutation.getAllele0().getUID()));
-							CraftGUI.Render.item(new IPoint(28.0f, 0.0f), system.getDefaultMember(mutation.getAllele1().getUID()));
+							CraftGUI.render.item(new IPoint(0.0f, 0.0f), system.getDefaultMember(mutation.getAllele0().getUID()));
+							CraftGUI.render.item(new IPoint(28.0f, 0.0f), system.getDefaultMember(mutation.getAllele1().getUID()));
 							if (specificChance != mutation.getBaseChance()) {
-								CraftGUI.Render.color(getMutationColor(mutation.getBaseChance()).getColor());
-								CraftGUI.Render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconAdd0.getIcon());
-								CraftGUI.Render.color(getMutationColor(specificChance).getColor());
-								CraftGUI.Render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconAdd1.getIcon());
+								CraftGUI.render.color(getMutationColor(mutation.getBaseChance()).getColor());
+								CraftGUI.render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconAdd0.getIcon());
+								CraftGUI.render.color(getMutationColor(specificChance).getColor());
+								CraftGUI.render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconAdd1.getIcon());
 							} else {
-								CraftGUI.Render.color(getMutationColor(mutation.getBaseChance()).getColor());
-								CraftGUI.Render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconAdd.getIcon());
+								CraftGUI.render.color(getMutationColor(mutation.getBaseChance()).getColor());
+								CraftGUI.render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconAdd.getIcon());
 							}
 						}
 					};
@@ -200,17 +200,17 @@ public class AnalystPageMutations extends ControlAnalystPage {
 
 						@Override
 						public void onRenderBackground() {
-							CraftGUI.Render.item(new IPoint(0.0f, 0.0f), system.getDefaultMember(speciesComb.getUID()));
-							CraftGUI.Render.item(new IPoint(28.0f, 0.0f), system.getDefaultMember(mutation.getTemplate()[0].getUID()));
-							CraftGUI.Render.color(getMutationColor(mutation.getBaseChance()).getColor());
+							CraftGUI.render.item(new IPoint(0.0f, 0.0f), system.getDefaultMember(speciesComb.getUID()));
+							CraftGUI.render.item(new IPoint(28.0f, 0.0f), system.getDefaultMember(mutation.getTemplate()[0].getUID()));
+							CraftGUI.render.color(getMutationColor(mutation.getBaseChance()).getColor());
 							if (specificChance2 != mutation.getBaseChance()) {
-								CraftGUI.Render.color(getMutationColor(mutation.getBaseChance()).getColor());
-								CraftGUI.Render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconArrow0.getIcon());
-								CraftGUI.Render.color(getMutationColor(specificChance2).getColor());
-								CraftGUI.Render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconArrow1.getIcon());
+								CraftGUI.render.color(getMutationColor(mutation.getBaseChance()).getColor());
+								CraftGUI.render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconArrow0.getIcon());
+								CraftGUI.render.color(getMutationColor(specificChance2).getColor());
+								CraftGUI.render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconArrow1.getIcon());
 							} else {
-								CraftGUI.Render.color(getMutationColor(mutation.getBaseChance()).getColor());
-								CraftGUI.Render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconArrow.getIcon());
+								CraftGUI.render.color(getMutationColor(mutation.getBaseChance()).getColor());
+								CraftGUI.render.iconItem(new IPoint(14.0f, 0.0f), ModuleItem.iconArrow.getIcon());
 							}
 						}
 					};
@@ -271,7 +271,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 
 		@Override
 		public void onRenderBackground() {
-			CraftGUI.Render.text(getArea(), TextJustification.MIDDLE_CENTER, I18N.localise("genetics.gui.analyst.mutations.unknown"), 0xaaaaaa);
+			CraftGUI.render.text(getArea(), TextJustification.MIDDLE_CENTER, I18N.localise("genetics.gui.analyst.mutations.unknown"), 0xaaaaaa);
 		}
 	}
 }

@@ -48,7 +48,7 @@ public class AnalystPageBehaviour extends ControlAnalystPage {
 
 				new ControlText(this, new IArea(4.0f, y, w() - 8.0f, 0.0f), loc, TextJustification.TOP_CENTER)
 					.setColor(getColor());
-				y += (int) (CraftGUI.Render.textHeight(loc, w() - 8.0f) + 1.0f);
+				y += (int) (CraftGUI.render.textHeight(loc, w() - 8.0f) + 1.0f);
 
 				new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.behaviour.withinBlocks", (int) (t[0] / 2.0f)))
 					.setColor(getColor());
