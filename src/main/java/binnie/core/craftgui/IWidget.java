@@ -104,7 +104,7 @@ public interface IWidget {
 
 	void setCroppedZone(IWidget relative, IArea area);
 
-	boolean isCroppedWidet();
+	boolean isCroppedWidget();
 
 	IWidget getCropWidget();
 

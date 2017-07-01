@@ -70,7 +70,7 @@ public class ControlClimateBar extends Control implements ITooltip {
 
 	@Override
 	public void onRenderBackground() {
-		CraftGUI.Render.texture(CraftGUITexture.EnergyBarBack, getArea());
+		CraftGUI.render.texture(CraftGUITexture.EnergyBarBack, getArea());
 		int types = isHumidity ? 3 : 6;
 		int w = (int) ((getSize().x() - 2.0f) / types);
 		for (int i = 0; i < types; ++i) {
@@ -82,10 +82,10 @@ public class ControlClimateBar extends Control implements ITooltip {
 				} else {
 					color = TEMP_COLORS[i];
 				}
-				CraftGUI.Render.solid(new IArea(x + 1, 1.0f, w, getSize().y() - 2.0f), color.getRGB());
+				CraftGUI.render.solid(new IArea(x + 1, 1.0f, w, getSize().y() - 2.0f), color.getRGB());
 			}
 		}
-		CraftGUI.Render.texture(CraftGUITexture.EnergyBarGlass, getArea());
+		CraftGUI.render.texture(CraftGUITexture.EnergyBarGlass, getArea());
 	}
 
 	public void setSpecies(IAlleleBeeSpecies species) {

@@ -45,7 +45,7 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 	public void onRenderForeground() {
 		GL11.glDisable(2896);
 		int sawX = (int) (63.0f * progress);
-		CraftGUI.Render.texture(ControlLumbermillProgress.saw, new IPoint(sawX, -8.0f + 6.0f * (float) Math.sin(animation)));
+		CraftGUI.render.texture(ControlLumbermillProgress.saw, new IPoint(sawX, -8.0f + 6.0f * (float) Math.sin(animation)));
 		ItemStack item = Window.get(this).getInventory().getStackInSlot(Lumbermill.SLOT_WOOD);
 		if (item == null) {
 			return;
@@ -62,7 +62,7 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 
 		IIcon icon = block.getIcon(2, item.getItemDamage());
 		for (int i = 0; i < 4; ++i) {
-			CraftGUI.Render.iconBlock(new IPoint(1 + i * 16, 1.0f), icon);
+			CraftGUI.render.iconBlock(new IPoint(1 + i * 16, 1.0f), icon);
 		}
 		ItemStack result = Lumbermill.getPlankProduct(item);
 		if (result == null) {
@@ -79,12 +79,12 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 
 		IIcon icon2 = block2.getIcon(2, result.getItemDamage());
 		IPoint pos = getAbsolutePosition();
-		CraftGUI.Render.limitArea(new IArea(pos.add(new IPoint(0.0f, 0.0f)), new IPoint(progress * 64.0f + 2.0f, 18.0f)));
+		CraftGUI.render.limitArea(new IArea(pos.add(new IPoint(0.0f, 0.0f)), new IPoint(progress * 64.0f + 2.0f, 18.0f)));
 		GL11.glEnable(3089);
 		for (int j = 0; j < 4; ++j) {
-			CraftGUI.Render.iconBlock(new IPoint(1 + j * 16, 1.0f), icon2);
+			CraftGUI.render.iconBlock(new IPoint(1 + j * 16, 1.0f), icon2);
 		}
 		GL11.glDisable(3089);
-		CraftGUI.Render.texture(ControlLumbermillProgress.saw2, new IPoint(sawX + 2, -8.0f + 6.0f * (float) Math.sin(animation)));
+		CraftGUI.render.texture(ControlLumbermillProgress.saw2, new IPoint(sawX + 2, -8.0f + 6.0f * (float) Math.sin(animation)));
 	}
 }

@@ -67,12 +67,12 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
 	@Override
 	public void onRenderBackground() {
 		if (isMouseOver() && canFill(Window.get(this).getHeldItemStack())) {
-			CraftGUI.Render.solid(getArea(), 0xffffffff);
-			CraftGUI.Render.solid(getArea().inset(1), 0xff444444);
+			CraftGUI.render.solid(getArea(), 0xffffffff);
+			CraftGUI.render.solid(getArea().inset(1), 0xff444444);
 		}
 
-		CraftGUI.Render.color(0xffffffff);
-		CraftGUI.Render.iconItem(IPoint.ZERO, GeneticsTexture.dnaIcon.getIcon());
+		CraftGUI.render.color(0xffffffff);
+		CraftGUI.render.iconItem(IPoint.ZERO, GeneticsTexture.dnaIcon.getIcon());
 	}
 
 	private class MouseDownHandler extends EventMouse.Down.Handler {

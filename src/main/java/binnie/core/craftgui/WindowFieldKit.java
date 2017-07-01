@@ -110,7 +110,7 @@ public class WindowFieldKit extends Window {
 	@Override
 	public void initialiseClient() {
 		setTitle(getName());
-		CraftGUI.Render.stylesheet(new StyleSheetPunnett());
+		CraftGUI.render.stylesheet(new StyleSheetPunnett());
 		getWindowInventory().createSlot(0);
 		getWindowInventory().createSlot(1);
 		setupValidators();

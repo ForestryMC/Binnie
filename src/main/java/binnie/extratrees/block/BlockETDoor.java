@@ -218,7 +218,7 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 		int meta = TileEntityMetadata.getItemDamage(stack);
 		String typeName = getDoorType(meta).getName();
 		String woodName = WoodManager.getPlankType(meta & 0xFF).getName();
-		if (typeName.equals("")) {
+		if (typeName.isEmpty()) {
 			return I18N.localise("extratrees.block.door.name", woodName);
 		}
 		return I18N.localise("extratrees.block.door.name.adv", woodName, typeName);

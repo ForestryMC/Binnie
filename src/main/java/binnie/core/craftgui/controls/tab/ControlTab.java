@@ -43,7 +43,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 			texture = CraftGUITexture.Tab;
 		}
 
-		Texture lTexture = CraftGUI.Render.getTexture(texture);
+		Texture lTexture = CraftGUI.render.getTexture(texture);
 		Position position = getTabPosition();
 		Texture iTexture = lTexture.crop(position, 8.0f);
 		IArea area = getArea();
@@ -56,7 +56,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 			}
 		}
 
-		CraftGUI.Render.texture(iTexture, area);
+		CraftGUI.render.texture(iTexture, area);
 		if (this instanceof ControlTabIcon) {
 			ControlTabIcon icon = (ControlTabIcon) this;
 			ControlItemDisplay item = (ControlItemDisplay) getWidgets().get(0);
@@ -67,10 +67,10 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 			}
 
 			if (icon.hasOutline()) {
-				iTexture = CraftGUI.Render.getTexture(CraftGUITexture.TabOutline);
+				iTexture = CraftGUI.render.getTexture(CraftGUITexture.TabOutline);
 				iTexture = iTexture.crop(position, 8.0f);
-				CraftGUI.Render.color(icon.getOutlineColor());
-				CraftGUI.Render.texture(iTexture, area.inset(2));
+				CraftGUI.render.color(icon.getOutlineColor());
+				CraftGUI.render.texture(iTexture, area.inset(2));
 			}
 		}
 	}

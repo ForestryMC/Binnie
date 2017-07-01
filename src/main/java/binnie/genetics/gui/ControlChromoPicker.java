@@ -46,7 +46,7 @@ public class ControlChromoPicker extends Control implements ITooltip {
 		super.onRenderBackground();
 		boolean selected = isMouseOver();
 		Texture text = selected ? Selected : Texture;
-		CraftGUI.Render.texture(text, IPoint.ZERO);
+		CraftGUI.render.texture(text, IPoint.ZERO);
 	}
 
 	@Override

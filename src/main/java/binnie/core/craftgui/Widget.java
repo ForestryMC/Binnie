@@ -265,7 +265,7 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public boolean isCroppedWidet() {
+	public boolean isCroppedWidget() {
 		return cropped;
 	}
 
@@ -280,21 +280,18 @@ public class Widget implements IWidget {
 			return;
 		}
 
-		CraftGUI.Render.preRender(this);
+		CraftGUI.render.preRender(this);
 		onRender(RenderStage.PreChildren);
 
 		for (IWidget widget : getWidgets()) {
 			widget.render();
-		}
-
-		for (IWidget widget : getWidgets()) {
-			CraftGUI.Render.preRender(widget);
+			CraftGUI.render.preRender(widget);
 			widget.onRender(RenderStage.PostSiblings);
-			CraftGUI.Render.postRender(widget);
+			CraftGUI.render.postRender(widget);
 		}
 
 		onRender(RenderStage.PostChildren);
-		CraftGUI.Render.postRender(this);
+		CraftGUI.render.postRender(this);
 	}
 
 	@Override
@@ -419,11 +416,9 @@ public class Widget implements IWidget {
 	public void onRender(RenderStage stage) {
 		if (stage == RenderStage.PreChildren) {
 			onRenderBackground();
-		}
-		if (stage == RenderStage.PostChildren) {
+		} else if (stage == RenderStage.PostChildren) {
 			onRenderForeground();
-		}
-		if (stage == RenderStage.PostSiblings) {
+		} else if (stage == RenderStage.PostSiblings) {
 			onRenderOverlay();
 		}
 	}

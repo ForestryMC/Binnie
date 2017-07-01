@@ -64,10 +64,10 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 
 			@Override
 			public void onRenderBackground() {
-				CraftGUI.Render.color(0x555555);
-				CraftGUI.Render.texture(CraftGUITexture.TabSolid, getArea().inset(1));
-				CraftGUI.Render.color(AnalystPageDatabase.this.getColor());
-				CraftGUI.Render.texture(CraftGUITexture.TabOutline, getArea());
+				CraftGUI.render.color(0x555555);
+				CraftGUI.render.texture(CraftGUITexture.TabSolid, getArea().inset(1));
+				CraftGUI.render.color(AnalystPageDatabase.this.getColor());
+				CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea());
 				super.renderTextField();
 			}
 		};
@@ -98,7 +98,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 
 						@Override
 						public void onRenderBackground() {
-							CraftGUI.Render.text(getArea(), TextJustification.MIDDLE_CENTER, value.getName(), 0xffffff);
+							CraftGUI.render.text(getArea(), TextJustification.MIDDLE_CENTER, value.getName(), 0xffffff);
 						}
 					};
 				}
@@ -113,8 +113,8 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 				if (!isEnabled()) {
 					return;
 				}
-				CraftGUI.Render.gradientRect(getArea(), 0x44000000 + AnalystPageDatabase.this.getColor(), 0x44000000 + AnalystPageDatabase.this.getColor());
-				CraftGUI.Render.solid(getRenderArea(), AnalystPageDatabase.this.getColor());
+				CraftGUI.render.gradientRect(getArea(), 0x44000000 + AnalystPageDatabase.this.getColor(), 0x44000000 + AnalystPageDatabase.this.getColor());
+				CraftGUI.render.solid(getRenderArea(), AnalystPageDatabase.this.getColor());
 			}
 		};
 	}
@@ -145,13 +145,13 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 						public void onRenderBackground() {
 							WindowAnalyst window = (WindowAnalyst) AnalystPageDatabase.this.getSuperParent();
 							if (window.getIndividual() != null && window.getIndividual().getGenome().getPrimary() == species) {
-								CraftGUI.Render.color(0xeeeeee);
-								CraftGUI.Render.texture(CraftGUITexture.TabSolid, getArea().outset(1));
-								CraftGUI.Render.color(AnalystPageDatabase.this.getColor());
-								CraftGUI.Render.texture(CraftGUITexture.TabOutline, getArea().outset(1));
+								CraftGUI.render.color(0xeeeeee);
+								CraftGUI.render.texture(CraftGUITexture.TabSolid, getArea().outset(1));
+								CraftGUI.render.color(AnalystPageDatabase.this.getColor());
+								CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea().outset(1));
 							} else if (calculateIsMouseOver()) {
-								CraftGUI.Render.color(0xeeeeee);
-								CraftGUI.Render.texture(CraftGUITexture.TabSolid, getArea().outset(1));
+								CraftGUI.render.color(0xeeeeee);
+								CraftGUI.render.texture(CraftGUITexture.TabSolid, getArea().outset(1));
 							}
 							super.onRenderBackground();
 						}

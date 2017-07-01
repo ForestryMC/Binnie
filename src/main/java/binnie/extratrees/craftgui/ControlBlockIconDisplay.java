@@ -16,6 +16,6 @@ public class ControlBlockIconDisplay extends Control {
 
 	@Override
 	public void onRenderBackground() {
-		CraftGUI.Render.iconBlock(IPoint.ZERO, icon);
+		CraftGUI.render.iconBlock(IPoint.ZERO, icon);
 	}
 }

@@ -17,7 +17,7 @@ public class ControlHelp extends Control implements ITooltip {
 
 	@Override
 	public void onRenderBackground() {
-		CraftGUI.Render.texture(CraftGUITexture.HelpButton, getArea());
+		CraftGUI.render.texture(CraftGUITexture.HelpButton, getArea());
 	}
 
 	@Override

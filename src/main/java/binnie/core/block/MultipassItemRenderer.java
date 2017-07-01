@@ -15,11 +15,11 @@ public class MultipassItemRenderer implements IItemRenderer {
 		GL11.glEnable(3008);
 		if (block.getRenderBlockPass() != 0) {
 			GL11.glAlphaFunc(516, 0.1f);
-			GL11.glEnable(3042);
-			OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+			GL11.glEnable(GL11.GL_BLEND);
+			OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
 		} else {
 			GL11.glAlphaFunc(516, 0.5f);
-			GL11.glDisable(3042);
+			GL11.glDisable(GL11.GL_BLEND);
 		}
 
 		MultipassBlockRenderer.instance.renderInventoryBlock(block, TileEntityMetadata.getItemDamage(item), 0, renderer);

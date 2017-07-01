@@ -60,7 +60,7 @@ public class ControlBiome extends Control implements ITooltip {
 			iconCategory = "end";
 		}
 		IIcon icon = TextureManager.getInstance().getDefault("habitats/" + iconCategory);
-		CraftGUI.Render.iconItem(IPoint.ZERO, icon);
+		CraftGUI.render.iconItem(IPoint.ZERO, icon);
 	}
 
 	@Override

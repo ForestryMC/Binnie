@@ -16,7 +16,7 @@ public class StyleSheetManager {
 	private static class DefaultStyleSheet implements IStyleSheet {
 		@Override
 		public Texture getTexture(Object key) {
-			return CraftGUI.ResourceManager.getTexture(key.toString());
+			return CraftGUI.resourceManager.getTexture(key.toString());
 		}
 	}
 }

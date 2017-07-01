@@ -61,7 +61,7 @@ public class ControlScrollBar extends Control {
 		} else if (isEnabled()) {
 			texture = CraftGUITexture.Scroll;
 		}
-		CraftGUI.Render.texture(texture, renderArea);
+		CraftGUI.render.texture(texture, renderArea);
 	}
 
 	@Override

@@ -173,7 +173,7 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 	private Collection<IWidget> getQueuedWidgets(IWidget widget) {
 		List<IWidget> widgets = new ArrayList<>();
 		boolean addChildren = true;
-		if (widget.isCroppedWidet()) {
+		if (widget.isCroppedWidget()) {
 			addChildren = widget.getCroppedZone().contains(widget.getCropWidget().getRelativeMousePosition());
 		}
 

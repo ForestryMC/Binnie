@@ -78,8 +78,8 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 			ControlSlot.highlighting.put(h, new ArrayList<>());
 		}
 
-		CraftGUI.Render = new Renderer(gui);
-		CraftGUI.Render.stylesheet(StyleSheetManager.getDefault());
+		CraftGUI.render = new Renderer(gui);
+		CraftGUI.render.stylesheet(StyleSheetManager.getDefault());
 		titleButtonLeft = -14.0f;
 
 		if (showHelpButton()) {
@@ -211,15 +211,15 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
 
 	@Override
 	public void onRenderBackground() {
-		CraftGUI.Render.color(0xffffff);
+		CraftGUI.render.color(0xffffff);
 		if (getBackground1() != null) {
-			CraftGUI.Render.texture(getBackground1(), IPoint.ZERO);
+			CraftGUI.render.texture(getBackground1(), IPoint.ZERO);
 		}
 		if (getBackground2() != null) {
-			CraftGUI.Render.texture(getBackground2(), new IPoint(256.0f, 0.0f));
+			CraftGUI.render.texture(getBackground2(), new IPoint(256.0f, 0.0f));
 		}
-		CraftGUI.Render.color(getColor());
-		CraftGUI.Render.texture(CraftGUITexture.Window, getArea());
+		CraftGUI.render.color(getColor());
+		CraftGUI.render.texture(CraftGUITexture.Window, getArea());
 	}
 
 	@Override

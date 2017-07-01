@@ -43,7 +43,7 @@ public class ControlAnalystChromosome extends Control implements ITooltip {
 	@Override
 	public void onRenderBackground() {
 		super.onRenderBackground();
-		CraftGUI.Render.texture(isHomozygous() ? Homozygous : Heterozygous, IPoint.ZERO);
+		CraftGUI.render.texture(isHomozygous() ? Homozygous : Heterozygous, IPoint.ZERO);
 	}
 
 	@Override

@@ -46,7 +46,7 @@ public class ControlOption<T> extends Control implements IControlValue<T> {
 	@Override
 	public void onRenderForeground() {
 		if (isCurrentSelection()) {
-			CraftGUI.Render.texture(CraftGUITexture.Outline, getArea());
+			CraftGUI.render.texture(CraftGUITexture.Outline, getArea());
 		}
 	}
 

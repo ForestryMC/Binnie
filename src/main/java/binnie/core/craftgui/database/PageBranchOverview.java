@@ -56,7 +56,7 @@ public class PageBranchOverview extends PageBranch {
 		StringBuilder line = new StringBuilder();
 		List<String> descLines = new ArrayList<>();
 		for (String str : desc.split(" ")) {
-			if (CraftGUI.Render.textWidth(line + " " + str) > 134) {
+			if (CraftGUI.render.textWidth(line + " " + str) > 134) {
 				descLines.add(EnumChatFormatting.ITALIC + line.toString() + EnumChatFormatting.RESET);
 				line = new StringBuilder();
 			}

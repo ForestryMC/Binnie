@@ -64,7 +64,7 @@ public class PageSpeciesOverview extends PageSpecies {
 
 		controlDescription.setValue(descBody + EnumChatFormatting.RESET);
 		controlSignature.setValue(descSig + EnumChatFormatting.RESET);
-		float descHeight = CraftGUI.Render.textHeight(controlDescription.getValue(), controlDescription.getSize().x());
+		float descHeight = CraftGUI.render.textHeight(controlDescription.getValue(), controlDescription.getSize().x());
 		controlSignature.setPosition(new IPoint(controlSignature.pos().x(), controlDescription.getPosition().y() + descHeight + 10.0f));
 	}
 }

@@ -147,21 +147,21 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 
 		@Override
 		public void onRenderBackground() {
-			CraftGUI.Render.texture(CraftGUITexture.Slot, IPoint.ZERO);
+			CraftGUI.render.texture(CraftGUITexture.Slot, IPoint.ZERO);
 		}
 
 		@Override
 		public void onRenderForeground() {
 			ItemStack image = ((WindowWoodworker) getSuperParent()).getDesignerType().getDisplayStack(getValue());
-			CraftGUI.Render.item(new IPoint(1.0f, 1.0f), image);
+			CraftGUI.render.item(new IPoint(1.0f, 1.0f), image);
 			if (((IControlValue) getParent()).getValue() == getValue()) {
 				return;
 			}
 
 			if (Window.get(this).getMousedOverWidget() == this) {
-				CraftGUI.Render.gradientRect(getArea().inset(1), 0x44ffffff, 0x44ffffff);
+				CraftGUI.render.gradientRect(getArea().inset(1), 0x44ffffff, 0x44ffffff);
 			} else {
-				CraftGUI.Render.gradientRect(getArea().inset(1), 0xaa888888, 0xaa888888);
+				CraftGUI.render.gradientRect(getArea().inset(1), 0xaa888888, 0xaa888888);
 			}
 		}
 
