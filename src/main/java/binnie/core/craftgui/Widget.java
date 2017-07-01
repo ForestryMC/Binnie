@@ -285,9 +285,6 @@ public class Widget implements IWidget {
 
 		for (IWidget widget : getWidgets()) {
 			widget.render();
-		}
-
-		for (IWidget widget : getWidgets()) {
 			CraftGUI.render.preRender(widget);
 			widget.onRender(RenderStage.PostSiblings);
 			CraftGUI.render.postRender(widget);
@@ -419,11 +416,9 @@ public class Widget implements IWidget {
 	public void onRender(RenderStage stage) {
 		if (stage == RenderStage.PreChildren) {
 			onRenderBackground();
-		}
-		if (stage == RenderStage.PostChildren) {
+		} else if (stage == RenderStage.PostChildren) {
 			onRenderForeground();
-		}
-		if (stage == RenderStage.PostSiblings) {
+		} else if (stage == RenderStage.PostSiblings) {
 			onRenderOverlay();
 		}
 	}

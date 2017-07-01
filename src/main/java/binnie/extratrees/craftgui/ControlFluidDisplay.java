@@ -8,13 +8,12 @@ import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.minecraft.Window;
-import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import org.lwjgl.opengl.GL11;
 
 public class ControlFluidDisplay extends Control implements ITooltip {
-	public boolean hastooltip;
+	public boolean hasTooltip;
 
 	protected FluidStack itemStack;
 
@@ -33,11 +32,11 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 	public ControlFluidDisplay(IWidget parent, float x, float y, float size) {
 		super(parent, x, y, size, size);
 		itemStack = null;
-		hastooltip = false;
+		hasTooltip = false;
 	}
 
 	public void setTooltip() {
-		hastooltip = true;
+		hasTooltip = true;
 		addAttribute(WidgetAttribute.MOUSE_OVER);
 	}
 
@@ -59,10 +58,9 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 		int r = (hex & 0xFF0000) >> 16;
 		int g = (hex & 0xFF00) >> 8;
 		int b = hex & 0xFF;
-		IIcon icon = itemStack.getFluid().getIcon(itemStack);
 		GL11.glColor4f(r / 255.0f, g / 255.0f, b / 255.0f, 1.0f);
-		GL11.glEnable(3042);
-		GL11.glBlendFunc(770, 771);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
 		if (getSize().x() != 16.0f) {
 			GL11.glPushMatrix();
@@ -73,7 +71,8 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 		} else {
 			CraftGUI.render.iconBlock(IPoint.ZERO, itemStack.getFluid().getIcon(itemStack));
 		}
-		GL11.glDisable(3042);
+		GL11.glDisable(GL11.GL_BLEND);
+		GL11.glColor4f(1, 1, 1, 1.0f);
 	}
 
 	public void setItemStack(FluidStack itemStack) {
@@ -82,7 +81,7 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 
 	@Override
 	public void getTooltip(Tooltip tooltip) {
-		if (hastooltip && itemStack != null) {
+		if (hasTooltip && itemStack != null) {
 			tooltip.add(itemStack.getLocalizedName());
 		}
 	}

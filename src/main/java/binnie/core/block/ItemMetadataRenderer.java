@@ -36,10 +36,11 @@ public class ItemMetadataRenderer implements IItemRenderer {
 		if (type == IItemRenderer.ItemRenderType.EQUIPPED_FIRST_PERSON) {
 			GL11.glTranslated(0.5, 0.5, 0.5);
 		}
+
 		if (type == IItemRenderer.ItemRenderType.INVENTORY && block.getRenderBlockPass() != 0) {
 			GL11.glAlphaFunc(516, 0.1f);
-			GL11.glEnable(3042);
-			OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+			GL11.glEnable(GL11.GL_BLEND);
+			OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
 		}
 		GL11.glPushMatrix();
 		((RenderBlocks) data[0]).renderBlockAsItem(block, TileEntityMetadata.getItemDamage(item), 1.0f);
