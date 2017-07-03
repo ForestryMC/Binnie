@@ -207,7 +207,7 @@ extrabees.machine.alveay.hatchery=孵化间
 extrabees.machine.alveay.hatchery.info=收集蜂箱内蜂后身旁那些躺着的幼虫。
 extrabees.machine.alveay.hatchery.tooltip=幼虫
 
-extrabees.machine.alveay.transmission=蜂箱传送
+extrabees.machine.alveay.transmission=蜂箱能量接口
 extrabees.machine.alveay.transmission.info=
 
 
@@ -273,7 +273,7 @@ for.genus.bees.historic=历史
 for.genus.bees.fossilized=化石
 for.genus.bees.refined=原油
 for.genus.bees.aquatic=水生
-for.genus.bees.saccharine=甜蜜
+for.genus.bees.saccharine=蜜糖
 for.genus.bees.volcanic=火山
 for.genus.bees.viscous=黏液
 for.genus.bees.virulent=毒药
