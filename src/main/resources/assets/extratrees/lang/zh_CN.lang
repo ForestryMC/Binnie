@@ -5,15 +5,15 @@ extratrees.machine.kitchen.bar=Bar
 extratrees.machine.kitchen.bottleRack=瓶架
 
 extratrees.machine.machine.brewery=发酵器
-extratrees.machine.machine.brewery.info=发酵器使用酵母，果汁和谷物来制造各种红酒和啤酒。
+extratrees.machine.machine.brewery.info=发酵器使用酵母、果汁和谷物来制造各种红酒和啤酒。
 extratrees.machine.machine.distillery=蒸馏器
-extratrees.machine.machine.distillery.info=蒸馏器可以一倍，两倍或三倍地将特定酒类蒸馏为白兰地，烈酒或者其它的白酒。
+extratrees.machine.machine.distillery.info=蒸馏器可以将特定酒类蒸馏为白兰地、烈酒或者其它白酒，产量为原来的一到三倍不等。
 extratrees.machine.machine.nursery=苗圃
 extratrees.machine.machine.press=果实压榨机
 extratrees.machine.machine.press.info=压榨机可将水果压榨为多种果汁.可直接供给能量，也可手动右击驱动。
 
 extratrees.machine.machine.lumbermill=锯木机
-extratrees.machine.machine.lumbermill.info=锯木机将提高原木产出木板的比率，并带来一些锯末和树皮之类的的副产物。
+extratrees.machine.machine.lumbermill.info=锯木机可提高木板产量，并带来一些锯末和树皮之类的的副产物。
 extratrees.machine.lumbermill.logs=原木
 extratrees.machine.lumbermill.error.noWood=没有木头
 extratrees.machine.lumbermill.error.noRoom=没有空间
