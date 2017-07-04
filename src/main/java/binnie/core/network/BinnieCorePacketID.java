@@ -32,30 +32,32 @@ public enum BinnieCorePacketID implements IPacketID {
 				((INetworkedEntity) tile).readFromPacket(packet.payload);
 			}
 		} else if (this == BinnieCorePacketID.TileMetadata) {
-			MessageMetadata packet2 = new MessageMetadata(message);
-			TileEntity tile = packet2.getTileEntity(BinnieCore.proxy.getWorld());
+			MessageMetadata packet = new MessageMetadata(message);
+			TileEntity tile = packet.getTileEntity(BinnieCore.proxy.getWorld());
 			if (tile instanceof TileEntityMetadata) {
-				((TileEntityMetadata) tile).setTileMetadata(packet2.meta, true);
+				((TileEntityMetadata) tile).setTileMetadata(packet.meta, true);
 			}
-		} else if (this == BinnieCorePacketID.CraftGUIAction && context.side == Side.CLIENT) {
-			MessageCraftGUI packet3 = new MessageCraftGUI(message);
-			EntityPlayer player = BinnieCore.proxy.getPlayer();
-			if (player.openContainer instanceof ContainerCraftGUI && packet3.getTagCompound() != null) {
-				((ContainerCraftGUI) player.openContainer).recieveNBT(Side.CLIENT, player, packet3.getTagCompound());
-			}
-		} else if (this == BinnieCorePacketID.CraftGUIAction && context.side == Side.SERVER && context.netHandler instanceof NetHandlerPlayServer) {
-			MessageCraftGUI packet3 = new MessageCraftGUI(message);
-			EntityPlayer player = ((NetHandlerPlayServer) context.netHandler).playerEntity;
-			if (player.openContainer instanceof ContainerCraftGUI && packet3.getTagCompound() != null) {
-				((ContainerCraftGUI) player.openContainer).recieveNBT(Side.SERVER, player, packet3.getTagCompound());
+		} else if (this == BinnieCorePacketID.CraftGUIAction) {
+			if (context.side == Side.CLIENT) {
+				MessageCraftGUI packet = new MessageCraftGUI(message);
+				EntityPlayer player = BinnieCore.proxy.getPlayer();
+				if (player.openContainer instanceof ContainerCraftGUI && packet.getTagCompound() != null) {
+					((ContainerCraftGUI) player.openContainer).recieveNBT(Side.CLIENT, player, packet.getTagCompound());
+				}
+			} else if (context.netHandler instanceof NetHandlerPlayServer) {
+				MessageCraftGUI packet = new MessageCraftGUI(message);
+				EntityPlayer player = ((NetHandlerPlayServer) context.netHandler).playerEntity;
+				if (player.openContainer instanceof ContainerCraftGUI && packet.getTagCompound() != null) {
+					((ContainerCraftGUI) player.openContainer).recieveNBT(Side.SERVER, player, packet.getTagCompound());
+				}
 			}
 		} else if (this == BinnieCorePacketID.TileDescriptionSync && context.side == Side.CLIENT) {
-			MessageTileNBT packet4 = new MessageTileNBT(message);
-			TileEntity tile = packet4.getTarget(BinnieCore.proxy.getWorld());
-			if (tile != null && packet4.getTagCompound() != null) {
+			MessageTileNBT packet = new MessageTileNBT(message);
+			TileEntity tile = packet.getTarget(BinnieCore.proxy.getWorld());
+			if (tile != null && packet.getTagCompound() != null) {
 				IMachine machine = Machine.getMachine(tile);
 				if (machine != null && machine instanceof INetwork.TilePacketSync) {
-					((INetwork.TilePacketSync) machine).syncFromNBT(packet4.getTagCompound());
+					((INetwork.TilePacketSync) machine).syncFromNBT(packet.getTagCompound());
 				}
 			}
 		}

@@ -44,10 +44,10 @@ public class GenepoolPackage extends PackageGeneticBase implements IMachineInfor
 		}
 
 		ComponentTankContainer tanks = new ComponentTankContainer(machine);
-		TankSlot dnaSlot = tanks.addTank(Genepool.TANK_DNA, "output", 2000);
+		TankSlot dnaSlot = tanks.addTank(Genepool.TANK_DNA, "output", Genepool.TANK_DNA_CAPACITY);
 		dnaSlot.setReadOnly();
 
-		TankSlot ethanolSlot = tanks.addTank(Genepool.TANK_ETHANOL, "input", 1000);
+		TankSlot ethanolSlot = tanks.addTank(Genepool.TANK_ETHANOL, "input", Genepool.TANK_ETHANOL_CAPACITY);
 		ethanolSlot.forbidExtraction();
 		ethanolSlot.setValidator(new EthanolTankValidator());
 

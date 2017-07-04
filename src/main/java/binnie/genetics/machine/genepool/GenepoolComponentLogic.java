@@ -80,7 +80,7 @@ public class GenepoolComponentLogic extends ComponentProcessSetCost implements I
 	protected void onTickTask() {
 		ethanolDrain += getDNAAmount(getUtil().getStack(Genepool.TANK_DNA)) * 1.2f * getProgressPerTick() / 100.0f;
 		if (ethanolDrain >= 1.0f) {
-			getUtil().drainTank(Genepool.TANK_ETHANOL, 1);
+			getUtil().drainTank(Genepool.TANK_ETHANOL, Genepool.ETHANOL_PER_TICK);
 			ethanolDrain--;
 		}
 

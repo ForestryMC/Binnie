@@ -65,14 +65,16 @@ public class AcclimatiserComponentLogic extends ComponentProcessIndefinate {
 
 		ItemStack acc = acclms.get(getUtil().getRandom().nextInt(acclms.size()));
 		ItemStack acclimed = Acclimatiser.acclimatise(getUtil().getStack(Acclimatiser.SLOT_TARGET), acc);
-		if (acclimed != null) {
-			getUtil().setStack(Acclimatiser.SLOT_TARGET, acclimed);
-			boolean removed = false;
-			for (int i : Acclimatiser.SLOT_ACCLIMATISER) {
-				if (!removed && getUtil().getStack(i) != null && getUtil().getStack(i).isItemEqual(acc)) {
-					getUtil().decreaseStack(i, 1);
-					removed = true;
-				}
+		if (acclimed == null) {
+			return;
+		}
+
+		getUtil().setStack(Acclimatiser.SLOT_TARGET, acclimed);
+		boolean removed = false;
+		for (int i : Acclimatiser.SLOT_ACCLIMATISER) {
+			if (!removed && getUtil().getStack(i) != null && getUtil().getStack(i).isItemEqual(acc)) {
+				getUtil().decreaseStack(i, 1);
+				removed = true;
 			}
 		}
 	}
