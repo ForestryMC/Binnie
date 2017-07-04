@@ -2,8 +2,8 @@ package binnie.extratrees.worldgen;
 
 import forestry.api.world.ITreeGenData;
 
-public class WorldGenLazy extends WorldGenTree {
-	public WorldGenLazy(ITreeGenData tree) {
+public class WorldGenOlive extends WorldGenTree {
+	public WorldGenOlive(ITreeGenData tree) {
 		super(tree);
 	}
 

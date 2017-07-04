@@ -36,9 +36,7 @@ public abstract class WorldGenTree extends WorldGenerator {
 		air = new BlockTypeVoid();
 		bushiness = 0.0f;
 		spawnPods = tree.allowsFruitBlocks();
-		if (tree instanceof ITreeGenData) {
-			treeGen = tree;
-		}
+		treeGen = tree;
 	}
 
 	protected int randBetween(int a, int b) {
@@ -71,11 +69,6 @@ public abstract class WorldGenTree extends WorldGenerator {
 		return base;
 	}
 
-	protected int modifyByHeight(int val, int min, int max) {
-		int determined = Math.round(val * treeGen.getHeightModifier());
-		return (determined < min) ? min : ((determined > max) ? max : determined);
-	}
-
 	protected int determineHeight(int required, int variation) {
 		int determined = Math.round((required + rand.nextInt(variation)) * treeGen.getHeightModifier());
 		return (determined < minHeight) ? minHeight : ((determined > maxHeight) ? maxHeight : determined);
@@ -106,7 +99,7 @@ public abstract class WorldGenTree extends WorldGenerator {
 		if (!force && !canGrow()) {
 			return false;
 		}
-		int offset = (girth - 1) / 2;
+
 		for (int x2 = 0; x2 < girth; ++x2) {
 			for (int y2 = 0; y2 < girth; ++y2) {
 				addBlock(x2, 0, y2, new BlockTypeVoid(), true);
@@ -114,10 +107,6 @@ public abstract class WorldGenTree extends WorldGenerator {
 		}
 		generate();
 		return true;
-	}
-
-	public Vector getStartVector() {
-		return new Vector(startX, startY, startZ);
 	}
 
 	protected void generateTreeTrunk(int height, int width) {
@@ -162,31 +151,6 @@ public abstract class WorldGenTree extends WorldGenerator {
 		}
 	}
 
-	protected void generateSupportStems(int height, int girth, float chance, float maxHeight) {
-		for (int offset = 1, x = -offset; x < girth + offset; ++x) {
-			for (int z = -offset; z < girth + offset; ++z) {
-				if (x != -offset || z != -offset) {
-					if (x != girth + offset || z != girth + offset) {
-						if (x != -offset || z != girth + offset) {
-							if (x != girth + offset || z != -offset) {
-								int stemHeight = rand.nextInt(Math.round(height * maxHeight));
-								if (rand.nextFloat() < chance) {
-									for (int i = 0; i < stemHeight; ++i) {
-										addWood(x, i, z, true);
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-
-	protected void clearBlock(int x, int y, int z) {
-		air.setBlock(world, treeGen, startX + x, startY + y, startZ + z);
-	}
-
 	protected void addBlock(int x, int y, int z, BlockType type, boolean doReplace) {
 		if (doReplace || world.isAirBlock(startX + x, startY + y, startZ + z)) {
 			type.setBlock(world, treeGen, startX + x, startY + y, startZ + z);
@@ -197,22 +161,8 @@ public abstract class WorldGenTree extends WorldGenerator {
 		addBlock(x, y, z, wood, doReplace);
 	}
 
-	protected void addLeaf(int x, int y, int z, boolean doReplace) {
-		addBlock(x, y, z, leaf, doReplace);
-	}
-
 	protected void addVine(int x, int y, int z) {
 		addBlock(x, y, z, vine, false);
-	}
-
-	protected void generateCuboid(Vector start, Vector area, BlockType block, boolean doReplace) {
-		for (int x = (int) start.x; x < (int) start.x + area.x; ++x) {
-			for (int y = (int) start.y; y < (int) start.y + area.y; ++y) {
-				for (int z = (int) start.z; z < (int) start.z + area.z; ++z) {
-					addBlock(x, y, z, block, doReplace);
-				}
-			}
-		}
 	}
 
 	protected void generateCylinder(Vector center2, float radius, int height, BlockType block, boolean doReplace) {
@@ -225,29 +175,6 @@ public abstract class WorldGenTree extends WorldGenerator {
 				for (int z = (int) start.z; z < (int) start.z + area.z; ++z) {
 					if (Vector.distance(new Vector(x, y, z), new Vector(center3.x, y, center3.z)) <= radius + 0.01) {
 						if (Vector.distance(new Vector(x, y, z), new Vector(center3.x, y, center3.z)) < radius - 0.5f || rand.nextFloat() >= bushiness) {
-							addBlock(x, y, z, block, doReplace);
-						}
-					}
-				}
-			}
-		}
-	}
-
-	protected void generateCircle(Vector center, float radius, int width, int height, BlockType block, boolean doReplace) {
-		generateCircle(center, radius, width, height, block, 1.0f, doReplace);
-	}
-
-	protected void generateCircle(Vector center2, float radius, int width, int height, BlockType block, float chance, boolean doReplace) {
-		float centerOffset = (girth % 2 == 0) ? 0.5f : 0.0f;
-		Vector center3 = new Vector(center2.x + centerOffset, center2.y, center2.z + centerOffset);
-		Vector start = new Vector(center3.x - radius, center3.y, center3.z - radius);
-		Vector area = new Vector(radius * 2.0f + 1.0f, height, radius * 2.0f + 1.0f);
-		for (int x = (int) start.x; x < (int) start.x + area.x; ++x) {
-			for (int y = (int) start.y; y < (int) start.y + area.y; ++y) {
-				for (int z = (int) start.z; z < (int) start.z + area.z; ++z) {
-					if (rand.nextFloat() <= chance) {
-						double distance = Vector.distance(new Vector(x, y, z), new Vector(center3.x, y, center3.z));
-						if (radius - width - 0.01 < distance && distance <= radius + 0.01) {
 							addBlock(x, y, z, block, doReplace);
 						}
 					}

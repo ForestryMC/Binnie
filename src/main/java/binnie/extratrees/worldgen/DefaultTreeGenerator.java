@@ -24,8 +24,9 @@ public class DefaultTreeGenerator implements ITreeGenerator {
 
 	@Override
 	public void setLogBlock(ITreeGenome genome, World world, int x, int y, int z, ForgeDirection direction) {
-		if (extraTreeSpecies.wood != null)
+		if (extraTreeSpecies.wood != null) {
 			extraTreeSpecies.wood.placeBlock(world, x, y, z);
+		}
 	}
 
 	@Override
