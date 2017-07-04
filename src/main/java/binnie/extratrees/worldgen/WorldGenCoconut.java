@@ -2,8 +2,8 @@ package binnie.extratrees.worldgen;
 
 import forestry.api.world.ITreeGenData;
 
-public class WorldGenLazy extends WorldGenTree {
-	public WorldGenLazy(ITreeGenData tree) {
+public class WorldGenCoconut extends WorldGenTree {
+	public WorldGenCoconut(ITreeGenData tree) {
 		super(tree);
 	}
 
@@ -16,14 +16,12 @@ public class WorldGenLazy extends WorldGenTree {
 			width = 1.55f;
 		}
 
-		generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width - 1.0f, 1, leaf, false);
-		generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width, 1, leaf, false);
-		generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), width - 0.5f, 1, leaf, false);
+		generateCylinder(new Vector(0.0f, leafSpawn, 0.0f), width - 0.6f, 1, leaf, false);
 	}
 
 	@Override
 	public void preGenerate() {
-		height = determineHeight(4, 1);
+		height = determineHeight(6, 1);
 		girth = determineGirth(treeGen.getGirth(world, startX, startY, startZ));
 	}
 }

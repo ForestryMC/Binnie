@@ -6,28 +6,64 @@ import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.ILogType;
 import binnie.extratrees.worldgen.DefaultTreeGenerator;
-import binnie.extratrees.worldgen.WorldGenAlder;
-import binnie.extratrees.worldgen.WorldGenApple;
-import binnie.extratrees.worldgen.WorldGenAsh;
+import binnie.extratrees.worldgen.WorldGenAcornOak;
+import binnie.extratrees.worldgen.WorldGenAspen;
+import binnie.extratrees.worldgen.WorldGenBalsamFir;
 import binnie.extratrees.worldgen.WorldGenBanana;
-import binnie.extratrees.worldgen.WorldGenBeech;
-import binnie.extratrees.worldgen.WorldGenConifer;
+import binnie.extratrees.worldgen.WorldGenBox;
+import binnie.extratrees.worldgen.WorldGenBrazilNut;
+import binnie.extratrees.worldgen.WorldGenBrazilwood;
+import binnie.extratrees.worldgen.WorldGenButternut;
+import binnie.extratrees.worldgen.WorldGenCedar;
+import binnie.extratrees.worldgen.WorldGenClove;
+import binnie.extratrees.worldgen.WorldGenCoconut;
+import binnie.extratrees.worldgen.WorldGenCoffee;
+import binnie.extratrees.worldgen.WorldGenCommonAlder;
+import binnie.extratrees.worldgen.WorldGenCommonAsh;
+import binnie.extratrees.worldgen.WorldGenCommonBeech;
+import binnie.extratrees.worldgen.WorldGenCopperBeech;
+import binnie.extratrees.worldgen.WorldGenCypress;
 import binnie.extratrees.worldgen.WorldGenDefault;
-import binnie.extratrees.worldgen.WorldGenEucalyptus;
-import binnie.extratrees.worldgen.WorldGenFir;
+import binnie.extratrees.worldgen.WorldGenDouglasFir;
+import binnie.extratrees.worldgen.WorldGenElder;
+import binnie.extratrees.worldgen.WorldGenElm;
+import binnie.extratrees.worldgen.WorldGenFloweringCrabapple;
+import binnie.extratrees.worldgen.WorldGenGingko;
+import binnie.extratrees.worldgen.WorldGenHawthorn;
+import binnie.extratrees.worldgen.WorldGenHazel;
 import binnie.extratrees.worldgen.WorldGenHolly;
-import binnie.extratrees.worldgen.WorldGenJungle;
+import binnie.extratrees.worldgen.WorldGenHornbeam;
+import binnie.extratrees.worldgen.WorldGenIroko;
 import binnie.extratrees.worldgen.WorldGenLazy;
-import binnie.extratrees.worldgen.WorldGenMaple;
-import binnie.extratrees.worldgen.WorldGenPalm;
-import binnie.extratrees.worldgen.WorldGenPoplar;
+import binnie.extratrees.worldgen.WorldGenLoblollyPine;
+import binnie.extratrees.worldgen.WorldGenLocust;
+import binnie.extratrees.worldgen.WorldGenLogwood;
+import binnie.extratrees.worldgen.WorldGenMango;
+import binnie.extratrees.worldgen.WorldGenMonkeyPuzzle;
+import binnie.extratrees.worldgen.WorldGenOldFustic;
+import binnie.extratrees.worldgen.WorldGenOlive;
+import binnie.extratrees.worldgen.WorldGenOrchardApple;
+import binnie.extratrees.worldgen.WorldGenOsangeOsange;
+import binnie.extratrees.worldgen.WorldGenPear;
+import binnie.extratrees.worldgen.WorldGenPecan;
+import binnie.extratrees.worldgen.WorldGenPrairieCrabapple;
+import binnie.extratrees.worldgen.WorldGenPurpleheart;
+import binnie.extratrees.worldgen.WorldGenRainbowGum;
+import binnie.extratrees.worldgen.WorldGenRedMaple;
+import binnie.extratrees.worldgen.WorldGenRoseGum;
+import binnie.extratrees.worldgen.WorldGenRosewood;
+import binnie.extratrees.worldgen.WorldGenRowan;
+import binnie.extratrees.worldgen.WorldGenSallow;
 import binnie.extratrees.worldgen.WorldGenShrub;
-import binnie.extratrees.worldgen.WorldGenSorbus;
+import binnie.extratrees.worldgen.WorldGenSilverFir;
+import binnie.extratrees.worldgen.WorldGenSwampGum;
+import binnie.extratrees.worldgen.WorldGenSweetCrabapple;
+import binnie.extratrees.worldgen.WorldGenSweetgum;
+import binnie.extratrees.worldgen.WorldGenSycamore;
 import binnie.extratrees.worldgen.WorldGenTree;
-import binnie.extratrees.worldgen.WorldGenTree2;
-import binnie.extratrees.worldgen.WorldGenTree3;
-import binnie.extratrees.worldgen.WorldGenTropical;
-import binnie.extratrees.worldgen.WorldGenWalnut;
+import binnie.extratrees.worldgen.WorldGenWesternHemlock;
+import binnie.extratrees.worldgen.WorldGenWhitebeam;
+import binnie.extratrees.worldgen.WorldGenYew;
 import binnie.genetics.genetics.AlleleHelper;
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
@@ -71,10 +107,10 @@ import java.util.Collection;
 import java.util.Map;
 
 public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGermlingIconProvider {
-	OrchardApple("malus", "domestica", 0x648830, ILogType.ExtraTreeLog.Apple, ExtraTreeFruitGene.Apple, WorldGenApple.OrchardApple.class),
-	SweetCrabapple("malus", "coronaria", 0x7a9953, ILogType.ExtraTreeLog.Apple, ExtraTreeFruitGene.Crabapple, WorldGenApple.SweetCrabapple.class),
-	FloweringCrabapple("malus", "hopa", 0x7a9953, ILogType.ExtraTreeLog.Apple, ExtraTreeFruitGene.Crabapple, WorldGenApple.FloweringCrabapple.class),
-	PrairieCrabapple("malus", "ioensis", 0x7a9953, ILogType.ExtraTreeLog.Apple, ExtraTreeFruitGene.Crabapple, WorldGenApple.PrairieCrabapple.class),
+	OrchardApple("malus", "domestica", 0x648830, ILogType.ExtraTreeLog.Apple, ExtraTreeFruitGene.Apple, WorldGenOrchardApple.class),
+	SweetCrabapple("malus", "coronaria", 0x7a9953, ILogType.ExtraTreeLog.Apple, ExtraTreeFruitGene.Crabapple, WorldGenSweetCrabapple.class),
+	FloweringCrabapple("malus", "hopa", 0x7a9953, ILogType.ExtraTreeLog.Apple, ExtraTreeFruitGene.Crabapple, WorldGenFloweringCrabapple.class),
+	PrairieCrabapple("malus", "ioensis", 0x7a9953, ILogType.ExtraTreeLog.Apple, ExtraTreeFruitGene.Crabapple, WorldGenPrairieCrabapple.class),
 	Blackthorn("prunus", "spinosa ", 0x6d8f1e, ILogType.ForestryLog.PLUM, ExtraTreeFruitGene.Blackthorn),
 	CherryPlum("prunus", "cerasifera", 0x6d8f1e, ILogType.ForestryLog.PLUM, ExtraTreeFruitGene.CherryPlum),
 	Peach("prunus", "persica", 0x6d8f1e, ILogType.ForestryLog.PLUM, ExtraTreeFruitGene.Peach),
@@ -99,75 +135,75 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 	Banana("musa", "sinensis", 0xa1cd8e, ILogType.ExtraTreeLog.Banana, ExtraTreeFruitGene.Banana, WorldGenBanana.class),
 	RedBanana("musa", "rubra", 0xa1cd8e, ILogType.ExtraTreeLog.Banana, ExtraTreeFruitGene.RedBanana, WorldGenBanana.class),
 	Plantain("musa", "paradisiaca", 0xa1cd8e, ILogType.ExtraTreeLog.Banana, ExtraTreeFruitGene.Plantain, WorldGenBanana.class),
-	Butternut("juglans", "cinerea", 0x82b58c, ILogType.ExtraTreeLog.Butternut, ExtraTreeFruitGene.Butternut, WorldGenWalnut.Butternut.class),
-	Rowan("sorbus", "aucuparia", 0x9ec79b, ILogType.ExtraTreeLog.Rowan, null, WorldGenSorbus.Rowan.class),
-	Hemlock("tsuga", "heterophylla", 0x5cac72, ILogType.ExtraTreeLog.Hemlock, null, WorldGenConifer.WesternHemlock.class),
-	Ash("fraxinus", "excelsior", 0x488e2b, ILogType.ExtraTreeLog.Ash, null, WorldGenAsh.CommonAsh.class),
-	Alder("alnus", "glutinosa", 0x698a33, ILogType.ExtraTreeLog.Alder, null, WorldGenAlder.CommonAlder.class),
-	Beech("fagus", "sylvatica", 0x83a04c, ILogType.ExtraTreeLog.Beech, ExtraTreeFruitGene.Beechnut, WorldGenBeech.CommonBeech.class),
-	CopperBeech("fagus", "purpurea", 0x801318, ILogType.ExtraTreeLog.Beech, ExtraTreeFruitGene.Beechnut, WorldGenBeech.CopperBeech.class),
-	Aspen("populus", "tremula", 0x8acc37, ILogType.ForestryLog.POPLAR, null, WorldGenPoplar.Aspen.class),
-	Yew("taxus", "baccata", 0x948a4d, ILogType.ExtraTreeLog.Yew, null, WorldGenConifer.Yew.class),
-	Cypress("chamaecyparis", "lawsoniana", 0x89c9a7, ILogType.ExtraTreeLog.Cypress, null, WorldGenConifer.Cypress.class),
-	DouglasFir("pseudotsuga", "menziesii", 0x99b582, ILogType.ExtraTreeLog.Fir, null, WorldGenFir.DouglasFir.class),
-	Hazel("Corylus", "avellana", 0x9bb552, ILogType.ExtraTreeLog.Hazel, ExtraTreeFruitGene.Hazelnut, WorldGenTree3.Hazel.class),
-	Sycamore("ficus", "sycomorus", 0xa0a52f, ILogType.ExtraTreeLog.Fig, ExtraTreeFruitGene.Fig, WorldGenTree3.Sycamore.class),
-	Whitebeam("sorbus", "aria", 0xbace99, ILogType.ExtraTreeLog.Whitebeam, null, WorldGenSorbus.Whitebeam.class),
-	Hawthorn("crataegus", "monogyna", 0x6ba84a, ILogType.ExtraTreeLog.Hawthorn, null, WorldGenTree3.Hawthorn.class),
-	Pecan("carya", "illinoinensis", 0x85b674, ILogType.ExtraTreeLog.Hickory, ExtraTreeFruitGene.Pecan, WorldGenTree3.Pecan.class),
-	Elm("ulmus", "procera", 0x7c9048, ILogType.ExtraTreeLog.Elm, null, WorldGenTree3.Elm.class),
-	Elder("sambucus", "nigra", 0xaeb873, ILogType.ExtraTreeLog.Elder, ExtraTreeFruitGene.Elderberry, WorldGenTree3.Elder.class),
-	Holly("ilex", "aquifolium", 0x254b4c, ILogType.ExtraTreeLog.Holly, null, WorldGenHolly.Holly.class),
-	Hornbeam("carpinus", "betulus", 0x96a71b, ILogType.ExtraTreeLog.Hornbeam, null, WorldGenTree3.Hornbeam.class),
-	Sallow("salix", "caprea", 0xaeb323, ILogType.ForestryLog.WILLOW, null, WorldGenTree3.Sallow.class),
-	AcornOak("quercus", "robur", 0x66733e, ILogType.VanillaLog.Oak, ExtraTreeFruitGene.Acorn, WorldGenTree3.AcornOak.class),
-	Fir("abies", "alba", 0x6f7c20, ILogType.ExtraTreeLog.Fir, null, WorldGenFir.SilverFir.class),
-	Cedar("cedrus", "libani", 0x95a370, ILogType.ExtraTreeLog.Cedar, null, WorldGenConifer.Cedar.class),
-	Olive("olea", "europaea", 0x3c4834, ILogType.ExtraTreeLog.Olive, ExtraTreeFruitGene.Olive, WorldGenTree2.Olive.class),
-	RedMaple("acer", "ubrum", 0xe82e17, ILogType.ForestryLog.MAPLE, null, WorldGenMaple.RedMaple.class),
-	BalsamFir("abies", "balsamea", 0x74a07c, ILogType.ExtraTreeLog.Fir, null, WorldGenFir.BalsamFir.class),
-	LoblollyPine("pinus", "taeda", 0x6f8a47, ILogType.ForestryLog.PINE, null, WorldGenConifer.LoblollyPine.class),
-	Sweetgum("liquidambar", "styraciflua", 0x8b8762, ILogType.ExtraTreeLog.Sweetgum, null, WorldGenTree2.Sweetgum.class),
-	Locust("robinia", "pseudoacacia", 0x887300, ILogType.ExtraTreeLog.Locust, null, WorldGenTree2.Locust.class),
-	Pear("pyrus", "communis", 0x5e8826, ILogType.ExtraTreeLog.Pear, ExtraTreeFruitGene.Pear, WorldGenTree2.Pear.class),
-	OsangeOsange("maclura", "pomifera", 0x687a50, ILogType.ExtraTreeLog.Maclura, ExtraTreeFruitGene.OsangeOsange, WorldGenJungle.OsangeOsange.class),
-	OldFustic("maclura", "tinctoria", 0x687a50, ILogType.ExtraTreeLog.Maclura, null, WorldGenJungle.OldFustic.class),
-	Brazilwood("caesalpinia", "echinata", 0x607459, ILogType.ExtraTreeLog.Brazilwood, null, WorldGenJungle.Brazilwood.class),
-	Logwood("haematoxylum", "campechianum", 0x889f6b, ILogType.ExtraTreeLog.Logwood, null, WorldGenJungle.Logwood.class),
-	Rosewood("dalbergia", "latifolia", 0x879b22, ILogType.ExtraTreeLog.Rosewood, null, WorldGenJungle.Rosewood.class),
-	Purpleheart("peltogyne", "spp.", 0x778f55, ILogType.ExtraTreeLog.Purpleheart, null, WorldGenJungle.Purpleheart.class),
-	Iroko("milicia", "excelsa", 0xafc86c, ILogType.ExtraTreeLog.Iroko, null, WorldGenTree2.Iroko.class),
-	Gingko("ginkgo", "biloba", 0x719651, ILogType.ExtraTreeLog.Gingko, ExtraTreeFruitGene.GingkoNut, WorldGenTree2.Gingko.class),
-	Brazilnut("bertholletia", "excelsa", 0x7c8f7b, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.BrazilNut, WorldGenJungle.BrazilNut.class),
-	RoseGum("eucalyptus", "grandis", 0x9ca258, ILogType.ExtraTreeLog.Eucalyptus, null, WorldGenEucalyptus.RoseGum.class),
-	SwampGum("eucalyptus", "grandis", 0xa2c686, ILogType.ExtraTreeLog.Eucalyptus2, null, WorldGenEucalyptus.SwampGum.class),
-	Box("boxus", "sempervirens", 0x72996d, ILogType.ExtraTreeLog.Box, null, WorldGenTree2.Box.class),
-	Clove("syzygium", "aromaticum", 0x7a821f, ILogType.ExtraTreeLog.Syzgium, ExtraTreeFruitGene.Clove, WorldGenTree2.Clove.class),
-	Coffee("coffea", "arabica", 0x6f9065, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.Coffee, WorldGenJungle.Coffee.class),
-	MonkeyPuzzle("araucaria", "araucana", 0x576158, ILogType.ForestryLog.PINE, null, WorldGenConifer.MonkeyPuzzle.class),
-	RainbowGum("eucalyptus", "deglupta", 0xb7f025, ILogType.ExtraTreeLog.Eucalyptus3, null, WorldGenEucalyptus.RainbowGum.class),
+	Butternut("juglans", "cinerea", 0x82b58c, ILogType.ExtraTreeLog.Butternut, ExtraTreeFruitGene.Butternut, WorldGenButternut.class),
+	Rowan("sorbus", "aucuparia", 0x9ec79b, ILogType.ExtraTreeLog.Rowan, null, WorldGenRowan.class),
+	Hemlock("tsuga", "heterophylla", 0x5cac72, ILogType.ExtraTreeLog.Hemlock, null, WorldGenWesternHemlock.class),
+	Ash("fraxinus", "excelsior", 0x488e2b, ILogType.ExtraTreeLog.Ash, null, WorldGenCommonAsh.class),
+	Alder("alnus", "glutinosa", 0x698a33, ILogType.ExtraTreeLog.Alder, null, WorldGenCommonAlder.class),
+	Beech("fagus", "sylvatica", 0x83a04c, ILogType.ExtraTreeLog.Beech, ExtraTreeFruitGene.Beechnut, WorldGenCommonBeech.class),
+	CopperBeech("fagus", "purpurea", 0x801318, ILogType.ExtraTreeLog.Beech, ExtraTreeFruitGene.Beechnut, WorldGenCopperBeech.class),
+	Aspen("populus", "tremula", 0x8acc37, ILogType.ForestryLog.POPLAR, null, WorldGenAspen.class),
+	Yew("taxus", "baccata", 0x948a4d, ILogType.ExtraTreeLog.Yew, null, WorldGenYew.class),
+	Cypress("chamaecyparis", "lawsoniana", 0x89c9a7, ILogType.ExtraTreeLog.Cypress, null, WorldGenCypress.class),
+	DouglasFir("pseudotsuga", "menziesii", 0x99b582, ILogType.ExtraTreeLog.Fir, null, WorldGenDouglasFir.class),
+	Hazel("Corylus", "avellana", 0x9bb552, ILogType.ExtraTreeLog.Hazel, ExtraTreeFruitGene.Hazelnut, WorldGenHazel.class),
+	Sycamore("ficus", "sycomorus", 0xa0a52f, ILogType.ExtraTreeLog.Fig, ExtraTreeFruitGene.Fig, WorldGenSycamore.class),
+	Whitebeam("sorbus", "aria", 0xbace99, ILogType.ExtraTreeLog.Whitebeam, null, WorldGenWhitebeam.class),
+	Hawthorn("crataegus", "monogyna", 0x6ba84a, ILogType.ExtraTreeLog.Hawthorn, null, WorldGenHawthorn.class),
+	Pecan("carya", "illinoinensis", 0x85b674, ILogType.ExtraTreeLog.Hickory, ExtraTreeFruitGene.Pecan, WorldGenPecan.class),
+	Elm("ulmus", "procera", 0x7c9048, ILogType.ExtraTreeLog.Elm, null, WorldGenElm.class),
+	Elder("sambucus", "nigra", 0xaeb873, ILogType.ExtraTreeLog.Elder, ExtraTreeFruitGene.Elderberry, WorldGenElder.class),
+	Holly("ilex", "aquifolium", 0x254b4c, ILogType.ExtraTreeLog.Holly, null, WorldGenHolly.class),
+	Hornbeam("carpinus", "betulus", 0x96a71b, ILogType.ExtraTreeLog.Hornbeam, null, WorldGenHornbeam.class),
+	Sallow("salix", "caprea", 0xaeb323, ILogType.ForestryLog.WILLOW, null, WorldGenSallow.class),
+	AcornOak("quercus", "robur", 0x66733e, ILogType.VanillaLog.Oak, ExtraTreeFruitGene.Acorn, WorldGenAcornOak.class),
+	Fir("abies", "alba", 0x6f7c20, ILogType.ExtraTreeLog.Fir, null, WorldGenSilverFir.class),
+	Cedar("cedrus", "libani", 0x95a370, ILogType.ExtraTreeLog.Cedar, null, WorldGenCedar.class),
+	Olive("olea", "europaea", 0x3c4834, ILogType.ExtraTreeLog.Olive, ExtraTreeFruitGene.Olive, WorldGenOlive.class),
+	RedMaple("acer", "ubrum", 0xe82e17, ILogType.ForestryLog.MAPLE, null, WorldGenRedMaple.class),
+	BalsamFir("abies", "balsamea", 0x74a07c, ILogType.ExtraTreeLog.Fir, null, WorldGenBalsamFir.class),
+	LoblollyPine("pinus", "taeda", 0x6f8a47, ILogType.ForestryLog.PINE, null, WorldGenLoblollyPine.class),
+	Sweetgum("liquidambar", "styraciflua", 0x8b8762, ILogType.ExtraTreeLog.Sweetgum, null, WorldGenSweetgum.class),
+	Locust("robinia", "pseudoacacia", 0x887300, ILogType.ExtraTreeLog.Locust, null, WorldGenLocust.class),
+	Pear("pyrus", "communis", 0x5e8826, ILogType.ExtraTreeLog.Pear, ExtraTreeFruitGene.Pear, WorldGenPear.class),
+	OsangeOsange("maclura", "pomifera", 0x687a50, ILogType.ExtraTreeLog.Maclura, ExtraTreeFruitGene.OsangeOsange, WorldGenOsangeOsange.class),
+	OldFustic("maclura", "tinctoria", 0x687a50, ILogType.ExtraTreeLog.Maclura, null, WorldGenOldFustic.class),
+	Brazilwood("caesalpinia", "echinata", 0x607459, ILogType.ExtraTreeLog.Brazilwood, null, WorldGenBrazilwood.class),
+	Logwood("haematoxylum", "campechianum", 0x889f6b, ILogType.ExtraTreeLog.Logwood, null, WorldGenLogwood.class),
+	Rosewood("dalbergia", "latifolia", 0x879b22, ILogType.ExtraTreeLog.Rosewood, null, WorldGenRosewood.class),
+	Purpleheart("peltogyne", "spp.", 0x778f55, ILogType.ExtraTreeLog.Purpleheart, null, WorldGenPurpleheart.class),
+	Iroko("milicia", "excelsa", 0xafc86c, ILogType.ExtraTreeLog.Iroko, null, WorldGenIroko.class),
+	Gingko("ginkgo", "biloba", 0x719651, ILogType.ExtraTreeLog.Gingko, ExtraTreeFruitGene.GingkoNut, WorldGenGingko.class),
+	Brazilnut("bertholletia", "excelsa", 0x7c8f7b, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.BrazilNut, WorldGenBrazilNut.class),
+	RoseGum("eucalyptus", "grandis", 0x9ca258, ILogType.ExtraTreeLog.Eucalyptus, null, WorldGenRoseGum.class),
+	SwampGum("eucalyptus", "grandis", 0xa2c686, ILogType.ExtraTreeLog.Eucalyptus2, null, WorldGenSwampGum.class),
+	Box("boxus", "sempervirens", 0x72996d, ILogType.ExtraTreeLog.Box, null, WorldGenBox.class),
+	Clove("syzygium", "aromaticum", 0x7a821f, ILogType.ExtraTreeLog.Syzgium, ExtraTreeFruitGene.Clove, WorldGenClove.class),
+	Coffee("coffea", "arabica", 0x6f9065, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.Coffee, WorldGenCoffee.class),
+	MonkeyPuzzle("araucaria", "araucana", 0x576158, ILogType.ForestryLog.PINE, null, WorldGenMonkeyPuzzle.class),
+	RainbowGum("eucalyptus", "deglupta", 0xb7f025, ILogType.ExtraTreeLog.Eucalyptus3, null, WorldGenRainbowGum.class),
 	PinkIvory("berchemia", "zeyheri", 0x7c9159, ILogType.ExtraTreeLog.PinkIvory, null, WorldGenTree.class),
-	Blackcurrant("ribes", "nigrum", 0xa6da5c, null, ExtraTreeFruitGene.Blackcurrant, WorldGenShrub.Shrub.class),
-	Redcurrant("ribes", "rubrum", 0x74ac00, null, ExtraTreeFruitGene.Redcurrant, WorldGenShrub.Shrub.class),
-	Blackberry("rubus", "fruticosus", 0x92c15b, null, ExtraTreeFruitGene.Blackberry, WorldGenShrub.Shrub.class),
-	Raspberry("rubus", "idaeus", 0x83b96e, null, ExtraTreeFruitGene.Raspberry, WorldGenShrub.Shrub.class),
-	Blueberry("vaccinium", "corymbosum", 0x72c750, null, ExtraTreeFruitGene.Blueberry, WorldGenShrub.Shrub.class),
-	Cranberry("vaccinium", "oxycoccos", 0x96d179, null, ExtraTreeFruitGene.Cranberry, WorldGenShrub.Shrub.class),
-	Juniper("juniperus", "communis", 0x90b149, null, ExtraTreeFruitGene.Juniper, WorldGenShrub.Shrub.class),
-	Gooseberry("ribes", "grossularia", 0x79bb00, null, ExtraTreeFruitGene.Gooseberry, WorldGenShrub.Shrub.class),
-	GoldenRaspberry("rubus", "occidentalis", 0x83b96e, null, ExtraTreeFruitGene.GoldenRaspberry, WorldGenShrub.Shrub.class),
-	Cinnamon("cinnamomum", "cassia", 0x738e0b, ILogType.ExtraTreeLog.Cinnamon, null, WorldGenLazy.Tree.class),
-	Coconut("cocous", "nucifera", 0x649923, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.Coconut, WorldGenPalm.Coconut.class),
-	Cashew("anacardium", "occidentale", 0xabb962, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.Cashew, WorldGenLazy.Tree.class),
-	Avacado("persea", "americana", 0x96a375, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.Avacado, WorldGenLazy.Tree.class),
-	Nutmeg("myristica", "fragrans", 0x488d4c, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.Nutmeg, WorldGenLazy.Tree.class),
-	Allspice("pimenta", "dioica", 0x7c9724, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.Allspice, WorldGenLazy.Tree.class),
-	Chilli("capsicum", "annuum", 0x2a9f01, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.Chilli, WorldGenLazy.Tree.class),
-	StarAnise("illicium", "verum", 0x7fc409, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.StarAnise, WorldGenLazy.Tree.class),
-	Mango("mangifera", "indica", 0x87b574, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.Mango, WorldGenTropical.Mango.class),
-	Starfruit("averrhoa", "carambola", 0x6da92d, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.Starfruit, WorldGenLazy.Tree.class),
-	Candlenut("aleurites", "moluccana", 0x8aa36c, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.Candlenut, WorldGenLazy.Tree.class),
-	DwarfHazel("Corylus", "americana", 0x9bb552, ILogType.ExtraTreeLog.Hazel, ExtraTreeFruitGene.Hazelnut, WorldGenShrub.Shrub.class);
+	Blackcurrant("ribes", "nigrum", 0xa6da5c, null, ExtraTreeFruitGene.Blackcurrant, WorldGenShrub.class),
+	Redcurrant("ribes", "rubrum", 0x74ac00, null, ExtraTreeFruitGene.Redcurrant, WorldGenShrub.class),
+	Blackberry("rubus", "fruticosus", 0x92c15b, null, ExtraTreeFruitGene.Blackberry, WorldGenShrub.class),
+	Raspberry("rubus", "idaeus", 0x83b96e, null, ExtraTreeFruitGene.Raspberry, WorldGenShrub.class),
+	Blueberry("vaccinium", "corymbosum", 0x72c750, null, ExtraTreeFruitGene.Blueberry, WorldGenShrub.class),
+	Cranberry("vaccinium", "oxycoccos", 0x96d179, null, ExtraTreeFruitGene.Cranberry, WorldGenShrub.class),
+	Juniper("juniperus", "communis", 0x90b149, null, ExtraTreeFruitGene.Juniper, WorldGenShrub.class),
+	Gooseberry("ribes", "grossularia", 0x79bb00, null, ExtraTreeFruitGene.Gooseberry, WorldGenShrub.class),
+	GoldenRaspberry("rubus", "occidentalis", 0x83b96e, null, ExtraTreeFruitGene.GoldenRaspberry, WorldGenShrub.class),
+	Cinnamon("cinnamomum", "cassia", 0x738e0b, ILogType.ExtraTreeLog.Cinnamon, null, WorldGenLazy.class),
+	Coconut("cocous", "nucifera", 0x649923, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.Coconut, WorldGenCoconut.class),
+	Cashew("anacardium", "occidentale", 0xabb962, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.Cashew, WorldGenLazy.class),
+	Avacado("persea", "americana", 0x96a375, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.Avacado, WorldGenLazy.class),
+	Nutmeg("myristica", "fragrans", 0x488d4c, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.Nutmeg, WorldGenLazy.class),
+	Allspice("pimenta", "dioica", 0x7c9724, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.Allspice, WorldGenLazy.class),
+	Chilli("capsicum", "annuum", 0x2a9f01, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.Chilli, WorldGenLazy.class),
+	StarAnise("illicium", "verum", 0x7fc409, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.StarAnise, WorldGenLazy.class),
+	Mango("mangifera", "indica", 0x87b574, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.Mango, WorldGenMango.class),
+	Starfruit("averrhoa", "carambola", 0x6da92d, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.Starfruit, WorldGenLazy.class),
+	Candlenut("aleurites", "moluccana", 0x8aa36c, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.Candlenut, WorldGenLazy.class),
+	DwarfHazel("Corylus", "americana", 0x9bb552, ILogType.ExtraTreeLog.Hazel, ExtraTreeFruitGene.Hazelnut, WorldGenShrub.class);
 
 	public ILogType wood;
 
@@ -1169,6 +1205,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 			try {
 				return gen.getConstructor(ITreeGenData.class).newInstance(tree);
 			} catch (Exception ex) {
+				ex.printStackTrace();
 				// ignored
 			}
 		}
