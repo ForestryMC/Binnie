@@ -24,13 +24,16 @@ public class MachineComponent implements INBTTagable {
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbttagcompound) {
+		// ignored
 	}
 
 	@Override
 	public void writeToNBT(NBTTagCompound nbttagcompound) {
+		// ignored
 	}
 
 	public void onUpdate() {
+		// ignored
 	}
 
 	public Class[] getComponentInterfaces() {
@@ -38,6 +41,7 @@ public class MachineComponent implements INBTTagable {
 	}
 
 	public void onInventoryUpdate() {
+		// ignored
 	}
 
 	public MachinePayload getPayload() {

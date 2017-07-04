@@ -52,6 +52,7 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 		} else if (isInProgress()) {
 			onCancelTask();
 		}
+
 		if (actionPauseProcess > 0.0f) {
 			actionPauseProcess--;
 		}
