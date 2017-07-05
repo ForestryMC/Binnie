@@ -40,22 +40,26 @@ public class ModuleBlocks implements IInitializable {
 		ExtraTrees.blockPlanks = new BlockETPlanks();
 		ExtraTrees.blockFence = new BlockFence();
 		ExtraTrees.blockLog = new BlockETLog();
+		ExtraTrees.blockShrubLeaves = new BlockShrubLeaves();
 		ExtraTrees.blockGate = new BlockGate();
 		ExtraTrees.blockDoor = new BlockETDoor();
 		ExtraTrees.blockMultiFence = new BlockMultiFence();
 		ExtraTrees.blockSlab = new BlockETSlab(false);
 		ExtraTrees.blockDoubleSlab = new BlockETSlab(true);
 		ExtraTrees.blockStairs = new BlockETStairs(ExtraTrees.blockPlanks);
+
 		GameRegistry.registerBlock(ExtraTrees.blockPlanks, ItemMetadata.class, "planks");
 		GameRegistry.registerBlock(ExtraTrees.blockFence, ItemMetadata.class, "fence");
 		GameRegistry.registerBlock(ExtraTrees.blockMultiFence, ItemMetadata.class, "multifence");
 		BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockMultiFence), new ItemMetadataRenderer());
 		GameRegistry.registerBlock(ExtraTrees.blockLog, ItemMetadata.class, "log");
+		GameRegistry.registerBlock(ExtraTrees.blockShrubLeaves, ItemMetadata.class, "shrubLeaves");
 		GameRegistry.registerBlock(ExtraTrees.blockGate, ItemMetadata.class, "gate");
 		GameRegistry.registerBlock(ExtraTrees.blockSlab, ItemETSlab.class, "slab");
 		GameRegistry.registerBlock(ExtraTrees.blockDoubleSlab, ItemETSlab.class, "doubleSlab");
 		GameRegistry.registerBlock(ExtraTrees.blockDoor, ItemETDoor.class, "door");
 		GameRegistry.registerBlock(ExtraTrees.blockStairs, ItemETStairs.class, "stairs");
+
 		BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockStairs), new StairItemRenderer());
 		BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockGate), new GateItemRenderer());
 		for (ILogType plank : ILogType.ExtraTreeLog.values()) {

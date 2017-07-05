@@ -20,6 +20,7 @@ public abstract class WorldGenTree extends WorldGenerator {
 	protected int minHeight;
 	protected int maxHeight;
 	protected boolean spawnPods;
+	protected boolean decay;
 	protected int minPodHeight;
 	BlockType leaf;
 	BlockType wood;
@@ -31,6 +32,7 @@ public abstract class WorldGenTree extends WorldGenerator {
 		minHeight = 3;
 		maxHeight = 80;
 		spawnPods = false;
+		decay = true;
 		minPodHeight = 3;
 		vine = new BlockType(Blocks.vine, 0);
 		air = new BlockTypeVoid();
@@ -74,8 +76,8 @@ public abstract class WorldGenTree extends WorldGenerator {
 		return (determined < minHeight) ? minHeight : ((determined > maxHeight) ? maxHeight : determined);
 	}
 
-	public BlockType getLeaf() {
-		return new BlockTypeLeaf();
+	public BlockType getLeaf(boolean decay) {
+		return new BlockTypeLeaf(decay);
 	}
 
 	public BlockType getWood() {
@@ -93,7 +95,7 @@ public abstract class WorldGenTree extends WorldGenerator {
 		startX = x;
 		startY = y;
 		startZ = z;
-		leaf = getLeaf();
+		leaf = getLeaf(decay);
 		wood = getWood();
 		preGenerate();
 		if (!force && !canGrow()) {

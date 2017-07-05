@@ -25,8 +25,8 @@ public class WorldGenDefault extends WorldGenTree {
 	}
 
 	@Override
-	public BlockType getLeaf() {
-		return new BlockTypeLeaf();
+	public BlockType getLeaf(boolean decay) {
+		return new BlockTypeLeaf(decay);
 	}
 
 	@Override
