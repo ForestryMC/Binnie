@@ -25,11 +25,6 @@ public class WorldGenDefault extends WorldGenTree {
 	}
 
 	@Override
-	public BlockType getLeaf(boolean decay) {
-		return new BlockTypeLeaf(decay);
-	}
-
-	@Override
 	public BlockType getWood() {
 		return new BlockTypeLog(((ExtraTreeSpecies) treeGen.getGenome().getPrimary()).getLog());
 	}

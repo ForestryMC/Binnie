@@ -5,7 +5,6 @@ import forestry.api.world.ITreeGenData;
 public class WorldGenShrub extends WorldGenTree {
 	public WorldGenShrub(ITreeGenData tree) {
 		super(tree);
-		decay = false;
 	}
 
 	@Override
@@ -28,5 +27,10 @@ public class WorldGenShrub extends WorldGenTree {
 		minHeight = 1;
 		height = determineHeight(1, 1);
 		girth = determineGirth(treeGen.getGirth(world, startX, startY, startZ));
+	}
+
+	@Override
+	public BlockType getLeaf() {
+		return new BlockTypeLeaf(false);
 	}
 }
