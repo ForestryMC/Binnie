@@ -393,9 +393,9 @@ public class GuiCraftGUI extends GuiContainer {
 		if (rotating) {
 			GL11.glPopMatrix();
 		}
-		GuiScreen.itemRender.renderItemOverlayIntoGUI(font, mc.renderEngine, item, (int) pos.x(), (int) pos.y(), null);
 
-		GL11.glDisable(GL11.GL_BLEND);
+		GuiScreen.itemRender.renderItemOverlayIntoGUI(font, mc.renderEngine, item, (int) pos.x(), (int) pos.y(), null);
+		GL11.glClear(256);
 		RenderHelper.disableStandardItemLighting();
 		GL11.glPopAttrib();
 	}
