@@ -66,7 +66,6 @@ public class RenderUtil {
 		}
 		minecraft.getRenderItem().renderItemOverlayIntoGUI(font, itemStack, pos.x(), pos.y(), null);
 
-		GlStateManager.disableBlend();
 		net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
 		GlStateManager.popAttrib();
 	}

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -173,6 +174,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 		public void onRenderForeground(int guiWidth, int guiHeight) {
 			final ItemStack image = ((WindowWoodworker) this.getTopParent()).getDesignerType().getDisplayStack(this.getValue());
 			RenderUtil.drawItem(new Point(1, 1), image);
+			GlStateManager.disableBlend();
 			if (((IControlValue) this.getParent()).getValue() != this.getValue()) {
 				if (Window.get(this).getMousedOverWidget() == this) {
 					RenderUtil.drawGradientRect(this.getArea().inset(1), 1157627903, 1157627903);
@@ -180,6 +182,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 					RenderUtil.drawGradientRect(this.getArea().inset(1), -1433892728, -1433892728);
 				}
 			}
+			GlStateManager.enableBlend();
 		}
 	}
 }
