@@ -53,9 +53,9 @@ public class ItemInsulatedTube extends Item {
 		if (pass == 0) {
 			return 0xffffff;
 		}
-		return (pass == 1) ?
-			Material.get(stack.getItemDamage()).getColor() :
-			Insulate.get(stack.getItemDamage()).getColor();
+		return (pass == 1)
+			? Material.get(stack.getItemDamage()).getColor()
+			: Insulate.get(stack.getItemDamage()).getColor();
 	}
 
 	@Override
