@@ -39,7 +39,7 @@ public class Widget implements IWidget {
 		this.size = Point.ZERO;
 		this.offset = Point.ZERO;
 		this.cropped = false;
-		this.colour = 16777215;
+		this.colour = 0xffffff;
 		this.globalEventHandlers = new ArrayList<>();
 		this.enabled = true;
 		this.visible = true;
