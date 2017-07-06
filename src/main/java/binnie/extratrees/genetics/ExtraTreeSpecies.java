@@ -1216,11 +1216,9 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 		leafType = type;
 		if (leafType == LeafType.CONIFER) {
 			saplingType = SaplingType.CONIFER;
-		}
-		if (leafType == LeafType.JUNGLE) {
+		} else if (leafType == LeafType.JUNGLE) {
 			saplingType = SaplingType.JUNGLE;
-		}
-		if (leafType == LeafType.PALM) {
+		} else if (leafType == LeafType.PALM) {
 			saplingType = SaplingType.PALM;
 		}
 		return this;
@@ -1284,7 +1282,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 		return this;
 	}
 
-	public int getLeafColour(ITree tree) {
+	public int getLeafColor(ITree tree) {
 		return color;
 	}
 
@@ -1396,14 +1394,14 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 	public int getGermlingColour(EnumGermlingType type, int renderPass) {
 		if (type == EnumGermlingType.SAPLING) {
 			if (renderPass == 0) {
-				return getLeafColour(null);
+				return getLeafColor(null);
 			}
 			if (getLog() == null) {
 				return 0xffffff;
 			}
 			return getLog().getColour();
 		}
-		return getLeafColour(null);
+		return getLeafColor(null);
 	}
 
 	@Override

@@ -75,7 +75,7 @@ public abstract class WorldGenTree extends WorldGenerator {
 	}
 
 	public BlockType getLeaf() {
-		return new BlockTypeLeaf();
+		return new BlockTypeLeaf(true);
 	}
 
 	public BlockType getWood() {
