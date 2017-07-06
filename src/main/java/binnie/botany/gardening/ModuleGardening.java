@@ -111,7 +111,7 @@ public class ModuleGardening implements IInitializable {
 					if (fertilised) {
 						insulate += 3;
 					}
-					new CircuitGarden(moist, null, manual, fertilised, new ItemStack(Botany.insulatedTube, 1, 0 + 128 * insulate), icon);
+					new CircuitGarden(moist, null, manual, fertilised, new ItemStack(Botany.insulatedTube, 1, 128 * insulate), icon);
 					new CircuitGarden(moist, EnumAcidity.ACID, manual, fertilised, new ItemStack(Botany.insulatedTube, 1, 1 + 128 * insulate), icon);
 					new CircuitGarden(moist, EnumAcidity.NEUTRAL, manual, fertilised, new ItemStack(Botany.insulatedTube, 1, 2 + 128 * insulate), icon);
 					new CircuitGarden(moist, EnumAcidity.ALKALINE, manual, fertilised, new ItemStack(Botany.insulatedTube, 1, 3 + 128 * insulate), icon);
@@ -131,6 +131,13 @@ public class ModuleGardening implements IInitializable {
 				GameRegistry.addShapelessRecipe(tubes, forestryTube, forestryTube, insulateStack);
 			}
 		}
+
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.dirt), new ItemStack(Botany.soil, 1, OreDictionary.WILDCARD_VALUE));
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.dirt), new ItemStack(Botany.loam, 1, OreDictionary.WILDCARD_VALUE));
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.dirt), new ItemStack(Botany.flowerbed, 1, OreDictionary.WILDCARD_VALUE));
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.dirt), new ItemStack(Botany.soilNoWeed, 1, OreDictionary.WILDCARD_VALUE));
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.dirt), new ItemStack(Botany.loamNoWeed, 1, OreDictionary.WILDCARD_VALUE));
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.dirt), new ItemStack(Botany.flowerbedNoWeed, 1, OreDictionary.WILDCARD_VALUE));
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(
 			Botany.trowelWood,
@@ -193,6 +200,7 @@ public class ModuleGardening implements IInitializable {
 			new ItemStack(Items.wheat_seeds),
 			new ItemStack(Items.wheat_seeds)
 		);
+
 		GameRegistry.addShapelessRecipe(BotanyItems.AshPowder.get(4), Mods.forestry.stack("ash"));
 		GameRegistry.addShapelessRecipe(BotanyItems.MulchPowder.get(4), Mods.forestry.stack("mulch"));
 		GameRegistry.addShapelessRecipe(BotanyItems.CompostPowder.get(4), Mods.forestry.stack("fertilizerBio"));
@@ -202,6 +210,7 @@ public class ModuleGardening implements IInitializable {
 			BotanyItems.SulphurPowder.get(4),
 			new Object[]{"dustSulphur"}
 		));
+
 		GameRegistry.addRecipe(new ShapelessOreRecipe(
 			new ItemStack(Botany.pigment, 2, EnumFlowerColor.BLACK.ordinal()),
 			new Object[]{
@@ -210,6 +219,7 @@ public class ModuleGardening implements IInitializable {
 				"dyeBlack"
 			}
 		));
+
 		ModuleGardening.queuedAcidFertilisers.put(BotanyItems.SulphurPowder.get(1), 1);
 		ModuleGardening.queuedAcidFertilisers.put(BotanyItems.MulchPowder.get(1), 1);
 		ModuleGardening.queuedAcidFertilisers.put(new ItemStack(GameRegistry.findItem("Forestry", "mulch")), 2);
@@ -245,6 +255,7 @@ public class ModuleGardening implements IInitializable {
 			'c', Items.clay_ball,
 			'g', Blocks.gravel
 		);
+
 		for (EnumFlowerColor c : EnumFlowerColor.values()) {
 			ItemStack clay = new ItemStack(Botany.clay, 1, c.ordinal());
 			ItemStack pigment = new ItemStack(Botany.pigment, 1, c.ordinal());
@@ -252,8 +263,14 @@ public class ModuleGardening implements IInitializable {
 			GameRegistry.addSmelting(clay, TileEntityMetadata.getItemStack(Botany.ceramic, c.ordinal()), 0.0f);
 			ItemStack glass = TileEntityMetadata.getItemStack(Botany.stained, c.ordinal());
 			glass.stackSize = 4;
-			GameRegistry.addShapedRecipe(glass, " g ", "gpg", " g ", 'g', Blocks.glass, 'p', pigment);
+			GameRegistry.addShapedRecipe(
+				glass,
+				" g ", "gpg", " g ",
+				'g', Blocks.glass,
+				'p', pigment
+			);
 		}
+
 		GameRegistry.addRecipe(new PigmentRecipe());
 	}
 
