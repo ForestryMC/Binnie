@@ -25,10 +25,10 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 
 	public ComponentProcessIndefinate(IMachine machine, float energyPerTick) {
 		super(machine);
+		this.energyPerTick = energyPerTick;
 		actionPauseProcess = 0.0f;
 		actionCancelTask = 0.0f;
 		clientEnergyPerSecond = 0;
-		this.energyPerTick = energyPerTick;
 	}
 
 	protected IPoweredMachine getPower() {

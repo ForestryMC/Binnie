@@ -22,7 +22,7 @@ public class GenepoolComponentLogic extends ComponentProcessSetCost implements I
 
 	@Override
 	public ErrorState canWork() {
-		if (getUtil().isSlotEmpty(0)) {
+		if (getUtil().isSlotEmpty(Genepool.SLOT_BEE)) {
 			return new ErrorState.NoItem(
 				I18N.localise("genetics.machine.genepool.error.noIndividual"),
 				Genepool.SLOT_BEE
@@ -39,7 +39,7 @@ public class GenepoolComponentLogic extends ComponentProcessSetCost implements I
 				Genepool.TANK_DNA
 			);
 		}
-		if (!getUtil().liquidInTank(1, 1)) {
+		if (!getUtil().liquidInTank(Genepool.TANK_ETHANOL, 1)) {
 			return new ErrorState.InsufficientLiquid(
 				I18N.localise("genetics.machine.genepool.error.noEthanol"),
 				Genepool.TANK_ETHANOL
@@ -64,9 +64,9 @@ public class GenepoolComponentLogic extends ComponentProcessSetCost implements I
 
 	private int getDNAAmount(ItemStack stack) {
 		ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
-		if (root == null
-			|| root != Binnie.Genetics.getBeeRoot()
-			|| Binnie.Genetics.getBeeRoot().isDrone(stack)) {
+		if (root == null ||
+			root != Binnie.Genetics.getBeeRoot() ||
+			Binnie.Genetics.getBeeRoot().isDrone(stack)) {
 			return 10;
 		}
 
