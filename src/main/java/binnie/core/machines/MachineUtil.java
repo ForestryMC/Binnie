@@ -164,9 +164,9 @@ public class MachineUtil {
 		return machine.getInterface(IProcess.class);
 	}
 
-	public List<ItemStack> getNonNullStacks(int[] slotAcclimatiser) {
-		List<ItemStack> stacks = new ArrayList<ItemStack>();
-		for (ItemStack stack : getStacks(slotAcclimatiser)) {
+	public List<ItemStack> getNonNullStacks(int[] slot) {
+		List<ItemStack> stacks = new ArrayList<>();
+		for (ItemStack stack : getStacks(slot)) {
 			if (stack != null) {
 				stacks.add(stack);
 			}
