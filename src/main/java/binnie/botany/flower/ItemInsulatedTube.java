@@ -22,6 +22,7 @@ public class ItemInsulatedTube extends Item {
 		icons = new IIcon[3];
 		setUnlocalizedName("insulatedTube");
 		setCreativeTab(CreativeTabBotany.instance);
+		setHasSubtypes(true);
 	}
 
 	public static ItemStack getInsulateStack(ItemStack stack) {
