@@ -3,9 +3,11 @@ package binnie.extrabees.client.gui;
 import javax.annotation.Nonnull;
 import java.awt.Dimension;
 
+import forestry.core.utils.SlotUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.items.IItemHandlerModifiable;
@@ -52,5 +54,10 @@ public abstract class AbstractAlvearyContainer extends Container {
 	@Override
 	public boolean canInteractWith(@Nonnull EntityPlayer playerIn) {
 		return true;
+	}
+
+	@Override
+	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
+		return SlotUtil.transferStackInSlot(this.inventorySlots, playerIn, index);
 	}
 }
