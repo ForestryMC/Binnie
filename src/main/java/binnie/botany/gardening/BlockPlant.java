@@ -26,6 +26,7 @@ public class BlockPlant extends BlockBush {
 		setBlockName("plant");
 		setCreativeTab(CreativeTabBotany.instance);
 		setTickRandomly(true);
+		setStepSound(Block.soundTypeGrass);
 	}
 
 	public static boolean isWeed(IBlockAccess world, int x, int y, int z) {
