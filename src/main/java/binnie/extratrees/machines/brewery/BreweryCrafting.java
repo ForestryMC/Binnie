@@ -35,6 +35,14 @@ public class BreweryCrafting implements INbtWritable {
 		ItemStack yeast = new ItemStack(nbt.getCompoundTag("yeast"));
 		return new BreweryCrafting(inputFluid, ingredient, inputGrains, yeast);
 	}
+	
+	public boolean hasInputGrainsEmpty(){
+		return inputGrains == null || (isEmptyStack(inputGrains[0]) && isEmptyStack(inputGrains[1]) && isEmptyStack(inputGrains[2]));
+	}
+
+	private boolean isEmptyStack(ItemStack stack){
+		return stack == null || stack.isEmpty();
+	}
 
 	@Override
 	public NBTTagCompound writeToNBT(final NBTTagCompound nbt) {
