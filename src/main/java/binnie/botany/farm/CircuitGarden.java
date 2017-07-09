@@ -68,7 +68,7 @@ public class CircuitGarden extends BinnieCircuit {
 		if (info.length() > 0) {
 			info = " (" + info + EnumChatFormatting.RESET + ")";
 		}
-		addTooltipString("Flowers" + info);
+		addTooltipString(I18N.localise("botany.circuit.flowers") + info);
 	}
 
 	@Override
