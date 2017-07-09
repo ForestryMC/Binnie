@@ -105,12 +105,17 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 		}
 		this.markDirty();
 	}
-
+	
+	@Override
+	public boolean isEmpty() {
+		return this.inventory.isEmpty();
+	}
+	
 	@Override
 	public String getName() {
 		return "";
 	}
-
+	
 	@Override
 	public int getInventoryStackLimit() {
 		return 64;

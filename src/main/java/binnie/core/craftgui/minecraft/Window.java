@@ -222,7 +222,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		RenderUtil.setColour(16777215);
+		RenderUtil.setColour(0xffffff);
 		if (this.getBackground1() != null) {
 			CraftGUI.render.texture(this.getBackground1(), Point.ZERO);
 		}

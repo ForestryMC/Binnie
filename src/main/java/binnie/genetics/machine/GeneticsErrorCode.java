@@ -67,6 +67,7 @@ public enum GeneticsErrorCode implements IErrorStateDefinition {
 	GeneticsErrorCode(String name, IErrorStateDefinition parent, EnumErrorType type) {
 		this.name = name;
 		this.parent = parent;
+		this.type = type;
 	}
 	
 	public String getDescription(){

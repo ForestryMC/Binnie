@@ -61,7 +61,7 @@ public class Genetics extends AbstractMod {
 
 	@Mod.EventHandler
 	public void preInit(final FMLPreInitializationEvent evt) {
-		proxy.registerItem(dictionaryBees = new ItemBeeDictionary());
+		dictionaryBees = proxy.registerItem(new ItemBeeDictionary());
 		proxy.registerItem(new ItemPunnettSquare());
 		this.preInit();
 	}
@@ -69,12 +69,12 @@ public class Genetics extends AbstractMod {
 	@Mod.EventHandler
 	public void init(final FMLInitializationEvent evt) {
 		this.init();
-		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack(ManagerLiquid.WATER, 2000), ItemStack.EMPTY, new ItemStack(dictionaryBees), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotTin", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
 	}
 
 	@Mod.EventHandler
 	public void postInit(final FMLPostInitializationEvent evt) {
 		this.postInit();
+		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack(ManagerLiquid.WATER, 2000), ItemStack.EMPTY, new ItemStack(dictionaryBees), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotTin", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
 	}
 
 	@Override
