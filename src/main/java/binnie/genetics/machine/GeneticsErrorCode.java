@@ -10,6 +10,13 @@ import binnie.core.util.I18N;
 public enum GeneticsErrorCode implements IErrorStateDefinition {
 	NO_OWNER("no.owner"),
 	NO_INDIVIDUAL("no.individual", CoreErrorCode.NO_ITEM),
+	NO_SERUM("no.serum", CoreErrorCode.NO_ITEM),
+	INVALID_SERUM("invalid.serum", CoreErrorCode.INVALID_ITEM),
+	INVALID_SERUM_MISMATCH("invalid.serum.mismatch", INVALID_SERUM),
+	INVALID_SERUM_NO("invalid.serum.no.genes", INVALID_SERUM),
+	DEFUNCT_SERUM("defunct.serum", CoreErrorCode.INVALID_ITEM),
+	EMPTY_SERUM("empty.serum", CoreErrorCode.INVALID_ITEM),
+	NO_ENZYME("no.enzyme", CoreErrorCode.NO_ITEM),
 	//Acclimatiser
 	ACCLIMATISER_NO_ITEM("acclimatiser.no.item", CoreErrorCode.NO_ITEM),
 	ACCLIMATISER_CAN_NOT_WORK(".acclimatiser.can.not.acclimatise", CoreErrorCode.INVALID_ITEM),
@@ -21,7 +28,23 @@ public enum GeneticsErrorCode implements IErrorStateDefinition {
 	GENEPOOL_INSUFFICIENT_ETHANOL("genepool.insufficient.ethanol", CoreErrorCode.INSUFFICIENT_LIQUID),
 	GENEPOOL_INSUFFICIENT_ENZYME("genepool.insufficient.enzyme", CoreErrorCode.NO_ITEM),
 	//Incubator
-	INCUBATOR_INSUFFICIENT_LIQUID("incubator.insufficient.liquid");
+	INCUBATOR_INSUFFICIENT_LIQUID("incubator.insufficient.liquid", CoreErrorCode.INSUFFICIENT_LIQUID),
+	//Inoculator
+	INOCULATOR_INSUFFICIENT_VECTOR("insufficient.vector", CoreErrorCode.INSUFFICIENT_LIQUID),
+	//Isolator
+	ISOLATOR_INSUFFICIENT_ETHANOL("isolator.insufficient.ethanol", CoreErrorCode.INSUFFICIENT_LIQUID),
+	ISOLATOR_NO_ROOM("isolator.no.room", CoreErrorCode.NO_SPACE),
+	ISOLATOR_NO_EMPTY_SEQUENCER("isolator.no.empty.sequencer", CoreErrorCode.NO_ITEM),
+	//Polymeriser
+	POLYMERISER_NO_ITEM("polymeriser.no.item", CoreErrorCode.NO_ITEM),
+	POLYMERISER_ITEM_FILLED("polymeriser.item.filled", CoreErrorCode.INVALID_ITEM),
+	POLYMERISER_INSUFFICIENT_DNA("polymeriser.insufficient.dna", CoreErrorCode.INSUFFICIENT_LIQUID),
+	POLYMERISER_INSUFFICIENT_BACTERIA("polymeriser.insufficient.bacteria", CoreErrorCode.INSUFFICIENT_LIQUID),
+	//Sequencer
+	SEQUENCER_INSUFFICIENT_DYE("sequencer.insufficient.dye", CoreErrorCode.NO_ITEM),
+	SEQUENCER_NO_SPACE("sequencer.no.space", CoreErrorCode.NO_SPACE),
+	SEQUENCER_NO_DNA("sequencer.no.dna", CoreErrorCode.NO_ITEM)
+	;
 	
 	String name;
 	@Nullable

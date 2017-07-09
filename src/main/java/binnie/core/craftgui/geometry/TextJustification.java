@@ -1,9 +1,9 @@
 package binnie.core.craftgui.geometry;
 
 public enum TextJustification {
-	TopLeft(0.0f, 0.0f),
-	TopCenter(0.5f, 0.0f),
-	TopRight(1.0f, 0.0f),
+	TOP_LEFT(0.0f, 0.0f),
+	TOP_CENTER(0.5f, 0.0f),
+	TOP_RIGHT(1.0f, 0.0f),
 	MIDDLE_LEFTt(0.0f, 0.5f),
 	MiddleCenter(0.5f, 0.5f),
 	MiddleRight(1.0f, 0.5f),

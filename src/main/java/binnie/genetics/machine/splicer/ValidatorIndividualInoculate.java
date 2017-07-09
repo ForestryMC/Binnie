@@ -22,6 +22,6 @@ public class ValidatorIndividualInoculate extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return I18N.localise("genetics.machine.advMachine.splicer.tooltips.slots.individual");
+		return I18N.localise("genetics.machine.adv_machine.splicer.tooltips.slots.individual");
 	}
 }

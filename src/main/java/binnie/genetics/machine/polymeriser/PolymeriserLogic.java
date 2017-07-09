@@ -10,6 +10,7 @@ import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
 import binnie.genetics.genetics.Engineering;
+import binnie.genetics.machine.GeneticsErrorCode;
 
 public class PolymeriserLogic extends ComponentProcessSetCost implements IProcess {
 	private static float chargePerProcess = 0.4f;
@@ -86,10 +87,10 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 	public ErrorState canWork() {
 		ItemStack serumStack = this.getUtil().getStack(Polymeriser.SLOT_SERUM);
 		if (serumStack.isEmpty()) {
-			return new ErrorState.NoItem(I18N.localise("genetics.machine.machine.polymeriser.errors.item.no"), Polymeriser.SLOT_SERUM);
+			return new ErrorState(GeneticsErrorCode.POLYMERISER_NO_ITEM, Polymeriser.SLOT_SERUM);
 		}
 		if (!serumStack.isItemDamaged()) {
-			return new ErrorState.InvalidItem(I18N.localise("genetics.machine.machine.polymeriser.errors.item.filled"), Polymeriser.SLOT_SERUM);
+			return new ErrorState(GeneticsErrorCode.POLYMERISER_ITEM_FILLED, Polymeriser.SLOT_SERUM);
 		}
 		return super.canWork();
 	}
@@ -97,10 +98,10 @@ public class PolymeriserLogic extends ComponentProcessSetCost implements IProces
 	@Override
 	public ErrorState canProgress() {
 		if (this.getUtil().getFluid(Polymeriser.TANK_BACTERIA) == null) {
-			return new ErrorState.InsufficientLiquid(I18N.localise("genetics.machine.machine.polymeriser.errors.insufficient.bacteria"), Polymeriser.TANK_BACTERIA);
+			return new ErrorState(GeneticsErrorCode.POLYMERISER_INSUFFICIENT_BACTERIA, Polymeriser.TANK_BACTERIA);
 		}
 		if (this.getUtil().getFluid(Polymeriser.TANK_DNA) == null) {
-			return new ErrorState.InsufficientLiquid(I18N.localise("genetics.machine.machine.polymeriser.errors.insufficient.dna"), Polymeriser.TANK_DNA);
+			return new ErrorState(GeneticsErrorCode.POLYMERISER_INSUFFICIENT_DNA, Polymeriser.TANK_DNA);
 		}
 		return super.canProgress();
 	}

@@ -18,8 +18,8 @@ import binnie.core.machines.inventory.IChargedSlots;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
-import binnie.core.util.I18N;
 import binnie.genetics.item.ItemSequence;
+import binnie.genetics.machine.GeneticsErrorCode;
 
 public class IsolatorLogic extends ComponentProcessSetCost implements IProcess {
 	public static final float ENZYME_PER_PROCESS = 0.5f;
@@ -33,13 +33,13 @@ public class IsolatorLogic extends ComponentProcessSetCost implements IProcess {
 	@Override
 	public ErrorState canWork() {
 		if (this.getUtil().isSlotEmpty(Isolator.SLOT_TARGET)) {
-			return new ErrorState.NoItem(I18N.localise("genetics.machine.machine.isolator.errors.no.individual.desc"), Isolator.SLOT_TARGET);
+			return new ErrorState(GeneticsErrorCode.NO_INDIVIDUAL, Isolator.SLOT_TARGET);
 		}
 		if (!this.getUtil().isSlotEmpty(Isolator.SLOT_RESULUT)) {
-			return new ErrorState.NoSpace(I18N.localise("genetics.machine.machine.isolator.errors.no.room.desc"), Isolator.SLOT_FINISHED);
+			return new ErrorState(GeneticsErrorCode.ISOLATOR_NO_ROOM, Isolator.SLOT_FINISHED);
 		}
 		if (this.getUtil().isSlotEmpty(Isolator.SLOT_SEQUENCER_VIAL)) {
-			return new ErrorState.NoItem(I18N.localise("genetics.machine.machine.isolator.errors.no.empty.sequencer.desc"), Isolator.SLOT_SEQUENCER_VIAL);
+			return new ErrorState(GeneticsErrorCode.ISOLATOR_NO_EMPTY_SEQUENCER, Isolator.SLOT_SEQUENCER_VIAL);
 		}
 		return super.canWork();
 	}
@@ -47,10 +47,10 @@ public class IsolatorLogic extends ComponentProcessSetCost implements IProcess {
 	@Override
 	public ErrorState canProgress() {
 		if (!this.getUtil().liquidInTank(Isolator.TANK_ETHANOL, ETHANOL_PER_PROCESS)) {
-			return new ErrorState.InsufficientLiquid(I18N.localise("genetics.machine.machine.isolator.errors.insufficient.ethanol.desc"), Isolator.TANK_ETHANOL);
+			return new ErrorState(GeneticsErrorCode.ISOLATOR_INSUFFICIENT_ETHANOL, Isolator.TANK_ETHANOL);
 		}
 		if (this.getUtil().getSlotCharge(Isolator.SLOT_ENZYME) == 0.0f) {
-			return new ErrorState.NoItem(I18N.localise("genetics.machine.errors.no.enzyme.desc"), Isolator.SLOT_ENZYME);
+			return new ErrorState(GeneticsErrorCode.NO_ENZYME, Isolator.SLOT_ENZYME);
 		}
 		return super.canProgress();
 	}

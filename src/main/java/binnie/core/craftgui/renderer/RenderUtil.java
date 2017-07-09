@@ -123,7 +123,7 @@ public class RenderUtil {
 	}
 
 	public static void drawText(final Point pos, final String text, final int colour) {
-		drawText(new Area(pos, new Point(500, 500)), TextJustification.TopLeft, text, colour);
+		drawText(new Area(pos, new Point(500, 500)), TextJustification.TOP_LEFT, text, colour);
 	}
 
 	public static void drawText(final Area area, final TextJustification justification, final String text, final int colour) {

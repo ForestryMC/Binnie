@@ -64,7 +64,7 @@ public class AnalystPageDescription extends ControlAnalystPage {
 		y += (int) (3.0f + CraftGUI.render.textHeight(discovered, this.width()));
 		new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.desc.complexity") + ": " + species.getComplexity()).setColour(this.getColour());
 		y += 26;
-		final ControlText descText = new ControlText(this, new Area(8, y, this.width() - 16, 0), descBody + "§r", TextJustification.TopCenter);
+		final ControlText descText = new ControlText(this, new Area(8, y, this.width() - 16, 0), descBody + "§r", TextJustification.TOP_CENTER);
 		final IWidget signatureText = new ControlText(this, new Area(8, y, this.width() - 16, 0), descSig + "§r", TextJustification.BottomRight);
 		descText.setColour(this.getColour());
 		signatureText.setColour(this.getColour());

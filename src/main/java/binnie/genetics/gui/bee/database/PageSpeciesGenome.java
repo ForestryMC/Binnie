@@ -4,8 +4,10 @@ import net.minecraft.util.math.Vec3i;
 
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
+import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleSpecies;
+import forestry.core.genetics.alleles.EnumAllele;
 
 import binnie.Binnie;
 import binnie.core.craftgui.IWidget;
@@ -15,126 +17,128 @@ import binnie.core.craftgui.database.DatabaseTab;
 import binnie.core.craftgui.database.PageSpecies;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.util.I18N;
+import binnie.genetics.genetics.AlleleHelper;
 
 public class PageSpeciesGenome extends PageSpecies {
-	ControlText pageSpeciesGenome_Title;
-	ControlText pageSpeciesGenome_SpeedText;
-	ControlText pageSpeciesGenome_LifespanText;
-	ControlText pageSpeciesGenome_FertilityText;
-	ControlText pageSpeciesGenome_FloweringText;
-	ControlText pageSpeciesGenome_TerritoryText;
-	ControlText pageSpeciesGenome_NocturnalText;
-	ControlText pageSpeciesGenome_CaveDwellingText;
-	ControlText pageSpeciesGenome_TolerantFlyerText;
-	ControlText pageSpeciesGenome_FlowerText;
-	ControlText pageSpeciesGenome_EffectText;
+	ControlText title;
+	ControlText speedText;
+	ControlText lifespanText;
+	ControlText fertilityText;
+	ControlText floweringText;
+	ControlText territoryText;
+	ControlText nocturnalText;
+	ControlText caveDwellingText;
+	ControlText tolerantFlyerText;
+	ControlText flowerText;
+	ControlText effectText;
 
 	public PageSpeciesGenome(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);
-		this.pageSpeciesGenome_Title = new ControlTextCentered(this, 8, "Genome");
-		new ControlText(this, new Area(0, 32, 68, 30), "Speed:", TextJustification.TopRight);
-		new ControlText(this, new Area(0, 44, 68, 30), "Lifespan:", TextJustification.TopRight);
-		new ControlText(this, new Area(0, 56, 68, 30), "Fertility:", TextJustification.TopRight);
-		new ControlText(this, new Area(0, 68, 68, 30), "Flowering:", TextJustification.TopRight);
-		new ControlText(this, new Area(0, 80, 68, 30), "Territory:", TextJustification.TopRight);
-		new ControlText(this, new Area(0, 97, 68, 30), "Behavior:", TextJustification.TopRight);
-		new ControlText(this, new Area(0, 109, 68, 30), "Sunlight:", TextJustification.TopRight);
-		new ControlText(this, new Area(0, 121, 68, 30), "Rain:", TextJustification.TopRight);
-		new ControlText(this, new Area(0, 138, 68, 30), "Flower:", TextJustification.TopRight);
-		new ControlText(this, new Area(0, 155, 68, 30), "Effect:", TextJustification.TopRight);
+		title = new ControlTextCentered(this, 8, I18N.localise("extrabees.gui.database.tab.species.genome"));
+		new ControlText(this, new Area(0, 32, 68, 30), I18N.localise("extrabees.gui.database.tab.species.genome.speed"), TextJustification.TOP_RIGHT);
+		new ControlText(this, new Area(0, 44, 68, 30), I18N.localise("extrabees.gui.database.tab.species.genome.lifespan"), TextJustification.TOP_RIGHT);
+		new ControlText(this, new Area(0, 56, 68, 30), I18N.localise("extrabees.gui.database.tab.species.genome.fertility"), TextJustification.TOP_RIGHT);
+		new ControlText(this, new Area(0, 68, 68, 30), I18N.localise("extrabees.gui.database.tab.species.genome.flowering"), TextJustification.TOP_RIGHT);
+		new ControlText(this, new Area(0, 80, 68, 30), I18N.localise("extrabees.gui.database.tab.species.genome.territory"), TextJustification.TOP_RIGHT);
+		new ControlText(this, new Area(0, 97, 68, 30), I18N.localise("extrabees.gui.database.tab.species.genome.behavior"), TextJustification.TOP_RIGHT);
+		new ControlText(this, new Area(0, 109, 68, 30), I18N.localise("extrabees.gui.database.tab.species.genome.sunlight"), TextJustification.TOP_RIGHT);
+		new ControlText(this, new Area(0, 121, 68, 30), I18N.localise("extrabees.gui.database.tab.species.genome.rain"), TextJustification.TOP_RIGHT);
+		new ControlText(this, new Area(0, 138, 68, 30), I18N.localise("extrabees.gui.database.tab.species.genome.flower"), TextJustification.TOP_RIGHT);
+		new ControlText(this, new Area(0, 155, 68, 30), I18N.localise("extrabees.gui.database.tab.species.genome.effect"), TextJustification.TOP_RIGHT);
 		final int x = 72;
-		this.pageSpeciesGenome_SpeedText = new ControlText(this, new Area(x, 32, 72, 30), "", TextJustification.TopLeft);
-		this.pageSpeciesGenome_LifespanText = new ControlText(this, new Area(x, 44, 72, 30), "", TextJustification.TopLeft);
-		this.pageSpeciesGenome_FertilityText = new ControlText(this, new Area(x, 56, 72, 30), "", TextJustification.TopLeft);
-		this.pageSpeciesGenome_FloweringText = new ControlText(this, new Area(x, 68, 72, 30), "", TextJustification.TopLeft);
-		this.pageSpeciesGenome_TerritoryText = new ControlText(this, new Area(x, 80, 72, 30), "", TextJustification.TopLeft);
-		this.pageSpeciesGenome_NocturnalText = new ControlText(this, new Area(x, 97, 72, 30), "", TextJustification.TopLeft);
-		this.pageSpeciesGenome_CaveDwellingText = new ControlText(this, new Area(x, 109, 72, 30), "", TextJustification.TopLeft);
-		this.pageSpeciesGenome_TolerantFlyerText = new ControlText(this, new Area(x, 121, 72, 30), "", TextJustification.TopLeft);
-		this.pageSpeciesGenome_FlowerText = new ControlText(this, new Area(x, 138, 72, 30), "", TextJustification.TopLeft);
-		this.pageSpeciesGenome_EffectText = new ControlText(this, new Area(x, 155, 72, 30), "", TextJustification.TopLeft);
+		this.speedText = new ControlText(this, new Area(x, 32, 72, 30), "", TextJustification.TOP_LEFT);
+		this.lifespanText = new ControlText(this, new Area(x, 44, 72, 30), "", TextJustification.TOP_LEFT);
+		this.fertilityText = new ControlText(this, new Area(x, 56, 72, 30), "", TextJustification.TOP_LEFT);
+		this.floweringText = new ControlText(this, new Area(x, 68, 72, 30), "", TextJustification.TOP_LEFT);
+		this.territoryText = new ControlText(this, new Area(x, 80, 72, 30), "", TextJustification.TOP_LEFT);
+		this.nocturnalText = new ControlText(this, new Area(x, 97, 72, 30), "", TextJustification.TOP_LEFT);
+		this.caveDwellingText = new ControlText(this, new Area(x, 109, 72, 30), "", TextJustification.TOP_LEFT);
+		this.tolerantFlyerText = new ControlText(this, new Area(x, 121, 72, 30), "", TextJustification.TOP_LEFT);
+		this.flowerText = new ControlText(this, new Area(x, 138, 72, 30), "", TextJustification.TOP_LEFT);
+		this.effectText = new ControlText(this, new Area(x, 155, 72, 30), "", TextJustification.TOP_LEFT);
 	}
 
 	public static String rateFlowering(final int flowering) {
 		if (flowering >= 99) {
-			return "Maximum";
+			return AlleleHelper.toDisplay(EnumAllele.Flowering.MAXIMUM);
 		}
 		if (flowering >= 35) {
-			return "Fastest";
+			return AlleleHelper.toDisplay(EnumAllele.Flowering.FASTEST);
 		}
 		if (flowering >= 30) {
-			return "Faster";
+			return AlleleHelper.toDisplay(EnumAllele.Flowering.FASTER);
 		}
 		if (flowering >= 25) {
-			return "Fast";
+			return AlleleHelper.toDisplay(EnumAllele.Flowering.FAST);
 		}
 		if (flowering >= 20) {
-			return "Normal";
+			return AlleleHelper.toDisplay(EnumAllele.Flowering.AVERAGE);
 		}
 		if (flowering >= 15) {
-			return "Slow";
+			return AlleleHelper.toDisplay(EnumAllele.Flowering.SLOW);
 		}
 		if (flowering >= 10) {
-			return "Slower";
+			return AlleleHelper.toDisplay(EnumAllele.Flowering.SLOWER);
 		}
-		return "Slowest";
+		return AlleleHelper.toDisplay(EnumAllele.Flowering.SLOWEST);
 	}
 
 	public static String rateSpeed(final float speed) {
 		if (speed >= 1.7f) {
-			return "Fastest";
+			return AlleleHelper.toDisplay(EnumAllele.Speed.FASTEST);
 		}
 		if (speed >= 1.4f) {
-			return "Faster";
+			return AlleleHelper.toDisplay(EnumAllele.Speed.FASTER);
 		}
 		if (speed >= 1.2f) {
-			return "Fast";
+			return AlleleHelper.toDisplay(EnumAllele.Speed.FAST);
 		}
 		if (speed >= 1.0f) {
-			return "Normal";
+			return AlleleHelper.toDisplay(EnumAllele.Speed.NORMAL);
 		}
 		if (speed >= 0.8f) {
-			return "Slow";
+			return AlleleHelper.toDisplay(EnumAllele.Speed.SLOW);
 		}
 		if (speed >= 0.6f) {
-			return "Slower";
+			return AlleleHelper.toDisplay(EnumAllele.Speed.SLOWER);
 		}
-		return "Slowest";
+		return AlleleHelper.toDisplay(EnumAllele.Speed.SLOWEST);
 	}
 
 	public static String rateLifespan(final int life) {
 		if (life >= 70) {
-			return "Longest";
+			return AlleleHelper.toDisplay(EnumAllele.Lifespan.LONGEST);
 		}
 		if (life >= 60) {
-			return "Longer";
+			return AlleleHelper.toDisplay(EnumAllele.Lifespan.LONGER);
 		}
 		if (life >= 50) {
-			return "Long";
+			return AlleleHelper.toDisplay(EnumAllele.Lifespan.LONG);
 		}
 		if (life >= 45) {
-			return "Elongated";
+			return AlleleHelper.toDisplay(EnumAllele.Lifespan.ELONGATED);
 		}
 		if (life >= 40) {
-			return "Normal";
+			return AlleleHelper.toDisplay(EnumAllele.Lifespan.NORMAL);
 		}
 		if (life >= 35) {
-			return "Shortened";
+			return AlleleHelper.toDisplay(EnumAllele.Lifespan.SHORTENED);
 		}
 		if (life >= 30) {
-			return "Short";
+			return AlleleHelper.toDisplay(EnumAllele.Lifespan.SHORT);
 		}
 		if (life >= 20) {
-			return "Shorter";
+			return AlleleHelper.toDisplay(EnumAllele.Lifespan.SHORTER);
 		}
-		return "Shortest";
+		return AlleleHelper.toDisplay(EnumAllele.Lifespan.SHORTEST);
 	}
 
 	public static String tolerated(final boolean t) {
 		if (t) {
-			return "Tolerated";
+			return I18N.localise("extrabees.gui.database.tab.species.genome.tolerated");
 		}
-		return "Not Tolerated";
+		return AlleleHelper.toDisplay(EnumTolerance.NONE);
 	}
 
 	@Override
@@ -143,32 +147,32 @@ public class PageSpeciesGenome extends PageSpecies {
 		if (template != null) {
 			final IBeeGenome genome = Binnie.GENETICS.getBeeRoot().templateAsGenome(template);
 			final IBee bee = Binnie.GENETICS.getBeeRoot().getBee(genome);
-			this.pageSpeciesGenome_SpeedText.setValue(rateSpeed(genome.getSpeed()));
-			this.pageSpeciesGenome_LifespanText.setValue(rateLifespan(genome.getLifespan()));
-			this.pageSpeciesGenome_FertilityText.setValue(genome.getFertility() + " children");
-			this.pageSpeciesGenome_FloweringText.setValue(rateFlowering(genome.getFlowering()));
+			this.speedText.setValue(rateSpeed(genome.getSpeed()));
+			this.lifespanText.setValue(rateLifespan(genome.getLifespan()));
+			this.fertilityText.setValue(I18N.localise("extrabees.gui.database.tab.species.genome.children", genome.getFertility()));
+			this.floweringText.setValue(rateFlowering(genome.getFlowering()));
 			final Vec3i area = genome.getTerritory();
-			this.pageSpeciesGenome_TerritoryText.setValue(area.getX() + "x" + area.getY() + "x" + area.getZ());
-			String behavior = "Daytime";
+			this.territoryText.setValue(area.getX() + "x" + area.getY() + "x" + area.getZ());
+			String behavior = I18N.localise("extrabees.gui.database.tab.species.genome.daytime");
 			if (genome.getPrimary().isNocturnal()) {
-				behavior = "Nighttime";
+				behavior = I18N.localise("extrabees.gui.database.tab.species.genome.nighttime");
 			}
 			if (genome.getNeverSleeps()) {
-				behavior = "All Day";
+				behavior = I18N.localise("extrabees.gui.database.tab.species.genome.allDay");
 			}
-			this.pageSpeciesGenome_NocturnalText.setValue(behavior);
+			this.nocturnalText.setValue(behavior);
 			if (genome.getCaveDwelling()) {
-				this.pageSpeciesGenome_CaveDwellingText.setValue("Not Needed");
+				this.caveDwellingText.setValue(I18N.localise("extrabees.gui.database.tab.species.genome.notNeeded"));
 			} else {
-				this.pageSpeciesGenome_CaveDwellingText.setValue("Required");
+				this.caveDwellingText.setValue(I18N.localise("extrabees.gui.database.tab.species.genome.required"));
 			}
-			this.pageSpeciesGenome_TolerantFlyerText.setValue(tolerated(genome.getToleratesRain()));
+			this.tolerantFlyerText.setValue(tolerated(genome.getToleratesRain()));
 			if (genome.getFlowerProvider() != null) {
-				this.pageSpeciesGenome_FlowerText.setValue(genome.getFlowerProvider().getDescription());
+				this.flowerText.setValue(genome.getFlowerProvider().getDescription());
 			} else {
-				this.pageSpeciesGenome_FlowerText.setValue("None");
+				this.flowerText.setValue(AlleleHelper.toDisplay(EnumTolerance.NONE));
 			}
-			this.pageSpeciesGenome_EffectText.setValue(genome.getEffect().getName());
+			this.effectText.setValue(genome.getEffect().getName());
 		}
 	}
 }

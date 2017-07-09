@@ -42,7 +42,7 @@ public class PackageSplicer extends AdvGeneticMachine.PackageAdvGeneticBase impl
 
 			@Override
 			public String getTooltip() {
-				return I18N.localise("genetics.machine.advMachine.splicer.tooltips.slots.serum");
+				return I18N.localise("genetics.machine.adv_machine.splicer.tooltips.slots.serum");
 			}
 		};
 		slotSerumVial.setValidator(serumValid);

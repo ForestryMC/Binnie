@@ -16,7 +16,7 @@ public class ControlText extends Control implements IControlValue<String> {
 	private TextJustification align;
 
 	public ControlText(final IWidget parent, final Point pos, final String text) {
-		this(parent, new Area(pos, new Point(500, 0)), text, TextJustification.TopLeft);
+		this(parent, new Area(pos, new Point(500, 0)), text, TextJustification.TOP_LEFT);
 	}
 
 	public ControlText(final IWidget parent, final String text, final TextJustification align) {
