@@ -274,7 +274,12 @@ public class WindowFieldKit extends Window {
 			return;
 		}
 
-		getWindowInventory().setInventorySlotContents(0, Analyser.analyse(getWindowInventory().getStackInSlot(0)));
+		ItemStack stack = getWindowInventory().getStackInSlot(0);
+		if (stack == null) {
+			return;
+		}
+
+		getWindowInventory().setInventorySlotContents(0, Analyser.analyse(stack));
 		getWindowInventory().decrStackSize(1, 1);
 	}
 
