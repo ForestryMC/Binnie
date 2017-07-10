@@ -22,7 +22,7 @@ buildscript {
 apply plugin: "se.bjurr.gitchangelog.git-changelog-gradle-plugin"
 apply plugin: 'forge'
 
-version = "2.0.18"
+version = "2.0.19"
 if (System.getenv("BUILD_NUMBER") != null) {
     version = version + "-" + System.getenv("BUILD_NUMBER")
 }
