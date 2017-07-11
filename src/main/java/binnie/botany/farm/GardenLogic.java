@@ -89,10 +89,12 @@ public class GardenLogic extends FarmLogic {
 		return stack.getItem() == Item.getItemFromBlock(Blocks.dirt);
 	}
 
-	private boolean maintainSoil(int x2, int y2, int z2, FarmDirection direction, int extent) {
+	private boolean maintainSoil(int x, int y, int z, FarmDirection direction, int extent) {
 		for (int i = 0; i < extent; ++i) {
-			Vect position = translateWithOffset(x2, y2, z2, direction, i);
-			if (fertilised && Gardening.isSoil(world.getBlock(position.x, position.y, position.z))) {
+			Vect position = translateWithOffset(x, y, z, direction, i);
+			boolean isSoil = Gardening.isSoil(world.getBlock(position.x, position.y, position.z));
+
+			if (fertilised && isSoil) {
 				IBlockSoil soil = (IBlockSoil) world.getBlock(position.x, position.y, position.z);
 				if (soil.fertilise(world, position.x, position.y, position.z, EnumSoilType.FLOWERBED)) {
 					continue;
@@ -101,55 +103,56 @@ public class GardenLogic extends FarmLogic {
 
 			if (world.getBlock(position.x, position.y + 1, position.z) == Botany.plant) {
 				world.setBlockToAir(position.x, position.y + 1, position.z);
-			} else {
-				if (acidity != null && Gardening.isSoil(world.getBlock(position.x, position.y, position.z))) {
-					IBlockSoil soil = (IBlockSoil) world.getBlock(position.x, position.y, position.z);
-					EnumAcidity pH = soil.getPH(world, position.x, position.y, position.z);
-					if (pH.ordinal() < acidity.ordinal()) {
-						ItemStack stack = getAvailableAlkaline();
-						if (stack != null && soil.setPH(world, position.x, position.y, position.z, EnumAcidity.values()[pH.ordinal() + 1])) {
-							housing.getFarmInventory().removeResources(new ItemStack[]{stack});
-							continue;
-						}
-					}
+				continue;
+			}
 
-					if (pH.ordinal() > acidity.ordinal()) {
-						ItemStack stack = getAvailableAcid();
-						if (stack != null && soil.setPH(world, position.x, position.y, position.z, EnumAcidity.values()[pH.ordinal() - 1])) {
-							housing.getFarmInventory().removeResources(new ItemStack[]{stack});
-							continue;
-						}
+			if (acidity != null && isSoil) {
+				IBlockSoil soil = (IBlockSoil) world.getBlock(position.x, position.y, position.z);
+				EnumAcidity pH = soil.getPH(world, position.x, position.y, position.z);
+				if (pH.ordinal() < acidity.ordinal()) {
+					ItemStack stack = getAvailableAlkaline();
+					if (stack != null && soil.setPH(world, position.x, position.y, position.z, EnumAcidity.values()[pH.ordinal() + 1])) {
+						housing.getFarmInventory().removeResources(new ItemStack[]{stack});
+						continue;
 					}
 				}
 
-				if (!isAirBlock(position) && !world.getBlock(position.x, position.y, position.z).isReplaceable(world, position.x, position.y, position.z)) {
-					ItemStack block = getAsItemStack(position);
-					ItemStack loam = getAvailableLoam();
-					if (isWaste(block) && loam != null) {
-						produce.addAll(Blocks.dirt.getDrops(world, position.x, position.y, position.z, block.getItemDamage(), 0));
-						setBlock(position, Blocks.air, 0);
-						return trySetSoil(position, loam);
+				if (pH.ordinal() > acidity.ordinal()) {
+					ItemStack stack = getAvailableAcid();
+					if (stack != null && soil.setPH(world, position.x, position.y, position.z, EnumAcidity.values()[pH.ordinal() - 1])) {
+						housing.getFarmInventory().removeResources(new ItemStack[]{stack});
+						continue;
 					}
-				} else if (!isManual) {
-					if (!isWaterBlock(position)) {
-						if (i % 2 == 0) {
-							return trySetSoil(position);
-						}
+				}
+			}
 
-						FarmDirection cclock = FarmDirection.EAST;
-						if (direction == FarmDirection.EAST) {
-							cclock = FarmDirection.SOUTH;
-						} else if (direction == FarmDirection.SOUTH) {
-							cclock = FarmDirection.EAST;
-						} else if (direction == FarmDirection.WEST) {
-							cclock = FarmDirection.SOUTH;
-						}
+			if (!isAirBlock(position) && !world.getBlock(position.x, position.y, position.z).isReplaceable(world, position.x, position.y, position.z)) {
+				ItemStack block = getAsItemStack(position);
+				ItemStack loam = getAvailableLoam();
+				if (isWaste(block) && loam != null) {
+					produce.addAll(Blocks.dirt.getDrops(world, position.x, position.y, position.z, block.getItemDamage(), 0));
+					setBlock(position, Blocks.air, 0);
+					return trySetSoil(position, loam);
+				}
+			} else if (!isManual) {
+				if (!isWaterBlock(position)) {
+					if (i % 2 == 0) {
+						return trySetSoil(position);
+					}
 
-						Vect previous = translateWithOffset(position.x, position.y, position.z, cclock, 1);
-						ItemStack soil2 = getAsItemStack(previous);
-						if (!Gardening.isSoil(soil2.getItem())) {
-							trySetSoil(position);
-						}
+					FarmDirection cclock = FarmDirection.EAST;
+					if (direction == FarmDirection.EAST) {
+						cclock = FarmDirection.SOUTH;
+					} else if (direction == FarmDirection.SOUTH) {
+						cclock = FarmDirection.EAST;
+					} else if (direction == FarmDirection.WEST) {
+						cclock = FarmDirection.SOUTH;
+					}
+
+					Vect previous = translateWithOffset(position.x, position.y, position.z, cclock, 1);
+					ItemStack soil2 = getAsItemStack(previous);
+					if (!Gardening.isSoil(soil2.getItem())) {
+						trySetSoil(position);
 					}
 				}
 			}
@@ -279,9 +282,9 @@ public class GardenLogic extends FarmLogic {
 	}
 
 	@Override
-	public boolean isAcceptedGermling(ItemStack itemstack) {
+	public boolean isAcceptedGermling(ItemStack stack) {
 		for (IFarmable farmable : farmables) {
-			if (farmable.isGermling(itemstack)) {
+			if (farmable.isGermling(stack)) {
 				return true;
 			}
 		}
@@ -340,7 +343,7 @@ public class GardenLogic extends FarmLogic {
 
 			try {
 				IOwnable housing2 = (IOwnable) housing;
-				GameProfile prof  = (GameProfile) IOwnable.class.getMethod("getOwnerProfile", new Class[0]).invoke(housing2);
+				GameProfile prof = (GameProfile) IOwnable.class.getMethod("getOwnerProfile", new Class[0]).invoke(housing2);
 				((TileEntityFlower) tile).setOwner(prof);
 			} catch (Exception ex) {
 				// ignored
