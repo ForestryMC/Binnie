@@ -89,10 +89,12 @@ public class GardenLogic extends FarmLogic {
 		return stack.getItem() == Item.getItemFromBlock(Blocks.dirt);
 	}
 
-	private boolean maintainSoil(int x2, int y2, int z2, FarmDirection direction, int extent) {
+	private boolean maintainSoil(int x, int y, int z, FarmDirection direction, int extent) {
 		for (int i = 0; i < extent; ++i) {
-			Vect position = translateWithOffset(x2, y2, z2, direction, i);
-			if (fertilised && Gardening.isSoil(world.getBlock(position.x, position.y, position.z))) {
+			Vect position = translateWithOffset(x, y, z, direction, i);
+			boolean isSoil = Gardening.isSoil(world.getBlock(position.x, position.y, position.z));
+
+			if (fertilised && isSoil) {
 				IBlockSoil soil = (IBlockSoil) world.getBlock(position.x, position.y, position.z);
 				if (soil.fertilise(world, position.x, position.y, position.z, EnumSoilType.FLOWERBED)) {
 					continue;
