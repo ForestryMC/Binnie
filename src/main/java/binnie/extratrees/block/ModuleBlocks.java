@@ -53,7 +53,6 @@ public class ModuleBlocks implements IInitializable {
 		GameRegistry.registerBlock(ExtraTrees.blockMultiFence, ItemMetadata.class, "multifence");
 		BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockMultiFence), new ItemMetadataRenderer());
 		GameRegistry.registerBlock(ExtraTrees.blockLog, ItemMetadata.class, "log");
-		GameRegistry.registerBlock(ExtraTrees.blockShrubLeaves, "shrubLeaves");
 		GameRegistry.registerBlock(ExtraTrees.blockGate, ItemMetadata.class, "gate");
 		GameRegistry.registerBlock(ExtraTrees.blockSlab, ItemETSlab.class, "slab");
 		GameRegistry.registerBlock(ExtraTrees.blockDoubleSlab, ItemETSlab.class, "doubleSlab");
