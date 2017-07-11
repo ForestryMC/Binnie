@@ -3,6 +3,7 @@ package binnie.genetics.machine.genepool;
 import binnie.Binnie;
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.IChargedSlots;
+import binnie.core.machines.network.INetwork;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
@@ -12,7 +13,7 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.item.ItemStack;
 
-public class GenepoolComponentLogic extends ComponentProcessSetCost implements IProcess {
+public class GenepoolComponentLogic extends ComponentProcessSetCost implements IProcess, INetwork.TilePacketSync {
 	private float ethanolDrain;
 
 	public GenepoolComponentLogic(Machine machine) {
