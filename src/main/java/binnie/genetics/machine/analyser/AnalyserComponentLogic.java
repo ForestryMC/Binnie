@@ -1,13 +1,14 @@
 package binnie.genetics.machine.analyser;
 
 import binnie.core.machines.Machine;
+import binnie.core.machines.network.INetwork;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
 import net.minecraft.item.ItemStack;
 
-public class AnalyserComponentLogic extends ComponentProcessSetCost implements IProcess {
+public class AnalyserComponentLogic extends ComponentProcessSetCost implements IProcess, INetwork.TilePacketSync {
 	public AnalyserComponentLogic(Machine machine) {
 		super(machine, Analyser.RF_COST, Analyser.TIME_PERIOD);
 	}

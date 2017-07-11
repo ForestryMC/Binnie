@@ -1,6 +1,7 @@
 package binnie.genetics.machine.splicer;
 
 import binnie.core.machines.Machine;
+import binnie.core.machines.network.INetwork;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
@@ -16,7 +17,7 @@ import forestry.api.genetics.IIndividual;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class SplicerComponentLogic extends ComponentProcessSetCost implements IProcess {
+public class SplicerComponentLogic extends ComponentProcessSetCost implements IProcess, INetwork.TilePacketSync {
 	public int nOfGenes;
 
 	public SplicerComponentLogic(Machine machine) {
