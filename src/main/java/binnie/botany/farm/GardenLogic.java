@@ -93,6 +93,22 @@ public class GardenLogic extends FarmLogic {
 		for (int i = 0; i < extent; ++i) {
 			Vect position = translateWithOffset(x, y, z, direction, i);
 			boolean isSoil = Gardening.isSoil(world.getBlock(position.x, position.y, position.z));
+			
+			// remove unnecessary blocks
+			if (!isManual && !isSoil && !isAirBlock(position)) {
+				Block block = world.getBlock(position.x, position.y, position.z);
+				if (moisture == EnumMoisture.DAMP) {
+					if (block != Blocks.water) {
+						dropBlockAsProduction(position);
+					}
+				} else if (moisture == EnumMoisture.DRY) {
+					if (block != Blocks.sand) {
+						dropBlockAsProduction(position);
+					}
+				} else {
+					dropBlockAsProduction(position);
+				}
+			}
 
 			if (fertilised && isSoil) {
 				IBlockSoil soil = (IBlockSoil) world.getBlock(position.x, position.y, position.z);
@@ -279,6 +295,15 @@ public class GardenLogic extends FarmLogic {
 		setBlock(position, Blocks.sand, 0);
 		housing.getFarmInventory().removeResources(sand);
 		return true;
+	}
+
+	private void dropBlockAsProduction(Vect position) {
+		ItemStack stack = new ItemStack(world.getBlock(position.x, position.y, position.z));
+		if (stack.getItem() == null) {
+			return;
+		}
+		produce.add(stack);
+		world.setBlockToAir(position.x, position.y, position.z);
 	}
 
 	@Override
