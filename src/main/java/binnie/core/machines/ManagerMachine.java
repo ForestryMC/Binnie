@@ -46,8 +46,8 @@ public class ManagerMachine extends ManagerBase {
 			return;
 		}
 
-		Set<Class<?>> interfaces = new HashSet<Class<?>>();
-		for (Class<?> currentClass = component; currentClass != null; currentClass = null) {
+		Set<Class<?>> interfaces = new HashSet<>();
+		for (Class<?> currentClass = component; currentClass != null; currentClass = currentClass.getSuperclass()) {
 			Collections.addAll(interfaces, currentClass.getInterfaces());
 		}
 
