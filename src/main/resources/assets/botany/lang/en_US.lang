@@ -182,6 +182,7 @@ item.trowelIron.name=Iron Trowel
 item.trowelGold.name=Gold Trowel
 item.trowelDiamond.name=Diamond Trowel
 
+botany.flower.name=Flower
 botany.flower.dandelion=Dandelion
 botany.flower.poppy=Poppy
 botany.flower.orchid=Orchid
