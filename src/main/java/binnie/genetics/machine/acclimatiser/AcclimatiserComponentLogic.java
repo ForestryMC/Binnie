@@ -1,6 +1,7 @@
 package binnie.genetics.machine.acclimatiser;
 
 import binnie.core.machines.IMachine;
+import binnie.core.machines.network.INetwork;
 import binnie.core.machines.power.ComponentProcessIndefinate;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.util.I18N;
@@ -9,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AcclimatiserComponentLogic extends ComponentProcessIndefinate {
+public class AcclimatiserComponentLogic extends ComponentProcessIndefinate implements INetwork.TilePacketSync {
 	public AcclimatiserComponentLogic(IMachine machine) {
 		super(machine, Acclimatiser.ENERGY_PER_TICK);
 	}

@@ -3,6 +3,7 @@ package binnie.genetics.machine.isolator;
 import binnie.core.genetics.Gene;
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.IChargedSlots;
+import binnie.core.machines.network.INetwork;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
@@ -17,7 +18,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.Random;
 
-public class IsolatorComponentLogic extends ComponentProcessSetCost implements IProcess {
+public class IsolatorComponentLogic extends ComponentProcessSetCost implements IProcess, INetwork.TilePacketSync {
 	protected float enzymePerProcess = 0.5f;
 	protected float ethanolPerProcess = 10.0f;
 

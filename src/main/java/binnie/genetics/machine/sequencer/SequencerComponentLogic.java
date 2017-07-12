@@ -2,6 +2,7 @@ package binnie.genetics.machine.sequencer;
 
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.ComponentInventoryTransfer;
+import binnie.core.machines.network.INetwork;
 import binnie.core.machines.power.ComponentProcess;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
@@ -11,7 +12,10 @@ import binnie.genetics.genetics.SequencerItem;
 import binnie.genetics.item.GeneticsItems;
 import net.minecraft.item.ItemStack;
 
-public class SequencerComponentLogic extends ComponentProcess implements IProcess, ComponentInventoryTransfer.ITransferRestockListener {
+public class SequencerComponentLogic extends ComponentProcess implements
+	IProcess,
+	ComponentInventoryTransfer.ITransferRestockListener,
+	INetwork.TilePacketSync {
 	public SequencerComponentLogic(Machine machine) {
 		super(machine);
 	}
