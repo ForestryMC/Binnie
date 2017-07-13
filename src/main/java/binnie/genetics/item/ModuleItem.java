@@ -202,51 +202,77 @@ public class ModuleItem implements IInitializable {
 		GameRegistry.addSmelting(Genetics.itemSerum, GeneticsItems.EmptySerum.get(1), 0.0f);
 		GameRegistry.addSmelting(Genetics.itemSerumArray, GeneticsItems.EmptyGenome.get(1), 0.0f);
 
-		// TODO refactor refactor refactor this!
-		Item[] arr$;
-		Item[] lyzers = arr$ = new Item[]{
-			Mods.forestry.item("beealyzer"),
-			Mods.forestry.item("treealyzer"),
-			Mods.forestry.item("flutterlyzer")
-		};
-		for (Item a : arr$) {
-			for (Item b : lyzers) {
-				for (Item c : lyzers) {
-					if (a != b && a != c && b != c) {
-						GameRegistry.addShapedRecipe(
-							new ItemStack(Genetics.analyst),
-							" b ", "fct", " d ",
-							'c', GeneticsItems.IntegratedCircuit.get(1),
-							'b', a,
-							't', b,
-							'f', c,
-							'd', new ItemStack(Items.diamond)
-						);
-					}
-				}
-			}
-		}
+		// TODONE refactor refactor refactor this!
+		// CombatZAK up to the task!
+		Item beealyzer = Mods.forestry.item("beealyzer");
+		Item treealyzer = Mods.forestry.item("treealyzer");
 
-		Item[] dbs = {ExtraBees.dictionary, ExtraTrees.itemDictionary, ExtraTrees.itemDictionaryLepi, Botany.database};
+		//This bit prevents a crash if the Forestry butterflies module is disabled. You can use whatever placeholder item you but a diamond seems reasonable
+		//theoretically similar checks could be performed for Apiculture and Arboriculture; but I will leave that to the mod owner to decide
+		Item flutterlyzer = BinnieCore.isLepidopteryActive() ? Mods.forestry.item("flutterlyzer") //grab the forestry flutterlyzer ONLY IF lepidopterology is active
+				: Items.diamond; //otherwise just replace it with another diamond
+
+		ItemStack circuit = GeneticsItems.IntegratedCircuit.get(1); //get a reference to Integrated circuit
+		Item diamond = Items.diamond; //save a reference to diamond
+
+		ItemStack analyst = new ItemStack(Genetics.analyst); //save a reference to the analyst, will make the next bit easier
+
+		//the following code is a sufficient replacement for the 3 nested loops that preceded it; arguably this is still
+		//more trouble than it's worth. A single recipe is probably fine, with the analyzers in a specific arrangement,
+		//but I will leave it to the mod owner to make that call
+
+		//there are literally only six permutations for this recipe, so let's just write them all out and save ourselves
+		//some cycles rather than spinning through an n^3 loop wasting most of the combinations.
+		//expand the first one out for readability, but the following five are compressed to a single line
+		GameRegistry.addShapedRecipe(analyst,
+				" b ", "tcf", " d ",
+				'b', beealyzer,
+				't', treealyzer,
+				'f', flutterlyzer,
+				'c', circuit,
+				'd', diamond);
+
+		GameRegistry.addShapedRecipe(analyst, " b ", "fct", " d ", 'b', beealyzer, 't', treealyzer, 'f', flutterlyzer, 'c', circuit, 'd', diamond);
+		GameRegistry.addShapedRecipe(analyst, " t ", "bcf", " d ", 'b', beealyzer, 't', treealyzer, 'f', flutterlyzer, 'c', circuit, 'd', diamond);
+		GameRegistry.addShapedRecipe(analyst, " t ", "fcb", " d ", 'b', beealyzer, 't', treealyzer, 'f', flutterlyzer, 'c', circuit, 'd', diamond);
+		GameRegistry.addShapedRecipe(analyst, " f ", "bct", " d ", 'b', beealyzer, 't', treealyzer, 'f', flutterlyzer, 'c', circuit, 'd', diamond);
+		GameRegistry.addShapedRecipe(analyst, " f ", "tcb", " d ", 'b', beealyzer, 't', treealyzer, 'f', flutterlyzer, 'c', circuit, 'd', diamond);
+
+		//get some references to dictionary/databases for the various modules; these names are very inconsistent for like items.
+		//should be refactored in their respective modules.
+		ItemStack registry = new ItemStack(Genetics.registry);
+		Item beeDb = ExtraBees.dictionary;
+		Item treeDb = ExtraTrees.itemDictionary;
+		Item flwrDb = Botany.database;
+
+		//do a check to ensure that the butterfly module is enabled before using the butterfly dictionary.
+		//a similar check could be done for arboriculture and apiculture as well, but that is left to the mod owner
+		Item lepiDb = BinnieCore.isLepidopteryActive() ? ExtraTrees.itemDictionaryLepi
+				: Items.diamond; //just use a diamond if Butterflies is disabled
+		//going to use the circuit reference above as well
+
+		//as above, there are only 24 permutations here; let's find a way to just get those recipes rather than trying
+		//256 combinations in an n^4 loop. This will help performance and maybe be a bit more maintainable.
 		if (BinnieCore.isBotanyActive() && BinnieCore.isExtraBeesActive() && BinnieCore.isExtraTreesActive()) {
-			for (Item a2 : dbs) {
-				for (Item b2 : dbs) {
-					for (Item c2 : dbs) {
-						for (Item d : dbs) {
-							if (a2 != b2 && a2 != c2 && a2 != d && b2 != c2 && b2 != d && c2 != d) {
-								GameRegistry.addShapedRecipe(
-									new ItemStack(Genetics.registry),
-									" b ", "fct", " l ",
-									'c', GeneticsItems.IntegratedCircuit.get(1),
-									'b', a2,
-									't', b2,
-									'f', c2,
-									'l', d
-								);
-							}
-						}
-					}
-				}
+			//24 full recipe lines is a bit much to maintain; so we'll use a loop here, but we're only going
+			//to run it 24 times. Start by making an array of all 24 valid dictionary permutations...
+			String[] permutations = new String[]{
+					"btlf", "btfl", "bltf", "blft", "bftl", "bflt",
+					"tblf", "tbfl", "tlbf", "tlfb", "tfbl", "tflb",
+					"lbtf", "lbft", "ltbf", "ltfb", "lfbt", "lftb",
+					"fbtl", "fblt", "ftbl", "ftlb", "flbt", "fltb"
+			};
+
+			//now go through each of the permutations and create a recipe
+			for (String p : permutations) {
+				GameRegistry.addShapedRecipe(registry, //adding the recipe with registry as output
+						//this line is the 3-string arrangement, with the characters pulled from the current permutation
+						String.format(" %c ", p.charAt(0)), String.format("%cc%c", p.charAt(1), p.charAt(2)), String.format(" %c ", p.charAt(3)),
+						'b', beeDb,
+						't', treeDb,
+						'l', lepiDb,
+						'f', flwrDb,
+						'c', circuit);
 			}
 		}
 	}
