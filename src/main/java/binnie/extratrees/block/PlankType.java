@@ -31,41 +31,41 @@ public class PlankType {
 	}
 
 	public enum ExtraTreePlanks implements IPlankType, IFenceProvider {
-		Fir(12815444),
-		Cedar(14181940),
-		Hemlock(13088108),
-		Cypress(16169052),
-		Fig(13142058),
-		Beech(14784849),
-		Alder(12092755),
-		Hazel(13480341),
-		Hornbeam(12818528),
-		Box(16511430),
-		Butternut(15510138),
-		Hickory(14333070),
-		Whitebeam(13222585),
-		Elm(15772004),
-		Apple(6305064),
-		Yew(14722426),
-		Pear(12093805),
-		Hawthorn(13402978),
-		Rowan(13610394),
-		Elder(12489337),
-		Maclura(15970862),
-		Syzgium(15123393),
-		Brazilwood(7487063),
-		Logwood(10762028),
-		Iroko(7681024),
-		Locust(12816736),
-		Eucalyptus(16165771),
-		Purpleheart(5970991),
-		Ash(16107368),
-		Holly(16512743),
-		Olive(11578760),
-		Sweetgum(13997656),
-		Rosewood(7738624),
-		Gingko(16050106),
-		PinkIvory(15502496);
+		Fir(0xc38c54),
+		Cedar(0xd86634),
+		Hemlock(0xc7b56c),
+		Cypress(0xf6b85c),
+		Fig(0xc8882a),
+		Beech(0xe19951),
+		Alder(0xb88553),
+		Hazel(0xcdb195),
+		Hornbeam(0xc39860),
+		Box(0xfbf1c6),
+		Butternut(0xecaa7a),
+		Hickory(0xdab48e),
+		Whitebeam(0xc9c2b9),
+		Elm(0xf0a964),
+		Apple(0x603528),
+		Yew(0xe0a57a),
+		Pear(0xb8896d),
+		Hawthorn(0xcc8362),
+		Rowan(0xcfad9a),
+		Elder(0xbe9279),
+		Maclura(0xf3b22e),
+		Syzgium(0xe6c3c1),
+		Brazilwood(0x723e57),
+		Logwood(0xa4372c),
+		Iroko(0x753400),
+		Locust(0xc39160),
+		Eucalyptus(0xf6ab8b),
+		Purpleheart(0x5b1c2f),
+		Ash(0xf5c768),
+		Holly(0xfbf6e7),
+		Olive(0xb0ad88),
+		Sweetgum(0xd59658),
+		Rosewood(0x761500),
+		Gingko(0xf4e7ba),
+		PinkIvory(0xec8ca0);
 
 		protected int color;
 		protected IIcon icon;
@@ -109,7 +109,7 @@ public class PlankType {
 		}
 	}
 
-	public enum VanillaPlanks implements IPlankType {
+	public enum VanillaPlanks implements IPlankType, IFenceProvider {
 		OAK(0xb4905a),
 		SPRUCE(0x805e36),
 		BIRCH(0xd7c185),
@@ -148,6 +148,11 @@ public class PlankType {
 			int meta = getStack().getItemDamage();
 			Block block = Blocks.planks;
 			return block.getIcon(2, meta);
+		}
+
+		@Override
+		public ItemStack getFence() {
+			return TileEntityMetadata.getItemStack(ExtraTrees.blockFence, WoodManager.getPlankTypeIndex(this));
 		}
 	}
 
