@@ -4,5 +4,5 @@ public enum EnumDiscoveryState {
 	Show,
 	Undetermined,
 	Discovered,
-	Undiscovered;
+	Undiscovered
 }

@@ -102,6 +102,6 @@ public class ModuleCarpentry implements IInitializable {
 	enum Axis {
 		Y,
 		X,
-		Z;
+		Z
 	}
 }

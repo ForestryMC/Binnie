@@ -56,7 +56,7 @@ public class ControlProductsBox extends ControlListBox<ControlProductsBox.Produc
 
 	enum Type {
 		Products,
-		Specialties;
+		Specialties
 	}
 
 	class Product {

@@ -55,6 +55,6 @@ class ControlMutationBox extends ControlListBox<IMutation> {
 
 	enum Type {
 		Resultant,
-		Further;
+		Further
 	}
 }

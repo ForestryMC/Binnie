@@ -47,7 +47,7 @@ public class BlockStainedDesign extends BlockDesign {
 		player.addExhaustion(0.005F);
 		
 		if (EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, stack) > 0 && te instanceof TileEntityMetadata) {
-			java.util.List<ItemStack> items = new java.util.ArrayList<ItemStack>();
+			java.util.List<ItemStack> items = new java.util.ArrayList<>();
 			TileEntityMetadata tile = (TileEntityMetadata) te;
 			int damage = getDroppedMeta(state, tile.getTileMetadata());
 			ItemStack itemstack = TileEntityMetadata.getItemStack(this, damage);

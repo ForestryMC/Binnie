@@ -7,7 +7,6 @@ import net.minecraft.block.state.pattern.BlockStateMatcher;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
 
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.blocks.BlockExtraBeeHive;

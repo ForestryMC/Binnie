@@ -91,7 +91,7 @@ public class Tooltip {
 		Help,
 		Information,
 		User,
-		Power;
+		Power
 	}
 
 	public interface ITooltipType {
