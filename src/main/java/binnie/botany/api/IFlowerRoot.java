@@ -26,7 +26,7 @@ public interface IFlowerRoot extends ISpeciesRoot {
 	IFlowerGenome templateAsGenome(IAllele[] template);
 
 	@Override
-	IFlowerGenome templateAsGenome(IAllele[] templateFirst, IAllele[] templateSecond);
+	IFlowerGenome templateAsGenome(IAllele[] templateActive, IAllele[] templateInactive);
 
 	@Override
 	IBotanistTracker getBreedingTracker(World world, @Nullable GameProfile profile);

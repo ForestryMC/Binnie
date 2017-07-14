@@ -148,8 +148,8 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	}
 
 	@Override
-	public IFlowerGenome templateAsGenome(final IAllele[] templateFirst, final IAllele[] templateInactive) {
-		return new FlowerGenome(this.templateAsChromosomes(templateFirst, templateInactive));
+	public IFlowerGenome templateAsGenome(final IAllele[] templateActive, final IAllele[] templateInactive) {
+		return new FlowerGenome(templateAsChromosomes(templateActive, templateInactive));
 	}
 
 	@Override
