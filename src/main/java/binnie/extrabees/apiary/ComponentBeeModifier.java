@@ -70,11 +70,6 @@ public class ComponentBeeModifier extends MachineComponent implements IBeeModifi
 	}
 
 	// TODO unused method?
-	public void onPostQueenDeath(IBee queen) {
-		// ignored
-	}
-
-	// TODO unused method?
 	public boolean onEggLaid(IBee queen) {
 		return false;
 	}

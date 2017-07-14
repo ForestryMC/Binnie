@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class HiveDrop implements IHiveDrop {
 	private IAllele[] template;
@@ -27,9 +28,7 @@ public class HiveDrop implements IHiveDrop {
 		}
 		this.template = template;
 		this.chance = chance;
-		for (ItemStack stack : bonus) {
-			additional.add(stack);
-		}
+		Collections.addAll(additional, bonus);
 	}
 
 	@Override
@@ -48,7 +47,7 @@ public class HiveDrop implements IHiveDrop {
 
 	@Override
 	public ArrayList<ItemStack> getAdditional(World world, int x, int y, int z, int fortune) {
-		ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+		ArrayList<ItemStack> ret = new ArrayList<>();
 		for (ItemStack stack : additional) {
 			ret.add(stack.copy());
 		}

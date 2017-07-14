@@ -226,7 +226,7 @@ public class TreeBreedingSystem extends BreedingSystem {
 			return new ArrayList<>();
 		}
 		Collection<IAlleleSpecies> set = nei ? getAllSpecies() : getDiscoveredSpecies(world, player);
-		List<IAlleleSpecies> found = new ArrayList<IAlleleSpecies>();
+		List<IAlleleSpecies> found = new ArrayList<>();
 		for (IAlleleSpecies species : set) {
 			IAlleleTreeSpecies tSpecies = (IAlleleTreeSpecies) species;
 			ITreeGenome genome = TreeManager.treeRoot.templateAsGenome(TreeManager.treeRoot.getTemplate(tSpecies.getUID()));

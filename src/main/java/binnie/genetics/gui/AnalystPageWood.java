@@ -66,9 +66,7 @@ public class AnalystPageWood extends AnalystPageProduce {
 		}
 
 		Collection<ItemStack> allProducts = new UniqueItemStackSet();
-		for (ItemStack stack2 : products) {
-			allProducts.add(stack2);
-		}
+		allProducts.addAll(products);
 
 		Collection<ItemStack> refinedProducts = new UniqueItemStackSet();
 		refinedProducts.addAll(getAllProductsAndFluids(allProducts));

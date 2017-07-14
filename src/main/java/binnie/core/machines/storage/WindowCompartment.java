@@ -142,7 +142,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			@Override
 			public void onEvent(EventValueChanged event) {
 				NBTTagCompound nbt = new NBTTagCompound();
-				int i = ((Integer) event.getValue()).intValue();
+				int i = (Integer) event.getValue();
 				nbt.setByte("i", (byte) i);
 				Window.get(tab).sendClientAction("tab-change", nbt);
 				currentTab = i;
@@ -150,10 +150,10 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		}.setOrigin(EventHandler.Origin.DirectChild, tab));
 		x += 24;
 
-		ControlPages<Integer> compartmentPages = new ControlPages<Integer>(controlCompartment, 24.0f, 0.0f, compartmentPageWidth, compartmentPageHeight);
+		ControlPages<Integer> compartmentPages = new ControlPages<>(controlCompartment, 24.0f, 0.0f, compartmentPageWidth, compartmentPageHeight);
 		ControlPage[] page = new ControlPage[inv.getTabNumber()];
 		for (int p = 0; p < inv.getTabNumber(); ++p) {
-			page[p] = new ControlPage(compartmentPages, Integer.valueOf(p));
+			page[p] = new ControlPage(compartmentPages, p);
 		}
 		CraftGUIUtil.linkWidgets(tab, compartmentPages);
 		int i = 0;
@@ -210,7 +210,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				@Override
 				public void onEvent(EventValueChanged event) {
 					NBTTagCompound nbt = new NBTTagCompound();
-					int i = ((Integer) event.getValue()).intValue();
+					int i = (Integer) event.getValue();
 					nbt.setByte("i", (byte) i);
 					Window.get(tab).sendClientAction("tab-change", nbt);
 					currentTab = i;
@@ -374,7 +374,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 
 				if (sortByName) {
 					List<Entry<Integer, String>> list = new LinkedList(slotIds.entrySet());
-					Collections.sort(list, new Comparator<Entry<Integer, String>>() {
+					list.sort(new Comparator<Entry<Integer, String>>() {
 						@Override
 						public int compare(Entry<Integer, String> o1, Entry<Integer, String> o2) {
 							return -o2.getValue().compareTo(o1.getValue());

@@ -68,7 +68,7 @@ public class ModuleGenetics implements IInitializable {
 
 	private void generateBranches() {
 		for (String hierarchy : branches) {
-			List<String> set = new ArrayList<String>();
+			List<String> set = new ArrayList<>();
 			for (String string : hierarchy.split(" ", 0)) {
 				set.add(string.toLowerCase());
 			}

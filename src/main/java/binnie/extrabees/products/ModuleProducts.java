@@ -1,11 +1,8 @@
 package binnie.extrabees.products;
 
 import binnie.core.IInitializable;
-import binnie.core.Mods;
 import binnie.extrabees.ExtraBees;
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class ModuleProducts implements IInitializable {

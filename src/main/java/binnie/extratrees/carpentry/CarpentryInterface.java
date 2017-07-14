@@ -81,7 +81,7 @@ public class CarpentryInterface implements ICarpentryInterface {
 
 	@Override
 	public Collection<IDesignCategory> getAllDesignCategories() {
-		List<IDesignCategory> categories = new ArrayList<IDesignCategory>();
+		List<IDesignCategory> categories = new ArrayList<>();
 		for (IDesignCategory category : CarpentryInterface.designCategories.values()) {
 			if (category.getDesigns().size() > 0) {
 				categories.add(category);
@@ -92,7 +92,7 @@ public class CarpentryInterface implements ICarpentryInterface {
 
 	@Override
 	public List<IDesign> getSortedDesigns() {
-		List<IDesign> designs = new ArrayList<IDesign>();
+		List<IDesign> designs = new ArrayList<>();
 		for (IDesignCategory category : getAllDesignCategories()) {
 			designs.addAll(category.getDesigns());
 		}

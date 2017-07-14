@@ -83,13 +83,8 @@ public class AnalystPageFruit extends AnalystPageProduce {
 		}
 
 		Collection<ItemStack> allProducts = new UniqueItemStackSet();
-		for (ItemStack stack3 : products) {
-			allProducts.add(stack3);
-		}
-
-		for (ItemStack stack3 : specialties) {
-			allProducts.add(stack3);
-		}
+		allProducts.addAll(products);
+		allProducts.addAll(specialties);
 
 		Collection<ItemStack> refinedProducts = new UniqueItemStackSet();
 		refinedProducts.addAll(getAllProductsAndFluids(allProducts));

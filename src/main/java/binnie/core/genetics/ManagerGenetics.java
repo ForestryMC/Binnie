@@ -207,10 +207,10 @@ public class ManagerGenetics extends ManagerBase {
 				throw new NullPointerException("Allele is null!");
 			}
 			if (o1 instanceof IAlleleFloat && o2 instanceof IAlleleFloat) {
-				return Float.valueOf(((IAlleleFloat) o1).getValue()).compareTo(Float.valueOf(((IAlleleFloat) o2).getValue()));
+				return Float.valueOf(((IAlleleFloat) o1).getValue()).compareTo(((IAlleleFloat) o2).getValue());
 			}
 			if (o1 instanceof IAlleleInteger && o2 instanceof IAlleleInteger && !(o1 instanceof AlleleColor)) {
-				return Integer.valueOf(((IAlleleInteger) o1).getValue()).compareTo(Integer.valueOf(((IAlleleInteger) o2).getValue()));
+				return Integer.valueOf(((IAlleleInteger) o1).getValue()).compareTo(((IAlleleInteger) o2).getValue());
 			}
 			if (o1.getName() != null && o2.getName() != null) {
 				return o1.getName().compareTo(o2.getName());

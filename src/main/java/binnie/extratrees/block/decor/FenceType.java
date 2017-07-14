@@ -22,7 +22,7 @@ public class FenceType {
 	}
 
 	public static Collection<FenceType> values() {
-		List<FenceType> list = new ArrayList<FenceType>();
+		List<FenceType> list = new ArrayList<>();
 		for (int size = 0; size < 3; ++size) {
 			for (boolean solid : new boolean[]{false, true}) {
 				for (boolean embedded : new boolean[]{false, true}) {

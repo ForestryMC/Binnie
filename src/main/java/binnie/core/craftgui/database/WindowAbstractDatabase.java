@@ -119,7 +119,7 @@ public abstract class WindowAbstractDatabase extends Window {
 					widgets.listBox.setValidator(new IValidator<IWidget>() {
 						@Override
 						public boolean isValid(IWidget object) {
-							return event.getValue() == "" || ((ControlTextOption) object).getText().toLowerCase().contains(event.getValue().toLowerCase());
+							return event.getValue().isEmpty() || ((ControlTextOption) object).getText().toLowerCase().contains(event.getValue().toLowerCase());
 						}
 					});
 				}
