@@ -34,8 +34,8 @@ public class AlleleEffectNone implements IAlleleFlowerEffect {
 	}
 
 	@Override
-	public IEffectData doEffect(final IFlowerGenome genome, final IEffectData storedData, final World world, final int x, final int y, final int z) {
-		return storedData;
+	public IEffectData doEffect(final IFlowerGenome genome, final IEffectData effect, final World world, final int x, final int y, final int z) {
+		return effect;
 	}
 
 	@Override

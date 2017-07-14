@@ -77,7 +77,7 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 		if (gardening.isSoil(block) && !BinnieCore.getBinnieProxy().isSimulating(worldIn)) {
 			IBlockSoil soil = (IBlockSoil) block;
 			String info = I18N.localise("botany.soil.type") + ": ";
-			info = info + soil.getType(worldIn, pos).getTranslated(true);
+			info = info + soil.getType(worldIn, pos).getTranslated();
 			info += ", " + TextFormatting.WHITE + I18N.localise("botany.moisture") + ": ";
 			info = info + soil.getMoisture(worldIn, pos).getLocalisedName(true);
 			info += ", " + TextFormatting.WHITE + I18N.localise("botany.ph") + ": ";

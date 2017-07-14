@@ -3,7 +3,7 @@ package binnie.botany.craftgui;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.botany.api.IColourMix;
+import binnie.botany.api.IColorMix;
 import binnie.core.craftgui.Attribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
@@ -19,10 +19,10 @@ import binnie.core.util.I18N;
 public class ControlColorMixSymbol extends Control implements ITooltip {
 	static Texture MutationPlus = new StandardTexture(2, 94, 16, 16, CraftGUITextureSheet.Controls2);
 	static Texture MutationArrow = new StandardTexture(20, 94, 32, 16, CraftGUITextureSheet.Controls2);
-	IColourMix value;
+	IColorMix value;
 	int type;
 
-	protected ControlColorMixSymbol(final IWidget parent, final int x, final int y, final int type, final IColourMix value) {
+	protected ControlColorMixSymbol(final IWidget parent, final int x, final int y, final int type, final IColorMix value) {
 		super(parent, x, y, 16 + type * 16, 16);
 		this.value = value;
 		this.type = type;
@@ -40,7 +40,7 @@ public class ControlColorMixSymbol extends Control implements ITooltip {
 		}
 	}
 
-	public void setValue(final IColourMix value) {
+	public void setValue(final IColorMix value) {
 		this.value = value;
 		this.setColour(0xffffff);
 	}

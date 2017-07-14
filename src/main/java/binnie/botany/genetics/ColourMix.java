@@ -1,9 +1,9 @@
 package binnie.botany.genetics;
 
-import binnie.botany.api.IColourMix;
+import binnie.botany.api.IColorMix;
 import binnie.botany.api.IFlowerColour;
 
-public class ColourMix implements IColourMix {
+public class ColourMix implements IColorMix {
 	IFlowerColour colour1;
 	IFlowerColour colour2;
 	IFlowerColour result;
@@ -17,18 +17,18 @@ public class ColourMix implements IColourMix {
 	}
 
 	@Override
-	public IFlowerColour getColourFirst() {
+	public IFlowerColour getColorFirst() {
 		return this.colour1;
 	}
 
 	@Override
-	public IFlowerColour getColourSecond() {
+	public IFlowerColour getColorSecond() {
 		return this.colour2;
 	}
 
 	@Override
-	public boolean isMutation(final IFlowerColour a, final IFlowerColour b) {
-		return (a == this.colour1 && b == this.colour2) || (a == this.colour2 && b == this.colour1);
+	public boolean isMutation(final IFlowerColour colorFirst, final IFlowerColour colorSecond) {
+		return (colorFirst == this.colour1 && colorSecond == this.colour2) || (colorFirst == this.colour2 && colorSecond == this.colour1);
 	}
 
 	@Override

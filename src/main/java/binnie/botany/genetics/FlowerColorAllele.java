@@ -50,7 +50,7 @@ public class FlowerColorAllele implements IFlowerColour, IAlleleInteger {
 	}
 
 	@Override
-	public int getColor(final boolean dis) {
+	public int getColor(boolean dis) {
 		return dis ? this.colorDis : this.color;
 	}
 

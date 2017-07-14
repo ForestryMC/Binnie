@@ -83,7 +83,7 @@ public class AlleleFlowerSpecies extends AlleleSpecies implements IAlleleFlowerS
 	}
 
 	@Override
-	public int getFlowerColour(EnumFlowerStage type, int renderPass) {
+	public int getFlowerColor(EnumFlowerStage type, int renderPass) {
 		return 0;
 	}
 
