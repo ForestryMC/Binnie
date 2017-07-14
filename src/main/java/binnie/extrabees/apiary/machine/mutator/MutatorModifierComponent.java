@@ -23,7 +23,8 @@ public class MutatorModifierComponent extends ComponentBeeModifier implements IB
 	}
 
 	@Override
-	public void onPostQueenDeath(IBee queen) {
+	public void onQueenDeath() {
+		super.onQueenDeath();
 		getUtil().decreaseStack(AlvearyMutator.SLOT_MUTATOR, 1);
 	}
 }
