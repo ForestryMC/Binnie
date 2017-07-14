@@ -1,10 +1,10 @@
 package binnie.botany.api;
 
-import javax.annotation.Nullable;
-
+import binnie.core.util.I18N;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
+
+import javax.annotation.Nullable;
 
 public enum EnumAcidity implements IStringSerializable {
 	ACID(TextFormatting.RED),
@@ -24,9 +24,9 @@ public enum EnumAcidity implements IStringSerializable {
 	}
 
 	public String getLocalisedName(boolean withColor) {
-		String localisedName = I18n.translateToLocal("botany.ph." + getName());
-		if(withColor && color != null){
-			localisedName +=color;
+		String localisedName = I18N.localise("botany.ph." + getName());
+		if (withColor && color != null) {
+			localisedName += color;
 		}
 		return localisedName;
 	}
