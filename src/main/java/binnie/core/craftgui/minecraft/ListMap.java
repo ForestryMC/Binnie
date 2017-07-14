@@ -11,7 +11,7 @@ class ListMap<T> implements List<T> {
 	private LinkedHashMap<Integer, T> map;
 
 	ListMap() {
-		map = new LinkedHashMap<Integer, T>();
+		map = new LinkedHashMap<>();
 	}
 
 	@Override

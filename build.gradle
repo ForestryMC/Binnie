@@ -64,5 +64,5 @@ task gitChangelogTask(type: se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask
     untaggedName = "Current release ${project.version}"
     fromCommit = "dbc5c1a564c39e4a9c042411d1bdbe450985ce2c"
     toRef =  "HEAD"
-    templateContent = file('changelog.mustache').getText('UTF-8');
+    templateContent = file('changelog.mustache').getText('UTF-8')
 }

@@ -92,7 +92,7 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener {
 			throw new RuntimeException("Parameter must have between one and four numbers");
 		}
 
-		List<Float> f = new ArrayList<Float>();
+		List<Float> f = new ArrayList<>();
 		for (String string : split) {
 			f.add(Float.parseFloat(string));
 		}
@@ -113,7 +113,7 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener {
 		if (split.length < 1 || split.length > 4) {
 			throw new RuntimeException("Parameter must have between one and four numbers");
 		}
-		List<Float> f = new ArrayList<Float>();
+		List<Float> f = new ArrayList<>();
 		for (String string : split) {
 			f.add(Float.parseFloat(string));
 		}

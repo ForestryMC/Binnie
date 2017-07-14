@@ -2,7 +2,6 @@ package binnie.extrabees.apiary.machine.mutator;
 
 import binnie.core.machines.Machine;
 import binnie.extrabees.apiary.ComponentBeeModifier;
-import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
@@ -24,7 +23,6 @@ public class MutatorModifierComponent extends ComponentBeeModifier implements IB
 
 	@Override
 	public void onQueenDeath() {
-		super.onQueenDeath();
 		getUtil().decreaseStack(AlvearyMutator.SLOT_MUTATOR, 1);
 	}
 }

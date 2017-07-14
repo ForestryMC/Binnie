@@ -305,7 +305,7 @@ public class Widget implements IWidget {
 		}
 
 		onUpdateClient();
-		List<IWidget> deletedWidgets = new ArrayList<IWidget>();
+		List<IWidget> deletedWidgets = new ArrayList<>();
 		for (IWidget widget : getWidgets()) {
 			if (widget.hasAttribute(WidgetAttribute.NEEDS_DELETION)) {
 				deletedWidgets.add(widget);

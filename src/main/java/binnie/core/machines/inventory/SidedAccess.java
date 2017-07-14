@@ -19,7 +19,7 @@ class SidedAccess {
 	}
 
 	public AccessDirection getAccess(ForgeDirection side) {
-		return accesses.containsKey(side) ? accesses.get(side) : base;
+		return accesses.getOrDefault(side, base);
 	}
 
 	public boolean canInsert(ForgeDirection side) {

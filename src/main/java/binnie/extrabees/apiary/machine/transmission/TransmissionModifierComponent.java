@@ -26,7 +26,7 @@ public class TransmissionModifierComponent extends ComponentBeeModifier implemen
 		}
 
 		TileExtraBeeAlveary tile = (TileExtraBeeAlveary) getMachine().getTileEntity();
-		List<IEnergyHandler> handlers = new ArrayList<IEnergyHandler>();
+		List<IEnergyHandler> handlers = new ArrayList<>();
 		for (TileEntity alvearyTile : tile.getAlvearyBlocks()) {
 			if (alvearyTile instanceof IEnergyHandler && alvearyTile != tile) {
 				handlers.add((IEnergyHandler) alvearyTile);

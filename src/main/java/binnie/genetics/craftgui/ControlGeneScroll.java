@@ -46,7 +46,7 @@ public class ControlGeneScroll extends Control implements IControlValue<Breeding
 		boolean isNEI = ((WindowGeneBank) Window.get(this)).isNei;
 
 		for (Map.Entry<IChromosomeType, List<IAllele>> entry : genes.entrySet()) {
-			List<IAllele> discovered = new ArrayList<IAllele>();
+			List<IAllele> discovered = new ArrayList<>();
 			for (IAllele allele : entry.getValue()) {
 				Gene gene = new Gene(allele, entry.getKey(), system.getSpeciesRoot());
 				if ((isNEI || tracker.isSequenced(new Gene(allele, entry.getKey(), system.getSpeciesRoot()))) && gene.getName().toLowerCase().contains(filter)) {

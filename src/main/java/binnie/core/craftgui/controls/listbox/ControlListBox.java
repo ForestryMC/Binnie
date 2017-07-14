@@ -15,7 +15,7 @@ public class ControlListBox<T> extends ControlScrollableContent<ControlList<T>> 
 
 	@Override
 	public void initialise() {
-		setScrollableContent(new ControlList<T>(this, 1.0f, 1.0f, w() - 2.0f - scrollBarSize, h() - 2.0f));
+		setScrollableContent(new ControlList<>(this, 1.0f, 1.0f, w() - 2.0f - scrollBarSize, h() - 2.0f));
 		addEventHandler(new EventKey.Down.Handler() {
 			@Override
 			public void onEvent(EventKey.Down event) {

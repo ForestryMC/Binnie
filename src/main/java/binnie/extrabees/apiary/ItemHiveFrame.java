@@ -25,7 +25,7 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier {
 	}
 
 	@Override
-	public String getItemStackDisplayName(ItemStack par1ItemStack) {
+	public String getItemStackDisplayName(ItemStack stack) {
 		return frame.getName();
 	}
 

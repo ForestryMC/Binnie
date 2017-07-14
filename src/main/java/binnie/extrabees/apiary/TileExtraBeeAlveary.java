@@ -77,7 +77,6 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements
 	public void onMachineBroken() {
 		min = null;
 		max = null;
-
 	}
 
 	@Override
@@ -93,13 +92,11 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements
 	@Override
 	public void updateClient(int arg0) {
 		super.updateEntity();
-
 	}
 
 	@Override
 	public void updateServer(int arg0) {
 		super.updateEntity();
-
 	}
 
 	@Override
