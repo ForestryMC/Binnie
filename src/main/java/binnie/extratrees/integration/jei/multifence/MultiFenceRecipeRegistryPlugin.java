@@ -17,7 +17,6 @@ import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.api.recipe.IRecipeRegistryPlugin;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
-import mezz.jei.gui.Focus;
 
 public class MultiFenceRecipeRegistryPlugin implements IRecipeRegistryPlugin {
 
@@ -25,7 +24,6 @@ public class MultiFenceRecipeRegistryPlugin implements IRecipeRegistryPlugin {
 
 	@Override
 	public <V> List<String> getRecipeCategoryUids(IFocus<V> focus) {
-		focus = Focus.check(focus);
 		V ingredient = focus.getValue();
 
 		if (!(ingredient instanceof ItemStack)) {
@@ -54,7 +52,6 @@ public class MultiFenceRecipeRegistryPlugin implements IRecipeRegistryPlugin {
 
 	@Override
 	public <T extends IRecipeWrapper, V> List<T> getRecipeWrappers(IRecipeCategory<T> recipeCategory, IFocus<V> focus) {
-		focus = Focus.check(focus);
 		V ingredient = focus.getValue();
 		if (!recipeCategory.getUid().equals(VanillaRecipeCategoryUid.CRAFTING) || !(ingredient instanceof ItemStack)) {
 			return Collections.emptyList();
