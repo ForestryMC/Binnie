@@ -1,6 +1,5 @@
 package binnie.extrabees.client.gui;
 
-import javax.annotation.Nonnull;
 import java.awt.Dimension;
 
 import forestry.core.utils.SlotUtil;
@@ -52,7 +51,7 @@ public abstract class AbstractAlvearyContainer extends Container {
 	}
 
 	@Override
-	public boolean canInteractWith(@Nonnull EntityPlayer playerIn) {
+	public boolean canInteractWith(EntityPlayer playerIn) {
 		return true;
 	}
 

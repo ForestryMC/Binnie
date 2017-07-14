@@ -79,6 +79,8 @@ import binnie.extratrees.gen.WorldGenTree3;
 import binnie.extratrees.gen.WorldGenTropical;
 import binnie.extratrees.gen.WorldGenWalnut;
 
+import javax.annotation.Nullable;
+
 public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, ITreeGenerator {
 	OrchardApple("malus", "domestica", EnumLeafType.DECIDUOUS, new Color(0x09E67E), new Color(0xFF9CF3), EnumSaplingType.Default, EnumETLog.Apple, new Color(0x7B7A7B)) {
 		@Override
@@ -2187,7 +2189,7 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 	}
 
 	@Override
-	public boolean setLeaves(ITreeGenome genome, World world, GameProfile owner, BlockPos pos) {
+	public boolean setLeaves(ITreeGenome genome, World world, @Nullable GameProfile owner, BlockPos pos) {
 		boolean placed = world.setBlockState(pos, PluginArboriculture.getBlocks().leaves.getDefaultState());
 		if (!placed) {
 			return false;
