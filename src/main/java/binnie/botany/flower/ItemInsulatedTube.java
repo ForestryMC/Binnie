@@ -1,22 +1,10 @@
 package binnie.botany.flower;
 
+import binnie.botany.CreativeTabBotany;
+import binnie.core.item.ItemCore;
+import binnie.core.util.I18N;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
-
-import java.util.Collection;
-import java.util.List;
-
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.TextFormatting;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import forestry.api.circuits.ChipsetManager;
 import forestry.api.circuits.ICircuit;
 import forestry.api.circuits.ICircuitLayout;
@@ -24,10 +12,18 @@ import forestry.api.core.IModelManager;
 import forestry.core.circuits.SolderManager;
 import forestry.core.items.IColoredItem;
 import forestry.core.utils.Translator;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.botany.CreativeTabBotany;
-import binnie.core.item.ItemCore;
-import binnie.core.util.I18N;
+import java.util.Collection;
+import java.util.List;
 
 public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 	public ItemInsulatedTube() {
@@ -112,6 +108,10 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 	@Override
 	public String getItemStackDisplayName(ItemStack itemStack) {
 		int meta = itemStack.getMetadata();
-		return I18N.localise("item.botany.insulated_tube.name", EnumTubeMaterial.get(meta).getDisplayName(), EnumTubeInsulate.get(meta).getDisplayName());
+		return I18N.localise(
+			"item.botany.insulated_tube.name",
+			EnumTubeMaterial.get(meta).getDisplayName(),
+			EnumTubeInsulate.get(meta).getDisplayName()
+		);
 	}
 }

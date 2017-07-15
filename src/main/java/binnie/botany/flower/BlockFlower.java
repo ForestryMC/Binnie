@@ -1,9 +1,20 @@
 package binnie.botany.flower;
 
-import javax.annotation.Nullable;
-import java.util.List;
-import java.util.Random;
-
+import binnie.botany.Botany;
+import binnie.botany.api.IFlower;
+import binnie.botany.api.IFlowerGenome;
+import binnie.botany.api.IFlowerRoot;
+import binnie.botany.api.IFlowerType;
+import binnie.botany.core.BotanyCore;
+import binnie.botany.genetics.EnumFlowerType;
+import binnie.botany.genetics.FlowerDefinition;
+import binnie.botany.network.PacketID;
+import binnie.core.BinnieCore;
+import binnie.core.network.packet.MessageNBT;
+import binnie.core.util.TileUtil;
+import com.mojang.authlib.GameProfile;
+import forestry.api.core.IStateMapperRegister;
+import forestry.core.blocks.IColoredBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
@@ -27,33 +38,17 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import com.mojang.authlib.GameProfile;
-
 import net.minecraftforge.client.model.ModelLoader;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.IStateMapperRegister;
-import forestry.core.blocks.IColoredBlock;
-
-import binnie.botany.Botany;
-import binnie.botany.api.IFlower;
-import binnie.botany.api.IFlowerGenome;
-import binnie.botany.api.IFlowerRoot;
-import binnie.botany.api.IFlowerType;
-import binnie.botany.core.BotanyCore;
-import binnie.botany.genetics.EnumFlowerType;
-import binnie.botany.genetics.FlowerDefinition;
-import binnie.botany.network.PacketID;
-import binnie.core.BinnieCore;
-import binnie.core.network.packet.MessageNBT;
-import binnie.core.util.TileUtil;
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Random;
 
 public class BlockFlower extends BlockContainer implements IColoredBlock, IStateMapperRegister {
 	public static final AxisAlignedBB FLOWER_BLOCK_AABB = new AxisAlignedBB(0.3D, 0.0D, 0.3D, 0.7D, 0.6D, 0.7D);
-	/* PROPERTYS */
+	/* PROPERTIES */
 	public static final PropertyFlower FLOWER = new PropertyFlower("flower", IFlowerType.class);
 	public static final PropertyInteger SECTION = PropertyInteger.create("section", 0, EnumFlowerType.highestSection - 1);
 	public static final PropertyBool FLOWERED = PropertyBool.create("flowered");
@@ -61,14 +56,13 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 
 	public BlockFlower() {
 		super(Material.PLANTS);
-		final float f = 0.2f;
-		this.setTickRandomly(true);
-		this.setRegistryName("flower");
-		this.setSoundType(SoundType.PLANT);
+		setTickRandomly(true);
+		setRegistryName("flower");
+		setSoundType(SoundType.PLANT);
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(final World var1, final int i) {
+	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileEntityFlower();
 	}
 
@@ -81,39 +75,46 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack heldItem = player.getHeldItemMainhand();
-		if (!heldItem.isEmpty() && heldItem.getItem() == BinnieCore.getFieldKit() && player.isSneaking()) {
-			if (world.isRemote) {
-				return true;
-			}
-			TileEntity tile = world.getTileEntity(pos);
-			if (tile instanceof TileEntityFlower) {
-				TileEntityFlower tileFlower = (TileEntityFlower) tile;
-				IFlower flower = tileFlower.getFlower();
-				if (flower != null) {
-					IFlowerGenome flowerGenome = flower.getGenome();
-					NBTTagCompound info = new NBTTagCompound();
-					info.setString("Species", flowerGenome.getPrimary().getUID());
-					info.setString("Species2", flowerGenome.getSecondary().getUID());
-					info.setFloat("Age", flower.getAge() / flowerGenome.getLifespan());
-					info.setShort("Colour", (short) flowerGenome.getPrimaryColor().getID());
-					info.setShort("Colour2", (short) flowerGenome.getSecondaryColor().getID());
-					info.setBoolean("Wilting", flower.isWilted());
-					info.setBoolean("Flowered", flower.hasFlowered());
-					Botany.proxy.sendToPlayer(new MessageNBT(PacketID.FIELDKIT.ordinal(), info), player);
-					heldItem.damageItem(1, player);
-				}
-			}
+		if (heldItem.isEmpty() || heldItem.getItem() != BinnieCore.getFieldKit() || !player.isSneaking()) {
+			return false;
+		}
+		if (world.isRemote) {
 			return true;
 		}
-		return false;
+
+		TileEntity tile = world.getTileEntity(pos);
+		if (!(tile instanceof TileEntityFlower)) {
+			return true;
+		}
+
+		TileEntityFlower tileFlower = (TileEntityFlower) tile;
+		IFlower flower = tileFlower.getFlower();
+		if (flower == null) {
+			return true;
+		}
+
+		IFlowerGenome flowerGenome = flower.getGenome();
+		NBTTagCompound info = new NBTTagCompound();
+		info.setString("Species", flowerGenome.getPrimary().getUID());
+		info.setString("Species2", flowerGenome.getSecondary().getUID());
+		info.setFloat("Age", flower.getAge() / flowerGenome.getLifespan());
+		info.setShort("Colour", (short) flowerGenome.getPrimaryColor().getID());
+		info.setShort("Colour2", (short) flowerGenome.getSecondaryColor().getID());
+		info.setBoolean("Wilting", flower.isWilted());
+		info.setBoolean("Flowered", flower.hasFlowered());
+		Botany.proxy.sendToPlayer(new MessageNBT(PacketID.FIELDKIT.ordinal(), info), player);
+		heldItem.damageItem(1, player);
+		return true;
 	}
 
+	// TODO fix deprecated
 	@Override
 	@Nullable
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
 		return null;
 	}
 
+	// TODO fix deprecated
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		TileEntity tile = source.getTileEntity(pos);
@@ -126,6 +127,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		return FLOWER_BLOCK_AABB;
 	}
 
+	// TODO fix deprecated
 	@Override
 	public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World world, BlockPos pos) {
 		TileEntity tile = world.getTileEntity(pos);
@@ -138,11 +140,13 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		return FLOWER_BLOCK_AABB.offset(pos);
 	}
 
+	// TODO fix deprecated
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
+	// TODO fix deprecated
 	@Override
 	public boolean isFullCube(IBlockState state) {
 		return false;
@@ -152,22 +156,23 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 		super.onBlockPlacedBy(world, pos, state, placer, stack);
 		IFlowerRoot flowerRoot = BotanyCore.getFlowerRoot();
-		final TileEntity flower = world.getTileEntity(pos);
+		TileEntity flower = world.getTileEntity(pos);
 		if (!BinnieCore.getBinnieProxy().isSimulating(world)) {
 			if (flower != null && flower instanceof TileEntityFlower) {
-				final IFlower f = flowerRoot.getMember(stack);
+				IFlower f = flowerRoot.getMember(stack);
 				if (f != null) {
 					((TileEntityFlower) flower).setRender(new TileEntityFlower.RenderInfo(f, (TileEntityFlower) flower));
 				}
 			}
 			return;
 		}
-		final TileEntity below = world.getTileEntity(pos.down());
+
+		TileEntity below = world.getTileEntity(pos.down());
 		if (flower != null && flower instanceof TileEntityFlower) {
 			if (below instanceof TileEntityFlower) {
 				((TileEntityFlower) flower).setSection(((TileEntityFlower) below).getSection());
 			} else {
-				final GameProfile owner = (placer instanceof EntityPlayer) ? ((EntityPlayer) placer).getGameProfile() : null;
+				GameProfile owner = (placer instanceof EntityPlayer) ? ((EntityPlayer) placer).getGameProfile() : null;
 				((TileEntityFlower) flower).create(stack, owner);
 			}
 		}
@@ -185,9 +190,8 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 					return flower.getStemColour();
 				} else if (tintIndex == 1) {
 					return flower.getPrimaryColour();
-				} else {
-					return flower.getSecondaryColour();
 				}
+				return flower.getSecondaryColour();
 			}
 		}
 		return 0xffffff;
@@ -204,11 +208,14 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		if (tile instanceof TileEntityFlower && ((TileEntityFlower) tile).getSection() > 0) {
 			return downState.getBlock() == Botany.flower;
 		}
-		return this.canPlaceBlockOn(downState.getBlock());
+		return canPlaceBlockOn(downState.getBlock());
 	}
 
-	protected boolean canPlaceBlockOn(final Block block) {
-		return block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.FARMLAND || BotanyCore.getGardening().isSoil(block);
+	protected boolean canPlaceBlockOn(Block block) {
+		return block == Blocks.GRASS
+			|| block == Blocks.DIRT
+			|| block == Blocks.FARMLAND
+			|| BotanyCore.getGardening().isSoil(block);
 	}
 
 	@Override
@@ -223,6 +230,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		return EnumOffsetType.XZ;
 	}
 
+	// TODO fix deprecated
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
@@ -255,14 +263,15 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		return BlockRenderLayer.CUTOUT;
 	}
 
+	// TODO fix deprecated
 	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
-		this.checkAndDropBlock(worldIn, pos);
-		final TileEntity tile = worldIn.getTileEntity(pos);
+		checkAndDropBlock(worldIn, pos);
+		TileEntity tile = worldIn.getTileEntity(pos);
 		if (tile instanceof TileEntityFlower) {
-			final TileEntityFlower flower = (TileEntityFlower) tile;
+			TileEntityFlower flower = (TileEntityFlower) tile;
 			if (flower.getSection() == 0 && flower.getFlower() != null && flower.getFlower().getAge() > 0 && flower.getFlower().getGenome().getPrimary().getType().getSections() > 1 && worldIn.getBlockState(pos.up()).getBlock() != Botany.flower) {
-				this.dropBlockAsItem(worldIn, pos, worldIn.getBlockState(pos), 0);
+				dropBlockAsItem(worldIn, pos, worldIn.getBlockState(pos), 0);
 				worldIn.setBlockToAir(pos);
 			}
 		}
@@ -270,18 +279,18 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 
 	@Override
 	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
-		final TileEntity tile = world.getTileEntity(pos);
+		TileEntity tile = world.getTileEntity(pos);
 		if (tile instanceof TileEntityFlower) {
 			((TileEntityFlower) tile).randomUpdate(rand);
-			this.checkAndDropBlock(world, pos);
+			checkAndDropBlock(world, pos);
 			return;
 		}
 		world.setBlockToAir(pos);
 	}
 
-	protected void checkAndDropBlock(final World world, final BlockPos pos) {
-		if (!this.canBlockStay(world, pos)) {
-			this.dropBlockAsItem(world, pos, world.getBlockState(pos), 0);
+	protected void checkAndDropBlock(World world, BlockPos pos) {
+		if (!canBlockStay(world, pos)) {
+			dropBlockAsItem(world, pos, world.getBlockState(pos), 0);
 			world.setBlockToAir(pos);
 		}
 	}
@@ -301,10 +310,10 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 
 	@Override
 	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
-		final List<ItemStack> drops = this.getDrops(world, pos, world.getBlockState(pos), 0);
-		final boolean hasBeenBroken = world.setBlockToAir(pos);
+		List<ItemStack> drops = getDrops(world, pos, world.getBlockState(pos), 0);
+		boolean hasBeenBroken = world.setBlockToAir(pos);
 		if (hasBeenBroken && BinnieCore.getBinnieProxy().isSimulating(world) && drops.size() > 0 && (player == null || !player.capabilities.isCreativeMode)) {
-			for (final ItemStack drop : drops) {
+			for (ItemStack drop : drops) {
 				spawnAsEntity(world, pos, drop);
 			}
 		}

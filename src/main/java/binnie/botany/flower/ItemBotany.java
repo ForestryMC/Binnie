@@ -1,10 +1,24 @@
 package binnie.botany.flower;
 
+import binnie.Binnie;
+import binnie.botany.Botany;
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.api.EnumFlowerChromosome;
+import binnie.botany.api.EnumFlowerStage;
+import binnie.botany.api.IAlleleFlowerSpecies;
+import binnie.botany.api.IFlower;
+import binnie.botany.api.IFlowerGenome;
+import binnie.botany.api.IFlowerType;
+import binnie.botany.core.BotanyCore;
+import binnie.botany.genetics.Flower;
+import binnie.core.util.I18N;
 import com.google.common.base.Preconditions;
-
-import javax.annotation.Nullable;
-import java.util.List;
-
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IPollinatable;
+import forestry.core.config.Config;
+import forestry.core.items.IColoredItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -26,41 +40,23 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.IPollinatable;
-import forestry.core.config.Config;
-import forestry.core.items.IColoredItem;
-
-import binnie.Binnie;
-import binnie.botany.Botany;
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.api.EnumFlowerChromosome;
-import binnie.botany.api.EnumFlowerStage;
-import binnie.botany.api.IAlleleFlowerSpecies;
-import binnie.botany.api.IFlower;
-import binnie.botany.api.IFlowerGenome;
-import binnie.botany.api.IFlowerType;
-import binnie.botany.core.BotanyCore;
-import binnie.botany.genetics.Flower;
-import binnie.core.util.I18N;
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemBotany extends Item implements IColoredItem, IItemModelRegister {
 	private EnumFlowerStage type;
 	private String tag;
 
-	public ItemBotany(final String name, EnumFlowerStage type, String tag) {
-		this.setCreativeTab(CreativeTabBotany.instance);
-		this.setUnlocalizedName(name);
-		setRegistryName(name);
-		this.hasSubtypes = true;
+	public ItemBotany(String name, EnumFlowerStage type, String tag) {
 		this.type = type;
 		this.tag = tag;
+		setCreativeTab(CreativeTabBotany.instance);
+		setUnlocalizedName(name);
+		setRegistryName(name);
+		hasSubtypes = true;
 	}
 
 	@Override
@@ -79,22 +75,23 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 	}
 
 	@Override
-	public boolean hasEffect(final ItemStack itemstack) {
+	public boolean hasEffect(ItemStack itemstack) {
 		if (!itemstack.hasTagCompound()) {
 			return false;
 		}
-		final IIndividual individual = this.getIndividual(itemstack);
+		IIndividual individual = getIndividual(itemstack);
 		return individual != null && individual.hasEffect();
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(final ItemStack itemStack, final EntityPlayer player, final List<String> list, final boolean flag) {
-		IFlower individual = (IFlower) this.getIndividual(itemStack);
+	public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean flag) {
+		IFlower individual = (IFlower) getIndividual(itemStack);
 		if (individual == null) {
 			list.add(TextFormatting.DARK_RED + I18N.localise("item.botany.flower.destroy"));
 			return;
 		}
+
 		IFlowerGenome genome = individual.getGenome();
 		//Colors
 		String primaryColor = genome.getPrimaryColor().getColorName();
@@ -120,7 +117,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 	}
 
 	@Nullable
-	protected IIndividual getIndividual(final ItemStack itemstack) {
+	protected IIndividual getIndividual(ItemStack itemstack) {
 		NBTTagCompound tagCompound = itemstack.getTagCompound();
 		if (tagCompound == null) {
 			return null;
@@ -128,8 +125,8 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 		return new Flower(tagCompound);
 	}
 
-	private IAlleleFlowerSpecies getPrimarySpecies(final ItemStack itemstack) {
-		final IFlower tree = BotanyCore.getFlowerRoot().getMember(itemstack);
+	private IAlleleFlowerSpecies getPrimarySpecies(ItemStack itemstack) {
+		IFlower tree = BotanyCore.getFlowerRoot().getMember(itemstack);
 		if (tree == null) {
 			return (IAlleleFlowerSpecies) BotanyCore.getFlowerRoot().getDefaultTemplate()[EnumFlowerChromosome.SPECIES.ordinal()];
 		}
@@ -137,11 +134,11 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack itemstack) {
+	public String getItemStackDisplayName(ItemStack itemstack) {
 		if (!itemstack.hasTagCompound()) {
 			return I18N.localise("item.botany.flower.corrupted.name");
 		}
-		IIndividual individual = this.getIndividual(itemstack);
+		IIndividual individual = getIndividual(itemstack);
 		if (individual != null) {
 			return individual.getDisplayName() + (!tag.isEmpty() ? " " + I18N.localise("item.botany." + tag + ".name") : "");
 		}
@@ -149,12 +146,12 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 	}
 
 	@Override
-	public void getSubItems(final Item item, final CreativeTabs tab, final NonNullList<ItemStack> itemList) {
-		this.addCreativeItems(itemList, true);
+	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> itemList) {
+		addCreativeItems(itemList, true);
 	}
 
-	public void addCreativeItems(final NonNullList<ItemStack> itemList, final boolean hideSecrets) {
-		for (final IIndividual individual : BotanyCore.getFlowerRoot().getIndividualTemplates()) {
+	public void addCreativeItems(NonNullList<ItemStack> itemList, boolean hideSecrets) {
+		for (IIndividual individual : BotanyCore.getFlowerRoot().getIndividualTemplates()) {
 			if (hideSecrets && individual.isSecret() && !Config.isDebug) {
 				continue;
 			}
@@ -166,9 +163,14 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
 		IFlower flower = BotanyCore.getFlowerRoot().getMember(stack);
 		if (flower == null) {
-			return 16777215;
+			return 0xffffff;
 		}
-		return (tintIndex == 0) ? flower.getGenome().getStemColor().getColor(flower.isWilted()) : ((tintIndex == 1) ? flower.getGenome().getPrimaryColor().getColor(flower.isWilted()) : flower.getGenome().getSecondaryColor().getColor(flower.isWilted()));
+		if (tintIndex == 0) {
+			return flower.getGenome().getStemColor().getColor(flower.isWilted());
+		}
+		return (tintIndex == 1)
+			? flower.getGenome().getPrimaryColor().getColor(flower.isWilted())
+			: flower.getGenome().getSecondaryColor().getColor(flower.isWilted());
 	}
 
 	@Override
@@ -184,12 +186,12 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack stack = player.getHeldItem(hand);
 		if (type == EnumFlowerStage.POLLEN) {
-			final IFlower flower = Binnie.GENETICS.getFlowerRoot().getMember(stack);
-			final TileEntity target = world.getTileEntity(pos);
+			IFlower flower = Binnie.GENETICS.getFlowerRoot().getMember(stack);
+			TileEntity target = world.getTileEntity(pos);
 			if (!(target instanceof IPollinatable)) {
 				return EnumActionResult.PASS;
 			}
-			final IPollinatable pollinatable = (IPollinatable) target;
+			IPollinatable pollinatable = (IPollinatable) target;
 			if (!pollinatable.canMateWith(flower)) {
 				return EnumActionResult.FAIL;
 			}
@@ -198,29 +200,28 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 				stack.shrink(1);
 			}
 			return EnumActionResult.SUCCESS;
-		} else {
-			IBlockState iblockstate = world.getBlockState(pos);
-			Block block = iblockstate.getBlock();
-
-			if (!block.isReplaceable(world, pos)) {
-				pos = pos.offset(facing);
-			}
-
-			if (stack.getCount() != 0 && player.canPlayerEdit(pos, facing, stack) && world.mayPlace(Botany.flower, pos, false, facing, null)) {
-				int i = this.getMetadata(stack.getMetadata());
-				IBlockState iblockstate1 = Botany.flower.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, i, player, hand);
-
-				if (placeBlockAt(stack, player, world, pos, facing, hitX, hitY, hitZ, iblockstate1)) {
-					SoundType soundtype = world.getBlockState(pos).getBlock().getSoundType(world.getBlockState(pos), world, pos, player);
-					world.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
-					stack.shrink(1);
-				}
-
-				return EnumActionResult.SUCCESS;
-			} else {
-				return EnumActionResult.FAIL;
-			}
 		}
+
+		IBlockState iblockstate = world.getBlockState(pos);
+		Block block = iblockstate.getBlock();
+
+		if (!block.isReplaceable(world, pos)) {
+			pos = pos.offset(facing);
+		}
+
+		if (stack.getCount() != 0 && player.canPlayerEdit(pos, facing, stack) && world.mayPlace(Botany.flower, pos, false, facing, null)) {
+			int i = getMetadata(stack.getMetadata());
+			IBlockState iblockstate1 = Botany.flower.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, i, player, hand);
+
+			if (placeBlockAt(stack, player, world, pos, facing, hitX, hitY, hitZ, iblockstate1)) {
+				SoundType soundtype = world.getBlockState(pos).getBlock().getSoundType(world.getBlockState(pos), world, pos, player);
+				world.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+				stack.shrink(1);
+			}
+
+			return EnumActionResult.SUCCESS;
+		}
+		return EnumActionResult.FAIL;
 	}
 
 	public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, IBlockState newState) {
