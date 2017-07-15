@@ -18,6 +18,6 @@ public class FrameSlotValidator extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return I18N.localise("extrabees.achine.alveay.frame.tooltip");
+		return I18N.localise("extrabees.machine.alveay.frame.tooltip");
 	}
 }
