@@ -1,16 +1,19 @@
 package binnie.botany.genetics;
 
-import binnie.Constants;
-import binnie.botany.api.EnumFlowerStage;
-import binnie.botany.api.IFlowerType;
-import forestry.api.core.IModelManager;
+import java.util.Locale;
+
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.Locale;
+import forestry.api.core.IModelManager;
+
+import binnie.Constants;
+import binnie.botany.api.EnumFlowerStage;
+import binnie.botany.api.IFlowerType;
 
 public enum EnumFlowerType implements IFlowerType<EnumFlowerType> {
 	Dandelion,
@@ -60,23 +63,23 @@ public enum EnumFlowerType implements IFlowerType<EnumFlowerType> {
 	Penstemon(2),
 	Delphinium(2),
 	Hollyhock(2);
-
+	
 	public static EnumFlowerType[] VALUES = values();
 	public static int highestSection = 2;
-
+	
 	int sections;
 	ModelResourceLocation flower;
 	ModelResourceLocation seed;
 	ModelResourceLocation pollen;
-
+	
 	EnumFlowerType() {
 		this(1);
 	}
-
+	
 	EnumFlowerType(int sections) {
 		this.sections = sections;
 	}
-
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModels(Item item, IModelManager manager, EnumFlowerStage type) {
@@ -86,7 +89,7 @@ public enum EnumFlowerType implements IFlowerType<EnumFlowerType> {
 		pollen = new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":flowers/pollen", "inventory");
 		ModelBakery.registerItemVariants(item, pollen, seed, flower);
 	}
-
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ModelResourceLocation getModel(EnumFlowerStage type, boolean flowered) {
@@ -97,17 +100,17 @@ public enum EnumFlowerType implements IFlowerType<EnumFlowerType> {
 		}
 		return flower;
 	}
-
+	
 	@Override
 	public int getID() {
 		return ordinal();
 	}
-
+	
 	@Override
 	public int getSections() {
 		return sections;
 	}
-
+	
 	@Override
 	public String getName() {
 		return name().toLowerCase(Locale.ENGLISH);

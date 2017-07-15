@@ -1,21 +1,24 @@
 package binnie.botany.flower;
 
-import binnie.botany.api.IAlleleFlowerSpecies;
-import binnie.botany.api.IFlowerType;
 import com.google.common.base.Optional;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import net.minecraft.block.properties.PropertyHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import net.minecraft.block.properties.PropertyHelper;
+
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
+
+import binnie.botany.api.IAlleleFlowerSpecies;
+import binnie.botany.api.IFlowerType;
+
 public class PropertyFlower<I extends IFlowerType<I>> extends PropertyHelper<I> {
 	public PropertyFlower(String name, Class<I> flowerTypeClass) {
 		super(name, flowerTypeClass);
 	}
-
+	
 	@Override
 	public List<I> getAllowedValues() {
 		List<I> flowerTypes = new ArrayList<>();
@@ -29,7 +32,7 @@ public class PropertyFlower<I extends IFlowerType<I>> extends PropertyHelper<I> 
 		}
 		return flowerTypes;
 	}
-
+	
 	/**
 	 * Get the name for the given value.
 	 */
@@ -37,7 +40,7 @@ public class PropertyFlower<I extends IFlowerType<I>> extends PropertyHelper<I> 
 	public String getName(IFlowerType value) {
 		return value.getName().toLowerCase(Locale.ENGLISH);
 	}
-
+	
 	@Override
 	public Optional<I> parseValue(String value) {
 		IAllele allele = AlleleManager.alleleRegistry.getAllele(value);

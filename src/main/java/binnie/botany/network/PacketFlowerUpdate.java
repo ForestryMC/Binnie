@@ -1,24 +1,25 @@
 package binnie.botany.network;
 
-import binnie.botany.flower.TileEntityFlower;
-import binnie.botany.genetics.EnumFlowerColor;
-import binnie.botany.genetics.EnumFlowerType;
+import java.io.IOException;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.math.BlockPos;
 
-import java.io.IOException;
+import binnie.botany.flower.TileEntityFlower;
+import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.genetics.EnumFlowerType;
 
 // TODO unused class?
 public class PacketFlowerUpdate extends SPacketUpdateTileEntity {
 	public TileEntityFlower.RenderInfo render;
-
+	
 	public PacketFlowerUpdate(BlockPos blockPos, int metadata, NBTTagCompound compound, TileEntityFlower.RenderInfo render) {
 		super(blockPos, metadata, compound);
 		this.render = render;
 	}
-
+	
 	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException {
 		super.readPacketData(buf);
@@ -32,7 +33,7 @@ public class PacketFlowerUpdate extends SPacketUpdateTileEntity {
 		render.wilted = buf.readBoolean();
 		render.flowered = buf.readBoolean();
 	}
-
+	
 	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException {
 		super.writePacketData(buf);

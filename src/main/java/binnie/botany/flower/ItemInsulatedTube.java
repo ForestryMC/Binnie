@@ -1,17 +1,11 @@
 package binnie.botany.flower;
 
-import binnie.botany.CreativeTabBotany;
-import binnie.core.item.ItemCore;
-import binnie.core.util.I18N;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
-import forestry.api.circuits.ChipsetManager;
-import forestry.api.circuits.ICircuit;
-import forestry.api.circuits.ICircuitLayout;
-import forestry.api.core.IModelManager;
-import forestry.core.circuits.SolderManager;
-import forestry.core.items.IColoredItem;
-import forestry.core.utils.Translator;
+
+import java.util.Collection;
+import java.util.List;
+
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,11 +13,21 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.TextFormatting;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.Collection;
-import java.util.List;
+import forestry.api.circuits.ChipsetManager;
+import forestry.api.circuits.ICircuit;
+import forestry.api.circuits.ICircuitLayout;
+import forestry.api.core.IModelManager;
+import forestry.core.circuits.SolderManager;
+import forestry.core.items.IColoredItem;
+import forestry.core.utils.Translator;
+
+import binnie.botany.CreativeTabBotany;
+import binnie.core.item.ItemCore;
+import binnie.core.util.I18N;
 
 public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 	public ItemInsulatedTube() {
@@ -32,7 +36,7 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 		setCreativeTab(CreativeTabBotany.instance);
 		setHasSubtypes(true);
 	}
-
+	
 	private static Multimap<ICircuitLayout, ICircuit> getCircuits(ItemStack itemStack) {
 		Multimap<ICircuitLayout, ICircuit> circuits = ArrayListMultimap.create();
 		Collection<ICircuitLayout> allLayouts = ChipsetManager.circuitRegistry.getRegisteredLayouts().values();
@@ -44,15 +48,15 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 		}
 		return circuits;
 	}
-
+	
 	public static String getInsulate(ItemStack stack) {
 		return EnumTubeInsulate.get(stack.getItemDamage()).getDisplayName();
 	}
-
+	
 	public static ItemStack getInsulateStack(ItemStack stack) {
 		return EnumTubeInsulate.get(stack.getItemDamage()).getStack();
 	}
-
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems) {
@@ -62,7 +66,7 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 			}
 		}
 	}
-
+	
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
@@ -72,7 +76,7 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 			}
 		}
 	}
-
+	
 	@Override
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
 		if (tintIndex == 0) {
@@ -82,7 +86,7 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 		}
 		return EnumTubeInsulate.get(stack.getItemDamage()).getColor();
 	}
-
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack itemstack, EntityPlayer player, List<String> list, boolean flag) {
@@ -104,14 +108,14 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 			list.add("<" + Translator.translateToLocal("for.gui.noeffect") + ">");
 		}
 	}
-
+	
 	@Override
 	public String getItemStackDisplayName(ItemStack itemStack) {
 		int meta = itemStack.getMetadata();
 		return I18N.localise(
-			"item.botany.insulated_tube.name",
-			EnumTubeMaterial.get(meta).getDisplayName(),
-			EnumTubeInsulate.get(meta).getDisplayName()
+				"item.botany.insulated_tube.name",
+				EnumTubeMaterial.get(meta).getDisplayName(),
+				EnumTubeInsulate.get(meta).getDisplayName()
 		);
 	}
 }

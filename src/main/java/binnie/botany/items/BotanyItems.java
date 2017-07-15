@@ -1,12 +1,13 @@
 package binnie.botany.items;
 
+import java.util.List;
+import java.util.Locale;
+
+import net.minecraft.item.ItemStack;
+
 import binnie.botany.Botany;
 import binnie.core.item.IItemMiscProvider;
 import binnie.core.util.I18N;
-import net.minecraft.item.ItemStack;
-
-import java.util.List;
-import java.util.Locale;
 
 public enum BotanyItems implements IItemMiscProvider {
 	POWDER_ASH,
@@ -17,33 +18,33 @@ public enum BotanyItems implements IItemMiscProvider {
 	POWDER_COMPOST,
 	MORTAR,
 	WEEDKILLER;
-
+	
 	String name;
-
+	
 	BotanyItems() {
 		name = name().toLowerCase(Locale.ENGLISH);
 	}
-
+	
 	@Override
 	public void addInformation(List<String> tooltip) {
 		// ignored
 	}
-
+	
 	@Override
 	public String getDisplayName(ItemStack stack) {
 		return I18N.localise("item.botany." + name + ".name");
 	}
-
+	
 	@Override
 	public String getModelPath() {
 		return name;
 	}
-
+	
 	@Override
 	public ItemStack get(int size) {
 		return new ItemStack(Botany.misc, size, ordinal());
 	}
-
+	
 	@Override
 	public boolean isActive() {
 		return true;

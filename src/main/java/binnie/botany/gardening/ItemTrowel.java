@@ -1,16 +1,7 @@
 package binnie.botany.gardening;
 
-import binnie.Constants;
-import binnie.botany.Botany;
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.EnumSoilType;
-import binnie.botany.api.IGardeningManager;
-import binnie.botany.core.BotanyCore;
 import com.google.common.collect.Multimap;
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -30,13 +21,26 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+
+import binnie.Constants;
+import binnie.botany.Botany;
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumMoisture;
+import binnie.botany.api.EnumSoilType;
+import binnie.botany.api.IGardeningManager;
+import binnie.botany.core.BotanyCore;
 
 public class ItemTrowel extends Item implements IItemModelRegister {
 	protected final ToolMaterial theToolMaterial;
 	protected final String modelName;
-
+	
 	public ItemTrowel(ToolMaterial toolMaterial, String materialName) {
 		theToolMaterial = toolMaterial;
 		setMaxStackSize(1);
@@ -46,31 +50,31 @@ public class ItemTrowel extends Item implements IItemModelRegister {
 		setUnlocalizedName("botany." + modelName);
 		setRegistryName(modelName);
 	}
-
+	
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
 		manager.registerItemModel(item, new ItemTrowelMeshDefinition());
 		ModelBakery.registerItemVariants(item, new ResourceLocation(Constants.BOTANY_MOD_ID + ":tools/" + modelName));
 	}
-
+	
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack stack = player.getHeldItem(hand);
 		if (!player.canPlayerEdit(pos, facing, stack)) {
 			return EnumActionResult.FAIL;
 		}
-
+		
 		Block block = worldIn.getBlockState(pos).getBlock();
 		if (facing == EnumFacing.DOWN || (!worldIn.isAirBlock(pos.up()) && worldIn.getBlockState(pos.up()).getBlock() != Botany.flower) || (block != Blocks.GRASS && block != Blocks.DIRT && block != Blocks.GRASS_PATH)) {
 			return EnumActionResult.PASS;
 		}
-
+		
 		worldIn.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		if (worldIn.isRemote) {
 			return EnumActionResult.SUCCESS;
 		}
-
+		
 		IGardeningManager gardening = BotanyCore.getGardening();
 		EnumMoisture moisture = gardening.getNaturalMoisture(worldIn, pos);
 		EnumAcidity acidity = gardening.getNaturalPH(worldIn, pos);
@@ -78,29 +82,29 @@ public class ItemTrowel extends Item implements IItemModelRegister {
 		stack.damageItem(1, player);
 		return EnumActionResult.SUCCESS;
 	}
-
+	
 	@Override
 	public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot) {
 		Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
-
+		
 		if (equipmentSlot == EntityEquipmentSlot.MAINHAND) {
 			multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Tool modifier", theToolMaterial.getDamageVsEntity() + 0.5, 0));
 			multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Tool modifier", -1.5, 0));
 		}
-
+		
 		return multimap;
 	}
-
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean isFull3D() {
 		return true;
 	}
-
+	
 	public String getToolMaterialName() {
 		return theToolMaterial.toString();
 	}
-
+	
 	@SideOnly(Side.CLIENT)
 	private class ItemTrowelMeshDefinition implements ItemMeshDefinition {
 		@Override

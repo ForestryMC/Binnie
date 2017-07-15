@@ -1,12 +1,10 @@
 package binnie.botany.ceramic;
 
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.genetics.EnumFlowerColor;
-import binnie.core.BinnieCore;
-import binnie.core.util.TileUtil;
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
-import forestry.core.blocks.IColoredBlock;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -21,13 +19,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import forestry.core.blocks.IColoredBlock;
+
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.genetics.EnumFlowerColor;
+import binnie.core.BinnieCore;
+import binnie.core.util.TileUtil;
 
 public class BlockCeramic extends Block implements IColoredBlock, IItemModelRegister {
 	public BlockCeramic() {
@@ -37,7 +40,7 @@ public class BlockCeramic extends Block implements IColoredBlock, IItemModelRegi
 		setRegistryName("ceramic");
 		setCreativeTab(CreativeTabBotany.instance);
 	}
-
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
@@ -45,12 +48,12 @@ public class BlockCeramic extends Block implements IColoredBlock, IItemModelRegi
 			manager.registerItemModel(item, c.ordinal());
 		}
 	}
-
+	
 	@Override
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 		return Collections.emptyList();
 	}
-
+	
 	@Override
 	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, @Nullable EntityPlayer player, boolean willHarvest) {
 		List<ItemStack> drops = new ArrayList<>();
@@ -66,17 +69,17 @@ public class BlockCeramic extends Block implements IColoredBlock, IItemModelRegi
 		}
 		return hasBeenBroken;
 	}
-
+	
 	@Override
 	public TileEntity createTileEntity(World world, IBlockState state) {
 		return new TileCeramic();
 	}
-
+	
 	@Override
 	public boolean hasTileEntity(IBlockState state) {
 		return true;
 	}
-
+	
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 		TileCeramic ceramic = TileUtil.getTile(worldIn, pos, TileCeramic.class);
@@ -84,7 +87,7 @@ public class BlockCeramic extends Block implements IColoredBlock, IItemModelRegi
 			ceramic.setColor(EnumFlowerColor.VALUES[stack.getItemDamage()]);
 		}
 	}
-
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> itemList) {
@@ -92,7 +95,7 @@ public class BlockCeramic extends Block implements IColoredBlock, IItemModelRegi
 			itemList.add(new ItemStack(item, 1, c.getFlowerColorAllele().getID()));
 		}
 	}
-
+	
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		TileCeramic ceramic = TileUtil.getTile(world, pos, TileCeramic.class);
@@ -101,7 +104,7 @@ public class BlockCeramic extends Block implements IColoredBlock, IItemModelRegi
 		}
 		return super.getPickBlock(state, target, world, pos, player);
 	}
-
+	
 	@SideOnly(Side.CLIENT)
 	@Override
 	public int colorMultiplier(IBlockState state, @Nullable IBlockAccess world, @Nullable BlockPos pos, int tintIndex) {

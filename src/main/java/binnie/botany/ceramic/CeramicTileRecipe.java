@@ -1,27 +1,29 @@
 package binnie.botany.ceramic;
 
-import binnie.botany.Botany;
-import binnie.botany.ceramic.brick.CeramicBrickType;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
+
 import net.minecraftforge.common.ForgeHooks;
 
-import java.util.ArrayList;
-import java.util.List;
+import binnie.botany.Botany;
+import binnie.botany.ceramic.brick.CeramicBrickType;
 
 public class CeramicTileRecipe implements IRecipe {
 	private ItemStack cached = ItemStack.EMPTY;
-
+	
 	@Override
 	public boolean matches(InventoryCrafting inv, World world) {
 		cached = getCraftingResult(inv);
 		return !cached.isEmpty();
 	}
-
+	
 	@Override
 	public ItemStack getCraftingResult(InventoryCrafting inv) {
 		Item ceramicBlock = Item.getItemFromBlock(Botany.ceramic);
@@ -57,17 +59,17 @@ public class CeramicTileRecipe implements IRecipe {
 		}
 		return ItemStack.EMPTY;
 	}
-
+	
 	@Override
 	public int getRecipeSize() {
 		return 2;
 	}
-
+	
 	@Override
 	public ItemStack getRecipeOutput() {
 		return cached;
 	}
-
+	
 	@Override
 	public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv) {
 		return ForgeHooks.defaultRecipeGetRemainingItems(inv);

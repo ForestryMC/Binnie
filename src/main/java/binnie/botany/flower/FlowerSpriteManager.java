@@ -1,27 +1,29 @@
 package binnie.botany.flower;
 
-import binnie.Binnie;
-import binnie.botany.Botany;
-import binnie.botany.api.IFlowerType;
-import binnie.core.resource.BinnieSprite;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import binnie.Binnie;
+import binnie.botany.Botany;
+import binnie.botany.api.IFlowerType;
+import binnie.core.resource.BinnieSprite;
+
 public class FlowerSpriteManager {
 	private static final Map<IFlowerType, FlowerSprites> flowerSprites = new HashMap<>();
-
+	
 	public static void initSprites(IFlowerType type) {
 		if (flowerSprites.containsKey(type)) {
 			return;
 		}
 		flowerSprites.put(type, new FlowerSprites(type));
 	}
-
+	
 	@Nullable
 	@SideOnly(Side.CLIENT)
 	public static TextureAtlasSprite getStem(IFlowerType type, int section, boolean flowered) {
@@ -31,7 +33,7 @@ public class FlowerSpriteManager {
 		}
 		return flower.getStem(type, section, flowered);
 	}
-
+	
 	@Nullable
 	@SideOnly(Side.CLIENT)
 	public static TextureAtlasSprite getPetal(IFlowerType type, int section, boolean flowered) {
@@ -41,7 +43,7 @@ public class FlowerSpriteManager {
 		}
 		return flower.getPetal(type, section, flowered);
 	}
-
+	
 	@Nullable
 	@SideOnly(Side.CLIENT)
 	public static TextureAtlasSprite getVariant(IFlowerType type, int section, boolean flowered) {
@@ -51,14 +53,14 @@ public class FlowerSpriteManager {
 		}
 		return flower.getVariant(type, section, flowered);
 	}
-
+	
 	private static class FlowerSprites {
 		private BinnieSprite[] stem;
 		private BinnieSprite[] variant;
 		private BinnieSprite[] petal;
 		private BinnieSprite[] unflowered;
 		private int sections;
-
+		
 		public FlowerSprites(IFlowerType type) {
 			sections = type.getSections();
 			stem = new BinnieSprite[sections];
@@ -74,17 +76,17 @@ public class FlowerSpriteManager {
 				unflowered[section] = Binnie.RESOURCE.getBlockSprite(Botany.instance, "flowers/" + pre + type.toString().toLowerCase() + suf + ".3");
 			}
 		}
-
+		
 		@SideOnly(Side.CLIENT)
 		public TextureAtlasSprite getStem(IFlowerType type, int section, boolean flowered) {
 			return stem[section % sections].getSprite();
 		}
-
+		
 		@SideOnly(Side.CLIENT)
 		public TextureAtlasSprite getPetal(IFlowerType type, int section, boolean flowered) {
 			return (flowered ? petal[section % sections] : unflowered[section % sections]).getSprite();
 		}
-
+		
 		@Nullable
 		@SideOnly(Side.CLIENT)
 		public TextureAtlasSprite getVariant(IFlowerType type, int section, boolean flowered) {

@@ -1,26 +1,28 @@
 package binnie.botany.ceramic;
 
-import binnie.Binnie;
-import binnie.botany.Botany;
-import binnie.botany.api.IFlower;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
+
 import net.minecraftforge.common.ForgeHooks;
+
+import binnie.Binnie;
+import binnie.botany.Botany;
+import binnie.botany.api.IFlower;
 
 public class PigmentRecipe implements IRecipe {
 	@Override
 	public boolean matches(InventoryCrafting crafting, World world) {
 		return !getCraftingResult(crafting).isEmpty();
 	}
-
+	
 	@Override
 	public ItemStack getRecipeOutput() {
 		return ItemStack.EMPTY;
 	}
-
+	
 	@Override
 	public ItemStack getCraftingResult(InventoryCrafting crafting) {
 		int n = 0;
@@ -41,12 +43,12 @@ public class PigmentRecipe implements IRecipe {
 		}
 		return stack;
 	}
-
+	
 	@Override
 	public int getRecipeSize() {
 		return 1;
 	}
-
+	
 	@Override
 	public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv) {
 		return ForgeHooks.defaultRecipeGetRemainingItems(inv);
