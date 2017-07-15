@@ -1,6 +1,6 @@
 package binnie.botany.craftgui;
 
-import binnie.botany.api.IFlowerColour;
+import binnie.botany.api.IFlowerColor;
 import binnie.core.craftgui.Attribute;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -11,22 +11,22 @@ import binnie.core.craftgui.renderer.RenderUtil;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ControlColorDisplay extends Control implements IControlValue<IFlowerColour>, ITooltip {
-	private IFlowerColour value;
+public class ControlColorDisplay extends Control implements IControlValue<IFlowerColor>, ITooltip {
+	private IFlowerColor value;
 
-	public ControlColorDisplay(IWidget parent, int x, int y, IFlowerColour value) {
+	public ControlColorDisplay(IWidget parent, int x, int y, IFlowerColor value) {
 		super(parent, x, y, 16, 16);
 		this.value = value;
 		addAttribute(Attribute.MouseOver);
 	}
 
 	@Override
-	public IFlowerColour getValue() {
+	public IFlowerColor getValue() {
 		return value;
 	}
 
 	@Override
-	public void setValue(IFlowerColour value) {
+	public void setValue(IFlowerColor value) {
 		this.value = value;
 	}
 

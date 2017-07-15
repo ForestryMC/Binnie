@@ -1,6 +1,6 @@
 package binnie.botany.craftgui;
 
-import binnie.botany.api.IFlowerColour;
+import binnie.botany.api.IFlowerColor;
 import binnie.core.craftgui.Attribute;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.controls.listbox.ControlList;
@@ -11,11 +11,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class ControlColorOption extends ControlTextOption<IFlowerColour> {
+public class ControlColorOption extends ControlTextOption<IFlowerColor> {
 	private ControlColorDisplay controlBee;
 	private Point boxPosition;
 
-	public ControlColorOption(ControlList<IFlowerColour> controlList, IFlowerColour option, int y) {
+	public ControlColorOption(ControlList<IFlowerColor> controlList, IFlowerColor option, int y) {
 		super(controlList, option, option.getColorName(), y);
 		setSize(new Point(getSize().x(), 20));
 		controlBee = new ControlColorDisplay(this, 2, 2, option);

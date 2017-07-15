@@ -1,19 +1,16 @@
 package binnie.botany.genetics;
 
-import java.util.Locale;
-
-import net.minecraft.client.renderer.block.model.ModelBakery;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.Item;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.core.IModelManager;
-
 import binnie.Constants;
 import binnie.botany.api.EnumFlowerStage;
 import binnie.botany.api.IFlowerType;
+import forestry.api.core.IModelManager;
+import net.minecraft.client.renderer.block.model.ModelBakery;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Locale;
 
 public enum EnumFlowerType implements IFlowerType<EnumFlowerType> {
 	Dandelion,
@@ -76,14 +73,14 @@ public enum EnumFlowerType implements IFlowerType<EnumFlowerType> {
 		this(1);
 	}
 
-	EnumFlowerType(final int sections) {
+	EnumFlowerType(int sections) {
 		this.sections = sections;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModels(Item item, IModelManager manager, EnumFlowerStage type) {
-		String pre = (this.sections == 1) ? "" : "double/";
+		String pre = (sections == 1) ? "" : "double/";
 		flower = new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":flowers/" + pre + getName(), "inventory");
 		seed = new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":flowers/seed", "inventory");
 		pollen = new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":flowers/pollen", "inventory");
@@ -97,19 +94,18 @@ public enum EnumFlowerType implements IFlowerType<EnumFlowerType> {
 			return seed;
 		} else if (type == EnumFlowerStage.POLLEN) {
 			return pollen;
-		} else {
-			return flower;
 		}
+		return flower;
 	}
 
 	@Override
 	public int getID() {
-		return this.ordinal();
+		return ordinal();
 	}
 
 	@Override
 	public int getSections() {
-		return this.sections;
+		return sections;
 	}
 
 	@Override

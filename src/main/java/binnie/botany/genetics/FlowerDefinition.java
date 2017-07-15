@@ -1,28 +1,5 @@
 package binnie.botany.genetics;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.common.MinecraftForge;
-
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.arboriculture.EnumTreeChromosome;
-import forestry.api.core.EnumTemperature;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.AlleleSpeciesRegisterEvent;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleRegistry;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IClassification;
-import forestry.core.genetics.alleles.AlleleHelper;
-import forestry.core.genetics.alleles.EnumAllele;
-
 import binnie.Constants;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumFlowerChromosome;
@@ -38,6 +15,26 @@ import binnie.botany.api.IFlowerMutationBuilder;
 import binnie.botany.api.IFlowerRoot;
 import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
+import forestry.api.apiculture.EnumBeeChromosome;
+import forestry.api.arboriculture.EnumTreeChromosome;
+import forestry.api.core.EnumTemperature;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.AlleleSpeciesRegisterEvent;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleRegistry;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IClassification;
+import forestry.core.genetics.alleles.AlleleHelper;
+import forestry.core.genetics.alleles.EnumAllele;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 public enum FlowerDefinition implements IFlowerDefinition {
 	Dandelion("Dandelion", "taraxacum", "officinale", EnumFlowerType.Dandelion, EnumFlowerColor.Yellow) {
@@ -954,34 +951,34 @@ public enum FlowerDefinition implements IFlowerDefinition {
 	private IAllele[] template;
 	private IFlowerGenome genome;
 
-	FlowerDefinition(final String name, final String branch, final String binomial, final IFlowerType<EnumFlowerType> type, final EnumFlowerColor colour) {
+	FlowerDefinition(String name, String branch, String binomial, IFlowerType<EnumFlowerType> type, EnumFlowerColor colour) {
 		this(name, branch, binomial, type, false, colour, colour);
 	}
 
-	FlowerDefinition(final String name, final String branch, final String binomial, final IFlowerType<EnumFlowerType> type, final EnumFlowerColor primaryColor, final EnumFlowerColor secondaryColor) {
+	FlowerDefinition(String name, String branch, String binomial, IFlowerType<EnumFlowerType> type, EnumFlowerColor primaryColor, EnumFlowerColor secondaryColor) {
 		this(name, branch, binomial, type, true, primaryColor, secondaryColor);
 	}
 
-	FlowerDefinition(final String name, final String branch, final String binomial, final IFlowerType<EnumFlowerType> type, final boolean isDominant, final EnumFlowerColor colour) {
+	FlowerDefinition(String name, String branch, String binomial, IFlowerType<EnumFlowerType> type, boolean isDominant, EnumFlowerColor colour) {
 		this(name, branch, binomial, type, isDominant, colour, colour);
 	}
 
-	FlowerDefinition(final String name, final String branch, final String binomial, final IFlowerType<EnumFlowerType> flowerType, final boolean isDominant, final EnumFlowerColor primaryColor, final EnumFlowerColor secondaryColor) {
+	FlowerDefinition(String name, String branch, String binomial, IFlowerType<EnumFlowerType> flowerType, boolean isDominant, EnumFlowerColor primaryColor, EnumFlowerColor secondaryColor) {
 		String uid = Constants.BOTANY_MOD_ID + ".flower" + this;
 		String unlocalizedDescription = "botany.description.flower" + this;
 		String unlocalizedName = "botany.flowers.species." + name;
 
-		this.variantTemplates = new ArrayList<>();
+		variantTemplates = new ArrayList<>();
 		this.name = name;
 		this.binomial = binomial;
-		this.branchName = branch;
-		this.type = flowerType;
+		branchName = branch;
+		type = flowerType;
 		this.primaryColor = primaryColor;
 		this.secondaryColor = secondaryColor;
 
 		IAlleleFlowerSpeciesBuilder speciesBuilder = FlowerManager.flowerFactory.createSpecies(uid, unlocalizedName, "Binnie's Mod Team", unlocalizedDescription, isDominant, getBranch(), binomial, flowerType);
 		setSpeciesProperties(speciesBuilder);
-		this.species = speciesBuilder.build();
+		species = speciesBuilder.build();
 		if (this.branch != null) {
 			this.branch.addMemberSpecies(species);
 		}
@@ -1039,36 +1036,36 @@ public enum FlowerDefinition implements IFlowerDefinition {
 
 	protected abstract void registerMutations();
 
-	private IAllele[] addVariant(final EnumFlowerColor a, final EnumFlowerColor b) {
-		final IAllele[] template = this.getTemplate();
+	private IAllele[] addVariant(EnumFlowerColor a, EnumFlowerColor b) {
+		IAllele[] template = getTemplate();
 		template[EnumFlowerChromosome.PRIMARY.ordinal()] = a.getFlowerColorAllele();
 		template[EnumFlowerChromosome.SECONDARY.ordinal()] = b.getFlowerColorAllele();
-		this.variantTemplates.add(template);
+		variantTemplates.add(template);
 		return template;
 	}
 
-	private IAllele[] addVariant(final EnumFlowerColor a) {
-		return this.addVariant(a, a);
+	private IAllele[] addVariant(EnumFlowerColor a) {
+		return addVariant(a, a);
 	}
 
 	public List<IAllele[]> getVariants() {
-		return this.variantTemplates;
+		return variantTemplates;
 	}
 
 	public IClassification getBranch() {
 		if (branch == null) {
-			final String scientific = branchName.substring(0, 1).toUpperCase() + branchName.substring(1).toLowerCase();
-			final String uid = "flowers." + branchName.toLowerCase();
+			String scientific = branchName.substring(0, 1).toUpperCase() + branchName.substring(1).toLowerCase();
+			String uid = "flowers." + branchName.toLowerCase();
 			IClassification branch = AlleleManager.alleleRegistry.getClassification("genus." + uid);
 			if (branch == null) {
 				branch = AlleleManager.alleleRegistry.createAndRegisterClassification(IClassification.EnumClassLevel.GENUS, uid, scientific);
 			}
 			this.branch = branch;
 		}
-		return this.branch;
+		return branch;
 	}
 
-	public void setBranch(final IClassification branch) {
+	public void setBranch(IClassification branch) {
 		this.branch = branch;
 	}
 
@@ -1121,7 +1118,7 @@ public enum FlowerDefinition implements IFlowerDefinition {
 		}
 	}
 
-	protected final IFlowerMutationBuilder registerMutation(final FlowerDefinition parent1, final FlowerDefinition parent2, final int chance) {
+	protected final IFlowerMutationBuilder registerMutation(FlowerDefinition parent1, FlowerDefinition parent2, int chance) {
 		return FlowerManager.flowerFactory.createMutation(parent1.species, parent2.species, getTemplate(), chance);
 	}
 }

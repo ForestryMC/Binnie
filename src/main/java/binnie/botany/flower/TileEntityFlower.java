@@ -6,7 +6,7 @@ import binnie.botany.api.EnumFlowerStage;
 import binnie.botany.api.EnumSoilType;
 import binnie.botany.api.IAlleleFlowerSpecies;
 import binnie.botany.api.IFlower;
-import binnie.botany.api.IFlowerColour;
+import binnie.botany.api.IFlowerColor;
 import binnie.botany.api.IFlowerGenome;
 import binnie.botany.api.IFlowerRoot;
 import binnie.botany.api.IFlowerType;
@@ -708,9 +708,9 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 	}
 
 	public static class RenderInfo {
-		public IFlowerColour primary;
-		public IFlowerColour secondary;
-		public IFlowerColour stem;
+		public IFlowerColor primary;
+		public IFlowerColor secondary;
+		public IFlowerColor stem;
 		public IFlowerType type;
 		public byte age;
 		public boolean wilted;

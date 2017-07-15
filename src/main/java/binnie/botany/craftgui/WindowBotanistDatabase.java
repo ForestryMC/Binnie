@@ -2,7 +2,7 @@ package binnie.botany.craftgui;
 
 import binnie.Binnie;
 import binnie.botany.Botany;
-import binnie.botany.api.IFlowerColour;
+import binnie.botany.api.IFlowerColor;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.IWidget;
@@ -82,14 +82,14 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 
 		@Override
 		public void createListBox(Area area) {
-			listBox = new ControlListBox<IFlowerColour>(modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
+			listBox = new ControlListBox<IFlowerColor>(modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
 				@Override
-				public IWidget createOption(IFlowerColour value, int y) {
+				public IWidget createOption(IFlowerColor value, int y) {
 					return new ControlColorOption(getContent(), value, y);
 				}
 			};
 
-			List<IFlowerColour> colors = Arrays.stream(EnumFlowerColor.values()).map(c -> c.getFlowerColorAllele()).collect(Collectors.toList());
+			List<IFlowerColor> colors = Arrays.stream(EnumFlowerColor.values()).map(c -> c.getFlowerColorAllele()).collect(Collectors.toList());
 			listBox.setOptions(colors);
 		}
 	}

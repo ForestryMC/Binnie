@@ -1,5 +1,11 @@
 package binnie.botany.genetics;
 
+import binnie.botany.Botany;
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.core.BotanyGUI;
+import binnie.core.util.I18N;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -8,29 +14,20 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
-
-import binnie.botany.Botany;
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.core.BotanyGUI;
-import binnie.core.util.I18N;
-
 public class ItemDictionary extends Item implements IItemModelRegister {
 	public ItemDictionary() {
-		this.setCreativeTab(CreativeTabBotany.instance);
-		this.setUnlocalizedName("database");
-		this.setMaxStackSize(1);
+		setCreativeTab(CreativeTabBotany.instance);
+		setUnlocalizedName("database");
+		setMaxStackSize(1);
 		setRegistryName("database");
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(final Item itemIn, final CreativeTabs tab, final NonNullList<ItemStack> subItems) {
+	public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {
 		super.getSubItems(itemIn, tab, subItems);
 		subItems.add(new ItemStack(itemIn, 1, 1));
 	}
@@ -54,7 +51,7 @@ public class ItemDictionary extends Item implements IItemModelRegister {
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack i) {
+	public String getItemStackDisplayName(ItemStack i) {
 		return I18N.localise("item.botany.database." + ((i.getItemDamage() == 0) ? "name" : "master.name"));
 	}
 }

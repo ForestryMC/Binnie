@@ -1,11 +1,10 @@
 package binnie.botany.genetics;
 
+import binnie.botany.api.IFlowerColor;
+import binnie.core.util.I18N;
 import forestry.api.genetics.IAlleleInteger;
 
-import binnie.botany.api.IFlowerColour;
-import binnie.core.util.I18N;
-
-public class FlowerColorAllele implements IFlowerColour, IAlleleInteger {
+public class FlowerColorAllele implements IFlowerColor, IAlleleInteger {
 	private int color;
 	private String uid;
 	private boolean isDominant;
@@ -51,7 +50,7 @@ public class FlowerColorAllele implements IFlowerColour, IAlleleInteger {
 
 	@Override
 	public int getColor(boolean dis) {
-		return dis ? this.colorDis : this.color;
+		return dis ? colorDis : color;
 	}
 
 	@Override

@@ -44,7 +44,7 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	Map<ItemStack, IFlower> conversions;
 
 	public FlowerRoot() {
-		this.conversions = new HashMap<>();
+		conversions = new HashMap<>();
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	public int getSpeciesCount() {
 		if (FlowerRoot.flowerSpeciesCount < 0) {
 			FlowerRoot.flowerSpeciesCount = 0;
-			for (final Map.Entry<String, IAllele> entry : AlleleManager.alleleRegistry.getRegisteredAlleles().entrySet()) {
+			for (Map.Entry<String, IAllele> entry : AlleleManager.alleleRegistry.getRegisteredAlleles().entrySet()) {
 				if (entry.getValue() instanceof IAlleleFlowerSpecies && ((IAlleleFlowerSpecies) entry.getValue()).isCounted()) {
 					++FlowerRoot.flowerSpeciesCount;
 				}
@@ -66,17 +66,17 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	}
 
 	@Override
-	public boolean isMember(final ItemStack stack) {
-		return !stack.isEmpty() && this.getType(stack) != null;
+	public boolean isMember(ItemStack stack) {
+		return !stack.isEmpty() && getType(stack) != null;
 	}
 
 	@Override
 	public boolean isMember(ItemStack stack, ISpeciesType type) {
-		return this.getType(stack) == type;
+		return getType(stack) == type;
 	}
 
 	@Override
-	public boolean isMember(final IIndividual individual) {
+	public boolean isMember(IIndividual individual) {
 		return individual instanceof IFlower;
 	}
 
@@ -94,7 +94,6 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	@Nullable
 	public EnumFlowerStage getType(ItemStack stack) {
 		Item item = stack.getItem();
-
 		if (Botany.flowerItem == item) {
 			return EnumFlowerStage.SEED;
 		} else if (Botany.pollen == item) {
@@ -102,64 +101,64 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 		} else if (Botany.seed == item) {
 			return EnumFlowerStage.SEED;
 		}
-
 		return null;
 	}
 
 	@Override
 	public ItemStack getMemberStack(IIndividual flower, ISpeciesType type) {
-		if (!this.isMember(flower)) {
+		if (!isMember(flower)) {
 			return ItemStack.EMPTY;
 		}
+
 		Item flowerItem = Botany.flowerItem;
 		if (type == EnumFlowerStage.SEED) {
 			flowerItem = Botany.seed;
-		}
-		if (type == EnumFlowerStage.POLLEN) {
+		} else if (type == EnumFlowerStage.POLLEN) {
 			flowerItem = Botany.pollen;
 		}
 		if (flowerItem != Botany.flowerItem) {
 			((IFlower) flower).setAge(0);
 		}
-		final NBTTagCompound nbttagcompound = new NBTTagCompound();
+
+		NBTTagCompound nbttagcompound = new NBTTagCompound();
 		flower.writeToNBT(nbttagcompound);
-		final ItemStack flowerStack = new ItemStack(flowerItem);
+		ItemStack flowerStack = new ItemStack(flowerItem);
 		flowerStack.setTagCompound(nbttagcompound);
 		return flowerStack;
 	}
 
 	@Override
 	@Nullable
-	public IFlower getMember(final ItemStack stack) {
-		if (!this.isMember(stack) || stack.getTagCompound() == null) {
+	public IFlower getMember(ItemStack stack) {
+		if (!isMember(stack) || stack.getTagCompound() == null) {
 			return null;
 		}
 		return new Flower(stack.getTagCompound());
 	}
 
 	@Override
-	public IFlower getFlower(final IFlowerGenome genome) {
+	public IFlower getFlower(IFlowerGenome genome) {
 		return new Flower(genome, 2);
 	}
 
 	@Override
-	public IFlowerGenome templateAsGenome(final IAllele[] template) {
-		return new FlowerGenome(this.templateAsChromosomes(template));
+	public IFlowerGenome templateAsGenome(IAllele[] template) {
+		return new FlowerGenome(templateAsChromosomes(template));
 	}
 
 	@Override
-	public IFlowerGenome templateAsGenome(final IAllele[] templateActive, final IAllele[] templateInactive) {
+	public IFlowerGenome templateAsGenome(IAllele[] templateActive, IAllele[] templateInactive) {
 		return new FlowerGenome(templateAsChromosomes(templateActive, templateInactive));
 	}
 
 	@Override
-	public IFlower templateAsIndividual(final IAllele[] template) {
-		return new Flower(this.templateAsGenome(template), 2);
+	public IFlower templateAsIndividual(IAllele[] template) {
+		return new Flower(templateAsGenome(template), 2);
 	}
 
 	@Override
-	public IFlower templateAsIndividual(final IAllele[] templateActive, final IAllele[] templateInactive) {
-		return new Flower(this.templateAsGenome(templateActive, templateInactive), 2);
+	public IFlower templateAsIndividual(IAllele[] templateActive, IAllele[] templateInactive) {
+		return new Flower(templateAsGenome(templateActive, templateInactive), 2);
 	}
 
 	@Override
@@ -168,21 +167,21 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	}
 
 	@Override
-	public void registerTemplate(final IAllele[] template) {
-		this.registerTemplate(template[0].getUID(), template);
+	public void registerTemplate(IAllele[] template) {
+		registerTemplate(template[0].getUID(), template);
 	}
 
 	@Override
-	public void registerTemplate(final String identifier, final IAllele[] template) {
-		FlowerRoot.flowerTemplates.add(new Flower(this.templateAsGenome(template), 2));
-		if (!this.speciesTemplates.containsKey(identifier)) {
-			this.speciesTemplates.put(identifier, template);
+	public void registerTemplate(String identifier, IAllele[] template) {
+		FlowerRoot.flowerTemplates.add(new Flower(templateAsGenome(template), 2));
+		if (!speciesTemplates.containsKey(identifier)) {
+			speciesTemplates.put(identifier, template);
 		}
 	}
 
 	@Override
-	public IAllele[] getTemplate(final String identifier) {
-		return this.speciesTemplates.get(identifier);
+	public IAllele[] getTemplate(String identifier) {
+		return speciesTemplates.get(identifier);
 	}
 
 	@Override
@@ -191,12 +190,12 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	}
 
 	@Override
-	public IAllele[] getRandomTemplate(final Random rand) {
-		return this.speciesTemplates.values().toArray(new IAllele[0][])[rand.nextInt(this.speciesTemplates.values().size())];
+	public IAllele[] getRandomTemplate(Random rand) {
+		return speciesTemplates.values().toArray(new IAllele[0][])[rand.nextInt(speciesTemplates.values().size())];
 	}
 
 	@Override
-	public ArrayList<IFlowerMutation> getMutations(final boolean shuffle) {
+	public ArrayList<IFlowerMutation> getMutations(boolean shuffle) {
 		if (shuffle) {
 			Collections.shuffle(FlowerRoot.flowerMutations);
 		}
@@ -204,7 +203,7 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	}
 
 	@Override
-	public void registerMutation(final IMutation mutation) {
+	public void registerMutation(IMutation mutation) {
 		if (AlleleManager.alleleRegistry.isBlacklisted(mutation.getTemplate()[0].getUID())) {
 			return;
 		}
@@ -218,8 +217,8 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	}
 
 	@Override
-	public IBotanistTracker getBreedingTracker(final World world, @Nullable final GameProfile player) {
-		final String filename = "BotanistTracker." + ((player == null) ? "common" : player.getId());
+	public IBotanistTracker getBreedingTracker(World world, @Nullable GameProfile player) {
+		String filename = "BotanistTracker." + ((player == null) ? "common" : player.getId());
 		BotanistTracker tracker = (BotanistTracker) world.loadData(BotanistTracker.class, filename);
 		if (tracker == null) {
 			tracker = new BotanistTracker(filename);
@@ -229,7 +228,7 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	}
 
 	@Override
-	public IIndividual getMember(final NBTTagCompound compound) {
+	public IIndividual getMember(NBTTagCompound compound) {
 		return new Flower(compound);
 	}
 
@@ -249,15 +248,15 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	}
 
 	@Override
-	public void addConversion(final ItemStack itemstack, final IAllele[] template) {
-		final IFlower flower = this.getFlower(this.templateAsGenome(template));
-		this.conversions.put(itemstack, flower);
+	public void addConversion(ItemStack itemstack, IAllele[] template) {
+		IFlower flower = getFlower(templateAsGenome(template));
+		conversions.put(itemstack, flower);
 	}
 
 	@Override
 	@Nullable
-	public IFlower getConversion(final ItemStack itemstack) {
-		for (final Map.Entry<ItemStack, IFlower> entry : this.conversions.entrySet()) {
+	public IFlower getConversion(ItemStack itemstack) {
+		for (Map.Entry<ItemStack, IFlower> entry : conversions.entrySet()) {
 			if (entry.getKey().isItemEqual(itemstack)) {
 				return (IFlower) entry.getValue().copy();
 			}
@@ -266,23 +265,24 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	}
 
 	@Override
-	public void registerColourMix(final IColorMix colorMix) {
+	public void registerColourMix(IColorMix colorMix) {
 		FlowerRoot.colourMixes.add(colorMix);
 	}
 
 	@Override
-	public Collection<IColorMix> getColorMixes(final boolean shuffle) {
+	public Collection<IColorMix> getColorMixes(boolean shuffle) {
 		if (shuffle) {
 			Collections.shuffle(FlowerRoot.colourMixes);
 		}
 		return FlowerRoot.colourMixes;
 	}
-	
+
 	public boolean plant(World world, BlockPos pos, IFlower flower, GameProfile owner) {
 		boolean set = world.setBlockState(pos, Botany.flower.getDefaultState());
 		if (!set) {
 			return false;
 		}
+
 		TileEntity tile = world.getTileEntity(pos);
 		TileEntity below = world.getTileEntity(pos.down());
 		if (tile != null && tile instanceof TileEntityFlower) {
@@ -293,31 +293,35 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 				tileFlower.create(flower, owner);
 			}
 		}
+
 		tryGrowSection(world, pos);
 		return true;
 	}
-	
+
 	@Override
 	public void tryGrowSection(World world, BlockPos pos) {
 		if (world.isRemote) {
 			return;
 		}
+
 		TileEntity tileFlower = world.getTileEntity(pos);
-		if(tileFlower == null || !(tileFlower instanceof TileEntityFlower)){
+		if (tileFlower == null || !(tileFlower instanceof TileEntityFlower)) {
 			return;
 		}
+
 		IFlower flower = ((TileEntityFlower) tileFlower).getFlower();
 		int section = ((TileEntityFlower) tileFlower).getSection();
-		if(flower == null || section >= flower.getGenome().getPrimary().getType().getSections() - 1 || flower.getAge() <= 0){
+		if (flower == null || section >= flower.getGenome().getPrimary().getType().getSections() - 1 || flower.getAge() <= 0) {
 			return;
 		}
+
 		world.setBlockState(pos.up(), Botany.flower.getDefaultState());
 		TileEntity flowerAbove = world.getTileEntity(pos.up());
 		if (flowerAbove != null && flowerAbove instanceof TileEntityFlower) {
 			((TileEntityFlower) flowerAbove).setSection(section + 1);
 		}
 	}
-	
+
 	@Override
 	public void onGrowFromSeed(World world, BlockPos pos) {
 		tryGrowSection(world, pos);
