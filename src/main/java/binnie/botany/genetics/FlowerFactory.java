@@ -19,8 +19,8 @@ public class FlowerFactory implements IFlowerFactory {
 	}
 
 	@Override
-	public IFlowerMutationBuilder createMutation(IAlleleFlowerSpecies parentFlower0, IAlleleFlowerSpecies parentFlower1, IAllele[] result, int chance) {
-		FlowerMutation mutation = new FlowerMutation(parentFlower0, parentFlower1, result, chance);
+	public IFlowerMutationBuilder createMutation(IAlleleFlowerSpecies allele0, IAlleleFlowerSpecies allele1, IAllele[] result, int chance) {
+		FlowerMutation mutation = new FlowerMutation(allele0, allele1, result, chance);
 		FlowerManager.flowerRoot.registerMutation(mutation);
 		return mutation;
 	}

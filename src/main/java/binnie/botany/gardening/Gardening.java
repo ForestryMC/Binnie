@@ -1,11 +1,16 @@
 package binnie.botany.gardening;
 
-import javax.annotation.Nullable;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
+import binnie.botany.Botany;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumMoisture;
+import binnie.botany.api.EnumSoilType;
+import binnie.botany.api.IBlockSoil;
+import binnie.botany.api.IFlower;
+import binnie.botany.api.IGardeningManager;
+import binnie.botany.items.BotanyItems;
+import forestry.api.climate.IClimateInfo;
+import forestry.api.core.EnumTemperature;
+import forestry.api.core.ForestryAPI;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -16,18 +21,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
-import forestry.api.climate.IClimateInfo;
-import forestry.api.core.EnumTemperature;
-import forestry.api.core.ForestryAPI;
-
-import binnie.botany.Botany;
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.EnumSoilType;
-import binnie.botany.api.IBlockSoil;
-import binnie.botany.api.IFlower;
-import binnie.botany.api.IGardeningManager;
-import binnie.botany.items.BotanyItems;
+import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Gardening implements IGardeningManager {
 	private final Map<ItemStack, Integer> fertiliserAcid = new LinkedHashMap<>();
@@ -219,23 +217,25 @@ public class Gardening implements IGardeningManager {
 	}
 	
 	@Override
-	public Block getSoilBlock(final EnumSoilType type, final boolean weedkill) {
+	public Block getSoilBlock(final EnumSoilType type, final boolean weedKill) {
 		switch (type) {
 			case FLOWERBED: {
-				return weedkill ? Botany.flowerbedNoWeed : Botany.flowerbed;
+				return weedKill ? Botany.flowerbedNoWeed : Botany.flowerbed;
 			}
 			case LOAM: {
-				return weedkill ? Botany.loamNoWeed : Botany.loam;
+				return weedKill ? Botany.loamNoWeed : Botany.loam;
 			}
 			default: {
-				return weedkill ? Botany.soilNoWeed : Botany.soil;
+				return weedKill ? Botany.soilNoWeed : Botany.soil;
 			}
 		}
 	}
 	
 	@Override
-	public boolean canTolerate(IFlower flower, EnumAcidity ePH, EnumMoisture eMoisture, EnumTemperature eTemp) {
-		return flower.getGenome().canTolerate(ePH) && flower.getGenome().canTolerate(eMoisture) && flower.getGenome().canTolerate(eTemp);
+	public boolean canTolerate(IFlower flower, EnumAcidity acidity, EnumMoisture moisture, EnumTemperature temperature) {
+		return flower.getGenome().canTolerate(acidity)
+			&& flower.getGenome().canTolerate(moisture)
+			&& flower.getGenome().canTolerate(temperature);
 	}
 	
 	@Override

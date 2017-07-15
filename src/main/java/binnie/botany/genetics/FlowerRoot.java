@@ -1,22 +1,17 @@
 package binnie.botany.genetics;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-
+import binnie.botany.Botany;
+import binnie.botany.api.EnumFlowerChromosome;
+import binnie.botany.api.EnumFlowerStage;
+import binnie.botany.api.IAlleleFlowerSpecies;
+import binnie.botany.api.IBotanistTracker;
+import binnie.botany.api.IColorMix;
+import binnie.botany.api.IFlower;
+import binnie.botany.api.IFlowerGenome;
+import binnie.botany.api.IFlowerMutation;
+import binnie.botany.api.IFlowerRoot;
+import binnie.botany.flower.TileEntityFlower;
 import com.mojang.authlib.GameProfile;
-
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlyzerPlugin;
@@ -25,25 +20,27 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IMutation;
 import forestry.api.genetics.ISpeciesType;
 import forestry.core.genetics.SpeciesRoot;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
-import binnie.botany.Botany;
-import binnie.botany.api.EnumFlowerChromosome;
-import binnie.botany.api.EnumFlowerStage;
-import binnie.botany.api.IAlleleFlowerSpecies;
-import binnie.botany.api.IBotanistTracker;
-import binnie.botany.api.IColourMix;
-import binnie.botany.api.IFlower;
-import binnie.botany.api.IFlowerGenome;
-import binnie.botany.api.IFlowerMutation;
-import binnie.botany.api.IFlowerRoot;
-import binnie.botany.flower.TileEntityFlower;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	static final String UID = "rootFlowers";
 	public static int flowerSpeciesCount = -1;
 	public static ArrayList<IFlower> flowerTemplates = new ArrayList<>();
 	private static ArrayList<IFlowerMutation> flowerMutations = new ArrayList<>();
-	private static ArrayList<IColourMix> colourMixes = new ArrayList<>();
+	private static ArrayList<IColorMix> colourMixes = new ArrayList<>();
 	Map<ItemStack, IFlower> conversions;
 
 	public FlowerRoot() {
@@ -152,7 +149,7 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 
 	@Override
 	public IFlowerGenome templateAsGenome(final IAllele[] templateActive, final IAllele[] templateInactive) {
-		return new FlowerGenome(this.templateAsChromosomes(templateActive, templateInactive));
+		return new FlowerGenome(templateAsChromosomes(templateActive, templateInactive));
 	}
 
 	@Override
@@ -269,12 +266,12 @@ public class FlowerRoot extends SpeciesRoot implements IFlowerRoot {
 	}
 
 	@Override
-	public void registerColourMix(final IColourMix colourMix) {
-		FlowerRoot.colourMixes.add(colourMix);
+	public void registerColourMix(final IColorMix colorMix) {
+		FlowerRoot.colourMixes.add(colorMix);
 	}
 
 	@Override
-	public Collection<IColourMix> getColourMixes(final boolean shuffle) {
+	public Collection<IColorMix> getColorMixes(final boolean shuffle) {
 		if (shuffle) {
 			Collections.shuffle(FlowerRoot.colourMixes);
 		}

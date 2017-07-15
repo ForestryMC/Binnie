@@ -3,7 +3,7 @@ package binnie.botany.craftgui;
 import java.util.ArrayList;
 import java.util.List;
 
-import binnie.botany.api.IColourMix;
+import binnie.botany.api.IColorMix;
 import binnie.botany.api.IFlowerColour;
 import binnie.botany.core.BotanyCore;
 import binnie.core.craftgui.IWidget;
@@ -25,8 +25,8 @@ public class PageColorMixResultant extends PageAbstract<IFlowerColour> {
 
 	@Override
 	public void onValueChanged(final IFlowerColour colour) {
-		final List<IColourMix> mixes = new ArrayList<>();
-		for (final IColourMix mix : BotanyCore.getFlowerRoot().getColourMixes(false)) {
+		final List<IColorMix> mixes = new ArrayList<>();
+		for (final IColorMix mix : BotanyCore.getFlowerRoot().getColorMixes(false)) {
 			if (mix.getResult() == colour) {
 				mixes.add(mix);
 			}

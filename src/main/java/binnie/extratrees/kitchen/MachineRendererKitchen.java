@@ -10,7 +10,6 @@ import binnie.core.resource.BinnieResource;
 public class MachineRendererKitchen {
 	public static MachineRendererKitchen instance = new MachineRendererKitchen();
 	static int level = 0;
-	;
 	BinnieResource texture;
 
 	public void renderMachine(final Machine machine, final BinnieResource texture, final double x, final double y, final double z, final float var8) {

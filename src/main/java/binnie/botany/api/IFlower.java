@@ -1,11 +1,10 @@
 package binnie.botany.api;
 
-import javax.annotation.Nullable;
-
+import forestry.api.genetics.IIndividual;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import forestry.api.genetics.IIndividual;
+import javax.annotation.Nullable;
 
 public interface IFlower extends IIndividual {
 	@Override
@@ -14,25 +13,25 @@ public interface IFlower extends IIndividual {
 	@Nullable
 	IFlowerGenome getMate();
 
-	void mate(final IFlower flower);
+	void mate(IFlower flower);
 
 	int getAge();
 
-	void setAge(final int age);
+	void setAge(int age);
 
 	void age();
 
-	IFlower getOffspring(final World world, final BlockPos pos);
+	IFlower getOffspring(World world, BlockPos pos);
 
 	int getMaxAge();
 
 	boolean isWilted();
 
-	void setWilted(final boolean p0);
+	void setWilted(boolean p0);
 
 	boolean hasFlowered();
 
-	void setFlowered(final boolean p0);
+	void setFlowered(boolean p0);
 
 	void removeMate();
 }

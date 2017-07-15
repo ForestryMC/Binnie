@@ -12,7 +12,6 @@ import binnie.extratrees.ExtraTrees;
 
 public class MachineRendererNursery {
 	public static MachineRendererNursery instance = new MachineRendererNursery();
-	;
 	BinnieResource texture;
 	//private IModelCustom casinoMachine;
 	private ModelNursery model;

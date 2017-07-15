@@ -1,10 +1,10 @@
 package binnie.botany.craftgui;
 
-import binnie.botany.api.IColourMix;
+import binnie.botany.api.IColorMix;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.listbox.ControlListBox;
 
-public class ControlColorMixBox extends ControlListBox<IColourMix> {
+public class ControlColorMixBox extends ControlListBox<IColorMix> {
 	private int index;
 	private Type type;
 
@@ -14,7 +14,7 @@ public class ControlColorMixBox extends ControlListBox<IColourMix> {
 	}
 
 	@Override
-	public IWidget createOption(final IColourMix value, final int y) {
+	public IWidget createOption(final IColorMix value, final int y) {
 		return new ControlColorMixItem(this.getContent(), value, y);
 	}
 

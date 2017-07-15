@@ -1,20 +1,5 @@
 package binnie.botany.genetics;
 
-import javax.annotation.Nullable;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-
-import forestry.api.core.EnumTemperature;
-import forestry.api.genetics.EnumTolerance;
-import forestry.api.genetics.IAlleleFloat;
-import forestry.api.genetics.IAlleleInteger;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IAlleleTolerance;
-import forestry.api.genetics.IChromosome;
-import forestry.api.genetics.ISpeciesRoot;
-import forestry.core.genetics.Genome;
-
 import binnie.Binnie;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumFlowerChromosome;
@@ -24,6 +9,19 @@ import binnie.botany.api.IAlleleFlowerSpecies;
 import binnie.botany.api.IFlowerGenome;
 import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
+import forestry.api.core.EnumTemperature;
+import forestry.api.genetics.EnumTolerance;
+import forestry.api.genetics.IAlleleFloat;
+import forestry.api.genetics.IAlleleInteger;
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IAlleleTolerance;
+import forestry.api.genetics.IChromosome;
+import forestry.api.genetics.ISpeciesRoot;
+import forestry.core.genetics.Genome;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
+import javax.annotation.Nullable;
 
 public class FlowerGenome extends Genome implements IFlowerGenome {
 	public FlowerGenome(final NBTTagCompound nbttagcompound) {
@@ -119,24 +117,24 @@ public class FlowerGenome extends Genome implements IFlowerGenome {
 	}
 
 	@Override
-	public boolean canTolerate(final EnumAcidity ePH) {
-		final int pH = ePH.ordinal();
+	public boolean canTolerate(final EnumAcidity acidity) {
+		final int pH = acidity.ordinal();
 		final int[] pHTol = Binnie.GENETICS.getTolerance(this.getTolerancePH());
 		final int fPH = this.getPrimary().getPH().ordinal();
 		return pH >= fPH + pHTol[0] && pH <= fPH + pHTol[1];
 	}
 
 	@Override
-	public boolean canTolerate(final EnumMoisture eMoisture) {
-		final int moisture = eMoisture.ordinal();
+	public boolean canTolerate(final EnumMoisture moist) {
+		final int moisture = moist.ordinal();
 		final int[] moistTol = Binnie.GENETICS.getTolerance(this.getToleranceMoisture());
 		final int fMoisture = this.getPrimary().getMoisture().ordinal();
 		return moisture >= fMoisture + moistTol[0] && moisture <= fMoisture + moistTol[1];
 	}
 
 	@Override
-	public boolean canTolerate(final EnumTemperature eTemp) {
-		final int temp = eTemp.ordinal();
+	public boolean canTolerate(final EnumTemperature temperature) {
+		final int temp = temperature.ordinal();
 		final int[] tempTol = Binnie.GENETICS.getTolerance(this.getToleranceTemperature());
 		final int fTemp = this.getPrimary().getTemperature().ordinal();
 		return temp >= fTemp + tempTol[0] && temp <= fTemp + tempTol[1];

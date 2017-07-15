@@ -1,7 +1,5 @@
 package binnie.botany.api;
 
-import java.util.Locale;
-
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleArea;
@@ -10,6 +8,8 @@ import forestry.api.genetics.IAlleleInteger;
 import forestry.api.genetics.IAlleleTolerance;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
+
+import java.util.Locale;
 
 public enum EnumFlowerChromosome implements IChromosomeType {
 	SPECIES(IAlleleFlowerSpecies.class),
@@ -27,7 +27,7 @@ public enum EnumFlowerChromosome implements IChromosomeType {
 
 	private Class<? extends IAllele> cls;
 
-	EnumFlowerChromosome(final Class<? extends IAllele> cls) {
+	EnumFlowerChromosome(Class<? extends IAllele> cls) {
 		this.cls = cls;
 	}
 

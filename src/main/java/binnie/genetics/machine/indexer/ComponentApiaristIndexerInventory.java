@@ -164,7 +164,7 @@ public class ComponentApiaristIndexerInventory extends ComponentIndexerInventory
 	public enum Mode {
 		None,
 		Species,
-		Type;
+		Type
 	}
 
 	private static class SpeciesList {

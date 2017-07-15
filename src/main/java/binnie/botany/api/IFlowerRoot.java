@@ -1,17 +1,15 @@
 package binnie.botany.api;
 
-import javax.annotation.Nullable;
-import java.util.Collection;
-import java.util.List;
-
+import com.mojang.authlib.GameProfile;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import com.mojang.authlib.GameProfile;
-
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.ISpeciesRoot;
+import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.List;
 
 public interface IFlowerRoot extends ISpeciesRoot {
 	@Override
@@ -28,7 +26,7 @@ public interface IFlowerRoot extends ISpeciesRoot {
 	IFlowerGenome templateAsGenome(IAllele[] template);
 
 	@Override
-	IFlowerGenome templateAsGenome(IAllele[] templateFrist, IAllele[] templateSecond);
+	IFlowerGenome templateAsGenome(IAllele[] templateActive, IAllele[] templateInactive);
 
 	@Override
 	IBotanistTracker getBreedingTracker(World world, @Nullable GameProfile profile);
@@ -47,13 +45,13 @@ public interface IFlowerRoot extends ISpeciesRoot {
 	@Nullable
 	IFlower getConversion(ItemStack memberStack);
 
-	Collection<IColourMix> getColourMixes(boolean p0);
+	Collection<IColorMix> getColorMixes(boolean shuffle);
 
-	void registerColourMix(IColourMix colourMix);
-	
+	void registerColourMix(IColorMix colorMix);
+
 	boolean plant(World world, BlockPos pos, IFlower flower, GameProfile owner);
-	
+
 	void tryGrowSection(World world, BlockPos pos);
-	
+
 	void onGrowFromSeed(World world, BlockPos pos);
 }

@@ -17,7 +17,7 @@ import forestry.core.genetics.Individual;
 
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.IAlleleFlowerSpecies;
-import binnie.botany.api.IColourMix;
+import binnie.botany.api.IColorMix;
 import binnie.botany.api.IFlower;
 import binnie.botany.api.IFlowerColour;
 import binnie.botany.api.IFlowerGenome;
@@ -243,7 +243,7 @@ public class Flower extends Individual implements IFlower {
 		IFlowerColour colourFirst = genome0.getPrimaryColor();
 		IFlowerColour colourSecond = genome2.getPrimaryColor();
 		if (colourFirst != colourSecond) {
-			for (final IColourMix mutation : BotanyCore.getFlowerRoot().getColourMixes(true)) {
+			for (final IColorMix mutation : BotanyCore.getFlowerRoot().getColorMixes(true)) {
 				if (mutation.isMutation(colourFirst, colourSecond) && world.rand.nextFloat() * 100.0f < mutation.getChance()) {
 					parentFirst[EnumFlowerChromosome.PRIMARY.ordinal()] = new Chromosome(mutation.getResult().getAllele());
 				}
@@ -252,7 +252,7 @@ public class Flower extends Individual implements IFlower {
 		colourFirst = genome0.getSecondaryColor();
 		colourSecond = genome2.getSecondaryColor();
 		if (colourFirst != colourSecond) {
-			for (final IColourMix mutation : BotanyCore.getFlowerRoot().getColourMixes(true)) {
+			for (final IColorMix mutation : BotanyCore.getFlowerRoot().getColorMixes(true)) {
 				if (mutation.isMutation(colourFirst, colourSecond) && world.rand.nextFloat() * 100.0f < mutation.getChance()) {
 					parentFirst[EnumFlowerChromosome.SECONDARY.ordinal()] = new Chromosome(mutation.getResult().getAllele());
 				}
@@ -261,7 +261,7 @@ public class Flower extends Individual implements IFlower {
 		colourFirst = genome0.getStemColor();
 		colourSecond = genome2.getStemColor();
 		if (colourFirst != colourSecond) {
-			for (final IColourMix mutation : BotanyCore.getFlowerRoot().getColourMixes(true)) {
+			for (final IColorMix mutation : BotanyCore.getFlowerRoot().getColorMixes(true)) {
 				if (mutation.isMutation(colourFirst, colourSecond) && world.rand.nextFloat() * 100.0f < mutation.getChance()) {
 					parentFirst[EnumFlowerChromosome.STEM.ordinal()] = new Chromosome(mutation.getResult().getAllele());
 				}

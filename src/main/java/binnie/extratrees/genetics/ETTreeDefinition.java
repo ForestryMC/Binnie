@@ -286,7 +286,6 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Lower.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Lower.getAllele());
 			template.set(EnumTreeChromosome.MATURATION, ForestryAllele.Maturation.Fast.getAllele());
-			;
 		}
 
 		@Override
@@ -332,7 +331,6 @@ public enum ETTreeDefinition implements IStringSerializable, ITreeDefinition, IT
 			template.set(EnumTreeChromosome.FRUITS, AlleleETFruit.SourCherry);
 			template.set(EnumTreeChromosome.YIELD, ForestryAllele.Yield.Lower.getAllele());
 			template.set(EnumTreeChromosome.SAPPINESS, ForestryAllele.Sappiness.Low.getAllele());
-			;
 		}
 
 		@Override

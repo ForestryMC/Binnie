@@ -5,6 +5,6 @@ public enum EnumBeeBooleanModifier {
 	Sealed,
 	SelfLighted,
 	SunlightStimulated,
-	Hellish;
+	Hellish
 
 }
