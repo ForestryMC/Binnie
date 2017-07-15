@@ -12,12 +12,12 @@ public class ItemWeed extends ItemBlock {
 		setHasSubtypes(true);
 		hasSubtypes = true;
 	}
-	
+
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		return I18N.localise("botany.plant." + PlantType.values()[stack.getItemDamage()].getName());
 	}
-	
+
 	@Override
 	public int getMetadata(int damage) {
 		return damage;

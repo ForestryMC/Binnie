@@ -19,12 +19,12 @@ public class BlockCeramicPatterned extends BlockDesign {
 		setCreativeTab(CreativeTabBotany.instance);
 		setRegistryName("ceramicPattern");
 	}
-	
+
 	@Override
 	public ItemStack getCreativeStack(IDesign design) {
 		return ModuleCarpentry.getItemStack(this, CeramicColor.get(EnumFlowerColor.White), CeramicColor.get(EnumFlowerColor.Black), design);
 	}
-	
+
 	@Override
 	public String getBlockName(DesignBlock design) {
 		return I18N.localise("botany.ceramic.block.name", design.getDesign().getName());

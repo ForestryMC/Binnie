@@ -63,7 +63,7 @@ import binnie.core.util.TileUtil;
 
 public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicBrickPair>, IColoredBlock, ISpriteRegister, IStateMapperRegister, IItemModelRegister {
 	private static final PropertyEnum<CeramicBrickType> TYPE = PropertyEnum.create("type", CeramicBrickType.class);
-	
+
 	public BlockCeramicBrick() {
 		super(Material.ROCK);
 		setHardness(1.0f);
@@ -71,12 +71,12 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 		setRegistryName("ceramicBrick");
 		setCreativeTab(CreativeTabBotany.instance);
 	}
-	
+
 	@Override
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 		return Collections.emptyList();
 	}
-	
+
 	@Override
 	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, @Nullable EntityPlayer player, boolean willHarvest) {
 		List<ItemStack> drops = new ArrayList<>();
@@ -92,17 +92,17 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 		}
 		return hasBeenBroken;
 	}
-	
+
 	@Override
 	public TileEntity createTileEntity(World world, IBlockState state) {
 		return new TileCeramicBrick();
 	}
-	
+
 	@Override
 	public boolean hasTileEntity(IBlockState state) {
 		return true;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> itemList) {
@@ -118,7 +118,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 		itemList.add(new CeramicBrickPair(EnumFlowerColor.Brown, EnumFlowerColor.Brown, CeramicBrickType.CHEQUERED).getStack(1));
 		itemList.add(new CeramicBrickPair(EnumFlowerColor.Gold, EnumFlowerColor.Brown, CeramicBrickType.LARGE_BRICK).getStack(1));
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerStateMapper() {
@@ -131,13 +131,13 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 				this
 		));
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
 		manager.registerItemModel(item, new CeramicBrickMeshDefinition());
 	}
-	
+
 	@Override
 	protected BlockStateContainer createBlockState() {
 		return new ExtendedBlockState(
@@ -149,27 +149,27 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 				}
 		);
 	}
-	
+
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		return getDefaultState().withProperty(TYPE, CeramicBrickType.VALUES[meta]);
 	}
-	
+
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		return state.getValue(TYPE).ordinal();
 	}
-	
+
 	@Override
 	public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos) {
 		return ((IExtendedBlockState) super.getExtendedState(state, world, pos)).withProperty(UnlistedBlockPos.POS, pos).withProperty(UnlistedBlockAccess.BLOCKACCESS, world);
 	}
-	
+
 	@Override
 	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
 		return getDefaultState().withProperty(TYPE, CeramicBrickType.get(meta >> 16 & 0xFF));
 	}
-	
+
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 		TileCeramicBrick ceramic = TileUtil.getTile(worldIn, pos, TileCeramicBrick.class);
@@ -178,7 +178,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 			ceramic.setColors(EnumFlowerColor.get(damage & 0xFF), EnumFlowerColor.get(damage >> 8 & 0xFF));
 		}
 	}
-	
+
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		TileCeramicBrick ceramic = TileUtil.getTile(world, pos, TileCeramicBrick.class);
@@ -187,7 +187,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 		}
 		return super.getPickBlock(state, target, world, pos, player);
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public int colorMultiplier(IBlockState state, @Nullable IBlockAccess world, @Nullable BlockPos pos, int tintIndex) {
@@ -203,25 +203,25 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 		}
 		return 0xffffff;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getRenderPasses() {
 		return 3;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public CeramicBrickPair getInventoryKey(ItemStack stack) {
 		return new CeramicBrickPair(stack);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public CeramicBrickPair getWorldKey(IBlockState state) {
@@ -234,13 +234,13 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 		}
 		return null;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getSprite(CeramicBrickPair type, @Nullable EnumFacing facing, int pass) {
 		return type.getSprite(pass);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerSprites(ITextureManager manager) {
@@ -252,7 +252,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 			}
 		}
 	}
-	
+
 	private class CeramicBrickMeshDefinition implements ItemMeshDefinition {
 		@Override
 		public ModelResourceLocation getModelLocation(ItemStack stack) {

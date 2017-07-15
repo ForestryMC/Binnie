@@ -16,13 +16,13 @@ import binnie.core.util.I18N;
 public class PageColorMix extends PageAbstract<IFlowerColor> {
 	ControlText pageSpeciesFurther_Title;
 	ControlColorMixBox pageSpeciesFurther_List;
-	
+
 	public PageColorMix(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
 		pageSpeciesFurther_Title = new ControlTextCentered(this, 8, I18N.localise("botany.gui.controls.page.color_further.title"));
 		pageSpeciesFurther_List = new ControlColorMixBox(this, 4, 20, 136, 152, ControlColorMixBox.Type.FURTHER);
 	}
-	
+
 	@Override
 	public void onValueChanged(IFlowerColor colour) {
 		List<IColorMix> mixes = new ArrayList<>();

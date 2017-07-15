@@ -14,7 +14,7 @@ public class FarmableVanillaFlower extends FarmableFlower {
 	public boolean isGermling(ItemStack itemstack) {
 		return BotanyCore.getFlowerRoot().getConversion(itemstack) != null;
 	}
-	
+
 	@Override
 	public boolean plantSaplingAt(EntityPlayer player, ItemStack germling, World world, BlockPos pos) {
 		IFlowerRoot flowerRoot = BotanyCore.getFlowerRoot();

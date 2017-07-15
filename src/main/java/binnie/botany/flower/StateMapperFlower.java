@@ -26,7 +26,7 @@ public class StateMapperFlower extends StateMapperBase {
 		} else if (flowerType.getSections() <= state.getValue(BlockFlower.SECTION)) {
 			properties.put(BlockFlower.SECTION, flowerType.getSections() - 1);
 		}
-		
+
 		if (state.getValue(BlockFlower.SEED)) {
 			properties.remove(BlockFlower.SECTION);
 			properties.remove(BlockFlower.FLOWER);

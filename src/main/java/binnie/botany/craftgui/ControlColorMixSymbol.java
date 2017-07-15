@@ -21,14 +21,14 @@ public class ControlColorMixSymbol extends Control implements ITooltip {
 	static Texture MutationArrow = new StandardTexture(20, 94, 32, 16, CraftGUITextureSheet.Controls2);
 	IColorMix value;
 	int type;
-	
+
 	protected ControlColorMixSymbol(IWidget parent, int x, int y, int type, IColorMix value) {
 		super(parent, x, y, 16 + type * 16, 16);
 		this.value = value;
 		this.type = type;
 		addAttribute(Attribute.MouseOver);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
@@ -39,12 +39,12 @@ public class ControlColorMixSymbol extends Control implements ITooltip {
 			CraftGUI.render.texture(ControlColorMixSymbol.MutationArrow, Point.ZERO);
 		}
 	}
-	
+
 	public void setValue(IColorMix value) {
 		this.value = value;
 		setColour(0xffffff);
 	}
-	
+
 	@Override
 	public void getTooltip(Tooltip tooltip) {
 		if (type == 1) {

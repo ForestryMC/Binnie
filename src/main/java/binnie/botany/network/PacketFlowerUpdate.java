@@ -14,12 +14,12 @@ import binnie.botany.genetics.EnumFlowerType;
 // TODO unused class?
 public class PacketFlowerUpdate extends SPacketUpdateTileEntity {
 	public TileEntityFlower.RenderInfo render;
-	
+
 	public PacketFlowerUpdate(BlockPos blockPos, int metadata, NBTTagCompound compound, TileEntityFlower.RenderInfo render) {
 		super(blockPos, metadata, compound);
 		this.render = render;
 	}
-	
+
 	@Override
 	public void readPacketData(PacketBuffer buf) throws IOException {
 		super.readPacketData(buf);
@@ -33,7 +33,7 @@ public class PacketFlowerUpdate extends SPacketUpdateTileEntity {
 		render.wilted = buf.readBoolean();
 		render.flowered = buf.readBoolean();
 	}
-	
+
 	@Override
 	public void writePacketData(PacketBuffer buf) throws IOException {
 		super.writePacketData(buf);

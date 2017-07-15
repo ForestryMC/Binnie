@@ -13,16 +13,16 @@ public class BotanistTracker extends BreedingTracker implements IBotanistTracker
 	public BotanistTracker(String s) {
 		super(s, "NORMAL");
 	}
-	
+
 	@Override
 	public void registerPickup(IIndividual individual) {
 	}
-	
+
 	@Override
 	protected IBreedingTracker getBreedingTracker(EntityPlayer player) {
 		return Binnie.GENETICS.getFlowerRoot().getBreedingTracker(player.world, player.getGameProfile());
 	}
-	
+
 	@Override
 	protected String speciesRootUID() {
 		return "rootFlowers";

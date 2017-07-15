@@ -27,21 +27,21 @@ public class ItemDictionary extends Item implements IItemModelRegister {
 		setMaxStackSize(1);
 		setRegistryName("database");
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {
 		super.getSubItems(itemIn, tab, subItems);
 		subItems.add(new ItemStack(itemIn, 1, 1));
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
 		manager.registerItemModel(item, 0, "botanist_database");
 		manager.registerItemModel(item, 1, "master_botanist_database");
 	}
-	
+
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack itemStack = playerIn.getHeldItem(handIn);
@@ -52,7 +52,7 @@ public class ItemDictionary extends Item implements IItemModelRegister {
 		}
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
-	
+
 	@Override
 	public String getItemStackDisplayName(ItemStack i) {
 		return I18N.localise("item.botany.database." + ((i.getItemDamage() == 0) ? "name" : "master.name"));

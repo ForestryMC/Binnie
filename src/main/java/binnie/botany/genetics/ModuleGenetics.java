@@ -31,7 +31,7 @@ import binnie.core.liquid.ManagerLiquid;
 
 public class ModuleGenetics implements IInitializable {
 	static AlleleEffectNone alleleEffectNone = new AlleleEffectNone();
-	
+
 	@Override
 	public void preInit() {
 		/* INIT API*/
@@ -43,7 +43,7 @@ public class ModuleGenetics implements IInitializable {
 		
 		/* BACKPACK*/
 		IBackpackInterface backpackInterface = BackpackManager.backpackInterface;
-		
+
 		if (ForestryAPI.enabledPlugins.contains("forestry.storage")) {
 			Predicate<ItemStack> filter = BackpackManager.backpackInterface.createNaturalistBackpackFilter("rootFlowers");
 			BackpackDefinition definition = new BackpackDefinition(new Color(0xf6e83e), Color.WHITE, filter);
@@ -61,22 +61,22 @@ public class ModuleGenetics implements IInitializable {
 		Botany.pollen = new ItemBotany("pollen", EnumFlowerStage.POLLEN, "pollen");
 		Botany.seed = new ItemBotany("seed", EnumFlowerStage.SEED, "germling");
 		Botany.database = new ItemDictionary();
-		
+
 		Botany.proxy.registerBlock(Botany.flower);
 		Botany.proxy.registerItem(Botany.flowerItem);
 		Botany.proxy.registerItem(Botany.pollen);
 		Botany.proxy.registerItem(Botany.seed);
 		Botany.proxy.registerItem(Botany.database);
-		
+
 		BinnieCore.getBinnieProxy().registerTileEntity(TileEntityFlower.class, "botany.tile.flower", null);
 	}
-	
+
 	@Override
 	public void init() {
 		EnumFlowerColor.initColours();
 		FlowerDefinition.initFlowers();
 	}
-	
+
 	@Override
 	public void postInit() {
 		forestry.api.apiculture.FlowerManager.flowerRegistry.registerAcceptableFlower(Botany.flower, "flowersVanilla");

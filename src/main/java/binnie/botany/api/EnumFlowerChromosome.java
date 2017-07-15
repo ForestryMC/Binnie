@@ -24,23 +24,23 @@ public enum EnumFlowerChromosome implements IChromosomeType {
 	PH_TOLERANCE(IAlleleTolerance.class),
 	SAPPINESS(IAlleleFloat.class),
 	STEM(IAlleleInteger.class);
-	
+
 	private Class<? extends IAllele> cls;
-	
+
 	EnumFlowerChromosome(Class<? extends IAllele> cls) {
 		this.cls = cls;
 	}
-	
+
 	@Override
 	public Class<? extends IAllele> getAlleleClass() {
 		return cls;
 	}
-	
+
 	@Override
 	public String getName() {
 		return toString().toLowerCase(Locale.ENGLISH);
 	}
-	
+
 	@Override
 	public ISpeciesRoot getSpeciesRoot() {
 		return AlleleManager.alleleRegistry.getSpeciesRoot("rootFlowers");

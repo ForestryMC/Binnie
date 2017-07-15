@@ -36,7 +36,7 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 		setCreativeTab(CreativeTabBotany.instance);
 		setHasSubtypes(true);
 	}
-	
+
 	private static Multimap<ICircuitLayout, ICircuit> getCircuits(ItemStack itemStack) {
 		Multimap<ICircuitLayout, ICircuit> circuits = ArrayListMultimap.create();
 		Collection<ICircuitLayout> allLayouts = ChipsetManager.circuitRegistry.getRegisteredLayouts().values();
@@ -48,15 +48,15 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 		}
 		return circuits;
 	}
-	
+
 	public static String getInsulate(ItemStack stack) {
 		return EnumTubeInsulate.get(stack.getItemDamage()).getDisplayName();
 	}
-	
+
 	public static ItemStack getInsulateStack(ItemStack stack) {
 		return EnumTubeInsulate.get(stack.getItemDamage()).getStack();
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> subItems) {
@@ -66,7 +66,7 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 			}
 		}
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
@@ -76,7 +76,7 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 			}
 		}
 	}
-	
+
 	@Override
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
 		if (tintIndex == 0) {
@@ -86,7 +86,7 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 		}
 		return EnumTubeInsulate.get(stack.getItemDamage()).getColor();
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack itemstack, EntityPlayer player, List<String> list, boolean flag) {
@@ -108,7 +108,7 @@ public class ItemInsulatedTube extends ItemCore implements IColoredItem {
 			list.add("<" + Translator.translateToLocal("for.gui.noeffect") + ">");
 		}
 	}
-	
+
 	@Override
 	public String getItemStackDisplayName(ItemStack itemStack) {
 		int meta = itemStack.getMetadata();

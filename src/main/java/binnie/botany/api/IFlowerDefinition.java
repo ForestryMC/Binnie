@@ -7,9 +7,9 @@ import forestry.core.genetics.IGeneticDefinition;
 public interface IFlowerDefinition extends IGeneticDefinition {
 	@Override
 	IFlowerGenome getGenome();
-	
+
 	@Override
 	IFlower getIndividual();
-	
+
 	ItemStack getMemberStack(EnumFlowerStage flowerStage);
 }

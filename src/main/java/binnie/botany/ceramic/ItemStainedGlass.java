@@ -16,7 +16,7 @@ public class ItemStainedGlass extends ItemMetadata implements IColoredItem {
 	public ItemStainedGlass(Block block) {
 		super(block);
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {

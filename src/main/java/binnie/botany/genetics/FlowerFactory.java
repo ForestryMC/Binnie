@@ -17,7 +17,7 @@ public class FlowerFactory implements IFlowerFactory {
 		FlowerSpriteManager.initSprites(flowerType);
 		return new AlleleFlowerSpecies(uid, unlocalizedName, authority, unlocalizedDescription, isDominant, branch, binomial, flowerType);
 	}
-	
+
 	@Override
 	public IFlowerMutationBuilder createMutation(IAlleleFlowerSpecies allele0, IAlleleFlowerSpecies allele1, IAllele[] result, int chance) {
 		FlowerMutation mutation = new FlowerMutation(allele0, allele1, result, chance);

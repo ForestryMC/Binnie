@@ -88,15 +88,15 @@ public enum EnumFlowerColor implements IStringSerializable {
 	White("white", 16777215),
 	Yellow("yellow", 16776960),
 	YellowGreen("yellowGreen", 10145074);
-	
+
 	public static final EnumFlowerColor[] VALUES = values();
-	
+
 	private FlowerColorAllele allele;
-	
+
 	EnumFlowerColor(String ident, int c) {
 		this(c);
 	}
-	
+
 	EnumFlowerColor(int color) {
 		int r = color >> 16 & 0xFF;
 		int g = color >> 8 & 0xFF;
@@ -108,11 +108,11 @@ public enum EnumFlowerColor implements IStringSerializable {
 		String uid = "botany.color" + name();
 		allele = new FlowerColorAllele(uid, ordinal(), color, colorDis, name().toLowerCase(), uid, true);
 	}
-	
+
 	public static void addMix(EnumFlowerColor start1, EnumFlowerColor start2, EnumFlowerColor result, int chance) {
 		BotanyCore.getFlowerRoot().registerColourMix(new ColorMix(start1.allele, start2.allele, result.allele, chance));
 	}
-	
+
 	public static void setupMutations() {
 		addMix(EnumFlowerColor.Blue, EnumFlowerColor.Aquamarine, EnumFlowerColor.SteelBlue, 55);
 		addMix(EnumFlowerColor.Blue, EnumFlowerColor.Black, EnumFlowerColor.Navy, 85);
@@ -2930,30 +2930,30 @@ public enum EnumFlowerColor implements IStringSerializable {
 		addMix(EnumFlowerColor.YellowGreen, EnumFlowerColor.White, EnumFlowerColor.Khaki, 95);
 		addMix(EnumFlowerColor.YellowGreen, EnumFlowerColor.Yellow, EnumFlowerColor.Khaki, 110);
 	}
-	
+
 	public static void initColours() {
 		for (EnumFlowerColor color : EnumFlowerColor.values()) {
 			AlleleManager.alleleRegistry.registerAllele(color.allele);
 		}
 	}
-	
+
 	public static EnumFlowerColor get(int i) {
 		return values()[Math.max(0, i) % values().length];
 	}
-	
+
 	public String getDisplayName() {
 		return I18N.localise("botany.color." + getName());
 	}
-	
+
 	@Override
 	public String getName() {
 		return name().toLowerCase();
 	}
-	
+
 	public String getHTMLName() {
 		return name();
 	}
-	
+
 	public FlowerColorAllele getFlowerColorAllele() {
 		return allele;
 	}

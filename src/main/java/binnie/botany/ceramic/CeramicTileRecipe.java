@@ -17,13 +17,13 @@ import binnie.botany.ceramic.brick.CeramicBrickType;
 
 public class CeramicTileRecipe implements IRecipe {
 	private ItemStack cached = ItemStack.EMPTY;
-	
+
 	@Override
 	public boolean matches(InventoryCrafting inv, World world) {
 		cached = getCraftingResult(inv);
 		return !cached.isEmpty();
 	}
-	
+
 	@Override
 	public ItemStack getCraftingResult(InventoryCrafting inv) {
 		Item ceramicBlock = Item.getItemFromBlock(Botany.ceramic);
@@ -59,17 +59,17 @@ public class CeramicTileRecipe implements IRecipe {
 		}
 		return ItemStack.EMPTY;
 	}
-	
+
 	@Override
 	public int getRecipeSize() {
 		return 2;
 	}
-	
+
 	@Override
 	public ItemStack getRecipeOutput() {
 		return cached;
 	}
-	
+
 	@Override
 	public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv) {
 		return ForgeHooks.defaultRecipeGetRemainingItems(inv);

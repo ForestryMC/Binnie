@@ -53,7 +53,7 @@ import binnie.core.util.I18N;
 public class ItemBotany extends Item implements IColoredItem, IItemModelRegister {
 	private EnumFlowerStage type;
 	private String tag;
-	
+
 	public ItemBotany(String name, EnumFlowerStage type, String tag) {
 		this.type = type;
 		this.tag = tag;
@@ -62,22 +62,22 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 		setRegistryName(name);
 		hasSubtypes = true;
 	}
-	
+
 	@Override
 	public boolean isDamageable() {
 		return false;
 	}
-	
+
 	@Override
 	public boolean isRepairable() {
 		return false;
 	}
-	
+
 	@Override
 	public boolean getShareTag() {
 		return true;
 	}
-	
+
 	@Override
 	public boolean hasEffect(ItemStack itemstack) {
 		if (!itemstack.hasTagCompound()) {
@@ -86,7 +86,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 		IIndividual individual = getIndividual(itemstack);
 		return individual != null && individual.hasEffect();
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> list, boolean flag) {
@@ -95,7 +95,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 			list.add(TextFormatting.DARK_RED + I18N.localise("item.botany.flower.destroy"));
 			return;
 		}
-		
+
 		IFlowerGenome genome = individual.getGenome();
 		//Colors
 		String primaryColor = genome.getPrimaryColor().getColorName();
@@ -108,7 +108,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 			colorInfo = I18N.localise("item.botany.grammar.flower");
 		}
 		list.add(TextFormatting.YELLOW + colorInfo.replaceAll("%PRIMARY", primaryColor).replaceAll("%SECONDARY", secondaryColor).replaceAll("%STEM", stemColor));
-		
+
 		if (individual.isAnalyzed()) {
 			if (GuiScreen.isShiftKeyDown()) {
 				individual.addTooltip(list);
@@ -119,7 +119,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 			list.add("<" + I18N.localise("for.gui.unknown") + ">");
 		}
 	}
-	
+
 	@Nullable
 	protected IIndividual getIndividual(ItemStack itemstack) {
 		NBTTagCompound tagCompound = itemstack.getTagCompound();
@@ -128,7 +128,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 		}
 		return new Flower(tagCompound);
 	}
-	
+
 	private IAlleleFlowerSpecies getPrimarySpecies(ItemStack itemstack) {
 		IFlower tree = BotanyCore.getFlowerRoot().getMember(itemstack);
 		if (tree == null) {
@@ -136,7 +136,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 		}
 		return tree.getGenome().getPrimary();
 	}
-	
+
 	@Override
 	public String getItemStackDisplayName(ItemStack itemstack) {
 		if (!itemstack.hasTagCompound()) {
@@ -148,12 +148,12 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 		}
 		return I18N.localise("item.botany.flower.corrupted.name");
 	}
-	
+
 	@Override
 	public void getSubItems(Item item, CreativeTabs tab, NonNullList<ItemStack> itemList) {
 		addCreativeItems(itemList, true);
 	}
-	
+
 	public void addCreativeItems(NonNullList<ItemStack> itemList, boolean hideSecrets) {
 		for (IIndividual individual : BotanyCore.getFlowerRoot().getIndividualTemplates()) {
 			if (hideSecrets && individual.isSecret() && !Config.isDebug) {
@@ -162,7 +162,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 			itemList.add(BotanyCore.getFlowerRoot().getMemberStack(individual.copy(), type));
 		}
 	}
-	
+
 	@Override
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
 		IFlower flower = BotanyCore.getFlowerRoot().getMember(stack);
@@ -176,7 +176,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 				? flower.getGenome().getPrimaryColor().getColor(flower.isWilted())
 				: flower.getGenome().getSecondaryColor().getColor(flower.isWilted());
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
@@ -185,7 +185,7 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 		}
 		manager.registerItemModel(item, new BotanyMeshDefinition());
 	}
-	
+
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack stack = player.getHeldItem(hand);
@@ -205,43 +205,43 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 			}
 			return EnumActionResult.SUCCESS;
 		}
-		
+
 		IBlockState iblockstate = world.getBlockState(pos);
 		Block block = iblockstate.getBlock();
-		
+
 		if (!block.isReplaceable(world, pos)) {
 			pos = pos.offset(facing);
 		}
-		
+
 		if (stack.getCount() != 0 && player.canPlayerEdit(pos, facing, stack) && world.mayPlace(Botany.flower, pos, false, facing, null)) {
 			int i = getMetadata(stack.getMetadata());
 			IBlockState iblockstate1 = Botany.flower.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, i, player, hand);
-			
+
 			if (placeBlockAt(stack, player, world, pos, facing, hitX, hitY, hitZ, iblockstate1)) {
 				SoundType soundtype = world.getBlockState(pos).getBlock().getSoundType(world.getBlockState(pos), world, pos, player);
 				world.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
 				stack.shrink(1);
 			}
-			
+
 			return EnumActionResult.SUCCESS;
 		}
 		return EnumActionResult.FAIL;
 	}
-	
+
 	public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, IBlockState newState) {
 		if (!world.setBlockState(pos, newState, 3)) {
 			return false;
 		}
-		
+
 		IBlockState state = world.getBlockState(pos);
 		if (state.getBlock() == Botany.flower) {
 			ItemBlock.setTileEntityNBT(world, player, pos, stack);
 			Botany.flower.onBlockPlacedBy(world, pos, state, player, stack);
 		}
-		
+
 		return true;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	private class BotanyMeshDefinition implements ItemMeshDefinition {
 		@Override

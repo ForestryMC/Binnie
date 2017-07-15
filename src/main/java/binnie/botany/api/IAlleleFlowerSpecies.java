@@ -12,17 +12,17 @@ import forestry.api.genetics.IAlleleSpecies;
 
 public interface IAlleleFlowerSpecies extends IAlleleSpecies, IAlleleProperty<IAlleleFlowerSpecies> {
 	IFlowerType getType();
-	
+
 	EnumAcidity getPH();
-	
+
 	EnumMoisture getMoisture();
-	
+
 	@SideOnly(Side.CLIENT)
 	int getFlowerColor(EnumFlowerStage type, int renderPass);
-	
+
 	@SideOnly(Side.CLIENT)
 	ModelResourceLocation getFlowerModel(EnumFlowerStage type, boolean flowered);
-	
+
 	@SideOnly(Side.CLIENT)
 	void registerModels(Item item, IModelManager manager, EnumFlowerStage type);
 }

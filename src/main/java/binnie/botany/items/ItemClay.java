@@ -23,7 +23,7 @@ public class ItemClay extends Item implements IColoredItem, IItemModelRegister {
 		setCreativeTab(CreativeTabBotany.instance);
 		setRegistryName("clay");
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
@@ -31,20 +31,20 @@ public class ItemClay extends Item implements IColoredItem, IItemModelRegister {
 			manager.registerItemModel(item, color.ordinal());
 		}
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
 		EnumFlowerColor color = EnumFlowerColor.get(stack.getItemDamage());
 		return color.getFlowerColorAllele().getColor(false);
 	}
-	
+
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		EnumFlowerColor color = EnumFlowerColor.get(stack.getItemDamage());
 		return I18N.localise("item.botany.clay.name", color.getFlowerColorAllele().getColorName());
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list) {

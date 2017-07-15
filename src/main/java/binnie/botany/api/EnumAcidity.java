@@ -11,19 +11,19 @@ public enum EnumAcidity implements IStringSerializable {
 	ACID(TextFormatting.RED),
 	NEUTRAL(null),
 	ALKALINE(TextFormatting.AQUA);
-	
+
 	@Nullable
 	TextFormatting color;
-	
+
 	EnumAcidity(@Nullable TextFormatting color) {
 		this.color = color;
 	}
-	
+
 	@Override
 	public String getName() {
 		return name().toLowerCase();
 	}
-	
+
 	public String getLocalisedName(boolean withColor) {
 		String localisedName = I18N.localise("botany.ph." + getName());
 		if (withColor && color != null) {

@@ -32,15 +32,15 @@ import binnie.core.util.I18N;
 
 public class WindowBotanistDatabase extends WindowAbstractDatabase {
 	private ControlListBox<EnumFlowerColor> selectionBoxColors;
-	
+
 	public WindowBotanistDatabase(EntityPlayer player, Side side, boolean nei) {
 		super(player, side, nei, Binnie.GENETICS.flowerBreedingSystem, 130);
 	}
-	
+
 	public static Window create(EntityPlayer player, Side side, boolean nei) {
 		return new WindowBotanistDatabase(player, side, nei);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	protected void addTabs() {
@@ -56,32 +56,32 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 		new PageColorMix(getInfoPages(FlowerMode.Color), new DatabaseTab(Botany.instance, "color.further", 0));
 		new PageBreeder(getInfoPages(Mode.BREEDER), getUsername(), new DatabaseTab(Botany.instance, "breeder", 0));
 	}
-	
+
 	@Override
 	protected AbstractMod getMod() {
 		return Botany.instance;
 	}
-	
+
 	@Override
 	protected String getBackgroundTextureName() {
 		return "FlowerDatabase";
 	}
-	
+
 	enum FlowerMode implements IDatabaseMode {
 		Color;
-		
+
 		@Override
 		public String getName() {
 			return I18N.localise("botany.gui.database.tab." + name().toLowerCase());
 		}
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	private class FlowerColorModeWidgets extends ModeWidgets {
 		public FlowerColorModeWidgets() {
 			super(FlowerMode.Color, WindowBotanistDatabase.this);
 		}
-		
+
 		@Override
 		public void createListBox(Area area) {
 			listBox = new ControlListBox<IFlowerColor>(modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
@@ -90,7 +90,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 					return new ControlColorOption(getContent(), value, y);
 				}
 			};
-			
+
 			List<IFlowerColor> colors = Arrays.stream(EnumFlowerColor.values()).map(c -> c.getFlowerColorAllele()).collect(Collectors.toList());
 			listBox.setOptions(colors);
 		}

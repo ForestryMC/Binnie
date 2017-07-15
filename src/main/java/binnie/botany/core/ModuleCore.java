@@ -7,12 +7,12 @@ public class ModuleCore implements IInitializable {
 	public void preInit() {
 		// ignored
 	}
-	
+
 	@Override
 	public void init() {
 		// ignored
 	}
-	
+
 	@Override
 	public void postInit() {
 		// ignored

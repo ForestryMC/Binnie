@@ -35,7 +35,7 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 		setMaxStackSize(1);
 		setRegistryName("soil_meter");
 	}
-	
+
 	public static String getPH(ItemStack stack, boolean withColor, boolean byNeutralNone) {
 		EnumAcidity ph = EnumAcidity.values()[stack.getItemDamage() / 3];
 		if (byNeutralNone) {
@@ -45,7 +45,7 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 		}
 		return TextFormatting.GRAY + I18N.localise("botany.ph") + ": " + ph.getLocalisedName(withColor);
 	}
-	
+
 	public static String getMoisture(ItemStack stack, boolean withColor, boolean byNormalNone) {
 		EnumMoisture moisure = EnumMoisture.values()[stack.getItemDamage() % 3];
 		if (byNormalNone) {
@@ -55,13 +55,13 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 		}
 		return TextFormatting.GRAY + I18N.localise("botany.moisture") + ": " + moisure.getLocalisedName(withColor);
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
 		manager.registerItemModel(item, 0);
 	}
-	
+
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		Block block = worldIn.getBlockState(pos).getBlock();
@@ -70,12 +70,12 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 			pos = pos.down();
 			block = worldIn.getBlockState(pos).getBlock();
 		}
-		
+
 		if (!gardening.isSoil(block)) {
 			pos = pos.down();
 			block = worldIn.getBlockState(pos).getBlock();
 		}
-		
+
 		if (gardening.isSoil(block) && !BinnieCore.getBinnieProxy().isSimulating(worldIn)) {
 			IBlockSoil soil = (IBlockSoil) block;
 			String info = I18N.localise("botany.soil.type") + ": "
@@ -84,7 +84,7 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 					+ soil.getMoisture(worldIn, pos).getLocalisedName(true) + ", "
 					+ TextFormatting.WHITE + I18N.localise("botany.ph") + ": "
 					+ soil.getPH(worldIn, pos).getLocalisedName(true);
-			
+
 			ITextComponent chat = new TextComponentString(info);
 			player.sendStatusMessage(chat, false);
 		}

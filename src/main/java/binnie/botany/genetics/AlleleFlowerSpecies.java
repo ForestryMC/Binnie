@@ -25,7 +25,7 @@ public class AlleleFlowerSpecies extends AlleleSpecies implements IAlleleFlowerS
 	private final IFlowerType flowerType;
 	private EnumAcidity acidity = EnumAcidity.NEUTRAL;
 	private EnumMoisture moisture = EnumMoisture.NORMAL;
-	
+
 	public AlleleFlowerSpecies(
 			String uid,
 			String unlocalizedName,
@@ -38,67 +38,67 @@ public class AlleleFlowerSpecies extends AlleleSpecies implements IAlleleFlowerS
 		super(uid, unlocalizedName, authority, unlocalizedDescription, isDominant, branch, binomial);
 		this.flowerType = flowerType;
 	}
-	
+
 	@Override
 	public IAlleleFlowerSpeciesBuilder setPH(EnumAcidity acidity) {
 		this.acidity = acidity;
 		return this;
 	}
-	
+
 	@Override
 	public IAlleleFlowerSpeciesBuilder setMoisture(EnumMoisture moisture) {
 		this.moisture = moisture;
 		return this;
 	}
-	
+
 	@Override
 	public IAlleleFlowerSpecies build() {
 		AlleleManager.alleleRegistry.registerAllele(this, EnumFlowerChromosome.SPECIES);
 		return this;
 	}
-	
+
 	@Override
 	public ISpeciesRoot getRoot() {
 		return BotanyCore.getFlowerRoot();
 	}
-	
+
 	@Override
 	public IFlowerType getType() {
 		return flowerType;
 	}
-	
+
 	@Override
 	public EnumAcidity getPH() {
 		return acidity;
 	}
-	
+
 	@Override
 	public EnumMoisture getMoisture() {
 		return moisture;
 	}
-	
+
 	@Override
 	public int getSpriteColour(int renderPass) {
 		return 0;
 	}
-	
+
 	@Override
 	public int getFlowerColor(EnumFlowerStage type, int renderPass) {
 		return 0;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ModelResourceLocation getFlowerModel(EnumFlowerStage type, boolean flowered) {
 		return flowerType.getModel(type, flowered);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModels(Item item, IModelManager manager, EnumFlowerStage type) {
 		flowerType.registerModels(item, manager, type);
 	}
-	
+
 	@Override
 	public int compareTo(IAlleleFlowerSpecies o) {
 		return 0;

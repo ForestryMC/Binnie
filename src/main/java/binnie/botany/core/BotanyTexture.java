@@ -16,16 +16,16 @@ public enum BotanyTexture implements IBinnieTexture {
 	;
 	String texture;
 	ResourceType type;
-	
+
 	@SideOnly(Side.CLIENT)
 	@Nullable
 	private BinnieResource resource;
-	
+
 	BotanyTexture(ResourceType base, String texture) {
 		this.texture = texture;
 		type = base;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public BinnieResource getTexture() {

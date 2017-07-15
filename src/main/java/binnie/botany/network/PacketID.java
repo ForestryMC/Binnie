@@ -19,7 +19,7 @@ import binnie.core.util.I18N;
 
 public enum PacketID implements IPacketID {
 	FIELDKIT;
-	
+
 	@Override
 	public void onMessage(MessageBinnie message, MessageContext context) {
 		if (this == PacketID.FIELDKIT && context.side == Side.CLIENT) {
@@ -27,7 +27,7 @@ public enum PacketID implements IPacketID {
 			onUseFieldKit(packet.getTagCompound());
 		}
 	}
-	
+
 	public void onUseFieldKit(NBTTagCompound data) {
 		EntityPlayer player = BinnieCore.getBinnieProxy().getPlayer();
 		String info = "";
@@ -42,7 +42,7 @@ public enum PacketID implements IPacketID {
 			if (primary == null || secondary == null) {
 				return;
 			}
-			
+
 			info += I18N.localise("botany.flowers.fielkit.a");
 			if (age == 0.0f) {
 				info += "";
@@ -53,19 +53,19 @@ public enum PacketID implements IPacketID {
 			} else {
 				info += " " + I18N.localise("botany.flowers.fielkit.old");
 			}
-			
+
 			if (color1 == color2) {
 				info = info + " " + color1.getName();
 			} else {
 				info = info + " " + color1.getName() + " & " + color2.getName();
 			}
-			
+
 			if (primary == secondary) {
 				info = info + " " + primary.getName();
 			} else {
 				info = info + " " + primary.getName() + "-" + secondary.getName() + " " + I18N.localise("botany.flowers.species.hybrid");
 			}
-			
+
 			if (age == 0.0f) {
 				info += " " + I18N.localise("botany.flowers.species.germling");
 			}

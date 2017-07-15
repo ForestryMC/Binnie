@@ -10,7 +10,7 @@ public class ControlColorMixItem extends ControlOption<IColorMix> {
 	private final ControlColorDisplay itemWidget3;
 	private final ControlColorMixSymbol addSymbol;
 	private final ControlColorMixSymbol arrowSymbol;
-	
+
 	public ControlColorMixItem(ControlList<IColorMix> controlList, IColorMix option, int y) {
 		super(controlList, option, y);
 		IColorMix value = getValue();

@@ -18,33 +18,33 @@ public enum BotanyItems implements IItemMiscProvider {
 	POWDER_COMPOST,
 	MORTAR,
 	WEEDKILLER;
-	
+
 	String name;
-	
+
 	BotanyItems() {
 		name = name().toLowerCase(Locale.ENGLISH);
 	}
-	
+
 	@Override
 	public void addInformation(List<String> tooltip) {
 		// ignored
 	}
-	
+
 	@Override
 	public String getDisplayName(ItemStack stack) {
 		return I18N.localise("item.botany." + name + ".name");
 	}
-	
+
 	@Override
 	public String getModelPath() {
 		return name;
 	}
-	
+
 	@Override
 	public ItemStack get(int size) {
 		return new ItemStack(Botany.misc, size, ordinal());
 	}
-	
+
 	@Override
 	public boolean isActive() {
 		return true;

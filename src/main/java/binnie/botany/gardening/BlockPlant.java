@@ -31,24 +31,24 @@ import binnie.botany.core.BotanyCore;
 
 public class BlockPlant extends BlockBush implements IItemModelRegister {
 	public static final PropertyEnum<PlantType> PLANT_TYPE = PropertyEnum.create("plant_type", PlantType.class);
-	
+
 	public BlockPlant() {
 		setRegistryName("plant");
 		setCreativeTab(CreativeTabBotany.instance);
 		setTickRandomly(true);
 		setSoundType(SoundType.PLANT);
 	}
-	
+
 	public static boolean isWeed(IBlockAccess world, BlockPos pos) {
 		IBlockState blockState = world.getBlockState(pos);
 		if (!(blockState.getBlock() instanceof BlockPlant)) {
 			return false;
 		}
-		
+
 		PlantType type = blockState.getValue(PLANT_TYPE);
 		return type.isWeed();
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
@@ -58,37 +58,37 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 			index++;
 		}
 	}
-	
+
 	@Override
 	protected BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, PLANT_TYPE);
 	}
-	
+
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		return state.getValue(PLANT_TYPE).ordinal();
 	}
-	
+
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		return getDefaultState().withProperty(PLANT_TYPE, PlantType.values()[meta]);
 	}
-	
+
 	@Override
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 		return new ArrayList<>();
 	}
-	
+
 	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
 		return super.canPlaceBlockAt(worldIn, pos) || BotanyCore.getGardening().isSoil(worldIn.getBlockState(pos).getBlock());
 	}
-	
+
 	@Override
 	public int damageDropped(IBlockState state) {
 		return getMetaFromState(state);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, NonNullList<ItemStack> subBlocks) {
@@ -96,7 +96,7 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 			subBlocks.add(type.get());
 		}
 	}
-	
+
 	@Override
 	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
 		PlantType type = state.getValue(PLANT_TYPE);
@@ -112,7 +112,7 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 				return;
 			}
 		}
-		
+
 		if (rand.nextInt(6) == 0) {
 			if (type == PlantType.WEEDS) {
 				world.setBlockToAir(pos);
@@ -122,17 +122,17 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 				world.setBlockState(pos, state.withProperty(PLANT_TYPE, PlantType.WEEDS_LONG), 2);
 			}
 		}
-		
+
 		Block below = world.getBlockState(pos.down()).getBlock();
 		if (!BotanyCore.getGardening().isSoil(below)) {
 			return;
 		}
-		
+
 		IBlockSoil soil = (IBlockSoil) below;
 		if (rand.nextInt(3) != 0) {
 			return;
 		}
-		
+
 		if (type.isWeed()) {
 			if (!soil.degrade(world, pos.down(), EnumSoilType.LOAM)) {
 				soil.degrade(world, pos.down(), EnumSoilType.SOIL);
@@ -141,12 +141,12 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 			soil.fertilise(world, pos.down(), EnumSoilType.FLOWERBED);
 		}
 	}
-	
+
 	@Override
 	public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos) {
 		return true;
 	}
-	
+
 	@Override
 	public EnumOffsetType getOffsetType() {
 		return EnumOffsetType.XZ;

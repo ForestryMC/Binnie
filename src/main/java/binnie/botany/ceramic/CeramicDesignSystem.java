@@ -28,37 +28,37 @@ public class CeramicDesignSystem implements IDesignSystem {
 	public static CeramicDesignSystem instance = new CeramicDesignSystem();
 	Map<Integer, TextureAtlasSprite> primary;
 	Map<Integer, TextureAtlasSprite> secondary;
-	
+
 	CeramicDesignSystem() {
 		primary = new HashMap<>();
 		secondary = new HashMap<>();
 		DesignerManager.instance.registerDesignSystem(this);
 	}
-	
+
 	@Override
 	public IDesignMaterial getDefaultMaterial() {
 		return CeramicColor.get(EnumFlowerColor.White);
 	}
-	
+
 	@Override
 	public IDesignMaterial getDefaultMaterial2() {
 		return CeramicColor.get(EnumFlowerColor.Black);
 	}
-	
+
 	@Override
 	public IDesignMaterial getMaterial(int id) {
 		return CeramicColor.get(EnumFlowerColor.get(id));
 	}
-	
+
 	@Override
 	public int getMaterialIndex(IDesignMaterial id) {
 		return ((CeramicColor) id).color.ordinal();
 	}
-	
+
 	public String getTexturePath() {
 		return "blocks/ceramic";
 	}
-	
+
 	@Override
 	@Nullable
 	@SideOnly(Side.CLIENT)
@@ -68,7 +68,7 @@ public class CeramicDesignSystem implements IDesignSystem {
 		}
 		return null;
 	}
-	
+
 	@Override
 	@Nullable
 	@SideOnly(Side.CLIENT)
@@ -78,7 +78,7 @@ public class CeramicDesignSystem implements IDesignSystem {
 		}
 		return null;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerSprites() {
@@ -90,16 +90,16 @@ public class CeramicDesignSystem implements IDesignSystem {
 			secondary.put(pattern.ordinal(), textureMap.registerSprite(secondaryLocation));
 		}
 	}
-	
+
 	public AbstractMod getMod() {
 		return Botany.instance;
 	}
-	
+
 	@Override
 	public ItemStack getAdhesive() {
 		return BotanyItems.MORTAR.get(1);
 	}
-	
+
 	@Override
 	@Nullable
 	public IDesignMaterial getMaterial(ItemStack itemStack) {

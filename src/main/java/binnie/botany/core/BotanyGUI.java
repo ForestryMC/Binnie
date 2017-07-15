@@ -15,7 +15,7 @@ import binnie.core.gui.IBinnieGUID;
 public enum BotanyGUI implements IBinnieGUID {
 	DATABASE,
 	DATABASE_NEI;
-	
+
 	@Override
 	public Window getWindow(EntityPlayer player, World world, int x, int y, int z, Side side) {
 		Window window = null;

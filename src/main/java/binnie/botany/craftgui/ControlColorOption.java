@@ -15,7 +15,7 @@ import binnie.core.craftgui.geometry.Point;
 public class ControlColorOption extends ControlTextOption<IFlowerColor> {
 	private ControlColorDisplay controlBee;
 	private Point boxPosition;
-	
+
 	public ControlColorOption(ControlList<IFlowerColor> controlList, IFlowerColor option, int y) {
 		super(controlList, option, option.getColorName(), y);
 		setSize(new Point(getSize().x(), 20));

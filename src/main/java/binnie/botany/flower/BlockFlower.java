@@ -58,25 +58,25 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 	public static final PropertyInteger SECTION = PropertyInteger.create("section", 0, EnumFlowerType.highestSection - 1);
 	public static final PropertyBool FLOWERED = PropertyBool.create("flowered");
 	public static final PropertyBool SEED = PropertyBool.create("seed");
-	
+
 	public BlockFlower() {
 		super(Material.PLANTS);
 		setTickRandomly(true);
 		setRegistryName("flower");
 		setSoundType(SoundType.PLANT);
 	}
-	
+
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileEntityFlower();
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerStateMapper() {
 		ModelLoader.setCustomStateMapper(this, new StateMapperFlower());
 	}
-	
+
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack heldItem = player.getHeldItemMainhand();
@@ -86,18 +86,18 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		if (world.isRemote) {
 			return true;
 		}
-		
+
 		TileEntity tile = world.getTileEntity(pos);
 		if (!(tile instanceof TileEntityFlower)) {
 			return true;
 		}
-		
+
 		TileEntityFlower tileFlower = (TileEntityFlower) tile;
 		IFlower flower = tileFlower.getFlower();
 		if (flower == null) {
 			return true;
 		}
-		
+
 		IFlowerGenome flowerGenome = flower.getGenome();
 		NBTTagCompound info = new NBTTagCompound();
 		info.setString("Species", flowerGenome.getPrimary().getUID());
@@ -111,13 +111,13 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		heldItem.damageItem(1, player);
 		return true;
 	}
-	
+
 	@Override
 	@Nullable
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
 		return null;
 	}
-	
+
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		TileEntity tile = source.getTileEntity(pos);
@@ -129,7 +129,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		}
 		return FLOWER_BLOCK_AABB;
 	}
-	
+
 	@Override
 	public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World world, BlockPos pos) {
 		TileEntity tile = world.getTileEntity(pos);
@@ -141,17 +141,17 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		}
 		return FLOWER_BLOCK_AABB.offset(pos);
 	}
-	
+
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
-	
+
 	@Override
 	public boolean isFullCube(IBlockState state) {
 		return false;
 	}
-	
+
 	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 		super.onBlockPlacedBy(world, pos, state, placer, stack);
@@ -166,7 +166,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 			}
 			return;
 		}
-		
+
 		TileEntity below = world.getTileEntity(pos.down());
 		if (flower != null && flower instanceof TileEntityFlower) {
 			if (below instanceof TileEntityFlower) {
@@ -178,7 +178,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		}
 		flowerRoot.tryGrowSection(world, pos);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockState state, @Nullable IBlockAccess world, @Nullable BlockPos pos, int tintIndex) {
@@ -196,12 +196,12 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		}
 		return 0xffffff;
 	}
-	
+
 	@Override
 	public boolean canPlaceBlockAt(World world, BlockPos pos) {
 		return super.canPlaceBlockAt(world, pos) && canBlockStay(world, pos);
 	}
-	
+
 	public boolean canBlockStay(World world, BlockPos pos) {
 		TileEntity tile = world.getTileEntity(pos);
 		IBlockState downState = world.getBlockState(pos.down());
@@ -210,26 +210,26 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		}
 		return canPlaceBlockOn(downState.getBlock());
 	}
-	
+
 	protected boolean canPlaceBlockOn(Block block) {
 		return block == Blocks.GRASS
 				|| block == Blocks.DIRT
 				|| block == Blocks.FARMLAND
 				|| BotanyCore.getGardening().isSoil(block);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumBlockRenderType getRenderType(IBlockState state) {
 		return EnumBlockRenderType.MODEL;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public EnumOffsetType getOffsetType() {
 		return EnumOffsetType.XZ;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
@@ -246,22 +246,22 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		}
 		return state;
 	}
-	
+
 	@Override
 	protected BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, FLOWER, FLOWERED, SECTION, SEED);
 	}
-	
+
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		return 0;
 	}
-	
+
 	@Override
 	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
-	
+
 	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
 		checkAndDropBlock(worldIn, pos);
@@ -274,7 +274,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 			}
 		}
 	}
-	
+
 	@Override
 	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
 		TileEntity tile = world.getTileEntity(pos);
@@ -285,14 +285,14 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		}
 		world.setBlockToAir(pos);
 	}
-	
+
 	protected void checkAndDropBlock(World world, BlockPos pos) {
 		if (!canBlockStay(world, pos)) {
 			dropBlockAsItem(world, pos, world.getBlockState(pos), 0);
 			world.setBlockToAir(pos);
 		}
 	}
-	
+
 	@Override
 	public NonNullList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 		NonNullList<ItemStack> drops = NonNullList.create();
@@ -305,7 +305,7 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		}
 		return drops;
 	}
-	
+
 	@Override
 	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
 		List<ItemStack> drops = getDrops(world, pos, world.getBlockState(pos), 0);

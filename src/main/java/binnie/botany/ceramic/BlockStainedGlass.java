@@ -50,23 +50,23 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 		setSoundType(SoundType.GLASS);
 		setHardness(0.3F);
 	}
-	
+
 	@Override
 	public int quantityDropped(Random rand) {
 		return 0;
 	}
-	
+
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public BlockRenderLayer getBlockLayer() {
 		return BlockRenderLayer.TRANSLUCENT;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModel(Item item, IModelManager manager) {
@@ -74,7 +74,7 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 			manager.registerItemModel(item, color.getFlowerColorAllele().getID());
 		}
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
@@ -82,98 +82,98 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 		Block block = iblockstate.getBlock();
 		return block != this;
 	}
-	
+
 	@Override
 	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack) {
 		player.addStat(StatList.getBlockStats(this));
 		player.addExhaustion(0.005F);
-		
+
 		if (EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, stack) > 0 && te instanceof TileEntityMetadata) {
 			List<ItemStack> items = new ArrayList<>();
 			TileEntityMetadata tile = (TileEntityMetadata) te;
 			int damage = getDroppedMeta(state, tile.getTileMetadata());
 			ItemStack itemstack = TileEntityMetadata.getItemStack(this, damage);
-			
+
 			if (!itemstack.isEmpty()) {
 				items.add(itemstack);
 			}
-			
+
 			ForgeEventFactory.fireBlockHarvesting(items, worldIn, pos, state, 0, 1.0f, true, player);
 			for (ItemStack item : items) {
 				spawnAsEntity(worldIn, pos, item);
 			}
 		}
 	}
-	
+
 	@Override
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 		return Collections.emptyList();
 	}
-	
+
 	@Override
 	public TileEntity createNewTileEntity(World var1, int i) {
 		return new TileEntityMetadata();
 	}
-	
+
 	@Override
 	public boolean hasTileEntity(IBlockState state) {
 		return true;
 	}
-	
+
 	@Override
 	public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param) {
 		TileEntity tileentity = worldIn.getTileEntity(pos);
 		return tileentity != null && tileentity.receiveClientEvent(id, param);
 	}
-	
+
 	@Override
 	public int getPlacedMeta(ItemStack stack, World world, BlockPos pos, EnumFacing clickedBlock) {
 		return TileEntityMetadata.getItemDamage(stack);
 	}
-	
+
 	@Override
 	public int getDroppedMeta(IBlockState state, int tileMetadata) {
 		return tileMetadata;
 	}
-	
+
 	@Override
 	public String getDisplayName(ItemStack itemStack) {
 		EnumFlowerColor color = EnumFlowerColor.get(TileEntityMetadata.getItemDamage(itemStack));
 		return I18N.localise("botany.pigmented.glass.name", color.getDisplayName());
 	}
-	
+
 	@Override
 	public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> itemList) {
 		for (EnumFlowerColor color : EnumFlowerColor.values()) {
 			itemList.add(TileEntityMetadata.getItemStack(this, color.ordinal()));
 		}
 	}
-	
+
 	@Override
 	public boolean isWood(IBlockAccess world, BlockPos pos) {
 		return true;
 	}
-	
+
 	@Override
 	public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
 		return 20;
 	}
-	
+
 	@Override
 	public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
 		return true;
 	}
-	
+
 	@Override
 	public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
 		return 5;
 	}
-	
+
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		return BlockMetadata.getPickBlock(world, pos);
 	}
-	
+
 	@Override
 	public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex) {
 		if (worldIn == null || pos == null) {
