@@ -79,7 +79,6 @@ public class ItemTrowel extends Item implements IItemModelRegister {
 		return EnumActionResult.SUCCESS;
 	}
 
-	// TODO fix deprecated
 	@Override
 	public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot) {
 		Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);

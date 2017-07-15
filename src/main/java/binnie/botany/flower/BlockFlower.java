@@ -107,14 +107,12 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		return true;
 	}
 
-	// TODO fix deprecated
 	@Override
 	@Nullable
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
 		return null;
 	}
 
-	// TODO fix deprecated
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		TileEntity tile = source.getTileEntity(pos);
@@ -127,7 +125,6 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		return FLOWER_BLOCK_AABB;
 	}
 
-	// TODO fix deprecated
 	@Override
 	public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World world, BlockPos pos) {
 		TileEntity tile = world.getTileEntity(pos);
@@ -140,13 +137,11 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		return FLOWER_BLOCK_AABB.offset(pos);
 	}
 
-	// TODO fix deprecated
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
-	// TODO fix deprecated
 	@Override
 	public boolean isFullCube(IBlockState state) {
 		return false;
@@ -230,7 +225,6 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		return EnumOffsetType.XZ;
 	}
 
-	// TODO fix deprecated
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
@@ -263,7 +257,6 @@ public class BlockFlower extends BlockContainer implements IColoredBlock, IState
 		return BlockRenderLayer.CUTOUT;
 	}
 
-	// TODO fix deprecated
 	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
 		checkAndDropBlock(worldIn, pos);

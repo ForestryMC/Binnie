@@ -43,7 +43,6 @@ public abstract class FarmLogic implements IFarmLogic {
 	}
 
 	protected final void setBlock(World world, BlockPos pos, Block block, int meta) {
-		// TODO fix deprecated
 		world.setBlockState(pos, block.getStateFromMeta(meta), 2);
 	}
 }

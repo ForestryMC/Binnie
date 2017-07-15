@@ -78,7 +78,6 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 		return TextFormatting.GRAY + I18N.localise("botany.moisture") + ": " + moisure.getLocalisedName(withColor);
 	}
 
-	// TODO fix deprecated
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
@@ -100,13 +99,11 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 	/**
 	 * Used to determine ambient occlusion and culling when rebuilding chunks for render
 	 */
-	// TODO fix deprecated
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
 	}
 
-	// TODO fix deprecated
 	@Override
 	public boolean isFullCube(IBlockState state) {
 		return false;
@@ -117,20 +114,17 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 		return super.getUnlocalizedName().replaceFirst("tile.", "");
 	}
 
-	// TODO fix deprecated
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 		return SOIL_BLOCK_AABB;
 	}
 
-	// TODO fix deprecated
 	@Nullable
 	@Override
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
 		return SOIL_BLOCK_AABB;
 	}
 
-	// TODO fix deprecated
 	@Override
 	public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos) {
 		return SOIL_BLOCK_AABB;
@@ -186,7 +180,6 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 		return getMeta(state.getValue(ACIDITY), state.getValue(MOISTURE));
 	}
 
-	// TODO fix deprecated
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		EnumMoisture moisture = EnumMoisture.values()[meta % 3];
@@ -230,7 +223,6 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 		}
 	}
 
-	// TODO fix deprecated
 	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
 		super.neighborChanged(state, worldIn, pos, blockIn, fromPos);

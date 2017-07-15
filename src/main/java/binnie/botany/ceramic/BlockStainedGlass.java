@@ -52,7 +52,6 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 		return 0;
 	}
 
-	// TODO fix deprecated
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
@@ -72,7 +71,6 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 		}
 	}
 
-	// TODO fix deprecated
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side) {
@@ -118,7 +116,6 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 		return true;
 	}
 
-	// TODO fix deprecated
 	@Override
 	public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param) {
 		TileEntity tileentity = worldIn.getTileEntity(pos);

@@ -66,7 +66,6 @@ public class BlockPlant extends BlockBush implements IItemModelRegister {
 		return state.getValue(PLANT_TYPE).ordinal();
 	}
 
-	// TODO fix deprecated
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		return getDefaultState().withProperty(PLANT_TYPE, PlantType.values()[meta]);
