@@ -1,7 +1,16 @@
 package binnie.botany.gardening;
 
+import binnie.Constants;
+import binnie.botany.Botany;
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumMoisture;
+import binnie.botany.api.EnumSoilType;
+import binnie.botany.api.IGardeningManager;
+import binnie.botany.core.BotanyCore;
 import com.google.common.collect.Multimap;
-
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -21,34 +30,21 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
-
-import binnie.Constants;
-import binnie.botany.Botany;
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.EnumSoilType;
-import binnie.botany.api.IGardeningManager;
-import binnie.botany.core.BotanyCore;
 
 public class ItemTrowel extends Item implements IItemModelRegister {
 	protected final ToolMaterial theToolMaterial;
 	protected final String modelName;
 
 	public ItemTrowel(ToolMaterial toolMaterial, String materialName) {
-		this.theToolMaterial = toolMaterial;
-		this.setMaxStackSize(1);
-		this.setMaxDamage(toolMaterial.getMaxUses());
-		this.setCreativeTab(CreativeTabBotany.instance);
-		this.modelName = "trowel_" + materialName;
-		this.setUnlocalizedName("botany." + modelName);
-		this.setRegistryName(modelName);
+		theToolMaterial = toolMaterial;
+		setMaxStackSize(1);
+		setMaxDamage(toolMaterial.getMaxUses());
+		setCreativeTab(CreativeTabBotany.instance);
+		modelName = "trowel_" + materialName;
+		setUnlocalizedName("botany." + modelName);
+		setRegistryName(modelName);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -64,14 +60,17 @@ public class ItemTrowel extends Item implements IItemModelRegister {
 		if (!player.canPlayerEdit(pos, facing, stack)) {
 			return EnumActionResult.FAIL;
 		}
+
 		Block block = worldIn.getBlockState(pos).getBlock();
 		if (facing == EnumFacing.DOWN || (!worldIn.isAirBlock(pos.up()) && worldIn.getBlockState(pos.up()).getBlock() != Botany.flower) || (block != Blocks.GRASS && block != Blocks.DIRT && block != Blocks.GRASS_PATH)) {
 			return EnumActionResult.PASS;
 		}
+
 		worldIn.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		if (worldIn.isRemote) {
 			return EnumActionResult.SUCCESS;
 		}
+
 		IGardeningManager gardening = BotanyCore.getGardening();
 		EnumMoisture moisture = gardening.getNaturalMoisture(worldIn, pos);
 		EnumAcidity acidity = gardening.getNaturalPH(worldIn, pos);
@@ -80,6 +79,7 @@ public class ItemTrowel extends Item implements IItemModelRegister {
 		return EnumActionResult.SUCCESS;
 	}
 
+	// TODO fix deprecated
 	@Override
 	public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot) {
 		Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
@@ -99,7 +99,7 @@ public class ItemTrowel extends Item implements IItemModelRegister {
 	}
 
 	public String getToolMaterialName() {
-		return this.theToolMaterial.toString();
+		return theToolMaterial.toString();
 	}
 
 	@SideOnly(Side.CLIENT)

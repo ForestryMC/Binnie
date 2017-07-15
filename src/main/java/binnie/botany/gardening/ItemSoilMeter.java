@@ -1,5 +1,15 @@
 package binnie.botany.gardening;
 
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumMoisture;
+import binnie.botany.api.IBlockSoil;
+import binnie.botany.api.IGardeningManager;
+import binnie.botany.core.BotanyCore;
+import binnie.core.BinnieCore;
+import binnie.core.util.I18N;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -12,27 +22,14 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
-
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.IBlockSoil;
-import binnie.botany.api.IGardeningManager;
-import binnie.botany.core.BotanyCore;
-import binnie.core.BinnieCore;
-import binnie.core.util.I18N;
-
 public class ItemSoilMeter extends Item implements IItemModelRegister {
 	public ItemSoilMeter() {
-		this.setCreativeTab(CreativeTabBotany.instance);
-		this.setUnlocalizedName("soil_meter");
-		this.setMaxStackSize(1);
+		setCreativeTab(CreativeTabBotany.instance);
+		setUnlocalizedName("botany.soil_meter");
+		setMaxStackSize(1);
 		setRegistryName("soil_meter");
 	}
 
@@ -70,26 +67,24 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 			pos = pos.down();
 			block = worldIn.getBlockState(pos).getBlock();
 		}
+
 		if (!gardening.isSoil(block)) {
 			pos = pos.down();
 			block = worldIn.getBlockState(pos).getBlock();
 		}
+
 		if (gardening.isSoil(block) && !BinnieCore.getBinnieProxy().isSimulating(worldIn)) {
 			IBlockSoil soil = (IBlockSoil) block;
-			String info = I18N.localise("botany.soil.type") + ": ";
-			info = info + soil.getType(worldIn, pos).getTranslated();
-			info += ", " + TextFormatting.WHITE + I18N.localise("botany.moisture") + ": ";
-			info = info + soil.getMoisture(worldIn, pos).getLocalisedName(true);
-			info += ", " + TextFormatting.WHITE + I18N.localise("botany.ph") + ": ";
-			info = info + soil.getPH(worldIn, pos).getLocalisedName(true);
+			String info = I18N.localise("botany.soil.type") + ": "
+				+ soil.getType(worldIn, pos).getTranslated()+ ", "
+				+ TextFormatting.WHITE + I18N.localise("botany.moisture") + ": "
+				+ soil.getMoisture(worldIn, pos).getLocalisedName(true)+ ", "
+				+ TextFormatting.WHITE + I18N.localise("botany.ph") + ": "
+				+ soil.getPH(worldIn, pos).getLocalisedName(true);
+
 			ITextComponent chat = new TextComponentString(info);
 			player.sendStatusMessage(chat, false);
 		}
 		return EnumActionResult.SUCCESS;
-	}
-
-	@Override
-	public String getItemStackDisplayName(final ItemStack i) {
-		return "Soil Meter";
 	}
 }

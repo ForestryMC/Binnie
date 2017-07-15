@@ -37,6 +37,7 @@ botany.ceramic.type.verticalbrick.name=%s Vertical Ceramic Bricks
 botany.ceramic.type.verticalbrickstripe.name=%s Vertical Striped Ceramic Bricks
 botany.ceramic.type.verticalbricklarge.name=%s Large Vertical Ceramic Bricks
 
+item.botany.soil_meter.name=Soil Meter
 item.botany.germling.name=Germling
 item.botany.pollen.name=Pollen
 item.botany.flower.corrupted.name=Corrupted Flower

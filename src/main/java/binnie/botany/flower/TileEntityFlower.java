@@ -12,7 +12,7 @@ import binnie.botany.api.IFlowerRoot;
 import binnie.botany.api.IFlowerType;
 import binnie.botany.api.IGardeningManager;
 import binnie.botany.core.BotanyCore;
-import binnie.botany.gardening.BlockPlant;
+import binnie.botany.gardening.PlantType;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.botany.genetics.EnumFlowerType;
 import binnie.botany.genetics.Flower;
@@ -458,7 +458,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 
 	public void kill() {
 		if (flower.getAge() > 0) {
-			world.setBlockState(pos, Botany.plant.getStateFromMeta(BlockPlant.Type.DeadFlower.ordinal()), 2);
+			world.setBlockState(pos, Botany.plant.getStateFromMeta(PlantType.DEAD_FLOWER.ordinal()), 2);
 		} else {
 			world.setBlockToAir(pos);
 		}
