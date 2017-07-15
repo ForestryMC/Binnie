@@ -1,5 +1,6 @@
 package binnie.botany.farm;
 
+import forestry.api.farming.IFarmLogic;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -7,14 +8,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import forestry.api.farming.IFarmLogic;
-
 public abstract class FarmLogic implements IFarmLogic {
 	boolean isManual;
 
 	@Override
-	public IFarmLogic setManual(final boolean flag) {
-		this.isManual = flag;
+	public IFarmLogic setManual(boolean flag) {
+		isManual = flag;
 		return this;
 	}
 
@@ -43,7 +42,8 @@ public abstract class FarmLogic implements IFarmLogic {
 		return getBlock(world, pos) == Blocks.WATER;
 	}
 
-	protected final void setBlock(World world, BlockPos pos, final Block block, final int meta) {
+	protected final void setBlock(World world, BlockPos pos, Block block, int meta) {
+		// TODO fix deprecated
 		world.setBlockState(pos, block.getStateFromMeta(meta), 2);
 	}
 }
