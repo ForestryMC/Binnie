@@ -14,7 +14,6 @@ import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.util.I18N;
 import binnie.extratrees.FakeWorld;
-import binnie.extratrees.craftgui.ControlBlockIconDisplay;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.IAlleleTreeSpecies;
 import forestry.api.arboriculture.ITree;
