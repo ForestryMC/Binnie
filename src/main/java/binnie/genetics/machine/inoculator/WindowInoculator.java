@@ -53,7 +53,7 @@ public class WindowInoculator extends WindowMachine {
 		new ControlEnergyBar(this, 91, 118, 60, 16, Position.LEFT);
 		new ControlErrorState(this, 161, 118);
 		x += 142;
-		CraftGUIUtil.verticalGrid(x, y, TextJustification.MIDDLE_LEFTt, 8,
+		CraftGUIUtil.verticalGrid(x, y, TextJustification.MIDDLE_LEFT, 8,
 			new ControlSlotArray.Builder(this, x, y, 4, 1).create(Inoculator.SLOT_RESERVE),
 			new ControlSlot.Builder(this, x, y + 18 + 8).assign(9),
 			new ControlSlotArray.Builder(this, x, y + 18 + 8 + 18 + 8, 4, 1).create(Inoculator.SLOT_FINISHED)
