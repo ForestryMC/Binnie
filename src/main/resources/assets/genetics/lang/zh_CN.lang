@@ -68,8 +68,8 @@ genetics.machine.sequencer.error.noDye=染料不足
 genetics.machine.sequencer.gui.sequensedBy=该基因将由 %s 完成序列化
 genetics.machine.sequencer.gui.willNotSave=无用序列，将直接丢弃
 
-genetics.machine.machine.polymeriser=PCR仪
-genetics.machine.machine.polymeriser.info=PCR仪将会以原生 DNA 为原料，通过聚合菌提供的 DNA 聚合酶来重新填充血清。该过程可用金粒加速。
+genetics.machine.machine.polymeriser=PCR 仪
+genetics.machine.machine.polymeriser.info=PCR 仪将会以原生 DNA 为原料，通过聚合菌提供的 DNA 聚合酶来重新填充血清。该过程可用金粒加速。
 genetics.machine.polymeriser.error.noItem=没有需要复制的物品
 genetics.machine.polymeriser.error.itemFilled=物品已填充
 genetics.machine.polymeriser.error.noLiquid=细菌不足
@@ -122,7 +122,7 @@ genetics.machine.incubator.error.noLiquid=液体不足
 genetics.machine.incubator.error.noRoom=输出槽已满
 
 genetics.machine.labMachine.acclimatiser=适应性调整器
-genetics.machine.labMachine.acclimatiser.info=
+genetics.machine.labMachine.acclimatiser.info=适应性调整器使用适应性调整物品来调整个体的温度和湿度适应性。
 genetics.machine.acclimatiser.acclimatizingItems=适应性调整物品
 genetics.machine.acclimatiser.error.noIndividual=没有可供调整适应性的个体
 genetics.machine.acclimatiser.error.noAcclimatizingItems=没有适应性调整物品
@@ -155,7 +155,7 @@ genetics.gui.geneBank.sequencedGenes=已测序 %d/%d 基因
 genetics.gui.geneBank.sequencedGenes.short=%d/%d 基因
 
 genetics.gui.analyst.info=将蜜蜂、树苗、花或蝴蝶等样本放置于左上格子中。若样本还未经分析过，则还需要添加 DNA 染料。本设备还可将原版树苗转化成可供杂交的树苗。
-genetics.gui.analyst.registry=品种分析仪
+genetics.gui.analyst.registry=图鉴
 genetics.gui.analyst.page.hours=%s 小时
 genetics.gui.analyst.page.minutes=%s 分钟
 genetics.gui.analyst.page.seconds=%s 秒
