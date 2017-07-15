@@ -8,18 +8,18 @@ public class ControlColorMixBox extends ControlListBox<IColorMix> {
 	private int index;
 	private Type type;
 
-	public ControlColorMixBox(final IWidget parent, final int x, final int y, final int width, final int height, final Type type) {
+	public ControlColorMixBox(IWidget parent, int x, int y, int width, int height, Type type) {
 		super(parent, x, y, width, height, 12);
 		this.type = type;
 	}
 
 	@Override
-	public IWidget createOption(final IColorMix value, final int y) {
-		return new ControlColorMixItem(this.getContent(), value, y);
+	public IWidget createOption(IColorMix value, int y) {
+		return new ControlColorMixItem(getContent(), value, y);
 	}
 
 	enum Type {
-		Resultant,
-		Further,
+		RESULTANT,
+		FURTHER,
 	}
 }
