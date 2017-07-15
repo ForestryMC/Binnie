@@ -1,7 +1,6 @@
 package binnie.core;
 
 import binnie.Binnie;
-import binnie.genetics.item.ItemFieldKit;
 import binnie.core.block.MultipassBlockRenderer;
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.craftgui.minecraft.ModuleCraftGUI;
@@ -24,6 +23,7 @@ import binnie.core.network.IPacketID;
 import binnie.core.proxy.BinnieProxy;
 import binnie.core.proxy.IBinnieProxy;
 import binnie.core.triggers.ModuleTrigger;
+import binnie.genetics.item.ItemFieldKit;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;

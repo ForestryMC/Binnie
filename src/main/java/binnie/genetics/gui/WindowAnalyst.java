@@ -115,13 +115,13 @@ public class WindowAnalyst extends Window {
 	@Override
 	public void initialiseClient() {
 		if (isDatabase) {
-			setTitle(I18N.localise("genetics.item.analyst.name"));
-		} else {
 			if (isMaster) {
 				setTitle(I18N.localise("genetics.item.registry.1.name"));
 			} else {
 				setTitle(I18N.localise("genetics.item.registry.0.name"));
 			}
+		} else {
+			setTitle(I18N.localise("genetics.item.analyst.name"));
 		}
 
 		getWindowInventory().createSlot(0);
