@@ -1,33 +1,31 @@
 package binnie.botany.core;
 
+import binnie.botany.craftgui.WindowBotanistDatabase;
+import binnie.core.craftgui.minecraft.Window;
+import binnie.core.gui.IBinnieGUID;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
 
-import binnie.botany.craftgui.WindowBotanistDatabase;
-import binnie.core.craftgui.minecraft.Window;
-import binnie.core.gui.IBinnieGUID;
-
 public enum BotanyGUI implements IBinnieGUID {
-	Database,
-	DatabaseNEI;
+	DATABASE,
+	DATABASE_NEI;
 
 	@Override
-	public Window getWindow(final EntityPlayer player, final World world, final int x, final int y, final int z, final Side side) {
+	public Window getWindow(EntityPlayer player, World world, int x, int y, int z, Side side) {
 		Window window = null;
-		final TileEntity tileEntity = world.getTileEntity(new BlockPos(x, y, z));
+		TileEntity tileEntity = world.getTileEntity(new BlockPos(x, y, z));
 		IInventory object = null;
 		if (tileEntity instanceof IInventory) {
 			object = (IInventory) tileEntity;
 		}
 		switch (this) {
-			case Database:
-			case DatabaseNEI: {
-				window = WindowBotanistDatabase.create(player, side, this != BotanyGUI.Database);
+			case DATABASE:
+			case DATABASE_NEI: {
+				window = WindowBotanistDatabase.create(player, side, this != BotanyGUI.DATABASE);
 				break;
 			}
 		}

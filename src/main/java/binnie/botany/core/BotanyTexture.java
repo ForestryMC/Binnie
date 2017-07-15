@@ -1,16 +1,16 @@
 package binnie.botany.core;
 
-import javax.annotation.Nullable;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+
+// TODO unused enum?
 public enum BotanyTexture implements IBinnieTexture {
 	;
 	String texture;
@@ -20,16 +20,16 @@ public enum BotanyTexture implements IBinnieTexture {
 	@Nullable
 	private BinnieResource resource;
 
-	BotanyTexture(final ResourceType base, final String texture) {
+	BotanyTexture(ResourceType base, String texture) {
 		this.texture = texture;
-		this.type = base;
+		type = base;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public BinnieResource getTexture() {
 		if (resource == null) {
-			resource = Binnie.RESOURCE.getPNG(Botany.instance, this.type, this.texture);
+			resource = Binnie.RESOURCE.getPNG(Botany.instance, type, texture);
 		}
 		return resource;
 	}

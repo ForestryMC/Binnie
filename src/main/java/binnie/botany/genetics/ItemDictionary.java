@@ -46,9 +46,9 @@ public class ItemDictionary extends Item implements IItemModelRegister {
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack itemStack = playerIn.getHeldItem(handIn);
 		if (itemStack.getMetadata() == 0) {
-			Botany.proxy.openGui(BotanyGUI.Database, playerIn, playerIn.getPosition());
+			Botany.proxy.openGui(BotanyGUI.DATABASE, playerIn, playerIn.getPosition());
 		} else {
-			Botany.proxy.openGui(BotanyGUI.DatabaseNEI, playerIn, playerIn.getPosition());
+			Botany.proxy.openGui(BotanyGUI.DATABASE_NEI, playerIn, playerIn.getPosition());
 		}
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
