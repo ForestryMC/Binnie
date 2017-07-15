@@ -30,9 +30,9 @@ import binnie.core.util.I18N;
 
 public class ItemSoilMeter extends Item implements IItemModelRegister {
 	public ItemSoilMeter() {
-		this.setCreativeTab(CreativeTabBotany.instance);
-		this.setUnlocalizedName("soil_meter");
-		this.setMaxStackSize(1);
+		setCreativeTab(CreativeTabBotany.instance);
+		setUnlocalizedName("botany.soil_meter");
+		setMaxStackSize(1);
 		setRegistryName("soil_meter");
 	}
 
@@ -70,26 +70,24 @@ public class ItemSoilMeter extends Item implements IItemModelRegister {
 			pos = pos.down();
 			block = worldIn.getBlockState(pos).getBlock();
 		}
+
 		if (!gardening.isSoil(block)) {
 			pos = pos.down();
 			block = worldIn.getBlockState(pos).getBlock();
 		}
+
 		if (gardening.isSoil(block) && !BinnieCore.getBinnieProxy().isSimulating(worldIn)) {
 			IBlockSoil soil = (IBlockSoil) block;
-			String info = I18N.localise("botany.soil.type") + ": ";
-			info = info + soil.getType(worldIn, pos).getTranslated();
-			info += ", " + TextFormatting.WHITE + I18N.localise("botany.moisture") + ": ";
-			info = info + soil.getMoisture(worldIn, pos).getLocalisedName(true);
-			info += ", " + TextFormatting.WHITE + I18N.localise("botany.ph") + ": ";
-			info = info + soil.getPH(worldIn, pos).getLocalisedName(true);
+			String info = I18N.localise("botany.soil.type") + ": "
+					+ soil.getType(worldIn, pos).getTranslated() + ", "
+					+ TextFormatting.WHITE + I18N.localise("botany.moisture") + ": "
+					+ soil.getMoisture(worldIn, pos).getLocalisedName(true) + ", "
+					+ TextFormatting.WHITE + I18N.localise("botany.ph") + ": "
+					+ soil.getPH(worldIn, pos).getLocalisedName(true);
+
 			ITextComponent chat = new TextComponentString(info);
 			player.sendStatusMessage(chat, false);
 		}
 		return EnumActionResult.SUCCESS;
-	}
-
-	@Override
-	public String getItemStackDisplayName(final ItemStack i) {
-		return "Soil Meter";
 	}
 }

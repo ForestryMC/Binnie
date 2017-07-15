@@ -1,10 +1,11 @@
 package binnie.botany.api;
 
-import binnie.core.util.I18N;
+import java.util.Locale;
+
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.text.TextFormatting;
 
-import java.util.Locale;
+import binnie.core.util.I18N;
 
 public enum EnumSoilType implements IStringSerializable {
 	SOIL(TextFormatting.DARK_GRAY),
@@ -19,7 +20,7 @@ public enum EnumSoilType implements IStringSerializable {
 
 	@Override
 	public String getName() {
-		return this.name().toLowerCase(Locale.ENGLISH);
+		return name().toLowerCase(Locale.ENGLISH);
 	}
 
 	public String getTranslated() {

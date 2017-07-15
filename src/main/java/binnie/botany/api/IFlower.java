@@ -1,10 +1,11 @@
 package binnie.botany.api;
 
-import forestry.api.genetics.IIndividual;
+import javax.annotation.Nullable;
+
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
+import forestry.api.genetics.IIndividual;
 
 public interface IFlower extends IIndividual {
 	@Override

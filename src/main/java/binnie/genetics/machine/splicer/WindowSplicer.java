@@ -49,7 +49,7 @@ public class WindowSplicer extends WindowMachine {
 		new ControlEnergyBar(this, 196, 64, 60, 16, Position.LEFT);
 		new ControlErrorState(this, 218, 86);
 		x += 142;
-		CraftGUIUtil.verticalGrid((this.width() - 72) / 2, 32, TextJustification.MiddleCenter, 4,
+		CraftGUIUtil.verticalGrid((this.width() - 72) / 2, 32, TextJustification.MIDDLE_CENTER, 4,
 			new ControlSlotArray.Builder(this, 0, 0, 4, 1).create(Inoculator.SLOT_RESERVE),
 			new ControlIconDisplay(this, 0, 0, GUIIcon.ARROW_DOWN.getIcon().getResourceLocation()),
 			new ControlSlot.Builder(this, 0, 0).assign(9),

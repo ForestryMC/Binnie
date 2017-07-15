@@ -36,15 +36,15 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		int y = 4;
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColour(this.getColour());
 		y += 16;
-		new ControlText(this, new Area(4, y, this.width() - 8, 14), I18N.localise("genetics.gui.analyst.soil.tolerance.moisture"), TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new Area(4, y, this.width() - 8, 14), I18N.localise("genetics.gui.analyst.soil.tolerance.moisture"), TextJustification.MIDDLE_CENTER).setColour(this.getColour());
 		y += 12;
 		this.createMoisture(this, (this.width() - 100) / 2, y, 100, 10, moisture, moistureTol);
 		y += 16;
-		new ControlText(this, new Area(4, y, this.width() - 8, 14), I18N.localise("genetics.gui.analyst.soil.tolerance.ph"), TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new Area(4, y, this.width() - 8, 14), I18N.localise("genetics.gui.analyst.soil.tolerance.ph"), TextJustification.MIDDLE_CENTER).setColour(this.getColour());
 		y += 12;
 		this.createAcidity(this, (this.width() - 100) / 2, y, 100, 10, pH, pHTol);
 		y += 16;
-		new ControlText(this, new Area(4, y, this.width() - 8, 14), I18N.localise("genetics.gui.analyst.soil.recommended"), TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new Area(4, y, this.width() - 8, 14), I18N.localise("genetics.gui.analyst.soil.recommended"), TextJustification.MIDDLE_CENTER).setColour(this.getColour());
 		y += 12;
 		EnumMoisture recomMoisture = EnumMoisture.NORMAL;
 		final boolean canTolNormal = Tolerance.canTolerate(moisture, EnumMoisture.NORMAL, moistureTol);
@@ -87,7 +87,7 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		recomSoil.setItemStack(stack);
 		recomSoil.setTooltip();
 		y += 32;
-		new ControlText(this, new Area(4, y, this.width() - 8, 14), I18N.localise("genetics.gui.analyst.soil.other"), TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new Area(4, y, this.width() - 8, 14), I18N.localise("genetics.gui.analyst.soil.other"), TextJustification.MIDDLE_CENTER).setColour(this.getColour());
 		y += 12;
 		final List<ItemStack> stacks = new ArrayList<>();
 		for (final EnumAcidity a : EnumSet.range(EnumAcidity.ACID, EnumAcidity.ALKALINE)) {

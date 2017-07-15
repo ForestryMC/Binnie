@@ -42,13 +42,13 @@ public class ItemTrowel extends Item implements IItemModelRegister {
 	protected final String modelName;
 
 	public ItemTrowel(ToolMaterial toolMaterial, String materialName) {
-		this.theToolMaterial = toolMaterial;
-		this.setMaxStackSize(1);
-		this.setMaxDamage(toolMaterial.getMaxUses());
-		this.setCreativeTab(CreativeTabBotany.instance);
-		this.modelName = "trowel_" + materialName;
-		this.setUnlocalizedName("botany." + modelName);
-		this.setRegistryName(modelName);
+		theToolMaterial = toolMaterial;
+		setMaxStackSize(1);
+		setMaxDamage(toolMaterial.getMaxUses());
+		setCreativeTab(CreativeTabBotany.instance);
+		modelName = "trowel_" + materialName;
+		setUnlocalizedName("botany." + modelName);
+		setRegistryName(modelName);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -64,14 +64,17 @@ public class ItemTrowel extends Item implements IItemModelRegister {
 		if (!player.canPlayerEdit(pos, facing, stack)) {
 			return EnumActionResult.FAIL;
 		}
+
 		Block block = worldIn.getBlockState(pos).getBlock();
 		if (facing == EnumFacing.DOWN || (!worldIn.isAirBlock(pos.up()) && worldIn.getBlockState(pos.up()).getBlock() != Botany.flower) || (block != Blocks.GRASS && block != Blocks.DIRT && block != Blocks.GRASS_PATH)) {
 			return EnumActionResult.PASS;
 		}
+
 		worldIn.playSound(player, pos, SoundEvents.ITEM_SHOVEL_FLATTEN, SoundCategory.BLOCKS, 1.0F, 1.0F);
 		if (worldIn.isRemote) {
 			return EnumActionResult.SUCCESS;
 		}
+
 		IGardeningManager gardening = BotanyCore.getGardening();
 		EnumMoisture moisture = gardening.getNaturalMoisture(worldIn, pos);
 		EnumAcidity acidity = gardening.getNaturalPH(worldIn, pos);
@@ -99,7 +102,7 @@ public class ItemTrowel extends Item implements IItemModelRegister {
 	}
 
 	public String getToolMaterialName() {
-		return this.theToolMaterial.toString();
+		return theToolMaterial.toString();
 	}
 
 	@SideOnly(Side.CLIENT)

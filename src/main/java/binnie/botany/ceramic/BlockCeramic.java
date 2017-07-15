@@ -35,16 +35,16 @@ import binnie.core.util.TileUtil;
 public class BlockCeramic extends Block implements IColoredBlock, IItemModelRegister {
 	public BlockCeramic() {
 		super(Material.ROCK);
-		this.setHardness(1.0f);
-		this.setResistance(5.0f);
-		this.setRegistryName("ceramic");
-		this.setCreativeTab(CreativeTabBotany.instance);
+		setHardness(1.0f);
+		setResistance(5.0f);
+		setRegistryName("ceramic");
+		setCreativeTab(CreativeTabBotany.instance);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
-		for (final EnumFlowerColor c : EnumFlowerColor.values()) {
+		for (EnumFlowerColor c : EnumFlowerColor.values()) {
 			manager.registerItemModel(item, c.ordinal());
 		}
 	}
@@ -90,7 +90,7 @@ public class BlockCeramic extends Block implements IColoredBlock, IItemModelRegi
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(final Item item, final CreativeTabs tab, final NonNullList<ItemStack> itemList) {
+	public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> itemList) {
 		for (EnumFlowerColor c : EnumFlowerColor.values()) {
 			itemList.add(new ItemStack(item, 1, c.getFlowerColorAllele().getID()));
 		}

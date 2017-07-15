@@ -31,7 +31,7 @@ public enum PacketID implements IPacketID {
 	public void onUseFieldKit(NBTTagCompound data) {
 		EntityPlayer player = BinnieCore.getBinnieProxy().getPlayer();
 		String info = "";
-		if (data == null || data.hasNoTags()) {
+		if (data.hasNoTags()) {
 			info += I18N.localise("botany.flowers.species.not.discover");
 		} else {
 			IAlleleFlowerSpecies primary = (IAlleleFlowerSpecies) AlleleManager.alleleRegistry.getAllele(data.getString("Species"));
@@ -42,6 +42,7 @@ public enum PacketID implements IPacketID {
 			if (primary == null || secondary == null) {
 				return;
 			}
+
 			info += I18N.localise("botany.flowers.fielkit.a");
 			if (age == 0.0f) {
 				info += "";
@@ -52,16 +53,19 @@ public enum PacketID implements IPacketID {
 			} else {
 				info += " " + I18N.localise("botany.flowers.fielkit.old");
 			}
+
 			if (color1 == color2) {
 				info = info + " " + color1.getName();
 			} else {
 				info = info + " " + color1.getName() + " & " + color2.getName();
 			}
+
 			if (primary == secondary) {
 				info = info + " " + primary.getName();
 			} else {
 				info = info + " " + primary.getName() + "-" + secondary.getName() + " " + I18N.localise("botany.flowers.species.hybrid");
 			}
+
 			if (age == 0.0f) {
 				info += " " + I18N.localise("botany.flowers.species.germling");
 			}

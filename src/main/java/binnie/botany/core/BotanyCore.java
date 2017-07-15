@@ -15,8 +15,8 @@ public class BotanyCore {
 		}
 		return FlowerManager.flowerRoot;
 	}
-	
-	public static IGardeningManager getGardening(){
+
+	public static IGardeningManager getGardening() {
 		if (FlowerManager.gardening == null) {
 			FlowerManager.gardening = new Gardening();
 		}

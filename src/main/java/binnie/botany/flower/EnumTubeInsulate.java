@@ -6,19 +6,19 @@ import net.minecraft.item.ItemStack;
 import binnie.core.util.I18N;
 
 enum EnumTubeInsulate {
-	Clay(0xa1aacc, "clay"),
-	Cobble(0x7b7b7b, "cobblestone"),
-	Sand(0xefeab5, "sandstone"),
-	HardenedClay(0x935c43, "hardened_clay"),
-	Stone(0x6d6d6d, "stone"),
-	Sandstone(0xc1b989, "sandstone");
+	CLAY(0xa1aacc, "clay"),
+	COBBLE(0x7b7b7b, "cobblestone"),
+	SAND(0xefeab5, "sandstone"),
+	HARDENED_CLAY(0x935c43, "hardened_clay"),
+	STONE(0x6d6d6d, "stone"),
+	SANDSTONE(0xc1b989, "sandstone");
 
 	public static final EnumTubeInsulate[] VALUES = values();
-	
+
 	int color;
 	String name;
 
-	EnumTubeInsulate(final int color, final String name) {
+	EnumTubeInsulate(int color, String name) {
 		this.color = color;
 		this.name = name;
 	}
@@ -28,7 +28,7 @@ enum EnumTubeInsulate {
 	}
 
 	public int getColor() {
-		return this.color;
+		return color;
 	}
 
 	public String getDisplayName() {
@@ -37,27 +37,24 @@ enum EnumTubeInsulate {
 
 	public ItemStack getStack() {
 		switch (this) {
-			case Clay: {
+			case CLAY:
 				return new ItemStack(Blocks.CLAY);
-			}
-			case Cobble: {
+
+			case COBBLE:
 				return new ItemStack(Blocks.COBBLESTONE);
-			}
-			case HardenedClay: {
+
+			case HARDENED_CLAY:
 				return new ItemStack(Blocks.HARDENED_CLAY);
-			}
-			case Sand: {
+
+			case SAND:
 				return new ItemStack(Blocks.SAND);
-			}
-			case Sandstone: {
+
+			case SANDSTONE:
 				return new ItemStack(Blocks.SANDSTONE);
-			}
-			case Stone: {
+
+			case STONE:
 				return new ItemStack(Blocks.STONE);
-			}
-			default: {
-				throw new IllegalStateException("Unknown insulated tube type: " + this);
-			}
 		}
+		throw new IllegalStateException("Unknown insulated tube type: " + this);
 	}
 }

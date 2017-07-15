@@ -24,7 +24,7 @@ public class CreativeTabBotany extends CreativeTabs {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getTranslatedTabLabel() {
-		return this.getTabLabel();
+		return getTabLabel();
 	}
 
 	@Override

@@ -14,16 +14,17 @@ import binnie.core.block.TileEntityMetadata;
 import binnie.core.util.I18N;
 
 public class CeramicBrickPair {
-	EnumFlowerColor colorFirst;
-	EnumFlowerColor colorSecond;
-	CeramicBrickType type;
-	int ordinal;
+	public final EnumFlowerColor colorFirst;
+	public final EnumFlowerColor colorSecond;
 
-	CeramicBrickPair(final EnumFlowerColor colorFirst, final EnumFlowerColor colorSecond, CeramicBrickType type) {
+	public CeramicBrickType type;
+	public int ordinal;
+
+	CeramicBrickPair(EnumFlowerColor colorFirst, EnumFlowerColor colorSecond, CeramicBrickType type) {
 		this.colorFirst = colorFirst;
 		this.colorSecond = colorSecond;
 		this.type = type;
-		this.ordinal = colorFirst.ordinal() + colorSecond.ordinal() * 256 + type.ordinal() * 256 * 256;
+		ordinal = colorFirst.ordinal() + colorSecond.ordinal() * 256 + type.ordinal() * 256 * 256;
 	}
 
 	public CeramicBrickPair(ItemStack stack) {
@@ -31,23 +32,23 @@ public class CeramicBrickPair {
 	}
 
 	public CeramicBrickPair(int id) {
-		this.colorFirst = EnumFlowerColor.get(id & 0xFF);
-		this.colorSecond = EnumFlowerColor.get(id >> 8 & 0xFF);
-		this.type = CeramicBrickType.get(id >> 16 & 0xFF);
+		colorFirst = EnumFlowerColor.get(id & 0xFF);
+		colorSecond = EnumFlowerColor.get(id >> 8 & 0xFF);
+		type = CeramicBrickType.get(id >> 16 & 0xFF);
 	}
 
 	public boolean isTwoColors() {
-		return this.type.canDouble() && this.colorSecond != this.colorFirst;
+		return type.canDouble() && colorSecond != colorFirst;
 	}
 
 	public ItemStack getStack(int i) {
-		return new ItemStack(Botany.ceramicBrick, i, this.ordinal());
+		return new ItemStack(Botany.ceramicBrick, i, ordinal());
 	}
 
 	public String getName() {
-		String name = this.colorFirst.getFlowerColorAllele().getColorName();
-		if (this.type.canDouble() && this.colorSecond != this.colorFirst) {
-			name = name + " & " + this.colorSecond.getFlowerColorAllele().getColorName();
+		String name = colorFirst.getFlowerColorAllele().getColorName();
+		if (type.canDouble() && colorSecond != colorFirst) {
+			name = name + " & " + colorSecond.getFlowerColorAllele().getColorName();
 		}
 		return I18N.localise("botany.ceramic.type." + type.id + ".name", name);
 	}
@@ -58,7 +59,7 @@ public class CeramicBrickPair {
 
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getSprite(int pass) {
-		TextureAtlasSprite[] sprites = this.type.sprites;
+		TextureAtlasSprite[] sprites = type.sprites;
 		Preconditions.checkState(sprites != null, "Sprites have not been registered.");
 		return sprites[pass];
 	}
@@ -71,6 +72,6 @@ public class CeramicBrickPair {
 	@Override
 	public boolean equals(Object obj) {
 		return obj instanceof CeramicBrickPair
-			&& ((CeramicBrickPair) obj).ordinal() == ordinal();
+				&& ((CeramicBrickPair) obj).ordinal() == ordinal();
 	}
 }

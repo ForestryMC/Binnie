@@ -11,11 +11,11 @@ public interface IFlowerGenome extends IGenome {
 	@Override
 	IAlleleFlowerSpecies getSecondary();
 
-	IFlowerColour getPrimaryColor();
+	IFlowerColor getPrimaryColor();
 
-	IFlowerColour getSecondaryColor();
+	IFlowerColor getSecondaryColor();
 
-	IFlowerColour getStemColor();
+	IFlowerColor getStemColor();
 
 	int getFertility();
 

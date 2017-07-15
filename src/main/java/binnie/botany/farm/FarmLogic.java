@@ -13,8 +13,8 @@ public abstract class FarmLogic implements IFarmLogic {
 	boolean isManual;
 
 	@Override
-	public IFarmLogic setManual(final boolean flag) {
-		this.isManual = flag;
+	public IFarmLogic setManual(boolean flag) {
+		isManual = flag;
 		return this;
 	}
 
@@ -43,7 +43,7 @@ public abstract class FarmLogic implements IFarmLogic {
 		return getBlock(world, pos) == Blocks.WATER;
 	}
 
-	protected final void setBlock(World world, BlockPos pos, final Block block, final int meta) {
+	protected final void setBlock(World world, BlockPos pos, Block block, int meta) {
 		world.setBlockState(pos, block.getStateFromMeta(meta), 2);
 	}
 }

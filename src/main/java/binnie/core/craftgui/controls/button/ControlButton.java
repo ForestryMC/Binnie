@@ -37,7 +37,7 @@ public class ControlButton extends Control {
 	public ControlButton(final IWidget parent, final int x, final int y, final int width, final int height, final String text) {
 		this(parent, x, y, width, height);
 		this.text = text;
-		this.textWidget = new ControlText(this, this.getArea(), text, TextJustification.MiddleCenter);
+		this.textWidget = new ControlText(this, this.getArea(), text, TextJustification.MIDDLE_CENTER);
 	}
 
 	protected void onMouseClick(final EventMouse.Down event) {

@@ -109,7 +109,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 						@Override
 						@SideOnly(Side.CLIENT)
 						public void onRenderBackground(int guiWidth, int guiHeight) {
-							RenderUtil.drawText(this.getArea(), TextJustification.MiddleCenter, this.value.getName(), 16777215);
+							RenderUtil.drawText(this.getArea(), TextJustification.MIDDLE_CENTER, this.value.getName(), 16777215);
 						}
 					};
 				}

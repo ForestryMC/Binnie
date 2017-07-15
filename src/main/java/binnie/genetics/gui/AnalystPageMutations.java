@@ -275,7 +275,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 		@Override
 		@SideOnly(Side.CLIENT)
 		public void onRenderBackground(int guiWidth, int guiHeight) {
-			RenderUtil.drawText(this.getArea(), TextJustification.MiddleCenter, I18N.localise("genetics.gui.analyst.mutations.unknown"), 11184810);
+			RenderUtil.drawText(this.getArea(), TextJustification.MIDDLE_CENTER, I18N.localise("genetics.gui.analyst.mutations.unknown"), 11184810);
 		}
 	}
 }

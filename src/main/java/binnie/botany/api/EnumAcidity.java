@@ -1,10 +1,11 @@
 package binnie.botany.api;
 
-import binnie.core.util.I18N;
+import javax.annotation.Nullable;
+
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.text.TextFormatting;
 
-import javax.annotation.Nullable;
+import binnie.core.util.I18N;
 
 public enum EnumAcidity implements IStringSerializable {
 	ACID(TextFormatting.RED),
@@ -20,7 +21,7 @@ public enum EnumAcidity implements IStringSerializable {
 
 	@Override
 	public String getName() {
-		return this.name().toLowerCase();
+		return name().toLowerCase();
 	}
 
 	public String getLocalisedName(boolean withColor) {

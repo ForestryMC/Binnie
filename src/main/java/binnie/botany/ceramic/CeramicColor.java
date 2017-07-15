@@ -14,24 +14,24 @@ public class CeramicColor implements IDesignMaterial {
 	private final static Map<EnumFlowerColor, CeramicColor> map = new LinkedHashMap<>();
 
 	static {
-		for (final EnumFlowerColor c : EnumFlowerColor.values()) {
+		for (EnumFlowerColor c : EnumFlowerColor.values()) {
 			CeramicColor.map.put(c, new CeramicColor(c));
 		}
 	}
 
 	EnumFlowerColor color;
 
-	CeramicColor(final EnumFlowerColor color) {
+	CeramicColor(EnumFlowerColor color) {
 		this.color = color;
 	}
 
-	public static CeramicColor get(final EnumFlowerColor c) {
+	public static CeramicColor get(EnumFlowerColor c) {
 		return CeramicColor.map.get(c);
 	}
 
 	@Override
 	public ItemStack getStack() {
-		return TileEntityMetadata.getItemStack(Botany.ceramic, this.color.ordinal());
+		return TileEntityMetadata.getItemStack(Botany.ceramic, color.ordinal());
 	}
 
 	@Override
@@ -41,11 +41,11 @@ public class CeramicColor implements IDesignMaterial {
 
 	@Override
 	public String getDesignMaterialName() {
-		return this.color.getName();
+		return color.getName();
 	}
 
 	@Override
 	public int getColour() {
-		return this.color.getFlowerColorAllele().getColor(false);
+		return color.getFlowerColorAllele().getColor(false);
 	}
 }

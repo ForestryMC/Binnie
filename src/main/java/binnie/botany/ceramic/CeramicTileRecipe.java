@@ -19,25 +19,25 @@ public class CeramicTileRecipe implements IRecipe {
 	private ItemStack cached = ItemStack.EMPTY;
 
 	@Override
-	public boolean matches(final InventoryCrafting inv, final World world) {
-		this.cached = this.getCraftingResult(inv);
-		return !this.cached.isEmpty();
+	public boolean matches(InventoryCrafting inv, World world) {
+		cached = getCraftingResult(inv);
+		return !cached.isEmpty();
 	}
 
 	@Override
-	public ItemStack getCraftingResult(final InventoryCrafting inv) {
-		final Item ceramicBlock = Item.getItemFromBlock(Botany.ceramic);
-		final Item ceramicTile = Item.getItemFromBlock(Botany.ceramicTile);
-		final Item ceramicBrick = Item.getItemFromBlock(Botany.ceramicBrick);
-		final Item mortar = Botany.misc;
-		final List<ItemStack> stacks = new ArrayList<>();
+	public ItemStack getCraftingResult(InventoryCrafting inv) {
+		Item ceramicBlock = Item.getItemFromBlock(Botany.ceramic);
+		Item ceramicTile = Item.getItemFromBlock(Botany.ceramicTile);
+		Item ceramicBrick = Item.getItemFromBlock(Botany.ceramicBrick);
+		Item mortar = Botany.misc;
+		List<ItemStack> stacks = new ArrayList<>();
 		int ix = -1;
 		int iy = -1;
 		for (int i = 0; i < inv.getSizeInventory(); ++i) {
-			final ItemStack stack = inv.getStackInSlot(i);
+			ItemStack stack = inv.getStackInSlot(i);
 			if (!stack.isEmpty()) {
-				final int x = i / 3;
-				final int y = i % 3;
+				int x = i / 3;
+				int y = i % 3;
 				if (ix == -1) {
 					ix = x;
 					iy = y;
@@ -67,7 +67,7 @@ public class CeramicTileRecipe implements IRecipe {
 
 	@Override
 	public ItemStack getRecipeOutput() {
-		return this.cached;
+		return cached;
 	}
 
 	@Override

@@ -32,12 +32,6 @@ public class FlowerAlyzerPlugin implements IAlyzerPlugin {
 	public static final int COLUMN_0 = 12;
 	public static final int COLUMN_1 = 90;
 	public static final int COLUMN_2 = 155;
-	private int lastTopOffset;
-	private int rowSize = 12;
-	private int margin = 10;
-	private int guiLeft;
-	private int	guiTop;
-	private HashMap<String, ItemStack> iconStacks = new HashMap<>();
 	private static final EnumFlowerChromosome[] firstPageChromosome = new EnumFlowerChromosome[]{
 			EnumFlowerChromosome.SPECIES,
 			EnumFlowerChromosome.SAPPINESS,
@@ -46,39 +40,43 @@ public class FlowerAlyzerPlugin implements IAlyzerPlugin {
 			EnumFlowerChromosome.EFFECT,
 			EnumFlowerChromosome.LIFESPAN
 	};
-
 	private static final EnumFlowerChromosome[] secondPageColorChromosome = new EnumFlowerChromosome[]{
 			EnumFlowerChromosome.PRIMARY,
 			EnumFlowerChromosome.SECONDARY,
 			EnumFlowerChromosome.STEM,
 	};
-
 	private static final EnumFlowerChromosome[] secondPageToleranceChromosome = new EnumFlowerChromosome[]{
 			EnumFlowerChromosome.TEMPERATURE_TOLERANCE,
 			EnumFlowerChromosome.HUMIDITY_TOLERANCE,
 			EnumFlowerChromosome.PH_TOLERANCE
 	};
+	private int lastTopOffset;
+	private int rowSize = 12;
+	private int margin = 10;
+	private int guiLeft;
+	private int guiTop;
+	private HashMap<String, ItemStack> iconStacks = new HashMap<>();
 
 
 	public FlowerAlyzerPlugin() {
-		for(FlowerDefinition def : FlowerDefinition.values()){
+		for (FlowerDefinition def : FlowerDefinition.values()) {
 			iconStacks.put(def.getSpecies().getUID(), def.getMemberStack(EnumFlowerStage.FLOWER));
 		}
 
 	}
 
-	public void drawLine(GuiScreen gui, int xOffset, String msg, int color){
+	public void drawLine(GuiScreen gui, int xOffset, String msg, int color) {
 		gui.mc.fontRendererObj.drawString(msg, guiLeft + xOffset, guiTop + lastTopOffset + margin, color);
 	}
 
-	public void drawChromosom(GuiScreen gui, EnumFlowerChromosome chromosome, IFlower flower){
+	public void drawChromosom(GuiScreen gui, EnumFlowerChromosome chromosome, IFlower flower) {
 		drawLine(gui, COLUMN_0, StringUtils.capitalize(chromosome.getName()), 0xEEEEEE);
 		drawLine(gui, COLUMN_1, I18N.localise(flower.getGenome().getActiveAllele(chromosome).getUnlocalizedName()), 0xEEEEEE);
 		drawLine(gui, COLUMN_2, I18N.localise(flower.getGenome().getInactiveAllele(chromosome).getUnlocalizedName()), 0xEEEEEE);
 		lastTopOffset += rowSize;
 	}
 
-	public void newLine(){
+	public void newLine() {
 		lastTopOffset += rowSize;
 	}
 
@@ -100,13 +98,13 @@ public class FlowerAlyzerPlugin implements IAlyzerPlugin {
 		gui.mc.fontRendererObj.drawString("Active", guiLeft + 10 + COLUMN_1, guiTop + 10, 0xffffff);
 		gui.mc.fontRendererObj.drawString("Inactive", guiLeft + 10 + COLUMN_2, guiTop + 10, 0xffffff);
 
-		if (renderP != null && renderS!=null){
+		if (renderP != null && renderS != null) {
 			RenderItem itemRender = Minecraft.getMinecraft().getRenderItem();
-			itemRender.renderItemAndEffectIntoGUI(renderP, guiLeft + 10 + COLUMN_1, guiTop + 10 +12);
+			itemRender.renderItemAndEffectIntoGUI(renderP, guiLeft + 10 + COLUMN_1, guiTop + 10 + 12);
 			itemRender.renderItemOverlayIntoGUI(gui.mc.fontRendererObj, renderP, guiLeft + 10 + COLUMN_1, guiTop + 10 + 12, null);
 
-			itemRender.renderItemAndEffectIntoGUI(renderS, guiLeft + 10 + COLUMN_2, guiTop +10 +12);
-			itemRender.renderItemOverlayIntoGUI(gui.mc.fontRendererObj, renderS, guiLeft + 10 + COLUMN_1, guiTop +10 + 12, null);
+			itemRender.renderItemAndEffectIntoGUI(renderS, guiLeft + 10 + COLUMN_2, guiTop + 10 + 12);
+			itemRender.renderItemOverlayIntoGUI(gui.mc.fontRendererObj, renderS, guiLeft + 10 + COLUMN_1, guiTop + 10 + 12, null);
 		}
 
 		guiTop += rowSize * 3;
@@ -128,8 +126,8 @@ public class FlowerAlyzerPlugin implements IAlyzerPlugin {
 
 		for (EnumFlowerChromosome chromosome : secondPageColorChromosome) {
 			drawChromosom(gui, chromosome, f);
-			RenderUtil.drawSolidRect(new Area(guiLeft + COLUMN_1, guiTop + lastTopOffset + margin, 50, 10), ((IAlleleInteger)f.getGenome().getActiveAllele(chromosome)).getValue());
-			RenderUtil.drawSolidRect(new Area(guiLeft + COLUMN_2, guiTop + lastTopOffset + margin, 50, 10), ((IAlleleInteger)f.getGenome().getInactiveAllele(chromosome)).getValue());
+			RenderUtil.drawSolidRect(new Area(guiLeft + COLUMN_1, guiTop + lastTopOffset + margin, 50, 10), ((IAlleleInteger) f.getGenome().getActiveAllele(chromosome)).getValue());
+			RenderUtil.drawSolidRect(new Area(guiLeft + COLUMN_2, guiTop + lastTopOffset + margin, 50, 10), ((IAlleleInteger) f.getGenome().getInactiveAllele(chromosome)).getValue());
 			newLine();
 		}
 

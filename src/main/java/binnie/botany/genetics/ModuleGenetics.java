@@ -35,7 +35,7 @@ public class ModuleGenetics implements IInitializable {
 	@Override
 	public void preInit() {
 		/* INIT API*/
-		binnie.botany.api.FlowerManager.flowerFactory = new FlowerFactory();
+		FlowerManager.flowerFactory = new FlowerFactory();
 		AlleleManager.alleleRegistry.registerSpeciesRoot(BotanyCore.getFlowerRoot());
 		AlleleManager.alleleRegistry.registerAllele(ModuleGenetics.alleleEffectNone);
 		EnumFlowerColor.setupMutations();
@@ -43,7 +43,7 @@ public class ModuleGenetics implements IInitializable {
 		
 		/* BACKPACK*/
 		IBackpackInterface backpackInterface = BackpackManager.backpackInterface;
-		
+
 		if (ForestryAPI.enabledPlugins.contains("forestry.storage")) {
 			Predicate<ItemStack> filter = BackpackManager.backpackInterface.createNaturalistBackpackFilter("rootFlowers");
 			BackpackDefinition definition = new BackpackDefinition(new Color(0xf6e83e), Color.WHITE, filter);
@@ -56,19 +56,19 @@ public class ModuleGenetics implements IInitializable {
 		}
 		
 		/* ITEMS */
-		
 		Botany.flower = new BlockFlower();
-		Botany.proxy.registerBlock(Botany.flower);
-		BinnieCore.getBinnieProxy().registerTileEntity(TileEntityFlower.class, "botany.tile.flower", null);
-
 		Botany.flowerItem = new ItemBotany("itemFlower", EnumFlowerStage.FLOWER, "");
 		Botany.pollen = new ItemBotany("pollen", EnumFlowerStage.POLLEN, "pollen");
 		Botany.seed = new ItemBotany("seed", EnumFlowerStage.SEED, "germling");
 		Botany.database = new ItemDictionary();
+
+		Botany.proxy.registerBlock(Botany.flower);
 		Botany.proxy.registerItem(Botany.flowerItem);
 		Botany.proxy.registerItem(Botany.pollen);
 		Botany.proxy.registerItem(Botany.seed);
 		Botany.proxy.registerItem(Botany.database);
+
+		BinnieCore.getBinnieProxy().registerTileEntity(TileEntityFlower.class, "botany.tile.flower", null);
 	}
 
 	@Override
@@ -80,25 +80,31 @@ public class ModuleGenetics implements IInitializable {
 	@Override
 	public void postInit() {
 		forestry.api.apiculture.FlowerManager.flowerRegistry.registerAcceptableFlower(Botany.flower, "flowersVanilla");
-		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack(ManagerLiquid.WATER, 2000), ItemStack.EMPTY, new ItemStack(Botany.database),
-			"X#X",
-			"YEY",
-			"RDR",
-			'#', Blocks.GLASS_PANE,
-			'X', Items.GOLD_INGOT,
-			'Y', Items.GOLD_NUGGET,
-			'R', Items.REDSTONE,
-			'D', Items.DIAMOND,
-			'E', Items.EMERALD
+		RecipeManagers.carpenterManager.addRecipe(
+				100,
+				Binnie.LIQUID.getFluidStack(ManagerLiquid.WATER, 2000),
+				ItemStack.EMPTY,
+				new ItemStack(Botany.database),
+				"X#X",
+				"YEY",
+				"RDR",
+				'#', Blocks.GLASS_PANE,
+				'X', Items.GOLD_INGOT,
+				'Y', Items.GOLD_NUGGET,
+				'R', Items.REDSTONE,
+				'D', Items.DIAMOND,
+				'E', Items.EMERALD
 		);
-		RecipeUtil.addRecipe(Botany.botanistBackpack,
-				"X#X",
-				"VYZ",
-				"X#X",
-				'#', Blocks.WOOL,
-				'X', Items.STRING,
-				'V', Botany.soilMeter,
-				'Z', "toolTrowel",
-				'Y', "chestWood");
+		RecipeUtil.addRecipe
+				(Botany.botanistBackpack,
+						"X#X",
+						"VYZ",
+						"X#X",
+						'#', Blocks.WOOL,
+						'X', Items.STRING,
+						'V', Botany.soilMeter,
+						'Z', "toolTrowel",
+						'Y', "chestWood"
+				);
 	}
 }

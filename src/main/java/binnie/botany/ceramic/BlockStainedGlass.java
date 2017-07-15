@@ -1,6 +1,7 @@
 package binnie.botany.ceramic;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -44,17 +45,17 @@ import binnie.core.util.I18N;
 public class BlockStainedGlass extends Block implements IBlockMetadata, IColoredBlock, IItemModelRegister {
 	public BlockStainedGlass() {
 		super(Material.GLASS);
-		this.setCreativeTab(CreativeTabBotany.instance);
-		this.setRegistryName("stained");
-		this.setSoundType(SoundType.GLASS);
-		this.setHardness(0.3F);
+		setCreativeTab(CreativeTabBotany.instance);
+		setRegistryName("stained");
+		setSoundType(SoundType.GLASS);
+		setHardness(0.3F);
 	}
 
 	@Override
-	public int quantityDropped(final Random rand) {
+	public int quantityDropped(Random rand) {
 		return 0;
 	}
-	
+
 	@Override
 	public boolean isOpaqueCube(IBlockState state) {
 		return false;
@@ -81,22 +82,22 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 		Block block = iblockstate.getBlock();
 		return block != this;
 	}
-	
+
 	@Override
 	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack) {
 		player.addStat(StatList.getBlockStats(this));
 		player.addExhaustion(0.005F);
-		
+
 		if (EnchantmentHelper.getEnchantmentLevel(Enchantments.SILK_TOUCH, stack) > 0 && te instanceof TileEntityMetadata) {
-			java.util.List<ItemStack> items = new java.util.ArrayList<>();
+			List<ItemStack> items = new ArrayList<>();
 			TileEntityMetadata tile = (TileEntityMetadata) te;
 			int damage = getDroppedMeta(state, tile.getTileMetadata());
 			ItemStack itemstack = TileEntityMetadata.getItemStack(this, damage);
-			
+
 			if (!itemstack.isEmpty()) {
 				items.add(itemstack);
 			}
-			
+
 			ForgeEventFactory.fireBlockHarvesting(items, worldIn, pos, state, 0, 1.0f, true, player);
 			for (ItemStack item : items) {
 				spawnAsEntity(worldIn, pos, item);
@@ -110,7 +111,7 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(final World var1, final int i) {
+	public TileEntity createNewTileEntity(World var1, int i) {
 		return new TileEntityMetadata();
 	}
 
@@ -126,7 +127,7 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 	}
 
 	@Override
-	public int getPlacedMeta(final ItemStack stack, final World world, final BlockPos pos, final EnumFacing clickedBlock) {
+	public int getPlacedMeta(ItemStack stack, World world, BlockPos pos, EnumFacing clickedBlock) {
 		return TileEntityMetadata.getItemDamage(stack);
 	}
 
@@ -136,13 +137,13 @@ public class BlockStainedGlass extends Block implements IBlockMetadata, IColored
 	}
 
 	@Override
-	public String getDisplayName(final ItemStack itemStack) {
+	public String getDisplayName(ItemStack itemStack) {
 		EnumFlowerColor color = EnumFlowerColor.get(TileEntityMetadata.getItemDamage(itemStack));
 		return I18N.localise("botany.pigmented.glass.name", color.getDisplayName());
 	}
 
 	@Override
-	public void getSubBlocks(final Item itemIn, final CreativeTabs tab, final NonNullList<ItemStack> itemList) {
+	public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> itemList) {
 		for (EnumFlowerColor color : EnumFlowerColor.values()) {
 			itemList.add(TileEntityMetadata.getItemStack(this, color.ordinal()));
 		}

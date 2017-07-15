@@ -22,33 +22,33 @@ public class ControlColorMixSymbol extends Control implements ITooltip {
 	IColorMix value;
 	int type;
 
-	protected ControlColorMixSymbol(final IWidget parent, final int x, final int y, final int type, final IColorMix value) {
+	protected ControlColorMixSymbol(IWidget parent, int x, int y, int type, IColorMix value) {
 		super(parent, x, y, 16 + type * 16, 16);
 		this.value = value;
 		this.type = type;
-		this.addAttribute(Attribute.MouseOver);
+		addAttribute(Attribute.MouseOver);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		super.onRenderBackground(guiWidth, guiHeight);
-		if (this.type == 0) {
+		if (type == 0) {
 			CraftGUI.render.texture(ControlColorMixSymbol.MutationPlus, Point.ZERO);
 		} else {
 			CraftGUI.render.texture(ControlColorMixSymbol.MutationArrow, Point.ZERO);
 		}
 	}
 
-	public void setValue(final IColorMix value) {
+	public void setValue(IColorMix value) {
 		this.value = value;
-		this.setColour(0xffffff);
+		setColour(0xffffff);
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
-		if (this.type == 1) {
-			final float chance = this.value.getChance();
+	public void getTooltip(Tooltip tooltip) {
+		if (type == 1) {
+			float chance = value.getChance();
 			tooltip.add(I18N.localise("botany.gui.controls.color_mix_symbol.chance", chance));
 		}
 	}
