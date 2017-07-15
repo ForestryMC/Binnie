@@ -222,13 +222,13 @@ binniecore.item.container.can.resin=Resin Can
 binniecore.item.container.can.latex=Latex Can
 binniecore.item.container.can.turpentine=Turpentine Can
 
-binniecore.item.container.bucket.acid=Acid Bukket
-binniecore.item.container.bucket.poison=Poison Bukket
-binniecore.item.container.bucket.liquidnitrogen=Nitrogen Bukket
-binniecore.item.container.bucket.sap=Sap Bukket
-binniecore.item.container.bucket.resin=Resin Bukket
-binniecore.item.container.bucket.latex=Latex Bukket
-binniecore.item.container.bucket.turpentine=Turpentine Bukket
+binniecore.item.container.bucket.acid=Acid Bucket
+binniecore.item.container.bucket.poison=Poison Bucket
+binniecore.item.container.bucket.liquidnitrogen=Nitrogen Bucket
+binniecore.item.container.bucket.sap=Sap Bucket
+binniecore.item.container.bucket.resin=Resin Bucket
+binniecore.item.container.bucket.latex=Latex Bucket
+binniecore.item.container.bucket.turpentine=Turpentine Bucket
 
 binniecore.item.container.glass.acid=Acid Glass
 binniecore.item.container.glass.poison=Poison Glass
