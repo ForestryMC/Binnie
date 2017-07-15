@@ -1,10 +1,12 @@
 package binnie.botany.ceramic;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.genetics.EnumFlowerColor;
+import binnie.core.BinnieCore;
+import binnie.core.util.TileUtil;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import forestry.core.blocks.IColoredBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -19,32 +21,27 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
-import forestry.core.blocks.IColoredBlock;
-
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.genetics.EnumFlowerColor;
-import binnie.core.BinnieCore;
-import binnie.core.util.TileUtil;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class BlockCeramic extends Block implements IColoredBlock, IItemModelRegister {
 	public BlockCeramic() {
 		super(Material.ROCK);
-		this.setHardness(1.0f);
-		this.setResistance(5.0f);
-		this.setRegistryName("ceramic");
-		this.setCreativeTab(CreativeTabBotany.instance);
+		setHardness(1.0f);
+		setResistance(5.0f);
+		setRegistryName("ceramic");
+		setCreativeTab(CreativeTabBotany.instance);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerModel(Item item, IModelManager manager) {
-		for (final EnumFlowerColor c : EnumFlowerColor.values()) {
+		for (EnumFlowerColor c : EnumFlowerColor.values()) {
 			manager.registerItemModel(item, c.ordinal());
 		}
 	}
@@ -90,7 +87,7 @@ public class BlockCeramic extends Block implements IColoredBlock, IItemModelRegi
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(final Item item, final CreativeTabs tab, final NonNullList<ItemStack> itemList) {
+	public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> itemList) {
 		for (EnumFlowerColor c : EnumFlowerColor.values()) {
 			itemList.add(new ItemStack(item, 1, c.getFlowerColorAllele().getID()));
 		}

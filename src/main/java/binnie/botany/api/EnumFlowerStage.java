@@ -25,7 +25,7 @@ public enum EnumFlowerStage implements ISpeciesType {
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 }

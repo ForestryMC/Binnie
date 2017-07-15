@@ -33,12 +33,12 @@ public enum EnumFlowerChromosome implements IChromosomeType {
 
 	@Override
 	public Class<? extends IAllele> getAlleleClass() {
-		return this.cls;
+		return cls;
 	}
 
 	@Override
 	public String getName() {
-		return this.toString().toLowerCase(Locale.ENGLISH);
+		return toString().toLowerCase(Locale.ENGLISH);
 	}
 
 	@Override

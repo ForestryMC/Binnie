@@ -1,10 +1,24 @@
 package binnie.botany.ceramic.brick;
 
-import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
+import binnie.Constants;
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.ceramic.TileCeramic;
+import binnie.botany.genetics.EnumFlowerColor;
+import binnie.core.BinnieCore;
+import binnie.core.block.IMultipassBlock;
+import binnie.core.models.DefaultStateMapper;
+import binnie.core.models.ModelManager;
+import binnie.core.models.ModelMutlipass;
+import binnie.core.util.TileUtil;
+import forestry.api.core.IItemModelRegister;
+import forestry.api.core.IModelManager;
+import forestry.api.core.ISpriteRegister;
+import forestry.api.core.IStateMapperRegister;
+import forestry.api.core.ITextureManager;
+import forestry.core.blocks.IColoredBlock;
+import forestry.core.blocks.properties.UnlistedBlockAccess;
+import forestry.core.blocks.properties.UnlistedBlockPos;
+import forestry.core.models.BlockModelEntry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -31,45 +45,27 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.property.ExtendedBlockState;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import forestry.api.core.IItemModelRegister;
-import forestry.api.core.IModelManager;
-import forestry.api.core.ISpriteRegister;
-import forestry.api.core.IStateMapperRegister;
-import forestry.api.core.ITextureManager;
-import forestry.core.blocks.IColoredBlock;
-import forestry.core.blocks.properties.UnlistedBlockAccess;
-import forestry.core.blocks.properties.UnlistedBlockPos;
-import forestry.core.models.BlockModelEntry;
-
-import binnie.Constants;
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.ceramic.TileCeramic;
-import binnie.botany.genetics.EnumFlowerColor;
-import binnie.core.BinnieCore;
-import binnie.core.block.IMultipassBlock;
-import binnie.core.models.DefaultStateMapper;
-import binnie.core.models.ModelManager;
-import binnie.core.models.ModelMutlipass;
-import binnie.core.util.TileUtil;
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicBrickPair>, IColoredBlock, ISpriteRegister, IStateMapperRegister, IItemModelRegister {
 	private static final PropertyEnum<CeramicBrickType> TYPE = PropertyEnum.create("type", CeramicBrickType.class);
 
 	public BlockCeramicBrick() {
 		super(Material.ROCK);
-		this.setHardness(1.0f);
-		this.setResistance(5.0f);
-		this.setRegistryName("ceramicBrick");
-		this.setCreativeTab(CreativeTabBotany.instance);
+		setHardness(1.0f);
+		setResistance(5.0f);
+		setRegistryName("ceramicBrick");
+		setCreativeTab(CreativeTabBotany.instance);
 	}
 
 	@Override
@@ -105,18 +101,18 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void getSubBlocks(Item item, final CreativeTabs tab, final NonNullList<ItemStack> itemList) {
-		for (final EnumFlowerColor color : EnumFlowerColor.values()) {
-			itemList.add(new CeramicBrickPair(color, color, CeramicBrickType.Tile).getStack(1));
+	public void getSubBlocks(Item item, CreativeTabs tab, NonNullList<ItemStack> itemList) {
+		for (EnumFlowerColor color : EnumFlowerColor.values()) {
+			itemList.add(new CeramicBrickPair(color, color, CeramicBrickType.TILE).getStack(1));
 		}
 		for (CeramicBrickType type : CeramicBrickType.VALUES) {
 			if (type.canDouble()) {
 				itemList.add(new CeramicBrickPair(EnumFlowerColor.Brown, EnumFlowerColor.Gold, type).getStack(1));
 			}
 		}
-		itemList.add(new CeramicBrickPair(EnumFlowerColor.Gold, EnumFlowerColor.Gold, CeramicBrickType.Split).getStack(1));
-		itemList.add(new CeramicBrickPair(EnumFlowerColor.Brown, EnumFlowerColor.Brown, CeramicBrickType.Chequered).getStack(1));
-		itemList.add(new CeramicBrickPair(EnumFlowerColor.Gold, EnumFlowerColor.Brown, CeramicBrickType.LargeBrick).getStack(1));
+		itemList.add(new CeramicBrickPair(EnumFlowerColor.Gold, EnumFlowerColor.Gold, CeramicBrickType.SPLIT).getStack(1));
+		itemList.add(new CeramicBrickPair(EnumFlowerColor.Brown, EnumFlowerColor.Brown, CeramicBrickType.CHEQUERED).getStack(1));
+		itemList.add(new CeramicBrickPair(EnumFlowerColor.Gold, EnumFlowerColor.Brown, CeramicBrickType.LARGE_BRICK).getStack(1));
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -127,7 +123,8 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 		ModelManager.registerCustomBlockModel(new BlockModelEntry(
 			new ModelResourceLocation(resourceLocation, "normal"),
 			new ModelResourceLocation(resourceLocation, "inventory"),
-			new ModelMutlipass<>(BlockCeramicBrick.class), this
+			new ModelMutlipass<>(BlockCeramicBrick.class),
+			this
 		));
 	}
 
@@ -139,7 +136,14 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new ExtendedBlockState(this, new IProperty[]{TYPE}, new IUnlistedProperty[]{UnlistedBlockPos.POS, UnlistedBlockAccess.BLOCKACCESS});
+		return new ExtendedBlockState(
+			this,
+			new IProperty[]{TYPE},
+			new IUnlistedProperty[]{
+				UnlistedBlockPos.POS,
+				UnlistedBlockAccess.BLOCKACCESS
+			}
+		);
 	}
 
 	@Override
@@ -193,7 +197,7 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 				}
 			}
 		}
-		return 16777215;
+		return 0xffffff;
 	}
 
 	@SideOnly(Side.CLIENT)

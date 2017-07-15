@@ -1,21 +1,19 @@
 package binnie.botany.ceramic;
 
+import binnie.Binnie;
+import binnie.botany.Botany;
+import binnie.botany.api.IFlower;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
-
 import net.minecraftforge.common.ForgeHooks;
-
-import binnie.Binnie;
-import binnie.botany.Botany;
-import binnie.botany.api.IFlower;
 
 public class PigmentRecipe implements IRecipe {
 	@Override
-	public boolean matches(final InventoryCrafting crafting, final World world) {
-		return !this.getCraftingResult(crafting).isEmpty();
+	public boolean matches(InventoryCrafting crafting, World world) {
+		return !getCraftingResult(crafting).isEmpty();
 	}
 
 	@Override
@@ -24,7 +22,7 @@ public class PigmentRecipe implements IRecipe {
 	}
 
 	@Override
-	public ItemStack getCraftingResult(final InventoryCrafting crafting) {
+	public ItemStack getCraftingResult(InventoryCrafting crafting) {
 		int n = 0;
 		ItemStack stack = ItemStack.EMPTY;
 		for (int i = 0; i < crafting.getSizeInventory(); ++i) {
@@ -34,7 +32,7 @@ public class PigmentRecipe implements IRecipe {
 					return ItemStack.EMPTY;
 				}
 				if (Binnie.GENETICS.getFlowerRoot().isMember(stackInSlot)) {
-					final IFlower flower = Binnie.GENETICS.getFlowerRoot().getMember(stackInSlot);
+					IFlower flower = Binnie.GENETICS.getFlowerRoot().getMember(stackInSlot);
 					if (flower != null && flower.getAge() >= 1) {
 						stack = new ItemStack(Botany.pigment, 1, flower.getGenome().getPrimaryColor().getID());
 					}

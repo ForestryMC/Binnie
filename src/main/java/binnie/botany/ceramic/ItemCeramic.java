@@ -1,15 +1,12 @@
 package binnie.botany.ceramic;
 
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import forestry.core.items.IColoredItem;
-
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.util.I18N;
+import forestry.core.items.IColoredItem;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemCeramic extends ItemBlock implements IColoredItem {
 	public ItemCeramic(BlockCeramic block) {
@@ -17,7 +14,7 @@ public class ItemCeramic extends ItemBlock implements IColoredItem {
 	}
 
 	@Override
-	public int getMetadata(final int metadata) {
+	public int getMetadata(int metadata) {
 		return metadata;
 	}
 

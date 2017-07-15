@@ -1,19 +1,5 @@
 package binnie.botany.ceramic;
 
-import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Map;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 import binnie.botany.Botany;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.botany.items.BotanyItems;
@@ -23,6 +9,18 @@ import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.IPattern;
 import binnie.extratrees.carpentry.DesignerManager;
 import binnie.extratrees.carpentry.EnumPattern;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CeramicDesignSystem implements IDesignSystem {
 	public static CeramicDesignSystem instance = new CeramicDesignSystem();
@@ -30,8 +28,8 @@ public class CeramicDesignSystem implements IDesignSystem {
 	Map<Integer, TextureAtlasSprite> secondary;
 
 	CeramicDesignSystem() {
-		this.primary = new HashMap<>();
-		this.secondary = new HashMap<>();
+		primary = new HashMap<>();
+		secondary = new HashMap<>();
 		DesignerManager.instance.registerDesignSystem(this);
 	}
 
@@ -46,12 +44,12 @@ public class CeramicDesignSystem implements IDesignSystem {
 	}
 
 	@Override
-	public IDesignMaterial getMaterial(final int id) {
+	public IDesignMaterial getMaterial(int id) {
 		return CeramicColor.get(EnumFlowerColor.get(id));
 	}
 
 	@Override
-	public int getMaterialIndex(final IDesignMaterial id) {
+	public int getMaterialIndex(IDesignMaterial id) {
 		return ((CeramicColor) id).color.ordinal();
 	}
 
@@ -64,7 +62,7 @@ public class CeramicDesignSystem implements IDesignSystem {
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getPrimarySprite(IPattern pattern) {
 		if (pattern instanceof EnumPattern) {
-			return this.primary.get(((EnumPattern) pattern).ordinal());
+			return primary.get(((EnumPattern) pattern).ordinal());
 		}
 		return null;
 	}
@@ -74,7 +72,7 @@ public class CeramicDesignSystem implements IDesignSystem {
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getSecondarySprite(IPattern pattern) {
 		if (pattern instanceof EnumPattern) {
-			return this.secondary.get(((EnumPattern) pattern).ordinal());
+			return secondary.get(((EnumPattern) pattern).ordinal());
 		}
 		return null;
 	}
@@ -86,8 +84,8 @@ public class CeramicDesignSystem implements IDesignSystem {
 		for (EnumPattern pattern : EnumPattern.values()) {
 			ResourceLocation primaryLocation = new ResourceLocation(getMod().getModID(), getTexturePath() + "/" + pattern.toString().toLowerCase() + ".0");
 			ResourceLocation secondaryLocation = new ResourceLocation(getMod().getModID(), getTexturePath() + "/" + pattern.toString().toLowerCase() + ".1");
-			this.primary.put(pattern.ordinal(), textureMap.registerSprite(primaryLocation));
-			this.secondary.put(pattern.ordinal(), textureMap.registerSprite(secondaryLocation));
+			primary.put(pattern.ordinal(), textureMap.registerSprite(primaryLocation));
+			secondary.put(pattern.ordinal(), textureMap.registerSprite(secondaryLocation));
 		}
 	}
 
@@ -102,7 +100,9 @@ public class CeramicDesignSystem implements IDesignSystem {
 
 	@Override
 	@Nullable
-	public IDesignMaterial getMaterial(final ItemStack itemStack) {
-		return (itemStack.getItem() == Item.getItemFromBlock(Botany.ceramic)) ? this.getMaterial(itemStack.getItemDamage()) : null;
+	public IDesignMaterial getMaterial(ItemStack itemStack) {
+		return (itemStack.getItem() == Item.getItemFromBlock(Botany.ceramic))
+			? getMaterial(itemStack.getItemDamage())
+			: null;
 	}
 }

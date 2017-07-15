@@ -1,12 +1,11 @@
 package binnie.botany.ceramic.brick;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-
 import binnie.botany.Botany;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.block.TileEntityMetadata;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 
 public class TileCeramicBrick extends TileEntity {
 	private EnumFlowerColor colorFirst = EnumFlowerColor.Black;
@@ -18,17 +17,17 @@ public class TileCeramicBrick extends TileEntity {
 	}
 
 	public boolean hasTwoColors() {
-		return CeramicBrickType.VALUES[getBlockMetadata()].canDouble() && this.colorSecond != this.colorFirst;
+		return CeramicBrickType.VALUES[getBlockMetadata()].canDouble() && colorSecond != colorFirst;
 	}
 
-	public ItemStack getStack(final int i) {
-		final ItemStack s = TileEntityMetadata.getItemStack(Botany.ceramicBrick, this.ordinal());
+	public ItemStack getStack(int i) {
+		ItemStack s = TileEntityMetadata.getItemStack(Botany.ceramicBrick, ordinal());
 		s.setCount(i);
 		return s;
 	}
 
 	public int ordinal() {
-		return this.colorFirst.ordinal() + this.colorSecond.ordinal() * 256 + getBlockMetadata() * 256 * 256;
+		return colorFirst.ordinal() + colorSecond.ordinal() * 256 + getBlockMetadata() * 256 * 256;
 	}
 
 	public CeramicBrickPair pair() {
@@ -61,6 +60,7 @@ public class TileCeramicBrick extends TileEntity {
 		if (compound.hasKey("First")) {
 			colorFirst = EnumFlowerColor.VALUES[compound.getInteger("First")];
 		}
+
 		if (compound.hasKey("Second")) {
 			colorSecond = EnumFlowerColor.VALUES[compound.getInteger("Second")];
 		}

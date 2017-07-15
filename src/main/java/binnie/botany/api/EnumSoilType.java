@@ -19,7 +19,7 @@ public enum EnumSoilType implements IStringSerializable {
 
 	@Override
 	public String getName() {
-		return this.name().toLowerCase(Locale.ENGLISH);
+		return name().toLowerCase(Locale.ENGLISH);
 	}
 
 	public String getTranslated() {

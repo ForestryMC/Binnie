@@ -20,7 +20,7 @@ public enum EnumAcidity implements IStringSerializable {
 
 	@Override
 	public String getName() {
-		return this.name().toLowerCase();
+		return name().toLowerCase();
 	}
 
 	public String getLocalisedName(boolean withColor) {
