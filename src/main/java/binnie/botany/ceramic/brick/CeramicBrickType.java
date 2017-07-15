@@ -317,7 +317,7 @@ public enum CeramicBrickType implements IStringSerializable {
 	}
 
 	protected boolean isMortar(ItemStack stack) {
-		return stack.getItem() == Botany.misc && stack.getItemDamage() == BotanyItems.Mortar.ordinal();
+		return stack.getItem() == Botany.misc && stack.getItemDamage() == BotanyItems.MORTAR.ordinal();
 	}
 
 	@Override

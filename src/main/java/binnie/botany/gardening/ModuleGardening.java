@@ -203,7 +203,7 @@ public class ModuleGardening implements IInitializable {
 		));
 
 		GameRegistry.addShapelessRecipe(
-			BotanyItems.Weedkiller.get(4),
+			BotanyItems.WEEDKILLER.get(4),
 			new ItemStack(Items.SPIDER_EYE),
 			new ItemStack(Items.WHEAT_SEEDS),
 			new ItemStack(Items.WHEAT_SEEDS),
@@ -211,32 +211,32 @@ public class ModuleGardening implements IInitializable {
 		);
 
 		GameRegistry.addShapelessRecipe(
-			BotanyItems.AshPowder.get(4),
+			BotanyItems.POWDER_ASH.get(4),
 			Mods.Forestry.stack("ash")
 		);
 
 		GameRegistry.addShapelessRecipe(
-			BotanyItems.MulchPowder.get(4),
+			BotanyItems.POWDER_MULCH.get(4),
 			Mods.Forestry.stack("mulch")
 		);
 
 		GameRegistry.addShapelessRecipe(
-			BotanyItems.CompostPowder.get(4),
+			BotanyItems.POWDER_COMPOST.get(4),
 			Mods.Forestry.stack("fertilizer_bio")
 		);
 
 		GameRegistry.addShapelessRecipe(
-			BotanyItems.FertiliserPowder.get(4),
+			BotanyItems.POWDER_FERTILISER.get(4),
 			Mods.Forestry.stack("fertilizer_compound")
 		);
 
 		GameRegistry.addShapelessRecipe(
-			BotanyItems.PulpPowder.get(4),
+			BotanyItems.POWDER_PULP.get(4),
 			Mods.Forestry.stack("wood_pulp")
 		);
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(
-			BotanyItems.SulphurPowder.get(4),
+			BotanyItems.POWDER_SULPHUR.get(4),
 			"dustSulphur"
 		));
 
@@ -245,19 +245,19 @@ public class ModuleGardening implements IInitializable {
 			"pigment", "pigment", "dyeBlack"
 		));
 
-		gardening.registerAcidFertiliser(BotanyItems.SulphurPowder.get(1), 1);
-		gardening.registerAcidFertiliser(BotanyItems.MulchPowder.get(1), 1);
+		gardening.registerAcidFertiliser(BotanyItems.POWDER_SULPHUR.get(1), 1);
+		gardening.registerAcidFertiliser(BotanyItems.POWDER_MULCH.get(1), 1);
 		gardening.registerAcidFertiliser(Mods.Forestry.stack("mulch"), 2);
 		for (ItemStack stack : OreDictionary.getOres("dustSulfur")) {
 			gardening.registerAcidFertiliser(stack, 2);
 		}
 
-		gardening.registerAlkalineFertiliser(BotanyItems.AshPowder.get(1), 1);
-		gardening.registerAlkalineFertiliser(BotanyItems.PulpPowder.get(1), 1);
+		gardening.registerAlkalineFertiliser(BotanyItems.POWDER_ASH.get(1), 1);
+		gardening.registerAlkalineFertiliser(BotanyItems.POWDER_PULP.get(1), 1);
 		gardening.registerAlkalineFertiliser(Mods.Forestry.stack("ash"), 2);
 		gardening.registerAlkalineFertiliser(Mods.Forestry.stack("wood_pulp"), 2);
-		gardening.registerNutrientFertiliser(BotanyItems.CompostPowder.get(1), 1);
-		gardening.registerNutrientFertiliser(BotanyItems.FertiliserPowder.get(1), 1);
+		gardening.registerNutrientFertiliser(BotanyItems.POWDER_COMPOST.get(1), 1);
+		gardening.registerNutrientFertiliser(BotanyItems.POWDER_FERTILISER.get(1), 1);
 		gardening.registerNutrientFertiliser(Mods.Forestry.stack("fertilizer_bio"), 2);
 		gardening.registerNutrientFertiliser(Mods.Forestry.stack("fertilizer_compound"), 2);
 
@@ -271,7 +271,7 @@ public class ModuleGardening implements IInitializable {
 			addNutrientFertiliserRecipe(entry.getKey(), entry.getValue());
 		}
 
-		GameRegistry.addRecipe(BotanyItems.Mortar.get(6), " c ", "cgc", " c ", 'c', Items.CLAY_BALL, 'g', Blocks.GRAVEL);
+		GameRegistry.addRecipe(BotanyItems.MORTAR.get(6), " c ", "cgc", " c ", 'c', Items.CLAY_BALL, 'g', Blocks.GRAVEL);
 		for (EnumFlowerColor c : EnumFlowerColor.values()) {
 			ItemStack clay = new ItemStack(Botany.clay, 1, c.ordinal());
 			ItemStack pigment = new ItemStack(Botany.pigment, 1, c.ordinal());

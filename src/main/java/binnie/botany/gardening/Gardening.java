@@ -248,7 +248,7 @@ public class Gardening implements IGardeningManager {
 
 	@Override
 	public boolean isWeedkiller(ItemStack heldItem) {
-		return heldItem.isItemEqual(BotanyItems.Weedkiller.get(1));
+		return heldItem.isItemEqual(BotanyItems.WEEDKILLER.get(1));
 	}
 
 	@Override
