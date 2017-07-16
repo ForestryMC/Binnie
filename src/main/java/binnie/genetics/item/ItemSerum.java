@@ -44,13 +44,13 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 	}
 
 	@Override
-	public int getCharges(ItemStack itemStack) {
-		return itemStack.getMaxDamage() - itemStack.getItemDamage();
+	public int getCharges(ItemStack stack) {
+		return stack.getMaxDamage() - stack.getItemDamage();
 	}
 
 	@Override
-	public int getMaxCharges(ItemStack itemStack) {
-		return itemStack.getMaxDamage();
+	public int getMaxCharges(ItemStack stack) {
+		return stack.getMaxDamage();
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -72,15 +72,15 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 	}
 
 	@Override
-	public IGene[] getGenes(ItemStack itemStack) {
-		GeneItem geneItem = this.getGeneItem(itemStack);
+	public IGene[] getGenes(ItemStack stack) {
+		GeneItem geneItem = this.getGeneItem(stack);
 		Preconditions.checkNotNull(geneItem, "Cannot get genes from itemStack that is not a valid serum.");
 		return new IGene[]{geneItem.getGene()};
 	}
 
 	@Override
-	public ISpeciesRoot getSpeciesRoot(ItemStack itemStack) {
-		GeneItem geneItem = this.getGeneItem(itemStack);
+	public ISpeciesRoot getSpeciesRoot(ItemStack stack) {
+		GeneItem geneItem = this.getGeneItem(stack);
 		Preconditions.checkNotNull(geneItem, "Cannot get species root from itemStack that is not a valid serum.");
 		return geneItem.getSpeciesRoot();
 	}

@@ -27,8 +27,8 @@ import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.craftgui.WindowMachine;
 
 public class WindowInoculator extends WindowMachine {
-	static Texture ProgressBase = new StandardTexture(0, 72, 142, 72, GeneticsTexture.GUIProcess2);
-	static Texture Progress = new StandardTexture(0, 0, 142, 72, GeneticsTexture.GUIProcess2);
+	static Texture ProgressBase = new StandardTexture(0, 72, 142, 72, GeneticsTexture.GUI_PROCESS_2);
+	static Texture Progress = new StandardTexture(0, 0, 142, 72, GeneticsTexture.GUI_PROCESS_2);
 
 	public WindowInoculator(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(266, 240, player, inventory, side);

@@ -27,7 +27,7 @@ public class ItemAnalyst extends ItemCore {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		Genetics.proxy.openGui(GeneticsGUI.Analyst, playerIn, playerIn.getPosition());
+		Genetics.proxy.openGui(GeneticsGUI.ANALYST, playerIn, playerIn.getPosition());
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
 

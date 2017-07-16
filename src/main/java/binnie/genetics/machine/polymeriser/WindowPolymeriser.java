@@ -26,8 +26,8 @@ import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.craftgui.WindowMachine;
 
 public class WindowPolymeriser extends WindowMachine {
-	static Texture ProgressBase = new StandardTexture(76, 170, 160, 79, GeneticsTexture.GUIProcess);
-	static Texture Progress = new StandardTexture(76, 91, 160, 79, GeneticsTexture.GUIProcess);
+	static Texture ProgressBase = new StandardTexture(76, 170, 160, 79, GeneticsTexture.GUI_PROCESS);
+	static Texture Progress = new StandardTexture(76, 91, 160, 79, GeneticsTexture.GUI_PROCESS);
 
 	public WindowPolymeriser(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(278, 212, player, inventory, side);

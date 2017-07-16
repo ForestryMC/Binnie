@@ -58,7 +58,7 @@ public class GeneTracker extends WorldSavedData {
 	public void synchToPlayer(final EntityPlayer player) {
 		final NBTTagCompound nbttagcompound = new NBTTagCompound();
 		this.writeToNBT(nbttagcompound);
-		Genetics.proxy.sendToPlayer(new MessageNBT(GeneticsPacket.GeneTrackerSync.ordinal(), nbttagcompound), player);
+		Genetics.proxy.sendToPlayer(new MessageNBT(GeneticsPacket.GENE_TRACKER_SYNC.ordinal(), nbttagcompound), player);
 	}
 
 	@Override

@@ -27,8 +27,8 @@ import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.craftgui.WindowMachine;
 
 public class WindowAnalyser extends WindowMachine {
-	static Texture ProgressBase = new StandardTexture(0, 218, 142, 17, GeneticsTexture.GUIProcess3);
-	static Texture Progress = new StandardTexture(0, 201, 142, 17, GeneticsTexture.GUIProcess3);
+	static Texture ProgressBase = new StandardTexture(0, 218, 142, 17, GeneticsTexture.GUI_PROCESS_3);
+	static Texture Progress = new StandardTexture(0, 201, 142, 17, GeneticsTexture.GUI_PROCESS_3);
 
 	public WindowAnalyser(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(220, 210, player, inventory, side);
@@ -38,8 +38,8 @@ public class WindowAnalyser extends WindowMachine {
 	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		super.initialiseClient();
-		WindowAnalyser.ProgressBase = new StandardTexture(0, 51, 66, 40, GeneticsTexture.GUIProcess);
-		WindowAnalyser.Progress = new StandardTexture(66, 51, 66, 40, GeneticsTexture.GUIProcess);
+		WindowAnalyser.ProgressBase = new StandardTexture(0, 51, 66, 40, GeneticsTexture.GUI_PROCESS);
+		WindowAnalyser.Progress = new StandardTexture(66, 51, 66, 40, GeneticsTexture.GUI_PROCESS);
 		int x = 16;
 		final int y = 32;
 		new ControlSlotArray.Builder(this, x, y, 2, 3).create(Analyser.SLOT_RESERVE);

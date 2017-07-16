@@ -26,8 +26,8 @@ import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.craftgui.WindowMachine;
 
 public class WindowGenepool extends WindowMachine {
-	static Texture ProgressBase = new StandardTexture(64, 0, 130, 21, GeneticsTexture.GUIProcess3);
-	static Texture Progress = new StandardTexture(64, 21, 130, 21, GeneticsTexture.GUIProcess3);
+	static Texture ProgressBase = new StandardTexture(64, 0, 130, 21, GeneticsTexture.GUI_PROCESS_3);
+	static Texture Progress = new StandardTexture(64, 21, 130, 21, GeneticsTexture.GUI_PROCESS_3);
 
 	public WindowGenepool(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(280, 198, player, inventory, side);

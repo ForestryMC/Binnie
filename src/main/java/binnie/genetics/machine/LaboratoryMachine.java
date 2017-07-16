@@ -53,7 +53,7 @@ public enum LaboratoryMachine implements IMachineType {
 
 	public static class PackageLabMachine extends GeneticMachine.PackageGeneticBase {
 		public PackageLabMachine() {
-			super("lab_machine", GeneticsTexture.LabMachine, 16777215, false);
+			super("lab_machine", GeneticsTexture.LAB_MACHINE, 16777215, false);
 		}
 
 		@Override

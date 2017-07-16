@@ -27,12 +27,12 @@ import binnie.genetics.machine.ModuleMachine;
 public class PackagePolymeriser extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 
 	public PackagePolymeriser() {
-		super("polymeriser", GeneticsTexture.Polymeriser, 58819, true);
+		super("polymeriser", GeneticsTexture.POLYMERISER, 58819, true);
 	}
 
 	@Override
 	public void createMachine(Machine machine) {
-		new ComponentGeneticGUI(machine, GeneticsGUI.Replicator);
+		new ComponentGeneticGUI(machine, GeneticsGUI.POLYMERISER);
 		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		//Slot Gold
 		InventorySlot slotGold = inventory.addSlot(Polymeriser.SLOT_GOLD, "catalyst");
