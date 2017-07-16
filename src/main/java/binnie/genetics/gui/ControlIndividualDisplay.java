@@ -13,24 +13,24 @@ import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.genetics.BreedingSystem;
 
 public class ControlIndividualDisplay extends ControlItemDisplay implements ITooltip {
-	public ControlIndividualDisplay(final IWidget parent, final int x, final int y, final IIndividual ind) {
+	public ControlIndividualDisplay(IWidget parent, int x, int y, IIndividual ind) {
 		this(parent, x, y, 16, ind);
 	}
 
-	public ControlIndividualDisplay(final IWidget parent, final int x, final int y, final int size, final IIndividual ind) {
+	public ControlIndividualDisplay(IWidget parent, int x, int y, int size, IIndividual ind) {
 		super(parent, x, y, size);
-		final BreedingSystem system = Binnie.GENETICS.getSystem(ind.getGenome().getSpeciesRoot());
-		this.setItemStack(system.getSpeciesRoot().getMemberStack(ind, system.getDefaultType()));
-		this.setTooltip();
+		BreedingSystem system = Binnie.GENETICS.getSystem(ind.getGenome().getSpeciesRoot());
+		setItemStack(system.getSpeciesRoot().getMemberStack(ind, system.getDefaultType()));
+		setTooltip();
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
-		final ItemStack stack = this.getItemStack();
+	public void getTooltip(Tooltip tooltip) {
+		ItemStack stack = getItemStack();
 		if (stack.isEmpty()) {
 			return;
 		}
-		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(stack);
+		IIndividual ind = AlleleManager.alleleRegistry.getIndividual(stack);
 		if (ind == null) {
 			return;
 		}

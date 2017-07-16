@@ -52,7 +52,7 @@ public class WindowGenepool extends WindowMachine {
 		new ControlLiquidTank(this, x, y).setTankID(0);
 		new ControlEnergyBar(this, 21, 115, 16, 60, Position.BOTTOM);
 		new ControlSlot.Builder(this, 121, 82).assign(7);
-		new ControlSlotCharge(this, 143, 82, 7).setColour(15722671);
+		new ControlSlotCharge(this, 143, 82, 7).setColor(15722671);
 		new ControlErrorState(this, 181, 83);
 		new ControlPlayerInventory(this);
 	}

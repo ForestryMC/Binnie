@@ -209,12 +209,12 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public final int getColour() {
+	public final int getColor() {
 		return this.colour;
 	}
 
 	@Override
-	public final void setColour(final int colour) {
+	public final void setColor(final int colour) {
 		if (this.colour != colour) {
 			this.colour = colour;
 			this.callEvent(new EventWidget.ChangeColour(this));

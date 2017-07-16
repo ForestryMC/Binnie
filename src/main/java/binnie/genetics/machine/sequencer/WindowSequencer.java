@@ -67,7 +67,7 @@ public class WindowSequencer extends WindowMachine {
 		y += 20;
 		final ControlSlot slotDye = new ControlSlot.Builder(this, x, y).assign(0);
 		x += 20;
-		new ControlSlotCharge(this, x, y, 0).setColour(16750848);
+		new ControlSlotCharge(this, x, y, 0).setColor(16750848);
 		x += 32;
 		new ControlEnergyBar(this, x, y, 60, 16, Position.LEFT);
 		x += 92;

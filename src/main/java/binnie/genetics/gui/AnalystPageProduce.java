@@ -31,28 +31,28 @@ import binnie.extratrees.machines.fruitpress.FruitPressRecipes;
 import binnie.genetics.gui.bee.AnalystPageProducts;
 
 public abstract class AnalystPageProduce extends ControlAnalystPage {
-	public AnalystPageProduce(final IWidget parent, final Area area) {
+	public AnalystPageProduce(IWidget parent, Area area) {
 		super(parent, area);
 	}
 
-	protected Collection<? extends ItemStack> getAllProducts(final ItemStack key) {
-		final Collection<ItemStack> products = new UniqueItemStackSet();
-		products.addAll(this.getCentrifuge(key));
-		products.addAll(this.getSqueezer(key));
+	protected Collection<? extends ItemStack> getAllProducts(ItemStack key) {
+		Collection<ItemStack> products = new UniqueItemStackSet();
+		products.addAll(getCentrifuge(key));
+		products.addAll(getSqueezer(key));
 		products.add(FurnaceRecipes.instance().getSmeltingResult(key));
-		products.addAll(this.getCrafting(key));
+		products.addAll(getCrafting(key));
 		return products;
 	}
 
-	public Collection<ItemStack> getCentrifuge(final ItemStack stack) {
-		final List<ItemStack> products = new ArrayList<>();
-		for (final ICentrifugeRecipe recipe : RecipeManagers.centrifugeManager.recipes()) {
+	public Collection<ItemStack> getCentrifuge(ItemStack stack) {
+		List<ItemStack> products = new ArrayList<>();
+		for (ICentrifugeRecipe recipe : RecipeManagers.centrifugeManager.recipes()) {
 			boolean isRecipe = false;
 			if (stack.isItemEqual(recipe.getInput())) {
 				isRecipe = true;
 			}
 			if (isRecipe) {
-				for (final Object obj : recipe.getAllProducts().keySet()) {
+				for (Object obj : recipe.getAllProducts().keySet()) {
 					if (obj instanceof ItemStack) {
 						products.add((ItemStack) obj);
 					}
@@ -62,11 +62,11 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 		return products;
 	}
 
-	public NonNullList<ItemStack> getSqueezer(final ItemStack stack) {
-		final NonNullList<ItemStack> products = NonNullList.create();
+	public NonNullList<ItemStack> getSqueezer(ItemStack stack) {
+		NonNullList<ItemStack> products = NonNullList.create();
 		for (ISqueezerRecipe recipe : RecipeManagers.squeezerManager.recipes()) {
 			boolean isRecipe = false;
-			for (final Object obj : recipe.getResources()) {
+			for (Object obj : recipe.getResources()) {
 				if (obj instanceof ItemStack && stack.isItemEqual((ItemStack) obj)) {
 					isRecipe = true;
 				}
@@ -80,13 +80,13 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 		return products;
 	}
 
-	public Collection<ItemStack> getCrafting(final ItemStack stack) {
-		final List<ItemStack> products = new ArrayList<>();
-		for (final Object recipeO : CraftingManager.getInstance().getRecipeList()) {
+	public Collection<ItemStack> getCrafting(ItemStack stack) {
+		List<ItemStack> products = new ArrayList<>();
+		for (Object recipeO : CraftingManager.getInstance().getRecipeList()) {
 			if (recipeO instanceof ShapelessRecipes) {
-				final ShapelessRecipes recipe = (ShapelessRecipes) recipeO;
+				ShapelessRecipes recipe = (ShapelessRecipes) recipeO;
 				boolean match = true;
-				for (final Object rec : recipe.recipeItems) {
+				for (Object rec : recipe.recipeItems) {
 					if (rec != null && (!(rec instanceof ItemStack) || !stack.isItemEqual((ItemStack) rec))) {
 						match = false;
 					}
@@ -96,9 +96,9 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 				}
 			}
 			if (recipeO instanceof ShapedRecipes) {
-				final ShapedRecipes recipe2 = (ShapedRecipes) recipeO;
+				ShapedRecipes recipe2 = (ShapedRecipes) recipeO;
 				boolean match = true;
-				for (final Object rec2 : recipe2.recipeItems) {
+				for (Object rec2 : recipe2.recipeItems) {
 					if (rec2 != null && (!(rec2 instanceof ItemStack) || !stack.isItemEqual((ItemStack) rec2))) {
 						match = false;
 					}
@@ -108,9 +108,9 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 				}
 			}
 			if (recipeO instanceof ShapelessOreRecipe) {
-				final ShapelessOreRecipe recipe3 = (ShapelessOreRecipe) recipeO;
+				ShapelessOreRecipe recipe3 = (ShapelessOreRecipe) recipeO;
 				boolean match = true;
-				for (final Object rec : recipe3.getInput()) {
+				for (Object rec : recipe3.getInput()) {
 					if (rec != null && (!(rec instanceof ItemStack) || !stack.isItemEqual((ItemStack) rec))) {
 						match = false;
 					}
@@ -124,20 +124,20 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 		return products;
 	}
 
-	public Collection<FluidStack> getAllFluids(final ItemStack stack) {
-		final List<FluidStack> products = new ArrayList<>();
-		products.addAll(this.getSqueezerFluid(stack));
+	public Collection<FluidStack> getAllFluids(ItemStack stack) {
+		List<FluidStack> products = new ArrayList<>();
+		products.addAll(getSqueezerFluid(stack));
 		if (FruitPressRecipes.getOutput(stack) != null) {
 			products.add(FruitPressRecipes.getOutput(stack));
 		}
 		return products;
 	}
 
-	public Collection<FluidStack> getSqueezerFluid(final ItemStack stack) {
-		final List<FluidStack> products = new ArrayList<>();
-		for (final ISqueezerRecipe recipe : RecipeManagers.squeezerManager.recipes()) {
+	public Collection<FluidStack> getSqueezerFluid(ItemStack stack) {
+		List<FluidStack> products = new ArrayList<>();
+		for (ISqueezerRecipe recipe : RecipeManagers.squeezerManager.recipes()) {
 			boolean isRecipe = false;
-			for (final Object obj : recipe.getResources()) {
+			for (Object obj : recipe.getResources()) {
 				if (obj instanceof ItemStack && stack.isItemEqual((ItemStack) obj)) {
 					isRecipe = true;
 				}
@@ -149,8 +149,8 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 		return products;
 	}
 
-	protected Collection<? extends FluidStack> getAllProducts(final FluidStack stack) {
-		final Collection<FluidStack> fluids = new UniqueFluidStackSet();
+	protected Collection<? extends FluidStack> getAllProducts(FluidStack stack) {
+		Collection<FluidStack> fluids = new UniqueFluidStackSet();
 		fluids.add(BreweryRecipes.getOutput(stack));
 		fluids.add(DistilleryRecipes.getOutput(stack, 0));
 		fluids.add(DistilleryRecipes.getOutput(stack, 1));
@@ -158,36 +158,36 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 		return fluids;
 	}
 
-	protected Collection<ItemStack> getAllProductsAndFluids(final Collection<ItemStack> collection) {
-		final Collection<ItemStack> products = new UniqueItemStackSet();
-		for (final ItemStack stack : collection) {
-			products.addAll(this.getAllProducts(stack));
+	protected Collection<ItemStack> getAllProductsAndFluids(Collection<ItemStack> collection) {
+		Collection<ItemStack> products = new UniqueItemStackSet();
+		for (ItemStack stack : collection) {
+			products.addAll(getAllProducts(stack));
 		}
-		final Collection<ItemStack> products2 = new UniqueItemStackSet();
-		for (final ItemStack stack2 : products) {
-			products2.addAll(this.getAllProducts(stack2));
+		Collection<ItemStack> products2 = new UniqueItemStackSet();
+		for (ItemStack stack2 : products) {
+			products2.addAll(getAllProducts(stack2));
 		}
-		final Collection<ItemStack> products3 = new UniqueItemStackSet();
-		for (final ItemStack stack3 : products2) {
-			products3.addAll(this.getAllProducts(stack3));
+		Collection<ItemStack> products3 = new UniqueItemStackSet();
+		for (ItemStack stack3 : products2) {
+			products3.addAll(getAllProducts(stack3));
 		}
 		products.addAll(products2);
 		products.addAll(products3);
-		final Collection<FluidStack> allFluids = new UniqueFluidStackSet();
-		for (final ItemStack stack4 : collection) {
-			allFluids.addAll(this.getAllFluids(stack4));
+		Collection<FluidStack> allFluids = new UniqueFluidStackSet();
+		for (ItemStack stack4 : collection) {
+			allFluids.addAll(getAllFluids(stack4));
 		}
-		final Collection<FluidStack> fluids2 = new UniqueFluidStackSet();
-		for (final FluidStack stack5 : allFluids) {
-			fluids2.addAll(this.getAllProducts(stack5));
+		Collection<FluidStack> fluids2 = new UniqueFluidStackSet();
+		for (FluidStack stack5 : allFluids) {
+			fluids2.addAll(getAllProducts(stack5));
 		}
-		final Collection<FluidStack> fluids3 = new UniqueFluidStackSet();
-		for (final FluidStack stack6 : fluids2) {
-			fluids3.addAll(this.getAllProducts(stack6));
+		Collection<FluidStack> fluids3 = new UniqueFluidStackSet();
+		for (FluidStack stack6 : fluids2) {
+			fluids3.addAll(getAllProducts(stack6));
 		}
 		allFluids.addAll(fluids2);
 		allFluids.addAll(fluids3);
-		for (final FluidStack fluid : allFluids) {
+		for (FluidStack fluid : allFluids) {
 			ItemStack container = AnalystPageProducts.getContainer(fluid);
 			if (container != null) {
 				products.add(container);
@@ -196,21 +196,21 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 		return products;
 	}
 
-	protected int getRefined(final String string, int y, final Collection<ItemStack> products) {
-		new ControlTextCentered(this, y, string).setColour(this.getColour());
+	protected int getRefined(String string, int y, Collection<ItemStack> products) {
+		new ControlTextCentered(this, y, string).setColor(getColor());
 		y += 10;
-		final int maxBiomePerLine = (this.width() + 2 - 16) / 18;
-		final int biomeListX = (this.width() - (Math.min(maxBiomePerLine, products.size()) * 18 - 2)) / 2;
+		int maxBiomePerLine = (width() + 2 - 16) / 18;
+		int biomeListX = (width() - (Math.min(maxBiomePerLine, products.size()) * 18 - 2)) / 2;
 		int dx = 0;
 		int dy = 0;
-		for (final ItemStack soilStack : products) {
+		for (ItemStack soilStack : products) {
 			if (dx >= 18 * maxBiomePerLine) {
 				dx = 0;
 				dy += 18;
 			}
-			final FluidStack fluid = FluidUtil.getFluidContained(soilStack);
+			FluidStack fluid = FluidUtil.getFluidContained(soilStack);
 			soilStack.setCount(1);
-			final ControlItemDisplay display = new ControlItemDisplay(this, biomeListX + dx, y + dy, soilStack, fluid == null);
+			ControlItemDisplay display = new ControlItemDisplay(this, biomeListX + dx, y + dy, soilStack, fluid == null);
 			if (fluid != null) {
 				display.addTooltip(fluid.getLocalizedName());
 			}

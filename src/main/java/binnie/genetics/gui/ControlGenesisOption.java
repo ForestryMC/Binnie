@@ -11,24 +11,24 @@ import binnie.core.craftgui.renderer.RenderUtil;
 import binnie.core.genetics.Gene;
 
 public class ControlGenesisOption extends ControlOption<Gene> {
-	public ControlGenesisOption(final ControlList<Gene> parent, final Gene gene, final int y) {
+	public ControlGenesisOption(ControlList<Gene> parent, Gene gene, int y) {
 		super(parent, gene, y);
 	}
 
 	String getAlleleName() {
-		return this.getValue().getAlleleName();
+		return getValue().getAlleleName();
 	}
 
 	String getChromosomeName() {
-		return this.getValue().getShortChromosomeName();
+		return getValue().getShortChromosomeName();
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		super.onRenderBackground(guiWidth, guiHeight);
-		RenderUtil.drawText(new Area(0, 0, 70, 22), TextJustification.MIDDLE_CENTER, this.getChromosomeName(), this.getColour());
-		RenderUtil.drawText(new Area(75, 0, 80, 22), TextJustification.MIDDLE_CENTER, this.getAlleleName(), this.getColour());
-		RenderUtil.drawSolidRect(new Area(70, 2, 1, 16), -16777216 + this.getColour());
+		RenderUtil.drawText(new Area(0, 0, 70, 22), TextJustification.MIDDLE_CENTER, getChromosomeName(), getColor());
+		RenderUtil.drawText(new Area(75, 0, 80, 22), TextJustification.MIDDLE_CENTER, getAlleleName(), getColor());
+		RenderUtil.drawSolidRect(new Area(70, 2, 1, 16), -16777216 + getColor());
 	}
 }

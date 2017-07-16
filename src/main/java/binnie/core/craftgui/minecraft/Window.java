@@ -179,7 +179,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 	}
 
 	public void setTitle(final String title) {
-		(this.title = new ControlTextCentered(this, 12, title)).setColour(4210752);
+		(this.title = new ControlTextCentered(this, 12, title)).setColor(4210752);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -229,7 +229,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 		if (this.getBackground2() != null) {
 			CraftGUI.render.texture(this.getBackground2(), new Point(256, 0));
 		}
-		RenderUtil.setColour(this.getColour());
+		RenderUtil.setColour(this.getColor());
 		CraftGUI.render.texture(CraftGUITexture.Window, this.getArea());
 	}
 

@@ -83,23 +83,23 @@ public class WindowAnalyst extends Window {
 	private Control analystNone;
 	private ControlSlide slideUpInv;
 
-	public WindowAnalyst(final EntityPlayer player, @Nullable final IInventory inventory, final Side side, final boolean database, final boolean master) {
+	public WindowAnalyst(EntityPlayer player, @Nullable IInventory inventory, Side side, boolean database, boolean master) {
 		super(312, 230, player, inventory, side);
-		this.baseWidget = null;
-		this.tabBar = null;
-		this.analystPages = new ArrayList<>();
-		this.analystPageSize = null;
-		this.isDatabase = false;
-		this.isMaster = false;
-		this.lockedSearch = false;
-		this.current = null;
-		this.currentSystem = null;
-		this.isDatabase = database;
-		this.isMaster = master;
-		this.lockedSearch = this.isDatabase;
+		baseWidget = null;
+		tabBar = null;
+		analystPages = new ArrayList<>();
+		analystPageSize = null;
+		isDatabase = false;
+		isMaster = false;
+		lockedSearch = false;
+		current = null;
+		currentSystem = null;
+		isDatabase = database;
+		isMaster = master;
+		lockedSearch = isDatabase;
 	}
 
-	public static GeneticsGUI.WindowFactory create(final boolean database, final boolean master) {
+	public static GeneticsGUI.WindowFactory create(boolean database, boolean master) {
 		return (player, inventory, side) -> new WindowAnalyst(player, inventory, side, database, master);
 	}
 
@@ -114,59 +114,59 @@ public class WindowAnalyst extends Window {
 	}
 
 	private void setupValidators() {
-		if (!this.isDatabase) {
-			this.getWindowInventory().setValidator(0, new SlotValidator.Individual() {
+		if (!isDatabase) {
+			getWindowInventory().setValidator(0, new SlotValidator.Individual() {
 				@Override
-				public boolean isValid(final ItemStack itemStack) {
-					return Analyser.isAnalysed(itemStack) || (Analyser.isAnalysable(itemStack) && !WindowAnalyst.this.getWindowInventory().getStackInSlot(1).isEmpty());
+				public boolean isValid(ItemStack itemStack) {
+					return Analyser.isAnalysed(itemStack) || (Analyser.isAnalysable(itemStack) && !getWindowInventory().getStackInSlot(1).isEmpty());
 				}
 			});
-			this.getWindowInventory().setValidator(1, new SlotValidator.Item(GeneticsItems.DNADye.get(1), ModuleMachine.spriteDye));
+			getWindowInventory().setValidator(1, new SlotValidator.Item(GeneticsItems.DNADye.get(1), ModuleMachine.spriteDye));
 		}
 	}
 
 	@Override
 	public void initialiseServer() {
-		for (final BreedingSystem system : Binnie.GENETICS.getActiveSystems()) {
+		for (BreedingSystem system : Binnie.GENETICS.getActiveSystems()) {
 			ISpeciesRoot root = system.getSpeciesRoot();
 			if (root != null) {
-				final IBreedingTracker tracker = root.getBreedingTracker(this.getWorld(), this.getUsername());
+				IBreedingTracker tracker = root.getBreedingTracker(getWorld(), getUsername());
 				if (tracker != null) {
-					tracker.synchToPlayer(this.getPlayer());
+					tracker.synchToPlayer(getPlayer());
 				}
 			}
 		}
-		this.setupValidators();
+		setupValidators();
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
-		this.setTitle(this.isDatabase ? (this.isMaster ? "Master Registry" : "Registry") : "Analyst");
-		final BreedingSystem system = Binnie.GENETICS.beeBreedingSystem;
-		final IIndividual ind = system.getDefaultIndividual();
-		final ItemStack stack = system.getSpeciesRoot().getMemberStack(ind, system.getDefaultType());
-		this.getWindowInventory().createSlot(0);
-		this.baseWidget = new Widget(this);
+		setTitle(isDatabase ? (isMaster ? "Master Registry" : "Registry") : "Analyst");
+		BreedingSystem system = Binnie.GENETICS.beeBreedingSystem;
+		IIndividual ind = system.getDefaultIndividual();
+		ItemStack stack = system.getSpeciesRoot().getMemberStack(ind, system.getDefaultType());
+		getWindowInventory().createSlot(0);
+		baseWidget = new Widget(this);
 		int x = 16;
-		final int y = 28;
-		if (this.isDatabase) {
-			for (final BreedingSystem syst : Binnie.GENETICS.getActiveSystems()) {
+		int y = 28;
+		if (isDatabase) {
+			for (BreedingSystem syst : Binnie.GENETICS.getActiveSystems()) {
 				new Control(this, x, y, 20, 20) {
 					@Override
 					public void initialise() {
-						this.addAttribute(Attribute.MouseOver);
-						this.addSelfEventHandler(new EventMouse.Down.Handler() {
+						addAttribute(Attribute.MouseOver);
+						addSelfEventHandler(new EventMouse.Down.Handler() {
 							@Override
 							@SideOnly(Side.CLIENT)
-							public void onEvent(final EventMouse.Down event) {
-								WindowAnalyst.this.setSystem(syst);
+							public void onEvent(EventMouse.Down event) {
+								setSystem(syst);
 							}
 						});
 					}
 
 					@Override
-					public void getTooltip(final Tooltip tooltip) {
+					public void getTooltip(Tooltip tooltip) {
 						tooltip.add(syst.getName());
 					}
 
@@ -174,11 +174,11 @@ public class WindowAnalyst extends Window {
 					@SideOnly(Side.CLIENT)
 					public void onRenderBackground(int guiWidth, int guiHeight) {
 						RenderUtil.setColour(syst.getColour());
-						final int outset = (WindowAnalyst.this.getSystem() == syst) ? 1 : 0;
-						CraftGUI.render.texture(CraftGUITexture.TabOutline, this.getArea().outset(outset));
-						if (WindowAnalyst.this.getSystem() == syst) {
+						int outset = (getSystem() == syst) ? 1 : 0;
+						CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea().outset(outset));
+						if (getSystem() == syst) {
 							RenderUtil.setColour(1140850688 + syst.getColour());
-							CraftGUI.render.texture(CraftGUITexture.TabSolid, this.getArea().outset(outset));
+							CraftGUI.render.texture(CraftGUITexture.TabSolid, getArea().outset(outset));
 						}
 						RenderUtil.drawItem(new Point(2, 2), syst.getItemStackRepresentitive());
 					}
@@ -190,177 +190,177 @@ public class WindowAnalyst extends Window {
 			x += 22;
 			new ControlSlot.Builder(this, x, y + 1).assign(InventoryType.Window, 1);
 			x += 26;
-			this.setupValidators();
+			setupValidators();
 		}
-		this.tabBar = new Control(this, x, 28, this.width() - 16 - x, 20);
-		this.analystPanel = new Panel(this, 16, 54, 280, 164, MinecraftGUI.PanelType.Outline) {
+		tabBar = new Control(this, x, 28, width() - 16 - x, 20);
+		analystPanel = new Panel(this, 16, 54, 280, 164, MinecraftGUI.PanelType.Outline) {
 			@Override
 			@SideOnly(Side.CLIENT)
 			public void onRenderBackground(int guiWidth, int guiHeight) {
-				RenderUtil.drawGradientRect(this.getArea(), 1157627903, 1728053247);
+				RenderUtil.drawGradientRect(getArea(), 1157627903, 1728053247);
 				super.onRenderBackground(guiWidth, guiHeight);
 			}
 
 			@Override
 			public void initialise() {
-				this.setColour(4473924);
-				final int sectionWidth = (this.width() - 8 - 4) / 2;
-				WindowAnalyst.this.leftPage = new ControlScrollableContent<IWidget>(this, 3, 3, sectionWidth + 2, this.height() - 8 + 2, 0) {
+				setColor(4473924);
+				int sectionWidth = (width() - 8 - 4) / 2;
+				leftPage = new ControlScrollableContent<IWidget>(this, 3, 3, sectionWidth + 2, height() - 8 + 2, 0) {
 					@Override
 					@SideOnly(Side.CLIENT)
 					public void onRenderBackground(int guiWidth, int guiHeight) {
-						if (this.getContent() == null) {
+						if (getContent() == null) {
 							return;
 						}
-						RenderUtil.setColour(this.getContent().getColour());
-						CraftGUI.render.texture(CraftGUITexture.TabOutline, this.getArea());
+						RenderUtil.setColour(getContent().getColor());
+						CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea());
 					}
 				};
-				new ControlScrollBar(this, sectionWidth + 2 - 3, 6, 3, this.height() - 8 + 2 - 6, WindowAnalyst.this.leftPage) {
+				new ControlScrollBar(this, sectionWidth + 2 - 3, 6, 3, height() - 8 + 2 - 6, leftPage) {
 					@Override
 					@SideOnly(Side.CLIENT)
 					public void onRenderBackground(int guiWidth, int guiHeight) {
-						if (!this.isEnabled()) {
+						if (!isEnabled()) {
 							return;
 						}
-						if (WindowAnalyst.this.leftPage.getContent() == null) {
+						if (leftPage.getContent() == null) {
 							return;
 						}
-						RenderUtil.drawGradientRect(this.getArea(), 1140850688 + WindowAnalyst.this.leftPage.getContent().getColour(), 1140850688 + WindowAnalyst.this.leftPage.getContent().getColour());
-						RenderUtil.drawSolidRect(this.getRenderArea(), WindowAnalyst.this.leftPage.getContent().getColour());
+						RenderUtil.drawGradientRect(getArea(), 1140850688 + leftPage.getContent().getColor(), 1140850688 + leftPage.getContent().getColor());
+						RenderUtil.drawSolidRect(getRenderArea(), leftPage.getContent().getColor());
 					}
 				};
-				WindowAnalyst.this.rightPage = new ControlScrollableContent<IWidget>(this, 3 + sectionWidth + 4, 3, sectionWidth + 2, this.height() - 8 + 2, 0) {
+				rightPage = new ControlScrollableContent<IWidget>(this, 3 + sectionWidth + 4, 3, sectionWidth + 2, height() - 8 + 2, 0) {
 					@Override
 					@SideOnly(Side.CLIENT)
 					public void onRenderBackground(int guiWidth, int guiHeight) {
-						if (this.getContent() == null) {
+						if (getContent() == null) {
 							return;
 						}
-						RenderUtil.setColour(this.getContent().getColour());
-						CraftGUI.render.texture(CraftGUITexture.TabOutline, this.getArea());
+						RenderUtil.setColour(getContent().getColor());
+						CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea());
 					}
 				};
-				new ControlScrollBar(this, sectionWidth + 2 - 3 + sectionWidth + 4, 6, 3, this.height() - 8 + 2 - 6, WindowAnalyst.this.rightPage) {
+				new ControlScrollBar(this, sectionWidth + 2 - 3 + sectionWidth + 4, 6, 3, height() - 8 + 2 - 6, rightPage) {
 					@Override
 					@SideOnly(Side.CLIENT)
 					public void onRenderBackground(int guiWidth, int guiHeight) {
-						if (!this.isEnabled()) {
+						if (!isEnabled()) {
 							return;
 						}
-						if (WindowAnalyst.this.rightPage.getContent() == null) {
+						if (rightPage.getContent() == null) {
 							return;
 						}
-						RenderUtil.drawGradientRect(this.getArea(), 1140850688 + WindowAnalyst.this.rightPage.getContent().getColour(), 1140850688 + WindowAnalyst.this.rightPage.getContent().getColour());
-						RenderUtil.drawSolidRect(this.getRenderArea(), WindowAnalyst.this.rightPage.getContent().getColour());
+						RenderUtil.drawGradientRect(getArea(), 1140850688 + rightPage.getContent().getColor(), 1140850688 + rightPage.getContent().getColor());
+						RenderUtil.drawSolidRect(getRenderArea(), rightPage.getContent().getColor());
 					}
 				};
-				WindowAnalyst.this.analystPageSize = new Area(1, 1, sectionWidth, this.height() - 8);
+				analystPageSize = new Area(1, 1, sectionWidth, height() - 8);
 			}
 		};
-		if (!this.isDatabase) {
-			this.slideUpInv = new ControlSlide(this, (this.getSize().x() - 244) / 2, this.getSize().y() - 80 + 1, 244, 80, Position.BOTTOM);
-			new ControlPlayerInventory(this.slideUpInv, true);
-			this.slideUpInv.setSlide(false);
+		if (!isDatabase) {
+			slideUpInv = new ControlSlide(this, (getSize().x() - 244) / 2, getSize().y() - 80 + 1, 244, 80, Position.BOTTOM);
+			new ControlPlayerInventory(slideUpInv, true);
+			slideUpInv.setSlide(false);
 		}
-		this.addEventHandler(new EventKey.Down.Handler() {
+		addEventHandler(new EventKey.Down.Handler() {
 			@Override
-			public void onEvent(final EventKey.Down event) {
+			public void onEvent(EventKey.Down event) {
 				if (event.getKey() == 205) {
-					WindowAnalyst.this.shiftPages(true);
+					shiftPages(true);
 				}
 				if (event.getKey() == 203) {
-					WindowAnalyst.this.shiftPages(false);
+					shiftPages(false);
 				}
 			}
 		});
-		if (!this.isDatabase) {
-			this.analystNone = new Control(this.analystPanel, 0, 0, this.analystPanel.width(), this.analystPanel.height()) {
+		if (!isDatabase) {
+			analystNone = new Control(analystPanel, 0, 0, analystPanel.width(), analystPanel.height()) {
 				@Override
 				public void initialise() {
-					new ControlTextCentered(this, 20, "Add a bee, tree, flower or butterfly to the top left slot. DNA Dye is required if it has not been analysed yet. This dye can also convert vanilla items to breedable individuals.").setColour(4473924);
+					new ControlTextCentered(this, 20, "Add a bee, tree, flower or butterfly to the top left slot. DNA Dye is required if it has not been analysed yet. This dye can also convert vanilla items to breedable individuals.").setColor(4473924);
 					new ControlPlayerInventory(this);
 				}
 			};
 		}
-		this.setIndividual(null);
-		this.setSystem(Binnie.GENETICS.beeBreedingSystem);
+		setIndividual(null);
+		setSystem(Binnie.GENETICS.beeBreedingSystem);
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void updatePages(final boolean systemChange) {
+	public void updatePages(boolean systemChange) {
 		int oldLeft = -1;
 		int oldRight = -1;
 		if (!systemChange) {
-			oldLeft = this.analystPages.indexOf(this.leftPage.getContent());
-			oldRight = this.analystPages.indexOf(this.rightPage.getContent());
+			oldLeft = analystPages.indexOf(leftPage.getContent());
+			oldRight = analystPages.indexOf(rightPage.getContent());
 		}
 		ControlAnalystPage databasePage = null;
-		if (this.isDatabase && !systemChange) {
-			databasePage = ((this.analystPages.size() > 0) ? this.analystPages.get(0) : null);
+		if (isDatabase && !systemChange) {
+			databasePage = ((analystPages.size() > 0) ? analystPages.get(0) : null);
 		}
-		this.analystPages.clear();
-		this.setPage(this.leftPage, null);
-		this.setPage(this.rightPage, null);
-		if (this.isDatabase) {
-			this.analystPages.add((databasePage != null) ? databasePage : new AnalystPageDatabase(this.analystPanel, this.analystPageSize, this.currentSystem, this.isMaster));
+		analystPages.clear();
+		setPage(leftPage, null);
+		setPage(rightPage, null);
+		if (isDatabase) {
+			analystPages.add((databasePage != null) ? databasePage : new AnalystPageDatabase(analystPanel, analystPageSize, currentSystem, isMaster));
 		}
-		if (this.current != null) {
-			this.analystPages.add(new AnalystPageDescription(this.analystPanel, this.analystPageSize, this.current));
-			this.analystPages.add(new AnalystPageGenome(this.analystPanel, this.analystPageSize, true, this.current));
-			if (!this.isDatabase) {
-				this.analystPages.add(new AnalystPageGenome(this.analystPanel, this.analystPageSize, false, this.current));
-				this.analystPages.add(new AnalystPageKaryogram(this.analystPanel, this.analystPageSize, this.current));
+		if (current != null) {
+			analystPages.add(new AnalystPageDescription(analystPanel, analystPageSize, current));
+			analystPages.add(new AnalystPageGenome(analystPanel, analystPageSize, true, current));
+			if (!isDatabase) {
+				analystPages.add(new AnalystPageGenome(analystPanel, analystPageSize, false, current));
+				analystPages.add(new AnalystPageKaryogram(analystPanel, analystPageSize, current));
 			}
-			if (!(this.current instanceof ITree)) {
-				this.analystPages.add(new AnalystPageClimate(this.analystPanel, this.analystPageSize, this.current));
+			if (!(current instanceof ITree)) {
+				analystPages.add(new AnalystPageClimate(analystPanel, analystPageSize, current));
 			}
-			if (this.current instanceof IBee) {
-				this.analystPages.add(new AnalystPageProducts(this.analystPanel, this.analystPageSize, (IBee) this.current));
-			} else if (this.current instanceof ITree) {
-				this.analystPages.add(new AnalystPageFruit(this.analystPanel, this.analystPageSize, (ITree) this.current));
-				this.analystPages.add(new AnalystPageWood(this.analystPanel, this.analystPageSize, (ITree) this.current));
-			} else if (this.current instanceof IFlower) {
-				this.analystPages.add(new AnalystPageSoil(this.analystPanel, this.analystPageSize, (IFlower) this.current));
-			} else if (this.current instanceof IButterfly) {
-				this.analystPages.add(new AnalystPageSpecimen(this.analystPanel, this.analystPageSize, (IButterfly) this.current));
+			if (current instanceof IBee) {
+				analystPages.add(new AnalystPageProducts(analystPanel, analystPageSize, (IBee) current));
+			} else if (current instanceof ITree) {
+				analystPages.add(new AnalystPageFruit(analystPanel, analystPageSize, (ITree) current));
+				analystPages.add(new AnalystPageWood(analystPanel, analystPageSize, (ITree) current));
+			} else if (current instanceof IFlower) {
+				analystPages.add(new AnalystPageSoil(analystPanel, analystPageSize, (IFlower) current));
+			} else if (current instanceof IButterfly) {
+				analystPages.add(new AnalystPageSpecimen(analystPanel, analystPageSize, (IButterfly) current));
 			}
-			this.analystPages.add(new AnalystPageBiology(this.analystPanel, this.analystPageSize, this.current));
-			if (this.current instanceof IBee || this.current instanceof IButterfly) {
-				this.analystPages.add(new AnalystPageBehaviour(this.analystPanel, this.analystPageSize, this.current));
-			} else if (this.current instanceof ITree) {
-				this.analystPages.add(new AnalystPageGrowth(this.analystPanel, this.analystPageSize, this.current));
-			} else if (this.current instanceof IFlower) {
-				this.analystPages.add(new AnalystPageAppearance(this.analystPanel, this.analystPageSize, (IFlower) this.current));
+			analystPages.add(new AnalystPageBiology(analystPanel, analystPageSize, current));
+			if (current instanceof IBee || current instanceof IButterfly) {
+				analystPages.add(new AnalystPageBehaviour(analystPanel, analystPageSize, current));
+			} else if (current instanceof ITree) {
+				analystPages.add(new AnalystPageGrowth(analystPanel, analystPageSize, current));
+			} else if (current instanceof IFlower) {
+				analystPages.add(new AnalystPageAppearance(analystPanel, analystPageSize, (IFlower) current));
 			}
-			this.analystPages.add(new AnalystPageMutations(this.analystPanel, this.analystPageSize, this.current, this.isMaster));
+			analystPages.add(new AnalystPageMutations(analystPanel, analystPageSize, current, isMaster));
 		}
-		this.tabBar.deleteAllChildren();
-		if (this.analystPages.size() > 0) {
-			final int width = this.tabBar.width() / this.analystPages.size();
+		tabBar.deleteAllChildren();
+		if (analystPages.size() > 0) {
+			int width = tabBar.width() / analystPages.size();
 			int x = 0;
-			for (final ControlAnalystPage page : this.analystPages) {
-				new ControlTooltip(this.tabBar, x, 0, width, this.tabBar.height()) {
+			for (ControlAnalystPage page : analystPages) {
+				new ControlTooltip(tabBar, x, 0, width, tabBar.height()) {
 					ControlAnalystPage value;
 
 					@Override
-					public void getTooltip(final Tooltip tooltip) {
-						tooltip.add(this.value.getTitle());
+					public void getTooltip(Tooltip tooltip) {
+						tooltip.add(value.getTitle());
 					}
 
 					@Override
 					protected void initialise() {
 						super.initialise();
-						this.addAttribute(Attribute.MouseOver);
-						this.value = page;
-						this.addSelfEventHandler(new EventMouse.Down.Handler() {
+						addAttribute(Attribute.MouseOver);
+						value = page;
+						addSelfEventHandler(new EventMouse.Down.Handler() {
 							@Override
-							public void onEvent(final EventMouse.Down event) {
-								final int currentIndex = WindowAnalyst.this.analystPages.indexOf(WindowAnalyst.this.rightPage.getContent());
-								int clickedIndex = WindowAnalyst.this.analystPages.indexOf(value);
-								if (WindowAnalyst.this.isDatabase) {
+							public void onEvent(EventMouse.Down event) {
+								int currentIndex = analystPages.indexOf(rightPage.getContent());
+								int clickedIndex = analystPages.indexOf(value);
+								if (isDatabase) {
 									if (clickedIndex != 0 && clickedIndex != currentIndex) {
-										WindowAnalyst.this.setPage(WindowAnalyst.this.rightPage, value);
+										setPage(rightPage, value);
 									}
 								} else {
 									if (clickedIndex < 0) {
@@ -369,10 +369,10 @@ public class WindowAnalyst extends Window {
 									if (clickedIndex < currentIndex) {
 										++clickedIndex;
 									}
-									WindowAnalyst.this.setPage(WindowAnalyst.this.rightPage, null);
-									WindowAnalyst.this.setPage(WindowAnalyst.this.leftPage, null);
-									WindowAnalyst.this.setPage(WindowAnalyst.this.rightPage, WindowAnalyst.this.analystPages.get(clickedIndex));
-									WindowAnalyst.this.setPage(WindowAnalyst.this.leftPage, WindowAnalyst.this.analystPages.get(clickedIndex - 1));
+									setPage(rightPage, null);
+									setPage(leftPage, null);
+									setPage(rightPage, analystPages.get(clickedIndex));
+									setPage(leftPage, analystPages.get(clickedIndex - 1));
 								}
 							}
 						});
@@ -381,63 +381,63 @@ public class WindowAnalyst extends Window {
 					@Override
 					@SideOnly(Side.CLIENT)
 					public void onRenderBackground(int guiWidth, int guiHeight) {
-						final boolean active = this.value == WindowAnalyst.this.leftPage.getContent() || this.value == WindowAnalyst.this.rightPage.getContent();
-						RenderUtil.setColour((active ? -16777216 : 1140850688) + this.value.getColour());
-						CraftGUI.render.texture(CraftGUITexture.TabSolid, this.getArea().inset(1));
-						RenderUtil.setColour(this.value.getColour());
-						CraftGUI.render.texture(CraftGUITexture.TabOutline, this.getArea().inset(1));
+						boolean active = value == leftPage.getContent() || value == rightPage.getContent();
+						RenderUtil.setColour((active ? -16777216 : 1140850688) + value.getColor());
+						CraftGUI.render.texture(CraftGUITexture.TabSolid, getArea().inset(1));
+						RenderUtil.setColour(value.getColor());
+						CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea().inset(1));
 						super.onRenderBackground(guiWidth, guiHeight);
 					}
 				};
 				x += width;
 			}
-			this.setPage(this.leftPage, this.analystPages.get((oldLeft >= 0) ? oldLeft : 0));
-			if (this.analystPages.size() > 1) {
-				this.setPage(this.rightPage, this.analystPages.get((oldRight >= 0) ? oldRight : 1));
+			setPage(leftPage, analystPages.get((oldLeft >= 0) ? oldLeft : 0));
+			if (analystPages.size() > 1) {
+				setPage(rightPage, analystPages.get((oldRight >= 0) ? oldRight : 1));
 			}
 		}
 	}
 
-	public void shiftPages(final boolean right) {
-		if (this.analystPages.size() < 2) {
+	public void shiftPages(boolean right) {
+		if (analystPages.size() < 2) {
 			return;
 		}
-		final int leftIndex = this.analystPages.indexOf(this.leftPage.getContent());
-		final int rightIndex = this.analystPages.indexOf(this.rightPage.getContent());
-		if (right && rightIndex + 1 >= this.analystPages.size()) {
+		int leftIndex = analystPages.indexOf(leftPage.getContent());
+		int rightIndex = analystPages.indexOf(rightPage.getContent());
+		if (right && rightIndex + 1 >= analystPages.size()) {
 			return;
 		}
-		if (!this.lockedSearch && !right && leftIndex <= 0) {
+		if (!lockedSearch && !right && leftIndex <= 0) {
 			return;
 		}
-		if (!this.lockedSearch && !right && rightIndex <= 1) {
+		if (!lockedSearch && !right && rightIndex <= 1) {
 			return;
 		}
-		final int newRightIndex = rightIndex + (right ? 1 : -1);
-		final int newLeftIndex = this.lockedSearch ? 0 : (newRightIndex - 1);
+		int newRightIndex = rightIndex + (right ? 1 : -1);
+		int newLeftIndex = lockedSearch ? 0 : (newRightIndex - 1);
 		float oldRightPercent = 0;
 		float oldLeftPercent = 0;
 		if (newLeftIndex == rightIndex) {
-			oldRightPercent = this.rightPage.getPercentageIndex();
+			oldRightPercent = rightPage.getPercentageIndex();
 		}
 		if (newRightIndex == leftIndex) {
-			oldLeftPercent = this.leftPage.getPercentageIndex();
+			oldLeftPercent = leftPage.getPercentageIndex();
 		}
-		this.setPage(this.leftPage, null);
-		this.setPage(this.rightPage, null);
-		this.setPage(this.leftPage, this.analystPages.get(newLeftIndex));
-		this.setPage(this.rightPage, this.analystPages.get(newRightIndex));
-		this.analystPages.get(newLeftIndex).show();
+		setPage(leftPage, null);
+		setPage(rightPage, null);
+		setPage(leftPage, analystPages.get(newLeftIndex));
+		setPage(rightPage, analystPages.get(newRightIndex));
+		analystPages.get(newLeftIndex).show();
 		if (oldRightPercent != 0) {
-			this.leftPage.setPercentageIndex(oldRightPercent);
+			leftPage.setPercentageIndex(oldRightPercent);
 		}
 		if (oldLeftPercent != 0) {
-			this.rightPage.setPercentageIndex(oldLeftPercent);
+			rightPage.setPercentageIndex(oldLeftPercent);
 		}
 	}
 
-	public void setPage(final ControlScrollableContent side, @Nullable final ControlAnalystPage page) {
-		final ControlAnalystPage existingPage = (ControlAnalystPage) side.getContent();
+	public void setPage(ControlScrollableContent side, @Nullable ControlAnalystPage page) {
+		ControlAnalystPage existingPage = (ControlAnalystPage) side.getContent();
 		if (existingPage != null) {
 			existingPage.hide();
 			side.setScrollableContent(null);
@@ -456,58 +456,58 @@ public class WindowAnalyst extends Window {
 		WindowInventory inv = getWindowInventory();
 		ItemStack stack = inv.getStackInSlot(0);
 		if (!stack.isEmpty() && !Analyser.isAnalysed(stack)) {
-			inv.setInventorySlotContents(0, Analyser.analyse(stack, this.getWorld(), this.getUsername()));
+			inv.setInventorySlotContents(0, Analyser.analyse(stack, getWorld(), getUsername()));
 			inv.decrStackSize(1, 1);
 		}
 
-		if (this.isClient()) {
+		if (isClient()) {
 			//noinspection MethodCallSideOnly
-			this.setStack(stack);
+			setStack(stack);
 		}
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void setStack(final ItemStack stack) {
-		final IIndividual ind = AlleleManager.alleleRegistry.getIndividual(stack);
-		this.setIndividual(ind);
+	public void setStack(ItemStack stack) {
+		IIndividual ind = AlleleManager.alleleRegistry.getIndividual(stack);
+		setIndividual(ind);
 	}
 
 	public IIndividual getIndividual() {
-		return this.current;
+		return current;
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void setIndividual(final IIndividual ind) {
-		if (!this.isDatabase) {
+	public void setIndividual(IIndividual ind) {
+		if (!isDatabase) {
 			if (ind == null) {
-				this.analystNone.show();
-				this.slideUpInv.hide();
+				analystNone.show();
+				slideUpInv.hide();
 			} else {
-				this.analystNone.hide();
-				this.slideUpInv.show();
+				analystNone.hide();
+				slideUpInv.show();
 			}
 		}
-		if (ind == this.current || (ind != null && this.current != null && ind.isGeneticEqual(this.current))) {
+		if (ind == current || (ind != null && current != null && ind.isGeneticEqual(current))) {
 			return;
 		}
-		final boolean systemChange = (this.current = ind) != null && ind.getGenome().getSpeciesRoot() != this.getSystem().getSpeciesRoot();
+		boolean systemChange = (current = ind) != null && ind.getGenome().getSpeciesRoot() != getSystem().getSpeciesRoot();
 		if (systemChange) {
-			this.currentSystem = Binnie.GENETICS.getSystem(ind.getGenome().getSpeciesRoot());
+			currentSystem = Binnie.GENETICS.getSystem(ind.getGenome().getSpeciesRoot());
 		}
-		this.updatePages(systemChange);
+		updatePages(systemChange);
 	}
 
 	public BreedingSystem getSystem() {
-		return this.currentSystem;
+		return currentSystem;
 	}
 
 	@SideOnly(Side.CLIENT)
-	public void setSystem(final BreedingSystem system) {
-		if (system == this.currentSystem) {
+	public void setSystem(BreedingSystem system) {
+		if (system == currentSystem) {
 			return;
 		}
-		this.currentSystem = system;
-		this.current = null;
-		this.updatePages(true);
+		currentSystem = system;
+		current = null;
+		updatePages(true);
 	}
 }

@@ -47,7 +47,7 @@ public class WindowIsolator extends WindowMachine {
 		x += 18;
 		new ControlSlot.Builder(this, x, y + 3).assign(5);
 		new ControlSlot.Builder(this, x, y + 36 + 3).assign(0);
-		new ControlSlotCharge(this, x + 18 + 2, y + 36 + 3, 0).setColour(15722671);
+		new ControlSlotCharge(this, x + 18 + 2, y + 36 + 3, 0).setColor(15722671);
 		x += 18;
 		new ControlProgress(this, x, y + 3, WindowIsolator.ProgressBase, WindowIsolator.Progress, Position.LEFT);
 		x += 142;

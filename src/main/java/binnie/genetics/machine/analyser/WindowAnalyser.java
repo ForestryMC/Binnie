@@ -45,7 +45,7 @@ public class WindowAnalyser extends WindowMachine {
 		new ControlSlotArray.Builder(this, x, y, 2, 3).create(Analyser.SLOT_RESERVE);
 		x += 28;
 		new ControlSlot.Builder(this, x, y + 54 + 8).assign(13);
-		new ControlSlotCharge(this, x + 20, y + 54 + 8, 13).setColour(10040319);
+		new ControlSlotCharge(this, x + 20, y + 54 + 8, 13).setColor(10040319);
 		new ControlEnergyBar(this, x + 24 + 16, y + 54 + 8 + 1, 60, 16, Position.LEFT);
 		new ControlErrorState(this, x + 24 + 16 + 60 + 16, y + 54 + 8 + 1);
 		x -= 28;

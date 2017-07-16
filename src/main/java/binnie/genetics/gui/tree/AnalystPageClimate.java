@@ -32,12 +32,12 @@ import binnie.genetics.gui.ControlBiome;
 import binnie.genetics.gui.ControlToleranceBar;
 
 public class AnalystPageClimate extends ControlAnalystPage {
-	public AnalystPageClimate(final IWidget parent, final Area area, final IIndividual ind) {
+	public AnalystPageClimate(IWidget parent, Area area, IIndividual ind) {
 		super(parent, area);
-		this.setColour(26163);
-		final EnumTemperature temp = ind.getGenome().getPrimary().getTemperature();
+		setColor(26163);
+		EnumTemperature temp = ind.getGenome().getPrimary().getTemperature();
 		EnumTolerance tempTol = EnumTolerance.NONE;
-		final EnumHumidity humid = ind.getGenome().getPrimary().getHumidity();
+		EnumHumidity humid = ind.getGenome().getPrimary().getHumidity();
 		EnumTolerance humidTol = EnumTolerance.NONE;
 		if (ind instanceof IBee) {
 			tempTol = ((IAlleleTolerance) ind.getGenome().getActiveAllele(EnumBeeChromosome.TEMPERATURE_TOLERANCE)).getValue();
@@ -52,28 +52,28 @@ public class AnalystPageClimate extends ControlAnalystPage {
 			humidTol = ((IAlleleTolerance) ind.getGenome().getActiveAllele(EnumButterflyChromosome.HUMIDITY_TOLERANCE)).getValue();
 		}
 		int y = 4;
-		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColour(this.getColour());
+		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 16;
-		new ControlText(this, new Area(4, y, this.width() - 8, 14), I18N.localise("genetics.gui.analyst.climate.temp"), TextJustification.MIDDLE_CENTER).setColour(this.getColour());
+		new ControlText(this, new Area(4, y, width() - 8, 14), I18N.localise("genetics.gui.analyst.climate.temp"), TextJustification.MIDDLE_CENTER).setColor(getColor());
 		y += 12;
-		this.createTemperatureBar(this, (this.width() - 100) / 2, y, 100, 10, temp, tempTol);
+		createTemperatureBar(this, (width() - 100) / 2, y, 100, 10, temp, tempTol);
 		y += 16;
 		if (!(ind instanceof IFlower)) {
-			new ControlText(this, new Area(4, y, this.width() - 8, 14), I18N.localise("genetics.gui.analyst.climate.hum"), TextJustification.MIDDLE_CENTER).setColour(this.getColour());
+			new ControlText(this, new Area(4, y, width() - 8, 14), I18N.localise("genetics.gui.analyst.climate.hum"), TextJustification.MIDDLE_CENTER).setColor(getColor());
 			y += 12;
-			this.createHumidity(this, (this.width() - 100) / 2, y, 100, 10, humid, humidTol);
+			createHumidity(this, (width() - 100) / 2, y, 100, 10, humid, humidTol);
 			y += 16;
 		}
-		new ControlText(this, new Area(4, y, this.width() - 8, 14), I18N.localise("genetics.gui.analyst.climate.biomes"), TextJustification.MIDDLE_CENTER).setColour(this.getColour());
+		new ControlText(this, new Area(4, y, width() - 8, 14), I18N.localise("genetics.gui.analyst.climate.biomes"), TextJustification.MIDDLE_CENTER).setColor(getColor());
 		y += 12;
-		final List<Biome> biomes = new ArrayList<>();
-		for (final Biome biome : Biome.EXPLORATION_BIOMES_LIST) { //TODO check
+		List<Biome> biomes = new ArrayList<>();
+		for (Biome biome : Biome.EXPLORATION_BIOMES_LIST) { //TODO check
 			if (biome != null &&
 				biome != Biomes.FROZEN_OCEAN &&
 				Tolerance.canTolerate(temp, EnumTemperature.getFromBiome(biome), tempTol) &&
 				Tolerance.canTolerate(humid, EnumHumidity.getFromValue(biome.getRainfall()), humidTol)) {
 				boolean match = false;
-				for (final Biome eBiome : biomes) {
+				for (Biome eBiome : biomes) {
 					if (biome.getBiomeName().contains(eBiome.getBiomeName()) && EnumHumidity.getFromValue(eBiome.getRainfall()) == EnumHumidity.getFromValue(biome.getRainfall()) && EnumTemperature.getFromBiome(eBiome) == EnumTemperature.getFromBiome(biome)) {
 						match = true;
 					}
@@ -83,11 +83,11 @@ public class AnalystPageClimate extends ControlAnalystPage {
 				}
 			}
 		}
-		final int maxBiomePerLine = (this.width() + 2 - 16) / 18;
-		final int biomeListX = (this.width() - (Math.min(maxBiomePerLine, biomes.size()) * 18 - 2)) / 2;
+		int maxBiomePerLine = (width() + 2 - 16) / 18;
+		int biomeListX = (width() - (Math.min(maxBiomePerLine, biomes.size()) * 18 - 2)) / 2;
 		int dx = 0;
 		int dy = 0;
-		for (final Biome biome2 : biomes) {
+		for (Biome biome2 : biomes) {
 			new ControlBiome(this, biomeListX + dx, y + dy, 16, 16, biome2);
 			dx += 18;
 			if (dx >= 18 * maxBiomePerLine) {
@@ -95,32 +95,32 @@ public class AnalystPageClimate extends ControlAnalystPage {
 				dy += 18;
 			}
 		}
-		this.setSize(new Point(this.width(), y + dy + 18 + 8));
+		setSize(new Point(width(), y + dy + 18 + 8));
 	}
 
-	protected void createTemperatureBar(final IWidget parent, final int x, final int y, final int w, final int h, final EnumTemperature value, final EnumTolerance tol) {
+	protected void createTemperatureBar(IWidget parent, int x, int y, int w, int h, EnumTemperature value, EnumTolerance tol) {
 		new ControlToleranceBar<EnumTemperature>(parent, x, y, w, h, EnumTemperature.class) {
 			@Override
-			protected String getName(final EnumTemperature value) {
+			protected String getName(EnumTemperature value) {
 				return value.name;
 			}
 
 			@Override
-			protected int getColour(final EnumTemperature value) {
+			protected int getColour(EnumTemperature value) {
 				return (new int[]{65531, 7912447, 5242672, 16776960, 16753152, 16711680})[value.ordinal() - 1];
 			}
 		}.setValues(value, tol);
 	}
 
-	protected void createHumidity(final IWidget parent, final int x, final int y, final int w, final int h, final EnumHumidity value, final EnumTolerance tol) {
+	protected void createHumidity(IWidget parent, int x, int y, int w, int h, EnumHumidity value, EnumTolerance tol) {
 		new ControlToleranceBar<EnumHumidity>(parent, x, y, w, h, EnumHumidity.class) {
 			@Override
-			protected String getName(final EnumHumidity value) {
+			protected String getName(EnumHumidity value) {
 				return value.name;
 			}
 
 			@Override
-			protected int getColour(final EnumHumidity value) {
+			protected int getColour(EnumHumidity value) {
 				return (new int[]{16770979, 1769216, 3177727})[value.ordinal()];
 			}
 		}.setValues(value, tol);
