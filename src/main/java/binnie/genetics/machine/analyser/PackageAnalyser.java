@@ -21,12 +21,12 @@ import binnie.genetics.machine.ModuleMachine;
 
 public class PackageAnalyser extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageAnalyser() {
-		super("analyser", GeneticsTexture.Analyser, 9961727, true);
+		super("analyser", GeneticsTexture.ANALYSER, 9961727, true);
 	}
 
 	@Override
 	public void createMachine(final Machine machine) {
-		new ComponentGeneticGUI(machine, GeneticsGUI.Analyser);
+		new ComponentGeneticGUI(machine, GeneticsGUI.ANALYSER);
 		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		for (InventorySlot slot : inventory.addSlotArray(Analyser.SLOT_RESERVE, "input")) {
 			slot.setValidator(new SlotValidatorUnanalysed());

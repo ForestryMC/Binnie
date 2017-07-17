@@ -53,9 +53,9 @@ public interface IWidget {
 
 	Point getRelativeMousePosition();
 
-	int getColour();
+	int getColor();
 
-	void setColour(final int p0);
+	void setColor(final int p0);
 
 	@SideOnly(Side.CLIENT)
 	void render(int guiWidth, int guiHeight);

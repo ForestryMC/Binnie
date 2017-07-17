@@ -111,18 +111,18 @@ public class ItemSequence extends ItemCore implements IItemAnalysable, IItemChar
 	}
 
 	@Override
-	public int getCharges(final ItemStack itemStack) {
-		return itemStack.getMaxDamage() - itemStack.getItemDamage();
+	public int getCharges(final ItemStack stack) {
+		return stack.getMaxDamage() - stack.getItemDamage();
 	}
 
 	@Override
-	public int getMaxCharges(ItemStack itemStack) {
-		return itemStack.getMaxDamage();
+	public int getMaxCharges(ItemStack stack) {
+		return stack.getMaxDamage();
 	}
 
 	@Override
-	public ISpeciesRoot getSpeciesRoot(ItemStack itemStack) {
-		final SequencerItem seq = SequencerItem.create(itemStack);
+	public ISpeciesRoot getSpeciesRoot(ItemStack stack) {
+		final SequencerItem seq = SequencerItem.create(stack);
 		Preconditions.checkNotNull(seq, "Cannot getSpeciesRoot from itemstack that is not a valid item sequence");
 		return seq.getSpeciesRoot();
 	}

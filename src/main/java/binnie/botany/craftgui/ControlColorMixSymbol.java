@@ -42,7 +42,7 @@ public class ControlColorMixSymbol extends Control implements ITooltip {
 
 	public void setValue(IColorMix value) {
 		this.value = value;
-		setColour(0xffffff);
+		setColor(0xffffff);
 	}
 
 	@Override

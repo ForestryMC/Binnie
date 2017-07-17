@@ -24,12 +24,12 @@ import binnie.genetics.machine.ModuleMachine;
 
 public class PackageSplicer extends AdvGeneticMachine.PackageAdvGeneticBase implements IMachineInformation {
 	public PackageSplicer() {
-		super("splicer", GeneticsTexture.Splicer, 14819893, true);
+		super("splicer", GeneticsTexture.SPLICER, 14819893, true);
 	}
 
 	@Override
 	public void createMachine(final Machine machine) {
-		new ComponentGeneticGUI(machine, GeneticsGUI.Splicer);
+		new ComponentGeneticGUI(machine, GeneticsGUI.SPLICER);
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		InventorySlot slotSerumVial = inventory.addSlot(Splicer.SLOT_SERUM_VIAL, "serum.active");
 		slotSerumVial.forbidInteraction();

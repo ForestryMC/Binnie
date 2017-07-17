@@ -12,14 +12,14 @@ import binnie.genetics.gui.ControlAnalystPage;
 import binnie.genetics.gui.ControlIndividualDisplay;
 
 public class AnalystPageSpecimen extends ControlAnalystPage {
-	public AnalystPageSpecimen(final IWidget parent, final Area area, final IButterfly ind) {
+	public AnalystPageSpecimen(IWidget parent, Area area, IButterfly ind) {
 		super(parent, area);
-		this.setColour(3355443);
+		setColor(3355443);
 		int y = 4;
-		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColour(this.getColour());
+		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 12;
-		final int w = Math.round((this.width() - 16) * ind.getSize());
-		new ControlIndividualDisplay(this, (this.width() - w) / 2, y + (this.width() - w) / 2, w, ind);
+		int w = Math.round((width() - 16) * ind.getSize());
+		new ControlIndividualDisplay(this, (width() - w) / 2, y + (width() - w) / 2, w, ind);
 	}
 
 	@Override

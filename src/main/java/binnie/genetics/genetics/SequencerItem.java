@@ -14,14 +14,14 @@ public class SequencerItem extends GeneItem {
 	public int sequenced;
 	public boolean analysed;
 
-	public SequencerItem(final IGene gene) {
+	public SequencerItem(IGene gene) {
 		super(gene);
-		this.sequenced = 0;
-		this.analysed = false;
+		sequenced = 0;
+		analysed = false;
 	}
 
 	@Nullable
-	public static SequencerItem create(final ItemStack itemStack) {
+	public static SequencerItem create(ItemStack itemStack) {
 		NBTTagCompound nbt = itemStack.getTagCompound();
 		if (nbt != null &&
 			nbt.hasKey("gene", Constants.NBT.TAG_COMPOUND) &&
@@ -39,10 +39,10 @@ public class SequencerItem extends GeneItem {
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound nbt2) {
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt2) {
 		NBTTagCompound nbt = super.writeToNBT(nbt2);
-		nbt.setByte("seq", (byte) this.sequenced);
-		nbt.setBoolean("ana", this.analysed);
+		nbt.setByte("seq", (byte) sequenced);
+		nbt.setBoolean("ana", analysed);
 		return nbt;
 	}
 }

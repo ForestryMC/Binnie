@@ -23,30 +23,30 @@ import binnie.core.util.I18N;
 import binnie.genetics.gui.ControlAnalystPage;
 
 public class AnalystPageAppearance extends ControlAnalystPage {
-	public AnalystPageAppearance(final IWidget parent, final Area area, final IFlower flower) {
+	public AnalystPageAppearance(IWidget parent, Area area, IFlower flower) {
 		super(parent, area);
-		this.setColour(3355443);
+		setColor(3355443);
 		int y = 4;
 		IFlowerGenome genome = flower.getGenome();
-		final IAlleleSpecies species = genome.getPrimary();
-		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColour(this.getColour());
+		IAlleleSpecies species = genome.getPrimary();
+		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 12;
-		final ControlColorDisplay a = new ControlColorDisplay(this, this.width() / 2 - 28, y, genome.getPrimaryColor());
+		ControlColorDisplay a = new ControlColorDisplay(this, width() / 2 - 28, y, genome.getPrimaryColor());
 		a.addTooltip(I18N.localise("genetics.gui.analyst.appearance.primary"));
-		final ControlColorDisplay b = new ControlColorDisplay(this, this.width() / 2 - 8, y, genome.getSecondaryColor());
+		ControlColorDisplay b = new ControlColorDisplay(this, width() / 2 - 8, y, genome.getSecondaryColor());
 		b.addTooltip(I18N.localise("genetics.gui.analyst.appearance.secondary"));
-		final ControlColorDisplay c = new ControlColorDisplay(this, this.width() / 2 + 12, y, genome.getStemColor());
+		ControlColorDisplay c = new ControlColorDisplay(this, width() / 2 + 12, y, genome.getStemColor());
 		c.addTooltip(I18N.localise("genetics.gui.analyst.appearance.stem"));
 		y += 26;
 		IFlowerType type = genome.getType();
-		final int sections = type.getSections();
-		final int width = (sections > 1) ? 50 : 100;
-		new ControlIconDisplay(this, (this.width() - width) / 2, y - ((sections == 1) ? 0 : 0)) {
+		int sections = type.getSections();
+		int width = (sections > 1) ? 50 : 100;
+		new ControlIconDisplay(this, (width() - width) / 2, y - ((sections == 1) ? 0 : 0)) {
 			@Override
 			@SideOnly(Side.CLIENT)
 			public void onRenderForeground(int guiWidth, int guiHeight) {
 				GlStateManager.pushMatrix();
-				final float scale = width / 16.0f;
+				float scale = width / 16.0f;
 				int dy = (sections > 1) ? 16 : 0;
 				GlStateManager.scale(scale, scale, 1.0f);
 				RenderUtil.setColour(flower.getGenome().getStemColor().getColor(false));

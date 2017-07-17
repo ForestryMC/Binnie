@@ -22,7 +22,7 @@ import binnie.genetics.machine.ModuleMachine;
 
 public class PackageSequencer extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageSequencer() {
-		super("sequencer", GeneticsTexture.Sequencer, 12058418, true);
+		super("sequencer", GeneticsTexture.SEQUENCER, 12058418, true);
 		Sequencer.fxSeqA = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.a");
 		Sequencer.fxSeqG = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.g");
 		Sequencer.fxSeqT = Binnie.RESOURCE.getBlockSprite(Genetics.instance, "fx/sequencer.t");
@@ -31,7 +31,7 @@ public class PackageSequencer extends GeneticMachine.PackageGeneticBase implemen
 
 	@Override
 	public void createMachine(final Machine machine) {
-		new ComponentGeneticGUI(machine, GeneticsGUI.Sequencer);
+		new ComponentGeneticGUI(machine, GeneticsGUI.SEQUENCER);
 		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		InventorySlot slotDye = inventory.addSlot(Sequencer.SLOT_DYE, "dye");
 		slotDye.setValidator(new SlotValidator.Item(GeneticsItems.FluorescentDye.get(1), ModuleMachine.spriteDye));

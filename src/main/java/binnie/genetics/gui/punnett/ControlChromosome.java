@@ -17,32 +17,32 @@ import binnie.core.craftgui.renderer.RenderUtil;
 public class ControlChromosome extends Control implements IControlValue<IChromosomeType>, ITooltip {
 	private IChromosomeType value;
 
-	protected ControlChromosome(final IWidget parent, final int x, final int y, final IChromosomeType type) {
+	protected ControlChromosome(IWidget parent, int x, int y, IChromosomeType type) {
 		super(parent, x, y, 16, 16);
-		this.value = type;
-		this.addAttribute(Attribute.MouseOver);
+		value = type;
+		addAttribute(Attribute.MouseOver);
 	}
 
 	@Override
 	public IChromosomeType getValue() {
-		return this.value;
+		return value;
 	}
 
 	@Override
-	public void setValue(final IChromosomeType value) {
+	public void setValue(IChromosomeType value) {
 		this.value = value;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.render.texture(ExtraBeeGUITexture.Chromosome, this.getArea());
+		CraftGUI.render.texture(ExtraBeeGUITexture.Chromosome, getArea());
 		RenderUtil.setColour(16711680);
-		CraftGUI.render.texture(ExtraBeeGUITexture.Chromosome2, this.getArea());
+		CraftGUI.render.texture(ExtraBeeGUITexture.Chromosome2, getArea());
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
-		tooltip.add(this.value.getName());
+	public void getTooltip(Tooltip tooltip) {
+		tooltip.add(value.getName());
 	}
 }

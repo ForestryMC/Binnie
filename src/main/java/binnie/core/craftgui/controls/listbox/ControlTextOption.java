@@ -15,7 +15,7 @@ public class ControlTextOption<T> extends ControlOption<T> {
 		this.addEventHandler(new EventWidget.ChangeColour.Handler() {
 			@Override
 			public void onEvent(final EventWidget.ChangeColour event) {
-				ControlTextOption.this.textWidget.setColour(ControlTextOption.this.getColour());
+				ControlTextOption.this.textWidget.setColor(ControlTextOption.this.getColor());
 			}
 		}.setOrigin(EventHandler.Origin.Self, this));
 	}

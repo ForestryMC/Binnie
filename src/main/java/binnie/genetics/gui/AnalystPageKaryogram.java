@@ -15,21 +15,21 @@ import binnie.core.genetics.BreedingSystem;
 import binnie.core.util.I18N;
 
 public class AnalystPageKaryogram extends ControlAnalystPage {
-	public AnalystPageKaryogram(final IWidget parent, final Area area, final IIndividual ind) {
+	public AnalystPageKaryogram(IWidget parent, Area area, IIndividual ind) {
 		super(parent, area);
-		this.setColour(10040319);
+		setColor(10040319);
 		int y = 4;
-		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColour(this.getColour());
+		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 16;
 		y += 8;
-		final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(ind);
-		final BreedingSystem system = Binnie.GENETICS.getSystem(root);
-		final int maxBiomePerLine = (int) ((this.width() + 4.0f - 16.0f) / 22.0f);
-		int karygramX = (this.width() - (Math.min(maxBiomePerLine, system.getActiveKaryotype().size()) * 18 - 4)) / 2;
+		ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(ind);
+		BreedingSystem system = Binnie.GENETICS.getSystem(root);
+		int maxBiomePerLine = (int) ((width() + 4.0f - 16.0f) / 22.0f);
+		int karygramX = (width() - (Math.min(maxBiomePerLine, system.getActiveKaryotype().size()) * 18 - 4)) / 2;
 		int dx = 0;
 		int dy = 0;
 		int rem = system.getActiveKaryotype().size();
-		for (final IChromosomeType type : system.getActiveKaryotype()) {
+		for (IChromosomeType type : system.getActiveKaryotype()) {
 			new ControlAnalystChromosome(this, karygramX + dx, y + dy, root, type, ind.getGenome().getActiveAllele(type), ind.getGenome().getInactiveAllele(type));
 			dx += 22;
 			if (dx >= 22 * maxBiomePerLine - 22) {

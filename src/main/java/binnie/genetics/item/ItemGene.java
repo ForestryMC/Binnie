@@ -65,7 +65,7 @@ public abstract class ItemGene extends ItemCore implements IColoredItem {
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
 		IGeneItem gene = this.getGeneItem(stack);
 		if (gene != null) {
-			return gene.getColour(tintIndex);
+			return gene.getColor(tintIndex);
 		}
 		return 16777215;
 	}

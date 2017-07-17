@@ -26,8 +26,8 @@ import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.craftgui.WindowMachine;
 
 public class WindowPolymeriser extends WindowMachine {
-	static Texture ProgressBase = new StandardTexture(76, 170, 160, 79, GeneticsTexture.GUIProcess);
-	static Texture Progress = new StandardTexture(76, 91, 160, 79, GeneticsTexture.GUIProcess);
+	static Texture ProgressBase = new StandardTexture(76, 170, 160, 79, GeneticsTexture.GUI_PROCESS);
+	static Texture Progress = new StandardTexture(76, 91, 160, 79, GeneticsTexture.GUI_PROCESS);
 
 	public WindowPolymeriser(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(278, 212, player, inventory, side);
@@ -49,7 +49,7 @@ public class WindowPolymeriser extends WindowMachine {
 		new ControlEnergyBar(this, x + 120, 96, 64, 16, Position.LEFT);
 		x += 40;
 		new ControlSlot.Builder(this, x + 30, y + 18 + 8).assign(1);
-		new ControlSlotCharge(this, x + 30 + 20, y + 18 + 8, 1).setColour(16766976);
+		new ControlSlotCharge(this, x + 30 + 20, y + 18 + 8, 1).setColor(16766976);
 		x += 138;
 		new ControlSlotArray.Builder(this, x, y + 9, 2, 2).create(Polymeriser.SLOT_SERUM_FINISHED);
 		final ControlErrorState errorState = new ControlErrorState(this, 244, 97);

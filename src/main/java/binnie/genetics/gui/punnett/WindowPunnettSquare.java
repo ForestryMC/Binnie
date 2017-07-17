@@ -33,12 +33,12 @@ public class WindowPunnettSquare extends Window {
 	@Nullable
 	ISpeciesRoot root;
 
-	public WindowPunnettSquare(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowPunnettSquare(EntityPlayer player, IInventory inventory, Side side) {
 		super(245, 205, player, inventory, side);
-		this.root = null;
+		root = null;
 	}
 
-	public static Window create(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public static Window create(EntityPlayer player, IInventory inventory, Side side) {
 		return new WindowPunnettSquare(player, inventory, side);
 	}
 
@@ -55,16 +55,16 @@ public class WindowPunnettSquare extends Window {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
-		this.setTitle("Punnett Square");
+		setTitle("Punnett Square");
 		CraftGUI.render.setStyleSheet(new StyleSheetPunnett());
 	}
 
 	static class StyleSheetPunnett extends StyleSheet {
 		public StyleSheetPunnett() {
-			this.textures.put(CraftGUITexture.Window, new PaddedTexture(0, 0, 160, 160, 0, texture, 32, 32, 32, 32));
-			this.textures.put(CraftGUITexture.Slot, new StandardTexture(160, 0, 18, 18, 0, texture));
-			this.textures.put(ExtraBeeGUITexture.Chromosome, new StandardTexture(160, 36, 16, 16, 0, texture));
-			this.textures.put(ExtraBeeGUITexture.Chromosome2, new StandardTexture(160, 52, 16, 16, 0, texture));
+			textures.put(CraftGUITexture.Window, new PaddedTexture(0, 0, 160, 160, 0, texture, 32, 32, 32, 32));
+			textures.put(CraftGUITexture.Slot, new StandardTexture(160, 0, 18, 18, 0, texture));
+			textures.put(ExtraBeeGUITexture.Chromosome, new StandardTexture(160, 36, 16, 16, 0, texture));
+			textures.put(ExtraBeeGUITexture.Chromosome2, new StandardTexture(160, 52, 16, 16, 0, texture));
 		}
 	}
 

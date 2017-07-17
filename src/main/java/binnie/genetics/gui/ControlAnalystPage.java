@@ -7,9 +7,9 @@ import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.geometry.Area;
 
 public abstract class ControlAnalystPage extends Control {
-	public ControlAnalystPage(final IWidget parent, final Area area) {
+	public ControlAnalystPage(IWidget parent, Area area) {
 		super(parent, area);
-		this.hide();
+		hide();
 	}
 
 	@Override
@@ -18,11 +18,11 @@ public abstract class ControlAnalystPage extends Control {
 
 	public abstract String getTitle();
 
-	protected String getTimeString(final int time) {
-		final int seconds = time / 20;
-		final int minutes = seconds / 60;
-		final int hours = minutes / 60;
-		final DecimalFormat df = new DecimalFormat("#.0");
+	protected String getTimeString(int time) {
+		int seconds = time / 20;
+		int minutes = seconds / 60;
+		int hours = minutes / 60;
+		DecimalFormat df = new DecimalFormat("#.0");
 		if (hours > 1) {
 			return df.format(hours) + " hours";
 		}

@@ -9,17 +9,17 @@ import net.minecraftforge.fluids.FluidStack;
 import binnie.core.machines.MachineUtil;
 
 public interface IIncubatorRecipe {
-	boolean isInputLiquid(@Nullable final FluidStack fluid);
+	boolean isInputLiquid(@Nullable FluidStack fluid);
 
-	boolean isInputLiquidSufficient(@Nullable final FluidStack fluid);
+	boolean isInputLiquidSufficient(@Nullable FluidStack fluid);
 
-	void doTask(final MachineUtil p0);
+	void doTask(MachineUtil machine);
 
 	float getChance();
 
 	float getLossChance();
 
-	boolean roomForOutput(final MachineUtil p0);
+	boolean roomForOutput(MachineUtil machine);
 
 	FluidStack getInput();
 

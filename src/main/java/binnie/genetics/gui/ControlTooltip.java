@@ -6,11 +6,11 @@ import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.controls.core.Control;
 
 public class ControlTooltip extends Control implements ITooltip {
-	public ControlTooltip(final IWidget parent, final int x, final int y, final int w, final int h) {
+	public ControlTooltip(IWidget parent, int x, int y, int w, int h) {
 		super(parent, x, y, w, h);
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
+	public void getTooltip(Tooltip tooltip) {
 	}
 }

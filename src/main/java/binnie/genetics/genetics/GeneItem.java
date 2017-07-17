@@ -23,12 +23,12 @@ import binnie.genetics.api.IGene;
 public class GeneItem implements INbtWritable, IGeneItem {
 	private IGene gene;
 
-	public GeneItem(final IGene gene) {
+	public GeneItem(IGene gene) {
 		this.gene = gene;
 	}
 
 	@Nullable
-	public static GeneItem create(final ItemStack stack) {
+	public static GeneItem create(ItemStack stack) {
 		NBTTagCompound tagCompound = stack.getTagCompound();
 		if (tagCompound != null && tagCompound.hasKey("gene", Constants.NBT.TAG_COMPOUND)) {
 			NBTTagCompound geneNbt = tagCompound.getCompoundTag("gene");
@@ -39,52 +39,52 @@ public class GeneItem implements INbtWritable, IGeneItem {
 	}
 
 	@Override
-	public void writeToItem(final ItemStack stack) {
+	public void writeToItem(ItemStack stack) {
 		NBTTagCompound nbt = stack.getTagCompound();
 		if (nbt == null) {
 			nbt = new NBTTagCompound();
 		}
-		this.writeToNBT(nbt);
+		writeToNBT(nbt);
 		stack.setTagCompound(nbt);
 	}
 
 	@Override
-	public int getColour(final int renderPass) {
+	public int getColor(int renderPass) {
 		if (renderPass == 2) {
-			return this.getBreedingSystem().getColour();
+			return getBreedingSystem().getColour();
 		}
-		return 16777215;
+		return 0xffffff;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getInfo(final List<String> list) {
-		final String chromosomeName = this.getBreedingSystem().getChromosomeName(this.gene.getChromosome());
-		list.add(TextFormatting.GOLD + chromosomeName + TextFormatting.GRAY + ": " + this.gene.getName());
+	public void getInfo(List<String> list) {
+		String chromosomeName = getBreedingSystem().getChromosomeName(gene.getChromosome());
+		list.add(TextFormatting.GOLD + chromosomeName + TextFormatting.GRAY + ": " + gene.getName());
 	}
 
 	public BreedingSystem getBreedingSystem() {
-		return Binnie.GENETICS.getSystem(this.gene.getSpeciesRoot());
+		return Binnie.GENETICS.getSystem(gene.getSpeciesRoot());
 	}
 
 	public IGene getGene() {
-		return this.gene;
+		return gene;
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound nbt) {
-		final NBTTagCompound geneNBT = this.gene.getNBTTagCompound();
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
+		NBTTagCompound geneNBT = gene.getNBTTagCompound();
 		nbt.setTag("gene", geneNBT);
 		return nbt;
 	}
 
 	@Override
 	public ISpeciesRoot getSpeciesRoot() {
-		return this.gene.getSpeciesRoot();
+		return gene.getSpeciesRoot();
 	}
 
 	@Override
-	public void addGene(final IGene gene) {
+	public void addGene(IGene gene) {
 		this.gene = gene;
 	}
 }

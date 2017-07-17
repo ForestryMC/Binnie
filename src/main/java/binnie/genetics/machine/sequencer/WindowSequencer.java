@@ -30,8 +30,8 @@ import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.craftgui.WindowMachine;
 
 public class WindowSequencer extends WindowMachine {
-	static Texture ProgressBase = new StandardTexture(64, 114, 98, 9, GeneticsTexture.GUIProcess3);
-	static Texture Progress = new StandardTexture(64, 123, 98, 9, GeneticsTexture.GUIProcess3);
+	static Texture ProgressBase = new StandardTexture(64, 114, 98, 9, GeneticsTexture.GUI_PROCESS_3);
+	static Texture Progress = new StandardTexture(64, 123, 98, 9, GeneticsTexture.GUI_PROCESS_3);
 	ControlText slotText;
 
 	public WindowSequencer(final EntityPlayer player, final IInventory inventory, final Side side) {
@@ -67,7 +67,7 @@ public class WindowSequencer extends WindowMachine {
 		y += 20;
 		final ControlSlot slotDye = new ControlSlot.Builder(this, x, y).assign(0);
 		x += 20;
-		new ControlSlotCharge(this, x, y, 0).setColour(16750848);
+		new ControlSlotCharge(this, x, y, 0).setColor(16750848);
 		x += 32;
 		new ControlEnergyBar(this, x, y, 60, 16, Position.LEFT);
 		x += 92;

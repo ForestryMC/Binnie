@@ -7,10 +7,10 @@ import net.minecraft.item.ItemStack;
 import forestry.api.genetics.ISpeciesRoot;
 
 public interface IItemChargeable {
-	int getCharges(ItemStack itemStack);
+	int getCharges(ItemStack stack);
 
-	int getMaxCharges(ItemStack itemStack);
+	int getMaxCharges(ItemStack stack);
 
 	@Nullable
-	ISpeciesRoot getSpeciesRoot(ItemStack itemStack);
+	ISpeciesRoot getSpeciesRoot(ItemStack stack);
 }

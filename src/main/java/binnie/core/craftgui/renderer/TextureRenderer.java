@@ -98,7 +98,7 @@ public class TextureRenderer {
 	public final void preRender(final IWidget widget, int guiWidth, int guiHeight) {
 		GlStateManager.pushMatrix();
 		GlStateManager.translate(widget.getPosition().x(), widget.getPosition().y(), 0.0f);
-		RenderUtil.setColour(widget.getColour());
+		RenderUtil.setColour(widget.getColor());
 		if (widget.isCroppedWidet()) {
 			final IWidget cropRelative = (widget.getCropWidget() != null) ? widget.getCropWidget() : widget;
 			final Point pos = cropRelative.getAbsolutePosition();

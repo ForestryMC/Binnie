@@ -11,51 +11,52 @@ public class GeneProject {
 	private GameProfile leader;
 	private List<GameProfile> members;
 
-	public GeneProject(final int id, final String name, final GameProfile leader) {
+	public GeneProject(int id, String name, GameProfile leader) {
 		this.id = 0;
 		this.leader = leader;
-		this.members = new ArrayList<>();
-		this.setID(id);
 		this.name = name;
+		members = new ArrayList<>();
+		setID(id);
 	}
 
 	public int getID() {
-		return this.id;
+		return id;
 	}
 
-	public void setID(final int id) {
+	public void setID(int id) {
 		this.id = id;
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
-	public void setName(final String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
 	public GameProfile getLeader() {
-		return this.leader;
+		return leader;
 	}
 
 	public boolean isEmpty() {
-		return this.members.isEmpty();
+		return members.isEmpty();
 	}
 
-	public void addPlayer(final GameProfile player) {
-		if (!this.members.contains(player)) {
-			this.members.add(player);
+	public void addPlayer(GameProfile player) {
+		if (!members.contains(player)) {
+			members.add(player);
 		}
-		if (this.leader == null) {
-			this.leader = player;
+		// TODO always false?
+		if (leader == null) {
+			leader = player;
 		}
 	}
 
-	public void removePlayer(final GameProfile player) {
-		if (player == this.leader) {
+	public void removePlayer(GameProfile player) {
+		if (player == leader) {
 			throw new RuntimeException("Can't remove leader of a Gene Project");
 		}
-		this.members.remove(player);
+		members.remove(player);
 	}
 }

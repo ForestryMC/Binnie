@@ -22,8 +22,8 @@ import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.craftgui.WindowMachine;
 
 public class WindowAcclimatiser extends WindowMachine {
-	static Texture ProgressBase = new StandardTexture(0, 64, 64, 64, GeneticsTexture.GUIProcess3);
-	static Texture Progress = new StandardTexture(0, 64, 64, 64, GeneticsTexture.GUIProcess3);
+	static Texture ProgressBase = new StandardTexture(0, 64, 64, 64, GeneticsTexture.GUI_PROCESS_3);
+	static Texture Progress = new StandardTexture(0, 64, 64, 64, GeneticsTexture.GUI_PROCESS_3);
 
 	public WindowAcclimatiser(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(280, 198, player, inventory, side);

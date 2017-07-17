@@ -23,45 +23,45 @@ public class GeneticEngineeringSystem {
 	public Map<IChromosomeType, List<IAllele>> chromosomeMap;
 	BreedingSystem breedingSystem;
 
-	public GeneticEngineeringSystem(final BreedingSystem system) {
-		this.chromosomeMap = new HashMap<>();
-		this.breedingSystem = system;
-		for (final IIndividual indiv : this.breedingSystem.getSpeciesRoot().getIndividualTemplates()) {
-			for (final IChromosomeType chromosome : this.breedingSystem.getSpeciesRoot().getKaryotype()) {
-				if (!this.chromosomeMap.containsKey(chromosome)) {
-					this.chromosomeMap.put(chromosome, new ArrayList<>());
+	public GeneticEngineeringSystem(BreedingSystem system) {
+		chromosomeMap = new HashMap<>();
+		breedingSystem = system;
+		for (IIndividual indiv : breedingSystem.getSpeciesRoot().getIndividualTemplates()) {
+			for (IChromosomeType chromosome : breedingSystem.getSpeciesRoot().getKaryotype()) {
+				if (!chromosomeMap.containsKey(chromosome)) {
+					chromosomeMap.put(chromosome, new ArrayList<>());
 				}
 				try {
-					final IAllele a1 = indiv.getGenome().getActiveAllele(chromosome);
-					final IAllele a2 = indiv.getGenome().getInactiveAllele(chromosome);
-					this.chromosomeMap.get(chromosome).add(a1);
-					this.chromosomeMap.get(chromosome).add(a2);
+					IAllele a1 = indiv.getGenome().getActiveAllele(chromosome);
+					IAllele a2 = indiv.getGenome().getInactiveAllele(chromosome);
+					chromosomeMap.get(chromosome).add(a1);
+					chromosomeMap.get(chromosome).add(a2);
 				} catch (Exception ex) {
 					throw Throwables.propagate(ex);
 				}
 			}
 		}
-		for (final IChromosomeType chromosome2 : this.breedingSystem.getSpeciesRoot().getKaryotype()) {
-			final List<IAllele> alleles = this.getAlleles(chromosome2);
-			final TreeSet<IAllele> set = new TreeSet<>(new ComparatorAllele());
+		for (IChromosomeType chromosome2 : breedingSystem.getSpeciesRoot().getKaryotype()) {
+			List<IAllele> alleles = getAlleles(chromosome2);
+			TreeSet<IAllele> set = new TreeSet<>(new ComparatorAllele());
 			set.addAll(alleles);
-			final List<IAllele> list = new ArrayList<>();
+			List<IAllele> list = new ArrayList<>();
 			list.addAll(set);
-			this.chromosomeMap.put(chromosome2, list);
+			chromosomeMap.put(chromosome2, list);
 		}
 	}
 
-	public List<IAllele> getAlleles(final IChromosomeType chromosome) {
-		return this.chromosomeMap.get(chromosome);
+	public List<IAllele> getAlleles(IChromosomeType chromosome) {
+		return chromosomeMap.get(chromosome);
 	}
 
 	public ISpeciesRoot getSpeciesRoot() {
-		return this.breedingSystem.getSpeciesRoot();
+		return breedingSystem.getSpeciesRoot();
 	}
 
 	class ComparatorAllele implements Comparator<IAllele> {
 		@Override
-		public int compare(final IAllele o1, final IAllele o2) {
+		public int compare(IAllele o1, IAllele o2) {
 			if (o1 instanceof IAlleleFloat && o2 instanceof IAlleleFloat) {
 				return Float.valueOf(((IAlleleFloat) o1).getValue()).compareTo(((IAlleleFloat) o2).getValue());
 			}

@@ -24,23 +24,23 @@ public class ControlChromoPicker extends Control implements ITooltip {
 	IChromosomeType type;
 	ControlChromosome parent;
 
-	public ControlChromoPicker(final ControlChromosome parent, final int x, final int y, final IChromosomeType chromo) {
+	public ControlChromoPicker(ControlChromosome parent, int x, int y, IChromosomeType chromo) {
 		super(parent, x, y, 16, 16);
-		this.Selected = new StandardTexture(160, 18, 16, 16, ExtraBeeTexture.GUIPunnett);
-		this.Texture = new StandardTexture(160, 34, 16, 16, ExtraBeeTexture.GUIPunnett);
-		this.type = chromo;
-		this.addAttribute(Attribute.MouseOver);
+		Selected = new StandardTexture(160, 18, 16, 16, ExtraBeeTexture.GUIPunnett);
+		Texture = new StandardTexture(160, 34, 16, 16, ExtraBeeTexture.GUIPunnett);
+		type = chromo;
+		addAttribute(Attribute.MouseOver);
 		this.parent = parent;
-		this.addSelfEventHandler(new EventWidget.StartMouseOver.Handler() {
+		addSelfEventHandler(new EventWidget.StartMouseOver.Handler() {
 			@Override
-			public void onEvent(final EventWidget.StartMouseOver event) {
-				ControlChromoPicker.this.callEvent(new EventValueChanged<Object>(ControlChromoPicker.this.getWidget(), ControlChromoPicker.this.type));
+			public void onEvent(EventWidget.StartMouseOver event) {
+				callEvent(new EventValueChanged<Object>(getWidget(), type));
 			}
 		});
-		this.addSelfEventHandler(new EventWidget.EndMouseOver.Handler() {
+		addSelfEventHandler(new EventWidget.EndMouseOver.Handler() {
 			@Override
-			public void onEvent(final EventWidget.EndMouseOver event) {
-				ControlChromoPicker.this.callEvent(new EventValueChanged<>(ControlChromoPicker.this.getWidget(), null));
+			public void onEvent(EventWidget.EndMouseOver event) {
+				callEvent(new EventValueChanged<>(getWidget(), null));
 			}
 		});
 	}
@@ -49,13 +49,13 @@ public class ControlChromoPicker extends Control implements ITooltip {
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		super.onRenderBackground(guiWidth, guiHeight);
-		final boolean selected = this.isMouseOver();
-		final Texture text = selected ? this.Selected : this.Texture;
+		boolean selected = isMouseOver();
+		Texture text = selected ? Selected : Texture;
 		CraftGUI.render.texture(text, Point.ZERO);
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
-		tooltip.add(Binnie.GENETICS.getSystem(this.parent.getRoot()).getChromosomeName(this.type));
+	public void getTooltip(Tooltip tooltip) {
+		tooltip.add(Binnie.GENETICS.getSystem(parent.getRoot()).getChromosomeName(type));
 	}
 }

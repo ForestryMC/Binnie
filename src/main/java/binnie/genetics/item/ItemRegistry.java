@@ -27,7 +27,7 @@ public class ItemRegistry extends ItemCore {
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		Genetics.proxy.openGui(GeneticsGUI.Registry, playerIn, playerIn.getPosition());
+		Genetics.proxy.openGui(GeneticsGUI.REGISTRY, playerIn, playerIn.getPosition());
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
 
