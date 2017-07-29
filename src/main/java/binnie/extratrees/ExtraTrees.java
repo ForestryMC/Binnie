@@ -49,7 +49,11 @@ import binnie.extratrees.kitchen.ModuleKitchen;
 import binnie.extratrees.machines.ModuleMachine;
 import binnie.extratrees.proxy.Proxy;
 
-@Mod(modid = Constants.EXTRA_TREES_MOD_ID, name = "Binnie's Extra Trees", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
+@Mod(
+	modid = Constants.EXTRA_TREES_MOD_ID,
+	name = "Binnie's Extra Trees",
+	dependencies = "required-after:" + Constants.CORE_MOD_ID
+)
 public class ExtraTrees extends AbstractMod {
 
 	@SuppressWarnings("NullableProblems")

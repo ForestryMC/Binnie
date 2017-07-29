@@ -37,7 +37,6 @@ import binnie.genetics.proxy.Proxy;
 @Mod(
 	modid = Constants.GENETICS_MOD_ID,
 	name = "Binnie's Genetics",
-	useMetadata = true,
 	dependencies = "required-after:" + Constants.CORE_MOD_ID
 )
 public class Genetics extends AbstractMod {

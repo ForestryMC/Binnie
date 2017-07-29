@@ -55,7 +55,7 @@ import binnie.core.triggers.ModuleTrigger;
 @Mod(
 	modid = Constants.CORE_MOD_ID,
 	name = "Binnie Core",
-	useMetadata = true,
+	version = "@VERSION@",
 	dependencies = "required-after:forge@[13.20.0.2279,);" +
 		"required-after:forestry@[5.3.4.102,);" +
 		"after:jei@[4.3.1,);"

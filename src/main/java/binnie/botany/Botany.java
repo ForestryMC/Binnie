@@ -60,7 +60,11 @@ import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
 import binnie.core.proxy.IProxyCore;
 
-@Mod(modid = Constants.BOTANY_MOD_ID, name = "Binnie's Botany", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
+@Mod(
+	modid = Constants.BOTANY_MOD_ID,
+	name = "Binnie's Botany",
+	dependencies = "required-after:" + Constants.CORE_MOD_ID
+)
 public class Botany extends AbstractMod {
 	public static final float AGE_CHANCE = 0.2f;
 

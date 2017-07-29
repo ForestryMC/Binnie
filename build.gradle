@@ -35,6 +35,9 @@ minecraft {
     version = mcversion + "-" + forgeversion
     mappings = mcp_mappings
     runDir = "run"
+
+    replace '@VERSION@', project.version
+    replace '@BUILD_NUMBER@', getBuildNumber()
 }
 
 repositories {
