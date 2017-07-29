@@ -9,6 +9,7 @@ import forestry.arboriculture.blocks.BlockForestrySlab;
 
 import binnie.Constants;
 import binnie.extratrees.block.EnumETLog;
+import binnie.extratrees.block.WoodManager;
 import binnie.extratrees.block.property.PropertyETWoodType;
 
 public abstract class BlockETSlab extends BlockForestrySlab<EnumETLog> {
@@ -24,6 +25,12 @@ public abstract class BlockETSlab extends BlockForestrySlab<EnumETLog> {
 		name += blockNumber;
 		setRegistryName(new ResourceLocation(Constants.EXTRA_TREES_MOD_ID, name));
 		setUnlocalizedName(name);
+	}
+
+	@Override
+	public String getUnlocalizedName(int meta) {
+		EnumETLog woodType = getWoodType(meta);
+		return WoodManager.getDisplayName(this, woodType);
 	}
 
 	public static List<BlockETSlab> create(boolean fireproof, final boolean doubleSlab) {

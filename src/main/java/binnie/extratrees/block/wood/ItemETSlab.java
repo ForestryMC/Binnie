@@ -21,4 +21,12 @@ public class ItemETSlab extends ItemSlab {
 		IWoodType woodType = wood.getWoodType(meta);
 		return WoodManager.getDisplayName(wood, woodType);
 	}
+
+	@Override
+	public String getUnlocalizedName(ItemStack stack) {
+		BlockETSlab wood = (BlockETSlab) getBlock();
+		int meta = stack.getMetadata();
+		IWoodType woodType = wood.getWoodType(meta);
+		return WoodManager.getDisplayName(wood, woodType);
+	}
 }
