@@ -26,7 +26,7 @@ targetCompatibility = JavaVersion.VERSION_1_8
 
 version = version_major + '.' + version_minor + '.' + version_patch
 if (System.getenv("BUILD_NUMBER") != null) {
-    version = version + "-" + System.getenv("BUILD_NUMBER")
+    version = version + "." + System.getenv("BUILD_NUMBER")
 }
 group = "binnie" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "binnie-mods-1.11.2"
