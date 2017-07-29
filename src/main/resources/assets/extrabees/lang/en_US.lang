@@ -151,6 +151,7 @@ extrabees.machine.alveay.stimulator.info=Uses circuits and power to stimulate be
 extrabees.machine.alveay.hatchery.name=Hatchery
 extrabees.machine.alveay.hatchery.info=Collect larvae laid by queen bees inside the alveary.
 extrabees.machine.alveay.transmission.name=Alveary Transmission
+extrabees.machine.alveay.transmission.info=The Alveary Transmission accepts power and distributes it between all other alveary blocks that accept power.
 
 
 
@@ -223,7 +224,7 @@ extrabees.species.desolate.name=Desolate
 extrabees.species.desolate.desc=They thrive in blasted wastelands where other life simply withers away.|Apiarist Manual
 extrabees.species.gnawing.name=Gnawing
 extrabees.species.rotten.name=Decaying
-extrabees.species.rotten.desc=These bees have an ususual attraction to dead, rotting meat and will store it in their combs. The smell also attracts other unsavoury types.|Apiarist Manual
+extrabees.species.rotten.desc=These bees have an unusual attraction to dead, rotting meat and will store it in their combs. The smell also attracts other unsavoury types.|Apiarist Manual
 extrabees.species.bone.name=Skeletal
 extrabees.species.bone.desc=Largely unable to defend their hives in the wild, they attract other creatures to guard their homes.|Apiarist Manual
 extrabees.species.creeper.name=Creepy

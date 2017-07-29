@@ -55,21 +55,21 @@ genetics.errors.genepool.insufficient.enzyme.desc=Insufficient Enzyme
 genetics.machine.lab_machine.lab_machine=Lab Stand
 genetics.machine.lab_machine.lab_machine.info=
 
-genetics.machine.lab_machine.analyser=Analyser
-genetics.machine.lab_machine.analyser.info=The Analyser takes breedable individuals and DNA sequencers and analyses them to determine the genes present. This requires DNA Dye, created from purple dye and glowstone
-genetics.machine.lab_machine.analyser.tooltips.slots.unanalysed=Unanalysed Item
+genetics.machine.lab_machine.analyser=Analyzer
+genetics.machine.lab_machine.analyser.info=The Analyzer takes breedable individuals and DNA sequencers and analyzes them to determine the genes present. This requires DNA Dye, created from purple dye and glowstone
+genetics.machine.lab_machine.analyser.tooltips.slots.unanalysed=Unanalyzed Item
 genetics.errors.analyser.insufficient.dye.name=Insufficient Dye
-genetics.errors.analyser.insufficient.dye.desc=Not enough DNA dye to analyse
-genetics.errors.analyser.already.analysed.desc=Already Analysed
-genetics.errors.analyser.already.analysed.name=Item has already been analysed
-genetics.errors.analyser.no.item.desc=No item to analyse
+genetics.errors.analyser.insufficient.dye.desc=Not enough DNA dye to analyze
+genetics.errors.analyser.already.analysed.desc=Already Analyzed
+genetics.errors.analyser.already.analysed.name=Item has already been analyzed
+genetics.errors.analyser.no.item.desc=No item to analyze
 
 genetics.machine.lab_machine.incubator=Incubator
 genetics.machine.lab_machine.incubator.info=The Incubator combines liquids and items and allows them to sit at an ideal temperature to encourage bacterial growth.
 genetics.errors.incubator.insufficient.liquid.desc=Not enough incubation liquid
 
 genetics.machine.lab_machine.acclimatiser=Acclimatiser
-genetics.machine.lab_machine.acclimatiser.info=
+genetics.machine.lab_machine.acclimatiser.info=The Acclimatizer uses acclimatizing items to adjust the temperature and humidity tolerance of individuals.
 genetics.errors.acclimatiser.no.item.desc=No Acclimatising Items
 genetics.errors.acclimatiser.can.not.acclimatise.desc=Cannot Acclimatise this individual with these items
 genetics.errors.acclimatiser.tooltips.slots.acclimatising=Acclimatising Items

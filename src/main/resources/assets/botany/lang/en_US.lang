@@ -45,7 +45,7 @@ item.botany.powder_ash.name=Ash Powder
 item.botany.powder_mulch.name=Mulch Powder
 item.botany.powder_pulp.name=Wood Pulp Powder
 item.botany.powder_sulphur.name=Sulphur Powder
-item.botany.powder_fertiliser.name=Fertiliser Powder
+item.botany.powder_fertiliser.name=Fertilizer Powder
 item.botany.powder_compost.name=Compost Powder
 item.botany.mortar.name=Mortar
 item.botany.weedkiller.name=Weedkiller
@@ -161,7 +161,6 @@ botany.color.yellow=Yellow
 botany.color.yellowgreen=Yellow-Green
 
 for.binnie.circuit.garden.info=Flowers (%s)
-
 for.binnie.circuit.garden.fertilized=Fertilized
 for.binnie.circuit.garden.unfertilized=Unfertilized
 
@@ -213,7 +212,6 @@ for.binnie.circuit.garden.damp=Garden (Damp)
 for.binnie.circuit.garden.damp.acid=Garden (Damp, Acidic)
 for.binnie.circuit.garden.damp.neutral=Garden (Damp, Neutral)
 for.binnie.circuit.garden.damp.alkaline=Garden (Damp, Alkaline)
-
 
 botany.gui.controls.color_mix_symbol.chance=Current Chance - %f%%
 botany.gui.controls.page.species_further.title=Resultant Mixes
