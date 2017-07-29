@@ -136,6 +136,9 @@ public class WindowAnalyst extends Window {
 				}
 			}
 		}
+		//create slots
+		getWindowInventory().createSlot(0);
+		getWindowInventory().createSlot(1);
 		setupValidators();
 	}
 

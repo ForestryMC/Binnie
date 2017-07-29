@@ -77,6 +77,7 @@ public class ContainerCraftGUI extends Container {
 				}
 			}
 		}
+		detectAndSendChanges();
 	}
 
 	private Side getSide() {

@@ -139,8 +139,11 @@ public class WindowFieldKit extends Window {
 
 	@Override
 	public void initialiseServer() {
+		//create slots
 		final ItemStack kit = this.getPlayer().getHeldItemMainhand();
 		final int sheets = 64 - kit.getItemDamage();
+		getWindowInventory().createSlot(0);
+		getWindowInventory().createSlot(1);
 		if (sheets != 0) {
 			this.getWindowInventory().setInventorySlotContents(1, new ItemStack(Items.PAPER, sheets));
 		}
