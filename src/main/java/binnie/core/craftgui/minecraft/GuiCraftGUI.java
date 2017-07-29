@@ -273,7 +273,9 @@ public class GuiCraftGUI extends GuiContainer {
 	@Override
 	public void onGuiClosed() {
 		this.window.onClose();
-		inventorySlots.onContainerClosed(mc.player);
+		if (mc.player != null) {
+			inventorySlots.onContainerClosed(mc.player);
+		}
 	}
 
 	public boolean isHelpMode() {
