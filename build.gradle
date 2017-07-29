@@ -11,8 +11,15 @@ buildscript {
     }
 }
 
+plugins {
+    id "com.matthewprenger.cursegradle" version "1.0.9"
+    id "se.bjurr.gitchangelog.git-changelog-gradle-plugin" version "1.32"
+}
+
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'idea'
+apply plugin: 'maven'
+
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
@@ -91,4 +98,40 @@ uploadArchives {
             println 'Archives upload disabled, mavenDir in gradle.properties is missing.'
         }
     }
+}
+
+task makeChangelog(type: se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask) {
+    filePath = "changelog.html"
+    untaggedName = "Current release ${project.version}"
+    fromCommit = "5a3850c2642e535656d090d1473054d5fa8d3331"
+    toRef =  "HEAD"
+    templateContent = """
+Alpha version. Do not create a world you care about with this version, it may break things severely.<br/>
+Please help the project by trying it out and <a href="https://github.com/ForestryMC/Binnie/issues">reporting issues here.</a><br/>
+{{#tags}}
+  <h3>{{name}}</h3>
+  <ul>
+    {{#commits}}
+    <li>{{{message}}} - {{authorName}}</li>
+    {{/commits}}
+  </ul>
+{{/tags}}
+"""
+}
+
+curseforge {
+    apiKey = project.hasProperty('curseforge_apikey') ? project.curseforge_apikey : '0'
+    project {
+        id = curse_project_id
+        changelog = file('changelog.html')
+        changelogType = 'html'
+        releaseType = 'alpha'
+        relations {
+            requiredLibrary 'forestry'
+        }
+    }
+}
+
+afterEvaluate {
+    tasks.curseforge223525.dependsOn.add(makeChangelog)
 }
