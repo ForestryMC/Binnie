@@ -34,25 +34,25 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 	@Nullable
 	ISpeciesRoot species;
 
-	public ControlChromosome(final IWidget parent, final int x, final int y) {
+	public ControlChromosome(IWidget parent, int x, int y) {
 		super(parent, x, y, 96, 96);
-		this.BeeTexture = new StandardTexture(0, 0, 96, 96, BinnieCoreTexture.GUIBreeding);
-		this.TreeTexture = new StandardTexture(96, 0, 96, 96, BinnieCoreTexture.GUIBreeding);
-		this.MothTexture = new StandardTexture(96, 96, 96, 96, BinnieCoreTexture.GUIBreeding);
-		this.FlowerTexture = new StandardTexture(0, 96, 96, 96, BinnieCoreTexture.GUIBreeding);
-		this.chromo = null;
-		this.species = null;
+		BeeTexture = new StandardTexture(0, 0, 96, 96, BinnieCoreTexture.GUIBreeding);
+		TreeTexture = new StandardTexture(96, 0, 96, 96, BinnieCoreTexture.GUIBreeding);
+		MothTexture = new StandardTexture(96, 96, 96, 96, BinnieCoreTexture.GUIBreeding);
+		FlowerTexture = new StandardTexture(0, 96, 96, 96, BinnieCoreTexture.GUIBreeding);
+		chromo = null;
+		species = null;
 	}
 
 	public ISpeciesRoot getRoot() {
-		Preconditions.checkState(this.species != null, "root has not been set");
-		return this.species;
+		Preconditions.checkState(species != null, "root has not been set");
+		return species;
 	}
 
-	public void setRoot(@Nullable final ISpeciesRoot root) {
-		if (root != this.species) {
-			this.species = root;
-			this.deleteAllChildren();
+	public void setRoot(@Nullable ISpeciesRoot root) {
+		if (root != species) {
+			species = root;
+			deleteAllChildren();
 			if (root == Binnie.GENETICS.getBeeRoot()) {
 				new ControlChromoPicker(this, 28, 47, EnumBeeChromosome.SPECIES);
 				new ControlChromoPicker(this, 28, 72, EnumBeeChromosome.SPEED);
@@ -112,38 +112,38 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 
 	@Override
 	public IChromosomeType getValue() {
-		return this.chromo;
+		return chromo;
 	}
 
 	@Override
-	public void setValue(final IChromosomeType value) {
-		this.chromo = value;
+	public void setValue(IChromosomeType value) {
+		chromo = value;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		if (this.species == null) {
+		if (species == null) {
 			return;
 		}
 		super.onRenderBackground(guiWidth, guiHeight);
-		final Texture text = this.getTypeTexture();
+		Texture text = getTypeTexture();
 		CraftGUI.render.texture(text, Point.ZERO);
 	}
 
 	@Nullable
 	private Texture getTypeTexture() {
-		if (this.species == Binnie.GENETICS.getBeeRoot()) {
-			return this.BeeTexture;
+		if (species == Binnie.GENETICS.getBeeRoot()) {
+			return BeeTexture;
 		}
-		if (this.species == Binnie.GENETICS.getTreeRoot()) {
-			return this.TreeTexture;
+		if (species == Binnie.GENETICS.getTreeRoot()) {
+			return TreeTexture;
 		}
-		if (this.species == Binnie.GENETICS.getButterflyRoot()) {
-			return this.MothTexture;
+		if (species == Binnie.GENETICS.getButterflyRoot()) {
+			return MothTexture;
 		}
-		if (this.species == Binnie.GENETICS.getFlowerRoot()) {
-			return this.FlowerTexture;
+		if (species == Binnie.GENETICS.getFlowerRoot()) {
+			return FlowerTexture;
 		}
 		return null;
 	}

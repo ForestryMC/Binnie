@@ -28,47 +28,46 @@ import binnie.genetics.machine.sequencer.WindowSequencer;
 import binnie.genetics.machine.splicer.WindowSplicer;
 
 public enum GeneticsGUI implements IBinnieGUID {
-	Genepool(WindowGenepool::new),
-	Isolator(WindowIsolator::new),
-	Sequencer(WindowSequencer::new),
-	Replicator(WindowPolymeriser::new),
-	Inoculator(WindowInoculator::new),
-	GeneBank(WindowGeneBank::new),
-	Analyser(WindowAnalyser::new),
-	Incubator(WindowIncubator::new),
-	Database(WindowGeneBank::new),
-	DatabaseNEI(WindowGeneBankNEI::new),
-	Acclimatiser(WindowAcclimatiser::new),
-	Splicer(WindowSplicer::new),
-	Analyst(WindowAnalyst.create(false, false)),
-	Registry(WindowAnalyst.create(true, false)),
-	MasterRegistry(WindowAnalyst.create(true, true)),
-	BeeDatabase((player, inventory, side) -> WindowApiaristDatabase.create(player, side, false)),
-	BeeDatabaseNEI((player, inventory, side) -> WindowApiaristDatabase.create(player, side, true)),
-	PunnettSquare(WindowPunnettSquare::create);
+	GENEPOOL(WindowGenepool::new),
+	ISOLATOR(WindowIsolator::new),
+	SEQUENCER(WindowSequencer::new),
+	POLYMERISER(WindowPolymeriser::new),
+	INOCULATOR(WindowInoculator::new),
+	GENE_BANK(WindowGeneBank::new),
+	ANALYSER(WindowAnalyser::new),
+	INCUBATOR(WindowIncubator::new),
+	DATABASE(WindowGeneBank::new),
+	DATABASE_NEI(WindowGeneBankNEI::new),
+	ACCLIMATISER(WindowAcclimatiser::new),
+	SPLICER(WindowSplicer::new),
+	ANALYST(WindowAnalyst.create(false, false)),
+	REGISTRY(WindowAnalyst.create(true, false)),
+	MASTER_REGISTRY(WindowAnalyst.create(true, true)),
+	BEE_DATABASE((player, inventory, side) -> WindowApiaristDatabase.create(player, side, false)),
+	BEE_DATABASE_NEI((player, inventory, side) -> WindowApiaristDatabase.create(player, side, true)),
+	PUNNETT_SQUARE(WindowPunnettSquare::create);
 
 	private final WindowFactory windowFactory;
 
-	GeneticsGUI(final WindowFactory windowFactory) {
+	GeneticsGUI(WindowFactory windowFactory) {
 		this.windowFactory = windowFactory;
 	}
 
-	public Window getWindow(final EntityPlayer player, @Nullable final IInventory object, final Side side) {
-		return this.windowFactory.create(player, object, side);
+	public Window getWindow(EntityPlayer player, @Nullable IInventory object, Side side) {
+		return windowFactory.create(player, object, side);
 	}
 
 	@Override
-	public Window getWindow(final EntityPlayer player, final World world, final int x, final int y, final int z, final Side side) {
-		final TileEntity tileEntity = world.getTileEntity(new BlockPos(x, y, z));
+	public Window getWindow(EntityPlayer player, World world, int x, int y, int z, Side side) {
+		TileEntity tileEntity = world.getTileEntity(new BlockPos(x, y, z));
 		IInventory object = null;
 		if (tileEntity instanceof IInventory) {
 			object = (IInventory) tileEntity;
 		}
-
 		return getWindow(player, object, side);
 	}
 
 	public interface WindowFactory {
-		Window create(final EntityPlayer player, @Nullable final IInventory inventory, final Side side);
+		Window create(EntityPlayer player, @Nullable IInventory inventory, Side side);
 	}
 }

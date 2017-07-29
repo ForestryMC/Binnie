@@ -28,12 +28,12 @@ import binnie.genetics.machine.ModuleMachine;
 
 public class PackageInoculator extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageInoculator() {
-		super("inoculator", GeneticsTexture.Inoculator, 14819893, true);
+		super("inoculator", GeneticsTexture.INOCULATOR, 14819893, true);
 	}
 
 	@Override
 	public void createMachine(final Machine machine) {
-		new ComponentGeneticGUI(machine, GeneticsGUI.Inoculator);
+		new ComponentGeneticGUI(machine, GeneticsGUI.INOCULATOR);
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		InventorySlot slotSerumVial = inventory.addSlot(Inoculator.SLOT_SERUM_VIAL, "serum.active");
 		slotSerumVial.forbidInteraction();

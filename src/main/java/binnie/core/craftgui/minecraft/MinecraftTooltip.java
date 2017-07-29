@@ -19,7 +19,7 @@ public class MinecraftTooltip extends Tooltip {
 
 	public enum Type implements ITooltipType {
 		Error,
-		Warning;
+		Warning
 	}
 
 	private enum TypeColour {

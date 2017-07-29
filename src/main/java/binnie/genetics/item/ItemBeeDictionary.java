@@ -56,9 +56,9 @@ public class ItemBeeDictionary extends Item implements IItemModelRegister {
 		final ItemStack itemStack = playerIn.getHeldItem(handIn);
 		final GeneticsGUI id;
 		if (itemStack.getItemDamage() == 0) {
-			id = GeneticsGUI.BeeDatabase;
+			id = GeneticsGUI.BEE_DATABASE;
 		} else {
-			id = GeneticsGUI.BeeDatabaseNEI;
+			id = GeneticsGUI.BEE_DATABASE_NEI;
 		}
 		Genetics.proxy.openGui(id, playerIn, playerIn.getPosition());
 

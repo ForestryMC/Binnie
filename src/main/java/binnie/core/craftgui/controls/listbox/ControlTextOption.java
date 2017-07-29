@@ -11,11 +11,11 @@ public class ControlTextOption<T> extends ControlOption<T> {
 	public ControlTextOption(final ControlList<T> controlList, final T option, final String optionName, final int y) {
 		super(controlList, option, y);
 		this.textWidget = null;
-		this.textWidget = new ControlText(this, this.getArea(), optionName, TextJustification.MiddleCenter);
+		this.textWidget = new ControlText(this, this.getArea(), optionName, TextJustification.MIDDLE_CENTER);
 		this.addEventHandler(new EventWidget.ChangeColour.Handler() {
 			@Override
 			public void onEvent(final EventWidget.ChangeColour event) {
-				ControlTextOption.this.textWidget.setColour(ControlTextOption.this.getColour());
+				ControlTextOption.this.textWidget.setColor(ControlTextOption.this.getColor());
 			}
 		}.setOrigin(EventHandler.Origin.Self, this));
 	}

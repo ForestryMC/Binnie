@@ -15,23 +15,23 @@ import binnie.core.util.I18N;
 import binnie.genetics.gui.ControlAnalystPage;
 
 public class AnalystPageGrowth extends ControlAnalystPage {
-	public AnalystPageGrowth(final IWidget parent, final Area area, final IIndividual ind) {
+	public AnalystPageGrowth(IWidget parent, Area area, IIndividual ind) {
 		super(parent, area);
-		this.setColour(3355443);
+		setColor(3355443);
 		int y = 4;
-		final IAlleleSpecies species = ind.getGenome().getPrimary();
-		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColour(this.getColour());
+		IAlleleSpecies species = ind.getGenome().getPrimary();
+		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 12;
 		if (ind instanceof ITree) {
-			final ITree tree = (ITree) ind;
-			final int mat = tree.getGenome().getMaturationTime();
-			new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.growth.mature")).setColour(this.getColour());
+			ITree tree = (ITree) ind;
+			int mat = tree.getGenome().getMaturationTime();
+			new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.growth.mature")).setColor(getColor());
 			y += 12;
-			new ControlTextCentered(this, y, TextFormatting.BOLD + this.getTimeString(Math.round(1373.3999f * mat))).setColour(this.getColour());
+			new ControlTextCentered(this, y, TextFormatting.BOLD + getTimeString(Math.round(1373.3999f * mat))).setColor(getColor());
 			y += 22;
-			new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise("genetics.gui.analyst.growth.height") + ": " + Binnie.GENETICS.treeBreedingSystem.getAlleleName(EnumTreeChromosome.HEIGHT, ind.getGenome().getActiveAllele(EnumTreeChromosome.HEIGHT))).setColour(this.getColour());
+			new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise("genetics.gui.analyst.growth.height") + ": " + Binnie.GENETICS.treeBreedingSystem.getAlleleName(EnumTreeChromosome.HEIGHT, ind.getGenome().getActiveAllele(EnumTreeChromosome.HEIGHT))).setColor(getColor());
 			y += 12;
-			new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise("genetics.gui.analyst.growth.girth") + ": " + Binnie.GENETICS.treeBreedingSystem.getAlleleName(EnumTreeChromosome.GIRTH, ind.getGenome().getActiveAllele(EnumTreeChromosome.GIRTH))).setColour(this.getColour());
+			new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise("genetics.gui.analyst.growth.girth") + ": " + Binnie.GENETICS.treeBreedingSystem.getAlleleName(EnumTreeChromosome.GIRTH, ind.getGenome().getActiveAllele(EnumTreeChromosome.GIRTH))).setColor(getColor());
 		}
 	}
 

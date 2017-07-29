@@ -26,12 +26,12 @@ import binnie.core.util.I18N;
 
 public class FlowerBreedingSystem extends BreedingSystem {
 	public FlowerBreedingSystem() {
-		this.iconUndiscovered = Binnie.RESOURCE.getUndiscoveredBeeSprite();
-		this.iconDiscovered = Binnie.RESOURCE.getDiscoveredBeeSprite();
+		iconUndiscovered = Binnie.RESOURCE.getUndiscoveredBeeSprite();
+		iconDiscovered = Binnie.RESOURCE.getDiscoveredBeeSprite();
 	}
 
 	@Override
-	public float getChance(final IMutation mutation, final EntityPlayer player, final IAlleleSpecies species1, final IAlleleSpecies species2) {
+	public float getChance(IMutation mutation, EntityPlayer player, IAlleleSpecies species1, IAlleleSpecies species2) {
 		return mutation.getBaseChance();
 	}
 
@@ -51,7 +51,7 @@ public class FlowerBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public String getAlleleName(final IChromosomeType chromosome, final IAllele allele) {
+	public String getAlleleName(IChromosomeType chromosome, IAllele allele) {
 		if (chromosome == EnumFlowerChromosome.FERTILITY) {
 			if (allele.getUID().contains("Low")) {
 				return I18N.localise("binniecore.allele.fertility.low");
@@ -70,8 +70,8 @@ public class FlowerBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public boolean isDNAManipulable(final ItemStack member) {
-		ISpeciesType type = this.getSpeciesRoot().getType(member);
+	public boolean isDNAManipulable(ItemStack member) {
+		ISpeciesType type = getSpeciesRoot().getType(member);
 		return type != null && isDNAManipulable(type);
 	}
 
@@ -81,7 +81,7 @@ public class FlowerBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public IIndividual getConversion(final ItemStack stack) {
+	public IIndividual getConversion(ItemStack stack) {
 		return BotanyCore.getFlowerRoot().getConversion(stack);
 	}
 
@@ -91,51 +91,47 @@ public class FlowerBreedingSystem extends BreedingSystem {
 	}
 
 	@Override
-	public void addExtraAlleles(final IChromosomeType chromosome, final TreeSet<IAllele> alleles) {
+	public void addExtraAlleles(IChromosomeType chromosome, TreeSet<IAllele> alleles) {
 		switch ((EnumFlowerChromosome) chromosome) {
-			case FERTILITY: {
-				for (final ForestryAllele.Fertility a : ForestryAllele.Fertility.values()) {
+			case FERTILITY:
+				for (ForestryAllele.Fertility a : ForestryAllele.Fertility.values()) {
 					alleles.add(a.getAllele());
 				}
 				break;
-			}
-			case LIFESPAN: {
-				for (final ForestryAllele.Lifespan a2 : ForestryAllele.Lifespan.values()) {
+
+			case LIFESPAN:
+				for (ForestryAllele.Lifespan a2 : ForestryAllele.Lifespan.values()) {
 					alleles.add(a2.getAllele());
 				}
 				break;
-			}
+
 			case HUMIDITY_TOLERANCE:
 			case PH_TOLERANCE:
-			case TEMPERATURE_TOLERANCE: {
-				for (final Tolerance a3 : Tolerance.values()) {
+			case TEMPERATURE_TOLERANCE:
+				for (Tolerance a3 : Tolerance.values()) {
 					alleles.add(a3.getAllele());
 				}
 				break;
-			}
+
 			case PRIMARY:
 			case SECONDARY:
-			case STEM: {
-				for (final EnumFlowerColor a4 : EnumFlowerColor.values()) {
+			case STEM:
+				for (EnumFlowerColor a4 : EnumFlowerColor.values()) {
 					alleles.add(a4.getFlowerColorAllele());
 				}
 				break;
-			}
-			case SAPPINESS: {
-				for (final ForestryAllele.Sappiness a5 : ForestryAllele.Sappiness.values()) {
+
+			case SAPPINESS:
+				for (ForestryAllele.Sappiness a5 : ForestryAllele.Sappiness.values()) {
 					alleles.add(a5.getAllele());
 				}
 				break;
-			}
-			case TERRITORY: {
-				for (final ForestryAllele.Territory a6 : ForestryAllele.Territory.values()) {
+
+			case TERRITORY:
+				for (ForestryAllele.Territory a6 : ForestryAllele.Territory.values()) {
 					alleles.add(a6.getAllele());
 				}
 				break;
-			}
-			default: {
-				break;
-			}
 		}
 	}
 }

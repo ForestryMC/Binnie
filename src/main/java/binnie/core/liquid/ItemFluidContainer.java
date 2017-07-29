@@ -161,6 +161,9 @@ public class ItemFluidContainer extends ItemFood implements IItemModelRegister {
 
 	private boolean isDrinkable(final ItemStack stack) {
 		final FluidStack fluid = getContained(stack);
+		if (fluid == null) {
+			return false;
+		}
 		final IDrinkLiquid liquid = DrinkManager.getLiquid(fluid);
 		return liquid != null && liquid.isConsumable();
 	}

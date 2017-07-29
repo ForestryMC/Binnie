@@ -29,12 +29,12 @@ import binnie.genetics.machine.ModuleMachine;
 
 public class PackageIsolator extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageIsolator() {
-		super("isolator", GeneticsTexture.Isolator, 16740111, true);
+		super("isolator", GeneticsTexture.ISOLATOR, 16740111, true);
 	}
 
 	@Override
 	public void createMachine(final Machine machine) {
-		new ComponentGeneticGUI(machine, GeneticsGUI.Isolator);
+		new ComponentGeneticGUI(machine, GeneticsGUI.ISOLATOR);
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		InventorySlot slotEnzyme = inventory.addSlot(Isolator.SLOT_ENZYME, "enzyme");
 		slotEnzyme.setValidator(new SlotValidator.Item(GeneticsItems.Enzyme.get(1), ModuleMachine.spriteEnzyme));

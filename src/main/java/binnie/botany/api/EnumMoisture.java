@@ -4,7 +4,8 @@ import javax.annotation.Nullable;
 
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.translation.I18n;
+
+import binnie.core.util.I18N;
 
 public enum EnumMoisture implements IStringSerializable {
 	DRY(TextFormatting.YELLOW),
@@ -24,9 +25,9 @@ public enum EnumMoisture implements IStringSerializable {
 	}
 
 	public String getLocalisedName(boolean withColor) {
-		String localisedName = I18n.translateToLocal("botany.moisture." + getName());
-		if(withColor && color != null){
-			localisedName +=color;
+		String localisedName = I18N.localise("botany.moisture." + getName());
+		if (withColor && color != null) {
+			localisedName += color;
 		}
 		return localisedName;
 	}

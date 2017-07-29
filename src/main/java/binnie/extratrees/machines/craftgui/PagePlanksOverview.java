@@ -31,8 +31,8 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 	public void onValueChanged(final ItemStack species) {
 		this.deleteAllChildren();
 		final WindowAbstractDatabase database = Window.get(this);
-		new ControlText(this, new Area(0, 0, this.size().x(), 24), species.getDisplayName(), TextJustification.MiddleCenter);
-		new ControlText(this, new Area(12, 24, this.size().x() - 24, 24), I18N.localise("extratrees.gui.database.planks.use"), TextJustification.MIDDLE_LEFTt);
+		new ControlText(this, new Area(0, 0, this.size().x(), 24), species.getDisplayName(), TextJustification.MIDDLE_CENTER);
+		new ControlText(this, new Area(12, 24, this.size().x() - 24, 24), I18N.localise("extratrees.gui.database.planks.use"), TextJustification.MIDDLE_LEFT);
 		final IPlankType type = WoodManager.getPlankType(species);
 		int x = 12;
 		if (type != null) {
@@ -52,8 +52,8 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 				x += 22;
 			}
 		}
-		final ControlText controlDescription = new ControlText(this, new Area(8, 84, this.getSize().x() - 16, 0), "", TextJustification.MiddleCenter);
-		final ControlText controlSignature = new ControlText(this, new Area(8, 84, this.getSize().x() - 16, 0), "", TextJustification.BottomRight);
+		final ControlText controlDescription = new ControlText(this, new Area(8, 84, this.getSize().x() - 16, 0), "", TextJustification.MIDDLE_CENTER);
+		final ControlText controlSignature = new ControlText(this, new Area(8, 84, this.getSize().x() - 16, 0), "", TextJustification.BOTTOM_RIGHT);
 		String desc = "";
 		if (type != null) {
 			desc = type.getDescription();

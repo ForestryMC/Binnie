@@ -12,17 +12,16 @@ import binnie.core.network.packet.MessageNBT;
 import binnie.genetics.genetics.GeneTracker;
 
 public enum GeneticsPacket implements IPacketID {
-	GeneTrackerSync;
+	GENE_TRACKER_SYNC;
 
 	@Override
-	public void onMessage(final MessageBinnie message, final MessageContext context) {
-		if (this == GeneticsPacket.GeneTrackerSync && context.side == Side.CLIENT) {
-			final MessageNBT packet = new MessageNBT(message);
-			final EntityPlayer player = BinnieCore.getBinnieProxy().getPlayer();
-			GeneTracker tracker = GeneTracker.getTracker(BinnieCore.getBinnieProxy().getWorld(), player.getGameProfile());
-			if (tracker != null) {
-				tracker.readFromNBT(packet.getTagCompound());
-			}
+	public void onMessage(MessageBinnie message, MessageContext context) {
+		if (this != GeneticsPacket.GENE_TRACKER_SYNC || context.side != Side.CLIENT) {
+			return;
 		}
+		MessageNBT packet = new MessageNBT(message);
+		EntityPlayer player = BinnieCore.getBinnieProxy().getPlayer();
+		GeneTracker tracker = GeneTracker.getTracker(BinnieCore.getBinnieProxy().getWorld(), player.getGameProfile());
+		tracker.readFromNBT(packet.getTagCompound());
 	}
 }

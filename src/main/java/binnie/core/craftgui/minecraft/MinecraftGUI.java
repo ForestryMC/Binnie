@@ -9,6 +9,6 @@ public class MinecraftGUI {
 		Tinted,
 		Coloured,
 		Outline,
-		TabOutline;
+		TabOutline
 	}
 }

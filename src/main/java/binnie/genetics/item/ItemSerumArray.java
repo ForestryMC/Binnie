@@ -44,13 +44,13 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 	}
 
 	@Override
-	public int getCharges(final ItemStack itemStack) {
-		return itemStack.getMaxDamage() - itemStack.getItemDamage();
+	public int getCharges(final ItemStack stack) {
+		return stack.getMaxDamage() - stack.getItemDamage();
 	}
 
 	@Override
-	public int getMaxCharges(ItemStack itemStack) {
-		return itemStack.getMaxDamage();
+	public int getMaxCharges(ItemStack stack) {
+		return stack.getMaxDamage();
 	}
 
 	@Override

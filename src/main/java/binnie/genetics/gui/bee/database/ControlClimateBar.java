@@ -25,131 +25,135 @@ import binnie.core.craftgui.renderer.RenderUtil;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 
 public class ControlClimateBar extends Control implements ITooltip {
+	private final int[] TEMP_COLORS = new int[]{
+		0x00fffb,
+		0x78bbff,
+		0x4fff30,
+		0xffff00,
+		0xffa200,
+		0xff0000
+	};
+	private final int[] HUMID_COLORS = new int[]{
+		0xffe7a3,
+		0x1aff00,
+		0x307cff
+	};
+
 	boolean isHumidity;
 	List<Integer> tolerated;
-	int[] tempColours;
-	int[] humidColours;
 
-	public ControlClimateBar(final IWidget parent, final int x, final int y, final int width, final int height) {
-		super(parent, x, y, width, height);
-		this.isHumidity = false;
-		this.tolerated = new ArrayList<>();
-		this.tempColours = new int[]{65531, 7912447, 5242672, 16776960, 16753152, 16711680};
-		this.humidColours = new int[]{16770979, 1769216, 3177727};
-		this.addAttribute(Attribute.MouseOver);
+	public ControlClimateBar(IWidget parent, int x, int y, int width, int height) {
+		this(parent, x, y, width, height, false);
 	}
 
-	public ControlClimateBar(final IWidget parent, final int x, final int y, final int width, final int height, final boolean humidity) {
+	public ControlClimateBar(IWidget parent, int x, int y, int width, int height, boolean humidity) {
 		super(parent, x, y, width, height);
-		this.isHumidity = false;
-		this.tolerated = new ArrayList<>();
-		this.tempColours = new int[]{65531, 7912447, 5242672, 16776960, 16753152, 16711680};
-		this.humidColours = new int[]{16770979, 1769216, 3177727};
-		this.addAttribute(Attribute.MouseOver);
-		this.isHumidity = true;
+		isHumidity = false;
+		tolerated = new ArrayList<>();
+		addAttribute(Attribute.MouseOver);
+		isHumidity = humidity;
 	}
 
 	@Override
-	public void getTooltip(final Tooltip list) {
-		if (this.tolerated.isEmpty()) {
+	public void getTooltip(Tooltip list) {
+		if (tolerated.isEmpty()) {
 			return;
 		}
-		final int types = this.isHumidity ? 3 : 6;
-		final int type = (int) ((int) (this.getRelativeMousePosition().x() - 1.0f) / ((this.getSize().x() - 2.0f) / types));
-		if (!this.tolerated.contains(type)) {
+
+		int types = isHumidity ? 3 : 6;
+		int type = (int) ((int) (getRelativeMousePosition().x() - 1.0f) / ((getSize().x() - 2.0f) / types));
+		if (!tolerated.contains(type) || type >= types) {
 			return;
 		}
-		if (type < types) {
-			if (this.isHumidity) {
-				list.add(EnumHumidity.values()[type].name);
-			} else {
-				list.add(EnumTemperature.values()[type + 1].name);
-			}
+
+		if (isHumidity) {
+			list.add(EnumHumidity.values()[type].name);
+		} else {
+			list.add(EnumTemperature.values()[type + 1].name);
 		}
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.render.texture(CraftGUITexture.EnergyBarBack, this.getArea());
-		final int types = this.isHumidity ? 3 : 6;
-		final int w = (int) ((this.getSize().x() - 2.0f) / types);
+		CraftGUI.render.texture(CraftGUITexture.EnergyBarBack, getArea());
+		int types = isHumidity ? 3 : 6;
+		int w = (int) ((getSize().x() - 2.0f) / types);
 		for (int i = 0; i < types; ++i) {
-			final int x = i * w;
-			if (this.tolerated.contains(i)) {
-				int colour = 0;
-				if (this.isHumidity) {
-					colour = this.humidColours[i];
+			int x = i * w;
+			if (tolerated.contains(i)) {
+				int color;
+				if (isHumidity) {
+					color = HUMID_COLORS[i];
 				} else {
-					colour = this.tempColours[i];
+					color = TEMP_COLORS[i];
 				}
-				RenderUtil.drawSolidRect(new Area(x + 1, 1, w, this.getSize().y() - 2), colour);
+				RenderUtil.drawSolidRect(new Area(x + 1, 1, w, getSize().y() - 2), color);
 			}
 		}
-		CraftGUI.render.texture(CraftGUITexture.EnergyBarGlass, this.getArea());
+		CraftGUI.render.texture(CraftGUITexture.EnergyBarGlass, getArea());
 	}
 
-	public void setSpecies(final IAlleleBeeSpecies species) {
-		this.tolerated.clear();
-		if (species == null) {
-			return;
-		}
+	public void setSpecies(IAlleleBeeSpecies species) {
+		tolerated.clear();
 		int main;
 		EnumTolerance tolerance;
-		final IAllele[] template = Binnie.GENETICS.getBeeRoot().getTemplate(species);
-		final IBeeGenome genome = Binnie.GENETICS.getBeeRoot().templateAsGenome(template);
+		IAllele[] template = Binnie.GENETICS.getBeeRoot().getTemplate(species);
+		IBeeGenome genome = Binnie.GENETICS.getBeeRoot().templateAsGenome(template);
 
-		if (!this.isHumidity) {
+		if (!isHumidity) {
 			main = species.getTemperature().ordinal() - 1;
 			tolerance = genome.getToleranceTemp();
 		} else {
 			main = species.getHumidity().ordinal();
 			tolerance = genome.getToleranceHumid();
 		}
-		this.tolerated.add(main);
+
+		tolerated.add(main);
 		switch (tolerance) {
 			case BOTH_5:
 			case UP_5: {
-				this.tolerated.add(main + 5);
+				tolerated.add(main + 5);
 			}
 			case BOTH_4:
 			case UP_4: {
-				this.tolerated.add(main + 4);
+				tolerated.add(main + 4);
 			}
 			case BOTH_3:
 			case UP_3: {
-				this.tolerated.add(main + 3);
+				tolerated.add(main + 3);
 			}
 			case BOTH_2:
 			case UP_2: {
-				this.tolerated.add(main + 2);
+				tolerated.add(main + 2);
 			}
 			case BOTH_1:
 			case UP_1: {
-				this.tolerated.add(main + 1);
+				tolerated.add(main + 1);
 				break;
 			}
 		}
+
 		switch (tolerance) {
 			case BOTH_5:
 			case DOWN_5: {
-				this.tolerated.add(main - 5);
+				tolerated.add(main - 5);
 			}
 			case BOTH_4:
 			case DOWN_4: {
-				this.tolerated.add(main - 4);
+				tolerated.add(main - 4);
 			}
 			case BOTH_3:
 			case DOWN_3: {
-				this.tolerated.add(main - 3);
+				tolerated.add(main - 3);
 			}
 			case BOTH_2:
 			case DOWN_2: {
-				this.tolerated.add(main - 2);
+				tolerated.add(main - 2);
 			}
 			case BOTH_1:
 			case DOWN_1: {
-				this.tolerated.add(main - 1);
+				tolerated.add(main - 1);
 				break;
 			}
 		}

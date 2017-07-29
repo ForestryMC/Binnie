@@ -26,8 +26,8 @@ import binnie.genetics.machine.craftgui.WindowMachine;
 import binnie.genetics.machine.inoculator.Inoculator;
 
 public class WindowSplicer extends WindowMachine {
-	static Texture ProgressBase = new StandardTexture(0, 72, 142, 72, GeneticsTexture.GUIProcess2);
-	static Texture Progress = new StandardTexture(0, 0, 142, 72, GeneticsTexture.GUIProcess2);
+	static Texture ProgressBase = new StandardTexture(0, 72, 142, 72, GeneticsTexture.GUI_PROCESS_2);
+	static Texture Progress = new StandardTexture(0, 0, 142, 72, GeneticsTexture.GUI_PROCESS_2);
 
 	public WindowSplicer(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(280, 240, player, inventory, side);
@@ -49,7 +49,7 @@ public class WindowSplicer extends WindowMachine {
 		new ControlEnergyBar(this, 196, 64, 60, 16, Position.LEFT);
 		new ControlErrorState(this, 218, 86);
 		x += 142;
-		CraftGUIUtil.verticalGrid((this.width() - 72) / 2, 32, TextJustification.MiddleCenter, 4,
+		CraftGUIUtil.verticalGrid((this.width() - 72) / 2, 32, TextJustification.MIDDLE_CENTER, 4,
 			new ControlSlotArray.Builder(this, 0, 0, 4, 1).create(Inoculator.SLOT_RESERVE),
 			new ControlIconDisplay(this, 0, 0, GUIIcon.ARROW_DOWN.getIcon().getResourceLocation()),
 			new ControlSlot.Builder(this, 0, 0).assign(9),

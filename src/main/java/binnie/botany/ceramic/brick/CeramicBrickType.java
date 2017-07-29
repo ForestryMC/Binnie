@@ -2,7 +2,6 @@ package binnie.botany.ceramic.brick;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Locale;
 
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.Item;
@@ -18,7 +17,7 @@ import binnie.botany.items.BotanyItems;
 import binnie.core.block.TileEntityMetadata;
 
 public enum CeramicBrickType implements IStringSerializable {
-	Tile("tile") {
+	TILE("tile") {
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			if (stacks.size() != 4) {
@@ -27,15 +26,15 @@ public enum CeramicBrickType implements IStringSerializable {
 			int mortars = 0;
 			int blocks = 0;
 			int blockColor = -1;
-			for (final ItemStack stack : stacks) {
-				if (this.isMortar(stack)) {
+			for (ItemStack stack : stacks) {
+				if (isMortar(stack)) {
 					++mortars;
 				} else {
 					if (stack.getItem() != Item.getItemFromBlock(Botany.ceramic)) {
 						return ItemStack.EMPTY;
 					}
 					++blocks;
-					final int color = TileEntityMetadata.getItemDamage(stack);
+					int color = TileEntityMetadata.getItemDamage(stack);
 					if (blockColor == -1) {
 						blockColor = color;
 					} else {
@@ -48,29 +47,29 @@ public enum CeramicBrickType implements IStringSerializable {
 			if (mortars != 1) {
 				return ItemStack.EMPTY;
 			}
-			final EnumFlowerColor c = EnumFlowerColor.get(blockColor);
-			return new CeramicBrickPair(c, c, CeramicBrickType.Tile).getStack(3);
+			EnumFlowerColor c = EnumFlowerColor.get(blockColor);
+			return new CeramicBrickPair(c, c, CeramicBrickType.TILE).getStack(3);
 		}
 	},
-	Brick("brick") {
+	BRICK("brick") {
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			return getBrickRecipe(this, stacks);
 		}
 	},
-	StripeBrick("brickstripe") {
+	STRIPE_BRICK("brickstripe") {
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			return getBrickRecipe(this, stacks);
 		}
 	},
-	LargeBrick("bricklarge") {
+	LARGE_BRICK("bricklarge") {
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			if (stacks.size() == 1) {
-				final ItemStack stack3 = stacks.get(0);
-				final CeramicBrickPair type3 = new CeramicBrickPair(stack3);
-				if (type3.type == CeramicBrickType.VerticalLargeBrick) {
+				ItemStack stack3 = stacks.get(0);
+				CeramicBrickPair type3 = new CeramicBrickPair(stack3);
+				if (type3.type == CeramicBrickType.VERTICAL_LARGE_BRICK) {
 					type3.type = this;
 					return type3.getStack(1);
 				}
@@ -79,58 +78,58 @@ public enum CeramicBrickType implements IStringSerializable {
 				if (stacks.size() != 3) {
 					return ItemStack.EMPTY;
 				}
-				final int[] colors = {-1, -1};
+				int[] colors = {-1, -1};
 				int a = 0;
 				int b = 0;
-				for (final ItemStack stack4 : stacks) {
+				for (ItemStack stack4 : stacks) {
 					if (stack4.getItem() != Item.getItemFromBlock(Botany.ceramicBrick)) {
 						return ItemStack.EMPTY;
 					}
-					final CeramicBrickPair type4 = new CeramicBrickPair(stack4);
-					if (type4.type != CeramicBrickType.Tile) {
+					CeramicBrickPair type4 = new CeramicBrickPair(stack4);
+					if (type4.type != CeramicBrickType.TILE) {
 						return ItemStack.EMPTY;
 					}
-					final int color5 = type4.colorFirst.ordinal();
+					int color5 = type4.colorFirst.ordinal();
 					if (colors[0] == -1) {
 						colors[0] = color5;
-						++a;
+						a++;
 					} else if (colors[0] == color5) {
-						++a;
+						a++;
 					} else if (colors[1] == -1) {
 						colors[1] = color5;
-						++b;
+						b++;
 					} else {
 						if (colors[1] != color5) {
 							return ItemStack.EMPTY;
 						}
-						++b;
+						b++;
 					}
 				}
 				if (colors[1] == -1) {
 					colors[1] = colors[0];
 				}
-				return new CeramicBrickPair(EnumFlowerColor.get(colors[0]), EnumFlowerColor.get(colors[1]), CeramicBrickType.LargeBrick).getStack(3);
+				return new CeramicBrickPair(EnumFlowerColor.get(colors[0]), EnumFlowerColor.get(colors[1]), CeramicBrickType.LARGE_BRICK).getStack(3);
 			}
 		}
 	},
-	Split("split") {
+	SPLIT("split") {
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			if (stacks.size() != 4) {
 				return ItemStack.EMPTY;
 			}
-			final int[] colors = {-1, -1};
+			int[] colors = {-1, -1};
 			int altCounter = 0;
-			for (final ItemStack stack2 : stacks) {
-				final int alt = (altCounter != 0 && altCounter != 3) ? 1 : 0;
+			for (ItemStack stack2 : stacks) {
+				int alt = (altCounter != 0 && altCounter != 3) ? 1 : 0;
 				if (stack2.getItem() != Item.getItemFromBlock(Botany.ceramicBrick)) {
 					return ItemStack.EMPTY;
 				}
-				final CeramicBrickPair type = new CeramicBrickPair(stack2);
-				if (type.type != CeramicBrickType.Tile) {
+				CeramicBrickPair type = new CeramicBrickPair(stack2);
+				if (type.type != CeramicBrickType.TILE) {
 					return ItemStack.EMPTY;
 				}
-				final int color2 = type.colorFirst.ordinal();
+				int color2 = type.colorFirst.ordinal();
 				if (colors[alt] == -1) {
 					colors[alt] = color2;
 				} else if (colors[alt] != color2) {
@@ -138,26 +137,26 @@ public enum CeramicBrickType implements IStringSerializable {
 				}
 				++altCounter;
 			}
-			return new CeramicBrickPair(EnumFlowerColor.get(colors[0]), EnumFlowerColor.get(colors[1]), CeramicBrickType.Split).getStack(4);
+			return new CeramicBrickPair(EnumFlowerColor.get(colors[0]), EnumFlowerColor.get(colors[1]), CeramicBrickType.SPLIT).getStack(4);
 		}
 	},
-	Chequered("cheque") {
+	CHEQUERED("cheque") {
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			if (stacks.size() != 4) {
 				return ItemStack.EMPTY;
 			}
-			final int[] colors = {-1, -1};
-			for (final ItemStack stack2 : stacks) {
+			int[] colors = {-1, -1};
+			for (ItemStack stack2 : stacks) {
 				if (stack2.getItem() != Item.getItemFromBlock(Botany.ceramicBrick)) {
 					return ItemStack.EMPTY;
 				}
-				final CeramicBrickPair type2 = new CeramicBrickPair(stack2);
-				if (type2.type != CeramicBrickType.Split) {
+				CeramicBrickPair type2 = new CeramicBrickPair(stack2);
+				if (type2.type != CeramicBrickType.SPLIT) {
 					return ItemStack.EMPTY;
 				}
-				final int color3 = type2.colorFirst.ordinal();
-				final int color4 = type2.colorSecond.ordinal();
+				int color3 = type2.colorFirst.ordinal();
+				int color4 = type2.colorSecond.ordinal();
 				if (colors[0] == -1) {
 					colors[0] = color3;
 					colors[1] = color4;
@@ -167,32 +166,32 @@ public enum CeramicBrickType implements IStringSerializable {
 					}
 				}
 			}
-			return new CeramicBrickPair(EnumFlowerColor.get(colors[0]), EnumFlowerColor.get(colors[1]), CeramicBrickType.Chequered).getStack(4);
+			return new CeramicBrickPair(EnumFlowerColor.get(colors[0]), EnumFlowerColor.get(colors[1]), CeramicBrickType.CHEQUERED).getStack(4);
 		}
 	},
-	Mixed("mixed") {
+	MIXED("mixed") {
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			if (stacks.size() != 4) {
 				return ItemStack.EMPTY;
 			}
-			final int[] colors = {-1, -1};
-			for (final ItemStack stack2 : stacks) {
+			int[] colors = {-1, -1};
+			for (ItemStack stack2 : stacks) {
 				if (stack2.getItem() != Item.getItemFromBlock(Botany.ceramicBrick)) {
 					return ItemStack.EMPTY;
 				}
-				final CeramicBrickPair type2 = new CeramicBrickPair(stack2);
+				CeramicBrickPair type2 = new CeramicBrickPair(stack2);
 				if (type2.isTwoColors()) {
 					return ItemStack.EMPTY;
 				}
-				final int color3 = type2.colorFirst.ordinal();
-				if (type2.type == CeramicBrickType.Split) {
+				int color3 = type2.colorFirst.ordinal();
+				if (type2.type == CeramicBrickType.SPLIT) {
 					if (colors[1] != -1) {
 						return ItemStack.EMPTY;
 					}
 					colors[1] = color3;
 				} else {
-					if (type2.type != CeramicBrickType.Chequered) {
+					if (type2.type != CeramicBrickType.CHEQUERED) {
 						return ItemStack.EMPTY;
 					}
 					if (colors[0] == -1) {
@@ -201,27 +200,27 @@ public enum CeramicBrickType implements IStringSerializable {
 						return ItemStack.EMPTY;
 					}
 				}
-				final int color4 = type2.colorSecond.ordinal();
+				int color4 = type2.colorSecond.ordinal();
 			}
 			if (colors[0] == -1 || colors[1] == -1) {
 				return ItemStack.EMPTY;
 			}
-			return new CeramicBrickPair(EnumFlowerColor.get(colors[0]), EnumFlowerColor.get(colors[1]), CeramicBrickType.Mixed).getStack(4);
+			return new CeramicBrickPair(EnumFlowerColor.get(colors[0]), EnumFlowerColor.get(colors[1]), CeramicBrickType.MIXED).getStack(4);
 		}
 	},
-	VerticalBrick("verticalbrick") {
+	VERTICAL_BRICK("verticalbrick") {
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			return getVerticalBrickRecipe(stacks);
 		}
 	},
-	VerticalStripeBrick("verticalbrickstripe") {
+	VERTICAL_STRIPE_BRICK("verticalbrickstripe") {
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			return getVerticalBrickRecipe(stacks);
 		}
 	},
-	VerticalLargeBrick("verticalbricklarge") {
+	VERTICAL_LARGE_BRICK("verticalbricklarge") {
 		@Override
 		public ItemStack getRecipe(List<ItemStack> stacks) {
 			return getVerticalBrickRecipe(stacks);
@@ -230,7 +229,7 @@ public enum CeramicBrickType implements IStringSerializable {
 
 	public static final CeramicBrickType[] VALUES = values();
 
-	String id;
+	public String id;
 
 	@SideOnly(Side.CLIENT)
 	@Nullable
@@ -240,12 +239,12 @@ public enum CeramicBrickType implements IStringSerializable {
 		this.id = id;
 	}
 
-	public static CeramicBrickType get(final int id) {
+	public static CeramicBrickType get(int id) {
 		return VALUES[id % VALUES.length];
 	}
 
 	public boolean canDouble() {
-		return this != CeramicBrickType.Tile;
+		return this != CeramicBrickType.TILE;
 	}
 
 	public abstract ItemStack getRecipe(List<ItemStack> stacks);
@@ -254,18 +253,20 @@ public enum CeramicBrickType implements IStringSerializable {
 		if (stacks.size() != 1) {
 			return ItemStack.EMPTY;
 		}
-		final ItemStack stack5 = stacks.get(0);
-		final CeramicBrickPair type = new CeramicBrickPair(stack5);
-		if (type.type == CeramicBrickType.LargeBrick) {
-			type.type = CeramicBrickType.VerticalLargeBrick;
+		ItemStack stack5 = stacks.get(0);
+		CeramicBrickPair type = new CeramicBrickPair(stack5);
+		if (type.type == CeramicBrickType.LARGE_BRICK) {
+			type.type = CeramicBrickType.VERTICAL_LARGE_BRICK;
 			return type.getStack(1);
 		}
-		if (type.type == CeramicBrickType.Brick) {
-			type.type = CeramicBrickType.VerticalBrick;
+
+		if (type.type == CeramicBrickType.BRICK) {
+			type.type = CeramicBrickType.VERTICAL_BRICK;
 			return type.getStack(1);
 		}
-		if (type.type == CeramicBrickType.StripeBrick) {
-			type.type = CeramicBrickType.VerticalStripeBrick;
+
+		if (type.type == CeramicBrickType.STRIPE_BRICK) {
+			type.type = CeramicBrickType.VERTICAL_STRIPE_BRICK;
 			return type.getStack(1);
 		}
 		return ItemStack.EMPTY;
@@ -273,34 +274,38 @@ public enum CeramicBrickType implements IStringSerializable {
 
 	protected ItemStack getBrickRecipe(CeramicBrickType ceramicType, List<ItemStack> stacks) {
 		if (stacks.size() == 1) {
-			final ItemStack stack5 = stacks.get(0);
-			final CeramicBrickPair type = new CeramicBrickPair(stack5);
-			if (type.type == CeramicBrickType.VerticalBrick) {
+			ItemStack stack5 = stacks.get(0);
+			CeramicBrickPair type = new CeramicBrickPair(stack5);
+			if (type.type == CeramicBrickType.VERTICAL_BRICK) {
 				type.type = ceramicType;
 				return type.getStack(1);
 			}
-			if (type.type == CeramicBrickType.StripeBrick) {
+
+			if (type.type == CeramicBrickType.STRIPE_BRICK) {
 				type.type = ceramicType;
 				return type.getStack(1);
 			}
 			return ItemStack.EMPTY;
 		} else if (stacks.size() == 4) {
-			final int[] colors = {-1, -1};
+			int[] colors = {-1, -1};
 			for (int index2 = 0; index2 < stacks.size(); ++index2) {
-				final ItemStack stack4 = stacks.get(index2);
+				ItemStack stack4 = stacks.get(index2);
 				if (stack4.getItem() != Item.getItemFromBlock(Botany.ceramicBrick)) {
 					return ItemStack.EMPTY;
 				}
-				final CeramicBrickPair type4 = new CeramicBrickPair(stack4);
-				if (type4.type != CeramicBrickType.LargeBrick) {
+
+				CeramicBrickPair type4 = new CeramicBrickPair(stack4);
+				if (type4.type != CeramicBrickType.LARGE_BRICK) {
 					return ItemStack.EMPTY;
 				}
-				final int color5 = type4.colorFirst.ordinal();
-				final int color6 = type4.colorSecond.ordinal();
+
+				int color5 = type4.colorFirst.ordinal();
+				int color6 = type4.colorSecond.ordinal();
 				int alt2 = (index2 != 0 && index2 != 3) ? 1 : 0;
-				if (ceramicType == CeramicBrickType.StripeBrick) {
+				if (ceramicType == CeramicBrickType.STRIPE_BRICK) {
 					alt2 = 0;
 				}
+
 				if (colors[alt2] == -1) {
 					colors[alt2] = color5;
 					colors[1 - alt2] = color6;
@@ -309,17 +314,16 @@ public enum CeramicBrickType implements IStringSerializable {
 				}
 			}
 			return new CeramicBrickPair(EnumFlowerColor.get(colors[0]), EnumFlowerColor.get(colors[1]), ceramicType).getStack(4);
-		} else {
-			return ItemStack.EMPTY;
 		}
+		return ItemStack.EMPTY;
 	}
 
-	protected boolean isMortar(final ItemStack stack) {
-		return stack.getItem() == Botany.misc && stack.getItemDamage() == BotanyItems.Mortar.ordinal();
+	protected boolean isMortar(ItemStack stack) {
+		return stack.getItem() == Botany.misc && stack.getItemDamage() == BotanyItems.MORTAR.ordinal();
 	}
 
 	@Override
 	public String getName() {
-		return name().toLowerCase(Locale.ENGLISH);
+		return id;
 	}
 }

@@ -27,18 +27,18 @@ public enum EnumFlowerChromosome implements IChromosomeType {
 
 	private Class<? extends IAllele> cls;
 
-	EnumFlowerChromosome(final Class<? extends IAllele> cls) {
+	EnumFlowerChromosome(Class<? extends IAllele> cls) {
 		this.cls = cls;
 	}
 
 	@Override
 	public Class<? extends IAllele> getAlleleClass() {
-		return this.cls;
+		return cls;
 	}
 
 	@Override
 	public String getName() {
-		return this.toString().toLowerCase(Locale.ENGLISH);
+		return toString().toLowerCase(Locale.ENGLISH);
 	}
 
 	@Override

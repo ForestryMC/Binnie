@@ -53,6 +53,7 @@ genetics.errors.genepool.insufficient.ethanol.desc=Insufficient Ethanol
 genetics.errors.genepool.insufficient.enzyme.desc=Insufficient Enzyme
 
 genetics.machine.lab_machine.lab_machine=Lab Stand
+genetics.machine.lab_machine.lab_machine.info=
 
 genetics.machine.lab_machine.analyser=Analyser
 genetics.machine.lab_machine.analyser.info=The Analyser takes breedable individuals and DNA sequencers and analyses them to determine the genes present. This requires DNA Dye, created from purple dye and glowstone

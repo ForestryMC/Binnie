@@ -14,19 +14,19 @@ import binnie.extratrees.carpentry.ModuleCarpentry;
 public class BlockCeramicPatterned extends BlockDesign {
 	public BlockCeramicPatterned() {
 		super(CeramicDesignSystem.instance, Material.ROCK);
-		this.setHardness(1.0f);
-		this.setResistance(5.0f);
-		this.setCreativeTab(CreativeTabBotany.instance);
-		this.setRegistryName("ceramicPattern");
+		setHardness(1.0f);
+		setResistance(5.0f);
+		setCreativeTab(CreativeTabBotany.instance);
+		setRegistryName("ceramicPattern");
 	}
 
 	@Override
-	public ItemStack getCreativeStack(final IDesign design) {
+	public ItemStack getCreativeStack(IDesign design) {
 		return ModuleCarpentry.getItemStack(this, CeramicColor.get(EnumFlowerColor.White), CeramicColor.get(EnumFlowerColor.Black), design);
 	}
 
 	@Override
-	public String getBlockName(final DesignBlock design) {
+	public String getBlockName(DesignBlock design) {
 		return I18N.localise("botany.ceramic.block.name", design.getDesign().getName());
 	}
 }

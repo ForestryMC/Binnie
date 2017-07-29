@@ -11,11 +11,11 @@ public interface IFlowerGenome extends IGenome {
 	@Override
 	IAlleleFlowerSpecies getSecondary();
 
-	IFlowerColour getPrimaryColor();
+	IFlowerColor getPrimaryColor();
 
-	IFlowerColour getSecondaryColor();
+	IFlowerColor getSecondaryColor();
 
-	IFlowerColour getStemColor();
+	IFlowerColor getStemColor();
 
 	int getFertility();
 
@@ -33,9 +33,9 @@ public interface IFlowerGenome extends IGenome {
 
 	float getSappiness();
 
-	boolean canTolerate(final EnumAcidity p0);
+	boolean canTolerate(EnumAcidity acidity);
 
-	boolean canTolerate(final EnumMoisture p0);
+	boolean canTolerate(EnumMoisture moisture);
 
-	boolean canTolerate(final EnumTemperature p0);
+	boolean canTolerate(EnumTemperature temperature);
 }

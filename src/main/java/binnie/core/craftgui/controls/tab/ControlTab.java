@@ -96,9 +96,9 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 			final ControlTabIcon icon = (ControlTabIcon) this;
 			final ControlItemDisplay item = (ControlItemDisplay) this.getWidgets().get(0);
 			if (texture == CraftGUITexture.TabDisabled) {
-				item.setColour(-1431655766);
+				item.setColor(-1431655766);
 			} else {
-				item.setColour(-1);
+				item.setColor(-1);
 			}
 			if (icon.hasOutline()) {
 				iTexture = CraftGUI.render.getTexture(CraftGUITexture.TabOutline);

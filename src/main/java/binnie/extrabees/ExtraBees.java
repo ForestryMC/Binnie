@@ -51,7 +51,11 @@ import binnie.extrabees.utils.config.ConfigHandler;
 import binnie.extrabees.utils.config.ConfigurationMain;
 import binnie.extrabees.worldgen.ExtraBeesWorldGenerator;
 
-@Mod(modid = ExtraBees.MODID, name = "Binnie's Extra Bees", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
+@Mod(
+	modid = ExtraBees.MODID,
+	name = "Binnie's Extra Bees",
+	dependencies = "required-after:" + Constants.CORE_MOD_ID
+)
 public class ExtraBees {
 
 	public static final String MODID = "extrabees";

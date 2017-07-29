@@ -19,13 +19,14 @@ import binnie.botany.api.IFlowerType;
 public class StateMapperFlower extends StateMapperBase {
 	@Override
 	protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-		final Map<IProperty<?>, Comparable<?>> properties = Maps.newLinkedHashMap(state.getProperties());
+		Map<IProperty<?>, Comparable<?>> properties = Maps.newLinkedHashMap(state.getProperties());
 		IFlowerType flowerType = (IFlowerType) state.getValue(BlockFlower.FLOWER);
 		if (flowerType.getSections() < 2) {
 			properties.remove(BlockFlower.SECTION);
 		} else if (flowerType.getSections() <= state.getValue(BlockFlower.SECTION)) {
 			properties.put(BlockFlower.SECTION, flowerType.getSections() - 1);
 		}
+
 		if (state.getValue(BlockFlower.SEED)) {
 			properties.remove(BlockFlower.SECTION);
 			properties.remove(BlockFlower.FLOWER);
@@ -33,7 +34,6 @@ public class StateMapperFlower extends StateMapperBase {
 		} else {
 			properties.remove(BlockFlower.SEED);
 		}
-
 		return new ModelResourceLocation(Constants.BOTANY_MOD_ID + ":flower", getPropertyString(properties));
 	}
 }

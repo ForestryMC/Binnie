@@ -54,7 +54,6 @@ public class MultiFenceRecipeSolidWrapper extends BlankRecipeWrapper implements 
 			for (IPlankType plankTypeSecondary : WoodManager.getAllPlankTypes()) {
 				for (IPlankType plankType : WoodManager.getAllPlankTypes()) {
 					if (plankType != plankTypeSecondary) {
-						;
 						fences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.size, false, fenceType.embossed), 1));
 						outputFences.add(WoodManager.getFence(plankType, plankTypeSecondary, new FenceType(fenceType.size, true, fenceType.embossed), 2));
 					}

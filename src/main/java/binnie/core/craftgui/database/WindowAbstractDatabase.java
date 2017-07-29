@@ -133,8 +133,8 @@ public abstract class WindowAbstractDatabase extends Window {
 			}
 		}.setOrigin(EventHandler.Origin.DirectChild, this));
 		new ControlHelp(this, 4, 4);
-		(this.panelInformation = new Panel(this, 24, 24, 144, 176, MinecraftGUI.PanelType.Black)).setColour(860416);
-		(this.panelSearch = new Panel(this, 176, 24, this.selectionBoxWidth, 160, MinecraftGUI.PanelType.Black)).setColour(860416);
+		(this.panelInformation = new Panel(this, 24, 24, 144, 176, MinecraftGUI.PanelType.Black)).setColor(860416);
+		(this.panelSearch = new Panel(this, 176, 24, this.selectionBoxWidth, 160, MinecraftGUI.PanelType.Black)).setColor(860416);
 		this.modePages = new ControlPages<>(this, 0, 0, this.getSize().x(), this.getSize().y());
 		new ControlTextEdit(this, 176, 184, this.selectionBoxWidth, 16);
 		this.createMode(Mode.SPECIES, new SpeciesModeWidgets());

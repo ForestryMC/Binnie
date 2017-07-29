@@ -50,9 +50,9 @@ class ControlMutationSymbol extends Control implements ITooltip {
 		final BreedingSystem system = ((WindowAbstractDatabase) this.getTopParent()).getBreedingSystem();
 		this.discovered = (isNEI || system.isMutationDiscovered(value, Window.get(this).getWorld(), Window.get(this).getUsername()));
 		if (this.discovered) {
-			this.setColour(16777215);
+			this.setColor(16777215);
 		} else {
-			this.setColour(7829367);
+			this.setColor(7829367);
 		}
 	}
 

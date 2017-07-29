@@ -18,12 +18,12 @@ import binnie.genetics.machine.GeneticMachine;
 
 public class PackageAcclimatiser extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageAcclimatiser() {
-		super("acclimatiser", GeneticsTexture.Acclimatiser, 9857609, true);
+		super("acclimatiser", GeneticsTexture.ACCLIMATISER, 9857609, true);
 	}
 
 	@Override
 	public void createMachine(final Machine machine) {
-		new ComponentGeneticGUI(machine, GeneticsGUI.Acclimatiser);
+		new ComponentGeneticGUI(machine, GeneticsGUI.ACCLIMATISER);
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		InventorySlot slotTarget = inventory.addSlot(Acclimatiser.SLOT_TARGET, "process");
 		slotTarget.setValidator(new SlotValidator.Individual());

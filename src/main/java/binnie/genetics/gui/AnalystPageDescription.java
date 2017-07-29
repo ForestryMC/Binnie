@@ -21,20 +21,20 @@ import binnie.core.util.I18N;
 
 @SideOnly(Side.CLIENT)
 public class AnalystPageDescription extends ControlAnalystPage {
-	public AnalystPageDescription(final IWidget parent, final Area area, final IIndividual ind) {
+	public AnalystPageDescription(IWidget parent, Area area, IIndividual ind) {
 		super(parent, area);
-		this.setColour(3355443);
+		setColor(3355443);
 		int y = 4;
-		final IAlleleSpecies species = ind.getGenome().getPrimary();
-		final String branchBinomial = species.getBranch().getScientific();
-		final String branchName = species.getBranch().getName();
-		final String desc = species.getDescription();
+		IAlleleSpecies species = ind.getGenome().getPrimary();
+		String branchBinomial = species.getBranch().getScientific();
+		String branchName = species.getBranch().getName();
+		String desc = species.getDescription();
 		StringBuilder descBody = new StringBuilder(TextFormatting.ITALIC.toString());
 		String descSig = "";
 		if (Objects.equals(desc, "") || desc.contains("for.description")) {
 			descBody.append("");
 		} else {
-			final String[] descStrings = desc.split("\\|");
+			String[] descStrings = desc.split("\\|");
 			descBody.append(descStrings[0]);
 			for (int i = 1; i < descStrings.length - 1; ++i) {
 				descBody.append(" ").append(descStrings[i]);
@@ -53,24 +53,24 @@ public class AnalystPageDescription extends ControlAnalystPage {
 		if (authority.contains("MysteriousAges")) {
 			authority = TextFormatting.DARK_PURPLE.toString() + TextFormatting.BOLD + authority;
 		}
-		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColour(this.getColour());
+		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 16;
-		new ControlTextCentered(this, y, species.getName() + TextFormatting.RESET).setColour(this.getColour());
+		new ControlTextCentered(this, y, species.getName() + TextFormatting.RESET).setColor(getColor());
 		y += 10;
-		new ControlTextCentered(this, y, TextFormatting.ITALIC + branchBinomial + " " + species.getBinomial() + TextFormatting.RESET).setColour(this.getColour());
+		new ControlTextCentered(this, y, TextFormatting.ITALIC + branchBinomial + " " + species.getBinomial() + TextFormatting.RESET).setColor(getColor());
 		y += 20;
 		String discovered = I18N.localise("genetics.gui.analyst.desc.discovered") + " " + TextFormatting.BOLD + authority + TextFormatting.RESET;
-		new ControlTextCentered(this, y, discovered).setColour(this.getColour());
-		y += (int) (3.0f + CraftGUI.render.textHeight(discovered, this.width()));
-		new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.desc.complexity") + ": " + species.getComplexity()).setColour(this.getColour());
+		new ControlTextCentered(this, y, discovered).setColor(getColor());
+		y += (int) (3.0f + CraftGUI.render.textHeight(discovered, width()));
+		new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.desc.complexity") + ": " + species.getComplexity()).setColor(getColor());
 		y += 26;
-		final ControlText descText = new ControlText(this, new Area(8, y, this.width() - 16, 0), descBody + "§r", TextJustification.TOP_CENTER);
-		final IWidget signatureText = new ControlText(this, new Area(8, y, this.width() - 16, 0), descSig + "§r", TextJustification.BottomRight);
-		descText.setColour(this.getColour());
-		signatureText.setColour(this.getColour());
-		final int descHeight = CraftGUI.render.textHeight(descText.getValue(), descText.getSize().x());
+		ControlText descText = new ControlText(this, new Area(8, y, width() - 16, 0), descBody + "§r", TextJustification.TOP_CENTER);
+		IWidget signatureText = new ControlText(this, new Area(8, y, width() - 16, 0), descSig + "§r", TextJustification.BOTTOM_RIGHT);
+		descText.setColor(getColor());
+		signatureText.setColor(getColor());
+		int descHeight = CraftGUI.render.textHeight(descText.getValue(), descText.getSize().x());
 		signatureText.setPosition(new Point(signatureText.pos().x(), descText.getPosition().y() + descHeight + 10));
-		this.setSize(new Point(this.width(), 20 + signatureText.yPos()));
+		setSize(new Point(width(), 20 + signatureText.yPos()));
 	}
 
 	@Override

@@ -9,13 +9,13 @@ import binnie.core.util.I18N;
 public class ItemWeed extends ItemBlock {
 	public ItemWeed(Block block) {
 		super(block);
-		this.setHasSubtypes(true);
-		this.hasSubtypes = true;
+		setHasSubtypes(true);
+		hasSubtypes = true;
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack stack) {
-		return I18N.localise("botany.plant." + BlockPlant.Type.values()[stack.getItemDamage()].getName());
+	public String getItemStackDisplayName(ItemStack stack) {
+		return I18N.localise("botany.plant." + PlantType.values()[stack.getItemDamage()].getName());
 	}
 
 	@Override

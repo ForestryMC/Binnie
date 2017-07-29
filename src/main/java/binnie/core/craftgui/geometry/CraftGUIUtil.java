@@ -16,7 +16,7 @@ public class CraftGUIUtil {
 	}
 
 	public static void horizontalGrid(final int px, final int py, final IWidget... widgets) {
-		horizontalGrid(px, py, TextJustification.MiddleCenter, 0, widgets);
+		horizontalGrid(px, py, TextJustification.MIDDLE_CENTER, 0, widgets);
 	}
 
 	public static void horizontalGrid(final int px, final int py, final TextJustification just, final int spacing, final IWidget... widgets) {
@@ -32,7 +32,7 @@ public class CraftGUIUtil {
 	}
 
 	public static void verticalGrid(final int px, final int py, final IWidget... widgets) {
-		horizontalGrid(px, py, TextJustification.MiddleCenter, 0, widgets);
+		horizontalGrid(px, py, TextJustification.MIDDLE_CENTER, 0, widgets);
 	}
 
 	public static void verticalGrid(final int px, final int py, final TextJustification just, final int spacing, final IWidget... widgets) {

@@ -22,15 +22,15 @@ import binnie.core.util.I18N;
 
 public class ItemDictionary extends Item implements IItemModelRegister {
 	public ItemDictionary() {
-		this.setCreativeTab(CreativeTabBotany.instance);
-		this.setUnlocalizedName("database");
-		this.setMaxStackSize(1);
+		setCreativeTab(CreativeTabBotany.instance);
+		setUnlocalizedName("database");
+		setMaxStackSize(1);
 		setRegistryName("database");
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(final Item itemIn, final CreativeTabs tab, final NonNullList<ItemStack> subItems) {
+	public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> subItems) {
 		super.getSubItems(itemIn, tab, subItems);
 		subItems.add(new ItemStack(itemIn, 1, 1));
 	}
@@ -46,15 +46,15 @@ public class ItemDictionary extends Item implements IItemModelRegister {
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack itemStack = playerIn.getHeldItem(handIn);
 		if (itemStack.getMetadata() == 0) {
-			Botany.proxy.openGui(BotanyGUI.Database, playerIn, playerIn.getPosition());
+			Botany.proxy.openGui(BotanyGUI.DATABASE, playerIn, playerIn.getPosition());
 		} else {
-			Botany.proxy.openGui(BotanyGUI.DatabaseNEI, playerIn, playerIn.getPosition());
+			Botany.proxy.openGui(BotanyGUI.DATABASE_NEI, playerIn, playerIn.getPosition());
 		}
 		return super.onItemRightClick(worldIn, playerIn, handIn);
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack i) {
+	public String getItemStackDisplayName(ItemStack i) {
 		return I18N.localise("item.botany.database." + ((i.getItemDamage() == 0) ? "name" : "master.name"));
 	}
 }

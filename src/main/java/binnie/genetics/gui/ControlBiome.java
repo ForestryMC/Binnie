@@ -21,54 +21,54 @@ public class ControlBiome extends Control implements ITooltip {
 	private final Biome biome;
 	private String iconCategory;
 
-	public ControlBiome(final IWidget parent, final int x, final int y, final int w, final int h, final Biome biome) {
+	public ControlBiome(IWidget parent, int x, int y, int w, int h, Biome biome) {
 		super(parent, x, y, w, h);
-		this.iconCategory = "plains";
+		iconCategory = "plains";
 		this.biome = biome;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.MOUNTAIN) || BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.HILLS)) {
-			this.iconCategory = "hills";
+		if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.MOUNTAIN) || BiomeDictionary.hasType(biome, BiomeDictionary.Type.HILLS)) {
+			iconCategory = "hills";
 		}
-		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.SANDY)) {
-			this.iconCategory = "desert";
+		if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.SANDY)) {
+			iconCategory = "desert";
 		}
-		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.SNOWY)) {
-			this.iconCategory = "snow";
+		if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.SNOWY)) {
+			iconCategory = "snow";
 		}
-		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.FOREST)) {
-			this.iconCategory = "forest";
+		if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.FOREST)) {
+			iconCategory = "forest";
 		}
-		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.SWAMP)) {
-			this.iconCategory = "swamp";
+		if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.SWAMP)) {
+			iconCategory = "swamp";
 		}
-		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.JUNGLE)) {
-			this.iconCategory = "jungle";
+		if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.JUNGLE)) {
+			iconCategory = "jungle";
 		}
-		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.COLD) && BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.FOREST)) {
-			this.iconCategory = "taiga";
+		if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.COLD) && BiomeDictionary.hasType(biome, BiomeDictionary.Type.FOREST)) {
+			iconCategory = "taiga";
 		}
-		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.MUSHROOM)) {
-			this.iconCategory = "mushroom";
+		if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.MUSHROOM)) {
+			iconCategory = "mushroom";
 		}
-		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.OCEAN)) {
-			this.iconCategory = "ocean";
+		if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.OCEAN)) {
+			iconCategory = "ocean";
 		}
-		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.NETHER)) {
-			this.iconCategory = "nether";
+		if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.NETHER)) {
+			iconCategory = "nether";
 		}
-		if (BiomeDictionary.hasType(this.biome, BiomeDictionary.Type.END)) {
-			this.iconCategory = "end";
+		if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.END)) {
+			iconCategory = "end";
 		}
-		TextureAtlasSprite sprite = ForestryAPI.textureManager.getDefault("habitats/" + this.iconCategory);
+		TextureAtlasSprite sprite = ForestryAPI.textureManager.getDefault("habitats/" + iconCategory);
 		RenderUtil.drawGuiSprite(Point.ZERO, sprite);
 	}
 
 	@Override
-	public void getTooltip(final Tooltip tooltip) {
-		tooltip.add(this.biome.getBiomeName().replaceAll("(\\p{Ll})(\\p{Lu})", "$1 $2"));
+	public void getTooltip(Tooltip tooltip) {
+		tooltip.add(biome.getBiomeName().replaceAll("(\\p{Ll})(\\p{Lu})", "$1 $2"));
 	}
 }

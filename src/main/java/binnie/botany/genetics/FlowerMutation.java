@@ -16,7 +16,7 @@ import binnie.botany.api.IFlowerRoot;
 import binnie.botany.core.BotanyCore;
 
 public class FlowerMutation extends Mutation implements IFlowerMutation, IFlowerMutationBuilder {
-	public FlowerMutation(final IAlleleFlowerSpecies allele0, final IAlleleFlowerSpecies allele1, final IAllele[] template, final int chance) {
+	public FlowerMutation(IAlleleFlowerSpecies allele0, IAlleleFlowerSpecies allele1, IAllele[] template, int chance) {
 		super(allele0, allele1, template, chance);
 	}
 
@@ -31,8 +31,8 @@ public class FlowerMutation extends Mutation implements IFlowerMutation, IFlower
 	}
 
 	@Override
-	public float getChance(World world, BlockPos pos, IAlleleFlowerSpecies a0, IAlleleFlowerSpecies a1, IFlowerGenome g0, IFlowerGenome g1) {
-		float processedChance = super.getChance(world, pos, a0, a1, g0, g1, ForestryAPI.climateManager.getDefaultClimate(world, pos));
+	public float getChance(World world, BlockPos pos, IAlleleFlowerSpecies allele0, IAlleleFlowerSpecies allele1, IFlowerGenome genome0, IFlowerGenome genome1) {
+		float processedChance = getChance(world, pos, allele0, allele1, genome0, genome1, ForestryAPI.climateManager.getDefaultClimate(world, pos));
 		if (processedChance <= 0) {
 			return 0;
 		}

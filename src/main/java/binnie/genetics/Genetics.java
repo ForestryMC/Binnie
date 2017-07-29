@@ -34,9 +34,12 @@ import binnie.genetics.item.ModuleItems;
 import binnie.genetics.machine.ModuleMachine;
 import binnie.genetics.proxy.Proxy;
 
-@Mod(modid = Constants.GENETICS_MOD_ID, name = "Binnie's Genetics", useMetadata = true, dependencies = "required-after:" + Constants.CORE_MOD_ID)
+@Mod(
+	modid = Constants.GENETICS_MOD_ID,
+	name = "Binnie's Genetics",
+	dependencies = "required-after:" + Constants.CORE_MOD_ID
+)
 public class Genetics extends AbstractMod {
-
 	public static final String CHANNEL = "GEN";
 	@Mod.Instance(Constants.GENETICS_MOD_ID)
 	public static Genetics instance;
@@ -60,27 +63,39 @@ public class Genetics extends AbstractMod {
 	}
 
 	@Mod.EventHandler
-	public void preInit(final FMLPreInitializationEvent evt) {
+	public void preInit(FMLPreInitializationEvent evt) {
 		dictionaryBees = proxy.registerItem(new ItemBeeDictionary());
 		proxy.registerItem(new ItemPunnettSquare());
-		this.preInit();
+		preInit();
 	}
 
 	@Mod.EventHandler
-	public void init(final FMLInitializationEvent evt) {
-		this.init();
+	public void init(FMLInitializationEvent evt) {
+		init();
 	}
 
 	@Mod.EventHandler
-	public void postInit(final FMLPostInitializationEvent evt) {
-		this.postInit();
-		RecipeManagers.carpenterManager.addRecipe(100, Binnie.LIQUID.getFluidStack(ManagerLiquid.WATER, 2000), ItemStack.EMPTY, new ItemStack(dictionaryBees), "X#X", "YEY", "RDR", '#', Blocks.GLASS_PANE, 'X', Items.GOLD_INGOT, 'Y', "ingotTin", 'R', Items.REDSTONE, 'D', Items.DIAMOND, 'E', Items.EMERALD);
+	public void postInit(FMLPostInitializationEvent evt) {
+		postInit();
+		RecipeManagers.carpenterManager.addRecipe(
+			100,
+			Binnie.LIQUID.getFluidStack(ManagerLiquid.WATER, 2000),
+			ItemStack.EMPTY,
+			new ItemStack(dictionaryBees),
+			"X#X", "YEY", "RDR",
+			'#', Blocks.GLASS_PANE,
+			'X', Items.GOLD_INGOT,
+			'Y', "ingotTin",
+			'R', Items.REDSTONE,
+			'D', Items.DIAMOND,
+			'E', Items.EMERALD
+		);
 	}
 
 	@Override
 	protected void registerModules() {
-		this.addModule(items = new ModuleItems());
-		this.addModule(machine = new ModuleMachine());
+		addModule(items = new ModuleItems());
+		addModule(machine = new ModuleMachine());
 	}
 
 	@Override

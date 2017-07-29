@@ -19,35 +19,37 @@ public class ItemSoil extends ItemBlock {
 
 	public ItemSoil(BlockSoil block) {
 		super(block);
-		this.type = block.getType();
-		this.noWeed = block.isWeedKilled();
-		this.hasSubtypes = true;
+		type = block.getType();
+		noWeed = block.isWeedKilled();
+		hasSubtypes = true;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(final ItemStack stack, final EntityPlayer playerIn, final List<String> tooltip, final boolean advanced) {
+	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced) {
 		String info = "";
 		info += BlockSoil.getMoisture(stack, true, true);
 		if (info.length() > 0) {
 			info += ", ";
 		}
+
 		info += BlockSoil.getPH(stack, true, true);
 		if (info.length() > 0) {
 			tooltip.add(info);
 		}
-		if (this.noWeed) {
+
+		if (noWeed) {
 			tooltip.add(TextFormatting.GREEN + I18N.localise("botany.soil.weedkiller"));
 		}
 	}
 
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		return this.getUnlocalizedNameInefficiently(stack).trim();
+		return getUnlocalizedNameInefficiently(stack).trim();
 	}
 
 	@Override
-	public int getMetadata(final int damage) {
+	public int getMetadata(int damage) {
 		return damage;
 	}
 }

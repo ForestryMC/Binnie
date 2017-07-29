@@ -23,15 +23,15 @@ public class CircuitGarden extends BinnieCircuit {
 
 	public CircuitGarden(EnumMoisture moisture, @Nullable EnumAcidity ph, boolean manual, boolean fertilised, ItemStack recipe, ItemStack icon) {
 		super(getName(moisture, ph, manual, fertilised), 4, getLayout(manual), recipe);
-		this.isManual = manual;
-		this.logic = new GardenLogic(moisture, ph, this.isManual, fertilised, icon, I18N.localise(this.getUnlocalizedName()));
+		isManual = manual;
+		logic = new GardenLogic(moisture, ph, isManual, fertilised, icon, I18N.localise(getUnlocalizedName()));
 		String info = I18N.localise("botany.moisture") + ": " + moisture.getLocalisedName(true);
-		if(ph != null){
-			info+= TextFormatting.GRAY + ", " + I18N.localise("botany.ph") + ": " + moisture.getLocalisedName(true);
+		if (ph != null) {
+			info += TextFormatting.GRAY + ", " + I18N.localise("botany.ph") + ": " + moisture.getLocalisedName(true);
 		}
 		String fertilizedKey = fertilised ? "for.binnie.circuit.garden.fertilized" : "for.binnie.circuit.garden.unfertilized";
-		info+= TextFormatting.GRAY + " " + I18N.localise(fertilizedKey);
-		this.addTooltipString(I18N.localise("for.binnie.circuit.garden.info", info));
+		info += TextFormatting.GRAY + " " + I18N.localise(fertilizedKey);
+		addTooltipString(I18N.localise("for.binnie.circuit.garden.info", info));
 	}
 
 	private static ICircuitLayout getLayout(boolean manual) {
@@ -102,5 +102,6 @@ public class CircuitGarden extends BinnieCircuit {
 
 	@Override
 	public void onTick(int slot, Object tile) {
+		// ignored
 	}
 }

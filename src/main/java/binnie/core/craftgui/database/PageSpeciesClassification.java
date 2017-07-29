@@ -20,11 +20,11 @@ public class PageSpeciesClassification extends PageSpecies {
 		int y = 16;
 		for (final IClassification.EnumClassLevel level : IClassification.EnumClassLevel.values()) {
 			final ControlText text = new ControlTextCentered(this, y, "");
-			text.setColour(level.getColour());
+			text.setColor(level.getColour());
 			this.levels.put(level, text);
 			y += 12;
 		}
-		(this.genus = new ControlTextCentered(this, y, "")).setColour(16759415);
+		(this.genus = new ControlTextCentered(this, y, "")).setColor(16759415);
 	}
 
 	@Override

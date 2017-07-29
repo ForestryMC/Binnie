@@ -32,7 +32,7 @@ public class ControlText extends Control implements IControlValue<String> {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		RenderUtil.drawText(this.getArea(), this.align, this.text, this.getColour());
+		RenderUtil.drawText(this.getArea(), this.align, this.text, this.getColor());
 	}
 
 	@Override

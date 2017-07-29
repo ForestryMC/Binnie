@@ -17,7 +17,7 @@ public class ItemCeramic extends ItemBlock implements IColoredItem {
 	}
 
 	@Override
-	public int getMetadata(final int metadata) {
+	public int getMetadata(int metadata) {
 		return metadata;
 	}
 

@@ -5,5 +5,5 @@ public enum Attribute implements IWidgetAttribute {
 	CanFocus,
 	NeedsDeletion,
 	AlwaysOnTop,
-	BlockTooltip;
+	BlockTooltip
 }

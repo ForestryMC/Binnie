@@ -1,7 +1,7 @@
 package binnie.botany.farm;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
+import java.util.Collections;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
@@ -14,7 +14,7 @@ public class FlowerCrop implements ICrop {
 	BlockPos position;
 
 	public FlowerCrop(BlockPos pos, ItemStack... drops) {
-		Arrays.stream(drops).forEach(drop -> this.drops.add(drop));
+		Collections.addAll(this.drops, drops);
 		position = pos;
 	}
 

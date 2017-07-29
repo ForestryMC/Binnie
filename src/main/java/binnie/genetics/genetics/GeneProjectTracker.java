@@ -12,17 +12,17 @@ import net.minecraft.world.WorldSavedData;
 import com.mojang.authlib.GameProfile;
 
 public class GeneProjectTracker extends WorldSavedData {
-	Map<Integer, GeneProject> projects;
-	Map<GameProfile, Set<Integer>> TeamInvites;
+	private Map<Integer, GeneProject> projects;
+	private Map<GameProfile, Set<Integer>> TeamInvites;
 
-	public GeneProjectTracker(final String s) {
+	public GeneProjectTracker(String s) {
 		super(s);
-		this.projects = new HashMap<>();
-		this.TeamInvites = new HashMap<>();
+		projects = new HashMap<>();
+		TeamInvites = new HashMap<>();
 	}
 
-	public static GeneProjectTracker getTracker(final World world) {
-		final String filename = "GeneProjectTracker.common";
+	public static GeneProjectTracker getTracker(World world) {
+		String filename = "GeneProjectTracker.common";
 		GeneProjectTracker tracker = (GeneProjectTracker) world.loadData(GeneProjectTracker.class, filename);
 		if (tracker == null) {
 			tracker = new GeneProjectTracker(filename);
@@ -32,87 +32,90 @@ public class GeneProjectTracker extends WorldSavedData {
 	}
 
 	@Override
-	public void readFromNBT(final NBTTagCompound nbt) {
+	public void readFromNBT(NBTTagCompound nbt) {
+		// ignored
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(final NBTTagCompound nbt) {
+	public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
 		return nbt;
 	}
 
-	public int createProject(final String name, final GameProfile leader) {
+	public int createProject(String name, GameProfile leader) {
 		int i;
-		for (i = 1; this.projects.keySet().contains(i); ++i) {
+		for (i = 1; projects.keySet().contains(i); ++i) {
 		}
-		final GeneProject project = new GeneProject(i, name, leader);
-		this.projects.put(i, project);
-		this.markDirty();
+		GeneProject project = new GeneProject(i, name, leader);
+		projects.put(i, project);
+		markDirty();
 		return i;
 	}
 
-	public void removeProject(final int id) {
-		this.projects.remove(id);
-		for (final Map.Entry<GameProfile, Set<Integer>> entry : this.TeamInvites.entrySet()) {
+	public void removeProject(int id) {
+		projects.remove(id);
+		for (Map.Entry<GameProfile, Set<Integer>> entry : TeamInvites.entrySet()) {
 			entry.getValue().remove(id);
 		}
-		this.markDirty();
+		markDirty();
 	}
 
-	public void leaveProject(final int id, final GameProfile player) {
-		final GeneProject project = this.projects.get(id);
+	public void leaveProject(int id, GameProfile player) {
+		GeneProject project = projects.get(id);
 		if (project == null) {
 			return;
 		}
+
 		project.removePlayer(player);
 		if (project.isEmpty()) {
-			this.removeProject(id);
+			removeProject(id);
 		}
-		this.markDirty();
+		markDirty();
 	}
 
-	public void joinProject(final int id, final GameProfile player) {
-		final GeneProject project = this.projects.get(id);
+	public void joinProject(int id, GameProfile player) {
+		GeneProject project = projects.get(id);
 		if (project == null) {
 			return;
 		}
 		project.addPlayer(player);
-		this.markDirty();
+		markDirty();
 	}
 
-	public void reassignPlayer(final int id, final int id2, final GameProfile player) {
-		final GeneProject project = this.projects.get(id);
+	public void reassignPlayer(int id, int id2, GameProfile player) {
+		GeneProject project = projects.get(id);
 		if (project == null) {
 			return;
 		}
-		final GeneProject project2 = this.projects.get(id2);
+
+		GeneProject project2 = projects.get(id2);
 		if (project2 == null) {
 			return;
 		}
-		this.leaveProject(id, player);
-		this.joinProject(id2, player);
+		leaveProject(id, player);
+		joinProject(id2, player);
 	}
 
-	public void renameProject(final int id, final String newName) {
-		final GeneProject project = this.projects.get(id);
+	public void renameProject(int id, String newName) {
+		GeneProject project = projects.get(id);
 		if (project != null) {
 			project.setName(newName);
 		}
-		this.markDirty();
+		markDirty();
 	}
 
-	public void invitePlayer(final int id, final GameProfile player) {
-		if (!this.TeamInvites.containsKey(player)) {
-			this.TeamInvites.put(player, new LinkedHashSet<>());
+	public void invitePlayer(int id, GameProfile player) {
+		if (!TeamInvites.containsKey(player)) {
+			TeamInvites.put(player, new LinkedHashSet<>());
 		}
-		this.TeamInvites.get(player).add(id);
-		this.markDirty();
+		TeamInvites.get(player).add(id);
+		markDirty();
 	}
 
-	public void revokeInvite(final int id, final GameProfile player) {
-		if (!this.TeamInvites.containsKey(player)) {
-			this.TeamInvites.put(player, new LinkedHashSet<>());
+	public void revokeInvite(int id, GameProfile player) {
+		if (!TeamInvites.containsKey(player)) {
+			TeamInvites.put(player, new LinkedHashSet<>());
 		}
-		this.TeamInvites.get(player).add(id);
-		this.markDirty();
+		TeamInvites.get(player).add(id);
+		markDirty();
 	}
 }

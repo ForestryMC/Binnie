@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.Binnie;
 import binnie.botany.Botany;
-import binnie.botany.api.IFlowerColour;
+import binnie.botany.api.IFlowerColor;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.IWidget;
@@ -31,30 +31,30 @@ import binnie.core.craftgui.minecraft.Window;
 import binnie.core.util.I18N;
 
 public class WindowBotanistDatabase extends WindowAbstractDatabase {
-	ControlListBox<EnumFlowerColor> selectionBoxColors;
+	private ControlListBox<EnumFlowerColor> selectionBoxColors;
 
-	public WindowBotanistDatabase(final EntityPlayer player, final Side side, final boolean nei) {
+	public WindowBotanistDatabase(EntityPlayer player, Side side, boolean nei) {
 		super(player, side, nei, Binnie.GENETICS.flowerBreedingSystem, 130);
 	}
 
-	public static Window create(final EntityPlayer player, final Side side, final boolean nei) {
+	public static Window create(EntityPlayer player, Side side, boolean nei) {
 		return new WindowBotanistDatabase(player, side, nei);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	protected void addTabs() {
-		new PageSpeciesOverview(this.getInfoPages(Mode.SPECIES), new DatabaseTab(Botany.instance, "species.overview", 0));
-		new PageSpeciesFlowerGenome(this.getInfoPages(Mode.SPECIES), new DatabaseTab(Botany.instance, "genome", 0));
-		new PageSpeciesClassification(this.getInfoPages(Mode.SPECIES), new DatabaseTab(Botany.instance, "species.classification", 0));
-		new PageSpeciesResultant(this.getInfoPages(Mode.SPECIES), new DatabaseTab(Botany.instance, "species.resultant", 0));
-		new PageSpeciesMutations(this.getInfoPages(Mode.SPECIES), new DatabaseTab(Botany.instance, "species.further", 0));
-		new PageBranchOverview(this.getInfoPages(Mode.BRANCHES), new DatabaseTab(Botany.instance, "branches.overview", 0));
-		new PageBranchSpecies(this.getInfoPages(Mode.BRANCHES), new DatabaseTab(Botany.instance, "branches.species", 0));
-		this.createMode(FlowerMode.Color, new FlowerColorModeWidgets());
-		new PageColorMixResultant(this.getInfoPages(FlowerMode.Color), new DatabaseTab(Botany.instance, "color.resultant", 0));
-		new PageColorMix(this.getInfoPages(FlowerMode.Color), new DatabaseTab(Botany.instance, "color.further", 0));
-		new PageBreeder(this.getInfoPages(Mode.BREEDER), this.getUsername(), new DatabaseTab(Botany.instance, "breeder", 0));
+		new PageSpeciesOverview(getInfoPages(Mode.SPECIES), new DatabaseTab(Botany.instance, "species.overview", 0));
+		new PageSpeciesFlowerGenome(getInfoPages(Mode.SPECIES), new DatabaseTab(Botany.instance, "genome", 0));
+		new PageSpeciesClassification(getInfoPages(Mode.SPECIES), new DatabaseTab(Botany.instance, "species.classification", 0));
+		new PageSpeciesResultant(getInfoPages(Mode.SPECIES), new DatabaseTab(Botany.instance, "species.resultant", 0));
+		new PageSpeciesMutations(getInfoPages(Mode.SPECIES), new DatabaseTab(Botany.instance, "species.further", 0));
+		new PageBranchOverview(getInfoPages(Mode.BRANCHES), new DatabaseTab(Botany.instance, "branches.overview", 0));
+		new PageBranchSpecies(getInfoPages(Mode.BRANCHES), new DatabaseTab(Botany.instance, "branches.species", 0));
+		createMode(FlowerMode.Color, new FlowerColorModeWidgets());
+		new PageColorMixResultant(getInfoPages(FlowerMode.Color), new DatabaseTab(Botany.instance, "color.resultant", 0));
+		new PageColorMix(getInfoPages(FlowerMode.Color), new DatabaseTab(Botany.instance, "color.further", 0));
+		new PageBreeder(getInfoPages(Mode.BREEDER), getUsername(), new DatabaseTab(Botany.instance, "breeder", 0));
 	}
 
 	@Override
@@ -72,7 +72,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 
 		@Override
 		public String getName() {
-			return I18N.localise("botany.gui.database.tab." + this.name().toLowerCase());
+			return I18N.localise("botany.gui.database.tab." + name().toLowerCase());
 		}
 	}
 
@@ -83,15 +83,16 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
 		}
 
 		@Override
-		public void createListBox(final Area area) {
-			this.listBox = new ControlListBox<IFlowerColour>(this.modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
+		public void createListBox(Area area) {
+			listBox = new ControlListBox<IFlowerColor>(modePage, area.xPos(), area.yPos(), area.width(), area.height(), 12) {
 				@Override
-				public IWidget createOption(final IFlowerColour value, final int y) {
-					return new ControlColorOption(this.getContent(), value, y);
+				public IWidget createOption(IFlowerColor value, int y) {
+					return new ControlColorOption(getContent(), value, y);
 				}
 			};
-			final List<IFlowerColour> colors = Arrays.stream(EnumFlowerColor.values()).map( c -> c.getFlowerColorAllele()).collect(Collectors.toList());
-			this.listBox.setOptions(colors);
+
+			List<IFlowerColor> colors = Arrays.stream(EnumFlowerColor.values()).map(c -> c.getFlowerColorAllele()).collect(Collectors.toList());
+			listBox.setOptions(colors);
 		}
 	}
 }

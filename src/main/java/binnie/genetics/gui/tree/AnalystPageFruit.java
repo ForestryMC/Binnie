@@ -30,24 +30,24 @@ import binnie.core.util.UniqueItemStackSet;
 import binnie.genetics.gui.AnalystPageProduce;
 
 public class AnalystPageFruit extends AnalystPageProduce {
-	public AnalystPageFruit(final IWidget parent, final Area area, final ITree ind) {
+	public AnalystPageFruit(IWidget parent, Area area, ITree ind) {
 		super(parent, area);
-		this.setColour(13382400);
-		final ITreeGenome genome = ind.getGenome();
+		setColor(13382400);
+		ITreeGenome genome = ind.getGenome();
 		int y = 4;
-		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColour(this.getColour());
+		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 12;
-		new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise("genetics.gui.analyst.fruit.yield") + ": " + Binnie.GENETICS.treeBreedingSystem.getAlleleName(EnumTreeChromosome.YIELD, ind.getGenome().getActiveAllele(EnumTreeChromosome.YIELD))).setColour(this.getColour());
+		new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise("genetics.gui.analyst.fruit.yield") + ": " + Binnie.GENETICS.treeBreedingSystem.getAlleleName(EnumTreeChromosome.YIELD, ind.getGenome().getActiveAllele(EnumTreeChromosome.YIELD))).setColor(getColor());
 		y += 20;
-		final Collection<ItemStack> products = new UniqueItemStackSet();
-		final Collection<ItemStack> specialties = new UniqueItemStackSet();
-		final Collection<ItemStack> wiid = new UniqueItemStackSet();
+		Collection<ItemStack> products = new UniqueItemStackSet();
+		Collection<ItemStack> specialties = new UniqueItemStackSet();
+		Collection<ItemStack> wiid = new UniqueItemStackSet();
 		products.addAll(ind.getProducts().keySet());
 		specialties.addAll(ind.getSpecialties().keySet());
 		try {
 			if (ind.getGenome().getFruitProvider() instanceof FruitProviderPod) {
-				final FruitProviderPod pod = (FruitProviderPod) ind.getGenome().getFruitProvider();
-				final Field f = FruitProviderPod.class.getDeclaredField("drops");
+				FruitProviderPod pod = (FruitProviderPod) ind.getGenome().getFruitProvider();
+				Field f = FruitProviderPod.class.getDeclaredField("drops");
 				f.setAccessible(true);
 				Collections.addAll(products, ((Map<ItemStack, Float>) f.get(pod)).keySet().toArray(new ItemStack[0]));
 			}
@@ -55,48 +55,48 @@ public class AnalystPageFruit extends AnalystPageProduce {
 			throw Throwables.propagate(e);
 		}
 		if (products.size() > 0) {
-			new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.fruit.natural")).setColour(this.getColour());
+			new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.fruit.natural")).setColor(getColor());
 			y += 10;
-			final int w = products.size() * 18 - 2;
-			final int i = 0;
-			for (final ItemStack stack : products) {
-				final ControlItemDisplay d = new ControlItemDisplay(this, (this.width() - w) / 2 + 18 * i, y);
+			int w = products.size() * 18 - 2;
+			int i = 0;
+			for (ItemStack stack : products) {
+				ControlItemDisplay d = new ControlItemDisplay(this, (width() - w) / 2 + 18 * i, y);
 				d.setTooltip();
 				d.setItemStack(stack);
 			}
 			y += 26;
 		}
 		if (specialties.size() > 0) {
-			new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.fruit.specialty")).setColour(this.getColour());
+			new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.fruit.specialty")).setColor(getColor());
 			y += 10;
-			final int w = products.size() * 18 - 2;
-			final int i = 0;
-			for (final ItemStack stack : specialties) {
-				final ControlItemDisplay d = new ControlItemDisplay(this, (this.width() - w) / 2 + 18 * i, y);
+			int w = products.size() * 18 - 2;
+			int i = 0;
+			for (ItemStack stack : specialties) {
+				ControlItemDisplay d = new ControlItemDisplay(this, (width() - w) / 2 + 18 * i, y);
 				d.setTooltip();
 				d.setItemStack(stack);
 			}
 			y += 26;
 		}
-		final Collection<ItemStack> allProducts = new UniqueItemStackSet();
+		Collection<ItemStack> allProducts = new UniqueItemStackSet();
 		allProducts.addAll(products);
 		allProducts.addAll(specialties);
-		final Collection<ItemStack> refinedProducts = new UniqueItemStackSet();
-		refinedProducts.addAll(this.getAllProductsAndFluids(allProducts));
+		Collection<ItemStack> refinedProducts = new UniqueItemStackSet();
+		refinedProducts.addAll(getAllProductsAndFluids(allProducts));
 		if (refinedProducts.size() > 0) {
-			y = this.getRefined(I18N.localise("genetics.gui.analyst.fruit.refined"), y, refinedProducts);
+			y = getRefined(I18N.localise("genetics.gui.analyst.fruit.refined"), y, refinedProducts);
 			y += 8;
 		}
 		if (products.size() == 0 && specialties.size() == 0) {
-			new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.fruit.noFruits")).setColour(this.getColour());
+			new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.fruit.noFruits")).setColor(getColor());
 			y += 28;
 		}
-		new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.fruit.possible")).setColour(this.getColour());
+		new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.fruit.possible")).setColor(getColor());
 		y += 12;
-		final Collection<IAllele> fruitAlleles = Binnie.GENETICS.getChromosomeMap(Binnie.GENETICS.getTreeRoot()).get(EnumTreeChromosome.FRUITS);
-		for (final IFruitFamily fam : ind.getGenome().getPrimary().getSuitableFruit()) {
-			final Collection<ItemStack> stacks = new UniqueItemStackSet();
-			for (final IAllele a : fruitAlleles) {
+		Collection<IAllele> fruitAlleles = Binnie.GENETICS.getChromosomeMap(Binnie.GENETICS.getTreeRoot()).get(EnumTreeChromosome.FRUITS);
+		for (IFruitFamily fam : ind.getGenome().getPrimary().getSuitableFruit()) {
+			Collection<ItemStack> stacks = new UniqueItemStackSet();
+			for (IAllele a : fruitAlleles) {
 				if (((IAlleleFruit) a).getProvider().getFamily() == fam) {
 					stacks.addAll(((IAlleleFruit) a).getProvider().getProducts().keySet());
 					stacks.addAll(((IAlleleFruit) a).getProvider().getSpecialty().keySet());
@@ -107,8 +107,8 @@ public class AnalystPageFruit extends AnalystPageProduce {
 							if (!(((IAlleleFruit) a).getProvider() instanceof FruitProviderPod)) {
 								continue;
 							}
-							final FruitProviderPod pod2 = (FruitProviderPod) ((IAlleleFruit) a).getProvider();
-							final Field field = FruitProviderPod.class.getDeclaredField("drops");
+							FruitProviderPod pod2 = (FruitProviderPod) ((IAlleleFruit) a).getProvider();
+							Field field = FruitProviderPod.class.getDeclaredField("drops");
 							field.setAccessible(true);
 							Collections.addAll(stacks, ((Map<ItemStack, Float>) field.get(pod2)).keySet().toArray(new ItemStack[0]));
 						}
@@ -117,10 +117,10 @@ public class AnalystPageFruit extends AnalystPageProduce {
 					}
 				}
 			}
-			y = this.getRefined(TextFormatting.ITALIC + fam.getName(), y, stacks);
+			y = getRefined(TextFormatting.ITALIC + fam.getName(), y, stacks);
 			y += 2;
 		}
-		this.setSize(new Point(this.width(), y + 8));
+		setSize(new Point(width(), y + 8));
 	}
 
 	@Override

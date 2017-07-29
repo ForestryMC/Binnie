@@ -26,30 +26,30 @@ import binnie.genetics.gui.ControlAnalystPage;
 import binnie.genetics.gui.ControlToleranceBar;
 
 public class AnalystPageSoil extends ControlAnalystPage {
-	public AnalystPageSoil(final IWidget parent, final Area area, final IFlower flower) {
+	public AnalystPageSoil(IWidget parent, Area area, IFlower flower) {
 		super(parent, area);
-		this.setColour(6697728);
-		final EnumMoisture moisture = flower.getGenome().getPrimary().getMoisture();
-		final EnumTolerance moistureTol = flower.getGenome().getToleranceMoisture();
-		final EnumAcidity pH = flower.getGenome().getPrimary().getPH();
-		final EnumTolerance pHTol = flower.getGenome().getTolerancePH();
+		setColor(6697728);
+		EnumMoisture moisture = flower.getGenome().getPrimary().getMoisture();
+		EnumTolerance moistureTol = flower.getGenome().getToleranceMoisture();
+		EnumAcidity pH = flower.getGenome().getPrimary().getPH();
+		EnumTolerance pHTol = flower.getGenome().getTolerancePH();
 		int y = 4;
-		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColour(this.getColour());
+		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 16;
-		new ControlText(this, new Area(4, y, this.width() - 8, 14), I18N.localise("genetics.gui.analyst.soil.tolerance.moisture"), TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new Area(4, y, width() - 8, 14), I18N.localise("genetics.gui.analyst.soil.tolerance.moisture"), TextJustification.MIDDLE_CENTER).setColor(getColor());
 		y += 12;
-		this.createMoisture(this, (this.width() - 100) / 2, y, 100, 10, moisture, moistureTol);
+		createMoisture(this, (width() - 100) / 2, y, 100, 10, moisture, moistureTol);
 		y += 16;
-		new ControlText(this, new Area(4, y, this.width() - 8, 14), I18N.localise("genetics.gui.analyst.soil.tolerance.ph"), TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new Area(4, y, width() - 8, 14), I18N.localise("genetics.gui.analyst.soil.tolerance.ph"), TextJustification.MIDDLE_CENTER).setColor(getColor());
 		y += 12;
-		this.createAcidity(this, (this.width() - 100) / 2, y, 100, 10, pH, pHTol);
+		createAcidity(this, (width() - 100) / 2, y, 100, 10, pH, pHTol);
 		y += 16;
-		new ControlText(this, new Area(4, y, this.width() - 8, 14), I18N.localise("genetics.gui.analyst.soil.recommended"), TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new Area(4, y, width() - 8, 14), I18N.localise("genetics.gui.analyst.soil.recommended"), TextJustification.MIDDLE_CENTER).setColor(getColor());
 		y += 12;
 		EnumMoisture recomMoisture = EnumMoisture.NORMAL;
-		final boolean canTolNormal = Tolerance.canTolerate(moisture, EnumMoisture.NORMAL, moistureTol);
-		final boolean canTolDamp = Tolerance.canTolerate(moisture, EnumMoisture.DAMP, moistureTol);
-		final boolean canTolDry = Tolerance.canTolerate(moisture, EnumMoisture.DRY, moistureTol);
+		boolean canTolNormal = Tolerance.canTolerate(moisture, EnumMoisture.NORMAL, moistureTol);
+		boolean canTolDamp = Tolerance.canTolerate(moisture, EnumMoisture.DAMP, moistureTol);
+		boolean canTolDry = Tolerance.canTolerate(moisture, EnumMoisture.DRY, moistureTol);
 		if (canTolNormal) {
 			if (canTolDamp && !canTolDry) {
 				recomMoisture = EnumMoisture.DAMP;
@@ -65,9 +65,9 @@ public class AnalystPageSoil extends ControlAnalystPage {
 			}
 		}
 		EnumAcidity recomPH = EnumAcidity.NEUTRAL;
-		final boolean canTolNeutral = Tolerance.canTolerate(pH, EnumAcidity.NEUTRAL, pHTol);
-		final boolean canTolAcid = Tolerance.canTolerate(pH, EnumAcidity.ACID, pHTol);
-		final boolean canTolAlkaline = Tolerance.canTolerate(pH, EnumAcidity.ALKALINE, pHTol);
+		boolean canTolNeutral = Tolerance.canTolerate(pH, EnumAcidity.NEUTRAL, pHTol);
+		boolean canTolAcid = Tolerance.canTolerate(pH, EnumAcidity.ACID, pHTol);
+		boolean canTolAlkaline = Tolerance.canTolerate(pH, EnumAcidity.ALKALINE, pHTol);
 		if (canTolNeutral) {
 			if (canTolAcid && !canTolAlkaline) {
 				recomPH = EnumAcidity.ACID;
@@ -82,54 +82,54 @@ public class AnalystPageSoil extends ControlAnalystPage {
 				recomPH = EnumAcidity.ALKALINE;
 			}
 		}
-		final ItemStack stack = new ItemStack(Botany.soil, 1, BlockSoil.getMeta(recomPH, recomMoisture));
-		final ControlItemDisplay recomSoil = new ControlItemDisplay(this, (this.width() - 24) / 2, y, 24);
+		ItemStack stack = new ItemStack(Botany.soil, 1, BlockSoil.getMeta(recomPH, recomMoisture));
+		ControlItemDisplay recomSoil = new ControlItemDisplay(this, (width() - 24) / 2, y, 24);
 		recomSoil.setItemStack(stack);
 		recomSoil.setTooltip();
 		y += 32;
-		new ControlText(this, new Area(4, y, this.width() - 8, 14), I18N.localise("genetics.gui.analyst.soil.other"), TextJustification.MiddleCenter).setColour(this.getColour());
+		new ControlText(this, new Area(4, y, width() - 8, 14), I18N.localise("genetics.gui.analyst.soil.other"), TextJustification.MIDDLE_CENTER).setColor(getColor());
 		y += 12;
-		final List<ItemStack> stacks = new ArrayList<>();
-		for (final EnumAcidity a : EnumSet.range(EnumAcidity.ACID, EnumAcidity.ALKALINE)) {
-			for (final EnumMoisture b : EnumSet.range(EnumMoisture.DRY, EnumMoisture.DAMP)) {
+		List<ItemStack> stacks = new ArrayList<>();
+		for (EnumAcidity a : EnumSet.range(EnumAcidity.ACID, EnumAcidity.ALKALINE)) {
+			for (EnumMoisture b : EnumSet.range(EnumMoisture.DRY, EnumMoisture.DAMP)) {
 				if (Tolerance.canTolerate(pH, a, pHTol) && Tolerance.canTolerate(moisture, b, moistureTol) && (a != recomPH || b != recomMoisture)) {
 					stacks.add(new ItemStack(Botany.soil, 1, BlockSoil.getMeta(a, b)));
 				}
 			}
 		}
-		final int soilListWidth = 17 * stacks.size() - 1;
-		final int soilListX = (this.width() - soilListWidth) / 2;
+		int soilListWidth = 17 * stacks.size() - 1;
+		int soilListX = (width() - soilListWidth) / 2;
 		int t = 0;
-		for (final ItemStack soilStack : stacks) {
-			final ControlItemDisplay display = new ControlItemDisplay(this, soilListX + 17 * t++, y);
+		for (ItemStack soilStack : stacks) {
+			ControlItemDisplay display = new ControlItemDisplay(this, soilListX + 17 * t++, y);
 			display.setItemStack(soilStack);
 			display.setTooltip();
 		}
 	}
 
-	protected void createMoisture(final IWidget parent, final int x, final int y, final int w, final int h, final EnumMoisture value, final EnumTolerance tol) {
+	protected void createMoisture(IWidget parent, int x, int y, int w, int h, EnumMoisture value, EnumTolerance tol) {
 		new ControlToleranceBar<EnumMoisture>(parent, x, y, w, h, EnumMoisture.class) {
 			@Override
-			protected String getName(final EnumMoisture value) {
+			protected String getName(EnumMoisture value) {
 				return value.getLocalisedName(false);
 			}
 
 			@Override
-			protected int getColour(final EnumMoisture value) {
+			protected int getColour(EnumMoisture value) {
 				return (new int[]{13434828, 6737151, 3368703})[value.ordinal()];
 			}
 		}.setValues(value, tol);
 	}
 
-	protected void createAcidity(final IWidget parent, final int x, final int y, final int w, final int h, final EnumAcidity value, final EnumTolerance tol) {
+	protected void createAcidity(IWidget parent, int x, int y, int w, int h, EnumAcidity value, EnumTolerance tol) {
 		new ControlToleranceBar<EnumAcidity>(parent, x, y, w, h, EnumAcidity.class) {
 			@Override
-			protected String getName(final EnumAcidity value) {
+			protected String getName(EnumAcidity value) {
 				return value.getLocalisedName(false);
 			}
 
 			@Override
-			protected int getColour(final EnumAcidity value) {
+			protected int getColour(EnumAcidity value) {
 				return (new int[]{16711782, 65280, 26367})[value.ordinal()];
 			}
 		}.setValues(value, tol);

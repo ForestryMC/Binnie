@@ -396,7 +396,7 @@ public class PlankType {
 		}
 
 		@Override
-		public int getColour() {
+		public int getColor() {
 			return this.color;
 		}
 		

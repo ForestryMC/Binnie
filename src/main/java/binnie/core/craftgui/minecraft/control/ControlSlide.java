@@ -63,7 +63,7 @@ public class ControlSlide extends Control {
 			if (this.anchor.y() > 0) {
 				GlStateManager.translate(0.0f, -lh, 0.0f);
 			}
-			RenderUtil.drawText(labelArea, TextJustification.MiddleCenter, this.label, 16777215);
+			RenderUtil.drawText(labelArea, TextJustification.MIDDLE_CENTER, this.label, 16777215);
 			GlStateManager.popMatrix();
 		}
 		CraftGUI.render.texture(CraftGUITexture.Window, this.getArea());

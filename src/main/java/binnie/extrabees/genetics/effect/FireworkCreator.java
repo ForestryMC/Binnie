@@ -14,7 +14,7 @@ public class FireworkCreator {
 		LargeBall,
 		Star,
 		Creeper,
-		Burst;
+		Burst
 	}
 
 	public static class Firework {

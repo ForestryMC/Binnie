@@ -34,7 +34,7 @@ class ControlColourSelector extends Control implements ITooltip, IControlValue<E
 	@Override
 	public void setValue(final EnumColor value) {
 		this.value = value;
-		this.setColour(this.getValue().getColour());
+		this.setColor(this.getValue().getColour());
 	}
 
 	@Override

@@ -28,12 +28,12 @@ import binnie.genetics.machine.ModuleMachine;
 
 public class PackageGenepool extends GeneticMachine.PackageGeneticBase implements IMachineInformation {
 	public PackageGenepool() {
-		super("genepool", GeneticsTexture.Genepool, 12661942, true);
+		super("genepool", GeneticsTexture.GENEPOOL, 12661942, true);
 	}
 
 	@Override
 	public void createMachine(final Machine machine) {
-		new ComponentGeneticGUI(machine, GeneticsGUI.Genepool);
+		new ComponentGeneticGUI(machine, GeneticsGUI.GENEPOOL);
 		ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		InventorySlot slotEnzyme = inventory.addSlot(Genepool.SLOT_ENZYME, "enzyme");
 		slotEnzyme.setValidator(new SlotValidator.Item(GeneticsItems.Enzyme.get(1), ModuleMachine.spriteEnzyme));

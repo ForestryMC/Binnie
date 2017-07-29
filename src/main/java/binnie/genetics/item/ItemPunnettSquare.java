@@ -28,7 +28,7 @@ public class ItemPunnettSquare extends Item {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		if (handIn == EnumHand.MAIN_HAND) {
-			Genetics.proxy.openGui(GeneticsGUI.PunnettSquare, playerIn, playerIn.getPosition());
+			Genetics.proxy.openGui(GeneticsGUI.PUNNETT_SQUARE, playerIn, playerIn.getPosition());
 		}
 		ItemStack itemStack = playerIn.getHeldItem(handIn);
 		return new ActionResult<>(EnumActionResult.PASS, itemStack);

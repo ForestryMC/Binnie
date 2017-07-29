@@ -18,10 +18,10 @@ import binnie.core.util.I18N;
 
 public class ItemPigment extends Item implements IItemModelRegister, IColoredItem {
 	public ItemPigment() {
-		this.setUnlocalizedName("botany.pigment");
-		this.setHasSubtypes(true);
-		this.setCreativeTab(CreativeTabBotany.instance);
-		this.setRegistryName("pigment");
+		setUnlocalizedName("botany.pigment");
+		setHasSubtypes(true);
+		setCreativeTab(CreativeTabBotany.instance);
+		setRegistryName("pigment");
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -40,14 +40,14 @@ public class ItemPigment extends Item implements IItemModelRegister, IColoredIte
 	}
 
 	@Override
-	public String getItemStackDisplayName(final ItemStack stack) {
+	public String getItemStackDisplayName(ItemStack stack) {
 		EnumFlowerColor color = EnumFlowerColor.get(stack.getItemDamage());
 		return I18N.localise("item.botany.pigment.name", color.getFlowerColorAllele().getColorName());
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(final Item itemIn, final CreativeTabs tab, final NonNullList<ItemStack> list) {
+	public void getSubItems(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list) {
 		for (EnumFlowerColor color : EnumFlowerColor.values()) {
 			list.add(new ItemStack(this, 1, color.ordinal()));
 		}

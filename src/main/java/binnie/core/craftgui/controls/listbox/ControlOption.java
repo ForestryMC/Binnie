@@ -35,7 +35,7 @@ public class ControlOption<T> extends Control implements IControlValue<T> {
 		if (this.isCurrentSelection()) {
 			colour = 0xffffff;
 		}
-		this.setColour(colour);
+		this.setColor(colour);
 	}
 
 	@Override

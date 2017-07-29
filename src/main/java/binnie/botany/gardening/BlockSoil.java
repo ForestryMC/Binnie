@@ -47,18 +47,18 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 
 	public BlockSoil(EnumSoilType type, String blockName, boolean weedKilled) {
 		super(Material.GROUND);
+		this.type = type;
 		this.weedKilled = weedKilled;
 		setUnlocalizedName("botany.soil." + type.getName());
-		this.setCreativeTab(CreativeTabBotany.instance);
-		this.setRegistryName(blockName);
-		this.setTickRandomly(true);
-		this.setLightOpacity(255);
-		this.setHardness(0.5f);
-		this.setSoundType(SoundType.GROUND);
-		this.type = type;
+		setCreativeTab(CreativeTabBotany.instance);
+		setRegistryName(blockName);
+		setTickRandomly(true);
+		setLightOpacity(255);
+		setHardness(0.5f);
+		setSoundType(SoundType.GROUND);
 	}
 
-	public static int getMeta(final EnumAcidity acid, final EnumMoisture moisture) {
+	public static int getMeta(EnumAcidity acid, EnumMoisture moisture) {
 		return acid.ordinal() * 3 + moisture.ordinal();
 	}
 
@@ -88,6 +88,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 		switch (side) {
 			case UP:
 				return true;
+
 			case NORTH:
 			case SOUTH:
 			case WEST:
@@ -95,9 +96,8 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 				IBlockState iblockstate = blockAccess.getBlockState(pos.offset(side));
 				Block block = iblockstate.getBlock();
 				return !iblockstate.isOpaqueCube() && block != Blocks.FARMLAND && block != Blocks.GRASS_PATH && block != this;
-			default:
-				return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
 		}
+		return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
 	}
 
 	/**
@@ -136,7 +136,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(final Item itemIn, final CreativeTabs tab, final NonNullList<ItemStack> list) {
+	public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list) {
 		for (int i = 0; i < 9; ++i) {
 			list.add(new ItemStack(this, 1, i));
 		}
@@ -151,16 +151,19 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 				if (acidity != EnumAcidity.NEUTRAL) {
 					modelName += acidity.getName();
 				}
+
 				if (moisture != EnumMoisture.NORMAL) {
 					if (!modelName.isEmpty()) {
 						modelName += "_";
 					}
 					modelName += moisture.getName();
 				}
+
 				if (modelName.isEmpty()) {
 					modelName = "normal";
 				}
-				final String identifier;
+
+				String identifier;
 				if (weedKilled) {
 					identifier = type.getName() + "_no_weed/" + modelName;
 				} else {
@@ -183,13 +186,13 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		final EnumMoisture moisture = EnumMoisture.values()[meta % 3];
-		final EnumAcidity acidity = EnumAcidity.values()[meta / 3];
+		EnumMoisture moisture = EnumMoisture.values()[meta % 3];
+		EnumAcidity acidity = EnumAcidity.values()[meta / 3];
 		return getDefaultState().withProperty(MOISTURE, moisture).withProperty(ACIDITY, acidity);
 	}
 
 	public EnumSoilType getType() {
-		return this.type;
+		return type;
 	}
 
 	@Override
@@ -203,23 +206,24 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 		EnumMoisture desiredMoisture = BotanyCore.getGardening().getNaturalMoisture(world, pos);
 		if (desiredMoisture.ordinal() > moisture.ordinal()) {
 			moisture = ((moisture == EnumMoisture.DRY) ? EnumMoisture.NORMAL : EnumMoisture.DAMP);
-		}
-		if (desiredMoisture.ordinal() < moisture.ordinal()) {
+		} else if (desiredMoisture.ordinal() < moisture.ordinal()) {
 			moisture = ((moisture == EnumMoisture.DAMP) ? EnumMoisture.NORMAL : EnumMoisture.DRY);
 		}
+
 		IBlockState blockState = state.withProperty(MOISTURE, moisture);
 		if (state != blockState) {
 			world.setBlockState(pos, blockState, 2);
 		}
-		if(!weedKilled){
-			if(rand.nextInt(5 - getType(world, pos).ordinal()) != 0){
+
+		if (!weedKilled) {
+			if (rand.nextInt(5 - getType(world, pos).ordinal()) != 0) {
 				return;
 			}
 			pos = pos.up();
-			if(!world.isAirBlock(pos)){
+			if (!world.isAirBlock(pos)) {
 				return;
 			}
-			world.setBlockState(pos, Botany.plant.getStateFromMeta(BlockPlant.Type.Weeds.ordinal()), 2);
+			world.setBlockState(pos, Botany.plant.getStateFromMeta(PlantType.WEEDS.ordinal()), 2);
 		}
 	}
 
@@ -233,48 +237,48 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 	}
 
 	@Override
-	public EnumAcidity getPH(final World world, final BlockPos pos) {
+	public EnumAcidity getPH(World world, BlockPos pos) {
 		return world.getBlockState(pos).getValue(ACIDITY);
 	}
 
 	@Override
-	public EnumMoisture getMoisture(final World world, final BlockPos pos) {
+	public EnumMoisture getMoisture(World world, BlockPos pos) {
 		return world.getBlockState(pos).getValue(MOISTURE);
 	}
 
 	@Override
-	public EnumSoilType getType(final World world, final BlockPos pos) {
-		return this.type;
+	public EnumSoilType getType(World world, BlockPos pos) {
+		return type;
 	}
 
 	@Override
-	public boolean fertilise(final World world, final BlockPos pos, final EnumSoilType maxLevel) {
-		final EnumSoilType type = this.getType(world, pos);
+	public boolean fertilise(World world, BlockPos pos, EnumSoilType maxLevel) {
+		EnumSoilType type = getType(world, pos);
 		if (type.ordinal() >= maxLevel.ordinal()) {
 			return false;
 		}
-		final IBlockState old = world.getBlockState(pos);
-		return world.setBlockState(pos, BotanyCore.getGardening().getSoilBlock(maxLevel, this.weedKilled).getDefaultState().withProperty(ACIDITY, old.getValue(ACIDITY)).withProperty(MOISTURE, old.getValue(MOISTURE)), 2);
+		IBlockState old = world.getBlockState(pos);
+		return world.setBlockState(pos, BotanyCore.getGardening().getSoilBlock(maxLevel, weedKilled).getDefaultState().withProperty(ACIDITY, old.getValue(ACIDITY)).withProperty(MOISTURE, old.getValue(MOISTURE)), 2);
 	}
 
 	@Override
-	public boolean degrade(final World world, final BlockPos pos, final EnumSoilType minLevel) {
-		final EnumSoilType type = this.getType(world, pos);
+	public boolean degrade(World world, BlockPos pos, EnumSoilType minLevel) {
+		EnumSoilType type = getType(world, pos);
 		if (type.ordinal() <= minLevel.ordinal()) {
 			return false;
 		}
-		final IBlockState old = world.getBlockState(pos);
-		return world.setBlockState(pos, BotanyCore.getGardening().getSoilBlock(minLevel, this.weedKilled).getDefaultState().withProperty(ACIDITY, old.getValue(ACIDITY)).withProperty(MOISTURE, old.getValue(MOISTURE)), 2);
+		IBlockState old = world.getBlockState(pos);
+		return world.setBlockState(pos, BotanyCore.getGardening().getSoilBlock(minLevel, weedKilled).getDefaultState().withProperty(ACIDITY, old.getValue(ACIDITY)).withProperty(MOISTURE, old.getValue(MOISTURE)), 2);
 	}
 
 	@Override
-	public boolean setPH(final World world, final BlockPos pos, final EnumAcidity pH) {
+	public boolean setPH(World world, BlockPos pos, EnumAcidity pH) {
 		IBlockState blockState = world.getBlockState(pos);
 		return world.setBlockState(pos, blockState.withProperty(ACIDITY, pH));
 	}
 
 	@Override
-	public boolean setMoisture(final World world, final BlockPos pos, final EnumMoisture moisture) {
+	public boolean setMoisture(World world, BlockPos pos, EnumMoisture moisture) {
 		IBlockState blockState = world.getBlockState(pos);
 		return world.setBlockState(pos, blockState.withProperty(MOISTURE, moisture));
 	}
@@ -293,15 +297,16 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 		if (plant.getBlock() == Botany.flower) {
 			return true;
 		}
+
 		if (plant.getBlock() == Botany.plant) {
-			return !this.weedKilled || !BlockPlant.isWeed(world, pos);
+			return !weedKilled || !BlockPlant.isWeed(world, pos);
 		}
 		return world instanceof World && Blocks.DIRT.canSustainPlant(state, world, pos, direction, plantable);
 	}
 
 	@Override
-	public boolean resistsWeeds(final World world, final BlockPos pos) {
-		return this.weedKilled;
+	public boolean resistsWeeds(World world, BlockPos pos) {
+		return weedKilled;
 	}
 
 	public boolean isWeedKilled() {

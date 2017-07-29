@@ -18,7 +18,7 @@ public interface IAlleleFlowerSpecies extends IAlleleSpecies, IAlleleProperty<IA
 	EnumMoisture getMoisture();
 
 	@SideOnly(Side.CLIENT)
-	int getFlowerColour(EnumFlowerStage type, int renderPass);
+	int getFlowerColor(EnumFlowerStage type, int renderPass);
 
 	@SideOnly(Side.CLIENT)
 	ModelResourceLocation getFlowerModel(EnumFlowerStage type, boolean flowered);

@@ -39,64 +39,73 @@ import binnie.extratrees.kitchen.craftgui.ControlFluidDisplay;
 import binnie.genetics.gui.AnalystPageProduce;
 
 public class AnalystPageProducts extends AnalystPageProduce {
-	public AnalystPageProducts(final IWidget parent, final Area area, final IBee ind) {
+	public AnalystPageProducts(IWidget parent, Area area, IBee ind) {
 		super(parent, area);
-		this.setColour(13382400);
-		final IBeeGenome genome = ind.getGenome();
-		final float speed = genome.getSpeed();
-		final float modeSpeed = Binnie.GENETICS.getBeeRoot().getBeekeepingMode(BinnieCore.getBinnieProxy().getWorld()).getBeeModifier().getProductionModifier(genome, 1.0f);
+		setColor(0xcc3300);
+		IBeeGenome genome = ind.getGenome();
+		float speed = genome.getSpeed();
+		float modeSpeed = Binnie.GENETICS.getBeeRoot().getBeekeepingMode(BinnieCore.getBinnieProxy().getWorld()).getBeeModifier().getProductionModifier(genome, 1.0f);
+
 		int y = 4;
-		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColour(this.getColour());
+		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
+
 		y += 12;
-		new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise("genetics.gui.analyst.produces.rate") + ": " + Binnie.GENETICS.beeBreedingSystem.getAlleleName(EnumBeeChromosome.SPEED, ind.getGenome().getActiveAllele(EnumBeeChromosome.SPEED))).setColour(this.getColour());
+		new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise("genetics.gui.analyst.produces.rate") + ": " + Binnie.GENETICS.beeBreedingSystem.getAlleleName(EnumBeeChromosome.SPEED, ind.getGenome().getActiveAllele(EnumBeeChromosome.SPEED))).setColor(getColor());
+
 		y += 20;
-		final Collection<ItemStack> refinedProducts = new UniqueItemStackSet();
-		final Collection<ItemStack> productList = new UniqueItemStackSet();
-		final Collection<ItemStack> specialtyList = new UniqueItemStackSet();
+		Collection<ItemStack> refinedProducts = new UniqueItemStackSet();
+		Collection<ItemStack> productList = new UniqueItemStackSet();
+		Collection<ItemStack> specialtyList = new UniqueItemStackSet();
 		Map<ItemStack, Float> products = new HashMap<>();
 		products.putAll(genome.getPrimary().getProductChances());
 		products.putAll(genome.getSecondary().getProductChances());
+
 		if (!products.isEmpty()) {
-			new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.products.natural")).setColour(this.getColour());
+			new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.products.natural")).setColor(getColor());
 			y += 12;
-			for (final Map.Entry<ItemStack, Float> entry : products.entrySet()) {
+			for (Map.Entry<ItemStack, Float> entry : products.entrySet()) {
 				if (!productList.add(entry.getKey())) {
 					continue;
 				}
-				refinedProducts.addAll(this.getAllProducts(entry.getKey()));
-				this.createProductEntry(entry.getKey(), entry.getValue(), y, speed * modeSpeed);
+				refinedProducts.addAll(getAllProducts(entry.getKey()));
+				createProductEntry(entry.getKey(), entry.getValue(), y, speed * modeSpeed);
 				y += 18;
 			}
 			y += 12;
 		}
+
 		products = genome.getPrimary().getSpecialtyChances();
 		if (!products.isEmpty()) {
-			new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.products.specialty")).setColour(this.getColour());
+			new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.products.specialty")).setColor(getColor());
 			y += 12;
-			for (final Map.Entry<ItemStack, Float> entry : products.entrySet()) {
-				refinedProducts.addAll(this.getAllProducts(entry.getKey()));
-				this.createProductEntry(entry.getKey(), entry.getValue(), y, speed * modeSpeed);
+			for (Map.Entry<ItemStack, Float> entry : products.entrySet()) {
+				refinedProducts.addAll(getAllProducts(entry.getKey()));
+				createProductEntry(entry.getKey(), entry.getValue(), y, speed * modeSpeed);
 				y += 18;
 			}
 			y += 12;
 		}
-		new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.products.refined")).setColour(this.getColour());
+
+		new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.products.refined")).setColor(getColor());
+
 		y += 12;
 		Collection<ItemStack> level2Products = new UniqueItemStackSet();
-		for (final ItemStack stack : refinedProducts) {
-			level2Products.addAll(this.getAllProducts(stack));
+		for (ItemStack stack : refinedProducts) {
+			level2Products.addAll(getAllProducts(stack));
 		}
+
 		refinedProducts.addAll(level2Products);
 		level2Products = new UniqueItemStackSet();
-		for (final ItemStack stack : refinedProducts) {
-			level2Products.addAll(this.getAllProducts(stack));
+		for (ItemStack stack : refinedProducts) {
+			level2Products.addAll(getAllProducts(stack));
 		}
+
 		refinedProducts.addAll(level2Products);
-		final Collection<FluidStack> allFluids = new ArrayList<>();
-		for (final ItemStack stack2 : refinedProducts) {
-			for (final FluidStack addition : this.getAllFluids(stack2)) {
+		Collection<FluidStack> allFluids = new ArrayList<>();
+		for (ItemStack stack2 : refinedProducts) {
+			for (FluidStack addition : getAllFluids(stack2)) {
 				boolean alreadyIn = false;
-				for (final FluidStack existing : allFluids) {
+				for (FluidStack existing : allFluids) {
 					if (existing.isFluidEqual(addition)) {
 						alreadyIn = true;
 					}
@@ -106,42 +115,44 @@ public class AnalystPageProducts extends AnalystPageProduce {
 				}
 			}
 		}
-		final int maxBiomePerLine = (int) ((this.width() + 2.0f - 16.0f) / 18.0f);
-		final int biomeListX = (this.width() - (Math.min(maxBiomePerLine, allFluids.size() + refinedProducts.size()) * 18 - 2)) / 2;
+
+		int maxBiomePerLine = (int) ((width() + 2.0f - 16.0f) / 18.0f);
+		int biomeListX = (width() - (Math.min(maxBiomePerLine, allFluids.size() + refinedProducts.size()) * 18 - 2)) / 2;
 		int dx = 0;
 		int dy = 0;
-		for (final ItemStack soilStack : refinedProducts) {
+		for (ItemStack soilStack : refinedProducts) {
 			if (dx >= 18 * maxBiomePerLine) {
 				dx = 0;
 				dy += 18;
 			}
-			final ControlItemDisplay display = new ControlItemDisplay(this, biomeListX + dx, y + dy);
+			ControlItemDisplay display = new ControlItemDisplay(this, biomeListX + dx, y + dy);
 			display.setItemStack(soilStack);
 			display.setTooltip();
 			dx += 18;
 		}
-		for (final FluidStack soilStack2 : allFluids) {
+
+		for (FluidStack soilStack2 : allFluids) {
 			if (dx >= 18 * maxBiomePerLine) {
 				dx = 0;
 				dy += 18;
 			}
 			ItemStack container = getContainer(soilStack2);
 			if (container == null) {
-				final ControlFluidDisplay display2 = new ControlFluidDisplay(this, biomeListX + dx, y + dy);
+				ControlFluidDisplay display2 = new ControlFluidDisplay(this, biomeListX + dx, y + dy);
 				display2.setFluidStack(soilStack2);
 				display2.setTooltip();
 			} else {
-				final ControlItemDisplay display3 = new ControlItemDisplay(this, biomeListX + dx, y + dy);
+				ControlItemDisplay display3 = new ControlItemDisplay(this, biomeListX + dx, y + dy);
 				display3.setItemStack(container);
 				display3.setTooltip();
 			}
 			dx += 18;
 		}
-		this.setSize(new Point(this.width(), y + dy + 18 + 8));
+		setSize(new Point(width(), y + dy + 18 + 8));
 	}
 
 	@Nullable
-	public static ItemStack getContainer(final FluidStack fluidStack) {
+	public static ItemStack getContainer(FluidStack fluidStack) {
 		ItemStack[] containers = {
 			new ItemStack(Items.GLASS_BOTTLE),
 			new ItemStack(Items.BUCKET)
@@ -153,43 +164,43 @@ public class AnalystPageProducts extends AnalystPageProduce {
 				return fluidHandler.getContainer();
 			}
 		}
-
 		return null;
 	}
 
-	private void createProductEntry(final ItemStack key, final Float value, final int y, final float speed) {
-		final ControlItemDisplay item = new ControlItemDisplay(this, 16, y) {
+	private void createProductEntry(ItemStack key, Float value, int y, float speed) {
+		ControlItemDisplay item = new ControlItemDisplay(this, 16, y) {
 			@Override
 			@SideOnly(Side.CLIENT)
-			public void getTooltip(final Tooltip tooltip) {
+			public void getTooltip(Tooltip tooltip) {
 				super.getTooltip(tooltip);
-				final Collection<ItemStack> products = AnalystPageProducts.this.getCentrifuge(key);
+				Collection<ItemStack> products = getCentrifuge(key);
 				if (!products.isEmpty()) {
 					tooltip.add(I18N.localise("genetics.gui.analyst.products.centrifuges") + ": ");
-					for (final ItemStack prod : products) {
-						final NBTTagCompound nbt = new NBTTagCompound();
+					for (ItemStack prod : products) {
+						NBTTagCompound nbt = new NBTTagCompound();
 						prod.writeToNBT(nbt);
 						tooltip.add(prod, prod.getDisplayName());
 					}
 				}
-				final Collection<ItemStack> liquids = AnalystPageProducts.this.getSqueezer(key);
+				Collection<ItemStack> liquids = getSqueezer(key);
 				if (!liquids.isEmpty()) {
 					tooltip.add(I18N.localise("genetics.gui.analyst.products.squeezes") + ": ");
-					for (final ItemStack prod2 : liquids) {
-						final NBTTagCompound nbt2 = new NBTTagCompound();
+					for (ItemStack prod2 : liquids) {
+						NBTTagCompound nbt2 = new NBTTagCompound();
 						prod2.writeToNBT(nbt2);
 						tooltip.add(prod2, prod2.getDisplayName());
 					}
 				}
 			}
 		};
+
 		item.setTooltip();
-		final ControlText textWidget = new ControlTextCentered(this, y + 4, "");
-		textWidget.setColour(this.getColour());
+		ControlText textWidget = new ControlTextCentered(this, y + 4, "");
+		textWidget.setColor(getColor());
 		CraftGUIUtil.moveWidget(textWidget, new Point(12, 0));
 		item.setItemStack(key);
-		final int time = (int) (PluginApiculture.ticksPerBeeWorkCycle * 100.0 / (speed * value));
-		textWidget.setValue(I18N.localise("genetics.gui.analyst.products.every") + " " + this.getTimeString(time));
+		int time = (int) (PluginApiculture.ticksPerBeeWorkCycle * 100.0 / (speed * value));
+		textWidget.setValue(I18N.localise("genetics.gui.analyst.products.every") + " " + getTimeString(time));
 	}
 
 	@Override

@@ -8,17 +8,25 @@ buildscript {
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath "gradle.plugin.se.bjurr.gitchangelog:git-changelog-gradle-plugin:1.47"
     }
+}
+
+plugins {
+    id "com.matthewprenger.cursegradle" version "1.0.9"
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'idea'
+apply plugin: 'maven'
+apply plugin: "se.bjurr.gitchangelog.git-changelog-gradle-plugin"
+
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 version = version_major + '.' + version_minor + '.' + version_patch
 if (System.getenv("BUILD_NUMBER") != null) {
-    version = version + "-" + System.getenv("BUILD_NUMBER")
+    version = version + "." + System.getenv("BUILD_NUMBER")
 }
 group = "binnie" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "binnie-mods-1.11.2"
@@ -27,6 +35,8 @@ minecraft {
     version = mcversion + "-" + forgeversion
     mappings = mcp_mappings
     runDir = "run"
+
+    replace '@VERSION@', project.version
 }
 
 repositories {
@@ -38,18 +48,21 @@ repositories {
         name = "ic2, forestry"
         url = "http://maven.ic2.player.to/"
     }
-    ivy {
-        name 'JEI Bees'
-        artifactPattern "http://addons-origin.cursecdn.com/files/${jeibees_cf}/[module]-[revision]-[classifier].[ext]"
+    maven {
+        name = "CurseForge"
+        url = "https://minecraft.curseforge.com/api/maven/"
     }
 }
 
 dependencies {
-    deobfCompile "net.sengir.forestry:forestry_${mcversion}:${forestry_version}"
-    deobfCompile "mezz.jei:jei_${mcversion}:${jei_version}:api"
+    deobfCompile("net.sengir.forestry:forestry_${mcversion}:${forestry_version}") {
+        transitive = false;
+    }
+    deobfProvided "mezz.jei:jei_${mcversion}:${jei_version}:api"
     runtime "mezz.jei:jei_${mcversion}:${jei_version}"
-    deobfCompile name: 'jeibees', version: jeibees_version, ext: 'jar', classifier: "dev"
-	deobfCompile "net.industrial-craft:industrialcraft-2:${ic2_version}"
+    runtime "jei-bees:jeibees:${jeibees_version}:mc${mcversion}"
+    deobfProvided "net.industrial-craft:industrialcraft-2:${ic2_version}:api"
+    runtime "net.industrial-craft:industrialcraft-2:${ic2_version}"
 }
 
 processResources {
@@ -88,4 +101,29 @@ uploadArchives {
             println 'Archives upload disabled, mavenDir in gradle.properties is missing.'
         }
     }
+}
+
+task makeChangelog(type: se.bjurr.gitchangelog.plugin.gradle.GitChangelogTask) {
+    filePath = "changelog.html"
+    untaggedName = "Current release ${project.version}"
+    fromCommit = "dbc5c1a564c39e4a9c042411d1bdbe450985ce2c"
+    toRef =  "HEAD"
+    templateContent = file('changelog.mustache').getText('UTF-8')
+}
+
+curseforge {
+    apiKey = project.hasProperty('curseforge_apikey') ? project.curseforge_apikey : '0'
+    project {
+        id = curse_project_id
+        changelog = file('changelog.html')
+        changelogType = 'html'
+        releaseType = 'alpha'
+        relations {
+            requiredLibrary 'forestry'
+        }
+    }
+}
+
+afterEvaluate {
+    tasks.curseforge223525.dependsOn.add(makeChangelog)
 }

@@ -30,8 +30,8 @@ public class CeramicDesignSystem implements IDesignSystem {
 	Map<Integer, TextureAtlasSprite> secondary;
 
 	CeramicDesignSystem() {
-		this.primary = new HashMap<>();
-		this.secondary = new HashMap<>();
+		primary = new HashMap<>();
+		secondary = new HashMap<>();
 		DesignerManager.instance.registerDesignSystem(this);
 	}
 
@@ -46,12 +46,12 @@ public class CeramicDesignSystem implements IDesignSystem {
 	}
 
 	@Override
-	public IDesignMaterial getMaterial(final int id) {
+	public IDesignMaterial getMaterial(int id) {
 		return CeramicColor.get(EnumFlowerColor.get(id));
 	}
 
 	@Override
-	public int getMaterialIndex(final IDesignMaterial id) {
+	public int getMaterialIndex(IDesignMaterial id) {
 		return ((CeramicColor) id).color.ordinal();
 	}
 
@@ -64,7 +64,7 @@ public class CeramicDesignSystem implements IDesignSystem {
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getPrimarySprite(IPattern pattern) {
 		if (pattern instanceof EnumPattern) {
-			return this.primary.get(((EnumPattern) pattern).ordinal());
+			return primary.get(((EnumPattern) pattern).ordinal());
 		}
 		return null;
 	}
@@ -74,7 +74,7 @@ public class CeramicDesignSystem implements IDesignSystem {
 	@SideOnly(Side.CLIENT)
 	public TextureAtlasSprite getSecondarySprite(IPattern pattern) {
 		if (pattern instanceof EnumPattern) {
-			return this.secondary.get(((EnumPattern) pattern).ordinal());
+			return secondary.get(((EnumPattern) pattern).ordinal());
 		}
 		return null;
 	}
@@ -86,8 +86,8 @@ public class CeramicDesignSystem implements IDesignSystem {
 		for (EnumPattern pattern : EnumPattern.values()) {
 			ResourceLocation primaryLocation = new ResourceLocation(getMod().getModID(), getTexturePath() + "/" + pattern.toString().toLowerCase() + ".0");
 			ResourceLocation secondaryLocation = new ResourceLocation(getMod().getModID(), getTexturePath() + "/" + pattern.toString().toLowerCase() + ".1");
-			this.primary.put(pattern.ordinal(), textureMap.registerSprite(primaryLocation));
-			this.secondary.put(pattern.ordinal(), textureMap.registerSprite(secondaryLocation));
+			primary.put(pattern.ordinal(), textureMap.registerSprite(primaryLocation));
+			secondary.put(pattern.ordinal(), textureMap.registerSprite(secondaryLocation));
 		}
 	}
 
@@ -97,12 +97,14 @@ public class CeramicDesignSystem implements IDesignSystem {
 
 	@Override
 	public ItemStack getAdhesive() {
-		return BotanyItems.Mortar.get(1);
+		return BotanyItems.MORTAR.get(1);
 	}
 
 	@Override
 	@Nullable
-	public IDesignMaterial getMaterial(final ItemStack itemStack) {
-		return (itemStack.getItem() == Item.getItemFromBlock(Botany.ceramic)) ? this.getMaterial(itemStack.getItemDamage()) : null;
+	public IDesignMaterial getMaterial(ItemStack itemStack) {
+		return (itemStack.getItem() == Item.getItemFromBlock(Botany.ceramic))
+				? getMaterial(itemStack.getItemDamage())
+				: null;
 	}
 }

@@ -13,19 +13,19 @@ public class PageSpeciesClimate extends PageSpecies {
 	ControlClimateBar humidBar;
 	ControlBiomes biomes;
 
-	public PageSpeciesClimate(final IWidget parent, final DatabaseTab tab) {
+	public PageSpeciesClimate(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
 		new ControlTextCentered(this, 8, "Climate");
-		this.tempBar = new ControlClimateBar(this, 8, 24, 128, 12);
-		this.humidBar = new ControlClimateBar(this, 8, 42, 128, 12, true);
+		tempBar = new ControlClimateBar(this, 8, 24, 128, 12);
+		humidBar = new ControlClimateBar(this, 8, 42, 128, 12, true);
 		new ControlTextCentered(this, 70, "Biomes");
-		this.biomes = new ControlBiomes(this, 8, 90, 8, 4);
+		biomes = new ControlBiomes(this, 8, 90, 8, 4);
 	}
 
 	@Override
-	public void onValueChanged(final IAlleleSpecies species) {
-		this.tempBar.setSpecies((IAlleleBeeSpecies) species);
-		this.humidBar.setSpecies((IAlleleBeeSpecies) species);
-		this.biomes.setSpecies((IAlleleBeeSpecies) species);
+	public void onValueChanged(IAlleleSpecies species) {
+		tempBar.setSpecies((IAlleleBeeSpecies) species);
+		humidBar.setSpecies((IAlleleBeeSpecies) species);
+		biomes.setSpecies((IAlleleBeeSpecies) species);
 	}
 }

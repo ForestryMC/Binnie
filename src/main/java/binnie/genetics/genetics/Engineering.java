@@ -14,19 +14,22 @@ import binnie.genetics.item.ItemSerum;
 import binnie.genetics.item.ItemSerumArray;
 
 public class Engineering {
-	public static boolean isGeneAcceptor(final ItemStack stack) {
+	public static boolean isGeneAcceptor(ItemStack stack) {
 		if (stack.isEmpty()) {
 			return false;
 		}
+
 		Item item = stack.getItem();
 		if (item instanceof IItemSerum) {
 			return ((IItemSerum) item).getCharges(stack) == 0;
 		}
+
 		int metadata = stack.getMetadata();
-		return item == Genetics.items().getItemGenetics() && (metadata == GeneticsItems.EMPTY_SERUM.ordinal() || metadata == GeneticsItems.EMPTY_GENOME.ordinal());
+		return item == Genetics.items().getItemGenetics()
+			&& (metadata == GeneticsItems.EMPTY_SERUM.ordinal() || metadata == GeneticsItems.EMPTY_GENOME.ordinal());
 	}
 
-	public static boolean canAcceptGene(final ItemStack stack, final IGene gene) {
+	public static boolean canAcceptGene(ItemStack stack, IGene gene) {
 		Item item = stack.getItem();
 		if (item instanceof ItemSerum) {
 			return true;
@@ -38,19 +41,20 @@ public class Engineering {
 	}
 
 	@Nullable
-	public static IGene getGene(final ItemStack stack, final int chromosome) {
+	public static IGene getGene(ItemStack stack, int chromosome) {
 		if (stack.getItem() instanceof IItemSerum) {
 			return ((IItemSerum) stack.getItem()).getGene(stack, chromosome);
 		}
 		return null;
 	}
 
-	public static ItemStack addGene(final ItemStack stack, final IGene gene) {
+	public static ItemStack addGene(ItemStack stack, IGene gene) {
 		Item item = stack.getItem();
 		int metadata = stack.getMetadata();
 		if (item instanceof IItemSerum) {
 			((IItemSerum) item).addGene(stack, gene);
 		}
+
 		if (item == Genetics.items().getItemGenetics()) {
 			if (metadata == GeneticsItems.EMPTY_SERUM.ordinal()) {
 				return ItemSerum.create(gene);
@@ -61,12 +65,13 @@ public class Engineering {
 		return stack;
 	}
 
-	public static IGene[] getGenes(final ItemStack serum) {
+	public static IGene[] getGenes(ItemStack serum) {
 		if (!serum.isEmpty()) {
 			Item item = serum.getItem();
 			if (item instanceof IItemSerum) {
 				return ((IItemSerum) item).getGenes(serum);
 			}
+
 			if (item == Genetics.items().itemSequencer) {
 				SequencerItem sequencerItem = SequencerItem.create(serum);
 				if (sequencerItem != null) {
@@ -77,7 +82,7 @@ public class Engineering {
 		return new IGene[0];
 	}
 
-	public static int getCharges(final ItemStack serum) {
+	public static int getCharges(ItemStack serum) {
 		return ((IItemChargeable) serum.getItem()).getCharges(serum);
 	}
 }

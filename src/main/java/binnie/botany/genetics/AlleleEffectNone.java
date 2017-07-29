@@ -14,7 +14,7 @@ public class AlleleEffectNone implements IAlleleFlowerEffect {
 	}
 
 	@Override
-	public IEffectData validateStorage(final IEffectData storedData) {
+	public IEffectData validateStorage(IEffectData storedData) {
 		return storedData;
 	}
 
@@ -34,12 +34,12 @@ public class AlleleEffectNone implements IAlleleFlowerEffect {
 	}
 
 	@Override
-	public IEffectData doEffect(final IFlowerGenome genome, final IEffectData storedData, final World world, final int x, final int y, final int z) {
-		return storedData;
+	public IEffectData doEffect(IFlowerGenome genome, IEffectData effect, World world, int x, int y, int z) {
+		return effect;
 	}
 
 	@Override
 	public String getUnlocalizedName() {
-		return this.getUID();
+		return getUID();
 	}
 }

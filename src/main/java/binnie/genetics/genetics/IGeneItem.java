@@ -19,9 +19,9 @@ public interface IGeneItem {
 	@SideOnly(Side.CLIENT)
 	void getInfo(List<String> info);
 
-	int getColour(int p0);
+	int getColor(int renderPass);
 
-	void writeToItem(ItemStack itemStack);
+	void writeToItem(ItemStack stack);
 
 	void addGene(IGene gene);
 }
