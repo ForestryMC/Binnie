@@ -12,7 +12,7 @@
     "logoFile": "/assets/binniecore/logo.png",
     "parent": "",
     "requiredMods": [ "forestry" ],
-    "dependencies": [ "forestry" ],
+    "dependencies": [ "forestry" ]
   },
   {
     "modid": "extrabees",
