@@ -208,7 +208,7 @@ public class ControlSlot extends ControlSlotBase {
 		}
 
 		public ControlSlot assign(final InventoryType inventory, final int index) {
-			Slot slot = ((Window) parent.getTopParent()).getContainer().getOrCreateSlot(inventory, index);
+			Slot slot = ((Window) parent.getTopParent()).getContainer().createClientSlot(inventory, index);
 			return new ControlSlot(parent, x, y, slot);
 		}
 	}

@@ -68,7 +68,6 @@ public class ContainerCraftGUI extends Container {
 		this.window = window;
 		final IMachine machine = Machine.getMachine(window.getInventory());
 		if (this.getSide() == Side.SERVER) {
-			this.inventorySlots = new ListMap<>();
 			if (machine != null) {
 				final GameProfile user = machine.getOwner();
 				if (user != null) {
@@ -443,21 +442,6 @@ public class ContainerCraftGUI extends Container {
 		}
 	}
 
-	public Slot getOrCreateSlot(final InventoryType type, final int index) {
-		final IInventory inventory = this.getInventory(type);
-		Slot slot = this.getSlot(inventory, index);
-		if (slot == null) {
-			slot = new CustomSlot(inventory, index);
-			this.addSlotToContainer(slot);
-		}
-		final NBTTagCompound nbt = new NBTTagCompound();
-		nbt.setByte("t", (byte) type.ordinal());
-		nbt.setShort("i", (short) index);
-		nbt.setShort("n", (short) slot.slotNumber);
-		this.window.sendClientAction("slot-reg", nbt);
-		return slot;
-	}
-
 	protected IInventory getInventory(final InventoryType type) {
 		switch (type) {
 			case Machine: {
@@ -474,16 +458,42 @@ public class ContainerCraftGUI extends Container {
 		}
 	}
 
+	/**
+	 * Creates a slot on the client side an sends the position and the index to the server. {@link #createServerSlot(InventoryType, int, int)}
+	 */
+	public Slot createClientSlot(final InventoryType type, final int index) {
+		final IInventory inventory = this.getInventory(type);
+		Slot slot = this.getSlot(inventory, index);
+		if (slot == null) {
+			slot = new CustomSlot(inventory, index);
+			this.addSlotToContainer(slot);
+		}
+		final NBTTagCompound nbt = new NBTTagCompound();
+		nbt.setByte("t", (byte) type.ordinal());
+		nbt.setShort("i", (short) index);
+		nbt.setShort("n", (short) slot.slotNumber);
+		this.window.sendClientAction("slot-reg", nbt);
+		return slot;
+	}
+
+	/**
+	 * Creates a slot with the data that the server receives from the client. {@link #createClientSlot(InventoryType, int)}
+	 */
 	@Nullable
 	private Slot createServerSlot(final InventoryType type, final int index, final int slotNumber) {
 		final IInventory inventory = this.getInventory(type);
-		if (this.inventorySlots.get(slotNumber) != null) {
+		if(inventorySlots.size() > slotNumber && inventorySlots.get(slotNumber) != null){
 			return null;
 		}
 		final Slot slot = new CustomSlot(inventory, index);
 		slot.slotNumber = slotNumber;
-		this.inventorySlots.add(slotNumber, slot);
-		this.inventoryItemStacks.add(slotNumber, ItemStack.EMPTY);
+		if(inventorySlots.size() > slotNumber) {
+			this.inventorySlots.set(slotNumber, slot);
+			this.inventoryItemStacks.set(slotNumber, ItemStack.EMPTY);
+		}else{
+			this.inventorySlots.add(slot);
+			this.inventoryItemStacks.add(ItemStack.EMPTY);
+		}
 		return slot;
 	}
 }
