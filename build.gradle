@@ -37,7 +37,6 @@ minecraft {
     runDir = "run"
 
     replace '@VERSION@', project.version
-    replace '@BUILD_NUMBER@', getBuildNumber()
 }
 
 repositories {
