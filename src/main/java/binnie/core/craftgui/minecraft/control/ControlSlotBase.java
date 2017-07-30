@@ -1,6 +1,9 @@
 package binnie.core.craftgui.minecraft.control;
 
+import java.util.List;
+
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -61,11 +64,20 @@ public abstract class ControlSlotBase extends Control implements ITooltip {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getTooltip(final Tooltip tooltip) {
-		final ItemStack item = this.getItemStack();
-		if (item.isEmpty()) {
+		final ItemStack stack = this.getItemStack();
+		if (stack.isEmpty()) {
 			return;
 		}
-		tooltip.add(item.getTooltip(((Window) this.getTopParent()).getPlayer(), false));
+		List<String> list = stack.getTooltip(((Window) this.getTopParent()).getPlayer(), false);
+
+		for (int i = 0; i < list.size(); ++i) {
+			if (i == 0) {
+				list.set(i, stack.getRarity().rarityColor + list.get(i));
+			} else {
+				list.set(i, TextFormatting.GRAY + list.get(i));
+			}
+		}
+		tooltip.add(list);
 	}
 
 	public abstract ItemStack getItemStack();

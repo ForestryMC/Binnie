@@ -86,6 +86,11 @@ public class ControlSlot extends ControlSlotBase {
 				}
 			}
 		}
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void onRenderForeground(int guiWidth, int guiHeight) {
 		boolean highlighted = false;
 		for (final Map.Entry<EnumHighlighting, List<Integer>> highlight : ControlSlot.highlighting.entrySet()) {
 			if (highlight.getKey() == EnumHighlighting.ShiftClick && !ControlSlot.shiftClickActive) {
@@ -100,11 +105,15 @@ public class ControlSlot extends ControlSlotBase {
 		}
 		if (!highlighted && this.getTopParent().getMousedOverWidget() == this) {
 			GuiCraftGUI gui = Window.get(this).getGui();
+			GlStateManager.disableBlend();
+			GlStateManager.disableDepth();
 			if (!gui.getDraggedItem().isEmpty() && !this.slot.isItemValid(gui.getDraggedItem())) {
 				RenderUtil.drawGradientRect(new Area(1, 1, 16, 16), -1426089575, -1426089575);
 			} else {
 				RenderUtil.drawGradientRect(new Area(1, 1, 16, 16), -2130706433, -2130706433);
 			}
+			GlStateManager.enableDepth();
+			GlStateManager.enableBlend();
 		}
 	}
 
