@@ -121,34 +121,44 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 	}
 
 	public void calculateArrays() {
-		final Collection<IAllele> allAlleles = AlleleManager.alleleRegistry.getRegisteredAlleles().values();
+		Collection<IAllele> allAlleles = AlleleManager.alleleRegistry.getRegisteredAlleles().values();
 		this.resultantMutations = new HashMap<>();
 		this.furtherMutations = new HashMap<>();
 		this.allResultantMutations = new HashMap<>();
 		this.allFurtherMutations = new HashMap<>();
 		this.allActiveSpecies = new ArrayList<>();
 		this.allSpecies = new ArrayList<>();
-		for (final IAllele species : allAlleles) {
-			if (this.getSpeciesRoot().getTemplate(species.getUID()) != null) {
-				this.resultantMutations.put((IAlleleSpecies) species, new ArrayList<>());
-				this.furtherMutations.put((IAlleleSpecies) species, new ArrayList<>());
-				this.allResultantMutations.put((IAlleleSpecies) species, new ArrayList<>());
-				this.allFurtherMutations.put((IAlleleSpecies) species, new ArrayList<>());
-				this.allSpecies.add((IAlleleSpecies) species);
-				if (this.isBlacklisted(species) || species.getUID().contains("speciesBotAlfheim")) {
+		ISpeciesRoot speciesRoot = getSpeciesRoot();
+		for (IAllele allele : allAlleles) {
+			String uid = allele.getUID();
+			IAllele[] template = speciesRoot.getTemplate(uid);
+			if (template != null) {
+				IAlleleSpecies species = (IAlleleSpecies) allele;
+				this.resultantMutations.put(species, new ArrayList<>());
+				this.furtherMutations.put(species, new ArrayList<>());
+				this.allResultantMutations.put(species, new ArrayList<>());
+				this.allFurtherMutations.put(species, new ArrayList<>());
+				this.allSpecies.add(species);
+				if (isBlacklisted(allele) || uid.contains("speciesBotAlfheim")) {
 					continue;
 				}
-				this.allActiveSpecies.add((IAlleleSpecies) species);
+				this.allActiveSpecies.add((IAlleleSpecies) allele);
 			}
 		}
 		this.allMutations = new ArrayList<>();
-		final Collection<IClassification> allRegBranches = AlleleManager.alleleRegistry.getRegisteredClassifications().values();
+		Collection<IClassification> allRegBranches = AlleleManager.alleleRegistry.getRegisteredClassifications().values();
 		this.allBranches = new ArrayList<>();
-		for (final IClassification branch : allRegBranches) {
-			if (branch.getMemberSpecies().length > 0 && this.getSpeciesRoot().getTemplate(branch.getMemberSpecies()[0].getUID()) != null) {
+		for (IClassification branch : allRegBranches) {
+			IAlleleSpecies[] species = branch.getMemberSpecies();
+			if (species.length <= 0) {
+				continue;
+			}
+			IAlleleSpecies firstSpecies = species[0];
+			IAllele[] template = speciesRoot.getTemplate(firstSpecies.getUID());
+			if (template != null) {
 				boolean possible = false;
-				for (final IAlleleSpecies species2 : branch.getMemberSpecies()) {
-					if (this.allActiveSpecies.contains(species2)) {
+				for (IAlleleSpecies species2 : branch.getMemberSpecies()) {
+					if (allActiveSpecies.contains(species2)) {
 						possible = true;
 					}
 				}
@@ -158,7 +168,7 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 				this.allBranches.add(branch);
 			}
 		}
-		List<? extends IMutation> speciesMutations = this.getSpeciesRoot().getMutations(false);
+		List<? extends IMutation> speciesMutations = speciesRoot.getMutations(false);
 		if (!speciesMutations.isEmpty()) {
 			final Set<IMutation> mutations = new LinkedHashSet<>();
 			mutations.addAll(speciesMutations);
@@ -167,10 +177,10 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 				final Set<IAlleleSpecies> participatingSpecies = new LinkedHashSet<>();
 				participatingSpecies.add(mutation.getAllele0());
 				participatingSpecies.add(mutation.getAllele1());
-				for (final IAlleleSpecies species3 : participatingSpecies) {
-					this.allFurtherMutations.get(species3).add(mutation);
-					if (this.allActiveSpecies.contains(species3)) {
-						this.furtherMutations.get(species3).add(mutation);
+				for (final IAlleleSpecies species : participatingSpecies) {
+					this.allFurtherMutations.get(species).add(mutation);
+					if (this.allActiveSpecies.contains(species)) {
+						this.furtherMutations.get(species).add(mutation);
 					}
 				}
 				IAllele[] template = mutation.getTemplate();

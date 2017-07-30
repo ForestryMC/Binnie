@@ -33,6 +33,8 @@ public class AnalystPageGenome extends ControlAnalystPage {
 		this.active = active;
 		setColor(26265);
 		int y = 4;
+		int width = width();
+		int center = width / 2;
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 16;
 		ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(ind);
@@ -55,12 +57,12 @@ public class AnalystPageGenome extends ControlAnalystPage {
 		for (IChromosomeType chromo : system.getActiveKaryotype()) {
 			IAllele allele = active ? ind.getGenome().getActiveAllele(chromo) : ind.getGenome().getInactiveAllele(chromo);
 			String alleleName = system.getAlleleName(chromo, allele);
-			int height = CraftGUI.render.textHeight(alleleName, width() / 2 - 2);
-			new ControlText(scaled, new Area(0, y + (height - 9) / 2, width() / 2 - 2, 0), system.getChromosomeShortName(chromo) + " :", TextJustification.TOP_RIGHT).setColor(getColor());
-			new ControlText(scaled, new Area(width() / 2 + 2, y, width() / 2 - 2, 0), alleleName, TextJustification.TOP_LEFT).setColor(getColor());
+			int height = CraftGUI.render.textHeight(alleleName, center - 2);
+			new ControlText(scaled, new Area(0, y + (height - 9) / 2, center - 2, 0), system.getChromosomeShortName(chromo) + " :", TextJustification.TOP_RIGHT).setColor(getColor());
+			new ControlText(scaled, new Area(center + 2, y, center - 2, 0), alleleName, TextJustification.TOP_LEFT).setColor(getColor());
 			y += 3 + height;
 		}
-		setSize(new Point(width(), y + 8));
+		setSize(new Point(width, y + 8));
 	}
 
 	@Override

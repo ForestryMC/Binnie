@@ -1988,9 +1988,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 		setAlleles(template);
 
 		genome = BeeManager.beeRoot.templateAsGenome(template);
-		if(speciesBuilder.isActive()){
-			BeeManager.beeRoot.registerTemplate(template);
-		}
+		BeeManager.beeRoot.registerTemplate(template);
 	}
 
 	public IBeeMutationBuilder registerMutation(IBeeDefinition allele0, IBeeDefinition allele1, int chance) {

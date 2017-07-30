@@ -239,8 +239,11 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 	}
 
 	public static boolean isInvalidComb(ItemStack stack){
-		if(stack.isEmpty() || stack.getItem() != ExtraBees.comb){
+		if(stack.isEmpty()){
 			return true;
+		}
+		if(stack.getItem() != ExtraBees.comb){
+			return false;
 		}
 		EnumHoneyComb honeyComb = EnumHoneyComb.get(stack);
 		return !honeyComb.isActive();
