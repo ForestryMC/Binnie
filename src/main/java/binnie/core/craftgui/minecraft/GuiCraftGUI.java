@@ -91,6 +91,7 @@ public class GuiCraftGUI extends GuiContainer {
 		final InventoryPlayer playerInventory = this.mc.player.inventory;
 		this.draggedItem = playerInventory.getItemStack();
 		if (!this.draggedItem.isEmpty()) {
+			GlStateManager.translate(0, 0, 200);
 			RenderUtil.drawItem(new Point(mouseX - 8, mouseY - 8), this.draggedItem, false);
 		}
 		RenderHelper.enableGUIStandardItemLighting();
@@ -98,16 +99,18 @@ public class GuiCraftGUI extends GuiContainer {
 		GlStateManager.popMatrix();
 		GlStateManager.disableLighting();
 		GlStateManager.disableDepth();
-		final MinecraftTooltip tooltip = new MinecraftTooltip();
-		if (this.isHelpMode()) {
-			tooltip.setType(Tooltip.Type.Help);
-			this.window.getHelpTooltip(tooltip);
-		} else {
-			tooltip.setType(Tooltip.Type.Standard);
-			this.window.getTooltip(tooltip);
-		}
-		if (tooltip.exists()) {
-			this.renderTooltip(new Point(mouseX, mouseY), tooltip);
+		if(draggedItem.isEmpty()) {
+			final MinecraftTooltip tooltip = new MinecraftTooltip();
+			if (this.isHelpMode()) {
+				tooltip.setType(Tooltip.Type.Help);
+				this.window.getHelpTooltip(tooltip);
+			} else {
+				tooltip.setType(Tooltip.Type.Standard);
+				this.window.getTooltip(tooltip);
+			}
+			if (tooltip.exists()) {
+				this.renderTooltip(new Point(mouseX, mouseY), tooltip);
+			}
 		}
 		this.zLevel = 0.0f;
 		GlStateManager.enableLighting();
