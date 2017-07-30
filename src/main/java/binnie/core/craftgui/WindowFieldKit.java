@@ -31,6 +31,7 @@ import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.events.EventHandler;
 import binnie.core.craftgui.events.EventValueChanged;
+import binnie.core.craftgui.fieldkit.ControlChromosome;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.geometry.TextJustification;
@@ -43,7 +44,6 @@ import binnie.core.craftgui.resource.StyleSheetPunnett;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
-import binnie.genetics.gui.ControlChromosome;
 import binnie.genetics.machine.analyser.Analyser;
 
 public class WindowFieldKit extends Window {

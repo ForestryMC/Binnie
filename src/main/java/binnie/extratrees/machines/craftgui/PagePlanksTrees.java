@@ -11,14 +11,14 @@ import forestry.api.genetics.IAlleleSpecies;
 
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
-import binnie.core.craftgui.database.ControlSpeciesBox;
-import binnie.core.craftgui.database.DatabaseTab;
-import binnie.core.craftgui.database.PageAbstract;
-import binnie.core.craftgui.database.WindowAbstractDatabase;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.genetics.TreeBreedingSystem;
+import binnie.genetics.gui.database.ControlSpeciesBox;
+import binnie.genetics.gui.database.DatabaseTab;
+import binnie.genetics.gui.database.PageAbstract;
+import binnie.genetics.gui.database.WindowAbstractDatabase;
 
 @SideOnly(Side.CLIENT)
 public class PagePlanksTrees extends PageAbstract<ItemStack> {

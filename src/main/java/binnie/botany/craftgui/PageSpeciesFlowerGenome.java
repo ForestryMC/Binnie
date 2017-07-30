@@ -17,13 +17,13 @@ import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.controls.scroll.ControlScrollableContent;
-import binnie.core.craftgui.database.DatabaseTab;
-import binnie.core.craftgui.database.PageSpecies;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.I18N;
+import binnie.genetics.gui.database.DatabaseTab;
+import binnie.genetics.gui.database.PageSpecies;
 
 public class PageSpeciesFlowerGenome extends PageSpecies {
 	public PageSpeciesFlowerGenome(IWidget parent, DatabaseTab tab) {

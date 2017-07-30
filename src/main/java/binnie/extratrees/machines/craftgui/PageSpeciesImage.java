@@ -4,12 +4,12 @@ import forestry.api.genetics.IAlleleSpecies;
 
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextCentered;
-import binnie.core.craftgui.database.ControlDatabaseIndividualDisplay;
-import binnie.core.craftgui.database.DatabaseTab;
-import binnie.core.craftgui.database.EnumDiscoveryState;
-import binnie.core.craftgui.database.PageSpecies;
 import binnie.core.craftgui.minecraft.MinecraftGUI;
 import binnie.core.craftgui.window.Panel;
+import binnie.genetics.gui.database.ControlDatabaseIndividualDisplay;
+import binnie.genetics.gui.database.DatabaseTab;
+import binnie.genetics.gui.database.EnumDiscoveryState;
+import binnie.genetics.gui.database.PageSpecies;
 
 public class PageSpeciesImage extends PageSpecies {
 	ControlDatabaseIndividualDisplay display;
