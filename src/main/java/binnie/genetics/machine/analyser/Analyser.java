@@ -38,11 +38,13 @@ public class Analyser {
 
 	public static ItemStack analyse(ItemStack stack, World world, GameProfile username) {
 		if (!stack.isEmpty()) {
-			final ItemStack conv = Binnie.GENETICS.getConversionStack(stack);
+			ItemStack conv = Binnie.GENETICS.getConversionStack(stack).copy();
 			if (!conv.isEmpty()) {
+				conv.setCount(stack.getCount());
 				stack = conv;
+
 			}
-			final ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
+			ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
 			if (root != null) {
 				final IIndividual ind = root.getMember(stack);
 				ind.analyze();
