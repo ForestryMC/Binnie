@@ -8,6 +8,7 @@ import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.geometry.Area;
 import binnie.core.util.I18N;
+import binnie.genetics.gui.analyst.AnalystConstants;
 import binnie.genetics.gui.analyst.ControlAnalystPage;
 import binnie.genetics.gui.analyst.ControlIndividualDisplay;
 
@@ -24,6 +25,6 @@ public class AnalystPageSpecimen extends ControlAnalystPage {
 
 	@Override
 	public String getTitle() {
-		return I18N.localise("genetics.gui.analyst.specimen.title");
+		return I18N.localise(AnalystConstants.SPECIMEN_KEY + ".title");
 	}
 }

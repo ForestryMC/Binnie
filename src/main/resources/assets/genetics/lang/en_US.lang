@@ -79,14 +79,42 @@ genetics.machine.adv_machine.splicer.info=The Splicer is an incredibly powerful 
 genetics.machine.adv_machine.splicer.tooltips.slots.serum=Serum Vials & Arrays
 genetics.machine.adv_machine.splicer.tooltips.slots.individual=Splicable Individual
 
-genetics.gui.analyst.biology.title=Biology
-genetics.gui.analyst.biology.bee.allday=Active all day and night
-genetics.gui.analyst.biology.bee.day=Active during the day
-genetics.gui.analyst.biology.bee.night=Active at night
-genetics.gui.analyst.biology.bee.norain=Cannot work during rain
-genetics.gui.analyst.biology.bee.rain=Can work during rain
-genetics.gui.analyst.biology.bee.nosky=Can work underground
-genetics.gui.analyst.biology.bee.sky=Cannot work underground
+genetics.gui.analyst.biology=Biology
+genetics.gui.analyst.biology.allDay=Active all day and night
+genetics.gui.analyst.biology.night=Active at night
+genetics.gui.analyst.biology.day=Active during the day
+genetics.gui.analyst.biology.notRain=Cannot work during rain
+genetics.gui.analyst.biology.rain=Can work during rain
+genetics.gui.analyst.biology.underground=Can work underground
+genetics.gui.analyst.biology.notUnderground=Cannot work underground
+genetics.gui.analyst.biology.flammable=Flammable
+genetics.gui.analyst.biology.nonflammable=Nonflammable
+genetics.gui.analyst.biology.sappiness=Sappiness: %s
+genetics.gui.analyst.biology.fertility.drones=%d drones per hive
+genetics.gui.analyst.biology.fertility.drone=1 drone per hive
+genetics.gui.analyst.biology.fertility.moths=Lays %d caterpillars before dying
+genetics.gui.analyst.biology.fertility.moth=Lays 1 caterpillar before dying
+genetics.gui.analyst.biology.fertility.leaves=1 Sapling per %d leaves
+genetics.gui.analyst.biology.fertility.leaf=1 Sapling per 1 leaf
+genetics.gui.analyst.biology.caterpillarGestation=Caterpillar Gestation
+genetics.gui.analyst.biology.flightSpeed=Flight Speed
+genetics.gui.analyst.biology.blocksPerSec=%d blocks per second
+genetics.gui.analyst.biology.mothSpawn.perLeaf=Butterflies spawn every\n%s per leaf
+genetics.gui.analyst.biology.mothSpawn=Butterflies spawn every\n%s
+genetics.gui.analyst.biology.plantTypes=Plant Types
+genetics.gui.analyst.biology.averageLifespan=Average Lifespan
+genetics.gui.analyst.biology.pollination=Pollination
+genetics.gui.analyst.biology.seedDispersal=Seed Dispersal
+genetics.gui.analyst.biology.perLifetime=%d per lifetime
+genetics.gui.analyst.biology.mcDays=%s MC days
+
+genetics.gui.analyst.behaviour=Behaviour
+genetics.gui.analyst.behaviour.effect=Effect: %s
+genetics.gui.analyst.behaviour.pollinatesNearby=Pollinates nearby
+genetics.gui.analyst.behaviour.withinBlocks=Within %d blocks
+genetics.gui.analyst.behaviour.everyTime=Every %s
+genetics.gui.analyst.behaviour.territory=Territory: %dx%dx%d
+genetics.gui.analyst.behaviour.metabolism=Metabolism: %s
 
 genetics.gui.analyst.genome.title=%s Genome
 genetics.gui.analyst.genome.active=Active
@@ -108,9 +136,9 @@ genetics.gui.analyst.mutations.bee.hive=Found in any Hive
 genetics.gui.analyst.mutations.bee.villager=Bought from Villagers
 genetics.gui.analyst.mutations.bee.dungeon=Dungeon Chests
 
-genetics.gui.analyst.desc.title=Description
-genetics.gui.analyst.desc.discovered=Discovered by
-genetics.gui.analyst.desc.complexity=Genetic Complexity
+genetics.gui.analyst.description.title=Description
+genetics.gui.analyst.description.discovered=Discovered by
+genetics.gui.analyst.description.complexity=Genetic Complexity
 
 //Flower
 genetics.gui.analyst.soil.title=Soil

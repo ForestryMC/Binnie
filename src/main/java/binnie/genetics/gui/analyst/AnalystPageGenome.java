@@ -67,12 +67,12 @@ public class AnalystPageGenome extends ControlAnalystPage {
 
 	@Override
 	public String getTitle() {
-		String stateKey = "genetics.gui.analyst.genome.";
+		String stateKey = AnalystConstants.GENOME_KEY;
 		if(active){
-			stateKey+="active";
+			stateKey+=".active";
 		}else{
-			stateKey+="inactive";
+			stateKey+=".inactive";
 		}
-		return I18N.localise("genetics.gui.analyst.genome.title", I18N.localise(stateKey));
+		return I18N.localise(AnalystConstants.GENOME_KEY + ".title", I18N.localise(stateKey));
 	}
 }

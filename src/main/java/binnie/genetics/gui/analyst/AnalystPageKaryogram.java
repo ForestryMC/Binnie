@@ -45,6 +45,6 @@ public class AnalystPageKaryogram extends ControlAnalystPage {
 
 	@Override
 	public String getTitle() {
-		return I18N.localise("genetics.gui.analyst.karyogram.title");
+		return I18N.localise(AnalystConstants.KARYOGRAM_KEY+ ".title");
 	}
 }

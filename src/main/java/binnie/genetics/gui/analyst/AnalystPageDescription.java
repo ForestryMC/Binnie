@@ -59,10 +59,10 @@ public class AnalystPageDescription extends ControlAnalystPage {
 		y += 10;
 		new ControlTextCentered(this, y, TextFormatting.ITALIC + branchBinomial + " " + species.getBinomial() + TextFormatting.RESET).setColor(getColor());
 		y += 20;
-		String discovered = I18N.localise("genetics.gui.analyst.desc.discovered") + " " + TextFormatting.BOLD + authority + TextFormatting.RESET;
+		String discovered = I18N.localise(AnalystConstants.DESCRIPTION_KEY + ".discovered") + " " + TextFormatting.BOLD + authority + TextFormatting.RESET;
 		new ControlTextCentered(this, y, discovered).setColor(getColor());
 		y += (int) (3.0f + CraftGUI.render.textHeight(discovered, width()));
-		new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.desc.complexity") + ": " + species.getComplexity()).setColor(getColor());
+		new ControlTextCentered(this, y, I18N.localise(AnalystConstants.DESCRIPTION_KEY + ".complexity") + ": " + species.getComplexity()).setColor(getColor());
 		y += 26;
 		ControlText descText = new ControlText(this, new Area(8, y, width() - 16, 0), descBody + "§r", TextJustification.TOP_CENTER);
 		IWidget signatureText = new ControlText(this, new Area(8, y, width() - 16, 0), descSig + "§r", TextJustification.BOTTOM_RIGHT);
@@ -75,6 +75,6 @@ public class AnalystPageDescription extends ControlAnalystPage {
 
 	@Override
 	public String getTitle() {
-		return I18N.localise("genetics.gui.analyst.desc.title");
+		return I18N.localise(AnalystConstants.DESCRIPTION_KEY + ".title");
 	}
 }
