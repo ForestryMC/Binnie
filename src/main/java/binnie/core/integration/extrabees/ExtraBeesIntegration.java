@@ -17,7 +17,7 @@ import binnie.core.IInitializable;
 public class ExtraBeesIntegration implements IInitializable {
 
 	private static final boolean loaded;
-	public static IAlleleBeeSpecies water, rock, basalt;
+	public static IAlleleBeeSpecies water, rock, basalt, marble;
 	public static Block hive;
 	public static Item dictionary;
 
@@ -36,16 +36,16 @@ public class ExtraBeesIntegration implements IInitializable {
 
 	@Override
 	public void init() {
-		water = getExtraBeesSpecies("water");
-		rock = getExtraBeesSpecies("rock");
-		basalt = getExtraBeesSpecies("basalt");
 		hive = Preconditions.checkNotNull(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("extrabees", "hive")));
 		dictionary = Preconditions.checkNotNull(ForgeRegistries.ITEMS.getValue(new ResourceLocation("genetics", "dictionary")));
 	}
 
 	@Override
 	public void postInit() {
-
+		water = getExtraBeesSpecies("water");
+		rock = getExtraBeesSpecies("rock");
+		basalt = getExtraBeesSpecies("basalt");
+		marble = getExtraBeesSpecies("marble");
 	}
 
 	private IAlleleBeeSpecies getExtraBeesSpecies(String species) {

@@ -6,11 +6,11 @@ import net.minecraft.util.text.translation.I18n;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-import binnie.extrabees.genetics.ExtraBeesSpecies;
+import binnie.extrabees.genetics.ExtraBeeDefinition;
 
 public class ExtraBeesCommonProxy {
 
-	public void registerBeeModel(ExtraBeesSpecies type) {
+	public void registerBeeModel(ExtraBeeDefinition type) {
 	}
 
 	public Block registerBlock(Block block) {

@@ -24,7 +24,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.IAlleleBeeSpecies;
-import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.AlleleSpeciesRegisterEvent;
 import forestry.core.gui.GuiIdRegistry;
 import forestry.core.gui.GuiType;
@@ -32,10 +31,8 @@ import forestry.core.proxy.Proxies;
 
 import binnie.Constants;
 import binnie.extrabees.alveary.TileEntityExtraBeesAlvearyPart;
-import binnie.extrabees.genetics.ExtraBeeMutation;
-import binnie.extrabees.genetics.ExtraBeesBranch;
+import binnie.extrabees.genetics.ExtraBeeDefinition;
 import binnie.extrabees.genetics.ExtraBeesFlowers;
-import binnie.extrabees.genetics.ExtraBeesSpecies;
 import binnie.extrabees.genetics.effect.ExtraBeesEffect;
 import binnie.extrabees.init.BlockRegister;
 import binnie.extrabees.init.ItemRegister;
@@ -110,8 +107,7 @@ public class ExtraBees {
 		GameRegistry.registerWorldGenerator(extraBeesWorldGenerator, 0);
 		ExtraBeesEffect.doInit();
 		ExtraBeesFlowers.doInit();
-		ExtraBeesSpecies.doInit();
-		ExtraBeeMutation.doInit();
+		ExtraBeeDefinition.doInit();
 	}
 
 	@Mod.EventHandler
@@ -136,9 +132,6 @@ public class ExtraBees {
 		if(event.getRoot() != BeeManager.beeRoot){
 			return;
 		}
-		ExtraBeesBranch.setSpeciesBranches();
-		for (final ExtraBeesSpecies species : ExtraBeesSpecies.values()) {
-			AlleleManager.alleleRegistry.registerAllele(species);
-		}
+		ExtraBeeDefinition.doPreInit();
 	}
 }

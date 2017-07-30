@@ -9,12 +9,17 @@ import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IHiveDrop;
 import forestry.api.genetics.IAllele;
+import forestry.apiculture.genetics.IBeeDefinition;
 
 public class HiveDrop implements IHiveDrop {
 
 	private IAllele[] template;
 	private NonNullList<ItemStack> extra;
 	private int chance;
+
+	public HiveDrop(IBeeDefinition species, final int chance) {
+		this(species.getTemplate(), NonNullList.create(), chance);
+	}
 
 	public HiveDrop(final IAlleleBeeSpecies species, final int chance) {
 		this(Utils.getBeeRoot().getTemplate(species), NonNullList.create(), chance);

@@ -75,10 +75,10 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 	WITHER,
 	WATER,
 	SLOW,
-	BonemealSapling,
-	BonemealFruit,
-	BonemealMushroom,
-	Power;
+	BONEMEAL_SAPLING,
+	BONEMEAL_FRUIT,
+	BONEMEAL_MUSHROOM,
+	POWER;
 
 	private static final List<Birthday> birthdays = new ArrayList<>();
 
@@ -436,27 +436,27 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 				}
 				break;
 			}
-			case BonemealSapling: {
+			case BONEMEAL_SAPLING: {
 				if (world.rand.nextInt(20) > 1) {
 					return storedData;
 				}
-				if (ExtraBeesFlowers.Sapling.isAcceptedFlower(world, pos)) {
+				if (ExtraBeesFlowers.SAPLING.isAcceptedFlower(world, pos)) {
 					ItemDye.applyBonemeal(new ItemStack(Blocks.DIRT, 1), world, pos);
 					break;
 				}
 				break;
 			}
-			case BonemealFruit: {
+			case BONEMEAL_FRUIT: {
 				if (world.rand.nextInt(20) > 1) {
 					return storedData;
 				}
-				if (ExtraBeesFlowers.Fruit.isAcceptedFlower(world, pos)) {
+				if (ExtraBeesFlowers.FRUIT.isAcceptedFlower(world, pos)) {
 					ItemDye.applyBonemeal(new ItemStack(Blocks.DIRT, 1), world, pos);
 					break;
 				}
 				break;
 			}
-			case BonemealMushroom: {
+			case BONEMEAL_MUSHROOM: {
 				if (world.rand.nextInt(20) > 1) {
 					return storedData;
 				}
@@ -466,7 +466,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 				}
 				break;
 			}
-			case Power: {
+			case POWER: {
 				final TileEntity tile2 = world.getTileEntity(pos);
 				if (tile2.hasCapability(CapabilityEnergy.ENERGY, EnumFacing.UP)) {
 					IEnergyStorage storage = tile2.getCapability(CapabilityEnergy.ENERGY, EnumFacing.UP);

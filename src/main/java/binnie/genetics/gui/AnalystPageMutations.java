@@ -60,6 +60,9 @@ public class AnalystPageMutations extends ControlAnalystPage {
 				if (ind.getGenome().getPrimary() == ExtraBeesIntegration.basalt) {
 					hive = new ItemStack(ExtraBeesIntegration.hive, 1, 2);
 				}
+				if (ind.getGenome().getPrimary() == ExtraBeesIntegration.marble) {
+					hive = new ItemStack(ExtraBeesIntegration.hive, 1, 3);
+				}
 			}
 			if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Forest.getAllele()) {
 				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 1);

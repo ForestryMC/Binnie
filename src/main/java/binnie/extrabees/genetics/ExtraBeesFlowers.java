@@ -14,21 +14,19 @@ import net.minecraft.world.World;
 
 import net.minecraftforge.common.EnumPlantType;
 
+import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.FlowerManager;
 import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleFlowers;
 import forestry.api.genetics.ICheckPollinatable;
-import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IFlowerProvider;
 import forestry.api.genetics.IFruitBearer;
 import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.core.util.I18N;
 import binnie.extrabees.utils.Utils;
 
-public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromosomeType {
+public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers {
 	WATER,
 	SUGAR,
 	ROCK,
@@ -37,9 +35,9 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 	REDSTONE,
 	WOOD,
 	LEAVES,
-	Sapling,
-	Fruit,
-	Mystical;
+	SAPLING,
+	FRUIT,
+	MYSTICAL;
 
 	boolean dominant;
 
@@ -80,7 +78,7 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 			FlowerManager.flowerRegistry.registerAcceptableFlower(block, getUID());
 		}
 
-		AlleleManager.alleleRegistry.registerAllele(this, this);
+		AlleleManager.alleleRegistry.registerAllele(this, EnumBeeChromosome.FLOWER_PROVIDER);
 	}
 
 	public List<Block> getAcceptableBlocks() {
@@ -103,13 +101,13 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 			case DEAD: {
 				return Collections.singletonList(Blocks.DEADBUSH);
 			}
-			case Fruit: {
+			case FRUIT: {
 				return Collections.emptyList(); // TODO: what is this supposed to be? It was Items.APPLE before.
 			}
 			case LEAVES: {
 				return Collections.singletonList(Blocks.LEAVES);
 			}
-			case Sapling: {
+			case SAPLING: {
 				return Collections.singletonList(Blocks.SAPLING);
 			}
 			case WOOD: {
@@ -145,16 +143,16 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 			case WOOD: {
 				return block.isWood(world, pos);
 			}
-			case Fruit: {
+			case FRUIT: {
 				return world.getTileEntity(pos) instanceof IFruitBearer;
 			}
 			case LEAVES: {
 				return block.isLeaves(world.getBlockState(pos), world, pos);
 			}
-			case Sapling: {
+			case SAPLING: {
 				return block.getClass().getName().toLowerCase().contains("sapling");
 			}
-			case Mystical: {
+			case MYSTICAL: {
 				return block == Utils.getBotaniaBlock("flower");
 			}
 			default: {
@@ -199,23 +197,13 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 	}*/
 
 	@Override
-	public Class<? extends IAllele> getAlleleClass() {
-		return getClass();
-	}
-
-	@Override
-	public ISpeciesRoot getSpeciesRoot() {
-		return AlleleManager.alleleRegistry.getSpeciesRoot(getUID());
-	}
-
-	@Override
 	public boolean isAcceptedPollinatable(World world, ICheckPollinatable pollinatable) {
 		return pollinatable.getPlantType() != EnumPlantType.Nether;
 	}
 
 	@Override
 	public NonNullList<ItemStack> affectProducts(World world, IIndividual individual, BlockPos pos, NonNullList<ItemStack> products) {
-		if (this == ExtraBeesFlowers.Mystical) {
+		if (this == ExtraBeesFlowers.MYSTICAL) {
 			final NonNullList<ItemStack> prods = NonNullList.create();
 			prods.addAll(products);
 			for (int k = 0; k < 50; ++k) {
