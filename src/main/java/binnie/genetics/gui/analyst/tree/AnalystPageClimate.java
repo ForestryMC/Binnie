@@ -27,6 +27,7 @@ import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.genetics.Tolerance;
 import binnie.core.util.I18N;
+import binnie.genetics.gui.analyst.AnalystConstants;
 import binnie.genetics.gui.analyst.ControlAnalystPage;
 import binnie.genetics.gui.analyst.ControlBiome;
 import binnie.genetics.gui.analyst.ControlToleranceBar;
@@ -54,17 +55,17 @@ public class AnalystPageClimate extends ControlAnalystPage {
 		int y = 4;
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 16;
-		new ControlText(this, new Area(4, y, width() - 8, 14), I18N.localise("genetics.gui.analyst.climate.temp"), TextJustification.MIDDLE_CENTER).setColor(getColor());
+		new ControlText(this, new Area(4, y, width() - 8, 14), I18N.localise(AnalystConstants.CLIMATE_KEY + ".temp"), TextJustification.MIDDLE_CENTER).setColor(getColor());
 		y += 12;
 		createTemperatureBar(this, (width() - 100) / 2, y, 100, 10, temp, tempTol);
 		y += 16;
 		if (!(ind instanceof IFlower)) {
-			new ControlText(this, new Area(4, y, width() - 8, 14), I18N.localise("genetics.gui.analyst.climate.hum"), TextJustification.MIDDLE_CENTER).setColor(getColor());
+			new ControlText(this, new Area(4, y, width() - 8, 14), I18N.localise(AnalystConstants.CLIMATE_KEY + ".hum"), TextJustification.MIDDLE_CENTER).setColor(getColor());
 			y += 12;
 			createHumidity(this, (width() - 100) / 2, y, 100, 10, humid, humidTol);
 			y += 16;
 		}
-		new ControlText(this, new Area(4, y, width() - 8, 14), I18N.localise("genetics.gui.analyst.climate.biomes"), TextJustification.MIDDLE_CENTER).setColor(getColor());
+		new ControlText(this, new Area(4, y, width() - 8, 14), I18N.localise(AnalystConstants.CLIMATE_KEY + ".biomes"), TextJustification.MIDDLE_CENTER).setColor(getColor());
 		y += 12;
 		List<Biome> biomes = new ArrayList<>();
 		for (Biome biome : Biome.EXPLORATION_BIOMES_LIST) { //TODO check
@@ -128,6 +129,6 @@ public class AnalystPageClimate extends ControlAnalystPage {
 
 	@Override
 	public String getTitle() {
-		return I18N.localise("genetics.gui.analyst.climate.title");
+		return I18N.localise(AnalystConstants.CLIMATE_KEY + ".title");
 	}
 }

@@ -1,7 +1,6 @@
 package binnie.genetics.gui.analyst;
 
 import java.text.DecimalFormat;
-import java.util.Locale;
 
 import net.minecraft.util.text.TextFormatting;
 
@@ -174,10 +173,10 @@ public class AnalystPageBiology extends ControlAnalystPage {
 				.setColor(getColor());
 
 			y += 34;
-			new ControlTextCentered(this, y, I18N.localise(AnalystConstants.BIOLOGY_KEY + ".planTypes")).setColor(getColor());
+			new ControlTextCentered(this, y, I18N.localise(AnalystConstants.BIOLOGY_KEY + ".plantTypes")).setColor(getColor());
 
 			y += 12;
-			new ControlTextCentered(this, y, TextFormatting.ITALIC + tree.getGenome().getPrimary().getPlantType().toString().toLowerCase(Locale.ENGLISH))
+			new ControlTextCentered(this, y, TextFormatting.ITALIC + tree.getGenome().getPrimary().getPlantType().toString())
 				.setColor(getColor());
 		}
 		if (ind instanceof IFlower) {

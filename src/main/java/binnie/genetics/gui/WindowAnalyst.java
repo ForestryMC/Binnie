@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -395,7 +396,11 @@ public class WindowAnalyst extends Window {
 					public void onRenderBackground(int guiWidth, int guiHeight) {
 						boolean active = value == leftPage.getContent() || value == rightPage.getContent();
 						RenderUtil.setColour((active ? -16777216 : 1140850688) + value.getColor());
+						GlStateManager.pushMatrix();
+						GlStateManager.enableBlend();
 						CraftGUI.render.texture(CraftGUITexture.TabSolid, getArea().inset(1));
+						GlStateManager.disableBlend();
+						GlStateManager.popMatrix();
 						RenderUtil.setColour(value.getColor());
 						CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea().inset(1));
 						super.onRenderBackground(guiWidth, guiHeight);

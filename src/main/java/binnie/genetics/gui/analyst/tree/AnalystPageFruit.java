@@ -27,6 +27,7 @@ import binnie.core.craftgui.geometry.Point;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.I18N;
 import binnie.core.util.UniqueItemStackSet;
+import binnie.genetics.gui.analyst.AnalystConstants;
 import binnie.genetics.gui.analyst.AnalystPageProduce;
 
 public class AnalystPageFruit extends AnalystPageProduce {
@@ -37,7 +38,7 @@ public class AnalystPageFruit extends AnalystPageProduce {
 		int y = 4;
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 12;
-		new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise("genetics.gui.analyst.fruit.yield") + ": " + Binnie.GENETICS.treeBreedingSystem.getAlleleName(EnumTreeChromosome.YIELD, ind.getGenome().getActiveAllele(EnumTreeChromosome.YIELD))).setColor(getColor());
+		new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise(AnalystConstants.FRUIT_KEY + ".yield") + ": " + Binnie.GENETICS.treeBreedingSystem.getAlleleName(EnumTreeChromosome.YIELD, ind.getGenome().getActiveAllele(EnumTreeChromosome.YIELD))).setColor(getColor());
 		y += 20;
 		Collection<ItemStack> products = new UniqueItemStackSet();
 		Collection<ItemStack> specialties = new UniqueItemStackSet();
@@ -55,7 +56,7 @@ public class AnalystPageFruit extends AnalystPageProduce {
 			throw Throwables.propagate(e);
 		}
 		if (products.size() > 0) {
-			new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.fruit.natural")).setColor(getColor());
+			new ControlTextCentered(this, y, I18N.localise(AnalystConstants.FRUIT_KEY + ".natural")).setColor(getColor());
 			y += 10;
 			int w = products.size() * 18 - 2;
 			int i = 0;
@@ -67,7 +68,7 @@ public class AnalystPageFruit extends AnalystPageProduce {
 			y += 26;
 		}
 		if (specialties.size() > 0) {
-			new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.fruit.specialty")).setColor(getColor());
+			new ControlTextCentered(this, y, I18N.localise(AnalystConstants.FRUIT_KEY + ".specialty")).setColor(getColor());
 			y += 10;
 			int w = products.size() * 18 - 2;
 			int i = 0;
@@ -84,14 +85,14 @@ public class AnalystPageFruit extends AnalystPageProduce {
 		Collection<ItemStack> refinedProducts = new UniqueItemStackSet();
 		refinedProducts.addAll(getAllProductsAndFluids(allProducts));
 		if (refinedProducts.size() > 0) {
-			y = getRefined(I18N.localise("genetics.gui.analyst.fruit.refined"), y, refinedProducts);
+			y = getRefined(I18N.localise(AnalystConstants.FRUIT_KEY + ".refined"), y, refinedProducts);
 			y += 8;
 		}
 		if (products.size() == 0 && specialties.size() == 0) {
-			new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.fruit.noFruits")).setColor(getColor());
+			new ControlTextCentered(this, y, I18N.localise(AnalystConstants.FRUIT_KEY + ".noFruits")).setColor(getColor());
 			y += 28;
 		}
-		new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.fruit.possible")).setColor(getColor());
+		new ControlTextCentered(this, y, I18N.localise(AnalystConstants.FRUIT_KEY + ".possible")).setColor(getColor());
 		y += 12;
 		Collection<IAllele> fruitAlleles = Binnie.GENETICS.getChromosomeMap(Binnie.GENETICS.getTreeRoot()).get(EnumTreeChromosome.FRUITS);
 		for (IFruitFamily fam : ind.getGenome().getPrimary().getSuitableFruit()) {
@@ -125,6 +126,6 @@ public class AnalystPageFruit extends AnalystPageProduce {
 
 	@Override
 	public String getTitle() {
-		return I18N.localise("genetics.gui.analyst.fruit.title");
+		return I18N.localise(AnalystConstants.FRUIT_KEY + ".title");
 	}
 }

@@ -12,4 +12,8 @@ public class AnalystConstants {
 	public static final String KARYOGRAM_KEY = KEY + ".karyogram";
 	public static final String MUTATIONS_KEY = KEY + ".mutations";
 	public static final String SPECIMEN_KEY = KEY + ".specimen";
+	public static final String WOOD_KEY = KEY + ".wood";
+	public static final String GROWTH_KEY = KEY + ".growth";
+	public static final String FRUIT_KEY = KEY + ".fruit";
+	public static final String CLIMATE_KEY = KEY + ".climate";
 }

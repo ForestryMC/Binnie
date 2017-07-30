@@ -22,6 +22,7 @@ import binnie.core.craftgui.minecraft.control.ControlIconDisplay;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.I18N;
 import binnie.core.util.UniqueItemStackSet;
+import binnie.genetics.gui.analyst.AnalystConstants;
 import binnie.genetics.gui.analyst.AnalystPageProduce;
 import binnie.genetics.item.ModuleItems;
 
@@ -35,9 +36,9 @@ public class AnalystPageWood extends AnalystPageProduce {
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 12;
 		if (((IAlleleBoolean) ind.getGenome().getActiveAllele(EnumTreeChromosome.FIREPROOF)).getValue()) {
-			new ControlIconDisplay(this, (width() - 16) / 2, y, ModuleItems.iconNoFire).addTooltip(I18N.localise("genetics.gui.analyst.wood.fireproof"));
+			new ControlIconDisplay(this, (width() - 16) / 2, y, ModuleItems.iconNoFire).addTooltip(I18N.localise(AnalystConstants.WOOD_KEY + ".fireproof"));
 		} else {
-			new ControlIconDisplay(this, (width() - 16) / 2, y, ModuleItems.iconFire).addTooltip(I18N.localise("genetics.gui.analyst.wood.flammable"));
+			new ControlIconDisplay(this, (width() - 16) / 2, y, ModuleItems.iconFire).addTooltip(I18N.localise(AnalystConstants.WOOD_KEY + ".flammable"));
 		}
 		y += 30;
 		Collection<ItemStack> products = new UniqueItemStackSet();
@@ -47,9 +48,10 @@ public class AnalystPageWood extends AnalystPageProduce {
 		if (!stackWood.isEmpty()) {
 			products.add(stackWood);
 		}
-		products.addAll(ind.getGenome().getFruitProvider().getProducts().keySet());
+		//Why ?
+		//products.addAll(ind.getGenome().getFruitProvider().getProducts().keySet());
 		if (products.size() > 0) {
-			new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.wood.logs")).setColor(getColor());
+			new ControlTextCentered(this, y, I18N.localise(AnalystConstants.WOOD_KEY + ".logs")).setColor(getColor());
 			y += 10;
 			int w = products.size() * 18 - 2;
 			int i = 0;
@@ -57,6 +59,7 @@ public class AnalystPageWood extends AnalystPageProduce {
 				ControlItemDisplay d = new ControlItemDisplay(this, (width() - w) / 2 + 18 * i, y);
 				d.setTooltip();
 				d.setItemStack(stack);
+				i++;
 			}
 			y += 26;
 		}
@@ -65,11 +68,11 @@ public class AnalystPageWood extends AnalystPageProduce {
 		Collection<ItemStack> refinedProducts = new UniqueItemStackSet();
 		refinedProducts.addAll(getAllProductsAndFluids(allProducts));
 		if (refinedProducts.size() > 0) {
-			y = getRefined(I18N.localise("genetics.gui.analyst.wood.refined"), y, refinedProducts);
+			y = getRefined(I18N.localise(AnalystConstants.WOOD_KEY + ".refined"), y, refinedProducts);
 			y += 8;
 		}
 		if (products.size() == 0) {
-			new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.wood.noFruits")).setColor(getColor());
+			new ControlTextCentered(this, y, I18N.localise(AnalystConstants.WOOD_KEY + ".noFruits")).setColor(getColor());
 			y += 28;
 		}
 		setSize(new Point(width(), y + 8));
@@ -77,6 +80,6 @@ public class AnalystPageWood extends AnalystPageProduce {
 
 	@Override
 	public String getTitle() {
-		return I18N.localise("genetics.gui.analyst.wood.title");
+		return I18N.localise(AnalystConstants.WOOD_KEY + ".title");
 	}
 }
