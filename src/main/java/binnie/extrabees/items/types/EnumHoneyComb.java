@@ -66,16 +66,19 @@ public enum EnumHoneyComb implements IEBEnumItem {
 	IRIDIUM,
 	PLATINUM(3552564, 10125468),
 	LAPIS(3552564, 4009179),
-	SODALITE,
-	PYRITE,
-	BAUXITE,
-	CINNABAR,
-	SPHALERITE,
+	/* Tech Reborn*/
+	SODALITE(3552564, 1396717),
+	PYRITE(3552564, 14919481),
+	BAUXITE(3552564, 10249472),
+	CINNABAR(3552564, 4665867),
+	SPHALERITE(3552564, 14406941),
+	/* Gems */
 	EMERALD(3552564, 1900291),
 	RUBY(3552564, 14024704),
 	SAPPHIRE(3552564, 673791),
 	OLIVINE,
 	DIAMOND(3552564, 8371706),
+	/* Dyes */
 	RED(13388876, 16711680),
 	YELLOW(15066419, 16768256),
 	BLUE(10072818, 8959),
@@ -134,7 +137,9 @@ public enum EnumHoneyComb implements IEBEnumItem {
 	}
 
 	public void addRecipe() {
-		RecipeManagers.centrifugeManager.addRecipe(20, this.get(1), this.products);
+		if(isActive()) {
+			RecipeManagers.centrifugeManager.addRecipe(20, this.get(1), this.products);
+		}
 	}
 
 	@Override

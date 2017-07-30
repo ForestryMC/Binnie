@@ -426,11 +426,66 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 			registerMutation(BeeDefinition.IMPERIAL, MINERAL, 5);
 		}
 	},
-	//SODALITE,
-	//PYRITE,
-	//BAUXITE,
-	//CINNABAR,
-	//SPHALERITE,
+	SODALITE(ExtraBeeBranchDefinition.MINERAL, "soda", false, new Color(0x154fed), new Color(0x999999)){
+		@Override
+		protected void setSpeciesProperties(IAlleleBeeSpeciesBuilder beeSpecies) {
+			beeSpecies.addProduct(EnumHoneyComb.STONE.get(1), 0.20F)
+				.addSpecialty(EnumHoneyComb.SODALITE.get(1), 0.04F);
+		}
+
+		@Override
+		protected void registerMutations() {
+			registerMutation(LAPIS, BeeDefinition.DILIGENT, 5);
+		}
+	},
+	PYRITE(ExtraBeeBranchDefinition.MINERAL, "pyrus", false, new Color(0xe3a739), new Color(0x999999)){
+		@Override
+		protected void setSpeciesProperties(IAlleleBeeSpeciesBuilder beeSpecies) {
+			beeSpecies.addProduct(EnumHoneyComb.STONE.get(1), 0.20F)
+				.addSpecialty(EnumHoneyComb.PYRITE.get(1), 0.05F);
+		}
+
+		@Override
+		protected void registerMutations() {
+			registerMutation(IRON, BeeDefinition.SINISTER, 5);
+		}
+	},
+	BAUXITE(ExtraBeeBranchDefinition.MINERAL, "bauxus", false, new Color(0x9c6500), new Color(0x999999)){
+		@Override
+		protected void setSpeciesProperties(IAlleleBeeSpeciesBuilder beeSpecies) {
+			beeSpecies.addProduct(EnumHoneyComb.STONE.get(1), 0.20F)
+				.addSpecialty(EnumHoneyComb.BAUXITE.get(1), 0.04F);
+		}
+
+		@Override
+		protected void registerMutations() {
+			registerMutation(MINERAL, BeeDefinition.DILIGENT, 5);
+		}
+	},
+	CINNABAR(ExtraBeeBranchDefinition.MINERAL, "cinna", false, new Color(0x47320b), new Color(0x999999)){
+		@Override
+		protected void setSpeciesProperties(IAlleleBeeSpeciesBuilder beeSpecies) {
+			beeSpecies.addProduct(EnumHoneyComb.STONE.get(1), 0.20F)
+				.addSpecialty(EnumHoneyComb.CINNABAR.get(1), 0.04F);
+		}
+
+		@Override
+		protected void registerMutations() {
+			registerMutation(MINERAL, BeeDefinition.SINISTER, 5);
+		}
+	},
+	SPHALERITE(ExtraBeeBranchDefinition.MINERAL, "spahleri", false, new Color(0xdbd51d), new Color(0x999999)){
+		@Override
+		protected void setSpeciesProperties(IAlleleBeeSpeciesBuilder beeSpecies) {
+			beeSpecies.addProduct(EnumHoneyComb.STONE.get(1), 0.20F)
+				.addSpecialty(EnumHoneyComb.SPHALERITE.get(1), 0.04F);
+		}
+
+		@Override
+		protected void registerMutations() {
+			registerMutation(TIN, BeeDefinition.SINISTER, 5);
+		}
+	},
 
 	/* GEMSTONE BRANCH */
 	EMERALD(ExtraBeeBranchDefinition.GEMSTONE, "emerala", true, new Color(0x1cff03), new Color(0x999999)) {
@@ -1052,9 +1107,9 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 			registerMutation(BeeDefinition.BOGGY, FUNGAL, 8);
 		}
 	},
-	
+
 	/* CLASSICAL BRANCH */
-	MARBLE(ExtraBeeBranchDefinition.CLASSICAL, "marbla", true, new Color(0xd6c9cf), new Color(0xffdc16)){
+	MARBLE(ExtraBeeBranchDefinition.CLASSICAL, "marbla", true, new Color(0xd6c9cf), new Color(0xffdc16)) {
 		@Override
 		protected void setSpeciesProperties(IAlleleBeeSpeciesBuilder beeSpecies) {
 			beeSpecies.addProduct(ItemHoneyComb.VanillaComb.HONEY.get(), 0.30f);
@@ -1065,7 +1120,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 			return false;
 		}
 	},
-	ROMAN(ExtraBeeBranchDefinition.CLASSICAL, "roman", true, new Color(0xad8bb0), new Color(0xffdc16)){
+	ROMAN(ExtraBeeBranchDefinition.CLASSICAL, "roman", true, new Color(0xad8bb0), new Color(0xffdc16)) {
 		@Override
 		protected void setSpeciesProperties(IAlleleBeeSpeciesBuilder beeSpecies) {
 			beeSpecies.addProduct(ItemHoneyComb.VanillaComb.HONEY.get(), 0.30f);
@@ -1076,7 +1131,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 			registerMutation(ExtraBeeDefinition.MARBLE, BeeDefinition.HEROIC, 10);
 		}
 	},
-	GREEK(ExtraBeeBranchDefinition.CLASSICAL, "greco", false, new Color(0x854c8a), new Color(0xffdc16)){
+	GREEK(ExtraBeeBranchDefinition.CLASSICAL, "greco", false, new Color(0x854c8a), new Color(0xffdc16)) {
 		@Override
 		protected void setSpeciesProperties(IAlleleBeeSpeciesBuilder beeSpecies) {
 			beeSpecies.addProduct(ItemHoneyComb.VanillaComb.HONEY.get(), 0.30f);
@@ -1087,7 +1142,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 			registerMutation(ExtraBeeDefinition.ROMAN, ExtraBeeDefinition.MARBLE, 8);
 		}
 	},
-	CLASSICAL(ExtraBeeBranchDefinition.CLASSICAL, "classica", false, new Color(0x831d8c), new Color(0xffdc16)){
+	CLASSICAL(ExtraBeeBranchDefinition.CLASSICAL, "classica", false, new Color(0x831d8c), new Color(0xffdc16)) {
 		@Override
 		protected void setSpeciesProperties(IAlleleBeeSpeciesBuilder beeSpecies) {
 			beeSpecies.addProduct(ItemHoneyComb.VanillaComb.HONEY.get(), 0.30f)
@@ -1818,8 +1873,8 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 	};
 
 	private final IBranchDefinition branch;
-	private final IAlleleBeeSpeciesBuilder speciesBuilder;
-	
+	private final ExtraBeeSpecies speciesBuilder;
+
 	private IAlleleBeeSpecies species;
 	private IAllele[] template;
 	private IBeeGenome genome;
@@ -1832,7 +1887,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
 		this.branch = branch;
 		if (branch != null) {
-			this.speciesBuilder = BeeManager.beeFactory.createSpecies(uid, dominant, "Binnie", name, description, branch.getBranch(), binomial, primary.getRGB(), secondary.getRGB());
+			this.speciesBuilder = new ExtraBeeSpecies(uid, name, "Binnie", description, dominant, branch.getBranch(), binomial, primary.getRGB(), secondary.getRGB());
 		} else {
 			this.speciesBuilder = null;
 		}
@@ -1912,13 +1967,16 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 	}
 
 	protected boolean isSecret() {
-		return true;
+		return false;
 	}
 
 	public static void doPreInit() {
 	}
 
 	private void init() {
+		if(speciesBuilder == null){
+			return;
+		}
 		if(isSecret()){
 			speciesBuilder.setIsSecret();
 		}
@@ -1930,7 +1988,9 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 		setAlleles(template);
 
 		genome = BeeManager.beeRoot.templateAsGenome(template);
-		BeeManager.beeRoot.registerTemplate(template);
+		if(speciesBuilder.isActive()){
+			BeeManager.beeRoot.registerTemplate(template);
+		}
 	}
 
 	public IBeeMutationBuilder registerMutation(IBeeDefinition allele0, IBeeDefinition allele1, int chance) {
@@ -1968,4 +2028,5 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 		IBee bee = getIndividual();
 		return BeeManager.beeRoot.getMemberStack(bee, beeType);
 	}
+
 }

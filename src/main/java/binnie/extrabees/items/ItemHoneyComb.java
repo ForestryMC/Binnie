@@ -64,11 +64,7 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 		EnumHoneyComb.CREOSOTE.addProduct(honeyDrop, 0.50f);
 		EnumHoneyComb.LATEX.addProduct(honeyDrop, 0.50f);
 		EnumHoneyComb.LATEX.addProduct(beeswax, 0.85f);
-		if (!OreDictionary.getOres("itemRubber").isEmpty()) {
-			EnumHoneyComb.LATEX.tryAddProduct(OreDictionary.getOres("itemRubber").get(0), 1.00f);
-		} else {
-			EnumHoneyComb.LATEX.active = false;
-		}
+		EnumHoneyComb.LATEX.tryAddProduct("itemRubber", 1.00f);
 		EnumHoneyComb.REDSTONE.addProduct(beeswax, 0.80f);
 		EnumHoneyComb.REDSTONE.addProduct(new ItemStack(Items.REDSTONE, 1, 0), 1.00f);
 		EnumHoneyComb.REDSTONE.addProduct(honeyDrop, 0.50f);
@@ -91,9 +87,7 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 		EnumHoneyComb.SILVER.copyProducts(EnumHoneyComb.STONE);
 		EnumHoneyComb.SILVER.tryAddProduct(ExtraBeeItems.SilverDust, 1.00f);
 		EnumHoneyComb.URANIUM.copyProducts(EnumHoneyComb.STONE);
-		if (!OreDictionary.getOres("crushedUranium").isEmpty()) {
-			EnumHoneyComb.URANIUM.tryAddProduct(OreDictionary.getOres("crushedUranium").get(0), 0.50f);
-		}
+		EnumHoneyComb.URANIUM.tryAddProduct("crushedUranium", 0.50f);
 		EnumHoneyComb.CLAY.addProduct(beeswax, 0.25f);
 		EnumHoneyComb.CLAY.addProduct(honeyDrop, 0.80f);
 		EnumHoneyComb.CLAY.addProduct(new ItemStack(Items.CLAY_BALL), 0.80f);
@@ -104,9 +98,7 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 		EnumHoneyComb.FUNGAL.addProduct(new ItemStack(Blocks.RED_MUSHROOM_BLOCK, 1, 0), 0.75f);
 		EnumHoneyComb.ACIDIC.addProduct(beeswax, 0.80f);
 		EnumHoneyComb.ACIDIC.tryAddProduct(EnumHoneyDrop.ACID, 0.50f);
-		if (!OreDictionary.getOres("dustSulfur").isEmpty()) {
-			EnumHoneyComb.ACIDIC.addProduct(OreDictionary.getOres("dustSulfur").get(0), 0.75f);
-		}
+		EnumHoneyComb.ACIDIC.tryAddProduct("dustSulfur", 0.75f);
 		EnumHoneyComb.VENOMOUS.addProduct(beeswax, 0.80f);
 		EnumHoneyComb.VENOMOUS.tryAddProduct(EnumHoneyDrop.POISON, 0.80f);
 		EnumHoneyComb.SLIME.addProduct(beeswax, 1.00f);
@@ -120,11 +112,7 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 		EnumHoneyComb.GLACIAL.tryAddProduct(EnumHoneyDrop.ICE, 0.80f);
 		EnumHoneyComb.GLACIAL.addProduct(honeyDrop, 0.75f);
 		EnumHoneyComb.SHADOW.addProduct(honeyDrop, 0.50f);
-		if (!OreDictionary.getOres("dustObsidian").isEmpty()) {
-			EnumHoneyComb.SHADOW.tryAddProduct(OreDictionary.getOres("dustObsidian").get(0), 0.75f);
-		} else {
-			EnumHoneyComb.SHADOW.active = false;
-		}
+		EnumHoneyComb.SHADOW.tryAddProduct("dustObsidian", 0.75f);
 		EnumHoneyComb.LEAD.copyProducts(EnumHoneyComb.STONE);
 		EnumHoneyComb.LEAD.tryAddProduct(ExtraBeeItems.LeadDust, 1.00f);
 		EnumHoneyComb.ZINC.copyProducts(EnumHoneyComb.STONE);
@@ -137,6 +125,22 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 		EnumHoneyComb.PLATINUM.tryAddProduct(ExtraBeeItems.PlatinumDust, 1.00f);
 		EnumHoneyComb.LAPIS.copyProducts(EnumHoneyComb.STONE);
 		EnumHoneyComb.LAPIS.addProduct(new ItemStack(Items.DYE, 6, 4), 1.00f);
+		/* Tech Reborn */
+		EnumHoneyComb.SODALITE.tryAddProduct("dustSmallSodalite", 1.00f);
+		EnumHoneyComb.SODALITE.tryAddProduct("dustSmallAluminum", 1.00f);
+		EnumHoneyComb.SODALITE.copyProducts(EnumHoneyComb.STONE);
+		EnumHoneyComb.PYRITE.tryAddProduct("dustSmallPyrite", 1.00f);
+		EnumHoneyComb.PYRITE.tryAddProduct("dustSmallIron", 1.00f);
+		EnumHoneyComb.PYRITE.copyProducts(EnumHoneyComb.STONE);
+		EnumHoneyComb.BAUXITE.tryAddProduct("dustSmallBauxite", 1.00f);
+		EnumHoneyComb.BAUXITE.tryAddProduct("dustSmallAluminum", 1.00f);
+		EnumHoneyComb.BAUXITE.copyProducts(EnumHoneyComb.STONE);
+		EnumHoneyComb.CINNABAR.tryAddProduct("dustSmallCinnabar", 1.00f);
+		EnumHoneyComb.CINNABAR.addProduct(new ItemStack(Items.REDSTONE), 0.05f);
+		EnumHoneyComb.CINNABAR.copyProducts(EnumHoneyComb.STONE);
+		EnumHoneyComb.SPHALERITE.tryAddProduct("dustSmallSphalerite", 1.00f);
+		EnumHoneyComb.SPHALERITE.tryAddProduct("dustSmallZinc", 1.00f);
+		EnumHoneyComb.SPHALERITE.copyProducts(EnumHoneyComb.STONE);
 		EnumHoneyComb.EMERALD.copyProducts(EnumHoneyComb.STONE);
 		EnumHoneyComb.EMERALD.tryAddProduct(ExtraBeeItems.EmeraldShard, 1.00f);
 		EnumHoneyComb.RUBY.copyProducts(EnumHoneyComb.STONE);
@@ -154,20 +158,15 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 		EnumHoneyComb.COMPOST.addProduct(honeyDrop, 0.25f);
 		EnumHoneyComb.COMPOST.tryAddProduct(PluginCore.getItems().fertilizerBio.getItemStack(), 1.00f);
 		EnumHoneyComb.SAWDUST.addProduct(honeyDrop, 0.25f);
-		if (!OreDictionary.getOres("dustSawdust").isEmpty()) {
-			EnumHoneyComb.SAWDUST.tryAddProduct(OreDictionary.getOres("dustSawdust").get(0), 1.00f);
-		} else if (!OreDictionary.getOres("sawdust").isEmpty()) {
-			EnumHoneyComb.SAWDUST.tryAddProduct(OreDictionary.getOres("sawdust").get(0), 1.00f);
+		EnumHoneyComb.SAWDUST.tryAddProduct("dustSawdust", 1.00f);
+		if(!EnumHoneyComb.SAWDUST.isActive()) {
+			EnumHoneyComb.SAWDUST.tryAddProduct("sawdust", 1.00f);
 		}
 		EnumHoneyComb.CERTUS.addProduct(honeyDrop, 0.25f);
 		EnumHoneyComb.CERTUS.addProduct(new ItemStack(Items.QUARTZ), 0.25f);
-		if (!OreDictionary.getOres("dustCertusQuartz").isEmpty()) {
-			EnumHoneyComb.CERTUS.tryAddProduct(OreDictionary.getOres("dustCertusQuartz").get(0), 0.20f);
-		}
+		EnumHoneyComb.CERTUS.tryAddProduct("dustCertusQuartz", 0.20f);
 		EnumHoneyComb.ENDERPEARL.addProduct(honeyDrop, 0.25f);
-		if (!OreDictionary.getOres("dustEnderPearl").isEmpty()) {
-			EnumHoneyComb.ENDERPEARL.tryAddProduct(OreDictionary.getOres("dustEnderPearl").get(0), 0.25f);
-		}
+		EnumHoneyComb.ENDERPEARL.tryAddProduct("dustEnderPearl", 0.25f);
 		EnumHoneyComb.YELLORIUM.copyProducts(EnumHoneyComb.STONE);
 		EnumHoneyComb.CYANITE.copyProducts(EnumHoneyComb.STONE);
 		EnumHoneyComb.BLUTONIUM.copyProducts(EnumHoneyComb.STONE);
@@ -237,6 +236,14 @@ public class ItemHoneyComb extends ItemProduct implements IColoredItem {
 			return honeyComb.colour[0];
 		}
 		return honeyComb.colour[1];
+	}
+
+	public static boolean isInvalidComb(ItemStack stack){
+		if(stack.isEmpty() || stack.getItem() != ExtraBees.comb){
+			return true;
+		}
+		EnumHoneyComb honeyComb = EnumHoneyComb.get(stack);
+		return !honeyComb.isActive();
 	}
 
 	public enum VanillaComb {
