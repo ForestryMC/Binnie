@@ -17,13 +17,13 @@ class ControlSpeciesBoxOption extends ControlTextOption<IAlleleSpecies> {
 	private ControlDatabaseIndividualDisplay controlBee;
 
 	public ControlSpeciesBoxOption(final ControlList<IAlleleSpecies> controlList, final IAlleleSpecies option, final int y) {
-		super(controlList, option, option.getName(), y);
+		super(controlList, option, option.getAlleleName(), y);
 		this.setSize(new Point(this.getSize().x(), 20));
 		(this.controlBee = new ControlDatabaseIndividualDisplay(this, 2, 2)).setSpecies(this.getValue(), EnumDiscoveryState.Undetermined);
 		if (this.controlBee.discovered == EnumDiscoveryState.Discovered) {
 			this.controlBee.discovered = EnumDiscoveryState.Show;
 		}
-		this.textWidget.setValue((this.controlBee.discovered == EnumDiscoveryState.Show) ? option.getName() : "Undiscovered");
+		this.textWidget.setValue((this.controlBee.discovered == EnumDiscoveryState.Show) ? option.getAlleleName() : "Undiscovered");
 		if (this.controlBee.discovered == EnumDiscoveryState.Show) {
 			this.addAttribute(Attribute.MouseOver);
 		}

@@ -82,7 +82,7 @@ public class PageSpeciesFlowerGenome extends PageSpecies {
 
 		y += th;
 		new ControlText(contents, new Area(0, y, w2, th), I18N.localise("botany.gui.database.tab.genome.nectar"), TextJustification.MIDDLE_RIGHT);
-		new ControlText(contents, new Area(w2, y, w3, th), genome.getActiveAllele(EnumFlowerChromosome.SAPPINESS).getName(), TextJustification.MIDDLE_LEFT);
+		new ControlText(contents, new Area(w2, y, w3, th), genome.getActiveAllele(EnumFlowerChromosome.SAPPINESS).getAlleleName(), TextJustification.MIDDLE_LEFT);
 
 		y += th;
 		int x = w2;

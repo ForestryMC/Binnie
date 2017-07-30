@@ -47,7 +47,7 @@ public class PageSpeciesOverview extends PageSpecies {
 		this.controlInd2.setSpecies(species, EnumDiscoveryState.Show);
 		final String branchBinomial = species.getBranch().getScientific();
 		final String branchName = species.getBranch().getName();
-		this.controlName.setValue(TextFormatting.UNDERLINE + species.getName());
+		this.controlName.setValue(TextFormatting.UNDERLINE + species.getAlleleName());
 		this.controlScientific.setValue(TextFormatting.ITALIC + branchBinomial + " " + species.getBinomial());
 		this.controlAuthority.setValue(I18N.localise("binniecore.gui.database.discovered") + ": " + TextFormatting.BOLD + species.getAuthority());
 		this.controlComplexity.setValue(I18N.localise("binniecore.gui.database.overview.complexity") + ": " + species.getComplexity());

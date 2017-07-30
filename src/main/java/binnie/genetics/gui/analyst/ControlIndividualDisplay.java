@@ -34,6 +34,6 @@ public class ControlIndividualDisplay extends ControlItemDisplay implements IToo
 		if (ind == null) {
 			return;
 		}
-		tooltip.add(ind.getGenome().getPrimary().getName());
+		tooltip.add(ind.getGenome().getPrimary().getAlleleName());
 	}
 }

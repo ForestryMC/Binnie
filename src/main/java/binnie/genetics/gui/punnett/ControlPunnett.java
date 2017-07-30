@@ -62,16 +62,16 @@ public class ControlPunnett extends Control {
 				}
 				StringBuilder text = new StringBuilder();
 				for (IAllele allele3 : alleles) {
-					text.append(allele3.getName()).append(": ").append(25.0f / alleles.size()).append("%\n");
+					text.append(allele3.getAlleleName()).append(": ").append(25.0f / alleles.size()).append("%\n");
 				}
 				new ControlText(this, new Area(x * ControlPunnett.boxWidth, ControlPunnett.boxHeight * y, ControlPunnett.boxWidth, ControlPunnett.boxHeight), text.toString(), TextJustification.TOP_CENTER).setColor(11184810);
 				++y;
 			}
 			++x;
 		}
-		new ControlText(this, new Area(ControlPunnett.boxWidth, 0, ControlPunnett.boxWidth, ControlPunnett.boxHeight), "\n" + primary1.getName(), TextJustification.TOP_CENTER).setColor(11184810);
-		new ControlText(this, new Area(ControlPunnett.boxWidth * 2, 0, ControlPunnett.boxWidth, ControlPunnett.boxHeight), "\n" + secondary1.getName(), TextJustification.TOP_CENTER).setColor(11184810);
-		new ControlText(this, new Area(0, ControlPunnett.boxHeight, ControlPunnett.boxWidth, ControlPunnett.boxHeight), primary2.getName(), TextJustification.TOP_CENTER).setColor(11184810);
-		new ControlText(this, new Area(0, ControlPunnett.boxHeight * 2, ControlPunnett.boxWidth, ControlPunnett.boxHeight), primary2.getName(), TextJustification.TOP_CENTER).setColor(11184810);
+		new ControlText(this, new Area(ControlPunnett.boxWidth, 0, ControlPunnett.boxWidth, ControlPunnett.boxHeight), "\n" + primary1.getAlleleName(), TextJustification.TOP_CENTER).setColor(11184810);
+		new ControlText(this, new Area(ControlPunnett.boxWidth * 2, 0, ControlPunnett.boxWidth, ControlPunnett.boxHeight), "\n" + secondary1.getAlleleName(), TextJustification.TOP_CENTER).setColor(11184810);
+		new ControlText(this, new Area(0, ControlPunnett.boxHeight, ControlPunnett.boxWidth, ControlPunnett.boxHeight), primary2.getAlleleName(), TextJustification.TOP_CENTER).setColor(11184810);
+		new ControlText(this, new Area(0, ControlPunnett.boxHeight * 2, ControlPunnett.boxWidth, ControlPunnett.boxHeight), primary2.getAlleleName(), TextJustification.TOP_CENTER).setColor(11184810);
 	}
 }

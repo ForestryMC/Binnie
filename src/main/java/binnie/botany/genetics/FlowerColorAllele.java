@@ -45,6 +45,11 @@ public class FlowerColorAllele implements IFlowerColor, IAlleleInteger {
 	}
 
 	@Override
+	public String getAlleleName() {
+		return name;
+	}
+
+	@Override
 	public String getUnlocalizedName() {
 		return unlocalizedName;
 	}
@@ -66,6 +71,6 @@ public class FlowerColorAllele implements IFlowerColor, IAlleleInteger {
 
 	@Override
 	public String getColorName() {
-		return I18N.localise("botany.color." + getName());
+		return I18N.localise("botany.color." + getAlleleName());
 	}
 }

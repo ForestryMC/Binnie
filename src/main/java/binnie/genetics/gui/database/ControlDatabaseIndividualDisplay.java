@@ -104,7 +104,7 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 		if (this.species != null) {
 			switch (this.discovered) {
 				case Show: {
-					tooltip.add(this.species.getName());
+					tooltip.add(this.species.getAlleleName());
 					break;
 				}
 				case Discovered: {

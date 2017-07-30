@@ -73,7 +73,7 @@ public class Flower extends Individual implements IFlower {
 	@Override
 	public String getDisplayName() {
 		IAlleleFlowerSpecies species = getGenome().getPrimary();
-		String name = species.getName();
+		String name = species.getAlleleName();
 		if (age == 0) {
 			name += "";
 		}

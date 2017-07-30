@@ -56,7 +56,7 @@ public class ModuleCore implements IInitializable {
 					outputSpecies.println("<tr>");
 					for (int i = 0; i < 4; ++i) {
 						final IAlleleTreeSpecies species = speciesQueue.poll();
-						outputSpecies.println("<td>" + ((species == null) ? "" : species.getName()) + "</td>");
+						outputSpecies.println("<td>" + ((species == null) ? "" : species.getAlleleName()) + "</td>");
 					}
 					outputSpecies.println("</tr>");
 				}
@@ -100,8 +100,8 @@ public class ModuleCore implements IInitializable {
 							outputFruit.println("<td></td>");
 						} else {
 							final String fruit = wood6.getNameOfFruit();
-							final String img2 = "<img alt=\"" + wood6.getName() + "\" src=\"images/fruits/" + fruit + ".png\">";
-							outputFruit.println("<td>" + img2 + " " + wood6.getName() + "</td>");
+							final String img2 = "<img alt=\"" + wood6.getAlleleName() + "\" src=\"images/fruits/" + fruit + ".png\">";
+							outputFruit.println("<td>" + img2 + " " + wood6.getAlleleName() + "</td>");
 						}
 					}
 					outputFruit.println("</tr>");

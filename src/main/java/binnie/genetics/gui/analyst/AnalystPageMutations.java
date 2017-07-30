@@ -51,49 +51,49 @@ public class AnalystPageMutations extends ControlAnalystPage {
 		if (ind instanceof IBee) {
 			ItemStack hive = null;
 			if (ExtraBeesIntegration.isLoaded()) {
-				if (ind.getGenome().getPrimary() == ExtraBeesIntegration.water) {
+				if (speciesCurrent == ExtraBeesIntegration.water) {
 					hive = new ItemStack(ExtraBeesIntegration.hive, 1, 0);
 				}
-				if (ind.getGenome().getPrimary() == ExtraBeesIntegration.rock) {
+				if (speciesCurrent == ExtraBeesIntegration.rock) {
 					hive = new ItemStack(ExtraBeesIntegration.hive, 1, 1);
 				}
-				if (ind.getGenome().getPrimary() == ExtraBeesIntegration.basalt) {
+				if (speciesCurrent == ExtraBeesIntegration.basalt) {
 					hive = new ItemStack(ExtraBeesIntegration.hive, 1, 2);
 				}
-				if (ind.getGenome().getPrimary() == ExtraBeesIntegration.marble) {
+				if (speciesCurrent == ExtraBeesIntegration.marble) {
 					hive = new ItemStack(ExtraBeesIntegration.hive, 1, 3);
 				}
 			}
-			if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Forest.getAllele()) {
+			if (speciesCurrent == ForestryAllele.BeeSpecies.Forest.getAllele()) {
 				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 1);
 			}
-			if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Meadows.getAllele()) {
+			if (speciesCurrent == ForestryAllele.BeeSpecies.Meadows.getAllele()) {
 				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 2);
 			}
-			if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Modest.getAllele()) {
+			if (speciesCurrent == ForestryAllele.BeeSpecies.Modest.getAllele()) {
 				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 3);
 			}
-			if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Tropical.getAllele()) {
+			if (speciesCurrent == ForestryAllele.BeeSpecies.Tropical.getAllele()) {
 				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 4);
 			}
-			if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Ended.getAllele()) {
+			if (speciesCurrent == ForestryAllele.BeeSpecies.Ended.getAllele()) {
 				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 5);
 			}
-			if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Wintry.getAllele()) {
+			if (speciesCurrent == ForestryAllele.BeeSpecies.Wintry.getAllele()) {
 				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 6);
 			}
-			if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Marshy.getAllele()) {
+			if (speciesCurrent == ForestryAllele.BeeSpecies.Marshy.getAllele()) {
 				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 7);
 			}
-			if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Steadfast.getAllele()) {
+			if (speciesCurrent == ForestryAllele.BeeSpecies.Steadfast.getAllele()) {
 				hive = new ItemStack(Blocks.CHEST);
 			}
-			if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Valiant.getAllele()) {
+			if (speciesCurrent == ForestryAllele.BeeSpecies.Valiant.getAllele()) {
 				new ControlTextCentered(this, y, I18N.localise(AnalystConstants.MUTATIONS_KEY + ".bee.natural")).setColor(getColor());
 				y += 10;
 				new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise(AnalystConstants.MUTATIONS_KEY + ".bee.hive")).setColor(getColor());
 				y += 22;
-			} else if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Monastic.getAllele()) {
+			} else if (speciesCurrent == ForestryAllele.BeeSpecies.Monastic.getAllele()) {
 				new ControlTextCentered(this, y, I18N.localise(AnalystConstants.MUTATIONS_KEY + ".bee.natural")).setColor(getColor());
 				y += 10;
 				new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise(AnalystConstants.MUTATIONS_KEY + ".bee.villager")).setColor(getColor());
@@ -102,7 +102,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 				new ControlTextCentered(this, y, I18N.localise(AnalystConstants.MUTATIONS_KEY + ".bee.natural")).setColor(getColor());
 				y += 10;
 				ControlItemDisplay display = new ControlItemDisplay(this, (width() - 16) / 2, y);
-				if (ind.getGenome().getPrimary() == ForestryAllele.BeeSpecies.Steadfast.getAllele()) {
+				if (speciesCurrent == ForestryAllele.BeeSpecies.Steadfast.getAllele()) {
 					display.addTooltip(I18N.localise(AnalystConstants.MUTATIONS_KEY + ".bee.dungeon"));
 				} else {
 					display.setTooltip();
@@ -129,7 +129,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 						public void initialise() {
 							IAlleleSpecies species0 = mutation.getAllele0();
 							IAlleleSpecies species2 = mutation.getAllele1();
-							String comb = species0.getName() + " + " + species2.getName();
+							String comb = species0.getAlleleName() + " + " + species2.getAlleleName();
 							addTooltip(comb);
 							String chance = getMutationColour(mutation.getBaseChance()).getCode() + (int) mutation.getBaseChance() + "% " + I18N.localise(AnalystConstants.MUTATIONS_KEY + ".chance");
 							if (specificChance != mutation.getBaseChance()) {

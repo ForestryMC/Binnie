@@ -41,7 +41,7 @@ interface IBreedingMessage {
 
 		@Override
 		public String getBody() {
-			return this.species.getName();
+			return this.species.getAlleleName();
 		}
 
 		@Override

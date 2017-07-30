@@ -50,7 +50,7 @@ public class AnalystPageBehaviour extends ControlAnalystPage {
 			if (!effect.getUID().contains("None")) {
 				String effectDesc = I18N.localiseOrBlank("binniecore.allele." + effect.getUID() + ".desc");
 				String loc = effectDesc.isEmpty()
-					? I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".effect", effect.getName())
+					? I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".effect", effect.getAlleleName())
 					: effectDesc;
 
 				new ControlText(this, new Area(4, y, width() - 8, 0), loc, TextJustification.TOP_CENTER)
@@ -85,7 +85,7 @@ public class AnalystPageBehaviour extends ControlAnalystPage {
 			if (!effect2.getUID().contains("None")) {
 				String effectDesc2 = I18N.localiseOrBlank("binniecore.allele." + effect2.getUID() + ".desc");
 				String loc2 = effectDesc2.isEmpty()
-					? I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".effect", effect2.getName())
+					? I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".effect", effect2.getAlleleName())
 					: effectDesc2;
 
 				new ControlText(this, new Area(4, y, width() - 8, 0), loc2, TextJustification.TOP_CENTER)

@@ -61,9 +61,9 @@ public enum PacketID implements IPacketID {
 			}
 
 			if (primary == secondary) {
-				info = info + " " + primary.getName();
+				info = info + " " + primary.getAlleleName();
 			} else {
-				info = info + " " + primary.getName() + "-" + secondary.getName() + " " + I18N.localise("botany.flowers.species.hybrid");
+				info = info + " " + primary.getAlleleName() + "-" + secondary.getAlleleName() + " " + I18N.localise("botany.flowers.species.hybrid");
 			}
 
 			if (age == 0.0f) {
