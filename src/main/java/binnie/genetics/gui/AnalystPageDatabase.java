@@ -39,17 +39,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 	public AnalystPageDatabase(IWidget parent, Area area, BreedingSystem system, boolean isMaster) {
 		super(parent, area);
 		this.isMaster = isMaster;
-		int cOfSystem = system.getColour();
-		int cr = (0xFF0000 & cOfSystem) >> 16;
-		int cg = (0xFF00 & cOfSystem) >> 8;
-		int cb = 0xFF & cOfSystem;
-		float brightness = 0.1f * cb / 255.0f + 0.35f * cr / 255.0f + 0.55f * cg / 255.0f;
-		brightness = 0.3f / brightness;
-		if (brightness > 1.0f) {
-			brightness = 1.0f;
-		}
-		int newColour = (int) (cr * brightness) * 65536 + (int) (cg * brightness) * 256 + (int) (cb * brightness);
-		setColor(newColour);
+		setColor(getColor(system));
 		int y = 4;
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 16;
@@ -61,7 +51,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 				for (IAlleleSpecies species : getSpecies(system)) {
 					if (value != null) {
 						if (!Objects.equals(value, "")) {
-							if (!species.getName().toLowerCase().contains(value.toLowerCase())) {
+							if (!species.getAlleleName().toLowerCase().contains(value.toLowerCase())) {
 								continue;
 							}
 						}
@@ -109,7 +99,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 						@Override
 						@SideOnly(Side.CLIENT)
 						public void onRenderBackground(int guiWidth, int guiHeight) {
-							RenderUtil.drawText(getArea(), TextJustification.MIDDLE_CENTER, value.getName(), 16777215);
+							RenderUtil.drawText(getArea(), TextJustification.MIDDLE_CENTER, value.getAlleleName(), 16777215);
 						}
 					};
 				}
@@ -129,6 +119,19 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 				RenderUtil.drawSolidRect(getRenderArea(), AnalystPageDatabase.this.getColor());
 			}
 		};
+	}
+
+	private static int getColor(BreedingSystem system){
+		int cOfSystem = system.getColour();
+		int cr = (0xFF0000 & cOfSystem) >> 16;
+		int cg = (0xFF00 & cOfSystem) >> 8;
+		int cb = 0xFF & cOfSystem;
+		float brightness = 0.1f * cb / 255.0f + 0.35f * cr / 255.0f + 0.55f * cg / 255.0f;
+		brightness = 0.3f / brightness;
+		if (brightness > 1.0f) {
+			brightness = 1.0f;
+		}
+		return (int) (cr * brightness) * 65536 + (int) (cg * brightness) * 256 + (int) (cb * brightness);
 	}
 
 	private IWidget getItemScrollList(BreedingSystem system, Collection<IAlleleSpecies> options) {

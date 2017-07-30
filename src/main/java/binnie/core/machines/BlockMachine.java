@@ -12,6 +12,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,6 +25,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
 import net.minecraftforge.fluids.FluidActionResult;
@@ -33,6 +35,8 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import forestry.core.utils.Translator;
 
 import binnie.core.BinnieCore;
 import binnie.core.machines.component.IRender;
@@ -108,9 +112,13 @@ class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
 		super.addInformation(stack, player, tooltip, advanced);
-		MachinePackage machinePackage = this.getPackage(stack.getMetadata());
-		if(machinePackage != null){
-			tooltip.add(machinePackage.getInformation());
+		if (GuiScreen.isShiftKeyDown()) {
+			MachinePackage machinePackage = this.getPackage(stack.getMetadata());
+			if(machinePackage != null){
+				tooltip.add(machinePackage.getInformation());
+			}
+		} else {
+			tooltip.add(TextFormatting.ITALIC + "<" + Translator.translateToLocal("for.gui.tooltip.tmi") + ">");
 		}
 	}
 	

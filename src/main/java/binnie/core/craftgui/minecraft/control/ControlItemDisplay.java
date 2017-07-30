@@ -67,7 +67,9 @@ public class ControlItemDisplay extends Control implements ITooltip {
 			RenderUtil.drawItem(Point.ZERO, this.itemStack, this.rotating);
 			GlStateManager.popMatrix();
 		} else {
+			GlStateManager.disableBlend();
 			RenderUtil.drawItem(Point.ZERO, this.itemStack, this.rotating);
+			GlStateManager.enableBlend();
 		}
 		GlStateManager.enableAlpha();
 	}

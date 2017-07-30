@@ -346,7 +346,7 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 		return this.iconDiscovered.getSprite();
 	}
 
-	public abstract float getChance(final IMutation p0, final EntityPlayer p1, final IAlleleSpecies p2, final IAlleleSpecies p3);
+	public abstract float getChance(IMutation mutation, EntityPlayer player, IAlleleSpecies firstSpecies, IAlleleSpecies secondSpecies);
 
 	public abstract Class<? extends IBreedingTracker> getTrackerClass();
 
@@ -427,9 +427,9 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 	}
 
 	@Nullable
-	public final IChromosomeType getChromosome(final int i) {
-		for (final IChromosomeType chromosome : this.getSpeciesRoot().getKaryotype()) {
-			if (i == chromosome.ordinal()) {
+	public final IChromosomeType getChromosome(int index) {
+		for (IChromosomeType chromosome : this.getSpeciesRoot().getKaryotype()) {
+			if (index == chromosome.ordinal()) {
 				return chromosome;
 			}
 		}
@@ -440,12 +440,13 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 
 	public String getAlleleName(final IChromosomeType chromosome, final IAllele allele) {
 		if (allele instanceof IAlleleBoolean) {
-			return ((IAlleleBoolean) allele).getValue() ? I18N.localise("binniecore.allele.true") : I18N.localise("binniecore.allele.false");
+			IAlleleBoolean alleleBoolean = (IAlleleBoolean) allele;
+			return alleleBoolean.getValue() ? I18N.localise("binniecore.allele.true") : I18N.localise("binniecore.allele.false");
 		}
-		if (Objects.equals(allele.getName(), "for.gui.maximum")) {
+		if (Objects.equals(allele.getAlleleName(), "for.gui.maximum")) {
 			return I18N.localise("binniecore.allele.fertility.maximum");
 		}
-		return allele.getName();
+		return allele.getAlleleName();
 	}
 
 	public String getName() {
@@ -463,9 +464,9 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 		return this.getName();
 	}
 
-	public abstract boolean isDNAManipulable(final ItemStack p0);
+	public abstract boolean isDNAManipulable(ItemStack stack);
 
-	public abstract boolean isDNAManipulable(final ISpeciesType type);
+	public abstract boolean isDNAManipulable(ISpeciesType type);
 
 	@Nullable
 	public IIndividual getConversion(final ItemStack stack) {
@@ -505,7 +506,7 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 	}
 
 	@Nullable
-	public IIndividual getIndividual(final String uid) {
+	public IIndividual getIndividual(String uid) {
 		IAllele[] template = this.getSpeciesRoot().getTemplate(uid);
 		if (template == null) {
 			return null;
@@ -514,7 +515,7 @@ public abstract class BreedingSystem implements IItemStackRepresentitive {
 	}
 
 	@Nullable
-	public IGenome getGenome(final String uid) {
+	public IGenome getGenome(String uid) {
 		IAllele[] template = this.getSpeciesRoot().getTemplate(uid);
 		if (template == null) {
 			return null;

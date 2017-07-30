@@ -54,7 +54,7 @@ public class PageSpeciesOverview extends PageSpecies {
 		final String desc = species.getDescription();
 		StringBuilder descBody = new StringBuilder(TextFormatting.ITALIC.toString());
 		String descSig = "";
-		if (desc == null || Objects.equals(desc, "")) {
+		if (desc == null || Objects.equals(desc, "") || desc.contains("for.description") || desc.contains(".desc")) {
 			descBody.append(I18N.localise("binniecore.gui.database.no.description"));
 		} else {
 			final String[] descStrings = desc.split("\\|");

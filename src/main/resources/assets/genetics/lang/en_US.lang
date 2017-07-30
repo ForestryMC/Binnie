@@ -88,7 +88,7 @@ genetics.gui.analyst.biology.bee.rain=Can work during rain
 genetics.gui.analyst.biology.bee.nosky=Can work underground
 genetics.gui.analyst.biology.bee.sky=Cannot work underground
 
-genetics.gui.analyst.genome.title=Genome
+genetics.gui.analyst.genome.title=%s Genome
 genetics.gui.analyst.genome.active=Active
 genetics.gui.analyst.genome.inactive=Inactive
 
@@ -286,13 +286,32 @@ extrabees.genetics.allele.tolerantFlyer=Rainfall
 
 extrabees.genetics.corrupted=Corrupted
 
-extrabees.gui.database.tab.species.overview=Overview
-extrabees.gui.database.tab.species.classification=Classification
-extrabees.gui.database.tab.species.genome=Genome
-extrabees.gui.database.tab.species.products=Products
-extrabees.gui.database.tab.species.climate=Climate
-extrabees.gui.database.tab.species.resultant=Resultant Mutations
-extrabees.gui.database.tab.species.further=Further Mutations
-extrabees.gui.database.tab.branches.overview=Overview
-extrabees.gui.database.tab.branches.species=Species
-extrabees.gui.database.tab.breeder=Breeder
+genetics.gui.database.tab.species.genome.extrabees.title=Genome
+genetics.gui.database.tab.species.genome.extrabees.speed=Speed:
+genetics.gui.database.tab.species.genome.extrabees.lifespan=Lifespan:
+genetics.gui.database.tab.species.genome.extrabees.fertility=Fertility:
+genetics.gui.database.tab.species.genome.extrabees.flowering=Flowering:
+genetics.gui.database.tab.species.genome.extrabees.territory=Territory:
+genetics.gui.database.tab.species.genome.extrabees.behavior=Behavior:
+genetics.gui.database.tab.species.genome.extrabees.sunlight=Sunlight:
+genetics.gui.database.tab.species.genome.extrabees.rain=Rain:
+genetics.gui.database.tab.species.genome.extrabees.flower=Flower:
+genetics.gui.database.tab.species.genome.extrabees.effect=Effect:
+genetics.gui.database.tab.species.genome.extrabees.tolerated=Tolerated
+genetics.gui.database.tab.species.genome.extrabees.daytime=Daytime
+genetics.gui.database.tab.species.genome.extrabees.nighttime=Nighttime
+genetics.gui.database.tab.species.genome.extrabees.allDay=All Day
+genetics.gui.database.tab.species.genome.extrabees.children=%d children
+genetics.gui.database.tab.species.genome.extrabees.notNeeded=Not Needed
+genetics.gui.database.tab.species.genome.extrabees.required=Required
+
+genetics.gui.database.tab.species.overview=Overview
+genetics.gui.database.tab.species.classification=Classification
+genetics.gui.database.tab.species.genome=Genome
+genetics.gui.database.tab.species.products=Products
+genetics.gui.database.tab.species.climate=Climate
+genetics.gui.database.tab.species.resultant=Resultant Mutations
+genetics.gui.database.tab.species.further=Further Mutations
+genetics.gui.database.tab.branches.overview=Overview
+genetics.gui.database.tab.branches.species=Species
+genetics.gui.database.tab.breeder=Breeder

@@ -31,7 +31,7 @@ public class AnalystPageDescription extends ControlAnalystPage {
 		String desc = species.getDescription();
 		StringBuilder descBody = new StringBuilder(TextFormatting.ITALIC.toString());
 		String descSig = "";
-		if (Objects.equals(desc, "") || desc.contains("for.description")) {
+		if (Objects.equals(desc, "") || desc.contains("for.description") || desc.contains(".desc")) {
 			descBody.append("");
 		} else {
 			String[] descStrings = desc.split("\\|");
@@ -55,7 +55,7 @@ public class AnalystPageDescription extends ControlAnalystPage {
 		}
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 16;
-		new ControlTextCentered(this, y, species.getName() + TextFormatting.RESET).setColor(getColor());
+		new ControlTextCentered(this, y, species.getAlleleName() + TextFormatting.RESET).setColor(getColor());
 		y += 10;
 		new ControlTextCentered(this, y, TextFormatting.ITALIC + branchBinomial + " " + species.getBinomial() + TextFormatting.RESET).setColor(getColor());
 		y += 20;

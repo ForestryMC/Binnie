@@ -112,8 +112,8 @@ public class ControlSlot extends ControlSlotBase {
 			} else {
 				RenderUtil.drawGradientRect(new Area(1, 1, 16, 16), -2130706433, -2130706433);
 			}
-			GlStateManager.enableDepth();
 			GlStateManager.enableBlend();
+			GlStateManager.enableDepth();
 		}
 	}
 

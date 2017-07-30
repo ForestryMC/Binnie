@@ -21,6 +21,7 @@ import binnie.core.util.I18N;
 import binnie.genetics.genetics.AlleleHelper;
 
 public class PageSpeciesGenome extends PageSpecies {
+	static final String PRE_FIX = "genetics.gui.database.tab.species.genome.extrabees.";
 	ControlText title;
 	ControlText speedText;
 	ControlText lifespanText;
@@ -35,17 +36,17 @@ public class PageSpeciesGenome extends PageSpecies {
 
 	public PageSpeciesGenome(IWidget parent, DatabaseTab tab) {
 		super(parent, tab);
-		title = new ControlTextCentered(this, 8, I18N.localise("extrabees.gui.database.tab.species.genome"));
-		new ControlText(this, new Area(0, 32, 68, 30), I18N.localise("extrabees.gui.database.tab.species.genome.speed"), TextJustification.TOP_RIGHT);
-		new ControlText(this, new Area(0, 44, 68, 30), I18N.localise("extrabees.gui.database.tab.species.genome.lifespan"), TextJustification.TOP_RIGHT);
-		new ControlText(this, new Area(0, 56, 68, 30), I18N.localise("extrabees.gui.database.tab.species.genome.fertility"), TextJustification.TOP_RIGHT);
-		new ControlText(this, new Area(0, 68, 68, 30), I18N.localise("extrabees.gui.database.tab.species.genome.flowering"), TextJustification.TOP_RIGHT);
-		new ControlText(this, new Area(0, 80, 68, 30), I18N.localise("extrabees.gui.database.tab.species.genome.territory"), TextJustification.TOP_RIGHT);
-		new ControlText(this, new Area(0, 97, 68, 30), I18N.localise("extrabees.gui.database.tab.species.genome.behavior"), TextJustification.TOP_RIGHT);
-		new ControlText(this, new Area(0, 109, 68, 30), I18N.localise("extrabees.gui.database.tab.species.genome.sunlight"), TextJustification.TOP_RIGHT);
-		new ControlText(this, new Area(0, 121, 68, 30), I18N.localise("extrabees.gui.database.tab.species.genome.rain"), TextJustification.TOP_RIGHT);
-		new ControlText(this, new Area(0, 138, 68, 30), I18N.localise("extrabees.gui.database.tab.species.genome.flower"), TextJustification.TOP_RIGHT);
-		new ControlText(this, new Area(0, 155, 68, 30), I18N.localise("extrabees.gui.database.tab.species.genome.effect"), TextJustification.TOP_RIGHT);
+		title = new ControlTextCentered(this, 8, I18N.localise(PRE_FIX + "title"));
+		new ControlText(this, new Area(0, 32, 68, 30), I18N.localise(PRE_FIX + "speed"), TextJustification.TOP_RIGHT);
+		new ControlText(this, new Area(0, 44, 68, 30), I18N.localise(PRE_FIX + "lifespan"), TextJustification.TOP_RIGHT);
+		new ControlText(this, new Area(0, 56, 68, 30), I18N.localise(PRE_FIX + "fertility"), TextJustification.TOP_RIGHT);
+		new ControlText(this, new Area(0, 68, 68, 30), I18N.localise(PRE_FIX + "flowering"), TextJustification.TOP_RIGHT);
+		new ControlText(this, new Area(0, 80, 68, 30), I18N.localise(PRE_FIX + "territory"), TextJustification.TOP_RIGHT);
+		new ControlText(this, new Area(0, 97, 68, 30), I18N.localise(PRE_FIX + "behavior"), TextJustification.TOP_RIGHT);
+		new ControlText(this, new Area(0, 109, 68, 30), I18N.localise(PRE_FIX + "sunlight"), TextJustification.TOP_RIGHT);
+		new ControlText(this, new Area(0, 121, 68, 30), I18N.localise(PRE_FIX + "rain"), TextJustification.TOP_RIGHT);
+		new ControlText(this, new Area(0, 138, 68, 30), I18N.localise(PRE_FIX + "flower"), TextJustification.TOP_RIGHT);
+		new ControlText(this, new Area(0, 155, 68, 30), I18N.localise(PRE_FIX + "effect"), TextJustification.TOP_RIGHT);
 		int x = 72;
 		speedText = new ControlText(this, new Area(x, 32, 72, 30), "", TextJustification.TOP_LEFT);
 		lifespanText = new ControlText(this, new Area(x, 44, 72, 30), "", TextJustification.TOP_LEFT);
@@ -136,7 +137,7 @@ public class PageSpeciesGenome extends PageSpecies {
 
 	public static String tolerated(boolean t) {
 		if (t) {
-			return I18N.localise("extrabees.gui.database.tab.species.genome.tolerated");
+			return I18N.localise(PRE_FIX + "tolerated");
 		}
 		return AlleleHelper.toDisplay(EnumTolerance.NONE);
 	}
@@ -152,23 +153,23 @@ public class PageSpeciesGenome extends PageSpecies {
 		IBee bee = Binnie.GENETICS.getBeeRoot().getBee(genome);
 		speedText.setValue(rateSpeed(genome.getSpeed()));
 		lifespanText.setValue(rateLifespan(genome.getLifespan()));
-		fertilityText.setValue(I18N.localise("extrabees.gui.database.tab.species.genome.children", genome.getFertility()));
+		fertilityText.setValue(I18N.localise(PRE_FIX + "children", genome.getFertility()));
 		floweringText.setValue(rateFlowering(genome.getFlowering()));
 		Vec3i area = genome.getTerritory();
 		territoryText.setValue(area.getX() + "x" + area.getY() + "x" + area.getZ());
-		String behavior = I18N.localise("extrabees.gui.database.tab.species.genome.daytime");
+		String behavior = I18N.localise(PRE_FIX + "daytime");
 		if (genome.getPrimary().isNocturnal()) {
-			behavior = I18N.localise("extrabees.gui.database.tab.species.genome.nighttime");
+			behavior = I18N.localise(PRE_FIX + "nighttime");
 		}
 		if (genome.getNeverSleeps()) {
-			behavior = I18N.localise("extrabees.gui.database.tab.species.genome.allDay");
+			behavior = I18N.localise(PRE_FIX + "allDay");
 		}
 
 		nocturnalText.setValue(behavior);
 		if (genome.getCaveDwelling()) {
-			caveDwellingText.setValue(I18N.localise("extrabees.gui.database.tab.species.genome.notNeeded"));
+			caveDwellingText.setValue(I18N.localise(PRE_FIX + "notNeeded"));
 		} else {
-			caveDwellingText.setValue(I18N.localise("extrabees.gui.database.tab.species.genome.required"));
+			caveDwellingText.setValue(I18N.localise(PRE_FIX + "required"));
 		}
 
 		tolerantFlyerText.setValue(tolerated(genome.getToleratesRain()));
@@ -177,6 +178,6 @@ public class PageSpeciesGenome extends PageSpecies {
 		} else {
 			flowerText.setValue(AlleleHelper.toDisplay(EnumTolerance.NONE));
 		}
-		effectText.setValue(genome.getEffect().getName());
+		effectText.setValue(genome.getEffect().getAlleleName());
 	}
 }
