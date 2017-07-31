@@ -208,7 +208,6 @@ binniecore.errors.task.cancelled.info=Cancelled by Buildcraft Gate
 binniecore.errors.task.paused.desc=Process Paused
 binniecore.errors.task.paused.info=Paused by Buildcraft Gate
 
-
 binniecore.errors.unknown.name=Unknown
 binniecore.errors.unknown.desc=This error is broken, please report this to the mod authors
 binniecore.errors.no.item.name=No Item
@@ -272,6 +271,12 @@ binniecore.gui.tolerated=Tolerated
 binniecore.gui.nottolerated=Not Tolerated
 
 binniecore.gui.design=Design
+
+binniecore.gui.fieldkit.title=Field Kit
+binniecore.gui.fieldkit.info=The Field Kit analyses bees, trees, flowers and butterflies. All that is required is a piece of paper to jot notes
+binniecore.gui.fieldkit.paper=Paper
+binniecore.gui.fieldkit.paper.no=No Paper!
+binniecore.gui.fieldkit.individual=Individual
 
 < Descriptions used for effects in the registry >
 binniecore.allele.extrabees.effect.acid.desc=Dissolves stone and dirt

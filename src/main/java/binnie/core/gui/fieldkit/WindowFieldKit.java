@@ -41,12 +41,14 @@ import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.gui.resource.StyleSheetPunnett;
 import binnie.core.gui.resource.minecraft.StandardTexture;
-import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.texture.BinnieCoreTexture;
 import binnie.core.util.I18N;
 import binnie.genetics.machine.analyser.Analyser;
 
 public class WindowFieldKit extends Window {
+	public static final int INDIVIDUAL_SLOT = 0;
+	public static final int PAPER_SLOT = 1;
+
 	private float glassOffsetX;
 	private float glassOffsetY;
 	private float glassVX;
@@ -82,45 +84,25 @@ public class WindowFieldKit extends Window {
 	}
 
 	private void setupValidators() {
-		this.getWindowInventory().setValidator(0, new SlotValidator(null) {
-			@Override
-			public boolean isValid(final ItemStack object) {
-				return AlleleManager.alleleRegistry.isIndividual(object) || Binnie.GENETICS.getConversion(object) != null;
-			}
-
-			@Override
-			public String getTooltip() {
-				return "Individual";
-			}
-		});
-		this.getWindowInventory().setValidator(1, new SlotValidator(null) {
-			@Override
-			public boolean isValid(final ItemStack object) {
-				return object.getItem() == Items.PAPER;
-			}
-
-			@Override
-			public String getTooltip() {
-				return "Paper";
-			}
-		});
-		this.getWindowInventory().disableAutoDispense(1);
+		this.getWindowInventory().setValidator(INDIVIDUAL_SLOT, new SlotValidatorIndividual(null));
+		this.getWindowInventory().setValidator(PAPER_SLOT, new SlotValidatorPaper(null));
+		this.getWindowInventory().disableAutoDispense(PAPER_SLOT);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
-		this.setTitle("Field Kit");
+		this.setTitle(I18N.localise("binniecore.gui.fieldkit.title"));
 		CraftGUI.RENDER.setStyleSheet(new StyleSheetPunnett());
-		this.getWindowInventory().createSlot(0);
-		this.getWindowInventory().createSlot(1);
+		this.getWindowInventory().createSlot(INDIVIDUAL_SLOT);
+		this.getWindowInventory().createSlot(PAPER_SLOT);
 		this.setupValidators();
 		new ControlPlayerInventory(this);
 		final Point handGlass = new Point(16, 32);
 		this.GlassControl = new ControlImage(this, handGlass.x(), handGlass.y(), new StandardTexture(0, 160, 96, 96, BinnieCoreTexture.GUI_PUNNETT));
 		new ControlSlot.Builder(this, handGlass.x() + 54, handGlass.y() + 26).assign(InventoryType.Window, 0);
 		new ControlSlot.Builder(this, 208, 8).assign(InventoryType.Window, 1);
-		(this.text = new ControlText(this, new Point(232, 13), "Paper")).setColor(2236962);
+		(this.text = new ControlText(this, new Point(232, 13), I18N.localise("binniecore.gui.fieldkit.paper"))).setColor(2236962);
 		(this.text = new ControlText(this, new Area(0, 120, this.width(), 24), "", TextJustification.MIDDLE_CENTER)).setColor(2236962);
 		this.chromo = new ControlChromosome(this, 150, 24);
 		this.addEventHandler(new EventValueChanged.Handler() {
@@ -142,10 +124,10 @@ public class WindowFieldKit extends Window {
 		//create slots
 		final ItemStack kit = this.getPlayer().getHeldItemMainhand();
 		final int sheets = 64 - kit.getItemDamage();
-		getWindowInventory().createSlot(0);
-		getWindowInventory().createSlot(1);
+		this.getWindowInventory().createSlot(INDIVIDUAL_SLOT);
+		this.getWindowInventory().createSlot(PAPER_SLOT);
 		if (sheets != 0) {
-			this.getWindowInventory().setInventorySlotContents(1, new ItemStack(Items.PAPER, sheets));
+			this.getWindowInventory().setInventorySlotContents(PAPER_SLOT, new ItemStack(Items.PAPER, sheets));
 		}
 		this.setupValidators();
 	}
@@ -159,7 +141,7 @@ public class WindowFieldKit extends Window {
 			if (this.analyseProgress >= 1) {
 				this.isAnalysing = false;
 				this.analyseProgress = 1;
-				final ItemStack stack = this.getWindowInventory().getStackInSlot(0);
+				final ItemStack stack = this.getWindowInventory().getStackInSlot(INDIVIDUAL_SLOT);
 				if (!stack.isEmpty()) {
 					this.sendClientAction("analyse", new NBTTagCompound());
 				}
@@ -176,7 +158,7 @@ public class WindowFieldKit extends Window {
 	}
 
 	private void refreshSpecies() {
-		final ItemStack item = this.getWindowInventory().getStackInSlot(0);
+		final ItemStack item = this.getWindowInventory().getStackInSlot(INDIVIDUAL_SLOT);
 		if (item.isEmpty() || !AlleleManager.alleleRegistry.isIndividual(item)) {
 			return;
 		}
@@ -211,19 +193,20 @@ public class WindowFieldKit extends Window {
 		super.onWindowInventoryChanged();
 		if (this.isServer()) {
 			final ItemStack kit = this.getPlayer().getHeldItemMainhand();
+			ItemStack paper = getWindowInventory().getStackInSlot(PAPER_SLOT);
 			final int sheets = 64 - kit.getItemDamage();
-			final int size = (this.getWindowInventory().getStackInSlot(1) == null) ? 0 : this.getWindowInventory().getStackInSlot(1).getCount();
+			final int size = (paper.isEmpty()) ? 0 : paper.getCount();
 			if (sheets != size) {
 				kit.setItemDamage(64 - size);
 			}
 			((EntityPlayerMP) this.getPlayer()).updateHeldItem();
 		}
 		if (this.isClient()) {
-			final ItemStack item = this.getWindowInventory().getStackInSlot(0);
+			final ItemStack item = this.getWindowInventory().getStackInSlot(INDIVIDUAL_SLOT);
 			this.text.setValue("");
 			if (!item.isEmpty() && !Analyser.isAnalysed(item)) {
 				if (this.getWindowInventory().getStackInSlot(1).isEmpty()) {
-					this.text.setValue("No Paper!");
+					this.text.setValue(I18N.localise("binniecore.gui.fieldkit.paper.no"));
 					this.isAnalysing = false;
 					this.analyseProgress = 1;
 				} else {
@@ -268,15 +251,16 @@ public class WindowFieldKit extends Window {
 
 	@Override
 	public String showInfoButton() {
-		return "The Field Kit analyses bees, trees, flowers and butterflies. All that is required is a piece of paper to jot notes";
+		return I18N.localise("binniecore.gui.fieldkit.info");
 	}
 
 	@Override
 	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
 		super.receiveGuiNBTOnServer(player, name, nbt);
 		if (name.equals("analyse")) {
-			this.getWindowInventory().setInventorySlotContents(0, Analyser.analyse(this.getWindowInventory().getStackInSlot(0), this.getWorld(), this.getUsername()));
-			this.getWindowInventory().decrStackSize(1, 1);
+			ItemStack individualStack = this.getWindowInventory().getStackInSlot(INDIVIDUAL_SLOT);
+			this.getWindowInventory().setInventorySlotContents(INDIVIDUAL_SLOT, Analyser.analyse(individualStack, this.getWorld(), this.getUsername()));
+			this.getWindowInventory().decrStackSize(PAPER_SLOT, 1);
 		}
 	}
 }
