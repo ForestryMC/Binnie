@@ -20,7 +20,7 @@ public class ControlHelp extends Control implements ITooltip {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.render.texture(CraftGUITexture.HelpButton, this.getArea());
+		CraftGUI.RENDER.texture(CraftGUITexture.HelpButton, this.getArea());
 	}
 
 	@Override

@@ -55,7 +55,7 @@ public class AnalystPageBehaviour extends ControlAnalystPage {
 
 				new ControlText(this, new Area(4, y, width() - 8, 0), loc, TextJustification.TOP_CENTER)
 					.setColor(getColor());
-				y += (int) (CraftGUI.render.textHeight(loc, width() - 8) + 1.0f);
+				y += (int) (CraftGUI.RENDER.textHeight(loc, width() - 8) + 1.0f);
 
 				new ControlTextCentered(this, y, I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".withinBlocks", (int) (t.getX() / 2.0f)))
 					.setColor(getColor());

@@ -76,7 +76,7 @@ public class ControlClimateBar extends Control implements ITooltip {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.render.texture(CraftGUITexture.EnergyBarBack, getArea());
+		CraftGUI.RENDER.texture(CraftGUITexture.EnergyBarBack, getArea());
 		int types = isHumidity ? 3 : 6;
 		int w = (int) ((getSize().x() - 2.0f) / types);
 		for (int i = 0; i < types; ++i) {
@@ -91,7 +91,7 @@ public class ControlClimateBar extends Control implements ITooltip {
 				RenderUtil.drawSolidRect(new Area(x + 1, 1, w, getSize().y() - 2), color);
 			}
 		}
-		CraftGUI.render.texture(CraftGUITexture.EnergyBarGlass, getArea());
+		CraftGUI.RENDER.texture(CraftGUITexture.EnergyBarGlass, getArea());
 	}
 
 	public void setSpecies(IAlleleBeeSpecies species) {

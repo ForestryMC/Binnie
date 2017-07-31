@@ -24,7 +24,7 @@ public class ItemGenesis extends ItemCore {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack itemStack = playerIn.getHeldItem(handIn);
-		BinnieCore.getBinnieProxy().openGui(BinnieCoreGUI.Genesis, playerIn, playerIn.getPosition());
+		BinnieCore.getBinnieProxy().openGui(BinnieCoreGUI.GENESIS, playerIn, playerIn.getPosition());
 		return new ActionResult<>(EnumActionResult.SUCCESS, itemStack);
 	}
 

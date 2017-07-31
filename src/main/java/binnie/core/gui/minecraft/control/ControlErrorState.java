@@ -40,7 +40,7 @@ public class ControlErrorState extends Control implements ITooltip {
 		} else if (this.type == 0) {
 			texture = CraftGUITexture.StateError;
 		}
-		CraftGUI.render.texture(texture, Point.ZERO);
+		CraftGUI.RENDER.texture(texture, Point.ZERO);
 		super.onRenderBackground(guiWidth, guiHeight);
 	}
 

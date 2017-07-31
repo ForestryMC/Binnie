@@ -57,7 +57,7 @@ public class AnalystPageGenome extends ControlAnalystPage {
 		for (IChromosomeType chromo : system.getActiveKaryotype()) {
 			IAllele allele = active ? ind.getGenome().getActiveAllele(chromo) : ind.getGenome().getInactiveAllele(chromo);
 			String alleleName = system.getAlleleName(chromo, allele);
-			int height = CraftGUI.render.textHeight(alleleName, center - 2);
+			int height = CraftGUI.RENDER.textHeight(alleleName, center - 2);
 			new ControlText(scaled, new Area(0, y + (height - 9) / 2, center - 2, 0), system.getChromosomeShortName(chromo) + " :", TextJustification.TOP_RIGHT).setColor(getColor());
 			new ControlText(scaled, new Area(center + 2, y, center - 2, 0), alleleName, TextJustification.TOP_LEFT).setColor(getColor());
 			y += 3 + height;

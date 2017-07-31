@@ -54,8 +54,8 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.render.texture(DISTILLERY_BASE, Point.ZERO);
-		CraftGUI.render.texturePercentage(LIQUID_FLOW, new Area(18, 0, 38, 66), Position.LEFT, this.progress);
+		CraftGUI.RENDER.texture(DISTILLERY_BASE, Point.ZERO);
+		CraftGUI.RENDER.texturePercentage(LIQUID_FLOW, new Area(18, 0, 38, 66), Position.LEFT, this.progress);
 		final DistilleryLogic component = Machine.getInterface(DistilleryLogic.class, Window.get(this).getInventory());
 		FluidStack stack = null;
 		if (component != null) {
@@ -75,8 +75,8 @@ public class ControlDistilleryProgress extends ControlProgressBase {
 		if (distilleryLogic != null) {
 			final int level = distilleryLogic.level;
 			GlStateManager.enableAlpha();
-			CraftGUI.render.texture(OUTPUT, new Point(47, 14 + level * 15));
-			CraftGUI.render.texture(DISTILLERY_OVERLAY, Point.ZERO);
+			CraftGUI.RENDER.texture(OUTPUT, new Point(47, 14 + level * 15));
+			CraftGUI.RENDER.texture(DISTILLERY_OVERLAY, Point.ZERO);
 		}
 	}
 }

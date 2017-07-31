@@ -56,7 +56,7 @@ public class WindowPunnettSquare extends Window {
 	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		setTitle("Punnett Square");
-		CraftGUI.render.setStyleSheet(new StyleSheetPunnett());
+		CraftGUI.RENDER.setStyleSheet(new StyleSheetPunnett());
 	}
 
 	static class StyleSheetPunnett extends StyleSheet {

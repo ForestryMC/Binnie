@@ -1,7 +1,7 @@
 package binnie.core.gui;
 
 public enum RenderStage {
-	PreChildren,
-	PostChildren,
-	PostSiblings
+	PRE_CHILDREN,
+	POST_CHILDREN,
+	POST_SIBLINGS
 }

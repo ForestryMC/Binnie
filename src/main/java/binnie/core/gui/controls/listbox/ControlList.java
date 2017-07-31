@@ -48,7 +48,7 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 		this.value = value;
 		if (this.optionWidgets.containsKey(value)) {
 			final IWidget child = this.optionWidgets.get(value);
-			this.parent.ensureVisible(child.yPos(), child.yPos() + child.height(), this.height());
+			this.parent.ensureVisible(child.getYPos(), child.getYPos() + child.height(), this.height());
 		}
 		this.parent.callEvent(new EventValueChanged<Object>(this.parent, value));
 	}

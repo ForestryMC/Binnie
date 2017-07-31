@@ -35,9 +35,9 @@ public class ControlColorMixSymbol extends Control implements ITooltip {
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		super.onRenderBackground(guiWidth, guiHeight);
 		if (type == 0) {
-			CraftGUI.render.texture(ControlColorMixSymbol.MutationPlus, Point.ZERO);
+			CraftGUI.RENDER.texture(ControlColorMixSymbol.MutationPlus, Point.ZERO);
 		} else {
-			CraftGUI.render.texture(ControlColorMixSymbol.MutationArrow, Point.ZERO);
+			CraftGUI.RENDER.texture(ControlColorMixSymbol.MutationArrow, Point.ZERO);
 		}
 	}
 

@@ -159,9 +159,9 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				@Override
 				@SideOnly(Side.CLIENT)
 				public void onRenderForeground(int guiWidth, int guiHeight) {
-					final Texture iTexture = CraftGUI.render.getTexture(CraftGUITexture.TabOutline);
+					final Texture iTexture = CraftGUI.RENDER.getTexture(CraftGUITexture.TabOutline);
 					RenderUtil.setColour(WindowCompartment.this.getTab(WindowCompartment.this.panels.get(this)).getColor().getColour());
-					CraftGUI.render.texture(iTexture, this.getArea().inset(3));
+					CraftGUI.RENDER.texture(iTexture, this.getArea().inset(3));
 				}
 			};
 			this.panels.put(panel, p2);
@@ -215,7 +215,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		}
 		x += 16;
 		this.setSize(new Point(Math.max(32 + compartmentWidth, 252), this.height()));
-		controlCompartment.setPosition(new Point((this.width() - controlCompartment.width()) / 2, controlCompartment.yPos()));
+		controlCompartment.setPosition(new Point((this.width() - controlCompartment.width()) / 2, controlCompartment.getYPos()));
 		final ControlPlayerInventory invent = new ControlPlayerInventory(this, true);
 		final ControlSlide slide = new ControlSlide(this, 0, 134, 136, 92, Position.LEFT);
 		slide.setLabel("Tab Properties");
@@ -291,7 +291,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			@SideOnly(Side.CLIENT)
 			public void onRenderBackground(int guiWidth, int guiHeight) {
 				final Object texture = this.isMouseOver() ? CraftGUITexture.TabHighlighted : CraftGUITexture.Tab;
-				CraftGUI.render.texture(CraftGUI.render.getTexture(texture).crop(Position.BOTTOM, 8), this.getArea());
+				CraftGUI.RENDER.texture(CraftGUI.RENDER.getTexture(texture).crop(Position.BOTTOM, 8), this.getArea());
 			}
 		};
 		searchButton.addHelp("Search Button");
@@ -378,7 +378,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				@SideOnly(Side.CLIENT)
 				public void onRenderBackground(int guiWidth, int guiHeight) {
 					RenderUtil.setColour(11184810);
-					CraftGUI.render.texture(CraftGUITexture.Outline, this.getArea().inset(new Border(0, 6, 0, 0)));
+					CraftGUI.RENDER.texture(CraftGUITexture.Outline, this.getArea().inset(new Border(0, 6, 0, 0)));
 				}
 			};
 			scroll.setScrollableContent(this.slotGrid = new Control(scroll, 1, 1, 108, 18));

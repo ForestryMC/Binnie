@@ -23,7 +23,7 @@ public class ControlInfo extends Control implements ITooltip {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.render.texture(CraftGUITexture.InfoButton, this.getArea());
+		CraftGUI.RENDER.texture(CraftGUITexture.InfoButton, this.getArea());
 	}
 
 	@Override

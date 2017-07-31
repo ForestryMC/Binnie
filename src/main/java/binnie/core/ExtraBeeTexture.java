@@ -19,7 +19,6 @@ public enum ExtraBeeTexture implements IBinnieTexture {
 	AlvearyStimulator(ResourceType.Tile, "alveary/AlvearyStimulator"),
 	AlvearyHatchery(ResourceType.Tile, "alveary/AlvearyHatchery"),
 	FX(ResourceType.FX, "fx"),
-	GUIPunnett(ResourceType.GUI, "punnett"),
 	GUIProgress(ResourceType.GUI, "processes"),
 	GUIProgress2(ResourceType.GUI, "processes2"),
 	AlvearyTransmission(ResourceType.Tile, "alveary/AlvearyTransmission");

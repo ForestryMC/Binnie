@@ -39,9 +39,9 @@ class ControlMutationSymbol extends Control implements ITooltip {
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		super.onRenderBackground(guiWidth, guiHeight);
 		if (this.type == 0) {
-			CraftGUI.render.texture(ControlMutationSymbol.MutationPlus, Point.ZERO);
+			CraftGUI.RENDER.texture(ControlMutationSymbol.MutationPlus, Point.ZERO);
 		} else {
-			CraftGUI.render.texture(ControlMutationSymbol.MutationArrow, Point.ZERO);
+			CraftGUI.RENDER.texture(ControlMutationSymbol.MutationArrow, Point.ZERO);
 		}
 	}
 

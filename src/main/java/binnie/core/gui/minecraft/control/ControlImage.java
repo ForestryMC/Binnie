@@ -20,6 +20,6 @@ public class ControlImage extends Control {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {
-		CraftGUI.render.texture(this.key, Point.ZERO);
+		CraftGUI.RENDER.texture(this.key, Point.ZERO);
 	}
 }

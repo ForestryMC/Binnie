@@ -8,6 +8,6 @@ import binnie.core.gui.resource.minecraft.CraftGUIResourceManager;
 
 @SideOnly(Side.CLIENT)
 public class CraftGUI {
-	public static final TextureRenderer render = new TextureRenderer();
+	public static final TextureRenderer RENDER = new TextureRenderer();
 	public static CraftGUIResourceManager resourceManager;
 }

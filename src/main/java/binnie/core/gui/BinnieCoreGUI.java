@@ -10,23 +10,24 @@ import net.minecraft.world.World;
 
 import net.minecraftforge.fml.relauncher.Side;
 
+import binnie.core.gui.fieldkit.WindowFieldKit;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.machines.storage.WindowCompartment;
 
 public enum BinnieCoreGUI implements IBinnieGUID {
-	Compartment,
-	FieldKit,
-	Genesis;
+	COMPARTMENT,
+	FIELD_KIT,
+	GENESIS;
 
 	public Window getWindow(final EntityPlayer player, @Nullable final IInventory object, final Side side) {
 		switch (this) {
-			case Compartment: {
+			case COMPARTMENT: {
 				return new WindowCompartment(player, object, side);
 			}
-			case FieldKit: {
+			case FIELD_KIT: {
 				return new WindowFieldKit(player, null, side);
 			}
-			case Genesis: {
+			case GENESIS: {
 				return new WindowGenesis(player, null, side);
 			}
 			default: {

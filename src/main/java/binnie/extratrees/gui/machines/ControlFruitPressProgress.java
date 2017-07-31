@@ -50,7 +50,7 @@ public class ControlFruitPressProgress extends ControlProgressBase {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.render.texture(ControlFruitPressProgress.PressSlot, new Point(3, 52));
+		CraftGUI.RENDER.texture(ControlFruitPressProgress.PressSlot, new Point(3, 52));
 		ContainerCraftGUI container = Window.get(this).getContainer();
 		IInventory inventory = Window.get(this).getInventory();
 		Slot slotFromInventory = container.getSlotFromInventory(inventory, FruitPressMachine.SLOT_CURRENT);
@@ -70,6 +70,6 @@ public class ControlFruitPressProgress extends ControlProgressBase {
 	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		GlStateManager.enableBlend();
-		CraftGUI.render.texture(ControlFruitPressProgress.PressTexture, new Point(0, Math.round(16 * this.progress)));
+		CraftGUI.RENDER.texture(ControlFruitPressProgress.PressTexture, new Point(0, Math.round(16 * this.progress)));
 	}
 }

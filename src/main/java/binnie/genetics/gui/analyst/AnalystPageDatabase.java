@@ -66,9 +66,9 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 			@SideOnly(Side.CLIENT)
 			public void onRenderBackground(int guiWidth, int guiHeight) {
 				RenderUtil.setColour(5592405);
-				CraftGUI.render.texture(CraftGUITexture.TabSolid, getArea().inset(1));
+				CraftGUI.RENDER.texture(CraftGUITexture.TabSolid, getArea().inset(1));
 				RenderUtil.setColour(AnalystPageDatabase.this.getColor());
-				CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea());
+				CraftGUI.RENDER.texture(CraftGUITexture.TabOutline, getArea());
 				renderTextField();
 			}
 		};
@@ -108,7 +108,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 			scroll = new ControlScrollableContent(this, 4, y, width() - 8, height() - y - 8, 0);
 			scroll.setScrollableContent(getItemScrollList(system, options));
 		}
-		new ControlScrollBar(this, scroll.xPos() + scroll.width() - 6, scroll.yPos() + 3, 3, scroll.height() - 6, scroll) {
+		new ControlScrollBar(this, scroll.getXPos() + scroll.width() - 6, scroll.getYPos() + 3, 3, scroll.height() - 6, scroll) {
 			@Override
 			@SideOnly(Side.CLIENT)
 			public void onRenderBackground(int guiWidth, int guiHeight) {
@@ -163,12 +163,12 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 							WindowAnalyst window = (WindowAnalyst) AnalystPageDatabase.this.getTopParent();
 							if (window.getIndividual() != null && window.getIndividual().getGenome().getPrimary() == species) {
 								RenderUtil.setColour(15658734);
-								CraftGUI.render.texture(CraftGUITexture.TabSolid, getArea().outset(1));
+								CraftGUI.RENDER.texture(CraftGUITexture.TabSolid, getArea().outset(1));
 								RenderUtil.setColour(AnalystPageDatabase.this.getColor());
-								CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea().outset(1));
+								CraftGUI.RENDER.texture(CraftGUITexture.TabOutline, getArea().outset(1));
 							} else if (calculateIsMouseOver()) {
 								RenderUtil.setColour(15658734);
-								CraftGUI.render.texture(CraftGUITexture.TabSolid, getArea().outset(1));
+								CraftGUI.RENDER.texture(CraftGUITexture.TabSolid, getArea().outset(1));
 							}
 							super.onRenderBackground(guiWidth, guiHeight);
 						}

@@ -180,10 +180,10 @@ public class WindowAnalyst extends Window {
 					public void onRenderBackground(int guiWidth, int guiHeight) {
 						RenderUtil.setColour(syst.getColour());
 						int outset = (getSystem() == syst) ? 1 : 0;
-						CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea().outset(outset));
+						CraftGUI.RENDER.texture(CraftGUITexture.TabOutline, getArea().outset(outset));
 						if (getSystem() == syst) {
 							RenderUtil.setColour(1140850688 + syst.getColour());
-							CraftGUI.render.texture(CraftGUITexture.TabSolid, getArea().outset(outset));
+							CraftGUI.RENDER.texture(CraftGUITexture.TabSolid, getArea().outset(outset));
 						}
 						RenderUtil.drawItem(new Point(2, 2), syst.getItemStackRepresentitive());
 					}
@@ -218,7 +218,7 @@ public class WindowAnalyst extends Window {
 							return;
 						}
 						RenderUtil.setColour(getContent().getColor());
-						CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea());
+						CraftGUI.RENDER.texture(CraftGUITexture.TabOutline, getArea());
 					}
 				};
 				new ControlScrollBar(this, sectionWidth + 2 - 3, 6, 3, height() - 8 + 2 - 6, leftPage) {
@@ -243,7 +243,7 @@ public class WindowAnalyst extends Window {
 							return;
 						}
 						RenderUtil.setColour(getContent().getColor());
-						CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea());
+						CraftGUI.RENDER.texture(CraftGUITexture.TabOutline, getArea());
 					}
 				};
 				new ControlScrollBar(this, sectionWidth + 2 - 3 + sectionWidth + 4, 6, 3, height() - 8 + 2 - 6, rightPage) {
@@ -390,11 +390,11 @@ public class WindowAnalyst extends Window {
 						RenderUtil.setColour((active ? -16777216 : 1140850688) + value.getColor());
 						GlStateManager.pushMatrix();
 						GlStateManager.enableBlend();
-						CraftGUI.render.texture(CraftGUITexture.TabSolid, getArea().inset(1));
+						CraftGUI.RENDER.texture(CraftGUITexture.TabSolid, getArea().inset(1));
 						GlStateManager.disableBlend();
 						GlStateManager.popMatrix();
 						RenderUtil.setColour(value.getColor());
-						CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea().inset(1));
+						CraftGUI.RENDER.texture(CraftGUITexture.TabOutline, getArea().inset(1));
 						super.onRenderBackground(guiWidth, guiHeight);
 					}
 				};
@@ -455,7 +455,7 @@ public class WindowAnalyst extends Window {
 			page.show();
 			side.setScrollableContent(page);
 			side.setPercentageIndex(0);
-			page.setPosition(side.pos().add(1, 1));
+			page.setPosition(this.getPosition().add(1, 1));
 		}
 	}
 

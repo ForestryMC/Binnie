@@ -24,7 +24,7 @@ public class ControlPowerSystem extends Control implements ITooltip {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.render.texture(CraftGUITexture.PowerButton, this.getArea());
+		CraftGUI.RENDER.texture(CraftGUITexture.PowerButton, this.getArea());
 	}
 
 	@Override

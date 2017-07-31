@@ -83,7 +83,7 @@ public class ControlTextEdit extends Control implements IControlValue<String> {
 
 	@Override
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.render.texture(CraftGUITexture.Slot, this.getArea());
+		CraftGUI.RENDER.texture(CraftGUITexture.Slot, this.getArea());
 		this.renderTextField();
 	}
 

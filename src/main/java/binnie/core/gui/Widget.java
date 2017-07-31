@@ -120,7 +120,7 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public final Point pos() {
+	public Point getPosition() {
 		return this.position.add(this.offset);
 	}
 
@@ -132,11 +132,6 @@ public class Widget implements IWidget {
 	@Override
 	public final Area area() {
 		return this.getArea();
-	}
-
-	@Override
-	public final Point getPosition() {
-		return this.pos();
 	}
 
 	@Override
@@ -285,18 +280,18 @@ public class Widget implements IWidget {
 	@SideOnly(Side.CLIENT)
 	public final void render(int guiWidth, int guiHeight) {
 		if (this.isVisible()) {
-			CraftGUI.render.preRender(this, guiWidth, guiHeight);
-			this.onRender(RenderStage.PreChildren, guiWidth, guiHeight);
+			CraftGUI.RENDER.preRender(this, guiWidth, guiHeight);
+			this.onRender(RenderStage.PRE_CHILDREN, guiWidth, guiHeight);
 			for (final IWidget widget : this.getWidgets()) {
 				widget.render(guiWidth, guiHeight);
 			}
 			for (final IWidget widget : this.getWidgets()) {
-				CraftGUI.render.preRender(widget, guiWidth, guiHeight);
-				widget.onRender(RenderStage.PostSiblings, guiWidth, guiHeight);
-				CraftGUI.render.postRender(widget);
+				CraftGUI.RENDER.preRender(widget, guiWidth, guiHeight);
+				widget.onRender(RenderStage.POST_SIBLINGS, guiWidth, guiHeight);
+				CraftGUI.RENDER.postRender(widget);
 			}
-			this.onRender(RenderStage.PostChildren, guiWidth, guiHeight);
-			CraftGUI.render.postRender(this);
+			this.onRender(RenderStage.POST_CHILDREN, guiWidth, guiHeight);
+			CraftGUI.RENDER.postRender(this);
 		}
 	}
 
@@ -421,13 +416,13 @@ public class Widget implements IWidget {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRender(final RenderStage stage, int guiWidth, int guiHeight) {
-		if (stage == RenderStage.PreChildren) {
+		if (stage == RenderStage.PRE_CHILDREN) {
 			this.onRenderBackground(guiWidth, guiHeight);
 		}
-		if (stage == RenderStage.PostChildren) {
+		if (stage == RenderStage.POST_CHILDREN) {
 			this.onRenderForeground(guiWidth, guiHeight);
 		}
-		if (stage == RenderStage.PostSiblings) {
+		if (stage == RenderStage.POST_SIBLINGS) {
 			this.onRenderOverlay();
 		}
 	}
@@ -485,8 +480,14 @@ public class Widget implements IWidget {
 
 	@Override
 	public int getLevel() {
-		final int level = (this.getParent() == null) ? 0 : this.getParent().getLevel();
-		final int index = (this.getParent() == null) ? 0 : this.getParent().getWidgets().indexOf(this);
+		IWidget parent = getParent();
+		int level = 0;
+		int index = 0;
+		if(parent != null){
+			List<IWidget> widgets = parent.getWidgets();
+			level = parent.getLevel();
+			index = widgets.indexOf(this);
+		}
 		return level + index;
 	}
 
@@ -503,13 +504,13 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public int xPos() {
-		return this.pos().x();
+	public int getXPos() {
+		return this.getPosition().x();
 	}
 
 	@Override
-	public int yPos() {
-		return this.pos().y();
+	public int getYPos() {
+		return getPosition().y();
 	}
 
 	@Override

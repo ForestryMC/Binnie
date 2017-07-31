@@ -36,10 +36,10 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 
 	public ControlChromosome(IWidget parent, int x, int y) {
 		super(parent, x, y, 96, 96);
-		BeeTexture = new StandardTexture(0, 0, 96, 96, BinnieCoreTexture.GUIBreeding);
-		TreeTexture = new StandardTexture(96, 0, 96, 96, BinnieCoreTexture.GUIBreeding);
-		MothTexture = new StandardTexture(96, 96, 96, 96, BinnieCoreTexture.GUIBreeding);
-		FlowerTexture = new StandardTexture(0, 96, 96, 96, BinnieCoreTexture.GUIBreeding);
+		BeeTexture = new StandardTexture(0, 0, 96, 96, BinnieCoreTexture.GUI_BREEDING);
+		TreeTexture = new StandardTexture(96, 0, 96, 96, BinnieCoreTexture.GUI_BREEDING);
+		MothTexture = new StandardTexture(96, 96, 96, 96, BinnieCoreTexture.GUI_BREEDING);
+		FlowerTexture = new StandardTexture(0, 96, 96, 96, BinnieCoreTexture.GUI_BREEDING);
 		chromo = null;
 		species = null;
 	}
@@ -128,7 +128,7 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 		}
 		super.onRenderBackground(guiWidth, guiHeight);
 		Texture text = getTypeTexture();
-		CraftGUI.render.texture(text, Point.ZERO);
+		CraftGUI.RENDER.texture(text, Point.ZERO);
 	}
 
 	@Nullable

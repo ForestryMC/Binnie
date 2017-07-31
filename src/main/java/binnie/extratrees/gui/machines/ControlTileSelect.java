@@ -166,7 +166,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 		@Override
 		@SideOnly(Side.CLIENT)
 		public void onRenderBackground(int guiWidth, int guiHeight) {
-			CraftGUI.render.texture(CraftGUITexture.Slot, Point.ZERO);
+			CraftGUI.RENDER.texture(CraftGUITexture.Slot, Point.ZERO);
 		}
 
 		@Override

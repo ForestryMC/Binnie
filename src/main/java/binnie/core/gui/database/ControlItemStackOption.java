@@ -24,10 +24,10 @@ public class ControlItemStackOption extends ControlTextOption<ItemStack> {
 		this.addAttribute(Attribute.MouseOver);
 		CraftGUIUtil.moveWidget(this.textWidget, new Point(22, 0));
 		this.textWidget.setSize(this.textWidget.getSize().sub(new Point(24, 0)));
-		final int th = CraftGUI.render.textHeight(this.textWidget.getValue(), this.textWidget.getSize().x());
+		final int th = CraftGUI.RENDER.textHeight(this.textWidget.getValue(), this.textWidget.getSize().x());
 		final int height = Math.max(20, th + 6);
 		this.setSize(new Point(this.size().x(), height));
 		this.textWidget.setSize(new Point(this.textWidget.getSize().x(), height));
-		this.controlBee.setPosition(new Point(this.controlBee.pos().x(), (height - 18) / 2));
+		this.controlBee.setPosition(new Point(this.getPosition().x(), (height - 18) / 2));
 	}
 }

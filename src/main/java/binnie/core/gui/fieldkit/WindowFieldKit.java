@@ -1,4 +1,4 @@
-package binnie.core.gui;
+package binnie.core.gui.fieldkit;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -26,12 +26,11 @@ import forestry.api.genetics.ISpeciesRoot;
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
-import binnie.core.ExtraBeeTexture;
+import binnie.core.gui.CraftGUI;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.core.Control;
 import binnie.core.gui.events.EventHandler;
 import binnie.core.gui.events.EventValueChanged;
-import binnie.core.gui.fieldkit.ControlChromosome;
 import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Point;
 import binnie.core.gui.geometry.TextJustification;
@@ -43,6 +42,7 @@ import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.gui.resource.StyleSheetPunnett;
 import binnie.core.gui.resource.minecraft.StandardTexture;
 import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.texture.BinnieCoreTexture;
 import binnie.core.util.I18N;
 import binnie.genetics.machine.analyser.Analyser;
 
@@ -111,13 +111,13 @@ public class WindowFieldKit extends Window {
 	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
 		this.setTitle("Field Kit");
-		CraftGUI.render.setStyleSheet(new StyleSheetPunnett());
+		CraftGUI.RENDER.setStyleSheet(new StyleSheetPunnett());
 		this.getWindowInventory().createSlot(0);
 		this.getWindowInventory().createSlot(1);
 		this.setupValidators();
 		new ControlPlayerInventory(this);
 		final Point handGlass = new Point(16, 32);
-		this.GlassControl = new ControlImage(this, handGlass.x(), handGlass.y(), new StandardTexture(0, 160, 96, 96, ExtraBeeTexture.GUIPunnett));
+		this.GlassControl = new ControlImage(this, handGlass.x(), handGlass.y(), new StandardTexture(0, 160, 96, 96, BinnieCoreTexture.GUI_PUNNETT));
 		new ControlSlot.Builder(this, handGlass.x() + 54, handGlass.y() + 26).assign(InventoryType.Window, 0);
 		new ControlSlot.Builder(this, 208, 8).assign(InventoryType.Window, 1);
 		(this.text = new ControlText(this, new Point(232, 13), "Paper")).setColor(2236962);

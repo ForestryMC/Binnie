@@ -83,7 +83,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.render.texture(this.horizontal ? CraftGUITexture.HorizontalLiquidTank : CraftGUITexture.LiquidTank, Point.ZERO);
+		CraftGUI.RENDER.texture(this.horizontal ? CraftGUITexture.HorizontalLiquidTank : CraftGUITexture.LiquidTank, Point.ZERO);
 		GuiCraftGUI gui = Window.get(this).getGui();
 		if (this.isMouseOver() && gui.isHelpMode()) {
 			final int c = -1442840576 + MinecraftTooltip.getOutline(Tooltip.Type.Help);
@@ -118,7 +118,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 				if (this.horizontal) {
 					limited.setSize(new Point(limited.width() - 1, limited.height()));
 				}
-				CraftGUI.render.limitArea(new Area(limited.pos().add(pos).add(offset), limited.size().sub(offset)), guiWidth, guiHeight);
+				CraftGUI.RENDER.limitArea(new Area(limited.pos().add(pos).add(offset), limited.size().sub(offset)), guiWidth, guiHeight);
 				GL11.glEnable(GL11.GL_SCISSOR_TEST);
 				{
 					BinnieCore.getBinnieProxy().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
@@ -139,17 +139,17 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {
-		CraftGUI.render.texture(this.horizontal ? CraftGUITexture.HorizontalLiquidTankOverlay : CraftGUITexture.LiquidTankOverlay, Point.ZERO);
+		CraftGUI.RENDER.texture(this.horizontal ? CraftGUITexture.HorizontalLiquidTankOverlay : CraftGUITexture.LiquidTankOverlay, Point.ZERO);
 		GuiCraftGUI gui = Window.get(this).getGui();
 		if (this.isMouseOver() && gui.isHelpMode()) {
 			final Area area = this.getArea();
 			RenderUtil.setColour(MinecraftTooltip.getOutline(Tooltip.Type.Help));
-			CraftGUI.render.texture(CraftGUITexture.Outline, area.outset(1));
+			CraftGUI.RENDER.texture(CraftGUITexture.Outline, area.outset(1));
 		}
 		if (ControlLiquidTank.tankError.contains(this.tankID)) {
 			final Area area = this.getArea();
 			RenderUtil.setColour(MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error));
-			CraftGUI.render.texture(CraftGUITexture.Outline, area.outset(1));
+			CraftGUI.RENDER.texture(CraftGUITexture.Outline, area.outset(1));
 		}
 	}
 

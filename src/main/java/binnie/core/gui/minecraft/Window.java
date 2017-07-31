@@ -88,7 +88,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 			for (final EnumHighlighting h : EnumHighlighting.values()) {
 				ControlSlot.highlighting.put(h, new ArrayList<>());
 			}
-			CraftGUI.render.setStyleSheet(StyleSheetManager.getDefault());
+			CraftGUI.RENDER.setStyleSheet(StyleSheetManager.getDefault());
 			this.titleButtonLeft = -14;
 			if (this.showHelpButton()) {
 				new ControlHelp(this, this.titleButtonLeft += 22, 8);
@@ -224,13 +224,13 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		RenderUtil.setColour(0xffffff);
 		if (this.getBackground1() != null) {
-			CraftGUI.render.texture(this.getBackground1(), Point.ZERO);
+			CraftGUI.RENDER.texture(this.getBackground1(), Point.ZERO);
 		}
 		if (this.getBackground2() != null) {
-			CraftGUI.render.texture(this.getBackground2(), new Point(256, 0));
+			CraftGUI.RENDER.texture(this.getBackground2(), new Point(256, 0));
 		}
 		RenderUtil.setColour(this.getColor());
-		CraftGUI.render.texture(CraftGUITexture.Window, this.getArea());
+		CraftGUI.RENDER.texture(CraftGUITexture.Window, this.getArea());
 	}
 
 	@Override

@@ -56,7 +56,7 @@ public class ControlOption<T> extends Control implements IControlValue<T> {
 	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		if (this.isCurrentSelection()) {
-			CraftGUI.render.texture(CraftGUITexture.Outline, this.getArea());
+			CraftGUI.RENDER.texture(CraftGUITexture.Outline, this.getArea());
 		}
 	}
 }

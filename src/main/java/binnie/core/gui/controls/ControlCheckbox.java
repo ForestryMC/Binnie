@@ -66,6 +66,6 @@ public class ControlCheckbox extends Control implements IControlValue<Boolean> {
 		if (this.isMouseOver()) {
 			texture = (this.getValue() ? CraftGUITexture.CheckboxCheckedHighlighted : CraftGUITexture.CheckboxHighlighted);
 		}
-		CraftGUI.render.texture(texture, Point.ZERO);
+		CraftGUI.RENDER.texture(texture, Point.ZERO);
 	}
 }

@@ -36,9 +36,9 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.render.texture(ExtraBeeGUITexture.Chromosome, getArea());
+		CraftGUI.RENDER.texture(ExtraBeeGUITexture.Chromosome, getArea());
 		RenderUtil.setColour(16711680);
-		CraftGUI.render.texture(ExtraBeeGUITexture.Chromosome2, getArea());
+		CraftGUI.RENDER.texture(ExtraBeeGUITexture.Chromosome2, getArea());
 	}
 
 	@Override

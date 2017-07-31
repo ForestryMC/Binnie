@@ -27,8 +27,6 @@ public interface IWidget {
 
 	void setPosition(final Point p0);
 
-	Point pos();
-
 	Point getSize();
 
 	void setSize(final Point p0);
@@ -136,9 +134,9 @@ public interface IWidget {
 
 	boolean contains(final Point point);
 
-	int xPos();
+	int getXPos();
 
-	int yPos();
+	int getYPos();
 
 	int width();
 

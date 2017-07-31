@@ -23,7 +23,7 @@ public class ControlColorOption extends ControlTextOption<IFlowerColor> {
 		addAttribute(Attribute.MouseOver);
 		CraftGUIUtil.moveWidget(textWidget, new Point(22, 0));
 		textWidget.setSize(textWidget.getSize().sub(new Point(24, 0)));
-		int th = CraftGUI.render.textHeight(textWidget.getValue(), textWidget.getSize().x());
+		int th = CraftGUI.RENDER.textHeight(textWidget.getValue(), textWidget.getSize().x());
 		int height = Math.max(20, th + 6);
 		setSize(new Point(size().x(), height));
 		textWidget.setSize(new Point(textWidget.getSize().x(), height));

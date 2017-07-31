@@ -57,8 +57,8 @@ public class DistilleryRecipeCategory extends BlankRecipeCategory<DistilleryReci
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void drawExtras(Minecraft minecraft) {
-		CraftGUI.render.texture(DISTILLERY_BASE, Point.ZERO);
-		CraftGUI.render.texturePercentage(LIQUID_FLOW, new Area(18, 0, 38, 60), Position.LEFT, progress.getValue() / 100f);
+		CraftGUI.RENDER.texture(DISTILLERY_BASE, Point.ZERO);
+		CraftGUI.RENDER.texturePercentage(LIQUID_FLOW, new Area(18, 0, 38, 60), Position.LEFT, progress.getValue() / 100f);
 	}
 
 	@Override
