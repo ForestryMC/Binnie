@@ -156,8 +156,8 @@ genetics.gui.analyst.appearance.stem=Stem Colour
 genetics.gui.analyst.specimen.title=Specimen
 
 //Bee
-genetics.gui.analyst.produces.title=Produce
-genetics.gui.analyst.produces.rate=Rate
+genetics.gui.analyst.products.title=Produce
+genetics.gui.analyst.products.rate=Rate
 genetics.gui.analyst.products.natural=Natural Products
 genetics.gui.analyst.products.specialty=Specialty Products
 genetics.gui.analyst.products.refined=Refined Products
