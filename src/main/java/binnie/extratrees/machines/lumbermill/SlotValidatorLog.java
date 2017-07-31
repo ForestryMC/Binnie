@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.util.I18N;
 
 public class SlotValidatorLog extends SlotValidator {
 	private static final int logWoodId = OreDictionary.getOreID("logWood");
@@ -26,6 +27,6 @@ public class SlotValidatorLog extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return "Logs";
+		return I18N.localise("extratrees.machine.machine.lumbermill.tooltips.logs");
 	}
 }

@@ -124,7 +124,7 @@ public class ErrorState implements INbtReadable, INbtWritable {
 	}
 
 	public boolean isTankError() {
-		return this.tankError || this instanceof Tank;
+		return this.tankError ;
 	}
 
 	public boolean isPowerError() {
@@ -137,16 +137,6 @@ public class ErrorState implements INbtReadable, INbtWritable {
 		}
 		
 		public Item(IErrorStateDefinition nameDefinition, IErrorStateDefinition definition, final int[] slots) {
-			super(nameDefinition, definition, slots);
-		}
-	}
-
-	public static class Tank extends ErrorState {
-		public Tank(final String name, final String desc, final int[] slots) {
-			super(name, desc, slots);
-		}
-		
-		public Tank(IErrorStateDefinition nameDefinition, IErrorStateDefinition definition, final int[] slots) {
 			super(nameDefinition, definition, slots);
 		}
 	}
@@ -169,53 +159,9 @@ public class ErrorState implements INbtReadable, INbtWritable {
 		}
 	}
 
-	public static class InvalidItem extends Item {
-		@Deprecated
-		public InvalidItem(final String desc, int slot) {
-			this(CoreErrorCode.INVALID_ITEM.getName(), desc, slot);
-		}
-		
-		public InvalidItem(IErrorStateDefinition definition, int slot) {
-			super(definition.getName(), definition.getDescription(), new int[]{slot});
-		}
-
-		public InvalidItem(String name, String desc, int slot) {
-			super(name, desc, new int[]{slot});
-		}
-	}
-
-	public static class NoSpace extends Item {
-		public NoSpace(final String desc, final int[] slots) {
-			super("No Space", desc, slots);
-		}
-	}
-
 	public static class InsufficientPower extends ErrorState {
 		public InsufficientPower() {
 			super(CoreErrorCode.INSUFFICIENT_POWER);
-		}
-	}
-
-	public static class TankSpace extends Tank {
-		@Deprecated
-		public TankSpace(final String desc, final int tank) {
-			super(CoreErrorCode.TANK_FULL.getName(), desc, new int[]{tank});
-		}
-		
-		public TankSpace(IErrorStateDefinition definition, final int tank) {
-			super(CoreErrorCode.TANK_FULL, definition, new int[]{tank});
-		}
-	}
-
-	public static class InsufficientLiquid extends Tank {
-		public InsufficientLiquid(final String desc, final int tank) {
-			super("Insufficient Liquid", desc, new int[]{tank});
-		}
-	}
-
-	public static class InvalidRecipe extends Item {
-		public InvalidRecipe(final String string, final int[] slots) {
-			super("Invalid Recipe", string, slots);
 		}
 	}
 }

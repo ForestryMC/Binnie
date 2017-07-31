@@ -1,4 +1,4 @@
-package binnie.extratrees.machines;
+package binnie.extratrees.machines.nursery;
 
 import javax.annotation.Nullable;
 import java.util.HashSet;

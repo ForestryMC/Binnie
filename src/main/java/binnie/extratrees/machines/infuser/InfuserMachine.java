@@ -1,0 +1,49 @@
+package binnie.extratrees.machines.infuser;
+
+import net.minecraft.tileentity.TileEntity;
+
+import binnie.core.gui.minecraft.IMachineInformation;
+import binnie.core.machines.Machine;
+import binnie.core.machines.TileEntityMachine;
+import binnie.core.machines.inventory.ComponentInventorySlots;
+import binnie.core.machines.inventory.ComponentTankContainer;
+import binnie.core.machines.inventory.MachineSide;
+import binnie.core.machines.inventory.TankSlot;
+import binnie.core.machines.power.ComponentPowerReceptor;
+import binnie.extratrees.core.ExtraTreeTexture;
+import binnie.extratrees.core.ExtraTreesGUID;
+import binnie.extratrees.machines.ExtraTreeMachine;
+
+public class InfuserMachine extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
+	public InfuserMachine() {
+		super("infuser", ExtraTreeTexture.Infuser, true);
+	}
+
+	@Override
+	public void createMachine(final Machine machine) {
+		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.Infuser);
+		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
+		final ComponentTankContainer tanks = new ComponentTankContainer(machine);
+
+		final TankSlot input = tanks.addTank(Infuser.TANK_INPUT, "input", 5000);
+		input.setValidator(new TankValidatorInfuserInput());
+		input.setOutputSides(MachineSide.TopAndBottom);
+
+		final TankSlot output = tanks.addTank(Infuser.TANK_OUTPUT, "output", 5000);
+		output.setValidator(new TankValidatorInfuserOutput());
+		output.setReadOnly();
+		output.setOutputSides(MachineSide.Sides);
+
+		new ComponentPowerReceptor(machine);
+		new InfuserLogic(machine);
+	}
+
+	@Override
+	public TileEntity createTileEntity() {
+		return new TileEntityMachine(this);
+	}
+
+	@Override
+	public void register() {
+	}
+}

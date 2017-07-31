@@ -6,22 +6,64 @@ extratrees.machine.kitchen.bottleRack=Bottle Rack
 
 extratrees.machine.machine.brewery=Brewery
 extratrees.machine.machine.brewery.info=The Brewery uses yeasts, juices and grains to make many kinds of Wines and Beers.
+extratrees.machine.machine.brewery.tooltips.empty=Empty
+extratrees.machine.machine.brewery.tooltips.creating=Creating %s
+extratrees.machine.machine.brewery.tooltips.slot.yeast=Yeast
+extratrees.machine.machine.brewery.tooltips.slot.grain=Brewing Grains
+extratrees.machine.machine.brewery.tooltips.slot.ingredient=Brewing Ingredient
+extratrees.machine.machine.brewery.tooltips.tank.fermentable=Fermentable Liquid
+extratrees.machine.machine.brewery.tooltips.tank.fermented=Fermented Liquids
+genetics.errors.brewery.no.recipe.desc=Brewing cannot occur with these ingredients
+genetics.errors.brewery.brewery.insufficient.ingredients.name=Insufficient Ingredients
+genetics.errors.brewery.brewery.insufficient.ingredients.desc=Not enough ingredients for Brewing
+
 extratrees.machine.machine.distillery=Distillery
 extratrees.machine.machine.distillery.info=The Distillery can single, double or triple distill certain alcohols to give brandies, liquors and other spirits.
+extratrees.machine.machine.distillery.tooltips.empty=Empty
+extratrees.machine.machine.distillery.tooltips.creating=Creating %s
+extratrees.machine.machine.distillery.tooltips.tank.distillable=Distillable Liquids
+extratrees.machine.machine.distillery.tooltips.tank.distilled=Distilled Liquids
+genetics.errors.distillery.insufficient.liquid.desc=No Input Liquid
+
 extratrees.machine.machine.press=Fruit Press
 extratrees.machine.machine.press.info=The Fruit Press squeezes fruit to give various fruit juices. It can be run using power or manually by right clicking.
+extratrees.machine.machine.press.tooltips.fruit=Fruit
+genetics.errors.press.no.fruit.desc=No Fruit
+
 extratrees.machine.machine.lumbermill=Lumbermill
 extratrees.machine.machine.lumbermill.info=The Lumbermill converts logs into planks at an increased rate, and produces byproducts such as sawdust and bark.
+extratrees.machine.machine.lumbermill.tooltips.logs=Logs
+genetics.errors.lumbermill.insufficient.water=Not enough water
+genetics.errors.lumbermill.no.wood.desc=No Wood
+genetics.errors.lumbermill.space.bark.desc=No room for new bark
+genetics.errors.lumbermill.space.saw_dust.desc=No room for new sawdust
+genetics.errors.lumbermill.space.planks.desc=No room for new planks
+
 extratrees.machine.machine.nursery=Nursery
+
+## Designers
+
+extratrees.machine.machine.designer.material.glass=Glass
+extratrees.machine.machine.designer.material.panel=Wooden Plank
+extratrees.machine.machine.designer.material.tile=Ceramic Block
+extratrees.machine.machine.designer.material.wood=Wooden Plank
+genetics.errors.designer.no.adhesive.desc=Requires Adhesive to Function
+
 extratrees.machine.machine.woodworker=Woodworker
 extratrees.machine.machine.woodworker.info=The Woodworker creates patterned wooden tiles from two different woods.
+
 extratrees.machine.machine.panelworker=Panelworker
 extratrees.machine.machine.panelworker.info=The Panelworker creates patterned wooden panels from two different woods.
+
 extratrees.machine.machine.glassworker=Glassworker
 extratrees.machine.machine.glassworker.info=The Glassworker creates patterned stained glass.
+
 extratrees.machine.machine.tileworker=Tileworker
-extratrees.machine.machine.tileworker.info=The Tileworker creates patterned ceramic tiles.        
-        
+extratrees.machine.machine.tileworker.info=The Tileworker creates patterned ceramic tiles.
+
+##################################################
+## Wood Types
+
 et.trees.woodType.fir=Fir
 et.trees.woodType.cedar=Cedar
 et.trees.woodType.hemlock=Hemlock
@@ -63,7 +105,10 @@ et.trees.woodType.banana=Banana
 et.trees.woodType.cherry=Cherry
 et.trees.woodType.cinnamon=Cinnamon
 et.trees.woodType.shrub_log=Shrub
-		
+
+##################################################
+## Planks
+
 extratrees.block.planks.fir=Fir
 extratrees.block.planks.cedar=Cedar
 extratrees.block.planks.hemlock=Hemlock
@@ -141,8 +186,6 @@ extratrees.block.planks.ebxl.redwood=Redwood
 extratrees.block.planks.ebxl.fir=Scottish Fir
 extratrees.block.planks.ebxl.acacia=Excel Acacia
 
-
-
 extratrees.block.planks.fir.desc=A good sturdy conifer wood.|Lumber Jack
 extratrees.block.planks.cedar.desc=A red tinged softwood.|Lumber Jack
 extratrees.block.planks.hemlock.desc=Hemlock gives a green hued conifer wood.|Lumber Jack
@@ -211,6 +254,9 @@ extratrees.block.planks.forestry.plum.desc=
 extratrees.block.planks.forestry.maple.desc=
 extratrees.block.planks.forestry.citrus.desc=
 
+##################################################
+## Wood Blocks
+
 < %1$s is name of wood used for door >
 extratrees.block.door.name=%1$s Wood Door
 
@@ -220,10 +266,6 @@ extratrees.block.door.type.standard=
 extratrees.block.door.type.solid=Solid
 extratrees.block.door.type.double=Split
 extratrees.block.door.type.full=Full
-
-extrabees.poison.name=Poison
-extrabees.acid.name=Acid
-extrabees.glacial.name=Glacial
 
 < %PREFIX is the adjective for the fence type, %WOOD is the name of the wood >
 extratrees.block.multifence.grammar=%PREFIX%WOOD Fence
@@ -238,6 +280,9 @@ extratrees.multifence.embedded.type=Embedded
 extratrees.block.woodentile.name=%1$s Wooden Tile
 extratrees.block.woodenpanel.name=%1$s Wooden Panel
 extratrees.block.stainedglass.name=%1$s Stained Glass
+
+##################################################
+## Tree Species
 
 extratrees.species.orchardapple.name=Orchard Apple
 extratrees.species.sweetcrabapple.name=Sweet Crabapple
@@ -340,6 +385,9 @@ extratrees.species.starfruit.name=Starfruit
 extratrees.species.candlenut.name=Candlenut
 extratrees.species.dwarfhazel.name=Dwarf Hazel
 
+##################################################
+## Butterfly Species
+
 extrabutterflies.species.whiteadmiral.name=White Admiral
 extrabutterflies.species.purpleemperor.name=Purple Emperor
 extrabutterflies.species.redadmiral.name=Red Admiral
@@ -362,6 +410,9 @@ extrabutterflies.species.smallheath.name=Small Heath
 extrabutterflies.species.ringlet.name=Ringlet
 extrabutterflies.species.monarch.name=Monarch
 extrabutterflies.species.marbledwhite.name=Marbled White
+
+##################################################
+## Items
 
 extratrees.item.database.arborist.name=Arborist Database
 extratrees.item.database.arborist.master.tooltip=Sengir-in-a-can
@@ -480,6 +531,9 @@ extratrees.item.glassware.shot.usage=%1$s Shot
 extratrees.item.glassware.sherry.usage=Glass of %1$s
 extratrees.item.glassware.coupe.usage=Glass of %1$s
 
+##################################################
+## Fluids
+
 extratrees.fluid.alcohol.apple=Cider
 extratrees.fluid.alcohol.apricot=Apricot Wine
 extratrees.fluid.alcohol.banana=Banana Wine
@@ -509,6 +563,13 @@ extratrees.fluid.alcohol.barley=Fermented Grain Mash
 extratrees.fluid.alcohol.wheat=Fermented Wheat Mash
 extratrees.fluid.alcohol.rye=Fermented Rye Mash
 extratrees.fluid.alcohol.corn=Fermented Corn Mash
+
+extrabees.poison.name=Poison
+extrabees.acid.name=Acid
+extrabees.glacial.name=Glacial
+
+##################################################
+## Carpentry Designs
 
 extratrees.carpentry.design.blank=Blank
 extratrees.carpentry.design.octagon=Octagon
@@ -612,7 +673,12 @@ extratrees.carpentry.design.thick.barred.end=Thick Barred End
 extratrees.carpentry.design.overlapped.barred=Overlapped Barred
 extratrees.carpentry.design.overlapped.split.barred=Overlapped Split Barred
 
+##################################################
+## Database Gui
+
 extratrees.gui.database.planks.use=Can make:
+extratrees.gui.database.log=Log
+extratrees.gui.database.leaves=Leaves
 
 extratrees.gui.database.mode.fruit=Fruit
 extratrees.gui.database.mode.wood=Wood
@@ -629,7 +695,6 @@ extratrees.gui.database.tab.branches.species=Species
 
 extratrees.gui.database.tab.breeder.breeder=Breeder
 
-
 extratrees.gui.database.tab.fruit.natural=Natural Trees
 extratrees.gui.database.tab.fruit.natura.help=List of trees that naturally produce this fruit
 extratrees.gui.database.tab.fruit.potential=Potential Trees
@@ -641,7 +706,6 @@ extratrees.gui.database.tab.planks.overview.help=Description and possible uses
 extratrees.gui.database.tab.planks.natural=Natural Trees
 extratrees.gui.database.tab.planks.natural.help=List of trees that produce logs that can be crafted into this plank
 
-
 extratrees.gui.database.tab.butterfly.species.overview=Overview
 extratrees.gui.database.tab.butterfly.species.classification=Classification
 extratrees.gui.database.tab.butterfly.species.specimen=Specimen
@@ -650,6 +714,3 @@ extratrees.gui.database.tab.butterfly.species.further=Further Mutations
 extratrees.gui.database.tab.butterfly.branches.overview=Overview
 extratrees.gui.database.tab.butterfly.branches.species=Species
 extratrees.gui.database.tab.butterfly.breeder=Breeder
-
-extratrees.gui.database.log=Log
-extratrees.gui.database.leaves=Leaves

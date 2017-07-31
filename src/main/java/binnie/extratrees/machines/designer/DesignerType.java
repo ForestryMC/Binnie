@@ -1,10 +1,11 @@
-package binnie.extratrees.machines;
+package binnie.extratrees.machines.designer;
 
 import net.minecraft.item.ItemStack;
 
 import binnie.botany.Botany;
 import binnie.botany.ceramic.CeramicDesignSystem;
 import binnie.core.resource.IBinnieTexture;
+import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignMaterial;
@@ -79,16 +80,16 @@ public enum DesignerType {
 	public String getMaterialTooltip() {
 		switch (this) {
 			case GlassWorker: {
-				return "Glass";
+				return I18N.localise("extratrees.machine.machine.designer.material.glass");
 			}
 			case Panelworker: {
-				return "Wooden Plank";
+				return I18N.localise("extratrees.machine.machine.designer.material.panel");
 			}
 			case Tileworker: {
-				return "Ceramic Block";
+				return I18N.localise("extratrees.machine.machine.designer.material.tile");
 			}
 			case Woodworker: {
-				return "Wooden Plank";
+				return I18N.localise("extratrees.machine.machine.designer.material.wood");
 			}
 			default: {
 				return "";

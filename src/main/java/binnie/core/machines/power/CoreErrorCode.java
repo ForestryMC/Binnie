@@ -11,6 +11,8 @@ public enum CoreErrorCode implements IErrorStateDefinition {
 	INVALID_ITEM("invalid.item", EnumErrorType.ITEM),
 	INSUFFICIENT_POWER("insufficient.power", EnumErrorType.POWER),
 	TANK_FULL("tank.full", EnumErrorType.TANK),
+	TANK_EMPTY("tank.empty", EnumErrorType.TANK),
+	TANK_DIFFRENT_FLUID("tank.different", CoreErrorCode.NO_SPACE_TANK),
 	INSUFFICIENT_LIQUID("insufficient.liquid", EnumErrorType.TANK),
 	NO_RECIPE("no.recipe"),
 	INVALID_RECIPE("invalid.recipe");

@@ -1,4 +1,4 @@
-package binnie.extratrees.machines;
+package binnie.extratrees.machines.nursery;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;

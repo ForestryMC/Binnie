@@ -1,4 +1,4 @@
-package binnie.extratrees.machines;
+package binnie.extratrees.machines.nursery;
 
 import net.minecraft.client.renderer.GlStateManager;
 

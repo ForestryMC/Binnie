@@ -15,8 +15,11 @@ import net.minecraftforge.fluids.FluidStack;
 import binnie.core.machines.Machine;
 import binnie.core.machines.network.INetwork;
 import binnie.core.machines.power.ComponentProcessSetCost;
+import binnie.core.machines.power.CoreErrorCode;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
+import binnie.core.util.I18N;
+import binnie.extratrees.machines.ExtraTreesErrorCode;
 
 public class BreweryLogic extends ComponentProcessSetCost implements IProcess, INetwork.GuiNBT {
 	@Nullable
@@ -30,13 +33,13 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 	@Override
 	public ErrorState canWork() {
 		if (this.getUtil().isTankEmpty(BreweryMachine.TANK_INPUT) && this.currentCrafting == null) {
-			return new ErrorState.InsufficientLiquid("No Input Liquid", BreweryMachine.TANK_INPUT);
+			return new ErrorState(CoreErrorCode.TANK_EMPTY, BreweryMachine.TANK_INPUT);
 		}
 		if (BreweryRecipes.getOutput(this.getInputCrafting()) == null && this.currentCrafting == null) {
-			return new ErrorState("No Recipe", "Brewing cannot occur with these ingredients");
+			return new ErrorState(ExtraTreesErrorCode.BREWERY_NO_RECIPE);
 		}
 		if (!this.getUtil().hasIngredients(new int[]{0, 1, 2, 3, 4}, BreweryMachine.SLOTS_INVENTORY) && this.currentCrafting == null) {
-			return new ErrorState("Insufficient Ingredients", "Not enough ingredients for Brewing");
+			return new ErrorState(ExtraTreesErrorCode.BREWERY_INSUFFICIENT_INGREDIENTS);
 		}
 		return super.canWork();
 	}
@@ -52,16 +55,16 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 	@Override
 	public ErrorState canProgress() {
 		if (this.currentCrafting == null) {
-			return new ErrorState("Brewery Empty", "No liquid in Brewery");
+			return new ErrorState(CoreErrorCode.TANK_EMPTY);
 		}
 		if (!this.getUtil().spaceInTank(BreweryMachine.TANK_OUTPUT, Fluid.BUCKET_VOLUME)) {
-			return new ErrorState.TankSpace("No Space for Fermented Liquid", BreweryMachine.TANK_OUTPUT);
+			return new ErrorState(CoreErrorCode.NO_SPACE_TANK, BreweryMachine.TANK_OUTPUT);
 		}
 		FluidStack outputFluid = this.getUtil().getFluid(BreweryMachine.TANK_OUTPUT);
 		if (outputFluid != null) {
 			FluidStack craftingOutputFluid = BreweryRecipes.getOutput(this.currentCrafting);
 			if (!outputFluid.isFluidEqual(craftingOutputFluid)) {
-				return new ErrorState.TankSpace("Different fluid in tank", BreweryMachine.TANK_OUTPUT);
+				return new ErrorState(CoreErrorCode.TANK_DIFFRENT_FLUID, BreweryMachine.TANK_OUTPUT);
 			}
 		}
 		return super.canProgress();
@@ -119,12 +122,12 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 	@Override
 	public String getTooltip() {
 		if (this.currentCrafting == null) {
-			return "Empty";
+			return I18N.localise("extratrees.machine.machine.brewery.tooltips.empty");
 		}
 		FluidStack output = BreweryRecipes.getOutput(this.currentCrafting);
 		if (output == null) {
-			return "Empty";
+			return I18N.localise("extratrees.machine.machine.brewery.tooltips.empty");
 		}
-		return "Creating " + output.getFluid().getLocalizedName(output);
+		return I18N.localise("extratrees.machine.machine.brewery.tooltips.creating", output.getFluid().getLocalizedName(output));
 	}
 }

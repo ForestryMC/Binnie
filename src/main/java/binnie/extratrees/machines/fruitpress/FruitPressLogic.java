@@ -4,8 +4,10 @@ import net.minecraftforge.fluids.FluidStack;
 
 import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentProcessSetCost;
+import binnie.core.machines.power.CoreErrorCode;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
+import binnie.extratrees.machines.ExtraTreesErrorCode;
 
 public class FruitPressLogic extends ComponentProcessSetCost implements IProcess {
 	public static final int PROCESS_ENERGY = 1000;
@@ -21,7 +23,7 @@ public class FruitPressLogic extends ComponentProcessSetCost implements IProcess
 	@Override
 	public ErrorState canWork() {
 		if (this.getUtil().isSlotEmpty(FruitPressMachine.SLOT_CURRENT)) {
-			return new ErrorState.NoItem("No Fruit", FruitPressMachine.SLOT_CURRENT);
+			return new ErrorState(ExtraTreesErrorCode.FRUITPRESS_NO_FRUIT, FruitPressMachine.SLOT_CURRENT);
 		}
 		return super.canWork();
 	}
@@ -29,12 +31,12 @@ public class FruitPressLogic extends ComponentProcessSetCost implements IProcess
 	@Override
 	public ErrorState canProgress() {
 		if (!this.getUtil().spaceInTank(FruitPressMachine.TANK_OUTPUT, 5)) {
-			return new ErrorState.TankSpace("No room in tank", FruitPressMachine.TANK_OUTPUT);
+			return new ErrorState(CoreErrorCode.NO_SPACE_TANK, FruitPressMachine.TANK_OUTPUT);
 		}
 		FluidStack fluidOutputTank = this.getUtil().getFluid(FruitPressMachine.TANK_OUTPUT);
 		FluidStack recipeOutput = FruitPressRecipes.getOutput(this.getUtil().getStack(FruitPressMachine.SLOT_CURRENT));
 		if (fluidOutputTank != null && !fluidOutputTank.isFluidEqual(recipeOutput)) {
-			return new ErrorState.TankSpace("Different fluid in tank", FruitPressMachine.TANK_OUTPUT);
+			return new ErrorState(CoreErrorCode.TANK_DIFFRENT_FLUID, FruitPressMachine.TANK_OUTPUT);
 		}
 		return super.canProgress();
 	}

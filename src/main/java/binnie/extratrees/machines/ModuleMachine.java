@@ -17,6 +17,7 @@ import binnie.core.machines.MachineGroup;
 import binnie.core.machines.inventory.ValidatorSprite;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.item.ExtraTreeItems;
+import binnie.extratrees.machines.nursery.TileEntityNursery;
 
 public class ModuleMachine implements IInitializable {
 	public static ValidatorSprite spritePolish;

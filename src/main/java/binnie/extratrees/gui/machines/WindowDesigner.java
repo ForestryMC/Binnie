@@ -26,19 +26,20 @@ import binnie.core.gui.window.Panel;
 import binnie.core.machines.Machine;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.machines.Designer;
-import binnie.extratrees.machines.DesignerType;
+import binnie.extratrees.machines.designer.ComponentDesignerRecipe;
+import binnie.extratrees.machines.designer.Designer;
+import binnie.extratrees.machines.designer.DesignerType;
 
-public class WindowWoodworker extends Window {
+public class WindowDesigner extends Window {
 	ControlTextEdit textEdit;
 	ControlTileSelect tileSelect;
 
-	public WindowWoodworker(final EntityPlayer player, final IInventory inventory, final Side side) {
+	public WindowDesigner(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(320, 216, player, inventory, side);
 		this.addEventHandler(new EventTextEdit.Handler() {
 			@Override
 			public void onEvent(final EventTextEdit event) {
-				WindowWoodworker.this.tileSelect.refresh(event.getValue());
+				WindowDesigner.this.tileSelect.refresh(event.getValue());
 			}
 		}.setOrigin(EventHandler.Origin.DirectChild, this));
 	}
@@ -48,7 +49,7 @@ public class WindowWoodworker extends Window {
 		if (inventory == null) {
 			return null;
 		}
-		return new WindowWoodworker(player, inventory, side);
+		return new WindowDesigner(player, inventory, side);
 	}
 
 	@Override
@@ -63,9 +64,9 @@ public class WindowWoodworker extends Window {
 		new ControlPlayerInventory(this).setPosition(new Point(14, 96));
 		new ControlErrorState(this, 76, 65);
 		if (this.getInventory() != null) {
-			final ControlSlot slotWood1 = new ControlSlot.Builder(this, 22, 34).assign(Designer.design1Slot);
-			final ControlSlot slotWood2 = new ControlSlot.Builder(this, 62, 34).assign(Designer.design2Slot);
-			final ControlSlot slotBeeswax = new ControlSlot.Builder(this, 42, 64).assign(Designer.beeswaxSlot);
+			final ControlSlot slotWood1 = new ControlSlot.Builder(this, 22, 34).assign(Designer.DESIGN_SLOT_1);
+			final ControlSlot slotWood2 = new ControlSlot.Builder(this, 62, 34).assign(Designer.DESIGN_SLOT_2);
+			final ControlSlot slotBeeswax = new ControlSlot.Builder(this, 42, 64).assign(Designer.BEESWAX_SLOT);
 			final ControlRecipeSlot slotFinished = new ControlRecipeSlot(this, 112, 34);
 		}
 	}
@@ -81,6 +82,6 @@ public class WindowWoodworker extends Window {
 	}
 
 	public DesignerType getDesignerType() {
-		return Machine.getInterface(Designer.ComponentWoodworkerRecipe.class, this.getInventory()).getDesignerType();
+		return Machine.getInterface(ComponentDesignerRecipe.class, this.getInventory()).getDesignerType();
 	}
 }

@@ -33,7 +33,7 @@ import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignCategory;
 import binnie.extratrees.carpentry.EnumDesign;
-import binnie.extratrees.machines.Designer;
+import binnie.extratrees.machines.designer.ComponentDesignerRecipe;
 
 public class ControlTileSelect extends Control implements IControlValue<IDesign>, IControlScrollable {
 	IDesign value;
@@ -82,7 +82,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 		if (tile == null) {
 			return;
 		}
-		final Designer.ComponentWoodworkerRecipe recipe = tile.getMachine().getComponent(Designer.ComponentWoodworkerRecipe.class);
+		ComponentDesignerRecipe recipe = tile.getMachine().getComponent(ComponentDesignerRecipe.class);
 		this.setValue(recipe.getDesign());
 	}
 
@@ -140,7 +140,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 						return;
 					}
 					// TODO: why is recipe unused here?
-					final Designer.ComponentWoodworkerRecipe recipe = tile.getMachine().getComponent(Designer.ComponentWoodworkerRecipe.class);
+					ComponentDesignerRecipe recipe = tile.getMachine().getComponent(ComponentDesignerRecipe.class);
 					final NBTTagCompound nbt = new NBTTagCompound();
 					nbt.setShort("d", (short) CarpentryManager.carpentryInterface.getDesignIndex(ControlTile.this.getValue()));
 					Window.get(ControlTile.this.getWidget()).sendClientAction("design", nbt);
@@ -172,7 +172,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 		@Override
 		@SideOnly(Side.CLIENT)
 		public void onRenderForeground(int guiWidth, int guiHeight) {
-			final ItemStack image = ((WindowWoodworker) this.getTopParent()).getDesignerType().getDisplayStack(this.getValue());
+			final ItemStack image = ((WindowDesigner) this.getTopParent()).getDesignerType().getDisplayStack(this.getValue());
 			RenderUtil.drawItem(new Point(1, 1), image);
 			GlStateManager.disableBlend();
 			if (((IControlValue) this.getParent()).getValue() != this.getValue()) {

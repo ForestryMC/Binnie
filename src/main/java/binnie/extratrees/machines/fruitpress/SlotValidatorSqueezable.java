@@ -3,6 +3,7 @@ package binnie.extratrees.machines.fruitpress;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.util.I18N;
 
 public class SlotValidatorSqueezable extends SlotValidator {
 	public SlotValidatorSqueezable() {
@@ -16,6 +17,6 @@ public class SlotValidatorSqueezable extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return "Fruit";
+		return I18N.localise("extratrees.machine.machine.press.tooltips.fruit");
 	}
 }

@@ -20,6 +20,7 @@ import binnie.core.resource.IBinnieTexture;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.machines.brewery.BreweryMachine;
+import binnie.extratrees.machines.designer.Designer;
 import binnie.extratrees.machines.distillery.DistilleryMachine;
 import binnie.extratrees.machines.fruitpress.FruitPressMachine;
 import binnie.extratrees.machines.lumbermill.LumbermillMachine;
@@ -28,7 +29,7 @@ public enum ExtraTreeMachine implements IMachineType {
 	Lumbermill(LumbermillMachine.class),
 	Woodworker(Designer.PackageWoodworker.class),
 	Panelworker(Designer.PackagePanelworker.class),
-	Nursery(Nursery.PackageNursery.class),
+	Nursery(binnie.extratrees.machines.nursery.Nursery.PackageNursery.class),
 	Press(FruitPressMachine.class),
 	Brewery(BreweryMachine.class),
 	Distillery(DistilleryMachine.class),

@@ -3,6 +3,7 @@ package binnie.extratrees.machines.brewery;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.util.I18N;
 
 public class SlotValidatorBreweryGrain extends SlotValidator {
 	public SlotValidatorBreweryGrain() {
@@ -16,6 +17,6 @@ public class SlotValidatorBreweryGrain extends SlotValidator {
 
 	@Override
 	public String getTooltip() {
-		return "Brewing Grains";
+		return I18N.localise("extratrees.machine.machine.brewery.tooltips.slot.grain");
 	}
 }

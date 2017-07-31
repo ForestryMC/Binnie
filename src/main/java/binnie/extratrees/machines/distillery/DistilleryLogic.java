@@ -12,8 +12,11 @@ import net.minecraftforge.fluids.FluidStack;
 import binnie.core.machines.Machine;
 import binnie.core.machines.network.INetwork;
 import binnie.core.machines.power.ComponentProcessSetCost;
+import binnie.core.machines.power.CoreErrorCode;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
+import binnie.core.util.I18N;
+import binnie.extratrees.machines.ExtraTreesErrorCode;
 
 public class DistilleryLogic extends ComponentProcessSetCost implements IProcess, INetwork.SendGuiNBT, INetwork.ReceiveGuiNBT {
 	public static final int INPUT_FLUID_AMOUNT = Fluid.BUCKET_VOLUME;
@@ -65,7 +68,7 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 	@Nullable
 	public ErrorState canWork() {
 		if (this.getUtil().isTankEmpty(DistilleryMachine.TANK_INPUT) && this.currentFluid == null) {
-			return new ErrorState.InsufficientLiquid("No Input Liquid", DistilleryMachine.TANK_INPUT);
+			return new ErrorState(ExtraTreesErrorCode.DISTILLERY_INSUFFICIENT_LIQUID, DistilleryMachine.TANK_INPUT);
 		}
 		return super.canWork();
 	}
@@ -73,7 +76,7 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 	@Override
 	public ErrorState canProgress() {
 		if (this.currentFluid == null) {
-			return new ErrorState("Distillery Empty", "No liquid in Distillery");
+			return new ErrorState(CoreErrorCode.TANK_EMPTY);
 		}
 
 		FluidStack fluidInOutputTank = this.getUtil().getFluid(DistilleryMachine.TANK_OUTPUT);
@@ -81,7 +84,7 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 			FluidStack inputFluid = this.getUtil().getFluid(DistilleryMachine.TANK_INPUT);
 			FluidStack recipeOutput = DistilleryRecipes.getOutput(inputFluid, this.level);
 			if (recipeOutput != null && !recipeOutput.isFluidEqual(fluidInOutputTank)) {
-				return new ErrorState.TankSpace("Different fluid in tank", DistilleryMachine.TANK_OUTPUT);
+				return new ErrorState(CoreErrorCode.TANK_DIFFRENT_FLUID, DistilleryMachine.TANK_OUTPUT);
 			}
 		}
 
@@ -145,12 +148,12 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 	@Override
 	public String getTooltip() {
 		if (this.currentFluid == null) {
-			return "Empty";
+			return I18N.localise("extratrees.machine.machine.distillery.tooltips.empty");
 		}
 		FluidStack output = DistilleryRecipes.getOutput(this.currentFluid, this.level);
 		if (output == null) {
-			return "Empty";
+			return I18N.localise("extratrees.machine.machine.distillery.tooltips.empty");
 		}
-		return "Creating " + output.getLocalizedName();
+		return I18N.localise("extratrees.machine.machine.distillery.tooltips.creating", output.getLocalizedName());
 	}
 }

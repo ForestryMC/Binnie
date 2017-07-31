@@ -12,12 +12,12 @@ import binnie.core.gui.IBinnieGUID;
 import binnie.core.gui.minecraft.Window;
 import binnie.extratrees.gui.database.WindowArboristDatabase;
 import binnie.extratrees.gui.machines.WindowBrewery;
+import binnie.extratrees.gui.machines.WindowDesigner;
 import binnie.extratrees.gui.machines.WindowDistillery;
 import binnie.extratrees.gui.machines.WindowLepidopteristDatabase;
 import binnie.extratrees.gui.machines.WindowLumbermill;
 import binnie.extratrees.gui.machines.WindowPress;
 import binnie.extratrees.gui.machines.WindowSetSquare;
-import binnie.extratrees.gui.machines.WindowWoodworker;
 import binnie.extratrees.kitchen.craftgui.WindowBottleRack;
 
 public enum ExtraTreesGUID implements IBinnieGUID {
@@ -50,7 +50,7 @@ public enum ExtraTreesGUID implements IBinnieGUID {
 				break;
 			}
 			case Woodworker: {
-				window = WindowWoodworker.create(player, object, side);
+				window = WindowDesigner.create(player, object, side);
 				break;
 			}
 			case Lumbermill: {
