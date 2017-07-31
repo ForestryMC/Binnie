@@ -47,10 +47,10 @@ import binnie.core.util.I18N;
 import binnie.genetics.machine.analyser.Analyser;
 
 public class WindowFieldKit extends Window {
-	private int glassOffsetX;
-	private int glassOffsetY;
-	private int glassVX;
-	private int glassVY;
+	private float glassOffsetX;
+	private float glassOffsetY;
+	private float glassVX;
+	private float glassVY;
 	private Random glassRand;
 	private Control GlassControl;
 	private ControlChromosome chromo;
@@ -166,13 +166,13 @@ public class WindowFieldKit extends Window {
 				this.refreshSpecies();
 			}
 		}
-		this.glassVX += this.glassRand.nextFloat() - 0.5f - this.glassOffsetX * 0.2f;
-		this.glassVY += this.glassRand.nextFloat() - 0.5f - this.glassOffsetY * 0.2f;
+		this.glassVX += this.glassRand.nextFloat() - 2.5f - this.glassOffsetX * 1f;
+		this.glassVY += this.glassRand.nextFloat() - 2.5f - this.glassOffsetY * 1f;
 		this.glassOffsetX += this.glassVX;
 		this.glassOffsetX *= 1 - this.analyseProgress;
 		this.glassOffsetY += this.glassVY;
 		this.glassOffsetY *= 1 - this.analyseProgress;
-		this.GlassControl.setOffset(new Point(this.glassOffsetX, this.glassOffsetY));
+		this.GlassControl.setOffset(new Point((int)this.glassOffsetX, (int)this.glassOffsetY));
 	}
 
 	private void refreshSpecies() {
