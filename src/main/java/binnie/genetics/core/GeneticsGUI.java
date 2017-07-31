@@ -10,8 +10,8 @@ import net.minecraft.world.World;
 
 import net.minecraftforge.fml.relauncher.Side;
 
-import binnie.core.craftgui.minecraft.Window;
 import binnie.core.gui.IBinnieGUID;
+import binnie.core.gui.minecraft.Window;
 import binnie.genetics.gui.WindowAnalyst;
 import binnie.genetics.gui.database.bee.WindowApiaristDatabase;
 import binnie.genetics.gui.punnett.WindowPunnettSquare;

@@ -5,10 +5,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.events.EventMouse;
-import binnie.core.craftgui.geometry.Area;
-import binnie.core.craftgui.minecraft.Window;
+import binnie.core.gui.IWidget;
+import binnie.core.gui.events.EventMouse;
+import binnie.core.gui.geometry.Area;
+import binnie.core.gui.minecraft.Window;
 
 public class ControlTankSlot extends ControlSlotFluid {
 	int tankID;

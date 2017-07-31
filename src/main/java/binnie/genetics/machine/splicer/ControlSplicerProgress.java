@@ -3,10 +3,10 @@ package binnie.genetics.machine.splicer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.geometry.Area;
-import binnie.core.craftgui.minecraft.control.ControlProgressBase;
-import binnie.core.craftgui.renderer.RenderUtil;
+import binnie.core.gui.IWidget;
+import binnie.core.gui.geometry.Area;
+import binnie.core.gui.minecraft.control.ControlProgressBase;
+import binnie.core.gui.renderer.RenderUtil;
 
 public class ControlSplicerProgress extends ControlProgressBase {
 	float strength;

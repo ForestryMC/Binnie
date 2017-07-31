@@ -239,7 +239,25 @@ binniecore.gui.database.breeder.stats=Stats
 binniecore.gui.database.mutations.further=Further Mutations
 binniecore.gui.database.mutations.resultant=Resultant Mutations
 binniecore.gui.database.branch.branch=Branch
-binniecore.gui.database.branch.apidae=Apidae
+binniecore.gui.database.branch.name=%s Branch
+binniecore.gui.database.branch.apidae=Apidae %s
+binniecore.gui.database.branch.discoveredBy=Discovered by %s
+binniecore.gui.database.branch.noDesc=No Description Provided.
+binniecore.gui.database.mode.breeder=Breeder
+binniecore.gui.database.discovered.discovered=Discovered Species
+binniecore.gui.database.discovered.undiscovered=Undiscovered Species
+binniecore.gui.database.control.undiscovered=Undiscovered
+binniecore.gui.database.control.chance=Current Chance - %s%
+
+binniecore.gui.database.time.minute=1 minute
+binniecore.gui.database.time.minutes=%d minutes
+binniecore.gui.database.time.second=1 second
+binniecore.gui.database.time.seconds=%d seconds
+binniecore.gui.database.time.progress=Progress
+binniecore.gui.database.time.notInProgress=Not in Progress
+binniecore.gui.database.time.inProgress=In Progress
+binniecore.gui.database.time.left=Time Left: %s
+binniecore.gui.database.time.total=Total Time: %s
 
 binniecore.gui.temperature.short=Temp.
 binniecore.gui.humidity.short=Humid.

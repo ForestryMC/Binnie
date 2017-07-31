@@ -3,11 +3,11 @@ package binnie.genetics.machine.craftgui;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.geometry.Area;
-import binnie.core.craftgui.geometry.Point;
-import binnie.core.craftgui.minecraft.control.ControlMachineProgress;
-import binnie.core.craftgui.renderer.RenderUtil;
+import binnie.core.gui.IWidget;
+import binnie.core.gui.geometry.Area;
+import binnie.core.gui.geometry.Point;
+import binnie.core.gui.minecraft.control.ControlMachineProgress;
+import binnie.core.gui.renderer.RenderUtil;
 
 public class ControlProcessTemporary extends ControlMachineProgress {
 	public ControlProcessTemporary(final IWidget parent, final int x, final int y, final int width, final int height) {

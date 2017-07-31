@@ -5,12 +5,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.craftgui.CraftGUI;
-import binnie.core.craftgui.geometry.Area;
-import binnie.core.craftgui.geometry.Point;
-import binnie.core.craftgui.geometry.Position;
-import binnie.core.craftgui.resource.Texture;
-import binnie.core.craftgui.resource.minecraft.StandardTexture;
+import binnie.core.gui.CraftGUI;
+import binnie.core.gui.geometry.Area;
+import binnie.core.gui.geometry.Point;
+import binnie.core.gui.geometry.Position;
+import binnie.core.gui.resource.Texture;
+import binnie.core.gui.resource.minecraft.StandardTexture;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.integration.jei.ExtraTreesJeiPlugin;

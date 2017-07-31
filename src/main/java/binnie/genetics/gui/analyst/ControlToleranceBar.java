@@ -10,15 +10,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.EnumTolerance;
 
-import binnie.core.craftgui.Attribute;
-import binnie.core.craftgui.ITooltip;
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.Tooltip;
-import binnie.core.craftgui.controls.core.Control;
-import binnie.core.craftgui.geometry.Area;
-import binnie.core.craftgui.geometry.Border;
-import binnie.core.craftgui.renderer.RenderUtil;
 import binnie.core.genetics.Tolerance;
+import binnie.core.gui.Attribute;
+import binnie.core.gui.ITooltip;
+import binnie.core.gui.IWidget;
+import binnie.core.gui.Tooltip;
+import binnie.core.gui.controls.core.Control;
+import binnie.core.gui.geometry.Area;
+import binnie.core.gui.geometry.Border;
+import binnie.core.gui.renderer.RenderUtil;
 
 public abstract class ControlToleranceBar<T extends Enum<T>> extends Control implements ITooltip {
 	EnumSet<T> tolerated;

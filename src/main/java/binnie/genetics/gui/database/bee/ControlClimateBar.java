@@ -14,15 +14,15 @@ import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
 
 import binnie.Binnie;
-import binnie.core.craftgui.Attribute;
-import binnie.core.craftgui.CraftGUI;
-import binnie.core.craftgui.ITooltip;
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.Tooltip;
-import binnie.core.craftgui.controls.core.Control;
-import binnie.core.craftgui.geometry.Area;
-import binnie.core.craftgui.renderer.RenderUtil;
-import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
+import binnie.core.gui.Attribute;
+import binnie.core.gui.CraftGUI;
+import binnie.core.gui.ITooltip;
+import binnie.core.gui.IWidget;
+import binnie.core.gui.Tooltip;
+import binnie.core.gui.controls.core.Control;
+import binnie.core.gui.geometry.Area;
+import binnie.core.gui.renderer.RenderUtil;
+import binnie.core.gui.resource.minecraft.CraftGUITexture;
 
 public class ControlClimateBar extends Control implements ITooltip {
 	private final int[] TEMP_COLORS = new int[]{

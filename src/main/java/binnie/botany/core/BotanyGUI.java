@@ -8,9 +8,9 @@ import net.minecraft.world.World;
 
 import net.minecraftforge.fml.relauncher.Side;
 
-import binnie.botany.craftgui.WindowBotanistDatabase;
-import binnie.core.craftgui.minecraft.Window;
+import binnie.botany.gui.database.WindowBotanistDatabase;
 import binnie.core.gui.IBinnieGUID;
+import binnie.core.gui.minecraft.Window;
 
 public enum BotanyGUI implements IBinnieGUID {
 	DATABASE,

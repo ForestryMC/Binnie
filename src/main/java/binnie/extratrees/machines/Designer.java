@@ -9,7 +9,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import binnie.core.craftgui.minecraft.IMachineInformation;
+import binnie.core.gui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.component.ComponentRecipe;
 import binnie.core.machines.component.IComponentRecipe;

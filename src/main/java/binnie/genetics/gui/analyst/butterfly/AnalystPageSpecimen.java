@@ -4,9 +4,9 @@ import net.minecraft.util.text.TextFormatting;
 
 import forestry.api.lepidopterology.IButterfly;
 
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.controls.ControlTextCentered;
-import binnie.core.craftgui.geometry.Area;
+import binnie.core.gui.IWidget;
+import binnie.core.gui.controls.ControlTextCentered;
+import binnie.core.gui.geometry.Area;
 import binnie.core.util.I18N;
 import binnie.genetics.gui.analyst.AnalystConstants;
 import binnie.genetics.gui.analyst.ControlAnalystPage;

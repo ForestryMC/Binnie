@@ -8,16 +8,16 @@ import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.Binnie;
-import binnie.core.craftgui.Attribute;
-import binnie.core.craftgui.CraftGUI;
-import binnie.core.craftgui.ITooltip;
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.Tooltip;
-import binnie.core.craftgui.controls.core.Control;
-import binnie.core.craftgui.geometry.Point;
-import binnie.core.craftgui.resource.Texture;
-import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.core.genetics.BreedingSystem;
+import binnie.core.gui.Attribute;
+import binnie.core.gui.CraftGUI;
+import binnie.core.gui.ITooltip;
+import binnie.core.gui.IWidget;
+import binnie.core.gui.Tooltip;
+import binnie.core.gui.controls.core.Control;
+import binnie.core.gui.geometry.Point;
+import binnie.core.gui.resource.Texture;
+import binnie.core.gui.resource.minecraft.StandardTexture;
 import binnie.core.texture.BinnieCoreTexture;
 
 public class ControlAnalystChromosome extends Control implements ITooltip {

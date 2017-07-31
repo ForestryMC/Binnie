@@ -8,17 +8,17 @@ import net.minecraft.world.World;
 
 import net.minecraftforge.fml.relauncher.Side;
 
-import binnie.core.craftgui.minecraft.Window;
 import binnie.core.gui.IBinnieGUID;
+import binnie.core.gui.minecraft.Window;
+import binnie.extratrees.gui.database.WindowArboristDatabase;
+import binnie.extratrees.gui.machines.WindowBrewery;
+import binnie.extratrees.gui.machines.WindowDistillery;
+import binnie.extratrees.gui.machines.WindowLepidopteristDatabase;
+import binnie.extratrees.gui.machines.WindowLumbermill;
+import binnie.extratrees.gui.machines.WindowPress;
+import binnie.extratrees.gui.machines.WindowSetSquare;
+import binnie.extratrees.gui.machines.WindowWoodworker;
 import binnie.extratrees.kitchen.craftgui.WindowBottleRack;
-import binnie.extratrees.machines.craftgui.WindowArboristDatabase;
-import binnie.extratrees.machines.craftgui.WindowBrewery;
-import binnie.extratrees.machines.craftgui.WindowDistillery;
-import binnie.extratrees.machines.craftgui.WindowLepidopteristDatabase;
-import binnie.extratrees.machines.craftgui.WindowLumbermill;
-import binnie.extratrees.machines.craftgui.WindowPress;
-import binnie.extratrees.machines.craftgui.WindowSetSquare;
-import binnie.extratrees.machines.craftgui.WindowWoodworker;
 
 public enum ExtraTreesGUID implements IBinnieGUID {
 	Database,

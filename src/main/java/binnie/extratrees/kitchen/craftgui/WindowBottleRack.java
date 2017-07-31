@@ -8,8 +8,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
 
 import binnie.core.AbstractMod;
-import binnie.core.craftgui.minecraft.Window;
-import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
+import binnie.core.gui.minecraft.Window;
+import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.machines.Machine;
 import binnie.extratrees.ExtraTrees;
 

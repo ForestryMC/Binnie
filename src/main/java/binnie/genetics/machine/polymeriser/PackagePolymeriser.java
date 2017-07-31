@@ -6,7 +6,7 @@ import net.minecraft.tileentity.TileEntity;
 
 import net.minecraftforge.fluids.FluidStack;
 
-import binnie.core.craftgui.minecraft.IMachineInformation;
+import binnie.core.gui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentChargedSlots;

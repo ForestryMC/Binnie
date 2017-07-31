@@ -2,7 +2,7 @@ package binnie.extratrees.machines.fruitpress;
 
 import net.minecraft.tileentity.TileEntity;
 
-import binnie.core.craftgui.minecraft.IMachineInformation;
+import binnie.core.gui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentInventorySlots;

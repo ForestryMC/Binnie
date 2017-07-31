@@ -213,15 +213,16 @@ for.binnie.circuit.garden.damp.acid=Garden (Damp, Acidic)
 for.binnie.circuit.garden.damp.neutral=Garden (Damp, Neutral)
 for.binnie.circuit.garden.damp.alkaline=Garden (Damp, Alkaline)
 
-botany.gui.controls.color_mix_symbol.chance=Current Chance - %f%%
-botany.gui.controls.page.species_further.title=Resultant Mixes
-botany.gui.controls.page.color_further.title=Further Mixes
+botany.gui.database.control.color_mix_symbol.chance=Current Chance - %f%%
+
+botany.gui.database.pages.color_further.title=Further Mixes
+botany.gui.database.pages.species_further.title=Resultant Mixes
 
 botany.gui.database.name=FlowerDatabase
 botany.gui.database.tab.color=Color
 botany.gui.database.tab.species.overview=Overview
 
-botany.gui.database.tab.genome=Genome
+botany.gui.database.tab.genome.title=Genome
 botany.gui.database.tab.genome.temp=Temp. : 
 botany.gui.database.tab.genome.moist=Moist. : 
 botany.gui.database.tab.genome.ph=pH. : 

@@ -7,17 +7,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.Binnie;
 import binnie.core.AbstractMod;
-import binnie.core.craftgui.minecraft.Window;
+import binnie.core.gui.database.DatabaseTab;
+import binnie.core.gui.database.PageBranchOverview;
+import binnie.core.gui.database.PageBranchSpecies;
+import binnie.core.gui.database.PageBreeder;
+import binnie.core.gui.database.PageSpeciesClassification;
+import binnie.core.gui.database.PageSpeciesMutations;
+import binnie.core.gui.database.PageSpeciesOverview;
+import binnie.core.gui.database.PageSpeciesResultant;
+import binnie.core.gui.database.WindowAbstractDatabase;
+import binnie.core.gui.minecraft.Window;
 import binnie.genetics.Genetics;
-import binnie.genetics.gui.database.DatabaseTab;
-import binnie.genetics.gui.database.PageBranchOverview;
-import binnie.genetics.gui.database.PageBranchSpecies;
-import binnie.genetics.gui.database.PageBreeder;
-import binnie.genetics.gui.database.PageSpeciesClassification;
-import binnie.genetics.gui.database.PageSpeciesMutations;
-import binnie.genetics.gui.database.PageSpeciesOverview;
-import binnie.genetics.gui.database.PageSpeciesResultant;
-import binnie.genetics.gui.database.WindowAbstractDatabase;
 
 public class WindowApiaristDatabase extends WindowAbstractDatabase {
 	public WindowApiaristDatabase(EntityPlayer player, Side side, boolean nei) {

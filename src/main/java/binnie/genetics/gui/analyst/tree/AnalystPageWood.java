@@ -14,12 +14,12 @@ import forestry.api.arboriculture.ITree;
 import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.genetics.IAlleleBoolean;
 
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.controls.ControlTextCentered;
-import binnie.core.craftgui.geometry.Area;
-import binnie.core.craftgui.geometry.Point;
-import binnie.core.craftgui.minecraft.control.ControlIconDisplay;
-import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.core.gui.IWidget;
+import binnie.core.gui.controls.ControlTextCentered;
+import binnie.core.gui.geometry.Area;
+import binnie.core.gui.geometry.Point;
+import binnie.core.gui.minecraft.control.ControlIconDisplay;
+import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.I18N;
 import binnie.core.util.UniqueItemStackSet;
 import binnie.genetics.gui.analyst.AnalystConstants;

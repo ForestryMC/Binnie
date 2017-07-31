@@ -19,10 +19,10 @@ import forestry.api.recipes.ICentrifugeRecipe;
 import forestry.api.recipes.ISqueezerRecipe;
 import forestry.api.recipes.RecipeManagers;
 
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.controls.ControlTextCentered;
-import binnie.core.craftgui.geometry.Area;
-import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.core.gui.IWidget;
+import binnie.core.gui.controls.ControlTextCentered;
+import binnie.core.gui.geometry.Area;
+import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.UniqueFluidStackSet;
 import binnie.core.util.UniqueItemStackSet;
 import binnie.extratrees.machines.brewery.BreweryRecipes;

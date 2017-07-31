@@ -2,13 +2,15 @@ package binnie.genetics.gui.database.bee;
 
 import java.text.DecimalFormat;
 
-import binnie.core.craftgui.controls.ControlText;
-import binnie.core.craftgui.controls.ControlTextCentered;
-import binnie.core.craftgui.controls.listbox.ControlList;
-import binnie.core.craftgui.controls.listbox.ControlOption;
-import binnie.core.craftgui.geometry.CraftGUIUtil;
-import binnie.core.craftgui.geometry.Point;
-import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.core.gui.controls.ControlText;
+import binnie.core.gui.controls.ControlTextCentered;
+import binnie.core.gui.controls.listbox.ControlList;
+import binnie.core.gui.controls.listbox.ControlOption;
+import binnie.core.gui.database.DatabaseConstants;
+import binnie.core.gui.geometry.CraftGUIUtil;
+import binnie.core.gui.geometry.Point;
+import binnie.core.gui.minecraft.control.ControlItemDisplay;
+import binnie.core.util.I18N;
 
 public class ControlProductsItem extends ControlOption<ControlProductsBox.Product> {
 	private ControlItemDisplay item;
@@ -26,11 +28,11 @@ public class ControlProductsItem extends ControlOption<ControlProductsBox.Produc
 		DecimalFormat df = new DecimalFormat("#.0");
 
 		if (hours > 1) {
-			textWidget.setValue("Every " + df.format(hours) + " hours");
+			textWidget.setValue(I18N.localise(DatabaseConstants.BEE_CONTROL_KEY + ".time.hours", df.format(hours)));
 		} else if (minutes > 1) {
-			textWidget.setValue("Every " + df.format(minutes) + " min.");
+			textWidget.setValue(I18N.localise(DatabaseConstants.BEE_CONTROL_KEY + ".time.min", df.format(minutes)));
 		} else {
-			textWidget.setValue("Every " + df.format(seconds) + " sec.");
+			textWidget.setValue(I18N.localise(DatabaseConstants.BEE_CONTROL_KEY + ".time.sec", df.format(seconds)));
 		}
 	}
 }

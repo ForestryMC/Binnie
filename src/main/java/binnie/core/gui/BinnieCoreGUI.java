@@ -10,9 +10,7 @@ import net.minecraft.world.World;
 
 import net.minecraftforge.fml.relauncher.Side;
 
-import binnie.core.craftgui.WindowFieldKit;
-import binnie.core.craftgui.WindowGenesis;
-import binnie.core.craftgui.minecraft.Window;
+import binnie.core.gui.minecraft.Window;
 import binnie.core.machines.storage.WindowCompartment;
 
 public enum BinnieCoreGUI implements IBinnieGUID {

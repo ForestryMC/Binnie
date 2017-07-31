@@ -7,9 +7,9 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import binnie.core.craftgui.CraftGUI;
-import binnie.core.craftgui.geometry.Point;
-import binnie.extratrees.machines.craftgui.ControlDistilleryProgress;
+import binnie.core.gui.CraftGUI;
+import binnie.core.gui.geometry.Point;
+import binnie.extratrees.gui.machines.ControlDistilleryProgress;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 

@@ -333,6 +333,12 @@ genetics.gui.database.tab.species.genome.extrabees.children=%d children
 genetics.gui.database.tab.species.genome.extrabees.notNeeded=Not Needed
 genetics.gui.database.tab.species.genome.extrabees.required=Required
 
+genetics.gui.database.control.extrabees.time.hours=Every %s hours
+genetics.gui.database.control.extrabees.time.min=Every %s min.
+genetics.gui.database.control.extrabees.time.sec=Every %s sec.
+genetics.gui.database.products.extrabees.products=Products
+genetics.gui.database.products.extrabees.specialties=Specialties
+
 genetics.gui.database.tab.species.overview=Overview
 genetics.gui.database.tab.species.classification=Classification
 genetics.gui.database.tab.species.genome=Genome

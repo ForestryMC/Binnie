@@ -6,11 +6,11 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IIndividual;
 
 import binnie.Binnie;
-import binnie.core.craftgui.ITooltip;
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.Tooltip;
-import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.genetics.BreedingSystem;
+import binnie.core.gui.ITooltip;
+import binnie.core.gui.IWidget;
+import binnie.core.gui.Tooltip;
+import binnie.core.gui.minecraft.control.ControlItemDisplay;
 
 public class ControlIndividualDisplay extends ControlItemDisplay implements ITooltip {
 	public ControlIndividualDisplay(IWidget parent, int x, int y, IIndividual ind) {

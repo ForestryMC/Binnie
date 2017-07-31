@@ -1,9 +1,9 @@
 package binnie.genetics.gui.analyst;
 
-import binnie.core.craftgui.ITooltip;
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.Tooltip;
-import binnie.core.craftgui.controls.core.Control;
+import binnie.core.gui.ITooltip;
+import binnie.core.gui.IWidget;
+import binnie.core.gui.Tooltip;
+import binnie.core.gui.controls.core.Control;
 
 public class ControlTooltip extends Control implements ITooltip {
 	public ControlTooltip(IWidget parent, int x, int y, int w, int h) {

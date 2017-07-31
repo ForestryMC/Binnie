@@ -11,12 +11,12 @@ import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.controls.ControlText;
-import binnie.core.craftgui.controls.core.Control;
-import binnie.core.craftgui.geometry.Area;
-import binnie.core.craftgui.geometry.TextJustification;
-import binnie.core.craftgui.renderer.RenderUtil;
+import binnie.core.gui.IWidget;
+import binnie.core.gui.controls.ControlText;
+import binnie.core.gui.controls.core.Control;
+import binnie.core.gui.geometry.Area;
+import binnie.core.gui.geometry.TextJustification;
+import binnie.core.gui.renderer.RenderUtil;
 
 public class ControlPunnett extends Control {
 	static int boxWidth = 80;

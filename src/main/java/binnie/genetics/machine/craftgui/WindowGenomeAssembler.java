@@ -6,7 +6,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraftforge.fml.relauncher.Side;
 
 import binnie.core.AbstractMod;
-import binnie.core.craftgui.minecraft.Window;
+import binnie.core.gui.minecraft.Window;
 import binnie.genetics.Genetics;
 
 public class WindowGenomeAssembler extends WindowMachine {

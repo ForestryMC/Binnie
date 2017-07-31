@@ -12,8 +12,8 @@ import forestry.api.genetics.IAllele;
 
 import binnie.Binnie;
 import binnie.core.BinnieCore;
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.controls.listbox.ControlListBox;
+import binnie.core.gui.IWidget;
+import binnie.core.gui.controls.listbox.ControlListBox;
 
 public class ControlProductsBox extends ControlListBox<ControlProductsBox.Product> {
 	IAlleleBeeSpecies species;

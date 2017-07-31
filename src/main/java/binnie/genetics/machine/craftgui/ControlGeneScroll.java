@@ -9,14 +9,14 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 
 import binnie.Binnie;
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.controls.ControlText;
-import binnie.core.craftgui.controls.core.Control;
-import binnie.core.craftgui.controls.core.IControlValue;
-import binnie.core.craftgui.geometry.Point;
-import binnie.core.craftgui.minecraft.Window;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
+import binnie.core.gui.IWidget;
+import binnie.core.gui.controls.ControlText;
+import binnie.core.gui.controls.core.Control;
+import binnie.core.gui.controls.core.IControlValue;
+import binnie.core.gui.geometry.Point;
+import binnie.core.gui.minecraft.Window;
 import binnie.genetics.genetics.GeneTracker;
 
 public class ControlGeneScroll extends Control implements IControlValue<BreedingSystem> {

@@ -7,7 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import forestry.api.core.INbtReadable;
 import forestry.api.core.INbtWritable;
 
-import binnie.core.craftgui.minecraft.EnumColor;
+import binnie.core.gui.minecraft.EnumColor;
 
 class CompartmentTab implements INbtWritable, INbtReadable {
 	private String name;

@@ -10,12 +10,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.core.ForestryAPI;
 
-import binnie.core.craftgui.ITooltip;
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.Tooltip;
-import binnie.core.craftgui.controls.core.Control;
-import binnie.core.craftgui.geometry.Point;
-import binnie.core.craftgui.renderer.RenderUtil;
+import binnie.core.gui.ITooltip;
+import binnie.core.gui.IWidget;
+import binnie.core.gui.Tooltip;
+import binnie.core.gui.controls.core.Control;
+import binnie.core.gui.geometry.Point;
+import binnie.core.gui.renderer.RenderUtil;
 
 public class ControlBiome extends Control implements ITooltip {
 	private final Biome biome;

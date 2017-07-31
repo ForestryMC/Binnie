@@ -22,8 +22,8 @@ import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.EnumFlowerStage;
 import binnie.botany.api.FlowerManager;
 import binnie.botany.api.IFlower;
-import binnie.core.craftgui.geometry.Area;
-import binnie.core.craftgui.renderer.RenderUtil;
+import binnie.core.gui.geometry.Area;
+import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.util.I18N;
 
 // TODO write flower alyzer plugin

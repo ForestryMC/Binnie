@@ -3,7 +3,7 @@ package binnie.genetics.machine.sequencer;
 import net.minecraft.tileentity.TileEntity;
 
 import binnie.Binnie;
-import binnie.core.craftgui.minecraft.IMachineInformation;
+import binnie.core.gui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentChargedSlots;

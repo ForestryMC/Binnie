@@ -13,15 +13,15 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 
 import binnie.Binnie;
-import binnie.core.craftgui.CraftGUI;
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.controls.ControlText;
-import binnie.core.craftgui.controls.ControlTextCentered;
-import binnie.core.craftgui.controls.core.Control;
-import binnie.core.craftgui.geometry.Area;
-import binnie.core.craftgui.geometry.Point;
-import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.genetics.BreedingSystem;
+import binnie.core.gui.CraftGUI;
+import binnie.core.gui.IWidget;
+import binnie.core.gui.controls.ControlText;
+import binnie.core.gui.controls.ControlTextCentered;
+import binnie.core.gui.controls.core.Control;
+import binnie.core.gui.geometry.Area;
+import binnie.core.gui.geometry.Point;
+import binnie.core.gui.geometry.TextJustification;
 import binnie.core.util.I18N;
 
 @SideOnly(Side.CLIENT)

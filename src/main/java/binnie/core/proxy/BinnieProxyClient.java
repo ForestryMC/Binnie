@@ -29,7 +29,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.Constants;
-import binnie.core.craftgui.resource.minecraft.CraftGUIResourceManager;
+import binnie.core.gui.resource.minecraft.CraftGUIResourceManager;
 import binnie.core.models.ModelManager;
 import binnie.core.resource.BinnieResource;
 

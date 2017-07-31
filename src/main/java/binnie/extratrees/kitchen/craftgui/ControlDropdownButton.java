@@ -1,9 +1,9 @@
 package binnie.extratrees.kitchen.craftgui;
 
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.controls.button.ControlButton;
-import binnie.core.craftgui.events.EventMouse;
-import binnie.core.craftgui.minecraft.Window;
+import binnie.core.gui.IWidget;
+import binnie.core.gui.controls.button.ControlButton;
+import binnie.core.gui.events.EventMouse;
+import binnie.core.gui.minecraft.Window;
 
 public abstract class ControlDropdownButton extends ControlButton {
 	public ControlDropdownButton(final IWidget parent, final int x, final int y, final int width, final int height, final String text) {

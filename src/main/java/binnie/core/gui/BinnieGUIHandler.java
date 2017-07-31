@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
-import binnie.core.craftgui.minecraft.Window;
+import binnie.core.gui.minecraft.Window;
 
 public final class BinnieGUIHandler implements IGuiHandler {
 	private AbstractMod mod;

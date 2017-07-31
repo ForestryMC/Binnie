@@ -7,7 +7,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
-import binnie.core.craftgui.minecraft.Window;
+import binnie.core.gui.minecraft.Window;
 import binnie.genetics.machine.craftgui.WindowMachine;
 
 public class WindowTest extends WindowMachine {

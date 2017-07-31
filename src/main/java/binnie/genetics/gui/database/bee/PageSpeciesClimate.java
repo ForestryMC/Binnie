@@ -3,10 +3,10 @@ package binnie.genetics.gui.database.bee;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.genetics.IAlleleSpecies;
 
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.controls.ControlTextCentered;
-import binnie.genetics.gui.database.DatabaseTab;
-import binnie.genetics.gui.database.PageSpecies;
+import binnie.core.gui.IWidget;
+import binnie.core.gui.controls.ControlTextCentered;
+import binnie.core.gui.database.DatabaseTab;
+import binnie.core.gui.database.PageSpecies;
 
 public class PageSpeciesClimate extends PageSpecies {
 	ControlClimateBar tempBar;
