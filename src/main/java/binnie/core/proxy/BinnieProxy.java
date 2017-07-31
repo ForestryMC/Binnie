@@ -131,7 +131,7 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 	}
 
 	public void sendNetworkEntityPacket(final INetworkedEntity entity) {
-		final MessageUpdate packet = new MessageUpdate(BinnieCorePacketID.NetworkEntityUpdate.ordinal(), entity);
+		final MessageUpdate packet = new MessageUpdate(BinnieCorePacketID.NETWORK_ENTITY_UPDATE.ordinal(), entity);
 		this.sendToAll(packet);
 	}
 

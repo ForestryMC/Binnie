@@ -13,7 +13,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
-import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -33,6 +32,7 @@ import binnie.core.machines.network.INetwork;
 import binnie.core.machines.power.ITankMachine;
 import binnie.core.network.BinnieCorePacketID;
 import binnie.core.network.INetworkedEntity;
+import binnie.core.network.packet.MessageBase;
 import binnie.core.network.packet.MessageTileNBT;
 import binnie.core.network.packet.PacketPayload;
 
@@ -151,7 +151,11 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 		if (!BinnieCore.getBinnieProxy().isSimulating(this.getTileEntity().getWorld())) {
 			return;
 		}
-		BinnieCore.getBinnieProxy().sendNetworkEntityPacket((INetworkedEntity) this.getTileEntity());
+		MessageBase message = getDescriptionPacket();
+		if(message == null){
+			return;
+		}
+		BinnieCore.getBinnieProxy().sendToAll(message);
 	}
 
 	public Side getSide() {
@@ -275,13 +279,13 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	}
 
 	@Nullable
-	public Packet<?> getDescriptionPacket() {
+	public MessageBase getDescriptionPacket() {
 		final NBTTagCompound nbt = new NBTTagCompound();
 		this.syncToNBT(nbt);
 		if (nbt.hasNoTags()) {
 			return null;
 		}
-		return BinnieCore.getInstance().getNetworkWrapper().getPacketFrom(new MessageTileNBT(BinnieCorePacketID.TileDescriptionSync.ordinal(), this.getTileEntity(), nbt).GetMessage());
+		return new MessageTileNBT(BinnieCorePacketID.TILE_DESCRIPTION_SYNC.ordinal(), this.getTileEntity(), nbt);
 	}
 
 	@Override

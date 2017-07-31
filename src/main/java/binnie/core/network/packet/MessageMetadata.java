@@ -11,7 +11,7 @@ public class MessageMetadata extends MessageCoordinates {
 	public int meta;
 
 	public MessageMetadata(BlockPos coordinates, int meta) {
-		super(BinnieCorePacketID.TileMetadata.ordinal(), coordinates);
+		super(BinnieCorePacketID.TILE_METADATA.ordinal(), coordinates);
 		this.meta = meta;
 	}
 

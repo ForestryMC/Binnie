@@ -10,6 +10,6 @@ public class MessageCraftGUI extends MessageNBT {
 	}
 
 	public MessageCraftGUI(final NBTTagCompound action) {
-		super(BinnieCorePacketID.CraftGUIAction.ordinal(), action);
+		super(BinnieCorePacketID.CRAFT_GUI_ACTION.ordinal(), action);
 	}
 }

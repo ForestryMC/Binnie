@@ -3,6 +3,7 @@ package binnie.core.gui.minecraft;
 import javax.annotation.Nullable;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ClickType;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -37,11 +38,13 @@ public class CustomSlot extends Slot {
 	}
 
 	public void onSlotClick(final ContainerCraftGUI container, final int dragType, final ClickType modifier, final EntityPlayer player) {
-		ItemStack stack = player.inventory.getItemStack();
+		InventoryPlayer inventory = player.inventory;
+		ItemStack stack = inventory.getItemStack();
+		ItemStack slotStack = getStack().copy();
 		//TODO modifier==mouseButton2?
 		if (stack.isEmpty() || modifier == ClickType.PICKUP_ALL) {
 			this.putStack(ItemStack.EMPTY);
-		} else {
+		}else {
 			stack = stack.copy();
 			stack.setCount(1);
 			this.putStack(stack);

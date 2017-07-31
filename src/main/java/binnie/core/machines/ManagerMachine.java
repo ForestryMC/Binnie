@@ -48,11 +48,8 @@ public class ManagerMachine extends ManagerBase {
 			return;
 		}
 		final Set<Class<?>> interfaces = new HashSet<>();
-		for (Class<?> currentClass = component; currentClass != null; currentClass = null) {
+		for (Class<?> currentClass = component; currentClass != null; currentClass = currentClass.getSuperclass()) {
 			Collections.addAll(interfaces, currentClass.getInterfaces());
-			currentClass = currentClass.getSuperclass();
-			if (currentClass == Object.class) {
-			}
 		}
 		interfaces.remove(INbtWritable.class);
 		interfaces.remove(INbtReadable.class);

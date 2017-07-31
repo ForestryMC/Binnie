@@ -57,14 +57,15 @@ public class ControlSlot extends ControlSlotBase {
 			public void onEvent(final EventMouse.Down event) {
 				Window superParent = (Window) ControlSlot.this.getTopParent();
 				GuiCraftGUI superParentGui = superParent.getGui();
-				Minecraft minecraft = superParentGui.getMinecraft();
-				final PlayerControllerMP playerController = minecraft.playerController;
+				Minecraft mc = superParentGui.getMinecraft();
+				final PlayerControllerMP playerController = mc.playerController;
 				final int windowId = superParent.getContainer().windowId;
 				final int slotNumber = ControlSlot.this.slot.slotNumber;
 				final int button = event.getButton();
 				Window.get(ControlSlot.this.getWidget()).getGui();
 				if (playerController != null) {
-					playerController.windowClick(windowId, slotNumber, button, GuiScreen.isShiftKeyDown() ? ClickType.QUICK_MOVE : ClickType.PICKUP, minecraft.player);
+					boolean clone = mc.gameSettings.keyBindPickBlock.isActiveAndMatches(button  - 100);
+					playerController.windowClick(windowId, slotNumber, button, clone ? ClickType.CLONE : GuiScreen.isShiftKeyDown() ? ClickType.QUICK_MOVE : ClickType.PICKUP, mc.player);
 				}
 			}
 		});
