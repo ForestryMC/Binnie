@@ -1,5 +1,7 @@
 package binnie.botany;
 
+import com.google.common.base.Preconditions;
+
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
@@ -30,32 +32,20 @@ import binnie.botany.api.IBlockSoil;
 import binnie.botany.api.IFlower;
 import binnie.botany.api.IFlowerRoot;
 import binnie.botany.api.IGardeningManager;
-import binnie.botany.ceramic.BlockCeramic;
-import binnie.botany.ceramic.BlockCeramicPatterned;
-import binnie.botany.ceramic.BlockStainedGlass;
-import binnie.botany.ceramic.brick.BlockCeramicBrick;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.core.BotanyGUI;
 import binnie.botany.core.ModuleCore;
 import binnie.botany.flower.BlockFlower;
 import binnie.botany.flower.ItemBotany;
-import binnie.botany.flower.ItemInsulatedTube;
 import binnie.botany.flower.TileEntityFlower;
-import binnie.botany.gardening.BlockPlant;
-import binnie.botany.gardening.BlockSoil;
-import binnie.botany.gardening.ItemSoilMeter;
-import binnie.botany.gardening.ItemTrowel;
 import binnie.botany.gardening.ModuleGardening;
 import binnie.botany.genetics.ItemDictionary;
 import binnie.botany.genetics.ModuleGenetics;
-import binnie.botany.items.ItemClay;
-import binnie.botany.items.ItemPigment;
 import binnie.botany.network.PacketID;
 import binnie.botany.proxy.Proxy;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.gui.IBinnieGUID;
-import binnie.core.item.ItemMisc;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
 import binnie.core.proxy.IProxyCore;
@@ -80,30 +70,13 @@ public class Botany extends AbstractMod {
 	public static ItemBotany seed;
 	public static ItemBotany pollen;
 	public static ItemDictionary database;
-	/* MODULE GARDENING */
-	public static BlockPlant plant;
-	public static ItemTrowel trowelWood;
-	public static ItemTrowel trowelStone;
-	public static ItemTrowel trowelIron;
-	public static ItemTrowel trowelDiamond;
-	public static ItemTrowel trowelGold;
-	public static BlockSoil soil;
-	public static BlockSoil loam;
-	public static BlockSoil flowerbed;
-	public static BlockSoil soilNoWeed;
-	public static BlockSoil loamNoWeed;
-	public static BlockSoil flowerbedNoWeed;
-	public static ItemInsulatedTube insulatedTube;
-	public static ItemSoilMeter soilMeter;
-	public static ItemMisc misc;
-	public static ItemPigment pigment;
-	public static ItemClay clay;
-	public static BlockCeramic ceramic;
-	public static BlockCeramicPatterned ceramicTile;
-	public static BlockStainedGlass stained;
-	public static BlockCeramicBrick ceramicBrick;
 	@Nullable
 	public static Item botanistBackpack;
+
+	@Nullable
+	private static ModuleGardening gardening;
+	@Nullable
+	private static ModuleGenetics genetics;
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent evt) {
@@ -123,8 +96,18 @@ public class Botany extends AbstractMod {
 	@Override
 	protected void registerModules() {
 		addModule(new ModuleCore());
-		addModule(new ModuleGenetics());
-		addModule(new ModuleGardening());
+		addModule(genetics = new ModuleGenetics());
+		addModule(gardening = new ModuleGardening());
+	}
+
+	public static ModuleGardening gardening() {
+		Preconditions.checkState(gardening != null);
+		return gardening;
+	}
+
+	public static ModuleGenetics genetics() {
+		Preconditions.checkState(genetics != null);
+		return genetics;
 	}
 
 	@Override

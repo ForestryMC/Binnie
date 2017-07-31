@@ -98,7 +98,8 @@ public class VillageHopeField extends StructureVillagePieces.Village {
 				return Blocks.WHEAT;
 		}
 	}
-	
+
+	@SuppressWarnings("deprecation")
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 	{
 		if (this.averageGroundLvl < 0) {

@@ -223,7 +223,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 			if (!world.isAirBlock(pos)) {
 				return;
 			}
-			world.setBlockState(pos, Botany.plant.getStateFromMeta(PlantType.WEEDS.ordinal()), 2);
+			world.setBlockState(pos, Botany.gardening().plant.getStateFromMeta(PlantType.WEEDS.ordinal()), 2);
 		}
 	}
 
@@ -298,7 +298,7 @@ public class BlockSoil extends Block implements IBlockSoil, IItemModelRegister {
 			return true;
 		}
 
-		if (plant.getBlock() == Botany.plant) {
+		if (plant.getBlock() == Botany.gardening().plant) {
 			return !weedKilled || !BlockPlant.isWeed(world, pos);
 		}
 		return world instanceof World && Blocks.DIRT.canSustainPlant(state, world, pos, direction, plantable);

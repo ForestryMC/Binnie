@@ -102,7 +102,7 @@ public class ModuleGenetics implements IInitializable {
 						"X#X",
 						'#', Blocks.WOOL,
 						'X', Items.STRING,
-						'V', Botany.soilMeter,
+						'V', Botany.gardening().soilMeter,
 						'Z', "toolTrowel",
 						'Y', "chestWood"
 				);

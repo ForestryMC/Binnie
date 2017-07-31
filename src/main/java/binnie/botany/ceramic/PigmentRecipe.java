@@ -36,7 +36,7 @@ public class PigmentRecipe implements IRecipe {
 				if (Binnie.GENETICS.getFlowerRoot().isMember(stackInSlot)) {
 					IFlower flower = Binnie.GENETICS.getFlowerRoot().getMember(stackInSlot);
 					if (flower != null && flower.getAge() >= 1) {
-						stack = new ItemStack(Botany.pigment, 1, flower.getGenome().getPrimaryColor().getID());
+						stack = new ItemStack(Botany.gardening().pigment, 1, flower.getGenome().getPrimaryColor().getID());
 					}
 				}
 			}

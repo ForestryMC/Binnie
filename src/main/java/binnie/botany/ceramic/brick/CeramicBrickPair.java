@@ -42,7 +42,7 @@ public class CeramicBrickPair {
 	}
 
 	public ItemStack getStack(int i) {
-		return new ItemStack(Botany.ceramicBrick, i, ordinal());
+		return new ItemStack(Botany.gardening().ceramicBrick, i, ordinal());
 	}
 
 	public String getName() {

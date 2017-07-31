@@ -31,7 +31,7 @@ public class CeramicColor implements IDesignMaterial {
 
 	@Override
 	public ItemStack getStack() {
-		return TileEntityMetadata.getItemStack(Botany.ceramic, color.ordinal());
+		return TileEntityMetadata.getItemStack(Botany.gardening().ceramic, color.ordinal());
 	}
 
 	@Override

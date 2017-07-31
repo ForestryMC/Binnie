@@ -103,7 +103,7 @@ public class CeramicDesignSystem implements IDesignSystem {
 	@Override
 	@Nullable
 	public IDesignMaterial getMaterial(ItemStack itemStack) {
-		return (itemStack.getItem() == Item.getItemFromBlock(Botany.ceramic))
+		return (itemStack.getItem() == Item.getItemFromBlock(Botany.gardening().ceramic))
 				? getMaterial(itemStack.getItemDamage())
 				: null;
 	}

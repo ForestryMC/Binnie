@@ -39,6 +39,6 @@ public class TileCeramic extends TileEntity {
 		if (color != null) {
 			ID = color.getFlowerColorAllele().getID();
 		}
-		return new ItemStack(Botany.ceramic, amount, ID);
+		return new ItemStack(Botany.gardening().ceramic, amount, ID);
 	}
 }

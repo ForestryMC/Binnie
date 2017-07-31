@@ -42,7 +42,7 @@ public enum BotanyItems implements IItemMiscProvider {
 
 	@Override
 	public ItemStack get(int size) {
-		return new ItemStack(Botany.misc, size, ordinal());
+		return new ItemStack(Botany.gardening().misc, size, ordinal());
 	}
 
 	@Override

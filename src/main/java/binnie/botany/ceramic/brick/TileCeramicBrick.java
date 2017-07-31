@@ -22,7 +22,7 @@ public class TileCeramicBrick extends TileEntity {
 	}
 
 	public ItemStack getStack(int i) {
-		ItemStack s = TileEntityMetadata.getItemStack(Botany.ceramicBrick, ordinal());
+		ItemStack s = TileEntityMetadata.getItemStack(Botany.gardening().ceramicBrick, ordinal());
 		s.setCount(i);
 		return s;
 	}

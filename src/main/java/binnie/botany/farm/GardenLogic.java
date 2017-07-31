@@ -113,7 +113,7 @@ public class GardenLogic extends FarmLogic {
 				}
 			}
 
-			if (getBlock(world, position.up()) == Botany.plant) {
+			if (getBlock(world, position.up()) == Botany.gardening().plant) {
 				world.setBlockToAir(position.up());
 			} else {
 				if (acidity != null && gardening.isSoil(getBlock(world, position))) {
@@ -231,7 +231,7 @@ public class GardenLogic extends FarmLogic {
 
 		for (EnumMoisture moist : moistures) {
 			for (EnumAcidity acid : acidities) {
-				for (Block type : new Block[]{Botany.flowerbed, Botany.loam, Botany.soil}) {
+				for (Block type : new Block[]{Botany.gardening().flowerbed, Botany.gardening().loam, Botany.gardening().soil}) {
 					int meta = acid.ordinal() * 3 + moist.ordinal();
 					NonNullList<ItemStack> resources = NonNullList.create();
 					ItemStack resourceStack = new ItemStack(type, 1, meta);
@@ -263,7 +263,7 @@ public class GardenLogic extends FarmLogic {
 		}
 
 		if (loam.getItem() == Item.getItemFromBlock(Blocks.DIRT)) {
-			loam = new ItemStack(Botany.soil, 1, 4);
+			loam = new ItemStack(Botany.gardening().soil, 1, 4);
 		}
 
 		setBlock(world, position, ((ItemBlock) loam.getItem()).getBlock(), loam.getItemDamage());

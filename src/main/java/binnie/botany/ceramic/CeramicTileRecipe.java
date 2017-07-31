@@ -14,6 +14,7 @@ import net.minecraftforge.common.ForgeHooks;
 
 import binnie.botany.Botany;
 import binnie.botany.ceramic.brick.CeramicBrickType;
+import binnie.botany.gardening.ModuleGardening;
 
 public class CeramicTileRecipe implements IRecipe {
 	private ItemStack cached = ItemStack.EMPTY;
@@ -26,10 +27,11 @@ public class CeramicTileRecipe implements IRecipe {
 
 	@Override
 	public ItemStack getCraftingResult(InventoryCrafting inv) {
-		Item ceramicBlock = Item.getItemFromBlock(Botany.ceramic);
-		Item ceramicTile = Item.getItemFromBlock(Botany.ceramicTile);
-		Item ceramicBrick = Item.getItemFromBlock(Botany.ceramicBrick);
-		Item mortar = Botany.misc;
+		ModuleGardening gardening = Botany.gardening();
+		Item ceramicBlock = Item.getItemFromBlock(gardening.ceramic);
+		Item ceramicTile = Item.getItemFromBlock(gardening.ceramicTile);
+		Item ceramicBrick = Item.getItemFromBlock(gardening.ceramicBrick);
+		Item mortar = gardening.misc;
 		List<ItemStack> stacks = new ArrayList<>();
 		int ix = -1;
 		int iy = -1;

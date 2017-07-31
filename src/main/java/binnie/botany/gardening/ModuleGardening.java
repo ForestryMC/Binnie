@@ -51,66 +51,87 @@ public class ModuleGardening implements IInitializable {
 	public static final HashMap<ItemStack, Integer> queuedAlkalineFertilisers = new HashMap<>();
 	public static final HashMap<ItemStack, Integer> queuedNutrientFertilisers = new HashMap<>();
 
+	public BlockPlant plant;
+	public ItemTrowel trowelWood;
+	public ItemTrowel trowelStone;
+	public ItemTrowel trowelIron;
+	public ItemTrowel trowelDiamond;
+	public ItemTrowel trowelGold;
+	public BlockSoil soil;
+	public BlockSoil loam;
+	public BlockSoil flowerbed;
+	public BlockSoil soilNoWeed;
+	public BlockSoil loamNoWeed;
+	public BlockSoil flowerbedNoWeed;
+	public ItemInsulatedTube insulatedTube;
+	public ItemSoilMeter soilMeter;
+	public ItemMisc misc;
+	public ItemPigment pigment;
+	public ItemClay clay;
+	public BlockCeramic ceramic;
+	public BlockCeramicPatterned ceramicTile;
+	public BlockStainedGlass stained;
+	public BlockCeramicBrick ceramicBrick;
+
 	@Override
 	public void preInit() {
-		// TODO migrate static into BotanyItems
-		Botany.plant = new BlockPlant();
-		Botany.soil = new BlockSoil(EnumSoilType.SOIL, "soil", false);
-		Botany.loam = new BlockSoil(EnumSoilType.LOAM, "loam", false);
-		Botany.flowerbed = new BlockSoil(EnumSoilType.FLOWERBED, "flowerbed", false);
-		Botany.soilNoWeed = new BlockSoil(EnumSoilType.SOIL, "soil_no_weed", true);
-		Botany.loamNoWeed = new BlockSoil(EnumSoilType.LOAM, "loam_no_weed", true);
-		Botany.flowerbedNoWeed = new BlockSoil(EnumSoilType.FLOWERBED, "flowerbed_no_weed", true);
-		Botany.soilMeter = new ItemSoilMeter();
-		Botany.insulatedTube = new ItemInsulatedTube();
-		Botany.trowelWood = new ItemTrowel(Item.ToolMaterial.WOOD, "wood");
-		Botany.trowelStone = new ItemTrowel(Item.ToolMaterial.STONE, "stone");
-		Botany.trowelIron = new ItemTrowel(Item.ToolMaterial.IRON, "iron");
-		Botany.trowelDiamond = new ItemTrowel(Item.ToolMaterial.DIAMOND, "diamond");
-		Botany.trowelGold = new ItemTrowel(Item.ToolMaterial.GOLD, "gold");
-		Botany.misc = new ItemMisc(CreativeTabBotany.instance, BotanyItems.values());
-		Botany.pigment = new ItemPigment();
-		Botany.clay = new ItemClay();
-		Botany.ceramic = new BlockCeramic();
-		Botany.stained = new BlockStainedGlass();
-		Botany.ceramicTile = new BlockCeramicPatterned();
-		Botany.ceramicBrick = new BlockCeramicBrick();
+		plant = new BlockPlant();
+		soil = new BlockSoil(EnumSoilType.SOIL, "soil", false);
+		loam = new BlockSoil(EnumSoilType.LOAM, "loam", false);
+		flowerbed = new BlockSoil(EnumSoilType.FLOWERBED, "flowerbed", false);
+		soilNoWeed = new BlockSoil(EnumSoilType.SOIL, "soil_no_weed", true);
+		loamNoWeed = new BlockSoil(EnumSoilType.LOAM, "loam_no_weed", true);
+		flowerbedNoWeed = new BlockSoil(EnumSoilType.FLOWERBED, "flowerbed_no_weed", true);
+		soilMeter = new ItemSoilMeter();
+		insulatedTube = new ItemInsulatedTube();
+		trowelWood = new ItemTrowel(Item.ToolMaterial.WOOD, "wood");
+		trowelStone = new ItemTrowel(Item.ToolMaterial.STONE, "stone");
+		trowelIron = new ItemTrowel(Item.ToolMaterial.IRON, "iron");
+		trowelDiamond = new ItemTrowel(Item.ToolMaterial.DIAMOND, "diamond");
+		trowelGold = new ItemTrowel(Item.ToolMaterial.GOLD, "gold");
+		misc = new ItemMisc(CreativeTabBotany.instance, BotanyItems.values());
+		pigment = new ItemPigment();
+		clay = new ItemClay();
+		ceramic = new BlockCeramic();
+		stained = new BlockStainedGlass();
+		ceramicTile = new BlockCeramicPatterned();
+		ceramicBrick = new BlockCeramicBrick();
 
-		Botany.proxy.registerBlock(Botany.plant, new ItemWeed(Botany.plant));
-		Botany.proxy.registerBlock(Botany.soil, new ItemSoil(Botany.soil));
-		Botany.proxy.registerBlock(Botany.loam, new ItemSoil(Botany.loam));
-		Botany.proxy.registerBlock(Botany.flowerbed, new ItemSoil(Botany.flowerbed));
-		Botany.proxy.registerBlock(Botany.soilNoWeed, new ItemSoil(Botany.soilNoWeed));
-		Botany.proxy.registerBlock(Botany.loamNoWeed, new ItemSoil(Botany.loamNoWeed));
-		Botany.proxy.registerBlock(Botany.flowerbedNoWeed, new ItemSoil(Botany.flowerbedNoWeed));
-		Botany.proxy.registerItem(Botany.soilMeter);
-		Botany.proxy.registerItem(Botany.insulatedTube);
-		Botany.proxy.registerItem(Botany.trowelWood);
-		Botany.proxy.registerItem(Botany.trowelStone);
-		Botany.proxy.registerItem(Botany.trowelIron);
-		Botany.proxy.registerItem(Botany.trowelDiamond);
-		Botany.proxy.registerItem(Botany.trowelGold);
-		Botany.proxy.registerItem(Botany.misc);
-		Botany.proxy.registerItem(Botany.pigment);
-		Botany.proxy.registerItem(Botany.clay);
-		Botany.proxy.registerBlock(Botany.ceramic, new ItemCeramic(Botany.ceramic));
-		Botany.proxy.registerBlock(Botany.stained, new ItemStainedGlass(Botany.stained));
-		Botany.proxy.registerBlock(Botany.ceramicTile, new ItemDesign(Botany.ceramicTile));
-		Botany.proxy.registerBlock(Botany.ceramicBrick, new ItemCeramicBrick(Botany.ceramicBrick));
+		Botany.proxy.registerBlock(plant, new ItemWeed(plant));
+		Botany.proxy.registerBlock(soil, new ItemSoil(soil));
+		Botany.proxy.registerBlock(loam, new ItemSoil(loam));
+		Botany.proxy.registerBlock(flowerbed, new ItemSoil(flowerbed));
+		Botany.proxy.registerBlock(soilNoWeed, new ItemSoil(soilNoWeed));
+		Botany.proxy.registerBlock(loamNoWeed, new ItemSoil(loamNoWeed));
+		Botany.proxy.registerBlock(flowerbedNoWeed, new ItemSoil(flowerbedNoWeed));
+		Botany.proxy.registerItem(soilMeter);
+		Botany.proxy.registerItem(insulatedTube);
+		Botany.proxy.registerItem(trowelWood);
+		Botany.proxy.registerItem(trowelStone);
+		Botany.proxy.registerItem(trowelIron);
+		Botany.proxy.registerItem(trowelDiamond);
+		Botany.proxy.registerItem(trowelGold);
+		Botany.proxy.registerItem(misc);
+		Botany.proxy.registerItem(pigment);
+		Botany.proxy.registerItem(clay);
+		Botany.proxy.registerBlock(ceramic, new ItemCeramic(ceramic));
+		Botany.proxy.registerBlock(stained, new ItemStainedGlass(stained));
+		Botany.proxy.registerBlock(ceramicTile, new ItemDesign(ceramicTile));
+		Botany.proxy.registerBlock(ceramicBrick, new ItemCeramicBrick(ceramicBrick));
 
 		BinnieCore.getBinnieProxy().registerTileEntity(TileCeramic.class, "botany.tile.ceramic");
-		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(Botany.ceramic), new ItemMetadataRenderer());
-		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(Botany.stained), new ItemMetadataRenderer());
+		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ceramic), new ItemMetadataRenderer());
+		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(stained), new ItemMetadataRenderer());
 		BinnieCore.getBinnieProxy().registerTileEntity(TileCeramicBrick.class, "botany.tile.ceramicBrick");
-		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(Botany.ceramicTile), new MultipassItemRenderer());
-		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(Botany.ceramicBrick), new MultipassItemRenderer());
+		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ceramicTile), new MultipassItemRenderer());
+		//BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ceramicBrick), new MultipassItemRenderer());
 
-		OreDictionary.registerOre("pigment", Botany.pigment);
-		OreDictionary.registerOre("toolTrowel", Botany.trowelWood);
-		OreDictionary.registerOre("toolTrowel", Botany.trowelStone);
-		OreDictionary.registerOre("toolTrowel", Botany.trowelIron);
-		OreDictionary.registerOre("toolTrowel", Botany.trowelGold);
-		OreDictionary.registerOre("toolTrowel", Botany.trowelDiamond);
+		OreDictionary.registerOre("pigment", pigment);
+		OreDictionary.registerOre("toolTrowel", trowelWood);
+		OreDictionary.registerOre("toolTrowel", trowelStone);
+		OreDictionary.registerOre("toolTrowel", trowelIron);
+		OreDictionary.registerOre("toolTrowel", trowelGold);
+		OreDictionary.registerOre("toolTrowel", trowelDiamond);
 	}
 
 	@Override
@@ -135,10 +156,10 @@ public class ModuleGardening implements IInitializable {
 					if (fertilised) {
 						insulate += 3;
 					}
-					new CircuitGarden(moist, null, manual, fertilised, new ItemStack(Botany.insulatedTube, 1, 128 * insulate), icon);
-					new CircuitGarden(moist, EnumAcidity.ACID, manual, fertilised, new ItemStack(Botany.insulatedTube, 1, 1 + 128 * insulate), icon);
-					new CircuitGarden(moist, EnumAcidity.NEUTRAL, manual, fertilised, new ItemStack(Botany.insulatedTube, 1, 2 + 128 * insulate), icon);
-					new CircuitGarden(moist, EnumAcidity.ALKALINE, manual, fertilised, new ItemStack(Botany.insulatedTube, 1, 3 + 128 * insulate), icon);
+					new CircuitGarden(moist, null, manual, fertilised, new ItemStack(insulatedTube, 1, 128 * insulate), icon);
+					new CircuitGarden(moist, EnumAcidity.ACID, manual, fertilised, new ItemStack(insulatedTube, 1, 1 + 128 * insulate), icon);
+					new CircuitGarden(moist, EnumAcidity.NEUTRAL, manual, fertilised, new ItemStack(insulatedTube, 1, 2 + 128 * insulate), icon);
+					new CircuitGarden(moist, EnumAcidity.ALKALINE, manual, fertilised, new ItemStack(insulatedTube, 1, 3 + 128 * insulate), icon);
 				}
 			}
 		}
@@ -150,7 +171,7 @@ public class ModuleGardening implements IInitializable {
 		GameRegistry.addRecipe(new CeramicTileRecipe());
 		for (int mat = 0; mat < 4; ++mat) {
 			for (int insulate = 0; insulate < 6; ++insulate) {
-				ItemStack tubes = new ItemStack(Botany.insulatedTube, 2, mat + 128 * insulate);
+				ItemStack tubes = new ItemStack(insulatedTube, 2, mat + 128 * insulate);
 				ItemStack insulateStack = ItemInsulatedTube.getInsulateStack(tubes);
 				ItemStack forestryTube = new ItemStack(Mods.Forestry.item("thermionic_tubes"), 1, mat);
 				GameRegistry.addShapelessRecipe(tubes, forestryTube, forestryTube, insulateStack);
@@ -158,7 +179,7 @@ public class ModuleGardening implements IInitializable {
 		}
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(
-				Botany.trowelWood,
+				trowelWood,
 				"d  ", " x ", "  s",
 				'd', Blocks.DIRT,
 				's', "stickWood",
@@ -166,7 +187,7 @@ public class ModuleGardening implements IInitializable {
 		);
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(
-				Botany.trowelStone,
+				trowelStone,
 				"d  ", " x ", "  s",
 				'd', Blocks.DIRT,
 				's', "stickWood",
@@ -174,7 +195,7 @@ public class ModuleGardening implements IInitializable {
 		));
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(
-				Botany.trowelIron,
+				trowelIron,
 				"d  ", " x ", "  s",
 				'd', Blocks.DIRT,
 				's', "stickWood",
@@ -182,7 +203,7 @@ public class ModuleGardening implements IInitializable {
 		));
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(
-				Botany.trowelGold,
+				trowelGold,
 				"d  ", " x ", "  s",
 				'd', Blocks.DIRT,
 				's', "stickWood",
@@ -190,7 +211,7 @@ public class ModuleGardening implements IInitializable {
 		));
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(
-				Botany.trowelDiamond,
+				trowelDiamond,
 				"d  ", " x ", "  s",
 				'd', Blocks.DIRT,
 				's', "stickWood",
@@ -198,7 +219,7 @@ public class ModuleGardening implements IInitializable {
 		));
 
 		GameRegistry.addRecipe(new ShapedOreRecipe(
-				Botany.soilMeter,
+				soilMeter,
 				" gg", " rg", "i  ",
 				'g', "ingotGold",
 				'r', "dustRedstone",
@@ -244,7 +265,7 @@ public class ModuleGardening implements IInitializable {
 		));
 
 		GameRegistry.addRecipe(new ShapelessOreRecipe(
-				new ItemStack(Botany.pigment, 2, EnumFlowerColor.Black.ordinal()),
+				new ItemStack(pigment, 2, EnumFlowerColor.Black.ordinal()),
 				"pigment", "pigment", "dyeBlack"
 		));
 
@@ -276,11 +297,11 @@ public class ModuleGardening implements IInitializable {
 
 		GameRegistry.addRecipe(BotanyItems.MORTAR.get(6), " c ", "cgc", " c ", 'c', Items.CLAY_BALL, 'g', Blocks.GRAVEL);
 		for (EnumFlowerColor c : EnumFlowerColor.values()) {
-			ItemStack clay = new ItemStack(Botany.clay, 1, c.ordinal());
-			ItemStack pigment = new ItemStack(Botany.pigment, 1, c.ordinal());
+			ItemStack clay = new ItemStack(this.clay, 1, c.ordinal());
+			ItemStack pigment = new ItemStack(this.pigment, 1, c.ordinal());
 			GameRegistry.addShapelessRecipe(clay, Items.CLAY_BALL, Items.CLAY_BALL, Items.CLAY_BALL, pigment);
-			GameRegistry.addSmelting(clay, TileEntityMetadata.getItemStack(Botany.ceramic, c.ordinal()), 0.0f);
-			ItemStack glass = TileEntityMetadata.getItemStack(Botany.stained, c.ordinal());
+			GameRegistry.addSmelting(clay, TileEntityMetadata.getItemStack(ceramic, c.ordinal()), 0.0f);
+			ItemStack glass = TileEntityMetadata.getItemStack(stained, c.ordinal());
 			glass.setCount(4);
 
 			GameRegistry.addShapedRecipe(

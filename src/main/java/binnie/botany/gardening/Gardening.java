@@ -233,12 +233,12 @@ public class Gardening implements IGardeningManager {
 	public Block getSoilBlock(EnumSoilType type, boolean weedKill) {
 		switch (type) {
 			case FLOWERBED:
-				return weedKill ? Botany.flowerbedNoWeed : Botany.flowerbed;
+				return weedKill ? Botany.gardening().flowerbedNoWeed : Botany.gardening().flowerbed;
 
 			case LOAM:
-				return weedKill ? Botany.loamNoWeed : Botany.loam;
+				return weedKill ? Botany.gardening().loamNoWeed : Botany.gardening().loam;
 		}
-		return weedKill ? Botany.soilNoWeed : Botany.soil;
+		return weedKill ? Botany.gardening().soilNoWeed : Botany.gardening().soil;
 	}
 
 	@Override

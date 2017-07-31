@@ -64,7 +64,7 @@ public enum DesignerType {
 				return ExtraTrees.carpentry().blockPanel;
 			}
 			case Tileworker: {
-				return Botany.ceramicTile;
+				return Botany.gardening().ceramicTile;
 			}
 			default: {
 				return ExtraTrees.carpentry().blockCarpentry;

@@ -29,7 +29,7 @@ public enum PlantType implements IStringSerializable {
 	}
 
 	public ItemStack get() {
-		return new ItemStack(Botany.plant, 1, ordinal());
+		return new ItemStack(Botany.gardening().plant, 1, ordinal());
 	}
 
 	public boolean isWeed() {

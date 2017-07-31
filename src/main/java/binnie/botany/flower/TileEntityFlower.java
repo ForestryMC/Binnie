@@ -462,7 +462,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 
 	public void kill() {
 		if (flower.getAge() > 0) {
-			world.setBlockState(pos, Botany.plant.getStateFromMeta(PlantType.DEAD_FLOWER.ordinal()), 2);
+			world.setBlockState(pos, Botany.gardening().plant.getStateFromMeta(PlantType.DEAD_FLOWER.ordinal()), 2);
 		} else {
 			world.setBlockToAir(pos);
 		}

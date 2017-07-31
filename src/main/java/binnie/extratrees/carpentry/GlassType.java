@@ -63,7 +63,7 @@ public class GlassType implements IDesignMaterial {
 		if (this.id < 128) {
 			return new ItemStack(Blocks.STAINED_GLASS, 1, this.id);
 		}
-		return TileEntityMetadata.getItemStack(Botany.stained, this.id - 128);
+		return TileEntityMetadata.getItemStack(Botany.gardening().stained, this.id - 128);
 	}
 
 	@Override
