@@ -69,7 +69,7 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 			state = EnumDiscoveryState.Show;
 		}
 		this.discovered = state;
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(Attribute.MOUSE_OVER);
 	}
 
 	@Override

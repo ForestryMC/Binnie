@@ -15,7 +15,7 @@ public class ControlProgressBase extends Control {
 	public ControlProgressBase(final IWidget parent, final int x, final int y, final int w, final int h) {
 		super(parent, x, y, w, h);
 		this.progress = 0.0f;
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(Attribute.MOUSE_OVER);
 	}
 
 	public static String convertTime(final int time) {

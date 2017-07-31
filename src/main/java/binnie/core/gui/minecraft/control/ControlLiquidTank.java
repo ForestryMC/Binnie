@@ -51,7 +51,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 		this.tankID = 0;
 		this.horizontal = false;
 		this.horizontal = horizontal;
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(Attribute.MOUSE_OVER);
 		this.addSelfEventHandler(new EventMouse.Down.Handler() {
 			@Override
 			public void onEvent(final EventMouse.Down event) {

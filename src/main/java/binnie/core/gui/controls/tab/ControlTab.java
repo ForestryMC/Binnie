@@ -28,7 +28,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 		super(parent, x, y, w, h);
 		this.value = value;
 		this.tabBar = parent;
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(Attribute.MOUSE_OVER);
 		this.addSelfEventHandler(new EventMouse.Down.Handler() {
 			@Override
 			public void onEvent(final EventMouse.Down event) {
@@ -94,7 +94,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 		CraftGUI.RENDER.texture(iTexture, area);
 		if (this instanceof ControlTabIcon) {
 			final ControlTabIcon icon = (ControlTabIcon) this;
-			final ControlItemDisplay item = (ControlItemDisplay) this.getWidgets().get(0);
+			final ControlItemDisplay item = (ControlItemDisplay) getFirstChild();
 			if (texture == CraftGUITexture.TabDisabled) {
 				item.setColor(-1431655766);
 			} else {

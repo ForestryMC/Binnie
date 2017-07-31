@@ -26,8 +26,8 @@ public class ControlTextEdit extends Control implements IControlValue<String> {
 		super(parent, x, y, width, height);
 		this.cachedValue = "";
 		this.field = new GuiTextField(0, this.getWindow().getGui().getFontRenderer(), 0, 0, 10, 10);
-		this.addAttribute(Attribute.CanFocus);
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(Attribute.CAN_FOCUS);
+		this.addAttribute(Attribute.MOUSE_OVER);
 		this.field.setEnableBackgroundDrawing(false);
 		this.addEventHandler(new EventKey.Down.Handler() {
 			@Override
@@ -40,25 +40,25 @@ public class ControlTextEdit extends Control implements IControlValue<String> {
 					ControlTextEdit.this.onTextEdit(ControlTextEdit.this.cachedValue);
 				}
 			}
-		}.setOrigin(EventHandler.Origin.Self, this));
+		}.setOrigin(EventHandler.Origin.SELF, this));
 		this.addEventHandler(new EventMouse.Down.Handler() {
 			@Override
 			public void onEvent(final EventMouse.Down event) {
 				ControlTextEdit.this.field.mouseClicked(ControlTextEdit.this.getRelativeMousePosition().x(), ControlTextEdit.this.getRelativeMousePosition().y(), event.getButton());
 			}
-		}.setOrigin(EventHandler.Origin.Self, this));
+		}.setOrigin(EventHandler.Origin.SELF, this));
 		this.addEventHandler(new EventWidget.GainFocus.Handler() {
 			@Override
 			public void onEvent(final EventWidget.GainFocus event) {
 				ControlTextEdit.this.field.setFocused(true);
 			}
-		}.setOrigin(EventHandler.Origin.Self, this));
+		}.setOrigin(EventHandler.Origin.SELF, this));
 		this.addEventHandler(new EventWidget.LoseFocus.Handler() {
 			@Override
 			public void onEvent(final EventWidget.LoseFocus event) {
 				ControlTextEdit.this.field.setFocused(false);
 			}
-		}.setOrigin(EventHandler.Origin.Self, this));
+		}.setOrigin(EventHandler.Origin.SELF, this));
 	}
 
 	@Override

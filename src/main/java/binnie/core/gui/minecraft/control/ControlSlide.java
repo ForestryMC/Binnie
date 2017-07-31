@@ -29,8 +29,8 @@ public class ControlSlide extends Control {
 		super(parent, x, y, w, h);
 		this.slideActive = true;
 		this.label = null;
-		this.addAttribute(Attribute.MouseOver);
-		this.addAttribute(Attribute.BlockTooltip);
+		this.addAttribute(Attribute.MOUSE_OVER);
+		this.addAttribute(Attribute.BLOCK_TOOLTIP);
 		this.expanded = new Area(this.getPosition(), this.getSize());
 		this.anchor = anchor2.opposite();
 		final int border = (this.anchor.x() != 0) ? (this.expanded.width() - 6) : (this.expanded.height() - 6);

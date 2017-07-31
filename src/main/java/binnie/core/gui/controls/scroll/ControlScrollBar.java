@@ -21,7 +21,7 @@ public class ControlScrollBar extends Control {
 	public ControlScrollBar(final IWidget parent, final int x, final int y, final int w, final int h, final IControlScrollable scrollable2) {
 		super(parent, x, y, w, h);
 		this.scrollable = scrollable2;
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(Attribute.MOUSE_OVER);
 		this.addSelfEventHandler(new EventMouse.Drag.Handler() {
 			@Override
 			public void onEvent(final EventMouse.Drag event) {

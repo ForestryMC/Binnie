@@ -24,14 +24,14 @@ public class ControlButton extends Control {
 
 	public ControlButton(final IWidget parent, final int x, final int y, final int width, final int height) {
 		super(parent, x, y, width, height);
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(Attribute.MOUSE_OVER);
 		this.addEventHandler(new EventMouse.Down.Handler() {
 			@Override
 			public void onEvent(final EventMouse.Down event) {
 				ControlButton.this.callEvent(new EventButtonClicked(ControlButton.this.getWidget()));
 				ControlButton.this.onMouseClick(event);
 			}
-		}.setOrigin(EventHandler.Origin.Self, this));
+		}.setOrigin(EventHandler.Origin.SELF, this));
 	}
 
 	public ControlButton(final IWidget parent, final int x, final int y, final int width, final int height, final String text) {

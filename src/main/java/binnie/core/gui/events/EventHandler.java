@@ -8,7 +8,7 @@ public abstract class EventHandler<E extends Event> {
 	IWidget relative;
 
 	public EventHandler(final Class<E> eventClass) {
-		this.origin = Origin.Any;
+		this.origin = Origin.ANY;
 		this.relative = null;
 		this.eventClass = eventClass;
 	}
@@ -26,23 +26,23 @@ public abstract class EventHandler<E extends Event> {
 	}
 
 	public enum Origin {
-		Any,
-		Self,
-		Parent,
-		DirectChild;
+		ANY,
+		SELF,
+		PARENT,
+		DIRECT_CHILD;
 
 		public boolean isOrigin(final IWidget origin, final IWidget test) {
 			switch (this) {
-				case Any: {
+				case ANY: {
 					return true;
 				}
-				case DirectChild: {
-					return test.getWidgets().contains(origin);
+				case DIRECT_CHILD: {
+					return test.getChildren().contains(origin);
 				}
-				case Parent: {
+				case PARENT: {
 					return test.getParent() == origin;
 				}
-				case Self: {
+				case SELF: {
 					return test == origin;
 				}
 				default: {

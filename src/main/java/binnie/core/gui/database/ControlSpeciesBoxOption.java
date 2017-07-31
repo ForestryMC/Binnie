@@ -25,7 +25,7 @@ class ControlSpeciesBoxOption extends ControlTextOption<IAlleleSpecies> {
 		}
 		this.textWidget.setValue((this.controlBee.discovered == EnumDiscoveryState.Show) ? option.getAlleleName() : DatabaseConstants.CONTROL_KEY + ".undiscovered");
 		if (this.controlBee.discovered == EnumDiscoveryState.Show) {
-			this.addAttribute(Attribute.MouseOver);
+			this.addAttribute(Attribute.MOUSE_OVER);
 		}
 		CraftGUIUtil.moveWidget(this.textWidget, new Point(22, 0));
 		this.textWidget.setSize(this.textWidget.getSize().sub(new Point(24, 0)));

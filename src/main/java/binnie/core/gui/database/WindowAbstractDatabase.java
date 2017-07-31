@@ -106,15 +106,15 @@ public abstract class WindowAbstractDatabase extends Window {
 				if (event.getOrigin().getParent() instanceof ControlPage && !(event.getValue() instanceof DatabaseTab)) {
 					final ControlPage parent = (ControlPage) event.getOrigin().getParent();
 					if (parent.getValue() instanceof IDatabaseMode) {
-						for (final IWidget widget : parent.getWidgets()) {
-							if (widget instanceof ControlPages) {
+						for (final IWidget child : parent.getChildren()) {
+							if (child instanceof ControlPages) {
 								if (event.getValue() == null) {
-									widget.hide();
+									child.hide();
 								} else {
-									widget.show();
-									for (final IWidget widget2 : widget.getWidgets()) {
-										if (widget2 instanceof PageAbstract) {
-											((PageAbstract) widget2).onValueChanged(event.getValue());
+									child.show();
+									for (final IWidget widget : child.getChildren()) {
+										if (widget instanceof PageAbstract) {
+											((PageAbstract) widget).onValueChanged(event.getValue());
 										}
 									}
 								}
@@ -131,7 +131,7 @@ public abstract class WindowAbstractDatabase extends Window {
 					widgets.listBox.setValidator(object -> Objects.equals(event.getValue(), "") || ((ControlTextOption) object).getText().toLowerCase().contains(event.getValue().toLowerCase()));
 				}
 			}
-		}.setOrigin(EventHandler.Origin.DirectChild, this));
+		}.setOrigin(EventHandler.Origin.DIRECT_CHILD, this));
 		new ControlHelp(this, 4, 4);
 		(this.panelInformation = new Panel(this, 24, 24, 144, 176, MinecraftGUI.PanelType.Black)).setColor(860416);
 		(this.panelSearch = new Panel(this, 176, 24, this.selectionBoxWidth, 160, MinecraftGUI.PanelType.Black)).setColor(860416);

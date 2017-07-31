@@ -43,7 +43,7 @@ public class ControlPages<T> extends Control implements IControlValues<T>, ICont
 	@Override
 	public Collection<T> getValues() {
 		final List<T> list = new ArrayList<>();
-		for (final IWidget child : this.getWidgets()) {
+		for (final IWidget child : this.getChildren()) {
 			list.add((T) ((IControlValue) child).getValue());
 		}
 		return list;

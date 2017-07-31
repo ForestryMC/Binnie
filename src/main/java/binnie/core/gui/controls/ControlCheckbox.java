@@ -31,13 +31,13 @@ public class ControlCheckbox extends Control implements IControlValue<Boolean> {
 		if (w > 16) {
 			new ControlText(this, new Area(16, 1, w - 16, 16), text, TextJustification.MIDDLE_CENTER).setColor(4473924);
 		}
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(Attribute.MOUSE_OVER);
 		this.addEventHandler(new EventMouse.Down.Handler() {
 			@Override
 			public void onEvent(final EventMouse.Down event) {
 				ControlCheckbox.this.toggleValue();
 			}
-		}.setOrigin(EventHandler.Origin.Self, this));
+		}.setOrigin(EventHandler.Origin.SELF, this));
 	}
 
 	protected void onValueChanged(final boolean value) {

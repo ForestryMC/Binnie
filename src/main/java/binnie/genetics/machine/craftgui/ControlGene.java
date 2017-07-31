@@ -28,7 +28,7 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
 	protected ControlGene(final IWidget parent, final int x, final int y, final IGene gene) {
 		super(parent, x, y, 16, 16);
 		this.gene = gene;
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(Attribute.MOUSE_OVER);
 		this.addSelfEventHandler(new EventMouse.Down.Handler() {
 			@Override
 			public void onEvent(final EventMouse.Down event) {

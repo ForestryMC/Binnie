@@ -27,7 +27,7 @@ public class ControlColorMixSymbol extends Control implements ITooltip {
 		super(parent, x, y, 16 + type * 16, 16);
 		this.value = value;
 		this.type = type;
-		addAttribute(Attribute.MouseOver);
+		addAttribute(Attribute.MOUSE_OVER);
 	}
 
 	@Override

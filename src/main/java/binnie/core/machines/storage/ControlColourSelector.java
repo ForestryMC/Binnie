@@ -18,7 +18,7 @@ class ControlColourSelector extends Control implements ITooltip, IControlValue<E
 	public ControlColourSelector(final IWidget parent, final int x, final int y, final int w, final int h, final EnumColor value) {
 		super(parent, x, y, w, h);
 		this.setValue(value);
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(Attribute.MOUSE_OVER);
 	}
 
 	@Override

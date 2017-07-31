@@ -160,7 +160,7 @@ public class WindowAnalyst extends Window {
 				new Control(this, x, y, 20, 20) {
 					@Override
 					public void initialise() {
-						addAttribute(Attribute.MouseOver);
+						addAttribute(Attribute.MOUSE_OVER);
 						addSelfEventHandler(new EventMouse.Down.Handler() {
 							@Override
 							@SideOnly(Side.CLIENT)
@@ -356,7 +356,7 @@ public class WindowAnalyst extends Window {
 					@Override
 					protected void initialise() {
 						super.initialise();
-						addAttribute(Attribute.MouseOver);
+						addAttribute(Attribute.MOUSE_OVER);
 						value = page;
 						addSelfEventHandler(new EventMouse.Down.Handler() {
 							@Override

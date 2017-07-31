@@ -116,7 +116,7 @@ public class WindowFieldKit extends Window {
 					WindowFieldKit.this.text.setValue("");
 				}
 			}
-		}.setOrigin(EventHandler.Origin.DirectChild, this.chromo));
+		}.setOrigin(EventHandler.Origin.DIRECT_CHILD, this.chromo));
 	}
 
 	@Override

@@ -144,7 +144,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				Window.get(tab).sendClientAction("tab-change", nbt);
 				WindowCompartment.this.currentTab = i;
 			}
-		}.setOrigin(EventHandler.Origin.DirectChild, tab));
+		}.setOrigin(EventHandler.Origin.DIRECT_CHILD, tab));
 		x += 24;
 		final ControlPages<Integer> compartmentPages = new ControlPages<>(controlCompartment, 24, 0, compartmentPageWidth, compartmentPageHeight);
 		final ControlPage[] page = new ControlPage[inv.getTabNumber()];
@@ -209,7 +209,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 					Window.get(tab).sendClientAction("tab-change", nbt);
 					WindowCompartment.this.currentTab = i;
 				}
-			}.setOrigin(EventHandler.Origin.DirectChild, tab2));
+			}.setOrigin(EventHandler.Origin.DIRECT_CHILD, tab2));
 			CraftGUIUtil.linkWidgets(tab2, compartmentPages);
 			x += 24;
 		}
@@ -237,11 +237,11 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				tab.writeToNBT(nbt);
 				WindowCompartment.this.sendClientAction("comp-change-tab", nbt);
 			}
-		}.setOrigin(EventHandler.Origin.Self, this.tabName));
+		}.setOrigin(EventHandler.Origin.SELF, this.tabName));
 		y2 += 20;
 		new ControlText(tabPropertyPanel, new Point(4, y2), "Tab Icon: ");
 		(this.tabIcon = new ControlItemDisplay(tabPropertyPanel, 58, y2 - 4)).setItemStack(new ItemStack(Items.PAPER));
-		this.tabIcon.addAttribute(Attribute.MouseOver);
+		this.tabIcon.addAttribute(Attribute.MOUSE_OVER);
 		this.tabIcon.addSelfEventHandler(new EventMouse.Down.Handler() {
 			@Override
 			public void onEvent(final EventMouse.Down event) {

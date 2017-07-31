@@ -14,7 +14,7 @@ import binnie.core.gui.resource.minecraft.CraftGUITexture;
 public class ControlHelp extends Control implements ITooltip {
 	public ControlHelp(final IWidget parent, final int x, final int y) {
 		super(parent, x, y, 16, 16);
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(Attribute.MOUSE_OVER);
 	}
 
 	@Override

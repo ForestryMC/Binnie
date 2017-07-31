@@ -271,7 +271,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 	static class ControlUnknownMutation extends Control {
 		public ControlUnknownMutation(IWidget parent, int x, int y, int w, int h) {
 			super(parent, x, y, w, h);
-			addAttribute(Attribute.MouseOver);
+			addAttribute(Attribute.MOUSE_OVER);
 			addTooltip(I18N.localise(AnalystConstants.MUTATIONS_KEY + ".unknown.tooltip"));
 		}
 

@@ -16,7 +16,7 @@ public class ControlInfo extends Control implements ITooltip {
 
 	public ControlInfo(final IWidget parent, final int x, final int y, final String info) {
 		super(parent, x, y, 16, 16);
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(Attribute.MOUSE_OVER);
 		this.info = info;
 	}
 

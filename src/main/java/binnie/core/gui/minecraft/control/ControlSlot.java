@@ -159,7 +159,7 @@ public class ControlSlot extends ControlSlotBase {
 	private List<ControlSlot> getControlSlots() {
 		final List<ControlSlot> slots = new ArrayList<>();
 		if (this.getParent() instanceof ControlSlotArray || this.getParent() instanceof ControlPlayerInventory) {
-			for (final IWidget child : this.getParent().getWidgets()) {
+			for (final IWidget child : this.getParent().getChildren()) {
 				slots.add((ControlSlot) child);
 			}
 		} else {

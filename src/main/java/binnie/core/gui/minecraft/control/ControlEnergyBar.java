@@ -33,7 +33,7 @@ public class ControlEnergyBar extends Control implements ITooltip {
 	public ControlEnergyBar(final IWidget parent, final int x, final int y, final int width, final int height, final Position direction) {
 		super(parent, x, y, width, height);
 		this.direction = direction;
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(Attribute.MOUSE_OVER);
 	}
 
 	@Nullable

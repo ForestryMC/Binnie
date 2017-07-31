@@ -91,7 +91,7 @@ public interface IWidget {
 
 	IWidget addWidget(final IWidget p0);
 
-	List<IWidget> getWidgets();
+	List<IWidget> getChildren();
 
 	void callEvent(final Event p0);
 

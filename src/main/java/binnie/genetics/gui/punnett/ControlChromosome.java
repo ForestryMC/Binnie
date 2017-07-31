@@ -20,7 +20,7 @@ public class ControlChromosome extends Control implements IControlValue<IChromos
 	protected ControlChromosome(IWidget parent, int x, int y, IChromosomeType type) {
 		super(parent, x, y, 16, 16);
 		value = type;
-		addAttribute(Attribute.MouseOver);
+		addAttribute(Attribute.MOUSE_OVER);
 	}
 
 	@Override

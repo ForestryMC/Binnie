@@ -120,7 +120,7 @@ public class WindowGenesis extends Window {
 				WindowGenesis.this.template = WindowGenesis.this.root.getDefaultTemplate();
 				WindowGenesis.this.refreshTemplate(null);
 			}
-		}.setOrigin(EventHandler.Origin.Self, tabSystems));
+		}.setOrigin(EventHandler.Origin.SELF, tabSystems));
 		this.geneList.addEventHandler(new EventValueChanged.Handler() {
 			@Override
 			public void onEvent(final EventValueChanged event) {
@@ -133,7 +133,7 @@ public class WindowGenesis extends Window {
 					}
 				WindowGenesis.this.geneOptions.setOptions(opts);
 			}
-		}.setOrigin(EventHandler.Origin.Self, this.geneList));
+		}.setOrigin(EventHandler.Origin.SELF, this.geneList));
 		this.geneOptions.addEventHandler(new EventValueChanged.Handler() {
 			@Override
 			public void onEvent(final EventValueChanged event) {
@@ -149,7 +149,7 @@ public class WindowGenesis extends Window {
 				}
 				WindowGenesis.this.refreshTemplate(chromo);
 			}
-		}.setOrigin(EventHandler.Origin.Self, this.geneOptions));
+		}.setOrigin(EventHandler.Origin.SELF, this.geneOptions));
 		this.panelPickup = new Panel(this, 16, 140, 60, 42, MinecraftGUI.PanelType.Black);
 		this.refreshTemplate(null);
 	}
@@ -192,7 +192,7 @@ public class WindowGenesis extends Window {
 					stack.writeToNBT(nbt);
 					Window.get(event.getOrigin()).sendClientAction("genesis", nbt);
 				}
-			}.setOrigin(EventHandler.Origin.Self, display));
+			}.setOrigin(EventHandler.Origin.SELF, display));
 			++i;
 		}
 	}

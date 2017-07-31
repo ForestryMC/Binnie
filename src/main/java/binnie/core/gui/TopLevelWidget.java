@@ -176,9 +176,9 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 			addChildren = croppedZone.contains(widget.getCropWidget().getRelativeMousePosition());
 		}
 		if (addChildren) {
-			final ListIterator<IWidget> li = widget.getWidgets().listIterator(widget.getWidgets().size());
-			while (li.hasPrevious()) {
-				final IWidget child = li.previous();
+			ListIterator<IWidget> iterator = widget.getChildren().listIterator(widget.getChildren().size());
+			while (iterator.hasPrevious()) {
+				final IWidget child = iterator.previous();
 				widgets.addAll(this.getQueuedWidgets(child));
 			}
 		}

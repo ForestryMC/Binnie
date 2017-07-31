@@ -31,7 +31,7 @@ public class ControlBreweryProgress extends ControlProgressBase {
 
 	protected ControlBreweryProgress(final IWidget parent, final int x, final int y) {
 		super(parent, x, y, 34, 39);
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(Attribute.MOUSE_OVER);
 	}
 
 	@Override

@@ -126,7 +126,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 						return;
 					}
 				}
-				if (widget.hasAttribute(Attribute.BlockTooltip)) {
+				if (widget.hasAttribute(Attribute.BLOCK_TOOLTIP)) {
 					return;
 				}
 			}
@@ -144,7 +144,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 						return;
 					}
 				}
-				if (widget.hasAttribute(Attribute.BlockTooltip)) {
+				if (widget.hasAttribute(Attribute.BLOCK_TOOLTIP)) {
 					return;
 				}
 			}

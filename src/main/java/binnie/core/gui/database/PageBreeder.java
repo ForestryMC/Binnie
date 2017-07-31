@@ -21,9 +21,7 @@ public class PageBreeder extends ControlPage<DatabaseTab> {
 	}
 
 	public void onPageRefresh() {
-		while (this.getWidgets().size() > 0) {
-			this.deleteChild(this.getWidgets().get(0));
-		}
+		this.deleteAllChildren();
 		final BreedingSystem system = ((WindowAbstractDatabase) Window.get(this)).getBreedingSystem();
 		final String descriptor = system.getDescriptor();
 		new ControlTextCentered(this, 8, TextFormatting.UNDERLINE + system.getDescriptor() + " " + I18N.localise(DatabaseConstants.BREEDER_KEY + ".profile"));

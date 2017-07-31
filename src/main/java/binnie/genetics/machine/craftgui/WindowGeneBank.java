@@ -110,7 +110,7 @@ public class WindowGeneBank extends WindowMachine {
 				}
 				WindowGeneBank.this.genes.setFilter(value);
 			}
-		}.setOrigin(EventHandler.Origin.Self, edit));
+		}.setOrigin(EventHandler.Origin.SELF, edit));
 		this.genes = new ControlGeneScroll(scroll, 1, 1, geneBoxWidth, 116);
 		scroll.setScrollableContent(this.genes);
 		this.genes.setGenes(Binnie.GENETICS.beeBreedingSystem);

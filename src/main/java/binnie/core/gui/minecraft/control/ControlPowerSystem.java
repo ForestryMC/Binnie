@@ -17,7 +17,7 @@ public class ControlPowerSystem extends Control implements ITooltip {
 
 	public ControlPowerSystem(final IWidget parent, final int x, final int y, final PowerSystem system) {
 		super(parent, x, y, 16, 16);
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(Attribute.MOUSE_OVER);
 		this.system = system;
 	}
 

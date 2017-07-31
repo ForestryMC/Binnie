@@ -17,9 +17,9 @@ import binnie.core.gui.resource.minecraft.CraftGUITexture;
 public abstract class Dialog extends Control {
 	public Dialog(final IWidget parent, final int w, final int h) {
 		super(parent, (parent.width() - w) / 2, (parent.height() - h) / 2, w, h);
-		this.addAttribute(Attribute.MouseOver);
-		this.addAttribute(Attribute.AlwaysOnTop);
-		this.addAttribute(Attribute.BlockTooltip);
+		this.addAttribute(Attribute.MOUSE_OVER);
+		this.addAttribute(Attribute.ALWAYS_ON_TOP);
+		this.addAttribute(Attribute.BLOCK_TOOLTIP);
 		this.initialise();
 		this.addEventHandler(new EventMouse.Down.Handler() {
 			@Override
@@ -29,7 +29,7 @@ public abstract class Dialog extends Control {
 					Dialog.this.getParent().deleteChild(Dialog.this);
 				}
 			}
-		}.setOrigin(EventHandler.Origin.Any, this));
+		}.setOrigin(EventHandler.Origin.ANY, this));
 	}
 
 	@Override

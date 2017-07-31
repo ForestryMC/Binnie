@@ -29,14 +29,11 @@ public class ControlTabBar<T> extends Control implements IControlValue<T> {
 			public void onEvent(final EventValueChanged event) {
 				ControlTabBar.this.setValue((T) event.getValue());
 			}
-		}.setOrigin(EventHandler.Origin.DirectChild, this));
+		}.setOrigin(EventHandler.Origin.DIRECT_CHILD, this));
 	}
 
 	private void setValues(final Collection<T> values) {
-		final int i = 0;
-		while (i < this.getWidgets().size()) {
-			this.deleteChild(this.getWidgets().get(0));
-		}
+		deleteAllChildren();
 		final float length = values.size();
 		int tabDimension = (int) (this.getSize().y() / length);
 		if (this.position == Position.Top || this.position == Position.BOTTOM) {

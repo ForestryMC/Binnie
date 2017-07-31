@@ -41,7 +41,7 @@ public class WindowDesigner extends Window {
 			public void onEvent(final EventTextEdit event) {
 				WindowDesigner.this.tileSelect.refresh(event.getValue());
 			}
-		}.setOrigin(EventHandler.Origin.DirectChild, this));
+		}.setOrigin(EventHandler.Origin.DIRECT_CHILD, this));
 	}
 
 	@Nullable

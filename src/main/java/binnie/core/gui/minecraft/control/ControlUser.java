@@ -21,7 +21,7 @@ public class ControlUser extends Control implements ITooltip {
 		super(parent, x, y, 16, 16);
 		this.username = "";
 		this.team = "";
-		this.addAttribute(Attribute.MouseOver);
+		this.addAttribute(Attribute.MOUSE_OVER);
 		this.username = username;
 	}
 

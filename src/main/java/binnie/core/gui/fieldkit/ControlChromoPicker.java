@@ -29,7 +29,7 @@ public class ControlChromoPicker extends Control implements ITooltip {
 		Selected = new StandardTexture(160, 18, 16, 16, BinnieCoreTexture.GUI_PUNNETT);
 		Texture = new StandardTexture(160, 34, 16, 16, BinnieCoreTexture.GUI_PUNNETT);
 		type = chromo;
-		addAttribute(Attribute.MouseOver);
+		addAttribute(Attribute.MOUSE_OVER);
 		this.parent = parent;
 		addSelfEventHandler(new EventWidget.StartMouseOver.Handler() {
 			@Override

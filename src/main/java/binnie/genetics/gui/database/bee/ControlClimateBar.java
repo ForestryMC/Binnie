@@ -50,7 +50,7 @@ public class ControlClimateBar extends Control implements ITooltip {
 		super(parent, x, y, width, height);
 		isHumidity = false;
 		tolerated = new ArrayList<>();
-		addAttribute(Attribute.MouseOver);
+		addAttribute(Attribute.MOUSE_OVER);
 		isHumidity = humidity;
 	}
 
