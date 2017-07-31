@@ -74,7 +74,7 @@ public class ModelMutlipass<B extends Block & IMultipassBlock<K>, K> extends Mod
 
 		// Set the particle sprite
 		//TODO: Adding a breaking sprite
-		baker.setParticleSprite(block.getSprite(key, null, 0));
+		baker.setParticleSprite(block.getSprite(key, null, 1));
 	}
 
 	@Override

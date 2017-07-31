@@ -76,15 +76,15 @@ public class GeneticsJeiPlugin extends BlankModPlugin {
 			new DatabaseRecipeCategory()
 		);
 
-		registry.addRecipeCatalyst(LaboratoryMachine.Incubator.get(1), RecipeUids.INCUBATOR, RecipeUids.INCUBATOR_LARVAE);
-		registry.addRecipeCatalyst(GeneticMachine.Isolator.get(1), RecipeUids.ISOLATOR);
-		registry.addRecipeCatalyst(GeneticMachine.Polymeriser.get(1), RecipeUids.POLYMERISER);
-		registry.addRecipeCatalyst(GeneticMachine.Sequencer.get(1), RecipeUids.SEQUENCER);
-		registry.addRecipeCatalyst(GeneticMachine.Inoculator.get(1), RecipeUids.INOCULATOR);
-		registry.addRecipeCatalyst(AdvGeneticMachine.Splicer.get(1), RecipeUids.SPLICER);
-		registry.addRecipeCatalyst(LaboratoryMachine.Genepool.get(1), RecipeUids.GENEPOOL);
-		registry.addRecipeCatalyst(new ItemStack(Genetics.items().database), RecipeUids.DATABASE);
-		registry.addRecipeCatalyst(new ItemStack(Genetics.items().database, 1, 1), RecipeUids.DATABASE);
+		registry.addRecipeCategoryCraftingItem(LaboratoryMachine.Incubator.get(1), RecipeUids.INCUBATOR, RecipeUids.INCUBATOR_LARVAE);
+		registry.addRecipeCategoryCraftingItem(GeneticMachine.Isolator.get(1), RecipeUids.ISOLATOR);
+		registry.addRecipeCategoryCraftingItem(GeneticMachine.Polymeriser.get(1), RecipeUids.POLYMERISER);
+		registry.addRecipeCategoryCraftingItem(GeneticMachine.Sequencer.get(1), RecipeUids.SEQUENCER);
+		registry.addRecipeCategoryCraftingItem(GeneticMachine.Inoculator.get(1), RecipeUids.INOCULATOR);
+		registry.addRecipeCategoryCraftingItem(AdvGeneticMachine.Splicer.get(1), RecipeUids.SPLICER);
+		registry.addRecipeCategoryCraftingItem(LaboratoryMachine.Genepool.get(1), RecipeUids.GENEPOOL);
+		registry.addRecipeCategoryCraftingItem(new ItemStack(Genetics.items().database), RecipeUids.DATABASE);
+		registry.addRecipeCategoryCraftingItem(new ItemStack(Genetics.items().database, 1, 1), RecipeUids.DATABASE);
 
 		registry.addRecipes(Incubator.getRecipes(), RecipeUids.INCUBATOR);
 		registry.addRecipes(LarvaeIncubatorRecipeMaker.create(Incubator.getLarvaeRecipe()), RecipeUids.INCUBATOR);

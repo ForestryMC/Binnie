@@ -167,15 +167,17 @@ public class BlockCeramicBrick extends Block implements IMultipassBlock<CeramicB
 
 	@Override
 	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand) {
-		return getDefaultState().withProperty(TYPE, CeramicBrickType.get(meta >> 16 & 0xFF));
+		ItemStack stack = placer.getHeldItem(hand);
+		CeramicBrickPair pair = new CeramicBrickPair(stack);
+		return getDefaultState().withProperty(TYPE, pair.type);
 	}
 
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 		TileCeramicBrick ceramic = TileUtil.getTile(worldIn, pos, TileCeramicBrick.class);
 		if (ceramic != null) {
-			int damage = stack.getItemDamage();
-			ceramic.setColors(EnumFlowerColor.get(damage & 0xFF), EnumFlowerColor.get(damage >> 8 & 0xFF));
+			CeramicBrickPair pair = new CeramicBrickPair(stack);
+			ceramic.setColors(pair.colorFirst, pair.colorSecond);
 		}
 	}
 

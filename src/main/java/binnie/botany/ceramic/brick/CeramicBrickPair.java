@@ -4,16 +4,19 @@ import com.google.common.base.Preconditions;
 
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagInt;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.botany.Botany;
 import binnie.botany.genetics.EnumFlowerColor;
-import binnie.core.block.TileEntityMetadata;
 import binnie.core.util.I18N;
 
 public class CeramicBrickPair {
+	public static final CeramicBrickPair EMPTY = new CeramicBrickPair(EnumFlowerColor.DarkSeaGreen, EnumFlowerColor.DarkSeaGreen, CeramicBrickType.TILE);
+
 	public final EnumFlowerColor colorFirst;
 	public final EnumFlowerColor colorSecond;
 
@@ -28,7 +31,7 @@ public class CeramicBrickPair {
 	}
 
 	public CeramicBrickPair(ItemStack stack) {
-		this(TileEntityMetadata.getItemDamage(stack));
+		this(getId(stack));
 	}
 
 	public CeramicBrickPair(int id) {
@@ -41,8 +44,18 @@ public class CeramicBrickPair {
 		return type.canDouble() && colorSecond != colorFirst;
 	}
 
+	public static int getId(ItemStack stack){
+		if(!stack.hasTagCompound()){
+			return EMPTY.ordinal();
+		}
+		NBTTagCompound nbtTagCompound = stack.getTagCompound();
+		return nbtTagCompound.getInteger("id");
+	}
+
 	public ItemStack getStack(int i) {
-		return new ItemStack(Botany.gardening().ceramicBrick, i, ordinal());
+		ItemStack stack = new ItemStack(Botany.gardening().ceramicBrick, i);
+		stack.setTagInfo("id", new NBTTagInt(ordinal()));
+		return stack;
 	}
 
 	public String getName() {
@@ -66,12 +79,12 @@ public class CeramicBrickPair {
 
 	@Override
 	public int hashCode() {
-		return Integer.hashCode(ordinal());
+		return Integer.hashCode(type.ordinal());
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		return obj instanceof CeramicBrickPair
-				&& ((CeramicBrickPair) obj).ordinal() == ordinal();
+				&& ((CeramicBrickPair) obj).type == type;
 	}
 }

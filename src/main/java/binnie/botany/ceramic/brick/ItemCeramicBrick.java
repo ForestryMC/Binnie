@@ -21,7 +21,7 @@ public class ItemCeramicBrick extends ItemBlock implements IColoredItem {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) {
-		CeramicBrickPair ceramic = new CeramicBrickPair(stack.getItemDamage());
+		CeramicBrickPair ceramic = new CeramicBrickPair(stack);
 		if (tintIndex == 1) {
 			return ceramic.colorFirst.getFlowerColorAllele().getColor(false);
 		} else if (tintIndex == 2) {
@@ -33,6 +33,6 @@ public class ItemCeramicBrick extends ItemBlock implements IColoredItem {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getItemStackDisplayName(ItemStack itemStack) {
-		return new CeramicBrickPair(itemStack.getItemDamage()).getName();
+		return new CeramicBrickPair(itemStack).getName();
 	}
 }

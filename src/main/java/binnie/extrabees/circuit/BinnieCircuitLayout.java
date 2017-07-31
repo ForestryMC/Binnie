@@ -1,10 +1,10 @@
 package binnie.extrabees.circuit;
 
-import net.minecraft.util.text.translation.I18n;
-
 import forestry.api.circuits.ChipsetManager;
 import forestry.api.circuits.ICircuitLayout;
 import forestry.api.circuits.ICircuitSocketType;
+
+import binnie.core.util.I18N;
 
 public class BinnieCircuitLayout implements ICircuitLayout {
 
@@ -24,12 +24,12 @@ public class BinnieCircuitLayout implements ICircuitLayout {
 
 	@Override
 	public String getName() {
-		return I18n.translateToLocal("circuit.layout." + this.uid.toLowerCase());
+		return I18N.localise("circuit.layout." + this.uid.toLowerCase());
 	}
 
 	@Override
 	public String getUsage() {
-		return I18n.translateToLocal("circuit.layout." + this.uid.toLowerCase() + ".usage");
+		return I18N.localise("circuit.layout." + this.uid.toLowerCase() + ".usage");
 	}
 
 	@Override

@@ -154,8 +154,9 @@ public class VillageHopeField extends StructureVillagePieces.Village {
 		
 		return true;
 	}
-	
+
 	@Override
+	@SuppressWarnings("deprecation")
 	protected void setBlockState(World worldIn, IBlockState blockstateIn, int x, int y, int z, StructureBoundingBox boundingboxIn) {
 		super.setBlockState(worldIn, blockstateIn, x, y, z, boundingboxIn);
 		Block block = blockstateIn.getBlock();
