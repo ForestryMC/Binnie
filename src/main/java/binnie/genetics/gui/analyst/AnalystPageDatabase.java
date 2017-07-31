@@ -31,7 +31,6 @@ import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.minecraft.CraftGUITexture;
 import binnie.core.gui.window.Panel;
 import binnie.core.util.I18N;
-import binnie.genetics.gui.WindowAnalyst;
 
 public class AnalystPageDatabase extends ControlAnalystPage {
 	private final ControlScrollableContent scroll;

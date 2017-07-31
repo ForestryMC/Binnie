@@ -1,4 +1,4 @@
-package binnie.genetics.gui;
+package binnie.genetics.gui.analyst;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -49,17 +49,9 @@ import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.minecraft.CraftGUITexture;
 import binnie.core.gui.window.Panel;
 import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsGUI;
-import binnie.genetics.gui.analyst.AnalystPageBehaviour;
-import binnie.genetics.gui.analyst.AnalystPageBiology;
-import binnie.genetics.gui.analyst.AnalystPageDatabase;
-import binnie.genetics.gui.analyst.AnalystPageDescription;
-import binnie.genetics.gui.analyst.AnalystPageGenome;
-import binnie.genetics.gui.analyst.AnalystPageKaryogram;
-import binnie.genetics.gui.analyst.AnalystPageMutations;
-import binnie.genetics.gui.analyst.ControlAnalystPage;
-import binnie.genetics.gui.analyst.ControlTooltip;
 import binnie.genetics.gui.analyst.bee.AnalystPageProducts;
 import binnie.genetics.gui.analyst.butterfly.AnalystPageSpecimen;
 import binnie.genetics.gui.analyst.flower.AnalystPageAppearance;
@@ -155,7 +147,7 @@ public class WindowAnalyst extends Window {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void initialiseClient() {
-		setTitle(isDatabase ? (isMaster ? "Master Registry" : "Registry") : "Analyst");
+		setTitle(isDatabase ? (isMaster ? I18N.localise("genetics.gui.registry.master.title") : I18N.localise("genetics.gui.registry.title")) : I18N.localise("genetics.gui.analyst.title"));
 		BreedingSystem system = Binnie.GENETICS.beeBreedingSystem;
 		IIndividual ind = system.getDefaultIndividual();
 		ItemStack stack = system.getSpeciesRoot().getMemberStack(ind, system.getDefaultType());
@@ -291,7 +283,7 @@ public class WindowAnalyst extends Window {
 			analystNone = new Control(analystPanel, 0, 0, analystPanel.width(), analystPanel.height()) {
 				@Override
 				public void initialise() {
-					new ControlTextCentered(this, 20, "Add a bee, tree, flower or butterfly to the top left slot. DNA Dye is required if it has not been analysed yet. This dye can also convert vanilla items to breedable individuals.").setColor(4473924);
+					new ControlTextCentered(this, 20, I18N.localise("genetics.gui.analyst.desc")).setColor(4473924);
 					new ControlPlayerInventory(this);
 				}
 			};

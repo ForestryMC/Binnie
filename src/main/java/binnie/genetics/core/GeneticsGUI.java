@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.Side;
 
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.gui.minecraft.Window;
-import binnie.genetics.gui.WindowAnalyst;
+import binnie.genetics.gui.analyst.WindowAnalyst;
 import binnie.genetics.gui.database.bee.WindowApiaristDatabase;
 import binnie.genetics.gui.punnett.WindowPunnettSquare;
 import binnie.genetics.machine.acclimatiser.WindowAcclimatiser;

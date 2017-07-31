@@ -79,6 +79,12 @@ genetics.machine.adv_machine.splicer.info=The Splicer is an incredibly powerful 
 genetics.machine.adv_machine.splicer.tooltips.slots.serum=Serum Vials & Arrays
 genetics.machine.adv_machine.splicer.tooltips.slots.individual=Splicable Individual
 
+genetics.gui.registry.title=Registry
+genetics.gui.registry.master.title=Master Registry
+
+genetics.gui.analyst.title=Analyst
+genetics.gui.analyst.desc=Add a bee, tree, flower or butterfly to the top left slot. DNA Dye is required if it has not been analysed yet. This dye can also convert vanilla items to breedable individuals.
+
 genetics.gui.analyst.biology=Biology
 genetics.gui.analyst.biology.allDay=Active all day and night
 genetics.gui.analyst.biology.night=Active at night
