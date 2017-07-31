@@ -47,7 +47,7 @@ extratrees.machine.machine.designer.material.glass=Glass
 extratrees.machine.machine.designer.material.panel=Wooden Plank
 extratrees.machine.machine.designer.material.tile=Ceramic Block
 extratrees.machine.machine.designer.material.wood=Wooden Plank
-genetics.errors.designer.no.adhesive.desc=Requires Adhesive to Function
+extratrees.errors.designer.no.adhesive.desc=Requires Adhesive to Function
 
 extratrees.machine.machine.woodworker=Woodworker
 extratrees.machine.machine.woodworker.info=The Woodworker creates patterned wooden tiles from two different woods.

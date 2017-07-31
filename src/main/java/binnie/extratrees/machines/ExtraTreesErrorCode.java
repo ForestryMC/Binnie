@@ -48,6 +48,9 @@ public enum ExtraTreesErrorCode implements IErrorStateDefinition {
 	}
 
 	public String getName(){
+		if(parent != null){
+			return parent.getName();
+		}
 		return  I18N.localise("extratrees.errors." + name + ".name");
 	}
 
