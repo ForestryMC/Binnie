@@ -33,7 +33,7 @@ public class AnalystPageGenome extends ControlAnalystPage {
 		this.active = active;
 		setColor(26265);
 		int y = 4;
-		int width = width();
+		int width = getWidth();
 		int center = width / 2;
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 16;

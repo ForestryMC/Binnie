@@ -61,7 +61,7 @@ public class AnalystPageFruit extends AnalystPageProduce {
 			int w = products.size() * 18 - 2;
 			int i = 0;
 			for (ItemStack stack : products) {
-				ControlItemDisplay d = new ControlItemDisplay(this, (width() - w) / 2 + 18 * i, y);
+				ControlItemDisplay d = new ControlItemDisplay(this, (getWidth() - w) / 2 + 18 * i, y);
 				d.setTooltip();
 				d.setItemStack(stack);
 			}
@@ -73,7 +73,7 @@ public class AnalystPageFruit extends AnalystPageProduce {
 			int w = products.size() * 18 - 2;
 			int i = 0;
 			for (ItemStack stack : specialties) {
-				ControlItemDisplay d = new ControlItemDisplay(this, (width() - w) / 2 + 18 * i, y);
+				ControlItemDisplay d = new ControlItemDisplay(this, (getWidth() - w) / 2 + 18 * i, y);
 				d.setTooltip();
 				d.setItemStack(stack);
 			}
@@ -121,7 +121,7 @@ public class AnalystPageFruit extends AnalystPageProduce {
 			y = getRefined(TextFormatting.ITALIC + fam.getName(), y, stacks);
 			y += 2;
 		}
-		setSize(new Point(width(), y + 8));
+		setSize(new Point(getWidth(), y + 8));
 	}
 
 	@Override

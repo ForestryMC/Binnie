@@ -45,8 +45,6 @@ public interface IWidget {
 
 	Area getArea();
 
-	Area area();
-
 	Point getMousePosition();
 
 	Point getRelativeMousePosition();
@@ -89,7 +87,7 @@ public interface IWidget {
 
 	boolean canFocus();
 
-	IWidget addWidget(final IWidget p0);
+	IWidget addChild(final IWidget p0);
 
 	List<IWidget> getChildren();
 
@@ -138,9 +136,9 @@ public interface IWidget {
 
 	int getYPos();
 
-	int width();
+	int getWidth();
 
-	int height();
+	int getHeight();
 
 	@SideOnly(Side.CLIENT)
 	void onRender(final RenderStage stage, int guiWidth, int guiHeight);

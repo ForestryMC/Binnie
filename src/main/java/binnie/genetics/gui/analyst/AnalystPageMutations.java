@@ -101,7 +101,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 			} else if (hive != null) {
 				new ControlTextCentered(this, y, I18N.localise(AnalystConstants.MUTATIONS_KEY + ".bee.natural")).setColor(getColor());
 				y += 10;
-				ControlItemDisplay display = new ControlItemDisplay(this, (width() - 16) / 2, y);
+				ControlItemDisplay display = new ControlItemDisplay(this, (getWidth() - 16) / 2, y);
 				if (speciesCurrent == ForestryAllele.BeeSpecies.Steadfast.getAllele()) {
 					display.addTooltip(I18N.localise(AnalystConstants.MUTATIONS_KEY + ".bee.dungeon"));
 				} else {
@@ -111,11 +111,11 @@ public class AnalystPageMutations extends ControlAnalystPage {
 				y += 24;
 			}
 		}
-		int ox = (width() - 88 - 8) / 2;
+		int ox = (getWidth() - 88 - 8) / 2;
 		int dx = 0;
 		if (!resultant.isEmpty()) {
 			if (resultant.size() == 1) {
-				ox = (width() - 44) / 2;
+				ox = (getWidth() - 44) / 2;
 			}
 			new ControlTextCentered(this, y, I18N.localise(AnalystConstants.MUTATIONS_KEY + ".resultant")).setColor(getColor());
 			y += 10;
@@ -168,11 +168,11 @@ public class AnalystPageMutations extends ControlAnalystPage {
 			}
 			y += 10;
 		}
-		ox = (width() - 88 - 8) / 2;
+		ox = (getWidth() - 88 - 8) / 2;
 		dx = 0;
 		if (!further.isEmpty()) {
 			if (further.size() == 1) {
-				ox = (width() - 44) / 2;
+				ox = (getWidth() - 44) / 2;
 			}
 			new ControlTextCentered(this, y, I18N.localise(AnalystConstants.MUTATIONS_KEY + ".further")).setColor(getColor());
 			y += 10;
@@ -228,7 +228,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 			}
 		}
 		y += 8;
-		setSize(new Point(width(), y));
+		setSize(new Point(getWidth(), y));
 	}
 
 	@SideOnly(Side.CLIENT)

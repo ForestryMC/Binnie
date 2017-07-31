@@ -55,17 +55,17 @@ public class AnalystPageClimate extends ControlAnalystPage {
 		int y = 4;
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 16;
-		new ControlText(this, new Area(4, y, width() - 8, 14), I18N.localise(AnalystConstants.CLIMATE_KEY + ".temp"), TextJustification.MIDDLE_CENTER).setColor(getColor());
+		new ControlText(this, new Area(4, y, getWidth() - 8, 14), I18N.localise(AnalystConstants.CLIMATE_KEY + ".temp"), TextJustification.MIDDLE_CENTER).setColor(getColor());
 		y += 12;
-		createTemperatureBar(this, (width() - 100) / 2, y, 100, 10, temp, tempTol);
+		createTemperatureBar(this, (getWidth() - 100) / 2, y, 100, 10, temp, tempTol);
 		y += 16;
 		if (!(ind instanceof IFlower)) {
-			new ControlText(this, new Area(4, y, width() - 8, 14), I18N.localise(AnalystConstants.CLIMATE_KEY + ".hum"), TextJustification.MIDDLE_CENTER).setColor(getColor());
+			new ControlText(this, new Area(4, y, getWidth() - 8, 14), I18N.localise(AnalystConstants.CLIMATE_KEY + ".hum"), TextJustification.MIDDLE_CENTER).setColor(getColor());
 			y += 12;
-			createHumidity(this, (width() - 100) / 2, y, 100, 10, humid, humidTol);
+			createHumidity(this, (getWidth() - 100) / 2, y, 100, 10, humid, humidTol);
 			y += 16;
 		}
-		new ControlText(this, new Area(4, y, width() - 8, 14), I18N.localise(AnalystConstants.CLIMATE_KEY + ".biomes"), TextJustification.MIDDLE_CENTER).setColor(getColor());
+		new ControlText(this, new Area(4, y, getWidth() - 8, 14), I18N.localise(AnalystConstants.CLIMATE_KEY + ".biomes"), TextJustification.MIDDLE_CENTER).setColor(getColor());
 		y += 12;
 		List<Biome> biomes = new ArrayList<>();
 		for (Biome biome : Biome.EXPLORATION_BIOMES_LIST) { //TODO check
@@ -84,8 +84,8 @@ public class AnalystPageClimate extends ControlAnalystPage {
 				}
 			}
 		}
-		int maxBiomePerLine = (width() + 2 - 16) / 18;
-		int biomeListX = (width() - (Math.min(maxBiomePerLine, biomes.size()) * 18 - 2)) / 2;
+		int maxBiomePerLine = (getWidth() + 2 - 16) / 18;
+		int biomeListX = (getWidth() - (Math.min(maxBiomePerLine, biomes.size()) * 18 - 2)) / 2;
 		int dx = 0;
 		int dy = 0;
 		for (Biome biome2 : biomes) {
@@ -96,7 +96,7 @@ public class AnalystPageClimate extends ControlAnalystPage {
 				dy += 18;
 			}
 		}
-		setSize(new Point(width(), y + dy + 18 + 8));
+		setSize(new Point(getWidth(), y + dy + 18 + 8));
 	}
 
 	protected void createTemperatureBar(IWidget parent, int x, int y, int w, int h, EnumTemperature value, EnumTolerance tol) {

@@ -37,15 +37,15 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		int y = 4;
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 16;
-		new ControlText(this, new Area(4, y, width() - 8, 14), I18N.localise(AnalystConstants.SOIL_KEY + ".tolerance.moisture"), TextJustification.MIDDLE_CENTER).setColor(getColor());
+		new ControlText(this, new Area(4, y, getWidth() - 8, 14), I18N.localise(AnalystConstants.SOIL_KEY + ".tolerance.moisture"), TextJustification.MIDDLE_CENTER).setColor(getColor());
 		y += 12;
-		createMoisture(this, (width() - 100) / 2, y, 100, 10, moisture, moistureTol);
+		createMoisture(this, (getWidth() - 100) / 2, y, 100, 10, moisture, moistureTol);
 		y += 16;
-		new ControlText(this, new Area(4, y, width() - 8, 14), I18N.localise(AnalystConstants.SOIL_KEY + ".tolerance.ph"), TextJustification.MIDDLE_CENTER).setColor(getColor());
+		new ControlText(this, new Area(4, y, getWidth() - 8, 14), I18N.localise(AnalystConstants.SOIL_KEY + ".tolerance.ph"), TextJustification.MIDDLE_CENTER).setColor(getColor());
 		y += 12;
-		createAcidity(this, (width() - 100) / 2, y, 100, 10, pH, pHTol);
+		createAcidity(this, (getWidth() - 100) / 2, y, 100, 10, pH, pHTol);
 		y += 16;
-		new ControlText(this, new Area(4, y, width() - 8, 14), I18N.localise(AnalystConstants.SOIL_KEY + ".recommended"), TextJustification.MIDDLE_CENTER).setColor(getColor());
+		new ControlText(this, new Area(4, y, getWidth() - 8, 14), I18N.localise(AnalystConstants.SOIL_KEY + ".recommended"), TextJustification.MIDDLE_CENTER).setColor(getColor());
 		y += 12;
 		EnumMoisture recomMoisture = EnumMoisture.NORMAL;
 		boolean canTolNormal = Tolerance.canTolerate(moisture, EnumMoisture.NORMAL, moistureTol);
@@ -84,11 +84,11 @@ public class AnalystPageSoil extends ControlAnalystPage {
 			}
 		}
 		ItemStack stack = new ItemStack(Botany.gardening().soil, 1, BlockSoil.getMeta(recomPH, recomMoisture));
-		ControlItemDisplay recomSoil = new ControlItemDisplay(this, (width() - 24) / 2, y, 24);
+		ControlItemDisplay recomSoil = new ControlItemDisplay(this, (getWidth() - 24) / 2, y, 24);
 		recomSoil.setItemStack(stack);
 		recomSoil.setTooltip();
 		y += 32;
-		new ControlText(this, new Area(4, y, width() - 8, 14), I18N.localise(AnalystConstants.SOIL_KEY + ".other"), TextJustification.MIDDLE_CENTER).setColor(getColor());
+		new ControlText(this, new Area(4, y, getWidth() - 8, 14), I18N.localise(AnalystConstants.SOIL_KEY + ".other"), TextJustification.MIDDLE_CENTER).setColor(getColor());
 		y += 12;
 		List<ItemStack> stacks = new ArrayList<>();
 		for (EnumAcidity a : EnumSet.range(EnumAcidity.ACID, EnumAcidity.ALKALINE)) {
@@ -99,7 +99,7 @@ public class AnalystPageSoil extends ControlAnalystPage {
 			}
 		}
 		int soilListWidth = 17 * stacks.size() - 1;
-		int soilListX = (width() - soilListWidth) / 2;
+		int soilListX = (getWidth() - soilListWidth) / 2;
 		int t = 0;
 		for (ItemStack soilStack : stacks) {
 			ControlItemDisplay display = new ControlItemDisplay(this, soilListX + 17 * t++, y);

@@ -53,9 +53,9 @@ public class AnalystPageBehaviour extends ControlAnalystPage {
 					? I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".effect", effect.getAlleleName())
 					: effectDesc;
 
-				new ControlText(this, new Area(4, y, width() - 8, 0), loc, TextJustification.TOP_CENTER)
+				new ControlText(this, new Area(4, y, getWidth() - 8, 0), loc, TextJustification.TOP_CENTER)
 					.setColor(getColor());
-				y += (int) (CraftGUI.RENDER.textHeight(loc, width() - 8) + 1.0f);
+				y += (int) (CraftGUI.RENDER.textHeight(loc, getWidth() - 8) + 1.0f);
 
 				new ControlTextCentered(this, y, I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".withinBlocks", (int) (t.getX() / 2.0f)))
 					.setColor(getColor());
@@ -88,7 +88,7 @@ public class AnalystPageBehaviour extends ControlAnalystPage {
 					? I18N.localise(AnalystConstants.BEHAVIOUR_KEY + ".effect", effect2.getAlleleName())
 					: effectDesc2;
 
-				new ControlText(this, new Area(4, y, width() - 8, 0), loc2, TextJustification.TOP_CENTER)
+				new ControlText(this, new Area(4, y, getWidth() - 8, 0), loc2, TextJustification.TOP_CENTER)
 					.setColor(getColor());
 			}
 		}

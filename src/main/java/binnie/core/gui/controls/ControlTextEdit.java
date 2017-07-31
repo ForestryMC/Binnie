@@ -88,10 +88,10 @@ public class ControlTextEdit extends Control implements IControlValue<String> {
 	}
 
 	protected void renderTextField() {
-		this.field.width = this.width();
-		this.field.height = this.height();
-		this.field.xPosition = (int) ((this.height() - 8.0f) / 2.0f);
-		this.field.yPosition = (int) ((this.height() - 8.0f) / 2.0f);
+		this.field.width = this.getWidth();
+		this.field.height = this.getHeight();
+		this.field.xPosition = (int) ((this.getHeight() - 8.0f) / 2.0f);
+		this.field.yPosition = (int) ((this.getHeight() - 8.0f) / 2.0f);
 		this.field.drawTextBox();
 	}
 }

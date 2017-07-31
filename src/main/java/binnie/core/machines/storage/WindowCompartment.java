@@ -155,7 +155,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		int i = 0;
 		for (int p2 = 0; p2 < inv.getTabNumber(); ++p2) {
 			final ControlPage thisPage = page[p2];
-			final Panel panel = new Panel(thisPage, 0, 0, thisPage.width(), thisPage.height(), MinecraftGUI.PanelType.Black) {
+			final Panel panel = new Panel(thisPage, 0, 0, thisPage.getWidth(), thisPage.getHeight(), MinecraftGUI.PanelType.Black) {
 				@Override
 				@SideOnly(Side.CLIENT)
 				public void onRenderForeground(int guiWidth, int guiHeight) {
@@ -214,8 +214,8 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			x += 24;
 		}
 		x += 16;
-		this.setSize(new Point(Math.max(32 + compartmentWidth, 252), this.height()));
-		controlCompartment.setPosition(new Point((this.width() - controlCompartment.width()) / 2, controlCompartment.getYPos()));
+		this.setSize(new Point(Math.max(32 + compartmentWidth, 252), this.getHeight()));
+		controlCompartment.setPosition(new Point((this.getWidth() - controlCompartment.getWidth()) / 2, controlCompartment.getYPos()));
 		final ControlPlayerInventory invent = new ControlPlayerInventory(this, true);
 		final ControlSlide slide = new ControlSlide(this, 0, 134, 136, 92, Position.LEFT);
 		slide.setLabel("Tab Properties");

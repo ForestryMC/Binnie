@@ -39,58 +39,58 @@ public class AnalystPageBiology extends ControlAnalystPage {
 		if (ind instanceof IBee) {
 			IBee bee = (IBee) ind;
 			if (bee.getGenome().getNeverSleeps()) {
-				new ControlIconDisplay(this, (width() - 64) / 2, y, ModuleItems.iconAllDay)
+				new ControlIconDisplay(this, (getWidth() - 64) / 2, y, ModuleItems.iconAllDay)
 					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".allDay"));
 			} else if (bee.getGenome().getPrimary().isNocturnal()) {
-				new ControlIconDisplay(this, (width() - 64) / 2, y, ModuleItems.iconNight)
+				new ControlIconDisplay(this, (getWidth() - 64) / 2, y, ModuleItems.iconNight)
 					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".night"));
 			} else {
-				new ControlIconDisplay(this, (width() - 64) / 2, y, ModuleItems.iconDaytime)
+				new ControlIconDisplay(this, (getWidth() - 64) / 2, y, ModuleItems.iconDaytime)
 					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".day"));
 			}
 
 			if (!bee.getGenome().getToleratesRain()) {
-				new ControlIconDisplay(this, (width() - 64) / 2 + 24, y, ModuleItems.iconNoRain)
+				new ControlIconDisplay(this, (getWidth() - 64) / 2 + 24, y, ModuleItems.iconNoRain)
 					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".notRain"));
 			} else {
-				new ControlIconDisplay(this, (width() - 64) / 2 + 24, y, ModuleItems.iconRain)
+				new ControlIconDisplay(this, (getWidth() - 64) / 2 + 24, y, ModuleItems.iconRain)
 					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".rain"));
 			}
 
 			if (bee.getGenome().getCaveDwelling()) {
-				new ControlIconDisplay(this, (width() - 64) / 2 + 48, y, ModuleItems.iconNoSky)
+				new ControlIconDisplay(this, (getWidth() - 64) / 2 + 48, y, ModuleItems.iconNoSky)
 					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".underground"));
 			} else {
-				new ControlIconDisplay(this, (width() - 64) / 2 + 48, y, ModuleItems.iconSky)
+				new ControlIconDisplay(this, (getWidth() - 64) / 2 + 48, y, ModuleItems.iconSky)
 					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".notUnderground"));
 			}
 			y += 30;
 		} else if (ind instanceof IButterfly) {
 			IButterfly moth = (IButterfly) ind;
 			if (moth.getGenome().getNocturnal()) {
-				new ControlIconDisplay(this, (width() - 64) / 2, y, ModuleItems.iconAllDay)
+				new ControlIconDisplay(this, (getWidth() - 64) / 2, y, ModuleItems.iconAllDay)
 					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".allDay"));
 			} else if (moth.getGenome().getPrimary().isNocturnal()) {
-				new ControlIconDisplay(this, (width() - 64) / 2, y, ModuleItems.iconNight)
+				new ControlIconDisplay(this, (getWidth() - 64) / 2, y, ModuleItems.iconNight)
 					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".night"));
 			} else {
-				new ControlIconDisplay(this, (width() - 64) / 2, y, ModuleItems.iconDaytime)
+				new ControlIconDisplay(this, (getWidth() - 64) / 2, y, ModuleItems.iconDaytime)
 					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".day"));
 			}
 
 			if (!moth.getGenome().getTolerantFlyer()) {
-				new ControlIconDisplay(this, (width() - 64) / 2 + 24, y, ModuleItems.iconNoRain)
+				new ControlIconDisplay(this, (getWidth() - 64) / 2 + 24, y, ModuleItems.iconNoRain)
 					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".notRain"));
 			} else {
-				new ControlIconDisplay(this, (width() - 64) / 2 + 24, y, ModuleItems.iconRain)
+				new ControlIconDisplay(this, (getWidth() - 64) / 2 + 24, y, ModuleItems.iconRain)
 					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".rain"));
 			}
 
 			if (moth.getGenome().getFireResist()) {
-				new ControlIconDisplay(this, (width() - 64) / 2 + 48, y, ModuleItems.iconNoFire)
+				new ControlIconDisplay(this, (getWidth() - 64) / 2 + 48, y, ModuleItems.iconNoFire)
 					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".nonflammable"));
 			} else {
-				new ControlIconDisplay(this, (width() - 64) / 2 + 48, y, ModuleItems.iconFire)
+				new ControlIconDisplay(this, (getWidth() - 64) / 2 + 48, y, ModuleItems.iconFire)
 					.addTooltip(I18N.localise(AnalystConstants.BIOLOGY_KEY + ".flammable"));
 			}
 			y += 30;
@@ -230,7 +230,7 @@ public class AnalystPageBiology extends ControlAnalystPage {
 				.setColor(getColor());
 			y += 22;
 		}
-		setSize(new Point(width(), y));
+		setSize(new Point(getWidth(), y));
 	}
 
 	private String getMCDayString(float time) {

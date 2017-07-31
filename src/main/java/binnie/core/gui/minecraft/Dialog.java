@@ -16,7 +16,7 @@ import binnie.core.gui.resource.minecraft.CraftGUITexture;
 @SideOnly(Side.CLIENT)
 public abstract class Dialog extends Control {
 	public Dialog(final IWidget parent, final int w, final int h) {
-		super(parent, (parent.width() - w) / 2, (parent.height() - h) / 2, w, h);
+		super(parent, (parent.getWidth() - w) / 2, (parent.getHeight() - h) / 2, w, h);
 		this.addAttribute(Attribute.MOUSE_OVER);
 		this.addAttribute(Attribute.ALWAYS_ON_TOP);
 		this.addAttribute(Attribute.BLOCK_TOOLTIP);

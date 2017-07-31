@@ -8,7 +8,7 @@ public class ControlPage<T> extends Control implements IControlValue<T> {
 	private T value;
 
 	public ControlPage(final IWidget parent, final T value) {
-		this(parent, 0, 0, parent.width(), parent.height(), value);
+		this(parent, 0, 0, parent.getWidth(), parent.getHeight(), value);
 	}
 
 	public ControlPage(final IWidget parent, final int x, final int y, final int w, final int h, final T value) {

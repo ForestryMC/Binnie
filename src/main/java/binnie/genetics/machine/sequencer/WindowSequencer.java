@@ -63,7 +63,7 @@ public class WindowSequencer extends WindowMachine {
 		final ControlSlot slotTarget = new ControlSlot.Builder(this, x + 96, y + 16).assign(5);
 		x = 34;
 		y = 92;
-		this.slotText = new ControlText(this, new Area(0, y, this.width(), 12), TextFormatting.DARK_GRAY + I18N.localise("genetics.machine.machine.sequencer.texts.userless"), TextJustification.MIDDLE_CENTER);
+		this.slotText = new ControlText(this, new Area(0, y, this.getWidth(), 12), TextFormatting.DARK_GRAY + I18N.localise("genetics.machine.machine.sequencer.texts.userless"), TextJustification.MIDDLE_CENTER);
 		y += 20;
 		final ControlSlot slotDye = new ControlSlot.Builder(this, x, y).assign(0);
 		x += 20;

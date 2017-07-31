@@ -199,8 +199,8 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 	protected int getRefined(String string, int y, Collection<ItemStack> products) {
 		new ControlTextCentered(this, y, string).setColor(getColor());
 		y += 10;
-		int maxBiomePerLine = (width() + 2 - 16) / 18;
-		int biomeListX = (width() - (Math.min(maxBiomePerLine, products.size()) * 18 - 2)) / 2;
+		int maxBiomePerLine = (getWidth() + 2 - 16) / 18;
+		int biomeListX = (getWidth() - (Math.min(maxBiomePerLine, products.size()) * 18 - 2)) / 2;
 		int dx = 0;
 		int dy = 0;
 		for (ItemStack soilStack : products) {

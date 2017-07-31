@@ -61,16 +61,16 @@ public class AnalystPageDescription extends ControlAnalystPage {
 		y += 20;
 		String discovered = I18N.localise(AnalystConstants.DESCRIPTION_KEY + ".discovered") + " " + TextFormatting.BOLD + authority + TextFormatting.RESET;
 		new ControlTextCentered(this, y, discovered).setColor(getColor());
-		y += (int) (3.0f + CraftGUI.RENDER.textHeight(discovered, width()));
+		y += (int) (3.0f + CraftGUI.RENDER.textHeight(discovered, getWidth()));
 		new ControlTextCentered(this, y, I18N.localise(AnalystConstants.DESCRIPTION_KEY + ".complexity") + ": " + species.getComplexity()).setColor(getColor());
 		y += 26;
-		ControlText descText = new ControlText(this, new Area(8, y, width() - 16, 0), descBody + "§r", TextJustification.TOP_CENTER);
-		IWidget signatureText = new ControlText(this, new Area(8, y, width() - 16, 0), descSig + "§r", TextJustification.BOTTOM_RIGHT);
+		ControlText descText = new ControlText(this, new Area(8, y, getWidth() - 16, 0), descBody + "§r", TextJustification.TOP_CENTER);
+		IWidget signatureText = new ControlText(this, new Area(8, y, getWidth() - 16, 0), descSig + "§r", TextJustification.BOTTOM_RIGHT);
 		descText.setColor(getColor());
 		signatureText.setColor(getColor());
 		int descHeight = CraftGUI.RENDER.textHeight(descText.getValue(), descText.getSize().x());
 		signatureText.setPosition(new Point(this.getPosition().x(), descText.getPosition().y() + descHeight + 10));
-		setSize(new Point(width(), 20 + signatureText.getYPos()));
+		setSize(new Point(getWidth(), 20 + signatureText.getYPos()));
 	}
 
 	@Override

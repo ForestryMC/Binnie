@@ -36,9 +36,9 @@ public class AnalystPageWood extends AnalystPageProduce {
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 12;
 		if (((IAlleleBoolean) ind.getGenome().getActiveAllele(EnumTreeChromosome.FIREPROOF)).getValue()) {
-			new ControlIconDisplay(this, (width() - 16) / 2, y, ModuleItems.iconNoFire).addTooltip(I18N.localise(AnalystConstants.WOOD_KEY + ".fireproof"));
+			new ControlIconDisplay(this, (getWidth() - 16) / 2, y, ModuleItems.iconNoFire).addTooltip(I18N.localise(AnalystConstants.WOOD_KEY + ".fireproof"));
 		} else {
-			new ControlIconDisplay(this, (width() - 16) / 2, y, ModuleItems.iconFire).addTooltip(I18N.localise(AnalystConstants.WOOD_KEY + ".flammable"));
+			new ControlIconDisplay(this, (getWidth() - 16) / 2, y, ModuleItems.iconFire).addTooltip(I18N.localise(AnalystConstants.WOOD_KEY + ".flammable"));
 		}
 		y += 30;
 		Collection<ItemStack> products = new UniqueItemStackSet();
@@ -56,7 +56,7 @@ public class AnalystPageWood extends AnalystPageProduce {
 			int w = products.size() * 18 - 2;
 			int i = 0;
 			for (ItemStack stack : products) {
-				ControlItemDisplay d = new ControlItemDisplay(this, (width() - w) / 2 + 18 * i, y);
+				ControlItemDisplay d = new ControlItemDisplay(this, (getWidth() - w) / 2 + 18 * i, y);
 				d.setTooltip();
 				d.setItemStack(stack);
 				i++;
@@ -75,7 +75,7 @@ public class AnalystPageWood extends AnalystPageProduce {
 			new ControlTextCentered(this, y, I18N.localise(AnalystConstants.WOOD_KEY + ".noFruits")).setColor(getColor());
 			y += 28;
 		}
-		setSize(new Point(width(), y + 8));
+		setSize(new Point(getWidth(), y + 8));
 	}
 
 	@Override

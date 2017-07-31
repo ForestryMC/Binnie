@@ -215,7 +215,7 @@ public abstract class WindowAbstractDatabase extends Window {
 		public ModeWidgets(final IDatabaseMode mode, final WindowAbstractDatabase database) {
 			this.database = database;
 			this.modePage = new ControlPage<>(database.modePages, 0, 0, database.getSize().x(), database.getSize().y(), mode);
-			final Area listBoxArea = database.panelSearch.area().inset(2);
+			final Area listBoxArea = database.panelSearch.getArea().inset(2);
 			this.createListBox(listBoxArea);
 			CraftGUIUtil.alignToWidget(this.listBox, database.panelSearch);
 			CraftGUIUtil.moveWidget(this.listBox, new Point(2, 2));

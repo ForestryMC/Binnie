@@ -32,17 +32,17 @@ public class AnalystPageAppearance extends ControlAnalystPage {
 		IAlleleSpecies species = genome.getPrimary();
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 12;
-		ControlColorDisplay a = new ControlColorDisplay(this, width() / 2 - 28, y, genome.getPrimaryColor());
+		ControlColorDisplay a = new ControlColorDisplay(this, getWidth() / 2 - 28, y, genome.getPrimaryColor());
 		a.addTooltip(I18N.localise(AnalystConstants.APPEARANCE_KEY + ".primary"));
-		ControlColorDisplay b = new ControlColorDisplay(this, width() / 2 - 8, y, genome.getSecondaryColor());
+		ControlColorDisplay b = new ControlColorDisplay(this, getWidth() / 2 - 8, y, genome.getSecondaryColor());
 		b.addTooltip(I18N.localise(AnalystConstants.APPEARANCE_KEY + ".secondary"));
-		ControlColorDisplay c = new ControlColorDisplay(this, width() / 2 + 12, y, genome.getStemColor());
+		ControlColorDisplay c = new ControlColorDisplay(this, getWidth() / 2 + 12, y, genome.getStemColor());
 		c.addTooltip(I18N.localise(AnalystConstants.APPEARANCE_KEY + ".stem"));
 		y += 26;
 		IFlowerType type = genome.getType();
 		int sections = type.getSections();
 		int width = (sections > 1) ? 50 : 100;
-		new ControlIconDisplay(this, (width() - width) / 2, y - ((sections == 1) ? 0 : 0)) {
+		new ControlIconDisplay(this, (getWidth() - width) / 2, y - ((sections == 1) ? 0 : 0)) {
 			@Override
 			@SideOnly(Side.CLIENT)
 			public void onRenderForeground(int guiWidth, int guiHeight) {

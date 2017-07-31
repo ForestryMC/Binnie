@@ -68,7 +68,7 @@ public class ControlSlide extends Control {
 		}
 		CraftGUI.RENDER.texture(CraftGUITexture.Window, this.getArea());
 		final Object slideTexture = (this.anchor == Position.BOTTOM) ? CraftGUITexture.SlideDown : ((this.anchor == Position.Top) ? CraftGUITexture.SlideUp : ((this.anchor == Position.LEFT) ? CraftGUITexture.SlideLeft : CraftGUITexture.SlideRight));
-		CraftGUI.RENDER.texture(slideTexture, new Point((this.anchor.x() + 1) * this.width() / 2 - 8, (this.anchor.y() + 1) * this.height() / 2 - 8));
+		CraftGUI.RENDER.texture(slideTexture, new Point((this.anchor.x() + 1) * this.getWidth() / 2 - 8, (this.anchor.y() + 1) * this.getHeight() / 2 - 8));
 	}
 
 	public boolean isSlideActive() {

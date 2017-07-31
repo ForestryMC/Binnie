@@ -197,7 +197,7 @@ public class WindowAnalyst extends Window {
 			x += 26;
 			setupValidators();
 		}
-		tabBar = new Control(this, x, 28, width() - 16 - x, 20);
+		tabBar = new Control(this, x, 28, getWidth() - 16 - x, 20);
 		analystPanel = new Panel(this, 16, 54, 280, 164, MinecraftGUI.PanelType.Outline) {
 			@Override
 			@SideOnly(Side.CLIENT)
@@ -209,8 +209,8 @@ public class WindowAnalyst extends Window {
 			@Override
 			public void initialise() {
 				setColor(4473924);
-				int sectionWidth = (width() - 8 - 4) / 2;
-				leftPage = new ControlScrollableContent<IWidget>(this, 3, 3, sectionWidth + 2, height() - 8 + 2, 0) {
+				int sectionWidth = (getWidth() - 8 - 4) / 2;
+				leftPage = new ControlScrollableContent<IWidget>(this, 3, 3, sectionWidth + 2, getHeight() - 8 + 2, 0) {
 					@Override
 					@SideOnly(Side.CLIENT)
 					public void onRenderBackground(int guiWidth, int guiHeight) {
@@ -221,7 +221,7 @@ public class WindowAnalyst extends Window {
 						CraftGUI.RENDER.texture(CraftGUITexture.TabOutline, getArea());
 					}
 				};
-				new ControlScrollBar(this, sectionWidth + 2 - 3, 6, 3, height() - 8 + 2 - 6, leftPage) {
+				new ControlScrollBar(this, sectionWidth + 2 - 3, 6, 3, getHeight() - 8 + 2 - 6, leftPage) {
 					@Override
 					@SideOnly(Side.CLIENT)
 					public void onRenderBackground(int guiWidth, int guiHeight) {
@@ -235,7 +235,7 @@ public class WindowAnalyst extends Window {
 						RenderUtil.drawSolidRect(getRenderArea(), leftPage.getContent().getColor());
 					}
 				};
-				rightPage = new ControlScrollableContent<IWidget>(this, 3 + sectionWidth + 4, 3, sectionWidth + 2, height() - 8 + 2, 0) {
+				rightPage = new ControlScrollableContent<IWidget>(this, 3 + sectionWidth + 4, 3, sectionWidth + 2, getHeight() - 8 + 2, 0) {
 					@Override
 					@SideOnly(Side.CLIENT)
 					public void onRenderBackground(int guiWidth, int guiHeight) {
@@ -246,7 +246,7 @@ public class WindowAnalyst extends Window {
 						CraftGUI.RENDER.texture(CraftGUITexture.TabOutline, getArea());
 					}
 				};
-				new ControlScrollBar(this, sectionWidth + 2 - 3 + sectionWidth + 4, 6, 3, height() - 8 + 2 - 6, rightPage) {
+				new ControlScrollBar(this, sectionWidth + 2 - 3 + sectionWidth + 4, 6, 3, getHeight() - 8 + 2 - 6, rightPage) {
 					@Override
 					@SideOnly(Side.CLIENT)
 					public void onRenderBackground(int guiWidth, int guiHeight) {
@@ -260,7 +260,7 @@ public class WindowAnalyst extends Window {
 						RenderUtil.drawSolidRect(getRenderArea(), rightPage.getContent().getColor());
 					}
 				};
-				analystPageSize = new Area(1, 1, sectionWidth, height() - 8);
+				analystPageSize = new Area(1, 1, sectionWidth, getHeight() - 8);
 			}
 		};
 		if (!isDatabase) {
@@ -280,7 +280,7 @@ public class WindowAnalyst extends Window {
 			}
 		});
 		if (!isDatabase) {
-			analystNone = new Control(analystPanel, 0, 0, analystPanel.width(), analystPanel.height()) {
+			analystNone = new Control(analystPanel, 0, 0, analystPanel.getWidth(), analystPanel.getHeight()) {
 				@Override
 				public void initialise() {
 					new ControlTextCentered(this, 20, I18N.localise("genetics.gui.analyst.desc")).setColor(4473924);
@@ -342,10 +342,10 @@ public class WindowAnalyst extends Window {
 		}
 		tabBar.deleteAllChildren();
 		if (analystPages.size() > 0) {
-			int width = tabBar.width() / analystPages.size();
+			int width = tabBar.getWidth() / analystPages.size();
 			int x = 0;
 			for (ControlAnalystPage page : analystPages) {
-				new ControlTooltip(tabBar, x, 0, width, tabBar.height()) {
+				new ControlTooltip(tabBar, x, 0, width, tabBar.getHeight()) {
 					ControlAnalystPage value;
 
 					@Override

@@ -25,7 +25,7 @@ public class ControlScrollBar extends Control {
 		this.addSelfEventHandler(new EventMouse.Drag.Handler() {
 			@Override
 			public void onEvent(final EventMouse.Drag event) {
-				ControlScrollBar.this.scrollable.movePercentage(event.getDy() / (float) (ControlScrollBar.this.height() - ControlScrollBar.this.getBarHeight()));
+				ControlScrollBar.this.scrollable.movePercentage(event.getDy() / (float) (ControlScrollBar.this.getHeight() - ControlScrollBar.this.getBarHeight()));
 			}
 		});
 		this.addSelfEventHandler(new EventMouse.Down.Handler() {
@@ -35,7 +35,7 @@ public class ControlScrollBar extends Control {
 				final float percentageIndex = ControlScrollBar.this.scrollable.getPercentageIndex();
 				final float minPercent = (1.0f - shownPercentage) * percentageIndex;
 				final float maxPercent = minPercent + shownPercentage;
-				float clickedPercentage = (float)ControlScrollBar.this.getRelativeMousePosition().y() / (ControlScrollBar.this.height() - 2.0f);
+				float clickedPercentage = (float)ControlScrollBar.this.getRelativeMousePosition().y() / (ControlScrollBar.this.getHeight() - 2.0f);
 				clickedPercentage = Math.max(Math.min(clickedPercentage, 1.0f), 0.0f);
 				if (clickedPercentage > maxPercent) {
 					ControlScrollBar.this.scrollable.setPercentageIndex((clickedPercentage - shownPercentage) / (1.0f - shownPercentage));
@@ -57,7 +57,7 @@ public class ControlScrollBar extends Control {
 	}
 
 	public int getBarHeight() {
-		return Math.round(this.height() * this.scrollable.getPercentageShown());
+		return Math.round(this.getHeight() * this.scrollable.getPercentageShown());
 	}
 
 	protected Area getRenderArea() {
@@ -65,7 +65,7 @@ public class ControlScrollBar extends Control {
 		if (height < 6) {
 			height = 6;
 		}
-		final int yOffset = Math.round((this.height() - this.getBarHeight()) * this.scrollable.getPercentageIndex());
+		final int yOffset = Math.round((this.getHeight() - this.getBarHeight()) * this.scrollable.getPercentageIndex());
 		return new Area(0, yOffset, this.getSize().x(), height);
 	}
 

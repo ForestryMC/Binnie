@@ -103,7 +103,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 					if (Window.this.isClient()) {
 						Window.this.getGui().resize(Window.this.getSize());
 						if (Window.this.title != null) {
-							Window.this.title.setSize(new Point(Window.this.width(), Window.this.title.height()));
+							Window.this.title.setSize(new Point(Window.this.getWidth(), Window.this.title.getHeight()));
 						}
 					}
 				}
@@ -294,14 +294,14 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 	@Override
 	public void receiveGuiNBTOnClient(EntityPlayer player, String name, NBTTagCompound nbt) {
 		if (name.equals("username")) {
-			final int w = this.width();
+			final int w = this.getWidth();
 			final int titleButtonRight = this.titleButtonRight + 16;
 			this.titleButtonRight = titleButtonRight;
 			final ControlUser controlUser = new ControlUser(this, w - titleButtonRight, 8, nbt.getString("username"));
 			this.titleButtonRight += 6;
 		}
 		if (name.equals("power-system")) {
-			final int w2 = this.width();
+			final int w2 = this.getWidth();
 			final int titleButtonRight2 = this.titleButtonRight + 16;
 			this.titleButtonRight = titleButtonRight2;
 			final ControlPowerSystem controlPowerSystem = new ControlPowerSystem(this, w2 - titleButtonRight2, 8, PowerSystem.get(nbt.getByte("system")));

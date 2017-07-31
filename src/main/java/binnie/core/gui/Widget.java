@@ -45,7 +45,7 @@ public class Widget implements IWidget {
 		this.visible = true;
 		this.parent = parent;
 		if (parent != null) {
-			parent.addWidget(this);
+			parent.addChild(this);
 		}
 	}
 
@@ -96,8 +96,8 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public final IWidget addWidget(final IWidget widget) {
-		if (this.children.size() != 0 && this.children.get(this.children.size() - 1).hasAttribute(Attribute.ALWAYS_ON_TOP)) {
+	public final IWidget addChild(final IWidget widget) {
+		if (hasChildren() && this.children.get(this.children.size() - 1).hasAttribute(Attribute.ALWAYS_ON_TOP)) {
 			this.children.add(this.children.size() - 1, widget);
 		} else {
 			this.children.add(widget);
@@ -139,11 +139,6 @@ public class Widget implements IWidget {
 	@Override
 	public final Point size() {
 		return this.size;
-	}
-
-	@Override
-	public final Area area() {
-		return this.getArea();
 	}
 
 	@Override
@@ -526,12 +521,12 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public int width() {
+	public int getWidth() {
 		return this.size().x();
 	}
 
 	@Override
-	public int height() {
+	public int getHeight() {
 		return this.size().y();
 	}
 

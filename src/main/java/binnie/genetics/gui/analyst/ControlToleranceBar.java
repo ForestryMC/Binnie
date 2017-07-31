@@ -60,7 +60,7 @@ public abstract class ControlToleranceBar<T extends Enum<T>> extends Control imp
 		for (T value : fullSet) {
 			int col = (tolerated.contains(value) ? -16777216 : 855638016) + getColour(value);
 			Border inset = new Border(tolerated.contains(value) ? 1 : 3);
-			RenderUtil.drawGradientRect(new Area(w * t, 0, w, height()).inset(inset), col, col);
+			RenderUtil.drawGradientRect(new Area(w * t, 0, w, getHeight()).inset(inset), col, col);
 			++t;
 		}
 	}

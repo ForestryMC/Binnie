@@ -43,7 +43,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 		int y = 4;
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 16;
-		new ControlTextEdit(this, 20, y, width() - 40, 16) {
+		new ControlTextEdit(this, 20, y, getWidth() - 40, 16) {
 			@Override
 			public void onTextEdit(String value) {
 				Collection<IAlleleSpecies> options = new ArrayList<>();
@@ -73,7 +73,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 			}
 		};
 		y += 22;
-		new Panel(this, 3, y - 1, width() - 6, height() - y - 8 + 2, MinecraftGUI.PanelType.TabOutline).setColor(getColor());
+		new Panel(this, 3, y - 1, getWidth() - 6, getHeight() - y - 8 + 2, MinecraftGUI.PanelType.TabOutline).setColor(getColor());
 		boolean textView = false;
 		Collection<IAlleleSpecies> options = getSpecies(system);
 		for (IAlleleSpecies species : options) {
@@ -84,7 +84,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 			String maturation = system.getAlleleName(EnumTreeChromosome.MATURATION, system.getIndividual(species.getUID()).getGenome().getActiveAllele(EnumTreeChromosome.MATURATION));
 		}
 		if (textView) {
-			scroll = new ControlListBox<IAlleleSpecies>(this, 4, y, width() - 8, height() - y - 8 - 20, 0) {
+			scroll = new ControlListBox<IAlleleSpecies>(this, 4, y, getWidth() - 8, getHeight() - y - 8 - 20, 0) {
 				@Override
 				public void initialise() {
 					super.initialise();
@@ -93,7 +93,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 
 				@Override
 				public IWidget createOption(IAlleleSpecies v, int y) {
-					return new Control(getContent(), 0, y, width(), 12) {
+					return new Control(getContent(), 0, y, getWidth(), 12) {
 						IAlleleSpecies value = v;
 
 						@Override
@@ -105,10 +105,10 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 				}
 			};
 		} else {
-			scroll = new ControlScrollableContent(this, 4, y, width() - 8, height() - y - 8, 0);
+			scroll = new ControlScrollableContent(this, 4, y, getWidth() - 8, getHeight() - y - 8, 0);
 			scroll.setScrollableContent(getItemScrollList(system, options));
 		}
-		new ControlScrollBar(this, scroll.getXPos() + scroll.width() - 6, scroll.getYPos() + 3, 3, scroll.height() - 6, scroll) {
+		new ControlScrollBar(this, scroll.getXPos() + scroll.getWidth() - 6, scroll.getYPos() + 3, 3, scroll.getHeight() - 6, scroll) {
 			@Override
 			@SideOnly(Side.CLIENT)
 			public void onRenderBackground(int guiWidth, int guiHeight) {
@@ -135,11 +135,11 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 	}
 
 	private IWidget getItemScrollList(BreedingSystem system, Collection<IAlleleSpecies> options) {
-		return new Control(scroll, 0, 0, scroll.width(), scroll.height()) {
+		return new Control(scroll, 0, 0, scroll.getWidth(), scroll.getHeight()) {
 			@Override
 			public void initialise() {
-				int maxBiomePerLine = (width() - 4 + 2) / 18;
-				int biomeListX = -6 + (width() - (maxBiomePerLine * 18 - 2)) / 2;
+				int maxBiomePerLine = (getWidth() - 4 + 2) / 18;
+				int biomeListX = -6 + (getWidth() - (maxBiomePerLine * 18 - 2)) / 2;
 				int dx = 0;
 				int dy = 0;
 				for (IAlleleSpecies species : options) {
@@ -179,7 +179,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 						dy += 18;
 					}
 				}
-				setSize(new Point(width(), 4 + dy + 18));
+				setSize(new Point(getWidth(), 4 + dy + 18));
 			}
 		};
 	}
