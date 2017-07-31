@@ -19,7 +19,6 @@ import binnie.core.gui.minecraft.control.ControlLiquidTank;
 import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.machines.Machine;
-import binnie.core.machines.power.ErrorState;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.machines.fruitpress.FruitPressLogic;
 import binnie.extratrees.machines.fruitpress.FruitPressMachine;
@@ -64,7 +63,7 @@ public class WindowPress extends Window {
 		super.receiveGuiNBTOnServer(player, name, nbt);
 		final FruitPressLogic logic = Machine.getInterface(FruitPressLogic.class, this.getInventory());
 		if (logic != null) {
-			if (name.equals("fruitpress-click") && logic.canWork() == null && (logic.canProgress() == null || logic.canProgress() instanceof ErrorState.InsufficientPower)) {
+			if (name.equals("fruitpress-click") && logic.canWork() == null && (logic.canProgress() == null || logic.canProgress().isPowerError())) {
 				logic.alterProgress(2.0f);
 			} else if (name.equals("clear-fruit")) {
 				logic.setProgress(0.0f);

@@ -9,9 +9,9 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 import binnie.core.machines.Machine;
+import binnie.core.machines.errors.CoreErrorCode;
+import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.power.ComponentProcessIndefinate;
-import binnie.core.machines.power.CoreErrorCode;
-import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import binnie.core.machines.transfer.TransferRequest;
 import binnie.genetics.api.IIncubatorRecipe;

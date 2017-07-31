@@ -2,9 +2,11 @@ package binnie.genetics.machine;
 
 import javax.annotation.Nullable;
 
-import binnie.core.machines.power.CoreErrorCode;
-import binnie.core.machines.power.EnumErrorType;
-import binnie.core.machines.power.IErrorStateDefinition;
+import binnie.Constants;
+import binnie.core.machines.errors.CoreErrorCode;
+import binnie.core.machines.errors.EnumErrorType;
+import binnie.core.machines.errors.ErrorStateRegistry;
+import binnie.core.machines.errors.IErrorStateDefinition;
 import binnie.core.util.I18N;
 
 public enum GeneticsErrorCode implements IErrorStateDefinition {
@@ -68,6 +70,12 @@ public enum GeneticsErrorCode implements IErrorStateDefinition {
 		this.name = name;
 		this.parent = parent;
 		this.type = type;
+		ErrorStateRegistry.registerErrorState(this);
+	}
+
+	@Override
+	public String getUID() {
+		return Constants.GENETICS_MOD_ID + ":" + name;
 	}
 	
 	public String getDescription(){
@@ -80,7 +88,7 @@ public enum GeneticsErrorCode implements IErrorStateDefinition {
 		}
 		return  I18N.localise("genetics.errors." + name + ".name");
 	}
-	
+
 	@Override
 	public EnumErrorType getType() {
 		if(parent != null){

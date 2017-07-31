@@ -5,8 +5,8 @@ import com.google.common.base.Preconditions;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.Machine;
+import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.power.ComponentProcessSetCost;
-import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
 import binnie.genetics.genetics.Engineering;

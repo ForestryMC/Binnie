@@ -12,8 +12,8 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IIndividual;
 
 import binnie.core.machines.Machine;
+import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.power.ComponentProcess;
-import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemSerum;

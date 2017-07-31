@@ -10,10 +10,10 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
 import binnie.core.machines.Machine;
+import binnie.core.machines.errors.CoreErrorCode;
+import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.network.INetwork;
 import binnie.core.machines.power.ComponentProcessSetCost;
-import binnie.core.machines.power.CoreErrorCode;
-import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
 import binnie.extratrees.machines.ExtraTreesErrorCode;

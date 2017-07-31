@@ -31,9 +31,9 @@ import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.gui.minecraft.control.EnumHighlighting;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.Machine;
+import binnie.core.machines.errors.ErrorState;
+import binnie.core.machines.errors.IErrorStateSource;
 import binnie.core.machines.network.INetwork;
-import binnie.core.machines.power.ErrorState;
-import binnie.core.machines.power.IErrorStateSource;
 import binnie.core.machines.power.IPoweredMachine;
 import binnie.core.machines.power.IProcess;
 import binnie.core.machines.power.ITankMachine;
@@ -340,7 +340,7 @@ public class ContainerCraftGUI extends Container {
 	public void onErrorUpdate(final NBTTagCompound nbt) {
 		this.errorType = nbt.getByte("type");
 		if (nbt.hasKey("name")) {
-			(this.error = new ErrorState("", "")).readFromNBT(nbt);
+			this.error = new ErrorState(nbt);
 		} else {
 			this.error = null;
 		}

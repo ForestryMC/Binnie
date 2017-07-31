@@ -1,4 +1,4 @@
-package binnie.core.machines.power;
+package binnie.core.machines.errors;
 
 public enum EnumErrorType {
 	NONE,

@@ -1,9 +1,11 @@
-package binnie.core.machines.power;
+package binnie.core.machines.errors;
 
 public interface IErrorStateDefinition {
 	String getDescription();
 	
 	String getName();
+
+	String getUID();
 	
 	EnumErrorType getType();
 }

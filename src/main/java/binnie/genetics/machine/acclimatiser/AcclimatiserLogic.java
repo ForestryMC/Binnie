@@ -6,8 +6,8 @@ import java.util.List;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.IMachine;
+import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.power.ComponentProcessIndefinate;
-import binnie.core.machines.power.ErrorState;
 import binnie.genetics.machine.GeneticsErrorCode;
 
 public class AcclimatiserLogic extends ComponentProcessIndefinate {

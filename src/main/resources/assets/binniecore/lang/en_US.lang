@@ -203,11 +203,14 @@ binniecore.machine.storage.compartment_gold=Gold Compartment
 
 binniecore.machine.tooltips.processing=Processing
 
-binniecore.machine.errors.task.cancelled.desc=Task Cancelled
-binniecore.machine.errors.task.cancelled.info=Cancelled by Buildcraft Gate
-binniecore.machine.errors.task.process.paused.desc=Process Paused
-binniecore.machine.errors.task.process.paused.info=Paused by Buildcraft Gate
+binniecore.errors.task.cancelled.desc=Task Cancelled
+binniecore.errors.task.cancelled.info=Cancelled by Buildcraft Gate
+binniecore.errors.task.paused.desc=Process Paused
+binniecore.errors.task.paused.info=Paused by Buildcraft Gate
 
+
+binniecore.errors.unknown.name=Unknown
+binniecore.errors.unknown.desc=This error is broken, please report this to the mod authors
 binniecore.errors.no.item.name=No Item
 binniecore.errors.invalid.item.name=Invalid Item
 binniecore.errors.no.space.name=No Space

@@ -1,10 +1,12 @@
-package binnie.core.machines.power;
+package binnie.core.machines.errors;
 
 import javax.annotation.Nullable;
 
+import binnie.Constants;
 import binnie.core.util.I18N;
 
 public enum CoreErrorCode implements IErrorStateDefinition {
+	UNKNOWN("unknown"),
 	NO_ITEM("no.item", EnumErrorType.ITEM),
 	NO_SPACE("no.space", EnumErrorType.ITEM),
 	NO_SPACE_TANK("no.space.tank", CoreErrorCode.NO_SPACE),
@@ -15,7 +17,10 @@ public enum CoreErrorCode implements IErrorStateDefinition {
 	TANK_DIFFRENT_FLUID("tank.different", CoreErrorCode.NO_SPACE_TANK),
 	INSUFFICIENT_LIQUID("insufficient.liquid", EnumErrorType.TANK),
 	NO_RECIPE("no.recipe"),
-	INVALID_RECIPE("invalid.recipe");
+	INVALID_RECIPE("invalid.recipe"),
+	//Buildcraft
+	TASK_CANCELLED("task.cancelled"),
+	TASK_PAUSED("task.paused");
 	
 	String name;
 	@Nullable
@@ -39,6 +44,7 @@ public enum CoreErrorCode implements IErrorStateDefinition {
 		this.name = name;
 		this.parent = parent;
 		this.type = type;
+		ErrorStateRegistry.registerErrorState(this);
 	}
 	
 	public String getDescription(){
@@ -48,7 +54,12 @@ public enum CoreErrorCode implements IErrorStateDefinition {
 	public String getName(){
 		return  I18N.localise("binniecore.errors." + name + ".name");
 	}
-	
+
+	@Override
+	public String getUID() {
+		return Constants.CORE_MOD_ID + ":" + name;
+	}
+
 	@Override
 	@Nullable
 	public EnumErrorType getType() {

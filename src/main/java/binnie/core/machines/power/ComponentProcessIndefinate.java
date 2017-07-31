@@ -6,6 +6,8 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
+import binnie.core.machines.errors.CoreErrorCode;
+import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.network.INetwork;
 import binnie.core.util.I18N;
 
@@ -81,7 +83,7 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 		if (this.actionCancelTask == 0.0f) {
 			return null;
 		} else {
-			return new ErrorState(I18N.localise("binniecore.machine.errors.task.cancelled.desc"), I18N.localise("binniecore.machine.errors.task.cancelled.info"));
+			return new ErrorState(CoreErrorCode.TASK_CANCELLED);
 		}
 	}
 
@@ -89,9 +91,9 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 	@Nullable
 	public ErrorState canProgress() {
 		if (this.actionPauseProcess != 0.0f) {
-			return new ErrorState(I18N.localise("binniecore.machine.errors.task.process.paused.desc"), I18N.localise("binniecore.machine.errors.task.process.paused.info"));
+			return new ErrorState(CoreErrorCode.TASK_PAUSED);
 		} else if (this.getPower().getInterface().getEnergy(PowerSystem.RF) < this.getEnergyPerTick()) {
-			return new ErrorState.InsufficientPower();
+			return new ErrorState(CoreErrorCode.INSUFFICIENT_POWER);
 		} else {
 			return null;
 		}

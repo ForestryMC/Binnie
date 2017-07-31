@@ -3,8 +3,8 @@ package binnie.genetics.machine.analyser;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.Machine;
+import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.power.ComponentProcessSetCost;
-import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import binnie.genetics.machine.GeneticsErrorCode;
 
