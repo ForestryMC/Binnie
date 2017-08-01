@@ -37,8 +37,8 @@ public class ControlBiomes extends Control implements ITooltip {
 			return;
 		}
 
-		int x = (int) (getRelativeMousePosition().x() / 16.0f);
-		int y = (int) (getRelativeMousePosition().y() / 16.0f);
+		int x = (int) (getRelativeMousePosition().xPos() / 16.0f);
+		int y = (int) (getRelativeMousePosition().yPos() / 16.0f);
 		int i = x + y * 8;
 		if (i >= tolerated.size()) {
 			return;

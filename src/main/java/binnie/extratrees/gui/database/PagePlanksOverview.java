@@ -33,8 +33,8 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 		this.deleteAllChildren();
 		final WindowAbstractDatabase database = Window.get(this);
 		Point size = getSize();
-		new ControlText(this, new Area(0, 0, size.x(), 24), species.getDisplayName(), TextJustification.MIDDLE_CENTER);
-		new ControlText(this, new Area(12, 24, size.x() - 24, 24), I18N.localise("extratrees.gui.database.planks.use"), TextJustification.MIDDLE_LEFT);
+		new ControlText(this, new Area(0, 0, size.xPos(), 24), species.getDisplayName(), TextJustification.MIDDLE_CENTER);
+		new ControlText(this, new Area(12, 24, size.xPos() - 24, 24), I18N.localise("extratrees.gui.database.planks.use"), TextJustification.MIDDLE_LEFT);
 		final IPlankType type = WoodManager.getPlankType(species);
 		int x = 12;
 		if (type != null) {
@@ -54,8 +54,8 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 				x += 22;
 			}
 		}
-		final ControlText controlDescription = new ControlText(this, new Area(8, 84, this.getSize().x() - 16, 0), "", TextJustification.MIDDLE_CENTER);
-		final ControlText controlSignature = new ControlText(this, new Area(8, 84, this.getSize().x() - 16, 0), "", TextJustification.BOTTOM_RIGHT);
+		final ControlText controlDescription = new ControlText(this, new Area(8, 84, this.getSize().xPos() - 16, 0), "", TextJustification.MIDDLE_CENTER);
+		final ControlText controlSignature = new ControlText(this, new Area(8, 84, this.getSize().xPos() - 16, 0), "", TextJustification.BOTTOM_RIGHT);
 		String desc = "";
 		if (type != null) {
 			desc = type.getDescription();
@@ -76,7 +76,7 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 		}
 		controlDescription.setValue(descBody + "§r");
 		controlSignature.setValue(descSig + "§r");
-		final int descHeight = CraftGUI.RENDER.textHeight(controlDescription.getValue(), controlDescription.getSize().x());
-		controlSignature.setPosition(new Point(this.getPosition().x(), controlDescription.getPosition().y() + descHeight + 10));
+		final int descHeight = CraftGUI.RENDER.textHeight(controlDescription.getValue(), controlDescription.getSize().xPos());
+		controlSignature.setPosition(new Point(this.getPosition().xPos(), controlDescription.getPosition().yPos() + descHeight + 10));
 	}
 }

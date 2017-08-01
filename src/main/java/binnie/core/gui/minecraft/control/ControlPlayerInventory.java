@@ -15,7 +15,7 @@ public class ControlPlayerInventory extends Control {
 	private final List<ControlSlot> slots;
 
 	public ControlPlayerInventory(final IWidget parent, final boolean wide) {
-		super(parent, parent.getSize().x() / 2 - (wide ? 110 : 81), parent.getSize().y() - (wide ? 54 : 76) - 12, wide ? 220 : 162, wide ? 54 : 76);
+		super(parent, parent.getSize().xPos() / 2 - (wide ? 110 : 81), parent.getSize().yPos() - (wide ? 54 : 76) - 12, wide ? 220 : 162, wide ? 54 : 76);
 		this.slots = new ArrayList<>();
 		for (int row = 0; row < 3; ++row) {
 			for (int column = 0; column < 9; ++column) {

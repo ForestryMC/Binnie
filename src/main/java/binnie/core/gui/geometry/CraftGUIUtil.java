@@ -23,11 +23,11 @@ public class CraftGUIUtil {
 		int x = 0;
 		int h = 0;
 		for (final IWidget widget : widgets) {
-			h = Math.max(h, widget.getSize().y());
+			h = Math.max(h, widget.getSize().yPos());
 		}
 		for (final IWidget widget : widgets) {
-			widget.setPosition(new Point(px + x, py + Math.round((h - widget.getSize().y()) * just.getYOffset())));
-			x += widget.getSize().x() + spacing;
+			widget.setPosition(new Point(px + x, py + Math.round((h - widget.getSize().yPos()) * just.getYOffset())));
+			x += widget.getSize().xPos() + spacing;
 		}
 	}
 
@@ -39,11 +39,11 @@ public class CraftGUIUtil {
 		int y = 0;
 		int w = 0;
 		for (final IWidget widget : widgets) {
-			w = Math.max(w, widget.getSize().x());
+			w = Math.max(w, widget.getSize().xPos());
 		}
 		for (final IWidget widget : widgets) {
-			widget.setPosition(new Point(px + Math.round((w - widget.getSize().x()) * just.getXOffset()), py + y));
-			y += widget.getSize().y() + spacing;
+			widget.setPosition(new Point(px + Math.round((w - widget.getSize().xPos()) * just.getXOffset()), py + y));
+			y += widget.getSize().yPos() + spacing;
 		}
 	}
 

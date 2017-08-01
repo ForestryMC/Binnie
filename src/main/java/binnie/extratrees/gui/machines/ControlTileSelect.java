@@ -117,7 +117,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 			cy += 20;
 		}
 		final int height = cy;
-		this.setSize(new Point(this.getSize().x(), height));
+		this.setSize(new Point(this.getSize().xPos(), height));
 	}
 
 	@Override

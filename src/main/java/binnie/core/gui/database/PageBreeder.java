@@ -15,7 +15,7 @@ public class PageBreeder extends ControlPage<DatabaseTab> {
 	private GameProfile player;
 
 	public PageBreeder(final IWidget parent, final GameProfile player, final DatabaseTab tab) {
-		super(parent, 0, 0, parent.getSize().x(), parent.getSize().y(), tab);
+		super(parent, 0, 0, parent.getSize().xPos(), parent.getSize().yPos(), tab);
 		this.player = player;
 		this.onPageRefresh();
 	}

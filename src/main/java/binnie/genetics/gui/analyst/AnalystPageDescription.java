@@ -68,8 +68,8 @@ public class AnalystPageDescription extends ControlAnalystPage {
 		IWidget signatureText = new ControlText(this, new Area(8, y, getWidth() - 16, 0), descSig + "§r", TextJustification.BOTTOM_RIGHT);
 		descText.setColor(getColor());
 		signatureText.setColor(getColor());
-		int descHeight = CraftGUI.RENDER.textHeight(descText.getValue(), descText.getSize().x());
-		signatureText.setPosition(new Point(this.getPosition().x(), descText.getPosition().y() + descHeight + 10));
+		int descHeight = CraftGUI.RENDER.textHeight(descText.getValue(), descText.getSize().xPos());
+		signatureText.setPosition(new Point(this.getPosition().xPos(), descText.getPosition().yPos() + descHeight + 10));
 		setSize(new Point(getWidth(), 20 + signatureText.getYPos()));
 	}
 

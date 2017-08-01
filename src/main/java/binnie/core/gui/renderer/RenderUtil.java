@@ -60,11 +60,11 @@ public class RenderUtil {
 			GlStateManager.translate(-8, -8, -150);
 		}
 
-		minecraft.getRenderItem().renderItemAndEffectIntoGUI(null, itemStack, pos.x(), pos.y());
+		minecraft.getRenderItem().renderItemAndEffectIntoGUI(null, itemStack, pos.xPos(), pos.yPos());
 		if (rotating) {
 			GlStateManager.popMatrix();
 		}
-		minecraft.getRenderItem().renderItemOverlayIntoGUI(font, itemStack, pos.x(), pos.y(), null);
+		minecraft.getRenderItem().renderItemOverlayIntoGUI(font, itemStack, pos.xPos(), pos.yPos(), null);
 
 		net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
 		GlStateManager.popAttrib();
@@ -127,22 +127,22 @@ public class RenderUtil {
 
 	public static void drawText(final Area area, final TextJustification justification, final String text, final int colour) {
 		final Point pos = area.pos();
-		if (area.size().x() <= 0.0f) {
+		if (area.size().xPos() <= 0.0f) {
 			return;
 		}
 		FontRenderer fontRendererObj = Minecraft.getMinecraft().fontRendererObj;
-		final List<String> wrappedStrings = fontRendererObj.listFormattedStringToWidth(text, area.size().x());
+		final List<String> wrappedStrings = fontRendererObj.listFormattedStringToWidth(text, area.size().xPos());
 		final float totalHeight = wrappedStrings.size() * getTextHeight();
-		float posY = area.pos().y();
-		if (area.size().y() > totalHeight) {
-			posY += (area.size().y() - totalHeight) * justification.getYOffset();
+		float posY = area.pos().yPos();
+		if (area.size().yPos() > totalHeight) {
+			posY += (area.size().yPos() - totalHeight) * justification.getYOffset();
 		}
 		for (final String string : wrappedStrings) {
 			final float stringWidth = getTextWidth(string);
-			float posX = area.size().x() - stringWidth;
+			float posX = area.size().xPos() - stringWidth;
 			posX *= justification.getXOffset();
 			GlStateManager.disableDepth();
-			fontRendererObj.drawString(string, (int) (pos.x() + posX), (int) posY, colour);
+			fontRendererObj.drawString(string, (int) (pos.xPos() + posX), (int) posY, colour);
 			posY += getTextHeight();
 		}
 		GlStateManager.color(1.0f, 1.0f, 1.0f);
@@ -153,28 +153,28 @@ public class RenderUtil {
 	}
 
 	public static void drawSolidRect(final Area area, final int colour) {
-		drawSolidRect(area.pos().x(), area.pos().y(), area.pos().x() + area.size().x(), area.pos().y() + area.size().y(), 0xFF000000 | colour);
+		drawSolidRect(area.pos().xPos(), area.pos().yPos(), area.pos().xPos() + area.size().xPos(), area.pos().yPos() + area.size().yPos(), 0xFF000000 | colour);
 	}
 
 	public static void drawSolidRectWithAlpha(final Area area, final int color) {
-		drawSolidRect(area.pos().x(), area.pos().y(), area.pos().x() + area.size().x(), area.pos().y() + area.size().y(), color);
+		drawSolidRect(area.pos().xPos(), area.pos().yPos(), area.pos().xPos() + area.size().xPos(), area.pos().yPos() + area.size().yPos(), color);
 	}
 
 	public static void drawGradientRect(final Area area, final int startColor, final int endColor) {
-		GuiUtils.drawGradientRect(0, area.pos().x(), area.pos().y(), area.pos().x() + area.size().x(), area.pos().y() + area.size().y(), startColor, endColor);
+		GuiUtils.drawGradientRect(0, area.pos().xPos(), area.pos().yPos(), area.pos().xPos() + area.size().xPos(), area.pos().yPos() + area.size().yPos(), startColor, endColor);
 	}
 
 	public static void drawSprite(final Point pos, @Nullable final TextureAtlasSprite icon) {
 		if (icon != null) {
 			BinnieCore.getBinnieProxy().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-			drawTexture(pos.x(), pos.y(), icon, 0, 0, 0);
+			drawTexture(pos.xPos(), pos.yPos(), icon, 0, 0, 0);
 		}
 	}
 
 	public static void drawGuiSprite(final Point pos, @Nullable final TextureAtlasSprite icon) {
 		if (icon != null) {
 			BinnieCore.getBinnieProxy().bindTexture(ForestryAPI.textureManager.getGuiTextureMap());
-			drawTexture(pos.x(), pos.y(), icon, 0, 0, 0);
+			drawTexture(pos.xPos(), pos.yPos(), icon, 0, 0, 0);
 		}
 	}
 
@@ -192,7 +192,7 @@ public class RenderUtil {
 
 				minecraft.renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 				setColour(fluidColor);
-				drawTexture(pos.x(), pos.y(), fluidStillSprite, 0, 0, 100);
+				drawTexture(pos.xPos(), pos.yPos(), fluidStillSprite, 0, 0, 100);
 			}
 		}
 

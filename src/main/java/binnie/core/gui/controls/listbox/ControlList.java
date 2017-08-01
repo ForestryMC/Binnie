@@ -66,14 +66,14 @@ public class ControlList<T> extends Control implements IControlValue<T> {
 				entry.getValue().show();
 				this.optionWidgets.put(entry.getKey(), entry.getValue());
 				entry.getValue().setPosition(new Point(0, height));
-				height += entry.getValue().getSize().y();
+				height += entry.getValue().getSize().yPos();
 			} else {
 				entry.getValue().hide();
 			}
 		}
 		this.creating = true;
 		this.setValue(this.getValue());
-		this.setSize(new Point(this.getSize().x(), height));
+		this.setSize(new Point(this.getSize().xPos(), height));
 	}
 
 	public Collection<T> getOptions() {

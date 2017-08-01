@@ -55,14 +55,14 @@ public class ControlItemDisplay extends Control implements ITooltip {
 		}
 
 		final Point relativeToWindow = this.getAbsolutePosition().sub(this.getTopParent().getPosition());
-		if (relativeToWindow.x() > Window.get(this).getSize().x() + 100 || relativeToWindow.y() > Window.get(this).getSize().y() + 100) {
+		if (relativeToWindow.xPos() > Window.get(this).getSize().xPos() + 100 || relativeToWindow.yPos() > Window.get(this).getSize().yPos() + 100) {
 			return;
 		}
 
 		GlStateManager.enableDepth();
-		if (this.getSize().x() != 16) {
+		if (this.getSize().xPos() != 16) {
 			GlStateManager.pushMatrix();
-			final float scale = this.getSize().x() / 16.0f;
+			final float scale = this.getSize().xPos() / 16.0f;
 			GlStateManager.scale(scale, scale, 1);
 			RenderUtil.drawItem(Point.ZERO, this.itemStack, this.rotating);
 			GlStateManager.popMatrix();

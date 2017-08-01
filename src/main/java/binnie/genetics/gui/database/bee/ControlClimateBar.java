@@ -61,7 +61,7 @@ public class ControlClimateBar extends Control implements ITooltip {
 		}
 
 		int types = isHumidity ? 3 : 6;
-		int type = (int) ((int) (getRelativeMousePosition().x() - 1.0f) / ((getSize().x() - 2.0f) / types));
+		int type = (int) ((int) (getRelativeMousePosition().xPos() - 1.0f) / ((getSize().xPos() - 2.0f) / types));
 		if (!tolerated.contains(type) || type >= types) {
 			return;
 		}
@@ -78,7 +78,7 @@ public class ControlClimateBar extends Control implements ITooltip {
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.RENDER.texture(CraftGUITexture.EnergyBarBack, getArea());
 		int types = isHumidity ? 3 : 6;
-		int w = (int) ((getSize().x() - 2.0f) / types);
+		int w = (int) ((getSize().xPos() - 2.0f) / types);
 		for (int i = 0; i < types; ++i) {
 			int x = i * w;
 			if (tolerated.contains(i)) {
@@ -88,7 +88,7 @@ public class ControlClimateBar extends Control implements ITooltip {
 				} else {
 					color = TEMP_COLORS[i];
 				}
-				RenderUtil.drawSolidRect(new Area(x + 1, 1, w, getSize().y() - 2), color);
+				RenderUtil.drawSolidRect(new Area(x + 1, 1, w, getSize().yPos() - 2), color);
 			}
 		}
 		CraftGUI.RENDER.texture(CraftGUITexture.EnergyBarGlass, getArea());

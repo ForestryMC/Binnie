@@ -99,8 +99,8 @@ public class WindowFieldKit extends Window {
 		this.setupValidators();
 		new ControlPlayerInventory(this);
 		final Point handGlass = new Point(16, 32);
-		this.GlassControl = new ControlImage(this, handGlass.x(), handGlass.y(), new StandardTexture(0, 160, 96, 96, BinnieCoreTexture.GUI_PUNNETT));
-		new ControlSlot.Builder(this, handGlass.x() + 54, handGlass.y() + 26).assign(InventoryType.Window, 0);
+		this.GlassControl = new ControlImage(this, handGlass.xPos(), handGlass.yPos(), new StandardTexture(0, 160, 96, 96, BinnieCoreTexture.GUI_PUNNETT));
+		new ControlSlot.Builder(this, handGlass.xPos() + 54, handGlass.yPos() + 26).assign(InventoryType.Window, 0);
 		new ControlSlot.Builder(this, 208, 8).assign(InventoryType.Window, 1);
 		(this.text = new ControlText(this, new Point(232, 13), I18N.localise("binniecore.gui.fieldkit.paper"))).setColor(2236962);
 		(this.text = new ControlText(this, new Area(0, 120, this.getWidth(), 24), "", TextJustification.MIDDLE_CENTER)).setColor(2236962);

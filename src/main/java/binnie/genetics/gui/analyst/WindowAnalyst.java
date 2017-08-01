@@ -264,7 +264,7 @@ public class WindowAnalyst extends Window {
 			}
 		};
 		if (!isDatabase) {
-			slideUpInv = new ControlSlide(this, (getSize().x() - 244) / 2, getSize().y() - 80 + 1, 244, 80, Position.BOTTOM);
+			slideUpInv = new ControlSlide(this, (getSize().xPos() - 244) / 2, getSize().yPos() - 80 + 1, 244, 80, Position.BOTTOM);
 			new ControlPlayerInventory(slideUpInv, true);
 			slideUpInv.setSlide(false);
 		}

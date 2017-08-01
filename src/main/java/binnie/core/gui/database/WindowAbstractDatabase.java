@@ -135,7 +135,7 @@ public abstract class WindowAbstractDatabase extends Window {
 		new ControlHelp(this, 4, 4);
 		(this.panelInformation = new Panel(this, 24, 24, 144, 176, MinecraftGUI.PanelType.Black)).setColor(860416);
 		(this.panelSearch = new Panel(this, 176, 24, this.selectionBoxWidth, 160, MinecraftGUI.PanelType.Black)).setColor(860416);
-		this.modePages = new ControlPages<>(this, 0, 0, this.getSize().x(), this.getSize().y());
+		this.modePages = new ControlPages<>(this, 0, 0, this.getSize().xPos(), this.getSize().yPos());
 		new ControlTextEdit(this, 176, 184, this.selectionBoxWidth, 16);
 		this.createMode(Mode.SPECIES, new SpeciesModeWidgets());
 		this.createMode(Mode.BRANCHES, new BranchesModeWidgets());
@@ -214,7 +214,7 @@ public abstract class WindowAbstractDatabase extends Window {
 
 		public ModeWidgets(final IDatabaseMode mode, final WindowAbstractDatabase database) {
 			this.database = database;
-			this.modePage = new ControlPage<>(database.modePages, 0, 0, database.getSize().x(), database.getSize().y(), mode);
+			this.modePage = new ControlPage<>(database.modePages, 0, 0, database.getSize().xPos(), database.getSize().yPos(), mode);
 			final Area listBoxArea = database.panelSearch.getArea().inset(2);
 			this.createListBox(listBoxArea);
 			CraftGUIUtil.alignToWidget(this.listBox, database.panelSearch);

@@ -212,22 +212,22 @@ public class Widget implements IWidget {
 
 	@Override
 	public int getXPos() {
-		return this.getPosition().x();
+		return this.getPosition().xPos();
 	}
 
 	@Override
 	public int getYPos() {
-		return getPosition().y();
+		return getPosition().yPos();
 	}
 
 	@Override
 	public int getWidth() {
-		return this.getSize().x();
+		return this.getSize().xPos();
 	}
 
 	@Override
 	public int getHeight() {
-		return this.getSize().y();
+		return this.getSize().yPos();
 	}
 
 	@Override
@@ -304,8 +304,8 @@ public class Widget implements IWidget {
 		}
 		final IWidget cropRelative = (this.cropWidget != null) ? this.cropWidget : this;
 		final Point pos = Point.sub(cropRelative.getAbsolutePosition(), this.getAbsolutePosition());
-		final Point size = new Point(this.cropArea.size().x(), this.cropArea.size().y());
-		final boolean inCrop = mouse.x() > pos.x() && mouse.y() > pos.y() && mouse.x() < pos.x() + size.x() && mouse.y() < pos.y() + size.y();
+		final Point size = new Point(this.cropArea.size().xPos(), this.cropArea.size().yPos());
+		final boolean inCrop = mouse.xPos() > pos.xPos() && mouse.yPos() > pos.yPos() && mouse.xPos() < pos.xPos() + size.xPos() && mouse.yPos() < pos.yPos() + size.yPos();
 		return inCrop && this.isMouseOverWidget(mouse);
 	}
 

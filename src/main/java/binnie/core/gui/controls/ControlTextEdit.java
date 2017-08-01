@@ -44,7 +44,7 @@ public class ControlTextEdit extends Control implements IControlValue<String> {
 		this.addEventHandler(new EventMouse.Down.Handler() {
 			@Override
 			public void onEvent(final EventMouse.Down event) {
-				ControlTextEdit.this.field.mouseClicked(ControlTextEdit.this.getRelativeMousePosition().x(), ControlTextEdit.this.getRelativeMousePosition().y(), event.getButton());
+				ControlTextEdit.this.field.mouseClicked(ControlTextEdit.this.getRelativeMousePosition().xPos(), ControlTextEdit.this.getRelativeMousePosition().yPos(), event.getButton());
 			}
 		}.setOrigin(EventHandler.Origin.SELF, this));
 		this.addEventHandler(new EventWidget.GainFocus.Handler() {

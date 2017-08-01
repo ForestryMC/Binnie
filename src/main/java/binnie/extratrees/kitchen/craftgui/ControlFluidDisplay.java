@@ -57,7 +57,7 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 			return;
 		}
 		final Point relativeToWindow = this.getAbsolutePosition().sub(this.getTopParent().getPosition());
-		if (relativeToWindow.x() > Window.get(this).getSize().x() + 100 || relativeToWindow.y() > Window.get(this).getSize().y() + 100) {
+		if (relativeToWindow.xPos() > Window.get(this).getSize().xPos() + 100 || relativeToWindow.yPos() > Window.get(this).getSize().yPos() + 100) {
 			return;
 		}
 		if (this.fluidStack != null) {
@@ -71,9 +71,9 @@ public class ControlFluidDisplay extends Control implements ITooltip {
 			GlStateManager.color(r / 255.0f, g / 255.0f, b / 255.0f, 1.0f);
 			GlStateManager.enableBlend();
 			GlStateManager.blendFunc(770, 771);
-			if (this.getSize().x() != 16) {
+			if (this.getSize().xPos() != 16) {
 				GlStateManager.pushMatrix();
-				final float scale = this.getSize().x() / 16.0f;
+				final float scale = this.getSize().xPos() / 16.0f;
 				GlStateManager.scale(scale, scale, 1.0f);
 				RenderUtil.drawSprite(Point.ZERO, icon);
 				GlStateManager.popMatrix();

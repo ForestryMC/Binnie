@@ -65,7 +65,7 @@ public class ControlGeneScroll extends Control implements IControlValue<Breeding
 			new ControlText(this, new Point(x, y), this.system.getChromosomeName(entry.getKey()));
 			y += 12;
 			for (final IAllele allele : discovered) {
-				if (x + 18 > this.getSize().x()) {
+				if (x + 18 > this.getSize().xPos()) {
 					y += 20;
 					x = 0;
 				}
@@ -74,7 +74,7 @@ public class ControlGeneScroll extends Control implements IControlValue<Breeding
 			}
 			y += 24;
 		}
-		this.setSize(new Point(this.getSize().x(), y));
+		this.setSize(new Point(this.getSize().xPos(), y));
 	}
 
 	@Override

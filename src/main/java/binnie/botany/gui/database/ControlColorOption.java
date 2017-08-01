@@ -18,15 +18,15 @@ public class ControlColorOption extends ControlTextOption<IFlowerColor> {
 
 	public ControlColorOption(ControlList<IFlowerColor> controlList, IFlowerColor option, int y) {
 		super(controlList, option, option.getColorName(), y);
-		setSize(new Point(getSize().x(), 20));
+		setSize(new Point(getSize().xPos(), 20));
 		controlBee = new ControlColorDisplay(this, 2, 2, option);
 		addAttribute(Attribute.MOUSE_OVER);
 		CraftGUIUtil.moveWidget(textWidget, new Point(22, 0));
 		textWidget.setSize(textWidget.getSize().sub(new Point(24, 0)));
-		int th = CraftGUI.RENDER.textHeight(textWidget.getValue(), textWidget.getSize().x());
+		int th = CraftGUI.RENDER.textHeight(textWidget.getValue(), textWidget.getSize().xPos());
 		int height = Math.max(20, th + 6);
-		setSize(new Point(this.getSize().x(), height));
-		textWidget.setSize(new Point(textWidget.getSize().x(), height));
+		setSize(new Point(this.getSize().xPos(), height));
+		textWidget.setSize(new Point(textWidget.getSize().xPos(), height));
 		boxPosition = new Point(2, (height - 18) / 2);
 	}
 }

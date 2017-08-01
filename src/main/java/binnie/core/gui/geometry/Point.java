@@ -2,52 +2,53 @@ package binnie.core.gui.geometry;
 
 public class Point {
 	public static final Point ZERO = new Point(0, 0);
-	private final int x;
-	private final int y;
 
-	public Point(final int x, final int y) {
-		this.x = x;
-		this.y = y;
+	private final int xPos;
+	private final int yPos;
+
+	public Point(int xPos, int yPos) {
+		this.xPos = xPos;
+		this.yPos = yPos;
 	}
 
-	public Point(final Point o) {
-		this.x = o.x();
-		this.y = o.y();
+	public Point(Point point) {
+		this.xPos = point.xPos();
+		this.yPos = point.yPos();
 	}
 
-	public static Point add(final Point a, final Point b) {
-		return new Point(a.x() + b.x(), a.y() + b.y());
+	public static Point add(Point firstPoint, Point secondPoint) {
+		return new Point(firstPoint.xPos() + secondPoint.xPos(), firstPoint.yPos() + secondPoint.yPos());
 	}
 
-	public static Point sub(final Point a, final Point b) {
-		return new Point(a.x() - b.x(), a.y() - b.y());
+	public static Point sub(Point firstPoint, Point secondPoint) {
+		return new Point(firstPoint.xPos() - secondPoint.xPos(), firstPoint.yPos() - secondPoint.yPos());
 	}
 
-	public Point sub(final Point a) {
-		return sub(this, a);
+	public Point sub(Point point) {
+		return sub(this, point);
 	}
 
-	public Point add(final Point other) {
+	public Point add(Point other) {
 		return add(this, other);
 	}
 
-	public Point add(final int dx, final int dy) {
-		return add(this, new Point(dx, dy));
+	public Point add(int xPos, int yPos) {
+		return add(this, new Point(xPos, yPos));
 	}
 
 	public Point copy() {
 		return new Point(this);
 	}
 
-	public int x() {
-		return this.x;
+	public int xPos() {
+		return this.xPos;
 	}
 
-	public int y() {
-		return this.y;
+	public int yPos() {
+		return this.yPos;
 	}
 
 	public boolean equals(final Point other) {
-		return this.x() == other.x() && this.y() == other.y();
+		return this.xPos() == other.xPos() && this.yPos() == other.yPos();
 	}
 }

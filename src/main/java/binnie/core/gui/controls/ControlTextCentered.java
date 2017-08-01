@@ -7,6 +7,6 @@ import binnie.core.gui.geometry.TextJustification;
 
 public class ControlTextCentered extends ControlText {
 	public ControlTextCentered(final IWidget parent, final int y, final String text) {
-		super(parent, new Area(new Point(0, y), new Point(parent.getSize().x(), 0)), text, TextJustification.TOP_CENTER);
+		super(parent, new Area(new Point(0, y), new Point(parent.getSize().xPos(), 0)), text, TextJustification.TOP_CENTER);
 	}
 }

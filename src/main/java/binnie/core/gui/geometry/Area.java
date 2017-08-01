@@ -5,11 +5,11 @@ public final class Area {
 	private Point size;
 
 	public Area(final Area area) {
-		this(area.pos().x(), area.pos().y(), area.size().x(), area.size().y());
+		this(area.pos().xPos(), area.pos().yPos(), area.size().xPos(), area.size().yPos());
 	}
 
 	public Area(final Point pos, final Point size) {
-		this(pos.x(), pos.y(), size.x(), size.y());
+		this(pos.xPos(), pos.yPos(), size.xPos(), size.yPos());
 	}
 
 	public Area(final int xywh) {
@@ -54,39 +54,39 @@ public final class Area {
 	}
 
 	public boolean contains(final Point position) {
-		return position.x() >= this.pos().x() && position.y() >= this.pos.y() && position.x() <= this.pos().x() + this.size().x() && position.y() <= this.pos().y() + this.size().y();
+		return position.xPos() >= this.pos().xPos() && position.yPos() >= this.pos.yPos() && position.xPos() <= this.pos().xPos() + this.size().xPos() && position.yPos() <= this.pos().yPos() + this.size().yPos();
 	}
 
 	public int xPos() {
-		return this.pos().x();
+		return this.pos().xPos();
 	}
 
 	public int yPos() {
-		return this.pos().y();
+		return this.pos().yPos();
 	}
 
 	public int width() {
-		return this.size().x();
+		return this.size().xPos();
 	}
 
 	public int height() {
-		return this.size().y();
+		return this.size().yPos();
 	}
 
 	public void setXPos(final int xPos) {
-		this.pos = new Point(xPos, this.pos.y());
+		this.pos = new Point(xPos, this.pos.yPos());
 	}
 
 	public void setYPos(final int yPos) {
-		this.pos = new Point(this.pos.x(), yPos);
+		this.pos = new Point(this.pos.xPos(), yPos);
 	}
 
 	public void setWidth(final int width) {
-		this.size = new Point(width, this.size.y());
+		this.size = new Point(width, this.size.yPos());
 	}
 
 	public void setHeight(final int height) {
-		this.size = new Point(this.size.x(), height);
+		this.size = new Point(this.size.xPos(), height);
 	}
 
 	public Area inset(final Border border) {

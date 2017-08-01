@@ -35,16 +35,16 @@ public class ControlTabBar<T> extends Control implements IControlValue<T> {
 	private void setValues(final Collection<T> values) {
 		deleteAllChildren();
 		final float length = values.size();
-		int tabDimension = (int) (this.getSize().y() / length);
+		int tabDimension = (int) (this.getSize().yPos() / length);
 		if (this.position == Position.Top || this.position == Position.BOTTOM) {
-			tabDimension = (int) (this.getSize().x() / length);
+			tabDimension = (int) (this.getSize().xPos() / length);
 		}
 		int j = 0;
 		for (final T value : values) {
 			if (this.position == Position.Top || this.position == Position.BOTTOM) {
-				final IWidget tab = this.createTab(j * tabDimension, 0, tabDimension, this.getSize().y(), value);
+				final IWidget tab = this.createTab(j * tabDimension, 0, tabDimension, this.getSize().yPos(), value);
 			} else {
-				final IWidget tab = this.createTab(0, j * tabDimension, this.getSize().x(), tabDimension, value);
+				final IWidget tab = this.createTab(0, j * tabDimension, this.getSize().xPos(), tabDimension, value);
 			}
 			++j;
 		}

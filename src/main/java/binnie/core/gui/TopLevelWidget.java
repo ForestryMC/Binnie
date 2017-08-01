@@ -188,8 +188,8 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 
 	@Override
 	public void setMousePosition(final int x, final int y) {
-		final float dx = x - this.mousePosition.x();
-		final float dy = y - this.mousePosition.y();
+		final float dx = x - this.mousePosition.xPos();
+		final float dy = y - this.mousePosition.yPos();
 		if (dx != 0.0f || dy != 0.0f) {
 			if (this.getDraggedWidget() != null) {
 				this.callEvent(new EventMouse.Drag(this.getDraggedWidget(), dx, dy));
@@ -197,7 +197,7 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 				this.callEvent(new EventMouse.Move(this, dx, dy));
 			}
 		}
-		if (this.mousePosition.x() != x || this.mousePosition.y() != y) {
+		if (this.mousePosition.xPos() != x || this.mousePosition.yPos() != y) {
 			this.mousePosition = new Point(x, y);
 			this.setMousedOverWidget(this.calculateMousedOverWidget());
 		}

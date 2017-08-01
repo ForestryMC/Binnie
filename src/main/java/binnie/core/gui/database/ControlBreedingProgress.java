@@ -31,7 +31,7 @@ class ControlBreedingProgress extends Control {
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		CraftGUI.RENDER.texture(CraftGUITexture.PanelBlack, this.getArea());
 		final Area area = this.getArea().inset(1);
-		area.setSize(new Point(Math.round(area.size().x() * this.percentage), area.size().y()));
+		area.setSize(new Point(Math.round(area.size().xPos() * this.percentage), area.size().yPos()));
 		RenderUtil.setColour(this.colour);
 		CraftGUI.RENDER.texture(ControlBreedingProgress.Progress, area);
 	}

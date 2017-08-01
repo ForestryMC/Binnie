@@ -202,7 +202,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 			return;
 		}
 		this.bgText1 = new StandardTexture(0, 0, 256, 256, this.getBackgroundTextureFile(1));
-		if (this.getSize().x() > 256) {
+		if (this.getSize().xPos() > 256) {
 			this.bgText2 = new StandardTexture(0, 0, 256, 256, this.getBackgroundTextureFile(2));
 		}
 		if (!BinnieCore.getBinnieProxy().checkTexture(this.bgText1.getTexture())) {

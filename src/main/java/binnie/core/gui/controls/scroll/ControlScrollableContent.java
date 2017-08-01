@@ -19,12 +19,12 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 		super(parent, x, y, w, h);
 		this.percentageIndex = 0;
 		if (scrollBarSize != 0) {
-			new ControlScroll(this, this.getSize().x() - scrollBarSize, 0, scrollBarSize, this.getSize().y(), this);
+			new ControlScroll(this, this.getSize().xPos() - scrollBarSize, 0, scrollBarSize, this.getSize().yPos(), this);
 		}
 		this.addEventHandler(new EventMouse.Wheel.Handler() {
 			@Override
 			public void onEvent(final EventMouse.Wheel event) {
-				if (ControlScrollableContent.this.getRelativeMousePosition().x() > 0 && ControlScrollableContent.this.getRelativeMousePosition().y() > 0 && ControlScrollableContent.this.getRelativeMousePosition().x() < ControlScrollableContent.this.getSize().x() && ControlScrollableContent.this.getRelativeMousePosition().y() < ControlScrollableContent.this.getSize().y()) {
+				if (ControlScrollableContent.this.getRelativeMousePosition().xPos() > 0 && ControlScrollableContent.this.getRelativeMousePosition().yPos() > 0 && ControlScrollableContent.this.getRelativeMousePosition().xPos() < ControlScrollableContent.this.getSize().xPos() && ControlScrollableContent.this.getRelativeMousePosition().yPos() < ControlScrollableContent.this.getSize().yPos()) {
 					if (ControlScrollableContent.this.getMovementRange() == 0) {
 						return;
 					}
@@ -42,7 +42,7 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 			return;
 		}
 
-		child.setCroppedZone(this, new Area(1, 1, getSize().x() - 2 - this.scrollBarSize, getSize().y() - 2));
+		child.setCroppedZone(this, new Area(1, 1, getSize().xPos() - 2 - this.scrollBarSize, getSize().yPos() - 2));
 
 		child.addSelfEventHandler(new EventWidget.ChangeSize.Handler() {
 			@Override
@@ -62,10 +62,10 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 
 	@Override
 	public float getPercentageShown() {
-		if (this.controlChild == null || this.controlChild.getSize().y() == 0) {
+		if (this.controlChild == null || this.controlChild.getSize().yPos() == 0) {
 			return 1;
 		}
-		float shown = (float)this.getSize().y() / (float) this.controlChild.getSize().y();
+		float shown = (float)this.getSize().yPos() / (float) this.controlChild.getSize().yPos();
 		return Math.min(shown, 1);
 	}
 
@@ -101,7 +101,7 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
 		if (this.controlChild == null) {
 			return 0;
 		}
-		final float range = this.controlChild.getSize().y() - this.getSize().y();
+		final float range = this.controlChild.getSize().yPos() - this.getSize().yPos();
 		return Math.max(range, 0);
 	}
 

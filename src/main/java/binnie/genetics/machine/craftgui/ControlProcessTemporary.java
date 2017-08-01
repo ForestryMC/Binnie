@@ -19,7 +19,7 @@ public class ControlProcessTemporary extends ControlMachineProgress {
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		RenderUtil.drawSolidRect(this.getArea(), -4868683);
-		final int width = Math.round(this.getSize().y() * this.progress / 100.0f);
+		final int width = Math.round(this.getSize().yPos() * this.progress / 100.0f);
 		Area area = new Area(getArea());
 		area.setWidth(width);
 		RenderUtil.drawSolidRect(area, -65536);

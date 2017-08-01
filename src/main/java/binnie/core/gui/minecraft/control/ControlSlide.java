@@ -49,14 +49,14 @@ public class ControlSlide extends Control {
 			final Area ar = this.isSlideActive() ? this.expanded : this.shrunk;
 			Area tabArea = new Area(hor ? (-lh / 2) : (-lw / 2), hor ? (-lw / 2) : (-lh / 2), hor ? lh : lw, hor ? lw : lh);
 			final Point shift = new Point(ar.width() * (1 - this.anchor.x()) / 2, ar.height() * (1 - this.anchor.y()) / 2);
-			tabArea = tabArea.shift(shift.x() - (-3 + lh / 2) * this.anchor.x(), shift.y() - (-3 + lh / 2) * this.anchor.y());
+			tabArea = tabArea.shift(shift.xPos() - (-3 + lh / 2) * this.anchor.x(), shift.yPos() - (-3 + lh / 2) * this.anchor.y());
 			Texture texture = CraftGUI.RENDER.getTexture(this.isSlideActive() ? CraftGUITexture.Tab : CraftGUITexture.TabDisabled).crop(this.anchor.opposite(), 8);
 			CraftGUI.RENDER.texture(texture, tabArea);
 			texture = CraftGUI.RENDER.getTexture(CraftGUITexture.TabOutline).crop(this.anchor.opposite(), 8);
 			CraftGUI.RENDER.texture(texture, tabArea.inset(2));
 			final Area labelArea = new Area(-lw / 2, 0, lw, lh);
 			GlStateManager.pushMatrix();
-			GlStateManager.translate(shift.x() + this.anchor.x() * 2, shift.y() + this.anchor.y() * 2, 0);
+			GlStateManager.translate(shift.xPos() + this.anchor.x() * 2, shift.yPos() + this.anchor.y() * 2, 0);
 			if (this.anchor.x() != 0) {
 				GlStateManager.rotate(90.0f, 0.0f, 0.0f, this.anchor.x());
 			}

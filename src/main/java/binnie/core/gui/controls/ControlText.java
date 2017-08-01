@@ -24,7 +24,7 @@ public class ControlText extends Control implements IControlValue<String> {
 	}
 
 	public ControlText(final IWidget parent, final Area area, final String text, final TextJustification align) {
-		super(parent, area.pos().x(), area.pos().y(), area.size().x(), area.size().y());
+		super(parent, area.pos().xPos(), area.pos().yPos(), area.size().xPos(), area.size().yPos());
 		this.text = text;
 		this.align = align;
 	}

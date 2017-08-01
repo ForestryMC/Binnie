@@ -15,7 +15,7 @@ public class ControlScrollBar extends Control {
 	protected final IControlScrollable scrollable;
 
 	public ControlScrollBar(final ControlScroll parent) {
-		this(parent, 0, 0, parent.getSize().x(), parent.getSize().y(), parent.getScrollableWidget());
+		this(parent, 0, 0, parent.getSize().xPos(), parent.getSize().yPos(), parent.getScrollableWidget());
 	}
 
 	public ControlScrollBar(final IWidget parent, final int x, final int y, final int w, final int h, final IControlScrollable scrollable2) {
@@ -35,7 +35,7 @@ public class ControlScrollBar extends Control {
 				final float percentageIndex = ControlScrollBar.this.scrollable.getPercentageIndex();
 				final float minPercent = (1.0f - shownPercentage) * percentageIndex;
 				final float maxPercent = minPercent + shownPercentage;
-				float clickedPercentage = (float)ControlScrollBar.this.getRelativeMousePosition().y() / (ControlScrollBar.this.getHeight() - 2.0f);
+				float clickedPercentage = (float)ControlScrollBar.this.getRelativeMousePosition().yPos() / (ControlScrollBar.this.getHeight() - 2.0f);
 				clickedPercentage = Math.max(Math.min(clickedPercentage, 1.0f), 0.0f);
 				if (clickedPercentage > maxPercent) {
 					ControlScrollBar.this.scrollable.setPercentageIndex((clickedPercentage - shownPercentage) / (1.0f - shownPercentage));
@@ -66,7 +66,7 @@ public class ControlScrollBar extends Control {
 			height = 6;
 		}
 		final int yOffset = Math.round((this.getHeight() - this.getBarHeight()) * this.scrollable.getPercentageIndex());
-		return new Area(0, yOffset, this.getSize().x(), height);
+		return new Area(0, yOffset, this.getSize().xPos(), height);
 	}
 
 	@Override

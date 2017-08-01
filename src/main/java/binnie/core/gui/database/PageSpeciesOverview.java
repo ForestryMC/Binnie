@@ -37,8 +37,8 @@ public class PageSpeciesOverview extends PageSpecies {
 		this.controlScientific = new ControlTextCentered(this, 32, "");
 		this.controlAuthority = new ControlTextCentered(this, 44, "");
 		this.controlComplexity = new ControlTextCentered(this, 68, "");
-		this.controlDescription = new ControlText(this, new Area(8, 84, this.getSize().x() - 16, 0), "", TextJustification.MIDDLE_CENTER);
-		this.controlSignature = new ControlText(this, new Area(8, 84, this.getSize().x() - 16, 0), "", TextJustification.BOTTOM_RIGHT);
+		this.controlDescription = new ControlText(this, new Area(8, 84, this.getSize().xPos() - 16, 0), "", TextJustification.MIDDLE_CENTER);
+		this.controlSignature = new ControlText(this, new Area(8, 84, this.getSize().xPos() - 16, 0), "", TextJustification.BOTTOM_RIGHT);
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public class PageSpeciesOverview extends PageSpecies {
 		}
 		this.controlDescription.setValue(descBody.toString() + TextFormatting.RESET);
 		this.controlSignature.setValue(descSig);
-		final int descHeight = CraftGUI.RENDER.textHeight(this.controlDescription.getValue(), this.controlDescription.getSize().x());
-		this.controlSignature.setPosition(new Point(this.getPosition().x(), this.controlDescription.getPosition().y() + descHeight + 10));
+		final int descHeight = CraftGUI.RENDER.textHeight(this.controlDescription.getValue(), this.controlDescription.getSize().xPos());
+		this.controlSignature.setPosition(new Point(this.getPosition().xPos(), this.controlDescription.getPosition().yPos() + descHeight + 10));
 	}
 }

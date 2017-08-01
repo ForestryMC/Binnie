@@ -30,10 +30,10 @@ public class TextureRenderer {
 		int borderRight = padding.r();
 		int borderTop = padding.t();
 		int borderBottom = padding.b();
-		final int posX = area.pos().x();
-		final int posY = area.pos().y();
-		final int width = area.size().x();
-		final int height = area.size().y();
+		final int posX = area.pos().xPos();
+		final int posY = area.pos().yPos();
+		final int width = area.size().xPos();
+		final int height = area.size().yPos();
 		final int textWidth = texture.width();
 		final int textHeight = texture.height();
 		final int u = texture.xPos();
@@ -97,7 +97,7 @@ public class TextureRenderer {
 
 	public final void preRender(final IWidget widget, int guiWidth, int guiHeight) {
 		GlStateManager.pushMatrix();
-		GlStateManager.translate(widget.getPosition().x(), widget.getPosition().y(), 0.0f);
+		GlStateManager.translate(widget.getPosition().xPos(), widget.getPosition().yPos(), 0.0f);
 		RenderUtil.setColour(widget.getColor());
 		if (widget.isCroppedWidet()) {
 			final IWidget cropRelative = (widget.getCropWidget() != null) ? widget.getCropWidget() : widget;
@@ -141,7 +141,7 @@ public class TextureRenderer {
 		this.setTexture(texture);
 		final Point point = position.sub(new Point(texture.getBorder().l(), texture.getBorder().t()));
 		final Area textureArea = texture.getArea().outset(texture.getBorder());
-		GuiUtils.drawTexturedModalRect(point.x(), point.y(), textureArea.pos().x(), textureArea.pos().y(), textureArea.size().x(), textureArea.size().y(), 0);
+		GuiUtils.drawTexturedModalRect(point.xPos(), point.yPos(), textureArea.pos().xPos(), textureArea.pos().yPos(), textureArea.size().xPos(), textureArea.size().yPos(), 0);
 	}
 
 	public void texture(final Object window, final Area area) {
@@ -157,17 +157,17 @@ public class TextureRenderer {
 		final Area targetArea = area.outset(texture.getBorder());
 		if (textureArea.width() == targetArea.width() && textureArea.height() == targetArea.height()) {
 			final Point position = targetArea.pos();
-			GuiUtils.drawTexturedModalRect(position.x(), position.y(), textureArea.pos().x(), textureArea.pos().y(), textureArea.size().x(), textureArea.size().y(), 0);
+			GuiUtils.drawTexturedModalRect(position.xPos(), position.yPos(), textureArea.pos().xPos(), textureArea.pos().yPos(), textureArea.size().xPos(), textureArea.size().yPos(), 0);
 		} else {
 			renderTexturePadded(targetArea, textureArea, texture.getTotalPadding());
 		}
 	}
 
 	public void limitArea(final Area area, int guiWidth, int guiHeight) {
-		float x = area.pos().x();
-		float y = area.pos().y();
-		float w = area.size().x();
-		float h = area.size().y();
+		float x = area.pos().xPos();
+		float y = area.pos().yPos();
+		float w = area.size().xPos();
+		float h = area.size().yPos();
 		y = guiHeight - (y + h);
 		Minecraft minecraft = Minecraft.getMinecraft();
 		final float scaleX = guiWidth / (float) minecraft.displayWidth;
@@ -188,10 +188,10 @@ public class TextureRenderer {
 	public void texturePercentage(final Texture texture, final Area area, final Position direction, final float percentage) {
 		final int dist = (direction == Position.Top || direction == Position.BOTTOM) ? Math.round(percentage * texture.height()) : Math.round(percentage * texture.width());
 		final int dim = (direction == Position.Top || direction == Position.BOTTOM) ? texture.height() : texture.width();
-		int x = area.pos().x();
-		int y = area.pos().y();
-		int w = area.size().x();
-		int h = area.size().y();
+		int x = area.pos().xPos();
+		int y = area.pos().yPos();
+		int w = area.size().xPos();
+		int h = area.size().yPos();
 		switch (direction) {
 			case Top: {
 				h *= percentage;

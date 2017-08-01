@@ -36,7 +36,7 @@ public class ControlFruitPressProgress extends ControlProgressBase {
 		this.addSelfEventHandler(new EventMouse.Down.Handler() {
 			@Override
 			public void onEvent(final EventMouse.Down event) {
-				if (event.getY() - event.getOrigin().getAbsolutePosition().y() > 52 + Math.round(16 * progress)) {
+				if (event.getY() - event.getOrigin().getAbsolutePosition().yPos() > 52 + Math.round(16 * progress)) {
 					final NBTTagCompound action = new NBTTagCompound();
 					Window.get(ControlFruitPressProgress.this.getWidget()).sendClientAction("clear-fruit", action);
 				} else {
