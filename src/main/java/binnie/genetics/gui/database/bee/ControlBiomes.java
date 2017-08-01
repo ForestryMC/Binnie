@@ -32,7 +32,7 @@ public class ControlBiomes extends Control implements ITooltip {
 	}
 
 	@Override
-	public void getTooltip(Tooltip list) {
+	public void getTooltip(Tooltip tooltip) {
 		if (tolerated.isEmpty()) {
 			return;
 		}
@@ -46,7 +46,7 @@ public class ControlBiomes extends Control implements ITooltip {
 
 		Biome biome = Biome.getBiome(tolerated.get(i));
 		if (biome != null) {
-			list.add(biome.getBiomeName());
+			tooltip.add(biome.getBiomeName());
 		}
 	}
 
@@ -60,7 +60,7 @@ public class ControlBiomes extends Control implements ITooltip {
 				//TODO FIND COLOR
 				//CraftGUI.Render.colour(Biome.getBiome(i).color);
 			}
-			CraftGUI.RENDER.texture(CraftGUITexture.Button, new Area(x, y, 16, 16));
+			CraftGUI.RENDER.texture(CraftGUITexture.BUTTON, new Area(x, y, 16, 16));
 		}
 	}
 

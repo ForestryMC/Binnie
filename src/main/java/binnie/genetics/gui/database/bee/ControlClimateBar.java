@@ -55,7 +55,7 @@ public class ControlClimateBar extends Control implements ITooltip {
 	}
 
 	@Override
-	public void getTooltip(Tooltip list) {
+	public void getTooltip(Tooltip tooltip) {
 		if (tolerated.isEmpty()) {
 			return;
 		}
@@ -67,16 +67,16 @@ public class ControlClimateBar extends Control implements ITooltip {
 		}
 
 		if (isHumidity) {
-			list.add(EnumHumidity.values()[type].name);
+			tooltip.add(EnumHumidity.values()[type].name);
 		} else {
-			list.add(EnumTemperature.values()[type + 1].name);
+			tooltip.add(EnumTemperature.values()[type + 1].name);
 		}
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.RENDER.texture(CraftGUITexture.EnergyBarBack, getArea());
+		CraftGUI.RENDER.texture(CraftGUITexture.ENERGY_BAR_BACK, getArea());
 		int types = isHumidity ? 3 : 6;
 		int w = (int) ((getSize().xPos() - 2.0f) / types);
 		for (int i = 0; i < types; ++i) {
@@ -91,7 +91,7 @@ public class ControlClimateBar extends Control implements ITooltip {
 				RenderUtil.drawSolidRect(new Area(x + 1, 1, w, getSize().yPos() - 2), color);
 			}
 		}
-		CraftGUI.RENDER.texture(CraftGUITexture.EnergyBarGlass, getArea());
+		CraftGUI.RENDER.texture(CraftGUITexture.ENERGY_BAR_GLASS, getArea());
 	}
 
 	public void setSpecies(IAlleleBeeSpecies species) {

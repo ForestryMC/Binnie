@@ -155,7 +155,7 @@ public interface IWidget {
 	@Nullable
 	Area getCroppedZone();
 
-	void setCroppedZone(final IWidget p0, final Area p1);
+	void setCroppedZone(IWidget widget, Area area);
 
 	boolean isCroppedWidet();
 

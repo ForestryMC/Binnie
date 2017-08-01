@@ -23,12 +23,12 @@ public class ControlInfo extends Control implements ITooltip {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.RENDER.texture(CraftGUITexture.InfoButton, this.getArea());
+		CraftGUI.RENDER.texture(CraftGUITexture.INFO_BUTTON, this.getArea());
 	}
 
 	@Override
 	public void getTooltip(final Tooltip tooltip) {
-		tooltip.setType(Tooltip.Type.Information);
+		tooltip.setType(Tooltip.Type.INFORMATION);
 		tooltip.add("Info");
 		tooltip.add(this.info);
 		tooltip.setMaxWidth(200);

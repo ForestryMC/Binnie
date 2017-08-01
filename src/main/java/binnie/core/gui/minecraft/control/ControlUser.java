@@ -28,12 +28,12 @@ public class ControlUser extends Control implements ITooltip {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.RENDER.texture(CraftGUITexture.UserButton, this.getArea());
+		CraftGUI.RENDER.texture(CraftGUITexture.USER_BUTTON, this.getArea());
 	}
 
 	@Override
 	public void getTooltip(final Tooltip tooltip) {
-		tooltip.setType(Tooltip.Type.User);
+		tooltip.setType(Tooltip.Type.USER);
 		tooltip.add("Owner");
 		if (!Objects.equals(this.username, "")) {
 			tooltip.add(this.username);

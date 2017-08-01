@@ -74,7 +74,7 @@ public class ControlSlot extends ControlSlotBase {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.RENDER.texture(CraftGUITexture.Slot, Point.ZERO);
+		CraftGUI.RENDER.texture(CraftGUITexture.SLOT, Point.ZERO);
 		final InventorySlot islot = this.getInventorySlot();
 		if (islot != null) {
 			SlotValidator validator = islot.getValidator();
@@ -137,7 +137,7 @@ public class ControlSlot extends ControlSlotBase {
 				area.setPosition(Point.ZERO.sub(this.getPosition()));
 			}
 			RenderUtil.setColour(c);
-			CraftGUI.RENDER.texture(CraftGUITexture.Outline, area.outset(1));
+			CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, area.outset(1));
 		}
 	}
 

@@ -230,7 +230,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 			CraftGUI.RENDER.texture(this.getBackground2(), new Point(256, 0));
 		}
 		RenderUtil.setColour(this.getColor());
-		CraftGUI.RENDER.texture(CraftGUITexture.Window, this.getArea());
+		CraftGUI.RENDER.texture(CraftGUITexture.WINDOW, this.getArea());
 	}
 
 	@Override

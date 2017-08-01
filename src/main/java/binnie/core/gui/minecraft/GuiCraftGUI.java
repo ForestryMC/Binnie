@@ -102,10 +102,10 @@ public class GuiCraftGUI extends GuiContainer {
 		if(draggedItem.isEmpty()) {
 			final MinecraftTooltip tooltip = new MinecraftTooltip();
 			if (this.isHelpMode()) {
-				tooltip.setType(Tooltip.Type.Help);
+				tooltip.setType(Tooltip.Type.HELP);
 				this.window.getHelpTooltip(tooltip);
 			} else {
-				tooltip.setType(Tooltip.Type.Standard);
+				tooltip.setType(Tooltip.Type.STANDARD);
 				this.window.getTooltip(tooltip);
 			}
 			if (tooltip.exists()) {

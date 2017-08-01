@@ -41,8 +41,8 @@ public abstract class Dialog extends Control {
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
 		RenderUtil.drawGradientRect(this.getArea().outset(400), -1442840576, -1442840576);
-		CraftGUI.RENDER.texture(CraftGUITexture.Window, this.getArea());
-		CraftGUI.RENDER.texture(CraftGUITexture.TabOutline, this.getArea().inset(4));
+		CraftGUI.RENDER.texture(CraftGUITexture.WINDOW, this.getArea());
+		CraftGUI.RENDER.texture(CraftGUITexture.TAB_OUTLINE, this.getArea().inset(4));
 	}
 
 	@Override

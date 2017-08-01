@@ -15,7 +15,7 @@ public enum EnumHighlighting {
 				return MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error);
 			}
 			case Help: {
-				return MinecraftTooltip.getOutline(Tooltip.Type.Help);
+				return MinecraftTooltip.getOutline(Tooltip.Type.HELP);
 			}
 			case ShiftClick: {
 				return 16776960;

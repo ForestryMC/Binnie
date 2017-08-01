@@ -10,9 +10,9 @@ import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 
 public enum CraftGUITextureSheet implements IBinnieTexture {
-	Controls2("controls"),
-	Panel2("panels"),
-	Slots("slots");
+	CONTROLS_2("controls"),
+	PANEL_2("panels"),
+	SLOTS("slots");
 
 	private final String name;
 

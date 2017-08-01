@@ -272,6 +272,8 @@ binniecore.gui.nottolerated=Not Tolerated
 
 binniecore.gui.design=Design
 
+binniecore.gui.genesis.title=Genesis
+
 binniecore.gui.fieldkit.title=Field Kit
 binniecore.gui.fieldkit.info=The Field Kit analyses bees, trees, flowers and butterflies. All that is required is a piece of paper to jot notes
 binniecore.gui.fieldkit.paper=Paper

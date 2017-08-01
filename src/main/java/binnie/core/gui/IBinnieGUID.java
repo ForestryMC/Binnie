@@ -12,5 +12,5 @@ import binnie.core.network.IOrdinaled;
 
 public interface IBinnieGUID extends IOrdinaled {
 	@Nullable
-	Window getWindow(final EntityPlayer player, final World world, final int x, final int y, final int z, final Side side);
+	Window getWindow(EntityPlayer player, World world, int x, int y, int z, Side side);
 }

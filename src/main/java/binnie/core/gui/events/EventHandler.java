@@ -3,26 +3,26 @@ package binnie.core.gui.events;
 import binnie.core.gui.IWidget;
 
 public abstract class EventHandler<E extends Event> {
-	Class<E> eventClass;
+	Class<? extends E> eventClass;
 	Origin origin;
 	IWidget relative;
 
-	public EventHandler(final Class<E> eventClass) {
+	public EventHandler(Class<? extends E> eventClass) {
 		this.origin = Origin.ANY;
 		this.relative = null;
 		this.eventClass = eventClass;
 	}
 
-	public EventHandler<E> setOrigin(final Origin origin, final IWidget relative) {
+	public EventHandler<E> setOrigin(Origin origin, IWidget relative) {
 		this.origin = origin;
 		this.relative = relative;
 		return this;
 	}
 
-	public abstract void onEvent(final E p0);
+	public abstract void onEvent(E event);
 
-	public final boolean handles(final Event e) {
-		return this.eventClass.isInstance(e) && this.origin.isOrigin(e.getOrigin(), this.relative);
+	public final boolean handles(Event event) {
+		return this.eventClass.isInstance(event) && this.origin.isOrigin(event.getOrigin(), this.relative);
 	}
 
 	public enum Origin {
@@ -31,7 +31,7 @@ public abstract class EventHandler<E extends Event> {
 		PARENT,
 		DIRECT_CHILD;
 
-		public boolean isOrigin(final IWidget origin, final IWidget test) {
+		public boolean isOrigin(IWidget origin, IWidget test) {
 			switch (this) {
 				case ANY: {
 					return true;

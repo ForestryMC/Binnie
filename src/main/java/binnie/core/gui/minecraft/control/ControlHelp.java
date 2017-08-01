@@ -20,12 +20,12 @@ public class ControlHelp extends Control implements ITooltip {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.RENDER.texture(CraftGUITexture.HelpButton, this.getArea());
+		CraftGUI.RENDER.texture(CraftGUITexture.HELP_BUTTON, this.getArea());
 	}
 
 	@Override
 	public void getTooltip(final Tooltip tooltip) {
-		tooltip.setType(Tooltip.Type.Help);
+		tooltip.setType(Tooltip.Type.HELP);
 		tooltip.add("Help");
 		tooltip.add("To activate help tooltips,");
 		tooltip.add("hold down the tab key and");

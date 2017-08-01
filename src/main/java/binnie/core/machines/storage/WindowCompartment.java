@@ -159,7 +159,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				@Override
 				@SideOnly(Side.CLIENT)
 				public void onRenderForeground(int guiWidth, int guiHeight) {
-					final Texture iTexture = CraftGUI.RENDER.getTexture(CraftGUITexture.TabOutline);
+					final Texture iTexture = CraftGUI.RENDER.getTexture(CraftGUITexture.TAB_OUTLINE);
 					RenderUtil.setColour(WindowCompartment.this.getTab(WindowCompartment.this.panels.get(this)).getColor().getColour());
 					CraftGUI.RENDER.texture(iTexture, this.getArea().inset(3));
 				}
@@ -290,7 +290,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 			@Override
 			@SideOnly(Side.CLIENT)
 			public void onRenderBackground(int guiWidth, int guiHeight) {
-				final Object texture = this.isMouseOver() ? CraftGUITexture.TabHighlighted : CraftGUITexture.Tab;
+				final Object texture = this.isMouseOver() ? CraftGUITexture.TAB_HIGHLIGHTED : CraftGUITexture.TAB;
 				CraftGUI.RENDER.texture(CraftGUI.RENDER.getTexture(texture).crop(Position.BOTTOM, 8), this.getArea());
 			}
 		};
@@ -378,7 +378,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				@SideOnly(Side.CLIENT)
 				public void onRenderBackground(int guiWidth, int guiHeight) {
 					RenderUtil.setColour(11184810);
-					CraftGUI.RENDER.texture(CraftGUITexture.Outline, this.getArea().inset(new Border(0, 6, 0, 0)));
+					CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, this.getArea().inset(new Border(0, 6, 0, 0)));
 				}
 			};
 			scroll.setScrollableContent(this.slotGrid = new Control(scroll, 1, 1, 108, 18));

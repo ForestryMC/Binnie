@@ -1,5 +1,5 @@
 package binnie.core.gui;
 
 public interface ITooltipHelp {
-	void getHelpTooltip(final Tooltip p0);
+	void getHelpTooltip(Tooltip tooltip);
 }

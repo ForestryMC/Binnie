@@ -5,22 +5,22 @@ import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
 
 public enum Tolerance {
-	None(0, 0),
-	Both1(-1, 1),
-	Both2(-2, 2),
-	Both3(-3, 3),
-	Both4(-4, 4),
-	Both5(-5, 5),
-	Up1(0, 1),
-	Up2(0, 2),
-	Up3(0, 3),
-	Up4(0, 4),
-	Up5(0, 5),
-	Down1(-1, 0),
-	Down2(-2, 0),
-	Down3(-3, 0),
-	Down4(-4, 0),
-	Down5(-5, 0);
+	NONE(0, 0),
+	BOTH_1(-1, 1),
+	BOTH_2(-2, 2),
+	BOTH_3(-3, 3),
+	BOTH_4(-4, 4),
+	BOTH_5(-5, 5),
+	UP_1(0, 1),
+	UP_2(0, 2),
+	UP_3(0, 3),
+	UP_4(0, 4),
+	UP_5(0, 5),
+	DOWN_1(-1, 0),
+	DOWN_2(-2, 0),
+	DOWN_3(-3, 0),
+	DOWN_4(-4, 0),
+	DOWN_5(-5, 0);
 
 	private int[] bounds;
 

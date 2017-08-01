@@ -16,7 +16,7 @@ public class Tooltip {
 
 	public Tooltip() {
 		this.tooltip = new ArrayList<>();
-		this.type = Type.Standard;
+		this.type = Type.STANDARD;
 		this.maxWidth = 256;
 	}
 
@@ -87,11 +87,11 @@ public class Tooltip {
 	}
 
 	public enum Type implements ITooltipType {
-		Standard,
-		Help,
-		Information,
-		User,
-		Power
+		STANDARD,
+		HELP,
+		INFORMATION,
+		USER,
+		POWER
 	}
 
 	public interface ITooltipType {

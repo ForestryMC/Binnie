@@ -16,7 +16,7 @@ import binnie.core.gui.resource.minecraft.CraftGUITextureSheet;
 import binnie.core.gui.resource.minecraft.StandardTexture;
 
 class ControlBreedingProgress extends Control {
-	private static Texture Progress = new StandardTexture(80, 22, 4, 4, CraftGUITextureSheet.Controls2);
+	private static Texture Progress = new StandardTexture(80, 22, 4, 4, CraftGUITextureSheet.CONTROLS_2);
 	private float percentage;
 	private int colour;
 
@@ -29,7 +29,7 @@ class ControlBreedingProgress extends Control {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.RENDER.texture(CraftGUITexture.PanelBlack, this.getArea());
+		CraftGUI.RENDER.texture(CraftGUITexture.PANEL_BLACK, this.getArea());
 		final Area area = this.getArea().inset(1);
 		area.setSize(new Point(Math.round(area.size().xPos() * this.percentage), area.size().yPos()));
 		RenderUtil.setColour(this.colour);

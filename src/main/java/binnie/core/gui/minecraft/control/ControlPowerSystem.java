@@ -24,12 +24,12 @@ public class ControlPowerSystem extends Control implements ITooltip {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.RENDER.texture(CraftGUITexture.PowerButton, this.getArea());
+		CraftGUI.RENDER.texture(CraftGUITexture.POWER_BUTTON, this.getArea());
 	}
 
 	@Override
 	public void getTooltip(final Tooltip tooltip) {
-		tooltip.setType(Tooltip.Type.Power);
+		tooltip.setType(Tooltip.Type.POWER);
 		tooltip.add("Power Supply");
 		tooltip.add("Powered by " + this.system.getUnitName());
 		tooltip.setMaxWidth(200);

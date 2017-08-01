@@ -21,8 +21,8 @@ import binnie.core.gui.resource.minecraft.StandardTexture;
 import binnie.core.util.I18N;
 
 class ControlMutationSymbol extends Control implements ITooltip {
-	private static Texture MutationPlus = new StandardTexture(2, 94, 16, 16, CraftGUITextureSheet.Controls2);
-	private static Texture MutationArrow = new StandardTexture(20, 94, 32, 16, CraftGUITextureSheet.Controls2);
+	private static Texture MutationPlus = new StandardTexture(2, 94, 16, 16, CraftGUITextureSheet.CONTROLS_2);
+	private static Texture MutationArrow = new StandardTexture(20, 94, 32, 16, CraftGUITextureSheet.CONTROLS_2);
 	private IMutation value;
 	private boolean discovered;
 	private int type;

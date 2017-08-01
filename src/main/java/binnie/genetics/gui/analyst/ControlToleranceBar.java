@@ -37,12 +37,12 @@ public abstract class ControlToleranceBar<T extends Enum<T>> extends Control imp
 	}
 
 	@Override
-	public void getTooltip(Tooltip list) {
+	public void getTooltip(Tooltip tooltip) {
 		int types = fullSet.size();
 		int type = getRelativeMousePosition().xPos() / (getSize().xPos() / types);
 		for (T tol : fullSet) {
 			if (tol.ordinal() - ((enumClass == EnumTemperature.class) ? 1 : 0) == type) {
-				list.add((tolerated.contains(tol) ? "" : TextFormatting.DARK_GRAY) + getName(tol));
+				tooltip.add((tolerated.contains(tol) ? "" : TextFormatting.DARK_GRAY) + getName(tol));
 			}
 		}
 	}

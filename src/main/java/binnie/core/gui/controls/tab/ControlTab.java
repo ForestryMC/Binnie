@@ -73,17 +73,17 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		Object texture = CraftGUITexture.TabDisabled;
+		Object texture = CraftGUITexture.TAB_DISABLED;
 		if (this.isMouseOver()) {
-			texture = CraftGUITexture.TabHighlighted;
+			texture = CraftGUITexture.TAB_HIGHLIGHTED;
 		} else if (this.isCurrentSelection()) {
-			texture = CraftGUITexture.Tab;
+			texture = CraftGUITexture.TAB;
 		}
 		final Texture lTexture = CraftGUI.RENDER.getTexture(texture);
 		final Position position = this.getTabPosition();
 		Texture iTexture = lTexture.crop(position, 8);
 		final Area area = this.getArea();
-		if (texture == CraftGUITexture.TabDisabled) {
+		if (texture == CraftGUITexture.TAB_DISABLED) {
 			if (position == Position.Top || position == Position.LEFT) {
 				area.setPosition(area.getPosition().sub(new Point(4 * position.x(), 4 * position.y())));
 				area.setSize(area.getSize().add(new Point(4 * position.x(), 4 * position.y())));
@@ -95,13 +95,13 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 		if (this instanceof ControlTabIcon) {
 			final ControlTabIcon icon = (ControlTabIcon) this;
 			final ControlItemDisplay item = (ControlItemDisplay) getFirstChild();
-			if (texture == CraftGUITexture.TabDisabled) {
+			if (texture == CraftGUITexture.TAB_DISABLED) {
 				item.setColor(-1431655766);
 			} else {
 				item.setColor(-1);
 			}
 			if (icon.hasOutline()) {
-				iTexture = CraftGUI.RENDER.getTexture(CraftGUITexture.TabOutline);
+				iTexture = CraftGUI.RENDER.getTexture(CraftGUITexture.TAB_OUTLINE);
 				iTexture = iTexture.crop(position, 8);
 				RenderUtil.setColour(icon.getOutlineColour());
 				CraftGUI.RENDER.texture(iTexture, area.inset(2));

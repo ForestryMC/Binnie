@@ -62,9 +62,9 @@ public class ControlCheckbox extends Control implements IControlValue<Boolean> {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		Object texture = this.getValue() ? CraftGUITexture.CheckboxChecked : CraftGUITexture.Checkbox;
+		Object texture = this.getValue() ? CraftGUITexture.CHECKBOX_CHECKED : CraftGUITexture.CHECKBOX;
 		if (this.isMouseOver()) {
-			texture = (this.getValue() ? CraftGUITexture.CheckboxCheckedHighlighted : CraftGUITexture.CheckboxHighlighted);
+			texture = (this.getValue() ? CraftGUITexture.CHECKBOX_CHECKED_HIGHLIGHTED : CraftGUITexture.CHECKBOX_HIGHLIGHTED);
 		}
 		CraftGUI.RENDER.texture(texture, Point.ZERO);
 	}

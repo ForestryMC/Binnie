@@ -34,11 +34,11 @@ public class ControlErrorState extends Control implements ITooltip {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		Object texture = CraftGUITexture.StateWarning;
+		Object texture = CraftGUITexture.STATE_WARNING;
 		if (this.errorState == null) {
-			texture = CraftGUITexture.StateNone;
+			texture = CraftGUITexture.STATE_NONE;
 		} else if (this.type == 0) {
-			texture = CraftGUITexture.StateError;
+			texture = CraftGUITexture.STATE_ERROR;
 		}
 		CraftGUI.RENDER.texture(texture, Point.ZERO);
 		super.onRenderBackground(guiWidth, guiHeight);

@@ -61,8 +61,8 @@ public class WindowPunnettSquare extends Window {
 
 	static class StyleSheetPunnett extends StyleSheet {
 		public StyleSheetPunnett() {
-			textures.put(CraftGUITexture.Window, new PaddedTexture(0, 0, 160, 160, 0, texture, 32, 32, 32, 32));
-			textures.put(CraftGUITexture.Slot, new StandardTexture(160, 0, 18, 18, 0, texture));
+			textures.put(CraftGUITexture.WINDOW, new PaddedTexture(0, 0, 160, 160, 0, texture, 32, 32, 32, 32));
+			textures.put(CraftGUITexture.SLOT, new StandardTexture(160, 0, 18, 18, 0, texture));
 			textures.put(ExtraBeeGUITexture.Chromosome, new StandardTexture(160, 36, 16, 16, 0, texture));
 			textures.put(ExtraBeeGUITexture.Chromosome2, new StandardTexture(160, 52, 16, 16, 0, texture));
 		}

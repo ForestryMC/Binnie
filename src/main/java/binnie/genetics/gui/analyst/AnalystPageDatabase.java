@@ -66,9 +66,9 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 			@SideOnly(Side.CLIENT)
 			public void onRenderBackground(int guiWidth, int guiHeight) {
 				RenderUtil.setColour(5592405);
-				CraftGUI.RENDER.texture(CraftGUITexture.TabSolid, getArea().inset(1));
+				CraftGUI.RENDER.texture(CraftGUITexture.TAB_SOLID, getArea().inset(1));
 				RenderUtil.setColour(AnalystPageDatabase.this.getColor());
-				CraftGUI.RENDER.texture(CraftGUITexture.TabOutline, getArea());
+				CraftGUI.RENDER.texture(CraftGUITexture.TAB_OUTLINE, getArea());
 				renderTextField();
 			}
 		};
@@ -163,12 +163,12 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 							WindowAnalyst window = (WindowAnalyst) AnalystPageDatabase.this.getTopParent();
 							if (window.getIndividual() != null && window.getIndividual().getGenome().getPrimary() == species) {
 								RenderUtil.setColour(15658734);
-								CraftGUI.RENDER.texture(CraftGUITexture.TabSolid, getArea().outset(1));
+								CraftGUI.RENDER.texture(CraftGUITexture.TAB_SOLID, getArea().outset(1));
 								RenderUtil.setColour(AnalystPageDatabase.this.getColor());
-								CraftGUI.RENDER.texture(CraftGUITexture.TabOutline, getArea().outset(1));
+								CraftGUI.RENDER.texture(CraftGUITexture.TAB_OUTLINE, getArea().outset(1));
 							} else if (calculateIsMouseOver()) {
 								RenderUtil.setColour(15658734);
-								CraftGUI.RENDER.texture(CraftGUITexture.TabSolid, getArea().outset(1));
+								CraftGUI.RENDER.texture(CraftGUITexture.TAB_SOLID, getArea().outset(1));
 							}
 							super.onRenderBackground(guiWidth, guiHeight);
 						}

@@ -180,10 +180,10 @@ public class WindowAnalyst extends Window {
 					public void onRenderBackground(int guiWidth, int guiHeight) {
 						RenderUtil.setColour(syst.getColour());
 						int outset = (getSystem() == syst) ? 1 : 0;
-						CraftGUI.RENDER.texture(CraftGUITexture.TabOutline, getArea().outset(outset));
+						CraftGUI.RENDER.texture(CraftGUITexture.TAB_OUTLINE, getArea().outset(outset));
 						if (getSystem() == syst) {
 							RenderUtil.setColour(1140850688 + syst.getColour());
-							CraftGUI.RENDER.texture(CraftGUITexture.TabSolid, getArea().outset(outset));
+							CraftGUI.RENDER.texture(CraftGUITexture.TAB_SOLID, getArea().outset(outset));
 						}
 						RenderUtil.drawItem(new Point(2, 2), syst.getItemStackRepresentitive());
 					}
@@ -218,7 +218,7 @@ public class WindowAnalyst extends Window {
 							return;
 						}
 						RenderUtil.setColour(getContent().getColor());
-						CraftGUI.RENDER.texture(CraftGUITexture.TabOutline, getArea());
+						CraftGUI.RENDER.texture(CraftGUITexture.TAB_OUTLINE, getArea());
 					}
 				};
 				new ControlScrollBar(this, sectionWidth + 2 - 3, 6, 3, getHeight() - 8 + 2 - 6, leftPage) {
@@ -243,7 +243,7 @@ public class WindowAnalyst extends Window {
 							return;
 						}
 						RenderUtil.setColour(getContent().getColor());
-						CraftGUI.RENDER.texture(CraftGUITexture.TabOutline, getArea());
+						CraftGUI.RENDER.texture(CraftGUITexture.TAB_OUTLINE, getArea());
 					}
 				};
 				new ControlScrollBar(this, sectionWidth + 2 - 3 + sectionWidth + 4, 6, 3, getHeight() - 8 + 2 - 6, rightPage) {
@@ -390,11 +390,11 @@ public class WindowAnalyst extends Window {
 						RenderUtil.setColour((active ? -16777216 : 1140850688) + value.getColor());
 						GlStateManager.pushMatrix();
 						GlStateManager.enableBlend();
-						CraftGUI.RENDER.texture(CraftGUITexture.TabSolid, getArea().inset(1));
+						CraftGUI.RENDER.texture(CraftGUITexture.TAB_SOLID, getArea().inset(1));
 						GlStateManager.disableBlend();
 						GlStateManager.popMatrix();
 						RenderUtil.setColour(value.getColor());
-						CraftGUI.RENDER.texture(CraftGUITexture.TabOutline, getArea().inset(1));
+						CraftGUI.RENDER.texture(CraftGUITexture.TAB_OUTLINE, getArea().inset(1));
 						super.onRenderBackground(guiWidth, guiHeight);
 					}
 				};

@@ -83,10 +83,10 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderBackground(int guiWidth, int guiHeight) {
-		CraftGUI.RENDER.texture(this.horizontal ? CraftGUITexture.HorizontalLiquidTank : CraftGUITexture.LiquidTank, Point.ZERO);
+		CraftGUI.RENDER.texture(this.horizontal ? CraftGUITexture.HORIZONTAL_LIQUID_TANK : CraftGUITexture.LIQUID_TANK, Point.ZERO);
 		GuiCraftGUI gui = Window.get(this).getGui();
 		if (this.isMouseOver() && gui.isHelpMode()) {
-			final int c = -1442840576 + MinecraftTooltip.getOutline(Tooltip.Type.Help);
+			final int c = -1442840576 + MinecraftTooltip.getOutline(Tooltip.Type.HELP);
 			RenderUtil.drawGradientRect(this.getArea().inset(1), c, c);
 		} else if (ControlLiquidTank.tankError.contains(this.tankID)) {
 			final int c = -1442840576 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error);
@@ -139,17 +139,17 @@ public class ControlLiquidTank extends Control implements ITooltip {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRenderForeground(int guiWidth, int guiHeight) {
-		CraftGUI.RENDER.texture(this.horizontal ? CraftGUITexture.HorizontalLiquidTankOverlay : CraftGUITexture.LiquidTankOverlay, Point.ZERO);
+		CraftGUI.RENDER.texture(this.horizontal ? CraftGUITexture.HORIZONTAL_LIQUID_TANK_OVERLAY : CraftGUITexture.LIQUID_TANK_OVERLAY, Point.ZERO);
 		GuiCraftGUI gui = Window.get(this).getGui();
 		if (this.isMouseOver() && gui.isHelpMode()) {
 			final Area area = this.getArea();
-			RenderUtil.setColour(MinecraftTooltip.getOutline(Tooltip.Type.Help));
-			CraftGUI.RENDER.texture(CraftGUITexture.Outline, area.outset(1));
+			RenderUtil.setColour(MinecraftTooltip.getOutline(Tooltip.Type.HELP));
+			CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, area.outset(1));
 		}
 		if (ControlLiquidTank.tankError.contains(this.tankID)) {
 			final Area area = this.getArea();
 			RenderUtil.setColour(MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error));
-			CraftGUI.RENDER.texture(CraftGUITexture.Outline, area.outset(1));
+			CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, area.outset(1));
 		}
 	}
 

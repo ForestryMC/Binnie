@@ -50,9 +50,9 @@ public class ControlSlide extends Control {
 			Area tabArea = new Area(hor ? (-lh / 2) : (-lw / 2), hor ? (-lw / 2) : (-lh / 2), hor ? lh : lw, hor ? lw : lh);
 			final Point shift = new Point(ar.width() * (1 - this.anchor.x()) / 2, ar.height() * (1 - this.anchor.y()) / 2);
 			tabArea = tabArea.shift(shift.xPos() - (-3 + lh / 2) * this.anchor.x(), shift.yPos() - (-3 + lh / 2) * this.anchor.y());
-			Texture texture = CraftGUI.RENDER.getTexture(this.isSlideActive() ? CraftGUITexture.Tab : CraftGUITexture.TabDisabled).crop(this.anchor.opposite(), 8);
+			Texture texture = CraftGUI.RENDER.getTexture(this.isSlideActive() ? CraftGUITexture.TAB : CraftGUITexture.TAB_DISABLED).crop(this.anchor.opposite(), 8);
 			CraftGUI.RENDER.texture(texture, tabArea);
-			texture = CraftGUI.RENDER.getTexture(CraftGUITexture.TabOutline).crop(this.anchor.opposite(), 8);
+			texture = CraftGUI.RENDER.getTexture(CraftGUITexture.TAB_OUTLINE).crop(this.anchor.opposite(), 8);
 			CraftGUI.RENDER.texture(texture, tabArea.inset(2));
 			final Area labelArea = new Area(-lw / 2, 0, lw, lh);
 			GlStateManager.pushMatrix();
@@ -66,8 +66,8 @@ public class ControlSlide extends Control {
 			RenderUtil.drawText(labelArea, TextJustification.MIDDLE_CENTER, this.label, 16777215);
 			GlStateManager.popMatrix();
 		}
-		CraftGUI.RENDER.texture(CraftGUITexture.Window, this.getArea());
-		final Object slideTexture = (this.anchor == Position.BOTTOM) ? CraftGUITexture.SlideDown : ((this.anchor == Position.Top) ? CraftGUITexture.SlideUp : ((this.anchor == Position.LEFT) ? CraftGUITexture.SlideLeft : CraftGUITexture.SlideRight));
+		CraftGUI.RENDER.texture(CraftGUITexture.WINDOW, this.getArea());
+		final Object slideTexture = (this.anchor == Position.BOTTOM) ? CraftGUITexture.SLIDE_DOWN : ((this.anchor == Position.Top) ? CraftGUITexture.SLIDE_UP : ((this.anchor == Position.LEFT) ? CraftGUITexture.SLIDE_LEFT : CraftGUITexture.SLIDE_RIGHT));
 		CraftGUI.RENDER.texture(slideTexture, new Point((this.anchor.x() + 1) * this.getWidth() / 2 - 8, (this.anchor.y() + 1) * this.getHeight() / 2 - 8));
 	}
 
