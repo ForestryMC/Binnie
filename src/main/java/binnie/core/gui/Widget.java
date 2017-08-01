@@ -3,6 +3,7 @@ package binnie.core.gui;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 import net.minecraftforge.fml.relauncher.Side;
@@ -337,7 +338,8 @@ public class Widget implements IWidget {
 			}
 		}
 
-		for (IWidget child : getChildren()) {
+		List<IWidget> children = new LinkedList<>(getChildren());
+		for (IWidget child : children) {
 			child.receiveEvent(event);
 		}
 	}
