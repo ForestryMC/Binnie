@@ -11,6 +11,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 
 import binnie.core.gui.fieldkit.WindowFieldKit;
+import binnie.core.gui.genesis.WindowGenesis;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.machines.storage.WindowCompartment;
 

@@ -4,11 +4,11 @@ import binnie.core.gui.window.Panel;
 
 public class MinecraftGUI {
 	public enum PanelType implements Panel.IPanelType {
-		Black,
-		Gray,
-		Tinted,
-		Coloured,
-		Outline,
-		TabOutline
+		BLACK,
+		GRAY,
+		TINTED,
+		COLORED,
+		OUTLINE,
+		TAB_OUTLINE
 	}
 }

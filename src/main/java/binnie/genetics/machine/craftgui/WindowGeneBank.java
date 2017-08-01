@@ -97,8 +97,8 @@ public class WindowGeneBank extends WindowMachine {
 		x += 124;
 		boxX = x;
 		final int geneBoxWidth = 120;
-		new Panel(this, boxX + 24, 32, geneBoxWidth, 120, MinecraftGUI.PanelType.Black);
-		new Panel(this, boxX + 24 + geneBoxWidth, 32, 14, 120, MinecraftGUI.PanelType.Gray);
+		new Panel(this, boxX + 24, 32, geneBoxWidth, 120, MinecraftGUI.PanelType.BLACK);
+		new Panel(this, boxX + 24 + geneBoxWidth, 32, 14, 120, MinecraftGUI.PanelType.GRAY);
 		final ControlScrollableContent<ControlGeneScroll> scroll = new ControlScrollableContent<>(this, boxX + 24 + 2, 34, geneBoxWidth + 10, 116, 12);
 		final ControlTextEdit edit = new ControlTextEdit(this, boxX + 27 + geneBoxWidth - 70, 18, 80, 12);
 		this.addEventHandler(new EventTextEdit.Handler() {
@@ -142,7 +142,7 @@ public class WindowGeneBank extends WindowMachine {
 		tabBar.setValue(Binnie.GENETICS.beeBreedingSystem);
 		boxX -= 8;
 		final ControlTabBar<String> infoTabs = new ControlTabBar<>(this, boxX + 8, 160, 16, 50, Position.LEFT, Arrays.asList("Info", "Stats", "Ranking"));
-		final Panel panelProject = new Panel(this, boxX + 24, 160, geneBoxWidth + 20, 50, MinecraftGUI.PanelType.Black);
+		final Panel panelProject = new Panel(this, boxX + 24, 160, geneBoxWidth + 20, 50, MinecraftGUI.PanelType.BLACK);
 		int totalGenes = 0;
 		int seqGenes = 0;
 		for (final BreedingSystem system : Binnie.GENETICS.getActiveSystems()) {

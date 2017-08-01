@@ -1,4 +1,4 @@
-package binnie.core.gui;
+package binnie.core.gui.genesis;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -25,6 +25,7 @@ import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
+import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.listbox.ControlListBox;
 import binnie.core.gui.controls.listbox.ControlTextOption;
 import binnie.core.gui.controls.tab.ControlTab;
@@ -44,6 +45,8 @@ import binnie.core.util.I18N;
 import binnie.genetics.gui.ControlGenesisOption;
 
 public class WindowGenesis extends Window {
+	private static final String ACTION_GENESIS = "genesis";
+
 	private ISpeciesRoot root;
 	private IAllele[] template;
 	private ControlListBox<Gene> geneList;
@@ -100,8 +103,8 @@ public class WindowGenesis extends Window {
 		this.template = this.root.getDefaultTemplate();
 		final Area one = new Area(32, 28, 170, 100);
 		final Area two = new Area(214, 28, 100, 100);
-		new Panel(this, one.outset(1), MinecraftGUI.PanelType.Black);
-		new Panel(this, two.outset(1), MinecraftGUI.PanelType.Black);
+		new Panel(this, one.outset(1), MinecraftGUI.PanelType.BLACK);
+		new Panel(this, two.outset(1), MinecraftGUI.PanelType.BLACK);
 		this.geneList = new ControlListBox<Gene>(this, one.xPos(), one.yPos(), one.width(), one.height(), 10) {
 			@Override
 			public IWidget createOption(final Gene value, final int y) {
@@ -125,7 +128,7 @@ public class WindowGenesis extends Window {
 		this.geneList.addEventHandler(new EventValueChanged.Handler() {
 			@Override
 			public void onEvent(final EventValueChanged event) {
-				if(event.value == null){
+				if (event.value == null) {
 					return;
 				}
 				Map<IChromosomeType, List<IAllele>> map = Binnie.GENETICS.getChromosomeMap(root);
@@ -147,16 +150,17 @@ public class WindowGenesis extends Window {
 				}
 				Gene gene = (Gene) event.value;
 				IChromosomeType chromosomeType = gene.getChromosome();
-				IAllele allele = ((Gene) event.value).getAllele();
-				template[chromosomeType.ordinal()] = allele;
-				ISpeciesRoot speciesRoot = ((Gene) event.value).getSpeciesRoot();
+				ISpeciesRoot speciesRoot = gene.getSpeciesRoot();
+				IAllele allele = gene.getAllele();
 				if (chromosomeType == speciesRoot.getSpeciesChromosomeType()) {
 					template = speciesRoot.getTemplate(allele.getUID());
+				}else {
+					template[chromosomeType.ordinal()] = allele;
 				}
 				refreshTemplate(chromosomeType);
 			}
 		}.setOrigin(EventHandler.Origin.SELF, this.geneOptions));
-		this.panelPickup = new Panel(this, 16, 140, 60, 42, MinecraftGUI.PanelType.Black);
+		this.panelPickup = new Panel(this, 16, 140, 60, 42, MinecraftGUI.PanelType.BLACK);
 		this.refreshTemplate(null);
 	}
 
@@ -193,9 +197,9 @@ public class WindowGenesis extends Window {
 			display.addEventHandler(new EventMouse.Down.Handler() {
 				@Override
 				public void onEvent(final EventMouse.Down event) {
-					final NBTTagCompound nbt = new NBTTagCompound();
+					NBTTagCompound nbt = new NBTTagCompound();
 					stack.writeToNBT(nbt);
-					Window.get(event.getOrigin()).sendClientAction("genesis", nbt);
+					Window.get(event.getOrigin()).sendClientAction(ACTION_GENESIS, nbt);
 				}
 			}.setOrigin(EventHandler.Origin.SELF, display));
 			++i;
@@ -205,7 +209,7 @@ public class WindowGenesis extends Window {
 	@Override
 	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
 		super.receiveGuiNBTOnServer(player, name, nbt);
-		if (name.equals("genesis")) {
+		if (name.equals(ACTION_GENESIS)) {
 			ItemStack stack = new ItemStack(nbt);
 			InventoryPlayer inventoryPlayer = player.inventory;
 			ItemStack playerStack = inventoryPlayer.getItemStack();

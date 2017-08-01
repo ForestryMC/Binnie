@@ -198,7 +198,7 @@ public class WindowAnalyst extends Window {
 			setupValidators();
 		}
 		tabBar = new Control(this, x, 28, getWidth() - 16 - x, 20);
-		analystPanel = new Panel(this, 16, 54, 280, 164, MinecraftGUI.PanelType.Outline) {
+		analystPanel = new Panel(this, 16, 54, 280, 164, MinecraftGUI.PanelType.OUTLINE) {
 			@Override
 			@SideOnly(Side.CLIENT)
 			public void onRenderBackground(int guiWidth, int guiHeight) {

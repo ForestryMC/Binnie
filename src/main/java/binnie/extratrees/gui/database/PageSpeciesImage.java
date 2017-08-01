@@ -16,7 +16,7 @@ public class PageSpeciesImage extends PageSpecies {
 
 	public PageSpeciesImage(final IWidget parent, final DatabaseTab tab) {
 		super(parent, tab);
-		new Panel(this, 7, 25, 130, 120, MinecraftGUI.PanelType.Gray);
+		new Panel(this, 7, 25, 130, 120, MinecraftGUI.PanelType.GRAY);
 		this.display = new ControlDatabaseIndividualDisplay(this, 12, 25, 120);
 		this.display.hastooltip = false;
 		new ControlTextCentered(this, 8, this.getValue().toString());

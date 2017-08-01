@@ -73,7 +73,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 			}
 		};
 		y += 22;
-		new Panel(this, 3, y - 1, getWidth() - 6, getHeight() - y - 8 + 2, MinecraftGUI.PanelType.TabOutline).setColor(getColor());
+		new Panel(this, 3, y - 1, getWidth() - 6, getHeight() - y - 8 + 2, MinecraftGUI.PanelType.TAB_OUTLINE).setColor(getColor());
 		boolean textView = false;
 		Collection<IAlleleSpecies> options = getSpecies(system);
 		for (IAlleleSpecies species : options) {

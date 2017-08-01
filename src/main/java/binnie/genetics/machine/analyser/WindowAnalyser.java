@@ -51,7 +51,7 @@ public class WindowAnalyser extends WindowMachine {
 		x -= 28;
 		new ControlIconDisplay(this, x + 36 + 2, y + 18, GUIIcon.ARROW_RIGHT.getIcon().getResourceLocation());
 		x += 56;
-		new Panel(this, x, y, 76, 50, MinecraftGUI.PanelType.Tinted);
+		new Panel(this, x, y, 76, 50, MinecraftGUI.PanelType.TINTED);
 		new ControlProgress(this, x + 5, y + 5, WindowAnalyser.ProgressBase, WindowAnalyser.Progress, Position.LEFT);
 		new ControlSlot.Builder(this, x + 38 - 9, y + 25 - 9).assign(6);
 		new ControlIconDisplay(this, x + 76 + 2, y + 18, GUIIcon.ARROW_RIGHT.getIcon().getResourceLocation());

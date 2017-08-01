@@ -155,7 +155,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		int i = 0;
 		for (int p2 = 0; p2 < inv.getTabNumber(); ++p2) {
 			final ControlPage thisPage = page[p2];
-			final Panel panel = new Panel(thisPage, 0, 0, thisPage.getWidth(), thisPage.getHeight(), MinecraftGUI.PanelType.Black) {
+			final Panel panel = new Panel(thisPage, 0, 0, thisPage.getWidth(), thisPage.getHeight(), MinecraftGUI.PanelType.BLACK) {
 				@Override
 				@SideOnly(Side.CLIENT)
 				public void onRenderForeground(int guiWidth, int guiHeight) {
@@ -222,7 +222,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		slide.setSlide(false);
 		slide.addHelp("Tab Properties");
 		slide.addHelp("The label, colour and icon of the Tab can be altered here. Clicking on the icon with a held item will change it.");
-		final Panel tabPropertyPanel = new Panel(slide, 16, 8, 112, 76, MinecraftGUI.PanelType.Gray);
+		final Panel tabPropertyPanel = new Panel(slide, 16, 8, 112, 76, MinecraftGUI.PanelType.GRAY);
 		int y2 = 4;
 		new ControlText(tabPropertyPanel, new Point(4, y2), "Tab Name:");
 		final Panel parent = tabPropertyPanel;
@@ -263,7 +263,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 		y2 += 20;
 		new ControlText(tabPropertyPanel, new Point(4, y2), "Colour: ");
 		final int cw = 8;
-		final Panel panelColour = new Panel(tabPropertyPanel, 40, y2 - 4, cw * 8 + 2, cw * 2 + 1, MinecraftGUI.PanelType.Gray);
+		final Panel panelColour = new Panel(tabPropertyPanel, 40, y2 - 4, cw * 8 + 2, cw * 2 + 1, MinecraftGUI.PanelType.GRAY);
 		for (int cc = 0; cc < 16; ++cc) {
 			final ControlColourSelector color = new ControlColourSelector(panelColour, 1 + cw * (cc % 8), 1 + cw * (cc / 8), cw, cw, EnumColor.values()[cc]);
 			color.addSelfEventHandler(new EventMouse.Down.Handler() {

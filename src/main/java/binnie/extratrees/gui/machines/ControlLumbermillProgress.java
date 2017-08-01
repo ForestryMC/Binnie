@@ -34,7 +34,7 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 		super(parent, x, y, 66, 18);
 		this.oldProgress = 0;
 		this.animation = 0;
-		new Panel(this, 0, 0, 66, 18, MinecraftGUI.PanelType.Black);
+		new Panel(this, 0, 0, 66, 18, MinecraftGUI.PanelType.BLACK);
 	}
 
 	@Override
