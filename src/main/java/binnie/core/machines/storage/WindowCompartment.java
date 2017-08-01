@@ -123,7 +123,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 
 					@Override
 					public int getOutlineColour() {
-						return WindowCompartment.this.getTab(this.value).getColor().getColour();
+						return WindowCompartment.this.getTab(this.value).getColor().getColor();
 					}
 
 					@Override
@@ -160,7 +160,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				@SideOnly(Side.CLIENT)
 				public void onRenderForeground(int guiWidth, int guiHeight) {
 					final Texture iTexture = CraftGUI.RENDER.getTexture(CraftGUITexture.TAB_OUTLINE);
-					RenderUtil.setColour(WindowCompartment.this.getTab(WindowCompartment.this.panels.get(this)).getColor().getColour());
+					RenderUtil.setColour(WindowCompartment.this.getTab(WindowCompartment.this.panels.get(this)).getColor().getColor());
 					CraftGUI.RENDER.texture(iTexture, this.getArea().inset(3));
 				}
 			};
@@ -189,7 +189,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 
 						@Override
 						public int getOutlineColour() {
-							return WindowCompartment.this.getTab(this.value).getColor().getColour();
+							return WindowCompartment.this.getTab(this.value).getColor().getColor();
 						}
 
 						@Override
@@ -257,7 +257,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 				WindowCompartment.this.sendClientAction("comp-change-tab", nbt);
 			}
 		});
-		this.tabColour = new ControlColourSelector(tabPropertyPanel, 82, y2 - 4, 16, 16, EnumColor.White);
+		this.tabColour = new ControlColourSelector(tabPropertyPanel, 82, y2 - 4, 16, 16, EnumColor.WHITE);
 		this.tabIcon.addHelp("Icon for Current Tab");
 		this.tabIcon.addHelp("Click here with an item to change");
 		y2 += 20;

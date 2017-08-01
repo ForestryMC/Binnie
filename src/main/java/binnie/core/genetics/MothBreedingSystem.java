@@ -138,8 +138,8 @@ class MothBreedingSystem extends BreedingSystem {
 			}
 			case HUMIDITY_TOLERANCE:
 			case TEMPERATURE_TOLERANCE: {
-				for (final Tolerance a6 : Tolerance.values()) {
-					alleles.add(a6.getAllele());
+				for (EnumTolerance tolerance : EnumTolerance.values()) {
+					alleles.add(tolerance.getAllele());
 				}
 				break;
 			}

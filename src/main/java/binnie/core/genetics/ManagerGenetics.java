@@ -23,7 +23,6 @@ import forestry.api.apiculture.IBeeRoot;
 import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.arboriculture.TreeManager;
 import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleFloat;
 import forestry.api.genetics.IAlleleInteger;
@@ -119,12 +118,12 @@ public class ManagerGenetics extends ManagerBase {
 		return species.getRoot();
 	}
 
-	public IAllele getToleranceAllele(final EnumTolerance tol) {
-		return AlleleManager.alleleRegistry.getAllele(Tolerance.values()[tol.ordinal()].getUID());
+	public IAllele getToleranceAllele(final forestry.api.genetics.EnumTolerance tol) {
+		return AlleleManager.alleleRegistry.getAllele(EnumTolerance.values()[tol.ordinal()].getUID());
 	}
 
-	public int[] getTolerance(final EnumTolerance tol) {
-		return Tolerance.values()[tol.ordinal()].getBounds();
+	public int[] getTolerance(final forestry.api.genetics.EnumTolerance tol) {
+		return EnumTolerance.values()[tol.ordinal()].getBounds();
 	}
 
 	public Collection<BreedingSystem> getActiveSystems() {

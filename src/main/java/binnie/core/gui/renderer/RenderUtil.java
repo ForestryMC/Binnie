@@ -8,6 +8,8 @@ import java.util.List;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -45,14 +47,15 @@ public class RenderUtil {
 		GlStateManager.pushAttrib();
 		Preconditions.checkNotNull(itemStack);
 		Minecraft minecraft = Minecraft.getMinecraft();
-		net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
+		RenderHelper.enableGUIStandardItemLighting();
+		RenderItem renderItem = minecraft.getRenderItem();
 		FontRenderer font = getFontRenderer(minecraft, itemStack);
 
 		if (rotating) {
 			GlStateManager.pushMatrix();
 			final float phase = Minecraft.getSystemTime() / 20;
-			/** {@link net.minecraft.client.renderer.RenderItem#setupGuiTransform(int, int, boolean)} It adds 100 to zLevel from
-			 * {@link net.minecraft.client.renderer.RenderItem#renderItemAndEffectIntoGUI(net.minecraft.entity.EntityLivingBase, net.minecraft.item.ItemStack, int, int)}.
+			/** {@link RenderItem#setupGuiTransform(int, int, boolean)} It adds 100 to zLevel from
+			 * {@link RenderItem#renderItemAndEffectIntoGUI(net.minecraft.entity.EntityLivingBase, net.minecraft.item.ItemStack, int, int)}.
 			 * So z=150
 			 **/
 			GlStateManager.translate(8, 8, 150);
@@ -60,13 +63,13 @@ public class RenderUtil {
 			GlStateManager.translate(-8, -8, -150);
 		}
 
-		minecraft.getRenderItem().renderItemAndEffectIntoGUI(null, itemStack, pos.xPos(), pos.yPos());
+		renderItem.renderItemAndEffectIntoGUI(null, itemStack, pos.xPos(), pos.yPos());
 		if (rotating) {
 			GlStateManager.popMatrix();
 		}
-		minecraft.getRenderItem().renderItemOverlayIntoGUI(font, itemStack, pos.xPos(), pos.yPos(), null);
+		renderItem.renderItemOverlayIntoGUI(font, itemStack, pos.xPos(), pos.yPos(), null);
 
-		net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
+		RenderHelper.disableStandardItemLighting();
 		GlStateManager.popAttrib();
 	}
 
@@ -133,7 +136,7 @@ public class RenderUtil {
 		FontRenderer fontRendererObj = Minecraft.getMinecraft().fontRendererObj;
 		final List<String> wrappedStrings = fontRendererObj.listFormattedStringToWidth(text, area.size().xPos());
 		final float totalHeight = wrappedStrings.size() * getTextHeight();
-		float posY = area.pos().yPos();
+		float posY =  pos.yPos();
 		if (area.size().yPos() > totalHeight) {
 			posY += (area.size().yPos() - totalHeight) * justification.getYOffset();
 		}
@@ -178,21 +181,21 @@ public class RenderUtil {
 		}
 	}
 
-	public static void drawFluid(Point pos, @Nullable FluidStack fluid) {
+	public static void drawFluid(Point pos, @Nullable FluidStack fluidStack) {
 		GlStateManager.enableBlend();
 		GlStateManager.enableAlpha();
 
 		Minecraft minecraft = Minecraft.getMinecraft();
-		if (fluid != null) {
-			Fluid fluid1 = fluid.getFluid();
-			if (fluid1 != null) {
-				TextureAtlasSprite fluidStillSprite = getStillFluidSprite(minecraft, fluid1);
+		if (fluidStack != null) {
+			Fluid fluid = fluidStack.getFluid();
+			if (fluid != null) {
+				TextureAtlasSprite stillSprite = getStillFluidSprite(minecraft, fluid);
 
-				int fluidColor = fluid1.getColor(fluid);
+				int fluidColor = fluid.getColor(fluidStack);
 
 				minecraft.renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 				setColour(fluidColor);
-				drawTexture(pos.xPos(), pos.yPos(), fluidStillSprite, 0, 0, 100);
+				drawTexture(pos.xPos(), pos.yPos(), stillSprite, 0, 0, 100);
 			}
 		}
 

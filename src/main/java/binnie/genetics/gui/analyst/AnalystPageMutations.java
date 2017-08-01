@@ -147,12 +147,12 @@ public class AnalystPageMutations extends ControlAnalystPage {
 							RenderUtil.drawItem(Point.ZERO, system.getDefaultMember(mutation.getAllele0().getUID()));
 							RenderUtil.drawItem(new Point(28, 0), system.getDefaultMember(mutation.getAllele1().getUID()));
 							if (specificChance != mutation.getBaseChance()) {
-								RenderUtil.setColour(getMutationColour(mutation.getBaseChance()).getColour());
+								RenderUtil.setColour(getMutationColour(mutation.getBaseChance()).getColor());
 								drawSprite(ModuleItems.iconAdd0);
-								RenderUtil.setColour(getMutationColour(specificChance).getColour());
+								RenderUtil.setColour(getMutationColour(specificChance).getColor());
 								drawSprite(ModuleItems.iconAdd1);
 							} else {
-								RenderUtil.setColour(getMutationColour(mutation.getBaseChance()).getColour());
+								RenderUtil.setColour(getMutationColour(mutation.getBaseChance()).getColor());
 								drawSprite(ModuleItems.iconAdd);
 							}
 						}
@@ -205,14 +205,14 @@ public class AnalystPageMutations extends ControlAnalystPage {
 						public void onRenderBackground(int guiWidth, int guiHeight) {
 							RenderUtil.drawItem(Point.ZERO, system.getDefaultMember(speciesComb.getUID()));
 							RenderUtil.drawItem(new Point(28, 0), system.getDefaultMember(mutation.getTemplate()[0].getUID()));
-							RenderUtil.setColour(getMutationColour(mutation.getBaseChance()).getColour());
+							RenderUtil.setColour(getMutationColour(mutation.getBaseChance()).getColor());
 							if (specificChance2 != mutation.getBaseChance()) {
-								RenderUtil.setColour(getMutationColour(mutation.getBaseChance()).getColour());
+								RenderUtil.setColour(getMutationColour(mutation.getBaseChance()).getColor());
 								drawSprite(ModuleItems.iconArrow0);
-								RenderUtil.setColour(getMutationColour(specificChance2).getColour());
+								RenderUtil.setColour(getMutationColour(specificChance2).getColor());
 								drawSprite(ModuleItems.iconArrow1);
 							} else {
-								RenderUtil.setColour(getMutationColour(mutation.getBaseChance()).getColour());
+								RenderUtil.setColour(getMutationColour(mutation.getBaseChance()).getColor());
 								drawSprite(ModuleItems.iconArrow);
 							}
 						}
@@ -251,21 +251,21 @@ public class AnalystPageMutations extends ControlAnalystPage {
 
 	protected EnumColor getMutationColour(float percent) {
 		if (percent >= 20.0f) {
-			return EnumColor.DarkGreen;
+			return EnumColor.DARK_GREEN;
 		}
 		if (percent >= 15.0f) {
-			return EnumColor.Green;
+			return EnumColor.GREEN;
 		}
 		if (percent >= 10.0f) {
-			return EnumColor.Yellow;
+			return EnumColor.YELLOW;
 		}
 		if (percent >= 5.0f) {
-			return EnumColor.Gold;
+			return EnumColor.GOLD;
 		}
 		if (percent > 0.0f) {
-			return EnumColor.Red;
+			return EnumColor.RED;
 		}
-		return EnumColor.DarkRed;
+		return EnumColor.DARK_RED;
 	}
 
 	static class ControlUnknownMutation extends Control {

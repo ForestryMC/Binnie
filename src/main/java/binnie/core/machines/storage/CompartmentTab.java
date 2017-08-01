@@ -18,7 +18,7 @@ class CompartmentTab implements INbtWritable, INbtReadable {
 	public CompartmentTab(final int id) {
 		this.name = "";
 		this.icon = new ItemStack(Items.PAPER);
-		this.color = EnumColor.White;
+		this.color = EnumColor.WHITE;
 		this.id = id;
 	}
 

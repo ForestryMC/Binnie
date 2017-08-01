@@ -109,7 +109,7 @@ class BeeBreedingSystem extends BreedingSystem {
 			}
 			case HUMIDITY_TOLERANCE:
 			case TEMPERATURE_TOLERANCE: {
-				for (final Tolerance a3 : Tolerance.values()) {
+				for (final EnumTolerance a3 : EnumTolerance.values()) {
 					alleles.add(a3.getAllele());
 				}
 				break;

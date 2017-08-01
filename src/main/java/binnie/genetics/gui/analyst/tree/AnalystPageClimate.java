@@ -11,7 +11,6 @@ import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.IBee;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
-import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAlleleTolerance;
 import forestry.api.genetics.IIndividual;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
@@ -19,7 +18,7 @@ import forestry.api.lepidopterology.IButterfly;
 
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.IFlower;
-import binnie.core.genetics.Tolerance;
+import binnie.core.genetics.EnumTolerance;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
@@ -37,16 +36,16 @@ public class AnalystPageClimate extends ControlAnalystPage {
 		super(parent, area);
 		setColor(26163);
 		EnumTemperature temp = ind.getGenome().getPrimary().getTemperature();
-		EnumTolerance tempTol = EnumTolerance.NONE;
+		forestry.api.genetics.EnumTolerance tempTol = forestry.api.genetics.EnumTolerance.NONE;
 		EnumHumidity humid = ind.getGenome().getPrimary().getHumidity();
-		EnumTolerance humidTol = EnumTolerance.NONE;
+		forestry.api.genetics.EnumTolerance humidTol = forestry.api.genetics.EnumTolerance.NONE;
 		if (ind instanceof IBee) {
 			tempTol = ((IAlleleTolerance) ind.getGenome().getActiveAllele(EnumBeeChromosome.TEMPERATURE_TOLERANCE)).getValue();
 			humidTol = ((IAlleleTolerance) ind.getGenome().getActiveAllele(EnumBeeChromosome.HUMIDITY_TOLERANCE)).getValue();
 		}
 		if (ind instanceof IFlower) {
 			tempTol = ((IAlleleTolerance) ind.getGenome().getActiveAllele(EnumFlowerChromosome.TEMPERATURE_TOLERANCE)).getValue();
-			humidTol = EnumTolerance.BOTH_5;
+			humidTol = forestry.api.genetics.EnumTolerance.BOTH_5;
 		}
 		if (ind instanceof IButterfly) {
 			tempTol = ((IAlleleTolerance) ind.getGenome().getActiveAllele(EnumButterflyChromosome.TEMPERATURE_TOLERANCE)).getValue();
@@ -71,8 +70,8 @@ public class AnalystPageClimate extends ControlAnalystPage {
 		for (Biome biome : Biome.EXPLORATION_BIOMES_LIST) { //TODO check
 			if (biome != null &&
 				biome != Biomes.FROZEN_OCEAN &&
-				Tolerance.canTolerate(temp, EnumTemperature.getFromBiome(biome), tempTol) &&
-				Tolerance.canTolerate(humid, EnumHumidity.getFromValue(biome.getRainfall()), humidTol)) {
+				EnumTolerance.canTolerate(temp, EnumTemperature.getFromBiome(biome), tempTol) &&
+				EnumTolerance.canTolerate(humid, EnumHumidity.getFromValue(biome.getRainfall()), humidTol)) {
 				boolean match = false;
 				for (Biome eBiome : biomes) {
 					if (biome.getBiomeName().contains(eBiome.getBiomeName()) && EnumHumidity.getFromValue(eBiome.getRainfall()) == EnumHumidity.getFromValue(biome.getRainfall()) && EnumTemperature.getFromBiome(eBiome) == EnumTemperature.getFromBiome(biome)) {
@@ -99,7 +98,7 @@ public class AnalystPageClimate extends ControlAnalystPage {
 		setSize(new Point(getWidth(), y + dy + 18 + 8));
 	}
 
-	protected void createTemperatureBar(IWidget parent, int x, int y, int w, int h, EnumTemperature value, EnumTolerance tol) {
+	protected void createTemperatureBar(IWidget parent, int x, int y, int w, int h, EnumTemperature value, forestry.api.genetics.EnumTolerance tol) {
 		new ControlToleranceBar<EnumTemperature>(parent, x, y, w, h, EnumTemperature.class) {
 			@Override
 			protected String getName(EnumTemperature value) {
@@ -113,7 +112,7 @@ public class AnalystPageClimate extends ControlAnalystPage {
 		}.setValues(value, tol);
 	}
 
-	protected void createHumidity(IWidget parent, int x, int y, int w, int h, EnumHumidity value, EnumTolerance tol) {
+	protected void createHumidity(IWidget parent, int x, int y, int w, int h, EnumHumidity value, forestry.api.genetics.EnumTolerance tol) {
 		new ControlToleranceBar<EnumHumidity>(parent, x, y, w, h, EnumHumidity.class) {
 			@Override
 			protected String getName(EnumHumidity value) {

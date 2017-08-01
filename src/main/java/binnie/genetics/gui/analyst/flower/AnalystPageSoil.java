@@ -7,14 +7,12 @@ import java.util.List;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
 
-import forestry.api.genetics.EnumTolerance;
-
 import binnie.botany.Botany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
 import binnie.botany.api.IFlower;
 import binnie.botany.gardening.BlockSoil;
-import binnie.core.genetics.Tolerance;
+import binnie.core.genetics.EnumTolerance;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
@@ -31,9 +29,9 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		super(parent, area);
 		setColor(6697728);
 		EnumMoisture moisture = flower.getGenome().getPrimary().getMoisture();
-		EnumTolerance moistureTol = flower.getGenome().getToleranceMoisture();
+		forestry.api.genetics.EnumTolerance moistureTol = flower.getGenome().getToleranceMoisture();
 		EnumAcidity pH = flower.getGenome().getPrimary().getPH();
-		EnumTolerance pHTol = flower.getGenome().getTolerancePH();
+		forestry.api.genetics.EnumTolerance pHTol = flower.getGenome().getTolerancePH();
 		int y = 4;
 		new ControlTextCentered(this, y, TextFormatting.UNDERLINE + getTitle()).setColor(getColor());
 		y += 16;
@@ -48,9 +46,9 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		new ControlText(this, new Area(4, y, getWidth() - 8, 14), I18N.localise(AnalystConstants.SOIL_KEY + ".recommended"), TextJustification.MIDDLE_CENTER).setColor(getColor());
 		y += 12;
 		EnumMoisture recomMoisture = EnumMoisture.NORMAL;
-		boolean canTolNormal = Tolerance.canTolerate(moisture, EnumMoisture.NORMAL, moistureTol);
-		boolean canTolDamp = Tolerance.canTolerate(moisture, EnumMoisture.DAMP, moistureTol);
-		boolean canTolDry = Tolerance.canTolerate(moisture, EnumMoisture.DRY, moistureTol);
+		boolean canTolNormal = EnumTolerance.canTolerate(moisture, EnumMoisture.NORMAL, moistureTol);
+		boolean canTolDamp = EnumTolerance.canTolerate(moisture, EnumMoisture.DAMP, moistureTol);
+		boolean canTolDry = EnumTolerance.canTolerate(moisture, EnumMoisture.DRY, moistureTol);
 		if (canTolNormal) {
 			if (canTolDamp && !canTolDry) {
 				recomMoisture = EnumMoisture.DAMP;
@@ -66,9 +64,9 @@ public class AnalystPageSoil extends ControlAnalystPage {
 			}
 		}
 		EnumAcidity recomPH = EnumAcidity.NEUTRAL;
-		boolean canTolNeutral = Tolerance.canTolerate(pH, EnumAcidity.NEUTRAL, pHTol);
-		boolean canTolAcid = Tolerance.canTolerate(pH, EnumAcidity.ACID, pHTol);
-		boolean canTolAlkaline = Tolerance.canTolerate(pH, EnumAcidity.ALKALINE, pHTol);
+		boolean canTolNeutral = EnumTolerance.canTolerate(pH, EnumAcidity.NEUTRAL, pHTol);
+		boolean canTolAcid = EnumTolerance.canTolerate(pH, EnumAcidity.ACID, pHTol);
+		boolean canTolAlkaline = EnumTolerance.canTolerate(pH, EnumAcidity.ALKALINE, pHTol);
 		if (canTolNeutral) {
 			if (canTolAcid && !canTolAlkaline) {
 				recomPH = EnumAcidity.ACID;
@@ -93,7 +91,7 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		List<ItemStack> stacks = new ArrayList<>();
 		for (EnumAcidity a : EnumSet.range(EnumAcidity.ACID, EnumAcidity.ALKALINE)) {
 			for (EnumMoisture b : EnumSet.range(EnumMoisture.DRY, EnumMoisture.DAMP)) {
-				if (Tolerance.canTolerate(pH, a, pHTol) && Tolerance.canTolerate(moisture, b, moistureTol) && (a != recomPH || b != recomMoisture)) {
+				if (EnumTolerance.canTolerate(pH, a, pHTol) && EnumTolerance.canTolerate(moisture, b, moistureTol) && (a != recomPH || b != recomMoisture)) {
 					stacks.add(new ItemStack(Botany.gardening().soil, 1, BlockSoil.getMeta(a, b)));
 				}
 			}
@@ -108,7 +106,7 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		}
 	}
 
-	protected void createMoisture(IWidget parent, int x, int y, int w, int h, EnumMoisture value, EnumTolerance tol) {
+	protected void createMoisture(IWidget parent, int x, int y, int w, int h, EnumMoisture value, forestry.api.genetics.EnumTolerance tol) {
 		new ControlToleranceBar<EnumMoisture>(parent, x, y, w, h, EnumMoisture.class) {
 			@Override
 			protected String getName(EnumMoisture value) {
@@ -122,7 +120,7 @@ public class AnalystPageSoil extends ControlAnalystPage {
 		}.setValues(value, tol);
 	}
 
-	protected void createAcidity(IWidget parent, int x, int y, int w, int h, EnumAcidity value, EnumTolerance tol) {
+	protected void createAcidity(IWidget parent, int x, int y, int w, int h, EnumAcidity value, forestry.api.genetics.EnumTolerance tol) {
 		new ControlToleranceBar<EnumAcidity>(parent, x, y, w, h, EnumAcidity.class) {
 			@Override
 			protected String getName(EnumAcidity value) {
