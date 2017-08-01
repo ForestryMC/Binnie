@@ -16,7 +16,7 @@ public abstract class PackageDesigner extends ExtraTreeMachine.PackageExtraTreeM
 
 	@Override
 	public void createMachine(final Machine machine) {
-		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.Woodworker);
+		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.WOODWORKER);
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		inventory.addSlot(Designer.BEESWAX_SLOT, "polish").setValidator(new SlotValidatorBeeswax(this.type));
 		inventory.addSlot(Designer.DESIGN_SLOT_1, "wood").setValidator(new SlotValidatorPlanks(this.type));

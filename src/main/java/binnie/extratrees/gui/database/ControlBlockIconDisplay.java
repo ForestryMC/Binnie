@@ -1,4 +1,4 @@
-package binnie.extratrees.gui.machines;
+package binnie.extratrees.gui.database;
 
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 

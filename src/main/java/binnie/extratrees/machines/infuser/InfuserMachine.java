@@ -16,12 +16,12 @@ import binnie.extratrees.machines.ExtraTreeMachine;
 
 public class InfuserMachine extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
 	public InfuserMachine() {
-		super("infuser", ExtraTreeTexture.Infuser, true);
+		super("infuser", ExtraTreeTexture.INFUSER, true);
 	}
 
 	@Override
 	public void createMachine(final Machine machine) {
-		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.Infuser);
+		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.INFUSER);
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		final ComponentTankContainer tanks = new ComponentTankContainer(machine);
 

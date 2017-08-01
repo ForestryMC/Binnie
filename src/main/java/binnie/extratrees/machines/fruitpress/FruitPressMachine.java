@@ -21,12 +21,12 @@ public class FruitPressMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 	public static final int TANK_OUTPUT_CAPACITY = 5000;
 
 	public FruitPressMachine() {
-		super("press", ExtraTreeTexture.Press, true);
+		super("press", ExtraTreeTexture.PRESS, true);
 	}
 
 	@Override
 	public void createMachine(final Machine machine) {
-		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.Press);
+		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.PRESS);
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		final InventorySlot input = inventory.addSlot(SLOT_FRUIT, "input");
 		input.setValidator(new SlotValidatorSqueezable());

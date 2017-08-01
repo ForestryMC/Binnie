@@ -37,11 +37,11 @@ public class ManagerResource {
 	}
 
 	public BinnieSprite getItemSprite(final AbstractMod mod, final String iconFile) {
-		return new BinnieSprite(mod, ResourceType.Item, iconFile);
+		return new BinnieSprite(mod, ResourceType.ITEM, iconFile);
 	}
 
 	public BinnieSprite getItemSprite(final String mod, final String iconFile) {
-		return new BinnieSprite(mod, ResourceType.Item, iconFile);
+		return new BinnieSprite(mod, ResourceType.ITEM, iconFile);
 	}
 
 	public BinnieSprite getBlockSprite(final AbstractMod mod, final String iconFile) {

@@ -1,7 +1,13 @@
-package binnie.extratrees.gui.machines;
+package binnie.extratrees.machines.lumbermill;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.ItemModelMesher;
+import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
@@ -17,16 +23,15 @@ import binnie.core.gui.geometry.Point;
 import binnie.core.gui.minecraft.MinecraftGUI;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.control.ControlProgressBase;
+import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.Texture;
 import binnie.core.gui.resource.minecraft.StandardTexture;
 import binnie.core.gui.window.Panel;
 import binnie.extratrees.core.ExtraTreeTexture;
-import binnie.extratrees.machines.lumbermill.LumbermillMachine;
-import binnie.extratrees.machines.lumbermill.LumbermillRecipes;
 
 public class ControlLumbermillProgress extends ControlProgressBase {
-	static Texture Saw = new StandardTexture(0, 0, 6, 32, ExtraTreeTexture.Gui);
-	static Texture Saw2 = new StandardTexture(2, 0, 4, 32, ExtraTreeTexture.Gui);
+	static final Texture SAW = new StandardTexture(0, 0, 6, 32, ExtraTreeTexture.GUI);
+	static final Texture SAW_2 = new StandardTexture(2, 0, 4, 32, ExtraTreeTexture.GUI);
 	float oldProgress;
 	float animation;
 
@@ -51,7 +56,7 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		GlStateManager.disableLighting();
 		final int sawX = (int) (63 * this.progress);
-		CraftGUI.RENDER.texture(ControlLumbermillProgress.Saw, new Point(sawX, -8 + Math.round(6 * (float) Math.sin(this.animation))));
+		CraftGUI.RENDER.texture(ControlLumbermillProgress.SAW, new Point(sawX, -8 + Math.round(6 * (float) Math.sin(this.animation))));
 		final ItemStack item = Window.get(this).getInventory().getStackInSlot(LumbermillMachine.SLOT_LOG);
 		if (item.isEmpty()) {
 			return;
@@ -66,8 +71,10 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 		}
 		//TODO RENDERING
 		//final IIcon icon = block.getIcon(2, item.getItemDamage());
+		TextureAtlasSprite icon = getWoodSprite(item);
 		for (int i = 0; i < 4; ++i) {
 			//CraftGUI.Render.iconBlock(new IPoint(1 + i * 16, 1), icon);
+			RenderUtil.drawSprite(new Point(1 + i * 16, 1), icon);
 		}
 		final ItemStack result = LumbermillRecipes.getPlankProduct(item);
 		if (result == null) {
@@ -81,15 +88,29 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 			return;
 		}
 		//final IIcon icon2 = block2.getIcon(2, result.getItemDamage());
+		TextureAtlasSprite sprite = getWoodSprite(result);
 		final Point size = this.getSize();
 		final Point pos = this.getAbsolutePosition();
 		CraftGUI.RENDER.limitArea(new Area(pos.add(Point.ZERO), new Point(Math.round(this.progress * 64) + 2, 18)), guiWidth, guiHeight);
 		GL11.glEnable(GL11.GL_SCISSOR_TEST);
 		for (int j = 0; j < 4; ++j) {
 			//TODO RENDERING
-			//CraftGUI.Render.iconBlock(new IPoint(1 + j * 16, 1), icon2);
+			RenderUtil.drawSprite(new Point(1 + j * 16, 1), sprite);
 		}
 		GL11.glDisable(GL11.GL_SCISSOR_TEST);
-		CraftGUI.RENDER.texture(ControlLumbermillProgress.Saw2, new Point(sawX + 2, -8 + Math.round(6 * (float) Math.sin(this.animation))));
+		CraftGUI.RENDER.texture(ControlLumbermillProgress.SAW, new Point(sawX, -8 + Math.round(6 * (float) Math.sin(this.animation))));
+		CraftGUI.RENDER.texture(ControlLumbermillProgress.SAW_2, new Point(sawX + 2, -8 + Math.round(6 * (float) Math.sin(this.animation))));
+	}
+
+	private TextureAtlasSprite getWoodSprite(ItemStack stack){
+		Minecraft mc = Minecraft.getMinecraft();
+		RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+		ItemModelMesher modelMesher = renderItem.getItemModelMesher();
+		IBakedModel model = modelMesher.getItemModel(stack);
+		TextureAtlasSprite sprite = model.getParticleTexture();
+		if(sprite == mc.getTextureMapBlocks().getMissingSprite()){
+			return getWoodSprite(new ItemStack(Blocks.LOG));
+		}
+		return sprite;
 	}
 }

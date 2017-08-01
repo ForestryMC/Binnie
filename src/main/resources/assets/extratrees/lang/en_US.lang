@@ -33,11 +33,11 @@ genetics.errors.press.no.fruit.desc=No Fruit
 extratrees.machine.machine.lumbermill=Lumbermill
 extratrees.machine.machine.lumbermill.info=The Lumbermill converts logs into planks at an increased rate, and produces byproducts such as sawdust and bark.
 extratrees.machine.machine.lumbermill.tooltips.logs=Logs
-genetics.errors.lumbermill.insufficient.water=Not enough water
-genetics.errors.lumbermill.no.wood.desc=No Wood
-genetics.errors.lumbermill.space.bark.desc=No room for new bark
-genetics.errors.lumbermill.space.saw_dust.desc=No room for new sawdust
-genetics.errors.lumbermill.space.planks.desc=No room for new planks
+extratrees.errors.lumbermill.insufficient.water.desc=Not enough water
+extratrees.errors.lumbermill.no.wood.desc=No Wood
+extratrees.errors.lumbermill.space.bark.desc=No room for new bark
+extratrees.errors.lumbermill.space.saw_dust.desc=No room for new sawdust
+extratrees.errors.lumbermill.space.planks.desc=No room for new planks
 
 extratrees.machine.machine.nursery=Nursery
 

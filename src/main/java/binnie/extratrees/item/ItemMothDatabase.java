@@ -60,9 +60,9 @@ public class ItemMothDatabase extends Item implements IItemModelRegister {
 		ItemStack itemStack = player.getHeldItem(hand);
 		final ExtraTreesGUID id;
 		if (isMaster(itemStack)) {
-			id = ExtraTreesGUID.MothDatabaseNEI;
+			id = ExtraTreesGUID.MOTH_DATABASE_NEI;
 		} else {
-			id = ExtraTreesGUID.MothDatabase;
+			id = ExtraTreesGUID.MOTH_DATABASE;
 		}
 
 		ExtraTrees.proxy.openGui(id, player, player.getPosition());

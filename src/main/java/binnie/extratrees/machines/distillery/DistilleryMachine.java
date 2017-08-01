@@ -19,12 +19,12 @@ public class DistilleryMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 	public static final int TANK_OUTPUT = 1;
 
 	public DistilleryMachine() {
-		super("distillery", ExtraTreeTexture.Distillery, true);
+		super("distillery", ExtraTreeTexture.DISTILLERY, true);
 	}
 
 	@Override
 	public void createMachine(final Machine machine) {
-		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.Distillery);
+		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.DISTILLERY);
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 		final ComponentTankContainer tanks = new ComponentTankContainer(machine);
 

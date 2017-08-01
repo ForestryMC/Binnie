@@ -11,17 +11,17 @@ import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
 
 public enum ExtraBeeTexture implements IBinnieTexture {
-	AlvearyMutator(ResourceType.Tile, "alveary/AlvearyMutator"),
-	AlvearyNovaBlock(ResourceType.Tile, "alveary/AlvearyNovaBlock"),
-	AlvearyFrame(ResourceType.Tile, "alveary/AlvearyFrame"),
-	AlvearyLighting(ResourceType.Tile, "alveary/AlvearyLighting"),
-	AlvearyRainShield(ResourceType.Tile, "alveary/AlvearyRainShield"),
-	AlvearyStimulator(ResourceType.Tile, "alveary/AlvearyStimulator"),
-	AlvearyHatchery(ResourceType.Tile, "alveary/AlvearyHatchery"),
+	AlvearyMutator(ResourceType.TILE, "alveary/AlvearyMutator"),
+	AlvearyNovaBlock(ResourceType.TILE, "alveary/AlvearyNovaBlock"),
+	AlvearyFrame(ResourceType.TILE, "alveary/AlvearyFrame"),
+	AlvearyLighting(ResourceType.TILE, "alveary/AlvearyLighting"),
+	AlvearyRainShield(ResourceType.TILE, "alveary/AlvearyRainShield"),
+	AlvearyStimulator(ResourceType.TILE, "alveary/AlvearyStimulator"),
+	AlvearyHatchery(ResourceType.TILE, "alveary/AlvearyHatchery"),
 	FX(ResourceType.FX, "fx"),
 	GUIProgress(ResourceType.GUI, "processes"),
 	GUIProgress2(ResourceType.GUI, "processes2"),
-	AlvearyTransmission(ResourceType.Tile, "alveary/AlvearyTransmission");
+	AlvearyTransmission(ResourceType.TILE, "alveary/AlvearyTransmission");
 
 	private final String texture;
 	private final ResourceType type;

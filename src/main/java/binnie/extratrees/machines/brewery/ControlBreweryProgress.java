@@ -1,4 +1,4 @@
-package binnie.extratrees.gui.machines;
+package binnie.extratrees.machines.brewery;
 
 import java.util.Collections;
 
@@ -22,12 +22,10 @@ import binnie.core.gui.resource.minecraft.StandardTexture;
 import binnie.core.machines.Machine;
 import binnie.core.util.ItemStackSet;
 import binnie.extratrees.core.ExtraTreeTexture;
-import binnie.extratrees.machines.brewery.BreweryLogic;
-import binnie.extratrees.machines.brewery.BreweryRecipes;
 
 public class ControlBreweryProgress extends ControlProgressBase {
-	static Texture Brewery = new StandardTexture(0, 69, 34, 39, ExtraTreeTexture.Gui);
-	static Texture BreweryOverlay = new StandardTexture(34, 69, 34, 39, ExtraTreeTexture.Gui);
+	static Texture Brewery = new StandardTexture(0, 69, 34, 39, ExtraTreeTexture.GUI);
+	static Texture BreweryOverlay = new StandardTexture(34, 69, 34, 39, ExtraTreeTexture.GUI);
 
 	protected ControlBreweryProgress(final IWidget parent, final int x, final int y) {
 		super(parent, x, y, 34, 39);

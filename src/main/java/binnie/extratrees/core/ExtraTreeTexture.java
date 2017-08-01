@@ -12,17 +12,17 @@ import binnie.core.resource.ResourceType;
 import binnie.extratrees.ExtraTrees;
 
 public enum ExtraTreeTexture implements IBinnieTexture {
-	Gui(ResourceType.GUI, "gui"),
-	Nursery(ResourceType.Tile, "Nursery"),
-	Carpenter(ResourceType.Tile, "extratrees/carpenter_"),
-	Paneler(ResourceType.Tile, "extratrees/paneler_"),
-	Tileworker(ResourceType.Tile, "extratrees/tileworker_"),
-	Incubator(ResourceType.Tile, "extratrees/incubator_"),
-	Lumbermill(ResourceType.Tile, "extratrees/sawmill_"),
-	Press(ResourceType.Tile, "extratrees/press_"),
-	Distillery(ResourceType.Tile, "extratrees/distillery_"),
-	Brewery(ResourceType.Tile, "extratrees/brewery_"),
-	Infuser(ResourceType.Tile, "extratrees/infuser_");
+	GUI(ResourceType.GUI, "gui"),
+	NURSERY(ResourceType.TILE, "Nursery"),
+	CARPENTER(ResourceType.TILE, "extratrees/carpenter_"),
+	PANELER(ResourceType.TILE, "extratrees/paneler_"),
+	TILEWORKER(ResourceType.TILE, "extratrees/tileworker_"),
+	INCUBATOR(ResourceType.TILE, "extratrees/incubator_"),
+	LUMBERMILL(ResourceType.TILE, "extratrees/sawmill_"),
+	PRESS(ResourceType.TILE, "extratrees/press_"),
+	DISTILLERY(ResourceType.TILE, "extratrees/distillery_"),
+	BREWERY(ResourceType.TILE, "extratrees/brewery_"),
+	INFUSER(ResourceType.TILE, "extratrees/infuser_");
 
 	private final String texture;
 	private final ResourceType type;

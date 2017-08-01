@@ -1,4 +1,4 @@
-package binnie.extratrees.gui.machines;
+package binnie.extratrees.machines.distillery;
 
 import javax.annotation.Nullable;
 
@@ -17,8 +17,6 @@ import binnie.core.gui.minecraft.control.ControlLiquidTank;
 import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.machines.Machine;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.machines.distillery.DistilleryLogic;
-import binnie.extratrees.machines.distillery.DistilleryMachine;
 
 public class WindowDistillery extends Window {
 	public WindowDistillery(final EntityPlayer player, final IInventory inventory, final Side side) {

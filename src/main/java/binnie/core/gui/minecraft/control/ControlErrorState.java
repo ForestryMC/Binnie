@@ -53,8 +53,8 @@ public class ControlErrorState extends Control implements ITooltip {
 	public final void onUpdateClient() {
 		this.errorState = this.getError();
 		this.type = Window.get(this).getContainer().getErrorType();
-		ControlSlot.highlighting.get(EnumHighlighting.Error).clear();
-		ControlSlot.highlighting.get(EnumHighlighting.Warning).clear();
+		ControlSlot.highlighting.get(EnumHighlighting.ERROR).clear();
+		ControlSlot.highlighting.get(EnumHighlighting.WARNING).clear();
 		ControlLiquidTank.tankError.clear();
 		ControlEnergyBar.isError = false;
 		if (!this.isMouseOver() || this.errorState == null) {
@@ -71,9 +71,9 @@ public class ControlErrorState extends Control implements ITooltip {
 				}
 				if (id >= 0) {
 					if (this.type == 0) {
-						ControlSlot.highlighting.get(EnumHighlighting.Error).add(id);
+						ControlSlot.highlighting.get(EnumHighlighting.ERROR).add(id);
 					} else {
-						ControlSlot.highlighting.get(EnumHighlighting.Warning).add(id);
+						ControlSlot.highlighting.get(EnumHighlighting.WARNING).add(id);
 					}
 				}
 			}

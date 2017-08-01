@@ -94,7 +94,7 @@ public class ControlSlot extends ControlSlotBase {
 	public void onRenderForeground(int guiWidth, int guiHeight) {
 		boolean highlighted = false;
 		for (final Map.Entry<EnumHighlighting, List<Integer>> highlight : ControlSlot.highlighting.entrySet()) {
-			if (highlight.getKey() == EnumHighlighting.ShiftClick && !ControlSlot.shiftClickActive) {
+			if (highlight.getKey() == EnumHighlighting.SHIFT_CLICK && !ControlSlot.shiftClickActive) {
 				continue;
 			}
 			if (highlighted || !highlight.getValue().contains(this.slot.slotNumber)) {
@@ -102,7 +102,11 @@ public class ControlSlot extends ControlSlotBase {
 			}
 			highlighted = true;
 			final int c = -1442840576 + Math.min(highlight.getKey().getColour(), 16777215);
+			GlStateManager.disableBlend();
+			GlStateManager.disableDepth();
 			RenderUtil.drawGradientRect(new Area(1, 1, 16, 16), c, c);
+			GlStateManager.enableBlend();
+			GlStateManager.enableDepth();
 		}
 		if (!highlighted && this.getTopParent().getMousedOverWidget() == this) {
 			GuiCraftGUI gui = Window.get(this).getGui();
@@ -123,7 +127,7 @@ public class ControlSlot extends ControlSlotBase {
 	public void onRenderOverlay() {
 		boolean highlighted = false;
 		for (final Map.Entry<EnumHighlighting, List<Integer>> highlight : ControlSlot.highlighting.entrySet()) {
-			if (highlight.getKey() == EnumHighlighting.ShiftClick && !ControlSlot.shiftClickActive) {
+			if (highlight.getKey() == EnumHighlighting.SHIFT_CLICK && !ControlSlot.shiftClickActive) {
 				continue;
 			}
 			if (highlighted || !highlight.getValue().contains(this.slot.slotNumber)) {
@@ -151,7 +155,7 @@ public class ControlSlot extends ControlSlotBase {
 		}
 		if (Window.get(this).getGui().isHelpMode() && this.isMouseOver()) {
 			for (final ControlSlot slot2 : this.getControlSlots()) {
-				ControlSlot.highlighting.get(EnumHighlighting.Help).add(slot2.slot.slotNumber);
+				ControlSlot.highlighting.get(EnumHighlighting.HELP).add(slot2.slot.slotNumber);
 			}
 		}
 	}

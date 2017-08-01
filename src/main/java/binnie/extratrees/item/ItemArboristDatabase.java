@@ -60,9 +60,9 @@ public class ItemArboristDatabase extends Item implements IItemModelRegister {
 		ItemStack itemStack = player.getHeldItem(hand);
 		final ExtraTreesGUID id;
 		if (isMaster(itemStack)) {
-			id = ExtraTreesGUID.DatabaseNEI;
+			id = ExtraTreesGUID.DATABASE_NEI;
 		} else {
-			id = ExtraTreesGUID.Database;
+			id = ExtraTreesGUID.DATABASE;
 		}
 
 		ExtraTrees.proxy.openGui(id, player, player.getPosition());

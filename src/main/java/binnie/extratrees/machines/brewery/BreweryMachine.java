@@ -25,12 +25,12 @@ public class BreweryMachine extends ExtraTreeMachine.PackageExtraTreeMachine imp
 	public static final int[] SLOTS_INVENTORY = new int[]{5, 6, 7, 8, 9, 10, 11, 12, 13};
 
 	public BreweryMachine() {
-		super("brewery", ExtraTreeTexture.Brewery, true);
+		super("brewery", ExtraTreeTexture.BREWERY, true);
 	}
 
 	@Override
 	public void createMachine(final Machine machine) {
-		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.Brewery);
+		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.BREWERY);
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 
 		inventory.addSlotArray(SLOT_RECIPE_GRAINS, "grain");

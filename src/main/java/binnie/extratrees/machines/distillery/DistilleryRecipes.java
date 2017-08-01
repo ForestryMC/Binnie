@@ -14,12 +14,13 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
 public class DistilleryRecipes {
+	private static final int LEVELS = 3;
 	private static final List<Map<Fluid, Pair<FluidStack, FluidStack>>> recipes = new ArrayList<>();
 
 	static {
-		recipes.add(new HashMap<>());
-		recipes.add(new HashMap<>());
-		recipes.add(new HashMap<>());
+		for(int i = 0;i < LEVELS;i++) {
+			recipes.add(new HashMap<>());
+		}
 	}
 
 	@Nullable
@@ -35,7 +36,7 @@ public class DistilleryRecipes {
 	}
 
 	public static boolean isValidInputLiquid(final FluidStack fluid) {
-		for (int i = 0; i < 3; ++i) {
+		for (int i = 0; i < LEVELS; ++i) {
 			Map<Fluid, Pair<FluidStack, FluidStack>> recipesForLevel = recipes.get(i);
 			Pair<FluidStack, FluidStack> recipe = recipesForLevel.get(fluid.getFluid());
 			if (recipe.getKey().isFluidEqual(fluid)) {
@@ -46,7 +47,7 @@ public class DistilleryRecipes {
 	}
 
 	public static boolean isValidOutputLiquid(final FluidStack fluid) {
-		for (int i = 0; i < 3; ++i) {
+		for (int i = 0; i < LEVELS; ++i) {
 			Map<Fluid, Pair<FluidStack, FluidStack>> recipesForLevel = recipes.get(i);
 			for (final Pair<FluidStack, FluidStack> recipe : recipesForLevel.values()) {
 				if (recipe.getValue().isFluidEqual(fluid)) {

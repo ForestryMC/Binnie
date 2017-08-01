@@ -10,30 +10,30 @@ import net.minecraftforge.fml.relauncher.Side;
 
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.gui.minecraft.Window;
+import binnie.extratrees.gui.WindowSetSquare;
 import binnie.extratrees.gui.database.WindowArboristDatabase;
-import binnie.extratrees.gui.machines.WindowBrewery;
-import binnie.extratrees.gui.machines.WindowDesigner;
-import binnie.extratrees.gui.machines.WindowDistillery;
-import binnie.extratrees.gui.machines.WindowLepidopteristDatabase;
-import binnie.extratrees.gui.machines.WindowLumbermill;
-import binnie.extratrees.gui.machines.WindowPress;
-import binnie.extratrees.gui.machines.WindowSetSquare;
+import binnie.extratrees.gui.database.WindowLepidopteristDatabase;
 import binnie.extratrees.kitchen.craftgui.WindowBottleRack;
+import binnie.extratrees.machines.brewery.WindowBrewery;
+import binnie.extratrees.machines.designer.WindowDesigner;
+import binnie.extratrees.machines.distillery.WindowDistillery;
+import binnie.extratrees.machines.fruitpress.WindowPress;
+import binnie.extratrees.machines.lumbermill.WindowLumbermill;
 
 public enum ExtraTreesGUID implements IBinnieGUID {
-	Database,
-	Woodworker,
-	Lumbermill,
-	DatabaseNEI,
-	Incubator,
-	MothDatabase,
-	MothDatabaseNEI,
-	Press,
-	Brewery,
-	Distillery,
-	KitchenBottleRack,
-	Infuser,
-	SetSquare;
+	DATABASE,
+	WOODWORKER,
+	LUMBERMILL,
+	DATABASE_NEI,
+	INCUBATOR,
+	MOTH_DATABASE,
+	MOTH_DATABASE_NEI,
+	PRESS,
+	BREWERY,
+	DISTILLERY,
+	KITCHEN_BOTTLE_RACK,
+	INFUSER,
+	SET_SQUARE;
 
 	@Override
 	public Window getWindow(final EntityPlayer player, final World world, final int x, final int y, final int z, final Side side) {
@@ -44,41 +44,41 @@ public enum ExtraTreesGUID implements IBinnieGUID {
 			object = (IInventory) tileEntity;
 		}
 		switch (this) {
-			case Database:
-			case DatabaseNEI: {
-				window = WindowArboristDatabase.create(player, side, this != ExtraTreesGUID.Database);
+			case DATABASE:
+			case DATABASE_NEI: {
+				window = WindowArboristDatabase.create(player, side, this != ExtraTreesGUID.DATABASE);
 				break;
 			}
-			case Woodworker: {
+			case WOODWORKER: {
 				window = WindowDesigner.create(player, object, side);
 				break;
 			}
-			case Lumbermill: {
+			case LUMBERMILL: {
 				window = WindowLumbermill.create(player, object, side);
 				break;
 			}
-			case KitchenBottleRack: {
+			case KITCHEN_BOTTLE_RACK: {
 				window = WindowBottleRack.create(player, object, side);
 				break;
 			}
-			case Press: {
+			case PRESS: {
 				window = WindowPress.create(player, object, side);
 				break;
 			}
-			case Brewery: {
+			case BREWERY: {
 				window = WindowBrewery.create(player, object, side);
 				break;
 			}
-			case Distillery: {
+			case DISTILLERY: {
 				window = WindowDistillery.create(player, object, side);
 				break;
 			}
-			case MothDatabase:
-			case MothDatabaseNEI: {
-				window = WindowLepidopteristDatabase.create(player, side, this != ExtraTreesGUID.MothDatabase);
+			case MOTH_DATABASE:
+			case MOTH_DATABASE_NEI: {
+				window = WindowLepidopteristDatabase.create(player, side, this != ExtraTreesGUID.MOTH_DATABASE);
 				break;
 			}
-			case SetSquare: {
+			case SET_SQUARE: {
 				window = WindowSetSquare.create(player, world, x, y, z, side);
 				break;
 			}

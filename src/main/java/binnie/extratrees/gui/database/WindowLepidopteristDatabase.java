@@ -1,4 +1,4 @@
-package binnie.extratrees.gui.machines;
+package binnie.extratrees.gui.database;
 
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -18,7 +18,6 @@ import binnie.core.gui.database.PageSpeciesResultant;
 import binnie.core.gui.database.WindowAbstractDatabase;
 import binnie.core.gui.minecraft.Window;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.gui.database.PageSpeciesImage;
 
 public class WindowLepidopteristDatabase extends WindowAbstractDatabase {
 	public WindowLepidopteristDatabase(final EntityPlayer player, final Side side, final boolean nei) {

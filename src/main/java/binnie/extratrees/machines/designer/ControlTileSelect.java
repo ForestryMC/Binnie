@@ -1,4 +1,4 @@
-package binnie.extratrees.gui.machines;
+package binnie.extratrees.machines.designer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,7 +33,6 @@ import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignCategory;
 import binnie.extratrees.carpentry.EnumDesign;
-import binnie.extratrees.machines.designer.ComponentDesignerRecipe;
 
 public class ControlTileSelect extends Control implements IControlValue<IDesign>, IControlScrollable {
 	IDesign value;

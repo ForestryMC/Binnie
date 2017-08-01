@@ -10,12 +10,12 @@ import binnie.extratrees.machines.ExtraTreeMachine;
 public class BottleRack {
 	public static class PackageBottleRack extends KitchenMachine.PackageKitchenMachine implements IMachineInformation {
 		public PackageBottleRack() {
-			super("bottleRack", ExtraTreeTexture.Lumbermill);
+			super("bottleRack", ExtraTreeTexture.LUMBERMILL);
 		}
 
 		@Override
 		public void createMachine(final Machine machine) {
-			new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.KitchenBottleRack);
+			new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.KITCHEN_BOTTLE_RACK);
 			final ComponentTankContainer inventory = new ComponentTankContainer(machine);
 			for (int x = 0; x < 36; ++x) {
 				inventory.addTank(x, "input", 1000);

@@ -1,12 +1,12 @@
 package binnie.core.resource;
 
 public enum ResourceType {
-	Item("items"),
+	ITEM("items"),
 	Block("blocks"),
-	Tile("tile"),
+	TILE("tile"),
 	GUI("gui"),
 	FX("fx"),
-	Entity("entities");
+	ENTITY("entities");
 
 	String name;
 

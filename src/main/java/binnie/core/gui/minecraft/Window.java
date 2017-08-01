@@ -237,7 +237,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
 	@SideOnly(Side.CLIENT)
 	public void onUpdateClient() {
 		super.onUpdateClient();
-		ControlSlot.highlighting.get(EnumHighlighting.Help).clear();
+		ControlSlot.highlighting.get(EnumHighlighting.HELP).clear();
 		ControlSlot.shiftClickActive = false;
 	}
 

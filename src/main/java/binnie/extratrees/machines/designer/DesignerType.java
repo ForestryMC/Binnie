@@ -17,11 +17,11 @@ import binnie.extratrees.carpentry.ModuleCarpentry;
 import binnie.extratrees.core.ExtraTreeTexture;
 
 public enum DesignerType {
-	Woodworker("woodworker", ExtraTreeTexture.Carpenter),
-	Panelworker("panelworker", ExtraTreeTexture.Paneler),
-	GlassWorker("glassworker", ExtraTreeTexture.Paneler),
+	Woodworker("woodworker", ExtraTreeTexture.CARPENTER),
+	Panelworker("panelworker", ExtraTreeTexture.PANELER),
+	GlassWorker("glassworker", ExtraTreeTexture.PANELER),
 	// TODO why is this the Paneler texture?
-	Tileworker("tileworker", ExtraTreeTexture.Tileworker);
+	Tileworker("tileworker", ExtraTreeTexture.TILEWORKER);
 
 	public String name;
 	public IBinnieTexture texture;

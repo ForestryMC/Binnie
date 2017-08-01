@@ -369,7 +369,7 @@ public class ContainerCraftGUI extends Container {
 	public void setMouseOverSlot(final Slot slot) {
 		if (slot.slotNumber != this.mousedOverSlotNumber) {
 			this.mousedOverSlotNumber = slot.slotNumber;
-			ControlSlot.highlighting.get(EnumHighlighting.ShiftClick).clear();
+			ControlSlot.highlighting.get(EnumHighlighting.SHIFT_CLICK).clear();
 			final NBTTagCompound nbt = new NBTTagCompound();
 			nbt.setShort("slot", (short) slot.slotNumber);
 			this.window.sendClientAction("mouse-over-slot", nbt);
@@ -399,9 +399,9 @@ public class ContainerCraftGUI extends Container {
 
 	@SideOnly(Side.CLIENT)
 	private void onRecieveShiftClickHighlights(final EntityPlayer player, final NBTTagCompound data) {
-		ControlSlot.highlighting.get(EnumHighlighting.ShiftClick).clear();
+		ControlSlot.highlighting.get(EnumHighlighting.SHIFT_CLICK).clear();
 		for (final int slotnumber : data.getIntArray("slots")) {
-			ControlSlot.highlighting.get(EnumHighlighting.ShiftClick).add(slotnumber);
+			ControlSlot.highlighting.get(EnumHighlighting.SHIFT_CLICK).add(slotnumber);
 		}
 	}
 

@@ -25,12 +25,12 @@ public class LumbermillMachine extends ExtraTreeMachine.PackageExtraTreeMachine 
 	public static final int TANK_WATER_CAPACITY = 10000;
 
 	public LumbermillMachine() {
-		super("lumbermill", ExtraTreeTexture.Lumbermill, true);
+		super("lumbermill", ExtraTreeTexture.LUMBERMILL, true);
 	}
 
 	@Override
 	public void createMachine(final Machine machine) {
-		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.Lumbermill);
+		new ExtraTreeMachine.ComponentExtraTreeGUI(machine, ExtraTreesGUID.LUMBERMILL);
 		final ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 
 		InventorySlot slotLog = inventory.addSlot(SLOT_LOG, "input");

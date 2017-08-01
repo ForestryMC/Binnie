@@ -59,25 +59,27 @@ public class LumbermillRecipes {
 
 		List<IWoodType> registeredWoodTypes = TreeManager.woodAccess.getRegisteredWoodTypes();
 		for (IWoodType woodType : registeredWoodTypes) {
-			ItemStack logStack = TreeManager.woodAccess.getStack(woodType, WoodBlockKind.LOG, false);
-			ItemStack logCopy = logStack.copy();
-			logCopy.setCount(1);
+			for(boolean fireproof : new boolean[]{true, false}) {
+				ItemStack logStack = TreeManager.woodAccess.getStack(woodType, WoodBlockKind.LOG, fireproof);
+				ItemStack logCopy = logStack.copy();
+				logCopy.setCount(1);
 
-			fakeCraftingInventory.clear();
-			fakeCraftingInventory.setInventorySlotContents(0, logCopy);
+				fakeCraftingInventory.clear();
+				fakeCraftingInventory.setInventorySlotContents(0, logCopy);
 
-			try {
-				ItemStack recipeOutput = craftingManager.findMatchingRecipe(fakeCraftingInventory, FakeCraftingWorld.getInstance());
-				if (!recipeOutput.isEmpty()) {
-					if (OreDictionaryUtil.hasOreId(recipeOutput, plankOreId)) {
-						Item logItem = logCopy.getItem();
-						ItemStack outputCopy = recipeOutput.copy();
-						outputCopy.setCount((int) Math.ceil(outputCopy.getCount() * 1.5f)); // turns stack of 4 up to 6
-						recipes.put(logItem, Pair.of(logCopy, outputCopy));
+				try {
+					ItemStack recipeOutput = craftingManager.findMatchingRecipe(fakeCraftingInventory, FakeCraftingWorld.getInstance());
+					if (!recipeOutput.isEmpty()) {
+						if (OreDictionaryUtil.hasOreId(recipeOutput, plankOreId)) {
+							Item logItem = logCopy.getItem();
+							ItemStack outputCopy = recipeOutput.copy();
+							outputCopy.setCount((int) Math.ceil(outputCopy.getCount() * 1.5f)); // turns stack of 4 up to 6
+							recipes.put(logItem, Pair.of(logCopy, outputCopy));
+						}
 					}
-				}
-			} catch (RuntimeException ignored) {
+				} catch (RuntimeException ignored) {
 
+				}
 			}
 		}
 	}
