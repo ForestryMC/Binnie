@@ -25,7 +25,7 @@ public class ControlColorOption extends ControlTextOption<IFlowerColor> {
 		textWidget.setSize(textWidget.getSize().sub(new Point(24, 0)));
 		int th = CraftGUI.RENDER.textHeight(textWidget.getValue(), textWidget.getSize().x());
 		int height = Math.max(20, th + 6);
-		setSize(new Point(size().x(), height));
+		setSize(new Point(this.getSize().x(), height));
 		textWidget.setSize(new Point(textWidget.getSize().x(), height));
 		boxPosition = new Point(2, (height - 18) / 2);
 	}

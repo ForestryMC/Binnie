@@ -21,6 +21,7 @@ import binnie.extratrees.block.IPlankType;
 import binnie.extratrees.block.WoodManager;
 import binnie.extratrees.block.decor.FenceType;
 
+//TODO: Add to DatabaseConstants
 @SideOnly(Side.CLIENT)
 public class PagePlanksOverview extends PageAbstract<ItemStack> {
 	public PagePlanksOverview(final IWidget parent, final DatabaseTab tab) {
@@ -31,8 +32,9 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 	public void onValueChanged(final ItemStack species) {
 		this.deleteAllChildren();
 		final WindowAbstractDatabase database = Window.get(this);
-		new ControlText(this, new Area(0, 0, this.size().x(), 24), species.getDisplayName(), TextJustification.MIDDLE_CENTER);
-		new ControlText(this, new Area(12, 24, this.size().x() - 24, 24), I18N.localise("extratrees.gui.database.planks.use"), TextJustification.MIDDLE_LEFT);
+		Point size = getSize();
+		new ControlText(this, new Area(0, 0, size.x(), 24), species.getDisplayName(), TextJustification.MIDDLE_CENTER);
+		new ControlText(this, new Area(12, 24, size.x() - 24, 24), I18N.localise("extratrees.gui.database.planks.use"), TextJustification.MIDDLE_LEFT);
 		final IPlankType type = WoodManager.getPlankType(species);
 		int x = 12;
 		if (type != null) {

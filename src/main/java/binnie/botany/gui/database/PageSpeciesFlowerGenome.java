@@ -106,7 +106,7 @@ public class PageSpeciesFlowerGenome extends PageSpecies {
 		int numOfLines = 1 + (tot - 1) / 3;
 		new ControlText(contents, new Area(0, y - (numOfLines - 1) * 18, w2, 4 + 18 * numOfLines), I18N.localise(DatabaseConstants.BOTANY_GENOME_KEY + ".varieties"), TextJustification.MIDDLE_RIGHT);
 		y += th;
-		contents.setSize(new Point(contents.size().x(), y));
+		contents.setSize(new Point(contents.getSize().x(), y));
 		scrollable.setScrollableContent(contents);
 	}
 }

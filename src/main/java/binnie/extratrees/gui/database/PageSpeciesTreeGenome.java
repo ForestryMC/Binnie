@@ -138,7 +138,7 @@ public class PageSpeciesTreeGenome extends PageSpecies {
 		new ControlText(contents, new Area(0, y, w2, th), syst.getChromosomeShortName(EnumTreeChromosome.GIRTH) + " : ", TextJustification.MIDDLE_RIGHT);
 		new ControlText(contents, new Area(w2, y, w3, th), genome.getGirth() + "x" + genome.getGirth(), TextJustification.MIDDLE_LEFT);
 		y += th;
-		contents.setSize(new Point(contents.size().x(), y));
+		contents.setSize(new Point(contents.getSize().x(), y));
 		scrollable.setScrollableContent(contents);
 	}
 }

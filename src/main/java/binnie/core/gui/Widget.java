@@ -49,6 +49,7 @@ public class Widget implements IWidget {
 		}
 	}
 
+	/* ATTRIBUTES */
 	@Override
 	public List<IWidgetAttribute> getAttributes() {
 		return this.attributes;
@@ -64,6 +65,7 @@ public class Widget implements IWidget {
 		return this.attributes.add(attribute);
 	}
 
+	/* CHILDREN */
 	@Override
 	public final void deleteChild(final IWidget child) {
 		if (child == null) {
@@ -77,21 +79,6 @@ public class Widget implements IWidget {
 	public final void deleteAllChildren() {
 		while (!this.children.isEmpty()) {
 			this.deleteChild(this.children.get(0));
-		}
-	}
-
-	@Override
-	@Nullable
-	public IWidget getParent() {
-		return this.parent;
-	}
-
-	@Override
-	public final ITopLevelWidget getTopParent() {
-		if (this.parent == null) {
-			return (ITopLevelWidget) this;
-		} else {
-			return this.parent.getTopParent();
 		}
 	}
 
@@ -126,20 +113,23 @@ public class Widget implements IWidget {
 		return this.children;
 	}
 
+	/* PARENT */
 	@Override
-	public final boolean isTopLevel() {
-		return this instanceof ITopLevelWidget;
+	@Nullable
+	public IWidget getParent() {
+		return this.parent;
 	}
 
 	@Override
-	public Point getPosition() {
-		return this.position.add(this.offset);
+	public final ITopLevelWidget getTopParent() {
+		if (this.parent == null) {
+			return (ITopLevelWidget) this;
+		} else {
+			return this.parent.getTopParent();
+		}
 	}
 
-	@Override
-	public final Point size() {
-		return this.size;
-	}
+	/* GEOMETRY */
 
 	@Override
 	public final void setPosition(final Point vector) {
@@ -150,8 +140,23 @@ public class Widget implements IWidget {
 	}
 
 	@Override
+	public Point getPosition() {
+		return this.position.add(this.offset);
+	}
+
+	@Override
+	public final boolean isTopLevel() {
+		return this instanceof ITopLevelWidget;
+	}
+
+	@Override
+	public final Point getSize() {
+		return this.size;
+	}
+
+	@Override
 	public final Area getArea() {
-		return new Area(Point.ZERO, this.size());
+		return new Area(Point.ZERO, this.getSize());
 	}
 
 	@Override
@@ -185,11 +190,6 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public final Point getSize() {
-		return this.size();
-	}
-
-	@Override
 	public final void setSize(final Point vector) {
 		if (!vector.equals(this.size)) {
 			this.size = new Point(vector);
@@ -211,6 +211,26 @@ public class Widget implements IWidget {
 	}
 
 	@Override
+	public int getXPos() {
+		return this.getPosition().x();
+	}
+
+	@Override
+	public int getYPos() {
+		return getPosition().y();
+	}
+
+	@Override
+	public int getWidth() {
+		return this.getSize().x();
+	}
+
+	@Override
+	public int getHeight() {
+		return this.getSize().y();
+	}
+
+	@Override
 	public final int getColor() {
 		return this.colour;
 	}
@@ -223,10 +243,7 @@ public class Widget implements IWidget {
 		}
 	}
 
-	@Override
-	public boolean canMouseOver() {
-		return this.hasAttribute(Attribute.MOUSE_OVER);
-	}
+	/* EVENTS */
 
 	@Override
 	public boolean canFocus() {
@@ -245,21 +262,27 @@ public class Widget implements IWidget {
 
 	@Override
 	public final void callEvent(final Event event) {
-		this.getTopParent().recieveEvent(event);
+		this.getTopParent().receiveEvent(event);
 	}
 
+	/* MOUSE */
 	@Override
 	@SuppressWarnings("unchecked")
-	public final void recieveEvent(final Event event) {
+	public final void receiveEvent(final Event event) {
 		for (final EventHandler<? extends Event> handler : this.globalEventHandlers) {
 			if (handler.handles(event)) {
 				((EventHandler<Event>) handler).onEvent(event);
 			}
 		}
-		List<IWidget> widgets = new ArrayList<>(this.getChildren());
-		for (final IWidget child : widgets) {
-			child.recieveEvent(event);
+
+		for (IWidget child : children) {
+			child.receiveEvent(event);
 		}
+	}
+
+	@Override
+	public boolean canMouseOver() {
+		return this.hasAttribute(Attribute.MOUSE_OVER);
 	}
 
 	@Override
@@ -273,6 +296,30 @@ public class Widget implements IWidget {
 		return parent == null ? this.getMousePosition() : parent.getRelativeMousePosition().sub(this.getPosition());
 	}
 
+	@Override
+	public final boolean calculateIsMouseOver() {
+		final Point mouse = this.getRelativeMousePosition();
+		if (!this.cropped || this.cropArea == null) {
+			return this.isMouseOverWidget(mouse);
+		}
+		final IWidget cropRelative = (this.cropWidget != null) ? this.cropWidget : this;
+		final Point pos = Point.sub(cropRelative.getAbsolutePosition(), this.getAbsolutePosition());
+		final Point size = new Point(this.cropArea.size().x(), this.cropArea.size().y());
+		final boolean inCrop = mouse.x() > pos.x() && mouse.y() > pos.y() && mouse.x() < pos.x() + size.x() && mouse.y() < pos.y() + size.y();
+		return inCrop && this.isMouseOverWidget(mouse);
+	}
+
+	@Override
+	public boolean isMouseOverWidget(final Point relativeMouse) {
+		return this.getArea().contains(relativeMouse);
+	}
+
+	@Override
+	public final boolean isMouseOver() {
+		return this.getTopParent().isMouseOver(this);
+	}
+
+	/* CROPPED */
 	@Override
 	public boolean isCroppedWidet() {
 		return this.cropped;
@@ -325,24 +372,7 @@ public class Widget implements IWidget {
 		}
 	}
 
-	@Override
-	public final boolean calculateIsMouseOver() {
-		final Point mouse = this.getRelativeMousePosition();
-		if (!this.cropped || this.cropArea == null) {
-			return this.isMouseOverWidget(mouse);
-		}
-		final IWidget cropRelative = (this.cropWidget != null) ? this.cropWidget : this;
-		final Point pos = Point.sub(cropRelative.getAbsolutePosition(), this.getAbsolutePosition());
-		final Point size = new Point(this.cropArea.size().x(), this.cropArea.size().y());
-		final boolean inCrop = mouse.x() > pos.x() && mouse.y() > pos.y() && mouse.x() < pos.x() + size.x() && mouse.y() < pos.y() + size.y();
-		return inCrop && this.isMouseOverWidget(mouse);
-	}
-
-	@Override
-	public boolean isMouseOverWidget(final Point relativeMouse) {
-		return this.getArea().contains(relativeMouse);
-	}
-
+	/* STATES*/
 	@Override
 	public final void enable() {
 		this.enabled = true;
@@ -406,11 +436,6 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public final boolean isMouseOver() {
-		return this.getTopParent().isMouseOver(this);
-	}
-
-	@Override
 	public boolean isChildVisible(final IWidget child) {
 		return true;
 	}
@@ -420,6 +445,7 @@ public class Widget implements IWidget {
 		return true;
 	}
 
+	/* RENDERING */
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onRender(final RenderStage stage, int guiWidth, int guiHeight) {
@@ -508,26 +534,6 @@ public class Widget implements IWidget {
 			}
 		}
 		return true;
-	}
-
-	@Override
-	public int getXPos() {
-		return this.getPosition().x();
-	}
-
-	@Override
-	public int getYPos() {
-		return getPosition().y();
-	}
-
-	@Override
-	public int getWidth() {
-		return this.size().x();
-	}
-
-	@Override
-	public int getHeight() {
-		return this.size().y();
 	}
 
 	public IWidget getWidget() {

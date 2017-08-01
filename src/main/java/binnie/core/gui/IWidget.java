@@ -12,26 +12,24 @@ import binnie.core.gui.geometry.Area;
 import binnie.core.gui.geometry.Point;
 
 public interface IWidget {
+	/**
+	 *
+	 * @return the parent of this widget
+	 */
 	@Nullable
 	IWidget getParent();
 
-	void deleteChild(final IWidget p0);
-
-	void deleteAllChildren();
-
 	ITopLevelWidget getTopParent();
 
+	/**
+	 * @return true if this widget is the {@link #getTopParent()}
+	 */
 	boolean isTopLevel();
 
+	/**
+	 * @return the position of this widget
+	 */
 	Point getPosition();
-
-	void setPosition(final Point p0);
-
-	Point getSize();
-
-	void setSize(final Point p0);
-
-	Point size();
 
 	Point getOriginalPosition();
 
@@ -39,19 +37,45 @@ public interface IWidget {
 
 	Point getOriginalAbsolutePosition();
 
+	void setPosition(Point position);
+
+	/**
+	 * @return the size of this widget
+	 */
+	Point getSize();
+
+	void setSize(Point size);
+
+	/**
+	 * @return the offset of this widget
+	 */
 	Point getOffset();
 
 	void setOffset(final Point p0);
 
+	/**
+	 * @return the area of this widget
+	 */
 	Area getArea();
 
+	/**
+	 * @return the position of the mouse
+	 */
 	Point getMousePosition();
 
 	Point getRelativeMousePosition();
 
+	int getXPos();
+
+	int getYPos();
+
+	int getWidth();
+
+	int getHeight();
+
 	int getColor();
 
-	void setColor(final int p0);
+	void setColor(int color);
 
 	@SideOnly(Side.CLIENT)
 	void render(int guiWidth, int guiHeight);
@@ -79,21 +103,44 @@ public interface IWidget {
 
 	boolean isDragged();
 
-	boolean isChildVisible(final IWidget p0);
-
-	boolean isChildEnabled(final IWidget p0);
-
 	boolean canMouseOver();
 
 	boolean canFocus();
 
-	IWidget addChild(final IWidget p0);
+	/* CHILDREN */
+	boolean isChildVisible(IWidget child);
+
+	boolean isChildEnabled(IWidget child);
+
+	IWidget addChild(IWidget child);
 
 	List<IWidget> getChildren();
 
-	void callEvent(final Event p0);
+	void deleteChild(IWidget child);
 
-	void recieveEvent(final Event p0);
+	void deleteAllChildren();
+
+	/* EVENTS*/
+
+	/**
+	 * Calls an event
+	 */
+	void callEvent(Event event);
+
+	/**
+	 * Called if this widget receives an event
+	 */
+	void receiveEvent(Event event);
+
+	/**
+	 * Adds an event handler to this widget
+	 */
+	<E extends Event> void addEventHandler(EventHandler<E> eventHandler);
+
+	/**
+	 * Adds an event handler to this widget and sets his origin to self
+	 */
+	<E extends Event> void addSelfEventHandler(EventHandler<E> eventHandler);
 
 	@SideOnly(Side.CLIENT)
 	void onUpdateClient();
@@ -120,26 +167,27 @@ public interface IWidget {
 
 	boolean isDescendant(final IWidget p0);
 
+	/* ATTRIBUTES */
+
+	/**
+	 * @return a list with all attributes that this widget has.
+	 */
 	List<IWidgetAttribute> getAttributes();
 
-	boolean hasAttribute(final IWidgetAttribute p0);
+	/**
+	 *
+	 * @return true if this widget has this attribute
+	 */
+	boolean hasAttribute(IWidgetAttribute attribute);
 
-	boolean addAttribute(final IWidgetAttribute p0);
+	/**
+	 * Adds an attribute to this widget
+	 */
+	boolean addAttribute(IWidgetAttribute attribute);
 
-	<E extends Event> void addEventHandler(final EventHandler<E> p0);
+	boolean contains(Point point);
 
-	<E extends Event> void addSelfEventHandler(final EventHandler<E> p0);
-
-	boolean contains(final Point point);
-
-	int getXPos();
-
-	int getYPos();
-
-	int getWidth();
-
-	int getHeight();
 
 	@SideOnly(Side.CLIENT)
-	void onRender(final RenderStage stage, int guiWidth, int guiHeight);
+	void onRender(RenderStage stage, int guiWidth, int guiHeight);
 }
