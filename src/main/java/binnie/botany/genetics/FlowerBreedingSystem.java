@@ -20,8 +20,8 @@ import binnie.botany.api.EnumFlowerStage;
 import binnie.botany.api.IBotanistTracker;
 import binnie.botany.core.BotanyCore;
 import binnie.core.genetics.BreedingSystem;
-import binnie.core.genetics.EnumTolerance;
 import binnie.core.genetics.ForestryAllele;
+import binnie.core.genetics.Tolerance;
 import binnie.core.util.I18N;
 
 public class FlowerBreedingSystem extends BreedingSystem {
@@ -108,7 +108,7 @@ public class FlowerBreedingSystem extends BreedingSystem {
 			case HUMIDITY_TOLERANCE:
 			case PH_TOLERANCE:
 			case TEMPERATURE_TOLERANCE:
-				for (EnumTolerance a3 : EnumTolerance.values()) {
+				for (Tolerance a3 : Tolerance.values()) {
 					alleles.add(a3.getAllele());
 				}
 				break;

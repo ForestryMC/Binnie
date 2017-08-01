@@ -24,10 +24,6 @@ public class ControlPages<T> extends Control implements IControlValues<T>, ICont
 	}
 
 	@Override
-	public void onAddChild(final IWidget widget) {
-	}
-
-	@Override
 	public T getValue() {
 		return this.value;
 	}

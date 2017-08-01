@@ -15,6 +15,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
@@ -22,7 +23,7 @@ import forestry.api.lepidopterology.EnumButterflyChromosome;
 import binnie.Binnie;
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.core.BinnieCore;
-import binnie.core.genetics.EnumTolerance;
+import binnie.core.genetics.Tolerance;
 import binnie.core.liquid.FluidContainerType;
 
 public class Acclimatiser {
@@ -136,7 +137,7 @@ public class Acclimatiser {
 		return system.alter(stack, acc);
 	}
 
-	public static EnumTolerance alterTolerance(final EnumTolerance tol, final float effect) {
+	public static Tolerance alterTolerance(final Tolerance tol, final float effect) {
 		int[] bounds = tol.getBounds();
 		int[] range;
 		if (effect < 0.0f) {
@@ -150,16 +151,16 @@ public class Acclimatiser {
 		if (range[1] > 5) {
 			range[1] = 5;
 		}
-		final forestry.api.genetics.EnumTolerance[] up = {forestry.api.genetics.EnumTolerance.NONE, forestry.api.genetics.EnumTolerance.UP_1, forestry.api.genetics.EnumTolerance.UP_2, forestry.api.genetics.EnumTolerance.UP_3, forestry.api.genetics.EnumTolerance.UP_4, forestry.api.genetics.EnumTolerance.UP_5};
-		final forestry.api.genetics.EnumTolerance[] down = {forestry.api.genetics.EnumTolerance.NONE, forestry.api.genetics.EnumTolerance.DOWN_1, forestry.api.genetics.EnumTolerance.DOWN_2, forestry.api.genetics.EnumTolerance.DOWN_3, forestry.api.genetics.EnumTolerance.DOWN_4, forestry.api.genetics.EnumTolerance.DOWN_5};
-		final forestry.api.genetics.EnumTolerance[] both = {forestry.api.genetics.EnumTolerance.NONE, forestry.api.genetics.EnumTolerance.BOTH_1, forestry.api.genetics.EnumTolerance.BOTH_2, forestry.api.genetics.EnumTolerance.BOTH_3, forestry.api.genetics.EnumTolerance.BOTH_4, forestry.api.genetics.EnumTolerance.BOTH_5};
+		final EnumTolerance[] up = {EnumTolerance.NONE, EnumTolerance.UP_1, EnumTolerance.UP_2, EnumTolerance.UP_3, EnumTolerance.UP_4, EnumTolerance.UP_5};
+		final EnumTolerance[] down = {EnumTolerance.NONE, EnumTolerance.DOWN_1, EnumTolerance.DOWN_2, EnumTolerance.DOWN_3, EnumTolerance.DOWN_4, EnumTolerance.DOWN_5};
+		final EnumTolerance[] both = {EnumTolerance.NONE, EnumTolerance.BOTH_1, EnumTolerance.BOTH_2, EnumTolerance.BOTH_3, EnumTolerance.BOTH_4, EnumTolerance.BOTH_5};
 		if (range[0] == 0) {
-			return EnumTolerance.get(up[range[1]]);
+			return Tolerance.get(up[range[1]]);
 		}
 		if (range[1] == 0) {
-			return EnumTolerance.get(down[-range[0]]);
+			return Tolerance.get(down[-range[0]]);
 		}
 		final int avg = (int) ((-range[0] + range[1]) / 2.0f + 0.6f);
-		return EnumTolerance.get(both[avg]);
+		return Tolerance.get(both[avg]);
 	}
 }

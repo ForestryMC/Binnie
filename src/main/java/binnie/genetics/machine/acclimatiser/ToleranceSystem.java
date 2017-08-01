@@ -11,8 +11,8 @@ import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 
-import binnie.core.genetics.EnumTolerance;
 import binnie.core.genetics.Gene;
+import binnie.core.genetics.Tolerance;
 import binnie.genetics.machine.inoculator.Inoculator;
 
 class ToleranceSystem {
@@ -30,7 +30,7 @@ class ToleranceSystem {
 		final IIndividual member = AlleleManager.alleleRegistry.getIndividual(stack);
 		final IGenome genome = member.getGenome();
 		final IAlleleTolerance tolAllele = (IAlleleTolerance) genome.getActiveAllele(this.chromosomeOrdinal);
-		final EnumTolerance tol = EnumTolerance.get(tolAllele.getValue());
+		final Tolerance tol = Tolerance.get(tolAllele.getValue());
 		final float effect = this.type.getEffect(acclim);
 		return (effect > 0.0f && tol.getBounds()[1] < 5) || (effect < 0.0f && tol.getBounds()[0] > -5);
 	}
@@ -44,8 +44,8 @@ class ToleranceSystem {
 		final IIndividual member = AlleleManager.alleleRegistry.getIndividual(stack);
 		final IGenome genome = member.getGenome();
 		final IAlleleTolerance tolAllele = (IAlleleTolerance) genome.getActiveAllele(this.chromosomeOrdinal);
-		final EnumTolerance tol = EnumTolerance.get(tolAllele.getValue());
-		final EnumTolerance newTol = Acclimatiser.alterTolerance(tol, effect);
+		final Tolerance tol = Tolerance.get(tolAllele.getValue());
+		final Tolerance newTol = Acclimatiser.alterTolerance(tol, effect);
 		if (rand.nextFloat() > 1.0f / (-newTol.getBounds()[0] + newTol.getBounds()[1])) {
 			return stack;
 		}

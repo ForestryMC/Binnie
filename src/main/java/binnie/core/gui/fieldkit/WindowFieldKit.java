@@ -36,6 +36,7 @@ import binnie.core.gui.geometry.Point;
 import binnie.core.gui.geometry.TextJustification;
 import binnie.core.gui.minecraft.InventoryType;
 import binnie.core.gui.minecraft.Window;
+import binnie.core.gui.minecraft.WindowInventory;
 import binnie.core.gui.minecraft.control.ControlImage;
 import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.gui.minecraft.control.ControlSlot;
@@ -84,9 +85,10 @@ public class WindowFieldKit extends Window {
 	}
 
 	private void setupValidators() {
-		this.getWindowInventory().setValidator(INDIVIDUAL_SLOT, new SlotValidatorIndividual(null));
-		this.getWindowInventory().setValidator(PAPER_SLOT, new SlotValidatorPaper(null));
-		this.getWindowInventory().disableAutoDispense(PAPER_SLOT);
+		WindowInventory inventory = this.getWindowInventory();
+		inventory.setValidator(INDIVIDUAL_SLOT, new SlotValidatorIndividual(null));
+		inventory.setValidator(PAPER_SLOT, new SlotValidatorPaper(null));
+		inventory.disableAutoDispense(PAPER_SLOT);
 	}
 
 	@Override
@@ -94,8 +96,9 @@ public class WindowFieldKit extends Window {
 	public void initialiseClient() {
 		this.setTitle(I18N.localise("binniecore.gui.fieldkit.title"));
 		CraftGUI.RENDER.setStyleSheet(new StyleSheetPunnett());
-		this.getWindowInventory().createSlot(INDIVIDUAL_SLOT);
-		this.getWindowInventory().createSlot(PAPER_SLOT);
+		WindowInventory inventory = this.getWindowInventory();
+		inventory.createSlot(INDIVIDUAL_SLOT);
+		inventory.createSlot(PAPER_SLOT);
 		this.setupValidators();
 		new ControlPlayerInventory(this);
 		final Point handGlass = new Point(16, 32);
@@ -122,12 +125,13 @@ public class WindowFieldKit extends Window {
 	@Override
 	public void initialiseServer() {
 		//create slots
+		WindowInventory inventory = this.getWindowInventory();
 		final ItemStack kit = this.getPlayer().getHeldItemMainhand();
 		final int sheets = 64 - kit.getItemDamage();
-		this.getWindowInventory().createSlot(INDIVIDUAL_SLOT);
-		this.getWindowInventory().createSlot(PAPER_SLOT);
+		inventory.createSlot(INDIVIDUAL_SLOT);
+		inventory.createSlot(PAPER_SLOT);
 		if (sheets != 0) {
-			this.getWindowInventory().setInventorySlotContents(PAPER_SLOT, new ItemStack(Items.PAPER, sheets));
+			inventory.setInventorySlotContents(PAPER_SLOT, new ItemStack(Items.PAPER, sheets));
 		}
 		this.setupValidators();
 	}
@@ -191,9 +195,10 @@ public class WindowFieldKit extends Window {
 	@Override
 	public void onWindowInventoryChanged() {
 		super.onWindowInventoryChanged();
+		WindowInventory inventory = getWindowInventory();
 		if (this.isServer()) {
 			final ItemStack kit = this.getPlayer().getHeldItemMainhand();
-			ItemStack paper = getWindowInventory().getStackInSlot(PAPER_SLOT);
+			ItemStack paper = inventory.getStackInSlot(PAPER_SLOT);
 			final int sheets = 64 - kit.getItemDamage();
 			final int size = (paper.isEmpty()) ? 0 : paper.getCount();
 			if (sheets != size) {
@@ -202,10 +207,10 @@ public class WindowFieldKit extends Window {
 			((EntityPlayerMP) this.getPlayer()).updateHeldItem();
 		}
 		if (this.isClient()) {
-			final ItemStack item = this.getWindowInventory().getStackInSlot(INDIVIDUAL_SLOT);
+			final ItemStack item = inventory.getStackInSlot(INDIVIDUAL_SLOT);
 			this.text.setValue("");
 			if (!item.isEmpty() && !Analyser.isAnalysed(item)) {
-				if (this.getWindowInventory().getStackInSlot(1).isEmpty()) {
+				if (inventory.getStackInSlot(PAPER_SLOT).isEmpty()) {
 					this.text.setValue(I18N.localise("binniecore.gui.fieldkit.paper.no"));
 					this.isAnalysing = false;
 					this.analyseProgress = 1;
@@ -258,9 +263,10 @@ public class WindowFieldKit extends Window {
 	public void receiveGuiNBTOnServer(final EntityPlayer player, final String name, final NBTTagCompound nbt) {
 		super.receiveGuiNBTOnServer(player, name, nbt);
 		if (name.equals("analyse")) {
-			ItemStack individualStack = this.getWindowInventory().getStackInSlot(INDIVIDUAL_SLOT);
-			this.getWindowInventory().setInventorySlotContents(INDIVIDUAL_SLOT, Analyser.analyse(individualStack, this.getWorld(), this.getUsername()));
-			this.getWindowInventory().decrStackSize(PAPER_SLOT, 1);
+			WindowInventory inventory = getWindowInventory();
+			ItemStack individualStack = inventory.getStackInSlot(INDIVIDUAL_SLOT);
+			inventory.setInventorySlotContents(INDIVIDUAL_SLOT, Analyser.analyse(individualStack, this.getWorld(), this.getUsername()));
+			inventory.decrStackSize(PAPER_SLOT, 1);
 		}
 	}
 }

@@ -169,7 +169,7 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
 	}
 
 	private Collection<IWidget> getQueuedWidgets(final IWidget widget) {
-		final List<IWidget> widgets = new ArrayList<>();
+		List<IWidget> widgets = new ArrayList<>();
 		boolean addChildren = true;
 		Area croppedZone = widget.getCroppedZone();
 		if (croppedZone != null) {

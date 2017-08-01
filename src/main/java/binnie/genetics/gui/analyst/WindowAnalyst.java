@@ -311,6 +311,7 @@ public class WindowAnalyst extends Window {
 			analystPages.add((databasePage != null) ? databasePage : new AnalystPageDatabase(analystPanel, analystPageSize, currentSystem, isMaster));
 		}
 		if (current != null) {
+			analystPanel.setOffset(new Point(0, 00));
 			analystPages.add(new AnalystPageDescription(analystPanel, analystPageSize, current));
 			analystPages.add(new AnalystPageGenome(analystPanel, analystPageSize, true, current));
 			if (!isDatabase) {

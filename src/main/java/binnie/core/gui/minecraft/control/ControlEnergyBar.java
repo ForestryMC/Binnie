@@ -105,7 +105,7 @@ public class ControlEnergyBar extends Control implements ITooltip {
 			final int c = -1442840576 + MinecraftTooltip.getOutline(Tooltip.Type.HELP);
 			RenderUtil.drawGradientRect(this.getArea().inset(1), c, c);
 		} else if (ControlEnergyBar.isError) {
-			final int c = -1442840576 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error);
+			final int c = -1442840576 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR);
 			RenderUtil.drawGradientRect(this.getArea().inset(1), c, c);
 		}
 		CraftGUI.RENDER.texture(CraftGUITexture.ENERGY_BAR_GLOW, area);
@@ -122,7 +122,7 @@ public class ControlEnergyBar extends Control implements ITooltip {
 			CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, area.outset(1));
 		} else if (ControlEnergyBar.isError) {
 			final Area area = this.getArea();
-			RenderUtil.setColour(MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error));
+			RenderUtil.setColour(MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR));
 			CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, area.outset(1));
 		}
 	}

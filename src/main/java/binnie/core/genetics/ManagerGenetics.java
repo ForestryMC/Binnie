@@ -119,11 +119,11 @@ public class ManagerGenetics extends ManagerBase {
 	}
 
 	public IAllele getToleranceAllele(final forestry.api.genetics.EnumTolerance tol) {
-		return AlleleManager.alleleRegistry.getAllele(EnumTolerance.values()[tol.ordinal()].getUID());
+		return AlleleManager.alleleRegistry.getAllele(Tolerance.values()[tol.ordinal()].getUID());
 	}
 
 	public int[] getTolerance(final forestry.api.genetics.EnumTolerance tol) {
-		return EnumTolerance.values()[tol.ordinal()].getBounds();
+		return Tolerance.values()[tol.ordinal()].getBounds();
 	}
 
 	public Collection<BreedingSystem> getActiveSystems() {

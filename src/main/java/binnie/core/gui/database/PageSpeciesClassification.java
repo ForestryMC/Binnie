@@ -30,16 +30,15 @@ public class PageSpeciesClassification extends PageSpecies {
 	@Override
 	public void onValueChanged(final IAlleleSpecies species) {
 		if (species != null) {
-			for (final ControlText text : this.levels.values()) {
-				text.setValue("- - -");
+			for (ControlText control : this.levels.values()) {
+				control.setValue("- - -");
 			}
 			this.genus.setValue(species.getBinomial());
 			for (IClassification classification = species.getBranch(); classification != null; classification = classification.getParent()) {
-				final IClassification.EnumClassLevel level = classification.getLevel();
-				String text2 = "";
-				final int n = level.ordinal();
-				text2 += classification.getScientific();
-				this.levels.get(level).setValue(text2);
+				IClassification.EnumClassLevel level = classification.getLevel();
+				String text = "";
+				text += classification.getScientific();
+				this.levels.get(level).setValue(text);
 			}
 		}
 	}

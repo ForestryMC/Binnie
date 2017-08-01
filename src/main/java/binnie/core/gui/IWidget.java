@@ -112,13 +112,17 @@ public interface IWidget {
 
 	boolean isChildEnabled(IWidget child);
 
+	@Nullable
 	IWidget addChild(IWidget child);
 
 	List<IWidget> getChildren();
 
-	void deleteChild(IWidget child);
+	@Nullable
+	IWidget deleteChild(IWidget child);
 
 	void deleteAllChildren();
+
+	IWidget getTopChild();
 
 	/* EVENTS*/
 

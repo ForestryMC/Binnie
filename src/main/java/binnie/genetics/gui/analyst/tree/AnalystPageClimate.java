@@ -18,7 +18,7 @@ import forestry.api.lepidopterology.IButterfly;
 
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.IFlower;
-import binnie.core.genetics.EnumTolerance;
+import binnie.core.genetics.Tolerance;
 import binnie.core.gui.IWidget;
 import binnie.core.gui.controls.ControlText;
 import binnie.core.gui.controls.ControlTextCentered;
@@ -70,8 +70,8 @@ public class AnalystPageClimate extends ControlAnalystPage {
 		for (Biome biome : Biome.EXPLORATION_BIOMES_LIST) { //TODO check
 			if (biome != null &&
 				biome != Biomes.FROZEN_OCEAN &&
-				EnumTolerance.canTolerate(temp, EnumTemperature.getFromBiome(biome), tempTol) &&
-				EnumTolerance.canTolerate(humid, EnumHumidity.getFromValue(biome.getRainfall()), humidTol)) {
+				Tolerance.canTolerate(temp, EnumTemperature.getFromBiome(biome), tempTol) &&
+				Tolerance.canTolerate(humid, EnumHumidity.getFromValue(biome.getRainfall()), humidTol)) {
 				boolean match = false;
 				for (Biome eBiome : biomes) {
 					if (biome.getBiomeName().contains(eBiome.getBiomeName()) && EnumHumidity.getFromValue(eBiome.getRainfall()) == EnumHumidity.getFromValue(biome.getRainfall()) && EnumTemperature.getFromBiome(eBiome) == EnumTemperature.getFromBiome(biome)) {

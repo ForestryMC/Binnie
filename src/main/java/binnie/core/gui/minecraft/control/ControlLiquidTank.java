@@ -89,7 +89,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 			final int c = -1442840576 + MinecraftTooltip.getOutline(Tooltip.Type.HELP);
 			RenderUtil.drawGradientRect(this.getArea().inset(1), c, c);
 		} else if (ControlLiquidTank.tankError.contains(this.tankID)) {
-			final int c = -1442840576 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error);
+			final int c = -1442840576 + MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR);
 			RenderUtil.drawGradientRect(this.getArea().inset(1), c, c);
 		} else if (this.getTopParent().getMousedOverWidget() == this) {
 			if (!gui.getDraggedItem().isEmpty()) {
@@ -148,7 +148,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 		}
 		if (ControlLiquidTank.tankError.contains(this.tankID)) {
 			final Area area = this.getArea();
-			RenderUtil.setColour(MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error));
+			RenderUtil.setColour(MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR));
 			CraftGUI.RENDER.texture(CraftGUITexture.OUTLINE, area.outset(1));
 		}
 	}

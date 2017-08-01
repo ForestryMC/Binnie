@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import forestry.api.core.EnumTemperature;
 
-import binnie.core.genetics.EnumTolerance;
+import binnie.core.genetics.Tolerance;
 import binnie.core.gui.Attribute;
 import binnie.core.gui.ITooltip;
 import binnie.core.gui.IWidget;
@@ -66,7 +66,7 @@ public abstract class ControlToleranceBar<T extends Enum<T>> extends Control imp
 
 	public void setValues(T value, forestry.api.genetics.EnumTolerance enumTol) {
 		tolerated.clear();
-		EnumTolerance tol = EnumTolerance.get(enumTol);
+		Tolerance tol = Tolerance.get(enumTol);
 		for (T full : fullSet) {
 			if (full.ordinal() > value.ordinal() + tol.getBounds()[1]) {
 				continue;

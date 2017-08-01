@@ -90,9 +90,9 @@ public class ControlErrorState extends Control implements ITooltip {
 		final MinecraftTooltip tooltip = (MinecraftTooltip) tooltipOrig;
 		if (this.errorState != null) {
 			if (this.type == 0) {
-				tooltip.setType(MinecraftTooltip.Type.Error);
+				tooltip.setType(MinecraftTooltip.Type.ERROR);
 			} else {
-				tooltip.setType(MinecraftTooltip.Type.Warning);
+				tooltip.setType(MinecraftTooltip.Type.WARNING);
 			}
 			tooltip.add(this.errorState.toString());
 			if (this.errorState.getTooltip().length() > 0) {

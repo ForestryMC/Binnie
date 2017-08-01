@@ -7,7 +7,7 @@ import org.apache.commons.lang3.text.WordUtils;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 
-public enum EnumTolerance {
+public enum Tolerance {
 	NONE(0, 0),
 	BOTH_1(-1, 1), BOTH_2(-2, 2), BOTH_3(-3, 3), BOTH_4(-4, 4), BOTH_5(-5, 5),
 	UP_1(0, 1), UP_2(0, 2), UP_3(0, 3), UP_4(0, 4), UP_5(0, 5),
@@ -16,12 +16,12 @@ public enum EnumTolerance {
 	private final int[] bounds;
 	private final String uid;
 
-	EnumTolerance(final int a, final int b) {
+	Tolerance(final int a, final int b) {
 		this.bounds = new int[]{a, b};
 		this.uid = "forestry.tolerance" + WordUtils.capitalize(this.toString());
 	}
 
-	public static EnumTolerance get(final forestry.api.genetics.EnumTolerance tol) {
+	public static Tolerance get(final forestry.api.genetics.EnumTolerance tol) {
 		return values()[tol.ordinal()];
 	}
 

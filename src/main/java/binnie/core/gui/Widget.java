@@ -28,7 +28,7 @@ public class Widget implements IWidget {
 	private Point position;
 	private Point size;
 	private Point offset;
-	private Collection<EventHandler<? extends Event>> globalEventHandlers;
+	private Collection<EventHandler<? extends Event>> eventHandlers;
 	private boolean enabled;
 	private boolean visible;
 
@@ -40,7 +40,7 @@ public class Widget implements IWidget {
 		this.offset = Point.ZERO;
 		this.cropped = false;
 		this.colour = 0xffffff;
-		this.globalEventHandlers = new ArrayList<>();
+		this.eventHandlers = new ArrayList<>();
 		this.enabled = true;
 		this.visible = true;
 		this.parent = parent;
@@ -67,12 +67,14 @@ public class Widget implements IWidget {
 
 	/* CHILDREN */
 	@Override
-	public final void deleteChild(final IWidget child) {
+	@Nullable
+	public IWidget deleteChild(IWidget child) {
 		if (child == null) {
-			return;
+			return null;
 		}
 		child.delete();
 		this.children.remove(child);
+		return child;
 	}
 
 	@Override
@@ -83,17 +85,25 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public final IWidget addChild(final IWidget widget) {
-		if (hasChildren() && this.children.get(this.children.size() - 1).hasAttribute(Attribute.ALWAYS_ON_TOP)) {
-			this.children.add(this.children.size() - 1, widget);
-		} else {
-			this.children.add(widget);
+	@Nullable
+	public IWidget addChild(IWidget child) {
+		if(child == null){
+			return null;
 		}
-		this.onAddChild(widget);
-		return widget;
+		IWidget topWidget = getTopChild();
+		if (topWidget != null && topWidget.hasAttribute(Attribute.ALWAYS_ON_TOP)) {
+			this.children.add(this.children.size() - 1, child);
+		} else {
+			this.children.add(child);
+		}
+		this.onAddChild(child);
+		return child;
 	}
 
-	protected void onAddChild(final IWidget widget) {
+	protected void onAddChild(IWidget widget) {
+	}
+
+	protected void onDeleteChild(IWidget widget) {
 	}
 
 	protected boolean hasChildren(){
@@ -113,6 +123,31 @@ public class Widget implements IWidget {
 		return this.children;
 	}
 
+	@Override
+	@Nullable
+	public <W> W getWidget(Class<W> widgetClass) {
+		for (IWidget child : this.getChildren()) {
+			if (widgetClass.isInstance(child)) {
+				return widgetClass.cast(child);
+			}
+			W found = child.getWidget(widgetClass);
+			if (found != null) {
+				return found;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	@Nullable
+	public IWidget getTopChild() {
+		if(!hasChildren()){
+			return null;
+		}
+		int childrenCount = getChildren().size();
+		return children.get(childrenCount - 1);
+	}
+
 	/* PARENT */
 	@Override
 	@Nullable
@@ -129,18 +164,29 @@ public class Widget implements IWidget {
 		}
 	}
 
-	/* GEOMETRY */
-
 	@Override
-	public final void setPosition(final Point vector) {
-		if (!vector.equals(this.position)) {
-			this.position = new Point(vector);
+	public boolean isDescendant(final IWidget widget) {
+		IWidget parentWidget = this;
+		while (parentWidget != widget) {
+			parentWidget = parentWidget.getParent();
+			if (parentWidget == null) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/* GEOMETRY */
+	@Override
+	public final void setPosition(Point position) {
+		if (!position.equals(this.position)) {
+			this.position = new Point(position);
 			this.callEvent(new EventWidget.ChangePosition(this));
 		}
 	}
 
 	@Override
-	public Point getPosition() {
+	public final Point getPosition() {
 		return this.position.add(this.offset);
 	}
 
@@ -166,12 +212,12 @@ public class Widget implements IWidget {
 
 	@Override
 	@Nullable
-	public Area getCroppedZone() {
+	public final Area getCroppedZone() {
 		return this.cropArea;
 	}
 
 	@Override
-	public void setCroppedZone(final IWidget relative, final Area area) {
+	public final void setCroppedZone(final IWidget relative, final Area area) {
 		this.cropArea = area;
 		this.cropped = true;
 		this.cropWidget = relative;
@@ -211,22 +257,22 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public int getXPos() {
+	public final int getXPos() {
 		return this.getPosition().xPos();
 	}
 
 	@Override
-	public int getYPos() {
+	public final int getYPos() {
 		return getPosition().yPos();
 	}
 
 	@Override
-	public int getWidth() {
+	public final int getWidth() {
 		return this.getSize().xPos();
 	}
 
 	@Override
-	public int getHeight() {
+	public final int getHeight() {
 		return this.getSize().yPos();
 	}
 
@@ -242,17 +288,33 @@ public class Widget implements IWidget {
 			this.callEvent(new EventWidget.ChangeColour(this));
 		}
 	}
+	@Override
+	public final boolean contains(final Point position) {
+		return this.getArea().contains(position);
+	}
+
+	@Override
+	public int getLevel() {
+		IWidget parent = getParent();
+		int level = 0;
+		int index = 0;
+		if(parent != null){
+			List<IWidget> widgets = parent.getChildren();
+			level = parent.getLevel();
+			index = widgets.indexOf(this);
+		}
+		return level + index;
+	}
 
 	/* EVENTS */
-
 	@Override
 	public boolean canFocus() {
 		return this.hasAttribute(Attribute.CAN_FOCUS);
 	}
 
 	@Override
-	public <E extends Event> void addEventHandler(final EventHandler<E> handler) {
-		this.globalEventHandlers.add(handler);
+	public <E extends Event> void addEventHandler(EventHandler<E> handler) {
+		this.eventHandlers.add(handler);
 	}
 
 	@Override
@@ -261,32 +323,33 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public final void callEvent(final Event event) {
+	public void callEvent(final Event event) {
 		this.getTopParent().receiveEvent(event);
 	}
 
 	/* MOUSE */
 	@Override
 	@SuppressWarnings("unchecked")
-	public final void receiveEvent(final Event event) {
-		for (final EventHandler<? extends Event> handler : this.globalEventHandlers) {
+	public void receiveEvent(Event event) {
+		for (EventHandler<? extends Event> handler : this.eventHandlers) {
 			if (handler.handles(event)) {
 				((EventHandler<Event>) handler).onEvent(event);
 			}
 		}
 
-		for (IWidget child : children) {
+		for (IWidget child : getChildren()) {
 			child.receiveEvent(event);
 		}
 	}
 
+	/* MOUSE */
 	@Override
 	public boolean canMouseOver() {
 		return this.hasAttribute(Attribute.MOUSE_OVER);
 	}
 
 	@Override
-	public final Point getMousePosition() {
+	public Point getMousePosition() {
 		return this.getTopParent().getAbsoluteMousePosition();
 	}
 
@@ -330,46 +393,51 @@ public class Widget implements IWidget {
 		return (this.cropWidget == null) ? this : this.cropWidget;
 	}
 
+	/* RENDERING*/
 	@Override
 	@SideOnly(Side.CLIENT)
 	public final void render(int guiWidth, int guiHeight) {
-		if (this.isVisible()) {
-			CraftGUI.RENDER.preRender(this, guiWidth, guiHeight);
-			this.onRender(RenderStage.PRE_CHILDREN, guiWidth, guiHeight);
-			for (final IWidget widget : this.getChildren()) {
-				widget.render(guiWidth, guiHeight);
-			}
-			for (final IWidget widget : this.getChildren()) {
-				CraftGUI.RENDER.preRender(widget, guiWidth, guiHeight);
-				widget.onRender(RenderStage.POST_SIBLINGS, guiWidth, guiHeight);
-				CraftGUI.RENDER.postRender(widget);
-			}
-			this.onRender(RenderStage.POST_CHILDREN, guiWidth, guiHeight);
-			CraftGUI.RENDER.postRender(this);
+		if (!isVisible()) {
+			return;
 		}
+		CraftGUI.RENDER.preRender(this, guiWidth, guiHeight);
+		this.onRender(RenderStage.PRE_CHILDREN, guiWidth, guiHeight);
+		for (final IWidget widget : this.getChildren()) {
+			widget.render(guiWidth, guiHeight);
+		}
+		for (final IWidget widget : this.getChildren()) {
+			CraftGUI.RENDER.preRender(widget, guiWidth, guiHeight);
+			widget.onRender(RenderStage.POST_SIBLINGS, guiWidth, guiHeight);
+			CraftGUI.RENDER.postRender(widget);
+		}
+		this.onRender(RenderStage.POST_CHILDREN, guiWidth, guiHeight);
+		CraftGUI.RENDER.postRender(this);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public final void updateClient() {
-		if (!this.isVisible()) {
-			return;
+	public void onRender(final RenderStage stage, int guiWidth, int guiHeight) {
+		if (stage == RenderStage.PRE_CHILDREN) {
+			this.onRenderBackground(guiWidth, guiHeight);
 		}
-		if (this.getTopParent() == this) {
-			((ITopLevelWidget) this).updateTopLevel();
+		if (stage == RenderStage.POST_CHILDREN) {
+			this.onRenderForeground(guiWidth, guiHeight);
 		}
-		this.onUpdateClient();
-		final List<IWidget> deletedWidgets = new ArrayList<>();
-		for (final IWidget widget : this.getChildren()) {
-			if (widget.hasAttribute(Attribute.NEEDS_DELETION)) {
-				deletedWidgets.add(widget);
-			} else {
-				widget.updateClient();
-			}
+		if (stage == RenderStage.POST_SIBLINGS) {
+			this.onRenderOverlay();
 		}
-		for (final IWidget widget : deletedWidgets) {
-			this.deleteChild(widget);
-		}
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void onRenderBackground(int guiWidth, int guiHeight) {
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void onRenderForeground(int guiWidth, int guiHeight) {
+	}
+
+	@SideOnly(Side.CLIENT)
+	public void onRenderOverlay() {
 	}
 
 	/* STATES*/
@@ -386,18 +454,6 @@ public class Widget implements IWidget {
 	}
 
 	@Override
-	public final void show() {
-		this.visible = true;
-		this.callEvent(new EventWidget.Show(this));
-	}
-
-	@Override
-	public final void hide() {
-		this.visible = false;
-		this.callEvent(new EventWidget.Hide(this));
-	}
-
-	@Override
 	public boolean isEnabled() {
 		if (this.enabled) {
 			IWidget parent = this.getParent();
@@ -409,6 +465,18 @@ public class Widget implements IWidget {
 			return true;
 		}
 		return false;
+	}
+
+	@Override
+	public final void show() {
+		this.visible = true;
+		this.callEvent(new EventWidget.Show(this));
+	}
+
+	@Override
+	public final void hide() {
+		this.visible = false;
+		this.callEvent(new EventWidget.Hide(this));
 	}
 
 	@Override
@@ -445,38 +513,36 @@ public class Widget implements IWidget {
 		return true;
 	}
 
-	/* RENDERING */
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void onRender(final RenderStage stage, int guiWidth, int guiHeight) {
-		if (stage == RenderStage.PRE_CHILDREN) {
-			this.onRenderBackground(guiWidth, guiHeight);
-		}
-		if (stage == RenderStage.POST_CHILDREN) {
-			this.onRenderForeground(guiWidth, guiHeight);
-		}
-		if (stage == RenderStage.POST_SIBLINGS) {
-			this.onRenderOverlay();
-		}
-	}
-
-	@SideOnly(Side.CLIENT)
-	public void onRenderBackground(int guiWidth, int guiHeight) {
-	}
-
-	@SideOnly(Side.CLIENT)
-	public void onRenderForeground(int guiWidth, int guiHeight) {
-	}
-
-	@SideOnly(Side.CLIENT)
-	public void onRenderOverlay() {
-	}
-
+	/* UPDATE */
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void onUpdateClient() {
 	}
 
+	@Override
+	@SideOnly(Side.CLIENT)
+	public final void updateClient() {
+		if (!this.isVisible()) {
+			return;
+		}
+		if (this.getTopParent() == this) {
+			((ITopLevelWidget) this).updateTopLevel();
+		}
+		this.onUpdateClient();
+		final List<IWidget> deletedWidgets = new ArrayList<>();
+		for (final IWidget widget : this.getChildren()) {
+			if (widget.hasAttribute(Attribute.NEEDS_DELETION)) {
+				deletedWidgets.add(widget);
+			} else {
+				widget.updateClient();
+			}
+		}
+		for (final IWidget widget : deletedWidgets) {
+			this.deleteChild(widget);
+		}
+	}
+
+	/* DELETION*/
 	@Override
 	public final void delete() {
 		this.getTopParent().widgetDeleted(this);
@@ -487,53 +553,8 @@ public class Widget implements IWidget {
 	public void onDelete() {
 	}
 
-	@Override
-	@Nullable
-	public <T> T getWidget(final Class<T> widgetClass) {
-		for (final IWidget child : this.getChildren()) {
-			if (widgetClass.isInstance(child)) {
-				return widgetClass.cast(child);
-			}
-			final T found = child.getWidget(widgetClass);
-			if (found != null) {
-				return found;
-			}
-		}
-		return null;
-	}
-
-	@Override
-	public final boolean contains(final Point position) {
-		return this.getArea().contains(position);
-	}
-
 	public void scheduleDeletion() {
 		this.addAttribute(Attribute.NEEDS_DELETION);
-	}
-
-	@Override
-	public int getLevel() {
-		IWidget parent = getParent();
-		int level = 0;
-		int index = 0;
-		if(parent != null){
-			List<IWidget> widgets = parent.getChildren();
-			level = parent.getLevel();
-			index = widgets.indexOf(this);
-		}
-		return level + index;
-	}
-
-	@Override
-	public boolean isDescendant(final IWidget widget) {
-		IWidget parentWidget = this;
-		while (parentWidget != widget) {
-			parentWidget = parentWidget.getParent();
-			if (parentWidget == null) {
-				return false;
-			}
-		}
-		return true;
 	}
 
 	public IWidget getWidget() {

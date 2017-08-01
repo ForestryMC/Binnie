@@ -12,7 +12,7 @@ public enum EnumHighlighting {
 	int getColour() {
 		switch (this) {
 			case ERROR: {
-				return MinecraftTooltip.getOutline(MinecraftTooltip.Type.Error);
+				return MinecraftTooltip.getOutline(MinecraftTooltip.Type.ERROR);
 			}
 			case HELP: {
 				return MinecraftTooltip.getOutline(Tooltip.Type.HELP);
@@ -21,7 +21,7 @@ public enum EnumHighlighting {
 				return 16776960;
 			}
 			case WARNING: {
-				return MinecraftTooltip.getOutline(MinecraftTooltip.Type.Warning);
+				return MinecraftTooltip.getOutline(MinecraftTooltip.Type.WARNING);
 			}
 			default: {
 				return 0;

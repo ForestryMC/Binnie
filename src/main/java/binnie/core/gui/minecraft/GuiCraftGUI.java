@@ -128,7 +128,7 @@ public class GuiCraftGUI extends GuiContainer {
 		final List<String> strings = new ArrayList<>();
 		for (final String string : tooltip.getList()) {
 			if (string != null) {
-				if (!string.contains("~~~")) {
+				if (!string.contains(Tooltip.NBT_SEPARATOR)) {
 					strings.addAll(font.listFormattedStringToWidth(string, tooltip.maxWidth));
 				} else {
 					strings.add(string);
@@ -138,8 +138,8 @@ public class GuiCraftGUI extends GuiContainer {
 		}
 		for (final String s : strings) {
 			int l = font.getStringWidth(s);
-			if (s.contains("~~~")) {
-				l = 12 + font.getStringWidth(s.replaceAll("~~~(.*?)~~~", ""));
+			if (s.contains(Tooltip.NBT_SEPARATOR)) {
+				l = 12 + font.getStringWidth(s.replaceAll(Tooltip.NBT_SEPARATOR + "(.*?)" + Tooltip.NBT_SEPARATOR, ""));
 			}
 			if (l > k) {
 				k = l;
@@ -188,8 +188,8 @@ public class GuiCraftGUI extends GuiContainer {
 				} else {
 					s2 = MinecraftTooltip.getBody(tooltip.getType()) + s2;
 				}
-				if (s2.contains("~~~")) {
-					final String split = s2.split("~~~")[1];
+				if (s2.contains(Tooltip.NBT_SEPARATOR)) {
+					final String split = s2.split(Tooltip.NBT_SEPARATOR)[1];
 					try {
 						final NBTTagCompound nbt = JsonToNBT.getTagFromJson(split);
 						final ItemStack stack = new ItemStack(nbt);
@@ -201,7 +201,7 @@ public class GuiCraftGUI extends GuiContainer {
 					} catch (NBTException e) {
 						e.printStackTrace();
 					}
-					s2 = "   " + s2.replaceAll("~~~(.*?)~~~", "");
+					s2 = "   " + s2.replaceAll(Tooltip.NBT_SEPARATOR + "(.*?)" + Tooltip.NBT_SEPARATOR, "");
 				}
 				font.drawStringWithShadow(s2, i1, j1, -1);
 				if (k3 == 0) {

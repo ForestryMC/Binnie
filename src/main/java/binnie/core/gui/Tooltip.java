@@ -9,6 +9,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
 
 public class Tooltip {
+	public static final String NBT_SEPARATOR = "~~~";
+	public static final String NBT_TYPE_KEY = "nbt-type";
+	public static final byte TYPE_ITEM = 105;
+	public static final byte TYPE_FLUID = 102;
+
 	public int maxWidth;
 	List<String> tooltip;
 	ITooltipType type;
@@ -34,7 +39,7 @@ public class Tooltip {
 		this.itemStack = itemStack;
 	}
 
-	public void add(final String string) {
+	public void add(String string) {
 		this.tooltip.add(string);
 	}
 
@@ -69,21 +74,21 @@ public class Tooltip {
 	/**
 	 * Add a tooltip that also displays an itemStack on the tooltip directly.
 	 */
-	public void add(final ItemStack item, final String string) {
-		final NBTTagCompound nbt = new NBTTagCompound();
-		item.writeToNBT(nbt);
-		nbt.setByte("nbt-type", (byte) 105);
-		this.add("~~~" + nbt.toString() + "~~~" + string);
+	public void add(ItemStack itemStack, String string) {
+		NBTTagCompound nbt = new NBTTagCompound();
+		itemStack.writeToNBT(nbt);
+		nbt.setByte(NBT_TYPE_KEY, TYPE_ITEM);
+		this.add(NBT_SEPARATOR + nbt.toString() + NBT_SEPARATOR + string);
 	}
 
 	/**
 	 * Add a tooltip that also displays an fluidStack on the tooltip directly.
 	 */
-	public void add(final FluidStack item, final String string) {
-		final NBTTagCompound nbt = new NBTTagCompound();
-		item.writeToNBT(nbt);
-		nbt.setByte("nbt-type", (byte) 102);
-		this.add("~~~" + nbt.toString() + "~~~" + string);
+	public void add(FluidStack fluidStack, String string) {
+		NBTTagCompound nbt = new NBTTagCompound();
+		fluidStack.writeToNBT(nbt);
+		nbt.setByte(NBT_TYPE_KEY, TYPE_FLUID);
+		this.add(NBT_SEPARATOR + nbt.toString() + NBT_SEPARATOR + string);
 	}
 
 	public enum Type implements ITooltipType {
