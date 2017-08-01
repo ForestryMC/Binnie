@@ -77,6 +77,6 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 		controlDescription.setValue(descBody + "§r");
 		controlSignature.setValue(descSig + "§r");
 		final int descHeight = CraftGUI.RENDER.textHeight(controlDescription.getValue(), controlDescription.getSize().xPos());
-		controlSignature.setPosition(new Point(this.getPosition().xPos(), controlDescription.getPosition().yPos() + descHeight + 10));
+		controlSignature.setPosition(new Point(controlSignature.getPosition().xPos(), controlDescription.getPosition().yPos() + descHeight + 10));
 	}
 }

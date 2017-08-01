@@ -28,6 +28,6 @@ public class ControlItemStackOption extends ControlTextOption<ItemStack> {
 		final int height = Math.max(20, th + 6);
 		this.setSize(new Point(this.getSize().xPos(), height));
 		this.textWidget.setSize(new Point(this.textWidget.getSize().xPos(), height));
-		this.controlBee.setPosition(new Point(this.getPosition().xPos(), (height - 18) / 2));
+		this.controlBee.setPosition(new Point(controlBee.getPosition().xPos(), (height - 18) / 2));
 	}
 }

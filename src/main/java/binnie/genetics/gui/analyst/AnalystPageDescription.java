@@ -69,7 +69,7 @@ public class AnalystPageDescription extends ControlAnalystPage {
 		descText.setColor(getColor());
 		signatureText.setColor(getColor());
 		int descHeight = CraftGUI.RENDER.textHeight(descText.getValue(), descText.getSize().xPos());
-		signatureText.setPosition(new Point(this.getPosition().xPos(), descText.getPosition().yPos() + descHeight + 10));
+		signatureText.setPosition(new Point(signatureText.getPosition().xPos(), descText.getPosition().yPos() + descHeight + 10));
 		setSize(new Point(getWidth(), 20 + signatureText.getYPos()));
 	}
 

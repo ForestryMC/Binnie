@@ -456,7 +456,7 @@ public class WindowAnalyst extends Window {
 			page.show();
 			side.setScrollableContent(page);
 			side.setPercentageIndex(0);
-			page.setPosition(this.getPosition().add(1, 1));
+			page.setPosition(side.getPosition().add(1, 1));
 		}
 	}
 
