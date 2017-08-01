@@ -54,31 +54,347 @@ import binnie.extrabees.genetics.ExtraBeesFlowers;
 import binnie.extrabees.utils.Utils;
 
 public enum ExtraBeesEffect implements IAlleleBeeEffect {
-	ECTOPLASM,
-	ACID,
-	SPAWN_ZOMBIE,
-	SPAWN_SKELETON,
-	SPAWN_CREEPER,
-	LIGHTNING,
-	RADIOACTIVE,
-	METEOR,
-	HUNGER,
-	FOOD,
-	BLINDNESS,
-	CONFUSION,
-	FIREWORKS,
-	FESTIVAL,
-	BIRTHDAY,
-	TELEPORT,
-	GRAVITY,
-	THIEF,
-	WITHER,
-	WATER,
-	SLOW,
-	BONEMEAL_SAPLING,
-	BONEMEAL_FRUIT,
-	BONEMEAL_MUSHROOM,
-	POWER;
+	ECTOPLASM{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			if (world.rand.nextInt(100) < 4) {
+				if (world.isAirBlock(position) && (world.isBlockNormalCube(position.down(), false) || world.getBlockState(position.down()).getBlock() == ExtraBees.ectoplasm)) {
+					world.setBlockState(position, ExtraBees.ectoplasm.getDefaultState());
+				}
+				return storedData;
+			}
+			return storedData;
+		}
+	},
+	ACID{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			if (world.rand.nextInt(100) < 6) {
+				doAcid(world, position);
+			}
+			return storedData;
+		}
+	},
+	SPAWN_ZOMBIE{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			if (world.rand.nextInt(200) < 2) {
+				this.spawnMob(world, position, new ResourceLocation("zombie"));
+			}
+			return storedData;
+		}
+	},
+	SPAWN_SKELETON{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			if (world.rand.nextInt(200) < 2) {
+				this.spawnMob(world, position, new ResourceLocation("skeleton"));
+			}
+			return storedData;
+		}
+	},
+	SPAWN_CREEPER{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			if (world.rand.nextInt(200) < 2) {
+				this.spawnMob(world, position, new ResourceLocation("creeper"));
+			}
+			return storedData;
+		}
+	},
+	LIGHTNING{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			if (world.rand.nextInt(100) < 1 && world.canBlockSeeSky(position) && world instanceof WorldServer) {
+				world.addWeatherEffect(new EntityBeeLightning(world, position.getX(), position.getY(), position.getZ()));
+			}
+			return storedData;
+		}
+	},
+	RADIOACTIVE{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			for (final EntityLivingBase entity : this.getEntities(EntityLivingBase.class, genome, housing)) {
+				int damage = 4;
+				if (entity instanceof EntityPlayer) {
+					final int count = wearsItems((EntityPlayer) entity);
+					if (count > 3) {
+						continue;
+					}
+					if (count > 2) {
+						damage = 1;
+					} else if (count > 1) {
+						damage = 2;
+					} else if (count > 0) {
+						damage = 3;
+					}
+				}
+				entity.attackEntityFrom(DamageSource.GENERIC, damage);
+			}
+			return storedData;
+		}
+	},
+	METEOR{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			if (world.rand.nextInt(100) < 1 && world.canBlockSeeSky(position)) {
+				world.spawnEntity(new EntitySmallFireball(world, position.getX(), position.getY() + 64, position.getZ(), 0.0, -0.6, 0.0));
+			}
+			return storedData;
+		}
+	},
+	HUNGER{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			for (EntityPlayer player : this.getEntities(EntityPlayer.class, genome, housing)) {
+				if (world.rand.nextInt(4) < wearsItems(player)) {
+					continue;
+				}
+				player.getFoodStats().addExhaustion(4.0f);
+				player.addPotionEffect(new PotionEffect(MobEffects.HUNGER, 100));
+			}
+			return storedData;
+		}
+	},
+	FOOD{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			for (EntityPlayer player : this.getEntities(EntityPlayer.class, genome, housing)) {
+				player.getFoodStats().addStats(2, 0.2f);
+			}
+			return storedData;
+		}
+	},
+	BLINDNESS {
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			for (EntityPlayer player : this.getEntities(EntityPlayer.class, genome, housing)) {
+				if (world.rand.nextInt(4) < wearsItems(player)) {
+					continue;
+				}
+				player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 200));
+			}
+			return storedData;
+		}
+	},
+	CONFUSION{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			for (EntityPlayer player : this.getEntities(EntityPlayer.class, genome, housing)) {
+				if (world.rand.nextInt(4) < wearsItems(player)) {
+					continue;
+				}
+				player.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 200));
+			}
+			return storedData;
+		}
+	},
+	FIREWORKS{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			if (world.rand.nextInt( 8) < 1) {
+				final FireworkCreator.Firework firework = new FireworkCreator.Firework();
+				firework.setShape(FireworkCreator.Shape.Ball);
+				firework.addColor(genome.getPrimary().getSpriteColour(0));
+				firework.addColor(genome.getPrimary().getSpriteColour(0));
+				firework.addColor(genome.getPrimary().getSpriteColour(1));
+				firework.addColor(genome.getSecondary().getSpriteColour(0));
+				firework.addColor(genome.getSecondary().getSpriteColour(0));
+				firework.addColor(genome.getPrimary().getSpriteColour(1));
+						firework.setTrail();
+				final EntityFireworkRocket var11 = new EntityFireworkRocket(world, position.getX(), position.getY(), position.getZ(), firework.getFirework());
+				if (world.canBlockSeeSky(position)) {
+					world.spawnEntity(var11);
+				}
+			}
+			return storedData;
+		}
+	},
+	FESTIVAL{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			if (world.rand.nextInt((this == ExtraBeesEffect.FIREWORKS) ? 8 : 12) < 1) {
+				final FireworkCreator.Firework firework = new FireworkCreator.Firework();
+				final EntityFireworkRocket var11 = new EntityFireworkRocket(world, position.getX(), position.getY(), position.getZ(), firework.getFirework());
+				if (world.canBlockSeeSky(position)) {
+					world.spawnEntity(var11);
+				}
+			}
+			return storedData;
+		}
+	},
+	BIRTHDAY{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			if (world.rand.nextInt((this == ExtraBeesEffect.FIREWORKS) ? 8 : 12) < 1) {
+				FireworkCreator.Firework firework = new FireworkCreator.Firework();
+				firework.setShape(FireworkCreator.Shape.Star);
+				firework.addColor(16768256);
+				for (final Birthday birthday : ExtraBeesEffect.birthdays) {
+					if (birthday.isToday()) {
+						firework.addColor(16711680);
+						firework.addColor(65280);
+						firework.addColor(255);
+						firework.setTrail();
+						break;
+					}
+				}
+				final EntityFireworkRocket var11 = new EntityFireworkRocket(world, position.getX(), position.getY(), position.getZ(), firework.getFirework());
+				if (world.canBlockSeeSky(position)) {
+					world.spawnEntity(var11);
+				}
+			}
+			return storedData;
+		}
+	},
+	TELEPORT{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			if (world.rand.nextInt(80) > 1) {
+				return storedData;
+			}
+			final List<Entity> entities = this.getEntities(Entity.class, genome, housing);
+			if (entities.size() == 0) {
+				return storedData;
+			}
+			Entity entity = entities.get(world.rand.nextInt(entities.size()));
+			if (!(entity instanceof EntityLiving)) {
+				return storedData;
+			}
+			int y = position.getY();
+			if (y < 4) {
+				y = 4;
+			}
+			if (!world.isAirBlock(position) || !world.isAirBlock(position.up())) {
+				return storedData;
+			}
+			entity.setPositionAndUpdate(position.getX(), y, position.getZ());
+			((EntityLiving) entity).addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 160, 10));
+			return storedData;
+		}
+	},
+	GRAVITY{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			final List<Entity> entities = this.getEntities(Entity.class, genome, housing);
+			for (final Entity entity : entities) {
+				float entityStrength = 1.0f;
+				if (entity instanceof EntityPlayer) {
+					entityStrength *= 100.0f;
+				}
+				double posX = position.getX() - entity.posX;
+				double posY = position.getY() - entity.posY;
+				double posZ = position.getZ() - entity.posZ;
+				if (posX * posX + posY * posY + posZ * posZ < 2.0) {
+					return storedData;
+				}
+				final double strength = 0.5 / (posX * posX + posY * posY + posZ * posZ) * entityStrength;
+				entity.addVelocity(posX * strength, posY * strength, posZ * strength);
+			}
+			return storedData;
+		}
+	},
+	THIEF{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			final List<EntityPlayer> players = this.getEntities(EntityPlayer.class, genome, housing);
+			for (EntityPlayer player : players) {
+				final double posX = position.getX() - player.posX;
+				final double posY = position.getY() - player.posY;
+				final double posZ = position.getZ() - player.posZ;
+				if (posX * posX + posY * posY + posZ * posZ < 2.0) {
+					return storedData;
+				}
+				final double strength = 0.5 / (posX * posX + posY * posY + posZ * posZ);
+				player.addVelocity(-posX * strength, -posY * strength, -posZ * strength);
+			}
+			return storedData;
+		}
+	},
+	WITHER{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			//TODO: add function ?
+			return storedData;
+		}
+	},
+	WATER{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			if (world.rand.nextInt(120) > 1) {
+				return storedData;
+			}
+			IFluidHandler fluidHandler = Utils.getCapability(world, position, CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, EnumFacing.UP);
+			if (fluidHandler != null) {
+				fluidHandler.fill(new FluidStack(FluidRegistry.WATER, 100), true);
+				return storedData;
+			}
+			return storedData;
+		}
+	},
+	SLOW{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			for (EntityPlayer player : this.getEntities(EntityPlayer.class, genome, housing)) {
+				if (world.rand.nextInt(4) < wearsItems(player)) {
+					continue;
+				}
+				player.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 200));
+			}
+			return storedData;
+		}
+	},
+	BONEMEAL_SAPLING{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			if (world.rand.nextInt(20) > 1) {
+				return storedData;
+			}
+			if (ExtraBeesFlowers.SAPLING.isAcceptedFlower(world, position)) {
+				ItemDye.applyBonemeal(new ItemStack(Blocks.DIRT, 1), world, position);
+				return storedData;
+			}
+			return storedData;
+		}
+	},
+	BONEMEAL_FRUIT{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			if (world.rand.nextInt(20) > 1) {
+				return storedData;
+			}
+			if (ExtraBeesFlowers.FRUIT.isAcceptedFlower(world, position)) {
+				ItemDye.applyBonemeal(new ItemStack(Blocks.DIRT, 1), world, position);
+				return storedData;
+			}
+			return storedData;
+		}
+	},
+	BONEMEAL_MUSHROOM{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			if (world.rand.nextInt(20) > 1) {
+				return storedData;
+			}
+			IBlockState blockState = world.getBlockState(position);
+			if (blockState.getBlock() == Blocks.BROWN_MUSHROOM || blockState.getBlock() == Blocks.RED_MUSHROOM) {
+				ItemDye.applyBonemeal(new ItemStack(Blocks.DIRT, 1), world, position);
+				return storedData;
+			}
+			return storedData;
+		}
+	},
+	POWER{
+		@Override
+		protected IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position) {
+			final TileEntity tile2 = world.getTileEntity(position);
+			if (tile2.hasCapability(CapabilityEnergy.ENERGY, EnumFacing.UP)) {
+				IEnergyStorage storage = tile2.getCapability(CapabilityEnergy.ENERGY, EnumFacing.UP);
+				storage.receiveEnergy(5, false);
+			}
+			return storedData;
+		}
+	};
 
 	private static final List<Birthday> birthdays = new ArrayList<>();
 
@@ -153,21 +469,21 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 		return this.dominant;
 	}
 
-	public void spawnMob(final World world, final BlockPos pos, final ResourceLocation name) {
+	public void spawnMob(World world, BlockPos pos, ResourceLocation name) {
 		if (this.anyPlayerInRange(world, pos, 16)) {
-			final double var1 = pos.getX() + world.rand.nextFloat();
-			final double var2 = pos.getY() + world.rand.nextFloat();
-			final double var3 = pos.getZ() + world.rand.nextFloat();
-			world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, var1, var2, var3, 0.0, 0.0, 0.0);
-			world.spawnParticle(EnumParticleTypes.FLAME, var1, var2, var3, 0.0, 0.0, 0.0);
-			final EntityLiving entity = (EntityLiving) EntityList.createEntityByIDFromName(name, world);
+			double particleX = pos.getX() + world.rand.nextFloat();
+			double particleY = pos.getY() + world.rand.nextFloat();
+			double particleZ = pos.getZ() + world.rand.nextFloat();
+			world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, particleX, particleY, particleZ, 0.0, 0.0, 0.0);
+			world.spawnParticle(EnumParticleTypes.FLAME, particleX, particleY, particleZ, 0.0, 0.0, 0.0);
+			EntityLiving entity = (EntityLiving) EntityList.createEntityByIDFromName(name, world);
 			if (entity != null) {
-				final int nearbyEntityCount = world.getEntitiesWithinAABB(entity.getClass(), new AxisAlignedBB(pos, pos.add(1, 1, 1)).expand(8.0, 4.0, 8.0)).size();
+				int nearbyEntityCount = world.getEntitiesWithinAABB(entity.getClass(), new AxisAlignedBB(pos, pos.add(1, 1, 1)).expand(8.0, 4.0, 8.0)).size();
 				if (nearbyEntityCount < 6) {
-					final double var6 = pos.getX() + (world.rand.nextDouble() - world.rand.nextDouble()) * 4.0;
-					final double var7 = pos.getY() + world.rand.nextInt(3) - 1;
-					final double var8 = pos.getZ() + (world.rand.nextDouble() - world.rand.nextDouble()) * 4.0;
-					entity.setLocationAndAngles(var6, var7, var8, world.rand.nextFloat() * 360.0f, 0.0f);
+					double posX = pos.getX() + (world.rand.nextDouble() - world.rand.nextDouble()) * 4.0;
+					double posY = pos.getY() + world.rand.nextInt(3) - 1;
+					double posZ = pos.getZ() + (world.rand.nextDouble() - world.rand.nextDouble()) * 4.0;
+					entity.setLocationAndAngles(posX, posY, posZ, world.rand.nextFloat() * 360.0f, 0.0f);
 					if (entity.getCanSpawnHere()) {
 						world.spawnEntity(entity);
 						world.playEvent(2004, pos, 0);//playSFX
@@ -187,294 +503,24 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 		return "extrabees.effect." + this.uid;
 	}
 
+	protected abstract IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing, World world, BlockPos position);
+
 	@Override
-	public IEffectData doEffect(final IBeeGenome genome, final IEffectData storedData, final IBeeHousing housing) {
+	public IEffectData doEffect(IBeeGenome genome, IEffectData storedData, IBeeHousing housing) {
 		final World world = housing.getWorldObj();
-		final int xHouse = housing.getCoordinates().getX();
-		final int yHouse = housing.getCoordinates().getY();
-		final int zHouse = housing.getCoordinates().getZ();
-		final Vec3i area = this.getModifiedArea(genome, housing);
-		final int xd = 1 + area.getX() / 2;
-		final int yd = 1 + area.getY() / 2;
-		final int zd = 1 + area.getZ() / 2;
-		final int x1 = xHouse - xd + world.rand.nextInt(2 * xd + 1);
-		int y1 = yHouse - yd + world.rand.nextInt(2 * yd + 1);
-		final int z1 = zHouse - zd + world.rand.nextInt(2 * zd + 1);
-		final BlockPos pos = new BlockPos(x1, y1, z1);
-		switch (this) {
-			case ECTOPLASM: {
-				if (world.rand.nextInt(100) < 4) {
-					if (world.isAirBlock(pos) && (world.isBlockNormalCube(pos.down(), false) || world.getBlockState(pos.down()).getBlock() == ExtraBees.ectoplasm)) {
-						world.setBlockState(pos, ExtraBees.ectoplasm.getDefaultState());
-					}
-					return storedData;
-				}
-				break;
-			}
-			case ACID: {
-				if (world.rand.nextInt(100) < 6) {
-					doAcid(world, pos);
-					break;
-				}
-				break;
-			}
-			case SPAWN_ZOMBIE: {
-				if (world.rand.nextInt(200) < 2) {
-					this.spawnMob(world, pos, new ResourceLocation("zombie"));
-					break;
-				}
-				break;
-			}
-			case SPAWN_SKELETON: {
-				if (world.rand.nextInt(200) < 2) {
-					this.spawnMob(world, pos, new ResourceLocation("skeleton"));
-					break;
-				}
-				break;
-			}
-			case SPAWN_CREEPER: {
-				if (world.rand.nextInt(200) < 2) {
-					this.spawnMob(world, pos, new ResourceLocation("creeper"));
-					break;
-				}
-				break;
-			}
-			case LIGHTNING: {
-				if (world.rand.nextInt(100) < 1 && world.canBlockSeeSky(pos) && world instanceof WorldServer) {
-					world.addWeatherEffect(new EntityBeeLightning(world, x1, y1, z1));
-					break;
-				}
-				break;
-			}
-			case METEOR: {
-				if (world.rand.nextInt(100) < 1 && world.canBlockSeeSky(pos)) {
-					world.spawnEntity(new EntitySmallFireball(world, x1, y1 + 64, z1, 0.0, -0.6, 0.0));
-					break;
-				}
-				break;
-			}
-			case RADIOACTIVE: {
-				for (final EntityLivingBase entity : this.getEntities(EntityLivingBase.class, genome, housing)) {
-					int damage = 4;
-					if (entity instanceof EntityPlayer) {
-						final int count = wearsItems((EntityPlayer) entity);
-						if (count > 3) {
-							continue;
-						}
-						if (count > 2) {
-							damage = 1;
-						} else if (count > 1) {
-							damage = 2;
-						} else if (count > 0) {
-							damage = 3;
-						}
-					}
-					entity.attackEntityFrom(DamageSource.GENERIC, damage);
-				}
-				break;
-			}
-			case FOOD: {
-				for (final EntityLivingBase entity : this.getEntities(EntityLivingBase.class, genome, housing)) {
-					if (entity instanceof EntityPlayer) {
-						final EntityPlayer player = (EntityPlayer) entity;
-						player.getFoodStats().addStats(2, 0.2f);
-					}
-				}
-				break;
-			}
-			case HUNGER: {
-				for (final EntityLivingBase entity : this.getEntities(EntityLivingBase.class, genome, housing)) {
-					if (entity instanceof EntityPlayer) {
-						final EntityPlayer player = (EntityPlayer) entity;
-						if (world.rand.nextInt(4) < wearsItems(player)) {
-							continue;
-						}
-						player.getFoodStats().addExhaustion(4.0f);
-						player.addPotionEffect(new PotionEffect(MobEffects.HUNGER, 100));
-					}
-				}
-				break;
-			}
-			case BLINDNESS: {
-				for (final EntityLivingBase entity : this.getEntities(EntityLivingBase.class, genome, housing)) {
-					if (entity instanceof EntityPlayer) {
-						final EntityPlayer player = (EntityPlayer) entity;
-						if (world.rand.nextInt(4) < wearsItems(player)) {
-							continue;
-						}
-						player.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 200));
-					}
-				}
-				break;
-			}
-			case SLOW: {
-				for (final EntityLivingBase entity : this.getEntities(EntityLivingBase.class, genome, housing)) {
-					if (entity instanceof EntityPlayer) {
-						final EntityPlayer player = (EntityPlayer) entity;
-						if (world.rand.nextInt(4) < wearsItems(player)) {
-							continue;
-						}
-						player.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 200));
-					}
-				}
-				break;
-			}
-			case CONFUSION: {
-				for (final EntityLivingBase entity : this.getEntities(EntityLivingBase.class, genome, housing)) {
-					if (entity instanceof EntityPlayer) {
-						final EntityPlayer player = (EntityPlayer) entity;
-						if (world.rand.nextInt(4) < wearsItems(player)) {
-							continue;
-						}
-						player.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 200));
-					}
-				}
-				break;
-			}
-			case BIRTHDAY:
-			case FESTIVAL:
-			case FIREWORKS: {
-				if (world.rand.nextInt((this == ExtraBeesEffect.FIREWORKS) ? 8 : 12) < 1) {
-					final FireworkCreator.Firework firework = new FireworkCreator.Firework();
-					switch (this) {
-						case BIRTHDAY: {
-							firework.setShape(FireworkCreator.Shape.Star);
-							firework.addColor(16768256);
-							for (final Birthday birthday : ExtraBeesEffect.birthdays) {
-								if (birthday.isToday()) {
-									firework.addColor(16711680);
-									firework.addColor(65280);
-									firework.addColor(255);
-									firework.setTrail();
-									break;
-								}
-							}
-						}
-						case FIREWORKS: {
-							firework.setShape(FireworkCreator.Shape.Ball);
-							firework.addColor(genome.getPrimary().getSpriteColour(0));
-							firework.addColor(genome.getPrimary().getSpriteColour(0));
-							firework.addColor(genome.getPrimary().getSpriteColour(1));
-							firework.addColor(genome.getSecondary().getSpriteColour(0));
-							firework.addColor(genome.getSecondary().getSpriteColour(0));
-							firework.addColor(genome.getPrimary().getSpriteColour(1));
-							firework.setTrail();
-							break;
-						}
-					}
-					final EntityFireworkRocket var11 = new EntityFireworkRocket(world, x1, y1, z1, firework.getFirework());
-					if (world.canBlockSeeSky(pos)) {
-						world.spawnEntity(var11);
-					}
-					break;
-				}
-				break;
-			}
-			case GRAVITY: {
-				final List<Entity> entities2 = this.getEntities(Entity.class, genome, housing);
-				for (final Entity entity2 : entities2) {
-					float entityStrength = 1.0f;
-					if (entity2 instanceof EntityPlayer) {
-						entityStrength *= 100.0f;
-					}
-					final double dx = x1 - entity2.posX;
-					final double dy = y1 - entity2.posY;
-					final double dz = z1 - entity2.posZ;
-					if (dx * dx + dy * dy + dz * dz < 2.0) {
-						return storedData;
-					}
-					final double strength = 0.5 / (dx * dx + dy * dy + dz * dz) * entityStrength;
-					entity2.addVelocity(dx * strength, dy * strength, dz * strength);
-				}
-				break;
-			}
-			case THIEF: {
-				final List<EntityPlayer> entities3 = this.getEntities(EntityPlayer.class, genome, housing);
-				for (final EntityPlayer entity3 : entities3) {
-					final double dx = x1 - entity3.posX;
-					final double dy = y1 - entity3.posY;
-					final double dz = z1 - entity3.posZ;
-					if (dx * dx + dy * dy + dz * dz < 2.0) {
-						return storedData;
-					}
-					final double strength = 0.5 / (dx * dx + dy * dy + dz * dz);
-					entity3.addVelocity(-dx * strength, -dy * strength, -dz * strength);
-				}
-				break;
-			}
-			case TELEPORT: {
-				if (world.rand.nextInt(80) > 1) {
-					return storedData;
-				}
-				final List<Entity> entities4 = this.getEntities(Entity.class, genome, housing);
-				if (entities4.size() == 0) {
-					return storedData;
-				}
-				final Entity entity4 = entities4.get(world.rand.nextInt(entities4.size()));
-				if (!(entity4 instanceof EntityLiving)) {
-					return storedData;
-				}
-				final float jumpDist = 5.0f;
-				if (y1 < 4) {
-					y1 = 4;
-				}
-				if (!world.isAirBlock(pos) || !world.isAirBlock(pos.up())) {
-					return storedData;
-				}
-				entity4.setPositionAndUpdate(x1, y1, z1);
-				((EntityLiving) entity4).addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 160, 10));
-				break;
-			}
-			case WATER: {
-				if (world.rand.nextInt(120) > 1) {
-					return storedData;
-				}
-				IFluidHandler fluidHandler = Utils.getCapability(world, pos, CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, EnumFacing.UP);
-				if (fluidHandler != null) {
-					fluidHandler.fill(new FluidStack(FluidRegistry.WATER, 100), true);
-					break;
-				}
-				break;
-			}
-			case BONEMEAL_SAPLING: {
-				if (world.rand.nextInt(20) > 1) {
-					return storedData;
-				}
-				if (ExtraBeesFlowers.SAPLING.isAcceptedFlower(world, pos)) {
-					ItemDye.applyBonemeal(new ItemStack(Blocks.DIRT, 1), world, pos);
-					break;
-				}
-				break;
-			}
-			case BONEMEAL_FRUIT: {
-				if (world.rand.nextInt(20) > 1) {
-					return storedData;
-				}
-				if (ExtraBeesFlowers.FRUIT.isAcceptedFlower(world, pos)) {
-					ItemDye.applyBonemeal(new ItemStack(Blocks.DIRT, 1), world, pos);
-					break;
-				}
-				break;
-			}
-			case BONEMEAL_MUSHROOM: {
-				if (world.rand.nextInt(20) > 1) {
-					return storedData;
-				}
-				if (world.getBlockState(pos).getBlock() == Blocks.BROWN_MUSHROOM || world.getBlockState(pos).getBlock() == Blocks.RED_MUSHROOM) {
-					ItemDye.applyBonemeal(new ItemStack(Blocks.DIRT, 1), world, pos);
-					break;
-				}
-				break;
-			}
-			case POWER: {
-				final TileEntity tile2 = world.getTileEntity(pos);
-				if (tile2.hasCapability(CapabilityEnergy.ENERGY, EnumFacing.UP)) {
-					IEnergyStorage storage = tile2.getCapability(CapabilityEnergy.ENERGY, EnumFacing.UP);
-					storage.receiveEnergy(5, false);
-				}
-				break;
-			}
-		}
+		BlockPos coordinates = housing.getCoordinates();
+		int xHouse = coordinates.getX();
+		int yHouse = coordinates.getY();
+		int zHouse = coordinates.getZ();
+		Vec3i area = this.getModifiedArea(genome, housing);
+		int offsetX = 1 + area.getX() / 2;
+		int offsetY = 1 + area.getY() / 2;
+		int offsetZ = 1 + area.getZ() / 2;
+		int xPos = xHouse - offsetX + world.rand.nextInt(2 * offsetX + 1);
+		int yPos = yHouse - offsetY + world.rand.nextInt(2 * offsetY + 1);
+		int zPos = zHouse - offsetZ + world.rand.nextInt(2 * offsetZ + 1);
+		BlockPos position = new BlockPos(xPos, yPos, zPos);
+		doEffect(genome, storedData, housing, world, position);
 		return storedData;
 	}
 
@@ -510,16 +556,17 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 		return this.fx;
 	}
 
-	private void setFX(final String string) {
+	private void setFX(String string) {
 		this.fx = "particles/" + string;
 	}
 
-	public <T extends Entity> List<T> getEntities(final Class<T> eClass, final IBeeGenome genome, final IBeeHousing housing) {
+	public <T extends Entity> List<T> getEntities(Class<T> eClass, IBeeGenome genome, IBeeHousing housing) {
 		final Vec3i area = genome.getTerritory();
-		final int[] offset = {-Math.round(area.getX() / 2), -Math.round(area.getY() / 2), -Math.round(area.getZ() / 2)};
-		final int[] min = {housing.getCoordinates().getX() + offset[0], housing.getCoordinates().getY() + offset[1], housing.getCoordinates().getZ() + offset[2]};
-		final int[] max = {housing.getCoordinates().getX() + offset[0] + area.getX(), housing.getCoordinates().getY() + offset[1] + area.getY(), housing.getCoordinates().getZ() + offset[2] + area.getZ()};
-		final AxisAlignedBB box = new AxisAlignedBB(min[0], min[1], min[2], max[0], max[1], max[2]);
+		BlockPos coordinates = housing.getCoordinates();
+		int[] offset = {-Math.round(area.getX() / 2), -Math.round(area.getY() / 2), -Math.round(area.getZ() / 2)};
+		int[] min = {coordinates.getX() + offset[0], coordinates.getY() + offset[1], coordinates.getZ() + offset[2]};
+		int[] max = {coordinates.getX() + offset[0] + area.getX(), coordinates.getY() + offset[1] + area.getY(), coordinates.getZ() + offset[2] + area.getZ()};
+		AxisAlignedBB box = new AxisAlignedBB(min[0], min[1], min[2], max[0], max[1], max[2]);
 		return housing.getWorldObj().getEntitiesWithinAABB(eClass, box);
 	}
 

@@ -7,6 +7,7 @@ import forestry.api.genetics.AlleleManager;
 import binnie.botany.core.BotanyCore;
 import binnie.core.util.I18N;
 
+//TODO: Clean Up
 public enum EnumFlowerColor implements IStringSerializable {
 	Aquamarine("aquamarine", 8388564),
 	Black("black", 2631720),
