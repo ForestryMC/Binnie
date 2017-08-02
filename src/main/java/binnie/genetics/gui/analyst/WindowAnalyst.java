@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -24,29 +23,20 @@ import binnie.Binnie;
 import binnie.botany.api.IFlower;
 import binnie.core.AbstractMod;
 import binnie.core.genetics.BreedingSystem;
-import binnie.core.gui.Attribute;
-import binnie.core.gui.CraftGUI;
 import binnie.core.gui.IWidget;
-import binnie.core.gui.Tooltip;
 import binnie.core.gui.Widget;
 import binnie.core.gui.controls.ControlTextCentered;
 import binnie.core.gui.controls.core.Control;
-import binnie.core.gui.controls.scroll.ControlScrollBar;
 import binnie.core.gui.controls.scroll.ControlScrollableContent;
 import binnie.core.gui.events.EventKey;
-import binnie.core.gui.events.EventMouse;
 import binnie.core.gui.geometry.Area;
-import binnie.core.gui.geometry.Point;
 import binnie.core.gui.geometry.Position;
 import binnie.core.gui.minecraft.InventoryType;
-import binnie.core.gui.minecraft.MinecraftGUI;
 import binnie.core.gui.minecraft.Window;
 import binnie.core.gui.minecraft.WindowInventory;
 import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.gui.minecraft.control.ControlSlide;
 import binnie.core.gui.minecraft.control.ControlSlot;
-import binnie.core.gui.renderer.RenderUtil;
-import binnie.core.gui.resource.minecraft.CraftGUITexture;
 import binnie.core.gui.window.Panel;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
@@ -157,37 +147,7 @@ public class WindowAnalyst extends Window {
 		int y = 28;
 		if (isDatabase) {
 			for (BreedingSystem syst : Binnie.GENETICS.getActiveSystems()) {
-				new Control(this, x, y, 20, 20) {
-					@Override
-					public void initialise() {
-						addAttribute(Attribute.MOUSE_OVER);
-						addSelfEventHandler(new EventMouse.Down.Handler() {
-							@Override
-							@SideOnly(Side.CLIENT)
-							public void onEvent(EventMouse.Down event) {
-								setSystem(syst);
-							}
-						});
-					}
-
-					@Override
-					public void getTooltip(Tooltip tooltip) {
-						tooltip.add(syst.getName());
-					}
-
-					@Override
-					@SideOnly(Side.CLIENT)
-					public void onRenderBackground(int guiWidth, int guiHeight) {
-						RenderUtil.setColour(syst.getColour());
-						int outset = (getSystem() == syst) ? 1 : 0;
-						CraftGUI.RENDER.texture(CraftGUITexture.TAB_OUTLINE, getArea().outset(outset));
-						if (getSystem() == syst) {
-							RenderUtil.setColour(1140850688 + syst.getColour());
-							CraftGUI.RENDER.texture(CraftGUITexture.TAB_SOLID, getArea().outset(outset));
-						}
-						RenderUtil.drawItem(new Point(2, 2), syst.getItemStackRepresentitive());
-					}
-				};
+				new ControlSystemButton(x, y, this, system);
 				x += 22;
 			}
 		} else {
@@ -198,71 +158,7 @@ public class WindowAnalyst extends Window {
 			setupValidators();
 		}
 		tabBar = new Control(this, x, 28, getWidth() - 16 - x, 20);
-		analystPanel = new Panel(this, 16, 54, 280, 164, MinecraftGUI.PanelType.OUTLINE) {
-			@Override
-			@SideOnly(Side.CLIENT)
-			public void onRenderBackground(int guiWidth, int guiHeight) {
-				RenderUtil.drawGradientRect(getArea(), 1157627903, 1728053247);
-				super.onRenderBackground(guiWidth, guiHeight);
-			}
-
-			@Override
-			public void initialise() {
-				setColor(4473924);
-				int sectionWidth = (getWidth() - 8 - 4) / 2;
-				leftPage = new ControlScrollableContent<IWidget>(this, 3, 3, sectionWidth + 2, getHeight() - 8 + 2, 0) {
-					@Override
-					@SideOnly(Side.CLIENT)
-					public void onRenderBackground(int guiWidth, int guiHeight) {
-						if (getContent() == null) {
-							return;
-						}
-						RenderUtil.setColour(getContent().getColor());
-						CraftGUI.RENDER.texture(CraftGUITexture.TAB_OUTLINE, getArea());
-					}
-				};
-				new ControlScrollBar(this, sectionWidth + 2 - 3, 6, 3, getHeight() - 8 + 2 - 6, leftPage) {
-					@Override
-					@SideOnly(Side.CLIENT)
-					public void onRenderBackground(int guiWidth, int guiHeight) {
-						if (!isEnabled()) {
-							return;
-						}
-						if (leftPage.getContent() == null) {
-							return;
-						}
-						RenderUtil.drawGradientRect(getArea(), 1140850688 + leftPage.getContent().getColor(), 1140850688 + leftPage.getContent().getColor());
-						RenderUtil.drawSolidRect(getRenderArea(), leftPage.getContent().getColor());
-					}
-				};
-				rightPage = new ControlScrollableContent<IWidget>(this, 3 + sectionWidth + 4, 3, sectionWidth + 2, getHeight() - 8 + 2, 0) {
-					@Override
-					@SideOnly(Side.CLIENT)
-					public void onRenderBackground(int guiWidth, int guiHeight) {
-						if (getContent() == null) {
-							return;
-						}
-						RenderUtil.setColour(getContent().getColor());
-						CraftGUI.RENDER.texture(CraftGUITexture.TAB_OUTLINE, getArea());
-					}
-				};
-				new ControlScrollBar(this, sectionWidth + 2 - 3 + sectionWidth + 4, 6, 3, getHeight() - 8 + 2 - 6, rightPage) {
-					@Override
-					@SideOnly(Side.CLIENT)
-					public void onRenderBackground(int guiWidth, int guiHeight) {
-						if (!isEnabled()) {
-							return;
-						}
-						if (rightPage.getContent() == null) {
-							return;
-						}
-						RenderUtil.drawGradientRect(getArea(), 1140850688 + rightPage.getContent().getColor(), 1140850688 + rightPage.getContent().getColor());
-						RenderUtil.drawSolidRect(getRenderArea(), rightPage.getContent().getColor());
-					}
-				};
-				analystPageSize = new Area(1, 1, sectionWidth, getHeight() - 8);
-			}
-		};
+		analystPanel = new AnalystPanel(this);
 		if (!isDatabase) {
 			slideUpInv = new ControlSlide(this, (getSize().xPos() - 244) / 2, getSize().yPos() - 80 + 1, 244, 80, Position.BOTTOM);
 			new ControlPlayerInventory(slideUpInv, true);
@@ -307,11 +203,27 @@ public class WindowAnalyst extends Window {
 		analystPages.clear();
 		setPage(leftPage, null);
 		setPage(rightPage, null);
+		createPages(databasePage);
+		tabBar.deleteAllChildren();
+		if (analystPages.size() > 0) {
+			int width = tabBar.getWidth() / analystPages.size();
+			int x = 0;
+			for (ControlAnalystPage page : analystPages) {
+				new ControlAnalystButton(tabBar, x, 0, width, tabBar.getHeight(), this, page);
+				x += width;
+			}
+			setPage(leftPage, analystPages.get((oldLeft >= 0) ? oldLeft : 0));
+			if (analystPages.size() > 1) {
+				setPage(rightPage, analystPages.get((oldRight >= 0) ? oldRight : 1));
+			}
+		}
+	}
+
+	private void createPages(ControlAnalystPage databasePage){
 		if (isDatabase) {
 			analystPages.add((databasePage != null) ? databasePage : new AnalystPageDatabase(analystPanel, analystPageSize, currentSystem, isMaster));
 		}
 		if (current != null) {
-			analystPanel.setOffset(new Point(0, 00));
 			analystPages.add(new AnalystPageDescription(analystPanel, analystPageSize, current));
 			analystPages.add(new AnalystPageGenome(analystPanel, analystPageSize, true, current));
 			if (!isDatabase) {
@@ -340,71 +252,6 @@ public class WindowAnalyst extends Window {
 				analystPages.add(new AnalystPageAppearance(analystPanel, analystPageSize, (IFlower) current));
 			}
 			analystPages.add(new AnalystPageMutations(analystPanel, analystPageSize, current, isMaster));
-		}
-		tabBar.deleteAllChildren();
-		if (analystPages.size() > 0) {
-			int width = tabBar.getWidth() / analystPages.size();
-			int x = 0;
-			for (ControlAnalystPage page : analystPages) {
-				new ControlTooltip(tabBar, x, 0, width, tabBar.getHeight()) {
-					ControlAnalystPage value;
-
-					@Override
-					public void getTooltip(Tooltip tooltip) {
-						tooltip.add(value.getTitle());
-					}
-
-					@Override
-					protected void initialise() {
-						super.initialise();
-						addAttribute(Attribute.MOUSE_OVER);
-						value = page;
-						addSelfEventHandler(new EventMouse.Down.Handler() {
-							@Override
-							public void onEvent(EventMouse.Down event) {
-								int currentIndex = analystPages.indexOf(rightPage.getContent());
-								int clickedIndex = analystPages.indexOf(value);
-								if (isDatabase) {
-									if (clickedIndex != 0 && clickedIndex != currentIndex) {
-										setPage(rightPage, value);
-									}
-								} else {
-									if (clickedIndex < 0) {
-										clickedIndex = 0;
-									}
-									if (clickedIndex < currentIndex) {
-										++clickedIndex;
-									}
-									setPage(rightPage, null);
-									setPage(leftPage, null);
-									setPage(rightPage, analystPages.get(clickedIndex));
-									setPage(leftPage, analystPages.get(clickedIndex - 1));
-								}
-							}
-						});
-					}
-
-					@Override
-					@SideOnly(Side.CLIENT)
-					public void onRenderBackground(int guiWidth, int guiHeight) {
-						boolean active = value == leftPage.getContent() || value == rightPage.getContent();
-						RenderUtil.setColour((active ? -16777216 : 1140850688) + value.getColor());
-						GlStateManager.pushMatrix();
-						GlStateManager.enableBlend();
-						CraftGUI.RENDER.texture(CraftGUITexture.TAB_SOLID, getArea().inset(1));
-						GlStateManager.disableBlend();
-						GlStateManager.popMatrix();
-						RenderUtil.setColour(value.getColor());
-						CraftGUI.RENDER.texture(CraftGUITexture.TAB_OUTLINE, getArea().inset(1));
-						super.onRenderBackground(guiWidth, guiHeight);
-					}
-				};
-				x += width;
-			}
-			setPage(leftPage, analystPages.get((oldLeft >= 0) ? oldLeft : 0));
-			if (analystPages.size() > 1) {
-				setPage(rightPage, analystPages.get((oldRight >= 0) ? oldRight : 1));
-			}
 		}
 	}
 

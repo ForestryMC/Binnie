@@ -18,6 +18,7 @@ public abstract class ControlAnalystPage extends Control {
 
 	public abstract String getTitle();
 
+	//TODO: localise
 	protected String getTimeString(int time) {
 		int seconds = time / 20;
 		int minutes = seconds / 60;

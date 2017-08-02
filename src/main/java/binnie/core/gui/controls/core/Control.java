@@ -22,12 +22,12 @@ public class Control extends Widget implements ITooltipHelp, ITooltip {
 	List<String> helpStrings;
 	List<String> tooltipStrings;
 
-	public Control(IWidget parent, int x, int y, int width, int height) {
+	public Control(IWidget parent, int xPos, int yPos, int width, int height) {
 		super(parent);
 		this.helpStrings = new ArrayList<>();
 		this.tooltipStrings = new ArrayList<>();
 		this.extraLevel = 0;
-		this.setPosition(new Point(x, y));
+		this.setPosition(new Point(xPos, yPos));
 		this.setSize(new Point(width, height));
 		this.initialise();
 	}

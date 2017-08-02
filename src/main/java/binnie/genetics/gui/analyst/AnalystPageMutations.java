@@ -86,39 +86,6 @@ public class AnalystPageMutations extends ControlAnalystPage {
 					new ControlUnknownMutation(this, ox + dx, y, 44, 16);
 				} else {
 					new ControlResultantMutation(this, ox + dx, y, mutation, specificChance, system, mutation.getAllele0(), mutation.getAllele1());
-					/*new Control(this, ox + dx, y, 44, 16) {
-						@Override
-						public void initialise() {
-							IAlleleSpecies firstSpecies = mutation.getAllele0();
-							IAlleleSpecies secondSpecies = mutation.getAllele1();
-							String comb = firstSpecies.getAlleleName() + " + " + secondSpecies.getAlleleName();
-							addTooltip(comb);
-							String chance = getMutationColour(mutation.getBaseChance()).getCode() + (int) mutation.getBaseChance() + "% " + I18N.localise(AnalystConstants.MUTATIONS_KEY + ".chance");
-							if (specificChance != mutation.getBaseChance()) {
-								chance = chance + getMutationColour(specificChance).getCode() + " (" + (int) specificChance + "% " + I18N.localise(AnalystConstants.MUTATIONS_KEY + ".currently") + ")";
-							}
-							addTooltip(chance);
-							for (String condition : mutation.getSpecialConditions()) {
-								addTooltip(condition);
-							}
-						}
-
-						@Override
-						@SideOnly(Side.CLIENT)
-						public void onRenderBackground(int guiWidth, int guiHeight) {
-							RenderUtil.drawItem(Point.ZERO, system.getDefaultMember(mutation.getAllele0().getUID()));
-							RenderUtil.drawItem(new Point(28, 0), system.getDefaultMember(mutation.getAllele1().getUID()));
-							if (specificChance != mutation.getBaseChance()) {
-								RenderUtil.setColour(getMutationColour(mutation.getBaseChance()).getColor());
-								drawSprite(ModuleItems.iconAdd0);
-								RenderUtil.setColour(getMutationColour(specificChance).getColor());
-								drawSprite(ModuleItems.iconAdd1);
-							} else {
-								RenderUtil.setColour(getMutationColour(mutation.getBaseChance()).getColor());
-								drawSprite(ModuleItems.iconAdd);
-							}
-						}
-					};*/
 				}
 				dx = 52 - dx;
 				if (dx == 0 || resultant.size() == 1) {
@@ -145,41 +112,6 @@ public class AnalystPageMutations extends ControlAnalystPage {
 					new ControlUnknownMutation(this, ox + dx, y, 44, 16);
 				} else {
 					new ControlFurtherMutation(this, ox + dx, y, mutation, specificChance, system, speciesCurrent, (IAlleleSpecies) speciesComb, (IAlleleSpecies) mutation.getTemplate()[0]);
-					/*new Control(this, ox + dx, y, 44, 16) {
-						@Override
-						public void initialise() {
-							IAlleleSpecies firstSpecies = (IAlleleSpecies) speciesComb;
-							IAlleleSpecies secondSpecies = (IAlleleSpecies) mutation.getTemplate()[0];
-							addTooltip(secondSpecies.getAlleleName());
-							String comb = speciesCurrent.getAlleleName() + " + " + firstSpecies.getAlleleName();
-							addTooltip(comb);
-							String chance = getMutationColour(mutation.getBaseChance()).getCode() + (int) mutation.getBaseChance() + "% " + I18N.localise(AnalystConstants.MUTATIONS_KEY + ".chance");
-							if (specificChance2 != mutation.getBaseChance()) {
-								chance = chance + getMutationColour(specificChance2).getCode() + " (" + (int) specificChance2 + "% " + I18N.localise(AnalystConstants.MUTATIONS_KEY + ".currently") + ")";
-							}
-							addTooltip(chance);
-							for (String condition : mutation.getSpecialConditions()) {
-								addTooltip(condition);
-							}
-						}
-
-						@Override
-						@SideOnly(Side.CLIENT)
-						public void onRenderBackground(int guiWidth, int guiHeight) {
-							RenderUtil.drawItem(Point.ZERO, system.getDefaultMember(speciesComb.getUID()));
-							RenderUtil.drawItem(new Point(28, 0), system.getDefaultMember(mutation.getTemplate()[0].getUID()));
-							RenderUtil.setColour(getMutationColour(mutation.getBaseChance()).getColor());
-							if (specificChance2 != mutation.getBaseChance()) {
-								RenderUtil.setColour(getMutationColour(mutation.getBaseChance()).getColor());
-								drawSprite(ModuleItems.iconArrow0);
-								RenderUtil.setColour(getMutationColour(specificChance2).getColor());
-								drawSprite(ModuleItems.iconArrow1);
-							} else {
-								RenderUtil.setColour(getMutationColour(mutation.getBaseChance()).getColor());
-								drawSprite(ModuleItems.iconArrow);
-							}
-						}
-					};*/
 				}
 				dx = 52 - dx;
 				if (dx == 0 || further.size() == 1) {
