@@ -19,17 +19,6 @@ public class AnalystPanel extends Panel {
 	public AnalystPanel(WindowAnalyst window) {
 		super(window, 16, 54, 280, 164, MinecraftGUI.PanelType.OUTLINE);
 		this.window = window;
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void onRenderBackground(int guiWidth, int guiHeight) {
-		RenderUtil.drawGradientRect(getArea(), 1157627903, 1728053247);
-		super.onRenderBackground(guiWidth, guiHeight);
-	}
-
-	@Override
-	public void initialise() {
 		setColor(4473924);
 		int sectionWidth = (getWidth() - 8 - 4) / 2;
 		window.leftPage = new ControlScrollableContent<IWidget>(this, 3, 3, sectionWidth + 2, getHeight() - 8 + 2, 0) {
@@ -83,5 +72,12 @@ public class AnalystPanel extends Panel {
 			}
 		};
 		window.analystPageSize = new Area(1, 1, sectionWidth, getHeight() - 8);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void onRenderBackground(int guiWidth, int guiHeight) {
+		RenderUtil.drawGradientRect(getArea(), 1157627903, 1728053247);
+		super.onRenderBackground(guiWidth, guiHeight);
 	}
 }

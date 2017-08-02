@@ -147,7 +147,7 @@ public class WindowAnalyst extends Window {
 		int y = 28;
 		if (isDatabase) {
 			for (BreedingSystem syst : Binnie.GENETICS.getActiveSystems()) {
-				new ControlSystemButton(x, y, this, system);
+				new ControlSystemButton(x, y, this, syst);
 				x += 22;
 			}
 		} else {
