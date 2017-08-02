@@ -44,6 +44,8 @@ public class RenderUtil {
 	}
 
 	public static void drawItem(final Point pos, final ItemStack itemStack, final boolean rotating) {
+		GlStateManager.enableBlend();
+		GlStateManager.enableDepth();
 		GlStateManager.pushAttrib();
 		Preconditions.checkNotNull(itemStack);
 		Minecraft minecraft = Minecraft.getMinecraft();
@@ -71,6 +73,8 @@ public class RenderUtil {
 
 		RenderHelper.disableStandardItemLighting();
 		GlStateManager.popAttrib();
+		GlStateManager.disableBlend();
+		GlStateManager.disableDepth();
 	}
 
 	private static FontRenderer getFontRenderer(Minecraft minecraft, ItemStack ingredient) {

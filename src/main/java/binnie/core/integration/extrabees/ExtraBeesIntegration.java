@@ -4,6 +4,7 @@ import com.google.common.base.Preconditions;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import net.minecraftforge.fml.common.Loader;
@@ -11,6 +12,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAlleleSpecies;
 
 import binnie.core.IInitializable;
 
@@ -46,6 +48,22 @@ public class ExtraBeesIntegration implements IInitializable {
 		rock = getExtraBeesSpecies("rock");
 		basalt = getExtraBeesSpecies("basalt");
 		marble = getExtraBeesSpecies("marble");
+	}
+
+	public static ItemStack getHive(IAlleleSpecies speciesCurrent){
+		if (speciesCurrent == ExtraBeesIntegration.water) {
+			return new ItemStack(ExtraBeesIntegration.hive, 1, 0);
+		}
+		if (speciesCurrent == ExtraBeesIntegration.rock) {
+			return new ItemStack(ExtraBeesIntegration.hive, 1, 1);
+		}
+		if (speciesCurrent == ExtraBeesIntegration.basalt) {
+			return new ItemStack(ExtraBeesIntegration.hive, 1, 2);
+		}
+		if (speciesCurrent == ExtraBeesIntegration.marble) {
+			return new ItemStack(ExtraBeesIntegration.hive, 1, 3);
+		}
+		return ItemStack.EMPTY;
 	}
 
 	private IAlleleBeeSpecies getExtraBeesSpecies(String species) {

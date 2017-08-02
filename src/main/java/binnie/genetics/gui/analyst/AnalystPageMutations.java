@@ -34,7 +34,6 @@ import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.integration.extrabees.ExtraBeesIntegration;
 import binnie.core.resource.BinnieSprite;
 import binnie.core.util.I18N;
-import binnie.genetics.item.ModuleItems;
 
 public class AnalystPageMutations extends ControlAnalystPage {
 	public AnalystPageMutations(IWidget parent, Area area, IIndividual ind, boolean isMaster) {
@@ -49,45 +48,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 		Collection<IMutation> resultant = system.getResultantMutations(speciesCurrent);
 		Collection<IMutation> further = system.getFurtherMutations(speciesCurrent);
 		if (ind instanceof IBee) {
-			ItemStack hive = null;
-			if (ExtraBeesIntegration.isLoaded()) {
-				if (speciesCurrent == ExtraBeesIntegration.water) {
-					hive = new ItemStack(ExtraBeesIntegration.hive, 1, 0);
-				}
-				if (speciesCurrent == ExtraBeesIntegration.rock) {
-					hive = new ItemStack(ExtraBeesIntegration.hive, 1, 1);
-				}
-				if (speciesCurrent == ExtraBeesIntegration.basalt) {
-					hive = new ItemStack(ExtraBeesIntegration.hive, 1, 2);
-				}
-				if (speciesCurrent == ExtraBeesIntegration.marble) {
-					hive = new ItemStack(ExtraBeesIntegration.hive, 1, 3);
-				}
-			}
-			if (speciesCurrent == ForestryAllele.BeeSpecies.Forest.getAllele()) {
-				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 1);
-			}
-			if (speciesCurrent == ForestryAllele.BeeSpecies.Meadows.getAllele()) {
-				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 2);
-			}
-			if (speciesCurrent == ForestryAllele.BeeSpecies.Modest.getAllele()) {
-				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 3);
-			}
-			if (speciesCurrent == ForestryAllele.BeeSpecies.Tropical.getAllele()) {
-				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 4);
-			}
-			if (speciesCurrent == ForestryAllele.BeeSpecies.Ended.getAllele()) {
-				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 5);
-			}
-			if (speciesCurrent == ForestryAllele.BeeSpecies.Wintry.getAllele()) {
-				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 6);
-			}
-			if (speciesCurrent == ForestryAllele.BeeSpecies.Marshy.getAllele()) {
-				hive = new ItemStack(Mods.Forestry.block("beehives"), 1, 7);
-			}
-			if (speciesCurrent == ForestryAllele.BeeSpecies.Steadfast.getAllele()) {
-				hive = new ItemStack(Blocks.CHEST);
-			}
+			ItemStack hive = getHive(speciesCurrent);
 			if (speciesCurrent == ForestryAllele.BeeSpecies.Valiant.getAllele()) {
 				new ControlTextCentered(this, y, I18N.localise(AnalystConstants.MUTATIONS_KEY + ".bee.natural")).setColor(getColor());
 				y += 10;
@@ -98,7 +59,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 				y += 10;
 				new ControlTextCentered(this, y, TextFormatting.ITALIC + I18N.localise(AnalystConstants.MUTATIONS_KEY + ".bee.villager")).setColor(getColor());
 				y += 22;
-			} else if (hive != null) {
+			} else if (!hive.isEmpty()) {
 				new ControlTextCentered(this, y, I18N.localise(AnalystConstants.MUTATIONS_KEY + ".bee.natural")).setColor(getColor());
 				y += 10;
 				ControlItemDisplay display = new ControlItemDisplay(this, (getWidth() - 16) / 2, y);
@@ -124,20 +85,21 @@ public class AnalystPageMutations extends ControlAnalystPage {
 				if (!isMaster && !isKnown(system, mutation)) {
 					new ControlUnknownMutation(this, ox + dx, y, 44, 16);
 				} else {
-					new Control(this, ox + dx, y, 44, 16) {
+					new ControlResultantMutation(this, ox + dx, y, mutation, specificChance, system, mutation.getAllele0(), mutation.getAllele1());
+					/*new Control(this, ox + dx, y, 44, 16) {
 						@Override
 						public void initialise() {
-							IAlleleSpecies species0 = mutation.getAllele0();
-							IAlleleSpecies species2 = mutation.getAllele1();
-							String comb = species0.getAlleleName() + " + " + species2.getAlleleName();
+							IAlleleSpecies firstSpecies = mutation.getAllele0();
+							IAlleleSpecies secondSpecies = mutation.getAllele1();
+							String comb = firstSpecies.getAlleleName() + " + " + secondSpecies.getAlleleName();
 							addTooltip(comb);
 							String chance = getMutationColour(mutation.getBaseChance()).getCode() + (int) mutation.getBaseChance() + "% " + I18N.localise(AnalystConstants.MUTATIONS_KEY + ".chance");
 							if (specificChance != mutation.getBaseChance()) {
 								chance = chance + getMutationColour(specificChance).getCode() + " (" + (int) specificChance + "% " + I18N.localise(AnalystConstants.MUTATIONS_KEY + ".currently") + ")";
 							}
 							addTooltip(chance);
-							for (String s : mutation.getSpecialConditions()) {
-								addTooltip(s);
+							for (String condition : mutation.getSpecialConditions()) {
+								addTooltip(condition);
 							}
 						}
 
@@ -156,7 +118,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 								drawSprite(ModuleItems.iconAdd);
 							}
 						}
-					};
+					};*/
 				}
 				dx = 52 - dx;
 				if (dx == 0 || resultant.size() == 1) {
@@ -178,25 +140,26 @@ public class AnalystPageMutations extends ControlAnalystPage {
 			y += 10;
 			for (IMutation mutation : further) {
 				IAllele speciesComb = mutation.getPartner(speciesCurrent);
-				float specificChance2 = getSpecificChance(ind, mutation, system);
+				float specificChance = getSpecificChance(ind, mutation, system);
 				if (!isMaster && !isKnown(system, mutation)) {
 					new ControlUnknownMutation(this, ox + dx, y, 44, 16);
 				} else {
-					new Control(this, ox + dx, y, 44, 16) {
+					new ControlFurtherMutation(this, ox + dx, y, mutation, specificChance, system, speciesCurrent, (IAlleleSpecies) speciesComb, (IAlleleSpecies) mutation.getTemplate()[0]);
+					/*new Control(this, ox + dx, y, 44, 16) {
 						@Override
 						public void initialise() {
-							IAlleleSpecies species0 = (IAlleleSpecies) speciesComb;
-							IAlleleSpecies species2 = (IAlleleSpecies) mutation.getTemplate()[0];
-							addTooltip(species2.getAlleleName());
-							String comb = speciesCurrent.getAlleleName() + " + " + species0.getAlleleName();
+							IAlleleSpecies firstSpecies = (IAlleleSpecies) speciesComb;
+							IAlleleSpecies secondSpecies = (IAlleleSpecies) mutation.getTemplate()[0];
+							addTooltip(secondSpecies.getAlleleName());
+							String comb = speciesCurrent.getAlleleName() + " + " + firstSpecies.getAlleleName();
 							addTooltip(comb);
 							String chance = getMutationColour(mutation.getBaseChance()).getCode() + (int) mutation.getBaseChance() + "% " + I18N.localise(AnalystConstants.MUTATIONS_KEY + ".chance");
 							if (specificChance2 != mutation.getBaseChance()) {
 								chance = chance + getMutationColour(specificChance2).getCode() + " (" + (int) specificChance2 + "% " + I18N.localise(AnalystConstants.MUTATIONS_KEY + ".currently") + ")";
 							}
 							addTooltip(chance);
-							for (String s : mutation.getSpecialConditions()) {
-								addTooltip(s);
+							for (String condition : mutation.getSpecialConditions()) {
+								addTooltip(condition);
 							}
 						}
 
@@ -216,7 +179,7 @@ public class AnalystPageMutations extends ControlAnalystPage {
 								drawSprite(ModuleItems.iconArrow);
 							}
 						}
-					};
+					};*/
 				}
 				dx = 52 - dx;
 				if (dx == 0 || further.size() == 1) {
@@ -266,6 +229,40 @@ public class AnalystPageMutations extends ControlAnalystPage {
 			return EnumColor.RED;
 		}
 		return EnumColor.DARK_RED;
+	}
+
+	protected ItemStack getHive(IAlleleSpecies speciesCurrent){
+		if (ExtraBeesIntegration.isLoaded()) {
+			ItemStack hive = ExtraBeesIntegration.getHive(speciesCurrent);
+			if(!hive.isEmpty()){
+				return hive;
+			}
+		}
+		if (speciesCurrent == ForestryAllele.BeeSpecies.Forest.getAllele()) {
+			return new ItemStack(Mods.Forestry.block("beehives"), 1, 1);
+		}
+		if (speciesCurrent == ForestryAllele.BeeSpecies.Meadows.getAllele()) {
+			return new ItemStack(Mods.Forestry.block("beehives"), 1, 2);
+		}
+		if (speciesCurrent == ForestryAllele.BeeSpecies.Modest.getAllele()) {
+			return new ItemStack(Mods.Forestry.block("beehives"), 1, 3);
+		}
+		if (speciesCurrent == ForestryAllele.BeeSpecies.Tropical.getAllele()) {
+			return new ItemStack(Mods.Forestry.block("beehives"), 1, 4);
+		}
+		if (speciesCurrent == ForestryAllele.BeeSpecies.Ended.getAllele()) {
+			return new ItemStack(Mods.Forestry.block("beehives"), 1, 5);
+		}
+		if (speciesCurrent == ForestryAllele.BeeSpecies.Wintry.getAllele()) {
+			return new ItemStack(Mods.Forestry.block("beehives"), 1, 6);
+		}
+		if (speciesCurrent == ForestryAllele.BeeSpecies.Marshy.getAllele()) {
+			return new ItemStack(Mods.Forestry.block("beehives"), 1, 7);
+		}
+		if (speciesCurrent == ForestryAllele.BeeSpecies.Steadfast.getAllele()) {
+			return new ItemStack(Blocks.CHEST);
+		}
+		return ItemStack.EMPTY;
 	}
 
 	static class ControlUnknownMutation extends Control {
