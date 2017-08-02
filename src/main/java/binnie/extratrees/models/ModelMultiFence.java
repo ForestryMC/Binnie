@@ -98,12 +98,6 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 		for (int i = 0; i < 5; ++i) {
 			final float thickness = 0.125f;
 			boolean secondary = false;
-			if (i == 0) {
-				modelBaker.setModelBounds(new AxisAlignedBB(0.5f - thickness, 0.0f, 0.0f, 0.5f + thickness, 1.0f, thickness * 2.0f));
-			}
-			if (i == 1) {
-				modelBaker.setModelBounds(new AxisAlignedBB(0.5f - thickness, 0.0f, 1.0f - thickness * 2.0f, 0.5f + thickness, 1.0f, 1.0f));
-			}
 			final boolean bottomBar = !type.solid;
 			float topBarMaxY = 1.0f - SCALE;
 			float topBarMinY = 1.0f - SCALE * 3.0f;
@@ -126,18 +120,20 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 			float maxX = 0.5f + SCALE;
 			float minZ = -SCALE * 2.0f;
 			float maxZ = 1.0f + SCALE * 2.0f;
-			if (i == 2) {
+			if (i == 0) {
+				modelBaker.setModelBounds(new AxisAlignedBB(0.5f - thickness, 0.0f, 0.0f, 0.5f + thickness, 1.0f, thickness * 2.0f));
+			} else if (i == 1) {
+				modelBaker.setModelBounds(new AxisAlignedBB(0.5f - thickness, 0.0f, 1.0f - thickness * 2.0f, 0.5f + thickness, 1.0f, 1.0f));
+			} else if (i == 2) {
 				modelBaker.setModelBounds(new AxisAlignedBB(minX, topBarMinY, minZ, maxX, topBarMaxY, maxZ));
 				secondary = true;
-			}
-			if (i == 3) {
+			} else if (i == 3) {
 				if (!bottomBar) {
 					continue;
 				}
 				modelBaker.setModelBounds(new AxisAlignedBB(minX, bottomBarMinY, minZ, maxX, bottomBarMaxY, maxZ));
 				secondary = true;
-			}
-			if (i == 4) {
+			} else if (i == 4) {
 				if (type.embossed) {
 					minX -= SCALE * 0.9f;
 					maxX += SCALE * 0.9f;
@@ -238,18 +234,19 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 				modelBaker.setModelBounds(new AxisAlignedBB(minPostPos, barMinY, minZ, maxPostPos, barMaxY, maxZ));
 				modelBaker.addBlockModel(null, block.getSprite(meta, true), 0);
 			}
-		}
-		if (renderBottom && fenceType.size == 1) {
-			barMinY -= 6.0f * SCALE;
-			barMaxY -= 6.0f * SCALE;
-			barMaxY += SCALE;
-			if (connectAnyX) {
-				modelBaker.setModelBounds(new AxisAlignedBB(minX, barMinY, minPostPos, maxX, barMaxY, maxPostPos));
-				modelBaker.addBlockModel(null, block.getSprite(meta, true), 0);
-			}
-			if (connectAnyZ) {
-				modelBaker.setModelBounds(new AxisAlignedBB(minPostPos, barMinY, minZ, maxPostPos, barMaxY, maxZ));
-				modelBaker.addBlockModel(null, block.getSprite(meta, true), 0);
+
+			if (fenceType.size == 1) {
+				barMinY -= 6.0f * SCALE;
+				barMaxY -= 6.0f * SCALE;
+				barMaxY += SCALE;
+				if (connectAnyX) {
+					modelBaker.setModelBounds(new AxisAlignedBB(minX, barMinY, minPostPos, maxX, barMaxY, maxPostPos));
+					modelBaker.addBlockModel(null, block.getSprite(meta, true), 0);
+				}
+				if (connectAnyZ) {
+					modelBaker.setModelBounds(new AxisAlignedBB(minPostPos, barMinY, minZ, maxPostPos, barMaxY, maxZ));
+					modelBaker.addBlockModel(null, block.getSprite(meta, true), 0);
+				}
 			}
 		}
 		float totalMinY = barMinY;
