@@ -369,8 +369,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 
 	@Override
 	public SPacketUpdateTileEntity getUpdatePacket() {
-		// TODO getFlower().getGenome() != null always true?
-		if (renderInfo == null && getFlower() != null && getFlower().getGenome() != null) {
+		if (renderInfo == null && getFlower() != null) {
 			renderInfo = new RenderInfo(getFlower(), this);
 		}
 		return (renderInfo != null) ? new SPacketUpdateTileEntity(pos, 0, getUpdateTag()) : null;

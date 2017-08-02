@@ -31,14 +31,6 @@ public class PageSpeciesFlowerGenome extends PageSpecies {
 		super(parent, tab);
 	}
 
-	//TODO: unused ?
-	/*public static String tolerated(boolean t) {
-		if (t) {
-			return "Tolerated";
-		}
-		return "Not Tolerated";
-	}*/
-
 	@Override
 	public void onValueChanged(IAlleleSpecies species) {
 		deleteAllChildren();

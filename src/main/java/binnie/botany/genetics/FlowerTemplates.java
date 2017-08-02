@@ -9,7 +9,6 @@ import binnie.botany.api.EnumFlowerChromosome;
 public class FlowerTemplates {
 	public static IAllele[] getDefaultTemplate() {
 		IAllele[] alleles = new IAllele[EnumFlowerChromosome.values().length];
-		//TODO: Test flower reset
 		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.SPECIES, FlowerDefinition.Poppy.getSpecies());
 		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.PRIMARY, EnumFlowerColor.Red.getFlowerColorAllele());
 		AlleleHelper.getInstance().set(alleles, EnumFlowerChromosome.SECONDARY, EnumFlowerColor.Red.getFlowerColorAllele());

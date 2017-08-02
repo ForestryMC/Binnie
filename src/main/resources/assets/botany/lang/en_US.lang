@@ -73,6 +73,7 @@ botany.tube.material.iron.name=Iron
 botany.tube.material.bronze.name=Bronze
 
 item.botany.flower.destroy=This item is bugged. Destroy it!
+item.botany.flower.age=Age: %s
 item.botany.grammar.flower=%PRIMARY, %STEM Stem
 item.botany.grammar.flower.secondary=%PRIMARY and %SECONDARY, %STEM Stem
 

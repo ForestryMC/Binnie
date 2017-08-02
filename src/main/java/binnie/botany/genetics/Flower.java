@@ -14,6 +14,7 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosome;
 import forestry.core.genetics.Chromosome;
 import forestry.core.genetics.Individual;
+import forestry.core.utils.Translator;
 
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.IAlleleFlowerSpecies;
@@ -23,6 +24,7 @@ import binnie.botany.api.IFlowerColor;
 import binnie.botany.api.IFlowerGenome;
 import binnie.botany.api.IFlowerMutation;
 import binnie.botany.core.BotanyCore;
+import binnie.core.util.I18N;
 
 public class Flower extends Individual implements IFlower {
 	public IFlowerGenome genome;
@@ -84,15 +86,14 @@ public class Flower extends Individual implements IFlower {
 	public void addTooltip(List<String> list) {
 		IAlleleFlowerSpecies primary = genome.getPrimary();
 		IAlleleFlowerSpecies secondary = genome.getSecondary();
-		// TODO localize
 		if (!isPureBred(EnumFlowerChromosome.SPECIES)) {
-			list.add(TextFormatting.BLUE + primary.getAlleleName() + "-" + secondary.getAlleleName() + " Hybrid");
+			list.add(TextFormatting.BLUE + Translator.translateToLocal("for.bees.hybrid").replaceAll("%PRIMARY", primary.getAlleleName()).replaceAll("%SECONDARY", secondary.getAlleleName()));
 		}
 
-		list.add(TextFormatting.GOLD + "Age: " + getAge());
-		list.add(TextFormatting.GOLD + "T: " + getGenome().getPrimary().getTemperature() + " / " + getGenome().getToleranceTemperature());
-		list.add(TextFormatting.GOLD + "M: " + getGenome().getPrimary().getMoisture() + " / " + getGenome().getToleranceMoisture());
-		list.add(TextFormatting.GOLD + "pH: " + getGenome().getPrimary().getHumidity() + " / " + getGenome().getTolerancePH());
+		list.add(TextFormatting.GOLD + I18N.localise("item.botany.flower.age", getAge()));
+		list.add(TextFormatting.GREEN + "T: " + getGenome().getPrimary().getTemperature() + " / " + getGenome().getToleranceTemperature());
+		list.add(TextFormatting.AQUA + "M: " + getGenome().getPrimary().getMoisture() + " / " + getGenome().getToleranceMoisture());
+		list.add(TextFormatting.AQUA + "pH: " + getGenome().getPrimary().getHumidity() + " / " + getGenome().getTolerancePH());
 		list.add(TextFormatting.GOLD + "Fert: " + getGenome().getFertility() + "x");
 	}
 

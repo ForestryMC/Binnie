@@ -190,24 +190,31 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		ItemStack stack = player.getHeldItem(hand);
 		if (type == EnumFlowerStage.POLLEN) {
-			IFlower flower = Binnie.GENETICS.getFlowerRoot().getMember(stack);
-			TileEntity target = world.getTileEntity(pos);
-			if (!(target instanceof IPollinatable)) {
-				return EnumActionResult.PASS;
-			}
-			IPollinatable pollinatable = (IPollinatable) target;
-			if (!pollinatable.canMateWith(flower)) {
-				return EnumActionResult.FAIL;
-			}
-			pollinatable.mateWith(flower);
-			if (!player.capabilities.isCreativeMode) {
-				stack.shrink(1);
-			}
-			return EnumActionResult.SUCCESS;
+			return pollinateFlower(world, pos, player, stack);
 		}
+		return placeFlower(player, stack, world, pos, hand, facing, hitX, hitY, hitZ);
+	}
 
-		IBlockState iblockstate = world.getBlockState(pos);
-		Block block = iblockstate.getBlock();
+	private EnumActionResult pollinateFlower(World world, BlockPos pos, EntityPlayer player, ItemStack stack){
+		IFlower flower = Binnie.GENETICS.getFlowerRoot().getMember(stack);
+		TileEntity target = world.getTileEntity(pos);
+		if (!(target instanceof IPollinatable)) {
+			return EnumActionResult.PASS;
+		}
+		IPollinatable pollinatable = (IPollinatable) target;
+		if (!pollinatable.canMateWith(flower)) {
+			return EnumActionResult.FAIL;
+		}
+		pollinatable.mateWith(flower);
+		if (!player.capabilities.isCreativeMode) {
+			stack.shrink(1);
+		}
+		return EnumActionResult.SUCCESS;
+	}
+
+	private EnumActionResult placeFlower(EntityPlayer player, ItemStack stack, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ){
+		IBlockState blockState = world.getBlockState(pos);
+		Block block = blockState.getBlock();
 
 		if (!block.isReplaceable(world, pos)) {
 			pos = pos.offset(facing);
@@ -215,11 +222,11 @@ public class ItemBotany extends Item implements IColoredItem, IItemModelRegister
 
 		if (stack.getCount() != 0 && player.canPlayerEdit(pos, facing, stack) && world.mayPlace(Botany.flower, pos, false, facing, null)) {
 			int i = getMetadata(stack.getMetadata());
-			IBlockState iblockstate1 = Botany.flower.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, i, player, hand);
+			IBlockState stateForPlacement = Botany.flower.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, i, player, hand);
 
-			if (placeBlockAt(stack, player, world, pos, facing, hitX, hitY, hitZ, iblockstate1)) {
-				SoundType soundtype = world.getBlockState(pos).getBlock().getSoundType(world.getBlockState(pos), world, pos, player);
-				world.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+			if (placeBlockAt(stack, player, world, pos, facing, hitX, hitY, hitZ, stateForPlacement)) {
+				SoundType soundType = block.getSoundType(stateForPlacement, world, pos, player);
+				world.playSound(player, pos, soundType.getPlaceSound(), SoundCategory.BLOCKS, (soundType.getVolume() + 1.0F) / 2.0F, soundType.getPitch() * 0.8F);
 				stack.shrink(1);
 			}
 
