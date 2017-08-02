@@ -196,65 +196,53 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 			return;
 		}
 
-		// TODO always false?
-		if (flower.getGenome() == null) {
-			invalidate();
-			return;
-		}
 		if (!isBreeding()) {
 			return;
 		}
 
-		float light = world.getLight(pos);
-		if (light < 6.0f) {
-			for (int dx = -2; dx <= 2; ++dx) {
-				for (int dy = -2; dy <= 2; ++dy) {
-					light -= (world.canBlockSeeSky(pos) ? 0.0f : 0.5f);
-				}
-			}
+		if(updateState(rand)){
+			return;
 		}
 
 		IGardeningManager gardening = BotanyCore.getGardening();
-		boolean canTolerate = gardening.canTolerate(getFlower(), world, pos);
 		EnumSoilType soil = gardening.getSoilType(world, pos.down());
-		if (rand.nextFloat() < getFlower().getGenome().getAgeChance()) {
-			if (flower.getAge() < 1) {
-				if (canTolerate && light > 6.0f) {
-					doFlowerAge();
+		float chanceDispersal = 0.8f;
+		chanceDispersal += 0.2f * flower.getGenome().getFertility();
+		chanceDispersal *= 1.0f + soil.ordinal() * 0.5f;
+		float chancePollinate = 1.0f;
+		chancePollinate += 0.25f * flower.getGenome().getFertility();
+		chancePollinate *= 1.0f + soil.ordinal() * 0.5f;
+		float chanceSelfPollinate = 0.2f * chancePollinate;
+		plantOffspring(rand, chanceDispersal);
+
+		mateFlower(rand, chancePollinate, chanceSelfPollinate);
+		spawnButterflies();
+		matureCaterpillar();
+		checkIfDead(false);
+		updateRender(true);
+	}
+
+	private void mateFlower(Random rand, float chancePollinate, float chanceSelfPollinate){
+		if (world.rand.nextFloat() < chancePollinate && flower.hasFlowered() && !flower.isWilted()) {
+			for (int a2 = 0; a2 < 4; ++a2) {
+				int dx3;
+				int dz2;
+				for (dx3 = 0, dz2 = 0; dx3 == 0 && dz2 == 0; dx3 = rand.nextInt(5) - 2, dz2 = rand.nextInt(5) - 2) {
 				}
-			} else {
-				doFlowerAge();
+				TileEntity tile = world.getTileEntity(pos.add(dx3, 0, dz2));
+				if (tile instanceof IPollinatable && ((IPollinatable) tile).canMateWith(getFlower())) {
+					((IPollinatable) tile).mateWith(getFlower());
+				}
 			}
 		}
 
-		if (canTolerate && flower.getAge() > 1 && !flower.isWilted() && light > 6.0f) {
-			flower.setFlowered(true);
+		if (world.rand.nextFloat() < chanceSelfPollinate && flower.hasFlowered() && flower.getMate() == null) {
+			mateWith(getFlower());
 		}
+	}
 
-		if (!canTolerate && flower.isWilted() && rand.nextInt(2 + Math.max(flower.getAge(), 2)) == 0) {
-			kill();
-			return;
-		}
-
-		if (light < 2.0f && flower.isWilted()) {
-			kill();
-			return;
-		}
-
-		if (!canTolerate || light < 1.0f) {
-			flower.setWilted(true);
-		} else {
-			flower.setWilted(false);
-		}
-
-		float CHANCE_DISPERSAL = 0.8f;
-		CHANCE_DISPERSAL += 0.2f * flower.getGenome().getFertility();
-		CHANCE_DISPERSAL *= 1.0f + soil.ordinal() * 0.5f;
-		float CHANCE_POLLINATE = 1.0f;
-		CHANCE_POLLINATE += 0.25f * flower.getGenome().getFertility();
-		CHANCE_POLLINATE *= 1.0f + soil.ordinal() * 0.5f;
-		float CHANCE_SELFPOLLINATE = 0.2f * CHANCE_POLLINATE;
-		if (world.rand.nextFloat() < CHANCE_DISPERSAL && flower.hasFlowered() && !flower.isWilted()) {
+	private void plantOffspring(Random rand, float chanceDispersal){
+		if (world.rand.nextFloat() < chanceDispersal && flower.hasFlowered() && !flower.isWilted()) {
 			IFlowerGenome mate = flower.getMate();
 			if (mate != null) {
 				boolean dispersed = false;
@@ -276,27 +264,51 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 				}
 			}
 		}
+	}
 
-		if (world.rand.nextFloat() < CHANCE_POLLINATE && flower.hasFlowered() && !flower.isWilted()) {
-			for (int a2 = 0; a2 < 4; ++a2) {
-				int dx3;
-				int dz2;
-				for (dx3 = 0, dz2 = 0; dx3 == 0 && dz2 == 0; dx3 = rand.nextInt(5) - 2, dz2 = rand.nextInt(5) - 2) {
-				}
-				TileEntity tile = world.getTileEntity(pos.add(dx3, 0, dz2));
-				if (tile instanceof IPollinatable && ((IPollinatable) tile).canMateWith(getFlower())) {
-					((IPollinatable) tile).mateWith(getFlower());
+	private boolean updateState(Random rand){
+		float light = world.getLight(pos);
+		if (light < 6.0f) {
+			for (int offsetX = -2; offsetX <= 2; ++offsetX) {
+				for (int offsetY = -2; offsetY <= 2; ++offsetY) {
+					light -= (world.canBlockSeeSky(pos.add(offsetX, 0, offsetY)) ? 0.0f : 0.5f);
 				}
 			}
 		}
 
-		if (world.rand.nextFloat() < CHANCE_SELFPOLLINATE && flower.hasFlowered() && flower.getMate() == null) {
-			mateWith(getFlower());
+		IGardeningManager gardening = BotanyCore.getGardening();
+		boolean canTolerate = gardening.canTolerate(getFlower(), world, pos);
+		if (rand.nextFloat() < getFlower().getGenome().getAgeChance()) {
+			if (flower.getAge() < 1) {
+				if (canTolerate && light > 6.0f) {
+					doFlowerAge();
+				}
+			} else {
+				doFlowerAge();
+			}
 		}
-		spawnButterflies();
-		matureCaterpillar();
-		checkIfDead(false);
-		updateRender(true);
+
+		if (canTolerate && flower.getAge() > 1 && !flower.isWilted() && light > 6.0f) {
+			flower.setFlowered(true);
+		}
+
+		if (!canTolerate && flower.isWilted() && rand.nextInt(2 + Math.max(flower.getAge(), 2)) == 0) {
+			kill();
+			return true;
+		}
+
+		if (light < 2.0f && flower.isWilted()) {
+			kill();
+			return true;
+		}
+
+		if (!canTolerate || light < 1.0f) {
+			flower.setWilted(true);
+		} else {
+			flower.setWilted(false);
+		}
+
+		return false;
 	}
 
 	private void doFlowerAge() {
@@ -420,12 +432,12 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 		cutting.setAge(0);
 		ItemStack cuttingStack = BotanyCore.getFlowerRoot().getMemberStack(cutting, EnumFlowerStage.SEED);
 		float f = 0.7f;
-		double d = rand.nextFloat() * f + (1.0f - f) * 0.5;
-		double d2 = rand.nextFloat() * f + (1.0f - f) * 0.5;
-		double d3 = rand.nextFloat() * f + (1.0f - f) * 0.5;
-		EntityItem entityitem = new EntityItem(world, pos.getX() + d, pos.getY() + d2, pos.getZ() + d3, cuttingStack);
-		entityitem.setPickupDelay(10);
-		world.spawnEntity(entityitem);
+		double xPos = rand.nextFloat() * f + (1.0f - f) * 0.5;
+		double yPos = rand.nextFloat() * f + (1.0f - f) * 0.5;
+		double zPos = rand.nextFloat() * f + (1.0f - f) * 0.5;
+		EntityItem entityItem = new EntityItem(world, pos.getX() + xPos, pos.getY() + yPos, pos.getZ() + zPos, cuttingStack);
+		entityItem.setPickupDelay(10);
+		world.spawnEntity(entityItem);
 		for (int maxAge = getFlower().getMaxAge(), i = 0; i < maxAge; ++i) {
 			if (rand.nextBoolean()) {
 				getFlower().age();

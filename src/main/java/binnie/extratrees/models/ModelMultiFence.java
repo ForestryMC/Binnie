@@ -104,29 +104,28 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 			if (i == 1) {
 				modelBaker.setModelBounds(new AxisAlignedBB(0.5f - thickness, 0.0f, 1.0f - thickness * 2.0f, 0.5f + thickness, 1.0f, 1.0f));
 			}
-			final float s = 0.0625f;
 			final boolean bottomBar = !type.solid;
-			float topBarMaxY = 1.0f - s;
-			float topBarMinY = 1.0f - s * 3.0f;
-			float bottomBarMaxY = 0.5f - s;
-			float bottomBarMinY = 0.5f - s * 3.0f;
+			float topBarMaxY = 1.0f - SCALE;
+			float topBarMinY = 1.0f - SCALE * 3.0f;
+			float bottomBarMaxY = 0.5f - SCALE;
+			float bottomBarMinY = 0.5f - SCALE * 3.0f;
 			if (type.size == 2) {
-				bottomBarMinY -= 4.0f * s;
-				bottomBarMaxY -= 4.0f * s;
-				topBarMinY -= 4.0f * s;
-				topBarMaxY -= 4.0f * s;
+				bottomBarMinY -= 4.0f * SCALE;
+				bottomBarMaxY -= 4.0f * SCALE;
+				topBarMinY -= 4.0f * SCALE;
+				topBarMaxY -= 4.0f * SCALE;
 			}
 			if (type.size == 1) {
-				bottomBarMinY -= 4.0f * s;
-				bottomBarMaxY -= 4.0f * s;
+				bottomBarMinY -= 4.0f * SCALE;
+				bottomBarMaxY -= 4.0f * SCALE;
 			}
 			if (type.solid) {
 				topBarMinY = bottomBarMinY;
 			}
-			float minX = 0.5f - s;
-			float maxX = 0.5f + s;
-			float minZ = -s * 2.0f;
-			float maxZ = 1.0f + s * 2.0f;
+			float minX = 0.5f - SCALE;
+			float maxX = 0.5f + SCALE;
+			float minZ = -SCALE * 2.0f;
+			float maxZ = 1.0f + SCALE * 2.0f;
 			if (i == 2) {
 				modelBaker.setModelBounds(new AxisAlignedBB(minX, topBarMinY, minZ, maxX, topBarMaxY, maxZ));
 				secondary = true;
@@ -140,36 +139,36 @@ public class ModelMultiFence extends ModelBlockCached<BlockMultiFence, ModelMult
 			}
 			if (i == 4) {
 				if (type.embossed) {
-					minX -= s * 0.9f;
-					maxX += s * 0.9f;
-					minZ -= s;
-					maxZ += s;
+					minX -= SCALE * 0.9f;
+					maxX += SCALE * 0.9f;
+					minZ -= SCALE;
+					maxZ += SCALE;
 					float minY = 0.0f;
 					float maxY = 1.0f;
 					if (type.size != 1 && !type.solid) {
-						minY = bottomBarMinY + 2.0f * s;
-						maxY = topBarMaxY - 2.0f * s;
+						minY = bottomBarMinY + 2.0f * SCALE;
+						maxY = topBarMaxY - 2.0f * SCALE;
 					} else if (type.size == 1 && type.solid) {
-						minY = bottomBarMinY + 2.0f * s;
-						maxY = topBarMaxY - 2.0f * s;
+						minY = bottomBarMinY + 2.0f * SCALE;
+						maxY = topBarMaxY - 2.0f * SCALE;
 					} else {
-						minY = 0.5f - 2.0f * s;
-						maxY = 0.5f + 2.0f * s;
+						minY = 0.5f - 2.0f * SCALE;
+						maxY = 0.5f + 2.0f * SCALE;
 					}
 					if (type.solid && type.size == 0) {
-						minY -= s;
-						maxY -= s;
+						minY -= SCALE;
+						maxY -= SCALE;
 					}
 					if (type.solid && type.size == 2) {
-						minY += s;
-						maxY += s;
+						minY += SCALE;
+						maxY += SCALE;
 					}
 					modelBaker.setModelBounds(new AxisAlignedBB(minX, minY, minZ, maxX, maxY, maxZ));
 				} else {
 					if (type.size != 1 || type.solid) {
 						continue;
 					}
-					modelBaker.setModelBounds(new AxisAlignedBB(minX, 0.5f - s, minZ, maxX, 0.5f + s, maxZ));
+					modelBaker.setModelBounds(new AxisAlignedBB(minX, 0.5f - SCALE, minZ, maxX, 0.5f + SCALE, maxZ));
 					secondary = true;
 				}
 			}
