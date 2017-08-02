@@ -2,6 +2,7 @@ package binnie.extrabees;
 
 import com.google.common.collect.Lists;
 
+import java.io.File;
 import java.lang.reflect.Method;
 import java.util.List;
 
@@ -37,9 +38,9 @@ import binnie.extrabees.genetics.effect.ExtraBeesEffect;
 import binnie.extrabees.init.BlockRegister;
 import binnie.extrabees.init.ItemRegister;
 import binnie.extrabees.init.RecipeRegister;
-import binnie.extrabees.items.ItemHoneyComb;
 import binnie.extrabees.items.ItemHoneyCrystal;
 import binnie.extrabees.items.ItemMiscProduct;
+import binnie.extrabees.items.types.EnumHoneyComb;
 import binnie.extrabees.proxy.ExtraBeesCommonProxy;
 import binnie.extrabees.utils.AlvearyMutationHandler;
 import binnie.extrabees.utils.MaterialBeehive;
@@ -84,7 +85,8 @@ public class ExtraBees {
 	@SuppressWarnings("all")
 	public void preInit(final FMLPreInitializationEvent event) {
 		materialBeehive = new MaterialBeehive();
-		configHandler = new ConfigHandler(event.getSuggestedConfigurationFile());
+		File configFile = new File(event.getModConfigurationDirectory(), "forestry/extrabees/main.conf");
+		configHandler = new ConfigHandler(configFile);
 		configHandler.addConfigurable(new ConfigurationMain());
 		BlockRegister.preInitBlocks();
 		ItemRegister.preInitItems();
@@ -101,7 +103,7 @@ public class ExtraBees {
 	@Mod.EventHandler
 	public void init(final FMLInitializationEvent evt) {
 		configHandler.reload(true);
-		ItemHoneyComb.addSubtypes();
+		EnumHoneyComb.addSubtypes();
 		ExtraBeesWorldGenerator extraBeesWorldGenerator = new ExtraBeesWorldGenerator();
 		extraBeesWorldGenerator.doInit();
 		GameRegistry.registerWorldGenerator(extraBeesWorldGenerator, 0);

@@ -24,18 +24,18 @@ public enum AlvearySimulatorCircuitType implements IBeeModifier {
 	Territory(2, 10);
 
 	static {
-		LowVoltage.logic.setModifier(EnumBeeModifier.Production, 1.5f, 5.0f);
-		HighVoltage.logic.setModifier(EnumBeeModifier.Production, 2.5f, 10.0f);
-		Plant.logic.setModifier(EnumBeeModifier.Flowering, 1.5f, 5.0f);
-		Death.logic.setModifier(EnumBeeModifier.Lifespan, 0.8f, 0.2f);
-		Life.logic.setModifier(EnumBeeModifier.Lifespan, 1.5f, 5.0f);
+		LowVoltage.logic.setModifier(EnumBeeModifier.PRODUCTION, 1.5f, 5.0f);
+		HighVoltage.logic.setModifier(EnumBeeModifier.PRODUCTION, 2.5f, 10.0f);
+		Plant.logic.setModifier(EnumBeeModifier.FLOWERING, 1.5f, 5.0f);
+		Death.logic.setModifier(EnumBeeModifier.LIFESPAN, 0.8f, 0.2f);
+		Life.logic.setModifier(EnumBeeModifier.LIFESPAN, 1.5f, 5.0f);
 		Nether.logic.setModifier(EnumBeeBooleanModifier.Hellish);
-		Mutation.logic.setModifier(EnumBeeModifier.Mutation, 1.5f, 5.0f);
-		Inhibitor.logic.setModifier(EnumBeeModifier.Territory, 0.4f, 0.1f);
-		Inhibitor.logic.setModifier(EnumBeeModifier.Production, 0.9f, 0.5f);
-		Territory.logic.setModifier(EnumBeeModifier.Territory, 1.5f, 5.0f);
+		Mutation.logic.setModifier(EnumBeeModifier.MUTATION, 1.5f, 5.0f);
+		Inhibitor.logic.setModifier(EnumBeeModifier.TERRITORY, 0.4f, 0.1f);
+		Inhibitor.logic.setModifier(EnumBeeModifier.PRODUCTION, 0.9f, 0.5f);
+		Territory.logic.setModifier(EnumBeeModifier.TERRITORY, 1.5f, 5.0f);
 		for (final AlvearySimulatorCircuitType type : values()) {
-			type.logic.setModifier(EnumBeeModifier.GeneticDecay, 1.5f, 10.0f);
+			type.logic.setModifier(EnumBeeModifier.GENETIC_DECAY, 1.5f, 10.0f);
 		}
 	}
 
@@ -67,32 +67,32 @@ public enum AlvearySimulatorCircuitType implements IBeeModifier {
 
 	@Override
 	public float getTerritoryModifier(@Nonnull final IBeeGenome genome, final float currentModifier) {
-		return this.logic.getModifier(EnumBeeModifier.Territory, currentModifier);
+		return this.logic.getModifier(EnumBeeModifier.TERRITORY, currentModifier);
 	}
 
 	@Override
 	public float getMutationModifier(@Nonnull final IBeeGenome genome, @Nonnull final IBeeGenome mate, final float currentModifier) {
-		return this.logic.getModifier(EnumBeeModifier.Mutation, currentModifier);
+		return this.logic.getModifier(EnumBeeModifier.MUTATION, currentModifier);
 	}
 
 	@Override
 	public float getLifespanModifier(@Nonnull final IBeeGenome genome, @Nullable final IBeeGenome mate, final float currentModifier) {
-		return this.logic.getModifier(EnumBeeModifier.Lifespan, currentModifier);
+		return this.logic.getModifier(EnumBeeModifier.LIFESPAN, currentModifier);
 	}
 
 	@Override
 	public float getProductionModifier(@Nonnull final IBeeGenome genome, final float currentModifier) {
-		return this.logic.getModifier(EnumBeeModifier.Production, currentModifier);
+		return this.logic.getModifier(EnumBeeModifier.PRODUCTION, currentModifier);
 	}
 
 	@Override
 	public float getFloweringModifier(@Nonnull final IBeeGenome genome, final float currentModifier) {
-		return this.logic.getModifier(EnumBeeModifier.Flowering, currentModifier);
+		return this.logic.getModifier(EnumBeeModifier.FLOWERING, currentModifier);
 	}
 
 	@Override
 	public float getGeneticDecay(@Nonnull final IBeeGenome genome, final float currentModifier) {
-		return this.logic.getModifier(EnumBeeModifier.GeneticDecay, currentModifier);
+		return this.logic.getModifier(EnumBeeModifier.GENETIC_DECAY, currentModifier);
 	}
 
 	@Override

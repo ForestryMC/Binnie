@@ -28,15 +28,61 @@ import binnie.extrabees.utils.EnumBeeModifier;
 
 public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 
-	Cocoa,
-	Cage,
-	Soul(80),
-	Clay,
-	Debug;
+	COCOA{
+		@Override
+		protected void init(ItemStack impregnatedFrame) {
+			logic.setModifier(EnumBeeModifier.LIFESPAN, 0.75f, 0.25f);
+			logic.setModifier(EnumBeeModifier.PRODUCTION, 1.5f, 5.0f);
+			GameRegistry.addRecipe(new ItemStack(EnumHiveFrame.COCOA.item),
+				" c ",
+				"cFc",
+				" c ",
+				'F', impregnatedFrame,
+				'c', new ItemStack(Items.DYE, 1, 3));
+		}
+	},
+	CAGE{
+		@Override
+		protected void init(ItemStack impregnatedFrame) {
+			logic.setModifier(EnumBeeModifier.TERRITORY, 0.5f, 0.1f);
+			logic.setModifier(EnumBeeModifier.LIFESPAN, 0.75f, 0.5f);
+			logic.setModifier(EnumBeeModifier.PRODUCTION, 0.75f, 0.5f);
+			GameRegistry.addShapelessRecipe(new ItemStack(EnumHiveFrame.CAGE.item), impregnatedFrame, Blocks.IRON_BARS);
+		}
+	},
+	SOUL(80){
+		@Override
+		protected void init(ItemStack impregnatedFrame) {
+			logic.setModifier(EnumBeeModifier.MUTATION, 1.5f, 5.0f);
+			logic.setModifier(EnumBeeModifier.LIFESPAN, 0.75f, 0.5f);
+			logic.setModifier(EnumBeeModifier.PRODUCTION, 0.25f, 0.1f);
+			GameRegistry.addShapelessRecipe(new ItemStack(EnumHiveFrame.SOUL.item), impregnatedFrame, Blocks.SOUL_SAND);
+		}
+	},
+	CLAY{
+		@Override
+		protected void init(ItemStack impregnatedFrame) {
+			logic.setModifier(EnumBeeModifier.LIFESPAN, 1.5f, 5.0f);
+			logic.setModifier(EnumBeeModifier.MUTATION, 0.5f, 0.2f);
+			logic.setModifier(EnumBeeModifier.PRODUCTION, 0.75f, 0.2f);
+			GameRegistry.addRecipe(new ItemStack(EnumHiveFrame.CLAY.item),
+				" c ",
+				"cFc",
+				" c ",
+				'F', impregnatedFrame,
+				'c', Items.CLAY_BALL);
+		}
+	},
+	DEBUG{
+		@Override
+		protected void init(ItemStack impregnatedFrame) {
+			logic.setModifier(EnumBeeModifier.LIFESPAN, 1.0E-4f, 1.0E-4f);
+		}
+	};
 
 	private final Item item;
 	private final int maxDamage;
-	private final BeeModifierLogic logic;
+	protected final BeeModifierLogic logic;
 
 	EnumHiveFrame() {
 		this(240);
@@ -48,24 +94,15 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 		this.item = new ItemHiveFrame(this).setRegistryName("hive_frame." + name().toLowerCase());
 	}
 
+	protected void init(ItemStack impregnatedFrame){
+
+	}
+
 	public static void init() {
-		EnumHiveFrame.Cocoa.logic.setModifier(EnumBeeModifier.Lifespan, 0.75f, 0.25f);
-		EnumHiveFrame.Cocoa.logic.setModifier(EnumBeeModifier.Production, 1.5f, 5.0f);
-		EnumHiveFrame.Cage.logic.setModifier(EnumBeeModifier.Territory, 0.5f, 0.1f);
-		EnumHiveFrame.Cage.logic.setModifier(EnumBeeModifier.Lifespan, 0.75f, 0.5f);
-		EnumHiveFrame.Cage.logic.setModifier(EnumBeeModifier.Production, 0.75f, 0.5f);
-		EnumHiveFrame.Soul.logic.setModifier(EnumBeeModifier.Mutation, 1.5f, 5.0f);
-		EnumHiveFrame.Soul.logic.setModifier(EnumBeeModifier.Lifespan, 0.75f, 0.5f);
-		EnumHiveFrame.Soul.logic.setModifier(EnumBeeModifier.Production, 0.25f, 0.1f);
-		EnumHiveFrame.Clay.logic.setModifier(EnumBeeModifier.Lifespan, 1.5f, 5.0f);
-		EnumHiveFrame.Clay.logic.setModifier(EnumBeeModifier.Mutation, 0.5f, 0.2f);
-		EnumHiveFrame.Clay.logic.setModifier(EnumBeeModifier.Production, 0.75f, 0.2f);
-		EnumHiveFrame.Debug.logic.setModifier(EnumBeeModifier.Lifespan, 1.0E-4f, 1.0E-4f);
 		ItemStack impregnatedFrame = PluginApiculture.getItems().frameImpregnated.getItemStack();
-		GameRegistry.addRecipe(new ItemStack(EnumHiveFrame.Cocoa.item), " c ", "cFc", " c ", 'F', impregnatedFrame, 'c', new ItemStack(Items.DYE, 1, 3));
-		GameRegistry.addShapelessRecipe(new ItemStack(EnumHiveFrame.Cage.item), impregnatedFrame, Blocks.IRON_BARS);
-		GameRegistry.addShapelessRecipe(new ItemStack(EnumHiveFrame.Soul.item), impregnatedFrame, Blocks.SOUL_SAND);
-		GameRegistry.addRecipe(new ItemStack(EnumHiveFrame.Clay.item), " c ", "cFc", " c ", 'F', impregnatedFrame, 'c', Items.CLAY_BALL);
+		for(EnumHiveFrame frame : values()){
+			frame.init(impregnatedFrame);
+		}
 	}
 
 	public int getIconIndex() {
@@ -87,32 +124,32 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 
 	@Override
 	public float getTerritoryModifier(final IBeeGenome genome, final float currentModifier) {
-		return this.logic.getModifier(EnumBeeModifier.Territory, currentModifier);
+		return this.logic.getModifier(EnumBeeModifier.TERRITORY, currentModifier);
 	}
 
 	@Override
 	public float getMutationModifier(final IBeeGenome genome, final IBeeGenome mate, final float currentModifier) {
-		return this.logic.getModifier(EnumBeeModifier.Mutation, currentModifier);
+		return this.logic.getModifier(EnumBeeModifier.MUTATION, currentModifier);
 	}
 
 	@Override
 	public float getLifespanModifier(final IBeeGenome genome, @Nullable final IBeeGenome mate, final float currentModifier) {
-		return this.logic.getModifier(EnumBeeModifier.Lifespan, currentModifier);
+		return this.logic.getModifier(EnumBeeModifier.LIFESPAN, currentModifier);
 	}
 
 	@Override
 	public float getProductionModifier(final IBeeGenome genome, final float currentModifier) {
-		return this.logic.getModifier(EnumBeeModifier.Production, currentModifier);
+		return this.logic.getModifier(EnumBeeModifier.PRODUCTION, currentModifier);
 	}
 
 	@Override
 	public float getFloweringModifier(final IBeeGenome genome, final float currentModifier) {
-		return this.logic.getModifier(EnumBeeModifier.Flowering, currentModifier);
+		return this.logic.getModifier(EnumBeeModifier.FLOWERING, currentModifier);
 	}
 
 	@Override
 	public float getGeneticDecay(final IBeeGenome genome, final float currentModifier) {
-		return this.logic.getModifier(EnumBeeModifier.GeneticDecay, currentModifier);
+		return this.logic.getModifier(EnumBeeModifier.GENETIC_DECAY, currentModifier);
 	}
 
 	@Override
