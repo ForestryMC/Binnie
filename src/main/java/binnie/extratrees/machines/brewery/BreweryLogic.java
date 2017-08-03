@@ -20,6 +20,8 @@ import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
 import binnie.extratrees.machines.ExtraTreesErrorCode;
+import binnie.extratrees.machines.brewery.recipes.BreweryCrafting;
+import binnie.extratrees.machines.brewery.recipes.BreweryRecipeManager;
 
 public class BreweryLogic extends ComponentProcessSetCost implements IProcess, INetwork.GuiNBT {
 	@Nullable
@@ -35,7 +37,7 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 		if (this.getUtil().isTankEmpty(BreweryMachine.TANK_INPUT) && this.currentCrafting == null) {
 			return new ErrorState(CoreErrorCode.TANK_EMPTY, BreweryMachine.TANK_INPUT);
 		}
-		if (BreweryRecipes.getOutput(this.getInputCrafting()) == null && this.currentCrafting == null) {
+		if (BreweryRecipeManager.getOutput(this.getInputCrafting()) == null && this.currentCrafting == null) {
 			return new ErrorState(ExtraTreesErrorCode.BREWERY_NO_RECIPE);
 		}
 		if (!this.getUtil().hasIngredients(new int[]{0, 1, 2, 3, 4}, BreweryMachine.SLOTS_INVENTORY) && this.currentCrafting == null) {
@@ -62,7 +64,7 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 		}
 		FluidStack outputFluid = this.getUtil().getFluid(BreweryMachine.TANK_OUTPUT);
 		if (outputFluid != null) {
-			FluidStack craftingOutputFluid = BreweryRecipes.getOutput(this.currentCrafting);
+			FluidStack craftingOutputFluid = BreweryRecipeManager.getOutput(this.currentCrafting);
 			if (!outputFluid.isFluidEqual(craftingOutputFluid)) {
 				return new ErrorState(CoreErrorCode.TANK_DIFFRENT_FLUID, BreweryMachine.TANK_OUTPUT);
 			}
@@ -73,7 +75,7 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 	@Override
 	protected void onFinishTask() {
 		Preconditions.checkState(this.currentCrafting != null);
-		FluidStack output = BreweryRecipes.getOutput(currentCrafting);
+		FluidStack output = BreweryRecipeManager.getOutput(currentCrafting);
 		if (output != null) {
 			this.getUtil().fillTank(BreweryMachine.TANK_OUTPUT, output);
 			this.currentCrafting = null;
@@ -124,7 +126,7 @@ public class BreweryLogic extends ComponentProcessSetCost implements IProcess, I
 		if (this.currentCrafting == null) {
 			return I18N.localise("extratrees.machine.machine.brewery.tooltips.empty");
 		}
-		FluidStack output = BreweryRecipes.getOutput(this.currentCrafting);
+		FluidStack output = BreweryRecipeManager.getOutput(this.currentCrafting);
 		if (output == null) {
 			return I18N.localise("extratrees.machine.machine.brewery.tooltips.empty");
 		}

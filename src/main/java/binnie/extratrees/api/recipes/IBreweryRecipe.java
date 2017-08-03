@@ -1,4 +1,4 @@
-package binnie.extratrees.machines.brewery;
+package binnie.extratrees.api.recipes;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -7,15 +7,17 @@ import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fluids.FluidStack;
 
-public interface IBreweryRecipe {
+import binnie.core.api.IBinnieRecipe;
+
+public interface IBreweryRecipe extends IBinnieRecipe {
 	@Nullable
-	FluidStack getOutput(final BreweryCrafting crafting);
+	FluidStack getOutput(IBreweryCrafting crafting);
 
 	FluidStack getInput();
 
 	FluidStack getOutput();
 
-	boolean isIngredient(ItemStack itemstack);
+	boolean isIngredient(ItemStack itemStack);
 
 	List<ItemStack> getIngredients();
 

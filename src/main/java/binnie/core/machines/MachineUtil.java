@@ -194,7 +194,6 @@ public class MachineUtil {
 		World world = machine.getWorld();
 		IBlockState blockState = world.getBlockState(pos);
 		machine.getWorld().notifyBlockUpdate(pos, blockState, blockState, 0);
-		//machine.sendRefreshPacket();
 	}
 
 	public IProcess getProcess() {

@@ -1,7 +1,7 @@
 ##################################################
 ## Machines
 
-genetics.tab.genetics=Genetaics
+genetics.tab.genetics=Genetics
 
 genetics.errors.no.owner.name=No Owner
 genetics.errors.no.owner.desc=Replace this block to claim this machine

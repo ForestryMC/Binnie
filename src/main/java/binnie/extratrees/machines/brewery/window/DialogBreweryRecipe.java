@@ -1,4 +1,4 @@
-package binnie.extratrees.machines.brewery;
+package binnie.extratrees.machines.brewery.window;
 
 import binnie.core.gui.IWidget;
 import binnie.core.gui.minecraft.Dialog;

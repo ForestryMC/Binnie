@@ -1,24 +1,21 @@
-package binnie.extratrees.machines.brewery;
+package binnie.extratrees.machines.brewery.recipes;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
 
-public class BreweryRecipes {
-	public static final int GRAIN_BARLEY = OreDictionary.getOreID("seedBarley");
-	public static final int GRAIN_WHEAT = OreDictionary.getOreID("seedWheat");
-	public static final int GRAIN_RYE = OreDictionary.getOreID("seedRye");
-	public static final int GRAIN_CORN = OreDictionary.getOreID("seedCorn");
-	public static final int GRAIN_ROASTED = OreDictionary.getOreID("seedRoasted");
-	public static final int HOPS = OreDictionary.getOreID("cropHops");
+import binnie.extratrees.api.recipes.IBreweryManager;
+import binnie.extratrees.api.recipes.IBreweryRecipe;
+import binnie.extratrees.item.ExtraTreeItems;
 
-	private static List<IBreweryRecipe> recipes = new ArrayList<>();
+public class BreweryRecipeManager implements IBreweryManager {
+
+	private static Set<IBreweryRecipe> recipes = new HashSet<>();
 
 	public static boolean isValidGrain(final ItemStack itemstack) {
 		for (final IBreweryRecipe recipe : recipes) {
@@ -106,19 +103,44 @@ public class BreweryRecipes {
 		return false;
 	}
 
-	public static void addRecipe(final FluidStack input, final FluidStack output) {
-		recipes.add(new BreweryRecipe(input, output));
+	@Override
+	public void addRecipe(FluidStack input, FluidStack output) {
+		addRecipe(input, output, ExtraTreeItems.Yeast.get(1));
 	}
 
-	public static void addRecipe(IBreweryRecipe recipe) {
-		recipes.add(recipe);
+	@Override
+	public void addRecipe(FluidStack input, FluidStack output, ItemStack yeast) {
+		recipes.add(new BreweryRecipe(input, output, yeast));
 	}
 
-	public static void addRecipes(IBreweryRecipe... recipes) {
-		Collections.addAll(BreweryRecipes.recipes, recipes);
+	@Override
+	public void addGrainRecipe(String grainOreName, FluidStack output) {
+		addGrainRecipe(grainOreName, output, null);
 	}
 
-	public static List<IBreweryRecipe> getRecipes() {
-		return Collections.unmodifiableList(recipes);
+	@Override
+	public void addGrainRecipe(String grainOreName, FluidStack output, @Nullable String ingredientOreName) {
+		addGrainRecipe(grainOreName, output, ingredientOreName, ExtraTreeItems.Yeast.get(1));
 	}
+
+	@Override
+	public void addGrainRecipe(String grainOreName, FluidStack output, @Nullable String ingredientOreName, ItemStack yeast) {
+		recipes.add(new BrewedGrainRecipe(output, grainOreName, ingredientOreName, yeast));
+	}
+
+	@Override
+	public boolean addRecipe(IBreweryRecipe recipe) {
+		return recipes.add(recipe);
+	}
+
+	@Override
+	public boolean removeRecipe(IBreweryRecipe recipe) {
+		return recipes.remove(recipe);
+	}
+
+	@Override
+	public Collection<IBreweryRecipe> recipes() {
+		return recipes;
+	}
+
 }

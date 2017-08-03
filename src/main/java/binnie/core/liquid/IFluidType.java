@@ -2,6 +2,7 @@ package binnie.core.liquid;
 
 import net.minecraft.util.ResourceLocation;
 
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
 public interface IFluidType {
@@ -14,7 +15,11 @@ public interface IFluidType {
 
 	String getIdentifier();
 
-	FluidStack get(final int p0);
+	FluidStack get(int amount);
+
+	default FluidStack get(){
+		return get(Fluid.BUCKET_VOLUME);
+	}
 
 	int getColour();
 

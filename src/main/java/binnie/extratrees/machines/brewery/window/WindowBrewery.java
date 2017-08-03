@@ -1,4 +1,4 @@
-package binnie.extratrees.machines.brewery;
+package binnie.extratrees.machines.brewery.window;
 
 import javax.annotation.Nullable;
 
@@ -18,8 +18,11 @@ import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.gui.minecraft.control.ControlSlotArray;
 import binnie.core.machines.Machine;
 import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.machines.brewery.BreweryMachine;
 
 public class WindowBrewery extends Window {
+	public static final String LANG_KEY = "extratrees.machine.machine.brewery";
+
 	public WindowBrewery(final EntityPlayer player, final IInventory inventory, final Side side) {
 		super(228, 218, player, inventory, side);
 	}

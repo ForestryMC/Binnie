@@ -1,8 +1,10 @@
-package binnie.extratrees.machines.brewery;
+package binnie.extratrees.machines.brewery.window;
 
 import java.util.Collections;
 
 import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fluids.FluidStack;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -22,6 +24,8 @@ import binnie.core.gui.resource.minecraft.StandardTexture;
 import binnie.core.machines.Machine;
 import binnie.core.util.ItemStackSet;
 import binnie.extratrees.core.ExtraTreeTexture;
+import binnie.extratrees.machines.brewery.BreweryLogic;
+import binnie.extratrees.machines.brewery.recipes.BreweryRecipeManager;
 
 public class ControlBreweryProgress extends ControlProgressBase {
 	static Texture Brewery = new StandardTexture(0, 69, 34, 39, ExtraTreeTexture.GUI);
@@ -40,20 +44,22 @@ public class ControlBreweryProgress extends ControlProgressBase {
 		if (logic == null || logic.currentCrafting == null || logic.currentCrafting.inputFluid == null) {
 			return;
 		}
+		FluidStack output = BreweryRecipeManager.getOutput(logic.currentCrafting);
+		FluidStack input = logic.currentCrafting.inputFluid;
 		final int fermentedHeight = (int) (32.0f * logic.getProgress() / 100.0f);
 		CraftGUI.RENDER.limitArea(new Area(new Point(1, 6).add(this.getAbsolutePosition()), new Point(32, 32 - fermentedHeight)), guiWidth, guiHeight);
 		GL11.glEnable(GL11.GL_SCISSOR_TEST);
-		RenderUtil.drawFluid(new Point(1, 6), logic.currentCrafting.inputFluid);
-		RenderUtil.drawFluid(new Point(17, 6), logic.currentCrafting.inputFluid);
-		RenderUtil.drawFluid(new Point(1, 22), logic.currentCrafting.inputFluid);
-		RenderUtil.drawFluid(new Point(17, 22), logic.currentCrafting.inputFluid);
+		RenderUtil.drawFluid(new Point(1, 6), input);
+		RenderUtil.drawFluid(new Point(17, 6), input);
+		RenderUtil.drawFluid(new Point(1, 22), input);
+		RenderUtil.drawFluid(new Point(17, 22), input);
 		GL11.glDisable(GL11.GL_SCISSOR_TEST);
 		CraftGUI.RENDER.limitArea(new Area(new Point(1, 38 - fermentedHeight).add(this.getAbsolutePosition()), new Point(32, fermentedHeight)), guiWidth, guiHeight);
 		GL11.glEnable(GL11.GL_SCISSOR_TEST);
-		RenderUtil.drawFluid(new Point(1, 6), BreweryRecipes.getOutput(logic.currentCrafting));
-		RenderUtil.drawFluid(new Point(17, 6), BreweryRecipes.getOutput(logic.currentCrafting));
-		RenderUtil.drawFluid(new Point(1, 22), BreweryRecipes.getOutput(logic.currentCrafting));
-		RenderUtil.drawFluid(new Point(17, 22), BreweryRecipes.getOutput(logic.currentCrafting));
+		RenderUtil.drawFluid(new Point(1, 6), output);
+		RenderUtil.drawFluid(new Point(17, 6), output);
+		RenderUtil.drawFluid(new Point(1, 22), output);
+		RenderUtil.drawFluid(new Point(17, 22), output);
 		GL11.glDisable(GL11.GL_SCISSOR_TEST);
 		final ItemStackSet stacks = new ItemStackSet();
 		Collections.addAll(stacks, logic.currentCrafting.inputGrains);

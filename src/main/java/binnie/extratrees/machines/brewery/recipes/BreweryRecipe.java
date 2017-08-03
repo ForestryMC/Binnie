@@ -1,4 +1,4 @@
-package binnie.extratrees.machines.brewery;
+package binnie.extratrees.machines.brewery.recipes;
 
 import javax.annotation.Nullable;
 import java.util.Collections;
@@ -8,18 +8,15 @@ import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fluids.FluidStack;
 
-import binnie.extratrees.item.ExtraTreeItems;
+import binnie.extratrees.api.recipes.IBreweryCrafting;
+import binnie.extratrees.api.recipes.IBreweryRecipe;
 
 public class BreweryRecipe implements IBreweryRecipe {
 	private final FluidStack input;
 	private final FluidStack output;
 	private final ItemStack yeast;
 
-	public BreweryRecipe(final FluidStack input, final FluidStack output) {
-		this(input, output, ExtraTreeItems.Yeast.get(1));
-	}
-
-	public BreweryRecipe(final FluidStack input, final FluidStack output, final ItemStack specificYeast) {
+	public BreweryRecipe(FluidStack input, FluidStack output, ItemStack specificYeast) {
 		this.input = input;
 		this.output = output;
 		this.yeast = specificYeast;
@@ -27,17 +24,17 @@ public class BreweryRecipe implements IBreweryRecipe {
 
 	@Override
 	@Nullable
-	public FluidStack getOutput(final BreweryCrafting crafting) {
-		if (!this.yeast.isItemEqual(crafting.yeast)) {
+	public FluidStack getOutput(IBreweryCrafting crafting) {
+		if (!this.yeast.isItemEqual(crafting.getYeast())) {
 			return null;
 		}
 		if(!crafting.hasInputGrainsEmpty()){
 			return null;
 		}
-		if(!crafting.ingredient.isEmpty()){
+		if(!crafting.getIngredient().isEmpty()){
 			return null;
 		}
-		if (this.input.isFluidEqual(crafting.inputFluid)) {
+		if (this.input.isFluidEqual(crafting.getInputFluid())) {
 			return this.output.copy();
 		}
 		return null;
@@ -64,7 +61,7 @@ public class BreweryRecipe implements IBreweryRecipe {
 	}
 
 	@Override
-	public boolean isIngredient(ItemStack itemstack) {
+	public boolean isIngredient(ItemStack itemStack) {
 		return false;
 	}
 

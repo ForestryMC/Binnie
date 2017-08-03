@@ -6,4 +6,12 @@ public interface IInitializable {
 	void init();
 
 	void postInit();
+
+	default void setupAPI(){
+
+	}
+
+	default void disabledSetupAPI(){
+
+	}
 }

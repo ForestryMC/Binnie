@@ -1,33 +1,37 @@
 package binnie.extratrees.alcohol;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
+
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
+
+import forestry.api.recipes.ISqueezerRecipe;
+import forestry.api.recipes.RecipeManagers;
+import forestry.core.fluids.Fluids;
+
 import binnie.Binnie;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.liquid.IFluidType;
 import binnie.core.resource.BinnieSprite;
+import binnie.core.util.OreDictionaryUtil;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.alcohol.drink.DrinkLiquid;
 import binnie.extratrees.alcohol.drink.DrinkManager;
 import binnie.extratrees.alcohol.drink.ItemDrink;
+import binnie.extratrees.api.recipes.ExtraTreesRecipeManager;
+import binnie.extratrees.api.recipes.IBreweryManager;
 import binnie.extratrees.item.ExtraTreeItems;
 import binnie.extratrees.item.Food;
-import binnie.extratrees.machines.brewery.BrewedGrainRecipe;
-import binnie.extratrees.machines.brewery.BreweryRecipes;
 import binnie.extratrees.machines.distillery.DistilleryLogic;
 import binnie.extratrees.machines.distillery.DistilleryRecipes;
 import binnie.extratrees.machines.fruitpress.FruitPressRecipes;
-import forestry.api.recipes.ISqueezerRecipe;
-import forestry.api.recipes.RecipeManagers;
-import forestry.core.fluids.Fluids;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 public class ModuleAlcohol implements IInitializable {
 	public ItemDrink drink;
@@ -67,6 +71,7 @@ public class ModuleAlcohol implements IInitializable {
 
 	@Override
 	public void postInit() {
+		IBreweryManager breweryManager = ExtraTreesRecipeManager.breweryManager;
 		ItemStack wax = Mods.Forestry.stack("beeswax");
 		ItemStack waxCast = Mods.Forestry.stackWildcard("wax_cast");
 		for (Glassware glassware : Glassware.values()) {
@@ -98,28 +103,27 @@ public class ModuleAlcohol implements IInitializable {
 				}
 			}
 		}
-		for (final Alcohol alcohol : Alcohol.values()) {
-			for (final String fermentLiquid : alcohol.fermentationLiquid) {
-				final FluidStack fluid = Binnie.LIQUID.getFluidStack(fermentLiquid, Fluid.BUCKET_VOLUME);
+		for (Alcohol alcohol : Alcohol.values()) {
+			for (String fermentLiquid : alcohol.fermentationLiquid) {
+				FluidStack fluid = Binnie.LIQUID.getFluidStack(fermentLiquid, Fluid.BUCKET_VOLUME);
 				if (fluid != null) {
-					BreweryRecipes.addRecipe(fluid, alcohol.get(Fluid.BUCKET_VOLUME));
+					breweryManager.addRecipe(fluid, alcohol.get());
 				}
 			}
 		}
 
-		BreweryRecipes.addRecipes(
-				new BrewedGrainRecipe(Alcohol.Ale, BreweryRecipes.GRAIN_BARLEY, BreweryRecipes.HOPS),
-				new BrewedGrainRecipe(Alcohol.Lager, BreweryRecipes.GRAIN_BARLEY, BreweryRecipes.HOPS, ExtraTreeItems.LagerYeast.get(1)),
-				new BrewedGrainRecipe(Alcohol.Stout, BreweryRecipes.GRAIN_ROASTED, BreweryRecipes.HOPS),
-				new BrewedGrainRecipe(Alcohol.CornBeer, BreweryRecipes.GRAIN_CORN, BreweryRecipes.HOPS),
-				new BrewedGrainRecipe(Alcohol.RyeBeer, BreweryRecipes.GRAIN_RYE, BreweryRecipes.HOPS),
-				new BrewedGrainRecipe(Alcohol.WheatBeer, BreweryRecipes.GRAIN_WHEAT, BreweryRecipes.HOPS),
+		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_BARLEY, Alcohol.Ale.get(), OreDictionaryUtil.HOPS);
 
-				new BrewedGrainRecipe(Alcohol.Barley, BreweryRecipes.GRAIN_BARLEY),
-				new BrewedGrainRecipe(Alcohol.Corn, BreweryRecipes.GRAIN_CORN),
-				new BrewedGrainRecipe(Alcohol.Rye, BreweryRecipes.GRAIN_RYE),
-				new BrewedGrainRecipe(Alcohol.Wheat, BreweryRecipes.GRAIN_WHEAT)
-		);
+		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_BARLEY, Alcohol.Lager.get(), OreDictionaryUtil.HOPS, ExtraTreeItems.LagerYeast.get(1));
+		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_ROASTED, Alcohol.Stout.get(), OreDictionaryUtil.HOPS);
+		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_CORN, Alcohol.CornBeer.get(), OreDictionaryUtil.HOPS);
+		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_RYE, Alcohol.RyeBeer.get(), OreDictionaryUtil.HOPS);
+		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_WHEAT, Alcohol.WheatBeer.get(), OreDictionaryUtil.HOPS);
+
+		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_BARLEY, Alcohol.Barley.get());
+		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_CORN, Alcohol.Corn.get());
+		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_RYE, Alcohol.Rye.get());
+		breweryManager.addGrainRecipe(OreDictionaryUtil.GRAIN_WHEAT, Alcohol.Wheat.get());
 
 		this.addDistillery(Alcohol.Apple, Spirit.AppleBrandy, Spirit.AppleLiquor, Spirit.NeutralSpirit);
 		this.addDistillery(Alcohol.Pear, Spirit.PearBrandy, Spirit.PearLiquor, Spirit.NeutralSpirit);

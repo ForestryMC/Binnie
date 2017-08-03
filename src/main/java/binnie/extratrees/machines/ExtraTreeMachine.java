@@ -31,7 +31,7 @@ public enum ExtraTreeMachine implements IMachineType {
 	Panelworker(Designer.PackagePanelworker.class),
 	Nursery(binnie.extratrees.machines.nursery.Nursery.PackageNursery.class),
 	Press(FruitPressMachine.class),
-	Brewery(BreweryMachine.class),
+	BREWERY(BreweryMachine.class),
 	Distillery(DistilleryMachine.class),
 	Glassworker(Designer.PackageGlassworker.class),
 	Tileworker(Designer.PackageTileworker.class);

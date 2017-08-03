@@ -70,8 +70,10 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 	public void preInit() {
 		getProxy().setMod(this);
 		if (!this.isActive()) {
+			disabledSetupAPI();
 			return;
 		}
+		setupAPI();
 		registerModules();
 		for (final Class<?> cls : this.getConfigs()) {
 			Binnie.CONFIGURATION.registerConfiguration(cls, this);
@@ -86,6 +88,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 	@Override
 	public void init() {
 		if (!this.isActive()) {
+			disabledSetupAPI();
 			return;
 		}
 		this.getProxy().init();
@@ -101,6 +104,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 	@Override
 	public void postInit() {
 		if (!this.isActive()) {
+			disabledSetupAPI();
 			return;
 		}
 		this.getProxy().postInit();

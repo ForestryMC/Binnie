@@ -25,7 +25,7 @@ import binnie.core.gui.geometry.Area;
 import binnie.core.gui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.UniqueFluidStackSet;
 import binnie.core.util.UniqueItemStackSet;
-import binnie.extratrees.machines.brewery.BreweryRecipes;
+import binnie.extratrees.machines.brewery.recipes.BreweryRecipeManager;
 import binnie.extratrees.machines.distillery.DistilleryRecipes;
 import binnie.extratrees.machines.fruitpress.FruitPressRecipes;
 import binnie.genetics.gui.analyst.bee.AnalystPageProducts;
@@ -151,7 +151,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 
 	protected Collection<? extends FluidStack> getAllProducts(FluidStack stack) {
 		Collection<FluidStack> fluids = new UniqueFluidStackSet();
-		fluids.add(BreweryRecipes.getOutput(stack));
+		fluids.add(BreweryRecipeManager.getOutput(stack));
 		fluids.add(DistilleryRecipes.getOutput(stack, 0));
 		fluids.add(DistilleryRecipes.getOutput(stack, 1));
 		fluids.add(DistilleryRecipes.getOutput(stack, 2));

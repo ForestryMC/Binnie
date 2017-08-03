@@ -1,9 +1,10 @@
-package binnie.extratrees.machines.brewery;
+package binnie.extratrees.machines.brewery.window;
 
 import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
+import binnie.extratrees.machines.brewery.recipes.BreweryRecipeManager;
 
 public class SlotValidatorBreweryIngredient extends SlotValidator {
 	public SlotValidatorBreweryIngredient() {
@@ -12,11 +13,11 @@ public class SlotValidatorBreweryIngredient extends SlotValidator {
 
 	@Override
 	public boolean isValid(final ItemStack itemStack) {
-		return BreweryRecipes.isValidIngredient(itemStack);
+		return BreweryRecipeManager.isValidIngredient(itemStack);
 	}
 
 	@Override
 	public String getTooltip() {
-		return I18N.localise("extratrees.machine.machine.brewery.tooltips.slot.ingredient");
+		return I18N.localise(WindowBrewery.LANG_KEY + ".tooltips.slot.ingredient");
 	}
 }

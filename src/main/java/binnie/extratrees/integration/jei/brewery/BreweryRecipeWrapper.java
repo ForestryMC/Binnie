@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fluids.FluidStack;
 
-import binnie.extratrees.machines.brewery.IBreweryRecipe;
+import binnie.extratrees.api.recipes.IBreweryRecipe;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 

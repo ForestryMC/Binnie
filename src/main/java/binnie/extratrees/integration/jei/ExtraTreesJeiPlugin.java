@@ -27,6 +27,7 @@ import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.ISubtypeRegistry;
 import mezz.jei.api.JEIPlugin;
+import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 
 @JEIPlugin
 public class ExtraTreesJeiPlugin extends BlankModPlugin {
@@ -56,6 +57,21 @@ public class ExtraTreesJeiPlugin extends BlankModPlugin {
 
 	@Override
 	public void register(IModRegistry registry) {
+		registry.addRecipeCatalyst(ExtraTreeMachine.Lumbermill.get(1), RecipeUids.LUMBERMILL);
+		registry.addRecipeCatalyst(ExtraTreeMachine.Press.get(1), RecipeUids.FRUIT_PRESS);
+		registry.addRecipeCatalyst(ExtraTreeMachine.BREWERY.get(1), RecipeUids.BREWING);
+		registry.addRecipeCatalyst(ExtraTreeMachine.Distillery.get(1), RecipeUids.DISTILLING);
+
+		registry.addRecipes(LumbermillRecipeMaker.create(), RecipeUids.LUMBERMILL);
+		registry.addRecipes(FruitPressRecipeMaker.create(), RecipeUids.FRUIT_PRESS);
+		registry.addRecipes(BreweryRecipeMaker.create(), RecipeUids.BREWING);
+		registry.addRecipes(DistilleryRecipeMaker.create(), RecipeUids.DISTILLING);
+
+		registry.addRecipeRegistryPlugin(new MultiFenceRecipeRegistryPlugin());
+	}
+
+	@Override
+	public void registerCategories(IRecipeCategoryRegistration registry) {
 		ExtraTreesJeiPlugin.jeiHelpers = registry.getJeiHelpers();
 		ExtraTreesJeiPlugin.guiHelper = jeiHelpers.getGuiHelper();
 		ExtraTreesJeiPlugin.drawables = Drawables.getDrawables(guiHelper);
@@ -66,17 +82,5 @@ public class ExtraTreesJeiPlugin extends BlankModPlugin {
 			new BreweryRecipeCategory(),
 			new DistilleryRecipeCategory()
 		);
-
-		registry.addRecipeCategoryCraftingItem(ExtraTreeMachine.Lumbermill.get(1), RecipeUids.LUMBERMILL);
-		registry.addRecipeCategoryCraftingItem(ExtraTreeMachine.Press.get(1), RecipeUids.FRUIT_PRESS);
-		registry.addRecipeCategoryCraftingItem(ExtraTreeMachine.Brewery.get(1), RecipeUids.BREWING);
-		registry.addRecipeCategoryCraftingItem(ExtraTreeMachine.Distillery.get(1), RecipeUids.DISTILLING);
-
-		registry.addRecipes(LumbermillRecipeMaker.create(), RecipeUids.LUMBERMILL);
-		registry.addRecipes(FruitPressRecipeMaker.create(), RecipeUids.FRUIT_PRESS);
-		registry.addRecipes(BreweryRecipeMaker.create(), RecipeUids.BREWING);
-		registry.addRecipes(DistilleryRecipeMaker.create(), RecipeUids.DISTILLING);
-
-		registry.addRecipeRegistryPlugin(new MultiFenceRecipeRegistryPlugin());
 	}
 }

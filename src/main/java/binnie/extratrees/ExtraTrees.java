@@ -34,6 +34,7 @@ import binnie.core.models.DoublePassBakedModel;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
 import binnie.extratrees.alcohol.ModuleAlcohol;
+import binnie.extratrees.api.recipes.ExtraTreesRecipeManager;
 import binnie.extratrees.block.IPlankType;
 import binnie.extratrees.block.ModuleBlocks;
 import binnie.extratrees.block.PlankType;
@@ -46,7 +47,9 @@ import binnie.extratrees.genetics.FruitSprite;
 import binnie.extratrees.genetics.ModuleGenetics;
 import binnie.extratrees.item.ModuleItems;
 import binnie.extratrees.kitchen.ModuleKitchen;
+import binnie.extratrees.machines.DummyManagers;
 import binnie.extratrees.machines.ModuleMachine;
+import binnie.extratrees.machines.brewery.recipes.BreweryRecipeManager;
 import binnie.extratrees.proxy.Proxy;
 
 @Mod(
@@ -141,6 +144,16 @@ public class ExtraTrees extends AbstractMod {
 		this.addModule(machine = new ModuleMachine());
 		this.addModule(new ModuleCore());
 		this.addModule(kitchen = new ModuleKitchen());
+	}
+
+	@Override
+	public void setupAPI() {
+		ExtraTreesRecipeManager.breweryManager = new BreweryRecipeManager();
+	}
+
+	@Override
+	public void disabledSetupAPI() {
+		ExtraTreesRecipeManager.breweryManager = new DummyManagers.DummyBreweryManager();
 	}
 
 	@Override

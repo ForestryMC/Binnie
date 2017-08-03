@@ -1,4 +1,4 @@
-package binnie.extratrees.machines.brewery;
+package binnie.extratrees.machines.brewery.recipes;
 
 import javax.annotation.Nullable;
 
@@ -9,7 +9,9 @@ import net.minecraftforge.fluids.FluidStack;
 
 import forestry.api.core.INbtWritable;
 
-public class BreweryCrafting implements INbtWritable {
+import binnie.extratrees.api.recipes.IBreweryCrafting;
+
+public class BreweryCrafting implements INbtWritable, IBreweryCrafting {
 	@Nullable
 	public FluidStack inputFluid;
 	@Nullable
@@ -66,5 +68,23 @@ public class BreweryCrafting implements INbtWritable {
 		final NBTTagCompound nbt = new NBTTagCompound();
 		ingr.writeToNBT(nbt);
 		return nbt;
+	}
+
+	@Nullable
+	public FluidStack getInputFluid() {
+		return inputFluid;
+	}
+
+	@Nullable
+	public ItemStack[] getInputGrains() {
+		return inputGrains;
+	}
+
+	public ItemStack getIngredient() {
+		return ingredient;
+	}
+
+	public ItemStack getYeast() {
+		return yeast;
 	}
 }
