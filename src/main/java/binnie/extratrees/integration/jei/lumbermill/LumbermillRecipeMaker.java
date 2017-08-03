@@ -4,20 +4,23 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.apache.commons.lang3.tuple.Pair;
-
 import net.minecraft.item.ItemStack;
 
-import binnie.extratrees.machines.lumbermill.LumbermillRecipes;
+import binnie.extratrees.api.recipes.ExtraTreesRecipeManager;
+import binnie.extratrees.api.recipes.ILumbermillRecipe;
 
 public class LumbermillRecipeMaker {
 	public static List<LumbermillRecipeWrapper> create() {
 		List<LumbermillRecipeWrapper> recipes = new ArrayList<>();
 
-		Collection<Pair<ItemStack, ItemStack>> recipePairs = LumbermillRecipes.getRecipes();
-		for (Pair<ItemStack, ItemStack> pair : recipePairs) {
-			ItemStack logInput = pair.getKey();
-			ItemStack plankOutput = pair.getValue();
+		if(ExtraTreesRecipeManager.lumbermillManager == null){
+			return recipes;
+		}
+
+		Collection<ILumbermillRecipe> lumbermillRecipes = ExtraTreesRecipeManager.lumbermillManager.recipes();
+		for (ILumbermillRecipe recipe : lumbermillRecipes) {
+			ItemStack logInput = recipe.getInput();
+			ItemStack plankOutput = recipe.getOutput();
 			recipes.add(new LumbermillRecipeWrapper(logInput, plankOutput));
 		}
 

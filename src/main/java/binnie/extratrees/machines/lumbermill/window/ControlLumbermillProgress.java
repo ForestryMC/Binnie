@@ -1,4 +1,4 @@
-package binnie.extratrees.machines.lumbermill;
+package binnie.extratrees.machines.lumbermill.window;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -28,6 +28,8 @@ import binnie.core.gui.resource.Texture;
 import binnie.core.gui.resource.minecraft.StandardTexture;
 import binnie.core.gui.window.Panel;
 import binnie.extratrees.core.ExtraTreeTexture;
+import binnie.extratrees.machines.lumbermill.LumbermillMachine;
+import binnie.extratrees.machines.lumbermill.recipes.LumbermillRecipeManager;
 
 public class ControlLumbermillProgress extends ControlProgressBase {
 	static final Texture SAW = new StandardTexture(0, 0, 6, 32, ExtraTreeTexture.GUI);
@@ -76,7 +78,7 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 			//CraftGUI.Render.iconBlock(new IPoint(1 + i * 16, 1), icon);
 			RenderUtil.drawSprite(new Point(1 + i * 16, 1), icon);
 		}
-		final ItemStack result = LumbermillRecipes.getPlankProduct(item);
+		final ItemStack result = LumbermillRecipeManager.getPlankProduct(item);
 		if (result == null) {
 			return;
 		}

@@ -13,6 +13,8 @@ import binnie.core.api.IBinnieRecipe;
 import binnie.core.api.ICraftingManager;
 import binnie.extratrees.api.recipes.IBreweryManager;
 import binnie.extratrees.api.recipes.IBreweryRecipe;
+import binnie.extratrees.api.recipes.ILumbermillManager;
+import binnie.extratrees.api.recipes.ILumbermillRecipe;
 
 public class DummyManagers {
 
@@ -52,6 +54,13 @@ public class DummyManagers {
 
 		@Override
 		public void addGrainRecipe(String grainOreName, FluidStack output, @Nullable String ingredientOreName, ItemStack yeast) {
+		}
+	}
+
+	public static class DummyLumbermillManager extends DummyCraftingManager<ILumbermillRecipe> implements ILumbermillManager {
+		@Override
+		public void addRecipe(ItemStack input, ItemStack output) {
+
 		}
 	}
 }

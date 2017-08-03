@@ -38,7 +38,7 @@ import binnie.Binnie;
 import binnie.core.util.I18N;
 import binnie.core.util.UniqueItemStackSet;
 import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.machines.lumbermill.LumbermillRecipes;
+import binnie.extratrees.machines.lumbermill.recipes.LumbermillRecipeManager;
 
 public class TreeBreedingSystem extends BreedingSystem {
 	public UniqueItemStackSet allFruits;
@@ -202,7 +202,7 @@ public class TreeBreedingSystem extends BreedingSystem {
 			ITreeGenome genome = TreeManager.treeRoot.templateAsGenome(TreeManager.treeRoot.getTemplate(tSpecies));
 			IAlleleTreeSpecies treeSpecies = genome.getPrimary();
 			final ItemStack woodStack = treeSpecies.getWoodProvider().getWoodStack();
-			ItemStack plankProduct = LumbermillRecipes.getPlankProduct(woodStack);
+			ItemStack plankProduct = LumbermillRecipeManager.getPlankProduct(woodStack);
 			if (!plankProduct.isEmpty() && fruit.isItemEqual(plankProduct)) {
 				found.add(species);
 			}

@@ -1,4 +1,4 @@
-package binnie.extratrees.machines.lumbermill;
+package binnie.extratrees.machines.lumbermill.window;
 
 import net.minecraft.item.ItemStack;
 
@@ -6,6 +6,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
+import binnie.extratrees.machines.lumbermill.recipes.LumbermillRecipeManager;
 
 public class SlotValidatorLog extends SlotValidator {
 	private static final int logWoodId = OreDictionary.getOreID("logWood");
@@ -18,7 +19,7 @@ public class SlotValidatorLog extends SlotValidator {
 	public boolean isValid(final ItemStack itemStack) {
 		int[] oreIDs = OreDictionary.getOreIDs(itemStack);
 		for (int oreId : oreIDs) {
-			if (oreId == logWoodId && LumbermillRecipes.getPlankProduct(itemStack) != null) {
+			if (oreId == logWoodId && LumbermillRecipeManager.getPlankProduct(itemStack) != null) {
 				return true;
 			}
 		}

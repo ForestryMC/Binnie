@@ -1,4 +1,4 @@
-package binnie.extratrees.machines.lumbermill;
+package binnie.extratrees.machines.lumbermill.window;
 
 import javax.annotation.Nullable;
 
@@ -17,6 +17,7 @@ import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.machines.Machine;
 import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.machines.lumbermill.LumbermillMachine;
 
 public class WindowLumbermill extends Window {
 	public WindowLumbermill(final EntityPlayer player, final IInventory inventory, final Side side) {

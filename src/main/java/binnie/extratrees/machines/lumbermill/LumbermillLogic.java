@@ -9,6 +9,7 @@ import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.IProcess;
 import binnie.extratrees.item.ExtraTreeItems;
 import binnie.extratrees.machines.ExtraTreesErrorCode;
+import binnie.extratrees.machines.lumbermill.recipes.LumbermillRecipeManager;
 
 public class LumbermillLogic extends ComponentProcessSetCost implements IProcess {
 	public static final int PROCESS_ENERGY = 900;
@@ -26,7 +27,7 @@ public class LumbermillLogic extends ComponentProcessSetCost implements IProcess
 		if (logStack.isEmpty()) {
 			return new ErrorState(ExtraTreesErrorCode.LUMBERMILL_NO_WOOD, LumbermillMachine.SLOT_LOG);
 		}
-		final ItemStack plankResult = LumbermillRecipes.getPlankProduct(logStack);
+		ItemStack plankResult = LumbermillRecipeManager.getPlankProduct(logStack);
 		if (!util.isSlotEmpty(LumbermillMachine.SLOT_PLANKS) && !plankResult.isEmpty()) {
 			final ItemStack currentPlank = util.getStack(LumbermillMachine.SLOT_PLANKS);
 			if (!plankResult.isItemEqual(currentPlank) || plankResult.getCount() + currentPlank.getCount() > currentPlank.getMaxStackSize()) {
@@ -35,13 +36,13 @@ public class LumbermillLogic extends ComponentProcessSetCost implements IProcess
 		}
 		if(!util.isSlotEmpty(LumbermillMachine.SLOT_BARK)){
 			ItemStack itemStack = util.getStack(LumbermillMachine.SLOT_BARK);
-			if (itemStack.getCount() + 1 > itemStack.getMaxStackSize()) {
+			if (itemStack.getCount() + 2 > itemStack.getMaxStackSize()) {
 				return new ErrorState(ExtraTreesErrorCode.LUMBERMILL_NO_SPACE_BARK, new int[]{LumbermillMachine.SLOT_BARK});
 			}
 		}
 		if(!util.isSlotEmpty(LumbermillMachine.SLOT_SAWDUST)){
 			ItemStack itemStack = util.getStack(LumbermillMachine.SLOT_SAWDUST);
-			if (itemStack.getCount() + 1 > itemStack.getMaxStackSize()) {
+			if (itemStack.getCount() + 2 > itemStack.getMaxStackSize()) {
 				return new ErrorState(ExtraTreesErrorCode.LUMBERMILL_NO_SPACE_SAW_DUST, new int[]{LumbermillMachine.SLOT_SAWDUST});
 			}
 		}
@@ -60,13 +61,13 @@ public class LumbermillLogic extends ComponentProcessSetCost implements IProcess
 	protected void onFinishTask() {
 		MachineUtil util = getUtil();
 		final ItemStack logStack = util.getStack(LumbermillMachine.SLOT_LOG);
-		final ItemStack result = LumbermillRecipes.getPlankProduct(logStack);
+		final ItemStack result = LumbermillRecipeManager.getPlankProduct(logStack);
 		if (result == null) {
 			return;
 		}
 		util.addStack(LumbermillMachine.SLOT_PLANKS, result);
-		util.addStack(LumbermillMachine.SLOT_SAWDUST, ExtraTreeItems.Sawdust.get(1));
-		util.addStack(LumbermillMachine.SLOT_BARK, ExtraTreeItems.Bark.get(1));
+		util.addStack(LumbermillMachine.SLOT_SAWDUST, ExtraTreeItems.Sawdust.get(2));
+		util.addStack(LumbermillMachine.SLOT_BARK, ExtraTreeItems.Bark.get(2));
 		util.decreaseStack(LumbermillMachine.SLOT_LOG, 1);
 	}
 

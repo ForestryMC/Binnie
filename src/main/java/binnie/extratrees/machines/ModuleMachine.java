@@ -17,6 +17,7 @@ import binnie.core.machines.MachineGroup;
 import binnie.core.machines.inventory.ValidatorSprite;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.item.ExtraTreeItems;
+import binnie.extratrees.machines.lumbermill.recipes.LumbermillRecipeManager;
 import binnie.extratrees.machines.nursery.TileEntityNursery;
 
 public class ModuleMachine implements IInitializable {
@@ -49,5 +50,6 @@ public class ModuleMachine implements IInitializable {
 		GameRegistry.addRecipe(new ShapedOreRecipe(ExtraTreeMachine.Panelworker.get(1), "wGw", "GsG", "ggg", 'G', Blocks.GLASS, 'g', ExtraTreeItems.ProvenGear.get(1), 'w', Blocks.WOODEN_SLAB, 's', Mods.Forestry.stack("impregnated_casing")));
 		GameRegistry.addRecipe(new ShapedOreRecipe(ExtraTreeMachine.Glassworker.get(1), "wGw", "GsG", "ggg", 'G', Blocks.GLASS, 'g', ExtraTreeItems.ProvenGear.get(1), 'w', Blocks.GLASS, 's', Mods.Forestry.stack("impregnated_casing")));
 		GameRegistry.addRecipe(new ShapedOreRecipe(ExtraTreeMachine.Tileworker.get(1), "wGw", "GsG", "ggg", 'G', Blocks.GLASS, 'g', ExtraTreeItems.ProvenGear.get(1), 'w', Items.CLAY_BALL, 's', Mods.Forestry.stack("impregnated_casing")));
+		LumbermillRecipeManager.calculateProducts();
 	}
 }

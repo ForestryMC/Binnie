@@ -6,4 +6,6 @@ public class ExtraTreesRecipeManager {
 
 	@Nullable
 	public static IBreweryManager breweryManager;
+	@Nullable
+	public static ILumbermillManager lumbermillManager;
 }

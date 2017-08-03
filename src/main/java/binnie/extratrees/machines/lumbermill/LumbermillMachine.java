@@ -15,6 +15,7 @@ import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.machines.ExtraTreeMachine;
+import binnie.extratrees.machines.lumbermill.window.SlotValidatorLog;
 
 public class LumbermillMachine extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
 	public static final int SLOT_LOG = 0;

@@ -18,7 +18,7 @@ import binnie.extratrees.machines.brewery.window.WindowBrewery;
 import binnie.extratrees.machines.designer.WindowDesigner;
 import binnie.extratrees.machines.distillery.WindowDistillery;
 import binnie.extratrees.machines.fruitpress.WindowPress;
-import binnie.extratrees.machines.lumbermill.WindowLumbermill;
+import binnie.extratrees.machines.lumbermill.window.WindowLumbermill;
 
 public enum ExtraTreesGUID implements IBinnieGUID {
 	DATABASE,
