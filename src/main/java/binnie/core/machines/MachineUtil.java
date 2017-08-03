@@ -5,9 +5,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
@@ -187,8 +190,11 @@ public class MachineUtil {
 	}
 
 	public void refreshBlock() {
-		//TODO renderupdate
-		//this.machine.getWorld().markBlockForUpdate(this.machine.getTileEntity().xCoord, this.machine.getTileEntity().yCoord, this.machine.getTileEntity().zCoord);
+		BlockPos pos = machine.getTileEntity().getPos();
+		World world = machine.getWorld();
+		IBlockState blockState = world.getBlockState(pos);
+		machine.getWorld().notifyBlockUpdate(pos, blockState, blockState, 0);
+		//machine.sendRefreshPacket();
 	}
 
 	public IProcess getProcess() {

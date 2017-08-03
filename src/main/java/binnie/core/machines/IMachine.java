@@ -24,5 +24,5 @@ public interface IMachine extends IOwnable {
 
 	MachinePackage getPackage();
 
-	void sendPacket();
+	void sendRefreshPacket();
 }

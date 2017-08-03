@@ -107,11 +107,9 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 	protected abstract boolean inProgress();
 
 	protected void onCancelTask() {
-		getMachine().sendPacket();
 	}
 
 	protected void onStartTask() {
-		getMachine().sendPacket();
 	}
 
 	protected void onTickTask() {

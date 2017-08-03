@@ -16,7 +16,7 @@ import binnie.core.machines.network.INetwork;
 import binnie.core.network.packet.MessageBinnie;
 import binnie.core.network.packet.MessageCraftGUI;
 import binnie.core.network.packet.MessageMetadata;
-import binnie.core.network.packet.MessageTileNBT;
+import binnie.core.network.packet.MessageSyncTile;
 import binnie.core.network.packet.MessageUpdate;
 
 public enum BinnieCorePacketID implements IPacketID {
@@ -53,7 +53,7 @@ public enum BinnieCorePacketID implements IPacketID {
 				((ContainerCraftGUI) player.openContainer).receiveNBTServer(player, packet3.getTagCompound());
 			}
 		} else if (this == BinnieCorePacketID.TILE_DESCRIPTION_SYNC && context.side == Side.CLIENT) {
-			final MessageTileNBT packet4 = new MessageTileNBT(message);
+			final MessageSyncTile packet4 = new MessageSyncTile(message);
 			final TileEntity tile = packet4.getTarget(BinnieCore.getBinnieProxy().getWorld());
 			if (tile != null && packet4.getTagCompound() != null) {
 				final IMachine machine = Machine.getMachine(tile);

@@ -191,7 +191,7 @@ class BlockMachine extends Block implements IBlockMachine, ITileEntityProvider {
 	@SideOnly(Side.CLIENT)
 	public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand) {
 		if (world.isBlockLoaded(pos)) {
-			IMachine machine = Machine.getMachine(world.getTileEntity(pos));
+			IMachine machine = Machine.getMachine(TileUtil.getTile(world, pos, TileEntity.class));
 			if (machine != null) {
 				for (IRender.RandomDisplayTick renders : machine.getInterfaces(IRender.RandomDisplayTick.class)) {
 					renders.onRandomDisplayTick(world, pos, rand);

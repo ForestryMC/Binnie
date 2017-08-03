@@ -33,7 +33,7 @@ import binnie.core.machines.power.ITankMachine;
 import binnie.core.network.BinnieCorePacketID;
 import binnie.core.network.INetworkedEntity;
 import binnie.core.network.packet.MessageBase;
-import binnie.core.network.packet.MessageTileNBT;
+import binnie.core.network.packet.MessageSyncTile;
 import binnie.core.network.packet.PacketPayload;
 
 public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, INetwork.TilePacketSync, IMachine, INetwork.GuiNBT {
@@ -147,11 +147,11 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 		return this.tile;
 	}
 
-	public void sendPacket() {
+	public void sendRefreshPacket() {
 		if (!BinnieCore.getBinnieProxy().isSimulating(this.getTileEntity().getWorld())) {
 			return;
 		}
-		MessageBase message = getDescriptionPacket();
+		MessageBase message = getRefreshPacket();
 		if(message == null){
 			return;
 		}
@@ -279,13 +279,13 @@ public class Machine implements INetworkedEntity, INbtReadable, INbtWritable, IN
 	}
 
 	@Nullable
-	public MessageBase getDescriptionPacket() {
+	public MessageBase getRefreshPacket() {
 		final NBTTagCompound nbt = new NBTTagCompound();
 		this.syncToNBT(nbt);
 		if (nbt.hasNoTags()) {
 			return null;
 		}
-		return new MessageTileNBT(BinnieCorePacketID.TILE_DESCRIPTION_SYNC.ordinal(), this.getTileEntity(), nbt);
+		return new MessageSyncTile(BinnieCorePacketID.TILE_DESCRIPTION_SYNC.ordinal(), this.getTileEntity(), nbt);
 	}
 
 	@Override

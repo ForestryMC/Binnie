@@ -66,7 +66,6 @@ public abstract class ComponentProcess extends ComponentProcessIndefinate implem
 	}
 
 	protected void onFinishTask() {
-		getMachine().sendPacket();
 	}
 
 	@Override

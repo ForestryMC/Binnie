@@ -10,16 +10,16 @@ import net.minecraft.world.World;
 
 import io.netty.buffer.ByteBuf;
 
-public class MessageTileNBT extends MessageNBT implements IPacketLocation {
+public class MessageSyncTile extends MessageNBT implements IPacketLocation {
 	private int posX;
 	private int posY;
 	private int posZ;
 
-	public MessageTileNBT(final MessageBinnie message) {
+	public MessageSyncTile(final MessageBinnie message) {
 		super(message);
 	}
 
-	public MessageTileNBT(final int id, final TileEntity tile, final NBTTagCompound nbt) {
+	public MessageSyncTile(final int id, final TileEntity tile, final NBTTagCompound nbt) {
 		super(id);
 		this.posX = tile.getPos().getX();
 		this.posY = tile.getPos().getY();

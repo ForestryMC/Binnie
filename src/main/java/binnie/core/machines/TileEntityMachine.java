@@ -1,6 +1,16 @@
 package binnie.core.machines;
 
+import javax.annotation.Nullable;
+
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.Binnie;
 import binnie.core.machines.base.TileEntityMachineBase;
@@ -29,15 +39,17 @@ public class TileEntityMachine extends TileEntityMachineBase implements INetwork
 	@Override
 	public void readFromNBT(final NBTTagCompound nbtTagCompound) {
 		super.readFromNBT(nbtTagCompound);
-		final String name = nbtTagCompound.getString("name");
-		final String group = nbtTagCompound.getString("group");
-		final MachinePackage pack = Binnie.MACHINE.getPackage(group, name);
-		if (pack == null) {
-			this.invalidate();
-			return;
+		if(!nbtTagCompound.hasKey("sync")) {
+			final String name = nbtTagCompound.getString("name");
+			final String group = nbtTagCompound.getString("group");
+			final MachinePackage pack = Binnie.MACHINE.getPackage(group, name);
+			if (pack == null) {
+				this.invalidate();
+				return;
+			}
+			this.setMachine(pack);
+			this.getMachine().readFromNBT(nbtTagCompound);
 		}
-		this.setMachine(pack);
-		this.getMachine().readFromNBT(nbtTagCompound);
 	}
 
 	@Override
@@ -59,6 +71,41 @@ public class TileEntityMachine extends TileEntityMachineBase implements INetwork
 	@Override
 	public void readFromPacket(final PacketPayload payload) {
 		this.machine.readFromPacket(payload);
+	}
+
+	@Override
+	public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newSate) {
+		return super.shouldRefresh(world, pos, oldState, newSate);
+	}
+
+	@Nullable
+	@Override
+	public SPacketUpdateTileEntity getUpdatePacket() {
+		return new SPacketUpdateTileEntity(this.getPos(), 0, getUpdateTag());
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
+		super.onDataPacket(net, pkt);
+		NBTTagCompound nbt = pkt.getNbtCompound();
+		handleUpdateTag(nbt);
+	}
+
+	@Override
+	public NBTTagCompound getUpdateTag() {
+		NBTTagCompound compound = super.getUpdateTag();
+		NBTTagCompound syncCompound = new NBTTagCompound();
+		machine.syncToNBT(syncCompound);
+		compound.setTag("sync", syncCompound);
+		return compound;
+	}
+
+	@Override
+	public void handleUpdateTag(NBTTagCompound tag) {
+		super.handleUpdateTag(tag);
+		NBTTagCompound syncCompound = tag.getCompoundTag("sync");
+		machine.syncFromNBT(syncCompound);
 	}
 
 	public Machine getMachine() {
