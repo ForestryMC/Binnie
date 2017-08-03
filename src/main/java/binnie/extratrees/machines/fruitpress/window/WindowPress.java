@@ -1,4 +1,4 @@
-package binnie.extratrees.machines.fruitpress;
+package binnie.extratrees.machines.fruitpress.window;
 
 import javax.annotation.Nullable;
 
@@ -20,6 +20,8 @@ import binnie.core.gui.minecraft.control.ControlPlayerInventory;
 import binnie.core.gui.minecraft.control.ControlSlot;
 import binnie.core.machines.Machine;
 import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.machines.fruitpress.FruitPressLogic;
+import binnie.extratrees.machines.fruitpress.FruitPressMachine;
 
 public class WindowPress extends Window {
 	public WindowPress(final EntityPlayer player, final IInventory inventory, final Side side) {

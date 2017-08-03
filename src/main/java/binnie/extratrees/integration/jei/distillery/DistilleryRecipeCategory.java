@@ -1,4 +1,4 @@
-package binnie.extratrees.integration.jei.distillery.brewery;
+package binnie.extratrees.integration.jei.distillery;
 
 import net.minecraft.client.Minecraft;
 

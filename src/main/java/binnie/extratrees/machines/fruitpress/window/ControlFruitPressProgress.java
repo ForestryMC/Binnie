@@ -1,4 +1,4 @@
-package binnie.extratrees.machines.fruitpress;
+package binnie.extratrees.machines.fruitpress.window;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.inventory.IInventory;
@@ -23,6 +23,8 @@ import binnie.core.gui.renderer.RenderUtil;
 import binnie.core.gui.resource.Texture;
 import binnie.core.gui.resource.minecraft.StandardTexture;
 import binnie.extratrees.core.ExtraTreeTexture;
+import binnie.extratrees.machines.fruitpress.FruitPressMachine;
+import binnie.extratrees.machines.fruitpress.recipes.FruitPressRecipeManager;
 
 public class ControlFruitPressProgress extends ControlProgressBase {
 	private static final Texture PressTexture = new StandardTexture(6, 0, 24, 52, ExtraTreeTexture.GUI);
@@ -56,10 +58,10 @@ public class ControlFruitPressProgress extends ControlProgressBase {
 			return;
 		}
 		final ItemStack input = slotFromInventory.getStack();
-		if (input.isEmpty() || FruitPressRecipes.getOutput(input) == null) {
+		if (input.isEmpty() || FruitPressRecipeManager.getOutput(input) == null) {
 			return;
 		}
-		FluidStack fluid = FruitPressRecipes.getOutput(input);
+		FluidStack fluid = FruitPressRecipeManager.getOutput(input);
 		RenderUtil.drawFluid(new Point(4, 52), fluid);
 		RenderUtil.drawItem(new Point(4, 52), input);
 	}

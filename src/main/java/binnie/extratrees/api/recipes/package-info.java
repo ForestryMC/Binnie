@@ -1,7 +1,7 @@
 @ParametersAreNonnullByDefault
 @FieldsAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-package binnie.extratrees.integration.jei.distillery.brewery;
+package binnie.extratrees.api.recipes;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 

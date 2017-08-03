@@ -1,4 +1,4 @@
-package binnie.extratrees.machines.designer;
+package binnie.extratrees.machines.designer.window;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

@@ -1,0 +1,9 @@
+@ParametersAreNonnullByDefault
+@FieldsAreNonnullByDefault
+@MethodsReturnNonnullByDefault
+package binnie.extratrees.machines.brewery.recipes;
+
+import javax.annotation.ParametersAreNonnullByDefault;
+
+import binnie.core.util.FieldsAreNonnullByDefault;
+import mcp.MethodsReturnNonnullByDefault;

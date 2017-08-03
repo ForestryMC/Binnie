@@ -13,6 +13,8 @@ import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.machines.ExtraTreeMachine;
+import binnie.extratrees.machines.distillery.window.TankValidatorDistilleryInput;
+import binnie.extratrees.machines.distillery.window.TankValidatorDistilleryOutput;
 
 public class DistilleryMachine extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
 	public static final int TANK_INPUT = 0;

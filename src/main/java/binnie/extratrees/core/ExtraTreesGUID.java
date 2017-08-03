@@ -15,9 +15,9 @@ import binnie.extratrees.gui.database.WindowArboristDatabase;
 import binnie.extratrees.gui.database.WindowLepidopteristDatabase;
 import binnie.extratrees.kitchen.craftgui.WindowBottleRack;
 import binnie.extratrees.machines.brewery.window.WindowBrewery;
-import binnie.extratrees.machines.designer.WindowDesigner;
-import binnie.extratrees.machines.distillery.WindowDistillery;
-import binnie.extratrees.machines.fruitpress.WindowPress;
+import binnie.extratrees.machines.designer.window.WindowDesigner;
+import binnie.extratrees.machines.distillery.window.WindowDistillery;
+import binnie.extratrees.machines.fruitpress.window.WindowPress;
 import binnie.extratrees.machines.lumbermill.window.WindowLumbermill;
 
 public enum ExtraTreesGUID implements IBinnieGUID {

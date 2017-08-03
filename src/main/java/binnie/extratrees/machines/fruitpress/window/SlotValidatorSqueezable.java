@@ -1,9 +1,10 @@
-package binnie.extratrees.machines.fruitpress;
+package binnie.extratrees.machines.fruitpress.window;
 
 import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
+import binnie.extratrees.machines.fruitpress.recipes.FruitPressRecipeManager;
 
 public class SlotValidatorSqueezable extends SlotValidator {
 	public SlotValidatorSqueezable() {
@@ -12,7 +13,7 @@ public class SlotValidatorSqueezable extends SlotValidator {
 
 	@Override
 	public boolean isValid(final ItemStack itemStack) {
-		return FruitPressRecipes.isInput(itemStack);
+		return FruitPressRecipeManager.isInput(itemStack);
 	}
 
 	@Override

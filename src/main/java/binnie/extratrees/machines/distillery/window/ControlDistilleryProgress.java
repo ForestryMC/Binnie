@@ -1,4 +1,4 @@
-package binnie.extratrees.machines.distillery;
+package binnie.extratrees.machines.distillery.window;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.nbt.NBTTagCompound;
@@ -21,6 +21,7 @@ import binnie.core.gui.resource.Texture;
 import binnie.core.gui.resource.minecraft.StandardTexture;
 import binnie.core.machines.Machine;
 import binnie.extratrees.core.ExtraTreeTexture;
+import binnie.extratrees.machines.distillery.DistilleryLogic;
 
 public class ControlDistilleryProgress extends ControlProgressBase {
 	public static final Texture DISTILLERY_BASE = new StandardTexture(43, 0, 58, 66, ExtraTreeTexture.GUI);

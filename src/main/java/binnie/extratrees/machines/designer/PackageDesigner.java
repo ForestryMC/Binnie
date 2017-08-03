@@ -5,6 +5,9 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.machines.ExtraTreeMachine;
+import binnie.extratrees.machines.designer.window.ComponentDesignerRecipe;
+import binnie.extratrees.machines.designer.window.SlotValidatorBeeswax;
+import binnie.extratrees.machines.designer.window.SlotValidatorPlanks;
 
 public abstract class PackageDesigner extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
 	DesignerType type;

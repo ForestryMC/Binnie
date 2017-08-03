@@ -1,4 +1,4 @@
-package binnie.extratrees.machines.designer;
+package binnie.extratrees.machines.designer.window;
 
 import javax.annotation.Nullable;
 import java.util.Map;
@@ -20,6 +20,8 @@ import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.carpentry.EnumDesign;
 import binnie.extratrees.machines.ExtraTreesErrorCode;
+import binnie.extratrees.machines.designer.Designer;
+import binnie.extratrees.machines.designer.DesignerType;
 
 public class ComponentDesignerRecipe extends ComponentRecipe implements IComponentRecipe, INetwork.GuiNBT, IErrorStateSource {
 	public DesignerType type;

@@ -17,6 +17,7 @@ import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
 import binnie.extratrees.machines.ExtraTreesErrorCode;
+import binnie.extratrees.machines.distillery.recipes.DistilleryRecipeManager;
 
 public class DistilleryLogic extends ComponentProcessSetCost implements IProcess, INetwork.SendGuiNBT, INetwork.ReceiveGuiNBT {
 	public static final int INPUT_FLUID_AMOUNT = Fluid.BUCKET_VOLUME;
@@ -82,7 +83,7 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 		FluidStack fluidInOutputTank = this.getUtil().getFluid(DistilleryMachine.TANK_OUTPUT);
 		if (fluidInOutputTank != null) {
 			FluidStack inputFluid = this.getUtil().getFluid(DistilleryMachine.TANK_INPUT);
-			FluidStack recipeOutput = DistilleryRecipes.getOutput(inputFluid, this.level);
+			FluidStack recipeOutput = DistilleryRecipeManager.getOutput(inputFluid, this.level);
 			if (recipeOutput != null && !recipeOutput.isFluidEqual(fluidInOutputTank)) {
 				return new ErrorState(CoreErrorCode.TANK_DIFFRENT_FLUID, DistilleryMachine.TANK_OUTPUT);
 			}
@@ -93,7 +94,7 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 
 	@Override
 	protected void onFinishTask() {
-		final FluidStack output = DistilleryRecipes.getOutput(this.currentFluid, this.level);
+		final FluidStack output = DistilleryRecipeManager.getOutput(this.currentFluid, this.level);
 		if (output != null) {
 			this.getUtil().fillTank(DistilleryMachine.TANK_OUTPUT, output);
 		}
@@ -150,7 +151,7 @@ public class DistilleryLogic extends ComponentProcessSetCost implements IProcess
 		if (this.currentFluid == null) {
 			return I18N.localise("extratrees.machine.machine.distillery.tooltips.empty");
 		}
-		FluidStack output = DistilleryRecipes.getOutput(this.currentFluid, this.level);
+		FluidStack output = DistilleryRecipeManager.getOutput(this.currentFluid, this.level);
 		if (output == null) {
 			return I18N.localise("extratrees.machine.machine.distillery.tooltips.empty");
 		}

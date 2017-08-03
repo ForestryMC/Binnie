@@ -8,6 +8,7 @@ import binnie.core.machines.errors.ErrorState;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.IProcess;
 import binnie.extratrees.machines.ExtraTreesErrorCode;
+import binnie.extratrees.machines.fruitpress.recipes.FruitPressRecipeManager;
 
 public class FruitPressLogic extends ComponentProcessSetCost implements IProcess {
 	public static final int PROCESS_ENERGY = 1000;
@@ -34,7 +35,7 @@ public class FruitPressLogic extends ComponentProcessSetCost implements IProcess
 			return new ErrorState(CoreErrorCode.NO_SPACE_TANK, FruitPressMachine.TANK_OUTPUT);
 		}
 		FluidStack fluidOutputTank = this.getUtil().getFluid(FruitPressMachine.TANK_OUTPUT);
-		FluidStack recipeOutput = FruitPressRecipes.getOutput(this.getUtil().getStack(FruitPressMachine.SLOT_CURRENT));
+		FluidStack recipeOutput = FruitPressRecipeManager.getOutput(this.getUtil().getStack(FruitPressMachine.SLOT_CURRENT));
 		if (fluidOutputTank != null && !fluidOutputTank.isFluidEqual(recipeOutput)) {
 			return new ErrorState(CoreErrorCode.TANK_DIFFRENT_FLUID, FruitPressMachine.TANK_OUTPUT);
 		}
@@ -53,7 +54,7 @@ public class FruitPressLogic extends ComponentProcessSetCost implements IProcess
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		final FluidStack output = FruitPressRecipes.getOutput(this.getUtil().getStack(FruitPressMachine.SLOT_CURRENT));
+		final FluidStack output = FruitPressRecipeManager.getOutput(this.getUtil().getStack(FruitPressMachine.SLOT_CURRENT));
 		if (output == null) {
 			return;
 		}

@@ -1,4 +1,4 @@
-package binnie.extratrees.machines.designer;
+package binnie.extratrees.machines.designer.window;
 
 import javax.annotation.Nullable;
 
@@ -26,6 +26,8 @@ import binnie.core.gui.window.Panel;
 import binnie.core.machines.Machine;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.machines.designer.Designer;
+import binnie.extratrees.machines.designer.DesignerType;
 
 public class WindowDesigner extends Window {
 	ControlTextEdit textEdit;

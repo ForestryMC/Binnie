@@ -1,14 +1,15 @@
-package binnie.extratrees.machines.distillery;
+package binnie.extratrees.machines.distillery.window;
 
 import net.minecraftforge.fluids.FluidStack;
 
 import binnie.core.machines.inventory.TankValidator;
 import binnie.core.util.I18N;
+import binnie.extratrees.machines.distillery.recipes.DistilleryRecipeManager;
 
 public class TankValidatorDistilleryOutput extends TankValidator {
 	@Override
 	public boolean isValid(final FluidStack itemStack) {
-		return DistilleryRecipes.isValidOutputLiquid(itemStack);
+		return DistilleryRecipeManager.isValidOutputLiquid(itemStack);
 	}
 
 	@Override

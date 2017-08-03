@@ -50,6 +50,8 @@ import binnie.extratrees.kitchen.ModuleKitchen;
 import binnie.extratrees.machines.DummyManagers;
 import binnie.extratrees.machines.ModuleMachine;
 import binnie.extratrees.machines.brewery.recipes.BreweryRecipeManager;
+import binnie.extratrees.machines.distillery.recipes.DistilleryRecipeManager;
+import binnie.extratrees.machines.fruitpress.recipes.FruitPressRecipeManager;
 import binnie.extratrees.machines.lumbermill.recipes.LumbermillRecipeManager;
 import binnie.extratrees.proxy.Proxy;
 
@@ -151,12 +153,16 @@ public class ExtraTrees extends AbstractMod {
 	public void setupAPI() {
 		ExtraTreesRecipeManager.breweryManager = new BreweryRecipeManager();
 		ExtraTreesRecipeManager.lumbermillManager = new LumbermillRecipeManager();
+		ExtraTreesRecipeManager.fruitPressManager = new FruitPressRecipeManager();
+		ExtraTreesRecipeManager.distilleryManager = new DistilleryRecipeManager();
 	}
 
 	@Override
 	public void disabledSetupAPI() {
 		ExtraTreesRecipeManager.breweryManager = new DummyManagers.DummyBreweryManager();
 		ExtraTreesRecipeManager.lumbermillManager = new DummyManagers.DummyLumbermillManager();
+		ExtraTreesRecipeManager.fruitPressManager = new DummyManagers.DummyFruitPressManager();
+		ExtraTreesRecipeManager.distilleryManager = new DummyManagers.DummyDistilleryManager();
 	}
 
 	@Override

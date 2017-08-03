@@ -13,6 +13,7 @@ import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.machines.ExtraTreeMachine;
+import binnie.extratrees.machines.fruitpress.window.SlotValidatorSqueezable;
 
 public class FruitPressMachine extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
 	public static final int SLOT_FRUIT = 0;

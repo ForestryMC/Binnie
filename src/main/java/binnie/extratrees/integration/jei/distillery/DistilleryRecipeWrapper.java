@@ -1,4 +1,4 @@
-package binnie.extratrees.integration.jei.distillery.brewery;
+package binnie.extratrees.integration.jei.distillery;
 
 import net.minecraft.client.Minecraft;
 
@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import binnie.core.gui.CraftGUI;
 import binnie.core.gui.geometry.Point;
-import binnie.extratrees.machines.distillery.ControlDistilleryProgress;
+import binnie.extratrees.machines.distillery.window.ControlDistilleryProgress;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 

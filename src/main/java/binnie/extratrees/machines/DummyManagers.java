@@ -13,6 +13,10 @@ import binnie.core.api.IBinnieRecipe;
 import binnie.core.api.ICraftingManager;
 import binnie.extratrees.api.recipes.IBreweryManager;
 import binnie.extratrees.api.recipes.IBreweryRecipe;
+import binnie.extratrees.api.recipes.IDistilleryManager;
+import binnie.extratrees.api.recipes.IDistilleryRecipe;
+import binnie.extratrees.api.recipes.IFruitPressManager;
+import binnie.extratrees.api.recipes.IFruitPressRecipe;
 import binnie.extratrees.api.recipes.ILumbermillManager;
 import binnie.extratrees.api.recipes.ILumbermillRecipe;
 
@@ -61,6 +65,24 @@ public class DummyManagers {
 		@Override
 		public void addRecipe(ItemStack input, ItemStack output) {
 
+		}
+	}
+
+	public static class DummyFruitPressManager extends DummyCraftingManager<IFruitPressRecipe> implements IFruitPressManager {
+		@Override
+		public void addRecipe(ItemStack input, FluidStack output) {
+
+		}
+	}
+
+	public static class DummyDistilleryManager extends DummyCraftingManager<IDistilleryRecipe> implements IDistilleryManager {
+		@Override
+		public void addRecipe(FluidStack input, FluidStack output, int level) {
+		}
+
+		@Override
+		public Set<IDistilleryRecipe> recipes(int level) {
+			return ImmutableSet.of();
 		}
 	}
 }

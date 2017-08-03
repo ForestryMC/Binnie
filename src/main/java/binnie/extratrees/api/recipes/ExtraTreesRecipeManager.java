@@ -8,4 +8,8 @@ public class ExtraTreesRecipeManager {
 	public static IBreweryManager breweryManager;
 	@Nullable
 	public static ILumbermillManager lumbermillManager;
+	@Nullable
+	public static IFruitPressManager fruitPressManager;
+	@Nullable
+	public static IDistilleryManager distilleryManager;
 }

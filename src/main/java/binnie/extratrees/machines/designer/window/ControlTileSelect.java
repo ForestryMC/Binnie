@@ -1,4 +1,4 @@
-package binnie.extratrees.machines.designer;
+package binnie.extratrees.machines.designer.window;
 
 import java.util.ArrayList;
 import java.util.HashMap;

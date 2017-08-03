@@ -27,11 +27,11 @@ import binnie.extratrees.alcohol.drink.DrinkManager;
 import binnie.extratrees.alcohol.drink.ItemDrink;
 import binnie.extratrees.api.recipes.ExtraTreesRecipeManager;
 import binnie.extratrees.api.recipes.IBreweryManager;
+import binnie.extratrees.api.recipes.IDistilleryManager;
+import binnie.extratrees.api.recipes.IFruitPressManager;
 import binnie.extratrees.item.ExtraTreeItems;
 import binnie.extratrees.item.Food;
 import binnie.extratrees.machines.distillery.DistilleryLogic;
-import binnie.extratrees.machines.distillery.DistilleryRecipes;
-import binnie.extratrees.machines.fruitpress.FruitPressRecipes;
 
 public class ModuleAlcohol implements IInitializable {
 	public ItemDrink drink;
@@ -72,6 +72,7 @@ public class ModuleAlcohol implements IInitializable {
 	@Override
 	public void postInit() {
 		IBreweryManager breweryManager = ExtraTreesRecipeManager.breweryManager;
+		IFruitPressManager fruitPressManager = ExtraTreesRecipeManager.fruitPressManager;
 		ItemStack wax = Mods.Forestry.stack("beeswax");
 		ItemStack waxCast = Mods.Forestry.stackWildcard("wax_cast");
 		for (Glassware glassware : Glassware.values()) {
@@ -99,7 +100,7 @@ public class ModuleAlcohol implements IInitializable {
 					if (Objects.equals(output.getFluid().getName(), "seedoil")) {
 						amount *= 2;
 					}
-					FruitPressRecipes.addRecipe(stack, juice.get(amount));
+					fruitPressManager.addRecipe(stack, juice.get(amount));
 				}
 			}
 		}
@@ -156,13 +157,15 @@ public class ModuleAlcohol implements IInitializable {
 		final int outAmount2 = inAmount * 2 / 5;
 		final int outAmount3 = inAmount / 5;
 
-		DistilleryRecipes.addRecipe(source.get(inAmount), singleDistilled.get(outAmount1), 0);
-		DistilleryRecipes.addRecipe(source.get(inAmount), doubleDistilled.get(outAmount2), 1);
-		DistilleryRecipes.addRecipe(source.get(inAmount), tripleDistilled.get(outAmount3), 2);
+		IDistilleryManager distilleryManager = ExtraTreesRecipeManager.distilleryManager;
 
-		DistilleryRecipes.addRecipe(singleDistilled.get(inAmount), doubleDistilled.get(outAmount2), 0);
-		DistilleryRecipes.addRecipe(singleDistilled.get(inAmount), tripleDistilled.get(outAmount3), 1);
+		distilleryManager.addRecipe(source.get(inAmount), singleDistilled.get(outAmount1), 0);
+		distilleryManager.addRecipe(source.get(inAmount), doubleDistilled.get(outAmount2), 1);
+		distilleryManager.addRecipe(source.get(inAmount), tripleDistilled.get(outAmount3), 2);
 
-		DistilleryRecipes.addRecipe(doubleDistilled.get(inAmount), tripleDistilled.get(outAmount2), 0);
+		distilleryManager.addRecipe(singleDistilled.get(inAmount), doubleDistilled.get(outAmount2), 0);
+		distilleryManager.addRecipe(singleDistilled.get(inAmount), tripleDistilled.get(outAmount3), 1);
+
+		distilleryManager.addRecipe(doubleDistilled.get(inAmount), tripleDistilled.get(outAmount2), 0);
 	}
 }
