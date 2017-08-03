@@ -1,6 +1,6 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-package binnie.extratrees.api.recipes;
+package binnie.core.api;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
