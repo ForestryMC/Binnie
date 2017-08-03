@@ -111,7 +111,9 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 	public String getItemStackDisplayName(ItemStack stack) {
 		IGeneItem gene = getGeneItem(stack);
 		BreedingSystem breedingSystem = Binnie.Genetics.getSystem(gene.getSpeciesRoot());
-		return I18N.localise("genetics.item.serumArray.name", breedingSystem.getDescriptor());
+		if(breedingSystem != null)
+			return I18N.localise("genetics.item.serumArray.name", breedingSystem.getDescriptor());
+		return I18N.localise("genetics.item.serumArray.name");
 	}
 
 	@Override

@@ -85,7 +85,9 @@ public class GeneItem implements INBTTagable, IGeneItem {
 
 	@Override
 	public ISpeciesRoot getSpeciesRoot() {
-		return gene.getSpeciesRoot();
+		if(gene != null)
+			return gene.getSpeciesRoot();
+		return null;
 	}
 
 	@Override
