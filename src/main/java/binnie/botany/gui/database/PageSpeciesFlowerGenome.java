@@ -53,7 +53,7 @@ public class PageSpeciesFlowerGenome extends PageSpecies {
 		int y = 0;
 		int th = 14;
 		int th2 = 18;
-		new ControlText(contents, new Area(0, y, w2, th), I18N.localise(DatabaseConstants.BOTANY_GENOME_KEY + DatabaseConstants.BOTANY_GENOME_KEY + ".temp"), TextJustification.MIDDLE_RIGHT);
+		new ControlText(contents, new Area(0, y, w2, th), I18N.localise(DatabaseConstants.BOTANY_GENOME_KEY + ".temp"), TextJustification.MIDDLE_RIGHT);
 		new ControlText(contents, new Area(w2, y, w3, th), treeSpecies.getTemperature().getName(), TextJustification.MIDDLE_LEFT);
 
 		y += th;

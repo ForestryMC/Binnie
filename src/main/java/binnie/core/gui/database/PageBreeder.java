@@ -27,10 +27,10 @@ public class PageBreeder extends ControlPage<DatabaseTab> {
 		new ControlTextCentered(this, 8, TextFormatting.UNDERLINE + system.getDescriptor() + " " + I18N.localise(DatabaseConstants.BREEDER_KEY + ".profile"));
 		new ControlTextCentered(this, 75, "" + system.discoveredSpeciesCount + "/" + system.totalSpeciesCount + " " + I18N.localise(DatabaseConstants.BREEDER_KEY + ".species"));
 		new ControlBreedingProgress(this, 20, 87, 102, 14, system, system.discoveredSpeciesPercentage);
-		new ControlTextCentered(this, 115, "" + system.discoveredBranchCount + "/" + system.totalBranchCount + " " + I18N.localise(DatabaseConstants.BREEDER_KEY + ".breeder.branches"));
+		new ControlTextCentered(this, 115, "" + system.discoveredBranchCount + "/" + system.totalBranchCount + " " + I18N.localise(DatabaseConstants.BREEDER_KEY + ".branches"));
 		new ControlBreedingProgress(this, 20, 127, 102, 14, system, system.discoveredBranchPercentage);
 		if (system.discoveredSecretCount > 0) {
-			new ControlTextCentered(this, 155, "" + system.discoveredSecretCount + "/" + system.totalSecretCount + " " + I18N.localise(DatabaseConstants.BREEDER_KEY + ".breeder.species.secret"));
+			new ControlTextCentered(this, 155, "" + system.discoveredSecretCount + "/" + system.totalSecretCount + " " + I18N.localise(DatabaseConstants.BREEDER_KEY + ".species.secret"));
 		}
 		new ControlTextCentered(this, 32, this.player.getName());
 		new ControlTextCentered(this, 44, TextFormatting.ITALIC + system.getEpitome());

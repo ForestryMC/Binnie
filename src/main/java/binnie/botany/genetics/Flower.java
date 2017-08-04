@@ -65,7 +65,6 @@ public class Flower extends Individual implements IFlower {
 	}
 
 	public Flower(IFlowerGenome genome, int age) {
-		this.age = 0;
 		this.genome = genome;
 		this.age = age;
 		wilting = false;
