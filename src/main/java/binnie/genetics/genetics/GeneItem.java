@@ -1,16 +1,18 @@
 package binnie.genetics.genetics;
 
-import binnie.Binnie;
-import binnie.core.genetics.BreedingSystem;
-import binnie.core.genetics.Gene;
-import binnie.genetics.api.IGene;
-import forestry.api.core.INBTTagable;
-import forestry.api.genetics.ISpeciesRoot;
+import java.util.List;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 
-import java.util.List;
+import forestry.api.core.INBTTagable;
+import forestry.api.genetics.ISpeciesRoot;
+
+import binnie.Binnie;
+import binnie.core.genetics.BreedingSystem;
+import binnie.core.genetics.Gene;
+import binnie.genetics.api.IGene;
 
 public class GeneItem implements INBTTagable, IGeneItem {
 	protected IGene gene;
@@ -85,7 +87,10 @@ public class GeneItem implements INBTTagable, IGeneItem {
 
 	@Override
 	public ISpeciesRoot getSpeciesRoot() {
-		return gene.getSpeciesRoot();
+		if (gene != null) {
+			return gene.getSpeciesRoot();
+		}
+		return null;
 	}
 
 	@Override
