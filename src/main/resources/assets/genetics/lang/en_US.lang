@@ -27,9 +27,7 @@ genetics.item.database.1.name=Master Gene Database
 genetics.item.registry.0.name=Registry
 genetics.item.registry.1.name=Master Registry
 genetics.item.serum.name=%s Serum
-genetics.item.serum.empty=Empty Serum
 genetics.item.serumArray.name=%s Serum Array
-genetics.item.serumArray.empty=Empty Serum Array
 
 genetics.item.sequence=DNA Sequence
 genetics.item.sequence.0=Very Faint
