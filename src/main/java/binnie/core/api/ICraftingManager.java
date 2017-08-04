@@ -1,5 +1,6 @@
 package binnie.core.api;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 
 public interface ICraftingManager<T extends IBinnieRecipe> {
@@ -21,4 +22,13 @@ public interface ICraftingManager<T extends IBinnieRecipe> {
 	 * @return an unmodifiable collection of all recipes registered to the crafting provider.
 	 */
 	Collection<T> recipes();
+
+	/**
+	 * @return null if this type of recipe has no jei integration
+	 */
+	@Nullable
+	String getJEICategory();
+
+	@Nullable
+	Object getJeiWrapper(T recipe);
 }

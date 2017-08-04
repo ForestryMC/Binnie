@@ -3,6 +3,7 @@ package binnie.extratrees.machines.lumbermill.recipes;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
+import javax.annotation.Nullable;
 import java.util.Collection;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,10 +17,15 @@ import net.minecraft.util.NonNullList;
 
 import net.minecraftforge.oredict.OreDictionary;
 
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Optional;
+
 import binnie.core.util.FakeCraftingWorld;
 import binnie.core.util.OreDictionaryUtil;
 import binnie.extratrees.api.recipes.ILumbermillManager;
 import binnie.extratrees.api.recipes.ILumbermillRecipe;
+import binnie.extratrees.integration.jei.RecipeUids;
+import binnie.extratrees.integration.jei.lumbermill.LumbermillRecipeWrapper;
 
 public class LumbermillRecipeManager implements ILumbermillManager {
 	//Map<input log item, Pair<input log, output planks>>
@@ -101,6 +107,25 @@ public class LumbermillRecipeManager implements ILumbermillManager {
 	@Override
 	public Collection<ILumbermillRecipe> recipes() {
 		return recipes.values();
+	}
+
+	@Override
+	public String getJEICategory() {
+		return RecipeUids.LUMBERMILL;
+	}
+
+	@Nullable
+	@Override
+	public Object getJeiWrapper(ILumbermillRecipe recipe) {
+		if(!Loader.isModLoaded("jei")){
+			return null;
+		}
+		return getWrapper(recipe);
+	}
+
+	@Optional.Method(modid = "jei")
+	private Object getWrapper(ILumbermillRecipe recipe){
+		return new LumbermillRecipeWrapper(recipe.getInput(), recipe.getOutput());
 	}
 
 	private static class FakeCraftingHandler extends Container {

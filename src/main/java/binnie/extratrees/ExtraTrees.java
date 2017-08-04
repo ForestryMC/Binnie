@@ -45,6 +45,7 @@ import binnie.extratrees.core.ModuleCore;
 import binnie.extratrees.genetics.ETTreeDefinition;
 import binnie.extratrees.genetics.FruitSprite;
 import binnie.extratrees.genetics.ModuleGenetics;
+import binnie.extratrees.integration.crafttweaker.CraftTweakerModule;
 import binnie.extratrees.item.ModuleItems;
 import binnie.extratrees.kitchen.ModuleKitchen;
 import binnie.extratrees.machines.DummyManagers;
@@ -147,6 +148,7 @@ public class ExtraTrees extends AbstractMod {
 		this.addModule(machine = new ModuleMachine());
 		this.addModule(new ModuleCore());
 		this.addModule(kitchen = new ModuleKitchen());
+		this.addModule(new CraftTweakerModule());
 	}
 
 	@Override
@@ -196,7 +198,7 @@ public class ExtraTrees extends AbstractMod {
 	}
 
 	@Override
-	public boolean isActive() {
+	public boolean isAvailable() {
 		return BinnieCore.isExtraTreesActive();
 	}
 

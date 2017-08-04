@@ -151,7 +151,7 @@ public final class BinnieCore extends AbstractMod {
 	private static List<AbstractMod> getActiveMods() {
 		final List<AbstractMod> list = new ArrayList<>();
 		for (final AbstractMod mod : BinnieCore.modList) {
-			if (mod.isActive()) {
+			if (mod.isAvailable()) {
 				list.add(mod);
 			}
 		}
@@ -237,7 +237,7 @@ public final class BinnieCore extends AbstractMod {
 	}
 
 	@Override
-	public boolean isActive() {
+	public boolean isAvailable() {
 		return true;
 	}
 

@@ -9,8 +9,13 @@ import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fluids.FluidStack;
 
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Optional;
+
 import binnie.extratrees.api.recipes.IBreweryManager;
 import binnie.extratrees.api.recipes.IBreweryRecipe;
+import binnie.extratrees.integration.jei.RecipeUids;
+import binnie.extratrees.integration.jei.brewery.BreweryRecipeWrapper;
 import binnie.extratrees.item.ExtraTreeItems;
 
 public class BreweryRecipeManager implements IBreweryManager {
@@ -141,6 +146,30 @@ public class BreweryRecipeManager implements IBreweryManager {
 	@Override
 	public Collection<IBreweryRecipe> recipes() {
 		return recipes;
+	}
+
+	@Override
+	public String toString() {
+		return "Brewery";
+	}
+
+	@Override
+	public String getJEICategory() {
+		return RecipeUids.BREWING;
+	}
+
+	@Nullable
+	@Override
+	public Object getJeiWrapper(IBreweryRecipe recipe) {
+		if(!Loader.isModLoaded("jei")){
+			return null;
+		}
+		return getWrapper(recipe);
+	}
+
+	@Optional.Method(modid = "jei")
+	private Object getWrapper(IBreweryRecipe recipe){
+		return new BreweryRecipeWrapper(recipe);
 	}
 
 }

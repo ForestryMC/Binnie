@@ -17,13 +17,8 @@ public class SlotValidatorLog extends SlotValidator {
 
 	@Override
 	public boolean isValid(final ItemStack itemStack) {
-		int[] oreIDs = OreDictionary.getOreIDs(itemStack);
-		for (int oreId : oreIDs) {
-			if (oreId == logWoodId && LumbermillRecipeManager.getPlankProduct(itemStack) != null) {
-				return true;
-			}
-		}
-		return false;
+		ItemStack plank = LumbermillRecipeManager.getPlankProduct(itemStack);
+		return !plank.isEmpty();
 	}
 
 	@Override

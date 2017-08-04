@@ -1,6 +1,10 @@
 package binnie.extratrees.machines.brewery.recipes;
 
+import com.google.common.base.Objects;
+import com.google.common.collect.ImmutableList;
+
 import javax.annotation.Nullable;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -8,6 +12,7 @@ import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.fluids.FluidStack;
 
+import binnie.core.util.FluidStackUtil;
 import binnie.extratrees.api.recipes.IBreweryCrafting;
 import binnie.extratrees.api.recipes.IBreweryRecipe;
 
@@ -38,6 +43,16 @@ public class BreweryRecipe implements IBreweryRecipe {
 			return this.output.copy();
 		}
 		return null;
+	}
+
+	@Override
+	public Collection<Object> getInputs() {
+		return ImmutableList.of(input, yeast);
+	}
+
+	@Override
+	public Collection<Object> getOutputs() {
+		return Collections.singleton(output);
 	}
 
 	@Override
@@ -73,5 +88,14 @@ public class BreweryRecipe implements IBreweryRecipe {
 	@Override
 	public ItemStack getYeast() {
 		return yeast;
+	}
+
+	@Override
+	public String toString() {
+		return Objects.toStringHelper(this)
+			.add("input", FluidStackUtil.toString(input))
+			.add("output", FluidStackUtil.toString(output))
+			.add("yeast", yeast)
+			.toString();
 	}
 }

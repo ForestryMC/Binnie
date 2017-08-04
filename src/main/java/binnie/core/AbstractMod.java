@@ -33,7 +33,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 
 	protected abstract void registerModules();
 
-	public abstract boolean isActive();
+	public abstract boolean isAvailable();
 
 	@Override
 	public abstract String getChannel();
@@ -69,7 +69,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 	@Override
 	public void preInit() {
 		getProxy().setMod(this);
-		if (!this.isActive()) {
+		if (!this.isAvailable()) {
 			disabledSetupAPI();
 			return;
 		}
@@ -87,7 +87,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 
 	@Override
 	public void init() {
-		if (!this.isActive()) {
+		if (!this.isAvailable()) {
 			disabledSetupAPI();
 			return;
 		}
@@ -103,7 +103,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 
 	@Override
 	public void postInit() {
-		if (!this.isActive()) {
+		if (!this.isAvailable()) {
 			disabledSetupAPI();
 			return;
 		}
@@ -113,7 +113,10 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 		}
 	}
 
-	protected final void addModule(final IInitializable init) {
+	protected final void addModule(IInitializable init) {
+		if(!init.isAvailable()) {
+			return;
+		}
 		this.modules.add(init);
 		MinecraftForge.EVENT_BUS.register(init);
 	}

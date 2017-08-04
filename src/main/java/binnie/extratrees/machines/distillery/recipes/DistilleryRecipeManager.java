@@ -11,8 +11,13 @@ import java.util.Map;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Optional;
+
 import binnie.extratrees.api.recipes.IDistilleryManager;
 import binnie.extratrees.api.recipes.IDistilleryRecipe;
+import binnie.extratrees.integration.jei.RecipeUids;
+import binnie.extratrees.integration.jei.distillery.DistilleryRecipeWrapper;
 
 public class DistilleryRecipeManager implements IDistilleryManager {
 	private static final int LEVELS = 3;
@@ -87,5 +92,24 @@ public class DistilleryRecipeManager implements IDistilleryManager {
 	@Override
 	public Collection<IDistilleryRecipe> recipes() {
 		return recipeList;
+	}
+
+	@Override
+	public String getJEICategory() {
+		return RecipeUids.DISTILLING;
+	}
+
+	@Nullable
+	@Override
+	public Object getJeiWrapper(IDistilleryRecipe recipe) {
+		if(!Loader.isModLoaded("jei")){
+			return null;
+		}
+		return getWrapper(recipe);
+	}
+
+	@Optional.Method(modid = "jei")
+	private Object getWrapper(IDistilleryRecipe recipe){
+		return new DistilleryRecipeWrapper(recipe.getLevel(), recipe.getInput(), recipe.getOutput());
 	}
 }

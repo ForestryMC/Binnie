@@ -146,7 +146,7 @@ public class Botany extends AbstractMod {
 	}
 
 	@Override
-	public boolean isActive() {
+	public boolean isAvailable() {
 		return BinnieCore.isBotanyActive();
 	}
 
