@@ -98,7 +98,7 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 		if (breedingSystem != null) {
 			return I18N.localise("genetics.item.serum.name", breedingSystem.getDescriptor());
 		}
-		return I18N.localise("genetics.item.serum.name");
+		return I18N.localise("genetics.item.serum.empty");
 	}
 
 	@Override
