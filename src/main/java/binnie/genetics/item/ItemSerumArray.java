@@ -1,5 +1,20 @@
 package binnie.genetics.item;
 
+import java.util.List;
+
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IChromosome;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.ISpeciesRoot;
+
 import binnie.Binnie;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
@@ -11,19 +26,6 @@ import binnie.genetics.genetics.GeneArrayItem;
 import binnie.genetics.genetics.IGeneItem;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IChromosome;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
-import java.util.List;
 
 public class ItemSerumArray extends ItemGene implements IItemSerum {
 	public ItemSerumArray() {
@@ -111,7 +113,10 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
 	public String getItemStackDisplayName(ItemStack stack) {
 		IGeneItem gene = getGeneItem(stack);
 		BreedingSystem breedingSystem = Binnie.Genetics.getSystem(gene.getSpeciesRoot());
-		return I18N.localise("genetics.item.serumArray.name", breedingSystem.getDescriptor());
+		if (breedingSystem != null) {
+			return I18N.localise("genetics.item.serumArray.name", breedingSystem.getDescriptor());
+		}
+		return I18N.localise("genetics.item.serumArray.name");
 	}
 
 	@Override
