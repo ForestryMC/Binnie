@@ -93,11 +93,8 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
 
 		switch (discovered) {
 			case SHOW:
-				tooltip.add(species.getName());
-				break;
-
 			case DISCOVERED:
-				tooltip.add(I18N.localise("binniecore.gui.database.discovered.discovered"));
+				tooltip.add(species.getName());
 				break;
 
 			case UNDISCOVERED:
